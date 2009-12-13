@@ -183,6 +183,18 @@ power=4
 toughness=4
 [/card]
 [card]
+id=51184
+name=Cranial Plating
+mana={2}
+type=Artifact
+subtype=Equipment
+text=Equipped creature gets +1/+0 for each artifact you control. {B}{B}: Attach Cranial Plating to target creature you control. Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
+auto={1}:equip
+auto=foreach(artifact|myBattlefield) 1/0
+auto={B}{B}:attach
+rarity=C
+[/card]
+[card]
 text=Destroy target creature. It can't be regenerated. You lose life equal to that creature's toughness.
 id=50210
 target=creature
@@ -312,6 +324,19 @@ mana={3}
 type=Artifact
 [/card]
 [card]
+id=51186
+name=Horned Helm
+mana={2}
+type=Artifact
+subtype=Equipment
+text=Equipped creature gets +1/+1 and has trample. {G}{G}: Attach Horned Helm to target creature you control. Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
+auto={1}:equip
+auto={G}{G}:attach
+auto=1/1
+auto=trample
+rarity=C
+[/card]
+[card]
 text=Haste   Iron-Barb Hellion can't block.
 id=44608
 name=Iron-Barb Hellion
@@ -418,6 +443,18 @@ type=Artifact Creature
 subtype=Myr
 power=1
 toughness=1
+[/card]
+[card]
+id=51183
+name=Neurok Stealthsuit
+mana={2}
+type=Artifact
+subtype=Equipment
+text=Equipped creature has shroud. (It can't be the target of spells or abilities.) {U}{U}: Attach Neurok Stealthsuit to target creature you control. Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
+auto={1}:equip
+auto={U}{U}:attach
+auto=shroud
+rarity=C
 [/card]
 [card]
 text=You draw two cards and you lose 2 life.
@@ -554,6 +591,18 @@ subtype=Elemental
 power=3
 toughness=1
 abilities=trample,haste
+[/card]
+[card]
+id=51185
+name=Sparring Collar
+mana={2}
+type=Artifact
+subtype=Equipment
+text=Equipped creature has first strike. {R}{R}: Attach Sparring Collar to target creature you control. Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
+auto={1}:equip
+auto={R}{R}:attach
+auto=first strike
+rarity=C
 [/card]
 [card]
 text={1}: Untap Staff of Domination.   {2}, {T}: You gain 1 life.   {3}, {T}: Untap target creature   {4}, {T}: Tap target creature.   {5}, {T}: Draw a card.

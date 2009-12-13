@@ -55,6 +55,17 @@ auto={2}{U}{U}:moveTo(myhand)
 abilities=legendary
 [/card]
 [card]
+id=35326
+name=Aura Extraction
+mana={1}{W}
+type=Instant
+target=enchantment
+auto=moveTo(library)
+text=Put target enchantment on top of its owner's library. Cycling {2} ({2}, Discard this card: Draw a card.)
+autohand={2}:cycling
+rarity=U
+[/card]
+[card]
 text=Haste   When Avarax enters the battlefield, you may search your library for a card named Avarax, reveal it, and put it into your hand. If you do, shuffle your library. {1}{R}: Avarax gets +1/+0 until end of turn.
 id=43331
 name=Avarax
@@ -81,6 +92,18 @@ subtype=Bird Soldier
 power=3
 toughness=5
 abilities=flying
+[/card]
+[card]
+id=34196
+name=Barkhide Mauler
+mana={4}{G}
+type=Creature
+subtype=Beast
+autohand={2}:cycling
+power=4
+toughness=4
+text=Cycling {2} ({2}, Discard this card: Draw a card.)
+rarity=C
 [/card]
 [card]
 text=For each opponent, gain control of target permanent that player controls. (This effect doesn't end at end of turn.)

@@ -135,14 +135,7 @@ type=Enchantment
 text=Whenever a player cycles a card, you may remove target creature from the game. If you do, return the removed card to play under its owner's control at end of turn.
 rarity=U
 [/card]
-[card]
-id=35326
-name=Aura Extraction
-mana={1}{W}
-type=Instant
-text=Put target enchantment on top of its owner's library. Cycling {2} ({2}, Discard this card: Draw a card.)
-rarity=U
-[/card]
+
 [card]
 id=39900
 name=Aurification
@@ -181,24 +174,8 @@ type=Instant
 text=Turn target creature with morph face down. Cycling {U} ({U}, Discard this card: Draw a card.)
 rarity=C
 [/card]
-[card]
-id=34196
-name=Barkhide Mauler
-mana={4}{G}
-type=Creature
-subtype=Beast
-power=4
-toughness=4
-text=Cycling {2} ({2}, Discard this card: Draw a card.)
-rarity=C
-[/card]
-[card]
-id=41139
-name=Barren Moor
-type=Land
-text=Barren Moor comes into play tapped. {T}: Add {B} to your mana pool. Cycling {B} ({B}, Discard this card: Draw a card.)
-rarity=C
-[/card]
+
+
 [card]
 id=39486
 name=Battering Craghorn
@@ -616,7 +593,10 @@ id=41142
 name=Death Pulse
 mana={2}{B}{B}
 type=Instant
+target=creature
 text=Target creature gets -4/-4 until end of turn. Cycling {1}{B}{B} ({1}{B}{B}, Discard this card: Draw a card.) When you cycle Death Pulse, you may have target creature get -1/-1 until end of turn.
+auto=-4/-4
+auto={1}{B}{B}:cycibgmay -1/-1 target(creature)
 rarity=U
 [/card]
 [card]

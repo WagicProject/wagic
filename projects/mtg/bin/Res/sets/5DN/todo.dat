@@ -213,15 +213,7 @@ toughness=6
 text=Trample At the beginning of your upkeep, sacrifice Cosmic Larva unless you sacrifice two lands.
 rarity=R
 [/card]
-[card]
-id=51184
-name=Cranial Plating
-mana={2}
-type=Artifact
-subtype=Equipment
-text=Equipped creature gets +1/+0 for each artifact you control. {B}{B}: Attach Cranial Plating to target creature you control. Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
-rarity=C
-[/card]
+
 [card]
 text=You may play land cards from your graveyard.
 # Following line does not work: "May moveto" from graveyards does
@@ -456,15 +448,7 @@ subtype=Equipment
 text=Equipped creature has first strike, trample, and haste. {1}: If you control Equipment named Helm of Kaldra, Sword of Kaldra, and Shield of Kaldra, put a legendary 4/4 colorless Avatar creature token named Kaldra onto the battlefield and attach those Equipment to it. Equip {2}
 rarity=R
 [/card]
-[card]
-id=51186
-name=Horned Helm
-mana={2}
-type=Artifact
-subtype=Equipment
-text=Equipped creature gets +1/+1 and has trample. {G}{G}: Attach Horned Helm to target creature you control. Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
-rarity=C
-[/card]
+
 [card]
 id=51086
 name=Hoverguard Sweepers
@@ -615,15 +599,7 @@ toughness=4
 text={3}: Switch Myr Quadropod's power and toughness until end of turn.
 rarity=C
 [/card]
-[card]
-id=51183
-name=Neurok Stealthsuit
-mana={2}
-type=Artifact
-subtype=Equipment
-text=Equipped creature has shroud. (It can't be the target of spells or abilities.) {U}{U}: Attach Neurok Stealthsuit to target creature you control. Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
-rarity=C
-[/card]
+
 [card]
 id=50158
 name=Opaline Bracers
@@ -712,6 +688,9 @@ subtype=Cat Soldier
 power=3
 toughness=4
 text=Vigilance As long as Raksha Golden Cub is equipped, Cat creatures you control get +2/+2 and have double strike.
+auto=aslongas(this[equip]) lord(creature[cat]|myBattlefield) 2/2
+auto=aslongas(this[equip]) lord(creature[cat]|myBattlefield) double strike
+#the above is a concept
 rarity=R
 [/card]
 [card]
@@ -828,23 +807,13 @@ toughness=0
 text=Sunburst (This enters the battlefield with a +1/+1 counter on it for each color of mana spent to cast it.) {T}: Double the number of +1/+1 counters on Solarion.
 rarity=R
 [/card]
-[card]
-id=51185
-name=Sparring Collar
-mana={2}
-type=Artifact
-subtype=Equipment
-text=Equipped creature has first strike. {R}{R}: Attach Sparring Collar to target creature you control. Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
-auto={1}:equip
-auto=first strike
-rarity=C
-[/card]
+
 [card]
 id=73572
 name=Spectral Shift
 mana={1}{U}
 type=Instant
-text=Choose one  EChange the text of target spell or permanent by replacing all instances of one basic land type with another; or change the text of target spell or permanent by replacing all instances of one color word with another. (These effects last indefinitely.) Entwine {2} (Choose both if you pay the entwine cost.)
+text=Choose one - Change the text of target spell or permanent by replacing all instances of one basic land type with another; or change the text of target spell or permanent by replacing all instances of one color word with another. (These effects last indefinitely.) Entwine {2} (Choose both if you pay the entwine cost.)
 rarity=R
 [/card]
 [card]

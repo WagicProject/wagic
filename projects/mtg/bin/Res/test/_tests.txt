@@ -3,6 +3,7 @@
 ########################
 generic/attacks_each_turn.txt
 generic/cycling.txt
+generic/cycling2.txt
 generic/deathtouch.txt
 generic/doesnotuntap.txt
 generic/doesnotuntap2.txt
