@@ -37,6 +37,7 @@ void GameStateAwards::Start()
 { 
   char buf[256];
   mState = STATE_LISTVIEW;
+  options.checkProfile();
 
   menu = NULL;
   saveMe = options.newAward();

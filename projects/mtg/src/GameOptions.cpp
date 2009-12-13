@@ -90,6 +90,9 @@ string Options::getName(int option){
   //Unlocked sets.
   int setID = option - SET_UNLOCKS;
   char buf[512];
+  if(setID < 0 || setID > setlist.size())
+	  return "";
+
   sprintf(buf,"unlocked_%s",setlist[setID].c_str());
   return buf;
 
@@ -297,7 +300,6 @@ int GameOptions::save(){
   std::ofstream file(mFilename.c_str());
   if (file){
     for ( int x=0; x < (int) values.size(); x++ ){
-      
       //Check that this is a valid option.
       string name = Options::getName(x);
       GameOption * opt = get(x);
@@ -507,7 +509,7 @@ void GameSettings::checkProfile(){
         GameOptionAward * goa = dynamic_cast<GameOptionAward *>(globalOptions->get(x));
         if(goa){
           GameOptionAward * dupe = dynamic_cast<GameOptionAward *>(profileOptions->get(x));
-          if(dupe && !dupe->number) dupe->giveAward();
+		  if(dupe && goa->number && !dupe->number) dupe->giveAward();
         }
       }
     }
@@ -520,19 +522,9 @@ void GameSettings::checkProfile(){
     if(!pcFile.size() || !fileExists(pcFile.c_str()))
     {
       //If we had any default settings, we'd set them here.
-      
-      //Find the set for which we have the most variety
-      int setId = 0;
-      int maxcards = 0;
-      for (int i=0; i< setlist.size(); i++){
-        int value = theGame->collection->countBySet(i);
-        if (value > maxcards){
-          maxcards = value;
-          setId = i;
-        }
-      }
+     
 
-      //Make the proper directories
+	  //Make the proper directories
       if(profileOptions){
         //Force our directories to exist.
         MAKEDIR(RESPATH"/profiles");
@@ -544,14 +536,32 @@ void GameSettings::checkProfile(){
 
         profileOptions->save();
       }
-
-      //Save this set as "unlocked"
-      (*profileOptions)[Options::optionSet(setId)]=1;
-      profileOptions->save();
-
-      //Give the player their first deck
-      createUsersFirstDeck(setId);
     }
+
+		   
+  //Find the set for which we have the most variety
+  int setId = -1;
+  int maxcards = 0;
+  int ok = 0;
+  for (int i=0; i< setlist.size(); i++){
+	int value = theGame->collection->countBySet(i);
+	if (value > maxcards){
+	  maxcards = value;
+	  setId = i;
+	}
+	if(options[Options::optionSet(i)].number){
+		ok = 1;
+		break;
+	}
+  }
+  if(!ok && setId >= 0){
+	  //Save this set as "unlocked"
+	  (*profileOptions)[Options::optionSet(setId)]=1;
+	  profileOptions->save();
+
+	  //Give the player their first deck
+	  createUsersFirstDeck(setId);
+  }
 }
 
 void GameSettings::createUsersFirstDeck(int setId){
@@ -565,6 +575,9 @@ void GameSettings::createUsersFirstDeck(int setId){
     return;
 
   MTGDeck *mCollection = NEW MTGDeck(options.profileFile(PLAYER_COLLECTION,"",false).c_str(), theGame->collection);
+  if(mCollection->totalCards() > 0)
+	  return;
+
   //10 lands of each
   int sets[] = {setId};
   if (!mCollection->addRandomCards(10, sets,1, Constants::RARITY_L,"Forest")){

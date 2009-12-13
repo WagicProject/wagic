@@ -374,7 +374,7 @@ void GameStateMenu::Update(float dt)
       break;    
     case MENU_STATE_MAJOR_FIRST_TIME :
       currentState &= MENU_STATE_MAJOR_MAINMENU;
-      options.checkProfile(); //Handles building a new deck, if needed.
+      options.reloadProfile(); //Handles building a new deck, if needed.
       break;
     case MENU_STATE_MAJOR_MAINMENU :
       if (!scrollerSet) fillScroller();

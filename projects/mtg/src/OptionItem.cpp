@@ -541,6 +541,7 @@ void WGuiList::Render(){
         break;
     }
     vHeight = 0;
+	if(start >= 0)
     for (nowPos=nbitems;nowPos > 1; nowPos--){
        if(!items[start]->Visible())
         continue;
@@ -1288,7 +1289,7 @@ WGuiAward::WGuiAward(int _id, string name, string _text): WGuiItem(name){
 WGuiAward::~WGuiAward(){
   GameOptionAward * goa = dynamic_cast<GameOptionAward*>(&options[id]);
   if(goa) 
-    goa->setViewed(true); //FIXME: This removes "New" status even if the award hasn't been selected.
+    goa->setViewed(true);
 }
 bool WGuiAward::Visible(){
   //WGuiAward is only visible when it's tied to an already acchieved award.

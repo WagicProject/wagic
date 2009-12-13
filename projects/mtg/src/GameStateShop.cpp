@@ -65,24 +65,10 @@ void GameStateShop::load(){
   int nbsets = 0;
   int nbboostersets = 0;
 
-  //Unlock a default set if no set is unlocked
-  int ok = 0;
-  int defaultSet = 0;
-  
-  for (int i = 0; i < setlist.size(); i++){
-    
-    if (setlist[i].compare("10E") == 0) defaultSet = i;    
-    
+  //Figure out which sets are available.
+  for (int i = 0; i < setlist.size(); i++){    
     unlocked[i] = options[Options::optionSet(i)].number;
-    if (unlocked[i])
-      ok = 1;
   }
-  if (!ok){
-    unlocked[defaultSet] = 1;
-    options[Options::optionSet(defaultSet)] = GameOption(1);
-    options.save();
-  }
-
   for (int i = 0; i < setlist.size(); i++){
     if (unlocked[i]){
       sets[nbsets] = i;
