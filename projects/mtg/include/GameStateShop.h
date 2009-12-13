@@ -5,13 +5,14 @@
 #include "../include/GameState.h"
 #include "../include/SimpleMenu.h"
 #include "../include/ShopItem.h"
+#include "../include/Tasks.h"
 
 
 #define STATE_BUY 1
 #define STATE_SELL 2
 #define STAGE_SHOP_MENU 3
 #define STAGE_SHOP_SHOP 4
-
+#define STAGE_SHOP_TASKS 5
 
 
 class GameStateShop: public GameState, public JGuiListener
@@ -23,6 +24,7 @@ class GameStateShop: public GameState, public JGuiListener
   JQuad * mBack;
   JQuad * mBg;
   JTexture * mBgTex;
+  TaskList * taskList;
 
   SimpleMenu * menu;
   int mStage;

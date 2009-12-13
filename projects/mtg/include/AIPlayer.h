@@ -94,6 +94,7 @@ class AIPlayerBaka: public AIPlayer{
   float timer;
   MTGCardInstance * FindCardToPlay(ManaCost * potentialMana, const char * type);
  public:
+  int deckId;
   AIPlayerBaka(MTGPlayerCards * deck, string deckFile, string deckfileSmall, string avatarFile);
   virtual int Act(float dt);
   void initTimer();

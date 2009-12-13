@@ -41,7 +41,9 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
   showMsg = (WRand() % 5);
   GameObserver * g = GameObserver::GetInstance();
   if (!g->turn) return;
+  PlayerData * playerdata = NEW PlayerData(app->collection);
   if (!p1->isAI() && p2->isAI() && p1!= g->gameOver){
+    gameLength = time(0) - g->startedAt;
     value = 400;
     if (app->gameType != GAME_TYPE_CLASSIC) value = 200;
     int difficulty = options[Options::DIFFICULTY].number;
@@ -79,6 +81,20 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
     }
 
     GameOptionAward * goa = NULL;
+    // <Tasks handling>
+    vector<Task*> finishedTasks;
+    playerdata->taskList->getDoneTasks(_p1, _p2, _app, &finishedTasks);
+
+    char buffer[512];
+
+    for (vector<Task*>::iterator it = finishedTasks.begin(); it!=finishedTasks.end(); it++) {
+      sprintf(buffer, _("Task: %s").c_str(), (*it)->getShortDesc().c_str());
+      CreditBonus * b = NEW CreditBonus((*it)->getReward(), buffer);
+      bonus.push_back(b);
+      playerdata->taskList->removeTask(*it);
+    }
+    // </Tasks handling>
+
     if (unlocked == -1){
       unlocked = isDifficultyUnlocked();
       if (unlocked){
@@ -132,13 +148,19 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
 
 
 
-    PlayerData * playerdata = NEW PlayerData(app->collection);
-    playerdata->credits+= value;
+    playerdata->credits += value;
+    playerdata->taskList->passOneDay();
+    if (playerdata->taskList->getTaskCount() < 6) {
+      playerdata->taskList->addRandomTask();
+      playerdata->taskList->addRandomTask();
+    }
     playerdata->save();
     SAFE_DELETE(playerdata);
 
   }else{
-      unlocked = 0;
+    unlocked = 0;
+    playerdata->taskList->passOneDay();
+    playerdata->taskList->save();
   }
 }
 
@@ -182,6 +204,7 @@ void Credits::Render(){
   }
 
   float y = 130;
+
   if (showMsg == 1) y = 50;
   vector<CreditBonus *>:: iterator it;
   for ( it=bonus.begin() ; it < bonus.end(); ++it){
@@ -190,6 +213,17 @@ void Credits::Render(){
   }
   f2->DrawString(buffer, 10, y);
   y+=15;
+
+  //!!
+  if (g->gameOver != p1) {
+    sprintf(buffer, _("Game length: %i seconds").c_str(), this->gameLength);
+    f->DrawString(buffer, 10, y);
+    y += 10;
+    sprintf(buffer, _("Credits per minute: %i").c_str(), (int)(60*value/this->gameLength));
+    f->DrawString(buffer, 10, y);
+    y += 10;
+    showMsg = 0;
+  }
 
   if (showMsg == 1){
     f2->DrawString(_("Please support this project!").c_str() ,10,y+15);

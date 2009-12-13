@@ -51,6 +51,7 @@ void GameStateShop::Start()
   JRenderer::GetInstance()->EnableVSync(true);
 
   shop = NULL;
+  taskList = NULL;
   load();
 
 }
@@ -127,6 +128,7 @@ void GameStateShop::End()
 
   SAFE_DELETE(shop);
   SAFE_DELETE(menu);
+  SAFE_DELETE(taskList);
 }
 
 void GameStateShop::Destroy(){
@@ -142,17 +144,34 @@ void GameStateShop::Update(float dt)
     }else{
       menu = NEW SimpleMenu(11,this,Constants::MENU_FONT,SCREEN_WIDTH/2-100,20);
       menu->Add(12,"Save & Back to Main Menu");
+      menu->Add(14,"See available tasks");
       menu->Add(13, "Cancel");
-    }
+    } 
   }else{
     if (mEngine->GetButtonClick(PSP_CTRL_START)){
       mStage = STAGE_SHOP_MENU;
     }
-    if (mEngine->GetButtonClick(PSP_CTRL_SQUARE)){
-      load();
+    if (mStage == STAGE_SHOP_TASKS){
+      if ( (mEngine->GetButtonClick(PSP_CTRL_CROSS)) ||
+           (mEngine->GetButtonClick(PSP_CTRL_TRIANGLE)) ) {
+        mStage = STAGE_SHOP_SHOP;
+        return;
+      }
+      if ((mEngine->GetButtonClick(PSP_CTRL_SQUARE)) && (taskList)) {
+        taskList->passOneDay();
+        if (taskList->getTaskCount() < 6) {
+          taskList->addRandomTask();
+          taskList->addRandomTask();
+        }
+       taskList->save();
+      }
+    } else {
+      if (mEngine->GetButtonClick(PSP_CTRL_SQUARE)){
+        load();
+      }
+      if (shop)
+        shop->Update(dt);
     }
-    if (shop)
-      shop->Update(dt);
   }
 
 }
@@ -169,7 +188,14 @@ void GameStateShop::Render()
 
   if (shop)
     shop->Render();
-  
+ 
+  if (mStage == STAGE_SHOP_TASKS) {
+    if (!taskList) {
+      taskList = NEW TaskList();
+    }
+    taskList->Render();
+  }
+
   if (mStage == STAGE_SHOP_MENU && menu){
     menu->Render();
   }
@@ -184,8 +210,11 @@ void GameStateShop::ButtonPressed(int controllerId, int controlId)
   case 11:
     if (controlId == 12){
       if (shop) shop->saveAll();
+      if (taskList) taskList->save();
       mParent->SetNextState(GAME_STATE_MENU);
-    }else{
+    } else if (controlId == 14){
+      mStage = STAGE_SHOP_TASKS;
+    } else {
       mStage = STAGE_SHOP_SHOP;
     }
     break;

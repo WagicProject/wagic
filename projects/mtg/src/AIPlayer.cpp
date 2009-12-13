@@ -592,11 +592,12 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, Player * op
     sprintf(avatarFile, "avatar%i.jpg",deckid);
     sprintf(deckFileSmall, "ai_baka_deck%i",deckid);
   }
-
+  
   MTGDeck * tempDeck = NEW MTGDeck(deckFile, collection);
   MTGPlayerCards * deck = NEW MTGPlayerCards(tempDeck);
   delete tempDeck;
   AIPlayerBaka * baka = NEW AIPlayerBaka(deck,deckFile, deckFileSmall, avatarFile);
+  baka->deckId = deckid;
   return baka;
 }
 

@@ -6,7 +6,9 @@
 #include <string>
 #include <JGE.h>
 #include <JLBFont.h>
+#include <time.h>
 #include "../include/Player.h"
+
 class GameApp;
 
 using namespace std;
@@ -22,6 +24,7 @@ public:
 
 class Credits{
 private:
+  time_t gameLength;
   int isDifficultyUnlocked();
   int isMomirUnlocked();
   int isEvilTwinUnlocked();

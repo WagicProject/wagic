@@ -370,8 +370,13 @@ void GameStateDuel::Update(float dt)
     case DUEL_STATE_BACK_TO_MAIN_MENU:
       //       mParent->effect->UpdateSmall(dt);
      menu->Update(dt);
-      if (menu->closed)
-	mParent->SetNextState(GAME_STATE_MENU);
+      if (menu->closed) {
+        PlayerData * playerdata = NEW PlayerData(mParent->collection);
+        playerdata->taskList->passOneDay();
+        playerdata->taskList->save();
+        SAFE_DELETE(playerdata);
+        mParent->SetNextState(GAME_STATE_MENU);
+      }
       break;
     default:
       if (PSP_CTRL_CIRCLE == mEngine->ReadButton()){

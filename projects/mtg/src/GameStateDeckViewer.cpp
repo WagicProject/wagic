@@ -883,7 +883,7 @@ void GameStateDeckViewer::renderOnScreenMenu(){
         for (int i=0; i<=STATS_MAX_MANA_COST; i++) {              
           sprintf(buffer, _("%i").c_str(), i);
           font->DrawString(buffer, 30 + leftTransition, posY);              
-          sprintf(buffer, _("%i").c_str(), (*countPerCost)[i]);
+          sprintf(buffer, ((*countPerCost)[i]>0)?_("%i").c_str():".", (*countPerCost)[i]);
           font->DrawString(buffer, 45 + leftTransition, posY);              
           for (int j=0; j<Constants::MTG_NB_COLORS-1;j++){
             sprintf(buffer, ((*countPerCostAndColor)[i][j]>0)?_("%i").c_str():".", (*countPerCostAndColor)[i][j]);

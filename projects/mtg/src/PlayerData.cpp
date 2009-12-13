@@ -22,8 +22,8 @@ PlayerData::PlayerData(MTGAllCards * allcards){
 
   //COLLECTION
   collection = NEW MTGDeck(options.profileFile(PLAYER_COLLECTION).c_str(), allcards);
+  taskList = NEW TaskList(options.profileFile(PLAYER_TASKS).c_str());
 }
-
 
 int PlayerData::save(){
   std::ofstream file(options.profileFile(PLAYER_SAVEFILE).c_str());
@@ -34,9 +34,11 @@ int PlayerData::save(){
     file.close();
   }
   collection->save();
+  taskList->save();
   return 1;
 }
 
 PlayerData::~PlayerData(){
   SAFE_DELETE(collection);
+  SAFE_DELETE(taskList);
 }

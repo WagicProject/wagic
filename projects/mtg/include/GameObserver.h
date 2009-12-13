@@ -11,6 +11,7 @@
 #include "ReplacementEffects.h"
 #include "GuiStatic.h"
 #include <queue>
+#include <time.h>
 
 class MTGGamePhase;
 class MTGAbility;
@@ -46,6 +47,7 @@ class GameObserver{
   ReplacementEffects *replacementEffects;
   Player * gameOver;
   Player * players[2]; //created outside
+  time_t startedAt;
 
   TargetChooser * getCurrentTargetChooser();
   void stackObjectClicked(Interruptible * action);

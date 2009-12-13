@@ -209,6 +209,9 @@ void GameObserver::startGame(Rules * rules){
     }
   }
 
+  startedAt = time(0);
+
+
   //Difficult mode special stuff
   if (!players[0]->isAI() && players[1]->isAI()){
     int difficulty = options[Options::DIFFICULTY].number;

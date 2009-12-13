@@ -44,6 +44,7 @@ class GameStateMenu: public GameState, public JGuiListener
   string getLang(string s);
   void loadLangMenu();
   bool langChoices;
+  void runTest(); //!!
  public:
   GameStateMenu(GameApp* parent);
   virtual ~GameStateMenu();
