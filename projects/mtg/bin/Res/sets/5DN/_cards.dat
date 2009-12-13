@@ -329,6 +329,7 @@ auto={2}:equip
 # It currently doesn't matter though since the sword can't be
 # implemented anyway.
 # auto --- aslongas(Sword of Kaldra|mybattlefield) aslongas(Shield of Kaldra|mybattlefield) {1}:token(Kaldra,Creature Avatar,4/4,legendary) && attach target(Kaldra)
+ability=legendary
 rarity=R
 [/card]
 [card]
