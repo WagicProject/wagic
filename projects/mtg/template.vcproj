@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="mtg"
 	ProjectGUID="{53024371-2293-4D40-8ECF-FCB470B50DA1}"
 	TargetFrameworkVersion="131072"
@@ -653,6 +653,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\Tasks.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\TestSuiteAI.cpp"
 				>
 			</File>
@@ -1011,6 +1015,10 @@
 			</File>
 			<File
 				RelativePath=".\include\TargetsList.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\Tasks.h"
 				>
 			</File>
 			<File
