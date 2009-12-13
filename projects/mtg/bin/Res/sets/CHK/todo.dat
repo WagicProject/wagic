@@ -474,15 +474,7 @@ toughness=2
 text={T}: Frostwielder deals 1 damage to target creature or player. If a creature dealt damage by Frostwielder this turn would be put into a graveyard, remove it from the game instead.
 rarity=C
 [/card]
-[card]
-id=79862
-name=General's Kabuto
-mana={4}
-type=Artifact
-subtype=Equipment
-text=Equipped creature has shroud. (It can't be the target of spells or abilities.) Prevent all combat damage that would be dealt to equipped creature. Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
-rarity=R
-[/card]
+
 [card]
 id=75328
 name=Ghostly Prison
@@ -1328,15 +1320,7 @@ type=Artifact
 text={T}: Nine-Ringed Bo deals 1 damage to target Spirit creature. If that creature would be put into a graveyard this turn, remove it from the game instead.
 rarity=U
 [/card]
-[card]
-id=75265
-name=No-Dachi
-mana={2}
-type=Artifact
-subtype=Equipment
-text=Equipped creature gets +2/+0 and has first strike. Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery.)
-rarity=U
-[/card]
+
 [card]
 id=50431
 name=Numai Outcast

@@ -215,6 +215,18 @@ mana={4}{G}
 type=Sorcery
 [/card]
 [card]
+id=79862
+name=General's Kabuto
+mana={4}
+type=Artifact
+subtype=Equipment
+text=Equipped creature has shroud. (It can't be the target of spells or abilities.) Prevent all combat damage that would be dealt to equipped creature. Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
+auto={2}:equip
+auto=shroud
+auto=preventAllCombatDamage to(mytgt)
+rarity=R
+[/card]
+[card]
 text={1}{G}, Sacrifice Hana Kami: Return target Arcane card from your graveyard to your hand.
 auto={1}{G}{S}:moveTo(myhand) target(arcane|mygraveyard)
 id=77138
@@ -669,6 +681,18 @@ rarity=R
 mana={2}{B}{B}
 type=Enchantment
 abilities=legendary
+[/card]
+[card]
+id=75265
+name=No-Dachi
+mana={2}
+type=Artifact
+subtype=Equipment
+text=Equipped creature gets +2/+0 and has first strike. Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery.)
+auto={3}:equip
+auto=2/0
+auto=first strike
+rarity=U
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.   {G}, {T}: Target legendary Creature gets +1/+1 until end of turn.

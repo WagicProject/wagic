@@ -323,6 +323,17 @@ power=4
 toughness=4
 [/card]
 [card]
+id=74415
+name=Shuko
+mana={1}
+type=Artifact
+subtype=Equipment
+text=Equipped creature gets +1/+0. Equip {0} ({0}: Attach to target creature you control. Equip only as a sorcery.)
+auto={0}:equip
+auto=1/0
+rarity=U
+[/card]
+[card]
 text=Whenever you cast a Spirit or Arcane spell, you may search your library for an Aura card with enchant creature, reveal it, and put it into your hand. If you do, shuffle your library.
 id=74412
 name=Tallowisp

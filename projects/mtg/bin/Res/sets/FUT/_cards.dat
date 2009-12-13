@@ -337,6 +337,17 @@ autohand={S}:life:-2 && draw:1
 rarity=U
 [/card]
 [card]
+id=126215
+name=Sword of the Meek
+mana={2}
+type=Artifact
+subtype=Equipment
+text=Equipped creature gets +1/+2. Equip {2} Whenever a 1/1 creature comes into play under your control, you may return Sword of the Meek from your graveyard to play, then attach it to that creature.
+auto={2}:equip
+auto=1/2
+rarity=U
+[/card]
+[card]
 text=Tarmogoyf's power is equal to the number of card types among cards in all graveyards and its toughness is equal to that number plus 1. (The card types are artifact, creature, enchantment, instant, land, planeswalker, sorcery, and tribal.)
 id=136142
 name=Tarmogoyf
@@ -366,7 +377,6 @@ power=2
 toughness=1
 abilities=reach,deathtouch
 [/card]
-
 [card]
 text=Whenever you cast a spell, creatures you control can't be the targets of spells or abilities your opponents control this turn.
 auto=@movedTo(*|mystack):lord(creature|myBattlefield) opponentshroud ueot

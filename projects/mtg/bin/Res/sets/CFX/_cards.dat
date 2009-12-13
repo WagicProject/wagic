@@ -93,6 +93,17 @@ toughness=5
 abilities=flying,trample
 [/card]
 [card]
+text=Equipped creature gets +1/+0.     Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
+id=189270
+name=Bone Saw
+rarity=C
+auto={1}:equip
+auto=1/0
+type=Artifact
+mana={0}
+subtype=Equipment
+[/card]
+[card]
 id=184994
 name=Canyon Minotaur
 rarity=C
@@ -445,6 +456,21 @@ name=Mana Cylix
 rarity=C
 mana={1}
 type=Artifact
+[/card]
+[card]
+text=Domain - Equipped creature gets +1/+1 for each basic land type among lands you control.     Equip {3}
+id=180159
+name=Manaforce Mace
+rarity=U
+type=Artifact
+auto={3}:equip
+auto=aslongas(forest|myBattlefield) 1/1
+auto=aslongas(mountain|myBattlefield) 1/1
+auto=aslongas(plains|myBattlefield) 1/1
+auto=aslongas(swamp|myBattlefield) 1/1
+auto=aslongas(island|myBattlefield) 1/1
+mana={4}
+subtype=Equipment
 [/card]
 [card]
 text=Enchant creature   Enchanted creature gets +2/+2 and can't block.

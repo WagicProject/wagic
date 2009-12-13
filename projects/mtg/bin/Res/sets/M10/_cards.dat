@@ -774,6 +774,18 @@ toughness=1
 rarity=C
 [/card]
 [card]
+id=191597
+name=Gorgon Flail
+mana={2}
+type=Artifact
+subtype=Equipment
+text=Equipped creature gets +1/+1 and has deathtouch. (Creatures dealt damage by this creature are destroyed. You can divide its combat damage among any of the creatures blocking or blocked by it.) Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
+auto={2}:equip
+auto=1/1
+auto=deathtouch
+rarity=U
+[/card]
+[card]
 id=190570
 name=Gravedigger
 mana={3}{B}
@@ -1074,6 +1086,19 @@ toughness=1
 text={B}: Looming Shade gets +1/+1 until end of turn.
 auto={B}:1/1
 rarity=C
+[/card]
+[card]
+id=191591
+name=Magebane Armor
+mana={3}
+type=Artifact
+subtype=Equipment
+text=Equipped creature gets +2/+4 and loses flying. Prevent all noncombat damage that would be dealt to equipped creature. Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
+auto={2}:equip
+auto=-flying
+auto=2/4
+auto=preventallcombatdamage to(mytgt)
+rarity=R
 [/card]
 [card]
 id=189904
@@ -1901,6 +1926,18 @@ text=Enchant creature Enchanted creature gets -2/-1.
 target=creature
 auto=-2/-1
 rarity=C
+[/card]
+[card]
+id=191078
+name=Whispersilk Cloak
+mana={3}
+type=Artifact
+subtype=Equipment
+text=Equipped creature is unblockable. Equipped creature has shroud. (It can't be the target of spells or abilities.) Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
+auto={2}:equip
+auto=unblockable
+auto=shroud
+rarity=U
 [/card]
 [card]
 id=189877

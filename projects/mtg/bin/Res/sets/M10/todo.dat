@@ -166,15 +166,7 @@ type=Land
 text=Glacial Fortress enters the battlefield tapped unless you control a Plains or an Island. {T}: Add {W} or {U} to your mana pool.
 rarity=R
 [/card]
-[card]
-id=191597
-name=Gorgon Flail
-mana={2}
-type=Artifact
-subtype=Equipment
-text=Equipped creature gets +1/+1 and has deathtouch. (Creatures dealt damage by this creature are destroyed. You can divide its combat damage among any of the creatures blocking or blocked by it.) Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
-rarity=U
-[/card]
+
 [card]
 id=193766
 name=Guardian Seraph
@@ -289,15 +281,7 @@ type=Enchantment
 text=Whenever an opponent casts a spell, reveal the top card of your library. If it's a creature card, put it onto the battlefield. Otherwise, you may put that card on the bottom of your library.
 rarity=R
 [/card]
-[card]
-id=191591
-name=Magebane Armor
-mana={3}
-type=Artifact
-subtype=Equipment
-text=Equipped creature gets +2/+4 and loses flying. Prevent all noncombat damage that would be dealt to equipped creature. Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
-rarity=R
-[/card]
+
 [card]
 id=191397
 name=Magma Phoenix
@@ -614,15 +598,7 @@ type=Sorcery
 text=Each player shuffles all permanents he or she owns into his or her library, then reveals that many cards from the top of his or her library. Each player puts all artifact, creature, and land cards revealed this way onto the battlefield, then does the same for enchantment cards, then puts all cards revealed this way that weren't put onto the battlefield on the bottom of his or her library.
 rarity=R
 [/card]
-[card]
-id=191078
-name=Whispersilk Cloak
-mana={3}
-type=Artifact
-subtype=Equipment
-text=Equipped creature is unblockable. Equipped creature has shroud. (It can't be the target of spells or abilities.) Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
-rarity=U
-[/card]
+
 
 [card]
 id=189885

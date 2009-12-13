@@ -958,15 +958,7 @@ toughness=3
 text=At the beginning of each player's upkeep, that player adds {G}{G}{G} to his or her mana pool. Until end of turn, this mana doesn't empty from that player's mana pool as steps or phases end.
 rarity=R
 [/card]
-[card]
-id=74415
-name=Shuko
-mana={1}
-type=Artifact
-subtype=Equipment
-text=Equipped creature gets +1/+0. Equip {0} ({0}: Attach to target creature you control. Equip only as a sorcery.)
-rarity=U
-[/card]
+
 [card]
 id=81997
 name=Shuriken

@@ -43,15 +43,7 @@ power=5
 subtype=Beast
 toughness=3
 [/card]
-[card]
-text=Equipped creature gets +1/+0.     Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
-id=189270
-name=Bone Saw
-rarity=C
-type=Artifact
-mana={0}
-subtype=Equipment
-[/card]
+
 [card]
 text=When Brackwater Elemental attacks or blocks, sacrifice it at end of turn.     Unearth {2}{U} ({2}{U}: Return this card from your graveyard to play. It gains haste. Remove it from the game at end of turn or if it would leave play. Unearth only as a sorcery.)
 id=180147
@@ -348,15 +340,7 @@ power=6
 subtype=Demon Dragon
 toughness=6
 [/card]
-[card]
-text=Domain - Equipped creature gets +1/+1 for each basic land type among lands you control.     Equip {3}
-id=180159
-name=Manaforce Mace
-rarity=U
-type=Artifact
-mana={4}
-subtype=Equipment
-[/card]
+
 [card]
 text=Prevent all noncombat damage that would be dealt to creatures you control.
 id=186615
