@@ -132,16 +132,6 @@ auto=deplete:3
 rarity=U
 [/card]
 [card]
-id=47219
-name=Break Asunder
-mana={2}{G}{G}
-type=Sorcery
-text=Destroy target artifact or enchantment. Cycling {2} ({2}, Discard this card: Draw a card.)
-target=artifact,enchantment
-auto=Destroy
-rarity=C
-[/card]
-[card]
 id=44491
 name=Cabal Conditioning
 mana={6}{B}
@@ -180,32 +170,11 @@ auto=@movedto(mytgt|graveyard):moveto(exile) target(mytgt) #not target possible 
 rarity=U
 [/card]
 [card]
-id=44281
-name=Chartooth Cougar
-mana={5}{R}
-type=Creature
-subtype=Cat Beast
-power=4
-toughness=4
-text={R}: Chartooth Cougar gets +1/+0 until end of turn. Mountaincycling {2} ({2}, Discard this card: Search your library for a Mountain card, reveal it, and put it into your hand. Then shuffle your library.)
-auto={R}:1/0
-rarity=C
-[/card]
-[card]
 id=45863
 name=Chill Haunting
 mana={1}{B}
 type=Instant
 text=As an additional cost to cast Chill Haunting, exile X creature cards from your graveyard. Target creature gets -X/-X until end of turn.
-rarity=U
-[/card]
-[card]
-id=43541
-name=Claws of Wirewood
-mana={3}{G}
-type=Sorcery
-text=Claws of Wirewood deals 3 damage to each creature with flying and each player. Cycling {2} ({2}, Discard this card: Draw a card.)
-auto=damage:3 all(creature[flying],player)
 rarity=U
 [/card]
 [card]
@@ -283,14 +252,6 @@ name=Decree of Pain
 mana={6}{B}{B}
 type=Sorcery
 text=Destroy all creatures. They can't be regenerated. Draw a card for each creature destroyed this way. Cycling {3}{B}{B} ({3}{B}{B}, Discard this card: Draw a card.) When you cycle Decree of Pain, all creatures get -2/-2 until end of turn.
-rarity=R
-[/card]
-[card]
-id=46423
-name=Decree of Savagery
-mana={7}{G}{G}
-type=Instant
-text=Put four +1/+1 counters on each creature you control. Cycling {4}{G}{G} ({4}{G}{G}, Discard this card: Draw a card.) When you cycle Decree of Savagery, you may put four +1/+1 counters on target creature.
 rarity=R
 [/card]
 [card]
@@ -416,18 +377,6 @@ subtype=Human Cleric
 power=2
 toughness=2
 text=Cleric spells you cast cost {W}{B} less to cast. This effect reduces only the amount of colored mana you pay. (For example, if you cast a Cleric spell with mana cost {1}{W}, it costs {1} to cast.)
-rarity=U
-[/card]
-[card]
-id=43538
-name=Elvish Aberration
-mana={5}{G}
-type=Creature
-subtype=Elf Mutant
-power=4
-toughness=5
-text={T}: Add {G}{G}{G} to your mana pool. Forestcycling {2} ({2}, Discard this card: Search your library for a Forest card, reveal it, and put it into your hand. Then shuffle your library.)
-auto={T}:add{G}{G}{G}
 rarity=U
 [/card]
 [card]
@@ -771,18 +720,6 @@ text=Whenever Nefashu attacks, up to five target creatures each get -1/-1 until 
 rarity=R
 [/card]
 [card]
-id=45834
-name=Noble Templar
-mana={5}{W}
-type=Creature
-subtype=Human Cleric Soldier
-power=3
-toughness=6
-text=Vigilance Plainscycling {2} ({2}, Discard this card: Search your library for a Plains card, reveal it, and put it into your hand. Then shuffle your library.)
-abilities=vigilance
-rarity=C
-[/card]
-[card]
 id=43543
 name=One with Nature
 mana={G}
@@ -955,18 +892,6 @@ text=Morph {U} (You may cast this face down as a 2/2 creature for {3}. Turn it f
 rarity=C
 [/card]
 [card]
-id=45841
-name=Shoreline Ranger
-mana={5}{U}
-type=Creature
-subtype=Bird Soldier
-power=3
-toughness=4
-text=Flying Islandcycling {2} ({2}, Discard this card: Search your library for an Island card, reveal it, and put it into your hand. Then shuffle your library.)
-abilities=flying
-rarity=C
-[/card]
-[card]
 id=43590
 name=Skirk Volcanist
 mana={3}{R}
@@ -987,16 +912,6 @@ power=3
 toughness=4
 text=Flying Whenever a creature dealt damage by Soul Collector this turn is put into a graveyard, return that card to the battlefield under your control. Morph {B}{B}{B} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 rarity=R
-[/card]
-[card]
-id=44484
-name=Spark Spray
-mana={R}
-type=Instant
-text=Spark Spray deals 1 damage to target creature or player. Cycling {R} ({R}, Discard this card: Draw a card.)
-target=creature,player
-auto=damage:1
-rarity=C
 [/card]
 [card]
 id=45847
@@ -1107,17 +1022,6 @@ text=Treetop Scout can't be blocked except by creatures with flying.
 rarity=C
 [/card]
 [card]
-id=43717
-name=Twisted Abomination
-mana={5}{B}
-type=Creature
-subtype=Zombie Mutant
-power=5
-toughness=3
-text={B}: Regenerate Twisted Abomination. Swampcycling {2} ({2}, Discard this card: Search your library for a Swamp card, reveal it, and put it into your hand. Then shuffle your library.)
-rarity=C
-[/card]
-[card]
 id=41164
 name=Unburden
 mana={1}{B}{B}
@@ -1160,27 +1064,6 @@ mana={1}{W}{W}
 type=Instant
 text=Target player sacrifices an attacking creature. Storm (When you cast this spell, copy it for each spell cast before it this turn.)
 rarity=U
-[/card]
-[card]
-id=47221
-name=Wipe Clean
-mana={1}{W}
-type=Instant
-text=Exile target enchantment. Cycling {3} ({3}, Discard this card: Draw a card.)
-target=enchantment
-auto=moveto(exile)
-rarity=C
-[/card]
-[card]
-id=43537
-name=Wirewood Guardian
-mana={5}{G}{G}
-type=Creature
-subtype=Elf Mutant
-power=6
-toughness=6
-text=Forestcycling {2} ({2}, Discard this card: Search your library for a Forest card, reveal it, and put it into your hand. Then shuffle your library.)
-rarity=C
 [/card]
 [card]
 id=45859

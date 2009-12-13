@@ -22,6 +22,17 @@ toughness=4
 abilities=legendary,flying
 [/card]
 [card]
+text=Destroy target artifact or enchantment.   Cycling {2} ({2}, Discard this card: Draw a card.)
+id=47219
+target=artifact,enchantment
+auto=destroy
+autohand={2}:cycling
+name=Break Asunder
+rarity=C
+mana={2}{G}{G}
+type=Sorcery
+[/card]
+[card]
 id=43512
 name=Carrion Feeder
 mana={B}
@@ -33,6 +44,30 @@ power=1
 toughness=1
 text=Carrion Feeder can't block. Sacrifice a creature: Put a +1/+1 counter on Carrion Feeder.
 rarity=C
+[/card]
+[card]
+text={R}: Chartooth Cougar gets +1/+0 until end of turn.   Mountaincycling {2} ({2}, Discard this card: Search your library for a Mountain card, reveal it, and put it into your hand. Then shuffle your library.)
+id=44281
+name=Chartooth Cougar
+rarity=C
+mana={5}{R}
+type=Creature
+subtype=Cat Beast
+auto={R}:1/0
+autohand={2}{S}:moveTo(myhand) target(mountain|mylibrary)
+power=4
+toughness=4
+[/card]
+[card]
+text=Claws of Wirewood deals 3 damage to each creature with flying and each player.   Cycling {2} ({2}, Discard this card: Draw a card.)
+id=43541
+auto=damage:3 all(creature[flying])
+auto=damage:3 all(player)
+authand={2}:cycling
+name=Claws of Wirewood
+rarity=U
+mana={3}{G}
+type=Sorcery
 [/card]
 [card]
 id=47228
@@ -72,6 +107,31 @@ auto=@movedto(this|graveyard):-1/-1 all(creature|Battlefield) ueot
 rarity=C
 [/card]
 [card]
+text=Exile all artifacts, creatures, and lands from the battlefield, all cards from all graveyards, and all cards from all hands.   Cycling {5}{R}{R} ({5}{R}{R}, Discard this card: Draw a card.) When you cycle Decree of Annihilation, destroy all lands.
+id=44335
+auto=moveTo(exile) all(artifact,creature,land|battlefield)
+auto=moveTo(exile) all(*|mygraveyard)
+auto=moveTo(exile) all(*|opponentgraveyard)
+auto=moveTo(exile) all(*|myhand)
+auto=moveTo(exile) all(*|opponenthand)
+autohand={5}{R}{R}:destroy all(land) && cycling
+name=Decree of Annihilation
+rarity=R
+mana={8}{R}{R}
+type=Sorcery
+[/card]
+[card]
+text=Put four +1/+1 counters on each creature you control.   Cycling {4}{G}{G} ({4}{G}{G}, Discard this card: Draw a card.) When you cycle Decree of Savagery, you may put four +1/+1 counters on target creature.
+id=46423
+auto=lord(creature|myBattlefield) counter(1/1,4)
+autohand={4}{G}{G}:cycling
+autohand={4}{G}{G}:counter(1/1,4) target(creature) && cycling
+name=Decree of Savagery
+rarity=R
+mana={7}{G}{G}
+type=Instant
+[/card]
+[card]
 id=45864
 name=Divergent Growth
 mana={G}
@@ -96,6 +156,19 @@ auto=protection from(dragon)
 power=3
 toughness=3
 abilities=flying
+[/card]
+[card]
+text={T}: Add {G}{G}{G} to your mana pool.   Forestcycling {2} ({2}, Discard this card: Search your library for a Forest card, reveal it, and put it into your hand. Then shuffle your library.)
+id=43538
+name=Elvish Aberration
+rarity=U
+mana={5}{G}
+type=Creature
+subtype=Elf Mutant
+auto={T}:add{G}{G}{G}
+autohand={2}{S}:moveTo(myhand) target(forest|mylibrary)
+power=4
+toughness=5
 [/card]
 [card]
 id=45844
@@ -130,6 +203,19 @@ auto=foreach(goblin|myBattlefield)damage:1
 rarity=C
 [/card]
 [card]
+text=Vigilance   Plainscycling {2} ({2}, Discard this card: Search your library for a Plains card, reveal it, and put it into your hand. Then shuffle your library.)
+id=45834
+name=Noble Templar
+rarity=C
+mana={5}{W}
+type=Creature
+subtype=Human Cleric Soldier
+autohand={2}{S}:moveTo(myhand) target(plains|mylibrary)
+power=3
+toughness=6
+abilities=vigilance
+[/card]
+[card]
 id=43581
 name=Pemmin's Aura
 mana={1}{U}{U}
@@ -152,6 +238,19 @@ type=Instant
 text=Rain of Blades deals 1 damage to each attacking creature.
 auto=damage:1 all(creature[attacking])
 rarity=U
+[/card]
+[card]
+text=Flying   Islandcycling {2} ({2}, Discard this card: Search your library for an Island card, reveal it, and put it into your hand. Then shuffle your library.)
+id=45841
+name=Shoreline Ranger
+rarity=C
+mana={5}{U}
+type=Creature
+subtype=Bird Soldier
+autohand={2}{S}:moveTo(myhand) target(plains|mylibrary)
+power=3
+toughness=4
+abilities=flying
 [/card]
 [card]
 id=43552
@@ -204,6 +303,17 @@ auto={3}:moveto(myBattlefield) target(sliver|battlefield)
 rarity=R
 [/card]
 [card]
+text=Spark Spray deals 1 damage to target creature or player.   Cycling {R} ({R}, Discard this card: Draw a card.)
+id=44484
+target=creature,player
+auto=damage:1
+autohand={R}:cycling
+name=Spark Spray
+rarity=C
+mana={R}
+type=Instant
+[/card]
+[card]
 id=44336
 name=Temple of the False God
 type=Land
@@ -211,6 +321,19 @@ text={T}: Add {2} to your mana pool. Activate this ability only if you control f
 rarity=U
 auto=aslongas(land|myBattlefield){T}:add{2} >4
 #Tested works fine you only need to have four land and temple of the false god as this card is also a land... wonder if this is correct.. if not can simply change the 4 by a 5.
+[/card]
+[card]
+text={B}: Regenerate Twisted Abomination.   Swampcycling {2} ({2}, Discard this card: Search your library for a Swamp card, reveal it, and put it into your hand. Then shuffle your library.)
+id=43717
+name=Twisted Abomination
+rarity=C
+mana={5}{B}
+type=Creature
+subtype=Zombie Mutant
+auto={B}:regenerate
+autohand={2}{S}:moveTo(myhand) target(swamp|mylibrary)
+power=5
+toughness=3
 [/card]
 [card]
 id=46418
@@ -233,4 +356,27 @@ text=Whenever Vengeful Dead or another Zombie is put into a graveyard from the b
 auto=@movedto(zombie other|graveyard) from(battlefield):life:-1 controller && life:-1 opponent
 auto=@movedto(this|graveyard) from(battlefield):life:-1 controller && life:-1 opponent
 rarity=C
+[/card]
+[card]
+text=Exile target enchantment.   Cycling {3} ({3}, Discard this card: Draw a card.)
+id=47221
+target=enchantment
+auto=moveto(exile)
+autohand={3}:cycling
+name=Wipe Clean
+rarity=C
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+text=Forestcycling   {2} ({2}, Discard this card: Search your library for a Forest card, reveal it, and put it into your hand. Then shuffle your library.)
+id=43537
+name=Wirewood Guardian
+rarity=C
+mana={5}{G}{G}
+type=Creature
+subtype=Elf Mutant
+autohand={2}{S}:moveTo(myhand) target(forest|mylibrary)
+power=6
+toughness=6
 [/card]
