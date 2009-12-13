@@ -384,7 +384,7 @@ class GenericActivatedAbility:public ActivatedAbility{
   int limitPerTurn;
   int counters;
   MTGGameZone * activeZone;
- GenericActivatedAbility(int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int _tap = 0, int limit = 0, int myTurnOnly = 0, MTGGameZone * dest = NULL):ActivatedAbility(_id, card,_cost,myTurnOnly,_tap),ability(a),limitPerTurn(limit),activeZone(dest){
+ GenericActivatedAbility(int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int _tap = 0, int limit = 0, int restrictions = 0, MTGGameZone * dest = NULL):ActivatedAbility(_id, card,_cost,restrictions,_tap),ability(a),limitPerTurn(limit),activeZone(dest){
    counters = 0;
    target = ability->target;
   }
@@ -441,7 +441,7 @@ public:
   int limitPerTurn;
   int counters;
   MTGGameZone * activeZone;
-   GenericTargetAbility(int _id, MTGCardInstance * _source, TargetChooser * _tc,MTGAbility * a, ManaCost * _cost = NULL, int _tap=0, int limit = 0, int myTurnOnly = 0, MTGGameZone * dest = NULL):TargetAbility(_id,_source, _tc,_cost,myTurnOnly,_tap),limitPerTurn(limit), activeZone(dest){
+   GenericTargetAbility(int _id, MTGCardInstance * _source, TargetChooser * _tc,MTGAbility * a, ManaCost * _cost = NULL, int _tap=0, int limit = 0, int restrictions = 0, MTGGameZone * dest = NULL):TargetAbility(_id,_source, _tc,_cost,restrictions,_tap),limitPerTurn(limit), activeZone(dest){
     ability = a;
     counters = 0;
   }
@@ -988,7 +988,7 @@ class ABasicAbilityAuraModifierUntilEOT: public ActivatedAbility{
 class AEquip:public TargetAbility{
 public:
   vector<MTGAbility *> currentAbilities; 
-  AEquip(int _id, MTGCardInstance * _source, ManaCost * _cost=NULL, int doTap=0, int myturnOnly = 1):TargetAbility(_id,_source,NULL,_cost,myturnOnly,doTap){
+  AEquip(int _id, MTGCardInstance * _source, ManaCost * _cost=NULL, int doTap=0, int restrictions = ActivatedAbility::AS_SORCERY):TargetAbility(_id,_source,NULL,_cost,restrictions,doTap){
     
  }
 
@@ -2316,12 +2316,12 @@ class APreventAllCombatDamage:public MTGAbility{
     if (fromTc) fromTc->targetter = NULL;
     re = NEW REDamagePrevention (this, fromTc, toTc, -1, false, DAMAGE_COMBAT);
     game->replacementEffects->add(re);
-    return 1;
+    return MTGAbility::addToGame();
   }
 
   int destroy(){
     game->replacementEffects->remove(re);
-    delete re;
+    SAFE_DELETE(re);
     return 1;
   }
 
@@ -2337,18 +2337,25 @@ class APreventAllCombatDamage:public MTGAbility{
 class  APreventAllCombatDamageUEOT: public InstantAbility{
 public:
   APreventAllCombatDamage * ability;
+  vector<APreventAllCombatDamage *> clones;
    APreventAllCombatDamageUEOT(int id,MTGCardInstance *  source,string to, string from):InstantAbility(id,source){
      ability = NEW APreventAllCombatDamage(id,source,to, from);
    }
  
   int resolve(){
-    ability->target = this->target;
-    ability->addToGame();
+    APreventAllCombatDamage * a = ability->clone();
+    a->target = this->target;
+    a->forceDestroy = -1; //Prevent the effect from getting destroyed because its source is not inplay
+    a->addToGame();
+    clones.push_back(a);
     return 1;
   }
 
   int destroy(){
-    ability->destroy();
+    for (size_t i = 0; i < clones.size(); ++i){
+      clones[i]->forceDestroy = 0;
+    }
+    clones.clear();
     return 1;
   }
 

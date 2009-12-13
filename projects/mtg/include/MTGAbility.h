@@ -100,9 +100,14 @@ class TriggeredAbility:public MTGAbility{
 
 class ActivatedAbility:public MTGAbility{
  public:
-  int playerturnonly;
+   enum {
+     NO_RESTRICTION = 0,
+     PLAYER_TURN_ONLY = 1,
+     AS_SORCERY = 2
+   };
+  int restrictions;
   int needsTapping;
-  ActivatedAbility(int id, MTGCardInstance * card,ManaCost * _cost = NULL, int _playerturnonly = 0,int tap = 1);
+  ActivatedAbility(int id, MTGCardInstance * card,ManaCost * _cost = NULL, int _restrictions = NO_RESTRICTION,int tap = 1);
   virtual int reactToClick(MTGCardInstance * card);
   virtual int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
   virtual int reactToTargetClick(Targetable * object);
@@ -202,6 +207,7 @@ class AbilityFactory{
    int countCards(TargetChooser * tc, Player * player = NULL, int option = 0);
   int parsePowerToughness(string s, int *power, int *toughness);
   TriggeredAbility * parseTrigger(string s, int id, Spell * spell, MTGCardInstance *card, Targetable * target);
+  int parseRestriction(string s);
  public:
   int getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCardInstance * card = NULL, int id = 0,MTGGameZone * dest = NULL);
   MTGAbility * parseMagicLine(string s, int id, Spell * spell, MTGCardInstance *card, int activated = 0, int forceUEOT = 0,MTGGameZone * dest = NULL);

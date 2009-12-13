@@ -102,6 +102,7 @@ behemoth_sledge.txt
 behemoth_sledge2.txt
 behemoth_sledge3.txt
 behemoth_sledge4.txt
+behemoth_sledge5.txt
 belligerent_hatchling.txt
 benalish_knight.txt
 black_vise.txt

@@ -1,0 +1,24 @@
+#Test:equipment outside of main phase
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+manapool:{3}
+inplay:grizzly bears,behemoth sledge
+[PLAYER2]
+[DO]
+behemoth sledge
+grizzly bears
+next
+#blockers
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+life:20
+inplay:grizzly bears,behemoth sledge
+[PLAYER2]
+life:18
+[END]

@@ -143,6 +143,11 @@ TriggeredAbility * AbilityFactory::parseTrigger(string magicText, int id, Spell 
   return NULL;
 }
 
+int AbilityFactory::parseRestriction(string s){
+  if (s.find("myturnonly") != string::npos) return ActivatedAbility::PLAYER_TURN_ONLY;
+  if (s.find("assorcery") != string::npos) return ActivatedAbility::AS_SORCERY;
+  return ActivatedAbility::NO_RESTRICTION;
+}
 
 
 //Parses a string and returns the corresponding MTGAbility object
@@ -186,8 +191,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   int doTap = 0; //Tap in the cost ?
   if (s.find("{t}") != string::npos) doTap = 1;
 
-  int myTurnOnly = 0;
-  if (s.find("myturnonly") != string::npos) myTurnOnly = 1;
+  int restrictions = parseRestriction(s);
 
   size_t delimiter = s.find("}:");
   size_t firstNonSpace = s.find_first_not_of(" ");
@@ -213,15 +217,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return amp;
       }
 
-      AEquip *ae = dynamic_cast<AEquip*>(a);
-      if (ae){
-        ae->cost = cost;
-        TargetChooserFactory tcf;
-        ae->tc = tcf.createTargetChooser("creature|myBattlefield", card);
-        return ae;
-      }
-
-
       int limit = 0;
       unsigned int limit_str = s.find("limit:");
       if (limit_str != string::npos){
@@ -238,8 +233,19 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         tc = tcf.createTargetChooser(starget, card);
       }
 
-      if (tc) return NEW GenericTargetAbility(id, card, tc, a,cost, doTap,limit,myTurnOnly,dest);
-      return NEW GenericActivatedAbility(id, card, a,cost,doTap,limit,myTurnOnly,dest);
+      AEquip *ae = dynamic_cast<AEquip*>(a);
+      if (ae){
+        ae->cost = cost;
+        if (!tc) {
+          TargetChooserFactory tcf;
+          tc = tcf.createTargetChooser("creature|myBattlefield", card);
+        }
+        ae->tc = tc;
+        return ae;
+      }
+
+      if (tc) return NEW GenericTargetAbility(id, card, tc, a,cost, doTap,limit,restrictions,dest);
+      return NEW GenericActivatedAbility(id, card, a,cost,doTap,limit,restrictions,dest);
     }
     SAFE_DELETE(cost);
   }
@@ -423,6 +429,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   found = s.find("equip");
   if (found != string::npos){
     MTGAbility * a = NEW AEquip(id,card);
+    return a;
+  }
+
+  //Equipment (attach)
+  found = s.find("attach");
+  if (found != string::npos){
+    MTGAbility * a = NEW AEquip(id,card,0,0,ActivatedAbility::NO_RESTRICTION);
     return a;
   }
 
@@ -1702,15 +1715,25 @@ ostream& MTGAbility::toString(ostream& out) const
 
 //
 
-ActivatedAbility::ActivatedAbility(int id, MTGCardInstance * card, ManaCost * _cost, int _playerturnonly,int tap):MTGAbility(id,card), playerturnonly(_playerturnonly), needsTapping(tap){
+ActivatedAbility::ActivatedAbility(int id, MTGCardInstance * card, ManaCost * _cost, int restrictions,int tap):MTGAbility(id,card), restrictions(restrictions), needsTapping(tap){
   cost = _cost;
 }
 
 
 int ActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost * mana){
-  Player * player = game->currentPlayer;
-  if (!playerturnonly) player = game->currentlyActing();
-  if (card == source && source->controller()==player && player==game->currentlyActing() && (!needsTapping || (!source->isTapped() && !source->hasSummoningSickness()))){
+  Player * player = game->currentlyActing();
+  int cPhase = game->getCurrentGamePhase();
+  switch(restrictions) {
+    case PLAYER_TURN_ONLY:
+      if (player != game->currentPlayer) return 0;
+      break;
+    case AS_SORCERY:
+      if (player != game->currentPlayer) return 0;
+      if (cPhase != Constants::MTG_PHASE_FIRSTMAIN && cPhase != Constants::MTG_PHASE_SECONDMAIN) return 0;
+      break;
+  }
+
+  if (card == source && source->controller()==player && (!needsTapping || (!source->isTapped() && !source->hasSummoningSickness()))){
     if (!cost) return 1;
     if (!mana) mana = player->getManaPool();
     if (!mana->canAfford(cost)) return 0;
@@ -1756,17 +1779,12 @@ int ActivatedAbility::reactToTargetClick(Targetable * object){
 
 ostream& ActivatedAbility::toString(ostream& out) const
 {
-  out << "ActivatedAbility ::: playerturnonly : " << playerturnonly
+  out << "ActivatedAbility ::: restrictions : " << restrictions
       << " ; needsTapping : " << needsTapping
       << " (";
   return MTGAbility::toString(out) << ")";
 }
 
-
-//The whole targetAbility mechanism is messed up, mainly because of its interactions with
-// the ActionLayer, GameObserver, and parent class ActivatedAbility.
-// Currently choosing a target is a complete different mechanism for put into play and for other abilities.
-// It probably shouldn't be the case.
 
 TargetAbility::TargetAbility(int id, MTGCardInstance * card, TargetChooser * _tc,ManaCost * _cost, int _playerturnonly,int tap):ActivatedAbility(id, card,_cost,_playerturnonly, tap){
   tc = _tc;
