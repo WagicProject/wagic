@@ -695,15 +695,7 @@ toughness=3
 text=Whenever a creature comes into play under your control, if that creature is 1/1, put two +1/+1 counters on it.
 rarity=U
 [/card]
-[card]
-id=179630
-name=Sigil of the Nayan Gods
-mana={1}{G}{W}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature gets +1/+1 for each creature you control. Cycling {(g/w)} ({(g/w)}, Discard this card: Draw a card.)
-rarity=C
-[/card]
+
 [card]
 id=179574
 name=Singe-Mind Ogre

@@ -498,6 +498,18 @@ toughness=4
 abilities=exalted
 [/card]
 [card]
+id=179630
+name=Sigil of the Nayan Gods
+mana={1}{G}{W}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature gets +1/+1 for each creature you control. Cycling {GW} ({GW}, Discard this card: Draw a card.)
+target=creature
+auto=foreach(creature|mybattlefield) 1/1
+autohand={GW}:cycling
+rarity=C
+[/card]
+[card]
 text=Gain control of target creature. Untap that creature. It gains haste until end of turn. Sacrifice it at end of turn.
 id=188971
 target=creature
