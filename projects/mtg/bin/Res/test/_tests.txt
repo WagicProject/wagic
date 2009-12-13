@@ -116,6 +116,7 @@ borderland_behemoth.txt
 bottle_gnomes.txt
 bottle_gnomes2.txt
 brass_man.txt
+brass_man_i161.txt
 cage_of_hands.txt
 Call_to_Heel_1.txt
 Call_to_Heel_2.txt

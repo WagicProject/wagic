@@ -251,7 +251,7 @@ type=Sorcery
 [card]
 text=Brass Man doesn't untap during your untap step.   At the beginning of your upkeep, you may pay {1}. If you do, untap Brass Man.
 id=1099
-auto={1}:untap myTurnOnly
+auto={1}:untap myUpkeepOnly
 name=Brass Man
 rarity=U
 mana={1}

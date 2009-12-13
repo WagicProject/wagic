@@ -1,13 +1,9 @@
 #NAME: Brass Man untapping
 #DESC: Brass Man can untap outside of Upkeep.
-#DESC: To test this, we try to untap him in
-#DESC: secondmain and then cast Assassinate
-#DESC: on him (which should destroy him if
-#DESC: he's still tapped, which he should be).
 [INIT]
 combatattackers
 [PLAYER1]
-inplay:Brass Man,Island,Swamp,Plains,Forest
+inplay:Brass Man,Swamp,Plains,Forest
 hand:Assassinate
 [PLAYER2]
 life:20
@@ -17,10 +13,9 @@ next
 next
 next
 next
-Island
+Swamp
 Brass Man
 choice 0
-Swamp
 Plains
 Forest
 Assassinate
@@ -28,8 +23,7 @@ Brass Man
 [ASSERT]
 secondmain
 [PLAYER1]
-inplay:Island,Swamp,Plains,Forest
-hand:
+inplay:Swamp,Plains,Forest
 graveyard:Brass Man,Assassinate
 [PLAYER2]
 life:19

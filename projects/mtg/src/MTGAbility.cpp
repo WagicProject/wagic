@@ -146,6 +146,19 @@ TriggeredAbility * AbilityFactory::parseTrigger(string magicText, int id, Spell 
 int AbilityFactory::parseRestriction(string s){
   if (s.find("myturnonly") != string::npos) return ActivatedAbility::PLAYER_TURN_ONLY;
   if (s.find("assorcery") != string::npos) return ActivatedAbility::AS_SORCERY;
+
+  size_t found = s.find("my");
+  if (found !=string::npos){
+    for (int i = 0; i < Constants::NB_MTG_PHASES; i++){
+      string toFind = "my";
+      toFind.append(Constants::MTGPhaseCodeNames[i]).append("only");
+      found = s.find(toFind);
+      if (found != string::npos){
+	      return ActivatedAbility::MY_BEFORE_BEGIN + i;
+      }
+    }
+  }
+
   return ActivatedAbility::NO_RESTRICTION;
 }
 
@@ -1721,6 +1734,10 @@ int ActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
       if (player != game->currentPlayer) return 0;
       if (cPhase != Constants::MTG_PHASE_FIRSTMAIN && cPhase != Constants::MTG_PHASE_SECONDMAIN) return 0;
       break;
+  }
+  if (restrictions>= MY_BEFORE_BEGIN && restrictions <= MY_AFTER_EOT){
+      if (player != game->currentPlayer) return 0;
+      if (cPhase != restrictions - MY_BEFORE_BEGIN + Constants::MTG_PHASE_BEFORE_BEGIN) return 0;
   }
 
   if (card == source && source->controller()==player && (!needsTapping || (!source->isTapped() && !source->hasSummoningSickness()))){

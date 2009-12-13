@@ -103,7 +103,22 @@ class ActivatedAbility:public MTGAbility{
    enum {
      NO_RESTRICTION = 0,
      PLAYER_TURN_ONLY = 1,
-     AS_SORCERY = 2
+     AS_SORCERY = 2,
+    MY_BEFORE_BEGIN = 3,
+    MY_UNTAP = 4,
+    MY_UPKEEP = 5,
+    MY_DRAW = 6,
+    MY_FIRSTMAIN = 7,
+    MY_COMBATBEGIN = 8,
+    MY_COMBATATTACKERS = 9,
+    MY_COMBATBLOCKERS = 10,
+    MY_COMBATDAMAGE = 11,
+    MY_COMBATEND = 12,
+    MY_SECONDMAIN = 13,
+    MY_ENDOFTURN = 14,
+    MY_EOT = 15,
+    MY_CLEANUP = 16,
+    MY_AFTER_EOT = 17,
    };
   int restrictions;
   int needsTapping;
