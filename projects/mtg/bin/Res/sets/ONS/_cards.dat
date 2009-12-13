@@ -220,7 +220,7 @@ type=Instant
 target=creature
 text=Target creature gets -4/-4 until end of turn. Cycling {1}{B}{B} ({1}{B}{B}, Discard this card: Draw a card.) When you cycle Death Pulse, you may have target creature get -1/-1 until end of turn.
 auto=-4/-4
-autohand={1}{B}{B}:cycling && -1/-1 target(creature)
+autohand={1}{B}{B}:cycling && may -1/-1 target(creature)
 rarity=U
 [/card]
 [card]
@@ -240,7 +240,7 @@ mana={2}{B}
 type=Sorcery
 text=All creatures gain fear until end of turn. Cycling {1}{B} ({1}{B}, Discard this card: Draw a card.) When you cycle Dirge of Dread, you may have target creature gain fear until end of turn.
 auto=lord(creature) fear
-autohand={1}{B}:cycling && fear target(creature)
+autohand={1}{B}:cycling && may fear target(creature)
 rarity=C
 [/card]
 [card]
@@ -686,7 +686,7 @@ subtype=Boar Beast
 power=6
 toughness=5
 text=Cycling {2}{G} ({2}{G}, Discard this card: Draw a card.) When you cycle Krosan Tusker, you may search your library for a basic land card, reveal that card, put it into your hand, then shuffle your library.
-autohand={2}{G}:cycling && moveTo(myhand) target(land[basic]|mylibrary)
+autohand={2}{G}:cycling && may moveTo(myhand) target(land[basic]|mylibrary)
 rarity=C
 [/card]
 [card]
@@ -899,7 +899,7 @@ type=Instant
 text=Target creature gets +4/+4 until end of turn. Cycling {2}{G} ({2}{G}, Discard this card: Draw a card.) When you cycle Primal Boost, you may have target creature get +1/+1 until end of turn.
 target=creature
 auto=4/4
-autohand={2}{G}:cycling && 1/1 target(creature)
+autohand={2}{G}:cycling && may 1/1 target(creature)
 rarity=U
 [/card]
 [card]
@@ -964,7 +964,7 @@ mana={2}{W}
 type=Instant
 text=You gain 6 life. Cycling {1}{W} ({1}{W}, Discard this card: Draw a card.) When you cycle Renewed Faith, you may gain 2 life.
 auto=life:6
-autohand={1}{W}:cycling && life:2
+autohand={1}{W}:cycling && may life:2
 rarity=C
 [/card]
 [card]
@@ -1021,6 +1021,16 @@ rarity=C
 mana={2}{W}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+id=41167
+name=Starstorm
+mana={X}{R}{R}
+type=Instant
+text=Starstorm deals X damage to each creature. Cycling {3} ({3}, Discard this card: Draw a card.)
+auto=damage:X all(creature)
+autohand={3}:cycling
+rarity=R
 [/card]
 [card]
 text=Flying   When Screaming Seahawk enters the battlefield, you may search your library for a card named Screaming Seahawk, reveal it, and put it into your hand. If you do, shuffle your library.
@@ -1138,7 +1148,7 @@ mana={4}{R}{R}
 type=Sorcery
 text=Slice and Dice deals 4 damage to each creature. Cycling {2}{R} ({2}{R}, Discard this card: Draw a card.) When you cycle Slice and Dice, you may have it deal 1 damage to each creature.
 auto=damage:4 all(creature)
-autohand={2}{R}:cycling && damage:1 all(creature)
+autohand={2}{R}:cycling && may damage:1 all(creature)
 rarity=U
 [/card]
 [card]
@@ -1163,7 +1173,7 @@ type=Instant
 text=Solar Blast deals 3 damage to target creature or player. Cycling {1}{R}{R} ({1}{R}{R}, Discard this card: Draw a card.) When you cycle Solar Blast, you may have it deal 1 damage to target creature or player.
 target=creature,player
 auto=damage:3
-autohand={1}{R}{R}:cycling && damage:1 target(creature,player)
+autohand={1}{R}{R}:cycling && may damage:1 target(creature,player)
 rarity=C
 [/card]
 [card]
@@ -1332,19 +1342,6 @@ auto=aslongas(wizard|myBattlefield) flying
 auto=aslongas(zombie|myBattlefield) {B}:regenerate
 power=4
 toughness=4
-[/card]
-[card]
-id=41166
-name=Undead Gladiator
-mana={1}{B}{B}
-type=Creature
-subtype=Zombie Barbarian
-power=3
-toughness=1
-text={1}{B}, Discard a card: Return Undead Gladiator from your graveyard to your hand. Play this ability only during your upkeep. Cycling {1}{B} ({1}{B}, Discard this card: Draw a card.)
-autograveyard={1}{B}{s(*|myhand)}:moveTo(myhand) myUpkeepOnly
-autohand={1}{B}:cycling
-rarity=R
 [/card]
 [card]
 text={T}: Add {1} to your mana pool.   {B}, {T}: Put target Zombie card from your graveyard on top of your library.
