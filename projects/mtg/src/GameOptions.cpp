@@ -67,11 +67,14 @@ int Options::getID(string name){
   }
 
   //Is it an unlocked set?
-  string setname = name.substr(strlen("unlocked_"));
-  if(setlist.size()){
-    int unlocked = setlist[setname];
-    if(unlocked != -1)
-      return Options::optionSet(unlocked);  
+  size_t un = strlen("unlocked_");
+  if(un < name.size()){
+	  string setname = name.substr(un);
+	  if(setlist.size()){
+		int unlocked = setlist[setname];
+		if(unlocked != -1)
+		  return Options::optionSet(unlocked);  
+	  }
   }
 
   //Failure.
