@@ -990,6 +990,28 @@ type=Instant
 mana={1}{G}
 [/card]
 [card]
+text=Target player discards a card at random.     Cycling {5}{U}{B}{R} ({5}{U}{B}{R}, Discard this card: Draw a card.)  When you cycle Resounding Scream, target player discards two cards at random.
+id=176444
+name=Resounding Scream
+target=player
+auto=discard:1
+autohand={5}{U}{B}{R}:cycling && discard:2 opponent
+rarity=C
+type=Sorcery
+mana={2}{B}
+[/card]
+[card]
+text=Resounding Thunder deals 3 damage to target creature or player.     Cycling {5}{B}{R}{G} ({5}{B}{R}{G}, Discard this card: Draw a card.)  When you cycle Resounding Thunder, it deals 6 damage to target creature or player.
+id=175043
+name=Resounding Thunder
+target=creature,player
+auto=damage:3
+autohand={5}{G}{W}{U}:cycling && damage:6 target(creature,player)
+rarity=C
+type=Instant
+mana={2}{R}
+[/card]
+[card]
 text=Trample   Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
 id=174959
 name=Rhox Charger
@@ -1012,6 +1034,18 @@ subtype=Rhino Monk
 power=3
 toughness=4
 abilities=lifelink
+[/card]
+[card]
+text=Cycling {2} ({2}, Discard this card: Draw a card.)
+id=175257
+name=Ridge Rannet
+rarity=C
+type=Creature
+mana={5}{R}{R}
+autohand={2}:cycling
+power=6
+subtype=Beast
+toughness=4
 [/card]
 [card]
 text=Haste
@@ -1073,6 +1107,19 @@ subtype=Gargoyle
 power=2
 toughness=3
 abilities=flying
+[/card]
+[card]
+text=Enchant creature     Enchanted creature gets +1/+0 and has trample.     Cycling {2} ({2}, Discard this card: Draw a card.)
+id=174941
+name=Savage Hunger
+rarity=C
+type=Enchantment
+mana={2}{G}
+subtype=Aura
+target=creature
+auto=1/0
+auto=trample
+autohand={2}:cycling
 [/card]
 [card]
 text=Savage Lands enters the battlefield tapped.   {T}: Add {B}, {R}, or {G} to your mana pool.
@@ -1366,6 +1413,7 @@ text=Destroy target artifact or land.     Cycling {2} ({2}, Discard this card: D
 id=174889
 name=Volcanic Submersion
 target=artifact,land
+auto=destroy
 autohand={2}:cycling
 rarity=C
 type=Sorcery
