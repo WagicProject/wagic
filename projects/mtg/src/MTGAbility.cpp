@@ -1070,12 +1070,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       }
       break;
     }
-  case 1106: //Disrupting Scepter
-    {
-      ADisruptingScepter * ability = NEW ADisruptingScepter(_id,card);
-      game->addObserver(ability);
-      break;
-    }
   case 1284: //Dragon Whelp
     {
       game->addObserver(NEW ADragonWhelp(_id,card));

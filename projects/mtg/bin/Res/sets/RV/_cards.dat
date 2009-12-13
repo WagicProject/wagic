@@ -562,14 +562,6 @@ mana={1}{W}
 type=Instant
 [/card]
 [card]
-text={3}, {T}: Target player discards a card. Activate this ability only during your turn.
-id=1106
-name=Disrupting Scepter
-rarity=R
-type=Artifact
-mana={3}
-[/card]
-[card]
 text={2}: Dragon Engine gets +1/+0 until end of turn.
 id=1107
 name=Dragon Engine

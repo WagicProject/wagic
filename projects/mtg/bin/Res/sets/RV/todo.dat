@@ -88,6 +88,14 @@ type=Sorcery
 mana={X}{R}
 [/card]
 [card]
+text={3}, {T}: Target player discards a card. Activate this ability only during your turn.
+id=1106
+name=Disrupting Scepter
+rarity=R
+type=Artifact
+mana={3}
+[/card]
+[card]
 text=Target player plays a mana ability of each land he or she controls, then empties his or her mana pool. Add mana to your mana pool equal to the type and amount emptied from that player's mana pool this way.
 id=1198
 name=Drain Power

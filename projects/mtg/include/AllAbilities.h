@@ -2704,50 +2704,6 @@ class AConservator: public MTGAbility{
 };
 
 
-//1106 DisruptingScepter
-class ADisruptingScepter:public TargetAbility{
- public:
- ADisruptingScepter(int id, MTGCardInstance * _source):TargetAbility(id,_source){
-   int zones[] = {MTGGameZone::OPPONENT_HAND};
-    tc = NEW TargetZoneChooser(zones,1,_source);
-    int _cost[] = {Constants::MTG_COLOR_ARTIFACT, 3};
-    cost = NEW ManaCost(_cost,1);
-  }
-
-  void Update(float dt){
-    if (game->opponent()->isAI()){
-      if(waitingForAnswer){
-	      MTGCardInstance * card = ((AIPlayer *)game->opponent())->chooseCard(tc, source);
-	      if (card) tc->toggleTarget(card);
-        if (!card || tc->targetsReadyCheck() == TARGET_OK) {
-          waitingForAnswer = 0;
-          game->mLayers->actionLayer()->setCurrentWaitingAction(NULL);
-        }
-      }
-      TargetAbility::Update(dt);
-    }else{
-      TargetAbility::Update(dt);
-    }
-  }
-
-  int resolve(){
-    game->opponent()->game->putInGraveyard(tc->getNextCardTarget());
-    return 1;
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "ADisruptingScepter ::: (";
-    return TargetAbility::toString(out) << ")";
-  }
-  ADisruptingScepter * clone() const{
-    ADisruptingScepter * a =  NEW ADisruptingScepter(*this);
-    a->isClone = 1;
-    return a;
-  }
-};
-
-
 //1345 Farmstead
 class AFarmstead:public ActivatedAbility{
  public:
