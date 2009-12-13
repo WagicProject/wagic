@@ -1281,7 +1281,17 @@ type=Instant
 text=Summoner's Pact is green. Search your library for a green creature card, reveal it, and put it into your hand. Then shuffle your library. At the beginning of your next upkeep, pay {2}{G}{G}. If you don't, you lose the game.
 rarity=R
 [/card]
-
+[card]
+id=126215
+name=Sword of the Meek
+mana={2}
+type=Artifact
+subtype=Equipment
+text=Equipped creature gets +1/+2. Equip {2} Whenever a 1/1 creature comes into play under your control, you may return Sword of the Meek from your graveyard to play, then attach it to that creature.
+auto={2}:equip
+auto=1/2
+rarity=U
+[/card]
 [card]
 id=136199
 name=Take Possession
