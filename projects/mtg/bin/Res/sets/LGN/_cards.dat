@@ -231,6 +231,56 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Cycling {1}{R} ({1}{R}, Discard this card: Draw a card.) When you cycle Gempalm Incinerator, you may have it deal X damage to target creature, where X is the number of Goblins on the battlefield.
+id=42066
+name=Gempalm Incinerator
+rarity=U
+mana={2}{R}
+type=Creature
+subtype=Goblin
+autohand={1}{R}:cycling
+autohand={1}{R}:foreach(goblin|battlefield) damage:1 target(creature) && cycling
+power=2
+toughness=1
+[/card]
+[card]
+text=Cycling {B}{B} ({B}{B}, Discard this card: Draw a card.)   When you cycle Gempalm Polluter, you may have target player lose 1 life for each Zombie on the battlefield.
+id=42065
+name=Gempalm Polluter
+rarity=C
+mana={5}{B}
+type=Creature
+subtype=Zombie
+autohand={1}{B}:cycling
+autohand={1}{B}:foreach(zombie|battlefield) life:-1 target(player) && cycling
+power=4
+toughness=3
+[/card]
+[card]
+text=Cycling {2}{U} ({2}{U}, Discard this card: Draw a card.)   When you cycle Gempalm Sorcerer, Wizard creatures gain flying until end of turn.
+id=42064
+name=Gempalm Sorcerer
+rarity=U
+mana={2}{U}
+type=Creature
+subtype=Human Wizard
+autohand={2}{U}:lord(creature[wizard]) flying && cycling
+power=2
+toughness=2
+[/card]
+[card]
+text=Cycling {2}{G}{G} ({2}{G}{G}, Discard this card: Draw a card.)   When you cycle Gempalm Strider, Elf creatures get +2/+2 until end of turn.
+id=42067
+name=Gempalm Strider
+rarity=U
+mana={1}{G}
+type=Creature
+subtype=Elf
+autohand={2}{G}{G}:lord(creature[elf]) 2/2 && cycling
+power=2
+toughness=2
+[/card]
+[card]
 text={7}{U}: Glintwing Invoker gets +3/+3 and gains flying until end of turn.
 id=44204
 name=Glintwing Invoker
@@ -308,6 +358,31 @@ toughness=5
 abilities=flying
 [/card]
 [card]
+text=Cycling {3} ({3}, Discard this card: Draw a card.)
+id=42249
+name=Hundroog
+rarity=C
+mana={6}{G}
+type=Creature
+subtype=Beast
+autohand={3}:cycling
+power=4
+toughness=7
+[/card]
+[card]
+text=Flying   Cycling {2} ({2}, Discard this card: Draw a card.)
+id=35335
+name=Keeneye Aven
+rarity=C
+mana={3}{U}
+type=Creature
+subtype=Bird Soldier
+autohand={2}:cycling
+power=2
+toughness=3
+abilities=flying
+[/card]
+[card]
 text=At the beginning of each opponent's upkeep, if that player has two or fewer cards in hand, Lavaborn Muse deals 3 damage to him or her.
 id=44842
 alias=130373
@@ -318,6 +393,19 @@ type=Creature
 subtype=Spirit
 power=3
 toughness=3
+[/card]
+[card]
+text=First strike, haste   Cycling {3} ({3}, Discard this card: Draw a card.)
+id=42440
+name=Macetail Hystrodon
+rarity=C
+mana={6}{R}
+type=Creature
+subtype=Beast
+autohand={3}:cycling
+power=4
+toughness=4
+abilities=haste, first strike
 [/card]
 [card]
 text=When Merchant of Secrets enters the battlefield, draw a card.
@@ -369,6 +457,19 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Flying   Cycling {2} ({2}, Discard this card: Draw a card.)
+id=42437
+name=Primoc Escapee
+rarity=U
+mana={6}{U}
+type=Creature
+subtype=Bird Beast
+autohand={2}:cycling
+power=4
+toughness=4
+abilities=flying
+[/card]
+[card]
 text=Double strike (This creature deals both first-strike and regular combat damage)
 id=39566
 name=Ridgetop Raptor
@@ -391,6 +492,20 @@ subtype=Human Wizard
 auto={2}{U}{U}{T}:foreach(wizard|myBattlefield) draw:1
 power=2
 toughness=3
+[/card]
+[card]
+text=Trample   Whenever Scion of Darkness deals combat damage to a player, you may put target creature card from that player's graveyard onto the battlefield under your control.   Cycling {3} ({3}, Discard this card: Draw a card.)
+auto=@damaged(player) from(this):may moveTo(myBattlefield) target(creature|opponentgraveyard)
+id=42050
+name=Scion of Darkness
+rarity=R
+mana={5}{B}{B}{B}
+type=Creature
+subtype=Avatar
+autohand={3}:cycling
+power=6
+toughness=6
+abilities=trample
 [/card]
 [card]
 text=Untap all permanents you control during each other player's untap step.

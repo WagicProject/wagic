@@ -341,50 +341,6 @@ text=Cycling {2}{W} ({2}{W}, Discard this card: Draw a card.) When you cycle Gem
 rarity=C
 [/card]
 [card]
-id=42066
-name=Gempalm Incinerator
-mana={2}{R}
-type=Creature
-subtype=Goblin
-power=2
-toughness=1
-text=Cycling {1}{R} ({1}{R}, Discard this card: Draw a card.) When you cycle Gempalm Incinerator, you may have it deal X damage to target creature, where X is the number of Goblins on the battlefield.
-rarity=U
-[/card]
-[card]
-id=42065
-name=Gempalm Polluter
-mana={5}{B}
-type=Creature
-subtype=Zombie
-power=4
-toughness=3
-text=Cycling {B}{B} ({B}{B}, Discard this card: Draw a card.) When you cycle Gempalm Polluter, you may have target player lose 1 life for each Zombie on the battlefield.
-rarity=C
-[/card]
-[card]
-id=42064
-name=Gempalm Sorcerer
-mana={2}{U}
-type=Creature
-subtype=Human Wizard
-power=2
-toughness=2
-text=Cycling {2}{U} ({2}{U}, Discard this card: Draw a card.) When you cycle Gempalm Sorcerer, Wizard creatures gain flying until end of turn.
-rarity=U
-[/card]
-[card]
-id=42067
-name=Gempalm Strider
-mana={1}{G}
-type=Creature
-subtype=Elf
-power=2
-toughness=2
-text=Cycling {2}{G}{G} ({2}{G}{G}, Discard this card: Draw a card.) When you cycle Gempalm Strider, Elf creatures get +2/+2 until end of turn.
-rarity=U
-[/card]
-[card]
 id=42178
 name=Ghastly Remains
 mana={B}{B}{B}
@@ -484,17 +440,6 @@ text=Flying Whenever Hollow Specter deals combat damage to a player, you may pay
 rarity=R
 [/card]
 [card]
-id=42249
-name=Hundroog
-mana={6}{G}
-type=Creature
-subtype=Beast
-power=4
-toughness=7
-text=Cycling {3} ({3}, Discard this card: Draw a card.)
-rarity=C
-[/card]
-[card]
 id=44772
 name=Hunter Sliver
 mana={1}{R}
@@ -525,17 +470,6 @@ subtype=Human Cleric
 power=2
 toughness=2
 text=Morph {3}{B} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Infernal Caretaker is turned face up, return all Zombie cards from all graveyards to their owners' hands.
-rarity=C
-[/card]
-[card]
-id=35335
-name=Keeneye Aven
-mana={3}{U}
-type=Creature
-subtype=Bird Soldier
-power=2
-toughness=3
-text=Flying Cycling {2} ({2}, Discard this card: Draw a card.)
 rarity=C
 [/card]
 [card]
@@ -602,17 +536,6 @@ subtype=Human Soldier
 power=2
 toughness=2
 text=First strike Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.)
-rarity=C
-[/card]
-[card]
-id=42440
-name=Macetail Hystrodon
-mana={6}{R}
-type=Creature
-subtype=Beast
-power=4
-toughness=4
-text=First strike, haste Cycling {3} ({3}, Discard this card: Draw a card.)
 rarity=C
 [/card]
 [card]
@@ -737,17 +660,6 @@ text=Primal Whisperer gets +2/+2 for each face-down creature on the battlefield.
 rarity=R
 [/card]
 [card]
-id=42437
-name=Primoc Escapee
-mana={6}{U}
-type=Creature
-subtype=Bird Beast
-power=4
-toughness=4
-text=Flying Cycling {2} ({2}, Discard this card: Draw a card.)
-rarity=U
-[/card]
-[card]
 id=42029
 name=Quick Sliver
 mana={1}{G}
@@ -790,17 +702,6 @@ power=2
 toughness=2
 text=Root Sliver can't be countered. Sliver spells can't be countered by spells or abilities.
 rarity=U
-[/card]
-[card]
-id=42050
-name=Scion of Darkness
-mana={5}{B}{B}{B}
-type=Creature
-subtype=Avatar
-power=6
-toughness=6
-text=Trample Whenever Scion of Darkness deals combat damage to a player, you may put target creature card from that player's graveyard onto the battlefield under your control. Cycling {3} ({3}, Discard this card: Draw a card.)
-rarity=R
 [/card]
 [card]
 id=44282
