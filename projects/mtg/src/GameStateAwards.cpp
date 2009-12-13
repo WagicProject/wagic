@@ -30,7 +30,8 @@ void GameStateAwards::End()
   SAFE_DELETE(listview);
   SAFE_DELETE(setSrc);
 
-  //TODO Memoize viewed status here.
+  if(saveMe)
+	  options.save();
 }
 void GameStateAwards::Start()
 { 
@@ -38,6 +39,7 @@ void GameStateAwards::Start()
   mState = STATE_LISTVIEW;
 
   menu = NULL;
+  saveMe = options.newAward();
 
   listview = NEW WGuiList("Listview");
   listview->setX(210);

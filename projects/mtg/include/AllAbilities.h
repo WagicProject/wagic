@@ -1706,7 +1706,7 @@ class AAsLongAs:public ListMaintainerAbility{
   int resolve(){
     //TODO check if ability is oneShot ?
     updateTargets();
-    size_t size = cards.size();
+    int size = (int) cards.size();
     if (maxi && size < maxi && (!mini || size > mini)) addAbilityToGame(); //special  case for 0
     cards.clear();
     players.clear();
@@ -1733,7 +1733,7 @@ class AAsLongAs:public ListMaintainerAbility{
   }
 
   int _added(Damageable * d){
-    size_t size = cards.size();
+    int size = (int) cards.size();
     if (maxi && size >= maxi) return removeAbilityFromGame();
     if (maxi) return 0;
     if (size <= mini) return 0;

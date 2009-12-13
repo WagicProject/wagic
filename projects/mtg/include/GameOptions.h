@@ -113,11 +113,12 @@ public:
 
 class GameOptionAward: public GameOption {
 public:
+  GameOptionAward();
   virtual string menuStr();
   virtual bool write(std::ofstream * file, string name);
   virtual bool read(string input);
   virtual bool giveAward(); //Returns false if already awarded
-  virtual bool isViewed() {return viewed;};
+  virtual bool isViewed();
   virtual void setViewed(bool v = true) {viewed = v;};
 private:
   time_t achieved; //When was it awarded?

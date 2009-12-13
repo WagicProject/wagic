@@ -717,6 +717,11 @@ OptionDifficulty::OptionDifficulty(){
 };
 
 //GameOptionAward
+GameOptionAward::GameOptionAward(){
+	achieved = time(NULL);
+	number = 0;
+	viewed = false;
+}
 bool GameOptionAward::read(string input){
   //This is quick and dirty. 
   bool bNumeric = true;
@@ -806,6 +811,12 @@ bool GameOptionAward::giveAward(){
   number = 1;
   return true;
 }
+
+bool GameOptionAward::isViewed(){
+	if(!number)
+		return true;
+	return viewed;
+};
 string GameOptionAward::menuStr(){
   if(!number)
     return _("Not unlocked.");
@@ -815,6 +826,9 @@ string GameOptionAward::menuStr(){
 
   char buf[256];
   Translator * t = Translator::GetInstance();
-  strftime(buf,255,_("%B %d, %I:%M%p %Y").c_str(),localtime(&achieved));
+  tm * lt = localtime(&achieved);
+  if(!lt)
+	  return "Error";
+  strftime(buf,255,_("%B %d, %I:%M%p %Y").c_str(),lt);
   return buf;
 }
