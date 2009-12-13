@@ -389,6 +389,8 @@ mana={B}
 [/card]
 [card]
 text=Whenever Electryte deals combat damage to defending player, it deals damage equal to its power to each blocking creature.
+auto=@combatdamaged(player) from(this):damage:p all(creature[defending])
+##the above its concept
 id=9700
 name=Electryte
 rarity=R

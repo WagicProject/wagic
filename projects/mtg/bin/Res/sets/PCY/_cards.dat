@@ -162,18 +162,6 @@ subtype=Aura
 abilities=flash
 [/card]
 [card]
-text=Flash   Enchant creature   Whenever enchanted creature deals combat damage to defending player, you may destroy target artifact that player controls.
-target=creature
-auto==@damaged(player) from(mytgt):may destroy target(artifact|opponentBattlefield)
-id=24632
-name=Latulla's Orders
-rarity=C
-mana={1}{R}
-type=Enchantment
-subtype=Aura
-abilities=flash
-[/card]
-[card]
 text=Flash   Enchant creature   Enchanted creature gets +1/+2.
 target=creature
 auto=1/2

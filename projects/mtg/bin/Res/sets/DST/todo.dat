@@ -735,7 +735,7 @@ id=43506
 name=Savage Beating
 mana={3}{R}{R}
 type=Instant
-text=Cast Savage Beating only during your turn and only during combat. Choose one  ECreatures you control gain double strike until end of turn; or untap all creatures you control and after this phase, there is an additional combat phase. Entwine {1}{R} (Choose both if you pay the entwine cost.)
+text=Cast Savage Beating only during your turn and only during combat. Choose one - Creatures you control gain double strike until end of turn; or untap all creatures you control and after this phase, there is an additional combat phase. Entwine {1}{R} (Choose both if you pay the entwine cost.)
 rarity=R
 [/card]
 [card]

@@ -453,10 +453,23 @@ text=When Keldon Firebombers enters the battlefield, each player sacrifices all 
 rarity=R
 [/card]
 [card]
+text=Flash   Enchant creature   Whenever enchanted creature deals combat damage to defending player, you may destroy target artifact that player controls.
+target=creature
+auto=@damaged(player) from(mytgt):may destroy target(artifact|opponentBattlefield)
+id=24632
+name=Latulla's Orders
+rarity=C
+mana={1}{R}
+type=Enchantment
+subtype=Aura
+abilities=flash
+[/card]
+[card]
 id=24646
 name=Latulla, Keldon Overseer
 mana={3}{R}{R}
-type=Legendary Creature
+type=Creature
+abilities=legendary
 subtype=Human Spellshaper
 power=3
 toughness=3
@@ -487,11 +500,12 @@ rarity=U
 id=24565
 name=Mageta the Lion
 mana={3}{W}{W}
-type=Legendary Creature
+type=Creature
 subtype=Human Spellshaper
 power=3
 toughness=3
 text={2}{W}{W}, {T}, Discard two cards: Destroy all creatures except for Mageta the Lion. Those creatures can't be regenerated.
+abilities=Legendary
 rarity=R
 [/card]
 [card]
