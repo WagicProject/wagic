@@ -155,7 +155,7 @@ private:
 
 class WSrcMTGSet: public WDataSource{
 public:
-  WSrcMTGSet(int setid, float mDelay=0.1);
+  WSrcMTGSet(int setid, float mDelay=0.2);
   
   virtual JQuad * getImage();
   virtual MTGCard * getCard();

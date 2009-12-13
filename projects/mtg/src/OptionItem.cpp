@@ -1397,8 +1397,12 @@ WSrcMTGSet::WSrcMTGSet(int setid, float delay){
     currentCard = 0;
 }
 JQuad * WSrcMTGSet::getImage(){
-  if(mDelay && mLastInput < mDelay)
-    return NULL;
+#if defined WIN32 || defined LINUX //Loading delay only on PSP.
+#else
+  if(mDelay && mLastInput < mDelay){
+      return resources.RetrieveCard(getCard(),RETRIEVE_EXISTING);
+  }
+#endif
   
   return resources.RetrieveCard(getCard());
 }
