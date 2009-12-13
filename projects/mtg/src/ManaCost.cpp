@@ -153,6 +153,7 @@ void ManaCost::init(){
 
 
 void ManaCost::copy(ManaCost * _manaCost){
+  if (!_manaCost) return;
   for (unsigned int i = 0; i <= Constants::MTG_NB_COLORS; i++){
     cost[i] = _manaCost->getCost(i);
   }

@@ -155,6 +155,7 @@ death_grasp.txt
 death_ward.txt
 deja_vu.txt
 dingus_egg.txt
+divergent_growth.txt
 doomed_necromancer.txt
 double_strike_i145.txt
 double_strike2_i145.txt

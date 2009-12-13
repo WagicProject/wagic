@@ -1366,7 +1366,30 @@ class APowerToughnessModifierUntilEndOfTurn: public ActivatedAbility{
 };
 
 
+class  GenericInstantAbility: public InstantAbility{
+ public:
+  MTGAbility * ability;
+ GenericInstantAbility(int _id, MTGCardInstance * _source, Damageable * _target, MTGAbility * ability): InstantAbility(_id, _source, _target), ability(ability){
+  }
 
+ int addToGame(){
+   ability->forceDestroy = -1;
+   ability->addToGame();
+   return InstantAbility::addToGame();
+ }
+
+ int destroy(){
+   ability->forceDestroy = 0;
+   return InstantAbility::destroy();
+ }
+
+  GenericInstantAbility * clone() const{
+   GenericInstantAbility * a =  NEW GenericInstantAbility(*this);
+    a->isClone = 1;
+    return a;
+  }
+
+};
 
 
 //Untap Blockers with simple Mana Mechanism
@@ -1785,8 +1808,13 @@ class ALord:public ListMaintainerAbility{
         if (d->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE){
           a->source = (MTGCardInstance *)d;
         }
-        a->addToGame();
-        abilities[d] = a;
+        if (oneShot){
+          MTGAbility * wrapper = NEW GenericInstantAbility(1,source,d,a);
+          wrapper->addToGame();
+        }else{
+          a->addToGame();
+          abilities[d] = a;
+        }
       }
       return 1;
   }

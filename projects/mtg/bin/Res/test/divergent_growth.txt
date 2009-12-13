@@ -1,0 +1,21 @@
+#Bug Divergent growth
+#see http://code.google.com/p/wagic/issues/detail?id=243
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:divergent growth
+manapool:{G}
+inplay:forest
+[PLAYER2]
+[DO]
+divergent growth
+forest
+choice 2
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:divergent growth
+inplay:forest
+manapool:{W}
+[PLAYER2]
+[END]

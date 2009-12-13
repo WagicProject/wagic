@@ -2247,7 +2247,6 @@ AManaProducer::AManaProducer(int id, MTGCardInstance * card, Targetable * t, Man
 
 
   AManaProducer::~AManaProducer(){
-    if (isClone) return;
     LOG("==Destroying ManaProducer Object");
     SAFE_DELETE(cost);
     SAFE_DELETE(output);
@@ -2256,6 +2255,10 @@ AManaProducer::AManaProducer(int id, MTGCardInstance * card, Targetable * t, Man
 
   AManaProducer * AManaProducer::clone() const{
     AManaProducer * a =  NEW AManaProducer(*this);
+    a->cost = NEW ManaCost();
+    a->output = NEW ManaCost();
+    a->cost->copy(cost);
+    a->output->copy(output);
     a->isClone = 1;
     return a;
   }
