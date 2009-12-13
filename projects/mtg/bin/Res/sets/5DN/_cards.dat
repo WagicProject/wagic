@@ -46,6 +46,16 @@ power=2
 toughness=6
 [/card]
 [card]
+id=73566
+name=Armed Response
+mana={2}{W}
+type=Instant
+text=Armed Response deals damage to target attacking creature equal to the number of Equipment you control.
+target=creature[attacking]
+auto=foreach(equipment|mybattlefield) damage:1
+rarity=C
+[/card]
+[card]
 text=Protection from black and from red   Whenever another creature enters the battlefield, you may gain 1 life.
 id=72921
 auto=@movedTo(creature|battlefield):may life:1 controller
@@ -189,9 +199,9 @@ mana={2}
 type=Artifact
 subtype=Equipment
 text=Equipped creature gets +1/+0 for each artifact you control. {B}{B}: Attach Cranial Plating to target creature you control. Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
-auto={1}:equip
-auto=foreach(artifact|myBattlefield) 1/0
+auto=foreach(artifact|mybattlefield) 1/0
 auto={B}{B}:attach
+auto={1}:equip
 rarity=C
 [/card]
 [card]
@@ -293,27 +303,6 @@ toughness=2
 abilities=flying
 [/card]
 [card]
-text=First strike   Goblin Brawler can't be equipped.
-id=51170
-name=Goblin Brawler
-rarity=C
-mana={2}{R}
-type=Creature
-subtype=Goblin Warrior
-power=2
-toughness=2
-abilities=first strike
-[/card]
-[card]
-id=48215
-name=Goblin Cannon
-mana={4}
-type=Artifact
-text={2}: Goblin Cannon deals 1 damage to target creature or player. Sacrifice Goblin Cannon.
-auto={2}{S}:damage:1 target(creature,player)
-rarity=U
-[/card]
-[card]
 text={T}, Sacrifice an artifact: Target player puts the top three cards of his or her library into his or her graveyard.   Whenever an artifact enters the battlefield, you may untap Grinding Station
 auto=@movedTo(artifact|battlefield):may untap
 auto={T}{S(artifact|myBattlefield)}:deplete:3 target(player)
@@ -324,16 +313,35 @@ mana={3}
 type=Artifact
 [/card]
 [card]
+id=47449
+name=Helm of Kaldra
+mana={3}
+type=Artifact
+subtype=Equipment
+text=Equipped creature has first strike, trample, and haste. {1}: If you control Equipment named Helm of Kaldra, Sword of Kaldra, and Shield of Kaldra, put a legendary 4/4 colorless Avatar creature token named Kaldra onto the battlefield and attach those Equipment to it. Equip {2}
+auto=first strike
+auto=trample
+auto=haste
+auto={2}:equip
+# Following line does not work yet: It's not possible to specify
+# a target for an equip action. Even if that gets implemented,
+# targetting a token that's just being created might not work.
+# It currently doesn't matter though since the sword can't be
+# implemented anyway.
+# auto --- aslongas(Sword of Kaldra|mybattlefield) aslongas(Shield of Kaldra|mybattlefield) {1}:token(Kaldra,Creature Avatar,4/4,legendary) && attach target(Kaldra)
+rarity=R
+[/card]
+[card]
 id=51186
 name=Horned Helm
 mana={2}
 type=Artifact
 subtype=Equipment
 text=Equipped creature gets +1/+1 and has trample. {G}{G}: Attach Horned Helm to target creature you control. Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
-auto={1}:equip
-auto={G}{G}:attach
 auto=1/1
 auto=trample
+auto={G}{G}:attach
+auto={1}:equip
 rarity=C
 [/card]
 [card]
@@ -451,9 +459,9 @@ mana={2}
 type=Artifact
 subtype=Equipment
 text=Equipped creature has shroud. (It can't be the target of spells or abilities.) {U}{U}: Attach Neurok Stealthsuit to target creature you control. Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
-auto={1}:equip
-auto={U}{U}:attach
 auto=shroud
+auto={U}{U}:attach
+auto={1}:equip
 rarity=C
 [/card]
 [card]
@@ -599,9 +607,9 @@ mana={2}
 type=Artifact
 subtype=Equipment
 text=Equipped creature has first strike. {R}{R}: Attach Sparring Collar to target creature you control. Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
-auto={1}:equip
-auto={R}{R}:attach
 auto=first strike
+auto={R}{R}:attach
+auto={1}:equip
 rarity=C
 [/card]
 [card]

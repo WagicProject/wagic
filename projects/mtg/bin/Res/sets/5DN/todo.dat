@@ -26,14 +26,6 @@ text=Modular -- Sunburst (This enters the battlefield with a +1/+1 counter on it
 rarity=U
 [/card]
 [card]
-id=73566
-name=Armed Response
-mana={2}{W}
-type=Instant
-text=Armed Response deals damage to target attacking creature equal to the number of Equipment you control.
-rarity=C
-[/card]
-[card]
 id=50172
 name=Artificer's Intuition
 mana={1}{U}
@@ -213,7 +205,6 @@ toughness=6
 text=Trample At the beginning of your upkeep, sacrifice Cosmic Larva unless you sacrifice two lands.
 rarity=R
 [/card]
-
 [card]
 text=You may play land cards from your graveyard.
 # Following line does not work: "May moveto" from graveyards does
@@ -398,6 +389,32 @@ text={2}: Put a charge counter on Gemstone Array. Remove a charge counter from G
 rarity=U
 [/card]
 [card]
+text=First strike   Goblin Brawler can't be equipped.
+id=51170
+name=Goblin Brawler
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Goblin Warrior
+power=2
+toughness=2
+abilities=first strike
+[/card]
+[card]
+id=48215
+name=Goblin Cannon
+mana={4}
+type=Artifact
+text={2}: Goblin Cannon deals 1 damage to target creature or player. Sacrifice Goblin Cannon.
+# Following line does not work: The common usage for Goblin Cannon
+# is to interrupt and activate itself repeatedly. It will go to
+# the graveyard before the first damage event resolves, but all
+# damage events will stay on the stack. This can't be done
+# currently since Goblin Cannon cannot interrupt itself.
+auto={2}{S}:damage:1 target(creature,player)
+rarity=U
+[/card]
+[card]
 id=50927
 name=Grafted Wargear
 mana={3}
@@ -439,16 +456,6 @@ type=Artifact
 text=Sunburst (This enters the battlefield with a charge counter on it for each color of mana spent to cast it.) {2}, Sacrifice Heliophial: Heliophial deals damage to target creature or player equal to the number of charge counters on Heliophial.
 rarity=C
 [/card]
-[card]
-id=47449
-name=Helm of Kaldra
-mana={3}
-type=Legendary Artifact
-subtype=Equipment
-text=Equipped creature has first strike, trample, and haste. {1}: If you control Equipment named Helm of Kaldra, Sword of Kaldra, and Shield of Kaldra, put a legendary 4/4 colorless Avatar creature token named Kaldra onto the battlefield and attach those Equipment to it. Equip {2}
-rarity=R
-[/card]
-
 [card]
 id=51086
 name=Hoverguard Sweepers
@@ -493,11 +500,8 @@ subtype=Goblin Artificer
 power=2
 toughness=2
 text={R}, Sacrifice two artifacts: Destroy target artifact.
-# Following line doesn't work, or expects an extremely unintuitive
-# input sequence. It would work with *one* sacrifice, the user
-# then has to click on Engineers -> then target to destroy ->
-# then artifavt to sacrifice. However I can't find a way to
-# sacrifice *two* artifacts.
+# Following line doesn't work, the game can't handle two
+# sacrifices in the same line yet
 auto={R}{S(artifact|mybattlefield)}{S(artifact|mybattlefield)}:destroy target(artifact)
 rarity=U
 [/card]
@@ -599,7 +603,6 @@ toughness=4
 text={3}: Switch Myr Quadropod's power and toughness until end of turn.
 rarity=C
 [/card]
-
 [card]
 id=50158
 name=Opaline Bracers
@@ -628,7 +631,8 @@ type=Artifact
 subtype=Equipment
 text=Equipped creature has "{T}: Add one mana of any color to your mana pool." Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
 auto={1}:equip
-##doesnt work
+##doesnt work - Equipment will tap itself, ability will not be
+# transferred to equipped creature.
 auto={T}:Add:{W}
 auto={T}:Add:{U}
 auto={T}:Add:{B}
@@ -649,7 +653,7 @@ id=72681
 name=Plunge into Darkness
 mana={1}{B}
 type=Instant
-text=Choose one  ESacrifice any number of creatures, then you gain 3 life for each sacrificed creature; or pay X life, then look at the top X cards of your library, put one of those cards into your hand, and exile the rest. Entwine {B} (Choose both if you pay the entwine cost.)
+text=Choose one: Sacrifice any number of creatures, then you gain 3 life for each sacrificed creature; or pay X life, then look at the top X cards of your library, put one of those cards into your hand, and exile the rest. Entwine {B} (Choose both if you pay the entwine cost.)
 rarity=R
 [/card]
 [card]
@@ -807,13 +811,12 @@ toughness=0
 text=Sunburst (This enters the battlefield with a +1/+1 counter on it for each color of mana spent to cast it.) {T}: Double the number of +1/+1 counters on Solarion.
 rarity=R
 [/card]
-
 [card]
 id=73572
 name=Spectral Shift
 mana={1}{U}
 type=Instant
-text=Choose one - Change the text of target spell or permanent by replacing all instances of one basic land type with another; or change the text of target spell or permanent by replacing all instances of one color word with another. (These effects last indefinitely.) Entwine {2} (Choose both if you pay the entwine cost.)
+text=Choose one: Change the text of target spell or permanent by replacing all instances of one basic land type with another; or change the text of target spell or permanent by replacing all instances of one color word with another. (These effects last indefinitely.) Entwine {2} (Choose both if you pay the entwine cost.)
 rarity=R
 [/card]
 [card]
@@ -844,7 +847,6 @@ subtype=Aura
 text=Enchant artifact Enchanted artifact's activated abilities can't be activated. If enchanted artifact is a creature, it can't attack or block.
 rarity=C
 [/card]
-
 [card]
 id=51075
 name=Summoner's Egg

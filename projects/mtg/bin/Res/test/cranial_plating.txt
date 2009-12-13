@@ -1,0 +1,26 @@
+#NAME: Cranial Plating
+#DESC: Checks the card's main effect:
+#DESC: "Equipped creature gets +1/+0 for each
+#DESC: artifact you control."
+#DESC: Also verifies that the "attach" command
+#DESC: works outside of a main phase.
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:Cranial Plating,Grizzly Bears,Rod of Ruin
+hand:Swords to Plowshares
+manapool:{W}{B}{B}
+[PLAYER2]
+[DO]
+Cranial Plating
+Grizzly Bears
+Swords to Plowshares
+Grizzly Bears
+[ASSERT]
+combatattackers
+[PLAYER1]
+inplay:Cranial Plating,Rod of Ruin
+graveyard:Swords to Plowshares
+life:24
+[PLAYER2]
+[END]

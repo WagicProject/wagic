@@ -1,0 +1,32 @@
+#NAME: Helm of Kaldra
+#DESC: verifies the three base abilities
+#DESC: of Helm of Kaldra: trample, haste,
+#DESC: first strike
+[INIT]
+firstmain
+[PLAYER1]
+inplay:Helm of Kaldra
+hand:Grizzly Bears
+manapool:{3}{G}
+[PLAYER2]
+inplay:Lightning Elemental
+[DO]
+Grizzly Bears
+Helm of Kaldra
+Grizzly Bears
+next
+next
+Grizzly Bears
+next
+Lightning Elemental
+next
+next
+next
+[ASSERT]
+combatend
+[PLAYER1]
+inplay:Helm of Kaldra,Grizzly Bears
+[PLAYER2]
+graveyard:Lightning Elemental
+life:19
+[END]

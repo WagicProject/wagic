@@ -1,0 +1,29 @@
+#NAME: Horned Helm
+#DESC: "Equipped creature gets +1/+1
+#DESC: and has trample."
+[INIT]
+firstmain
+[PLAYER1]
+inplay:Horned Helm,Scryb Sprites
+manapool:{2}
+[PLAYER2]
+inplay:Suntail Hawk
+[DO]
+Horned Helm
+Scryb Sprites
+next
+next
+Scryb Sprites
+next
+Suntail Hawk
+next
+next
+next
+[ASSERT]
+combatend
+[PLAYER1]
+inplay:Horned Helm,Scryb Sprites
+[PLAYER2]
+graveyard:Suntail Hawk
+life:19
+[END]

@@ -145,6 +145,7 @@ counterspell.txt
 counterspell2.txt
 counterspell3.txt
 counterspell4.txt
+cranial_plating.txt
 creature_bond.txt
 curiosity1_i217.txt
 curiosity2_i217.txt
@@ -220,8 +221,10 @@ gravedigger.txt
 hannas_custody.txt
 harpoon_sniper.txt
 hellfire.txt
+helm_of_kaldra1.txt
 holy_day_i226.txt
 hopping_automaton_i232.txt
+horned_helm.txt
 howl_from_beyond.txt
 howl_of_the_night_pack.txt
 hurricane.txt
