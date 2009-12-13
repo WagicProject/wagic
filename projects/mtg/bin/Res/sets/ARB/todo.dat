@@ -50,17 +50,7 @@ toughness=1
 text=Flying At the beginning of your upkeep, you may put a feather counter on target creature. If you do, that creature is 3/1 and has flying as long as it has a feather counter on it.
 rarity=R
 [/card]
-[card]
-id=188963
-name=Bant Sojourners
-mana={1}{G}{W}{U}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=4
-text=When you cycle Bant Sojourners or it's put into a graveyard from play, you may put a 1/1 white Soldier creature token into play. Cycling {2}{W} ({2}{W}, Discard this card: Draw a card.)
-rarity=C
-[/card]
+
 [card]
 id=188975
 name=Bant Sureblade

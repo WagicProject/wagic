@@ -1,4 +1,18 @@
 [card]
+id=188963
+name=Bant Sojourners
+mana={1}{G}{W}{U}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=4
+text=When you cycle Bant Sojourners or it's put into a graveyard from play, you may put a 1/1 white Soldier creature token into play. Cycling {2}{W} ({2}{W}, Discard this card: Draw a card.)
+auto=@movedTo(graveyard) from(battlefield):may token(Soldier,Creature Soldier,1/1,white)
+autohand={2}{W}:cycling
+autohand={2}{W}:token(Soldier,Creature Soldier,1/1,white) && cycling
+rarity=C
+[/card]
+[card]
 id=179545
 name=Behemoth Sledge
 mana={1}{G}{W}
@@ -126,6 +140,7 @@ toughness=3
 text=When you cycle Grixis Sojourners or it's put into a graveyard from play, you may remove target card in a graveyard from the game. Cycling {2}{B} ({2}{B}, Discard this card: Draw a card.)
 auto=@movedTo(graveyard) from(battlefield):may moveTo(removedfromgame) target(*|graveyard)
 autohand={2}{B}:cycling
+autohand={2}{B}:moveTo(removedfromgame) target(*|graveyard) && cycling
 rarity=C
 [/card]
 [card]
