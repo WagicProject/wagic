@@ -1706,6 +1706,8 @@ class AAsLongAs:public ListMaintainerAbility{
   int resolve(){
     //TODO check if ability is oneShot ?
     updateTargets();
+    size_t size = cards.size();
+    if (maxi && size < maxi && (!mini || size > mini)) addAbilityToGame(); //special  case for 0
     cards.clear();
     players.clear();
     return 1;
@@ -1716,7 +1718,7 @@ class AAsLongAs:public ListMaintainerAbility{
     a = ability->clone();
     if (a->oneShot){
       a->resolve();
-      SAFE_DELETE(a);
+      delete(a);
     }else{
       a->addToGame();
     }
@@ -1732,9 +1734,9 @@ class AAsLongAs:public ListMaintainerAbility{
 
   int _added(Damageable * d){
     size_t size = cards.size();
-    if (mini && (int)size <= mini) return 0;
-    if (maxi && (int)size >= maxi) return removeAbilityFromGame();
-    if (!mini && !maxi && size !=1) return 0;
+    if (maxi && size >= maxi) return removeAbilityFromGame();
+    if (maxi) return 0;
+    if (size <= mini) return 0;
     return addAbilityToGame();
   }
 
