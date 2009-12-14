@@ -3,7 +3,7 @@ id=1828
 name=Balm of Restoration
 mana={2}
 type=Artifact
-text={1}, {T}, Sacrifice Balm of Restoration: Choose one ?EYou gain 2 life; or prevent the next 2 damage that would be dealt to target creature or player this turn.
+text={1}, {T}, Sacrifice Balm of Restoration: Choose one : You gain 2 life; or prevent the next 2 damage that would be dealt to target creature or player this turn.
 rarity=R
 [/card]
 [card]
@@ -128,6 +128,10 @@ power=5
 toughness=5
 text=First strike, trample At the beginning of your upkeep, put a -2/-2 counter on Ebon Praetor. Sacrifice a creature: Remove a -2/-2 counter from Ebon Praetor. If the sacrificed creature was a Thrull, put a +1/+0 counter on Ebon Praetor. Play this ability only during your upkeep and only once each turn.
 rarity=R
+abilities=first strike,trample
+auto=@each my upkeep:counter(-2/-2,1)
+auto={S(creature|myinplay)}:counter(-2/-2,-1) limit:1
+auto={S(creature[thrull]|myBattlefield)}:counter(-2/-2,-1) && counter(1/0,1) limit:1
 [/card]
 [card]
 id=1908
@@ -531,6 +535,16 @@ auto={T}:add {R} && @end:moveto(opponentinplay)
 auto={T}:add {W} && @end:moveto(opponentinplay)
 auto={T}:add {B} && @end:moveto(opponentinplay)
 auto={T}:add {U} && @end:moveto(opponentinplay)
+[/card]
+[card]
+text={5}, {T}, Discard a card at random: Draw two cards.
+id=1835
+name=Ring of Renewal
+auto=aslongas(*|myHand) {5}{T}:discard:1 && draw:2 controller >1
+# this does not work in WTH 0.10, make you discard a card when comes into play.
+rarity=R
+mana={5}
+type=Artifact
 [/card]
 [card]
 id=2012
