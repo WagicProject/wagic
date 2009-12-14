@@ -720,14 +720,7 @@ power=3
 subtype=Merfolk Soldier
 toughness=3
 [/card]
-[card]
-text=({T}: Add {B} to your mana pool.)  Leechridden Swamp comes into play tapped.     {B}, {T}: Each opponent loses 1 life. Play this ability only if you control two or more black permanents.
-id=142020
-name=Leechridden Swamp
-rarity=U
-type=Land
-subtype=Swamp
-[/card]
+
 [card]
 text=Wither (This deals damage to creatures in the form of -1/-1 counters.)  When Lockjaw Snapper is put into a graveyard from play, put a -1/-1 counter on each creature with a -1/-1 counter on it.
 id=154411
@@ -1244,14 +1237,7 @@ subtype=Elf Warrior
 toughness=2
 [/card]
 
-[card]
-text=({T}: Add {G} to your mana pool.)  Sapseep Forest comes into play tapped.     {G}, {T}: You gain 1 life. Play this ability only if you control two or more green permanents.
-id=142048
-name=Sapseep Forest
-rarity=U
-type=Land
-subtype=Forest
-[/card]
+
 [card]
 text=Take an extra turn after this one. Skip the untap step of that turn.
 id=159404

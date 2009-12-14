@@ -187,6 +187,19 @@ toughness=2
 rarity=C
 [/card]
 [card]
+name=Heidar, Rimewind Master
+id=121147
+text={2}, {T}: Return target permanent to its owner's hand. Activate this ability only if you control four or more snow permanents.
+auto=aslongas(*[snow]|myBattlefield) {2}{T}:moveTo(ownerhand) target(*) >3
+mana={4}{U}
+type=Creature
+abilities=Legendary
+subtype=Human Wizard
+power=3
+toughness=3
+rarity=R
+[/card]
+[card]
 name=Highland Weald
 id=121259
 text=Highland Weald enters the battlefield tapped. {T}: Add {R} or {G} to your mana pool.
@@ -315,6 +328,19 @@ target=*|myBattlefield
 auto=bury
 auto=draw:2 controller
 rarity=U
+[/card]
+[card]
+name=Rimewind Taskmage
+id=121239
+text={1}, {T}: You may tap or untap target permanent. Activate this ability only if you control four or more snow permanents.
+auto=aslongas(*[snow]|myBattlefield) {1}{T}:tap target(*) >3
+auto=aslongas(*[snow]|myBattlefield) {1}{T}:untap target(*) >3
+mana={1}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=2
+rarity=C
 [/card]
 [card]
 name=Rite of Flame

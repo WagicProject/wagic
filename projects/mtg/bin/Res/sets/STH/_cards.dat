@@ -581,6 +581,19 @@ type=Land
 abilities=legendary
 [/card]
 [card]
+id=5264
+name=Walking Dream
+mana={3}{U}
+type=Creature
+subtype=Illusion
+power=3
+toughness=3
+text=Walking Dream is unblockable.  Walking Dream doesn't untap during your untap step if an opponent controls two or more creatures.
+auto=aslongas(creature|opponentinplay) doesnotuntap >1
+abilities=unblockable
+rarity=U
+[/card]
+[card]
 text=Defender   When Wall of Blossoms enters the battlefield, draw a card.
 id=5265
 auto=draw:1 controller

@@ -863,6 +863,7 @@ auto={2}{W}{T}{S}:destroy all(enchantment)
 power=1
 toughness=2
 [/card]
+
 [card]
 text=Enchant creature   Enchanted creature can't attack or block.
 id=19729

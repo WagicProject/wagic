@@ -253,6 +253,7 @@ power=2
 toughness=1
 rarity=C
 [/card]
+
 [card]
 text=Masumaro, First to Live's power and toughness are each equal to twice the number of cards in your hand.
 name=Masumaro, First to Live
@@ -419,6 +420,15 @@ subtype=Snake Shaman Scout
 power=1
 toughness=1
 rarity=C
+[/card]
+[card]
+text={2}, {T}: Draw a card if you have seven or more cards in hand.
+name=Scroll of Origins
+auto=aslongas(*|myhand) {2}{T}:draw:1 >6
+id=88811
+mana={2}
+type=Artifact
+rarity=R
 [/card]
 [card]
 text=Flying Soramaro, First to Dream's power and toughness are each equal to the number of cards in your hand. {4}, Return a land you control to its owner's hand: Draw a card.

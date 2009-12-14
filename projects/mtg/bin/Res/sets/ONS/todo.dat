@@ -1349,6 +1349,8 @@ name=Oversold Cemetery
 mana={1}{B}
 type=Enchantment
 text=At the beginning of your upkeep, if you have four or more creature cards in your graveyard, you may return target creature card from your graveyard to your hand.
+auto=@each my upkeep:aslongas(creature|mygraveyard) may moveTo(myhand) target(creature|mygraveyard) >3
+#not working as it is intended to
 rarity=R
 [/card]
 [card]

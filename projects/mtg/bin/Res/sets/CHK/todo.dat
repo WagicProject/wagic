@@ -166,7 +166,8 @@ type=Creature
 subtype=Human Monk
 power=2
 toughness=1
-text={T}: You may put a land card from your hand into play. If you control ten or more lands, flip Budoka Gardener. rarity=R
+text={T}: You may put a land card from your hand into play. If you control ten or more lands, flip Budoka Gardener.
+rarity=R
 [/card]
 [card]
 id=50305
@@ -995,7 +996,8 @@ type=Creature
 subtype=Fox Wizard
 power=2
 toughness=3
-text=At end of turn, if Kitsune Mystic is enchanted by two or more Auras, flip it. rarity=R
+text=At end of turn, if Kitsune Mystic is enchanted by two or more Auras, flip it.
+rarity=R
 [/card]
 [card]
 id=81702
@@ -1370,7 +1372,8 @@ type=Creature
 subtype=Snake Shaman
 power=1
 toughness=1
-text={2}{G}, {T}: Put a 1/1 green Snake creature token into play. If you control ten or more creatures, flip Orochi Eggwatcher. rarity=U
+text={2}{G}, {T}: Put a 1/1 green Snake creature token into play. If you control ten or more creatures, flip Orochi Eggwatcher.
+rarity=U
 [/card]
 [card]
 id=80241

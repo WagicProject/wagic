@@ -97,6 +97,18 @@ power=*
 toughness=1
 [/card]
 [card]
+id=21395
+name=Complex Automaton
+mana={4}
+type=Artifact Creature
+subtype=Golem
+power=4
+toughness=4
+text=At the beginning of your upkeep, if you control seven or more permanents, return Complex Automaton to its owner's hand.
+auto=@each my upkeep:aslongas(*|myBattlefield) moveTo(myhand) >6
+rarity=R
+[/card]
+[card]
 text=When Death Pit Offering enters the battlefield, sacrifice all creatures you control.   Creatures you control get +2/+2.
 auto=bury all(creature|mybattlefield)
 auto=lord(creature|mybattlefield) 2/2

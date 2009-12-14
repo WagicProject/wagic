@@ -409,18 +409,7 @@ power=3
 toughness=3
 rarity=R
 [/card]
-[card]
-name=Heidar, Rimewind Master
-id=121147
-text={2}, {T}: Return target permanent to its owner's hand. Activate this ability only if you control four or more snow permanents.
-mana={4}{U}
-type=Creature
-abilities=Legendary
-subtype=Human Wizard
-power=3
-toughness=3
-rarity=R
-[/card]
+
 [card]
 name=Herald of Leshrac
 id=121250
@@ -831,17 +820,7 @@ power=2
 toughness=3
 rarity=U
 [/card]
-[card]
-name=Rimewind Taskmage
-id=121239
-text={1}, {T}: You may tap or untap target permanent. Activate this ability only if you control four or more snow permanents.
-mana={1}{U}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=2
-rarity=C
-[/card]
+
 [card]
 name=Ronom Hulk
 id=121270

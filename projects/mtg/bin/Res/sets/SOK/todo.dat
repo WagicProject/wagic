@@ -548,6 +548,8 @@ rarity=C
 [card]
 text=At the beginning of your upkeep, if you have seven or more cards in hand, you gain 4 life.
 name=Ivory Crane Netsuke
+auto=@each my upkeep:aslongas(*|myhand) life:4 controller >6
+## dont think @each works with aslongas + >X
 id=88796
 mana={2}
 type=Artifact
@@ -670,10 +672,16 @@ text=Kiyomaro, First to Stand's power and toughness are each equal to the number
 name=Kiyomaro, First to Stand
 id=74054
 mana={3}{W}{W}
-type=Legendary Creature
+type=Creature
 subtype=Spirit
+auto=foreach(*|myhand) 1/1
+auto=aslongas(*|myhand) vigilance >3
+auto=@damaged(player) from(this):aslongas(*|myhand) life:7 controller >6
+auto=@damaged(creature) from(this):aslongas(*|myhand) life:7 controller >6
+##need more testing, I don't think the life gaining is working
 power=*
 toughness=*
+abilities=legendary
 rarity=R
 [/card]
 [card]
@@ -1042,14 +1050,7 @@ mana={1}{G}{G}
 type=Legendary Enchantment
 rarity=R
 [/card]
-[card]
-text={2}, {T}: Draw a card if you have seven or more cards in hand.
-name=Scroll of Origins
-id=88811
-mana={2}
-type=Artifact
-rarity=R
-[/card]
+
 [card]
 text=As long as you have more cards in hand than each opponent, Secretkeeper gets +2/+2 and has flying.
 name=Secretkeeper

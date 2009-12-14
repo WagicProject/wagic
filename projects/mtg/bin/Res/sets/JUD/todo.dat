@@ -56,7 +56,7 @@ id=34865
 name=Aven Warcraft
 mana={2}{W}
 type=Instant
-text=Creatures you control get +0/+2 until end of turn. Threshold  EIf seven or more cards are in your graveyard, creatures you control also gain protection from the color of your choice until end of turn.
+text=Creatures you control get +0/+2 until end of turn. Threshold - If seven or more cards are in your graveyard, creatures you control also gain protection from the color of your choice until end of turn.
 rarity=U
 [/card]
 [card]
@@ -97,7 +97,7 @@ type=Creature
 subtype=Centaur
 power=3
 toughness=3
-text=Threshold  EPut three cards from your graveyard on the bottom of your library: Battlefield Scrounger gets +3/+3 until end of turn. Activate this ability only once each turn, and only if seven or more cards are in your graveyard.
+text=Threshold - Put three cards from your graveyard on the bottom of your library: Battlefield Scrounger gets +3/+3 until end of turn. Activate this ability only once each turn, and only if seven or more cards are in your graveyard.
 rarity=C
 [/card]
 [card]
@@ -389,7 +389,7 @@ id=34209
 name=Grizzly Fate
 mana={3}{G}{G}
 type=Sorcery
-text=Put two 2/2 green Bear creature tokens onto the battlefield. Threshold  EPut four 2/2 green Bear creature tokens onto the battlefield instead if seven or more cards are in your graveyard. Flashback {5}{G}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+text=Put two 2/2 green Bear creature tokens onto the battlefield. Threshold - Put four 2/2 green Bear creature tokens onto the battlefield instead if seven or more cards are in your graveyard. Flashback {5}{G}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 rarity=U
 [/card]
 [card]
@@ -430,7 +430,7 @@ id=35167
 name=Hunting Grounds
 mana={G}{W}
 type=Enchantment
-text=Threshold  EAs long as seven or more cards are in your graveyard, Hunting Grounds has "Whenever an opponent casts a spell, you may put a creature card from your hand onto the battlefield."
+text=Threshold - As long as seven or more cards are in your graveyard, Hunting Grounds has "Whenever an opponent casts a spell, you may put a creature card from your hand onto the battlefield."
 rarity=R
 [/card]
 [card]
@@ -498,7 +498,7 @@ id=34208
 name=Lightning Surge
 mana={3}{R}{R}
 type=Sorcery
-text=Lightning Surge deals 4 damage to target creature or player. Threshold  EIf seven or more cards are in your graveyard, instead Lightning Surge deals 6 damage to that creature or player and the damage can't be prevented. Flashback {5}{R}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+text=Lightning Surge deals 4 damage to target creature or player. Threshold - If seven or more cards are in your graveyard, instead Lightning Surge deals 6 damage to that creature or player and the damage can't be prevented. Flashback {5}{R}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 rarity=R
 [/card]
 [card]
@@ -835,7 +835,7 @@ id=32209
 name=Stitch Together
 mana={B}{B}
 type=Sorcery
-text=Return target creature card from your graveyard to your hand. Threshold  EReturn that card from your graveyard to the battlefield instead if seven or more cards are in your graveyard.
+text=Return target creature card from your graveyard to your hand. Threshold - Return that card from your graveyard to the battlefield instead if seven or more cards are in your graveyard.
 rarity=U
 [/card]
 [card]
@@ -892,7 +892,7 @@ type=Creature
 subtype=Vampire
 power=4
 toughness=4
-text=Flying Whenever Treacherous Vampire attacks or blocks, sacrifice it unless you exile a card from your graveyard. Threshold  EAs long as seven or more cards are in your graveyard, Treacherous Vampire gets +2/+2 and has "When Treacherous Vampire is put into a graveyard from the battlefield, you lose 6 life."
+text=Flying Whenever Treacherous Vampire attacks or blocks, sacrifice it unless you exile a card from your graveyard. Threshold - As long as seven or more cards are in your graveyard, Treacherous Vampire gets +2/+2 and has "When Treacherous Vampire is put into a graveyard from the battlefield, you lose 6 life."
 rarity=U
 [/card]
 [card]
@@ -903,7 +903,7 @@ type=Creature
 subtype=Human Wolf Minion
 power=2
 toughness=2
-text=Threshold  EAs long as seven or more cards are in your graveyard, Treacherous Werewolf gets +2/+2 and has "When Treacherous Werewolf is put into a graveyard from the battlefield, you lose 4 life."
+text=Threshold - As long as seven or more cards are in your graveyard, Treacherous Werewolf gets +2/+2 and has "When Treacherous Werewolf is put into a graveyard from the battlefield, you lose 4 life."
 rarity=C
 [/card]
 [card]

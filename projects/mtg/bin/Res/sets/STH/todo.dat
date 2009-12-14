@@ -823,17 +823,7 @@ text=As long as the top card of your graveyard is a creature card, Volrath's Sha
 rarity=R
 [/card]
 
-[card]
-id=5264
-name=Walking Dream
-mana={3}{U}
-type=Creature
-subtype=Illusion
-power=3
-toughness=3
-text=Walking Dream is unblockable.  Walking Dream doesn't untap during your untap step if an opponent controls two or more creatures.
-rarity=U
-[/card]
+
 
 [card]
 id=5267

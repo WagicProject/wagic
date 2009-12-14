@@ -115,17 +115,7 @@ toughness=2
 text=Flying Fading 3 (This creature enters the battlefield with three fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.)
 rarity=C
 [/card]
-[card]
-id=21395
-name=Complex Automaton
-mana={4}
-type=Artifact Creature
-subtype=Golem
-power=4
-toughness=4
-text=At the beginning of your upkeep, if you control seven or more permanents, return Complex Automaton to its owner's hand.
-rarity=R
-[/card]
+
 [card]
 id=21322
 name=Dark Triumph
@@ -813,6 +803,8 @@ mana={1}{G}
 type=Enchantment
 subtype=Aura
 text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.) Enchanted creature gets +1/+1 and can't be blocked except by creatures with flying.
+target=creature
+auto=1/1
 rarity=C
 [/card]
 [card]
