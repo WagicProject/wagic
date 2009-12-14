@@ -216,6 +216,16 @@ toughness=3
 abilities=islandwalk
 [/card]
 [card]
+text=Add {B}{B}{B} to your mana pool. Threshold - Add {B}{B}{B}{B}{B} to your mana pool instead if seven or more cards are in your graveyard.
+name=Cabal Ritual
+auto=add {B}{B}{B}
+auto=aslongas(*|mygraveyard) add {B}{B} >6
+id=30564
+mana={1}{B}
+type=Instant
+rarity=C
+[/card]
+[card]
 text=Destroy all lands or all creatures. Creatures destroyed this way can't be regenerated.
 id=5637
 name=Catastrophe

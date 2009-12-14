@@ -1,5 +1,5 @@
 [card]
-text=Put two 1/1 green Squirrel creature tokens onto the battlefield. Flashback—{1}{G}, Pay 3 life. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+text=Put two 1/1 green Squirrel creature tokens onto the battlefield. Flashback-{1}{G}, Pay 3 life. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 name=Acorn Harvest
 id=29873
 mana={3}{G}
@@ -70,7 +70,7 @@ toughness=1
 rarity=C
 [/card]
 [card]
-text=Flying Threshold — As long as seven or more cards are in your graveyard, Boneshard Slasher gets +2/+2 and has «When Boneshard Slasher becomes the target of a spell or ability, sacrifice it.»
+text=Flying Threshold - As long as seven or more cards are in your graveyard, Boneshard Slasher gets +2/+2 and has «When Boneshard Slasher becomes the target of a spell or ability, sacrifice it.»
 name=Boneshard Slasher
 id=32225
 mana={1}{B}
@@ -88,14 +88,7 @@ mana={X}{U}
 type=Sorcery
 rarity=U
 [/card]
-[card]
-text=Add {B}{B}{B} to your mana pool. Threshold — Add {B}{B}{B}{B}{B} to your mana pool instead if seven or more cards are in your graveyard.
-name=Cabal Ritual
-id=30564
-mana={1}{B}
-type=Instant
-rarity=C
-[/card]
+
 [card]
 text={2}{B}{B}, {T}, Exile two cards from your graveyard: Return target creature card from your graveyard to your hand.
 name=Cabal Surgeon
@@ -107,17 +100,7 @@ power=2
 toughness=1
 rarity=C
 [/card]
-[card]
-text={B}, {T}: Target creature gets -1/-1 until end of turn. Threshold — {3}{B}{B}, {T}: Target creature gets -2/-2 until end of turn. Activate this ability only if seven or more cards are in your graveyard.
-name=Cabal Torturer
-id=32226
-mana={1}{B}{B}
-type=Creature
-subtype=Human Minion
-power=1
-toughness=1
-rarity=C
-[/card]
+
 [card]
 text=Whenever Carrion Rats attacks or blocks, any player may exile a card from his or her graveyard. If a player does, Carrion Rats assigns no combat damage this turn.
 name=Carrion Rats
@@ -141,7 +124,7 @@ toughness=5
 rarity=U
 [/card]
 [card]
-text=Haste Threshold — As long as seven or more cards are in your graveyard, Centaur Chieftain has «When Centaur Chieftain enters the battlefield, creatures you control get +1/+1 and gain trample until end of turn.»
+text=Haste Threshold - As long as seven or more cards are in your graveyard, Centaur Chieftain has «When Centaur Chieftain enters the battlefield, creatures you control get +1/+1 and gain trample until end of turn.»
 name=Centaur Chieftain
 id=32218
 mana={3}{G}
@@ -174,7 +157,7 @@ toughness=1
 rarity=U
 [/card]
 [card]
-text=Threshold — As long as seven or more cards are in your graveyard, Cephalid Sage has «When Cephalid Sage enters the battlefield, draw three cards, then discard two cards.»
+text=Threshold - As long as seven or more cards are in your graveyard, Cephalid Sage has «When Cephalid Sage enters the battlefield, draw three cards, then discard two cards.»
 name=Cephalid Sage
 id=33690
 mana={3}{U}
@@ -231,7 +214,7 @@ type=Instant
 rarity=U
 [/card]
 [card]
-text=Destroy all enchantments. Threshold — If seven or more cards are in your graveyard, instead destroy all enchantments, then return all cards in your graveyard destroyed this way to the battlefield.
+text=Destroy all enchantments. Threshold - If seven or more cards are in your graveyard, instead destroy all enchantments, then return all cards in your graveyard destroyed this way to the battlefield.
 name=Cleansing Meditation
 id=29883
 mana={1}{W}{W}
@@ -259,7 +242,7 @@ toughness=4
 rarity=U
 [/card]
 [card]
-text=Target creature gets -2/-2 until end of turn. Flashback—{1}{B}, Pay 3 life. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+text=Target creature gets -2/-2 until end of turn. Flashback-{1}{B}, Pay 3 life. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 name=Crippling Fatigue
 id=34225
 mana={1}{B}{B}
@@ -275,7 +258,7 @@ type=Enchantment
 rarity=R
 [/card]
 [card]
-text=Target player draws two cards. Flashback—{1}{U}, Pay 3 life. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+text=Target player draws two cards. Flashback-{1}{U}, Pay 3 life. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 name=Deep Analysis
 id=32237
 mana={3}{U}
@@ -326,7 +309,7 @@ type=Instant
 rarity=R
 [/card]
 [card]
-text=Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library. Threshold — If seven or more cards are in your graveyard, instead search your library for three basic land cards and put them onto the battlefield tapped. Then shuffle your library.
+text=Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library. Threshold - If seven or more cards are in your graveyard, instead search your library for three basic land cards and put them onto the battlefield tapped. Then shuffle your library.
 name=Far Wanderings
 id=15229
 mana={2}{G}
@@ -350,7 +333,7 @@ type=Instant
 rarity=U
 [/card]
 [card]
-text=Players can't block with green and/or white creatures this turn. Flashback—{1}{R}, Pay 3 life. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+text=Players can't block with green and/or white creatures this turn. Flashback-{1}{R}, Pay 3 life. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 name=Flash of Defiance
 id=29863
 mana={1}{R}
@@ -384,7 +367,7 @@ subtype=Aura
 rarity=C
 [/card]
 [card]
-text=Flying Threshold — As long as seven or more cards are in your graveyard, Gloomdrifter has «When Gloomdrifter enters the battlefield, nonblack creatures get -2/-2 until end of turn.»
+text=Flying Threshold - As long as seven or more cards are in your graveyard, Gloomdrifter has «When Gloomdrifter enters the battlefield, nonblack creatures get -2/-2 until end of turn.»
 name=Gloomdrifter
 id=12405
 mana={3}{B}
@@ -520,7 +503,7 @@ type=Sorcery
 rarity=R
 [/card]
 [card]
-text={T}: Untap target land. Threshold — {T}: Untap up to three target lands. Activate this ability only if seven or more cards are in your graveyard.
+text={T}: Untap target land. Threshold - {T}: Untap up to three target lands. Activate this ability only if seven or more cards are in your graveyard.
 name=Krosan Restorer
 id=29872
 mana={2}{G}
@@ -672,7 +655,7 @@ type=Sorcery
 rarity=R
 [/card]
 [card]
-text=Threshold — As long as seven or more cards are in your graveyard, Pardic Arsonist has «When Pardic Arsonist enters the battlefield, it deals 3 damage to target creature or player.»
+text=Threshold - As long as seven or more cards are in your graveyard, Pardic Arsonist has «When Pardic Arsonist enters the battlefield, it deals 3 damage to target creature or player.»
 name=Pardic Arsonist
 id=32213
 mana={2}{R}{R}
@@ -743,7 +726,7 @@ type=Instant
 rarity=R
 [/card]
 [card]
-text=Flying Threshold — As long as seven or more cards are in your graveyard, Possessed Aven gets +1/+1, is black, and has «{2}{B}, {T}: Destroy target blue creature.»
+text=Flying Threshold - As long as seven or more cards are in your graveyard, Possessed Aven gets +1/+1, is black, and has «{2}{B}, {T}: Destroy target blue creature.»
 name=Possessed Aven
 id=30658
 mana={2}{U}{U}
@@ -754,7 +737,7 @@ toughness=3
 rarity=R
 [/card]
 [card]
-text=First strike Threshold — As long as seven or more cards are in your graveyard, Possessed Barbarian gets +1/+1, is black, and has «{2}{B}, {T}: Destroy target red creature.»
+text=First strike Threshold - As long as seven or more cards are in your graveyard, Possessed Barbarian gets +1/+1, is black, and has «{2}{B}, {T}: Destroy target red creature.»
 name=Possessed Barbarian
 id=32231
 mana={2}{R}{R}
@@ -765,7 +748,7 @@ toughness=3
 rarity=R
 [/card]
 [card]
-text=Trample Threshold — As long as seven or more cards are in your graveyard, Possessed Centaur gets +1/+1, is black, and has «{2}{B}, {T}: Destroy target green creature.»
+text=Trample Threshold - As long as seven or more cards are in your graveyard, Possessed Centaur gets +1/+1, is black, and has «{2}{B}, {T}: Destroy target green creature.»
 name=Possessed Centaur
 id=29787
 mana={2}{G}{G}
@@ -776,7 +759,7 @@ toughness=3
 rarity=R
 [/card]
 [card]
-text=Vigilance Threshold — As long as seven or more cards are in your graveyard, Possessed Nomad gets +1/+1, is black, and has «{2}{B}, {T}: Destroy target white creature.»
+text=Vigilance Threshold - As long as seven or more cards are in your graveyard, Possessed Nomad gets +1/+1, is black, and has «{2}{B}, {T}: Destroy target white creature.»
 name=Possessed Nomad
 id=29816
 mana={2}{W}{W}
@@ -811,7 +794,7 @@ type=Instant
 rarity=R
 [/card]
 [card]
-text=Vigilance Threshold — As long as seven or more cards are in your graveyard, Reborn Hero has «When Reborn Hero is put into a graveyard from the battlefield, you may pay {W}{W}. If you do, return Reborn Hero to the battlefield under your control.»
+text=Vigilance Threshold - As long as seven or more cards are in your graveyard, Reborn Hero has «When Reborn Hero is put into a graveyard from the battlefield, you may pay {W}{W}. If you do, return Reborn Hero to the battlefield under your control.»
 name=Reborn Hero
 id=34247
 mana={2}{W}
@@ -921,7 +904,7 @@ toughness=2
 rarity=C
 [/card]
 [card]
-text=Tap target untapped creature you control. If you do, it deals damage equal to its power to target attacking or blocking creature an opponent controls. Flashback—{1}{W}, Pay 3 life. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+text=Tap target untapped creature you control. If you do, it deals damage equal to its power to target attacking or blocking creature an opponent controls. Flashback-{1}{W}, Pay 3 life. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 name=Spirit Flare
 id=26361
 mana={3}{W}
@@ -964,7 +947,7 @@ type=Instant
 rarity=U
 [/card]
 [card]
-text=Flash Threshold — As long as seven or more cards are in your graveyard, Teroh's Vanguard has «When Teroh's Vanguard enters the battlefield, creatures you control gain protection from black until end of turn.»
+text=Flash Threshold - As long as seven or more cards are in your graveyard, Teroh's Vanguard has «When Teroh's Vanguard enters the battlefield, creatures you control gain protection from black until end of turn.»
 name=Teroh's Vanguard
 id=32205
 mana={3}{W}

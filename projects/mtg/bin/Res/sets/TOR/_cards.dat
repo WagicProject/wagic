@@ -83,6 +83,19 @@ rarity=U
 type=Land
 [/card]
 [card]
+text={B}, {T}: Target creature gets -1/-1 until end of turn. Threshold - {3}{B}{B}, {T}: Target creature gets -2/-2 until end of turn. Activate this ability only if seven or more cards are in your graveyard.
+name=Cabal Torturer
+id=32226
+mana={1}{B}{B}
+type=Creature
+subtype=Human Minion
+auto={B}{T}:-1/-1 target(creature)
+auto=aslongas(*|mygraveyard) {3}{B}{B}{T}:-2/-2 target(creature) >6
+power=1
+toughness=1
+rarity=C
+[/card]
+[card]
 text=Trample   {G}, Discard a card: Regenerate Centaur Veteran.
 name=Centaur Veteran
 id=29800

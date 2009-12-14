@@ -549,7 +549,7 @@ rarity=C
 text=At the beginning of your upkeep, if you have seven or more cards in hand, you gain 4 life.
 name=Ivory Crane Netsuke
 auto=@each my upkeep:aslongas(*|myhand) life:4 controller >6
-## dont think @each works with aslongas + >X
+## dont think @each works 100% with aslongas + >X
 id=88796
 mana={2}
 type=Artifact

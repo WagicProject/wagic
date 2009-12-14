@@ -1398,6 +1398,8 @@ type=Land
 [card]
 text=At the beginning of your upkeep, if you have five or more cards in hand, Thumbscrews deals 1 damage to target opponent.
 id=4632
+auto=aslongas(*|myhand) damage:1 opponent >4
+#this only works for 1 turn, then it no longer works
 name=Thumbscrews
 rarity=R
 type=Artifact
