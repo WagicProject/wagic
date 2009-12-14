@@ -224,6 +224,9 @@ Task* Task::createFromStr(string params, bool rand) {
   }
 
   if (!result) {
+    #if defined (WIN32) || defined (LINUX)
+      OutputDebugString("\nTask::createFromStr: Failed to create task\n");
+    #endif
     return NULL;
   }
 
@@ -256,13 +259,16 @@ int TaskList::save(string _fileName) {
     fileName = _fileName;
   }
   if (fileName == "") {
+    #if defined (WIN32) || defined (LINUX)
+      OutputDebugString("\nTaskList::save: No filename specified\n");
+    #endif
     return -1;
   }
 
   std::ofstream file(fileName.c_str());
   if (file){
     #if defined (WIN32) || defined (LINUX)
-        OutputDebugString("\nsaving\n");
+        OutputDebugString("\nsaving tasks\n");
     #endif
     
     file << "# Format: <Type>|<Expiration>|<Accepted>|<Opponent>|<Reward>|<Description>[|Additional attributes]\n";
@@ -282,6 +288,9 @@ int TaskList::load(string _fileName) {
     fileName = _fileName;
   }
   if (fileName == "") {
+    #if defined (WIN32) || defined (LINUX)
+      OutputDebugString("\nTaskList::load: No filename specified\n");
+    #endif
     return -1;
   }
 
@@ -307,6 +316,9 @@ int TaskList::load(string _fileName) {
     }
     file.close();
   } else {
+    #if defined (WIN32) || defined (LINUX)
+      OutputDebugString("\nTaskList::load: Failed to open file\n");
+    #endif
     return -1;
   }
 
@@ -380,7 +392,7 @@ void TaskList::Render() {
   posY += 20;
 
   if (0 == tasks.size()) {
-    f->DrawString(_("These are no tasks that need to be done. Come again tomorrow.").c_str(), posX, posY);
+    f->DrawString(_("There are no tasks that need to be done. Come again tomorrow.").c_str(), posX, posY);
     posY += 20;
     return;
   } 
@@ -473,12 +485,15 @@ TaskSlaughter::TaskSlaughter(int _opponent, int _targetLife) : TaskWinAgainst(_o
 }
 
 int TaskSlaughter::computeReward() {
-  return 2*TaskWinAgainst::computeReward() - targetLife*9;
+  return 2*TaskWinAgainst::computeReward() - 9*targetLife*(targetLife<-50 ? 2 : 1);
 }
 
 void TaskSlaughter::randomize() {
   Task::randomize();
   targetLife = -15 - rand()%10;
+  if (!(rand()%7)) {
+    targetLife *= 5;
+  }
 }
 
 string TaskSlaughter::createDesc() {
@@ -526,7 +541,7 @@ TaskDelay::TaskDelay(int _opponent, int _turn) : TaskWinAgainst(_opponent) {
 }
 
 int TaskDelay::computeReward() {
-  return TaskWinAgainst::computeReward() + (afterTurn ? turn*30 : (17-turn)*(17-turn)*24);
+  return TaskWinAgainst::computeReward() + (afterTurn ? turn*30 : (17-turn)*(17-turn)*20);
 }
 
 void TaskDelay::randomize() {
@@ -778,8 +793,10 @@ string TaskXX::getShortDesc(){
 }
 
 bool TaskXX::isDone(Player * _p1, Player * _p2, GameApp * _app) {
+  GameObserver * g = GameObserver::GetInstance();
   // TODO: Implement
-  return TRUE;
+  return (!_p1->isAI()) && (_p2->isAI()) && (g->gameOver != _p1) // Human player wins
+          && ;
 }
 
 void TaskXX::storeCustomAttribs() {

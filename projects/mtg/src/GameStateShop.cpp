@@ -157,6 +157,7 @@ void GameStateShop::Update(float dt)
         mStage = STAGE_SHOP_SHOP;
         return;
       }
+#ifdef TESTSUITE
       if ((mEngine->GetButtonClick(PSP_CTRL_SQUARE)) && (taskList)) {
         taskList->passOneDay();
         if (taskList->getTaskCount() < 6) {
@@ -165,6 +166,7 @@ void GameStateShop::Update(float dt)
         }
        taskList->save();
       }
+#endif
     } else {
       if (mEngine->GetButtonClick(PSP_CTRL_SQUARE)){
         load();

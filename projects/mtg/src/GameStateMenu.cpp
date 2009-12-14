@@ -57,7 +57,6 @@ enum
   SUBMENUITEM_CLASSIC,
   SUBMENUITEM_RANDOM1,
   SUBMENUITEM_RANDOM2,
-  SUBMENUITEM_QUICK_TEST, //!!
 };
 
 
@@ -569,9 +568,8 @@ JLBFont * mFont = resources.GetJLBFont(Constants::MENU_FONT);
 	      subMenuController->Add(SUBMENUITEM_CANCEL, "Cancel");
 #ifdef TESTSUITE
 	      subMenuController->Add(SUBMENUITEM_TESTSUITE, "Test Suite");
-#endif
-	      subMenuController->Add(SUBMENUITEM_QUICK_TEST, "Quick test"); //!!        
 	  currentState = MENU_STATE_MAJOR_SUBMENU | MENU_STATE_MINOR_NONE;
+#endif
 	    }
 	    break;
       case MENUITEM_DECKEDITOR:
@@ -644,28 +642,9 @@ JLBFont * mFont = resources.GetJLBFont(Constants::MENU_FONT);
 	currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
 	break;
 #endif
-  case SUBMENUITEM_QUICK_TEST: //!!
-  	subMenuController->Close();
-    runTest();
-  	currentState = MENU_STATE_MAJOR_MAINMENU | MENU_STATE_MINOR_SUBMENU_CLOSING;
-    break;
       }
     break;
   }
-}
-
-void GameStateMenu::runTest() { //!! 
-  /*TaskList *tlist = new TaskList();
-  TaskWinAgainst *t1 = new TaskWinAgainst((rand()%10)+1);
-  TaskWinAgainst *t2 = new TaskWinAgainst((rand()%10)+1);
-  t1->setExpiration((rand()%5)+1);
-  t2->setExpiration((rand()%5)+1);
-  tlist->passOneDay();
-  tlist->addTask(t1);
-  tlist->addTask(t2);
-  tlist->save();
-  SAFE_DELETE(tlist);
-  //SAFE_DELETE(t);*/
 }
 
 ostream& GameStateMenu::toString(ostream& out) const
