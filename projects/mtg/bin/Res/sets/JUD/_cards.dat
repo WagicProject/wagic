@@ -84,7 +84,6 @@ target=creature
 auto=2/2
 auto=cantattack
 name=Cagemail
-id=36429
 rarity=C
 mana={1}{W}
 type=Enchantment

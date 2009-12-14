@@ -486,7 +486,6 @@ text={U}{U}, {T}, Discard a card: Counter target creature spell.
 auto={U}{U}{T}{S(*|myhand)}:fizzle target(creature|stack)
 id=21298
 name=Stronghold Biologist
-rarity=U
 mana={2}{U}
 type=Creature
 subtype=Human Spellshaper

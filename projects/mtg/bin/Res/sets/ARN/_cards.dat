@@ -36,7 +36,6 @@ name=Army of Allah
 rarity=C
 mana={1}{W}{W}
 type=Instant
-mana={1}{W}{W}
 [/card]
 [card]
 text=Attacking creatures get +2/+0 until end of turn.
