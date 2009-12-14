@@ -568,9 +568,9 @@ JLBFont * mFont = resources.GetJLBFont(Constants::MENU_FONT);
 	      subMenuController->Add(SUBMENUITEM_CANCEL, "Cancel");
 #ifdef TESTSUITE
 	      subMenuController->Add(SUBMENUITEM_TESTSUITE, "Test Suite");
-	  currentState = MENU_STATE_MAJOR_SUBMENU | MENU_STATE_MINOR_NONE;
 #endif
-	    }
+	  currentState = MENU_STATE_MAJOR_SUBMENU | MENU_STATE_MINOR_NONE;
+      }
 	    break;
       case MENUITEM_DECKEDITOR:
 	mParent->SetNextState(GAME_STATE_DECK_VIEWER);
