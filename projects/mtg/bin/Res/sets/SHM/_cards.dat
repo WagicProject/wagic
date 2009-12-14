@@ -282,6 +282,20 @@ power=2
 toughness=2
 [/card]
 [card]
+text=Deep-Slumber Titan comes into play tapped.     Deep-Slumber Titan doesn't untap during your untap step.     Whenever Deep-Slumber Titan is dealt damage, untap it.
+id=159396
+auto=tap
+abilities=doesnotuntap
+auto=@damaged(this):untap
+name=Deep-Slumber Titan
+rarity=R
+type=Creature
+mana={2}{R}{R}
+power=7
+subtype=Giant Warrior
+toughness=7
+[/card]
+[card]
 text={T}: Add {G} to your mana pool.   Put a -1/-1 counter on Devoted Druid: Untap Devoted Druid.
 id=135500
 name=Devoted Druid

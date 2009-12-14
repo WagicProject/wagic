@@ -1507,8 +1507,7 @@ type=Sorcery
 [/card]
 [card]
 text=Vampiric Touch deals 2 damage to target opponent and you gain 2 life.
-target=player
-auto=damage:2
+auto=damage:2 opponent
 auto=life:2 controller
 id=4244
 name=Vampiric Touch

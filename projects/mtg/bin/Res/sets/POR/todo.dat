@@ -2,6 +2,8 @@
 text=Flying     When Alabaster Dragon is put into a graveyard from play, shuffle Alabaster Dragon into its owner's library.
 id=4369
 name=Alabaster Dragon
+#This do not work in WTH 0.10
+auto=@movedTo(this|mygraveyard) from(myBattlefield):moveTo(ownerlibrary) all(this) && shuffle
 rarity=R
 type=Creature
 mana={4}{W}{W}
@@ -33,9 +35,6 @@ rarity=R
 type=Sorcery
 mana={3}{U}{U}
 [/card]
-
-
-
 [card]
 text=Whenever Charging Bandits attacks, it gets +2/+0 until end of turn.
 id=4212

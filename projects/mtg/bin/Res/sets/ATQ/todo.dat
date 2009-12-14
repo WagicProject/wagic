@@ -154,19 +154,12 @@ text=All artifacts have "At the beginning of your upkeep, sacrifice this artifac
 rarity=U
 [/card]
 [card]
-id=1006
-name=Feldon's Cane
-mana={1}
-type=Artifact
-text={T}, Exile Feldon's Cane: Shuffle your graveyard into your library.
-rarity=U
-[/card]
-[card]
 id=1039
 name=Gate to Phyrexia
 mana={B}{B}
 type=Enchantment
 text=Sacrifice a creature: Destroy target artifact. Activate this ability only during your upkeep and only once each turn.
+auto={S(creature|myBattlefield):destroy target(artifact) myTurnOnly limit:1
 rarity=U
 [/card]
 [card]
@@ -202,6 +195,7 @@ name=Jalum Tome
 mana={3}
 type=Artifact
 text={2}, {T}: Draw a card, then discard a card.
+auto={2}{T}{S(*|myHand)}:draw:1 controller
 rarity=U
 [/card]
 [card]
@@ -221,6 +215,9 @@ name=Mishra's Factory
 mana=
 type=Land
 text={T}: Add {1} to your mana pool. {1}: Mishra's Factory becomes a 2/2 Assembly-Worker artifact creature until end of turn. It's still a land. {T}: Target Assembly-Worker creature gets +1/+1 until end of turn.
+auto={T}:add{1}
+auto={1}:becomes(Assembly-Worker,2/2,Artifact Creature)
+auto={T}:1/1 target(Assembly-Worker)
 rarity=U
 [/card]
 [card]
@@ -240,6 +237,7 @@ name=Mishra's Workshop
 mana=
 type=Land
 text={T}: Add {3} to your mana pool. Spend this mana only to cast artifact spells.
+auto={T}:add{3}
 rarity=R
 [/card]
 [card]
@@ -279,6 +277,7 @@ subtype=Human Cleric
 power=1
 toughness=2
 text={T}, Sacrifice an artifact: Add to your mana pool an amount of black mana equal to the sacrificed artifact's converted mana cost.
+auto={T}{S(artifact|myBattlefield)}:add
 rarity=C
 [/card]
 [card]
@@ -290,6 +289,11 @@ subtype=Shapeshifter
 power=*
 toughness=*
 text=As Primal Clay enters the battlefield, it becomes your choice of a 3/3 artifact creature, a 2/2 artifact creature with flying, or a 1/6 Shapeshifter Wall artifact creature with defender.
+auto=may becomes(Artifact Creature,3/3)
+auto=may becomes(Artifact Creature,2/2,flying)
+auto=may becomes(Shapeshifter Wall Artifact Creature,1/6,defender)
+#Does not work
+#Note that removing the may works but the different auto line do not conflict. #If you remove the may primal clay will come into play as an 1/6 shapeshifter with defender.
 rarity=U
 [/card]
 [card]
@@ -325,6 +329,7 @@ name=Tablet of Epityr
 mana={1}
 type=Artifact
 text=Whenever an artifact you control is put into a graveyard from the battlefield, you may pay {1}. If you do, you gain 1 life.
+auto=@movedto(artifact|myGraveyard) from(myBattlefield):may {1}:life:1 controller
 rarity=C
 [/card]
 [card]
@@ -352,6 +357,10 @@ subtype=Construct
 power=1
 toughness=1
 text=Flying Tetravus enters the battlefield with three +1/+1 counters on it.  At the beginning of your upkeep, you may remove any number of +1/+1 counters from Tetravus. If you do, put that many 1/1 colorless Tetravite artifact creature tokens onto the battlefield. They each have flying and "This creature can't be enchanted." At the beginning of your upkeep, you may exile any number of tokens put onto the battlefield with Tetravus. If you do, put that many +1/+1 counters on Tetravus.
+auto=counter(1/1,3)
+abilities=flying
+auto=@each my upkeep:may counter(1/1,-1) && token(Tetravite,Artifact Creature,1/1,flying)
+auto=@each my upkeep:may moveto(exile) target(Tetravite|myBattlefield) && counter(1/1,1)
 rarity=R
 [/card]
 [card]
@@ -379,6 +388,8 @@ subtype=Construct
 power=1
 toughness=1
 text=Triskelion enters the battlefield with three +1/+1 counters on it. Remove a +1/+1 counter from Triskelion: Triskelion deals 1 damage to target creature or player.
+auto=counter(1/1,3)
+auto={0}:counter(1/1,-1) && damage:1 target(creature,player)
 rarity=R
 [/card]
 [card]

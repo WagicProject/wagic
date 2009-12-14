@@ -219,17 +219,6 @@ type=Sorcery
 mana={X}{GW}
 [/card]
 [card]
-text=Deep-Slumber Titan comes into play tapped.     Deep-Slumber Titan doesn't untap during your untap step.     Whenever Deep-Slumber Titan is dealt damage, untap it.
-id=159396
-name=Deep-Slumber Titan
-rarity=R
-type=Creature
-mana={2}{R}{R}
-power=7
-subtype=Giant Warrior
-toughness=7
-[/card]
-[card]
 #This card has been reported to crash the game when played from a graveyard. Let's test it
 text=Flying, haste. When you play Demigod of Revenge, return all cards named Demigod of Revenge from your graveyard to play.
 id=153972
@@ -780,8 +769,8 @@ mana={4}{G}{G}
 [card]
 text={1}: Add {B} or {R} to your mana pool. Play this ability no more than three times each turn.
 id=141978
-auto={1}:add {B}
-auto={1}:add {R}
+auto={1}:add {B} limit:3
+auto={1}:add {R} limit:3
 name=Manaforge Cinder
 rarity=C
 type=Creature

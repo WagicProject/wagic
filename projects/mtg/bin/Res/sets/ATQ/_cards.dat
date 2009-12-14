@@ -132,6 +132,15 @@ power=1
 toughness=1
 [/card]
 [card]
+id=1006
+name=Feldon's Cane
+mana={1}
+type=Artifact
+text={T}, Exile Feldon's Cane: Shuffle your graveyard into your library.
+auto={T}:moveto(myLibrary) all(*|myGraveyard) && shuffle && moveto(exile) all(this)
+rarity=U
+[/card]
+[card]
 text=Gaea's Avenger's power and toughness are each equal to 1 plus the number of artifacts your opponents control.
 id=1054
 name=Gaea's Avenger
