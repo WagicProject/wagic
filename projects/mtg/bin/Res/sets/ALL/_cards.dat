@@ -47,6 +47,19 @@ auto={R}:add {B}
 rarity=C
 [/card]
 [card]
+id=3161
+name=Balduvian Horde
+mana={2}{R}{R}
+auto=aslongas(*|myHand) bury <1
+auto=discard:1 controller
+type=Creature
+subtype=Human Barbarian
+power=5
+toughness=5
+text=When Balduvian Horde enters the battlefield, sacrifice it unless you discard a card at random.
+rarity=R
+[/card]
+[card]
 id=3162
 name=Balduvian War-Makers
 mana={4}{R}
