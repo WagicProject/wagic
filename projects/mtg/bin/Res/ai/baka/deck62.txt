@@ -1,0 +1,17 @@
+#NAME:Enchantresses
+Web (RV)                     * 4 #
+Wall of Blossoms (STH)       * 4 #
+Argothian Enchantress (USG)  * 4 #
+Yavimaya Enchantress (UDS)   * 4 #
+Ancestral Mask (MRQ)         * 3 #
+Briar Patch (MRQ)            * 3 #
+Fists of Ironwood (RAV)      * 4 #
+Forest (RAV)                 * 4 #
+Forest (RAV)                 * 4 #
+Forest (RAV)                 * 4 #
+Gaea's Anthem (PLC)          * 3 #
+Primal Rage (10E)            * 3 #
+Forest (ALA)                 * 4 #
+Forest (ALA)                 * 4 #
+Forest (ALA)                 * 4 #
+Birds of Paradise (M10)      * 4 #

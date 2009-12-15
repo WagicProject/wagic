@@ -1,0 +1,24 @@
+#NAME:Bleeding Megrim
+#DESC:And it will tell you how
+#DESC:the day after a triumph 
+#DESC:is as hollow as the
+#DESC:day after a tragedy.
+Seal of Fire (DIS)           * 2 #
+Megrim (10E)                 * 4 #
+Blightning (ALA)             * 3 #
+Terminate (ARB)              * 3 #
+Kederekt Parasite (CFX)      * 4 #
+Hypnotic Specter (M10)       * 4 #
+Lightning Bolt (M10)         * 4 #
+Howling Mine (M10)           * 4 #
+Wall of Fire (M10)           * 4 #
+Pyroclasm (M10)              * 2 #
+Swamp (ZEN)                  * 2 #
+Swamp (ZEN)                  * 3 #
+Mountain (ZEN)               * 3 #
+Mountain (ZEN)               * 3 #
+Mountain (ZEN)               * 3 #
+Mountain (ZEN)               * 3 #
+Swamp (ZEN)                  * 2 #
+Swamp (ZEN)                  * 3 #
+Burning Inquiry (M10)        * 4 #

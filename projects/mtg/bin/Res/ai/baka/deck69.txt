@@ -1,0 +1,15 @@
+#NAME:Balefire Blast
+Boros Swiftblade (RAV)       * 4 #
+Lightning Helix (RAV)        * 4 #
+Boros Recruit (RAV)          * 4 #
+Mountain (RAV)               *12 #
+Plains (RAV)                 *12 #
+Skyknight Legionnaire (RAV)  * 3 #
+Hobgoblin Dragoon (EVE)      * 1 #
+Rise of the Hobgoblins (EVE) * 2 #
+Belligerent Hatchling (EVE)  * 4 #
+Nobilis of War (EVE)         * 4 #
+Hearthfire Hobgoblin (EVE)   * 4 #
+Balefire Liege (EVE)         * 4 #
+Bull Cerodon (ALA)           * 1 #
+Cerodon Yearling (ARB)       * 1 #

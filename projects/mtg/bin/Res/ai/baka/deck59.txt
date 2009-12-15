@@ -1,0 +1,13 @@
+#NAME:Persistence
+Wrath of God (RV)            * 4 #
+Damnation (PLC)              * 4 #
+Kitchen Finks (SHM)          * 4 #
+Safehold Elite (SHM)         * 4 #
+Lingering Tormentor (EVE)    * 3 #
+Kithkin Spellduster (EVE)    * 1 #
+Heartmender (SHM)            * 4 #
+Restless Apparition (EVE)    * 4 #
+Rendclaw Trow (EVE)          * 4 #
+Day of Judgment (ZEN)        * 4 #
+Swamp (ZEN)                  *11 #
+Plains (ZEN)                 *13 #

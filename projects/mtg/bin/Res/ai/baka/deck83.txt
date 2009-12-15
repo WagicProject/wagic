@@ -1,0 +1,15 @@
+#NAME:Red Green Ally
+Mountain (10E)               * 2 #
+Primal Rage (10E)            * 3 #
+Mountain (LRW)               *10 #
+Turntimber Ranger (ZEN)      * 4 #
+Oran-Rief Survivalist (ZEN)  * 4 #
+Highland Berserker (ZEN)     * 4 #
+Kazuul Warlord (ZEN)         * 4 #
+Birds of Paradise (M10)      * 4 #
+Elvish Piper (M10)           * 4 #
+Joraga Bard (ZEN)            * 3 #
+Sea Gate Loremaster (ZEN)    * 2 #
+Seascape Aerialist (ZEN)     * 2 #
+Murasa Pyromancer (ZEN)      * 3 #
+Forest (ZEN)                 *11 #

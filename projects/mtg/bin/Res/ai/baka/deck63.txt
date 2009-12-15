@@ -1,0 +1,18 @@
+#NAME:Slightly Sligh
+Mogg Conscripts (TMP)        * 4 #
+Mogg Flunkies (STH)          * 4 #
+Flame Rift (NMS)             * 2 #
+Mogg Sentry (PLS)            * 2 #
+Great Furnace (MRD)          * 4 #
+Lava Spike (CHK)             * 4 #
+Brute Force (PLC)            * 4 #
+Mogg Fanatic (10E)           * 4 #
+Tattermunge Maniac (SHM)     * 4 #
+Mudbrawler Cohort (SHM)      * 4 #
+Mountain (ALA)               * 4 #
+Mountain (ALA)               * 4 #
+Mountain (ALA)               * 4 #
+Mountain (ALA)               * 2 #
+Goblin Chieftain (M10)       * 2 #
+Raging Goblin (M10)          * 4 #
+Lightning Bolt (M10)         * 4 #

@@ -1,0 +1,13 @@
+#NAME:Air Sea Battle
+Sleeper's Robe (INV)         * 4 #
+Shadowmage Infiltrator (ODY) * 3 #
+Gravelgill Axeshark (SHM)    * 3 #
+Oona's Gatewarden (SHM)      * 4 #
+Glen Elendra Liege (SHM)     * 4 #
+Gravelgill Duo (SHM)         * 3 #
+Wasp Lancer (SHM)            * 3 #
+Scarscale Ritual (SHM)       * 4 #
+Inkfathom Infiltrator (SHM)  * 4 #
+Tidehollow Strix (ALA)       * 4 #
+Swamp (M10)                  *12 #
+Island (M10)                 *12 #

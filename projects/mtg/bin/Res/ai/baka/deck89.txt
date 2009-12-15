@@ -1,0 +1,19 @@
+#NAME:Tree Planter
+Aspect of Wolf (RV)          * 4 #
+Nature's Lore (POR)          * 4 #
+Titania's Chosen (USG)       * 3 #
+Forest (CHK)                 * 5 #
+Vinelasher Kudzu (RAV)       * 4 #
+Forest (RAV)                 * 3 #
+Forest (10E)                 * 3 #
+Forest (10E)                 * 3 #
+Forest (10E)                 * 2 #
+Forest (10E)                 * 5 #
+Llanowar Elves (10E)         * 4 #
+Might of Oaks (10E)          * 1 #
+Rampant Growth (10E)         * 4 #
+Birds of Paradise (10E)      * 4 #
+Blanchwood Armor (10E)       * 4 #
+Oversoul of Dusk (SHM)       * 1 #
+Farhaven Elf (SHM)           * 3 #
+Wilt-Leaf Cavaliers (SHM)    * 3 #

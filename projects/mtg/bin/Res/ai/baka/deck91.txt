@@ -1,0 +1,21 @@
+#NAME:Mighty Murk
+Assault Zeppelid (DIS)       * 3 #
+Trygon Predator (DIS)        * 4 #
+Simic Sky Swallower (DIS)    * 1 #
+Slippery Bogle (EVE)         * 2 #
+Wistful Selkie (EVE)         * 3 #
+Fable of Wolf and Owl (EVE)  * 3 #
+Murkfiend Liege (EVE)        * 4 #
+Sturdy Hatchling (EVE)       * 4 #
+Jhessian Infiltrator (ALA)   * 4 #
+Winged Coatl (ARB)           * 3 #
+Lorescale Coatl (ARB)        * 3 #
+Vedalken Heretic (ARB)       * 2 #
+Forest (ZEN)                 * 3 #
+Island (ZEN)                 * 3 #
+Forest (ZEN)                 * 3 #
+Forest (ZEN)                 * 3 #
+Forest (ZEN)                 * 3 #
+Island (ZEN)                 * 3 #
+Island (ZEN)                 * 3 #
+Island (ZEN)                 * 3 #

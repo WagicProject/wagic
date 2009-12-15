@@ -1,9 +1,9 @@
-#NAME:Undead Lord
+#NAME:Undead Lords
 #
 #DESC: Creature's Decks 7:
 #DESC: "The deck that a Lord of the Undead
 #DESC: would (and could) assemble"
-#DESC: (v1.01)
+#DESC: (v1.02)
 #DESC:
 #DESC: Can you smell the sweet perfume
 #DESC: Of festering flesh and rotting bones?
@@ -15,19 +15,20 @@
 
 Lord of the Undead (10E) *4  # strengthens and raises zombies
 Cemetery Reaper (M10)    *4  # strengthens zombies
+Death Baron (ALA)        *4  # strengthens zombies +deathtouch
 Soulless One (ONS)       *4  # gets powerful with lots of zombies
 
-Walking Dead (LEG)       *4  # cheap early defense
+Walking Dead (LEG)       *2  # cheap early defense
 
-Zombie Master (RV)       *3  # for Swampwalk, zombie regeneration,
+Zombie Master (RV)       *2  # for Swampwalk, zombie regeneration,
 #                            # and 2/3 isn't bad either
 Severed Legion (10E)     *1  # \
 Warpath Ghoul (M10)      *1  #  > some expensive zombies
 Mass of Ghouls (FUT)     *1  # /
 
-Dreadwing (CFX)          *3  # \  9 cheap zombies - neither can
-Hate Weaver (10E)        *3  #  > use its abilities. These are
-Roofstalker Wight (RAV)  *3  # /  just temporary solutions to
+Dreadwing (CFX)          *2  # \  6 cheap zombies - neither can
+Hate Weaver (10E)        *2  #  > use its abilities. These are
+Roofstalker Wight (RAV)  *2  # /  just temporary solutions to
 #                            #    rack zombie numbers up for the
 #                            #    Soulless One.
 
@@ -35,7 +36,8 @@ Beacon of Unrest (10E)   *1  # More raising of zombies
 
 Scarscale Ritual (SHM)   *4  # Card drawer
 
-Swamp (10E)  *24
+Dark Ritual (RV)         *4
+Swamp (10E)  *22
 
 
 # Cards considered, but not included:

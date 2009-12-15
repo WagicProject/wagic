@@ -1,0 +1,23 @@
+#NAME:Enchantress' Pet
+Flight (RV)                  * 2 #
+Fastbond (RV)                * 1 #
+Instill Energy (RV)          * 1 #
+Verduran Enchantress (RV)    * 4 #
+Web (RV)                     * 1 #
+Island (MIR)                 * 4 #
+Island (MIR)                 * 4 #
+Island (MIR)                 * 1 #
+Argothian Enchantress (USG)  * 4 #
+Forest (USG)                 * 4 #
+Forest (USG)                 * 4 #
+Forest (USG)                 * 4 #
+Serra's Sanctum (USG)        * 1 #
+Ancestral Mask (MRQ)         * 4 #
+Forest (MRQ)                 * 1 #
+Ground Seal (ODY)            * 1 #
+Primal Frenzy (ODY)          * 2 #
+Enchantress's Presence (ONS) * 4 #
+Fists of Ironwood (RAV)      * 1 #
+Howling Mine (10E)           * 4 #
+Yavimaya Enchantress (10E)   * 4 #
+Lorescale Coatl (ARB)        * 4 #

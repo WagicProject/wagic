@@ -1,0 +1,5 @@
+#NAME:Relentless
+#DESC:United they stand,
+#DESC:Divided they fall.
+Swamp (10E)                  *24 #
+Relentless Rats (10E)        *36 #

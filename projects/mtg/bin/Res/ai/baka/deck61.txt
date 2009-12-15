@@ -1,0 +1,16 @@
+#NAME:Tarmac 
+The Rack (RV)                * 4 #
+Hymn to Tourach (FEM)        * 4 #
+Darksteel Ingot (DST)        * 3 #
+Geth's Grimoire (DST)        * 3 #
+Forest (RAV)                 * 5 #
+Forest (RAV)                 * 4 #
+Hypnotic Specter (10E)       * 4 #
+Tarmogoyf (FUT)              * 4 #
+Peppersmoke (LRW)            * 4 #
+Nath of the Gilt-Leaf (LRW)  * 4 #
+Executioner's Capsule (ALA)  * 3 #
+Doom Blade (M10)             * 4 #
+Weakness (M10)               * 3 #
+Swamp (ZEN)                  * 5 #
+Swamp (ZEN)                  * 6 #

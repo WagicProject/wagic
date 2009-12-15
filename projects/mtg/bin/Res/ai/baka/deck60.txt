@@ -1,0 +1,15 @@
+#NAME:No Bushwhacker
+Swords to Plowshares (ICE)   * 4 #
+Akki Raider (BOK)            * 4 #
+Lightning Helix (RAV)        * 4 #
+Knight of Meadowgrain (LRW)  * 4 #
+Tattermunge Maniac (SHM)     * 3 #
+Nobilis of War (EVE)         * 3 #
+Plated Geopede (ZEN)         * 4 #
+Steppe Lynx (ZEN)            * 4 #
+Elite Vanguard (M10)         * 3 #
+Lightning Bolt (M10)         * 4 #
+Plains (ZEN)                 * 5 #
+Mountain (ZEN)               * 4 #
+Plains (ZEN)                 * 7 #
+Mountain (ZEN)               * 7 #

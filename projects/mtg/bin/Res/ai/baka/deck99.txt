@@ -1,0 +1,17 @@
+#NAME:Eviscerator
+Ankh of Mishra (RV)          * 4 #
+Black Vise (RV)              * 4 #
+Wheel of Fortune (RV)        * 1 #
+Lotus Petal (TMP)            * 1 #
+Mogg Fanatic (TMP)           * 1 #
+Sudden Impact (TMP)          * 4 #
+Mountain (MRQ)               * 4 #
+Shock (ONS)                  * 4 #
+Lava Spike (CHK)             * 4 #
+Howling Mine (10E)           * 4 #
+Mountain (10E)               * 6 #
+Mountain (10E)               * 6 #
+Mountain (10E)               * 6 #
+Mogg Fanatic (10E)           * 3 #
+Tarfire (LRW)                * 4 #
+Lightning Bolt (M10)         * 4 #

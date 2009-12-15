@@ -1,0 +1,13 @@
+#NAME:Enchanted 
+Primal Frenzy (ODY) (10E)    * 4 #
+Blanchwood Armor (USG)       * 4 #
+Ancestral Mask (MRQ)         * 4 #
+Spidersilk Armor (MRQ)       * 4 #
+Enchantress's Presence (ONS) * 4 #
+Elvish Warrior (ONS)         * 3 #
+Slith Predator (MRD)         * 4 #
+Gaea's Anthem (PLC)          * 4 #
+Troll Ascetic (10E)          * 4 #
+Elvish Warrior (MOR)         * 1 #
+Boggart Ram-Gang (SHM)       * 4 #
+Forest (ZEN)                 *22 #

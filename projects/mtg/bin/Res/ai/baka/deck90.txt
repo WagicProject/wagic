@@ -1,0 +1,19 @@
+#NAME:Elfolk
+#DESC:Elf-folk, get it!?
+Living Lands (RV)            * 2 #
+Eladamri, Lord of Leaves (TMP) * 2 #
+Treefolk Seedlings (USG)     * 4 #
+Wellwisher (ONS)             * 3 #
+Gaea's Anthem (PLC)          * 4 #
+Forest (10E)                 *26 #
+Llanowar Elves (10E)         * 4 #
+Akroma's Memorial (FUT)      * 3 #
+Lys Alana Huntmaster (LRW)   * 2 #
+Elvish Promenade (LRW)       * 4 #
+Imperious Perfect (LRW)      * 2 #
+Timber Protector (LRW)       * 3 #
+Dauntless Dourbark (LRW)     * 2 #
+Nath of the Gilt-Leaf (LRW)  * 3 #
+Creakwood Liege (EVE)        * 3 #
+Howling Mine (M10)           * 3 #
+Elvish Archdruid (M10)       * 4 #

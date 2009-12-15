@@ -1,0 +1,18 @@
+#NAME:Blind Faith
+#DESC:"No more Dark and Light
+#DESC:for it is one that we fight"
+Unholy Strength (RV)         * 2 #
+Holy Strength (RV)           * 2 #
+Silent Attendant (USG)       * 2 #
+Temple Acolyte (P02)         * 4 #
+Priest of Gix (USG)          * 4 #
+Teroh's Faithful (TOR)       * 2 #
+Doubtless One (ONS)          * 4 #
+Profane Prayers (ONS)        * 4 #
+Akroma's Devoted (LGN)       * 2 #
+Soul Warden (10E)            * 4 #
+Venerable Monk (10E)         * 2 #
+Ancestor's Chosen (10E)      * 2 #
+Plains (ALA)                 *11 #
+Swamp (ALA)                  *11 #
+Acolyte of Xathrid (M10)     * 4 #

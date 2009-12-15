@@ -1,0 +1,15 @@
+#NAME:SilverBlade
+#DESC:White Weenie Aggro Deck
+Crusade (RV)                 * 4 #
+Swords to Plowshares (RV)    * 4 #
+Karakas (LEG)                * 1 #
+Snow-Covered Plains (ICE)    *20 #
+Leonin Skyhunter (MRD)       * 3 #
+Isamaru, Hound of Konda (CHK) * 2 #
+Knight of Meadowgrain (LRW)  * 4 #
+Spectral Procession (SHM)    * 4 #
+Nobilis of War (EVE)         * 2 #
+Steppe Lynx (ZEN)            * 4 #
+Elite Vanguard (M10)         * 4 #
+Honor of the Pure (M10)      * 4 #
+Kazandu Blademaster (ZEN)    * 4 #

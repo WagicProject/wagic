@@ -1,0 +1,16 @@
+#NAME:Twin Pricks
+#DESC:vampire tribe
+Bad Moon (RV)                * 4 #
+Terror (RV)                  * 3 #
+Swamp (RV)                   *16 #
+Vampire Hounds (EXO)         * 2 #
+Piranha Marsh (ZEN)          * 4 #
+Marsh Casualties (ZEN)       * 4 #
+Vampire's Bite (ZEN)         * 4 #
+Disfigure (ZEN)              * 4 #
+Blood Seeker (ZEN)           * 4 #
+Vampire Nighthawk (ZEN)      * 4 #
+Malakir Bloodwitch (ZEN)     * 2 #
+Sign in Blood (M10)          * 3 #
+Child of Night (M10)         * 4 #
+Ob Nixilis, the Fallen (ZEN) * 2 #

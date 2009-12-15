@@ -1,0 +1,32 @@
+#NAME:Death
+Paralyze (RV)                * 2 #
+Will-o'-the-Wisp (RV)        * 2 #
+Spirit of the Night (MIR)    * 1 #
+Plague Spitter (INV)         * 2 #
+Visara the Dreadful (ONS)    * 1 #
+Slith Bloodletter (MRD)      * 2 #
+Seizan, Perverter of Truth (CHK) * 1 #
+Night of Souls' Betrayal (CHK) * 1 #
+Ascendant Evincar (10E)      * 1 #
+Stronghold Overseer (TSP)    * 1 #
+Underworld Dreams (10E)      * 1 #
+Hollowborn Barghest (SHM)    * 1 #
+Polluted Bonds (SHM)         * 2 #
+Midnight Banshee (SHM)       * 1 #
+Creakwood Liege (EVE)        * 1 #
+Soot Imp (EVE)               * 2 #
+Swamp (ALA)                  * 4 #
+Blood Seeker (ZEN)           * 2 #
+Vampire Nighthawk (ZEN)      * 2 #
+Malakir Bloodwitch (ZEN)     * 1 #
+Black Knight (M10)           * 2 #
+Howling Banshee (M10)        * 2 #
+Nightmare (M10)              * 1 #
+Swamp (M10)                  * 4 #
+Ob Nixilis, the Fallen (ZEN) * 2 #
+Giant Scorpion (ZEN)         * 2 #
+Swamp (ZEN)                  * 4 #
+Swamp (ZEN)                  * 4 #
+Swamp (ZEN)                  * 2 #
+Swamp (ZEN)                  * 4 #
+Swamp (ZEN)                  * 4 #

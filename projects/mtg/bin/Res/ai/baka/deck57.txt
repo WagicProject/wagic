@@ -1,0 +1,17 @@
+#NAME:Black Coffers
+Dark Ritual (RV)             * 4 #
+Drain Life (RV)              * 4 #
+Cabal Coffers (TOR)          * 4 #
+Last Gasp (RAV)              * 3 #
+Magus of the Coffers (PLC)   * 4 #
+Nightmare (10E)              * 4 #
+Terror (10E)                 * 3 #
+Corrupt (SHM)                * 4 #
+Swamp (ALA)                  * 3 #
+Swamp (ALA)                  * 3 #
+Consume Spirit (M10)         * 4 #
+Swamp (M10)                  * 4 #
+Swamp (M10)                  * 4 #
+Swamp (M10)                  * 4 #
+Swamp (M10)                  * 4 #
+Tendrils of Corruption (M10) * 4 #

@@ -1,0 +1,12 @@
+#NAME:Bloodhall Ooze
+Kird Ape (RV)                * 4 #
+Forest (10E)                 *13 #
+Mountain (10E)               *11 #
+Tattermunge Maniac (SHM)     * 4 #
+Odious Trow (EVE)            * 4 #
+Stalker Hag (EVE)            * 4 #
+Tattermunge Duo (SHM)        * 4 #
+Noxious Hatchling (EVE)      * 4 #
+Creakwood Liege (EVE)        * 4 #
+Rendclaw Trow (EVE)          * 4 #
+Bloodhall Ooze (CFX)         * 4 #

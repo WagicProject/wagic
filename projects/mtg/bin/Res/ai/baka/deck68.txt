@@ -1,0 +1,15 @@
+#NAME:Shocking M'taurs
+#DESC:The bright flash
+#DESC:  of the opening attacks
+#DESC:is followed by the deafening thunder
+#DESC:  of a multitude of hooves
+Hurloon Minotaur (RV)        * 4 #
+Anaba Spirit Crafter (HML)   * 4 #
+Talruum Minotaur (MIR)       * 4 #
+Minotaur Warrior (POR)       * 4 #
+Raging Minotaur (POR)        * 4 #
+Mountain (10E)               *24 #
+Anaba Bodyguard (10E)        * 4 #
+Burst Lightning (ZEN)        * 4 #
+Canyon Minotaur (M10)        * 4 #
+Lightning Bolt (M10)         * 4 #

@@ -1,0 +1,18 @@
+#NAME:Skies of Emeria
+#DESC:All Land-Walkers Beware!
+Serra Angel (RV)             * 4 #
+Karakas (LEG)                * 1 #
+Zephid (USG)                 * 1 #
+Iridescent Angel (ODY)       * 4 #
+Honden of Cleansing Fire (CHK) * 1 #
+Honden of Seeing Winds (CHK) * 1 #
+Minamo, School at Water's Edge (CHK) * 1 #
+Flagstones of Trokair (TSP)  * 1 #
+Magus of the Moat (FUT)      * 4 #
+Recumbent Bliss (EVE)        * 4 #
+Plumeveil (SHM)              * 4 #
+Wall of Denial (ARB)         * 4 #
+Griffin Sentinel (M10)       * 4 #
+Emeria Angel (ZEN)           * 4 #
+Island (ZEN)                 * 9 #
+Plains (ZEN)                 *13 #

@@ -1,0 +1,14 @@
+#NAME:Barbarians
+Keldon Warlord (RV)          * 4 #
+Balduvian Barbarians (ICE)   * 4 #
+Balduvian War-Makers (ALL)   * 3 #
+Raging Goblin (POR)          * 4 #
+Barbarian General (PTK)      * 3 #
+Barbarian Horde (PTK)        * 3 #
+Balthor the Stout (TOR)      * 2 #
+Halberdier (ODY)             * 3 #
+Kamahl, Pit Fighter (ODY)    * 2 #
+Jeska, Warrior Adept (JUD)   * 2 #
+Lovisa Coldeyes (CSP)        * 2 #
+Highland Berserker (ZEN)     * 4 #
+Mountain (ZEN)               *24 #

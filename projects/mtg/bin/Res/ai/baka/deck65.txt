@@ -1,0 +1,15 @@
+#NAME:Token Terror
+Swords to Plowshares (ICE)   * 4 #
+Raise the Alarm (MRD)        * 4 #
+Plains (MRD)                 * 7 #
+Swamp (MRD)                  * 5 #
+Swamp (MRD)                  * 5 #
+Skeletal Vampire (GPT)       * 2 #
+Glorious Anthem (10E)        * 4 #
+Spectral Procession (SHM)    * 4 #
+Bitterblossom (MOR)          * 4 #
+Voracious Hatchling (EVE)    * 2 #
+Deathbringer Liege (EVE)     * 4 #
+Plains (ALA)                 * 7 #
+Deathgreeter (ALA)           * 4 #
+Soul Warden (M10)            * 4 #

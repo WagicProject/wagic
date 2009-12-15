@@ -1,0 +1,20 @@
+#NAME:Vampires
+Dark Ritual (RV)             * 2 #
+Arrogant Vampire (POR)       * 4 #
+Vampiric Feast (POR)         * 2 #
+Vampiric Touch (POR)         * 2 #
+Stalking Bloodsucker (ODY)   * 1 #
+Skeletal Vampire (GPT)       * 1 #
+Ascendant Evincar (10E)      * 2 #
+Vampiric link (PLC)          * 3 #
+Swamp (ALA)                  * 4 #
+Swamp (ALA)                  * 4 #
+Vampire's Bite (ZEN)         * 3 #
+Blood Seeker (ZEN)           * 4 #
+Vampire Nighthawk (ZEN)      * 4 #
+Malakir Bloodwitch (ZEN)     * 4 #
+Child of Night (M10)         * 4 #
+Swamp (M10)                  * 4 #
+Swamp (M10)                  * 4 #
+Swamp (M10)                  * 4 #
+Swamp (M10)                  * 4 #

@@ -1,0 +1,12 @@
+#NAME:Creaky Wood
+Llanowar Dead (APC)          * 4 #
+Ebony Treefolk (APC)         * 4 #
+Putrefy (RAV)                * 4 #
+Vulturous Zombie (RAV)       * 4 #
+Odious Trow (EVE)            * 4 #
+Stalker Hag (EVE)            * 4 #
+Noxious Hatchling (EVE)      * 4 #
+Creakwood Liege (EVE)        * 4 #
+Rendclaw Trow (EVE)          * 4 #
+Forest (ALA)                 *12 #
+Swamp (ALA)                  *12 #

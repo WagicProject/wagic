@@ -1,4 +1,4 @@
-#DeckMill /Artifact Game for AI
+#Mill /Artifact Game for AI
 #NAME:Inquisitor
 #DESC:Black vises in Ivory Towers await you
 #DESC:when facing this artificially created army,

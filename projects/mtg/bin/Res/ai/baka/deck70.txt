@@ -1,0 +1,14 @@
+#NAME:Life & Death
+Dark Ritual (RV)             * 4 #
+Righteous War (VIS)          * 4 #
+Vindicate (APC)              * 4 #
+Mountain (RAV)               *11 #
+Plains (RAV)                 *11 #
+Mourning Thrull (GPT)        * 4 #
+Nip Gwyllion (EVE)           * 4 #
+Harvest Gwyllion (EVE)       * 2 #
+Stillmoon Cavalier (EVE)     * 2 #
+Voracious Hatchling (EVE)    * 4 #
+Deathbringer Liege (EVE)     * 4 #
+Restless Apparition (EVE)    * 2 #
+Zealous Persecution (ARB)    * 4 #

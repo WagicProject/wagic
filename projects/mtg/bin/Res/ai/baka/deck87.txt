@@ -1,0 +1,12 @@
+#NAME:Hot & Hasty
+Breath of Darigaaz (INV)     * 4 #
+Rorix Bladewing (ONS)        * 3 #
+Slith Firewalker (MRD)       * 4 #
+Lava Spike (CHK)             * 4 #
+Spark Elemental (10E)        * 4 #
+Flame Javelin (SHM)          * 3 #
+Boggart Ram-Gang (SHM)       * 4 #
+Burst Lightning (ZEN)        * 4 #
+Lightning Bolt (M10)         * 4 #
+Ball Lightning (M10)         * 4 #
+Mountain (M10)               *22 #

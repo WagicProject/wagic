@@ -1,0 +1,23 @@
+#NAME:Corruption
+#DESC:It is said that power corrupts,
+#DESC:but actually it's more true
+#DESC:that power attracts the
+#DESC:corruptible.
+#DESC:The sane are usually attracted
+#DESC:by other things than power.
+#DESC:
+#DESC:David Brin
+Bad Moon (RV)                * 4 #
+Nature's Ruin (POR)          * 4 #
+Virtue's Ruin (POR)          * 2 #
+Kokusho, the Evening Star (CHK) * 4 #
+Tendrils of Corruption (TSP) * 3 #
+Graveborn Muse (10E)         * 3 #
+Corrupt (SHM)                * 2 #
+Unmake (EVE)                 * 4 #
+Bitterblossom (MOR)          * 4 #
+Vampire Nighthawk (ZEN)      * 4 #
+Swamp (ZEN)                  * 6 #
+Swamp (ZEN)                  * 6 #
+Swamp (ZEN)                  * 8 #
+Swamp (ZEN)                  * 6 #

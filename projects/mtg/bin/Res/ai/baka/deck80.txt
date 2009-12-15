@@ -1,0 +1,15 @@
+#NAME:Destroy
+Black Vise (RV)              * 4 #
+Black Knight (RV)            * 2 #
+Dark Ritual (RV)             * 4 #
+Lightning Bolt (RV)          * 4 #
+Stone Rain (RV)              * 4 #
+Wheel of Fortune (RV)        * 1 #
+Swamp (RV)                   * 11 #
+Mountain (RV)                * 11 #
+Slith Firewalker (MRD)       * 4 #
+Rain of Tears (10E)          * 4 #
+Fulminator Mage (SHM)        * 3 #
+Terminate (ARB)              * 4 #
+Vampire Nighthawk (ZEN)      * 2 #
+Sign in Blood (M10)          * 2 #

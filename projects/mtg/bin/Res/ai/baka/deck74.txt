@@ -1,0 +1,23 @@
+#NAME:Boar's Tusks
+Sunastian Falconer (LEG)     * 1 #
+Rock Basilisk (MIR)          * 1 #
+Viashivan Dragon (VIS)       * 1 #
+Gaea's Cradle (USG)          * 2 #
+Yavimaya Barbarian (INV)     * 2 #
+Yavimaya Kavu (INV)          * 4 #
+Rumbling Slum (GPT)          * 1 #
+Borborygmos (GPT)            * 1 #
+Streetbreaker Wurm (GPT)     * 1 #
+Stonebrow, Krosan Hero (TSP) * 1 #
+Loamdragger Giant (SHM)      * 1 #
+Tattermunge Maniac (SHM)     * 3 #
+Scuzzback Scrapper (SHM)     * 3 #
+Boartusk Liege (SHM)         * 4 #
+Scuzzback Marauders (SHM)    * 1 #
+Tattermunge Duo (SHM)        * 2 #
+Boggart Ram-Gang (SHM)       * 4 #
+Forest (SHM)                 *11 #
+Mountain (SHM)               *11 #
+Rip-Clan Crasher (ALA)       * 2 #
+Nacatl Outlander (CFX)       * 2 #
+Rhox Brute (ARB)             * 1 #

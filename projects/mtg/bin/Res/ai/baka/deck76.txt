@@ -1,0 +1,22 @@
+#NAME:The Memorial
+#DESC:What would you do?
+#DESC:When you are facing
+#DESC:an army of Supermen?
+Pendelhaven (LEG)            * 1 #
+Urborg (LEG)                 * 1 #
+Fyndhorn Elves (ICE)         * 4 #
+Eladamri, Lord of Leaves (TMP) * 1 #
+Citanul Hierophants (USG)    * 1 #
+Priest of Titania (USG)      * 4 #
+Gaea's Cradle (USG)          * 1 #
+Wirewood Lodge (ONS)         * 1 #
+Wellwisher (ONS)             * 4 #
+Akroma's Memorial (FUT)      * 4 #
+Elvish Promenade (LRW)       * 3 #
+Imperious Perfect (LRW)      * 4 #
+Bitterblossom (MOR)          * 4 #
+Llanowar Elves (M10)         * 4 #
+Ant Queen (M10)              * 3 #
+Elvish Archdruid (M10)       * 4 #
+Forest (ZEN)                 *12 #
+Swamp (ZEN)                  * 4 #

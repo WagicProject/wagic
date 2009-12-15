@@ -1,0 +1,17 @@
+#NAME:Vanguard'sChosen
+Pendelhaven (LEG)            * 2 #
+Fyndhorn Elves (ICE)         * 3 #
+Elvish Vanguard (ONS)        * 4 #
+Elvish Herder (USG)          * 3 #
+Priest of Titania (USG)      * 4 #
+Gaea's Cradle (USG)          * 4 #
+Wirewood Lodge (ONS)         * 3 #
+Wellwisher (ONS)             * 2 #
+Heedless One (ONS)           * 2 #
+Howling Mine (10E)           * 2 #
+Llanowar Elves (10E)         * 4 #
+Lys Alana Huntmaster (LRW)   * 4 #
+Elvish Promenade (LRW)       * 4 #
+Imperious Perfect (LRW)      * 4 #
+Immaculate Magistrate (LRW)  * 4 #
+Forest (M10)                 *11 #

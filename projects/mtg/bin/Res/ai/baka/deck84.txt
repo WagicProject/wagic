@@ -1,0 +1,15 @@
+#NAME: Allied Warriors
+Utopia Tree (INV)            * 4 #
+Turntimber Ranger (ZEN)      * 2 #
+Oran-Rief Survivalist (ZEN)  * 4 #
+Umara Raptor (ZEN)           * 4 #
+Tajuru Archer (ZEN)          * 2 #
+Highland Berserker (ZEN)     * 4 #
+Stonework Puma (ZEN)         * 4 #
+Kazuul Warlord (ZEN)         * 4 #
+Birds of Paradise (M10)      * 4 #
+Forest (ZEN)                 *12 #
+Island (ZEN)                 * 5 #
+Mountain (ZEN)               * 7 #
+Sea Gate Loremaster (ZEN)    * 2 #
+Seascape Aerialist (ZEN)     * 2 #

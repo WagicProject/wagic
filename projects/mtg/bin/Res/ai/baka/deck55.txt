@@ -1,0 +1,17 @@
+#NAME:Red Cats
+Sabretooth Tiger (ICE)       * 4 #
+Raging Cougar (POR)          * 4 #
+Canyon Wildcat (TMP)         * 4 #
+Giant Strength (TMP)         * 4 #
+Guma (USG)                   * 4 #
+Reflexes (USG)               * 2 #
+Wild Jhovall (MRQ)           * 4 #
+Scarred Puma (INV)           * 4 #
+Maniacal Rage (INV)          * 4 #
+Brute Force (PLC)            * 2 #
+Mountain (10E)               * 4 #
+Mountain (10E)               * 4 #
+Mountain (10E)               * 4 #
+Mountain (10E)               * 4 #
+Mountain (M10)               * 4 #
+Mountain (M10)               * 4 #

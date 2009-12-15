@@ -1,0 +1,17 @@
+#NAME:Disciplination
+Paralyze (RV)                * 3 #
+Moat (LEG)                   * 4 #
+Light of Day (TMP)           * 1 #
+Torment (STH)                * 4 #
+Sleeper Agent (USG)          * 4 #
+Pillory of the Sleepless (GPT) * 4 #
+Pacifism (10E)               * 4 #
+Bound in Silence (FUT)       * 4 #
+Stronghold Discipline (10E)  * 4 #
+Recumbent Bliss (EVE)        * 4 #
+Swamp (ZEN)                  * 4 #
+Plains (ZEN)                 * 4 #
+Plains (ZEN)                 * 4 #
+Plains (ZEN)                 * 4 #
+Swamp (ZEN)                  * 4 #
+Swamp (ZEN)                  * 4 #
