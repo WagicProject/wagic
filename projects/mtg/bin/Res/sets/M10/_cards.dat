@@ -1088,19 +1088,6 @@ auto={B}:1/1
 rarity=C
 [/card]
 [card]
-id=191591
-name=Magebane Armor
-mana={3}
-type=Artifact
-subtype=Equipment
-text=Equipped creature gets +2/+4 and loses flying. Prevent all noncombat damage that would be dealt to equipped creature. Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
-auto={2}:equip
-auto=-flying
-auto=2/4
-auto=preventallcombatdamage to(mytgt)
-rarity=R
-[/card]
-[card]
 id=189904
 name=Megrim
 mana={2}{B}

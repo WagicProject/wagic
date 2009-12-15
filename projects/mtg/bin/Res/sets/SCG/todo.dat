@@ -659,7 +659,7 @@ mana={1}{U}
 type=Instant
 text=Put target permanent an opponent controls on top of its owner's library. That opponent may put an artifact, creature, enchantment, or land card from his or her hand onto the battlefield.
 target=*|opponentBattlefield
-auto=moveto(library)
+auto=moveto(ownerlibrary)
 rarity=U
 [/card]
 [card]
