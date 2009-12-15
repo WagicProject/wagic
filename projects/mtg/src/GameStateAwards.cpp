@@ -9,6 +9,7 @@
 #include "../include/Translate.h"
 #include "../include/OptionItem.h"
 #include "../include/GameOptions.h"
+#include "../include/DeckDataWrapper.h"
 
 enum ENUM_AWARDS_STATE{
     STATE_LISTVIEW,
@@ -30,6 +31,7 @@ void GameStateAwards::End()
   SAFE_DELETE(listview);
   SAFE_DELETE(setSrc);
 
+  resources.Release(mBgTex);
   if(saveMe)
 	  options.save();
 }
@@ -38,6 +40,7 @@ void GameStateAwards::Start()
   char buf[256];
   mState = STATE_LISTVIEW;
   options.checkProfile();
+  //resources.ClearUnlocked(); //Last resort.
 
   menu = NULL;
   saveMe = options.newAward();
@@ -50,8 +53,6 @@ void GameStateAwards::Start()
   WGuiButton * btn;
   
   WGuiHeader * wgh = NEW WGuiHeader("Achievements");
-  listview->Add(wgh);
-  wgh = NEW WGuiHeader("");
   listview->Add(wgh);
 
   aw = NEW WGuiAward(Options::DIFFICULTY_MODE_UNLOCKED,"Difficulty Modes","Achieved a 66% victory ratio.");
@@ -70,7 +71,13 @@ void GameStateAwards::Start()
   btn = NEW WGuiButton(aw,-103,Options::RANDOMDECK_MODE_UNLOCKED,this);
   listview->Add(btn);
 
-  listview->Add(NEW WGuiHeader("Click a set for details."));
+  aw = NEW WGuiAward(Options::AWARD_COLLECTOR,"Valuable Collection","Collection valued over 10,000c.","Collection Info");
+  btn = NEW WGuiButton(aw,-103,Options::AWARD_COLLECTOR,this);
+  listview->Add(btn);
+
+  wgh = NEW WGuiHeader("");
+  listview->Add(wgh);
+
   int locked = 0;
   for (int i = 0; i < setlist.size(); i++){
     MTGSetInfo * si = setlist.getInfo(i);
@@ -89,7 +96,7 @@ void GameStateAwards::Start()
       sprintf(buf,"%s: %i cards.",si->author.c_str(),si->totalCards());
     
       
-    aw = NEW WGuiAward(Options::optionSet(i),si->getName(),buf);
+    aw = NEW WGuiAward(Options::optionSet(i),si->getName(),buf,"Card Spoiler");
     btn = NEW WGuiButton(aw,-103,Options::optionSet(i),this);
     listview->Add(btn);
   }
@@ -104,6 +111,8 @@ void GameStateAwards::Start()
   detailview = NULL; 
   setSrc = NULL;
   showMenu = false;
+  mBgTex = resources.RetrieveTexture("awardback.jpg");
+  mBg = resources.RetrieveQuad("awardback.jpg");
 }
 
 void GameStateAwards::Create()
@@ -117,8 +126,9 @@ void GameStateAwards::Destroy()
 void GameStateAwards::Render()
 {
     JRenderer * r = JRenderer::GetInstance();
-    JQuad * bg = resources.RetrieveTempQuad("awardback.jpg");
-    r->RenderQuad(bg, 0, 0);
+    r->ClearScreen(ARGB(0,0,0,0));
+    if(mBg)
+      r->RenderQuad(mBg, 0, 0);
  
     switch(mState){
       case STATE_LISTVIEW:
@@ -202,7 +212,7 @@ bool GameStateAwards::enterSet(int setid){
   spoiler->setWidth(SCREEN_WIDTH - 220);
   MTGAllCards * c = GameApp::collection;
   for(it = c->collection.begin();it!=c->collection.end();it++){
-   if(it->second && it->second->setId == setid)
+    if(it->second && it->second->setId == setid && it->second->getId() >= 0) //Add only non-tokens from this set.
      spoiler->Add(NEW WGuiItem(it->second->name));
   }
   spoiler->Entering(0);
@@ -212,6 +222,93 @@ bool GameStateAwards::enterSet(int setid){
   detailview->Add(wi);
   detailview->Add(spoiler);
   detailview->Entering(0);
+  return true;
+}
+bool GameStateAwards::enterStats(int option){
+  if(option != Options::AWARD_COLLECTOR)
+    return false;
+  DeckDataWrapper* ddw = NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(PLAYER_COLLECTION).c_str(), mParent->collection));
+  if(!ddw)
+    return false;
+
+  SAFE_DELETE(detailview);
+  detailview = NEW WGuiList("Details");
+  
+  detailview->Add(NEW WGuiHeader("Collection Stats"));
+  detailview->Entering(0);
+
+  //Discover favorite set and unique cards
+  int unique = 0;
+
+  if(setlist.size() > 0){
+    int * counts = (int*)calloc(setlist.size(),sizeof(int));
+    int setid = -1;
+    int dupes = 0;
+    MTGCard * many = NULL;
+    MTGCard * costly = NULL;
+    MTGCard * strong = NULL;
+    MTGCard * tough = NULL;
+    map<MTGCard *,int,Cmp1>::iterator it;
+
+    for (it = ddw->cards.begin(); it!=ddw->cards.end(); it++){
+      MTGCard * c = it->first;
+      if(!c)
+        continue;
+      if(!c->isLand() && (many == NULL || it->second > dupes)){
+        many = c;
+        dupes = it->second;
+      }
+      unique++;
+      counts[c->setId]+=it->second;
+      if(costly == NULL 
+        || c->getManaCost()->getConvertedCost() > costly->getManaCost()->getConvertedCost())
+        costly = c;
+
+      if(c->isCreature() && (strong == NULL || c->getPower() > strong->getPower()))
+        strong = c;
+
+      if(c->isCreature() && (tough == NULL || c->getToughness() > tough->getToughness()))
+        tough = c;
+
+    }
+    for(int i=0;i<setlist.size();i++){
+      if(setid < 0 || counts[i] > counts[setid])
+        setid = i;      
+    }
+    free(counts);
+
+    char buf[1024];
+    sprintf(buf,_("Total Value: %ic").c_str(),ddw->totalPrice());
+    detailview->Add(NEW WGuiItem(buf));//ddw->colors
+    
+    sprintf(buf,_("Total Cards (including duplicates): %i").c_str(),ddw->getCount());
+    detailview->Add(NEW WGuiItem(buf));//ddw->colors
+
+    sprintf(buf,_("Unique Cards: %i").c_str(),unique);
+    detailview->Add(NEW WGuiItem(buf));
+
+    if(many){
+      sprintf(buf,_("Most Duplicates: %i (%s)").c_str(),dupes,many->getName().c_str());
+      detailview->Add(NEW WGuiItem(buf));
+    }
+    if(setid >= 0){
+    sprintf(buf,_("Favorite Set: %s").c_str(),setlist[setid].c_str());
+    detailview->Add(NEW WGuiItem(buf));
+    }
+    if(costly){
+      sprintf(buf,_("Highest Mana Cost: %i (%s)").c_str(),costly->getManaCost()->getConvertedCost(),costly->getName().c_str());
+      detailview->Add(NEW WGuiItem(buf));
+    }
+    if(strong){
+      sprintf(buf,_("Most Powerful: %i (%s)").c_str(),strong->getPower(),strong->getName().c_str());
+      detailview->Add(NEW WGuiItem(buf));
+    }
+    if(tough){
+      sprintf(buf,_("Toughest: %i (%s)").c_str(),tough->getToughness(),strong->getName().c_str());
+      detailview->Add(NEW WGuiItem(buf));
+    }
+  }
+
   return true;
 }
 void GameStateAwards::ButtonPressed(int controllerId, int controlId)
@@ -232,12 +329,14 @@ void GameStateAwards::ButtonPressed(int controllerId, int controlId)
       break;
    }
    else if(controllerId == -103){
-    //Enter "Details Mode" for that item. TODO: Details for non-sets
-     if(controlId >= Options::SET_UNLOCKS){
+     int setid = controlId-Options::SET_UNLOCKS;
+
+     if(controlId >= Options::SET_UNLOCKS && enterSet(setid)){
        mState = STATE_DETAILS;
        mDetailItem = controlId;
-       int setid = controlId-Options::SET_UNLOCKS;
-       enterSet(setid);
+       
+     }else if(controlId == Options::AWARD_COLLECTOR && enterStats(controlId)){
+       mState = STATE_DETAILS;
      }
    }
 }

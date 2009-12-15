@@ -149,7 +149,7 @@ public:
   virtual JQuad * getImage();
   WSrcImage(string s);
 
-private:
+protected:
   string filename;
 };
 
@@ -242,14 +242,17 @@ protected:
 
 class WGuiAward: public WGuiItem{
 public:
-  WGuiAward(int _id, string name, string _text);
+  WGuiAward(int _id, string name, string _text, string _details="");
   virtual ~WGuiAward();
   virtual void Render();
   virtual bool Selectable() {return Visible();};
   virtual bool Visible();  
   virtual int getId() {return id;};
   virtual void Underlay();
+  virtual void Overlay();
+
 protected:
+  string details;
   int id;
   string text;
 };
@@ -345,7 +348,7 @@ protected:
 class WGuiHeader:public WGuiItem{
  public:
   WGuiHeader(string _displayValue): WGuiItem(_displayValue) {};
-
+  
   virtual bool Selectable() {return false;};
   virtual void Render();
 };

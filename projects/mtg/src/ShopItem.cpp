@@ -448,6 +448,12 @@ void ShopItems::ButtonPressed(int controllerId, int controlId){
         }
         delete tempDeck;
       }
+      //Check if we just scored an award...
+      if(myCollection && myCollection->totalPrice() > 10000){
+        GameOptionAward * goa = dynamic_cast<GameOptionAward *>(&options[Options::AWARD_COLLECTOR]);
+        if(goa)
+          goa->giveAward();
+      }
       showPriceDialog = -1;
     }else{
       //error not enough money

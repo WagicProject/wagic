@@ -46,7 +46,6 @@ void WGuiItem::Render(){
   float fH = (height-mFont->GetHeight())/2;
   mFont->DrawString(_(displayValue).c_str(),x+(width/2),y+fH,JGETEXT_CENTER);
 }
-
 WGuiItem::WGuiItem(string _display){
  displayValue = _display;
  mFocus = false;
@@ -1220,6 +1219,29 @@ void WGuiTabMenu::save(){
 
 
 //WGuiAward
+void WGuiAward::Overlay(){
+  JRenderer * r = JRenderer::GetInstance();
+  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
+  mFont->SetScale(.8);
+  mFont->SetColor(getColor(WGuiColor::TEXT));
+
+  string s = _(details);
+  if(s.size()){
+    float fW = mFont->GetStringWidth(s.c_str());
+    float fH = mFont->GetHeight();
+
+    if(fH < 16)
+      fH = 18;
+    JQuad * button = resources.RetrieveQuad("iconspsp.png", (float)4*32, 0, 32, 32,"",RETRIEVE_NORMAL);
+
+    r->FillRoundRect(5,10,fW+32,fH+2,2,getColor(WGuiColor::BACK));
+    if(button)
+      r->RenderQuad(button, 10,12,0,.5,.5);
+    mFont->DrawString(s,30,16);
+  }
+
+  mFont->SetScale(1);
+}
 void WGuiAward::Underlay(){
   char buf[1024];
   JRenderer * r = JRenderer::GetInstance();
@@ -1278,13 +1300,14 @@ void WGuiAward::Render(){
   }
   setHeight(myY-y);
   mFont->SetScale(1);
+
 }
 
-WGuiAward::WGuiAward(int _id, string name, string _text): WGuiItem(name){
+WGuiAward::WGuiAward(int _id, string name, string _text, string _details): WGuiItem(name){
   id = _id;
   text = _text;
   height = 60;
-
+  details = _details;
 }
 WGuiAward::~WGuiAward(){
   GameOptionAward * goa = dynamic_cast<GameOptionAward*>(&options[id]);
@@ -1379,7 +1402,6 @@ JQuad * WSrcImage::getImage(){
 WSrcImage::WSrcImage(string s){
   filename = s;
 }
-
 //WSrcMTGSet
 WSrcMTGSet::WSrcMTGSet(int setid, float delay){
   MTGAllCards * ac = GameApp::collection;

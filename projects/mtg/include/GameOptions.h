@@ -65,6 +65,7 @@ public:
     MOMIR_MODE_UNLOCKED,
     EVILTWIN_MODE_UNLOCKED,
     RANDOMDECK_MODE_UNLOCKED,    
+    AWARD_COLLECTOR,    
     LAST_NAMED, //Any option after this does not look up in optionNames.
     SET_UNLOCKS = LAST_NAMED + 1, //For sets.
   };

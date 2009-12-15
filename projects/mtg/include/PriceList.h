@@ -19,7 +19,6 @@ class PriceList{
   int save();
   int getPrice(int cardId);
   int setPrice(int cardId, int price);
-
 };
 
 #endif

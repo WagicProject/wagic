@@ -27,6 +27,7 @@ class GameStateAwards: public GameState, public JGuiListener
  public:
   GameStateAwards(GameApp* parent);
   bool enterSet(int setid);
+  bool enterStats(int option);
   virtual ~GameStateAwards();
 
   virtual void Start();

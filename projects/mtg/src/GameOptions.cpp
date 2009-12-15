@@ -50,6 +50,7 @@ const char * Options::optionNames[] = {
   "prx_rimom",
   "prx_eviltwin",
   "prx_rnddeck",
+  "aw_collector",
 };
 int Options::getID(string name){
   if(!name.size())
@@ -825,6 +826,7 @@ bool GameOptionAward::giveAward(){
   achieved = time(NULL);
   viewed = false;
   number = 1;
+  options.save(); //TODO - Consider efficiency of this placement.
   return true;
 }
 
