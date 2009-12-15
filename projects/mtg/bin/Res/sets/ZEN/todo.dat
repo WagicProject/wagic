@@ -1125,15 +1125,7 @@ text=When Khalni Gem enters the battlefield, return two lands you control to the
 rarity=U
 [/card]
 
-[card]
-id=190410
-name=Trailblazer's Boots
-mana={2}
-type=Artifact
-subtype=Equipment
-text=Equipped creature has nonbasic landwalk. (It's unblockable as long as defending player controls a nonbasic land.) Equip {2}
-rarity=U
-[/card]
+
 
 [card]
 id=190414

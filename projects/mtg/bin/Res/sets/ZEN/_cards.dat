@@ -1418,8 +1418,20 @@ rarity=U
 mana={1}{U}
 type=Instant
 text=Search your library for a Trap card, reveal it, and put it into your hand. Then shuffle your library.
+#most usless card since no trap card can be coded yet
 target=trap|mylibrary
 auto=moveTo(myhand)
+[/card]
+[card]
+id=190410
+name=Trailblazer's Boots
+mana={2}
+type=Artifact
+subtype=Equipment
+text=Equipped creature has nonbasic landwalk. (It's unblockable as long as defending player controls a nonbasic land.) Equip {2}
+auto={2}:equip
+auto=aslongas(land[-basic]|opponentBattlefield) unblockable
+rarity=U
 [/card]
 [card]
 id=193396
