@@ -1,0 +1,25 @@
+#Testing landwalk
+#see http://code.google.com/p/wagic/issues/detail?id=249
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:shanodin dryads
+[PLAYER2]
+inplay:forest,grizzly bears
+[DO]
+shanodin dryads
+next
+#blockers
+grizzly bears
+next
+#damage
+next
+#combat end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:shanodin dryads
+[PLAYER2]
+inplay:forest,grizzly bears
+life:19
+[END]

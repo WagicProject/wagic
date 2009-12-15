@@ -25,6 +25,7 @@ generic/hybrid_mana_2.txt
 generic/hybrid_mana_3.txt
 generic/kicker.txt
 generic/kicker2.txt
+generic/landwalk.txt
 generic/legendary.txt
 generic/lifelink.txt
 generic/m10_blockers.txt
