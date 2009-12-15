@@ -92,6 +92,22 @@ auto=@next end:bury all(grezurtzug)
 rarity=U
 [/card]
 [card]
+id=3161
+name=Balduvian Horde
+mana={2}{R}{R}
+#auto=aslongas(*|myHand) bury <1
+#Works due to a bug in WTH0.10
+#auto=@movedto(this|myBattlefield):aslongas(*|myHand) bury <1
+#Should work to be tested once the bug has been adressed
+auto=discard:1 controller
+type=Creature
+subtype=Human Barbarian
+power=5
+toughness=5
+text=When Balduvian Horde enters the battlefield, sacrifice it unless you discard a card at random.
+rarity=R
+[/card]
+[card]
 id=3231
 name=Balduvian Trading Post
 type=Land
