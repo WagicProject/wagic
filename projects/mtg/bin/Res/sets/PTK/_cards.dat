@@ -1283,7 +1283,7 @@ abilities=swampwalk
 [card]
 text=Forestwalk
 id=10582
-name=Zodiac Rabbit 
+name=Zodiac Rabbit
 rarity=C
 mana={G}
 type=Creature
@@ -1295,7 +1295,7 @@ abilities=forestwalk
 [card]
 text=Swampwalk
 id=10564
-name=Zodiac Rat 
+name=Zodiac Rat
 rarity=C
 mana={B}
 type=Creature
@@ -1307,7 +1307,7 @@ abilities=swampwalk
 [card]
 text=Plainswalk
 id=10506
-name=Zodiac Rooster 
+name=Zodiac Rooster
 rarity=C
 mana={1}{G}
 type=Creature
@@ -1331,11 +1331,11 @@ abilities=swampwalk
 [card]
 text=Forestwalk
 id=10594
-name=Zodiac Tiger 
+name=Zodiac Tiger
 rarity=U
 mana={2}{G}{G}
 type=Creature
-subtype=Tiger 
+subtype=Tiger
 power=3
 toughness=4
 abilities=forestwalk
