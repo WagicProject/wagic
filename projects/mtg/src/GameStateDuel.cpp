@@ -98,7 +98,7 @@ void GameStateDuel::Start()
   }
 
   if (decksneeded){
-    deckmenu->Add(-1,"Create your Deck!","Highly recommended to get\nthe full Wagic experience!");
+    deckmenu->Add(-1,_("Create your Deck!").c_str(),"Highly recommended to get\nthe full Wagic experience!");
     premadeDeck = true;
     fillDeckMenu(deckmenu,RESPATH"/player/premade");
   }

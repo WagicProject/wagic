@@ -9,6 +9,22 @@
 #Limitation: Special characters that are not in the limited 128 ASCII set  CAN NOT be put in this file, it will display as garbage 
 
 #
+# Added in 0.10.x
+#
+See available tasks=Quetes disponibles
+Task Board=Quetes
+There are no tasks that need to be done. Come again tomorrow.=Je n'ai pas de quete a vous proposer. Revenez demain
+your turn=votre tour
+opponent's turn=tour adversaire
+you play=vous jouez
+opponent plays=adversaire joue
+Achievements=Trophees
+%i locked sets remain.=Encore %i sets a debloquer.
+Unlocked all %i sets.=Vous avez les %i sets.
+Card Spoiler=Voir cartes
+Back to Trophies=Retour aux trophees
+
+#
 #Added in 0.9.1
 #
 
@@ -139,7 +155,7 @@ PRESS CIRCLE TO GO TO THE DECK EDITOR!=APPUYEZ SUR O POUR CREER UN DECK !
 
 #Shop
 credits: %i=credits: %i
-press [] to refresh=[] pour recharger
+[]:other cards=[]: autres cartes
 
 #in Game
 Interrupt?=Interruption ?

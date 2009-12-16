@@ -33,6 +33,7 @@ GameStateDeckViewer::GameStateDeckViewer(GameApp* parent): GameState(parent) {
   nbDecks = 0;
   deckNum = 0;
   mSwitching = false;
+  welcome_menu = NULL;
 }
 
 GameStateDeckViewer::~GameStateDeckViewer() {
@@ -89,14 +90,13 @@ void GameStateDeckViewer::updateDecks(){
   nbDecks = fillDeckMenu(welcome_menu,options.profileFile());
   deckNum = 0;
   newDeckname = "";
-  welcome_menu->Add(nbDecks+1, "--NEW--");
-  welcome_menu->Add(-1, "Cancel");
+  welcome_menu->Add(nbDecks+1, _("--NEW--").c_str());
+  welcome_menu->Add(-1, _("Cancel").c_str());
 
 }
 
 void GameStateDeckViewer::Start()
 {
-  newDeckname = "";
   hudAlpha = 0;
   mSwitching = false;
   delSellMenu = 0;
@@ -141,11 +141,8 @@ void GameStateDeckViewer::Start()
 
   backQuad = resources.GetQuad("back");
 
-  welcome_menu = NEW SimpleMenu(10,this,Constants::MENU_FONT,20,20);
-  nbDecks = fillDeckMenu(welcome_menu,options.profileFile());
-  deckNum = 0;
-  welcome_menu->Add(nbDecks+1, "--NEW--");
-  welcome_menu->Add(-1, "Cancel");
+  //init welcome menu
+  updateDecks();
 
   if (GameApp::HasMusic && options[Options::MUSICVOLUME].number > 0){
     if (GameApp::music){
@@ -164,7 +161,6 @@ void GameStateDeckViewer::Start()
   mRotation = 0;
   mSlide = 0;
   mAlpha = 255;
-  newDeckname = "";
 
   currentCard = NULL;
   loadIndexes(currentCard);
