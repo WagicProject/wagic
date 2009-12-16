@@ -1001,6 +1001,8 @@ subtype=Insect
 power=1
 toughness=1
 text=At the beginning of your upkeep, if you control five or more lands, put four +1/+1 counters on Scute Mob.
+auto=@each my upkeep:aslongas(land|mybattlefield) counter(1/1,4) >4
+#@each + aslongas + > will only trigger once, which is incorrect...
 rarity=R
 [/card]
 [card]
