@@ -74,7 +74,7 @@ void CardGui::Render()
   if (alternate) {
     mFont->SetColor(ARGB(static_cast<unsigned char>(actA), 0, 0, 0));
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE * 0.5 * actZ);
-    mFont->DrawString(card->getName().c_str(), actX - actZ * Width / 2 + 1, actY - actZ * Height / 2 + 1);
+    mFont->DrawString(_(card->getName().c_str()), actX - actZ * Width / 2 + 1, actY - actZ * Height / 2 + 1);
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
 
     JQuad * icon = NULL;
