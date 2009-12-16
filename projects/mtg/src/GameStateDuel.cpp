@@ -432,7 +432,7 @@ void GameStateDuel::Render()
       {
         JRenderer * r = JRenderer::GetInstance();
 	      r->ClearScreen(ARGB(200,0,0,0));
-	      mFont->DrawString(_("AN ERROR OCCURED, CHECK FILE NAMES").c_str(),0,SCREEN_HEIGHT/2);
+	      mFont->DrawString(_("AN ERROR OCCURRED, CHECK FILE NAMES").c_str(),0,SCREEN_HEIGHT/2);
 	      break;
       }
     case DUEL_STATE_CHOOSE_DECK1:
