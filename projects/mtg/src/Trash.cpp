@@ -8,7 +8,6 @@ void Trash::put_out()
 {
   for (std::vector<Pos*>::iterator it = bin.begin(); it != bin.end(); ++it)
     {
-      std::cout << "DELETE " << *it << std::endl;
       if (CardView *c = dynamic_cast<CardView*>(*it))
         SAFE_DELETE(c);
       else
