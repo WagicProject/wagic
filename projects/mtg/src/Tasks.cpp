@@ -400,9 +400,9 @@ void TaskList::Render() {
   for (vector<Task*>::iterator it = tasks.begin(); it!=tasks.end(); it++) {
     sprintf(buffer, "%s", (*it)->getShortDesc().c_str());
     f2->DrawString(buffer, posX, posY);
-    sprintf(buffer, "Days left: %i", (*it)->getExpiration());
+    sprintf(buffer, _("Days left: %i").c_str(), (*it)->getExpiration());
     f->DrawString(buffer, SCREEN_WIDTH - 180, posY);    
-    sprintf(buffer, "Reward: %i", (*it)->getReward());
+    sprintf(buffer, _("Reward: %i").c_str(), (*it)->getReward());
     f->DrawString(buffer, SCREEN_WIDTH - 90, posY);    
     posY += 15;
 

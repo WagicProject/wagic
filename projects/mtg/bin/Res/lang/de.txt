@@ -1,5 +1,5 @@
 #LANG:Deutsch
-#Deutsche Uebersetzung fuer Wagic 0.9.2 von Psyringe,
+#Deutsche Uebersetzung fuer Wagic 0.10.0 von Psyringe,
 # aufbauend auf der vorherigen Übersetzung von Aco & Funky H.
 # und Ergaenzungen von Jeck.
 
@@ -139,10 +139,12 @@ Ability=Faehigkeit
 Attacker=Angreifer
 Blocker=Blocker
 Copy=Kopieren
+Cycling=Umwandlung
 Damage=Schaden
 Deathtouch=Todesberuehrung
 Destroy=Zerstoeren
 Draw=Karte ziehen
+Equip=Ausruesten
 Fizzle=Verhindern
 Life=Leben
 Momir=Momir
@@ -172,6 +174,9 @@ Life Delta Bonus=Lebensdifferenz-Bonus
 Miller Bonus=Mueller-Bonus
 'Fast and Furious' Bonus='Kurz und Schmerzlos'-Bonus
 Victory=Sieg
+Task: %s=Auftrag: %s
+Credits per minute: %i=Credits pro Minute: %i
+Game length: %i seconds=Spieldauer: %i Sekunden
 Congratulations! You earn %i credits=Glueckwunsch! Du hast %i Credits gewonnen!
 You have been defeated=Du wurdest besiegt!
 Player %i wins (%i)=Spieler %i gewinnt (%i)
@@ -182,6 +187,8 @@ If you enjoy this game, please consider donating a few bucks=Wenn dir das Spiel 
 (Seriously, donate or I'll kill this cute little bunny)=(Ernsthaft, spende oder ich toete dieses suesse kleine Kaninchen!)
 Thanks in advance for your support.=Vielen Dank im Voraus fuer Eure Unterstuetzung.
 
+# Error Messages:
+AN ERROR OCCURRED, CHECK FILE NAMES=Ein Fehler ist aufgetreten, ueberpruefe die Dateinamen
 
 ##########################
 # DECK EDITOR            #
@@ -204,11 +211,11 @@ card=Karte
 cards=Karten
 
 # Info layer - symbol keys:
-Display Deck=Deck zeigen
-Display Collection=Sammlung zeigen
-Deck info=Deck Info
+Toggle Images=Bilder an/aus
+View Collection=Sammlung ansehen
+View Deck=Deck ansehen
 Add card=Karte ins Deck
-Remove card=Karte entfern.
+Remove card=Karte entf.
 Sell card=Karte verkaufen
 
 # Info layer - explanations:
@@ -217,6 +224,8 @@ collection. Press TRIANGLE=Deine Sammlung an. Druecke /\
 to switch to your deck.=um zu Deinem Deck zu gelangen.
 deck. Press TRIANGLE to=Dein Deck an. Druecke /\
 switch to your collection.=um zu Deiner Sammlung zu gelangen.
+Use SQUARE to view collection,=Druecke [] um die Sammlung zu sehen.
+Use SQUARE to view your deck,=Druecke [] um das Deck zu sehen.
 Press L/R to cycle through=Druecke L und R, um durch die
 deck statistics.=Deckstatistiken zu blaettern.
 
@@ -226,9 +235,11 @@ Deck=Deck
 No Card=Keine Karte
 Your Deck: %i cards=Dein Deck: %i Karten
 menu=Menue
+in: collection=in: Sammlung
+in: deck=in: Deck
 
 # Statistics - page 1:
-statsPage#: %i=Statistiken, Seite #: %i
+Statistics Summary=Statistik-Ueberblick
 Lands=Laender
 Creatures=Kreaturen
 Spells=Sprueche
@@ -246,19 +257,47 @@ Victory ratio=davon gewonnen
 Total price (credits)=Wert des Decks (Credits)
 
 # Statistics - page 2:
+Mana cost detail=Detaillierte Manakosten
 Card counts per mana cost:=Kartenanzahl pro Manakosten:
 Average converted mana cost: %2.2f=Durchschnittliche umgewandelte Manakosten: %2.2f
-C - Converted mana cost. Cards with cost>%i are included in the last row.=C - Umgewandelte Manakosten. Karten mit Kosten >%i sind in der letzten Zeile enthalten.
+C=K
+C - Converted mana cost. Cards with cost>%i are included in the last row.=K - Umgewandelte Manakosten. Karten mit Kosten >%i sind in der letzten Zeile enthalten.
 # - Total number of cards with given cost=# - Gesamtzahl der Karten mit den entsprechenden Kosten
 
 # Statistics - page 3:
-Total colored manasymbols in cards' casting costs:=Gesamtzahl der Manasymbole in den Spruchkosten der Karten:
+Mana cost detail - Creatures=Detaillierte Manakosten - Kreaturen
+Creature counts per mana cost:=Anzahl Kreaturen pro Manakosten:
 
 # Statistics - page 4:
+Mana cost detail - Spells=Detaillierte Manakosten - Sprueche
+Non-creature spell counts per mana cost:=Anzahl Nicht-Kreaturen-Karten pro Manakosten:
+
+# Statistics - page 5:
+Mana production=Mana-Produktion
+Counts of manasources per type and color:=Anzahl Mana-Quellen pro Typ und Farbe:
+BL=SL
+BL - Basic lands=SL - Standardlaender
+NB=NL
+NB - Non-basic lands=NL - Nichtstandard-Laender
+O=A
+O - Other (non-land) manasources=A - Andere (nicht-Land) Manaquellen
+T=S
+T - Totals=T - Summe
+
+# Statistics - page 6:
+Mana production - in mana symbols=Mana-Produktion - in Mana-Symbolen
+Total colored manasymbols in lands' production:=Gesamtzahl der Manasymbole in der Manaproduktion der Laender:
+
+# Statistics - page 7:
+Mana cost per color=Manakosten pro Farbe
+Total colored manasymbols in cards' casting costs:=Gesamtzahl der Manasymbole in den Spruchkosten der Karten:
+
+# Statistics - page 8:
 No lands in first n cards:=Kein Land in den ersten n Karten:
 No creatures in first n cards:=Keine Kreatur in den ersten n Karten:
 
-# Statistics - page 5:
+# Statistics - page 9:
+Victory statistics=Sieges-Statistiken
 Victories against AI:=Siege gegen die KI:
 Games played: %i=Spiele gespielt: %i
 Victory ratio: %i%%=davon gewonnen: %i%% 
@@ -269,8 +308,42 @@ Victory ratio: %i%%=davon gewonnen: %i%%
 ##########################
 
 credits: %i=Credits: %i
-[]:other cards /\:list=[]:andere Karten /\:Liste
+[]:other cards=[]:andere Karten
+See available tasks=Frage nach Auftraegen
 *Steal 1,000 credits*=*Stehle 1.000 Credits*
+
+
+##########################
+# TASKS:                 #
+##########################
+
+Task Board=Verfuegbare Auftraege
+There are no tasks that need to be done. Come again tomorrow.=Keine Auftraege verfuegbar. Versuch es morgen noch mal.
+Days left: %i=Tage Zeit: %i
+Reward: %i=Lohn: %i
+You have to defeat %s before it causes too much harm.=Du musst %s besiegen, bevor es zuviel Unheil anrichtet.
+Please defeat %s as soon as possible.=Bitte besiege %s so schnell wie moeglich.
+Defeat %s=Besiege %s
+Defeat %s in a way it won't forget. Bring it to %i life.=Erteile %s eine Lektion! Bringe es auf %i Leben.
+Slaughter %s! Beat it to %i life or less.=Vernichte %s! Bringe es auf %i Leben oder weniger.
+Slaughter %s (%i lives)=Vernichte %s (%i Leben)
+Defeat %s after keeping it occupied for %i turns.=Besiege %s nachdem Du es %i Zuege lang beschaeftigt hast.
+Defeat %s, but play with it for %i turns first.=Besiege %s, aber spiele zuerst %i Zuege lang mit ihm.
+Defeat %s and make sure it doesn't take more than %i turns.=Besiege %s und benoetige nicht mehr als %i Zuege.
+Defeat %s, in a duel no longer than %i turns.=Besiege %s in maximal %i Zuegen.
+Delay %s for %i turns=Halte %s %i Zuege lang auf.
+Defeat %s before turn %i=Schlage %s in maximal %i Zuegen
+Defeat any opponent, having at least %i lives in the end.=Besiege einen beliebigen Gegner und habe am Ende mindestens %i Leben.
+Win flawlessly (%i lives)=Gewinne makellos (%i Leben)
+Reach Invulnerability (%i lives)=Werde unverwundbar (%i Leben)
+Reach Immortality! (%i lives)=Werde unsterblich! (%i Leben)
+Bury %i %s cards to your opponent's graveyard and defeat him.=Begrabe %i Karten im Friedhof von %s und besiege es.
+Tame the nature (%i)=Zaehme die Natur (%i)
+Evaporation (%i)=Verdampfung (%i)
+Bring the order (%i)=Schaffe Ordnung (%i)
+Exorcism (%i)=Exorzismus (%i)
+Dusk (%i)=Abenddaemmerung (%i)
+Selective disaster (%i)=Selektive Zerstoerung (%i)
 
 
 ##########################
@@ -298,6 +371,7 @@ Interrupt my spells=Unterbreche eigene Sprueche
 # Game tab:
 Game=Spiel
 Interface Options=Benutzerfuehrungs-Optionen
+Language=Sprache
 Closed hand=Geschlossene Hand
 visible=sichtbar
 invisible=unsichtbar
@@ -348,6 +422,43 @@ Credits=Abspann
 #Music by Celestial Aeon Project, http://www.jamendo.com=Musik von Celestial Aeon Project, http://www.jamendo.com
 #This work is not related to or endorsed by Wizards of the Coast, Inc=Dieses Programm steht in keiner Beziehung zu und wird nicht unterstuetzt von Wizards of the Coast, Inc.
 #Please support this project with donations at http://wololo.net/wagic=Bitte unterstuetze dieses Projekt mit Spenden auf http://wololo.net/wagic
+
+
+##########################
+# TROPHY ROOM:           #
+##########################
+
+Achievements=Errungenschaften
+Difficulty Modes=Schwierigkeitsmodi
+Achieved a 66% victory ratio.=66% der Spiele gewonnen.
+Momir Mode=Momir-Modus
+Won with exactly 8 lands.=Mit exakt 8 Laendern gewonnen.
+Evil Twin Mode='Boeser Zwilling'-Modus
+Won with same army size.=Mit gleicher Armeestaerke gewonnen.
+Random Deck Mode=Zufallsdeck-Modus
+Won against a higher difficulty.=Sieg auf hoeherer Schwierigkeitsstufe.
+Valuable Collection=Wertvolle Sammlung
+Collection valued over 10,000c.=Sammlung mehr als 10.000c wert.
+Collection Info=Sammlungs-Information
+Card Spoiler=Karten anzeigen
+%i locked sets remain.=Noch %i Sets freischaltbar.
+Unlocked all %i sets.=Alle %i Sets freigeschaltet.
+
+Back to Trophies=Zurueck zu den Trophaeen
+
+Booster=Booster
+Cards=Karten
+
+Details=Details
+Collection Stats=Sammlungs-Statistiken
+Total Value: %ic=Gesamtwert: %ic
+Total Cards (including duplicates): %i=Anzahl Karten (mit Duplikaten): %i
+Unique Cards: %i=Anzahl Karten (ohne Duplikate): %i
+Most Duplicates: %i (%s)=Meiste Duplikate: %i (%s)
+Favorite Set: %s=Bevorzugtes Set: %s
+Highest Mana Cost: %i (%s)=Hoechste Manakosten: %i (%s)
+Most Powerful: %i (%s)=Hoechste Staerke: %i (%s)
+Toughest: %i (%s)=Hoechste Widerstandskraft: %i (%s)
 
 
 ##########################
@@ -493,7 +604,7 @@ Golem=Golem
 Gorgon=Gorgo
 Graveborn=Leiche
 Griffin=Greif
-Hag=Hag
+Hag=Vettel
 Harpy=Harpyie
 Hellion=Teufelsbraten
 Hippo=Flusspferd
@@ -10780,7 +10891,7 @@ Zuran Spellcaster=Zuranischer Zaubermeister
 # Some cards have naming errors/problems in the German version:
 #"Angelic Protector" and "Luminous Angel" are BOTH called "Leuchtender Engel"
 #"Barbed Lightning" and "Jagged Lightning" are BOTH called "Gezackter Blitz"
-#"Breath of Life" and "Touch of Vitae" are BOTH called "Lebenshauch" in the German version
+#"Breath of Life" and "Touch of Vitae" are BOTH called "Lebenshauch"
 #"Divert" and "Reroute" are BOTH called "Umleiten"
 #"Dizzy Spell" and "Vertigo" are BOTH called "Schwindelanfall"
 #"Dominate" and "Domineer" are BOTH called "Dominieren"
@@ -10804,7 +10915,7 @@ Zuran Spellcaster=Zuranischer Zaubermeister
 #"Elven Riders" exists as "Elfische Reiter" and "Elfenreiter"
 #"Elvish Champion" exists as "Elfischer Champion" and "Champion der Elfen"
 #"Fastbond" exists as "Schnellbund" and "Schoepfungskraft"
-#"Gallantry" exists as "Edelmut" and "Heldenhafte Tat" in German
+#"Gallantry" exists as "Edelmut" and "Heldenhafte Tat"
 #"Giant Octopus" exists as "Riesenkrake" and "Riesenoktopus"
 #"Goblin Matron" exists as "Goblin-Matrone" and "Goblinmatrone"
 #"Goblin Raider" exists as "Goblin-Pluenderer" and "Goblinbandit"
