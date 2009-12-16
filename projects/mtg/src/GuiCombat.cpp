@@ -34,9 +34,7 @@ GuiCombat::~GuiCombat()
   }
 
   for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
-    {
-      delete (*it);
-    }
+    delete (*it);
 }
 
 template <typename T>
@@ -97,6 +95,7 @@ void GuiCombat::autoaffectDamage(AttackerDamaged* attacker, CombatStep step)
     {
       (*it)->clearDamage();
       unsigned actual_damage = MIN(damage, (unsigned)MAX((*it)->card->toughness, 0));
+      if (attacker->card->has(Constants::DEATHTOUCH) && actual_damage > 1) actual_damage = 1;
       (*it)->addDamage(actual_damage, attacker);
       attacker->addDamage((*it)->card->stepPower(step), *it);
       damage -= actual_damage;
@@ -118,7 +117,7 @@ void GuiCombat::removeOne(DefenserDamaged* blocker, CombatStep step)
 {
   blocker->addDamage(-1, activeAtk);
   for (vector<DamagerDamaged*>::iterator it = activeAtk->blockers.begin(); it != activeAtk->blockers.end(); ++it)
-    if (!(*it)->hasLethalDamage()) { (*it)->addDamage(1, activeAtk); return; }
+    if (activeAtk->card->has(Constants::DEATHTOUCH) ? ((*it)->sumDamages() < 1) : (!(*it)->hasLethalDamage())) { (*it)->addDamage(1, activeAtk); return; }
   if (!activeAtk->card->has(Constants::TRAMPLE) && activeAtk->blockers.size() > 0) activeAtk->blockers.back()->addDamage(1, activeAtk);
 }
 
@@ -156,7 +155,10 @@ bool GuiCombat::CheckUserInput(u32 key)
               damage -= now;
               if (damage > 0) addOne(active, step);
               else
-                for (now -= active->card->toughness; now >= 0; --now) removeOne(active, step);
+                if (activeAtk->card->has(Constants::DEATHTOUCH))
+                  for (; now >= 1; --now) removeOne(active, step);
+                else
+                  for (now -= active->card->toughness; now >= 0; --now) removeOne(active, step);
             }
         }
       else if (ATK == cursor_pos)
