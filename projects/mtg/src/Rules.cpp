@@ -318,7 +318,7 @@ Rules::Rules(string filename){
 int Rules::load(string _filename){
 
   char filename[4096];
-  sprintf(filename, RESPATH"/Rules/%s", _filename.c_str());
+  sprintf(filename, RESPATH"/rules/%s", _filename.c_str());
   std::ifstream file(filename);
   std::string s;
 
