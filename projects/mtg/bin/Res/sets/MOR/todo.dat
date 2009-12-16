@@ -1026,7 +1026,7 @@ type=Creature
 subtype=Goblin Shaman
 power=3
 toughness=2
-text=Kinship  EAt the beginning of your upkeep, you may look at the top card of your library. If it shares a creature type with Squeaking Pie Grubfellows, you may reveal it. If you do, each opponent discards a card.
+text=Kinship - At the beginning of your upkeep, you may look at the top card of your library. If it shares a creature type with Squeaking Pie Grubfellows, you may reveal it. If you do, each opponent discards a card.
 rarity=C
 [/card]
 [card]
@@ -1037,6 +1037,8 @@ type=Creature
 subtype=Elemental
 power=6
 toughness=5
+auto=@each my endofturn:aslongas(goblin|myinplay)regenerate
+auto=@each my endofturn:destroy
 text=Flying At the beginning of the end step, if you control no Goblins, sacrifice Stenchskipper.
 rarity=R
 [/card]

@@ -991,18 +991,6 @@ power=4
 toughness=3
 [/card]
 [card]
-text=When Minotaur Explorer enters the battlefield, sacrifice it unless you discard a card at random.
-id=31786
-auto=discard:1
-name=Minotaur Explorer
-rarity=U
-mana={1}{R}
-type=Creature
-subtype=Minotaur Scout
-power=3
-toughness=3
-[/card]
-[card]
 text=Mortivore's power and toughness are each equal to the number of creature cards in all graveyards. {B}: Regenerate Mortivore. (The next time this creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
 id=29946
 name=Mortivore

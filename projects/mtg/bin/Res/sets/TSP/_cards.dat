@@ -120,7 +120,8 @@ toughness=2
 [card]
 text=Flying   Brass Gnat doesn't untap during your untap step. At the beginning of your upkeep, you may pay {1}. If you do, untap Brass Gnat.
 id=118876
-alias=1099
+abilities=doesnotuntap
+auto={1}:untap myUpkeepOnly
 name=Brass Gnat
 rarity=C
 mana={1}

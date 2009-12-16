@@ -888,7 +888,7 @@ toughness=2
 [/card]
 [card]
 text=Return target permanent you control to its owner's hand. You gain 4 life.
-target=*(myBattlefield)
+target=*|myBattlefield
 auto=moveTo(ownerhand)
 auto=life:4 controller
 id=180360

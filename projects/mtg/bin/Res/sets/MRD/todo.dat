@@ -454,32 +454,6 @@ type=Artifact
 mana={4}
 [/card]
 [card]
-text=Flying     Goblin Dirigible doesn't untap during your untap step.     At the beginning of your upkeep, you may pay {4}. If you do, untap Goblin Dirigible.
-id=48077
-abilities=doesnotuntap,flying
-auto={4}:untap
-name=Goblin Dirigible
-rarity=U
-type=Artifact Creature
-mana={6}
-power=4
-subtype=Construct
-toughness=4
-[/card]
-[card]
-text=Goblin War Wagon doesn't untap during your untap step.     At the beginning of your upkeep, you may pay {2}. If you do, untap Goblin War Wagon.
-id=46044
-name=Goblin War Wagon
-rarity=C
-abilities=doesnotuntap
-auto={2}:untap
-type=Artifact Creature
-mana={4}
-power=3
-subtype=Juggernaut
-toughness=3
-[/card]
-[card]
 text=Equipped creature gets +1/+0 for each Equipment attached to it.     Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery. This card comes into play unattached and stays in play if the creature leaves play.)
 id=46061
 name=Golem-Skin Gauntlets

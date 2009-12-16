@@ -621,7 +621,7 @@ toughness=1
 text={T}, Sacrifice an artifact: Put a +1/+1 counter on target creature. Play this ability only during your upkeep.
 id=1286
 name=Dwarven Weaponsmith
-auto={T}{S(artifact|myBattlefield)}:counter(1/1,1) target(creature)
+auto={T}{S(artifact|myBattlefield)}:counter(1/1,1) target(creature) myUpkeepOnly
 rarity=U
 mana={1}{R}
 type=Creature
@@ -1126,7 +1126,7 @@ subtype=Island
 [card]
 text=Island Fish Jasconius can't attack unless defending player controls an Island.   Jasconius doesn't untap during your untap step.   At the beginning of your upkeep, you may pay {U}{U}{U}. If you do, untap Jasconius.   When you control no Islands, sacrifice Island Fish Jasconius.
 id=1203
-auto={U}{U}{U}:untap
+auto={U}{U}{U}:untap myUpkeepOnly
 name=Island Fish Jasconius
 rarity=R
 mana={4}{U}{U}{U}

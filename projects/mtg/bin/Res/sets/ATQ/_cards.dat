@@ -82,7 +82,7 @@ rarity=R
 mana={9}
 type=Artifact Creature
 subtype=Golem
-auto={9}:untap
+auto={9}:untap myUpkeepOnly
 power=9
 toughness=9
 abilities=doesnotuntap,trample
@@ -154,7 +154,7 @@ toughness=1
 [/card]
 [card]
 text=Sacrifice a creature: Destroy target artifact. Activate this ability only during your upkeep and only once each turn.
-auto={S(creature|myBattlefield)}:destroy target(artifact) limit:1 myTurnOnly
+auto={S(creature|myBattlefield)}:destroy target(artifact) limit:1 myUpkeepOnly
 id=1039
 name=Gate to Phyrexia
 rarity=U

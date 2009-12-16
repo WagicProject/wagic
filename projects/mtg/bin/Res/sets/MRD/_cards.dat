@@ -401,6 +401,19 @@ mana={5}
 type=Artifact
 [/card]
 [card]
+text=Flying     Goblin Dirigible doesn't untap during your untap step.     At the beginning of your upkeep, you may pay {4}. If you do, untap Goblin Dirigible.
+id=48077
+abilities=doesnotuntap,flying
+auto={4}:untap myUpkeepOnly
+name=Goblin Dirigible
+rarity=U
+type=Artifact Creature
+mana={6}
+power=4
+subtype=Construct
+toughness=4
+[/card]
+[card]
 text={3}{R}, Sacrifice Goblin Replica: Destroy target artifact.
 id=46049
 auto={3}{R}{S}:destroy target(artifact)
@@ -423,6 +436,19 @@ subtype=Goblin Berserker
 power=1
 toughness=1
 abilities=first strike,haste
+[/card]
+[card]
+text=Goblin War Wagon doesn't untap during your untap step.     At the beginning of your upkeep, you may pay {2}. If you do, untap Goblin War Wagon.
+id=46044
+name=Goblin War Wagon
+rarity=C
+abilities=doesnotuntap
+auto={2}:untap myUpkeepOnly
+type=Artifact Creature
+mana={4}
+power=3
+subtype=Juggernaut
+toughness=3
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.

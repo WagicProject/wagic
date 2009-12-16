@@ -237,8 +237,7 @@ power=4
 toughness=4
 text=Trample Black Carriage doesn't untap during your untap step. Sacrifice a creature: Untap Black Carriage. Activate this ability only during your upkeep.
 abilities=trample,doesnotuntap
-auto={S(creature|myBattlefield)}:untap myturnonly
-#not 100% correct same as brass man, colossus of sardia, etc.
+auto={S(creature|myBattlefield)}:untap myUpkeepOnly
 rarity=R
 [/card]
 [card]

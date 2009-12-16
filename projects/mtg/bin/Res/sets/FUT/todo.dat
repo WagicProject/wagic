@@ -26,17 +26,7 @@ subtype=Aura
 text=Enchant creature Enchanted creature has flying. Aura swap {2}{U} ({2}{U}: Exchange this Aura with an Aura card in your hand.)
 rarity=U
 [/card]
-[card]
-id=132212
-name=Augur il-Vec
-mana={1}{W}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=3
-text=Shadow (This creature can block or be blocked by only creatures with shadow.) Sacrifice Augur il-Vec: You gain 4 life. Play this ability only during your upkeep.
-rarity=C
-[/card]
+
 [card]
 id=132224
 name=Augur of Skulls
@@ -294,17 +284,6 @@ name=Edge of Autumn
 mana={1}{G}
 type=Sorcery
 text=If you control four or fewer lands, search your library for a basic land card, put it into play tapped, then shuffle your library. Cycling—Sacrifice a land. (Sacrifice a land, Discard this card: Draw a card.)
-rarity=C
-[/card]
-[card]
-id=132214
-name=Emberwilde Augur
-mana={1}{R}
-type=Creature
-subtype=Goblin Shaman
-power=2
-toughness=1
-text=Sacrifice Emberwilde Augur: Emberwilde Augur deals 3 damage to target player. Play this ability only during your upkeep.
 rarity=C
 [/card]
 [card]
@@ -588,6 +567,7 @@ text={X}{U}{U}, {T}: Return target creature with converted mana cost X to its ow
 rarity=R
 [/card]
 [card]
+#Require Testing
 id=132213
 name=Llanowar Augur
 mana={G}
@@ -596,6 +576,7 @@ subtype=Elf Shaman
 power=0
 toughness=3
 text=Sacrifice Llanowar Augur: Target creature gets +3/+3 and gains trample until end of turn. Play this ability only during your upkeep.
+auto={S}:3/3 && trample target(creature) myUpkeepOnly
 rarity=C
 [/card]
 [card]

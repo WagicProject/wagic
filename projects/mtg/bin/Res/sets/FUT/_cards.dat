@@ -15,6 +15,19 @@ auto=lord(creature|myBattlefield) protection from black
 abilities=legendary
 [/card]
 [card]
+id=132212
+name=Augur il-Vec
+mana={1}{W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=3
+text=Shadow (This creature can block or be blocked by only creatures with shadow.) Sacrifice Augur il-Vec: You gain 4 life. Play this ability only during your upkeep.
+abilities=shadow
+auto={S}:life:4 controller myUpkeepOnly
+rarity=C
+[/card]
+[card]
 id=130676
 name=Blade of the Sixth Pride
 rarity=C
@@ -71,6 +84,18 @@ auto={U}{T}{S(*|myhand)}:token(Cloud Sprite,creature faerie, 1/1,flying,cloud bl
 power=1
 toughness=1
 abilities=flying
+[/card]
+[card]
+id=132214
+name=Emberwilde Augur
+mana={1}{R}
+type=Creature
+subtype=Goblin Shaman
+power=2
+toughness=1
+text=Sacrifice Emberwilde Augur: Emberwilde Augur deals 3 damage to target player. Play this ability only during your upkeep.
+auto={S}:damage:3 target(player) myUpkeepOnly
+rarity=C
 [/card]
 [card]
 text=Enchant creature you control (Target a creature as you cast this. This card enters the battlefield attached to that creature.)   Creatures you control have haste.

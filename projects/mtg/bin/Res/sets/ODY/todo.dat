@@ -857,6 +857,20 @@ subtype=Human Cleric
 toughness=2
 [/card]
 [card]
+text=When Minotaur Explorer enters the battlefield, sacrifice it unless you discard a card at random.
+id=31786
+#Reomved does not work in WTH 0.10 see also Balduvian Horde (ALL)
+auto=@movedto(this|myBattlefield):aslongas(*|myHand) bury <1
+auto=discard:1 controller
+name=Minotaur Explorer
+rarity=U
+mana={1}{R}
+type=Creature
+subtype=Minotaur Scout
+power=3
+toughness=3
+[/card]
+[card]
 text=Target player discards X cards, where X is one plus the number of cards named Mind Burst in all graveyards.
 id=29746
 name=Mind Burst

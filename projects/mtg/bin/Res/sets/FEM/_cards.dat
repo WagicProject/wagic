@@ -477,6 +477,18 @@ rarity=U
 type=Land
 [/card]
 [card]
+id=1890
+name=Svyelunite Priest
+mana={1}{U}
+type=Creature
+subtype=Merfolk Cleric
+power=1
+toughness=1
+text={U}{U}, {T}: Target creature gains shroud until end of turn. Play this ability only during your upkeep. (It can't be the target of spells or abilities.)
+auto={U}{U}{T}:shroud target(creature) myUpkeepOnly
+rarity=U
+[/card]
+[card]
 text=Svyelunite Temple enters the battlefield tapped.   {T}: Add {U} to your mana pool.   {T}, Sacrifice Svyelunite Temple: Add {U}{U} to your mana pool.
 id=2013
 name=Svyelunite Temple

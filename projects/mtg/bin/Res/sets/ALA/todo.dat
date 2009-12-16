@@ -867,9 +867,11 @@ subtype=Devil
 toughness=3
 [/card]
 [card]
+#Require Testing
 text={T}, Sacrifice Scourglass: Destroy all permanents except for artifacts and lands. Play this ability only during your upkeep.
 id=174853
 name=Scourglass
+auto={S}:destroy all(creature,enchantment) myUpkeepOnly
 rarity=R
 type=Artifact
 mana={3}{W}{W}

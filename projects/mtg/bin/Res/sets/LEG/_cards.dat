@@ -540,7 +540,7 @@ type=Instant
 [/card]
 [card]
 text={B}, {T}, Sacrifice a creature: Return target creature card from your graveyard to play. Play this ability only during your upkeep.
-auto={B}{T}{S(creature|myBattlefield)}:moveTo(myBattlefield) target(creature|mygraveyard)
+auto={B}{T}{S(creature|myBattlefield)}:moveTo(myBattlefield) target(creature|mygraveyard) myUpkeepOnly
 id=1444
 name=Hell's Caretaker
 rarity=R

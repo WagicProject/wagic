@@ -119,6 +119,7 @@ text=Whenever Dwarven Soldier blocks or becomes blocked by one or more Orcs, Dwa
 rarity=C
 [/card]
 [card]
+#Require Testing
 id=1848
 name=Ebon Praetor
 mana={4}{B}{B}
@@ -130,8 +131,8 @@ text=First strike, trample At the beginning of your upkeep, put a -2/-2 counter 
 rarity=R
 abilities=first strike,trample
 auto=@each my upkeep:counter(-2/-2,1)
-auto={S(creature|myinplay)}:counter(-2/-2,-1) limit:1
-auto={S(creature[thrull]|myBattlefield)}:counter(-2/-2,-1) && counter(1/0,1) limit:1
+auto={S(creature|myinplay)}:counter(-2/-2,-1) limit:1 myUpkeepOnly
+auto={S(creature[thrull]|myBattlefield)}:counter(-2/-2,-1) && counter(1/0,1) limit:1 myUpkeepOnly
 [/card]
 [card]
 id=1908
@@ -598,17 +599,6 @@ subtype=Fungus
 power=0
 toughness=1
 text=At the beginning of your upkeep, put a spore counter on Spore Flower. Remove three spore counters from Spore Flower: Prevent all combat damage that would be dealt this turn.
-rarity=U
-[/card]
-[card]
-id=1890
-name=Svyelunite Priest
-mana={1}{U}
-type=Creature
-subtype=Merfolk Cleric
-power=1
-toughness=1
-text={U}{U}, {T}: Target creature gains shroud until end of turn. Play this ability only during your upkeep. (It can't be the target of spells or abilities.)
 rarity=U
 [/card]
 [card]
