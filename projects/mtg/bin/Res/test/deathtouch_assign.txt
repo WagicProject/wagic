@@ -1,0 +1,25 @@
+#Testing spirit link on grizzly bears
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Moonglove Winnower
+[PLAYER2]
+inplay:grizzly bears,bog wraith,giant spider
+[DO]
+next
+#combat begin
+next
+#attackers
+Moonglove Winnower
+next
+#blockers
+grizzly bears
+bog wraith
+giant spider
+next
+human
+[ASSERT]
+COMBATEND
+[PLAYER1]
+[PLAYER2]
+[END]
