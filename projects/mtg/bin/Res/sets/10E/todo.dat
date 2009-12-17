@@ -969,18 +969,7 @@ power=1
 subtype=Drake
 toughness=1
 [/card]
-[card]
-text=At the beginning of your upkeep, you may return Squee, Goblin Nabob from your graveyard to your hand.
-id=106473
-name=Squee, Goblin Nabob
-rarity=R
-color=Red
-type=Legendary Creature
-mana={2}{R}
-power=1
-subtype=Goblin
-toughness=1
-[/card]
+
 [card]
 text=Stalking Tiger can't be blocked by more than one creature.
 id=135184
