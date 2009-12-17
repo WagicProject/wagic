@@ -1,4 +1,4 @@
-#NAME:Enchantress' Pet
+#NAME:Enchanted Coatl
 Flight (RV)                  * 2 #
 Fastbond (RV)                * 1 #
 Instill Energy (RV)          * 1 #
