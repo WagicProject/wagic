@@ -14,6 +14,9 @@ int Rules::getMTGId(string cardName){
   if (cardName.compare("*") == 0) return -1; //Any card
   MTGCard * card = GameApp::collection->getCardByName(cardName);
   if (card) return card->getMTGId();
+  OutputDebugString("RULES: Can't find card:");
+  OutputDebugString(cardName.c_str());
+  OutputDebugString("\n");
   return 0;
 }
 

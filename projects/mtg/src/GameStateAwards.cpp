@@ -111,7 +111,7 @@ void GameStateAwards::Start()
   detailview = NULL; 
   setSrc = NULL;
   showMenu = false;
-  mBgTex = resources.RetrieveTexture("awardback.jpg");
+  mBgTex = resources.RetrieveTexture("awardback.jpg",TEXTURE_SUB_5551);
   mBg = resources.RetrieveQuad("awardback.jpg");
 }
 
