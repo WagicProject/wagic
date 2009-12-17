@@ -12,6 +12,9 @@ using std::string;
 #define MAX_OPTION_TABS 5
 #define MAX_ONSCREEN_OPTIONS 8
 #define OPTION_CENTER 4
+#ifndef PATH_MAX
+#define PATH_MAX 4096
+#endif
 
 class WGuiColor{
 public:
