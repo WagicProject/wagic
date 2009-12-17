@@ -97,34 +97,40 @@ void GuiHandSelf::Repos()
 {
   float y = 48.0;
   if (Closed == state && OptionClosedHand::VISIBLE == options[Options::CLOSEDHAND].number)
-    for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
-      {
-        (*it)->x = ClosedRowX; (*it)->y = y;
-        y += 20;
-      }
+    {
+      float dist = 180.0 / cards.size(); if (dist > 20) dist = 20.0; else y = 40.0;
+      cout << dist << endl;
+      for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
+        {
+          (*it)->x = ClosedRowX; (*it)->y = y;
+          y += dist;
+        }
+    }
   else
     {
       bool q = (Closed == state);
       if (OptionHandDirection::HORIZONTAL == options[Options::HANDDIRECTION].number)
         {
           y = SCREEN_WIDTH - 30;
+          float dist = 240.0 / cards.size(); if (dist > 30) dist = 30; else y = SCREEN_WIDTH - 15;
           for (vector<CardView*>::reverse_iterator it = cards.rbegin(); it != cards.rend(); ++it)
             {
               (*it)->x = y;
               (*it)->y = SCREEN_HEIGHT - 30;
-              y -= 30;
+              y -= dist;
               (*it)->alpha = (q ? 0 : 255);
             }
           backpos.x = y + SCREEN_HEIGHT - 14;
         }
       else
         {
+          float dist = 224.0 / ((cards.size() + 1) / 2); if (dist > 65) dist = 65;
           bool flip = false;
           for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
             {
               (*it)->x = flip ? RightRowX : LeftRowX;
               (*it)->y = y;
-              if (flip) y += 65;
+              if (flip) y += dist;
               flip = !flip;
               (*it)->alpha = (q ? 0 : 255);
             }
