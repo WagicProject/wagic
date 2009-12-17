@@ -1,0 +1,22 @@
+#Bug:Does ai correctly cast Howl From Beyond on its creatures ?
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:grizzly bears,the hive,howling mine,demon's horn
+hand:firebreathing
+manapool:{R}
+[PLAYER2]
+[DO]
+firebreathing
+grizzly bears
+human
+human
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Wildslayer Elves,Armadillo Cloak
+life:25
+[PLAYER2]
+graveyard:grizzly bears
+life:17
+[END]
