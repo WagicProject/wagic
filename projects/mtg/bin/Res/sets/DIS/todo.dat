@@ -831,17 +831,6 @@ text=Whenever an opponent is dealt 3 or more damage by a single source, that pla
 rarity=U
 [/card]
 [card]
-id=107433
-name=Paladin of Prahv
-mana={4}{W}{W}
-type=Creature
-subtype=Human Knight
-power=3
-toughness=4
-text=Whenever Paladin of Prahv deals damage, you gain that much life. Forecast - {1}{W}, Reveal Paladin of Prahv from your hand: Whenever target creature deals damage this turn, you gain that much life. (Activate this ability only during your upkeep and only once each turn.)
-rarity=U
-[/card]
-[card]
 id=97118
 name=Palliation Accord
 mana={3}{W}{U}
@@ -906,17 +895,6 @@ mana=
 type=Land
 text={T}: Add {1} to your mana pool. {4}{W}{U}, {T}: Prevent all damage a source of your choice would deal this turn.
 rarity=U
-[/card]
-[card]
-id=97097
-name=Pride of the Clouds
-mana={W}{U}
-type=Creature
-subtype=Elemental Cat
-power=1
-toughness=1
-text=Flying Pride of the Clouds gets +1/+1 for each other creature with flying on the battlefield. Forecast - {2}{W}{U}, Reveal Pride of the Clouds from your hand: Put a 1/1 white and blue Bird creature token with flying onto the battlefield. (Activate this ability only during your upkeep and only once each turn.)
-rarity=R
 [/card]
 [card]
 id=107341
@@ -1150,9 +1128,6 @@ toughness=0
 text=Graft 1 (This creature enters the battlefield with a +1/+1 counter on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.)
 rarity=C
 [/card]
-
-
-
 [card]
 id=107532
 name=Pure // Simple (Simple)
@@ -1161,7 +1136,6 @@ type=Sorcery
 text= Destroy all Auras and Equipment.
 rarity=U
 [/card]
-
 [card]
 id=97109
 name=Sky Hussar
@@ -1171,14 +1145,6 @@ subtype=Human Knight
 power=4
 toughness=3
 text=Flying When Sky Hussar enters the battlefield, untap all creatures you control. Forecast - Tap two untapped white and/or blue creatures you control, Reveal Sky Hussar from your hand: Draw a card. (Activate this ability only during your upkeep and only once each turn.)
-rarity=U
-[/card]
-[card]
-id=107449
-name=Skyscribing
-mana={X}{U}{U}
-type=Sorcery
-text=Each player draws X cards. Forecast - {2}{U}, Reveal Skyscribing from your hand: Each player draws a card. (Activate this ability only during your upkeep and only once each turn.)
 rarity=U
 [/card]
 [card]

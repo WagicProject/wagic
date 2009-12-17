@@ -154,15 +154,6 @@ text=All artifacts have "At the beginning of your upkeep, sacrifice this artifac
 rarity=U
 [/card]
 [card]
-id=1039
-name=Gate to Phyrexia
-mana={B}{B}
-type=Enchantment
-text=Sacrifice a creature: Destroy target artifact. Activate this ability only during your upkeep and only once each turn.
-auto={S(creature|myBattlefield):destroy target(artifact) myTurnOnly limit:1
-rarity=U
-[/card]
-[card]
 id=1061
 name=Goblin Artisans
 mana={R}

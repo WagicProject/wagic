@@ -1146,6 +1146,15 @@ toughness=1
 abilities=flying
 [/card]
 [card]
+text={T}, Sacrifice Scourglass: Destroy all permanents except for artifacts and lands. Play this ability only during your upkeep.
+id=174853
+name=Scourglass
+auto={S}:destroy all(creature,enchantment) myUpkeepOnly
+rarity=R
+mana={3}{W}{W}
+type=Artifact
+[/card]
+[card]
 text=Seaside Citadel enters the battlefield tapped.   {T}: Add {G}, {W}, or {U} to your mana pool.
 auto=tap
 auto={T}:Add {G}
@@ -1160,7 +1169,7 @@ type=Land
 text=Exile target card in a graveyard. You gain 3 life.
 target=*|graveyard
 auto=moveto(exile)
-auto=life:3
+auto=life:3 controller
 id=177473
 name=Shadowfeed
 rarity=C

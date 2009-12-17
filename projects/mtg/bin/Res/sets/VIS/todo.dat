@@ -601,17 +601,6 @@ text=You may cast Necromancy as though it had flash. If you cast it any time a s
 rarity=U
 [/card]
 [card]
-id=3622
-name=Necrosavant
-mana={3}{B}{B}{B}
-type=Creature
-subtype=Zombie Giant
-power=5
-toughness=5
-text={3}{B}{B}, Sacrifice a creature: Return Necrosavant from your graveyard to the battlefield. Activate this ability only during your upkeep.
-rarity=R
-[/card]
-[card]
 id=3623
 name=Nekrataal
 mana={2}{B}{B}

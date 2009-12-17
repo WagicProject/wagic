@@ -540,15 +540,28 @@ auto={1}{G}:flying && 0/-1
 rarity=C
 [/card]
 [card]
-id=2951
-name=Merchant Scroll
-mana={1}{U}
-type=Sorcery
+text=Marjhan doesn't untap during your untap step.   Marjhan can't attack unless defending player controls an Island.   When you control no Islands, sacrifice Marjhan.   {U}{U}, Sacrifice a creature: Untap Marjhan. Activate this ability only during your upkeep.   {U}{U}: Marjhan gets -1/-0 until end of turn and deals 1 damage to target attacking creature without flying.
+auto={U}{U}{S(creature|myBattlefield)}:untap myUpkeepOnly
+auto={U}{U}:damage:1 target(creature[attacking;-flying]) && -1/0 all(this)
+id=2948
+name=Marjhan
+rarity=R
+mana={5}{U}{U}
+type=Creature
+subtype=Leviathan
+power=8
+toughness=8
+abilities=islandhome,doesnotuntap
+[/card]
+[card]
 text=Search your library for a blue instant card, reveal that card, and put it into your hand. Then shuffle your library.
+id=2951
 target=instant[blue]|mylibrary
 auto=moveTo(myhand)
-#Does not reveal but the AI don't care
+name=Merchant Scroll
 rarity=U
+mana={1}{U}
+type=Sorcery
 [/card]
 [card]
 id=3021

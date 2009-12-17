@@ -867,16 +867,6 @@ subtype=Devil
 toughness=3
 [/card]
 [card]
-#Require Testing
-text={T}, Sacrifice Scourglass: Destroy all permanents except for artifacts and lands. Play this ability only during your upkeep.
-id=174853
-name=Scourglass
-auto={S}:destroy all(creature,enchantment) myUpkeepOnly
-rarity=R
-type=Artifact
-mana={3}{W}{W}
-[/card]
-[card]
 text=Flying     Whenever Sedraxis Specter deals combat damage to a player, that player discards a card.     Unearth {1}{B} ({1}{B}: Return this card from your graveyard to play. It gains haste. Remove it from the game at end of turn or if it would leave play. Unearth only as a sorcery.)
 id=174838
 name=Sedraxis Specter

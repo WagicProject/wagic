@@ -403,6 +403,20 @@ power=3
 toughness=3
 [/card]
 [card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)   Sacrifice Shard Phoenix: Shard Phoenix deals 2 damage to each creature without flying.   {R}{R}{R}: Return Shard Phoenix from your graveyard to your hand. Activate this ability only during your upkeep.
+autograveyard={R}{R}{R}:moveTo(myhand) myUpkeeponly
+id=5155
+name=Shard Phoenix
+rarity=R
+mana={4}{R}
+type=Creature
+subtype=Phoenix
+auto={S}:damage:2 all(creature[-flying])
+power=2
+toughness=2
+abilities=flying
+[/card]
+[card]
 text=Shock deals 2 damage to target creature or player.
 target=creature,player
 auto=Damage:2

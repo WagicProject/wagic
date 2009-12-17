@@ -560,17 +560,6 @@ text={0}: The next 1 damage that would be dealt to Shaman en-Kor this turn is de
 rarity=R
 [/card]
 [card]
-id=5155
-name=Shard Phoenix
-mana={4}{R}
-type=Creature
-subtype=Phoenix
-power=2
-toughness=2
-text=Flying (This creature can't be blocked except by creatures with flying or reach.) Sacrifice Shard Phoenix: Shard Phoenix deals 2 damage to each creature without flying. {R}{R}{R}: Return Shard Phoenix from your graveyard to your hand. Activate this ability only during your upkeep.
-rarity=R
-[/card]
-[card]
 id=5222
 name=Shifting Wall
 mana={X}
@@ -612,10 +601,6 @@ toughness=0
 text=Skeleton Scavengers enters the battlefield with a +1/+1 counter on it. Pay {1} for each +1/+1 counter on Skeleton Scavengers: Regenerate Skeleton Scavengers. When it regenerates this way, put a +1/+1 counter on it.
 rarity=R
 [/card]
-
-
-
-
 [card]
 id=5234
 name=Smite

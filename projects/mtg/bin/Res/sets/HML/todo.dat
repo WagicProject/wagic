@@ -435,21 +435,6 @@ auto=-flying
 rarity=R
 [/card]
 [card]
-#REquire testing
-id=2948
-name=Marjhan
-mana={5}{U}{U}
-type=Creature
-subtype=Leviathan
-power=8
-toughness=8
-text=Marjhan doesn't untap during your untap step. Marjhan can't attack unless defending player controls an Island. When you control no Islands, sacrifice Marjhan. {U}{U}, Sacrifice a creature: Untap Marjhan. Activate this ability only during your upkeep. {U}{U}: Marjhan gets -1/-0 until end of turn and deals 1 damage to target attacking creature without flying.
-abilities=islandhome,doesnotuntap
-auto={U}{U}{S(creature|myBattlefield)}:untap myUpkeepnonly
-auto={U}{U}:damage:1 target(creature[attacking;-flying]) && -1/0 all(this)
-rarity=R
-[/card]
-[card]
 #Require testing
 id=2949
 name=Memory Lapse

@@ -146,6 +146,32 @@ toughness=1
 abilities=flying
 [/card]
 [card]
+text=Whenever Paladin of Prahv deals damage, you gain that much life.   Forecast - {1}{W}, Reveal Paladin of Prahv from your hand: Whenever target creature deals damage this turn, you gain that much life. (Activate this ability only during your upkeep and only once each turn.)
+autohand={1}{W}:lifelink target(creature) limit:1 myTurnOnly
+id=107433
+name=Paladin of Prahv
+rarity=U
+mana={4}{W}{W}
+type=Creature
+subtype=Human Knight
+power=3
+toughness=4
+[/card]
+[card]
+text=Flying   Pride of the Clouds gets +1/+1 for each other creature with flying on the battlefield.   Forecast - {2}{W}{U}, Reveal Pride of the Clouds from your hand: Put a 1/1 white and blue Bird creature token with flying onto the battlefield. (Activate this ability only during your upkeep and only once each turn.)
+autohand={2}{W}{U}:token(Bird,Creature Bird,1/1,blue,white flying) limit:1 myUpkeepOnly
+id=97097
+name=Pride of the Clouds
+rarity=R
+mana={W}{U}
+type=Creature
+subtype=Elemental Cat
+auto=foreach(other creature[flying]) 1/1
+power=1
+toughness=1
+abilities=flying
+[/card]
+[card]
 text={T}: Rakdos Ickspitter deals 1 damage to target creature and that creature's controller loses 1 life.
 auto={T}:damage:1 target(creature) && life:-1 targetcontroller
 id=97074
@@ -292,6 +318,17 @@ mana={4}
 type=Artifact
 [/card]
 [card]
+text=Each player draws X cards.   Forecast - {2}{U}, Reveal Skyscribing from your hand: Each player draws a card. (Activate this ability only during your upkeep and only once each turn.)
+autohand={2}{U}:draw:1 controller && draw:1 opponent limit:1 myUpkeepOnly
+auto=Draw:X controller
+auto=Draw:X opponent
+id=107449
+name=Skyscribing
+rarity=U
+mana={X}{U}{U}
+type=Sorcery
+[/card]
+[card]
 text=Defender (This creature can't attack.)   {B}: Slithering Shade gets +1/+1 until end of turn.   Hellbent - Slithering Shade can attack as though it didn't have defender as long as you have no cards in hand.
 id=111283
 name=Slithering Shade
@@ -363,7 +400,7 @@ type=Creature
 subtype=Goblin Scout
 power=1
 toughness=2
-abilities=Flying,mustattack
+abilities=flying,mustattack
 [/card]
 [card]
 text={T}, Pay 1 life: Add one mana of any color to your mana pool.

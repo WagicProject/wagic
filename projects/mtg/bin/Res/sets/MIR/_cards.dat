@@ -607,6 +607,17 @@ rarity=U
 type=Land
 [/card]
 [card]
+text=Hammer of Bogardan deals 3 damage to target creature or player.   {2}{R}{R}{R}: Return Hammer of Bogardan from your graveyard to your hand. Play this ability only during your upkeep.
+id=3452
+target=creature,player
+auto=damage:3 
+autograveyard={2}{R}{R}{R}:moveTo(myhand) myUpkeepOnly
+name=Hammer of Bogardan
+rarity=R
+mana={1}{R}{R}
+type=Sorcery
+[/card]
+[card]
 text=At the beginning of your upkeep, put a -1/-1 counter on each creature.
 auto=@each my upkeep:all(creature) counter(-1/-1)
 id=3297

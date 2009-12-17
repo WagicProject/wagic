@@ -297,7 +297,7 @@ toughness=3
 [card]
 text=Return target creature card from your graveyard to the battlefield with a +1/+1 counter on it.
 target=creature|mygraveyard
-auto=moveTo(mybattlefield)
+auto=moveTo(myBattlefield)
 auto=counter(1/1)
 id=3720
 name=Miraculous Recovery
@@ -305,6 +305,18 @@ rarity=U
 mana={4}{W}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+text={3}{B}{B}, Sacrifice a creature: Return Necrosavant from your graveyard to the battlefield. Activate this ability only during your upkeep.
+autograveyard={3}{B}{B}{S(creature|myBattlefield)}:moveTo(myBattlefield) myTurnOnly
+rarity=R
+id=3622
+name=Necrosavant
+mana={3}{B}{B}{B}
+type=Creature
+subtype=Zombie Giant
+power=5
+toughness=5
 [/card]
 [card]
 id=3672
