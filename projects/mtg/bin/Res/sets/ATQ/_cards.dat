@@ -186,7 +186,7 @@ type=Instant
 [card]
 text=During your upkeep phase, gain 1 life for each card in your hand above four.
 id=1009
-alias=1115
+auto=@each my upkeep:foreach(*|myhand)life:1 controller >4
 name=Ivory Tower
 rarity=U
 mana={1}
