@@ -4,10 +4,12 @@
 # und Ergaenzungen von Jeck.
 
 #Note to translators:
-#If you want to translate cards, I suggest you translate their text (the "text=" line) directly in _cards.dat,
-# BUT DO NOT TOUCH ANYTHING ELSE in the _cards.dat files (names and types of creatures are used by the game!)
-# If you want to translate creature types and other game elements, do it in this file. Only the "text=" can be done directly in _cards.dat
-#Limitation: Special characters that are not in the limited 128 ASCII set CAN NOT be put in this file, it will display as garbage 
+# - Cards' names and types are translated here (see bottom of the file)
+# - Cards' rules text is translated in a separate file: Res\lang\de_cards.txt
+# - Translations are case sensitive
+# - Limitation: Special characters that are not in the limited 128 ASCII
+#     set can not be used, the game won't display them.
+# - DO NOT TRANSLATE ANYTHING in the _cards.dat files.
 
 
 ##########################
@@ -136,10 +138,10 @@ goes to graveyard=kommt auf den Friedhof
 
 # Abilities:
 Ability=Faehigkeit
-Attacker=Angreifer
-Blocker=Blocker
+Attacker=Angreifen
+Blocker=Blocken
 Copy=Kopieren
-Cycling=Umwandlung
+Cycling=Umwandeln
 Damage=Schaden
 Deathtouch=Todesberuehrung
 Destroy=Zerstoeren
@@ -219,11 +221,6 @@ Remove card=Karte entf.
 Sell card=Karte verkaufen
 
 # Info layer - explanations:
-You are currently viewing your=Du schaust Dir gerade
-collection. Press TRIANGLE=Deine Sammlung an. Druecke /\
-to switch to your deck.=um zu Deinem Deck zu gelangen.
-deck. Press TRIANGLE to=Dein Deck an. Druecke /\
-switch to your collection.=um zu Deiner Sammlung zu gelangen.
 Use SQUARE to view collection,=Druecke [] um die Sammlung zu sehen.
 Use SQUARE to view your deck,=Druecke [] um das Deck zu sehen.
 Press L/R to cycle through=Druecke L und R, um durch die
