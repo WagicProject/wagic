@@ -157,7 +157,8 @@ void OptionSelect::addSelection(string s){
 }
 
 //OptionProfile
-OptionProfile::OptionProfile(GameApp * _app, JGuiListener * jgl): OptionDirectory(RESPATH"/profiles",Options::ACTIVE_PROFILE, "Profile"){
+const string OptionProfile::DIRTESTER = "collection.dat";
+OptionProfile::OptionProfile(GameApp * _app, JGuiListener * jgl) : OptionDirectory(RESPATH"/profiles", Options::ACTIVE_PROFILE, "Profile", DIRTESTER){
   app = _app;
   listener = jgl;
   height=60;
@@ -372,23 +373,18 @@ bool OptionLanguage::Selectable(){
 void OptionDirectory::Reload(){
   DIR *mDip;
   struct dirent *mDit;
-  char buf[4096];
+  char buf[PATH_MAX];
   mDip = opendir(root.c_str());
 
-  if(!mDip)
-    return;
+  if (!mDip) return;
 
   while ((mDit = readdir(mDip))){
-    if(mDit->d_name[0] != '.'){    
-      sprintf(buf,"%s/%s",root.c_str(),mDit->d_name);
-      std::ifstream file(buf);
-      if(file){
-        file.close();
-        continue;
-      }
-      if(find(selections.begin(),selections.end(),mDit->d_name) == selections.end())
-        addSelection(mDit->d_name);
-    }     
+    sprintf(buf,"%s/%s/%s", root.c_str(), mDit->d_name, type.c_str());
+    std::ifstream file(buf);
+    if (!file) continue;
+    file.close();
+    if (find(selections.begin(), selections.end(), mDit->d_name) == selections.end())
+      addSelection(mDit->d_name);
   }
 
   closedir(mDip);
@@ -396,26 +392,20 @@ void OptionDirectory::Reload(){
   initSelections();
 }
 
-OptionDirectory::OptionDirectory(string _root, int _id, string _displayValue): OptionSelect(_id, _displayValue){
+OptionDirectory::OptionDirectory(string root, int id, string displayValue, string type): OptionSelect(id, displayValue), root(root), type(type){
   DIR *mDip;
   struct dirent *mDit;
-  char buf[4096];
-  root = _root;
-  mDip = opendir(root.c_str());
+  char buf[PATH_MAX];
 
-  if(!mDip)
-    return;
+  mDip = opendir(root.c_str());
+  if(!mDip) return;
 
   while ((mDit = readdir(mDip))){
-    if(mDit->d_name[0] != '.'){    
-      sprintf(buf,"%s/%s",root.c_str(),mDit->d_name);
-      std::ifstream file(buf);
-      if(file){
-        file.close();
-        continue;
-      }
-      addSelection(mDit->d_name);
-    }     
+    sprintf(buf,"%s/%s/%s", root.c_str(), mDit->d_name, type.c_str());
+    cout << buf << endl;
+    std::ifstream file(buf);
+    if (!file) continue;
+    addSelection(mDit->d_name);
   }
 
   closedir(mDip);
@@ -626,7 +616,8 @@ void WGuiList::ButtonPressed(int controllerId, int controlId){
   it->ButtonPressed(controllerId,controlId);
 }
 
-OptionTheme::OptionTheme(): OptionDirectory(RESPATH"/themes",Options::ACTIVE_THEME, "Current Theme"){
+const string OptionTheme::DIRTESTER = "preview.png";
+OptionTheme::OptionTheme() : OptionDirectory(RESPATH"/themes", Options::ACTIVE_THEME, "Current Theme", DIRTESTER){
   addSelection("Default");
   sort(selections.begin(),selections.end());
   initSelections();

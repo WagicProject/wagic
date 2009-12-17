@@ -115,7 +115,7 @@ int MTGAllCards::processConfLine(string s, MTGCard *card){
       card->setType( "Error");
 #if defined (_DEBUG)
     char buffer[4096];
-    sprintf(buffer, "MTGDECK: Bad Card Type in %s/_cards.dat:\n    %s\n", setlist[card->setId], s.c_str());
+    sprintf(buffer, "MTGDECK: Bad Card Type in %s/_cards.dat:\n    %s\n", setlist[card->setId].c_str(), s.c_str());
     OutputDebugString(buffer);
 #endif
       break;

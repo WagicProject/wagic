@@ -474,15 +474,18 @@ protected:
 class OptionDirectory:public OptionSelect{
  public:
   virtual void Reload();
-  OptionDirectory(string _root, int _id, string _displayValue);
+  OptionDirectory(string root, int id, string displayValue, const string type);
  protected:
-  string root;
+  const string root;
+  const string type;
 };
 
 class OptionTheme:public OptionDirectory{
+ private:
+  static const string DIRTESTER;
  public:
   OptionTheme();
-  JQuad * getImage();   
+  JQuad * getImage();
   virtual void updateValue();
   virtual float getHeight();
   virtual void Render();
@@ -495,9 +498,11 @@ protected:
 };
 
 class OptionProfile:public OptionDirectory{
+ private:
+  static const string DIRTESTER;
  public:
   OptionProfile(GameApp * _app,  JGuiListener * jgl);
-  virtual void addSelection(string s);    
+  virtual void addSelection(string s);
   virtual bool Selectable() {return canSelect;};
   virtual bool Changed() {return (initialValue != value);};
   virtual void Entering(u32 key);
