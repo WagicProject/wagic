@@ -92,7 +92,7 @@ void GameStateOptions::End()
 
 void GameStateOptions::Update(float dt)
 { 
-  timer += dt;
+  timer += dt * 10;
 
   if(options.keypadActive()){
     options.keypadUpdate(dt);
@@ -147,12 +147,22 @@ void GameStateOptions::Render()
       "Dev Team: Abrasax, Daddy32, Dr.Solomat, J, Jeck", 
       "Leungclj, Superhiro, Psyringe, Wololo, Yeshua",
       "",
+      "Music by Celestial Aeon Project, http://www.jamendo.com",
+      "",
+      "Deck Builders: Abrasax, AzureKnight, colarchon",
+      "Hehotfarv, Jeremy, Jog1118, JonyAS, Kaioshin",
+      "Lachaux, Link17, Muddobbers, Nakano, Niegen",
+      "Psyringe, r1c47, Superhiro, Szei, Thanatos02",
+      "Whismer, Wololo",
+      "",
+      "Thanks also go to Dr.Watson, Orine, Raphael, Sakya, Tyranid",
+      "for their (sometimes indirect) help.",
+      "",
       "Thanks to everyone who contributes code/content on the forums!",
       "",
       "Developed with the JGE++ Library (http://code.google.com/p/wagic)",
       "SFX From www.soundsnap.com",
-      "",
-      "Music by Celestial Aeon Project, http://www.jamendo.com",
+
       "",
       "",
       "This work is not related to or endorsed by Wizards of the Coast, Inc",
@@ -163,13 +173,13 @@ void GameStateOptions::Render()
   JLBFont * mFont = resources.GetJLBFont(Constants::MAGIC_FONT);
   mFont->SetColor(ARGB(255,200,200,200));
   mFont->SetScale(1.0);
-  float startpos = 272 - timer * 10;
+  float startpos = 272 - timer;
   float pos = startpos;
   int size = sizeof(CreditsText) / sizeof(CreditsText[0]);
   
   for (int i = 0; i < size; i++){
-    pos = startpos +20*i;
-    if (pos > -20){
+    pos = startpos + 20 * i;
+    if (pos > -20 && pos < SCREEN_HEIGHT + 20){
       mFont->DrawString(CreditsText[i],SCREEN_WIDTH/2,pos ,JGETEXT_CENTER);
     }
   }
@@ -177,7 +187,6 @@ void GameStateOptions::Render()
   if (pos < -20) 
     timer = 0;
 
-  mFont->SetScale(1.f);
 
   optionsTabs->Render();
 
