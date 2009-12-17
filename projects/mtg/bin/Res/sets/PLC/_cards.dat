@@ -72,7 +72,7 @@ toughness=4
 [card]
 text=Other white creatures get +1/+1.   Nonwhite creatures get -1/-1.   Pay 2 life: Return Crovax, Ascendant Hero to its owner's hand.
 auto=lord(creature[white]) 1/1 other
-auto=lord(creature[-white] -1/-1
+auto=lord(creature[-white]) -1/-1
 auto={0}:moveTo(ownerhand) && life:-2 controller
 id=122487
 name=Crovax, Ascendant Hero
