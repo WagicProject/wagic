@@ -1396,7 +1396,7 @@ type=Instant
 [card]
 text=Prevent all combat damage that would be dealt by target attacking creature this turn.       Draw a card.
 id=22943
-target=creature
+target=creature[attacking]
 auto=preventAllCombatDamage from(mytgt) ueot
 auto=draw:1 controller
 name=Restrain
