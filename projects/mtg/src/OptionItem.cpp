@@ -402,7 +402,6 @@ OptionDirectory::OptionDirectory(string root, int id, string displayValue, strin
 
   while ((mDit = readdir(mDip))){
     sprintf(buf,"%s/%s/%s", root.c_str(), mDit->d_name, type.c_str());
-    cout << buf << endl;
     std::ifstream file(buf);
     if (!file) continue;
     addSelection(mDit->d_name);
