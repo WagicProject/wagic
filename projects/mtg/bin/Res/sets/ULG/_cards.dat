@@ -219,6 +219,19 @@ power=4
 toughness=2
 [/card]
 [card]
+id=13001
+name=Goblin Welder
+mana={R}
+type=Creature
+subtype=Goblin Artificer
+power=1
+toughness=1
+text={T}: Choose target artifact a player controls and target artifact card in that player's graveyard. If both targets are still legal as this ability resolves, that player simultaneously sacrifices the artifact and returns the artifact card to the battlefield.
+auto={T}{S(artifact|myBattlefield)}:moveto(myBattlefield) target(artifact|myGraveyard)
+auto={T}{S(artifact|opponentBattlefield)}:moveto(opponentBattlefield) target(artifact|opponentGraveyard)
+rarity=R
+[/card]
+[card]
 text=Enchant creature   Enchanted creature gets +1/+0 for each Mountain you control.
 target=creature
 auto=foreach(mountain|myBattlefield) 1/0
