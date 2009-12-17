@@ -205,7 +205,7 @@ type=Sorcery
 [card]
 id=10578
 name=Fire Bowman
-rarity=C
+rarity=U
 mana={R}
 type=Creature
 subtype=Human Soldier Archer
