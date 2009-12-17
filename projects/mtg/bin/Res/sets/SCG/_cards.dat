@@ -181,6 +181,20 @@ auto=X/0
 rarity=U
 [/card]
 [card]
+text=Flying   {3}{W}{W}: Return Eternal Dragon from your graveyard to your hand. Activate this ability only during your upkeep.   Plainscycling {2} ({2}, Discard this card: Search your library for a Plains card, reveal it, and put it into your hand. Then shuffle your library.)
+autograveyard={3}{W}{W}:moveTo(myhand) myUpkeepOnly
+id=44398
+name=Eternal Dragon
+rarity=R
+mana={5}{W}{W}
+type=Creature
+subtype=Dragon Spirit
+autohand={2}{S}:moveTo(myhand) target(plains|mylibrary)
+power=5
+toughness=5
+abilities=flying
+[/card]
+[card]
 id=43525
 name=Goblin Brigand
 mana={1}{R}

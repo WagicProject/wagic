@@ -203,6 +203,17 @@ mana={1}{R}
 type=Sorcery
 [/card]
 [card]
+id=10578
+name=Fire Bowman
+rarity=C
+mana={R}
+type=Creature
+subtype=Human Soldier Archer
+auto={S}:damage:1 target(creature,player) myTurnOnly
+power=1
+toughness=1
+[/card]
+[card]
 text=Put target creature on top of its owner's library.
 id=10622
 target=creature|battlefield

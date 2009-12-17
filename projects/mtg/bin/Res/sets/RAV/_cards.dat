@@ -309,6 +309,21 @@ mana={1}{G}
 type=Sorcery
 [/card]
 [card]
+text=Flying, first strike   At the beginning of your upkeep, if Firemane Angel is in your graveyard or on the battlefield, you may gain 1 life.   {6}{R}{R}{W}{W}: Return Firemane Angel from your graveyard to the battlefield. Play this ability only during your upkeep.
+auto=@each my upkeep:may life:1 controller
+autograveyard={0}:may life:1 controller limit:1 myUpkeepOnly
+autograveyard={6}{R}{R}{W}{W}:moveTo(myBattlefield) myUpkeepOnly
+id=89074
+name=Firemane Angel
+rarity=R
+mana={3}{R}{W}{W}
+type=Creature
+subtype=Angel
+power=4
+toughness=3
+abilities=flying,first strike
+[/card]
+[card]
 text=Enchant creature   When Fists of Ironwood enters the battlefield, put two 1/1 green Saproling creature tokens onto the battlefield.   Enchanted creature has trample.
 target=creature
 auto=token(Saproling,creature saproling, 1/1,green)*2

@@ -373,17 +373,6 @@ text=Cleric spells you cast cost {W}{B} less to cast. This effect reduces only t
 rarity=U
 [/card]
 [card]
-id=44398
-name=Eternal Dragon
-mana={5}{W}{W}
-type=Creature
-subtype=Dragon Spirit
-power=5
-toughness=5
-text=Flying {3}{W}{W}: Return Eternal Dragon from your graveyard to your hand. Activate this ability only during your upkeep. Plainscycling {2} ({2}, Discard this card: Search your library for a Plains card, reveal it, and put it into your hand. Then shuffle your library.)
-rarity=R
-[/card]
-[card]
 id=40648
 name=Exiled Doomsayer
 mana={1}{W}

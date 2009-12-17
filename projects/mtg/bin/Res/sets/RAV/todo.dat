@@ -587,17 +587,6 @@ type=Instant
 mana={1}{R}
 [/card]
 [card]
-text=Flying, first strike     At the beginning of your upkeep, if Firemane Angel is in your graveyard or in play, you may gain 1 life.     {6}{R}{R}{W}{W}: Return Firemane Angel from your graveyard to play. Play this ability only during your upkeep.
-id=89074
-name=Firemane Angel
-rarity=R
-type=Creature
-mana={3}{R}{W}{W}
-power=4
-subtype=Angel
-toughness=3
-[/card]
-[card]
 text=When Flame-Kin Zealot comes into play, creatures you control get +1/+1 and gain haste until end of turn.
 id=83562
 auto=1/1 all(creature|myBattlefield)

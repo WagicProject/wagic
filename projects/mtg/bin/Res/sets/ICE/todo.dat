@@ -498,14 +498,6 @@ type=Enchantment
 mana={2}{W}{W}
 [/card]
 [card]
-text={2}, Sacrifice a land: Put a +2/+2 counter on target creature. Play this ability only during any upkeep step.
-id=2618
-name=Dwarven Armory
-rarity=R
-type=Enchantment
-mana={2}{R}{R}
-[/card]
-[card]
 text=At the beginning of your upkeep, sacrifice Earthlink unless you pay {2}.     Whenever a creature is put into a graveyard from play, that creature's controller sacrifices a land.
 id=2721
 name=Earthlink

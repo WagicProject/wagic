@@ -274,6 +274,16 @@ toughness=*
 abilities=defender
 [/card]
 [card]
+text={2}, Sacrifice a land: Put a +2/+2 counter on target creature. Play this ability only during any upkeep step.
+auto={2}{S(land|myBattlefield):counter(2/2,1) target(creature) myUpkeepOnly
+auto={2}{S(land|myBattlefield):counter(2/2,1) target(creature) OpponentUpkeepOnly
+id=2618
+name=Dwarven Armory
+rarity=R
+mana={2}{R}{R}
+type=Enchantment
+[/card]
+[card]
 text={3}{G}, {T}: You may tap or untap target artifact, creature, or land.
 id=2556
 auto={3}{G}{T}:tap target(creature,artifact,land)
