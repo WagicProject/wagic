@@ -225,7 +225,7 @@ subtype=Nightstalker
 power=3
 toughness=2
 text=When Brutal Nightstalker enters the battlefield, you may have target opponent discard a card.
-auto=may deplete:1 opponent
+auto=may discard:1 opponent
 rarity=U
 [/card]
 [card]
