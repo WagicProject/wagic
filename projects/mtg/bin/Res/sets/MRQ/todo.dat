@@ -1664,17 +1664,6 @@ subtype=Monger
 toughness=3
 [/card]
 [card]
-text=At the beginning of your upkeep, you may return Squee, Goblin Nabob from your graveyard to your hand.
-id=19716
-name=Squee, Goblin Nabob
-rarity=R
-type=Legendary Creature
-mana={2}{R}
-power=1
-subtype=Goblin
-toughness=1
-[/card]
-[card]
 text=Sorcery spells cost {3} more to play.
 id=19685
 name=Squeeze

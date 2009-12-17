@@ -1270,6 +1270,19 @@ mana={2}{G}
 type=Sorcery
 [/card]
 [card]
+text=At the beginning of your upkeep, you may return Squee, Goblin Nabob from your graveyard to your hand.
+autograveyard={0}:moveTo(myhand) myUpkeepOnly
+id=19716
+name=Squee, Goblin Nabob
+rarity=R
+mana={2}{R}
+type=Creature
+subtype=Goblin
+power=1
+toughness=1
+abilities=legendary
+[/card]
+[card]
 text=Vigilance (Attacking doesn't cause this creature to tap.)
 id=19780
 name=Steadfast Guard

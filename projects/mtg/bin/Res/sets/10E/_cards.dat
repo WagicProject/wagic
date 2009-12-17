@@ -2510,6 +2510,19 @@ type=Sorcery
 mana={1}{R}
 [/card]
 [card]
+text=At the beginning of your upkeep, you may return Squee, Goblin Nabob from your graveyard to your hand.
+autograveyard={0}:moveTo(myhand) myUpkeepOnly
+id=106473
+name=Squee, Goblin Nabob
+rarity=R
+mana={2}{R}
+type=Creature
+subtype=Goblin
+power=1
+toughness=1
+abilities=legendary
+[/card]
+[card]
 text={7}{W}: You gain 5 life.
 auto={7}{W}:life:5
 id=130385
