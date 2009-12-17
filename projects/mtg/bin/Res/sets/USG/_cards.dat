@@ -1029,8 +1029,8 @@ type=Land
 abilities=legendary
 [/card]
 [card]
-text={2}{T}: Sacrifice Pit Trap to bury target creature without flying that is attacking you.
-auto={2}{T}{S}:bury target(creature[-flying;attacking]|opponentbattlefield)
+text={2},{T},Sacrifice Pit Trap: Destroy target attacking creature without flying. It can't be regenerated.
+auto={2}{T}{S}:bury target(creature[-flying;attacking])
 id=8801
 name=Pit Trap
 rarity=U
