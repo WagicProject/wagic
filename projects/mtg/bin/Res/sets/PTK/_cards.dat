@@ -209,6 +209,7 @@ rarity=C
 mana={R}
 type=Creature
 subtype=Human Soldier Archer
+text=Sacrifice Fire Bowman: Fire Bowman deals 1 damage to target creature or player. Activate this ability only during your turn, before attackers are declared.
 auto={S}:damage:1 target(creature,player) myTurnOnly
 power=1
 toughness=1
