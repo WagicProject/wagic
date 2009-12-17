@@ -44,6 +44,18 @@ toughness=3
 rarity=C
 [/card]
 [card]
+text={T}: Target creature gets +2/+2 until end of turn. Activate this ability only during your turn, before attackers are declared.
+id=6516
+name=Alaborn Veteran
+rarity=R
+mana={2}{W}
+type=Creature
+subtype=Human Knight
+auto={T}:2/2 target(creature) myTurnOnly
+power=2
+toughness=2
+[/card]
+[card]
 id=6579
 name=Ancient Craving
 mana={3}{B}
@@ -87,6 +99,18 @@ toughness=4
 text=Defender, flying (This creature can't attack, and it can block creatures with flying.)
 abilities=defender,flying
 rarity=C
+[/card]
+[card]
+text={T}: Apprentice Sorcerer deals 1 damage to target creature or player. Activate this ability only during your turn, before attackers are declared.
+id=6535
+name=Apprentice Sorcerer
+rarity=U
+mana={2}{U}
+type=Creature
+subtype=Human Wizard
+auto={T}:damage:1 target(creature,player) myTurnOnly
+power=1
+toughness=1
 [/card]
 [card]
 id=6514
@@ -370,6 +394,18 @@ subtype=Goblin
 power=3
 toughness=2
 rarity=C
+[/card]
+[card]
+text=Sacrifice Goblin Firestarter: Goblin Firestarter deals 1 damage to target creature or player. Activate this ability only during your turn, before attackers are declared.
+id=6598
+name=Goblin Firestarter
+rarity=U
+mana={R}
+type=Creature
+subtype=Goblin
+auto={S}:damage:1 target(creature,player) myTurnOnly
+power=1
+toughness=1
 [/card]
 [card]
 id=6584

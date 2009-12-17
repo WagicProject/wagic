@@ -21,17 +21,6 @@ text=Whenever Alaborn Cavalier attacks, you may tap target creature.
 rarity=U
 [/card]
 [card]
-id=6516
-name=Alaborn Veteran
-mana={2}{W}
-type=Creature
-subtype=Human Knight
-power=2
-toughness=2
-text={T}: Target creature gets +2/+2 until end of turn. Activate this ability only during your turn, before attackers are declared.
-rarity=R
-[/card]
-[card]
 id=6492
 name=Alaborn Zealot
 mana={W}
@@ -60,17 +49,6 @@ power=3
 toughness=5
 text=Flying When Angel of Fury is put into your graveyard from the battlefield, you may shuffle it into your library.
 rarity=R
-[/card]
-[card]
-id=6535
-name=Apprentice Sorcerer
-mana={2}{U}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
-text={T}: Apprentice Sorcerer deals 1 damage to target creature or player. Activate this ability only during your turn, before attackers are declared.
-rarity=U
 [/card]
 [card]
 id=6544
@@ -154,17 +132,6 @@ subtype=Spirit
 power=3
 toughness=2
 text=Flying When Foul Spirit enters the battlefield, sacrifice a land.
-rarity=U
-[/card]
-[card]
-id=6598
-name=Goblin Firestarter
-mana={R}
-type=Creature
-subtype=Goblin
-power=1
-toughness=1
-text=Sacrifice Goblin Firestarter: Goblin Firestarter deals 1 damage to target creature or player. Activate this ability only during your turn, before attackers are declared.
 rarity=U
 [/card]
 [card]
