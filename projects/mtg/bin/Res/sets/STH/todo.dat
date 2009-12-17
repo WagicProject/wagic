@@ -1,3 +1,13 @@
+﻿[card]
+text={1}, Discard a card at random: Put a +1/+1 counter on target creature.
+id=5109
+name=Amok
+rarity=R
+mana={1}{R}
+auto=aslongas(*|myHand) {1}:counter(1/1,1) target(creature) && discard:1 controller
+#Does not work in WTH 0.10
+type=Enchantment
+[/card]
 [card]
 id=5111
 name=Bandage

@@ -11,15 +11,6 @@ power=2
 toughness=2
 [/card]
 [card]
-text={1}, Discard a card at random: Put a +1/+1 counter on target creature.
-id=5109
-name=Amok
-rarity=R
-mana={1}{R}
-auto={1}:counter(1/1,1) target(creature) && discard:1
-type=Enchantment
-[/card]
-[card]
 text=At the beginning of each upkeep, untap all creatures and lands.
 id=5110
 name=Awakening
