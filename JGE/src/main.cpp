@@ -29,7 +29,9 @@
 #ifdef DEVHOOK
 	PSP_MODULE_INFO(JGEApp_Title, 0, 1, 1);
 	PSP_MAIN_THREAD_ATTR(PSP_THREAD_ATTR_USER);
-	PSP_HEAP_SIZE_KB(-2048);
+  //256 is not enough for the network to correctly start, 
+  // let's find an appropriate value the day JGE has working network 
+	PSP_HEAP_SIZE_KB(-256);
 
 #else
 
