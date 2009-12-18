@@ -840,19 +840,6 @@ text=You may choose not to untap Ghosthelm Courier during your untap step. {2}{U
 rarity=U
 [/card]
 [card]
-text=Shroud (This permanent can't be the target of spells or abilities.)   At the beginning of your upkeep, if Gigapede is in your graveyard, you may discard a card. If you do, return Gigapede to your hand.
-autograveyard={S(*|myhand)}:may moveTo(myhand) from(mygraveyard) myUpkeepOnly limit:1
-id=39578
-name=Gigapede
-rarity=R
-mana={3}{G}{G}
-type=Creature
-subtype=Insect
-power=6
-toughness=1
-abilities=shroud
-[/card]
-[card]
 id=39423
 name=Glarecaster
 mana={4}{W}{W}
