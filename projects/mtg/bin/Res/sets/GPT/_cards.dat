@@ -471,8 +471,8 @@ name=Stomping Ground
 rarity=R
 auto=tap
 auto=may untap && life:-2 controller
-auto={T}:Add {U}
 auto={T}:Add {R}
+auto={T}:Add {G}
 type=Land
 subtype=Mountain Forest
 [/card]
