@@ -228,6 +228,8 @@ toughness=5
 [card]
 text=You may remove a red card in your hand from the game rather than pay Cave-In's mana cost.       Cave-In deals 2 damage to each creature and each player.
 id=19725
+autohand={S}:moveTo(exile) target(*[red]|myhand) && damage:2 all(creature,player)
+###Din't add the card because it can't be countered when when using the autohand-line...
 name=Cave-In
 rarity=R
 type=Sorcery
@@ -969,7 +971,6 @@ toughness=7
 text=Lunge deals 2 damage to target creature and 2 damage to target player.
 id=19617
 target=creature
-auto=damage:2 && damage:2 targetController
 name=Lunge
 rarity=C
 type=Instant
@@ -1107,7 +1108,6 @@ toughness=2
 [/card]
 [card]
 text=Whenever a creature you control deals combat damage, you gain that much life.
-auto=lord(creature|myinplay)lifelink
 id=19786
 name=Noble Purpose
 rarity=U

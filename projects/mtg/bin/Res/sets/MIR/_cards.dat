@@ -389,6 +389,16 @@ rarity=U
 mana={4}
 [/card]
 [card]
+text=Choose one - Energy Bolt deals X damage to target player; or target player gains X life.
+id=3534
+auto=may damage:X target(player)
+auto=may life:X target(player)
+name=Energy Bolt
+rarity=R
+mana={X}{R}{W}
+type=Sorcery
+[/card]
+[card]
 text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.)   Enchanted creature gets -2/-2.
 id=3290 
 name=Enfeeblement
@@ -1133,6 +1143,15 @@ mana={G}
 type=Instant
 [/card]
 [card]
+text=Savage Twister deals X damage to each creature.
+id=3551
+auto=damage:X all(creature)
+name=Savage Twister
+rarity=U
+mana={X}{R}{G}
+type=Sorcery
+[/card]
+[card]
 text={T}: Add {1} to your mana pool.   {1}{T}: Add {U} to your mana pool.
 id=3361 
 name=Sea Scryer
@@ -1359,6 +1378,16 @@ mana={1}{G}
 type=Instant
 [/card]
 [card]
+text=Tropical Storm deals X damage to each creature with flying and 1 additional damage to each blue creature.
+id=3415
+auto=damage:X all(creature[flying])
+auto=damage:1 all(creature[blue])
+name=Tropical Storm
+rarity=U
+mana={X}{G}
+type=Sorcery
+[/card]
+[card]
 text=Flying   {3}{G}, Sacrifice Uktabi Faerie: Destroy target artifact.
 id=3416 
 name=Uktabi Faerie
@@ -1421,6 +1450,18 @@ toughness=2
 abilities=flying
 [/card]
 [card]
+text=Sacrifice Vigilant Martyr: Regenerate target creature.     {W}{W}, {T}, Sacrifice Vigilant Martyr: Counter target spell that targets an enchantment.
+id=3520
+name=Vigilant Martyr
+rarity=U
+mana={W}
+type=Creature
+subtype=Human Cleric
+auto={S}:regenerate target(creature)
+power=1
+toughness=1
+[/card]
+[card]
 text={G}, {T}, Sacrifice a Forest: Regenerate target creature.
 id=3420
 name=Village Elder
@@ -1443,6 +1484,26 @@ power=4
 toughness=2
 [/card]
 [card]
+text=You gain X plus 3 life.
+id=3557
+auto=life:3
+auto=life:X
+name=Vitalizing Cascade
+rarity=U
+mana={X}{G}{W}
+type=Instant
+[/card]
+[card]
+text=Volcanic Geyser deals X damage to target creature or player.
+id=3473
+target=creature,player
+auto=damage:X
+name=Volcanic Geyser
+rarity=U
+mana={X}{R}{R}
+type=Instant
+[/card]
+[card]
 text=Flying,haste
 id=3472 
 name=Volcanic Dragon
@@ -1453,6 +1514,19 @@ subtype=Dragon
 power=4
 toughness=4
 abilities=flying,haste
+[/card]
+[card]
+text=Defender   Put a -0/-1 counter on Wall of Roots: Add {G} to your mana pool. Play this ability only once each turn.
+id=3422
+name=Wall of Roots
+rarity=C
+mana={1}{G}
+type=Creature
+subtype=Plant Wall
+auto={0}:counter(-0/-1,1) && Add{G} limit:1
+power=0
+toughness=5
+abilities=defender
 [/card]
 [card]
 text=Trample

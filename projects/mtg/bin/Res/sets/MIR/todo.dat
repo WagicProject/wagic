@@ -524,14 +524,6 @@ subtype=Djinn
 toughness=4
 [/card]
 [card]
-text=Choose one - Energy Bolt deals X damage to target player; or target player gains X life.
-id=3534
-name=Energy Bolt
-rarity=R
-type=Sorcery
-mana={X}{R}{W}
-[/card]
-[card]
 text=As Energy Vortex comes into play, choose an opponent.       At the beginning of your upkeep, remove all energy counters from Energy Vortex.       At the beginning of the chosen player's upkeep, Energy Vortex deals 3 damage to that player unless he or she pays {1} for each energy counter on Energy Vortex.       {X}: Put X energy counters on Energy Vortex. Play this ability only during your upkeep.
 id=3335
 name=Energy Vortex
@@ -1432,14 +1424,6 @@ type=Instant
 mana={U}
 [/card]
 [card]
-text=Savage Twister deals X damage to each creature.
-id=3551
-name=Savage Twister
-rarity=U
-type=Sorcery
-mana={X}{R}{G}
-[/card]
-[card]
 text={4}: Sawback Manticore gains flying until end of turn.     {1}: Sawback Manticore deals 2 damage to target attacking or blocking creature. Play this ability only if Sawback Manticore is attacking or blocking and only once each turn.
 id=3552
 name=Sawback Manticore
@@ -1610,14 +1594,6 @@ subtype=Cat
 toughness=3
 [/card]
 [card]
-text=Destroy target land.
-id=3465
-name=Stone Rain
-rarity=C
-type=Sorcery
-mana={2}{R}
-[/card]
-[card]
 text=Target opponent discards a card at random, then discards a card.
 id=3316
 name=Stupor
@@ -1773,14 +1749,6 @@ type=Sorcery
 mana={X}{R}{R}
 [/card]
 [card]
-text=Tropical Storm deals X damage to each creature with flying and 1 additional damage to each blue creature.
-id=3415
-name=Tropical Storm
-rarity=U
-type=Sorcery
-mana={X}{G}
-[/card]
-[card]
 text={3}, {T}, Tap an untapped creature you control: Unerring Sling deals damage equal to the tapped creature's power to target attacking or blocking creature with flying.
 id=3270
 name=Unerring Sling
@@ -1827,33 +1795,6 @@ type=Artifact
 mana={3}
 [/card]
 [card]
-text=Sacrifice Vigilant Martyr: Regenerate target creature.     {W}{W}, {T}, Sacrifice Vigilant Martyr: Counter target spell that targets an enchantment.
-id=3520
-name=Vigilant Martyr
-rarity=U
-type=Creature
-mana={W}
-power=1
-subtype=Human Cleric
-toughness=1
-[/card]
-[card]
-text=You gain X plus 3 life.
-id=3557
-name=Vitalizing Cascade
-rarity=U
-type=Instant
-mana={X}{G}{W}
-[/card]
-[card]
-text=Volcanic Geyser deals X damage to target creature or player.
-id=3473
-name=Volcanic Geyser
-rarity=U
-type=Instant
-mana={X}{R}{R}
-[/card]
-[card]
 text=Each player puts a 1/1 green Cat creature token into play for each untapped Forest he or she controls.
 id=3421
 name=Waiting in the Weeds
@@ -1882,17 +1823,6 @@ mana={1}{W}
 power=0
 subtype=Wall
 toughness=3
-[/card]
-[card]
-text=Defender     Put a -0/-1 counter on Wall of Roots: Add {G} to your mana pool. Play this ability only once each turn.
-id=3422
-name=Wall of Roots
-rarity=C
-type=Creature
-mana={1}{G}
-power=0
-subtype=Plant Wall
-toughness=5
 [/card]
 [card]
 text=You may play Ward of Lights any time you could play an instant. If it was played any time a sorcery couldn't have been played, it gains substance until end of turn and when it loses substance, sacrifice it.     Enchant creature     As Ward of Lights comes into play, choose a color.     Enchanted creature has protection from the chosen color. This effect doesn't remove Ward of Lights.
