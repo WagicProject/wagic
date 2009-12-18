@@ -56,7 +56,7 @@ power=2
 toughness=2
 text=Flying Reinforce 2—{2}{W} ({2}{W}, Discard this card: Put two +1/+1 counters on target creature.)
 abilities=flying
-autohand={2}{W}{S}:counter(1/1,2) target(creature
+autohand={2}{W}{S}:counter(1/1,2) target(creature)
 rarity=C
 [/card]
 [card]
