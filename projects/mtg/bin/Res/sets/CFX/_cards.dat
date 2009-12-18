@@ -916,6 +916,19 @@ mana={1}{R}{R}
 abilities=nofizzle
 [/card]
 [card]
+text=Flying   You may cast Worldheart Phoenix from your graveyard by paying {W}{U}{B}{R}{G} rather than paying its mana cost. If you do, it enters the battlefield with two +1/+1 counters on it.
+id=175401
+name=Worldheart Phoenix
+rarity=R
+mana={3}{R}
+type=Creature
+subtype=Phoenix
+autograveyard={W}{U}{B}{R}{G}:moveTo(myBattlefield) && counter(1/1,2)
+power=2
+toughness=2
+abilities=flying
+[/card]
+[card]
 text=Enchant creature   When a creature is put into a graveyard from the battlefield, destroy enchanted creature.
 target=creature
 auto=@movedTo(creature|graveyard) from(battlefield):destroy

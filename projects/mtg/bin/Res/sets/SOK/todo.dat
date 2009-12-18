@@ -342,39 +342,6 @@ subtype=Aura
 rarity=C
 [/card]
 [card]
-text={2}{G}, {T}: Target creature gets +2/+2 until end of turn. Channel — {3}{G}, Discard Ghost-Lit Nourisher: Target creature gets +4/+4 until end of turn.
-name=Ghost-Lit Nourisher
-id=74068
-mana={2}{G}
-type=Creature
-subtype=Spirit
-power=2
-toughness=1
-rarity=U
-[/card]
-[card]
-text={2}{R}, {T}: Ghost-Lit Raider deals 2 damage to target creature. Channel — {3}{R}, Discard Ghost-Lit Raider: Ghost-Lit Raider deals 4 damage to target creature.
-name=Ghost-Lit Raider
-id=87341
-mana={2}{R}
-type=Creature
-subtype=Spirit
-power=2
-toughness=1
-rarity=U
-[/card]
-[card]
-text={W}, {T}: You gain 2 life. Channel — {1}{W}, Discard Ghost-Lit Redeemer: You gain 4 life.
-name=Ghost-Lit Redeemer
-id=74082
-mana={W}
-type=Creature
-subtype=Spirit
-power=1
-toughness=1
-rarity=U
-[/card]
-[card]
 text={4}{B}, {T}: Target player discards two cards. Activate this ability only any time you could cast a sorcery. Channel — {5}{B}{B}, Discard Ghost-Lit Stalker: Target player discards four cards. Activate this ability only any time you could cast a sorcery.
 name=Ghost-Lit Stalker
 id=74401
@@ -1111,39 +1078,6 @@ subtype=Arcane
 rarity=U
 [/card]
 [card]
-text=Shinen of Fear's Chill can't block. Channel — {1}{B}, Discard Shinen of Fear's Chill: Target creature can't block this turn.
-name=Shinen of Fear's Chill
-id=88812
-mana={4}{B}
-type=Creature
-subtype=Spirit
-power=3
-toughness=2
-rarity=C
-[/card]
-[card]
-text=Flying Channel — {U}, Discard Shinen of Flight's Wings: Target creature gains flying until end of turn.
-name=Shinen of Flight's Wings
-id=74088
-mana={4}{U}
-type=Creature
-subtype=Spirit
-power=3
-toughness=3
-rarity=C
-[/card]
-[card]
-text=Haste Channel — {R}, Discard Shinen of Fury's Fire: Target creature gains haste until end of turn.
-name=Shinen of Fury's Fire
-id=87339
-mana={2}{R}
-type=Creature
-subtype=Spirit
-power=2
-toughness=1
-rarity=C
-[/card]
-[card]
 text=All creatures able to block Shinen of Life's Roar do so. Channel — {2}{G}{G}, Discard Shinen of Life's Roar: All creatures able to block target creature this turn do so.
 name=Shinen of Life's Roar
 id=74017
@@ -1152,17 +1086,6 @@ type=Creature
 subtype=Spirit
 power=1
 toughness=2
-rarity=C
-[/card]
-[card]
-text=First strike Channel — {1}{W}, Discard Shinen of Stars' Light: Target creature gains first strike until end of turn.
-name=Shinen of Stars' Light
-id=74361
-mana={2}{W}
-type=Creature
-subtype=Spirit
-power=2
-toughness=1
 rarity=C
 [/card]
 [card]

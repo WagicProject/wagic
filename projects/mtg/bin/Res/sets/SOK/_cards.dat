@@ -147,6 +147,45 @@ alias=129750
 rarity=U
 [/card]
 [card]
+text={2}{G}, {T}: Target creature gets +2/+2 until end of turn.   Channel — {3}{G}, Discard Ghost-Lit Nourisher: Target creature gets +4/+4 until end of turn.
+name=Ghost-Lit Nourisher
+id=74068
+rarity=U
+mana={2}{G}
+type=Creature
+subtype=Spirit
+auto={2}{G}{T}:2/2 target(creature)
+autohand={3}{G}{S}:4/4 target(creature)
+power=2
+toughness=1
+[/card]
+[card]
+text={2}{R}, {T}: Ghost-Lit Raider deals 2 damage to target creature.   Channel — {3}{R}, Discard Ghost-Lit Raider: Ghost-Lit Raider deals 4 damage to target creature.
+name=Ghost-Lit Raider
+id=87341
+rarity=U
+mana={2}{R}
+type=Creature
+subtype=Spirit
+auto={2}{R}{T}:damage:2 target(creature)
+autohand={3}{R}{S}:damage:4 target(creature)
+power=2
+toughness=1
+[/card]
+[card]
+text={W}, {T}: You gain 2 life.   Channel — {1}{W}, Discard Ghost-Lit Redeemer: You gain 4 life.
+name=Ghost-Lit Redeemer
+id=74082
+rarity=U
+mana={W}
+type=Creature
+subtype=Spirit
+auto={W}{T}:life:2
+autohand={1}{W}{S}:life:4
+power=1
+toughness=1
+[/card]
+[card]
 text=Haste At the beginning of the end step, return Glitterfang to its owner's hand.
 name=Glitterfang
 id=89402
@@ -428,6 +467,58 @@ id=88811
 mana={2}
 type=Artifact
 rarity=R
+[/card]
+[card]
+text=Shinen of Fear's Chill can't block.   Channel — {1}{B}, Discard Shinen of Fear's Chill: Target creature can't block this turn.
+name=Shinen of Fear's Chill
+id=88812
+rarity=C
+mana={4}{B}
+type=Creature
+subtype=Spirit
+autohand={1}{B}{S}:cantblock target(creature)
+power=3
+toughness=2
+abilities=cantblock
+[/card]
+[card]
+text=Flying   Channel — {U}, Discard Shinen of Flight's Wings: Target creature gains flying until end of turn.
+name=Shinen of Flight's Wings
+id=74088
+rarity=C
+mana={4}{U}
+type=Creature
+subtype=Spirit
+autohand={U}{S}:flying target(creature)
+power=3
+toughness=3
+abilities=flying
+[/card]
+[card]
+text=Haste   Channel — {R}, Discard Shinen of Fury's Fire: Target creature gains haste until end of turn.
+name=Shinen of Fury's Fire
+id=87339
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Spirit
+autohand={R}{S}:haste target(creature)
+power=2
+toughness=1
+abilities=haste
+[/card]
+[card]
+text=First strike   Channel — {1}{W}, Discard Shinen of Stars' Light: Target creature gains first strike until end of turn.
+name=Shinen of Stars' Light
+id=74361
+rarity=C
+mana={2}{W}
+type=Creature
+subtype=Spirit
+autohand={1}{W}{S}:first strike target(creature)
+power=2
+toughness=1
+abilities=first strike
 [/card]
 [card]
 text=Flying Soramaro, First to Dream's power and toughness are each equal to the number of cards in your hand. {4}, Return a land you control to its owner's hand: Draw a card.

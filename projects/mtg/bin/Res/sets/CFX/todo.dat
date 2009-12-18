@@ -661,17 +661,6 @@ subtype=Cat
 toughness=4
 [/card]
 [card]
-text=Flying     You may play Worldheart Phoenix from your graveyard by paying {W}{U}{B}{R}{G} rather than paying its mana cost. If you do, it comes into play with two +1/+1 counters on it.
-id=175401
-name=Worldheart Phoenix
-rarity=R
-type=Creature
-mana={3}{R}
-power=2
-subtype=Phoenix
-toughness=2
-[/card]
-[card]
 text=Domain - Look at the top X cards of your library, where X is the number of basic land types among lands you control. Put one of those cards into your hand and the rest on the bottom of your library in any order.
 id=142298
 name=Worldly Counsel
