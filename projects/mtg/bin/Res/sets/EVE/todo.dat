@@ -47,7 +47,6 @@ power=4
 subtype=Elemental Shaman
 toughness=4
 [/card]
-
 [card]
 text=Until end of turn, target creature gains "{T}: Return target nonland permanent to its owner's hand."
 id=154350
@@ -98,15 +97,6 @@ subtype=Merfolk Rogue
 toughness=4
 [/card]
 [card]
-text=Put a 5/5 blue and red Elemental creature token with flying into play.     Retrace (You may play this card from your graveyard by discarding a land card in addition to paying its other costs.)
-abilities=retrace
-id=157400
-name=Call the Skybreaker
-rarity=R
-type=Sorcery
-mana={5}{UR}{UR}
-[/card]
-[card]
 text=As Canker Abomination comes into play, choose an opponent. Canker Abomination comes into play with a -1/-1 counter on it for each creature that player controls.
 id=152033
 name=Canker Abomination
@@ -124,14 +114,6 @@ name=Cankerous Thirst
 rarity=U
 type=Instant
 mana={3}{BG}
-[/card]
-[card]
-text=Put two 1/1 white Kithkin Soldier creature tokens into play.     Retrace (You may play this card from your graveyard by discarding a land card in addition to paying its other costs.)
-id=153469
-name=Cenn's Enlistment
-rarity=C
-type=Sorcery
-mana={3}{W}
 [/card]
 [card]
 text=Enchant creature     As long as enchanted creature is blue, it gets +1/+1 and has shroud. (It can't be the target of spells or abilities.)  As long as enchanted creature is red, it gets +1/+1 and has haste.
@@ -341,17 +323,6 @@ name=Fire at Will
 rarity=C
 type=Instant
 mana={RW}{RW}{RW}
-[/card]
-[card]
-text=Flame Jab deals 1 damage to target creature or player.     Retrace (You may play this card from your graveyard by discarding a land card in addition to paying its other costs.)
-target=player,creature
-abilities=retrace
-auto=damage:1
-id=153432
-name=Flame Jab
-rarity=C
-type=Sorcery
-mana={R}
 [/card]
 [card]
 text=Flying     When Flickerwisp comes into play, remove another target permanent from the game. Return that card to play under its owner's control at end of turn.
@@ -601,17 +572,6 @@ type=Instant
 mana={2}{RW}
 [/card]
 [card]
-text=Target creature gets +4/+4 until end of turn.     Retrace (You may play this card from your graveyard by discarding a land card in addition to paying its other costs.)
-target=creature
-auto=4/4
-abilities=retrace
-id=153441
-name=Monstrify
-rarity=C
-type=Sorcery
-mana={3}{G}
-[/card]
-[card]
 text=Wither (This deals damage to creatures in the form of -1/-1 counters.)  Whenever a creature an opponent controls with a -1/-1 counter on it is put into a graveyard, you may return that card to play under your control.
 abilities=wither
 id=152080
@@ -688,16 +648,6 @@ mana={4}{UR}{UR}
 power=4
 subtype=Beast
 toughness=4
-[/card]
-[card]
-text=Target player draws a card.     Retrace (You may play this card from your graveyard by discarding a land card in addition to paying its other costs.)
-target=player
-abilities=retrace
-id=153475
-name=Oona's Grace
-rarity=C
-type=Instant
-mana={2}{U}
 [/card]
 [card]
 text=Chroma - When Outrage Shaman comes into play, it deals damage to target creature equal to the number of red mana symbols in the mana costs of permanents you control.
@@ -822,16 +772,6 @@ subtype=Treefolk Shaman
 toughness=5
 [/card]
 [card]
-text=Put a 3/3 green Beast creature token into play.     Retrace (You may play this card from your graveyard by discarding a land card in addition to paying its other costs.)
-abilities=retrace
-id=153438
-name=Savage Conception
-rarity=U
-type=Sorcery
-mana={3}{G}{G}
-[/card]
-
-[card]
 text=Enchant creature     As long as enchanted creature is red, it gets +1/+1 and has "{RW}: This creature gets +1/+0 until end of turn."     As long as enchanted creature is white, it gets +1/+1 and has lifelink. (Whenever it deals damage, its controller gains that much life.)
 target=creature
 id=152015
@@ -955,7 +895,6 @@ power=2
 subtype=Elemental Shaman
 toughness=2
 [/card]
-
 [card]
 text={GU}{GU}: Target creature you control becomes the color or colors of your choice until end of turn.
 id=154348
@@ -966,16 +905,6 @@ mana={2}{G}{G}
 power=3
 subtype=Goblin Shaman
 toughness=3
-[/card]
-[card]
-text=Target player loses 2 life and you gain 2 life.     Retrace (You may play this card from your graveyard by discarding a land card in addition to paying its other costs.)
-abilities=retrace
-target=player
-id=153447
-name=Syphon Life
-rarity=U
-type=Sorcery
-mana={1}{B}{B}
 [/card]
 [card]
 text=Target opponent reveals his or her hand. Choose a green or white creature card from it. You gain life equal that creature card's toughness, then that player discards that card.
@@ -1091,13 +1020,4 @@ mana={1}{BG}
 power=2
 subtype=Shapeshifter
 toughness=1
-[/card]
-[card]
-text=Put a 1/1 black and green Worm creature token into play for each land card in your graveyard.     Retrace (You may play this card from your graveyard by discarding a land card in addition to paying its other costs.)
-abilities=retrace
-id=151135
-name=Worm Harvest
-rarity=R
-type=Sorcery
-mana={2}{BG}{BG}{BG}
 [/card]
