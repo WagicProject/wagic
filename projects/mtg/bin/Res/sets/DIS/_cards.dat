@@ -147,7 +147,7 @@ abilities=flying
 [/card]
 [card]
 text=Whenever Paladin of Prahv deals damage, you gain that much life.   Forecast - {1}{W}, Reveal Paladin of Prahv from your hand: Whenever target creature deals damage this turn, you gain that much life. (Activate this ability only during your upkeep and only once each turn.)
-autohand={1}{W}:lifelink target(creature) limit:1 myTurnOnly
+autohand={1}{W}:lifelink target(creature) limit:1 myUpkeepOnly
 id=107433
 name=Paladin of Prahv
 rarity=U

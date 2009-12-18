@@ -308,7 +308,7 @@ subtype=Aura
 [/card]
 [card]
 text={3}{B}{B}, Sacrifice a creature: Return Necrosavant from your graveyard to the battlefield. Activate this ability only during your upkeep.
-autograveyard={3}{B}{B}{S(creature|myBattlefield)}:moveTo(myBattlefield) myTurnOnly
+autograveyard={3}{B}{B}{S(creature|myBattlefield)}:moveTo(myBattlefield) myUpkeepOnly
 rarity=R
 id=3622
 name=Necrosavant

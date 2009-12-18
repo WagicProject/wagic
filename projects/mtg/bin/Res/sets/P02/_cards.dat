@@ -681,7 +681,7 @@ subtype=Elf Druid
 power=1
 toughness=1
 text={T}: You may put a green creature card from your hand onto the battlefield. Activate this ability only during your turn, before attackers are declared.
-auto={T}:may moveTo(myBattlefield) target(creature[green]|myHand) myTurnOnly
+auto={T}:moveTo(myBattlefield) target(creature[green]|myHand) myTurnOnly
 rarity=R
 [/card]
 [card]
