@@ -99,7 +99,6 @@ void GuiHandSelf::Repos()
   if (Closed == state && OptionClosedHand::VISIBLE == options[Options::CLOSEDHAND].number)
     {
       float dist = 180.0 / cards.size(); if (dist > 20) dist = 20.0; else y = 40.0;
-      cout << dist << endl;
       for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
         {
           (*it)->x = ClosedRowX; (*it)->y = y;
