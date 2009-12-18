@@ -404,6 +404,7 @@ OptionDirectory::OptionDirectory(string root, int id, string displayValue, strin
     sprintf(buf,"%s/%s/%s", root.c_str(), mDit->d_name, type.c_str());
     std::ifstream file(buf);
     if (!file) continue;
+    file.close();
     addSelection(mDit->d_name);
   }
 
