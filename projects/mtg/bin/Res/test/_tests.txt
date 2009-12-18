@@ -238,6 +238,7 @@ immaculate_magistrate.txt
 instill_energy_i166.txt
 jodahs_avenger.txt
 jump.txt
+karns_touch_i233.txt
 keldon_warlord.txt
 keldon_warlord2.txt
 kird_ape.txt

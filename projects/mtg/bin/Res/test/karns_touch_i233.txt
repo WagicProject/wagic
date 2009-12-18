@@ -18,7 +18,7 @@ Jayemdae Tome
 [ASSERT]
 firstmain
 [PLAYER1]
-graveyard:Karn's Touch,Swords to Plowshares,Jayemdae Tome
+graveyard:Karn's Touch,Swords to Plowshares
 life:24
 [PLAYER2]
 [END]
