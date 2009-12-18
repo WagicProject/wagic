@@ -87,17 +87,6 @@ text=Elemental spells and Warrior spells you cast cost {1} less to cast. Reinfor
 rarity=C
 [/card]
 [card]
-id=152694
-name=Burrenton Bombardier
-mana={2}{W}
-type=Creature
-subtype=Kithkin Soldier
-power=2
-toughness=2
-text=Flying Reinforce 2—{2}{W} ({2}{W}, Discard this card: Put two +1/+1 counters on target creature.)
-rarity=C
-[/card]
-[card]
 id=152668
 name=Burrenton Shield-Bearers
 mana={4}{W}
@@ -229,14 +218,6 @@ mana={4}
 type=Artifact
 text=As Door of Destinies enters the battlefield, choose a creature type. Whenever you cast a spell of the chosen type, put a charge counter on Door of Destinies. Creatures you control of the chosen type get +1/+1 for each charge counter on Door of Destinies.
 rarity=R
-[/card]
-[card]
-id=152710
-name=Earthbrawn
-mana={1}{G}
-type=Instant
-text=Target creature gets +3/+3 until end of turn. Reinforce 1—{1}{G} ({1}{G}, Discard this card: Put a +1/+1 counter on target creature.)
-rarity=C
 [/card]
 [card]
 id=153135
@@ -419,17 +400,6 @@ text=Enchant land Enchanted land has "{T}: Target creature can't block this turn
 rarity=C
 [/card]
 [card]
-id=152963
-name=Hunting Triad
-mana={3}{G}
-type=Tribal Sorcery
-subtype=Elf
-text=Put three 1/1 green Elf Warrior creature tokens onto the battlefield. Reinforce 3—{3}{G} ({3}{G}, Discard this card: Put three +1/+1 counters on target creature.)
-rarity=U
-[/card]
-
-
-[card]
 id=152736
 name=Ink Dissolver
 mana={1}{U}
@@ -596,17 +566,6 @@ mana={2}{B}{B}
 type=Tribal Sorcery
 subtype=Rogue
 text=Prowl {1}{B} (You may cast this for its prowl cost if you dealt combat damage to a player this turn with a Rogue.) Target player loses 3 life and you gain 3 life. If Morsel Theft's prowl cost was paid, draw a card.
-rarity=C
-[/card]
-[card]
-id=152585
-name=Mosquito Guard
-mana={W}
-type=Creature
-subtype=Kithkin Soldier
-power=1
-toughness=1
-text=First strike Reinforce 1—{1}{W} ({1}{W}, Discard this card: Put a +1/+1 counter on target creature.)
 rarity=C
 [/card]
 [card]
@@ -897,11 +856,15 @@ text=Choose a creature type. Roar of the Crowd deals damage to target creature o
 rarity=C
 [/card]
 [card]
+#require testing
 id=153460
 name=Rustic Clachan
-mana=
 type=Land
 text=As Rustic Clachan enters the battlefield, you may reveal a Kithkin card from your hand. If you don't, Rustic Clachan enters the battlefield tapped. {T}: Add {W} to your mana pool. Reinforce 1—{1}{W} ({1}{W}, Discard this card: Put a +1/+1 counter on target creature.)
+auto=tap
+auto=aslongas(kithkin|myHand)untap
+auto={T}:add{W}
+autohand={1}{W}{S}:counter(1/1,1) target(creature)
 rarity=R
 [/card]
 [card]
@@ -1126,6 +1089,9 @@ mana={3}{W}{W}
 type=Instant
 text=Creatures you control get +2/+2 until end of turn. Reinforce X—{X}{W}{W} ({X}{W}{W}, Discard this card: Put X +1/+1 counters on target creature.)
 rarity=U
+auto=lord(creature|myBattlefield)2/2
+autohand={X}{W}{W}{S}:counter(1/1,x) target(creature)
+#Counter does not accept x value
 [/card]
 [card]
 id=153452
