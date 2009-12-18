@@ -154,14 +154,14 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
       playerdata->taskList->addRandomTask();
       playerdata->taskList->addRandomTask();
     }
-    playerdata->save();
-    SAFE_DELETE(playerdata);
 
   }else{
     unlocked = 0;
     playerdata->taskList->passOneDay();
-    playerdata->taskList->save();
   }
+
+  playerdata->save();
+  SAFE_DELETE(playerdata);
 }
 
 void Credits::Render(){
