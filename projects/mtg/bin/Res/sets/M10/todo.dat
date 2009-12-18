@@ -9,7 +9,6 @@ toughness=2
 text=Deathtouch (Creatures dealt damage by this creature are destroyed. You can divide this creature's combat damage among any of the creatures blocking or blocked by it.) When Acidic Slime enters the battlefield, destroy target artifact, enchantment, or land.
 rarity=U
 [/card]
-
 [card]
 id=191239
 name=Ajani Goldmane
@@ -30,7 +29,6 @@ toughness=1
 text=When Awakener Druid enters the battlefield, target Forest becomes a 4/5 green Treefolk creature for as long as Awakener Druid is on the battlefield. It's still a land.
 rarity=U
 [/card]
-
 [card]
 id=191340
 name=Bogardan Hellkite
@@ -102,7 +100,6 @@ text=Trample Darksteel Colossus is indestructible. If Darksteel Colossus would b
 rarity=M
 abilities=indestructible
 [/card]
-
 [card]
 id=190198
 name=Djinn of Wishes
@@ -166,7 +163,6 @@ type=Land
 text=Glacial Fortress enters the battlefield tapped unless you control a Plains or an Island. {T}: Add {W} or {U} to your mana pool.
 rarity=R
 [/card]
-
 [card]
 id=193766
 name=Guardian Seraph
@@ -292,17 +288,6 @@ auto={2}:equip
 auto=-flying
 auto=2/4
 auto=preventallcombatdamage to(mytgt)
-rarity=R
-[/card]
-[card]
-id=191397
-name=Magma Phoenix
-mana={3}{R}{R}
-type=Creature
-subtype=Phoenix
-power=3
-toughness=3
-text=Flying When Magma Phoenix is put into a graveyard from the battlefield, it deals 3 damage to each creature and each player. {3}{R}{R}: Return Magma Phoenix from your graveyard to your hand.
 rarity=R
 [/card]
 [card]

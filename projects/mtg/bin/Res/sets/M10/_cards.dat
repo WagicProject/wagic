@@ -1088,6 +1088,20 @@ auto={B}:1/1
 rarity=C
 [/card]
 [card]
+text=Flying   When Magma Phoenix is put into a graveyard from the battlefield, it deals 3 damage to each creature and each player.   {3}{R}{R}: Return Magma Phoenix from your graveyard to your hand.
+id=191397
+auto=@moveTo(this|graveyard) from(myBattlefield):damage:3 all(creature,player)
+autograveyard={3}{R}{R}:moveTo(myhand)
+name=Magma Phoenix
+rarity=R
+mana={3}{R}{R}
+type=Creature
+subtype=Phoenix
+power=3
+toughness=3
+abilities=flying
+[/card]
+[card]
 id=189904
 name=Megrim
 mana={2}{B}
