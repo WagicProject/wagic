@@ -43,12 +43,12 @@ type=Land
 [card]
 text=Exile all permanents. You discard your hand.
 id=4802
+auto=moveTo(exile) all(*|battlefield)
+auto=moveTo(mygraveyard) all(*|myhand)
 name=Apocalypse
 rarity=R
 mana={2}{R}{R}{R}
 type=Sorcery
-auto=moveTo(exile) all(*|battlefield)
-auto=moveTo(mygraveyard) all(*|myhand)
 [/card]
 [card]
 text=Flying
@@ -259,13 +259,13 @@ type=Enchantment
 [/card]
 [card]
 text=All Sliver creatures have "{2}: Regenerate this permanent."
-auto=lord(sliver) {2}:regenerate
 id=4640
 name=Clot Sliver
 rarity=C
 mana={1}{B}
 type=Creature
 subtype=Sliver
+auto=lord(sliver) {2}:regenerate
 power=1
 toughness=1
 [/card]
@@ -421,7 +421,7 @@ text=Counter target spell.   Draw a card.
 id=4695
 target=*|stack
 auto=fizzle
-auto=draw:1
+auto=draw:1 controller
 name=Dismiss
 rarity=U
 mana={2}{U}{U}
@@ -603,7 +603,7 @@ subtype=Forest
 text=Enchant creature   When Frog Tongue enters the battlefield, draw a card.   Enchanted creature has reach. (It can block creatures with flying.)
 target=creature
 auto=reach
-auto=draw:1
+auto=draw:1 controller
 id=4762
 name=Frog Tongue
 rarity=C
@@ -615,7 +615,7 @@ subtype=Aura
 text=Target blocking creature gets +4/+4 until end of turn.   Draw a card.
 target=creature[blocking]
 auto=4/4
-auto=draw:1
+auto=draw:1 controller
 id=4876
 name=Gallantry
 rarity=U
@@ -672,8 +672,8 @@ id=4821
 name=Goblin Bombardment
 auto={S(creature|myBattlefield)}:damage:1 target(creature,player)
 rarity=U
-type=Enchantment
 mana={1}{R}
+type=Enchantment
 [/card]
 [card]
 text=When Gravedigger enters the battlefield, you may return target creature card from your graveyard to your hand.
@@ -698,7 +698,7 @@ type=Enchantment
 [/card]
 [card]
 text=Whenever an opponent casts a white spell, he or she loses 2 life.
-auto=@movedTo(*[white]|opponentStack): life:-2 opponent
+auto=@movedTo(*[white]|opponentStack):life:-2 opponent
 id=4823
 name=Havoc
 rarity=U
@@ -788,7 +788,7 @@ toughness=4
 [/card]
 [card]
 text=Whenever an opponent casts a green spell, you draw a card.
-auto=@movedTo(*[green]|opponentstack):draw:1
+auto=@movedTo(*[green]|opponentstack):draw:1 controller
 id=4705
 name=Insight
 rarity=U
@@ -849,8 +849,8 @@ auto=damage:2
 id=4826
 name=Kindle
 rarity=C
-type=Instant
 mana={1}{R}
+type=Instant
 [/card]
 [card]
 text=First strike   {W}{W}: Knight of Dawn gains protection from the color of your choice until end of turn.
@@ -1018,26 +1018,26 @@ toughness=2
 [/card]
 [card]
 text=Mogg Conscripts can't attack unless you've played a creature spell this turn.
-abilities=cantattack
-auto=@movedTo(creature|mystack):-cantattack ueot
 id=4831
 name=Mogg Conscripts
 rarity=C
 mana={R}
 type=Creature
 subtype=Goblin
+auto=@movedTo(creature|mystack):-cantattack ueot
 power=2
 toughness=2
+abilities=cantattack
 [/card]
 [card]
 text=Sacrifice Mogg Fanatic: Mogg Fanatic deals 1 damage to target creature or player.
 id=4832
 name=Mogg Fanatic
-auto={S}:damage:1 target(creature,player)
 rarity=C
 mana={R}
 type=Creature
 subtype=Goblin
+auto={S}:damage:1 target(creature,player)
 power=1
 toughness=1
 [/card]
@@ -1045,23 +1045,23 @@ toughness=1
 text=Sacrifice a Goblin: Target creature gets +1/+1 until end of turn.
 id=4833
 name=Mogg Raider
-auto={S(goblin|myBattlefield)}:1/1 target(creature)
 rarity=C
 mana={R}
 type=Creature
 subtype=Goblin
+auto={S(goblin|myBattlefield)}:1/1 target(creature)
 power=1
 toughness=1
 [/card]
 [card]
 text=Mogg Squad gets -1/-1 for each other creature on the battlefield.
-auto=foreach(creature|battlefield) -1/-1 other
 id=4834
 name=Mogg Squad
 rarity=U
 mana={1}{R}
 type=Creature
 subtype=Goblin
+auto=foreach(creature|battlefield) -1/-1 other
 power=3
 toughness=3
 [/card]
@@ -1104,12 +1104,12 @@ subtype=Mountain
 [card]
 text=All Sliver creatures get +1/+1.
 id=4772
-auto=lord(sliver) 1/1
 name=Muscle Sliver
 rarity=C
 mana={1}{G}
 type=Creature
 subtype=Sliver
+auto=lord(sliver) 1/1
 power=1
 toughness=1
 [/card]
@@ -1152,15 +1152,15 @@ mana={2}{G}{G}{G}
 type=Sorcery
 [/card]
 [card]
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature can't attack or block.
+text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.)   Enchanted creature can't attack or block.
 id=4892
-name=Pacifism
 target=creature
 auto=cantattack
 auto=cantblock
+name=Pacifism
 rarity=C
-type=Enchantment
 mana={1}{W}
+type=Enchantment
 subtype=Aura
 [/card]
 [card]
@@ -1179,19 +1179,19 @@ toughness=3
 text=Discard a card: Regenerate Patchwork Gnomes.
 id=4619
 name=Patchwork Gnomes
-auto={S(*|myhand)}:regenerate
 rarity=U
-type=Artifact Creature
 mana={3}
-power=2
+type=Artifact Creature
 subtype=Gnome
+auto={S(*|myhand)}:regenerate
+power=2
 toughness=1
 [/card]
 [card]
 text={2}, Discard a card: Put a 1/1 white Pegasus creature token with flying onto the battlefield.
+auto={2}{S(*|myhand)}:token(Pegasus,Pegasus Token Creature, 1/1,flying white)
 id=4893
 name=Pegasus Refuge
-auto={2}{s(*|myhand)}:token(Pegasus,Pegasus Token Creature, 1/1,flying white)
 rarity=R
 mana={3}{W}
 type=Enchantment
@@ -1650,6 +1650,19 @@ rarity=R
 type=Land
 [/card]
 [card]
+text={T}: You may put a land card from your hand onto the battlefield. Cast this ability only any time you could cast a sorcery.
+id=4790
+name=Skyshroud Ranger
+rarity=C
+mana={G}
+type=Creature
+subtype=Elf
+auto={T}:may moveTo(myBattlefield) target(land|myhand) myFirstmainOnly
+auto={T}:may moveTo(myBattlefield) target(land|myhand) mySecondmainOnly
+power=1
+toughness=1
+[/card]
+[card]
 text={1}{G}: Regenerate Skyshroud Troll.
 id=4791
 name=Skyshroud Troll
@@ -1848,24 +1861,24 @@ subtype=Swamp
 [card]
 text=All Sliver creatures have first strike.
 id=4908
-auto=lord(sliver) first strike
 name=Talon Sliver
 rarity=C
 mana={1}{W}
 type=Creature
 subtype=Sliver
+auto=lord(sliver) first strike
 power=1
 toughness=1
 [/card]
 [card]
-text=Shadow (This creature can block or be blocked by only creatures with shadow.)  {U}: Put Thalakos Mistfolk on top of its owner's library.
-auto={U}:moveTo(ownerLibrary)
+text=Shadow (This creature can block or be blocked by only creatures with shadow.)   {U}: Put Thalakos Mistfolk on top of its owner's library.
 id=4733
 name=Thalakos Mistfolk
 rarity=C
 mana={2}{U}
 type=Creature
 subtype=Thalakos Illusion
+auto={U}:moveTo(ownerLibrary)
 power=2
 toughness=1
 abilities=shadow

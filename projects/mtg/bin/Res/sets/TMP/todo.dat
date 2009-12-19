@@ -1224,17 +1224,6 @@ subtype=Bird
 toughness=2
 [/card]
 [card]
-text={T}: You may put a land card from your hand into play. Play this ability only any time you could play a sorcery.
-id=4790
-name=Skyshroud Ranger
-rarity=C
-type=Creature
-mana={G}
-power=1
-subtype=Elf
-toughness=1
-[/card]
-[card]
 text=Shadow (This creature can block or be blocked by only creatures with shadow.)  {0}: The next time Soltari Guerrillas would deal combat damage to defending player this turn, it deals that damage to target creature instead.
 id=4918
 name=Soltari Guerrillas
@@ -1405,7 +1394,6 @@ rarity=R
 type=Artifact
 mana={2}
 [/card]
-
 [card]
 text=Target player takes an extra turn after this one.
 id=4737
@@ -1418,7 +1406,6 @@ mana={3}{U}{U}
 text=Sacrifice two creatures: Put a 3/1 red Beast creature token named Carnivore into play.
 id=4854
 name=Tooth and Claw
-auto={s(creature|myinplay)},{s(creature|myinplay)}:token(Beast,Beast, 3/1, red) ## this refused to work
 rarity=R
 type=Enchantment
 mana={3}{R}
@@ -1453,7 +1440,6 @@ power=3
 subtype=Elephant
 toughness=3
 [/card]
-
 [card]
 text=Whenever a creature comes into play, Unstable Shapeshifter becomes a copy of that creature and gains this ability.
 id=4740
@@ -1472,7 +1458,6 @@ name=Vec Townships
 rarity=U
 type=Land
 [/card]
-
 [card]
 text={T}: Target creature's power or toughness becomes 1 until end of turn.
 id=4920
@@ -1493,7 +1478,6 @@ type=Enchantment
 mana={1}{U}
 subtype=Aura
 [/card]
-
 [card]
 text=Watchdog blocks each turn if able.     As long as Watchdog is untapped, all creatures attacking you get -1/-0.
 id=4634

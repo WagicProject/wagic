@@ -1,13 +1,13 @@
 [card]
+text=Landfall - Whenever a land enters the battlefield under your control, equipped creature gets +2/+2 until end of turn.   Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
 id=178135
+auto={1}:equip
+auto=@movedTo(land|myBattlefield):2/2 ueot
 name=Adventuring Gear
+rarity=C
 mana={1}
 type=Artifact
 subtype=Equipment
-text=Landfall - Whenever a land enters the battlefield under your control, equipped creature gets +2/+2 until end of turn. Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
-auto={1}:equip
-auto=@movedTo(land|myBattlefield):2/2 ueot
-rarity=C
 [/card]
 [card]
 text=Kicker {3} (You may pay an additional {3} as you cast this spell.)   AEther Figment is unblockable. If AEther Figment was kicked, it enters the battlefield with two +1/+1 counters on it.
@@ -170,7 +170,7 @@ auto=kicker token(Kor Soldier,Creature Kor Soldier,1/1,white)*6
 type=Sorcery
 [/card]
 [card]
-text=Haste {B}: Crypt Ripper gets +1/+1 until end of turn.
+text=Haste   {B}: Crypt Ripper gets +1/+1 until end of turn.
 id=178121
 name=Crypt Ripper
 rarity=C
@@ -234,7 +234,7 @@ mana={B}
 type=Instant
 [/card]
 [card]
-text=Flying   Landfall Whenever a land enters the battlefield under your control, you may put a 1/1 white Bird creature token with flying into the battlefield.
+text=Flying   Landfall - Whenever a land enters the battlefield under your control, you may put a 1/1 white Bird creature token with flying into the battlefield.
 id=190399
 name=Emeria Angel
 rarity=R
@@ -425,7 +425,7 @@ power=1
 toughness=1
 [/card]
 [card]
-text=Hagra Crocodile can't block. Landfall - Whenever a land enters the battlefield under your control, Hagra Crocodile gets +2/+2 until end of turn.
+text=Hagra Crocodile can't block.   Landfall - Whenever a land enters the battlefield under your control, Hagra Crocodile gets +2/+2 until end of turn.
 id=170998
 name=Hagra Crocodile
 rarity=C
@@ -477,7 +477,8 @@ toughness=1
 [card]
 text=Destroy target nonblack creature. Its controller loses 2 life.
 target=creature[-black]
-auto=destroy && life:-2 targetController
+auto=destroy
+auto=life:-2 targetController
 id=180435
 name=Hideous End
 rarity=C
@@ -500,14 +501,14 @@ toughness=1
 [card]
 text=Kicker {1}{U} (You may pay an additional {1}{U} as you cast this spell.)   Return target nonland permanent to its owner's hand. If Into the Roil was kicked, draw a card.
 id=178151
+target=*[-land]
+auto=moveTo(ownerhand)
 name=Into the Roil
 mana={1}{U}
 kicker={1}{U}
-target=*[-land]
-auto=moveTo(ownerhand)
-auto=kicker draw:1
-type=Instant
+auto=kicker draw:1 controller
 rarity=C
+type=Instant
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
@@ -777,7 +778,7 @@ mana={B}
 target=creature
 type=Enchantment
 subtype=Aura
-text=Enchant creature When enchanted creature is dealt damage, destroy it.
+text=Enchant creature   When enchanted creature is dealt damage, destroy it.
 auto=@damaged(mytgt):destroy(mytgt)
 rarity=C
 [/card]
@@ -803,7 +804,7 @@ toughness=4
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-auto={T}: Add {R}
+auto={T}:Add {R}
 id=195171
 name=Mountain
 rarity=L
@@ -812,7 +813,7 @@ subtype=Mountain
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-auto={T}: Add {R}
+auto={T}:Add {R}
 id=195178
 name=Mountain
 rarity=L
@@ -821,7 +822,7 @@ subtype=Mountain
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-auto={T}: Add {R}
+auto={T}:Add {R}
 id=195181
 name=Mountain
 rarity=L
@@ -830,7 +831,7 @@ subtype=Mountain
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-auto={T}: Add {R}
+auto={T}:Add {R}
 id=195184
 name=Mountain
 rarity=L
@@ -839,7 +840,7 @@ subtype=Mountain
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-auto={T}: Add {R}
+auto={T}:Add {R}
 id=201967
 name=Mountain
 rarity=L
@@ -848,7 +849,7 @@ subtype=Mountain
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-auto={T}: Add {R}
+auto={T}:Add {R}
 id=201968
 name=Mountain
 rarity=L
@@ -857,7 +858,7 @@ subtype=Mountain
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-auto={T}: Add {R}
+auto={T}:Add {R}
 id=201969
 name=Mountain
 rarity=L
@@ -866,7 +867,7 @@ subtype=Mountain
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-auto={T}: Add {R}
+auto={T}:Add {R}
 id=201970
 name=Mountain
 rarity=L
@@ -1227,16 +1228,16 @@ mana={2}{R}
 type=Instant
 [/card]
 [card]
-id=178134
-name=Spidersilk Net
-mana={0}
-type=Artifact
-subtype=Equipment
 text=Equipped creature gets +0/+2 and has reach. (It can block creatures with flying.) Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
+id=178134
 auto={2}:equip
 auto=reach
 auto=0/2
+name=Spidersilk Net
 rarity=C
+mana={0}
+type=Artifact
+subtype=Equipment
 [/card]
 [card]
 text=Spire Barrage deals damage to target creature or player equal to the number of Mountains you control.
@@ -1388,16 +1389,16 @@ auto=preventAllCombatDamage from(creature[-trample]) ueot
 rarity=C
 [/card]
 [card]
+text=Terra Stomper can't be countered. Trample
 id=186321
 name=Terra Stomper
+rarity=R
 mana={3}{G}{G}{G}
 type=Creature
 subtype=Beast
 power=8
 toughness=8
-text=Terra Stomper can't be countered. Trample
 abilities=nofizzle,trample
-rarity=R
 [/card]
 [card]
 text=Landfall - Whenever a land enters the battlefield under your control, Territorial Baloth gets +2/+2 until end of turn.
@@ -1412,37 +1413,36 @@ power=4
 toughness=4
 [/card]
 [card]
+text=Search your library for a Trap card, reveal it, and put it into your hand. Then shuffle your library.
 id=192223
+target=trap|mylibrary
+auto=moveTo(myhand)
 name=Trapmaker's Snare
 rarity=U
 mana={1}{U}
 type=Instant
-text=Search your library for a Trap card, reveal it, and put it into your hand. Then shuffle your library.
-#most usless card since no trap card can be coded yet
-target=trap|mylibrary
-auto=moveTo(myhand)
 [/card]
 [card]
+text=Equipped creature has nonbasic landwalk. (It's unblockable as long as defending player controls a nonbasic land.)   Equip {2}
 id=190410
+auto={2}:equip
+auto=aslongas(land[-basic]|opponentBattlefield) unblockable
 name=Trailblazer's Boots
+rarity=U
 mana={2}
 type=Artifact
 subtype=Equipment
-text=Equipped creature has nonbasic landwalk. (It's unblockable as long as defending player controls a nonbasic land.) Equip {2}
-auto={2}:equip
-auto=aslongas(land[-basic]|opponentBattlefield) unblockable
-rarity=U
 [/card]
 [card]
+text=Equipped creature gets +2/+1. Equip {2}
 id=193396
+auto={2}:equip
+auto=2/1
 name=Trusty Machete
+rarity=U
 mana={1}
 type=Artifact
 subtype=Equipment
-text=Equipped creature gets +2/+1. Equip {2}
-auto={2}:equip
-auto=2/1
-rarity=U
 [/card]
 [card]
 text=Haste   Whenever Tuktuk Grunts or another Ally enters the battlefield under your control, you may put a +1/+1 counter on Tuktuk Grunts.
@@ -1501,14 +1501,14 @@ abilities=flying,deathtouch,lifelink
 [card]
 text=Kicker {2}{B} (You may pay an additional {2}{B} as you cast this spell.)   Target creature gets +3/+0 until end of turn. If Vampire's Bite was kicked, that creature gains lifelink until end of turn. (Damage dealt by the creature also causes its controller to gain that much life.)
 id=178150
-name=Vampire's Bite
-mana={B}
-kicker={2}{B}
 target=creature
 auto=3/0
+name=Vampire's Bite
+rarity=C
+mana={B}
+kicker={2}{B}
 auto=kicker lifelink
 type=Instant
-rarity=C
 [/card]
 [card]
 id=180454
@@ -1533,25 +1533,26 @@ text=Kicker {G} (You may pay an additional {G} as you cast this spell.)   Target
 id=177571
 target=creature
 name=Vines of Vastwood
+rarity=C
 mana={G}
 kicker={G}
 auto=opponentshroud
 auto=kicker 4/4
 type=Instant
-rarity=C
 [/card]
 [card]
+text=Double strike   Whenever Warren Instigator deals damage to an opponent, you may put a Goblin creature card from your hand onto the battlefield.
+auto=@damaged(player) from(this):may moveto(myBattlefield) target(creature[goblin]|myHand)
+
 id=191368
 name=Warren Instigator
+rarity=M
 mana={R}{R}
 type=Creature
 subtype=Goblin Berserker
 power=1
 toughness=1
-text=Double strike -- Whenever Warren Instigator deals damage to an opponent, you may put a Goblin creature card from your hand onto the battlefield.
-auto=@damaged(player) from(this):may moveto(myBattlefield) target(creature[goblin]|myHand)
 abilities=double strike
-rarity=M
 [/card]
 [card]
 text=Flying   Welkin Tern can block only creatures with flying.

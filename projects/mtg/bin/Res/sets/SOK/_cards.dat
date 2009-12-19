@@ -1,155 +1,156 @@
 [card]
 text=Adamaro, First to Desire's power and toughness are each equal to the number of cards in the hand of the opponent with the most cards in hand.
-name=Adamaro, First to Desire
 id=74187
+name=Adamaro, First to Desire
+rarity=R
 mana={1}{R}{R}
 type=Creature
-abilities=Legendary
-auto=foreach(*|opponenthand)1/1
 subtype=Spirit
+auto=foreach(*|opponenthand) 1/1
 power=*
 toughness=*
-rarity=R
+abilities=legendary
 [/card]
 [card]
 text=Choose one — Tap all Spirits; or tap all non-Spirit creatures.
-name=Aether Shockwave
 id=74208
-mana={3}{W}
-type=Instant
 auto=may tap all(spirit)
 auto=may tap all(creature[-spirit])
+name=Aether Shockwave
 rarity=U
+mana={3}{W}
+type=Instant
 [/card]
 [card]
 text={T}: Target creature gains haste until end of turn.
-name=Akki Drillmaster
 id=74393
+name=Akki Drillmaster
+rarity=C
 mana={2}{R}
-auto={T}:haste target(creature)
 type=Creature
 subtype=Goblin Shaman
+auto={T}:haste target(creature)
 power=2
 toughness=2
-rarity=C
 [/card]
 [card]
 text=As long as you have seven or more cards in hand, Akki Underling gets +2/+1 and has first strike.
 name=Akki Underling
 id=79164
+rarity=C
 mana={1}{R}
-auto=aslongas(*|myHand) 2/1 >6
-auto=aslongas(*|myHand) first strike >6
 type=Creature
 subtype=Goblin Warrior
+auto=aslongas(*|myHand) 2/1 >6
+auto=aslongas(*|myHand) first strike >6
 power=2
 toughness=1
-rarity=C
 [/card]
 [card]
 text=Legendary landwalk
-name=Ayumi, the Last Visitor
 id=84370
+name=Ayumi, the Last Visitor
+rarity=R
 mana={3}{G}{G}
-auto=aslongas(land[legendary]|opponentbattlefield) unblockable
 type=Creature
-abilities=Legendary
 subtype=Spirit
+auto=aslongas(land[legendary]|opponentbattlefield) unblockable
 power=7
 toughness=3
-rarity=R
+abilities=legendary
 [/card]
 [card]
 text={R}: Target creature gets +1/+0 until end of turn.
-name=Captive Flame
 id=88810
+auto={R}:1/0 target(creature)
+name=Captive Flame
+rarity=U
 mana={2}{R}
 type=Enchantment
-auto={R}:1/0 target(creature)
-rarity=U
 [/card]
 [card]
 text=As long as you have seven or more cards in hand, Deathmask Nezumi gets +2/+1 and has fear. (It can't be blocked except by artifact creatures and/or black creatures.)
-name=Deathmask Nezumi
 id=84703
+name=Deathmask Nezumi
+rarity=C
 mana={2}{B}
-auto=aslongas(*|myHand) 2/1 >6
-auto=aslongas(*|myHand) fear >6
 type=Creature
 subtype=Rat Shaman
+auto=aslongas(*|myHand) 2/1 >6
+auto=aslongas(*|myHand) fear >6
 power=2
 toughness=2
-rarity=C
 [/card]
 [card]
 text=Creatures with flying can block only creatures with flying.
-name=Dense Canopy
 id=88816
+auto=lord(creature[flying]) cloud
+name=Dense Canopy
+rarity=U
 mana={1}{G}
 type=Enchantment
-auto=lord(creature[flying])cloud
-rarity=U
 [/card]
 [card]
 text=At the beginning of your upkeep, put a +1/+1 counter on Descendant of Masumaro for each card in your hand, then remove a +1/+1 counter from Descendant of Masumaro for each card in target opponent's hand.
-name=Descendant of Masumaro
+auto=@each my upkeep:foreach(*|myHand) counter(1/1,1)
+auto=@each opponent upkeep:foreach(*|opponentHand) counter(1/1,-1)
 id=74119
+name=Descendant of Masumaro
+rarity=U
 mana={2}{G}
-auto=@each my upkeep:foreach(*|myHand)counter(1/1,1)
-auto=@each opponent upkeep:foreach(*|opponentHand)counter(1/1,-1)
 type=Creature
 subtype=Human Monk
 power=1
 toughness=1
-rarity=U
 [/card]
 [card]
 text=You gain 6 life. Draw a card.
-name=Dosan's Oldest Chant
 id=87332
-mana={4}{G}
-type=Sorcery
 auto=life:6 controller
 auto=draw:1 controller
+name=Dosan's Oldest Chant
 rarity=C
+mana={4}{G}
+type=Sorcery
 [/card]
 [card]
 text=Put three 3/1 red Elemental creature tokens with haste onto the battlefield. Exile them at the beginning of the next end step.
-name=Feral Lightning
-id=84373
-mana={3}{R}{R}{R}
-type=Sorcery
 auto=token(Elemental, Creature Elemental Kijhjjghtsdrw,3/1,haste red)*3
 auto=@next endofturn:moveto(exile) all(kijhjjghtsdrw)
+id=84373
+name=Feral Lightning
 rarity=U
+mana={3}{R}{R}{R}
+type=Sorcery
 [/card]
 [card]
 text=Whenever you cast a Spirit or Arcane spell, regenerate Fiddlehead Kami.
-name=Fiddlehead Kami
 id=74166
+name=Fiddlehead Kami
+rarity=C
 mana={4}{G}
-auto=@movedto(arcane,spirit|mystack):regenerate
 type=Creature
 subtype=Spirit
+auto=@movedto(arcane,spirit|mystack):regenerate
 power=3
 toughness=3
-rarity=C
 [/card]
 [card]
 text=Gaze of Adamaro deals damage equal to the number of cards in target player's hand to that player.
-name=Gaze of Adamaro
 id=89401
+
+target=player
+alias=129750
+name=Gaze of Adamaro
+rarity=U
 mana={2}{R}{R}
 type=Instant
 subtype=Arcane
-target=player
-alias=129750
-rarity=U
 [/card]
 [card]
 text={2}{G}, {T}: Target creature gets +2/+2 until end of turn.   Channel — {3}{G}, Discard Ghost-Lit Nourisher: Target creature gets +4/+4 until end of turn.
-name=Ghost-Lit Nourisher
 id=74068
+name=Ghost-Lit Nourisher
 rarity=U
 mana={2}{G}
 type=Creature
@@ -161,8 +162,8 @@ toughness=1
 [/card]
 [card]
 text={2}{R}, {T}: Ghost-Lit Raider deals 2 damage to target creature.   Channel — {3}{R}, Discard Ghost-Lit Raider: Ghost-Lit Raider deals 4 damage to target creature.
-name=Ghost-Lit Raider
 id=87341
+name=Ghost-Lit Raider
 rarity=U
 mana={2}{R}
 type=Creature
@@ -174,8 +175,8 @@ toughness=1
 [/card]
 [card]
 text={W}, {T}: You gain 2 life.   Channel — {1}{W}, Discard Ghost-Lit Redeemer: You gain 4 life.
-name=Ghost-Lit Redeemer
 id=74082
+name=Ghost-Lit Redeemer
 rarity=U
 mana={W}
 type=Creature
@@ -186,89 +187,89 @@ power=1
 toughness=1
 [/card]
 [card]
-text=Haste At the beginning of the end step, return Glitterfang to its owner's hand.
-name=Glitterfang
+text=Haste   At the beginning of the end step, return Glitterfang to its owner's hand.
 id=89402
+name=Glitterfang
+rarity=C
 mana={R}
-abilities=haste
-auto=@next endofturn:moveto(ownerhand)
 type=Creature
 subtype=Spirit
+auto=@next endofturn:moveto(ownerhand)
 power=1
 toughness=1
-rarity=C
+abilities=haste
 [/card]
 [card]
-text=When Haru-Onna enters the battlefield, draw a card. Whenever you cast a Spirit or Arcane spell, you may return Haru-Onna to its owner's hand.
-name=Haru-Onna
+text=When Haru-Onna enters the battlefield, draw a card.   Whenever you cast a Spirit or Arcane spell, you may return Haru-Onna to its owner's hand.
 id=74062
+name=Haru-Onna
+rarity=U
 mana={3}{G}
-auto=draw:1 controller
-auto=@movedto(arcane,spirit|mystack):may moveto(ownerhand)
 type=Creature
 subtype=Spirit
+auto=draw:1 controller
+auto=@movedto(arcane,spirit|mystack):may moveto(ownerhand)
 power=2
 toughness=1
-rarity=U
 [/card]
 [card]
 text=Target creature gets +X/+X until end of turn, where X is the number of cards in your hand.
-name=Inner Calm, Outer Strength
 id=74049
+target=creature
+auto=foreach(*|myhand) 1/1
+name=Inner Calm, Outer Strength
+rarity=C
 mana={2}{G}
 type=Instant
 subtype=Arcane
-target=creature
-auto=foreach(*|myhand)1/1
-rarity=C
 [/card]
 [card]
 text=Add {R} to your mana pool for each card in your hand.
-name=Inner Fire
 id=84711
+auto=foreach(*|myhand) Add:{R}
+name=Inner Fire
+rarity=C
 mana={3}{R}
 type=Sorcery
-auto=foreach(*|myhand)add:{R}
-rarity=C
 [/card]
 [card]
-text=Kagemaro, First to Suffer's power and toughness are each equal to the number of cards in your hand. {B}, Sacrifice Kagemaro: All creatures get -X/-X until end of turn, where X is the number of cards in your hand.
-name=Kagemaro, First to Suffer
+text=Kagemaro, First to Suffer's power and toughness are each equal to the number of cards in your hand.   {B}, Sacrifice Kagemaro: All creatures get -X/-X until end of turn, where X is the number of cards in your hand.
 id=74016
+name=Kagemaro, First to Suffer
+rarity=R
 mana={3}{B}{B}
-abilities=legendary
-auto=foreach(*|myhand)1/1
-auto={B}{S}:foreach(*|myhand)-1/-1 all(creature)
 type=Creature
 subtype=Demon Spirit
+auto=foreach(*|myhand) 1/1
+auto={B}{S}:foreach(*|myhand) -1/-1 all(creature)
 power=*
 toughness=*
-rarity=R
+abilities=legendary
 [/card]
 [card]
-text=Enchant creature Enchanted creature gets -X/-X, where X is the number of cards in your hand.
-name=Kagemaro's Clutch
+text=Enchant creature   Enchanted creature gets -X/-X, where X is the number of cards in your hand.
 id=74560
+target=creature
+auto=foreach(*|myhand)-1/-1
+name=Kagemaro's Clutch
+rarity=C
 mana={3}{B}
 type=Enchantment
 subtype=Aura
-target=creature
-auto=foreach(*|myhand)-1/-1
-rarity=C
 [/card]
 [card]
 text=At the beginning of each player's draw step, that player draws an additional card.
-name=Kami of the Crescent Moon
 id=84364
+name=Kami of the Crescent Moon
+rarity=R
 mana={U}{U}
-abilities=legendary
-auto=@each my draw:draw:1 controller
-auto=@each opponent draw:draw:1 opponent
 type=Creature
 subtype=Spirit
+auto=@each my draw:draw:1 controller
+auto=@each opponent draw:draw:1 opponent
 power=1
 toughness=3
-rarity=R
+abilities=legendary
 [/card]
 [card]
 text=Target creature deals damage to itself equal to its power.
@@ -294,78 +295,68 @@ rarity=C
 [/card]
 [card]
 text=Masumaro, First to Live's power and toughness are each equal to twice the number of cards in your hand.
-name=Masumaro, First to Live
 id=74184
+name=Masumaro, First to Live
+rarity=R
 mana={3}{G}{G}{G}
-auto=foreach(*|myhand)2/2
-abilities=Legendary
 type=Creature
 subtype=Spirit
+auto=foreach(*|myhand) 2/2
 power=*
 toughness=*
-rarity=R
-[/card]
-[card]
-text=At the beginning of your end step, sacrifice Measure of Wickedness and you lose 8 life. Whenever another card is put into your graveyard from anywhere, target opponent gains control of Measure of Wickedness.
-name=Measure of Wickedness
-id=88821
-mana={3}{B}
-auto=@next my endofturn:bury && life:-8 controller
-auto=@movedto(other|graveyard):moveto(opponentBattlefield)
-type=Enchantment
-rarity=U
+abilities=legendary
 [/card]
 [card]
 text=All creatures get -X/-0, where X is the number of cards in your hand.
-name=Meishin, the Mind Cage
 id=89406
+auto=foreach(*|myhand) lord(creature) -1/0
+name=Meishin, the Mind Cage
+rarity=R
 mana={4}{U}{U}{U}
 type=Enchantment
-abilities=Legendary
-auto=foreach(*|myhand)lord(creature)-1/0
-rarity=R
+abilities=legendary
 [/card]
 [card]
-text={T}: Add {1} to your mana pool. {2}, {T}: Each player draws a card.
-name=Mikokoro, Center of the Sea
+text={T}: Add {1} to your mana pool.   {2}, {T}: Each player draws a card.
 id=74388
-auto={T}:add {1}
+name=Mikokoro, Center of the Sea
+auto={T}:Add {1}
 auto={2}{T}:draw:1 controller && draw:1 opponent
-type=Land
-abilities=Legendary
 rarity=R
+type=Land
+abilities=legendary
 [/card]
 [card]
-text=Flying {W}: Moonwing Moth gets +0/+1 until end of turn.
-name=Moonwing Moth
+text=Flying   {W}: Moonwing Moth gets +0/+1 until end of turn.
 id=84643
+name=Moonwing Moth
+rarity=C
 mana={1}{W}{W}
-auto={W}:0/1
-abilities=flying
 type=Creature
 subtype=Insect
+auto={W}:0/1
 power=2
 toughness=1
-rarity=C
+abilities=flying
 [/card]
 [card]
-text={T}: Add {U} to your mana pool. {1}: Return Oboro, Palace in the Clouds to its owner's hand.
-name=Oboro, Palace in the Clouds
+text={T}: Add {U} to your mana pool.   {1}: Return Oboro, Palace in the Clouds to its owner's hand.
 id=74206
-auto={T}:add {U}
+name=Oboro, Palace in the Clouds
+auto={T}:Add {U}
 auto={1}:moveto(ownerhand)
-type=Land
-abilities=Legendary
 rarity=R
+type=Land
+abilities=legendary
 [/card]
 [card]
 text=Discard your hand.
-name=One with Nothing
 id=88817
+auto=moveto(mygraveyard) all(*|myhand)
+name=One with Nothing
+rarity=R
 mana={B}
 type=Instant
-auto=moveto(mygraveyard) all(*|myhand)
-rarity=R
 [/card]
 [card]
 text=Counter target creature spell. Draw cards equal to that spell's converted mana cost.
@@ -380,98 +371,83 @@ type=Instant
 [/card]
 [card]
 text=Creatures you control get +2/+0 until end of turn.
-name=Path of Anger's Flame
 id=74179
+auto=lord(creature|myBattlefield) 2/0
+name=Path of Anger's Flame
+rarity=C
 mana={2}{R}
 type=Instant
 subtype=Arcane
-auto=lord(creature|myBattlefield)2/0
-rarity=C
 [/card]
 [card]
 text=You gain 2 life for each card in your hand.
-name=Presence of the Wise
 id=74216
+auto=foreach(*|myhand) life:2 controller
+name=Presence of the Wise
+rarity=U
 mana={2}{W}{W}
 type=Sorcery
-auto=foreach(*|myhand)life:2 controller
-rarity=U
 [/card]
 [card]
 text=When a creature you control is put into a graveyard from the battlefield, sacrifice Promise of Bunrei. If you do, put four 1/1 colorless Spirit creature tokens onto the battlefield.
-name=Promise of Bunrei
+auto=@movedto(creature|graveyard) from(myBattlefield):token(Spirit,Creature Spirit,1/1,)*4
+auto=@movedto(creature|graveyard) from(myBattlefield):bury
 id=84376
+name=Promise of Bunrei
+rarity=R
 mana={2}{W}
 type=Enchantment
-auto=@movedto(creature|graveyard) from(myBattlefield):token(Spirit,Creature Spirit,1/1,)*4
-auto=@movedto(creature|graveyard) from(myBattlefield):moveto(graveyard)
-rarity=R
-[/card]
-[card]
-text=When Raving Oni-Slave enters the battlefield, you lose 3 life if you don't control a Demon. When Raving Oni-Slave leaves the battlefield, you lose 3 life if you don't control a Demon.
-name=Raving Oni-Slave
-id=88787
-mana={1}{B}
-auto=aslongas(*[-demon]|mybattlefield)life:-3 controller
-auto=@movedto(this|graveyard) from(Battlefield):aslongas(*[-demon]|mybattlefield)life:-3 controller
-auto=@movedto(this|exile) from(Battlefield):aslongas(*[-demon]|mybattlefield)life:-3 controller
-auto=@movedto(this|ownerhand) from(Battlefield):aslongas(*[-demon]|mybattlefield)life:-3 controller
-type=Creature
-subtype=Ogre Warrior
-power=3
-toughness=3
-rarity=C
 [/card]
 [card]
 text=Black creatures can't block.
-name=Razorjaw Oni
 id=74396
+name=Razorjaw Oni
+rarity=U
 mana={3}{B}
-auto=lord(creature[black])cantblock
 type=Creature
 subtype=Demon Spirit
+auto=lord(creature[black])cantblock
 power=4
 toughness=5
-rarity=U
 [/card]
 [card]
 text=Whenever you cast a legendary spell, draw a card.
-name=Reki, the History of Kamigawa
 id=74604
+name=Reki, the History of Kamigawa
+rarity=R
 mana={2}{G}
-abilities=Legendary
-auto=@movedto(*[legendary]|myBattlefield) from(myHand):draw:1 controller
+auto=@movedto(*[legendary]|mystack):draw:1 controller
 type=Creature
 subtype=Human Shaman
 power=1
 toughness=2
-rarity=R
+abilities=legendary
 [/card]
 [card]
 text={T}: You may put a land card from your hand onto the battlefield.
-name=Sakura-Tribe Scout
 id=74210
+name=Sakura-Tribe Scout
+rarity=C
 mana={G}
-auto={T}:moveto(myBattlefield) target(land|myHand)
 type=Creature
 subtype=Snake Shaman Scout
+auto={T}:moveto(myBattlefield) target(land|myHand)
 power=1
 toughness=1
-rarity=C
 [/card]
 [card]
 text={2}, {T}: Draw a card if you have seven or more cards in hand.
+id=88811
 name=Scroll of Origins
 auto=aslongas(*|myhand) {2}{T}:draw:1 >6
-id=88811
+rarity=R
 mana={2}
 type=Artifact
-rarity=R
 [/card]
 [card]
 text=Shinen of Fear's Chill can't block.   Channel — {1}{B}, Discard Shinen of Fear's Chill: Target creature can't block this turn.
-name=Shinen of Fear's Chill
 id=88812
+name=Shinen of Fear's Chill
 rarity=C
 mana={4}{B}
 type=Creature
@@ -483,8 +459,8 @@ abilities=cantblock
 [/card]
 [card]
 text=Flying   Channel — {U}, Discard Shinen of Flight's Wings: Target creature gains flying until end of turn.
-name=Shinen of Flight's Wings
 id=74088
+name=Shinen of Flight's Wings
 rarity=C
 mana={4}{U}
 type=Creature
@@ -496,8 +472,8 @@ abilities=flying
 [/card]
 [card]
 text=Haste   Channel — {R}, Discard Shinen of Fury's Fire: Target creature gains haste until end of turn.
-name=Shinen of Fury's Fire
 id=87339
+name=Shinen of Fury's Fire
 rarity=C
 mana={2}{R}
 type=Creature
@@ -509,8 +485,8 @@ abilities=haste
 [/card]
 [card]
 text=First strike   Channel — {1}{W}, Discard Shinen of Stars' Light: Target creature gains first strike until end of turn.
-name=Shinen of Stars' Light
 id=74361
+name=Shinen of Stars' Light
 rarity=C
 mana={2}{W}
 type=Creature
@@ -521,18 +497,18 @@ toughness=1
 abilities=first strike
 [/card]
 [card]
-text=Flying Soramaro, First to Dream's power and toughness are each equal to the number of cards in your hand. {4}, Return a land you control to its owner's hand: Draw a card.
-name=Soramaro, First to Dream
+text=Flying   Soramaro, First to Dream's power and toughness are each equal to the number of cards in your hand. {4}, Return a land you control to its owner's hand: Draw a card.
 id=74170
+name=Soramaro, First to Dream
+rarity=R
 mana={4}{U}{U}
-abilities=flying,legendary
-auto=foreach(*|myhand)1/1
-auto={4}:moveto(ownerhand) target(land|myBattlefield) && draw:1 controller
 type=Creature
 subtype=Spirit
+auto=foreach(*|myhand) 1/1
+auto={4}:moveto(ownerhand) target(land|myBattlefield) && draw:1 controller
 power=*
 toughness=*
-rarity=R
+abilities=flying,legendary
 [/card]
 [card]
 text={2}: Target creature you control gains flying until end of turn.   {2}: Prevent all combat damage that would be dealt to and dealt by target creature you control this turn.
@@ -546,33 +522,23 @@ type=Artifact
 [/card]
 [card]
 text=Spiraling Embers deals damage to target creature or player equal to the number of cards in your hand.
-name=Spiraling Embers
 id=74503
+target=creature,player)
+auto=foreach(*|myhand)damage:1
+name=Spiraling Embers
+rarity=C
 mana={3}{R}
 type=Sorcery
 subtype=Arcane
-target=creature,player)
-auto=foreach(*|myhand)damage:1
-rarity=C
 [/card]
 [card]
 text=Destroy target artifact or land.
-name=Sunder from Within
 id=88808
+target=artifact,land
+auto=destroy
+name=Sunder from Within
+rarity=U
 mana={2}{R}{R}
 type=Sorcery
 subtype=Arcane
-target=artifact,land
-auto=destroy
-rarity=U
-[/card]
-[card]
-text={T}: Add {B} to your mana pool. Tomb of Urami deals 1 damage to you if you don't control an Ogre. {2}{B}{B}, {T}, Sacrifice all lands you control: Put a legendary 5/5 black Demon Spirit creature token with flying named Urami onto the battlefield.
-name=Tomb of Urami
-id=74492
-auto={T}:add {B} &&aslongas(*[-ogre]|myBattlefield)damage:1 controller
-auto={T}:bury all(land|myBattlefield) && token(Urami,Creature Demon Spirit,5/5,legendary flying black)
-type=Land
-abilities=Legendary
-rarity=R
 [/card]

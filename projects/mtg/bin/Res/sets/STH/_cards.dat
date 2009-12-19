@@ -6,7 +6,7 @@ rarity=U
 mana={B}{R}
 type=Creature
 subtype=Sliver
-auto=lord(sliver) {2}{s}:damage:2 target(creature,player)
+auto=lord(sliver) {2}{S}:damage:2 target(creature,player)
 power=2
 toughness=2
 [/card]
@@ -52,7 +52,7 @@ toughness=4
 abilities=trample
 [/card]
 [card]
-text=Flying. Cloud Spirit can block only creatures with flying.
+text=Flying   Cloud Spirit can block only creatures with flying.
 id=5122
 name=Cloud Spirit
 rarity=U
@@ -73,7 +73,7 @@ mana={1}{W}{W}
 type=Enchantment
 [/card]
 [card]
-text=Enchant creature.    Enchanted creature gets +1/+3.    {W}: Return Conviction to its owner's hand.
+text=Enchant creature   Enchanted creature gets +1/+3.   {W}: Return Conviction to its owner's hand.
 id=5127
 name=Conviction
 rarity=C
@@ -140,7 +140,7 @@ mana={B}{B}
 type=Sorcery
 [/card]
 [card]
-text=Flying. {B}: Dungeon Shade gets +1/+1 until end of turn.
+text=Flying   {B}: Dungeon Shade gets +1/+1 until end of turn.
 id=5142
 name=Dungeon Shade
 rarity=C
@@ -162,7 +162,7 @@ mana={3}{U}{U}
 type=Instant
 [/card]
 [card]
-text=Enchant creature.    {R}: Enchanted creature gets +1/-1 until end of turn.
+text=Enchant creature   {R}: Enchanted creature gets +1/-1 until end of turn.
 target=creature
 auto={R}:1/-1
 id=5152
@@ -173,7 +173,7 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-text=Haste {0}: Flowstone Hellion gets +1/-1 until end of turn.
+text=Haste   {0}: Flowstone Hellion gets +1/-1 until end of turn.
 id=5153
 name=Flowstone Hellion
 rarity=U
@@ -224,7 +224,7 @@ toughness=2
 abilities=flying
 [/card]
 [card]
-text=Haste.   {R}: Furnace Spirit gets +1/+0 until end of turn.
+text=Haste   {R}: Furnace Spirit gets +1/+0 until end of turn.
 id=5160
 name=Furnace Spirit
 rarity=C
@@ -286,7 +286,7 @@ type=Enchantment
 text=Target creature gains flying until end of turn.   Draw a card.
 target=creature
 auto=flying
-auto=draw:1
+auto=draw:1 controller
 id=5180
 name=Leap
 rarity=C
@@ -532,7 +532,7 @@ type=Artifact
 abilities=legendary
 [/card]
 [card]
-text=Enchant creature. Enchanted creature gets -3/-0.
+text=Enchant creature   Enchanted creature gets -3/-0.
 target=creature
 auto=-3/0
 id=5257

@@ -724,6 +724,17 @@ toughness=2
 rarity=C
 [/card]
 [card]
+####Does not work!
+text=At the beginning of your end step, sacrifice Measure of Wickedness and you lose 8 life.   Whenever another card is put into your graveyard from anywhere, target opponent gains control of Measure of Wickedness.
+id=88821
+name=Measure of Wickedness
+rarity=U
+mana={3}{B}
+auto=@next my endofturn:bury && life:-8 controller
+auto=@movedto(other|graveyard):moveto(opponentBattlefield)
+type=Enchantment
+[/card]
+[card]
 text=Whenever a source an opponent controls deals damage to you, that player sacrifices a permanent.
 name=Michiko Konda, Truth Seeker
 id=84359
@@ -928,6 +939,22 @@ id=74411
 mana={5}{R}
 type=Sorcery
 rarity=R
+[/card]
+[card]
+####Tested ingame, does not work!
+text=When Raving Oni-Slave enters the battlefield, you lose 3 life if you don't control a Demon.   When Raving Oni-Slave leaves the battlefield, you lose 3 life if you don't control a Demon.
+id=88787
+name=Raving Oni-Slave
+rarity=C
+mana={1}{B}
+auto=aslongas(*[-demon]|mybattlefield) life:-3 controller
+auto=@movedto(this|graveyard) from(Battlefield):aslongas(*[-demon]|mybattlefield)life:-3 controller
+auto=@movedto(this|exile) from(Battlefield):aslongas(*[-demon]|mybattlefield)life:-3 controller
+auto=@movedto(this|ownerhand) from(Battlefield):aslongas(*[-demon]|mybattlefield)life:-3 controller
+type=Creature
+subtype=Ogre Warrior
+power=3
+toughness=3
 [/card]
 [card]
 text=Destroy target artifact or enchantment if its converted mana cost is less than or equal to the number of cards in your hand. Draw a card.
@@ -1169,6 +1196,17 @@ name=Thoughts of Ruin
 id=74374
 mana={2}{R}{R}
 type=Sorcery
+rarity=R
+[/card]
+[card]
+####Tested ingame and removed: The first ability cannot be coded yet because you will always suffer 1 damage from Tomb of Urami even if you control an ogre!!
+text={T}: Add {B} to your mana pool. Tomb of Urami deals 1 damage to you if you don't control an Ogre.   {2}{B}{B}, {T}, Sacrifice all lands you control: Put a legendary 5/5 black Demon Spirit creature token with flying named Urami onto the battlefield.
+id=74492
+name=Tomb of Urami
+auto={T}:add {B} && aslongas(*[-ogre]|myBattlefield) damage:1 controller
+auto={T}:bury all(land|myBattlefield) && token(Urami,Creature Demon Spirit,5/5,legendary flying black)
+type=Land
+abilities=Legendary
 rarity=R
 [/card]
 [card]

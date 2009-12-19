@@ -20,7 +20,6 @@ subtype=Trap
 text=If four or more creatures are attacking, you may pay {1}{W} rather than pay Arrow Volley Trap's mana cost. Arrow Volley Trap deals 5 damage divided as you choose among any number of target attacking creatures.
 rarity=U
 [/card]
-
 [card]
 id=185734
 name=Brave the Elements
@@ -38,7 +37,6 @@ subtype=Aura
 text=Enchant creature Enchanted creature gets +3/+3. Whenever enchanted creature deals combat damage to a player, double its controller's life total.
 rarity=R
 [/card]
-
 [card]
 id=191374
 name=Devout Lightcaster

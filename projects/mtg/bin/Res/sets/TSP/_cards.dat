@@ -12,15 +12,15 @@ abilities=legendary
 [card]
 text=Flash (You may cast this spell any time you could cast an instant.) Enchant creature Enchanted creature gets +1/+1, has reach, and can block creatures with shadow as though they didn't have shadow. (Creatures with reach can block creatures with flying.)
 id=108852
+target=creature
+auto=1/1
+auto=reach
+auto=reachshadow
 name=AEther Web
 rarity=C
 mana={1}{G}
 type=Enchantment
 subtype=Aura
-target=creature
-auto=1/1
-auto=reach
-auto=reachshadow
 abilities=flash
 [/card]
 [card]
@@ -90,15 +90,15 @@ rarity=C
 mana={2}{B}
 type=Creature
 subtype=Sliver
+auto=lord(sliver) {S}:Add {B}{B}
 power=2
 toughness=2
-auto=lord(sliver) {S}:Add {B}{B}
 [/card]
 [card]
 text=Target creature gets -3/-0 until end of turn.   Draw a card.
 target=creature
 auto=-3/-0
-auto=draw:1
+auto=draw:1 controller
 id=118901
 name=Bewilder
 rarity=C
@@ -120,16 +120,15 @@ toughness=2
 [card]
 text=Flying   Brass Gnat doesn't untap during your untap step. At the beginning of your upkeep, you may pay {1}. If you do, untap Brass Gnat.
 id=118876
-abilities=doesnotuntap
-auto={1}:untap myUpkeepOnly
 name=Brass Gnat
 rarity=C
 mana={1}
 type=Artifact Creature
 subtype=Insect
+auto={1}:untap myUpkeepOnly
 power=1
 toughness=1
-abilities=flying
+abilities=flying,doesnotuntap
 [/card]
 [card]
 text=Counter target spell.
@@ -145,18 +144,18 @@ type=Instant
 text={1}, {T}, Sacrifice Chromatic Star: Add one mana of any color to your mana pool. When Chromatic Star is put into a graveyard from the battlefield, draw a card.
 id=118891
 name=Chromatic Star
-rarity=U
-mana={1}
-type=Artifact
 auto={1}{T}{S}:add{B}
 auto={1}{T}{S}:add{U}
 auto={1}{T}{S}:add{G}
 auto={1}{T}{S}:add{R}
 auto={1}{T}{S}:add{W}
 auto=@movedTo(this|graveyard) from(battlefield):draw:1 controller
+rarity=U
+mana={1}
+type=Artifact
 [/card]
 [card]
-text=Flash (You may cast this spell any time you could cast an instant.)  {B}: Regenerate Drudge Reavers. 
+text=Flash (You may cast this spell any time you could cast an instant.)   {B}: Regenerate Drudge Reavers. 
 id=108850
 name=Drudge Reavers
 rarity=C
@@ -169,19 +168,19 @@ toughness=1
 abilities=flash
 [/card]
 [card]
-text=Enchant creature.   When Eternity Snare enters the battlefield, draw a card.   Enchanted creature doesn't untap during its controller's untap step.
+text=Enchant creature   When Eternity Snare enters the battlefield, draw a card.   Enchanted creature doesn't untap during its controller's untap step.
 id=108788
+target=creature
+auto=doesnotuntap
+auto=draw:1 controller
 name=Eternity Snare
 rarity=C
 mana={5}{U}
 type=Enchantment
 subtype=Aura
-target=creature
-auto=doesnotuntap
-auto=draw:1
 [/card]
 [card]
-text=Flash (You may cast this spell any time you could cast an instant.)  Enchant creature     Enchanted creature gets -2/-1.
+text=Flash (You may cast this spell any time you could cast an instant.)   Enchant creature   Enchanted creature gets -2/-1.
 target=creature
 auto=-2/-1
 id=108892
@@ -209,10 +208,10 @@ toughness=1
 text={T}: Add {W} to your mana pool.   When Flagstones of Trokair is put into a graveyard from the battlefield, you may search your library for a Plains card and put it into onto the battlefield tapped. If you do, shuffle your library.
 id=116733
 name=Flagstones of Trokair
-type=Land
 rarity=R
 auto={T}:Add {W}
 auto=@movedTo(this|graveyard) from(battlefield):may moveTo(myBattlefield) target(plains|mylibrary) && tap
+type=Land
 abilities=legendary
 [/card]
 [card]
@@ -252,14 +251,14 @@ auto={T}:Add {G}
 rarity=L
 [/card]
 [card]
+text=Choose one - Creatures you control get +2/+0 until end of turn; or creatures you control get +0/+2 until end of turn.
 id=116732
+auto=may lord(creature|myBattlefield) 2/0
+auto=may lord(creature|myBattlefield) 0/2
 name=Fortify
+rarity=C
 mana={2}{W}
 type=Instant
-text=Choose one - Creatures you control get +2/+0 until end of turn; or creatures you control get +0/+2 until end of turn.
-auto=may lord(creature|myinplay) 2/0
-auto=may lord(creature|myinplay) 0/2
-rarity=C
 [/card]
 [card]
 text=All Sliver creatures have double strike.
@@ -293,13 +292,13 @@ toughness=1
 text=Flash (You may cast this spell any time you could cast an instant.)   Enchant creature   {R}: Enchanted creature gets +1/+0 until end of turn.   {R}: Return Ghitu Firebreathing to its owner's hand.
 id=108838
 target=creature
+auto={R}:1/0
+auto={R}:moveTo(ownerhand)
 name=Ghitu Firebreathing
 rarity=C
 mana={1}{R}
 type=Enchantment
 subtype=Aura
-auto={R}:1/0
-auto={R}:moveTo(ownerhand)
 abilities=flash
 [/card]
 [card]
@@ -418,9 +417,9 @@ abilities=vigilance
 [card]
 text={T}: Add {1} to your mana pool.   {1}{R}, {T}: Put a 0/1 red Kobold creature token named Kobolds of Kher Keep onto the battlefield.
 id=113553
+name=Kher Keep
 auto={T}:Add {1} 
 auto={1}{R}{T}:token(Kobolds of Kher Keep,creature kobold, 0/1, red)
-name=Kher Keep
 rarity=R
 type=Land
 abilities=legendary
@@ -499,16 +498,17 @@ mana={1}{R}{R}
 type=Instant
 [/card]
 [card]
-text=Reach (This creature can block creatures with flying.) When Penumbra Spider is put into a graveyard from play, put a 2/4 black Spider creature token with reach onto the battlefield.
+text=Reach (This creature can block creatures with flying.)   When Penumbra Spider is put into a graveyard from the battlefield, put a 2/4 black Spider creature token with reach onto the battlefield.
 id=118899
 name=Penumbra Spider
 rarity=C
 mana={2}{G}{G}
 type=Creature
 subtype=Spider
-auto=@movedTo(this|graveyard):token(Spider,Creature spider,2/4,reach black)
+auto=@movedTo(this|graveyard) from(battlefield):token(Spider,Creature spider,2/4,reach black)
 power=2
 toughness=4
+abilities=reach
 [/card]
 [card]
 text=All Slivers have "At the beginning of your upkeep, this permanent deals 1 damage to you."
@@ -587,13 +587,13 @@ toughness=1
 [/card]
 [card]
 text=Scarwood Treefolk enters the battlefield tapped.
-auto=tap
 id=110524
 name=Scarwood Treefolk
 rarity=C
 mana={3}{G}
 type=Creature
 subtype=Treefolk
+auto=tap
 power=3
 toughness=5
 [/card]
@@ -659,7 +659,7 @@ power=2
 toughness=2
 [/card]
 [card]
-text=Flying. Other creatures you control with flying get +0/+1.   {T}: Other creatures you control with flying get +1/+0 until end of turn.
+text=Flying   Other creatures you control with flying get +0/+1.   {T}: Other creatures you control with flying get +1/+0 until end of turn.
 id=116386
 name=Sprite Noble
 rarity=R
@@ -684,7 +684,8 @@ type=Instant
 [card]
 text=Squall Line deals X damage to each creature with flying and each player.
 id=109702
-alias=1251
+auto=damage:X all(creature[flying])
+auto=damage:X all(player)
 name=Squall Line
 rarity=R
 mana={X}{G}{G}
@@ -764,16 +765,16 @@ text=B
 rarity=L
 [/card]
 [card]
+text={T}: Add {1} to your mana pool.   {T}: Regenerate target Insect, Rat, Spider, or Squirrel.
 id=114913
 name=Swarmyard
-type=Land
-text={T}: Add {1} to your mana pool.   {T}: Regenerate target Insect, Rat, Spider, or Squirrel.
 auto={T}:Add {1}
 auto={T}:regenerate target(insect)
 auto={T}:regenerate target(rat)
 auto={T}:regenerate target(spider)
 auto={T}:regenerate target(squirrel)
 rarity=R
+type=Land
 [/card]
 [card]
 text=All Slivers have "{T}: Tap target permanent."
@@ -813,8 +814,8 @@ text={T}, Sacrifice Terramorphic Expanse: Search your library for a basic land c
 auto={T}{S}:moveTo(myBattlefield) target(basic|mylibrary) && tap
 id=118874
 name=Terramorphic Expanse
-type=Land
 rarity=C
+type=Land
 [/card]
 [card]
 text=Flying   {U}, {T}, Discard a card: Return target permanent you control to its owner's hand.
