@@ -1,111 +1,108 @@
 [card]
-name=Arctic Flats
+text=Arctic Flats enters the battlefield tapped.   {T}: Add {G} or {W} to your mana pool.
 id=121158
-text=Arctic Flats enters the battlefield tapped. {T}: Add {G} or {W} to your mana pool.
+name=Arctic Flats
 auto=tap
+auto={T}:Add {G}
+auto={T}:Add {W}
+rarity=U
 type=Land
 subtype=Snow
-auto={T}:add {G}
-auto={T}:add {W}
-rarity=U
 [/card]
 [card]
-name=Balduvian Rage
+text=Target attacking creature gets +X/+0 until end of turn.   Draw a card at the beginning of the next turn's upkeep.
 id=121248
-text=Target attacking creature gets +X/+0 until end of turn. Draw a card at the beginning of the next turn's upkeep.
-mana={X}{R}
-type=Instant
 target=creature[attacking]
 auto=X/0
 auto=@next upkeep:draw:1 controller
+name=Balduvian Rage
 rarity=U
+mana={X}{R}
+type=Instant
 [/card]
 [card]
-name=Boreal Druid
-id=121193
 text={T}: Add {1} to your mana pool.
+id=121193
+name=Boreal Druid
+rarity=C
 mana={G}
-auto={T}:add {1}
 type=Creature
 subtype=Elf Druid Snow
+auto={T}:Add {1}
 power=1
 toughness=1
-rarity=C
 [/card]
 [card]
-name=Boreal Shelf
+text=Boreal Shelf enters the battlefield tapped.   {T}: Add {W} or {U} to your mana pool.
 id=121189
-text=Boreal Shelf enters the battlefield tapped. {T}: Add {W} or {U} to your mana pool.
+name=Boreal Shelf
 auto=tap
+auto={T}:Add {U}
+auto={T}:Add {W}
+rarity=U
 type=Land
 subtype=Snow
-auto={T}:add {U}
-auto={T}:add {W}
-rarity=U
 [/card]
 [card]
-name=Brooding Saurian
-id=122055
 text=At the beginning of the end step, each player gains control of all nontoken permanents he or she owns.
-mana={2}{G}{G}
 auto=@each my end:moveto(ownerBattlefield) all(*|Battlefield)
 auto=@each opponent end:moveto(ownerBattlefield) all(*|Battlefield)
+id=122055
+name=Brooding Saurian
+rarity=R
+mana={2}{G}{G}
 type=Creature
 subtype=Lizard
 power=4
 toughness=4
-rarity=R
 [/card]
 [card]
-name=Chill to the Bone
-id=121190
 text=Destroy target nonsnow creature.
-mana={3}{B}
-type=Instant
+id=121190
 target=creature[-snow]
 auto=destroy
+name=Chill to the Bone
 rarity=C
+mana={3}{B}
+type=Instant
 [/card]
 [card]
-name=Cryoclasm
-id=121169
 text=Destroy target Plains or Island. Cryoclasm deals 3 damage to that land's controller.
-mana={2}{R}
-type=Sorcery
+id=121169
 target=plains,island
 auto=destroy
 auto=damage:3 targetController
+name=Cryoclasm
 rarity=U
+mana={2}{R}
+type=Sorcery
 [/card]
 [card]
-name=Deathmark
-id=121119
 text=Destroy target green or white creature.
-mana={B}
-type=Sorcery
+id=121119
 target=creature[green,white]
 auto=destroy
+name=Deathmark
 rarity=U
-[/card]
-[card]
-name=Disciple of Tevesh Szat
-id=121222
-text={T}: Target creature gets -1/-1 until end of turn. {4}{B}{B}, {T}, Sacrifice Disciple of Tevesh Szat: Target creature gets -6/-6 until end of turn.
-mana={2}{B}{B}
-auto={T}:-1/-1 target(creature)
-auto={4}{B}{B}{T}{S}:-6/-6 target(creature)
-type=Creature
-subtype=Human Cleric
-power=3
-toughness=1
-rarity=C
-[/card]
-[card]
-name=Feast of Flesh
-id=121137
-text=Feast of Flesh deals X damage to target creature and you gain X life, where X is 1 plus the number of cards named Feast of Flesh in all graveyards.
 mana={B}
 type=Sorcery
+[/card]
+[card]
+text={T}: Target creature gets -1/-1 until end of turn.   {4}{B}{B}, {T}, Sacrifice Disciple of Tevesh Szat: Target creature gets -6/-6 until end of turn.
+id=121222
+name=Disciple of Tevesh Szat
+rarity=C
+mana={2}{B}{B}
+type=Creature
+subtype=Human Cleric
+auto={T}:-1/-1 target(creature)
+auto={4}{B}{B}{T}{S}:-6/-6 target(creature)
+power=3
+toughness=1
+[/card]
+[card]
+text=Feast of Flesh deals X damage to target creature and you gain X life, where X is 1 plus the number of cards named Feast of Flesh in all graveyards.
+id=121137
 target=creature
 auto=damage:1
 auto=life:1 controller
@@ -113,413 +110,415 @@ auto=foreach(Feast of Flesh|mygraveyard):damage:1
 auto=foreach(Feast of Flesh|opponentgraveyard):damage:1
 auto=foreach(Feast of Flesh|mygraveyard)life:1 controller
 auto=foreach(Feast of Flesh|opponentgraveyard)life:1 controller
+name=Feast of Flesh
 rarity=C
+mana={B}
+type=Sorcery
 [/card]
 [card]
-name=Field Marshal
-id=121265
 text=Other Soldier creatures get +1/+1 and have first strike. (They deal combat damage before creatures without first strike.)
+id=121265
+name=Field Marshal
+rarity=R
 mana={1}{W}{W}
-auto=lord(soldier)1/1 other
-auto=lord(soldier)first strike other
 type=Creature
 subtype=Human Soldier
+auto=lord(soldier)1/1 other
+auto=lord(soldier)first strike other
 power=2
 toughness=2
-rarity=R
 [/card]
 [card]
-name=Flashfreeze
-id=121218
 text=Counter target red or green spell.
-mana={1}{U}
-type=Instant
+id=121218
 target=*[red,green]|stack
 auto=fizzle
+name=Flashfreeze
 rarity=U
+mana={1}{U}
+type=Instant
 [/card]
 [card]
-name=Frost Marsh
+text=Frost Marsh enters the battlefield tapped.   {T}: Add {U} or {B} to your mana pool.
 id=121212
-text=Frost Marsh enters the battlefield tapped. {T}: Add {U} or {B} to your mana pool.
+name=Frost Marsh
 auto=tap
-type=Land
-auto={T}:add{U}
-auto={T}:add{B}
+auto={T}:Add {U}
+auto={T}:Add {B}
 rarity=U
+type=Land
 subtype=Snow
 [/card]
 [card]
-name=Frozen Solid
+text=Enchant creature   Enchanted creature doesn't untap during its controller's untap step.   When enchanted creature is dealt damage, destroy it.
 id=121228
-text=Enchant creature Enchanted creature doesn't untap during its controller's untap step. When enchanted creature is dealt damage, destroy it.
-mana={1}{U}{U}
 target=creature
 auto=doesnotuntap
-auto=@damaged(mytgt):destroy (mytgt)
+auto=@damaged(mytgt):destroy
+name=Frozen Solid
+rarity=C 
+mana={1}{U}{U}
 type=Enchantment
-subtype=Aura
-rarity=C  
+subtype=Aura 
 [/card]
 [card]
-name=Gristle Grinner
-id=121133
 text=Whenever a creature is put into a graveyard from the battlefield, Gristle Grinner gets +2/+2 until end of turn.
+id=121133
+name=Gristle Grinner
+rarity=U
 mana={4}{B}
-auto=@movedto(creature|myGraveyard):2/2 ueot
-auto=@movedto(creature|opponentGraveyard):2/2 ueot
 type=Creature
 subtype=Zombie
+auto=@movedto(creature|myGraveyard):2/2 ueot
+auto=@movedto(creature|opponentGraveyard):2/2 ueot
 power=3
 toughness=3
-rarity=U
 [/card]
 [card]
-name=Gutless Ghoul
-id=121194
 text={1}, Sacrifice a creature: You gain 2 life.
+id=121194
+name=Gutless Ghoul
+rarity=C
 mana={2}{B}
-auto={1}{S(creature|myBattlefield)}:life:2 controller
 type=Creature
-subtype=Zombie Snow 
+subtype=Zombie Snow
+auto={1}{S(creature|myBattlefield)}:life:2 controller
 power=2
 toughness=2
-rarity=C
 [/card]
 [card]
-name=Heidar, Rimewind Master
-id=121147
 text={2}, {T}: Return target permanent to its owner's hand. Activate this ability only if you control four or more snow permanents.
 auto=aslongas(*[snow]|myBattlefield) {2}{T}:moveTo(ownerhand) target(*) >3
+id=121147
+name=Heidar, Rimewind Master
+rarity=R
 mana={4}{U}
 type=Creature
-abilities=Legendary
 subtype=Human Wizard
 power=3
 toughness=3
-rarity=R
+abilities=legendary
 [/card]
 [card]
-name=Highland Weald
+text=Highland Weald enters the battlefield tapped.   {T}: Add {R} or {G} to your mana pool.
 id=121259
-text=Highland Weald enters the battlefield tapped. {T}: Add {R} or {G} to your mana pool.
+name=Highland Weald
 auto=tap
+auto={T}:Add {R}
+auto={T}:Add {G}
+rarity=U
 type=Land
 subtype=Snow
-auto={T}:add{R}
-auto={T}:add{G}
-rarity=U
 [/card]
 [card]
-name=Into the North
-id=121199
 text=Search your library for a snow land card and put it onto the battlefield tapped. Then shuffle your library.
-mana={1}{G}
-type=Sorcery
+id=121199
 target=land[snow]|mylibrary
 auto=moveto(mybattlefield)
 auto=tap
+name=Into the North
 rarity=C
+mana={1}{G}
+type=Sorcery
 [/card]
 [card]
-name=Kjeldoran Gargoyle
+text=Flying, first strike   Whenever Kjeldoran Gargoyle deals damage, you gain that much life.
 id=121207
-text=Flying, first strike Whenever Kjeldoran Gargoyle deals damage, you gain that much life.
+name=Kjeldoran Gargoyle
+rarity=U
 mana={5}{W}
-auto=flying,first strike,lifelink
 type=Creature
 subtype=Gargoyle
 power=3
 toughness=3
-rarity=U
+auto=flying,first strike,lifelink
 [/card]
 [card]
-name=Kjeldoran Outrider
-id=121188
 text={W}: Kjeldoran Outrider gets +0/+1 until end of turn.
+id=121188
+name=Kjeldoran Outrider
+rarity=C
 mana={1}{W}
-auto={W}:0/1
 type=Creature
 subtype=Human Soldier
+auto={W}:0/1
 power=2
 toughness=2
-rarity=C
 [/card]
 [card]
-name=Kjeldoran War Cry
-id=121148
 text=Creatures you control get +X/+X until end of turn, where X is 1 plus the number of cards named Kjeldoran War Cry in all graveyards.
+id=121148
+auto=lord(creature|myBattlefield) 1/1
+auto=foreach(Kjeldoran War Cry|myGraveyard) lord(creature|myBattlefield) 1/1
+auto=foreach(Kjeldoran War Cry|opponentGraveyard) lord(creature|myBattlefield) 1/1
+name=Kjeldoran War Cry
+rarity=C
 mana={1}{W}
 type=Instant
-auto=lord(creature|myBattlefield)1/1
-auto=foreach(Kjeldoran War Cry|myGraveyard)lord(creature|myBattlefield)1/1
-auto=foreach(Kjeldoran War Cry|opponentGraveyard)lord(creature|myBattlefield)1/1
-rarity=C
 [/card]
 [card]
-name=Krovikan Mist
+text=Flying   Krovikan Mist's power and toughness are each equal to the number of Illusions on the battlefield.
 id=122047
-text=Flying Krovikan Mist's power and toughness are each equal to the number of Illusions on the battlefield.
+name=Krovikan Mist
+rarity=C
 mana={1}{U}
-auto=foreach(illusion|battlefield)1/1
-abilities=flying
 type=Creature
 subtype=Illusion
+auto=foreach(illusion|battlefield) 1/1
 power=*
 toughness=*
-rarity=C
+abilities=flying
 [/card]
 [card]
-name=Krovikan Scoundrel
 id=121226
-text=
+name=Krovikan Scoundrel
+rarity=C
 mana={1}{B}
 type=Creature
 subtype=Human Rogue
 power=2
 toughness=1
-rarity=C
 [/card]
 [card]
-name=Lovisa Coldeyes
-id=113542
 text=Warrior, Berserker, and/or other Barbarian creatures get +2/+2 and have haste.
+id=113542
+name=Lovisa Coldeyes
+rarity=R
 mana={3}{R}{R}
-abilities=legendary
-auto=lord(warrior)2/2 other
-auto=lord(berserker,)2/2 other
-auto=lord(barbarian)2/2 other
 type=Creature
 subtype=Human Barbarian
+auto=lord(warrior) 2/2 other
+auto=lord(berserker) 2/2 other
+auto=lord(barbarian) 2/2 other
 power=3
 toughness=3
-rarity=R
+abilities=legendary
 [/card]
 [card]
-name=Mystic Melting
+text=Destroy target artifact or enchantment.   Draw a card at the beginning of the next turn's upkeep.
 id=121141
-text=Destroy target artifact or enchantment. Draw a card at the beginning of the next turn's upkeep.
-mana={3}{G}
-type=Instant
 target=artifact,enchantment
 auto=destroy
 auto=@next upkeep:draw:1 controller
+name=Mystic Melting
 rarity=U
+mana={3}{G}
+type=Instant
 [/card]
 [card]
-name=Orcish Bloodpainter
-id=121232
 text={T}, Sacrifice a creature: Orcish Bloodpainter deals 1 damage to target creature or player.
+id=121232
+name=Orcish Bloodpainter
+rarity=C
 mana={2}{R}
-auto={T}{S(creature|myBattlefield)}:damage:1 target(creature,player)
 type=Creature
 subtype=Orc Shaman
+auto={T}{S(creature|myBattlefield)}:damage:1 target(creature,player)
 power=2
 toughness=1
-rarity=C
 [/card]
 [card]
-name=Perilous Research
-id=121238
 text=Draw two cards, then sacrifice a permanent.
-mana={1}{U}
-type=Instant
+id=121238
 target=*|myBattlefield
 auto=bury
 auto=draw:2 controller
+name=Perilous Research
 rarity=U
+mana={1}{U}
+type=Instant
 [/card]
 [card]
-name=Rimewind Taskmage
-id=121239
 text={1}, {T}: You may tap or untap target permanent. Activate this ability only if you control four or more snow permanents.
 auto=aslongas(*[snow]|myBattlefield) {1}{T}:tap target(*) >3
 auto=aslongas(*[snow]|myBattlefield) {1}{T}:untap target(*) >3
+id=121239
+name=Rimewind Taskmage
+rarity=C
 mana={1}{U}
 type=Creature
 subtype=Human Wizard
 power=1
 toughness=2
-rarity=C
 [/card]
 [card]
-name=Rite of Flame
-id=121217
 text=Add {R}{R} to your mana pool, then add {R} to your mana pool for each card named Rite of Flame in each graveyard.
+id=121217
+auto=Add{R}{R}
+auto=foreach(Rite of Flame|myGraveyard) add{R}
+auto=foreach(Rite of Flame|opponentGraveyard) add{R}
+name=Rite of Flame
+rarity=C
 mana={R}
 type=Sorcery
-auto=add{R}{R}
-auto=foreach(Rite of Flame|myGraveyard)add{R}
-auto=foreach(Rite of Flame|opponentGraveyard)add{R}
-rarity=C
 [/card]
 [card]
-name=Ronom Unicorn
-id=121237
 text=Sacrifice Ronom Unicorn: Destroy target enchantment.
+id=121237
+name=Ronom Unicorn
+rarity=C
 mana={1}{W}
-auto={S}:destroy target(enchantment)
 type=Creature
 subtype=Unicorn
+auto={S}:destroy target(enchantment)
 power=2
 toughness=2
-rarity=C
 [/card]
 [card]
-name=Sek'Kuar, Deathkeeper
-id=121261
 text=Whenever another nontoken creature you control is put into a graveyard from the battlefield, put a 3/1 black and red Graveborn creature token with haste onto the battlefield.
-mana={2}{B}{R}{G}
-abilities=legendary
 auto=@movedto(creature|myGraveyard) from(myBattlefield):token(Graveborn, Creature Graveborn,3/1,haste red black)
+id=121261
+name=Sek'Kuar, Deathkeeper
+rarity=R
+mana={2}{B}{R}{G}
 type=Creature
 subtype=Orc Shaman
 power=4
 toughness=3
-rarity=R
+abilities=legendary
 [/card]
 [card]
-name=Simian Brawler
-id=121183
 text=Discard a land card: Simian Brawler gets +1/+1 until end of turn.
+id=121183
+name=Simian Brawler
+rarity=C
 mana={3}{G}
-auto={S(land|myHand)}:1/1
 type=Creature
 subtype=Ape Warrior
+auto={S(land|myHand)}:1/1
 power=3
 toughness=3
-rarity=C
 [/card]
 [card]
-name=Skred
-id=122120
 text=Skred deals damage to target creature equal to the number of snow permanents you control.
+id=122120
+target=creature
+auto=foreach(snow|myBattlefield) damage:1
+name=Skred
+rarity=C
 mana={R}
 type=Instant
-target=creature
-auto=foreach(snow|myBattlefield)damage:1
-rarity=C
 [/card]
 [card]
-name=Snow-Covered Forest
-id=121192
 text={G}
-auto={T}:add{G}
+id=121192
+name=Snow-Covered Forest
+auto={T}:Add {G}
+rarity=C
 type=Basic Land
 subtype=Forest Snow
-rarity=C
 [/card]
 [card]
-name=Snow-Covered Island
-id=121130
 text={U}
-auto={T}:add{U}
+id=121130
+name=Snow-Covered Island
+auto={T}:Add {U}
+rarity=C
 type=Basic Land
 subtype=Island Snow
-rarity=C
 [/card]
 [card]
-name=Snow-Covered Mountain
-id=121233
 text={R}
-auto={T}:add{R}
+id=121233
+name=Snow-Covered Mountain
+auto={T}:Add {R}
+rarity=C
 type=Basic Land
 subtype=Mountain Snow
-rarity=C
 [/card]
 [card]
-name=Snow-Covered Plains
-id=121267
 text={W}
-auto={T}:add{W}
+id=121267
+name=Snow-Covered Plains
+auto={T}:Add {W}
+rarity=C
 type=Basic Land
 subtype=Plains Snow
-rarity=C
 [/card]
 [card]
-name=Snow-Covered Swamp
-id=121256
 text={B}
-auto={T}:add{B}
+id=121256
+name=Snow-Covered Swamp
+auto={T}:Add {B}
+rarity=C
 type=Basic Land
 subtype=Swamp Snow
-rarity=C
 [/card]
 [card]
-name=Squall Drifter
+text=Flying   {W}, {T}: Tap target creature.
 id=121273
-text=Flying {W}, {T}: Tap target creature.
+name=Squall Drifter
+rarity=C
 mana={1}{W}
-abilities=flying
-auto={T}:add{W}
 type=Creature
 subtype=Elemental Snow
+auto={T}:Add {W}
 power=1
 toughness=1
-rarity=C
+abilities=flying
 [/card]
 [card]
-name=Steam Spitter
+text=Reach (This creature can block creatures with flying.)   {R}: Steam Spitter gets +1/+0 until end of turn.
 id=121240
-text=Reach (This creature can block creatures with flying.) {R}: Steam Spitter gets +1/+0 until end of turn.
+name=Steam Spitter
+rarity=U
 mana={4}{G}
-abilities=reach
-auto={R}:1/0
 type=Creature
 subtype=Spider
+auto={R}:1/0
 power=1
 toughness=5
-rarity=U
+abilities=reach
 [/card]
 [card]
-name=Stromgald Crusader
+text=Protection from white   {B}: Stromgald Crusader gains flying until end of turn.   {B}{B}: Stromgald Crusader gets +1/+0 until end of turn.
 id=121253
-text=Protection from white {B}: Stromgald Crusader gains flying until end of turn. {B}{B}: Stromgald Crusader gets +1/+0 until end of turn.
+name=Stromgald Crusader
+rarity=U
 mana={B}{B}
-abilities=protection from white
-auto={B}:flying
-auto={B}{B}:1/0
 type=Creature
 subtype=Zombie Knight
+auto={B}:flying
+auto={B}{B}:1/0
 power=2
 toughness=1
-rarity=U
+abilities=protection from white
 [/card]
 [card]
-name=Tresserhorn Sinks
+text=Tresserhorn Sinks enters the battlefield tapped.   {T}: Add {B} or {R} to your mana pool.
 id=121125
-text=Tresserhorn Sinks enters the battlefield tapped. {T}: Add {B} or {R} to your mana pool.
+name=Tresserhorn Sinks
 auto=tap
+auto={T}:Add {B}
+auto={T}:Add {R}
+rarity=U
 type=Land
 subtype=Snow
-auto={T}:add{B}
-auto={T}:add{R}
-rarity=U
 [/card]
 [card]
-name=White Shield Crusader
+text=Protection from black   {W}: White Shield Crusader gains flying until end of turn.   {W}{W}: White Shield Crusader gets +1/+0 until end of turn.
 id=121216
-text=Protection from black {W}: White Shield Crusader gains flying until end of turn. {W}{W}: White Shield Crusader gets +1/+0 until end of turn.
+name=White Shield Crusader
+rarity=U
 mana={W}{W}
-abilities=protection from black
-auto={W}:flying
-auto={W}{W}:1/0
 type=Creature
 subtype=Human Knight
+auto={W}:flying
+auto={W}{W}:1/0
 power=2
 toughness=1
-rarity=U
+abilities=protection from black
 [/card]
 [card]
-name=Wilderness Elemental
+text=Trample   Wilderness Elemental's power is equal to the number of nonbasic lands your opponents control.
 id=121191
-text=Trample Wilderness Elemental's power is equal to the number of nonbasic lands your opponents control.
+name=Wilderness Elemental
+rarity=U
 mana={1}{R}{G}
-abilities=trample
-auto=foreach(land[-basic]|opponentBattlefield)1/0
 type=Creature
 subtype=Elemental
+auto=foreach(land[-basic]|opponentBattlefield) 1/0
 power=*
 toughness=3
-rarity=U
+abilities=trample
 [/card]
