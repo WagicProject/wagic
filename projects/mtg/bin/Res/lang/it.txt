@@ -5,10 +5,12 @@
 #Buon divertimento
 
 #Note to translators:
-#If you want to translate cards, I suggest you translate their text (the "text=" line) directly in _cards.dat,
-# BUT DO NOT TOUCH ANYTHING ELSE in the _cards.dat files (names and types of creatures are used by the game!)
-# If you want to translate creature types and other game elements, do it in this file. Only the "text=" can be done directly in _cards.dat
-#Limitation: Special characters that are not in the limited 128 ASCII set  CAN NOT be put in this file, it will display as garbage 
+# - Cards' names and types are translated here (see bottom of the file)
+# - Cards' rules text is translated in a separate file: Res\lang\de_cards.txt
+# - Translations are case sensitive
+# - Limitation: Special characters that are not in the limited 128 ASCII
+#     set can not be used, the game won't display them.
+# - DO NOT TRANSLATE ANYTHING in the _cards.dat files.
 
 #Game menus/texts
 LOADING SET: %s=CARICAMENTO SET: %s
