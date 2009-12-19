@@ -5,7 +5,7 @@
 
 #Note to translators:
 # - Cards' names and types are translated here (see bottom of the file)
-# - Cards' rules text is translated in a separate file: Res\lang\de_cards.txt
+# - Cards' rules text is translated in a separate file: Res\lang\pt_cards.txt
 # - Translations are case sensitive
 # - Limitation: Special characters that are not in the limited 128 ASCII
 #     set can not be used, the game won't display them.
