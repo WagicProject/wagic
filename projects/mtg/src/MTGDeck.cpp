@@ -690,6 +690,7 @@ MTGSetInfo::MTGSetInfo(string _id) {
   id = _id;
   block = -1;
   year = -1;
+
   for(int i=0;i<MTGSetInfo::MAX_COUNT;i++)
     counts[i] = 0;
 
@@ -698,40 +699,7 @@ MTGSetInfo::MTGSetInfo(string _id) {
   booster[MTGSetInfo::UNCOMMON] = 3;
   booster[MTGSetInfo::RARE] = 1;
 
-  //Load metadata.
-  char buf[512];
-  sprintf(buf,RESPATH"/sets/%s/"SET_METADATA,id.c_str());
-  ifstream file(buf);
-  if(file){
-    string s;
-    while(std::getline(file,s)){
-      unsigned int i = s.find_first_of("=");
-      if (i == string::npos)
-        continue;
-
-      string key = s.substr(0,i);
-      string value = s.substr(i+1,i+1-s.find_last_not_of(whitespaces));
-
-      if(key.compare("name") == 0)
-        name = value;
-      else if(key.compare("author") == 0)
-        author = value;
-      else if(key.compare("block") == 0)
-        block = setlist.findBlock(value.c_str());
-      else if(key.compare("year") == 0)
-        year = atoi(value.c_str());
-      else if(key.compare("booster_r") == 0)
-        booster[MTGSetInfo::RARE] = atoi(value.c_str());
-      else if(key.compare("booster_u") == 0)
-        booster[MTGSetInfo::UNCOMMON] = atoi(value.c_str());
-      else if(key.compare("booster_c") == 0)
-        booster[MTGSetInfo::COMMON] = atoi(value.c_str());
-      else if(key.compare("booster_l") == 0)
-        booster[MTGSetInfo::LAND] = atoi(value.c_str());
-    }
-    file.close();  
-  }
-  
+  //Load metadata. (FIXME - Removed for release 0.1.0, will be fully implemented next release)
 }
 
 void MTGSetInfo::count(MTGCard*c){
