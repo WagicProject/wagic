@@ -2,8 +2,8 @@
 #DESC:The night falls down, 
 #DESC:the trouble begins.
 #DESC:The specter of evil,
-#DESC:will bring you back,
-#DESC:to black !
+#DESC:will bring you back
+#DESC:to black!
 #4x Bad Moon,{1}{B}, Enchantment, all black creature gets +1/+1
 1144
 1144

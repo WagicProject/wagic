@@ -1,4 +1,11 @@
 #NAME:Persistence
+#DESC:See your whole army
+#DESC:fall victim
+#DESC:to wrath and damnation
+#DESC:while we persist
+#DESC:and survive
+#DESC:to strike you
+#DESC:when you are defenseless.
 Wrath of God (RV)            * 4 #
 Damnation (PLC)              * 4 #
 Kitchen Finks (SHM)          * 4 #

@@ -1,4 +1,7 @@
 #NAME:Saproling Surge
+#DESC:A wiggling, squirming mass
+#DESC:of fungal matter
+#DESC:will overgrow your army.
 Verdant Force (TMP)          * 2 #
 Gaea's Cradle (USG)          * 2 #
 Spontaneous Generation (MRQ) * 2 #

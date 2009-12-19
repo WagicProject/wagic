@@ -1,7 +1,8 @@
 #NAME:Taiga
 #DESC:The forces of fire and nature unite.
 #DESC:
-#DESC:Can you withstand their combined fervor?
+#DESC:Can you withstand
+#DESC:their combined fervor?
 #2x Cockatrice
 1238
 1238

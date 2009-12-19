@@ -1,5 +1,5 @@
 #NAME:Plateau
-#DESC:In the highland of Borros
+#DESC:In the highland of Boros
 #DESC:Angels, elementals and goblins 
 #DESC:are preparing for battle.
 #DESC:Beware, the crusade is coming...

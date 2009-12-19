@@ -1,4 +1,8 @@
 #NAME:Mermadness
+#DESC:The tricksters of the sea
+#DESC:are now conquering all the realms
+#DESC:with their never-ending supply
+#DESC:of fighters and spells.
 Lord of Atlantis (RV)        * 4 #
 Merfolk of the Pearl Trident (RV) * 2 #
 River Merfolk (FEM)          * 1 #

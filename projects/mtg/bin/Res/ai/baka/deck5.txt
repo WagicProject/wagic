@@ -1,8 +1,8 @@
 #NAME:Badlands
 #DESC:Dangerous foes await you.
-#DESC:Both Undead, Goblins and other
-#DESC:Abominations will fight you 
-#DESC:recklessly.
+#DESC:Both undead, goblins, and
+#DESC:other abominations will
+#DESC:fight you recklessly.
 #Ankh of Mishra
 1094
 1094

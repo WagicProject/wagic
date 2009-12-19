@@ -1,4 +1,11 @@
 #NAME:Rack them all
+#DESC:Notch by notch
+#DESC:I turn the wheel
+#DESC:stretching your bonded limbs.
+#DESC:
+#DESC:There is nothing you can do.
+#DESC:You might as well surrender
+#DESC:right away.
 The Rack (RV)                * 4 #
 Bad Moon (RV)                * 4 #
 Dark Ritual (RV)             * 4 #

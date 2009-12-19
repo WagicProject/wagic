@@ -1,8 +1,17 @@
 #NAME:Life & Death
+#DESC:"Life causes death.
+#DESC: Death provides the basis
+#DESC: for new life.
+#DESC:
+#DESC: Life and Death do not contradict,
+#DESC: but complement each other.
+#DESC:
+#DESC: Understanding their interaction
+#DESC: is the secret of our strength."
 Dark Ritual (RV)             * 4 #
 Righteous War (VIS)          * 4 #
 Vindicate (APC)              * 4 #
-Mountain (RAV)               *11 #
+Swamp (RAV)                  *11 #
 Plains (RAV)                 *11 #
 Mourning Thrull (GPT)        * 4 #
 Nip Gwyllion (EVE)           * 4 #

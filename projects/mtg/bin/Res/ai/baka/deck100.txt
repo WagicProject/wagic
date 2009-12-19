@@ -1,5 +1,10 @@
 #NAME: Good Knight
 #DESC:Time to sleep.
+#DESC:
+#DESC:Beware! The knights have come!
+#DESC:Inspired by their anthem,
+#DESC:they embarked on a crusade
+#DESC:to defend their honor.
 Crusade (RV)                 * 2 #
 Swords to Plowshares (ICE)   * 3 #
 Leonin Skyhunter (MRD)       * 4 #

@@ -1,4 +1,18 @@
 #NAME:Bloodhall Ooze
+#DESC:"Note about specimen 114:
+#DESC: After being nourished by living
+#DESC: and decaying organic matter,
+#DESC: the ooze has grown to proportions
+#DESC: we never fathomed.
+#DESC: Actually, when I look at its
+#DESC: raging tentacles slapping
+#DESC: relentlessly against the glassy
+#DESC: wall of its prison, I wonder if
+#DESC: it might not eventually become a
+#DESC: security risk for this labo..."
+#DESC:         (scrap of paper found among the
+#DESC:            slimy ruins of the mages' lab)
+
 Kird Ape (RV)                * 4 #
 Forest (10E)                 *13 #
 Mountain (10E)               *11 #

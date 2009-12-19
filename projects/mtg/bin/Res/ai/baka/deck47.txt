@@ -1,14 +1,9 @@
-#NAME:Noble Panther
+#NAME:Noble Predators
 #
-#DESC: Creature's Decks 14:
-#DESC: "The deck that a Noble Panther
-#DESC: would (and could) assemble"
-#DESC: (v1.01)
-#DESC:
-#DESC: We are hunters.
+#DESC:"We are hunters.
 #DESC: You are prey.
 #DESC: Now run
-#DESC: So that we can catch you.
+#DESC: So that we can catch you."
 
 Noble Panther (INV)     *4 # 29 furious feline friends
 Horned Cheetah (INV)    *4 # lifelink

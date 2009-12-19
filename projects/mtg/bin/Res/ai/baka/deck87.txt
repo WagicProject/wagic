@@ -1,4 +1,6 @@
 #NAME:Hot & Hasty
+#DESC:"Our heat will burn you
+#DESC: before you can even move!"
 Breath of Darigaaz (INV)     * 4 #
 Rorix Bladewing (ONS)        * 3 #
 Slith Firewalker (MRD)       * 4 #

@@ -1,17 +1,12 @@
 #NAME:Heartmender
 #
-#DESC: Creature's Decks 10:
-#DESC: "The deck that a Heartmender
-#DESC: would (and could) assemble"
-#DESC: (v1.01)
-#DESC:
-#DESC: No matter who
+#DESC:"No matter who
 #DESC: No matter what
 #DESC: We heal.
 #DESC: The good and the bad
 #DESC: The calm and the mad
 #DESC: The live and the dead
-#DESC: We heal.
+#DESC: We heal."
 
 Heartmender (SHM)         *4 # continuously removes -1/-1 counters
 #                            # from all others

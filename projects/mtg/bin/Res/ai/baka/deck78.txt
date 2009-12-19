@@ -1,4 +1,10 @@
 #NAME:White Blades
+#DESC:Meet a complete army
+#DESC:of soldiers, knights, and guards.
+#DESC:
+#DESC:Can you stop them,
+#DESC:or will you just stand aside
+#DESC:and watch in awe?
 Steppe Lynx (ZEN)            * 3 #
 Akrasan Squire (ALA)         * 4 #
 Day of Judgment (ZEN)        * 3 #

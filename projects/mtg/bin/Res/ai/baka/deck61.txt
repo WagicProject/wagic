@@ -1,4 +1,8 @@
-#NAME:Tarmac 
+#NAME:Tarmac
+#DESC:How does it feel
+#DESC:being stripped to the rack
+#DESC:while Tarmogoyf licks
+#DESC:the soles of your feet?
 The Rack (RV)                * 4 #
 Hymn to Tourach (FEM)        * 4 #
 Darksteel Ingot (DST)        * 3 #

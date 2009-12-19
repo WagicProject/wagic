@@ -1,11 +1,8 @@
 #NAME:Jihad
-#DESC:Mono-White deck with cheap,
-#DESC:effective creatures and
-#DESC:many pump effects.
-#DESC:Designed as a tribute to
-#DESC:the Jihad card from
-#DESC:Arabian Nights!
-#DESC:v1.0 2009 09 16
+#DESC:They may look weak
+#DESC:and barely present,
+#DESC:but if you let them grow
+#DESC:they will crush your army.
 Crusade (RV) *4
 Glorious Anthem (10E) *4
 Honor of the Pure (M10) *4

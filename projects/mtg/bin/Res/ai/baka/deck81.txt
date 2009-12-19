@@ -1,4 +1,13 @@
 #NAME:Goblin Spike
+#DESC:"Huh? Waddarya yellin, mage?
+#DESC: Can't understand ya
+#DESC: with all that spell firing
+#DESC: going on!
+#DESC: Wait, lemme read your lips.
+#DESC: 'Get ... get ... aw... awhat?"
+#DESC:
+#DESC: (last words of a goblin warrior,
+#DESC:  moments before being incinerated)
 Goblin Balloon Brigade (RV)  * 3 #
 Goblin Soothsayer (MIR)      * 4 #
 Mob Justice (STH)            * 4 #

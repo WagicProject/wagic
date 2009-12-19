@@ -1,5 +1,6 @@
 #NAME:Plane ofthe Apes
-#DESC:A plane where apes evolved from men?
+#DESC:A plane where apes
+#DESC:evolved from men?
 #DESC:There's got to be an answer!
 Tree Monkey (P02) *4
 Kird Ape (RV) *4

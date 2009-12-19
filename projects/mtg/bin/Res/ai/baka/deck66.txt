@@ -1,6 +1,6 @@
 #NAME:Blind Faith
 #DESC:"No more Dark and Light
-#DESC:for it is one that we fight"
+#DESC: for it is one that we fight"
 Unholy Strength (RV)         * 2 #
 Holy Strength (RV)           * 2 #
 Silent Attendant (USG)       * 2 #

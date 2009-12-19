@@ -1,4 +1,9 @@
 #NAME:Token Terror
+#DESC:"Beware!
+#DESC: they come from everywhere!"
+#DESC:
+#DESC:Meet a diverse army
+#DESC:drafted by unusual means.
 Swords to Plowshares (ICE)   * 4 #
 Raise the Alarm (MRD)        * 4 #
 Plains (MRD)                 * 7 #

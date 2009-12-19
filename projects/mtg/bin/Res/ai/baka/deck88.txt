@@ -1,4 +1,9 @@
 #NAME:Vanguard'sChosen
+#DESC:Watch the vanguard!
+#DESC:How its strength rises
+#DESC:and rises
+#DESC:and rises
+#DESC:until nothing can stop it!
 Pendelhaven (LEG)            * 2 #
 Fyndhorn Elves (ICE)         * 3 #
 Elvish Vanguard (ONS)        * 4 #

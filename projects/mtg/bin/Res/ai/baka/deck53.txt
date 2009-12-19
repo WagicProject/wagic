@@ -1,4 +1,14 @@
-#NAME:Vampires
+#NAME:VampireViscounts
+#DESC:Oh to sink one's teeth
+#DESC:into the warm softness
+#DESC:of pulsating flesh!
+#DESC:
+#DESC:Oh to drink the liquor
+#DESC:of life and passion
+#DESC:fresh from the source!
+#DESC:
+#DESC:Can it be a sin
+#DESC:to revel in such bliss?
 Dark Ritual (RV)             * 2 #
 Arrogant Vampire (POR)       * 4 #
 Vampiric Feast (POR)         * 2 #
@@ -6,7 +16,7 @@ Vampiric Touch (POR)         * 2 #
 Stalking Bloodsucker (ODY)   * 1 #
 Skeletal Vampire (GPT)       * 1 #
 Ascendant Evincar (10E)      * 2 #
-Vampiric link (PLC)          * 3 #
+Vampiric Link (PLC)          * 3 #
 Swamp (ALA)                  * 4 #
 Swamp (ALA)                  * 4 #
 Vampire's Bite (ZEN)         * 3 #

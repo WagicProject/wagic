@@ -1,16 +1,11 @@
 #NAME:Undead Lords
 #
-#DESC: Creature's Decks 7:
-#DESC: "The deck that a Lord of the Undead
-#DESC: would (and could) assemble"
-#DESC: (v1.02)
-#DESC:
-#DESC: Can you smell the sweet perfume
+#DESC:"Can you smell the sweet perfume
 #DESC: Of festering flesh and rotting bones?
 #DESC:
 #DESC: Rejoice if you like it
 #DESC: Because soon, soon
-#DESC: You will be part of my army.
+#DESC: You will be part of my army."
 #
 
 Lord of the Undead (10E) *4  # strengthens and raises zombies

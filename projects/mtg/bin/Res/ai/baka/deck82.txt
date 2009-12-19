@@ -1,5 +1,9 @@
 #NAME:Skies of Emeria
-#DESC:All Land-Walkers Beware!
+#DESC:All land-walkers beware!
+#DESC:None shall pass on foot
+#DESC:into our realm,
+#DESC:and all who enter by other means
+#DESC:shall be repelled.
 Serra Angel (RV)             * 4 #
 Karakas (LEG)                * 1 #
 Zephid (USG)                 * 1 #

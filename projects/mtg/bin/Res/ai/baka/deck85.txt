@@ -1,4 +1,10 @@
 #NAME:Traveling Party
+#DESC:We may look
+#DESC:like any other party
+#DESC:of adventurers.
+#DESC:But you have no idea
+#DESC:how much help we can get
+#DESC:if we need to.
 Swords to Plowshares (ICE)   * 4 #
 Glorious Anthem (10E)        * 4 #
 Spectral Procession (SHM)    * 4 #

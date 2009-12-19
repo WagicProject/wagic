@@ -1,10 +1,10 @@
 #NAME:Burning
 #DESC:Better be prepared, 
 #DESC:to burn the midnight oil.
-#DESC:The goblin brashness ,
+#DESC:The goblin brashness
 #DESC:will make you boil.
-#DESC:And you will end, 
-#DESC:burning with a low flame..
+#DESC:And you will end 
+#DESC:burning with a low flame ...
 #2 x Bloodmark Mentor
 142062
 142062

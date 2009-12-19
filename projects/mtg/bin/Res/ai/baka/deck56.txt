@@ -1,4 +1,10 @@
 #NAME:Enchanted Coatl
+#DESC:Beware! The enchantresses
+#DESC:have found a new pet!
+#DESC:And they enjoy to make it
+#DESC:stronger and stronger
+#DESC:until no defender
+#DESC:can stop it.
 Flight (RV)                  * 2 #
 Fastbond (RV)                * 1 #
 Instill Energy (RV)          * 1 #

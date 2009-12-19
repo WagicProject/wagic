@@ -1,10 +1,5 @@
 #NAME:Zuberi's Flock
 #
-#DESC: Creature's Decks 8:
-#DESC: "The deck that Zuberi, Golden Feather,
-#DESC: would (and could) assemble"
-#DESC: (v1.01)
-#DESC:
 #DESC: Winged fighters
 #DESC: for honor and justice
 #DESC: cross the chasm

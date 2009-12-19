@@ -1,9 +1,11 @@
 #Mill /Artifact Game for AI
 #NAME:Inquisitor
-#DESC:Black vises in Ivory Towers await you
-#DESC:when facing this artificially created army,
-#DESC:designed to completely stop your progress
-#DESC:and then torture you to death.
+#DESC:Black vises in Ivory Towers
+#DESC:await you, when facing
+#DESC:this artificially created army,
+#DESC:designed to completely stop
+#DESC:your progress, and then
+#DESC:torture you to death.
 #4x Howling Mine
 129598
 129598

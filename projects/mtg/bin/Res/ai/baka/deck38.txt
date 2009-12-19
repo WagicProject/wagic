@@ -1,10 +1,7 @@
 #NAME:Bad Dreams
-#DESC:Vision without action is a daydream.
-#DESC:Action without vision is a nightmare.
-#DESC:
-#DESC:Japanese Proverb
-#DESC:
-#DESC:v1.0 2009 10 01
+#DESC:If you ever thought
+#DESC:  that YOU had bad dreams ...
+#DESC:Wait until you meet these.
 Black Vise (RV) *1
 Wheel of Fortune (RV) *1
 Howling Mine (M10) *4

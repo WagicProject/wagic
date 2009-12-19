@@ -1,13 +1,8 @@
 #NAME:Master of Ether
 #
-#DESC: Creature's Decks 3:
-#DESC: "The deck that a Master of Etherium
-#DESC: would (and could) assemble"
-#DESC: (v1.01)
-#DESC:
-#DESC: Surrounded by the things I built
+#DESC:"Surrounded by the things I built
 #DESC: my power will grow
-#DESC: boundlessly
+#DESC: boundlessly."
 #
 
 Master of Etherium (ALA) *4  # gets stronger with every artifact

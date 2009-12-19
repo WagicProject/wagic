@@ -1,4 +1,7 @@
 #NAME:Destroy
+#DESC:I will destroy your lands
+#DESC:and then your army
+#DESC:and then you.
 Black Vise (RV)              * 4 #
 Black Knight (RV)            * 2 #
 Dark Ritual (RV)             * 4 #

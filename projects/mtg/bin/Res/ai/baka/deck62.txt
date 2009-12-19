@@ -1,4 +1,12 @@
 #NAME:Enchantresses
+#DESC:Fear the might
+#DESC:of the Enchantresses!
+#DESC:If you don't take care,
+#DESC:they will fire
+#DESC:a barrage of spells
+#DESC:while growing
+#DESC:to powerful warriors
+#DESC:themselves.
 Web (RV)                     * 4 #
 Wall of Blossoms (STH)       * 4 #
 Argothian Enchantress (USG)  * 4 #

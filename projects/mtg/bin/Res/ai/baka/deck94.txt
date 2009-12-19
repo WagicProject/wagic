@@ -1,4 +1,8 @@
 #NAME:Death
+#DESC:Lavishly we're sowing
+#DESC:Death and demise
+#DESC:When the battle is won
+#DESC:we can harvest the corpses.
 Paralyze (RV)                * 2 #
 Will-o'-the-Wisp (RV)        * 2 #
 Spirit of the Night (MIR)    * 1 #

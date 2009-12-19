@@ -1,4 +1,9 @@
 #NAME:Red Green Ally
+#DESC:"We may not be alike,
+#DESC: but we share a common goal.
+#DESC: All opposition will falter
+#DESC: when the piper
+#DESC: begins her tune."
 Mountain (10E)               * 2 #
 Primal Rage (10E)            * 3 #
 Mountain (LRW)               *10 #

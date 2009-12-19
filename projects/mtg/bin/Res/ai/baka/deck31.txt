@@ -1,6 +1,8 @@
 #NAME:Angelism
-#DESC:White, enchantment-based deck.
-#DESC:v1.1 2009 09 01
+#DESC:An army of angels
+#DESC:will sweep through your defenses
+#DESC:while all your forces can do
+#DESC:is watch and gape in awe.
 Angelic Chorus (10E) *3
 Honor of the Pure (M10) *4
 Kitchen Finks (SHM) *4

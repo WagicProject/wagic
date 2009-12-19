@@ -1,5 +1,11 @@
-#NAME:Enchanted 
-Primal Frenzy (ODY) (10E)    * 4 #
+#NAME:Enchanted
+#DESC:Beware when any of the fighters
+#DESC:dons the armor
+#DESC:or the mask.
+#DESC:
+#DESC:Outfitted well
+#DESC:they will become invincible.
+Primal Frenzy (ODY)          * 4 #
 Blanchwood Armor (USG)       * 4 #
 Ancestral Mask (MRQ)         * 4 #
 Spidersilk Armor (MRQ)       * 4 #

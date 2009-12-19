@@ -1,4 +1,16 @@
 #NAME:Barbarians
+#DESC: Being a barbarian can be really,
+#DESC: really hard. People think that all
+#DESC: we are interested in is to spit out
+#DESC: primitive threats like "Me barbarian!
+#DESC: Me not like your face!", and then
+#DESC: brutally crush the next best guy.
+#DESC: 
+#DESC: This is is outrageously wrong! We can
+#DESC: actually speak full sentences before
+#DESC: we brutally crush the next best guy.
+#DESC:                (Ugh Skullcrusher,
+#DESC:                 Barbarian Philosopher)
 Keldon Warlord (RV)          * 4 #
 Balduvian Barbarians (ICE)   * 4 #
 Balduvian War-Makers (ALL)   * 3 #

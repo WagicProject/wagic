@@ -4,7 +4,7 @@
 #DESC:challenge just one 
 #DESC:champion of Goldmeadow,
 #DESC:and you will face 
-#DESC:the entire cla-chan !
+#DESC:the entire cla-chan!
 #4x Glorious Anthem, {1}{W}{W}, Enchantment, Creatures you control get +1/+1
 129572
 129572

@@ -1,16 +1,11 @@
 #NAME:Fairy Archmage
 #
-#DESC: Creature's Decks 11:
-#DESC: "The deck that a Glen Elendra Archmage
-#DESC: would (and could) assemble"
-#DESC: (v1.01)
-#DESC:
-#DESC: Now we're here
+#DESC:"Now we're here
 #DESC: Now we're there
 #DESC: Now we're gone
 #DESC: Now we're back
 #DESC:
-#DESC: But what happened to your defenses?
+#DESC: But what happened to your defenses?"
 
 Glen Elendra Archmage (EVE) *4 # ability is currently buggy ...
 

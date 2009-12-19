@@ -1,4 +1,7 @@
 #NAME:Thistlestings
+#DESC:Meet a more mystical tribe
+#DESC:of Kithkin. Will you allow
+#DESC:them to confuse you?
 Wings of Aesthir (ICE)       * 4 #
 Wings of Hope (INV)          * 4 #
 Plains (INV)                 *12 #

@@ -1,4 +1,9 @@
 #NAME:Red Cats
+#DESC:Ferocious predators
+#DESC:descend from the mountains,
+#DESC:lured down
+#DESC:by the sweet smell
+#DESC:of your fighters' cold sweat.
 Sabretooth Tiger (ICE)       * 4 #
 Raging Cougar (POR)          * 4 #
 Canyon Wildcat (TMP)         * 4 #

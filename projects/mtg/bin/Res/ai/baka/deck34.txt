@@ -1,14 +1,9 @@
 #NAME:Kobold Overlord
 #
-#DESC: Creature's Decks 1:
-#DESC: "The deck that a Kobold Overlord
-#DESC: would (and could) assemble."
-#DESC: (v1.07)
-#DESC:
-#DESC:You may think we are weak
-#DESC:But we are many
-#DESC:And sometimes we can hire
-#DESC:A powerful mercenary
+#DESC:"You may think we are weak
+#DESC: But we are many
+#DESC: And sometimes we can hire
+#DESC: A powerful mercenary!"
 #
 Mountain (10E)              *20
 Kher Keep (TSP)             *2 # produces kobold tokens

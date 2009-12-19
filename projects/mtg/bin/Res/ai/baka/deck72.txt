@@ -1,4 +1,8 @@
 #NAME:Creaky Wood
+#DESC:"Death has always been
+#DESC: a part of nature.
+#DESC: We embrace it
+#DESC: to enhance our power."
 Llanowar Dead (APC)          * 4 #
 Ebony Treefolk (APC)         * 4 #
 Putrefy (RAV)                * 4 #

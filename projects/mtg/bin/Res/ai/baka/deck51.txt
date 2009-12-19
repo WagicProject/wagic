@@ -1,4 +1,16 @@
 #NAME:Mindwracked
+#DESC:"What was it, what was it ... I know
+#DESC: there was something I wanted to tell
+#DESC: you. Or was it something you wanted
+#DESC: to tell me? Ah, why can't I remember?
+#DESC: I know it was important! Or wasn't it?
+#DESC:
+#DESC: What am I thinking about here? And
+#DESC: are these actually my own thoughts?
+#DESC: Who am I anyway? Any who are *you*?
+#DESC: Ah, never mind. I'll just kill you.
+#DESC:
+#DESC: You're disrupting my thoughts."
 Izzet Signet (GPT)           * 4 #
 Gelectrode (GPT)             * 4 #
 Wee Dragonauts (GPT)         * 4 #

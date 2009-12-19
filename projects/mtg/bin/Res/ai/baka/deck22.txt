@@ -1,6 +1,6 @@
 #NAME:Giants!
 #DESC:It's actually very hard to miss a giant.
-#DESC:you don't even have to aim your blow well.
+#DESC:You don't even have to aim your blow well.
 #DESC:The hard part
 #DESC:is to get into striking range.
 #Mogg Fanatic

@@ -1,10 +1,10 @@
 #NAME:Dragons
 #DESC:Dragons are rage
-#DESC:of power and will
+#DESC:of power and will.
 #DESC:Dragons are artists 
 #DESC:with flames, 
 #DESC:painting the world 
-#DESC:with fire
+#DESC:with fire.
 #Land
 Mountain (M10) *24
 

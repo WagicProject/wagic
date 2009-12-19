@@ -1,5 +1,9 @@
 #NAME:Tree Planter
-Aspect of Wolf (RV)          * 4 #
+#DESC:If you don't come to the forest,
+#DESC:the forest will come to you.
+#DESC:
+#DESC:But the trees we plant today
+#DESC:are the armors we wear tomorrow.
 Nature's Lore (POR)          * 4 #
 Titania's Chosen (USG)       * 3 #
 Forest (CHK)                 * 5 #
@@ -17,3 +21,7 @@ Blanchwood Armor (10E)       * 4 #
 Oversoul of Dusk (SHM)       * 1 #
 Farhaven Elf (SHM)           * 3 #
 Wilt-Leaf Cavaliers (SHM)    * 3 #
+
+#Taken out, AI casts it on opponent's creatures
+#Aspect of Wolf (RV)          * 4 #
+Fists of Ironwood (RAV)      * 4 #

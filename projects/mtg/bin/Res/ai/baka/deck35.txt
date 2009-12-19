@@ -1,11 +1,13 @@
 #NAME:Might Sliver
 #
-#DESC: Creature's Decks 2:
-#DESC: "The deck that a Might Sliver
-#DESC: would (and could) assemble."
-#DESC: (v1.01)
-#DESC:
-#DESC:The Hive reaches your doorstep ...
+#DESC:Beware! Beware!
+#DESC:They are everywhere!
+#DESC:Even in the air
+#DESC:and under the ground.
+#DESC:The whole world has turned
+#DESC:into a squirming mass
+#DESC:of these small, yet dangerous
+#DESC:... things ...
 #
 #
 

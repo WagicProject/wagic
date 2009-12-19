@@ -1,8 +1,9 @@
 #NAME:Spectral Rack
-#DESC:Mono black deck with
-#DESC:disruption and good
-#DESC:removal.
-#DESC:v1.0 2009 09 17
+#DESC:"We will clear your mind
+#DESC: until nothing is left.
+#DESC: And we will grow stronger
+#DESC: as you keep losing
+#DESC: your thoughts."
 The Rack (RV) *4
 Doom Blade (M10) *4
 Last Gasp (RAV) *4

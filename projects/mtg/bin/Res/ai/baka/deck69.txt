@@ -1,4 +1,8 @@
 #NAME:Balefire Blast
+#DESC:"Order and chaos
+#DESC: can be united
+#DESC: by the raw power
+#DESC: of pure fanaticism."
 Boros Swiftblade (RAV)       * 4 #
 Lightning Helix (RAV)        * 4 #
 Boros Recruit (RAV)          * 4 #

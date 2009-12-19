@@ -1,6 +1,6 @@
 #NAME:Faeries
-#DESC:Be warned, those are not butterflies...
-#DESC:Or the dangerous kind.
+#DESC:Be warned, those are not butterflies!
+#DESC:Or ... the dangerous kind.
 #Plain blue deck
 #4 x Control Magic, {2}{U}{U}, Enchant creature
 1194

@@ -1,14 +1,9 @@
 #NAME:Ball Lightning
 #
-#DESC: Creature's Decks 6:
-#DESC: "The deck that a Ball Lightning
-#DESC: would (and could) assemble"
-#DESC: (v1.01)
-#DESC:
-#DESC: You are nothing
+#DESC:"You are nothing
 #DESC: But more fuel
 #DESC: For my insatiable
-#DESC: Rage
+#DESC: Rage!"
 #
 
 Ball Lightning (M10)        *4

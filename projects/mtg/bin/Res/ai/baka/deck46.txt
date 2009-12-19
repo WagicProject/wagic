@@ -1,10 +1,5 @@
 #NAME:AshenmoorCohort
 #
-#DESC: Creature's Decks 13:
-#DESC: "The deck that an Ashenmoor Cohort
-#DESC: would (and could) assemble"
-#DESC: (v1.01)
-#DESC:
 #DESC: How does it feel
 #DESC: to be dead
 #DESC: I hear you ask?

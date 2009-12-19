@@ -1,5 +1,10 @@
 #NAME:Elfolk
-#DESC:Elf-folk, get it!?
+#DESC:Meet a combined force
+#DESC:of elves and treefolk.
+#DESC:Can you withstand
+#DESC:the standing power of the trees
+#DESC:and the fertility of the elves
+#DESC:at the same time?
 Living Lands (RV)            * 2 #
 Eladamri, Lord of Leaves (TMP) * 2 #
 Treefolk Seedlings (USG)     * 4 #

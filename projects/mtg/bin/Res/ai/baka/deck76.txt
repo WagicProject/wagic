@@ -1,7 +1,11 @@
 #NAME:The Memorial
-#DESC:What would you do?
-#DESC:When you are facing
-#DESC:an army of Supermen?
+#DESC:What will you do
+#DESC:when you are facing
+#DESC:an army of super-beings?
+#DESC:
+#DESC:Worshipping the Memorial
+#DESC:gives them powers
+#DESC:beyond comprehension.
 Pendelhaven (LEG)            * 1 #
 Urborg (LEG)                 * 1 #
 Fyndhorn Elves (ICE)         * 4 #

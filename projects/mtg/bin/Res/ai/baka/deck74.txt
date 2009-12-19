@@ -1,4 +1,8 @@
 #NAME:Boar's Tusks
+#DESC:Prepare to meet an army
+#DESC:of mighty creatures
+#DESC:harnessing the power
+#DESC:of fire and nature alike.
 Sunastian Falconer (LEG)     * 1 #
 Rock Basilisk (MIR)          * 1 #
 Viashivan Dragon (VIS)       * 1 #

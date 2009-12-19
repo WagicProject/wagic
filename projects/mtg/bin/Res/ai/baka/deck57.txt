@@ -1,4 +1,7 @@
-#NAME:Black Coffers
+#NAME:Wraith's Feast
+#DESC:"My army may intimidate you,
+#DESC: but it is my hunger for life
+#DESC: that will kill you."
 Dark Ritual (RV)             * 4 #
 Drain Life (RV)              * 4 #
 Cabal Coffers (TOR)          * 4 #

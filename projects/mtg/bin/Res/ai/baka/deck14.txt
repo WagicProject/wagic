@@ -1,12 +1,13 @@
 #NAME:Deep Blue
-#DESC:Are you sure you want
-#DESC:to put that 8/8 into play?
+#DESC:"Are you sure you want to
+#DESC: send that mighty creature
+#DESC: into the battle?
 #DESC:
-#DESC:You realize it might end up
-#DESC:fighting against you, right?
+#DESC: You realize it might end up
+#DESC: fighting against you, right?
 #DESC:
-#DESC:It's not like I did not warn
-#DESC:you with that Boomerang.
+#DESC: It's not like I did not warn
+#DESC: you with that Boomerang ..."
 #Blue Deck, with Persusasion
 #24 Islands
 158237

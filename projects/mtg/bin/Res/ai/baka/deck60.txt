@@ -1,4 +1,10 @@
 #NAME:No Bushwhacker
+#DESC:"Attack! Heal! Attack! Heal!
+#DESC: And again and again and again.
+#DESC: Oh, how I miss my days
+#DESC: in the goblin army!
+#DESC: There, I never had to do
+#DESC: TWO things in a battle!"
 Swords to Plowshares (ICE)   * 4 #
 Akki Raider (BOK)            * 4 #
 Lightning Helix (RAV)        * 4 #

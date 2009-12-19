@@ -1,12 +1,12 @@
 #NAME:Corruption
-#DESC:It is said that power corrupts,
-#DESC:but actually it's more true
-#DESC:that power attracts the
-#DESC:corruptible.
-#DESC:The sane are usually attracted
-#DESC:by other things than power.
+#DESC:We will ruin you.
+#DESC:We will corrupt you.
+#DESC:We will unmake you.
 #DESC:
-#DESC:David Brin
+#DESC:And when there's nothing left of you
+#DESC:but a dead and hollow husk
+#DESC:the fairies will dance in celebration
+#DESC:over your remains.
 Bad Moon (RV)                * 4 #
 Nature's Ruin (POR)          * 4 #
 Virtue's Ruin (POR)          * 2 #

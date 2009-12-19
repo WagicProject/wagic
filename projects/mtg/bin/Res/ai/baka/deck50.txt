@@ -1,9 +1,12 @@
 #NAME:Millage
-#DESC:"The distance between insanity
-#DESC: and genius is measured only
-#DESC: by success."  (Bruce Feirstein)
-#DESC:
-#DESC:v1.0 2009 10 01
+#DESC:"You may think that you have
+#DESC: a rich repository
+#DESC: of spells and artifacts and
+#DESC: creatures.
+#DESC: But before you know it,
+#DESC: all your possessions
+#DESC: will crumble
+#DESC: in your hands."
 Wrath of God (10E) *4
 Damnation (PLC) *4
 Evacuation (10E) *3

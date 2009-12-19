@@ -1,4 +1,7 @@
 #NAME:Air Sea Battle
+#DESC:Meet the darker side
+#DESC:of fairies
+#DESC:and merfolk.
 Sleeper's Robe (INV)         * 4 #
 Shadowmage Infiltrator (ODY) * 3 #
 Gravelgill Axeshark (SHM)    * 3 #

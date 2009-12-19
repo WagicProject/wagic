@@ -1,10 +1,11 @@
 #NAME:Lafiel
-#DESC: A mostly green, half elf deck controlled 
-#DESC: by an influental elf-princess called Lafiel.
-#DESC: Don't be fooled by the beauty of the elves 
-#DESC: or you lose for sure! 
-#DESC: (Wagic 0.81 Deck & Avatar by Nakano)
+#DESC:Meet the army of the influential
+#DESC:elven princess Lafiel.
+#DESC:Don't be fooled by their beauty
+#DESC:or you will lose
+#DESC:more than just your mind!
 
+#(Wagic 0.81 Deck & Avatar by Nakano)
 #v0.1 / 01.09.2009
 # Initial release
 

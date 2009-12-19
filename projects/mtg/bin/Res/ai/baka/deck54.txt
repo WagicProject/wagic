@@ -1,4 +1,11 @@
 #NAME:Disciplination
+#DESC:"Unfortunately, my army
+#DESC: has not managed to survive
+#DESC: certain disciplinary measures
+#DESC: that I was sadly forced to take.
+#DESC: But I see that you
+#DESC: have brought me reinforcements.
+#DESC: How very nice of you. Thanks!"
 Paralyze (RV)                * 3 #
 Moat (LEG)                   * 4 #
 Light of Day (TMP)           * 1 #

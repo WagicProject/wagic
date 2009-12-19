@@ -1,4 +1,11 @@
 #NAME:Mighty Murk
+#DESC:Led by the Murkfiend
+#DESC:creatures of the forest
+#DESC:and the skies and seas
+#DESC:will attack your army.
+#DESC:
+#DESC:Don't underestimate
+#DESC:their potential for growth.
 Assault Zeppelid (DIS)       * 3 #
 Trygon Predator (DIS)        * 4 #
 Simic Sky Swallower (DIS)    * 1 #

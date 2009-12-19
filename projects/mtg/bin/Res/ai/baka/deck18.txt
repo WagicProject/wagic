@@ -1,7 +1,8 @@
 #Plain white deck
 #NAME:Justice
-#DESC:Defending law with an army of zealous
-#DESC:followers, every criminal shall be punished
+#DESC:Defending law with an army
+#DESC:of zealous followers,
+#DESC:every criminal shall be punished
 #DESC:with the wrath of the just.
 #4x Crusade,{W}{W}, Enchantment, all white creatures +1/+1
 1341

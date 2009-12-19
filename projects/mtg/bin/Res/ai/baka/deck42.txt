@@ -1,13 +1,8 @@
 #NAME:Viashino Warrior
 #
-#DESC: Creature's Decks :
-#DESC: "The deck that a Viashino Warrior
-#DESC: would (and could) assemble"
-#DESC: (v1.03)
-#DESC:
-#DESC: With claws and swords and flames
+#DESC:"With claws and swords and flames
 #DESC: we fiercely protect
-#DESC: those we revere
+#DESC: those we revere"
 
 Viashino Slasher (RAV)         *4 # cheap Viashino
 Viashino Slaughtermaster (CFX) *4 # cheap Viashino

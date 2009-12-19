@@ -1,4 +1,8 @@
 #NAME:Eviscerator
+#DESC:If you move, you'll hurt yourself.
+#DESC:
+#DESC:Of course, if you don't move
+#DESC:I will hurt you too.
 Ankh of Mishra (RV)          * 4 #
 Black Vise (RV)              * 4 #
 Wheel of Fortune (RV)        * 1 #

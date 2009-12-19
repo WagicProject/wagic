@@ -1,4 +1,10 @@
 #NAME: Allied Warriors
+#DESC:"Unity in diversity
+#DESC: is our strength"
+#DESC:
+#DESC:Meet an army of allies
+#DESC:from the mountains,
+#DESC:forests, seas, and skies.
 Utopia Tree (INV)            * 4 #
 Turntimber Ranger (ZEN)      * 2 #
 Oran-Rief Survivalist (ZEN)  * 4 #

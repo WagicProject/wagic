@@ -1,5 +1,12 @@
 #NAME:SilverBlade
-#DESC:White Weenie Aggro Deck
+#DESC:Don't worry -
+#DESC:it will not hurt ... much.
+#DESC:
+#DESC:Hounds and spirits,
+#DESC:lynx and soldiers
+#DESC:will have ripped you apart
+#DESC:before you even noticed
+#DESC:their presence.
 Crusade (RV)                 * 4 #
 Swords to Plowshares (RV)    * 4 #
 Karakas (LEG)                * 1 #

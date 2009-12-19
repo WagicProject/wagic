@@ -2,7 +2,7 @@
 #DESC:In the castle of Bant,
 #DESC:the call to battle
 #DESC:echoes the prayer of Asha.
-#DESC:Prepare to face Bant's light
+#DESC:Prepare to face Bant's light!
 #4x unsummon
 1229
 1229

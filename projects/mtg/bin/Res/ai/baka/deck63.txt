@@ -1,4 +1,8 @@
 #NAME:Slightly Sligh
+#DESC:The Mogg are loose!
+#DESC:And they come
+#DESC:with some powerful spells
+#DESC:too!
 Mogg Conscripts (TMP)        * 4 #
 Mogg Flunkies (STH)          * 4 #
 Flame Rift (NMS)             * 2 #

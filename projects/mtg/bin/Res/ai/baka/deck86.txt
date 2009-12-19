@@ -2,6 +2,12 @@
 #DESC:"Alone we are weak, 
 #DESC: but together
 #DESC: we are unstoppable."
+#DESC:
+#DESC:If you thought that
+#DESC:it won't be possible
+#DESC:to combine three elements
+#DESC:into a single powerful force
+#DESC:- think again!
 Swords to Plowshares (RV)    * 4 #
 Turntimber Ranger (ZEN)      * 4 #
 Oran-Rief Survivalist (ZEN)  * 4 #

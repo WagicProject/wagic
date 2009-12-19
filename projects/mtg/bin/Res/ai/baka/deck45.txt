@@ -1,16 +1,11 @@
 #NAME:Snake Pit
 #
-#DESC: Creature's Decks 12:
-#DESC: "The deck that an Orochi Sustainer
-#DESC: would (and could) assemble"
-#DESC: (v1.02)
-#DESC:
-#DESC: Salute our sinuosity
-#DESC: Love our litheness
+#DESC:"Ssalute our ssinuossity
+#DESC: Love our lithenesss
 #DESC: Enjoy our embrace
 #DESC:
-#DESC: Care for a kiss?
-#DESC: Soon you will sleep ...
+#DESC: Care for a kisss?
+#DESC: Ssoon you will ssleep ..."
 
 Orochi Sustainer (CHK)           *3 # Orochi Snake Shaman
 Sachi, Daughter of Seshiro (CHK) *2 # toughness bonus to snakes

@@ -1,5 +1,6 @@
 #NAME:Twin Pricks
-#DESC:vampire tribe
+#DESC:"The cattle has arrived.
+#DESC: Time to feed ..."
 Bad Moon (RV)                * 4 #
 Terror (RV)                  * 3 #
 Swamp (RV)                   *16 #

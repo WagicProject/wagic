@@ -1,6 +1,13 @@
 #NAME:Treefolk
-#DESC:
 #DESC:Who's hiding in the tree?
+#DESC:
+#DESC:These trees have withstood
+#DESC:the anger of the elements
+#DESC:for ages.
+#DESC:Do you really think
+#DESC:you have the slightest chance
+#DESC:to even scratch their bark?
+
 Forest (M10) *24
 Timber Protector (LRW) *4
 #{4}{G} ; Creature — Treefolk Warrior (4/6); Other Treefolk creatures you control get +1/+1. Other Treefolk and Forests you control are indestructible.
