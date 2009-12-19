@@ -285,18 +285,6 @@ text=All creatures able to block Elvish Bard do so.
 rarity=U
 [/card]
 [card]
-id=3134
-name=Elvish Spirit Guide
-mana={2}{G}
-type=Creature
-subtype=Elf Spirit
-power=2
-toughness=2
-text=Exile Elvish Spirit Guide from your hand: Add {G} to your mana pool.
-auto=aslongas(this|myhand){0}:moveto(exile) && add {G} #Cannot work aslong don't work with activation cost
-rarity=U
-[/card]
-[card]
 id=3221
 name=Energy Arc
 mana={W}{U}

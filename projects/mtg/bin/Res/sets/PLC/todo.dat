@@ -506,15 +506,6 @@ text=Trample Whenever an opponent gains life, put that many +1/+1 counters on Ka
 rarity=U
 [/card]
 [card]
-id=122451
-name=Keen Sense
-mana={G}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Whenever enchanted creature deals damage to an opponent, you may draw a card.
-rarity=U
-[/card]
-[card]
 id=125885
 name=Keldon Marauders
 mana={1}{R}
@@ -626,20 +617,6 @@ power=1
 toughness=2
 text={T}: Switch target creature's power and toughness until end of turn.
 rarity=C
-[/card]
-
-
-
-[card]
-id=122406
-name=Mirri the Cursed
-mana={2}{B}{B}
-type=Legendary Creature
-subtype=Vampire Cat
-power=3
-toughness=2
-text=Flying, first strike, haste Whenever Mirri the Cursed deals combat damage to a creature, put a +1/+1 counter on Mirri the Cursed.
-rarity=R
 [/card]
 [card]
 id=134738
@@ -774,7 +751,6 @@ toughness=2
 text=All Slivers have "{2}, {T}: Regenerate target Sliver."
 rarity=C
 [/card]
-
 [card]
 id=124757
 name=Primal Plasma
@@ -786,7 +762,6 @@ toughness=*
 text=As Primal Plasma enters the battlefield, it becomes your choice of a 3/3 creature, a 2/2 creature with flying, or a 1/6 creature with defender.
 rarity=C
 [/card]
-
 [card]
 id=128944
 name=Psychotrope Thallid
@@ -907,13 +882,7 @@ type=Creature
 subtype=Human Wizard
 power=1
 toughness=1
-####WAGIC 0.8.1: This is not what the card should do!
-auto={T}:0/2 target(other creature)
 [/card]
-
-
-
-
 [card]
 id=129014
 name=Serra's Boon
@@ -971,17 +940,6 @@ mana={B}
 type=Sorcery
 text=Target opponent chooses a card in your graveyard. You may pay {B}. If you do, repeat this process except that opponent can't choose a card already chosen for Shrouded Lore. Then put the last chosen card into your hand.
 rarity=U
-[/card]
-[card]
-id=124474
-name=Simian Spirit Guide
-mana={2}{R}
-type=Creature
-subtype=Ape Spirit
-power=2
-toughness=2
-text=Exile Simian Spirit Guide from your hand: Add {R} to your mana pool.
-rarity=C
 [/card]
 [card]
 id=122459
