@@ -11,7 +11,7 @@ id=48146
 name=AEther Vial
 mana={1}
 type=Artifact
-text=At the beginning of your upkeep, you may put a charge counter on AEther Vial. {T}: You may put a creature card with converted mana cost equal to the number of charge counters on ÁEher Vial from your hand onto the battlefield.
+text=At the beginning of your upkeep, you may put a charge counter on AEther Vial. {T}: You may put a creature card with converted mana cost equal to the number of charge counters on AEther Vial from your hand onto the battlefield.
 rarity=U
 [/card]
 [card]
@@ -181,7 +181,7 @@ id=49012
 name=Barbed Lightning
 mana={2}{R}
 type=Instant
-text=Choose one  EBarbed Lightning deals 3 damage to target creature; or Barbed Lightning deals 3 damage to target player. Entwine {2} (Choose both if you pay the entwine cost.)
+text=Choose one: Barbed Lightning deals 3 damage to target creature; or Barbed Lightning deals 3 damage to target player. Entwine {2} (Choose both if you pay the entwine cost.)
 rarity=C
 [/card]
 [card]
@@ -302,14 +302,6 @@ name=Dismantle
 mana={2}{R}
 type=Sorcery
 text=Destroy target artifact. If that artifact had counters on it, put that many +1/+1 counters or charge counters on an artifact you control.
-rarity=U
-[/card]
-[card]
-id=72683
-name=Dragon's Claw
-mana={2}
-type=Artifact
-text=Whenever a player casts a red spell, you may gain 1 life.
 rarity=U
 [/card]
 [card]
@@ -471,17 +463,6 @@ text=Inflame deals 2 damage to each creature dealt damage this turn.
 rarity=C
 [/card]
 [card]
-id=43579
-name=Juggernaut
-mana={4}
-type=Artifact Creature
-subtype=Juggernaut
-power=5
-toughness=3
-text=Juggernaut attacks each turn if able. Juggernaut can't be blocked by Walls.
-rarity=U
-[/card]
-[card]
 id=46142
 name=Leonin Bola
 mana={1}
@@ -592,6 +573,10 @@ subtype=Zombie
 power=3
 toughness=4
 text=At the beginning of your end step, if Nim Abomination is untapped, you lose 3 life.
+# Following line doesn't work: if 2 untapped Nim Abominations
+# are present, each of them will deal 6 damage. We need
+# this[-tapped] to code this card.
+auto=@each my end:foreach(Nim Abomination[-tapped]) damage:3 controller
 rarity=U
 [/card]
 [card]
@@ -700,7 +685,7 @@ id=43503
 name=Reap and Sow
 mana={3}{G}
 type=Sorcery
-text=Choose one  EDestroy target land; or search your library for a land card, put that card onto the battlefield, then shuffle your library. Entwine {1}{G} (Choose both if you pay the entwine cost.)
+text=Choose one: Destroy target land; or search your library for a land card, put that card onto the battlefield, then shuffle your library. Entwine {1}{G} (Choose both if you pay the entwine cost.)
 rarity=C
 [/card]
 [card]
@@ -717,17 +702,6 @@ name=Reshape
 mana={X}{U}{U}
 type=Sorcery
 text=As an additional cost to cast Reshape, sacrifice an artifact. Search your library for an artifact card with converted mana cost X or less and put it onto the battlefield. Then shuffle your library.
-rarity=R
-[/card]
-[card]
-id=46083
-name=Roaring Slagwurm
-mana={5}{G}{G}
-type=Creature
-subtype=Wurm
-power=6
-toughness=4
-text=Whenever Roaring Slagwurm attacks, tap all artifacts.
 rarity=R
 [/card]
 [card]
@@ -772,15 +746,6 @@ text={T}: Add {1} to your mana pool. Any time you could mulligan and Serum Powde
 rarity=R
 [/card]
 [card]
-id=48582
-name=Shield of Kaldra
-mana={4}
-type=Legendary Artifact
-subtype=Equipment
-text=Equipment named Sword of Kaldra, Shield of Kaldra, and Helm of Kaldra are indestructible. Equipped creature is indestructible. ("Destroy" effects and lethal damage don't destroy it.) Equip {4}
-rarity=R
-[/card]
-[card]
 id=47792
 name=Shriveling Rot
 mana={2}{B}{B}
@@ -795,15 +760,6 @@ mana={1}{R}{R}
 type=Instant
 text=Change the target of target spell with a single target.
 rarity=R
-[/card]
-[card]
-id=48197
-name=Skullclamp
-mana={1}
-type=Artifact
-subtype=Equipment
-text=Equipped creature gets +1/-1. When equipped creature is put into a graveyard, draw two cards. Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
-rarity=U
 [/card]
 [card]
 id=26732
@@ -909,7 +865,6 @@ subtype=Equipment
 text=Equipped creature gets +2/+2 and has protection from red and from blue. Whenever equipped creature deals combat damage to a player, Sword of Fire and Ice deals 2 damage to target creature or player and you draw a card. Equip {2}
 rarity=R
 [/card]
-
 [card]
 id=49021
 name=Synod Artificer
@@ -1019,15 +974,6 @@ text={T}: Add two mana of any one color to your mana pool. Spend this mana only 
 rarity=C
 [/card]
 [card]
-id=49085
-name=Vex
-mana={2}{U}
-type=Instant
-text=Counter target spell. That spell's controller may draw a card.
-rarity=C
-[/card]
-
-[card]
 id=45455
 name=Vulshok War Boar
 mana={2}{R}{R}
@@ -1046,7 +992,6 @@ type=Artifact
 text=Whenever you gain life, you may pay {X}, where X is less than or equal to the amount of life you gained. If you do, draw X cards.
 rarity=R
 [/card]
-
 [card]
 id=49026
 name=Wirefly Hive

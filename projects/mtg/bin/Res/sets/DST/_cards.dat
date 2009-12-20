@@ -223,6 +223,22 @@ toughness=3
 rarity=U
 [/card]
 [card]
+id=43579
+name=Juggernaut
+mana={4}
+type=Artifact Creature
+subtype=Juggernaut
+power=5
+toughness=3
+text=Juggernaut attacks each turn if able. Juggernaut can't be blocked by Walls.
+# Following line is not entirely correct: Walls cannot target
+# Juggernaut although they should be able to. But it's hard to
+# find a case where this difference actually matters.
+auto=protection from (wall)
+abilities=mustattack
+rarity=U
+[/card]
+[card]
 text=Karstoderm enters the battlefield with five +1/+1 counters on it. Whenever an artifact enters the battlefield, remove a +1/+1 counter from Karstoderm.
 id=39478
 name=Karstoderm
@@ -242,7 +258,7 @@ id=49049
 name=Kraken's Eye
 mana={2}
 type=Artifact
-auto=@movedto(*[blue|stack):may life:1 controller
+auto=@movedto(*[blue]|stack):may life:1 controller
 rarity=U
 [/card]
 [card]
@@ -303,15 +319,6 @@ auto=lord(creature[artifact]|myBattlefield)flying
 rarity=C
 [/card]
 [card]
-text=Tap all artifacts.
-id=45191
-name=Metal Fatigue
-mana={2}{W}
-type=Instant
-auto=tap all(artifact)
-rarity=C
-[/card]
-[card]
 text=Mephitic Ooze gets +1/+0 for each artifact you control. Whenever Mephitic Ooze deals combat damage to a creature, destroy that creature. The creature can't be regenerated.
 name=Mephitic Ooze
 id=46154
@@ -323,6 +330,15 @@ subtype=Ooze
 power=0
 toughness=5
 rarity=R
+[/card]
+[card]
+text=Tap all artifacts.
+id=45191
+name=Metal Fatigue
+mana={2}{W}
+type=Instant
+auto=tap all(artifact)
+rarity=C
 [/card]
 [card]
 text=Myr Matrix is indestructible. ("Destroy" effects and lethal damage don't destroy it.) Myr creatures get +1/+1. {5}: Put a 1/1 colorless Myr artifact creature token onto the battlefield.
@@ -422,6 +438,21 @@ auto=moveto(myHand)
 rarity=C
 [/card]
 [card]
+id=46083
+name=Roaring Slagwurm
+mana={5}{G}{G}
+type=Creature
+subtype=Wurm
+power=6
+toughness=4
+text=Whenever Roaring Slagwurm attacks, tap all artifacts.
+# Following should actually read this[attacking], but this isn't
+# codeable yet. The workaround used here works because the effect
+# (tap) is not cumulative.
+auto=@each combatblockers:aslongas(Roaring Slagwurm[attacking]) tap all(artifact)
+rarity=R
+[/card]
+[card]
 text=Scavenging Scarab can't block.
 id=46093
 name=Scavenging Scarab
@@ -432,6 +463,31 @@ subtype=Insect
 power=3
 toughness=3
 rarity=C
+[/card]
+[card]
+id=48582
+name=Shield of Kaldra
+mana={4}
+type=Artifact
+subtype=Equipment
+text=Equipment named Sword of Kaldra, Shield of Kaldra, and Helm of Kaldra are indestructible. Equipped creature is indestructible. ("Destroy" effects and lethal damage don't destroy it.) Equip {4}
+auto=lord(sword of kaldra,shield of kaldra,helm of kaldra) indestructible
+auto=indestructible
+auto={4}:equip
+abilities=legendary
+rarity=R
+[/card]
+[card]
+id=48197
+name=Skullclamp
+mana={1}
+type=Artifact
+subtype=Equipment
+text=Equipped creature gets +1/-1. When equipped creature is put into a graveyard, draw two cards. Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
+auto=1/-1
+auto=@movedto(mytgt|graveyard):draw:2 controller
+auto={1}:equip
+rarity=U
 [/card]
 [card]
 text=Sacrifice an artifact: Target artifact is indestructible this turn. ("Destroy" effects and lethal damage don't destroy that artifact.)
@@ -513,6 +569,17 @@ name=Ur-Golem's Eye
 mana={4}
 type=Artifact
 auto={T}:add{2}
+rarity=C
+[/card]
+[card]
+id=49085
+name=Vex
+mana={2}{U}
+type=Instant
+text=Counter target spell. That spell's controller may draw a card.
+target=*|stack
+auto=fizzle
+auto=may draw:1 targetcontroller
 rarity=C
 [/card]
 [card]
