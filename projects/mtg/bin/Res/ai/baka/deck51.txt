@@ -7,7 +7,7 @@
 #DESC:
 #DESC: What am I thinking about here? And
 #DESC: are these actually my own thoughts?
-#DESC: Who am I anyway? Any who are *you*?
+#DESC: Who am I anyway? And who are *you*?
 #DESC: Ah, never mind. I'll just kill you.
 #DESC:
 #DESC: You're disrupting my thoughts."
