@@ -511,7 +511,7 @@ void WGuiList::Render(){
   }
   //Find out how large our list is.
   for (int pos=0;pos < nbitems; pos++){
-    listHeight+=items[pos]->getHeight()+5;
+    listHeight+=items[pos]->getHeight()+1; //What does the +1 do exactly ?
     if(items[pos]->Selectable()){
       listSelectable++;
       if(pos < currentItem) adjustedCurrent++;
