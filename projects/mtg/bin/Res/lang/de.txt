@@ -364,6 +364,7 @@ Enable cheat mode=Geheimmodus aktivieren
 Seconds to pause for an Interrupt=Unterbrechungs-Zeitfenster in Sekunden
 Interrupt my abilities=Unterbreche eigene Faehigkeiten
 Interrupt my spells=Unterbreche eigene Sprueche
+Interrupt opponent's end of turn=Unterbreche Zug-Ende des Gegners
 
 # Game tab:
 Game=Spiel
