@@ -303,6 +303,15 @@ toughness=2
 abilities=flying
 [/card]
 [card]
+id=48215
+name=Goblin Cannon
+mana={4}
+type=Artifact
+text={2}: Goblin Cannon deals 1 damage to target creature or player. Sacrifice Goblin Cannon.
+auto={2}:damage:1 target(creature,player) && bury all(this)
+rarity=U
+[/card]
+[card]
 text={T}, Sacrifice an artifact: Target player puts the top three cards of his or her library into his or her graveyard.   Whenever an artifact enters the battlefield, you may untap Grinding Station
 auto=@movedTo(artifact|battlefield):may untap
 auto={T}{S(artifact|myBattlefield)}:deplete:3 target(player)

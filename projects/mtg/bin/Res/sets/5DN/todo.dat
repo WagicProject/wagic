@@ -401,20 +401,6 @@ toughness=2
 abilities=first strike
 [/card]
 [card]
-id=48215
-name=Goblin Cannon
-mana={4}
-type=Artifact
-text={2}: Goblin Cannon deals 1 damage to target creature or player. Sacrifice Goblin Cannon.
-# Following line does not work: The common usage for Goblin Cannon
-# is to interrupt and activate itself repeatedly. It will go to
-# the graveyard before the first damage event resolves, but all
-# damage events will stay on the stack. This can't be done
-# currently since Goblin Cannon cannot interrupt itself.
-auto={2}{S}:damage:1 target(creature,player)
-rarity=U
-[/card]
-[card]
 id=50927
 name=Grafted Wargear
 mana={3}
