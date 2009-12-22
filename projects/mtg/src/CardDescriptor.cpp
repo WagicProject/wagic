@@ -12,6 +12,10 @@ int CardDescriptor::init(){
   attacker = 0;
   defenser = NULL;
   banding = NULL;
+  //Remove unnecessary pointers
+  SAFE_DELETE(untapBlockers);
+  SAFE_DELETE(counters);
+  SAFE_DELETE(previous);
   return result;
 }
 

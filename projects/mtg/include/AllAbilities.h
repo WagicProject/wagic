@@ -447,13 +447,15 @@ public:
   }
 
    ~GenericTargetAbility(){
-     if (isClone) SAFE_DELETE(ability);
+     SAFE_DELETE(ability);
    }
 
   GenericTargetAbility * clone() const{
     GenericTargetAbility * a =  NEW GenericTargetAbility(*this);
     a->ability = ability->clone();
-    a->isClone = 1;
+    a->cost = NEW ManaCost();
+    a->cost->copy(cost);
+    if (tc) a->tc = tc->clone();
     return a;
   }
 

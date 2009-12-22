@@ -190,6 +190,7 @@ fault_line.txt
 fire_tempest.txt
 fists_of_ironwood.txt
 flagstones.txt
+flame_fusillade_i265.txt
 flare.txt
 fledgling_imp.txt
 fledgling_imp2.txt
