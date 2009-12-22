@@ -1657,8 +1657,8 @@ rarity=C
 mana={G}
 type=Creature
 subtype=Elf
-auto={T}:may moveTo(myBattlefield) target(land|myhand) myFirstmainOnly
-auto={T}:may moveTo(myBattlefield) target(land|myhand) mySecondmainOnly
+auto={T}:moveTo(myBattlefield) target(land|myhand) myFirstmainOnly
+auto={T}:moveTo(myBattlefield) target(land|myhand) mySecondmainOnly
 power=1
 toughness=1
 [/card]
