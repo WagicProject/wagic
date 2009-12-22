@@ -278,7 +278,7 @@ rarity=C
 mana={G}
 type=Creature
 subtype=Human Druid
-auto={S}:may moveto(myBattlefield) target(land|myhand)
+auto={S}:moveto(myBattlefield) target(land|myhand)
 power=1
 toughness=1
 [/card]

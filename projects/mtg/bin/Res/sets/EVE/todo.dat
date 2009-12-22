@@ -325,6 +325,18 @@ type=Instant
 mana={RW}{RW}{RW}
 [/card]
 [card]
+text=Flame Jab deals 1 damage to target creature or player.     Retrace (You may play this card from your graveyard by discarding a land card in addition to paying its other costs.)
+target=player,creature
+auto=damage:1
+autograveyard={R}{S(land|myhand)}:damage:1 target(creature,player) asSorcery
+#this ONLY works on target player, also, when you play it from the graveyard, you pay the mana cost, select target player to deal damage, choose a land to sacrifice, and choose your target player to deal damage AGAIN?! althought the damage is only assign once.
+id=153432
+name=Flame Jab
+rarity=C
+mana={R}
+type=Sorcery
+[/card]
+[card]
 text=Flying     When Flickerwisp comes into play, remove another target permanent from the game. Return that card to play under its owner's control at end of turn.
 abilities=flying
 id=151089

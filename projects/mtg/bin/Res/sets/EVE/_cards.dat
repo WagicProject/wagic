@@ -79,8 +79,7 @@ abilities=flying
 [/card]
 [card]
 text=Put a 5/5 blue and red Elemental creature token with flying onto the battlefield.   Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
-autograveyard={5}{UR}{UR}{S(land|myhand)}:token(Elemental,creature elemental, 5/5,flying red,blue) myFirstmainOnly
-autograveyard={5}{UR}{UR}{S(land|myhand)}:token(Elemental,creature elemental, 5/5,flying red,blue) mySecondmainOnly
+autograveyard={5}{UR}{UR}{S(land|myhand)}:token(Elemental,creature elemental, 5/5,flying red,blue) asSorcery
 auto=token(Elemental,creature elemental, 5/5,flying red,blue)
 id=157400
 name=Call the Skybreaker
@@ -122,8 +121,7 @@ type=Instant
 [card]
 text=Put two 1/1 white Kithkin Soldier creature tokens onto the battlefield.   Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
 id=153469
-autograveyard={3}{W}{S(land|myhand)}:token(Kithkin Soldier,creature kithkin soldier, 1/1, white)*2 myFirstmainOnly
-autograveyard={3}{W}{S(land|myhand)}:token(Kithkin Soldier,creature kithkin soldier, 1/1, white)*2 mySecondmainOnly
+autograveyard={3}{W}{S(land|myhand)}:token(Kithkin Soldier,creature kithkin soldier, 1/1, white)*2 asSorcery
 auto=token(Kithkin Soldier,creature kithkin soldier, 1/1, white)*2
 name=Cenn's Enlistment
 rarity=C
@@ -299,18 +297,6 @@ id=153446
 name=Fetid Heath
 rarity=R
 type=Land
-[/card]
-[card]
-text=Flame Jab deals 1 damage to target creature or player.     Retrace (You may play this card from your graveyard by discarding a land card in addition to paying its other costs.)
-target=player,creature
-auto=damage:1
-autograveyard={R}{S(land|myhand)}:damage:1 target(creature,player) myFirstmainOnly
-autograveyard={R}{S(land|myhand)}:damage:1 target(creature,player) mySecondmainOnly
-id=153432
-name=Flame Jab
-rarity=C
-mana={R}
-type=Sorcery
 [/card]
 [card]
 text={T}: Add {1} to your mana pool.   {GU}, {T}: Add {G}{G}, {G}{U}, or {U}{U} to your mana pool.
@@ -497,8 +483,7 @@ toughness=4
 text=Target creature gets +4/+4 until end of turn.   Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
 target=creature
 auto=4/4
-autograveyard={3}{G}{S(land|myhand)}:4/4 target(creature) myFirstmainOnly
-autograveyard={3}{G}{S(land|myhand)}:4/4 target(creature) mySecondmainOnly
+autograveyard={3}{G}{S(land|myhand)}:4/4 target(creature) asSorcery
 id=153441
 name=Monstrify
 rarity=C
@@ -721,8 +706,7 @@ type=Land
 [card]
 text=Put a 3/3 green Beast creature token onto the battlefield.   Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
 id=153438
-autograveyard={3}{G}{G}{S(land|myhand)}:token(Beast,creature beast, 3/3,green) myFirstmainOnly
-autograveyard={3}{G}{G}{S(land|myhand)}:token(Beast,creature beast, 3/3,green) mySecondmainOnly
+autograveyard={3}{G}{G}{S(land|myhand)}:token(Beast,creature beast, 3/3,green) asSorcery
 auto=token(Beast,creature beast, 3/3,green)
 name=Savage Conception
 rarity=U
@@ -875,8 +859,7 @@ abilities=flying
 text=Target player loses 2 life and you gain 2 life.   Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
 target=player
 auto=life:-2 && life:2 controller
-autograveyard={1}{B}{B}{S(land|myhand)}:life:-2 && life:2 controller myFirstmainOnly
-autograveyard={1}{B}{B}{S(land|myhand)}:life:-2 && life:2 controller mySecondmainOnly
+autograveyard={1}{B}{B}{S(land|myhand)}:life:-2 && life:2 controller asSorcery
 id=153447
 name=Syphon Life
 rarity=U
@@ -998,8 +981,7 @@ toughness=2
 text=Put a 1/1 black and green Worm creature token onto the battlefield for each land card in your graveyard.   Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
 id=151135
 auto=foreach(land|mygraveyard) token(Worm,creature worm, 1/1, black,green)
-autograveyard={2}{BG}{BG}{BG}{S(land|myhand)}:foreach(land|mygraveyard) token(Worm,creature worm, 1/1, black,green) myFirstmainOnly
-autograveyard={2}{BG}{BG}{BG}{S(land|myhand)}:foreach(land|mygraveyard) token(Worm,creature worm, 1/1, black,green) mySecondmainOnly
+autograveyard={2}{BG}{BG}{BG}{S(land|myhand)}:foreach(land|mygraveyard) token(Worm,creature worm, 1/1, black,green) asSorcery
 name=Worm Harvest
 rarity=R
 mana={2}{BG}{BG}{BG}
