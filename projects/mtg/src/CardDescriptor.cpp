@@ -1,6 +1,7 @@
 #include "../include/config.h"
 #include "../include/CardDescriptor.h"
 #include "../include/Subtypes.h"
+#include "../include/Counters.h"
 
 CardDescriptor::CardDescriptor(): MTGCardInstance(){
   init();
