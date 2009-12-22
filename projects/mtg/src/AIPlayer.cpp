@@ -176,6 +176,12 @@ int AIAction::getEfficiency(){
     case MTGAbility::DAMAGER:
       {
         AADamager * aad = (AADamager *) a;
+        if (!target){
+          Targetable * _t = aad->getTarget();
+          if (_t == p->opponent()) efficiency = 90;
+          else efficiency = 0;
+          break;
+        }
         if ( p == target->controller()){
           efficiency = 0;
         }else if (aad->damage->getValue() >= target->toughness){
@@ -215,6 +221,10 @@ int AIAction::getEfficiency(){
       break;
   }
   if (p->game->hand->nb_cards == 0) efficiency = (int) ((float) efficiency * 1.3); //increase chance of using ability if hand is empty
+  if (ability->cost){
+    ExtraCosts * ec = ability->cost->extraCosts;
+    if (ec) efficiency = efficiency / 3;  //Decrease chance of using ability if there is an extra cost to use the ability
+  }
   return efficiency;
 }
 

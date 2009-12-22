@@ -1,0 +1,21 @@
+#Bug: Flame Fusillade
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Flame fusillade
+inplay:grizzly bears
+manapool:{3}{R}
+[PLAYER2]
+inplay:raging goblin
+[DO]
+flame fusillade
+grizzly bears
+raging goblin
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Flame fusillade
+inplay:grizzly bears
+[PLAYER2]
+graveyard:raging goblin
+[END]

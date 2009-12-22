@@ -952,7 +952,8 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card, int
     MTGAbility * a = v[i];
     if (dryMode){
       result = abilityEfficiency(a, card->controller(),mode,tc);
-      SAFE_DELETE(a);
+      for (size_t i = 0; i < v.size(); ++i)
+        SAFE_DELETE(v[i]);
       return result;
     }
 

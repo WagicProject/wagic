@@ -1926,8 +1926,8 @@ AADamager(int _id, MTGCardInstance * _source, Targetable * _target, WParsedInt *
  }
 
   int resolve(){
-    if(target){
-      Damageable * _target = (Damageable *) getTarget();     
+    Damageable * _target = (Damageable *) getTarget();
+    if(_target){
       game->mLayers->stackLayer()->addDamage(source,_target, damage->getValue());
       game->mLayers->stackLayer()->resolve();
       return 1;
