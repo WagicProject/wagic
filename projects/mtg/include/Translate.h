@@ -5,7 +5,7 @@
 #include <map>
 
 
-#if defined WIN32
+#if defined _DEBUG
 #define DEBUG_TRANSLATE
 #endif
 

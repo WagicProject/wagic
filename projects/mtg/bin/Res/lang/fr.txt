@@ -1,6 +1,5 @@
 #LANG:Francais
 #Fichier de traduction Francais pour Wagic The Homebrew
-#Placez ce fichier dans Res/lang.txt (renommez-le si necessaire), la traduction devrait etre automatique
 
 #Note to translators:
 # - Cards' names and types are translated here (see bottom of the file)
@@ -25,6 +24,51 @@ Achievements=Trophees
 Unlocked all %i sets.=Vous avez les %i sets.
 Card Spoiler=Voir cartes
 Back to Trophies=Retour aux trophees
+BL - Basic lands=BL - Terrains basiques
+Cards: %i=Cartes: %i
+Counts of manasources per type and color:=Sources de mana par type et couleur
+Creature counts per mana cost:=Nb de creatures par cout de mana
+Credits: %i=Credits: %i
+Database: %i cards=Database: %i cartes
+Difficulty Modes=Mode Difficile
+Evil Twin Mode=Mode "Jumeau demoniaque"
+Mana cost detail=Detail cout de mana
+Mana cost detail - Creatures=Detail cout de mana - Creatures
+Mana cost detail - Spells=Detail cout de mana - Sorts
+Mana cost per color=Cout de mana par couleur
+Mana production=Producteurs de mana
+Mana production - in mana symbols=Producteurs de mana - symboles
+Momir Mode=Mode Momir
+NB - Non-basic lands=NB - Terrains non basiques
+Non-creature spell counts per mana cost:=Sorts (sf creatures) par cout de mana
+O - Other (non-land) manasources=O - Autres sources
+Random 1 Color=Aleatoire 1 couleur
+Random 2 Colors=Aleatoire 2 couleurs
+Random Deck Mode=Mode Deck Aleatoire
+Sets: %i (of %i)=Sets: %i (sur %i)
+Statistics Summary=Statistiques globales
+T - Totals=T - Totals
+Toggle Images=Images On/Off
+Total colored manasymbols in lands' production:=Total de symboles de mana de couleur
+Use SQUARE to view your deck,=Appuyez sur [] pour voir le deck
+Victory ratio=pourcentage victoires
+Victory statistics=Statistiques victoires
+View Deck=Voir Deck
+Won against a higher difficulty.=Victoire en mode difficile
+Won with exactly 8 lands.=Victoire avec 8 terrains en jeu
+Won with same army size.=Victoire avec armee de meme taille
+in: collection=collection
+Interrupt opponent's end of turn=Interrompre fin du tour adverse
+Valuable Collection=collection de valeur
+Collection valued over 10,000c.=Collection estimee a plus de 10000c.
+Total Value: %ic=Valeur totale: %ic
+Total Cards (including duplicates): %i=Total Cartes: %i
+Unique Cards: %i=total cartes uniques
+Most Duplicates: %i (%s)=Carte favorite
+Favorite Set: %s=Set favori
+Highest Mana Cost: %i (%s)=Cout de mana le plus haut: %i (%s)
+Most Powerful: %i (%s)=Meilleure attaque: %i (%s)
+Toughest: %i (%s)=Meilleure Defense: %i (%s)
 
 #
 #Added in 0.9.1
@@ -249,6 +293,9 @@ Basic=Basique
 Bird=Oiseau
 Cat=Chat
 Centaur=Centaure
+Cyclops=Cyclope
+Druid=Druide
+Elemental=Elemental
 Elf=Elfe
 Forest=Foret
 Goblin=Gobelin
