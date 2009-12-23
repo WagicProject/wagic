@@ -114,6 +114,16 @@ text=Flying Clockwork Avian enters the battlefield with four +1/+0 counters on i
 rarity=R
 [/card]
 [card]
+text={3}, Discard a card at random: Target creature gets +2/+2 until end of turn.
+id=1003
+auto={3}:2/2 target(creature) && discard:1 controller
+#Need either aslongas(*|myhand)>0 or discard random as a cost.
+name=Coral Helm
+rarity=R
+mana={3}
+type=Artifact
+[/card]
+[card]
 id=1004
 name=Cursed Rack
 mana={4}

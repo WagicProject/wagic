@@ -964,6 +964,7 @@ text=Forestwalk When Yavimaya Dryad enters the battlefield, you may search your 
 auto=may moveTo(myBattlefield) target(forest|mylibrary) && tap
 id=118884
 name=Yavimaya Dryad
+abilities=forestwalk
 rarity=U
 mana={1}{G}{G}
 type=Creature

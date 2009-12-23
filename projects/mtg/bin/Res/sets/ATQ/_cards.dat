@@ -88,15 +88,6 @@ toughness=9
 abilities=doesnotuntap,trample
 [/card]
 [card]
-text={3}, Discard a card at random: Target creature gets +2/+2 until end of turn.
-id=1003
-auto={3}:2/2 target(creature) && discard:1 controller
-name=Coral Helm
-rarity=R
-mana={3}
-type=Artifact
-[/card]
-[card]
 text=Destroy target artifact. It can't be regenerated.   That artifact's controller gains life equal to its converted mana cost.
 id=1053
 target=artifact
