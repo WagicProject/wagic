@@ -478,6 +478,7 @@ name=Forest
 auto={T}:Add {G}
 type=Basic Land 
 rarity=L
+subtype=Forest
 [/card]
 [card]
 text={G}
@@ -486,6 +487,7 @@ name=Forest
 auto={T}:Add {G}
 type=Basic Land 
 rarity=L
+subtype=Forest
 [/card]
 [card]
 text={G}
@@ -494,6 +496,7 @@ name=Forest
 auto={T}:Add {G}
 type=Basic Land 
 rarity=L
+subtype=Forest
 [/card]
 [card]
 text={G}
@@ -502,6 +505,7 @@ name=Forest
 auto={T}:Add {G}
 type=Basic Land 
 rarity=L
+subtype=Forest
 [/card]
 [card]
 text=Forgotten Cave enters the battlefield tapped.   {T}: Add {R} to your mana pool.   Cycling {R} ({R}, Discard this card: Draw a card.)
