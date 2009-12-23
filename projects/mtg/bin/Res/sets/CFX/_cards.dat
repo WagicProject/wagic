@@ -330,6 +330,18 @@ type=Instant
 mana={5}{R}
 [/card]
 [card]
+text={W}{U}{B}{R}{G}: Fleshformer gets +2/+2 and gains fear until end of turn. Target creature gets -2/-2 until end of turn. Play this ability only during your turn.
+auto={W}{U}{B}{R}{G}:all(this) 2/2 && all(this) fear && -2/-2 target(creature) myTurnOnly
+id=179884
+name=Fleshformer
+rarity=U
+type=Creature
+mana={2}{B}
+power=2
+subtype=Human Wizard
+toughness=2
+[/card]
+[card]
 text=At the beginning of each player's draw step, that player draws two additional cards.
 id=189147
 auto=@each my draw:draw:2 controller

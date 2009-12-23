@@ -1,0 +1,32 @@
+#Testing fleshformer
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:fleshformer
+manapool:{W}{U}{B}{R}{G}
+[PLAYER2]
+inplay:grizzly bears,black knight
+[DO]
+fleshformer
+black knight
+next
+#begin
+next
+#attackers
+fleshformer
+next
+#blockers
+grizzly bears
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:fleshformer
+[PLAYER2]
+inplay:grizzly bears
+graveyard:black knight
+life:16
+[END]

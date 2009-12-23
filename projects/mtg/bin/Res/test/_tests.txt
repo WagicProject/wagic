@@ -194,6 +194,7 @@ flame_fusillade_i265.txt
 flare.txt
 fledgling_imp.txt
 fledgling_imp2.txt
+fleshformer.txt
 flowstone_hellion.txt
 flowstone_slide.txt
 fog.txt
