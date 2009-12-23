@@ -142,7 +142,7 @@ void GameStateOptions::Render()
       "Many thanks to the people who help this project",
       "",
       "",
-      "Art: Ilya B, Julio, Jeck, J",
+      "Art: Ilya B, Julio, Jeck, J, Lakeesha",
       "Check themeinfo.txt for the full credits of each theme!",
       "",
       "Dev Team: Abrasax, Daddy32, Dr.Solomat, J, Jeck", 
