@@ -159,6 +159,7 @@ dauthi_embrace.txt
 death_grasp.txt
 death_ward.txt
 deja_vu.txt
+delusions_of_mediocrity.txt
 dingus_egg.txt
 divergent_growth.txt
 doomed_necromancer.txt

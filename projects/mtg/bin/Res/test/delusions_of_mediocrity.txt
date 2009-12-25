@@ -1,0 +1,26 @@
+#NAME: Delusions of Mediocrity
+#DESC: 
+#DESC: 
+#DESC: 
+#DESC: 
+[INIT]
+firstmain
+[PLAYER1]
+hand:Delusions of Mediocrity,Donate,Boomerang
+manapool:{U}{U}{U}{U}{U}{U}{U}{U}{U}
+[PLAYER2]
+[DO]
+Delusions of Mediocrity
+Donate
+Delusions of Mediocrity
+Boomerang
+Delusions of Mediocrity
+[ASSERT]
+firstmain
+[PLAYER1]
+hand:Delusions of Mediocrity
+graveyard:Donate,Boomerang
+life:30
+[PLAYER2]
+life:10
+[END]
