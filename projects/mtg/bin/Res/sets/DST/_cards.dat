@@ -214,7 +214,7 @@ id=48598
 name=Infested Roothold
 mana={4}{G}
 abilities=Defender
-auto=protection from (artifact)
+auto=protection from(artifact)
 auto=@movedto(artifact|opponentBattlefield):may token(Insect,Creature Insect,1/1,green)
 type=Creature
 subtype=Wall
@@ -234,7 +234,7 @@ text=Juggernaut attacks each turn if able. Juggernaut can't be blocked by Walls.
 # Following line is not entirely correct: Walls cannot target
 # Juggernaut although they should be able to. But it's hard to
 # find a case where this difference actually matters.
-auto=protection from (wall)
+auto=protection from(wall)
 abilities=mustattack
 rarity=U
 [/card]
@@ -555,7 +555,7 @@ text=Protection from artifacts
 name=Tel-Jilad Outrider
 id=46002
 mana={3}{G}
-auto=protection from (artifact)
+auto=protection from(artifact)
 type=Creature
 subtype=Elf Warrior
 power=3
