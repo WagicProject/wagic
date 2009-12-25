@@ -1129,7 +1129,7 @@ rarity=R
 mana={3}{R}
 type=Creature
 subtype=Human Soldier
-power=
+power=2
 toughness=2
 abilities=horsemanship,cantblock
 [/card]
