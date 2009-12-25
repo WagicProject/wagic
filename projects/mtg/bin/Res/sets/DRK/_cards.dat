@@ -529,7 +529,7 @@ rarity=C
 mana={U}
 type=Creature
 subtype=Wurm
-auto=aslongas (island|opponentBattlefield) 0/1
+auto=aslongas(island|opponentBattlefield) 0/1
 power=1
 toughness=1
 [/card]
