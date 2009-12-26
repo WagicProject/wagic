@@ -118,6 +118,18 @@ power=3
 toughness=4
 [/card]
 [card]
+text=Whenever a creature with power 5 or greater enters the battlefield under your control, you may put a +1/+1 counter on Godtracker of Jund.
+auto=@movedTo(creature[power>=5]|myBattlefield):may counter(1/1)
+id=183994
+name=Godtracker of Jund
+rarity=C
+mana={1}{R}{G}
+type=Creature
+subtype=Elf Shaman
+power=2
+toughness=2
+[/card]
+[card]
 text=When you cycle Grixis Sojourners or it's put into a graveyard from the battlefield, you may exile target card in a graveyard.   Cycling {2}{B} ({2}{B}, Discard this card: Draw a card.)
 auto=@movedTo(this|graveyard) from(battlefield):may moveTo(exile) target(*|graveyard)
 autohand={2}{B}:cycling

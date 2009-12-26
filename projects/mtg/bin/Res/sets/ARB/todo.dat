@@ -359,17 +359,6 @@ text=Whenever you play a multicolored spell, Gloryscale Viashino gets +3/+3 unti
 rarity=U
 [/card]
 [card]
-id=183994
-name=Godtracker of Jund
-mana={1}{R}{G}
-type=Creature
-subtype=Elf Shaman
-power=2
-toughness=2
-text=Whenever a creature with power 5 or greater comes into play under your control, you may put a +1/+1 counter on Godtracker of Jund.
-rarity=C
-[/card]
-[card]
 id=179561
 name=Gorger Wurm
 mana={3}{R}{G}
@@ -391,7 +380,6 @@ toughness=1
 text=As long as you control another multicolored permanent, Grixis Grimblade gets +1/+1 and has deathtouch. (Whenever it deals damage to a creature, destroy that creature.)
 rarity=C
 [/card]
-
 [card]
 id=180624
 name=Knotvine Paladin
@@ -403,10 +391,6 @@ toughness=2
 text=Whenever Knotvine Paladin attacks, it gets +1/+1 until end of turn for each untapped creature you control.
 rarity=R
 [/card]
-
-
-
-
 [card]
 id=188973
 name=Jund Hackblade
@@ -418,8 +402,6 @@ toughness=1
 text=As long as you control another multicolored permanent, Jund Hackblade gets +1/+1 and has haste.
 rarity=C
 [/card]
-
-
 [card]
 id=179602
 name=Kathari Bomber

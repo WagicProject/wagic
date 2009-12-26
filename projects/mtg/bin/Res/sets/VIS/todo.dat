@@ -354,14 +354,6 @@ text=Flying {T}: If the top card of target player's graveyard is a creature card
 rarity=R
 [/card]
 [card]
-id=3689
-name=Hearth Charm
-mana={R}
-type=Instant
-text=Choose one - Destroy target artifact creature; or attacking creatures get +1/+0 until end of turn; or target creature with power 2 or less is unblockable this turn.
-rarity=C
-[/card]
-[card]
 id=3690
 name=Heat Wave
 mana={2}{R}

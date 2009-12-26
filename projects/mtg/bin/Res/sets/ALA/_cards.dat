@@ -89,7 +89,32 @@ mana={1}{B}{R}
 type=Sorcery
 [/card]
 [card]
-text=Flying     When Broodmate Dragon enters the battlefield, put a 4/4 red Dragon creature token with flying onto the battlefield.
+text=Sacrifice Bloodpyre Elemental: Bloodpyre Elemental deals 4 damage to target creature. Play this ability only any time you could play a sorcery.
+id=175117
+name=Bloodpyre Elemental
+rarity=C
+mana={4}{R}
+type=Creature
+subtype=Elemental
+auto={S}:damage:4 target(creature) asSorcery
+power=4
+toughness=1
+[/card]
+[card]
+text=Haste   {T}: Target creature with power 5 or greater gains haste until end of turn.
+id=174821
+name=Bloodthorn Taunter
+rarity=C
+mana={1}{R}
+type=Creature
+subtype=Human Scout
+auto={T}:haste target(creature[power>=5])
+power=1
+toughness=1
+abilities=haste
+[/card]
+[card]
+text=Flying   When Broodmate Dragon enters the battlefield, put a 4/4 red Dragon creature token with flying onto the battlefield.
 id=178101
 name=Broodmate Dragon
 rarity=R
@@ -327,6 +352,19 @@ power=1
 toughness=1
 [/card]
 [card]
+text=At the end of your turn, if you control a creature with power 5 or greater, you may draw a card.   {T}: Add {1} to your mana pool.
+auto=@each my end:aslongas(creature[power>=5]|myBattlefield) may draw:1
+id=174943
+name=Drumhunter
+rarity=U
+mana={3}{G}
+type=Creature
+subtype=Human Druid Warrior
+auto={T}:Add{1}
+power=2
+toughness=2
+[/card]
+[card]
 text=When Elvish Visionary enters the battlefield, draw a card.
 auto=draw:1
 id=175124
@@ -375,6 +413,19 @@ name=Executioner's Capsule
 rarity=C
 mana={B}
 type=Artifact
+[/card]
+[card]
+text=At the end of your turn, if you control a creature with power 5 or greater, you may have Exuberant Firestoker deal 2 damage to target player.     {T}: Add {1} to your mana pool.
+auto=@each my end:aslongas(creature[power>=5]|myBattlefield) may damage:2 target(player)
+id=175049
+name=Exuberant Firestoker
+rarity=U
+mana={2}{R}
+type=Creature
+subtype=Human Druid Shaman
+auto={T}:Add{1}
+power=1
+toughness=1
 [/card]
 [card]
 text={2}{U}: Untap target artifact.
@@ -504,6 +555,18 @@ subtype=Human Soldier
 power=0
 toughness=4
 abilities=defender,exalted
+[/card]
+[card]
+text=Flying   Sacrifice Gustrider Exuberant: Creatures you control with power 5 or greater gain flying until end of turn.
+id=174805
+name=Gustrider Exuberant
+rarity=C
+mana={2}{W}
+type=Creature
+subtype=Human Wizard
+auto={S}:lord(creature[power>=5]|myBattlefield) flying ueot
+power=1
+toughness=2
 [/card]
 [card]
 text=Choose one - Remove target player's graveyard from the game; or Jund Charm deals 2 damage to each creature; or put two +1/+1 counters on target creature.

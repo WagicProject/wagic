@@ -423,14 +423,6 @@ type=Enchantment
 mana={3}{U}{U}
 [/card]
 [card]
-text=Nonwhite creatures with power 3 or greater don't untap during their controllers' untap steps.
-id=19664
-name=Crackdown
-rarity=R
-type=Enchantment
-mana={2}{W}
-[/card]
-[card]
 text=Whenever a source deals damage to Crag Saurian, that source's controller gains control of Crag Saurian.
 id=19713
 name=Crag Saurian

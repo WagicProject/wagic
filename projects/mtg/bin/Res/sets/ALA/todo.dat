@@ -24,7 +24,6 @@ mana={2}{R}{W}
 subtype=Ajani
 toughness=3
 [/card]
-
 [card]
 text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)  Whenever a creature you control attacks alone, you may tap target creature.
 id=174826
@@ -44,7 +43,6 @@ power=1
 subtype=Human Cleric
 toughness=1
 [/card]
-
 [card]
 text=Flying, trample     At the beginning of your upkeep, sacrifice a non-Zombie creature, then put a 2/2 black Zombie creature token into play.
 id=174847
@@ -110,29 +108,6 @@ type=Creature
 mana={1}{B}{R}
 power=1
 subtype=Human Wizard
-toughness=1
-[/card]
-[card]
-text=Sacrifice Bloodpyre Elemental: Bloodpyre Elemental deals 4 damage to target creature. Play this ability only any time you could play a sorcery.
-id=175117
-auto={S}:damage:4 target(creature)
-name=Bloodpyre Elemental
-rarity=C
-type=Creature
-mana={4}{R}
-power=4
-subtype=Elemental
-toughness=1
-[/card]
-[card]
-text=Haste     {T}: Target creature with power 5 or greater gains haste until end of turn.
-id=174821
-name=Bloodthorn Taunter
-rarity=C
-type=Creature
-mana={1}{R}
-power=1
-subtype=Human Scout
 toughness=1
 [/card]
 [card]
@@ -242,8 +217,6 @@ power=2
 subtype=Human Wizard
 toughness=2
 [/card]
-
-
 [card]
 text={2}{B}, {T}, Sacrifice a blue creature, a black creature, and a red creature: Search your library for a card named Prince of Thralls and put it into play. Then shuffle your library.
 id=175243
@@ -276,17 +249,6 @@ mana={1}{B}
 power=2
 subtype=Zombie
 toughness=1
-[/card]
-[card]
-text=At the end of your turn, if you control a creature with power 5 or greater, you may draw a card.     {T}: Add {1} to your mana pool.
-id=174943
-name=Drumhunter
-rarity=U
-type=Creature
-mana={3}{G}
-power=2
-subtype=Human Druid Warrior
-toughness=2
 [/card]
 [card]
 text=+1: Put a 1/1 white Soldier creature token into play.     +1: Target creature gets +3/+3 and gains flying until end of turn.     -8: For the rest of the game, artifacts, creatures, enchantments, and lands you control are indestructible.
@@ -349,17 +311,6 @@ mana={1}{W}
 power=2
 subtype=Human Cleric
 toughness=2
-[/card]
-[card]
-text=At the end of your turn, if you control a creature with power 5 or greater, you may have Exuberant Firestoker deal 2 damage to target player.     {T}: Add {1} to your mana pool.
-id=175049
-name=Exuberant Firestoker
-rarity=U
-type=Creature
-mana={2}{R}
-power=1
-subtype=Human Druid Shaman
-toughness=1
 [/card]
 [card]
 text={T}: You may tap or untap another target permanent.     Unearth {U} ({U}: Return this card from your graveyard to play. It gains haste. Remove it from the game at end of turn or if it would leave play. Unearth only as a sorcery.)
@@ -433,7 +384,6 @@ rarity=C
 type=Sorcery
 mana={2}{G}
 [/card]
-
 [card]
 text={1}{W}, {T}: Prevent all damage that would be dealt to target creature with power 5 or greater this turn.
 id=174822
@@ -463,17 +413,6 @@ name=Grixis Charm
 rarity=U
 type=Instant
 mana={U}{B}{R}
-[/card]
-[card]
-text=Flying     Sacrifice Gustrider Exuberant: Creatures you control with power 5 or greater gain flying until end of turn.
-id=174805
-name=Gustrider Exuberant
-rarity=C
-type=Creature
-mana={2}{W}
-power=1
-subtype=Human Wizard
-toughness=2
 [/card]
 [card]
 text=Flying, haste     At end of turn, sacrifice Hell's Thunder.     Unearth {4}{R} ({4}{R}: Return this card from your graveyard to play. It gains haste. Remove it from the game at end of turn or if it would leave play. Unearth only as a sorcery.)

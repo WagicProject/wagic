@@ -248,6 +248,15 @@ mana={U}{U}
 type=Instant
 [/card]
 [card]
+text=Nonwhite creatures with power 3 or greater don't untap during their controllers' untap steps.
+auto=lord(creature[power>=3;-white]) doesnotuntap
+id=19664
+name=Crackdown
+rarity=R
+mana={2}{W}
+type=Enchantment
+[/card]
+[card]
 text=Defender (This creature can't attack.)   {T}: Target creature gets +0/+4 until end of turn.
 id=19880
 name=Crenellated Wall

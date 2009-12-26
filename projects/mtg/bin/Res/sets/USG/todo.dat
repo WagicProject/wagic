@@ -710,17 +710,6 @@ type=Sorcery
 mana={2}{B}{B}
 [/card]
 [card]
-text={T}: Destroy target creature with power 4 or greater.
-id=5678
-name=Intrepid Hero
-rarity=R
-type=Creature
-mana={2}{W}
-power=1
-subtype=Human Soldier
-toughness=1
-[/card]
-[card]
 text=Jagged Lightning deals 3 damage to target creature and 3 damage to another target creature.
 id=5658
 name=Jagged Lightning

@@ -66,6 +66,18 @@ toughness=*
 abilities=flying
 [/card]
 [card]
+text={1}: Target creature with power 5 or greater gains vigilance until end of turn.
+id=177931
+name=Beacon Behemoth
+rarity=C
+mana={3}{G}{G}
+type=Creature
+subtype=Beast
+auto={1}:vigilance target(creature[power>=5])
+power=5
+toughness=3
+[/card]
+[card]
 text=At the beginning of your upkeep, if you control a black permanent, you may put a +1/+1 counter on Bloodhall Ooze.   At the beginning of your upkeep, if you control a green permanent, you may put a +1/+1 counter on Bloodhall Ooze.
 auto=@each my upkeep:aslongas(*[black]|myBattlefield) may counter(1/1)
 auto=@each my upkeep:aslongas(*[green]|myBattlefield) may counter(1/1)

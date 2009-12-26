@@ -174,15 +174,26 @@ auto={T}:Add {1}
 auto={T}:1/1 target(griffin) && untap
 [/card]
 [card]
-id=3715
-name=Hope Charm
-mana={W}
+text=Choose one - Destroy target artifact creature; or attacking creatures get +1/+0 until end of turn; or target creature with power 2 or less is unblockable this turn.
+id=3689
+auto=may destroy target(creature[artifact])
+auto=may lord(creature[attacking]) 1/0
+auto=may unblockable target(creature[power<=2])
+name=Hearth Charm
+rarity=C
+mana={R}
 type=Instant
+[/card]
+[card]
 text=Choose one - Target creature gains first strike until end of turn; or target player gains 2 life; or destroy target Aura.
+id=3715
 auto=may first strike target(creature)
 auto=may life:2 target(player)
 auto=may destroy target(aura)
+name=Hope Charm
 rarity=C
+mana={W}
+type=Instant
 [/card]
 [card]
 text=Hulking Cyclops can't block.

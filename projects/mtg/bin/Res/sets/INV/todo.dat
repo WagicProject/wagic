@@ -500,14 +500,6 @@ subtype=Leech
 toughness=5
 [/card]
 [card]
-text=Creatures with power 1 or less don't untap during their controllers' untap steps.
-id=23223
-name=Juntu Stakes
-rarity=R
-type=Artifact
-mana={2}
-[/card]
-[card]
 text=Kicker {2}{X} (You may pay an additional {2}{X} as you play this spell.)  Flying     When Kangee, Aerie Keeper comes into play, if the kicker cost was paid, put X feather counters on it.     Other Bird creatures get +1/+1 for each feather counter on Kangee, Aerie Keeper.
 id=23186
 name=Kangee, Aerie Keeper
@@ -528,14 +520,6 @@ mana={3}{G}{G}
 power=4
 subtype=Kavu
 toughness=4
-[/card]
-[card]
-text=Whenever a creature with power 4 or greater comes into play, its controller draws a card.
-id=23144
-name=Kavu Lair
-rarity=R
-type=Enchantment
-mana={2}{G}
 [/card]
 [card]
 text=Remove target creature you control from the game. Return that card to play under its owner's control at end of turn.

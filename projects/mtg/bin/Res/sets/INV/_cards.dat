@@ -815,6 +815,15 @@ type=Basic Land
 subtype=Island
 [/card]
 [card]
+text=Creatures with power 1 or less don't untap during their controllers' untap steps.
+auto=lord(creature[power<=1]) doesnotuntap
+id=23223
+name=Juntu Stakes
+rarity=R
+mana={2}
+type=Artifact
+[/card]
+[card]
 text=Kicker {4} (You may pay an additional {4} as you play this spell.)  Kavu Aggressor can't block.     If the kicker cost was paid, Kavu Aggressor comes into play with a +1/+1 counter on it.
 id=23063
 name=Kavu Aggressor
@@ -839,6 +848,16 @@ type=Creature
 subtype=Kavu
 power=3
 toughness=3
+[/card]
+[card]
+text=Whenever a creature with power 4 or greater enters the battlefield, its controller draws a card.
+auto=@movedTo(creature[power>=4|myBattlefield):draw:1 controller
+auto=@movedTo(creature[power>=4|opponentBattlefield):draw:1 opponent
+id=23144
+name=Kavu Lair
+rarity=R
+mana={2}{G}
+type=Enchantment
 [/card]
 [card]
 text=Kavu creatures have trample.   Whenever another Kavu enters the battlefield, put a +1/+1 counter on Kavu Monarch.

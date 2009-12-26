@@ -817,6 +817,18 @@ power=4
 toughness=4
 [/card]
 [card]
+text={T}: Destroy target creature with power 4 or greater.
+id=5678
+name=Intrepid Hero
+rarity=R
+mana={2}{W}
+type=Creature
+subtype=Human Soldier
+auto=destroy target(creature[power>=4])
+power=1
+toughness=1
+[/card]
+[card]
 text={T}: Add {U} to your mana pool.
 auto={T}:add {U}
 id=8326

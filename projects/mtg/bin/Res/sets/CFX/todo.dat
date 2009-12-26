@@ -33,18 +33,6 @@ type=Sorcery
 mana={X}{R}
 [/card]
 [card]
-text={1}: Target creature with power 5 or greater gains vigilance until end of turn.
-id=177931
-name=Beacon Behemoth
-rarity=C
-type=Creature
-mana={3}{G}{G}
-power=5
-subtype=Beast
-toughness=3
-[/card]
-
-[card]
 text=When Brackwater Elemental attacks or blocks, sacrifice it at end of turn.     Unearth {2}{U} ({2}{U}: Return this card from your graveyard to play. It gains haste. Remove it from the game at end of turn or if it would leave play. Unearth only as a sorcery.)
 id=180147
 name=Brackwater Elemental
@@ -63,7 +51,6 @@ rarity=M
 type=Sorcery
 mana={3}{W}{U}{B}{R}{G}
 [/card]
-
 [card]
 text=Dark Temper deals 2 damage to target creature. If you control a black permanent, destroy the creature instead.
 id=185143

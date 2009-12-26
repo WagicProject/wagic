@@ -199,17 +199,6 @@ text=Target opponent chooses a creature he or she controls. Destroy it.
 rarity=C
 [/card]
 [card]
-id=10539
-name=Imperial Recruiter
-mana={2}{R}
-type=Creature
-subtype=Human Advisor
-power=1
-toughness=1
-text=When Imperial Recruiter enters the battlefield, search your library for a creature card with power 2 or less, reveal it, and put it into your hand. Then shuffle your library.
-rarity=U
-[/card]
-[card]
 id=10728
 name=Imperial Seal
 mana={B}
