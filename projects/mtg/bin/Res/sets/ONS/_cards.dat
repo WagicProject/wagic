@@ -424,7 +424,7 @@ toughness=1
 [/card]
 [card]
 text=Whenever you play an enchantment spell, draw a card.
-auto=@movedTo(enchantment|myBattlefield) from(myhand):draw:1
+auto=@movedTo(enchantment|myBattlefield) from(mystack):draw:1
 id=35514
 name=Enchantress's Presence
 rarity=R
