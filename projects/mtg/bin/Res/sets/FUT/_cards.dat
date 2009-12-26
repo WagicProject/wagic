@@ -267,6 +267,19 @@ auto=foreach(creature|myBattlefield) draw:1
 auto=foreach(creature|myBattlefield) life:-1
 [/card]
 [card]
+id=130346
+name=Mistmeadow Skulk
+mana={1}{W}
+type=Creature
+subtype=Kithkin Rogue
+power=1
+toughness=1
+text=Lifelink, protection from converted mana cost 3 or greater
+auto=protection from(*[manacost>=3])
+abilities=lifelink
+rarity=U
+[/card]
+[card]
 id=136138
 name=Nessian Courser
 rarity=C

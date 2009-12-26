@@ -206,6 +206,30 @@ auto={2}{T}:add{U}
 rarity=U
 [/card]
 [card]
+id=3013
+name=Aysen Bureaucrats
+mana={1}{W}
+type=Creature
+subtype=Human Advisor
+power=1
+toughness=1
+text={T}: Tap target creature with power 2 or less.
+auto={T}:tap target(creature[power<=2])
+rarity=C
+[/card]
+[card]
+id=3014
+name=Aysen Bureaucrats
+mana={1}{W}
+type=Creature
+subtype=Human Advisor
+power=1
+toughness=1
+text={T}: Tap target creature with power 2 or less.
+auto={T}:tap target(creature[power<=2])
+rarity=C
+[/card]
+[card]
 id=3015
 name=Aysen Crusader
 mana={2}{W}{W}

@@ -3,9 +3,14 @@
 #include "../include/Subtypes.h"
 #include "../include/Counters.h"
 
+
 CardDescriptor::CardDescriptor(): MTGCardInstance(){
   init();
   mode = CD_AND;
+  powerComparisonMode = COMPARISON_NONE;
+  toughnessComparisonMode = COMPARISON_NONE;
+  manacostComparisonMode = COMPARISON_NONE;
+  convertedManacost = -1;
 }
 
 int CardDescriptor::init(){
@@ -28,6 +33,26 @@ void CardDescriptor::setNegativeSubtype( string value){
   int id = Subtypes::subtypesList->find(value);
   addType(-id);
 } 
+
+// Very generic function to compare a value to a criterion.
+// Should be easily transferable to a more generic class if desired.
+bool CardDescriptor::valueInRange(int comparisonMode, int value, int criterion){
+  switch (comparisonMode){
+    case COMPARISON_AT_MOST:
+      return (value <= criterion);
+    case COMPARISON_AT_LEAST:
+      return (value >= criterion);
+    case COMPARISON_EQUAL:
+      return (value == criterion);
+    case COMPARISON_GREATER:
+      return (value > criterion);
+    case COMPARISON_LESS:
+      return (value < criterion);
+    case COMPARISON_UNEQUAL:
+      return (value != criterion);
+  }
+  return false;
+}
 
 MTGCardInstance * CardDescriptor::match_or(MTGCardInstance * card){
   int found = 1;
@@ -65,6 +90,12 @@ MTGCardInstance * CardDescriptor::match_or(MTGCardInstance * card){
     }
   }
   if (!found) return NULL;
+
+  // Quantified restrictions are always AND-ed:
+  if (powerComparisonMode && !valueInRange(powerComparisonMode, card->getPower(), power) ) return NULL;
+  if (toughnessComparisonMode && !valueInRange(toughnessComparisonMode, card->getToughness(), toughness) ) return NULL;
+  if (manacostComparisonMode && !valueInRange(manacostComparisonMode, card->getManaCost()->getConvertedCost(), convertedManacost) ) return NULL;
+
   return card;
 }
 
@@ -86,6 +117,11 @@ MTGCardInstance * CardDescriptor::match_and(MTGCardInstance * card){
       match = NULL;
     }
   }
+
+  if (powerComparisonMode && !valueInRange(powerComparisonMode, card->getPower(), power) ) match = NULL;
+  if (toughnessComparisonMode && !valueInRange(toughnessComparisonMode, card->getToughness(), toughness) ) match = NULL;
+  if (manacostComparisonMode && !valueInRange(manacostComparisonMode, card->getManaCost()->getConvertedCost(), convertedManacost) ) match = NULL;
+
   return match;
 }
 

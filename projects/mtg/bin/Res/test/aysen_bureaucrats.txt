@@ -1,0 +1,25 @@
+#NAME: Aysen Bureaucrats
+#DESC: "{T}: Tap target creature with power 2 or less."
+#DESC: Test tries to tap an illegal
+#DESC: target before tapping the
+#DESC: legal one.
+[INIT]
+firstmain
+[PLAYER1]
+inplay:Aysen Bureaucrats,Spark Elemental,Grizzly Bears
+hand:Assassinate
+manapool:{2}{B}
+[PLAYER2]
+[DO]
+Aysen Bureaucrats
+Spark Elemental
+Grizzly Bears
+Assassinate
+Grizzly Bears
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:Aysen Bureaucrats,Spark Elemental
+graveyard:Grizzly Bears,Assassinate
+[PLAYER2]
+[END]

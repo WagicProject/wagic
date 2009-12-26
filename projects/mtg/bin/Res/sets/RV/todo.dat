@@ -264,15 +264,6 @@ type=Enchantment
 mana={3}{R}
 [/card]
 [card]
-text=Creatures with power 3 or greater don't untap during their controllers' untap steps.
-id=1125
-name=Meekstone
-rarity=R
-color=Artifact
-type=Artifact
-mana={1}
-[/card]
-[card]
 text=Flying, banding
 #Banding not supported in Wagic 0.9
 abilities=Flying, banding

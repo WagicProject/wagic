@@ -121,6 +121,40 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
           nbminuses++;
           attribute=attribute.substr(1);
         }
+        int comparisonMode = COMPARISON_NONE;
+        int comparisonCriterion = 0;
+        if (attribute.size() > 1){
+          size_t operatorPosition = attribute.find("=",1);
+          if (operatorPosition != string::npos){
+            comparisonCriterion = atoi(attribute.substr(operatorPosition+1,attribute.size()-operatorPosition-1).c_str());
+            switch (attribute[operatorPosition-1]){
+              case '<':
+                if (minus){
+                  comparisonMode = COMPARISON_GREATER;
+                }else{
+                  comparisonMode = COMPARISON_AT_MOST;
+                }
+                operatorPosition--;
+                break;
+              case '>':
+                if (minus){
+                  comparisonMode = COMPARISON_LESS;
+                }else{
+                  comparisonMode = COMPARISON_AT_LEAST;
+                }
+                operatorPosition--;
+                break;
+              default:
+                if (minus){
+                  comparisonMode = COMPARISON_UNEQUAL;
+                }else{
+                  comparisonMode = COMPARISON_EQUAL;
+                }
+            }
+            attribute = attribute.substr(0,operatorPosition);
+          }
+        }
+
         //Attacker
         if (attribute.find("attacking") != string::npos){
           if (minus){
@@ -142,6 +176,18 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
           }else{
 	          cd->unsecureSetTapped(1);
           }
+        //Power restrictions
+        }else if (attribute.find("power") != string::npos){
+          cd->setPower(comparisonCriterion);
+          cd->powerComparisonMode = comparisonMode;
+        //Toughness restrictions
+        }else if (attribute.find("toughness") != string::npos){
+          cd->setToughness(comparisonCriterion);
+          cd->toughnessComparisonMode = comparisonMode;
+        //Manacost restrictions
+        }else if (attribute.find("manacost") != string::npos){
+          cd->convertedManacost = comparisonCriterion;
+          cd->manacostComparisonMode = comparisonMode;
         }else{
           int attributefound = 0;
           //Colors
@@ -474,8 +520,6 @@ DescriptorTargetChooser::~DescriptorTargetChooser(){
 CreatureTargetChooser::CreatureTargetChooser( MTGCardInstance * card, int _maxtargets, bool other):TargetZoneChooser(card, _maxtargets, other){
   int default_zones[] = {MTGGameZone::MY_BATTLEFIELD, MTGGameZone::OPPONENT_BATTLEFIELD};
   init(default_zones,2);
-  maxpower=  -1;
-  maxtoughness=  -1;
 }
 
 CreatureTargetChooser::CreatureTargetChooser(int * _zones, int nbzones, MTGCardInstance * card, int _maxtargets, bool other):TargetZoneChooser(card, _maxtargets, other){
@@ -485,8 +529,6 @@ CreatureTargetChooser::CreatureTargetChooser(int * _zones, int nbzones, MTGCardI
   }else{
     init(_zones, nbzones);
   }
-  maxpower = -1;
-  maxtoughness=  -1;
 }
 
 
@@ -494,8 +536,6 @@ bool CreatureTargetChooser::canTarget(Targetable * target){
   if (!TargetZoneChooser::canTarget(target)) return false;
   if (target->typeAsTarget() == TARGET_CARD){
     MTGCardInstance * card = (MTGCardInstance *) target;
-    if (maxpower != -1 && card->power > maxpower) return false;
-    if (maxtoughness != -1 && card->toughness > maxtoughness) return false;
     return card->isCreature();
   }
   return false;

@@ -192,7 +192,7 @@ toughness=0
 [card]
 text={T}: Target creature with power 2 or less is unblockable this turn.
 id=40060
-alias=1285
+auto={T}:unblockable target(creature[power<=2])
 name=Crafty Pathmage
 rarity=C
 mana={2}{U}

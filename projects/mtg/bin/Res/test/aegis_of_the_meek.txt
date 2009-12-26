@@ -1,0 +1,28 @@
+#NAME: Aegis of the Meek
+#DESC: "{1}{T}: Target 1/1 creature
+#DESC: gets +1/+2 until end of turn."
+#DESC: Test tries some illegal targets
+#DESC: before settling on a legal one.
+[INIT]
+firstmain
+[PLAYER1]
+inplay:Aegis of the Meek,Raging Goblin,Steppe Lynx,Savannah Lions,Courier Hawk
+hand:Swords to Plowshares
+manapool:{W}{W}
+[PLAYER2]
+[DO]
+Aegis of the Meek
+Steppe Lynx
+Savannah Lions
+Courier Hawk
+Raging Goblin
+Swords to Plowshares
+Raging Goblin
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:Aegis of the Meek,Steppe Lynx,Savannah Lions,Courier Hawk
+graveyard:Swords to Plowshares
+life:22
+[PLAYER2]
+[END]

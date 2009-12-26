@@ -741,17 +741,6 @@ text=All Slivers have "When this permanent comes into play, you may fateseal 1."
 rarity=C
 [/card]
 [card]
-id=130346
-name=Mistmeadow Skulk
-mana={1}{W}
-type=Creature
-subtype=Kithkin Rogue
-power=1
-toughness=1
-text=Lifelink, protection from converted mana cost 3 or greater
-rarity=U
-[/card]
-[card]
 id=136154
 name=Molten Disaster
 mana={X}{R}{R}

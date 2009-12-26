@@ -22,6 +22,7 @@ type=Land
 [/card]
 [card]
 text={1}, {T}: Target 1/1 creature gets +1/+2 until end of turn.
+auto={1}{T}: 1/2 target(creature[power=1;toughness=1])
 id=2393
 name=Aegis of the Meek
 rarity=R
@@ -1531,6 +1532,7 @@ type=Instant
 [/card]
 [card]
 text={2}, {T}: Target creature with power 3 or less gains flying until end of turn.
+auto={2}{T}: flying target(creature[power<=3])
 id=2435
 name=Whalebone Glider
 rarity=U

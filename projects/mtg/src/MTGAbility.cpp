@@ -364,10 +364,10 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 
       int mini = 0;
       int maxi = 0;
-      found = s.find(">");
-      if (found !=string::npos) mini = atoi(s.substr(found+1,1).c_str());
-      found = s.find("<");
-      if (found !=string::npos) maxi = atoi(s.substr(found+1,1).c_str());
+      found = s.find(" >");
+      if (found !=string::npos) mini = atoi(s.substr(found+2,1).c_str());
+      found = s.find(" <");
+      if (found !=string::npos) maxi = atoi(s.substr(found+2,1).c_str());
       switch(i){
         case 0: result =  NEW ALord(id, card, lordTargets, lordIncludeSelf, a); break;
         case 1: result =  NEW AForeach(id, card, _target,lordTargets, lordIncludeSelf, a,mini,maxi); break;
@@ -1351,13 +1351,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       }
       break;
     }
-  case 1285: //Dwarven Warriors
-    {
-      CreatureTargetChooser * tc = NEW CreatureTargetChooser(card);
-      tc->maxpower = 2;
-      game->addObserver(NEW ABasicAbilityModifierUntilEOT(_id, card, Constants::UNBLOCKABLE, NULL,tc));
-      break;
-    }
   case 1288: //EarthBind
     {
       game->addObserver(NEW AEarthbind(_id, card, card->target));
@@ -1435,15 +1428,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 	game->addObserver(NEW AInstantPowerToughnessModifierUntilEOT(id, card, card->target, NEW WParsedPT(power,toughness)));
 	}
   
-  case 1703: //Pendelhaven
-    {
-      CreatureTargetChooser * tc = NEW CreatureTargetChooser(card);
-      tc->maxpower = 1;
-      tc->maxtoughness =1;
-      game->addObserver(NEW ATargetterPowerToughnessModifierUntilEOT(id, card, NEW WParsedPT(1,2), NEW ManaCost(),tc));
-      break;
-    }
-
     //Addons ICE-AGE Cards
 
   case 2474: //Minion of Leshrac
@@ -1456,25 +1440,8 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(NEW AShieldOfTheAge( _id, card));
       break;
     }
-  case 2435: //Whalebone Glider
-    {
-      int cost[] = {Constants::MTG_COLOR_ARTIFACT,2};
-      CreatureTargetChooser * tc = NEW CreatureTargetChooser(card);
-      tc->maxpower = 3;
-      game->addObserver(NEW ABasicAbilityModifierUntilEOT(_id, card, Constants::FLYING, NEW ManaCost(cost,1),tc));
-      break;
-    }
-  case 2393: //Aegis of the Meek work but work also for 0/1 creatures... :D
-    {
-      int cost[] = {Constants::MTG_COLOR_ARTIFACT,1};
-      CreatureTargetChooser * tc = NEW CreatureTargetChooser(card);
-      tc->maxpower = 1;
-      tc->maxtoughness =1;
-      game->addObserver(NEW ATargetterPowerToughnessModifierUntilEOT(id, card, NEW WParsedPT(1,2), NEW ManaCost(cost,1),tc));
-      break;
-    }
 
-// --- addon Mirage ---
+    // --- addon Mirage ---
 
 	  case 3410: //Seed of Innocence
     {

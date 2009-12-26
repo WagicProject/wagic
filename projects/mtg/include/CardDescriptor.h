@@ -11,12 +11,28 @@
 #define CD_OR 1
 #define CD_AND 2
 
+enum ENUM_COMPARISON_MODES
+  {
+    COMPARISON_NONE = 0,  // Needs to remain 0 for quick if(comparison_mode) checks
+    COMPARISON_AT_MOST,
+    COMPARISON_AT_LEAST,
+    COMPARISON_EQUAL,
+    COMPARISON_GREATER,
+    COMPARISON_LESS,
+    COMPARISON_UNEQUAL
+  };
+
 class CardDescriptor: public MTGCardInstance{
  protected:
   MTGCardInstance * match_or(MTGCardInstance * card);
   MTGCardInstance * match_and(MTGCardInstance * card);
+  bool valueInRange(int comparisonMode, int value, int criterion);
  public:
   int mode;
+  int powerComparisonMode;
+  int toughnessComparisonMode;
+  int manacostComparisonMode;
+  int convertedManacost; // might fit better into MTGCardInstance?
   int init();
   CardDescriptor();
   void unsecureSetTapped(int i);

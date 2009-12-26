@@ -346,7 +346,7 @@ toughness=4
 [card]
 text={2}, {T}:Target creature with power 2 or less is unblockable this turn.
 id=1025
-alias=1285
+auto={T}:unblockable target(creature[power<=2])
 name=Tawnos's Wand
 rarity=U
 mana={4}

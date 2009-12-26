@@ -1,0 +1,35 @@
+#NAME: Meekstone
+#DESC: "Creatures with power 3 or
+#DESC: greater don't untap during
+#DESC: their controllers' untap steps."
+[INIT]
+secondmain
+[PLAYER1]
+inplay:Meekstone,Flood
+manapool:{U}{U}{U}{U}
+[PLAYER2]
+inplay:Grizzly Bears,War Mammoth,1373,1374,1375
+hand:Assassinate
+[DO]
+Flood
+Grizzly Bears
+Flood
+War Mammoth
+eot
+next
+next
+next
+1373
+1374
+1375
+Assassinate
+Grizzly Bears
+War Mammoth
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:Meekstone,Flood
+[PLAYER2]
+inplay:Grizzly Bears,1373,1374,1375
+graveyard:War Mammoth,Assassinate
+[END]

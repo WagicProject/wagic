@@ -345,7 +345,7 @@ toughness=2
 text={T}: Target creature with power 2 or less is unblockable this turn.
 id=3441 
 name=Dwarven Nomad
-alias=1285
+auto={T}:unblockable target(creature[power<=2])
 type=Creature
 subtype=Dwarf Nomad
 rarity=C

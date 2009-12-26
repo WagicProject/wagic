@@ -1,0 +1,27 @@
+#NAME: Dwarven Warriors
+#DESC: "{T}: Target creature with power 2
+#DESC: or less is unblockable this turn."
+[INIT]
+firstmain
+[PLAYER1]
+inplay:Dwarven Warriors,Grizzly Bears
+[PLAYER2]
+inplay:Craw Wurm
+[DO]
+Dwarven Warriors
+Grizzly Bears
+next
+next
+Grizzly Bears
+next
+Craw Wurm
+next
+next
+[ASSERT]
+combatend
+[PLAYER1]
+inplay:Dwarven Warriors,Grizzly Bears
+[PLAYER2]
+inplay:Craw Wurm
+life:18
+[END]

@@ -57,6 +57,7 @@ generic/wither.txt
 #Specific Cards
 ########################
 act_of_treason.txt
+aegis_of_the_meek.txt
 aether_mutation.txt
 afflict.txt
 akron_legionnaire.txt
@@ -93,6 +94,7 @@ ashen_firebeast.txt
 ashen_firebeast2.txt
 aura_mutation.txt
 avarice_totem.txt
+aysen_bureaucrats.txt
 baneslayer_angel.txt
 baneslayer_angel2.txt
 barbed_sliver.txt
@@ -174,6 +176,7 @@ drift_of_the_dead.txt
 dromad_purebred.txt
 dross_harvester.txt
 duskwalker.txt
+dwarven_warriors.txt
 ebony_horse.txt
 ekundu_cyclops1_i218.txt
 ekundu_cyclops2_i218.txt
@@ -266,6 +269,7 @@ lord_of_the_pit.txt
 lord_of_the_pit2.txt
 master_decoy.txt
 master_of_etherium.txt
+meekstone.txt
 memory_erosion.txt
 millstone.txt
 misc01.txt
