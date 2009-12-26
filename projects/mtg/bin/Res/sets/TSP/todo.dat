@@ -518,17 +518,6 @@ text=Whenever you play a creature spell, put X 1/1 black Thrull creature tokens 
 rarity=R
 [/card]
 [card]
-id=116379
-name=Errant Doomsayers
-mana={1}{W}
-type=Creature
-subtype=Human Rebel
-power=1
-toughness=1
-text={T}: Tap target creature with toughness 2 or less.
-rarity=C
-[/card]
-[card]
 id=108909
 name=Errant Ephemeron
 mana={6}{U}

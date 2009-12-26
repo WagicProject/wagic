@@ -328,13 +328,26 @@ mana={R}
 type=Instant
 [/card]
 [card]
+text={T}: Add {2} to your mana pool. Activate this ability only if you control five or more lands.
 id=44336
 name=Temple of the False God
-type=Land
-text={T}: Add {2} to your mana pool. Activate this ability only if you control five or more lands.
+auto=aslongas(land|myBattlefield){T}:add{2} >5
 rarity=U
-auto=aslongas(land|myBattlefield){T}:add{2} >4
-#Tested works fine you only need to have four land and temple of the false god as this card is also a land... wonder if this is correct.. if not can simply change the 4 by a 5.
+type=Land
+[/card]
+[card]
+text=Flying   {3}{U}: Tap all creatures with toughness 2 or less.   {3}{U}: All other creatures lose flying until end of turn.
+id=43606
+name=Thundercloud Elemental
+rarity=U
+mana={5}{U}{U}
+type=Creature
+subtype=Elemental
+auto={3}{U}:tap all(creature[toughness<=2])
+auto={3}{U}:lord(other creature) -flying ueot
+power=3
+toughness=4
+abilities=flying
 [/card]
 [card]
 text={B}: Regenerate Twisted Abomination.   Swampcycling {2} ({2}, Discard this card: Search your library for a Swamp card, reveal it, and put it into your hand. Then shuffle your library.)

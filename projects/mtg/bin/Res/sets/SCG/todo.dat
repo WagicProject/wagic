@@ -951,17 +951,6 @@ auto=life:2 controller
 rarity=U
 [/card]
 [card]
-id=43606
-name=Thundercloud Elemental
-mana={5}{U}{U}
-type=Creature
-subtype=Elemental
-power=3
-toughness=4
-text=Flying {3}{U}: Tap all creatures with toughness 2 or less. {3}{U}: All other creatures lose flying until end of turn.
-rarity=U
-[/card]
-[card]
 id=46691
 name=Titanic Bulvox
 mana={6}{G}{G}

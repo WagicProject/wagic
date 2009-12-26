@@ -53,7 +53,6 @@ type=Sorcery
 text=Choose two target creatures controlled by the same player. Exile one of those creatures and put two +1/+1 counters on the other.
 rarity=C
 [/card]
-
 [card]
 id=5121
 name=Change of Heart
@@ -62,7 +61,6 @@ type=Instant
 text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) Target creature can't attack this turn.
 rarity=C
 [/card]
-
 [card]
 id=5123
 name=Constant Mists
@@ -71,7 +69,6 @@ type=Instant
 text=Buyback—Sacrifice a land. (You may sacrifice a land in addition to any other costs as you cast this spell. If you do, put this card into your hand as it resolves.) Prevent all combat damage that would be dealt this turn.
 rarity=U
 [/card]
-
 [card]
 id=5126
 name=Contempt
@@ -81,7 +78,6 @@ subtype=Aura
 text=Enchant creature Whenever enchanted creature attacks, return it and Contempt to their owners' hands at end of combat.
 rarity=C
 [/card]
-
 [card]
 id=5129
 name=Convulsing Licid
@@ -104,8 +100,6 @@ toughness=2
 text={B}, {T}: Corrupting Licid loses this ability and becomes an Aura enchantment with enchant creature. Attach it to target creature. You may pay {B} to end this effect. Enchanted creature has fear. (It can't be blocked except by artifact creatures and/or black creatures.)
 rarity=U
 [/card]
-
-
 [card]
 text=Crovax the Cursed enters the battlefield with four +1/+1 counters on it. At the beginning of your upkeep, you may sacrifice a creature. If you do, put a +1/+1 counter on Crovax. If you don't, remove a +1/+1 counter from Crovax. {B}: Crovax gains flying until end of turn.
 id=5106
@@ -150,7 +144,6 @@ toughness=1
 text={1}{R}: Target creature can't block Duct Crawler this turn.
 rarity=C
 [/card]
-
 [card]
 id=5144
 name=Elven Rite
@@ -160,17 +153,6 @@ text=Distribute two +1/+1 counters among one or two target creatures.
 rarity=U
 [/card]
 [card]
-id=5145
-name=Endangered Armodon
-mana={2}{G}{G}
-type=Creature
-subtype=Elephant
-power=4
-toughness=5
-text=When you control a creature with toughness 2 or less, sacrifice Endangered Armodon.
-rarity=C
-[/card]
-[card]
 id=5124
 name=Ensnaring Bridge
 mana={3}
@@ -178,7 +160,6 @@ type=Artifact
 text=Creatures with power greater than the number of cards in your hand can't attack.
 rarity=R
 [/card]
-
 [card]
 id=5148
 name=Fanning the Flames
@@ -222,7 +203,6 @@ type=Enchantment
 text=Whenever a creature you control is put into a graveyard from the battlefield, each other player sacrifices a creature.
 rarity=R
 [/card]
-
 [card]
 id=5164
 name=Heartstone

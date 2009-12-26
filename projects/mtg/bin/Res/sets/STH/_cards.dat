@@ -153,6 +153,18 @@ toughness=1
 abilities=flying
 [/card]
 [card]
+text=When you control a creature with toughness 2 or less, sacrifice Endangered Armodon.
+id=5145
+name=Endangered Armodon
+rarity=C
+mana={2}{G}{G}
+type=Creature
+subtype=Elephant
+auto=aslongas(creature[toughness<=2]|myBattlefield) -99/-99
+power=4
+toughness=5
+[/card]
+[card]
 text=Return all creatures to their owners' hands.
 id=5147
 name=Evacuation

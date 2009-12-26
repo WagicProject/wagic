@@ -168,6 +168,18 @@ toughness=1
 abilities=flash
 [/card]
 [card]
+text={T}: Tap target creature with toughness 2 or less.
+id=116379
+name=Errant Doomsayers
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Human Rebel
+auto={T}:tap target(creature[toughness<=2])
+power=1
+toughness=1
+[/card]
+[card]
 text=Enchant creature   When Eternity Snare enters the battlefield, draw a card.   Enchanted creature doesn't untap during its controller's untap step.
 id=108788
 target=creature
