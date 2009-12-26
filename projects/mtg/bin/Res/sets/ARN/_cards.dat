@@ -109,9 +109,9 @@ toughness=5
 abilities=flying
 [/card]
 [card]
-text=Dandân can't attack unless defending player controls an Island.   When you control no Islands, sacrifice Dandân.
+text=Dandan can't attack unless defending player controls an Island.   When you control no Islands, sacrifice Dandan.
 id=929
-name=Dandân
+name=Dandan
 rarity=C
 mana={U}{U}
 type=Creature
