@@ -434,39 +434,39 @@ auto={T}:add {1} && aslongas(Urza's Mine|myinplay)aslongas(Urza's Tower|myinplay
 subtype=Urza's Power Plant
 [/card]
 [card]
-text={T} Add {1} to your mana pool. If you control an Urza's Mine and an Urza's Power-Plant, add  to your mana pool instead.
+text={T} Add {1} to your mana pool. If you control an Urza's Mine and an Urza's Power-Plant, add {3} to your mana pool instead.
 id=1088
 name=Urza's Tower
 rarity=U
 type=Land
-auto={T}:add {1} && aslongas(Urza's Power Plant|myinplay)aslongas(Urza's Mine|myinplay):add{1}
+auto={T}:add {1} && aslongas(Urza's Power Plant|myinplay)aslongas(Urza's Mine|myinplay):add{2}
 subtype=Urza's Tower
 [/card]
 [card]
-text={T} Add {1} to your mana pool. If you control an Urza's Mine and an Urza's Power-Plant, add  to your mana pool instead.
+text={T} Add {1} to your mana pool. If you control an Urza's Mine and an Urza's Power-Plant, add {3} to your mana pool instead.
 id=1089
 name=Urza's Tower
 rarity=U
 type=Land
-auto={T}:add {1} && aslongas(Urza's Power Plant|myinplay)aslongas(Urza's Mine|myinplay):add{1}
+auto={T}:add {1} && aslongas(Urza's Power Plant|myinplay)aslongas(Urza's Mine|myinplay):add{2}
 subtype=Urza's Tower
 [/card]
 [card]
-text={T} Add {1} to your mana pool. If you control an Urza's Mine and an Urza's Power-Plant, add  to your mana pool instead.
+text={T} Add {1} to your mana pool. If you control an Urza's Mine and an Urza's Power-Plant, add {3} to your mana pool instead.
 id=1090
 name=Urza's Tower
 rarity=C
 type=Land
-auto={T}:add {1} && aslongas(Urza's Power Plant|myinplay)aslongas(Urza's Mine|myinplay):add{1}
+auto={T}:add {1} && aslongas(Urza's Power Plant|myinplay)aslongas(Urza's Mine|myinplay):add{2}
 subtype=Urza's Tower
 [/card]
 [card]
-text={T} Add {1} to your mana pool. If you control an Urza's Mine and an Urza's Power-Plant, add  to your mana pool instead.
+text={T} Add {1} to your mana pool. If you control an Urza's Mine and an Urza's Power-Plant, add {3} to your mana pool instead.
 id=1091
 name=Urza's Tower
 rarity=U
 type=Land
-auto={T}:add {1} && aslongas(Urza's Power Plant|myinplay)aslongas(Urza's Mine|myinplay):add{1}
+auto={T}:add {1} && aslongas(Urza's Power Plant|myinplay)aslongas(Urza's Mine|myinplay):add{2}
 subtype=Urza's Tower
 [/card]
 [card]

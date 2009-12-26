@@ -1,6 +1,6 @@
 #NAME: Urza's Lands
 #DESC: Verifies that Urza's lands
-#DESC: give 2 mana if you have all
+#DESC: give more mana if you have all
 #DESC: three in play, and 1 if you
 #DESC: don't.
 [INIT]
@@ -17,6 +17,6 @@ Urza's Tower
 firstmain
 [PLAYER1]
 inplay:Urza's Mine,Urza's Power Plant,Urza's Tower
-manapool:{3}
+manapool:{4}
 [PLAYER2]
 [END]
