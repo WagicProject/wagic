@@ -112,6 +112,9 @@ void GameStateMenu::Create()
   scroller = NEW TextScroller(Constants::MAIN_FONT, SCREEN_WIDTH/2 - 90 , SCREEN_HEIGHT-17,180);
   scrollerSet = 0;
 
+  splashTex = NULL;
+  mSplash = NULL;
+
 }
 
 
@@ -478,18 +481,16 @@ void GameStateMenu::Render()
      splashTex = resources.RetrieveTexture("splash.jpg",RETRIEVE_LOCK);
      mSplash = resources.RetrieveTempQuad("splash.jpg");
     }
-    if (mSplash){
+    if (mSplash)
       renderer->RenderQuad(mSplash,0,0);
+    char text[512];
+    mFont->SetColor(ARGB(255,255,255,255));
+    if (mCurrentSetName[0]) {
+      sprintf(text, _("LOADING SET: %s").c_str(), mCurrentSetName);
     }else{
-      char text[512];
-      mFont->SetColor(ARGB(255,255,255,255));
-      if (mCurrentSetName[0]) {
-        sprintf(text, _("LOADING SET: %s").c_str(), mCurrentSetName);
-      }else{
-        sprintf(text,"LOADING...");
-      }
-      mFont->DrawString(text,SCREEN_WIDTH/2,SCREEN_HEIGHT/2,JGETEXT_CENTER);
+      sprintf(text,"LOADING...");
     }
+    mFont->DrawString(text,SCREEN_WIDTH/2,SCREEN_HEIGHT/2,JGETEXT_CENTER);
   }else{
     mFont = resources.GetJLBFont(Constants::MAIN_FONT);
     PIXEL_TYPE colors[] =
