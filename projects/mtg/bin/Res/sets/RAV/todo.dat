@@ -232,17 +232,6 @@ type=Artifact
 mana={3}
 [/card]
 [card]
-text=Return target permanent to its owner's hand. Its controller loses 3 life.     Transmute {1}{U}{B} ({1}{U}{B}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Play only as a sorcery.)
-id=89037
-name=Clutch of the Undercity
-rarity=U
-target=*
-auto=moveto(ownerhand)
-auto=life:-3 targetController
-type=Instant
-mana={1}{U}{U}{B}
-[/card]
-[card]
 text=Whenever Coalhauler Swine is dealt damage, it deals that much damage to each player.
 id=87949
 name=Coalhauler Swine
@@ -436,28 +425,6 @@ subtype=Human Wizard
 toughness=2
 [/card]
 [card]
-text=Fear     Sacrifice a creature: Regenerate Dimir House Guard.     Transmute {1}{B}{B} ({1}{B}{B}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Play only as a sorcery.)
-id=87926
-name=Dimir House Guard
-rarity=C
-type=Creature
-mana={3}{B}
-power=2
-subtype=Skeleton
-toughness=3
-[/card]
-[card]
-text=Dimir Infiltrator is unblockable.     Transmute {1}{U}{B} ({1}{U}{B}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Play only as a sorcery.)
-id=87987
-name=Dimir Infiltrator
-rarity=C
-type=Creature
-mana={U}{B}
-power=1
-subtype=Spirit
-toughness=3
-[/card]
-[card]
 text=Look at the top three cards of target player's library. Remove any number of those cards from the game, then put the rest back in any order.     Transmute {1}{B}{B} ({1}{B}{B}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Play only as a sorcery.)
 id=87981
 name=Dimir Machinations
@@ -472,14 +439,6 @@ name=Disembowel
 rarity=C
 type=Instant
 mana={X}{B}
-[/card]
-[card]
-text=Target creature gets -3/-0 until end of turn.     Transmute {1}{U}{U} ({1}{U}{U}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Play only as a sorcery.)
-id=87925
-name=Dizzy Spell
-rarity=C
-type=Instant
-mana={U}
 [/card]
 [card]
 text=If an effect would put one or more tokens into play under your control, it puts twice that many of those tokens into play instead.     If an effect would place one or more counters on a permanent you control, it places twice that many of those counters on that permanent instead.
@@ -501,17 +460,6 @@ subtype=Drake
 toughness=1
 [/card]
 [card]
-text=Defender (This creature can't attack.)  Flying     Transmute {1}{U}{U} ({1}{U}{U}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Play only as a sorcery.)
-id=87994
-name=Drift of Phantasms
-rarity=C
-type=Creature
-mana={2}{U}
-power=0
-subtype=Spirit
-toughness=5
-[/card]
-[card]
 text={2}{B}{G}, Sacrifice a creature: Target creature gets +2/+2 until end of turn. Another target creature gets -2/-2 until end of turn.
 id=87989
 name=Drooling Groodion
@@ -529,17 +477,6 @@ name=Dryad's Caress
 rarity=C
 type=Instant
 mana={4}{G}{G}
-[/card]
-[card]
-text={U}, {T}: Target creature is unblockable this turn.     Transmute {1}{U}{U} ({1}{U}{U}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Play only as a sorcery.)
-id=89023
-name=Ethereal Usher
-rarity=U
-type=Creature
-mana={5}{U}
-power=2
-subtype=Spirit
-toughness=3
 [/card]
 [card]
 text=Damage that would be dealt by Excruciator can't be prevented.
@@ -1149,14 +1086,6 @@ subtype=Insect
 toughness=1
 [/card]
 [card]
-text=Counter target instant or sorcery spell.     Transmute {1}{U}{U} ({1}{U}{U}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Play only as a sorcery.)
-id=88955
-name=Muddle the Mixture
-rarity=C
-type=Instant
-mana={U}{U}
-[/card]
-[card]
 text=Enchant creature     Whenever enchanted creature deals combat damage to a player, you may return target creature card from your graveyard to your hand.
 id=87985
 name=Necromantic Thirst
@@ -1175,17 +1104,6 @@ mana={1}{B}{B}
 power=1
 subtype=Ooze
 toughness=1
-[/card]
-[card]
-text=When Netherborn Phalanx comes into play, each opponent loses 1 life for each creature he or she controls.     Transmute {1}{B}{B} ({1}{B}{B}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Play only as a sorcery.)
-id=88972
-name=Netherborn Phalanx
-rarity=U
-type=Creature
-mana={5}{B}
-power=2
-subtype=Horror
-toughness=4
 [/card]
 [card]
 text=Target player reveals his or her hand. You choose a card from it. That player discards that card.     Dredge 2 (If you would draw a card, instead you may put exactly two cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)

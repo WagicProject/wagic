@@ -11,6 +11,19 @@ power=4
 toughness=4
 [/card]
 [card]
+text={T}: Target player loses 1 life.   {4}, {T}: Search your library for a Rebel permanent card with converted mana cost 3 or less and put it onto the battlefield. Then shuffle your library.
+id=124506
+name=Blightspeaker
+rarity=C
+mana={1}{B}
+auto={T}:life:-1 target(player)
+auto={4}{T}:moveTo(myBattlefield) target(rebel[manacost<=3]|mylibrary)
+type=Creature
+subtype=Human Rebel Cleric
+power=1
+toughness=1
+[/card]
+[card]
 text=First strike, protection from white
 id=130715
 name=Blood Knight

@@ -782,17 +782,6 @@ text=Whenever a player cycles a card, Stoic Champion gets +2/+2 until end of tur
 rarity=U
 [/card]
 [card]
-id=44328
-name=Sunstrike Legionnaire
-mana={1}{W}
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=2
-text=Sunstrike Legionnaire doesn't untap during your untap step. Whenever another creature enters the battlefield, untap Sunstrike Legionnaire. {T}: Tap target creature with converted mana cost 3 or less.
-rarity=R
-[/card]
-[card]
 id=45126
 name=Swooping Talon
 mana={4}{W}{W}

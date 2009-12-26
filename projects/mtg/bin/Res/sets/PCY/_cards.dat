@@ -32,6 +32,19 @@ mana={2}{W}
 type=Enchantment
 [/card]
 [card]
+text=Flying   {T}, Sacrifice a land: Search your library for a Mercenary permanent card with converted mana cost 2 or less and put that card onto the battlefield. Then shuffle your library.
+id=24600
+name=Bog Glider
+rarity=C
+mana={2}{B}
+type=Creature
+subtype=Human Mercenary
+auto={T}{S(land|myBattlefield)}:moveTo(myBattlefield) target(mercenary[manacost<=2]|mylibrary)
+power=1
+toughness=1
+abilities=flying
+[/card]
+[card]
 text=Branded Brawlers can't attack if defending player controls an untapped land.   Branded Brawlers can't block if you control an untapped land.
 id=24638
 name=Branded Brawlers

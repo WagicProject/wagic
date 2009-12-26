@@ -1159,14 +1159,6 @@ text=Hellbent - When Slaughterhouse Bouncer is put into a graveyard from the bat
 rarity=C
 [/card]
 [card]
-id=107281
-name=Spell Snare
-mana={U}
-type=Instant
-text=Counter target spell with converted mana cost 2.
-rarity=U
-[/card]
-[card]
 id=107263
 name=Sporeback Troll
 mana={3}{G}

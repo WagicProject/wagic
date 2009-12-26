@@ -195,6 +195,18 @@ toughness=5
 abilities=flying
 [/card]
 [card]
+text=When Fierce Empath enters the battlefield, you may search your library for a creature card with converted mana cost 6 or more, reveal it, put it into your hand, then shuffle your library.
+auto=may moveTo(myhand) target(creature[manacost>=6]|mylibrary)
+id=44218
+name=Fierce Empath
+rarity=C
+mana={2}{G}
+type=Creature
+subtype=Elf
+power=1
+toughness=1
+[/card]
+[card]
 id=43525
 name=Goblin Brigand
 mana={1}{R}
@@ -215,6 +227,18 @@ text=Goblin War Strike deals damage equal to the number of Goblins you control t
 target=player
 auto=foreach(goblin|myBattlefield)damage:1
 rarity=C
+[/card]
+[card]
+text=Whenever you cast a creature spell with converted mana cost 6 or more, put three +1/+1 counters on Kurgadon.
+id=45165
+name=Kurgadon
+rarity=U
+mana={4}{G}
+type=Creature
+subtype=Beast
+auto=@movedTo(creature[manacost>=6]|mystack):counter(1/1,3)
+power=3
+toughness=3
 [/card]
 [card]
 text=Vigilance   Plainscycling {2} ({2}, Discard this card: Search your library for a Plains card, reveal it, and put it into your hand. Then shuffle your library.)
@@ -243,6 +267,16 @@ auto={U}:shroud mytgt
 auto={1}:+1/-1 mytgt
 auto={1}:-1/+1 mytgt
 rarity=U
+[/card]
+[card]
+text=Whenever a player casts a spell with converted mana cost 3 or less, Pyrostatic Pillar deals 2 damage to that player.
+auto=@movedTo(*[manacost<=3]|mystack):damage:2 controller
+auto=@movedTo(*[manacost<=3]|opponentstack):damage:2 opponent
+id=44290
+name=Pyrostatic Pillar
+rarity=U
+mana={1}{R}
+type=Enchantment
 [/card]
 [card]
 id=43622

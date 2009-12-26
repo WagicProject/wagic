@@ -70,6 +70,15 @@ mana={B}
 type=Instant
 [/card]
 [card]
+text=Destroy each creature with converted mana cost 3 or less.
+id=97215
+auto=destroy all(creature[manacost<=3])
+name=Culling Sun
+rarity=R
+mana={2}{W}{W}{B}
+type=Sorcery
+[/card]
+[card]
 text=Flying   Daggerclaw Imp can't block.
 id=96949
 name=Daggerclaw Imp

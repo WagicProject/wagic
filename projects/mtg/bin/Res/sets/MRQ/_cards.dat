@@ -160,6 +160,81 @@ subtype=Aura
 abilities=flash
 [/card]
 [card]
+text={2}, {T}: Search your library for a Mercenary permanent card with converted mana cost 2 or less and put that card onto the battlefield. Then shuffle your library.
+id=19582
+name=Cateran Brute
+rarity=C
+mana={2}{B}
+type=Creature
+subtype=Horror Mercenary
+auto={2}{T}:moveTo(myBattlefield) target(mercenary[manacost<=2]|mylibrary)
+power=2
+toughness=2
+[/card]
+[card]
+text=Fear   {4}, {T}: Search your library for a Mercenary permanent card with converted mana cost 4 or less and put that card onto the battlefield. Then shuffle your library.
+id=19690
+name=Cateran Enforcer
+rarity=U
+mana={3}{B}{B}
+type=Creature
+subtype=Horror Mercenary
+auto={4}{T}:moveTo(myBattlefield) target(mercenary[manacost<=4]|mylibrary)
+power=4
+toughness=3
+abilities=fear
+[/card]
+[card]
+text={3}, {T}: Search your library for a Mercenary permanent card with converted mana cost 3 or less and put that card onto the battlefield. Then shuffle your library.
+id=19819
+name=Cateran Kidnappers
+rarity=U
+mana={2}{B}{B}
+type=Creature
+subtype=Human Mercenary
+auto={3}{T}:moveTo(myBattlefield) target(mercenary[manacost<=3]|mylibrary)
+power=4
+toughness=2
+[/card]
+[card]
+text=Sacrifice a creature: Regenerate Cateran Overlord.   {6}, {T}: Search your library for a Mercenary permanent card with converted mana cost 6 or less and put that card onto the battlefield. Then shuffle your library.
+id=19698
+name=Cateran Overlord
+rarity=R
+mana={4}{B}{B}{B}
+type=Creature
+subtype=Horror Mercenary
+auto={S(creature|myBattlefield)}:regenerate
+auto={6}{T}:moveTo(myBattlefield) target(mercenary[manacost<=6]|mylibrary)
+power=7
+toughness=5
+[/card]
+[card]
+text={1}, {T}: Search your library for a Mercenary permanent card with converted mana cost 1 or less and put that card onto the battlefield. Then shuffle your library.
+id=19580
+name=Cateran Persuader
+rarity=C
+mana={B}{B}
+type=Creature
+subtype=Human Mercenary
+auto={1}{T}:moveTo(myBattlefield) target(mercenary[manacost<=1]|mylibrary)
+power=2
+toughness=1
+[/card]
+[card]
+text=Swampwalk   {5}, {T}: Search your library for a Mercenary permanent card with converted mana cost 5 or less and put that card onto the battlefield. Then shuffle your library.
+id=19691
+name=Cateran Slaver
+rarity=R
+mana={4}{B}{B}
+type=Creature
+subtype=Horror Mercenary
+auto={5}{T}:moveTo(myBattlefield) target(mercenary[manacost<=5]|mylibrary)
+power=5
+toughness=5
+abilities=swampwalk
+[/card]
+[card]
 text=Flying   Whenever Caustic Wasps deals combat damage to a player, you may destroy target artifact that player controls.
 id=19865
 name=Caustic Wasps
@@ -1047,6 +1122,68 @@ name=Rain of Tears
 rarity=U
 mana={1}{B}{B}
 type=Sorcery
+[/card]
+[card]
+text=First strike   {5}, {T}: Search your library for a Rebel permanent card with converted mana cost 4 or less and put that card onto the battlefield. Then shuffle your library.
+id=19782
+name=Ramosian Captain
+rarity=U
+mana={1}{W}{W}
+type=Creature
+subtype=Human Rebel
+auto={5}{T}:moveTo(myBattlefield) target(rebel[manacost<=4]|mylibrary)
+power=2
+toughness=2
+abilities=first strike
+[/card]
+[card]
+text={6}, {T}: Search your library for a Rebel permanent card with converted mana cost 5 or less and put that card onto the battlefield. Then shuffle your library.
+id=20848
+name=Ramosian Commander
+rarity=U
+mana={2}{W}{W}
+type=Creature
+subtype=Human Rebel
+auto={6}{T}:moveTo(myBattlefield) target(rebel[manacost<=5]|mylibrary)
+power=2
+toughness=4
+[/card]
+[card]
+text={4}, {T}: Search your library for a Rebel permanent card with converted mana cost 3 or less and put that card onto the battlefield. Then shuffle your library.
+id=19543
+name=Ramosian Lieutenant
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Human Rebel
+auto={4}{T}:moveTo(myBattlefield) target(rebel[manacost<=3]|mylibrary)
+power=1
+toughness=2
+[/card]
+[card]
+text={3}, {T}: Search your library for a Rebel permanent card with converted mana cost 2 or less and put that card into play. Then shuffle your library.
+id=19539
+name=Ramosian Sergeant
+rarity=C
+mana={W}
+type=Creature
+subtype=Human Rebel
+auto={3}{T}:moveTo(myBattlefield) target(rebel[manacost<=2]|mylibrary)
+power=1
+toughness=1
+[/card]
+[card]
+text=Flying   {7}, {T}: Search your library for a Rebel permanent card with converted mana cost 6 or less and put that card into play. Then shuffle your library.
+id=19648
+name=Ramosian Sky Marshal
+rarity=R
+mana={3}{W}{W}
+type=Creature
+subtype=Human Rebel
+auto={7}{T}:moveTo(myBattlefield) target(rebel[manacost<=6]|mylibrary)
+power=3
+toughness=3
+abilities=flying
 [/card]
 [card]
 text=Flying   {2}{W}: Rappelling Scouts gains protection from the color of your choice until end of turn.

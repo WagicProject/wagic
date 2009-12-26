@@ -1640,14 +1640,6 @@ text=At the beginning of your upkeep, flip a coin. If you lose the flip, turn Sk
 rarity=U
 [/card]
 [card]
-id=41023
-name=Smother
-mana={1}{B}
-type=Instant
-text=Destroy target creature with converted mana cost 3 or less. It can't be regenerated.
-rarity=U
-[/card]
-[card]
 id=39729
 name=Snapping Thragg
 mana={4}{R}

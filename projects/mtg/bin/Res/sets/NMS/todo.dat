@@ -115,7 +115,6 @@ toughness=2
 text=Flying Fading 3 (This creature enters the battlefield with three fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.)
 rarity=C
 [/card]
-
 [card]
 id=21322
 name=Dark Triumph
@@ -141,17 +140,6 @@ subtype=Human Cleric
 power=2
 toughness=4
 text=Fading 4 (This creature enters the battlefield with four fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) Remove a fade counter from Defender en-Vec: Prevent the next 2 damage that would be dealt to target creature or player this turn.
-rarity=C
-[/card]
-[card]
-id=21251
-name=Defiant Falcon
-mana={1}{W}
-type=Creature
-subtype=Rebel Bird
-power=1
-toughness=1
-text=Flying {4}, {T}: Search your library for a Rebel permanent card with converted mana cost 3 or less and put that card onto the battlefield. Then shuffle your library.
 rarity=C
 [/card]
 [card]
@@ -521,39 +509,6 @@ power=3
 toughness=3
 text=Fading 3 (This creature enters the battlefield with three fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) Remove a fade counter from Phyrexian Prowler: Phyrexian Prowler gets +1/+1 until end of turn.
 rarity=U
-[/card]
-[card]
-id=22890
-name=Rathi Assassin
-mana={2}{B}{B}
-type=Creature
-subtype=Zombie Mercenary Assassin
-power=2
-toughness=2
-text={1}{B}{B}, {T}: Destroy target tapped nonblack creature. {3}, {T}: Search your library for a Mercenary permanent card with converted mana cost 3 or less and put that card onto the battlefield. Then shuffle your library.
-rarity=R
-[/card]
-[card]
-id=21311
-name=Rathi Fiend
-mana={3}{B}
-type=Creature
-subtype=Horror Mercenary
-power=2
-toughness=2
-text=When Rathi Fiend enters the battlefield, each player loses 3 life. {3}, {T}: Search your library for a Mercenary permanent card with converted mana cost 3 or less and put that card onto the battlefield. Then shuffle your library.
-rarity=U
-[/card]
-[card]
-id=21307
-name=Rathi Intimidator
-mana={1}{B}{B}
-type=Creature
-subtype=Horror Mercenary
-power=2
-toughness=1
-text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) {2}, {T}: Search your library for a Mercenary permanent card with converted mana cost 2 or less and put that card onto the battlefield. Then shuffle your library.
-rarity=C
 [/card]
 [card]
 id=21378

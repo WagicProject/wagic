@@ -160,72 +160,6 @@ subtype=Human
 toughness=*
 [/card]
 [card]
-text={2}, {T}: Search your library for a Mercenary permanent card with converted mana cost 2 or less and put that card into play. Then shuffle your library.
-id=19582
-name=Cateran Brute
-rarity=C
-type=Creature
-mana={2}{B}
-power=2
-subtype=Horror Mercenary
-toughness=2
-[/card]
-[card]
-text=Fear     {4}, {T}: Search your library for a Mercenary permanent card with converted mana cost 4 or less and put that card into play. Then shuffle your library.
-id=19690
-name=Cateran Enforcer
-rarity=U
-type=Creature
-mana={3}{B}{B}
-power=4
-subtype=Horror Mercenary
-toughness=3
-[/card]
-[card]
-text={3}, {T}: Search your library for a Mercenary permanent card with converted mana cost 3 or less and put that card into play. Then shuffle your library.
-id=19819
-name=Cateran Kidnappers
-rarity=U
-type=Creature
-mana={2}{B}{B}
-power=4
-subtype=Human Mercenary
-toughness=2
-[/card]
-[card]
-text=Sacrifice a creature: Regenerate Cateran Overlord.     {6}, {T}: Search your library for a Mercenary permanent card with converted mana cost 6 or less and put that card into play. Then shuffle your library.
-id=19698
-name=Cateran Overlord
-rarity=R
-type=Creature
-mana={4}{B}{B}{B}
-power=7
-subtype=Horror Mercenary
-toughness=5
-[/card]
-[card]
-text={1}, {T}: Search your library for a Mercenary permanent card with converted mana cost 1 or less and put that card into play. Then shuffle your library.
-id=19580
-name=Cateran Persuader
-rarity=C
-type=Creature
-mana={B}{B}
-power=2
-subtype=Human Mercenary
-toughness=1
-[/card]
-[card]
-text=Swampwalk     {5}, {T}: Search your library for a Mercenary permanent card with converted mana cost 5 or less and put that card into play. Then shuffle your library.
-id=19691
-name=Cateran Slaver
-rarity=R
-type=Creature
-mana={4}{B}{B}
-power=5
-subtype=Horror Mercenary
-toughness=5
-[/card]
-[card]
 text=You may remove a red card in your hand from the game rather than pay Cave-In's mana cost.       Cave-In deals 2 damage to each creature and each player.
 id=19725
 autohand={S}:moveTo(exile) target(*[red]|myhand) && damage:2 all(creature,player)
@@ -1217,67 +1151,12 @@ subtype=Fish
 toughness=1
 [/card]
 [card]
-text=First strike     {5}, {T}: Search your library for a Rebel permanent card with converted mana cost 4 or less and put that card into play. Then shuffle your library.
-id=19782
-name=Ramosian Captain
-rarity=U
-type=Creature
-mana={1}{W}{W}
-power=2
-subtype=Human Rebel
-toughness=2
-[/card]
-[card]
-text={6}, {T}: Search your library for a Rebel permanent card with converted mana cost 5 or less and put that card into play. Then shuffle your library.
-id=20848
-name=Ramosian Commander
-rarity=U
-type=Creature
-mana={2}{W}{W}
-power=2
-subtype=Human Rebel
-toughness=4
-[/card]
-[card]
-text={4}, {T}: Search your library for a Rebel permanent card with converted mana cost 3 or less and put that card into play. Then shuffle your library.
-id=19543
-name=Ramosian Lieutenant
-rarity=C
-type=Creature
-mana={1}{W}
-power=1
-subtype=Human Rebel
-toughness=2
-[/card]
-[card]
 text=If you control a Plains, you may tap an untapped creature you control rather than pay Ramosian Rally's mana cost.       Creatures you control get +1/+1 until end of turn.
 id=20409
 name=Ramosian Rally
 rarity=C
 type=Instant
 mana={3}{W}
-[/card]
-[card]
-text={3}, {T}: Search your library for a Rebel permanent card with converted mana cost 2 or less and put that card into play. Then shuffle your library.
-id=19539
-name=Ramosian Sergeant
-rarity=C
-type=Creature
-mana={W}
-power=1
-subtype=Human Rebel
-toughness=1
-[/card]
-[card]
-text=Flying     {7}, {T}: Search your library for a Rebel permanent card with converted mana cost 6 or less and put that card into play. Then shuffle your library.
-id=19648
-name=Ramosian Sky Marshal
-rarity=R
-type=Creature
-mana={3}{W}{W}
-power=3
-subtype=Human Rebel
-toughness=3
 [/card]
 [card]
 text=Rampart Crawler can't be blocked by Walls.

@@ -1,15 +1,4 @@
 [card]
-id=113619
-name=Amrou Scout
-mana={1}{W}
-type=Creature
-subtype=Kithkin Rebel Scout
-power=2
-toughness=1
-text={4}, {T}: Search your library for a Rebel permanent card with converted mana cost 3 or less and put it into play. Then shuffle your library.
-rarity=C
-[/card]
-[card]
 id=113505
 name=Ancestral Vision
 mana=

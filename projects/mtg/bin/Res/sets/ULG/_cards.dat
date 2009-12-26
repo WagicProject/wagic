@@ -599,6 +599,17 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Return target creature card with converted mana cost 3 or less from your graveyard to the battlefield.   Cycling {2} ({2}, Discard this card: Draw a card.)
+id=12398
+target=creature[manacost<=3]|mygraveyard
+auto=moveTo(myBattlefield)
+autohand={2}:cycling
+name=Unearth
+rarity=C
+mana={B}
+type=Sorcery
+[/card]
+[card]
 text=Haste   At the beginning of the end step, return Viashino Cutthroat to its owner's hand.
 id=12419
 name=Viashino Cutthroat

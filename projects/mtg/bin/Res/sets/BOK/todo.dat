@@ -56,17 +56,6 @@ text=Equipped creature has "Unattach Blinding Powder: Prevent all combat damage 
 rarity=U
 [/card]
 [card]
-id=74613
-name=Body of Jukai
-mana={7}{G}{G}
-type=Creature
-subtype=Spirit
-power=8
-toughness=5
-text=Trample Soulshift 8 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 8 or less from your graveyard to your hand.)
-rarity=U
-[/card]
-[card]
 id=74536
 name=Budoka Pupil
 mana={1}{G}{G}
@@ -123,17 +112,6 @@ mana={R}
 type=Sorcery
 subtype=Arcane
 text=Each player sacrifices a permanent.
-rarity=C
-[/card]
-[card]
-id=74032
-name=Crawling Filth
-mana={5}{B}
-type=Creature
-subtype=Spirit
-power=2
-toughness=2
-text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) Soulshift 5 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 5 or less from your graveyard to your hand.)
 rarity=C
 [/card]
 [card]
@@ -285,17 +263,6 @@ type=Instant
 subtype=Arcane
 text=Return target legendary creature card from your graveyard to the battlefield. That creature gains haste. Exile it at the beginning of the next end step. Splice onto Arcane {2}{B} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 rarity=R
-[/card]
-[card]
-id=74580
-name=Harbinger of Spring
-mana={4}{G}
-type=Creature
-subtype=Spirit
-power=2
-toughness=1
-text=Protection from non-Spirit creatures Soulshift 4 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 4 or less from your graveyard to your hand.)
-rarity=C
 [/card]
 [card]
 id=81982
@@ -634,17 +601,6 @@ text=Ninjutsu {U} ({U}, Return an unblocked attacker you control to hand: Put th
 rarity=C
 [/card]
 [card]
-id=74028
-name=Moonlit Strider
-mana={3}{W}
-type=Creature
-subtype=Spirit
-power=1
-toughness=4
-text=Sacrifice Moonlit Strider: Target creature you control gains protection from the color of your choice until end of turn. Soulshift 3 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 3 or less from your graveyard to your hand.)
-rarity=C
-[/card]
-[card]
 id=74578
 name=Neko-Te
 mana={3}
@@ -804,17 +760,6 @@ mana={B}
 type=Sorcery
 text=Target player reveals his or her hand. You choose a Spirit or Arcane card from it. That player discards that card.
 rarity=C
-[/card]
-[card]
-id=74124
-name=Pus Kami
-mana={5}{B}{B}
-type=Creature
-subtype=Spirit
-power=3
-toughness=3
-text={B}, Sacrifice Pus Kami: Destroy target nonblack creature. Soulshift 6 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 6 or less from your graveyard to your hand.)
-rarity=U
 [/card]
 [card]
 id=74500
@@ -1125,15 +1070,6 @@ name=That Which Was Taken
 mana={5}
 type=Legendary Artifact
 text={4}, {T}: Put a divinity counter on target permanent other than That Which Was Taken. Each permanent with a divinity counter on it is indestructible.
-rarity=R
-[/card]
-[card]
-id=74652
-name=Threads of Disloyalty
-mana={1}{U}{U}
-type=Enchantment
-subtype=Aura
-text=Enchant creature with converted mana cost 2 or less You control enchanted creature.
 rarity=R
 [/card]
 [card]

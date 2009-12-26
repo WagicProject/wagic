@@ -272,6 +272,18 @@ toughness=3
 abilities=legendary
 [/card]
 [card]
+text=Soulshift 3 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 3 or less from your graveyard to your hand.)
+id=87335
+name=Kami of Empty Graves
+rarity=C
+mana={3}{B}
+type=Creature
+subtype=Spirit
+auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=3]|mygraveyard)
+power=4
+toughness=1
+[/card]
+[card]
 text=Target creature deals damage to itself equal to its power.
 id=74157
 target=creature
@@ -340,6 +352,18 @@ toughness=1
 abilities=flying
 [/card]
 [card]
+text=Soulshift 5 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 5 or less from your graveyard to your hand.)
+id=88815
+name=Nightsoil Kami
+rarity=C
+mana={4}{G}{G}
+type=Creature
+subtype=Spirit
+auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=5]|mygraveyard)
+power=6
+toughness=4
+[/card]
+[card]
 text={T}: Add {U} to your mana pool.   {1}: Return Oboro, Palace in the Clouds to its owner's hand.
 id=74206
 name=Oboro, Palace in the Clouds
@@ -387,6 +411,18 @@ name=Presence of the Wise
 rarity=U
 mana={2}{W}{W}
 type=Sorcery
+[/card]
+[card]
+text=Soulshift 7 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 7 or less from your graveyard to your hand.)
+id=74018
+name=Promised Kannushi
+rarity=C
+mana={G}
+type=Creature
+subtype=Human Druid
+auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=7]|mygraveyard)
+power=1
+toughness=1
 [/card]
 [card]
 text=When a creature you control is put into a graveyard from the battlefield, sacrifice Promise of Bunrei. If you do, put four 1/1 colorless Spirit creature tokens onto the battlefield.
@@ -550,4 +586,17 @@ rarity=U
 mana={2}{R}{R}
 type=Sorcery
 subtype=Arcane
+[/card]
+[card]
+text=Vigilance (Attacking doesn't cause this creature to tap.)   Soulshift 4 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 4 or less from your graveyard to your hand.)
+id=87342
+name=Torii Watchward
+rarity=C
+mana={4}{W}
+type=Creature
+subtype=Spirit
+auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=4]|mygraveyard)
+power=3
+toughness=3
+abilities=vigilance
 [/card]

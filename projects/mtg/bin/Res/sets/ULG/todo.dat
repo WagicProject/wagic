@@ -667,14 +667,6 @@ text=Treetop Village enters the battlefield tapped. {T}: Add {G} to your mana po
 rarity=U
 [/card]
 [card]
-id=12398
-name=Unearth
-mana={B}
-type=Sorcery
-text=Return target creature card with converted mana cost 3 or less from your graveyard to the battlefield. Cycling {2} ({2}, Discard this card: Draw a card.)
-rarity=C
-[/card]
-[card]
 id=12633
 name=Urza's Blueprints
 mana={6}

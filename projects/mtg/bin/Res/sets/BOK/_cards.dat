@@ -49,6 +49,19 @@ subtype=Aura
 abilities=flash
 [/card]
 [card]
+text=Trample   Soulshift 8 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 8 or less from your graveyard to your hand.)
+auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=8]|mygraveyard)
+id=74613
+name=Body of Jukai
+rarity=U
+mana={7}{G}{G}
+type=Creature
+subtype=Spirit
+power=8
+toughness=5
+abilities=trample
+[/card]
+[card]
 text=Sacrifice Child of Thorns: Target creature gets +1/+1 until end of turn.
 id=74461
 name=Child of Thorns
@@ -59,6 +72,19 @@ subtype=Spirit
 auto={S}:1/1 target(creature)
 power=1
 toughness=1
+[/card]
+[card]
+text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.)   Soulshift 5 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 5 or less from your graveyard to your hand.)
+id=74032
+name=Crawling Filth
+rarity=C
+mana={5}{B}
+type=Creature
+subtype=Spirit
+auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=5]|mygraveyard)
+power=2
+toughness=2
+abilities=fear
 [/card]
 [card]
 text=Legendary creatures you control get +2/+2.
@@ -163,6 +189,19 @@ auto=@movedto(this|mygraveyard) from(Battlefield):token(Spirit,Creature Spirit,1
 abilities=legendary
 [/card]
 [card]
+text=Protection from non-Spirit creatures   Soulshift 4 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 4 or less from your graveyard to your hand.)
+id=74580
+name=Harbinger of Spring
+rarity=C
+mana={4}{G}
+type=Creature
+subtype=Spirit
+auto=protection from(creature[-spirit])
+auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=4]|mygraveyard)
+power=2
+toughness=1
+[/card]
+[card]
 text=Destroy target legendary creature.
 id=74465
 target=creature[legendary]
@@ -242,6 +281,23 @@ power=2
 toughness=2
 [/card]
 [card]
+text=Sacrifice Moonlit Strider: Target creature you control gains protection from the color of your choice until end of turn.   Soulshift 3 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 3 or less from your graveyard to your hand.)
+id=74028
+name=Moonlit Strider
+rarity=C
+mana={3}{W}
+type=Creature
+subtype=Spirit
+auto={S}:protection from white target(creature|myBattlefield)
+auto={S}:protection from blue target(creature|myBattlefield)
+auto={S}:protection from black target(creature|myBattlefield)
+auto={S}:protection from red target(creature|myBattlefield)
+auto={S}:protection from green target(creature|myBattlefield)
+auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=3]|mygraveyard)
+power=1
+toughness=4
+[/card]
+[card]
 text=Sacrifice Nezumi Shadow-Watcher: Destroy target Ninja.
 id=74467
 name=Nezumi Shadow-Watcher
@@ -290,6 +346,19 @@ rarity=C
 mana={1}{U}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+text={B}, Sacrifice Pus Kami: Destroy target nonblack creature.   Soulshift 6 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 6 or less from your graveyard to your hand.)
+id=74124
+name=Pus Kami
+rarity=U
+mana={5}{B}{B}
+type=Creature
+subtype=Spirit
+auto={B}{S}:destroy target(creature[-black])
+auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=6]|mygraveyard)
+power=3
+toughness=3
 [/card]
 [card]
 text=Return all artifacts and enchantments to their owners' hands.
@@ -380,6 +449,17 @@ rarity=U
 mana={1}{W}
 type=Instant
 subtype=Arcane
+[/card]
+[card]
+text=Enchant creature with converted mana cost 2 or less   You control enchanted creature.
+id=74652
+alias=1194
+target=creature[manacost<=2]
+name=Threads of Disloyalty
+rarity=R
+mana={1}{U}{U}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 text=Defender; reach (This creature can block creatures with flying.)   Traproot Kami's toughness is equal to the number of Forests on the battlefield.

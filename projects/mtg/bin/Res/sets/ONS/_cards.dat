@@ -1214,6 +1214,16 @@ toughness=6
 abilities=cantattack
 [/card]
 [card]
+text=Destroy target creature with converted mana cost 3 or less. It can't be regenerated.
+id=41023
+target=creature[manacost<=3]
+auto=bury
+name=Smother
+rarity=U
+mana={1}{B}
+type=Instant
+[/card]
+[card]
 text=Solar Blast deals 3 damage to target creature or player.   Cycling {1}{R}{R} ({1}{R}{R}, Discard this card: Draw a card.)   When you cycle Solar Blast, you may have it deal 1 damage to target creature or player.
 id=41143
 target=creature,player

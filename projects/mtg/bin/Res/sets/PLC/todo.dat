@@ -96,17 +96,6 @@ text=When Big Game Hunter enters the battlefield, destroy target creature with p
 rarity=U
 [/card]
 [card]
-id=124506
-name=Blightspeaker
-mana={1}{B}
-type=Creature
-subtype=Human Rebel Cleric
-power=1
-toughness=1
-text={T}: Target player loses 1 life. {4}, {T}: Search your library for a Rebel permanent card with converted mana cost 3 or less and put it onto the battlefield. Then shuffle your library.
-rarity=C
-[/card]
-[card]
 id=126218
 name=Boom // Bust (Boom)
 mana={1}{R}

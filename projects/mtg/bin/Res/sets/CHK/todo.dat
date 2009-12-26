@@ -170,17 +170,6 @@ text={T}: You may put a land card from your hand into play. If you control ten o
 rarity=R
 [/card]
 [card]
-id=50305
-name=Burr Grafter
-mana={3}{G}
-type=Creature
-subtype=Spirit
-power=2
-toughness=2
-text=Sacrifice Burr Grafter: Target creature gets +2/+2 until end of turn. Soulshift 3 (When this is put into a graveyard from play, you may return target Spirit card with converted mana cost 3 or less from your graveyard to your hand.)
-rarity=C
-[/card]
-[card]
 id=78600
 name=Bushi Tenderfoot
 mana={W}
@@ -487,17 +476,6 @@ auto=lord(creature|opponentinplay) {2}:-cantattack
 rarity=U
 [/card]
 [card]
-id=78966
-name=Gibbering Kami
-mana={3}{B}
-type=Creature
-subtype=Spirit
-power=2
-toughness=2
-text=Flying Soulshift 3 (When this is put into a graveyard from play, you may return target Spirit card with converted mana cost 3 or less from your graveyard to your hand.)
-rarity=C
-[/card]
-[card]
 id=79090
 name=Gifts Ungiven
 mana={3}{U}
@@ -754,17 +732,6 @@ text=Flying Whenever a creature becomes the target of a spell or ability, destro
 rarity=R
 [/card]
 [card]
-id=79145
-name=Hundred-Talon Kami
-mana={4}{W}
-type=Creature
-subtype=Spirit
-power=2
-toughness=3
-text=Flying Soulshift 4 (When this is put into a graveyard from play, you may return target Spirit card with converted mana cost 4 or less from your graveyard to your hand.)
-rarity=C
-[/card]
-[card]
 id=50300
 name=Imi Statue
 mana={3}
@@ -852,40 +819,6 @@ power=2
 toughness=3
 text=Whenever you play a Spirit or Arcane spell, target creature can't block this turn.
 rarity=C
-[/card]
-[card]
-id=77921
-name=Kami of Lunacy
-mana={4}{B}{B}
-type=Creature
-subtype=Spirit
-power=4
-toughness=1
-text=Flying Soulshift 5 (When this is put into a graveyard from play, you may return target Spirit card with converted mana cost 5 or less from your graveyard to your hand.)
-rarity=U
-[/card]
-
-[card]
-id=77136
-name=Kami of the Painted Road
-mana={4}{W}
-type=Creature
-subtype=Spirit
-power=3
-toughness=3
-text=Whenever you play a Spirit or Arcane spell, Kami of the Painted Road gains protection from the color of your choice until end of turn.
-rarity=C
-[/card]
-[card]
-id=50367
-name=Kami of the Palace Fields
-mana={5}{W}
-type=Creature
-subtype=Spirit
-power=3
-toughness=2
-text=Flying, first strike Soulshift 5 (When this is put into a graveyard from play, you may return target Spirit card with converted mana cost 5 or less from your graveyard to your hand.)
-rarity=U
 [/card]
 [card]
 id=50311
@@ -1509,8 +1442,6 @@ type=Artifact
 text={3}: Put target card in a graveyard on the bottom of its owner's library.
 rarity=U
 [/card]
-
-
 [card]
 id=79125
 name=Reverse the Sands
@@ -1540,17 +1471,6 @@ text=Haste Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until e
 rarity=C
 [/card]
 [card]
-id=75367
-name=Rootrunner
-mana={2}{G}{G}
-type=Creature
-subtype=Spirit
-power=3
-toughness=3
-text={G}{G}, Sacrifice Rootrunner: Put target land on top of its owner's library. Soulshift 3 (When this is put into a graveyard from play, you may return target Spirit card with converted mana cost 3 or less from your graveyard to your hand.)
-rarity=U
-[/card]
-[card]
 id=50408
 name=Samurai Enforcers
 mana={4}{W}{W}
@@ -1573,17 +1493,6 @@ text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of 
 rarity=U
 [/card]
 [card]
-id=77922
-name=Scuttling Death
-mana={4}{B}
-type=Creature
-subtype=Spirit
-power=4
-toughness=2
-text=Sacrifice Scuttling Death: Target creature gets -1/-1 until end of turn. Soulshift 4 (When this is put into a graveyard from play, you may return target Spirit card with converted mana cost 4 or less from your graveyard to your hand.)
-rarity=C
-[/card]
-[card]
 id=78683
 name=Sensei Golden-Tail
 mana={1}{W}
@@ -1602,8 +1511,6 @@ type=Artifact
 text={1}: Look at the top three cards of your library, then put them back in any order. {T}: Draw a card, then put Sensei's Divining Top on top of its owner's library.
 rarity=U
 [/card]
-
-
 [card]
 id=75278
 name=Shell of the Last Kappa
@@ -1612,7 +1519,6 @@ type=Legendary Artifact
 text={3}, {T}: Remove from the game target instant or sorcery spell that targets you. (The spell has no effect.) {3}, {T}, Sacrifice Shell of the Last Kappa: You may play a card removed from the game with Shell of the Last Kappa without paying its mana cost.
 rarity=R
 [/card]
-
 [card]
 id=50318
 name=Shimatsu the Bloodcloaked
@@ -1663,7 +1569,6 @@ toughness=2
 text=When Silent-Chant Zubera is put into a graveyard from play, you gain 2 life for each Zubera put into a graveyard from play this turn.
 rarity=C
 [/card]
-
 [card]
 id=79177
 name=Soilshaper
@@ -1763,7 +1668,6 @@ toughness=2
 text=Whenever you play a Spirit or Arcane spell, Soul of Magma deals 1 damage to target creature.
 rarity=C
 [/card]
-
 [card]
 id=50288
 name=Soulless Revival
@@ -1801,7 +1705,6 @@ subtype=Arcane
 text=Switch target creature's power and toughness until end of turn. Splice onto Arcane {1}{R} (As you play an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 rarity=U
 [/card]
-
 [card]
 id=79168
 name=Struggle for Sanity
@@ -1820,7 +1723,6 @@ power=1
 toughness=1
 text=When Student of Elements has flying, flip it. rarity=U
 [/card]
-
 [card]
 id=79089
 name=Swallowing Plague
@@ -1830,7 +1732,6 @@ subtype=Arcane
 text=Swallowing Plague deals X damage to target creature and you gain X life.
 rarity=U
 [/card]
-
 [card]
 id=80276
 name=Swirl the Mists
@@ -1860,19 +1761,6 @@ text=Equipped creature gets +5/+5. {6}, Remove Tatsumasa, the Dragon's Fang from
 rarity=R
 [/card]
 [card]
-id=75285
-name=Teller of Tales
-mana={3}{U}{U}
-type=Creature
-subtype=Spirit
-power=3
-toughness=3
-text=Flying Whenever you play a Spirit or Arcane spell, you may tap or untap target creature.
-abilities=flying
-auto=@movedTo(arcane,spirit|mystack):may taporuntap target(creature)
-rarity=C
-[/card]
-[card]
 id=79231
 name=Tenza, Godo's Maul
 mana={3}
@@ -1891,36 +1779,6 @@ text=Tap up to three target creatures.
 rarity=C
 [/card]
 [card]
-id=77920
-name=Thief of Hope
-mana={2}{B}
-type=Creature
-subtype=Spirit
-power=2
-toughness=2
-text=Whenever you play a Spirit or Arcane spell, target opponent loses 1 life and you gain 1 life. Soulshift 2 (When this is put into a graveyard from play, you may return target Spirit card with converted mana cost 2 or less from your graveyard to your hand.)
-rarity=U
-[/card]
-[card]
-id=50433
-name=Thoughtbind
-mana={2}{U}
-type=Instant
-text=Counter target spell with converted mana cost 4 or less.
-rarity=C
-[/card]
-[card]
-id=50438
-name=Thousand-legged Kami
-mana={6}{G}{G}
-type=Creature
-subtype=Spirit
-power=6
-toughness=6
-text=Soulshift 7 (When this is put into a graveyard from play, you may return target Spirit card with converted mana cost 7 or less from your graveyard to your hand.)
-rarity=U
-[/card]
-[card]
 id=80250
 name=Through the Breach
 mana={4}{R}
@@ -1937,7 +1795,6 @@ type=Enchantment
 text=Whenever one or more creatures blocks, flip a coin. If you win the flip, each blocking creature is sacrificed by its controller. Otherwise, each blocked creature is sacrificed by its controller.
 rarity=R
 [/card]
-
 [card]
 id=129898
 name=Time Stop
@@ -2027,17 +1884,6 @@ mana={3}{W}
 type=Enchantment
 text={1}: The next 1 damage that would be dealt to target legendary creature you control this turn is dealt to you instead.
 rarity=R
-[/card]
-[card]
-id=78979
-name=Venerable Kumo
-mana={4}{G}
-type=Creature
-subtype=Spirit
-power=2
-toughness=3
-text=Reach (This creature can block creatures with flying.) Soulshift 4 (When this is put into a graveyard from play, you may return target Spirit card with converted mana cost 4 or less from your graveyard to your hand.)
-rarity=C
 [/card]
 [card]
 id=82001

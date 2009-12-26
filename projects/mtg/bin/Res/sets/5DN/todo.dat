@@ -1,4 +1,4 @@
-[card]
+﻿[card]
 id=50164
 name=Abuna's Chant
 mana={3}{W}
@@ -23,25 +23,6 @@ subtype=Golem
 power=0
 toughness=0
 text=Modular -- Sunburst (This enters the battlefield with a +1/+1 counter on it for each color of mana spent to cast it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
-rarity=U
-[/card]
-[card]
-id=50172
-name=Artificer's Intuition
-mana={1}{U}
-type=Enchantment
-text={U}, Discard an artifact card: Search your library for an artifact card with converted mana cost 1 or less, reveal that card, and put it into your hand. Then shuffle your library.
-rarity=R
-[/card]
-[card]
-id=51166
-name=Auriok Salvagers
-mana={3}{W}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=4
-text={1}{W}: Return target artifact card with converted mana cost 1 or less from your graveyard to your hand.
 rarity=U
 [/card]
 [card]
@@ -410,14 +391,6 @@ text=Equipped creature gets +3/+2. Whenever Grafted Wargear becomes unattached f
 rarity=U
 [/card]
 [card]
-id=72721
-name=Granulate
-mana={2}{R}{R}
-type=Sorcery
-text=Destroy each nonland artifact with converted mana cost 4 or less.
-rarity=R
-[/card]
-[card]
 id=51138
 name=Guardian Idol
 mana={2}
@@ -741,14 +714,6 @@ text=Choose one  EUntap all lands you control; or until end of turn, lands you
 rarity=R
 [/card]
 [card]
-id=51132
-name=Salvaging Station
-mana={6}
-type=Artifact
-text={T}: Return target noncreature artifact card with converted mana cost 1 or less from your graveyard to the battlefield. Whenever a creature is put into a graveyard from the battlefield, you may untap Salvaging Station.
-rarity=R
-[/card]
-[card]
 id=51141
 name=Sawtooth Thresher
 mana={6}
@@ -901,6 +866,21 @@ text=Destroy target artifact. Scry 2. (To scry 2, look at the top two cards of y
 rarity=U
 [/card]
 [card]
+id=73570
+name=Thought Courier
+mana={1}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+text={T}: Draw a card, then discard a card.
+# Note: Following line is not entirely correct. The game
+# requires you to discard a card *before* you can draw
+# then new one.
+auto={T}:draw:1 controller && moveto(mygraveyard) target(*|myhand)
+rarity=U
+[/card]
+[card]
 id=51161
 name=Tornado Elemental
 mana={5}{G}{G}
@@ -910,17 +890,6 @@ power=6
 toughness=6
 text=When Tornado Elemental enters the battlefield, it deals 6 damage to each creature with flying. You may have Tornado Elemental assign its combat damage as though it weren't blocked.
 rarity=R
-[/card]
-[card]
-id=50163
-name=Trinket Mage
-mana={2}{U}
-type=Creature
-subtype=Human Wizard
-power=2
-toughness=2
-text=When Trinket Mage enters the battlefield, you may search your library for an artifact card with converted mana cost 1 or less, reveal that card, and put it into your hand. If you do, shuffle your library.
-rarity=C
 [/card]
 [card]
 id=50134

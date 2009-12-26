@@ -71,6 +71,19 @@ mana={3}{R}{R}
 type=Enchantment
 [/card]
 [card]
+text=Sacrifice Burr Grafter: Target creature gets +2/+2 until end of turn. Soulshift 3 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 3 or less from your graveyard to your hand.)
+auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=3]|mygraveyard)
+id=50305
+name=Burr Grafter
+rarity=C
+mana={3}{G}
+type=Creature
+subtype=Spirit
+auto={S}:2/2 target(creature)
+power=2
+toughness=2
+[/card]
+[card]
 text=Enchant creature   Enchanted creature can't attack or block.   {1}{W}: Return Cage of Hands to its owner's hand.
 target=creature
 auto=cantattack
@@ -215,16 +228,29 @@ mana={4}{G}
 type=Sorcery
 [/card]
 [card]
+text=Equipped creature has shroud. (It can't be the target of spells or abilities.)   Prevent all combat damage that would be dealt to equipped creature.   Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
 id=79862
 name=General's Kabuto
+rarity=R
 mana={4}
 type=Artifact
 subtype=Equipment
-text=Equipped creature has shroud. (It can't be the target of spells or abilities.) Prevent all combat damage that would be dealt to equipped creature. Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
 auto={2}:equip
 auto=shroud
 auto=preventAllCombatDamage to(mytgt)
-rarity=R
+[/card]
+[card]
+text=Flying   Soulshift 3 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 3 or less from your graveyard to your hand.)
+id=78966
+name=Gibbering Kami
+rarity=C
+mana={3}{B}
+type=Creature
+subtype=Spirit
+auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=3]|mygraveyard)
+power=2
+toughness=2
+abilities=flying
 [/card]
 [card]
 text={1}{G}, Sacrifice Hana Kami: Return target Arcane card from your graveyard to your hand.
@@ -301,6 +327,19 @@ subtype=Human Monk
 power=2
 toughness=2
 abilities=shroud
+[/card]
+[card]
+text=Flying   Soulshift 4 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 4 or less from your graveyard to your hand.)
+id=79145
+name=Hundred-Talon Kami
+rarity=C
+mana={4}{W}
+type=Creature
+subtype=Spirit
+auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=4]|mygraveyard)
+power=2
+toughness=3
+abilities=flying
 [/card]
 [card]
 text=Enchant Creature   Flash   Enchanted Creature gets +1/+2.
@@ -431,6 +470,19 @@ power=2
 toughness=2
 [/card]
 [card]
+text=Flying   Soulshift 5 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 5 or less from your graveyard to your hand.)
+id=77921
+name=Kami of Lunacy
+rarity=U
+mana={4}{B}{B}
+type=Creature
+subtype=Spirit
+auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=5]|mygraveyard)
+power=4
+toughness=1
+abilities=flying
+[/card]
+[card]
 id=79236
 name=Kami of Old Stone
 rarity=U
@@ -451,6 +503,35 @@ subtype=Spirit
 auto=@movedTo(arcane,spirit|mystack):1/1 ueot
 power=2
 toughness=2
+[/card]
+[card]
+text=Whenever you cast a Spirit or Arcane spell, Kami of the Painted Road gains protection from the color of your choice until end of turn.
+id=77136
+name=Kami of the Painted Road
+rarity=C
+mana={4}{W}
+type=Creature
+subtype=Spirit
+auto=@movedTo(arcane,spirit|mystack):may protection from white ueot
+auto=@movedTo(arcane,spirit|mystack):may protection from blue ueot
+auto=@movedTo(arcane,spirit|mystack):may protection from black ueot
+auto=@movedTo(arcane,spirit|mystack):may protection from red ueot
+auto=@movedTo(arcane,spirit|mystack):may protection from green ueot
+power=3
+toughness=3
+[/card]
+[card]
+text=Flying, first strike   Soulshift 5 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 5 or less from your graveyard to your hand.)
+id=50367
+name=Kami of the Palace Fields
+rarity=U
+mana={5}{W}
+type=Creature
+subtype=Spirit
+auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=5]|mygraveyard)
+power=3
+toughness=2
+abilities=flying,first strike
 [/card]
 [card]
 text=Sacrifice Kami of Twisted Reflection: Return target creature you control to its owner's hand.
@@ -877,6 +958,19 @@ subtype=Spirit
 toughness=4
 [/card]
 [card]
+text={G}{G}, Sacrifice Rootrunner: Put target land on top of its owner's library.   Soulshift 3 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 3 or less from your graveyard to your hand.)
+id=75367
+name=Rootrunner
+rarity=U
+mana={2}{G}{G}
+type=Creature
+subtype=Spirit
+auto={G}{G}{S}:moveTo(ownerlibrary) target(land)
+auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=3]|mygraveyard)
+power=3
+toughness=3
+[/card]
+[card]
 text=Flying   When Ryusei, the Falling Star is put into a graveyard from the battlefield, it deals 5 damage to each creature without flying.
 auto=@movedTo(this|graveyard) from(battlefield):damage:5 all(creature[-flying])
 id=79242
@@ -914,6 +1008,19 @@ type=Creature
 subtype=Snake Shaman
 power=1
 toughness=1
+[/card]
+[card]
+text=Sacrifice Scuttling Death: Target creature gets -1/-1 until end of turn.   Soulshift 4 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 4 or less from your graveyard to your hand.)
+id=77922
+name=Scuttling Death
+rarity=C
+mana={4}{B}
+type=Creature
+subtype=Spirit
+auto={S}:-1/-1 target(creature)
+auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=4]|mygraveyard)
+power=4
+toughness=2
 [/card]
 [card]
 text=At the beginning of each player's upkeep, that player loses 2 life and draws two cards.
@@ -1069,6 +1176,20 @@ text={B}
 rarity=L
 [/card]
 [card]
+text=Flying   Whenever you cast a Spirit or Arcane spell, you may tap or untap target creature.
+id=75285
+name=Teller of Tales
+rarity=C
+mana={3}{U}{U}
+type=Creature
+subtype=Spirit
+auto=@movedTo(arcane,spirit|mystack):may tap target(creature)
+auto=@movedTo(arcane,spirit|mystack):may untap target(creature)
+power=3
+toughness=3
+abilities=flying
+[/card]
+[card]
 text=Flying, trample   Whenever The Unspeakable deals combat damage to a player, you may return target Arcane card from your graveyard to your hand.
 auto=@damaged(player) from(this):may moveto(myhand) target(arcane|mygraveyard)
 id=78693
@@ -1080,6 +1201,41 @@ subtype=Spirit
 power=6
 toughness=7
 abilities=legendary,flying,trample
+[/card]
+[card]
+text=Whenever you cast a Spirit or Arcane spell, target opponent loses 1 life and you gain 1 life.   Soulshift 2 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 2 or less from your graveyard to your hand.)
+id=77920
+name=Thief of Hope
+rarity=U
+mana={2}{B}
+type=Creature
+subtype=Spirit
+auto=@movedTo(arcane,spirit|mystack):life:-1 opponent && life:1 controller
+auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=2]|mygraveyard)
+power=2
+toughness=2
+[/card]
+[card]
+text=Counter target spell with converted mana cost 4 or less.
+id=50433
+target=*[manacost<=4]|stack
+auto=fizzle
+name=Thoughtbind
+rarity=C
+mana={2}{U}
+type=Instant
+[/card]
+[card]
+text=Soulshift 7 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 7 or less from your graveyard to your hand.)
+id=50438
+name=Thousand-legged Kami
+rarity=U
+mana={6}{G}{G}
+type=Creature
+subtype=Spirit
+auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=7]|mygraveyard)
+power=6
+toughness=6
 [/card]
 [card]
 text=Search your library for a legendary creature card, reveal it, and put it into your hand. Then shuffle your library.
@@ -1114,6 +1270,19 @@ rarity=C
 mana={R}
 type=Instant
 subtype=Arcane
+[/card]
+[card]
+text=Reach (This creature can block creatures with flying.)   Soulshift 4 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 4 or less from your graveyard to your hand.)
+id=78979
+name=Venerable Kumo
+rarity=C
+mana={4}{G}
+type=Creature
+subtype=Spirit
+auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=4]|mygraveyard)
+power=2
+toughness=3
+abilities=reach
 [/card]
 [card]
 text=Enchant Creature   Enchanted Creature has vigilance.

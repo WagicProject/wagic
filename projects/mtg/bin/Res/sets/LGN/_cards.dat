@@ -593,6 +593,20 @@ power=2
 toughness=2
 [/card]
 [card]
+text=Sunstrike Legionnaire doesn't untap during your untap step.   Whenever another creature enters the battlefield, untap Sunstrike Legionnaire.   {T}: Tap target creature with converted mana cost 3 or less.
+id=44328
+name=Sunstrike Legionnaire
+rarity=R
+mana={1}{W}
+type=Creature
+subtype=Human Soldier
+auto=@movedTo(creature|battlefield):untap
+auto={T}:tap target(creature[manacost<=3])
+power=1
+toughness=2
+abilities=doesnotuntap
+[/card]
+[card]
 text={T}: Target creature gets +X/+X until end of turn, where X is the number of Elves on the battlefield.
 id=45121
 name=Timberwatch Elf

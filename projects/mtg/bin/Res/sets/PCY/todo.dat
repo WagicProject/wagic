@@ -101,17 +101,6 @@ text=Protection from white At the beginning of your upkeep, sacrifice Bog Elemen
 rarity=R
 [/card]
 [card]
-id=24600
-name=Bog Glider
-mana={2}{B}
-type=Creature
-subtype=Human Mercenary
-power=1
-toughness=1
-text=Flying {T}, Sacrifice a land: Search your library for a Mercenary permanent card with converted mana cost 2 or less and put that card onto the battlefield. Then shuffle your library.
-rarity=C
-[/card]
-[card]
 id=24635
 name=Brutal Suppression
 mana={R}

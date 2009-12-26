@@ -121,6 +121,18 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+text=Transfigure {1}{B}{B} ({1}{B}{B}, Sacrifice this creature: Search your library for a creature card with the same converted mana cost as this creature and put that card onto the battlefield. Then shuffle your library. Transfigure only as a sorcery.)
+id=132220
+name=Fleshwrither
+rarity=U
+mana={2}{B}{B}
+type=Creature
+subtype=Horror
+auto={1}{B}{B}{S}:moveTo(myBattlefield) target(*[manacost=4]|mylibrary) asSorcery
+power=3
+toughness=3
+[/card]
+[card]
 text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.)   {T}: Enchanted creature gets +2/-2 until end of turn.
 id=132227
 target=creature
@@ -312,6 +324,18 @@ subtype=Aura
 abilities=flash
 [/card]
 [card]
+text={6}, {T}: Return target Rebel permanent card with converted mana cost 5 or less from your graveyard to the battlefield.
+id=136145
+name=Ramosian Revivalist
+rarity=U
+mana={3}{W}
+type=Creature
+subtype=Human Rebel Cleric
+auto={6}{T}:moveTo(myBattlefield) target(rebel[manacost<=5]|mygraveyard)
+power=2
+toughness=2
+[/card]
+[card]
 text={2}: Sarcomite Myr gains flying until end of turn.   {2}, Sacrifice Sarcomite Myr: Draw a card.
 id=136212
 name=Sarcomite Myr
@@ -403,6 +427,16 @@ subtype=Elf Archer
 power=2
 toughness=1
 abilities=reach,deathtouch
+[/card]
+[card]
+text=Tolaria West enters the battlefield tapped.   {T}: Add {U} to your mana pool.   Transmute {1}{U}{U} ({1}{U}{U}, Discard this card: Search your library for a card with converted mana cost 0, reveal it, and put it into your hand. Then shuffle your library. Transmute only as a sorcery.)
+id=136047
+name=Tolaria West
+auto=tap
+auto={T}:Add{U}
+autohand={1}{U}{U}{S}:moveTo(myhand) target(*[manacost=0]|mylibrary) asSorcery
+rarity=U
+type=Land
 [/card]
 [card]
 text=Whenever you cast a spell, creatures you control can't be the targets of spells or abilities your opponents control this turn.

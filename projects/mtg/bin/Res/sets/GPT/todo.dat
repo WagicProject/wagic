@@ -182,14 +182,6 @@ text=When Crystal Seer enters the battlefield, look at the top four cards of you
 rarity=C
 [/card]
 [card]
-id=97215
-name=Culling Sun
-mana={2}{W}{W}{B}
-type=Sorcery
-text=Destroy each creature with converted mana cost 3 or less.
-rarity=R
-[/card]
-[card]
 text=({WB} can be paid with either White or Black.)   At the beginning of your upkeep, put target creature card in a graveyard onto the battlefield under your control.
 auto=@each my upkeep:moveTo(myBattlefield) target(creature|graveyard)
 id=97193

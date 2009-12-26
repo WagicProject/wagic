@@ -9,7 +9,7 @@ mana={3}{U}{U}
 type=Sorcery
 [/card]
 [card]
-text=Flying -- {U}: Advanced Hoverguard gains shroud until end of turn. (It can't be the target of spells or abilities.)
+text=Flying   {U}: Advanced Hoverguard gains shroud until end of turn. (It can't be the target of spells or abilities.)
 id=50144
 name=Advanced Hoverguard
 rarity=C
@@ -35,7 +35,6 @@ toughness=3
 [/card]
 [card]
 text=Reach (This creature can block creatures with flying.)
-abilities=reach
 id=51230
 name=Arachnoid
 rarity=U
@@ -44,16 +43,26 @@ type=Artifact Creature
 subtype=Spider
 power=2
 toughness=6
+abilities=reach
 [/card]
 [card]
-id=73566
-name=Armed Response
-mana={2}{W}
-type=Instant
 text=Armed Response deals damage to target attacking creature equal to the number of Equipment you control.
+id=73566
 target=creature[attacking]
 auto=foreach(equipment|mybattlefield) damage:1
+name=Armed Response
 rarity=C
+mana={2}{W}
+type=Instant
+[/card]
+[card]
+text={U}, Discard an artifact card: Search your library for an artifact card with converted mana cost 1 or less, reveal that card, and put it into your hand. Then shuffle your library.
+auto={U}{S(artifact|myhand)}:moveTo(myhand) target(artifact[manacost<=1]|mylibrary)
+id=50172
+name=Artificer's Intuition
+rarity=R
+mana={1}{U}
+type=Enchantment
 [/card]
 [card]
 text=Protection from black and from red   Whenever another creature enters the battlefield, you may gain 1 life.
@@ -67,6 +76,18 @@ subtype=Human Cleric
 power=1
 toughness=1
 abilities=protection from black,protection from red
+[/card]
+[card]
+text={1}{W}: Return target artifact card with converted mana cost 1 or less from your graveyard to your hand.
+auto={1}{W}:moveTo(myhand) target(artifact[manacost<=1]|mygraveyard)
+id=51166
+name=Auriok Salvagers
+rarity=U
+mana={3}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=4
 [/card]
 [card]
 id=39667
@@ -312,6 +333,15 @@ auto={2}:damage:1 target(creature,player) && bury all(this)
 rarity=U
 [/card]
 [card]
+text=Destroy each nonland artifact with converted mana cost 4 or less.
+id=72721
+auto=destroy all(artifact[manacost<=4;-land])
+name=Granulate
+rarity=R
+mana={2}{R}{R}
+type=Sorcery
+[/card]
+[card]
 text={T}, Sacrifice an artifact: Target player puts the top three cards of his or her library into his or her graveyard.   Whenever an artifact enters the battlefield, you may untap Grinding Station
 auto=@movedTo(artifact|battlefield):may untap
 auto={T}{S(artifact|myBattlefield)}:deplete:3 target(player)
@@ -540,6 +570,16 @@ mana={5}{W}{W}
 type=Sorcery
 [/card]
 [card]
+text={T}: Return target noncreature artifact card with converted mana cost 1 or less from your graveyard to the battlefield.   Whenever a creature is put into a graveyard from the battlefield, you may untap Salvaging Station.
+id=51132
+auto={T}:moveTo(myBattlefield) target(artifact[-creature;manacost<=1]|mygraveyard)
+auto=@movedTo(creature|graveyard):may untap
+name=Salvaging Station
+rarity=R
+mana={6}
+type=Artifact
+[/card]
+[card]
 text=Target creature gets +5/+0 and gains haste until end of turn.
 id=51148
 name=Screaming Fury
@@ -693,19 +733,16 @@ power=2
 toughness=2
 [/card]
 [card]
-id=73570
-name=Thought Courier
-mana={1}{U}
+text=When Trinket Mage enters the battlefield, you may search your library for an artifact card with converted mana cost 1 or less, reveal that card, and put it into your hand. If you do, shuffle your library.
+id=50163
+name=Trinket Mage
+rarity=C
+mana={2}{U}
 type=Creature
 subtype=Human Wizard
-power=1
-toughness=1
-text={T}: Draw a card, then discard a card.
-# Note: Following line is not entirely correct. The game
-# requires you to discard a card *before* you can draw
-# then new one.
-auto={T}:draw:1 controller && moveto(mygraveyard) target(*|myhand)
-rarity=U
+auto=may moveTo(myhand) target(artifact[manacost<=1]|mylibrary)
+power=2
+toughness=2
 [/card]
 [card]
 text={1}{G}: Tyrranax gets -1/+1 until end of turn.

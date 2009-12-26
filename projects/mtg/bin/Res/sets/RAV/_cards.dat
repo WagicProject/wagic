@@ -167,6 +167,18 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+text=Return target permanent to its owner's hand. Its controller loses 3 life.   Transmute {1}{U}{B} ({1}{U}{B}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Transmute only as a sorcery.)
+id=89037
+name=Clutch of the Undercity
+rarity=U
+target=*
+auto=moveto(ownerhand)
+auto=life:-3 targetController
+autohand={1}{U}{B}{S}:moveTo(myhand) target(*[manacost=4]|mylibrary) asSorcery
+type=Instant
+mana={1}{U}{U}{B}
+[/card]
+[card]
 text=Flying, vigilance
 id=87913
 name=Courier Hawk
@@ -186,6 +198,32 @@ name=Dark Heart of the Wood
 rarity=U
 mana={B}{G}
 type=Enchantment
+[/card]
+[card]
+text=Fear   Sacrifice a creature: Regenerate Dimir House Guard.     Transmute {1}{B}{B} ({1}{B}{B}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Transmute only as a sorcery.)
+id=87926
+name=Dimir House Guard
+rarity=C
+mana={3}{B}
+type=Creature
+subtype=Skeleton
+autohand={1}{B}{B}{S}:moveTo(myhand) target(*[manacost=4]|mylibrary) asSorcery
+power=2
+toughness=3
+abilities=fear
+[/card]
+[card]
+text=Dimir Infiltrator is unblockable.   Transmute {1}{U}{B} ({1}{U}{B}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Transmute only as a sorcery.)
+id=87987
+name=Dimir Infiltrator
+rarity=C
+mana={U}{B}
+type=Creature
+subtype=Spirit
+autohand={1}{U}{B}{S}:moveTo(myhand) target(*[manacost=2]|mylibrary) asSorcery
+power=1
+toughness=3
+abilities=unblockable
 [/card]
 [card]
 text={1}, {T}: Add {U}{B} to your mana pool.
@@ -208,6 +246,17 @@ auto={T}{S}:Damage:3 target(creature[attacking;blocking])
 power=3
 toughness=2
 abilities=flying
+[/card]
+[card]
+text=Target creature gets -3/-0 until end of turn.   Transmute {1}{U}{U} ({1}{U}{U}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Play only as a sorcery.)
+id=87925
+target=creature
+auto=-3/0
+autohand={1}{U}{U}{S}:moveTo(myhand) target(*[manacost=1]|mylibrary) asSorcery
+name=Dizzy Spell
+rarity=C
+mana={U}
+type=Instant
 [/card]
 [card]
 text=Dogpile deals damage to target creature or player equal to the number of attacking creatures you control.
@@ -241,6 +290,19 @@ rarity=R
 mana={3}{U}{U}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+text=Defender (This creature can't attack.)  Flying   Transmute {1}{U}{U} ({1}{U}{U}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Transmute only as a sorcery.)
+id=87994
+name=Drift of Phantasms
+rarity=C
+mana={2}{U}
+type=Creature
+subtype=Spirit
+autohand={1}{U}{U}{S}:moveTo(myhand) target(*[manacost=3]|mylibrary) asSorcery
+power=0
+toughness=5
+abilities=defender,flying
 [/card]
 [card]
 text=Whenever Dromad Purebred is dealt damage, you gain 1 life.
@@ -294,16 +356,29 @@ name=Empty the Catacombs
 auto=moveto(myHand) all(creature|myGraveyard)
 auto=moveto(opponentHand) all(creature|opponentGraveyard)
 rarity=R
-type=Sorcery
 mana={3}{B}
+type=Sorcery
+[/card]
+[card]
+text={U}, {T}: Target creature is unblockable this turn.   Transmute {1}{U}{U} ({1}{U}{U}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Play only as a sorcery.)
+id=89023
+name=Ethereal Usher
+rarity=U
+mana={5}{U}
+type=Creature
+subtype=Spirit
+auto={U}{T}:unblockable target(creature)
+autohand={1}{U}{U}{S}:moveTo(myhand) target(*[manacost=6]|mylibrary) asSorcery
+power=2
+toughness=3
 [/card]
 [card]
 text=Search your library for a Plains, Island, Swamp, or Mountain card and put it onto the battlefield tapped. Then shuffle your library.
 id=87970
-name=Farseek
 target=plains,island,swamp,mountain|mylibrary
 auto=moveto(myBattlefield)
 auto=tap
+name=Farseek
 rarity=C
 mana={1}{G}
 type=Sorcery
@@ -347,7 +422,7 @@ mana={3}{R}
 [card]
 text=Enchant creature    When Flight of Fancy enters the battlefield, draw two cards.   Enchanted creature has flying.
 target=creature
-auto=draw:2
+auto=draw:2 controller
 auto=flying
 id=83677
 name=Flight of Fancy
@@ -651,6 +726,30 @@ name=Mountain
 rarity=L
 type=Basic Land
 subtype=Mountain
+[/card]
+[card]
+text=Counter target instant or sorcery spell.   Transmute {1}{U}{U} ({1}{U}{U}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Transmute only as a sorcery.)
+id=88955
+target=instant,sorcery
+auto=fizzle
+autohand={1}{U}{U}{S}:moveTo(myhand) target(*[manacost=2]|mylibrary) asSorcery
+name=Muddle the Mixture
+rarity=C
+mana={U}{U}
+type=Instant
+[/card]
+[card]
+text=When Netherborn Phalanx enters the battlefield, each opponent loses 1 life for each creature he or she controls.   Transmute {1}{B}{B} ({1}{B}{B}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Transmute only as a sorcery.)
+id=88972
+name=Netherborn Phalanx
+rarity=U
+mana={5}{B}
+type=Creature
+subtype=Horror
+auto=foreach(creature|opponentBattlefield) life:-1 opponent
+autohand={1}{B}{B}{S}:moveTo(myhand) target(*[manacost=6]|mylibrary) asSorcery
+power=2
+toughness=4
 [/card]
 [card]
 text=First strike, vigilance

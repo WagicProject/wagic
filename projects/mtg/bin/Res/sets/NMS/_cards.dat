@@ -119,6 +119,19 @@ mana={2}{B}{B}
 type=Enchantment
 [/card]
 [card]
+text=Flying   {4}, {T}: Search your library for a Rebel permanent card with converted mana cost 3 or less and put that card onto the battlefield. Then shuffle your library.
+id=21251
+name=Defiant Falcon
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Rebel Bird
+auto={4}{T}:moveTo(myBattlefield) target(rebel[manacost<=3]|mylibrary)
+power=1
+toughness=1
+abilities=flying
+[/card]
+[card]
 text=Sacrifice a creature: Regenerate target creature.
 auto={S(creature|mybattlefield)}:regenerate target(creature)
 id=21260
@@ -352,6 +365,45 @@ type=Artifact Creature
 subtype=Construct
 power=2
 toughness=2
+[/card]
+[card]
+text={1}{B}{B}, {T}: Destroy target tapped nonblack creature.   {3}, {T}: Search your library for a Mercenary permanent card with converted mana cost 3 or less and put that card onto the battlefield. Then shuffle your library.
+id=22890
+name=Rathi Assassin
+rarity=R
+mana={2}{B}{B}
+type=Creature
+subtype=Zombie Mercenary Assassin
+auto={1}{B}{B}{T}:destroy target(creature[tapped;-black])
+auto={3}{T}:moveTo(myBattlefield) target(mercenary[manacost<=3]|mylibrary)
+power=2
+toughness=2
+[/card]
+[card]
+text=When Rathi Fiend enters the battlefield, each player loses 3 life.   {3}, {T}: Search your library for a Mercenary permanent card with converted mana cost 3 or less and put that card onto the battlefield. Then shuffle your library.
+id=21311
+name=Rathi Fiend
+rarity=U
+mana={3}{B}
+type=Creature
+subtype=Horror Mercenary
+auto=life:-3 controller && life:-3 opponent
+auto={3}{T}:moveTo(myBattlefield) target(mercenary[manacost<=3]|mylibrary)
+power=2
+toughness=2
+[/card]
+[card]
+text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.)   {2}, {T}: Search your library for a Mercenary permanent card with converted mana cost 2 or less and put that card onto the battlefield. Then shuffle your library.
+id=21307
+name=Rathi Intimidator
+rarity=C
+mana={1}{B}{B}
+type=Creature
+subtype=Horror Mercenary
+auto={2}{T}:moveTo(myBattlefield) target(mercenary[manacost<=2]|mylibrary)
+power=2
+toughness=1
+abilities=fear
 [/card]
 [card]
 text={T}: Add {1} to your mana pool.   {4}, {T}, Sacrifice a land: Rath's Edge deals 1 damage to target creature or player.
