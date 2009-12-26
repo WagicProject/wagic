@@ -720,6 +720,17 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Exile target creature with power 2 or less. Its controller gains 4 life.
+id=147424
+target=creature[power<=2]
+auto=moveTo(exile)
+auto=life:4 targetController
+name=Last Breath
+rarity=C
+mana={1}{W}
+type=Instant
+[/card]
+[card]
 text=({T}: Add {B} to your mana pool.)  Leechridden Swamp comes into play tapped.     {B}, {T}: Each opponent loses 1 life. Play this ability only if you control two or more black permanents.
 id=142020
 name=Leechridden Swamp

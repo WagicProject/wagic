@@ -742,14 +742,6 @@ text=Prevent the next 5 damage that would be dealt this turn to any number of ta
 rarity=C
 [/card]
 [card]
-id=3726
-name=Retribution of the Meek
-mana={2}{W}
-type=Sorcery
-text=Destroy all creatures with power 4 or greater. They can't be regenerated.
-rarity=R
-[/card]
-[card]
 id=3727
 name=Righteous Aura
 mana={1}{W}

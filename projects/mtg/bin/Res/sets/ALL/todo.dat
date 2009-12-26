@@ -1010,22 +1010,6 @@ text=Put up to three target creature cards from your graveyard on top of your li
 rarity=C
 [/card]
 [card]
-id=3209
-name=Reprisal
-mana={1}{W}
-type=Instant
-text=Destroy target creature with power 4 or greater. It can't be regenerated.
-rarity=U
-[/card]
-[card]
-id=3210
-name=Reprisal
-mana={1}{W}
-type=Instant
-text=Destroy target creature with power 4 or greater. It can't be regenerated.
-rarity=U
-[/card]
-[card]
 id=3089
 name=Ritual of the Machine
 mana={2}{B}{B}

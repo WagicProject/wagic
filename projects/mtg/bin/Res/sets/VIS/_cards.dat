@@ -391,6 +391,15 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Destroy all creatures with power 4 or greater. They can't be regenerated.
+id=3726
+auto=bury all(creature[power>=4])
+name=Retribution of the Meek
+rarity=R
+mana={2}{W}
+type=Sorcery
+[/card]
+[card]
 text=White creatures you control have protection from black.   Black creatures you control have protection from white.
 id=3741
 auto=lord(creature[white]|myBattlefield) protection from black

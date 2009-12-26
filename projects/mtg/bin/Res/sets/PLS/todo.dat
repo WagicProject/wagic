@@ -405,17 +405,6 @@ text={2}{R}{W}: The next time damage would be dealt to Mirrorwood Treefolk this 
 rarity=U
 [/card]
 [card]
-id=26275
-name=Mogg Jailer
-mana={1}{R}
-type=Creature
-subtype=Goblin
-power=2
-toughness=2
-text=Mogg Jailer can't attack if defending player controls an untapped creature with power 2 or less.
-rarity=U
-[/card]
-[card]
 id=22298
 name=Multani's Harmony
 mana={G}

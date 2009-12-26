@@ -371,6 +371,17 @@ type=Sorcery
 subtype=Arcane
 [/card]
 [card]
+text=Destroy target attacking creature with power 3 or less.
+id=74481
+target=creature[power<=3;attacking]
+auto=destroy
+name=Terashi's Verdict
+rarity=U
+mana={1}{W}
+type=Instant
+subtype=Arcane
+[/card]
+[card]
 text=Defender; reach (This creature can block creatures with flying.)   Traproot Kami's toughness is equal to the number of Forests on the battlefield.
 id=74627
 name=Traproot Kami

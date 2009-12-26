@@ -5,7 +5,7 @@ name=Airborne Aid
 rarity=C
 mana={3}{U}
 type=Sorcery
-auto=foreach(bird|myBattlefield) draw:1
+auto=foreach(bird|battlefield) draw:1
 [/card]
 [card]
 text=Creatures you control gain protection from the color of your choice until end of turn.   Cycling {W} ({W}, Discard this card: Draw a card.)
@@ -22,14 +22,14 @@ mana={2}{W}
 type=Instant
 [/card]
 [card]
+text=Destroy all artifacts, creatures, and enchantments.   Cycling {3} ({3}, Discard this card: Draw a card.)
 id=41168
-name=Akroma's Vengeance
-mana={4}{W}{W}
-type=Sorcery
 autohand={3}:cycling
 auto=destroy all(artifact,creature,enchantment)
-text=Destroy all artifacts, creatures, and enchantments. Cycling {3} ({3}, Discard this card: Draw a card.)
+name=Akroma's Vengeance
 rarity=R
+mana={4}{W}{W}
+type=Sorcery
 [/card]
 [card]
 text=Enchant land (Target a land as you play this. This card enters the battlefield attached to that land.) You control enchanted land.
@@ -132,20 +132,20 @@ type=Land
 [card]
 text=For each opponent, gain control of target permanent that player controls. (This effect doesn't end at end of turn.)
 id=41156
+target=*|opponentBattlefield
+auto=moveTo(myBattlefield)
 name=Blatant Thievery
 rarity=R
 mana={4}{U}{U}{U}
 type=Sorcery
-target=*|opponentBattlefield
-auto=moveTo(myBattlefield)
 [/card]
 [card]
 text={T}, Pay 1 life, Sacrifice Bloodstained Mire: Search your library for a Swamp or Mountain card and put it into onto the battlefield. Then shuffle your library.
+auto={T}{S}:moveTo(myBattlefield) target(swamp,mountain|mylibrary) && life:-1 controller
 id=39505
 name=Bloodstained Mire
 rarity=R
 type=Land
-auto={T}{S}:moveTo(myBattlefield) target(swamp,mountain|mylibrary) && life:-1 controller
 [/card]
 [card]
 text=Add {R} to your mana pool for each Goblin on the battlefield.
@@ -1307,6 +1307,17 @@ auto={T}:Add {B}
 type=Basic Land
 subtype=Swamp
 rarity=L
+[/card]
+[card]
+text=Destroy target creature with power 2 or less.   Cycling {2} ({2}, Discard this card: Draw a card.)
+id=41136
+target=creature[power<=2]
+auto=destroy
+autohand={2}:cycling
+name=Swat
+rarity=C
+mana={1}{B}{B}
+type=Instant
 [/card]
 [card]
 text=When Symbiotic Beast is put into a graveyard from the battlefield, put four 1/1 green Insect creature tokens onto the battlefield.

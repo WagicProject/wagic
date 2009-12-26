@@ -435,7 +435,6 @@ toughness=2
 text=Each other multicolored creature you control gets +1/+1 for each of its colors.
 rarity=R
 [/card]
-
 [card]
 id=180612
 name=Lavalanche
@@ -444,8 +443,6 @@ type=Sorcery
 text=Lavalanche deals X damage to target player and each creature he or she controls.
 rarity=R
 [/card]
-
-
 [card]
 id=180617
 name=Lightning Reaver
@@ -493,7 +490,6 @@ toughness=3
 text=Devour 2 (As this comes into play, you may sacrifice any number of creatures. This creature comes into play with twice that many +1/+1 counters on it.) When Marrow Chomper comes into play, you gain 2 life for each creature it devoured.
 rarity=U
 [/card]
-
 [card]
 id=180620
 name=Mayael's Aria
@@ -529,26 +525,6 @@ type=Artifact
 text=You may pay {1} and return a basic land you control to its owner's hand rather than pay Mistvein Borderpost's mana cost. Mistvein Borderpost comes into play tapped. {T}: Add {U} or {B} to your mana pool.
 rarity=C
 [/card]
-
-[card]
-id=179614
-name=Morbid Bloom
-mana={4}{B}{G}
-type=Sorcery
-text=Remove target creature card in a graveyard from the game, then put X 1/1 green Saproling creature tokens into play, where X is the removed card's toughness.
-rarity=U
-[/card]
-[card]
-id=179548
-name=Mycoid Shepherd
-mana={1}{G}{G}{W}
-type=Creature
-subtype=Fungus
-power=5
-toughness=4
-text=Whenever Mycoid Shepherd or another creature you control with power 5 or greater is put into a graveyard from play, you may gain 5 life.
-rarity=R
-[/card]
 [card]
 id=188969
 name=Naya Hushblade
@@ -560,7 +536,6 @@ toughness=1
 text=As long as you control another multicolored permanent, Naya Hushblade gets +1/+1 and has shroud. (It can't be the target of spells or abilities.)
 rarity=C
 [/card]
-
 [card]
 id=183011
 name=Necromancer's Covenant
@@ -720,7 +695,6 @@ toughness=4
 text=Whenever Skyclaw Thrash attacks, flip a coin. If you win the flip, Skyclaw Thrash gets +1/+1 and gains flying until end of turn.
 rarity=U
 [/card]
-
 [card]
 id=183008
 name=Soul Manipulation
@@ -752,15 +726,17 @@ text=Flying Whenever Spellbound Dragon attacks, draw a card, then discard a card
 rarity=R
 [/card]
 [card]
+####Could not be added for the same reason as Quick Sliver and Root Sliver (LGN).
+text=Spellbreaker Behemoth can't be countered. Creature spells you control with power 5 or greater can't be countered.
 id=179551
 name=Spellbreaker Behemoth
+rarity=R
 mana={1}{R}{G}{G}
 type=Creature
 subtype=Beast
 power=5
 toughness=5
-text=Spellbreaker Behemoth can't be countered. Creature spells you control with power 5 or greater can't be countered.
-rarity=R
+abilities=nofizzle
 [/card]
 [card]
 id=179534
@@ -770,7 +746,6 @@ type=Enchantment
 text=Sacrifice Stormcaller's Boon: Creatures you control gain flying until end of turn. Cascade (When you play this spell, remove cards from the top of your library from the game until you remove a nonland card that costs less. You may play it without paying its mana cost. Put the removed cards on the bottom in a random order.)
 rarity=C
 [/card]
-
 [card]
 id=180618
 name=Tainted Sigil

@@ -922,14 +922,6 @@ type=Enchantment
 mana={3}{B}{B}
 [/card]
 [card]
-text=Remove target creature with power 2 or less from the game. Its controller gains 4 life.
-id=136513
-name=Last Breath
-rarity=U
-type=Instant
-mana={1}{W}
-[/card]
-[card]
 text=Haste     Whenever Lava Runner becomes the target of a spell or ability, that spell or ability's controller sacrifices a land.
 id=19845
 name=Lava Runner

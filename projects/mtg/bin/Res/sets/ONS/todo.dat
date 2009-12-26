@@ -1773,14 +1773,6 @@ text=Tap five untapped Wizards you control: Search target player's library for u
 rarity=R
 [/card]
 [card]
-id=41136
-name=Swat
-mana={1}{B}{B}
-type=Instant
-text=Destroy target creature with power 2 or less. Cycling {2} ({2}, Discard this card: Draw a card.)
-rarity=C
-[/card]
-[card]
 text=Each other player discards a card. You draw a card for each card discarded this way.
 id=39825
 name=Syphon Mind

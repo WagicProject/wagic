@@ -966,14 +966,6 @@ subtype=Arcane
 rarity=C
 [/card]
 [card]
-text=Creatures with power 2 or less can't attack you.
-name=Reverence
-id=84371
-mana={2}{W}{W}
-type=Enchantment
-rarity=R
-[/card]
-[card]
 text=Bushido 2 (When this blocks or becomes blocked, it gets +2/+2 until end of turn.)
 name=Ronin Cavekeeper
 id=74199
@@ -1044,7 +1036,6 @@ mana={1}{G}{G}
 type=Legendary Enchantment
 rarity=R
 [/card]
-
 [card]
 text=As long as you have more cards in hand than each opponent, Secretkeeper gets +2/+2 and has flying.
 name=Secretkeeper

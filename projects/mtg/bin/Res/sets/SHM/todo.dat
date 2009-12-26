@@ -702,14 +702,6 @@ subtype=Elemental Knight
 toughness=3
 [/card]
 [card]
-text=Remove target creature with power 2 or less from the game. Its controller gains 4 life.
-id=147424
-name=Last Breath
-rarity=C
-type=Instant
-mana={1}{W}
-[/card]
-[card]
 text=Leech Bonder comes into play with two -1/-1 counters on it.     {U}, {Q}: Move a counter from target creature onto another target creature. ({Q} is the untap symbol.)
 id=147406
 name=Leech Bonder
@@ -1027,7 +1019,6 @@ rarity=R
 type=Sorcery
 mana={6}{B}
 [/card]
-
 [card]
 text=Enchant creature     Enchanted creature has "{T}: This creature deals 1 damage to target creature or player."
 id=152159
@@ -1082,7 +1073,6 @@ rarity=R
 type=Enchantment
 mana={3}{U}
 [/card]
-
 [card]
 text=Flying     When Puppeteer Clique comes into play, put target creature card in an opponent's graveyard into play under your control. It has haste. At the end of your turn, remove it from the game.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
 id=146761
@@ -1159,7 +1149,6 @@ rarity=U
 type=Instant
 mana={3}{WU}
 [/card]
-
 [card]
 text={1}, {T}, Tap an untapped creature you control: Target creature gets +1/+1 until end of turn.
 id=146047
@@ -1187,7 +1176,6 @@ rarity=C
 type=Sorcery
 mana={1}{B}
 [/card]
-
 [card]
 text=If {U} was spent to play River's Grasp, return up to one target creature to its owner's hand. If {B} was spent to play River's Grasp, target player reveals his or her hand, you choose a nonland card from it, then that player discards that card. (Do both if {U}{B} was spent.)
 id=158755
@@ -1224,7 +1212,6 @@ type=Enchantment
 mana={4}{RG}
 subtype=Aura
 [/card]
-
 [card]
 text={2}{W}, {Q}: Safehold Sentry gets +0/+2 until end of turn. ({Q} is the untap symbol.)
 id=147394
@@ -1236,8 +1223,6 @@ power=2
 subtype=Elf Warrior
 toughness=2
 [/card]
-
-
 [card]
 text=Take an extra turn after this one. Skip the untap step of that turn.
 id=159404
@@ -1246,8 +1231,6 @@ rarity=R
 type=Sorcery
 mana={1}{U}{U}
 [/card]
-
-
 [card]
 text={1}: Scrapbasket becomes all colors until end of turn.
 id=147435
@@ -1270,7 +1253,6 @@ power=2
 subtype=Scarecrow
 toughness=2
 [/card]
-
 [card]
 text=Enchant creature     As long as enchanted creature is green, it gets +1/+1 and is indestructible. (Lethal damage and effects that say "destroy" don't destroy it. If its toughness is 0 or less, it's still put into its owner's graveyard.)  As long as enchanted creature is white, it gets +1/+1 and has flying.
 id=158762

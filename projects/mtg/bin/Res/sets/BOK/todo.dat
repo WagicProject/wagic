@@ -1120,15 +1120,6 @@ text=Tendo Ice Bridge enters the battlefield with a charge counter on it. {T}: A
 rarity=R
 [/card]
 [card]
-id=74481
-name=Terashi's Verdict
-mana={1}{W}
-type=Instant
-subtype=Arcane
-text=Destroy target attacking creature with power 3 or less.
-rarity=U
-[/card]
-[card]
 id=74644
 name=That Which Was Taken
 mana={5}

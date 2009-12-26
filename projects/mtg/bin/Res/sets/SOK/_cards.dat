@@ -424,6 +424,15 @@ toughness=2
 abilities=legendary
 [/card]
 [card]
+text=Creatures with power 2 or less can't attack you.
+id=84371
+auto=lord(creature[power<=2]|opponentBattlefield) cantattack
+name=Reverence
+rarity=R
+mana={2}{W}{W}
+type=Enchantment
+[/card]
+[card]
 text={T}: You may put a land card from your hand onto the battlefield.
 id=74210
 name=Sakura-Tribe Scout

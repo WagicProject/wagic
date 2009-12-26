@@ -321,6 +321,18 @@ power=3
 toughness=2
 [/card]
 [card]
+text=Mogg Jailer can't attack if defending player controls an untapped creature with power 2 or less.
+auto=aslongas(creature[power<=2;-tapped]|opponentBattlefield) cantattack
+id=26275
+name=Mogg Jailer
+rarity=U
+mana={1}{R}
+type=Creature
+subtype=Goblin
+power=2
+toughness=2
+[/card]
+[card]
 text=Whenever an opponent casts a spell, Mogg Sentry gets +2/+2 until end of turn.
 id=26269
 name=Mogg Sentry

@@ -601,6 +601,19 @@ power=7
 toughness=7
 [/card]
 [card]
+text=Whenever another creature with power 5 or greater enters the battlefield under your control, you may return target creature card from your graveyard to your hand.
+auto=may moveTo(myhand) target(creature|mygraveyard)
+auto=@movedTo(other creature[power>=5]|myBattlefield):may moveTo(myhand) target(creature|mygraveyard)
+id=189873
+name=Paleoloth
+rarity=R
+mana={4}{G}{G}
+type=Creature
+subtype=Beast
+power=5
+toughness=5
+[/card]
+[card]
 text=Flying   When Parasitic Strix enters the battlefield, if you control a black permanent, target player loses 2 life and you gain 2 life.
 auto=aslongas(*[black]|myBattlefield) life:2 controller
 auto=aslongas(*[black]|myBattlefield) life:-2 opponent
@@ -868,6 +881,18 @@ name=Unsummon
 rarity=C
 mana={U}
 type=Instant
+[/card]
+[card]
+text={1}: Regenerate target creature with power 5 or greater.
+id=180344
+name=Vagrant Plowbeasts
+rarity=U
+mana={5}{G}{W}
+type=Creature
+subtype=Beast
+auto={1}:regenerate target(creature[power>=5])
+power=6
+toughness=6
 [/card]
 [card]
 text=Protection from black

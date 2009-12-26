@@ -512,6 +512,17 @@ toughness=3
 abilities=legendary,flying,vigilance
 [/card]
 [card]
+text=Destroy target creature with power 4 or greater.   Cycling {2} ({2}, Discard this card: Draw a card.)
+id=12360
+target=creature[power>=4]
+auto=destroy
+autohand={2}:cycling
+name=Radiant's Judgment
+rarity=C
+mana={2}{W}
+type=Instant
+[/card]
+[card]
 text=Return all artifacts to their owners' hands.   Cycling {2} ({2}, Discard this card: Draw a card.)
 id=12385
 auto=moveTo(ownerhand) all(artifact)
@@ -550,6 +561,17 @@ name=Subversion
 rarity=R
 mana={3}{B}{B}
 type=Enchantment
+[/card]
+[card]
+text=Destroy target creature with power 2 or less.   Cycling {2} ({2}, Discard this card: Draw a card.)
+id=9694
+target=creature[power<=2]
+auto=destroy
+autohand={2}:cycling
+name=Swat
+rarity=C
+mana={1}{B}{B}
+type=Instant
 [/card]
 [card]
 text=Flying   {T}: Thornwind Faeries deals 1 damage to target creature or player.

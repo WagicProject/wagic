@@ -608,7 +608,6 @@ rarity=U
 type=Instant
 mana={2}{G}
 [/card]
-
 [card]
 text=You may choose not to untap Helm of Possession during your untap step.     {2}, {T}, Sacrifice a creature: Gain control of target creature as long as you control Helm of Possession and Helm of Possession remains tapped.
 id=4611
@@ -633,7 +632,6 @@ rarity=U
 type=Instant
 mana={1}{B}
 [/card]
-
 [card]
 text=Counter target activated ability from an artifact, creature, enchantment, or land. That permanent's activated abilities can't be played this turn. (Mana abilities can't be targeted.)  Draw a card.
 id=4706
@@ -677,7 +675,6 @@ rarity=R
 type=Artifact
 mana={2}
 [/card]
-
 [card]
 text=First strike     At the beginning of your upkeep, if your opponents control no creatures, Kezzerdrix deals 4 damage to you.
 id=4667
@@ -689,7 +686,6 @@ power=4
 subtype=Rabbit Beast
 toughness=4
 [/card]
-
 [card]
 text={B}{B}: Destroy target creature blocking Knight of Dusk.
 id=4668
@@ -792,17 +788,6 @@ name=Mana Severance
 rarity=R
 type=Sorcery
 mana={1}{U}
-[/card]
-[card]
-text=Creatures with power 3 or greater don't untap during their controllers' untap steps.
-id=4886
-name=Marble Titan
-rarity=R
-type=Creature
-mana={3}{W}
-power=3
-subtype=Giant
-toughness=3
 [/card]
 [card]
 text=Draw four cards. You skip your next turn.

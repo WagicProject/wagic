@@ -810,6 +810,17 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Exile target creature with power 2 or less. Its controller gains 4 life.
+id=136513
+target=creature[power<=2]
+auto=moveTo(exile)
+auto=life:4 targetController
+name=Last Breath
+rarity=U
+mana={1}{W}
+type=Instant
+[/card]
+[card]
 text=Whenever a nontoken permanent is put into a player's graveyard from the battlefield, that player loses 1 life.
 auto=@movedTo(*|opponentGraveyard) from(battlefield):life:-1 opponent
 auto=@movedTo(*|myGraveyard) from(battlefield):life:-1 controller

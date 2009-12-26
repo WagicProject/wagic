@@ -383,13 +383,26 @@ abilities=mustattack
 [card]
 text=Exile target creature card in a graveyard, then put X 1/1 green Saproling creature tokens onto the battlefield, where X is the removed card's toughness.
 id=179614
-name=Morbid Bloom
 target=creature|graveyard
 auto=moveto(exile)
 auto=token(Saproling,Creature Saproling,1/1,green)*t
+name=Morbid Bloom
 rarity=U
 mana={4}{B}{G}
 type=Sorcery
+[/card]
+[card]
+text=Whenever Mycoid Shepherd or another creature you control with power 5 or greater is put into a graveyard from the battlefield, you may gain 5 life.
+auto=@movedTo(this|graveyard) from(myBattlefield):may life:5 controller
+auto=@movedTo(other creature[power>=5]|graveyard) from(myBattlefield):may life:5 controller
+id=179548
+name=Mycoid Shepherd
+rarity=R
+mana={1}{G}{G}{W}
+type=Creature
+subtype=Fungus
+power=5
+toughness=4
 [/card]
 [card]
 text=When you cycle Naya Sojourners or it's put into a graveyard from the battlefield, you may put a +1/+1 counter on target creature.   Cycling {2}{G} ({2}{G}, Discard this card: Draw a card.)

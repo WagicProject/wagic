@@ -555,7 +555,6 @@ power=1
 subtype=Ooze
 toughness=1
 [/card]
-
 [card]
 text={3}{R}{G}{W}, {T}: Look at the top five cards of your library. You may put a creature card with power 5 or greater from among them into play. Put the rest on the bottom of your library in any order.
 id=175058
@@ -590,17 +589,6 @@ name=Minion Reflector
 rarity=R
 type=Artifact
 mana={5}
-[/card]
-[card]
-text={1}: Target creature with power 5 or greater gains trample until end of turn.
-id=174787
-name=Mosstodon
-rarity=C
-type=Creature
-mana={4}{G}
-power=5
-subtype=Plant Elephant
-toughness=3
 [/card]
 [card]
 text=Devour 2 (As this comes into play, you may sacrifice any number of creatures. This creature comes into play with twice that many +1/+1 counters on it.)  At the beginning of your upkeep, put a 1/1 green Saproling creature token into play for each +1/+1 counter on Mycoloth.
@@ -700,17 +688,6 @@ subtype=Human Knight
 toughness=3
 [/card]
 [card]
-text={1}: Target creature with power 5 or greater gains first strike until end of turn.
-id=175253
-name=Rakeclaw Gargantuan
-rarity=C
-type=Creature
-mana={2}{R}{G}{W}
-power=5
-subtype=Beast
-toughness=3
-[/card]
-[card]
 text=When Ranger of Eos comes into play, you may search your library for up to two creature cards with converted mana cost 1 or less, reveal them, and put them into your hand. If you do, shuffle your library.
 id=174823
 name=Ranger of Eos
@@ -740,8 +717,6 @@ rarity=C
 type=Artifact
 mana={1}
 [/card]
-
-
 [card]
 text=Remove target attacking creature from the game.     Cycling {5}{G}{W}{U} ({5}{G}{W}{U}, Discard this card: Draw a card.)  When you cycle Resounding Silence, remove up to two target attacking creatures from the game.
 id=174985
@@ -750,7 +725,6 @@ rarity=C
 type=Instant
 mana={3}{W}
 [/card]
-
 [card]
 text=Return target permanent to its owner's hand.     Cycling {5}{W}{U}{B} ({5}{W}{U}{B}, Discard this card: Draw a card.)  When you cycle Resounding Wave, return two target permanents to their owners' hands.
 id=175098
@@ -759,7 +733,6 @@ rarity=C
 type=Instant
 mana={2}{U}
 [/card]
-
 [card]
 text={T}: Reveal any number of creature cards with power 5 or greater from your hand. Add {G} to your mana pool for each card revealed this way.
 id=174828
@@ -792,8 +765,6 @@ mana={2}{R}{G}
 subtype=Sarkhan
 toughness=4
 [/card]
-
-
 [card]
 text=When Scourge Devil comes into play, creatures you control get +1/+0 until end of turn.     Unearth {2}{R} ({2}{R}: Return this card from your graveyard to play. It gains haste. Remove it from the game at end of turn or if it would leave play. Unearth only as a sorcery.)
 id=174845
@@ -894,36 +865,12 @@ type=Sorcery
 mana={4}{G}
 [/card]
 [card]
-text=Spearbreaker Behemoth is indestructible.     {1}: Target creature with power 5 or greater is indestructible this turn.
-id=174916
-name=Spearbreaker Behemoth
-rarity=R
-type=Creature
-mana={5}{G}{G}
-power=5
-subtype=Beast
-toughness=5
-[/card]
-[card]
 text=Counter target spell unless its controller pays {1}.     Cycling {2} ({2}, Discard this card: Draw a card.)
 id=175038
 name=Spell Snip
 rarity=C
 type=Instant
 mana={2}{U}
-[/card]
-[card]
-text=Flying     At the end of your turn, you gain 3 life if Sphinx Sovereign is untapped. Otherwise, each opponent loses 3 life.
-id=175107
-auto=@each my endofturn:aslongas(Sphinx Sovereign[-tapped]|myinplay) life:3 controller
-auto=@each my endofturn:aslongas(Sphinx Sovereign[tapped]|myinplay) life:-3 opponent
-name=Sphinx Sovereign
-rarity=M
-type=Artifact Creature
-mana={4}{W}{U}{U}{B}
-power=6
-subtype=Sphinx
-toughness=6
 [/card]
 [card]
 text={2}{U}, {T}, Sacrifice a white creature, a blue creature, and a black creature: Search your library for a card named Sphinx Sovereign and put it into play. Then shuffle your library.
@@ -946,17 +893,6 @@ mana={1}{G}{W}{U}
 power=3
 subtype=Angel
 toughness=4
-[/card]
-[card]
-text=At the end of your turn, if you control a creature with power 5 or greater, you may gain 2 life.     {T}: Add {1} to your mana pool.
-id=175122
-name=Sunseed Nurturer
-rarity=U
-type=Creature
-mana={2}{W}
-power=1
-subtype=Human Druid Wizard
-toughness=1
 [/card]
 [card]
 text=Change the target of target spell with a single target.
@@ -1111,7 +1047,6 @@ power=0
 subtype=Human Shaman
 toughness=1
 [/card]
-
 [card]
 text=Flying. When Welkin Guide comes into play, target creature gets +2/+2 and gains flying until end of turn.
 #"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
@@ -1127,12 +1062,4 @@ power=2
 subtype=Bird Cleric
 toughness=2
 abilities=flying
-[/card]
-[card]
-text=Whenever a creature with power 5 or greater comes into play under your control, you may have Where Ancients Tread deal 5 damage to target creature or player.
-id=175115
-name=Where Ancients Tread
-rarity=R
-type=Enchantment
-mana={4}{R}
 [/card]

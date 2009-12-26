@@ -408,17 +408,6 @@ type=Artifact
 mana={6}
 [/card]
 [card]
-text=Whenever another creature with power 5 or greater comes into play under your control, you may return target creature card from your graveyard to your hand.
-id=189873
-name=Paleoloth
-rarity=R
-type=Creature
-mana={4}{G}{G}
-power=5
-subtype=Beast
-toughness=5
-[/card]
-[card]
 text=First strike     {W}{U}{B}{R}{G}: Until end of turn, Paragon of the Amesha becomes an Angel, gets +3/+3, and gains flying and lifelink.
 id=179878
 name=Paragon of the Amesha
@@ -547,7 +536,6 @@ power=3
 subtype=Insect
 toughness=3
 [/card]
-
 [card]
 text=Target opponent reveals cards from the top of his or her library until he or she reveals a creature card. That player puts all noncreature cards revealed this way into his or her graveyard, then you put the creature card into play under your control.
 id=189085
@@ -556,26 +544,12 @@ rarity=R
 type=Sorcery
 mana={3}{U}{U}
 [/card]
-
-
-
 [card]
 text={T}: Add {1} to your mana pool.     {T}: Target land you control becomes the basic land type of your choice until end of turn.
 id=189078
 name=Unstable Frontier
 rarity=U
 type=Land
-[/card]
-[card]
-text={1}: Regenerate target creature with power 5 or greater.
-id=180344
-name=Vagrant Plowbeasts
-rarity=U
-type=Creature
-mana={5}{G}{W}
-power=6
-subtype=Beast
-toughness=6
 [/card]
 [card]
 text=Target creature gains flying until end of turn. If you control a white permanent, return View from Above to its owner's hand.

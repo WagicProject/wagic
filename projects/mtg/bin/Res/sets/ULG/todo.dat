@@ -435,14 +435,6 @@ text=Echo {3}{W} (At the beginning of your upkeep, if this came under your contr
 rarity=U
 [/card]
 [card]
-id=12360
-name=Radiant's Judgment
-mana={2}{W}
-type=Instant
-text=Destroy target creature with power 4 or greater. Cycling {2} ({2}, Discard this card: Draw a card.)
-rarity=C
-[/card]
-[card]
 id=12433
 name=Rancor
 mana={G}
@@ -588,14 +580,6 @@ power=2
 toughness=3
 text=Flying Whenever Sustainer of the Realm blocks, it gets +0/+2 until end of turn.
 rarity=U
-[/card]
-[card]
-id=9694
-name=Swat
-mana={1}{B}{B}
-type=Instant
-text=Destroy target creature with power 2 or less. Cycling {2} ({2}, Discard this card: Draw a card.)
-rarity=C
 [/card]
 [card]
 id=9840

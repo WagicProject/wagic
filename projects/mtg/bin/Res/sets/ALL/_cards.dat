@@ -324,6 +324,26 @@ mana={1}{R}{R}
 type=Sorcery
 [/card]
 [card]
+text=Destroy target creature with power 4 or greater. It can't be regenerated.
+id=3209
+target=creature[power>=4]
+auto=bury
+name=Reprisal
+rarity=U
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+text=Destroy target creature with power 4 or greater. It can't be regenerated.
+id=3210
+target=creature[power>=4]
+auto=bury
+name=Reprisal
+rarity=U
+mana={1}{W}
+type=Instant
+[/card]
+[card]
 text={T}: Add {1} to your mana pool.   {2}, {T}: Add one mana of any color to your mana pool.
 id=3235
 name=School of the Unseen

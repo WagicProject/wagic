@@ -816,9 +816,21 @@ name=Metallurgeon
 rarity=U
 mana={1}{W}
 type=Artifact Creature
-power=1
 subtype=Human Artificer
+power=1
 toughness=2
+[/card]
+[card]
+text={1}: Target creature with power 5 or greater gains trample until end of turn.
+id=174787
+name=Mosstodon
+rarity=C
+mana={4}{G}
+type=Creature
+subtype=Plant Elephant
+auto={1}:trample target(creature[power>=5])
+power=5
+toughness=3
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
@@ -1040,6 +1052,18 @@ name=Punish Ignorance
 rarity=R
 mana={W}{U}{U}{B}
 type=Instant
+[/card]
+[card]
+text={1}: Target creature with power 5 or greater gains first strike until end of turn.
+id=175253
+name=Rakeclaw Gargantuan
+rarity=C
+mana={2}{R}{G}{W}
+type=Creature
+subtype=Beast
+auto={1}:first strike target(creature[power>=5])
+power=5
+toughness=3
 [/card]
 [card]
 text=Target creature gets +3/+3 until end of turn.     Cycling {5}{R}{G}{W} ({5}{R}{G}{W}, Discard this card: Draw a card.)  When you cycle Resounding Roar, target creature gets +6/+6 until end of turn.
@@ -1324,6 +1348,19 @@ mana={1}{W}
 type=Instant
 [/card]
 [card]
+text=Spearbreaker Behemoth is indestructible.   {1}: Target creature with power 5 or greater is indestructible this turn.
+id=174916
+name=Spearbreaker Behemoth
+rarity=R
+mana={5}{G}{G}
+type=Creature
+subtype=Beast
+auto={1}:indestructible target(creature[power>=5])
+power=5
+toughness=5
+abilities=indestructible
+[/card]
+[card]
 text=Flying   At the end of your turn, you gain 3 life if Sphinx Sovereign is untapped. Otherwise, each opponent loses 3 life.
 auto=@each my endofturn:aslongas(sphinx sovereign[-tapped]|myBattlefield) life:3 controller
 auto=@each my endofturn:aslongas(sphinx sovereign[tapped]|myBattlefield) life:-3 opponent
@@ -1374,6 +1411,19 @@ auto={T}:Add {G}
 power=2
 toughness=2
 abilities=vigilance
+[/card]
+[card]
+text=At the end of your turn, if you control a creature with power 5 or greater, you may gain 2 life.   {T}: Add {1} to your mana pool.
+auto=@each my end:aslongas(creature[power>=5]|myBattlefield) may life:2 controller
+id=175122
+name=Sunseed Nurturer
+rarity=U
+mana={2}{W}
+type=Creature
+subtype=Human Druid Wizard
+auto={T}:Add{1}
+power=1
+toughness=1
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
@@ -1502,6 +1552,15 @@ subtype=Bird Soldier
 power=2
 toughness=4
 abilities=flying,exalted
+[/card]
+[card]
+text=Whenever a creature with power 5 or greater enters the battlefield under your control, you may have Where Ancients Tread deal 5 damage to target creature or player.
+auto=@movedTo(creature[power>=5]|myBattlefield):may damage:5 target(creature,player)
+id=175115
+name=Where Ancients Tread
+rarity=R
+mana={4}{R}
+type=Enchantment
 [/card]
 [card]
 text=Wild Nacatl gets +1/+1 as long as you control a Mountain.   Wild Nacatl gets +1/+1 as long as you control a Plains.

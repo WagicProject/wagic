@@ -949,6 +949,18 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Creatures with power 3 or greater don't untap during their controllers' untap steps.
+id=4886
+name=Marble Titan
+rarity=R
+mana={3}{W}
+type=Creature
+subtype=Giant
+auto=lord(creature[power>=3]) doesnotuntap
+power=3
+toughness=3
+[/card]
+[card]
 text=Sacrifice a Swamp: Marsh Lurker gains fear until end of turn.
 id=4673
 name=Marsh Lurker
@@ -1498,14 +1510,14 @@ rarity=R
 type=Land
 [/card]
 [card]
-text=Scragnoth can't be countered.     Protection from blue
+text=Scragnoth can't be countered.   Protection from blue
 id=4787
 name=Scragnoth
 rarity=U
-type=Creature
 mana={4}{G}
-power=3
+type=Creature
 subtype=Beast
+power=3
 toughness=4
 abilities=nofizzle,protection from blue
 [/card]
