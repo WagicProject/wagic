@@ -184,6 +184,7 @@ elvish_piper.txt
 elvish_promenade.txt
 emblem_of_the_warmind.txt
 enervate.txt
+enchantress_s_presence.txt
 erg_raiders_i157.txt
 fangren_pathcutter.txt
 farhaven_elf.txt

@@ -1,0 +1,22 @@
+#NAME: Enchantress's Presence
+#DESC: Bug report: Playing an
+#DESC: enchantment doesn't draw
+#DESC: you a card. Bug could not
+#DESC: be reproduced.
+[INIT]
+firstmain
+[PLAYER1]
+inplay:Enchantress's Presence
+hand:Ground Seal
+library:Forest
+manapool:{G}{G}
+[PLAYER2]
+[DO]
+Ground Seal
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:Enchantress's Presence,Ground Seal
+hand:Forest
+[PLAYER2]
+[END]
