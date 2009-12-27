@@ -266,8 +266,8 @@ type=Artifact
 [/card]
 [card]
 text=Discard a card: You may tap or untap target artifact, creature, or land.
-auto={S(*|myhand)}:may tap target(artifact,creature,land)
-auto={S(*|myhand)}:may untap target(artifact,creature,land) 
+auto={S(*|myhand)}:tap target(artifact,creature,land) 
+auto={S(*|myhand)}:untap target(artifact,creature,land) 
 id=6076
 name=Mind Over Matter
 rarity=R
