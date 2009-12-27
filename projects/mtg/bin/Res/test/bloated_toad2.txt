@@ -1,0 +1,23 @@
+#NAME:Bloated Toad 2
+#DESC:Verifies that the card can be
+#DESC:cycled even though the manapool
+#DESC:would have been sufficient to
+#DESC:cast it as well.
+[INIT]
+firstmain
+[PLAYER1]
+hand:Bloated Toad
+manapool:{G}{G}{G}
+library:Forest
+[PLAYER2]
+[DO]
+Bloated Toad
+choice 1
+[ASSERT]
+firstmain
+[PLAYER1]
+graveyard:Bloated Toad
+hand:Forest
+manapool:{G}
+[PLAYER2]
+[END]

@@ -1,0 +1,20 @@
+#NAME: Iron Will
+#DESC: Bug: If a non-permanent with cycling
+#DESC: is cast, and its cycling cost could
+#DESC: be paid as well, then trying to cast
+#DESC: results in a "Cancel" menu popping up,
+#DESC: casting the spell is not possible.
+#DESC: See http://code.google.com/p/wagic/issues/detail?id=270
+[INIT]
+firstmain
+[PLAYER1]
+inplay:Suntail Hawk
+hand:Iron Will
+library:Plains
+manapool:{W}{W}
+[PLAYER2]
+[DO]
+Iron Will
+choice 0
+Suntail Hawk
+human

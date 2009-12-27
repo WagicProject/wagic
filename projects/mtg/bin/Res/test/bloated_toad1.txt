@@ -1,0 +1,19 @@
+#NAME:Bloated Toad 1
+#DESC:Verifies that the card can be
+#DESC:cast correctly after choosing
+#DESC:to do so (instead of cycling)
+[INIT]
+firstmain
+[PLAYER1]
+hand:Bloated Toad
+manapool:{2}{G}
+[PLAYER2]
+[DO]
+Bloated Toad
+choice 0
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:Bloated Toad
+[PLAYER2]
+[END]
