@@ -1,0 +1,25 @@
+#NAME: Urza's Lands 2
+#DESC: Verifies that Urza's lands *keep*
+#DESC: giving more mana if you have all
+#DESC: three in play (a bug caused them
+#DESC: to do this only once).
+[INIT]
+firstmain
+[PLAYER1]
+inplay:Urza's Mine,Urza's Power Plant,Urza's Tower,Deserted Temple
+[PLAYER2]
+[DO]
+Urza's Tower
+choice 1
+Deserted Temple
+choice 1
+Urza's Tower
+Urza's Tower
+choice 1
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:Urza's Mine,Urza's Power Plant,Urza's Tower,Deserted Temple
+manapool:{5}
+[PLAYER2]
+[END]

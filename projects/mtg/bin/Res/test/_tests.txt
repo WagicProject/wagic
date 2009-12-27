@@ -367,7 +367,6 @@ terror.txt
 terror2.txt
 threaten.txt
 throne_of_bone.txt
-thought_courier.txt
 titanic_ultimatum.txt
 torture.txt
 tranquil_domain.txt
@@ -376,6 +375,7 @@ unstable_mutation.txt
 unstable_mutation2.txt
 unwilling_recruit.txt
 urzas_lands.txt
+urzas_lands2.txt
 vampire_bats.txt
 vampiric_link.txt
 volcanic_eruption.txt

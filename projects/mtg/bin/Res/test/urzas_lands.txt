@@ -11,8 +11,10 @@ hand:Urza's Tower
 [PLAYER2]
 [DO]
 Urza's Mine
+choice 0
 Urza's Tower
 Urza's Tower
+choice 1
 [ASSERT]
 firstmain
 [PLAYER1]

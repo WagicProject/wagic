@@ -367,7 +367,8 @@ id=1080
 name=Urza's Mine
 rarity=C
 type=Land
-auto={T}:add {1} && aslongas(Urza's Tower|myinplay)aslongas(Urza's Power Plant|myinplay):add{1}
+auto={T}:add {1}
+auto=aslongas(Urza's Power-Plant|myinplay)aslongas(Urza's Tower|myinplay){T}:add{2}
 subtype=Urza's Mine
 [/card]
 [card]
@@ -376,7 +377,8 @@ id=1081
 name=Urza's Mine
 rarity=U
 type=Land
-auto={T}:add {1} && aslongas(Urza's Tower|myinplay)aslongas(Urza's Power Plant|myinplay):add{1}
+auto={T}:add {1}
+auto=aslongas(Urza's Power-Plant|myinplay)aslongas(Urza's Tower|myinplay){T}:add{2}
 subtype=Urza's Mine
 [/card]
 [card]
@@ -385,7 +387,8 @@ id=1082
 name=Urza's Mine
 rarity=C
 type=Land
-auto={T}:add {1} && aslongas(Urza's Tower|myinplay)aslongas(Urza's Power Plant|myinplay):add{1}
+auto={T}:add {1}
+auto=aslongas(Urza's Power-Plant|myinplay)aslongas(Urza's Tower|myinplay){T}:add{2}
 subtype=Urza's Mine
 [/card]
 [card]
@@ -394,7 +397,8 @@ id=1083
 name=Urza's Mine
 rarity=U
 type=Land
-auto={T}:add {1} && aslongas(Urza's Tower|myinplay)aslongas(Urza's Power Plant|myinplay):add{1}
+auto={T}:add {1}
+auto=aslongas(Urza's Power-Plant|myinplay)aslongas(Urza's Tower|myinplay){T}:add{2}
 subtype=Urza's Mine
 [/card]
 [card]
@@ -403,8 +407,9 @@ id=1084
 name=Urza's Power Plant
 rarity=U
 type=Land
-auto={T}:add {1} && aslongas(Urza's Mine|myinplay)aslongas(Urza's Tower|myinplay):add{1}
-subtype=Urza's Power Plant
+auto={T}:add {1}
+auto=aslongas(Urza's Mine|myinplay)aslongas(Urza's Tower|myinplay){T}:add{2}
+subtype=Urza's Power-Plant
 [/card]
 [card]
 text={T} Add {1} to your mana pool. If you control an Urza's Mine and an Urza's Tower, add {2} to your mana pool instead.
@@ -412,8 +417,9 @@ id=1085
 name=Urza's Power Plant
 rarity=C
 type=Land
-auto={T}:add {1} && aslongas(Urza's Mine|myinplay)aslongas(Urza's Tower|myinplay):add{1}
-subtype=Urza's Power Plant
+auto={T}:add {1}
+auto=aslongas(Urza's Mine|myinplay)aslongas(Urza's Tower|myinplay){T}:add{2}
+subtype=Urza's Power-Plant
 [/card]
 [card]
 text={T} Add {1} to your mana pool. If you control an Urza's Mine and an Urza's Tower, add {2} to your mana pool instead.
@@ -421,8 +427,9 @@ id=1086
 name=Urza's Power Plant
 rarity=C
 type=Land
-auto={T}:add {1} && aslongas(Urza's Mine|myinplay)aslongas(Urza's Tower|myinplay):add{1}
-subtype=Urza's Power Plant
+auto={T}:add {1}
+auto=aslongas(Urza's Mine|myinplay)aslongas(Urza's Tower|myinplay){T}:add{2}
+subtype=Urza's Power-Plant
 [/card]
 [card]
 text={T} Add {1} to your mana pool. If you control an Urza's Mine and an Urza's Tower, add {2} to your mana pool instead.
@@ -430,8 +437,9 @@ id=1087
 name=Urza's Power Plant
 rarity=U
 type=Land
-auto={T}:add {1} && aslongas(Urza's Mine|myinplay)aslongas(Urza's Tower|myinplay):add{1}
-subtype=Urza's Power Plant
+auto={T}:add {1}
+auto=aslongas(Urza's Mine|myinplay)aslongas(Urza's Tower|myinplay){T}:add{2}
+subtype=Urza's Power-Plant
 [/card]
 [card]
 text={T} Add {1} to your mana pool. If you control an Urza's Mine and an Urza's Power-Plant, add {3} to your mana pool instead.
@@ -439,8 +447,8 @@ id=1088
 name=Urza's Tower
 rarity=U
 type=Land
-auto={T}:add {1} && aslongas(Urza's Power Plant|myinplay)aslongas(Urza's Mine|myinplay):add{2}
-subtype=Urza's Tower
+auto={T}:add {1}
+auto=aslongas(Urza's Power Plant|myinplay)aslongas(Urza's Mine|myinplay){T}:add{3}
 [/card]
 [card]
 text={T} Add {1} to your mana pool. If you control an Urza's Mine and an Urza's Power-Plant, add {3} to your mana pool instead.
@@ -448,7 +456,8 @@ id=1089
 name=Urza's Tower
 rarity=U
 type=Land
-auto={T}:add {1} && aslongas(Urza's Power Plant|myinplay)aslongas(Urza's Mine|myinplay):add{2}
+auto={T}:add {1}
+auto=aslongas(Urza's Power Plant|myinplay)aslongas(Urza's Mine|myinplay){T}:add{3}
 subtype=Urza's Tower
 [/card]
 [card]
@@ -457,7 +466,8 @@ id=1090
 name=Urza's Tower
 rarity=C
 type=Land
-auto={T}:add {1} && aslongas(Urza's Power Plant|myinplay)aslongas(Urza's Mine|myinplay):add{2}
+auto={T}:add {1}
+auto=aslongas(Urza's Power Plant|myinplay)aslongas(Urza's Mine|myinplay){T}:add{3}
 subtype=Urza's Tower
 [/card]
 [card]
@@ -466,7 +476,8 @@ id=1091
 name=Urza's Tower
 rarity=U
 type=Land
-auto={T}:add {1} && aslongas(Urza's Power Plant|myinplay)aslongas(Urza's Mine|myinplay):add{2}
+auto={T}:add {1}
+auto=aslongas(Urza's Power Plant|myinplay)aslongas(Urza's Mine|myinplay){T}:add{3}
 subtype=Urza's Tower
 [/card]
 [card]
