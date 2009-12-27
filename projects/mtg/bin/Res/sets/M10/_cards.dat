@@ -1502,14 +1502,7 @@ rarity=U
 [/card]
 [card]
 id=191318
-name=Royal Assassin
-mana={1}{B}{B}
-type=Creature
-subtype=Human Assassin
-power=1
-toughness=1
-text={T}: Destroy target tapped creature.
-auto={T}:destroy target(creature[tapped])
+primitive=Royal Assassin
 rarity=R
 [/card]
 [card]

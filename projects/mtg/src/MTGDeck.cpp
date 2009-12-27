@@ -4,6 +4,7 @@
 #include "../include/Translate.h"
 #include <algorithm>
 #include <string>
+#include <sstream>
 using std::string;
 
 #include <JGE.h>
@@ -13,13 +14,13 @@ using std::string;
 #endif
 
 //MTGAllCards
-int MTGAllCards::processConfLine(string s, MTGCard *card){
+int MTGAllCards::processConfLine(string s, MTGCard *card, CardPrimitive * primitive){
   unsigned int i = s.find_first_of("=");
   if (i == string::npos){
 #if defined (_DEBUG)
     if (s.size() && s[0] == '#') return 0;
     char buffer[4096];
-    sprintf(buffer, "MTGDECK: Bad Line in %s/_cards.dat:\n    %s\n", setlist[card->setId].c_str(), s.c_str());
+    sprintf(buffer, "MTGDECK: Bad Line:\n    %s\n", s.c_str());
     OutputDebugString(buffer);
 #endif
     return 0;
@@ -28,21 +29,27 @@ int MTGAllCards::processConfLine(string s, MTGCard *card){
   string value = s.substr(i+1);
 
   if(key.compare( "auto")==0){
-    card->addMagicText(value);
+    if(!primitive) primitive = NEW CardPrimitive();
+   primitive->addMagicText(value);
   }
   else if(key.find("auto") == 0){
-    card->addMagicText(value,key.substr(4));
+    if(!primitive) primitive = NEW CardPrimitive();
+    primitive->addMagicText(value,key.substr(4));
   }
   else if(key.compare( "alias")==0){
-    card->alias=atoi(value.c_str());
+    if(!primitive) primitive = NEW CardPrimitive();
+    primitive->alias=atoi(value.c_str());
   }
   else if(key.compare( "target")==0){
+    if(!primitive) primitive = NEW CardPrimitive();
     std::transform( value.begin(), value.end(), value.begin(),::tolower );
-    card->spellTargetType=value;
+    primitive->spellTargetType=value;
   }
   else if(key.compare( "text")==0){
-    card->setText(value);
+    if(!primitive) primitive = NEW CardPrimitive();
+    primitive->setText(value);
   }else if (key.compare("abilities")==0){
+    if(!primitive) primitive = NEW CardPrimitive();
     //Specific Abilities
     std::transform( value.begin(), value.end(), value.begin(),::tolower );
     while (value.size()){
@@ -58,94 +65,111 @@ int MTGAllCards::processConfLine(string s, MTGCard *card){
       for (int j = Constants::NB_BASIC_ABILITIES-1; j >=0 ; j--){
         size_t found = attribute.find(Constants::MTGBasicAbilities[j]);
         if (found != string::npos){
-	        card->basicAbilities[j] = 1;
+	        primitive->basicAbilities[j] = 1;
           break;
         }
       }
     }
   }else if(key.compare("id")==0){
+    if (!card) card = NEW MTGCard();
     card->setMTGId(atoi(value.c_str()));
   }else if(key.compare("name")==0){
-    card->setName(value);
+    if(!primitive) primitive = NEW CardPrimitive();
+    primitive->setName(value);
   }else if(key.compare("rarity")==0){
+    if (!card) card = NEW MTGCard();
     card->setRarity (value.c_str()[0]);
   }else if(key.compare("mana")==0){
+    if(!primitive) primitive = NEW CardPrimitive();
     std::transform( value.begin(), value.end(), value.begin(),::tolower );
-    card->setManaCost(value);
+    primitive->setManaCost(value);
   } else if(key.compare("color")==0){
+    if(!primitive) primitive = NEW CardPrimitive();
     std::transform( value.begin(), value.end(), value.begin(),::tolower );
-    card->setColor(value,1);
+    primitive->setColor(value,1);
   }else if(key.compare("type")==0){
+    if(!primitive) primitive = NEW CardPrimitive();
     switch(value.c_str()[0]){
     case 'C':
     case 'c':
-      card->setType( "Creature");
+      primitive->setType( "Creature");
       break;
     case 'A':
     case 'a':
-      card->setType( "Artifact");
-      card->setColor(Constants::MTG_COLOR_ARTIFACT);
+      primitive->setType( "Artifact");
+      primitive->setColor(Constants::MTG_COLOR_ARTIFACT);
       if (value.c_str()[8] == ' ' && value.c_str()[9] == 'C')
-	      card->setSubtype("Creature");
+	      primitive->setSubtype("Creature");
       break;
     case 'E':
     case 'e':
-      card->setType( "Enchantment");
+      primitive->setType( "Enchantment");
       break;
     case 'S':
     case 's':
-      card->setType( "Sorcery");
+      primitive->setType( "Sorcery");
       break;
     case 'B'://Basic Land
     case 'b':
-      card->setColor(Constants::MTG_COLOR_LAND);
-      card->setType("Land");
-      card->setType("Basic");
+      primitive->setColor(Constants::MTG_COLOR_LAND);
+      primitive->setType("Land");
+      primitive->setType("Basic");
       break;
     case 'L':
     case 'l':
-      card->setColor(Constants::MTG_COLOR_LAND);
-      card->setType( "Land");
+      primitive->setColor(Constants::MTG_COLOR_LAND);
+      primitive->setType( "Land");
       break;
     case 'I':
     case 'i':
-      card->setType( "Instant");
+      primitive->setType( "Instant");
       break;
     default:
-      card->setType( "Error");
+      primitive->setType( "Error");
 #if defined (_DEBUG)
-    char buffer[4096];
-    sprintf(buffer, "MTGDECK: Bad Card Type in %s/_cards.dat:\n    %s\n", setlist[card->setId].c_str(), s.c_str());
-    OutputDebugString(buffer);
+      if (primitive) {
+        char buffer[4096];
+        sprintf(buffer, "MTGDECK: Bad Card Type\n    %s\n", s.c_str());
+        OutputDebugString(buffer);
+      }
 #endif
       break;
 
     }
   }else if(key.compare("power")==0){
-    card->setPower (atoi(value.c_str()));
+    if(!primitive) primitive = NEW CardPrimitive();
+    primitive->setPower (atoi(value.c_str()));
   }else if(key.compare("subtype")==0){
+    if(!primitive) primitive = NEW CardPrimitive();
     while (value.size()){
       unsigned int found = value.find(" ");
       if (found != string::npos){
-        card->setSubtype(value.substr(0,found));
+        primitive->setSubtype(value.substr(0,found));
         value = value.substr(found+1);
       }else{
-        card->setSubtype(value);
+        primitive->setSubtype(value);
         value = "";
       }
     }
   }else if(key.compare("toughness")==0){
-    card->setToughness(atoi(value.c_str()));
+    if(!primitive) primitive = NEW CardPrimitive();
+    primitive->setToughness(atoi(value.c_str()));
   }else if(key.compare("kicker")==0){
+    if(!primitive) primitive = NEW CardPrimitive();
     std::transform( value.begin(), value.end(), value.begin(),::tolower );
-    if (ManaCost * cost = card->getManaCost()){
+    if (ManaCost * cost = primitive->getManaCost()){
       cost->kicker = ManaCost::parseManaCost(value);
     }
+  }else if(key.compare("primitive")==0){
+    if(!card) card = NEW MTGCard();
+    card->setPrimitive(primitives[value]);
   }else{
     string error = "MTGDECK Parsing Error:" + s + "\n";
     OutputDebugString(error.c_str());
   }
 
+  tempPrimitive = primitive;
+  tempCard = card;
 
   return i;
 
@@ -159,18 +183,18 @@ void MTGAllCards::initCounters(){
 
 void MTGAllCards::init(){
   tempCard = NULL;
+  tempPrimitive = NULL;
   total_cards = 0;
   initCounters();
-#if defined (_DEBUG)
-  committed = true;
-#endif
 }
 
 
 
 int MTGAllCards::load(const char * config_file, const char * set_name,int autoload){
   conf_read_mode = 0;
-  int set_id = setlist.Add(set_name);
+  int set_id = 0;
+
+  if (set_name) set_id = setlist.Add(set_name);
 
   std::ifstream setFile(config_file);
 
@@ -190,12 +214,14 @@ MTGAllCards::~MTGAllCards(){
 }
 
 void MTGAllCards::destroyAllCards(){
-  map<int,MTGCard *>::iterator it;
+  
 
-  for (it = collection.begin(); it!=collection.end(); it++) delete(it->second);
-
+  for (map<int,MTGCard *>::iterator it = collection.begin(); it!=collection.end(); it++) delete(it->second);
   collection.clear();
   ids.clear();
+
+  for (map<string,CardPrimitive *>::iterator it = primitives.begin(); it!=primitives.end(); it++) delete(it->second);
+  primitives.clear();
 
 }
 
@@ -232,7 +258,7 @@ int MTGAllCards::countByType(const char * _type){
   map<int,MTGCard *>::iterator it;
   for (it = collection.begin(); it!=collection.end(); it++){
     MTGCard * c = it->second;
-    if(c->hasType(_type)){
+    if(c->data->hasType(_type)){
       result++;
     }
   }
@@ -248,7 +274,7 @@ int MTGAllCards::countByColor(int color){
     map<int,MTGCard *>::iterator it;
     for (it = collection.begin(); it!=collection.end(); it++){
       MTGCard * c = it->second;
-      int j = c->getColor();
+      int j = c->data->getColor();
 
       colorsCount[j]++;
     }
@@ -260,6 +286,58 @@ int MTGAllCards::totalCards(){
   return (total_cards);
 }
 
+bool MTGAllCards::addCardToCollection(MTGCard * card, int setId){
+  card->setId = setId;
+          int newId = card->getId();
+        if (collection.find(newId) != collection.end()){
+          char outBuf[4096];
+          sprintf(outBuf,"warning, card id collision! : %i\n", newId);
+          OutputDebugString (outBuf);
+          SAFE_DELETE(card);
+          return false;
+        }
+
+          ids.push_back(newId);
+
+          collection[newId] = card; //Push card into collection.
+          MTGSetInfo * si = setlist.getInfo(setId);
+          if(si)
+            si->count(card);  //Count card in set info
+
+	        total_cards++;
+
+          return true;
+
+}
+
+bool MTGAllCards::addPrimitive(CardPrimitive * primitive, MTGCard * card){
+  string key;
+  if (card) {
+    std::stringstream ss;
+    ss << card->getId();
+    ss >> key;
+  }
+  else key = primitive->name;
+  if (primitives.find(key) != primitives.end()){
+    //ERROR
+    //Todo move the deletion somewhere else ?
+#ifdef _DEBUG
+    OutputDebugString("MTGDECK: primitives conflict:");
+    OutputDebugString(key.c_str());
+    OutputDebugString("\n");
+    SAFE_DELETE(primitive);
+#endif
+    return false;
+  }
+  //translate cards text
+  Translator * t = Translator::GetInstance();
+  map<string,string>::iterator it = t->tempValues.find(primitive->name);
+  if (it != t->tempValues.end()) {
+    primitive->setText(it->second);
+  }
+  primitives[key] = primitive;
+  return true;
+}
 
 int MTGAllCards::readConfLine(std::ifstream &file, int set_id){
 
@@ -271,47 +349,22 @@ int MTGAllCards::readConfLine(std::ifstream &file, int set_id){
     switch(conf_read_mode) {
     case 0:
       if (s[0] == '['){
-#if defined (_DEBUG)
-        if (tempCard && !committed){
-          OutputDebugString("MTGDECK: Card not committed before creating new one, Memory leak risk\n   ");
-          OutputDebugString(tempCard->getName().c_str());
-          OutputDebugString("\n");
-        }
-        committed = false;
-#endif
-        tempCard = NEW MTGCard(set_id);
         conf_read_mode = 1;
       }
       break;
     case 1:
       if (s[0] == '[' && s[1] == '/'){
 	      conf_read_mode = 0;
-        int newId = tempCard->getId();
-        if (collection.find(newId) != collection.end()){
-          char outBuf[4096];
-          sprintf(outBuf,"warning, card id collision! : %i - %s\n", newId, tempCard->name.c_str());
-          OutputDebugString (outBuf);
-          SAFE_DELETE(tempCard);
-        }else{
-          ids.push_back(newId);
-          //translate cards text
-          Translator * t = Translator::GetInstance();
-          map<string,string>::iterator it = t->tempValues.find(tempCard->name);
-          if (it != t->tempValues.end()) {
-            tempCard->setText(it->second);
-          }
-          collection[newId] = tempCard; //Push card into collection.
-          MTGSetInfo * si = setlist.getInfo(set_id);
-          if(si)
-            si->count(tempCard);  //Count card in set info
-
-	        total_cards++;
-#if defined (_DEBUG)
-          committed = true;
-#endif
+        if (tempPrimitive) addPrimitive (tempPrimitive,tempCard);
+        if (tempCard){
+          addCardToCollection(tempCard, set_id);
+          if (tempPrimitive) tempCard->setPrimitive(tempPrimitive);
         }
+        tempCard = NULL;
+        tempPrimitive = NULL;
+
       }else{
-	      processConfLine(s, tempCard);
+	      processConfLine(s, tempCard, tempPrimitive);
       }
       break;
     default:
@@ -354,7 +407,7 @@ MTGCard * MTGAllCards::getCardByName(string name){
   for (it = collection.begin(); it!=collection.end(); it++){
     MTGCard * c = it->second;
     if (setId!=-1 && setId != c->setId) continue;
-    string cardName = c->name;
+    string cardName = c->data->name;
     std::transform(cardName.begin(), cardName.end(), cardName.begin(),::tolower );
     if (cardName.compare(name) == 0) return c;
     
@@ -462,7 +515,7 @@ int MTGDeck::addRandomCards(int howmany, int * setIds, int nbSets, int rarity, c
     MTGCard * card = database->_(i);
     int r = card->getRarity();
     if (r != Constants::RARITY_T && (rarity == -1 || r==rarity) &&
-	(!_subtype || card->hasSubtype(subtype))
+	(!_subtype || card->data->hasSubtype(subtype))
 	){
       int ok = 0;
 
@@ -476,7 +529,7 @@ int MTGDeck::addRandomCards(int howmany, int * setIds, int nbSets, int rarity, c
 
       if (ok){
         for (int j=0; j < Constants::MTG_NB_COLORS; ++j){
-          if (unallowedColors[j] && card->hasColor(j)){
+          if (unallowedColors[j] && card->data->hasColor(j)){
             ok = 0;
             break;
           }

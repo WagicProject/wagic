@@ -213,7 +213,7 @@ bool GameStateAwards::enterSet(int setid){
   MTGAllCards * c = GameApp::collection;
   for(it = c->collection.begin();it!=c->collection.end();it++){
     if(it->second && it->second->setId == setid && it->second->getId() >= 0) //Add only non-tokens from this set.
-     spoiler->Add(NEW WGuiItem(it->second->name));
+     spoiler->Add(NEW WGuiItem(it->second->data->name));
   }
   spoiler->Entering(0);
   WGuiCardImage * wi = NEW WGuiCardImage(setSrc);
@@ -254,20 +254,20 @@ bool GameStateAwards::enterStats(int option){
       MTGCard * c = it->first;
       if(!c)
         continue;
-      if(!c->isLand() && (many == NULL || it->second > dupes)){
+      if(!c->data->isLand() && (many == NULL || it->second > dupes)){
         many = c;
         dupes = it->second;
       }
       unique++;
       counts[c->setId]+=it->second;
       if(costly == NULL 
-        || c->getManaCost()->getConvertedCost() > costly->getManaCost()->getConvertedCost())
+        || c->data->getManaCost()->getConvertedCost() > costly->data->getManaCost()->getConvertedCost())
         costly = c;
 
-      if(c->isCreature() && (strong == NULL || c->getPower() > strong->getPower()))
+      if(c->data->isCreature() && (strong == NULL || c->data->getPower() > strong->data->getPower()))
         strong = c;
 
-      if(c->isCreature() && (tough == NULL || c->getToughness() > tough->getToughness()))
+      if(c->data->isCreature() && (tough == NULL || c->data->getToughness() > tough->data->getToughness()))
         tough = c;
 
     }
@@ -288,7 +288,7 @@ bool GameStateAwards::enterStats(int option){
     detailview->Add(NEW WGuiItem(buf));
 
     if(many){
-      sprintf(buf,_("Most Duplicates: %i (%s)").c_str(),dupes,many->getName().c_str());
+      sprintf(buf,_("Most Duplicates: %i (%s)").c_str(),dupes,many->data->getName().c_str());
       detailview->Add(NEW WGuiItem(buf));
     }
     if(setid >= 0){
@@ -296,15 +296,15 @@ bool GameStateAwards::enterStats(int option){
     detailview->Add(NEW WGuiItem(buf));
     }
     if(costly){
-      sprintf(buf,_("Highest Mana Cost: %i (%s)").c_str(),costly->getManaCost()->getConvertedCost(),costly->getName().c_str());
+      sprintf(buf,_("Highest Mana Cost: %i (%s)").c_str(),costly->data->getManaCost()->getConvertedCost(),costly->data->getName().c_str());
       detailview->Add(NEW WGuiItem(buf));
     }
     if(strong){
-      sprintf(buf,_("Most Powerful: %i (%s)").c_str(),strong->getPower(),strong->getName().c_str());
+      sprintf(buf,_("Most Powerful: %i (%s)").c_str(),strong->data->getPower(),strong->data->getName().c_str());
       detailview->Add(NEW WGuiItem(buf));
     }
     if(tough){
-      sprintf(buf,_("Toughest: %i (%s)").c_str(),tough->getToughness(),strong->getName().c_str());
+      sprintf(buf,_("Toughest: %i (%s)").c_str(),tough->data->getToughness(),strong->data->getName().c_str());
       detailview->Add(NEW WGuiItem(buf));
     }
   }

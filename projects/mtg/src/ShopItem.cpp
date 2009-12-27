@@ -130,10 +130,10 @@ void ShopItem::Render(){
   if (card){
     if (nameCount){
       char buffer[512];
-      sprintf(buffer, "%s (%i)", _(card->name).c_str(), nameCount );
+      sprintf(buffer, "%s (%i)", _(card->data->name).c_str(), nameCount );
       mText = buffer;
     }else{
-      mText = _(card->name).c_str();
+      mText = _(card->data->name).c_str();
     }
   }
 

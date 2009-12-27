@@ -903,7 +903,7 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
   if (card->alias && magicText.size() == 0 && !dest){
     MTGCard * c = GameApp::collection->getCardById(card->alias);
     if (!c) return 0;
-    magicText = c->magicText;
+    magicText = c->data->magicText;
   }
   string line;
   int size = magicText.size();

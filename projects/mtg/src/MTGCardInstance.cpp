@@ -19,12 +19,12 @@ MTGCardInstance MTGCardInstance::ExtraRules[] = {MTGCardInstance(), MTGCardInsta
 
 
 
-MTGCardInstance::MTGCardInstance(): MTGCard(), Damageable(0), view(NULL){
+MTGCardInstance::MTGCardInstance(): CardPrimitive(), MTGCard(), Damageable(0), view(NULL){
   LOG("==Creating MTGCardInstance==");
   initMTGCI();
   LOG("==Creating MTGCardInstance Successful==");
 }
-MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to): MTGCard(card), Damageable(card->getToughness()), view(NULL){
+MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to): CardPrimitive(card->data),MTGCard(card), Damageable(card->data->getToughness()), view(NULL){
   LOG("==Creating MTGCardInstance==");
   initMTGCI();
   model = card;
@@ -43,30 +43,30 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
 
 void MTGCardInstance::copy(MTGCardInstance * card){
  MTGCard * source = card->model;
- for(map<int,int>::const_iterator it = source->basicAbilities.begin(); it != source->basicAbilities.end(); ++it){
+ CardPrimitive * data = source->data;
+ for(map<int,int>::const_iterator it = data->basicAbilities.begin(); it != data->basicAbilities.end(); ++it){
    int i = it->first;
-   basicAbilities[i] = source->basicAbilities[i];
+   basicAbilities[i] = data->basicAbilities[i];
  }
-  for (int i = 0; i< MAX_TYPES_PER_CARD; i++){
-    types[i] = source->types[i];
+  for (size_t i = 0; i< data->types.size(); i++){
+    types.push_back(data->types[i]);
   }
-  nb_types = source->nb_types;
   for (int i = 0; i< Constants::MTG_NB_COLORS; i++){
-    colors[i] = source->colors[i];
+    colors[i] = data->colors[i];
   }
-  manaCost.copy(source->getManaCost());
+  manaCost.copy(data->getManaCost());
 
-  text = source->text;
-  setName(source->name);
+  text = data->text;
+  setName(data->name);
 
-  power = source->power;
-  toughness = source->toughness;
+  power = data->power;
+  toughness = data->toughness;
   life = toughness;
   lifeOrig = life;
 
-  magicText = source->magicText;
-  spellTargetType = source->spellTargetType;
-  alias = source->alias;
+  magicText = data->magicText;
+  spellTargetType = data->spellTargetType;
+  alias = data->alias;
 
   //Now this is dirty...
   int backupid = mtgid;
@@ -86,6 +86,14 @@ MTGCardInstance::~MTGCardInstance(){
   SAFE_DELETE(previous);
   LOG("==Deleting MTGCardInstance Succesfull==");
 }
+
+int MTGCardInstance::init(){
+  MTGCard::init();
+  CardPrimitive::init();
+  data = this;
+  return 1;
+}
+
 void MTGCardInstance::initMTGCI(){
   sample = "";
   model=NULL;
@@ -110,6 +118,7 @@ void MTGCardInstance::initMTGCI(){
   regenerateTokens = 0;
   blocked = false;
   currentZone = NULL;
+  data = this; //an MTGCardInstance point to itself for data, allows to update it without killing the underlying database item
 }
 
 
@@ -119,7 +128,7 @@ const string MTGCardInstance::getDisplayName() const {
 
 void MTGCardInstance::addType(int type){
   bool before = hasType(type);
-  MTGCard::addType(type);
+  CardPrimitive::addType(type);
   WEvent * e = NEW WEventCardChangeType(this,type,before,true);
   GameObserver::GetInstance()->receiveEvent(e);
 }
@@ -143,7 +152,7 @@ int MTGCardInstance::removeType(string value,int removeAll){
 
 int MTGCardInstance::removeType(int id, int removeAll){
   bool before = hasType(id);
-  int result = MTGCard::removeType(id,removeAll);
+  int result = CardPrimitive::removeType(id,removeAll);
   bool after = hasType(id);
   WEvent * e = NEW WEventCardChangeType(this,id,before,after);
   GameObserver::GetInstance()->receiveEvent(e);
@@ -567,7 +576,7 @@ JSample * MTGCardInstance::getSample(){
   if(sample.size())
     return resources.RetrieveSample(sample);
 
-  for (int i = nb_types-1; i>0; i--){
+  for (int i = types.size()-1; i>0; i--){
     string type = Subtypes::subtypesList->find(types[i]);
     type = type + ".wav";
     js = resources.RetrieveSample(type);

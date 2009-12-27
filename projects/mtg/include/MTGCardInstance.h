@@ -2,6 +2,7 @@
 #define _MTG_CARD_INSTANCE_H_
 
 #include "MTGCard.h"
+#include "CardPrimitive.h"
 #include "MTGGameZones.h"
 #include "MTGAbility.h"
 #include "WResourceManager.h"
@@ -24,7 +25,7 @@ struct Pos;
 #include <list>
 using namespace std;
 
-class MTGCardInstance: public MTGCard, public Damageable {
+class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable {
  protected:
   int untapping;
   int nb_damages;
@@ -41,6 +42,7 @@ class MTGCardInstance: public MTGCard, public Damageable {
   int addBlocker(MTGCardInstance * c);
   int removeBlocker(MTGCardInstance * c);
   int setAttacker(int value);
+  int init();
  public:
   MTGGameZone * currentZone;
   Pos* view;

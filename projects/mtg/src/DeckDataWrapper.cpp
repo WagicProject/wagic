@@ -49,13 +49,13 @@ void DeckDataWrapper::updateCounts(MTGCard * card, int increment){
       MTGCard * current = (*it).first;
       colors[Constants::MTG_NB_COLORS] += (*it).second;
       for (int i = 0; i < Constants::MTG_NB_COLORS; i++){
-	if (current->hasColor(i)) colors[i]+=(*it).second;
+	if (current->data->hasColor(i)) colors[i]+=(*it).second;
       }
     }
   }else{
     colors[Constants::MTG_NB_COLORS] += increment;
     for (int i = 0; i < Constants::MTG_NB_COLORS; i++){
-      if (card->hasColor(i)) colors[i]+=increment;
+      if (card->data->hasColor(i)) colors[i]+=increment;
     }
   }
 }
@@ -85,7 +85,7 @@ int DeckDataWrapper::count(MTGCard * card){
 }
 
 int DeckDataWrapper::countByName(MTGCard * card){
-  string name = card->name;
+  string name = card->data->name;
   int total = 0;
   map<MTGCard *,int,Cmp1>::iterator it,it_origin;
   it = cards.find(card);
@@ -97,7 +97,7 @@ int DeckDataWrapper::countByName(MTGCard * card){
 
  while(it !=cards.end()){
    MTGCard * _card = (*it).first;
-   if (name.compare(_card->name) !=0){
+   if (name.compare(_card->data->name) !=0){
      it = cards.end();
    }else{
     total+= (*it).second;
@@ -110,7 +110,7 @@ int DeckDataWrapper::countByName(MTGCard * card){
  it--;
  while(1){
    MTGCard * _card = (*it).first;
-   if (name.compare(_card->name) !=0){
+   if (name.compare(_card->data->name) !=0){
      break;
    }else{
     total+= (*it).second;
@@ -137,7 +137,7 @@ MTGCard * DeckDataWrapper::getNext(MTGCard * previous, int color){
     if (it == cards.end()) return NULL;
     MTGCard * card = (*it).first;
     if (card == previous) return NULL;
-    if ((*it).second >0 && (color ==-1 || card->hasColor(color))){
+    if ((*it).second >0 && (color ==-1 || card->data->hasColor(color))){
       return card;
     }
   }
@@ -156,7 +156,7 @@ MTGCard * DeckDataWrapper::getPrevious(MTGCard * next, int color){
     if (it == cards.end()) return NULL;
     MTGCard * card = (*it).first;
     if (card == next) return NULL;
-    if ((*it).second >0 && (color ==-1 || card->hasColor(color))){
+    if ((*it).second >0 && (color ==-1 || card->data->hasColor(color))){
       return card;
     }
   }

@@ -45,7 +45,7 @@ void UntapBlocker::Update(float dt){
     _target->getUntapBlockers()->Add(this);
 #if defined (WIN32) || defined (LINUX)
     char buf[4096];
-    sprintf(buf, "Adding Blocker to %s \n", _target->model->getName().c_str());
+    sprintf(buf, "Adding Blocker to %s \n", _target->getName().c_str());
     OutputDebugString(buf);
 #endif
   }

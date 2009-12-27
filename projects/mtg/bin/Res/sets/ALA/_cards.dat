@@ -440,40 +440,24 @@ power=2
 toughness=3
 [/card]
 [card]
-text={T}: Add {G} to your mana pool.
-auto={T}:Add {G}
 id=174927
-name=Forest
+primitive=Forest
 rarity=L
-type=Basic Land
-subtype=Forest
 [/card]
 [card]
-text={T}: Add {G} to your mana pool.
-auto={T}:Add {G}
-id=174930
-name=Forest
-rarity=L
-type=Basic Land
-subtype=Forest
-[/card]
-[card]
-text={T}: Add {G} to your mana pool.
-auto={T}:Add {G}
 id=174928
-name=Forest
+primitive=Forest
 rarity=L
-type=Basic Land
-subtype=Forest
 [/card]
 [card]
-text={T}: Add {G} to your mana pool.
-auto={T}:Add {G}
 id=174929
-name=Forest
+primitive=Forest
 rarity=L
-type=Basic Land
-subtype=Forest
+[/card]
+[card]
+id=174930
+primitive=Forest
+rarity=L
 [/card]
 [card]
 text=Flying   Whenever another artifact enters the battlefield under your control, Glaze Fiend gets +2/+2 until end of turn.

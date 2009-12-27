@@ -117,14 +117,16 @@ void CardGui::Render()
   PlayGuiObject::Render();
 }
 
+
+
 JQuad * CardGui::alternateThumbQuad(MTGCard * card){
   JQuad * q;
 
-  if(card->countColors() > 1){
+  if(card->data->countColors() > 1){
     q = resources.RetrieveTempQuad("gold_thumb.jpg");
   }
   else{
-    switch(card->getColor())
+    switch(card->data->getColor())
       {
       case Constants::MTG_COLOR_ARTIFACT  : q = resources.RetrieveTempQuad("artifact_thumb.jpg");break;
       case Constants::MTG_COLOR_GREEN: q = resources.RetrieveTempQuad("green_thumb.jpg");break;
@@ -148,10 +150,10 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
 
   float x = pos.actX;
 
-  if(card->countColors() > 1) {
+  if(card->data->countColors() > 1) {
     q = resources.RetrieveTempQuad("gold.jpg");
   } else {
-    switch(card->getColor())
+    switch(card->data->getColor())
       {
       case Constants::MTG_COLOR_ARTIFACT: q = resources.RetrieveTempQuad("artifact.jpg");break;
       case Constants::MTG_COLOR_GREEN: q = resources.RetrieveTempQuad("green.jpg");break;
@@ -178,7 +180,7 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
 
   {
     char name[4096];
-    sprintf(name, _(card->getName()).c_str());
+    sprintf(name, _(card->data->getName()).c_str());
     float w = font->GetStringWidth(name) * 0.8 * pos.actZ;
     if (w > BigWidth - 30)
       font->SetScale((BigWidth - 30) / w);
@@ -188,24 +190,24 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
   // Write the description
   {
     font->SetScale(0.8 * pos.actZ);
-    const std::vector<string> txt = card->formattedText();
+    const std::vector<string> txt = card->data->formattedText();
     unsigned i = 0;
     for (std::vector<string>::const_iterator it = txt.begin(); it != txt.end(); ++it, ++i)
       font->DrawString(it->c_str(), x + (22 - BigWidth / 2)*pos.actZ, pos.actY + (-BigHeight/2 + 80 + 11 * i)*pos.actZ);
   }
 
   // Write the strength
-  if (card->isCreature())
+  if (card->data->isCreature())
     {
       char buffer[32];
-      sprintf(buffer, "%i/%i", card->power, card->toughness);
+      sprintf(buffer, "%i/%i", card->data->power, card->data->toughness);
       float w = font->GetStringWidth(buffer) * 0.8;
       font->DrawString(buffer, x + (65 - w / 2)*pos.actZ, pos.actY + (106)*pos.actZ);
   }
 
   // Mana
   {
-    ManaCost* manacost = card->getManaCost();
+    ManaCost* manacost = card->data->getManaCost();
     ManaCostHybrid* h;
     unsigned int j = 0;
     unsigned char t = (JGE::GetInstance()->GetTime() / 3) & 0xFF;
@@ -259,12 +261,12 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
   //types
   {
     string s = "";
-    for (int i = card->nb_types - 1; i > 0; --i)
+    for (int i = card->data->types.size() - 1; i > 0; --i)
       {
-        s += _(Subtypes::subtypesList->find(card->types[i]));
+        s += _(Subtypes::subtypesList->find(card->data->types[i]));
         s += " - ";
       }
-    s += _(Subtypes::subtypesList->find(card->types[0]));
+    s += _(Subtypes::subtypesList->find(card->data->types[0]));
     font->DrawString(s.c_str(), x + (22 - BigWidth / 2)*pos.actZ, pos.actY + (49 - BigHeight / 2)*pos.actZ);
   }
 
@@ -290,7 +292,7 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
         break;
     }
     
-    switch(card->getColor())
+    switch(card->data->getColor())
     {
     case Constants::MTG_COLOR_BLACK: 
     case Constants::MTG_COLOR_GREEN: 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="mtg"
 	ProjectGUID="{53024371-2293-4D40-8ECF-FCB470B50DA1}"
 	TargetFrameworkVersion="131072"
@@ -352,6 +352,10 @@
 			</File>
 			<File
 				RelativePath=".\src\CardGui.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\CardPrimitive.cpp"
 				>
 			</File>
 			<File
@@ -759,6 +763,10 @@
 			</File>
 			<File
 				RelativePath=".\include\CardGui.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\CardPrimitive.h"
 				>
 			</File>
 			<File

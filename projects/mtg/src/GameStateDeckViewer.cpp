@@ -288,7 +288,7 @@ void GameStateDeckViewer::Update(float dt)
           int rnd = (rand() % 20);
           price = pricelist->getPrice(card->getMTGId()) / 2;
           price = price - price * (rnd -10)/100;
-          sprintf(buffer,"%s : %i %s",_(card->getName()).c_str(),price,_("credits").c_str());
+          sprintf(buffer,"%s : %i %s",_(card->data->getName()).c_str(),price,_("credits").c_str());
           sellMenu = NEW SimpleMenu(2,this,Constants::MAIN_FONT,SCREEN_WIDTH-300,SCREEN_HEIGHT/2,buffer);
           sellMenu->Add(20,"Yes");
           sellMenu->Add(21,"No","",true);
@@ -439,7 +439,7 @@ void GameStateDeckViewer::renderSlideBar(){
         currentPos += it->second;
     else
       for (; it != end; ++it)
-        if (it->first->hasColor(colorFilter)) currentPos += it->second;
+        if (it->first->data->hasColor(colorFilter)) currentPos += it->second;
   }
   float cursor_pos = bar_size * currentPos / total;
 
@@ -1045,7 +1045,7 @@ void GameStateDeckViewer::updateStats() {
   }
 
   while (current){
-    currentCost = current->getManaCost();
+    currentCost = current->data->getManaCost();
     convertedCost = currentCost->getConvertedCost();
     currentCount = myDeck->cards[current];
     
@@ -1055,10 +1055,10 @@ void GameStateDeckViewer::updateStats() {
       convertedCost = STATS_MAX_MANA_COST;
     }
     stw.countCardsPerCost[convertedCost] += currentCount;
-    if (current->isCreature()) {
+    if (current->data->isCreature()) {
       stw.countCreaturesPerCost[convertedCost] += currentCount;
       stw.totalCreatureCost += convertedCost * currentCount;
-    } else if (current->isSpell()) {
+    } else if (current->data->isSpell()) {
       stw.countSpellsPerCost[convertedCost] += currentCount;
       stw.totalSpellCost += convertedCost * currentCount;
     } 
@@ -1073,7 +1073,7 @@ void GameStateDeckViewer::updateStats() {
     cin = new MTGCardInstance(current, NULL);      
 
     vector<string> abilityStrings;
-    string thisstring = current->magicText;
+    string thisstring = current->data->magicText;
     StringExplode(thisstring, "\n", &abilityStrings);
 
     /*char buf[4096];
@@ -1090,8 +1090,8 @@ void GameStateDeckViewer::updateStats() {
           //OutputDebugString("M ");
           for (int j=0; j<Constants::MTG_NB_COLORS;j++){
             if (amp->output->hasColor(j)) {
-              if (current->isLand()) {
-                if (current->hasType("Basic")) {
+              if (current->data->isLand()) {
+                if (current->data->hasType("Basic")) {
                   stw.countBasicLandsPerColor[j] += currentCount;
                 } else {
                   stw.countLandsPerColor[j] += currentCount;
@@ -1112,12 +1112,12 @@ void GameStateDeckViewer::updateStats() {
     //  a. regular costs
     for (int j=0; j<Constants::MTG_NB_COLORS;j++){
       stw.totalCostPerColor[j] += currentCost->getCost(j)*currentCount;
-      if (current->hasColor(j)) { 
+      if (current->data->hasColor(j)) { 
         // Add to the per cost and color counter
         stw.countCardsPerCostAndColor[convertedCost][j] += currentCount;
-        if (current->isCreature()) {
+        if (current->data->isCreature()) {
           stw.countCreaturesPerCostAndColor[convertedCost][j] += currentCount;
-        } else if (current->isSpell()) {
+        } else if (current->data->isSpell()) {
           stw.countSpellsPerCostAndColor[convertedCost][j] += currentCount;
         }
       }
@@ -1174,7 +1174,7 @@ int GameStateDeckViewer::countCardsByType(const char * _type) {
 
   MTGCard * current = myDeck->getNext();
   while (current){
-    if(current->hasType(_type)){
+    if(current->data->hasType(_type)){
       result += myDeck->cards[current];
     }
     current = myDeck->getNext(current);
@@ -1225,7 +1225,7 @@ void GameStateDeckViewer::renderCard(int id, float rotation){
     JRenderer::GetInstance()->RenderQuad(quad, x   , y , 0.0f,scale,scale);
     if (showName){
       char buffer[4096];
-      sprintf(buffer, "%s", _(card->getName()).c_str());
+      sprintf(buffer, "%s", _(card->data->getName()).c_str());
       float scaleBackup = mFont->GetScale();
       mFont->SetScale(scale);
       mFont->DrawString(buffer,x - 100*scale ,y - 145*scale);

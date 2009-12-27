@@ -74,6 +74,7 @@ GameStateMenu::GameStateMenu(GameApp* parent): GameState(parent)
   mVolume = 0;
   scroller = NULL;
   langChoices = false;
+  primitivesLoadCounter = -1;
 }
 
 GameStateMenu::~GameStateMenu() {}
@@ -316,6 +317,25 @@ void GameStateMenu::loadLangMenu(){
   resetDirectory();
 }
 
+void GameStateMenu::listPrimitives(){
+  resetDirectory();
+  if (!mDip){
+    mDip = opendir("Res/sets/primitives/");
+  }
+
+  while ((mDit = readdir(mDip))){
+    string filename = "Res/sets/primitives/";
+    filename += mDit->d_name;
+    std::ifstream file(filename.c_str());
+    if(!file) continue;
+    file.close();
+    primitives.push_back(filename);
+  }
+  resetDirectory();
+  primitivesLoadCounter = 0;
+}
+
+
 void GameStateMenu::Update(float dt)
 {
   timeIndex += dt * 2;
@@ -332,6 +352,13 @@ void GameStateMenu::Update(float dt)
           subMenuController->Update(dt);
     break;
     case MENU_STATE_MAJOR_LOADING_CARDS :
+      if (primitivesLoadCounter == -1) listPrimitives();
+      if (primitivesLoadCounter < (int)(primitives.size())){
+        mParent->collection->load(primitives[primitivesLoadCounter].c_str() );
+        primitivesLoadCounter++;
+        break;
+      }
+      primitivesLoadCounter = primitives.size() + 1;
       if (mReadConf){
 	      mParent->collection->load(mCurrentSetFileName, mCurrentSetName);
       }else{
@@ -341,6 +368,13 @@ void GameStateMenu::Update(float dt)
       if (!nextDirectory(RESPATH"/sets/","_cards.dat")){
         //Remove temporary translations
         Translator::GetInstance()->tempValues.clear();
+
+        //Debug
+#ifdef _DEBUG
+        char buf[4096];
+        sprintf(buf, "\n==\nTotal MTGCard: %i\nTotal CardPrimitives: %i\n==\n", mParent->collection->collection.size(), mParent->collection->primitives.size());
+        OutputDebugString(buf);
+#endif
 
         //Force default, if necessary.
         if(options[Options::ACTIVE_PROFILE].str == "") 
@@ -488,7 +522,10 @@ void GameStateMenu::Render()
     if (mCurrentSetName[0]) {
       sprintf(text, _("LOADING SET: %s").c_str(), mCurrentSetName);
     }else{
-      sprintf(text,"LOADING...");
+      if (primitivesLoadCounter <= (int)(primitives.size()))
+         sprintf(text,"LOADING PRIMITIVES");
+      else
+        sprintf(text,"LOADING...");
     }
     mFont->DrawString(text,SCREEN_WIDTH/2,SCREEN_HEIGHT/2,JGETEXT_CENTER);
   }else{

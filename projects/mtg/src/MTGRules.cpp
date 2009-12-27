@@ -215,7 +215,7 @@ int MTGBlockRule::reactToClick(MTGCardInstance * card){
     currentOpponent = game->currentPlayer->game->inPlay->getNextAttacker(currentOpponent);
 #if defined (WIN32) || defined (LINUX)
     char buf[4096];
-    sprintf(buf,"Defenser Toggle %s \n", card->model->getName().c_str());
+    sprintf(buf,"Defenser Toggle %s \n", card->getName().c_str());
     OutputDebugString(buf);
 #endif
     candefend = card->toggleDefenser(currentOpponent);
@@ -258,8 +258,8 @@ MTGMomirRule::MTGMomirRule(int _id, MTGAllCards * _collection):MTGAbility(_id, N
   if (!initialized){
     for (size_t i = 0; i < collection->ids.size(); i++){
       MTGCard * card = collection->collection[collection->ids[i]];
-      if (card->isCreature()){
-         int convertedCost = card->getManaCost()->getConvertedCost();
+      if (card->data->isCreature()){
+         int convertedCost = card->data->getManaCost()->getConvertedCost();
          if (convertedCost>20) continue;
          pool[convertedCost].push_back(card->getMTGId());
       }

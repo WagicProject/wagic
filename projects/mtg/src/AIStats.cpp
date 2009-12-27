@@ -162,7 +162,7 @@ void AIStats::Render(){
     if (stat->value > 0){
       MTGCard * card = GameApp::collection->getCardById(stat->source);
       if (card) {
-        sprintf(buffer, "%s %i", card->getName().c_str(), stat->value);
+        sprintf(buffer, "%s %i", card->data->getName().c_str(), stat->value);
         f->DrawString(buffer,x0+5,10 + 16 *(float)i);
         i++;
       }

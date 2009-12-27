@@ -3,6 +3,7 @@
 
 #include "../include/MTGDefinitions.h"
 #include "../include/MTGCard.h"
+#include "../include/CardPrimitive.h"
 #include <map>
 #include <string>
 using std::map;
@@ -16,7 +17,7 @@ class Cmp1 { // compares cards by their name
   bool operator()(MTGCard * card1, MTGCard * card2) const {
     if (!card2) return true;
     if (!card1) return false;
-    int result = card1->name.compare(card2->name);
+    int result = card1->data->name.compare(card2->data->name);
     if (!result) return card1->getMTGId() < card2->getMTGId();
     return ( result < 0);
   }

@@ -56,7 +56,7 @@ bool CardDescriptor::valueInRange(int comparisonMode, int value, int criterion){
 
 MTGCardInstance * CardDescriptor::match_or(MTGCardInstance * card){
   int found = 1;
-  for (int i = 0; i< nb_types; i++){
+  for (size_t i = 0; i< types.size(); i++){
     found = 0;
     if (types[i] >= 0){
 
@@ -101,7 +101,7 @@ MTGCardInstance * CardDescriptor::match_or(MTGCardInstance * card){
 
 MTGCardInstance * CardDescriptor::match_and(MTGCardInstance * card){
   MTGCardInstance * match = card;
-  for (int i = 0; i< nb_types; i++){
+  for (size_t i = 0; i< types.size(); i++){
     if (types[i] >= 0){
       if (!card->hasSubtype(types[i]) && !(Subtypes::subtypesList->find(card->getLCName(),false) == types[i])){
         match = NULL;

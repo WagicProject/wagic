@@ -15,6 +15,7 @@ using std::string;
 
 class GameApp;
 class MTGCard;
+class CardPrimitive;
 
 #define SET_METADATA "setinfo.txt"
 
@@ -80,10 +81,8 @@ extern MTGSets setlist;
 
 class MTGAllCards {
 private:
-  MTGCard * tempCard;
-#if defined (_DEBUG)
-  bool committed;
-#endif
+  MTGCard * tempCard; //used by parser
+  CardPrimitive * tempPrimitive; //used by parser
  protected:
   int conf_read_mode;
   int colorsCount[Constants::MTG_NB_COLORS];
@@ -95,6 +94,7 @@ private:
 
   vector<int> ids;
   map<int, MTGCard *> collection;
+  map<string,CardPrimitive *>primitives;
   MTGAllCards();
   ~MTGAllCards();
   MTGCard * _(int id);
@@ -102,7 +102,7 @@ private:
   MTGAllCards(const char * config_file, const char * set_name);
   MTGCard * getCardById(int id);
   MTGCard * getCardByName(string name);
-  int load(const char * config_file, const char * setName, int autoload = 1);
+  int load(const char * config_file, const char * setName = NULL, int autoload = 1);
   int countByType(const char * _type);
   int countByColor(int color);
   int countBySet(int setId);
@@ -110,7 +110,9 @@ private:
   int totalCards();
   int randomCardId();
  private:
-  int processConfLine(string s, MTGCard* card);
+  int processConfLine(string s, MTGCard* card, CardPrimitive * primitive);
+  bool addCardToCollection(MTGCard * card, int setId);
+  bool addPrimitive(CardPrimitive * primitive, MTGCard * card = NULL);
 };
 
 

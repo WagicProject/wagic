@@ -851,40 +851,24 @@ mana={X}{2}{R}{R}
 auto=lord(creature) x/-x
 [/card]
 [card]
-text={T}: Add {G} to your mana pool.
-auto={T}: Add {G}
 id=129559
-name=Forest
+primitive=Forest
 rarity=L
-type=Basic Land
-subtype=Forest
 [/card]
 [card]
-text={T}: Add {G} to your mana pool.
-auto={T}: Add {G}
 id=129560
-name=Forest
+primitive=Forest
 rarity=L
-type=Basic Land
-subtype=Forest
 [/card]
 [card]
-text={T}: Add {G} to your mana pool.
-auto={T}: Add {G}
 id=129561
-name=Forest
+primitive=Forest
 rarity=L
-type=Basic Land
-subtype=Forest
 [/card]
 [card]
-text={T}: Add {G} to your mana pool.
-auto={T}: Add {G}
 id=129562
-name=Forest
+primitive=Forest
 rarity=L
-type=Basic Land
-subtype=Forest
 [/card]
 [card]
 text={2}, {T}: You gain 1 life.
@@ -2093,16 +2077,9 @@ subtype=Merfolk
 toughness=2
 [/card]
 [card]
-text={T}: Destroy target tapped creature.
 id=129708
-auto={T}:destroy target(creature[tapped])
-name=Royal Assassin
+primitive=Royal Assassin
 rarity=R
-type=Creature
-mana={1}{B}{B}
-power=1
-subtype=Human Assassin
-toughness=1
 [/card]
 [card]
 text=Forestwalk (This creature is unblockable as long as defending player controls a Forest.)

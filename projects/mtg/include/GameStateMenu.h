@@ -27,6 +27,8 @@ class GameStateMenu: public GameState, public JGuiListener
   int mVolume;
   char nbcardsStr[400];
   vector<string> langs;
+  vector<string> primitives;
+  int primitivesLoadCounter;
 
   DIR *mDip;
   struct dirent *mDit;
@@ -45,6 +47,7 @@ class GameStateMenu: public GameState, public JGuiListener
   void loadLangMenu();
   bool langChoices;
   void runTest(); //!!
+  void listPrimitives();
  public:
   GameStateMenu(GameApp* parent);
   virtual ~GameStateMenu();

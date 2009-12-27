@@ -1,0 +1,19 @@
+#Primitives Pack for Wagic the Homebrew.
+#Please keep these card alphabetized, and try to have the "name=" line at the top of each card
+[card]
+name=Forest
+text={T}: Add {G} to your mana pool.
+auto={T}: Add {G}
+type=Basic Land
+subtype=Forest
+[/card]
+[card]
+name=Royal Assassin
+text={T}: Destroy target tapped creature.
+auto={T}:destroy target(creature[tapped])
+type=Creature
+mana={1}{B}{B}
+power=1
+subtype=Human Assassin
+toughness=1
+[/card]

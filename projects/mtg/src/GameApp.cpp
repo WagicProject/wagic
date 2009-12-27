@@ -188,6 +188,9 @@ void GameApp::Create()
   char buf[512];
   sprintf(buf, "size of MTGCard : %i\n" , sizeof(MTGCard));
   OutputDebugString(buf);
+
+  sprintf(buf, "size of CardPrimitive : %i\n" , sizeof(CardPrimitive));
+  OutputDebugString(buf);
 }
 
 
