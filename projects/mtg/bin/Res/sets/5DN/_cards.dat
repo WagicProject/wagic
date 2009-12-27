@@ -481,8 +481,8 @@ toughness=2
 [/card]
 [card]
 text=At the beginning of your upkeep, if Myr Servitor is on the battlefield, each player returns all cards named Myr Servitor from his or her graveyard to the battlefield.
-auto=@each my upkeep:moveTo(myhand) all(myr servitor|mygraveyard) 
-auto=@each my upkeep:moveTo(opponenthand) all(myr servitor|opponentgraveyard) 
+auto=@each my upkeep:moveTo(mybattlefield) all(myr servitor|mygraveyard) 
+auto=@each my upkeep:moveTo(opponentbattlefield) all(myr servitor|opponentgraveyard) 
 id=50179
 name=Myr Servitor
 rarity=C
