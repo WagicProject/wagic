@@ -75,6 +75,7 @@ power=3
 toughness=3
 text=Flying When Angel of Mercy enters the battlefield, you gain 3 life.
 auto=life:3
+abilities=flying
 rarity=U
 [/card]
 [card]
