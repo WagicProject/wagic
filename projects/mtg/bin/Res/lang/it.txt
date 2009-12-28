@@ -210,6 +210,176 @@ Theme: %s=Tema: %s
 Artist: %s=Artista: %s
 New Profile=Nuovo Profilo
 
+#Nuove Stringhe - 31/11/09
+
+Statistics Summary=Sommario Statistiche
+
+Lands=Terre
+
+Creatures=Creature
+
+Spells=Magie
+
+Instants=Istantanei
+
+Enchantments=Incantesimi
+
+Sorceries=Stregonerie
+
+Average converted mana cost=Costo convert. in mana medio
+
+Probabilities=Probabilita'
+
+No land in 1st hand=No terre nella 1' mano
+
+No land in 9 cards=No terre in 9 carte
+
+No creatures in 1st hand=No creature nella 1' mano
+
+
+statsPage#:%i=Pagina Statistiche #:%i
+
+statsPage#: %i=Pagina Statistiche #: %i
+
+
+Playgame statistics=Statistiche di gioco
+
+Games played=Partite giocate
+
+Victory ratio=Rateo di vittoria
+
+Total price (credits)=Prezzo totale (crediti)
+
+
+Mana production=Produzione mana
+
+Counts of manasources per type and color:=Conto delle fonti di mana per tipo e colore:
+
+BL - Basic lands=BL - Terre base
+
+NB - Non-basic lands=NB - Terre non-base
+
+O - Other (non-land) manasources=O - Altre (non-terre) fonti di mana
+
+T - Totals=T - Totali
+
+
+Mana production - in mana symbols=Produzione di mana - in simboli
+
+Total colored manasymbols in lands' production:=Totale simboli di mana colorati nella prod. delle terre
+
+
+Mana cost detail=Dettaglio costo mana
+
+Card counts per mana cost:=Numero carte per costo di mana:
+
+
+Mana cost detail - Creatures=Dettaglio costo mana - Creature
+
+Creature counts per mana cost:=Numero creature per costo di mana:
+
+
+Mana cost detail - Spells=Dettaglio costo mana - Magie
+
+Non-creature spell counts per mana cost:=Numero di magie non-creatura per costo di mana:
+
+
+Average converted mana cost: %f=Costo convertito in mana medio: %f
+
+Average converted mana cost: %2.2f=Costo convertito in mana medio: %2.2f
+
+
+C - Converted mana cost. Cards with cost>%i are included in the last row.=C - Costo convertito in mana. Carte con costo >%i sono incluse nell'ultima riga.
+
+
+# - Total number of cards with given cost=# - Numero totale di carte con un dato costo
+
+
+No lands in first n cards:=Niente terre nelle prime n carte:
+
+No creatures in first n cards:=Niente creature nelle prime n carte:
+
+
+Mana cost per color=Costo in mana per colore
+
+Total colored manasymbols in cards' casting costs:=Totale simboli di mana colorati nel costo delle carte:
+
+
+Victory statistics=Statistiche vittoria
+
+Victories against AI:=Vittorie contro IA:
+
+
+Games played: %i=Partite giocate: %i
+Victory ratio: %i%%=Rateo vittoria: %i%%
+
+Victory ratio: %i=Rateo vittoria: %i
+
+
+Database: %i cards=Database: %i carte
+
+
+%s: %i cards (%i)=%s: %i carte (%i)
+
+
+Random 1 Color=Casuale 1 Colore
+
+Random 2 Colors=Casuale 2 Colori
+
+
+LOADING...=CARICAMENTO...
+
+
+Please check your deck (not enough cards?)=Perfavore controlla il mazzo (troppe poche carte?)
+
+
+
+
+Credits: %i=Crediti: %i
+
+Cards: %i=Carte: %i
+
+
+
+
+
+# 0.10.1 strings
+Normal=Normale
+Hard=Difficile
+Harder=Difficilissimo
+Evil=Diabolico
+
+Interrupt opponent's end of turn=Interrompi fine del turno dell'avversario
+Language=Lingua
+
+Cards: %i=Carte: %i
+Credits: %i=Crediti %i
+Sets: %i (of %i)=Set: %i (di %i)
+
+Discard Random=Scarta a Caso
+Game length: %i seconds=Lunghezza partita: %i secondi
+Credits per minute: %i=Crediti al minuto: %i
+
+%i cards.=%i carte.
+[]:other cards=[]:altre carte
+See available tasks=Visualizza task disponibili
+Task Board=Bacheca task
+
+Toggle Images=Immagini Si/No
+View Deck=Guarda Mazzo
+View Collection=Guarda Collez.
+Use SQUARE to view your deck,=Usa QUADRATO per vedere il mazzo,
+Use SQUARE to view collection,=Usa QUADRATO per la collezione,
+
+opponent plays=tocca all'avvers.
+you play=tocca a te
+
+Deck - %i/%i=Mazzo - %i/%i
+in: deck=in: mazzo
+in: collection=in: collezione
+deck=mazzo
+collection=collezione
+
 #new lines - not working
 Spacebar=Spazio
 Confirm=Conferma
@@ -217,7 +387,6 @@ your turn=tuo turno
 (your turn)%s=(tuo turno)%s
 (your turn) %s=(tuo turno) %s
 opponent's turn=turno avversario
-opponent's turn - you play=turno avvers. - tocca a te
 
 # new lines - abilities - why did i forget these before? u.U
 trample=travolgere
