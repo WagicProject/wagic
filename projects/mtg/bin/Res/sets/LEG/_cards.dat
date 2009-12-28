@@ -944,7 +944,7 @@ mana={2}{R}{R}
 type=Creature
 subtype=Yeti
 power=3
-toughness=2
+toughness=3
 abilities=mountainwalk,protection from white
 [/card]
 [card]
