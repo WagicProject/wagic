@@ -1,0 +1,22 @@
+#Bug: http://code.google.com/p/wagic/issues/detail?id=140
+#How to trigger the issue:
+#cast hurkyl recall.
+#go to theopponent  player by first stepping on the howling mine
+#click on his avatar
+#try to go back to your land
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:forest
+hand:hurkyl's recall
+manapool:{1}{U}
+[PLAYER2]
+inplay:howling mine
+[DO]
+human
+human
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+[PLAYER2]
+[END]
