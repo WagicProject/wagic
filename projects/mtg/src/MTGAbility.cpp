@@ -737,22 +737,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     return a;
   }
 
-  //Gain/loose Ability
-  for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++){
-    found = s.find(Constants::MTGBasicAbilities[j]);
-    if (found == 0 || found == 1){
-      int modifier = 1;
-      if (found > 0 && s[found-1] == '-') modifier = 0;
-      if (!activated){
-        if(card->hasType("instant") || card->hasType("sorcery")  || forceUEOT){ 
-           return NEW AInstantBasicAbilityModifierUntilEOT(id, card,target, j,modifier);
-        }
-        return NEW ABasicAbilityModifier(id, card,target, j,modifier);
-      }
-      return NEW ABasicAbilityAuraModifierUntilEOT(id, card,target, NULL,j,modifier);
-    }
-  }
-
   //Protection from...
   found = s.find("protection from(");
   if (found == 0){
@@ -769,6 +753,40 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
       return NEW AProtectionFrom(id, card,target,fromTc);
     }
     return NULL; //TODO
+  }
+
+  //Can't be blocked by...
+  found = s.find("cantbeblockedby(");
+  if (found == 0){
+    size_t end = s.find (")", found);
+    string targets = s.substr(found+16,end - found - 16);
+    TargetChooserFactory tcf;
+    TargetChooser * fromTc = tcf.createTargetChooser(targets, card);
+    if (!fromTc) return NULL;
+    //default target zone to opponentbattlefield here?
+    if (!activated){
+      if(card->hasType("instant") || card->hasType("sorcery")  || forceUEOT){ 
+         return NULL; //TODO
+      }
+      return NEW ACantBeBlockedBy(id, card,target,fromTc);
+    }
+    return NULL; //TODO
+  }
+
+  //Gain/loose simple Ability
+  for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++){
+    found = s.find(Constants::MTGBasicAbilities[j]);
+    if (found == 0 || found == 1){
+      int modifier = 1;
+      if (found > 0 && s[found-1] == '-') modifier = 0;
+      if (!activated){
+        if(card->hasType("instant") || card->hasType("sorcery")  || forceUEOT){ 
+           return NEW AInstantBasicAbilityModifierUntilEOT(id, card,target, j,modifier);
+        }
+        return NEW ABasicAbilityModifier(id, card,target, j,modifier);
+      }
+      return NEW ABasicAbilityAuraModifierUntilEOT(id, card,target, NULL,j,modifier);
+    }
   }
 
   //Untapper (Ley Druid...)
@@ -844,6 +862,9 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
   if (AInstantPowerToughnessModifierUntilEOT * abi = dynamic_cast<AInstantPowerToughnessModifierUntilEOT *>(a)) return (abi->wppt->power.getValue()>=0 && abi->wppt->toughness.getValue()>=0) ? BAKA_EFFECT_GOOD : BAKA_EFFECT_BAD;
   if (APowerToughnessModifier * abi = dynamic_cast<APowerToughnessModifier *>(a)) return (abi->wppt->power.getValue()>=0 && abi->wppt->toughness.getValue()>=0) ? BAKA_EFFECT_GOOD : BAKA_EFFECT_BAD;
   if (APowerToughnessModifierUntilEndOfTurn * abi = dynamic_cast<APowerToughnessModifierUntilEndOfTurn *>(a)) return abilityEfficiency(abi->ability, p, mode,tc);
+
+  if (dynamic_cast<ACantBeBlockedBy *>(a)) return BAKA_EFFECT_GOOD;
+  if (dynamic_cast<AProtectionFrom *>(a)) return BAKA_EFFECT_GOOD;
 
   map<int,bool> badAbilities;
   badAbilities[Constants::CANTATTACK] = true;

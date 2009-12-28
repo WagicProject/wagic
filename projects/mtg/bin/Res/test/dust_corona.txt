@@ -1,0 +1,29 @@
+#NAME: Dust Corona
+#DESC: checks an aura which grants
+#DESC: a "can't be blocked by" ability
+[INIT]
+firstmain
+[PLAYER1]
+inplay:Raging Goblin
+hand:Dust Corona
+manapool:{R}
+[PLAYER2]
+inplay:Suntail Hawk
+[DO]
+Dust Corona
+Raging Goblin
+next
+next
+Raging Goblin
+next
+Suntail Hawk
+next
+next
+[ASSERT]
+combatend
+[PLAYER1]
+inplay:Raging Goblin,Dust Corona
+[PLAYER2]
+inplay:Suntail Hawk
+life:17
+[END]

@@ -1,0 +1,23 @@
+#NAME: Gnat Alley Creeper 2
+#DESC: checks the ability "can't be
+#DESC: blocked by creatures with flying"
+#DESC: Pass 2: Does normal blocking work?
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:Gnat Alley Creeper
+[PLAYER2]
+inplay:Raging Goblin
+[DO]
+Gnat Alley Creeper
+next
+Raging Goblin
+next
+next
+[ASSERT]
+combatend
+[PLAYER1]
+graveyard:Gnat Alley Creeper
+[PLAYER2]
+graveyard:Raging Goblin
+[END]

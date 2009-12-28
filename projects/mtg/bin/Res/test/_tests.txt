@@ -178,6 +178,7 @@ drift_of_the_dead.txt
 dromad_purebred.txt
 dross_harvester.txt
 duskwalker.txt
+dust_corona.txt
 dwarven_warriors.txt
 ebony_horse.txt
 ekundu_cyclops1_i218.txt
@@ -219,6 +220,8 @@ giant_growth.txt
 giant_growth2.txt
 glimpse_the_unthinkable.txt
 gnarled_effigy.txt
+gnat_alley_creeper1.txt
+gnat_alley_creeper2.txt
 goblin_balloon_brigade.txt
 goblin_balloon_brigade2.txt
 goblin_king.txt
@@ -246,6 +249,7 @@ imaginary_pet.txt
 immaculate_magistrate.txt
 instill_energy_i166.txt
 jodahs_avenger.txt
+juggernaut.txt
 jump.txt
 karns_touch_i233.txt
 keldon_warlord.txt

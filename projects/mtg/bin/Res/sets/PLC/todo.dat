@@ -11,7 +11,7 @@ rarity=R
 [/card]
 [card]
 id=124504
-name=ÁEher Membrane
+name=AEther Membrane
 mana={1}{R}{R}
 type=Creature
 subtype=Wall
@@ -276,15 +276,6 @@ power=1
 toughness=1
 text=Protection from green At the beginning of the end step, if Dunerider Outlaw dealt damage to an opponent this turn, put a +1/+1 counter on it.
 rarity=U
-[/card]
-[card]
-id=110501
-name=Dust Corona
-mana={R}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature gets +2/+0 and can't be blocked by creatures with flying.
-rarity=C
 [/card]
 [card]
 id=124343

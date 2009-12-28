@@ -1189,6 +1189,19 @@ mana={4}
 type=Artifact
 [/card]
 [card]
+text=Juggernaut attacks each turn if able.     Juggernaut can't be blocked by Walls.
+auto=cantbeblockedby(wall)
+abilities=mustattack
+id=1120
+name=Juggernaut
+rarity=U
+type=Artifact Creature
+mana={4}
+power=5
+subtype=Juggernaut
+toughness=3
+[/card]
+[card]
 text=Target creature gains flying until end of turn.
 target=creature
 auto=flying

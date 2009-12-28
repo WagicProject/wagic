@@ -195,18 +195,6 @@ type=Artifact
 mana={4}
 [/card]
 [card]
-text=Juggernaut attacks each turn if able.     Juggernaut can't be blocked by Walls.
-id=1120
-name=Juggernaut
-rarity=U
-color=Artifact
-type=Artifact Creature
-mana={4}
-power=5
-subtype=Juggernaut
-toughness=3
-[/card]
-[card]
 text=You have no maximum hand size.     If an effect causes you to discard a card, discard it, but you may put it on top of your library instead of into your graveyard.
 id=1122
 name=Library of Leng

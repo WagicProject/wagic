@@ -486,20 +486,6 @@ type=Instant
 mana={1}{R}
 [/card]
 [card]
-text=Juggernaut attacks each turn if able. Juggernaut can't be blocked by Walls.
-id=135240
-name=Juggernaut
-rarity=U
-color=Artifact
-type=Artifact Creature
-mana={4}
-power=5
-abilities=mustattack
-auto=cantbeblockedby(wall)
-subtype=Juggernaut
-toughness=3
-[/card]
-[card]
 text=Karplusan Strider can't be the target of blue or black spells.
 id=129911
 name=Karplusan Strider

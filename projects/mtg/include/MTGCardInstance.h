@@ -123,6 +123,11 @@ class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable {
   int removeProtection(TargetChooser *tc, int erase = 0);
   int protectedAgainst(MTGCardInstance * card);
 
+  vector<TargetChooser *>cantBeBlockedBys;
+  int addCantBeBlockedBy(TargetChooser * tc);
+  int removeCantBeBlockedBy(TargetChooser *tc, int erase = 0);
+  int cantBeBlockedBy(MTGCardInstance * card);
+
   void copy(MTGCardInstance * card);
 
   void setUntapping();

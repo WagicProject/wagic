@@ -1190,6 +1190,38 @@ class AProtectionFrom: public MTGAbility{
 };
 
 
+//Can't be blocked by...
+class ACantBeBlockedBy: public MTGAbility{
+ public:
+  TargetChooser * fromTc;
+  ACantBeBlockedBy(int id, MTGCardInstance * _source, MTGCardInstance * _target, TargetChooser *fromTc):MTGAbility(id,_source,_target),fromTc(fromTc){
+
+  }
+
+ int addToGame(){
+   MTGCardInstance * _target = (MTGCardInstance *)target;
+   _target->addCantBeBlockedBy(fromTc);
+   return MTGAbility::addToGame();
+ }
+
+  int destroy(){
+    ((MTGCardInstance *)target)->removeCantBeBlockedBy(fromTc);
+    return 1;
+  }
+
+  ACantBeBlockedBy * clone() const{
+    ACantBeBlockedBy * a =  NEW ACantBeBlockedBy(*this);
+    a->isClone = 1;
+    return a;
+  }
+
+  ~ACantBeBlockedBy(){
+    SAFE_DELETE(fromTc);
+  }
+
+};
+
+
 //Alteration of Power and Toughness  (enchantments)
 class APowerToughnessModifier: public MTGAbility{
  public:

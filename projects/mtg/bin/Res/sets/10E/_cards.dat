@@ -1216,6 +1216,19 @@ type=Artifact
 mana={4}
 [/card]
 [card]
+text=Juggernaut attacks each turn if able. Juggernaut can't be blocked by Walls.
+auto=cantbeblockedby(wall)
+abilities=mustattack
+id=135240
+name=Juggernaut
+rarity=U
+type=Artifact Creature
+mana={4}
+power=5
+subtype=Juggernaut
+toughness=3
+[/card]
+[card]
 text=Haste (This creature can attack and {T} as soon as it comes under your control.)  {T}: Kamahl, Pit Fighter deals 3 damage to target creature or player.
 abilities=haste,legendary
 auto={T}:Damage:3 target(creature,player)

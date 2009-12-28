@@ -1,6 +1,6 @@
 ﻿[card]
 id=111192
-name=ÁEhermage's Touch
+name=AEthermage's Touch
 mana={2}{W}{U}
 type=Instant
 text=Reveal the top four cards of your library. You may put a creature card from among them onto the battlefield. It has "At the beginning of your end step, return this creature to its owner's hand." Then put the rest of the cards revealed this way on the bottom of your library in any order.
@@ -465,17 +465,6 @@ name=Ghost Quarter
 mana=
 type=Land
 text={T}: Add {1} to your mana pool. {T}, Sacrifice Ghost Quarter: Destroy target land. Its controller may search his or her library for a basic land card, put it onto the battlefield, then shuffle his or her library.
-rarity=U
-[/card]
-[card]
-id=107526
-name=Gnat Alley Creeper
-mana={2}{R}
-type=Creature
-subtype=Human Rogue
-power=3
-toughness=1
-text=Gnat Alley Creeper can't be blocked by creatures with flying.
 rarity=U
 [/card]
 [card]

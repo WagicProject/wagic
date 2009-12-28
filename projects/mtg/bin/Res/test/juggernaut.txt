@@ -1,0 +1,23 @@
+#NAME: Juggernaut
+#DESC: checks Juggernaut's ability
+#DESC: "can't be blocked by walls"
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:Juggernaut
+[PLAYER2]
+inplay:Wall of Stone
+[DO]
+Juggernaut
+next
+Wall of Stone
+next
+next
+[ASSERT]
+combatend
+[PLAYER1]
+inplay:Juggernaut
+[PLAYER2]
+inplay:Wall of Stone
+life:15
+[END]

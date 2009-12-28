@@ -353,6 +353,7 @@ int MTGCardInstance::canBlock(MTGCardInstance * opponent){
   if (!opponent->isAttacker()) return 0;
   // Comprehensive rule 502.7f : If a creature with protection attacks, it can't be blocked by creatures that have the stated quality.
   if (opponent->protectedAgainst(this)) return 0;
+  if (opponent->cantBeBlockedBy(this)) return 0;
   if (opponent->basicAbilities[Constants::UNBLOCKABLE]) return 0;
   if (opponent->basicAbilities[Constants::FEAR] && !(hasColor(Constants::MTG_COLOR_ARTIFACT) || hasColor(Constants::MTG_COLOR_BLACK))) return 0;
 
@@ -568,6 +569,33 @@ int MTGCardInstance::protectedAgainst(MTGCardInstance * card){
   }
   return 0;
 }
+
+
+int MTGCardInstance::addCantBeBlockedBy(TargetChooser * tc){
+  cantBeBlockedBys.push_back(tc);
+  return cantBeBlockedBys.size();
+}
+
+int MTGCardInstance::removeCantBeBlockedBy(TargetChooser * tc, int erase){
+  for (size_t i = 0; i < cantBeBlockedBys.size() ; i++){
+    if (cantBeBlockedBys[i] == tc){
+      if (erase) delete (cantBeBlockedBys[i]);
+      cantBeBlockedBys.erase(cantBeBlockedBys.begin()+i);
+      return 1;
+    }
+  }
+  return 0;
+}
+
+int MTGCardInstance::cantBeBlockedBy(MTGCardInstance * card){
+  for (size_t i = 0; i < cantBeBlockedBys.size() ; i++){
+    if (cantBeBlockedBys[i]->canTarget(card)) 
+      return 1;
+  }
+  return 0;
+}
+
+
 
 /* Choose a sound sample to associate to that card */
 JSample * MTGCardInstance::getSample(){

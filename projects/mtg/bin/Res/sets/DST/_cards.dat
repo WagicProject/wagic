@@ -231,10 +231,7 @@ subtype=Juggernaut
 power=5
 toughness=3
 text=Juggernaut attacks each turn if able. Juggernaut can't be blocked by Walls.
-# Following line is not entirely correct: Walls cannot target
-# Juggernaut although they should be able to. But it's hard to
-# find a case where this difference actually matters.
-auto=protection from(wall)
+auto=cantbeblockedby(wall)
 abilities=mustattack
 rarity=U
 [/card]

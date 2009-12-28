@@ -553,14 +553,6 @@ text=At the beginning of your upkeep, The Fallen deals 1 damage to each opponent
 rarity=U
 [/card]
 [card]
-id=1725
-name=Tower of Coireall
-mana={2}
-type=Artifact
-text={T}: Target creature can't be blocked by Walls this turn.
-rarity=U
-[/card]
-[card]
 id=1779
 name=Tracker
 mana={2}{G}

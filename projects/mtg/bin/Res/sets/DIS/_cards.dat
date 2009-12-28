@@ -110,6 +110,18 @@ toughness=9
 abilities=trample
 [/card]
 [card]
+id=107526
+name=Gnat Alley Creeper
+mana={2}{R}
+type=Creature
+subtype=Human Rogue
+power=3
+toughness=1
+text=Gnat Alley Creeper can't be blocked by creatures with flying.
+auto=cantbeblockedby(creature[flying])
+rarity=U
+[/card]
+[card]
 text={T}, Sacrifice Haazda Exonerator: Destroy target Aura.
 id=107467
 name=Haazda Exonerator
