@@ -384,6 +384,18 @@ toughness=4
 abilities=flying
 [/card]
 [card]
+text=Treetop Scout can't be blocked except by creatures with flying.
+id=43501
+name=Treetop Scout
+rarity=C
+mana={G}
+type=Creature
+subtype=Elf Scout
+auto=cantbeblockedby(creature[-flying])
+power=1
+toughness=1
+[/card]
+[card]
 text={B}: Regenerate Twisted Abomination.   Swampcycling {2} ({2}, Discard this card: Search your library for a Swamp card, reveal it, and put it into your hand. Then shuffle your library.)
 id=43717
 name=Twisted Abomination

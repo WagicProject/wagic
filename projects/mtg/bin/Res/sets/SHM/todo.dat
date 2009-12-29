@@ -55,18 +55,6 @@ type=Instant
 mana={GW}
 [/card]
 [card]
-text=Barrenton Cragtreads can't be blocked by red creatures.
-id=142000
-name=Barrenton Cragtreads
-auto=cantbeblockedby(creature[red])
-rarity=C
-type=Creature
-mana={2}{WU}{WU}
-power=3
-subtype=Kithkin Scout
-toughness=3
-[/card]
-[card]
 text={T}: Prevent the next 1 damage that would be dealt to target creature or player this turn.     Put a -1/-1 counter on Barrenton Medic: Untap Barrenton Medic.
 id=135451
 name=Barrenton Medic
@@ -898,18 +886,6 @@ subtype=Troll
 toughness=5
 [/card]
 [card]
-text=Mudbrawler Raiders can't be blocked by blue creatures.
-id=141992
-name=Mudbrawler Raiders
-auto=cantbeblockedby(creature[blue])
-rarity=C
-type=Creature
-mana={2}{RG}{RG}
-power=3
-subtype=Goblin Warrior
-toughness=3
-[/card]
-[card]
 text=When Murderous Redcap comes into play, it deals damage equal to its power to target creature or player.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
 id=153298
 name=Murderous Redcap
@@ -1112,18 +1088,6 @@ type=Enchantment
 mana={1}{G}{G}
 [/card]
 [card]
-text=Raven's Run Dragoon can't be blocked by black creatures.
-id=142037
-auto=cantbeblockedby(creature[black])
-name=Raven's Run Dragoon
-rarity=C
-type=Creature
-mana={2}{GW}{GW}
-power=3
-subtype=Elf Knight
-toughness=3
-[/card]
-[card]
 text=({2W} can be paid with any two mana or with {W}. This card's converted mana cost is 10.)  Other Scarecrow creatures you control get +1/+1.     Whenever another Scarecrow comes into play under your control, destroy target permanent.
 id=159408
 name=Reaper King
@@ -1310,19 +1274,6 @@ power=1
 subtype=Elemental Shaman
 toughness=1
 [/card]
-
-[card]
-text=Sootwalkers can't be blocked by white creatures.
-id=141936
-name=Sootwalkers
-auto=cantbeblockedby(creature[white])
-rarity=C
-type=Creature
-mana={2}{BR}{BR}
-power=3
-subtype=Elemental Rogue
-toughness=3
-[/card]
 [card]
 text=Trample     Whenever Spawnwrithe deals combat damage to a player, put a token into play that's a copy of Spawnwrithe.
 id=158687
@@ -1400,9 +1351,6 @@ power=2
 subtype=Scarecrow
 toughness=1
 [/card]
-
-
-
 [card]
 text=If you would draw a card, draw two cards instead.
 id=146728
@@ -1419,7 +1367,6 @@ rarity=U
 type=Sorcery
 mana={4}{BR}
 [/card]
-
 [card]
 text=({2G} can be paid with any two mana or with {G}. This card's converted mana cost is 6.)  Until end of turn, target creature gets +4/+4 and gains trample, wither, and "When this creature attacks, target creature blocks it this turn if able." (It deals damage to creatures in the form of -1/-1 counters.)
 id=152075
@@ -1493,18 +1440,6 @@ name=Viridescent Wisps
 rarity=C
 type=Instant
 mana={G}
-[/card]
-[card]
-text=Wanderbrine Rootcutters can't be blocked by green creatures.
-id=142012
-name=Wanderbrine Rootcutters
-auto=cantbeblockedby(creature[green])
-rarity=C
-type=Creature
-mana={2}{UB}{UB}
-power=3
-subtype=Merfolk Rogue
-toughness=3
 [/card]
 [card]
 text=Enchant player     If a card would be put into enchanted player's graveyard from anywhere, instead that card is revealed and put on the bottom of that player's library.

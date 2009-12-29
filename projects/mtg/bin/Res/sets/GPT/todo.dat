@@ -778,14 +778,6 @@ text={B}, Sacrifice a creature: Destroy each creature with the same converted ma
 rarity=R
 [/card]
 [card]
-id=97216
-name=Savage Twister
-mana={X}{R}{G}
-type=Sorcery
-text=Savage Twister deals X damage to each creature.
-rarity=U
-[/card]
-[card]
 id=96904
 name=Scab-Clan Mauler
 mana={R}{G}
@@ -838,17 +830,6 @@ mana={1}{R}
 type=Sorcery
 text=Replicate {1}{R} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.) Target Mountain becomes a 3/1 creature. It's still a land.
 rarity=R
-[/card]
-[card]
-id=96825
-name=Silhana Ledgewalker
-mana={1}{G}
-type=Creature
-subtype=Elf Rogue
-power=1
-toughness=1
-text=Silhana Ledgewalker can't be blocked except by creatures with flying. Silhana Ledgewalker can't be the target of spells or abilities your opponents control.
-rarity=C
 [/card]
 [card]
 id=96863

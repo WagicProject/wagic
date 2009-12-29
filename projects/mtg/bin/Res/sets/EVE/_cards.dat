@@ -543,17 +543,16 @@ toughness=4
 abilities=flying
 [/card]
 [card]
-text=When Noggle Bridgebreaker enters the battlefield, return a land you control to its owner's hand.
-id=158899
-name=Noggle Bridgebreaker
-target=land|myBattlefield
-auto=moveTo(ownerhand)
+text=Noggle Bandit can't be blocked except by creatures with defender.
+id=157286
+name=Noggle Bandit
 rarity=C
-mana={2}{UR}{UR}
+mana={1}{UR}{UR}
 type=Creature
 subtype=Noggle Rogue
-power=4
-toughness=3
+auto=cantbeblockedby(creature[-defender])
+power=2
+toughness=2
 [/card]
 [card]
 text=When Noggle Ransacker enters the battlefield, each player draws two cards, then discards a card at random.

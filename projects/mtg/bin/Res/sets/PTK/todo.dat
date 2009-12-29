@@ -343,17 +343,6 @@ text=Look at the top three cards of your library. Put one of them into your hand
 rarity=U
 [/card]
 [card]
-id=10733
-name=Taoist Mystic
-mana={2}{G}
-type=Creature
-subtype=Human Mystic
-power=2
-toughness=2
-text=Taoist Mystic can't be blocked by creatures with horsemanship.
-rarity=R
-[/card]
-[card]
 id=10492
 name=Taunting Challenge
 mana={1}{G}{G}
@@ -496,16 +485,5 @@ subtype=Human Soldier Warrior
 power=3
 toughness=3
 text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.) Whenever Zhao Zilong, Tiger General blocks, it gets +1/+1 until end of turn.
-rarity=R
-[/card]
-[card]
-id=10610
-name=Zuo Ci, the Mocking Sage
-mana={1}{G}{G}
-type=Legendary Creature
-subtype=Human Advisor
-power=1
-toughness=2
-text=Zuo Ci, the Mocking Sage can't be blocked by creatures with horsemanship. Zuo Ci can't be the target of spells or abilities your opponents control.
 rarity=R
 [/card]

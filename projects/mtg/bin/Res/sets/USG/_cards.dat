@@ -1537,6 +1537,18 @@ power=2
 toughness=*
 [/card]
 [card]
+text=Treetop Rangers can't be blocked except by creatures with flying.
+id=5681
+name=Treetop Rangers
+rarity=C
+mana={2}{G}
+type=Creature
+subtype=Elf
+auto=cantbeblockedby(creature[-flying])
+power=2
+toughness=2
+[/card]
+[card]
 text={B}: Regenerate Unworthy Dead.
 auto={B}:regenerate
 id=5780

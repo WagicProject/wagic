@@ -952,17 +952,6 @@ text={2}{W}, {T}: Put a trap counter on target land you control. Sacrifice a lan
 rarity=R
 [/card]
 [card]
-id=43501
-name=Treetop Scout
-mana={G}
-type=Creature
-subtype=Elf Scout
-power=1
-toughness=1
-text=Treetop Scout can't be blocked except by creatures with flying.
-rarity=C
-[/card]
-[card]
 id=41164
 name=Unburden
 mana={1}{B}{B}

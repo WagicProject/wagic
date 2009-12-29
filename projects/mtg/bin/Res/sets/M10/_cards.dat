@@ -478,6 +478,18 @@ alias=1284
 rarity=U
 [/card]
 [card]
+id=190575
+name=Dread Warlock
+mana={1}{B}{B}
+type=Creature
+subtype=Human Wizard
+auto=cantbeblockedby(creature[-black])
+power=2
+toughness=2
+text=Dread Warlock can't be blocked except by black creatures.
+rarity=C
+[/card]
+[card]
 id=190552
 name=Drudge Skeletons
 mana={1}{B}

@@ -1179,6 +1179,20 @@ rarity=U
 type=Land
 [/card]
 [card]
+text=Otarian Juggernaut can't be blocked by Walls.   Threshold - As long as seven or more cards are in your graveyard, Otarian Juggernaut gets +3/+0 and attacks each turn if able.
+id=29889
+name=Otarian Juggernaut
+rarity=R
+mana={4}
+type=Artifact Creature
+subtype=Juggernaut
+auto=cantbeblockedby(wall)
+auto=aslongas(*|mygraveyard) 3/0 >6
+auto=aslongas(*|mygraveyard) mustattack >6
+power=2
+toughness=3
+[/card]
+[card]
 text=Discard a card from your hand, Sacrifice Overeager Apprentice: Add {B}{B}{B} to your mana pool.
 id=29737
 name=Overeager Apprentice

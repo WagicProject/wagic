@@ -764,17 +764,6 @@ subtype=Goblin Rogue
 toughness=2
 [/card]
 [card]
-text=Goldmeadow Dodger can't be blocked by creatures with power 4 or greater.
-id=142356
-name=Goldmeadow Dodger
-rarity=C
-type=Creature
-mana={W}
-power=1
-subtype=Kithkin Rogue
-toughness=1
-[/card]
-[card]
 text=As an additional cost to play Goldmeadow Stalwart, reveal a Kithkin card from your hand or pay {3}.
 id=139698
 name=Goldmeadow Stalwart

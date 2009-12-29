@@ -628,17 +628,19 @@ subtype=Shapeshifter
 toughness=1
 [/card]
 [card]
-text=Noggle Bandit can't be blocked except by creatures with defender.
-id=157286
-name=Noggle Bandit
+###Creatures with Comes-into-play-effect needing a target not supported yet! 0.10.1
+text=When Noggle Bridgebreaker enters the battlefield, return a land you control to its owner's hand.
+id=158899
+name=Noggle Bridgebreaker
+target=land|myBattlefield
+auto=moveTo(ownerhand)
 rarity=C
+mana={2}{UR}{UR}
 type=Creature
-mana={1}{UR}{UR}
-power=2
 subtype=Noggle Rogue
-toughness=2
+power=4
+toughness=3
 [/card]
-
 [card]
 text=When Noggle Hedge-Mage comes into play, if you control two or more Islands, you may tap two target permanents.     When Noggle Hedge-Mage comes into play, if you control two or more Mountains, you may have Noggle Hedge-Mage deal 2 damage to target player.
 id=159066

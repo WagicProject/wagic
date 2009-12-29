@@ -345,7 +345,7 @@ mana={2}{B}
 type=Enchantment
 [/card]
 [card]
-text=Shadow (This creature can block or be blocked by only creatures with shadow.)  Whenever a creature with shadow is put into a graveyard from the battlefield, put a +1/+1 counter on Dauthi Ghoul.
+text=Shadow (This creature can block or be blocked by only creatures with shadow.)   Whenever a creature with shadow is put into a graveyard from the battlefield, put a +1/+1 counter on Dauthi Ghoul.
 auto=@movedTo(creature[shadow]|graveyard) from(battlefield):counter(1/1)
 id=4649
 name=Dauthi Ghoul
@@ -354,6 +354,19 @@ mana={1}{B}
 type=Creature
 subtype=Dauthi Zombie
 power=1
+toughness=1
+abilities=shadow
+[/card]
+[card]
+text=Shadow (This creature can block or be blocked by only creatures with shadow.)   Dauthi Horror can't be blocked by white creatures.
+id=4650
+name=Dauthi Horror
+rarity=C
+mana={1}{B}
+type=Creature
+subtype=Dauthi Horror
+auto=cantbeblockedby(creature[white])
+power=2
 toughness=1
 abilities=shadow
 [/card]

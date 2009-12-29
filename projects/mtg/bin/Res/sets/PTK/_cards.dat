@@ -898,6 +898,18 @@ type=Basic Land
 subtype=Swamp
 [/card]
 [card]
+text=Taoist Mystic can't be blocked by creatures with horsemanship.
+id=10733
+name=Taoist Mystic
+rarity=R
+mana={2}{G}
+type=Creature
+subtype=Human Mystic
+auto=cantbeblockedby(creature[horsemanship])
+power=2
+toughness=2
+[/card]
+[card]
 text=Taoist Hermit can't be the target of spells or abilities your opponents control.
 id=10569
 name=Taoist Hermit
@@ -1363,4 +1375,17 @@ subtype=Tiger
 power=3
 toughness=4
 abilities=forestwalk
+[/card]
+[card]
+text=Zuo Ci, the Mocking Sage can't be blocked by creatures with horsemanship. Zuo Ci can't be the target of spells or abilities your opponents control.
+id=10610
+name=Zuo Ci, the Mocking Sage
+rarity=R
+mana={1}{G}{G}
+type=Creature
+subtype=Human Advisor
+auto=cantbeblockedby(creature[horsemanship])
+power=1
+toughness=2
+abilities=legendary,opponentshroud
 [/card]

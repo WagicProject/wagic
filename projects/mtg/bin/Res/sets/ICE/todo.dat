@@ -215,36 +215,12 @@ mana={3}{U}
 subtype=Aura
 [/card]
 [card]
-text=Enchant creature     Enchanted creature can't be blocked by black creatures.     Enchanted creature gets +2/+2 as long as an opponent controls a black permanent.
-id=2666
-target=creature
-auto=cantbeblockedby(creature[black])
-auto=aslongas(*[black]|opponentinplay)2/2
-name=Black Scarab
-rarity=U
-type=Enchantment
-mana={W}
-subtype=Aura
-[/card]
-[card]
 text=Play Blizzard only if you control a snow land.     Cumulative upkeep {2} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)  Creatures with flying don't untap during their controllers' untap steps.
 id=2551
 name=Blizzard
 rarity=R
 type=Enchantment
 mana={G}{G}
-[/card]
-[card]
-text=Enchant creature     Enchanted creature can't be blocked by blue creatures.     Enchanted creature gets +2/+2 as long as an opponent controls a blue permanent.
-id=2669
-target=creature
-auto=cantbeblockedby(creature[blue])
-auto=aslongas(*[blue]|opponentinplay)2/2
-name=Blue Scarab
-rarity=U
-type=Enchantment
-mana={W}
-subtype=Aura
 [/card]
 [card]
 text={B}: Until end of turn, Bone Shaman gains "Creatures dealt damage by Bone Shaman this turn can't be regenerated this turn."
@@ -862,15 +838,6 @@ mana={3}{R}
 power=1
 subtype=Goblin
 toughness=1
-[/card]
-[card]
-text=Enchant creature     Enchanted creature can't be blocked by green creatures.     Enchanted creature gets +2/+2 as long as an opponent controls a green permanent.
-id=2688
-name=Green Scarab
-rarity=U
-type=Enchantment
-mana={W}
-subtype=Aura
 [/card]
 [card]
 text=Whenever Grizzled Wolverine becomes blocked, you may pay {R}. If you do, Grizzled Wolverine gets +2/+0 until end of turn.
@@ -1734,15 +1701,6 @@ type=Enchantment
 mana={U}{U}{U}
 [/card]
 [card]
-text=Enchant creature     Enchanted creature can't be blocked by red creatures.     Enchanted creature gets +2/+2 as long as an opponent controls a red permanent.
-id=2709
-name=Red Scarab
-rarity=U
-type=Enchantment
-mana={W}
-subtype=Aura
-[/card]
-[card]
 ####
 ####Like Propaganda (TMP) and Ghostly Prison (CHK), this card is way too unfair because the AI cannot activate this cards ability! (0.9.1)
 ####
@@ -1996,17 +1954,6 @@ type=Sorcery
 mana={2}{B}{B}
 [/card]
 [card]
-text=Stone Spirit can't be blocked by creatures with flying.
-id=2654
-name=Stone Spirit
-rarity=U
-type=Creature
-mana={4}{R}
-power=4
-subtype=Elemental Spirit
-toughness=3
-[/card]
-[card]
 ####
 ####Aslongas-lines with activation costs don't work yet!! (0.9.1) 
 ####
@@ -2120,15 +2067,6 @@ mana={3}
 power=0
 toughness=4
 subtype=Wall
-[/card]
-[card]
-text=Enchant creature     Enchanted creature can't be blocked by white creatures.     Enchanted creature gets +2/+2 as long as an opponent controls a white permanent.
-id=2716
-name=White Scarab
-rarity=U
-type=Enchantment
-mana={W}
-subtype=Aura
 [/card]
 [card]
 text=All creatures lose flying until end of turn.     Sacrifice a snow land: Return Whiteout from your graveyard to your hand.

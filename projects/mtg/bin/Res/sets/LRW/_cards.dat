@@ -390,6 +390,18 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+text=Goldmeadow Dodger can't be blocked by creatures with power 4 or greater.
+id=142356
+name=Goldmeadow Dodger
+rarity=C
+mana={W}
+type=Creature
+subtype=Kithkin Rogue
+auto=cantbeblockedby(creature[power>=4])
+power=1
+toughness=1
+[/card]
+[card]
 text={W}, {T}: Tap target creature.
 auto={W}{T}:tap target(creature)
 id=139397
@@ -404,7 +416,7 @@ toughness=1
 [card]
 text=When Guardian of Cloverdell enters the battlefield, put three 1/1 white Kithkin Soldier creature tokens onto the battlefield.   {G}, Sacrifice a Kithkin: You gain 1 life.
 auto=token(Kithkin Soldier,creature Kithkin Soldier,1/1,white)*3
-auto={G}{S(kithkin|myBattlefield)}:life: 1 controller
+auto={G}{S(kithkin|myBattlefield)}:life:1 controller
 id=139665
 name=Guardian of Cloverdell
 rarity=U
@@ -429,9 +441,9 @@ toughness=2
 [card]
 text=Regenerate target creature. You gain life equal to that creature's toughness.
 id=145808
-alias=3194
 target=creature
 auto=regenerate
+auto=life:t controller
 name=Heal the Scars
 rarity=C
 mana={3}{G}

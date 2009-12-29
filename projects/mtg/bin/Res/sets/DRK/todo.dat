@@ -50,17 +50,6 @@ text=Until end of turn, if damage would be dealt to any creature, you may have t
 rarity=U
 [/card]
 [card]
-id=1731
-name=Bog Rats
-mana={B}
-type=Creature
-subtype=Rat
-power=1
-toughness=1
-text=Bog Rats can't be blocked by Walls.
-rarity=C
-[/card]
-[card]
 id=1803
 name=Brainwash
 mana={W}

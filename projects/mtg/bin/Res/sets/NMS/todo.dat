@@ -690,17 +690,6 @@ text=When Skyshroud Sentinel enters the battlefield, you may search your library
 rarity=C
 [/card]
 [card]
-id=21282
-name=Sneaky Homunculus
-mana={1}{U}
-type=Creature
-subtype=Homunculus Illusion
-power=1
-toughness=1
-text=Sneaky Homunculus can't block or be blocked by creatures with power 2 or greater.
-rarity=C
-[/card]
-[card]
 id=21277
 name=Spiritual Asylum
 mana={2}{W}{W}

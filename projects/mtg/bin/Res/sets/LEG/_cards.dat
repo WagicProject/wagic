@@ -55,6 +55,18 @@ power=8
 toughness=4
 [/card]
 [card]
+text=Amrou Kithkin can't be blocked by creatures with power 3 or greater.
+id=1601
+name=Amrou Kithkin
+rarity=C
+mana={W}{W}
+type=Creature
+subtype=Kithkin
+auto=cantbeblockedby(creature[power>=3])
+power=1
+toughness=1
+[/card]
+[card]
 text=Creatures you control get +1/+1 as long as you control no nonartifact, nonwhite creatures.
 auto=lord(creature|myBattlefield) 1/1
 auto=aslongas(creature[-artifact;-white]|myBattlefield) lord(creature|myBattlefield) -1/-1
@@ -344,6 +356,18 @@ power=4
 toughness=4
 [/card]
 [card]
+text=Elven Riders can't be blocked except by Walls and/or creatures with flying.
+id=1523
+name=Elven Riders
+rarity=R
+mana={3}{G}{G}
+type=Creature
+subtype=Elf
+auto=cantbeblockedby(creature[-flying,-wall])
+power=3
+toughness=3
+[/card]
+[card]
 text=Flying   {G}{G}: Emerald Dragonfly gains first strike until end of turn.
 id=1524
 name=Emerald Dragonfly
@@ -375,6 +399,19 @@ rarity=U
 mana={R}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+text=Non-Eye creatures you control can't attack.   Evil Eye of Orms-by-Gore can't be blocked except by Walls.
+id=1436
+name=Evil Eye of Orms-by-Gore
+rarity=U
+mana={4}{B}
+type=Creature
+subtype=Eye
+auto=lord(creature[-eye]|myBattlefield) cantattack
+auto=cantbeblockedby(creature[-walls])
+power=3
+toughness=6
 [/card]
 [card]
 text=Flying   Sacrifice a creature: Fallen Angel gets +2/+1 until end of turn.
@@ -1120,6 +1157,17 @@ subtype=Leviathan
 power=3
 toughness=3
 abilities=islandwalk
+[/card]
+[card]
+text=Enchant creature   Enchanted creature can't be blocked except by artifact creatures and/or white creatures.
+id=1633
+target=creature
+auto=cantbeblockedby(creature[-artifact;-white])
+name=Seeker
+rarity=U
+mana={2}{W}{W}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 text=Creatures you control get +0/+2 until end of turn.

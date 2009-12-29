@@ -1,5 +1,5 @@
 [card]
-text=Target creature gets -1/-1 until end of turn.     Draw a card.
+text=Target creature gets -1/-1 until end of turn.   Draw a card.
 target=creature
 auto=-1/-1
 auto=draw:1 controller
@@ -10,7 +10,7 @@ type=Instant
 mana={2}{B}
 [/card]
 [card]
-text=Target creature gets +1/+1 until end of turn.     Draw a card.
+text=Target creature gets +1/+1 until end of turn.   Draw a card.
 target=creature
 auto=1/1
 auto=draw:1
@@ -702,6 +702,18 @@ auto=moveTo(ownerhand) all(creature)
 rarity=R
 type=Instant
 mana={3}{U}{U}
+[/card]
+[card]
+text=Elven Riders can't be blocked except by Walls and/or creatures with flying.
+id=135266
+name=Elven Riders
+auto=cantbeblockedby(creature[-flying,-wall])
+rarity=U
+type=Creature
+mana={3}{G}{G}
+power=3
+subtype=Elf
+toughness=3
 [/card]
 [card]
 text=Whenever Elvish Berserker becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.
@@ -2376,7 +2388,7 @@ subtype=Minion
 toughness=3
 [/card]
 [card]
-text=Destroy target artifact.     Draw a card.
+text=Destroy target artifact.   Draw a card.
 target=artifact
 auto=destroy
 auto=draw:1 controller
@@ -2745,6 +2757,18 @@ mana={2}{W}
 power=2
 subtype=Human
 toughness=2
+[/card]
+[card]
+text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +1/+1 and can't be blocked except by creatures with flying.
+id=129777
+target=creature
+auto=1/1
+auto=cantbeblockedby(creature[-flying])
+name=Treetop Bracer
+rarity=C
+mana={1}{G}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 text=Troll Ascetic can't be the target of spells or abilities your opponents control.     {1}{G}: Regenerate Troll Ascetic. (The next time this creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)

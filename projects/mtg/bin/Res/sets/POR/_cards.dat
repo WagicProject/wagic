@@ -490,6 +490,18 @@ mana={3}{R}
 type=Sorcery
 [/card]
 [card]
+text=Fleet-Footed Monk can't be blocked by creatures with power 2 or greater.
+id=4383
+name=Fleet-Footed Monk
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Human Monk
+auto=cantbeblockedby(creature[power>=2])
+power=1
+toughness=1
+[/card]
+[card]
 id=4384
 name=Foot Soldiers
 rarity=C
@@ -1182,6 +1194,18 @@ type=Creature
 subtype=Treefolk
 power=3
 toughness=4
+[/card]
+[card]
+text=Sacred Knight can't be blocked by black and/or red creatures.
+id=4392
+name=Sacred Knight
+rarity=C
+mana={3}{W}
+type=Creature
+subtype=Human Knight
+auto=cantbeblockedby(creature[red;black])
+power=3
+toughness=2
 [/card]
 [card]
 text=You gain 4 life.

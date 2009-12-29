@@ -101,6 +101,18 @@ mana={1}{W}
 type=Instant
 [/card]
 [card]
+text=Enchant creature   Enchanted creature can't be blocked by black creatures.     Enchanted creature gets +2/+2 as long as an opponent controls a black permanent.
+id=2666
+target=creature
+auto=cantbeblockedby(creature[black])
+auto=aslongas(*[black]|opponentBattlefield) 2/2
+name=Black Scarab
+rarity=U
+mana={W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 text={0}: Return Blinking Spirit to its owner's hand.
 id=2668
 name=Blinking Spirit
@@ -111,6 +123,18 @@ mana={3}{W}
 power=2
 subtype=Spirit
 toughness=2
+[/card]
+[card]
+text=Enchant creature   Enchanted creature can't be blocked by blue creatures.     Enchanted creature gets +2/+2 as long as an opponent controls a blue permanent.
+id=2669
+target=creature
+auto=cantbeblockedby(creature[blue])
+auto=aslongas(*[blue]|opponentBattlefield) 2/2
+name=Blue Scarab
+rarity=U
+mana={W}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 text={T}, Sacrifice a creature: Target creature gets +2/+2 until end of turn.     {1}{U}{U}, Sacrifice a creature: Counter target creature spell.
@@ -517,6 +541,18 @@ mana={B}
 type=Instant
 [/card]
 [card]
+text=Enchant creature   Enchanted creature can't be blocked by green creatures.   Enchanted creature gets +2/+2 as long as an opponent controls a green permanent.
+id=2688
+target=creature
+auto=cantbeblockedby(creature[green])
+auto=aslongas(*[green]|opponentBattlefield) 2/2
+name=Green Scarab
+rarity=U
+mana={W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 text={B}: Hoar Shade gets +1/+1 until end of turn.
 id=2455
 name=Hoar Shade
@@ -541,7 +577,8 @@ type=Instant
 [card]
 text=Hurricane deals X damage to each creature with flying and each player.
 id=2573
-alias=1251
+auto=damage:X all(creature[flying])
+auto=damage:X all(player)
 name=Hurricane 
 rarity=U
 mana={X}{G}
@@ -1063,6 +1100,18 @@ mana={U}
 type=Instant
 [/card]
 [card]
+text=Enchant creature   Enchanted creature can't be blocked by red creatures.     Enchanted creature gets +2/+2 as long as an opponent controls a red permanent.
+id=2709
+target=creature
+auto=cantbeblockedby(creature[red])
+auto=aslongas(*[red]|opponentBattlefield) 2/2
+name=Red Scarab
+rarity=U
+mana={W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.) {G}: Regenerate enchanted creature. (The next time that creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
 target=creature
 auto={G}:regenerate
@@ -1268,6 +1317,18 @@ name=Stone Rain
 rarity=C
 mana={2}{R}
 type=Sorcery
+[/card]
+[card]
+text=Stone Spirit can't be blocked by creatures with flying.
+id=2654
+name=Stone Spirit
+rarity=U
+mana={4}{R}
+type=Creature
+subtype=Elemental Spirit
+auto=cantbeblockedby(creature[flying])
+power=4
+toughness=3
 [/card]
 [card]
 text=Enchant creature   Enchanted creature gets +0/+2.   {R}: Enchanted creature gets +1/+0 until end of turn.
@@ -1538,6 +1599,18 @@ name=Whalebone Glider
 rarity=U
 mana={2}
 type=Artifact
+[/card]
+[card]
+text=Enchant creature   Enchanted creature can't be blocked by white creatures.   Enchanted creature gets +2/+2 as long as an opponent controls a white permanent.
+id=2716
+target=creature
+auto=cantbeblockedby(creature[white])
+auto=aslongas(*[white]|opponentBattlefield) 2/2
+name=White Scarab
+rarity=U
+mana={W}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 text=Enchant creature   Enchanted creature gets +1/+0 and has flying and first strike.

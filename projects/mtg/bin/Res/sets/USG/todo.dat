@@ -1502,17 +1502,6 @@ type=Enchantment
 mana={2}{R}
 [/card]
 [card]
-text=Treetop Rangers can't be blocked except by creatures with flying.
-id=5681
-name=Treetop Rangers
-rarity=C
-type=Creature
-mana={2}{G}
-power=2
-subtype=Elf
-toughness=2
-[/card]
-[card]
 text=Choose artifact, creature, or land. Tap all untapped permanents of the chosen type target player controls, or untap all tapped permanents of that type that player controls.
 id=5728
 name=Turnabout

@@ -1159,17 +1159,6 @@ type=Instant
 mana={3}{W}
 [/card]
 [card]
-text=Rampart Crawler can't be blocked by Walls.
-id=19586
-name=Rampart Crawler
-rarity=C
-type=Creature
-mana={B}
-power=1
-subtype=Lizard Mercenary
-toughness=1
-[/card]
-[card]
 text=Remote Farm comes into play tapped with two depletion counters on it.       {T}, Remove a depletion counter from Remote Farm: Add {W}{W} to your mana pool. If there are no depletion counters on Remote Farm, sacrifice it.
 id=19642
 name=Remote Farm

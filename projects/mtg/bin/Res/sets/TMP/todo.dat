@@ -262,18 +262,6 @@ rarity=R
 type=Artifact
 mana={1}
 [/card]
-
-[card]
-text=Shadow (This creature can block or be blocked by only creatures with shadow.)  Dauthi Horror can't be blocked by white creatures.
-id=4650
-name=Dauthi Horror
-rarity=C
-type=Creature
-mana={1}{B}
-power=2
-subtype=Dauthi Horror
-toughness=1
-[/card]
 [card]
 text=Shadow (This creature can block or be blocked by only creatures with shadow.)  Whenever Dauthi Mindripper attacks and isn't blocked, you may sacrifice it. If you do, defending player discards three cards.
 id=4653

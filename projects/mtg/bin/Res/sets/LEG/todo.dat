@@ -60,17 +60,6 @@ type=Sorcery
 mana={2}{B}{B}
 [/card]
 [card]
-text=Amrou Kithkin can't be blocked by creatures with power 3 or greater.
-id=1601
-name=Amrou Kithkin
-rarity=C
-type=Creature
-mana={W}{W}
-power=1
-subtype=Kithkin
-toughness=1
-[/card]
-[card]
 text={G}{W}{U}, {T}: Prevent all combat damage that would be dealt this turn.
 id=1643
 name=Angus Mackenzie
@@ -380,17 +369,6 @@ subtype=Elemental
 toughness=6
 [/card]
 [card]
-text=Elven Riders can't be blocked except by Walls and/or creatures with flying.
-id=1523
-name=Elven Riders
-rarity=R
-type=Creature
-mana={3}{G}{G}
-power=3
-subtype=Elf
-toughness=3
-[/card]
-[card]
 text=Prevent all combat damage that would be dealt to Enchanted Being by enchanted creatures.
 id=1610
 name=Enchanted Being
@@ -425,17 +403,6 @@ name=Eureka
 rarity=R
 type=Sorcery
 mana={2}{G}{G}
-[/card]
-[card]
-text=Non-Eye creatures you control can't attack.     Evil Eye of Orms-by-Gore can't be blocked except by Walls.
-id=1436
-name=Evil Eye of Orms-by-Gore
-rarity=U
-type=Creature
-mana={4}{B}
-power=3
-subtype=Eye
-toughness=6
 [/card]
 [card]
 text=Flip Falling Star onto the playing area from a height of at least one foot. Falling Star deals 3 damage to each creature it lands on. Tap all creatures dealt damage by Falling Star. If Falling Star doesn't turn completely over at least once during the flip, it has no effect.
@@ -1217,15 +1184,6 @@ id=1704
 name=Seafarer's Quay
 rarity=U
 type=Land
-[/card]
-[card]
-text=Enchant creature     Enchanted creature can't be blocked except by artifact creatures and/or white creatures.
-id=1633
-name=Seeker
-rarity=U
-type=Enchantment
-mana={2}{W}{W}
-subtype=Aura
 [/card]
 [card]
 text={0}: Sentinel's toughness becomes 1 plus the power of target creature blocking or blocked by Sentinel. (This effect doesn't end at end of turn.)

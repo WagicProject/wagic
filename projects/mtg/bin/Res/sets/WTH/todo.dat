@@ -664,17 +664,6 @@ text=Whenever a land an opponent controls is tapped for mana, tap all lands that
 rarity=R
 [/card]
 [card]
-id=4488
-name=Manta Ray
-mana={1}{U}{U}
-type=Creature
-subtype=Fish
-power=3
-toughness=3
-text=Manta Ray can't attack unless defending player controls an Island. Manta Ray can't be blocked except by blue creatures. When you control no Islands, sacrifice Manta Ray.
-rarity=C
-[/card]
-[card]
 id=4582
 name=Master of Arms
 mana={2}{W}

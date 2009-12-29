@@ -522,6 +522,18 @@ power=4
 toughness=4
 [/card]
 [card]
+text=Sneaky Homunculus can't block or be blocked by creatures with power 2 or greater.
+id=21282
+name=Sneaky Homunculus
+rarity=C
+mana={1}{U}
+type=Creature
+subtype=Homunculus Illusion
+auto=cantbeblockedby(creature[power>=2])
+power=1
+toughness=1
+[/card]
+[card]
 text=Spineless Thug can't block.
 id=21310
 name=Spineless Thug

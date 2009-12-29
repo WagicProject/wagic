@@ -133,16 +133,16 @@ power=2
 toughness=2
 [/card]
 [card]
+text=Enchant creature   Enchanted creature gets +2/+0 and can't be blocked by creatures with flying.
 id=110501
-name=Dust Corona
-mana={R}
-type=Enchantment
-subtype=Aura
-text=Enchant creature -- Enchanted creature gets +2/+0 and can't be blocked by creatures with flying.
 target=creature
 auto=2/0
 auto=cantbeblockedby(creatures[flying])
+name=Dust Corona
 rarity=C
+mana={R}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 text=Enchant creature You control enchanted creature. At the beginning of your upkeep, enchanted creature deals 1 damage to its owner.

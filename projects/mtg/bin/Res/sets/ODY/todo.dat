@@ -1017,17 +1017,6 @@ subtype=Lizard
 toughness=1
 [/card]
 [card]
-text=Otarian Juggernaut can't be blocked by Walls.     Threshold - As long as seven or more cards are in your graveyard, Otarian Juggernaut gets +3/+0 and attacks each turn if able.
-id=29889
-name=Otarian Juggernaut
-rarity=R
-type=Artifact Creature
-mana={4}
-power=2
-subtype=Juggernaut
-toughness=3
-[/card]
-[card]
 text={T}, Remove any number of cards in your graveyard from the game: Target creature gets -X/-X until end of turn, where X is the number of cards removed this way.
 id=29835
 name=Painbringer

@@ -120,17 +120,6 @@ text=Dragonskull Summit enters the battlefield tapped unless you control a Swamp
 rarity=R
 [/card]
 [card]
-id=190575
-name=Dread Warlock
-mana={1}{B}{B}
-type=Creature
-subtype=Human Wizard
-power=2
-toughness=2
-text=Dread Warlock can't be blocked except by black creatures.
-rarity=C
-[/card]
-[card]
 id=191067
 name=Drowned Catacomb
 mana=

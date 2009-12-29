@@ -420,15 +420,6 @@ text={1}: Look at the top card of your library. {2}: Reveal the top card of your
 rarity=C
 [/card]
 [card]
-id=50272
-name=Field of Reality
-mana={2}{U}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature can't be blocked by Spirits. {1}{U}: Return Field of Reality to its owner's hand.
-rarity=C
-[/card]
-[card]
 id=80507
 name=Floating-Dream Zubera
 mana={1}{U}
@@ -464,7 +455,6 @@ toughness=2
 text={T}: Frostwielder deals 1 damage to target creature or player. If a creature dealt damage by Frostwielder this turn would be put into a graveyard, remove it from the game instead.
 rarity=C
 [/card]
-
 [card]
 id=75328
 name=Ghostly Prison

@@ -60,6 +60,18 @@ toughness=2
 abilities=first strike
 [/card]
 [card]
+text=Barrenton Cragtreads can't be blocked by red creatures.
+id=142000
+name=Barrenton Cragtreads
+rarity=C
+mana={2}{WU}{WU}
+type=Creature
+subtype=Kithkin Scout
+auto=cantbeblockedby(creature[red])
+power=3
+toughness=3
+[/card]
+[card]
 text=Enchant creature   You control enchanted creature.   At the beginning of your upkeep, put a -1/-1 counter on enchanted creature.
 id=135485
 target=creature
@@ -852,6 +864,18 @@ toughness=1
 abilities=haste
 [/card]
 [card]
+text=Mudbrawler Raiders can't be blocked by blue creatures.
+id=141992
+name=Mudbrawler Raiders
+rarity=C
+mana={2}{RG}{RG}
+type=Creature
+subtype=Goblin Warrior
+auto=cantbeblockedby(creature[blue])
+power=3
+toughness=3
+[/card]
+[card]
 text={T}: Add {1} to your mana pool.   {WU}, {T}: Add {W}{W}, {W}{U}, or {U}{U} to your mana pool.
 auto={T}:Add {1}
 auto={WU}{T}:Add {W}{W}
@@ -1034,6 +1058,18 @@ mana={6}
 type=Artifact Creature
 subtype=Scarecrow
 power=5
+toughness=3
+[/card]
+[card]
+text=Raven's Run Dragoon can't be blocked by black creatures.
+id=142037
+name=Raven's Run Dragoon
+rarity=C
+mana={2}{GW}{GW}
+type=Creature
+subtype=Elf Knight
+auto=cantbeblockedby(creature[black])
+power=3
 toughness=3
 [/card]
 [card]
@@ -1236,6 +1272,18 @@ subtype=Elemental Shaman
 power=1
 toughness=1
 abilities=haste
+[/card]
+[card]
+text=Sootwalkers can't be blocked by white creatures.
+id=141936
+name=Sootwalkers
+rarity=C
+mana={2}{BR}{BR}
+type=Creature
+subtype=Elemental Rogue
+auto=cantbeblockedby(creature[white])
+power=3
+toughness=3
 [/card]
 [card]
 text=({2W} can be paid with any two mana or with {W}. This card's converted mana cost is 6.)  Put three 1/1 white Spirit creature tokens with flying onto the battlefield.
@@ -1472,16 +1520,28 @@ mana={2}
 type=Artifact
 [/card]
 [card]
+text=Wanderbrine Rootcutters can't be blocked by green creatures.
+id=142012
+name=Wanderbrine Rootcutters
+rarity=C
+mana={2}{UB}{UB}
+type=Creature
+subtype=Merfolk Rogue
+auto=cantbeblockedby(creature[green])
+power=3
+toughness=3
+[/card]
+[card]
 text=Flying
-abilities=flying
 id=153967
 name=Wasp Lancer
 rarity=U
-type=Creature
 mana={UB}{UB}{UB}
-power=3
+type=Creature
 subtype=Faerie Soldier
+power=3
 toughness=2
+abilities=flying
 [/card]
 [card]
 text=Watchwing Scarecrow has vigilance as long as you control a white creature.   Watchwing Scarecrow has flying as long as you control a blue creature.
@@ -1500,11 +1560,11 @@ subtype=Scarecrow
 text=Whimwader can't attack unless defending player controls a blue permanent.
 id=141957
 name=Whimwader
-auto=aslongas(*[blue]|opponentBattlefield) -cantattack
 rarity=C
 mana={4}{U}
 type=Creature
 subtype=Elemental
+auto=aslongas(*[blue]|opponentBattlefield) -cantattack
 power=6
 toughness=4
 abilities=cantattack
@@ -1536,12 +1596,12 @@ abilities=vigilance
 [card]
 text=Flyin   Attacking creatures you control have lifelink.
 id=146090
-auto=lord(creature[attacking]|myBattlefield) lifelink
 name=Windbrisk Raptor
 rarity=R
 mana={5}{W}{W}
 type=Creature
 subtype=Bird
+auto=lord(creature[attacking]|myBattlefield) lifelink
 power=5
 toughness=7
 abilities=flying

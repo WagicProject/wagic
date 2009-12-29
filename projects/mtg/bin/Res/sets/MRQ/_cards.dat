@@ -1186,6 +1186,18 @@ toughness=3
 abilities=flying
 [/card]
 [card]
+text=Rampart Crawler can't be blocked by Walls.
+id=19586
+name=Rampart Crawler
+rarity=C
+mana={B}
+type=Creature
+subtype=Lizard Mercenary
+auto=cantbeblockedby(wall)
+power=1
+toughness=1
+[/card]
+[card]
 text=Flying   {2}{W}: Rappelling Scouts gains protection from the color of your choice until end of turn.
 id=20412
 name=Rappelling Scouts

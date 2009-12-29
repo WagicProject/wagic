@@ -193,17 +193,6 @@ subtype=Snake
 toughness=1
 [/card]
 [card]
-text=Fleet-Footed Monk can't be blocked by creatures with power 2 or greater.
-id=4383
-name=Fleet-Footed Monk
-rarity=C
-type=Creature
-mana={1}{W}
-power=1
-subtype=Human Monk
-toughness=1
-[/card]
-[card]
 text=Each player discards any number of cards, then draws that many cards.     Draw a card.
 id=4262
 name=Flux
@@ -367,18 +356,6 @@ type=Sorcery
 mana={4}{R}{R}
 [/card]
 [card]
-text=Sacred Knight can't be blocked by black and/or red creatures.
-auto=cantbeblockedby(creature[red;black])
-id=4392
-name=Sacred Knight
-rarity=C
-type=Creature
-mana={3}{W}
-power=3
-subtype=Human Knight
-toughness=2
-[/card]
-[card]
 text=Play Scorching Winds only during the declare attackers step and only if you are the defending player.       Scorching Winds deals 1 damage to each attacking creature.
 id=4361
 name=Scorching Winds
@@ -397,7 +374,6 @@ power=2
 subtype=Human Soldier
 toughness=2
 [/card]
-
 [card]
 text=Look at target opponent's hand.       Draw a card.
 id=4275

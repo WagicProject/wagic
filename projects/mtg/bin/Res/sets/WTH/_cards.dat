@@ -274,6 +274,19 @@ power=1
 toughness=2
 [/card]
 [card]
+text=Manta Ray can't attack unless defending player controls an Island.   Manta Ray can't be blocked except by blue creatures.   When you control no Islands, sacrifice Manta Ray.
+id=4488
+name=Manta Ray
+rarity=C
+mana={1}{U}{U}
+type=Creature
+subtype=Fish
+auto=cantbeblockedby(creature[-blue])
+power=3
+toughness=3
+abilities=islandhome
+[/card]
+[card]
 text=Maraxus of Keld's power and toughness are each equal to the number of untapped artifacts, creatures, and lands you control.
 id=4557
 name=Maraxus of Keld

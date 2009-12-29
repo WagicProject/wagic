@@ -183,6 +183,18 @@ type=Sorcery
 subtype=Arcane
 [/card]
 [card]
+text=Enchant creature   Enchanted creature can't be blocked by Spirits.   {1}{U}: Return Field of Reality to its owner's hand.
+id=50272
+target=creature
+auto=cantbeblockedby(spirit)
+auto={1}{U}:moveTo(ownerhand)
+name=Field of Reality
+rarity=C
+mana={2}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 id=79062
 name=Forest
 auto={T}:Add {G}

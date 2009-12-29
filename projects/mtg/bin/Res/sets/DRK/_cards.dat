@@ -51,6 +51,18 @@ toughness=1
 abilities=flying
 [/card]
 [card]
+text=Bog Rats can't be blocked by Walls.
+id=1731
+name=Bog Rats
+rarity=C
+mana={B}
+type=Creature
+subtype=Rat
+auto=cantbeblockedby(wall)
+power=1
+toughness=1
+[/card]
+[card]
 text={2}{T}: All creatures get -1/-0 until end of turn. 
 id=1709
 auto={2}{T}:lord(creature) -1/0 ueot

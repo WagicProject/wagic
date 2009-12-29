@@ -402,6 +402,15 @@ power=5
 toughness=5
 [/card]
 [card]
+text=Savage Twister deals X damage to each creature.
+id=97216
+auto=damage:X all(creature)
+name=Savage Twister
+rarity=U
+mana={X}{R}{G}
+type=Sorcery
+[/card]
+[card]
 text={R}, Sacrifice a creature: Scorched Rusalka deals 1 damage to target player.
 id=107698
 name=Scorched Rusalka
@@ -424,6 +433,19 @@ rarity=U
 mana={W}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+text=Silhana Ledgewalker can't be blocked except by creatures with flying.   Silhana Ledgewalker can't be the target of spells or abilities your opponents control.
+id=96825
+name=Silhana Ledgewalker
+rarity=C
+mana={1}{G}
+type=Creature
+subtype=Elf Rogue
+auto=cantbeblockedby(creature[-flying])
+power=1
+toughness=1
+abilities=opponentshroud
 [/card]
 [card]
 text={T}: Add {1} to your mana pool.   {R}{G}, {T}: Target creature gets +1/+1 and gains trample until end of turn.

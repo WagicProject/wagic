@@ -294,19 +294,6 @@ subtype=Insect
 toughness=1
 [/card]
 [card]
-text=Elven Riders can't be blocked except by Walls and/or creatures with flying.
-id=135266
-name=Elven Riders
-auto=cantbeblockedby(creature[-flying,-wall])
-rarity=U
-color=Green
-type=Creature
-mana={3}{G}{G}
-power=3
-subtype=Elf
-toughness=3
-[/card]
-[card]
 text=Faerie Conclave comes into play tapped.     {T}: Add {U} to your mana pool.     {1}{U}: Faerie Conclave becomes a 2/1 blue Faerie creature with flying until end of turn. It's still a land. (It can't be blocked except by creatures with flying or reach.)
 id=106531
 name=Faerie Conclave
@@ -1061,20 +1048,6 @@ rarity=R
 color=Blue
 type=Sorcery
 mana={8}{U}{U}
-[/card]
-[card]
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +1/+1 and can't be blocked except by creatures with flying.
-id=129777
-name=Treetop Bracer
-target=creature
-auto=1/1
-auto=cantbeblockedby(creature[-flying])
-#Really need to continue trying implementing this one 3 cards from 10E would be added with cantbeblockedby.
-rarity=C
-color=Green
-type=Enchantment
-mana={1}{G}
-subtype=Aura
 [/card]
 [card]
 text=Treetop Village comes into play tapped.     {T}: Add {G} to your mana pool.     {1}{G}: Treetop Village becomes a 3/3 green Ape creature with trample until end of turn. It's still a land. (If it would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)
