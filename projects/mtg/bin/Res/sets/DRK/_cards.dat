@@ -522,15 +522,6 @@ mana={0}
 type=Artifact
 [/card]
 [card]
-id=1725
-name=Tower of Coireall
-mana={2}
-type=Artifact
-text={T}: Target creature can't be blocked by Walls this turn.
-auto={T}:cantbeblockedby(wall) target(creature)
-rarity=U
-[/card]
-[card]
 text=Water Wurm gets +0/+1 as long as an opponent controls an Island.
 id=1764
 name=Water Wurm

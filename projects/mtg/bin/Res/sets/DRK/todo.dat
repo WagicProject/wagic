@@ -553,6 +553,17 @@ text=At the beginning of your upkeep, The Fallen deals 1 damage to each opponent
 rarity=U
 [/card]
 [card]
+id=1725
+name=Tower of Coireall
+mana={2}
+type=Artifact
+text={T}: Target creature can't be blocked by Walls this turn.
+# Following line does not work: cantbeblockedby() can't be used
+# as an activated ability
+auto={T}:cantbeblockedby(wall) target(creature)
+rarity=U
+[/card]
+[card]
 id=1779
 name=Tracker
 mana={2}{G}
