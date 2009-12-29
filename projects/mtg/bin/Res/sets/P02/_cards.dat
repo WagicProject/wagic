@@ -1111,6 +1111,7 @@ toughness=3
 text=Flying When Vampiric Spirit enters the battlefield, you lose 4 life.
 auto=life:-4
 rarity=R
+abilities=flying
 [/card]
 [card]
 id=6513

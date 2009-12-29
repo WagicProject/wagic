@@ -560,7 +560,7 @@ mana={1}{U}
 type=Creature
 subtype=Wall
 power=0
-toughness=1
+toughness=2
 abilities=flying,defender
 [/card]
 [card]
