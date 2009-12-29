@@ -409,7 +409,7 @@ mana={4}{B}
 type=Creature
 subtype=Eye
 auto=lord(creature[-eye]|myBattlefield) cantattack
-auto=cantbeblockedby(creature[-walls])
+auto=cantbeblockedby(creature[-wall])
 power=3
 toughness=6
 [/card]
