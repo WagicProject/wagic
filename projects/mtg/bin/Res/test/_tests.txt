@@ -231,6 +231,7 @@ goblin_lackey3.txt
 goblin_lackey4.txt
 goblin_offensive.txt
 gravedigger.txt
+great_defender.txt
 hannas_custody.txt
 harpoon_sniper.txt
 hellfire.txt

@@ -1441,13 +1441,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 	int mana = card->target->getManaCost()->getConvertedCost();
 	game->currentlyActing()->getManaPool()->add(Constants::MTG_COLOR_ARTIFACT, mana);
 	}
-
-  case 1614: // Great Defender
-	{
-	int toughness = card->target->getManaCost()->getConvertedCost();
-	int power = 0;
-	game->addObserver(NEW AInstantPowerToughnessModifierUntilEOT(id, card, card->target, NEW WParsedPT(power,toughness)));
-	}
   
     //Addons ICE-AGE Cards
 

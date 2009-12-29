@@ -481,8 +481,9 @@ type=Enchantment
 [/card]
 [card]
 text=Target creature gets +0/+X until end of turn, where X is its converted mana cost.
-id=1614
 target=creature
+auto=0/manacost
+id=1614
 name=Great Defender
 rarity=U
 mana={W}

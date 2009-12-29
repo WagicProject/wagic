@@ -1,0 +1,23 @@
+#NAME:Great Defender
+#DESC: Target creature gets +0/+X
+#DESC: until end of turn, where X
+#DESC: is its converted mana cost.
+[INIT]
+firstmain
+[PLAYER1]
+inplay:Grizzly Bears
+hand:Great Defender,Lightning Bolt
+manapool:{W}{R}
+[PLAYER2]
+[DO]
+Great Defender
+Grizzly Bears
+Lightning Bolt
+Grizzly Bears
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:Grizzly Bears
+graveyard:Great Defender,Lightning Bolt
+[PLAYER2]
+[END]
