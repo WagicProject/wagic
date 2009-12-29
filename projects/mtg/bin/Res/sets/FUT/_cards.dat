@@ -189,7 +189,19 @@ rarity=R
 type=Land
 [/card]
 [card]
-text={T}: Add {1} to your mana pool. {T}: Add {R} or {G} to your mana pool. Each opponent gains 1 life.
+text={R}, Return Grinning Ignus to its owner's hand: Add {2}{R} to your mana pool. Play this ability only any time you could cast a sorcery.
+id=136040
+name=Grinning Ignus
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Elemental
+auto={R}:moveTo(ownerhand) && add{2}{R} asSorcery
+power=2
+toughness=2
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.   {T}: Add {R} or {G} to your mana pool. Each opponent gains 1 life.
 id=130595
 name=Grove of the Burnwillows
 auto={T}:Add {1}

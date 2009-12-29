@@ -1701,6 +1701,16 @@ toughness=3
 abilities=forestwalk
 [/card]
 [card]
+text=At the beginning of your upkeep, target player loses 1 life.   Sacrifice Smoldering Tar: Smoldering Tar deals 4 damage to target creature. Activate this ability only any time you could cast a sorcery.
+id=23179
+name=Smoldering Tar
+auto=@each my upkeep:life:-1 opponent
+auto={S}:damage:4 target(creature) asSorcery
+rarity=U
+mana={2}{B}{R}
+type=Enchantment
+[/card]
+[card]
 text={2}: Target green or blue creature gets +0/+1 until end of turn.
 id=22950
 name=Spirit Weaver

@@ -397,17 +397,6 @@ text=Madness {1}{B} (If you discard this card, you may play it for its madness c
 rarity=C
 [/card]
 [card]
-id=136040
-name=Grinning Ignus
-mana={2}{R}
-type=Creature
-subtype=Elemental
-power=2
-toughness=2
-text={R}, Return Grinning Ignus to its owner's hand: Add {2}{R} to your mana pool. Play this ability only any time you could play a sorcery.
-rarity=C
-[/card]
-[card]
 id=130328
 name=Haze of Rage
 mana={1}{R}

@@ -1008,17 +1008,6 @@ text=Return two target creatures to their owners' hands.
 rarity=U
 [/card]
 [card]
-id=3628
-name=Urborg Mindsucker
-mana={2}{B}
-type=Creature
-subtype=Horror
-power=2
-toughness=2
-text={B}, Sacrifice Urborg Mindsucker: Target opponent discards a card at random. Activate this ability only any time you could cast a sorcery.
-rarity=C
-[/card]
-[card]
 id=3629
 name=Vampiric Tutor
 mana={B}

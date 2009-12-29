@@ -257,8 +257,6 @@ type=Enchantment
 text=Put a card from your hand on top of your library: Prevent all damage that would be dealt by target instant or sorcery spell this turn.
 rarity=R
 [/card]
-
-
 [card]
 id=5173
 name=Hornet Cannon
@@ -267,7 +265,6 @@ type=Artifact
 text={3}, {T}: Put a 1/1 colorless Insect artifact creature token with flying and haste named Hornet onto the battlefield. Destroy that creature at the beginning of the next end step.
 rarity=U
 [/card]
-
 [card]
 id=5175
 name=Invasion Plans
@@ -303,7 +300,6 @@ toughness=3
 text=Trample {0}: The next 1 damage that would be dealt to Lancers en-Kor this turn is dealt to target creature you control instead.
 rarity=U
 [/card]
-
 [card]
 id=5181
 name=Lowland Basilisk
@@ -331,7 +327,6 @@ type=Instant
 text=As an additional cost to cast Mask of the Mimic, sacrifice a creature. Search your library for a card with the same name as target nontoken creature and put that card onto the battlefield. Then shuffle your library.
 rarity=U
 [/card]
-
 [card]
 id=5186
 name=Mind Games
@@ -359,7 +354,6 @@ toughness=0
 text=Mindwarper enters the battlefield with three +1/+1 counters on it. {2}{B}, Remove a +1/+1 counter from Mindwarper: Target player discards a card. Activate this ability only any time you could cast a sorcery.
 rarity=R
 [/card]
-
 [card]
 id=4980
 name=Mogg Bombers
@@ -371,7 +365,6 @@ toughness=4
 text=When another creature enters the battlefield, sacrifice Mogg Bombers. If you do, it deals 3 damage to target player.
 rarity=C
 [/card]
-
 [card]
 id=5107
 name=Mogg Infestation
@@ -391,7 +384,6 @@ toughness=1
 text=Whenever Mogg Maniac is dealt damage, it deals that much damage to target opponent.
 rarity=U
 [/card]
-
 [card]
 id=5192
 name=Mortuary
@@ -444,7 +436,6 @@ type=Artifact
 text=Whenever a creature enters the battlefield, if there are two or more other creatures on the battlefield, exile that creature. Return that card to the battlefield under its owner's control when Portcullis leaves the battlefield.
 rarity=R
 [/card]
-
 [card]
 id=5203
 name=Provoke
@@ -461,7 +452,6 @@ type=Enchantment
 text=If you would draw a card, you may put a study counter on Pursuit of Knowledge instead.  Remove three study counters from Pursuit of Knowledge, Sacrifice Pursuit of Knowledge: Draw seven cards.
 rarity=R
 [/card]
-
 [card]
 id=5206
 name=Ransack
@@ -486,9 +476,6 @@ type=Instant
 text=Untap all creatures you control and all creatures target opponent controls. You and that opponent each gain control of all creatures the other controls until end of turn. Those creatures gain haste until end of turn.
 rarity=R
 [/card]
-
-
-
 [card]
 id=5214
 name=Sacred Ground
@@ -522,7 +509,6 @@ type=Sorcery
 text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) Target creature gets +3/+0 until end of turn.
 rarity=C
 [/card]
-
 [card]
 id=5220
 name=Shaman en-Kor
@@ -545,7 +531,6 @@ toughness=0
 text=Defender (This creature can't attack.) Shifting Wall enters the battlefield with X +1/+1 counters on it.
 rarity=U
 [/card]
-
 [card]
 id=5223
 name=Sift
@@ -676,7 +661,6 @@ toughness=1
 text=Flying At the beginning of your upkeep, sacrifice Spindrift Drake unless you pay {U}.
 rarity=C
 [/card]
-
 [card]
 id=5236
 name=Spirit en-Kor
@@ -701,9 +685,6 @@ auto=counter(1/1,4)
 auto={1}{R}:counter(1/1,-1) && damage:1 target(creature)
 rarity=R
 [/card]
-
-
-
 [card]
 id=5251
 name=Temper
@@ -753,24 +734,12 @@ toughness=1
 text={T}: Target land becomes an Island until end of turn.
 rarity=C
 [/card]
-
-
-
 [card]
 id=5259
 name=Verdant Touch
 mana={1}{G}
 type=Sorcery
 text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) Target land becomes a 2/2 creature that's still a land. (This effect lasts indefinitely.)
-rarity=R
-[/card]
-
-[card]
-id=5260
-name=Volrath's Gardens
-mana={1}{G}
-type=Enchantment
-text={2}, Tap an untapped creature you control: You gain 2 life. Activate this ability only any time you could cast a sorcery.
 rarity=R
 [/card]
 [card]
@@ -792,9 +761,6 @@ toughness=1
 text=As long as the top card of your graveyard is a creature card, Volrath's Shapeshifter has the full text of that card and has the text "{2}: Discard a card." (Volrath's Shapeshifter has that card's name, mana cost, color, types, abilities, power, and toughness.) {2}: Discard a card.
 rarity=R
 [/card]
-
-
-
 [card]
 id=5267
 name=Wall of Essence
@@ -806,7 +772,6 @@ toughness=4
 text=Defender (This creature can't attack.) Whenever Wall of Essence is dealt combat damage, you gain that much life.
 rarity=U
 [/card]
-
 [card]
 id=5269
 name=Wall of Souls
@@ -829,7 +794,6 @@ toughness=4
 text=Defender (This creature can't attack.) Whenever Wall of Tears blocks a creature, return that creature to its owner's hand at end of combat.
 rarity=U
 [/card]
-
 [card]
 id=5272
 name=Warrior en-Kor

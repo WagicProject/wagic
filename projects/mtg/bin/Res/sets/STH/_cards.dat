@@ -588,6 +588,15 @@ power=2
 toughness=2
 [/card]
 [card]
+text={2}, Tap an untapped creature you control: You gain 2 life. Activate this ability only any time you could cast a sorcery.
+id=5260
+name=Volrath's Gardens
+auto={2}:tap notatarget(creature[-tapped]|myBattlefield) && life:2 controller asSorcery
+rarity=R
+mana={1}{G}
+type=Enchantment
+[/card]
+[card]
 text={T}: Add {1} to your mana pool.   {1}{B}, {T}: Put target creature card from your graveyard on top of your library.
 id=5263
 name=Volrath's Stronghold
@@ -598,17 +607,17 @@ type=Land
 abilities=legendary
 [/card]
 [card]
+text=Walking Dream is unblockable.   Walking Dream doesn't untap during your untap step if an opponent controls two or more creatures.
+auto=aslongas(creature|opponentBattlefield) doesnotuntap >1
 id=5264
 name=Walking Dream
+rarity=U
 mana={3}{U}
 type=Creature
 subtype=Illusion
 power=3
 toughness=3
-text=Walking Dream is unblockable.  Walking Dream doesn't untap during your untap step if an opponent controls two or more creatures.
-auto=aslongas(creature|opponentinplay) doesnotuntap >1
 abilities=unblockable
-rarity=U
 [/card]
 [card]
 text=Defender   When Wall of Blossoms enters the battlefield, draw a card.

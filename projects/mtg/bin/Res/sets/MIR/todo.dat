@@ -1026,17 +1026,6 @@ subtype=Fungus Wall
 toughness=1
 [/card]
 [card]
-text={B}, Sacrifice a Swamp: Put a +1/+1 counter on Mire Shade. Play this ability only any time you could play a sorcery.
-id=3300
-name=Mire Shade
-rarity=U
-type=Creature
-mana={1}{B}
-power=1
-subtype=Shade
-toughness=1
-[/card]
-[card]
 text=At the beginning of each opponent's upkeep, if that player has five or more cards in hand, Misers' Cage deals 2 damage to him or her.
 id=3259
 name=Misers' Cage

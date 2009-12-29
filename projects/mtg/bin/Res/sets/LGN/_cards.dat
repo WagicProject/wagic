@@ -138,6 +138,18 @@ power=1
 toughness=1
 [/card]
 [card]
+text={2}{B}, {T}, Sacrifice a Zombie: Destroy target non-Zombie creature. It can't be regenerated. Activate this ability only any time you could cast a sorcery.
+id=35249
+name=Deathmark Prelate
+rarity=U
+mana={3}{B}
+type=Creature
+subtype=Human Cleric
+auto={2}{B}{T}{S(zombie|myBattlefield)}:destroy target(creature[-zombie]) asSorcery
+power=2
+toughness=3
+[/card]
+[card]
 text=Trample
 id=39707
 name=Defiant Elf

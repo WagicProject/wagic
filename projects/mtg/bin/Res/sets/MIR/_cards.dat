@@ -895,6 +895,18 @@ toughness=3
 abilities=flying,protection from black
 [/card]
 [card]
+text={B}, Sacrifice a Swamp: Put a +1/+1 counter on Mire Shade. Activate this ability only any time you could cast a sorcery.
+id=3300
+name=Mire Shade
+rarity=U
+mana={1}{B}
+type=Creature
+subtype=Shade
+auto={B}{S(swamp|myBattlefield)}:counter(1/1) asSorcery
+power=1
+toughness=1
+[/card]
+[card]
 text=Moss Diamond enters the battlefield tapped.   {T}: Add {G} to your mana pool. 
 id=3260 
 name=Moss Diamond
