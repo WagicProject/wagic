@@ -909,17 +909,6 @@ text=If Scorched Ruins would enter the battlefield, sacrifice two untapped lands
 rarity=R
 [/card]
 [card]
-id=4439
-name=Serrated Biskelion
-mana={3}
-type=Artifact Creature
-subtype=Construct
-power=2
-toughness=2
-text={T}: Put a -1/-1 counter on Serrated Biskelion and a -1/-1 counter on target creature.
-rarity=U
-[/card]
-[card]
 id=4467
 name=Shadow Rider
 mana={2}{B}{B}

@@ -398,6 +398,18 @@ mana={1}{W}
 type=Enchantment
 [/card]
 [card]
+text={T}: Put a -1/-1 counter on Serrated Biskelion and a -1/-1 counter on target creature.
+id=4439
+name=Serrated Biskelion
+rarity=U
+mana={3}
+type=Artifact Creature
+subtype=Construct
+auto={T}:counter(-1/-1) all(this) && counter(-1/-1) target(creature)
+power=2
+toughness=2
+[/card]
+[card]
 text={T}, Exile a creature card from your graveyard: You gain 1 life.
 id=4588
 name=Soul Shepherd
