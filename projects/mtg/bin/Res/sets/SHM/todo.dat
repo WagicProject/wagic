@@ -875,6 +875,24 @@ type=Land
 subtype=Island
 [/card]
 [card]
+####Removed (0.10.1) because its ability could be used infinitely as a result of not being able to use counters as part of activation cost.
+text=Morselhoarder enters the battlefield with two -1/-1 counters on it.   Remove a -1/-1 counter from Morselhoarder: Add one mana of any color to your mana pool.
+id=159407
+name=Morselhoarder
+rarity=C
+mana={4}{RG}{RG}
+type=Creature
+subtype=Elemental
+auto=counter(-1/-1,2)
+auto={0}:counter(-1/-1,-1) && add{W}
+auto={0}:counter(-1/-1,-1) && add{U}
+auto={0}:counter(-1/-1,-1) && add{B}
+auto={0}:counter(-1/-1,-1) && add{R}
+auto={0}:counter(-1/-1,-1) && add{G}
+power=6
+toughness=4
+[/card]
+[card]
 text=If Mossbridge Troll would be destroyed, regenerate it.     Tap any number of untapped creatures you control other than Mossbridge Troll with total power 10 or greater: Mossbridge Troll gets +20/+20 until end of turn.
 id=146021
 name=Mossbridge Troll

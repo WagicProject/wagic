@@ -90,7 +90,7 @@ subtype=Ooze
 power=1
 toughness=1
 text={2}{B}{B}: Target creature gets -1/-1 until end of turn. Put a +1/+1 counter on Consumptive Goo.
-auto={2}{B}{B}:-1/-1 target(creature) && counter(1/1,1)
+auto={2}{B}{B}:counter(1/1) all(this) && -1/-1 target(creature)
 rarity=R
 [/card]
 [card]

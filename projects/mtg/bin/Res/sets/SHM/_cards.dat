@@ -798,23 +798,6 @@ toughness=5
 abilities=wither
 [/card]
 [card]
-text=Morselhoarder enters the battlefield with two -1/-1 counters on it.   Remove a -1/-1 counter from Morselhoarder: Add one mana of any color to your mana pool.
-id=159407
-name=Morselhoarder
-rarity=C
-mana={4}{RG}{RG}
-type=Creature
-subtype=Elemental
-auto=counter(-1/-1,2)
-auto={0}:counter(-1/-1,-1) && add{W}
-auto={0}:counter(-1/-1,-1) && add{U}
-auto={0}:counter(-1/-1,-1) && add{B}
-auto={0}:counter(-1/-1,-1) && add{R}
-auto={0}:counter(-1/-1,-1) && add{G}
-power=6
-toughness=4
-[/card]
-[card]
 text={T}: Add {R} to your mana pool.
 auto={T}:Add {R}
 id=157888
