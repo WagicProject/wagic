@@ -1162,7 +1162,7 @@ toughness=3
 [/card]
 [card]
 text=Seismic Shudder deals 1 damage to each creature without flying.
-auto=damage:1 all(creature[flying])
+auto=damage:1 all(creature[-flying])
 id=180134
 name=Seismic Shudder
 rarity=C

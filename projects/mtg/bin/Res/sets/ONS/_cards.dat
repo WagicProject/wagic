@@ -344,7 +344,7 @@ abilities=lifelink
 [/card]
 [card]
 text={5}{R}{R}: Put a 5/5 red Dragon creature token with flying onto the battlefield. (It can't be blocked except by creatures with flying or reach.)
-uto={5}{R}{R}:token(Dragon,creature token Dragon, 5/5,red flying)
+auto={5}{R}{R}:token(Dragon,creature token Dragon, 5/5,red flying)
 id=39665
 name=Dragon Roost
 rarity=R
