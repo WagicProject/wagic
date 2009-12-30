@@ -411,7 +411,7 @@ id=34479
 name=Purge
 mana={1}{W}
 type=Instant
-target=creature[black,artifact]
+target=creature[black;artifact]
 auto=bury
 rarity=U
 [/card]

@@ -1232,6 +1232,21 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Flying   Shauku, Endbringer can't attack if there's another creature on the battlefield.   At the beginning of your upkeep, you lose 3 life.   {T}: Remove target creature from the game and put a +1/+1 counter on Shauku.
+id=3311
+name=Shauku, Endbringer
+rarity=R
+mana={5}{B}{B}
+type=Creature
+subtype=Vampire
+auto=@each my upkeep:life:-3 controller
+auto=aslongas(other creature|battlefield) cantattack
+auto={T}:counter(1/1) all(this) && moveTo(exile) target(creature)
+power=5
+toughness=5
+abilities=legendary,flying
+[/card]
+[card]
 text={B}{R}{T}: Shauku's Minion deals 2 damage to target white creature.
 id=3554 
 name=Shauku's Minion

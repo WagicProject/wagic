@@ -1467,21 +1467,6 @@ type=Instant
 mana={1}{B}
 [/card]
 [card]
-text=Flying   Shauku, Endbringer can't attack if there's another creature on the battlefield.   At the beginning of your upkeep, you lose 3 life.   {T}: Remove target creature from the game and put a +1/+1 counter on Shauku.
-auto=@each my upkeep:life:-3
-id=3311
-name=Shauku, Endbringer
-type=Creature
-subtype=Vampire
-rarity=R
-mana={5}{B}{B}
-auto=aslongas(creature|battlefield) cantattack
-auto=
-power=5
-toughness=5
-abilities=legendary,flying
-[/card]
-[card]
 text=As Shimmer comes into play, choose a land type.       All lands of the chosen type have phasing.
 id=3363
 name=Shimmer

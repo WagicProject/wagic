@@ -25,7 +25,7 @@ abilities=flying,vigilance
 [/card]
 [card]
 text={T}, Sacrifice a land: Destroy target land.
-auto={T}{s(land|myBattlefield)}:destroy target(land)
+auto={T}{S(land|myBattlefield)}:destroy target(land)
 id=3733
 name=Army Ants
 rarity=U
@@ -155,7 +155,7 @@ abilities=flying,protection from red
 [card]
 text={G}, Sacrifice Giant Caterpillar: Put a 1/1 green Insect creature token with flying named Butterfly into play at end of turn.
 id=3665
-auto={G}{s}:token(Butterfly,creature insect, 1/1,flying green)
+auto={G}{S}:token(Butterfly,creature insect, 1/1,flying green)
 name=Giant Caterpillar
 rarity=C
 mana={3}{G}
@@ -314,8 +314,7 @@ id=3720
 name=Miraculous Recovery
 rarity=U
 mana={4}{W}
-type=Enchantment
-subtype=Aura
+type=Instant
 [/card]
 [card]
 text={3}{B}{B}, Sacrifice a creature: Return Necrosavant from your graveyard to the battlefield. Activate this ability only during your upkeep.
