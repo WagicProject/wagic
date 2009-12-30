@@ -1071,17 +1071,6 @@ text=Flying Whenever Mana Skimmer deals damage to a player, tap target land that
 rarity=C
 [/card]
 [card]
-id=113563
-name=Mangara of Corondor
-mana={1}{W}{W}
-type=Legendary Creature
-subtype=Human Wizard
-power=1
-toughness=1
-text={T}: Remove Mangara of Corondor and target permanent from the game.
-rarity=R
-[/card]
-[card]
 id=109763
 name=Might of Old Krosa
 mana={G}

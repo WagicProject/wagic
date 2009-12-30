@@ -75,7 +75,6 @@ toughness=2
 text={R}: Cinder Crawler gets +1/+0 until end of turn. Play this ability only if Cinder Crawler is blocked.
 rarity=C
 [/card]
-
 [card]
 id=6162
 name=Coat of Arms
@@ -520,15 +519,6 @@ mana={W}
 type=Enchantment
 text={0}: Remove target attacking creature you control from combat and untap it. Prevent all combat damage that would be dealt to and dealt by that creature this turn.
 rarity=U
-[/card]
-[card]
-id=6103
-name=Recurring Nightmare
-mana={2}{B}
-type=Enchantment
-auto={S(creature|myinplay)}:moveto(myhand) && moveto(myinplay) target(creature|mygraveyard)
-text=Sacrifice a creature, Return Recurring Nightmare to its owner's hand: Return target creature card from your graveyard to play. Play this ability only any time you could play a sorcery.
-rarity=R
 [/card]
 [card]
 id=6055

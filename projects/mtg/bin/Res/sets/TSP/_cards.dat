@@ -462,6 +462,19 @@ power=2
 toughness=4
 [/card]
 [card]
+text={T}: Exile Mangara of Corondor and target permanent.
+id=113563
+name=Mangara of Corondor
+rarity=R
+mana={1}{W}{W}
+type=Creature
+subtype=Human Wizard
+auto={T}:moveTo(exile) all(this) && moveTo(exile) target(*)
+power=1
+toughness=1
+abilities=legendary
+[/card]
+[card]
 text=All Sliver creatures get +2/+2.
 id=111042
 name=Might Sliver
