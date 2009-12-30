@@ -275,15 +275,15 @@ text=When Predatory Nightstalker enters the battlefield, you may have target opp
 rarity=U
 [/card]
 [card]
-id=6556
-name=Prowling Nightstalker
-mana={3}{B}
-type=Creature
-subtype=Nightstalker
-power=2
-toughness=2
-text=Prowling Nightstalker can't be blocked except by black creatures.
-rarity=C
+####Does not work as it should (0.10.1)
+id=6580
+name=Rain of Daggers
+mana={4}{B}{B}
+type=Sorcery
+text=Destroy all creatures target opponent controls. You lose 2 life for each creature destroyed this way.
+auto=foreach(creature|opponentinplay) life:-2 controller
+auto=destroy all(creature|opponentinplay)
+rarity=R
 [/card]
 [card]
 id=6511
@@ -330,6 +330,17 @@ mana={G}
 type=Sorcery
 text=Shuffle any number of target creature cards from your graveyard into your library.
 rarity=U
+[/card]
+[card]
+####Does not work as it should (0.10.1)
+id=6518
+name=Righteous Fury
+mana={4}{W}{W}
+type=Sorcery
+text=Destroy all tapped creatures. You gain 2 life for each creature destroyed this way.
+auto=foreach(creature[tapped]) life:2 controller
+auto=destroy all(creature[tapped])
+rarity=R
 [/card]
 [card]
 id=6523
