@@ -41,7 +41,7 @@ const char* Constants::MTGBasicAbilities[] = {
 "reachshadow",
 "foresthome",
 "islandhome",
-"moutainhome",
+"mountainhome",
 "swamphome",
 "plainshome",
 "cloud",
