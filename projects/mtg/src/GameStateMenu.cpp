@@ -145,6 +145,7 @@ void GameStateMenu::Start(){
   }
 
   hasChosenGameType = 1;
+  mParent->gameType = GAME_TYPE_CLASSIC;
   if (options[Options::MOMIR_MODE_UNLOCKED].number) hasChosenGameType = 0;
   if (options[Options::RANDOMDECK_MODE_UNLOCKED].number) hasChosenGameType = 0;
   
@@ -438,7 +439,7 @@ void GameStateMenu::Update(float dt)
       break;
     case MENU_STATE_MAJOR_DUEL :
       if (MENU_STATE_MINOR_NONE == (currentState & MENU_STATE_MINOR)) {
-	      if (!hasChosenGameType){
+        if (!hasChosenGameType){
 	        currentState = MENU_STATE_MAJOR_SUBMENU;
 	        subMenuController = NEW SimpleMenu(102, this, Constants::MENU_FONT, 150,60);
 	        if (subMenuController){
