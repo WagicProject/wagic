@@ -511,7 +511,7 @@ abilities=mountainwalk
 [card]
 text=Whenever a nontoken creature you control is put into a graveyard from the battlefield, put a 1/1 green Saproling creature token onto the battlefield.
 id=89069
-auto=@movedto(creature|graveyard) from(inplay):token(Saproling,creature saproling, 1/1,green)
+auto=@movedto(creature|graveyard) from(myBattlefield):token(Saproling,creature saproling, 1/1,green)
 name=Golgari Germination
 rarity=U
 type=Enchantment
@@ -564,18 +564,6 @@ toughness=6
 abilities=reach
 [/card]
 [card]
-text={T}: Hammerfist Giant deals 4 damage to each creature without flying and each player.
-id=83712
-auto={T}:damage:4 all(creature[-flying]) && damage:4 all(player)
-name=Hammerfist Giant
-rarity=R
-type=Creature
-mana={4}{R}{R}
-power=5
-subtype=Giant Warrior
-toughness=4
-[/card]
-[card]
 text=Islandwalk
 id=87914
 name=Grayscaled Gharial
@@ -607,6 +595,18 @@ name=Island
 rarity=L
 type=Basic Land
 subtype=Island
+[/card]
+[card]
+text={T}: Hammerfist Giant deals 4 damage to each creature without flying and each player.
+id=83712
+auto={T}:damage:4 all(creature[-flying]) && damage:4 all(player)
+name=Hammerfist Giant
+rarity=R
+type=Creature
+mana={4}{R}{R}
+power=5
+subtype=Giant Warrior
+toughness=4
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
