@@ -798,6 +798,19 @@ toughness=5
 abilities=wither
 [/card]
 [card]
+text=Lifelink, protection from converted mana cost 3 or greater
+id=158690
+name=Mistmeadow Skulk
+rarity=U
+mana={1}{W}
+type=Creature
+subtype=Kithkin Rogue
+auto=protection from(*[manacost>=3])
+power=1
+toughness=1
+abilities=lifelink
+[/card]
+[card]
 text={T}: Add {R} to your mana pool.
 auto={T}:Add {R}
 id=157888

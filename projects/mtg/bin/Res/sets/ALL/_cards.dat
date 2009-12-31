@@ -178,6 +178,26 @@ mana={2}{W}
 type=Instant
 [/card]
 [card]
+text=Choose one - Put a 2/2 black Zombie creature token onto the battlefield; or destroy target nonblack, nonartifact creature and it can't be regenerated.
+auto=may token(Zombie,Creature Zombie,2/2,black)
+auto=may bury target(creature[-black;-artifact])
+id=3073
+name=Feast or Famine
+rarity=C
+mana={3}{B}
+type=Instant
+[/card]
+[card]
+text=Choose one - Put a 2/2 black Zombie creature token onto the battlefield; or destroy target nonblack, nonartifact creature and it can't be regenerated.
+auto=may token(Zombie,Creature Zombie,2/2,black)
+auto=may bury target(creature[-black;-artifact])
+id=3074
+name=Feast or Famine
+rarity=C
+mana={3}{B}
+type=Instant
+[/card]
+[card]
 text=Target creature gets +2/+0 until end of turn.   Draw a card at the beginning of the next turn's upkeep.
 id=3075
 target=Creature

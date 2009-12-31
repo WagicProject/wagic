@@ -15,17 +15,6 @@ text=Bottomless Vault comes into play tapped.  You may choose not to untap Botto
 rarity=R
 [/card]
 [card]
-id=1940
-name=Brassclaw Orcs
-mana={2}{R}
-type=Creature
-subtype=Orc
-power=3
-toughness=2
-text=Brassclaw Orcs can't block creatures with power 2 or greater.
-rarity=C
-[/card]
-[card]
 id=1846
 name=Breeding Pit
 mana={3}{B}
@@ -90,7 +79,6 @@ toughness=4
 text=Black spells you play cost {B} more to play.
 rarity=U
 [/card]
-
 [card]
 id=1942
 name=Dwarven Catapult
@@ -493,28 +481,6 @@ power=1
 toughness=1
 text={T}: Look at the top three cards of target player's library.
 rarity=C
-[/card]
-[card]
-id=1965
-name=Orcish Veteran
-mana={2}{R}
-type=Creature
-subtype=Orc
-power=2
-toughness=2
-text=Orcish Veteran can't block white creatures with power 2 or greater. {R}: Orcish Veteran gains first strike until end of turn.
-rarity=C
-[/card]
-[card]
-id=1968
-name=Orgg
-mana={3}{R}{R}
-type=Creature
-subtype=Orgg
-power=6
-toughness=6
-text=Trample Orgg can't attack if defending player controls an untapped creature with power 3 or greater. Orgg can't block creatures with power 3 or greater.
-rarity=R
 [/card]
 [card]
 id=1969

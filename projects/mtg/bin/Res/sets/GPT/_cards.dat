@@ -472,6 +472,19 @@ toughness=3
 abilities=flying
 [/card]
 [card]
+text=Flying   When Sky Swallower enters the battlefield, target opponent gains control of all other permanents you control.
+id=96835
+name=Sky Swallower
+rarity=R
+mana={3}{U}{U}
+type=Creature
+subtype=Leviathan
+auto=moveTo(opponentBattlefield) all(* other|myBattlefield)
+power=8
+toughness=8
+abilities=flying
+[/card]
+[card]
 text={R}, Sacrifice a creature: Gain 1 life.
 id=107692
 name=Starved Rusalka

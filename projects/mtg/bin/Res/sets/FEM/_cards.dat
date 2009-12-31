@@ -68,6 +68,54 @@ power=1
 toughness=2
 [/card]
 [card]
+text=Brassclaw Orcs can't block creatures with power 2 or greater.
+id=1937
+name=Brassclaw Orcs
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Orc
+auto=lord(creature[power>=2]) cantbeblockedby(brassclaw orcs)
+power=3
+toughness=2
+[/card]
+[card]
+text=Brassclaw Orcs can't block creatures with power 2 or greater.
+id=1938
+name=Brassclaw Orcs
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Orc
+auto=lord(creature[power>=2]) cantbeblockedby(brassclaw orcs)
+power=3
+toughness=2
+[/card]
+[card]
+text=Brassclaw Orcs can't block creatures with power 2 or greater.
+id=1940
+name=Brassclaw Orcs
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Orc
+auto=lord(creature[power>=2]) cantbeblockedby(brassclaw orcs)
+power=3
+toughness=2
+[/card]
+[card]
+text=Brassclaw Orcs can't block creatures with power 2 or greater.
+id=1966
+name=Brassclaw Orcs
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Orc
+auto=lord(creature[power>=2]) cantbeblockedby(brassclaw orcs)
+power=3
+toughness=2
+[/card]
+[card]
 text={2}, {T}, Discard a card at random: Regenerate target creature.
 auto={2}{T}:regenerate target(creature) && discard:1
 id=1832
@@ -371,6 +419,58 @@ mana={2}
 type=Artifact
 [/card]
 [card]
+text=Orcish Veteran can't block white creatures with power 2 or greater.   {R}: Orcish Veteran gains first strike until end of turn.
+id=1939
+name=Orcish Veteran
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Orc
+auto=lord(creature[white;power>=2]) cantbeblockedby(orcish veteran)
+auto={R}:first strike
+power=2
+toughness=2
+[/card]
+[card]
+text=Orcish Veteran can't block white creatures with power 2 or greater.   {R}: Orcish Veteran gains first strike until end of turn.
+id=1964
+name=Orcish Veteran
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Orc
+auto=lord(creature[white;power>=2]) cantbeblockedby(orcish veteran)
+auto={R}:first strike
+power=2
+toughness=2
+[/card]
+[card]
+text=Orcish Veteran can't block white creatures with power 2 or greater.   {R}: Orcish Veteran gains first strike until end of turn.
+id=1965
+name=Orcish Veteran
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Orc
+auto=lord(creature[white;power>=2]) cantbeblockedby(orcish veteran)
+auto={R}:first strike
+power=2
+toughness=2
+[/card]
+[card]
+text=Orcish Veteran can't block white creatures with power 2 or greater.   {R}: Orcish Veteran gains first strike until end of turn.
+id=1967
+name=Orcish Veteran
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Orc
+auto=lord(creature[white;power>=2]) cantbeblockedby(orcish veteran)
+auto={R}:first strike
+power=2
+toughness=2
+[/card]
+[card]
 text=Protection from black   {W}: Order of Leitbur gains first strike until end of turn.     {W}{W}: Order of Leitbur gets +1/+0 until end of turn.
 id=2000
 name=Order of Leitbur
@@ -455,6 +555,20 @@ toughness=1
 abilities=protection from white
 [/card]
 [card]
+text=Trample   Orgg can't attack if defending player controls an untapped creature with power 3 or greater.   Orgg can't block creatures with power 3 or greater.
+id=1968
+name=Orgg
+rarity=R
+mana={3}{R}{R}
+type=Creature
+subtype=Orgg
+auto=aslongas(creature[power>=3;-tapped]|opponentbattlefield]) cantattack
+auto=lord(creature[power>=3]) cantbeblockedby(orgg)
+power=6
+toughness=6
+abilities=trample
+[/card]
+[card]
 text={U}: River Merfolk gains mountainwalk until end of turn.
 id=1888
 name=River Merfolk
@@ -477,16 +591,16 @@ rarity=U
 type=Land
 [/card]
 [card]
+text={U}{U}, {T}: Target creature gains shroud until end of turn. Play this ability only during your upkeep. (It can't be the target of spells or abilities.)
 id=1890
 name=Svyelunite Priest
+rarity=U
 mana={1}{U}
 type=Creature
 subtype=Merfolk Cleric
+auto={U}{U}{T}:shroud target(creature) myUpkeepOnly
 power=1
 toughness=1
-text={U}{U}, {T}: Target creature gains shroud until end of turn. Play this ability only during your upkeep. (It can't be the target of spells or abilities.)
-auto={U}{U}{T}:shroud target(creature) myUpkeepOnly
-rarity=U
 [/card]
 [card]
 text=Svyelunite Temple enters the battlefield tapped.   {T}: Add {U} to your mana pool.   {T}, Sacrifice Svyelunite Temple: Add {U}{U} to your mana pool.

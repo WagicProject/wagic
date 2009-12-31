@@ -340,28 +340,6 @@ text=An opponent chooses one  EYou draw three cards; or you destroy up to two 
 rarity=R
 [/card]
 [card]
-id=3073
-name=Feast or Famine
-mana={3}{B}
-type=Instant
-text=Choose one - Put a 2/2 black Zombie creature token onto the battlefield; or destroy target nonblack, nonartifact creature and it can't be regenerated.
-auto=may token(Zombie,Creature Zombie,2/2,black)
-auto=may bury target(creature[-black;-artifact])
-#Not sure this would work need to retest this one
-rarity=C
-[/card]
-[card]
-id=3074
-name=Feast or Famine
-mana={3}{B}
-type=Instant
-text=Choose one  EPut a 2/2 black Zombie creature token onto the battlefield; or destroy target nonblack, nonartifact creature and it can't be regenerated.
-auto=may token(Zombie,Creature Zombie,2/2,black)
-auto=may bury target(creature[-black;-artifact])
-#Not sure this would work need to retest this one
-rarity=C
-[/card]
-[card]
 id=3045
 name=Floodwater Dam
 mana={3}

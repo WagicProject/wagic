@@ -1,4 +1,15 @@
 [card]
+text=Kicker {B} (You may pay an additional {B} as you cast this spell.) Creatures you control get +1/+1 until end of turn.   If Strength of Night was kicked, Zombie creatures you control get an additional +2/+2 until end of turn.
+id=28007
+name=Strength of Night
+rarity=C
+mana={2}{G}
+kicker={B}
+auto=kicker lord(creature|myBattlefield) 1/1
+auto=lord(creature[zombie]|myBattlefield) 2/2
+type=Instant
+[/card]
+[card]
 text=Return target creature to its owner's hand.   Put X 1/1 green Saproling creature tokens onto the battlefield, where X is that creature's converted mana cost.
 id=28669
 name=AEther Mutation

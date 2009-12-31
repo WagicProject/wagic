@@ -670,14 +670,6 @@ text=While choosing targets as part of casting a spell or activating an ability,
 rarity=C
 [/card]
 [card]
-id=28007
-name=Strength of Night
-mana={2}{G}
-type=Instant
-text=Kicker {B} (You may pay an additional {B} as you cast this spell.) Creatures you control get +1/+1 until end of turn. If Strength of Night was kicked, Zombie creatures you control get an additional +2/+2 until end of turn.
-rarity=C
-[/card]
-[card]
 id=27583
 name=Suffocating Blast
 mana={1}{U}{U}{R}

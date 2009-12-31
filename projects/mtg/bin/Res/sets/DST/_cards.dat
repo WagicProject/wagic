@@ -165,6 +165,17 @@ type=Sorcery
 rarity=U
 [/card]
 [card]
+text=Flamebreak deals 3 damage to each creature without flying and each player. Creatures dealt damage this way can't be regenerated this turn.
+id=50539
+auto=damage:3 all(creature[-flying])
+auto=damage:3 all(player)
+auto=lord(creature[-flying]) cantregenerate
+name=Flamebreak
+rarity=R
+mana={R}{R}{R}
+type=Sorcery
+[/card]
+[card]
 text=Whenever an opponent discards a card, you may draw a card.
 id=51070
 name=Geth's Grimoire

@@ -837,17 +837,6 @@ type=Instant
 mana={2}{WU}{WU}
 [/card]
 [card]
-text=Lifelink, protection from converted mana cost 3 or greater
-id=158690
-name=Mistmeadow Skulk
-rarity=U
-type=Creature
-mana={1}{W}
-power=1
-subtype=Kithkin Rogue
-toughness=1
-[/card]
-[card]
 text={2}{W}{U}: Remove target creature from the game. Return that card to play under its owner's control at end of turn.
 id=157881
 name=Mistmeadow Witch

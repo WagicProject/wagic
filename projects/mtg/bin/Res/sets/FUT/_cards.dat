@@ -375,15 +375,15 @@ auto={5}{R}:damage:6 all(other creature[flying])
 abilities=flying
 [/card]
 [card]
+text=The next creature card you play this turn can be played as though it had flash.   Draw a card.
 id=126200
-name=Scout's Warning
-mana={W}
-type=Instant
-text=The next creature card you play this turn can be played as though it had flash. Draw a card.
 target=creature|myhand
 auto=flash
-auto=draw:1
+auto=draw:1 controller
+name=Scout's Warning
 rarity=R
+mana={W}
+type=Instant
 [/card]
 [card]
 text={1}, {T}, Discard a card: Put a 1/1 Sliver artifact creature token named Metallic Sliver onto the battlefield.
@@ -398,17 +398,18 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Swampwalk Cycling - Pay 2 life. (Pay 2 life, Discard this card: Draw a card.)
 id=136205
 name=Street Wraith
+rarity=U
+
 mana={3}{B}{B}
 type=Creature
 subtype=Wraith
+autohand={S}:life:-2 && draw:1
 power=3
 toughness=4
-text=Swampwalk Cycling - Pay 2 life. (Pay 2 life, Discard this card: Draw a card.)
 abilities=swampwalk
-autohand={S}:life:-2 && draw:1
-rarity=U
 [/card]
 [card]
 text=Tarmogoyf's power is equal to the number of card types among cards in all graveyards and its toughness is equal to that number plus 1. (The card types are artifact, creature, enchantment, instant, land, planeswalker, sorcery, and tribal.)
@@ -446,7 +447,7 @@ id=136047
 name=Tolaria West
 auto=tap
 auto={T}:Add{U}
-autohand={1}{U}{U}{S}:moveTo(myhand) target(*[manacost=0]|mylibrary) asSorcery
+autohand={1}{U}{U}{S}:moveTo(myhand) target(*[manacost=0;land]|mylibrary) asSorcery
 rarity=U
 type=Land
 [/card]

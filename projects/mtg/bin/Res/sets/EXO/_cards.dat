@@ -1,14 +1,4 @@
 [card]
-text=Sacrifice a creature, Return Recurring Nightmare to its owner's hand: Return target creature card from your graveyard to the battlefield. Activate this ability only any time you could cast a sorcery.
-auto={S(creature|myBattlefield)}:moveto(myhand) all(this) && moveto(myBattlefield) target(creature|mygraveyard) asSorcery
-
-id=6103
-name=Recurring Nightmare
-rarity=R
-mana={2}{B}
-type=Enchantment
-[/card]
-[card]
 text=When Anarchist enters the battlefield, you may return target sorcery card from your graveyard to your hand.
 id=6110
 name=Anarchist
@@ -440,6 +430,16 @@ name=Reclaim
 rarity=C
 mana={G}
 type=Sorcery
+[/card]
+[card]
+text=Sacrifice a creature, Return Recurring Nightmare to its owner's hand: Return target creature card from your graveyard to the battlefield. Activate this ability only any time you could cast a sorcery.
+auto={S(creature|myBattlefield)}:moveto(myhand) all(this) && moveto(myBattlefield) target(creature|mygraveyard) asSorcery
+
+id=6103
+name=Recurring Nightmare
+rarity=R
+mana={2}{B}
+type=Enchantment
 [/card]
 [card]
 text=Until end of turn, creatures you control gain "{1}: Regenerate this creature."

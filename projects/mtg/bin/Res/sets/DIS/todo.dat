@@ -97,14 +97,6 @@ text=Prevent all combat damage target creature would deal this turn. Prevent all
 rarity=U
 [/card]
 [card]
-id=107277
-name=Biomantic Mastery
-mana={4}{GU}{GU}{GU}
-type=Sorcery
-text=({(g/u)} can be paid with either {G} or {U}.) Draw a card for each creature target player controls, then draw a card for each creature another target player controls.
-rarity=R
-[/card]
-[card]
 id=107307
 name=Blessing of the Nephilim
 mana={W}

@@ -885,17 +885,6 @@ text=Bloodthirst 3 (If an opponent was dealt damage this turn, this creature ent
 rarity=U
 [/card]
 [card]
-id=96835
-name=Sky Swallower
-mana={3}{U}{U}
-type=Creature
-subtype=Leviathan
-power=8
-toughness=8
-text=Flying When Sky Swallower enters the battlefield, target opponent gains control of all other permanents you control.
-rarity=R
-[/card]
-[card]
 id=96838
 name=Skyrider Trainee
 mana={4}{W}

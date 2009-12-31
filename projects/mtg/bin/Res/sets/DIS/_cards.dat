@@ -47,6 +47,15 @@ toughness=1
 abilities=flying
 [/card]
 [card]
+text=({(g/u)} can be paid with either {G} or {U}.) Draw a card for each creature target player controls, then draw a card for each creature another target player controls.
+id=107277
+auto=foreach(creature|battlefield) draw:1
+name=Biomantic Mastery
+rarity=R
+mana={4}{GU}{GU}{GU}
+type=Sorcery
+[/card]
+[card]
 text=({T}: Add {B} or {R} to your mana pool.)   As Blood Crypt enters the battlefield, you may pay 2 life. If you don't, Blood Crypt enters the battlefield tapped.
 id=97102
 name=Blood Crypt

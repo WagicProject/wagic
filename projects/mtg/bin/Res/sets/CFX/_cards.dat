@@ -1,5 +1,5 @@
 [card]
-text=Target player loses 4 life and you gain 4 life.     Basic landcycling {1}{B} ({1}{B}, Discard this card: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.)
+text=Target player loses 4 life and you gain 4 life.   Basic landcycling {1}{B} ({1}{B}, Discard this card: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.)
 target=player
 auto=life:-4
 auto=life:4 controller
@@ -7,8 +7,8 @@ autohand={1}{B}{S}:moveTo(myhand) target(land[basic]|mylibrary)
 id=179513
 name=Absorb Vis
 rarity=C
-type=Sorcery
 mana={6}{B}
+type=Sorcery
 [/card]
 [card]
 text=Flying   {1}{G}{U}: Creatures you control gain shroud until end of turn. 
@@ -105,14 +105,14 @@ toughness=5
 abilities=flying,trample
 [/card]
 [card]
-text=Equipped creature gets +1/+0.     Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
+text=Equipped creature gets +1/+0.   Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
 id=189270
 name=Bone Saw
 rarity=C
+mana={0}
 auto={1}:equip
 auto=1/0
 type=Artifact
-mana={0}
 subtype=Equipment
 [/card]
 [card]
@@ -127,9 +127,9 @@ toughness=3
 [/card]
 [card]
 text=Exile target black or red permanent.
+id=183055
 target=*[black;red]
 auto=moveTo(exile)
-id=183055
 name=Celestial Purge
 rarity=U
 mana={1}{W}
@@ -163,27 +163,27 @@ abilities=trample,legendary
 [/card]
 [card]
 text=Cliffrunner Behemoth has haste as long as you control a red permanent.     Cliffrunner Behemoth has lifelink as long as you control a white permanent.
-auto=aslongas(*[red]|myBattlefield) haste
-auto=aslongas(*[white]|myBattlefield) lifelink
 id=159612
 name=Cliffrunner Behemoth
 rarity=R
 mana={3}{G}
 type=Creature
 subtype=Rhino Beast
+auto=aslongas(*[red]|myBattlefield) haste
+auto=aslongas(*[white]|myBattlefield) lifelink
 power=5
 toughness=3
 [/card]
 [card]
-text=Target creature gets -3/-0 until end of turn.     Cycling {2} ({2}, Discard this card: Draw a card.)
+text=Target creature gets -3/-0 until end of turn.   Cycling {2} ({2}, Discard this card: Draw a card.)
+id=180272
 target=creature
 auto=-3/-0
 autohand={2}:cycling
-id=180272
 name=Constricting Tendrils
 rarity=C
-type=Instant
 mana={U}
+type=Instant
 [/card]
 [card]
 text=Enchant red or green creature   Enchanted creature doesn't untap during its controller's untap step.
@@ -209,10 +209,10 @@ subtype=Aura
 [/card]
 [card]
 text=Counter target noncreature spell. Its controller loses 2 life. 
+id=186327
 target=*[-creature]|stack
 auto=fizzle
 auto=life:-2 targetController
-id=186327
 name=Countersquall
 rarity=U
 mana={U}{B}
@@ -220,13 +220,13 @@ type=Instant
 [/card]
 [card]
 text=Court Homunculus gets +1/+1 as long as you control another artifact.
-auto=aslongas(other artifact|myBattlefield) 1/1
 id=182607
 name=Court Homunculus
 rarity=C
 mana={W}
 type=Artifact Creature
 subtype=Homunculus
+auto=aslongas(other artifact|myBattlefield) 1/1
 power=1
 toughness=1
 [/card]
@@ -241,13 +241,13 @@ type=Artifact
 [/card]
 [card]
 text={R}{G}{W}: Cylian Sunsinger and each other creature with the same name as it get +3/+3 until end of turn.
-auto={R}{G}{W}:lord(cylian sunsinger) 3/3 ueot
 id=189081
 name=Cylian Sunsinger
 rarity=R
 mana={1}{G}
 type=Creature
 subtype=Elf Shaman
+auto={R}{G}{W}:lord(cylian sunsinger) 3/3 ueot
 power=2
 toughness=2
 [/card]
@@ -268,38 +268,38 @@ abilities=flying
 text=Domain - Target creature gets -1/-1 until end of turn for each basic land type among lands you control.
 id=179239
 target=creature
-name=Drag Down
 auto=aslongas(forest|myBattlefield) -1/-1 
 auto=aslongas(island|myBattlefield) -1/-1
 auto=aslongas(plains|myBattlefield) -1/-1
 auto=aslongas(mountain|myBattlefield) -1/-1
 auto=aslongas(swamp|myBattlefield) -1/-1
+name=Drag Down
 rarity=C
 mana={2}{B}
 type=Instant
 [/card]
 [card]
 text={1}{U}{R}: Dreadwing gets +3/+0 and gains flying until end of turn.
-auto={1}{U}{R}:3/0 && flying
 id=159629
 name=Dreadwing
 rarity=U
 mana={B}
 type=Creature
 subtype=Zombie
+auto={1}{U}{R}:3/0 && flying
 power=1
 toughness=1
 [/card]
 [card]
 text=Reach (This can block creatures with flying.)  As long as you control a red permanent, Ember Weaver gets +1/+0 and has first strike.
-auto=aslongas(*[red]|myBattlefield) 1/0
-auto=aslongas(*[red]|myBattlefield) first strike
 id=184990
 name=Ember Weaver
 rarity=C
 mana={2}{G}
 type=Creature
 subtype=Spider
+auto=aslongas(*[red]|myBattlefield) 1/0
+auto=aslongas(*[red]|myBattlefield) first strike
 power=2
 toughness=3
 abilities=reach
@@ -318,28 +318,28 @@ abilities=flying
 [/card]
 [card]
 text=Flying   {1}{W}{B}, {T}: Destroy target creature or enchantment.   {2}{U}: Untap Ethersworn Adjudicator.
-auto={1}{W}{B}{T}:destroy target(creature,enchantment)
-auto={2}{U}:untap
 id=175035
 name=Ethersworn Adjudicator
 rarity=M
 mana={4}{U}
 type=Artifact Creature
 subtype=Vedalken Knight
+auto={1}{W}{B}{T}:destroy target(creature,enchantment)
+auto={2}{U}:untap
 power=4
 toughness=4
 abilities=flying
 [/card]
 [card]
-text=Fiery Fall deals 5 damage to target creature.     Basic landcycling {1}{R} ({1}{R}, Discard this card: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.)
+text=Fiery Fall deals 5 damage to target creature.   Basic landcycling {1}{R} ({1}{R}, Discard this card: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.)
 target=creature
 auto=damage:5
 autohand={1}{R}{S}:moveTo(myhand) target(land[basic]|mylibrary)
 id=179519
 name=Fiery Fall
 rarity=C
-type=Instant
 mana={5}{R}
+type=Instant
 [/card]
 [card]
 text={W}{U}{B}{R}{G}: Fleshformer gets +2/+2 and gains fear until end of turn. Target creature gets -2/-2 until end of turn. Play this ability only during your turn.
@@ -347,10 +347,10 @@ auto={W}{U}{B}{R}{G}:all(this) 2/2 && all(this) fear && -2/-2 target(creature) m
 id=179884
 name=Fleshformer
 rarity=U
-type=Creature
 mana={2}{B}
-power=2
+type=Creature
 subtype=Human Wizard
+power=2
 toughness=2
 [/card]
 [card]
@@ -375,15 +375,15 @@ power=8
 toughness=8
 [/card]
 [card]
-text=Creatures you control get +1/+2 until end of turn. Untap those creatures.     Basic landcycling {1}{W} ({1}{W}, Discard this card: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.)
+text=Creatures you control get +1/+2 until end of turn. Untap those creatures.   Basic landcycling {1}{W} ({1}{W}, Discard this card: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.)
 auto=lord(creature|myBattlefield) 1/2
 auto=untap all(creature|myBattlefield)
 autohand={1}{W}{S}:moveTo(myhand) target(land[basic]|mylibrary)
 id=179505
 name=Gleam of Resistance
 rarity=C
-type=Instant
 mana={4}{W}
+type=Instant
 [/card]
 [card]
 text=Protection from white
@@ -486,6 +486,7 @@ text=Domain - Equipped creature gets +1/+1 for each basic land type among lands 
 id=180159
 name=Manaforce Mace
 rarity=U
+mana={4}
 type=Artifact
 auto={3}:equip
 auto=aslongas(forest|myBattlefield) 1/1
@@ -493,15 +494,14 @@ auto=aslongas(mountain|myBattlefield) 1/1
 auto=aslongas(plains|myBattlefield) 1/1
 auto=aslongas(swamp|myBattlefield) 1/1
 auto=aslongas(island|myBattlefield) 1/1
-mana={4}
 subtype=Equipment
 [/card]
 [card]
 text=Enchant creature   Enchanted creature gets +2/+2 and can't block.
+id=182609
 target=creature
 auto=2/2
 auto=cantblock
-id=182609
 name=Maniacal Rage
 rarity=C
 mana={1}{R}
@@ -526,28 +526,28 @@ toughness=*
 [/card]
 [card]
 text=Domain - Target creature gets +1/+1 until end of turn for each basic land type among lands you control.
+id=150810
+target=Creature
 auto=aslongas(forest|myBattlefield) 1/1
 auto=aslongas(mountain|myBattlefield) 1/1
 auto=aslongas(plains|myBattlefield) 1/1
 auto=aslongas(swamp|myBattlefield) 1/1
 auto=aslongas(island|myBattlefield) 1/1
-id=150810
 name=Might of Alara
-target=Creature
 rarity=C
 mana={G}
 type=Instant
 [/card]
 [card]
-text=Destroy target artifact creature.     Cycling {2} ({2}, Discard this card: Draw a card.)
+text=Destroy target artifact creature.   Cycling {2} ({2}, Discard this card: Draw a card.)
+id=184988
 target=creature[artifact]
 auto=destroy
 autohand={2}:cycling
-id=184988
 name=Molten Frame
 rarity=C
-type=Instant
 mana={1}{R}
+type=Instant
 [/card]
 [card]
 text=Protection from blue
@@ -574,7 +574,7 @@ power=2
 toughness=1
 [/card]
 [card]
-text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)  {T}: Add {G}, {W}, or {U} to your mana pool.
+text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)   {T}: Add {G}, {W}, or {U} to your mana pool.
 id=179434
 name=Noble Hierarch
 rarity=R
@@ -590,19 +590,18 @@ abilities=exalted
 [/card]
 [card]
 text=As Nyxathid enters the battlefield, choose an opponent.   Nyxathid gets -1/-1 for each card in the chosen player's hand.
-auto=foreach(*|opponenthand) -1/-1
 id=186616
 name=Nyxathid
 rarity=R
 mana={1}{B}{B}
 type=Creature
 subtype=Elemental
+auto=foreach(*|opponenthand) -1/-1
 power=7
 toughness=7
 [/card]
 [card]
 text=Whenever another creature with power 5 or greater enters the battlefield under your control, you may return target creature card from your graveyard to your hand.
-auto=may moveTo(myhand) target(creature|mygraveyard)
 auto=@movedTo(other creature[power>=5]|myBattlefield):may moveTo(myhand) target(creature|mygraveyard)
 id=189873
 name=Paleoloth
@@ -628,7 +627,7 @@ toughness=2
 abilities=flying
 [/card]
 [card]
-text=Flying.   Deathtouch (Whenever this creature deals damage to a creature, destroy that creature.)   {2}{R}: Pestilent Kathari gains first strike until end of turn.
+text=Flying   Deathtouch (Whenever this creature deals damage to a creature, destroy that creature.)   {2}{R}: Pestilent Kathari gains first strike until end of turn.
 id=179518
 name=Pestilent Kathari
 rarity=C
@@ -692,25 +691,25 @@ toughness=3
 [/card]
 [card]
 text=Salvage Slasher gets +1/+0 for each artifact card in your graveyard.
-auto=foreach(artifact|mygraveyard) 1/0
 id=179254
 name=Salvage Slasher
 rarity=C
 mana={1}{B}
 type=Artifact Creature
 subtype=Human Rogue
+auto=foreach(artifact|mygraveyard) 1/0
 power=1
 toughness=1
 [/card]
 [card]
 text=Sacrifice a creature: Put a +1/+1 counter on Scarland Thrinax.
-auto={S(creature|myBattlefield)}:counter(1/1)
 id=183025
 name=Scarland Thrinax
 rarity=U
 mana={B}{R}{G}
 type=Creature
 subtype=Lizard
+auto={S(creature|myBattlefield)}:counter(1/1)
 power=2
 toughness=2
 [/card]
@@ -746,13 +745,13 @@ type=Artifact
 [/card]
 [card]
 text={W}{B}: Scornful AEther-Lich gains fear and vigilance until end of turn.
-auto={W}{B}:fear && vigilance
 id=186328
 name=Scornful AEther-Lich
 rarity=U
 mana={3}{U}
 type=Artifact Creature
 subtype=Zombie Wizard
+auto={W}{B}:fear && vigilance
 power=2
 toughness=4
 [/card]
@@ -811,15 +810,15 @@ mana={3}{B}{R}
 type=Enchantment
 [/card]
 [card]
-text=Target player gains 8 life.     Basic landcycling {1}{G} ({1}{G}, Discard this card: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.)
+text=Target player gains 8 life.   Basic landcycling {1}{G} ({1}{G}, Discard this card: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.)
+autohand={1}{G}{S}:moveTo(myhand) target(land[basic]|mylibrary)
+target=player
+auto=life:8
 id=179523
 name=Sylvan Bounty
 rarity=C
-type=Instant
-target=player
-auto=life:8
-autohand={1}{G}{S}:moveTo(myhand) target(land[basic]|mylibrary)
 mana={5}{G}
+type=Instant
 [/card]
 [card]
 text={G}: Thornling gains haste until end of turn.   {G}: Thornling gains trample until end of turn.   {G}: Thornling is indestructible this turn.   {1}: Thornling gets +1/-1 until end of turn.   {1}: Thornling gets -1/+1 until end of turn.
@@ -841,24 +840,24 @@ toughness=4
 text=Toxic Iguanar has deathtouch as long as you control a green permanent. (Whenever it deals damage to a creature, destroy that creature.)
 id=170956
 name=Toxic Iguanar
-auto=aslongas(*[green]|myBattlefield) deathtouch
 rarity=C
 mana={R}
 type=Creature
 subtype=Lizard
+auto=aslongas(*[green]|myBattlefield) deathtouch
 power=1
 toughness=1
 [/card]
 [card]
-text=Counter target spell.     Basic landcycling {1}{U} ({1}{U}, Discard this card: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.)
+text=Counter target spell.   Basic landcycling {1}{U} ({1}{U}, Discard this card: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.)
+autohand={1}{U}{S}:moveTo(myhand) target(land[basic]|mylibrary)
+target=*|stack
+auto=fizzle
 id=179508
 name=Traumatic Visions
 rarity=C
-type=Instant
 mana={3}{U}{U}
-target=*|stack
-auto=fizzle
-autohand={1}{U}{S}:moveTo(myhand) target(land[basic]|mylibrary)
+type=Instant
 [/card]
 [card]
 text=When Tukatongue Thallid is put into a graveyard from the battlefield, put a 1/1 green Saproling creature token onto the battlefield.
@@ -919,13 +918,13 @@ toughness=3
 [/card]
 [card]
 text={U}{B}: Vectis Agents gets -2/-0 until end of turn and is unblockable this turn.
-auto={U}{B}:-2/0 && unblockable
 id=183063
 name=Vectis Agents
 rarity=C
 mana={3}{U}{B}
 type=Artifact Creature
 subtype=Human Rogue
+auto={U}{B}:-2/0 && unblockable
 power=4
 toughness=3
 [/card]
@@ -943,25 +942,25 @@ abilities=protection from red
 [/card]
 [card]
 text=Double strike   {B}{G}: Viashino Slaughtermaster gets +1/+1 until end of turn. Play this ability only once each turn.
-auto={B}{G}:1/1 limit:1
 id=179245
 name=Viashino Slaughtermaster
 rarity=U
 mana={1}{R}
 type=Creature
 subtype=Viashino Warrior
+auto={B}{G}:1/1 limit:1
 power=1
 toughness=1
 abilities=double strike
 [/card]
 [card]
-text=Volcanic Fallout can't be countered.     Volcanic Fallout deals 2 damage to each creature and each player.
+text=Volcanic Fallout can't be countered.   Volcanic Fallout deals 2 damage to each creature and each player.
 auto=damage:2 all(creature,player)
 id=180274
 name=Volcanic Fallout
 rarity=U
-type=Instant
 mana={1}{R}{R}
+type=Instant
 abilities=nofizzle
 [/card]
 [card]

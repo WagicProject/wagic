@@ -378,14 +378,6 @@ text=Whenever Fangren Firstborn attacks, put a +1/+1 counter on each attacking c
 rarity=R
 [/card]
 [card]
-id=50539
-name=Flamebreak
-mana={R}{R}{R}
-type=Sorcery
-text=Flamebreak deals 3 damage to each creature without flying and each player. Creatures dealt damage this way can't be regenerated this turn.
-rarity=R
-[/card]
-[card]
 id=46060
 name=Furnace Dragon
 mana={6}{R}{R}{R}
