@@ -374,8 +374,8 @@ name=Tainted Field
 rarity=U
 type=Land
 auto={T}:Add {1}
-auto={T}:aslongas(swamp|myBattlefield) add{B}
-auto={T}:aslongas(swamp|myBattlefield) add{W}
+auto=aslongas(swamp|myBattlefield) {T}:add{B}
+auto=aslongas(swamp|myBattlefield) {T}:add{W}
 [/card]
 [card]
 text={T}: Add {1} to your mana pool.   {T}: Add {U} or {B} to your mana pool. Activate this ability only if you control a Swamp.
@@ -384,8 +384,8 @@ name=Tainted Isle
 rarity=U
 type=Land
 auto={T}:Add {1}
-auto={T}:aslongas(swamp|myBattlefield) add{B}
-auto={T}:aslongas(swamp|myBattlefield) add{U}
+auto=aslongas(swamp|myBattlefield) {T}:add{B}
+auto=aslongas(swamp|myBattlefield) {T}:add{U}
 [/card]
 [card]
 text={T}: Add {1} to your mana pool.   {T}: Add {B} or {R} to your mana pool. Activate this ability only if you control a Swamp.
@@ -394,8 +394,8 @@ name=Tainted Peak
 rarity=U
 type=Land
 auto={T}:Add {1}
-auto={T}:aslongas(swamp|myBattlefield) add{B}
-auto={T}:aslongas(swamp|myBattlefield) add{R}
+auto=aslongas(swamp|myBattlefield) {T}:add{B}
+auto=aslongas(swamp|myBattlefield) {T}:add{R}
 [/card]
 [card]
 text={T}: Add {1} to your mana pool.   {T}: Add {B} or {G} to your mana pool. Activate this ability only if you control a Swamp.
@@ -404,8 +404,8 @@ name=Tainted Wood
 rarity=U
 type=Land
 auto={T}:Add {1}
-auto={T}:aslongas(swamp|myBattlefield) add{B}
-auto={T}:aslongas(swamp|myBattlefield) add{G}
+auto=aslongas(swamp|myBattlefield) {T}:add{B}
+auto=aslongas(swamp|myBattlefield) {T}:add{G}
 [/card]
 [card]
 text=When Teroh's Faithful enters the battlefield, you gain 4 life.
