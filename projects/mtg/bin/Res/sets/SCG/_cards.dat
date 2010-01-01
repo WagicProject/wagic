@@ -426,8 +426,8 @@ subtype=Zombie
 power=3
 toughness=2
 text=Whenever Vengeful Dead or another Zombie is put into a graveyard from the battlefield, each opponent loses 1 life.
-auto=@movedto(zombie other|graveyard) from(battlefield):life:-1 controller && life:-1 opponent
-auto=@movedto(this|graveyard) from(battlefield):life:-1 controller && life:-1 opponent
+auto=@movedto(zombie other|graveyard) from(battlefield): life:-1 opponent
+auto=@movedto(this|graveyard) from(battlefield): life:-1 opponent
 rarity=C
 [/card]
 [card]
