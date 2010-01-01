@@ -379,7 +379,7 @@ abilities=defender
 [card]
 text=Counter target spell with converted mana cost 2.
 id=107281
-target=*[manacost<=2]|stack
+target=*[manacost=2]|stack
 auto=fizzle
 name=Spell Snare
 rarity=U
