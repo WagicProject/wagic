@@ -1462,6 +1462,7 @@ abilities=legendary,flying
 [card]
 text=Vigilance   When Riptide Crab is put into a graveyard from the battlefield, draw a card.
 auto=@movedTo(this|graveyard):draw:1 controller
+abilities=vigilance
 id=23150
 name=Riptide Crab
 rarity=U

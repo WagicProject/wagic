@@ -359,6 +359,15 @@ toughness=2
 abilities=flying,haste
 [/card]
 [card]
+text=Creatures with flying get -2/-0.
+auto=lord(creature[flying]) -2/0
+id=5668
+name=Crosswinds
+rarity=U
+mana={1}{G}
+type=Enchantment
+[/card]
+[card]
 text={3}, {T}, Sacrifice Crystal Chimes: Return all enchantment cards from your graveyard to your hand.
 auto={3}{T}{S}:moveTo(myHand) all(enchantment|mygraveyard)
 id=5742
@@ -366,15 +375,6 @@ name=Crystal Chimes
 rarity=U
 mana={3}
 type=Artifact
-[/card]
-[card]
-text=Creatures with flying get -2/-0.
-auto=lord(creature[flying]) -2/0
-id=5668
-name=Crosswinds
-rarity=U
-mana={2}{G}
-type=Enchantment
 [/card]
 [card]
 text=Add {B}{B}{B} to your mana pool.
