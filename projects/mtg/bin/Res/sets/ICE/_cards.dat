@@ -238,6 +238,16 @@ mana={U}{U}
 type=Instant
 [/card]
 [card]
+text=When Curse of Marit Lage enters the battlefield, tap all Islands.   Islands don't untap during their controllers' untap steps.
+id=2617
+auto=tap all(island)
+auto=lord(island) doesntuntap
+name=Curse of Marit Lage
+rarity=R
+mana={3}{R}{R}
+type=Enchantment
+[/card]
+[card]
 text=Destroy target nonblack creature. It can't be regenerated.
 id=2443
 target=creature[-black]
@@ -488,6 +498,18 @@ power=1
 toughness=1
 [/card]
 [card]
+text={T}, Sacrifice Gangrenous Zombies: Gangrenous Zombies deals 1 damage to each creature and each player. If you control a snow Swamp, Gangrenous Zombies deals 2 damage to each creature and each player instead.
+auto={T}{S}:damage:1 all(creature,player) && aslongas(swamp[snow]|myBattlefield)damage:1 all(creature,player)
+id=2451
+name=Gangrenous Zombies
+rarity=C
+mana={1}{B}{B}
+type=Creature
+subtype=Zombie
+power=2
+toughness=2
+[/card]
+[card]
 text=Target creature gets +3/+3 until end of turn.
 id=2570
 target=creature
@@ -498,9 +520,21 @@ mana={G}
 type=Instant
 [/card]
 [card]
+text={1}{R}{G}, {T}: Exile Giant Trap Door Spider and target creature without flying that's attacking you.
+auto={1}{R}{G}{T}:moveTo(exile) all(this) && moveTo(exile) target(creature[attacking;-flying|opponentBattlefield)
+id=2729
+name=Giant Trap Door Spider
+rarity=U
+mana={1}{R}{G}
+type=Creature
+subtype=Spider
+power=2
+toughness=3
+[/card]
+[card]
 text=Sacrifice a snow Mountain: Prevent all combat damage that would be dealt this turn.
 id=2623
-auto={S(mountain[snow])}:preventAllcombatDamage ueot
+auto={S(mountain[snow]|myBattlefield)}:preventAllcombatDamage ueot
 name=Glacial Crevasses
 rarity=R
 mana={2}{R}
@@ -551,6 +585,15 @@ rarity=U
 mana={W}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+text={W}{W}: Return target non snow land you control to its owner's hand.
+auto={W}{W}:moveTo(ownerhand) target(land[-snow]|myBattlefield)
+id=2689
+name=Hallowed Ground
+rarity=U
+mana={1}{W}
+type=Enchantment
 [/card]
 [card]
 text={B}: Hoar Shade gets +1/+1 until end of turn.
@@ -674,11 +717,11 @@ type=Sorcery
 text={T}: Untap target land.
 id=2575
 name=Juniper Order Druid
-auto={T}:Untap target(land)
 rarity=C
 mana={2}{G}
 type=Creature
 subtype=Human Cleric Druid
+auto={T}:Untap target(land)
 power=1
 toughness=1
 [/card]
@@ -935,7 +978,7 @@ rarity=R
 mana={1}{W}{W}
 type=Creature
 subtype=Human Knight
-auto={T}:fizzle(*[black]|stack) && life:-1
+auto={T}:fizzle target(*[black]|stack) && life:-1 controller
 power=2
 toughness=2
 [/card]
@@ -970,7 +1013,7 @@ text=Play Panic only during combat before blockers are declared.   Target creatu
 id=2648
 target=creature
 auto=cantblock
-auto=@next upkeep:draw:1
+auto=@next upkeep:draw:1 controller
 name=Panic
 rarity=C
 mana={R}
@@ -1269,7 +1312,7 @@ text=Defender (This creature can't attack.)   {1}: Snow Fortress gets +1/+0 unti
 id=2423
 auto={1}:1/0
 auto={1}:0/1
-auto={3}:damage:1 target(creature[attacking;-flying])
+auto={3}:damage:1 target(creature[attacking;-flying]|opponentBattlefield)
 name=Snow Fortress
 rarity=R
 mana={5}
@@ -1280,6 +1323,31 @@ toughness=4
 abilities=defender
 [/card]
 [card]
+text={1}, {T}: Return Snow Hound and target green or blue creature you control to their owner's hand.
+id=2713
+name=Snow Hound
+rarity=U
+mana={2}{W}
+type=Creature
+subtype=Hound
+auto={T}:moveTo(myhand) all(this) && moveTo(myhand) target(creature[green;blue]|myBattlefield)
+power=1
+toughness=1
+[/card]
+[card]
+text=Soldevi Golem doesn't untap during your untap step.   At the beginning of your upkeep, you may untap target tapped creature an opponent controls. If you do, untap Soldevi Golem.
+auto={0}:untap all(this) && untap target(creature[tapped]|opponentBattlefield) limit:1
+id=2424
+name=Soldevi Golem
+rarity=R
+mana={4}
+type=Artifact Creature
+subtype=Golem
+power=5
+toughness=3
+auto=doesnotuntap
+[/card]
+[card]
 text=Add {B} to your mana pool for each creature card in your graveyard.
 id=2484
 name=Songs of the Damned
@@ -1287,6 +1355,17 @@ rarity=C
 mana={B}
 auto=foreach(creature|mygraveyard) add:{B}
 type=Instant
+[/card]
+[card]
+text=Enchant creature   {B}, Pay 1 life: Enchanted creature gets +2/+2 until end of turn. Play this ability no more than three times each turn.
+id=2486
+target=creature
+auto={B}:2/2 && life:-1 controller limit:3
+name=Soul Kiss
+rarity=C
+mana={2}{B}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 text=For each artifact or creature card in an opponent's graveyard, add {1} to your mana pool and you gain 1 life.
@@ -1345,7 +1424,7 @@ subtype=Aura
 [card]
 text=Flying   {T}: Storm Spirit deals 2 damage to target creature.
 id=2739
-auto={T}:damage 2 target(creature)
+auto={T}:damage:2 target(creature)
 name=Storm Spirit
 rarity=R
 mana={3}{W}{U}{G}
@@ -1363,7 +1442,7 @@ rarity=R
 mana={1}{B}{B}
 type=Creature
 subtype=Human Knight
-auto={T}:fizzle(*[white]|stack) && life:-1 controller
+auto={T}:fizzle target(*[white]|stack) && life:-1 controller
 power=2
 toughness=2
 [/card]
@@ -1427,7 +1506,7 @@ type=Instant
 [card]
 text=When Tarpan is put into a graveyard from the battlefield, you gain 1 life.
 id=2591
-auto=@movedTo(this|graveyard):life:1 controller
+auto=@movedTo(this|graveyard) from(battlefield):life:1 controller
 name=Tarpan
 rarity=C
 mana={G}
@@ -1516,7 +1595,7 @@ text=Target creature gains flying until end of turn. Draw a card at the beginnin
 id=2541
 target=creature
 auto=flying
-auto=@next upkeep:draw:1
+auto=@next upkeep:draw:1 controller
 name=Updraft
 rarity=U
 mana={1}{U}
@@ -1593,7 +1672,7 @@ type=Instant
 [/card]
 [card]
 text={2}, {T}: Target creature with power 3 or less gains flying until end of turn.
-auto={2}{T}: flying target(creature[power<=3])
+auto={2}{T}:flying target(creature[power<=3])
 id=2435
 name=Whalebone Glider
 rarity=U
@@ -1647,6 +1726,16 @@ name=Word of Blasting
 rarity=U
 mana={1}{R}
 type=Instant
+[/card]
+[card]
+text=When Wrath of Marit Lage enters the battlefield, tap all red creatures.   Red creatures don't untap during their controllers' untap steps.
+id=2545
+auto=tap all(creature[red])
+auto=lord(creature[red]) doesnotuntap
+name=Wrath of Marit Lage
+rarity=R
+mana={3}{U}{U}
+type=Enchantment
 [/card]
 [card]
 text=Flying   {G}: Regenerate Yavimaya Gnats.

@@ -195,7 +195,7 @@ type=Artifact
 mana={2}
 [/card]
 [card]
-#why is not working - need to test
+#Tested. Does not work because when you play it in yout main phase the engine won't remember what the card should do in the blockers step. (0.10.1)
 text=Untap all white creatures you control.       Whenever a creature blocks this turn, it gets +0/+1 until end of turn.
 id=2665
 auto=untap all(creature[white]|myinplay)
@@ -388,17 +388,6 @@ name=Crown of the Ages
 rarity=R
 type=Artifact
 mana={2}
-[/card]
-[card]
-#why not working - need to test
-text=When Curse of Marit Lage comes into play, tap all Islands.       Islands don't untap during their controllers' untap steps.
-id=2617
-auto=tap all(island)
-auto=lord(island)doesntuntap
-name=Curse of Marit Lage
-rarity=R
-type=Enchantment
-mana={3}{R}{R}
 [/card]
 [card]
 text=Enchant creature card in a graveyard     When Dance of the Dead comes into play, if it's in play, it loses "enchant creature card in a graveyard" and gains "enchant creature put into play with Dance of the Dead." Return enchanted creature card to play tapped under your control and attach Dance of the Dead to it. When Dance of the Dead leaves play, that creature's controller sacrifices it.     Enchanted creature gets +1/+1 and doesn't untap during its controller's untap step.      At the beginning of the upkeep of enchanted creature's controller, that player may pay {1}{B}. If he or she does, untap that creature.
@@ -722,19 +711,6 @@ type=Sorcery
 mana={R}{R}{R}
 [/card]
 [card]
-#to test - should work
-text={T}, Sacrifice Gangrenous Zombies: Gangrenous Zombies deals 1 damage to each creature and each player. If you control a snow Swamp, Gangrenous Zombies deals 2 damage to each creature and each player instead.
-id=2451
-name=Gangrenous Zombies
-auto={T}{S}:damage:1 all(creature,player) && aslongas(swamp[snow]|myBattlefield)damage:1 all(creature,player)
-rarity=C
-type=Creature
-mana={1}{B}{B}
-power=2
-subtype=Zombie
-toughness=2
-[/card]
-[card]
 text=Until end of turn, whenever a creature you control attacks and isn't blocked, you may choose to have it deal damage equal to its power to a target creature. If you do, it deals no combat damage this turn.
 id=2452
 name=Gaze of Pain
@@ -760,17 +736,6 @@ name=Ghostly Flame
 rarity=R
 type=Enchantment
 mana={B}{R}
-[/card]
-[card]
-text={1}{R}{G}, {T}: Remove from the game Giant Trap Door Spider and target creature without flying that's attacking you.
-id=2729
-name=Giant Trap Door Spider
-rarity=U
-type=Creature
-mana={1}{R}{G}
-power=2
-subtype=Spider
-toughness=3
 [/card]
 [card]
 text=Cumulative upkeep-Pay 2 life. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)  When Glacial Chasm comes into play, sacrifice a land.     Creatures you control can't attack.     Prevent all damage that would be dealt to you.
@@ -849,14 +814,6 @@ mana={1}{R}{R}
 power=2
 subtype=Wolverine
 toughness=2
-[/card]
-[card]
-text={W}{W}: Return target non snow land you control to its owner's hand.
-id=2689
-name=Hallowed Ground
-rarity=U
-type=Enchantment
-mana={1}{W}
 [/card]
 [card]
 text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)  Creatures that attacked during their controller's last turn can't attack.
@@ -1356,7 +1313,7 @@ type=Artifact
 mana={2}
 [/card]
 [card]
-#Should work as it is a lengendary creature - to test
+###Does not work!
 text=Whenever Marton Stromgald attacks, other attacking creatures get +1/+1 until end of turn for each attacking creature other than Marton Stromgald.     Whenever Marton Stromgald blocks, other blocking creatures get +1/+1 until end of turn for each blocking creature other than Marton Stromgald.
 id=2635
 name=Marton Stromgald
@@ -1829,17 +1786,6 @@ mana={1}{U}
 subtype=Aura
 [/card]
 [card]
-text={1}, {T}: Return Snow Hound and target green or blue creature you control to their owner's hand.
-id=2713
-name=Snow Hound
-rarity=U
-type=Creature
-mana={2}{W}
-power=1
-subtype=Hound
-toughness=1
-[/card]
-[card]
 text=Enchant creature     Enchanted creature gets -X/-Y. If that creature is attacking, X is the number of snow lands defending player controls. Otherwise, X is the number of snow lands its controller controls. Y is equal to X or to enchanted creature's toughness minus 1, whichever is smaller.
 id=2588
 name=Snowblind
@@ -1855,17 +1801,6 @@ name=Snowfall
 rarity=C
 type=Enchantment
 mana={2}{U}
-[/card]
-[card]
-text=Soldevi Golem doesn't untap during your untap step.     At the beginning of your upkeep, you may untap target tapped creature an opponent controls. If you do, untap Soldevi Golem.
-id=2424
-name=Soldevi Golem
-rarity=R
-type=Artifact Creature
-mana={4}
-power=5
-subtype=Golem
-toughness=3
 [/card]
 [card]
 text={T}: Add {2} to your mana pool. Spend this mana only to play activated abilities of artifacts.
@@ -1904,15 +1839,6 @@ name=Soul Burn
 rarity=C
 type=Sorcery
 mana={X}{2}{B}
-[/card]
-[card]
-text=Enchant creature     {B}, Pay 1 life: Enchanted creature gets +2/+2 until end of turn. Play this ability no more than three times each turn.
-id=2486
-name=Soul Kiss
-rarity=C
-type=Enchantment
-mana={2}{B}
-subtype=Aura
 [/card]
 [card]
 ####
@@ -2142,17 +2068,6 @@ name=Word of Undoing
 rarity=C
 type=Instant
 mana={U}
-[/card]
-[card]
-#should work - to test
-text=When Wrath of Marit Lage comes into play, tap all red creatures. Red creatures don't untap during their controllers' untap steps.
-id=2545
-auto=tap all(creature[red])
-auto=lord(creature[red])doesnotuntap
-name=Wrath of Marit Lage
-rarity=R
-type=Enchantment
-mana={3}{U}{U}
 [/card]
 [card]
 text={2}{B}, {T}: Target player discards a card. Play this ability only during your turn.
