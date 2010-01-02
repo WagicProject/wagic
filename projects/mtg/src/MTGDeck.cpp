@@ -334,6 +334,9 @@ bool MTGAllCards::addPrimitive(CardPrimitive * primitive, MTGCard * card){
   map<string,string>::iterator it = t->tempValues.find(primitive->name);
   if (it != t->tempValues.end()) {
     primitive->setText(it->second);
+  }else if (primitive->text.size()){
+    OutputDebugString(primitive->name.c_str());
+    OutputDebugString("\n");
   }
   primitives[key] = primitive;
   return true;

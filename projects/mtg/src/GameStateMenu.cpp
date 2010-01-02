@@ -353,7 +353,10 @@ void GameStateMenu::Update(float dt)
           subMenuController->Update(dt);
     break;
     case MENU_STATE_MAJOR_LOADING_CARDS :
-      if (primitivesLoadCounter == -1) listPrimitives();
+      if (primitivesLoadCounter == -1){
+        listPrimitives();
+        Translator::GetInstance()->init();
+      }
       if (primitivesLoadCounter < (int)(primitives.size())){
         mParent->collection->load(primitives[primitivesLoadCounter].c_str() );
         primitivesLoadCounter++;
@@ -364,7 +367,6 @@ void GameStateMenu::Update(float dt)
 	      mParent->collection->load(mCurrentSetFileName, mCurrentSetName);
       }else{
 	      mReadConf = 1;
-        Translator::GetInstance()->init();
       }
       if (!nextDirectory(RESPATH"/sets/","_cards.dat")){
         //Remove temporary translations
