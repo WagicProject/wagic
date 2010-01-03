@@ -355,10 +355,10 @@ int MTGCardInstance::canBlock(MTGCardInstance * opponent){
   if (opponent->protectedAgainst(this)) return 0;
   if (opponent->cantBeBlockedBy(this)) return 0;
   if (opponent->basicAbilities[Constants::UNBLOCKABLE]) return 0;
-  if (opponent->basicAbilities[Constants::FEAR] && !(hasColor(Constants::MTG_COLOR_ARTIFACT) || hasColor(Constants::MTG_COLOR_BLACK))) return 0;
+  if (opponent->basicAbilities[Constants::FEAR] && !(hasType(Subtypes::TYPE_ARTIFACT) || hasColor(Constants::MTG_COLOR_BLACK))) return 0;
 
   //intimidate
-  if (opponent->basicAbilities[Constants::INTIMIDATE] && !(hasColor(Constants::MTG_COLOR_ARTIFACT))){
+  if (opponent->basicAbilities[Constants::INTIMIDATE] && !(hasType(Subtypes::TYPE_ARTIFACT))){
     int canblock = 0;
     for (int i = Constants::MTG_COLOR_GREEN; i <= Constants::MTG_COLOR_WHITE; ++i){
       if(hasColor(i) && opponent->hasColor(i)){

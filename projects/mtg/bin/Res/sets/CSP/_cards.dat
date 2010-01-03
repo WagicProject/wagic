@@ -193,11 +193,10 @@ id=121147
 name=Heidar, Rimewind Master
 rarity=R
 mana={4}{U}
-type=Creature
+type=Legendary Creature
 subtype=Human Wizard
 power=3
 toughness=3
-abilities=legendary
 [/card]
 [card]
 text=Highland Weald enters the battlefield tapped.   {T}: Add {R} or {G} to your mana pool.
@@ -285,14 +284,13 @@ id=113542
 name=Lovisa Coldeyes
 rarity=R
 mana={3}{R}{R}
-type=Creature
+type=Legendary Creature
 subtype=Human Barbarian
 auto=lord(warrior) 2/2 other
 auto=lord(berserker) 2/2 other
 auto=lord(barbarian) 2/2 other
 power=3
 toughness=3
-abilities=legendary
 [/card]
 [card]
 text=Destroy target artifact or enchantment.   Draw a card at the beginning of the next turn's upkeep.
@@ -371,11 +369,10 @@ id=121261
 name=Sek'Kuar, Deathkeeper
 rarity=R
 mana={2}{B}{R}{G}
-type=Creature
+type=Legendary Creature
 subtype=Orc Shaman
 power=4
 toughness=3
-abilities=legendary
 [/card]
 [card]
 text=Discard a land card: Simian Brawler gets +1/+1 until end of turn.

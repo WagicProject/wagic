@@ -130,12 +130,12 @@ id=35893
 name=Commander Eesha
 rarity=R
 mana={2}{W}{W}
-type=Creature
+type=Legendary Creature
 subtype=Bird Soldier
 auto=protection from(creature)
 power=2
 toughness=4
-abilities=legendary,flying
+abilities=flying
 [/card]
 [card]
 text=Enchant creature.   Enchanted creature gets +3/+3.   When enchanted creature is put into a graveyard, put a 3/3 green Elephant creature token onto the battlefield.
@@ -254,12 +254,12 @@ id=36451
 name=Jeska, Warrior Adept
 rarity=R
 mana={2}{R}{R}
-type=Creature
+type=Legendary Creature
 subtype=Human Barbarian Warrior
 auto={T}:damage:1 target(creature,player)
 power=3
 toughness=1
-abilities=legendary,first strike,haste
+abilities=first strike,haste
 [/card]
 [card]
 text=Draw a card for each attacking creature.
@@ -393,12 +393,11 @@ id=36525
 name=Thriss, Nantuko Primus
 rarity=R
 mana={5}{G}{G}
-type=Creature
+type=Legendary Creature
 subtype=Insect Druid
 auto={G}{T}:5/5 target(creature)
 power=5
 toughness=5
-abilities=legendary
 [/card]
 [card]
 text=Discard a card: Regenerate Tunneler Wurm.

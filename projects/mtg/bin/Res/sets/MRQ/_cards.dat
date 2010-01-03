@@ -1445,11 +1445,10 @@ id=19716
 name=Squee, Goblin Nabob
 rarity=R
 mana={2}{R}
-type=Creature
+type=Legendary Creature
 subtype=Goblin
 power=1
 toughness=1
-abilities=legendary
 [/card]
 [card]
 text=Vigilance (Attacking doesn't cause this creature to tap.)

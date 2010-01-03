@@ -16,11 +16,10 @@ name=Ambassador Laquatus
 rarity=R
 mana={1}{U}{U}
 auto={3}:deplete:3 target(player)
-type=Creature
+type=Legendary Creature
 subtype=Merfolk Wizard
 power=1
 toughness=3
-abilities=legendary
 [/card]
 [card]
 text=Flying, first strike
@@ -66,13 +65,12 @@ name=Balthor the Stout
 id=19553
 rarity=R
 mana={1}{R}{R}
-type=Creature
+type=Legendary Creature
 subtype=Dwarf Barbarian
 auto=lord(barbarian)1/1 other
 auto={R}:1/0 target(other barbarian)
 power=2
 toughness=2
-abilities=legendary
 [/card]
 [card]
 text={2}, {T}: Add {B} to your mana pool for each Swamp you control.
@@ -165,7 +163,7 @@ mana={2}{G}{G}
 type=Sorcery
 [/card]
 [card]
-text=Kamahl's Sledge deals 4 damage to target creature.   Threshold ó If seven or more cards are in your graveyard, instead Kamahl's Sledge deals 4 damage to that creature and 4 damage to that creature's controller.
+text=Kamahl's Sledge deals 4 damage to target creature.   Threshold ÅEIf seven or more cards are in your graveyard, instead Kamahl's Sledge deals 4 damage to that creature and 4 damage to that creature's controller.
 id=32229
 target=creature
 auto=damage:4
@@ -194,12 +192,12 @@ id=29912
 name=Major Teroh
 rarity=R
 mana={3}{W}
-type=Creature
+type=Legendary Creature
 subtype=Bird Soldier
 auto={3}{W}{W}{S}:moveto(exile) all(creature[black])
 power=2
 toughness=3
-abilities=flying,legendary
+abilities=flying
 [/card]
 [card]
 text=Exile all cards from all graveyards.
@@ -230,7 +228,7 @@ mana={2}{B}{B}
 type=Sorcery
 [/card]
 [card]
-text=Flying   Threshold ó As long as seven or more cards are in your graveyard, Mystic Familiar gets +1/+1 and has protection from black.
+text=Flying   Threshold ÅEAs long as seven or more cards are in your graveyard, Mystic Familiar gets +1/+1 and has protection from black.
 id=30607
 name=Mystic Familiar
 rarity=C
@@ -244,7 +242,7 @@ toughness=2
 abilities=flying
 [/card]
 [card]
-text=Protection from black   Threshold ó Nantuko Blightcutter gets +1/+1 for each black permanent your opponents control as long as seven or more cards are in your graveyard.
+text=Protection from black   Threshold ÅENantuko Blightcutter gets +1/+1 for each black permanent your opponents control as long as seven or more cards are in your graveyard.
 id=32243
 name=Nantuko Blightcutter
 rarity=R
@@ -257,7 +255,7 @@ toughness=2
 abilities=protection from black
 [/card]
 [card]
-text={G}, {T}, Sacrifice Nantuko Calmer: Destroy target enchantment.   Threshold ó Nantuko Calmer gets +1/+1 as long as seven or more cards are in your graveyard.
+text={G}, {T}, Sacrifice Nantuko Calmer: Destroy target enchantment.   Threshold ÅENantuko Calmer gets +1/+1 as long as seven or more cards are in your graveyard.
 id=31851
 name=Nantuko Calmer
 rarity=C
@@ -305,7 +303,7 @@ toughness=2
 abilities=first strike
 [/card]
 [card]
-text=Discard a card: Putrid Imp gains flying until end of turn.   Threshold ó As long as seven or more cards are in your graveyard, Putrid Imp gets +1/+1 and can't block.
+text=Discard a card: Putrid Imp gains flying until end of turn.   Threshold ÅEAs long as seven or more cards are in your graveyard, Putrid Imp gets +1/+1 and can't block.
 id=34470
 name=Putrid Imp
 rarity=C
@@ -319,7 +317,7 @@ power=1
 toughness=1
 [/card]
 [card]
-text=Destroy target land.   Threshold ó If seven or more cards are in your graveyard, instead destroy that land and Rancid Earth deals 1 damage to each creature and each player.
+text=Destroy target land.   Threshold ÅEIf seven or more cards are in your graveyard, instead destroy that land and Rancid Earth deals 1 damage to each creature and each player.
 id=31598
 target=land
 auto=destroy
@@ -330,7 +328,7 @@ mana={1}{B}{B}
 type=Sorcery
 [/card]
 [card]
-text=Reach (This creature can block creatures with flying.)   Threshold ó Seton's Scout gets +2/+2 as long as seven or more cards are in your graveyard.
+text=Reach (This creature can block creatures with flying.)   Threshold ÅESeton's Scout gets +2/+2 as long as seven or more cards are in your graveyard.
 id=32244
 name=Seton's Scout
 rarity=U

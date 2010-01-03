@@ -4,15 +4,14 @@ id=74187
 name=Adamaro, First to Desire
 rarity=R
 mana={1}{R}{R}
-type=Creature
+type=Legendary Creature
 subtype=Spirit
 auto=foreach(*|opponenthand) 1/1
 power=*
 toughness=*
-abilities=legendary
 [/card]
 [card]
-text=Choose one ó Tap all Spirits; or tap all non-Spirit creatures.
+text=Choose one ÅETap all Spirits; or tap all non-Spirit creatures.
 id=74208
 auto=may tap all(spirit)
 auto=may tap all(creature[-spirit])
@@ -52,12 +51,11 @@ id=84370
 name=Ayumi, the Last Visitor
 rarity=R
 mana={3}{G}{G}
-type=Creature
+type=Legendary Creature
 subtype=Spirit
 auto=aslongas(land[legendary]|opponentbattlefield) unblockable
 power=7
 toughness=3
-abilities=legendary
 [/card]
 [card]
 text={R}: Target creature gets +1/+0 until end of turn.
@@ -148,7 +146,7 @@ type=Instant
 subtype=Arcane
 [/card]
 [card]
-text={2}{G}, {T}: Target creature gets +2/+2 until end of turn.   Channel ó {3}{G}, Discard Ghost-Lit Nourisher: Target creature gets +4/+4 until end of turn.
+text={2}{G}, {T}: Target creature gets +2/+2 until end of turn.   Channel ÅE{3}{G}, Discard Ghost-Lit Nourisher: Target creature gets +4/+4 until end of turn.
 id=74068
 name=Ghost-Lit Nourisher
 rarity=U
@@ -161,7 +159,7 @@ power=2
 toughness=1
 [/card]
 [card]
-text={2}{R}, {T}: Ghost-Lit Raider deals 2 damage to target creature.   Channel ó {3}{R}, Discard Ghost-Lit Raider: Ghost-Lit Raider deals 4 damage to target creature.
+text={2}{R}, {T}: Ghost-Lit Raider deals 2 damage to target creature.   Channel ÅE{3}{R}, Discard Ghost-Lit Raider: Ghost-Lit Raider deals 4 damage to target creature.
 id=87341
 name=Ghost-Lit Raider
 rarity=U
@@ -174,7 +172,7 @@ power=2
 toughness=1
 [/card]
 [card]
-text={W}, {T}: You gain 2 life.   Channel ó {1}{W}, Discard Ghost-Lit Redeemer: You gain 4 life.
+text={W}, {T}: You gain 2 life.   Channel ÅE{1}{W}, Discard Ghost-Lit Redeemer: You gain 4 life.
 id=74082
 name=Ghost-Lit Redeemer
 rarity=U
@@ -238,13 +236,12 @@ id=74016
 name=Kagemaro, First to Suffer
 rarity=R
 mana={3}{B}{B}
-type=Creature
+type=Legendary Creature
 subtype=Demon Spirit
 auto=foreach(*|myhand) 1/1
 auto={B}{S}:foreach(*|myhand) -1/-1 all(creature)
 power=*
 toughness=*
-abilities=legendary
 [/card]
 [card]
 text=Enchant creature   Enchanted creature gets -X/-X, where X is the number of cards in your hand.
@@ -263,13 +260,12 @@ id=84364
 name=Kami of the Crescent Moon
 rarity=R
 mana={U}{U}
-type=Creature
+type=Legendary Creature
 subtype=Spirit
 auto=@each my draw:draw:1 controller
 auto=@each opponent draw:draw:1 opponent
 power=1
 toughness=3
-abilities=legendary
 [/card]
 [card]
 text=Soulshift 3 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 3 or less from your graveyard to your hand.)
@@ -311,12 +307,11 @@ id=74184
 name=Masumaro, First to Live
 rarity=R
 mana={3}{G}{G}{G}
-type=Creature
+type=Legendary Creature
 subtype=Spirit
 auto=foreach(*|myhand) 2/2
 power=*
 toughness=*
-abilities=legendary
 [/card]
 [card]
 text=All creatures get -X/-0, where X is the number of cards in your hand.
@@ -325,8 +320,7 @@ auto=foreach(*|myhand) lord(creature) -1/0
 name=Meishin, the Mind Cage
 rarity=R
 mana={4}{U}{U}{U}
-type=Enchantment
-abilities=legendary
+type=Legendary Enchantment
 [/card]
 [card]
 text={T}: Add {1} to your mana pool.   {2}, {T}: Each player draws a card.
@@ -335,8 +329,7 @@ name=Mikokoro, Center of the Sea
 auto={T}:Add {1}
 auto={2}{T}:draw:1 controller && draw:1 opponent
 rarity=R
-type=Land
-abilities=legendary
+type=Legendary Land
 [/card]
 [card]
 text=Flying   {W}: Moonwing Moth gets +0/+1 until end of turn.
@@ -370,8 +363,7 @@ name=Oboro, Palace in the Clouds
 auto={T}:Add {U}
 auto={1}:moveto(ownerhand)
 rarity=R
-type=Land
-abilities=legendary
+type=Legendary Land
 [/card]
 [card]
 text=Discard your hand.
@@ -453,11 +445,10 @@ name=Reki, the History of Kamigawa
 rarity=R
 mana={2}{G}
 auto=@movedto(*[legendary]|mystack):draw:1 controller
-type=Creature
+type=Legendary Creature
 subtype=Human Shaman
 power=1
 toughness=2
-abilities=legendary
 [/card]
 [card]
 text=Creatures with power 2 or less can't attack you.
@@ -490,7 +481,7 @@ mana={2}
 type=Artifact
 [/card]
 [card]
-text=Shinen of Fear's Chill can't block.   Channel ó {1}{B}, Discard Shinen of Fear's Chill: Target creature can't block this turn.
+text=Shinen of Fear's Chill can't block.   Channel ÅE{1}{B}, Discard Shinen of Fear's Chill: Target creature can't block this turn.
 id=88812
 name=Shinen of Fear's Chill
 rarity=C
@@ -503,7 +494,7 @@ toughness=2
 abilities=cantblock
 [/card]
 [card]
-text=Flying   Channel ó {U}, Discard Shinen of Flight's Wings: Target creature gains flying until end of turn.
+text=Flying   Channel ÅE{U}, Discard Shinen of Flight's Wings: Target creature gains flying until end of turn.
 id=74088
 name=Shinen of Flight's Wings
 rarity=C
@@ -516,7 +507,7 @@ toughness=3
 abilities=flying
 [/card]
 [card]
-text=Haste   Channel ó {R}, Discard Shinen of Fury's Fire: Target creature gains haste until end of turn.
+text=Haste   Channel ÅE{R}, Discard Shinen of Fury's Fire: Target creature gains haste until end of turn.
 id=87339
 name=Shinen of Fury's Fire
 rarity=C
@@ -529,7 +520,7 @@ toughness=1
 abilities=haste
 [/card]
 [card]
-text=First strike   Channel ó {1}{W}, Discard Shinen of Stars' Light: Target creature gains first strike until end of turn.
+text=First strike   Channel ÅE{1}{W}, Discard Shinen of Stars' Light: Target creature gains first strike until end of turn.
 id=74361
 name=Shinen of Stars' Light
 rarity=C
@@ -547,13 +538,13 @@ id=74170
 name=Soramaro, First to Dream
 rarity=R
 mana={4}{U}{U}
-type=Creature
+type=Legendary Creature
 subtype=Spirit
 auto=foreach(*|myhand) 1/1
 auto={4}:moveto(ownerhand) target(land|myBattlefield) && draw:1 controller
 power=*
 toughness=*
-abilities=flying,legendary
+abilities=flying
 [/card]
 [card]
 text={2}: Target creature you control gains flying until end of turn.   {2}: Prevent all combat damage that would be dealt to and dealt by target creature you control this turn.

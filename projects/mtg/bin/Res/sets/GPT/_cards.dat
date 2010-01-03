@@ -30,12 +30,12 @@ id=97229
 name=Borborygmos
 rarity=R
 mana={3}{R}{R}{G}{G}
-type=Creature
+type=Legendary Creature
 subtype=Cyclops
 auto=@damaged(player) from(this):lord(creature|mybattlefield) counter(1/1)
 power=6
 toughness=7
-abilities=legendary,trample
+abilities=trample
 [/card]
 [card]
 text=Exile target land.

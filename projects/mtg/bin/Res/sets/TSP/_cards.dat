@@ -3,11 +3,10 @@
 text={T}: Add {1} to your mana pool. {1}{U}, {T}: Put target artifact card in your graveyard on top of your library.
 id=116725
 name=Academy Ruins
-type=Land
+type=Legendary Land
 auto={T}:Add {1}
 auto={1}{U}{T}:moveTo(mylibrary) target(artifact|mygraveyard)
 rarity=R
-abilities=legendary
 [/card]
 [card]
 text=Flash (You may cast this spell any time you could cast an instant.) Enchant creature Enchanted creature gets +1/+1, has reach, and can block creatures with shadow as though they didn't have shadow. (Creatures with reach can block creatures with flying.)
@@ -235,8 +234,7 @@ name=Flagstones of Trokair
 rarity=R
 auto={T}:Add {W}
 auto=@movedTo(this|graveyard) from(battlefield):may moveTo(myBattlefield) target(plains|mylibrary) && tap
-type=Land
-abilities=legendary
+type=Legendary Land
 [/card]
 [card]
 id=118906
@@ -415,7 +413,7 @@ id=109752
 name=Jaya Ballard, Task Mage
 rarity=R
 mana={1}{R}{R}
-type=Creature
+type=Legendary Creature
 subtype=Human Spellshaper
 auto={R}{T}{S(*|myHand)}:destroy target(*[blue])
 auto={1}{R}{T}{S(*|myHand)}:cantregenerate && damage:3 target(creature)
@@ -423,7 +421,6 @@ auto={1}{R}{T}{S(*|myHand)}:damage:3 target(player)
 auto={5}{R}{R}{S(*|myHand)}:damage:6 all(creature,player)
 power=2
 toughness=2
-abilities=legendary
 [/card]
 [card]
 text=Vigilance   When Jedit's Dragoons enters the battlefield, you gain 4 life.
@@ -445,8 +442,7 @@ name=Kher Keep
 auto={T}:Add {1} 
 auto={1}{R}{T}:token(Kobolds of Kher Keep,creature kobold, 0/1, red)
 rarity=R
-type=Land
-abilities=legendary
+type=Legendary Land
 [/card]
 [card]
 text=Magus of the Disk enters the battlefield tapped.   {1}, {T}: Destroy all artifacts, creatures, and enchantments.
@@ -467,12 +463,11 @@ id=113563
 name=Mangara of Corondor
 rarity=R
 mana={1}{W}{W}
-type=Creature
+type=Legendary Creature
 subtype=Human Wizard
 auto={T}:moveTo(exile) all(this) && moveTo(exile) target(*)
 power=1
 toughness=1
-abilities=legendary
 [/card]
 [card]
 text=All Sliver creatures get +2/+2.
@@ -734,12 +729,12 @@ id=118915
 name=Stonebrow, Krosan Hero
 rarity=R
 mana={3}{R}{G}
-type=Creature
+type=Legendary Creature
 subtype=Centaur Warrior
 auto=lord(creature[attacking;trample]|myBattlefield) 2/2
 power=4
 toughness=4
-abilities=legendary,trample
+abilities=trample
 [/card]
 [card]
 text=Until end of turn, target creature gains trample and gets +X/+X, where X is the number of attacking creatures.

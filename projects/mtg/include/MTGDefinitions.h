@@ -83,7 +83,7 @@ class Constants
     PERSIST = 25,
     RETRACE = 26,
     EXALTED = 27,
-    LEGENDARY = 28,
+    NOFIZZLE = 28,
     SHADOW = 29,
     REACHSHADOW = 30,
     FORESTHOME = 31,
@@ -102,9 +102,8 @@ class Constants
     DEATHTOUCH = 44,
     HORSEMANSHIP = 45,
     CANTREGENERATE = 46,
-    NOFIZZLE = 47,
 
-    NB_BASIC_ABILITIES = 48,
+    NB_BASIC_ABILITIES = 47,
 
 
     RARITY_M = 'M',   //Mythics

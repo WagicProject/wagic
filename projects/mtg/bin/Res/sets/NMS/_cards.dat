@@ -26,13 +26,13 @@ id=22897
 name=Ascendant Evincar
 rarity=R
 mana={4}{B}{B}
-type=Creature
+type=Legendary Creature
 subtype=Vampire
 auto=lord(creature[black]) 1/1 other
 auto=lord(creature[-black]) -1/-1
 power=3
 toughness=3
-abilities=legendary,flying
+abilities=flying
 [/card]
 [card]
 text=Flying   Battlefield Percher can block only creatures with flying. {1}{B}: Battlefield Percher gets +1/+1 until end of turn.
@@ -245,8 +245,7 @@ name=Kor Haven
 auto={T}:Add {1}
 auto={1}{W}{T}:preventAllCombatDamage from target(creature[attacking]) ueot
 rarity=R
-type=Land
-abilities=legendary
+type=Legendary Land
 [/card]
 [card]
 text={T}, Sacrifice Lawbringer: Exile target red creature.
@@ -351,8 +350,7 @@ auto={5}{T}:destroy target(creature[flying])
 name=Predator, Flagship
 rarity=R
 mana={5}
-type=Artifact
-abilities=legendary
+type=Legendary Artifact
 [/card]
 [card]
 text=At the beginning of each opponent's upkeep, Rackling deals X damage to that player, where X is 3 minus the number of cards in his or her hand.
@@ -412,8 +410,7 @@ auto={4}{T}{S(land|myBattlefield)}:damage:1 target(creature,player)
 id=21402
 name=Rath's Edge
 rarity=R
-type=Land
-abilities=legendary
+type=Legendary Land
 [/card]
 [card]
 text=Islandwalk (This creature is unblockable as long as defending player controls an Island.)

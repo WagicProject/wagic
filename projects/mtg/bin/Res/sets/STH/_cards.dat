@@ -481,11 +481,10 @@ auto={2}:token(Sliver,creature sliver, 1/1)
 name=Sliver Queen
 rarity=R
 mana={W}{U}{B}{R}{G}
-type=Creature
+type=Legendary Creature
 subtype=Sliver
 power=7
 toughness=7
-abilities=legendary
 [/card]
 [card]
 text=Whenever a Sliver becomes blocked, that Sliver gets +1/+1 until end of turn for each creature blocking it.
@@ -540,8 +539,7 @@ id=5250
 name=Sword of the Chosen
 rarity=R
 mana={2}
-type=Artifact
-abilities=legendary
+type=Legendary Artifact
 [/card]
 [card]
 text=Enchant creature   Enchanted creature gets -3/-0.
@@ -603,8 +601,7 @@ name=Volrath's Stronghold
 auto={T}:Add {1}
 auto={1}{B}{T}:moveTo(myLibrary) target(creature|mygraveyard)
 rarity=R
-type=Land
-abilities=legendary
+type=Legendary Land
 [/card]
 [card]
 text=Walking Dream is unblockable.   Walking Dream doesn't untap during your untap step if an opponent controls two or more creatures.

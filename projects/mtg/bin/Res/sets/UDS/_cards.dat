@@ -434,12 +434,11 @@ id=15237
 name=Rofellos, Llanowar Emissary
 rarity=R
 mana={G}{G}
-type=Creature
+type=Legendary Creature
 subtype=Elf Druid
 auto={T}:foreach(forest|myBattlefield) add:{G}
 power=2
 toughness=1
-abilities=legendary
 [/card]
 [card]
 text=Flying   {T}: Target attacking or blocking creature gets +2/+2 until end of turn.
@@ -644,6 +643,5 @@ name=Yavimaya Hollow
 auto={T}:Add {1}
 auto={G}{T}:regenerate target(creature)
 rarity=R
-type=Land
-abilities=legendary
+type=Legendary Land
 [/card]

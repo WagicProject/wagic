@@ -343,11 +343,11 @@ auto=foreach(*|opponenthand) 1/1
 name=Multani, Maro-Sorcerer
 rarity=R
 mana={4}{G}{G}
-type=Creature
+type=Legendary Creature
 subtype=Elemental
 power=*
 toughness=*
-abilities=legendary,shroud
+abilities=shroud
 [/card]
 [card]
 text={T}: Target creature you control gains protection from the color of your choice until end of turn.
@@ -505,11 +505,11 @@ auto=foreach(other creature[flying]) 1/1
 name=Radiant, Archangel
 rarity=R
 mana={3}{W}{W}
-type=Creature
+type=Legendary Creature
 subtype=Angel
 power=3
 toughness=3
-abilities=legendary,flying,vigilance
+abilities=flying,vigilance
 [/card]
 [card]
 text=Destroy target creature with power 4 or greater.   Cycling {2} ({2}, Discard this card: Draw a card.)

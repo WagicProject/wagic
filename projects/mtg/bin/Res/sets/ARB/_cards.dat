@@ -208,12 +208,12 @@ id=180605
 name=Jenara, Asura of War
 rarity=M
 mana={G}{W}{U}
-type=Creature
+type=Legendary Creature
 subtype=Angel
 auto={1}{W}:counter(1/1)
 power=3
 toughness=3
-abilities=legendary,flying
+abilities=flying
 [/card]
 [card]
 text=Fear   Islandcycling {2}, swampcycling {2} ({2}, Discard this card: Search your library for an Island or Swamp card, reveal it, and put it into your hand. Then shuffle your library.)
@@ -248,14 +248,14 @@ id=180587
 name=Karrthus, Tyrant of Jund
 rarity=M
 mana={4}{B}{R}{G}
-type=Creature
+type=Legendary Creature
 subtype=Dragon
 auto=moveTo(myBattlefield) all(dragon)
 auto=untap all(dragon)
 auto=lord(dragon|myBattlefield) haste other
 power=7
 toughness=7
-abilities=flying,haste,legendary
+abilities=flying,haste
 [/card]
 [card]
 text=When Leonin Armorguard enters the battlefield, creatures you control get +1/+1 until end of turn.

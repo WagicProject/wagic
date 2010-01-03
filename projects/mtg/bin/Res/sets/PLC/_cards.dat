@@ -91,11 +91,10 @@ id=122487
 name=Crovax, Ascendant Hero
 rarity=R
 mana={4}{W}{W}
-type=Creature
+type=Legendary Creature
 subtype=Human Lord
 power=4
 toughness=4
-abilities=legendary
 [/card]
 [card]
 text=Destroy all creatures. They can't be regenerated.
@@ -327,12 +326,12 @@ id=122406
 name=Mirri the Cursed
 rarity=R
 mana={2}{B}{B}
-type=Creature
+type=Legendary Creature
 subtype=Vampire Cat
 auto=@damaged(creature) from(this):counter(1/1,1)
 power=3
 toughness=2
-abilities=flying,first strike,haste,legendary
+abilities=flying,first strike,haste
 [/card]
 [card]
 text=All Slivers have "{3}, Sacrifice this permanent: Destroy target permanent."

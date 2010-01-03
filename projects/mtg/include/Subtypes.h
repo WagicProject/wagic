@@ -10,6 +10,7 @@ using namespace std;
 
 class Subtypes{
 public:
+  //A list of commonly used types
   enum {
     TYPE_CREATURE = 1,
     TYPE_ENCHANTMENT = 2,
@@ -17,6 +18,7 @@ public:
     TYPE_INSTANT = 4,
     TYPE_LAND = 5,
     TYPE_ARTIFACT = 6,
+    TYPE_LEGENDARY = 7,
   };
 
 

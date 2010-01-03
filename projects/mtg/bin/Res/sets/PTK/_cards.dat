@@ -106,12 +106,12 @@ id=10712
 name=Cao Ren, Wei Commander
 rarity=R
 mana={2}{B}{B}
-type=Creature
+type=Legendary Creature
 subtype=Human Soldier Warrior
 auto=life:-3
 power=3
 toughness=3
-abilities=legendary,horsemanship
+abilities=horsemanship
 [/card]
 [card]
 text=When Council of Advisors enters the battlefield, draw a card.
@@ -286,12 +286,11 @@ id=10570
 name=Hua Tuo, Honored Physician
 rarity=R
 mana={1}{G}{G}
-type=Creature
+type=Legendary Creature
 subtype=Human
 auto={T}:moveTo(mylibrary) target(creature|mygraveyard) myTurnOnly
 power=1
 toughness=2
-abilities=legendary
 [/card]
 [card]
 text=Whenever Hunting Cheetah deals damage to an opponent, you may search your library for a Forest card, reveal that card, put it into your hand, then shuffle your library.
@@ -360,12 +359,11 @@ id=10490
 name=Kongming, "Sleeping Dragon"
 rarity=R
 mana={2}{W}{W}
-type=Creature
+type=Legendary Creature
 subtype=Human Advisor
 auto=lord(creature|myBattlefield) 1/1 other
 power=2
 toughness=2
-abilities=legendary
 [/card]
 [card]
 text={T}: Kongming's Contraptions deals 2 damage to target attacking creature. Play this ability only during the declare attackers step, and only on an opponent's turn.
@@ -385,11 +383,11 @@ id=10609
 name=Lady Zhurong, Warrior Queen
 rarity=R
 mana={4}{G}
-type=Creature
+type=Legendary Creature
 subtype=Human Soldier Warrior
 power=4
 toughness=3
-abilities=legendary,horsemanship
+abilities=horsemanship
 [/card]
 [card]
 text=Sacrifice Loyal Retainers: Return target legendary creature card from your graveyard onto the battlefield. Play this ability only during your turn, before attackers are declared.
@@ -409,11 +407,11 @@ id=10536
 name=Lu Bu, Master-at-Arms
 rarity=R
 mana={5}{R}
-type=Creature
+type=Legendary Creature
 subtype=Human Soldier Warrior
 power=4
 toughness=3
-abilities=legendary,horsemanship,haste
+abilities=horsemanship,haste
 [/card]
 [card]
 text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)
@@ -421,11 +419,11 @@ id=10710
 name=Lu Meng, Wu General
 rarity=U
 mana={3}{U}{U}
-type=Creature
+type=Legendary Creature
 subtype=Human Soldier
 power=4
 toughness=4
-abilities=legendary,horsemanship
+abilities=horsemanship
 [/card]
 [card]
 text={T}: Draw a card. Activate this ability only during your turn, before attackers are declared.
@@ -433,12 +431,11 @@ id=10614
 name=Lu Su, Wu Advisor
 rarity=R
 mana={3}{U}{U}
-type=Creature
+type=Legendary Creature
 subtype=Human Advisor
 auto={T}:Draw:1 myTurnOnly
 power=1
 toughness=2
-abilities=legendary
 [/card]
 [card]
 text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)   Whenever Lu Xun, Scholar General deals damage to an opponent, you may draw a card.
@@ -447,11 +444,11 @@ id=10616
 name=Lu Xun, Scholar General
 rarity=U
 mana={2}{U}{U}
-type=Creature
+type=Legendary Creature
 subtype=Human Soldier
 power=1
 toughness=3
-abilities=legendary,horsemanship
+abilities=horsemanship
 [/card]
 [card]
 text=Other green creatures you control get +1/+1.
@@ -459,12 +456,11 @@ id=10732
 name=Meng Huo, Barbarian King
 rarity=R
 mana={3}{G}{G}
-type=Creature
+type=Legendary Creature
 subtype=Human Barbarian Soldier
 auto=lord(creature[green]|myBattlefield) 1/1 other
 power=4
 toughness=4
-abilities=legendary
 [/card]
 [card]
 id=10503
@@ -541,12 +537,11 @@ id=10713
 name=Pang Tong, "Young Phoenix"
 rarity=R
 mana={1}{W}{W}
-type=Creature
+type=Legendary Creature
 subtype=Human Advisor
 auto={T}:0/2 target(creature) myTurnOnly
 power=1
 toughness=2
-abilities=legendary
 [/card]
 [card]
 text=You gain 2 life for each creature you control.
@@ -778,12 +773,11 @@ id=10630
 name=Sima Yi, Wei Field Marshal
 rarity=R
 mana={5}{B}
-type=Creature
+type=Legendary Creature
 subtype=Human Soldier
 auto=foreach(swamp|myBattlefield) 1/0
 power=*
 toughness=4
-abilities=legendary
 [/card]
 [card]
 id=10545
@@ -850,12 +844,12 @@ id=10709
 name=Sun Ce, Young Conquerer
 rarity=U
 mana={3}{U}{U}
-type=Creature
+type=Legendary Creature
 subtype=Human Soldier
 auto=may moveto(ownerhand) target(creature|battlefield)
 power=3
 toughness=3
-abilities=legendary,horsemanship
+abilities=horsemanship
 [/card]
 [card]
 text=Creatures you control have horsemanship. (They can't be blocked except by creatures with horsemanship.)
@@ -863,12 +857,11 @@ id=10513
 name=Sun Quan, Lord of Wu
 rarity=R
 mana={4}{U}{U}
-type=Creature
+type=Legendary Creature
 subtype=Human Soldier
 auto=lord(creature|battlefield) horsemanship
 power=4
 toughness=4
-abilities=legendary
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
@@ -1113,12 +1106,12 @@ id=10590
 name=Xiahou Dun, the One-Eyed
 rarity=U
 mana={2}{B}{B}
-type=Creature
+type=Legendary Creature
 subtype=Human Soldier
 auto={S}:moveTo(ownerhand) target(*[black]|mygraveyard) myTurnOnly
 power=3
 toughness=2
-abilities=legendary,horsemanship
+abilities=horsemanship
 [/card]
 [card]
 text={T}: Target creature gets +2/+0 until end of turn. Activate this ability only during your turn, before attackers are declared.
@@ -1126,12 +1119,11 @@ id=13831
 name=Xun Yu, Wei Advisor 
 rarity=R
 mana={1}{B}{B}
-type=Creature
+type=Legendary Creature
 subtype=Human Advisor
 auto={T}:2/0 target(creature|myBattlefield) myTurnOnly
 power=1
 toughness=1
-abilities=legendary
 [/card]
 [card]
 text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)   Yellow Scarves Cavalry can't block.
@@ -1200,11 +1192,11 @@ id=10604
 name=Zhang Fei, Fierce Warrior
 rarity=U
 mana={4}{W}{W}
-type=Creature
+type=Legendary Creature
 subtype=Human Soldier Warrior
 power=4
 toughness=4
-abilities=legendary,horsemanship,vigilance
+abilities=horsemanship,vigilance
 [/card]
 [card]
 text=Zhou Yu, Chief Commander can't attack unless defending player controls an Island.
@@ -1225,12 +1217,11 @@ id=10711
 name=Zhuge Jin, Wu Strategist
 rarity=R
 mana={1}{U}{U}
-type=Creature
+type=Legendary Creature
 subtype=Human Advisor
 auto={T}:unblockable target(creature) myTurnOnly
 power=1
 toughness=1
-abilities=legendary
 [/card]
 [card]
 text=Mountainwalk
@@ -1382,10 +1373,10 @@ id=10610
 name=Zuo Ci, the Mocking Sage
 rarity=R
 mana={1}{G}{G}
-type=Creature
+type=Legendary Creature
 subtype=Human Advisor
 auto=cantbeblockedby(creature[horsemanship])
 power=1
 toughness=2
-abilities=legendary,opponentshroud
+abilities=opponentshroud
 [/card]

@@ -4,7 +4,7 @@ id=136150
 name=Akroma's Memorial
 rarity=R
 mana={7}
-type=Artifact
+type=Legendary Artifact
 auto=lord(creature|myBattlefield) flying
 auto=lord(creature|myBattlefield) first strike
 auto=lord(creature|myBattlefield) vigilance
@@ -12,7 +12,6 @@ auto=lord(creature|myBattlefield) trample
 auto=lord(creature|myBattlefield) haste
 auto=lord(creature|myBattlefield) protection from red
 auto=lord(creature|myBattlefield) protection from black
-abilities=legendary
 [/card]
 [card]
 id=132212

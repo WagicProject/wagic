@@ -14,12 +14,12 @@ id=42024
 name=Bladewing the Risen
 rarity=R
 mana={3}{B}{B}{R}{R}
-type=Creature
+type=Legendary Creature
 subtype=Zombie Dragon
 auto={B}{R}:lord(dragon) 1/1
 power=4
 toughness=4
-abilities=legendary,flying
+abilities=flying
 [/card]
 [card]
 text=Destroy target artifact or enchantment.   Cycling {2} ({2}, Discard this card: Draw a card.)
@@ -340,8 +340,7 @@ rarity=C
 id=45166
 name=Sliver Overlord
 mana={W}{U}{B}{R}{G}
-type=Creature
-abilities=Legendary
+type=Legendary Creature
 subtype=Sliver Mutant
 power=7
 toughness=7

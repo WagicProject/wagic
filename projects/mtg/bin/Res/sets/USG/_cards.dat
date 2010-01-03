@@ -110,12 +110,11 @@ id=9856
 name=Barrin, Master Wizard
 rarity=R
 mana={1}{U}{U}
-type=Creature
+type=Legendary Creature
 subtype=Human Wizard
 auto={2}{S(*|myBattlefield)}:moveTo(ownerhand) target(creature)
 power=1
 toughness=1
-abilities=legendary
 [/card]
 [card]
 text=Creatures can't block.
@@ -595,8 +594,7 @@ id=10422
 auto={T}:foreach(creature|myBattlefield) add:{G}
 name=Gaea's Cradle
 rarity=R
-type=Land
-abilities=legendary
+type=Legendary Land
 [/card]
 [card]
 text=Enchant creature   Enchanted creature gets +3/+3 and has trample.   {G}: Regenerate enchanted creature.
@@ -1027,8 +1025,7 @@ name=Phyrexian Tower
 auto={T}:Add {1}
 auto={T}{s(creature|myBattlefield)}:Add {B}{B}
 rarity=R
-type=Land
-abilities=legendary
+type=Legendary Land
 [/card]
 [card]
 text={2},{T},Sacrifice Pit Trap: Destroy target attacking creature without flying. It can't be regenerated.
@@ -1260,8 +1257,7 @@ auto={T}:foreach(enchantment|myBattlefield)add:{W}
 id=9674
 name=Serra's Sanctum
 rarity=R
-type=Land
-abilities=legendary
+type=Legendary Land
 [/card]
 [card]
 text=Defender (This creature can't attack.)   First strike   Cycling {2} ({2}, Discard this card: Draw a card.)
@@ -1309,8 +1305,7 @@ name=Shivan Gorge
 auto={T}:Add {1}
 auto={2}{R}{T}:damage:1 opponent
 rarity=R
-type=Land
-abilities=legendary
+type=Legendary Land
 [/card]
 [card]
 text=Enchant creature   Enchanted creature gets -1/-1.   Cycling {2} ({2}, Discard this card: Draw a card.)
@@ -1511,8 +1506,7 @@ auto={T}:foreach(artifact|myBattlefield)add:{U}
 id=8883
 name=Tolarian Academy
 rarity=R
-type=Land
-abilities=legendary
+type=Legendary Land
 [/card]
 [card]
 text=Treefolk Seedlings's toughness is equal to the number of Forests you control.

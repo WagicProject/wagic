@@ -42,11 +42,10 @@ id=79248
 name=Ben-Ben, Akki Hermit
 rarity=R
 mana={2}{R}{R}
-type=Creature
+type=Legendary Creature
 subtype=Goblin Shaman
 power=1
 toughness=1
-abilities=legendary
 [/card]
 [card]
 text=Untap target nonlegendary creature and gain control of it until end of turn. That creature gains haste until end of turn.
@@ -302,9 +301,8 @@ id=79159
 name=Honden of Cleansing Fire
 rarity=U
 mana={3}{W}
-type=Enchantment
+type=Legendary Enchantment
 subtype=Shrine
-abilities=legendary
 [/card]
 [card]
 text=At the beginning of your upkeep, put a 1/1 colorless Spirit creature token onto the battlefield for each Shrine you control.
@@ -313,9 +311,8 @@ id=79180
 name=Honden of Life's Web
 rarity=U
 mana={4}{G}
-type=Enchantment
+type=Legendary Enchantment
 subtype=Shrine
-abilities=legendary
 [/card]
 [card]
 text=At the beginning of your upkeep, draw a card for each Shrine you control.
@@ -324,9 +321,8 @@ id=79176
 name=Honden of Seeing Winds
 rarity=U
 mana={4}{U}
-type=Enchantment
+type=Legendary Enchantment
 subtype=Shrine
-abilities=legendary
 [/card]
 [card]
 text=Shroud
@@ -383,11 +379,10 @@ id=79217
 name=Isamaru, Hound of Konda
 rarity=R
 mana={W}
-type=Creature
+type=Legendary Creature
 subtype=Hound
 power=2
 toughness=2
-abilities=legendary
 [/card]
 [card]
 id=79074
@@ -587,11 +582,11 @@ id=50488
 name=Kodama of the North Tree
 rarity=R
 mana={2}{G}{G}{G}
-type=Creature
+type=Legendary Creature
 subtype=Spirit
 power=6
 toughness=4
-abilities=shroud,trample,legendary
+abilities=shroud,trample
 [/card]
 [card]
 text=Whenever you cast a Spirit or Arcane spell, each other creature you control gets +1/+1 and gains trample until end of turn.
@@ -601,11 +596,10 @@ id=80288
 name=Kodama of the South Tree
 rarity=R
 mana={2}{G}{G}
-type=Creature
+type=Legendary Creature
 subtype=Spirit
 power=4
 toughness=4
-abilities=legendary
 [/card]
 [card]
 text=Flying When Kokusho, the Evening Star is put into a graveyard from the battlefield, each opponent loses 5 life. You gain life equal to the life lost this way.
@@ -613,13 +607,13 @@ id=50445
 name=Kokusho, the Evening Star
 rarity=R
 mana={4}{B}{B}
-type=Creature
+type=Legendary Creature
 subtype=Dragon Spirit
 auto=@movedTo(this|graveyard) from(battlefield):life:5 controller
 auto=@movedTo(this|graveyard) from(battlefield):life:-5 opponent
 power=5
 toughness=5
-abilities=flying,legendary
+abilities=flying
 [/card]
 [card]
 text=Flying
@@ -651,12 +645,11 @@ id=50253
 name=Marrow-Gnawer
 rarity=R
 mana={3}{B}{B}
-type=Creature
+type=Legendary Creature
 subtype=Rat Rogue
 auto=lord(rat) fear
 power=2
 toughness=3
-abilities=legendary
 [/card]
 [card]
 text=Flying   {1}, Return a land you control to its owner's hand: Put a 1/1 blue Illusion creature token with flying onto the battlefield.
@@ -665,11 +658,11 @@ id=75268
 name=Meloku the Clouded Mirror
 rarity=R
 mana={4}{U}
-type=Creature
+type=Legendary Creature
 subtype=Moonfolk Wizard
 power=2
 toughness=4
-abilities=flying,legendary
+abilities=flying
 [/card]
 [card]
 text=Enchanted Creature has "{B}: This Creature gets +1/+1 until end of turn."
@@ -689,8 +682,7 @@ auto={U}{T}:Untap target(*[legendary])
 id=79179
 name=Minamo, School at Water's Edge
 rarity=R
-type=Land
-abilities=legendary
+type=Legendary Land
 [/card]
 [card]
 text=Trample
@@ -772,8 +764,7 @@ id=78991
 name=Night of Souls' Betrayal
 rarity=R
 mana={2}{B}{B}
-type=Enchantment
-abilities=legendary
+type=Legendary Enchantment
 [/card]
 [card]
 id=75265
@@ -794,8 +785,7 @@ auto={G}{T}:1/1 target(creature[legendary])
 id=80251
 name=Okina, Temple to the Grandfathers
 rarity=R
-type=Land
-abilities=legendary
+type=Legendary Land
 [/card]
 [card]
 text=Reach (This creature can block creatures with flying.)   Whenever you cast a Spirit or Arcane spell, Orbweaver Kumo gains forestwalk until end of turn.
@@ -989,11 +979,11 @@ id=79242
 name=Ryusei, the Falling Star
 rarity=R
 mana={5}{R}
-type=Creature
+type=Legendary Creature
 subtype=Dragon Spirit
 power=5
 toughness=5
-abilities=flying,legendary
+abilities=flying
 [/card]
 [card]
 text=Other Snake creatures you control get +0/+1.   Shamans you control have "{T}: Add {G}{G} to your mana pool."
@@ -1001,13 +991,12 @@ id=80254
 name=Sachi, Daughter of Seshiro
 rarity=U
 mana={2}{G}{G}
-type=Creature
+type=Legendary Creature
 subtype=Snake Shaman
 auto=lord(snake|mybattlefield) 0/1 other
 auto=lord(shaman|mybattlefield) {T}:Add{G}{G}
 power=1
 toughness=3
-abilities=legendary
 [/card]
 [card]
 text=Sacrifice Sakura-Tribe Elder: Search your library for a basic land card, put that card onto the battlefield tapped, then shuffle your library.
@@ -1042,11 +1031,10 @@ id=78965
 name=Seizan, Perverter of Truth
 rarity=R
 mana={3}{B}{B}
-type=Creature
+type=Legendary Creature
 subtype=Demon Spirit
 power=6
 toughness=5
-abilities=legendary
 [/card]
 [card]
 text=Flash   Enchant creature Enchanted creature gets +1/+1.   {G}: Regenerate enchanted creature.
@@ -1069,11 +1057,10 @@ id=80256
 name=Seshiro the Anointed
 rarity=R
 mana={4}{G}{G}
-type=Creature
+type=Legendary Creature
 subtype=Snake Monk
 power=3
 toughness=4
-abilities=legendary
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.   {R}, {T}: Target legendary creature gains first strike until end of turn.
@@ -1082,8 +1069,7 @@ auto={R}{T}:first strike target(creature[legendary])
 id=79121
 name=Shinka, the Bloodsoaked Keep
 rarity=R
-type=Land
-abilities=legendary
+type=Legendary Land
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.   {B}, {T}: Target legendary Creature gains fear until end of turn.
@@ -1092,8 +1078,7 @@ auto={B}{T}:fear target(creature[legendary])
 id=79186
 name=Shizo, Death's Storehouse
 rarity=R
-type=Land
-abilities=legendary
+type=Legendary Land
 [/card]
 [card]
 text=Flying   Whenever you cast a Spirit or Arcane spell, you may draw a card.
@@ -1208,11 +1193,11 @@ id=78693
 name=The Unspeakable
 rarity=R
 mana={6}{U}{U}{U}
-type=Creature
+type=Legendary Creature
 subtype=Spirit
 power=6
 toughness=7
-abilities=legendary,flying,trample
+abilities=flying,trample
 [/card]
 [card]
 text=Whenever you cast a Spirit or Arcane spell, target opponent loses 1 life and you gain 1 life.   Soulshift 2 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 2 or less from your graveyard to your hand.)
@@ -1338,9 +1323,8 @@ id=80274
 name=Zo-Zu the Punisher
 rarity=R
 mana={1}{R}{R}
-type=Creature
+type=Legendary Creature
 subtype=Goblin Warrior
 power=2
 toughness=2
-abilities=legendary
 [/card]

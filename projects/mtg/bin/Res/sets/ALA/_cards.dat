@@ -1243,11 +1243,11 @@ id=175127
 name=Sharuum the Hegemon
 rarity=M
 mana={3}{W}{U}{B}
-type=Artifact Creature
+type=Legendary Artifact Creature
 subtype=Sphinx
 power=5
 toughness=5
-abilities=flying,legendary
+abilities=flying
 [/card]
 [card]
 text={U}: Shore Snapper gains islandwalk until end of turn.

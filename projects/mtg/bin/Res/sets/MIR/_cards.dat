@@ -1237,14 +1237,14 @@ id=3311
 name=Shauku, Endbringer
 rarity=R
 mana={5}{B}{B}
-type=Creature
+type=Legendary Creature
 subtype=Vampire
 auto=@each my upkeep:life:-3 controller
 auto=aslongas(other creature|battlefield) cantattack
 auto={T}:counter(1/1) all(this) && moveTo(exile) target(creature)
 power=5
 toughness=5
-abilities=legendary,flying
+abilities=flying
 [/card]
 [card]
 text={B}{R}{T}: Shauku's Minion deals 2 damage to target white creature.
@@ -1274,13 +1274,13 @@ id=3315
 name=Spirit of the Night
 rarity=R
 mana={6}{B}{B}{B}
-type=Creature
+type=Legendary Creature
 subtype=Demon Spirit
 auto=@each my combatbegins:first strike
 auto=@each my combatends:-first strike
 power=6
 toughness=5
-abilities=legendary,flying,trample,haste,protection from black
+abilities=flying,trample,haste,protection from black
 [/card]
 [card]
 text=Spitting Earth deals damage equal to the number of Mountains you control to target creature.
@@ -1619,12 +1619,12 @@ abilities=lifelink
 text=Flying   Other Griffin creatures get +1/+1.
 id=3526 
 name=Zuberi, Golden Feather
-type=Creature
+type=Legendary Creature
 subtype=Griffin
 rarity=R
 mana={4}{W}
 auto=lord(griffin) 1/1 other
 power=3
 toughness=3
-abilities=flying,legendary
+abilities=flying
 [/card]

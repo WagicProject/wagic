@@ -260,12 +260,11 @@ id=184553
 name=Kaysa
 rarity=R
 mana={3}{G}{G}
-type=Creature
+type=Legendary Creature
 subtype=Elf Druid
 auto=lord(creature[green]|myBattlefield)1/1
 power=2
 toughness=3
-abilities=legendary
 [/card]
 [card]
 text=Shuffle a card from your hand into your library.   If you do, draw two cards at the beginning of the next turn's upkeep.

@@ -622,7 +622,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
   card = NULL;
   while((card = cd.nextmatch(game->hand, card))){
     if (card->hasType(Subtypes::TYPE_LAND) && !this->canPutLandsIntoPlay) continue;
-    if (card->has(Constants::LEGENDARY) && game->inPlay->findByName(card->name)) continue;
+    if (card->hasType(Subtypes::TYPE_LEGENDARY) && game->inPlay->findByName(card->name)) continue;
     int currentCost = card->getManaCost()->getConvertedCost();
     int hasX = card->getManaCost()->hasX();
     if ((currentCost > maxCost || hasX) && pMana->canAfford(card->getManaCost())){

@@ -1,6 +1,7 @@
 #include "../include/config.h"
 #include "../include/MTGRules.h"
 #include "../include/Translate.h"
+#include "../include/Subtypes.h"
 #include "../include/GameOptions.h"
 
 MTGPutInPlayRule::MTGPutInPlayRule(int _id):MTGAbility(_id, NULL){
@@ -519,7 +520,7 @@ HUDDisplay::~HUDDisplay(){
   MTGLegendRule::MTGLegendRule(int _id):ListMaintainerAbility(_id){};
 
   int MTGLegendRule::canBeInList(MTGCardInstance * card){
-    if (card->basicAbilities[Constants::LEGENDARY] && game->isInPlay(card)){
+    if (card->hasType(Subtypes::TYPE_LEGENDARY) && game->isInPlay(card)){
       return 1;
     }
     return 0;

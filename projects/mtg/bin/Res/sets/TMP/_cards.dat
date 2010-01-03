@@ -457,11 +457,10 @@ auto=lord(elf) forestwalk other
 auto=lord(elf) shroud other
 rarity=R
 mana={G}{G}
-type=Creature
+type=Legendary Creature
 subtype=Elf Warrior
 power=2
 toughness=2
-abilities=legendary
 [/card]
 [card]
 text=At the beginning of each player's precombat main phase, add {G}{G} to that player's mana pool.
@@ -1578,12 +1577,12 @@ id=4916
 name=Selenia, Dark Angel
 rarity=R
 mana={3}{W}{B}
-type=Creature
+type=Legendary Creature
 subtype=Angel
 auto={0}:moveTo(ownerhand) && life:-2 controller
 power=3
 toughness=3
-abilities=legendary,flying
+abilities=flying
 [/card]
 [card]
 text=Destroy target enchantment. You gain life equal to its converted mana cost.

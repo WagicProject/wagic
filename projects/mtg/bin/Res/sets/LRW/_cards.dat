@@ -147,11 +147,11 @@ auto={T}:damage:2 all(creature[attacking;blocking]|opponentBattlefield)
 auto={T}:damage:2 all(creature[attacking;blocking]|myBattlefield)
 rarity=R
 mana={2}{W}{W}
-type=Creature
+type=Legendary Creature
 subtype=Kithkin Archer
 power=2
 toughness=3
-abilities=legendary,first strike
+abilities=first strike
 [/card]
 [card]
 text=Reach (This can block creatures with flying.)
@@ -490,11 +490,11 @@ id=140219
 name=Horde of Notions
 rarity=R
 mana={W}{U}{B}{R}{G}
-type=Creature
+type=Legendary Creature
 subtype=Elemental
 power=5
 toughness=5
-abilities=vigilance,trample,haste,legendary
+abilities=vigilance,trample,haste
 [/card]
 [card]
 text={T}: Put a +1/+1 counter on target creature for each Elf you control.
@@ -756,11 +756,10 @@ auto=@movedTo(*|opponentgraveyard) from(opponenthand):may token(Elf Warrior,Crea
 name=Nath of the Gilt-Leaf
 rarity=R
 mana={3}{B}{G}
-type=Creature
+type=Legendary Creature
 subtype=Elf Warrior
 power=4
 toughness=4
-abilities=legendary
 [/card]
 [card]
 text=Protection from Elves
@@ -1112,11 +1111,11 @@ id=140172
 name=Sygg, River Guide
 rarity=R
 mana={W}{U}
-type=Creature
+type=Legendary Creature
 subtype=Merfolk Wizard
 power=2
 toughness=2
-abilities=legendary,islandwalk
+abilities=islandwalk
 [/card]
 [card]
 text={T}, Sacrifice a Goblin: Tar Pitcher deals 2 damage to target creature or player.
@@ -1243,11 +1242,11 @@ id=140226
 name=Wort, Boggart Auntie
 rarity=R
 mana={2}{B}{R}
-type=Creature
+type=Legendary Creature
 subtype=Goblin Shaman
 power=3
 toughness=3
-abilities=fear,legendary
+abilities=fear
 [/card]
 [card]
 text=Flash,flying.   {U}{B}, Pay 1 life: Return Wydwen, the Biting Gale to its owner's hand.
@@ -1256,11 +1255,11 @@ id=140229
 name=Wydwen, the Biting Gale
 rarity=R
 mana={2}{U}{B}
-type=Creature
+type=Legendary Creature
 subtype=Faerie Wizard
 power=3
 toughness=3
-abilities=legendary,flying,flash
+abilities=flying,flash
 [/card]
 [card]
 text=Enchant creature   Enchanted creature has defender and flying.

@@ -92,9 +92,8 @@ id=74517
 name=Day of Destiny
 rarity=R
 mana={3}{W}
-type=Enchantment
+type=Legendary Enchantment
 auto=lord(creature[legendary]|myBattlefield) 2/2
-abilities=legendary
 [/card]
 [card]
 text=Empty-Shrine Kannushi has protection from the colors of permanents you control.
@@ -183,10 +182,9 @@ text={T}: Add {1} to your mana pool.   When Gods' Eye, Gate to the Reikai is put
 id=74668
 name=Gods' Eye, Gate to the Reikai
 rarity=U
-type=Land
+type=Legendary Land
 auto={T}:Add {1}
 auto=@movedto(this|mygraveyard) from(Battlefield):token(Spirit,Creature Spirit,1/1)
-abilities=legendary
 [/card]
 [card]
 text=Protection from non-Spirit creatures   Soulshift 4 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 4 or less from your graveyard to your hand.)
@@ -229,11 +227,10 @@ id=74636
 name=Ishi-Ishi, Akki Crackshot
 rarity=R
 mana={1}{R}
-type=Creature
+type=Legendary Creature
 subtype=Goblin Warrior
 power=1
 toughness=1
-abilities=legendary
 [/card]
 [card]
 text=Sacrifice Kami of False Hope: Prevent all combat damage that would be dealt this turn.
@@ -329,11 +326,11 @@ id=74027
 name=Oyobi, Who Split the Heavens
 rarity=R 
 mana={6}{W}
-type=Creature
+type=Legendary Creature
 subtype=Spirit
 power=3
 toughness=6
-abilities=legendary,flying
+abilities=flying
 [/card]
 [card]
 text=Enchant creature   Enchanted creature has flying.   Sacrifice Phantom Wings: Return enchanted creature to its owner's hand.
@@ -492,9 +489,8 @@ name=Yukora, the Prisoner
 rarity=R
 mana={2}{B}{B}
 auto=@movedto(this|mygraveyard):bury all(creature[-ogre]|myBattlefield)
-type=Creature
+type=Legendary Creature
 subtype=Demon Spirit
 power=5
 toughness=5
-abilities=legendary
 [/card]

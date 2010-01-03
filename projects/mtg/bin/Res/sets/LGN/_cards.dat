@@ -4,11 +4,11 @@ id=42049
 name=Akroma, Angel of Wrath
 rarity=R
 mana={5}{W}{W}{W}
-type=Creature
+type=Legendary Creature
 subtype=Angel
 power=6
 toughness=6
-abilities=flying,first strike,trample,haste,protection from black,protection from red,vigilance,legendary
+abilities=flying,first strike,trample,haste,protection from black,protection from red,vigilance
 [/card]
 [card]
 text=Cleric creatures have vigilance.

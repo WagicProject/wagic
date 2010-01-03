@@ -60,13 +60,12 @@ id=39932
 name=Arcanis the Omnipotent
 rarity=R
 mana={3}{U}{U}{U}
-type=Creature
+type=Legendary Creature
 subtype=Wizard
 power=3
 toughness=4
 auto={T}:draw:3
 auto={2}{U}{U}:moveTo(myhand)
-abilities=legendary
 [/card]
 [card]
 text=Put target enchantment on top of its owner's library.   Cycling {2} ({2}, Discard this card: Draw a card.)
@@ -1060,11 +1059,11 @@ id=39859
 name=Rorix Bladewing
 rarity=R
 mana={3}{R}{R}{R}
-type=Creature
+type=Legendary Creature
 subtype=Dragon
 power=6
 toughness=5
-abilities=flying,haste,legendary
+abilities=flying,haste
 [/card]
 [card]
 text=Whenever Rotlung Reanimator or another Cleric is put into a graveyard from the battlefield, put a 2/2 black Zombie creature token onto the battlefield.
@@ -1172,12 +1171,12 @@ id=39860
 name=Silvos, Rogue Elemental
 rarity=R
 mana={3}{G}{G}{G}
-type=Creature
+type=Legendary Creature
 subtype=Elemental
 auto={G}:regenerate
 power=8
 toughness=5
-abilities=trample,legendary
+abilities=trample
 [/card]
 [card]
 text=Sacrifice a Goblin: Add {R} to your mana pool.
@@ -1449,12 +1448,12 @@ id=39863
 name=Visara the Dreadful
 rarity=R
 mana={3}{B}{B}{B}
-type=Creature
+type=Legendary Creature
 subtype=Gorgon
 auto={T}:bury target(creature)
 power=5
 toughness=5
-abilities=flying,legendary
+abilities=flying
 [/card]
 [card]
 text=Choose one: Put a 1/1 green Insect creature token onto the battlefield; or target creature gets +1/+1 and gains trample until end of turn; or regenerate target Beast.

@@ -1,5 +1,5 @@
 [card]
-text=Domain ó Target player draws a card for each basic land type among lands he or she controls.
+text=Domain ÅETarget player draws a card for each basic land type among lands he or she controls.
 auto=aslongas(plains|myBattlefield) draw:1
 auto=aslongas(island|myBattlefield) draw:1
 auto=aslongas(swamp|myBattlefield) draw:1
@@ -130,11 +130,10 @@ name=Ertai, the Corrupted
 rarity=R
 mana={2}{W}{U}{B}
 auto={U}{T}{S(creature,enchantment|myBattlefield)}:fizzle target(*|stack)
-type=Creature
+type=Legendary Creature
 subtype=Wizard
 power=3
 toughness=4
-abilities=legendary
 [/card]
 [card]
 text={2}{U}: Return target white or black creature you control to its owner's hand.
@@ -146,7 +145,7 @@ mana={2}{U}
 type=Enchantment
 [/card]
 [card]
-text=Domain ó Target player loses X life and you gain X life, where X is the number of basic land types among lands you control.
+text=Domain ÅETarget player loses X life and you gain X life, where X is the number of basic land types among lands you control.
 auto=aslongas(plains|myBattlefield) life:-1 opponent && life:1 controller
 auto=aslongas(island|myBattlefield) life:-1 opponent && life:1 controller
 auto=aslongas(swamp|myBattlefield) life:-1 opponent && life:1 controller
@@ -362,13 +361,12 @@ id=26412
 name=Nemata, Grove Guardian
 rarity=R
 mana={4}{G}{G}
-type=Creature
+type=Legendary Creature
 subtype=Treefolk
 auto={2}{G}:token(Saproling,creature saproling,1/1,green)
 auto={S(saproling|myBattlefield)}:lord(saproling) 1/1 ueot
 power=4
 toughness=5
-abilities=legendary
 [/card]
 [card]
 text=When Pygmy Kavu enters the battlefield, draw a card for each black creature your opponents control.

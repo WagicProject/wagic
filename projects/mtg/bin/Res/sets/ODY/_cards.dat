@@ -794,12 +794,12 @@ id=29963
 name=Kamahl, Pit Fighter
 rarity=R
 mana={4}{R}{R}
-type=Creature
+type=Legendary Creature
 subtype=Human Barbarian
 auto={T}:damage:3 target(creature,player)
 power=6
 toughness=1
-abilities=legendary,haste
+abilities=haste
 [/card]
 [card]
 text=Enchant creature   Enchanted creature can't attack.   Threshold - Enchanted creature can't block as long as seven or more cards are in your graveyard.
@@ -879,12 +879,12 @@ id=31820
 name=Lieutenant Kirtar
 rarity=R
 mana={1}{W}{W}
-type=Creature
+type=Legendary Creature
 subtype=Bird Soldier
 auto={1}{W}{S}:moveTo(exile) target(creature[attacking])
 power=2
 toughness=2
-abilities=legendary,flying
+abilities=flying
 [/card]
 [card]
 text=Target player gains 4 life, then gains 4 life for each card named Life Burst in each graveyard.
@@ -1484,12 +1484,11 @@ id=29985
 name=Seton, Krosan Protector
 rarity=R
 mana={G}{G}{G}
-type=Creature
+type=Legendary Creature
 subtype=Centaur Druid
 auto={0}:tap target(druid[-tapped]|myBattlefield) && add{G}
 power=2
 toughness=2
-abilities=legendary
 [/card]
 [card]
 text={2}, {T}, Sacrifice Shadowblood Egg: Add {B}{R} to your mana pool. Draw a card.

@@ -167,11 +167,10 @@ auto={2}{U}{U}{T}:fizzle target(*|stack)
 name=Ertai, Wizard Adept
 rarity=R
 mana={2}{U}
-type=Creature
+type=Legendary Creature
 subtype=Human Wizard
 power=1
 toughness=1
-abilities=legendary
 [/card]
 [card]
 text=Flying   Exalted Dragon can't attack unless you sacrifice a land.
@@ -294,11 +293,11 @@ id=6155
 name=Mirri, Cat Warrior
 rarity=R
 mana={1}{G}{G}
-type=Creature
+type=Legendary Creature
 subtype=Cat Warrior
 power=2
 toughness=3
-abilities=legendary,first strike,forestwalk,vigilance
+abilities=first strike,forestwalk,vigilance
 [/card]
 [card]
 text=All creatures get -1/-1 until end of turn.

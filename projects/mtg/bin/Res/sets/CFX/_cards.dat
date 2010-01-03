@@ -154,12 +154,12 @@ id=180516
 name=Child of Alara
 rarity=M
 mana={W}{U}{B}{R}{G}
-type=Creature
+type=Legendary Creature
 subtype=Avatar
 auto=@movedTo(this|graveyard) from(Battlefield):bury all(*[-land]|battlefield)
 power=6
 toughness=6
-abilities=trample,legendary
+abilities=trample
 [/card]
 [card]
 text=Cliffrunner Behemoth has haste as long as you control a red permanent.     Cliffrunner Behemoth has lifelink as long as you control a white permanent.
@@ -646,11 +646,11 @@ id=185810
 name=Rakka Mar
 rarity=R
 mana={2}{R}{R}
-type=Creature
+type=Legendary Creature
 subtype=Human Shaman
 power=2
 toughness=2
-abilities=haste,legendary
+abilities=haste
 [/card]
 [card]
 text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)  When Rhox Bodyguard comes into play, you gain 3 life.

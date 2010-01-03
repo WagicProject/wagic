@@ -302,12 +302,11 @@ auto={T}:moveTo(myHand) target(*[legendary]|myLibrary)
 id=25976
 name=Captain Sisay
 rarity=R
+type=Legendary Creature
 mana={2}{G}{W}
-type=Creature
 subtype=Human Soldier
 power=2
 toughness=2
-abilities=legendary
 [/card]
 [card]
 text=Vigilance   {G}: Regenerate Charging Troll.
@@ -548,11 +547,10 @@ id=23007
 name=Empress Galina
 rarity=R
 mana={3}{U}{U}
-type=Creature
+type=Legendary Creature
 subtype=Merfolk
 power=1
 toughness=3
-abilities=legendary
 [/card]
 [card]
 text=Counter target creature spell.   Draw a card.
@@ -718,11 +716,10 @@ id=25977
 name=Hanna, Ship's Navigator
 rarity=R
 mana={1}{W}{U}
-type=Creature
+type=Legendary Creature
 subtype=Human Artificer
 power=1
 toughness=2
-abilities=legendary
 [/card]
 [card]
 text={2}: Target blue or red creature gets +1/+0 until end of turn.
@@ -945,8 +942,7 @@ auto={4}{R}{T}{S(creature|myBattlefield)}:Damage:2 target(creature,player)
 id=25930
 name=Keldon Necropolis
 rarity=R
-type=Land
-abilities=legendary
+type=Legendary Land
 [/card]
 [card]
 text={W}: Llanowar Cavalry gains vigilance until end of turn.
@@ -1071,11 +1067,11 @@ auto=foreach(land|myBattlefield) 1/1
 name=Molimo, Maro-Sorcerer
 rarity=R
 mana={4}{G}{G}{G}
-type=Creature
+type=Legendary Creature
 subtype=Elemental
 power=*
 toughness=*
-abilities=legendary,trample
+abilities=trample
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
@@ -1488,11 +1484,11 @@ id=22965
 name=Reya Dawnbringer
 rarity=R
 mana={6}{W}{W}{W}
-type=Creature
+type=Legendary Creature
 subtype=Angel
 power=4
 toughness=6
-abilities=legendary,flying
+abilities=flying
 [/card]
 [card]
 text=Vigilance   When Riptide Crab is put into a graveyard from the battlefield, draw a card.
@@ -2087,13 +2083,13 @@ id=23321
 name=Tsabo Tavoc
 rarity=R
 mana={5}{B}{R}
-type=Creature
+type=Legendary Creature
 subtype=Horror
 auto=protection from(creature[legendary])
 auto={B}{B}:bury target(creature[legendary])
 power=7
 toughness=4
-abilities=legendary,first strike
+abilities=first strike
 [/card]
 [card]
 text=Counter target spell. Its controller loses 3 life.

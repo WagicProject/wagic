@@ -476,13 +476,12 @@ rarity=C
 id=48582
 name=Shield of Kaldra
 mana={4}
-type=Artifact
+type=Legendary Artifact
 subtype=Equipment
 text=Equipment named Sword of Kaldra, Shield of Kaldra, and Helm of Kaldra are indestructible. Equipped creature is indestructible. ("Destroy" effects and lethal damage don't destroy it.) Equip {4}
 auto=lord(sword of kaldra,shield of kaldra,helm of kaldra) indestructible
 auto=indestructible
 auto={4}:equip
-abilities=legendary
 rarity=R
 [/card]
 [card]
@@ -503,8 +502,7 @@ name=Slobad, Goblin Tinkerer
 id=51055
 auto={S(artifact|myBattlefield)}:indestructible target(artifact)
 mana={1}{R}
-type=Creature
-abilities=legendary
+type=Legendary Creature
 subtype=Goblin Artificer
 power=1
 toughness=2

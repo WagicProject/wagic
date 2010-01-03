@@ -1175,14 +1175,13 @@ id=89110
 name=Tolsimir Wolfblood
 rarity=R
 mana={4}{G}{W}
-type=Creature
+type=Legendary Creature
 subtype=Elf Warrior
 auto=lord(creature[green]|myBattlefield) 1/1 other
 auto=lord(creature[white]|myBattlefield) 1/1 other
 auto={T}:token(Voja,creature wolf, 2/2,green white legendary)
 power=3
 toughness=4
-abilities=legendary
 [/card]
 [card]
 text={W}, Sacrifice Transluminant: Put a 1/1 white Spirit creature token with flying onto the battlefield at end of turn.

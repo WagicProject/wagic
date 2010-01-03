@@ -295,11 +295,10 @@ mana={4}{R}{R}
 auto=foreach(artifact[-tapped]|myBattlefield) 1/1
 auto=foreach(creature[-tapped]|myBattlefield) 1/1
 auto=foreach(land[-tapped]|myBattlefield) 1/1
-type=Creature
+type=Legendary Creature
 subtype=Human Warrior
 power=*
 toughness=*
-abilities=legendary
 [/card]
 [card]
 text={T}: Add {1} to your mana pool.   {1}, {T}, Sacrifice Mind Stone: Draw a card.

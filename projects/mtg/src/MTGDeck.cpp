@@ -1,6 +1,7 @@
 #include "../include/config.h"
 #include "../include/MTGDeck.h"
 #include "../include/utils.h"
+#include "../include/Subtypes.h"
 #include "../include/Translate.h"
 #include <algorithm>
 #include <string>
@@ -15,10 +16,10 @@ using std::string;
 
 //MTGAllCards
 int MTGAllCards::processConfLine(string s, MTGCard *card, CardPrimitive * primitive){
+  if (s.size() && s[0] == '#') return 0;
   unsigned int i = s.find_first_of("=");
   if (i == string::npos){
 #if defined (_DEBUG)
-    if (s.size() && s[0] == '#') return 0;
     char buffer[4096];
     sprintf(buffer, "MTGDECK: Bad Line:\n    %s\n", s.c_str());
     OutputDebugString(buffer);
@@ -27,145 +28,133 @@ int MTGAllCards::processConfLine(string s, MTGCard *card, CardPrimitive * primit
   }
   string key = s.substr(0,i);
   string value = s.substr(i+1);
+  if (!key.size()) return 0;
 
-  if(key.compare( "auto")==0){
-    if(!primitive) primitive = NEW CardPrimitive();
-   primitive->addMagicText(value);
-  }
-  else if(key.find("auto") == 0){
-    if(!primitive) primitive = NEW CardPrimitive();
-    primitive->addMagicText(value,key.substr(4));
-  }
-  else if(key.compare( "alias")==0){
-    if(!primitive) primitive = NEW CardPrimitive();
-    primitive->alias=atoi(value.c_str());
-  }
-  else if(key.compare( "target")==0){
-    if(!primitive) primitive = NEW CardPrimitive();
-    std::transform( value.begin(), value.end(), value.begin(),::tolower );
-    primitive->spellTargetType=value;
-  }
-  else if(key.compare( "text")==0){
-    if(!primitive) primitive = NEW CardPrimitive();
-    primitive->setText(value);
-  }else if (key.compare("abilities")==0){
-    if(!primitive) primitive = NEW CardPrimitive();
-    //Specific Abilities
-    std::transform( value.begin(), value.end(), value.begin(),::tolower );
-    while (value.size()){
-      string attribute;
-      size_t found2 = value.find(",");
-      if (found2 != string::npos){
-        attribute = value.substr(0,found2);
-        value = value.substr(found2+1);
-      }else{
-        attribute = value;
-        value = "";
-      }
-      for (int j = Constants::NB_BASIC_ABILITIES-1; j >=0 ; j--){
-        size_t found = attribute.find(Constants::MTGBasicAbilities[j]);
-        if (found != string::npos){
-	        primitive->basicAbilities[j] = 1;
-          break;
+  switch(key[0]) {
+    case 'a':
+      if(key.compare( "auto")==0){
+        if(!primitive) primitive = NEW CardPrimitive();
+        primitive->addMagicText(value);
+      } else if(key.find("auto") == 0){
+        if(!primitive) primitive = NEW CardPrimitive();
+        primitive->addMagicText(value,key.substr(4));
+      } else if(key.compare( "alias")==0){
+        if(!primitive) primitive = NEW CardPrimitive();
+        primitive->alias=atoi(value.c_str());
+      } else if (key.compare("abilities")==0){
+        if(!primitive) primitive = NEW CardPrimitive();
+        //Specific Abilities
+        std::transform( value.begin(), value.end(), value.begin(),::tolower );
+        while (value.size()){
+          string attribute;
+          size_t found2 = value.find(",");
+          if (found2 != string::npos){
+            attribute = value.substr(0,found2);
+            value = value.substr(found2+1);
+          }else{
+            attribute = value;
+            value = "";
+          }
+          for (int j = Constants::NB_BASIC_ABILITIES-1; j >=0 ; j--){
+            size_t found = attribute.find(Constants::MTGBasicAbilities[j]);
+            if (found != string::npos){
+	            primitive->basicAbilities[j] = 1;
+              break;
+            }
+          }
         }
       }
-    }
-  }else if(key.compare("id")==0){
-    if (!card) card = NEW MTGCard();
-    card->setMTGId(atoi(value.c_str()));
-  }else if(key.compare("name")==0){
-    if(!primitive) primitive = NEW CardPrimitive();
-    primitive->setName(value);
-  }else if(key.compare("rarity")==0){
-    if (!card) card = NEW MTGCard();
-    card->setRarity (value.c_str()[0]);
-  }else if(key.compare("mana")==0){
-    if(!primitive) primitive = NEW CardPrimitive();
-    std::transform( value.begin(), value.end(), value.begin(),::tolower );
-    primitive->setManaCost(value);
-  } else if(key.compare("color")==0){
-    if(!primitive) primitive = NEW CardPrimitive();
-    std::transform( value.begin(), value.end(), value.begin(),::tolower );
-    primitive->setColor(value,1);
-  }else if(key.compare("type")==0){
-    if(!primitive) primitive = NEW CardPrimitive();
-    switch(value.c_str()[0]){
-    case 'C':
-    case 'c':
-      primitive->setType( "Creature");
-      break;
-    case 'A':
-    case 'a':
-      primitive->setType( "Artifact");
-      primitive->setColor(Constants::MTG_COLOR_ARTIFACT);
-      if (value.c_str()[8] == ' ' && value.c_str()[9] == 'C')
-	      primitive->setSubtype("Creature");
-      break;
-    case 'E':
-    case 'e':
-      primitive->setType( "Enchantment");
-      break;
-    case 'S':
-    case 's':
-      primitive->setType( "Sorcery");
-      break;
-    case 'B'://Basic Land
-    case 'b':
-      primitive->setColor(Constants::MTG_COLOR_LAND);
-      primitive->setType("Land");
-      primitive->setType("Basic");
-      break;
-    case 'L':
-    case 'l':
-      primitive->setColor(Constants::MTG_COLOR_LAND);
-      primitive->setType( "Land");
-      break;
-    case 'I':
-    case 'i':
-      primitive->setType( "Instant");
-      break;
-    default:
-      primitive->setType( "Error");
-#if defined (_DEBUG)
-      if (primitive) {
-        char buffer[4096];
-        sprintf(buffer, "MTGDECK: Bad Card Type\n    %s\n", s.c_str());
-        OutputDebugString(buffer);
-      }
-#endif
       break;
 
-    }
-  }else if(key.compare("power")==0){
-    if(!primitive) primitive = NEW CardPrimitive();
-    primitive->setPower (atoi(value.c_str()));
-  }else if(key.compare("subtype")==0){
-    if(!primitive) primitive = NEW CardPrimitive();
-    while (value.size()){
-      unsigned int found = value.find(" ");
-      if (found != string::npos){
-        primitive->setSubtype(value.substr(0,found));
-        value = value.substr(found+1);
-      }else{
-        primitive->setSubtype(value);
-        value = "";
+    case 'c': //color
+      if(!primitive) primitive = NEW CardPrimitive();
+      std::transform( value.begin(), value.end(), value.begin(),::tolower );
+      primitive->setColor(value,1);
+      break;
+
+    case 'k': //kicker
+      if(!primitive) primitive = NEW CardPrimitive();
+      std::transform( value.begin(), value.end(), value.begin(),::tolower );
+      if (ManaCost * cost = primitive->getManaCost()){
+        cost->kicker = ManaCost::parseManaCost(value);
       }
-    }
-  }else if(key.compare("toughness")==0){
-    if(!primitive) primitive = NEW CardPrimitive();
-    primitive->setToughness(atoi(value.c_str()));
-  }else if(key.compare("kicker")==0){
-    if(!primitive) primitive = NEW CardPrimitive();
-    std::transform( value.begin(), value.end(), value.begin(),::tolower );
-    if (ManaCost * cost = primitive->getManaCost()){
-      cost->kicker = ManaCost::parseManaCost(value);
-    }
-  }else if(key.compare("primitive")==0){
-    if(!card) card = NEW MTGCard();
-    card->setPrimitive(primitives[value]);
-  }else{
-    string error = "MTGDECK Parsing Error:" + s + "\n";
-    OutputDebugString(error.c_str());
+      break;
+
+    case 'i': //id
+      if (!card) card = NEW MTGCard();
+      card->setMTGId(atoi(value.c_str()));
+      break;
+
+    case 'm': //mana
+      if(!primitive) primitive = NEW CardPrimitive();
+      std::transform( value.begin(), value.end(), value.begin(),::tolower );
+      primitive->setManaCost(value);
+      break;
+
+    case 'n': //name      
+      if(!primitive) primitive = NEW CardPrimitive();
+      primitive->setName(value);
+      break;
+
+    case 'p':
+      if(key.compare("primitive")==0){
+        if(!card) card = NEW MTGCard();
+        card->setPrimitive(primitives[value]);
+      } else { //power
+        if(!primitive) primitive = NEW CardPrimitive();
+        primitive->setPower (atoi(value.c_str()));
+      }
+      break;
+
+    case 'r': //rarity
+      if (!card) card = NEW MTGCard();
+      card->setRarity (value.c_str()[0]);
+      break;
+
+    case 's': //subtype
+      if(!primitive) primitive = NEW CardPrimitive();
+      while (value.size()){
+        unsigned int found = value.find(" ");
+        if (found != string::npos){
+          primitive->setSubtype(value.substr(0,found));
+          value = value.substr(found+1);
+        }else{
+          primitive->setSubtype(value);
+          value = "";
+        }
+      }
+      break;
+
+    case 't':
+      if(key.compare( "target")==0){
+        if(!primitive) primitive = NEW CardPrimitive();
+        std::transform( value.begin(), value.end(), value.begin(),::tolower );
+        primitive->spellTargetType=value;
+      }else if(key.compare( "text")==0){
+        if(!primitive) primitive = NEW CardPrimitive();
+        primitive->setText(value);
+      }else if (key.compare("type")==0) {
+        if(!primitive) primitive = NEW CardPrimitive();
+        while (value.size()){
+          unsigned int found = value.find(" ");
+          if (found != string::npos){
+            primitive->setType(value.substr(0,found).c_str());
+            value = value.substr(found+1);
+          }else{
+            primitive->setType(value.c_str());
+            value = "";
+          }
+        }
+      }else if(key.compare("toughness")==0){
+        if(!primitive) primitive = NEW CardPrimitive();
+        primitive->setToughness(atoi(value.c_str()));
+      }
+      break;
+      
+    default:
+      string error = "MTGDECK Parsing Error:" + s + "\n";
+      OutputDebugString(error.c_str());
+      break;
   }
 
   tempPrimitive = primitive;
@@ -338,6 +327,12 @@ bool MTGAllCards::addPrimitive(CardPrimitive * primitive, MTGCard * card){
     OutputDebugString(primitive->name.c_str());
     OutputDebugString("\n");
   }
+
+  //Legacy:
+  //For the Deck editor, we need Lands and Artifact to be colors...
+  if (primitive->hasType(Subtypes::TYPE_LAND)) primitive->setColor(Constants::MTG_COLOR_LAND);
+  if (primitive->hasType(Subtypes::TYPE_ARTIFACT)) primitive->setColor(Constants::MTG_COLOR_ARTIFACT);
+
   primitives[key] = primitive;
   return true;
 }

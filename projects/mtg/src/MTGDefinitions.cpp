@@ -36,7 +36,7 @@ const char* Constants::MTGBasicAbilities[] = {
 "persist",
 "retrace",
 "exalted",
-"legendary",
+"nofizzle",
 "shadow",
 "reachshadow",
 "foresthome",
@@ -55,7 +55,6 @@ const char* Constants::MTGBasicAbilities[] = {
 "deathtouch",
 "horsemanship",
 "cantregenerate",
-"nofizzle",
 };
 
 

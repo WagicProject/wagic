@@ -15,6 +15,7 @@ Subtypes::Subtypes(){
   find("Instant");
   find("Land");
   find("Artifact");
+  find("Legendary");
 }
 
 int Subtypes::find(string value, bool forceAdd){
