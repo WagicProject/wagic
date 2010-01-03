@@ -3105,7 +3105,7 @@ class AKudzu: public TargetAbility{
 
  int receiveEvent(WEvent * event){
    if (WEventCardTap* wect =  dynamic_cast<WEventCardTap*>(event)) {
-     if (wect->before == false && wect->after == true){
+     if (wect->before == false && wect->after == true && wect->card == target){
        MTGCardInstance * _target = (MTGCardInstance *)target;
        if (!_target->isInPlay()) return 0;
        target = _target->controller()->game->putInGraveyard(_target);
