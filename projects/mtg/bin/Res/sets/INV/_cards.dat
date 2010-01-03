@@ -148,7 +148,8 @@ mana={R}{G}
 text=Destroy target enchantment. Put X 1/1 green Saproling creature tokens onto the battlefield, where X is its converted mana cost.
 id=23184
 target=enchantment
-alias=23195
+auto=destroy
+auto=token(Saproling,Creature Saproling,1/1,green)*manacost
 name=Aura Mutation
 rarity=R
 type=Instant
@@ -236,10 +237,10 @@ text=Shroud (This permanent can't be the target of spells or abilities.)  Blurre
 id=23139
 name=Blurred Mongoose
 rarity=R
-type=Creature
 mana={1}{G}
-power=2
+type=Creature
 subtype=Mongoose
+power=2
 toughness=1
 abilities=shroud,nofizzle
 [/card]
@@ -301,9 +302,9 @@ auto={T}:moveTo(myHand) target(*[legendary]|myLibrary)
 id=25976
 name=Captain Sisay
 rarity=R
+mana={2}{G}{W}
 type=Creature
 subtype=Human Soldier
-mana={2}{G}{W}
 power=2
 toughness=2
 abilities=legendary
@@ -451,12 +452,12 @@ toughness=3
 [card]
 text=Kicker {2}{U} (You may pay an additional {2}{U} as you play this spell.)    Destroy target artifact or enchantment.       If the kicker cost was paid, draw two cards.
 id=22946
+target=artifact,enchantment
+auto=destroy
+name=Dismantling Blow
 rarity=C
 mana={2}{W}
 kicker={2}{U}
-name=Dismantling Blow
-target=artifact,enchantment
-auto=destroy
 auto=kicker draw:2 controller
 type=Instant
 [/card]
@@ -492,6 +493,16 @@ type=Artifact Creature
 subtype=Golem
 power=3
 toughness=3
+[/card]
+[card]
+text=No more than one creature can attack each turn.   No more than one creature can block each turn.
+auto=aslongas(creature[attacking]|battlefield) lord(creature[-attacking]|battlefield) cantattack
+auto=aslongas(creature[blocking]|battlefield) lord(creature[-blocking]|battlefield) cantblock
+id=25438
+name=Dueling Grounds
+rarity=R
+mana={1}{G}{W}
+type=Enchantment
 [/card]
 [card]
 text=Kicker {3}{B} (You may pay an additional {3}{B} as you play this spell.)  If the kicker cost was paid, Duskwalker comes into play with two +1/+1 counters on it and with fear.
@@ -607,7 +618,7 @@ type=Enchantment
 [/card]
 [card]
 text={G}, {T}: You may put a basic land card from your hand onto the battlefield.
-auto={G}{T}:moveTo(myBattlefield) target(land|myhand)
+auto={G}{T}:moveTo(myBattlefield) target(land[basic]|myhand)
 id=23083
 name=Firebrand Ranger
 rarity=U
@@ -767,6 +778,18 @@ subtype=Cat
 power=2
 toughness=2
 abilities=lifelink
+[/card]
+[card]
+text={1}{R}{G}, {T}: Exile Hunting Kavu and target creature without flying that's attacking you.
+id=23176
+name=Hunting Kavu
+rarity=U
+mana={1}{R}{G}
+type=Creature
+subtype=Kavu
+auto={1}{R}{G}{T}:moveTo(exile) all(this) && moveTo(exile) target(creature[attacking;-flying|opponentBattlefield)
+power=2
+toughness=3
 [/card]
 [card]
 text=Irrigation Ditch enters the battlefield tapped.   {T}: Add {W} to your mana pool.   {T}, Sacrifice Irrigation Ditch: Add {G}{U} to your mana pool. 
@@ -1167,21 +1190,6 @@ mana={6}{R}{R}
 abilities=nofizzle
 [/card]
 [card]
-text=Kicker {2}{R} (You may pay an additional {2}{R} as you play this spell.) First strike. If the kicker cost was paid, Pouncing Kavu enters the battlefield with two +1/+1 counters on it and with haste.
-id=23064
-name=Pouncing Kavu
-rarity=C
-mana={1}{R}
-kicker={2}{R}
-auto=kicker counter(1/1,2)
-auto=kicker haste
-type=Creature
-subtype=Kavu
-power=1
-toughness=1
-abilities=first strike
-[/card]
-[card]
 text=Protection from black   {W}: Target creature gains protection from black until end of turn.
 id=22935
 name=Obsidian Acolyte
@@ -1206,20 +1214,6 @@ name=Ordered Migration
 rarity=U
 type=Sorcery
 mana={3}{W}{U}
-[/card]
-[card]
-text=Kicker {3} (You may pay an additional {3} as you play this spell.)  Reach (This creature can block creatures with flying.)  If the kicker cost was paid, Pincer Spider enters the battlefield with a +1/+1 counter on it.
-id=23107
-name=Pincer Spider
-rarity=C
-type=Creature
-mana={2}{G}
-kicker={3}
-abilities=reach
-auto=kicker counter(1/1,1)
-power=2
-subtype=Spider
-toughness=3
 [/card]
 [card]
 text=Sacrifice a creature: Add one mana of any color to your mana pool.
@@ -1248,6 +1242,18 @@ toughness=1
 abilities=flying
 [/card]
 [card]
+text={2}{U}{U}: Exchange control of Phyrexian Infiltrator and target creature. (This effect doesn't end at end of turn.)
+id=26372
+name=Phyrexian Infiltrator
+rarity=R
+mana={2}{B}
+type=Creature
+subtype=Minion
+auto={2}{U}{U}:moveTo(myBattlefield) target(creature|opponentBattlefield) && moveto(opponentBattlefield) all(this)
+power=2
+toughness=2
+[/card]
+[card]
 text={T}, Pay 1 life: Add one mana of any color to your mana pool.
 id=23231
 auto={T}:Add {B} && life:-1 controller
@@ -1261,9 +1267,23 @@ type=Artifact
 mana={3}
 [/card]
 [card]
+text=Kicker {3} (You may pay an additional {3} as you play this spell.)  Reach (This creature can block creatures with flying.)  If the kicker cost was paid, Pincer Spider enters the battlefield with a +1/+1 counter on it.
+id=23107
+name=Pincer Spider
+rarity=C
+mana={2}{G}
+kicker={3}
+auto=kicker counter(1/1,1)
+type=Creature
+subtype=Spider
+power=2
+toughness=3
+abilities=reach
+[/card]
+[card]
 text=At the beginning of your upkeep, Plague Spitter deals 1 damage to each creature and each player.   When Plague Spitter is put into a graveyard from the battlefield, Plague Spitter deals 1 damage to each creature and each player.
 auto=@each my upkeep:damage:1 all(creature,player)
-auto=@movedTo(this|graveyard):damage:1 all(creature,player)
+auto=@movedTo(this|graveyard) from(battlefield):damage:1 all(creature,player)
 id=23021
 name=Plague Spitter
 rarity=U
@@ -1328,9 +1348,24 @@ auto=aslongas(*[white]|mybattlefield) protection from white
 id=22958
 name=Pledge of Loyalty
 rarity=U
-type=Enchantment
 mana={1}{W}
+type=Enchantment
 subtype=Aura
+[/card]
+[card]
+text=Kicker {2}{R} (You may pay an additional {2}{R} as you play this spell.) First strike. If the kicker cost was paid, Pouncing Kavu enters the battlefield with two +1/+1 counters on it and with haste.
+id=23064
+name=Pouncing Kavu
+rarity=C
+mana={1}{R}
+kicker={2}{R}
+auto=kicker counter(1/1,2)
+auto=kicker haste
+type=Creature
+subtype=Kavu
+power=1
+toughness=1
+abilities=first strike
 [/card]
 [card]
 text=At the beginning of your upkeep, if Pyre Zombie is in your graveyard, you may pay {1}{B}{B}. If you do, return Pyre Zombie from your graveyard to your hand.   {1}{R}{R}, Sacrifice Pyre Zombie: Pyre Zombie deals 2 damage to target creature or player.
@@ -1462,7 +1497,6 @@ abilities=legendary,flying
 [card]
 text=Vigilance   When Riptide Crab is put into a graveyard from the battlefield, draw a card.
 auto=@movedTo(this|graveyard):draw:1 controller
-abilities=vigilance
 id=23150
 name=Riptide Crab
 rarity=U
@@ -1471,6 +1505,7 @@ type=Creature
 subtype=Crab
 power=1
 toughness=3
+abilities=vigilance
 [/card]
 [card]
 text={1},Sacrifice Rith's Attendant: Add {R}{G}{W} to your mana pool.
@@ -1654,18 +1689,6 @@ power=2
 toughness=2
 [/card]
 [card]
-text=Whenever Sparring Golem becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.
-id=23225
-auto=rampage(1/1,0)
-name=Sparring Golem
-rarity=U
-mana={3}
-type=Artifact Creature
-subtype=Golem
-power=2
-toughness=2
-[/card]
-[card]
 text={2}: Target white or black creature gains flying until end of turn. (It can't be blocked except by creatures with flying or reach.)
 id=22996
 name=Sky Weaver
@@ -1710,6 +1733,18 @@ auto={S}:damage:4 target(creature) asSorcery
 rarity=U
 mana={2}{B}{R}
 type=Enchantment
+[/card]
+[card]
+text=Whenever Sparring Golem becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.
+id=23225
+auto=rampage(1/1,0)
+name=Sparring Golem
+rarity=U
+mana={3}
+type=Artifact Creature
+subtype=Golem
+power=2
+toughness=2
 [/card]
 [card]
 text={2}: Target green or blue creature gets +0/+1 until end of turn.

@@ -347,14 +347,6 @@ subtype=Dragon
 toughness=6
 [/card]
 [card]
-text=No more than one creature can attack each turn.     No more than one creature can block each turn.
-id=25438
-name=Dueling Grounds
-rarity=R
-type=Enchantment
-mana={1}{G}{W}
-[/card]
-[card]
 text=At the beginning of your upkeep, you may search your library for a basic land card, reveal that card, and put it into your hand. If you do, you skip your draw step this turn and shuffle your library.
 id=23142
 name=Elfhame Sanctuary
@@ -468,17 +460,6 @@ name=Harsh Judgment
 rarity=R
 type=Enchantment
 mana={2}{W}{W}
-[/card]
-[card]
-text={1}{R}{G}, {T}: Remove from the game Hunting Kavu and target creature without flying that's attacking you.
-id=23176
-name=Hunting Kavu
-rarity=U
-type=Creature
-mana={1}{R}{G}
-power=2
-subtype=Kavu
-toughness=3
 [/card]
 [card]
 text=Kicker {4} (You may pay an additional {4} as you play this spell.)  Target player discards a card. If the kicker cost was paid, that player discards three cards instead.
@@ -676,17 +657,6 @@ type=Creature
 mana={3}{B}{B}
 power=3
 subtype=Zombie
-toughness=2
-[/card]
-[card]
-text={2}{U}{U}: Exchange control of Phyrexian Infiltrator and target creature. (This effect doesn't end at end of turn.)
-id=26372
-name=Phyrexian Infiltrator
-rarity=R
-type=Creature
-mana={2}{B}
-power=2
-subtype=Minion
 toughness=2
 [/card]
 [card]
