@@ -78,17 +78,6 @@ rarity=C
 type=Land
 [/card]
 [card]
-text=Blightning deals 3 damage to target player. That player discards two cards.
-id=174917
-target=player
-auto=damage:3
-auto=discard:2
-name=Blightning
-rarity=C
-mana={1}{B}{R}
-type=Sorcery
-[/card]
-[card]
 text=Sacrifice Bloodpyre Elemental: Bloodpyre Elemental deals 4 damage to target creature. Play this ability only any time you could play a sorcery.
 id=175117
 name=Bloodpyre Elemental

@@ -1336,7 +1336,7 @@ toughness=1
 [/card]
 [card]
 text=Soldevi Golem doesn't untap during your untap step.   At the beginning of your upkeep, you may untap target tapped creature an opponent controls. If you do, untap Soldevi Golem.
-auto={0}:untap all(this) && untap target(creature[tapped]|opponentBattlefield) limit:1
+auto={0}:untap all(this) && untap target(creature[tapped]|opponentBattlefield) myUpkeepOnly limit:1
 id=2424
 name=Soldevi Golem
 rarity=R
