@@ -42,6 +42,7 @@ rarity=C
 mana={4}{G}
 type=Creature
 subtype=Beast
+auto=lord(beast) rampage(1/1,0)
 auto=rampage(1/1,0)
 power=3
 toughness=3
@@ -544,6 +545,18 @@ power=2
 toughness=4
 [/card]
 [card]
+text=Slivers can't be blocked except by Slivers.
+id=42078
+name=Shifting Sliver
+rarity=U
+mana={3}{U}
+type=Creature
+subtype=Sliver
+auto=lord(sliver) cantbeblockedby(creature[-sliver])
+power=2
+toughness=2
+[/card]
+[card]
 text=Skirk Outrider gets +2/+2 and has trample as long as you control a Beast.
 id=42082
 name=Skirk Outrider
@@ -619,6 +632,19 @@ toughness=2
 abilities=doesnotuntap
 [/card]
 [card]
+text=Whenever a Sliver deals combat damage to a player, its controller may draw a card.
+auto=@damaged(player) from(sliver|myBattlefield):may draw:1 controller
+auto=@damaged(player) from(sliver|opponentBattlefield):draw:1 opponent
+id=42026
+name=Synapse Sliver
+rarity=R
+mana={4}{U}
+type=Creature
+subtype=Elf
+power=3
+toughness=3
+[/card]
+[card]
 text={T}: Target creature gets +X/+X until end of turn, where X is the number of Elves on the battlefield.
 id=45121
 name=Timberwatch Elf
@@ -641,6 +667,19 @@ subtype=Elf Druid
 auto=@movedTo(beast|battlefield):may life:3 controller
 power=3
 toughness=3
+[/card]
+[card]
+text=Vexing Beetle can't be countered.   Vexing Beetle gets +3/+3 as long as no opponent controls a creature.
+id=44327
+name=Vexing Beetle
+rarity=R
+mana={4}{G}
+type=Creature
+subtype=Insect
+auto=aslongas(creature|opponentBattlefield) -3/-3
+power=6
+toughness=6
+abilities=nofizzle
 [/card]
 [card]
 text=First strike, protection from black

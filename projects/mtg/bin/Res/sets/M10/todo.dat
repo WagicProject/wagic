@@ -112,22 +112,6 @@ text=Flying Djinn of Wishes enters the battlefield with three wish counters on i
 rarity=R
 [/card]
 [card]
-id=191091
-name=Dragonskull Summit
-auto=aslongas(-mountain,-swamp|myBattelfield) tap
-type=Land
-text=Dragonskull Summit enters the battlefield tapped unless you control a Swamp or a Mountain. {T}: Add {B} or {R} to your mana pool.
-rarity=R
-[/card]
-[card]
-id=191067
-name=Drowned Catacomb
-mana=
-type=Land
-text=Drowned Catacomb enters the battlefield tapped unless you control an Island or a Swamp. {T}: Add {U} or {B} to your mana pool.
-rarity=R
-[/card]
-[card]
 id=190580
 name=Duress
 mana={B}
@@ -143,14 +127,6 @@ type=Planeswalker
 subtype=Garruk
 text=+1: Untap two target lands. -1: Put a 3/3 green Beast creature token onto the battlefield. -4: Creatures you control get +3/+3 and gain trample until end of turn.
 rarity=M
-[/card]
-[card]
-id=190562
-name=Glacial Fortress
-mana=
-type=Land
-text=Glacial Fortress enters the battlefield tapped unless you control a Plains or an Island. {T}: Add {W} or {U} to your mana pool.
-rarity=R
 [/card]
 [card]
 id=193766
@@ -215,7 +191,6 @@ toughness=4
 text=Flying When Illusionary Servant becomes the target of a spell or ability, sacrifice it.
 rarity=C
 [/card]
-
 [card]
 id=191090
 name=Inferno Elemental
@@ -227,7 +202,6 @@ toughness=4
 text=Whenever Inferno Elemental blocks or becomes blocked by a creature, Inferno Elemental deals 3 damage to that creature.
 rarity=U
 [/card]
-
 [card]
 id=191240
 name=Jace Beleren
@@ -257,7 +231,6 @@ subtype=Liliana
 text=+1: Target player discards a card. -2: Search your library for a card, then shuffle your library and put that card on top of it. -8: Put all creature cards in all graveyards onto the battlefield under your control.
 rarity=M
 [/card]
-
 [card]
 id=191388
 name=Lurking Predators
@@ -309,7 +282,6 @@ toughness=1
 text={T}: Draw a card, then discard a card.
 rarity=U
 [/card]
-
 [card]
 id=190555
 name=Mind Rot
@@ -413,14 +385,6 @@ text=Put target creature card in a graveyard onto the battlefield under your con
 rarity=U
 [/card]
 [card]
-id=191057
-name=Rootbound Crag
-mana=
-type=Land
-text=Rootbound Crag enters the battlefield tapped unless you control a Mountain or a Forest. {T}: Add {R} or {G} to your mana pool.
-rarity=R
-[/card]
-[card]
 id=190176
 name=Safe Passage
 mana={2}{W}
@@ -517,14 +481,6 @@ power=3
 toughness=4
 text={T}: Target creature you control with toughness less than Stone Giant's power gains flying until end of turn. Destroy that creature at the beginning of the next end step.
 rarity=U
-[/card]
-[card]
-id=191100
-name=Sunpetal Grove
-mana=
-type=Land
-text=Sunpetal Grove enters the battlefield tapped unless you control a Forest or a Plains. {T}: Add {G} or {W} to your mana pool.
-rarity=R
 [/card]
 [card]
 id=189910

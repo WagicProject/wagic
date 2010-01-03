@@ -24,6 +24,19 @@ power=2
 toughness=2
 [/card]
 [card]
+text=Minion creatures get +1/+1.   {B}{B}{B}, Exile Balthor the Defiled: Each player returns all black and all red creature cards from his or her graveyard to the battlefield.
+id=20842
+name=Balthor the Defiled
+rarity=R
+mana={2}{B}{B}
+type=Legendary Creature
+subtype=Zombie Dwarf
+auto=lord(minion) 1/1
+auto={B}{B}{B}:moveTo(myBattlefield) all(creature[black;red]|mygraveyard) && moveTo(opponentBattlefield) all(creature[black;red]|opponentgraveyard) && moveTo(exile) all(this) limit:1
+power=2
+toughness=2
+[/card]
+[card]
 text=Flying Threshold - As long as seven or more cards are in your graveyard, Battlewise Aven gets +1/+1 and has first strike.
 id=34464
 name=Battlewise Aven
@@ -295,6 +308,20 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Green creatures and white creatures have protection from Gorgons.   Threshold - Masked Gorgon has protection from green and from white as long as seven or more cards are in your graveyard.
+id=34480
+name=Masked Gorgon
+rarity=R
+mana={4}{B}
+type=Creature
+subtype=Gorgon
+auto=lord(creature[green;white] protection from(gorgon)
+auto=aslongas(*|mygraveyard) protection from white >6
+auto=aslongas(*|mygraveyard) protection from green >6
+power=5
+toughness=5
+[/card]
+[card]
 text=Put the top two cards of your library into your graveyard.   Draw a card.
 id=36114
 auto=deplete:2 controller
@@ -339,9 +366,20 @@ mana={3}{R}
 type=Creature
 subtype=Human Nightmare Barbarian
 auto=discard:1 controller
-auto=@movedTo(this|graveyard):draw:1 controller
+auto=@movedTo(this|graveyard,exile,library,hand) from(battlefield):draw:1 controller
 power=3
 toughness=1
+[/card]
+[card]
+text=Target creature gets +3/+3 until end of turn.   Draw a card.
+id=35114
+target=creature
+auto=3/3
+auto=draw:1 controller
+name=Sudden Strength
+rarity=C
+mana={3}{G}
+type=Instant
 [/card]
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)
@@ -377,17 +415,6 @@ power=1
 toughness=1
 [/card]
 [card]
-text=Target nonblack creature gets -1/-1 until end of turn.   Threshold - If seven or more cards are in your graveyard, instead destroy that creature. It can't be regenerated.
-id=36416
-target=creature
-auto=-1/-1
-auto=aslongas(*|mygraveyard) bury >6
-name=Toxic Stench
-rarity=C
-mana={1}{B}
-type=Instant
-[/card]
-[card]
 text={G}, {T}: Target creature gets +5/+5 until end of turn.
 id=36525
 name=Thriss, Nantuko Primus
@@ -398,6 +425,17 @@ subtype=Insect Druid
 auto={G}{T}:5/5 target(creature)
 power=5
 toughness=5
+[/card]
+[card]
+text=Target nonblack creature gets -1/-1 until end of turn.   Threshold - If seven or more cards are in your graveyard, instead destroy that creature. It can't be regenerated.
+id=36416
+target=creature
+auto=-1/-1
+auto=aslongas(*|mygraveyard) bury >6
+name=Toxic Stench
+rarity=C
+mana={1}{B}
+type=Instant
 [/card]
 [card]
 text=Discard a card: Regenerate Tunneler Wurm.

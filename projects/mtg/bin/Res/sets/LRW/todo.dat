@@ -344,15 +344,6 @@ type=Artifact
 mana={3}
 [/card]
 [card]
-text=Choose one - Consuming Bonfire deals 4 damage to target non-Elemental creature; or Consuming Bonfire deals 7 damage to target Treefolk creature.
-id=139688
-name=Consuming Bonfire
-rarity=C
-type=Tribal Sorcery
-mana={3}{R}{R}
-subtype=Elemental
-[/card]
-[card]
 text=Changeling (This card is every creature type at all times.)  Remove target creature from the game. Its controller puts a 1/1 colorless Shapeshifter creature token with changeling into play.
 id=143380
 name=Crib Swap
@@ -429,15 +420,18 @@ subtype=Elemental Incarnation
 toughness=6
 [/card]
 [card]
-text=Flying     Whenever you play a spell during an opponent's turn, you may have target creature get -1/-1 until end of turn.
+###opponentTurnOnly does not work here! (0.10.1)
+text=Flying   Whenever you cast a spell during an opponent's turn, you may have target creature get -1/-1 until end of turn.
+auto=@movedTo(*|mystack):may -1/-1 target(creature) opponentTurnOnly
 id=139453
 name=Dreamspoiler Witches
 rarity=C
-type=Creature
 mana={3}{B}
-power=2
+type=Creature
 subtype=Faerie Wizard
+power=2
 toughness=2
+abilities=flying
 [/card]
 [card]
 text=Tap an untapped Merfolk you control: Target player puts the top card of his or her library into his or her graveyard.
@@ -470,7 +464,6 @@ power=2
 subtype=Elf Druid
 toughness=2
 [/card]
-
 [card]
 text=When Elvish Harbinger comes into play, you may search your library for an Elf card, reveal it, then shuffle your library and put that card on top of it.     {T}: Add one mana of any color to your mana pool.
 id=139485
@@ -508,13 +501,15 @@ subtype=Goblin Rogue
 toughness=2
 [/card]
 [card]
-text=Whenever an opponent plays a blue spell during your turn, you may put a 4/4 green Elemental creature token into play.
+###opponentTurnOnly does not work here! (0.10.1)
+text=Whenever an opponent casts a blue spell during your turn, you may put a 4/4 green Elemental creature token onto the battlefield.
+auto=@movedTo(*|mystack):may token(Elemental,creature elemental,4/4,green) opponentTurnOnly
 id=143728
 name=Eyes of the Wisent
 rarity=R
-type=Tribal Enchantment
-mana={1}{G}
-subtype=Elemental
+mana={G}
+type=Enchantment
+subtype=Tribal Elemental
 [/card]
 [card]
 text=Flash     Flying     When Faerie Harbinger comes into play, you may search your library for a Faerie card, reveal it, then shuffle your library and put that card on top of it.
@@ -589,14 +584,6 @@ rarity=C
 type=Enchantment
 mana={1}{G}
 subtype=Aura
-[/card]
-[card]
-text=Choose one - All creatures get +2/+0 until end of turn; or all creatures get -0/-2 until end of turn.
-id=146171
-name=Final Revels
-rarity=U
-type=Sorcery
-mana={4}{B}
 [/card]
 [card]
 text=Changeling (This card is every creature type at all times.)  {R}: Fire-Belly Changeling gets +1/+0 until end of turn. Play this ability no more than twice each turn.
@@ -871,15 +858,6 @@ subtype=Elf Assassin
 toughness=3
 [/card]
 [card]
-text=Choose one - Hurly-Burly deals 1 damage to each creature without flying; or Hurly-Burly deals 1 damage to each creature with flying.
-id=143381
-name=Hurly-Burly
-rarity=C
-type=Sorcery
-mana={1}{R}
-[/card]
-
-[card]
 text=Other Elemental creatures you control get +1/+1.     {1}{R}, {T}: You may put an Elemental creature card from your hand into play. That creature gains haste until end of turn. Sacrifice it at end of turn.
 id=139730
 name=Incandescent Soulstoke
@@ -1018,8 +996,6 @@ power=2
 subtype=Kithkin Cleric
 toughness=2
 [/card]
-
-
 [card]
 text=Lairwatch Giant can block an additional creature.     Whenever Lairwatch Giant blocks two or more creatures, it gains first strike until end of turn.
 id=143383
@@ -1108,16 +1084,6 @@ mana={2}{G}{G}
 power=3
 subtype=Elf Shaman
 toughness=2
-[/card]
-[card]
-text=At the end of your turn, untap all Merfolk you control.
-id=139663
-auto=@each my endofturn:untap all(merfolk|myinplay)
-name=Merrow Commerce
-rarity=U
-type=Tribal Enchantment
-mana={1}{U}
-subtype=Merfolk
 [/card]
 [card]
 text=Islandwalk     When Merrow Harbinger comes into play, you may search your library for a Merfolk card, reveal it, then shuffle your library and put that card on top of it.
@@ -1307,20 +1273,6 @@ mana={2}{U}
 power=2
 subtype=Merfolk Rogue
 toughness=2
-[/card]
-[card]
-text=Flash, Flying. When Pestermite comes into play, you may tap or untap target permanent.
-abilities=flash,flying
-auto=tap target(*)
-auto=untap target(*)
-id=139428
-name=Pestermite
-rarity=C
-type=Creature
-mana={2}{U}
-power=2
-subtype=Faerie Rogue
-toughness=1
 [/card]
 [card]
 text=Prevent all combat damage that would be dealt this turn. Clash with an opponent. If you win, creatures that player controls don't untap during the player's next untap step. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)

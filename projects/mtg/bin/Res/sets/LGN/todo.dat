@@ -693,17 +693,6 @@ text=Morph {4}{R} (You may cast this face down as a 2/2 creature for {3}. Turn i
 rarity=C
 [/card]
 [card]
-id=42078
-name=Shifting Sliver
-mana={3}{U}
-type=Creature
-subtype=Sliver
-power=2
-toughness=2
-text=Slivers can't be blocked except by Slivers.
-rarity=U
-[/card]
-[card]
 id=42055
 name=Skinthinner
 mana={1}{B}
@@ -781,17 +770,6 @@ text=Flying {1}: Swooping Talon loses flying until end of turn. Provoke (When th
 rarity=U
 [/card]
 [card]
-id=42026
-name=Synapse Sliver
-mana={4}{U}
-type=Creature
-subtype=Sliver
-power=3
-toughness=3
-text=Whenever a Sliver deals combat damage to a player, its controller may draw a card.
-rarity=R
-[/card]
-[card]
 id=42038
 name=Toxin Sliver
 mana={3}{B}
@@ -822,17 +800,6 @@ subtype=Goblin Mutant
 power=2
 toughness=2
 text=Morph {3}{R}{R} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Unstable Hulk is turned face up, it gets +6/+6 and gains trample until end of turn. You skip your next turn.
-rarity=R
-[/card]
-[card]
-id=44327
-name=Vexing Beetle
-mana={4}{G}
-type=Creature
-subtype=Insect
-power=3
-toughness=3
-text=Vexing Beetle can't be countered. Vexing Beetle gets +3/+3 as long as no opponent controls a creature.
 rarity=R
 [/card]
 [card]

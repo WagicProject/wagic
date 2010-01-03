@@ -465,6 +465,17 @@ auto=@movedTo(*[red]|stack):may life:1
 rarity=U
 [/card]
 [card]
+id=191091
+name=Dragonskull Summit
+auto=tap
+auto=aslongas(mountain,swamp|myBattelfield) untap
+auto={T}:Add {B}
+auto={T}:Add {R}
+type=Land
+text=Dragonskull Summit enters the battlefield tapped unless you control a Swamp or a Mountain. {T}: Add {B} or {R} to your mana pool.
+rarity=R
+[/card]
+[card]
 id=191060
 name=Dragon Whelp
 mana={2}{R}{R}
@@ -490,6 +501,17 @@ text=Dread Warlock can't be blocked except by black creatures.
 rarity=C
 [/card]
 [card]
+id=191067
+name=Drowned Catacomb
+auto=tap
+auto=aslongas(island,swamp|myBattelfield) untap
+auto={T}:Add {U}
+auto={T}:Add {B}
+type=Land
+text=Drowned Catacomb enters the battlefield tapped unless you control an Island or a Swamp. {T}: Add {U} or {B} to your mana pool.
+rarity=R
+[/card]
+[card]
 id=190552
 name=Drudge Skeletons
 mana={1}{B}
@@ -503,11 +525,12 @@ rarity=U
 [/card]
 [card]
 id=190551
+auto=damage:X all(creature[-flying])
+auto=damage:X all(player)
 name=Earthquake
 mana={X}{R}
 type=Sorcery
 text=Earthquake deals X damage to each creature without flying and each player.
-alias=1289
 rarity=R
 [/card]
 [card]
@@ -739,6 +762,17 @@ toughness=4
 text=Reach (This creature can block creatures with flying.)
 abilities=reach
 rarity=C
+[/card]
+[card]
+id=190562
+name=Glacial Fortress
+auto=tap
+auto=aslongas(plains,island|myBattelfield) untap
+auto={T}:Add {W}
+auto={T}:Add {U}
+type=Land
+text=Glacial Fortress enters the battlefield tapped unless you control a Plains or an Island. {T}: Add {W} or {U} to your mana pool.
+rarity=R
 [/card]
 [card]
 id=190196
@@ -1513,6 +1547,17 @@ auto={3}{T}:Damage:1 target(creature,player)
 rarity=U
 [/card]
 [card]
+id=191057
+name=Rootbound Crag
+auto=tap
+auto=aslongas(mountain,forest|myBattlefield) untap
+auto={T}:Add {R}
+auto={T}:Add {G}
+type=Land
+text=Rootbound Crag enters the battlefield tapped unless you control a Mountain or a Forest. {T}: Add {R} or {G} to your mana pool.
+rarity=R
+[/card]
+[card]
 id=191318
 primitive=Royal Assassin
 rarity=R
@@ -1631,18 +1676,6 @@ toughness=2
 rarity=C
 [/card]
 [card]
-id=190571
-name=Soul Warden
-mana={W}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=1
-text=Whenever another creature enters the battlefield, you gain 1 life.
-auto=@movedTo(creature|battlefield): life:1
-rarity=U
-[/card]
-[card]
 id=190163
 name=Snapping Drake
 mana={3}{U}
@@ -1662,8 +1695,20 @@ mana={2}{W}
 type=Sorcery
 target=artifact,enchantment
 auto=destroy
-auto=life:4
+auto=life:4 controller
 rarity=C
+[/card]
+[card]
+id=190571
+name=Soul Warden
+mana={W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
+text=Whenever another creature enters the battlefield, you gain 1 life.
+auto=@movedTo(creature|battlefield): life:1
+rarity=U
 [/card]
 [card]
 id=189899
@@ -1688,6 +1733,17 @@ toughness=1
 text=Flying
 abilities=flying
 rarity=C
+[/card]
+[card]
+id=191100
+name=Sunpetal Grove
+auto=tap
+auto=aslongas(forest,plains|myBattlefield) untap
+auto={T}:Add {G}
+auto={T}:Add {W}
+type=Land
+text=Sunpetal Grove enters the battlefield tapped unless you control a Forest or a Plains. {T}: Add {G} or {W} to your mana pool.
+rarity=R
 [/card]
 [card]
 id=191398

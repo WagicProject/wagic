@@ -166,6 +166,17 @@ toughness=4
 abilities=reach
 [/card]
 [card]
+text=Choose one - Consuming Bonfire deals 4 damage to target non-Elemental creature; or Consuming Bonfire deals 7 damage to target Treefolk creature.
+id=139688
+auto=may damage:4 target(creature[-elemental])
+auto=may damage:7 target(treefolk)
+name=Consuming Bonfire
+rarity=C
+mana={3}{R}{R}
+type=Sorcery
+subtype=Tribal Elemental
+[/card]
+[card]
 text=Dauntless Dourbark's power and toughness are each equal to the number of Forests you control plus the number of Treefolk you control.   Dauntless Dourbark has trample as long as you control another Treefolk.
 auto=foreach(forest|myBattlefield) 1/1 
 auto=foreach(treefolk|myBattlefield) 1/1
@@ -242,14 +253,14 @@ abilities=flash
 text=Flying   Ethereal Whiskergill can't attack unless defending player controls an Island.
 id=139431
 name=Ethereal Whiskergill
-abilities=cantattack,flying
-auto=aslongas(Island|opponentBattlefield) -cantattack
 rarity=U
 mana={3}{U}
 type=Creature
 subtype=Elemental
+auto=aslongas(island|opponentBattlefield) -cantattack
 power=4
 toughness=3
+abilities=cantattack,flying
 [/card]
 [card]
 text=Destroy target non-Elf creature.
@@ -277,14 +288,24 @@ toughness=1
 [card]
 text=Whenever Fallowsage becomes tapped, you may draw a card.
 id=145803
-auto=@tapped(this):may draw:1 controller
 name=Fallowsage
 rarity=U
-type=Creature
 mana={3}{U}
-power=2
+type=Creature
 subtype=Merfolk Wizard
+auto=@tapped(this):may draw:1 controller
+power=2
 toughness=2
+[/card]
+[card]
+text=Choose one - All creatures get +2/+0 until end of turn; or all creatures get -0/-2 until end of turn.
+id=146171
+auto=may lord(creature) 2/0
+aut0=may lord(creature) 0/-2
+name=Final Revels
+rarity=U
+mana={4}{B}
+type=Sorcery
 [/card]
 [card]
 text={R}: Flamekin Brawler gets +1/+0 until end of turn.
@@ -497,6 +518,16 @@ toughness=5
 abilities=vigilance,trample,haste
 [/card]
 [card]
+text=Choose one - Hurly-Burly deals 1 damage to each creature without flying; or Hurly-Burly deals 1 damage to each creature with flying.
+id=143381
+auto=may damage:1 all(creature(-flying)
+auto=may damage:1 all(creature(flying)
+name=Hurly-Burly
+rarity=C
+mana={1}{R}
+type=Sorcery
+[/card]
+[card]
 text={T}: Put a +1/+1 counter on target creature for each Elf you control.
 auto={T}:foreach(elf|myBattlefield) counter(1/1) target(creature)
 id=139721
@@ -646,13 +677,13 @@ toughness=1
 [card]
 text=Target creature gains deathtouch until end of turn. (Whenever it deals damage to a creature, destroy that creature.)  Draw a card.
 id=143376
-name=Lace with Moonglove
-mana={2}{G}
-type=Instant
 target=creature
 auto=deathtouch
 auto=draw:1 controller
+name=Lace with Moonglove
 rarity=C
+mana={2}{G}
+type=Instant
 [/card]
 [card]
 text=Whenever you cast an Elf spell, you may put a 1/1 green Elf Warrior creature token onto the battlefield.
@@ -692,6 +723,17 @@ power=2
 toughness=2
 [/card]
 [card]
+text=At the end of your turn, untap all Merfolk you control.
+id=139663
+#@each my end did not work! cleanup, too
+auto=@each opponent beginofturn:may untap all(merfolk|myBattlefield)
+name=Merrow Commerce
+rarity=U
+mana={1}{U}
+type=Tribal Enchantment
+subtype=Merfolk
+[/card]
+[card]
 text=Sacrifice Moonglove Extract: Moonglove Extract deals 2 damage to target creature or player.
 auto={S}:damage:2 target(creature,player)
 id=139506
@@ -704,13 +746,13 @@ type=Artifact
 text=Deathtouch (Whenever this creature deals damage to a creature, destroy that creature.)
 id=139483
 name=Moonglove Winnower
-abilities=deathtouch
-type=Creature
-mana={3}{B}
-power=2
-subtype=Elf Rogue
-toughness=3
 rarity=C
+mana={3}{B}
+type=Creature
+subtype=Elf Rogue
+power=2
+toughness=3
+abilities=deathtouch
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
@@ -831,6 +873,20 @@ rarity=C
 mana={B}
 type=Instant
 subtype=Tribal Faerie
+[/card]
+[card]
+text=Flash, Flying   When Pestermite enters the battlefield, you may tap or untap target permanent.
+id=139428
+name=Pestermite
+rarity=C
+mana={2}{U}
+type=Creature
+subtype=Faerie Rogue
+auto=may tap target(*)
+auto=may untap target(*)
+power=2
+toughness=1
+abilities=flash,flying
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.

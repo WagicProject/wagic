@@ -60,17 +60,6 @@ text=Creatures you control get +0/+2 until end of turn. Threshold - If seven or 
 rarity=U
 [/card]
 [card]
-id=20842
-name=Balthor the Defiled
-mana={2}{B}{B}
-type=Legendary Creature
-subtype=Zombie Dwarf
-power=2
-toughness=2
-text=Minion creatures get +1/+1. {B}{B}{B}, Exile Balthor the Defiled: Each player returns all black and all red creature cards from his or her graveyard to the battlefield.
-rarity=R
-[/card]
-[card]
 id=34818
 name=Barbarian Bully
 mana={2}{R}
@@ -497,17 +486,6 @@ text=Enchant creature Enchanted creature can't attack or block and its activated
 rarity=C
 [/card]
 [card]
-text=Green creatures and white creatures have protection from Gorgons.   Threshold - Masked Gorgon has protection from green and from white as long as seven or more cards are in your graveyard.
-id=34480
-name=Masked Gorgon
-rarity=R
-mana={4}{B}
-type=Creature
-subtype=Gorgon
-power=5
-toughness=5
-[/card]
-[card]
 id=35057
 name=Mirari's Wake
 mana={3}{G}{W}
@@ -895,7 +873,7 @@ rarity=U
 [/card]
 [card]
 id=33719
-name=XXValor (Valor)
+name=Valor
 mana={3}{W}
 type=Creature
 subtype=Incarnation
