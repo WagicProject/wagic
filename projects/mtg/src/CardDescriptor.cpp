@@ -150,7 +150,9 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card){
     match = NULL;
   }
 
-
+  if ((isToken== -1 && card->isToken) || (isToken == 1 && !card->isToken)){
+    match = NULL;
+  }
 
   if (attacker == 1){
     if (defenser == &AnyCard){

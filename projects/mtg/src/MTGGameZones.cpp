@@ -148,12 +148,12 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     }
 
     MTGCardInstance * ret = copy;
-    if (card->isToken){
+    /*if (card->isToken){
       if (to != g->players[0]->game->inPlay && to != g->players[1]->game->inPlay){
         to = garbage;
         ret = NULL;
       }
-    }
+    }*/
 
     to->addCard(copy);
     copy->changedZoneRecently = 1.f;
@@ -211,13 +211,21 @@ MTGCardInstance * MTGGameZone::removeCard(MTGCardInstance * card, int createCopy
       nb_cards--;
       cards.erase(cards.begin()+i);
 	    MTGCardInstance * copy = card;
-      if (card->isToken) //TODO better than this ?
-        return card;
+      //if (card->isToken) //TODO better than this ?
+      //  return card;
       //card->lastController = card->controller();
       if (createCopy) {
 		    copy = NEW MTGCardInstance(card->model,card->owner->game);
 		    copy->previous = card;
 		    copy->view = card->view;
+        copy->isToken = card->isToken;
+
+        //stupid bug with tokens...
+        if (card->model == card)
+          copy->model =  copy;
+        if (card->data == card)
+          copy->data = copy;
+
 		    card->next = copy;
 	    }
       copy->previousZone = this;

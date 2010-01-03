@@ -516,6 +516,36 @@ HUDDisplay::~HUDDisplay(){
   }
 
 
+  MTGTokensCleanup::MTGTokensCleanup(int _id):MTGAbility(_id, NULL){}
+
+  int MTGTokensCleanup::receiveEvent(WEvent * e){
+    if (WEventZoneChange* event = dynamic_cast<WEventZoneChange*>(e)){
+      if (!event->card->isToken) return 0;
+      if (event->to == game->players[0]->game->inPlay || event->to == game->players[1]->game->inPlay) return 0;
+      if (event->to == game->players[0]->game->garbage || event->to == game->players[1]->game->garbage) return 0;
+      list.push_back(event->card);
+      return 1;
+    }
+    return 0;
+  }
+
+  int MTGTokensCleanup::testDestroy(){return 0;}
+
+  void MTGTokensCleanup::Update(float dt){
+    MTGAbility::Update(dt);
+    for(size_t i= 0; i < list.size(); ++i){
+      MTGCardInstance * c = list[i];
+      c->controller()->game->putInZone(c,c->currentZone, c->controller()->game->garbage);
+    }
+    list.clear();
+  }
+
+  MTGTokensCleanup *  MTGTokensCleanup::clone() const{
+    MTGTokensCleanup * a =  NEW MTGTokensCleanup(*this);
+    a->isClone = 1;
+    return a;
+  }
+
   /* Legend Rule */
   MTGLegendRule::MTGLegendRule(int _id):ListMaintainerAbility(_id){};
 

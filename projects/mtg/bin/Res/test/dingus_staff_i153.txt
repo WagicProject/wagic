@@ -1,0 +1,21 @@
+#Bug: Tokens don't go to the graveyard
+#see: http://code.google.com/p/wagic/issues/detail?id=153
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:1138,dingus staff
+hand:shock
+manapool:{5}{R}
+[PLAYER2]
+[DO]
+1138
+shock
+-1138
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+life:18
+inplay:1138,dingus staff
+graveyard:shock
+[PLAYER2]
+[END]

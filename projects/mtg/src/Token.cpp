@@ -12,6 +12,7 @@ Token::Token(string _name, MTGCardInstance * source, int _power, int _toughness)
   setMTGId(- source->getMTGId());
   setId = source->setId;
   model = this;
+  data=this;
   owner = source->owner;
   belongs_to=source->controller()->game;
   attacker = 0;

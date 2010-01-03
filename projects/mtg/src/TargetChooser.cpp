@@ -176,6 +176,13 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
           }else{
 	          cd->unsecureSetTapped(1);
           }
+        //Token
+        }else if (attribute.find("token") != string::npos){
+          if (minus){
+            cd->isToken = -1;
+          }else{
+	          cd->isToken = 1;
+          }
         //Power restrictions
         }else if (attribute.find("power") != string::npos){
           cd->setPower(comparisonCriterion);

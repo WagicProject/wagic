@@ -64,6 +64,16 @@ class MTGPersistRule:public MTGAbility{
 };
 
 
+class MTGTokensCleanup:public MTGAbility{
+ public:
+  vector<MTGCardInstance *> list;
+  MTGTokensCleanup(int _id);
+  int receiveEvent(WEvent * event);
+  int testDestroy();
+  void Update(float dt);
+  virtual MTGTokensCleanup * clone() const;
+};
+
 /*
  * Rule 420.5e (Legend Rule)
  * If two or more legendary permanents with the same name are in play, all are put into their

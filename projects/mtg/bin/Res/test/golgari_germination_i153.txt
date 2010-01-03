@@ -1,0 +1,21 @@
+#Bug: Tokens and graveyard
+#see http://code.google.com/p/wagic/issues/detail?id=153
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:grizzly bears,89069
+manapool:{R}{R}
+hand:lightning bolt,shock
+[PLAYER2]
+[DO]
+lightning bolt
+grizzly bears
+shock
+-89069
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:lightning bolt,grizzly bears,shock
+inplay:89069
+[PLAYER2]
+[END]
