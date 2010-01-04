@@ -1401,7 +1401,7 @@ WSrcMTGSet::WSrcMTGSet(int setid, float delay){
   mLastInput = 0;
 
   for(it = ac->collection.begin();it != ac->collection.end();it++){
-    if(it->second->setId == setid)
+    if(it->second->setId == setid && it->second->getId() >= 0)
       cards.push_back(it->second);
   }
 
