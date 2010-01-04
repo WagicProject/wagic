@@ -104,10 +104,7 @@ void ActionLayer::Render (){
   for (int i=0;i<mCount;i++){
     if (mObjects[i]!=NULL){
       ActionElement * currentAction = (ActionElement *)mObjects[i];
-      //if (currentAction->getActivity() > 0){
       currentAction->Render();
-      //return;
-      //}
     }
   }
 }
@@ -119,11 +116,6 @@ void ActionLayer::setCurrentWaitingAction(ActionElement * ae){
 }
 
 TargetChooser * ActionLayer::getCurrentTargetChooser(){
- /* for (int i=0;i<mCount;i++){
-    ActionElement * currentAction = (ActionElement *)mObjects[i];
-    if(currentAction->waitingForAnswer) return currentAction->tc;
-  }
-  return NULL;*/
   if (currentWaitingAction && currentWaitingAction->waitingForAnswer)
      return currentWaitingAction->tc;
   return NULL;
@@ -247,8 +239,7 @@ void ActionLayer::doReactTo(int menuIndex){
 }
 
 void ActionLayer::ButtonPressed(int controllerid, int controlid){
-  if (controlid == -1){
-  }else{
+  if (controlid != -1){
     ActionElement * currentAction = (ActionElement *)mObjects[controlid];
     currentAction->reactToTargetClick(menuObject);
   }

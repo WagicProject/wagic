@@ -10,11 +10,19 @@ firstmain
 [PLAYER1]
 inplay:Suntail Hawk
 hand:Iron Will
-library:Plains
+library:plains
 manapool:{W}{W}
 [PLAYER2]
 [DO]
 Iron Will
 choice 0
 Suntail Hawk
-human
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:Suntail Hawk
+graveyard:iron will
+library:plains
+manapool:{W}
+[PLAYER2]
+[END]

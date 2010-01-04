@@ -111,7 +111,7 @@ class Constants
     RARITY_U = 'U',   //Uncommons
     RARITY_C = 'C',   //Commons
     RARITY_L = 'L',   //Lands
-    RARITY_T = 'T',   //Tokens, reserved for internal logic.
+    RARITY_T = 'T',   //Tokens
 
     //Price for singles
     PRICE_1M = 3000,

@@ -403,6 +403,17 @@ void GameObserver::cardClick (MTGCardInstance * card, Targetable * object){
     }
 
   if (card){
+
+    /* Fix for Issue http://code.google.com/p/wagic/issues/detail?id=270
+    put into play is hopefully the only ability causing that kind of trouble
+    If the same kind of issue occurs with other abilities, let's think of a cleaner solution
+    */
+    if (targetChooser) {
+      MTGAbility * a = mLayers->actionLayer()->getAbility(MTGAbility::PUT_INTO_PLAY);
+      a->reactToClick(card);
+      return;
+    }
+
     reaction = mLayers->actionLayer()->isReactingToClick(card);
     if (reaction == -1) mLayers->actionLayer()->reactToClick(card);
   }else{
@@ -410,21 +421,23 @@ void GameObserver::cardClick (MTGCardInstance * card, Targetable * object){
     if (reaction == -1) mLayers->actionLayer()->reactToTargetClick(object);
   }
 
-  if (reaction != -1){
-    if (!card) return;
-		//Current player's hand
-	  if (currentPlayer->game->hand->hasCard(card) && currentGamePhase == Constants::MTG_PHASE_CLEANUP && currentPlayer->game->hand->nb_cards > 7){
-	    currentPlayer->game->putInGraveyard(card);
-	  }else if (reaction){
-      if (reaction == 1){
-	      mLayers->actionLayer()->reactToClick(card);
-      }else{
-	      mLayers->actionLayer()->setMenuObject(object);
-      }
-    }else if (card->isTapped() && card->controller() == currentPlayer){
-      ConstraintResolver::untap(this, card);
+  if (reaction == -1) return;
+  
+  if (!card) return;
+
+	//Current player's hand
+  if (currentPlayer->game->hand->hasCard(card) && currentGamePhase == Constants::MTG_PHASE_CLEANUP && currentPlayer->game->hand->nb_cards > 7){
+    currentPlayer->game->putInGraveyard(card);
+  }else if (reaction){
+    if (reaction == 1){
+      mLayers->actionLayer()->reactToClick(card);
+    }else{
+      mLayers->actionLayer()->setMenuObject(object);
     }
+  }else if (card->isTapped() && card->controller() == currentPlayer){
+    ConstraintResolver::untap(this, card);
   }
+
 
 
 }
