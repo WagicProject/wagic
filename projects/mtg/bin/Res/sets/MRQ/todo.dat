@@ -751,18 +751,6 @@ subtype=Djinn
 toughness=4
 [/card]
 [card]
-text={1}{B}{B}, {T}, Discard a card: Creatures target player controls attack this turn if able.
-id=19699
-auto={1}{B}{B}{T}{S(*|myhand)}:lord(creature|opponentinplay) mustattack 
-name=Instigator
-rarity=R
-type=Creature
-mana={1}{B}
-power=1
-subtype=Human Spellshaper
-toughness=1
-[/card]
-[card]
 text=Enchant creature     At the end of the turn of enchanted creature's controller, Insubordination deals 2 damage to that player unless that creature attacked this turn.
 id=19590
 name=Insubordination
@@ -989,12 +977,14 @@ type=Instant
 mana={W}
 [/card]
 [card]
+####Tested. Causes infinite loops no matter how the autoline is coded.
 text=When a creature comes into play, sacrifice Monkey Cage and put into play a number of 2/2 green Ape creature tokens equal to that creature's converted mana cost.
+auto=@movedTo(creature[-token]|battlefield):token(Ape,creature ape, 2/2,green)*manacost && bury 
 id=19878
 name=Monkey Cage
 rarity=R
 type=Artifact
-mana={5}
+mana={1}
 [/card]
 [card]
 text=Enchant creature     Prevent all damage that would be dealt by enchanted creature.
@@ -1076,15 +1066,6 @@ mana={1}{U}
 power=1
 subtype=Human
 toughness=2
-[/card]
-[card]
-text={T}: Target creature gets +1/+1 and gains flying, first strike, and trample until end of turn.
-id=19888
-auto={T}:1/1 && flying && first strike && trample target(creature)
-name=Power Matrix
-rarity=R
-type=Artifact
-mana={4}
 [/card]
 [card]
 text=Enchant creature     Whenever enchanted creature becomes blocked, tap all lands defending player controls.
@@ -1192,7 +1173,6 @@ rarity=R
 type=Instant
 mana={3}{W}
 [/card]
-
 [card]
 text={W}, Pay 2 life: The next time a source of your choice would deal damage to you this turn, prevent that damage.
 id=19555
@@ -1209,7 +1189,6 @@ rarity=U
 type=Enchantment
 mana={2}{W}
 [/card]
-
 [card]
 text=Flying     When Rishadan Brigand comes into play, each opponent sacrifices a permanent unless he or she pays {3}.     Rishadan Brigand can block only creatures with flying.
 id=19670
@@ -1338,17 +1317,6 @@ id=19645
 name=Sandstone Needle
 rarity=C
 type=Land
-[/card]
-[card]
-text=When Saprazzan Bailiff comes into play, remove all artifact and enchantment cards in all graveyards from the game.     When Saprazzan Bailiff leaves play, return all artifact and enchantment cards from all graveyards to their owners' hands.
-id=19669
-name=Saprazzan Bailiff
-rarity=R
-type=Creature
-mana={3}{U}{U}
-power=2
-subtype=Merfolk
-toughness=2
 [/card]
 [card]
 text={U}: Put the top card of your library into your graveyard. If that card is a land card, Saprazzan Breaker is unblockable this turn.

@@ -254,8 +254,8 @@ auto=moveTo(myHand)
 id=19832
 name=Cateran Summons
 rarity=U
-type=Sorcery
 mana={B}
+type=Sorcery
 [/card]
 [card]
 text=Enchant creature   Enchanted creature gets +1/+1 and has mountainwalk.
@@ -305,12 +305,12 @@ type=Sorcery
 [/card]
 [card]
 text=Whenever a creature you control deals combat damage to an opponent, you may draw a card.
+auto=@damaged(player) from(creature|myBattlefield):may draw:1 controller
 id=19805
 name=Coastal Piracy
 rarity=U
-auto=@damaged(player) from(creature|myBattlefield):may draw:1 controller
-type=Enchantment
 mana={2}{U}{U}
+type=Enchantment
 [/card]
 [card]
 text=Counter target spell.
@@ -368,24 +368,24 @@ type=Instant
 [card]
 text={U}: Return Darting Merfolk to its owner's hand.
 id=19559
-auto={U}:moveto(hand)
 name=Darting Merfolk
 rarity=C
 mana={1}{U}
 type=Creature
 subtype=Merfolk
+auto={U}:moveto(hand)
 power=1
 toughness=1
 [/card]
 [card]
 text={G}, {T}, Discard a card: Prevent all combat damage that would be dealt this turn.
-auto={G}{T}{S(*|myhand)}:preventAllCombatDamage ueot
 id=19855
 name=Dawnstrider
 rarity=R
 mana={1}{G}
 type=Creature
 subtype=Dryad Spellshaper
+auto={G}{T}{S(*|myhand)}:preventAllCombatDamage ueot
 power=1
 toughness=1
 [/card]
@@ -428,9 +428,9 @@ toughness=1
 [card]
 text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.)   Enchanted creature doesn't untap during its controller's untap step.
 id=19577
-name=Dehydration
 target=creature
 auto=doesnotuntap
+name=Dehydration
 type=Enchantment
 rarity=C
 mana={3}{U}
@@ -505,9 +505,9 @@ type=Land
 [card]
 text=Nonland permanents don't untap during their controllers' untap steps.   At the beginning of your upkeep, you lose 2 life.
 id=19679
-name=Embargo
 auto=lord(*[-land]) doesnotuntap
 auto=@each my upkeep:life:-2 controller
+name=Embargo
 rarity=R
 mana={3}{U}
 type=Enchantment
@@ -524,10 +524,10 @@ auto={S}:Add {U}
 [/card]
 [card]
 text=Flash   Enchant creature   Enchanted creature gets +1/+0 and has first strike.
+id=19613
 target=creature
 auto=1/0
 auto=first strike
-id=19613
 name=Flaming Sword
 rarity=C
 mana={1}{R}
@@ -624,31 +624,31 @@ rarity=C
 mana={3}{G}
 type=Creature
 subtype=Insect
-auto={G}{S}:token(Butterfly,creature insect token, 1/1,flying green)
+auto={G}{S}:token(Butterfly,creature insect, 1/1,flying green)
 power=3
 toughness=3
 [/card]
 [card]
 text=When Glowing Anemone enters the battlefield, you may return target land to its owner's hand.
 id=19803
-auto=may moveto(ownerhand) target(land)
 name=Glowing Anemone
 rarity=U
 mana={3}{U}
 type=Creature
 subtype=Jellyfish Beast
+auto=may moveto(ownerhand) target(land)
 power=1
 toughness=3
 [/card]
 [card]
 text={1}{G}: Return target basic land card from your graveyard to your hand.
 id=19863
-auto={1}{G}:moveto(myhand) target(land[basic]|mygraveyard)
 name=Groundskeeper
 rarity=U
 mana={G}
 type=Creature
 subtype=Human Druid
+auto={1}{G}:moveto(myhand) target(land[basic]|mygraveyard)
 power=1
 toughness=1
 [/card]
@@ -708,21 +708,21 @@ type=Land
 [card]
 text=When Highway Robber comes enters the battlefield, target opponent loses 2 life and you gain 2 life.
 id=19585
-auto=life:-2 opponent
-auto=life:2 controller
 name=Highway Robber
 rarity=C
 mana={2}{B}{B}
 type=Creature
 subtype=Human Rogue Mercenary
+auto=life:-2 opponent
+auto=life:2 controller
 power=2
 toughness=2
 [/card]
 [card]
 text=Return target artifact, enchantment, or land to its owner's hand.
+id=20454
 target=artifact,enchantment,land
 auto=moveTo(ownerhand)
-id=20454
 name=Hoodwink
 rarity=C
 mana={1}{U}
@@ -757,8 +757,20 @@ auto=moveTo(exile) all(creature|graveyard)
 id=19787
 name=Honor the Fallen
 rarity=R
-type=Instant
 mana={1}{W}
+type=Instant
+[/card]
+[card]
+text={1}{B}{B}, {T}, Discard a card: Creatures target player controls attack this turn if able.
+auto={1}{B}{B}{T}{S(*|myhand)}:lord(creature|opponentBattlefield) mustattack ueot 
+id=19699
+name=Instigator
+rarity=R
+mana={1}{B}
+type=Creature
+subtype=Human Spellshaper
+power=1
+toughness=1
 [/card]
 [card]
 text=Creatures you control have fear.
@@ -1102,6 +1114,15 @@ type=Basic Land
 subtype=Plains
 [/card]
 [card]
+text={T}: Target creature gets +1/+1 and gains flying, first strike, and trample until end of turn.
+auto={T}:1/1 && flying && first strike && trample target(creature)
+id=19888
+name=Power Matrix
+rarity=R
+mana={4}
+type=Artifact
+[/card]
+[card]
 text={B}: Primeval Shambler gets +1/+1 until end of turn.
 id=19824
 name=Primeval Shambler
@@ -1291,6 +1312,19 @@ mana={2}{G}
 type=Creature
 auto={G}{T}{S(*|myhand)}:regenerate target(creature)
 subtype=Human Spellshaper
+power=2
+toughness=2
+[/card]
+[card]
+text=When Saprazzan Bailiff enters the battlefield, exile all artifact and enchantment cards in all graveyards.   When Saprazzan Bailiff leaves the battlefield, return all artifact and enchantment cards from all graveyards to their owners' hands.
+id=19669
+name=Saprazzan Bailiff
+rarity=R
+mana={3}{U}{U}
+type=Creature
+subtype=Merfolk
+auto=moveTo(exile) all(enchantment,artifact|graveyard)
+auto=@movedTo(this|graveyard,exile,hand) from(myBattlefield):moveTo(myhand) all(artifact,enchantment|mygraveyard) && moveTo(opponenthand) all(artifact,enchantment|opponentgraveyard)
 power=2
 toughness=2
 [/card]
