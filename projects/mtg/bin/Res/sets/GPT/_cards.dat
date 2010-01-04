@@ -370,8 +370,8 @@ rarity=C
 mana={4}{B}
 type=Creature
 subtype=Ogre Warrior
-auto=@moveTo(other creature|myBattlefield): life:-1 controller
-auto=@moveTo(other creature|opponentBattlefield): life:-1 opponent
+auto=@movedTo(other creature|myBattlefield):life:-1 controller
+auto=@movedTo(other creature|opponentBattlefield):life:-1 opponent
 power=3
 toughness=3
 [/card]

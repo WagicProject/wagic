@@ -105,8 +105,8 @@ type=Instant
 [/card]
 [card]
 text=Whenever another artifact enters the battlefield under your control, Glassdust Hulk gets +1/+1 until end of turn and is unblockable this turn.   Cycling {(WU)} ({(WU)}, Discard this card: Draw a card.)
-auto=@moveTo(other artifact|myBattlefield):1/1 ueot
-auto=@moveTo(other artifact|myBattlefield):unblockable ueot
+auto=@movedTo(other artifact|myBattlefield):1/1 ueot
+auto=@movedTo(other artifact|myBattlefield):unblockable ueot
 autohand={WU}:cycling
 id=179576
 name=Glassdust Hulk
@@ -167,7 +167,6 @@ type=Sorcery
 [card]
 text=Haste   Swampcycling {2}, mountaincycling {2} ({2}, Discard this card: Search your library for a Swamp or Mountain card, reveal it, and put it into your hand. Then shuffle your library.)
 autohand={2}{S}:moveTo(myHand) target(mountain,swamp|myLibrary)
-
 id=144276
 name=Igneous Pouncer
 rarity=C
