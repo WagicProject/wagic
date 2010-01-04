@@ -66,14 +66,6 @@ type=Artifact
 mana={4}
 [/card]
 [card]
-text={5}, {T}, Remove Amulet of Unmaking from the game: Remove target artifact, creature, or land from the game. Play this ability only any time you could play a sorcery.
-id=3241
-name=Amulet of Unmaking
-rarity=R
-type=Artifact
-mana={5}
-[/card]
-[card]
 text=Look at the top seven cards of your library. Put two of them into your hand and the rest into your graveyard.
 id=3323
 name=Ancestral Memories
@@ -132,14 +124,6 @@ subtype=Wurm
 toughness=3
 [/card]
 [card]
-text=Target creature gets +1/+1 for each creature blocking it and gains trample until end of turn.
-id=3428
-name=Barreling Attack
-rarity=R
-type=Instant
-mana={2}{R}{R}
-[/card]
-[card]
 text=Basalt Golem can't be blocked by artifact creatures.     Whenever Basalt Golem becomes blocked by a creature, that creature's controller sacrifices it at end of combat. If the player does, he or she puts a 0/2 Wall artifact creature token with defender into play.
 id=3242
 name=Basalt Golem
@@ -150,7 +134,6 @@ power=2
 subtype=Golem
 toughness=4
 [/card]
-
 [card]
 text=When Bazaar of Wonders comes into play, remove all cards in all graveyards from the game.     Whenever a spell is played, counter it if a card with the same name is in a graveyard or a nontoken permanent with the same name is in play.
 id=3326
@@ -170,7 +153,6 @@ power=1
 subtype=Unicorn
 toughness=2
 [/card]
-
 [card]
 text=Enchant creature     Whenever enchanted creature is dealt damage, Binding Agony deals that much damage to that creature's controller.
 id=3275
@@ -180,7 +162,6 @@ type=Enchantment
 mana={1}{B}
 subtype=Aura
 [/card]
-
 [card]
 text=Play Blind Fury only before the combat damage step.     All creatures lose trample until end of turn. If a creature would deal combat damage to a creature this turn, it deals double that damage to that creature instead.
 id=3429
@@ -189,7 +170,6 @@ rarity=U
 type=Instant
 mana={2}{R}{R}
 [/card]
-
 [card]
 text=Put any number of target creature cards from your graveyard on top of your library.     Draw a card at the beginning of the next turn's upkeep.
 id=3277
@@ -206,8 +186,6 @@ rarity=R
 type=Artifact
 mana={4}
 [/card]
-
-
 [card]
 text=Whenever Brushwagg blocks or becomes blocked, it gets -2/+2 until end of turn.
 id=3377
@@ -227,7 +205,6 @@ rarity=C
 type=Sorcery
 mana={X}{X}{R}
 [/card]
-
 [card]
 text=Flanking (Whenever a creature without flanking is assigned to block this creature, the blocking creature gets -1/-1 until end of turn.) {R}{R}: First strike until end of turn
 id=3433 
@@ -280,14 +257,6 @@ name=Celestial Dawn
 rarity=R
 type=Enchantment
 mana={1}{W}{W}
-[/card]
-[card]
-text=Creatures with flying have "This creature can't block creatures without flying."     Creatures without flying have reach. (They can block creatures with flying.)
-id=3435
-name=Chaosphere
-rarity=R
-type=World Enchantment
-mana={2}{R}
 [/card]
 [card]
 text={2}, {T}: Until end of turn, target creature you control gains flying and its toughness becomes 1.
@@ -670,17 +639,6 @@ subtype=Efreet
 toughness=1
 [/card]
 [card]
-text=Gibbering Hyenas can't block black creatures.
-id=3388
-name=Gibbering Hyenas
-rarity=C
-type=Creature
-mana={2}{G}
-power=3
-subtype=Hyena
-toughness=2
-[/card]
-[card]
 text=Whenever Goblin Elite Infantry blocks or becomes blocked, it gets -1/-1 until end of turn.
 id=3448
 name=Goblin Elite Infantry
@@ -907,19 +865,6 @@ mana={1}{R}
 subtype=Aura
 [/card]
 [card]
-text=Sacrifice Lion's Eye Diamond, Discard your hand: Add three mana of any one color to your mana pool. Play this ability only any time you could play an instant.
-id=3255
-name=Lion's Eye Diamond
-rarity=R
-mana={0}
-auto={S}:moveTo(mygraveyard) all(*|myhand) && add {W}{W}{W}
-auto={S}:moveTo(mygraveyard) all(*|myhand) && add {U}{U}{U}
-auto={S}:moveTo(mygraveyard) all(*|myhand) && add {B}{B}{B}
-auto={S}:moveTo(mygraveyard) all(*|myhand) && add {R}{R}{R}
-auto={S}:moveTo(mygraveyard) all(*|myhand) && add {G}{G}{G}
-type=Artifact
-[/card]
-[card]
 text=Play Lure of Prey only if an opponent played a creature spell this turn.     You may put a green creature card from your hand into play.
 id=3396
 name=Lure of Prey
@@ -1026,14 +971,6 @@ subtype=Fungus Wall
 toughness=1
 [/card]
 [card]
-text=At the beginning of each opponent's upkeep, if that player has five or more cards in hand, Misers' Cage deals 2 damage to him or her.
-id=3259
-name=Misers' Cage
-rarity=R
-type=Artifact
-mana={3}
-[/card]
-[card]
 text={0}: Mist Dragon gains flying. (This effect doesn't end at end of turn.)  {0}: Mist Dragon loses flying. (This effect doesn't end at end of turn.)  {3}{U}{U}: Mist Dragon phases out.
 id=3350
 name=Mist Dragon
@@ -1043,17 +980,6 @@ mana={4}{U}{U}
 power=4
 subtype=Dragon
 toughness=4
-[/card]
-[card]
-text=Flying       {W}, {T}: Return Mtenda Griffin to its owner's hand and return target Griffin card in your graveyard to your hand. Play this ability only during your upkeep.
-id=3503
-name=Mtenda Griffin
-rarity=U
-type=Creature
-mana={3}{W}
-power=2
-subtype=Griffin
-toughness=2
 [/card]
 [card]
 text=Flanking (Whenever a creature without flanking is assigned to block this creature, the blocking creature gets -1/-1 until end of turn.)
@@ -1122,14 +1048,6 @@ name=Painful Memories
 rarity=U
 type=Sorcery
 mana={1}{B}
-[/card]
-[card]
-text=At the beginning of each opponent's upkeep, if that player has two or fewer cards in hand, Paupers' Cage deals 2 damage to him or her.
-id=3262
-name=Paupers' Cage
-rarity=R
-type=Artifact
-mana={3}
 [/card]
 [card]
 text=Trample     When Phyrexian Dreadnought comes into play, sacrifice it unless you sacrifice any number of creatures with total power 12 or greater.
@@ -1242,6 +1160,20 @@ subtype=Cat Warrior
 toughness=3
 [/card]
 [card]
+####This is not what the card should do. Can't be coded right now! (0.10.1)
+text={R}: Pyric Salamander gets +1/+0 until end of turn. Sacrifice Pyric Salamander at the beginning of the next end step.
+id=3458
+name=Pyric Salamander
+rarity=C
+mana={1}{R}
+type=Creature
+subtype=Salamander
+auto={R}:1/0
+auto=@next end:bury
+power=1
+toughness=1
+[/card]
+[card]
 text=As Quirion Elves comes into play, choose a color.     {T}: Add {G} to your mana pool.     {T}: Add one mana of the chosen color to your mana pool.
 id=3403
 name=Quirion Elves
@@ -1284,14 +1216,6 @@ mana={3}{B}{B}
 power=3
 subtype=Vampire
 toughness=3
-[/card]
-[card]
-text=Untap target creature an opponent controls and gain control of it until end of turn. That creature gains haste until end of turn. When you lose control of the creature, tap it.
-id=3357
-name=Ray of Command
-rarity=C
-type=Instant
-mana={3}{U}
 [/card]
 [card]
 text=At the end of each player's turn, if that player has 5 life or less, Razor Pendulum deals 2 damage to him or her.

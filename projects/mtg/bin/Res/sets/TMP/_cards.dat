@@ -1263,45 +1263,6 @@ rarity=R
 type=Land
 [/card]
 [card]
-text=Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library.
-target=basic|mylibrary
-auto=moveTo(myBattlefield) && tap
-id=4779
-name=Rampant Growth
-rarity=C
-mana={1}{G}
-type=Sorcery
-[/card]
-[card]
-text=Target creature deals damage to itself equal to its power.
-id=4895
-target=creature
-auto=damage:p
-name=Repentance
-rarity=U
-mana={2}{W}
-type=Sorcery
-[/card]
-[card]
-text={2}{W}: Prevent all combat damage that would be dealt by target creature this turn.
-id=4897
-name=Safeguard
-auto={2}{W}:preventAllCombatDamage from target(creature) ueot
-rarity=R
-mana={3}{W}{W}
-type=Enchantment
-[/card]
-[card]
-text=Sudden Impact deals damage equal to the number of cards in target player's hand to that player.
-id=4852
-target=player
-alias=129750
-name=Sudden Impact
-rarity=U
-mana={3}{R}
-type=Instant
-[/card]
-[card]
 text=Flying   {B}: Pit Imp gets +1/+0 until end of turn. Play this ability no more than twice each turn.
 id=4677
 name=Pit Imp
@@ -1371,6 +1332,16 @@ mana={1}{B}{B}
 type=Sorcery
 [/card]
 [card]
+text=Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library.
+target=basic|mylibrary
+auto=moveTo(myBattlefield) && tap
+id=4779
+name=Rampant Growth
+rarity=C
+mana={1}{G}
+type=Sorcery
+[/card]
+[card]
 text=First strike   {G}: Regenerate Ranger en-Vec.
 id=4914
 name=Ranger en-Vec
@@ -1404,6 +1375,16 @@ auto=damage:manacost controller
 name=Reanimate
 rarity=U
 mana={B}
+type=Sorcery
+[/card]
+[card]
+text=Target creature deals damage to itself equal to its power.
+id=4895
+target=creature
+auto=damage:p
+name=Repentance
+rarity=U
+mana={2}{W}
 type=Sorcery
 [/card]
 [card]
@@ -1485,6 +1466,15 @@ rarity=C
 type=Enchantment
 mana={B}
 subtype=Aura
+[/card]
+[card]
+text={2}{W}: Prevent all combat damage that would be dealt by target creature this turn.
+id=4897
+name=Safeguard
+auto={2}{W}:preventAllCombatDamage from target(creature) ueot
+rarity=R
+mana={3}{W}{W}
+type=Enchantment
 [/card]
 [card]
 text=Salt Flats comes enters the battlefield tapped.   {T}: Add {1} to your mana pool.   {T}: Add {W} or {B} to your mana pool. Salt Flats deals 1 damage to you.
@@ -1844,6 +1834,16 @@ auto=draw:1 controller
 rarity=C
 type=Instant
 mana={1}{R}
+[/card]
+[card]
+text=Sudden Impact deals damage equal to the number of cards in target player's hand to that player.
+id=4852
+target=player
+alias=129750
+name=Sudden Impact
+rarity=U
+mana={3}{R}
+type=Instant
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.

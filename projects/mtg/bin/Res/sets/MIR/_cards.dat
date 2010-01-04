@@ -10,6 +10,15 @@ mana={1}{W}
 type=Instant
 [/card]
 [card]
+text={5}, {T}, Exile Amulet of Unmaking: Exile target artifact, creature, or land. Activate this ability only any time you could cast a sorcery.
+auto={5}{T}:moveTo(exile) all(this) && moveTo(exile) target(artifact,creature,land) asSorcery 
+id=3241
+name=Amulet of Unmaking
+rarity=R
+mana={5}
+type=Artifact
+[/card]
+[card]
 text={B}{T}: Target creature gets +1/+0 until end of turn.   {G}{T}: Target creature gets +0/+1 until end of turn.
 id=3427 
 name=Armorer Guildmage
@@ -53,6 +62,17 @@ id=3570
 name=Bad River
 rarity=U
 type=Land
+[/card]
+[card]
+text=Target creature gets +1/+1 for each creature blocking it and gains trample until end of turn.
+id=3428
+target=creature
+auto=trample
+auto=rampage(1/1,0)
+name=Barreling Attack
+rarity=R
+mana={2}{R}{R}
+type=Instant
 [/card]
 [card]
 text=Flying, vigilance
@@ -194,6 +214,17 @@ type=Instant
 mana={R}
 [/card]
 [card]
+text=Creatures with flying have "This creature can't block creatures without flying."   Creatures without flying have reach. (They can block creatures with flying.)
+id=3435
+auto=lord(creature[flying]) cloud
+auto=lord(creature[-flying] reach
+auto=@movedTo(enchantment[world]|battlefield):bury
+name=Chaosphere
+rarity=R
+mana={2}{R}
+type=World Enchantment
+[/card]
+[card]
 text=Charcoal Diamond enters the battlefield tapped.   {T}: Add {B} to your mana pool.
 id=3244 
 name=Charcoal Diamond
@@ -304,7 +335,8 @@ mana={1}{W}
 text=Destroy target artifact. You gain life equal to its converted mana cost.
 id=3486
 target=artifact
-alias=1607
+auto=destroy
+auto=life:manacost
 name=Divine Offering
 rarity=C
 mana={1}{W}
@@ -574,6 +606,18 @@ toughness=4
 abilities=reach
 [/card]
 [card]
+text=Gibbering Hyenas can't block black creatures.
+id=3388
+name=Gibbering Hyenas
+rarity=C
+mana={2}{G}
+type=Creature
+subtype=Hyena
+auto=lord(creature[black]) cantbeblockedby(gibbering hyenas)
+power=3
+toughness=2
+[/card]
+[card]
 text=Put three 1/1 red Goblin Scout creature tokens with mountainwalk onto the battlefield.
 id=3449 
 name=Goblin Scouts
@@ -833,6 +877,19 @@ toughness=2
 abilities=flying
 [/card]
 [card]
+text=Sacrifice Lion's Eye Diamond, Discard your hand: Add three mana of any one color to your mana pool. Play this ability only any time you could play an instant.
+id=3255
+name=Lion's Eye Diamond
+rarity=R
+mana={0}
+auto={S}:add {W}{W}{W} && moveTo(mygraveyard) all(*|myhand)
+auto={S}:add {U}{U}{U} && moveTo(mygraveyard) all(*|myhand)
+auto={S}:add {B}{B}{B} && moveTo(mygraveyard) all(*|myhand)
+auto={S}:add {R}{R}{R} && moveTo(mygraveyard) all(*|myhand)
+auto={S}:add {G}{G}{G} && moveTo(mygraveyard) all(*|myhand)
+type=Artifact
+[/card]
+[card]
 text=Flying   {G}: Regenerate Locust Swarm.   {G}: Untap Locust Swarm. Activate this ability only once each turn.
 id=3395
 name=Locust Swarm
@@ -907,6 +964,15 @@ power=1
 toughness=1
 [/card]
 [card]
+text=At the beginning of each opponent's upkeep, if that player has five or more cards in hand, Misers' Cage deals 2 damage to him or her.
+auto=@each opponent upkeep:aslongas(*|opponenthand) damage:2 opponent >4
+id=3259
+name=Misers' Cage
+rarity=R
+mana={3}
+type=Artifact
+[/card]
+[card]
 text=Moss Diamond enters the battlefield tapped.   {T}: Add {G} to your mana pool. 
 id=3260 
 name=Moss Diamond
@@ -962,14 +1028,27 @@ rarity=U
 type=Land
 [/card]
 [card]
+text=Flying   {W}, {T}: Return Mtenda Griffin to its owner's hand and return target Griffin card in your graveyard to your hand. Activate this ability only during your upkeep.
+auto={W}{T}:moveTo(ownerhand) all(this) && moveTo(ownerhand) target(griffin|mygraveyard) myUpkeepOnly
+id=3503
+name=Mtenda Griffin
+rarity=U
+mana={3}{W}
+type=Creature
+subtype=Griffin
+power=2
+toughness=2
+abilities=flying
+[/card]
+[card]
 text=At the beginning of your upkeep, Nettletooth Djinn deals 1 damage to you.
 id=3401
 name=Nettletooth Djinn
-auto=@each my upkeep:damage:1 controller
 type=Creature
 subtype=Djinn
 rarity=U
 mana={3}{G}
+auto=@each my upkeep:damage:1 controller
 power=4
 toughness=4
 [/card]
@@ -985,10 +1064,10 @@ type=Instant
 [card]
 text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.)   Enchanted creature can't attack or block.
 id=3507
-name=Pacifism
 target=creature
 auto=cantattack
 auto=cantblock
+name=Pacifism
 rarity=C
 mana={1}{W}
 type=Enchantment
@@ -1005,6 +1084,15 @@ subtype=Golem
 auto={3}:flying
 power=2
 toughness=3
+[/card]
+[card]
+text=At the beginning of each opponent's upkeep, if that player has two or fewer cards in hand, Paupers' Cage deals 2 damage to him or her.
+auto=@each opponent upkeep:aslongas(*|opponenthand) damage:2 opponent <3
+id=3262
+name=Paupers' Cage
+rarity=R
+mana={3}
+type=Artifact
 [/card]
 [card]
 text=Flying   {1}{W}: Pearl Dragon gets +0/+1 until end of turn.
@@ -1065,19 +1153,6 @@ subtype=Plains
 rarity=L
 [/card]
 [card]
-text={R}: Pyric Salamander gets +1/+0 until end of turn. Sacrifice Pyric Salamander at the beginning of the next end step.
-id=3458
-name=Pyric Salamander
-rarity=C
-mana={1}{R}
-type=Creature
-subtype=Salamander
-auto={R}:1/0
-auto=@next end:bury
-power=1
-toughness=1
-[/card]
-[card]
 text=Radiant Essence gets +1/+2 as long as an opponent controls a black permanent.
 id=3547
 name=Radiant Essence
@@ -1088,6 +1163,29 @@ type=Creature
 subtype=Spirit
 power=2
 toughness=3
+[/card]
+[card]
+text=Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library.
+target=basic|mylibrary
+auto=moveTo(myBattlefield) && tap
+id=3404
+name=Rampant Growth
+rarity=C
+mana={1}{G}
+type=Sorcery
+[/card]
+[card]
+text=Untap target creature an opponent controls and gain control of it until end of turn. That creature gains haste until end of turn. When you lose control of the creature, tap it.
+id=3357
+alias=129767
+target=creature|opponentBattlefield
+auto=untap
+auto=haste
+auto=@next endofturn:tap
+name=Ray of Command
+rarity=C
+mana={3}{U}
+type=Instant
 [/card]
 [card]
 text=Enchant creature   {G}: Regenerate enchanted creature. (The next time that creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
@@ -1314,6 +1412,19 @@ auto={T}:damage:1 all(creature[-flying])
 power=3
 toughness=3
 abilities=protection from red
+[/card]
+[card]
+text=Defender (This creature can't attack.)  Flying   Sunweb can't block creatures with power 2 or less.
+id=3517
+name=Sunweb
+rarity=R
+mana={3}{W}
+type=Creature
+subtype=Wall
+auto=lord(creature[power<=2]) cantbeblockedby(sunweb)
+power=5
+toughness=6
+abilities=defender
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
