@@ -1336,6 +1336,7 @@ type=Artifact
 [/card]
 [card]
 text=Enchant creature   Enchanted creature has protection from the colors of permanents you control. This effect doesn't remove Pledge of Loyalty.
+target=creature
 auto=aslongas(*[red]|mybattlefield) protection from red
 auto=aslongas(*[green]|mybattlefield) protection from green
 auto=aslongas(*[blue]|mybattlefield) protection from blue
