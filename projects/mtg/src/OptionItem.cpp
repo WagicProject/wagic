@@ -3,6 +3,7 @@
 #include <JGE.h>
 #include "../include/PlayerData.h"
 #include "../include/Translate.h"
+#include "../include/Subtypes.h"
 #include <dirent.h>
 #include <stdlib.h>
 #include <algorithm>
@@ -1393,6 +1394,68 @@ JQuad * WSrcImage::getImage(){
 WSrcImage::WSrcImage(string s){
   filename = s;
 }
+
+bool WCSortAlpha::operator()(const MTGCard*l, const MTGCard*r){
+  if(!l || !r || !l->data || !r->data)
+    return false;
+  string ln = l->data->getLCName();
+  string rn = r->data->getLCName();
+  return (ln < rn);
+}
+bool WCSortCollector::operator()(const MTGCard*l, const MTGCard*r){
+  if(!l || !r || !l->data || !r->data)
+    return false;
+
+  int lc, rc;
+  lc = l->data->countColors(); rc = r->data->countColors();
+  if(lc == 0) lc = 999;
+  if(rc == 0) rc = 999;
+
+  int isW = (int)l->data->hasColor(Constants::MTG_COLOR_WHITE) - (int) r->data->hasColor(Constants::MTG_COLOR_WHITE);
+  int isU = (int)l->data->hasColor(Constants::MTG_COLOR_BLUE) - (int) r->data->hasColor(Constants::MTG_COLOR_BLUE);
+  int isB = (int)l->data->hasColor(Constants::MTG_COLOR_BLACK) - (int) r->data->hasColor(Constants::MTG_COLOR_BLACK);
+  int isR = (int)l->data->hasColor(Constants::MTG_COLOR_RED) - (int) r->data->hasColor(Constants::MTG_COLOR_RED);
+  int isG = (int)l->data->hasColor(Constants::MTG_COLOR_GREEN) - (int) r->data->hasColor(Constants::MTG_COLOR_GREEN);
+  int isArt = (int)l->data->hasType(Subtypes::TYPE_ARTIFACT) - (int) r->data->hasType(Subtypes::TYPE_ARTIFACT);
+  int isLand = (int)l->data->hasType(Subtypes::TYPE_LAND) - (int) r->data->hasType(Subtypes::TYPE_LAND);
+
+  //Nested if hell. TODO: Farm these out to their own objects as a user-defined filter/sort system.
+  if(!isLand){
+    int isBasic = (int)l->data->hasType("Basic") - (int) r->data->hasType("Basic");
+    if(!isBasic){
+      if(!isArt){
+        if(lc == rc){
+          if(!isG){
+            if(!isR){
+              if(!isB){
+                if(!isU){
+                  if(!isW){
+                    string ln = l->data->getLCName();
+                    string rn = r->data->getLCName();
+                    if(ln.substr(0,4) == "the ")
+                      ln = ln.substr(4);
+                    if(rn.substr(0,4) == "the ")
+                      rn = rn.substr(4);
+                    return (ln < rn);
+                  }
+                  return (isW < 0);
+                }
+                return (isU < 0);
+              }
+              return (isB < 0);
+            }
+            return (isR < 0);
+          }
+          return (isG < 0);
+        }
+        return (lc < rc);
+      }
+      return (isArt < 0);
+    }
+    else return(isBasic < 0);
+  }
+  return (isLand < 0);
+}
 //WSrcMTGSet
 WSrcMTGSet::WSrcMTGSet(int setid, float delay){
   MTGAllCards * ac = GameApp::collection;
@@ -1404,6 +1467,8 @@ WSrcMTGSet::WSrcMTGSet(int setid, float delay){
     if(it->second->setId == setid && it->second->getId() >= 0)
       cards.push_back(it->second);
   }
+
+  std::sort(cards.begin(),cards.end(),WCSortCollector());
 
   currentCard = -1;
   if(cards.size())

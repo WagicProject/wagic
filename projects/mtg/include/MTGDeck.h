@@ -11,13 +11,9 @@
 #include <string>
 
 using std::string;
-
-
 class GameApp;
 class MTGCard;
 class CardPrimitive;
-
-#define SET_METADATA "setinfo.txt"
 
 class MTGSetInfo{
 public:
@@ -36,6 +32,7 @@ public:
   string getBlock();
   int boosterCost();
   int boosterSize();
+  void processConfLine(string line);
 
   enum {
     //For memoized counts
@@ -91,7 +88,11 @@ private:
   void init();
   void initCounters();
  public:
-
+  enum {
+   READ_ANYTHING = 0,
+   READ_CARD = 1,
+   READ_METADATA = 2,
+  };
   vector<int> ids;
   map<int, MTGCard *> collection;
   map<string,CardPrimitive *>primitives;
@@ -119,8 +120,6 @@ private:
 class MTGDeck{
  protected:
   string filename;
-
-  
   int total_cards;
 
  public:

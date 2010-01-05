@@ -177,6 +177,19 @@ protected:
   float mLastInput;
 };
 
+struct WCardSort{
+public:
+  virtual bool operator()(const MTGCard*l, const MTGCard*r) = 0;
+};
+
+struct WCSortCollector: public WCardSort{
+  bool operator()(const MTGCard*l, const MTGCard*r);
+};
+
+struct WCSortAlpha: public WCardSort{
+  bool operator()(const MTGCard*l, const MTGCard*r);
+};
+
 class WGuiImage: public WGuiItem{
 public:
   WGuiImage(WDataSource * wds, float _w = 0, float _h = 0, int _margin = 0);

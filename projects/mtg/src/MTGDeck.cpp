@@ -335,21 +335,34 @@ bool MTGAllCards::addPrimitive(CardPrimitive * primitive, MTGCard * card){
 }
 
 int MTGAllCards::readConfLine(std::ifstream &file, int set_id){
-
+  MTGSetInfo * si = setlist.getInfo(set_id);
   string s;
   int result = 1;
   if(!std::getline(file,s)) return 0;
   if (!s.size()) return -1;
   if (s[s.size()-1] == '\r') s.erase(s.size()-1); //Handle DOS files
     switch(conf_read_mode) {
-    case 0:
+    case MTGAllCards::READ_ANYTHING:
       if (s[0] == '['){
-        conf_read_mode = 1;
+        if(s[1] == 'm'){ //M for metadata.
+          conf_read_mode = MTGAllCards::READ_METADATA;
+        }
+        else{
+          conf_read_mode = MTGAllCards::READ_CARD;
+        }
       }
-      break;
-    case 1:
+      break;    
+    case MTGAllCards::READ_METADATA:
       if (s[0] == '[' && s[1] == '/'){
-	      conf_read_mode = 0;
+        conf_read_mode = MTGAllCards::READ_ANYTHING;
+        break;
+      }
+      if(si)
+        si->processConfLine(s);
+      break;
+    case MTGAllCards::READ_CARD:
+      if (s[0] == '[' && s[1] == '/'){
+	      conf_read_mode = MTGAllCards::READ_ANYTHING;
         if (tempPrimitive) addPrimitive (tempPrimitive,tempCard);
         if (tempCard){
           addCardToCollection(tempCard, set_id);
@@ -816,3 +829,23 @@ string MTGSetInfo::getBlock(){
 
   return setlist.blocks[block];
 }
+
+
+void MTGSetInfo::processConfLine(string line){
+  unsigned int i = line.find_first_of("=");
+  if (i == string::npos)
+    return;
+
+  string key = line.substr(0,i);
+  std::transform(key.begin(),key.end(),key.begin(),::tolower);
+  string value = line.substr(i+1);
+
+  if(key.compare("name") == 0)
+    name = value;
+  else if(key.compare("author") == 0)
+    author = value;
+  else if(key.compare("block") == 0)
+    block = setlist.findBlock(value.c_str());
+  else if(key.compare("year") == 0)
+    year = atoi(value.c_str());
+ }

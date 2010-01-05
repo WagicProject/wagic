@@ -210,11 +210,14 @@ bool GameStateAwards::enterSet(int setid){
   WGuiList * spoiler = NEW WGuiList("Spoiler",setSrc);
   spoiler->setX(210);
   spoiler->setWidth(SCREEN_WIDTH - 220);
-  MTGAllCards * c = GameApp::collection;
-  for(it = c->collection.begin();it!=c->collection.end();it++){
-    if(it->second && it->second->setId == setid && it->second->getId() >= 0) //Add only non-tokens from this set.
-     spoiler->Add(NEW WGuiItem(it->second->data->name));
+  while(true){
+    MTGCard * c = setSrc->getCard();
+    if(c)
+      spoiler->Add(NEW WGuiItem(c->data->name));
+    if(!setSrc->next())
+      break;
   }
+  setSrc->setPos(0);
   spoiler->Entering(0);
   WGuiCardImage * wi = NEW WGuiCardImage(setSrc);
   wi->setX(105);
