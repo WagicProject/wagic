@@ -1037,11 +1037,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       }
       break;
     }
-  case 1237: //Channel
-    {
-      game->addObserver(NEW AChannel(_id, card));
-      break;
-    }
   case 1282: //Chaoslace
     {
       if (card->target){
@@ -1447,11 +1442,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   case 2474: //Minion of Leshrac
     {
       game->addObserver(NEW AMinionofLeshrac( _id, card));
-      break;
-    }
-  case 2421: //Shield of the Age
-    {
-      game->addObserver(NEW AShieldOfTheAge( _id, card));
       break;
     }
 

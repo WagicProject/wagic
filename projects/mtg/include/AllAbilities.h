@@ -2576,44 +2576,6 @@ class AArmageddonClock:public MTGAbility{
   }
 };
 
-//Channel
-class AChannel:public ActivatedAbility{
- public:
-
- AChannel(int _id, MTGCardInstance * card):ActivatedAbility(_id, card,0,0,0){
-  }
-
-  int isReactingToClick(PlayGuiObject * object){
-    if (object->type == GUI_AVATAR){
-      Player * player = ((GuiAvatar *)object)->player;
-      if (player == source->controller()) return 1;
-    }
-    return 0;
-  }
-
-  int resolve(){
-    source->controller()->life--;
-    source->controller()->getManaPool()->add(Constants::MTG_COLOR_ARTIFACT, 1);
-    return 1;
-  }
-
-  int testDestroy(){
-    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UNTAP) return 1;
-    currentPhase = newPhase;
-    return 0;
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "AChannel ::: (";
-    return ActivatedAbility::toString(out) << ")";
-  }
-  AChannel * clone() const{
-    AChannel * a =  NEW AChannel(*this);
-    a->isClone = 1;
-    return a;
-  }
-};
 
 
 // Clockwork Beast
@@ -3804,36 +3766,6 @@ class AARandomDiscarder:public ActivatedAbilityTP{
     return a;
   }
 };
-
-
-
-//ShieldOfTheAge
-class AShieldOfTheAge: public TargetAbility{
- public:
- AShieldOfTheAge(int _id, MTGCardInstance * card):TargetAbility(_id,card,NEW DamageTargetChooser(card,_id),NEW ManaCost(),0,0){
-    cost->add(Constants::MTG_COLOR_ARTIFACT,2);
-  }
-
-  int resolve(){
-    Damage * damage = tc->getNextDamageTarget();
-    if (!damage) return 0;
-    game->mLayers->stackLayer()->Fizzle(damage);
-    return 1;
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "AShieldOfTheAge ::: (";
-    return TargetAbility::toString(out) << ")";
-  }
-
-    AShieldOfTheAge * clone() const{
-    AShieldOfTheAge * a =  NEW AShieldOfTheAge(*this);
-    a->isClone = 1;
-    return a;
-  }
-};
-
 
 //Minion of Leshrac
 class AMinionofLeshrac: public TargetAbility{

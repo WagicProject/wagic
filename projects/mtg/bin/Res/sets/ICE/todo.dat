@@ -1745,6 +1745,14 @@ subtype=Shapeshifter
 toughness=2
 [/card]
 [card]
+text={2}: Prevent the next 1 damage that would be dealt to you this turn.
+id=2421
+name=Shield of the Ages
+rarity=U
+mana={2}
+type=Artifact
+[/card]
+[card]
 text=Flying     Whenever Sibilant Spirit attacks, defending player may draw a card.
 id=2533
 name=Sibilant Spirit

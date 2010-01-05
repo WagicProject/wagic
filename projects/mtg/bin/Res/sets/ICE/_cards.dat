@@ -1234,14 +1234,6 @@ power=5
 toughness=5
 [/card]
 [card]
-text={2}: Prevent the next 1 damage that would be dealt to you this turn.
-id=2421
-name=Shield of the Ages
-rarity=U
-mana={2}
-type=Artifact
-[/card]
-[card]
 text=Flying, trample
 id=2534
 name=Silver Erne
