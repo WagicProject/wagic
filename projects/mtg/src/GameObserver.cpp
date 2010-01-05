@@ -291,7 +291,7 @@ void GameObserver::stateEffects()
       card->afterDamage();
 
       //Remove auras that don't have a valid target anymore
-      if (card->target && !isInPlay(card->target)){
+      if (card->target && !isInPlay(card->target) && !card->hasType("equipment")){
         players[i]->game->putInGraveyard(card);
       }
     }

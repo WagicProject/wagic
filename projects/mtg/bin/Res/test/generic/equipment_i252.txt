@@ -1,0 +1,44 @@
+#Test:equipment
+#see http://code.google.com/p/wagic/issues/detail?id=252
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+manapool:{5}{G}
+hand:giant spider
+inplay:trusty machete
+[PLAYER2]
+inplay:colossus of sardia
+[DO]
+giant spider
+trusty machete
+giant spider
+eot
+next
+#upkeep
+next
+#draw
+next
+#main
+next
+#begin
+next
+#attackers
+colossus of sardia
+next
+#blockers
+giant spider
+next
+#damage
+next
+#trample
+next
+#combat end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:trusty machete
+graveyard:giant spider
+life:16
+[PLAYER2]
+inplay:colossus of sardia
+[END]
