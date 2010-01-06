@@ -1,3 +1,8 @@
+[meta]
+author=Official
+name=Fallen Empires
+year=1994
+[/meta]
 [card]
 text={1}{T}, Sacrifice Aeolipile: Aeolipile deals 2 damage to target creature or player.
 auto={1}{T}{S}:damage:2 target(creature,player)

@@ -1,3 +1,9 @@
+[meta]
+author=Official
+name=Onslaught
+year=2002
+block=Onslaught
+[/meta]
 [card]
 text=Draw a card for each Bird on the battlefield.
 id=39889

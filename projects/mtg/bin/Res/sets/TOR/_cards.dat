@@ -1,3 +1,9 @@
+[meta]
+author=Official
+name=Torment
+year=2002
+block=Odyssey
+[/meta]
 [card]
 text=Target creature gains haste until end of turn.   Draw a card.
 target=creature

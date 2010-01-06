@@ -1,3 +1,9 @@
+[meta]
+author=Official
+name=Weatherlight
+year=1997
+block=Mirage
+[/meta]
 [card]
 text=Vigilance
 id=4567

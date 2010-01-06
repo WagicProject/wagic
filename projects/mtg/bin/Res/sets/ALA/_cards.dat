@@ -1,3 +1,9 @@
+[meta]
+author=Official
+name=Shards of Alara
+year=2008
+block=Shards of Alara
+[/meta]
 [card]
 text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
 id=174963

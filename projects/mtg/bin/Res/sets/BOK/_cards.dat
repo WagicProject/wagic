@@ -1,3 +1,9 @@
+[meta]
+author=Official
+name=Betrayers of Kamigawa
+year=2005
+block=Kamigawa
+[/meta]
 [card]
 text=Whenever a land is put into a graveyard from the battlefield, Akki Raider gets +1/+0 until end of turn.
 auto=@movedto(land|myGraveyard) from(Battlefield):1/0 ueot

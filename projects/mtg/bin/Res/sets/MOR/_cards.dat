@@ -1,3 +1,9 @@
+[meta]
+author=Official
+name=Morningtide
+year=2008
+block=Lorwyn
+[/meta]
 [card]
 text=When Ambassador Oak enters the battlefield, put a 1/1 green Elf Warrior creature token onto the battlefield.
 id=152998

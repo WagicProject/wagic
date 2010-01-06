@@ -1,3 +1,9 @@
+[meta]
+author=Official
+name=Tempest
+year=1997
+block=Tempest
+[/meta]
 [card]
 text=First strike   {W}: Target creature gains first strike until end of turn.
 auto={W}:first strike target(creature)

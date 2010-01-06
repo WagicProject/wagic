@@ -1,3 +1,9 @@
+[meta]
+author=Official
+name=Legions
+year=2003
+block=Onslaught
+[/meta]
 [card]
 text=Flying, first strike, vigilance, trample, haste, protection from black and from red
 id=42049

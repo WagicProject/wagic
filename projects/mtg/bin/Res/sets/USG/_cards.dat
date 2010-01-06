@@ -1,3 +1,9 @@
+[meta]
+author=Official
+name=Urza's Saga
+year=1999
+block=Urza
+[/meta]
 [card]
 text=All creatures have protection from black.
 auto=lord(creature) protection from black

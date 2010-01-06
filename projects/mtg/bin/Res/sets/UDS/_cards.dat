@@ -1,3 +1,9 @@
+[meta]
+author=Official
+name=Urza's Destiny
+year=1999
+block=Urza
+[/meta]
 [card]
 text=Whenever an opponent casts a creature spell, AEther Sting deals 1 damage to that player.
 auto=@movedTo(creature|opponentstack):life:-1 opponent

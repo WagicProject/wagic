@@ -1,3 +1,9 @@
+[meta]
+author=Official
+name=Prophecy
+year=2000
+block=Masques
+[/meta]
 [card]
 text={1}{B}, Sacrifice a land: Target creature gets +2/+0 until end of turn.
 id=24601

@@ -1,3 +1,9 @@
+[meta]
+author=Official
+name=Ravnica: City of Guilds
+year=2005
+block=Ravnica
+[/meta]
 [card]
 text={R}, Sacrifice Barbarian Riftcutter: Destroy target land.
 id=87972

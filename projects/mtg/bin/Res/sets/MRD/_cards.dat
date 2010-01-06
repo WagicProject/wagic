@@ -1,3 +1,9 @@
+[meta]
+author=Official
+name=Mirrodin
+year=2003
+block=Mirrodin
+[/meta]
 [card]
 text={U}, Sacrifice AEther Spellbomb: Return target creature to its owner's hand.   {1}, Sacrifice AEther Spellbomb: Draw a card.
 auto={U}{S}:moveTo(ownerhand) target(creature)

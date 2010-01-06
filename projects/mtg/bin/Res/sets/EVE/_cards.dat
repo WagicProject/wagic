@@ -1,3 +1,9 @@
+[meta]
+author=Official
+name=Eventide
+year=2008
+block=Shadowmoor
+[/meta]
 [card]
 text={2}: Target white creature gains persist until end of turn. (When it's put into a graveyard from the battlefield, if it had no -1/-1 counters on it, return it to the battlefield under its owner's control with a -1/-1 counter on it.)
 auto={2}:persist target(creature)

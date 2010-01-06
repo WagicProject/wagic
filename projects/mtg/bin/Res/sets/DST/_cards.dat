@@ -1,3 +1,9 @@
+[meta]
+author=Official
+name=Darksteel
+year=2004
+block=Mirrodin
+[/meta]
 [card]
 text=Whenever a player casts a white spell, you may gain 1 life.
 id=72686

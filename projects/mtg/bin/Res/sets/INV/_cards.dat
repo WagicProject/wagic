@@ -1,3 +1,9 @@
+[meta]
+author=Official
+name=Invasion
+year=2000
+block=Invasion
+[/meta]
 [card]
 text=Counter target spell.   You gain 3 life.
 id=23155

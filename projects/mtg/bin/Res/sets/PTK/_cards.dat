@@ -1,3 +1,9 @@
+[meta]
+author=Official
+name=Portal Three Kingdoms
+year=1999
+block=Portal
+[/meta]
 [card]
 text=Vigilance (Attacking doesn't cause this creature to tap.)
 id=10487

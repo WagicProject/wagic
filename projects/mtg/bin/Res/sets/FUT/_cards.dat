@@ -1,3 +1,9 @@
+[meta]
+author=Official
+name=Futuresight
+year=2007
+block=Time Spiral
+[/meta]
 [card]
 text=Creatures you control have flying, first strike, vigilance, trample, haste, and protection from black and from red.
 id=136150

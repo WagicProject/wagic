@@ -1,3 +1,9 @@
+[meta]
+author=Official
+name=Nemesis
+year=2000
+block=Masques
+[/meta]
 [card]
 text=Draw a card, then draw cards equal to the number of cards named Accumulated Knowledge in all graveyards.
 id=21285

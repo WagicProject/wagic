@@ -1,3 +1,9 @@
+[meta]
+author=Official
+name=Shadowmoor
+year=2008
+block=Shadowmoor
+[/meta]
 [card]
 text=Whenever a player casts a white spell, you may pay {1}. If you do, you gain 1 life.
 id=141929

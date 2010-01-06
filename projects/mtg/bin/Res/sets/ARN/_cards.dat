@@ -1,3 +1,8 @@
+[meta]
+author=Official
+name=Arabian Nights
+year=1993
+[/meta]
 [card]
 text={X}, {T}: The next time you would draw a card this turn, instead look at the top X cards of your library, shuffle all but one of them, put the shuffled cards on the bottom of your library, then draw a card. X can't be 0.
 alias=1092

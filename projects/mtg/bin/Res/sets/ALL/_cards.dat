@@ -1,3 +1,9 @@
+[meta]
+author=Official
+name=Alliances
+year=1996
+block=Ice Age
+[/meta]
 [card]
 text=Flying   Aesthir Glider can't block.
 id=3040

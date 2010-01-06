@@ -1,3 +1,9 @@
+[meta]
+author=Official
+name=Odyssey
+year=2001
+block=Odyssey
+[/meta]
 [card]
 text=Abandoned Outpost enters the battlefield tapped.   {T}: Add {W} to your mana pool.   {T}, Sacrifice Abandoned Outpost: Add one mana of any color to your mana pool.
 id=31761

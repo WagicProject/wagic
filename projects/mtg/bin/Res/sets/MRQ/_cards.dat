@@ -1,3 +1,9 @@
+[meta]
+author=Official
+name=Mercadian Masques
+year=1999
+block=Masques
+[/meta]
 [card]
 text=Enchant creature   Enchanted creature gets +2/+2 for each other enchantment on the battlefield.
 target=creature

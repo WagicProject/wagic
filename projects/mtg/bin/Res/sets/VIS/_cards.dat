@@ -1,3 +1,9 @@
+[meta]
+author=Official
+name=Visions
+year=1997
+block=Mirage
+[/meta]
 [card]
 text=Trample   At the beginning of your upkeep, put a +1/+1 counter on each creature each opponent controls.
 auto=@each my upkeep:lord(creature|opponentBattlefield) counter(1/1)

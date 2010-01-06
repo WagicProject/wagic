@@ -1,3 +1,9 @@
+[meta]
+author=Official
+name=Lorwyn
+year=2007
+block=Lorwyn
+[/meta]
 [card]
 text=As Ancient Amphitheater enters the battlefield, you may reveal a Giant card from your hand. If you don't, Ancient Amphitheater enters the battlefield tapped.   {T}: Add {R} or {W} to your mana pool.
 id=153454

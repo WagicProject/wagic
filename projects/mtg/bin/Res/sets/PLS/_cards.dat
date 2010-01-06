@@ -1,3 +1,9 @@
+[meta]
+author=Official
+name=Planeshift
+year=2001
+block=Invasion
+[/meta]
 [card]
 text=Domain ÅETarget player draws a card for each basic land type among lands he or she controls.
 auto=aslongas(plains|myBattlefield) draw:1

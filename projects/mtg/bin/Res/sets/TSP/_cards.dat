@@ -1,4 +1,10 @@
 #Thanks to Blublub for orignal version 2009/07/05
+[meta]
+author=Official
+name=Time Spiral
+year=2006
+block=Time Spiral
+[/meta]
 [card]
 text={T}: Add {1} to your mana pool. {1}{U}, {T}: Put target artifact card in your graveyard on top of your library.
 id=116725

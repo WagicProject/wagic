@@ -1,3 +1,9 @@
+[meta]
+author=Official
+name=Champions of Kamigawa
+year=2004
+block=Kamigawa
+[/meta]
 [card]
 text=Sacrifice a land: Akki Avalanchers gets +2/+0 until end of turn. Activate this ability only once each turn.
 id=75277

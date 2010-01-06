@@ -1,3 +1,8 @@
+[meta]
+author=Official
+name=Antiquities
+year=1994
+[/meta]
 [card]
 text=At the beginning of your upkeep, put a doom counter on Armageddon Clock. At the beginning of your draw step, Armageddon Clock deals damage to each player equal to the number of doom counters on it. {4}: Remove a doom counter from Armageddon Clock. Any player may activate this ability but only during any upkeep step.
 id=993

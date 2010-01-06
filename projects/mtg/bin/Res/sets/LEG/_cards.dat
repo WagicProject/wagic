@@ -1,3 +1,8 @@
+[meta]
+author=Official
+name=Legends
+year=1994
+[/meta]
 [card]
 text=Destroy all forests.
 auto=destroy all(forest)

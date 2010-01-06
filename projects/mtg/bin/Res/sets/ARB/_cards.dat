@@ -1,3 +1,9 @@
+[meta]
+author=Official
+name=Alara Reborn
+year=2009
+block=Shards of Alara
+[/meta]
 [card]
 text=When you cycle Bant Sojourners or it's put into a graveyard from the battlefield, you may put a 1/1 white Soldier creature token onto the battlefield.   Cycling {2}{W} ({2}{W}, Discard this card: Draw a card.)
 auto=@movedTo(this|graveyard) from(battlefield):may token(Soldier,Creature Soldier,1/1,white)
