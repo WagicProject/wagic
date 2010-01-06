@@ -761,6 +761,18 @@ power=2
 toughness=4
 [/card]
 [card]
+text=When Sedraxis Alchemist enters the battlefield, if you control a blue permanent, return target nonland permanent to its owner's hand.
+id=182306
+name=Sedraxis Alchemist
+rarity=C
+mana={2}{B}
+type=Creature
+subtype=Zombie Wizard
+auto=aslongas(*[blue]|myBattlefield) moveTo(ownerhand) target(*[-land])
+power=2
+toughness=2
+[/card]
+[card]
 text=Whenever you cast an enchantment spell, put a 4/4 white Angel creature token with flying onto the battlefield.
 auto=@movedTo(enchantment|mystack):token(Angel,Creature Angel,4/4,white flying)
 id=180271

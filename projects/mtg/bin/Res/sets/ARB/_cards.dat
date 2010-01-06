@@ -75,6 +75,19 @@ power=3
 toughness=3
 [/card]
 [card]
+text=When Deadshot Minotaur enters the battlefield, it deals 3 damage to target creature with flying.   Cycling {(r/g)} ({(r/g)}, Discard this card: Draw a card.)
+id=179543
+name=Deadshot Minotaur
+rarity=C
+mana={3}{R}{G}
+type=Creature
+subtype=Minotaur
+auto=damage:3 target(creature[flying])
+autohand={RG}:cycling
+power=3
+toughness=4
+[/card]
+[card]
 text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
 id=179542
 name=Ethercaste Knight
@@ -423,6 +436,18 @@ power=5
 toughness=3
 [/card]
 [card]
+text=When Nulltread Gargantuan enters the battlefield, put a creature you control on top of its owner's library.
+id=179580
+name=Nulltread Gargantuan
+rarity=U
+mana={1}{G}{U}
+type=Creature
+subtype=Beast
+auto=moveTo(ownerlibrary) target(creature|myBattlefield)
+power=5
+toughness=6
+[/card]
+[card]
 text=Reach (This can block creatures with flying.)   Forestcycling {2}, plainscycling {2} ({2}, Discard this card: Search your library for a Forest or Plains card, reveal it, and put it into your hand. Then shuffle your library.)
 autohand={2}{S}:moveTo(myhand) target(plains,forest|mylibrary)
 id=144249
@@ -493,6 +518,18 @@ rarity=C
 mana={BG}{R}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+text=When Sanity Gnawers enters the battlefield, target player discards a card at random.
+id=179623
+name=Sanity Gnawers
+rarity=U
+mana={1}{B}{R}
+type=Creature
+subtype=Rat
+auto=discard:1 target(player)
+power=1
+toughness=1
 [/card]
 [card]
 text=Flying, haste
@@ -631,6 +668,18 @@ type=Creature
 subtype=Vedalken Rogue
 power=1
 toughness=1
+[/card]
+[card]
+text=When Vithian Renegades enters the battlefield, destroy target artifact.
+id=179535
+name=Vithian Renegades
+rarity=U
+mana={1}{R}{G}
+type=Creature
+subtype=Human Shaman
+auto=destroy target(artifact)
+power=3
+toughness=2
 [/card]
 [card]
 text=Defender, flying, shroud

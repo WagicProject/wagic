@@ -485,17 +485,6 @@ type=Artifact
 mana={B}{B}
 [/card]
 [card]
-text=When Sedraxis Alchemist comes into play, if you control a blue permanent, return target nonland permanent to its owner's hand.
-id=182306
-name=Sedraxis Alchemist
-rarity=C
-type=Creature
-mana={2}{B}
-power=2
-subtype=Zombie Wizard
-toughness=2
-[/card]
-[card]
 text=Shambling Remains can't block.     Unearth {B}{R} ({B}{R}: Return this card from your graveyard to play. It gains haste. Remove it from the game at end of turn or if it would leave play. Unearth only as a sorcery.)
 id=184991
 name=Shambling Remains

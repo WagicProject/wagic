@@ -61,7 +61,6 @@ toughness=1
 text=As long as you control another multicolored permanent, Bant Sureblade gets +1/+1 and has first strike.
 rarity=C
 [/card]
-
 [card]
 id=185057
 name=Bituminous Blast
@@ -125,17 +124,6 @@ mana={(}{G}{/}{U}{)}{W}
 type=Enchantment
 subtype=Aura
 text=Enchant creature Enchanted creature can't attack or block. When enchanted creature becomes the target of a spell or ability, remove that creature from the game.
-rarity=C
-[/card]
-[card]
-id=179543
-name=Deadshot Minotaur
-mana={3}{R}{G}
-type=Creature
-subtype=Minotaur
-power=3
-toughness=4
-text=When Deadshot Minotaur comes into play, it deals 3 damage to target creature with flying. Cycling {(r/g)} ({(r/g)}, Discard this card: Draw a card.)
 rarity=C
 [/card]
 [card]
@@ -558,22 +546,6 @@ text=Whenever Nemesis of Reason attacks, defending player puts the top ten cards
 rarity=R
 [/card]
 [card]
-####
-####Removed for the same reason as all creatures with non-may comes-into-play effects. (0.9.1)
-####
-text=When Nulltread Gargantuan enters the battlefield, put a creature you control on top of its owner's library.
-id=179580
-name=Nulltread Gargantuan
-rarity=U
-mana={1}{G}{U}
-type=Creature
-subtype=Beast
-target=creature|myBattlefield
-auto=moveTo(ownerlibrary)
-power=5
-toughness=6
-[/card]
-[card]
 id=183007
 name=Offering to Asha
 mana={2}{W}{U}
@@ -581,7 +553,6 @@ type=Instant
 text=Counter target spell unless its controller pays {4}. You gain 4 life.
 rarity=C
 [/card]
-
 [card]
 id=180602
 name=Predatory Advantage
@@ -619,19 +590,6 @@ power=3
 toughness=4
 text=If you would draw a card, instead reveal the top three cards of your library. Put all creature cards revealed this way into your hand and the rest on the bottom of your library in any order.
 rarity=R
-[/card]
-
-[card]
-id=179623
-name=Sanity Gnawers
-mana={1}{B}{R}
-type=Creature
-subtype=Rat
-power=1
-toughness=1
-text=When Sanity Gnawers comes into play, target player discards a card at random.
-auto=discard:1 target(player)
-rarity=U
 [/card]
 [card]
 id=180607
@@ -823,7 +781,6 @@ toughness=5
 text=Uril, the Miststalker can't be the target of spells or abilities your opponents control. Uril gets +2/+2 for each Aura attached to it.
 rarity=M
 [/card]
-
 [card]
 id=179592
 name=Vectis Dominator
@@ -869,20 +826,6 @@ mana={1}{R}{G}
 type=Instant
 text=Cascade (When you play this spell, remove cards from the top of your library from the game until you remove a nonland card that costs less. You may play it without paying its mana cost. Put the removed cards on the bottom in a random order.) Creatures you control get +1/+0 until end of turn.
 rarity=C
-[/card]
-[card]
-text=When Vithian Renegades comes into play, destroy target artifact.
-#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
-id=179535
-target=artifact
-auto=destroy
-name=Vithian Renegades
-rarity=U
-mana={1}{R}{G}
-type=Creature
-subtype=Human Shaman
-power=3
-toughness=2
 [/card]
 [card]
 id=180592
