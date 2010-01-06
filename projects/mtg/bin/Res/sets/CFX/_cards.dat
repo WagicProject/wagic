@@ -1,8 +1,7 @@
 [meta]
-author=Official
-name=Conflux
+author=Wagic Team
 year=2009
-block=Shards of Alara
+block=Shards
 [/meta]
 [card]
 text=Target player loses 4 life and you gain 4 life.   Basic landcycling {1}{B} ({1}{B}, Discard this card: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.)

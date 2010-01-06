@@ -1,8 +1,7 @@
 [meta]
-author=Official
-name=Guildpact
+author=Wagic Team
 year=2006
-block=Ravnica
+block=Guild
 [/meta]
 [card]
 text=Whenever an opponent discards a card, Abyssal Nocturnus gets +2/+2 and gains fear until end of turn. (It can't be blocked except by artifact creatures and/or black creatures.)

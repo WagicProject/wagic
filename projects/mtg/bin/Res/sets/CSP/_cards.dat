@@ -1,8 +1,7 @@
 [meta]
-author=Official
-name=Cold Snap
+author=Wagic Team
 year=2006
-block=Ice Age
+block=Ice
 [/meta]
 [card]
 text=Arctic Flats enters the battlefield tapped.   {T}: Add {G} or {W} to your mana pool.

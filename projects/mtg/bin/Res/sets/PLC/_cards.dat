@@ -1,8 +1,7 @@
 [meta]
 name=Planar Chaos
-author=Official
 year=2007
-block=Time Spiral
+block=Time
 [/meta]
 [card]
 text=All Sliver creatures have trample.

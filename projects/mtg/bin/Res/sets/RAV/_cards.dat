@@ -1,8 +1,7 @@
 [meta]
-author=Official
-name=Ravnica: City of Guilds
+author=Wagic Team
 year=2005
-block=Ravnica
+block=Guild
 [/meta]
 [card]
 text={R}, Sacrifice Barbarian Riftcutter: Destroy target land.

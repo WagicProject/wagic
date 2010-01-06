@@ -1,8 +1,7 @@
 [meta]
-author=Official
-name=Shadowmoor
+author=Wagic Team
 year=2008
-block=Shadowmoor
+block=Shadow
 [/meta]
 [card]
 text=Whenever a player casts a white spell, you may pay {1}. If you do, you gain 1 life.

@@ -1,8 +1,7 @@
 [meta]
-author=Official
-name=Fifth Dawn
+author=Wagic Team
 year=2004
-block=Mirrodin
+block=Mirror
 [/meta]
 [card]
 text=Search target opponent's library for an artifact card and put that card ontto the battlefield under your control. Then that player shuffles his or her library.

@@ -1,8 +1,7 @@
 [meta]
-author=Official
-name=Nemesis
+author=Wagic Team
 year=2000
-block=Masques
+block=Masks
 [/meta]
 [card]
 text=Draw a card, then draw cards equal to the number of cards named Accumulated Knowledge in all graveyards.

@@ -1,8 +1,7 @@
 [meta]
-author=Official
-name=Mirrodin
+author=Wagic Team
 year=2003
-block=Mirrodin
+block=Mirror
 [/meta]
 [card]
 text={U}, Sacrifice AEther Spellbomb: Return target creature to its owner's hand.   {1}, Sacrifice AEther Spellbomb: Draw a card.
