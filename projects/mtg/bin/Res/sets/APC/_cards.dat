@@ -459,9 +459,8 @@ power=2
 toughness=1
 [/card]
 [card]
-text=Flash (You may cast this spell any time you could play an instant.)  When Mystic Snake enters the battlefield, counter target spell.
-target=*|stack
-auto=may fizzle
+text=Flash (You may cast this spell any time you could cast an instant.)  When Mystic Snake enters the battlefield, counter target spell.
+auto=fizzle target(*|stack)
 id=26421
 name=Mystic Snake
 rarity=R
