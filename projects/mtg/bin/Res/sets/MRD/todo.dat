@@ -1347,7 +1347,6 @@ rarity=R
 type=Sorcery
 mana={2}{R}
 [/card]
-
 [card]
 text=Triskelion comes into play with three +1/+1 counters on it.     Remove a +1/+1 counter from Triskelion: Triskelion deals 1 damage to target creature or player.
 id=46702
@@ -1359,21 +1358,6 @@ power=1
 subtype=Construct
 toughness=1
 [/card]
-
-[card]
-text=Destroy target Equipment. Then add {G} to your mana pool.
-id=48594
-target=equipment
-auto=destroy
-auto=add:{G}
-name=Turn to Dust
-rarity=C
-type=Instant
-mana={G}
-[/card]
-
-
-
 [card]
 text={T}: Add an amount of {G} to your mana pool equal to Viridian Joiner's power.
 id=46114

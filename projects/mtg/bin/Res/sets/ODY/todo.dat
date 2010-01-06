@@ -489,14 +489,6 @@ type=Instant
 mana={U}
 [/card]
 [card]
-text=White creatures get +1/+1.     Threshold - White creatures get an additional +1/+1 as long as seven or more cards are in your graveyard.
-id=29917
-name=Divine Sacrament
-rarity=R
-type=Enchantment
-mana={1}{W}{W}
-[/card]
-[card]
 text=Tap: Destroy target creature token. 
 id=31789
 name=Dogged Hunter
@@ -995,17 +987,6 @@ subtype=Human Nomad
 toughness=2
 [/card]
 [card]
-text=At the beginning of your upkeep, you may put a 1/1 green Squirrel creature token into play.     Threshold - Squirrel creatures get +2/+2 as long as seven or more cards are in your graveyard.
-id=29987
-name=Nut Collector
-rarity=R
-type=Creature
-mana={5}{G}
-power=1
-subtype=Human Druid
-toughness=1
-[/card]
-[card]
 text=If you would draw a card, you may skip that draw instead.
 id=29968
 name=Obstinate Familiar
@@ -1086,19 +1067,6 @@ type=Creature
 mana={1}{U}
 power=2
 subtype=Illusion Hound
-toughness=2
-[/card]
-[card]
-text=Whenever Pianna, Nomad Captain attacks, attacking creatures get +1/+1 until end of turn.
-id=31790
-name=Pianna, Nomad Captain
-rarity=R
-type=Creature
-abilities=Legendary
-auto=aslongas(Pianna, Nomad Captain[attacking]|myBattlefueld) lord(creature[attacking]) 1/1
-mana={1}{W}{W}
-power=2
-subtype=Human Nomad
 toughness=2
 [/card]
 [card]
@@ -1500,15 +1468,6 @@ name=Tainted Pact
 rarity=R
 type=Instant
 mana={1}{B}
-[/card]
-[card]
-text=Enchant creature     Enchanted creature gets +1/+1 and has protection from enchantments. This effect doesn't remove Tattoo Ward.     Sacrifice Tattoo Ward: Destroy target enchantment.
-id=31873
-name=Tattoo Ward
-rarity=U
-type=Enchantment
-mana={2}{W}
-subtype=Aura
 [/card]
 [card]
 text={X}: Testament of Faith becomes an X/X Wall creature with defender until end of turn. It's still an enchantment.

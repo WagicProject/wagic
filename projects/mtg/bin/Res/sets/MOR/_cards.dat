@@ -39,7 +39,7 @@ power=1
 toughness=2
 [/card]
 [card]
-text=Trample Borderland Behemoth gets +4/+4 for each other Giant you control.
+text=Trample   Borderland Behemoth gets +4/+4 for each other Giant you control.
 id=153102
 name=Borderland Behemoth
 auto=foreach(giant|myBattlefield) 4/4 other
@@ -52,17 +52,17 @@ toughness=4
 abilities=trample
 [/card]
 [card]
+text=Flying   Reinforce 2—{2}{W} ({2}{W}, Discard this card: Put two +1/+1 counters on target creature.)
 id=152694
 name=Burrenton Bombardier
+rarity=C
 mana={2}{W}
 type=Creature
 subtype=Kithkin Soldier
+autohand={2}{W}{S}:counter(1/1,2) target(creature)
 power=2
 toughness=2
-text=Flying Reinforce 2—{2}{W} ({2}{W}, Discard this card: Put two +1/+1 counters on target creature.)
 abilities=flying
-autohand={2}{W}{S}:counter(1/1,2) target(creature)
-rarity=C
 [/card]
 [card]
 text=Enchant creature   {1}{W}: Put a +1/+1 counter on enchanted creature.
@@ -78,23 +78,23 @@ subtype=Aura
 [card]
 text=Return target nonland permanent to its owner's hand.
 id=152727
-name=Disperse
 target=creature,artifact,enchantment
 auto=moveTo(ownerHand)
+name=Disperse
 rarity=C
 mana={1}{U}
 type=Instant
 [/card]
 [card]
+text=Target creature gets +3/+3 until end of turn.   Reinforce 1—{1}{G} ({1}{G}, Discard this card: Put a +1/+1 counter on target creature.)
 id=152710
-name=Earthbrawn
-mana={1}{G}
-type=Instant
-text=Target creature gets +3/+3 until end of turn. Reinforce 1—{1}{G} ({1}{G}, Discard this card: Put a +1/+1 counter on target creature.)
 target=creature
 auto=3/3
 autohand={1}{G}{S}:counter(1/1,1) target(creature)
+name=Earthbrawn
 rarity=C
+mana={1}{G}
+type=Instant
 [/card]
 [card]
 text=
@@ -127,31 +127,31 @@ name=Festercreep
 rarity=C
 mana={1}{B}
 auto=counter(1/1)
-auto={1}{B}:counter(1/1,-1) && lord(creature) -1/-1 other
+auto={1}{B}:counter(1/1,-1) all(this) && lord(creature) -1/-1 other
 type=Creature
 subtype=Elemental
 power=0
 toughness=0
 [/card]
 [card]
+text=Put three 1/1 green Elf Warrior creature tokens onto the battlefield.   Reinforce 3—{3}{G} ({3}{G}, Discard this card: Put three +1/+1 counters on target creature.)
 id=152963
+auto=token(Elf Warrior,Creature Elf Warrior,1/1,green)*3
+autohand={3}{G}{S}:counter(1/1,3) target(creature)
 name=Hunting Triad
+rarity=U
 mana={3}{G}
 type=Sorcery
 subtype=Tribal Elf
-text=Put three 1/1 green Elf Warrior creature tokens onto the battlefield. Reinforce 3—{3}{G} ({3}{G}, Discard this card: Put three +1/+1 counters on target creature.)
-auto=token(Elf Warrior,Creature Elf Warrior,1/1,green)*3
-autohand={3}{G}{S}:counter(1/1,3) target(creature)
-rarity=U
 [/card]
 [card]
 text=Search your library for an enchantment card, reveal it, and put it into your hand. Then shuffle your library.
 id=152938
+target=enchantment|myLibrary
+auto=moveTo(myhand) target(enchantment|myLibrary)
 name=Idyllic Tutor
 rarity=R
 mana={2}{W}
-target=enchantment|myLibrary
-auto=moveTo(myhand) target(enchantment|myLibrary)
 type=Sorcery
 [/card]
 [card]
@@ -167,10 +167,10 @@ toughness=10
 [card]
 text=Target creature gets +1/+0 and gains first strike until end of turn.
 id=152563
-name=Kindled Fury
 target=creature
 auto=1/0
 auto=first strike
+name=Kindled Fury
 rarity=C
 mana={R}
 type=Instant
@@ -178,12 +178,12 @@ type=Instant
 [card]
 text=Knight creatures you control have double strike.
 id=153279
-auto=lord(creature|mybattlefield) double strike
 name=Kinsbaile Cavalier
 rarity=R
 mana={3}{W}
 type=Creature
 subtype=Kithkin Knight
+auto=lord(creature|mybattlefield) double strike
 power=2
 toughness=2
 [/card]
@@ -220,23 +220,36 @@ mana={X}{U}{U}
 type=Sorcery
 [/card]
 [card]
+text=First strike   Reinforce 1—{1}{W} ({1}{W}, Discard this card: Put a +1/+1 counter on target creature.)
 id=152585
 name=Mosquito Guard
+rarity=C
 mana={W}
 type=Creature
 subtype=Kithkin Soldier
+autohand={1}{W}{S}:counter(1/1,1) target(creature)
 power=1
 toughness=1
-text=First strike Reinforce 1—{1}{W} ({1}{W}, Discard this card: Put a +1/+1 counter on target creature.)
 abilities=first strike
-autohand={1}{W}{S}:counter(1/1,1) target(creature)
-rarity=C
+[/card]
+[card]
+text=({T}: Add {G} to your mana pool.)   As Murmuring Bosk enters the battlefield, you may reveal a Treefolk card from your hand. If you don't, Murmuring Bosk enters the battlefield tapped.   {T}: Add {W} or {B} to your mana pool. Murmuring Bosk deals 1 damage to you.
+id=153467
+name=Murmuring Bosk
+rarity=R
+auto=tap
+auto=aslongas(treefolk|myhand) untap
+auto={T}:Add{G}
+auto={T}:Add{W} && damage:1 controller
+auto={T}:Add{B} && damage:1 controller
+type=Land
+subtype=Forest
 [/card]
 [card]
 text=Counter target noncreature spell.
-id=152570
 target=*[-creature]|stack
 auto=fizzle
+id=152570
 name=Negate
 rarity=C
 mana={1}{U}
@@ -255,18 +268,30 @@ toughness=1
 abilities=fear
 [/card]
 [card]
+text=As Rustic Clachan enters the battlefield, you may reveal a Kithkin card from your hand. If you don't, Rustic Clachan enters the battlefield tapped.   {T}: Add {W} to your mana pool.   Reinforce 1—{1}{W} ({1}{W}, Discard this card: Put a +1/+1 counter on target creature.)
+id=153460
+name=Rustic Clachan
+rarity=R
+auto=tap
+auto=aslongas(kithkin|myHand) untap
+auto={T}:Add{W}
+autohand={1}{W}{S}:counter(1/1,1) target(creature)
+type=Land
+[/card]
+[card]
 text=Sacrifice an Elemental: Seething Pathblazer gets +2/+0 and gains first strike until end of turn.
 id=153101
 name=Seething Pathblazer
-auto={S(elemental|myBattlefield)}:2/0 && first strike
 rarity=C
 mana={2}{R}
 type=Creature
 subtype=Elemental Warrior
+auto={S(elemental|myBattlefield)}:2/0 && first strike
 power=2
 toughness=2
 [/card]
 [card]
+text=Whenever Stonybrook Schoolmaster becomes tapped, you may put a 1/1 blue Merfolk Wizard creature token onto the battlefield.
 auto=@tapped(this):may token(Merfolk wizard,creature Merfolk Wizard,1/1,blue)
 id=153166
 name=Stonybrook Schoolmaster
@@ -276,14 +301,13 @@ type=Creature
 subtype=Merfolk Wizard
 power=1
 toughness=2
-text=Whenever Stonybrook Schoolmaster becomes tapped, you may put a 1/1 blue Merfolk Wizard creature token onto the battlefield.
 [/card]
 [card]
 text=Target creature gets -4/-0 until end of turn. If you control a Wizard, draw a card.
+id=152720
 target=creature
 auto=-4/0
 auto=aslongas(wizard|myBattlefield) draw:1 controller
-id=152720
 name=Stream of Unconsciousness
 rarity=C
 mana={U}

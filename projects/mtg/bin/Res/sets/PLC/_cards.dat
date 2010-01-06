@@ -240,6 +240,21 @@ power=2
 toughness=2
 [/card]
 [card]
+####Don't change the phase names!
+text=Forestwalk   Whenever Jedit Ojanen of Efrava attacks or blocks, put a 2/2 green Cat Warrior creature token with forestwalk onto the battlefield.
+id=124344
+name=Jedit Ojanen of Efrava
+rarity=R
+mana={3}{G}{G}{G}
+type=Legendary Creature
+subtype=Cat Warrior
+auto=@each my blockers:aslongas(jedit ojanen of efrava[attacking]|myBattlefield) token(Cat,creature cat, 2/2,green)
+auto=@each my combatdamage:aslongas(jedit ojanen of efrava[blocking]|myBattlefield) token(Cat,creature cat, 2/2,green)
+power=5
+toughness=5
+abilities=forestwalk
+[/card]
+[card]
 text={0}: Until end of turn, Jodah's Avenger gets -1/-1 and gains your choice of double strike, protection from red, vigilance, or shadow. (A creature with shadow can block or be blocked by only creatures with shadow.)
 id=124482
 name=Jodah's Avenger
@@ -267,25 +282,25 @@ subtype=Aura
 [/card]
 [card]
 text={2}, {T}: Add {B} to your mana pool for each Swamp you control.
-auto={2}{T}:foreach(swamp|myBattlefield) Add:{B}
 id=124507
 name=Magus of the Coffers
 rarity=R
 mana={4}{B}
 type=Creature
 subtype=Human Wizard
+auto={2}{T}:foreach(swamp|myBattlefield) Add:{B}
 power=4
 toughness=4
 [/card]
 [card]
 text=Flying   {W}{W}{W}: Regenerate Malach of the Dawn.
-auto={W}{W}{W}:regenerate
 id=122481
 name=Malach of the Dawn
 rarity=U
 mana={2}{W}{W}
 type=Creature
 subtype=Angel
+auto={W}{W}{W}:regenerate
 power=2
 toughness=4
 abilities=flying
@@ -304,13 +319,13 @@ abilities=flash
 [/card]
 [card]
 text=Whenever you cast an enchantment spell, you may draw a card.
-auto=@movedTo(enchantment|mystack):may draw:1
 id=126214
 name=Mesa Enchantress
 rarity=R
 mana={1}{W}{W}
 type=Creature
 subtype=Human Druid
+auto=@movedTo(enchantment|mystack):may draw:1
 power=0
 toughness=2
 [/card]
@@ -351,6 +366,33 @@ power=2
 toughness=2
 [/card]
 [card]
+####Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1) 
+text=Flying   Whenever Oros, the Avenger deals combat damage to a player, you may pay {2}{W}. If you do, Oros deals 3 damage to each nonwhite creature.
+id=136170
+name=Oros the Avenger
+rarity=R
+mana={3}{W}{B}{R}
+type=Legendary Creature
+subtype=Dragon
+auto=aslongas(oros the avenger[attacking]|mybattlefield) lord(oros the avenger[attacking;-cloud]) {2}{W}:damage:3 all(creature[-white])
+auto=@damaged(player) from(this):cloud
+power=6
+toughness=6
+abilities=flying
+[/card]
+[card]
+text=All Slivers have "{2}, {T}: Regenerate target Sliver."
+id=126014
+name=Poultice Sliver
+rarity=C
+mana={2}{W}
+type=Creature
+subtype=Sliver
+auto=lord(sliver) {T}:regenerate target(sliver)
+power=2
+toughness=2
+[/card]
+[card]
 text=Kicker {2}{G} (You may pay an additional {2}{G} as you cast this spell.) If Pouncing Wurm was kicked, it enters the battlefield with three +1/+1 counters on it and with haste.
 id=122323
 name=Pouncing Wurm
@@ -363,6 +405,20 @@ type=Creature
 subtype=Wurm
 power=3
 toughness=3
+[/card]
+[card]
+####Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1) 
+text=Whenever Radha, Heir to Keld attacks, you may add {R}{R} to your mana pool. {T}: Add {G} to your mana pool.
+auto=@each my blockers:aslongas(radha heir to keld[attacking]|myBattlefield) may add{R}{R}
+id=128949
+name=Radha Heir to Keld
+rarity=R
+mana={R}{G}
+type=Legendary Creature
+subtype=Elf Warrior
+auto={T}:Add{G}
+power=2
+toughness=2
 [/card]
 [card]
 text={1}{B}, {T}, Discard a card: Target creature gets +1/+0 and gains first strike until end of turn.
@@ -413,18 +469,6 @@ toughness=2
 abilities=intimidate
 [/card]
 [card]
-text=All Sliver creatures have first strike.
-id=126022
-name=Spitting Sliver
-rarity=C
-mana={4}{B}
-type=Creature
-subtype=Sliver
-auto=lord(sliver) first strike
-power=3
-toughness=3
-[/card]
-[card]
 text={2}{G}{G}, {T}, Discard a card: You gain 2 life for each card in your hand.
 id=124505
 name=Sophic Centaur
@@ -435,6 +479,18 @@ subtype=Centaur Spellshaper
 auto={2}{G}{G}{T}{S(*|myhand)}:foreach(*|myhand) life:2 controller
 power=1
 toughness=1
+[/card]
+[card]
+text=All Sliver creatures have first strike.
+id=126022
+name=Spitting Sliver
+rarity=C
+mana={4}{B}
+type=Creature
+subtype=Sliver
+auto=lord(sliver) first strike
+power=3
+toughness=3
 [/card]
 [card]
 text=Sunlance deals 3 damage to target nonwhite creature.
@@ -575,6 +631,21 @@ mana={1}{G}
 type=Enchantment
 [/card]
 [card]
+####Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1) 
+text=Flying   Whenever Teneb, the Harvester deals combat damage to a player, you may pay {2}{B}. If you do, put target creature card in a graveyard onto the battlefield under your control.
+id=124075
+name=Teneb the Harvester
+rarity=R
+mana={3}{B}{G}{W}
+type=Legendary Creature
+subtype=Dragon
+auto=aslongas(teneb the harvester[attacking]|mybattlefield) lord(teneb the harvester[attacking;-cloud]) {2}{B}:moveTo(myBattlefield) target(creature|graveyard)
+auto=@damaged(player) from(this):cloud
+power=6
+toughness=6
+abilities=flying
+[/card]
+[card]
 text=Enchant creature   Enchanted creature can't attack or block.   Enchanted creature has "{T}:Add one mana of any color to your mana pool."
 id=131004
 target=creature
@@ -601,4 +672,18 @@ mana={B}
 auto=lifelink
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+text=Flying   Whenever Vorosh, the Hunter deals combat damage to a player, you may pay {2}{G}. If you do, put six +1/+1 counters on Vorosh.
+id=124057
+name=Vorosh the Hunter
+rarity=R
+mana={3}{G}{U}{B}
+type=Legendary Creature
+subtype=Dragon
+auto=aslongas(vorosh the hunter[attacking]|mybattlefield) lord(vorosh the hunter[attacking;-cloud]) {2}{G}:counter(1/1,6)
+auto=@damaged(player) from(this):cloud
+power=6
+toughness=6
+abilities=flying
 [/card]

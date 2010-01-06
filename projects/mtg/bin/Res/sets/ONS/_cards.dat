@@ -4,24 +4,33 @@ year=2002
 block=Slaughter
 [/meta]
 [card]
+text=Whenever a Beast enters the battlefield under your control, you may have it deal 4 damage to target opponent.
+auto=@movedTo(beast|myBattlefield):may damage:4 opponent
+id=12425
+name=AEher Charge
+rarity=U
+mana={4}{R}
+type=Enchantment
+[/card]
+[card]
 text=Draw a card for each Bird on the battlefield.
 id=39889
+auto=foreach(bird|battlefield) draw:1
 name=Airborne Aid
 rarity=C
 mana={3}{U}
 type=Sorcery
-auto=foreach(bird|battlefield) draw:1
 [/card]
 [card]
 text=Creatures you control gain protection from the color of your choice until end of turn.   Cycling {W} ({W}, Discard this card: Draw a card.)
-id=41162
-name=Akroma's Blessing
 auto=may lord(creature|myBattlefield) protection from white
 auto=may lord(creature|myBattlefield) protection from blue
 auto=may lord(creature|myBattlefield) protection from black
 auto=may lord(creature|myBattlefield) protection from red
 auto=may lord(creature|myBattlefield) protection from green
 autohand={W}:cycling
+id=41162
+name=Akroma's Blessing
 rarity=U
 mana={2}{W}
 type=Instant
@@ -37,7 +46,7 @@ mana={4}{W}{W}
 type=Sorcery
 [/card]
 [card]
-text=Enchant land (Target a land as you play this. This card enters the battlefield attached to that land.) You control enchanted land.
+text=Enchant land (Target a land as you cast this. This card enters the battlefield attached to that land.)   You control enchanted land.
 id=41463
 alias=1194
 target=Land
@@ -67,10 +76,10 @@ rarity=R
 mana={3}{U}{U}{U}
 type=Legendary Creature
 subtype=Wizard
-power=3
-toughness=4
 auto={T}:draw:3
 auto={2}{U}{U}:moveTo(myhand)
+power=3
+toughness=4
 [/card]
 [card]
 text=Put target enchantment on top of its owner's library.   Cycling {2} ({2}, Discard this card: Draw a card.)
@@ -154,11 +163,11 @@ type=Land
 [card]
 text=Add {R} to your mana pool for each Goblin on the battlefield.
 id=39846
+auto=foreach(goblin|battlefield) Add:{R}
 name=Brightstone Ritual
+rarity=C
 mana={R}
 type=Instant
-auto=foreach(goblin) Add:{R}
-rarity=C
 [/card]
 [card]
 text={B}, Sacrifice a Cleric: Target player loses 2 life and you gain 2 life.
@@ -219,14 +228,14 @@ power=4
 toughness=4
 [/card]
 [card]
-text=First strike.   When Daru Cavalier enters the battlefield, you may search your library for a card named Daru Cavalier, reveal it, and put it into your hand. If you do, shuffle your library.
-auto=may moveTo(myhand) target(Daru Cavalier|mylibrary)
+text=First strike   When Daru Cavalier enters the battlefield, you may search your library for a card named Daru Cavalier, reveal it, and put it into your hand. If you do, shuffle your library.
 id=39523
 name=Daru Cavalier
 rarity=C
 mana={3}{W}
 type=Creature
 subtype=Human Soldier
+auto=may moveTo(myhand) target(daru cavalier|mylibrary)
 power=2
 toughness=2
 abilities=first strike
@@ -301,22 +310,22 @@ auto=protection from white
 [/card]
 [card]
 text={3}{U}, Sacrifice a permanent: Return target permanent to its owner's hand.
+auto={3}{U}{S(*|myBattlefield)}:moveTo(ownerhand) target(*)
 id=40128
 name=Dispersing Orb
 rarity=U
 mana={3}{U}{U}
-auto={3}{U}{S(*|myBattlefield)}:moveTo(ownerhand) target(*)
 type=Enchantment 
 [/card]
 [card]
-text=Flying. {T}, Sacrifice Dive Bomber: Dive Bomber deals 2 damage to target attacking or blocking creature.
+text=Flying   {T}, Sacrifice Dive Bomber: Dive Bomber deals 2 damage to target attacking or blocking creature.
 id=39872
 name=Dive Bomber
 rarity=C
-mana={3}{W}
-auto={T}{S}:damage:2 target(creature[attacking;blocking]) 
+mana={3}{W} 
 type=Creature
 subtype=Bird Soldier
+auto={T}{S}:damage:2 target(creature[attacking;blocking])
 power=2
 toughness=2
 abilities=flying
@@ -326,12 +335,12 @@ text={B}, {T}, Sacrifice Doomed Necromancer: Return target creature card from yo
 auto={B}{T}{S}:moveTo(myBattlefield) target(creature|mygraveyard)
 id=39549
 name=Doomed Necromancer
+rarity=R
 mana={2}{B}
 type=Creature
 subtype=Human Cleric Mercenary
 power=2
 toughness=2
-rarity=R
 [/card]
 [card]
 text=Lifelink (Whenever this creature deals damage, you gain that much life.) Doubtless One's power and toughness are each equal to the number of Clerics on the battlefield.
@@ -348,7 +357,7 @@ abilities=lifelink
 [/card]
 [card]
 text={5}{R}{R}: Put a 5/5 red Dragon creature token with flying onto the battlefield. (It can't be blocked except by creatures with flying or reach.)
-auto={5}{R}{R}:token(Dragon,creature token Dragon, 5/5,red flying)
+auto={5}{R}{R}:token(Dragon,creature dragon, 5/5,red flying)
 id=39665
 name=Dragon Roost
 rarity=R
@@ -363,7 +372,7 @@ rarity=U
 mana={3}{G}{G}
 type=Creature
 subtype=Elf
-auto=cantbeblocked(creature[-flying,-wall])
+auto=cantbeblocked(creature[-flying;-wall])
 power=3
 toughness=3
 [/card]
@@ -371,11 +380,11 @@ toughness=3
 text={2}{G}: Target Elf gains forestwalk until end of turn.
 id=39494
 name=Elvish Pathcutter
-rarity=C
-auto={2}{G}:forestwalk target(elf) 
+rarity=C 
 mana={3}{G}
 type=Creature
 subtype=Elf
+auto={2}{G}:forestwalk target(elf)
 power=1
 toughness=2
 [/card]
@@ -433,7 +442,7 @@ rarity=U
 mana={3}{R}
 type=Creature
 subtype=Goblin Wizard
-auto=may moveTo(myhand) target(Embermage Goblin|mylibrary)
+auto=may moveTo(myhand) target(embermage goblin|mylibrary)
 auto={T}:damage:1 target(creature,player)
 power=1
 toughness=1
@@ -460,9 +469,9 @@ type=Instant
 [/card]
 [card]
 text=Target creature gets -X/-X until end of turn, where X is the number of Zombies on the battlefield.
+id=41169
 target=creature
 auto=foreach(zombie) -1/-1
-id=41169
 name=Feeding Frenzy
 rarity=U
 mana={2}{B}
@@ -655,16 +664,16 @@ power=2
 toughness=4
 [/card]
 [card]
-text=Trample. Heedless One's power and toughness are each equal to the number of Elves on the battlefield.
+text=Trample   Heedless One's power and toughness are each equal to the number of Elves on the battlefield.
 id=39744
 name=Heedless One
 rarity=U
 mana={3}{G}
 type=Creature
 subtype=Elf Avatar
+auto=foreach(elf) 1/1
 power=*
 toughness=*
-auto=foreach(elf) 1/1
 abilities=trample
 [/card]
 [card]
@@ -692,11 +701,11 @@ type=Sorcery
 text=Untap target creature. It gets +2/+4 until end of turn.
 id=41154
 target=creature
+auto=untap
+auto=2/4
 name=Inspirit
 rarity=U
 mana={2}{W}
-auto=untap
-auto=2/4
 type=Instant 
 [/card]
 [card]
@@ -734,6 +743,24 @@ auto={T}:Add {U}
 type=Basic Land
 subtype=Island
 rarity=L
+[/card]
+[card]
+####Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1) 
+text=Whenever Jareth Leonine Titan blocks, it gets +7/+7 until end of turn.   {W}: Jareth gains protection from the color of your choice until end of turn.
+id=39861
+name=Jareth Leonine Titan
+rarity=R
+mana={3}{W}{W}{W}
+type=Legendary Creature
+auto=aslongas(jareth leonine titan[blocking]|mybattlefield) 7/7
+auto={W}:protection from white
+auto={W}:protection from blue
+auto={W}:protection from black
+auto={W}:protection from red
+auto={W}:protection from green
+subtype=Cat Giant
+power=4
+toughness=7
 [/card]
 [card]
 text={G}: Target Beast gains trample until end of turn.
@@ -793,15 +820,15 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
-id=39466
-name=Misery Charm
-mana={B}
-type=Instant
 text=Choose one: Destroy target Cleric; or return target Cleric card from your graveyard to your hand; or target player loses 2 life.
+id=39466
 auto=may destroy target(cleric)
 auto=may moveTo(myHand) target(cleric|myGraveyard)
 auto=may life:-2 opponent
+name=Misery Charm
 rarity=C
+mana={B}
+type=Instant
 [/card]
 [card]
 text=Soldier creatures have vigilance. (Attacking doesn't cause them to tap.) {2}{W}: Put a 1/1 white Soldier creature token onto the battlefield.
@@ -850,12 +877,12 @@ subtype=Mountain
 rarity=L
 [/card]
 [card]
-text=Enchant creature.   Enchanted creature gets +8/+8 and has trample.
+text=Enchant creature   Enchanted creature gets +8/+8 and has trample.
 id=34684
-name=Mythic Proportions
 target=creature
 auto=8/8
 auto=trample
+name=Mythic Proportions
 rarity=R
 mana={4}{G}{G}{G}
 type=Enchantment
@@ -976,10 +1003,10 @@ type=Instant
 [/card]
 [card]
 text=Profane Prayers deals X damage to target creature or player and you gain X life, where X is the number of Clerics on the battlefield.
+id=39845
 target=creature,player
 auto=foreach(cleric) damage:1
 auto=foreach(cleric) life:1 controller
-id=39845
 name=Profane Prayers
 rarity=C
 mana={2}{B}{B}
@@ -1022,12 +1049,12 @@ abilities=haste
 [card]
 text=Target player shuffles his or her graveyard into his or her library.
 id=41462
+target=player
+auto=moveTo(ownerlibrary) all(*|ownergraveyard)
 name=Reminisce
 rarity=U
 mana={2}{U}
 type=Sorcery
-target=player
-auto=moveTo(ownerlibrary) all(*|ownergraveyard)
 [/card]
 [card]
 text=You gain 6 life.   Cycling {1}{W} ({1}{W}, Discard this card: Draw a card.)   When you cycle Renewed Faith, you may gain 2 life.
@@ -1042,12 +1069,12 @@ type=Instant
 [/card]
 [card]
 text=Whenever a creature attacks, you gain 1 life.
+auto=@each blockers step:foreach(creature[attacking]) life:1
 id=40656
 name=Righteous Cause
+rarity=U
 mana={3}{W}{W}
 type=Enchantment
-auto=@each blockers step:foreach(creature[attacking]) life:1
-rarity=U
 [/card]
 [card]
 text={T}: Add {1} to your mana pool.   {1}{U}, {T}: Return target Wizard you control to its owner's hand.
@@ -1103,7 +1130,7 @@ rarity=C
 mana={4}{U}
 type=Creature
 subtype=Bird
-auto=may moveTo(myhand) target(Screaming Seahawk|mylibrary)
+auto=may moveTo(myhand) target(screaming seahawk|mylibrary)
 power=2
 toughness=2
 abilities=flying
@@ -1163,9 +1190,9 @@ toughness=1
 [card]
 text=Shock deals 2 damage to target creature or player.
 id=39482
-name=Shock
 target=creature,player
 auto=damage:2
+name=Shock
 rarity=C
 mana={R}
 type=Instant 
@@ -1189,9 +1216,9 @@ id=39563
 name=Skirk Prospector
 rarity=C
 mana={R}
-auto={S(goblin|myBattlefield)}:Add {R}
 type=Creature
 subtype=Goblin
+auto={S(goblin|myBattlefield)}:Add {R}
 power=1
 toughness=1
 [/card]
@@ -1278,7 +1305,7 @@ toughness=1
 [/card]
 [card]
 text=Stag Beetle enters the battlefield with X +1/+1 counters on it, where X is the number of other creatures on the battlefield.
-auto=foreach(other creature) counter(1/1,1)
+auto=foreach(other creature|battlefield) counter(1/1,1)
 id=39676
 name=Stag Beetle
 rarity=R
@@ -1353,7 +1380,7 @@ rarity=U
 mana={4}{G}{G}
 type=Creature
 subtype=Insect Beast
-auto=@movedTo(this|graveyard) from(battlefield):token(Insect,creature token insect, 1/1,green)*4
+auto=@movedTo(this|graveyard) from(battlefield):token(Insect,creature insect, 1/1,green)*4
 power=4
 toughness=4
 [/card]
@@ -1365,7 +1392,7 @@ rarity=C
 mana={3}{G}
 type=Creature
 subtype=Elf
-auto=@movedTo(this|graveyard) from(battlefield):token(Insect,creature token insect, 1/1,green)*2
+auto=@movedTo(this|graveyard) from(battlefield):token(Insect,creature insect, 1/1,green)*2
 power=2
 toughness=2
 [/card]
@@ -1377,28 +1404,28 @@ rarity=R
 mana={5}{G}{G}{G}
 type=Creature
 subtype=Wurm
-auto=@movedTo(this|graveyard) from(battlefield):token(Insect,creature token insect, 1/1,green)*7
+auto=@movedTo(this|graveyard) from(battlefield):token(Insect,creature insect, 1/1,green)*7
 power=7
 toughness=7
 [/card]
 [card]
 text=Syphon Soul deals 2 damage to each other player. You gain life equal to the damage dealt this way.
 id=39468
+auto=life:-2 opponent
+auto=life:2 controller
 name=Syphon Soul
 rarity=C
 mana={2}{B}
 type=Sorcery
-auto=life:-2 opponent
-auto=life:2 controller
 [/card]
 [card]
 text=Untap target creature and gain control of it until end of turn. That creature gains haste until end of turn.
 id=43736
-name=Threaten
 target=creature
 alias=129767
 auto=haste
 auto=untap
+name=Threaten
 mana={2}{R}
 rarity=U
 type=Sorcery 
@@ -1439,6 +1466,19 @@ power=4
 toughness=4
 [/card]
 [card]
+text={1}{B}, Discard a card: Return Undead Gladiator from your graveyard to your hand. Activate this ability only during your upkeep.   Cycling {1}{B} ({1}{B}, Discard this card: Draw a card.)
+autograveyard={1}{B}{S(*|myhand):moveTo(myBattlefield) myUpkeepOnly
+autohand={1}{B}:cycling
+id=41166
+name=Undead Gladiator
+rarity=R
+mana={1}{B}{B}
+type=Creature
+subtype=Zombie Barbarian
+power=3
+toughness=1
+[/card]
+[card]
 text={T}: Add {1} to your mana pool.   {B}, {T}: Put target Zombie card from your graveyard on top of your library.
 id=40541
 name=Unholy Grotto
@@ -1448,7 +1488,7 @@ auto={T}:Add {1}
 auto={B}{T}:moveTo(mylibrary) target(zombie|mygraveyard)
 [/card]
 [card]
-text=Flying.   {T}: Destroy target creature. It can't be regenerated.
+text=Flying   {T}: Destroy target creature. It can't be regenerated.
 id=39863
 name=Visara the Dreadful
 rarity=R
@@ -1463,7 +1503,7 @@ abilities=flying
 [card]
 text=Choose one: Put a 1/1 green Insect creature token onto the battlefield; or target creature gets +1/+1 and gains trample until end of turn; or regenerate target Beast.
 id=39501
-auto=may token(Insect,creature token insect, 1/1,green)
+auto=may token(Insect,creature insect, 1/1,green)
 auto=may 1/1 && trample target(creature)
 auto=may regenerate target(beast)
 name=Vitality Charm
@@ -1580,7 +1620,7 @@ type=Land
 [/card]
 [card]
 text=Whenever another creature enters the battlefield, you lose 1 life.
-auto=@movedTo(other creature|battlefield): life:-1 controller
+auto=@movedTo(other creature|battlefield):life:-1 controller
 id=26689
 name=Wretched Anurid
 rarity=C

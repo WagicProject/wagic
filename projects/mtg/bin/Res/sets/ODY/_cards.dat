@@ -301,7 +301,7 @@ mana={3}{R}
 type=Creature
 subtype=Beast
 auto={1}{R}{T}:damage:1 target(creature,player)
-auto=aslongas(*|mygraveyard) {1}{R}{T}:damage:2 target(creature,player) >6 
+auto=aslongas(*|mygraveyard) {2}{R}{T}:damage:2 target(creature,player) >6 
 power=2
 toughness=2
 [/card]
@@ -483,6 +483,16 @@ power=2
 toughness=3
 [/card]
 [card]
+text=White creatures get +1/+1.   Threshold - White creatures get an additional +1/+1 as long as seven or more cards are in your graveyard.
+id=29917
+auto=lord(creature[white]) 1/1
+auto=aslongas(*|mygraveyard) lord(creature[white]) 1/1 >6
+name=Divine Sacrament
+rarity=R
+mana={1}{W}{W}
+type=Enchantment
+[/card]
+[card]
 text={G},{T}, Sacrifice Druid Lyrist: Destroy target enchantment.
 id=29778
 name=Druid Lyrist
@@ -539,10 +549,10 @@ rarity=C
 mana={2}{R}
 type=Creature
 subtype=Beast
-power=3
-toughness=4
 auto=aslongas(creature[attacking]|myBattlefield) -cantattack
 auto=aslongas(creature[blocking]|myBattlefield) -cantblock
+power=3
+toughness=4
 abilities=cantattack,cantblock
 [/card]
 [card]
@@ -563,7 +573,7 @@ rarity=C
 mana={1}{U}
 type=Creature
 subtype=Wizard
-auto={U}{s(*|myhand)}:moveTo(ownerhand)
+auto={U}{S(*|myhand)}:moveTo(ownerhand)
 power=1
 toughness=1
 abilities=unblockable
@@ -571,19 +581,19 @@ abilities=unblockable
 [card]
 text=Destroy target white creature. It can't be regenerated.   Draw a card. 
 id=30558
+target=creature[white]
+auto=bury
+auto=draw:1 controller
 name=Execute
 rarity=U
 mana={2}{B}
-target=creature[white]
-auto=bury
-auto=draw:1
 type=Instant 
 [/card]
 [card]
 text=Search target player's library for a card and exile it. Then that player shuffles his or her library.
+id=29849
 target=*|myLibrary,opponentLibrary
 auto=moveTo(exile)
-id=29849
 name=Extract
 rarity=R
 mana={U}
@@ -678,23 +688,23 @@ abilities=fear
 [card]
 text=Target blocking Creature gets +4/+4 until end of turn.   Draw a card. 
 id=28755
-name=Gallantry
-target=Creature[blocking]
+target=creature[blocking]
 auto=4/4
-auto=draw:1
+auto=draw:1 controller
+name=Gallantry
+rarity=U
 mana={1}{W}
 type=Instant 
-rarity=U
 [/card]
 [card]
 text=When Gravedigger enters the battlefield, you may return target creature card from your graveyard to your hand.
 id=29741
 name=Gravedigger
-auto=may moveTo(myhand) target(creature|mygraveyard)
 rarity=C
 mana={3}{B}
 type=Creature
 subtype=Zombie
+auto=may moveTo(myhand) target(creature|mygraveyard)
 power=2
 toughness=2
 [/card]
@@ -894,10 +904,10 @@ abilities=flying
 [card]
 text=Target player gains 4 life, then gains 4 life for each card named Life Burst in each graveyard.
 id=29704
-name=Life Burst
 target=player
 auto=life:4
-auto=foreach(Life Burst|graveyard) life:4
+auto=foreach(life burst|graveyard) life:4
+name=Life Burst
 rarity=C
 mana={1}{W}
 type=Instant
@@ -908,9 +918,9 @@ id=29887
 name=Limestone Golem
 rarity=U
 mana={6}
-auto={2}{S}:draw:1 target(player)
 type=Artifact Creature
 subtype=Golem
+auto={2}{S}:draw:1 target(player)
 power=3
 toughness=4
 [/card]
@@ -1065,8 +1075,8 @@ rarity=L
 text=Target creature gets +X/+X until end of turn, where X is 3 plus the number of cards named Muscle Burst in all graveyards.
 target=creature
 auto=3/3
-auto=foreach(Muscle Burst|graveyard) 1/1
-auto=foreach(Diligent Farmhand|graveyard) 1/1
+auto=foreach(muscle burst|graveyard) 1/1
+auto=foreach(diligent farmhand|graveyard) 1/1
 id=29788
 name=Muscle Burst
 rarity=C
@@ -1173,6 +1183,19 @@ auto=aslongas(*|mygraveyard) 2/2 >6
 power=1
 toughness=1
 abilities=shroud
+[/card]
+[card]
+text=At the beginning of your upkeep, you may put a 1/1 green Squirrel creature token onto the battlefield.   Threshold - Squirrel creatures get +2/+2 as long as seven or more cards are in your graveyard.
+auto=@each my upkeep:may tokentoken(Squirrel,creature squirrel, 1/1,green)
+id=29987
+name=Nut Collector
+rarity=R
+mana={5}{G}
+type=Creature
+subtype=Human Druid
+auto=aslongas(*|mygraveyard) lord(squirrel) 2/2 >6
+power=1
+toughness=1
 [/card]
 [card]
 text={T}: Add {W} to your mana pool. Nomad Stadium deals 1 damage to you.   Threshold - {W}, {T}, Sacrifice Nomad Stadium: You gain 4 life. Play this ability only if seven or more cards are in your graveyard.
@@ -1301,6 +1324,19 @@ power=1
 toughness=2
 [/card]
 [card]
+####Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1) 
+text=Whenever Pianna Nomad Captain attacks, attacking creatures get +1/+1 until end of turn.
+id=31790
+name=Pianna Nomad Captain
+rarity=R
+mana={1}{W}{W}
+type=Legendary Creature
+subtype=Human Nomad
+auto=aslongas(pianna nomad captain[attacking]|myBattlefield) lord(creature[attacking]) 1/1
+power=2
+toughness=2
+[/card]
+[card]
 text={W}
 id=31630
 name=Plains
@@ -1339,9 +1375,9 @@ rarity=L
 [card]
 text=Enchanted creature has trample.
 id=31812
-name=Primal Frenzy
 target=Creature
 auto=trample
+name=Primal Frenzy
 rarity=C
 mana={G}
 type=Enchantment
@@ -1376,12 +1412,12 @@ toughness=2
 [card]
 text=Whenever Rabid Elephant becomes blocked, it gets +2/+2 until end of turn for each creature blocking it.
 id=29781
-auto=rampage(2/2,0)
 name=Rabid Elephant
 rarity=C
 mana={4}{G}
 type=Creature
 subtype=Elephant
+auto=rampage(2/2,0)
 power=3
 toughness=4
 [/card]
@@ -1405,7 +1441,7 @@ id=31741
 name=Refresh
 target=creature
 auto=regenerate
-auto=draw:1
+auto=draw:1 controller
 rarity=C
 mana={2}{G}
 type=Instant
@@ -1428,11 +1464,11 @@ rarity=U
 mana={2}{W}{W}
 type=Creature
 subtype=Human Nomad
-auto={S(*|myhand)}:protection from black
-auto={S(*|myhand)}:protection from green
-auto={S(*|myhand)}:protection from red
-auto={S(*|myhand)}:protection from blue
 auto={S(*|myhand)}:protection from white
+auto={S(*|myhand)}:protection from blue
+auto={S(*|myhand)}:protection from black
+auto={S(*|myhand)}:protection from red
+auto={S(*|myhand)}:protection from green
 power=2
 toughness=3
 abilities=first strike
@@ -1475,12 +1511,12 @@ type=Land
 [card]
 text=Exile target attacking creature. Draw a card. 
 id=29706
+target=creature[attacking]
+auto=moveTo(exile)
+auto=draw:1 controller
 name=Second Thoughts
 rarity=C
 mana={4}{W}
-target=creature[attacking]
-auto=moveTo(exile)
-auto=draw:1
 type=Instant 
 [/card]
 [card]
@@ -1515,15 +1551,15 @@ type=Land
 [card]
 text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) Whenever Shadowmage Infiltrator deals combat damage to a player, you may draw a card.
 id=33604
-abilities=Fear
-auto=@damaged(player) from(this):may draw:1 controller
 name=Shadowmage Infiltrator
 rarity=R
-type=Creature
 mana={1}{U}{B}
-power=1
+type=Creature
 subtype=Human Wizard
+auto=@damaged(player) from(this):may draw:1 controller
+power=1
 toughness=3
+abilities=fear
 [/card]
 [card]
 text={2}, {T}, Sacrifice Skycloud Egg: Add {W}{U} to your mana pool. Draw a card.
@@ -1570,23 +1606,23 @@ abilities=flying
 [/card]
 [card]
 text=Whenever Spark Mage deals combat damage to a player, you may have Spark Mage deal 1 damage to target creature that player controls.
+auto=@damaged(player) from(this):may damage:1 target(creature|opponentBattlefield)
 id=29854
 name=Spark Mage
-auto=@damaged(player) from(this):may damage:1 target(creature|opponentBattlefield)
 rarity=U
-type=Creature
 mana={R}
-power=1
+type=Creature
 subtype=Dwarf Wizard
+power=1
 toughness=1
 [/card]
 [card]
 text=Until end of turn, whenever target creature deals damage, you gain that much life. Draw a card. 
 id=29807
-name=Spiritualize
 target=creature
 auto=lifelink
-auto=draw:1
+auto=draw:1 controller
+name=Spiritualize
 rarity=U
 mana={2}{W}
 type=Instant 
@@ -1705,6 +1741,19 @@ rarity=R
 type=Land
 [/card]
 [card]
+text=Enchant creature   Enchanted creature gets +1/+1 and has protection from enchantments. This effect doesn't remove Tattoo Ward.     Sacrifice Tattoo Ward: Destroy target enchantment.
+id=31873
+target=creature
+auto=1/1
+auto=protection from(enchantment)
+auto={S}:destroy target(enchantment)
+name=Tattoo Ward
+rarity=U
+mana={2}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 text=Trample Terravore's power and toughness are each equal to the number of land cards in all graveyards.
 id=29982
 name=Terravore
@@ -1762,8 +1811,8 @@ name=Tireless Tribe
 rarity=C
 mana={W}
 type=Creature
-auto={S(*|myhand)}:0/4
 subtype=Human Nomad
+auto={S(*|myhand)}:0/4
 power=1
 toughness=1
 [/card]
@@ -1773,7 +1822,7 @@ id=30691
 name=Touch of Invisibility
 target=Creature
 auto=unblockable
-auto=draw:1
+auto=draw:1 controller
 rarity=C
 mana={3}{U}
 type=Sorcery 
@@ -1818,7 +1867,7 @@ mana={1}{G}
 type=Creature
 subtype=Human Bear Druid
 auto={T}:Add {G}
-auto=auto=aslongas(*|mygraveyard) 3/3 >6
+auto=aslongas(*|mygraveyard) 3/3 >6
 power=1
 toughness=1
 [/card]

@@ -207,17 +207,6 @@ text=Search your library for a card, then shuffle your library and put that card
 rarity=R
 [/card]
 [card]
-id=10721
-name=Lady Sun
-mana={1}{U}{U}
-type=Legendary Creature
-subtype=Human Advisor
-power=1
-toughness=1
-text={T}: Return Lady Sun and another target creature to their owners' hands. Activate this ability only during your turn, before attackers are declared.
-rarity=R
-[/card]
-[card]
 id=10499
 name=Liu Bei, Lord of Shu
 mana={3}{W}{W}
@@ -455,17 +444,6 @@ text=Horsemanship (This creature can't be blocked except by creatures with horse
 rarity=R
 [/card]
 [card]
-id=10520
-name=Zhang He, Wei General
-mana={3}{B}{B}
-type=Legendary Creature
-subtype=Human Soldier
-power=4
-toughness=2
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.) Whenever Zhang He, Wei General attacks, each other creature you control gets +1/+0 until end of turn.
-rarity=R
-[/card]
-[card]
 id=10727
 name=Zhang Liao, Hero of Hefei
 mana={4}{B}{B}
@@ -474,16 +452,5 @@ subtype=Human Soldier
 power=3
 toughness=3
 text=Whenever Zhang Liao, Hero of Hefei deals damage to an opponent, that opponent discards a card.
-rarity=R
-[/card]
-[card]
-id=10686
-name=Zhao Zilong, Tiger General
-mana={3}{W}{W}
-type=Legendary Creature
-subtype=Human Soldier Warrior
-power=3
-toughness=3
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.) Whenever Zhao Zilong, Tiger General blocks, it gets +1/+1 until end of turn.
 rarity=R
 [/card]

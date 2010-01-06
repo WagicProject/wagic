@@ -216,22 +216,6 @@ text=Flash When Fleetfoot Panther enters the battlefield, return a green or whit
 rarity=U
 [/card]
 [card]
-#Require Testing
-id=25893
-name=Forsaken City
-mana=
-type=Land
-text=Forsaken City doesn't untap during your untap step. At the beginning of your upkeep, you may exile a card from your hand. If you do, untap Forsaken City. {T}: Add one mana of any color to your mana pool.
-abilities=doesuntap
-auto={0}:moveto(exile) target(*|myHand) && untap all(this) myUpkeepOnly
-auto={T}:add{G}
-auto={T}:add{W}
-auto={T}:add{R}
-auto={T}:add{B}
-auto={T}:add{U}
-rarity=R
-[/card]
-[card]
 id=26411
 name=Gaea's Herald
 mana={1}{G}

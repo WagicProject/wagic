@@ -5,12 +5,12 @@ block=Invasion
 [/meta]
 [card]
 text=Domain ÅETarget player draws a card for each basic land type among lands he or she controls.
+id=26383
 auto=aslongas(plains|myBattlefield) draw:1
 auto=aslongas(island|myBattlefield) draw:1
 auto=aslongas(swamp|myBattlefield) draw:1
 auto=aslongas(mountain|myBattlefield) draw:1
 auto=aslongas(forest|myBattlefield) draw:1
-id=26383
 name=Allied Strategies
 rarity=U
 mana={4}{U}
@@ -42,10 +42,10 @@ abilities=first strike,reach
 [/card]
 [card]
 text=Destroy target enchantment.   Draw a card.
+id=26382
 target=enchantment
 auto=destroy
 auto=draw:1 controller
-id=26382
 name=Aura Blast
 rarity=C
 mana={1}{W}
@@ -75,11 +75,11 @@ type=Instant
 [/card]
 [card]
 text=Target creature gets +1/+1 and gains flying and first strike until end of turn.
+id=25822
 target=creature
 auto=1/1
 auto=first strike
 auto=flying
-id=25822
 name=Daring Leap
 rarity=C
 mana={1}{W}{U}
@@ -96,12 +96,13 @@ type=Enchantment
 [/card]
 [card]
 text=Until end of turn, creatures you control gain protection from white if you control a Plains, from blue if you control an Island, from black if you control a Swamp, from red if you control a Mountain, and from green if you control a Forest.
+id=26423
+
 auto=aslongas(plains|myBattlefield) lord(creature|myBattlefield) protection from white
 auto=aslongas(island|myBattlefield) lord(creature|myBattlefield) protection from blue
 auto=aslongas(swamp|myBattlefield) lord(creature|myBattlefield) protection from black
 auto=aslongas(mountain|myBattlefield) lord(creature|myBattlefield) protection from red
 auto=aslongas(forest|myBattlefield) lord(creature|myBattlefield) protection from green
-id=26423
 name=Dominaria's Judgment
 rarity=R
 mana={2}{W}
@@ -120,9 +121,9 @@ type=Instant
 [/card]
 [card]
 text=Search your library for a creature card, reveal it, and put it into your hand. Then shuffle your library.
+id=25646
 target=creature|mylibrary
 auto=moveTo(myHand)
-id=25646
 name=Eladamri's Call
 rarity=R
 mana={G}{W}
@@ -150,27 +151,41 @@ mana={2}{U}
 type=Enchantment
 [/card]
 [card]
-text=Domain ÅETarget player loses X life and you gain X life, where X is the number of basic land types among lands you control.
+text=Domain Å- Target player loses X life and you gain X life, where X is the number of basic land types among lands you control.
+id=25931
 auto=aslongas(plains|myBattlefield) life:-1 opponent && life:1 controller
 auto=aslongas(island|myBattlefield) life:-1 opponent && life:1 controller
 auto=aslongas(swamp|myBattlefield) life:-1 opponent && life:1 controller
 auto=aslongas(mountain|myBattlefield) life:-1 opponent && life:1 controller
 auto=aslongas(forest|myBattlefield) life:-1 opponent && life:1 controller
-id=25931
 name=Exotic Disease
 rarity=U
 mana={4}{B}
 type=Sorcery
 [/card]
 [card]
+text=Forsaken City doesn't untap during your untap step. At the beginning of your upkeep, you may exile a card from your hand. If you do, untap Forsaken City.   {T}: Add one mana of any color to your mana pool.
+id=25893
+name=Forsaken City
+auto={0}:untap all(this) && moveto(exile) target(*|myHand) limit:1 myUpkeepOnly
+auto={T}:add{G}
+auto={T}:add{W}
+auto={T}:add{R}
+auto={T}:add{B}
+auto={T}:add{U}
+rarity=R
+type=Land
+abilities=doesnotuntap
+[/card]
+[card]
 text=Domain - Target creature gets +1/+1 until end of turn for each basic land type among lands you control.
+id=26838
 target=creature
 auto=aslongas(forest|myBattlefield) 1/1
 auto=aslongas(mountain|myBattlefield) 1/1
 auto=aslongas(plains|myBattlefield) 1/1
 auto=aslongas(swamp|myBattlefield) 1/1
 auto=aslongas(island|myBattlefield) 1/1
-id=26838
 name=Gaea's Might
 rarity=C
 mana={G}
@@ -178,9 +193,9 @@ type=Instant
 [/card]
 [card]
 text=Counter target blue spell.
-id=27189
 target=*[blue]|stack
 auto=fizzle
+id=27189
 name=Gainsay
 rarity=U
 mana={1}{U}
@@ -201,8 +216,8 @@ type=Instant
 text=When Honorable Scout enters the battlefield, you gain 2 life for each black and/or red creature target opponent controls.
 id=26263
 name=Honorable Scout
-mana={W}
 rarity=C
+mana={W}
 type=Creature
 subtype=Human Soldier Scout
 auto=foreach(creature[black]|opponentBattlefield) life:2 controller
@@ -212,10 +227,10 @@ toughness=1
 [/card]
 [card]
 text=Destroy target land.   Draw a card.
+id=26260
 target=land
 auto=destroy
 auto=draw:1 controller
-id=26260
 name=Implode
 rarity=U
 mana={4}{R}
@@ -223,9 +238,9 @@ type=Sorcery
 [/card]
 [card]
 text=Enchant creature   Whenever enchanted creature becomes tapped, Insolence deals 2 damage to that creature's controller.
-target=creature
 alias=1218
 id=26415
+target=creature
 name=Insolence
 rarity=C
 mana={2}{R}
@@ -234,27 +249,27 @@ subtype=Aura
 [/card]
 [card]
 text=Enchant creature   {B}: Regenerate enchanted creature.   {R}: Enchanted creature gets +1/+0 until end of turn.   {G}: Enchanted creature gains trample until end of turn.
-target=creature
 id=19358
+target=creature
+auto={B}:regenerate
+auto={R}:1/0 
+auto={G}:trample
 name=Keldon Mantle
 rarity=C
 mana={1}{R}
 type=Enchantment
 subtype=Aura
-auto={B}:regenerate
-auto={R}:1/0 
-auto={G}:trample
 [/card]
 [card]
 text=Other Zombie creatures get +1/+1.   {1}{B}, {T}: Return target Zombie card from your graveyard to your hand.
-auto=lord(zombie) 1/1 other
-auto={1}{B}{T}:moveTo(myhand) target(zombie|mygraveyard)
 id=10742
 name=Lord of the Undead
 rarity=R
 mana={1}{B}{B}
 type=Creature
 subtype=Zombie
+auto=lord(zombie) 1/1 other
+auto={1}{B}{T}:moveTo(myhand) target(zombie|mygraveyard)
 power=2
 toughness=2
 [/card]
@@ -415,9 +430,9 @@ toughness=3
 [/card]
 [card]
 text=Target creature gains fear until end of turn.
+id=27229
 target=creature
 auto=fear
-id=27229
 name=Shriek of Dread
 rarity=C
 mana={1}{B}
@@ -425,9 +440,9 @@ type=Instant
 [/card]
 [card]
 text=Lands gain shroud until end of turn. (They can't be the targets of spells or abilities.)   Draw a card.
+id=26402
 auto=lord(land) shroud
 auto=draw:1 controller
-id=26402
 name=Skyshroud Blessing
 rarity=U
 mana={1}{G}
@@ -435,10 +450,10 @@ type=Instant
 [/card]
 [card]
 text=Destroy target green creature. It can't be regenerated.   Draw a card.
+id=15137
 target=creature[green]
 auto=bury
 auto=draw:1 controller
-id=15137
 name=Slay
 rarity=U
 mana={2}{B}
@@ -448,8 +463,8 @@ type=Instant
 text={R}, {T}: Slingshot Goblin deals 2 damage to target blue creature.
 id=22025
 name=Slingshot Goblin
-mana={2}{R}
 rarity=C
+mana={2}{R}
 type=Creature
 subtype=Goblin
 auto={R}{T}:Damage:2 target(creature[blue])

@@ -94,17 +94,6 @@ text=Flying (This creature can't be blocked except by creatures with flying or r
 rarity=R
 [/card]
 [card]
-id=21264
-name=Chieftain en-Dal
-mana={1}{W}{W}
-type=Creature
-subtype=Human Knight
-power=2
-toughness=2
-text=Whenever Chieftain en-Dal attacks, attacking creatures gain first strike until end of turn.
-rarity=U
-[/card]
-[card]
 id=21280
 name=Cloudskate
 mana={1}{U}
@@ -738,17 +727,6 @@ name=Topple
 mana={2}{W}
 type=Sorcery
 text=Exile target creature with the greatest power. (If two or more creatures are tied for greatest power, target any one of them.)
-rarity=C
-[/card]
-[card]
-id=21365
-name=Treetop Bracers
-mana={1}{G}
-type=Enchantment
-subtype=Aura
-text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.) Enchanted creature gets +1/+1 and can't be blocked except by creatures with flying.
-target=creature
-auto=1/1
 rarity=C
 [/card]
 [card]

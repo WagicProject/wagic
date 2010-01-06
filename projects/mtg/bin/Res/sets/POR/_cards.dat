@@ -117,9 +117,9 @@ type=Sorcery
 [/card]
 [card]
 text=Blaze deals X damage to target creature or player.
-target=creature,player
-alias=1291
 id=4329
+target=creature,player
+auto=damage:X
 name=Blaze
 rarity=U
 type=Sorcery

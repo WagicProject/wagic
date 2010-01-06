@@ -461,17 +461,6 @@ text=Flying Whenever Intet, the Dreamer deals combat damage to a player, you may
 rarity=R
 [/card]
 [card]
-id=124344
-name=Jedit Ojanen of Efrava
-mana={3}{G}{G}{G}
-type=Legendary Creature
-subtype=Cat Warrior
-power=5
-toughness=5
-text=Forestwalk Whenever Jedit Ojanen of Efrava attacks or blocks, put a 2/2 green Cat Warrior creature token with forestwalk onto the battlefield.
-rarity=R
-[/card]
-[card]
 id=126813
 name=Kavu Predator
 mana={1}{G}
@@ -542,7 +531,6 @@ toughness=1
 text={T}: Draw two cards, then discard three cards.
 rarity=R
 [/card]
-
 [card]
 id=134741
 name=Magus of the Library
@@ -565,7 +553,6 @@ toughness=6
 text=All creatures have "At the beginning of your upkeep, sacrifice this creature unless you pay {1}."
 rarity=R
 [/card]
-
 [card]
 id=122324
 name=Mana Tithe
@@ -574,7 +561,6 @@ type=Instant
 text=Counter target spell unless its controller pays {1}.
 rarity=C
 [/card]
-
 [card]
 id=130714
 name=Melancholy
@@ -628,8 +614,6 @@ toughness=2
 text=At the beginning of your upkeep, put a spore counter on Mycologist. Remove three spore counters from Mycologist: Put a 1/1 green Saproling creature token onto the battlefield. Sacrifice a Saproling: You gain 2 life.
 rarity=U
 [/card]
-
-
 [card]
 id=125874
 name=Null Profusion
@@ -647,17 +631,6 @@ subtype=Dragon
 power=6
 toughness=6
 text=Flying Whenever Numot, the Devastator deals combat damage to a player, you may pay {2}{R}. If you do, destroy up to two target lands.
-rarity=R
-[/card]
-[card]
-id=136170
-name=Oros, the Avenger
-mana={3}{W}{B}{R}
-type=Legendary Creature
-subtype=Dragon
-power=6
-toughness=6
-text=Flying Whenever Oros, the Avenger deals combat damage to a player, you may pay {2}{W}. If you do, Oros deals 3 damage to each nonwhite creature.
 rarity=R
 [/card]
 [card]
@@ -718,17 +691,6 @@ text=At the beginning of your upkeep, destroy the creature with the least power.
 rarity=R
 [/card]
 [card]
-id=126014
-name=Poultice Sliver
-mana={2}{W}
-type=Creature
-subtype=Sliver
-power=2
-toughness=2
-text=All Slivers have "{2}, {T}: Regenerate target Sliver."
-rarity=C
-[/card]
-[card]
 id=124757
 name=Primal Plasma
 mana={3}{U}
@@ -759,18 +721,6 @@ text=At the beginning of the end step, if no creatures are on the battlefield, s
 rarity=U
 [/card]
 [card]
-id=128949
-name=Radha, Heir to Keld
-mana={R}{G}
-type=Legendary Creature
-subtype=Elf Warrior
-power=2
-toughness=2
-text=Whenever Radha, Heir to Keld attacks, you may add {R}{R} to your mana pool. {T}: Add {G} to your mana pool.
-rarity=R
-[/card]
-
-[card]
 id=125880
 name=Reality Acid
 mana={2}{U}
@@ -798,7 +748,6 @@ toughness=4
 text=Trample Madness {2}{R} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
 rarity=U
 [/card]
-
 [card]
 id=131007
 name=Retether
@@ -807,8 +756,6 @@ type=Sorcery
 text=Return each Aura card from your graveyard to the battlefield. Only creatures can be enchanted this way. (Aura cards that can't enchant a creature on the battlefield remain in your graveyard.)
 rarity=R
 [/card]
-
-
 [card]
 id=126816
 name=Riftmarked Knight
@@ -926,7 +873,6 @@ type=Instant
 text=Counter target instant or sorcery spell. Its controller reveals cards from the top of his or her library until he or she reveals an instant or sorcery card. That player may cast that card without paying its mana cost. Then he or she shuffles his or her library.
 rarity=R
 [/card]
-
 [card]
 id=134744
 name=Stingscourger
@@ -977,17 +923,6 @@ name=Temporal Extortion
 mana={B}{B}{B}{B}
 type=Sorcery
 text=When you cast Temporal Extortion, any player may pay half his or her life, rounded up. If a player does, counter Temporal Extortion. Take an extra turn after this one.
-rarity=R
-[/card]
-[card]
-id=124075
-name=Teneb, the Harvester
-mana={3}{B}{G}{W}
-type=Legendary Creature
-subtype=Dragon
-power=6
-toughness=6
-text=Flying Whenever Teneb, the Harvester deals combat damage to a player, you may pay {2}{B}. If you do, put target creature card in a graveyard onto the battlefield under your control.
 rarity=R
 [/card]
 [card]
@@ -1127,17 +1062,6 @@ subtype=Hellion
 power=6
 toughness=5
 text=Volcano Hellion has echo {X}, where X is your life total. (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) When Volcano Hellion enters the battlefield, it deals an amount of damage of your choice to you and target creature. The damage can't be prevented.
-rarity=R
-[/card]
-[card]
-id=124057
-name=Vorosh, the Hunter
-mana={3}{G}{U}{B}
-type=Legendary Creature
-subtype=Dragon
-power=6
-toughness=6
-text=Flying Whenever Vorosh, the Hunter deals combat damage to a player, you may pay {2}{G}. If you do, put six +1/+1 counters on Vorosh.
 rarity=R
 [/card]
 [card]

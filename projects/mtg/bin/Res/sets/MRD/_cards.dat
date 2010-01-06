@@ -943,7 +943,7 @@ abilities=flying
 [card]
 text={2}, {T}: Put a 0/1 Pest artifact creature token onto the battlefield.
 id=50104
-auto={2}{T}:token(Pest,artifact token creature pest, 0/1, artifact)
+auto={2}{T}:token(Pest,artifact creature pest, 0/1, artifact)
 name=Nuisance Engine
 rarity=U
 mana={3}
@@ -1524,6 +1524,17 @@ type=Creature
 subtype=Troll Shaman
 power=5
 toughness=6
+[/card]
+[card]
+text=Destroy target Equipment. Then add {G} to your mana pool.
+id=48594
+target=equipment
+auto=destroy
+auto=add:{G}
+name=Turn to Dust
+rarity=C
+mana={G}
+type=Instant
 [/card]
 [card]
 text=(Vault of Whispers isn't a spell.)  {T}: Add {B} to your mana pool.

@@ -90,6 +90,18 @@ toughness=2
 abilities=defender
 [/card]
 [card]
+text=Whenever Chieftain en-Dal attacks, attacking creatures gain first strike until end of turn.
+id=21264
+name=Chieftain en-Dal
+rarity=U
+mana={1}{W}{W}
+type=Creature
+subtype=Human Knight
+auto=aslongas(chieftain en-dal[attacking]|mybattlefield) lord(creature[attacking]) first strike
+power=2
+toughness=2
+[/card]
+[card]
 text=Coiling Woodworm's power is equal to the number of Forests on the battlefield.
 id=21364
 name=Coiling Woodworm
@@ -102,16 +114,16 @@ power=*
 toughness=1
 [/card]
 [card]
+text=At the beginning of your upkeep, if you control seven or more permanents, return Complex Automaton to its owner's hand.
+auto=@each my upkeep:aslongas(*|myBattlefield) moveTo(myhand) >6
 id=21395
 name=Complex Automaton
+rarity=R
 mana={4}
 type=Artifact Creature
 subtype=Golem
 power=4
 toughness=4
-text=At the beginning of your upkeep, if you control seven or more permanents, return Complex Automaton to its owner's hand.
-auto=@each my upkeep:aslongas(*|myBattlefield) moveTo(myhand) >6
-rarity=R
 [/card]
 [card]
 text=When Death Pit Offering enters the battlefield, sacrifice all creatures you control.   Creatures you control get +2/+2.
@@ -613,6 +625,18 @@ id=21394
 name=Terrain Generator
 rarity=U
 type=Land
+[/card]
+[card]
+text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.) Enchanted creature gets +1/+1 and can't be blocked except by creatures with flying.
+id=21365
+target=creature
+auto=1/1
+auto=cantbeblockedby(creature[-flying])
+name=Treetop Bracers
+rarity=C
+mana={1}{G}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 text={U}, {T}, Discard a card: You may tap or untap target artifact, creature, or land.

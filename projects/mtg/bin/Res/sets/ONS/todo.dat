@@ -12,14 +12,6 @@ toughness=2
 rarity=C
 [/card]
 [card]
-id=12425
-name=AEher Charge
-mana={4}{R}
-type=Enchantment
-text=Whenever a Beast comes into play under your control, you may have it deal 4 damage to target opponent.
-rarity=U
-[/card]
-[card]
 id=40195
 name=Aggravated Assault
 mana={2}{R}
@@ -1107,17 +1099,6 @@ text=Counter target spell unless its controller pays {2} for each Wizard in play
 rarity=C
 [/card]
 [card]
-id=39861
-name=Jareth, Leonine Titan
-mana={3}{W}{W}{W}
-type=Legendary Creature
-subtype=Cat Giant
-power=4
-toughness=7
-text=Whenever Jareth, Leonine Titan blocks, it gets +7/+7 until end of turn. {W}: Jareth gains protection from the color of your choice until end of turn.
-rarity=R
-[/card]
-[card]
 id=39559
 name=Kaboom!
 mana={4}{R}
@@ -1873,17 +1854,6 @@ subtype=Human Cleric
 power=2
 toughness=2
 text=You have shroud. (You can't be the target of spells or abilities.)
-rarity=R
-[/card]
-[card]
-id=41166
-name=Undead Gladiator
-mana={1}{B}{B}
-type=Creature
-subtype=Zombie Barbarian
-power=3
-toughness=1
-text={1}{B}, Discard a card: Return Undead Gladiator from your graveyard to your hand. Play this ability only during your upkeep. Cycling {1}{B} ({1}{B}, Discard this card: Draw a card.)
 rarity=R
 [/card]
 [card]

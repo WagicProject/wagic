@@ -382,6 +382,18 @@ power=2
 toughness=4
 [/card]
 [card]
+text={T}: Return Lady Sun and another target creature to their owners' hands. Activate this ability only during your turn, before attackers are declared.
+id=10721
+name=Lady Sun
+rarity=R
+mana={1}{U}{U}
+type=Legendary Creature
+subtype=Human Advisor
+auto={T}:moveTo(ownerhand) all(this) && moveTo(ownerhand) target(creature) myTurnOnly
+power=1
+toughness=1
+[/card]
+[card]
 text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)
 id=10609
 name=Lady Zhurong, Warrior Queen
@@ -670,6 +682,16 @@ mana={1}{R}
 type=Sorcery
 [/card]
 [card]
+text=Rolling Earthquake deals X damage to each creature without horsemanship and each player.
+id=10526
+auto=damage:X all(player)
+auto=damage:X all(creature[-horsemanship])
+name=Rolling Earthquake
+rarity=R
+mana={X}{R}
+type=Sorcery
+[/card]
+[card]
 text=Return target sorcery card from your graveyard to your hand.
 id=10524
 target=sorcery|mygraveyard
@@ -815,12 +837,24 @@ type=Sorcery
 [card]
 text=Stolen Grain deals 5 damage to target opponent. You gain 5 life.
 id=10554
-auto=Damage:5 opponent
+auto=damage:5 opponent
 auto=life:5 controller
 name=Stolen Grain
 rarity=U
 mana={4}{B}{B}
 type=Sorcery
+[/card]
+[card]
+text={T}: Destroy target tapped nonblack creature. Activate this ability only during your turn, before attackers are declared.
+id=10508
+name=Stone Catapult
+rarity=R
+mana={4}{B}
+type=Creature
+subtype=Human Soldier
+auto={T}:destroy target(creature[black;tapped]) myTurnOnly
+power=1
+toughness=2
 [/card]
 [card]
 text=Destroy target land.
@@ -895,18 +929,6 @@ type=Basic Land
 subtype=Swamp
 [/card]
 [card]
-text=Taoist Mystic can't be blocked by creatures with horsemanship.
-id=10733
-name=Taoist Mystic
-rarity=R
-mana={2}{G}
-type=Creature
-subtype=Human Mystic
-auto=cantbeblockedby(creature[horsemanship])
-power=2
-toughness=2
-[/card]
-[card]
 text=Taoist Hermit can't be the target of spells or abilities your opponents control.
 id=10569
 name=Taoist Hermit
@@ -917,6 +939,18 @@ subtype=Human Mystic
 power=2
 toughness=2
 abilities=opponentshroud
+[/card]
+[card]
+text=Taoist Mystic can't be blocked by creatures with horsemanship.
+id=10733
+name=Taoist Mystic
+rarity=R
+mana={2}{G}
+type=Creature
+subtype=Human Mystic
+auto=cantbeblockedby(creature[horsemanship])
+power=2
+toughness=2
 [/card]
 [card]
 text=Search your library for a Forest card and put that card onto the battlefield. Then shuffle your library.
@@ -1185,7 +1219,7 @@ rarity=U
 mana={3}{R}
 type=Creature
 subtype=Human Soldier
-auto=aslongas(other creature[attacking](creature|myBattlefield) -unblockable
+auto=aslongas(other creature[attacking]|myBattlefield) -unblockable
 power=2
 toughness=2
 abilities=unblockable
@@ -1201,6 +1235,34 @@ subtype=Human Soldier Warrior
 power=4
 toughness=4
 abilities=horsemanship,vigilance
+[/card]
+[card]
+####Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1) 
+text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)   Whenever Zhang He, Wei General attacks, each other creature you control gets +1/+0 until end of turn.
+id=10520
+name=Zhang He Wei General
+rarity=R
+mana={3}{B}{B}
+type=Legendary Creature
+subtype=Human Soldier
+auto=aslongas(zhang he wei general[attacking]|myBattlefield) lord(creature other|myBattlefield) 0/1
+power=4
+toughness=2
+abilities=horsemanship
+[/card]
+[card]
+####Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1) 
+text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)   Whenever Zhao Zilong, Tiger General blocks, it gets +1/+1 until end of turn.
+id=10686
+name=Zhao Zilong Tiger General
+rarity=R
+mana={3}{W}{W}
+type=Legendary Creature
+subtype=Human Soldier Warrior
+auto=aslongas(zhao zilong tiger general[blocking]|myBattlefield) lord(zhao zilong tiger general[blocking]|myBattlefield) 1/1
+power=3
+toughness=3
+auto=horsemanship
 [/card]
 [card]
 text=Zhou Yu, Chief Commander can't attack unless defending player controls an Island.
