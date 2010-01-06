@@ -37,7 +37,7 @@ class ActionLayer: public GuiLayer, public JGuiListener{
   int reactToClick(ActionElement * ability,MTGCardInstance * card);
   int reactToTargetClick(ActionElement * ability,Targetable * card);
   int stillInUse(MTGCardInstance * card);
-  void setMenuObject(Targetable * object);
+  void setMenuObject(Targetable * object, bool must = false);
   void ButtonPressed(int controllerid, int controlid);
   void doReactTo(int menuIndex);
   TargetChooser * getCurrentTargetChooser();
@@ -47,6 +47,7 @@ class ActionLayer: public GuiLayer, public JGuiListener{
   int cleanGarbage();
 protected:
   ActionElement * currentWaitingAction;
+  int cantCancel;
 };
 
 

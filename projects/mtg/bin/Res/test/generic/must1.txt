@@ -1,0 +1,19 @@
+#Test:"must" abilities
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+manapool:{3}{W}
+hand:Aven Cloudchaser
+inplay:lifeforce
+[PLAYER2]
+[DO]
+Aven cloudchaser
+choice 0
+lifeforce
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:aven cloudchaser
+graveyard:lifeforce
+[PLAYER2]
+[END]

@@ -42,7 +42,7 @@ class TargetChooser: public TargetsList {
   MTGCardInstance * targetter; //Optional, usually equals source, used for protection from...
   
   int maxtargets; //Set to -1 for "unlimited"
-
+  bool validTargetsExist();
   virtual int setAllZones(){return 0;}
   virtual bool targetsZone(MTGGameZone * z){return false;};
   int ForceTargetListReady();

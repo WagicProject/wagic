@@ -386,6 +386,23 @@ int TargetChooser::targetListSet(){
   return 0;
 }
 
+bool TargetChooser::validTargetsExist(){
+  for (int i = 0; i < 2; ++i){
+    Player *p = GameObserver::GetInstance()->players[i];
+    if (canTarget(p)) return true;
+    MTGGameZone * zones[] = {p->game->inPlay,p->game->graveyard,p->game->hand,p->game->library};
+    for (int k = 0; k < 4; k++){
+      MTGGameZone * z = zones[k];
+      if (targetsZone(z)){
+        for (int j = 0; j < z->nb_cards; j++){
+          if (canTarget(z->cards[j])) return true;
+        }
+      }
+    }
+  }
+  return false;
+}
+
 /**
   a specific Card
 **/

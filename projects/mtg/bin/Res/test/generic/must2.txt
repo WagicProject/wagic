@@ -1,0 +1,16 @@
+#Test:"must" abilities
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+manapool:{3}{W}{1}
+hand:Aven Cloudchaser,black vise
+[PLAYER2]
+[DO]
+Aven cloudchaser
+black vise
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:aven cloudchaser,black vise
+[PLAYER2]
+[END]

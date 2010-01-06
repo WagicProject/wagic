@@ -267,9 +267,10 @@ class AAFizzler:public ActivatedAbility{
 class MayAbility:public MTGAbility{
 public:
   int triggered;
+  bool must;
   MTGAbility * ability;
   MTGAbility * mClone;
-  MayAbility(int _id, MTGAbility * _ability,  MTGCardInstance * _source):MTGAbility(_id,_source),ability(_ability){
+  MayAbility(int _id, MTGAbility * _ability,  MTGCardInstance * _source, bool must = false):MTGAbility(_id,_source),must(must),ability(_ability){
     triggered = 0;
     mClone = NULL;
   }
@@ -279,7 +280,10 @@ public:
     MTGAbility::Update(dt);
     if (!triggered){
       triggered = 1;
-      game->mLayers->actionLayer()->setMenuObject(source);
+      if (TargetAbility * ta = dynamic_cast<TargetAbility *>(ability)){
+        if (!ta->tc->validTargetsExist()) return;
+      }
+      game->mLayers->actionLayer()->setMenuObject(source,must);
       game->mLayers->stackLayer()->setIsInterrupting(source->controller());
       OutputDebugString("ALLABILITIES SetMenuObject!\n");
     }

@@ -31,6 +31,8 @@ generic/legendary.txt
 generic/lifelink.txt
 generic/m10_blockers.txt
 generic/m10_blockers2.txt
+generic/must1.txt
+generic/must2.txt
 generic/nofizzle.txt
 generic/persist.txt
 generic/persist2.txt

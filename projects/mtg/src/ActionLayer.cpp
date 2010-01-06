@@ -94,6 +94,14 @@ void ActionLayer::Update(float dt){
     }
   }
 
+  if (cantCancel){
+    ActionElement * ae = isWaitingForAnswer();
+    if (ae && !ae->tc->validTargetsExist()) {
+      cantCancel = 0;
+      cancelCurrentAction();
+    }
+  }
+
 }
 
 void ActionLayer::Render (){
@@ -113,6 +121,7 @@ void ActionLayer::Render (){
 void ActionLayer::setCurrentWaitingAction(ActionElement * ae){
   assert(!ae || !currentWaitingAction);
   currentWaitingAction = ae;
+  if (!ae) cantCancel = 0;
 }
 
 TargetChooser * ActionLayer::getCurrentTargetChooser(){
@@ -124,6 +133,7 @@ TargetChooser * ActionLayer::getCurrentTargetChooser(){
 int ActionLayer::cancelCurrentAction(){
   ActionElement * ae = isWaitingForAnswer();
   if (!ae) return 0;
+  if (cantCancel && ae->tc->validTargetsExist()) return 0;
   ae->waitingForAnswer = 0; //TODO MOVE THIS IN ActionElement
   setCurrentWaitingAction(NULL);
   return 1;
@@ -206,12 +216,12 @@ int ActionLayer::reactToClick(MTGCardInstance * card){
 }
 
 
-void ActionLayer::setMenuObject(Targetable * object){
+void ActionLayer::setMenuObject(Targetable * object, bool must){
   menuObject = object;
 
   SAFE_DELETE(abilitiesMenu);
 
-  abilitiesMenu = NEW SimpleMenu(10, this, Constants::MAIN_FONT, 100, 100);
+  abilitiesMenu = NEW SimpleMenu(10, this, Constants::MAIN_FONT, 100, 100,object->getDisplayName().c_str());
 
   for (int i=0;i<mCount;i++){
     ActionElement * currentAction = (ActionElement *)mObjects[i];
@@ -219,7 +229,8 @@ void ActionLayer::setMenuObject(Targetable * object){
       abilitiesMenu->Add(i,currentAction->getMenuText());
     }
   }
-  abilitiesMenu->Add(-1, "Cancel");
+  if (!must) abilitiesMenu->Add(-1, "Cancel");
+  else cantCancel = 1;
   modal = 1;
 }
 
@@ -252,6 +263,7 @@ ActionLayer::ActionLayer(){
   abilitiesMenu = NULL; 
   stuffHappened = 0;
   currentWaitingAction = NULL;
+  cantCancel = 0;
 }
 
 ActionLayer::~ActionLayer(){

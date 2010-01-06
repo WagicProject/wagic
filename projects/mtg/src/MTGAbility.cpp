@@ -206,17 +206,35 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 
   int restrictions = parseRestriction(s);
 
-  size_t delimiter = s.find("}:");
-  size_t firstNonSpace = s.find_first_not_of(" ");
-  if (delimiter!= string::npos && firstNonSpace !=string::npos && s[firstNonSpace] == '{'){
-    ManaCost * cost  = ManaCost::parseManaCost(s.substr(0,delimiter+1),NULL,card);
+  TargetChooser * tc = NULL;
+  string sWithoutTc = s;
+  //Target Abilities
+  found = s.find("target(");
+  if (found != string::npos){
+    int end = s.find(")", found);
+    string starget = s.substr(found + 7,end - found - 7);
+    TargetChooserFactory tcf;
+    tc = tcf.createTargetChooser(starget, card);
+    if (tc && s.find("notatarget(") != string::npos){
+      tc->targetter = NULL;
+      found = found - 4;
+    }
+    string temp = s.substr(0,found);
+    temp.append(s.substr(end+1));
+    sWithoutTc = temp;
+  }
+
+  size_t delimiter = sWithoutTc.find("}:");
+  size_t firstNonSpace = sWithoutTc.find_first_not_of(" ");
+  if (delimiter!= string::npos && firstNonSpace !=string::npos && sWithoutTc[firstNonSpace] == '{'){
+    ManaCost * cost  = ManaCost::parseManaCost(sWithoutTc.substr(0,delimiter+1),NULL,card);
     if (doTap || cost){
-      string s1 = s.substr(delimiter+2);
+      string s1 = sWithoutTc.substr(delimiter+2);
       
       MTGAbility * a = parseMagicLine(s1, id, spell, card, 1);
       if (!a){
         OutputDebugString("ABILITYFACTORY Error parsing:");
-        OutputDebugString(s.c_str());
+        OutputDebugString(sWithoutTc.c_str());
         OutputDebugString("\n");
         return NULL;
       }
@@ -231,21 +249,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
       }
 
       int limit = 0;
-      unsigned int limit_str = s.find("limit:");
+      unsigned int limit_str = sWithoutTc.find("limit:");
       if (limit_str != string::npos){
-        limit = atoi(s.substr(limit_str+6).c_str());
+        limit = atoi(sWithoutTc.substr(limit_str+6).c_str());
       }
 
-      TargetChooser * tc = NULL;
-      //Target Abilities
-      found = s.find("target(");
-      if (found != string::npos){
-        int end = s.find(")", found);
-        string starget = s.substr(found + 7,end - found - 7);
-        TargetChooserFactory tcf;
-        tc = tcf.createTargetChooser(starget, card);
-        if (tc && s.find("notatarget(") != string::npos) tc->targetter = NULL;
-      }
+
 
       AEquip *ae = dynamic_cast<AEquip*>(a);
       if (ae){
@@ -263,7 +272,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
     SAFE_DELETE(cost);
   }
-
+  
+  
   //kicker cost
   found = s.find("kicker ");
   if (found == 0){
@@ -276,28 +286,20 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   //When...comes into play, you may...
   found = s.find("may ");
   if (found == 0){
-    string s1 = s.substr(found+4);
+    string s1 = sWithoutTc.substr(found+4);
     MTGAbility * a1 = parseMagicLine(s1,id,spell, card);
     if (!a1) return NULL;
-    TargetChooser * tc = NULL;
-    //Target Abilities
-    found = s.find("target(");
-    if (found != string::npos){
-      int end = s.find(")", found);
-      string starget = s.substr(found + 7,end - found - 7);
-      TargetChooserFactory tcf;
-      tc = tcf.createTargetChooser(starget, card);
-      if (tc && s.find("notatarget(") != string::npos) tc->targetter = NULL;
-    }
+
     if (tc) a1 = NEW GenericTargetAbility(id, card, tc, a1);
     else a1 =  NEW GenericActivatedAbility(id, card, a1,NULL);
     return NEW MayAbility(id,a1,card);
   }
-
+  
 
   //Multiple abilities for ONE cost
   found = s.find("&&");
   if (found != string::npos){
+    SAFE_DELETE(tc);
     string s1 = s.substr(0,found);
     string s2 = s.substr(found+2);
     MultiAbility * multi = NEW MultiAbility(id, card,target,NULL,NULL);
@@ -321,6 +323,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
   }
   if (found != string::npos){
+    SAFE_DELETE(tc);
     size_t header = lords[i].size();
     size_t end = s.find(")", found+header);
     string s1;
@@ -380,6 +383,21 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
     return NULL;
   }
+
+  if (!activated &&  tc){
+      
+      MTGAbility * a = parseMagicLine(sWithoutTc, id, spell, card);
+      if (!a){
+        OutputDebugString("ABILITYFACTORY Error parsing:");
+        OutputDebugString(s.c_str());
+        OutputDebugString("\n");
+        return NULL;
+      }
+      a = NEW GenericTargetAbility(id,card,tc,a);
+      return NEW MayAbility(id,a,card,true);
+  }
+
+  SAFE_DELETE(tc);
 
    //Cycling
   found = s.find("cycling");
@@ -472,7 +490,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   }
 
   //Copy a target
-  found = s.find("copy ");
+  found = s.find("copy");
   if (found != string::npos){
     MTGAbility * a = NEW AACopier(id,card,target);
     a->oneShot = 1;
