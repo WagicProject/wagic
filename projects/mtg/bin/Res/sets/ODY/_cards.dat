@@ -1186,7 +1186,7 @@ abilities=shroud
 [/card]
 [card]
 text=At the beginning of your upkeep, you may put a 1/1 green Squirrel creature token onto the battlefield.   Threshold - Squirrel creatures get +2/+2 as long as seven or more cards are in your graveyard.
-auto=@each my upkeep:may tokentoken(Squirrel,creature squirrel, 1/1,green)
+auto=@each my upkeep:may token(Squirrel,creature squirrel, 1/1,green)
 id=29987
 name=Nut Collector
 rarity=R
