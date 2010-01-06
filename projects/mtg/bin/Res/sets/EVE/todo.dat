@@ -533,7 +533,6 @@ rarity=U
 type=Instant
 mana={3}{GU}
 [/card]
-
 [card]
 text=Chroma - Each creature you control gets +1/+1 for each white mana symbol in its mana cost.
 id=151139
@@ -541,20 +540,6 @@ name=Light from Within
 rarity=R
 type=Enchantment
 mana={2}{W}{W}
-[/card]
-[card]
-text=When Marshdrinker Giant comes into play, destroy target Island or Swamp an opponent controls.
-target=island,swamp|opponentinplay
-#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
-auto=destroy
-id=142015
-name=Marshdrinker Giant
-rarity=U
-type=Creature
-mana={3}{G}{G}
-power=4
-subtype=Giant Warrior
-toughness=3
 [/card]
 [card]
 text={T}: Target player removes a card in his or her graveyard from the game.      Whenever you play a black spell, you may untap Merrow Bonegnawer.
@@ -626,20 +611,6 @@ mana={1}{WB}
 power=2
 subtype=Shapeshifter
 toughness=1
-[/card]
-[card]
-###Creatures with Comes-into-play-effect needing a target not supported yet! 0.10.1
-text=When Noggle Bridgebreaker enters the battlefield, return a land you control to its owner's hand.
-id=158899
-name=Noggle Bridgebreaker
-target=land|myBattlefield
-auto=moveTo(ownerhand)
-rarity=C
-mana={2}{UR}{UR}
-type=Creature
-subtype=Noggle Rogue
-power=4
-toughness=3
 [/card]
 [card]
 text=When Noggle Hedge-Mage comes into play, if you control two or more Islands, you may tap two target permanents.     When Noggle Hedge-Mage comes into play, if you control two or more Mountains, you may have Noggle Hedge-Mage deal 2 damage to target player.

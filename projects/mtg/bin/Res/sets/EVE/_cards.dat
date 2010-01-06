@@ -459,6 +459,18 @@ toughness=3
 abilities=defender,flying
 [/card]
 [card]
+text=When Marshdrinker Giant enters the battlefield, destroy target Island or Swamp an opponent controls.
+auto=destroy target(island,swamp|opponentBattlefield)
+id=142015
+name=Marshdrinker Giant
+rarity=U
+mana={3}{G}{G}
+type=Creature
+subtype=Giant Warrior
+power=4
+toughness=3
+[/card]
+[card]
 text={T}: Target creature gains flying until end of turn.   Whenever you cast a blue spell, you may untap Merrow Levitator.
 id=151088
 name=Merrow Levitator
@@ -559,6 +571,18 @@ subtype=Noggle Rogue
 auto=cantbeblockedby(creature[-defender])
 power=2
 toughness=2
+[/card]
+[card]
+text=When Noggle Bridgebreaker enters the battlefield, return a land you control to its owner's hand.
+id=158899
+name=Noggle Bridgebreaker
+auto=moveTo(ownerhand) target(land|myBattlefield)
+rarity=C
+mana={2}{UR}{UR}
+type=Creature
+subtype=Noggle Rogue
+power=4
+toughness=3
 [/card]
 [card]
 text=When Noggle Ransacker enters the battlefield, each player draws two cards, then discards a card at random.

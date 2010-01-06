@@ -165,7 +165,6 @@ type=Instant
 text=The next 1 damage that would be dealt to target creature this turn is dealt to another target creature instead. Draw a card.
 rarity=C
 [/card]
-
 [card]
 id=97106
 name=Coiling Oracle
@@ -280,7 +279,6 @@ type=Sorcery
 text=Demonfire deals X damage to target creature or player. If a creature dealt damage this way would be put into a graveyard this turn, exile it instead. Hellbent - If you have no cards in hand, Demonfire can't be countered by spells or abilities and the damage can't be prevented.
 rarity=R
 [/card]
-
 [card]
 id=107373
 name=Bound // Determined (Determined)
@@ -305,7 +303,6 @@ type=Enchantment
 text=({(w/u)} can be paid with either {W} or {U}.) Whenever a player casts a noncreature spell, counter that spell. That player puts X 1/1 white and blue Bird creature tokens with flying onto the battlefield, where X is the spell's converted mana cost.
 rarity=R
 [/card]
-
 [card]
 id=111258
 name=Drekavac
@@ -500,7 +497,6 @@ toughness=3
 text=Protection from monocolored
 rarity=C
 [/card]
-
 [card]
 id=107272
 name=Haazda Shield Mate
@@ -555,20 +551,6 @@ name=Ignorant Bliss
 mana={1}{R}
 type=Instant
 text=Exile all cards from your hand face down. At the beginning of the next end step, return those cards to your hand, then draw a card.
-rarity=U
-[/card]
-[card]
-id=107377
-name=Indrik Stomphowler
-#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
-target=artifact,enchantment
-mana={4}{G}
-type=Creature
-subtype=Beast
-power=4
-toughness=4
-text=When Indrik Stomphowler enters the battlefield, destroy target artifact or enchantment.
-auto=destroy
 rarity=U
 [/card]
 [card]
@@ -690,7 +672,6 @@ toughness=1
 text=({(w/u)} can be paid with either {W} or {U}.) {T}: Tap target creature.
 rarity=C
 [/card]
-
 [card]
 id=107506
 name=Momir Vig, Simic Visionary
@@ -769,20 +750,6 @@ name=Odds // Ends (Odds)
 mana={U}{R}
 type=Instant
 text=Flip a coin. If it comes up heads, counter target instant or sorcery spell. If it comes up tails, copy that spell and you may choose new targets for the copy. rarity=R
-[/card]
-[card]
-id=107389
-name=Ogre Gatecrasher
-target=creature[defender]
-#does not work. "When ... enters the battelfield ...target ..." is not supported unless there is a "may"
-mana={3}{R}
-type=Creature
-subtype=Ogre Rogue
-power=3
-toughness=3
-text=When Ogre Gatecrasher enters the battlefield, destroy target creature with defender.
-auto=destroy
-rarity=C
 [/card]
 [card]
 id=83737
@@ -996,7 +963,6 @@ subtype=Equipment
 text=Equipped creature gets +1/+0 for each blood counter on Rakdos Riteknife and has "{T}, Sacrifice a creature: Put a blood counter on Rakdos Riteknife." {B}{R}, Sacrifice Rakdos Riteknife: Target player sacrifices a permanent for each blood counter on Rakdos Riteknife. Equip {2}
 rarity=R
 [/card]
-
 [card]
 id=107438
 name=Rakdos the Defiler
@@ -1008,7 +974,6 @@ toughness=6
 text=Flying, trample Whenever Rakdos the Defiler attacks, sacrifice half the non-Demon permanents you control, rounded up. Whenever Rakdos deals combat damage to a player, that player sacrifices half the non-Demon permanents he or she controls, rounded up.
 rarity=R
 [/card]
-
 [card]
 id=107375
 name=Research // Development (Research)
@@ -1017,7 +982,6 @@ type=Instant
 text=Choose up to four cards you own from outside the game and shuffle them into your library.
 rarity=R
 [/card]
-
 [card]
 id=107423
 name=Rise // Fall (Rise)
@@ -1053,8 +1017,6 @@ toughness=2
 text={R}, Sacrifice Sandstorm Eidolon: Target creature can't block this turn. Whenever you cast a multicolored spell, you may return Sandstorm Eidolon from your graveyard to your hand.
 rarity=C
 [/card]
-
-
 [card]
 id=107315
 name=Hide // Seek (Seek)
@@ -1063,8 +1025,6 @@ type=Instant
 text= Search target opponent's library for a card and exile it. You gain life equal to its converted mana cost. Then that player shuffles his or her library.
 rarity=R
 [/card]
-
-
 [card]
 id=107347
 name=Simic Basilisk
@@ -1307,7 +1267,6 @@ subtype=Aura
 text=Enchant Forest As Utopia Sprawl enters the battlefield, choose a color. Whenever enchanted Forest is tapped for mana, its controller adds one mana of the chosen color to his or her mana pool (in addition to the mana the land produces).
 rarity=C
 [/card]
-
 [card]
 id=107431
 name=Valor Made Real
@@ -1327,7 +1286,6 @@ toughness=2
 text={G}, Sacrifice Verdant Eidolon: Add three mana of any one color to your mana pool. Whenever you cast a multicolored spell, you may return Verdant Eidolon from your graveyard to your hand.
 rarity=C
 [/card]
-
 [card]
 id=107321
 name=Vigean Graftmage
@@ -1358,7 +1316,6 @@ type=Instant
 text=Choose a card type, then reveal the top four cards of your library. Put all cards of the chosen type revealed this way into your hand and the rest into your graveyard. (The card types are artifact, creature, enchantment, instant, land, planeswalker, sorcery, and tribal.)
 rarity=U
 [/card]
-
 [card]
 id=97096
 name=Voidslime
@@ -1367,7 +1324,6 @@ type=Instant
 text=Counter target spell, activated ability, or triggered ability. (Mana abilities can't be targeted.)
 rarity=R
 [/card]
-
 [card]
 id=97092
 name=Walking Archive
@@ -1396,20 +1352,6 @@ text=Weight of Spires deals damage to target creature equal to the number of non
 rarity=U
 [/card]
 [card]
-id=97075
-name=Whiptail Moloch
-#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
-mana={4}{R}
-type=Creature
-subtype=Lizard
-power=6
-toughness=3
-text=When Whiptail Moloch enters the battlefield, it deals 3 damage to target creature you control.
-target=creature|myinplay
-auto=damage:3
-rarity=C
-[/card]
-[card]
 id=97094
 name=Windreaver
 mana={3}{W}{U}
@@ -1428,7 +1370,6 @@ type=Sorcery
 text=Target player discards his or her hand.
 rarity=R
 [/card]
-
 [card]
 id=107413
 name=Writ of Passage
