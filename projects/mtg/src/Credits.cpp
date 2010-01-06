@@ -216,7 +216,7 @@ void Credits::Render(){
 
   //!!
   if (g->gameOver != p1) {
-    sprintf(buffer, _("Game length: %i seconds").c_str(), this->gameLength);
+    sprintf(buffer, _("Game length: %i turns (%i seconds)").c_str(), g->turn, this->gameLength);
     f->DrawString(buffer, 10, y);
     y += 10;
     sprintf(buffer, _("Credits per minute: %i").c_str(), (int)(60*value/this->gameLength));
