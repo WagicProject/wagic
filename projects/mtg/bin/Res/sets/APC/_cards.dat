@@ -259,6 +259,20 @@ toughness=2
 abilities=flying
 [/card]
 [card]
+text=At the beginning of your upkeep, you gain 1 life for each card in target opponent's hand.   {3}{W}: Tap target creature. Activate this ability only if Gerrard Capashen is attacking.
+auto=@each my upkeep:foreach(*|opponenthand) life:1 controller
+auto=lord(gerrard capashen[attacking]) {3}{W}:tap target(creature)
+auto=@each my combatends:lord(creature) protection from(gerrard capashen[tapped])
+id=26793
+name=Gerrard Capashen
+rarity=R
+mana={3}{W}{W}
+type=Legendary Creature
+subtype=Human Soldier
+power=3
+toughness=4
+[/card]
+[card]
 text=Whenever a player casts a blue spell, Glade Gnarr gets +2/+2 until end of turn.
 id=27154
 name=Glade Gnarr

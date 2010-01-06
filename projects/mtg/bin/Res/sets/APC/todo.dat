@@ -282,17 +282,6 @@ text=As an additional cost to cast Gaea's Balance, sacrifice five lands. Search 
 rarity=U
 [/card]
 [card]
-id=26793
-name=Gerrard Capashen
-mana={3}{W}{W}
-type=Legendary Creature
-subtype=Human Soldier
-power=3
-toughness=4
-text=At the beginning of your upkeep, you gain 1 life for each card in target opponent's hand. {3}{W}: Tap target creature. Activate this ability only if Gerrard Capashen is attacking.
-rarity=R
-[/card]
-[card]
 id=29416
 name=Gerrard's Verdict
 mana={W}{B}
