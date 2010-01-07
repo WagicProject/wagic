@@ -196,6 +196,7 @@ private:
 
 	int mVolume;
   int mMusicVolume;
+  int mSampleVolume;
 
 
 	static JSoundSystem* mInstance;

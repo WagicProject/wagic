@@ -81,7 +81,9 @@ void JSoundSystem::Destroy()
 
 JSoundSystem::JSoundSystem()
 {
-	
+	mVolume = 0;
+  mSampleVolume = 0;
+  mChannel = FSOUND_FREE;
 }
 
 
@@ -113,15 +115,6 @@ JMusic *JSoundSystem::LoadMusic(const char *fileName)
 		if (fileSystem->OpenFile(fileName))
 		{
 
-			//		FMUSIC is for MOD...
-			// 		int size = fileSystem->GetFileSize();
-			// 		char *buffer = new char[size];
-			// 		fileSystem->ReadFile(buffer, size);
-			// 		music->mTrack = FMUSIC_LoadSongEx(buffer, 0, size, FSOUND_LOADMEMORY, NULL, 0);
-			// 			
-			// 		delete[] buffer;
-			// 		fileSystem->CloseFile();
-
 			int size = fileSystem->GetFileSize();
 			char *buffer = new char[size];
 			fileSystem->ReadFile(buffer, size);
@@ -142,7 +135,8 @@ void JSoundSystem::PlayMusic(JMusic *music, bool looping)
 	
 	if (music && music->mTrack)
 	{
-		mChannel = FSOUND_PlaySound(FSOUND_FREE, music->mTrack);
+		mChannel = FSOUND_PlaySound(mChannel, music->mTrack);
+    SetMusicVolume(mVolume);
 
 		if (looping)
 			FSOUND_SetLoopMode(mChannel, FSOUND_LOOP_NORMAL);
@@ -167,14 +161,16 @@ void JSoundSystem::SetVolume(int volume)
 
 void JSoundSystem::SetMusicVolume(int volume)
 {
-  //TODO This function needs to be redone
-		FSOUND_SetSFXMasterVolume(volume);
-	
+	if (mChannel != FSOUND_FREE) FSOUND_SetVolumeAbsolute(mChannel,volume * 2.55);	
 	mVolume = volume;
 }
 
 void JSoundSystem::SetSfxVolume(int volume){
-  //TODO
+  //this sets the volume to all channels then reverts back the volume for music.. 
+  //that's a bit dirty but it works
+  FSOUND_SetVolumeAbsolute(FSOUND_ALL,volume * 2.55);
+  mSampleVolume = volume;
+  SetMusicVolume(mVolume);
 }
 
 JSample *JSoundSystem::LoadSample(const char *fileName)
@@ -203,7 +199,9 @@ JSample *JSoundSystem::LoadSample(const char *fileName)
 
 void JSoundSystem::PlaySample(JSample *sample)
 {
-	if (sample && sample->mSample)
-		FSOUND_PlaySound(FSOUND_FREE, sample->mSample);
+  if (sample && sample->mSample){
+		int channel = FSOUND_PlaySound(FSOUND_FREE, sample->mSample);
+    FSOUND_SetVolumeAbsolute(channel,mSampleVolume * 2.55);
+  }
 }
 
