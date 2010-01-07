@@ -75,21 +75,6 @@ type=Instant
 mana={1}{U}
 [/card]
 [card]
-text=Flying (This creature can't be blocked except by creatures with flying or reach.)   When Aven Cloudchaser comes into play, destroy target enchantment.
-id=29694
-name=Aven Cloudchaser
-target=enchantment
-#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
-abilities=flying
-auto=destroy
-rarity=C
-type=Creature
-mana={3}{W}
-power=2
-subtype=Bird Soldier
-toughness=2
-[/card]
-[card]
 text=Whenever a player plays a spell, that player gains X life, where X is the number of cards in all graveyards with the same name as that spell.
 id=29923
 name=Aven Shrine

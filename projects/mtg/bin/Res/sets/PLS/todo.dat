@@ -40,17 +40,6 @@ text=Kicker—Sacrifice two lands. (You may sacrifice two lands in addition to a
 rarity=C
 [/card]
 [card]
-id=25926
-name=Cavern Harpy
-mana={U}{B}
-type=Creature
-subtype=Harpy Beast
-power=2
-toughness=1
-text=Flying When Cavern Harpy enters the battlefield, return a blue or black creature you control to its owner's hand. Pay 1 life: Return Cavern Harpy to its owner's hand.
-rarity=C
-[/card]
-[card]
 id=25899
 name=Cloud Cover
 mana={2}{W}{U}
@@ -67,22 +56,30 @@ text=Counter target spell that targets one or more creatures.  Draw a card.
 rarity=C
 [/card]
 [card]
+###Not 100% codable! 0.10.1
+text=When Crosis's Catacombs enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand.   {T}: Add {U}, {B}, or {R} to your mana pool.
 id=25936
 name=Crosis's Catacombs
-mana=
+auto=moveTo(ownerhand) notatarget(land[-lair]|myBattlefield)
+auto={T}:Add{U}
+auto={T}:Add{B}
+auto={T}:Add{R}
+rarity=U
 type=Land
 subtype=Lair
-text=When Crosis's Catacombs enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand. {T}: Add {U}, {B}, or {R} to your mana pool.
-rarity=U
 [/card]
 [card]
+###Not 100% codable! 0.10.1
+text=When Darigaaz's Caldera enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand.   {T}: Add {B}, {R}, or {G} to your mana pool.
 id=25938
 name=Darigaaz's Caldera
-mana=
+rarity=U
+auto=moveTo(ownerhand) notatarget(land[-lair]|myBattlefield)
+auto={T}:Add{B}
+auto={T}:Add{R}
+auto={T}:Add{G}
 type=Land
 subtype=Lair
-text=When Darigaaz's Caldera enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand. {T}: Add {B}, {R}, or {G} to your mana pool.
-rarity=U
 [/card]
 [card]
 id=26414
@@ -169,13 +166,17 @@ text=Kicker—{2}{B}, Discard a creature card. (You may pay {2}{B} and discard a
 rarity=R
 [/card]
 [card]
+###Not 100% codable! 0.10.1
+text=When Dromar's Cavern enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand.   {T}: Add {W}, {U}, or {B} to your mana pool.
 id=25932
 name=Dromar's Cavern
-mana=
+auto=moveTo(ownerhand) notatarget(land[-lair]|myBattlefield)
+auto={T}:Add{W}
+auto={T}:Add{U}
+auto={T}:Add{B}
+rarity=U
 type=Land
 subtype=Lair
-text=When Dromar's Cavern enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand. {T}: Add {W}, {U}, or {B} to your mana pool.
-rarity=U
 [/card]
 [card]
 id=26590
@@ -192,28 +193,6 @@ mana={2}{G}
 type=Instant
 text=Kicker—Sacrifice a land. (You may sacrifice a land in addition to any other costs as you cast this spell.) Prevent all combat damage target creature would deal this turn. If Falling Timber was kicked, prevent all combat damage another target creature would deal this turn.
 rarity=C
-[/card]
-[card]
-id=26262
-name=Flametongue Kavu
-mana={3}{R}
-type=Creature
-subtype=Kavu
-power=4
-toughness=2
-text=When Flametongue Kavu enters the battlefield, it deals 4 damage to target creature.
-rarity=U
-[/card]
-[card]
-id=26479
-name=Fleetfoot Panther
-mana={1}{G}{W}
-type=Creature
-subtype=Cat
-power=3
-toughness=4
-text=Flash When Fleetfoot Panther enters the battlefield, return a green or white creature you control to its owner's hand.
-rarity=U
 [/card]
 [card]
 id=26411
@@ -264,33 +243,11 @@ text=Enchant creature When Hobble enters the battlefield, draw a card. Enchanted
 rarity=C
 [/card]
 [card]
-id=25928
-name=Horned Kavu
-mana={R}{G}
-type=Creature
-subtype=Kavu
-power=3
-toughness=4
-text=When Horned Kavu enters the battlefield, return a red or green creature you control to its owner's hand.
-rarity=C
-[/card]
-[card]
 id=25872
 name=Hull Breach
 mana={R}{G}
 type=Sorcery
 text=Choose one - Destroy target artifact; or destroy target enchantment; or destroy target artifact and target enchantment.
-rarity=C
-[/card]
-[card]
-id=22980
-name=Hunting Drake
-mana={4}{U}
-type=Creature
-subtype=Drake
-power=2
-toughness=2
-text=Flying When Hunting Drake enters the battlefield, put target red or green creature on top of its owner's library.
 rarity=C
 [/card]
 [card]
@@ -319,17 +276,6 @@ mana={2}{W}
 type=Enchantment
 text=When Lashknife Barrier enters the battlefield, draw a card. If a source would deal damage to a creature you control, it deals that much damage minus 1 to that creature instead.
 rarity=U
-[/card]
-[card]
-id=25927
-name=Lava Zombie
-mana={1}{B}{R}
-type=Creature
-subtype=Zombie
-power=4
-toughness=3
-text=When Lava Zombie enters the battlefield, return a black or red creature you control to its owner's hand. {2}: Lava Zombie gets +1/+0 until end of turn.
-rarity=C
 [/card]
 [card]
 id=25944
@@ -593,13 +539,17 @@ mana={R}{G}{W}
 type=Instant
 [/card]
 [card]
+###Not 100% codable! 0.10.1
+text=When Rith's Grove enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand.   {T}: Add {R}, {G}, or {W} to your mana pool.
 id=25939
 name=Rith's Grove
-mana=
+auto=moveTo(ownerhand) notatarget(land[-lair]|myBattlefield)
+auto={T}:Add{R}
+auto={T}:Add{G}
+auto={T}:Add{W}
+rarity=U
 type=Land
 subtype=Lair
-text=When Rith's Grove enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand. {T}: Add {R}, {G}, or {W} to your mana pool.
-rarity=U
 [/card]
 [card]
 id=25942
@@ -662,28 +612,6 @@ text=As Shifting Sky enters the battlefield, choose a color. All nonland permane
 rarity=U
 [/card]
 [card]
-id=25924
-name=Shivan Wurm
-mana={3}{R}{G}
-type=Creature
-subtype=Wurm
-power=7
-toughness=7
-text=Trample When Shivan Wurm enters the battlefield, return a red or green creature you control to its owner's hand.
-rarity=R
-[/card]
-[card]
-id=25925
-name=Silver Drake
-mana={1}{W}{U}
-type=Creature
-subtype=Drake
-power=3
-toughness=3
-text=Flying When Silver Drake enters the battlefield, return a white or blue creature you control to its owner's hand.
-rarity=C
-[/card]
-[card]
 id=25900
 name=Singe
 mana={R}
@@ -727,34 +655,12 @@ text=Enchant creature When Sleeping Potion enters the battlefield, tap enchanted
 rarity=C
 [/card]
 [card]
-id=25935
-name=Sparkcaster
-mana={2}{R}{G}
-type=Creature
-subtype=Kavu
-power=5
-toughness=3
-text=When Sparkcaster enters the battlefield, return a red or green creature you control to its owner's hand. When Sparkcaster enters the battlefield, it deals 1 damage to target player.
-rarity=U
-[/card]
-[card]
 id=25880
 name=Star Compass
 mana={2}
 type=Artifact
 text=Star Compass enters the battlefield tapped. {T}: Add to your mana pool one mana of any color a basic land you control could produce.
 rarity=U
-[/card]
-[card]
-id=25929
-name=Steel Leaf Paladin
-mana={4}{G}{W}
-type=Creature
-subtype=Elf Knight
-power=4
-toughness=4
-text=First strike When Steel Leaf Paladin enters the battlefield, return a green or white creature you control to its owner's hand.
-rarity=C
 [/card]
 [card]
 id=25913

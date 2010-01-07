@@ -426,6 +426,18 @@ toughness=1
 abilities=haste
 [/card]
 [card]
+text=When Ravenous Baboons enters the battlefield, destroy target nonbasic land.
+id=5207
+name=Ravenous Baboons
+mana={3}{R}
+type=Creature
+subtype=Ape
+auto=destroy target(land[-basic])
+power=2
+toughness=2
+rarity=R
+[/card]
+[card]
 text=Put target card from your graveyard on top of your library.
 target=*|mygraveyard
 auto=moveTo(myLibrary)
@@ -438,7 +450,6 @@ type=Sorcery
 [card]
 text=Sacrifice a creature, Return Recurring Nightmare to its owner's hand: Return target creature card from your graveyard to the battlefield. Activate this ability only any time you could cast a sorcery.
 auto={S(creature|myBattlefield)}:moveto(myhand) all(this) && moveto(myBattlefield) target(creature|mygraveyard) asSorcery
-
 id=6103
 name=Recurring Nightmare
 rarity=R
@@ -739,6 +750,7 @@ power=1
 toughness=3
 [/card]
 [card]
+###Wood Elves ability should stay optional ("may") because when you are searching for sth in your library, the official rules say that you don'T have to find anything even if there is a legal target!
 text=When Wood Elves enters the battlefield, search your library for a Forest card and put that card onto the battlefield. Then shuffle your library.
 auto=may moveTo(mybattlefield) target(forest|myLibrary)
 id=6135

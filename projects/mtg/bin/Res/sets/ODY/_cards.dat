@@ -115,6 +115,19 @@ toughness=2
 abilities=flying
 [/card]
 [card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)   When Aven Cloudchaser enters the battlefield, destroy target enchantment.
+id=29694
+name=Aven Cloudchaser
+rarity=C
+mana={3}{W}
+type=Creature
+subtype=Bird Soldier
+auto=destroy target(enchantment)
+power=2
+toughness=2
+abilities=flying
+[/card]
+[card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  When Aven Fisher is put into a graveyard from play, you may draw a card.
 auto=@movedTo(this|graveyard) from(battlefield):may draw:1
 id=31815

@@ -16,6 +16,16 @@ toughness=3
 abilities=flying,trample
 [/card]
 [card]
+text=Azorius Chancery enters the battlefield tapped.   When Azorius Chancery enters the battlefield, return a land you control to its owner's hand.   {T}: Add {W}{U} to your mana pool.
+id=97087
+name=Azorius Chancery
+auto=tap
+auto=moveTo(ownerhand) notatarget(land|mybattlefield)
+auto={T}:Add{W}{U}
+rarity=C
+type=Land
+[/card]
+[card]
 text=Flying, protection from enchantments
 id=97101
 name=Azorius First-Wing
@@ -222,6 +232,16 @@ toughness=1
 abilities=flying
 [/card]
 [card]
+text=Rakdos Carnarium enters the battlefield tapped.   When Rakdos Carnarium enters the battlefield, return a land you control to its owner's hand.   {T}: Add {B}{R} to your mana pool.
+id=97082
+name=Rakdos Carnarium
+auto=tap
+auto=moveTo(ownerhand) notatarget(land|myBattlefield)
+auto={T}:Add{B}{R}
+rarity=C
+type=Land
+[/card]
+[card]
 text={T}: Rakdos Ickspitter deals 1 damage to target creature and that creature's controller loses 1 life.
 auto={T}:damage:1 target(creature) && life:-1 targetcontroller
 id=97074
@@ -323,6 +343,16 @@ subtype=Faerie Scout
 power=2
 toughness=1
 abilities=flying
+[/card]
+[card]
+text=Simic Growth Chamber enters the battlefield tapped.   When Simic Growth Chamber enters the battlefield, return a land you control to its owner's hand.   {T}: Add {G}{U} to your mana pool.
+id=97089
+name=Simic Growth Chamber
+auto=tap
+auto=moveTo(ownerhand) notatarget(land|myBattlefield)
+auto={T}:Add{G}{U}
+rarity=C
+type=Land
 [/card]
 [card]
 text={U}: Untap Simic Ragworm.

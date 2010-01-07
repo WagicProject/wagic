@@ -52,6 +52,20 @@ mana={1}{W}
 type=Instant
 [/card]
 [card]
+text=Flying   When Cavern Harpy enters the battlefield, return a blue or black creature you control to its owner's hand.   Pay 1 life: Return Cavern Harpy to its owner's hand.
+id=25926
+name=Cavern Harpy
+rarity=C
+mana={U}{B}
+type=Creature
+subtype=Harpy Beast
+auto=moveTo(ownerhand) notatarget(creature[blue;black]|myBattlefield)
+auto={0}:moveTo(ownerhand) && life:-1 controller
+power=2
+toughness=1
+abilities=flying
+[/card]
+[card]
 text=Choose one - Return target permanent to its owner's hand; or destroy target nonblack creature, and it can't be regenerated; or destroy target artifact.
 id=25863
 name=Crosis's Charm
@@ -164,6 +178,31 @@ mana={4}{B}
 type=Sorcery
 [/card]
 [card]
+text=When Flametongue Kavu enters the battlefield, it deals 4 damage to target creature.
+id=26262
+name=Flametongue Kavu
+rarity=U
+mana={3}{R}
+type=Creature
+subtype=Kavu
+auto=damage:4 target(creature)
+power=4
+toughness=2
+[/card]
+[card]
+text=Flash   When Fleetfoot Panther enters the battlefield, return a green or white creature you control to its owner's hand.
+id=26479
+name=Fleetfoot Panther
+rarity=U
+mana={1}{G}{W}
+type=Creature
+subtype=Cat
+auto=moveTo(ownerhand) notatarget(creature[green;white]|myBattlefield)
+power=3
+toughness=4
+abilities=flash
+[/card]
+[card]
 text=Forsaken City doesn't untap during your untap step. At the beginning of your upkeep, you may exile a card from your hand. If you do, untap Forsaken City.   {T}: Add one mana of any color to your mana pool.
 id=25893
 name=Forsaken City
@@ -214,16 +253,41 @@ type=Instant
 [/card]
 [card]
 text=When Honorable Scout enters the battlefield, you gain 2 life for each black and/or red creature target opponent controls.
+auto=foreach(creature[black]|opponentBattlefield) life:2 controller
+auto=foreach(creature[red]|opponentBattlefield) life:2 controller
 id=26263
 name=Honorable Scout
 rarity=C
 mana={W}
 type=Creature
 subtype=Human Soldier Scout
-auto=foreach(creature[black]|opponentBattlefield) life:2 controller
-auto=foreach(creature[red]|opponentBattlefield) life:2 controller
 power=1
 toughness=1
+[/card]
+[card]
+text=When Horned Kavu enters the battlefield, return a red or green creature you control to its owner's hand.
+id=25928
+name=Horned Kavu
+rarity=C
+mana={R}{G}
+type=Creature
+subtype=Kavu
+auto=moveTo(ownerhand) notatarget(creature[red;green]|myBattlefield)
+power=3
+toughness=4
+[/card]
+[card]
+text=Flying   When Hunting Drake enters the battlefield, put target red or green creature on top of its owner's library.
+id=22980
+name=Hunting Drake
+rarity=C
+mana={4}{U}
+type=Creature
+subtype=Drake
+auto=moveTo(ownerLibrary) target(creature[red;green]|battlefield)
+power=2
+toughness=2
+abilities=flying
 [/card]
 [card]
 text=Destroy target land.   Draw a card.
@@ -259,6 +323,19 @@ rarity=C
 mana={1}{R}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+text=When Lava Zombie enters the battlefield, return a black or red creature you control to its owner's hand.   {2}: Lava Zombie gets +1/+0 until end of turn.
+id=25927
+name=Lava Zombie
+rarity=C
+mana={1}{B}{R}
+type=Creature
+subtype=Zombie
+auto=moveTo(ownerhand) notatarget(creature[black;red]|myBattlefield)
+auto={2}:1/0
+power=4
+toughness=3
 [/card]
 [card]
 text=Other Zombie creatures get +1/+1.   {1}{B}, {T}: Return target Zombie card from your graveyard to your hand.
@@ -429,6 +506,19 @@ power=2
 toughness=3
 [/card]
 [card]
+text=Trample   When Shivan Wurm enters the battlefield, return a red or green creature you control to its owner's hand.
+id=25924
+name=Shivan Wurm
+rarity=R
+mana={3}{R}{G}
+type=Creature
+subtype=Wurm
+auto=moveTo(ownerhand) notatarget(creature[red;green]|myBattlefield)
+power=7
+toughness=7
+abilities=trample
+[/card]
+[card]
 text=Target creature gains fear until end of turn.
 id=27229
 target=creature
@@ -437,6 +527,19 @@ name=Shriek of Dread
 rarity=C
 mana={1}{B}
 type=Instant
+[/card]
+[card]
+text=Flying   When Silver Drake enters the battlefield, return a white or blue creature you control to its owner's hand.
+id=25925
+name=Silver Drake
+rarity=C
+mana={1}{W}{U}
+type=Creature
+subtype=Drake
+auto=moveTo(ownerhand) notatarget(creature[white;blue]|myBattlefield)
+power=3
+toughness=3
+abilities=flying
 [/card]
 [card]
 text=Lands gain shroud until end of turn. (They can't be the targets of spells or abilities.)   Draw a card.
@@ -472,6 +575,19 @@ power=2
 toughness=2
 [/card]
 [card]
+text=When Sparkcaster enters the battlefield, return a red or green creature you control to its owner's hand.   When Sparkcaster enters the battlefield, it deals 1 damage to target player.
+id=25935
+name=Sparkcaster
+rarity=U
+mana={2}{R}{G}
+type=Creature
+subtype=Kavu
+auto=moveTo(ownerhand) notatarget(creature[red;green]|myBattlefield)
+auto=damage:1 opponent
+power=5
+toughness=3
+[/card]
+[card]
 text=Star Compass enters the battlefield tapped.   {T}: Add to your mana pool one mana of any color a basic land you control could produce.
 id=25880
 name=Star Compass
@@ -484,6 +600,19 @@ auto=aslongas(island|myBattlefield) {T}:Add {U}
 auto=aslongas(swamp|myBattlefield) {T}:Add {B}
 auto=aslongas(mountain|myBattlefield) {T}:Add {R}
 auto=aslongas(forest|myBattlefield) {T}:Add {G}
+[/card]
+[card]
+text=First strike   When Steel Leaf Paladin enters the battlefield, return a green or white creature you control to its owner's hand.
+id=25929
+name=Steel Leaf Paladin
+rarity=C
+mana={4}{G}{W}
+type=Creature
+subtype=Elf Knight
+auto=moveTo(ownerhand) notatarget(creature[green;white]|myBattlefield)
+power=4
+toughness=4
+abilities=first strike
 [/card]
 [card]
 text={R}: Stone Kavu gets +1/+0 until end of turn.   {W}: Stone Kavu gets +0/+1 until end of turn.

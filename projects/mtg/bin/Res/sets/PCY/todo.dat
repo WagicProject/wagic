@@ -341,14 +341,6 @@ text=When Gulf Squid enters the battlefield, tap all lands target player control
 rarity=C
 [/card]
 [card]
-id=24594
-name=Heightened Awareness
-mana={3}{U}{U}
-type=Enchantment
-text=As Heightened Awareness enters the battlefield, discard your hand. At the beginning of your draw step, draw an additional card.
-rarity=R
-[/card]
-[card]
 id=24679
 name=Hollow Warrior
 mana={4}

@@ -276,6 +276,18 @@ toughness=*
 abilities=fear
 [/card]
 [card]
+text=When Cultbrand Cinder enters the battlefield, put a -1/-1 counter on target creature.
+id=142068
+auto=counter(-1/-1) target(creature)
+name=Cultbrand Cinder
+rarity=C
+mana={4}{BR}
+type=Creature
+subtype=Elemental Shaman
+power=3
+toughness=3
+[/card]
+[card]
 text=Enchant creature   At the beginning of each upkeep, tap enchanted creature.
 id=146079
 target=creature
@@ -1074,6 +1086,19 @@ power=3
 toughness=3
 [/card]
 [card]
+text=({2W} can be paid with any two mana or with {W}. This card's converted mana cost is 10.)   Other Scarecrow creatures you control get +1/+1.   Whenever another Scarecrow enters the battlefield under your control, destroy target permanent.
+id=159408
+name=Reaper King
+rarity=R
+mana={2W}{2U}{2B}{2R}{2G}
+type=Legendary Artifact Creature
+subtype=Scarecrow
+auto=lord(creature[scarecrow]|myBattlefield) 1/1 other
+auto=@movedTo(other scarecrow|myBattlefield):destroy target(*)
+power=6
+toughness=6
+[/card]
+[card]
 text=Regenerate target permanent.
 target=*
 auto=regenerate
@@ -1642,6 +1667,19 @@ type=Creature
 subtype=Elemental
 power=3
 toughness=5
+[/card]
+[card]
+text=Trample   When Woodfall Primus enters the battlefield, destroy target noncreature permanent.   Persist (When this creature is put into a graveyard from the battlefield, if it had no -1/-1 counters on it, return it to the battlefield under its owner's control with a -1/-1 counter on it.)
+id=151987
+name=Woodfall Primus
+rarity=R
+mana={5}{G}{G}{G}
+type=Creature
+subtype=Treefolk Shaman
+auto=destroy target(*[-creature])
+power=6
+toughness=6
+abilities=persist,trample
 [/card]
 [card]
 text=Flash

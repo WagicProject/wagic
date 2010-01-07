@@ -98,16 +98,6 @@ type=Instant
 mana={2}{W}
 [/card]
 [card]
-text=Boros Garrison comes into play tapped.     When Boros Garrison comes into play, return a land you control to its owner's hand.     {T}: Add {R}{W} to your mana pool.
-id=83900
-auto=moveto(ownerhand) target(land|myBattlefield)
-auto=tap
-auto={T}: add {R}{W}
-name=Boros Garrison
-rarity=C
-type=Land
-[/card]
-[card]
 text=At the beginning of each opponent's upkeep, remove all cards in your hand from the game face down.     At the beginning of your upkeep, return all cards you own removed from the game with Bottled Cloister to your hand, then draw a card.
 id=89018
 name=Bottled Cloister
@@ -224,12 +214,12 @@ type=Instant
 mana={4}{R}
 [/card]
 [card]
-text=Whenever a nonartifact permanent comes into play under your control, you may return another permanent you control that shares a card type with it to its owner's hand.
+text=Whenever a nonartifact permanent enters the battlefield under your control, you may return another permanent you control that shares a card type with it to its owner's hand.
 id=89089
 name=Cloudstone Curio
 rarity=R
+mana={1}
 type=Artifact
-mana={3}
 [/card]
 [card]
 text=Whenever Coalhauler Swine is dealt damage, it deals that much damage to each player.
@@ -385,13 +375,6 @@ type=Instant
 mana={1}{W}{W}
 [/card]
 [card]
-text=Dimir Aqueduct comes into play tapped.     When Dimir Aqueduct comes into play, return a land you control to its owner's hand.     {T}: Add {U}{B} to your mana pool.
-id=87929
-name=Dimir Aqueduct
-rarity=C
-type=Land
-[/card]
-[card]
 text=Whenever Dimir Cutpurse deals combat damage to a player, that player discards a card and you draw a card.
 id=87906
 name=Dimir Cutpurse
@@ -506,7 +489,6 @@ type=Enchantment
 mana={3}{W}
 subtype=Aura
 [/card]
-
 [card]
 text=Prevent the next X damage that would be dealt to you this turn.     Draw a card.
 id=83884
@@ -665,7 +647,6 @@ power=2
 subtype=Lizard
 toughness=3
 [/card]
-
 [card]
 #to test
 text=Golgari Grave-Troll comes into play with a +1/+1 counter on it for each creature card in your graveyard.     {1}, Remove a +1/+1 counter from Golgari Grave-Troll: Regenerate Golgari Grave-Troll.     Dredge 6
@@ -679,13 +660,6 @@ mana={4}{G}
 power=0
 subtype=Skeleton Troll
 toughness=0
-[/card]
-[card]
-text=Golgari Rot Farm comes into play tapped.     When Golgari Rot Farm comes into play, return a land you control to its owner's hand.     {T}: Add {B}{G} to your mana pool.
-id=87939
-name=Golgari Rot Farm
-rarity=C
-type=Land
 [/card]
 [card]
 text=When Golgari Thug is put into a graveyard from play, put target creature card in your graveyard on top of your library.     Dredge 4 (If you would draw a card, instead you may put exactly four cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
@@ -869,19 +843,6 @@ type=Instant
 mana={2}{U}{U}
 [/card]
 [card]
-#to test
-text=When Infectious Host is put into a graveyard from play, target player loses 2 life.
-id=87966
-auto=@movedto(this|graveyard):damage:2 target(player) #does not work yet
-name=Infectious Host
-rarity=C
-type=Creature
-mana={2}{B}
-power=1
-subtype=Zombie
-toughness=1
-[/card]
-[card]
 text=Enchant creature     Enchanted creature has "At the end of your turn, sacrifice this creature unless it attacked this turn."
 id=88997
 name=Instill Furor
@@ -900,22 +861,6 @@ mana={4}
 power=0
 subtype=Golem
 toughness=6
-[/card]
-[card]
-text=Flying. When Keening Banshee comes into play, target creature gets -2/-2 until end of turn.
-#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
-id=83599
-name=Keening Banshee
-target=creature
-auto=-2/-2 ueot
-rarity=C
-color=Black
-mana={2}{B}{B}
-type=Creature
-subtype=Spirit
-power=2
-toughness=2
-abilities=flying
 [/card]
 [card]
 text=Put a card in your hand on top of your library: Return Leashling to its owner's hand.
@@ -1171,8 +1116,6 @@ rarity=C
 type=Instant
 mana={1}{U}
 [/card]
-
-
 [card]
 text=Counter target spell unless its controller discards his or her hand.     Transmute {1}{U}{B} ({1}{U}{B}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Play only as a sorcery.)
 id=87992
@@ -1375,19 +1318,6 @@ type=Instant
 mana={G}{W}
 [/card]
 [card]
-#to test
-text={1}, {T}, Tap an untapped creature you control: Put a 1/1 green Saproling creature token into play.
-id=87936
-auto={1}{T}:tap (creature[-tapped]|myinplay) && token(Saproling,creature saproling, 1/1, green)
-name=Selesnya Evangel
-rarity=C
-type=Creature
-mana={G}{W}
-power=1
-subtype=Elf Shaman
-toughness=2
-[/card]
-[card]
 text=Reach (This creature can block creatures with flying.)  Selesnya Sagittars can block an additional creature.
 id=83880
 name=Selesnya Sagittars
@@ -1398,14 +1328,6 @@ power=2
 subtype=Elf Archer
 toughness=5
 [/card]
-[card]
-text=Selesnya Sanctuary comes into play tapped.     When Selesnya Sanctuary comes into play, return a land you control to its owner's hand.     {T}: Add {G}{W} to your mana pool.
-id=87963
-name=Selesnya Sanctuary
-rarity=C
-type=Land
-[/card]
-
 [card]
 text=({UB} can be paid with either {U} or {B}.)  Players can't search libraries this turn.     Draw a card.
 id=83827
@@ -1462,20 +1384,6 @@ mana={4}{B}{B}{G}{G}
 power=7
 subtype=Gorgon
 toughness=5
-[/card]
-[card]
-text=When Sparkmage Apprentice comes into play, it deals 1 damage to target creature or player.
-#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
-id=87967
-name=Sparkmage Apprentice
-target=creature,player
-auto=Damage:1
-rarity=C
-mana={1}{R}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
 [/card]
 [card]
 text=When Spawnbroker comes into play, you may exchange control of target creature you control and target creature with power less than or equal to that creature's power an opponent controls.
@@ -1554,7 +1462,7 @@ mana={3}
 subtype=Equipment
 [/card]
 [card]
-#lifelink ?
+#lifelink ? no!
 text=Whenever Sunhome Enforcer deals combat damage, you gain that much life.     {1}{R}: Sunhome Enforcer gets +1/+0 until end of turn.
 id=89070
 name=Sunhome Enforcer
@@ -1618,7 +1526,6 @@ power=2
 subtype=Human Wizard
 toughness=2
 [/card]
-
 [card]
 text={1}, Sacrifice a creature: Look at the top two cards of target opponent's library, then remove one of them from the game.
 id=83576
@@ -1637,19 +1544,6 @@ name=Three Dreams
 rarity=R
 type=Sorcery
 mana={4}{W}
-[/card]
-[card]
-#to test
-text={T}: Target creature can't attack or block this turn.
-id=83611
-name=Thundersong Trumpeter
-auto={T}:cantattack && cantblock target(creature)
-rarity=C
-type=Creature
-mana={R}{W}
-power=2
-subtype=Human Soldier
-toughness=1
 [/card]
 [card]
 text=Defender (This creature can't attack.)  Sacrifice three lands: Torpid Moloch loses defender until end of turn.
@@ -1701,18 +1595,6 @@ type=Sorcery
 mana={4}{U}{B}
 [/card]
 [card]
-text=When Vedalken Dismisser comes into play, put target creature on top of its owner's library.
-auto=moveTo(ownerLibrary) target(creature) #Can't target anything when come into play unless it is a "may" ability
-id=87898
-name=Vedalken Dismisser
-rarity=C
-type=Creature
-mana={5}{U}
-power=2
-subtype=Vedalken Wizard
-toughness=2
-[/card]
-[card]
 text=Return target creature card from your graveyard to play. If {G} was spent to play Vigor Mortis, that creature comes into play with an additional +1/+1 counter on it.
 id=88986
 name=Vigor Mortis
@@ -1731,7 +1613,6 @@ power=5
 subtype=Human Berserker
 toughness=5
 [/card]
-
 [card]
 text={2}, Sacrifice Voyager Staff: Remove target creature from the game. Return the removed card to play under its owner's control at end of turn.
 id=88991
@@ -1740,7 +1621,6 @@ rarity=U
 type=Artifact
 mana={1}
 [/card]
-
 [card]
 text=Each player shuffles all permanents he or she owns into his or her library, then reveals that many cards from the top of his or her library. Each player puts all artifact, creature, and land cards revealed this way into play, then puts all enchantment cards revealed this way into play, then puts all cards revealed this way that weren't put into play on the bottom of his or her library in any order.
 id=89084

@@ -1058,19 +1058,6 @@ subtype=Yeti
 toughness=3
 [/card]
 [card]
-text=When Kjeldoran Dead comes into play, sacrifice a creature.     {B}: Regenerate Kjeldoran Dead.
-id=2461
-auto=bury target(creature|myinplay)
-auto={B}:regenerate
-name=Kjeldoran Dead
-rarity=C
-type=Creature
-mana={B}
-power=3
-subtype=Skeleton
-toughness=1
-[/card]
-[card]
 text={T}: Target creature gets +2/+2 until end of turn. When that creature leaves play this turn, sacrifice Kjeldoran Elite Guard. Play this ability only during combat.
 id=2694
 name=Kjeldoran Elite Guard

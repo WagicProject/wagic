@@ -21,22 +21,6 @@ text=Whenever ÁEherplasm blocks a creature, you may return ÁEherplasm to its o
 rarity=U
 [/card]
 [card]
-text=Flying   When Angel of Despair enters the battlefield, destroy target permanent.
-target=*
-#Does not work currently. "When ... enters the battlefield ... target..." does not work unless there is a "may" condition
-auto=destroy
-id=83869
-name=Angel of Despair
-color=White,Black
-rarity=R
-mana={3}{W}{W}{B}{B}
-type=Creature
-subtype=Angel
-power=5
-toughness=5
-abilities=flying
-[/card]
-[card]
 id=96964
 name=Battering Wurm
 mana={6}{G}
@@ -387,14 +371,6 @@ text=When Gruul Scrapper enters the battlefield, if {R} was spent to cast Gruul 
 rarity=C
 [/card]
 [card]
-id=97223
-name=Gruul Turf
-mana=
-type=Land
-text=Gruul Turf enters the battlefield tapped. When Gruul Turf enters the battlefield, return a land you control to its owner's hand. {T}: Add {R}{G} to your mana pool.
-rarity=C
-[/card]
-[card]
 id=107098
 name=Gruul War Plow
 mana={4}
@@ -466,28 +442,6 @@ mana={X}{U}{U}{R}
 type=Sorcery
 text=Choose one - Draw X cards; or Invoke the Firemind deals X damage to target creature or player.
 rarity=R
-[/card]
-[card]
-id=97220
-name=Izzet Boilerworks
-mana=
-type=Land
-text=Izzet Boilerworks enters the battlefield tapped. When Izzet Boilerworks enters the battlefield, return a land you control to its owner's hand. {T}: Add {U}{R} to your mana pool.
-rarity=C
-[/card]
-[card]
-id=97202
-name=Izzet Chronarch
-mana={3}{U}{R}
-type=Creature
-subtype=Human Wizard
-power=2
-toughness=2
-text=When Izzet Chronarch enters the battlefield, return target instant or sorcery card from your graveyard to your hand.
-#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
-target=instant,sorcery
-auto=moveTo(myhand)
-rarity=C
 [/card]
 [card]
 id=96966

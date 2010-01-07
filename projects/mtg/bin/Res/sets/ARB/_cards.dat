@@ -443,7 +443,7 @@ rarity=U
 mana={1}{G}{U}
 type=Creature
 subtype=Beast
-auto=moveTo(ownerlibrary) target(creature|myBattlefield)
+auto=moveTo(ownerlibrary) notatarget(creature|myBattlefield)
 power=5
 toughness=6
 [/card]

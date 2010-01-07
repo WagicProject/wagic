@@ -77,17 +77,6 @@ text=When Corrupt Court Official enters the battlefield, target opponent discard
 rarity=U
 [/card]
 [card]
-id=10734
-name=Corrupt Eunuchs
-mana={3}{R}
-type=Creature
-subtype=Human Advisor
-power=2
-toughness=2
-text=When Corrupt Eunuchs enters the battlefield, it deals 2 damage to target creature.
-rarity=U
-[/card]
-[card]
 id=10628
 name=Counterintelligence
 mana={2}{U}{U}
@@ -261,17 +250,6 @@ name=Rally the Troops
 mana={W}
 type=Instant
 text=Cast Rally the Troops only during the declare attackers step and only if you've been attacked this step. Untap all creatures you control.
-rarity=U
-[/card]
-[card]
-id=13805
-name=Ravaging Horde
-mana={3}{R}{R}
-type=Creature
-subtype=Human Soldier
-power=3
-toughness=3
-text=When Ravaging Horde enters the battlefield, destroy target land.
 rarity=U
 [/card]
 [card]

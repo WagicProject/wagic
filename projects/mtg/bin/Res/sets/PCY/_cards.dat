@@ -17,9 +17,9 @@ toughness=1
 [/card]
 [card]
 text=Flash   Enchant creature   Enchanted creature has shroud. (It can't be the target of spells or abilities.)
+id=24579
 target=creature
 auto=shroud
-id=24579
 name=Alexi's Cloak
 rarity=C
 mana={1}{U}
@@ -132,22 +132,22 @@ toughness=2
 [/card]
 [card]
 text=Fen Stalker has fear as long as you control no untapped lands.
-auto=aslongas(land[-tapped]|myBattlefield) -fear
 id=24602
 name=Fen Stalker
 rarity=C
 mana={3}{B}
 type=Creature
 subtype=Nightstalker
+auto=aslongas(land[-tapped]|myBattlefield) -fear
 power=3
 toughness=2
 abilities=fear
 [/card]
 [card]
 text=Flash   Enchant creature   Enchanted creature -3/-0.
+id=24604
 target=creature
 auto=-3/-0
-id=24604
 name=Greel's Caress
 rarity=C
 mana={1}{B}
@@ -166,6 +166,16 @@ type=Creature
 subtype=Homunculus Illusion
 power=1
 toughness=1
+[/card]
+[card]
+text=As Heightened Awareness enters the battlefield, discard your hand. At the beginning of your draw step, draw an additional card.
+id=24594
+auto=moveTo(mygraveyard) all(*|myhand)
+auto=@each my draw:draw:1
+name=Heightened Awareness
+rarity=R
+mana={3}{U}{U}
+type=Enchantment
 [/card]
 [card]
 text=Flash   Enchant creature   

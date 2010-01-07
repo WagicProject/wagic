@@ -1,17 +1,4 @@
 [card]
-text=When Accursed Centaur enters the battlefield, sacrifice a creature.
-target=creature[myBattlefield] ## this is different from r954, this is wrong, destroy and sacrifce is different.
-auto=destroy
-id=26715
-name=Accursed Centaur
-mana={B}
-type=Creature
-subtype=Zombie Centaur
-power=2
-toughness=2
-rarity=C
-[/card]
-[card]
 id=40195
 name=Aggravated Assault
 mana={2}{R}

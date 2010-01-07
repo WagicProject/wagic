@@ -29,6 +29,19 @@ power=2
 toughness=2
 [/card]
 [card]
+text=Flying   When Aven Fogbringer enters the battlefield, return target land to its owner's hand.
+id=21275
+name=Aven Fogbringer
+rarity=C
+mana={3}{U}
+type=Creature
+subtype=Bird Wizard
+auto=moveTo(ownerhand) target(land|battlefield)
+power=2
+toughness=1
+abilities=flying
+[/card]
+[card]
 text=Minion creatures get +1/+1.   {B}{B}{B}, Exile Balthor the Defiled: Each player returns all black and all red creature cards from his or her graveyard to the battlefield.
 id=20842
 name=Balthor the Defiled
@@ -255,6 +268,18 @@ toughness=3
 abilities=flying
 [/card]
 [card]
+text=When Goretusk Firebeast enters the battlefield, it deals 4 damage to target player.
+id=34917
+name=Goretusk Firebeast
+rarity=C
+mana={5}{R}
+type=Creature
+subtype=Elemental Boar Beast
+auto=damage:4 target(player)
+power=2
+toughness=2
+[/card]
+[card]
 text=Target creature gets +1/+0 and gains first strike until end of turn.   Draw a card.
 id=36431
 target=creature
@@ -265,6 +290,18 @@ name=Guided Strike
 rarity=C
 mana={1}{W}
 type=Instant
+[/card]
+[card]
+text=When Ironshell Beetle enters the battlefield, put a +1/+1 counter on target creature.
+id=34758
+name=Ironshell Beetle
+rarity=C
+mana={1}{G}
+type=Creature
+subtype=Insect
+auto=counter(1/1) target(creature)
+power=1
+toughness=1
 [/card]
 [card]
 text=First strike, haste.   {T}: Jeska, Warrior Adept deals 1 damage to target creature or player.
@@ -453,6 +490,18 @@ type=Creature
 subtype=Wurm
 power=6
 toughness=6
+[/card]
+[card]
+text=Enchant creature   When Unquestioned Authority enters the battlefield, draw a card.   Enchanted creature has protection from creatures.
+id=24541
+target=creature
+auto=draw:1 controller
+auto=protection from(creature)
+name=Unquestioned Authority
+rarity=U
+mana={2}{W}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 text=Threshold - As long as seven or more cards are in your graveyard, Vigilant Sentry gets +1/+1 and has "{T}: Target attacking or blocking creature gets +3/+3 until end of turn."

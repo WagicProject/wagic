@@ -59,14 +59,6 @@ text=Whenever a permanent is returned to your hand, you may pay {1}. If you do, 
 rarity=U
 [/card]
 [card]
-id=97087
-name=Azorius Chancery
-mana=
-type=Land
-text=Azorius Chancery enters the battlefield tapped. When Azorius Chancery enters the battlefield, return a land you control to its owner's hand. {T}: Add {W}{U} to your mana pool.
-rarity=C
-[/card]
-[card]
 id=97077
 name=Azorius Guildmage
 mana={WU}{WU}
@@ -934,16 +926,6 @@ text=First strike {T}: Reveal your hand and discard a card of target opponent's 
 rarity=R
 [/card]
 [card]
-id=97082
-name=Rakdos Carnarium
-mana=
-type=Land
-text=Rakdos Carnarium enters the battlefield tapped. When Rakdos Carnarium enters the battlefield, return a land you control to its owner's hand. {T}: Add {B}{R} to your mana pool.
-auto=moveTo(ownerhand) target(land)
-auto={T}:add:{B}{R}
-rarity=C
-[/card]
-[card]
 id=97108
 name=Rakdos Guildmage
 mana={BR}{BR}
@@ -1035,17 +1017,6 @@ power=0
 toughness=0
 text=Graft 3 (This creature enters the battlefield with three +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) {1}{G}: Until end of turn, target creature with a +1/+1 counter on it gains "Whenever this creature deals combat damage to a creature, destroy that creature at end of combat."
 rarity=U
-[/card]
-[card]
-id=97089
-name=Simic Growth Chamber
-mana=
-type=Land
-text=Simic Growth Chamber enters the battlefield tapped. When Simic Growth Chamber enters the battlefield, return a land you control to its owner's hand. {T}: Add {G}{U} to your mana pool.
-auto=moveTo(ownerhand) target(land)
-auto=tap
-auto={T}:addd:{G}{U}
-rarity=C
 [/card]
 [card]
 id=97078

@@ -70,19 +70,6 @@ toughness=4
 rarity=R
 [/card]
 [card]
-text=Whenever you cast a Spirit or Arcane spell, put a +1/+1 counter on target creature.
-name=Briarknit Kami
-id=74163
-mana={3}{G}{G}
-#target does not work in @ auto line, unless there is a may
-auto=@movedto(arcane,spirit|mystack):counter(1/1,1) target(creature)
-type=Creature
-subtype=Spirit
-power=3
-toughness=3
-rarity=U
-[/card]
-[card]
 text=When Burning-Eye Zubera is put into a graveyard from the battlefield, if 4 or more damage was dealt to it this turn, Burning-Eye Zubera deals 3 damage to target creature or player.
 name=Burning-Eye Zubera
 id=50234
@@ -590,18 +577,6 @@ toughness=3
 rarity=U
 [/card]
 [card]
-text=When Kiri-Onna enters the battlefield, return target creature to its owner's hand. Whenever you cast a Spirit or Arcane spell, you may return Kiri-Onna to its owner's hand.
-name=Kiri-Onna
-id=84704
-mana={4}{U}
-auto=@movedto(arcane,spirit|mystack):
-type=Creature
-subtype=Spirit
-power=2
-toughness=2
-rarity=U
-[/card]
-[card]
 text={T}: Prevent the next 3 damage that would be dealt to target creature this turn. Activate this ability only if you have more cards in hand than each opponent.
 name=Kitsune Bonesetter
 id=74046
@@ -789,18 +764,6 @@ id=87601
 mana={4}{B}{B}
 type=Sorcery
 rarity=R
-[/card]
-[card]
-text=When Nikko-Onna enters the battlefield, destroy target enchantment. Whenever you cast a Spirit or Arcane spell, you may return Nikko-Onna to its owner's hand.
-name=Nikko-Onna
-id=84639
-mana={2}{W}
-auto=@movedto(arcane,spirit|mystack):
-type=Creature
-subtype=Spirit
-power=2
-toughness=2
-rarity=U
 [/card]
 [card]
 text=Flying {2}, Return a land you control to its owner's hand: Untap target land.
@@ -1201,16 +1164,4 @@ id=74130
 mana={3}
 type=Artifact
 rarity=R
-[/card]
-[card]
-text=When Yuki-Onna enters the battlefield, destroy target artifact. Whenever you cast a Spirit or Arcane spell, you may return Yuki-Onna to its owner's hand.
-name=Yuki-Onna
-id=84712
-mana={3}{R}
-auto=@movedto(arcane,spirit|mystack):may moveto(ownerhand)
-type=Creature
-subtype=Spirit
-power=3
-toughness=1
-rarity=U
 [/card]

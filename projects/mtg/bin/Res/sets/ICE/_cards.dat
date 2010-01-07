@@ -765,6 +765,19 @@ power=1
 toughness=1
 [/card]
 [card]
+text=When Kjeldoran Dead enters the battlefield, sacrifice a creature.   {B}: Regenerate Kjeldoran Dead.
+id=2461
+name=Kjeldoran Dead
+rarity=C
+mana={B}
+type=Creature
+subtype=Skeleton
+auto=bury notatarget(creature|myBattlefield)
+auto={B}:regenerate
+power=3
+toughness=1
+[/card]
+[card]
 text=Whenever Kjeldoran Frostbeast blocks or becomes blocked by a creature, destroy that creature at end of combat.
 id=2732
 alias=1267

@@ -63,6 +63,18 @@ power=7
 toughness=3
 [/card]
 [card]
+text=Whenever you cast a Spirit or Arcane spell, put a +1/+1 counter on target creature.
+name=Briarknit Kami
+id=74163
+rarity=U
+mana={3}{G}{G}
+type=Creature
+subtype=Spirit
+auto=@movedto(arcane,spirit|mystack):counter(1/1) target(creature)
+power=3
+toughness=3
+[/card]
+[card]
 text={R}: Target creature gets +1/+0 until end of turn.
 id=88810
 auto={R}:1/0 target(creature)
@@ -141,7 +153,6 @@ toughness=3
 [card]
 text=Gaze of Adamaro deals damage equal to the number of cards in target player's hand to that player.
 id=89401
-
 target=player
 alias=129750
 name=Gaze of Adamaro
@@ -295,16 +306,30 @@ mana={B}{B}
 type=Sorcery
 [/card]
 [card]
+text=When Kiri-Onna enters the battlefield, return target creature to its owner's hand.   Whenever you cast a Spirit or Arcane spell, you may return Kiri-Onna to its owner's hand.
+name=Kiri-Onna
+id=84704
+name=Kiri-Onna
+mana={4}{U}
+type=Creature
+subtype=Spirit
+auto=moveTo(ownerhand) target(creature)
+auto=@movedto(arcane,spirit|mystack):may moveTo(ownerhand)
+power=2
+toughness=2
+rarity=U
+[/card]
+[card]
 text={1}{W}: Kitsune Loreweaver gets +0/+X until end of turn, where X is the number of cards in your hand.
-name=Kitsune Loreweaver
 id=74213
+name=Kitsune Loreweaver
+rarity=C
 mana={1}{W}
-auto={1}{W}:foreach(*|myhand)0/1
 type=Creature
 subtype=Fox Cleric
+auto={1}{W}:foreach(*|myhand) 0/1
 power=2
 toughness=1
-rarity=C
 [/card]
 [card]
 text=Masumaro, First to Live's power and toughness are each equal to twice the number of cards in your hand.
@@ -360,6 +385,19 @@ subtype=Spirit
 auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=5]|mygraveyard)
 power=6
 toughness=4
+[/card]
+[card]
+text=When Nikko-Onna enters the battlefield, destroy target enchantment. Whenever you cast a Spirit or Arcane spell, you may return Nikko-Onna to its owner's hand.
+id=84639
+name=Nikko-Onna
+rarity=U
+mana={2}{W}
+type=Creature
+subtype=Spirit
+auto=destroy target(enchantment)
+auto=@movedto(arcane,spirit|mystack):may moveTo(ownerhand)
+power=2
+toughness=2
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.   {1}: Return Oboro, Palace in the Clouds to its owner's hand.
@@ -595,4 +633,17 @@ auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(ot
 power=3
 toughness=3
 abilities=vigilance
+[/card]
+[card]
+text=When Yuki-Onna enters the battlefield, destroy target artifact. Whenever you cast a Spirit or Arcane spell, you may return Yuki-Onna to its owner's hand.
+id=84712
+name=Yuki-Onna
+rarity=U
+mana={3}{R}
+type=Creature
+subtype=Spirit
+auto=destroy target(artifact)
+auto=@movedto(arcane,spirit|mystack):may moveto(ownerhand)
+power=3
+toughness=1
 [/card]

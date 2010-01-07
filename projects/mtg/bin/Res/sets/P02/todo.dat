@@ -51,17 +51,6 @@ text=Flying When Angel of Fury is put into your graveyard from the battlefield, 
 rarity=R
 [/card]
 [card]
-id=6544
-name=Coastal Wizard
-mana={2}{U}{U}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
-text={T}: Return Coastal Wizard and another target creature to their owners' hands. Activate this ability only during your turn, before attackers are declared.
-rarity=R
-[/card]
-[card]
 id=6570
 name=Coercion
 mana={2}{B}
@@ -121,17 +110,6 @@ name=Eye Spy
 mana={U}
 type=Sorcery
 text=Look at the top card of target player's library. You may put that card into his or her graveyard.
-rarity=U
-[/card]
-[card]
-id=6568
-name=Foul Spirit
-mana={2}{B}
-type=Creature
-subtype=Spirit
-power=3
-toughness=2
-text=Flying When Foul Spirit enters the battlefield, sacrifice a land.
 rarity=U
 [/card]
 [card]
@@ -243,17 +221,6 @@ power=2
 toughness=2
 text=Whenever Norwood Warrior becomes blocked, it gets +1/+1 until end of turn.
 rarity=C
-[/card]
-[card]
-id=6595
-name=Ogre Arsonist
-mana={4}{R}
-type=Creature
-subtype=Ogre
-power=3
-toughness=3
-text=When Ogre Arsonist enters the battlefield, destroy target land.
-rarity=U
 [/card]
 [card]
 id=6550

@@ -55,6 +55,16 @@ mana={3}{R}{R}
 type=Enchantment
 [/card]
 [card]
+text=Boros Garrison enters the battlefield tapped.   When Boros Garrison enters the battlefield, return a land you control to its owner's hand.   {T}: Add {R}{W} to your mana pool.
+id=83900
+name=Boros Garrison
+auto=tap
+auto=moveto(ownerhand) notatarget(land|myBattlefield)
+auto={T}:Add {R}{W}
+rarity=C
+type=Land
+[/card]
+[card]
 text=({RW} can be paid with either {R} or {W}.) {1}{R}: Target creature gains haste until end of turn.   {1}{W}: Target creature gains first strike until end of turn.
 id=87918
 name=Boros Guildmage
@@ -203,6 +213,16 @@ name=Dark Heart of the Wood
 rarity=U
 mana={B}{G}
 type=Enchantment
+[/card]
+[card]
+text=Dimir Aqueduct enters the battlefield tapped.   When Dimir Aqueduct enters the battlefield, return a land you control to its owner's hand.   {T}: Add {U}{B} to your mana pool.
+id=87929
+name=Dimir Aqueduct
+auto=tap
+auto=moveto(ownerhand) notatarget(land|myBattlefield)
+auto={T}:Add {U}{B}
+rarity=C
+type=Land
 [/card]
 [card]
 text=Fear   Sacrifice a creature: Regenerate Dimir House Guard.     Transmute {1}{B}{B} ({1}{B}{B}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Transmute only as a sorcery.)
@@ -536,6 +556,16 @@ power=2
 toughness=2
 [/card]
 [card]
+text=Golgari Rot Farm enters the battlefield tapped.   When Golgari Rot Farm enters the battlefield, return a land you control to its owner's hand.   {T}: Add {B}{G} to your mana pool.
+id=87939
+name=Golgari Rot Farm
+auto=tap
+auto=moveto(ownerhand) notatarget(land|myBattlefield)
+auto={T}:Add {B}{G}
+rarity=C
+type=Land
+[/card]
+[card]
 text={B}, Sacrifice a creature: Target player loses 1 life.
 id=89038
 auto={B}{S(creature|myBattlefield)}:life:-1 target(player)
@@ -591,6 +621,18 @@ subtype=Elemental
 auto={1}{R}:3/-3
 power=3
 toughness=4
+[/card]
+[card]
+text=When Infectious Host is put into a graveyard from the battlefield, target player loses 2 life.
+id=87966
+auto=@movedTo(this|graveyard) from(battlefield):life:-2 target(player)
+name=Infectious Host
+rarity=C
+mana={2}{B}
+type=Creature
+subtype=Zombie
+power=1
+toughness=1
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
@@ -651,6 +693,19 @@ subtype=Dryad Shaman
 auto={T}:forestwalk target(creature)
 power=1
 toughness=2
+[/card]
+[card]
+text=Flying   When Keening Banshee enters the battlefield, target creature gets -2/-2 until end of turn.
+id=83599
+name=Keening Banshee
+rarity=C
+mana={2}{B}{B}
+type=Creature
+subtype=Spirit
+auto=-2/-2 target(creature) ueot
+power=2
+toughness=2
+abilities=flying
 [/card]
 [card]
 text=Target creature gets -3/-3 until end of turn.
@@ -854,13 +909,13 @@ subtype=Plains
 [/card]
 [card]
 text=Whenever you cast a creature spell, you may draw a card.
-auto=@movedTo(creature|mystack):may draw:1
 id=89083
 name=Primordial Sage
 rarity=R
 mana={4}{G}{G}
 type=Creature
 subtype=Spirit
+auto=@movedTo(creature|mystack):may draw:1
 power=4
 toughness=5
 [/card]
@@ -884,9 +939,9 @@ mana={X}{U}{B}
 [/card]
 [card]
 text=Destroy target artifact or creature. It can't be regenerated.
+id=89063
 target=creature,artifact
 auto=bury
-id=89063
 name=Putrefy
 rarity=U
 mana={1}{B}{G}
@@ -903,8 +958,9 @@ type=Sorcery
 [/card]
 [card]
 text=Return target card from your graveyard to your hand.
-auto=moveto(myHand) target(*|myGraveyard)
 id=88966
+target=*|myGraveyard
+auto=moveto(myHand)
 name=Recollect
 rarity=U
 mana={2}{G}
@@ -936,39 +992,61 @@ subtype=Mountain Plains
 [/card]
 [card]
 text=Scion of the Wild's power and toughness are each equal to the number of creatures you control.
-id=83647
-auto=foreach(creature|myBattlefield) 1/1 
+id=83647 
 name=Scion of the Wild
 rarity=R
 mana={1}{G}{G}
 type=Creature
 subtype=Avatar
+auto=foreach(creature|myBattlefield) 1/1
 power=*
 toughness=*
 [/card]
 [card]
 text=Destroy target land. Add {R}{R} to your mana pool.
+id=83829
 target=land
 auto=destroy
 auto=Add{R}{R} controller
-id=83829
 name=Seismic Spike
 rarity=C
 mana={2}{R}{R}
 type=Sorcery
 [/card]
 [card]
+text={1}, {T}, Tap an untapped creature you control: Put a 1/1 green Saproling creature token onto the battlefield.
+auto={1}{T}:tap notatarget(creature[-tapped]|myBattlefield) && token(Saproling,creature saproling, 1/1, green)
+id=87936
+name=Selesnya Evangel
+rarity=C
+mana={G}{W}
+type=Creature
+subtype=Elf Shaman
+power=1
+toughness=2
+[/card]
+[card]
 text=({GW} can be paid with either {G} or {W}.)  {3}{G}: Put a 1/1 green Saproling creature token onto the battlefield.   {3}{W}: Creatures you control get +1/+1 until end of turn.
-id=87988
-auto={3}{G}:token(saproling,creature saproling,1/1,green)
-auto={3}{W}:lord(creature|myBattlefield) 1/1 
+id=87988 
 name=Selesnya Guildmage
 rarity=U
 mana={GW}{GW}
 type=Creature
 subtype=Elf Wizard
+auto={3}{G}:token(saproling,creature saproling,1/1,green)
+auto={3}{W}:lord(creature|myBattlefield) 1/1
 power=2
 toughness=2
+[/card]
+[card]
+text=Selesnya Sanctuary enters the battlefield tapped.   When Selesnya Sanctuary enters the battlefield, return a land you control to its owner's hand.   {T}: Add {G}{W} to your mana pool.
+id=87963
+name=Selesnya Sanctuary
+auto=tap
+auto=moveto(ownerhand) notatarget(land|myBattlefield)
+auto={T}:Add {G}{W}
+rarity=C
+type=Land
 [/card]
 [card]
 text={1}, {T}: Add {G}{W} to your mana pool.
@@ -1018,10 +1096,10 @@ abilities=flying,haste
 [/card]
 [card]
 text=Destroy target artifact.   Draw a card.
+id=83646
 target=artifact
 auto=destroy
-auto=draw:1
-id=83646
+auto=draw:1 controller
 name=Smash
 rarity=C
 mana={2}{R}
@@ -1038,6 +1116,18 @@ subtype=Drake
 power=3
 toughness=2
 abilities=flying
+[/card]
+[card]
+text=When Sparkmage Apprentice enters the battlefield, it deals 1 damage to target creature or player.
+id=87967
+name=Sparkmage Apprentice
+rarity=C
+mana={1}{R}
+type=Creature
+subtype=Human Wizard
+auto=Damage:1 target(creature,player)
+power=1
+toughness=1
 [/card]
 [card]
 text=Whenever a land enters the battlefield under your control, untap Stone-Seeder Hierophant.   {T}: Untap target land.
@@ -1161,6 +1251,18 @@ mana={1}
 type=Artifact
 [/card]
 [card]
+text={T}: Target creature can't attack or block this turn.
+id=83611
+name=Thundersong Trumpeter
+rarity=C
+mana={R}{W}
+type=Creature
+subtype=Human Soldier
+auto={T}:cantattack && cantblock target(creature)
+power=2
+toughness=1
+[/card]
+[card]
 text=Defender (This creature can't attack.)   {4}: Tidewater Minion loses defender until end of turn. {T}: Untap target permanent.
 id=83679
 name=Tidewater Minion
@@ -1224,6 +1326,18 @@ subtype=Beast
 auto={G}:1/1 target(creature)
 power=3
 toughness=3
+[/card]
+[card]
+text=When Vedalken Dismisser enters the battlefield, put target creature on top of its owner's library.
+id=87898
+name=Vedalken Dismisser
+rarity=C
+mana={5}{U}
+type=Creature
+subtype=Vedalken Wizard
+auto=moveTo(ownerLibrary) target(creature)
+power=2
+toughness=2
 [/card]
 [card]
 text={U}, {T}: Target player puts the top two cards of his or her library into his or her graveyard.

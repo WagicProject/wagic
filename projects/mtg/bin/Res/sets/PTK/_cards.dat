@@ -118,6 +118,18 @@ toughness=3
 abilities=horsemanship
 [/card]
 [card]
+text=When Corrupt Eunuchs enters the battlefield, it deals 2 damage to target creature.
+id=10734
+name=Corrupt Eunuchs
+rarity=U
+mana={3}{R}
+type=Creature
+subtype=Human Advisor
+auto=damage:2 target(creature)
+power=2
+toughness=2
+[/card]
+[card]
 text=When Council of Advisors enters the battlefield, draw a card.
 id=10601
 auto=draw:1
@@ -624,6 +636,18 @@ name=Ravages of War
 rarity=R
 mana={3}{W}
 type=Sorcery
+[/card]
+[card]
+text=When Ravaging Horde enters the battlefield, destroy target land.
+id=13805
+name=Ravaging Horde
+rarity=U
+mana={3}{R}{R}
+type=Creature
+subtype=Human Soldier
+auto=destroy target(land)
+power=3
+toughness=3
 [/card]
 [card]
 text=Red Cliffs Armada can't attack unless defending player controls an Island.

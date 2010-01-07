@@ -30,6 +30,19 @@ power=2
 toughness=3
 [/card]
 [card]
+text=Flying   When Angel of Despair enters the battlefield, destroy target permanent.
+id=83869
+name=Angel of Despair
+rarity=R
+mana={3}{W}{W}{B}{B}
+type=Creature
+subtype=Angel
+auto=destroy target(*)
+power=5
+toughness=5
+abilities=flying
+[/card]
+[card]
 text=Trample   Whenever Borborygmos deals combat damage to a player, put a +1/+1 counter on each creature you control.
 id=97229
 name=Borborygmos
@@ -230,8 +243,40 @@ id=96873
 auto=@movedto(this|graveyard) from(mybattlefield):draw:3
 name=Hatching Plans
 rarity=R
-type=Enchantment
 mana={1}{U}
+type=Enchantment
+[/card]
+[card]
+text=Gruul Turf enters the battlefield tapped.   When Gruul Turf enters the battlefield, return a land you control to its owner's hand.   {T}: Add {R}{G} to your mana pool.
+id=97223
+name=Gruul Turf
+auto=tap
+auto=moveTo(ownerhand) notatarget(land|mybattlefield)
+auto={T}:Add{R}{G}
+rarity=C
+type=Land
+[/card]
+[card]
+text=Izzet Boilerworks enters the battlefield tapped.   When Izzet Boilerworks enters the battlefield, return a land you control to its owner's hand.   {T}: Add {U}{R} to your mana pool.
+id=97220
+name=Izzet Boilerworks
+auto=tap
+auto=moveTo(ownerhand) notatarget(land|mybattlefield)
+auto={T}:Add{U}{R}
+rarity=C
+type=Land
+[/card]
+[card]
+text=When Izzet Chronarch enters the battlefield, return target instant or sorcery card from your graveyard to your hand.
+id=97202
+name=Izzet Chronarch
+rarity=C
+mana={3}{U}{R}
+type=Creature
+subtype=Human Wizard
+auto=moveTo(myhand) target(instant,sorcery|mygraveyard)
+power=2
+toughness=2
 [/card]
 [card]
 text={1}, {T}: Add {U}{R} to your mana pool.

@@ -687,3 +687,16 @@ power=6
 toughness=6
 abilities=flying
 [/card]
+[card]
+text=Flash (You may cast this spell any time you could cast an instant.)   When Whitemane Lion enters the battlefield, return a creature you control to its owner's hand.
+id=122477
+name=Whitemane Lion
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Cat
+auto=moveTo(ownerhand) notatarget(creature|myBattlefield)
+power=2
+toughness=2
+abilities=flash
+[/card]

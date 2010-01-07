@@ -181,6 +181,19 @@ mana={1}{B}{R}
 type=Instant
 [/card]
 [card]
+text=Kicker {1}{G} (You may pay an additional {1}{G} as you cast this spell.)  When Benalish Emissary enters the battlefield, if the kicker cost was paid, destroy target land.
+id=22948
+name=Benalish Emissary
+rarity=U
+mana={2}{W}
+kicker={1}{G}
+auto=kicker destroy target(land)
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=4
+[/card]
+[card]
 text={3}{U},{T}: Draw a card.
 id=22947
 name=Benalish Heralds
@@ -428,6 +441,19 @@ subtype=Human Knight
 power=2
 toughness=2
 abilities=protection from black
+[/card]
+[card]
+text=Flying, protection from white   When Crypt Angel enters the battlefield, return target blue or red creature card from your graveyard to your hand.
+id=23320
+name=Crypt Angel
+auto=moveTo(myhand) target(creature[blue;red]|mygraveyard)
+rarity=R
+mana={4}{B}
+type=Creature
+subtype=Angel
+power=3
+toughness=3
+abilities=flying,protection from white 
 [/card]
 [card]
 text=Enchant creature   Enchanted creature gets -1/-1 and has fear.
@@ -1627,6 +1653,19 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+text=Kicker {1}{B} (You may pay an additional {1}{B} as you cast this spell.)   When Shivan Emissary enters the battlefield, if the kicker cost was paid, destroy target nonblack creature. It can't be regenerated.
+id=23084
+name=Shivan Emissary
+rarity=U
+mana={2}{R}
+kicker={1}{B}
+auto=kicker bury target(creature[-black])
+type=Creature
+power=1
+subtype=Human Wizard
+toughness=1
+[/card]
+[card]
 text={1}{R}, Sacrifice a creature: Destroy target nonbasic land.
 auto={1}{R}{S(creature|mybattlefield)}:destroy target(land[-basic])
 id=23091
@@ -2004,7 +2043,7 @@ auto={T}:Add {W}
 type=Artifact
 [/card]
 [card]
-text=Tinder Farm enters the battlefield tapped.   {T}: Add {G} to your mana pool.    {T}, Sacrifice Geothermal Crevice: Add {R}{W} to your mana pool. 
+text=Tinder Farm enters the battlefield tapped.   {T}: Add {G} to your mana pool.   {T}, Sacrifice Geothermal Crevice: Add {R}{W} to your mana pool. 
 auto=tap
 auto={T}:Add {G}
 auto={T}{S}:Add {R}{W}
@@ -2012,6 +2051,20 @@ id=23239
 name=Tinder Farm
 rarity=C
 type=Land
+[/card]
+[card]
+text=Kicker {1}{W} (You may pay an additional {1}{W} as you cast this spell.)   Flying   When Tolarian Emissary enters the battlefield, if the kicker cost was paid, destroy target enchantment.
+id=22991
+name=Tolarian Emissary
+rarity=U
+mana={2}{U}
+kicker={1}{W}
+auto=kicker destroy target(enchantment)
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=2
+abilities=flying
 [/card]
 [card]
 text=Flying   {W}: Tower Drake gets +0/+1 until end of turn.
@@ -2121,14 +2174,27 @@ toughness=3
 abilities=flying,mustattack
 [/card]
 [card]
+text=Kicker {1}{U} (You may pay an additional {1}{U} as you cast this spell.)  When Urborg Emissary enters the battlefield, if the kicker cost was paid, return target permanent to its owner's hand.
+id=23038
+name=Urborg Emissary
+rarity=U
+mana={2}{B}
+kicker={1}{U}
+auto=kicker moveTo(ownerhand) target(*|battlefield))
+type=Creature
+subtype=Human Wizard
+power=3
+toughness=1
+[/card]
+[card]
 text=Other black creatures get -1/-1.
-auto=lord(creature[black]) -1/-1 other
 id=23035
 name=Urborg Shambler
 rarity=U
 mana={2}{B}{B}
 type=Creature
 subtype=Horror
+auto=lord(creature[black]) -1/-1 other
 power=4
 toughness=3
 [/card]
@@ -2171,6 +2237,19 @@ auto={T}:Add {R}
 auto={T}:Add {G}
 power=0
 toughness=2
+[/card]
+[card]
+text=Kicker {1}{R} (You may pay an additional {1}{R} as you cast this spell.)  When Verduran Emissary enters the battlefield, if the kicker cost was paid, destroy target artifact. It can't be regenerated.
+id=23127
+name=Verduran Emissary
+rarity=U
+mana={2}{G}
+kicker={1}{R}
+auto=kicker bury target(artifact)
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=3
 [/card]
 [card]
 text={G}: Viashino Grappler gains trample until end of turn.

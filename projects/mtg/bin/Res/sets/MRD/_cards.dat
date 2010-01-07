@@ -713,6 +713,19 @@ auto=haste
 subtype=Equipment
 [/card]
 [card]
+text=Flying   When Looming Hoverguard enters the battlefield, put target artifact on top of its owner's library.
+id=48114
+name=Looming Hoverguard
+rarity=U
+mana={4}{U}{U}
+type=Creature
+subtype=Drone
+auto=moveTo(ownerLibrary) target(artifact)
+power=3
+toughness=3
+abilities=flying
+[/card]
+[card]
 text={W}, {T}: Regenerate target artifact.
 auto={W}{T}:regenerate target(artifact)
 id=46071
@@ -739,13 +752,13 @@ subtype=Equipment
 [/card]
 [card]
 text=Flying   Whenever an artifact enters the battlefield under your control, you may tap target permanent.
-auto=@movedTo(artifact|myBattlefield):may tap target(*)
 id=45972
 name=Lumengrid Sentinel
 rarity=U
 mana={2}{U}
 type=Creature
 subtype=Human Wizard
+auto=@movedTo(artifact|myBattlefield):may tap target(*)
 power=1
 toughness=2
 abilities=flying
@@ -1095,6 +1108,18 @@ mana={4}{R}{R}
 power=5
 subtype=Ogre
 toughness=4
+[/card]
+[card]
+text=When Rustspore Ram enters the battlefield, destroy target Equipment.
+id=46138
+name=Rustspore Ram
+rarity=U
+mana={4}
+type=Artifact Creature
+subtype=Sheep
+auto=destroy target(equipment)
+power=1
+toughness=3
 [/card]
 [card]
 text=As Sculpting Steel enters the battlefield, you may choose an artifact on the battlefield. If you do, Sculpting Steel enters the battlefield as a copy of that artifact.
@@ -1493,35 +1518,35 @@ mana={4}
 [/card]
 [card]
 text=(Tree of Tales isn't a spell.)  {T}: Add {G} to your mana pool.
-auto={T}:Add{G}
 id=46067
 name=Tree of Tales
+auto={T}:Add{G}
 rarity=C
 type=Land
 subtype=Artifact
 [/card]
 [card]
 text=Troll Ascetic can't be the target of spells or abilities your opponents control.     {1}{G}: Regenerate Troll Ascetic. (The next time this creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
-auto={1}{G}:regenerate
 id=49828
 name=Troll Ascetic
 rarity=R
 mana={1}{G}{G}
 type=Creature
 subtype=Troll Shaman
+auto={1}{G}:regenerate
 power=3
 toughness=2
 abilities=opponentshroud
 [/card]
 [card]
 text={1}{G}: Regenerate target green creature.
-auto={1}{G}:regenerate target(creature[green])
 id=46117
 name=Trolls of Tel-Jilad
 rarity=U
 mana={5}{G}{G}
 type=Creature
 subtype=Troll Shaman
+auto={1}{G}:regenerate target(creature[green])
 power=5
 toughness=6
 [/card]
@@ -1538,39 +1563,51 @@ type=Instant
 [/card]
 [card]
 text=(Vault of Whispers isn't a spell.)  {T}: Add {B} to your mana pool.
-auto={T}:Add{B}
 id=46065
 name=Vault of Whispers
+auto={T}:Add{B}
 rarity=C
 type=Land
 subtype=Artifact
 [/card]
 [card]
 text=Whenever you cast an artifact spell, draw a card.
-auto=@movedTo(artifact|mystack):draw:1 controller
 id=46557
 name=Vedalken Archmage
 rarity=R
 mana={2}{U}{U}
 type=Creature
 subtype=Vedalken Wizard
+auto=@movedTo(artifact|mystack):draw:1 controller
 power=0
 toughness=2
 [/card]
 [card]
 text=Whenever an artifact enters the battlefield, Vermiculos gets +4/+4 until end of turn.
-auto=@movedTo(artifact|myBattlefield):4/4 ueot
 id=47936
 name=Vermiculos
 rarity=R
 mana={4}{B}
 type=Creature
 subtype=Horror
+auto=@movedTo(artifact|myBattlefield):4/4 ueot
 power=1
 toughness=1
 [/card]
 [card]
-text=Equipped creature gets +3/+3.     Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery. This card comes into play unattached and stays in play if the creature leaves play.)
+text=When Viridian Shaman enters the battlefield, destroy target artifact.
+id=46119
+name=Viridian Shaman
+rarity=U
+mana={2}{G}
+type=Creature
+subtype=Elf Shaman
+auto=destroy target(artifact)
+power=2
+toughness=2
+[/card]
+[card]
+text=Equipped creature gets +3/+3.   Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery. This card comes into play unattached and stays in play if the creature leaves play.)
 id=48121
 name=Vulshok Battlegear
 rarity=U

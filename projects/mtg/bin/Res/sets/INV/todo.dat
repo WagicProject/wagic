@@ -102,17 +102,6 @@ type=Instant
 mana={1}{U}
 [/card]
 [card]
-text=Kicker {1}{G} (You may pay an additional {1}{G} as you play this spell.)  When Benalish Emissary comes into play, if the kicker cost was paid, destroy target land.
-id=22948
-name=Benalish Emissary
-rarity=U
-type=Creature
-mana={2}{W}
-power=1
-subtype=Human Wizard
-toughness=4
-[/card]
-[card]
 text=Each player separates all lands he or she controls into two piles. For each player, an opponent chooses a pile. Destroy all lands in the chosen piles. Tap all lands in the other piles.
 id=23099
 name=Bend or Break
@@ -222,21 +211,6 @@ mana={3}{U}{B}{R}
 power=6
 subtype=Dragon
 toughness=6
-[/card]
-[card]
-text=Flying, protection from white. When Crypt Angel comes into play, return target blue or red creature card from your graveyard to your hand.
-id=23320
-name=Crypt Angel
-target=creature[blue;red]|mygraveyard
-#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
-auto=moveTo(myhand)
-rarity=R
-type=Creature
-mana={4}{B}
-power=3
-subtype=Angel
-toughness=3
-abilities=flying,protection from white 
 [/card]
 [card]
 text=Change the text of target spell or permanent by replacing all instances of one color word or basic land type with another until end of turn.       Draw a card.
@@ -993,17 +967,6 @@ type=Enchantment
 mana={2}{U}{B}
 [/card]
 [card]
-text=Kicker {1}{B} (You may pay an additional {1}{B} as you play this spell.)  When Shivan Emissary comes into play, if the kicker cost was paid, destroy target nonblack creature. It can't be regenerated.
-id=23084
-name=Shivan Emissary
-rarity=U
-type=Creature
-mana={2}{R}
-power=1
-subtype=Human Wizard
-toughness=1
-[/card]
-[card]
 text=Kicker {R} (You may pay an additional {R} as you play this spell.)  Trample, haste     At end of turn, sacrifice Skizzik unless the kicker cost was paid.
 id=23096
 name=Skizzik
@@ -1188,17 +1151,6 @@ subtype=Merfolk Wizard
 toughness=1
 [/card]
 [card]
-text=Kicker {1}{W} (You may pay an additional {1}{W} as you play this spell.)    Flying       When Tolarian Emissary comes into play, if the kicker cost was paid, destroy target enchantment.
-id=22991
-name=Tolarian Emissary
-rarity=U
-type=Creature
-mana={2}{U}
-power=1
-subtype=Human Wizard
-toughness=2
-[/card]
-[card]
 text=Enchant creature     As Traveler's Cloak comes into play, choose a land type.     Enchanted creature has landwalk of the chosen type.     When Traveler's Cloak comes into play, draw a card.
 id=22987
 name=Traveler's Cloak
@@ -1273,17 +1225,6 @@ type=Sorcery
 mana={4}{B}{B}
 [/card]
 [card]
-text=Kicker {1}{U} (You may pay an additional {1}{U} as you play this spell.)  When Urborg Emissary comes into play, if the kicker cost was paid, return target permanent to its owner's hand.
-id=23038
-name=Urborg Emissary
-rarity=U
-type=Creature
-mana={2}{B}
-power=3
-subtype=Human Wizard
-toughness=1
-[/card]
-[card]
 text=Urborg Phantom can't block.     {U}: Prevent all combat damage that would be dealt to and dealt by Urborg Phantom this turn.
 id=23018
 name=Urborg Phantom
@@ -1326,17 +1267,6 @@ power=4
 subtype=Treefolk
 toughness=7
 rarity=R
-[/card]
-[card]
-text=Kicker {1}{R} (You may pay an additional {1}{R} as you play this spell.)  When Verduran Emissary comes into play, if the kicker cost was paid, destroy target artifact. It can't be regenerated.
-id=23127
-name=Verduran Emissary
-rarity=U
-type=Creature
-mana={2}{G}
-power=2
-subtype=Human Wizard
-toughness=3
 [/card]
 [card]
 text=Whenever Vicious Kavu attacks, it gets +2/+0 until end of turn.

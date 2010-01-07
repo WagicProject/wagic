@@ -456,6 +456,20 @@ rarity=U
 type=Land
 [/card]
 [card]
+text=Flash (You may cast this spell any time you could cast an instant.)   When Vedalken AEthermage enters the battlefield, return target Sliver to its owner's hand.   Wizardcycling {3} ({3}, Discard this card: Search your library for a Wizard card, reveal it, and put it into your hand. Then shuffle your library.)
+id=130325
+name=Vedalken AEthermage
+rarity=C
+mana={1}{U}
+type=Creature
+subtype=Vedalken Wizard
+autohand={3}{S}:moveTo(myhand) target(wizard|mylibrary)
+auto=moveto(ownerhand) target(sliver)
+power=1
+toughness=2
+abilities=flash
+[/card]
+[card]
 text=Whenever you cast a spell, creatures you control can't be the targets of spells or abilities your opponents control this turn.
 auto=@movedTo(*|mystack):lord(creature|myBattlefield) opponentshroud ueot
 id=136149

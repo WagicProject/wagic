@@ -19,14 +19,14 @@ abilities=swampwalk
 [/card]
 [card]
 text=Target creature gets +3/+3 and gains flying until end of turn.
-target=creature
 id=4370
+target=creature
+auto=3/3
+auto=flying
 name=Angelic Blessing
 rarity=C
 mana={2}{W}
 type=Sorcery
-auto=3/3
-auto=flying
 [/card]
 [card]
 text=Flying, vigilance
@@ -200,9 +200,9 @@ toughness=4
 [/card]
 [card]
 text=Return target creature card from your graveyard to the battlefield.
+id=4378
 target=creature|mygraveyard
 auto=moveTo(myBattlefield)
-id=4378
 name=Breath of Life
 rarity=C
 mana={3}{W}
@@ -222,10 +222,10 @@ abilities=Islandwalk
 [/card]
 [card]
 text=Target creature gets +2/+0 until end of turn. Burning Cloak deals 2 damage to that creature.
+id=4331
 target=creature
 auto=2/0
 auto=damage:2
-id=4331
 name=Burning Cloak
 rarity=C
 mana={R}
@@ -245,10 +245,10 @@ toughness=1
 [/card]
 [card]
 text=Target creature gains flying until end of turn.   Draw a card.
+id=4251
 target=creature
 auto=flying
-auto=draw:1
-id=4251
+auto=draw:1 controller
 name=Cloak of Feathers
 rarity=C
 mana={U}
@@ -425,8 +425,9 @@ type=Sorcery
 [/card]
 [card]
 text=Earthquake deals X damage to each creature without flying and each player.
-alias=1289
 id=4335
+auto=damage:X all(creature[-flying])
+auto=damage:X all(player)
 name=Earthquake
 rarity=R
 mana={X}{R}
@@ -475,6 +476,43 @@ subtype=Nightstalker
 power=2
 toughness=1
 abilities=flying
+[/card]
+[card]
+text=Flying   When Fire Dragon enters the battlefield, it deals damage equal to the number of Mountains you control to target creature.
+id=4336
+name=Fire Dragon
+rarity=R
+mana={6}{R}{R}{R}
+type=Creature
+subtype=Dragon
+auto=foreach(mountain|myBattlefield) damage:1 target(creature)
+power=6
+toughness=6
+abilities=flying
+[/card]
+[card]
+text=When Fire Imp enters the battlefield, it deals 2 damage to target creature.
+id=4337
+name=Fire Imp
+rarity=U
+mana={2}{R}
+type=Creature
+subtype=Imp
+auto=damage:2 target(creature)
+power=2
+toughness=1
+[/card]
+[card]
+text=When Fire Snake is put into a graveyard from the battlefield, destroy target land.
+id=4338
+name=Fire Snake
+rarity=C
+mana={4}{R}
+type=Creature
+subtype=Snake
+auto=@movedTo(this|mygraveyard) from(battlefield):destroy target(land)
+power=3
+toughness=1
 [/card]
 [card]
 text=Fire Tempest deals 6 damage to each creature and each player.
@@ -821,6 +859,18 @@ power=4
 toughness=2
 [/card]
 [card]
+text=When Man-o'-War enters the battlefield, return target creature to its owner's hand.
+id=4266
+name=Man-o'-War
+rarity=U
+mana={2}{U}
+type=Creature
+subtype=Jellyfish
+auto=moveTo(ownerhand) target(creature)
+power=2
+toughness=2
+[/card]
+[card]
 id=4267
 name=Merfolk of the Pearl Trident
 rarity=C
@@ -970,10 +1020,10 @@ type=Sorcery
 [/card]
 [card]
 text=Search your library for a Forest card and put that card onto the battlefield. Then shuffle your library.
-target=Forest|myLibrary
-auto=moveTo(myBattlefield)
 id=4310
 name=Nature's Lore
+target=Forest|myLibrary
+auto=moveTo(myBattlefield)
 rarity=C
 mana={1}{G}
 type=Sorcery
@@ -989,8 +1039,8 @@ type=Sorcery
 [/card]
 [card]
 text=Needle Storm deals 4 damage to each creature with flying.
-auto=damage:4 all(creature[flying])
 id=4311
+auto=damage:4 all(creature[flying])
 name=Needle Storm
 rarity=U
 mana={2}{G}
@@ -1010,7 +1060,8 @@ toughness=3
 text=Destroy target creature. Its owner gains 4 life.
 id=4389
 target=creature
-auto=destroy && life:4 targetController
+auto=destroy
+auto=life:4 targetController
 name=Path of Peace
 rarity=C
 mana={3}{W}
@@ -1027,18 +1078,6 @@ subtype=Illusion Warrior
 power=2
 toughness=2
 abilities=unblockable
-[/card]
-[card]
-text=When Pillaging Horde enters the battlefield, sacrifice it unless you discard a card at random.
-id=4353
-auto=discard:1
-name=Pillaging Horde
-rarity=R
-mana={2}{R}{R}
-type=Creature
-subtype=Human Barbarian
-power=5
-toughness=5
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
@@ -1143,9 +1182,9 @@ abilities=haste
 [/card]
 [card]
 text=Destroy target land.
+id=4235
 target=land
 auto=destroy
-id=4235
 name=Rain of Tears
 rarity=U
 mana={1}{B}{B}
@@ -1153,8 +1192,8 @@ type=Sorcery
 [/card]
 [card]
 text=Return target creature card from your graveyard to your hand.
-target=creature|myGraveyard
 id=4236
+target=creature|myGraveyard
 auto=moveTo(myHand)
 name=Raise Dead
 rarity=C
@@ -1233,25 +1272,25 @@ type=Sorcery
 [/card]
 [card]
 text=When Serpent Assassin enters the battlefield, you may destroy target nonblack creature.
-auto=may destroy target(creature[-black])
 id=4237
 name=Serpent Assassin
 rarity=R
 mana={3}{B}{B}
 type=Creature
 subtype=Snake Assassin
+auto=may destroy target(creature[-black])
 power=2
 toughness=2
 [/card]
 [card]
 text=When Serpent Warrior enters the battlefield, you lose 3 life.
-auto=life:-3
 id=4238
 name=Serpent Warrior
 rarity=C
 mana={2}{B}
 type=Creature
 subtype=Snake Warrior
+auto=life:-3
 power=3
 toughness=3
 [/card]
@@ -1289,10 +1328,10 @@ abilities=flying
 [/card]
 [card]
 text=Soul Shred deals 3 damage to target nonblack creature. You gain 3 life.
+id=4241
 target=creature[-black]
 auto=destroy
 auto=life:3 controller
-id=4241
 name=Soul Shred
 rarity=C
 mana={3}{B}{B}
@@ -1310,13 +1349,13 @@ toughness=4
 [/card]
 [card]
 text=When Spiritual Guardian enters the battlefield, you gain 4 life.
-auto=life:4
 id=4395
 name=Spiritual Guardian
 rarity=R
 mana={3}{W}{W}
 type=Creature
 subtype=Spirit
+auto=life:4
 power=3
 toughness=4
 [/card]
@@ -1365,8 +1404,8 @@ abilities=flying
 [/card]
 [card]
 text=Creatures you control get +0/+3 until end of turn.
-auto=lord(creature|myBattlefield) 0/3
 id=4399
+auto=lord(creature|myBattlefield) 0/3
 name=Steadfastness
 rarity=C
 mana={1}{W}
@@ -1386,9 +1425,9 @@ toughness=2
 [/card]
 [card]
 text=Destroy target land.
+id=4363
 target=land
 auto=destroy
-id=4363
 name=Stone Rain
 rarity=C
 mana={2}{R}
@@ -1444,10 +1483,10 @@ subtype=Swamp
 [/card]
 [card]
 text=Return target creature to its owner's hand.   Draw a card.
+id=4277
 target=creature
 auto=moveTo(ownerhand)
-auto=draw:1
-id=4277
+auto=draw:1 controller
 name=Symbol of Unsummoning
 rarity=C
 mana={2}{U}
@@ -1464,23 +1503,22 @@ type=Sorcery
 [/card]
 [card]
 text=Haste (This creature can attack the turn it comes under your control.)  When Thundermare enters the battlefield, tap all other creatures.
-auto=tap all(creature)
-auto=untap(this)
 id=4364
 name=Thundermare
 rarity=R
 mana={5}{R}
 type=Creature
 subtype=Elemental Horse
+auto=tap all(other creature)
 power=5
 toughness=5
 abilities=haste
 [/card]
 [card]
 text=Put target creature on top of its owner's library.
+id=4282
 target=creature
 auto=moveTo(ownerLibrary)
-id=4282
 name=Time Ebb
 rarity=C
 mana={2}{U}
@@ -1488,8 +1526,8 @@ type=Sorcery
 [/card]
 [card]
 text=Draw two cards.
-auto=draw:2
 id=4283
+auto=draw:2
 name=Touch of Brilliance
 rarity=C
 mana={3}{U}
@@ -1497,8 +1535,8 @@ type=Sorcery
 [/card]
 [card]
 text=White creatures get +2/+0 until end of turn.
-auto=lord(creature[white]) 2/0
 id=4402
+auto=lord(creature[white]) 2/0
 name=Valorous Charge
 rarity=U
 mana={1}{W}{W}
@@ -1506,8 +1544,8 @@ type=Sorcery
 [/card]
 [card]
 text=Creatures you control get +1/+1 until end of turn.
-auto=lord(creature|myBattlefield) 1/1
 id=4406
+auto=lord(creature|myBattlefield) 1/1
 name=Warrior's Charge
 rarity=C
 mana={2}{W}
@@ -1515,9 +1553,9 @@ type=Sorcery
 [/card]
 [card]
 text=Search your library for a basic land card and put that card onto the battlefield. Then shuffle your library.
+id=4323
 target=land[basic]|myLibrary
 auto=moveTo(myBattlefield)
-id=4323
 name=Untamed Wilds
 rarity=U
 mana={2}{G}
@@ -1525,10 +1563,10 @@ type=Sorcery
 [/card]
 [card]
 text=Vampiric Feast deals 4 damage to target creature or player and you gain 4 life.
+id=4243
 target=creature,player
 auto=damage:4
 auto=life:4 controller
-id=4243
 name=Vampiric Feast
 rarity=U
 mana={5}{B}{B}
@@ -1536,9 +1574,9 @@ type=Sorcery
 [/card]
 [card]
 text=Vampiric Touch deals 2 damage to target opponent and you gain 2 life.
+id=4244
 auto=damage:2 opponent
 auto=life:2 controller
-id=4244
 name=Vampiric Touch
 rarity=C
 mana={2}{B}
@@ -1546,21 +1584,21 @@ type=Sorcery
 [/card]
 [card]
 text=When Venerable Monk enters the battlefield, you gain 2 life.
-auto=life:2
 id=4403
 name=Venerable Monk
 rarity=U
 mana={2}{W}
 type=Creature
 subtype=Human Monk Cleric
+auto=life:2
 power=2
 toughness=2
 [/card]
 [card]
 text=Destroy target tapped creature.
+id=4404
 target=creature[tapped]
 auto=destroy
-id=4404
 name=Vengeance
 rarity=U
 mana={3}{W}
@@ -1589,9 +1627,9 @@ abilities=flying,haste
 [/card]
 [card]
 text=Volcanic Hammer deals 3 damage to target creature or player.
+id=4366
 target=creature,player
 auto=Damage:3
-id=4366
 name=Volcanic Hammer
 rarity=C
 mana={1}{R}
@@ -1657,18 +1695,30 @@ abilities=flying
 [/card]
 [card]
 text=Destroy target land.
+id=4326
 target=land
 auto=destroy
-id=4326
 name=Winter's Grasp
 rarity=U
 mana={1}{G}{G}
 type=Sorcery
 [/card]
 [card]
+###Wood Elves ability should stay optional ("may") because when you are searching for sth in your library, the official rules say that you don'T have to find anything even if there is a legal target!
+text=When Wood Elves enters the battlefield, search your library for a Forest card and put that card onto the battlefield. Then shuffle your library.
+id=4327
+name=Wood Elves
+rarity=R
+mana={2}{G}
+type=Creature
+subtype=Elf Scout
+auto=may moveTo(myBattlefield) target(forest|myLibrary)
+power=1
+toughness=1
+[/card]
+[card]
 text=Destroy all creatures. They can't be regenerated.
 auto=bury all(creature)
-alias=1372
 id=4408
 name=Wrath of God
 rarity=R

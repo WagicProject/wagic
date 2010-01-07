@@ -201,6 +201,18 @@ toughness=2
 abilities=reach
 [/card]
 [card]
+text=When Merrow Witsniper enters the battlefield, target player puts the top card of his or her library into his or her graveyard.
+id=152699
+name=Merrow Witsniper
+rarity=C
+mana={U}
+type=Creature
+subtype=Merfolk Rogue
+auto=deplete:1 target(player)
+power=1
+toughness=1
+[/card]
+[card]
 text=Target player discards X cards at random.
 id=157422
 target=player

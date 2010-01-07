@@ -269,6 +269,18 @@ mana={B}
 type=Sorcery
 [/card]
 [card]
+text={T}: Return Coastal Wizard and another target creature to their owners' hands. Activate this ability only during your turn, before attackers are declared.
+id=6544
+name=Coastal Wizard
+rarity=R
+mana={2}{U}{U}
+type=Creature
+subtype=Human Wizard
+auto={T}:moveTo(ownerhand) all(this) && moveTo(ownerhand) target(creature) myTurnOnly
+power=1
+toughness=1
+[/card]
+[card]
 text=Flying
 id=6553
 name=Dakmor Bat
@@ -391,6 +403,19 @@ rarity=L
 auto={T}:Add{G}
 type=Basic Land
 subtype=Forest
+[/card]
+[card]
+text=Flying   When Foul Spirit enters the battlefield, sacrifice a land.
+id=6568
+name=Foul Spirit
+rarity=U
+mana={2}{B}
+type=Creature
+subtype=Spirit
+auto=bury notatarget(land|myBattlefield)
+power=3
+toughness=2
+abilities=flying
 [/card]
 [card]
 id=6587
@@ -711,6 +736,18 @@ type=Creature
 subtype=Giant
 power=4
 toughness=4
+[/card]
+[card]
+text=When Ogre Arsonist enters the battlefield, destroy target land.
+id=6595
+name=Ogre Arsonist
+rarity=U
+mana={4}{R}
+type=Creature
+subtype=Ogre
+auto=destroy target(lad)
+power=3
+toughness=3
 [/card]
 [card]
 text=Haste

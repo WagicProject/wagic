@@ -41,17 +41,6 @@ text=Enchant creature (Target a creature as you cast this. This card enters the 
 rarity=U
 [/card]
 [card]
-id=21275
-name=Aven Fogbringer
-mana={3}{U}
-type=Creature
-subtype=Bird Wizard
-power=2
-toughness=1
-text=Flying When Aven Fogbringer enters the battlefield, return target land to its owner's hand.
-rarity=C
-[/card]
-[card]
 id=34865
 name=Aven Warcraft
 mana={2}{W}
@@ -325,17 +314,6 @@ text=You may choose an artifact or enchantment card you own from outside the gam
 rarity=R
 [/card]
 [card]
-id=34917
-name=Goretusk Firebeast
-mana={5}{R}
-type=Creature
-subtype=Elemental Boar Beast
-power=2
-toughness=2
-text=When Goretusk Firebeast enters the battlefield, it deals 4 damage to target player.
-rarity=C
-[/card]
-[card]
 id=35161
 name=Grave Consequences
 mana={1}{B}
@@ -408,17 +386,6 @@ type=Enchantment
 subtype=Aura
 text=Enchant creature Enchanted creature gets +2/-1. When enchanted creature is put into a graveyard, choose a creature at random Infectious Rage can enchant. Return Infectious Rage to the battlefield attached to that creature.
 rarity=U
-[/card]
-[card]
-id=34758
-name=Ironshell Beetle
-mana={1}{G}
-type=Creature
-subtype=Insect
-power=1
-toughness=1
-text=When Ironshell Beetle enters the battlefield, put a +1/+1 counter on target creature.
-rarity=C
 [/card]
 [card]
 id=36113
@@ -861,15 +828,6 @@ power=2
 toughness=2
 text=Threshold - As long as seven or more cards are in your graveyard, Treacherous Werewolf gets +2/+2 and has "When Treacherous Werewolf is put into a graveyard from the battlefield, you lose 4 life."
 rarity=C
-[/card]
-[card]
-id=24541
-name=Unquestioned Authority
-mana={2}{W}
-type=Enchantment
-subtype=Aura
-text=Enchant creature When Unquestioned Authority enters the battlefield, draw a card. Enchanted creature has protection from creatures.
-rarity=U
 [/card]
 [card]
 id=33719

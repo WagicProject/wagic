@@ -4,6 +4,18 @@ year=2002
 block=Slaughter
 [/meta]
 [card]
+text=When Accursed Centaur enters the battlefield, sacrifice a creature.
+id=26715
+name=Accursed Centaur
+rarity=C
+mana={B}
+type=Creature
+subtype=Zombie Centaur
+auto=bury notatarget(creature|myBattlefield)
+power=2
+toughness=2
+[/card]
+[card]
 text=Whenever a Beast enters the battlefield under your control, you may have it deal 4 damage to target opponent.
 auto=@movedTo(beast|myBattlefield):may damage:4 opponent
 id=12425

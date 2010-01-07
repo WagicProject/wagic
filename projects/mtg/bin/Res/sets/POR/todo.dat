@@ -101,7 +101,6 @@ rarity=U
 type=Instant
 mana={1}{G}
 [/card]
-
 [card]
 text=Until end of turn, black creatures you control can be blocked only by black creatures.
 id=4216
@@ -157,42 +156,6 @@ type=Sorcery
 mana={2}{B}{B}
 [/card]
 [card]
-text=Flying     When Fire Dragon comes into play, it deals damage equal to the number of Mountains you control to target creature.
-id=4336
-name=Fire Dragon
-rarity=R
-type=Creature
-mana={6}{R}{R}{R}
-power=6
-subtype=Dragon
-toughness=6
-[/card]
-[card]
-text=When Fire Imp comes into play, it deals 2 damage to target creature.
-#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
-target=creature
-auto=damage:2
-id=4337
-name=Fire Imp
-rarity=U
-mana={2}{R}
-type=Creature
-subtype=Imp
-power=2
-toughness=1
-[/card]
-[card]
-text=When Fire Snake is put into a graveyard from play, destroy target land.
-id=4338
-name=Fire Snake
-rarity=C
-type=Creature
-mana={4}{R}
-power=3
-subtype=Snake
-toughness=1
-[/card]
-[card]
 text=Each player discards any number of cards, then draws that many cards.     Draw a card.
 id=4262
 name=Flux
@@ -242,20 +205,6 @@ name=Last Chance
 rarity=R
 type=Sorcery
 mana={R}{R}
-[/card]
-[card]
-text=When Man-o'-War comes into play, return target creature to its owner's hand.
-#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
-id=4266
-target=creature
-auto=moveTo(ownerhand)
-name=Man-o'-War
-mana={2}{U}
-rarity=U
-type=Creature
-subtype=Jellyfish
-power=2
-toughness=2
 [/card]
 [card]
 text=When Mercenary Knight comes into play, sacrifice it unless you discard a creature card.
@@ -324,6 +273,19 @@ name=Personal Tutor
 rarity=U
 type=Sorcery
 mana={U}
+[/card]
+[card]
+###Cannot be coded right now! 0.10.1
+text=When Pillaging Horde enters the battlefield, sacrifice it unless you discard a card at random.
+id=4353
+auto=discard:1
+name=Pillaging Horde
+rarity=R
+mana={2}{R}{R}
+type=Creature
+subtype=Human Barbarian
+power=5
+toughness=5
 [/card]
 [card]
 text=When Plant Elemental comes into play, sacrifice it unless you sacrifice a Forest.
@@ -447,7 +409,6 @@ power=4
 subtype=Wurm
 toughness=4
 [/card]
-
 [card]
 text=Tap up to three target creatures without flying.
 id=4281
@@ -475,9 +436,6 @@ power=3
 subtype=Beast
 toughness=2
 [/card]
-
-
-
 [card]
 text=Destroy two target nonblack creatures. You lose 5 life.
 id=4246
@@ -501,16 +459,4 @@ name=Withering Gaze
 rarity=U
 type=Sorcery
 mana={2}{U}
-[/card]
-[card]
-text=When Wood Elves comes into play, search your library for a Forest card and put that card into play. Then shuffle your library.
-auto=moveTo(inPlay) target(forest|myLibrary)
-id=4327
-name=Wood Elves
-rarity=R
-type=Creature
-mana={2}{G}
-power=1
-subtype=Elf Scout
-toughness=1
 [/card]

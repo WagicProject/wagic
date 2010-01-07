@@ -606,6 +606,18 @@ subtype=Merfolk Wizard
 toughness=1
 [/card]
 [card]
+text=When Kinsbaile Skirmisher enters the battlefield, target creature gets +1/+1 until end of turn.
+auto=1/1 target(creature) ueot
+id=143018
+name=Kinsbaile Skirmisher
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Kithkin Soldier
+power=2
+toughness=2
+[/card]
+[card]
 text={G}, {T}: Target attacking creature gets +2/+2 until end of turn.
 auto={G}{T}:2/2 target(creature[attacking])
 id=139498
@@ -1074,6 +1086,18 @@ rarity=C
 mana={4}{W}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+text=When Spiderwig Boggart enters the battlefield, target creature gains fear until end of turn.
+id=146445
+name=Spiderwig Boggart
+rarity=C
+mana={2}{B}
+type=Creature
+subtype=Goblin Shaman
+auto=fear target(creature) ueot
+power=2
+toughness=2
 [/card]
 [card]
 text={T}, Tap an untapped creature you control: Add one mana of any color to your mana pool.

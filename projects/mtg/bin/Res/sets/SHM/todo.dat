@@ -73,7 +73,6 @@ rarity=U
 type=Sorcery
 mana={2B}{2B}{2B}
 [/card]
-
 [card]
 text=Whenever a creature is put into a graveyard from play, if it had a -1/-1 counter on it, put a -1/-1 counter on target creature.
 id=135429
@@ -90,7 +89,6 @@ rarity=R
 type=Enchantment
 mana={4}{W}
 [/card]
-
 [card]
 text=Burn Trail deals 3 damage to target creature or player.     Conspire (As you play this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
 id=158688
@@ -126,7 +124,6 @@ rarity=C
 type=Instant
 mana={U}
 [/card]
-
 [card]
 text={T}: Target player discards a card. Play this ability only during your turn.     Put a -1/-1 counter on Cinderhaze Wretch: Untap Cinderhaze Wretch.
 id=135439
@@ -172,20 +169,6 @@ name=Crimson Wisps
 rarity=C
 type=Instant
 mana={R}
-[/card]
-[card]
-text=When Cultbrand Cinder comes into play, put a -1/-1 counter on target creature.
-#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
-id=142068
-target=creature
-auto=counter(-1/-1,1)
-name=Cultbrand Cinder
-rarity=C
-type=Creature
-mana={4}{BR}
-power=3
-subtype=Elemental Shaman
-toughness=3
 [/card]
 [card]
 text=Sacrifice Cursecatcher: Counter target instant or sorcery spell unless its controller pays {1}.
@@ -1095,17 +1078,6 @@ type=Enchantment
 mana={1}{G}{G}
 [/card]
 [card]
-text=({2W} can be paid with any two mana or with {W}. This card's converted mana cost is 10.)  Other Scarecrow creatures you control get +1/+1.     Whenever another Scarecrow comes into play under your control, destroy target permanent.
-id=159408
-name=Reaper King
-rarity=R
-type=Legendary Artifact Creature
-mana={2W}{2U}{2B}{2R}{2G}
-power=6
-subtype=Scarecrow
-toughness=6
-[/card]
-[card]
 text={T}: Add to your mana pool one mana of any type that a land you control could produce.
 id=152158
 name=Reflecting Pool
@@ -1500,18 +1472,6 @@ mana={4}{G}{G}
 power=9
 subtype=Wurm
 toughness=9
-[/card]
-
-[card]
-text=Trample     When Woodfall Primus comes into play, destroy target noncreature permanent.     Persist (When this creature is put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
-id=151987
-name=Woodfall Primus
-rarity=R
-type=Creature
-mana={5}{G}{G}{G}
-power=6
-subtype=Treefolk Shaman
-toughness=6
 [/card]
 [card]
 text=Return all permanents to their owners' hands. Each player chooses up to seven cards in his or her hand, then shuffles the rest into his or her library. Empty all mana pools.

@@ -961,20 +961,6 @@ subtype=Kithkin Soldier
 toughness=2
 [/card]
 [card]
-text=When Kinsbaile Skirmisher enters the battlefield, target creature gets +1/+1 until end of turn.
-#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
-target=creature
-auto=1/1 ueot
-id=143018
-name=Kinsbaile Skirmisher
-rarity=C
-type=Creature
-mana={1}{W}
-power=2
-subtype=Kithkin Soldier
-toughness=2
-[/card]
-[card]
 text=When Kithkin Harbinger comes into play, you may search your library for a Kithkin card, reveal it, then shuffle your library and put that card on top of it.
 id=139399
 name=Kithkin Harbinger
@@ -1488,20 +1474,6 @@ mana={1}{U}
 power=1
 subtype=Faerie Wizard
 toughness=1
-[/card]
-[card]
-text=When Spiderwig Boggart enters the battlefield, target creature gains fear until end of turn.
-#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
-target=creature
-auto=fear ueot
-id=146445
-name=Spiderwig Boggart
-rarity=C
-type=Creature
-mana={2}{B}
-power=2
-subtype=Goblin Shaman
-toughness=2
 [/card]
 [card]
 text=Hideaway (This land comes into play tapped. When it does, look at the top four cards of your library, remove one from the game face down, then put the rest on the bottom of your library.)  {T}: Add {R} to your mana pool.     {R}, {T}: You may play the removed card without paying its mana cost if an opponent was dealt 7 or more damage this turn.
