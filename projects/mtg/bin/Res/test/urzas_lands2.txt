@@ -10,12 +10,10 @@ inplay:Urza's Mine,Urza's Power Plant,Urza's Tower,Deserted Temple
 [PLAYER2]
 [DO]
 Urza's Tower
-choice 1
 Deserted Temple
 choice 1
 Urza's Tower
 Urza's Tower
-choice 1
 [ASSERT]
 firstmain
 [PLAYER1]

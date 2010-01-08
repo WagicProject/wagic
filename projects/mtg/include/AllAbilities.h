@@ -1746,6 +1746,7 @@ class AAsLongAs:public ListMaintainerAbility{
     updateTargets();
     int size = (int) cards.size();
     if (maxi && size < maxi && (!mini || size > mini)) addAbilityToGame(); //special  case for 0
+    if (ability->oneShot) a = NULL; //allows to call the effect several times
     cards.clear();
     players.clear();
     return 1;

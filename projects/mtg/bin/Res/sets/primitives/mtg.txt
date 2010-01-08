@@ -17,3 +17,23 @@ power=1
 subtype=Human Assassin
 toughness=1
 [/card]
+[card]
+text={T} Add {1} to your mana pool. If you control an Urza's Power-Plant and an Urza's Tower, add {2} to your mana pool instead.
+name=Urza's Mine
+type=Land
+auto={T}:add {1} && aslongas(Urza's Power Plant|myinplay)aslongas(Urza's Tower|myinplay) add{1}
+subtype=Urza's Mine
+[/card]
+[card]
+text={T} Add {1} to your mana pool. If you control an Urza's Mine and an Urza's Tower, add {2} to your mana pool instead.
+name=Urza's Power Plant
+type=Land
+auto={T}:add {1} && aslongas(Urza's Mine|myinplay)aslongas(Urza's Tower|myinplay) add{1}
+subtype=Urza's Power-Plant
+[/card]
+[card]
+text={T} Add {1} to your mana pool. If you control an Urza's Mine and an Urza's Power-Plant, add {3} to your mana pool instead.
+name=Urza's Tower
+type=Land
+auto={T}:add {1} && aslongas(Urza's Power Plant|myinplay)aslongas(Urza's Mine|myinplay) add{2}
+[/card]
