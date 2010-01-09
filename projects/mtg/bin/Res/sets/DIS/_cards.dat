@@ -218,6 +218,18 @@ power=3
 toughness=4
 [/card]
 [card]
+id=107379
+name=Plumes of Peace
+mana={1}{W}{U}
+type=Enchantment
+subtype=Aura
+text=Enchant creature Enchanted creature doesn't untap during its controller's untap step. Forecast - {W}{U}, Reveal Plumes of Peace from your hand: Tap target creature. (Activate this ability only during your upkeep and only once each turn.)
+rarity=C
+target=creature
+auto=doesnotuntap
+autohand={W}{U}:tap target(creature) limit:1 myUpkeepOnly
+[/card]
+[card]
 text=Flying   Pride of the Clouds gets +1/+1 for each other creature with flying on the battlefield.   Forecast - {2}{W}{U}, Reveal Pride of the Clouds from your hand: Put a 1/1 white and blue Bird creature token with flying onto the battlefield. (Activate this ability only during your upkeep and only once each turn.)
 autohand={2}{W}{U}:token(Bird,Creature Bird,1/1,blue,white flying) limit:1 myUpkeepOnly
 id=97097

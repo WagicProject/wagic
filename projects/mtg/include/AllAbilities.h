@@ -463,6 +463,11 @@ public:
     return a;
   }
 
+  int resolve(){
+    counters++;
+    return TargetAbility::resolve();
+  }
+
   int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL){
     if (limitPerTurn && counters >= limitPerTurn) return 0;
     return TargetAbility::isReactingToClick(card,mana);

@@ -1,0 +1,21 @@
+#Bug: Act of Treason doesn't untap
+[INIT]
+UPKEEP
+[PLAYER1]
+inplay:grizzly bears,raging goblin
+hand:plumes of peace
+manapool:{W}{U}{W}{U}
+[PLAYER2]
+[DO]
+plumes of peace
+grizzly bears
+plumes of peace
+raging goblin
+[ASSERT]
+UPKEEP
+[PLAYER1]
+inplay:grizzly bears,raging goblin
+hand:plumes of peace
+manapool:{W}{U}
+[PLAYER2]
+[END]

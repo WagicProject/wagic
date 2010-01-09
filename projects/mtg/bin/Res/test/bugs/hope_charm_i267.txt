@@ -1,0 +1,30 @@
+#Bug: Hope Charm doesn't give first strike to target creature
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+hand:hope charm
+inplay:grizzly bears
+manapool:{W}
+[PLAYER2]
+inplay:hypnotic specter
+[DO]
+#attackers
+hope charm
+choice 0
+grizzly bears
+grizzly bears
+next
+#blockers
+hypnotic specter
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:grizzly bears
+graveyard:hope charm
+[PLAYER2]
+graveyard:hypnotic specter
+[END]
