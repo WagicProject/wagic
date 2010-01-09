@@ -466,6 +466,18 @@ power=4
 toughness=1
 [/card]
 [card]
+text=When Endless Cockroaches is put into a graveyard the battlefield, return Endless Cockroaches to its owner's hand.
+auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(endless cockroaches|mygraveyard)
+id=4220
+name=Endless Cockroaches
+rarity=R
+mana={1}{B}{B}
+type=Creature
+subtype=Insect
+power=1
+toughness=1
+[/card]
+[card]
 text=Flying
 id=4221
 name=Feral Shadow

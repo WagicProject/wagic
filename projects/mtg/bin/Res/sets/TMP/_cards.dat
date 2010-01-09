@@ -287,6 +287,32 @@ toughness=1
 abilities=first strike
 [/card]
 [card]
+text=Flying   When Cloudchaser Eagle enters the battlefield, destroy target enchantment.
+id=4871
+name=Cloudchaser Eagle
+rarity=C
+mana={3}{W}
+type=Creature
+subtype=Bird
+auto=destroy target(enchantment)
+power=2
+toughness=2
+abilities=flying
+[/card]
+[card]
+text=Fear   When Commander Greven il-Vec enters the battlefield, sacrifice a creature.
+id=4643
+name=Commander Greven il-Vec
+rarity=R
+mana={3}{B}{B}{B}
+type=Legendary Creature
+subtype=Human Warrior
+auto=bury notatarget(creature|myBattlefield)
+power=7
+toughness=5
+abilities=fear
+[/card]
+[card]
 text=Counter target spell.
 id=4693
 target=*|stack

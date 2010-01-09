@@ -330,6 +330,18 @@ mana={1}{R}
 type=Sorcery
 [/card]
 [card]
+text=When another creature enters the battlefield, sacrifice Mogg Bombers. If you do, it deals 3 damage to target player.
+auto=@movedTo(creature|battlefield):bury all(this) && damage:3 target(player)
+id=4980
+name=Mogg Bombers
+rarity=C
+mana={3}{R}
+type=Creature
+subtype=Goblin
+power=3
+toughness=4
+[/card]
+[card]
 text=Mogg Flunkies can't attack or block alone.
 id=5100
 name=Mogg Flunkies

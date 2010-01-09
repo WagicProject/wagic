@@ -178,21 +178,6 @@ subtype=Human Cleric
 toughness=1
 [/card]
 [card]
-text=Flying     When Cloudchaser Eagle comes into play, destroy target enchantment.
-#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
-abilities=flying
-id=4871
-name=Cloudchaser Eagle
-target=enchantment
-auto=destroy 
-rarity=C
-type=Creature
-mana={3}{W}
-power=2
-subtype=Bird
-toughness=2
-[/card]
-[card]
 text=Target opponent reveals his or her hand. Choose a card from it. That player discards that card.
 id=4641
 name=Coercion
@@ -218,21 +203,6 @@ name=Cold Storage
 rarity=R
 type=Artifact
 mana={4}
-[/card]
-[card]
-#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
-text=Fear   When Commander Greven il-Vec enters the battlefield, sacrifice a creature.
-id=4643
-name=Commander Greven il-Vec
-rarity=R
-mana={3}{B}{B}{B}
-type=Creature
-subtype=Human Warrior
-abilities=legendary,fear
-target=creature|myBattlefield
-auto=destroy
-power=7
-toughness=5
 [/card]
 [card]
 text=Buyback {2} (You may pay an additional {2} as you play this spell. If you do, put this card into your hand as it resolves.)  Return the top creature card from your graveyard to play. That creature gains haste until end of turn. Remove the creature from the game at end of turn.

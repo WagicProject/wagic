@@ -64,15 +64,6 @@ text=At the beginning of your upkeep, if you have no cards in hand, sacrifice Br
 rarity=R
 [/card]
 [card]
-id=12359
-name=Cessation
-mana={2}{W}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature can't attack. When Cessation is put into a graveyard from the battlefield, return Cessation to its owner's hand.
-rarity=C
-[/card]
-[card]
 id=11588
 name=Cloud of Faeries
 mana={1}{U}

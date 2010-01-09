@@ -23,15 +23,6 @@ text=Split second (As long as this spell is on the stack, players can't play spe
 rarity=R
 [/card]
 [card]
-id=116740
-name=Aspect of Mongoose
-mana={1}{G}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature has shroud. (It can't be the target of spells or abilities.) When Aspect of Mongoose is put into a graveyard from play, return Aspect of Mongoose to its owner's hand.
-rarity=U
-[/card]
-[card]
 id=109762
 name=Barbed Shocker
 mana={3}{R}
@@ -85,19 +76,6 @@ power=5
 toughness=5
 text=Flash Flying When Bogardan Hellkite comes into play, it deals 5 damage divided as you choose among any number of target creatures and/or players.
 rarity=R
-[/card]
-[card]
-id=108901
-name=Bogardan Rager
-mana={5}{R}
-type=Creature
-subtype=Elemental
-power=3
-toughness=4
-text=Flash (You may play this spell any time you could play an instant.) When Bogardan Rager comes into play, target creature gets +4/+0 until end of turn.
-abilities=flash
-auto=4/0 target(creature)
-rarity=C
 [/card]
 [card]
 id=118895
@@ -431,19 +409,6 @@ text={T}: Add {1} to your mana pool. {1}, {T}: Put a storage counter on Dreadshi
 rarity=U
 [/card]
 [card]
-####Removed because comes into play effects with a target and without "may" cannot work for now (0.8.1)!  
-text=When Dream Stalker enters the battlefield, return a permanent you control to its owner's hand.
-auto=moveTo(ownerhand) target(*|mybattlefield)
-id=108858
-name=Dream Stalker
-rarity=C
-mana={1}{U}
-type=Creature
-subtype=Illusion
-power=1
-toughness=5
-[/card]
-[card]
 id=108918
 name=Drifter il-Dal
 mana={U}
@@ -545,15 +510,6 @@ subtype=Nightmare Horror
 power=2
 toughness=1
 text=Shadow (This creature can block or be blocked by only creatures with shadow.) When Faceless Devourer comes into play, remove another target creature with shadow from the game. When Faceless Devourer leaves play, return the removed card to play under its owner's control.
-rarity=U
-[/card]
-[card]
-id=114908
-name=Fallen Ideal
-mana={2}{B}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature has flying and "Sacrifice a creature: This creature gets +2/+1 until end of turn." When Fallen Ideal is put into a graveyard from play, return Fallen Ideal to its owner's hand.
 rarity=U
 [/card]
 [card]
@@ -1883,21 +1839,6 @@ text={T}: Add {W} to your mana pool. {1}{W}{W}: Thunder Totem becomes a 2/2 whit
 rarity=U
 [/card]
 [card]
-id=116736
-name=Tivadar of Thorn
-mana={1}{W}{W}
-type=Creature
-subtype=Human Knight
-text=First strike, protection from red When Tivadar of Thorn comes into play, destroy target Goblin.
-#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
-abilities=first strike, protection from red, legendary
-target=goblin
-auto=destroy
-power=2
-toughness=2
-rarity=R
-[/card]
-[card]
 id=108857
 name=Traitor's Clutch
 mana={4}{B}
@@ -1974,22 +1915,6 @@ power=0
 toughness=0
 text=As Vesuvan Shapeshifter comes into play or is turned face up, you may choose another creature in play. If you do, until Vesuvan Shapeshifter is turned face down, it becomes a copy of that creature and gains "At the beginning of your upkeep, you may turn this creature face down." Morph {1}{U}
 rarity=R
-[/card]
-[card]
-####
-####Removed because comes into play effects with a target and without "may" cannot work for now (0.8.1)!
-####
-text=Flash (You may play this spell any time you could play an instant.) When Viashino Bladescout comes into play, target creature gains first strike until end of turn.
-id=111069
-name=Viashino Bladescout
-rarity=C
-mana={1}{R}{R}
-type=Creature
-subtype=Viashino Scout
-auto=first strike target(creature)
-power=2
-toughness=1
-abilities=flash
 [/card]
 [card]
 id=113615

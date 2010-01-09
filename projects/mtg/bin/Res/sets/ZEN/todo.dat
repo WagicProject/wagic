@@ -38,17 +38,6 @@ text=Enchant creature Enchanted creature gets +3/+3. Whenever enchanted creature
 rarity=R
 [/card]
 [card]
-id=191374
-name=Devout Lightcaster
-mana={W}{W}{W}
-type=Creature
-subtype=Kor Cleric
-power=2
-toughness=2
-text=Protection from black When Devout Lightcaster enters the battlefield, exile target black permanent.
-rarity=R
-[/card]
-[card]
 id=185743
 name=Felidar Sovereign
 mana={4}{W}{W}
@@ -90,18 +79,6 @@ text=Whenever Kabira Evangel or another Ally enters the battlefield under your c
 rarity=R
 [/card]
 [card]
-id=177530
-name=Kor Aeronaut
-mana={W}{W}
-type=Creature
-subtype=Kor Soldier
-power=2
-toughness=2
-text=Kicker {1}{W} (You may pay an additional {1}{W} as you cast this spell.) Flying When Kor Aeronaut enters the battlefield, if it was kicked, target creature gains flying until end of turn.
-rarity=U
-[/card]
-
-[card]
 id=177542
 name=Kor Duelist
 mana={W}
@@ -132,28 +109,6 @@ subtype=Kor Soldier
 power=2
 toughness=2
 text=When Kor Outfitter enters the battlefield, you may attach target Equipment you control to target creature you control.
-rarity=C
-[/card]
-[card]
-id=192214
-name=Kor Sanctifiers
-mana={2}{W}
-type=Creature
-subtype=Kor Cleric
-power=2
-toughness=3
-text=Kicker {W} (You may pay an additional {W} as you cast this spell.) When Kor Sanctifiers enters the battlefield, if it was kicked, destroy target artifact or enchantment.
-rarity=C
-[/card]
-[card]
-id=178145
-name=Kor Skyfisher
-mana={1}{W}
-type=Creature
-subtype=Kor Soldier
-power=2
-toughness=3
-text=Flying When Kor Skyfisher enters the battlefield, return a permanent you control to its owner's hand.
 rarity=C
 [/card]
 [card]
@@ -267,7 +222,6 @@ toughness=3
 text=Defender, flying {T}: Put Gomazoa and each creature it's blocking on top of their owners' libraries, then those players shuffle their libraries.
 rarity=U
 [/card]
-
 [card]
 id=185711
 name=Ior Ruin Expedition
@@ -543,28 +497,6 @@ text=As long as an opponent has 10 or less life, Guul Draz Vampire gets +2/+1 an
 rarity=C
 [/card]
 [card]
-id=185752
-name=Halo Hunter
-mana={2}{B}{B}{B}
-type=Creature
-subtype=Demon
-power=6
-toughness=3
-text=Intimidate (This creature can't be blocked except by artifact creatures and/or creatures that share a color with it.) When Halo Hunter enters the battlefield, destroy target Angel.
-rarity=R
-[/card]
-[card]
-id=191361
-name=Heartstabber Mosquito
-mana={3}{B}
-type=Creature
-subtype=Insect
-power=2
-toughness=2
-text=Kicker {2}{B} (You may pay an additional {2}{B} as you cast this spell.) Flying When Heartstabber Mosquito enters the battlefield, if it was kicked, destroy target creature.
-rarity=C
-[/card]
-[card]
 id=185704
 name=Kalitas, Bloodchief of Ghet
 mana={5}{B}{B}
@@ -575,7 +507,6 @@ toughness=5
 text={B}{B}{B}, {T}: Destroy target creature. If that creature is put into a graveyard this way, put a black Vampire creature token onto the battlefield. Its power is equal to that creature's power and its toughness is equal to that creature's toughness.
 rarity=M
 [/card]
-
 [card]
 id=193403
 name=Mind Sludge
@@ -658,8 +589,6 @@ toughness=2
 text=At the beginning of your upkeep, you lose 1 life unless an opponent has 10 or less life.
 rarity=C
 [/card]
-
-
 [card]
 id=195402
 name=Chandra Ablaze
@@ -685,7 +614,6 @@ type=Sorcery
 text=Kicker {5} (You may pay an additional {5} as you cast this spell.) Put a 7/1 red Elemental creature token with trample and haste onto the battlefield. Exile it at the beginning of the next end step. If Elemental Appeal was kicked, that creature gets +7/+0 until end of turn.
 rarity=R
 [/card]
-
 [card]
 id=170987
 name=Goblin Guide
@@ -696,28 +624,6 @@ power=2
 toughness=2
 text=Haste Whenever Goblin Guide attacks, defending player reveals the top card of his or her library. If it's a land card, that player puts it into his or her hand.
 rarity=R
-[/card]
-[card]
-id=180411
-name=Goblin Ruinblaster
-mana={2}{R}
-type=Creature
-subtype=Goblin Shaman
-power=2
-toughness=1
-text=Kicker {R} (You may pay an additional {R} as you cast this spell.) Haste When Goblin Ruinblaster enters the battlefield, if it was kicked, destroy target nonbasic land.
-rarity=U
-[/card]
-[card]
-id=180473
-name=Goblin Shortcutter
-mana={1}{R}
-type=Creature
-subtype=Goblin Scout
-power=2
-toughness=1
-text=When Goblin Shortcutter enters the battlefield, target creature can't block this turn.
-rarity=C
 [/card]
 [card]
 id=192215
@@ -767,7 +673,6 @@ type=Sorcery
 text=As an additional cost to cast Magma Rift, sacrifice a land. Magma Rift deals 5 damage to target creature.
 rarity=C
 [/card]
-
 [card]
 id=192224
 name=Obsidian Fireheart
@@ -884,7 +789,6 @@ subtype=Trap
 text=If a noncreature permanent under your control was destroyed this turn by a spell or ability an opponent controlled, you may pay {G} rather than pay Cobra Trap's mana cost. Put four 1/1 green Snake creature tokens onto the battlefield.
 rarity=U
 [/card]
-
 [card]
 id=180408
 name=Harrow
@@ -911,17 +815,6 @@ power=2
 toughness=1
 text=Landfall - Whenever a land enters the battlefield under your control, you may add one mana of any color to your mana pool.
 rarity=M
-[/card]
-[card]
-id=183414
-name=Mold Shambler
-mana={3}{G}
-type=Creature
-subtype=Fungus Beast
-power=3
-toughness=3
-text=Kicker {1}{G} (You may pay an additional {1}{G} as you cast this spell.) When Mold Shambler enters the battlefield, if it was kicked, destroy target noncreature permanent.
-rarity=C
 [/card]
 [card]
 id=190411
@@ -953,17 +846,6 @@ power=2
 toughness=2
 text=You may play an additional land on each of your turns. Play with the top card of your library revealed. You may play the top card of your library if it's a land card.
 rarity=R
-[/card]
-[card]
-id=185696
-name=Oran-Rief Recluse
-mana={2}{G}
-type=Creature
-subtype=Spider
-power=1
-toughness=3
-text=Kicker {2}{G} (You may pay an additional {2}{G} as you cast this spell.) Reach (This creature can block creatures with flying.) When Oran-Rief Recluse enters the battlefield, if it was kicked, destroy target creature with flying.
-rarity=C
 [/card]
 [card]
 id=169958
@@ -1045,7 +927,6 @@ toughness=1
 text=Deathtouch (Creatures dealt damage by this creature are destroyed. You can divide this creature's combat damage among any of the creatures blocking or blocked by it.) Landfall - Whenever a land enters the battlefield under your control, you may have target creature block Turntimber Basilisk this turn if able.
 rarity=U
 [/card]
-
 [card]
 id=193397
 name=Blade of the Bloodchief
@@ -1124,9 +1005,6 @@ type=Artifact
 text=When Khalni Gem enters the battlefield, return two lands you control to their owner's hand. {T}: Add two mana of any one color to your mana pool.
 rarity=U
 [/card]
-
-
-
 [card]
 id=190414
 name=Emeria, the Sky Ruin
@@ -1150,30 +1028,6 @@ mana=
 type=Land
 text=Oran-Rief, the Vastwood enters the battlefield tapped. {T}: Add {G} to your mana pool. {T}: Put a +1/+1 counter on each green creature that entered the battlefield this turn.
 rarity=R
-[/card]
-[card]
-id=177541
-name=Soaring Seacliff
-mana=
-type=Land
-text=Soaring Seacliff enters the battlefield tapped. When Soaring Seacliff enters the battlefield, target creature gains flying until end of turn. {T}: Add {U} to your mana pool.
-rarity=C
-[/card]
-[card]
-id=177549
-name=Teetering Peaks
-mana=
-type=Land
-text=Teetering Peaks enters the battlefield tapped. When Teetering Peaks enters the battlefield, target creature gets +2/+0 until end of turn. {T}: Add {R} to your mana pool.
-rarity=C
-[/card]
-[card]
-id=169977
-name=Turntimber Grove
-mana=
-type=Land
-text=Turntimber Grove enters the battlefield tapped. When Turntimber Grove enters the battlefield, target creature gets +1/+1 until end of turn. {T}: Add {G} to your mana pool.
-rarity=C
 [/card]
 [card]
 id=190400

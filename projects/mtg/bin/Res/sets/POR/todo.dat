@@ -121,17 +121,6 @@ subtype=Dragon
 toughness=4
 [/card]
 [card]
-text=When Endless Cockroaches is put into to a graveyard from play, return Endless Cockroaches to its owner's hand.
-id=4220
-name=Endless Cockroaches
-rarity=R
-type=Creature
-mana={1}{B}{B}
-power=1
-subtype=Insect
-toughness=1
-[/card]
-[card]
 text=Creatures and lands target opponent controls don't untap during his or her next untap step.
 id=4261
 name=Exhaustion

@@ -83,6 +83,18 @@ rarity=C
 type=Land
 [/card]
 [card]
+text=When Blister Beetle enters the battlefield, target creature gets -1/-1 until end of turn.
+id=174893
+name=Blister Beetle
+rarity=C
+mana={1}{B}
+type=Creature
+subtype=Insect
+auto=-1/-1 target(creature) ueot
+power=1
+toughness=1
+[/card]
+[card]
 text=Sacrifice Bloodpyre Elemental: Bloodpyre Elemental deals 4 damage to target creature. Play this ability only any time you could play a sorcery.
 id=175117
 name=Bloodpyre Elemental
@@ -1530,6 +1542,19 @@ subtype=Bird Soldier
 power=2
 toughness=4
 abilities=flying,exalted
+[/card]
+[card]
+text=Flying. When Welkin Guide enters the battlefield, target creature gets +2/+2 and gains flying until end of turn.
+id=178096
+name=Welkin Guide
+rarity=C
+mana={4}{W}
+type=Creature
+subtype=Bird Cleric
+auto=2/2 && flying target(creature) ueot
+power=2
+toughness=2
+abilities=flying
 [/card]
 [card]
 text=Whenever a creature with power 5 or greater enters the battlefield under your control, you may have Where Ancients Tread deal 5 damage to target creature or player.

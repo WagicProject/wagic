@@ -76,13 +76,25 @@ toughness=2
 [/card]
 [card]
 text=Untap target permanent.
+id=13806
 target=*
 auto=untap
-id=13806
 name=Burst of Energy
 rarity=C
 mana={W}
 type=Instant
+[/card]
+[card]
+text=Enchant creature   Enchanted creature can't attack.   When Cessation is put into a graveyard from the battlefield, return Cessation to its owner's hand.
+auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(cessation|mygraveyard)
+id=12359
+target=creature
+auto=cantattack
+name=Cessation
+rarity=C
+mana={2}{W}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 text=Protection from black   Cycling {2} ({2}, Discard this card: Draw a card.)

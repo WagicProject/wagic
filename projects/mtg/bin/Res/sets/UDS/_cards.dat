@@ -4,6 +4,19 @@ year=1999
 block=Urza
 [/meta]
 [card]
+text=Flying   When Aura Thief is put into a graveyard from the battlefield, you gain control of all enchantments. (You don't get to move Auras.)
+auto=@movedTo(this|graveyard) from(myBattlefield):moveTo(myBattlefield) all(enchantment[-aura])
+id=15261
+name=Aura Thief
+rarity=R
+mana={3}{U}
+type=Creature
+subtype=Illusion
+power=2
+toughness=2
+abilities=flying
+[/card]
+[card]
 text=Whenever an opponent casts a creature spell, AEther Sting deals 1 damage to that player.
 auto=@movedTo(creature|opponentstack):life:-1 opponent
 id=12612
@@ -66,14 +79,14 @@ type=Artifact
 [/card]
 [card]
 text={2}, Sacrifice Brass Secretary: Draw a card.
-auto={2}{S}:draw:1
 id=15245
 name=Brass Secretary
 rarity=U
-type=Artifact Creature
 mana={3}
-power=2
+type=Artifact Creature
 subtype=Construct
+auto={2}{S}:draw:1
+power=2
 toughness=1
 [/card]
 [card]
@@ -102,10 +115,10 @@ toughness=1
 abilities=first strike
 [/card]
 [card]
-text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +1/+2.   {2}, Sacrifice Capashen Standard: Draw a card.
+text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.)   Enchanted creature gets +1/+2.   {2}, Sacrifice Capashen Standard: Draw a card.
 target=creature
 auto=1/2
-auto={2}{S}:draw:1
+auto={2}{S}:draw:1 controller
 id=19095
 name=Capashen Standard
 rarity=C
@@ -134,6 +147,17 @@ name=Carnival of Souls
 rarity=R
 mana={1}{B}
 type=Enchantment
+[/card]
+[card]
+text=Enchant creature   When Chime of Night is put into a graveyard from the battlefield, destroy target nonblack creature.
+id=15768
+target=creature
+auto=@movedTo(this|graveyard) from(battlefield):destroy target(creature[-black])
+name=Chime of Night
+rarity=C
+mana={1}{B}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 text=Mountainwalk   {G}: Colos Yearling gets +1/+0 until end of turn.
@@ -169,6 +193,30 @@ auto=aslongas(artifact|myBattlefield) -99/-99 <1
 power=6
 toughness=5
 abilities=flying
+[/card]
+[card]
+text=When Disease Carriers is put into a graveyard from the battlefield, target creature gets -2/-2 until end of turn.
+id=15169
+name=Disease Carriers
+rarity=C
+mana={2}{B}{B}
+type=Creature
+subtype=Rat
+auto=@movedTo(this|graveyard) from(battlefield):-2/-2 target(creature)
+power=2
+toughness=2
+[/card]
+[card]
+###Tested and working!!! Don't ask me why! :)
+text=Enchant creature {U}: Return enchanted creature and Disappear to their owners' hands.
+id=15151
+target=creature
+auto={U}:moveTo(ownerhand) all(this) && moveTo(ownerhand)
+name=Disappear
+rarity=U
+mana={2}{U}{U}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 text=Target player gains control of target permanent you control.
@@ -241,7 +289,7 @@ type=Sorcery
 [/card]
 [card]
 text={4}, {T}, Sacrifice a creature: Fodder Cannon deals 4 damage to target creature.
-auto={4}{T}{s(creature|myBattlefield)}:Damage:4 target(creature)
+auto={4}{T}{S(creature|myBattlefield)}:Damage:4 target(creature)
 id=15250
 name=Fodder Cannon
 rarity=U

@@ -185,11 +185,11 @@ toughness=3
 abilities=swampwalk
 [/card]
 [card]
-text=Enchant creature.   Enchanted creature gets +1/+1 for each other creature you control. 
+text=Enchant creature   Enchanted creature gets +1/+1 for each other creature you control. 
+id=5848
 target=creature
 auto=foreach(creature|myBattlefield) 1/1
 auto=-1/-1
-id=5848
 name=Bravado
 rarity=C
 mana={1}{R}
@@ -198,14 +198,26 @@ subtype=Aura
 [/card]
 [card]
 text=Target creature gets +2/+0 and gains fear until end of turn.
+id=5633
 target=creature
 auto=2/0
 auto=fear
-id=5633
 name=Breach
 rarity=C
 mana={2}{B}
 type=Instant
+[/card]
+[card]
+text=Enchant creature   Enchanted creature gets +1/+2.   When Brilliant Halo is put into a graveyard from the battlefield, return Brilliant Halo to its owner's hand.
+auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(brilliant halo|mygraveyard)
+id=9890
+target=creature
+auto=1/2
+name=Brilliant Halo
+rarity=C
+mana={1}{W}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 text=Islandwalk
@@ -381,6 +393,19 @@ mana={3}
 type=Artifact
 [/card]
 [card]
+text=Flying   When Dark Hatchling enters the battlefield, destroy target nonblack creature. It can't be regenerated.
+id=5852
+name=Dark Hatchling
+rarity=R
+mana={4}{B}{B}
+type=Creature
+subtype=Horror
+auto=bury target(creature[-black])
+power=3
+toughness=3
+abilities=flying
+[/card]
+[card]
 text=Add {B}{B}{B} to your mana pool.
 auto=Add {B}{B}{B}
 id=5626
@@ -388,6 +413,18 @@ name=Dark Ritual
 rarity=C
 mana={B}
 type=Instant
+[/card]
+[card]
+text=Enchant creature   Enchanted creature gets -2/-0.   When Despondency is put into a graveyard from play, return Despondency to its owner's hand.
+auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(despondency|mygraveyard)
+id=10656
+target=creature
+auto=-2/0
+name=Despondency
+rarity=C
+mana={1}{B}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 text=Protection from black   Cycling {2} ({2}, Discard this card: Draw a card.)
@@ -891,17 +928,41 @@ mana={1}{G}
 type=Instant
 [/card]
 [card]
-text=Defender (This creature can't attack.)  {3}: Mobile Fort gets +3/-1 until end of turn and can attack this turn as though it didn't have defender. Play this ability only once each turn.
-auto={3}:3/-1 && -defender limit:1
+text=Defender (This creature can't attack.)  {3}: Mobile Fort gets +3/-1 until end of turn and can attack this turn as though it didn't have defender. Activate this ability only once each turn.
 id=5550
 name=Mobile Fort
 rarity=U
 mana={4}
 type=Artifact Creature
 subtype=Wall
+auto={3}:3/-1 && -defender limit:1
 power=0
 toughness=6
 abilities=defender
+[/card]
+[card]
+text=When Monk Idealist enters the battlefield, return target enchantment card from your graveyard to your hand.
+id=5706
+name=Monk Idealist
+rarity=U
+mana={2}{W}
+type=Creature
+subtype=Human Monk Cleric
+auto=moveTo(myhand) target(enchantment|mygraveyard)
+power=2
+toughness=2
+[/card]
+[card]
+text=When Monk Realist enters the battlefield, destroy target enchantment.
+id=5708
+name=Monk Realist
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Human Monk Cleric
+auto=destroy target(enchantment)
+power=1
+toughness=1
 [/card]
 [card]
 text={U}: Untap Morphling.   {U}: Morphling gains flying until end of turn.   {U}: Morphling gains shroud until end of turn. (It can't be the target of spells or abilities.)   {1}: Morphling gets +1/-1 until end of turn.   {1}: Morphling gets -1/+1 until end of turn.
@@ -1326,13 +1387,13 @@ subtype=Aura
 [/card]
 [card]
 text={T}: You gain 1 life.
-auto={T}:life:1
 id=5651
 name=Silent Attendant
 rarity=C
 mana={2}{W}
 type=Creature
 subtype=Human Cleric
+auto={T}:life:1
 power=0
 toughness=2
 [/card]
@@ -1340,27 +1401,27 @@ toughness=2
 text=Flying. Discard a card: Add {B} to your mana pool.
 id=5851
 name=Skirge Familiar
-auto={s(*|myhand)}:Add {B}
 rarity=U
 mana={4}{B}
 type=Creature
 subtype=Imp
+auto={S(*|myhand)}:Add{B}
 power=3
 toughness=2
 abilities=flying
 [/card]
 [card]
-text=Flying   When you play a creature spell, sacrifice Skittering Skirge.
-abilities=flying
-auto=@movedTo(creature|mystack):bury
+text=Flying   When you cast a creature spell, sacrifice Skittering Skirge.
 id=5573
 name=Skittering Skirge
 rarity=C
-type=Creature
 mana={B}{B}
-power=3
+type=Creature
 subtype=Imp
+auto=@movedTo(creature|mystack):bury
+power=3
 toughness=2
+abilities=flying
 [/card]
 [card]
 text=When Sleeper Agent enters the battlefield, target opponent gains control of it.   At the beginning of your upkeep, Sleeper Agent deals 2 damage to you.
@@ -1408,13 +1469,38 @@ power=1
 toughness=1
 [/card]
 [card]
+text=When Spined Fluke enters the battlefield, sacrifice a creature.   {B}: Regenerate Spined Fluke.
+id=5849
+name=Spined Fluke
+rarity=U
+mana={2}{B}
+type=Creature
+subtype=Worm Horror
+auto=bury notatarget(creature|myBattlefield)
+auto={B}:regenerate
+power=5
+toughness=1
+[/card]
+[card]
 text=Steam Blast deals 2 damage to each creature and each player.
 id=5563
-name=Steam Blast
 auto=damage:2 all(creature,player)
+name=Steam Blast
 rarity=U
-type=Sorcery
 mana={2}{R}
+type=Sorcery
+[/card]
+[card]
+text=When Stern Proctor enters the battlefield, return target artifact or enchantment to its owner's hand.
+id=5661
+name=Stern Proctor
+rarity=U
+mana={U}{U}
+type=Creature
+subtype=Human Wizard
+auto=moveTo(ownerhand) target(enchantment,artifact)
+power=1
+toughness=2
 [/card]
 [card]
 text=Target player draws X cards.

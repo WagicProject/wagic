@@ -98,20 +98,6 @@ mana={1}{B}{R}
 type=Sorcery
 [/card]
 [card]
-text=When Blister Beetle comes into play, target creature gets -1/-1 until end of turn.
-#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
-target=creature
-auto=-1/-1 ueot
-id=174893
-name=Blister Beetle
-rarity=C
-type=Creature
-mana={1}{B}
-power=1
-subtype=Insect
-toughness=1
-[/card]
-[card]
 text={T}: Blood Cultist deals 1 damage to target creature.     Whenever a creature dealt damage by Blood Cultist this turn is put into a graveyard, put a +1/+1 counter on Blood Cultist.
 id=175100
 name=Blood Cultist
@@ -979,8 +965,6 @@ power=2
 subtype=Zombie
 toughness=2
 [/card]
-
-
 [card]
 text=Tap an untapped creature you control: Topan Ascetic gets +1/+1 until end of turn.
 id=174999
@@ -992,7 +976,6 @@ power=2
 subtype=Human Monk
 toughness=2
 [/card]
-
 [card]
 text={R}: Undead Leotau gets +1/-1 until end of turn.     Unearth {2}{B} ({2}{B}: Return this card from your graveyard to play. It gains haste. Remove it from the game at end of turn or if it would leave play. Unearth only as a sorcery.)
 id=176452
@@ -1004,7 +987,6 @@ power=3
 subtype=Zombie Cat
 toughness=4
 [/card]
-
 [card]
 text=Flying     {R}, {T}: Vein Drinker deals damage equal to its power to target creature. That creature deals damage equal to its power to Vein Drinker.     Whenever a creature dealt damage by Vein Drinker this turn is put into a graveyard, put a +1/+1 counter on Vein Drinker.
 id=175004
@@ -1058,20 +1040,4 @@ mana={2}{R}
 power=0
 subtype=Human Shaman
 toughness=1
-[/card]
-[card]
-text=Flying. When Welkin Guide comes into play, target creature gets +2/+2 and gains flying until end of turn.
-#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
-id=178096
-target=creature
-auto=2/2 ueot
-auto=flying ueot
-name=Welkin Guide
-rarity=C
-type=Creature
-mana={4}{W}
-power=2
-subtype=Bird Cleric
-toughness=2
-abilities=flying
 [/card]

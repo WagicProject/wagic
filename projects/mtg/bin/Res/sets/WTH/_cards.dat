@@ -69,11 +69,23 @@ mana={G}
 type=Instant
 [/card]
 [card]
+text=When Bogardan Firefiend is put into a graveyard from the battlefield, it deals 2 damage to target creature.
+id=4537
+name=Bogardan Firefiend
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Elemental Spirit
+auto=@movedTo(this|graveyard) from(battlefield):damage:2 target(creature)
+power=2
+toughness=1
+[/card]
+[card]
 text=Target creature attacks this turn if able.   Draw a card.
+id=4538
 target=creature
 auto=mustattack
-auto=draw:1
-id=4538
+auto=draw:1 controller
 name=Boiling Blood
 rarity=C
 mana={2}{R}

@@ -299,6 +299,18 @@ toughness=2
 abilities=first strike,reach
 [/card]
 [card]
+text=When Man-o'-War enters the battlefield, return target creature to its owner's hand.
+id=3644
+name=Man-o'-War
+rarity=U
+mana={2}{U}
+type=Creature
+subtype=Jellyfish
+auto=moveTo(ownerhand) target(creature)
+power=2
+toughness=2
+[/card]
+[card]
 text={1}: Regenerate Matopi Golem. When it regenerates this way, put a -1/-1 counter on it.
 id=3598
 name=Matopi Golem
@@ -312,14 +324,27 @@ toughness=3
 [/card]
 [card]
 text=Return target creature card from your graveyard to the battlefield with a +1/+1 counter on it.
+id=3720
 target=creature|mygraveyard
 auto=moveTo(myBattlefield)
 auto=counter(1/1)
-id=3720
 name=Miraculous Recovery
 rarity=U
 mana={4}{W}
 type=Instant
+[/card]
+[card]
+text=First strike (This creature deals combat damage before creatures without first strike.)   When Nekrataal enters the battlefield, destroy target nonartifact, nonblack creature. That creature can't be regenerated.
+id=3623
+name=Nekrataal
+rarity=U
+mana={2}{B}{B}
+type=Creature
+subtype=Human Assassin
+auto=bury target(creature[-black;-artifact])
+power=2
+toughness=1
+abilities=first strike
 [/card]
 [card]
 text={3}{B}{B}, Sacrifice a creature: Return Necrosavant from your graveyard to the battlefield. Activate this ability only during your upkeep.
@@ -439,6 +464,19 @@ toughness=4
 abilities=protection from black
 [/card]
 [card]
+text=Flying   When Shrieking Drake enters the battlefield, return a creature you control to its owner's hand.
+id=3650
+name=Shrieking Drake
+rarity=C
+mana={U}
+type=Creature
+subtype=Drake
+auto=moveTo(ownerhand) notatarget(creature|myBattlefield)
+power=1
+toughness=1
+abilities=flying
+[/card]
+[card]
 text=Simoon deals 1 damage to each creature target opponent controls.
 auto=damage:1 all(creature|opponentBattlefield)
 id=3743
@@ -499,6 +537,18 @@ name=Tremor
 rarity=C
 mana={R}
 type=Sorcery
+[/card]
+[card]
+text=When Uktabi Orangutan enters the battlefield, destroy target artifact.
+id=3680
+name=Uktabi Orangutan
+rarity=U
+mana={2}{G}
+type=Creature
+subtype=Ape
+auto=destroy target(artifact)
+power=2
+toughness=2
 [/card]
 [card]
 text={B}, Sacrifice Urborg Mindsucker: Target opponent discards a card at random. Activate this ability only any time you could cast a sorcery.

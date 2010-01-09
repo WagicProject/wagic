@@ -16,18 +16,32 @@ power=3
 toughness=3
 [/card]
 [card]
-text=Other red creatures you control get +1/+1.     Other white creatures you control get +1/+1.     Whenever you play a red spell, Balefire Liege deals 3 damage to target player.     Whenever you play a white spell, you gain 3 life.
+text=Flying   When Archon of Justice is put into a graveyard from the battlefield, exile target permanent.
+abilities=flying
+auto=@movedTo(this|graveyard) from(battlefield):moveTo(exile) target(*|battlefield)
+id=146006
+name=Archon of Justice
+rarity=R
+mana={3}{W}{W}
+type=Creature
+subtype=Archon
+power=4
+toughness=4
+abilities=flying
+[/card]
+[card]
+text=Other red creatures you control get +1/+1.   Other white creatures you control get +1/+1.   Whenever you cast a red spell, Balefire Liege deals 3 damage to target player.   Whenever you cast a white spell, you gain 3 life.
 id=158104
+name=Balefire Liege
+rarity=R
+mana={2}{RW}{RW}{RW}
+type=Creature
+subtype=Spirit Horror
 auto=lord(other creature[red]|myBattlefield) 1/1
 auto=lord(other creature[white]|myBattlefield) 1/1
 auto=@movedto(*[red]|mystack):damage:3 opponent
 auto=@movedto(*[white]|mystack):life:3 controller
-name=Balefire Liege
-rarity=R
-type=Creature
-mana={2}{RW}{RW}{RW}
 power=2
-subtype=Spirit Horror
 toughness=4
 [/card]
 [card]

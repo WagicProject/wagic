@@ -517,28 +517,6 @@ text={4}: Put a pressure counter on Magma Mine. {T}, Sacrifice Magma Mine: Magma
 rarity=U
 [/card]
 [card]
-id=3644
-name=Man-o'-War
-mana={2}{U}
-type=Creature
-subtype=Jellyfish
-power=2
-toughness=2
-text=When Man-o'-War enters the battlefield, return target creature to its owner's hand.
-rarity=U
-[/card]
-[card]
-id=3598
-name=Matopi Golem
-mana={5}
-type=Artifact Creature
-subtype=Golem
-power=3
-toughness=3
-text={1}: Regenerate Matopi Golem. When it regenerates this way, put a -1/-1 counter on it.
-rarity=U
-[/card]
-[card]
 id=3695
 name=Mob Mentality
 mana={R}
@@ -590,17 +568,6 @@ name=Necromancy
 mana={2}{B}
 type=Enchantment
 text=You may cast Necromancy as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. When Necromancy enters the battlefield, if it's on the battlefield, it becomes an Aura with "enchant creature put onto the battlefield with Necromancy." Put target creature card from a graveyard onto the battlefield under your control and attach Necromancy to it. When Necromancy leaves the battlefield, that creature's controller sacrifices it.
-rarity=U
-[/card]
-[card]
-id=3623
-name=Nekrataal
-mana={2}{B}{B}
-type=Creature
-subtype=Human Assassin
-power=2
-toughness=1
-text=First strike (This creature deals combat damage before creatures without first strike.) When Nekrataal enters the battlefield, destroy target nonartifact, nonblack creature. That creature can't be regenerated.
 rarity=U
 [/card]
 [card]
@@ -660,7 +627,6 @@ type=World Enchantment
 text=At the beginning of each player's upkeep, that player may sacrifice a creature. If that player doesn't, he or she loses 5 life and you sacrifice Pillar Tombs of Aku.
 rarity=R
 [/card]
-
 [card]
 id=3740
 name=Pygmy Hippo
@@ -783,17 +749,6 @@ power=2
 toughness=2
 text=Flying Phasing (This phases in or out before you untap during each of your untap steps. While it's phased out, it's treated as though it doesn't exist.) Whenever Shimmering Efreet phases in, target creature phases out. (It phases in before its controller untaps during his or her next untap step.)
 rarity=U
-[/card]
-[card]
-id=3650
-name=Shrieking Drake
-mana={U}
-type=Creature
-subtype=Drake
-power=1
-toughness=1
-text=Flying When Shrieking Drake enters the battlefield, return a creature you control to its owner's hand.
-rarity=C
 [/card]
 [card]
 id=3603
@@ -979,17 +934,6 @@ mana={1}
 type=Artifact
 text={2}, Sacrifice Triangle of War: Choose target creature you control and target creature an opponent controls. Each of those creatures deals damage equal to its power to the other.
 rarity=R
-[/card]
-[card]
-id=3680
-name=Uktabi Orangutan
-mana={2}{G}
-type=Creature
-subtype=Ape
-power=2
-toughness=2
-text=When Uktabi Orangutan enters the battlefield, destroy target artifact.
-rarity=U
 [/card]
 [card]
 id=3755

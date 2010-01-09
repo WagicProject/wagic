@@ -229,6 +229,19 @@ mana={3}{R}
 type=Sorcery
 [/card]
 [card]
+text=Protection from black   When Devout Lightcaster enters the battlefield, exile target black permanent.
+id=191374
+name=Devout Lightcaster
+rarity=R
+mana={W}{W}{W}
+type=Creature
+subtype=Kor Cleric
+auto=moveTo(exile) target(*[black])
+power=2
+toughness=2
+abilities=protection from black
+[/card]
+[card]
 text=Target creature gets -2/-2 until end of turn.
 id=180115
 target=creature
@@ -375,12 +388,38 @@ name=Goblin Bushwhacker
 rarity=C
 mana={R}
 kicker={R}
+auto=kicker all(creature|myBattlefield) 1/0 ueot
+auto=kicker all(creature|myBattlefield) haste ueot
 type=Creature
 subtype=Goblin Warrior
 power=1
 toughness=1
-auto=kicker all(creature|myBattlefield) 1/0 ueot
-auto=kicker all(creature|myBattlefield) haste ueot
+[/card]
+[card]
+text=Kicker {R} (You may pay an additional {R} as you cast this spell.)   Haste   When Goblin Ruinblaster enters the battlefield, if it was kicked, destroy target nonbasic land.
+id=180411
+name=Goblin Ruinblaster
+rarity=U
+mana={2}{R}
+kicker={R}
+auto=kicker destroy target(land[-basic])
+type=Creature
+subtype=Goblin Shaman
+power=2
+toughness=1
+abilities=haste
+[/card]
+[card]
+text=When Goblin Shortcutter enters the battlefield, target creature can't block this turn.
+id=180473
+name=Goblin Shortcutter
+rarity=C
+mana={1}{R}
+type=Creature
+subtype=Goblin Scout
+auto=cantblock target(creature) ueot
+power=2
+toughness=1
 [/card]
 [card]
 text=Enchant creature Enchanted creature gets +2/+2 and has haste.
@@ -454,6 +493,33 @@ auto=may foreach(ally|myBattlefield) life:-1 opponent
 auto=@movedTo(other ally|myBattlefield):foreach(ally|myBattlefield) life:-1 opponent
 power=3
 toughness=2
+[/card]
+[card]
+text=Intimidate (This creature can't be blocked except by artifact creatures and/or creatures that share a color with it.)   When Halo Hunter enters the battlefield, destroy target Angel.
+id=185752
+name=Halo Hunter
+rarity=R
+mana={2}{B}{B}{B}
+type=Creature
+subtype=Demon
+auto=destroy target(angel)
+power=6
+toughness=3
+abilities=intimidate
+[/card]
+[card]
+text=Kicker {2}{B} (You may pay an additional {2}{B} as you cast this spell.)   Flying   When Heartstabber Mosquito enters the battlefield, if it was kicked, destroy target creature.
+id=191361
+name=Heartstabber Mosquito
+rarity=C
+mana={3}{B}
+kicker={2}{B}
+auto=kicker destroy target(creature)
+type=Creature
+subtype=Insect
+power=2
+toughness=2
+abilities=flying
 [/card]
 [card]
 text=Landfall - Whenever a land enters the battlefield under your control, target player puts the top three cards of his or her library into his or her graveyard.
@@ -660,6 +726,20 @@ power=3
 toughness=3
 [/card]
 [card]
+text=Kicker {1}{W} (You may pay an additional {1}{W} as you cast this spell.)   Flying   When Kor Aeronaut enters the battlefield, if it was kicked, target creature gains flying until end of turn.
+id=177530
+name=Kor Aeronaut
+rarity=U
+mana={W}{W}
+kicker={1}{W}
+auto=kicker flying target(creature) ueot
+type=Creature
+subtype=Kor Soldier
+power=2
+toughness=2
+abilities=flying
+[/card]
+[card]
 text=When Kor Cartographer enters the battlefield, you may search your library for a Plains card, put it onto the battlefield tapped, then shuffle your library.
 auto=may moveTo(myBattlefield) target(plains|mylibrary) && tap
 id=170991
@@ -670,6 +750,32 @@ type=Creature
 subtype=Kor Scout
 power=2
 toughness=2
+[/card]
+[card]
+text=Kicker {W} (You may pay an additional {W} as you cast this spell.)   When Kor Sanctifiers enters the battlefield, if it was kicked, destroy target artifact or enchantment.
+id=192214
+name=Kor Sanctifiers
+rarity=C
+mana={2}{W}
+kicker={W}
+auto=kicker destroy target(artifact,enchantment)
+type=Creature
+subtype=Kor Cleric
+power=2
+toughness=3
+[/card]
+[card]
+text=Flying   When Kor Skyfisher enters the battlefield, return a permanent you control to its owner's hand.
+id=178145
+name=Kor Skyfisher
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Kor Soldier
+auto=moveTo(ownerhand) notatarget(creature|myBattlefield)
+power=2
+toughness=3
+abilities=flying
 [/card]
 [card]
 id=177585
@@ -794,6 +900,19 @@ id=190413
 name=Misty Rainforest
 rarity=R
 type=Land
+[/card]
+[card]
+text=Kicker {1}{G} (You may pay an additional {1}{G} as you cast this spell.)   When Mold Shambler enters the battlefield, if it was kicked, destroy target noncreature permanent.
+id=183414
+name=Mold Shambler
+rarity=C
+mana={3}{G}
+kicker={1}{G}
+auto=kicker destroy target(*[-creature])
+type=Creature
+subtype=Fungus Beast
+power=3
+toughness=3
 [/card]
 [card]
 text={R}: Molten Ravager gets +1/+0 until end of turn.
@@ -952,6 +1071,20 @@ auto=may foreach(ally|myBattlefield) life:1
 auto=@movedTo(other ally|myBattlefield):may foreach(ally|myBattlefield) life:1
 power=1
 toughness=1
+[/card]
+[card]
+text=Kicker {2}{G} (You may pay an additional {2}{G} as you cast this spell.)   Reach (This creature can block creatures with flying.)   When Oran-Rief Recluse enters the battlefield, if it was kicked, destroy target creature with flying.
+id=185696
+name=Oran-Rief Recluse
+rarity=C
+mana={2}{G}
+kicker={2}{G}
+auto=kicker destroy target(creature[flying])
+type=Creature
+subtype=Spider
+power=1
+toughness=3
+abilities=reach
 [/card]
 [card]
 text=Whenever Oran-Rief Survivalist or another Ally enters the battlefield under your control, you may put a +1/+1 counter on Oran-Rief Survivalist.
@@ -1232,6 +1365,16 @@ mana={2}{R}
 type=Instant
 [/card]
 [card]
+text=Soaring Seacliff enters the battlefield tapped.   When Soaring Seacliff enters the battlefield, target creature gains flying until end of turn.   {T}: Add {U} to your mana pool.
+id=177541
+name=Soaring Seacliff
+auto=tap
+auto=flying target(creature) ueot
+auto={T}:Add {U}
+rarity=C
+type=Land
+[/card]
+[card]
 text=Equipped creature gets +0/+2 and has reach. (It can block creatures with flying.) Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
 id=178134
 auto={2}:equip
@@ -1245,9 +1388,9 @@ subtype=Equipment
 [/card]
 [card]
 text=Spire Barrage deals damage to target creature or player equal to the number of Mountains you control.
+id=180495
 target=creature,player
 auto=foreach(mountain|myBattlefield) damage:1
-id=180495
 name=Spire Barrage
 rarity=C
 mana={4}{R}
@@ -1277,10 +1420,10 @@ toughness=2
 [/card]
 [card]
 text=Counter target creature spell. Put a 2/2 blue Illusion creature token onto the battlefield.
+id=191360
 target=creature|stack
 auto=fizzle
 auto=token(Illusion,Creature Illusion,2/2,blue) controller
-id=191360
 name=Summoner's Bane
 rarity=U
 mana={2}{U}{U}
@@ -1384,13 +1527,23 @@ power=1
 toughness=2
 [/card]
 [card]
-id=191355
-name=Tanglesap
-mana={1}{G}
-type=Instant
+text=Teetering Peaks enters the battlefield tapped.   When Teetering Peaks enters the battlefield, target creature gets +2/+0 until end of turn.   {T}: Add {R} to your mana pool.
+id=177549
+name=Teetering Peaks
+auto=tap
+auto=2/0 target(creature) ueot
+auto={T}:Add {R}
+rarity=C
+type=Land
+[/card]
+[card]
 text=Prevent all combat damage that would be dealt this turn by creatures without trample.
 auto=preventAllCombatDamage from(creature[-trample]) ueot
+id=191355
+name=Tanglesap
 rarity=C
+mana={1}{G}
+type=Instant
 [/card]
 [card]
 text=Terra Stomper can't be countered. Trample
@@ -1461,6 +1614,16 @@ auto=@movedTo(other ally|myBattlefield):counter(1/1)
 power=2
 toughness=2
 abilities=haste
+[/card]
+[card]
+text=Turntimber Grove enters the battlefield tapped.   When Turntimber Grove enters the battlefield, target creature gets +1/+1 until end of turn.   {T}: Add {G} to your mana pool.
+id=169977
+name=Turntimber Grove
+auto=tap
+auto=1/1 target(creature) ueot
+auto={T}:Add {G}
+rarity=C
+type=Land
 [/card]
 [card]
 text=Whenever Turntimber Ranger or another Ally enters the battlefield under your control, you may put a 2/2 green Wolf creature token onto the battlefield. If you do, put a +1/+1 counter on Turntimber Ranger.

@@ -279,6 +279,18 @@ type=Instant
 subtype=Tribal Elf
 [/card]
 [card]
+text=When Exiled Boggart is put into a graveyard from the battlefield, discard a card.
+id=146443
+name=Exiled Boggart
+rarity=C
+mana={1}{B}
+type=Creature
+subtype=Goblin Rogue
+auto=@movedTo(this|graveyard) from(battlefield):moveTo(mygraveyard) notatarget(*|myhand)
+power=2
+toughness=2
+[/card]
+[card]
 text={B}, Sacrifice a Goblin: Facevaulter gets +2/+2 until end of turn.
 auto={B}{S(goblin|myBattlefield)}:2/2
 id=142361

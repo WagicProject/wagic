@@ -189,17 +189,6 @@ text=Enchant creature Sacrifice an untapped creature: Enchanted creature gets +2
 rarity=C
 [/card]
 [card]
-id=4537
-name=Bogardan Firefiend
-mana={2}{R}
-type=Creature
-subtype=Elemental Spirit
-power=2
-toughness=1
-text=When Bogardan Firefiend is put into a graveyard from the battlefield, it deals 2 damage to target creature.
-rarity=C
-[/card]
-[card]
 id=4450
 name=Bone Dancer
 mana={1}{B}{B}

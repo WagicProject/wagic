@@ -355,17 +355,6 @@ text=Mindwarper enters the battlefield with three +1/+1 counters on it. {2}{B}, 
 rarity=R
 [/card]
 [card]
-id=4980
-name=Mogg Bombers
-mana={3}{R}
-type=Creature
-subtype=Goblin
-power=3
-toughness=4
-text=When another creature enters the battlefield, sacrifice Mogg Bombers. If you do, it deals 3 damage to target player.
-rarity=C
-[/card]
-[card]
 id=5107
 name=Mogg Infestation
 mana={3}{R}{R}

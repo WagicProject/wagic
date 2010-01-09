@@ -73,7 +73,6 @@ power=8
 subtype=Avatar
 toughness=8
 [/card]
-
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  {1}{U}: Target player reveals the top card of his or her library.
 id=129473
@@ -110,20 +109,6 @@ rarity=C
 color=White
 type=Instant
 mana={W}
-[/card]
-[card]
-text=When Bogardan Firefiend is put into a graveyard from play, it deals 2 damage to target creature.
-auto=@movedTo(this|graveyard):damage:2 target(creature)
-#can't be coded in 0.8, because you can't use "target" after "@movedTo"  unless there is a "may" condition
-id=130534
-name=Bogardan Firefiend
-rarity=C
-color=Red
-type=Creature
-mana={2}{R}
-power=2
-subtype=Elemental Spirit
-toughness=1
 [/card]
 [card]
 text=Whenever Cephalid Constable deals combat damage to a player, return up to that many target permanents that player controls to their owners' hands.
@@ -237,7 +222,6 @@ color=Black
 type=Sorcery
 mana={1}{B}
 [/card]
-
 [card]
 text=Counter target spell. Look at the top four cards of your library, then put them back in any order.
 id=134749
@@ -290,20 +274,6 @@ auto={1}{U}:becomes(Creature Faerie,2/1,flying blue)
 #will only work if activatedability is added for becomes
 color=Land
 type=Land
-[/card]
-[card]
-text=When Festering Goblin is put into a graveyard from play, target creature gets -1/-1 until end of turn.
-auto=@movedTo(this|graveyard):-1/-1 target(creature)
-#can't be coded in 0.8, because you can't use "target" after "@movedTo"  unless there is a "may" condition
-id=129546
-name=Festering Goblin
-rarity=C
-color=Black
-type=Creature
-mana={B}
-power=1
-subtype=Zombie Goblin
-toughness=1
 [/card]
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  When Fog Elemental attacks or blocks, sacrifice it at end of combat.
@@ -506,7 +476,6 @@ abilities=legendary
 type=Artifact
 mana={7}
 [/card]
-
 [card]
 text=When Llanowar Sentinel comes into play, you may pay {1}{G}. If you do, search your library for a card named Llanowar Sentinel and put that card into play. Then shuffle your library.
 id=129536
@@ -522,7 +491,6 @@ power=2
 subtype=Elf
 toughness=3
 [/card]
-
 [card]
 text=When Loyal Sentry blocks a creature, destroy that creature and Loyal Sentry.
 id=129798
@@ -626,22 +594,6 @@ rarity=R
 color=Black
 type=Enchantment
 mana={2}{B}{B}
-[/card]
-[card]
-text=First strike (This creature deals combat damage before creatures without first strike.)  When Nekrataal comes into play, destroy target nonartifact, nonblack creature. That creature can't be regenerated.
-#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
-id=129658
-name=Nekrataal
-target=creature[-black,-artifact]
-auto=bury
-color=Black
-type=Creature
-mana={2}{B}{B}
-power=2
-subtype=Human Assassin
-toughness=1
-abilities=first strike
-rarity=U
 [/card]
 [card]
 text=Sacrifice No Rest for the Wicked: Return to your hand all creature cards that were put into your graveyard from play this turn.
@@ -1086,21 +1038,6 @@ subtype=Viashino
 toughness=2
 [/card]
 [card]
-text=When Viridian Shaman comes into play, destroy target artifact.
-id=129792
-name=Viridian Shaman
-target=artifact
-#abilities "when...enters the battlefield ... target..." are not supported unless there is a "may"
-auto=destroy
-rarity=U
-color=Green
-type=Creature
-mana={2}{G}
-power=2
-subtype=Elf Shaman
-toughness=2
-[/card]
-[card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  As Voice of All comes into play, choose a color.      Voice of All has protection from the chosen color. (It can't be blocked, targeted, dealt damage, or enchanted by anything of the chosen color.)
 id=136290
 name=Voice of All
@@ -1121,7 +1058,6 @@ color=Red
 type=Sorcery
 mana={5}{R}{R}{R}
 [/card]
-
 [card]
 #Technically correct could be added to the card.dat but this card is too powerfull the AI does not understand and simply never attack... in WTH 0.8.1
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Creatures can't attack you unless their controller pays {2} for each creature he or she controls that's attacking you.

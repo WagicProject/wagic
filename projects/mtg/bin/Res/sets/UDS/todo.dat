@@ -30,17 +30,6 @@ text=Enchant creature At the beginning of your upkeep, you may put an arrow coun
 rarity=U
 [/card]
 [card]
-id=15261
-name=Aura Thief
-mana={3}{U}
-type=Creature
-subtype=Illusion
-power=2
-toughness=2
-text=Flying When Aura Thief is put into a graveyard from the battlefield, you gain control of all enchantments. (You don't get to move Auras.)
-rarity=R
-[/card]
-[card]
 id=15214
 name=Bloodshot Cyclops
 mana={5}{R}
@@ -90,15 +79,6 @@ text=Whenever a creature attacks, Caltrops deals 1 damage to it.
 rarity=U
 [/card]
 [card]
-id=15768
-name=Chime of Night
-mana={1}{B}
-type=Enchantment
-subtype=Aura
-text=Enchant creature When Chime of Night is put into a graveyard from the battlefield, destroy target nonblack creature.
-rarity=C
-[/card]
-[card]
 id=15199
 name=Cinder Seer
 mana={3}{R}
@@ -108,26 +88,6 @@ power=1
 toughness=1
 text={2}{R}, {T}: Reveal any number of red cards in your hand. Cinder Seer deals X damage to target creature or player, where X is the number of cards revealed this way.
 rarity=U
-[/card]
-[card]
-id=15151
-name=Disappear
-mana={2}{U}{U}
-type=Enchantment
-subtype=Aura
-text=Enchant creature {U}: Return enchanted creature and Disappear to their owners' hands.
-rarity=U
-[/card]
-[card]
-id=15169
-name=Disease Carriers
-mana={2}{B}{B}
-type=Creature
-subtype=Rat
-power=2
-toughness=2
-text=When Disease Carriers is put into a graveyard from the battlefield, target creature gets -2/-2 until end of turn.
-rarity=C
 [/card]
 [card]
 id=15168

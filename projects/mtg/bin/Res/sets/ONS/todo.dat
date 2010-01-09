@@ -723,17 +723,6 @@ text=Until end of turn, whenever a player gains life, that player loses 2 life f
 rarity=R
 [/card]
 [card]
-id=39905
-name=Festering Goblin
-mana={B}
-type=Creature
-subtype=Zombie Goblin
-power=1
-toughness=1
-text=When Festering Goblin is put into a graveyard from play, target creature gets -1/-1 until end of turn.
-rarity=C
-[/card]
-[card]
 id=39592
 name=Flamestick Courier
 mana={2}{R}

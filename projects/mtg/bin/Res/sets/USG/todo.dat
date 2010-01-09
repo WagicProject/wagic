@@ -141,15 +141,6 @@ type=Instant
 mana={R}
 [/card]
 [card]
-text=Enchant creature     Enchanted creature gets +1/+2.     When Brilliant Halo is put into a graveyard from play, return Brilliant Halo to its owner's hand.
-id=9890
-name=Brilliant Halo
-rarity=C
-type=Enchantment
-mana={1}{W}
-subtype=Aura
-[/card]
-[card]
 text=At the beginning of your upkeep, Bulwark deals damage to target opponent equal to the number of cards in your hand greater than the number of cards in his or her hand.
 id=8886
 name=Bulwark
@@ -273,22 +264,6 @@ type=Instant
 mana={U}
 [/card]
 [card]
-text=Flying. When Dark Hatchling comes into play, destroy target nonblack creature. It can't be regenerated.
-#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
-target=creature[-black]
-auto=bury
-id=5852
-name=Dark Hatchling
-color=Black
-rarity=R
-mana={4}{B}{B}
-type=Creature
-subtype=Horror
-power=3
-toughness=3
-abilities=flying
-[/card]
-[card]
 text=All creatures are black.
 id=5622
 name=Darkest Hour
@@ -303,15 +278,6 @@ name=Defensive Formation
 rarity=U
 type=Enchantment
 mana={W}
-[/card]
-[card]
-text=Enchant creature     Enchanted creature gets -2/-0.     When Despondency is put into a graveyard from play, return Despondency to its owner's hand.
-id=10656
-name=Despondency
-rarity=C
-type=Enchantment
-mana={1}{B}
-subtype=Aura
 [/card]
 [card]
 text=Enchant creature     Whenever enchanted creature deals combat damage to a player, that player sacrifices a land.
@@ -833,36 +799,6 @@ type=Artifact
 mana={5}
 [/card]
 [card]
-text=When Monk Idealist comes into play, return target enchantment card from your graveyard to your hand.
-#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
-target=enchantment|mygraveyard
-auto=moveTo(myhand)
-id=5706
-name=Monk Idealist
-rarity=U
-mana={2}{W}
-type=Creature
-subtype=Human Monk Cleric
-power=2
-toughness=2
-[/card]
-[card]
-text=When Monk Realist comes into play, destroy target enchantment.
-#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
-target=enchantment
-auto=destroy
-id=5708
-name=Monk Realist
-color=White
-rarity=C
-mana={1}{W}
-type=Creature
-subtype=Human Monk Cleric
-power=1
-toughness=1
-[/card]
-
-[card]
 text=Sacrifice No Rest for the Wicked: Return to your hand all creature cards that were put into your graveyard from play this turn.
 id=8802
 name=No Rest for the Wicked
@@ -1031,7 +967,6 @@ mana={1}{W}
 [/card]
 [card]
 text=Whenever another card is put into a graveyard from anywhere, remove that card from the game.
-auto=@movedTo(*[-this]|graveyard):moveTo(Exile) ???
 id=5608
 name=Planar Void
 rarity=U
@@ -1370,17 +1305,6 @@ subtype=Human
 toughness=1
 [/card]
 [card]
-text=When Spined Fluke comes into play, sacrifice a creature.     {B}: Regenerate Spined Fluke.
-id=5849
-name=Spined Fluke
-rarity=U
-type=Creature
-mana={2}{B}
-power=5
-subtype=Worm Horror
-toughness=1
-[/card]
-[card]
 text=Flying     When Spire Owl comes into play, look at the top four cards of your library, then put them back in any order.
 id=7167
 name=Spire Owl
@@ -1407,20 +1331,6 @@ rarity=U
 type=Enchantment
 mana={G}
 subtype=Aura
-[/card]
-[card]
-text=When Stern Proctor enters the battlefield, return target artifact or enchantment to its owner's hand.
-target=enchantment,artifact
-#"When [this] enters the battlefield ... target ..." abilities are not supported unless there is a "may" (Wagic 0.9)
-auto=moveTo(ownerhand)
-id=5661
-name=Stern Proctor
-rarity=U
-mana={U}{U}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=2
 [/card]
 [card]
 text=If a red spell would deal damage to a creature or player, it deals that much damage plus 1 to that creature or player instead.

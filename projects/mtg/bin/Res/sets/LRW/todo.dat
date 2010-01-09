@@ -490,17 +490,6 @@ type=Enchantment
 mana={1}{W}
 [/card]
 [card]
-text=When Exiled Boggart is put into a graveyard from play, discard a card.
-id=146443
-name=Exiled Boggart
-rarity=C
-type=Creature
-mana={1}{B}
-power=2
-subtype=Goblin Rogue
-toughness=2
-[/card]
-[card]
 ###opponentTurnOnly does not work here! (0.10.1)
 text=Whenever an opponent casts a blue spell during your turn, you may put a 4/4 green Elemental creature token onto the battlefield.
 auto=@movedTo(*|mystack):may token(Elemental,creature elemental,4/4,green) opponentTurnOnly

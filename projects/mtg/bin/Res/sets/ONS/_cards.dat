@@ -490,6 +490,18 @@ mana={2}{B}
 type=Instant
 [/card]
 [card]
+text=When Festering Goblin is put into a graveyard from the battlefield, target creature gets -1/-1 until end of turn.
+auto=@movedTo(this|graveyard):-1/-1 target(creature) ueot
+id=39905
+name=Festering Goblin
+rarity=C
+mana={B}
+type=Creature
+subtype=Zombie Goblin
+power=1
+toughness=1
+[/card]
+[card]
 text=Choose one: Target creature gains haste until end of turn; or target creature gets +2/+0 until end of turn; or Fever Charm deals 3 damage to target Wizard creature.
 id=39484
 auto=may haste target(creature)
