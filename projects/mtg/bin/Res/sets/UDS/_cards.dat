@@ -432,8 +432,7 @@ toughness=3
 [/card]
 [card]
 text=When Marker Beetles is put into a graveyard from the battlefield, target creature gets +1/+1 until end of turn.   {2}, Sacrifice Marker Beetles: Draw a card.
-auto=@movedTo(this|graveyard) from(battlefield):1/1 target(creature|battlefield)
- ueot
+auto=@movedTo(this|graveyard) from(battlefield):1/1 target(creature|battlefield) ueot
 id=15222
 name=Marker Beetles
 rarity=C
