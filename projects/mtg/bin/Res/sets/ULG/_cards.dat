@@ -540,6 +540,19 @@ mana={2}{W}
 type=Instant
 [/card]
 [card]
+text=Enchant creature   Enchanted creature gets +2/+0 and has trample.   When Rancor is put into a graveyard from the battlefield, return Rancor to its owner's hand.
+auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(rancor|mygraveyard)
+id=12433
+target=creature
+auto=2/0
+auto=trample
+name=Rancor
+rarity=C
+mana={G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 text=Return all artifacts to their owners' hands.   Cycling {2} ({2}, Discard this card: Draw a card.)
 id=12385
 auto=moveTo(ownerhand) all(artifact)
@@ -559,6 +572,20 @@ mana={3}
 type=Artifact
 [/card]
 [card]
+text=Flying   When Shivan Phoenix is put into a graveyard from the battlefield, return Shivan Phoenix to its owner's hand.
+auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(shivan phoenix|mygraveyard)
+
+id=12423
+name=Shivan Phoenix
+rarity=R
+mana={4}{R}{R}
+type=Creature
+subtype=Phoenix
+power=3
+toughness=4
+abilities=flying
+[/card]
+[card]
 text=Target creature gets +1/+1 and gains reach until end of turn. (It can block creatures with flying.)
 target=creature
 auto=1/1
@@ -568,6 +595,30 @@ name=Silk Net
 rarity=C
 mana={G}
 type=Instant
+[/card]
+[card]
+text=Enchant creature   Enchanted creature has fear. (It can't be blocked except by artifact creatures and/or black creatures.)   When Sleeper's Guile is put into a graveyard from the battlefield, return Sleeper's Guile to its owner's hand.
+auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(sleeper's guile|mygraveyard)
+id=12397
+target=creature
+auto=fear
+name=Sleeper's Guile
+rarity=C
+mana={2}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Enchant creature   Enchanted creature can't block.   When Sluggishness is put into a graveyard from the battlefield, return Sluggishness to its owner's hand.
+auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(sluggishness|mygraveyard)
+id=12416
+target=creature
+auto=cantblock
+name=Sluggishness
+rarity=C
+mana={1}{R}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 text=At the beginning of your upkeep, each opponent loses 1 life. You gain life equal to the life lost this way.
@@ -702,6 +753,19 @@ subtype=Faerie
 power=2
 toughness=1
 abilities=flying,protection from red
+[/card]
+[card]
+text=Trample   When Weatherseed Treefolk is put into a graveyard from the battlefield, return Weatherseed Treefolk to its owner's hand.
+auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(weatherseed treefolk|mygraveyard)
+id=12438
+name=Weatherseed Treefolk
+rarity=R
+mana={2}{G}{G}{G}
+type=Creature
+subtype=Treefolk
+power=5
+toughness=3
+abilities=trample
 [/card]
 [card]
 text=Destroy target creature with flying.

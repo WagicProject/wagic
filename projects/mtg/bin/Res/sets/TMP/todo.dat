@@ -1073,7 +1073,6 @@ power=1
 subtype=Human Cleric
 toughness=1
 [/card]
-
 [card]
 text=Blue spells you play cost {1} less to play.
 id=4626

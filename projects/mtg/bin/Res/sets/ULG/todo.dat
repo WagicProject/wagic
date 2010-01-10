@@ -373,7 +373,6 @@ toughness=5
 text=Flying When Palinchron enters the battlefield, untap up to seven lands. {2}{U}{U}: Return Palinchron to its owner's hand.
 rarity=R
 [/card]
-
 [card]
 id=9709
 name=Peace and Quiet
@@ -424,15 +423,6 @@ power=2
 toughness=5
 text=Echo {3}{W} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) When Radiant's Dragoons enters the battlefield, you gain 5 life.
 rarity=U
-[/card]
-[card]
-id=12433
-name=Rancor
-mana={G}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature gets +2/+0 and has trample. When Rancor is put into a graveyard from the battlefield, return Rancor to its owner's hand.
-rarity=C
 [/card]
 [card]
 id=5703
@@ -489,17 +479,6 @@ text=At the beginning of your upkeep, if you have 5 or less life, sacrifice Seco
 rarity=R
 [/card]
 [card]
-id=12423
-name=Shivan Phoenix
-mana={4}{R}{R}
-type=Creature
-subtype=Phoenix
-power=3
-toughness=4
-text=Flying When Shivan Phoenix is put into a graveyard from the battlefield, return Shivan Phoenix to its owner's hand.
-rarity=R
-[/card]
-[card]
 id=9691
 name=Sick and Tired
 mana={2}{B}
@@ -519,30 +498,12 @@ text=Flash Echo {2}{G} (At the beginning of your upkeep, if this came under your
 rarity=C
 [/card]
 [card]
-id=12397
-name=Sleeper's Guile
-mana={2}{B}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature has fear. (It can't be blocked except by artifact creatures and/or black creatures.) When Sleeper's Guile is put into a graveyard from the battlefield, return Sleeper's Guile to its owner's hand.
-rarity=C
-[/card]
-[card]
 id=12384
 name=Slow Motion
 mana={2}{U}
 type=Enchantment
 subtype=Aura
 text=Enchant creature At the beginning of the upkeep of enchanted creature's controller, that player sacrifices that creature unless he or she pays {2}. When Slow Motion is put into a graveyard from the battlefield, return Slow Motion to its owner's hand.
-rarity=C
-[/card]
-[card]
-id=12416
-name=Sluggishness
-mana={1}{R}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature can't block. When Sluggishness is put into a graveyard from the battlefield, return Sluggishness to its owner's hand.
 rarity=C
 [/card]
 [card]
@@ -686,17 +647,6 @@ power=1
 toughness=3
 text={1}{R}, {T}: Destroy target artifact. Viashino Heretic deals damage to that artifact's controller equal to the artifact's converted mana cost.
 rarity=U
-[/card]
-[card]
-id=12438
-name=Weatherseed Treefolk
-mana={2}{G}{G}{G}
-type=Creature
-subtype=Treefolk
-power=5
-toughness=3
-text=Trample When Weatherseed Treefolk is put into a graveyard from the battlefield, return Weatherseed Treefolk to its owner's hand.
-rarity=R
 [/card]
 [card]
 id=9706

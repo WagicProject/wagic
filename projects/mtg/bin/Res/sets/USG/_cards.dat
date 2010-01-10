@@ -569,6 +569,18 @@ mana={X}{R}{R}
 type=Instant
 [/card]
 [card]
+text=Enchant creature   When Fiery Mantle is put into a graveyard from the battlefield, return Fiery Mantle to its owner's hand.   {R}: Enchanted creature gets +1/+0 until end of turn.
+auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(fiery mantle|mygraveyard)
+id=10425
+target=creature
+auto={R}:1/0
+name=Fiery Mantle
+rarity=C
+mana={1}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 text={T}: Fire Ants deals 1 damage to each other creature without flying.
 auto={T}:damage:1 all(creature[-flying]) other
 id=5568
@@ -631,20 +643,32 @@ type=Basic Land
 subtype=Forest
 [/card]
 [card]
+text=Enchant creature   When Fortitude is put into a graveyard from the battlefield, return Fortitude to its owner's hand.   Sacrifice a Forest: Regenerate enchanted creature.
+auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(fortitude|mygraveyard)
+id=9850
+target=creature
+auto={S(forest|myBattlefield)}:regenerate
+name=Fortitude
+rarity=C
+mana={1}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 text={T}: Add {G} to your mana pool for each creature you control.
 id=10422
-auto={T}:foreach(creature|myBattlefield) add:{G}
 name=Gaea's Cradle
+auto={T}:foreach(creature|myBattlefield) add:{G}
 rarity=R
 type=Legendary Land
 [/card]
 [card]
 text=Enchant creature   Enchanted creature gets +3/+3 and has trample.   {G}: Regenerate enchanted creature.
+id=5720
 target=creature
 auto=3/3
 auto=trample
 auto={G}:regenerate
-id=5720
 name=Gaea's Embrace
 rarity=U
 mana={2}{G}{G}
@@ -653,10 +677,10 @@ subtype=Aura
 [/card]
 [card]
 text=Search your library for a card, put that card into your hand, then discard a card at random. Then shuffle your library.
+id=10654
 target=*|myLibrary
 auto=moveTo(myHand)
 auto=discard:1
-id=10654
 name=Gamble
 rarity=R
 type=Sorcery
@@ -784,7 +808,7 @@ type=Instant
 [card]
 text=Heat Ray deals X damage to target creature.
 target=creature
-alias=1291
+auto=damage:X
 id=10464
 name=Heat Ray
 rarity=C
@@ -893,6 +917,18 @@ name=Island
 rarity=L
 type=Basic Land
 subtype=Island
+[/card]
+[card]
+text=Enchant creature   Enchanted creature has flying.   When Launch is put into a graveyard from the battlefield, return Launch to its owner's hand.
+auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(launch|mygraveyard)
+id=5832
+target=creature
+auto=flying
+name=Launch
+rarity=C
+mana={1}{U}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 text=Destroy target land.   Cycling {2} ({2}, Discard this card: Draw a card.)

@@ -81,7 +81,6 @@ rarity=U
 type=Sorcery
 mana={2}{B}{B}
 [/card]
-
 [card]
 text=Choose one - Destroy target creature; or return target creature card from your graveyard to play.     Entwine-Sacrifice three lands. (Choose both if you pay the entwine cost.)
 id=48588
@@ -114,7 +113,6 @@ rarity=U
 type=Instant
 mana={3}{G}
 [/card]
-
 [card]
 text=Trample     {3}{R}, Sacrifice an artifact: Bosh, Iron Golem deals damage equal to the sacrificed artifact's converted mana cost to target creature or player.
 id=48581
@@ -148,7 +146,6 @@ power=1
 subtype=Ouphe
 toughness=1
 [/card]
-
 [card]
 text=Chalice of the Void comes into play with X charge counters on it.     Whenever a player plays a spell with converted mana cost equal to the number of charge counters on Chalice of the Void, counter that spell.
 id=48326
@@ -168,7 +165,6 @@ power=1
 subtype=Imp
 toughness=2
 [/card]
-
 [card]
 text=Imprint - When Chrome Mox comes into play, you may remove a nonartifact, nonland card in your hand from the game. (The removed card is imprinted on this artifact.)  {T}: Add one mana of any of the imprinted card's colors to your mana pool.
 id=47446
@@ -333,7 +329,6 @@ rarity=C
 type=Instant
 mana={R}
 [/card]
-
 [card]
 text=Imprint - When Extraplanar Lens comes into play, you may remove target land you control from the game. (The removed card is imprinted on this artifact.)  Whenever a land with the same name as the imprinted card is tapped for mana, its controller adds one mana to his or her mana pool of any type that land produced.
 id=49440
@@ -342,7 +337,6 @@ rarity=R
 type=Artifact
 mana={3}
 [/card]
-
 [card]
 text=Whenever a source an opponent controls deals damage to you, if Farsight Mask is untapped, you may draw a card.
 id=46135
@@ -353,7 +347,6 @@ rarity=U
 type=Artifact
 mana={5}
 [/card]
-
 [card]
 text=At the beginning of each opponent's upkeep, that player chooses draw step, main phase, or combat phase. The player skips each instance of the chosen step or phase this turn.
 id=45970
@@ -373,7 +366,6 @@ rarity=R
 type=Sorcery
 mana={2}{R}
 [/card]
-
 [card]
 text=Whenever Flayed Nim deals combat damage to a creature, that creature's controller loses that much life. {2}{B}: Regenerate Flayed Nim.
 id=46094
@@ -470,7 +462,6 @@ rarity=U
 type=Instant
 mana={3}{R}
 [/card]
-
 [card]
 text=You can't play creature spells.
 id=48178
@@ -518,8 +509,6 @@ rarity=C
 type=Instant
 mana={2}{R}
 [/card]
-
-
 [card]
 text=Imprint - When Isochron Scepter comes into play, you may remove an instant card with converted mana cost 2 or less in your hand from the game. (The removed card is imprinted on this artifact.)  {2}, {T}: You may copy the imprinted instant card. If you do, you may play the copy without paying its mana cost.
 id=46741
@@ -544,8 +533,6 @@ rarity=C
 type=Sorcery
 mana={2}{G}
 [/card]
-
-
 [card]
 text=If you would flip a coin, instead flip two coins and ignore one.
 id=48923
@@ -554,7 +541,6 @@ rarity=R
 type=Legendary Artifact
 mana={2}
 [/card]
-
 [card]
 text=As long as Leonin Den-Guard is equipped, it gets +1/+1 and has vigilance.
 id=45958
@@ -566,7 +552,6 @@ power=1
 subtype=Cat Soldier
 toughness=3
 [/card]
-
 [card]
 text={2}, {T}: Name a card. Target opponent guesses whether a card with that name is in your hand. You may reveal your hand. If you do and your opponent guessed wrong, draw a card.
 id=46733
@@ -591,7 +576,6 @@ rarity=R
 type=Artifact
 mana={3}
 [/card]
-
 [card]
 text=Trample     Whenever Living Hive deals combat damage to a player, put that many 1/1 green Insect creature tokens into play.
 id=46694
@@ -725,7 +709,6 @@ toughness=6
 text=Destroy target land. If that land was nonbasic, Molten Rain deals 2 damage to the land's controller.
 id=46000
 target=land
-auto=destroy && aslongas(-basic):damage:2 targetcontroller
 name=Molten Rain
 rarity=C
 type=Sorcery
@@ -790,17 +773,6 @@ mana={5}
 power=2
 subtype=Myr
 toughness=2
-[/card]
-[card]
-text=When Myr Retriever is put into a graveyard from play, return another target artifact card from your graveyard to your hand.
-id=46126
-name=Myr Retriever
-rarity=U
-type=Artifact Creature
-mana={2}
-power=1
-subtype=Myr
-toughness=1
 [/card]
 [card]
 text=At the beginning of each player's upkeep, that player discards a card.

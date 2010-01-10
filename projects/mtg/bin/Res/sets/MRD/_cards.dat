@@ -774,7 +774,7 @@ power=1
 toughness=3
 [/card]
 [card]
-text=Flying At the beginning of your upkeep, you may put a 1/1 white Spirit creature token with flying onto the battlefield.
+text=Flying   At the beginning of your upkeep, you may put a 1/1 white Spirit creature token with flying onto the battlefield.
 auto=@each my upkeep:may token(Spirit,Creature Spirit,1/1,white flying)
 id=46546
 name=Luminous Angel
@@ -788,13 +788,13 @@ abilities=flying
 [/card]
 [card]
 text={1}{G}: Malachite Golem gains trample until end of turn.
-auto={1}{G}:trample
 id=48056
 name=Malachite Golem
 rarity=C
 mana={6}
 type=Artifact Creature
 subtype=Golem
+auto={1}{G}:trample
 power=5
 toughness=3
 [/card]
@@ -809,25 +809,25 @@ type=Enchantment
 [/card]
 [card]
 text=Sacrifice an artifact: Megatog gets +3/+3 and gains trample until end of turn.
-auto={S(artifact|myBattlefield)}:3/3 && trample
 id=46579
 name=Megatog
 rarity=R
 mana={4}{R}{R}
 type=Creature
 subtype=Atog
+auto={S(artifact|myBattlefield)}:3/3 && trample
 power=3
 toughness=4
 [/card]
 [card]
 text=When Moriok Scavenger enters the battlefield, you may return target artifact creature card from your graveyard to your hand.
-auto=may moveTo(myhand) target(artifact|mygraveyard)
 id=45965
 name=Moriok Scavenger
 rarity=C
 mana={3}{B}
 type=Creature
 subtype=Human Rogue
+auto=may moveTo(myhand) target(artifact|mygraveyard)
 power=2
 toughness=3
 [/card]
@@ -866,6 +866,19 @@ name=Mountain
 type=Basic Land
 rarity=L
 subtype=Mountain
+[/card]
+[card]
+text=When Myr Retriever is put into a graveyard from the battlefield, return another target artifact card from your graveyard to your hand.
+auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) target(other artifact|mygraveyard)
+
+id=46126
+name=Myr Retriever
+rarity=U
+mana={2}
+type=Artifact Creature
+subtype=Myr
+power=1
+toughness=1
 [/card]
 [card]
 text=Flash   Protection from artifacts

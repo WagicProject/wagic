@@ -457,15 +457,6 @@ mana={1}{G}
 subtype=Aura
 [/card]
 [card]
-text=Enchant creature     When Fiery Mantle is put into a graveyard from play, return Fiery Mantle to its owner's hand.     {R}: Enchanted creature gets +1/+0 until end of turn.
-id=10425
-name=Fiery Mantle
-rarity=C
-type=Enchantment
-mana={1}{R}
-subtype=Aura
-[/card]
-[card]
 text=Whenever Flesh Reaver deals damage to a creature or opponent, Flesh Reaver deals that much damage to you.
 id=5654
 name=Flesh Reaver
@@ -483,15 +474,6 @@ name=Fluctuator
 rarity=R
 type=Artifact
 mana={2}
-[/card]
-[card]
-text=Enchant creature     When Fortitude is put into a graveyard from play, return Fortitude to its owner's hand.     Sacrifice a Forest: Regenerate enchanted creature.
-id=9850
-name=Fortitude
-rarity=C
-type=Enchantment
-mana={1}{G}
-subtype=Aura
 [/card]
 [card]
 text=Search your library for up to two Forest cards, reveal those cards, and put them into your hand. Then shuffle your library.
@@ -693,15 +675,6 @@ mana={5}
 power=4
 subtype=Golem
 toughness=4
-[/card]
-[card]
-text=Enchant creature     Enchanted creature has flying.     When Launch is put into a graveyard from play, return Launch to its owner's hand.
-id=5832
-name=Launch
-rarity=C
-type=Enchantment
-mana={1}{U}
-subtype=Aura
 [/card]
 [card]
 text=Whenever a creature is put into a graveyard from play and another creature is in play, return the first creature from that graveyard to play under its owner's control at end of turn.

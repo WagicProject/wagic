@@ -558,6 +558,19 @@ power=2
 toughness=2
 [/card]
 [card]
+text=Flying   When Keiga, the Tide Star is put into a graveyard from the battlefield, gain control of target creature.
+auto=@movedTo(this|graveyard) from(battlefield):moveTo(myBattlefield) target(creature)
+id=75286
+name=Keiga, the Tide Star
+rarity=R
+mana={5}{U}
+type=Legendary Creature
+subtype=Dragon Spirit
+power=5
+toughness=5
+abilities=flying
+[/card]
+[card]
 text={T}: Tap target Spirit.
 id=76652
 name=Kitsune Diviner

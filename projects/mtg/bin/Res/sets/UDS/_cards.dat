@@ -309,6 +309,30 @@ toughness=2
 abilities=first strike,haste
 [/card]
 [card]
+text=When Goblin Gardener is put into a graveyard from the battlefield, destroy target land.
+id=15197
+name=Goblin Gardener
+rarity=C
+mana={3}{R}
+type=Creature
+subtype=Goblin
+auto=@movedTo(this|graveyard) from(battlefield):destroy target(artifact)
+power=2
+toughness=1
+[/card]
+[card]
+text=When Goblin Masons is put into a graveyard from the battlefield, destroy target Wall.
+id=15202
+name=Goblin Masons
+rarity=C
+mana={1}{R}
+type=Creature
+subtype=Goblin
+auto=@movedTo(this|graveyard) from(battlefield):destroy target(wall)
+power=2
+toughness=1
+[/card]
+[card]
 text=Trample
 id=15223
 name=Goliath Beetle
@@ -358,6 +382,20 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+text=Flying   When Junk Diver is put into a graveyard from the battlefield, return another target artifact card from your graveyard to your hand.
+auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) target(other artifact|mygraveyard)
+
+id=15256
+name=Junk Diver
+rarity=R
+mana={3}
+type=Artifact Creature
+subtype=Bird
+power=1
+toughness=1
+abilities=flying
+[/card]
+[card]
 text=Flying   When Kingfisher is put into a graveyard from the battlefield, draw a card.
 id=15147
 name=Kingfisher
@@ -381,15 +419,29 @@ type=Instant
 [/card]
 [card]
 text={2}: Mantis Engine gains flying until end of turn. (It can't be blocked except by creatures with flying or reach.)   {2}: Mantis Engine gains first strike until end of turn. (It deals combat damage before creatures without first strike.)
-auto={2}:flying
-auto={2}:first strike
 id=15247
 name=Mantis Engine
 rarity=U
 mana={5}
 type=Artifact Creature
 subtype=Insect
+auto={2}:flying
+auto={2}:first strike
 power=3
+toughness=3
+[/card]
+[card]
+text=When Marker Beetles is put into a graveyard from the battlefield, target creature gets +1/+1 until end of turn.   {2}, Sacrifice Marker Beetles: Draw a card.
+auto=@movedTo(this|graveyard) from(battlefield):1/1 target(creature|battlefield)
+ ueot
+id=15222
+name=Marker Beetles
+rarity=C
+mana={1}{G}{G}
+type=Creature
+subtype=Insect
+auto={S}:draw:1
+power=2
 toughness=3
 [/card]
 [card]
@@ -463,6 +515,18 @@ toughness=4
 abilities=reach
 [/card]
 [card]
+text=When Reliquary Monk is put into a graveyard from the battlefield, destroy target artifact or enchantment.
+id=15123
+name=Reliquary Monk
+rarity=C
+mana={2}{W}
+type=Creature
+subtype=Human Monk Cleric
+auto=@movedTo(this|mygraveyard) from(battlefield):destroy target(artifact,enchantment)
+power=2
+toughness=2
+[/card]
+[card]
 text=Return all enchantment cards from your graveyard to the battlefield. (Auras with nothing to enchant remain in your graveyard.)
 id=15143
 name=Replenish
@@ -473,9 +537,9 @@ type=Sorcery
 [/card]
 [card]
 text=Return target permanent you control to its owner's hand.
+id=15154
 target=*|myBattlefield
 auto=moveTo(myhand)
-id=15154
 name=Rescue
 rarity=C
 mana={U}

@@ -1546,6 +1546,28 @@ mana={3}{U}
 type=Sorcery
 [/card]
 [card]
+text=When Undying Beast is put into a graveyard from the battlefield, put Undying Beast on top of its owner's library.
+auto=@movedTo(this|graveyard) from(battlefield):moveTo(mylibrary) notatarget(undying beast|mygraveyard)
+id=4242
+name=Undying Beast
+rarity=C
+mana={3}{B}
+type=Creature
+subtype=Beast
+power=3
+toughness=2
+[/card]
+[card]
+text=Search your library for a basic land card and put that card onto the battlefield. Then shuffle your library.
+id=4323
+target=land[basic]|myLibrary
+auto=moveTo(myBattlefield)
+name=Untamed Wilds
+rarity=U
+mana={2}{G}
+type=Sorcery
+[/card]
+[card]
 text=White creatures get +2/+0 until end of turn.
 id=4402
 auto=lord(creature[white]) 2/0
@@ -1561,16 +1583,6 @@ auto=lord(creature|myBattlefield) 1/1
 name=Warrior's Charge
 rarity=C
 mana={2}{W}
-type=Sorcery
-[/card]
-[card]
-text=Search your library for a basic land card and put that card onto the battlefield. Then shuffle your library.
-id=4323
-target=land[basic]|myLibrary
-auto=moveTo(myBattlefield)
-name=Untamed Wilds
-rarity=U
-mana={2}{G}
 type=Sorcery
 [/card]
 [card]

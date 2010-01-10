@@ -208,17 +208,6 @@ text={2}: Goblin Festival deals 1 damage to target creature or player. Flip a co
 rarity=R
 [/card]
 [card]
-id=15197
-name=Goblin Gardener
-mana={3}{R}
-type=Creature
-subtype=Goblin
-power=2
-toughness=1
-text=When Goblin Gardener is put into a graveyard from the battlefield, destroy target land.
-rarity=C
-[/card]
-[card]
 id=15212
 name=Goblin Marshal
 mana={4}{R}{R}
@@ -228,17 +217,6 @@ power=3
 toughness=3
 text=Echo {4}{R}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) When Goblin Marshal enters the battlefield or is put into a graveyard from the battlefield, put two 1/1 red Goblin creature tokens onto the battlefield.
 rarity=R
-[/card]
-[card]
-id=15202
-name=Goblin Masons
-mana={1}{R}
-type=Creature
-subtype=Goblin
-power=2
-toughness=1
-text=When Goblin Masons is put into a graveyard from the battlefield, destroy target Wall.
-rarity=C
 [/card]
 [card]
 id=15219
@@ -302,17 +280,6 @@ text={2}{W}, {T}: Reveal any number of white cards in your hand. You gain 2 life
 rarity=U
 [/card]
 [card]
-id=15256
-name=Junk Diver
-mana={3}
-type=Artifact Creature
-subtype=Bird
-power=1
-toughness=1
-text=Flying When Junk Diver is put into a graveyard from the battlefield, return another target artifact card from your graveyard to your hand.
-rarity=R
-[/card]
-[card]
 id=15206
 name=Keldon Champion
 mana={2}{R}{R}
@@ -357,17 +324,6 @@ mana={R}
 type=Enchantment
 subtype=Aura
 text=Enchant creature Enchanted creature has haste. At the beginning of the end step, return Mark of Fury to its owner's hand.
-rarity=C
-[/card]
-[card]
-id=15222
-name=Marker Beetles
-mana={1}{G}{G}
-type=Creature
-subtype=Insect
-power=2
-toughness=3
-text=When Marker Beetles is put into a graveyard from the battlefield, target creature gets +1/+1 until end of turn. {2}, Sacrifice Marker Beetles: Draw a card.
 rarity=C
 [/card]
 [card]
@@ -547,17 +503,6 @@ name=Reckless Abandon
 mana={R}
 type=Sorcery
 text=As an additional cost to cast Reckless Abandon, sacrifice a creature. Reckless Abandon deals 4 damage to target creature or player.
-rarity=C
-[/card]
-[card]
-id=15123
-name=Reliquary Monk
-mana={2}{W}
-type=Creature
-subtype=Human Monk Cleric
-power=2
-toughness=2
-text=When Reliquary Monk is put into a graveyard from the battlefield, destroy target artifact or enchantment.
 rarity=C
 [/card]
 [card]

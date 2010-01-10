@@ -415,17 +415,6 @@ type=Instant
 mana={1}{G}
 [/card]
 [card]
-text=When Undying Beast is put into a graveyard from play, put Undying Beast on top of its owner's library.
-id=4242
-name=Undying Beast
-rarity=C
-type=Creature
-mana={3}{B}
-power=3
-subtype=Beast
-toughness=2
-[/card]
-[card]
 text=Destroy two target nonblack creatures. You lose 5 life.
 id=4246
 name=Wicked Pact
