@@ -583,13 +583,9 @@ toughness=3
 abilities=flying
 [/card]
 [card]
-text=Spend only black mana on X.   Drain Life deals X damage to target creature or player. You gain life equal to the damage dealt, but not more life than the player's life total before Drain Life dealt damage or the creature's toughness.
-target=player,creature
 id=1156
-name=Drain Life
+primitive=Drain Life
 rarity=C
-mana={X}{1}{B}
-type=Sorcery
 [/card]
 [card]
 text={B}: Regenerate Drudge Skeletons. (The next time this creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)

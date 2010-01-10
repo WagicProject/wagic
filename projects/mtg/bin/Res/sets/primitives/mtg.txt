@@ -1,6 +1,14 @@
 #Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
 [card]
+text=Spend only black mana on X.   Drain Life deals X damage to target creature or player. You gain life equal to the damage dealt, but not more life than the player's life total before Drain Life dealt damage or the creature's toughness.
+target=creature,player
+alias=1156
+name=Drain Life
+mana={X}{1}{B}
+type=Sorcery
+[/card]
+[card]
 name=Forest
 text={T}: Add {G} to your mana pool.
 auto={T}: Add {G}

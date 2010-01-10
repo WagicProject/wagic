@@ -354,6 +354,7 @@ void MTGInPlay::untapAll(){
 //--------------------------
 void MTGLibrary::shuffleTopToBottom(int nbcards){
   if (nbcards>nb_cards) nbcards = nb_cards;
+  if (nbcards < 0) return;
   MTGCardInstance * _cards[MTG_MAX_PLAYER_CARDS];
   for (int i= nb_cards-nbcards; i<(nb_cards); i++) {
     int r = i + (WRand() % (nbcards-i)); // Random remaining position.
