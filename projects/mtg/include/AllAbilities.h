@@ -899,6 +899,11 @@ class ABasicAbilityModifierUntilEOT:public TargetAbility{
     return 1;
   }
 
+  int addToGame(){
+    resolve();
+    return ActivatedAbility::addToGame();
+  }
+
   const char * getMenuText(){
     return Constants::MTGBasicAbilities[ability];
   }
@@ -973,11 +978,21 @@ class ABasicAbilityAuraModifierUntilEOT: public ActivatedAbility{
     ability = NEW AInstantBasicAbilityModifierUntilEOT(_id,_source,_target,_ability, _value);
   }
 
+ int isReactingToClick(MTGCardInstance * card, ManaCost * cost = NULL){
+   //The upper level "GenericTargetAbility" takes care of the click so we always return 0 here
+   return 0;
+ }
+
   int resolve(){
     MTGAbility * a = ability->clone();
     a->target = target;
     a->addToGame();
     return 1;
+  }
+
+  int addToGame(){
+    resolve();
+    return ActivatedAbility::addToGame();
   }
 
   const char * getMenuText(){
@@ -1266,58 +1281,6 @@ class APowerToughnessModifier: public MTGAbility{
 };
 
 
-//Alteration of Power and Toughness until end of turn (TargetAbility)
-// Gives +n/+m until end of turn to any card that's a target
-class ATargetterPowerToughnessModifierUntilEOT: public TargetAbility{
- public:
-  MTGCardInstance * mTargets[50];
-  int nbTargets;
-  WParsedPT * wppt;
-
- ATargetterPowerToughnessModifierUntilEOT(int _id, MTGCardInstance * _source, WParsedPT * wppt,  ManaCost * _cost, TargetChooser * _tc = NULL, int doTap=1):TargetAbility(_id,_source,_tc,_cost,0,doTap),wppt(wppt){
-    if (!tc) tc = NEW CreatureTargetChooser(_source);
-    nbTargets = 0;
-  }
-
-
-  void Update(float dt){
-    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UNTAP){
-      for (int i = 0; i < nbTargets; i++){
-	MTGCardInstance * mTarget = mTargets[i];
-	if(mTarget){
-	  mTarget->power-=wppt->power.getValue();
-	  mTarget->addToToughness(-wppt->toughness.getValue());
-	}
-      }
-      nbTargets = 0;
-    }
-    TargetAbility::Update(dt);
-  }
-
-
-  int resolve(){
-    MTGCardInstance * mTarget = tc->getNextCardTarget();
-    if (mTarget){
-      mTargets[nbTargets] = mTarget;
-      mTarget->power+= wppt->power.getValue();
-      mTarget->addToToughness(wppt->toughness.getValue());
-      nbTargets++;
-    }
-    return 1;
-  }
-
-  ATargetterPowerToughnessModifierUntilEOT * clone() const{
-    ATargetterPowerToughnessModifierUntilEOT * a =  NEW ATargetterPowerToughnessModifierUntilEOT(*this);
-    a->wppt = NEW WParsedPT(*(a->wppt));
-    a->isClone = 1;
-    return a;
-  }
-
-  ~ATargetterPowerToughnessModifierUntilEOT(){
-    delete(wppt);
-  }
-};
-
 //Alteration of Power and toughness until end of turn (instant)
 class  AInstantPowerToughnessModifierUntilEOT: public InstantAbility{
  public:
@@ -1369,6 +1332,11 @@ class APowerToughnessModifierUntilEndOfTurn: public ActivatedAbility{
     ability = NEW AInstantPowerToughnessModifierUntilEOT(id,_source,_target,wppt);
   }
 
+ int isReactingToClick(MTGCardInstance * card, ManaCost * cost = NULL){
+   //The upper level "GenericTargetAbility" takes care of the click so we always return 0 here
+   return 0;
+ }
+
   void Update(float dt){
     if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_AFTER_EOT){
       counters = 0;
@@ -1384,10 +1352,10 @@ class APowerToughnessModifierUntilEndOfTurn: public ActivatedAbility{
     return ability->getMenuText();
   }
 
-  int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL){
+ /* int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL){
     if (!ActivatedAbility::isReactingToClick(card,mana)) return 0;
     return (!maxcounters || (counters < maxcounters));
-  }
+  }*/
 
   int resolve(){
     MTGAbility * a = ability->clone();
@@ -1395,6 +1363,11 @@ class APowerToughnessModifierUntilEndOfTurn: public ActivatedAbility{
     a->addToGame();
     counters++;
     return 1;
+  }
+
+  int addToGame(){
+    resolve();
+    return ActivatedAbility::addToGame();
   }
 
   APowerToughnessModifierUntilEndOfTurn * clone() const{
@@ -3353,6 +3326,11 @@ class ADragonWhelp: public APowerToughnessModifierUntilEndOfTurn{
  public:
  ADragonWhelp(int id, MTGCardInstance * card):APowerToughnessModifierUntilEndOfTurn(id, card, card, NEW WParsedPT(1, 0), NEW ManaCost()){
     cost->add(Constants::MTG_COLOR_RED, 1);
+  }
+
+  int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL){
+    if (!ActivatedAbility::isReactingToClick(card,mana)) return 0;
+    return (!maxcounters || (counters < maxcounters));
   }
 
   void Update(float dt){

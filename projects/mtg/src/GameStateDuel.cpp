@@ -232,9 +232,8 @@ void GameStateDuel::Update(float dt)
 #ifdef TESTSUITE
       else if (mParent->players[1] ==  PLAYER_TYPE_TESTSUITE){
 	      if (testSuite && testSuite->loadNext()){
-
-	        loadTestSuitePlayers();
           rules = NEW Rules("testsuite.txt");
+	        loadTestSuitePlayers();
 	        mGamePhase = DUEL_STATE_PLAY;
 	        testSuite->initGame();
 	        char buf[4096];

@@ -1840,7 +1840,9 @@ int TargetAbility::resolve(){
   Targetable * t = tc->getNextTarget();
   if (t && ability){
     ability->target = t;
-    return ability->resolve();
+    if (ability->oneShot) return ability->resolve();
+    MTGAbility * a =  ability->clone();
+    return a->addToGame();
   }
   return 0;
 }
