@@ -217,6 +217,10 @@ int ActionLayer::reactToClick(MTGCardInstance * card){
 
 
 void ActionLayer::setMenuObject(Targetable * object, bool must){
+  if (!object){
+    OutputDebugString("FATAL: ActionLayer::setMenuObject\n");
+    return;
+  }
   menuObject = object;
 
   SAFE_DELETE(abilitiesMenu);

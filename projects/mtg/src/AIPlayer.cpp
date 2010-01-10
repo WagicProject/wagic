@@ -21,7 +21,7 @@ int AIAction::Act(){
     if (target) g->cardClick(target);
     return 1;
   }else if (click){ //Shouldn't be used, really...
-    g->cardClick(click);
+    g->cardClick(click,click);
     if (target) g->cardClick(target);
     return 1;
   }
