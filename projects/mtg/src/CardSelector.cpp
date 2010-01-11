@@ -58,7 +58,7 @@ void CardSelector::Remove(CardSelector::Target* card)
     }
 }
 
-template <>
+template<>
 CardSelector::Target* CardSelector::fetchMemory(SelectorMemory& memory)
 {
   if (NULL == memory.object) return NULL;
@@ -73,7 +73,9 @@ CardSelector::Target* CardSelector::fetchMemory(SelectorMemory& memory)
     }
   // We come here if the card is not in the selector any more, or if
   // it is there but it is now refused by the limitor.
-  return closest<True>(cards, limitor, memory.x, memory.y);
+  PlayGuiObject* x = closest<True>(cards, limitor, memory.x, memory.y);
+  CardView* c = dynamic_cast<CardView*>(x);
+  return x;
 }
 template<>
 void CardSelector::Push()
@@ -138,7 +140,7 @@ bool CardSelector::CheckUserInput(u32 key)
       active = closest<Down>(cards, limitor, active);
       break;
     case PSP_CTRL_TRIANGLE:
-      bigMode = (bigMode+1) % NB_BIG_MODES; 
+      bigMode = (bigMode+1) % NB_BIG_MODES;
       if(bigMode == BIG_MODE_TEXT)
         options[Options::DISABLECARDS].number = 1;
       else
@@ -155,15 +157,24 @@ bool CardSelector::CheckUserInput(u32 key)
       if (oldowner != owner)
         {
           if (nullZone != owner)
-            if (PlayGuiObject* old = fetchMemory(lasts[owner]))
-              active = old;
+            {
+              if (PlayGuiObject* old = fetchMemory(lasts[owner]))
+                switch (key)
+                  {
+                  case PSP_CTRL_LEFT:     if (old->x < oldactive->x) active = old; break;
+                  case PSP_CTRL_RIGHT:    if (old->x > oldactive->x) active = old; break;
+                  case PSP_CTRL_UP:       if (old->y < oldactive->y) active = old; break;
+                  case PSP_CTRL_DOWN:     if (old->y > oldactive->y) active = old; break;
+                  default:                if (old) active = old; break;
+                  }
+            }
           lasts[oldowner] = SelectorMemory(oldactive);
         }
     }
   if (active != oldactive)
     {
-      { CardView* c = dynamic_cast<CardView*>(oldactive); if (c) c->zoom = 1.0; } //Is this needed, I think it is one in Leaving(0) ?
-      { CardView* c = dynamic_cast<CardView*>(active); if (c) c->zoom = 1.4; } //Is this needed, I think it is one in Entering() ?
+      { CardView* c = dynamic_cast<CardView*>(oldactive); if (c) c->zoom = 1.0; }
+      { CardView* c = dynamic_cast<CardView*>(active); if (c) c->zoom = 1.4; }
       if (oldactive) oldactive->Leaving(0);
       if (active) active->Entering();
     }
