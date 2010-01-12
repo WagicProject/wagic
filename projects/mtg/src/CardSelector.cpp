@@ -73,9 +73,7 @@ CardSelector::Target* CardSelector::fetchMemory(SelectorMemory& memory)
     }
   // We come here if the card is not in the selector any more, or if
   // it is there but it is now refused by the limitor.
-  PlayGuiObject* x = closest<True>(cards, limitor, memory.x, memory.y);
-  CardView* c = dynamic_cast<CardView*>(x);
-  return x;
+  return closest<True>(cards, limitor, memory.x, memory.y);
 }
 template<>
 void CardSelector::Push()
