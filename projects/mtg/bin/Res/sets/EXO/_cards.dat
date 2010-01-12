@@ -39,6 +39,15 @@ power=2
 toughness=2
 [/card]
 [card]
+text=When you play another land, sacrifice City of Traitors.   {T}: Add {2} to your mana pool.
+id=6168
+name=City of Traitors
+auto=@movedTo(land|mybattlefield):bury
+auto={T}:Add {2}
+rarity=R
+type=Land
+[/card]
+[card]
 text=As an additional cost to cast Culling the Weak, sacrifice a creature.   Add {B}{B}{B}{B} to your mana pool.
 target=creature|myBattlefield
 auto=bury
@@ -50,6 +59,17 @@ mana={B}
 type=Instant
 [/card]
 [card]
+text=Enchant creature   Whenever enchanted creature deals damage to an opponent, you may draw a card.
+id=6060
+target=creature
+auto=@damaged(player) from(mytgt):may draw:1 controller
+name=Curiosity
+rarity=U
+mana={U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 text=Enchant creature   Enchanted creature gets -1/-1 and has fear.
 target=creature
 auto=-1/-1
@@ -58,26 +78,6 @@ id=6089
 name=Cursed Flesh
 rarity=C
 mana={B}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
-text=When you play another land, sacrifice City of Traitors.   {T}: Add {2} to your mana pool.
-id=6168
-name=City of Traitors
-auto=@movedTo(land|mybattlefield):bury
-auto={T}:Add {2}
-rarity=R
-type=Land
-[/card]
-[card]
-text=Enchant creature   Whenever enchanted creature deals damage to an opponent, you may draw a card.
-id=6060
-target=creature
-auto=@damaged(player) from(mytgt):may draw:1 controller
-name=Curiosity
-rarity=U
-mana={U}
 type=Enchantment
 subtype=Aura
 [/card]

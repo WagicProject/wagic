@@ -4,6 +4,19 @@ year=2005
 block=Guild
 [/meta]
 [card]
+text=Whenever Agrus Kos, Wojek Veteran attacks, attacking red creatures get +2/+0 and attacking white creatures get +0/+2 until end of turn.
+auto=aslongas(agrus kos wojek veteran[attacking]|myBattlefield) lord(creature[red;attacking]) 2/0
+auto=aslongas(agrus kos wojek veteran[attacking]|myBattlefield) lord(creature[white;attacking]) 0/2
+id=89101
+name=Agrus Kos Wojek Veteran
+rarity=R
+mana={3}{R}{W}
+type=Legendary Creature
+subtype=Human Soldier
+power=3
+toughness=3
+[/card]
+[card]
 text={R}, Sacrifice Barbarian Riftcutter: Destroy target land.
 id=87972
 name=Barbarian Riftcutter
@@ -797,6 +810,17 @@ name=Muddle the Mixture
 rarity=C
 mana={U}{U}
 type=Instant
+[/card]
+[card]
+text=Enchant creature   Whenever enchanted creature deals combat damage to a player, you may return target creature card from your graveyard to your hand.
+auto=@damaged(player) from(mytgt):may moveTo(myhand) target(creature|mygraveyard)
+id=87985
+target=creature
+name=Necromantic Thirst
+rarity=C
+mana={2}{B}{B}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 text=When Netherborn Phalanx enters the battlefield, each opponent loses 1 life for each creature he or she controls.   Transmute {1}{B}{B} ({1}{B}{B}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Transmute only as a sorcery.)

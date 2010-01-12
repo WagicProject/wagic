@@ -1,19 +1,4 @@
 [card]
-#Since it is a legendary creature should work fine... did not test it yet
-text=Whenever Agrus Kos, Wojek Veteran attacks, attacking red creatures get +2/+0 and attacking white creatures get +0/+2 until end of turn.
-id=89101
-auto=aslongas(Agrus Kos[attacking]|myinplay) lord(creature[red;attacking]) 2/0
-auto=aslongas(Agrus Kos[attacking]|myinplay) lord(creature[white;attacking]) 0/2
-name=Agrus Kos, Wojek Veteran
-rarity=R
-type=Creature
-abilities=legendary
-mana={3}{R}{W}
-power=3
-subtype=Human Soldier
-toughness=3
-[/card]
-[card]
 text=When Auratouched Mage comes into play, search your library for an Aura card that could enchant it. If Auratouched Mage is still in play, attach that Aura to it. Otherwise, reveal the Aura card and put it into your hand. Then shuffle your library.
 id=87952
 name=Auratouched Mage
@@ -1029,15 +1014,6 @@ mana={3}{B}
 power=4
 subtype=Insect
 toughness=1
-[/card]
-[card]
-text=Enchant creature     Whenever enchanted creature deals combat damage to a player, you may return target creature card from your graveyard to your hand.
-id=87985
-name=Necromantic Thirst
-rarity=C
-type=Enchantment
-mana={2}{B}{B}
-subtype=Aura
 [/card]
 [card]
 text=At the beginning of your upkeep, put a +1/+1 counter on Necroplasm.     At the end of your turn, destroy each creature with converted mana cost equal to the number of +1/+1 counters on Necroplasm.     Dredge 2
