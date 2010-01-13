@@ -1313,7 +1313,7 @@ subtype=Aura
 [card]
 text=Villainous Ogre can't block.   As long as you control a Demon, Villainous Ogre has "{B}: Regenerate Villainous Ogre."
 id=80520
-name=Villanous Ogre
+name=Villainous Ogre
 rarity=C
 mana={2}{B}
 type=Creature
