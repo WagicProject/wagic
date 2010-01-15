@@ -142,6 +142,7 @@ clone.txt
 clone2.txt
 clone3.txt
 cockatrice.txt
+cockatrice_i228.txt
 colossus_of_sardia1.txt
 colossus_of_sardia2.txt
 composite_golem.txt

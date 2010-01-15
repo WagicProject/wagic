@@ -1,0 +1,28 @@
+#Bug: Regenerate should prevent cokcatrice's effect
+#see http://code.google.com/p/wagic/issues/detail?id=228
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:Charging Troll,forest
+[PLAYER2]
+inplay:cockatrice
+[DO]
+Charging Troll
+next
+#blockers
+cockatrice
+next
+yes
+forest
+Charging Troll
+endinterruption
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Charging Troll,forest
+[PLAYER2]
+inplay:cockatrice
+[END]

@@ -2134,7 +2134,7 @@ class AOldSchoolDeathtouch:public MTGAbility{
 	}
       }else if (newPhase == Constants::MTG_PHASE_COMBATEND){
 	for (int i = 0; i < nbOpponents ; i++){
-	  game->mLayers->stackLayer()->addPutInGraveyard(opponents[i]);
+    opponents[i]->destroy();
 	}
       }
     }
