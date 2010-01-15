@@ -140,7 +140,9 @@ int TestSuiteAI::Act(float dt){
           OutputDebugString("TESTSUITE Clicking ON: ");
           OutputDebugString(card->name.c_str());
           OutputDebugString("\n");
+          card->currentZone->needShuffle = true; //mimic library shuffle
           g->cardClick(card,card);
+          g->forceShuffleLibraries(); //mimic library shuffle
         }
       }
     }else{
