@@ -231,7 +231,8 @@ int GuiPlay::receiveEventPlus(WEvent * e)
 	  else
 	    card = NEW CardView(CardSelector::playZone, event->card, 0, 0);
 	  cards.push_back(card);
-	  card->t = 0; card->alpha = 255;
+	  card->t = event->card->isTapped() ? M_PI / 2 : 0;
+    card->alpha = 255;
 	  cs->Add(card);
 	  Replace();
 	  return 1;

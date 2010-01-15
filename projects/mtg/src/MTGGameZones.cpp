@@ -148,19 +148,13 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     }
 
     MTGCardInstance * ret = copy;
-    /*if (card->isToken){
-      if (to != g->players[0]->game->inPlay && to != g->players[1]->game->inPlay){
-        to = garbage;
-        ret = NULL;
-      }
-    }*/
 
     to->addCard(copy);
     copy->changedZoneRecently = 1.f;
     GameObserver *g = GameObserver::GetInstance();
     WEvent * e = NEW WEventZoneChange(copy, from, to);
     g->receiveEvent(e);
-    //delete e;
+
     return ret;
   }
   return card; //Error

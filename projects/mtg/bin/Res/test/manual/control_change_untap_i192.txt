@@ -12,6 +12,7 @@
 #DESC: display doesn't change, but Assassinate
 #DESC: cannot target it any more. Conclusion: The
 #DESC: game state is correct, but the display not.
+[INIT]
 firstmain
 [PLAYER1]
 hand:Control Magic,Enervate,Assassinate,Twitch
