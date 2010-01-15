@@ -1,0 +1,37 @@
+#Testing exalted
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:sigiled paladin,grizzly bears
+[PLAYER2]
+[DO]
+grizzly bears
+eot
+eot
+next
+#upkeep
+next
+#draw
+next
+#main
+next
+#cb begins
+next
+#attackers
+grizzly bears
+sigiled paladin
+next
+#blockers
+next
+#damage 1st strike
+next
+#damage 2
+next
+#combat end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:sigiled paladin,grizzly bears
+[PLAYER2]
+life:13
+[END]

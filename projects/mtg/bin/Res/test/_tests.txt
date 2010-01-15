@@ -14,6 +14,8 @@ generic/equip_shroud.txt
 generic/equip_shroud2.txt
 generic/equip_wither.txt
 generic/equipment_i252.txt
+generic/exalted.txt
+generic/exalted_i143.txt
 generic/fear.txt
 generic/fear_i147.txt
 generic/first_and_double_strike1_i187.txt

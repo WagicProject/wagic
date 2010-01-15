@@ -1554,107 +1554,53 @@ class ARegularLifeModifierAura:public MTGAbility{
 
 
 //ExaltedAbility (Shards of Alara)
-class AExalted:public ListMaintainerAbility{
+class AExalted:public TriggeredAbility{
  public:
   int power, toughness;
   MTGCardInstance * luckyWinner;
- AExalted(int _id, MTGCardInstance * _source, int _power = 1, int _toughness = 1):ListMaintainerAbility(_id, _source),power(_power),toughness(_toughness){
+ AExalted(int _id, MTGCardInstance * _source, int _power = 1, int _toughness = 1):TriggeredAbility(_id, _source),power(_power),toughness(_toughness){
     luckyWinner = NULL;
   }
 
+ int triggerOnEvent(WEvent * event) {
+    if (WEventPhaseChange* pe = dynamic_cast<WEventPhaseChange*>(event)) {
+      if (luckyWinner && Constants::MTG_PHASE_AFTER_EOT == pe->from->id){
+        luckyWinner->addToToughness(-toughness);
+        luckyWinner->power-=power;
+        luckyWinner = NULL;
+      }
 
-  int canBeInList(MTGCardInstance * card){
-    if (card->isAttacker() && game->currentPlayer == source->controller() && game->isInPlay(card)) return 1;
+      if (Constants::MTG_PHASE_COMBATATTACKERS == pe->from->id) {
+        int nbattackers = 0;
+        MTGGameZone * z = source->controller()->game->inPlay;
+        int nbcards = z->nb_cards;
+        for (int i = 0; i < nbcards; ++i){
+          MTGCardInstance * c = z->cards[i];
+          if (c->attacker){
+            nbattackers++;
+            luckyWinner = c;
+          }
+        }
+        if (nbattackers == 1) return 1;
+      }
+    }
     return 0;
-  }
+ }
 
-  int added(MTGCardInstance * card){
-    if(cards.size() == 1){
-      luckyWinner = cards.begin()->first;
-      luckyWinner->addToToughness(toughness);
-      luckyWinner->power+=power;
-    }else if (cards.size() == 2){
-      luckyWinner->addToToughness(-toughness);
-      luckyWinner->power-=power;
-    }
+  int resolve(){
+    if (!luckyWinner) return 0;
+    luckyWinner->addToToughness(toughness);
+    luckyWinner->power+=power;
     return 1;
   }
 
-  int removed(MTGCardInstance * card){
-    if(cards.size() == 1){
-      luckyWinner = cards.begin()->first;
-      luckyWinner->addToToughness(toughness);
-      luckyWinner->power+=power;
-    }else if (cards.size() == 0){
-      luckyWinner->addToToughness(-toughness);
-      luckyWinner->power-=power;
-    }
-    return 1;
-  }
 
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "AExalted ::: power : " << power
-	<< " ; toughness : " << toughness
-	<< " (";
-    return ListMaintainerAbility::toString(out) << ")";
-  }
   AExalted * clone() const{
     AExalted * a =  NEW AExalted(*this);
     a->isClone = 1;
     return a;
   }
 };
-
-
-//ExaltedAbility for basic abilities (Shards of Alara)
-class AExaltedAbility:public ListMaintainerAbility{
- public:
-  int ability;
-  MTGCardInstance * luckyWinner;
- AExaltedAbility(int _id, MTGCardInstance * _source, int _ability):ListMaintainerAbility(_id, _source),ability(_ability){
-    luckyWinner = NULL;
-  }
-
-
-  int canBeInList(MTGCardInstance * card){
-    if (card->isAttacker() && game->currentPlayer == source->controller() && game->isInPlay(card)) return 1;
-    return 0;
-  }
-
-  int added(MTGCardInstance * card){
-    luckyWinner = cards.begin()->first;
-    if(cards.size() == 1){
-      luckyWinner->basicAbilities[ability]+=1;
-    }else if (cards.size() == 2){
-      luckyWinner->basicAbilities[ability]-=1;
-    }
-    return 1;
-  }
-
-  int removed(MTGCardInstance * card){
-    if(cards.size() == 1){
-      luckyWinner->basicAbilities[ability]+=1;
-    }else if (cards.size() == 0){
-      luckyWinner->basicAbilities[ability]-=1;
-    }
-    return 1;
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "AExaltedAbility ::: ability : " << ability
-	<< " ; luckyWinner : " << luckyWinner
-	<< " (";
-    return ListMaintainerAbility::toString(out) << ")";
-  }
-  AExaltedAbility * clone() const{
-    AExaltedAbility * a =  NEW AExaltedAbility(*this);
-    a->isClone = 1;
-    return a;
-  }
-};
-
 
 //Converts lands to creatures (Kormus bell, Living lands)
 class AConvertLandToCreatures:public ListMaintainerAbility{

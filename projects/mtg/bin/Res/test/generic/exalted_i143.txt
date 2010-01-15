@@ -10,10 +10,8 @@
 combatattackers
 [PLAYER1]
 inplay:qasali pridemage,outrider of jhess
-graveyard:
 [PLAYER2]
 inplay:white knight
-graveyard:
 life:7
 [DO]
 qasali pridemage
