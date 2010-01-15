@@ -25,7 +25,6 @@ class CardDescriptor;
 class TargetChooser: public TargetsList {
  protected:
   int forceTargetListReady;
-  bool other;
 
  public:
  enum{
@@ -34,7 +33,7 @@ class TargetChooser: public TargetsList {
     CONTROLLER = 1,
     TARGET_CONTROLLER = 2
  };
-
+    bool other;
 
   TargetChooser(MTGCardInstance * card = NULL, int _maxtargets = -1, bool other = false);
 

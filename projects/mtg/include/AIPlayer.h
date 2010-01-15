@@ -22,7 +22,6 @@ class AIAction{
 protected:
   int efficiency;
   static int currentId;
-  static MTGAbility * getCoreAbility(MTGAbility * a);
 public:
   MTGAbility * ability;
   Player * player;

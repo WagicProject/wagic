@@ -162,6 +162,18 @@ int AbilityFactory::parseRestriction(string s){
   return ActivatedAbility::NO_RESTRICTION;
 }
 
+MTGAbility * AbilityFactory::getCoreAbility(MTGAbility * a){
+  GenericTargetAbility * gta = dynamic_cast<GenericTargetAbility*>(a);
+  if (gta) return getCoreAbility(gta->ability);
+
+  GenericActivatedAbility * gaa = dynamic_cast<GenericActivatedAbility*>(a);
+  if (gaa) return getCoreAbility(gaa->ability);
+
+  if (MultiAbility * abi = dynamic_cast<MultiAbility*>(a)) return getCoreAbility(abi->abilities[0]);
+
+  return a;
+}
+
 
 //Parses a string and returns the corresponding MTGAbility object
 // Returns NULL if parsing failed

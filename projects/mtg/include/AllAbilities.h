@@ -438,6 +438,35 @@ class GenericActivatedAbility:public ActivatedAbility{
 
 };
 
+//Copier. ActivatedAbility
+class AACopier:public ActivatedAbility{
+ public:
+ AACopier(int _id, MTGCardInstance * _source, MTGCardInstance * _target = NULL, ManaCost * _cost=NULL):ActivatedAbility(_id,_source,_cost,0,0){
+    target = _target;
+  }
+
+  int resolve(){
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    if(_target){
+      source->copy(_target);
+      return 1;
+    }
+    return 0;
+  }
+
+  const char * getMenuText(){
+    return "Copy";
+  }
+
+
+  AACopier * clone() const{
+    AACopier * a =  NEW AACopier(*this);
+    a->isClone = 1;
+    return a;
+  }
+};
+
+
 /* Generic TargetAbility */
 class GenericTargetAbility:public TargetAbility{
 
@@ -447,6 +476,8 @@ public:
   MTGGameZone * activeZone;
    GenericTargetAbility(int _id, MTGCardInstance * _source, TargetChooser * _tc,MTGAbility * a, ManaCost * _cost = NULL, int _tap=0, int limit = 0, int restrictions = 0, MTGGameZone * dest = NULL):TargetAbility(_id,_source, _tc,_cost,restrictions,_tap),limitPerTurn(limit), activeZone(dest){
     ability = a;
+    MTGAbility * core = AbilityFactory::getCoreAbility(a);
+    if (dynamic_cast<AACopier *>(core)) tc->other = true; //http://code.google.com/p/wagic/issues/detail?id=209 (avoid inifinite loop)
     counters = 0;
   }
 
@@ -749,36 +780,6 @@ public:
   }
 
 };
-
-
-//Copier. ActivatedAbility
-class AACopier:public ActivatedAbility{
- public:
- AACopier(int _id, MTGCardInstance * _source, MTGCardInstance * _target = NULL, ManaCost * _cost=NULL):ActivatedAbility(_id,_source,_cost,0,0){
-    target = _target;
-  }
-
-  int resolve(){
-    MTGCardInstance * _target = (MTGCardInstance *) target;
-    if(_target){
-      source->copy(_target);
-      return 1;
-    }
-    return 0;
-  }
-
-  const char * getMenuText(){
-    return "Copy";
-  }
-
-
-  AACopier * clone() const{
-    AACopier * a =  NEW AACopier(*this);
-    a->isClone = 1;
-    return a;
-  }
-};
-
 
 class AADestroyer:public ActivatedAbility{
 public:

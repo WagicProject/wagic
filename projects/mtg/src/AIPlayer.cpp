@@ -142,17 +142,7 @@ int AIPlayer::canHandleCost(MTGAbility * ability){
   return 1;
 }
 
-MTGAbility * AIAction::getCoreAbility(MTGAbility * a){
-  GenericTargetAbility * gta = dynamic_cast<GenericTargetAbility*>(a);
-  if (gta) return getCoreAbility(gta->ability);
 
-  GenericActivatedAbility * gaa = dynamic_cast<GenericActivatedAbility*>(a);
-  if (gaa) return getCoreAbility(gaa->ability);
-
-  if (MultiAbility * abi = dynamic_cast<MultiAbility*>(a)) return getCoreAbility(abi->abilities[0]);
-
-  return a;
-}
 
 int AIAction::getEfficiency(){
   //TODO add multiplier according to what the player wants
@@ -163,7 +153,7 @@ int AIAction::getEfficiency(){
   Player * p = g->currentlyActing();
   if (s->has(ability)) return 0;
 
-  MTGAbility * a = getCoreAbility(ability);
+  MTGAbility * a = AbilityFactory::getCoreAbility(ability);
 
   if (!a){
     OutputDebugString("FATAL: Ability is NULL in AIAction::getEfficiency()");
@@ -341,7 +331,6 @@ int AIPlayer::chooseTarget(TargetChooser * tc){
     target = this->opponent();
   }
 
-
   if (!tc->alreadyHasTarget(target) &&  tc->canTarget(target) && nbtargets < 50){
     for (int i = 0; i < 3; i++){ //Increase probability to target a player when this is possible
       potentialTargets.push_back(target);
@@ -356,21 +345,21 @@ int AIPlayer::chooseTarget(TargetChooser * tc){
     for (int k=0; k< zone->nb_cards; k++){
       MTGCardInstance * card = zone->cards[k];
       if (!tc->alreadyHasTarget(card) && tc->canTarget(card)  && nbtargets < 50){
-	if (checkOnly) return 1;
-	int multiplier = 1;
-	if (getStats() && getStats()->isInTop(card,10)){
-	  multiplier++;
-	  if (getStats()->isInTop(card,5)){
-	    multiplier++;
-	    if (getStats()->isInTop(card,3)){
-	      multiplier++;
-	    }
-	  }
-	}
-	for (int l=0; l < multiplier; l++){
-	  potentialTargets.push_back(card);
-	  nbtargets++;
-	}
+	      if (checkOnly) return 1;
+	      int multiplier = 1;
+	      if (getStats() && getStats()->isInTop(card,10)){
+	        multiplier++;
+	        if (getStats()->isInTop(card,5)){
+	          multiplier++;
+	          if (getStats()->isInTop(card,3)){
+	            multiplier++;
+	          }
+	        }
+	      }
+	      for (int l=0; l < multiplier; l++){
+	        potentialTargets.push_back(card);
+	        nbtargets++;
+	      }
       }
     }
   }
@@ -394,7 +383,7 @@ int AIPlayer::chooseTarget(TargetChooser * tc){
       }
     }
   }
-  //BIG PROBLEM
+  //Couldn't find any valid target (why did we play that in the first place ?)
   gameObs->cancelCurrentAction();
   return 0;
 }

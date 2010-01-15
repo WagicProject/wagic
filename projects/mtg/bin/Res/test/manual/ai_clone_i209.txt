@@ -1,0 +1,16 @@
+#Bug:AI clone
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+manapool:{3}{U}
+hand:clone
+[PLAYER2]
+[DO]
+ai
+ai
+[ASSERT]
+COMBATEND
+[PLAYER1]
+graveyard:clone
+[PLAYER2]
+[END]
