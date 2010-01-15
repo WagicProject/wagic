@@ -387,6 +387,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\DeckMetaData.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\DeckStats.cpp"
 				>
 			</File>
@@ -799,6 +803,10 @@
 			</File>
 			<File
 				RelativePath=".\include\DeckDataWrapper.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\DeckMetaData.h"
 				>
 			</File>
 			<File

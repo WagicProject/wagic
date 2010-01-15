@@ -17,6 +17,7 @@
 #include "../include/GameStateShop.h"
 #include "../include/GameStateAwards.h"
 #include "../include/DeckStats.h"
+#include "../include/DeckMetaData.h"
 #include "../include/Translate.h"
 
 hgeParticleSystem* GameApp::Particles[] = {NULL,NULL,NULL,NULL,NULL,NULL};
@@ -222,6 +223,7 @@ void GameApp::Destroy()
   delete(DeckStats::GetInstance());
 
   SAFE_DELETE(Subtypes::subtypesList);
+  SAFE_DELETE(DeckMetaDataList::decksMetaData);
 
   SAFE_DELETE(music);
   Translator::EndInstance();

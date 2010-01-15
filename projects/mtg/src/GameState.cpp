@@ -4,9 +4,11 @@
 #include "../include/Player.h"
 #include "../include/SimpleMenu.h"
 #include "../include/DeckStats.h"
+#include "../include/DeckMetaData.h"
 
 
 int GameState::fillDeckMenu(SimpleMenu * _menu, string path, string smallDeckPrefix, Player * statsPlayer){
+  DeckMetaDataList * metas = DeckMetaDataList::decksMetaData;
   int found = 1;
   int nbDecks = 0;
   _menu->autoTranslate = false;
@@ -16,8 +18,7 @@ int GameState::fillDeckMenu(SimpleMenu * _menu, string path, string smallDeckPre
     char smallDeckName[512];
     char deckDesc[512];
     sprintf(buffer, "%s/deck%i.txt",path.c_str(),nbDecks+1);
-    if(fileExists(buffer)){
-      MTGDeck * mtgd = NEW MTGDeck(buffer,NULL,1);
+    if(DeckMetaData * meta = metas->get(buffer)){
       found = 1;
       nbDecks++;
       sprintf(smallDeckName, "%s_deck%i",smallDeckPrefix.c_str(),nbDecks);
@@ -34,13 +35,12 @@ int GameState::fillDeckMenu(SimpleMenu * _menu, string path, string smallDeckPre
         }else{
           difficulty = "(easy)";
         }
-        sprintf(deckDesc, "%s %s",mtgd->meta_name.c_str(), _(difficulty).c_str());
+        sprintf(deckDesc, "%s %s",meta->name.c_str(), _(difficulty).c_str());
       }else{
-        sprintf(deckDesc, "%s",mtgd->meta_name.c_str());
+        sprintf(deckDesc, "%s",meta->name.c_str());
       }
       deckDesc[16] = 0;
-      _menu->Add(nbDecks,deckDesc,mtgd->meta_desc);
-      delete mtgd;
+      _menu->Add(nbDecks,deckDesc,meta->desc);
     }
   }
   return nbDecks;

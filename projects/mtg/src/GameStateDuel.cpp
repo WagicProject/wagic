@@ -331,7 +331,6 @@ void GameStateDuel::Update(float dt)
         }
         //end of music code
       }
-      //      mParent->effect->UpdateSmall(dt);
       game->Update(dt);
       if (game->gameOver){
         credits->compute(game->players[0],game->players[1], mParent);
@@ -357,17 +356,14 @@ void GameStateDuel::Update(float dt)
       }
       break;
     case DUEL_STATE_MENU:
-      //      mParent->effect->UpdateSmall(dt);
       menu->Update(dt);
       break;
     case DUEL_STATE_CANCEL:
-      //      mParent->effect->UpdateSmall(dt);
       menu->Update(dt);
       if (menu->closed)
 	mGamePhase = DUEL_STATE_PLAY;
       break;
     case DUEL_STATE_BACK_TO_MAIN_MENU:
-      //       mParent->effect->UpdateSmall(dt);
      menu->Update(dt);
       if (menu->closed) {
         PlayerData * playerdata = NEW PlayerData(mParent->collection);
@@ -388,7 +384,6 @@ void GameStateDuel::Update(float dt)
 void GameStateDuel::Render()
 {
   JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
-  //Erase
   LOG("Start Render\n");
   JRenderer::GetInstance()->ClearScreen(ARGB(0,0,0,0));
 
