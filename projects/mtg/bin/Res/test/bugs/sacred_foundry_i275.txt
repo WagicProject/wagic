@@ -1,0 +1,18 @@
+#Bug: Cancelling a "may" ability prevents from playing
+# see http://code.google.com/p/wagic/issues/detail?id=275
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:sacred foundry,grizzly bears
+manapool:{1}{G}
+[PLAYER2]
+[DO]
+sacred foundry
+choice 1
+grizzly bears
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:sacred foundry,grizzly bears
+[PLAYER2]
+[END]
