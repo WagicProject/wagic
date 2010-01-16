@@ -1396,7 +1396,7 @@ class  GenericInstantAbility: public InstantAbility{
  }
 
  int destroy(){
-   ability->forceDestroy = 0;
+   ability->forceDestroy = 1;
    return InstantAbility::destroy();
  }
 
