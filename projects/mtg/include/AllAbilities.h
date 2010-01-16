@@ -263,7 +263,7 @@ class AAFizzler:public ActivatedAbility{
 
 
 
-//MayAbility: May do something when comes into play (should be extended)
+//MayAbility: May do ...
 class MayAbility:public MTGAbility{
 public:
   int triggered;
@@ -297,19 +297,15 @@ public:
     if (!triggered) return 0;
     if (game->mLayers->actionLayer()->menuObject) return 0;
     if (game->mLayers->actionLayer()->getIndexOf(mClone) !=-1) return 0;
-    //if (game->mLayers->actionLayer()->getIndexOf(this) !=-1) return 0;
-    OutputDebugString("Destroy!\n");
     return 1;
   }
 
   int isReactingToTargetClick(Targetable * card){
-    OutputDebugString("IsReacting ???\n");
     if (card == source) return 1;
     return 0;
   }
 
   int reactToTargetClick(Targetable * object){
-    OutputDebugString("ReactToTargetClick!\n");
     mClone = ability->clone();
     mClone->addToGame();
     mClone->forceDestroy = 1;

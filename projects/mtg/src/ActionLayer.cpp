@@ -245,11 +245,7 @@ void ActionLayer::doReactTo(int menuIndex){
     char buf[4096];
     sprintf(buf, "ACTIONLAYER doReact To %i\n",controlid);
     OutputDebugString(buf);
-    if (controlid != -1){
-      ActionElement * currentAction = (ActionElement *)mObjects[controlid];
-      currentAction->reactToTargetClick(menuObject);
-    }
-    menuObject = 0;
+    ButtonPressed(0,controlid);
   }
 }
 
@@ -257,6 +253,8 @@ void ActionLayer::ButtonPressed(int controllerid, int controlid){
   if (controlid != -1){
     ActionElement * currentAction = (ActionElement *)mObjects[controlid];
     currentAction->reactToTargetClick(menuObject);
+  }else{
+    GameObserver::GetInstance()->mLayers->stackLayer()->endOfInterruption();
   }
   menuObject = 0;
 

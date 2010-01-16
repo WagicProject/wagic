@@ -34,26 +34,25 @@ void GuiAvatar::Render()
 
   r->FillRect(actX+2, actY+2, Width * actZ, Height *actZ, ARGB((int)(actA / 2), 0, 0, 0));
 
+  float x0 = actX;
+  float y0 = actY;
+ 
   JQuad * quad = player->mAvatar;
   if (quad)
     {
+     if (corner == BOTTOM_RIGHT){
+        x0 -= quad->mWidth * actZ;
+        y0 -= quad->mHeight * actZ;
+      }
       switch (corner)
-	{
-	case TOP_LEFT : quad->SetHotSpot(0, 0); break;
-	case BOTTOM_RIGHT : quad->SetHotSpot(35, 50); break;
-	}
+	    {
+	    case TOP_LEFT : quad->SetHotSpot(0, 0); break;
+	    case BOTTOM_RIGHT : quad->SetHotSpot(35, 50); break;
+	    }
       quad->SetColor(ARGB((int)actA, 255, avatarRed, avatarRed));
       r->RenderQuad(quad, actX, actY, actT, actZ, actZ);
       if (mHasFocus){
-        switch (corner)
-	        {
-	        case TOP_LEFT :
-            r->FillRect(actX,actY,quad->mWidth * actZ,quad->mHeight  * actZ, ARGB(abs(128 - wave),255,255,255));
-            break;
-	        case BOTTOM_RIGHT :
-            r->FillRect(actX - quad->mWidth * actZ,actY - quad->mHeight  * actZ,quad->mWidth * actZ,quad->mHeight  * actZ, ARGB(abs(128 - wave),255,255,255));
-            break;
-	        }
+        r->FillRect(x0,x0,quad->mWidth * actZ,quad->mHeight  * actZ, ARGB(abs(128 - wave),255,255,255));
       }
     }
 
@@ -62,12 +61,15 @@ void GuiAvatar::Render()
     if (avatarRed > 255)
       avatarRed = 255;
   }
+
+
   if (game->currentPlayer == player)
-    r->DrawRect(actX-1, actY-1, 37 * actZ, 52*actZ, ARGB((int)actA, 0, 255, 0));
+  r->DrawRect(x0-1, y0-1, 36 * actZ, 51*actZ, ARGB((int)actA, 0, 255, 0));
   else if (game->currentActionPlayer == player)
-    r->DrawRect(actX, actY, 35 *actZ, 50 * actZ, ARGB((int)actA, 0, 0, 255));
+    r->DrawRect(x0, y0, 34 *actZ, 49 * actZ, ARGB((int)actA, 0, 0, 255));
   if (game->isInterrupting == player)
-    r->DrawRect(actX, actY, 35 * actZ, 50*actZ, ARGB((int)actA, 255, 0, 0));
+    r->DrawRect(x0, y0, 34 * actZ, 49*actZ, ARGB((int)actA, 255, 0, 0));
+ 
 
 
 

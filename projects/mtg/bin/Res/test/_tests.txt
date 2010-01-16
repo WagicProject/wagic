@@ -338,6 +338,7 @@ righteous_cause.txt
 rockslide_elemental.txt
 rootwalla.txt
 royal_assassin.txt
+sacred_foundry_i275.txt
 safehold_duo.txt
 scourge_of_kher_ridges.txt
 scourge_of_kher_ridges2.txt
