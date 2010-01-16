@@ -1,0 +1,31 @@
+#Bug: Knight Captain prevents all combat damage
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Yotian soldier,grizzly bears
+hand:Knight-Captain of eos
+manapool:{4}{W}
+[PLAYER2]
+inplay:air elemental
+[DO]
+Knight-Captain of eos
+next
+#begin
+next
+#attackers
+grizzly bears
+next
+#blockers
+air elemental
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Knight-Captain of eos,Yotian soldier,*,*
+graveyard:grizzly bears
+[PLAYER2]
+inplay:air elemental
+[END]
