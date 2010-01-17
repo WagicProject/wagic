@@ -646,9 +646,9 @@ rarity=R
 mana={W}
 type=Creature
 subtype=Griffin
-auto=aslongas(enchantment|myBattlefield) -99/-99 <1
-power=2
-toughness=3
+power=-90
+toughness=-90
+auto=aslongas(enchantment|myBattlefield) 92/93
 abilities=flying
 [/card]
 [card]
