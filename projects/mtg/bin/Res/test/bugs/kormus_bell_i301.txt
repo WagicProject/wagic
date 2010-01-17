@@ -1,0 +1,26 @@
+#NAME:      Kormus Bell
+#DESC: 
+#DESC:              BUG
+#DESC: 
+#DESC: Swamps with Kormus Bell Should Trigger  
+#DESC: all creatures abilities when they go
+#DESC: to the graveyard. 
+#see http://code.google.com/p/wagic/issues/detail?id=301
+[INIT]
+firstmain
+[PLAYER1]
+inplay:Dingus Staff,Kormus Bell,Swamp
+hand:terror
+manapool:{1}{B}
+[PLAYER2]
+[DO]
+# Lets Kill the Swamp
+Terror
+Swamp
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:Dingus Staff,Kormus Bell
+graveyard:terror,swamp
+life:18
+[END]
