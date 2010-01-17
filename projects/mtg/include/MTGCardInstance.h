@@ -33,7 +33,6 @@ class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable {
   int tapped;
 
   int lifeOrig;
-  UntapBlockers * untapBlockers;
   MTGPlayerCards * belongs_to;
   MTGAbility * untapBlockerAbilities[10];
   MTGCardInstance * getNextPartner();
@@ -105,7 +104,6 @@ class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable {
   MTGCard * model;
   MTGCardInstance();
   MTGCardInstance(MTGCard * card, MTGPlayerCards * _belongs_to);
-  UntapBlockers * getUntapBlockers();
   int regenerate();
   int triggerRegenerate();
   Player * controller();

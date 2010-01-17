@@ -435,11 +435,22 @@ void GameObserver::cardClick (MTGCardInstance * card, Targetable * object){
       mLayers->actionLayer()->setMenuObject(object);
     }
   }else if (card->isTapped() && card->controller() == currentPlayer){
-    ConstraintResolver::untap(this, card);
+    untap(card);
   }
 
 
 
+}
+
+
+int GameObserver::untap(MTGCardInstance * card) {
+  if (!card->isUntapping()){
+    return 0;
+  }
+  if (card->has(Constants::DOESNOTUNTAP)) return 0;
+
+  card->attemptUntap();
+  return 1;
 }
 
 

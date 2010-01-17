@@ -31,6 +31,7 @@ class GameObserver{
 
   int nbPlayers;
   int currentPlayerId;
+  int untap(MTGCardInstance * card);
 
  public:
   CombatStep combatStep;

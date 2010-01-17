@@ -339,10 +339,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\Blocker.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\src\CardDescriptor.cpp"
 				>
 			</File>
@@ -360,10 +356,6 @@
 			</File>
 			<File
 				RelativePath=".\src\CardSelector.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\ConstraintResolver.cpp"
 				>
 			</File>
 			<File
@@ -750,10 +742,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\include\Blocker.h"
-				>
-			</File>
-			<File
 				RelativePath=".\include\CardDescriptor.h"
 				>
 			</File>
@@ -779,10 +767,6 @@
 			</File>
 			<File
 				RelativePath=".\include\config.h"
-				>
-			</File>
-			<File
-				RelativePath=".\include\ConstraintResolver.h"
 				>
 			</File>
 			<File

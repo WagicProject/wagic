@@ -81,7 +81,6 @@ void MTGCardInstance::copy(MTGCardInstance * card){
 
 MTGCardInstance::~MTGCardInstance(){
   LOG("==Deleting MTGCardInstance==");
-  SAFE_DELETE(untapBlockers);
   SAFE_DELETE(counters);
   SAFE_DELETE(previous);
   LOG("==Deleting MTGCardInstance Succesfull==");
@@ -102,7 +101,6 @@ void MTGCardInstance::initMTGCI(){
   doDamageTest = 1;
   belongs_to=NULL;
   tapped = 0;
-  untapBlockers = NULL;
   untapping = 0;
   summoningSickness = 1;
   target = NULL;
@@ -157,11 +155,6 @@ int MTGCardInstance::removeType(int id, int removeAll){
   WEvent * e = NEW WEventCardChangeType(this,id,before,after);
   GameObserver::GetInstance()->receiveEvent(e);
   return result;
-}
-
-UntapBlockers * MTGCardInstance::getUntapBlockers(){
-  if (!untapBlockers) untapBlockers = NEW UntapBlockers();
-  return untapBlockers;
 }
 
 int MTGCardInstance::isInPlay(){

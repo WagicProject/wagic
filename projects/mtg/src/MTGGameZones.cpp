@@ -338,7 +338,7 @@ void MTGInPlay::untapAll(){
   for (i = 0; i < nb_cards; i ++){
     MTGCardInstance * card = cards[i];
     card->setUntapping();
-    if (!card->basicAbilities[Constants::DOESNOTUNTAP] && card->getUntapBlockers()->isEmpty()){
+    if (!card->basicAbilities[Constants::DOESNOTUNTAP]){
       card->attemptUntap();
     }
   }

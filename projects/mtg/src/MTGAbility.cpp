@@ -147,14 +147,18 @@ int AbilityFactory::parseRestriction(string s){
   if (s.find("myturnonly") != string::npos) return ActivatedAbility::PLAYER_TURN_ONLY;
   if (s.find("assorcery") != string::npos) return ActivatedAbility::AS_SORCERY;
 
-  size_t found = s.find("my");
-  if (found !=string::npos){
-    for (int i = 0; i < Constants::NB_MTG_PHASES; i++){
-      string toFind = "my";
-      toFind.append(Constants::MTGPhaseCodeNames[i]).append("only");
-      found = s.find(toFind);
-      if (found != string::npos){
-	      return ActivatedAbility::MY_BEFORE_BEGIN + i;
+  string types[] = {"my","opponent", ""};
+  int starts[] = {ActivatedAbility::MY_BEFORE_BEGIN,ActivatedAbility::OPPONENT_BEFORE_BEGIN,ActivatedAbility::BEFORE_BEGIN};
+  for (int j = 0; j < 3; ++j){
+    size_t found = s.find(types[j]);
+    if (found !=string::npos){
+      for (int i = 0; i < Constants::NB_MTG_PHASES; i++){
+        string toFind = types[j];
+        toFind.append(Constants::MTGPhaseCodeNames[i]).append("only");
+        found = s.find(toFind);
+        if (found != string::npos){
+	        return starts[j] + i;
+        }
       }
     }
   }
@@ -1206,12 +1210,8 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(NEW AConvertLandToCreatures(id, card, "forest"));
       break;
     }
-  case 1124: //Mana Vault
+  case 1124: //Mana Vault (the rest is softcoded!)
     {
-      int output[] = {Constants::MTG_COLOR_ARTIFACT, 3};
-      game->addObserver(NEW AManaProducer(_id,card,card,NEW ManaCost(output,1)));
-      int cost[] = {Constants::MTG_COLOR_ARTIFACT, 4};
-      game->addObserver(NEW AUntapManaBlocker(_id+1, card, NEW ManaCost(cost,1)));
       game->addObserver(NEW ARegularLifeModifierAura(_id+2, card, card, Constants::MTG_PHASE_DRAW, -1, 1));
       break;
     }
@@ -1334,13 +1334,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       for (int i = 0; i < xCost; i++){
 	game->opponent()->game->discardRandom(game->opponent()->game->hand);
       }
-      break;
-    }
-  case 1171: //Paralyze
-    {
-      int cost[] = {Constants::MTG_COLOR_ARTIFACT, 4};
-      game->addObserver(NEW AUntapManaBlocker(_id, card,card->target, NEW ManaCost(cost,1)));
-      card->target->tap();
       break;
     }
   case 1172: //Pestilence
@@ -1734,6 +1727,15 @@ int ActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
   if (restrictions>= MY_BEFORE_BEGIN && restrictions <= MY_AFTER_EOT){
       if (player != game->currentPlayer) return 0;
       if (cPhase != restrictions - MY_BEFORE_BEGIN + Constants::MTG_PHASE_BEFORE_BEGIN) return 0;
+  }
+
+  if (restrictions>= OPPONENT_BEFORE_BEGIN && restrictions <= OPPONENT_AFTER_EOT){
+      if (player == game->currentPlayer) return 0;
+      if (cPhase != restrictions - OPPONENT_BEFORE_BEGIN + Constants::MTG_PHASE_BEFORE_BEGIN) return 0;
+  }
+
+  if (restrictions>= BEFORE_BEGIN && restrictions <= AFTER_EOT){
+      if (cPhase != restrictions - BEFORE_BEGIN + Constants::MTG_PHASE_BEFORE_BEGIN) return 0;
   }
 
   if (card == source && source->controller()==player && (!needsTapping || (!source->isTapped() && !source->hasSummoningSickness()))){
