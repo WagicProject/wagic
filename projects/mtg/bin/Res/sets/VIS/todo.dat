@@ -7,15 +7,6 @@ text=Players have no maximum hand size. At the beginning of each player's draw s
 rarity=R
 [/card]
 [card]
-id=3633
-name=Betrayal
-mana={U}
-type=Enchantment
-subtype=Aura
-text=Enchant creature an opponent controls Whenever enchanted creature becomes tapped, you draw a card.
-rarity=C
-[/card]
-[card]
 id=3609
 name=Blanket of Night
 mana={1}{B}{B}

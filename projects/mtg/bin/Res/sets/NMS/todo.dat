@@ -26,14 +26,6 @@ text=If you control a Plains, you may tap an untapped creature you control rathe
 rarity=U
 [/card]
 [card]
-id=21377
-name=Animate Land
-mana={G}
-type=Instant
-text=Until end of turn, target land becomes a 3/3 creature that's still a land.
-rarity=U
-[/card]
-[card]
 id=21343
 name=Arc Mage
 mana={2}{R}

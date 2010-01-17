@@ -41,6 +41,17 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Enchant creature an opponent controls   Whenever enchanted creature becomes tapped, you draw a card.
+id=3633
+target=creature|opponentBattlefield
+auto=@tapped(mytgt):draw:1 controller
+name=Betrayal
+rarity=C
+mana={U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 text=Flying   Cloud Spirit can block only creatures with flying.
 id=3636
 name=Cloud Elemental

@@ -1575,14 +1575,6 @@ type=Enchantment
 mana={4}{G}
 [/card]
 [card]
-text=Target land becomes a 3/3 creature until end of turn. It's still a land.       Draw a card.
-id=30546
-name=Vivify
-rarity=U
-type=Instant
-mana={2}{G}
-[/card]
-[card]
 text=Volcanic Spray deals 1 damage to each creature without flying and each player.       Flashback {1}{R} (You may play this card from your graveyard for its flashback cost. Then remove it from the game.)
 id=29768
 name=Volcanic Spray

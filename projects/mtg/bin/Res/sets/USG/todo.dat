@@ -1297,15 +1297,6 @@ type=Enchantment
 mana={3}{G}
 [/card]
 [card]
-text=Enchant Swamp     When enchanted land becomes tapped, destroy it.     When Spreading Algae is put into a graveyard from play, return Spreading Algae to its owner's hand.
-id=10409
-name=Spreading Algae
-rarity=U
-type=Enchantment
-mana={G}
-subtype=Aura
-[/card]
-[card]
 text=If a red spell would deal damage to a creature or player, it deals that much damage plus 1 to that creature or player instead.
 id=5638
 name=Sulfuric Vapors

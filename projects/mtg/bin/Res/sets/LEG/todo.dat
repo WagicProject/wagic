@@ -176,15 +176,6 @@ subtype=Elemental
 toughness=3
 [/card]
 [card]
-text=Enchant land     When enchanted land becomes tapped, destroy it.
-id=1429
-name=Blight
-rarity=U
-type=Enchantment
-mana={B}{B}
-subtype=Aura
-[/card]
-[card]
 text=If target creature has toughness 5 or greater, it gets +4/-4 until end of turn. Otherwise, it gets +4/-X until end of turn, where X is its toughness minus 1.
 id=1561
 name=Blood Lust
@@ -1242,15 +1233,6 @@ name=Spectral Cloak
 rarity=U
 type=Enchantment
 mana={U}{U}
-subtype=Aura
-[/card]
-[card]
-text=Enchant creature     Whenever enchanted creature becomes tapped, put a -0/-2 counter on it.
-id=1457
-name=Spirit Shackle
-rarity=C
-type=Enchantment
-mana={B}{B}
 subtype=Aura
 [/card]
 [card]

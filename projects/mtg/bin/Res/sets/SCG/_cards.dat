@@ -142,12 +142,25 @@ name=Divergent Growth
 mana={G}
 type=Instant
 text=Until end of turn, lands you control gain "{T}: Add one mana of any color to your mana pool."
-auto=lord(land|myinplay) {T}:add {G}
-auto=lord(land|myinplay) {T}:add {W}
-auto=lord(land|myinplay) {T}:add {B}
-auto=lord(land|myinplay) {T}:add {U}
-auto=lord(land|myinplay) {T}:add {R}
+auto=lord(land|myBattlefield) {T}:add {G}
+auto=lord(land|myBattlefield) {T}:add {W}
+auto=lord(land|myBattlefield) {T}:add {B}
+auto=lord(land|myBattlefield) {T}:add {U}
+auto=lord(land|myBattlefield) {T}:add {R}
 rarity=C
+[/card]
+[card]
+text=Flying   Whenever Dragon Mage deals combat damage to a player, each player discards his or her hand and draws seven cards.
+auto=@damaged(player) from(this):moveto(graveyard) all(*|myhand) && draw:7 controller && moveto(graveyard) all(*|opponenthand) && draw:7 opponent
+id=43569
+name=Dragon Mage
+rarity=R
+mana={5}{R}{R}
+type=Creature
+subtype=Dragon Wizard
+power=5
+toughness=5
+abilities=flying
 [/card]
 [card]
 text=Flying, protection from Dragons
@@ -176,18 +189,17 @@ power=4
 toughness=5
 [/card]
 [card]
-id=45844
-name=Enrage
-mana={X}{R}
-type=Instant
 text=Target creature gets +X/+0 until end of turn.
+id=45844
 target=creature
 auto=X/0
+name=Enrage
 rarity=U
+mana={X}{R}
+type=Instant
 [/card]
 [card]
 text=Flying   {3}{W}{W}: Return Eternal Dragon from your graveyard to your hand. Activate this ability only during your upkeep.   Plainscycling {2} ({2}, Discard this card: Search your library for a Plains card, reveal it, and put it into your hand. Then shuffle your library.)
-autograveyard={3}{W}{W}:moveTo(myhand) myUpkeepOnly
 id=44398
 name=Eternal Dragon
 rarity=R
@@ -195,6 +207,7 @@ mana={5}{W}{W}
 type=Creature
 subtype=Dragon Spirit
 autohand={2}{S}:moveTo(myhand) target(plains|mylibrary)
+autograveyard={3}{W}{W}:moveTo(myhand) myUpkeepOnly
 power=5
 toughness=5
 abilities=flying
@@ -212,26 +225,38 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Enchant creature   Enchanted creature doesn't untap during its controller's untap step.   When enchanted creature is dealt damage, destroy it.
+id=43500
+target=creature
+auto=doesnotuntap
+auto=@damaged(mytgt):destroy
+name=Frozen Solid
+rarity=C 
+mana={1}{U}{U}
+type=Enchantment
+subtype=Aura 
+[/card]
+[card]
+text=Goblin Brigand attacks each turn if able.
 id=43525
 name=Goblin Brigand
+rarity=C
 mana={1}{R}
 type=Creature
 subtype=Goblin Warrior
 power=2
 toughness=2
-text=Goblin Brigand attacks each turn if able.
 abilities=mustattack
-rarity=C
 [/card]
 [card]
+text=Goblin War Strike deals damage equal to the number of Goblins you control to target player.
 id=44292
+target=player
+auto=foreach(goblin|myBattlefield) damage:1
 name=Goblin War Strike
+rarity=C
 mana={R}
 type=Sorcery
-text=Goblin War Strike deals damage equal to the number of Goblins you control to target player.
-target=player
-auto=foreach(goblin|myBattlefield)damage:1
-rarity=C
 [/card]
 [card]
 text=Whenever you cast a creature spell with converted mana cost 6 or more, put three +1/+1 counters on Kurgadon.
@@ -259,19 +284,19 @@ toughness=6
 abilities=vigilance
 [/card]
 [card]
+text=Enchant creature   {U}: Untap enchanted creature.   {U}: Enchanted creature gains flying until end of turn.   {U}: Enchanted creature gains shroud until end of turn. (It can't be the target of spells or abilities.)   {1}: Enchanted creature gets +1/-1 or -1/+1 until end of turn.
 id=43581
 name=Pemmin's Aura
+rarity=U
 mana={1}{U}{U}
 type=Enchantment
 subtype=Aura
-text=Enchant creature {U}: Untap enchanted creature. {U}: Enchanted creature gains flying until end of turn. {U}: Enchanted creature gains shroud until end of turn. (It can't be the target of spells or abilities.) {1}: Enchanted creature gets +1/-1 or -1/+1 until end of turn.
 target=creature
 auto={U}:untap mytgt
 auto={U}:flying mytgt
 auto={U}:shroud mytgt
 auto={1}:+1/-1 mytgt
 auto={1}:-1/+1 mytgt
-rarity=U
 [/card]
 [card]
 text=Whenever a player casts a spell with converted mana cost 3 or less, Pyrostatic Pillar deals 2 damage to that player.
@@ -284,13 +309,13 @@ mana={1}{R}
 type=Enchantment
 [/card]
 [card]
-id=43622
-name=Rain of Blades
-mana={W}
-type=Instant
 text=Rain of Blades deals 1 damage to each attacking creature.
 auto=damage:1 all(creature[attacking])
+id=43622
+name=Rain of Blades
 rarity=U
+mana={W}
+type=Instant
 [/card]
 [card]
 text=Flying   Islandcycling {2} ({2}, Discard this card: Search your library for an Island card, reveal it, and put it into your hand. Then shuffle your library.)
@@ -306,29 +331,29 @@ toughness=4
 abilities=flying
 [/card]
 [card]
+text=When Siege-Gang Commander enters the battlefield, put three 1/1 red Goblin creature tokens onto the battlefield.   {1}{R}, Sacrifice a Goblin: Siege-Gang Commander deals 2 damage to target creature or player.
 id=43552
 name=Siege-Gang Commander
+rarity=R
 mana={3}{R}{R}
 type=Creature
 subtype=Goblin
-power=2
-toughness=2
-text=When Siege-Gang Commander enters the battlefield, put three 1/1 red Goblin creature tokens onto the battlefield. {1}{R}, Sacrifice a Goblin: Siege-Gang Commander deals 2 damage to target creature or player.
 auto=token(Goblin,creature goblin, 1/1,red)*3
 auto={1}{R}{S(goblin|myinplay)}:Damage:2 target(creature,player)
-rarity=R
+power=2
+toughness=2
 [/card]
 [card]
+text=First strike, protection from red
 id=44313
 name=Silver Knight
+rarity=U
 mana={W}{W}
 type=Creature
 subtype=Human Knight
 power=2
 toughness=2
-text=First strike, protection from red
-abilities=First strike,protection from red
-rarity=U
+abilities=first strike,protection from red
 [/card]
 [card]
 id=43734
@@ -411,6 +436,17 @@ auto={B}:regenerate
 autohand={2}{S}:moveTo(myhand) target(swamp|mylibrary)
 power=5
 toughness=3
+[/card]
+[card]
+text=Enchant nonbasic land   When enchanted land becomes tapped, destroy it.
+id=46614
+target=land[-basic]
+auto=@tapped(mytgt):destroy
+name=Uncontrolled Infestation
+rarity=C
+mana={1}{R}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 id=46418

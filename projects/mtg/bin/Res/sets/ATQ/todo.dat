@@ -217,7 +217,7 @@ mana=
 type=Land
 text={T}: Add {1} to your mana pool. {1}: Mishra's Factory becomes a 2/2 Assembly-Worker artifact creature until end of turn. It's still a land. {T}: Target Assembly-Worker creature gets +1/+1 until end of turn.
 auto={T}:add{1}
-auto={1}:becomes(Assembly-Worker,2/2,Artifact Creature)
+auto={1}:becomes(Artifact Creature Assembly-Worker,2/2)
 auto={T}:1/1 target(Assembly-Worker)
 rarity=U
 [/card]

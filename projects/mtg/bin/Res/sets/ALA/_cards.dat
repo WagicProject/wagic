@@ -50,6 +50,19 @@ rarity=U
 type=Land
 [/card]
 [card]
+text=Flying, trample   At the beginning of your upkeep, sacrifice a non-Zombie creature, then put a 2/2 black Zombie creature token onto the battlefield.
+auto=@each my upkeep:bury notatarget(creature[-zombie]|myBattlefield) && token(Zombie,creature zombie, 2/2,black)
+id=174847
+name=Archdemon of Unx
+rarity=R
+mana={5}{B}{B}
+type=Creature
+subtype=Demon
+power=6
+toughness=6
+abilities=flying,trample
+[/card]
+[card]
 text=Enchant creature   When enchanted creature is put into a graveyard, that creature's controller loses life equal to its toughness.
 id=174817
 alias=1197
@@ -145,6 +158,17 @@ toughness=5
 abilities=vigilance,haste
 [/card]
 [card]
+text=Return target creature to its owner's hand. Its controller draws a card.
+id=175053
+target=creature
+auto=moveto(ownerhand)
+auto=draw:1 targetController
+name=Call to Heel
+rarity=C
+mana={1}{U}
+type=Instant
+[/card]
+[card]
 text=Counter target spell.
 id=178092
 target=*|stack
@@ -155,24 +179,14 @@ mana={1}{U}{U}
 type=Instant
 [/card]
 [card]
-text=Return target creature to its owner's hand. Its controller draws a card.
-id=175053
-target=creature
-auto=moveto(ownerhand) && draw:1 targetController
-name=Call to Heel
-rarity=C
-mana={1}{U}
-type=Instant
-[/card]
-[card]
 text={T}: Target player puts the top card of his or her library into his or her graveyard.
-auto={T}:deplete:1 target(player)
 id=176433
 name=Cathartic Adept
 rarity=C
 mana={U}
 type=Creature
 subtype=Human Wizard
+auto={T}:deplete:1 target(player)
 power=1
 toughness=1
 [/card]
@@ -203,9 +217,10 @@ abilities=flying
 [/card]
 [card]
 text=Enchant artifact or creature.   Enchanted permanent doesn't untap during its controller's untap step.
+id=175042
+
 target=creature,artifact
 auto=doesnotuntap
-id=175042
 name=Coma Veil
 rarity=C
 mana={4}{U}
@@ -559,31 +574,6 @@ power=1
 toughness=2
 [/card]
 [card]
-text=Choose one - Remove target player's graveyard from the game; or Jund Charm deals 2 damage to each creature; or put two +1/+1 counters on target creature.
-id=137900
-name=Jund Charm
-auto=may moveTo(exile) all(*|opponentgraveyard)
-auto=may moveTo(exile) all(*|mygraveyard)
-auto=may damage:2 all(creature)
-auto=may counter(1/1,2) target(creature)
-rarity=U
-mana={B}{R}{G}
-type=Instant
-[/card]
-[card]
-text=Reach (This can block creatures with flying.)  Cycling {2} ({2}, Discard this card: Draw a card.)
-id=175262
-name=Jungle Weaver
-rarity=C
-type=Creature
-mana={5}{G}{G}
-autohand={2}:cycling
-abilities=reach
-power=5
-subtype=Spider
-toughness=6
-[/card]
-[card]
 text=Flying, trample, haste   {R}: Hellkite Overlord gets +1/+0 until end of turn.   {B}{G}: Regenerate Hellkite Overlord.
 id=175057
 name=Hellkite Overlord
@@ -700,6 +690,18 @@ power=2
 toughness=2
 [/card]
 [card]
+text=Choose one - Remove target player's graveyard from the game; or Jund Charm deals 2 damage to each creature; or put two +1/+1 counters on target creature.
+id=137900
+name=Jund Charm
+auto=may moveTo(exile) all(*|opponentgraveyard)
+auto=may moveTo(exile) all(*|mygraveyard)
+auto=may damage:2 all(creature)
+auto=may counter(1/1,2) target(creature)
+rarity=U
+mana={B}{R}{G}
+type=Instant
+[/card]
+[card]
 text={T}: Add {1} to your mana pool.   {1}, {T}, Sacrifice Jund Panorama: Search your library for a basic Swamp, Mountain, or Forest card and put it onto the battlefield tapped. Then shuffle your library.
 auto={T}:Add {1}
 auto={1}{T}{S}:moveTo(myBattlefield) target(swamp,mountain,forest|mylibrary) && tap
@@ -718,6 +720,19 @@ id=175060
 name=Jungle Shrine
 rarity=U
 type=Land
+[/card]
+[card]
+text=Reach (This can block creatures with flying.)  Cycling {2} ({2}, Discard this card: Draw a card.)
+id=175262
+name=Jungle Weaver
+rarity=C
+type=Creature
+mana={5}{G}{G}
+autohand={2}:cycling
+abilities=reach
+power=5
+subtype=Spider
+toughness=6
 [/card]
 [card]
 text=Target player gains 7 life and draws two cards.
@@ -1044,6 +1059,19 @@ mana={W}{U}{U}{B}
 type=Instant
 [/card]
 [card]
+text={U}, {T}: Put a 0/1 blue Homunculus artifact creature token onto the battlefield.   At the beginning of your upkeep, sacrifice a Homunculus.
+id=175012
+name=Puppet Conjurer
+rarity=U
+mana={1}{B}
+type=Artifact Creature
+subtype=Human Wizard
+auto={U}{T}:token(Homonculus,Creature Homonclulus,0/1,blue)
+auto=@each my upkeep:bury notatarget(homonculus|myBattlefield)
+power=1
+toughness=2
+[/card]
+[card]
 text={1}: Target creature with power 5 or greater gains first strike until end of turn.
 id=175253
 name=Rakeclaw Gargantuan
@@ -1233,21 +1261,21 @@ type=Artifact
 [/card]
 [card]
 text=Seaside Citadel enters the battlefield tapped.   {T}: Add {G}, {W}, or {U} to your mana pool.
+id=174950
+name=Seaside Citadel
 auto=tap
 auto={T}:Add {G}
 auto={T}:Add {W}
 auto={T}:Add {U}
-id=174950
-name=Seaside Citadel
 rarity=U
 type=Land
 [/card]
 [card]
 text=Exile target card in a graveyard. You gain 3 life.
+id=177473
 target=*|graveyard
 auto=moveto(exile)
 auto=life:3 controller
-id=177473
 name=Shadowfeed
 rarity=C
 mana={B}

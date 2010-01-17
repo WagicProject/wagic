@@ -1580,12 +1580,12 @@ abilities=flying
 [/card]
 [card]
 text=Enchant creature   When Paralyze enters the battlefield, tap enchanted creature.   Enchanted creature doesn't untap during its controller's untap step.   Enchanted creature has "At the beginning of your upkeep, you may pay {4}. If you do, untap this creature."
-target=creature
 id=1171
+target=creature
 name=Paralyze
 auto=tap
 auto=doesnotuntap
-auto={4}:untap upkeepOlny
+auto={4}:untap UpkeepOnly
 rarity=C
 mana={B}
 type=Enchantment

@@ -26,6 +26,16 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+text=Until end of turn, target land becomes a 3/3 creature that's still a land.
+id=21377
+target=land
+auto=becomes(Creature,3/3) ueot
+name=Animate Land
+rarity=U
+mana={G}
+type=Instant
+[/card]
+[card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)   Other black creatures get +1/+1.   Nonblack creatures get -1/-1.
 id=22897
 name=Ascendant Evincar

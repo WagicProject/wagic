@@ -1872,6 +1872,17 @@ mana={4}{U}{U}
 type=Sorcery
 [/card]
 [card]
+text=Target land becomes a 3/3 creature until end of turn. It's still a land.   Draw a card.
+id=30546
+target=land
+auto=becomes(Creature,3/3) ueot
+auto=draw:1 controller
+name=Vivify
+rarity=U
+mana={2}{G}
+type=Instant
+[/card]
+[card]
 text={T}: Add {G} to your mana pool.   Threshold - Werebear gets +3/+3 as long as seven or more cards are in your graveyard.
 id=29785
 name=Werebear

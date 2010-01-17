@@ -845,15 +845,6 @@ text=Chroma — Reveal any number of cards in your hand. You gain 2 life for eac
 rarity=U
 [/card]
 [card]
-id=136211
-name=Pooling Venom
-mana={1}{B}
-type=Enchantment
-subtype=Aura
-text=Enchant land Whenever enchanted land becomes tapped, its controller loses 2 life. {3}{B}: Destroy enchanted land.
-rarity=U
-[/card]
-[card]
 id=126148
 name=Putrid Cyclops
 mana={2}{B}

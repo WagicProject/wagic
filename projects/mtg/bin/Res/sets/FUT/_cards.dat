@@ -340,6 +340,18 @@ subtype=Aura
 abilities=flash
 [/card]
 [card]
+text=Enchant land   Whenever enchanted land becomes tapped, its controller loses 2 life.   {3}{B}: Destroy enchanted land.
+id=136211
+target=land
+auto=@tapped(mytgt):life:-2 targetController
+auto={3}{B}:destroy
+name=Pooling Venom
+rarity=U
+mana={1}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 text={6}, {T}: Return target Rebel permanent card with converted mana cost 5 or less from your graveyard to the battlefield.
 id=136145
 name=Ramosian Revivalist

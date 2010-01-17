@@ -214,27 +214,6 @@ toughness=1
 rarity=C
 [/card]
 [card]
-text=At the beginning of each opponent's upkeep, if that player has seven or more cards in hand, Ebony Owl Netsuke deals 4 damage to him or her.
-name=Ebony Owl Netsuke
-auto=@each opponent upkeep:aslongas(*|opponenthand) damage:4 opponent >6
-#not sure if working then some muse from 10E could be softcoded
-id=88799
-mana={2}
-type=Artifact
-rarity=U
-[/card]
-[card]
-text=Flying At the beginning of your upkeep, return a white creature you control to its owner's hand.
-name=Eiganjo Free-Riders
-id=74373
-mana={3}{W}
-type=Creature
-subtype=Human Soldier
-power=3
-toughness=4
-rarity=U
-[/card]
-[card]
 text=Whenever you cast a Spirit or Arcane spell, reveal the top three cards of your library. Put all land cards revealed this way into your hand and the rest on the bottom of your library in any order. Soulshift 2 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 2 or less from your graveyard to your hand.)
 name=Elder Pine of Jukai
 id=74204
@@ -500,16 +479,6 @@ subtype=Arcane
 rarity=C
 [/card]
 [card]
-text=At the beginning of your upkeep, if you have seven or more cards in hand, you gain 4 life.
-name=Ivory Crane Netsuke
-auto=@each my upkeep:aslongas(*|myhand) life:4 controller >6
-## dont think @each works 100% with aslongas + >X
-id=88796
-mana={2}
-type=Artifact
-rarity=U
-[/card]
-[card]
 text={X}{R}, {T}: Jiwari, the Earth Aflame deals X damage to target creature without flying. Channel — {X}{R}{R}{R}, Discard Jiwari: Jiwari deals X damage to each creature without flying.
 name=Jiwari, the Earth Aflame
 id=74047
@@ -599,23 +568,6 @@ toughness=3
 rarity=C
 [/card]
 [card]
-text=Kiyomaro, First to Stand's power and toughness are each equal to the number of cards in your hand. As long as you have four or more cards in hand, Kiyomaro has vigilance. Whenever Kiyomaro deals damage, if you have seven or more cards in hand, you gain 7 life.
-name=Kiyomaro, First to Stand
-id=74054
-mana={3}{W}{W}
-type=Creature
-subtype=Spirit
-auto=foreach(*|myhand) 1/1
-auto=aslongas(*|myhand) vigilance >3
-auto=@damaged(player) from(this):aslongas(*|myhand) life:7 controller >6
-auto=@damaged(creature) from(this):aslongas(*|myhand) life:7 controller >6
-##need more testing, I don't think the life gaining is working
-power=*
-toughness=*
-abilities=legendary
-rarity=R
-[/card]
-[card]
 text=At the beginning of the end step, if three or more creatures were put into graveyards from the battlefield this turn, flip Kuon, Ogre Ascendant.
 name=Kuon, Ogre Ascendant
 id=87596
@@ -688,17 +640,6 @@ toughness=2
 rarity=C
 [/card]
 [card]
-####Does not work!
-text=At the beginning of your end step, sacrifice Measure of Wickedness and you lose 8 life.   Whenever another card is put into your graveyard from anywhere, target opponent gains control of Measure of Wickedness.
-id=88821
-name=Measure of Wickedness
-rarity=U
-mana={3}{B}
-auto=@next my endofturn:bury && life:-8 controller
-auto=@movedto(other|graveyard):moveto(opponentBattlefield)
-type=Enchantment
-[/card]
-[card]
 text=Whenever a source an opponent controls deals damage to you, that player sacrifices a permanent.
 name=Michiko Konda, Truth Seeker
 id=84359
@@ -728,14 +669,6 @@ auto={T}:add {1}
 type=Land
 abilities=legendary 
 rarity=R
-[/card]
-[card]
-text=Return Molting Skin to its owner's hand: Regenerate target creature.
-name=Molting Skin
-id=87331
-mana={2}{G}
-type=Enchantment
-rarity=U
 [/card]
 [card]
 text=Flying {2}, Return a land you control to its owner's hand: Target land becomes the basic land type of your choice until end of turn.
@@ -807,17 +740,6 @@ id=74146
 mana={1}
 type=Artifact
 subtype=Equipment
-rarity=U
-[/card]
-[card]
-text=Haste At the beginning of your upkeep, return a red creature you control to its owner's hand.
-name=Oni of Wild Places
-id=74048
-mana={5}{R}
-type=Creature
-subtype=Demon Spirit
-power=6
-toughness=5
 rarity=U
 [/card]
 [card]
@@ -1046,17 +968,6 @@ subtype=Arcane
 rarity=C
 [/card]
 [card]
-text=At the beginning of your upkeep, return a black creature you control to its owner's hand. {1}{B}: Regenerate Skull Collector.
-name=Skull Collector
-id=88797
-mana={1}{B}{B}
-type=Creature
-subtype=Ogre Warrior
-power=3
-toughness=3
-rarity=U
-[/card]
-[card]
 text=Flying Whenever you cast a Spirit or Arcane spell, you may gain control of target creature with that spell's converted mana cost until end of turn.
 name=Skyfire Kirin
 id=88793
@@ -1099,17 +1010,6 @@ mana={W}
 type=Instant
 subtype=Arcane
 rarity=C
-[/card]
-[card]
-text=Trample At the beginning of your upkeep, return a green creature you control to its owner's hand.
-name=Stampeding Serow
-id=74407
-mana={2}{G}{G}
-type=Creature
-subtype=Antelope Beast
-power=5
-toughness=4
-rarity=U
 [/card]
 [card]
 text=Each player sacrifices a land for each card in your hand.

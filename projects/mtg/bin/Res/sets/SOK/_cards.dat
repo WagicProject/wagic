@@ -129,6 +129,28 @@ mana={4}{G}
 type=Sorcery
 [/card]
 [card]
+text=Flying   At the beginning of your upkeep, return a white creature you control to its owner's hand.
+auto=@each my upkeep:moveTo(ownerhand) notatarget(creature[white]|myBattlefield)
+id=74373
+name=Eiganjo Free-Riders
+rarity=U
+mana={3}{W}
+type=Creature
+subtype=Human Soldier
+power=3
+toughness=4
+abilities=flying
+[/card]
+[card]
+text=At the beginning of each opponent's upkeep, if that player has seven or more cards in hand, Ebony Owl Netsuke deals 4 damage to him or her.
+auto=@each opponent upkeep:aslongas(*|opponenthand) damage:4 opponent >6
+id=88799
+name=Ebony Owl Netsuke
+rarity=U
+mana={2}
+type=Artifact
+[/card]
+[card]
 text=Put three 3/1 red Elemental creature tokens with haste onto the battlefield. Exile them at the beginning of the next end step.
 auto=token(Elemental, Creature Elemental Kijhjjghtsdrw,3/1,haste red)*3
 auto=@next endofturn:moveto(exile) all(kijhjjghtsdrw)
@@ -247,6 +269,15 @@ mana={3}{R}
 type=Sorcery
 [/card]
 [card]
+text=At the beginning of your upkeep, if you have seven or more cards in hand, you gain 4 life.
+auto=@each my upkeep:aslongas(*|myhand) life:4 controller >6
+id=88796
+name=Ivory Crane Netsuke
+mana={2}
+rarity=U
+type=Artifact
+[/card]
+[card]
 text=Kagemaro, First to Suffer's power and toughness are each equal to the number of cards in your hand.   {B}, Sacrifice Kagemaro: All creatures get -X/-X until end of turn, where X is the number of cards in your hand.
 id=74016
 name=Kagemaro, First to Suffer
@@ -263,7 +294,7 @@ toughness=*
 text=Enchant creature   Enchanted creature gets -X/-X, where X is the number of cards in your hand.
 id=74560
 target=creature
-auto=foreach(*|myhand)-1/-1
+auto=foreach(*|myhand) -1/-1
 name=Kagemaro's Clutch
 rarity=C
 mana={3}{B}
@@ -332,6 +363,21 @@ power=2
 toughness=1
 [/card]
 [card]
+text=Kiyomaro, First to Stand's power and toughness are each equal to the number of cards in your hand.   As long as you have four or more cards in hand, Kiyomaro has vigilance.   Whenever Kiyomaro deals damage, if you have seven or more cards in hand, you gain 7 life.
+id=74054
+name=Kiyomaro, First to Stand
+rarity=R
+mana={3}{W}{W}
+type=Legendary Creature
+subtype=Spirit
+auto=foreach(*|myhand) 1/1
+auto=aslongas(*|myhand) vigilance >3
+auto=@damaged(player) from(this):aslongas(*|myhand) life:7 controller >6
+auto=@damaged(creature) from(this):aslongas(*|myhand) life:7 controller >6
+power=*
+toughness=*
+[/card]
+[card]
 text=Masumaro, First to Live's power and toughness are each equal to twice the number of cards in your hand.
 id=74184
 name=Masumaro, First to Live
@@ -342,6 +388,17 @@ subtype=Spirit
 auto=foreach(*|myhand) 2/2
 power=*
 toughness=*
+[/card]
+[card]
+text=At the beginning of your end step, sacrifice Measure of Wickedness and you lose 8 life.   Whenever another card is put into your graveyard from anywhere, target opponent gains control of Measure of Wickedness.
+id=88821
+name=Measure of Wickedness
+rarity=U
+mana={3}{B}
+auto=@next my endofturn:bury
+auto=@next my endofturn:life:-8 controller
+auto=@movedto(* other|graveyard):moveto(opponentBattlefield)
+type=Enchantment
 [/card]
 [card]
 text=All creatures get -X/-0, where X is the number of cards in your hand.
@@ -360,6 +417,15 @@ auto={T}:Add {1}
 auto={2}{T}:draw:1 controller && draw:1 opponent
 rarity=R
 type=Legendary Land
+[/card]
+[card]
+text=Return Molting Skin to its owner's hand: Regenerate target creature.
+auto={0}:moveTo(ownerhand) all(this) && regenerate target(creature) limit:1
+id=87331
+name=Molting Skin
+rarity=U
+mana={2}{G}
+type=Enchantment
 [/card]
 [card]
 text=Flying   {W}: Moonwing Moth gets +0/+1 until end of turn.
@@ -416,6 +482,19 @@ name=One with Nothing
 rarity=R
 mana={B}
 type=Instant
+[/card]
+[card]
+text=Haste   At the beginning of your upkeep, return a red creature you control to its owner's hand.
+auto=@each my upkeep:moveTo(ownerhand) notatarget(creature[red]|myBattlefield)
+id=74048
+name=Oni of Wild Places
+rarity=U
+mana={5}{R}
+type=Creature
+subtype=Demon Spirit
+power=6
+toughness=5
+abilities=haste
 [/card]
 [card]
 text=Counter target creature spell. Draw cards equal to that spell's converted mana cost.
@@ -477,7 +556,7 @@ rarity=U
 mana={3}{B}
 type=Creature
 subtype=Demon Spirit
-auto=lord(creature[black])cantblock
+auto=lord(creature[black]) cantblock
 power=4
 toughness=5
 [/card]
@@ -576,6 +655,19 @@ toughness=1
 abilities=first strike
 [/card]
 [card]
+text=At the beginning of your upkeep, return a black creature you control to its owner's hand.   {1}{B}: Regenerate Skull Collector.
+auto=@each my upkeep:moveTo(ownerhand) notatarget(creature[black]|myBattlefield)
+id=88797
+name=Skull Collector
+rarity=U
+mana={1}{B}{B}
+type=Creature
+subtype=Ogre Warrior
+auto={1}{B}:regenerate
+power=3
+toughness=3
+[/card]
+[card]
 text=Flying   Soramaro, First to Dream's power and toughness are each equal to the number of cards in your hand. {4}, Return a land you control to its owner's hand: Draw a card.
 id=74170
 name=Soramaro, First to Dream
@@ -603,12 +695,25 @@ type=Artifact
 text=Spiraling Embers deals damage to target creature or player equal to the number of cards in your hand.
 id=74503
 target=creature,player)
-auto=foreach(*|myhand)damage:1
+auto=foreach(*|myhand) damage:1
 name=Spiraling Embers
 rarity=C
 mana={3}{R}
 type=Sorcery
 subtype=Arcane
+[/card]
+[card]
+text=Trample   At the beginning of your upkeep, return a green creature you control to its owner's hand.
+auto=@each my upkeep:moveTo(ownerhand) notatarget(creature[green]|myBattlefield)
+id=74407
+name=Stampeding Serow
+rarity=U
+mana={2}{G}{G}
+type=Creature
+subtype=Antelope Beast
+power=5
+toughness=4
+abilities=trample
 [/card]
 [card]
 text=Destroy target artifact or land.

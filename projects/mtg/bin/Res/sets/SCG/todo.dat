@@ -230,7 +230,6 @@ type=Enchantment
 text=When Day of the Dragons enters the battlefield, exile all creatures you control. Then put that many 5/5 red Dragon creature tokens with flying onto the battlefield. When Day of the Dragons leaves the battlefield, sacrifice all Dragons you control. Then return the exiled cards to the battlefield under your control.
 rarity=R
 [/card]
-
 [card]
 id=45141
 name=Decree of Justice
@@ -288,19 +287,6 @@ type=Enchantment
 subtype=Aura
 text=Enchant creature Enchanted creature gets +1/+1 and has trample. When a creature with converted mana cost 6 or more enters the battlefield, you may return Dragon Fangs from your graveyard to the battlefield attached to that creature.
 rarity=C
-[/card]
-[card]
-id=43569
-name=Dragon Mage
-mana={5}{R}{R}
-type=Creature
-subtype=Dragon Wizard
-power=5
-toughness=5
-text=Flying Whenever Dragon Mage deals combat damage to a player, each player discards his or her hand and draws seven cards.
-auto=@damaged(player) from(this):moveto(graveyard) all(*|myhand) && draw:7 controller
-auto=@damaged(player) from(this):moveto(graveyard) all(*|opponenthand) && draw:7 opponent
-rarity=R
 [/card]
 [card]
 id=44400
@@ -453,18 +439,6 @@ subtype=Human Soldier
 power=1
 toughness=1
 text=Morph {W} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Frontline Strategist is turned face up, prevent all combat damage non-Soldier creatures would deal this turn.
-rarity=C
-[/card]
-[card]
-id=43500
-name=Frozen Solid
-mana={1}{U}{U}
-type=Enchantment
-subtype=Aura
-text=Enchant creature  Enchanted creature doesn't untap during its controller's untap step.  When enchanted creature is dealt damage, destroy it.
-target=creature
-auto=doesnotuntap
-auto=@damaged(mytgt):destroy
 rarity=C
 [/card]
 [card]
@@ -957,15 +931,6 @@ name=Unburden
 mana={1}{B}{B}
 type=Sorcery
 text=Target player discards two cards. Cycling {2} ({2}, Discard this card: Draw a card.)
-rarity=C
-[/card]
-[card]
-id=46614
-name=Uncontrolled Infestation
-mana={1}{R}
-type=Enchantment
-subtype=Aura
-text=Enchant nonbasic land When enchanted land becomes tapped, destroy it.
 rarity=C
 [/card]
 [card]

@@ -44,17 +44,6 @@ subtype=Human Cleric
 toughness=1
 [/card]
 [card]
-text=Flying, trample     At the beginning of your upkeep, sacrifice a non-Zombie creature, then put a 2/2 black Zombie creature token into play.
-id=174847
-name=Archdemon of Unx
-rarity=R
-type=Creature
-mana={5}{B}{B}
-power=6
-subtype=Demon
-toughness=6
-[/card]
-[card]
 text=Choose one - Destroy target artifact; or put target creature on the bottom of its owner's library; or counter target instant spell.
 id=137931
 name=Bant Charm
@@ -638,21 +627,6 @@ mana={4}{U}{B}{B}{R}
 power=7
 subtype=Demon
 toughness=7
-[/card]
-
-
-[card]
-text={U}, {T}: Put a 0/1 blue Homunculus artifact creature token into play.     At the beginning of your upkeep, sacrifice a Homunculus.
-id=175012
-auto={U}{T}:token(Homonculus,Creature Homonclulus,0/1,blue)
-auto=@each my upkeep:bury target(homonculus|myinplay)
-name=Puppet Conjurer
-rarity=U
-type=Artifact Creature
-mana={1}{B}
-power=1
-subtype=Human Wizard
-toughness=2
 [/card]
 [card]
 text=Reach     If a creature is attacking you and you control a Forest and a Plains, you may play Qasali Ambusher without paying its mana cost and as though it had flash.
