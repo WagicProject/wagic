@@ -348,6 +348,7 @@ seedcradle_witch.txt
 seismic_assault.txt
 seismic_spike_i191.txt
 selesnya_guildmage.txt
+silver_seraph_i300.txt
 skullcage0_i239.txt
 skullcage1_i239.txt
 skullcage2_i239.txt

@@ -1,0 +1,31 @@
+#Bug: Silver Seraph's theshold ability doesn't work
+#see http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=36036
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:plains,forest,mountain,swamp,island,grizzly bears,raging goblin,black knight
+inplay:white knight
+hand:Silver Seraph
+manapool:{5}{W}{W}{W}
+[PLAYER2]
+[DO]
+silver seraph
+next
+#begin
+next
+#attackers
+white knight
+next
+#blockers
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+graveyard:plains,forest,mountain,swamp,island,grizzly bears,raging goblin,black knight
+inplay:white knight,Silver Seraph
+[PLAYER2]
+life:16
+[END]

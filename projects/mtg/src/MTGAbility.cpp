@@ -174,7 +174,6 @@ MTGAbility * AbilityFactory::getCoreAbility(MTGAbility * a){
   return a;
 }
 
-
 //Parses a string and returns the corresponding MTGAbility object
 // Returns NULL if parsing failed
 //Beware, Spell CAN be null when the function is called by the AI trying to analyze the effects of a given card
@@ -346,10 +345,10 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
     if (end != string::npos){
       int lordIncludeSelf = 1;
-      size_t other = s1.find("other");
+      size_t other = s1.find(" other");
       if ( other != string::npos){
         lordIncludeSelf = 0;
-        s1.replace(other, 5,"");
+        s1.replace(other, 6,"");
       }
       string lordTargetsString = s.substr(found+header,end-found-header);
       TargetChooserFactory tcf;
