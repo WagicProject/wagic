@@ -7,6 +7,7 @@
 #include "../include/MTGAbility.h"
 #include "../include/Counters.h"
 #include "../include/WEvent.h"
+#include "../include/CardSelector.h"
 
 class OtherAbilitiesEventReceiver:public MTGAbility{
 public:

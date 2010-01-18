@@ -5,6 +5,7 @@
 #include "../include/WEvent.h"
 #include "../include/Translate.h"
 #include "../include/WResourceManager.h"
+#include "../include/GameObserver.h"
 
 Damage::Damage(MTGCardInstance * source, Damageable * target) {
   init(source, target, source->getPower(), DAMAGE_OTHER);

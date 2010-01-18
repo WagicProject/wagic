@@ -13,6 +13,7 @@
 #include "Counters.h"
 #include "WEvent.h"
 #include "GuiStatic.h"
+#include "GameObserver.h"
 
 #include <JGui.h>
 #include <hge/hgeparticle.h>

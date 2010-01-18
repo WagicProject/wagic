@@ -5,6 +5,7 @@
 #include "../include/ActionLayer.h"
 #include "../include/GuiCombat.h"
 #include "../include/Rules.h"
+#include "../include/GameObserver.h"
 
 #include <string>
 using std::string;

@@ -4,7 +4,6 @@
 
 
 class MTGCardInstance;
-class GameObserver;
 class Spell;
 class Damageable;
 class PlayGuiObject;
@@ -14,6 +13,7 @@ class Player;
 class AManaProducer;
 class WEvent;
 
+#include "../include/GameObserver.h"
 #include "ActionElement.h"
 #include <string>
 #include <map>

@@ -7,7 +7,6 @@
 #include "../include/TargetChooser.h"
 #include "../include/CardGui.h"
 #include "../include/MTGDeck.h"
-#include "../include/Blocker.h"
 #include "../include/Translate.h"
 
 

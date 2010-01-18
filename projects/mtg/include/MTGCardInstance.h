@@ -7,7 +7,6 @@
 #include "MTGAbility.h"
 #include "WResourceManager.h"
 #include "ManaCost.h"
-#include "Blocker.h"
 #include "Damage.h"
 #include "Targetable.h"
 

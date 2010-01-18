@@ -3,6 +3,7 @@
 #include "../include/GameApp.h"
 #include "../include/GuiCombat.h"
 #include "../include/AIPlayer.h"
+#include "../include/GameObserver.h"
 #include "Closest.cpp"
 
 static const float MARGIN = 70;

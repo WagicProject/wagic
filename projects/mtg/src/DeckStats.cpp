@@ -1,6 +1,7 @@
 #include "../include/config.h"
 #include "../include/DeckStats.h"
 #include "../include/Player.h"
+#include "../include/GameObserver.h"
 
 DeckStats * DeckStats::mInstance = NULL;
 

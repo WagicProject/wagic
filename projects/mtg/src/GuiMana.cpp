@@ -1,6 +1,7 @@
 #include <iostream>
 #include "../include/GuiMana.h"
 #include "../include/OptionItem.h"
+#include "../include/Player.h"
 
 
 using std::cout;

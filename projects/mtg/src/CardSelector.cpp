@@ -4,6 +4,7 @@
 #include "../include/CardSelector.h"
 #include "../include/GuiHand.h"
 #include "Closest.cpp"
+#include "../include/GameObserver.h"
 
 using std::cout;
 

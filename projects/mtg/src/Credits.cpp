@@ -6,6 +6,7 @@
 #include "../include/DeckStats.h"
 #include "../include/Translate.h"
 #include "../include/MTGDeck.h"
+#include "../include/GameObserver.h"
 
   CreditBonus::CreditBonus(int _value, string _text){
     value = _value;

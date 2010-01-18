@@ -5,6 +5,7 @@
 #include "../include/Subtypes.h"
 #include "../include/Translate.h"
 #include "../include/MTGDefinitions.h"
+#include "../include/GameObserver.h"
 #include <Vector2D.h>
 #include <assert.h>
 

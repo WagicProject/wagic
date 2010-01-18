@@ -4,7 +4,6 @@
 #include <vector>
 #include <stack>
 #include "GuiLayers.h"
-#include "DuelLayers.h"
 #include "Pos.h"
 
 using std::vector;

@@ -3,6 +3,7 @@
 #include "../include/MTGCardInstance.h"
 #include "../include/Translate.h"
 #include "../include/config.h"
+#include "../include/Player.h"
 #include <JGE.h>
 
 ExtraCost::ExtraCost( TargetChooser *_tc):tc(_tc){

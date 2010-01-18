@@ -1,7 +1,6 @@
 #include "../include/config.h"
 #include "../include/GameObserver.h"
 #include "../include/GameOptions.h"
-#include "../include/ConstraintResolver.h"
 #include "../include/CardGui.h"
 #include "../include/Damage.h"
 #include "../include/Rules.h"

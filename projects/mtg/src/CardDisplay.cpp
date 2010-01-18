@@ -3,6 +3,7 @@
 #include "../include/CardGui.h"
 #include "../include/TargetChooser.h"
 #include "../include/MTGGameZones.h"
+#include "../include/GameObserver.h"
 
 CardDisplay::CardDisplay() : mId(0), game(GameObserver::GetInstance()) {
   tc = NULL;
