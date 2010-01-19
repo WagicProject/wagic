@@ -511,7 +511,7 @@ string TaskSlaughter::createDesc() {
 
 string TaskSlaughter::getShortDesc(){
   char buffer[4096];
-  sprintf(buffer, _("Slaughter %s (%i lives)").c_str(), getOpponentName().c_str(), targetLife);
+  sprintf(buffer, _("Slaughter %s (%i life)").c_str(), getOpponentName().c_str(), targetLife);
   return buffer;
 }
 
@@ -541,13 +541,13 @@ TaskDelay::TaskDelay(int _opponent, int _turn) : TaskWinAgainst(_opponent) {
 }
 
 int TaskDelay::computeReward() {
-  return TaskWinAgainst::computeReward() + (afterTurn ? turn*30 : (17-turn)*(17-turn)*20);
+  return TaskWinAgainst::computeReward() + (afterTurn ? turn*33 : (17-turn)*(17-turn)*17);
 }
 
 void TaskDelay::randomize() {
   Task::randomize();
   afterTurn = rand()%2;
-  turn = afterTurn ? rand()%15 + 20 : 15 - rand()%7;
+  turn = afterTurn ? rand()%15 + 20 : 15 - rand()%9;
 }
 
 string TaskDelay::createDesc() {
@@ -620,7 +620,7 @@ int TaskImmortal::computeReward() {
 string TaskImmortal::createDesc() {
   char buffer[4096];
   
-  sprintf(buffer, _("Defeat any opponent, having at least %i lives in the end.").c_str(), targetLife);
+  sprintf(buffer, _("Defeat any opponent, having at least %i life in the end.").c_str(), targetLife);
 
   return buffer;
 }
@@ -630,13 +630,13 @@ string TaskImmortal::getShortDesc(){
   
   switch (level) {
     case 0:
-      sprintf(buffer, _("Win flawlessly (%i lives)").c_str(), targetLife);
+      sprintf(buffer, _("Win flawlessly (%i life)").c_str(), targetLife);
       break;
     case 1:
-      sprintf(buffer, _("Reach Invulnerability (%i lives)").c_str(), targetLife);
+      sprintf(buffer, _("Reach Invulnerability (%i life)").c_str(), targetLife);
       break;
     case 2:
-      sprintf(buffer, _("Reach Immortality! (%i lives)").c_str(), targetLife);
+      sprintf(buffer, _("Reach Immortality! (%i life)").c_str(), targetLife);
       break;
   }
 
