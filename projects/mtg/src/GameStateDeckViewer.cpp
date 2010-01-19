@@ -712,7 +712,7 @@ void GameStateDeckViewer::renderOnScreenMenu(){
         r->DrawLine(20 + leftTransition, posY - 1, posX + 40 + leftTransition, posY - 1, ARGB(128, 255, 255, 255));
         font->DrawString(_("Total price (credits)"), 20 + leftTransition, posY);
         sprintf(buffer, _("%i ").c_str(),  stw.totalPrice);
-        font->DrawString(buffer, posX, posY);
+        font->DrawString(buffer, posX + leftTransition, posY);
         r->DrawLine(20 + leftTransition, posY + 13, posX + 40 + leftTransition, posY + 13, ARGB(128, 255, 255, 255));
 
         break;
@@ -978,19 +978,20 @@ void GameStateDeckViewer::renderOnScreenMenu(){
         sprintf(buffer, _("Victory ratio: %i%%").c_str(), stw.percentVictories);
         font->DrawString(buffer, 20 + leftTransition, 55);
 
+        int AIsPerColumn = 19;
         posY = 70;
         posX = 20;
 
         // ToDo: Multiple pages when too many AI decks are present
         for (int i=0; i<(int)stw.aiDeckStats.size(); i++) {
           sprintf(buffer, _("%.14s").c_str(), stw.aiDeckNames.at(i).c_str());
-          font->DrawString(buffer, posX + leftTransition, posY);
+          font->DrawString(buffer, posX + (i < 2*AIsPerColumn ? leftTransition : rightTransition), posY);
           sprintf(buffer, _("%i/%i").c_str(), stw.aiDeckStats.at(i)->victories, stw.aiDeckStats.at(i)->nbgames);
-          font->DrawString(buffer, posX + leftTransition+80, posY);
+          font->DrawString(buffer, posX + (i < AIsPerColumn ? leftTransition : rightTransition) + 80, posY);
           sprintf(buffer, _("%i%%").c_str(), stw.aiDeckStats.at(i)->percentVictories());
-          font->DrawString(buffer, posX + leftTransition+110, posY);
+          font->DrawString(buffer, posX + (i < AIsPerColumn ? leftTransition : rightTransition) + 110, posY);
           posY += 10;
-          if (((i+1)%19)==0) {
+          if (((i+1)%AIsPerColumn)==0) {
             posY = 70;
             posX += 155;
           }
