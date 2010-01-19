@@ -12,7 +12,8 @@
 #define TASK_DELAY 'D'
 #define TASK_IMMORTAL 'I'
 #define TASK_MASSIVE_BURIAL 'M'
-#define TASKS_ALL "WSDIM"
+#define TASK_WISDOM 'O'
+#define TASKS_ALL "WSDIMO"
 
 #define ITEM_SEPARATOR "|"
 
@@ -158,6 +159,21 @@ public:
   virtual void randomize();
 };
 
+class TaskWisdom : public Task {
+protected:
+  int color;
+  int cardCount;
+  virtual int computeReward();
+public:  
+  TaskWisdom(int _color = 0, int _cardCount = 0);
+
+  virtual string createDesc();
+  virtual string getShortDesc();
+  virtual bool isDone(Player * _p1, Player * _p2, GameApp * _app); 
+  virtual void storeCustomAttribs();
+  virtual void restoreCustomAttribs();
+  virtual void randomize();
+};
 /* ------------ Task template ------------ 
 
 class TaskXX : public Task {

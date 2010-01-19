@@ -6,6 +6,7 @@
 #include "../include/Translate.h"
 #include "../include/MTGDefinitions.h"
 #include <JRenderer.h>
+#include <Math.h>
 
 vector<string> Task::AIDeckNames;
 
@@ -215,6 +216,9 @@ Task* Task::createFromStr(string params, bool rand) {
       break;
     case TASK_MASSIVE_BURIAL:
       result = new TaskMassiveBurial();
+      break;
+    case TASK_WISDOM:
+      result = new TaskWisdom();
       break;      
     default:
       #if defined (WIN32) || defined (LINUX)
@@ -729,7 +733,7 @@ string TaskMassiveBurial::getShortDesc(){
 bool TaskMassiveBurial::isDone(Player * _p1, Player * _p2, GameApp * _app) {
   int countColor = 0;
   vector<MTGCardInstance *> cards = _p2->game->graveyard->cards;
-  
+
   for (vector<MTGCardInstance *>::iterator it = cards.begin(); it!=cards.end(); it++){
     if ((*it)->hasColor(color)) {
       countColor++;
@@ -757,6 +761,88 @@ void TaskMassiveBurial::randomize() {
   Task::randomize();
   color = rand()%(Constants::MTG_NB_COLORS - 1) + 1;
   bodyCount = 5 + ((Constants::MTG_COLOR_LAND == color) ? rand()%10 : rand()%20);
+}
+
+/* ------------ TaskWisdom ------------ */
+
+TaskWisdom::TaskWisdom(int _color, int _cardCount) : Task(TASK_WISDOM) {
+  color = _color;
+  cardCount = _cardCount;
+  if ( (0 == color) || (0 == cardCount) ) {
+    randomize();
+  }
+}
+
+int TaskWisdom::computeReward() {  
+  return rand()%150 + pow(cardCount, 1.4) * 50 + (cardCount>7)*200;
+}
+
+string TaskWisdom::createDesc() {
+  char buffer[4096];
+
+  sprintf(buffer, _("Win a game with at least %i %s cards in your hand.").c_str(), cardCount, Constants::MTGColorStrings[color]);
+
+  return buffer;
+}
+
+string TaskWisdom::getShortDesc(){
+  char buffer[4096];
+  switch (color) {
+    case Constants::MTG_COLOR_GREEN:
+      sprintf(buffer, _("Animal herder (%i)").c_str(), cardCount);
+      break;
+    case Constants::MTG_COLOR_BLUE:
+      sprintf(buffer, _("Accumulated knowledge (%i)").c_str(), cardCount);
+      break;
+    case Constants::MTG_COLOR_RED:
+      sprintf(buffer, _("Retained anger (%i)").c_str(), cardCount);
+      break;
+    case Constants::MTG_COLOR_BLACK:
+      sprintf(buffer, _("Necropotence (%i)").c_str(), cardCount);
+      break;
+    case Constants::MTG_COLOR_WHITE:
+      sprintf(buffer, _("Dawn of crusade (%i)").c_str(), cardCount);
+      break;
+    case Constants::MTG_COLOR_LAND:
+      sprintf(buffer, _("Mana reserves (%i)").c_str(), cardCount);
+      break;
+  }
+  return buffer;
+}
+
+bool TaskWisdom::isDone(Player * _p1, Player * _p2, GameApp * _app) {
+  GameObserver * g = GameObserver::GetInstance();
+  int countColor = 0;
+  vector<MTGCardInstance *> cards = _p1->game->hand->cards;
+
+  for (vector<MTGCardInstance *>::iterator it = cards.begin(); it!=cards.end(); it++){
+    if ((*it)->hasColor(color)) {
+      countColor++;
+    }
+  } 
+
+  return (!_p1->isAI()) && (_p2->isAI()) && (g->gameOver != _p1) // Human player wins
+          && (countColor >= cardCount);
+}
+
+void TaskWisdom::storeCustomAttribs() {
+  char buff[256];
+  sprintf(buff, "%i", color);
+  persistentAttribs.push_back(buff);
+ 
+  sprintf(buff, "%i", cardCount);
+  persistentAttribs.push_back(buff);
+}
+
+void TaskWisdom::restoreCustomAttribs() {
+  color = atoi(persistentAttribs[COMMON_ATTRIBS_COUNT].c_str());
+  cardCount = atoi(persistentAttribs[COMMON_ATTRIBS_COUNT+1].c_str());
+}
+
+void TaskWisdom::randomize() {
+  Task::randomize();
+  color = rand()%(Constants::MTG_NB_COLORS - 1) + 1;
+  cardCount = 2 + ((Constants::MTG_COLOR_LAND == color) ? rand()%5 : rand()%11);
 }
 
 /* ------------ Task template ------------ 
