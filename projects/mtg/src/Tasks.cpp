@@ -6,7 +6,7 @@
 #include "../include/Translate.h"
 #include "../include/MTGDefinitions.h"
 #include <JRenderer.h>
-#include <Math.h>
+#include <math.h>
 
 vector<string> Task::AIDeckNames;
 
