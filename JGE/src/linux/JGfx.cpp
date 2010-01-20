@@ -29,6 +29,12 @@ extern "C" {
 #include "../../include/JFileSystem.h"
 #include "../../include/JAssert.h"
 
+#ifdef WIN23
+#ifndef __attribute__
+#define __attribute__((a))
+#endif
+#endif
+
 JQuad::JQuad(JTexture *tex, float x, float y, float width, float height)
 		:mTex(tex), mX(x), mY(y), mWidth(width), mHeight(height)
 {
@@ -180,7 +186,11 @@ void JRenderer::BeginScene()
 {
 	glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);		// Clear Screen And Depth Buffer
 	glLoadIdentity ();											// Reset The Modelview Matrix
-
+#ifdef WIN32
+  float scaleH = (float)actualHeight/SCREEN_HEIGHT_F;
+  float scaleW = (float)actualWidth/SCREEN_WIDTH_F;
+  glScalef(scaleW,scaleW,1.f);
+#endif
 }
 
 
@@ -527,7 +537,6 @@ static int getNextPower2(int width)
 
 
 
-/* unused... for now at least
 static void jpg_null(j_decompress_ptr cinfo __attribute__((unused)))
 {
 }
@@ -560,7 +569,6 @@ static void jpeg_mem_src(j_decompress_ptr cinfo, byte *mem, int len)
 	cinfo->src->bytes_in_buffer = len;
 	cinfo->src->next_input_byte = mem;
 }
-*/
 
 /*
 ==============
@@ -569,34 +577,34 @@ LoadJPG
 */
 void JRenderer::LoadJPG(TextureInfo &textureInfo, const char *filename, int mode __attribute__((unused)), int TextureFormat __attribute__((unused)))
 {
-
-
-
 	textureInfo.mBits = NULL;
 
 	struct jpeg_decompress_struct	cinfo;
 	struct jpeg_error_mgr jerr;
-	BYTE *rgbadata, *scanline, *p, *q;
-	// int rawsize;
-	int	i;
+	BYTE *rawdata, *rgbadata, *scanline, *p, *q;
+	int	rawsize, i;
 
-		char filenamenew[4096];
-	sprintf(filenamenew, "Res/%s", filename);
+        JFileSystem* fileSystem = JFileSystem::GetInstance();
+        if (!fileSystem->OpenFile(filename)) return;
 
+        rawsize = fileSystem->GetFileSize();
 
-	// Initialise libJpeg Object
+        rawdata = new BYTE[rawsize];
+
+        if (!rawdata)
+        {
+                fileSystem->CloseFile();
+                return;
+        }
+
+        fileSystem->ReadFile(rawdata, rawsize);
+        fileSystem->CloseFile();
+
+      	// Initialize libJpeg Object
 	cinfo.err = jpeg_std_error(&jerr);
 	jpeg_create_decompress(&cinfo);
 
-FILE* fp = fopen(filenamenew, "rb");
-    if (fp == NULL)
-    {
-        //Failed to open file
-      jpeg_destroy_decompress(&cinfo);
-        return;
-    }
-
- jpeg_stdio_src(&cinfo, fp);
+        jpeg_mem_src(&cinfo, rawdata, rawsize);
 
 	// Process JPEG header
 	jpeg_read_header(&cinfo, true);
@@ -670,28 +678,21 @@ FILE* fp = fopen(filenamenew, "rb");
 	// Free the scanline buffer
 	free(scanline);
 
-
-
-
-fclose(fp);
-
-
-
 	textureInfo.mBits = rgbadata;
 	textureInfo.mWidth = cinfo.output_width;
 	textureInfo.mHeight = cinfo.output_height;
 	textureInfo.mTexWidth = tw;
 	textureInfo.mTexHeight = th;
 
-
 	// Finish Decompression
-	jpeg_finish_decompress(&cinfo);
+        try {
+          jpeg_finish_decompress(&cinfo);
+        } catch(...) {}
 
 	// Destroy JPEG object
 	jpeg_destroy_decompress(&cinfo);
 
-
-
+        delete[] rawdata;
 }
 
 
