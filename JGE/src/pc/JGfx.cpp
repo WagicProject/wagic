@@ -8,6 +8,14 @@
 //
 //-------------------------------------------------------------------------------------
 
+#ifdef WIN32
+  #pragma warning(disable : 4786)
+  extern int actualWidth;
+  extern int actualHeight;
+  #pragma comment( lib, "giflib.lib" )
+#endif
+
+
 #include "../../Dependencies/include/png.h"
 #include "../../Dependencies/include/fmod.h"
 
@@ -29,7 +37,7 @@ extern "C" {
 #include "../../include/JFileSystem.h"
 #include "../../include/JAssert.h"
 
-#ifdef WIN23
+#ifdef WIN32
 #ifndef __attribute__
 #define __attribute__((a))
 #endif

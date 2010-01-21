@@ -469,6 +469,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\src\pc\JGfx.cpp"
+				>
+			</File>
+			<File
 				RelativePath="src\JGui.cpp"
 				>
 				<FileConfiguration
@@ -571,19 +575,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\win\JRenderer_Win.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\src\JResourceManager.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\src\win\JSocket_Win.cpp"
+				RelativePath=".\src\pc\JSfx.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\src\win\JSoundSystem_Win.cpp"
+				RelativePath=".\src\pc\JSocket.cpp"
 				>
 			</File>
 			<File
