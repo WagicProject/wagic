@@ -132,6 +132,7 @@ void Task::randomize() {
   opponent = rand() % getAIDeckCount() + 1;
   opponentName = "";
   setExpiration((rand()%3)+1);
+  getReward();
 }
 
 bool Task::isExpired() {  
@@ -148,7 +149,7 @@ void Task::setExpiration(int _expiresIn) {
 
 void Task::passOneDay() {
   expiresIn--;
-  reward = (int) reward * 0.9; // Todo: degradation and minreward constants
+  reward = (int) getReward() * 0.9; // Todo: degradation and minreward constants
   if (reward < 33) {
     reward = 33;
   }
@@ -493,11 +494,11 @@ int TaskSlaughter::computeReward() {
 }
 
 void TaskSlaughter::randomize() {
-  Task::randomize();
   targetLife = -15 - rand()%10;
   if (!(rand()%7)) {
     targetLife *= 5;
   }
+  Task::randomize();
 }
 
 string TaskSlaughter::createDesc() {
@@ -549,9 +550,9 @@ int TaskDelay::computeReward() {
 }
 
 void TaskDelay::randomize() {
-  Task::randomize();
   afterTurn = rand()%2;
   turn = afterTurn ? rand()%15 + 20 : 15 - rand()%9;
+  Task::randomize();
 }
 
 string TaskDelay::createDesc() {
@@ -669,7 +670,6 @@ void TaskImmortal::restoreCustomAttribs() {
 }
 
 void TaskImmortal::randomize() {
-  Task::randomize();
   level = rand() % 3;
   switch (level) {
     case 0:
@@ -682,6 +682,7 @@ void TaskImmortal::randomize() {
       targetLife = 1000 + 50*(rand()%10);
       break;
   }
+  Task::randomize();
 }
 /* ------------ TaskMassiveBurial ------------ */
 
@@ -758,9 +759,9 @@ void TaskMassiveBurial::restoreCustomAttribs() {
 }
 
 void TaskMassiveBurial::randomize() {
-  Task::randomize();
   color = rand()%(Constants::MTG_NB_COLORS - 1) + 1;
   bodyCount = 5 + ((Constants::MTG_COLOR_LAND == color) ? rand()%10 : rand()%20);
+  Task::randomize();
 }
 
 /* ------------ TaskWisdom ------------ */
@@ -840,9 +841,9 @@ void TaskWisdom::restoreCustomAttribs() {
 }
 
 void TaskWisdom::randomize() {
-  Task::randomize();
   color = rand()%(Constants::MTG_NB_COLORS - 1) + 1;
   cardCount = 2 + ((Constants::MTG_COLOR_LAND == color) ? rand()%5 : rand()%11);
+  Task::randomize();
 }
 
 /* ------------ Task template ------------ 
@@ -902,8 +903,8 @@ void TaskXX::restoreCustomAttribs() {
 
 void TaskXX::randomize() {
   // TODO: Implement
-  Task::randomize();
   VarXX = rand()%10 + 1;
+  Task::randomize();
 }
 
 */
