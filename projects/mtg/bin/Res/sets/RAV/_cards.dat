@@ -549,7 +549,7 @@ abilities=mountainwalk
 [card]
 text=Whenever a nontoken creature you control is put into a graveyard from the battlefield, put a 1/1 green Saproling creature token onto the battlefield.
 id=89069
-auto=@movedto(creature[-token]|graveyard) from(myBattlefield):token(Saproling,creature saproling, 1/1,green)
+auto=@movedto(graveyard) from(creature[-token]|myBattlefield):token(Saproling,creature saproling, 1/1,green)
 name=Golgari Germination
 rarity=U
 type=Enchantment

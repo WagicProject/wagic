@@ -992,7 +992,7 @@ abilities=flying
 [card]
 text=Whenever a creature is put into a graveyard from the battlefield, you gain 1 life.
 id=136514
-auto=@movedTo(creature|graveyard) from(battlefield):life:1 controller
+auto=@movedTo(graveyard) from(creature|battlefield):life:1 controller
 name=Moonlit Wake
 rarity=U
 mana={2}{W}

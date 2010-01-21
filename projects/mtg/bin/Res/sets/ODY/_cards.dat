@@ -1606,7 +1606,7 @@ abilities=reach
 [/card]
 [card]
 text=Flying   Whenever a creature with flying is put into a graveyard from the battlefield, put a +1/+1 counter on Soulcatcher.
-auto=@movedTo(creature[flying]|graveyard) from(battlefield):counter(1/1)
+auto=@movedTo(graveyard) from(creature[flying]|battlefield):counter(1/1)
 id=31865
 name=Soulcatcher
 rarity=U

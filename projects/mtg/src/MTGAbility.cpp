@@ -64,20 +64,30 @@ TriggeredAbility * AbilityFactory::parseTrigger(string magicText, int id, Spell 
   if (found != string::npos){
     size_t end = s.find (")");
     string starget = s.substr(found+8,end - found - 8);
+    if (starget.find("|") == string::npos) starget.insert(0,"*|");
     TargetChooserFactory tcf;
     TargetChooser *toTc = tcf.createTargetChooser(starget,card);
     toTc->targetter = NULL;
 
     TargetChooser *fromTc = NULL;
+    TargetChooser * fromTcCard = NULL;
     found = s.find("from(");
     if (found != string::npos){
+      end = s.find ("|", found);
+      if (end == string::npos) {
+        fromTcCard = tcf.createTargetChooser("*",card);
+        found = found + 5;
+      }else{
+        fromTcCard = tcf.createTargetChooser(s.substr(found + 5, end - found - 5).append("|*"),card);
+        found = end + 1;
+      }
+      fromTcCard->setAllZones();
       end = s.find (")", found);
-      starget = s.substr(found+5,end - found - 5);
-      if (starget.find("|") == string::npos) starget.insert(0,"*|");
+      starget = s.substr(found,end - found).insert(0,"*|");
       fromTc = tcf.createTargetChooser(starget,card);
       fromTc->targetter = NULL;
     }
-    return NEW TrCardAddedToZone(id,card,toTc,(TargetZoneChooser *)fromTc);
+    return NEW TrCardAddedToZone(id,card,toTc,(TargetZoneChooser *)fromTc,fromTcCard);
   }
 
   //Card Tapped

@@ -996,7 +996,7 @@ abilities=flying
 [card]
 text=Enchant creature   When a creature is put into a graveyard from the battlefield, destroy enchanted creature.
 target=creature
-auto=@movedTo(creature|graveyard) from(battlefield):destroy
+auto=@movedTo(graveyard) from(creature|battlefield):destroy
 id=179891
 name=Yoke of the Damned
 rarity=C

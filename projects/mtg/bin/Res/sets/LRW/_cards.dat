@@ -1016,7 +1016,7 @@ subtype=Aura
 [/card]
 [card]
 text=Whenever another nontoken Elf is put into your graveyard from the battlefield, you may put a 1/1 green Elf Warrior creature token onto the battlefield.
-auto=@movedTo(other elf|graveyard) from(battlefield):may token(Elf Warrior,creature elf warrior,1/1,green)
+auto=@movedTo(graveyard) from(other elf|battlefield):may token(Elf Warrior,creature elf warrior,1/1,green)
 id=146167
 name=Prowess of the Fair
 rarity=U

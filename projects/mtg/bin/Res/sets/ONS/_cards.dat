@@ -632,7 +632,7 @@ mana={2}{R}
 type=Creature
 subtype=Goblin
 auto={T}:Damage:1 target(creature,player)
-auto=@movedTo(creature|graveyard) from(battlefield):untap
+auto=@movedTo(graveyard) from(creature|battlefield):untap
 power=1
 toughness=1
 abilities=doesnotuntap
@@ -1130,7 +1130,7 @@ mana={2}{B}
 type=Creature
 subtype=Zombie Cleric
 auto=@movedTo(this|graveyard) from(battlefield):token(Zombie,creature token Zombie, 2/2,black)
-auto=@movedTo(other cleric|graveyard) from(battlefield):token(Zombie,creature token Zombie, 2/2,black)
+auto=@movedTo(graveyard) from(other cleric|battlefield):token(Zombie,creature token Zombie, 2/2,black)
 power=2
 toughness=2
 [/card]

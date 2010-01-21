@@ -269,6 +269,7 @@ kird_ape.txt
 kjeldoran_frostbeast1.txt
 knight_captain_of_eos_i294.txt
 knight_captain_of_eos_i294_2.txt
+kormus_bell_i301.txt
 krosan_beast.txt
 krosan_beast2.txt
 kraken_eye.txt

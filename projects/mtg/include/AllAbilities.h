@@ -101,8 +101,9 @@ public:
 class TrCardAddedToZone:public TriggeredAbility{
 public:
   TargetChooser * toTc;
-  TargetZoneChooser * fromTc;
-  TrCardAddedToZone(int id, MTGCardInstance * source, TargetChooser * toTc, TargetZoneChooser * fromTc = NULL):TriggeredAbility(id,source), toTc(toTc), fromTc(fromTc){}
+  TargetZoneChooser * fromTcZone;
+  TargetChooser * fromTcCard;
+  TrCardAddedToZone(int id, MTGCardInstance * source, TargetChooser * toTc, TargetZoneChooser * fromTcZone = NULL,TargetChooser * fromTcCard = NULL):TriggeredAbility(id,source), toTc(toTc), fromTcZone(fromTcZone), fromTcCard(fromTcCard){}
 
   int resolve(){
     return 0; //This is a trigger, this function should not be called
@@ -111,8 +112,10 @@ public:
   int triggerOnEvent(WEvent * event){
     WEventZoneChange * e = dynamic_cast<WEventZoneChange*>(event);
     if (!e) return 0;
+
     if (!toTc->canTarget(e->card)) return 0;
-    if (fromTc && !fromTc->targetsZone(e->from)) return 0;
+    if (fromTcZone && !fromTcZone->targetsZone(e->from)) return 0;
+    if (fromTcCard && !fromTcCard->canTarget(e->card->previous)) return 0;
     
     //Battlefield is a special case. We usually don't want to trigger when a card comes from battlefield to battlefield
     // http://code.google.com/p/wagic/issues/detail?id=179
@@ -125,7 +128,8 @@ public:
 
   ~TrCardAddedToZone(){
     SAFE_DELETE(toTc);
-    SAFE_DELETE(fromTc);
+    SAFE_DELETE(fromTcZone);
+    SAFE_DELETE(fromTcCard);
   }
 
   TrCardAddedToZone * clone() const{

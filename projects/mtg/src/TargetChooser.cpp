@@ -56,8 +56,9 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
       }
       zones[nbzones] = MTGGameZone::MY_BATTLEFIELD;
 
-      //Graveyards
-      if(zoneName.compare("graveyard") == 0){
+      if(zoneName.compare("*") == 0){
+         zones[nbzones] = MTGGameZone::ALL_ZONES;
+      }else if(zoneName.compare("graveyard") == 0){
         zones[nbzones] = MTGGameZone::MY_GRAVEYARD;
         nbzones++;
         zones[nbzones] = MTGGameZone::OPPONENT_GRAVEYARD;
@@ -590,21 +591,10 @@ int TargetZoneChooser::init(int * _zones, int _nbzones){
 
 int TargetZoneChooser::setAllZones(){
     int zones[] = {
-      MTGGameZone::MY_BATTLEFIELD, 
-      MTGGameZone::MY_EXILE,
-      MTGGameZone::MY_GRAVEYARD,
-      MTGGameZone::MY_HAND,
-      MTGGameZone::MY_LIBRARY,
-      MTGGameZone::MY_STACK,
-      MTGGameZone::OPPONENT_BATTLEFIELD, 
-      MTGGameZone::OPPONENT_EXILE,
-      MTGGameZone::OPPONENT_GRAVEYARD,
-      MTGGameZone::OPPONENT_HAND,
-      MTGGameZone::OPPONENT_LIBRARY,
-      MTGGameZone::OPPONENT_STACK
+      MTGGameZone::ALL_ZONES, 
     };
 
-    init(zones,12);
+    init(zones,1);
   return 1;
 } 
 
@@ -613,8 +603,10 @@ bool TargetZoneChooser::canTarget(Targetable * target){
   if (!TargetChooser::canTarget(target)) return false;
   if (target->typeAsTarget() == TARGET_CARD){
     MTGCardInstance * card = (MTGCardInstance *) target;
-    for (int i = 0; i<nbzones; i++)
+    for (int i = 0; i<nbzones; i++){
+      if (zones[i] == MTGGameZone::ALL_ZONES) return true;
       if (MTGGameZone::intToZone(zones[i],source,card)->hasCard(card)) return true;
+    }
   }else if (target->typeAsTarget() == TARGET_STACKACTION){
 OutputDebugString ("CHECKING INTERRUPTIBLE\n");
     Interruptible * action = (Interruptible *) target;

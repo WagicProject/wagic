@@ -397,7 +397,7 @@ rarity=U
 mana={3}{B}
 auto=@next my endofturn:bury
 auto=@next my endofturn:life:-8 controller
-auto=@movedto(* other|graveyard):moveto(opponentBattlefield)
+auto=@movedto(graveyard) from(* other|*):moveto(opponentBattlefield)
 type=Enchantment
 [/card]
 [card]
@@ -540,8 +540,8 @@ toughness=1
 [/card]
 [card]
 text=When a creature you control is put into a graveyard from the battlefield, sacrifice Promise of Bunrei. If you do, put four 1/1 colorless Spirit creature tokens onto the battlefield.
-auto=@movedto(creature|graveyard) from(myBattlefield):token(Spirit,Creature Spirit,1/1,)*4
-auto=@movedto(creature|graveyard) from(myBattlefield):bury
+auto=@movedto(graveyard) from(creature|myBattlefield):token(Spirit,Creature Spirit,1/1,)*4
+auto=@movedto(graveyard) from(creature|myBattlefield):bury
 id=84376
 name=Promise of Bunrei
 rarity=R

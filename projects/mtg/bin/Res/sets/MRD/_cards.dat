@@ -224,7 +224,7 @@ subtype=Aura
 [card]
 text=Whenever an artifact is put into a graveyard from the battlefield, you may have target opponent lose 1 life.
 id=49090
-auto=@movedTo(artifact|graveyard) from(battlefield):may life:-1 opponent
+auto=@movedTo(graveyard) from(artifact|battlefield):may life:-1 opponent
 name=Disciple of the Vault
 rarity=C
 mana={B}
@@ -244,7 +244,7 @@ type=Artifact
 [/card]
 [card]
 text=Protection from white.    At the end of your turn, you lose 4 life.   Whenever a creature is put into a graveyard from the battlefield, you gain 2 life.
-auto=@movedTo(creature|graveyard) from(battlefield):life:2
+auto=@movedTo(graveyard) from(creature|battlefield):life:2
 auto=@each my end:life:-4 controller
 id=50537
 name=Dross Harvester
@@ -270,7 +270,7 @@ abilities=fear
 [/card]
 [card]
 text=Whenever Dross Scorpion or another artifact creature is put into a graveyard from the battlefield, you may untap target artifact.
-auto=@movedTo(creature[artifact]|graveyard) from(battlefield):may untap target(artifact)
+auto=@movedTo(graveyard) from(creature[artifact]|battlefield):may untap target(artifact)
 id=46434
 name=Dross Scorpion
 rarity=C

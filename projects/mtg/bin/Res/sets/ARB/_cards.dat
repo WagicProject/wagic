@@ -411,7 +411,7 @@ type=Sorcery
 [card]
 text=Whenever Mycoid Shepherd or another creature you control with power 5 or greater is put into a graveyard from the battlefield, you may gain 5 life.
 auto=@movedTo(this|graveyard) from(myBattlefield):may life:5 controller
-auto=@movedTo(other creature[power>=5]|graveyard) from(myBattlefield):may life:5 controller
+auto=@movedTo(graveyard) from(other creature[power>=5]|myBattlefield):may life:5 controller
 id=179548
 name=Mycoid Shepherd
 rarity=R

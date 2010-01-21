@@ -20,6 +20,8 @@ class MTGGameZone {
  public:
 
    enum{
+    ALL_ZONES = -1,
+
     MY_GRAVEYARD = 11,
     OPPONENT_GRAVEYARD = 12,
     TARGET_OWNER_GRAVEYARD = 13,
