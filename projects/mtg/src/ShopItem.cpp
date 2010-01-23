@@ -72,7 +72,10 @@ ShopItem::ShopItem(int id, JLBFont *font, int _cardid, float _xy[], bool hasFocu
   quad = NULL;
 
   thumb = resources.RetrieveCard(card,RETRIEVE_LOCK,TEXTURE_SUB_THUMB);
-
+#if defined (WIN32) || defined (LINUX)
+  //On pcs we render the big image if the thumbnail is not available
+  if (!thumb) thumb = resources.RetrieveCard(card,RETRIEVE_LOCK);
+#endif
   if (!thumb)
     thumb = CardGui::alternateThumbQuad(card);
   else
@@ -147,8 +150,9 @@ void ShopItem::Render(){
   if (mHasFocus){
     if (card) quad = resources.RetrieveCard(card);
     if (quad){
+      float scale = 0.9 * 285/ quad->mHeight;
       quad->SetColor(ARGB(255,255,255,255));
-      renderer->RenderQuad(quad,SCREEN_WIDTH - 105,SCREEN_HEIGHT/2 - 5,0, 0.9f,0.9f);
+      renderer->RenderQuad(quad,SCREEN_WIDTH - 105,SCREEN_HEIGHT/2 - 5,0, scale,scale);
     }else{
       if (card) CardGui::alternateRender(card,Pos(SCREEN_WIDTH - 105,SCREEN_HEIGHT/2 - 5,0.9f* 285/250, 0,255));
 

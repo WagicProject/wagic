@@ -115,8 +115,8 @@ void GameApp::Create()
   for (int i = sizeof(manaIcons)/sizeof(manaIcons[0]) - 1; i >= 0; --i) manaIcons[i]->SetHotSpot(16,16);
 
   resources.RetrieveTexture("back.jpg",RETRIEVE_MANAGE);
-  JQuad * jq = resources.RetrieveQuad("back.jpg", 0, 0, 200, 285, "back",RETRIEVE_MANAGE);
-  jq->SetHotSpot(100, 145);
+  JQuad * jq = resources.RetrieveQuad("back.jpg", 0, 0, 0, 0, "back",RETRIEVE_MANAGE);
+  jq->SetHotSpot(jq->mWidth/2, jq->mHeight/2);
 
   resources.RetrieveTexture("back_thumb.jpg",RETRIEVE_MANAGE);
   resources.RetrieveQuad("back_thumb.jpg", 0, 0, MTG_MINIIMAGE_WIDTH, MTG_MINIIMAGE_HEIGHT, "back_thumb",RETRIEVE_MANAGE);

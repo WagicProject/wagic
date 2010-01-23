@@ -7,7 +7,7 @@
 #include "MTGCard.h"
 #include "WCachedResource.h"
 
-#define HUGE_CACHE_LIMIT 6000000  // Size of the cache for Windows and Linux
+#define HUGE_CACHE_LIMIT 20000000  // Size of the cache for Windows and Linux
 #define SAMPLES_CACHE_SIZE 1500000  // Size in bytes of the cached samples
 #define PSI_CACHE_SIZE 500000  // Size in bytes of the cahed particles
 #define TEXTURES_CACHE_MINSIZE 2000000  // Minimum size of the cache on the PSP. The program should complain if the cache ever gets smaller than this

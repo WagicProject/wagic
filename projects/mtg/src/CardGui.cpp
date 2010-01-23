@@ -54,6 +54,10 @@ void CardGui::Render()
 
   bool alternate = true;
   JQuad * quad = resources.RetrieveCard(card,CACHE_THUMB);
+#if defined (WIN32) || defined (LINUX)
+  //On pcs we render the big image if the thumbnail is not available
+  if (!quad) quad = resources.RetrieveCard(card);
+#endif
   if (quad) alternate = false;
   else quad = alternateThumbQuad(card);
 

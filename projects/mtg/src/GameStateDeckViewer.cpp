@@ -1223,7 +1223,8 @@ void GameStateDeckViewer::renderCard(int id, float rotation){
     int quadAlpha = alpha;
     if ( !displayed_deck->cards[card]) quadAlpha /=2;
     quad->SetColor(ARGB(mAlpha,quadAlpha,quadAlpha,quadAlpha));
-    JRenderer::GetInstance()->RenderQuad(quad, x   , y , 0.0f,scale,scale);
+    float _scale = scale *(285 / quad->mHeight);
+    JRenderer::GetInstance()->RenderQuad(quad, x   , y , 0.0f,_scale,_scale);
     if (showName){
       char buffer[4096];
       sprintf(buffer, "%s", _(card->data->getName()).c_str());
