@@ -15,15 +15,6 @@ text=Buyback {3} (You may pay an additional {3} as you play this spell. If you d
 rarity=C
 [/card]
 [card]
-id=6147
-name=Bequeathal
-mana={G}
-type=Enchantment
-subtype=Aura
-text=Enchant creature When enchanted creature is put into a graveyard, you draw two cards.
-rarity=C
-[/card]
-[card]
 id=6079
 name=Carnophage
 mana={B}
@@ -413,16 +404,6 @@ mana={3}{U}
 type=Enchantment
 text=At the beginning of each player's upkeep, if that player has fewer cards in hand than any of his or her opponents, the player may discard his or her hand and draw three cards.
 rarity=R
-[/card]
-[card]
-id=6115
-name=Onslaught
-mana={R}
-type=Enchantment
-text=Whenever you play a creature spell, tap target creature.
-auto=@movedTo(creature|mystack):tap target(creature)
-#0.8 @movedTo wont work with target, may is needed
-rarity=C
 [/card]
 [card]
 id=6126

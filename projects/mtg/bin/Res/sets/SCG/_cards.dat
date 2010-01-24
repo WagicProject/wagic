@@ -108,7 +108,7 @@ power=2
 toughness=1
 text=Flying When Death's-Head Buzzard is put into a graveyard from the battlefield, all creatures get -1/-1 until end of turn.
 abilities=flying
-auto=@movedto(this|graveyard):-1/-1 all(creature|Battlefield) ueot
+auto=@movedto(this|graveyard) from(battlefield):-1/-1 all(creature|Battlefield) ueot
 rarity=C
 [/card]
 [card]

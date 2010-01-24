@@ -870,7 +870,6 @@ subtype=Mountain
 [card]
 text=When Myr Retriever is put into a graveyard from the battlefield, return another target artifact card from your graveyard to your hand.
 auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) target(other artifact|mygraveyard)
-
 id=46126
 name=Myr Retriever
 rarity=U
@@ -1080,7 +1079,7 @@ type=Artifact
 [/card]
 [card]
 text=Put two 1/1 white Soldier creature tokens onto the battlefield.
-auto=token(Soldier,creature token soldier, 1/1,white)*2
+auto=token(Soldier,creature soldier, 1/1,white)*2
 id=48103
 name=Raise the Alarm
 rarity=C
@@ -1105,7 +1104,7 @@ rarity=R
 mana={4}{B}{B}{B}{B}
 type=Creature
 subtype=Demon
-auto=@movedTo(myBattlefield) from(mystack):destroy all(creature[-black;-artifact])
+auto=@movedTo(this|myBattlefield) from(mystack):destroy all(creature[-black;-artifact])
 power=6
 toughness=6
 abilities=flying
@@ -1603,7 +1602,7 @@ rarity=R
 mana={4}{B}
 type=Creature
 subtype=Horror
-auto=@movedTo(artifact|myBattlefield):4/4 ueot
+auto=@movedTo(artifact|battlefield):4/4 ueot
 power=1
 toughness=1
 [/card]

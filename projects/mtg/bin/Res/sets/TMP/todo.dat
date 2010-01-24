@@ -103,14 +103,6 @@ subtype=Human Archer Minion
 toughness=2
 [/card]
 [card]
-text=Return Broken Fall to its owner's hand: Regenerate target creature.
-id=4750
-name=Broken Fall
-rarity=C
-type=Enchantment
-mana={2}{G}
-[/card]
-[card]
 text=Buyback {3} (You may pay an additional {3} as you play this spell. If you do, put this card into your hand as it resolves.)  Return target permanent to its owner's hand.
 id=4691
 name=Capsize
@@ -403,26 +395,6 @@ type=Instant
 mana={X}{U}
 [/card]
 [card]
-text=As long as an opponent controls a creature with flying not named Escaped Shapeshifter, Escaped Shapeshifter has flying. The same is true for first strike, trample, and protection from any color.
-id=4699
-name=Escaped Shapeshifter
-## flying,first strike,trample works, protection doesn't
-auto=aslongas(creature[flying;-Escaped Shapeshifter]|opponentinplay) flying
-auto=aslongas(creature[first strike;-Escaped Shapeshifter]|opponentinplay) first strike
-auto=aslongas(creature[trample;-Escaped Shapeshifter]|opponentinplay) trample
-auto=aslongas(creature[protection from black;-Escaped Shapeshifter]|opponentinplay) protection from black
-auto=aslongas(creature[protection from blue;-Escaped Shapeshifter]|opponentinplay) protection from blue
-auto=aslongas(creature[protection from red;-Escaped Shapeshifter]|opponentinplay) protection from red
-auto=aslongas(creature[protection from white;-Escaped Shapeshifter]|opponentinplay) protection from white
-auto=aslongas(creature[protection from green;-Escaped Shapeshifter]|opponentinplay) protection from green
-rarity=R
-type=Creature
-mana={3}{U}{U}
-power=3
-subtype=Shapeshifter
-toughness=4
-[/card]
-[card]
 text={3}, {T}: Put an elixir counter on Essence Bottle.     {T}, Remove all elixir counters from Essence Bottle: You gain 2 life for each elixir counter removed this way.
 id=4606
 name=Essence Bottle
@@ -534,7 +506,6 @@ power=1
 subtype=Squid Beast
 toughness=3
 [/card]
-
 [card]
 text={T}: Add {1} to your mana pool.     {0}: Return Ghost Town to its owner's hand. Play this ability only if it's not your turn.
 id=4932
@@ -935,7 +906,6 @@ rarity=U
 type=Enchantment
 mana={2}{U}
 [/card]
-
 [card]
 text={1}{W}, {T}: Quickening Licid loses this ability and becomes an Aura enchantment with enchant creature. Attach it to target creature. You may pay {W} to end this effect.     Enchanted creature has first strike.
 id=4894
@@ -947,9 +917,6 @@ power=1
 subtype=Licid
 toughness=1
 [/card]
-
-
-
 [card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  When Rathi Dragon comes into play, sacrifice it unless you sacrifice two Mountains.
 id=4838
@@ -1021,8 +988,6 @@ rarity=R
 type=Enchantment
 mana={G}
 [/card]
-
-
 [card]
 text={T}: Add {1} to your mana pool.     {T}: Add {U} or {B} to your mana pool. Rootwater Depths doesn't untap during your next untap step.
 id=4937
@@ -1030,8 +995,6 @@ name=Rootwater Depths
 rarity=U
 type=Land
 [/card]
-
-
 [card]
 text={T}: Gain control of target creature as long as that creature is enchanted.
 id=4722
@@ -1088,14 +1051,6 @@ name=Sarcomancy
 rarity=R
 type=Enchantment
 mana={B}
-[/card]
-[card]
-text=At the beginning of your upkeep, if you have three or fewer cards in hand, Scalding Tongs deals 1 damage to target opponent.
-id=4627
-name=Scalding Tongs
-rarity=R
-type=Artifact
-mana={2}
 [/card]
 [card]
 text=As an additional cost to play Scorched Earth, discard X land cards.     Destroy X target lands.
@@ -1174,19 +1129,6 @@ type=Creature
 mana={2}{W}{R}
 power=3
 subtype=Soltari Soldier
-toughness=2
-[/card]
-[card]
-text=Shadow (This creature can block or be blocked by only creatures with shadow.)  Soltari Lancer has first strike as long as it's attacking.
-id=4902
-auto=aslongas(this[attacking]|myinplay) first strike
-abilities=shadow
-name=Soltari Lancer
-rarity=C
-type=Creature
-mana={2}{W}
-power=2
-subtype=Soltari Knight
 toughness=2
 [/card]
 [card]
@@ -1324,13 +1266,10 @@ auto={T}: Add {U}
 rarity=U
 type=Land
 [/card]
-
-
 [card]
 text=At the beginning of your upkeep, if you have five or more cards in hand, Thumbscrews deals 1 damage to target opponent.
 id=4632
 auto=aslongas(*|myhand) damage:1 opponent >4
-#this only works for 1 turn, then it no longer works
 name=Thumbscrews
 rarity=R
 type=Artifact

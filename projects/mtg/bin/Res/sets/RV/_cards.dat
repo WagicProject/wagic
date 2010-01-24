@@ -1579,7 +1579,7 @@ toughness=2
 abilities=flying
 [/card]
 [card]
-text=Enchant creature   When Paralyze enters the battlefield, tap enchanted creature.   Enchanted creature doesn't untap during its controller's untap step.   Enchanted creature has "At the beginning of your upkeep, you may pay {4}. If you do, untap this creature."
+text=Enchant creature   When Paralyze enters the battlefield, tap enchanted creature.   Enchanted creature doesn't untap during its controller's untap step.   At the beginning of the upkeep of enchanted creature's controller, that player may pay 4. If he or she does, untap the creature.
 id=1171
 target=creature
 name=Paralyze
@@ -2422,9 +2422,9 @@ abilities=defender
 [/card]
 [card]
 text=Enchant creature   At the beginning of the upkeep of enchanted creature's controller, Wanderlust deals 1 damage to that player.
-target=creature
 id=1276
-auto=@each my upkeep:damage:1 targetController
+target=creature
+auto=@each targetcontroller upkeep:damage:1 targetController
 name=Wanderlust
 rarity=U
 mana={2}{G}

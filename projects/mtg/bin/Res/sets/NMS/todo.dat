@@ -416,14 +416,6 @@ text={T}: All damage that would be dealt to target creature this turn by a sourc
 rarity=R
 [/card]
 [card]
-id=22061
-name=Overlaid Terrain
-mana={2}{G}{G}
-type=Enchantment
-text=As Overlaid Terrain enters the battlefield, sacrifice all lands you control. Lands you control have "{T}: Add two mana of any one color to your mana pool."
-rarity=R
-[/card]
-[card]
 id=21375
 name=Pack Hunt
 mana={3}{G}
@@ -677,17 +669,6 @@ mana={2}{W}{W}
 type=Enchantment
 text=Creatures and lands you control have shroud. (They can't be the targets of spells or abilities.) When a creature you control attacks, sacrifice Spiritual Asylum.
 rarity=R
-[/card]
-[card]
-id=21309
-name=Spiteful Bully
-mana={1}{B}
-type=Creature
-subtype=Zombie Mercenary
-power=3
-toughness=3
-text=At the beginning of your upkeep, Spiteful Bully deals 3 damage to target creature you control.
-rarity=C
 [/card]
 [card]
 id=21357

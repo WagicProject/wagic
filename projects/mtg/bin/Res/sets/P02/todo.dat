@@ -140,17 +140,6 @@ text=Tap any number of untapped creatures you control. You gain 4 life for each 
 rarity=U
 [/card]
 [card]
-id=6574
-name=Hidden Horror
-mana={1}{B}{B}
-type=Creature
-subtype=Horror
-power=4
-toughness=4
-text=When Hidden Horror enters the battlefield, sacrifice it unless you discard a creature card.
-rarity=U
-[/card]
-[card]
 id=6628
 name=Ironhoof Ox
 mana={3}{G}{G}
@@ -308,17 +297,6 @@ text=Destroy all tapped creatures. You gain 2 life for each creature destroyed t
 auto=foreach(creature[tapped]) life:2 controller
 auto=destroy all(creature[tapped])
 rarity=R
-[/card]
-[card]
-id=6523
-name=Screeching Drake
-mana={3}{U}
-type=Creature
-subtype=Drake
-power=2
-toughness=2
-text=Flying When Screeching Drake enters the battlefield, draw a card, then discard a card.
-rarity=C
 [/card]
 [card]
 id=6539

@@ -348,6 +348,18 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
+text=Enchant creature   Enchanted creature gets +2/+0.   At the beginning of the upkeep of enchanted creature's controller, put a -0/-1 counter on that creature.
+id=2505
+target=creature
+auto=2/0
+auto=@each targetcontroller upkeep:counter(0/-1)
+name=Essence Flare
+rarity=C
+mana={U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 text=Target creature gains trample and gets +3/+0 until end of turn.
 id=2558
 target=creature

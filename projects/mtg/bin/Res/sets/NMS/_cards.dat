@@ -346,6 +346,20 @@ toughness=3
 abilities=Protection from red
 [/card]
 [card]
+text=As Overlaid Terrain enters the battlefield, sacrifice all lands you control.   Lands you control have "{T}: Add two mana of any one color to your mana pool."
+id=22061
+auto=moveTo(graveyard) all(land|myBattlefield)
+auto=lord(land|myBattlefield) {T}:Add{W}{W}
+auto=lord(land|myBattlefield) {T}:Add{U}{U}
+auto=lord(land|myBattlefield) {T}:Add{B}{B}
+auto=lord(land|myBattlefield) {T}:Add{R}{R}
+auto=lord(land|myBattlefield) {T}:Add{G}{G}
+name=Overlaid Terrain
+rarity=R
+mana={2}{G}{G}
+type=Enchantment
+[/card]
+[card]
 text=When Phyrexian Driver enters the battlefield, all other Mercenary creatures get +1/+1 until end of turn.
 id=22379
 name=Phyrexian Driver
@@ -568,6 +582,18 @@ subtype=Zombie Mercenary
 power=2
 toughness=2
 abilities=cantblock
+[/card]
+[card]
+text=At the beginning of your upkeep, Spiteful Bully deals 3 damage to target creature you control.
+auto=@each my upkeep:damage:3 target(creature|myBattlefield)
+id=21309
+name=Spiteful Bully
+rarity=C
+mana={1}{B}
+type=Creature
+subtype=Zombie Mercenary
+power=3
+toughness=3
 [/card]
 [card]
 text={1}{G}, {T}, Discard a card: Creatures you control get +1/+1 and gain trample until end of turn.

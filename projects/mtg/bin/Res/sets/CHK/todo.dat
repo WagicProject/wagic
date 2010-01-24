@@ -526,17 +526,6 @@ text=You have no maximum hand size.
 rarity=U
 [/card]
 [card]
-id=79194
-name=Guardian of Solitude
-mana={1}{U}
-type=Creature
-subtype=Spirit
-power=1
-toughness=2
-text=Whenever you play a Spirit or Arcane spell, target creature gains flying until end of turn.
-rarity=U
-[/card]
-[card]
 id=79088
 name=Gutwrencher Oni
 mana={3}{B}{B}
@@ -672,17 +661,6 @@ text=You may choose not to untap Hisoka's Guard during your untap step. {1}{U}, 
 rarity=C
 [/card]
 [card]
-id=79110
-name=Honden of Infinite Rage
-mana={2}{R}
-type=Enchantment
-subtype=Shrine
-abilities=Legendary
-text=At the beginning of your upkeep, Honden of Infinite Rage deals damage to target creature or player equal to the number of Shrines you control.
-auto=@each my upkeep:foreach(shrine|myinplay) damage:1 target(creature,player)
-rarity=U
-[/card]
-[card]
 id=79098
 name=Honden of Night's Reach
 mana={3}{B}
@@ -697,17 +675,6 @@ name=Honor-Worn Shaku
 mana={3}
 type=Artifact
 text={T}: Add {1} to your mana pool. Tap an untapped legendary permanent you control: Untap Honor-Worn Shaku.
-rarity=U
-[/card]
-[card]
-id=79226
-name=Horizon Seed
-mana={4}{W}
-type=Creature
-subtype=Spirit
-power=2
-toughness=1
-text=Whenever you play a Spirit or Arcane spell, regenerate target creature.
 rarity=U
 [/card]
 [card]
@@ -798,28 +765,6 @@ power=1
 toughness=2
 text={2}{U}, {T}: Draw a card. If you have nine or more cards in hand, flip Jushi Apprentice. 
 rarity=R
-[/card]
-[card]
-id=79195
-name=Kami of Fire's Roar
-mana={3}{R}
-type=Creature
-subtype=Spirit
-power=2
-toughness=3
-text=Whenever you play a Spirit or Arcane spell, target creature can't block this turn.
-rarity=C
-[/card]
-[card]
-id=50311
-name=Kami of the Waning Moon
-mana={2}{B}
-type=Creature
-subtype=Spirit
-power=1
-toughness=1
-text=Flying Whenever you play a Spirit or Arcane spell, target creature gains fear until end of turn.
-rarity=C
 [/card]
 [card]
 id=76634
@@ -1045,7 +990,6 @@ type=Sorcery
 text=Sacrifice any number of lands. Add {1} to your mana pool for each land sacrificed this way.
 rarity=U
 [/card]
-
 [card]
 id=79215
 name=Masako the Humorless
@@ -1068,8 +1012,6 @@ toughness=3
 text={2}{G}: Target creature blocks Matsu-Tribe Decoy this turn if able. Whenever Matsu-Tribe Decoy deals combat damage to a creature, tap that creature and it doesn't untap during its controller's next untap step.
 rarity=C
 [/card]
-
-
 [card]
 id=75248
 name=Mindblaze
@@ -1097,7 +1039,6 @@ toughness=2
 text=Flying Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.)
 rarity=C
 [/card]
-
 [card]
 id=78681
 name=Myojin of Cleansing Fire
@@ -1153,7 +1094,6 @@ toughness=3
 text=Myojin of Seeing Winds comes into play with a divinity counter on it if you played it from your hand. Myojin of Seeing Winds is indestructible as long as it has a divinity counter on it. Remove a divinity counter from Myojin of Seeing Winds: Draw a card for each permanent you control.
 rarity=R
 [/card]
-
 [card]
 id=79136
 name=Nagao, Bound by Honor
@@ -1223,7 +1163,6 @@ type=Enchantment
 text=Whenever a source you control deals damage to another player, put that many theft counters on Night Dealings. {2}{B}{B}, Remove X theft counters from Night Dealings: Search your library for a nonland card with converted mana cost X, reveal it, and put it into your hand. Then shuffle your library.
 rarity=R
 [/card]
-
 [card]
 id=50413
 name=Nine-Ringed Bo
@@ -1232,7 +1171,6 @@ type=Artifact
 text={T}: Nine-Ringed Bo deals 1 damage to target Spirit creature. If that creature would be put into a graveyard this turn, remove it from the game instead.
 rarity=U
 [/card]
-
 [card]
 id=50431
 name=Numai Outcast
@@ -1253,17 +1191,6 @@ subtype=Equipment
 text=Equipped creature gets +3/+1. Whenever equipped creature is put into a graveyard from play, return that card to play under your control if it's a Samurai. When Oathkeeper, Takeno's Daisho is put into a graveyard from play, remove equipped creature from the game. Equip {2}
 rarity=R
 [/card]
-[card]
-id=197016
-name=Oni Possession
-mana={2}{B}
-type=Enchantment
-subtype=Aura
-text=Enchant creature At the beginning of your upkeep, sacrifice a creature. Enchanted creature gets +3/+3 and has trample. Enchanted creature is a Demon Spirit.
-rarity=U
-[/card]
-
-
 [card]
 id=78975
 name=Orochi Eggwatcher (Shidako, Broodmistress)
@@ -1304,7 +1231,6 @@ toughness=1
 text=Whenever Orochi Ranger deals combat damage to a creature, tap that creature and it doesn't untap during its controller's next untap step.
 rarity=C
 [/card]
-
 [card]
 id=197017
 name=Otherworldly Journey
@@ -1373,7 +1299,6 @@ toughness=2
 text=At the beginning of your upkeep, put a devotion counter on Pious Kitsune. Then if a creature named Eight-and-a-Half-Tails is in play, you gain 1 life for each devotion counter on Pious Kitsune. {T}, Remove a devotion counter from Pious Kitsune: You gain 1 life.
 rarity=C
 [/card]
-
 [card]
 id=80242
 name=Psychic Puppetry
@@ -1635,17 +1560,6 @@ text=Other Snake creatures you control get +1/+0. Whenever a Warrior you control
 rarity=U
 [/card]
 [card]
-id=79253
-name=Soul of Magma
-mana={3}{R}{R}
-type=Creature
-subtype=Spirit
-power=2
-toughness=2
-text=Whenever you play a Spirit or Arcane spell, Soul of Magma deals 1 damage to target creature.
-rarity=C
-[/card]
-[card]
 id=50288
 name=Soulless Revival
 mana={1}{B}
@@ -1699,15 +1613,6 @@ subtype=Human Wizard
 power=1
 toughness=1
 text=When Student of Elements has flying, flip it. rarity=U
-[/card]
-[card]
-id=79089
-name=Swallowing Plague
-mana={X}{B}{B}
-type=Sorcery
-subtype=Arcane
-text=Swallowing Plague deals X damage to target creature and you gain X life.
-rarity=U
 [/card]
 [card]
 id=80276

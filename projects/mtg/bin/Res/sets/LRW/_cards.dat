@@ -704,6 +704,17 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Target creature gains deathtouch until end of turn. (Whenever it deals damage to a creature, destroy that creature.)  Draw a card.
+id=143376
+target=creature
+auto=deathtouch
+auto=draw:1 controller
+name=Lace with Moonglove
+rarity=C
+mana={2}{G}
+type=Instant
+[/card]
+[card]
 text={T}: Add {G} to your mana pool.
 auto={T}:Add {G}
 id=139487
@@ -714,17 +725,6 @@ mana={1}{G}
 power=2
 subtype=Elf Druid
 toughness=1
-[/card]
-[card]
-text=Target creature gains deathtouch until end of turn. (Whenever it deals damage to a creature, destroy that creature.)  Draw a card.
-id=143376
-target=creature
-auto=deathtouch
-auto=draw:1 controller
-name=Lace with Moonglove
-rarity=C
-mana={2}{G}
-type=Instant
 [/card]
 [card]
 text=Whenever you cast an Elf spell, you may put a 1/1 green Elf Warrior creature token onto the battlefield.
@@ -773,6 +773,20 @@ rarity=U
 mana={1}{U}
 type=Tribal Enchantment
 subtype=Merfolk
+[/card]
+[card]
+text=Other Merfolk creatures you control get +1/+1.   Whenever you play a Merfolk spell, you may tap or untap target permanent.
+auto=lord(merfolk|myBattlefield) 1/1 other
+auto=@movedTo(merfolk|mystack):may tap target(*)
+auto=@movedTo(merfolk|mystack):may untap target(*)
+id=139702
+name=Merrow Reejerey
+rarity=U
+mana={2}{U}
+type=Creature
+subtype=Merfolk Soldier
+power=2
+toughness=2
 [/card]
 [card]
 text=Sacrifice Moonglove Extract: Moonglove Extract deals 2 damage to target creature or player.
@@ -833,7 +847,7 @@ subtype=Mountain
 [/card]
 [card]
 text=When Mudbutton Torchrunner is put into a graveyard from the battlefield, it deals 3 damage to target creature or player.
-auto=@movedTo(this|graveyard):damage:3 target(creature,player)
+auto=@movedTo(this|graveyard)from(battlefield):damage:3 target(creature,player)
 id=139742
 name=Mudbutton Torchrunner
 rarity=C
@@ -1260,6 +1274,18 @@ rarity=C
 mana={R}
 type=Instant
 subtype=Tribal Goblin
+[/card]
+[card]
+text=Whenever you cast a Treefolk spell, you may have target creature get +3/-3 until end of turn.
+id=143015
+name=Thorntooth Witch
+rarity=U
+mana={5}{B}
+type=Creature
+subtype=Treefolk Shaman
+auto=@movedTo(treefolk|mystack):may 3/-3 target(creature)
+power=3
+toughness=4
 [/card]
 [card]
 text=When Thundercloud Shaman enters the battlefield, it deals damage equal to the number of Giants you control to each non-Giant creature.

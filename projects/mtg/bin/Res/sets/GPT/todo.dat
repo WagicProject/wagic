@@ -166,16 +166,6 @@ text=When Crystal Seer enters the battlefield, look at the top four cards of you
 rarity=C
 [/card]
 [card]
-text=({WB} can be paid with either White or Black.)   At the beginning of your upkeep, put target creature card in a graveyard onto the battlefield under your control.
-auto=@each my upkeep:moveTo(myBattlefield) target(creature|graveyard)
-id=97193
-name=Debtors' Knell
-color=White,Black
-rarity=R
-mana={4}{BW}{BW}{BW}
-type=Enchantment
-[/card]
-[card]
 id=97197
 name=Djinn Illuminatus
 mana={5}{(}{U}{/}{R}{)}{(}{U}{/}{R}{)}
@@ -388,25 +378,6 @@ text=Flash Enchant creature Creatures you control that are enchanted get +1/+1.
 rarity=C
 [/card]
 [card]
-id=96843
-name=Harrier Griffin
-mana={5}{W}
-type=Creature
-subtype=Griffin
-power=3
-toughness=3
-text=Flying At the beginning of your upkeep, tap target creature.
-rarity=U
-[/card]
-[card]
-id=96922
-name=Hissing Miasma
-mana={1}{B}{B}
-type=Enchantment
-text=Whenever a creature attacks you, its controller loses 1 life.
-rarity=U
-[/card]
-[card]
 id=96840
 name=Hypervolt Grasp
 mana={2}{R}
@@ -433,14 +404,6 @@ subtype=Nephilim
 power=3
 toughness=3
 text=Whenever a player casts an instant or sorcery spell, if Ink-Treader Nephilim is the only target of that spell, copy the spell for each other creature that spell could target. Each copy targets a different one of those creatures.
-rarity=R
-[/card]
-[card]
-id=83630
-name=Invoke the Firemind
-mana={X}{U}{U}{R}
-type=Sorcery
-text=Choose one - Draw X cards; or Invoke the Firemind deals X damage to target creature or player.
 rarity=R
 [/card]
 [card]
@@ -941,23 +904,6 @@ mana={2}{U}
 type=Instant
 text=Replicate {2}{U} (When you cast this spell, copy it for each time you paid its replicate cost.) Put a 3/3 blue Weird creature token with defender and flying onto the battlefield. Exile it at the beginning of the next end step.
 rarity=U
-[/card]
-[card]
-####
-####The first ability cannot work for now because it has no may condition!! (0.9.1)
-####
-id=97208
-name=Tibor and Lumia
-mana={2}{U}{R}
-type=Creature
-subtype=Human Wizard
-power=3
-toughness=3
-text=Whenever you cast a blue spell, target creature gains flying until end of turn.   Whenever you cast a red spell, Tibor and Lumia deals 1 damage to each creature without flying.
-auto=@movedTo(*[blue]|mystack):flying target(creature) ueot
-auto=@movedTo(*[red]|mystack):damage:1 all(creature[-flying])
-abilities=legendary
-rarity=R
 [/card]
 [card]
 id=96960

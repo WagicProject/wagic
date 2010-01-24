@@ -27,6 +27,17 @@ mana={2}{W}
 type=Instant
 [/card]
 [card]
+text=Enchant creature   When enchanted creature is put into a graveyard, you draw two cards.
+id=6147
+target=creature
+auto=@movedTo(mytgt|mygraveyard):draw:2 controller
+name=Bequeathal
+rarity=C
+mana={G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 text=When Cartographer enters the battlefield, you may return target land card from your graveyard to your hand.
 id=6144
 name=Cartographer
@@ -335,6 +346,15 @@ power=3
 toughness=3
 [/card]
 [card]
+text=Whenever you cast a creature spell, tap target creature.
+id=6115
+auto=@movedTo(creature|mystack):tap target(creature)
+name=Onslaught
+rarity=C
+mana={R}
+type=Enchantment
+[/card]
+[card]
 text=First strike, protection from black, protection from red (This creature deals combat damage before creatures without first strike. It can't be blocked, targeted, dealt damage, or enchanted by anything black or red.)
 id=5199
 name=Paladin en-Vec
@@ -590,7 +610,7 @@ abilities=trample
 [/card]
 [card]
 text=Shadow (This creature can block or be blocked by only creatures with shadow.) Whenever Soltari Visionary deals damage to a player, destroy target enchantment that player controls.
-auto=@damaged(player) from(this):may destroy target(enchantment|opponentBattlefield)
+auto=@damaged(player) from(this):destroy target(enchantment|opponentBattlefield)
 id=6031
 name=Soltari Visionary
 rarity=C
@@ -726,7 +746,7 @@ abilities=flying
 [/card]
 [card]
 text=Flying   When Welkin Hawk is put into a graveyard from the battlefield, you may search your library for a card named Welkin Hawk, reveal that card, put it into your hand, then shuffle your library.
-auto=@movedTo(this|graveyard):may moveTo(myHand) target(Welkin Hawk|mylibrary)
+auto=@movedTo(this|graveyard) from(battlefield):may moveTo(myHand) target(welkin hawk|mylibrary)
 id=6034
 name=Welkin Hawk
 rarity=C

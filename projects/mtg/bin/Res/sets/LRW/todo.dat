@@ -422,7 +422,7 @@ toughness=6
 [card]
 ###opponentTurnOnly does not work here! (0.10.1)
 text=Flying   Whenever you cast a spell during an opponent's turn, you may have target creature get -1/-1 until end of turn.
-auto=@movedTo(*|mystack):may -1/-1 target(creature) opponentTurnOnly
+auto=@movedTo(*|mystack):may -1/-1 target(creature)
 id=139453
 name=Dreamspoiler Witches
 rarity=C
@@ -496,7 +496,7 @@ auto=@movedTo(*|mystack):may token(Elemental,creature elemental,4/4,green) oppon
 id=143728
 name=Eyes of the Wisent
 rarity=R
-mana={G}
+mana={1}{G}
 type=Enchantment
 subtype=Tribal Elemental
 [/card]
@@ -1060,21 +1060,6 @@ subtype=Merfolk Wizard
 toughness=3
 [/card]
 [card]
-###CODED WRONG! THIS CANNOT BE CODED RIGHT NOW!!!!
-text=Other Merfolk creatures you control get +1/+1.     Whenever you play a Merfolk spell, you may tap or untap target permanent.
-auto=lord(merfolk|myinplay) 1/1 other
-auto=@movedTo(merfolk|mystack):may tap target(*)
-auto=@movedTo(merfolk|mystack):may untap target(*)
-id=139702
-name=Merrow Reejerey
-rarity=U
-type=Creature
-mana={2}{U}
-power=2
-subtype=Merfolk Soldier
-toughness=2
-[/card]
-[card]
 text=Whenever a nontoken creature you control attacks, you may pay {W}. If you do, put a 1/1 white Kithkin Soldier creature token into play tapped and attacking.
 id=140193
 name=Militia's Pride
@@ -1105,7 +1090,6 @@ power=4
 subtype=Faerie Wizard
 toughness=4
 [/card]
-
 [card]
 text=Hideaway (This land comes into play tapped. When it does, look at the top four cards of your library, remove one from the game face down, then put the rest on the bottom of your library.)  {T}: Add {G} to your mana pool.     {G}, {T}: You may play the removed card without paying its mana cost if creatures you control have total power 10 or greater.
 id=139515
@@ -1545,18 +1529,6 @@ name=Thorn of Amethyst
 rarity=R
 type=Artifact
 mana={2}
-[/card]
-[card]
-text=Whenever you play a Treefolk spell, you may have target creature get +3/-3 until end of turn.
-id=143015
-auto=@movedTo(Treefolk|mystack):may 3/3 target(creature)
-name=Thorntooth Witch
-rarity=U
-type=Creature
-mana={5}{B}
-power=3
-subtype=Treefolk Shaman
-toughness=4
 [/card]
 [card]
 text=Target player reveals his or her hand. You choose a nonland card from it. That player discards that card. You lose 2 life.

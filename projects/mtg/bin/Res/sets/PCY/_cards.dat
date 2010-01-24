@@ -37,6 +37,19 @@ mana={2}{W}
 type=Enchantment
 [/card]
 [card]
+text=Protection from white   At the beginning of your upkeep, sacrifice Bog Elemental unless you sacrifice a land.
+auto=@each my upkeep:moveTo(mygraveyard) notatarget(bog elemental,land|myBattlefield)
+id=24620
+name=Bog Elemental
+rarity=R
+mana={3}{B}{B}
+type=Creature
+subtype=Elemental
+power=5
+toughness=4
+abilities=protection from white
+[/card]
+[card]
 text=Flying   {T}, Sacrifice a land: Search your library for a Mercenary permanent card with converted mana cost 2 or less and put that card onto the battlefield. Then shuffle your library.
 id=24600
 name=Bog Glider
@@ -61,6 +74,16 @@ auto=aslongas(land[-tapped]|opponentBattlefield) cantattack
 auto=aslongas(land[-tapped]|myBattlefield) cantblock
 power=2
 toughness=2
+[/card]
+[card]
+text=Destroy all enchantments you don't control. Then, if you control an untapped land, destroy all enchantments you control.
+id=24659
+auto=destroy all(enchantment|opponentBattlefield)
+auto=aslongas(land[-tapped]|myBattlefield) destroy all(enchantment|myBattlefield)
+name=Calming Verse
+rarity=C
+mana={3}{G}
+type=Sorcery
 [/card]
 [card]
 text=At the beginning of each player's end step, Citadel of Pain deals X damage to that player, where X is the number of untapped lands he or she controls.
@@ -190,6 +213,17 @@ subtype=Aura
 abilities=flash
 [/card]
 [card]
+text=Enchant land   Enchanted land is a 5/6 green Treefolk creature that's still a land.
+id=24667
+target=land
+auto=becomes(Creature Treefolk,5/6,green)
+name=Living Terrain
+rarity=U
+mana={2}{G}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 text=Flash   Enchant creature   Enchanted creature gets +1/+2.
 target=creature
 auto=1/2
@@ -224,6 +258,19 @@ subtype=Human Soldier
 auto={T}{S}:destroy target(creature[attacking])
 power=1
 toughness=1
+[/card]
+[card]
+text=You can't untap more than one land during your untap step.
+auto=@each my untap:untap notatarget(land|myBattlefield)
+id=24675
+name=Mungha Wurm
+rarity=R
+mana={G}
+type=Creature
+subtype=Wurm
+auto=lord(land|myBattlefield) doesnotuntap
+power=6
+toughness=5
 [/card]
 [card]
 text=Destroy all creatures you don't control. They can't be regenerated.
@@ -271,6 +318,15 @@ power=1
 toughness=2
 [/card]
 [card]
+text=Mercenaries don't untap during their controllers' untap steps.
+id=24665
+auto=lord(mercenary) doesnotuntap
+name=Root Cage
+rarity=U
+mana={1}{G}
+type=Enchantment
+[/card]
+[card]
 text=Scoria Cat gets +3/+3 as long as you control no untapped lands.
 id=24636
 name=Scoria Cat
@@ -284,13 +340,23 @@ toughness=6
 [/card]
 [card]
 text=Searing Wind deals 10 damage to target creature or player.
+id=24650
 target=creature,player
 auto=damage:10
-id=24650
 name=Searing Wind
 rarity=R
 mana={8}{R}
 type=Instant
+[/card]
+[card]
+text=Basic lands each player controls have shroud as long as that player controls three or fewer lands. (They can't be the targets of spells or abilities.)
+auto=aslongas(land|myBattlefield) lord(land[basic]|myBattlefield) shroud <3
+auto=aslongas(land|opponentBattlefield) lord(land[basic]|opponentBattlefield) shroud <3
+id=24568
+name=Sheltering Prayers
+rarity=R
+mana={W}
+type=Enchantment
 [/card]
 [card]
 text=When Silt Crawler enters the battlefield, tap all lands you control.
@@ -348,7 +414,7 @@ rarity=R
 mana={2}{G}{G}
 type=Creature
 subtype=Human Druid
-auto={1}{G}{S(land|myBattlefield)}:token(Squirrel,creature squirrel token,1/1,green)*2
+auto={1}{G}{S(land|myBattlefield)}:token(Squirrel,creature squirrel,1/1,green)*2
 auto={1}{G}{S(land|myBattlefield)}:lord(squirrel) 1/1 ueot
 power=2
 toughness=2

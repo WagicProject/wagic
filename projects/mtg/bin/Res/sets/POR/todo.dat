@@ -102,12 +102,16 @@ type=Instant
 mana={1}{G}
 [/card]
 [card]
-text=Until end of turn, black creatures you control can be blocked only by black creatures.
-id=4216
-name=Dread Charge
-rarity=R
-type=Sorcery
-mana={3}{B}
+####Cannot be coded right now! (0.10.1)
+text=Play Defiant Stand only during the declare attackers step and only if you are the defending player. Target creature gets +1/+3 until the end of the turn. If that creature is tapped, untap it.
+id=4380
+target=creature
+auto=untap
+auto=1/3
+name=Defiant Stand
+rarity=U
+mana={1}{W}
+type=Instant
 [/card]
 [card]
 text=Flying     When Ebon Dragon comes into play, you may have target opponent discard a card.
@@ -196,18 +200,6 @@ type=Sorcery
 mana={R}{R}
 [/card]
 [card]
-text=When Mercenary Knight comes into play, sacrifice it unless you discard a creature card.
-id=4228
-auto=discard:1
-name=Mercenary Knight
-rarity=R
-type=Creature
-mana={2}{B}
-power=4
-subtype=Human Mercenary Knight
-toughness=4
-[/card]
-[card]
 text=Target player discards two cards.
 target=player
 auto=discard:2
@@ -245,17 +237,6 @@ type=Sorcery
 mana={1}{U}
 [/card]
 [card]
-text=Flying     When Owl Familiar comes into play, draw a card, then discard a card.
-id=4270
-name=Owl Familiar
-rarity=C
-type=Creature
-mana={1}{U}
-power=1
-subtype=Bird
-toughness=1
-[/card]
-[card]
 text=Search your library for a sorcery card and reveal that card. Shuffle your library, then put the card on top of it.
 id=4271
 name=Personal Tutor
@@ -275,17 +256,6 @@ type=Creature
 subtype=Human Barbarian
 power=5
 toughness=5
-[/card]
-[card]
-text=When Plant Elemental comes into play, sacrifice it unless you sacrifice a Forest.
-id=4313
-name=Plant Elemental
-rarity=U
-type=Creature
-mana={1}{G}
-power=3
-subtype=Plant Elemental
-toughness=4
 [/card]
 [card]
 text=When Primeval Force comes into play, sacrifice it unless you sacrifice three Forests.
@@ -386,17 +356,6 @@ mana={6}{U}{U}{U}
 power=9
 subtype=Leviathan
 toughness=9
-[/card]
-[card]
-text=When Thundering Wurm comes into play, sacrifice it unless you discard a land card.
-id=4321
-name=Thundering Wurm
-rarity=R
-type=Creature
-mana={2}{G}
-power=4
-subtype=Wurm
-toughness=4
 [/card]
 [card]
 text=Tap up to three target creatures without flying.

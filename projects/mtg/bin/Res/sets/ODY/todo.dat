@@ -137,14 +137,6 @@ type=Enchantment
 mana={3}{U}{U}
 [/card]
 [card]
-text=Whenever a creature blocks, Battle Strain deals 1 damage to that creature's controller.
-id=29861
-name=Battle Strain
-rarity=U
-type=Enchantment
-mana={1}{R}
-[/card]
-[card]
 text={1}{G}, Remove two cards in your graveyard from the game: Put a 2/2 green Bear creature token into play.
 id=30747
 name=Bearscape

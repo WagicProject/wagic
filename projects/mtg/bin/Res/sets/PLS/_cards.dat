@@ -66,6 +66,17 @@ toughness=1
 abilities=flying
 [/card]
 [card]
+text=When Crosis's Catacombs enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand.   {T}: Add {U}, {B}, or {R} to your mana pool.
+id=25936
+name=Crosis's Catacombs
+auto=aslongas(land[-lair]|myBattlefield) moveTo(ownerhand) notatarget(land[-lair]|myBattlefield)
+auto=moveTo(graveyard) notatarget(this|myBattlefield)
+auto=@movedTo(land[-lair]|myhand) from(myBattlefield):lord(crosis's catacombs) {T}:Add{U} && lord(crosis's catacombs) {T}:Add{B} && lord(crosis's catacombs) {T}:Add{R}
+rarity=U
+type=Land
+subtype=Lair
+[/card]
+[card]
 text=Choose one - Return target permanent to its owner's hand; or destroy target nonblack creature, and it can't be regenerated; or destroy target artifact.
 id=25863
 name=Crosis's Charm
@@ -75,6 +86,17 @@ auto=may destroy target(artifact)
 rarity=U
 mana={U}{B}{R}
 type=Instant
+[/card]
+[card]
+text=When Darigaaz's Caldera enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand.   {T}: Add {B}, {R}, or {G} to your mana pool.
+id=25938
+name=Darigaaz's Caldera
+auto=aslongas(land[-lair]|myBattlefield) moveTo(ownerhand) notatarget(land[-lair]|myBattlefield)
+auto=moveTo(graveyard) notatarget(this|myBattlefield)
+auto=@movedTo(land[-lair]|myhand) from(myBattlefield):lord(darigaaz's caldera) {T}:Add{B} && lord(darigaaz's caldera) {T}:Add{R} && lord(darigaaz's caldera) {T}:Add{G}
+rarity=U
+type=Land
+subtype=Lair
 [/card]
 [card]
 text=Choose one - Return target creature card from your graveyard to your hand; or Darigaaz's Charm deals 3 damage to target creature or player; or target creature gets +3/+3 until end of turn.
@@ -121,6 +143,17 @@ name=Dominaria's Judgment
 rarity=R
 mana={2}{W}
 type=Instant
+[/card]
+[card]
+text=When Dromar's Cavern enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand.   {T}: Add {W}, {U}, or {B} to your mana pool.
+id=25932
+name=Dromar's Cavern
+auto=aslongas(land[-lair]|myBattlefield) moveTo(ownerhand) notatarget(land[-lair]|myBattlefield)
+auto=moveTo(graveyard) notatarget(this|myBattlefield)
+auto=@movedTo(land[-lair]|myhand) from(myBattlefield):lord(dromar's cavern) {T}:Add{W} && lord(dromar's cavern) {T}:Add{U} && lord(dromar's cavern) {T}:Add{B}
+rarity=U
+type=Land
+subtype=Lair
 [/card]
 [card]
 text=Choose one - You gain 5 life; or counter target spell; or target creature gets -2/-2 until end of turn.
@@ -466,6 +499,18 @@ power=4
 toughness=5
 [/card]
 [card]
+text=When Phyrexian Bloodstock leaves the battlefield, destroy target white creature. It can't be regenerated.
+auto=@moveTo(this|exile,graveyard,hand,library) from(battlefield):bury target(creature[white])
+id=26280
+name=Phyrexian Bloodstock
+rarity=C
+mana={4}{B}
+type=Creature
+subtype=Zombie
+power=3
+toughness=3
+[/card]
+[card]
 text=When Pygmy Kavu enters the battlefield, draw a card for each black creature your opponents control.
 auto=foreach(creature[black]|opponentBattlefield) draw:1 controller
 id=23113
@@ -488,6 +533,17 @@ type=Creature
 subtype=Dryad
 power=1
 toughness=1
+[/card]
+[card]
+text=When Rith's Grove enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand.   {T}: Add {R}, {G}, or {W} to your mana pool.
+id=25939
+name=Rith's Grove
+auto=aslongas(land[-lair]|myBattlefield) moveTo(ownerhand) notatarget(land[-lair]|myBattlefield)
+auto=moveTo(graveyard) notatarget(this|myBattlefield)
+auto=@movedTo(land[-lair]|myhand) from(myBattlefield):lord(rith's grove) {T}:Add{R} && lord(rith's grove) {T}:Add{G} && lord(rith's grove) {T}:Add{W}
+rarity=U
+type=Land
+subtype=Lair
 [/card]
 [card]
 text={2}{G}, {T}, Sacrifice Root Greevil: Destroy all enchantments of the color of your choice.
@@ -654,6 +710,17 @@ name=Terminate
 rarity=C
 mana={B}{R}
 type=Instant
+[/card]
+[card]
+text=When Treva's Ruins enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand.   {T}: Add {G}, {W}, or {U} to your mana pool.
+id=25940
+name=Treva's Ruins
+auto=aslongas(land[-lair]|myBattlefield) moveTo(ownerhand) notatarget(land[-lair]|myBattlefield)
+auto=moveTo(graveyard) notatarget(this|myBattlefield)
+auto=@movedTo(land[-lair]|myhand) from(myBattlefield):lord(treva's ruins) {T}:Add{G} && lord(treva's ruins) {T}:Add{W} && lord(treva's ruins) {T}:Add{U}
+rarity=U
+type=Land
+subtype=Lair
 [/card]
 [card]
 text=Flying   {1}{R}: Volcano Imp gains first strike until end of turn.

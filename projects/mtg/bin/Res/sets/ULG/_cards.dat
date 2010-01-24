@@ -86,7 +86,7 @@ type=Instant
 [/card]
 [card]
 text=Enchant creature   Enchanted creature can't attack.   When Cessation is put into a graveyard from the battlefield, return Cessation to its owner's hand.
-auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(cessation|mygraveyard)
+auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(this|mygraveyard)
 id=12359
 target=creature
 auto=cantattack
@@ -384,8 +384,9 @@ toughness=1
 [/card]
 [card]
 text=Target player draws four cards.
-auto=draw:4
 id=12822
+target=player
+auto=draw:4
 name=Opportunity
 rarity=U
 mana={4}{U}{U}
@@ -541,11 +542,12 @@ type=Instant
 [/card]
 [card]
 text=Enchant creature   Enchanted creature gets +2/+0 and has trample.   When Rancor is put into a graveyard from the battlefield, return Rancor to its owner's hand.
-auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(rancor|mygraveyard)
+auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(this|mygraveyard)
 id=12433
 target=creature
 auto=2/0
 auto=trample
+auto={S}:Add{G}
 name=Rancor
 rarity=C
 mana={G}
@@ -573,7 +575,7 @@ type=Artifact
 [/card]
 [card]
 text=Flying   When Shivan Phoenix is put into a graveyard from the battlefield, return Shivan Phoenix to its owner's hand.
-auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(shivan phoenix|mygraveyard)
+auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(this|mygraveyard)
 
 id=12423
 name=Shivan Phoenix
@@ -598,7 +600,7 @@ type=Instant
 [/card]
 [card]
 text=Enchant creature   Enchanted creature has fear. (It can't be blocked except by artifact creatures and/or black creatures.)   When Sleeper's Guile is put into a graveyard from the battlefield, return Sleeper's Guile to its owner's hand.
-auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(sleeper's guile|mygraveyard)
+auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(this|mygraveyard)
 id=12397
 target=creature
 auto=fear
@@ -610,7 +612,7 @@ subtype=Aura
 [/card]
 [card]
 text=Enchant creature   Enchanted creature can't block.   When Sluggishness is put into a graveyard from the battlefield, return Sluggishness to its owner's hand.
-auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(sluggishness|mygraveyard)
+auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(this|mygraveyard)
 id=12416
 target=creature
 auto=cantblock
@@ -676,6 +678,18 @@ name=Unearth
 rarity=C
 mana={B}
 type=Sorcery
+[/card]
+[card]
+text=If Viashino Bey attacks, all creatures you control attack if able.
+auto=aslongas(viashino bey[attacking]|myBattlefield) lord(creature|myBattlefield) mustattack
+id=12948
+name=Viashino Bey
+rarity=C
+mana={2}{R}{R}
+type=Creature
+subtype=Viashino
+power=4
+toughness=3
 [/card]
 [card]
 text=Haste   At the beginning of the end step, return Viashino Cutthroat to its owner's hand.
@@ -756,7 +770,7 @@ abilities=flying,protection from red
 [/card]
 [card]
 text=Trample   When Weatherseed Treefolk is put into a graveyard from the battlefield, return Weatherseed Treefolk to its owner's hand.
-auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(weatherseed treefolk|mygraveyard)
+auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(this|mygraveyard)
 id=12438
 name=Weatherseed Treefolk
 rarity=R

@@ -160,15 +160,6 @@ subtype=Zombie
 toughness=1
 [/card]
 [card]
-text=At the beginning of your precombat main phase, you may add up to X mana of any one color to your mana pool, where X is the number of Islands target opponent controls.
-auto=@each my firstmain:may foreach(island|opponentbattlefield) Add{*}
-id=5858
-name=Carpet of Flowers
-rarity=U
-type=Enchantment
-mana={G}
-[/card]
-[card]
 text={2}{B}, {T}: Remove up to three target cards in a single graveyard from the game.
 id=5620
 name=Carrion Beetles
@@ -305,14 +296,6 @@ type=Enchantment
 mana={3}{B}{B}
 [/card]
 [card]
-text=Disorder deals 2 damage to each white creature and each player who controls a white creature.
-id=5854
-name=Disorder
-rarity=U
-type=Sorcery
-mana={1}{R}
-[/card]
-[card]
 text={T}: Counter target spell unless its controller pays {1}.
 id=10695
 name=Disruptive Student
@@ -375,17 +358,6 @@ type=Instant
 mana={U}
 [/card]
 [card]
-text=Trample     At the beginning of your upkeep, sacrifice Endless Wurm unless you sacrifice an enchantment.
-id=8820
-name=Endless Wurm
-rarity=R
-type=Creature
-mana={3}{G}{G}
-power=9
-subtype=Wurm
-toughness=9
-[/card]
-[card]
 text=You may choose not to untap Endoskeleton during your untap step.       {2}, {T}: Target creature gets +0/+3 as long as Endoskeleton remains tapped.
 id=8846
 name=Endoskeleton
@@ -435,17 +407,6 @@ mana={1}{W}
 power=1
 subtype=Human Cleric
 toughness=1
-[/card]
-[card]
-text=Whenever a creature is put into a graveyard from play, that creature's controller may draw a card.
-id=5604
-name=Fecundity
-auto=@movedTo(creature|mygraveyard) from(inplay):may draw:1 controller
-auto=@movedTo(creature|opponentgraveyard) from(inplay):may draw:1 opponent
-#not tested
-type=Enchantment
-mana={2}{G}
-rarity=U
 [/card]
 [card]
 text=Enchant land     Whenever enchanted land is tapped for mana, its controller adds one mana of any color to his or her mana pool (in addition to the mana the land produces).
@@ -866,15 +827,6 @@ type=Instant
 mana={X}{R}
 [/card]
 [card]
-text=Enchant creature     At the beginning of the upkeep of enchanted creature's controller, Parasitic Bond deals 2 damage to that player.
-id=8816
-name=Parasitic Bond
-rarity=U
-type=Enchantment
-mana={3}{B}
-subtype=Aura
-[/card]
-[card]
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  All damage that would be dealt to you is dealt to enchanted creature instead.
 id=5773
 name=Pariah
@@ -1040,15 +992,6 @@ name=Reprocess
 rarity=R
 type=Sorcery
 mana={2}{B}{B}
-[/card]
-[card]
-text=Creatures you control have "Whenever this creature becomes blocked, it gets +1/+1 until end of turn for each creature blocking it."
-auto=lord(creature|myBattlefield) rampage(1/1,0)
-id=10408
-name=Retaliation
-rarity=U
-type=Enchantment
-mana={2}{G}
 [/card]
 [card]
 text=Whenever Retromancer becomes the target of a spell or ability, Retromancer deals 3 damage to that spell or ability's controller.
@@ -1563,14 +1506,6 @@ type=Instant
 mana={2}{W}
 [/card]
 [card]
-text={3}: Each player puts the top two cards of his or her library into his or her graveyard.
-id=7247
-name=Whetstone
-rarity=R
-type=Artifact
-mana={3}
-[/card]
-[card]
 text=At the beginning of your upkeep, if a player has more life than any other, that player gains control of Wild Dogs.     Cycling {2} ({2}, Discard this card: Draw a card.)
 id=8826
 name=Wild Dogs
@@ -1607,17 +1542,6 @@ mana={4}{G}
 power=6
 subtype=Wurm
 toughness=6
-[/card]
-[card]
-text={T}: Return Wizard Mentor and target creature you control to their owner's hand.
-id=8907
-name=Wizard Mentor
-rarity=C
-type=Creature
-mana={2}{U}
-power=2
-subtype=Human Wizard
-toughness=2
 [/card]
 [card]
 text=If you control a creature, damage that would reduce your life total to less than 1 reduces it to 1 instead.

@@ -72,17 +72,6 @@ subtype=Elf Druid
 toughness=1
 [/card]
 [card]
-text=At the beginning of your upkeep, return a permanent you control to its owner's hand.
-id=153419
-name=Cache Raiders
-rarity=U
-type=Creature
-mana={3}{U}{U}
-power=4
-subtype=Merfolk Rogue
-toughness=4
-[/card]
-[card]
 text=As Canker Abomination comes into play, choose an opponent. Canker Abomination comes into play with a -1/-1 counter on it for each creature that player controls.
 id=152033
 name=Canker Abomination

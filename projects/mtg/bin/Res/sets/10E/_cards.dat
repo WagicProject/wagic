@@ -1089,6 +1089,19 @@ power=2
 toughness=1
 [/card]
 [card]
+text=When Hidden Horror enters the battlefield, sacrifice it unless you discard a creature card.
+id=135234
+name=Hidden Horror
+rarity=U
+mana={1}{B}{B}
+type=Creature
+subtype=Horror
+auto=moveTo(graveyard) notatarget(this|myBattlefield)
+auto=moveTo(graveyard) notatarget(creature|myhand)
+power=4
+toughness=4
+[/card]
+[card]
 text=When Highway Robber enters the battlefield, target opponent loses 2 life and you gain 2 life.
 id=129564
 name=Highway Robber
@@ -2569,6 +2582,19 @@ type=Legendary Creature
 subtype=Goblin
 power=1
 toughness=1
+[/card]
+[card]
+text=Trample (If this creature would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)   At the beginning of your upkeep, return a green creature you control to its owner's hand.
+auto=@each my upkeep:moveto(myhand) notatarget(creature[green]|myBattlefield)
+id=135264
+name=Stampeding Wildebeests
+rarity=U
+mana={2}{G}{G}
+type=Creature
+subtype=Antelope Beast
+power=5
+toughness=4
+abilities=trample
 [/card]
 [card]
 text={7}{W}: You gain 5 life.

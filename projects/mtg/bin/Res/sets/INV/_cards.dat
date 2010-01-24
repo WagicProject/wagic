@@ -480,6 +480,20 @@ power=3
 toughness=3
 [/card]
 [card]
+text=Flying, trample   At the beginning of your upkeep, sacrifice a creature.   Sacrifice a creature: Regenerate Devouring Strossus.
+auto=@each my upkeep:moveTo(mygraveyard) notatarget(creature|myBattlefield)
+id=23050
+name=Devouring Strossus
+rarity=R
+mana={5}{B}{B}{B}
+type=Creature
+subtype=Horror
+auto={S(creature|myBattlefield)}:regenerate
+power=9
+toughness=9
+abilities=flying,trample
+[/card]
+[card]
 text=Kicker {2}{U} (You may pay an additional {2}{U} as you play this spell.)    Destroy target artifact or enchantment.       If the kicker cost was paid, draw two cards.
 id=22946
 target=artifact,enchantment
@@ -2264,6 +2278,19 @@ power=3
 toughness=1
 [/card]
 [card]
+text=When Vodalian Merchant enters the battlefield, draw a card, then discard a card.
+id=26296
+name=Vodalian Merchant
+rarity=C
+mana={1}{U}
+type=Creature
+subtype=Merfolk
+auto=draw:1
+auto=moveTo(mygraveyard) notatarget(*|myhand)
+power=1
+toughness=2
+[/card]
+[card]
 text=Kicker {2} (You may pay an additional {2} as you play this spell.) Vodalian Serpent can't attack unless defending player controls an Island. If the kicker cost was paid, Vodalian Serpent enters the battlefield with four +1/+1 counters on it.
 id=22976
 name=Vodalian Serpent
@@ -2289,6 +2316,19 @@ subtype=Merfolk Zombie
 power=2
 toughness=2
 abilities=protection from green
+[/card]
+[card]
+text=First strike   Whenever Voracious Cobra deals combat damage to a creature, destroy that creature.
+id=23203
+name=Voracious Cobra
+rarity=U
+mana={2}{R}{G}
+type=Creature
+subtype=Snake
+auto=lord(voracious cobra[attacking;blocking]) deathtouch
+power=2
+toughness=2
+auto=first strike
 [/card]
 [card]
 text=Destroy target blue or black creature with flying.

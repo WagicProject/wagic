@@ -203,11 +203,12 @@ type=Sorcery
 [card]
 text=All creatures have haste.
 auto=lord(creature) haste
+auto=@movedTo(enchantment[world]|battlefield):bury
 id=1519
 name=Concordant Crossroads
 rarity=R
 mana={G}
-type=Enchantment
+type=World Enchantment
 [/card]
 [card]
 text=Trample   Rampage 2 (Whenever this creature becomes blocked, it gets +2/+2 until end of turn for each creature blocking it beyond the first.)
@@ -520,12 +521,13 @@ abilities=first strike
 [/card]
 [card]
 text=All creatures lose flying.
-auto=lord(creature) -flying
 id=1577
+auto=lord(creature) -flying
+auto=@movedTo(enchantment[world]|battlefield):bury
 name=Gravity Sphere
 rarity=R
 mana={2}{R}
-type=Enchantment
+type=World Enchantment
 [/card]
 [card]
 text=Target creature gets +0/+X until end of turn, where X is its converted mana cost.
@@ -699,7 +701,7 @@ toughness=4
 [card]
 text=Protection from red   Creatures named Ivory Guardians get +1/+1 as long as an opponent controls a red permanent.
 id=1621
-auto=aslongas(*[red]|opponentBattlefield) lord(Ivory Guardians) 1/1
+auto=aslongas(*[red]|opponentBattlefield) lord(ivory guardians) 1/1
 name=Ivory Guardians
 rarity=U
 mana={4}{W}{W}
@@ -1043,6 +1045,18 @@ power=5
 toughness=4
 [/card]
 [card]
+text={T}: Psionic Entity deals 2 damage to target creature or player and 3 damage to itself.
+id=1493
+name=Psionic Entity
+auto={T}:damage:2 target(creature,player) && damage:3 all(this)
+rarity=R
+mana={G}
+type=Creature
+subtype=Illusion
+power=2
+toughness=2
+[/card]
+[card]
 text=Creatures with swampwalk can be blocked as though they didn't have swampwalk.
 auto=lord(creature) -swampwalk
 id=1455
@@ -1248,6 +1262,20 @@ name=Spiritual Sanctuary
 rarity=R
 mana={2}{W}{W}
 type=Enchantment
+[/card]
+[card]
+text=When Stangg enters the battlefield, put a legendary 3/4 red and green Human Warrior creature token named Stangg Twin onto the battlefield.   When Stangg leaves the battlefield, exile that token.   When that token leaves the battlefield, sacrifice Stangg.
+auto=token(Stangg Twin,legendary creature human warrior, 3/4,red green)
+auto=@movedTo(this|exile,graveyard,library,hand) from(battlefield):moveTo(exile) all(stangg twin)
+auto=@movedTo(stangg twin|exile,graveyard,library,hand) from(battlefield):bury all(this)
+id=1686
+name=Stangg
+rarity=R
+mana={4}{G}{R}
+type=Legendary Creature
+subtype=Human Warrior
+power=3
+toughness=4
 [/card]
 [card]
 text=Storm Seeker deals damage equal to the number of cards in target player's hand to that player.

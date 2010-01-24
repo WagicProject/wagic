@@ -105,14 +105,6 @@ text=Target opponent reveals his or her hand. You choose a card from it. That pl
 rarity=U
 [/card]
 [card]
-id=3748
-name=Coral Atoll
-mana=
-type=Land
-text=Coral Atoll enters the battlefield tapped. When Coral Atoll enters the battlefield, sacrifice it unless you return an untapped Island you control to its owner's hand. {T}: Add {1}{U} to your mana pool.
-rarity=U
-[/card]
-[card]
 id=3735
 name=Corrosion
 mana={1}{B}{R}
@@ -166,14 +158,6 @@ text=At the beginning of the end step, each player who tapped a land for mana th
 rarity=U
 [/card]
 [card]
-id=3749
-name=Dormant Volcano
-mana=
-type=Land
-text=Dormant Volcano enters the battlefield tapped. When Dormant Volcano enters the battlefield, sacrifice it unless you return an untapped Mountain you control to its owner's hand. {T}: Add {1}{R} to your mana pool.
-rarity=U
-[/card]
-[card]
 id=3592
 name=Dragon Mask
 mana={3}
@@ -216,7 +200,6 @@ type=World Enchantment
 text=At the beginning of each player's upkeep, that player exiles a card at random from his or her hand. The player may play that card this turn. At the beginning of the next end step, if the player hasn't played the card, he or she puts it into his or her graveyard.
 rarity=R
 [/card]
-
 [card]
 id=3710
 name=Equipoise
@@ -224,14 +207,6 @@ mana={2}{W}
 type=Enchantment
 text=At the beginning of your upkeep, for each land target player controls in excess of the number you control, choose a land he or she controls, then the chosen permanents phase out. Repeat this process for artifacts and creatures. (While they're phased out, they're treated as though they don't exist. They phase in before that player untaps during his or her next untap step. )
 rarity=R
-[/card]
-[card]
-id=3750
-name=Everglades
-mana=
-type=Land
-text=Everglades enters the battlefield tapped. When Everglades enters the battlefield, sacrifice it unless you return an untapped Swamp you control to its owner's hand. {T}: Add {1}{B} to your mana pool.
-rarity=U
 [/card]
 [card]
 id=3711
@@ -368,7 +343,6 @@ type=Instant
 text=The next time a source of your choice would deal damage to target creature or player this turn, prevent that damage. If damage from a red source is prevented this way, Honorable Passage deals that much damage to the source's controller.
 rarity=U
 [/card]
-
 [card]
 id=3641
 name=Impulse
@@ -405,28 +379,12 @@ text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter 
 rarity=U
 [/card]
 [card]
-id=3752
-name=Jungle Basin
-mana=
-type=Land
-text=Jungle Basin enters the battlefield tapped. When Jungle Basin enters the battlefield, sacrifice it unless you return an untapped Forest you control to its owner's hand. {T}: Add {1}{G} to your mana pool.
-rarity=U
-[/card]
-[card]
 id=3620
 name=Kaervek's Spite
 mana={B}{B}{B}
 type=Instant
 text=As an additional cost to cast Kaervek's Spite, sacrifice all permanents you control and discard your hand. Target player loses 5 life.
 rarity=R
-[/card]
-[card]
-id=3753
-name=Karoo
-mana=
-type=Land
-text=Karoo enters the battlefield tapped. When Karoo enters the battlefield, sacrifice it unless you return an untapped Plains you control to its owner's hand. {T}: Add {1}{W} to your mana pool.
-rarity=U
 [/card]
 [card]
 id=3666
@@ -457,17 +415,6 @@ power=2
 toughness=2
 text=Flanking (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.) {1}{W}: Each creature without flanking blocking Knight of Valor gets -1/-1 until end of turn. Activate this ability only once each turn.
 rarity=C
-[/card]
-[card]
-id=3668
-name=Kyscu Drake
-mana={3}{G}
-type=Creature
-subtype=Drake
-power=2
-toughness=2
-text=Flying {G}: Kyscu Drake gets +0/+1 until end of turn. Activate this ability only once each turn. Sacrifice Kyscu Drake and a creature named Spitting Drake: Search your library for a card named Viashivan Dragon and put that card onto the battlefield. Then shuffle your library.
-rarity=U
 [/card]
 [card]
 id=3596
@@ -515,15 +462,6 @@ type=Enchantment
 subtype=Aura
 text=Enchant creature Enchanted creature has trample. Whenever all non-Wall creatures you control attack, enchanted creature gets +X/+0 until end of turn, where X is the number of attacking creatures.
 rarity=U
-[/card]
-[card]
-id=3670
-name=Mortal Wound
-mana={G}
-type=Enchantment
-subtype=Aura
-text=Enchant creature When enchanted creature is dealt damage, destroy it.
-rarity=C
 [/card]
 [card]
 id=3739
@@ -781,17 +719,6 @@ mana={B}{G}
 type=Enchantment
 text=Sacrifice a land: Add to your mana pool one mana of any type the sacrificed land could produce.
 rarity=R
-[/card]
-[card]
-id=3678
-name=Stampeding Wildebeests
-mana={2}{G}{G}
-type=Creature
-subtype=Antelope Beast
-power=5
-toughness=4
-text=Trample (If this creature would deal enough damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player or planeswalker.) At the beginning of your upkeep, return a green creature you control to its owner's hand.
-rarity=U
 [/card]
 [card]
 id=3679

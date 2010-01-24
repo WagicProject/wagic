@@ -212,14 +212,6 @@ text=Activated abilities of creatures cost {1} less to activate. This effect can
 rarity=U
 [/card]
 [card]
-id=5165
-name=Heat of Battle
-mana={1}{R}
-type=Enchantment
-text=Whenever a creature blocks, Heat of Battle deals 1 damage to that creature's controller.
-rarity=U
-[/card]
-[card]
 id=5166
 name=Hermit Druid
 mana={1}{G}

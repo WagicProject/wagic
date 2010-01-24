@@ -86,6 +86,16 @@ rarity=U
 type=Land
 [/card]
 [card]
+text=Add {B}{B}{B} to your mana pool.   Threshold - Add {B}{B}{B}{B}{B} to your mana pool instead if seven or more cards are in your graveyard.
+id=30564
+auto=Add{B}{B}{B}
+auto=aslongas(*|mygraveyard) add{B}{B} >6
+name=Cabal Ritual
+rarity=C
+mana={1}{B}
+type=Instant
+[/card]
+[card]
 text={B}, {T}: Target creature gets -1/-1 until end of turn. Threshold - {3}{B}{B}, {T}: Target creature gets -2/-2 until end of turn. Activate this ability only if seven or more cards are in your graveyard.
 id=32226
 name=Cabal Torturer

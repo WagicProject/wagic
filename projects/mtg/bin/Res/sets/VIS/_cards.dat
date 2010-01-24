@@ -64,6 +64,17 @@ toughness=3
 abilities=cloud,flying
 [/card]
 [card]
+text=Coral Atoll enters the battlefield tapped. When Coral Atoll enters the battlefield, sacrifice it unless you return an untapped Island you control to its owner's hand.   {T}: Add {1}{U} to your mana pool.
+id=3748
+name=Coral Atoll
+auto=tap
+auto=aslongas(island[-tapped]|myBattlefield) moveTo(ownerhand) notatarget(island[-tapped]|myBattlefield)
+auto=moveTo(graveyard) notatarget(this|myBattlefield)
+auto=@movedTo(island[-tapped]|myhand) from(myBattlefield):lord(coral atoll) {T}:Add{1}{U}
+rarity=U
+type=Land
+[/card]
+[card]
 text=Destroy target artifact, land or enchantment.
 id=3660
 name=Creeping Mold
@@ -113,6 +124,17 @@ mana={4}
 type=Artifact
 [/card]
 [card]
+text=Dormant Volcano enters the battlefield tapped. When Dormant Volcano enters the battlefield, sacrifice it unless you return an untapped Mountain you control to its owner's hand.   {T}: Add {1}{R} to your mana pool.
+id=3749
+name=Dormant Volcano
+auto=tap
+auto=aslongas(mountain[-tapped]|myBattlefield) moveTo(ownerhand) notatarget(mountain[-tapped]|myBattlefield)
+auto=moveTo(graveyard) notatarget(this|myBattlefield)
+auto=@movedTo(mountain[-tapped]|myhand) from(myBattlefield):lord(dormant volcano) {T}:Add{1}{R}
+rarity=U
+type=Land
+[/card]
+[card]
 text=Return target card from your graveyard to your hand.
 id=3662
 target=*|myGraveyard
@@ -123,15 +145,26 @@ mana={2}{G}{G}
 type=Sorcery
 [/card]
 [card]
-id=3663
-name=Emerald Charm
-mana={G}
-type=Instant
 text=Choose one - Untap target permanent; or destroy target non-Aura enchantment; or target creature loses flying until end of turn.
+id=3663
 auto=may untap target(*)
 auto=may destroy target(enchantment[-aura])
 auto=may -flying target(creature)
+name=Emerald Charm
+mana={G}
 rarity=C
+type=Instant
+[/card]
+[card]
+text=Everglades enters the battlefield tapped.   When Everglades enters the battlefield, sacrifice it unless you return an untapped Swamp you control to its owner's hand.   {T}: Add {1}{B} to your mana pool.
+id=3750
+name=Everglades
+auto=tap
+auto=aslongas(swamp[-tapped]|myBattlefield) moveTo(ownerhand) notatarget(swamp[-tapped]|myBattlefield)
+auto=moveTo(graveyard) notatarget(this|myBattlefield)
+auto=@movedTo(swamp[-tapped]|myhand) from(myBattlefield):lord(everglades) {T}:Add{1}{B}
+rarity=U
+type=Land
 [/card]
 [card]
 text=Whenever an enchantment is put into a graveyard from the battlefield, draw a card.
@@ -149,12 +182,12 @@ toughness=2
 text=Target creature gets +1/+1 until end of turn.   Draw a card at the beginning of the next turn's upkeep.
 id=3664
 target=creature
+auto=1/1
+auto=@next upkeep:draw:1 controller
 name=Feral Instinct
 rarity=C
 mana={1}{G}
 type=Instant
-auto=1/1
-auto=@next upkeep:draw:1
 [/card]
 [card]
 text=Flying, protection from red
@@ -258,6 +291,28 @@ power=3
 toughness=1
 [/card]
 [card]
+text=Jungle Basin enters the battlefield tapped.   When Jungle Basin enters the battlefield, sacrifice it unless you return an untapped Forest you control to its owner's hand.   {T}: Add {1}{G} to your mana pool.
+id=3752
+name=Jungle Basin
+auto=tap
+auto=aslongas(forest[-tapped]|myBattlefield) moveTo(ownerhand) notatarget(forest[-tapped]|myBattlefield)
+auto=moveTo(graveyard) notatarget(this|myBattlefield)
+auto=@movedTo(forest[-tapped]|myhand) from(myBattlefield):lord(jungle basin) {T}:Add{1}{G}
+rarity=U
+type=Land
+[/card]
+[card]
+text=Karoo enters the battlefield tapped.   When Karoo enters the battlefield, sacrifice it unless you return an untapped Plains you control to its owner's hand.   {T}: Add {1}{W} to your mana pool.
+id=3753
+name=Karoo
+auto=tap
+auto=aslongas(plains[-tapped]|myBattlefield) moveTo(ownerhand) notatarget(plains[-tapped]|myBattlefield)
+auto=moveTo(graveyard) notatarget(this|myBattlefield)
+auto=@movedTo(plains[-tapped]|myhand) from(myBattlefield):lord(karoo) {T}:Add{1}{W}
+rarity=U
+type=Land
+[/card]
+[card]
 text={R}: Keeper of Kookus gains protection from red until end of turn.
 id=3692
 name=Keeper of Kookus
@@ -296,6 +351,20 @@ auto={R}:1/0
 power=3
 toughness=5
 abilities=trample,mustattack
+[/card]
+[card]
+text=Flying   {G}: Kyscu Drake gets +0/+1 until end of turn. Activate this ability only once each turn.   Sacrifice Kyscu Drake and a creature named Spitting Drake: Search your library for a card named Viashivan Dragon and put that card onto the battlefield. Then shuffle your library.
+id=3668
+name=Kyscu Drake
+rarity=U
+mana={2}{G}
+type=Creature
+subtype=Drake
+auto={G}:0/1 limit:1
+auto=aslongas(viashivan dragon|mylibrary) {S(spitting drake|myBattlefield)}:moveTo(mygraveyard) all(this) && moveTo(myBattlefield) target(viashivan dragon|mylibrary) limit:1
+power=2
+toughness=2
+abilities=flying
 [/card]
 [card]
 text=First strike, reach (This creature can block creatures with flying.)
@@ -345,17 +414,15 @@ mana={4}{W}
 type=Instant
 [/card]
 [card]
-text=First strike (This creature deals combat damage before creatures without first strike.)   When Nekrataal enters the battlefield, destroy target nonartifact, nonblack creature. That creature can't be regenerated.
-id=3623
-name=Nekrataal
-rarity=U
-mana={2}{B}{B}
-type=Creature
-subtype=Human Assassin
-auto=bury target(creature[-black;-artifact])
-power=2
-toughness=1
-abilities=first strike
+text=Enchant creature   When enchanted creature is dealt damage, destroy it.
+id=3670
+target=creature
+auto=@damaged(mytgt):destroy
+name=Mortal Wound
+rarity=C
+mana={G}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 text={3}{B}{B}, Sacrifice a creature: Return Necrosavant from your graveyard to the battlefield. Activate this ability only during your upkeep.
@@ -368,6 +435,19 @@ type=Creature
 subtype=Zombie Giant
 power=5
 toughness=5
+[/card]
+[card]
+text=First strike (This creature deals combat damage before creatures without first strike.)   When Nekrataal enters the battlefield, destroy target nonartifact, nonblack creature. That creature can't be regenerated.
+id=3623
+name=Nekrataal
+rarity=U
+mana={2}{B}{B}
+type=Creature
+subtype=Human Assassin
+auto=bury target(creature[-black;-artifact])
+power=2
+toughness=1
+abilities=first strike
 [/card]
 [card]
 id=3672
@@ -508,15 +588,28 @@ auto={T}:Add {2}
 [card]
 text=Flying   {R}: Spitting Drake gets +1/+0 until end of turn. Play this ability only once each turn.
 id=3702
-auto={R}:1/0 limit:1
 name=Spitting Drake
 rarity=U
 mana={3}{R}
 type=Creature
 subtype=Drake
+auto={R}:1/0 limit:1
 power=2
 toughness=2
 abilities=flying
+[/card]
+[card]
+text=Trample (If this creature would deal enough damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player or planeswalker.)   At the beginning of your upkeep, return a green creature you control to its owner's hand.
+auto=@each my upkeep:moveTo(myhand) notatarget(creature[green]|myBattlefield)
+id=3678
+name=Stampeding Wildebeests
+rarity=U
+mana={2}{G}{G}
+type=Creature
+subtype=Antelope Beast
+power=5
+toughness=4
+abilities=trample
 [/card]
 [card]
 text=When Suleiman's Legacy enters the battlefield, destroy all Djinns and Efreets. They can't be regenerated.   Whenever a Djinn or Efreet comes into play, destroy it. It can't be regenerated.

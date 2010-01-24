@@ -600,6 +600,15 @@ power=2
 toughness=2
 [/card]
 [card]
+text=Whenever you cast a creature spell, Furious Assault deals 1 damage to target player.
+id=19848
+auto=@movedTo(creature|mystack):damage:1 target(player)
+name=Furious Assault
+rarity=C
+mana={2}{R}
+type=Enchantment
+[/card]
+[card]
 text=Trample, haste
 id=19842
 name=Gerrard's Irregulars
@@ -933,6 +942,18 @@ subtype=Hound
 power=3
 toughness=2
 abilities=first strike
+[/card]
+[card]
+text=At the beginning of your upkeep, sacrifice Lithophage unless you sacrifice a Mountain.
+auto=@each my upkeep:bury notatarget(lithophage,mountain|myBattlefield)
+id=19731
+name=Lithophage
+rarity=R
+mana={3}{R}{R}
+type=Creature
+subtype=Insect
+power=7
+toughness=7
 [/card]
 [card]
 text=All creatures have forestwalk.

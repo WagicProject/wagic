@@ -390,6 +390,19 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Enchant creature   Enchanted creature gets +2/+2 and has flying.   When enchanted creature is put into a graveyard, put a 2/2 white Griffin creature token with flying onto the battlefield.
+id=110514
+target=creature
+auto=2/2
+auto=flying
+auto=@movedTo(mytgt|mygraveyard):token(Griffin,creature griffin, 2/2,flying, white)
+name=Griffin Guide
+rarity=U
+mana={2}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 text=Flash (You may cast this spell any time you could cast an instant.) Trample. 
 id=108808
 name=Havenwood Wurm
@@ -424,6 +437,19 @@ type=Creature
 subtype=Human Spellshaper
 power=1
 toughness=1
+[/card]
+[card]
+text=Ironclaw Buzzardiers can't block creatures with power 2 or greater.   {R}: Ironclaw Buzzardiers gains flying until end of turn.
+id=116723
+name=Ironclaw Buzzardiers
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Orc Scout
+auto=cantbeblockedby(creature[power>=2])
+auto={R}:flying
+power=2
+toughness=2
 [/card]
 [card]
 id=122089
@@ -470,8 +496,7 @@ mana={1}{R}{R}
 type=Legendary Creature
 subtype=Human Spellshaper
 auto={R}{T}{S(*|myHand)}:destroy target(*[blue])
-auto={1}{R}{T}{S(*|myHand)}:cantregenerate && damage:3 target(creature)
-auto={1}{R}{T}{S(*|myHand)}:damage:3 target(player)
+auto={1}{R}{T}{S(*|myHand)}:damage:3 && cantregenerate target(creature,player)
 auto={5}{R}{R}{S(*|myHand)}:damage:6 all(creature,player)
 power=2
 toughness=2
@@ -497,6 +522,20 @@ auto={T}:Add {1}
 auto={1}{R}{T}:token(Kobolds of Kher Keep,creature kobold, 0/1, red)
 rarity=R
 type=Legendary Land
+[/card]
+[card]
+text=Shadow (This creature can block or be blocked by only creatures with shadow.)   Whenever Looter il-Kor deals damage to an opponent, draw a card, then discard a card.
+id=118918
+name=Looter il-Kor
+rarity=C
+mana={1}{U}
+type=Creature
+subtype=Kor Rogue
+auto=@damaged(player) from(this):moveTo(mygraveyard) notatarget(*|myHand)
+auto=@damaged(player) from(this):draw:1 controller
+power=1
+toughness=1
+abilities=shadow
 [/card]
 [card]
 text=Magus of the Disk enters the battlefield tapped.   {1}, {T}: Destroy all artifacts, creatures, and enchantments.
@@ -584,6 +623,18 @@ mana={1}{R}{R}
 type=Instant
 [/card]
 [card]
+text=Flash (You may cast this spell any time you could cast an instant.)   Enchant creature   Whenever enchanted creature deals damage to an opponent, you may draw a card.
+id=108795
+target=creature
+auto=@damaged(player) from(this):may draw:1 controller
+name=Ophidian Eye
+rarity=C
+mana={2}{U}
+type=Enchantment
+subtype=Aura
+abilities=flash
+[/card]
+[card]
 text=Reach (This creature can block creatures with flying.)   When Penumbra Spider is put into a graveyard from the battlefield, put a 2/4 black Spider creature token with reach onto the battlefield.
 id=118899
 name=Penumbra Spider
@@ -595,6 +646,18 @@ auto=@movedTo(this|graveyard) from(battlefield):token(Spider,Creature spider,2/4
 power=2
 toughness=4
 abilities=reach
+[/card]
+[card]
+text={T}: Each 1/1 creature you control gets +1/+2 until end of turn.
+id=111083
+name=Pendelhaven Elder
+rarity=U
+mana={1}{G}
+type=Creature
+subtype=Elf Shaman
+auto={T}:lord(creature[power=1;toughness=1]|myBattlefield) 1/2 
+power=1
+toughness=1
 [/card]
 [card]
 text=All Slivers have "At the beginning of your upkeep, this permanent deals 1 damage to you."
@@ -685,13 +748,13 @@ toughness=5
 [/card]
 [card]
 text=All Slivers have "{T}: Target player puts the top card of his or her library into his or her graveyard."
-auto=lord(sliver) {T}:deplete:1 target(player)
 id=122387
 name=Screeching Sliver
 rarity=C
 mana={U}
 type=Creature
 subtype=Sliver
+auto=lord(sliver) {T}:deplete:1 target(player)
 power=1
 toughness=1
 [/card]
@@ -726,9 +789,9 @@ id=118878
 name=Skittering Monstrosity
 rarity=U
 mana={3}{B}{B}
-auto=@movedTo(creature|mystack):bury
 type=Creature
 subtype=Horror
+auto=@movedTo(creature|mystack):bury
 power=5
 toughness=5
 [/card]
@@ -801,6 +864,19 @@ auto=lord(creature[attacking;trample]|myBattlefield) 2/2
 power=4
 toughness=4
 abilities=trample
+[/card]
+[card]
+text=Flying   Stormcloud Djinn can block only creatures with flying.   {R}{R}: Stormcloud Djinn gets +2/+0 until end of turn and deals 1 damage to you.
+id=118894
+name=Stormcloud Djinn
+rarity=U
+mana={4}{U}
+type=Creature
+subtype=Djinn
+auto={R}{R}:2/0 && damage:1 controller
+power=3
+toughness=3
+abilities=flying,cloud
 [/card]
 [card]
 text=Until end of turn, target creature gains trample and gets +X/+X, where X is the number of attacking creatures.
@@ -898,10 +974,10 @@ type=Sorcery
 [/card]
 [card]
 text=Tendrils of Corruption deals X damage to target creature and you gain X life, where X is the number of Swamps you control.
+
 target=creature
 auto=foreach(swamp|myBattlefield) damage:1
 auto=foreach(swamp|myBattlefield) life:1 controller
-id=106632
 name=Tendrils of Corruption
 rarity=C
 mana={3}{B}
@@ -995,15 +1071,6 @@ toughness=1
 abilities=flying
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.   {7}, {T}: Put a 2/2 Assembly-Worker artifact creature token onto the battlefield.
-id=116384
-auto={T}:Add {1} 
-auto={7}{T}:token(Assembly-Worker,creature artifact, 2/2, artifact)
-name=Urza's Factory
-rarity=U
-type=Land
-[/card]
-[card]
 text={2}{B}, {T}, Discard a card: Each other player loses 2 life. You gain life equal to the life lost this way.
 auto={2}{B}{T}{S(*|myhand)}:life:-2 opponent && life:2 controller
 id=108798
@@ -1016,6 +1083,15 @@ power=2
 toughness=2
 [/card]
 [card]
+text={T}: Add {1} to your mana pool.   {7}, {T}: Put a 2/2 Assembly-Worker artifact creature token onto the battlefield.
+id=116384
+auto={T}:Add {1} 
+auto={7}{T}:token(Assembly-Worker,creature artifact, 2/2, artifact)
+name=Urza's Factory
+rarity=U
+type=Land
+[/card]
+[card]
 id=125866
 name=Venser's Sliver
 rarity=C
@@ -1026,7 +1102,7 @@ power=3
 toughness=3
 [/card]
 [card]
-text=Enchant creature Enchanted creature gets +3/+3 and has "At the beginning of each upkeep, put a 1/1 green Saproling creature token onto the battlefield under your control."
+text=Enchant creature   Enchanted creature gets +3/+3 and has "At the beginning of each upkeep, put a 1/1 green Saproling creature token onto the battlefield under your control."
 id=109766
 target=creature
 auto=3/3
@@ -1101,11 +1177,11 @@ text=Forestwalk When Yavimaya Dryad enters the battlefield, you may search your 
 auto=may moveTo(myBattlefield) target(forest|mylibrary) && tap
 id=118884
 name=Yavimaya Dryad
-abilities=forestwalk
 rarity=U
 mana={1}{G}{G}
 type=Creature
 subtype=Dryad
 power=2
 toughness=1
+abilities=forestwalk
 [/card]

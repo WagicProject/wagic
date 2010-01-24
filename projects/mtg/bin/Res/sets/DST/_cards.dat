@@ -409,6 +409,25 @@ auto=bury
 rarity=U
 [/card]
 [card]
+text=Flying   As long as Pristine Angel is untapped, it has protection from artifacts and from all colors.   Whenever you cast a spell, you may untap Pristine Angel.
+id=47587
+name=Pristine Angel
+rarity=R
+mana={4}{W}{W}
+type=Creature
+subtype=Angel
+auto=lord(pristine angel[-tapped]) protection from(white)
+auto=lord(pristine angel[-tapped]) protection from(blue)
+auto=lord(pristine angel[-tapped]) protection from(black)
+auto=lord(pristine angel[-tapped]) protection from(red)
+auto=lord(pristine angel[-tapped]) protection from(green)
+auto=lord(pristine angel[-tapped]) protection from(artifact)
+auto=@movedTo(*|mystack):may untap
+power=4
+toughness=4
+abilities=flying
+[/card]
+[card]
 text=Flying. Sacrifice Pteron Ghost: Regenerate target artifact.
 id=49035
 name=Pteron Ghost
@@ -523,6 +542,18 @@ auto=destroy all(*[-artifact])
 rarity=R
 [/card]
 [card]
+text={W}, {T}, Return Steelshaper Apprentice to its owner's hand: Search your library for an Equipment card, reveal that card, and put it into your hand. Then shuffle your library.
+auto={W}{T}:moveTo(ownerhand) all(this) && moveTo(myhand) target(equipment|mylibrary)
+id=49078
+name=Steelshaper Apprentice
+rarity=R
+mana={2}{W}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=3
+[/card]
+[card]
 id=47453
 name=Sword of Light and Shadow
 mana={3}
@@ -554,7 +585,7 @@ text=Creatures you control are unblockable as long as defending player controls 
 id=43547
 name=Tanglewalker
 mana={2}{G}
-auto=aslongas(land[artifact]|opponentBattlefield)lord(creature|myBattlefield)unblockable
+auto=aslongas(land[artifact]|opponentBattlefield) lord(creature|myBattlefield) unblockable
 type=Creature
 subtype=Dryad
 power=2

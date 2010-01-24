@@ -180,15 +180,6 @@ text={1}{W}, {T}: Prevent all combat damage that would be dealt by target blocke
 rarity=C
 [/card]
 [card]
-id=4535
-name=Betrothed of Fire
-mana={1}{R}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Sacrifice an untapped creature: Enchanted creature gets +2/+0 until end of turn. Sacrifice enchanted creature: Creatures you control get +2/+0 until end of turn.
-rarity=C
-[/card]
-[card]
 id=4450
 name=Bone Dancer
 mana={1}{B}{B}
@@ -360,17 +351,6 @@ text=Phasing (This phases in or out before you untap during each of your untap s
 rarity=R
 [/card]
 [card]
-id=4514
-name=Fallow Wurm
-mana={2}{G}
-type=Creature
-subtype=Wurm
-power=4
-toughness=4
-text=When Fallow Wurm enters the battlefield, sacrifice it unless you discard a land card.
-rarity=U
-[/card]
-[card]
 id=4515
 name=Familiar Ground
 mana={2}{G}
@@ -502,17 +482,6 @@ text=Whenever Goblin Vandal attacks and isn't blocked, you may pay {R}. If you d
 rarity=C
 [/card]
 [card]
-id=4518
-name=Harvest Wurm
-mana={1}{G}
-type=Creature
-subtype=Wurm
-power=3
-toughness=2
-text=When Harvest Wurm enters the battlefield, sacrifice it unless you return a basic land card from your graveyard to your hand.
-rarity=C
-[/card]
-[card]
 id=4459
 name=Haunting Misery
 mana={1}{B}{B}
@@ -535,17 +504,6 @@ mana={2}{R}
 type=Enchantment
 text=At end of combat, destroy each creature that blocked or was blocked this turn.
 rarity=R
-[/card]
-[card]
-id=4460
-name=Hidden Horror
-mana={1}{B}{B}
-type=Creature
-subtype=Horror
-power=4
-toughness=4
-text=When Hidden Horror enters the battlefield, sacrifice it unless you discard a creature card.
-rarity=U
 [/card]
 [card]
 id=4554
@@ -662,17 +620,6 @@ power=2
 toughness=2
 text=First strike {1}{W}: Tap target creature blocking Master of Arms. Prevent all combat damage that creature would deal this turn.
 rarity=U
-[/card]
-[card]
-id=4489
-name=Merfolk Traders
-mana={1}{U}
-type=Creature
-subtype=Merfolk
-power=1
-toughness=2
-text=When Merfolk Traders enters the battlefield, draw a card, then discard a card.
-rarity=C
 [/card]
 [card]
 id=4583
@@ -807,18 +754,6 @@ text=All creatures have "At the beginning of your upkeep, sacrifice this creatur
 rarity=R
 [/card]
 [card]
-text=Enchant creature   Enchanted creature has flying.   Sacrifice Phantom Wings: Return enchanted creature to its owner's hand.
-id=4495
-target=creature
-auto=flying
-auto={S}:moveTo(ownerhand)
-name=Phantom Wings
-rarity=C
-mana={1}{U}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 id=4438
 name=Phyrexian Furnace
 mana={1}
@@ -855,17 +790,6 @@ power=0
 toughness=1
 text=Roc Hatchling enters the battlefield with four shell counters on it. At the beginning of your upkeep, remove a shell counter from Roc Hatchling. As long as Roc Hatchling has no shell counters on it, it gets +3/+2 and has flying.
 rarity=U
-[/card]
-[card]
-id=4527
-name=Rogue Elephant
-mana={G}
-type=Creature
-subtype=Elephant
-power=3
-toughness=3
-text=When Rogue Elephant enters the battlefield, sacrifice it unless you sacrifice a Forest.
-rarity=C
 [/card]
 [card]
 id=4498
@@ -1025,17 +949,6 @@ name=Urborg Justice
 mana={B}{B}
 type=Instant
 text=Target opponent sacrifices a creature for each creature put into your graveyard from the battlefield this turn.
-rarity=R
-[/card]
-[card]
-id=4473
-name=Urborg Stalker
-mana={3}{B}
-type=Creature
-subtype=Horror
-power=2
-toughness=4
-text=At the beginning of each player's upkeep, if that player controls a nonblack, nonland permanent, Urborg Stalker deals 1 damage to that player.
 rarity=R
 [/card]
 [card]

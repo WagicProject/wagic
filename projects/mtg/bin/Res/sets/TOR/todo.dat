@@ -88,7 +88,6 @@ mana={X}{U}
 type=Sorcery
 rarity=U
 [/card]
-
 [card]
 text={2}{B}{B}, {T}, Exile two cards from your graveyard: Return target creature card from your graveyard to your hand.
 name=Cabal Surgeon
@@ -100,18 +99,14 @@ power=2
 toughness=1
 rarity=C
 [/card]
-
 [card]
-text=Add {B}{B}{B} to your mana pool.Threshold : Add {B}{B}{B}{B}{B} to your mana pool instead if seven or more cards are in your graveyard.
+text=Add {B}{B}{B} to your mana pool. Threshold - Add {B}{B}{B}{B}{B} to your mana pool instead if seven or more cards are in your graveyard.
 name=Cabal Ritual
 id=30564
 mana={1}{B}
 type=Instant
 rarity=C
 [/card]
-
-
-
 [card]
 text=Whenever Carrion Rats attacks or blocks, any player may exile a card from his or her graveyard. If a player does, Carrion Rats assigns no combat damage this turn.
 name=Carrion Rats

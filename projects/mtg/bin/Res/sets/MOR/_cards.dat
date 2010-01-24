@@ -327,6 +327,18 @@ type=Instant
 subtype=Wizard Tribal 
 [/card]
 [card]
+text={1}{R}, {T}: Sunflare Shaman deals X damage to target creature or player and X damage to itself, where X is the number of Elemental cards in your graveyard.
+id=153155
+name=Sunflare Shaman
+rarity=C
+mana={1}{R}
+type=Creature
+subtype=Elemental Shaman
+auto={1}{R}{T}:foreach(elemental|mygraveyard) damage:1 target(creature,player) && foreach(elemental|mygraveyard) damage:1 all(this)
+power=2
+toughness=1
+[/card]
+[card]
 text=Vengeful Firebrand has haste as long as a Warrior card is in your graveyard.   {R}: Vengeful Firebrand gets +1/+0 until end of turn.
 id=153153
 name=Vengeful Firebrand
@@ -352,9 +364,21 @@ type=Instant
 subtype=Faerie Tribal 
 [/card]
 [card]
+text=At the beginning of your upkeep, target creature other than Weed-Pruner Poplar gets -1/-1 until end of turn.
+auto=@each my upkeep:-1/-1 target(other crature)
+id=152741
+name=Weed-Pruner Poplar
+rarity=C
+mana={4}{B}
+type=Creature
+subtype=Treefolk Assassin
+power=3
+toughness=3
+[/card]
+[card]
 text={3}{B}, Sacrifice a Goblin: Put two 1/1 black Goblin Rogue creature tokens onto the battlefield.
 id=153011
-auto={3}{B}{S(goblin|myBattlefield)}:token(Goblin Rogue,Creature Goblin,1/1,black) && token(Goblin Rogue,Creature Goblin,1/1,black)
+auto={3}{B}{S(goblin|myBattlefield)}:token(Goblin Rogue,Creature goblin,1/1,black)*2
 name=Weirding Shaman
 rarity=R
 mana={1}{B}

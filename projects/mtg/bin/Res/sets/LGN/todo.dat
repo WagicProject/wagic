@@ -317,7 +317,6 @@ toughness=3
 text=Amplify 2 (As this card enters the battlefield, put two +1/+1 counters on it for each Beast card you reveal in your hand.) Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.)
 rarity=R
 [/card]
-
 [card]
 id=42178
 name=Ghastly Remains
@@ -372,17 +371,6 @@ power=4
 toughness=4
 text={T}: Goblin Dynamo deals 1 damage to target creature or player. {X}{R}, {T}, Sacrifice Goblin Dynamo: Goblin Dynamo deals X damage to target creature or player.
 rarity=U
-[/card]
-[card]
-id=44286
-name=Goblin Firebug
-mana={1}{R}
-type=Creature
-subtype=Goblin
-power=2
-toughness=2
-text=When Goblin Firebug leaves the battlefield, sacrifice a land.
-rarity=C
 [/card]
 [card]
 id=39888
@@ -768,17 +756,6 @@ power=2
 toughness=6
 text=Flying {1}: Swooping Talon loses flying until end of turn. Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.)
 rarity=U
-[/card]
-[card]
-id=42038
-name=Toxin Sliver
-mana={3}{B}
-type=Creature
-subtype=Sliver
-power=3
-toughness=3
-text=Whenever a Sliver deals combat damage to a creature, destroy that creature. It can't be regenerated.
-rarity=R
 [/card]
 [card]
 id=42170

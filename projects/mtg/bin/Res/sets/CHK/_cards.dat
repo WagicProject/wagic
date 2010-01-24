@@ -269,6 +269,18 @@ toughness=2
 abilities=flying
 [/card]
 [card]
+text=Whenever you cast a Spirit or Arcane spell, target creature gains flying until end of turn.
+auto=@movedTo(arcane,spirit|mystack):flying target(creature) ueot
+id=79194
+name=Guardian of Solitude
+rarity=U
+mana={1}{U}
+type=Creature
+subtype=Spirit
+power=1
+toughness=2
+[/card]
+[card]
 text={1}{G}, Sacrifice Hana Kami: Return target Arcane card from your graveyard to your hand.
 auto={1}{G}{S}:moveTo(myhand) target(arcane|mygraveyard)
 id=77138
@@ -285,9 +297,9 @@ text=Counter target Spirit or Arcane spell.
 target=spirit,arcane|stack
 auto=fizzle
 rarity=C
+mana={1}{U}
 id=50439
 name=Hisoka's Defiance
-mana={1}{U}
 type=Instant
 [/card]
 [card]
@@ -310,6 +322,16 @@ type=Legendary Enchantment
 subtype=Shrine
 [/card]
 [card]
+text=At the beginning of your upkeep, Honden of Infinite Rage deals damage to target creature or player equal to the number of Shrines you control.
+auto=@each my upkeep:foreach(shrine|myBattlefield) damage:1 target(creature,player)
+id=79110
+name=Honden of Infinite Rage
+mana={2}{R}
+type=Legendary Enchantment
+subtype=Shrine
+rarity=U
+[/card]
+[card]
 text=At the beginning of your upkeep, put a 1/1 colorless Spirit creature token onto the battlefield for each Shrine you control.
 auto=@each my upkeep:foreach(shrine|myBattlefield) token(Spirit,Creature Spirit,1/1,artifact)
 id=79180
@@ -328,6 +350,18 @@ rarity=U
 mana={4}{U}
 type=Legendary Enchantment
 subtype=Shrine
+[/card]
+[card]
+text=Whenever you cast a Spirit or Arcane spell, regenerate target creature.
+auto=@movedTo(arcane,spirit|mystack):regenerate target(creature)
+id=79226
+name=Horizon Seed
+rarity=U
+mana={4}{W}
+type=Creature
+subtype=Spirit
+power=2
+toughness=1
 [/card]
 [card]
 text=Shroud
@@ -482,6 +516,18 @@ power=2
 toughness=2
 [/card]
 [card]
+text=Whenever you cast a Spirit or Arcane spell, target creature can't block this turn.
+auto=@movedTo(arcane,spirit|mystack):cantblock target(creature)
+id=79195
+name=Kami of Fire's Roar
+rarity=C
+mana={3}{R}
+type=Creature
+subtype=Spirit
+power=2
+toughness=3
+[/card]
+[card]
 text=Flying   Soulshift 5 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 5 or less from your graveyard to your hand.)
 id=77921
 name=Kami of Lunacy
@@ -544,6 +590,19 @@ auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(ot
 power=3
 toughness=2
 abilities=flying,first strike
+[/card]
+[card]
+text=Flying   Whenever you cast a Spirit or Arcane spell, target creature gains fear until end of turn.
+auto=@movedTo(arcane,spirit|mystack):fear target(creature)
+id=50311
+name=Kami of the Waning Moon
+rarity=C
+mana={2}{B}
+type=Creature
+subtype=Spirit
+power=1
+toughness=1
+abilities=flying
 [/card]
 [card]
 text=Sacrifice Kami of Twisted Reflection: Return target creature you control to its owner's hand.
@@ -798,12 +857,26 @@ rarity=U
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.   {G}, {T}: Target legendary Creature gets +1/+1 until end of turn.
-auto={T}:Add {G}
-auto={G}{T}:1/1 target(creature[legendary])
 id=80251
 name=Okina, Temple to the Grandfathers
+auto={T}:Add {G}
+auto={G}{T}:1/1 target(creature[legendary])
 rarity=R
 type=Legendary Land
+[/card]
+[card]
+text=Enchant creature   At the beginning of your upkeep, sacrifice a creature.   Enchanted creature gets +3/+3 and has trample.   Enchanted creature is a Demon Spirit.
+auto=@each my upkeep:moveTo(graveyard) notatarget(creature|myBattlefield)
+id=197016
+target=creature
+auto=becomes(Creature Demon Spirit,p/t)
+auto=3/3
+auto=trample
+name=Oni Possession
+rarity=U
+mana={2}{B}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 text=Reach (This creature can block creatures with flying.)   Whenever you cast a Spirit or Arcane spell, Orbweaver Kumo gains forestwalk until end of turn.
@@ -830,7 +903,7 @@ toughness=3
 [/card]
 [card]
 text=Whenever you cast a Spirit or Arcane spell, you may destroy target nonbasic land.
-auto=@movedTo(spirit,arcane|mystack):may destroy(land[-basic])
+auto=@movedTo(spirit,arcane|mystack):may destroy target(land[-basic])
 id=78984
 name=Ore Gorger
 rarity=U
@@ -1055,11 +1128,11 @@ power=6
 toughness=5
 [/card]
 [card]
-text=Flash   Enchant creature Enchanted creature gets +1/+1.   {G}: Regenerate enchanted creature.
+text=Flash   Enchant creature   Enchanted creature gets +1/+1.   {G}: Regenerate enchanted creature.
+id=75404
 target=creature
 auto=1/1
 auto={G}:regenerate
-id=75404
 name=Serpent Skin
 rarity=C
 mana={2}{G}
@@ -1124,6 +1197,18 @@ toughness=3
 abilities=mountainwalk
 [/card]
 [card]
+text=Whenever you cast a Spirit or Arcane spell, Soul of Magma deals 1 damage to target creature.
+auto=@movedTo(arcane,spirit|mystack):damage:1 target(creature)
+id=79253
+name=Soul of Magma
+rarity=C
+mana={3}{R}{R}
+type=Creature
+subtype=Spirit
+power=2
+toughness=2
+[/card]
+[card]
 text=As an additional cost to play Soulblast, sacrifice all creatures you control.  Soulblast deals damage to target creature or player equal to the total power of the sacrificed creatures.
 id=80246
 alias=130369
@@ -1135,9 +1220,10 @@ target=creature,player
 [/card]
 [card]
 text=Destroy target land.
+id=79223
+
 target=land
 auto=destroy
-id=79223
 name=Stone Rain
 rarity=C
 mana={2}{R}
@@ -1145,13 +1231,25 @@ type=Sorcery
 [/card]
 [card]
 text=Target creature gets +X/+X until end of turn, where X is the number of lands you control.
+id=75366
 target=creature
 auto=foreach(land|myBattlefield) 1/1
-id=75366
 name=Strength of Cedars
 rarity=U
 mana={4}{G}
 type=Instant
+subtype=Arcane
+[/card]
+[card]
+text=Swallowing Plague deals X damage to target creature and you gain X life.
+id=79089
+target=creature
+auto=damage:X
+auto=life:X controller
+name=Swallowing Plague
+rarity=U
+mana={X}{B}{B}
+type=Sorcery
 subtype=Arcane
 [/card]
 [card]
@@ -1192,14 +1290,14 @@ rarity=L
 [/card]
 [card]
 text=Flying   Whenever you cast a Spirit or Arcane spell, you may tap or untap target creature.
+auto=@movedTo(arcane,spirit|mystack):may tap target(creature)
+auto=@movedTo(arcane,spirit|mystack):may untap target(creature)
 id=75285
 name=Teller of Tales
 rarity=C
 mana={3}{U}{U}
 type=Creature
 subtype=Spirit
-auto=@movedTo(arcane,spirit|mystack):may tap target(creature)
-auto=@movedTo(arcane,spirit|mystack):may untap target(creature)
 power=3
 toughness=3
 abilities=flying
@@ -1219,14 +1317,14 @@ abilities=flying,trample
 [/card]
 [card]
 text=Whenever you cast a Spirit or Arcane spell, target opponent loses 1 life and you gain 1 life.   Soulshift 2 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 2 or less from your graveyard to your hand.)
+auto=@movedTo(arcane,spirit|mystack):life:-1 opponent && life:1 controller
+auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=2]|mygraveyard)
 id=77920
 name=Thief of Hope
 rarity=U
 mana={2}{B}
 type=Creature
 subtype=Spirit
-auto=@movedTo(arcane,spirit|mystack):life:-1 opponent && life:1 controller
-auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=2]|mygraveyard)
 power=2
 toughness=2
 [/card]
@@ -1242,32 +1340,32 @@ type=Instant
 [/card]
 [card]
 text=Soulshift 7 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 7 or less from your graveyard to your hand.)
+auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=7]|mygraveyard)
 id=50438
 name=Thousand-legged Kami
 rarity=U
 mana={6}{G}{G}
 type=Creature
 subtype=Spirit
-auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=7]|mygraveyard)
 power=6
 toughness=6
 [/card]
 [card]
 text=Search your library for a legendary creature card, reveal it, and put it into your hand. Then shuffle your library.
 id=78987
+target=creature[legendary]|mylibrary
+auto=moveTo(myHand)
 name=Time of Need
 rarity=U
 mana={1}{G}
 type=Sorcery
-target=creature[legendary]|mylibrary
-auto=moveTo(myHand)
 [/card]
 [card]
 text=Enchant Creature   Flash   Enchanted Creature gets +2/+2 and attacks each turn if able.
+id=50315
 target=creature
 auto=2/2
 auto=mustattack
-id=50315
 name=Uncontrollable Anger
 rarity=C
 mana={2}{R}{R}
@@ -1277,9 +1375,9 @@ abilities=flash
 [/card]
 [card]
 text=Target Creature gains haste until end of turn.
+id=77926
 target=creature
 auto=haste
-id=77926
 name=Unnatural Speed
 rarity=C
 mana={R}
@@ -1301,9 +1399,9 @@ abilities=reach
 [/card]
 [card]
 text=Enchant Creature   Enchanted Creature has vigilance.
+id=50414
 target=creature
 auto=vigilance
-id=50414
 name=Vigilance
 rarity=C
 mana={W}

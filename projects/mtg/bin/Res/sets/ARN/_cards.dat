@@ -254,7 +254,7 @@ toughness=1
 [card]
 text=Island Fish Jasconius can't attack unless defending player controls an Island.   Jasconius doesn't untap during your untap step.   At the beginning of your upkeep, you may pay {U}{U}{U}. If you do, untap Jasconius.   When you control no Islands, sacrifice Jasconius.
 id=935
-auto={U}{U}{U}:untap
+auto={U}{U}{U}:untap myUpkeepOnly
 name=Island Fish Jasconius
 rarity=R
 mana={4}{U}{U}{U}

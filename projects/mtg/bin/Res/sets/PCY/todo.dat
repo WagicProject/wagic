@@ -90,31 +90,12 @@ text=Target player's life total becomes 20.
 rarity=R
 [/card]
 [card]
-id=24620
-name=Bog Elemental
-mana={3}{B}{B}
-type=Creature
-subtype=Elemental
-power=5
-toughness=4
-text=Protection from white At the beginning of your upkeep, sacrifice Bog Elemental unless you sacrifice a land.
-rarity=R
-[/card]
-[card]
 id=24635
 name=Brutal Suppression
 mana={R}
 type=Enchantment
 text=Activated abilities of nontoken Rebels cost an additional "Sacrifice a land" to activate.
 rarity=U
-[/card]
-[card]
-id=24659
-name=Calming Verse
-mana={3}{G}
-type=Sorcery
-text=Destroy all enchantments you don't control. Then, if you control an untapped land, destroy all enchantments you control.
-rarity=C
 [/card]
 [card]
 id=24567
@@ -469,15 +450,6 @@ text=Whenever Lesser Gargadon attacks or blocks, sacrifice a land.
 rarity=U
 [/card]
 [card]
-id=24667
-name=Living Terrain
-mana={2}{G}{G}
-type=Enchantment
-subtype=Aura
-text=Enchant land Enchanted land is a 5/6 green Treefolk creature that's still a land.
-rarity=U
-[/card]
-[card]
 id=24565
 name=Mageta the Lion
 mana={3}{W}{W}
@@ -515,17 +487,6 @@ mana={3}{W}
 type=Instant
 text=All combat damage that would be dealt to you this turn by target unblocked creature is dealt to its controller instead.
 rarity=U
-[/card]
-[card]
-id=24675
-name=Mungha Wurm
-mana={2}{G}{G}
-type=Creature
-subtype=Wurm
-power=6
-toughness=5
-text=You can't untap more than one land during your untap step.
-rarity=R
 [/card]
 [card]
 id=24598
@@ -726,14 +687,6 @@ text=Flying {2}: Ribbon Snake loses flying until end of turn. Any player may act
 rarity=C
 [/card]
 [card]
-id=24665
-name=Root Cage
-mana={1}{G}
-type=Enchantment
-text=Mercenaries don't untap during their controllers' untap steps.
-rarity=U
-[/card]
-[card]
 id=24570
 name=Samite Sanctuary
 mana={2}{W}
@@ -747,14 +700,6 @@ name=Search for Survivors
 mana={2}{R}
 type=Sorcery
 text=Reorder your graveyard at random. An opponent chooses a card at random in your graveyard. If it's a creature card, put it onto the battlefield. Otherwise, exile it.
-rarity=R
-[/card]
-[card]
-id=24568
-name=Sheltering Prayers
-mana={W}
-type=Enchantment
-text=Basic lands each player controls have shroud as long as that player controls three or fewer lands. (They can't be the targets of spells or abilities.)
 rarity=R
 [/card]
 [card]

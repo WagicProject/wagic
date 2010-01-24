@@ -97,6 +97,18 @@ toughness=3
 abilities=flying
 [/card]
 [card]
+text=At the beginning of your upkeep, return a permanent you control to its owner's hand.
+auto=@each my upkeep:moveTo(ownerhand) notatarget(*|myBattlefield)
+id=153419
+name=Cache Raiders
+rarity=U
+mana={3}{U}{U}
+type=Creature
+subtype=Merfolk Rogue
+power=4
+toughness=4
+[/card]
+[card]
 text=Put a 5/5 blue and red Elemental creature token with flying onto the battlefield.   Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
 autograveyard={5}{UR}{UR}{S(land|myhand)}:token(Elemental,creature elemental, 5/5,flying red,blue) asSorcery
 auto=token(Elemental,creature elemental, 5/5,flying red,blue)

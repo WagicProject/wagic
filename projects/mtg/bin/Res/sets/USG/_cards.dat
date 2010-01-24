@@ -25,11 +25,11 @@ type=Enchantment
 text=Acidic Soil deals damage to each player equal to the number of lands he or she controls.
 id=5722
 name=Acidic Soil
-auto=foreach(land|myinplay) damage:1 controller
-auto=foreach(land|opponentinplay) damage:1 opponent
-type=Sorcery
-mana={2}{R}
 rarity=U
+mana={2}{R}
+auto=foreach(land|myBattlefield) damage:1 controller
+auto=foreach(land|opponentBattlefield) damage:1 opponent
+type=Sorcery
 [/card]
 [card]
 text=Swampwalk (This creature is unblockable as long as defending player controls a Swamp.)
@@ -81,10 +81,10 @@ auto=@movedTo(enchantment|mystack):draw:1
 id=5686
 name=Argothian Enchantress
 rarity=R
-type=Creature
 mana={1}{G}
-power=0
+type=Creature
 subtype=Human Druid
+power=0
 toughness=1
 abilities=shroud
 [/card]
@@ -106,8 +106,8 @@ auto=lord(land[-basic]) doesnotuntap
 id=5711
 name=Back to Basics
 rarity=R
-type=Enchantment
 mana={2}{U}
+type=Enchantment
 [/card]
 [card]
 text={2}, Sacrifice a permanent: Return target creature to its owner's hand.
@@ -209,7 +209,7 @@ type=Instant
 [/card]
 [card]
 text=Enchant creature   Enchanted creature gets +1/+2.   When Brilliant Halo is put into a graveyard from the battlefield, return Brilliant Halo to its owner's hand.
-auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(brilliant halo|mygraveyard)
+auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(this|mygraveyard)
 id=9890
 target=creature
 auto=1/2
@@ -232,11 +232,25 @@ toughness=3
 abilities=islandwalk
 [/card]
 [card]
+text=At the beginning of your precombat main phase, you may add up to X mana of any one color to your mana pool, where X is the number of Islands target opponent controls.
+auto=@each my firstmain:may foreach(island|opponentbattlefield) Add{W}
+auto=@each my firstmain:may foreach(island|opponentbattlefield) Add{U}
+
+auto=@each my firstmain:may foreach(island|opponentbattlefield) Add{B}
+auto=@each my firstmain:may foreach(island|opponentbattlefield) Add{R}
+auto=@each my firstmain:may foreach(island|opponentbattlefield) Add{G}
+id=5858
+name=Carpet of Flowers
+rarity=U
+mana={G}
+type=Enchantment
+[/card]
+[card]
 text=Destroy all lands or all creatures. Creatures destroyed this way can't be regenerated.
 id=5637
 name=Catastrophe
-auto=may bury all(creature)
 auto=may destroy all(land)
+auto=may bury all(creature)
 rarity=R
 mana={4}{W}{W}
 type=Sorcery
@@ -273,9 +287,9 @@ rarity=R
 mana={3}{G}
 type=Creature
 subtype=Human Druid
+auto=lord(creature|myBattlefield) {T}:Add{G}
 power=3
 toughness=2
-auto=lord(creature|myBattlefield) {T}:Add{G}
 [/card]
 [card]
 text={1}, Sacrifice a permanent: You gain 1 life.
@@ -299,9 +313,9 @@ type=Instant
 [/card]
 [card]
 text=Enchant creature   Enchanted creature is unblockable.
+id=5718
 target=creature
 auto=unblockable
-id=5718
 name=Cloak of Mists
 rarity=C
 mana={1}{U}
@@ -309,7 +323,7 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-text=Enchant permanent (Target a permanent as you play this. This card enters the battlefield attached to that permanent.)   You control enchanted permanent.
+text=Enchant permanent (Target a permanent as you cast this. This card enters the battlefield attached to that permanent.)   You control enchanted permanent.
 target=*
 alias=1194
 id=10426
@@ -321,9 +335,9 @@ subtype=Aura
 [/card]
 [card]
 text=Target player gains 2 life for each creature on the battlefield.
+id=9702
 target=player
 auto=foreach(creature) life:2
-id=9702
 name=Congregate
 rarity=C
 mana={3}{W}
@@ -332,12 +346,12 @@ type=Instant
 [card]
 text={4}, Sacrifice Copper Gnomes: You may put an artifact card from your hand onto the battlefield.
 id=8815
-auto={4}{S}:moveTo(myBattlefield) target(artifact|myhand)
 name=Copper Gnomes
 rarity=R
 mana={2}
 type=Artifact Creature
 subtype=Gnome
+auto={4}{S}:moveTo(myBattlefield) target(artifact|myhand)
 power=1
 toughness=1
 [/card]
@@ -416,7 +430,7 @@ type=Instant
 [/card]
 [card]
 text=Enchant creature   Enchanted creature gets -2/-0.   When Despondency is put into a graveyard from play, return Despondency to its owner's hand.
-auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(despondency|mygraveyard)
+auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(this|mygraveyard)
 id=10656
 target=creature
 auto=-2/0
@@ -454,13 +468,24 @@ auto=protection from red
 [/card]
 [card]
 text=destroy target artifact or enchantment
+id=5630
 target=artifact,enchantment
 auto=destroy
-id=5630
 name=Disenchant
 rarity=C
 mana={1}{W}
 type=Instant
+[/card]
+[card]
+text=Disorder deals 2 damage to each white creature and each player who controls a white creature.
+id=5854
+auto=damage:2 all(creature[white])
+auto=aslongas(creature[white]|myBattlefield) damage:2 controller
+auto=aslongas(creature[white]|opponentBattlefield) damage:2 opponent
+name=Disorder
+rarity=U
+mana={1}{R}
+type=Sorcery
 [/card]
 [card]
 text={1}{U}: Counter target red spell.
@@ -539,6 +564,19 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Trample   At the beginning of your upkeep, sacrifice Endless Wurm unless you sacrifice an enchantment.
+auto=@each my upkeep:moveTo(graveyard) notatarget(this,enchantment|myBattlefield)
+id=8820
+name=Endless Wurm
+rarity=R
+mana={3}{G}{G}
+type=Creature
+subtype=Wurm
+power=9
+toughness=9
+abilities=trample
+[/card]
+[card]
 text=Destroy target nonartifact, nonblack creature. It can't be regenerated.   Cycling {2} ({2}, Discard this card: Draw a card.)
 id=5819
 target=creature[-back;-artifact]
@@ -569,8 +607,19 @@ mana={X}{R}{R}
 type=Instant
 [/card]
 [card]
+text=Whenever a creature is put into a graveyard from the battlefield, that creature's controller may draw a card.
+id=5604
+name=Fecundity
+auto=@movedTo(creature|mygraveyard) from(battlefield):may draw:1 controller
+auto=@movedTo(creature|opponentgraveyard) from(battlefield):draw:1 opponent
+auto={T}:damage:3 target(creature)
+rarity=U
+mana={2}{G}
+type=Enchantment
+[/card]
+[card]
 text=Enchant creature   When Fiery Mantle is put into a graveyard from the battlefield, return Fiery Mantle to its owner's hand.   {R}: Enchanted creature gets +1/+0 until end of turn.
-auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(fiery mantle|mygraveyard)
+auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(this|mygraveyard)
 id=10425
 target=creature
 auto={R}:1/0
@@ -644,7 +693,7 @@ subtype=Forest
 [/card]
 [card]
 text=Enchant creature   When Fortitude is put into a graveyard from the battlefield, return Fortitude to its owner's hand.   Sacrifice a Forest: Regenerate enchanted creature.
-auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(fortitude|mygraveyard)
+auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(this|mygraveyard)
 id=9850
 target=creature
 auto={S(forest|myBattlefield)}:regenerate
@@ -828,11 +877,11 @@ type=Instant
 text={0}: Hopping Automaton gets -1/-1 and gains flying until end of turn.
 id=5700
 name=Hopping Automaton
-auto={0}:-1/-1 && flying
 rarity=U
 mana={3}
 type=Artifact Creature
 subtype=Construct
+auto={0}:-1/-1 && flying
 power=2
 toughness=2
 [/card]
@@ -878,7 +927,7 @@ rarity=R
 mana={2}{W}
 type=Creature
 subtype=Human Soldier
-auto=destroy target(creature[power>=4])
+auto={T}:destroy target(creature[power>=4])
 power=1
 toughness=1
 [/card]
@@ -920,7 +969,7 @@ subtype=Island
 [/card]
 [card]
 text=Enchant creature   Enchanted creature has flying.   When Launch is put into a graveyard from the battlefield, return Launch to its owner's hand.
-auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(launch|mygraveyard)
+auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(this|mygraveyard)
 id=5832
 target=creature
 auto=flying
@@ -1061,6 +1110,17 @@ auto=cantattack
 auto=cantblock
 rarity=C
 mana={1}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Enchant creature   At the beginning of the upkeep of enchanted creature's controller, Parasitic Bond deals 2 damage to that player.
+id=8816
+target=creature
+auto=@each targetcontroller upkeep:damage:2 targetController
+name=Parasitic Bond
+rarity=U
+mana={3}{B}
 type=Enchantment
 subtype=Aura
 [/card]
@@ -1229,7 +1289,7 @@ type=Instant
 [/card]
 [card]
 text=At the beginning of your upkeep, if you control another nonland permanent, sacrifice Reclusive Wight.
-auto=@each my upkeep:aslongas(*[-land]|mybattlefield) other bury
+auto=@each my upkeep:aslongas(other *[-land]|mybattlefield) bury
 id=8803
 name=Reclusive Wight
 rarity=U
@@ -1280,6 +1340,15 @@ name=Rescind
 rarity=C
 mana={1}{U}{U}
 type=Instant
+[/card]
+[card]
+text=Creatures you control have "Whenever this creature becomes blocked, it gets +1/+1 until end of turn for each creature blocking it."
+auto=lord(creature|myBattlefield) rampage(1/1,0)
+id=10408
+name=Retaliation
+rarity=U
+mana={2}{G}
+type=Enchantment
 [/card]
 [card]
 text=Cycling {2} ({2}, Discard this card: Draw a card.)
@@ -1523,7 +1592,7 @@ text=Enchant Swamp   When enchanted land becomes tapped, destroy it.   When Spre
 id=10409
 target=swamp
 auto=@tapped(mytgt):destroy
-auto=@movedTo(this|mygraveyard) from(battlefield):moveTo(myhand) notatarget(spreading algae|mygraveyard)
+auto=@movedTo(this|mygraveyard) from(battlefield):moveTo(myhand) notatarget(this|mygraveyard)
 name=Spreading Algae
 rarity=U
 mana={G}
@@ -1753,6 +1822,15 @@ power=3
 toughness=3
 [/card]
 [card]
+text={3}: Each player puts the top two cards of his or her library into his or her graveyard.
+auto={3}:deplete:2 controller && deplete:2 opponent
+id=7247
+name=Whetstone
+rarity=R
+mana={3}
+type=Artifact
+[/card]
+[card]
 text=Destroy all creatures with flying.
 id=8849
 auto=destroy all(creature[flying])
@@ -1788,6 +1866,18 @@ toughness=4
 abilities=swampwalk
 [/card]
 [card]
+text={T}: Return Wizard Mentor and target creature you control to their owner's hand.
+id=8907
+name=Wizard Mentor
+rarity=C
+mana={2}{U}
+type=Creature
+subtype=Human Wizard
+auto={T}:moveTo(ownerhand) all(this) && moveTo(ownerhand) target(creature|myBattlefield)
+power=2
+toughness=2
+[/card]
+[card]
 text=Worn Powerstone enters the battlefield tapped.  {T}: Add 2 Mana to your mana pool.
 auto=tap
 auto={T}:Add {2}
@@ -1799,8 +1889,8 @@ type=Artifact
 [/card]
 [card]
 text=Whenever an opponent plays a white spell, that player loses 1 life and you gain 1 life.
-auto=@movedTo(*[white]|opponentStack): life:-1 opponent
-auto=@movedTo(*[white]|opponentStack): life:1 controller
+auto=@movedTo(*[white]|opponentStack):life:-1 opponent
+auto=@movedTo(*[white]|opponentStack):life:1 controller
 id=5696
 name=Yawgmoth's Edict
 rarity=U

@@ -727,15 +727,6 @@ text=Suspend 10?{R} Sacrifice an artifact, creature, or land: Remove a time coun
 rarity=R
 [/card]
 [card]
-id=110514
-name=Griffin Guide
-mana={2}{W}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature gets +2/+2 and has flying. When enchanted creature is put into a graveyard, put a 2/2 white Griffin creature token with flying into play.
-rarity=U
-[/card]
-[card]
 id=108905
 name=Ground Rift
 mana={R}
@@ -774,7 +765,6 @@ type=Instant
 text=Target player discards two cards. If you played this spell during your main phase, that player discards four cards instead.
 rarity=U
 [/card]
-
 [card]
 id=116387
 name=Hivestone
@@ -809,17 +799,6 @@ mana={4}{R}
 type=Sorcery
 text=Target player reveals a card at random from his or her hand. Ignite Memories deals damage to that player equal to that card's converted mana cost. Storm (When you play this spell, copy it for each spell played before it this turn. You may choose new targets for the copies.)
 rarity=U
-[/card]
-[card]
-id=116723
-name=Ironclaw Buzzardiers
-mana={2}{R}
-type=Creature
-subtype=Orc Scout
-power=2
-toughness=2
-text=Ironclaw Buzzardiers can't block creatures with power 2 or greater. {R}: Ironclaw Buzzardiers gains flying until end of turn.
-rarity=C
 [/card]
 [card]
 id=114903
@@ -951,17 +930,6 @@ mana={1}
 type=Artifact
 text=Spells you play cost {1} less to play for each card with the same name as that spell in your graveyard.
 rarity=U
-[/card]
-[card]
-id=118918
-name=Looter il-Kor
-mana={1}{U}
-type=Creature
-subtype=Kor Rogue
-power=1
-toughness=1
-text=Shadow (This creature can block or be blocked by only creatures with shadow.) Whenever Looter il-Kor deals damage to an opponent, draw a card, then discard a card.
-rarity=C
 [/card]
 [card]
 id=114904
@@ -1187,15 +1155,6 @@ text=All Slivers have "Whenever this permanent becomes the target of a spell an 
 rarity=U
 [/card]
 [card]
-id=108795
-name=Ophidian Eye
-mana={2}{U}
-type=Enchantment
-subtype=Aura
-text=Flash (You may play this spell any time you could play an instant.) Enchant creature Whenever enchanted creature deals damage to an opponent, you may draw a card.
-rarity=C
-[/card]
-[card]
 id=118902
 name=Outrider en-Kor
 mana={2}{W}
@@ -1233,17 +1192,6 @@ power=4
 toughness=4
 text=Flying {R}: Pardic Dragon gets +1/+0 until end of turn. Suspend 2?{R}{R} Whenever an opponent plays a spell, if Pardic Dragon is suspended, that player may put a time counter on Pardic Dragon.
 rarity=R
-[/card]
-[card]
-id=111083
-name=Pendelhaven Elder
-mana={1}{G}
-type=Creature
-subtype=Elf Shaman
-power=1
-toughness=1
-text={T}: Each 1/1 creature you control gets +1/+2 until end of turn.
-rarity=U
 [/card]
 [card]
 id=110533
@@ -1645,17 +1593,6 @@ mana={3}{G}
 type=Instant
 text=Split second (As long as this spell is on the stack, players can't play spells or activated abilities that aren't mana abilities.) Target creature gets +5/+5 and gains shroud until end of turn. (It can't be the target of spells or abilities.)
 rarity=R
-[/card]
-[card]
-id=118894
-name=Stormcloud Djinn
-mana={4}{U}
-type=Creature
-subtype=Djinn
-power=3
-toughness=3
-text=Flying Stormcloud Djinn can block only creatures with flying. {R}{R}: Stormcloud Djinn gets +2/+0 until end of turn and deals 1 damage to you.
-rarity=U
 [/card]
 [card]
 id=109710

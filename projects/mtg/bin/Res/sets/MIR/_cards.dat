@@ -806,6 +806,17 @@ subtype=Island
 rarity=L
 [/card]
 [card]
+text=You may tap or untap target artifact, creature, or land.   Draw a card at the beginning of the next turn's upkeep.
+id=3341
+auto=@next upkeep:draw:1 controller
+auto=may tap target(artifact,creature,land)
+auto=may untap target(artifact,creature,land)
+name=Jolt
+rarity=C
+mana={2}{U}
+type=Instant
+[/card]
+[card]
 text={1}{G}{T}: Put a 0/1 green Plant Wall creature token with defender onto the battlefield.   Sacrifice a Plant Wall token: Add {R} to your mana pool.
 id=3392
 auto={1}{G}{T}:token(Plant Wall,creature Plant Wall, 0/1,green defender)
@@ -1213,11 +1224,11 @@ toughness=1
 [/card]
 [card]
 text=Enchant creature   When Ritual of Steel enters the battlefield, draw a card at the beginning of the next turn's upkeep.   Enchanted creature gets +0/+2.
-id=3511 
-name=Ritual of Steel
+id=3511
 target=creature
 auto=0/2
-auto=@next upkeep:draw:1
+auto=@next upkeep:draw:1 controller
+name=Ritual of Steel
 rarity=C
 mana={2}{W}
 type=Enchantment
@@ -1236,13 +1247,23 @@ power=4
 toughness=5
 [/card]
 [card]
-text=Rocky Tar Pit enters the battlefield tapped.       {T}, Sacrifice Rocky Tar Pit: Search your library for a Swamp or Mountain card and put it into play. Then shuffle your library.
+text=Rocky Tar Pit enters the battlefield tapped.   {T}, Sacrifice Rocky Tar Pit: Search your library for a Swamp or Mountain card and put it into play. Then shuffle your library.
 auto=tap
 auto={T}{S}:moveTo(myBattlefield) target(mountain,swamp|myLibrary)
 id=3575
 name=Rocky Tar Pit
 rarity=U
 type=Land
+[/card]
+[card]
+text=At the beginning of your upkeep, sacrifice Sacred Mesa unless you sacrifice a Pegasus.   {1}{W}: Put a 1/1 white Pegasus creature token with flying onto the battlefield.
+auto=@each my upkeep:bury notatarget(sacred mesa,pegasus|myBattlefield)
+auto={1}{W}:token(Pegasus,creature pegasus, 1/1,white flying)
+id=3512
+name=Sacred Mesa
+rarity=R
+mana={2}{W}
+type=Enchantment
 [/card]
 [card]
 text=Sandstorm deals 1 damage to each attacking creature.
@@ -1368,6 +1389,18 @@ mana={2}
 rarity=U
 [/card]
 [card]
+text=Noncreature artifacts have shroud as long as Spectral Guardian is untapped. (They can't be the targets of spells or abilities.)
+id=3516
+name=Spectral Guardian
+rarity=R
+mana={2}{W}{W}
+type=Creature
+subtype=Spirit
+auto=aslongas(spectral guardian[-tapped]|myBattlefield) lord(artifact[-creature]) shroud
+power=2
+toughness=3
+[/card]
+[card]
 text=Flying, trample, haste, protection from black     Spirit of the Night has first strike as long as it's attacking.
 id=3315
 name=Spirit of the Night
@@ -1465,7 +1498,7 @@ rarity=L
 [/card]
 [card]
 text=Haste
-id=3467 
+id=3467
 name=Talruum Minotaur
 rarity=C
 mana={2}{R}{R}
@@ -1490,19 +1523,20 @@ abilities=flying,trample
 [/card]
 [card]
 text={2}{T}: Telim'Tor's Darts deals 1 damage to target player. 
-id=3269 
+id=3269
 name=Telim'Tor's Darts
 auto={2}{T}:damage:1 target(player)
 rarity=U
-type=Artifact
 mana={2}
+type=Artifact
 [/card]
 [card]
 text=Exile target permanent you own or control. Draw a card at the beginning of the next turn's upkeep.
-id=3469 
-name=Telim'Tor's Edict
-auto=moveTo(myexile) target(*|myBattlefield)
+id=3469
+target=*|myBattlefield
+auto=moveTo(myexile)
 auto=@next upkeep:draw:1
+name=Telim'Tor's Edict
 rarity=R
 mana={R}
 type=Instant
@@ -1528,7 +1562,7 @@ type=Sorcery
 [/card]
 [card]
 text=Flying   {3}{G}, Sacrifice Uktabi Faerie: Destroy target artifact.
-id=3416 
+id=3416
 name=Uktabi Faerie
 rarity=C
 mana={1}{G}
@@ -1554,7 +1588,7 @@ toughness=*
 [/card]
 [card]
 text=Forestwalk   {1}{G}{G}: Target creature gains forestwalk until end of turn.
-id=3418 
+id=3418
 name=Unseen Walker
 rarity=U
 mana={1}{G}
@@ -1567,13 +1601,13 @@ abilities=forestwalk
 [/card]
 [card]
 text=Unyaro Bee Sting deals 2 damage to target creature or player.
-id=3419 
-name=Unyaro Bee Sting
+id=3419
 target=creature,player
 auto=damage:2
-type=Sorcery
+name=Unyaro Bee StinG
 rarity=U
 mana={3}{G}
+type=Sorcery
 [/card]
 [card]
 text=Flying   Sacrifice Unyaro Griffin: Counter target red instant or sorcery spell.
@@ -1613,7 +1647,7 @@ power=1
 toughness=1
 [/card]
 [card]
-id=3471 
+id=3471
 name=Viashino Warrior
 rarity=C
 mana={3}{R}
@@ -1644,7 +1678,7 @@ type=Instant
 [/card]
 [card]
 text=Flying,haste
-id=3472 
+id=3472
 name=Volcanic Dragon
 rarity=R
 mana={4}{R}{R}
@@ -1669,7 +1703,7 @@ abilities=defender
 [/card]
 [card]
 text=Trample
-id=3423 
+id=3423
 name=Wild Elephant
 rarity=C
 mana={3}{G}
@@ -1681,7 +1715,7 @@ abilities=trample
 [/card]
 [card]
 text=Protection from white   {1}{R}: Wildfire Emissary gets +1/+0 until end of turn.
-id=3474 
+id=3474
 name=Wildfire Emissary
 rarity=U
 mana={3}{R}
@@ -1694,7 +1728,7 @@ abilities=protection from white
 [/card]
 [card]
 text=Flying, protection from blue
-id=3560 
+id=3560
 name=Windreaper Falcon
 rarity=U
 mana={1}{R}{G}
@@ -1706,10 +1740,10 @@ abilities=flying,protection from blue
 [/card]
 [card]
 text=As an additional cost to play Withering Boon, pay 3 life.   Counter target creature spell.
+id=3321
 target=creature|stack
 auto=fizzle
 auto=life:-3 controller
-id=3321
 name=Withering Boon
 rarity=U
 mana={1}{B}
@@ -1717,7 +1751,7 @@ type=Instant
 [/card]
 [card]
 text=Lifelink (Whenever this creature deals damage, you gain that much life.)
-id=3561 
+id=3561
 name=Zebra Unicorn
 type=Creature
 subtype=Unicorn
@@ -1729,7 +1763,7 @@ abilities=lifelink
 [/card]
 [card]
 text=Flying   Other Griffin creatures get +1/+1.
-id=3526 
+id=3526
 name=Zuberi, Golden Feather
 type=Legendary Creature
 subtype=Griffin

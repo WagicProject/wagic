@@ -417,17 +417,6 @@ text=Tap all creatures target player controls. Those creatures don't untap durin
 rarity=U
 [/card]
 [card]
-id=190557
-name=Soul Bleed
-mana={2}{B}
-type=Enchantment
-subtype=Aura
-text=Enchant creature At the beginning of the upkeep of enchanted creature's controller, that player loses 1 life.
-target=creature
-auto=@each ??? upkeep:life:-1 targetController
-rarity=C
-[/card]
-[card]
 id=191338
 name=Spellbook
 mana={0}

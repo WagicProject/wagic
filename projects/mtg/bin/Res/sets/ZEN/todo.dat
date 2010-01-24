@@ -886,17 +886,6 @@ auto=@each my upkeep:aslongas(land|mybattlefield) counter(1/1,4) >4
 rarity=R
 [/card]
 [card]
-id=178113
-name=Scythe Tiger
-mana={G}
-type=Creature
-subtype=Cat
-power=3
-toughness=2
-text=Shroud (This creature can't be the target of spells or abilities.) When Scythe Tiger enters the battlefield, sacrifice it unless you sacrifice a land.
-rarity=C
-[/card]
-[card]
 id=197527
 name=Summoning Trap
 mana={4}{G}{G}

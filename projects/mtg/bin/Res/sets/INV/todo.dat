@@ -256,17 +256,6 @@ type=Sorcery
 mana={1}{B}
 [/card]
 [card]
-text=Flying, trample     At the beginning of your upkeep, sacrifice a creature.     Sacrifice a creature: Regenerate Devouring Strossus.
-id=23050
-name=Devouring Strossus
-rarity=R
-type=Creature
-mana={5}{B}{B}{B}
-power=9
-subtype=Horror
-toughness=9
-[/card]
-[card]
 text=Counter target instant or sorcery spell unless its controller pays {1}.       Draw a card.
 id=23000
 name=Disrupt
@@ -1307,34 +1296,12 @@ subtype=Merfolk Wizard
 toughness=1
 [/card]
 [card]
-text=When Vodalian Merchant comes into play, draw a card, then discard a card.
-id=26296
-name=Vodalian Merchant
-rarity=C
-type=Creature
-mana={1}{U}
-power=1
-subtype=Merfolk
-toughness=2
-[/card]
-[card]
 text=Choose a number. Destroy all artifacts and creatures with converted mana cost equal to that number. Then target player reveals his or her hand and discards all nonland cards with converted mana cost equal to the number.
 id=23200
 name=Void
 rarity=R
 type=Sorcery
 mana={3}{B}{R}
-[/card]
-[card]
-text=First strike       Whenever Voracious Cobra deals combat damage to a creature, destroy that creature.
-id=23203
-name=Voracious Cobra
-rarity=U
-type=Creature
-mana={2}{R}{G}
-power=2
-subtype=Snake
-toughness=2
 [/card]
 [card]
 text=Return all permanents of the color of your choice to their owners' hands.

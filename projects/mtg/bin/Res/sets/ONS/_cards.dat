@@ -1093,7 +1093,7 @@ type=Instant
 [/card]
 [card]
 text=Whenever a creature attacks, you gain 1 life.
-auto=@each blockers step:foreach(creature[attacking]) life:1
+auto=@each blockers:foreach(creature[attacking]) life:1
 id=40656
 name=Righteous Cause
 rarity=U

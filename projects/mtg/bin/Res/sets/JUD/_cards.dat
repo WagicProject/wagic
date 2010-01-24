@@ -169,12 +169,12 @@ toughness=4
 abilities=flying
 [/card]
 [card]
-text=Enchant creature.   Enchanted creature gets +3/+3.   When enchanted creature is put into a graveyard, put a 3/3 green Elephant creature token onto the battlefield.
+text=Enchant creature   Enchanted creature gets +3/+3.   When enchanted creature is put into a graveyard, put a 3/3 green Elephant creature token onto the battlefield.
 id=12692
 name=Elephant Guide
 target=creature
 auto=3/3
-auto=@movedto(this|graveyard):token(Elephant,Creature Elephant,3/3,green)
+auto=@movedto(mytgt|graveyard):token(Elephant,Creature Elephant,3/3,green)
 rarity=U
 mana={2}{G}
 type=Enchantment

@@ -48,6 +48,18 @@ toughness=2
 abilities=flash,first strike
 [/card]
 [card]
+text=Enchant creature   Sacrifice an untapped creature: Enchanted creature gets +2/+0 until end of turn.   Sacrifice enchanted creature: Creatures you control get +2/+0 until end of turn.
+id=4535
+target=creature
+auto={S(creature[-tapped]|myBattlefield)}:2/0
+auto={S(mytgt)}:lord(creature|myBattlefield) 2/0 ueot
+name=Betrothed of Fire
+rarity=C
+mana={1}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 text=Bloodrock Cyclops attacks each turn if able.
 id=4536
 name=Bloodrock Cyclops
@@ -171,6 +183,19 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+text=When Fallow Wurm enters the battlefield, sacrifice it unless you discard a land card.
+id=4514
+name=Fallow Wurm
+rarity=U
+mana={2}{G}
+type=Creature
+subtype=Wurm
+auto=moveTo(graveyard) notatarget(this|myBattlefield)
+auto=moveTo(graveyard) notatarget(land|myhand)
+power=4
+toughness=4
+[/card]
+[card]
 text=Creatures you control have haste.
 id=4545
 auto=lord(creature|myBattlefield) haste
@@ -227,12 +252,25 @@ text=Target creature gets +1/+0 and gains first strike until end of turn.   Draw
 target=creature
 auto=1/0
 auto=first strike
-auto=draw:1
+auto=draw:1 controller
 id=4578
 name=Guided Strike
 rarity=C
 mana={1}{W}
 type=Instant
+[/card]
+[card]
+text=When Harvest Wurm enters the battlefield, sacrifice it unless you return a basic land card from your graveyard to your hand.
+id=4518
+name=Harvest Wurm
+rarity=C
+mana={1}{G}
+type=Creature
+subtype=Wurm
+auto=moveTo(graveyard) notatarget(this|myBattlefield)
+auto=moveTo(myhand) notatarget(land[basic]|mygraveyard)
+power=3
+toughness=2
 [/card]
 [card]
 text={T}: Heavy Ballista deals 2 damage to target attacking or blocking creature.
@@ -245,6 +283,19 @@ subtype=Human Soldier
 auto={T}:Damage:2 target(creature[attacking;blocking])
 power=2
 toughness=3
+[/card]
+[card]
+text=When Hidden Horror enters the battlefield, sacrifice it unless you discard a creature card.
+id=4460
+name=Hidden Horror
+rarity=U
+mana={1}{B}{B}
+type=Creature
+subtype=Horror
+auto=moveTo(graveyard) notatarget(this|myBattlefield)
+auto=moveTo(graveyard) notatarget(creature|myhand)
+power=4
+toughness=4
 [/card]
 [card]
 text={2}, Sacrifice a nontoken permanent: Draw a card.
@@ -318,6 +369,19 @@ power=*
 toughness=*
 [/card]
 [card]
+text=When Merfolk Traders enters the battlefield, draw a card, then discard a card.
+id=4489
+name=Merfolk Traders
+rarity=C
+mana={1}{U}
+type=Creature
+subtype=Merfolk
+auto=draw:1
+auto=moveTo(graveyard) notatarget(*|myhand)
+power=1
+toughness=2
+[/card]
+[card]
 text={T}: Add {1} to your mana pool.   {1}, {T}, Sacrifice Mind Stone: Draw a card.
 id=4436
 auto={T}:Add {1}
@@ -363,6 +427,18 @@ toughness=2
 abilities=unblockable
 [/card]
 [card]
+text=Enchant creature   Enchanted creature has flying.   Sacrifice Phantom Wings: Return enchanted creature to its owner's hand.
+id=4495
+target=creature
+auto=flying
+auto={S}:moveTo(ownerhand) notatarget(mytgt)
+name=Phantom Wings
+rarity=C
+mana={1}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.)
 id=4466
 name=Razortooth Rats
@@ -394,6 +470,18 @@ name=Relearn
 rarity=U
 mana={1}{U}{U}
 type=Sorcery
+[/card]
+[card]
+text=When Rogue Elephant enters the battlefield, sacrifice it unless you sacrifice a Forest.
+id=4527
+name=Rogue Elephant
+rarity=C
+mana={G}
+type=Creature
+subtype=Elephant
+auto=moveTo(mygraveyard) notatarget(this,forest|myBattlefield)
+power=3
+toughness=3
 [/card]
 [card]
 text=At the beginning of your upkeep, destroy all artifacts and enchantments. They can't be regenerated.
@@ -547,6 +635,19 @@ name=Tranquil Grove
 rarity=R
 mana={1}{G}
 type=Enchantment
+[/card]
+[card]
+text=At the beginning of each player's upkeep, if that player controls a nonblack, nonland permanent, Urborg Stalker deals 1 damage to that player.
+auto=@each my upkeep:aslongas(*[-black;-land]|myBattlefield) damage:1 controller
+auto=@each opponent upkeep:aslongas(*[-black;-land]|opponentBattlefield) damage:1 opponent
+id=4473
+name=Urborg Stalker
+rarity=R
+mana={3}{B}
+type=Creature
+subtype=Horror
+power=2
+toughness=4
 [/card]
 [card]
 text=Untap all creatures you control.

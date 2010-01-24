@@ -215,12 +215,12 @@ text=Untap two target creatures. Each of them gets +1/+1 until end of turn.
 rarity=U
 [/card]
 [card]
+text=At the beginning of your upkeep, if there are seven or more lands on the battlefield, sacrifice Impending Disaster. If you do, destroy all lands.
 id=12426
 name=Impending Disaster
-mana={1}{R}
-type=Enchantment
-text=At the beginning of your upkeep, if there are seven or more lands on the battlefield, sacrifice Impending Disaster. If you do, destroy all lands.
 rarity=R
+mana={G}
+type=Enchantment
 [/card]
 [card]
 id=12378

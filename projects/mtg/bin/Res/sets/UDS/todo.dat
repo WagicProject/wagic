@@ -90,14 +90,6 @@ text={2}{R}, {T}: Reveal any number of red cards in your hand. Cinder Seer deals
 rarity=U
 [/card]
 [card]
-id=15168
-name=Donate
-mana={2}{U}
-type=Sorcery
-text=Target player gains control of target permanent you control.
-rarity=R
-[/card]
-[card]
 id=15183
 name=Dying Wail
 mana={1}{B}
@@ -316,15 +308,6 @@ mana={B}
 type=Enchantment
 text=When an opponent has 10 or less life, if Lurking Jackals is an enchantment, it becomes a 3/2 Hound creature.
 rarity=U
-[/card]
-[card]
-id=15203
-name=Mark of Fury
-mana={R}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature has haste. At the beginning of the end step, return Mark of Fury to its owner's hand.
-rarity=C
 [/card]
 [card]
 id=15874

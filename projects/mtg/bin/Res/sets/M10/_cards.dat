@@ -1717,16 +1717,27 @@ auto=life:4 controller
 rarity=C
 [/card]
 [card]
+text=Enchant creature   At the beginning of the upkeep of enchanted creature's controller, that player loses 1 life.
+id=190557
+target=creature
+auto=@each targetcontroller upkeep:life:-1 targetController
+name=Soul Bleed
+rarity=C
+mana={2}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Whenever another creature enters the battlefield, you gain 1 life.
 id=190571
 name=Soul Warden
+rarity=U
 mana={W}
 type=Creature
 subtype=Human Cleric
+auto=@movedTo(creature|battlefield):life:1
 power=1
 toughness=1
-text=Whenever another creature enters the battlefield, you gain 1 life.
-auto=@movedTo(creature|battlefield): life:1
-rarity=U
 [/card]
 [card]
 text=When Sparkmage Apprentice enters the battlefield, it deals 1 damage to target creature or player.

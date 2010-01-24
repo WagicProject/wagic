@@ -538,6 +538,19 @@ mana={2}{B}
 type=Sorcery
 [/card]
 [card]
+text=When Hidden Horror enters the battlefield, sacrifice it unless you discard a creature card.
+id=6574
+name=Hidden Horror
+rarity=U
+mana={1}{B}{B}
+type=Creature
+subtype=Horror
+auto=moveTo(graveyard) notatarget(this|myBattlefield)
+auto=moveTo(graveyard) notatarget(creature|myhand)
+power=4
+toughness=4
+[/card]
+[card]
 text=Hurricane deals X damage to each creature with flying and each player.
 id=6640
 auto=damage:X all(creature[flying])
@@ -909,6 +922,20 @@ auto=moveTo(myLibrary)
 rarity=C
 mana={G}
 type=Sorcery
+[/card]
+[card]
+text=Flying   When Screeching Drake enters the battlefield, draw a card, then discard a card.
+id=6523
+name=Screeching Drake
+rarity=C
+mana={3}{U}
+type=Creature
+subtype=Drake
+auto=draw:1
+auto=moveTo(mygraveyard) notatarget(*|myhand)
+power=2
+toughness=2
+abilities=flying
 [/card]
 [card]
 text=Spitting Earth deals damage equal to the number of Mountains you control to target creature.

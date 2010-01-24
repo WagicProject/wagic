@@ -161,6 +161,19 @@ power=3
 toughness=1
 [/card]
 [card]
+text=Flying   {U}: Cerulean Sphinx's owner shuffles it into his or her library.
+id=89095
+name=Cerulean Sphinx
+auto={U}:moveto(mylibrary) && shuffle
+rarity=R
+type=Creature
+subtype=Sphinx
+mana={4}{U}{U}
+power=5
+toughness=5
+abilities=flying
+[/card]
+[card]
 text=Char deals 4 damage to target creature or player and 2 damage to you.
 target=creature,player
 auto=Damage:4
@@ -319,6 +332,20 @@ power=3
 toughness=4
 [/card]
 [card]
+text=Flying   When Drake Familiar enters the battlefield, sacrifice it unless you return an enchantment on the battlefield to its owner's hand.
+id=87960
+name=Drake Familiar
+rarity=C
+mana={1}{U}
+type=Creature
+subtype=Drake
+auto=moveTo(graveyard) notatarget(this|myBattlefield)
+auto=moveTo(ownerhand) notatarget(enchantment|battlefield)
+power=2
+toughness=1
+abilities=flying
+[/card]
+[card]
 text=Enchant permanent   You may cast Dream Leash only on a tapped permanent.   You control enchanted permanent.
 target=*[tapped]
 alias=1194
@@ -356,10 +383,10 @@ toughness=5
 [/card]
 [card]
 text={T}: Add {1} to your mana pool.   {U}{B}, {T}: Target player puts the top card of his or her library into his or her graveyard.
-auto={T}:Add {1}
-auto={U}{B}{T}:deplete:1 target(player)
 id=88943
 name=Duskmantle, House of Shadow
+auto={T}:Add {1}
+auto={U}{B}{T}:deplete:1 target(player)
 rarity=U
 type=Land
 [/card]
@@ -438,10 +465,10 @@ abilities=flying,first strike
 [/card]
 [card]
 text=Enchant creature   When Fists of Ironwood enters the battlefield, put two 1/1 green Saproling creature tokens onto the battlefield.   Enchanted creature has trample.
+id=83672
 target=creature
 auto=token(Saproling,creature saproling, 1/1,green)*2
 auto=trample
-id=83672
 name=Fists of Ironwood
 rarity=C
 mana={1}{G}
@@ -732,10 +759,11 @@ type=Instant
 [/card]
 [card]
 text=Lightning Helix deals 3 damage to target creature or player and you gain 3 life.
+id=87908
+
 target=creature,player
 auto=Damage:3
 auto=life:3 controller
-id=87908
 name=Lightning Helix
 rarity=U
 mana={W}{R}
@@ -748,18 +776,18 @@ name=Mnemonic Nexus
 auto=moveto(opponentlibrary) all(*|opponentgraveyard) && shuffle opponent
 auto=moveto(mylibrary) all(*|mygraveyard) && shuffle controller
 rarity=U
-type=Instant
 mana={3}{U}
+type=Instant
 [/card]
 [card]
-text=Flying. At the beginning of your upkeep, you lose 1 life.
-auto=@each my upkeep:life:-1 controller
+text=Flying   At the beginning of your upkeep, you lose 1 life.
 id=83631
 name=Moroii
 rarity=U
 mana={2}{U}{B}
 type=Creature
 subtype=Vampire
+auto=@each my upkeep:life:-1 controller
 power=4
 toughness=4
 abilities=flying
@@ -1085,7 +1113,7 @@ type=Artifact
 text=When Sell-Sword Brute is put into a graveyard from the battlefield, it deals 2 damage to you.
 id=87909
 name=Sell-Sword Brute
-auto=@movedto(this|graveyard) from(batlefield):damage:2 controller
+auto=@movedto(this|graveyard) from(battlefield):damage:2 controller
 rarity=C
 mana={1}{R}
 type=Creature
@@ -1094,14 +1122,14 @@ power=2
 toughness=2
 [/card]
 [card]
-text=Swampwalk   Sacrifice Sewerdreg: Remove target card in a graveyard from the game.
+text=Swampwalk   Sacrifice Sewerdreg: Exile target card in a graveyard.
 id=88995
 name=Sewerdreg
 rarity=C
 mana={3}{B}{B}
 type=Creature
 subtype=Spirit
-auto={S}:moveTo(removedfromgame) target(*|graveyard)
+auto={S}:moveTo(exile) target(*|graveyard)
 power=3
 toughness=3
 abilities=swampwalk
@@ -1412,6 +1440,19 @@ power=1
 toughness=2
 [/card]
 [card]
+text=When Vindictive Mob enters the battlefield, sacrifice a creature.   Vindictive Mob can't be blocked by Saprolings.
+id=89002
+name=Vindictive Mob
+rarity=U
+mana={4}{B}{B}
+type=Creature
+subtype=Human Berserker
+auto=moveTo(ownergraveyard) notatarget(creature)
+auto=cantbeblockedby(saproling)
+power=5
+toughness=5
+[/card]
+[card]
 text=Whenever a land enters the battlefield under your control, put a +1/+1 counter on Vinelasher Kudzu.
 auto=@movedTo(land|myBattlefield):counter(1/1)
 id=83559
@@ -1426,9 +1467,9 @@ toughness=1
 [card]
 text={T}: Add {1} to your mana pool.  {2}{G}{W}, {T}: Put a 1/1 green Saproling creature token onto the battlefield.
 id=89016
+name=Vitu-Ghazi, the City-Tree
 auto={T}:Add {1} 
 auto={2}{G}{W}{T}:token(Saproling,creature saproling, 1/1, green)
-name=Vitu-Ghazi, the City-Tree
 rarity=U
 type=Land
 [/card]
@@ -1446,13 +1487,13 @@ toughness=1
 [/card]
 [card]
 text=Flying   Whenever a card is put into an opponent's graveyard from anywhere, put a +1/+1 counter on Vulturous Zombie.
-auto=@movedTo(*|opponentgraveyard):counter(1/1)
 id=89082
 name=Vulturous Zombie
 rarity=R
 mana={3}{B}{G}
 type=Creature
 subtype=Plant Zombie
+auto=@movedTo(*|opponentgraveyard):counter(1/1)
 power=3
 toughness=3
 abilities=flying
@@ -1465,7 +1506,7 @@ rarity=C
 mana={R}
 type=Creature
 subtype=Goblin Warrior
-auto={R}{S}:Damage:2 target(creature[attacking;blocking])
+auto={R}{S}:Damage:2 target(creature[blocking])
 power=1
 toughness=1
 [/card]

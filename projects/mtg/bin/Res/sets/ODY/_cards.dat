@@ -200,6 +200,16 @@ rarity=U
 type=Land
 [/card]
 [card]
+text=Whenever a creature blocks, Battle Strain deals 1 damage to that creature's controller.
+auto=@each my combatdamage:foreach(creature[blocking]|opponentBattlefield) damage:1 opponent
+auto=@each opponent combatdamage:foreach(creature[blocking]|myBattlefield) damage:1 controller
+id=29861
+name=Battle Strain
+rarity=U
+mana={1}{R}
+type=Enchantment
+[/card]
+[card]
 text=Protection from creatures
 id=29798
 name=Beloved Chaplain

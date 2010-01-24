@@ -267,6 +267,16 @@ toughness=3
 abilities=cantattack
 [/card]
 [card]
+text=Whenever a creature blocks, Heat of Battle deals 1 damage to that creature's controller.
+auto=@each my combatdamage:foreach(creature[blocking]|opponentBattlefield) damage:1 opponent
+auto=@each opponent combatdamage:foreach(creature[blocking]|myBattlefield) damage:1 controller
+id=5165
+name=Heat of Battle
+rarity=U
+mana={1}{R}
+type=Enchantment
+[/card]
+[card]
 text={W}: Honor Guard gets +0/+1 until end of turn.
 id=5170
 name=Honor Guard
@@ -511,9 +521,9 @@ rarity=U
 mana={R}{G}
 type=Creature
 subtype=Sliver
+auto=lord(sliver) rampage(1/1,0)
 power=2
 toughness=2
-auto=lord(sliver) rampage(1/1,0)
 [/card]
 [card]
 id=5245

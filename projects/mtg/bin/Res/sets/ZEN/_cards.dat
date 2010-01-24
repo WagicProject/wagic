@@ -883,15 +883,15 @@ toughness=2
 abilities=cantblock
 [/card]
 [card]
+text=Enchant creature   When enchanted creature is dealt damage, destroy it.
 id=190401
-name=Mire Blight
-mana={B}
 target=creature
+auto=@damaged(mytgt):destroy(mytgt)
+name=Mire Blight
+rarity=C
+mana={B}
 type=Enchantment
 subtype=Aura
-text=Enchant creature   When enchanted creature is dealt damage, destroy it.
-auto=@damaged(mytgt):destroy(mytgt)
-rarity=C
 [/card]
 [card]
 text={T}, Pay 1 Life, Sacrifice Misty Rainforest: Search your library for a Forest or Island card and put it onto the battlefield. Then shuffle your library.
@@ -1013,10 +1013,10 @@ toughness=2
 [/card]
 [card]
 text=Return target permanent you control to its owner's hand. You gain 4 life.
+id=180360
 target=*|myBattlefield
 auto=moveTo(ownerhand)
 auto=life:4 controller
-id=180360
 name=Narrow Escape
 rarity=C
 mana={2}{W}
@@ -1037,10 +1037,10 @@ toughness=2
 [/card]
 [card]
 text=Enchant creature   Enchanted creature gets +1/+2 and has flying.
+id=180346
 target=creature
 auto=1/2
 auto=flying
-id=180346
 name=Nimbus Wings
 rarity=C
 mana={1}{W}
@@ -1273,6 +1273,19 @@ rarity=R
 type=Land
 [/card]
 [card]
+text=Shroud (This creature can't be the target of spells or abilities.)   When Scythe Tiger enters the battlefield, sacrifice it unless you sacrifice a land.
+id=178113
+name=Scythe Tiger
+rarity=C
+mana={G}
+type=Creature
+subtype=Cat
+auto=moveTo(mygraveyard) notatarget(this;land|myBattlefield)
+power=3
+toughness=2
+abilities=shroud
+[/card]
+[card]
 text={T}: Draw a card for each Ally you control.
 id=195629
 name=Sea Gate Loremaster
@@ -1355,10 +1368,11 @@ abilities=flying
 [/card]
 [card]
 text=Target creature gets +3/+0 and gains first strike until end of turn.
+id=178136
+
 target=creature
 auto=3/0
 auto=first strike
-id=178136
 name=Slaughter Cry
 rarity=C
 mana={2}{R}
@@ -1570,16 +1584,6 @@ power=4
 toughness=4
 [/card]
 [card]
-text=Search your library for a Trap card, reveal it, and put it into your hand. Then shuffle your library.
-id=192223
-target=trap|mylibrary
-auto=moveTo(myhand)
-name=Trapmaker's Snare
-rarity=U
-mana={1}{U}
-type=Instant
-[/card]
-[card]
 text=Equipped creature has nonbasic landwalk. (It's unblockable as long as defending player controls a nonbasic land.)   Equip {2}
 id=190410
 auto={2}:equip
@@ -1589,6 +1593,16 @@ rarity=U
 mana={2}
 type=Artifact
 subtype=Equipment
+[/card]
+[card]
+text=Search your library for a Trap card, reveal it, and put it into your hand. Then shuffle your library.
+id=192223
+target=trap|mylibrary
+auto=moveTo(myhand)
+name=Trapmaker's Snare
+rarity=U
+mana={1}{U}
+type=Instant
 [/card]
 [card]
 text=Equipped creature gets +2/+1. Equip {2}
@@ -1710,7 +1724,6 @@ type=Instant
 [card]
 text=Double strike   Whenever Warren Instigator deals damage to an opponent, you may put a Goblin creature card from your hand onto the battlefield.
 auto=@damaged(player) from(this):may moveto(myBattlefield) target(creature[goblin]|myHand)
-
 id=191368
 name=Warren Instigator
 rarity=M

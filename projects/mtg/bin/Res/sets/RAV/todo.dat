@@ -138,19 +138,6 @@ subtype=Human Cleric
 toughness=1
 [/card]
 [card]
-#To test
-text=Flying     {U}: Cerulean Sphinx's owner shuffles it into his or her library.
-id=89095
-name=Cerulean Sphinx
-auto={U}:moveto(mylibrary) && shuffle
-rarity=R
-type=Creature
-mana={4}{U}{U}
-power=5
-subtype=Sphinx
-toughness=5
-[/card]
-[card]
 text=Convoke (Each creature you tap while playing this spell reduces its cost by {1} or by one mana of that creature's color.)  Prevent all damage that would be dealt by creatures this turn. You gain life equal to the damage prevented this way.
 id=87957
 name=Chant of Vitu-Ghazi
@@ -415,17 +402,6 @@ name=Doubling Season
 rarity=R
 type=Enchantment
 mana={4}{G}
-[/card]
-[card]
-text=Flying     When Drake Familiar comes into play, sacrifice it unless you return an enchantment in play to its owner's hand.
-id=87960
-name=Drake Familiar
-rarity=C
-type=Creature
-mana={1}{U}
-power=2
-subtype=Drake
-toughness=1
 [/card]
 [card]
 text={2}{B}{G}, Sacrifice a creature: Target creature gets +2/+2 until end of turn. Another target creature gets -2/-2 until end of turn.
@@ -1577,17 +1553,6 @@ name=Vigor Mortis
 rarity=U
 type=Sorcery
 mana={2}{B}{B}
-[/card]
-[card]
-text=When Vindictive Mob comes into play, sacrifice a creature.     Vindictive Mob can't be blocked by Saprolings.
-id=89002
-name=Vindictive Mob
-rarity=U
-type=Creature
-mana={4}{B}{B}
-power=5
-subtype=Human Berserker
-toughness=5
 [/card]
 [card]
 text={2}, Sacrifice Voyager Staff: Remove target creature from the game. Return the removed card to play under its owner's control at end of turn.

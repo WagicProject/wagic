@@ -1022,18 +1022,6 @@ toughness=1
 text=Islandwalk Merfolk spells and Wizard spells you cast cost {1} less to cast.
 rarity=C
 [/card]
-
-[card]
-id=153155
-name=Sunflare Shaman
-mana={1}{R}
-type=Creature
-subtype=Elemental Shaman
-power=2
-toughness=1
-text={1}{R}, {T}: Sunflare Shaman deals X damage to target creature or player and X damage to itself, where X is the number of Elemental cards in your graveyard.
-rarity=C
-[/card]
 [card]
 id=152533
 name=Supreme Exemplar
@@ -1115,7 +1103,6 @@ toughness=1
 text=Flash Flying When Vendilion Clique enters the battlefield, look at target player's hand. You may choose a nonland card from it. If you do, that player reveals the chosen card, puts it on the bottom of his or her library, then draws a card.
 rarity=R
 [/card]
-
 [card]
 id=153012
 name=Veteran's Armaments
@@ -1125,7 +1112,6 @@ subtype=Soldier Equipment
 text=Equipped creature has "Whenever this creature attacks or blocks, it gets +1/+1 until end of turn for each attacking creature." Whenever a Soldier creature enters the battlefield, you may attach Veteran's Armaments to it. Equip {2}
 rarity=U
 [/card]
-
 [card]
 id=152553
 name=Walker of the Grove
@@ -1180,17 +1166,6 @@ text=Kinship  EAt the beginning of your upkeep, you may look at the top card o
 rarity=U
 [/card]
 [card]
-id=152741
-name=Weed-Pruner Poplar
-mana={4}{B}
-type=Creature
-subtype=Treefolk Assassin
-power=3
-toughness=3
-text=At the beginning of your upkeep, target creature other than Weed-Pruner Poplar gets -1/-1 until end of turn.
-rarity=C
-[/card]
-[card]
 id=152737
 name=Weight of Conscience
 mana={1}{W}
@@ -1199,7 +1174,6 @@ subtype=Aura
 text=Enchant creature Enchanted creature can't attack. Tap two untapped creatures you control that share a creature type: Exile enchanted creature.
 rarity=C
 [/card]
-
 [card]
 id=152669
 name=Winnower Patrol

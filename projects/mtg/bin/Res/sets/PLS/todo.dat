@@ -56,32 +56,6 @@ text=Counter target spell that targets one or more creatures.  Draw a card.
 rarity=C
 [/card]
 [card]
-###Not 100% codable! 0.10.1
-text=When Crosis's Catacombs enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand.   {T}: Add {U}, {B}, or {R} to your mana pool.
-id=25936
-name=Crosis's Catacombs
-auto=moveTo(ownerhand) notatarget(land[-lair]|myBattlefield)
-auto={T}:Add{U}
-auto={T}:Add{B}
-auto={T}:Add{R}
-rarity=U
-type=Land
-subtype=Lair
-[/card]
-[card]
-###Not 100% codable! 0.10.1
-text=When Darigaaz's Caldera enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand.   {T}: Add {B}, {R}, or {G} to your mana pool.
-id=25938
-name=Darigaaz's Caldera
-rarity=U
-auto=moveTo(ownerhand) notatarget(land[-lair]|myBattlefield)
-auto={T}:Add{B}
-auto={T}:Add{R}
-auto={T}:Add{G}
-type=Land
-subtype=Lair
-[/card]
-[card]
 id=26414
 name=Dark Suspicions
 mana={2}{B}{B}
@@ -164,19 +138,6 @@ power=2
 toughness=2
 text=Kicker—{2}{B}, Discard a creature card. (You may pay {2}{B} and discard a creature card in addition to any other costs as you cast this spell.) If Dralnu's Pet was kicked, it enters the battlefield with flying and with X +1/+1 counters on it, where X is the discarded card's converted mana cost.
 rarity=R
-[/card]
-[card]
-###Not 100% codable! 0.10.1
-text=When Dromar's Cavern enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand.   {T}: Add {W}, {U}, or {B} to your mana pool.
-id=25932
-name=Dromar's Cavern
-auto=moveTo(ownerhand) notatarget(land[-lair]|myBattlefield)
-auto={T}:Add{W}
-auto={T}:Add{U}
-auto={T}:Add{B}
-rarity=U
-type=Land
-subtype=Lair
 [/card]
 [card]
 id=26590
@@ -390,17 +351,6 @@ text=Kicker {W} (You may pay an additional {W} as you cast this spell.) Target p
 rarity=R
 [/card]
 [card]
-id=26280
-name=Phyrexian Bloodstock
-mana={4}{B}
-type=Creature
-subtype=Zombie
-power=3
-toughness=3
-text=When Phyrexian Bloodstock leaves the battlefield, destroy target white creature. It can't be regenerated.
-rarity=C
-[/card]
-[card]
 id=26477
 name=Phyrexian Scuta
 mana={3}{B}
@@ -539,19 +489,6 @@ mana={R}{G}{W}
 type=Instant
 [/card]
 [card]
-###Not 100% codable! 0.10.1
-text=When Rith's Grove enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand.   {T}: Add {R}, {G}, or {W} to your mana pool.
-id=25939
-name=Rith's Grove
-auto=moveTo(ownerhand) notatarget(land[-lair]|myBattlefield)
-auto={T}:Add{R}
-auto={T}:Add{G}
-auto={T}:Add{W}
-rarity=U
-type=Land
-subtype=Lair
-[/card]
-[card]
 id=25942
 name=Rushing River
 mana={2}{U}
@@ -653,14 +590,6 @@ type=Enchantment
 subtype=Aura
 text=Enchant creature When Sleeping Potion enters the battlefield, tap enchanted creature. Enchanted creature doesn't untap during its controller's untap step. When enchanted creature becomes the target of a spell or ability, sacrifice Sleeping Potion.
 rarity=C
-[/card]
-[card]
-id=25880
-name=Star Compass
-mana={2}
-type=Artifact
-text=Star Compass enters the battlefield tapped. {T}: Add to your mana pool one mana of any color a basic land you control could produce.
-rarity=U
 [/card]
 [card]
 id=25913
@@ -794,15 +723,6 @@ name=Treva's Charm
 mana={G}{W}{U}
 type=Instant
 text=Choose one - Destroy target enchantment; or exile target attacking creature; or draw a card, then discard a card.
-rarity=U
-[/card]
-[card]
-id=25940
-name=Treva's Ruins
-mana=
-type=Land
-subtype=Lair
-text=When Treva's Ruins enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand. {T}: Add {G}, {W}, or {U} to your mana pool.
 rarity=U
 [/card]
 [card]

@@ -591,17 +591,6 @@ text=Imprint - {X}, {T}: You may exile an instant or sorcery card with converted
 rarity=R
 [/card]
 [card]
-id=47587
-name=Pristine Angel
-mana={4}{W}{W}
-type=Creature
-subtype=Angel
-power=4
-toughness=4
-text=Flying As long as Pristine Angel is untapped, it has protection from artifacts and from all colors. Whenever you cast a spell, you may untap Pristine Angel.
-rarity=R
-[/card]
-[card]
 id=48163
 name=Psychic Overload
 mana={3}{U}
@@ -808,17 +797,6 @@ mana={3}{G}{G}
 type=Instant
 text=Put two +1/+1 counters on target creature and two +1/+1 counters on another target creature.
 rarity=U
-[/card]
-[card]
-id=49078
-name=Steelshaper Apprentice
-mana={2}{W}{W}
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=3
-text={W}, {T}, Return Steelshaper Apprentice to its owner's hand: Search your library for an Equipment card, reveal that card, and put it into your hand. Then shuffle your library.
-rarity=R
 [/card]
 [card]
 id=45961

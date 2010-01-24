@@ -798,15 +798,6 @@ toughness=2
 rarity=C
 [/card]
 [card]
-text=You may tap or untap target artifact, creature, or land.     Draw a card at the beginning of the next turn's upkeep.
-id=3341
-name=Jolt
-target=artifact,creature,land
-type=Instant
-mana={2}{U}
-rarity=C
-[/card]
-[card]
 text=Destroy target creature with converted mana cost X. If that creature is put into a graveyard this way, Kaervek's Purge deals damage equal to the creature's power to the creature's controller.
 id=3541
 name=Kaervek's Purge
@@ -1299,14 +1290,6 @@ subtype=Snake
 toughness=2
 [/card]
 [card]
-text=At the beginning of your upkeep, sacrifice Sacred Mesa unless you sacrifice a Pegasus.     {1}{W}: Put a 1/1 white Pegasus creature token with flying into play.
-id=3512
-name=Sacred Mesa
-rarity=R
-type=Enchantment
-mana={2}{W}
-[/card]
-[card]
 text=When a spell or ability an opponent controls causes you to discard Sand Golem, return Sand Golem from your graveyard to play at end of turn with a +1/+1 counter on it.
 id=3266
 name=Sand Golem
@@ -1468,17 +1451,6 @@ name=Spatial Binding
 rarity=U
 type=Enchantment
 mana={U}{B}
-[/card]
-[card]
-text=Noncreature artifacts have shroud as long as Spectral Guardian is untapped. (They can't be the targets of spells or abilities.)
-id=3516
-name=Spectral Guardian
-rarity=R
-type=Creature
-mana={2}{W}{W}
-power=2
-subtype=Spirit
-toughness=3
 [/card]
 [card]
 text=Stalking Tiger can't be blocked by more than one creature.

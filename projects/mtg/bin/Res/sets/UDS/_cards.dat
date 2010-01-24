@@ -189,9 +189,9 @@ rarity=R
 mana={4}{R}
 type=Creature
 subtype=Dragon
-auto=aslongas(artifact|myBattlefield) -99/-99 <1
-power=6
-toughness=5
+auto=aslongas(artifact|myBattlefield) 96/95 
+power=-90
+toughness=-90
 abilities=flying
 [/card]
 [card]
@@ -220,9 +220,9 @@ subtype=Aura
 [/card]
 [card]
 text=Target player gains control of target permanent you control.
+id=15168
 target=*|myBattlefield
 auto=moveTo(opponentBattlefield)
-id=15168
 name=Donate
 rarity=R
 mana={2}{U}
@@ -260,9 +260,9 @@ rarity=R
 mana={3}{G}
 type=Creature
 subtype=Crocodile
-auto=aslongas(other creature|myBattlefield) -99/-99 <1
-power=5
-toughness=5
+auto=aslongas(other creature|myBattlefield) 95/95
+power=-90
+toughness=-90
 [/card]
 [card]
 text=When False Prophet is put into a graveyard from the battlefield, exile all creatures.
@@ -384,7 +384,6 @@ subtype=Aura
 [card]
 text=Flying   When Junk Diver is put into a graveyard from the battlefield, return another target artifact card from your graveyard to your hand.
 auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) target(other artifact|mygraveyard)
-
 id=15256
 name=Junk Diver
 rarity=R
@@ -442,6 +441,18 @@ subtype=Insect
 auto={S}:draw:1
 power=2
 toughness=3
+[/card]
+[card]
+text=Enchant creature   Enchanted creature has haste.   At the beginning of the end step, return Mark of Fury to its owner's hand.
+id=15203
+target=creature
+auto=haste
+auto=@next endofturn:moveTo(ownerhand) all(this)
+name=Mark of Fury
+rarity=C
+mana={R}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 text={1}, Discard a card: Draw a card.

@@ -161,6 +161,15 @@ power=1
 toughness=3
 [/card]
 [card]
+text=Return Broken Fall to its owner's hand: Regenerate target creature.
+id=4750
+auto={0}:moveTo(ownerhand) all(this) && regenerate target(creature) limit:1
+name=Broken Fall
+rarity=C
+mana={2}{G}
+type=Enchantment
+[/card]
+[card]
 text=Caldera Lake enters the battlefield tapped.   {T}: Add {1} to your mana pool.   {T}: Add {U} or {R} to your mana pool. Caldera Lake deals 1 damage to you.
 id=4930
 name=Caldera Lake
@@ -527,6 +536,25 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+text=As long as an opponent controls a creature with flying not named Escaped Shapeshifter, Escaped Shapeshifter has flying. The same is true for first strike, trample, and protection from any color.
+id=4699
+name=Escaped Shapeshifter
+auto=aslongas(creature[flying;-escaped shapeshifter]|opponentinplay) flying
+auto=aslongas(creature[first strike;-escaped shapeshifter]|opponentinplay) first strike
+auto=aslongas(creature[trample;-escaped shapeshifter]|opponentinplay) trample
+auto=aslongas(creature[protection from black;-escaped shapeshifter]|opponentinplay) protection from black
+auto=aslongas(creature[protection from blue;-escaped shapeshifter]|opponentinplay) protection from blue
+auto=aslongas(creature[protection from red;-escaped shapeshifter]|opponentinplay) protection from red
+auto=aslongas(creature[protection from white;-escaped shapeshifter]|opponentinplay) protection from white
+auto=aslongas(creature[protection from green;-escaped shapeshifter]|opponentinplay) protection from green
+rarity=R
+mana={3}{U}{U}
+type=Creature
+subtype=Shapeshifter
+power=3
+toughness=4
+[/card]
+[card]
 text={2}{B}{B}: Put a -1/-1 counter on target creature.
 id=4664
 auto={2}{B}{B}:counter(-1/-1) target(creature)
@@ -644,10 +672,10 @@ subtype=Forest
 [/card]
 [card]
 text=Enchant creature   When Frog Tongue enters the battlefield, draw a card.   Enchanted creature has reach. (It can block creatures with flying.)
+id=4762
 target=creature
 auto=reach
 auto=draw:1 controller
-id=4762
 name=Frog Tongue
 rarity=C
 mana={G}
@@ -656,10 +684,10 @@ subtype=Aura
 [/card]
 [card]
 text=Target blocking creature gets +4/+4 until end of turn.   Draw a card.
+id=4876
 target=creature[blocking]
 auto=4/4
 auto=draw:1 controller
-id=4876
 name=Gallantry
 rarity=U
 mana={1}{W}
@@ -809,13 +837,13 @@ subtype=Aura
 [/card]
 [card]
 text=All Sliver creatures have trample.
-auto=lord(sliver) trample
 id=4768
 name=Horned Sliver
 rarity=U
 mana={2}{G}
 type=Creature
 subtype=Sliver
+auto=lord(sliver) trample
 power=2
 toughness=2
 [/card]
@@ -886,10 +914,10 @@ type=Artifact
 [/card]
 [card]
 text=Kindle deals X damage to target creature or player, where X is 2 plus the number of cards named Kindle in all graveyards.
+id=4826
 target=creature,player
 auto=foreach(kindle|graveyard) damage:1
 auto=damage:2
-id=4826
 name=Kindle
 rarity=C
 mana={1}{R}
@@ -924,9 +952,9 @@ type=Enchantment
 [/card]
 [card]
 text=Lightning Blast deals 4 damage to target creature or player.
+id=4827
 target=creature,player
 auto=Damage:4
-id=4827
 name=Lightning Blast
 rarity=C
 mana={3}{R}
@@ -946,13 +974,13 @@ abilities=haste
 [/card]
 [card]
 text={T}, Sacrifice Lotus Petal: Add one mana of any color to your mana pool.
+id=4614
+name=Lotus Petal
 auto={T}{S}:Add{G}
 auto={T}{S}:Add{R}
 auto={T}{S}:Add{U}
 auto={T}{S}:Add{B}
 auto={T}{S}:Add{W}
-id=4614
-name=Lotus Petal
 rarity=C
 mana={0}
 type=Artifact
@@ -968,14 +996,14 @@ power=4
 toughness=3
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.
-auto={T}:Add {1} 
+text={T}: Add {1} to your mana pool. 
 id=4616
 name=Manakin
 rarity=C
 mana={2}
 type=Artifact Creature
 subtype=Construct
+auto={T}:Add {1}
 power=1
 toughness=1
 [/card]
@@ -1017,25 +1045,25 @@ toughness=2
 [/card]
 [card]
 text={W}, {T}: Tap target creature.
-auto={W}{T}:tap target(creature)
 id=4887
 name=Master Decoy
 rarity=C
 mana={1}{W}
 type=Creature
 subtype=Human Soldier
+auto={W}{T}:tap target(creature)
 power=1
 toughness=2
 [/card]
 [card]
 text=Flying   {T}: Mawcor deals 1 damage to target creature or player.
-auto={T}:damage:1 target(creature,player)
 id=4712
 name=Mawcor
 rarity=R
 mana={3}{U}{U}
 type=Creature
 subtype=Beast
+auto={T}:damage:1 target(creature,player)
 power=3
 toughness=3
 abilities=flying
@@ -1063,11 +1091,11 @@ toughness=1
 text=All Slivers have "{2}, Sacrifice this permanent: Draw a card."
 id=4714
 name=Mnemonic Sliver
-auto=lord(sliver) {2}{S}:draw:1
 rarity=U
 mana={2}{U}
 type=Creature
 subtype=Sliver
+auto=lord(sliver) {2}{S}:draw:1
 power=2
 toughness=2
 [/card]
@@ -1244,7 +1272,7 @@ toughness=1
 [/card]
 [card]
 text={2}, Discard a card: Put a 1/1 white Pegasus creature token with flying onto the battlefield.
-auto={2}{S(*|myhand)}:token(Pegasus,Pegasus Token Creature, 1/1,flying white)
+auto={2}{S(*|myhand)}:token(Pegasus,Creature Pegasus, 1/1,flying white)
 id=4893
 name=Pegasus Refuge
 rarity=R
@@ -1297,11 +1325,11 @@ type=Land
 text=Flying   {B}: Pit Imp gets +1/+0 until end of turn. Play this ability no more than twice each turn.
 id=4677
 name=Pit Imp
-auto={B}:1/0 limit:2
 rarity=C
 mana={B}
 type=Creature
 subtype=Imp
+auto={B}:1/0 limit:2
 power=0
 toughness=1
 abilities=flying
@@ -1420,9 +1448,9 @@ type=Sorcery
 [/card]
 [card]
 text=Prevent all combat damage that would be dealt this turn.   You gain 1 life for each attacking creature.
+id=4783
 auto=preventAllcombatDamage ueot
 auto=foreach(creature[attacking]) life:1 controller
-id=4783
 name=Respite
 rarity=C
 mana={1}{G}
@@ -1430,10 +1458,10 @@ type=Instant
 [/card]
 [card]
 text=Target creature loses shadow until end of turn.   Draw a card.
+id=4780
 target=creature
 auto=-shadow
 auto=draw:1 controller
-id=4780
 name=Reality Anchor
 rarity=C
 mana={1}{G}
@@ -1453,13 +1481,13 @@ abilities=trample
 [/card]
 [card]
 text={1}{G}: Rootwalla gets +2/+2 until end of turn. Play this ability only once each turn.
-auto={1}{G}:2/2 limit:1
 id=4786
 name=Rootwalla
 rarity=C
 mana={2}{G}
 type=Creature
 subtype=Lizard
+auto={1}{G}:2/2 limit:1
 power=2
 toughness=2
 [/card]
@@ -1467,11 +1495,11 @@ toughness=2
 text={T}, Sacrifice Rootwater Diver: Return target artifact card from your graveyard to your hand.
 id=4720
 name=Rootwater Diver
-auto={T}{S}:moveTo(myhand) target(artifact|mygraveyard)
 rarity=U
 mana={U}
 type=Creature
 subtype=Merfolk
+auto={T}{S}:moveTo(myhand) target(artifact|mygraveyard)
 power=1
 toughness=1
 [/card]
@@ -1479,19 +1507,19 @@ toughness=1
 text={T}: Rootwater Hunter deals 1 damage to target creature or player.
 id=4721
 name=Rootwater Hunter
-auto={T}:damage:1 target(creature,player)
 rarity=C
 mana={2}{U}
 type=Creature
 subtype=Merfolk
+auto={T}:damage:1 target(creature,player)
 power=1
 toughness=1
 [/card]
 [card]
 text=Enchant creature   Whenever a creature is put into a graveyard from the battlefield, put a +1/+1 counter on enchanted creature.
+id=4682
 target=creature
 auto=@movedTo(graveyard) from(creature|battlefield):counter(1/1)
-id=4682
 name=Sadistic Glee
 rarity=C
 type=Enchantment
@@ -1500,9 +1528,9 @@ subtype=Aura
 [/card]
 [card]
 text={2}{W}: Prevent all combat damage that would be dealt by target creature this turn.
+auto={2}{W}:preventAllCombatDamage from target(creature) ueot
 id=4897
 name=Safeguard
-auto={2}{W}:preventAllCombatDamage from target(creature) ueot
 rarity=R
 mana={3}{W}{W}
 type=Enchantment
@@ -1541,6 +1569,15 @@ auto={T}:Add {R} && damage:1 controller
 auto={T}:Add {W} && damage:1 controller
 rarity=R
 type=Land
+[/card]
+[card]
+text=At the beginning of your upkeep, if you have three or fewer cards in hand, Scalding Tongs deals 1 damage to target opponent.
+auto=@each my upkeep:aslongas(*|myhand) damage:1 opponent <4
+id=4627
+name=Scalding Tongs
+rarity=R
+mana={2}
+type=Artifact
 [/card]
 [card]
 text=Scragnoth can't be countered.   Protection from blue
@@ -1766,6 +1803,20 @@ type=Creature
 subtype=Soltari Soldier
 power=1
 toughness=1
+abilities=shadow
+[/card]
+[card]
+####This has been successfully tested because first strike is not cumulative.
+text=Shadow (This creature can block or be blocked by only creatures with shadow.)  Soltari Lancer has first strike as long as it's attacking.
+id=4902
+name=Soltari Lancer
+rarity=C
+mana={2}{W}
+type=Creature
+subtype=Soltari Knight
+auto=lord(soltari lancer[attacking]|myBattlefield) first strike
+power=2
+toughness=2
 abilities=shadow
 [/card]
 [card]

@@ -338,21 +338,10 @@ toughness=5
 abilities=cantattack
 [/card]
 [card]
-text=Play Defiant Stand only during the declare attackers step and only if you are the defending player. Target creature gets +1/+3 until the end of the turn. If that creature is tapped, untap it.
-target=creature
-auto=untap
-auto=1/3
-id=4380
-name=Defiant Stand
-rarity=U
-mana={1}{W}
-type=Instant
-[/card]
-[card]
 text=Return target sorcery card from your graveyard to your hand.
+id=4259
 target=sorcery|myGraveyard
 auto=moveTo(myHand)
-id=4259
 name=Deja vu
 rarity=C
 mana={2}{U}
@@ -402,6 +391,15 @@ toughness=6
 abilities=flying
 [/card]
 [card]
+text=Until end of turn, black creatures you control can be blocked only by black creatures.
+id=4216
+auto=lord(creature|myBattlefield) cantbeblockedby(creature[-black])
+name=Dread Charge
+rarity=R
+mana={3}{B}
+type=Sorcery
+[/card]
+[card]
 text=Flying. When Dread Reaper enters the battlefield, you lose 5 life.
 auto=life:-5
 id=4217
@@ -447,9 +445,9 @@ abilities=forestwalk
 [/card]
 [card]
 text=Return target card from your graveyard to your hand.
+id=4295
 target=*|myGraveyard
 auto=moveTo(myHand)
-id=4295
 name=Elven Cache
 rarity=C
 mana={2}{G}{G}
@@ -467,7 +465,7 @@ toughness=1
 [/card]
 [card]
 text=When Endless Cockroaches is put into a graveyard the battlefield, return Endless Cockroaches to its owner's hand.
-auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(endless cockroaches|mygraveyard)
+auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(this|mygraveyard)
 id=4220
 name=Endless Cockroaches
 rarity=R
@@ -883,6 +881,20 @@ power=2
 toughness=2
 [/card]
 [card]
+text=When Mercenary Knight enters the battlefield, sacrifice it unless you discard a creature card.
+id=4228
+auto=
+name=Mercenary Knight
+rarity=R
+mana={2}{B}
+type=Creature
+subtype=Human Mercenary Knight
+auto=moveTo(graveyard) notatarget(this|myBattlefield)
+auto=moveTo(graveyard) notatarget(*|myhand)
+power=4
+toughness=4
+[/card]
+[card]
 id=4267
 name=Merfolk of the Pearl Trident
 rarity=C
@@ -1003,9 +1015,9 @@ toughness=1
 [/card]
 [card]
 text=Counter target creature or sorcery spell.
+id=4268
 target=creature,sorcery|stack
 auto=fizzle
-id=4268
 name=Mystic Denial
 rarity=U
 mana={1}{U}{U}
@@ -1013,9 +1025,9 @@ type=Instant
 [/card]
 [card]
 text=Target player gains 8 life.
+id=4308
 target=player
 auto=life:8
-id=4308
 name=Natural Spring
 rarity=U
 mana={3}{G}{G}
@@ -1042,8 +1054,9 @@ type=Sorcery
 [/card]
 [card]
 text=Destroy all green creatures.
-auto=destroy all(creature[green])
 id=4232
+
+auto=destroy all(creature[green])
 name=Nature's Ruin
 rarity=U
 mana={2}{B}
@@ -1057,6 +1070,20 @@ name=Needle Storm
 rarity=U
 mana={2}{G}
 type=Sorcery
+[/card]
+[card]
+text=Flying     When Owl Familiar enters the battlefield, draw a card, then discard a card.
+id=4270
+name=Owl Familiar
+rarity=C
+mana={1}{U}
+type=Creature
+subtype=Bird
+auto=draw:1
+auto=moveTo(mygraveyard) notatarget(*|myhand)
+power=1
+toughness=1
+abilities=flying
 [/card]
 [card]
 id=9845
@@ -1126,6 +1153,19 @@ name=Plains
 rarity=L
 type=Basic Land
 subtype=Plains
+[/card]
+[card]
+text=When Plant Elemental enters the battlefield, sacrifice it unless you sacrifice a Forest.
+auto=moveTo(graveyard) notatarget(this|myBattlefield)
+auto=moveTo(graveyard) notatarget(forest|myBattlefield)
+id=4313
+name=Plant Elemental
+rarity=U
+mana={1}{G}
+type=Creature
+subtype=Plant Elemental
+power=3
+toughness=4
 [/card]
 [card]
 text=Each player draws X cards.
@@ -1514,6 +1554,19 @@ mana={2}{U}
 type=Sorcery
 [/card]
 [card]
+text=When Thundering Wurm enters the battlefield, sacrifice it unless you discard a land card.
+id=4321
+name=Thundering Wurm
+rarity=R
+mana={2}{G}
+type=Creature
+subtype=Wurm
+auto=moveTo(graveyard) notatarget(this|myBattlefield)
+auto=moveTo(graveyard) notatarget(land|myhand)
+power=4
+toughness=4
+[/card]
+[card]
 text=Haste (This creature can attack the turn it comes under your control.)  When Thundermare enters the battlefield, tap all other creatures.
 id=4364
 name=Thundermare
@@ -1547,7 +1600,7 @@ type=Sorcery
 [/card]
 [card]
 text=When Undying Beast is put into a graveyard from the battlefield, put Undying Beast on top of its owner's library.
-auto=@movedTo(this|graveyard) from(battlefield):moveTo(mylibrary) notatarget(undying beast|mygraveyard)
+auto=@movedTo(this|graveyard) from(battlefield):moveTo(mylibrary) notatarget(this|mygraveyard)
 id=4242
 name=Undying Beast
 rarity=C
@@ -1574,15 +1627,6 @@ auto=lord(creature[white]) 2/0
 name=Valorous Charge
 rarity=U
 mana={1}{W}{W}
-type=Sorcery
-[/card]
-[card]
-text=Creatures you control get +1/+1 until end of turn.
-id=4406
-auto=lord(creature|myBattlefield) 1/1
-name=Warrior's Charge
-rarity=C
-mana={2}{W}
 type=Sorcery
 [/card]
 [card]
@@ -1682,6 +1726,15 @@ subtype=Wall
 power=3
 toughness=5
 abilities=defender,flying
+[/card]
+[card]
+text=Creatures you control get +1/+1 until end of turn.
+id=4406
+auto=lord(creature|myBattlefield) 1/1
+name=Warrior's Charge
+rarity=C
+mana={2}{W}
+type=Sorcery
 [/card]
 [card]
 id=4324

@@ -593,16 +593,17 @@ type=Land
 abilities=legendary
 [/card]
 [card]
-text=At the beginning of your upkeep, if Hazezon Tamar came into play since the beginning of your last upkeep, put a 1/1 red, green, and white Sand Warrior creature token into play for each land you control. Those creatures have "When a permanent named Hazezon Tamar isn't in play, remove this creature from the game."
+####PROBLEM: The token effect triggers at each controllers upkeep.
+text=When Hazezon Tamar enters the battlefield, put X 1/1 Sand Warrior creature tokens that are red, green, and white onto the battlefield at the beginning of your next upkeep, where X is the number of lands you control at that time.   When Hazezon leaves the battlefield, exile all Sand Warriors.
 id=1656
 name=Hazezon Tamar
-auto=@next my upkeep:foreach(land|myinplay) token(Sand Warrior,Creature Sand Warrior,1/1,red green)
-auto=@movedTo(this|mygraveyard) from(myinplay):moveto(graveyard) all(Sand Warrior|myinplay)
+auto=@next my upkeep:foreach(land|myBattlefield) token(Sand Warrior,Creature Sand Warrior,1/1,red green white)
+auto=@movedTo(this|graveyard,exile,library,hand) from(battlefield):moveto(exile) all(sand warrior)
 rarity=R
 type=Legendary Creature
-mana={4}{R}{G}{W}
-power=2
 subtype=Human Warrior
+mana={G}
+power=2
 toughness=4
 [/card]
 [card]
@@ -962,18 +963,6 @@ subtype=Ooze
 toughness=1
 [/card]
 [card]
-text={T}: Psionic Entity deals 2 damage to target creature or player and 3 damage to itself.
-id=1493
-name=Psionic Entity
-auto={T}:damage:3 && damage:2 target(creature,player)
-rarity=R
-type=Creature
-mana={4}{U}
-power=2
-subtype=Illusion
-toughness=2
-[/card]
-[card]
 text=Psychic Purge deals 1 damage to target creature or player.     When a spell or ability an opponent controls causes you to discard Psychic Purge, that player loses 5 life.
 id=1494
 name=Psychic Purge
@@ -1234,17 +1223,6 @@ rarity=U
 type=Enchantment
 mana={U}{U}
 subtype=Aura
-[/card]
-[card]
-text=When Stangg comes into play, if Stangg is in play, put a legendary 3/4 red and green Human Warrior creature token named Stangg Twin into play. When Stangg leaves play, remove that token from the game. When that token leaves play, sacrifice Stangg.
-id=1686
-name=Stangg
-rarity=R
-type=Legendary Creature
-mana={4}{R}{G}
-power=3
-subtype=Human Warrior
-toughness=4
 [/card]
 [card]
 text=At the beginning of each player's upkeep, Storm World deals X damage to that player, where X is 4 minus the number of cards in his or her hand.

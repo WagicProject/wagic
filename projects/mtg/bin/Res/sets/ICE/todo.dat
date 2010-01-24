@@ -34,8 +34,6 @@ subtype=Aura
 [card]
 text=As an additional cost to play Altar of Bone, sacrifice a creature.       Search your library for a creature card, reveal that card, and put it into your hand. Then shuffle your library.
 id=2717
-target=creature|mylibrary
-auto=moveto(myhand) && destroy target(creature)
 name=Altar of Bone
 rarity=R
 type=Sorcery
@@ -258,7 +256,6 @@ rarity=U
 type=Enchantment
 mana={2}{U}{U}
 [/card]
-
 [card]
 text={1}{G}, {T}: Counter target activated ability from an artifact source. (Mana abilities can't be targeted.)
 id=2552
@@ -547,18 +544,6 @@ name=Essence Filter
 rarity=C
 type=Sorcery
 mana={1}{G}{G}
-[/card]
-[card]
-text=Enchant creature     Enchanted creature gets +2/+0.     At the beginning of the upkeep of enchanted creature's controller, put a -0/-1 counter on that creature.
-target=creature
-auto=2/0
-auto=@each targetcontroller upkeep:counter(0/-1)
-id=2505
-name=Essence Flare
-rarity=C
-type=Enchantment
-mana={U}
-subtype=Aura
 [/card]
 [card]
 text=Destroy target creature unless its controller pays life equal to its toughness. A creature destroyed this way can't be regenerated.

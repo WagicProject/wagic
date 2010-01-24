@@ -52,17 +52,6 @@ type=Sorcery
 mana={3}{W}{U}{B}{R}{G}
 [/card]
 [card]
-text=Dark Temper deals 2 damage to target creature. If you control a black permanent, destroy the creature instead.
-id=185143
-target=creature
-auto=aslongas(*[black]|myinplay)destroy
-auto=damage:2
-name=Dark Temper
-rarity=C
-type=Instant
-mana={2}{R}
-[/card]
-[card]
 text=First strike     {W}{U}{B}{R}{G}: Until end of turn, Dragonsoul Knight becomes a Dragon, gets +5/+3, and gains flying and trample.
 id=186392
 name=Dragonsoul Knight
@@ -81,17 +70,6 @@ rarity=U
 type=Enchantment
 mana={3}{U}{B}{R}
 subtype=Aura
-[/card]
-[card]
-text=Flying     At the beginning of your upkeep, return an artifact you control to its owner's hand.
-id=180158
-name=Esperzoa
-rarity=U
-type=Artifact Creature
-mana={2}{U}
-power=4
-subtype=Jellyfish
-toughness=3
 [/card]
 [card]
 text={T}: Add to your mana pool one mana of any color that a land an opponent controls could produce.
@@ -317,7 +295,6 @@ power=6
 subtype=Demon Dragon
 toughness=6
 [/card]
-
 [card]
 text=Prevent all noncombat damage that would be dealt to creatures you control.
 id=186615
@@ -368,7 +345,6 @@ power=4
 subtype=Rhino Soldier
 toughness=4
 [/card]
-
 [card]
 text=Vigilance     {R}, {T}: Target creature can't block this turn.     {G}, {T}: Target creature blocks this turn if able.
 abilities=vigilance
@@ -475,7 +451,6 @@ name=Rupture Spire
 rarity=C
 type=Land
 [/card]
-
 [card]
 text={1}{B}, {T}: Target player discards a card. Play this ability only during your turn.
 id=189084
