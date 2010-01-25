@@ -366,6 +366,17 @@ toughness=3
 abilities=cantattack,cantblock
 [/card]
 [card]
+text=If Mox Diamond would enter the battlefield, you may discard a land card instead. If you do, put Mox Diamond onto the battlefield. If you don't, put it into its owner's graveyard. {T}: Add one mana of any color to your mana pool.
+id=5193
+name=Mox Diamond
+auto=moveTo(mygraveyard) notatarget(land|myhand)
+auto=moveTo(mygraveyard) notatarget(this|myBattlefield)
+auto=@movedTo(land|mygraveyard) from(myhand):lord(mox diamond) {T}:Add{W} && lord(mox diamond) {T}:Add{U} && lord(mox diamond) {T}:Add{B} && lord(mox diamond) {T}:Add{R} && lord(mox diamond) {T}:Add{G}
+mana={0}
+rarity=R
+type=Artifact
+[/card]
+[card]
 text=Sacrifice Morgue Thrull: Put the top three cards of your library into your graveyard.
 id=5191
 name=Morgue Thrull
