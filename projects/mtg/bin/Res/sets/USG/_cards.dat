@@ -612,7 +612,6 @@ id=5604
 name=Fecundity
 auto=@movedTo(creature|mygraveyard) from(battlefield):may draw:1 controller
 auto=@movedTo(creature|opponentgraveyard) from(battlefield):draw:1 opponent
-auto={T}:damage:3 target(creature)
 rarity=U
 mana={2}{G}
 type=Enchantment

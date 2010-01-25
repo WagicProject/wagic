@@ -78,7 +78,7 @@ abilities=flash
 [/card]
 [card]
 text=Enchant creature   Enchanted creature has shroud.(It can't be the target of spells or abilities.)   When Aspect of Mongoose is put into a graveyard from the battlefield, return Aspect of Mongoose to its owner's hand.
-auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(aspect of mongoose|mygraveyard)
+auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(this|mygraveyard)
 id=116740
 target=creature
 auto=shroud
@@ -245,7 +245,7 @@ subtype=Aura
 [/card]
 [card]
 text=Enchant creature   Enchanted creature has flying and "Sacrifice a creature: This creature gets +2/+1 until end of turn."   When Fallen Ideal is put into a graveyard from the battlefield, return Fallen Ideal to its owner's hand.
-auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(fallen ideal|mygraveyard)
+auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(this|mygraveyard)
 id=114908
 target=creature
 auto=flying
@@ -809,7 +809,7 @@ toughness=2
 [/card]
 [card]
 text=Enchant creature you control   Enchanted creature has lifelink. (Whenever it deals damage, its controller gains that much life.)   When Spirit Loop is put into a graveyard from the battlefield, return Spirit Loop to its owner's hand.
-auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(spirit loop|mygraveyard)
+auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(this|mygraveyard)
 id=109680
 target=creature|myBattlefield
 auto=lifelink
@@ -1045,7 +1045,7 @@ auto=lord(creature|myBattlefield) trample
 [/card]
 [card]
 text=Enchant creature   Enchanted creature gets +2/+2 and can't block.   When Undying Rage is put into a graveyard from the battlefield, return Undying Rage to its owner's hand.
-auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(undying rage|mygraveyard)
+auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(this|mygraveyard)
 id=126280
 target=creature
 auto=2/2

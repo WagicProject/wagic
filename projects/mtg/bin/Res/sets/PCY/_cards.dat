@@ -350,8 +350,8 @@ type=Instant
 [/card]
 [card]
 text=Basic lands each player controls have shroud as long as that player controls three or fewer lands. (They can't be the targets of spells or abilities.)
-auto=aslongas(land|myBattlefield) lord(land[basic]|myBattlefield) shroud <3
-auto=aslongas(land|opponentBattlefield) lord(land[basic]|opponentBattlefield) shroud <3
+auto=aslongas(land|myBattlefield) lord(land[basic]|myBattlefield) shroud <4
+auto=aslongas(land|opponentBattlefield) lord(land[basic]|opponentBattlefield) shroud <4
 id=24568
 name=Sheltering Prayers
 rarity=R
