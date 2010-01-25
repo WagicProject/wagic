@@ -87,11 +87,10 @@ void OptionInteger::Render(){
   mFont->DrawString(_(displayValue).c_str(),x,y);
   char buf[512];
   if (maxValue == 1){
-    if (value){
-      sprintf(buf, _("Yes").c_str());
-    }else{
-      sprintf(buf,_("No").c_str());
-    }
+    if (value)
+      sprintf(buf, "%s", _("Yes").c_str());
+    else
+      sprintf(buf, "%s", _("No").c_str());
   }else{
     if(value == defValue && strDefault.size())
       sprintf(buf, "%s", _(strDefault).c_str());

@@ -179,7 +179,7 @@ void Credits::Render(){
   f3->SetColor(ARGB(255,255,255,255));
   char buffer[512];
   if (!g->turn){
-    sprintf(buffer, _("Please check your deck (not enough cards?)").c_str() );
+    sprintf(buffer, "%s", _("Please check your deck (not enough cards?)").c_str() );
   }else{
     if (!p1->isAI() && p2->isAI() ){
       if (g->gameOver != p1){
@@ -192,7 +192,7 @@ void Credits::Render(){
           f2->DrawString(unlockedString.c_str(),SCREEN_WIDTH/2, 80,JGETEXT_CENTER);
         }
       }else{
-        sprintf (buffer, _("You have been defeated").c_str());
+        sprintf (buffer, "%s", _("You have been defeated").c_str());
       }
     }else{
       int winner = 2;

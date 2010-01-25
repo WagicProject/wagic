@@ -185,7 +185,7 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
 
   {
     char name[4096];
-    sprintf(name, _(card->data->getName()).c_str());
+    sprintf(name, "%s", _(card->data->getName()).c_str());
     float w = font->GetStringWidth(name) * 0.8 * pos.actZ;
     if (w > BigWidth - 30)
       font->SetScale((BigWidth - 30) / w);

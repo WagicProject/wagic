@@ -771,17 +771,17 @@ void ActionStack::Render(){
     // seconds if the user disables auto progressing interrupts by setting the seconds
     // value to zero in Options.
     if (options[Options::INTERRUPT_SECONDS].number == 0)
-        sprintf(buffer, _("Interrupt?").c_str());
+      sprintf(buffer, "%s", _("Interrupt?").c_str());
     else
-        sprintf(buffer, "%s  %i", _("Interrupt?").c_str(),static_cast<int>(timer));
+      sprintf(buffer, "%s  %i", _("Interrupt?").c_str(),static_cast<int>(timer));
 
     //WALDORF - removed all the unnecessary math. just display the prompt at the
     // top of the box.
     mFont->DrawString(buffer, x0 + 5, y0);
 
 
-    if (mCount > 1) sprintf(buffer, _("X Interrupt - 0 No - [] No to All").c_str());
-    else            sprintf(buffer, _("X Interrupt - 0 No").c_str());
+    if (mCount > 1) sprintf(buffer, "%s", _("X Interrupt - 0 No - [] No to All").c_str());
+    else            sprintf(buffer, "%s", _("X Interrupt - 0 No").c_str());
 
     // WALDORF - puts the button legend right under the prompt. the stack
     // will be displayed below it now. no more need to do wierd currY math.

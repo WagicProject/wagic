@@ -649,14 +649,14 @@ public:
 //TODO this is a copy/past of other code that's all around the place, everything should be in a dedicated parser class;
 
     for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++){
-      unsigned int found = sabilities.find(Constants::MTGBasicAbilities[j]);
+      size_t found = sabilities.find(Constants::MTGBasicAbilities[j]);
       if (found != string::npos){
         abilities.push_back(j);
       }
     }
 
     for (int j = 0; j < Constants::MTG_NB_COLORS; j++){
-      unsigned int found = sabilities.find(Constants::MTGColorStrings[j]);
+      size_t found = sabilities.find(Constants::MTGColorStrings[j]);
       if (found != string::npos){
         colors.push_back(j);
       }
@@ -664,7 +664,7 @@ public:
 
     string s = stypes;
     while (s.size()){
-      unsigned int found = s.find(" ");
+      size_t found = s.find(" ");
       if (found != string::npos){
         int id = Subtypes::subtypesList->find(s.substr(0,found));
         types.push_back(id);
@@ -2154,14 +2154,14 @@ public:
     //TODO this is a copy/past of other code that's all around the place, everything should be in a dedicated parser class;
 
     for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++){
-      unsigned int found = sabilities.find(Constants::MTGBasicAbilities[j]);
+      size_t found = sabilities.find(Constants::MTGBasicAbilities[j]);
       if (found != string::npos){
         abilities.push_back(j);
       }
     }
 
     for (int j = 0; j < Constants::MTG_NB_COLORS; j++){
-      unsigned int found = sabilities.find(Constants::MTGColorStrings[j]);
+      size_t found = sabilities.find(Constants::MTGColorStrings[j]);
       if (found != string::npos){
         colors.push_back(j);
       }
@@ -2169,7 +2169,7 @@ public:
 
     string s = stypes;
     while (s.size()){
-      unsigned int found = s.find(" ");
+      size_t found = s.find(" ");
       if (found != string::npos){
         int id = Subtypes::subtypesList->find(s.substr(0,found));
         types.push_back(id);

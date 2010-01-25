@@ -20,8 +20,8 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
     manaCost = NEW ManaCost();
   }
   int state = 0;
-  unsigned int start = 0;
-  unsigned int end = 0;
+  size_t start = 0;
+  size_t end = 0;
   while (!s.empty() && state != -1){
     switch(state){
     case 0:

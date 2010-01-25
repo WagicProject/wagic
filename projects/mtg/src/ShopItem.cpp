@@ -330,7 +330,7 @@ void ShopItems::Render(){
   mFont->SetColor(ARGB(255,255,255,255));
   char c[4096];
   r->FillRect(0,SCREEN_HEIGHT-17,SCREEN_WIDTH,17,ARGB(128,0,0,0));
-  sprintf(c, _("[]:other cards").c_str());
+  sprintf(c, "%s", _("[]:other cards").c_str());
   unsigned int len = 4 + mFont->GetStringWidth(c);
   mFont->DrawString(c,SCREEN_WIDTH-len,SCREEN_HEIGHT-14);
 

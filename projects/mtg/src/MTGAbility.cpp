@@ -273,7 +273,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
       }
 
       int limit = 0;
-      unsigned int limit_str = sWithoutTc.find("limit:");
+      size_t limit_str = sWithoutTc.find("limit:");
       if (limit_str != string::npos){
         limit = atoi(sWithoutTc.substr(limit_str+6).c_str());
       }
@@ -577,9 +577,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   //Damage
   found = s.find("damage");
   if (found != string::npos){
-    unsigned int start = s.find(":",found);
+    size_t start = s.find(":",found);
     if (start == string::npos) start = s.find(" ",found);
-    unsigned int end = s.find(" ",start);
+    size_t end = s.find(" ",start);
     string d;
     if (end != string::npos){
       d = s.substr(start+1,end-start-1);
@@ -598,8 +598,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   //gain/lose life
   found = s.find("life:");
   if (found != string::npos){
-    unsigned int start = found+4;
-    unsigned int end = s.find(" ",start);
+    size_t start = found+4;
+    size_t end = s.find(" ",start);
     string life_s;
     if (end != string::npos){
       life_s = s.substr(start+1,end-start-1);
@@ -617,8 +617,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   //Draw
   found = s.find("draw:");
   if (found != string::npos){
-    unsigned int start = s.find(":",found);
-    unsigned int end = s.find(" ",start);
+    size_t start = s.find(":",found);
+    size_t end = s.find(" ",start);
     string nbcardsStr;
     if (end != string::npos){
       nbcardsStr = s.substr(start+1,end-start-1);
@@ -636,8 +636,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   //Deplete
   found = s.find("deplete:");
   if (found != string::npos){
-    unsigned int start = s.find(":",found);
-    unsigned int end = s.find(" ",start);
+    size_t start = s.find(":",found);
+    size_t end = s.find(" ",start);
     int nbcards;
     if (end != string::npos){
       nbcards = atoi(s.substr(start+1,end-start-1).c_str());
@@ -665,8 +665,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   //Discard
   found = s.find("discard:");
   if (found != string::npos){
-    unsigned int start = s.find(":",found);
-    unsigned int end = s.find(" ",start);
+    size_t start = s.find(":",found);
+    size_t end = s.find(" ",start);
     int nbcards;
     if (end != string::npos){
       nbcards = atoi(s.substr(start+1,end-start-1).c_str());
@@ -971,7 +971,7 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
   string line;
   int size = magicText.size();
   if (size == 0) return 0;
-  unsigned int found;
+  size_t found;
   int result = id;
 
   while (magicText.size()){

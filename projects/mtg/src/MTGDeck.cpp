@@ -17,7 +17,7 @@ using std::string;
 //MTGAllCards
 int MTGAllCards::processConfLine(string s, MTGCard *card, CardPrimitive * primitive){
   if (s.size() && s[0] == '#') return 0;
-  unsigned int i = s.find_first_of("=");
+  size_t i = s.find_first_of("=");
   if (i == string::npos){
 #if defined (_DEBUG)
     char buffer[4096];
@@ -114,7 +114,7 @@ int MTGAllCards::processConfLine(string s, MTGCard *card, CardPrimitive * primit
     case 's': //subtype
       if(!primitive) primitive = NEW CardPrimitive();
       while (value.size()){
-        unsigned int found = value.find(" ");
+        size_t found = value.find(" ");
         if (found != string::npos){
           primitive->setSubtype(value.substr(0,found));
           value = value.substr(found+1);
@@ -136,7 +136,7 @@ int MTGAllCards::processConfLine(string s, MTGCard *card, CardPrimitive * primit
       }else if (key.compare("type")==0) {
         if(!primitive) primitive = NEW CardPrimitive();
         while (value.size()){
-          unsigned int found = value.find(" ");
+          size_t found = value.find(" ");
           if (found != string::npos){
             primitive->setType(value.substr(0,found).c_str());
             value = value.substr(found+1);
@@ -514,7 +514,7 @@ int MTGDeck::addRandomCards(int howmany, int * setIds, int nbSets, int rarity, c
 
   char subtype[4096];
   if (_subtype)
-    sprintf(subtype, _subtype);
+    sprintf(subtype, "%s", _subtype);
 
 
   vector<int> subcollection;
@@ -832,7 +832,7 @@ string MTGSetInfo::getBlock(){
 
 
 void MTGSetInfo::processConfLine(string line){
-  unsigned int i = line.find_first_of("=");
+  size_t i = line.find_first_of("=");
   if (i == string::npos)
     return;
 

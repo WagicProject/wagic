@@ -565,10 +565,10 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, Player * op
   char deckFileSmall[512];
 
   if (deckid == -1){ //Evil twin
-    sprintf(deckFile, opponent->deckFile.c_str());
+    sprintf(deckFile, "%s", opponent->deckFile.c_str());
     OutputDebugString(opponent->deckFile.c_str());  
-    sprintf(avatarFile, "baka.jpg");
-    sprintf(deckFileSmall, "ai_baka_eviltwin");
+    sprintf(avatarFile, "%s", "baka.jpg");
+    sprintf(deckFileSmall, "%s", "ai_baka_eviltwin");
   }else{
     if (!deckid){
       int nbdecks = 0;

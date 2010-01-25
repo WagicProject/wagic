@@ -123,7 +123,7 @@ int TestSuiteAI::Act(float dt){
     g->mLayers->actionLayer()->stuffHappened = 1;
   }else if(action.find("p1")!=string::npos || action.find("p2")!=string::npos){
     Player * p = g->players[1];
-    unsigned int start = action.find("p1");
+    size_t start = action.find("p1");
     if (start != string::npos) p = g->players[0];
     g->cardClick(NULL, p);
   }else{
@@ -186,7 +186,7 @@ TestSuiteState::TestSuiteState(){
 }
 
 void TestSuiteState::parsePlayerState(int playerId, string s){
-  unsigned int limiter = s.find(":");
+  size_t limiter = s.find(":");
   string areaS;
   int area;
   if (limiter != string::npos){

@@ -31,7 +31,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
   found = s.find("player");
   if (found != string::npos){
     int maxtargets = 1;
-    unsigned int several = s.find_first_of('s',5);
+    size_t several = s.find_first_of('s',5);
     if (several != string::npos) maxtargets = -1;
     found = s.find("creature");
     if (found != string::npos) return NEW DamageableTargetChooser(card,maxtargets,other); //Any Damageable target (player, creature)
@@ -106,7 +106,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
       string attributes = typeName.substr(found+1,end-found-1);
       cd = NEW CardDescriptor();
       while(attributes.size()){
-        unsigned int found2 = attributes.find(";");
+        size_t found2 = attributes.find(";");
         string attribute;
         if (found2 != string::npos){
           cd->mode = CD_OR;
