@@ -187,10 +187,10 @@ void GameApp::Create()
   JSoundSystem::GetInstance()->SetMusicVolume(options[Options::MUSICVOLUME].number);
 
   char buf[512];
-  sprintf(buf, "size of MTGCard : %lu\n" , sizeof(MTGCard));
+  sprintf(buf, "size of MTGCard : %llu\n", (long long unsigned int)sizeof(MTGCard));
   OutputDebugString(buf);
 
-  sprintf(buf, "size of CardPrimitive : %lu\n" , sizeof(CardPrimitive));
+  sprintf(buf, "size of CardPrimitive : %llu\n" , (long long unsigned int)sizeof(CardPrimitive));
   OutputDebugString(buf);
 }
 

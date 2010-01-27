@@ -57,8 +57,8 @@ void WResourceManager::DebugRender(){
   if(textureWCache.totalSize > textureWCache.cacheSize)
     man = textureWCache.totalSize - textureWCache.cacheSize;
 
-  sprintf(buf,"Textures %u+%lu (of %u) items (%u misses), Pixels: %lu (of %lu) + %lu",
-    textureWCache.cacheItems, textureWCache.managed.size(),textureWCache.maxCached,
+  sprintf(buf,"Textures %u+%llu (of %u) items (%u misses), Pixels: %lu (of %lu) + %lu",
+          textureWCache.cacheItems, (long long unsigned int)textureWCache.managed.size(),textureWCache.maxCached,
     misses,textureWCache.cacheSize,textureWCache.maxCacheSize,man);
   font->DrawString(buf, 10,5);
 
