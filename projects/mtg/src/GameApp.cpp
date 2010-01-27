@@ -187,10 +187,10 @@ void GameApp::Create()
   JSoundSystem::GetInstance()->SetMusicVolume(options[Options::MUSICVOLUME].number);
 
   char buf[512];
-  sprintf(buf, "size of MTGCard : %i\n" , sizeof(MTGCard));
+  sprintf(buf, "size of MTGCard : %lu\n" , sizeof(MTGCard));
   OutputDebugString(buf);
 
-  sprintf(buf, "size of CardPrimitive : %i\n" , sizeof(CardPrimitive));
+  sprintf(buf, "size of CardPrimitive : %lu\n" , sizeof(CardPrimitive));
   OutputDebugString(buf);
 }
 
@@ -296,7 +296,7 @@ void GameApp::Update()
 void GameApp::Render()
 {
   if (systemError.size()){
-    fprintf(stderr, systemError.c_str());
+    fprintf(stderr, "%s", systemError.c_str());
     JLBFont * mFont= resources.GetJLBFont("simon");
     if (mFont) mFont->DrawString(systemError.c_str(),1,1);
     return;
