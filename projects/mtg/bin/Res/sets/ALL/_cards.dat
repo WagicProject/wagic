@@ -381,6 +381,19 @@ rarity=U
 type=Land
 [/card]
 [card]
+text=Defender   Whenever Shield Sphere blocks, put a -0/-1 counter on it.
+id=3056
+name=Shield Sphere
+rarity=U
+mana={0}
+type=Artifact Creature
+subtype=Wall
+auto=@each combatdamage:counter(0/-1) all(shield sphere[blocking]|myBattlefield) && counter(0/1) all(other shield sphere[blocking]|myBattlefield)
+power=0
+toughness=6
+abilities=defender
+[/card]
+[card]
 text=Whenever Soldevi Steam Beast becomes tapped, target opponent gains 2 life.   {2}: Regenerate Soldevi Steam Beast.
 id=3061
 name=Soldevi Steam Beast

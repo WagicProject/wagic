@@ -109,6 +109,20 @@ toughness=5
 abilities=defender
 [/card]
 [card]
+text=Whenever Cave People attacks, it gets +1/-2 until end of turn.   {1}{R}{R}, {T}: Target creature gains mountainwalk until end of turn.
+id=1786
+name=Cave People
+rarity=U
+mana={1}{R}{R}
+type=Creature
+subtype=Human
+auto=lord(cave people[attacking]|mybattlefield) 1/-2
+auto=lord(other people[attacking]|mybattlefield) -1/2
+auto={1}{R}{R}{T}:mountainwalk target(creature)
+power=1
+toughness=4
+[/card]
+[card]
 text={3}, Sacrifice Coal Golem: Add {R}{R}{R} to your mana pool. 
 id=1711
 name=Coal Golem

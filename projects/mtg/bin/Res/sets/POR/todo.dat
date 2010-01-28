@@ -36,29 +36,6 @@ type=Sorcery
 mana={3}{U}{U}
 [/card]
 [card]
-text=Whenever Charging Bandits attacks, it gets +2/+0 until end of turn.
-id=4212
-name=Charging Bandits
-rarity=U
-type=Creature
-mana={4}{B}
-power=3
-subtype=Human Rogue
-toughness=3
-[/card]
-[card]
-text=Whenever Charging Paladin attacks, it gets +0/+3 until end of turn.
-id=4379
-name=Charging Paladin
-auto=lord(creature[Charging Paladin;attacking]|myinplay) 0/3
-rarity=U
-type=Creature
-mana={2}{W}
-power=2
-subtype=Human Knight
-toughness=2
-[/card]
-[card]
 text=Charging Rhino can't be blocked by more than one creature.
 id=4291
 name=Charging Rhino

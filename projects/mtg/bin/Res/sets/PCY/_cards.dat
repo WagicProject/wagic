@@ -517,6 +517,19 @@ power=2
 toughness=1
 [/card]
 [card]
+text=Flying   Whenever Windscouter attacks or blocks, return it to its owner's hand at end of combat.
+id=24585
+name=Windscouter
+rarity=U
+mana={3}{U}
+type=Creature
+subtype=Human Scout
+auto=@each combatends:moveTo(ownerhand) all(windscouter[attacking;blocking]|myBattlefield)
+power=3
+toughness=3
+abilities=flying
+[/card]
+[card]
 text=Wing Storm deals damage to each player equal to twice the number of creatures with flying that player controls.
 auto=foreach(creature[flying]|myBattlefield) damage:2 controller
 auto=foreach(creature[flying]|opponentBattlefield) damage:2 opponent

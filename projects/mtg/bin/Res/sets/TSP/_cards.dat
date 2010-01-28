@@ -182,6 +182,20 @@ mana={1}{U}{U}
 type=Instant
 [/card]
 [card]
+text=Flying   As long as Castle Raptors is untapped, it gets +0/+2.
+id=113614
+name=Castle Raptors
+rarity=C
+mana={4}{W}
+type=Creature
+subtype=Bird Soldier
+auto=lord(castle raptors[-tapped]) 0/2
+auto=lord(other castle raptors[-tapped]) 0/-2
+power=3
+toughness=3
+abilities=flying
+[/card]
+[card]
 text={1}, {T}, Sacrifice Chromatic Star: Add one mana of any color to your mana pool. When Chromatic Star is put into a graveyard from the battlefield, draw a card.
 id=118891
 name=Chromatic Star

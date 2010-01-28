@@ -50,6 +50,19 @@ power=2
 toughness=2
 [/card]
 [card]
+text=Whenever Charging Paladin attacks, it gets +0/+3 until end of turn.
+id=6035
+name=Charging Paladin
+auto=lord(charging paladin[attacking]|myBattlefield) 0/3
+auto=lord(other charging paladin[attacking]|myBattlefield) 0/-3
+rarity=C
+mana={2}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=2
+[/card]
+[card]
 text=When you play another land, sacrifice City of Traitors.   {T}: Add {2} to your mana pool.
 id=6168
 name=City of Traitors

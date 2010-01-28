@@ -174,50 +174,6 @@ type=Artifact
 mana={0}
 [/card]
 [card]
-text=Clockwork Beetle comes into play with two +1/+1 counters on it.     Whenever Clockwork Beetle attacks or blocks, remove a +1/+1 counter from it at end of combat.
-id=48119
-name=Clockwork Beetle
-rarity=C
-type=Artifact Creature
-mana={1}
-power=0
-subtype=Insect
-toughness=0
-[/card]
-[card]
-text=Flying Clockwork Condor comes into play with three +1/+1 counters on it. Whenever Clockwork Condor attacks or blocks, remove a +1/+1 counter from it at end of combat.
-id=46124
-name=Clockwork Condor
-rarity=C
-type=Artifact Creature
-mana={4}
-power=0
-subtype=Bird
-toughness=0
-[/card]
-[card]
-text=Flying Clockwork Dragon comes into play with six +1/+1 counters on it. Whenever Clockwork Dragon attacks or blocks, remove a +1/+1 counter from it at end of combat. {3}: Put a +1/+1 counter on Clockwork Dragon.
-id=46704
-name=Clockwork Dragon
-rarity=R
-type=Artifact Creature
-mana={7}
-power=0
-subtype=Dragon
-toughness=0
-[/card]
-[card]
-text=Trample     Clockwork Vorrac comes into play with four +1/+1 counters on it.     Whenever Clockwork Vorrac attacks or blocks, remove a +1/+1 counter from it at end of combat.     {T}: Put a +1/+1 counter on Clockwork Vorrac.
-id=46123
-name=Clockwork Vorrac
-rarity=U
-type=Artifact Creature
-mana={5}
-power=0
-subtype=Boar Beast
-toughness=0
-[/card]
-[card]
 text=Whenever an artifact, creature, or enchantment comes into play, its controller chooses target permanent another player controls that shares a type with it. Exchange control of those permanents.
 id=49528
 name=Confusion in the Ranks

@@ -651,6 +651,20 @@ mana={6}{G}
 type=Sorcery
 [/card]
 [card]
+text=Trample   Whenever Hungry Spriggan attacks, it gets +3/+3 until end of turn.
+id=153997
+name=Hungry Spriggan
+rarity=C
+mana={2}{G}
+type=Creature
+subtype=Goblin Warrior
+auto=lord(hungry spriggan[attacking]|mybattlefield) 3/3
+auto=lord(other hungry spriggan[attacking]|mybattlefield) -3/-3
+power=1
+toughness=1
+abilities=trample
+[/card]
+[card]
 text=Inkfathom Infiltrator can't block and is unblockable.
 id=154401
 name=Inkfathom Infiltrator
@@ -1594,6 +1608,18 @@ auto=aslongas(*[blue]|opponentBattlefield) -cantattack
 power=6
 toughness=4
 abilities=cantattack
+[/card]
+[card]
+text=Whenever Wicker Warcrawler attacks or blocks, put a -1/-1 counter on it at end of combat.
+id=154410
+name=Wicker Warcrawler
+rarity=U
+mana={5}
+type=Artifact Creature
+subtype=Scarecrow
+auto=@each combatends:counter(-1/-1) all(wicker warcrawler[attacking;blocking]|myBattlefield) && counter(1/1) all(other wicker warcrawler[attacking;blocking]|myBattlefield)
+power=6
+toughness=6
 [/card]
 [card]
 text=Wither (This deals damage to creatures in the form of -1/-1 counters.)

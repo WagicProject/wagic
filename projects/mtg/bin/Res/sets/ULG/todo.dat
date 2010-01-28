@@ -523,17 +523,6 @@ text=Spawning Pool enters the battlefield tapped. {T}: Add {B} to your mana pool
 rarity=U
 [/card]
 [card]
-id=12814
-name=Sustainer of the Realm
-mana={2}{W}{W}
-type=Creature
-subtype=Angel
-power=2
-toughness=3
-text=Flying Whenever Sustainer of the Realm blocks, it gets +0/+2 until end of turn.
-rarity=U
-[/card]
-[card]
 id=9840
 name=Tethered Skirge
 mana={2}{B}

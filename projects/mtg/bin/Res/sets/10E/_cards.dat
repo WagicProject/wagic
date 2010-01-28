@@ -902,6 +902,19 @@ mana={X}{2}{R}{R}
 type=Sorcery
 [/card]
 [card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)   When Fog Elemental attacks or blocks, sacrifice it at end of combat.
+id=132073
+name=Fog Elemental
+rarity=U
+mana={2}{U}
+type=Creature
+subtype=Elemental
+auto=@each combatends:moveTo(ownerhand) all(fog elemental[attacking;blocking]|myBattlefield)
+power=4
+toughness=4
+abilities=flying
+[/card]
+[card]
 id=129559
 primitive=Forest
 rarity=L

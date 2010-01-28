@@ -229,6 +229,19 @@ auto=foreach(land|mybattlefield) life:1
 rarity=C
 [/card]
 [card]
+text=Whenever Bramble Creeper attacks, it gets +5/+0 until end of turn.
+id=189915
+name=Bramble Creeper
+rarity=C
+mana={4}{G}
+type=Creature
+subtype=Elemental
+auto=lord(bramble creeper[attacking]|mybattlefield) 5/0
+auto=lord(other bramble creeper[attacking]|mybattlefield) -5/0
+power=0
+toughness=3
+[/card]
+[card]
 id=191096
 name=Burning Inquiry
 mana={R}

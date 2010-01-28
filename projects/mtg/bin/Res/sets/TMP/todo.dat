@@ -960,10 +960,9 @@ rarity=R
 type=Land
 [/card]
 [card]
-text=First strike     Whenever Renegade Warlord attacks, each other attacking creature gets +1/+0 until end of turn.
+text=First strike      Whenever Renegade Warlord attacks, each other attacking creature gets +1/+0 until end of turn.
 id=4839
 name=Renegade Warlord
-auto=aslongas(this[attacking]|myBattlefield):lord(creature[attacking]) 1/0 other
 rarity=U
 type=Creature
 mana={4}{R}
@@ -1130,19 +1129,6 @@ mana={2}{W}{R}
 power=3
 subtype=Soltari Soldier
 toughness=2
-[/card]
-[card]
-text=Shadow (This creature can block or be blocked by only creatures with shadow.)  Whenever Soltari Trooper attacks, it gets +1/+1 until end of turn.
-id=4905
-auto=aslongas(this[attacking]|myinplay) 1/1
-abilities=shadow
-name=Soltari Trooper
-rarity=C
-type=Creature
-mana={1}{W}
-power=1
-subtype=Soltari Soldier
-toughness=1
 [/card]
 [card]
 text=Spike Drone comes into play with a +1/+1 counter on it.     {2}, Remove a +1/+1 counter from Spike Drone: Put a +1/+1 counter on target creature.

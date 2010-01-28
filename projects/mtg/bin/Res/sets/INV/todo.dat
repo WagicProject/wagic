@@ -1258,17 +1258,6 @@ toughness=7
 rarity=R
 [/card]
 [card]
-text=Whenever Vicious Kavu attacks, it gets +2/+0 until end of turn.
-id=23151
-name=Vicious Kavu
-rarity=U
-type=Creature
-mana={1}{B}{R}
-power=2
-subtype=Kavu
-toughness=2
-[/card]
-[card]
 text=Kicker {W} (You may pay an additional {W} as you play this spell.)    Target creature gains trample until end of turn. Whenever that creature deals combat damage this turn, if the kicker cost was paid, you gain life equal to that damage.
 id=23121
 name=Vigorous Charge

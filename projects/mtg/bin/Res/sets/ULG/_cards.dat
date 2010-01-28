@@ -633,6 +633,20 @@ mana={3}{B}{B}
 type=Enchantment
 [/card]
 [card]
+text=Flying   Whenever Sustainer of the Realm blocks, it gets +0/+2 until end of turn.
+id=12814
+name=Sustainer of the Realm
+rarity=U
+mana={2}{W}{W}
+type=Creature
+subtype=Angel
+auto=lord(sustainer of the realm[blocking]|mybattlefield) 0/2
+auto=lord(other sustainer of the realm[blocking]|mybattlefield) 0/-2
+power=2
+toughness=3
+abilities=flying
+[/card]
+[card]
 text=Destroy target creature with power 2 or less.   Cycling {2} ({2}, Discard this card: Draw a card.)
 id=9694
 target=creature[power<=2]

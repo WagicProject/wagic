@@ -121,17 +121,6 @@ text=Target player draws four cards, then discards three cards. If you played th
 rarity=U
 [/card]
 [card]
-id=113614
-name=Castle Raptors
-mana={4}{W}
-type=Creature
-subtype=Bird Soldier
-power=3
-toughness=3
-text=Flying As long as Castle Raptors is untapped, it gets +0/+2.
-rarity=C
-[/card]
-[card]
 id=108903
 name=Cavalry Master
 mana={2}{W}{W}

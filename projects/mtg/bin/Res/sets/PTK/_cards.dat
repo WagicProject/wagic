@@ -738,6 +738,19 @@ toughness=2
 abilities=horsemanship
 [/card]
 [card]
+text=Whenever Shu Defender blocks, it gets +0/+2 until end of turn.
+id=10624
+name=Shu Defender
+rarity=C
+mana={2}{W}
+type=Creature
+subtype=Human Soldier
+auto=lord(shu defender[blocking]|mybattlefield) 0/2
+auto=lord(other shu defender[blocking]|mybattlefield) 0/-2
+power=2
+toughness=2
+[/card]
+[card]
 text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)
 id=10497
 name=Shu Elite Companions
@@ -1036,6 +1049,19 @@ power=1
 toughness=2
 [/card]
 [card]
+text=Whenever Wei Ambush Force attacks, it gets +2/+0 until end of turn.
+id=10557
+name=Wei Ambush Force
+rarity=C
+mana={1}{B}
+type=Creature
+subtype=Human Soldier
+auto=lord(wei ambush force[attacking]|mybattlefield) 2/0
+auto=lord(other wei ambush force[attacking]|mybattlefield) -2/0
+power=1
+toughness=1
+[/card]
+[card]
 text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)
 id=10511
 name=Wei Elite Companions
@@ -1269,7 +1295,7 @@ rarity=R
 mana={3}{B}{B}
 type=Legendary Creature
 subtype=Human Soldier
-auto=aslongas(zhang he wei general[attacking]|myBattlefield) lord(creature other|myBattlefield) 0/1
+auto=aslongas(zhang he wei general[attacking]|myBattlefield) lord(creature[-zhang he wei general]|myBattlefield) 0/1
 power=4
 toughness=2
 abilities=horsemanship
@@ -1283,7 +1309,7 @@ rarity=R
 mana={3}{W}{W}
 type=Legendary Creature
 subtype=Human Soldier Warrior
-auto=aslongas(zhao zilong tiger general[blocking]|myBattlefield) lord(zhao zilong tiger general[blocking]|myBattlefield) 1/1
+auto=lord(zhao zilong tiger general[blocking]|myBattlefield) 1/1
 power=3
 toughness=3
 auto=horsemanship

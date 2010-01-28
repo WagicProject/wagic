@@ -288,7 +288,19 @@ toughness=3
 abilities=mountainwalk
 [/card]
 [card]
-text=Flying (This creature can't be blocked except by creatures with flying or reach.)      Cloud Sprite can block only creatures with flying.
+text=When Ceremonial Guard attacks or blocks, destroy it at end of combat.
+id=19603
+name=Ceremonial Guard
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Human Soldier
+auto=@each combatends:destroy all(ceremonial guard[attacking;blocking]|myBattlefield)
+power=3
+toughness=4
+[/card]
+[card]
+text=Flying (This creature can't be blocked except by creatures with flying or reach.)   Cloud Sprite can block only creatures with flying.
 id=19563
 name=Cloud Sprite
 rarity=C
@@ -1353,6 +1365,18 @@ auto=moveTo(exile) all(enchantment,artifact|graveyard)
 auto=@movedTo(this|graveyard,exile,hand) from(myBattlefield):moveTo(myhand) all(artifact,enchantment|mygraveyard) && moveTo(opponenthand) all(artifact,enchantment|opponentgraveyard)
 power=2
 toughness=2
+[/card]
+[card]
+text=When Saprazzan Outrigger attacks or blocks, put it on top of its owner's library at end of combat.
+id=21773
+name=Saprazzan Outrigger
+rarity=C
+mana={3}{U}
+type=Creature
+subtype=Merfolk
+auto=@each combatends:moveTo(ownerlibrary) all(saprazzan outrigger[attacking;blocking]|myBattlefield)
+power=5
+toughness=5
 [/card]
 [card]
 text={2}{R}{T}, Discard a card: Destroy target land.

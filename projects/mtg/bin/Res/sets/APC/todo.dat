@@ -243,17 +243,6 @@ type=Instant
 text=Fire deals 2 damage divided as you choose among any number of target creatures and/or players. rarity=U
 [/card]
 [card]
-id=19117
-name=Flowstone Charger
-mana={2}{R}{W}
-type=Creature
-subtype=Beast
-power=2
-toughness=5
-Whenever Flowstone Charger attacks, it gets +3/-3 until end of turn.
-rarity=U
-[/card]
-[card]
 id=28805
 name=Foul Presence
 mana={2}{B}

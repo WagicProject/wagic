@@ -269,17 +269,6 @@ text=Target creature gets +2/+2 and gains horsemanship. (It can't be blocked exc
 rarity=U
 [/card]
 [card]
-id=10624
-name=Shu Defender
-mana={2}{W}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=2
-text=Whenever Shu Defender blocks, it gets +0/+2 until end of turn.
-rarity=C
-[/card]
-[card]
 id=10591
 name=Slashing Tiger
 mana={2}{G}{G}
@@ -343,17 +332,6 @@ mana={1}{W}
 type=Instant
 text=Cast Warrior's Stand only during the declare attackers step and only if you've been attacked this step. Creatures you control get +2/+2 until end of turn.
 rarity=U
-[/card]
-[card]
-id=10557
-name=Wei Ambush Force
-mana={1}{B}
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=1
-text=Whenever Wei Ambush Force attacks, it gets +2/+0 until end of turn.
-rarity=C
 [/card]
 [card]
 id=10583

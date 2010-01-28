@@ -1347,6 +1347,18 @@ power=1
 toughness=2
 [/card]
 [card]
+text=When Phantom Whelp attacks or blocks, return it to its owner's hand at end of combat.
+id=31814
+name=Phantom Whelp
+rarity=C
+mana={1}{U}
+type=Creature
+subtype=Illusion Hound
+auto=@each combatends:moveTo(ownerhand) all(phantom whelp[attacking;blocking]|myBattlefield)
+power=2
+toughness=2
+[/card]
+[card]
 ####Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1) 
 text=Whenever Pianna Nomad Captain attacks, attacking creatures get +1/+1 until end of turn.
 id=31790

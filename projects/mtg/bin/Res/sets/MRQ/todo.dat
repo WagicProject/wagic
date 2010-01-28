@@ -170,17 +170,6 @@ type=Sorcery
 mana={3}{R}{R}
 [/card]
 [card]
-text=When Ceremonial Guard attacks or blocks, destroy it at end of combat.
-id=19603
-name=Ceremonial Guard
-rarity=C
-type=Creature
-mana={2}{R}
-power=3
-subtype=Human Soldier
-toughness=4
-[/card]
-[card]
 text=Whenever Chambered Nautilus becomes blocked, you may draw a card.
 id=19798
 name=Chambered Nautilus
@@ -1345,17 +1334,6 @@ mana={3}{U}
 power=1
 subtype=Merfolk Soldier
 toughness=3
-[/card]
-[card]
-text=When Saprazzan Outrigger attacks or blocks, put it on top of its owner's library at end of combat.
-id=21773
-name=Saprazzan Outrigger
-rarity=C
-type=Creature
-mana={3}{U}
-power=5
-subtype=Merfolk
-toughness=5
 [/card]
 [card]
 text=When Saprazzan Raider becomes blocked, return it to its owner's hand.

@@ -240,6 +240,19 @@ toughness=1
 abilities=flying
 [/card]
 [card]
+text=Giant Tortoise gets +0/+3 as long as it's untapped.
+id=934
+name=Giant Tortoise
+rarity=C
+mana={1}{U}
+type=Creature
+subtype=Turtle
+auto=lord(giant tortoise[-tapped]) 0/3
+auto=lord(other giant tortoise[-tapped]) 0/-3
+power=1
+toughness=1
+[/card]
+[card]
 text={T}: Target creature can't be regenerated this turn.
 id=961
 name=Hurr Jackal

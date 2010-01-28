@@ -1844,6 +1844,20 @@ toughness=1
 abilities=shadow,protection from red
 [/card]
 [card]
+text=Shadow (This creature can block or be blocked by only creatures with shadow.)  Whenever Soltari Trooper attacks, it gets +1/+1 until end of turn.
+id=4905
+name=Soltari Trooper
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Soltari Soldier
+auto=lord(soltari trooper[attacking]|mybattlefield) 1/1
+auto=lord(other soltari trooper[attacking]|mybattlefield) -1/-1
+power=1
+toughness=1
+abilities=shadow
+[/card]
+[card]
 text=Pay 3 life: Put a +1/+1 counter on Souldrinker.
 id=4687
 name=Souldrinker

@@ -22,7 +22,6 @@ type=Instant
 text=Counter target spell. Its controller may draw up to two cards at the beginning of the next turn's upkeep. You draw a card at the beginning of the next turn's upkeep.
 rarity=C
 [/card]
-
 [card]
 id=3042
 name=Ashnod's Cylix
@@ -1074,17 +1073,6 @@ type=land
 auto={T}: add {1}
 text=If Sheltered Valley would enter the battlefield, instead sacrifice each other permanent named Sheltered Valley you control, then put Sheltered Valley onto the battlefield. At the beginning of your upkeep, if you control three or fewer lands, you gain 1 life. {T}: Add {1} to your mana pool.
 rarity=R
-[/card]
-[card]
-id=3056
-name=Shield Sphere
-mana={0}
-type=Artifact Creature
-subtype=Wall
-power=0
-toughness=6
-text=Defender Whenever Shield Sphere blocks, put a -0/-1 counter on it.
-rarity=U
 [/card]
 [card]
 id=3057

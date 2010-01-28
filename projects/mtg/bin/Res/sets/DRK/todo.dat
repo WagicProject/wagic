@@ -59,17 +59,6 @@ text=Enchant creature Enchanted creature can't attack unless its controller pays
 rarity=C
 [/card]
 [card]
-id=1786
-name=Cave People
-mana={1}{R}{R}
-type=Creature
-subtype=Human
-power=1
-toughness=4
-text=Whenever Cave People attacks, it gets +1/-2 until end of turn. {1}{R}{R}, {T}: Target creature gains mountainwalk until end of turn.
-rarity=U
-[/card]
-[card]
 id=1823
 name=City of Shadows
 mana=

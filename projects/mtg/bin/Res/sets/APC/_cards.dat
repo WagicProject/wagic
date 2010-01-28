@@ -247,6 +247,19 @@ mana={1}{W}{B}{R}
 type=Enchantment
 [/card]
 [card]
+Whenever Flowstone Charger attacks, it gets +3/-3 until end of turn.
+id=19117
+name=Flowstone Charger
+rarity=U
+mana={2}{R}{W}
+type=Creature
+subtype=Beast
+auto=lord(flowstone charger[attacking]|myBattlefield) 3/-3
+auto=lord(other flowstone charger[attacking]|myBattlefield) -3/3
+power=2
+toughness=5
+[/card]
+[card]
 text=Flying
 id=26757
 name=Gaea's Skyfolk

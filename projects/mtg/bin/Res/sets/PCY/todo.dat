@@ -895,17 +895,6 @@ text=Target creature gets +1/+1 until end of turn. That creature gets an additio
 rarity=C
 [/card]
 [card]
-id=24585
-name=Windscouter
-mana={3}{U}
-type=Creature
-subtype=Human Scout
-power=3
-toughness=3
-text=Flying Whenever Windscouter attacks or blocks, return it to its owner's hand at end of combat.
-rarity=U
-[/card]
-[card]
 id=23318
 name=Wintermoon Mesa
 mana=

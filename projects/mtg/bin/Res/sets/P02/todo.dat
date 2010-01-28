@@ -113,17 +113,6 @@ text=Look at the top card of target player's library. You may put that card into
 rarity=U
 [/card]
 [card]
-id=6604
-name=Goblin General
-mana={1}{R}{R}
-type=Creature
-subtype=Goblin Warrior
-power=1
-toughness=1
-text=Whenever Goblin General attacks, Goblin creatures you control get +1/+1 until end of turn.
-rarity=U
-[/card]
-[card]
 id=6603
 name=Goblin War Cry
 mana={2}{R}
@@ -168,17 +157,6 @@ power=2
 toughness=2
 text=You may have Lone Wolf assign its combat damage as though it weren't blocked.
 rarity=U
-[/card]
-[card]
-id=6557
-name=Lurking Nightstalker
-mana={B}{B}
-type=Creature
-subtype=Nightstalker
-power=1
-toughness=1
-text=Whenever Lurking Nightstalker attacks, it gets +2/+0 until end of turn.
-rarity=C
 [/card]
 [card]
 id=6562
@@ -353,17 +331,6 @@ name=Tidal Surge
 mana={1}{U}
 type=Sorcery
 text=Tap up to three target creatures without flying.
-rarity=C
-[/card]
-[card]
-id=6494
-name=Town Sentry
-mana={2}{W}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=2
-text=Whenever Town Sentry blocks, it gets +0/+2 until end of turn.
 rarity=C
 [/card]
 [card]

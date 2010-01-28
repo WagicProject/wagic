@@ -458,6 +458,19 @@ mana={U}
 type=Instant
 [/card]
 [card]
+text=Defender (This creature can't attack.)   Flying   When Stoic Ephemera blocks, sacrifice it at end of combat.
+id=107527
+name=Stoic Ephemera
+rarity=U
+mana={2}{W}
+type=Creature
+subtype=Spirit
+auto=@each combatends:moveTo(ownergraveyard) all(stoic ephemera[attacking;blocking]|myBattlefield)
+power=5
+toughness=5
+abilities=flying,defender
+[/card]
+[card]
 text=Counter all other spells. Draw a card for each spell countered this way.
 id=107284
 name=Swift Silence

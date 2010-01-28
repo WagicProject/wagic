@@ -592,17 +592,6 @@ type=Enchantment
 mana={1}{G}
 [/card]
 [card]
-text=Whenever Hollow Dogs attacks, it gets +2/+0 until end of turn.
-id=5606
-name=Hollow Dogs
-rarity=C
-type=Creature
-mana={4}{B}
-power=3
-subtype=Zombie Hound
-toughness=3
-[/card]
-[card]
 text=Target creature loses all abilities and becomes 0/1 until end of turn.
 id=5702
 name=Humble
@@ -941,17 +930,6 @@ name=Rain of Salt
 rarity=U
 type=Sorcery
 mana={4}{R}{R}
-[/card]
-[card]
-text=Flying     Whenever Ravenous Skirge attacks, it gets +2/+0 until end of turn.
-id=9720
-name=Ravenous Skirge
-rarity=C
-type=Creature
-mana={2}{B}
-power=1
-subtype=Imp
-toughness=1
 [/card]
 [card]
 text=As an additional cost to play Raze, sacrifice a land.       Destroy target land.
@@ -1360,17 +1338,6 @@ mana={2}{B}{B}
 subtype=Aura
 [/card]
 [card]
-text=Vebulid comes into play with a +1/+1 counter on it.     At the beginning of your upkeep, you may put a +1/+1 counter on Vebulid.     When Vebulid attacks or blocks, destroy it at end of combat.
-id=5688
-name=Vebulid
-rarity=R
-type=Creature
-mana={B}
-power=0
-subtype=Horror
-toughness=0
-[/card]
-[card]
 text=When an opponent plays a spell, if Veil of Birds is an enchantment, Veil of Birds becomes a 1/1 Bird creature with flying.
 id=5788
 name=Veil of Birds
@@ -1477,17 +1444,6 @@ mana={1}{R}{R}
 power=3
 subtype=Lizard
 toughness=4
-[/card]
-[card]
-text=Defender (This creature can't attack.)  Whenever Wall of Junk blocks, return it to its owner's hand at end of combat.
-id=8871
-name=Wall of Junk
-rarity=U
-type=Artifact Creature
-mana={2}
-power=0
-subtype=Wall
-toughness=7
 [/card]
 [card]
 text=At the beginning of your upkeep, you may put a verse counter on War Dance.       Sacrifice War Dance: Target creature gets +X/+X until end of turn, where X is the number of verse counters on War Dance.

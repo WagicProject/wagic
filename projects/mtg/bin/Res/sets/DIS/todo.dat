@@ -1125,17 +1125,6 @@ text=Creatures you control get +1/+1 until end of turn. Forecast - {W}, Reveal S
 rarity=C
 [/card]
 [card]
-id=107527
-name=Stoic Ephemera
-mana={2}{W}
-type=Creature
-subtype=Spirit
-power=5
-toughness=5
-text=Defender (This creature can't attack.) Flying When Stoic Ephemera blocks, sacrifice it at end of combat.
-rarity=U
-[/card]
-[card]
 id=107505
 name=Stomp and Howl
 mana={2}{G}

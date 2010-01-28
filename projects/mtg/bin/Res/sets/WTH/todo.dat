@@ -239,17 +239,6 @@ text=Cast Choking Vines only during the declare blockers step. X target attackin
 rarity=C
 [/card]
 [card]
-id=4540
-name=Cinder Wall
-mana={R}
-type=Creature
-subtype=Wall
-power=3
-toughness=3
-text=Defender (This creature can't attack.) When Cinder Wall blocks, destroy it at end of combat.
-rarity=C
-[/card]
-[card]
 id=4452
 name=Circling Vultures
 mana={B}
@@ -389,17 +378,6 @@ name=Flux
 mana={2}{U}
 type=Sorcery
 text=Each player discards any number of cards, then draws that many cards. Draw a card.
-rarity=U
-[/card]
-[card]
-id=4486
-name=Fog Elemental
-mana={2}{U}
-type=Creature
-subtype=Elemental
-power=4
-toughness=4
-text=Flying (This creature can't be blocked except by creatures with flying or reach.) When Fog Elemental attacks or blocks, sacrifice it at end of combat.
 rarity=U
 [/card]
 [card]

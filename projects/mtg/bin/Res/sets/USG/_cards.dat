@@ -873,6 +873,19 @@ mana={2}{U}
 type=Instant
 [/card]
 [card]
+text=Whenever Hollow Dogs attacks, it gets +2/+0 until end of turn.
+id=5606
+name=Hollow Dogs
+rarity=C
+mana={4}{B}
+type=Creature
+subtype=Zombie Hound
+auto=lord(hollow dogs[attacking]|mybattlefield) 2/0
+auto=lord(other hollow dogs[attacking]|mybattlefield) -2/0
+power=3
+toughness=3
+[/card]
+[card]
 text={0}: Hopping Automaton gets -1/-1 and gains flying until end of turn.
 id=5700
 name=Hopping Automaton
@@ -1287,6 +1300,20 @@ mana={B}
 type=Instant
 [/card]
 [card]
+text=Flying   Whenever Ravenous Skirge attacks, it gets +2/+0 until end of turn.
+id=9720
+name=Ravenous Skirge
+rarity=C
+mana={2}{B}
+type=Creature
+subtype=Imp
+auto=lord(ravenous skirge[attacking]|mybattlefield) 2/0
+auto=lord(other ravenous skirge[attacking]|mybattlefield) -2/0
+power=1
+toughness=1
+abilities=flying
+[/card]
+[card]
 text=At the beginning of your upkeep, if you control another nonland permanent, sacrifice Reclusive Wight.
 auto=@each my upkeep:aslongas(other *[-land]|mybattlefield) bury
 id=8803
@@ -1621,9 +1648,9 @@ toughness=2
 [/card]
 [card]
 text=Target player draws X cards.
+id=5677
 target=player
 auto=draw:X
-id=5677
 name=Stroke of Genius
 rarity=R
 mana={X}{2}{U}
@@ -1742,26 +1769,40 @@ toughness=2
 [/card]
 [card]
 text={B}: Regenerate Unworthy Dead.
-auto={B}:regenerate
 id=5780
 name=Unworthy Dead
 rarity=C
 mana={1}{B}
 type=Creature
 subtype=Skeleton
+auto={B}:regenerate
 power=1
 toughness=1
 [/card]
 [card]
-text=Enchant creature. Enchanted creature has deathtouch. (Whenever it deals damage to a creature, destroy that creature.)
+text=Vebulid enters the battlefield with a +1/+1 counter on it.   At the beginning of your upkeep, you may put a +1/+1 counter on Vebulid.   When Vebulid attacks or blocks, destroy it at end of combat.
+id=5688
+name=Vebulid
+rarity=R
+mana={B}
+type=Creature
+subtype=Horror
+auto=counter(1/1)
+auto=@each my upkeep:may counter(1/1)
+auto=@each combatends:destroy all(vebuild[attacking;blocking]|myBattlefield)
+power=0
+toughness=0
+[/card]
+[card]
+text=Enchant creature   Enchanted creature has deathtouch. (Whenever it deals damage to a creature, destroy that creature.)
 id=8908
-name=Venomous Fangs
 target=creature
 auto=deathtouch
-type=Enchantment
-mana={2}{G}
-subtype=Aura
+name=Venomous Fangs
 rarity=C
+mana={2}{G}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 text=Whenever Viashino Weaponsmith becomes blocked, it gets +2/+2 until end of turn for each creature blocking it.
@@ -1807,6 +1848,19 @@ name=Voltaic Key
 rarity=U
 mana={1}
 type=Artifact
+[/card]
+[card]
+text=Defender (This creature can't attack.)   Whenever Wall of Junk blocks, return it to its owner's hand at end of combat.
+id=8871
+name=Wall of Junk
+rarity=U
+mana={2}
+type=Artifact Creature
+subtype=Wall
+auto=@each combatends:moveTo(ownerhand) all(wall of junk[blocking])
+power=0
+toughness=7
+abilities=defender
 [/card]
 [card]
 text={B}{B}, {T}: Destroy target white creature. 

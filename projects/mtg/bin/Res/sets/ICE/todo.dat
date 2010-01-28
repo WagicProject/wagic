@@ -1289,11 +1289,10 @@ mana={2}
 text=Whenever Marton Stromgald attacks, other attacking creatures get +1/+1 until end of turn for each attacking creature other than Marton Stromgald.     Whenever Marton Stromgald blocks, other blocking creatures get +1/+1 until end of turn for each blocking creature other than Marton Stromgald.
 id=2635
 name=Marton Stromgald
-auto=aslongas(Marton Stromgald[attacking]|myBattlefield):lord(creature[attacking]) foreach(creature[attacking] other|myBattlefield) 1/1 other
-auto=aslongas(Marton Stromgald[blocking]|myBattlefield):lord(creature[blocking]) foreach(creature[blocking] other|myBattlefield) 1/1 other
+auto=aslongas(marton stromgald[attacking]|myBattlefield) lord(creature[attacking]) foreach(creature[attacking]|myBattlefield) 1/1 other
+auto=aslongas(marton stromgald[blocking]|myBattlefield) lord(creature[blocking]) foreach(creature[blocking]|myBattlefield) 1/1 other
 rarity=R
-type=Creature
-abilities=legendary
+type=Legendary Creature
 mana={2}{R}{R}
 power=1
 subtype=Human Knight
@@ -1973,14 +1972,6 @@ mana={3}
 power=0
 toughness=4
 subtype=Wall
-[/card]
-[card]
-text=All creatures lose flying until end of turn.     Sacrifice a snow land: Return Whiteout from your graveyard to your hand.
-id=2599
-name=Whiteout
-rarity=U
-type=Instant
-mana={1}{G}
 [/card]
 [card]
 text=Wiitigo comes into play with six +1/+1 counters on it.     At the beginning of your upkeep, put a +1/+1 counter on Wiitigo if it has blocked or been blocked since your last upkeep. Otherwise, remove a +1/+1 counter from it.

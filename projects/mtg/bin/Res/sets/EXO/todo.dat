@@ -45,17 +45,6 @@ text=Each player chooses from the permanents he or she controls an artifact, a c
 rarity=R
 [/card]
 [card]
-id=6035
-name=Charging Paladin
-mana={2}{W}
-type=Creature
-subtype=Human Knight
-power=2
-toughness=2
-text=Whenever Charging Paladin attacks, it gets +0/+3 until end of turn.
-rarity=U
-[/card]
-[card]
 id=6105
 name=Cinder Crawler
 mana={1}{R}

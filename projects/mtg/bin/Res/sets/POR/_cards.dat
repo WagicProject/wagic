@@ -244,6 +244,32 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Whenever Charging Bandits attacks, it gets +2/+0 until end of turn.
+id=4212
+name=Charging Bandits
+rarity=U
+mana={4}{B}
+type=Creature
+subtype=Human Rogue
+auto=lord(charging paladin[attacking]|myBattlefield) 2/0
+auto=lord(other charging paladin[attacking]|myBattlefield) -2/0
+power=3
+toughness=3
+[/card]
+[card]
+text=Whenever Charging Paladin attacks, it gets +0/+3 until end of turn.
+id=4379
+name=Charging Paladin
+auto=lord(charging paladin[attacking]|myBattlefield) 0/3
+auto=lord(other charging paladin[attacking]|myBattlefield) 0/-3
+rarity=U
+mana={2}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=2
+[/card]
+[card]
 text=Target creature gains flying until end of turn.   Draw a card.
 id=4251
 target=creature

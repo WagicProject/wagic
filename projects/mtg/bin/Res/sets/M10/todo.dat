@@ -30,17 +30,6 @@ text=Flash (You may cast this spell any time you could cast an instant.) Flying 
 rarity=M
 [/card]
 [card]
-id=189915
-name=Bramble Creeper
-mana={4}{G}
-type=Creature
-subtype=Elemental
-power=0
-toughness=3
-text=Whenever Bramble Creeper attacks, it gets +5/+0 until end of turn.
-rarity=C
-[/card]
-[card]
 id=189914
 name=Capricious Efreet
 mana={4}{R}{R}

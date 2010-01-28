@@ -128,6 +128,18 @@ power=5
 toughness=3
 [/card]
 [card]
+text=Defender (This creature can't attack.)   When Cinder Wall blocks, destroy it at end of combat.
+id=4540
+name=Cinder Wall
+rarity=C
+mana={R}
+type=Creature
+subtype=Wall
+auto=@each combatends:destroy all(cinder wall[attacking;blocking]|myBattlefield)
+power=3
+toughness=3
+[/card]
+[card]
 text=Flying   Cloud Djinn can block only creatures with flying.
 id=4482
 name=Cloud Djinn

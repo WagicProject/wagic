@@ -440,6 +440,18 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Whenever Goblin General attacks, Goblin creatures you control get +1/+1 until end of turn.
+id=6604
+name=Goblin General
+rarity=U
+mana={1}{R}{R}
+type=Creature
+subtype=Goblin Warrior
+auto=aslongas(goblin general[attacking]|myBattlefield) lord(goblin|myBattlefield) 1/1 ueot
+power=1
+toughness=1
+[/card]
+[card]
 text=Flying   Goblin Glider can't block.
 id=6584
 name=Goblin Glider
@@ -598,6 +610,19 @@ name=Lava Axe
 rarity=C
 mana={4}{R}
 type=Sorcery
+[/card]
+[card]
+text=Whenever Lurking Nightstalker attacks, it gets +2/+0 until end of turn.
+id=6557
+name=Lurking Nightstalker
+rarity=C
+mana={B}{B}
+type=Creature
+subtype=Nightstalker
+auto=lord(lurking nightstalker[attacking]|mybattlefield) 2/0
+auto=lord(other lurking nightstalker[attacking]|mybattlefield) -2/0
+power=1
+toughness=1
 [/card]
 [card]
 text=Forestwalk
@@ -1008,7 +1033,6 @@ text=Sylvan Yeti's power is equal to the number of cards in your hand.
 id=6635
 name=Sylvan Yeti
 rarity=R
-
 mana={2}{G}{G}
 auto=foreach(*|myhand) 1/0
 type=Creature
@@ -1125,6 +1149,19 @@ name=Touch of Brilliance
 rarity=C
 mana={3}{U}
 type=Sorcery
+[/card]
+[card]
+text=Whenever Town Sentry blocks, it gets +0/+2 until end of turn.
+id=6494
+name=Town Sentry
+rarity=C
+mana={2}{W}
+type=Creature
+subtype=Human Soldier
+auto=lord(town sentry[blocking]|mybattlefield) 0/2
+auto=lord(other town sentry[blocking]|mybattlefield) 0/-2
+power=2
+toughness=2
 [/card]
 [card]
 text=Reach (This creature can block creatures with flying.)

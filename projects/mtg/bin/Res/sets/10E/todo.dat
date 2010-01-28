@@ -247,17 +247,6 @@ auto={1}{U}:becomes(Creature Faerie,2/1,flying blue)
 type=Land
 [/card]
 [card]
-text=Flying (This creature can't be blocked except by creatures with flying or reach.)  When Fog Elemental attacks or blocks, sacrifice it at end of combat.
-id=132073
-name=Fog Elemental
-rarity=U
-type=Creature
-mana={2}{U}
-power=4
-subtype=Elemental
-toughness=4
-[/card]
-[card]
 text=Forbidding Watchtower comes into play tapped.     {T}: Add {W} to your mana pool.     {1}{W}: Forbidding Watchtower becomes a 1/5 white Soldier creature until end of turn. It's still a land.
 id=106428
 name=Forbidding Watchtower

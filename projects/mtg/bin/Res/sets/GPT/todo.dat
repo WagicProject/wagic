@@ -972,17 +972,6 @@ text=Defender (This creature can't attack.) Whenever Vertigo Spawn blocks a crea
 rarity=U
 [/card]
 [card]
-id=107090
-name=Witch-Maw Nephilim
-mana={G}{W}{U}{B}
-type=Creature
-subtype=Nephilim
-power=1
-toughness=1
-text=Whenever you cast a spell, you may put two +1/+1 counters on Witch-Maw Nephilim. Whenever Witch-Maw Nephilim attacks, it gains trample until end of turn if its power is 10 or greater.
-rarity=R
-[/card]
-[card]
 id=97203
 name=Withstand
 mana={2}{W}

@@ -711,6 +711,19 @@ mana={2}{G}
 type=Instant
 [/card]
 [card]
+text=Whenever you cast a spell, you may put two +1/+1 counters on Witch-Maw Nephilim.   Whenever Witch-Maw Nephilim attacks, it gains trample until end of turn if its power is 10 or greater.
+id=107090
+name=Witch-Maw Nephilim
+rarity=R
+mana={G}{W}{U}{B}
+type=Creature
+subtype=Nephilim
+auto=@movedTo(*|mystack):may counter(1/1,2)
+auto=lord(witch-maw nephilim[attacking;power>=10] trample
+power=1
+toughness=1
+[/card]
+[card]
 id=107693
 name=Wreak Havoc
 mana={2}{R}{G}

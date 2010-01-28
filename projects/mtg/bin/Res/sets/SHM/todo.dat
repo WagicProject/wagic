@@ -522,20 +522,6 @@ power=*
 subtype=Goblin
 toughness=*
 [/card]
-#works but will also give 3/3 to all ungry spriggan in myinplay if attacking
-[card]
-text=Trample     Whenever Hungry Spriggan attacks, it gets +3/+3 until end of turn.
-id=153997
-abilities=trample
-auto=aslongas(Hungry Spriggan[attacking]|myinplay) 3/3
-name=Hungry Spriggan
-rarity=C
-type=Creature
-mana={2}{G}
-power=1
-subtype=Goblin Warrior
-toughness=1
-[/card]
 [card]
 text={1}, {T}, Reveal two cards from your hand that share a color: Draw a card.
 id=146040
@@ -1428,17 +1414,6 @@ rarity=R
 type=Enchantment
 mana={GW}{GW}
 subtype=Aura
-[/card]
-[card]
-text=Whenever Wicker Warcrawler attacks or blocks, put a -1/-1 counter on it at end of combat.
-id=154410
-name=Wicker Warcrawler
-rarity=U
-type=Artifact Creature
-mana={5}
-power=6
-subtype=Scarecrow
-toughness=6
 [/card]
 [card]
 text=Choose three target nonenchantment permanents. Destroy one of them at random.

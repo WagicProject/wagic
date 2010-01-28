@@ -124,17 +124,6 @@ text=At the beginning of your upkeep, if a player has more life than any other, 
 rarity=C
 [/card]
 [card]
-id=934
-name=Giant Tortoise
-mana={1}{U}
-type=Creature
-subtype=Turtle
-power=1
-toughness=1
-text=Giant Tortoise gets +0/+3 as long as it's untapped.
-rarity=C
-[/card]
-[card]
 id=918
 name=Guardian Beast
 mana={3}{B}

@@ -52,7 +52,6 @@ toughness=2
 text={G}: Beast Walkers gains banding until end of turn. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
 rarity=R
 [/card]
-
 [card]
 #require testing
 id=2912
@@ -171,34 +170,6 @@ mana={6}
 type=Artifact
 text=Creature spells cost {2} more to cast.
 rarity=R
-[/card]
-[card]
-id=2967
-name=Folk of An-Havva
-mana={G}
-type=Creature
-subtype=Human
-power=1
-toughness=1
-text=Whenever Folk of An-Havva blocks, it gets +2/+0 until end of turn.
-auto=@blocked(creature) from(this):2/0
-#or
-auto=aslongas(this[blocking]|myBattlefield)2/0
-rarity=C
-[/card]
-[card]
-id=2968
-name=Folk of An-Havva
-mana={G}
-type=Creature
-subtype=Human
-power=1
-toughness=1
-text=Whenever Folk of An-Havva blocks, it gets +2/+0 until end of turn.
-auto=@blocked(creature) from(this):2/0
-#or
-auto=aslongas(this[blocking]|myBattlefield)2/0
-rarity=C
 [/card]
 [card]
 id=2941
@@ -505,18 +476,6 @@ power=0
 toughness=1
 text={T}: Reveka, Wizard Savant deals 2 damage to target creature or player and doesn't untap during your next untap step.
 auto={T}:damage:2 target(creature,player) && doesnotuntap
-rarity=U
-[/card]
-[card]
-id=2976
-name=Root Spider
-mana={3}{G}
-type=Creature
-subtype=Spider
-power=2
-toughness=2
-text=Whenever Root Spider blocks, it gets +1/+0 and gains first strike until end of turn.
-auto=@blocked(creature) from(this):1/0 && first strike
 rarity=U
 [/card]
 [card]

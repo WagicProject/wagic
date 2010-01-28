@@ -1036,17 +1036,6 @@ type=Instant
 mana={U}
 [/card]
 [card]
-text=When Phantom Whelp attacks or blocks, return it to its owner's hand at end of combat.
-id=31814
-name=Phantom Whelp
-rarity=C
-type=Creature
-mana={1}{U}
-power=2
-subtype=Illusion Hound
-toughness=2
-[/card]
-[card]
 text=Protection from red     {W}, Sacrifice Pilgrim of Justice: The next time a red source of your choice would deal damage this turn, prevent that damage.
 id=29690
 name=Pilgrim of Justice

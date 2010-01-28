@@ -1702,6 +1702,16 @@ mana={2}
 type=Artifact
 [/card]
 [card]
+text=All creatures lose flying until end of turn.   Sacrifice a snow land: Return Whiteout from your graveyard to your hand.
+id=2599
+auto=lord(creature) -flying
+autograveyard={S(land[snow]|myBattlefield)}:moveTo(myhand)
+name=Whiteout
+rarity=U
+mana={1}{G}
+type=Instant
+[/card]
+[card]
 text=Enchant creature   Enchanted creature can't be blocked by white creatures.   Enchanted creature gets +2/+2 as long as an opponent controls a white permanent.
 id=2716
 target=creature

@@ -2278,6 +2278,19 @@ power=3
 toughness=1
 [/card]
 [card]
+text=Whenever Vicious Kavu attacks, it gets +2/+0 until end of turn.
+id=23151
+name=Vicious Kavu
+rarity=U
+mana={1}{B}{R}
+type=Creature
+subtype=Kavu
+auto=lord(vicious kavu[attacking]|mybattlefield) 2/0
+auto=lord(other vicious kavu[attacking]|mybattlefield) -2/0
+power=2
+toughness=2
+[/card]
+[card]
 text=When Vodalian Merchant enters the battlefield, draw a card, then discard a card.
 id=26296
 name=Vodalian Merchant
