@@ -719,7 +719,7 @@ mana={G}{W}{U}{B}
 type=Creature
 subtype=Nephilim
 auto=@movedTo(*|mystack):may counter(1/1,2)
-auto=lord(witch-maw nephilim[attacking;power>=10] trample
+auto=lord(witch-maw nephilim[attacking;power>=10]) trample
 power=1
 toughness=1
 [/card]
