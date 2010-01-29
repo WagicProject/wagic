@@ -1218,17 +1218,6 @@ mana={2}{U}
 subtype=Aura
 [/card]
 [card]
-text=Wither (This deals damage to creatures in the form of -1/-1 counters.)  Whenever Slinking Giant blocks or becomes blocked, it gets -3/-0 until end of turn.
-id=153995
-name=Slinking Giant
-rarity=U
-type=Creature
-mana={2}{R}{R}
-power=4
-subtype=Giant Rogue
-toughness=4
-[/card]
-[card]
 text=Whenever a player plays a black spell, you may pay {1}. If you do, target player loses 1 life.
 id=147376
 name=Smolder Initiate

@@ -441,18 +441,6 @@ subtype=Beast
 toughness=4
 [/card]
 [card]
-text=Whenever Deepwood Wolverine becomes blocked, it gets +2/+0 until end of turn.
-id=19623
-name=Deepwood Wolverine
-rarity=C
-type=Creature
-mana={G}
-power=1
-subtype=Wolverine
-toughness=1
-[/card]
-
-[card]
 text=Trample     You may sacrifice three black creatures rather than pay Delraich's mana cost.
 id=19697
 name=Delraich

@@ -5,9 +5,9 @@ block=Masks
 [/meta]
 [card]
 text=Enchant creature   Enchanted creature gets +2/+2 for each other enchantment on the battlefield.
+id=19634
 target=creature
 auto=foreach(other enchantment|battlefield) 2/2
-id=19634
 name=Ancestral Mask
 rarity=C
 mana={2}{G}
@@ -154,9 +154,10 @@ type=Sorcery
 [/card]
 [card]
 text=Flash   Enchant creature   Enchanted creature has flying.
+id=19574
+
 target=creature
 auto=flying
-id=19574
 name=Buoyancy
 rarity=C
 mana={1}{U}
@@ -254,9 +255,9 @@ abilities=flying
 [/card]
 [card]
 text=Search your library for a Mercenary card, reveal that card, and put it into your hand. Then shuffle your library.
+id=19832
 target=mercenary|myLibrary
 auto=moveTo(myHand)
-id=19832
 name=Cateran Summons
 rarity=U
 mana={B}
@@ -264,10 +265,10 @@ type=Sorcery
 [/card]
 [card]
 text=Enchant creature   Enchanted creature gets +1/+1 and has mountainwalk.
+id=19620
 target=creature
 auto=1/1
 auto=mountainwalk
-id=19620
 name=Cave Sense
 rarity=C
 mana={1}{R}
@@ -331,9 +332,9 @@ type=Enchantment
 [/card]
 [card]
 text=Counter target spell.
+id=19570
 target=*|stack
 auto=fizzle
-id=19570
 name=Counterspell
 rarity=U
 mana={U}{U}
@@ -440,6 +441,19 @@ type=Creature
 subtype=Zombie
 auto={0}:regenerate && life:-2 controller
 power=2
+toughness=1
+[/card]
+[card]
+text=Whenever Deepwood Wolverine becomes blocked, it gets +2/+0 until end of turn.
+id=19623
+name=Deepwood Wolverine
+rarity=C
+mana={G}
+type=Creature
+subtype=Wolverine
+auto=rampage(2/0,0)
+auto=rampage(-2/0,1)
+power=1
 toughness=1
 [/card]
 [card]

@@ -843,6 +843,19 @@ power=*
 toughness=4
 [/card]
 [card]
+text=Whenever Slashing Tiger becomes blocked, it gets +2/+2 until end of turn.
+id=10591
+name=Slashing Tiger
+rarity=R
+mana={2}{G}{G}
+type=Creature
+subtype=Cat
+auto=rampage(2/2,0)
+auto=rampage(-2/-2,1)
+power=3
+toughness=3
+[/card]
+[card]
 id=10545
 name=Southern Elephant
 rarity=C
@@ -998,6 +1011,19 @@ name=Three Visits
 rarity=U
 mana={1}{G}
 type=Sorcery
+[/card]
+[card]
+text=Whenever Trained Cheetah becomes blocked, it gets +1/+1 until end of turn.
+id=10573
+name=Trained Cheetah
+rarity=U
+mana={2}{G}
+type=Creature
+subtype=Cat
+auto=rampage(1/1,0)
+auto=rampage(-1/-1,1)
+power=2
+toughness=2
 [/card]
 [card]
 id=10571

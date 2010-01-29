@@ -1,4 +1,4 @@
-[meta]
+p[meta]
 author=Wagic Team
 year=1998
 block=Portal
@@ -766,6 +766,19 @@ power=1
 toughness=2
 [/card]
 [card]
+text=Whenever Norwood Warrior becomes blocked, it gets +1/+1 until end of turn.
+id=6620
+name=Norwood Warrior
+rarity=C
+mana={2}{G}
+type=Creature
+subtype=Elf Warrior
+auto=rampage(1/1,0)
+auto=rampage(-1/-1,1)
+power=2
+toughness=2
+[/card]
+[card]
 id=6599
 name=Obsidian Giant
 rarity=U
@@ -896,6 +909,19 @@ name=Raise Dead
 rarity=C
 mana={B}
 type=Sorcery
+[/card]
+[card]
+text=Whenever Razorclaw Bear becomes blocked, it gets +2/+2 until end of turn.
+id=6638
+name=Razorclaw Bear
+rarity=R
+mana={2}{G}{G}
+type=Creature
+subtype=Bear
+auto=rampage(2/2,0)
+auto=rampage(-2/-2,1)
+power=3
+toughness=3
 [/card]
 [card]
 text=Cast Remove only during the declare attackers step and only if you've been attacked this step. Return target attacking creature to its owner's hand.

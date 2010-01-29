@@ -422,27 +422,28 @@ mana={1}{R}
 type=Instant
 [/card]
 [card]
-text=Whenever Pygmy Troll becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.   {G}: Regenerate Pygmy Troll.
+text=Whenever Pygmy Troll becomes blocked by a creature, Pygmy Troll gets +1/+1 until end of turn.   {G}: Regenerate Pygmy Troll.
 id=6131
-auto=rampage(1/1,0)
-auto={G}:regenerate
 name=Pygmy Troll
 rarity=C
 mana={1}{G}
 type=Creature
 subtype=Troll
+auto=rampage(1/1,0)
+auto=rampage(-1/-1,1)
+auto={G}:regenerate
 power=1
 toughness=1
 [/card]
 [card]
-text=Whenever Rabid Wolverines becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.
+text=Whenever Rabid Wolverines becomes blocked by a creature, Pygmy Troll gets +1/+1 until end of turn.
 id=6134
-auto=rampage(1/1,0)
 name=Rabid Wolverines
 rarity=C
 mana={3}{G}{G}
 type=Creature
 subtype=Wolverine
+auto=rampage(1/1,0)
 power=4
 toughness=4
 [/card]

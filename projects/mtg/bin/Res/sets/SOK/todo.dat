@@ -10,17 +10,6 @@ toughness=2
 rarity=R
 [/card]
 [card]
-text=Flying Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.)
-name=Araba Mothrider
-id=74050
-mana={1}{W}
-type=Creature
-subtype=Human Samurai
-power=1
-toughness=1
-rarity=C
-[/card]
-[card]
 text={X}{G}, {T}: Arashi, the Sky Asunder deals X damage to target creature with flying. Channel — {X}{G}{G}, Discard Arashi: Arashi deals X damage to each creature with flying.
 name=Arashi, the Sky Asunder
 id=87333
@@ -360,28 +349,6 @@ type=Instant
 rarity=U
 [/card]
 [card]
-text=Protection from white Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.)
-name=Hand of Cruelty
-id=74063
-mana={B}{B}
-type=Creature
-subtype=Human Samurai
-power=2
-toughness=2
-rarity=U
-[/card]
-[card]
-text=Protection from black Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.)
-name=Hand of Honor
-id=74173
-mana={W}{W}
-type=Creature
-subtype=Human Samurai
-power=2
-toughness=2
-rarity=U
-[/card]
-[card]
 text=If target player has exactly 10 life, Hidetsugu's Second Rite deals 10 damage to that player.
 name=Hidetsugu's Second Rite
 id=88818
@@ -424,17 +391,6 @@ subtype=Arcane
 rarity=C
 [/card]
 [card]
-text=Bushido 2 (When this blocks or becomes blocked, it gets +2/+2 until end of turn.) {2}{R}, Sacrifice a Samurai: Samurai creatures you control gain double strike until end of turn.
-name=Iizuka the Ruthless
-id=79860
-mana={3}{R}{R}
-type=Legendary Creature
-subtype=Human Samurai
-power=3
-toughness=3
-rarity=R
-[/card]
-[card]
 text=When Iname as One enters the battlefield, if you cast it from your hand, you may search your library for a Spirit permanent card, put it onto the battlefield, then shuffle your library. When Iname as One is put into a graveyard from the battlefield, you may exile it. If you do, return target Spirit permanent card from your graveyard to the battlefield.
 name=Iname as One
 id=74618
@@ -457,17 +413,6 @@ subtype=Kirin Spirit
 power=3
 toughness=3
 rarity=R
-[/card]
-[card]
-text=Bushido 2 (When this blocks or becomes blocked, it gets +2/+2 until end of turn.)
-name=Inner-Chamber Guard
-id=74002
-mana={1}{W}
-type=Creature
-subtype=Human Samurai
-power=0
-toughness=2
-rarity=U
 [/card]
 [card]
 text=Target creature attacks this turn if able. Splice onto Arcane {R} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
@@ -557,17 +502,6 @@ toughness=1
 rarity=C
 [/card]
 [card]
-text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.) When Kitsune Dawnblade enters the battlefield, you may tap target creature.
-name=Kitsune Dawnblade
-id=80530
-mana={4}{W}
-type=Creature
-subtype=Fox Samurai
-power=2
-toughness=3
-rarity=C
-[/card]
-[card]
 text=At the beginning of the end step, if three or more creatures were put into graveyards from the battlefield this turn, flip Kuon, Ogre Ascendant.
 name=Kuon, Ogre Ascendant
 id=87596
@@ -585,17 +519,6 @@ id=87596
 mana={B}{B}{B}
 type=Legendary Enchantment
 rarity=R
-[/card]
-[card]
-text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.) {1}{B}: Regenerate Kuro's Taken.
-name=Kuro's Taken
-id=74065
-mana={1}{B}
-type=Creature
-subtype=Rat Samurai
-power=1
-toughness=1
-rarity=C
 [/card]
 [card]
 text=Each opponent's maximum hand size is reduced by two.
@@ -818,17 +741,6 @@ subtype=Arcane
 rarity=C
 [/card]
 [card]
-text=Bushido 2 (When this blocks or becomes blocked, it gets +2/+2 until end of turn.)
-name=Ronin Cavekeeper
-id=74199
-mana={5}{R}
-type=Creature
-subtype=Human Samurai
-power=4
-toughness=3
-rarity=C
-[/card]
-[card]
 text=When you have 30 or more life, flip Rune-Tail, Kitsune Ascendant.
 name=Rune-Tail, Kitsune Ascendant
 id=87600
@@ -990,17 +902,6 @@ subtype=Ogre Samurai Mercenary
 power=3
 toughness=3
 rarity=U
-[/card]
-[card]
-text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.) {1}{R}: Sokenzan Spellblade gets +X/+0 until end of turn, where X is the number of cards in your hand.
-name=Sokenzan Spellblade
-id=74398
-mana={4}{R}
-type=Creature
-subtype=Ogre Samurai Shaman
-power=2
-toughness=3
-rarity=C
 [/card]
 [card]
 text=Put a 1/1 colorless Spirit creature token onto the battlefield. Splice onto Arcane {W} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)

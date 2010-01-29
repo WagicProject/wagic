@@ -269,17 +269,6 @@ text=Target creature gets +2/+2 and gains horsemanship. (It can't be blocked exc
 rarity=U
 [/card]
 [card]
-id=10591
-name=Slashing Tiger
-mana={2}{G}{G}
-type=Creature
-subtype=Cat
-power=3
-toughness=3
-text=Whenever Slashing Tiger becomes blocked, it gets +2/+2 until end of turn.
-rarity=R
-[/card]
-[card]
 id=10550
 name=Stalking Tiger
 mana={3}{G}
@@ -305,17 +294,6 @@ mana={1}{G}{G}
 type=Sorcery
 text=All creatures able to block target creature this turn do so.
 rarity=R
-[/card]
-[card]
-id=10573
-name=Trained Cheetah
-mana={2}{G}
-type=Creature
-subtype=Cat
-power=2
-toughness=2
-text=Whenever Trained Cheetah becomes blocked, it gets +1/+1 until end of turn.
-rarity=U
 [/card]
 [card]
 id=10552

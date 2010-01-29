@@ -16,9 +16,8 @@ power=1
 toughness=1
 [/card]
 [card]
-text=First Strike {R}{T}: Attacking creatures gain first strike until end of turn.
+text=First Strike   {R}{T}: Attacking creatures gain first strike until end of turn.
 id=50338
-abilities=first strike
 name=Akki Coalflinger
 rarity=U
 mana={1}{R}{R}
@@ -27,6 +26,7 @@ subtype=Goblin Shaman
 auto={R}{T}:lord(creature[attacking]) first strike 
 power=2
 toughness=2
+abilities=first strike
 [/card]
 [card]
 text=When Akki Rockspeaker enters the battlefield, add {R} to your mana pool.
@@ -39,6 +39,22 @@ subtype=Goblin Shaman
 auto=Add{R}
 power=1
 toughness=1
+[/card]
+[card]
+text=Bushido 2 (When this blocks or becomes blocked, it gets +2/+2 until end of turn.)   Battle-Mad Ronin attacks each turn if able.
+id=50383
+name=Battle-Mad Ronin
+rarity=C
+mana={1}{R}
+type=Creature
+subtype=Human Samurai
+auto=rampage(2/2,0)
+auto=rampage(-2/-2,1)
+auto=lord(battle-mad ronin[blocking]|mybattlefield) 2/2
+auto=lord(other battle-mad ronin[blocking]|mybattlefield) -2/-2
+power=1
+toughness=1
+abilities=mustattack
 [/card]
 [card]
 text={T}: Ben-Ben, Akki Hermit deals damage to target attacking creature equal to the number of untapped Mountains you control.
@@ -130,6 +146,21 @@ mana={2}{U}
 type=Sorcery
 [/card]
 [card]
+text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.)   {B}: Cursed Ronin gets +1/+1 until end of turn.
+id=75262
+name=Cursed Ronin
+rarity=C
+mana={3}{B}
+type=Creature
+subtype=Human Samurai
+auto=rampage(1/1,0)
+auto=rampage(-1/-1,1)
+auto=lord(cursed ronin[blocking]|mybattlefield) 1/1
+auto=lord(other cursed ronin[blocking]|mybattlefield) -1/-1
+power=1
+toughness=1
+[/card]
+[card]
 text=Creatures you control get +1/+0 and gain fear until end of turn.
 auto=lord(creature|myBattlefield) 1/0
 auto=lord(creature|myBattlefield) fear
@@ -151,6 +182,21 @@ type=Creature
 subtype=Ogre Warrior
 power=3
 toughness=3
+[/card]
+[card]
+text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.)
+id=50440
+name=Devoted Retainer
+rarity=C
+mana={W}
+type=Creature
+subtype=Human Samurai
+auto=rampage(1/1,0)
+auto=rampage(-1/-1,1)
+auto=lord(devoted retainer[blocking]|mybattlefield) 1/1
+auto=lord(other devoted retainer[blocking]|mybattlefield) -1/-1
+power=1
+toughness=1
 [/card]
 [card]
 text=Whenever you cast a Spirit or Arcane spell, Earthshaker deals 2 damage to each creature without flying.
@@ -630,6 +676,22 @@ toughness=5
 abilities=flying
 [/card]
 [card]
+text=First strike   Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.)
+id=50441
+name=Kitsune Blademaster
+rarity=C
+mana={2}{W}
+type=Creature
+subtype=Fox Samurai
+auto=rampage(1/1,0)
+auto=rampage(-1/-1,1)
+auto=lord(araba mothrider[blocking]|mybattlefield) 1/1
+auto=lord(other araba mothrider[blocking]|mybattlefield) -1/-1
+power=2
+toughness=2
+abilities=first strike
+[/card]
+[card]
 text={T}: Tap target Spirit.
 id=76652
 name=Kitsune Diviner
@@ -691,6 +753,39 @@ auto=@movedTo(this|graveyard) from(battlefield):life:-5 opponent
 power=5
 toughness=5
 abilities=flying
+[/card]
+[card]
+####Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1) 
+text=Vigilance (Attacking doesn't cause this creature to tap.)   Bushido 5 (When this blocks or becomes blocked, it gets +5/+5 until end of turn.)   Konda, Lord of Eiganjo is indestructible.
+id=78594
+name=Konda Lord of Eiganjo
+rarity=R
+mana={5}{W}{W}
+type=Legendary Creature
+subtype=Human Samurai
+auto=rampage(5/5,0)
+auto=rampage(-5/-5,1)
+auto=lord(konda lord of eiganjo[blocking]|mybattlefield) 5/5
+power=3
+toughness=3
+abilities=vigilance,indestructible
+[/card]
+[card]
+text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.)   As long as you control a legendary Samurai, Konda's Hatamoto gets +1/+2 and has vigilance. (Attacking doesn't cause this creature to tap.)
+id=79201
+name=Konda's Hatamoto
+rarity=U
+mana={1}{W}
+type=Creature
+subtype=Human Samurai
+auto=rampage(1/1,0)
+auto=rampage(-1/-1,1)
+auto=lord(konda's hatamoto[blocking]|mybattlefield) 1/1
+auto=lord(other konda's hatamoto[blocking]|mybattlefield) -1/-1
+auto=aslongas(samurai[legendary]|mybattlefield) 1/2
+auto=aslongas(samurai[legendary]|mybattlefield) vigilance
+power=1
+toughness=2
 [/card]
 [card]
 text=Flying
@@ -774,6 +869,22 @@ toughness=5
 abilities=trample
 [/card]
 [card]
+text=Flying   Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.)
+id=50385
+name=Mothrider Samurai
+rarity=C
+mana={3}{W}
+type=Creature
+subtype=Human Samurai
+auto=rampage(1/1,0)
+auto=rampage(-1/-1,1)
+auto=lord(mothrider samurai[blocking]|mybattlefield) 1/1
+auto=lord(other mothrider samurai[blocking]|mybattlefield) -1/-1
+power=2
+toughness=2
+abilities=flying
+[/card]
+[card]
 id=79075
 name=Mountain
 auto={T}:Add {R}
@@ -823,7 +934,23 @@ subtype=Aura
 abilities=flash
 [/card]
 [card]
-text=Fear. Nezumi Cutthroat can't block.
+####Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1) 
+text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.)   Whenever Nagao, Bound by Honor attacks, Samurai creatures you control get +1/+1 until end of turn.
+id=79136
+name=Nagao Bound by Honor
+rarity=U
+mana={3}{W}
+type=Legendary Creature
+subtype=Human Samurai
+auto=rampage(1/1,0)
+auto=rampage(-1/-1,1)
+auto=lord(nagao bound by honor[blocking]|mybattlefield) 1/1
+auto=aslongas(nagao bound by honor[attacking]|myBattlefield) lord(samurai[attacking]|myBattlefield) 1/1
+power=3
+toughness=3
+[/card]
+[card]
+text=Fear   Nezumi Cutthroat can't block.
 id=80521
 name=Nezumi Cutthroat
 rarity=C
@@ -835,6 +962,21 @@ toughness=1
 abilities=cantblock,fear
 [/card]
 [card]
+text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.)
+id=50512
+name=Nezumi Ronin
+rarity=C
+mana={2}{B}
+type=Creature
+subtype=Rat Samurai
+auto=rampage(1/1,0)
+auto=rampage(-1/-1,1)
+auto=lord(nezumin ronin[blocking]|mybattlefield) 1/1
+auto=lord(other nezumi ronin[blocking]|mybattlefield) -1/-1
+power=3
+toughness=1
+[/card]
+[card]
 text=All Creatures get -1/-1.
 auto=lord(creature) -1/-1
 id=78991
@@ -844,16 +986,32 @@ mana={2}{B}{B}
 type=Legendary Enchantment
 [/card]
 [card]
+text=Equipped creature gets +2/+0 and has first strike.   Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery.)
 id=75265
-name=No-Dachi
-mana={2}
-type=Artifact
-subtype=Equipment
-text=Equipped creature gets +2/+0 and has first strike. Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery.)
 auto={3}:equip
 auto=2/0
 auto=first strike
+name=No-Dachi
 rarity=U
+mana={2}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+text=Bushido 2 (When this blocks or becomes blocked, it gets +2/+2 until end of turn.)   {B}, Pay 5 life: Regenerate Numai Outcast.
+id=50431
+name=Numai Outcast
+rarity=U
+mana={3}{B}
+type=Creature
+subtype=Human Samurai
+auto=rampage(1/1,0)
+auto=rampage(-1/-1,1)
+auto=lord(numai outcast[blocking]|mybattlefield) 1/1
+auto=lord(other numai outcast[blocking]|mybattlefield) -1/-1
+auto={B}:regenerate && life:-5 controller
+power=1
+toughness=1
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.   {G}, {T}: Target legendary Creature gets +1/+1 until end of turn.
@@ -1051,6 +1209,22 @@ subtype=Spirit
 toughness=4
 [/card]
 [card]
+text=Haste   Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.)
+id=50262
+name=Ronin Houndmaster
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Human Samurai
+auto=rampage(1/1,0)
+auto=rampage(-1/-1,1)
+auto=lord(ronin houndmaster[blocking]|mybattlefield) 1/1
+auto=lord(other ronin houndmaster[blocking]|mybattlefield) -1/-1
+power=2
+toughness=2
+abilities=haste
+[/card]
+[card]
 text={G}{G}, Sacrifice Rootrunner: Put target land on top of its owner's library.   Soulshift 3 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 3 or less from your graveyard to your hand.)
 id=75367
 name=Rootrunner
@@ -1100,6 +1274,21 @@ type=Creature
 subtype=Snake Shaman
 power=1
 toughness=1
+[/card]
+[card]
+text=Bushido 2 (When this blocks or becomes blocked, it gets +2/+2 until end of turn.)
+id=50408
+name=Samurai Enforcers
+rarity=U
+mana={4}{W}{W}
+type=Creature
+subtype=Human Samurai
+auto=rampage(2/2,0)
+auto=rampage(-2/-2,1)
+auto=lord(samurai enforcers[blocking]|mybattlefield) 2/2
+auto=lord(other samurai enforcers[blocking]|mybattlefield) -2/-2
+power=4
+toughness=4
 [/card]
 [card]
 text=Sacrifice Scuttling Death: Target creature gets -1/-1 until end of turn.   Soulshift 4 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 4 or less from your graveyard to your hand.)

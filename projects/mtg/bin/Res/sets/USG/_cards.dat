@@ -516,6 +516,21 @@ rarity=C
 type=Land
 [/card]
 [card]
+text=Whenever Dromosaur blocks or becomes blocked, it gets +2/-2 until end of turn.
+id=5734
+name=Dromosaur
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Lizard
+auto=rampage(2/-2,0)
+auto=rampage(-2/2,1)
+auto=lord(araba mothrider[blocking]|mybattlefield) 2/-2
+auto=lord(other araba mothrider[blocking]|mybattlefield) -2/2
+power=2
+toughness=3
+[/card]
+[card]
 text={B}{B}, {T}: Destroy target green creature. 
 id=5860
 name=Eastern Paladin

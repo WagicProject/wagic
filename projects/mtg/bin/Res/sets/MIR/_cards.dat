@@ -5,11 +5,11 @@ block=Mirage
 [/meta]
 [card]
 text=Untap target nonattacking creature. It gets +1/+3 until end of turn.
-id=3477 
-name=Alarum
+id=3477
 target=creature[-attacking]
 auto=untap
 auto=1/3
+name=Alarum
 rarity=C
 mana={1}{W}
 type=Instant
@@ -25,7 +25,7 @@ type=Artifact
 [/card]
 [card]
 text={B}{T}: Target creature gets +1/+0 until end of turn.   {G}{T}: Target creature gets +0/+1 until end of turn.
-id=3427 
+id=3427
 name=Armorer Guildmage
 rarity=C
 mana={R}
@@ -38,10 +38,10 @@ toughness=1
 [/card]
 [card]
 text=Put target creature card from an opponent's graveyard onto the battlefield under your control.
-id=3273 
-name=Ashen Powder
+id=3273
 target=creature|opponentgraveyard
 auto=moveTo(myBattlefield)
+name=Ashen Powder
 rarity=R
 mana={2}{B}{B}
 type=Sorcery
@@ -61,10 +61,10 @@ abilities=flying
 [/card]
 [card]
 text=Bad River enters the battlefield tapped.   {T}, Sacrifice Bad River: Search your library for an Island or Swamp card and put it on the battlefield. Then shuffle your library.
-auto=tap
-auto={T}{S}:moveTo(myBattlefield) target(island,swamp|myLibrary)
 id=3570
 name=Bad River
+auto=tap
+auto={T}{S}:moveTo(myBattlefield) target(island,swamp|myLibrary)
 rarity=U
 type=Land
 [/card]
@@ -81,7 +81,7 @@ type=Instant
 [/card]
 [card]
 text=Flying, vigilance
-id=3325 
+id=3325
 name=Bay Falcon
 rarity=C
 mana={1}{U}
@@ -93,13 +93,13 @@ abilities=flying,vigilance
 [/card]
 [card]
 text=Islandwalk   At the beginning of your upkeep, you lose 2 life.
-auto=@each my upkeep:life:-2
 id=3528
 name=Benthic Djinn
 rarity=R
 mana={2}{U}{B}
 type=Creature
 subtype=Djinn
+auto=@each my upkeep:life:-2
 power=5
 toughness=3
 abilities=islandwalk
@@ -128,19 +128,19 @@ type=Sorcery
 [/card]
 [card]
 text={1}{R}{R}: Burning Palm Efreet deals 2 damage to target creature with flying and that creature loses flying until end of turn.
-auto={1}{R}{R}:damage:2 && -flying target(creature[flying])
 id=3432
 name=Burning Palm Efreet
 rarity=U
 mana={2}{R}{R}
 type=Creature
 subtype=Efreet
+auto={1}{R}{R}:damage:2 && -flying target(creature[flying])
 power=2
 toughness=2
 [/card]
 [card]
 text=Defender (This creature can't attack.)
-id=3430 
+id=3430
 name=Blistering Barrier
 rarity=C
 mana={2}{R}
@@ -152,10 +152,10 @@ abilities=defender
 [/card]
 [card]
 text=Return target permanent to owner's hand.
-id=3327 
-name=Boomerang
+id=3327
 target=*
 auto=moveTo(ownerhand)
+name=Boomerang
 rarity=C
 mana={U}{U}
 type=Instant
@@ -170,6 +170,21 @@ type=Creature
 subtype=Nightstalker
 auto={B}:1/-1
 power=2
+toughness=2
+[/card]
+[card]
+text=Whenever Brushwagg blocks or becomes blocked, it gets -2/+2 until end of turn.
+id=3377
+name=Brushwagg
+rarity=R
+mana={1}{G}{G}
+type=Creature
+subtype=Brushwagg
+auto=rampage(-2/2,0)
+auto=rampage(2/-2,1)
+auto=lord(brushwagg[blocking]|mybattlefield) -2/2
+auto=lord(other brushwagg[blocking]|mybattlefield) 2/-2
+power=3
 toughness=2
 [/card]
 [card]
@@ -197,26 +212,26 @@ abilities=trample
 [/card]
 [card]
 text=Flying, protection from green
-id=3328 
+id=3328
 name=Cerulean Wyvern
-type=Creature
-subtype=Drake
 rarity=U
 mana={4}{U}
+type=Creature
+subtype=Drake
 power=3
 toughness=3
 abilities=flying,protection from green
 [/card]
 [card]
 text=Choose one - Destroy target Wall; or Chaos Charm deals 1 damage to target creature; or target creature gains haste until end of turn.
+id=3434
 auto=may destroy target(wall)
 auto=may damage:1 target(creature)
 auto=may haste target(creature)
-id=3434
 name=Chaos Charm
 rarity=C
-type=Instant
 mana={R}
+type=Instant
 [/card]
 [card]
 text=Creatures with flying have "This creature can't block creatures without flying."   Creatures without flying have reach. (They can block creatures with flying.)
@@ -231,7 +246,7 @@ type=World Enchantment
 [/card]
 [card]
 text=Charcoal Diamond enters the battlefield tapped.   {T}: Add {B} to your mana pool.
-id=3244 
+id=3244
 name=Charcoal Diamond
 auto=tap
 auto={T}:Add {B}
@@ -254,7 +269,7 @@ toughness=1
 [/card]
 [card]
 text=Trample
-id=3379 
+id=3379
 name=Crash of Rhinos
 rarity=C
 mana={6}{G}{G}
@@ -266,7 +281,7 @@ abilities=trample
 [/card]
 [card]
 text={T}: Add {1} to your mana pool.   {T}:Sacrifice Crystal Vein: Add {2} to your mana pool.
-id=3571 
+id=3571
 name=Crystal Vein
 auto={T}:Add {1}
 auto={T}{S}:Add {2}
@@ -287,18 +302,18 @@ toughness=1
 [/card]
 [card]
 text=Destroy target nonblack creature. It can't be regenerated.
-id=3284 
-name=Dark Banishing
+id=3284
 target=creature[-black]
 auto=bury
+name=Dark Banishing
 rarity=C
 mana={2}{B}
 type=Instant
 [/card]
 [card]
 text=Add {B}{B}{B} to your mana pool.
-auto=Add{B}{B}{B}
 id=3285
+auto=Add{B}{B}{B}
 name=Dark Ritual
 rarity=C
 mana={B}
@@ -306,7 +321,7 @@ type=Instant
 [/card]
 [card]
 text=Swampwalk    {B}: Dirtwater Wraith gets +1/+0 until end of turn.
-id=3286 
+id=3286
 name=Dirtwater Wraith
 rarity=C
 mana={3}{B}
@@ -319,8 +334,9 @@ abilities=swampwalk
 [/card]
 [card]
 text=Put target artifact or enchantment on top of its owner's library.
-auto=moveTo(ownerLibrary) target(artifact,enchantment)
 id=3484
+target=artifact,enchantment
+auto=moveTo(ownerLibrary)
 name=Disempower
 rarity=C
 mana={1}{W}
@@ -328,7 +344,7 @@ type=Instant
 [/card]
 [card]
 text=Destroy target artifact or enchantment.
-id=3485 
+id=3485
 name=Disenchant
 target=artifact,enchantment
 auto=destroy
@@ -364,25 +380,25 @@ rarity=C
 [/card]
 [card]
 text={2}{R}, {T}: Destroy target nonbasic land.
-auto={2}{R}{T}:destroy target(land[-basic])
 id=3440
 name=Dwarven Miner
 rarity=U
 mana={1}{R}
 type=Creature
 subtype=Dwarf
+auto={2}{R}{T}:destroy target(land[-basic])
 power=1
 toughness=2
 [/card]
 [card]
 text={T}: Target creature with power 2 or less is unblockable this turn.
-id=3441 
+id=3441
 name=Dwarven Nomad
-auto={T}:unblockable target(creature[power<=2])
-type=Creature
-subtype=Dwarf Nomad
 rarity=C
 mana={2}{R}
+type=Creature
+subtype=Dwarf Nomad
+auto={T}:unblockable target(creature[power<=2])
 power=1
 toughness=1
 [/card]
@@ -400,7 +416,7 @@ toughness=4
 [/card]
 [card]
 text=Flying, first strike
-id=3488 
+id=3488
 name=Ekundu Griffin
 rarity=C
 mana={3}{W}
@@ -412,7 +428,7 @@ abilities=flying,first strike
 [/card]
 [card]
 text=Elixir of Vitality enters the battlefield tapped.   {T}:Sacrifice Elixir of Vitality: Gain 4 life.  8, {T}:Sacrifice Elixir of Vitality: Gain 8 life.
-id=3248 
+id=3248
 name=Elixir of Vitality
 type=Artifact
 auto=tap
@@ -433,10 +449,10 @@ type=Sorcery
 [/card]
 [card]
 text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.)   Enchanted creature gets -2/-2.
-id=3290 
-name=Enfeeblement
+id=3290
 target=creature
 auto=-2/-2
+name=Enfeeblement
 rarity=C
 mana={B}{B}
 type=Enchantment
@@ -444,15 +460,16 @@ subtype=Aura
 [/card]
 [card]
 text=Put target land on top of its owner's library.
-auto=moveTo(ownerLibrary) target(land)
 id=3383
+target=land
+auto=moveTo(ownerLibrary) 
 name=Fallow Earth
 rarity=U
 mana={2}{G}
 type=Sorcery
 [/card]
 [card]
-id=3494 
+id=3494
 name=Femeref Scouts
 rarity=C
 mana={2}{W}
@@ -463,7 +480,7 @@ toughness=4
 [/card]
 [card]
 text=Flying 
-id=3291 
+id=3291
 name=Feral Shadow
 rarity=C
 mana={2}{B}
@@ -475,7 +492,7 @@ abilities=flying
 [/card]
 [card]
 text={T}: Femeref Archers deals 4 damage to target attacking creature with flying.
-id=3384 
+id=3384
 name=Femeref Archers
 rarity=U
 mana={2}{G}
@@ -487,19 +504,19 @@ toughness=2
 [/card]
 [card]
 text={B}: Fetid Horror gets +1/+1 until end of turn.
-id=3292 
+id=3292
 name=Fetid Horror
-auto={B}:1/1
+rarity=C
+mana={3}{B}
 type=Creature
 subtype=Shade Horror
-mana={3}{B}
+auto={B}:1/1
 power=1
 toughness=2
-rarity=C
 [/card]
 [card]
 text=Fire Diamond enters the battlefield tapped.   {T}: Add {R} to your mana pool. Play this ability as a mana source.
-id=3250 
+id=3250
 name=Fire Diamond
 rarity=U
 mana={2}
@@ -509,10 +526,10 @@ type=Artifact
 [/card]
 [card]
 text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.)   {R}: Enchanted creature gets +1/+0 until end of turn.
-id=3445 
-name=Firebreathing
+id=3445
 target=creature
 auto={R}:1/0
+name=Firebreathing
 rarity=C
 mana={R}
 type=Enchantment
@@ -520,20 +537,20 @@ subtype=Aura
 [/card]
 [card]
 text=Flare deals 1 damage to target creature or player.   Draw a card at the beginning of the next turn's upkeep.
-id=3447 
-name=Flare
+id=3447
 auto=damage:1 target(creature,player)
 auto=@next upkeep:draw:1 controller
+name=Flare
 rarity=C
 mana={2}{R}
 type=Instant
 [/card]
 [card]
 text=Flood Plain enters the battlefield tapped.   {T}, Sacrifice Flood Plain: Search your library for a Plains or Island card and put it into play. Then shuffle your library.
-auto=tap
-auto={T}{S}:moveTo(myBattlefield) target(plains,island|myLibrary)
 id=3572
 name=Flood Plain
+auto=tap
+auto={T}{S}:moveTo(myBattlefield) target(plains,island|myLibrary)
 rarity=U
 type=Land
 [/card]
@@ -548,7 +565,7 @@ type=Instant
 [/card]
 [card]
 text={G}, Sacrifice a Forest: Foratog gets +2/+2 until end of turn.
-id=3386 
+id=3386
 name=Foratog
 rarity=U
 mana={2}{G}
@@ -560,7 +577,7 @@ toughness=2
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.
-id=3566 
+id=3566
 name=Forest
 auto={T}:Add {G}
 type=Basic Land
@@ -578,7 +595,7 @@ rarity=L
 [/card]
 [card]
 text={T}: Add {G} to your mana pool.
-id=3568 
+id=3568
 name=Forest
 auto={T}:Add {G}
 type=Basic Land
@@ -596,7 +613,7 @@ rarity=L
 [/card]
 [card]
 text=Reach (This creature can block creatures with flying.)
-id=3387 
+id=3387
 name=Giant Mantis
 rarity=C
 mana={3}{G}
@@ -619,13 +636,28 @@ power=3
 toughness=2
 [/card]
 [card]
+text=Whenever Goblin Elite Infantry blocks or becomes blocked, it gets -1/-1 until end of turn.
+id=3448
+name=Goblin Elite Infantry
+rarity=C
+mana={1}{R}
+type=Creature
+subtype=Goblin Warrior
+auto=rampage(-1/-1,0)
+auto=rampage(1/1,1)
+auto=lord(goblin elite infantry[blocking]|mybattlefield) -1/-1
+auto=lord(other goblin elite infantry[blocking]|mybattlefield) 1/1
+power=2
+toughness=2
+[/card]
+[card]
 text=Put three 1/1 red Goblin Scout creature tokens with mountainwalk onto the battlefield.
-id=3449 
+id=3449
 name=Goblin Scouts
-type=Sorcery
 auto=token(Goblin Scout,creature token Goblin Scout, 1/1,mountainwalk red)*3
 rarity=U
 mana={3}{R}{R}
+type=Sorcery
 [/card]
 [card]
 text={R}, {T}, Sacrifice a Goblin: Red creatures get +1/+1 until end of turn.
@@ -654,10 +686,10 @@ toughness=1
 [/card]
 [card]
 text=Grasslands enters the battlefield tapped.   {T}, Sacrifice Grasslands: Search your library for a Forest or Plains card and put it into play. Then shuffle your library.
-auto=tap
-auto={T}{S}:moveTo(myBattlefield) target(plains,forest|myLibrary)
 id=3573
 name=Grasslands
+auto=tap
+auto={T}{S}:moveTo(myBattlefield) target(plains,forest|myLibrary)
 rarity=U
 type=Land
 [/card]
@@ -674,19 +706,19 @@ type=Sorcery
 [/card]
 [card]
 text=At the beginning of your upkeep, put a -1/-1 counter on each creature.
-auto=@each my upkeep:all(creature) counter(-1/-1)
 id=3297
 name=Harbinger of Night
 rarity=R
 mana={2}{B}{B}
 type=Creature
 subtype=Spirit
+auto=@each my upkeep:all(creature) counter(-1/-1)
 power=2
 toughness=3
 [/card]
 [card]
 text=Flying   {1}{U}{U}: Target creature gains flying until end of turn.
-id=3340 
+id=3340
 name=Harmattan Efreet
 rarity=U
 mana={2}{U}{U}
@@ -698,7 +730,7 @@ toughness=2
 abilities=flying
 [/card]
 [card]
-text=Flying. As Haunting Apparition enters the battlefield, choose an opponent. Haunting Apparition's power is equal to 1 plus the number of green creature cards in the chosen player's graveyard.
+text=Flying   As Haunting Apparition enters the battlefield, choose an opponent. Haunting Apparition's power is equal to 1 plus the number of green creature cards in the chosen player's graveyard.
 id=3538
 name=Haunting Apparition
 rarity=U
@@ -712,7 +744,7 @@ abilities=flying
 [/card]
 [card]
 text=Flying, protection from red
-id=3539 
+id=3539
 name=Hazerider Drake
 rarity=U
 mana={2}{W}{U}
@@ -724,7 +756,7 @@ abilities=flying,protection from red
 [/card]
 [card]
 text=Rampage 1 (For each creature assigned to block it beyond the first, this creature gets +1/+1 until end of turn.)
-id=3252 
+id=3252
 name=Horrible Hordes
 rarity=U
 mana={3}
@@ -736,7 +768,7 @@ toughness=2
 [/card]
 [card]
 text={2}: Igneous Golem gains trample until end of turn.
-id=3253 
+id=3253
 name=Igneous Golem
 rarity=U
 mana={5}
@@ -759,7 +791,7 @@ type=Instant
 [/card]
 [card]
 text=Trample
-id=3497 
+id=3497
 name=Iron Tusk Elephant
 rarity=U
 mana={4}{W}
@@ -780,7 +812,7 @@ rarity=L
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
-id=3582 
+id=3582
 name=Island
 auto={T}:Add {U}
 type=Basic Land
@@ -789,7 +821,7 @@ rarity=L
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
-id=3583 
+id=3583
 name=Island
 auto={T}:Add {U}
 type=Basic Land
@@ -798,7 +830,7 @@ rarity=L
 [/card]
 [card]
 text={T}: Add {U} to your mana pool.
-id=3584 
+id=3584
 name=Island
 auto={T}:Add {U}
 type=Basic Land
@@ -831,7 +863,7 @@ toughness=2
 [/card]
 [card]
 text={R}: Regenerate Jungle Troll.  {G}: Regenerate Jungle Troll.
-id=3540 
+id=3540
 name=Jungle Troll
 rarity=U
 mana={1}{R}{G}
@@ -844,28 +876,28 @@ toughness=1
 [card]
 text=Whenever Jungle Wurm becomes blocked, it gets -1/-1 until end of turn for each creature blocking it beyond the first.
 id=3393
-auto=rampage(-1/-1,1)
 name=Jungle Wurm
 rarity=C
 mana={3}{G}{G}
 type=Creature
 subtype=Wurm
+auto=rampage(-1/-1,1)
 power=5
 toughness=5
 [/card]
 [card]
 text=Kaervek's Hex deals 1 damage to each nonblack creature and an additional 1 damage to each green creature.
 id=3299
-name=Kaervek's Hex
 auto=damage:1 all(creature[-black])
 auto=damage:1 all(creature[green])
+name=Kaervek's Hex
 type=Sorcery
 rarity=U
 mana={3}{B}
 [/card]
 [card]
 text=Protection from blue
-id=3394 
+id=3394
 name=Karoo Meerkat
 rarity=U
 mana={1}{G}
@@ -876,7 +908,7 @@ toughness=1
 abilities=protection from blue
 [/card]
 [card]
-text=Flying.   {T}: Leering Gargoyle gets -2/+2 and loses flying until end of turn.
+text=Flying   {T}: Leering Gargoyle gets -2/+2 and loses flying until end of turn.
 id=3542
 name=Leering Gargoyle
 rarity=R
@@ -917,7 +949,7 @@ abilities=flying
 [/card]
 [card]
 text={T}: Add {1} to your mana pool.   {1}{T}: Add one mana of any color to your mana pool.
-id=3256 
+id=3256
 name=Mana Prism
 rarity=U
 mana={3}
@@ -931,7 +963,7 @@ type=Artifact
 [/card]
 [card]
 text=Marble Diamond enters the battlefield tapped.   {T}: Add {W} to your mana pool.
-id=3258 
+id=3258
 name=Marble Diamond
 auto=tap
 auto={T}:Add {W}
@@ -953,7 +985,7 @@ toughness=*
 [/card]
 [card]
 text=Flying, protection from black
-id=3502 
+id=3502
 name=Melesse Spirit
 rarity=U
 mana={3}{W}{W}
@@ -986,7 +1018,7 @@ type=Artifact
 [/card]
 [card]
 text=Moss Diamond enters the battlefield tapped.   {T}: Add {G} to your mana pool. 
-id=3260 
+id=3260
 name=Moss Diamond
 auto=tap
 auto={T}:Add {G}
@@ -996,7 +1028,7 @@ rarity=U
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-id=3577 
+id=3577
 name=Mountain
 auto={T}:Add {R}
 type=Basic Land
@@ -1005,7 +1037,7 @@ rarity=L
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-id=3578 
+id=3578
 name=Mountain
 auto={T}:Add {R}
 type=Basic Land
@@ -1014,7 +1046,7 @@ rarity=L
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-id=3579 
+id=3579
 name=Mountain
 auto={T}:Add {R}
 type=Basic Land
@@ -1023,7 +1055,7 @@ rarity=L
 [/card]
 [card]
 text={T}: Add {R} to your mana pool.
-id=3580 
+id=3580
 name=Mountain
 auto={T}:Add {R}
 type=Basic Land
@@ -1032,10 +1064,10 @@ rarity=L
 [/card]
 [card]
 text=Mountain Valley enters the battlefield tapped.   {T}, Sacrifice Mountain Valley: Search your library for a Mountain or Forest card and put it into play. Then shuffle your library.
-auto=tap
-auto={T}{S}:moveTo(myBattlefield) target(mountain,forest|myLibrary)
 id=3574
 name=Mountain Valley
+auto=tap
+auto={T}{S}:moveTo(myBattlefield) target(mountain,forest|myLibrary)
 rarity=U
 type=Land
 [/card]
@@ -1056,19 +1088,19 @@ abilities=flying
 text=At the beginning of your upkeep, Nettletooth Djinn deals 1 damage to you.
 id=3401
 name=Nettletooth Djinn
-type=Creature
-subtype=Djinn
 rarity=U
 mana={3}{G}
+type=Creature
+subtype=Djinn
 auto=@each my upkeep:damage:1 controller
 power=4
 toughness=4
 [/card]
 [card]
 text=Black creatures get +2/+0 until end of turn.
-id=3301 
-name=Nocturnal Raid
+id=3301
 auto=lord(creature[black]) 2/0
+name=Nocturnal Raid
 rarity=U
 mana={2}{B}{B}
 type=Instant
@@ -1087,7 +1119,7 @@ subtype=Aura
 [/card]
 [card]
 text={3}: Patagia Golem gains flying until end of turn.
-id=3261 
+id=3261
 name=Patagia Golem
 rarity=U
 mana={4}
@@ -1108,7 +1140,7 @@ type=Artifact
 [/card]
 [card]
 text=Flying   {1}{W}: Pearl Dragon gets +0/+1 until end of turn.
-id=3508 
+id=3508
 name=Pearl Dragon
 rarity=R
 mana={4}{W}{W}
@@ -1130,7 +1162,7 @@ type=Artifact
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
-id=3585 
+id=3585
 name=Plains
 auto={T}:Add {W}
 type=Basic Land
@@ -1139,7 +1171,7 @@ rarity=L
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
-id=3586 
+id=3586
 name=Plains
 auto={T}:Add {W}
 type=Basic Land
@@ -1148,7 +1180,7 @@ rarity=L
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
-id=3587 
+id=3587
 name=Plains
 auto={T}:Add {W}
 type=Basic Land
@@ -1157,7 +1189,7 @@ rarity=L
 [/card]
 [card]
 text={T}: Add {W} to your mana pool.
-id=3588 
+id=3588
 name=Plains
 auto={T}:Add {W}
 type=Basic Land
@@ -1168,19 +1200,19 @@ rarity=L
 text=Radiant Essence gets +1/+2 as long as an opponent controls a black permanent.
 id=3547
 name=Radiant Essence
-auto=aslongas(*[black]|opponentBattlefield) 1/2
 rarity=U
 mana={1}{G}{W}
 type=Creature
 subtype=Spirit
+auto=aslongas(*[black]|opponentBattlefield) 1/2
 power=2
 toughness=3
 [/card]
 [card]
 text=Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library.
+id=3404
 target=basic|mylibrary
 auto=moveTo(myBattlefield) && tap
-id=3404
 name=Rampant Growth
 rarity=C
 mana={1}{G}
@@ -1201,10 +1233,10 @@ type=Instant
 [/card]
 [card]
 text=Enchant creature   {G}: Regenerate enchanted creature. (The next time that creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
-id=3405 
-name=Regeneration
+id=3405
 target=creature
 auto={G}:regenerate
+name=Regeneration
 rarity=C
 mana={1}{G}
 type=Enchantment
@@ -1212,7 +1244,7 @@ subtype=Aura
 [/card]
 [card]
 text={B}: Regenerate Restless Dead.
-id=3307 
+id=3307
 name=Restless Dead
 rarity=C
 mana={1}{B}
@@ -1236,7 +1268,7 @@ subtype=Aura
 [/card]
 [card]
 text=Whenever Rock Basilisk blocks or is blocked by a non-Wall creature, destroy that creature at end of combat.
-id=3550 
+id=3550
 alias=1238
 name=Rock Basilisk
 rarity=R
@@ -1248,10 +1280,10 @@ toughness=5
 [/card]
 [card]
 text=Rocky Tar Pit enters the battlefield tapped.   {T}, Sacrifice Rocky Tar Pit: Search your library for a Swamp or Mountain card and put it into play. Then shuffle your library.
-auto=tap
-auto={T}{S}:moveTo(myBattlefield) target(mountain,swamp|myLibrary)
 id=3575
 name=Rocky Tar Pit
+auto=tap
+auto={T}{S}:moveTo(myBattlefield) target(mountain,swamp|myLibrary)
 rarity=U
 type=Land
 [/card]
@@ -1285,7 +1317,7 @@ type=Sorcery
 [/card]
 [card]
 text={T}: Add {1} to your mana pool.   {1}{T}: Add {U} to your mana pool.
-id=3361 
+id=3361
 name=Sea Scryer
 rarity=C
 mana={1}{U}
@@ -1306,9 +1338,9 @@ type=Sorcery
 [/card]
 [card]
 text=Destroy all Auras.
-id=3411 
-name=Serene Heart
+id=3411
 auto=destroy all(aura)
+name=Serene Heart
 rarity=C
 mana={1}{G}
 type=Instant
@@ -1340,7 +1372,7 @@ toughness=1
 [/card]
 [card]
 text={W}{T}: Target creature gains first strike until end of turn.   {B}, {T}: Target creature gets +1/+0 until end of turn.
-id=3362 
+id=3362
 name=Shaper Guildmage
 rarity=C
 mana={U}
@@ -1368,7 +1400,7 @@ abilities=flying
 [/card]
 [card]
 text={B}{R}{T}: Shauku's Minion deals 2 damage to target white creature.
-id=3554 
+id=3554
 name=Shauku's Minion
 rarity=U
 mana={1}{B}{R}
@@ -1380,7 +1412,7 @@ toughness=2
 [/card]
 [card]
 text=Sky Diamond enters the battlefield tapped.   {T}: Add {U} to your mana pool.
-id=3267 
+id=3267
 name=Sky Diamond
 auto=tap
 auto={T}:Add {U}
@@ -1408,8 +1440,7 @@ rarity=R
 mana={6}{B}{B}{B}
 type=Legendary Creature
 subtype=Demon Spirit
-auto=@each my combatbegins:first strike
-auto=@each my combatends:-first strike
+auto=lord(spirit of the night[attacking]|myBattlefield) first strike
 power=6
 toughness=5
 abilities=flying,trample,haste,protection from black
@@ -1426,12 +1457,12 @@ type=Sorcery
 [/card]
 [card]
 text=Destroy target land.
-id=3465 
+id=3465
+target=land
+auto=destroy
 name=Stone Rain
 rarity=C
 mana={2}{R}
-target=land
-auto=destroy
 type=Sorcery
 [/card]
 [card]
@@ -1471,7 +1502,7 @@ rarity=L
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
-id=3563 
+id=3563
 name=Swamp
 auto={T}:Add {B}
 type=Basic Land
@@ -1480,7 +1511,7 @@ rarity=L
 [/card]
 [card]
 text={T}: Add {B} to your mana pool.
-id=3564 
+id=3564
 name=Swamp
 auto={T}:Add {B}
 type=Basic Land
@@ -1535,7 +1566,7 @@ text=Exile target permanent you own or control. Draw a card at the beginning of 
 id=3469
 target=*|myBattlefield
 auto=moveTo(myexile)
-auto=@next upkeep:draw:1
+auto=@next upkeep:draw:1 controller
 name=Telim'Tor's Edict
 rarity=R
 mana={R}

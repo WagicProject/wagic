@@ -1010,6 +1010,21 @@ mana={1}{W}{W}
 type=Enchantment
 [/card]
 [card]
+text=Whenever Goblin Elite Infantry blocks or becomes blocked, it gets -1/-1 until end of turn.
+id=130380
+name=Goblin Elite Infantry
+rarity=C
+mana={1}{R}
+type=Creature
+subtype=Goblin Warrior
+auto=rampage(-1/-1,0)
+auto=rampage(1/1,1)
+auto=lord(goblin elite infantry[blocking]|mybattlefield) -1/-1
+auto=lord(other goblin elite infantry[blocking]|mybattlefield) 1/1
+power=2
+toughness=2
+[/card]
+[card]
 text=Other Goblin creatures get +1/+1 and have mountainwalk. (They're unblockable as long as defending player controls a Mountain.)
 id=129578
 name=Goblin King

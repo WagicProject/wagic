@@ -318,17 +318,6 @@ subtype=Djinn
 toughness=5
 [/card]
 [card]
-text=Whenever Dromosaur blocks or becomes blocked, it gets +2/-2 until end of turn.
-id=5734
-name=Dromosaur
-rarity=C
-type=Creature
-mana={2}{R}
-power=2
-subtype=Lizard
-toughness=3
-[/card]
-[card]
 text=Target opponent reveals his or her hand. You choose a noncreature, nonland card from it. That player discards that card.
 id=5557
 name=Duress

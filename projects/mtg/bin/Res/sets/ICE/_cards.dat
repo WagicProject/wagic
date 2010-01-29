@@ -177,6 +177,21 @@ power=3
 toughness=2
 [/card]
 [card]
+text=Whenever Chub Toad blocks or becomes blocked, it gets +2/+2 until end of turn.
+id=2553
+name=Chub Toad
+rarity=C
+mana={2}{G}
+type=Creature
+subtype=Frog
+auto=rampage(2/2,0)
+auto=rampage(-2/-2,1)
+auto=lord(chub toad[blocking]|mybattlefield) 2/2
+auto=lord(other chub toad[blocking]|mybattlefield) -2/-2
+power=1
+toughness=1
+[/card]
+[card]
 text={1}: The next time a black source of your choice would deal damage to you this turn, prevent that damage.
 id=2672
 alias=1335

@@ -1289,6 +1289,22 @@ toughness=1
 abilities=wither
 [/card]
 [card]
+text=Wither (This deals damage to creatures in the form of -1/-1 counters.)   Whenever Slinking Giant blocks or becomes blocked, it gets -3/-0 until end of turn.
+id=153995
+name=Slinking Giant
+rarity=U
+mana={2}{R}{R}
+type=Creature
+subtype=Giant Rogue
+auto=rampage(-3/0,0)
+auto=rampage(3/0,1)
+auto=lord(slinking giant[blocking]|mybattlefield) -3/0
+auto=lord(other slinking giant[blocking]|mybattlefield) 3/0
+power=4
+toughness=4
+abilities=wither
+[/card]
+[card]
 text=When Somnomancer enters the battlefield, you may tap target creature.
 auto=may tap target(creature)
 id=147399

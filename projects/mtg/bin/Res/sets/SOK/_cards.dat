@@ -51,6 +51,22 @@ power=2
 toughness=1
 [/card]
 [card]
+text=Flying   Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.)
+id=74050
+name=Araba Mothrider
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Human Samurai
+auto=rampage(1/1,0)
+auto=rampage(-1/-1,1)
+auto=lord(araba mothrider[blocking]|mybattlefield) 1/1
+auto=lord(other araba mothrider[blocking]|mybattlefield) -1/-1
+power=1
+toughness=1
+abilities=flying
+[/card]
+[card]
 text=Legendary landwalk
 id=84370
 name=Ayumi, the Last Visitor
@@ -236,6 +252,38 @@ toughness=1
 abilities=haste
 [/card]
 [card]
+text=Protection from white   Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.)
+id=74063
+name=Hand of Cruelty
+rarity=U
+mana={B}{B}
+type=Creature
+subtype=Human Samurai
+auto=rampage(1/1,0)
+auto=rampage(-1/-1,1)
+auto=lord(hand of cruelty[blocking]|mybattlefield) 1/1
+auto=lord(other hand of cruelty[blocking]|mybattlefield) -1/-1
+power=2
+toughness=2
+abilities=protection from white
+[/card]
+[card]
+text=Protection from black   Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.)
+id=74173
+name=Hand of Honor
+rarity=U
+mana={W}{W}
+type=Creature
+subtype=Human Samurai
+auto=rampage(1/1,0)
+auto=rampage(-1/-1,1)
+auto=lord(hand of honor[blocking]|mybattlefield) 1/1
+auto=lord(other hand of honor[blocking]|mybattlefield) -1/-1
+power=2
+toughness=2
+abilities=protection from black
+[/card]
+[card]
 text=When Haru-Onna enters the battlefield, draw a card.   Whenever you cast a Spirit or Arcane spell, you may return Haru-Onna to its owner's hand.
 id=74062
 name=Haru-Onna
@@ -249,6 +297,20 @@ power=2
 toughness=1
 [/card]
 [card]
+text=Bushido 2 (When this blocks or becomes blocked, it gets +2/+2 until end of turn.)   {2}{R}, Sacrifice a Samurai: Samurai creatures you control gain double strike until end of turn.
+id=79860
+name=Iizuka the Ruthless
+rarity=R
+mana={3}{R}{R}
+type=Legendary Creature
+subtype=Human Samurai
+auto=rampage(2/2,0)
+auto=rampage(-2/-2,1)
+auto=lord(iizuka the ruthless[blocking]|mybattlefield) 2/2
+power=3
+toughness=3
+[/card]
+[card]
 text=Target creature gets +X/+X until end of turn, where X is the number of cards in your hand.
 id=74049
 target=creature
@@ -258,6 +320,21 @@ rarity=C
 mana={2}{G}
 type=Instant
 subtype=Arcane
+[/card]
+[card]
+text=Bushido 2 (When this blocks or becomes blocked, it gets +2/+2 until end of turn.)
+id=74002
+name=Inner-Chamber Guard
+rarity=U
+mana={1}{W}
+type=Creature
+subtype=Human Samurai
+auto=rampage(2/2,0)
+auto=rampage(-2/-2,1)
+auto=lord(inner-chamber guard[blocking]|mybattlefield) 2/2
+auto=lord(other inner-chamber guard[blocking]|mybattlefield) -2/-2
+power=0
+toughness=2
 [/card]
 [card]
 text=Add {R} to your mana pool for each card in your hand.
@@ -351,6 +428,22 @@ toughness=2
 rarity=U
 [/card]
 [card]
+text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.)   When Kitsune Dawnblade enters the battlefield, you may tap target creature.
+id=80530
+name=Kitsune Dawnblade
+rarity=C
+mana={4}{W}
+type=Creature
+subtype=Fox Samurai
+auto=rampage(1/1,0)
+auto=rampage(-1/-1,1)
+auto=lord(araba mothrider[blocking]|mybattlefield) 1/1
+auto=lord(other araba mothrider[blocking]|mybattlefield) -1/-1
+auto=may tap target(creature)
+power=2
+toughness=3
+[/card]
+[card]
 text={1}{W}: Kitsune Loreweaver gets +0/+X until end of turn, where X is the number of cards in your hand.
 id=74213
 name=Kitsune Loreweaver
@@ -376,6 +469,22 @@ auto=@damaged(player) from(this):aslongas(*|myhand) life:7 controller >6
 auto=@damaged(creature) from(this):aslongas(*|myhand) life:7 controller >6
 power=*
 toughness=*
+[/card]
+[card]
+text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.)   {1}{B}: Regenerate Kuro's Taken.
+id=74065
+name=Kuro's Taken
+rarity=C
+mana={1}{B}
+type=Creature
+subtype=Rat Samurai
+auto=rampage(1/1,0)
+auto=rampage(-1/-1,1)
+auto=lord(kuro's taken[blocking]|mybattlefield) 1/1
+auto=lord(other kuro's taken[blocking]|mybattlefield) -1/-1
+auto={1}{B}:regenerate
+power=1
+toughness=1
 [/card]
 [card]
 text=Masumaro, First to Live's power and toughness are each equal to twice the number of cards in your hand.
@@ -582,6 +691,21 @@ mana={2}{W}{W}
 type=Enchantment
 [/card]
 [card]
+text=Bushido 2 (When this blocks or becomes blocked, it gets +2/+2 until end of turn.)
+id=74199
+name=Ronin Cavekeeper
+rarity=C
+mana={5}{R}
+type=Creature
+subtype=Human Samurai
+auto=rampage(2/2,0)
+auto=rampage(-2/-2,1)
+auto=lord(ronin cavekeeper[blocking]|mybattlefield) 2/2
+auto=lord(other ronin cavekeeper[blocking]|mybattlefield) -2/-2
+power=4
+toughness=3
+[/card]
+[card]
 text={T}: You may put a land card from your hand onto the battlefield.
 id=74210
 name=Sakura-Tribe Scout
@@ -603,7 +727,7 @@ mana={2}
 type=Artifact
 [/card]
 [card]
-text=Shinen of Fear's Chill can't block.   Channel ÅE{1}{B}, Discard Shinen of Fear's Chill: Target creature can't block this turn.
+text=Shinen of Fear's Chill can't block.   Channel Å- {1}{B}, Discard Shinen of Fear's Chill: Target creature can't block this turn.
 id=88812
 name=Shinen of Fear's Chill
 rarity=C
@@ -616,7 +740,7 @@ toughness=2
 abilities=cantblock
 [/card]
 [card]
-text=Flying   Channel ÅE{U}, Discard Shinen of Flight's Wings: Target creature gains flying until end of turn.
+text=Flying   Channel Å- {U}, Discard Shinen of Flight's Wings: Target creature gains flying until end of turn.
 id=74088
 name=Shinen of Flight's Wings
 rarity=C
@@ -629,7 +753,7 @@ toughness=3
 abilities=flying
 [/card]
 [card]
-text=Haste   Channel ÅE{R}, Discard Shinen of Fury's Fire: Target creature gains haste until end of turn.
+text=Haste   Channel Å- {R}, Discard Shinen of Fury's Fire: Target creature gains haste until end of turn.
 id=87339
 name=Shinen of Fury's Fire
 rarity=C
@@ -642,7 +766,7 @@ toughness=1
 abilities=haste
 [/card]
 [card]
-text=First strike   Channel ÅE{1}{W}, Discard Shinen of Stars' Light: Target creature gains first strike until end of turn.
+text=First strike   Channel Å- {1}{W}, Discard Shinen of Stars' Light: Target creature gains first strike until end of turn.
 id=74361
 name=Shinen of Stars' Light
 rarity=C
@@ -665,6 +789,22 @@ type=Creature
 subtype=Ogre Warrior
 auto={1}{B}:regenerate
 power=3
+toughness=3
+[/card]
+[card]
+text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.)   {1}{R}: Sokenzan Spellblade gets +X/+0 until end of turn, where X is the number of cards in your hand.
+id=74398
+name=Sokenzan Spellblade
+rarity=C
+mana={4}{R}
+type=Creature
+subtype=Ogre Samurai Shaman
+auto=rampage(1/1,0)
+auto=rampage(-1/-1,1)
+auto=lord(sokenzan spellblade[blocking]|mybattlefield) 1/1
+auto=lord(other sokenzan spellblade[blocking]|mybattlefield) -1/-1
+auto={1}{R}:foreach(*|myhand) 1/0
+power=2
 toughness=3
 [/card]
 [card]

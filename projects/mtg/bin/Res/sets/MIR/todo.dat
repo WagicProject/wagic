@@ -187,17 +187,6 @@ type=Artifact
 mana={4}
 [/card]
 [card]
-text=Whenever Brushwagg blocks or becomes blocked, it gets -2/+2 until end of turn.
-id=3377
-name=Brushwagg
-rarity=R
-type=Creature
-mana={1}{G}{G}
-power=3
-subtype=Brushwagg
-toughness=2
-[/card]
-[card]
 text=Destroy X target artifacts. Builder's Bane deals damage to each player equal to the number of artifacts he or she controlled destroyed this way.
 id=3431
 name=Builder's Bane
@@ -637,17 +626,6 @@ mana={1}{U}{R}
 power=2
 subtype=Efreet
 toughness=1
-[/card]
-[card]
-text=Whenever Goblin Elite Infantry blocks or becomes blocked, it gets -1/-1 until end of turn.
-id=3448
-name=Goblin Elite Infantry
-rarity=C
-type=Creature
-mana={1}{R}
-power=2
-subtype=Goblin Warrior
-toughness=2
 [/card]
 [card]
 text={R}, {T}: Destroy target artifact. That artifact deals damage equal to its converted mana cost to Goblin Tinkerer.

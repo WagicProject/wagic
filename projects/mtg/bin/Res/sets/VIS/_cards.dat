@@ -492,11 +492,26 @@ toughness=2
 [card]
 text={T}: Add 1 Mana to your mana pool.   {T}, Sacrifice Quicksand: Target attacking creature without flying gets -1/-2 until end of turn.
 id=3754
-name=Quicksand       
+name=Quicksand
+auto={T}:Add {1}
+auto={T}{S}:-1/-2 target(creature[attacking;-flying])   
 rarity=U
 type=Land
-auto={T}:Add {1}
-auto={T}{S}:-1/-2 target(creature[attacking;-flying])
+[/card]
+[card]
+text=Whenever Raging Gorilla blocks or becomes blocked, it gets +2/-2 until end of turn.
+id=3697
+name=Raging Gorilla
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Ape
+auto=rampage(2/-2,0)
+auto=rampage(-2/2,1)
+auto=lord(raging gorilla[blocking]|mybattlefield) 2/-2
+auto=lord(other raging gorilla[blocking]|mybattlefield) -2/2
+power=2
+toughness=3
 [/card]
 [card]
 text=Sacrifice Resistance Fighter: Prevent all combat damage target creature would deal this turn.

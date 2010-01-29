@@ -329,19 +329,6 @@ mana={1}{W}{U}
 subtype=Aura
 [/card]
 [card]
-text=Whenever Chub Toad blocks or becomes blocked, it gets +2/+2 until end of turn.
-id=2553
-auto=bushido(2/2)
-#Could be added when budshido is implemented
-name=Chub Toad
-rarity=C
-type=Creature
-mana={2}{G}
-power=1
-subtype=Frog
-toughness=1
-[/card]
-[card]
 text=Look at target player's hand.       Draw a card at the beginning of the next turn's upkeep.
 id=2499
 name=Clairvoyance

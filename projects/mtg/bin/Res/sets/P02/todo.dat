@@ -179,17 +179,6 @@ text=Norwood Riders can't be blocked by more than one creature.
 rarity=C
 [/card]
 [card]
-id=6620
-name=Norwood Warrior
-mana={2}{G}
-type=Creature
-subtype=Elf Warrior
-power=2
-toughness=2
-text=Whenever Norwood Warrior becomes blocked, it gets +1/+1 until end of turn.
-rarity=C
-[/card]
-[card]
 id=6550
 name=Piracy
 mana={U}{U}
@@ -237,17 +226,6 @@ power=1
 toughness=1
 text=When Ravenous Rats enters the battlefield, target opponent discards a card.
 rarity=U
-[/card]
-[card]
-id=6638
-name=Razorclaw Bear
-mana={2}{G}{G}
-type=Creature
-subtype=Bear
-power=3
-toughness=3
-text=Whenever Razorclaw Bear becomes blocked, it gets +2/+2 until end of turn.
-rarity=R
 [/card]
 [card]
 id=6608

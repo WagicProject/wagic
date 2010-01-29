@@ -590,17 +590,6 @@ text=Return a Forest you control to its owner's hand: Untap target creature. Act
 rarity=C
 [/card]
 [card]
-id=3697
-name=Raging Gorilla
-mana={2}{R}
-type=Creature
-subtype=Ape
-power=2
-toughness=3
-text=Whenever Raging Gorilla blocks or becomes blocked, it gets +2/-2 until end of turn.
-rarity=C
-[/card]
-[card]
 id=3648
 name=Rainbow Efreet
 mana={3}{U}

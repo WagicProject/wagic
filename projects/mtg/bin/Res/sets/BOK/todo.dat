@@ -353,17 +353,6 @@ text=Whenever a creature enters the battlefield under your control, it gets +2/+
 rarity=R
 [/card]
 [card]
-id=74091
-name=Indebted Samurai
-mana={3}{W}
-type=Creature
-subtype=Human Samurai
-power=2
-toughness=3
-text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.) Whenever a Samurai you control is put into a graveyard from the battlefield, you may put a +1/+1 counter on Indebted Samurai.
-rarity=U
-[/card]
-[card]
 id=74626
 name=Ink-Eyes, Servant of Oni
 mana={4}{B}{B}
@@ -372,17 +361,6 @@ subtype=Rat Ninja
 power=5
 toughness=4
 text=Ninjutsu {3}{B}{B} ({3}{B}{B}, Return an unblocked attacker you control to hand: Put this card onto the battlefield from your hand tapped and attacking.) Whenever Ink-Eyes, Servant of Oni deals combat damage to a player, you may put target creature card from that player's graveyard onto the battlefield under your control. {1}{B}: Regenerate Ink-Eyes.
-rarity=R
-[/card]
-[card]
-id=74039
-name=Isao, Enlightened Bushi
-mana={2}{G}
-type=Legendary Creature
-subtype=Human Samurai
-power=2
-toughness=1
-text=Isao, Enlightened Bushi can't be countered. Bushido 2 (When this blocks or becomes blocked, it gets +2/+2 until end of turn.) {2}: Regenerate target Samurai.
 rarity=R
 [/card]
 [card]
@@ -903,7 +881,6 @@ toughness=3
 text=At the beginning of each player's upkeep, that player adds {G}{G}{G} to his or her mana pool. Until end of turn, this mana doesn't empty from that player's mana pool as steps or phases end.
 rarity=R
 [/card]
-
 [card]
 id=81997
 name=Shuriken
@@ -921,17 +898,6 @@ type=Instant
 subtype=Arcane
 text=You may exile a black card with converted mana cost X from your hand rather than pay Sickening Shoal's mana cost. Target creature gets -X/-X until end of turn.
 rarity=R
-[/card]
-[card]
-id=74545
-name=Silverstorm Samurai
-mana={4}{W}{W}
-type=Creature
-subtype=Fox Samurai
-power=3
-toughness=3
-text=Flash Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.)
-rarity=C
 [/card]
 [card]
 id=74577
@@ -1033,17 +999,6 @@ mana={8}{U}{U}
 type=Sorcery
 text=Each player shuffles his or her hand, graveyard, and permanents he or she owns into his or her library, then draws seven cards. Each player's life total becomes 7.
 rarity=R
-[/card]
-[card]
-id=74597
-name=Takeno's Cavalry
-mana={3}{W}
-type=Creature
-subtype=Human Samurai Archer
-power=1
-toughness=1
-text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.) {T}: Takeno's Cavalry deals 1 damage to target attacking or blocking Spirit.
-rarity=C
 [/card]
 [card]
 id=74095

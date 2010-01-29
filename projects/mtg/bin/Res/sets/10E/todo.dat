@@ -282,18 +282,6 @@ rarity=U
 type=Land
 [/card]
 [card]
-text=Whenever Goblin Elite Infantry blocks or becomes blocked, it gets -1/-1 until end of turn.
-id=130380
-name=Goblin Elite Infantry
-#Could be coded once rampage is fixed bushido will be only a formality lot of cards have such ability but do not include the term bushido this one is an example.
-rarity=C
-type=Creature
-mana={1}{R}
-power=2
-subtype=Goblin Warrior
-toughness=2
-[/card]
-[card]
 text=Whenever a creature you control is put into a graveyard from play, each other player sacrifices a creature.
 id=129583
 name=Grave Pact
