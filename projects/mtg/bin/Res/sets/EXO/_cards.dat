@@ -430,7 +430,6 @@ mana={1}{G}
 type=Creature
 subtype=Troll
 auto=rampage(1/1,0)
-auto=rampage(-1/-1,1)
 auto={G}:regenerate
 power=1
 toughness=1

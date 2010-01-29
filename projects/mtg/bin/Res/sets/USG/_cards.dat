@@ -525,8 +525,8 @@ type=Creature
 subtype=Lizard
 auto=rampage(2/-2,0)
 auto=rampage(-2/2,1)
-auto=lord(araba mothrider[blocking]|mybattlefield) 2/-2
-auto=lord(other araba mothrider[blocking]|mybattlefield) -2/2
+auto=lord(dromosaur[blocking]|mybattlefield) 2/-2
+auto=lord(other dromosaur[blocking]|mybattlefield) -2/2
 power=2
 toughness=3
 [/card]
