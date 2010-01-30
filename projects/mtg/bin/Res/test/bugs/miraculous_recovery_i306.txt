@@ -1,0 +1,39 @@
+#Bug: Miraculous recovery does not work
+#see http://code.google.com/p/wagic/issues/detail?id=306
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:grizzly bears
+hand:miraculous recovery
+manapool:{4}{W}
+[PLAYER2]
+[DO]
+miraculous recovery
+grizzly bears
+eot
+eot
+next
+#upkeep
+next
+#draw
+next
+#firstmain
+next
+#begin
+next
+#attackers
+grizzly bears
+next
+#blockers
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:grizzly bears
+graveyard:miraculous recovery
+[PLAYER2]
+life:17
+[END]
