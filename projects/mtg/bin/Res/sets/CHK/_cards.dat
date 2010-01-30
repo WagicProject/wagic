@@ -157,6 +157,7 @@ auto=rampage(1/1,0)
 auto=rampage(-1/-1,1)
 auto=lord(cursed ronin[blocking]|mybattlefield) 1/1
 auto=lord(other cursed ronin[blocking]|mybattlefield) -1/-1
+auto={B}:1/1
 power=1
 toughness=1
 [/card]
