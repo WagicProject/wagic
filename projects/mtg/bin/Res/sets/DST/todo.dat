@@ -1,4 +1,4 @@
-﻿[card]
+[card]
 id=49075
 name=AEther Snap
 mana={3}{B}{B}
@@ -184,14 +184,7 @@ type=Instant
 text=Choose one: Barbed Lightning deals 3 damage to target creature; or Barbed Lightning deals 3 damage to target player. Entwine {2} (Choose both if you pay the entwine cost.)
 rarity=C
 [/card]
-[card]
-id=39439
-name=Blinkmoth Nexus
-mana=
-type=Land
-text={T}: Add {1} to your mana pool. {1}: Blinkmoth Nexus becomes a 1/1 Blinkmoth artifact creature with flying until end of turn. It's still a land. {1}, {T}: Target Blinkmoth creature gets +1/+1 until end of turn.
-rarity=R
-[/card]
+
 [card]
 id=48572
 name=Carry Away
@@ -715,7 +708,7 @@ id=43510
 name=Second Sight
 mana={2}{U}
 type=Instant
-text=Choose one  ELook at the top five cards of target opponent's library, then put them back in any order; or look at the top five cards of your library, then put them back in any order. Entwine {U} (Choose both if you pay the entwine cost.)
+text=Choose one ?ELook at the top five cards of target opponent's library, then put them back in any order; or look at the top five cards of your library, then put them back in any order. Entwine {U} (Choose both if you pay the entwine cost.)
 rarity=U
 [/card]
 [card]
@@ -731,7 +724,7 @@ id=47792
 name=Shriveling Rot
 mana={2}{B}{B}
 type=Instant
-text=Choose one  EUntil end of turn, whenever a creature is dealt damage, destroy it; or until end of turn, whenever a creature is put into a graveyard from the battlefield, that creature's controller loses life equal to its toughness. Entwine {2}{B} (Choose both if you pay the entwine cost.)
+text=Choose one ?EUntil end of turn, whenever a creature is dealt damage, destroy it; or until end of turn, whenever a creature is put into a graveyard from the battlefield, that creature's controller loses life equal to its toughness. Entwine {2}{B} (Choose both if you pay the entwine cost.)
 rarity=R
 [/card]
 [card]
@@ -803,7 +796,7 @@ id=45961
 name=Stir the Pride
 mana={4}{W}
 type=Instant
-text=Choose one  ECreatures you control get +2/+2 until end of turn; or until end of turn, creatures you control gain "Whenever this creature deals damage, you gain that much life." Entwine {1}{W} (Choose both if you pay the entwine cost.)
+text=Choose one ?ECreatures you control get +2/+2 until end of turn; or until end of turn, creatures you control gain "Whenever this creature deals damage, you gain that much life." Entwine {1}{W} (Choose both if you pay the entwine cost.)
 rarity=U
 [/card]
 [card]
