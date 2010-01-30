@@ -1,0 +1,20 @@
+#Bug: Promise of Bunrei doesn't work
+# see http://code.google.com/p/wagic/issues/detail?id=305
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:terror
+manapool:{1}{B}
+[PLAYER2]
+inplay:grizzly bears,promise of bunrei
+[DO]
+terror
+grizzly bears
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:terror
+[PLAYER2]
+graveyard:grizzly bears,promise of bunrei
+inplay:*,*,*,*
+[END]

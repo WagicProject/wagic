@@ -1,3 +1,5 @@
+
+/*
 ########################
 #Generic engine features
 ########################
@@ -314,6 +316,7 @@ paralysis2.txt
 persuasion.txt
 plague_rats.txt
 plumes_of_peace_i260.txt
+promise_of_bunrei_i305.txt
 prosperity.txt
 protomatter_powder.txt
 prowess_of_the_fair.txt
