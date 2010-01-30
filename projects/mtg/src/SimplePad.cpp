@@ -197,62 +197,63 @@ void SimplePad::MoveSelection(unsigned char moveto)
 
 void SimplePad::Update(float dt){
   JGE * mEngine = JGE::GetInstance();
+  u32 key = mEngine->ReadButton();
   
   //Start button changes capslock setting.
-  if(mEngine->GetButtonClick(PSP_CTRL_START))
+  if(key & PSP_CTRL_START)
   {
     if(selected != KPD_OK)
       selected = KPD_OK;
     else
       Finish();
    }
-  else if(mEngine->GetButtonClick(PSP_CTRL_SELECT)){
+  else if(key & PSP_CTRL_SELECT){
     bCapslock = !bCapslock;
   }
 
   if(selected == KPD_SPACE){
     if(bShowCancel && mEngine->GetButtonClick(PSP_CTRL_RIGHT))
       selected = KPD_CANCEL;
-    else if (mEngine->GetButtonClick(PSP_CTRL_LEFT)||mEngine->GetButtonClick(PSP_CTRL_RIGHT)
-      ||mEngine->GetButtonClick(PSP_CTRL_UP)||mEngine->GetButtonClick(PSP_CTRL_DOWN))
+    else if (key & PSP_CTRL_LEFT || key & PSP_CTRL_RIGHT
+      || key & PSP_CTRL_UP || key & PSP_CTRL_DOWN)
       selected = priorKey;
   } //Moving within/from the text field.
   else if(selected == KPD_INPUT){
-    if (mEngine->GetButtonClick(PSP_CTRL_DOWN) )
+    if (key & PSP_CTRL_DOWN )
       selected = priorKey;
-    if (mEngine->GetButtonClick(PSP_CTRL_LEFT)){
+    if (key & PSP_CTRL_LEFT){
       if(cursor > 0)
         cursor--;
     }
-    else if (mEngine->GetButtonClick(PSP_CTRL_RIGHT)){
+    else if (key & PSP_CTRL_RIGHT){
       if(cursor < buffer.size())
         cursor++;
     }
   }
   else if(selected >= 0 && keys[selected]){
-    if (mEngine->GetButtonClick(PSP_CTRL_LEFT))
+    if (key & PSP_CTRL_LEFT)
       MoveSelection(keys[selected]->adjacency[KPD_LEFT]);
-    else if (mEngine->GetButtonClick(PSP_CTRL_RIGHT))
+    else if (key & PSP_CTRL_RIGHT)
       MoveSelection(keys[selected]->adjacency[KPD_RIGHT]);
-    if (mEngine->GetButtonClick(PSP_CTRL_DOWN))
+    if (key & PSP_CTRL_DOWN)
       MoveSelection(keys[selected]->adjacency[KPD_DOWN]);
-    else if (mEngine->GetButtonClick(PSP_CTRL_UP))
+    else if (key & PSP_CTRL_UP)
       MoveSelection(keys[selected]->adjacency[KPD_UP]);
   }
  
 
   //These bits require a valid key...
   if(selected >= 0 && selected < nbitems && keys[selected]){
-  if (mEngine->GetButtonClick(PSP_CTRL_CIRCLE))
+  if (key & PSP_CTRL_CIRCLE)
     pressKey(keys[selected]->id);
   }
-  if (buffer.size() > 0 && mEngine->GetButtonClick(PSP_CTRL_CROSS))
+  if (buffer.size() > 0 && key & PSP_CTRL_CROSS)
     buffer = buffer.substr(0,buffer.size() - 1);
-  if (buffer.size() && mEngine->GetButtonClick(PSP_CTRL_LTRIGGER)){
+  if (buffer.size() && key & PSP_CTRL_LTRIGGER){
       if(cursor > 0)
         cursor--;
   }
-  else if (mEngine->GetButtonClick(PSP_CTRL_RTRIGGER)){
+  else if (key & PSP_CTRL_RTRIGGER){
     if(cursor < buffer.size())
         cursor++;
     else{
