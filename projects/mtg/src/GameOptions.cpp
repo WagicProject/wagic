@@ -70,12 +70,12 @@ int Options::getID(string name){
   //Is it an unlocked set?
   size_t un = strlen("unlocked_");
   if(un < name.size()){
-	  string setname = name.substr(un);
-	  if(setlist.size()){
-		int unlocked = setlist[setname];
-		if(unlocked != -1)
-		  return Options::optionSet(unlocked);  
-	  }
+    string setname = name.substr(un);
+    if(setlist.size()){
+      int unlocked = setlist[setname];
+      if(unlocked != -1)
+        return Options::optionSet(unlocked);
+    }
   }
 
   //Failure.
@@ -90,7 +90,7 @@ string Options::getName(int option){
   //Standard named options
   if(option < LAST_NAMED)
     return optionNames[option];
-  
+
   //Unlocked sets.
   int setID = option - SET_UNLOCKS;
   char buf[512];
@@ -109,7 +109,7 @@ int Options::optionSet(int setID){
   if(setID < 0 || (setID > setlist.size()))
     return INVALID_OPTION;
 
-  return SET_UNLOCKS + setID;  
+  return SET_UNLOCKS + setID;
 }
 
 int Options::optionInterrupt(int gamePhase){
@@ -168,7 +168,7 @@ GameOption::GameOption(int num, string str) : number(num), str(str) {}
 bool GameOption::isDefault(){
   string test = str;
   std::transform(test.begin(),test.end(),test.begin(),::tolower);
-  
+
   if(!test.size() || test == "default")
     return true;
 
@@ -207,15 +207,14 @@ PIXEL_TYPE GameOption::asColor(PIXEL_TYPE fallback){
   if(subpixel == 2)
     color[3] = 255;
 
-  return ARGB(color[3],color[0],color[1],color[2]);  
+  return ARGB(color[3],color[0],color[1],color[2]);
 }
 
 bool GameOption::read(string input){
   bool bNumeric = true;
-  
-  if(!input.size()){
+
+  if(!input.size())
     return true; //Default reader doesn't care about invalid formatting.
-  }
 
   //Is it a number?
   for(size_t x=0;x<input.size();x++) {
@@ -248,16 +247,16 @@ bool GameOption::write(std::ofstream * file, string name){
   if(!file)
     return false;
 
-   if(str ==""){
-     	if(number == 0) //This is absolutely default. No need to write it.
-	      return true;
+  if(str ==""){
+    if(number == 0) //This is absolutely default. No need to write it.
+      return true;
 
       //It's a number!
-      sprintf(writer,"%s=%d\n", name.c_str(), number);
-	  }
-	  else
-	    sprintf(writer,"%s=%s\n", name.c_str(), str.c_str());
-  
+    sprintf(writer,"%s=%d\n", name.c_str(), number);
+  }
+  else
+    sprintf(writer,"%s=%s\n", name.c_str(), str.c_str());
+
   (*file)<<writer;
   return true;
 }
@@ -271,7 +270,7 @@ GameOptions::GameOptions(string filename){
 int GameOptions::load(){
   std::ifstream file(mFilename.c_str());
   std::string s;
-  
+
   if(file){
     while(std::getline(file,s)){
       if (!s.size()) continue;
@@ -279,7 +278,7 @@ int GameOptions::load(){
       int found =s.find("=");
       string name = s.substr(0,found);
       string val = s.substr(found+1);
-      int id = Options::getID(name);      
+      int id = Options::getID(name);
       if(id == INVALID_OPTION){
         unknown.push_back(s);
         continue;
@@ -290,16 +289,14 @@ int GameOptions::load(){
     file.close();
   }
   // (PSY) Make sure that cheatmode is switched off for ineligible profiles:
-  if(options[Options::ACTIVE_PROFILE].str != SECRET_PROFILE) {
+  if(options[Options::ACTIVE_PROFILE].str != SECRET_PROFILE)
     (*this)[Options::CHEATMODE].number = 0;
-  }
   return 1;
 }
 int GameOptions::save(){
   // (PSY) Make sure that cheatmode is switched off for ineligible profiles:
-  if(options[Options::ACTIVE_PROFILE].str != SECRET_PROFILE) {
+  if(options[Options::ACTIVE_PROFILE].str != SECRET_PROFILE)
     (*this)[Options::CHEATMODE].number = 0;
-  }
 
   std::ofstream file(mFilename.c_str());
   if (file){
@@ -313,10 +310,9 @@ int GameOptions::save(){
       //Save it.
       opt->write(&file, name);
     }
-    
-    for(vector<string>::size_type t=0;t<unknown.size();t++){
+
+    for(vector<string>::size_type t=0;t<unknown.size();t++)
       file<<unknown[t]<<"\n";
-    }
     file.close();
   }
   return 1;
@@ -422,7 +418,7 @@ GameOption& GameSettings::operator[](int optionID){
 
 GameOption* GameSettings::get(int optionID){
   string option_name = Options::getName(optionID);
-  
+
   if(optionID < 0)
     return &invalid_option;
   else if(globalOptions && optionID <= Options::LAST_GLOBAL)
@@ -442,9 +438,9 @@ int GameSettings::save(){
     //Force our directories to exist.
     MAKEDIR(RESPATH"/profiles");
     string temp = profileFile("","",false,false);
-    MAKEDIR(temp.c_str()); 
+    MAKEDIR(temp.c_str());
     temp+="/stats";
-    MAKEDIR(temp.c_str()); 
+    MAKEDIR(temp.c_str());
     temp = profileFile(PLAYER_SETTINGS,"",false);
 
     profileOptions->save();
@@ -462,7 +458,7 @@ string GameSettings::profileFile(string filename, string fallback,bool sanity, b
 
   if(!(*this)[Options::ACTIVE_PROFILE].isDefault())  {
      //No file, return root of profile directory
-     if(filename == ""){ 
+     if(filename == ""){
        sprintf(buf,"%sprofiles/%s",( relative ? "" : RESPATH"/" ),profile.c_str());
        return buf;
      }
@@ -479,7 +475,7 @@ string GameSettings::profileFile(string filename, string fallback,bool sanity, b
     sprintf(buf,"%splayer%s%s",(relative ? "" : RESPATH"/"),(filename == "" ? "" : "/"), filename.c_str());
     return buf;
   }
-  
+
   //Don't fallback if sanity checking is disabled..
   if(!sanity){
     sprintf(buf,"%sprofiles/%s%s%s",(relative ? "" : RESPATH"/"),profile.c_str(),(filename == "" ? "" : "/"), filename.c_str());
@@ -513,36 +509,36 @@ void GameSettings::checkProfile(){
         GameOptionAward * goa = dynamic_cast<GameOptionAward *>(globalOptions->get(x));
         if(goa){
           GameOptionAward * dupe = dynamic_cast<GameOptionAward *>(profileOptions->get(x));
-		  if(dupe && goa->number && !dupe->number) dupe->giveAward();
+          if(dupe && goa->number && !dupe->number) dupe->giveAward();
         }
       }
     }
 
     //Validation of collection, etc, only happens if the game is up.
     if(theGame == NULL || theGame->collection == NULL)
-      return; 
+      return;
 
     string pcFile = profileFile(PLAYER_COLLECTION,"",false);
     if(!pcFile.size() || !fileExists(pcFile.c_str()))
     {
       //If we had any default settings, we'd set them here.
-     
+
 
 	  //Make the proper directories
       if(profileOptions){
         //Force our directories to exist.
         MAKEDIR(RESPATH"/profiles");
         string temp = profileFile("","",false,false);
-        MAKEDIR(temp.c_str()); 
+        MAKEDIR(temp.c_str());
         temp+="/stats";
-        MAKEDIR(temp.c_str()); 
+        MAKEDIR(temp.c_str());
         temp = profileFile(PLAYER_SETTINGS,"",false);
 
         profileOptions->save();
       }
     }
 
-		   
+
   //Find the set for which we have the most variety
   int setId = -1;
   int maxcards = 0;
@@ -580,25 +576,20 @@ void GameSettings::createUsersFirstDeck(int setId){
 
   MTGDeck *mCollection = NEW MTGDeck(options.profileFile(PLAYER_COLLECTION,"",false).c_str(), theGame->collection);
   if(mCollection->totalCards() > 0)
-	  return;
+    return;
 
   //10 lands of each
   int sets[] = {setId};
-  if (!mCollection->addRandomCards(10, sets,1, Constants::RARITY_L,"Forest")){
+  if (!mCollection->addRandomCards(10, sets,1, Constants::RARITY_L,"Forest"))
     mCollection->addRandomCards(10, 0,0,Constants::RARITY_L,"Forest");
-  }
-  if (!mCollection->addRandomCards(10, sets,1,Constants::RARITY_L,"Plains")){
+  if (!mCollection->addRandomCards(10, sets,1,Constants::RARITY_L,"Plains"))
     mCollection->addRandomCards(10, 0,0,Constants::RARITY_L,"Plains");
-  }
-  if (!mCollection->addRandomCards(10, sets,1,Constants::RARITY_L,"Swamp")){
+  if (!mCollection->addRandomCards(10, sets,1,Constants::RARITY_L,"Swamp"))
     mCollection->addRandomCards(10, 0,0,Constants::RARITY_L,"Swamp");
-  }
-  if (!mCollection->addRandomCards(10, sets,1,Constants::RARITY_L,"Mountain")){
+  if (!mCollection->addRandomCards(10, sets,1,Constants::RARITY_L,"Mountain"))
     mCollection->addRandomCards(10, 0,0,Constants::RARITY_L,"Mountain");
-  }
-  if (!mCollection->addRandomCards(10, sets,1,Constants::RARITY_L,"Island")){
+  if (!mCollection->addRandomCards(10, sets,1,Constants::RARITY_L,"Island"))
     mCollection->addRandomCards(10, 0,0,Constants::RARITY_L,"Island");
-  }
 
 
 #if defined (WIN32) || defined (LINUX)
@@ -683,10 +674,10 @@ bool GameOptionEnum::write(std::ofstream * file, string name){
 }
 
 bool GameOptionEnum::read(string input){
-  if(!def) 
+  if(!def)
     return false;
 
-  number = 0; 
+  number = 0;
   std::transform(input.begin(),input.end(),input.begin(),::tolower);
 
   vector<EnumDefinition::assoc>::iterator it;
@@ -698,35 +689,35 @@ bool GameOptionEnum::read(string input){
       return true;
     }
   }
- 
+
   return false;
 }
 
 //Enum Definitions
 OptionClosedHand OptionClosedHand::mDef;
-OptionClosedHand::OptionClosedHand(){  
+OptionClosedHand::OptionClosedHand(){
     mDef.values.push_back(EnumDefinition::assoc(INVISIBLE, "invisible"));
     mDef.values.push_back(EnumDefinition::assoc(VISIBLE, "visible"));
 };
 
 OptionHandDirection OptionHandDirection::mDef;
-OptionHandDirection::OptionHandDirection(){      
+OptionHandDirection::OptionHandDirection(){
     mDef.values.push_back(EnumDefinition::assoc(VERTICAL, "vertical"));
     mDef.values.push_back(EnumDefinition::assoc(HORIZONTAL, "horizontal"));
 };
 OptionManaDisplay OptionManaDisplay::mDef;
-OptionManaDisplay::OptionManaDisplay(){  
+OptionManaDisplay::OptionManaDisplay(){
     mDef.values.push_back(EnumDefinition::assoc(DYNAMIC, "Eye candy"));
     mDef.values.push_back(EnumDefinition::assoc(STATIC, "Simple"));
     mDef.values.push_back(EnumDefinition::assoc(BOTH, "Both"));
 };
 OptionVolume OptionVolume::mDef;
-OptionVolume::OptionVolume(){  
+OptionVolume::OptionVolume(){
     mDef.values.push_back(EnumDefinition::assoc(MUTE, "Mute"));
     mDef.values.push_back(EnumDefinition::assoc(MAX, "Max"));
 };
 OptionDifficulty OptionDifficulty::mDef;
-OptionDifficulty::OptionDifficulty(){  
+OptionDifficulty::OptionDifficulty(){
     mDef.values.push_back(EnumDefinition::assoc(NORMAL, "Normal"));
     mDef.values.push_back(EnumDefinition::assoc(HARD, "Hard"));
     mDef.values.push_back(EnumDefinition::assoc(HARDER, "Harder"));
@@ -740,28 +731,27 @@ GameOptionAward::GameOptionAward(){
 	viewed = false;
 }
 bool GameOptionAward::read(string input){
-  //This is quick and dirty. 
+  //This is quick and dirty.
   bool bNumeric = true;
   achieved = time(NULL);
   tm * at = localtime(&achieved);
   viewed = false;
 
   size_t inlen = input.size();
-  if(!inlen){
+  if(!inlen)
     return true; //Default reader doesn't care about invalid formatting.
-  }else if(inlen < 8 || input != "0"){ //Regardless of what garbage this is fed, a non-zero value is "Awarded"
+  else if(inlen < 8 || input != "0") //Regardless of what garbage this is fed, a non-zero value is "Awarded"
     number = 1;
-  }
 
   size_t w = input.find("V");
-  
+
   if(w != string::npos)
     viewed = true;
 
   //TODO: Something cleaner.
   int tvals[5];
   int i;
-  for(i=0;i<5;i++) 
+  for(i=0;i<5;i++)
     tvals[i] = 0;
 
   string buf;
@@ -774,9 +764,8 @@ bool GameOptionAward::read(string input){
         buf.clear();
         i++; //Advance through input.
       }
-    }else{
+    }else
       buf+= input[t];
-    }
 
     if(t >= input.size() || i >= 5)
       break;
@@ -796,7 +785,7 @@ bool GameOptionAward::read(string input){
   at->tm_isdst = -1;
 
   achieved = mktime(at);
-  if(achieved == -1) 
+  if(achieved == -1)
     achieved = time(NULL);
   return true;
 }
@@ -811,10 +800,10 @@ bool GameOptionAward::write(std::ofstream * file, string name){
     return true;
 
   tm * at = localtime(&achieved);
-  if(!at)    return false; //Hurrah for paranoia.
+  if(!at) return false; //Hurrah for paranoia.
 
-  
-  sprintf(writer,"%s=%d/%d/%d@%d:%d %s\n", name.c_str(), 
+
+  sprintf(writer,"%s=%d/%d/%d@%d:%d %s\n", name.c_str(),
     at->tm_year + 1900, at->tm_mon + 1, at->tm_mday, at->tm_hour, at->tm_min, (viewed ? "V" : ""));
   (*file)<<writer;
   return true;
@@ -838,9 +827,8 @@ bool GameOptionAward::isViewed(){
 string GameOptionAward::menuStr(){
   if(!number)
     return _("Not unlocked.");
-  else if(achieved == 1){
+  else if(achieved == 1)
     return _("Unlocked.");
-  }
 
   char buf[256];
   Translator * t = Translator::GetInstance();
