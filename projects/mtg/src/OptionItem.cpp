@@ -100,10 +100,11 @@ void OptionInteger::Render(){
   mFont->DrawString(buf,width -10 ,y,JGETEXT_RIGHT);
 }
 
-OptionInteger::OptionInteger(int _id, string _displayValue, int _maxValue, int _increment, int _defV, string _sDef): OptionItem(_id, _displayValue){
+OptionInteger::OptionInteger(int _id, string _displayValue, int _maxValue, int _increment, int _defV, string _sDef, int _minValue): OptionItem(_id, _displayValue){
   defValue = _defV;
   strDefault = _sDef;
   maxValue = _maxValue;
+  minValue = _minValue;
   increment = _increment;
   value = ::options[id].number;
   x = 0;

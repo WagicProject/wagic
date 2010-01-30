@@ -72,6 +72,32 @@ int MTGAllCards::processConfLine(string s, MTGCard *card, CardPrimitive * primit
       primitive->setColor(value,1);
       break;
 
+    case 'g': //grade
+      {
+        switch(value[0]) {
+        case 'S':
+        case 's':
+          currentGrade = Constants::GRADE_SUPPORTED;
+          break;
+        case 'B':
+        case 'b':
+          currentGrade = Constants::GRADE_BORDERLINE;
+          break;
+        case 'C':
+        case 'c':
+          currentGrade = Constants::GRADE_CRAPPY;
+          break;
+        case 'U':
+        case 'u':
+          currentGrade = Constants::GRADE_UNSUPPORTED;
+          break;
+        case 'D':
+        case 'd':
+          currentGrade = Constants::GRADE_DANGEROUS;
+          break;
+        }
+      }
+      break;
     case 'k': //kicker
       if(!primitive) primitive = NEW CardPrimitive();
       std::transform( value.begin(), value.end(), value.begin(),::tolower );
@@ -99,7 +125,10 @@ int MTGAllCards::processConfLine(string s, MTGCard *card, CardPrimitive * primit
     case 'p':
       if(key.compare("primitive")==0){
         if(!card) card = NEW MTGCard();
-        card->setPrimitive(primitives[value]);
+        map<string,CardPrimitive *>::iterator it = primitives.find(value);
+        if (it != primitives.end()) {
+          card->setPrimitive(it->second);
+        }
       } else { //power
         if(!primitive) primitive = NEW CardPrimitive();
         primitive->setPower (atoi(value.c_str()));
@@ -277,29 +306,40 @@ int MTGAllCards::totalCards(){
 
 bool MTGAllCards::addCardToCollection(MTGCard * card, int setId){
   card->setId = setId;
-          int newId = card->getId();
-        if (collection.find(newId) != collection.end()){
-          char outBuf[4096];
-          sprintf(outBuf,"warning, card id collision! : %i\n", newId);
-          OutputDebugString (outBuf);
-          SAFE_DELETE(card);
-          return false;
-        }
+  int newId = card->getId();
+  if (collection.find(newId) != collection.end()){
+    char outBuf[4096];
+    sprintf(outBuf,"warning, card id collision! : %i\n", newId);
+    OutputDebugString (outBuf);
+    SAFE_DELETE(card);
+    return false;
+  }
 
-          ids.push_back(newId);
+  //Don't add cards that don't have a primitive
+  if (!card->data){
+    SAFE_DELETE(card);
+    return false;
+  }
+  ids.push_back(newId);
 
-          collection[newId] = card; //Push card into collection.
-          MTGSetInfo * si = setlist.getInfo(setId);
-          if(si)
-            si->count(card);  //Count card in set info
+  collection[newId] = card; //Push card into collection.
+  MTGSetInfo * si = setlist.getInfo(setId);
+  if(si)
+    si->count(card);  //Count card in set info
 
-	        total_cards++;
+  total_cards++;
 
-          return true;
+  return true;
 
 }
 
-bool MTGAllCards::addPrimitive(CardPrimitive * primitive, MTGCard * card){
+CardPrimitive * MTGAllCards::addPrimitive(CardPrimitive * primitive, MTGCard * card){
+  int maxGrade = options[Options::MAX_GRADE].number;
+  if (!maxGrade) maxGrade = Constants::GRADE_BORDERLINE;
+  if (currentGrade >maxGrade) {
+    SAFE_DELETE(primitive);
+    return NULL;
+  }
   string key;
   if (card) {
     std::stringstream ss;
@@ -314,9 +354,9 @@ bool MTGAllCards::addPrimitive(CardPrimitive * primitive, MTGCard * card){
     OutputDebugString("MTGDECK: primitives conflict:");
     OutputDebugString(key.c_str());
     OutputDebugString("\n");
-    SAFE_DELETE(primitive);
 #endif
-    return false;
+    SAFE_DELETE(primitive);
+    return NULL;
   }
   //translate cards text
   Translator * t = Translator::GetInstance();
@@ -331,7 +371,7 @@ bool MTGAllCards::addPrimitive(CardPrimitive * primitive, MTGCard * card){
   if (primitive->hasType(Subtypes::TYPE_ARTIFACT)) primitive->setColor(Constants::MTG_COLOR_ARTIFACT);
 
   primitives[key] = primitive;
-  return true;
+  return primitive;
 }
 
 int MTGAllCards::readConfLine(std::ifstream &file, int set_id){
@@ -344,6 +384,7 @@ int MTGAllCards::readConfLine(std::ifstream &file, int set_id){
     switch(conf_read_mode) {
     case MTGAllCards::READ_ANYTHING:
       if (s[0] == '['){
+        currentGrade = Constants::GRADE_SUPPORTED; //default value
         if(s[1] == 'm'){ //M for metadata.
           conf_read_mode = MTGAllCards::READ_METADATA;
         }
@@ -363,10 +404,10 @@ int MTGAllCards::readConfLine(std::ifstream &file, int set_id){
     case MTGAllCards::READ_CARD:
       if (s[0] == '[' && s[1] == '/'){
 	      conf_read_mode = MTGAllCards::READ_ANYTHING;
-        if (tempPrimitive) addPrimitive (tempPrimitive,tempCard);
+        if (tempPrimitive) tempPrimitive = addPrimitive (tempPrimitive,tempCard);
         if (tempCard){
-          addCardToCollection(tempCard, set_id);
           if (tempPrimitive) tempCard->setPrimitive(tempPrimitive);
+          addCardToCollection(tempCard, set_id);
         }
         tempCard = NULL;
         tempPrimitive = NULL;

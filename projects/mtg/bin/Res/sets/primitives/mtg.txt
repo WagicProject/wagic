@@ -7,6 +7,7 @@ alias=1156
 name=Drain Life
 mana={X}{1}{B}
 type=Sorcery
+grade=Borderline (can use non black mana)
 [/card]
 [card]
 name=Forest

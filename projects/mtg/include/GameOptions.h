@@ -42,6 +42,7 @@ public:
     REVERSETRIGGERS,
     DISABLECARDS,
     INTERRUPT_SECONDS,
+    MAX_GRADE,
     //My interrupts    
     INTERRUPTMYSPELLS,
     INTERRUPTMYABILITIES,
@@ -159,6 +160,15 @@ private:
   OptionManaDisplay();
   static OptionManaDisplay mDef;
 };
+
+class OptionMaxGrade: public EnumDefinition {
+public:
+  static EnumDefinition * getInstance() {return &mDef;};
+private:
+  OptionMaxGrade();
+  static OptionMaxGrade mDef;
+};
+
 class OptionDifficulty: public EnumDefinition {
 public:
   enum { NORMAL = 0, HARD = 1, HARDER = 2, EVIL = 3};

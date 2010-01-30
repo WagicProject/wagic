@@ -112,11 +112,12 @@ void GameApp::Create()
   manaIcons[Constants::MTG_COLOR_LAND] = resources.RetrieveQuad("menuicons.png", 2 + 5*36, 38, 32, 32, "c_land",RETRIEVE_MANAGE);
   manaIcons[Constants::MTG_COLOR_ARTIFACT] = resources.RetrieveQuad("menuicons.png", 2 + 6*36, 38, 32, 32, "c_artifact",RETRIEVE_MANAGE);
 
+
   for (int i = sizeof(manaIcons)/sizeof(manaIcons[0]) - 1; i >= 0; --i) manaIcons[i]->SetHotSpot(16,16);
 
   resources.RetrieveTexture("back.jpg",RETRIEVE_MANAGE);
   JQuad * jq = resources.RetrieveQuad("back.jpg", 0, 0, 0, 0, "back",RETRIEVE_MANAGE);
-  jq->SetHotSpot(jq->mWidth/2, jq->mHeight/2);
+  if (jq) jq->SetHotSpot(jq->mWidth/2, jq->mHeight/2);
 
   resources.RetrieveTexture("back_thumb.jpg",RETRIEVE_MANAGE);
   resources.RetrieveQuad("back_thumb.jpg", 0, 0, MTG_MINIIMAGE_WIDTH, MTG_MINIIMAGE_HEIGHT, "back_thumb",RETRIEVE_MANAGE);

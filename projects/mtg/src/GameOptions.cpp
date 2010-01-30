@@ -28,6 +28,7 @@ const char * Options::optionNames[] = {
   "reverse_triggers",
   "disable_cards",
   "interruptSeconds",
+  "maxGrade",
   "interruptMySpells",
   "interruptMyAbilities",
 //General interrupts
@@ -291,6 +292,10 @@ int GameOptions::load(){
   // (PSY) Make sure that cheatmode is switched off for ineligible profiles:
   if(options[Options::ACTIVE_PROFILE].str != SECRET_PROFILE)
     (*this)[Options::CHEATMODE].number = 0;
+
+  //Default values. Anywhere else to put those ?
+  if (! (*this)[Options::MAX_GRADE].number) (*this)[Options::MAX_GRADE].number = Constants::GRADE_BORDERLINE;
+
   return 1;
 }
 int GameOptions::save(){
@@ -354,6 +359,11 @@ GameOption * GameOptions::get(int optionID) {
         case Options::MANADISPLAY:
           goEnum = NEW GameOptionEnum();
           goEnum->def = OptionManaDisplay::getInstance();
+          go = goEnum;
+          break;
+        case Options::MAX_GRADE:
+          goEnum = NEW GameOptionEnum();
+          goEnum->def = OptionMaxGrade::getInstance();
           go = goEnum;
           break;
        default:
@@ -694,6 +704,15 @@ bool GameOptionEnum::read(string input){
 }
 
 //Enum Definitions
+OptionMaxGrade OptionMaxGrade::mDef;
+OptionMaxGrade::OptionMaxGrade(){  
+  mDef.values.push_back(EnumDefinition::assoc(Constants::GRADE_SUPPORTED, "1 - 100% Supported"));
+  mDef.values.push_back(EnumDefinition::assoc(Constants::GRADE_BORDERLINE, "2 - Borderline (99% OK)"));
+  mDef.values.push_back(EnumDefinition::assoc(Constants::GRADE_CRAPPY, "3 - Crappy (bugs)"));
+  mDef.values.push_back(EnumDefinition::assoc(Constants::GRADE_UNSUPPORTED, "4 - Unsupported"));
+  mDef.values.push_back(EnumDefinition::assoc(Constants::GRADE_DANGEROUS, "5 - Dangerous (risk of crash)"));
+
+};
 OptionClosedHand OptionClosedHand::mDef;
 OptionClosedHand::OptionClosedHand(){
     mDef.values.push_back(EnumDefinition::assoc(INVISIBLE, "invisible"));

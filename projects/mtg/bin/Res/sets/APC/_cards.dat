@@ -247,7 +247,7 @@ mana={1}{W}{B}{R}
 type=Enchantment
 [/card]
 [card]
-Whenever Flowstone Charger attacks, it gets +3/-3 until end of turn.
+text=Whenever Flowstone Charger attacks, it gets +3/-3 until end of turn.
 id=19117
 name=Flowstone Charger
 rarity=U
@@ -567,7 +567,7 @@ power=2
 toughness=2
 [/card]
 [card]
-text=Domain ó All creatures get -1/-1 until end of turn for each basic land type among lands you control.
+text=Domain ÅEAll creatures get -1/-1 until end of turn for each basic land type among lands you control.
 auto=aslongas(swamp|myBattlefield) lord(creature) -1/-1
 auto=aslongas(mountain|myBattlefield) lord(creature) -1/-1
 auto=aslongas(forest|myBattlefield) lord(creature) -1/-1

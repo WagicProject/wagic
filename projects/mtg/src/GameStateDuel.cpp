@@ -19,7 +19,7 @@
 #include <time.h>
 #endif
 
-enum ENUM_DUEL_STATE
+enum ENUM_DUEL_STATEseems
   {
     DUEL_STATE_START,
     DUEL_STATE_END,

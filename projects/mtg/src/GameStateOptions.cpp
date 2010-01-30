@@ -70,6 +70,11 @@ void GameStateOptions::Start()
   optionsList->Add(NEW WGuiButton(NEW WGuiHeader("New Profile"),-102,4,this));
   optionsTabs->Add(optionsList);
 
+  optionsList = NEW WGuiList("Advanced");
+  optionsList->Add(NEW WGuiHeader("Advanced Options"));
+  optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::MAX_GRADE,"Cards grade(restart)",Constants::GRADE_DANGEROUS,1,Constants::GRADE_BORDERLINE,"",Constants::GRADE_SUPPORTED)));
+  optionsTabs->Add(optionsList);
+
   optionsList = NEW WGuiList("Credits");
   optionsList->failMsg = "";
   optionsTabs->Add(optionsList);

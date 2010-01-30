@@ -440,15 +440,15 @@ class OptionInteger:public OptionItem{
   int value;              //Current value.
   int defValue;           //Default value.
   string strDefault;      //What to call the default value.
-  int maxValue, increment;
+  int maxValue, increment, minValue;
 
-  OptionInteger(int _id, string _displayValue, int _maxValue = 1, int _increment = 1, int _defV = 0, string _sDef = "");
+  OptionInteger(int _id, string _displayValue, int _maxValue = 1, int _increment = 1, int _defV = 0, string _sDef = "", int _minValue = 0);
 
   virtual void Reload() {if(id != INVALID_OPTION) value = options[id].number;};
   virtual bool Changed() {return value != options[id].number;};
   virtual void Render();
   virtual void setData();
-  virtual void updateValue(){value+=increment; if (value>maxValue) value=0;};
+  virtual void updateValue(){value+=increment; if (value>maxValue) value=minValue;};
 };
 
 class OptionSelect:public OptionItem{

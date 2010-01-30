@@ -80,6 +80,7 @@ class MTGAllCards {
 private:
   MTGCard * tempCard; //used by parser
   CardPrimitive * tempPrimitive; //used by parser
+  int currentGrade; //used by Parser (we don't want an additional attribute for the primitives for that as it is only used at load time)
  protected:
   int conf_read_mode;
   int colorsCount[Constants::MTG_NB_COLORS];
@@ -113,7 +114,7 @@ private:
  private:
   int processConfLine(string s, MTGCard* card, CardPrimitive * primitive);
   bool addCardToCollection(MTGCard * card, int setId);
-  bool addPrimitive(CardPrimitive * primitive, MTGCard * card = NULL);
+  CardPrimitive * addPrimitive(CardPrimitive * primitive, MTGCard * card = NULL);
 };
 
 

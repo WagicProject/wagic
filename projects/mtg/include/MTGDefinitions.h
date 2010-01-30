@@ -131,6 +131,12 @@ class Constants
     MENU_FONT = 1,
     MAGIC_FONT = 2,
     OPTION_FONT = 1,
+
+    GRADE_SUPPORTED = 1,
+    GRADE_BORDERLINE = 2,
+    GRADE_CRAPPY = 3,
+    GRADE_UNSUPPORTED = 4,
+    GRADE_DANGEROUS = 5,
   };
 
   static char MTGColorChars[];
