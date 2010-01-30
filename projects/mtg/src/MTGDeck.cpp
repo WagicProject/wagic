@@ -3,6 +3,7 @@
 #include "../include/utils.h"
 #include "../include/Subtypes.h"
 #include "../include/Translate.h"
+#include "../include/DeckMetaData.h"
 #include <algorithm>
 #include <string>
 #include <sstream>
@@ -703,7 +704,7 @@ int MTGDeck::save(){
     }
     file.close();
   }
-
+  DeckMetaDataList::decksMetaData->invalidate(filename);
   return 1;
 }
 
