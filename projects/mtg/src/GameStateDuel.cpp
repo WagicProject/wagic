@@ -385,7 +385,8 @@ void GameStateDuel::Render()
 {
   JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
   LOG("Start Render\n");
-  JRenderer::GetInstance()->ClearScreen(ARGB(0,0,0,0));
+  JRenderer * r = JRenderer::GetInstance();
+  r->ClearScreen(ARGB(0,0,0,0));
 
   if (game)
     game->Render();
@@ -394,7 +395,7 @@ void GameStateDuel::Render()
     case DUEL_STATE_END:
       {
         JRenderer * r = JRenderer::GetInstance();
-	      r->ClearScreen(ARGB(200,0,0,0));
+        r->FillRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT,ARGB(200,0,0,0));
 	      credits->Render();
 #ifdef TESTSUITE
 	      if (mParent->players[1] == PLAYER_TYPE_TESTSUITE){
@@ -424,7 +425,6 @@ void GameStateDuel::Render()
       }
     case DUEL_STATE_ERROR:
       {
-        JRenderer * r = JRenderer::GetInstance();
 	      r->ClearScreen(ARGB(200,0,0,0));
 	      mFont->DrawString(_("AN ERROR OCCURRED, CHECK FILE NAMES").c_str(),0,SCREEN_HEIGHT/2);
 	      break;
@@ -450,6 +450,12 @@ void GameStateDuel::Render()
     case DUEL_STATE_MENU:
     case DUEL_STATE_CANCEL:
     case DUEL_STATE_BACK_TO_MAIN_MENU:
+      if (game) {
+        r->FillRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT,ARGB(100,0,0,0));
+        char buffer[4096];
+        sprintf(buffer,_("Turn:%i").c_str(),game->turn);
+        mFont->DrawString(buffer,SCREEN_WIDTH/2,0,JGETEXT_CENTER);
+      }
       menu->Render();
   }
   LOG("End Render\n");
