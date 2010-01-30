@@ -13,6 +13,16 @@ auto=@movedto(*[white]|stack):may life:1 controller
 rarity=U
 [/card]
 [card]
+id=39439
+name=Blinkmoth Nexus
+type=Land
+text={T}: Add {1} to your mana pool. {1}: Blinkmoth Nexus becomes a 1/1 Blinkmoth artifact creature with flying until end of turn. It's still a land. {1}, {T}: Target Blinkmoth creature gets +1/+1 until end of turn.
+auto={T}:Add{1}
+auto={1}:becomes(Blinkmoth Artifact Creature,1/1,flying) ueot
+auto={1}{T}:1/1 target(blinkmoth)
+rarity=R
+[/card]
+[card]
 text=Target player loses 1 life for each tapped artifact he or she controls.
 id=43557
 name=Burden of Greed

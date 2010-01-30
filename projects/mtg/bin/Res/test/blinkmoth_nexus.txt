@@ -1,0 +1,39 @@
+#Bug: Becomes does not work for activated abilities
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:blinkmoth nexus
+manapool:{1}
+[PLAYER2]
+[DO]
+blinkmoth nexus
+choice 1
+next
+#begin
+next
+#attackers
+blinkmoth nexus
+choice 0
+next
+#blockers
+eot
+eot
+next
+#upkeep
+next
+#draw
+next
+#main
+next
+#begin
+next
+#attackers
+blinkmoth nexus
+[ASSERT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:blinkmoth nexus
+manapool:{1}
+[PLAYER2]
+life:19
+[END]

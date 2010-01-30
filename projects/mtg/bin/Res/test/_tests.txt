@@ -117,6 +117,7 @@ benalish_knight.txt
 black_vise.txt
 blessed_wine.txt
 blinking_spirit.txt
+blinkmoth_nexus.txt
 bloated_toad1.txt
 bloated_toad2.txt
 bloodfire_colossus.txt

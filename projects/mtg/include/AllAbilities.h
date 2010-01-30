@@ -2236,25 +2236,14 @@ public:
 class  ABecomesUEOT: public InstantAbility{
 public:
   ABecomes * ability;
-  vector<ABecomes *> clones;
    ABecomesUEOT(int id, MTGCardInstance * source, MTGCardInstance * target, string types, WParsedPT * wpt, string abilities):InstantAbility(id,source,target){
      ability = NEW ABecomes(id,source,target,types,wpt,abilities);
    }
  
   int resolve(){
     ABecomes * a = ability->clone();
-    a->target = this->target;
-    a->forceDestroy = -1; //Prevent the effect from getting destroyed because its source is not inplay
-    a->addToGame();
-    clones.push_back(a);
-    return 1;
-  }
-
-  int destroy(){
-    for (size_t i = 0; i < clones.size(); ++i){
-      clones[i]->forceDestroy = 0;
-    }
-    clones.clear();
+    GenericInstantAbility * wrapper = NEW GenericInstantAbility(1,source,(Damageable *)(this->target),a);
+    wrapper->addToGame();
     return 1;
   }
 
