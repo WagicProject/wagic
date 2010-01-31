@@ -199,14 +199,6 @@ text={U}, Sacrifice a creature: Discard a card, then draw a card.
 rarity=U
 [/card]
 [card]
-id=97238
-name=Earth Surge
-mana={3}{G}
-type=Enchantment
-text=Each land gets +2/+2 as long as it's a creature.
-rarity=R
-[/card]
-[card]
 id=96829
 name=Electrolyze
 mana={1}{U}{R}
@@ -359,14 +351,6 @@ power=3
 toughness=2
 text=When Gruul Scrapper enters the battlefield, if {R} was spent to cast Gruul Scrapper, it gains haste until end of turn.
 rarity=C
-[/card]
-[card]
-id=107098
-name=Gruul War Plow
-mana={4}
-type=Artifact
-text=Creatures you control have trample. {1}{R}{G}: Gruul War Plow becomes a 4/4 Juggernaut artifact creature until end of turn.
-rarity=R
 [/card]
 [card]
 id=107688

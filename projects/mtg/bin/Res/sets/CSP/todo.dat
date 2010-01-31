@@ -80,19 +80,6 @@ toughness=5
 rarity=U
 [/card]
 [card]
-name=Balduvian Frostwaker
-id=121175
-text={U}, {T}: Target snow land becomes a 2/2 blue Elemental creature with flying. It's still a land.
-mana={2}{U}
-auto={U}{T}:becomes(blue elemental,2/2) target(land[snow])
-#becomes does not work yet with activation cost
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
-rarity=U  
-[/card]
-[card]
 name=Balduvian Warlord
 id=122056
 text={T}: Remove target blocking creature from combat. Creatures it was blocking that hadn't become blocked by another creature this combat become unblocked, then it blocks an attacking creature of your choice. Activate this ability only during the declare blockers step.

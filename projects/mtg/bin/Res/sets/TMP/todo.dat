@@ -796,14 +796,6 @@ subtype=Human Soldier Archer
 toughness=3
 [/card]
 [card]
-text=All lands are 2/2 creatures that are still lands.
-id=4774
-name=Nature's Revolt
-rarity=R
-type=Enchantment
-mana={3}{G}{G}
-[/card]
-[card]
 text=Whenever a creature becomes blocked by a creature with lesser power, destroy the blocking creature.       Whenever a creature blocks a creature with lesser power, destroy the attacking creature.
 id=4835
 name=No Quarter
@@ -855,7 +847,6 @@ power=1
 subtype=Human Cleric
 toughness=3
 [/card]
-
 [card]
 text=White spells you play cost {1} less to play.
 id=4620
@@ -1173,13 +1164,6 @@ name=Squee's Toy
 rarity=C
 type=Artifact
 mana={1}
-[/card]
-[card]
-text={T}: Add {1} to your mana pool.     {6}: Stalking Stones becomes a 3/3 Elemental artifact creature that's still a land. (This effect doesn't end at end of turn.)
-id=4941
-name=Stalking Stones
-rarity=U
-type=Land
 [/card]
 [card]
 text={T}: Destroy target artifact or creature. That permanent's controller gains control of Starke of Rath. (This effect doesn't end at end of turn.)

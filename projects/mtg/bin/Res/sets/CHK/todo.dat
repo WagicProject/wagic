@@ -696,14 +696,6 @@ toughness=2
 text={T}: Initiate of Blood deals 1 damage to target creature that was dealt damage this turn. When that creature is put into a graveyard this turn, flip Initiate of Blood. rarity=U
 [/card]
 [card]
-id=80531
-name=Jade Idol
-mana={4}
-type=Artifact
-text=Whenever you play a Spirit or Arcane spell, Jade Idol becomes a 4/4 Spirit artifact creature until end of turn.
-rarity=U
-[/card]
-[card]
 id=50247
 name=Jugan, the Rising Star
 mana={3}{G}{G}{G}
@@ -1335,17 +1327,6 @@ power=1
 toughness=2
 text=When Silent-Chant Zubera is put into a graveyard from play, you gain 2 life for each Zubera put into a graveyard from play this turn.
 rarity=C
-[/card]
-[card]
-id=79177
-name=Soilshaper
-mana={1}{G}
-type=Creature
-subtype=Spirit
-power=1
-toughness=1
-text=Whenever you play a Spirit or Arcane spell, target land becomes a 3/3 creature until end of turn. It's still a land.
-rarity=U
 [/card]
 [card]
 id=50301

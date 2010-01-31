@@ -52,6 +52,16 @@ power=1
 toughness=1
 [/card]
 [card]
+text=If Balduvian Trading Post would enter the battlefield, sacrifice an untapped Mountain instead. If you do, put Balduvian Trading Post onto the battlefield. If you don't, put it into its owner's graveyard.   {T}: Add {1}{R} to your mana pool.   {1}, {T}: Balduvian Trading Post deals 1 damage to target attacking creature.
+id=3231
+name=Balduvian Trading Post
+auto=moveTo(graveyard) notatarget(mountain[-tapped]|myBattlefield)
+auto=moveTo(graveyard) notatarget(this|myBattlefield)
+auto=@movedTo(mountain[-tapped]|mygraveyard) from(myBattlefield):lord(this) {T}:Add{1}{R} && lord(this) {1}{T}:damage:1 target(creature[attacking])
+rarity=U
+type=Land
+[/card]
+[card]
 text=Haste   Rampage 1 (Whenever this creature becomes blocked, it gets +1/+1 until end of turn for each creature blocking it beyond the first.)
 id=3162
 name=Balduvian War-Makers
@@ -249,6 +259,16 @@ power=3
 toughness=3
 [/card]
 [card]
+text=If Heart of Yavimaya would enter the battlefield, sacrifice a Forest instead. If you do, put Heart of Yavimaya onto the battlefield. If you don't, put it into its owner's graveyard.   {T}: Add {G} to your mana pool.   {T}: Target creature gets +1/+1 until end of turn.
+id=3232
+name=Heart of Yavimaya
+auto=moveTo(graveyard) notatarget(this|myBattlefield)
+auto=moveTo(graveyard) notatarget(forest[-tapped]|myBattlefield)
+auto=@movedTo(forest[-tapped]|mygraveyard) from(myBattlefield):lord(this|myBattlefield) {T}:Add{G} && lord(this|myBattlefield) {T}:1/1 target(creature)
+rarity=R
+type=Land
+[/card]
+[card]
 text=Hail Storm deals 2 damage to each attacking creature and 1 damage to you and each creature you control.
 id=3144
 auto=damage:2 all(creature[attacking])
@@ -270,6 +290,26 @@ subtype=Elf Druid
 auto=lord(creature[green]|myBattlefield)1/1
 power=2
 toughness=3
+[/card]
+[card]
+text=If Kjeldoran Outpost would enter the battlefield, sacrifice a Plains instead. If you do, put Kjeldoran Outpost onto the battlefield. If you don't, put it into its owner's graveyard.   {T}: Add {W} to your mana pool.   {1}{W}, {T}: Put a 1/1 white Soldier creature token onto the battlefield.
+id=3233
+name=Kjeldoran Outpost
+auto=moveTo(graveyard) notatarget(this|myBattlefield)
+auto=moveTo(graveyard) notatarget(plains[-tapped]|myBattlefield)
+auto=@movedTo(plains[-tapped]|mygraveyard) from(myBattlefield):lord(this|myBattlefield) {T}:Add{W} && lord(this|myBattlefield) {1}{W}{T}:token(Soldier,creature soldier, 1/1,white)
+rarity=R
+type=Land
+[/card]
+[card]
+text=If Lake of the Dead would enter the battlefield, sacrifice a Swamp instead. If you do, put Lake of the Dead onto the battlefield. If you don't, put it into its owner's graveyard.   {T}: Add {B} to your mana pool.   {T}, Sacrifice a Swamp: Add {B}{B}{B}{B} to your mana pool.
+id=3234
+name=Lake of the Dead
+auto=moveTo(graveyard) notatarget(this|myBattlefield)
+auto=moveTo(graveyard) notatarget(swamp[-tapped]|myBattlefield)
+auto=@movedTo(swamp[-tapped]|mygraveyard) from(myBattlefield):lord(this|myBattlefield) {T}:Add{B} && lord(this|myBattlefield) {T}{S(swamp|myBattlefield)}:Add{B}{B}{B}{B}
+rarity=R
+type=Land
 [/card]
 [card]
 text=Shuffle a card from your hand into your library.   If you do, draw two cards at the beginning of the next turn's upkeep.

@@ -802,6 +802,16 @@ mana={4}{B}
 type=Sorcery
 [/card]
 [card]
+text=Faerie Conclave enters the battlefield tapped.   {T}: Add {U} to your mana pool.   {1}{U}: Faerie Conclave becomes a 2/1 blue Faerie creature with flying until end of turn. It's still a land. (It can't be blocked except by creatures with flying or reach.)
+id=106531
+name=Faerie Conclave
+auto=tap
+auto={T}:Add{U}
+auto={1}{U}:becomes(Faerie Creature,2/1,flying,blue) ueot
+rarity=U
+type=Land
+[/card]
+[card]
 text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.)   Enchanted creature has fear. (It can't be blocked except by artifact creatures and/or black creatures.)
 id=129544
 target=creature
@@ -915,6 +925,16 @@ toughness=4
 abilities=flying
 [/card]
 [card]
+text=Forbidding Watchtower enters the battlefield tapped. {T}: Add {W} to your mana pool.   {1}{W}: Forbidding Watchtower becomes a 1/5 white Soldier creature until end of turn. It's still a land.
+id=106428
+name=Forbidding Watchtower
+auto=tap
+auto={T}:Add{W}
+auto={1}{W}:becomes(Soldier Creature,1/5,white) ueot
+rarity=U
+type=Land
+[/card]
+[card]
 id=129559
 primitive=Forest
 rarity=L
@@ -965,6 +985,16 @@ auto={R}:1/0
 power=2
 toughness=2
 abilities=flying
+[/card]
+[card]
+text=Ghitu Encampment enters the battlefield tapped.  {T}: Add {R} to your mana pool.   {1}{R}: Ghitu Encampment becomes a 2/1 red Warrior creature with first strike until end of turn. It's still a land. (It deals combat damage before creatures without first strike.)
+id=106564
+name=Ghitu Encampment
+auto=tap
+auto={T}:Add{R}
+auto={1}{R}:becomes(Soldier Creature,2/1,first strike,red) ueot
+rarity=U
+type=Land
 [/card]
 [card]
 text={T}: Target creature gets +1/+1 until end of turn.
@@ -2439,6 +2469,17 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Spawning Pool enters the battlefield tapped.   {T}: Add {B} to your mana pool.   {1}{B}: Spawning Pool becomes a 1/1 black Skeleton creature with "{B}: Regenerate this creature" until end of turn. It's still a land. (If it regenerates, the next time it would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
+id=106556
+name=Spawning Pool
+auto=tap
+auto={T}:Add{B}
+auto={1}{B}:becomes(Skeleton Creature,1/1,black) ueot
+auto=aslongas(creature[spawning pool]|myBattlefield) {B}:regenerate notatarget(creature[spawning pool]|myBattlefield))
+rarity=U
+type=Land
+[/card]
+[card]
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)   Whenever Thieving Magpie deals damage to an opponent, you draw a card.
 id=129764
 name=Thieving Magpie
@@ -2869,6 +2910,16 @@ rarity=C
 mana={1}{G}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+text=Treetop Village enters the battlefield tapped.   {T}: Add {G} to your mana pool.   {1}{G}: Treetop Village becomes a 3/3 green Ape creature with trample until end of turn. It's still a land. (If it would deal enough damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player or planeswalker.)
+id=106455
+name=Treetop Village
+auto=tap
+auto={T}:Add{G}
+auto={1}{G}:becomes(Ape Creature,3/3,trample,green) ueot
+rarity=U
+type=Land
 [/card]
 [card]
 text=Troll Ascetic can't be the target of spells or abilities your opponents control.     {1}{G}: Regenerate Troll Ascetic. (The next time this creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)

@@ -52,17 +52,6 @@ type=Sorcery
 mana={3}{W}{U}{B}{R}{G}
 [/card]
 [card]
-text=First strike     {W}{U}{B}{R}{G}: Until end of turn, Dragonsoul Knight becomes a Dragon, gets +5/+3, and gains flying and trample.
-id=186392
-name=Dragonsoul Knight
-rarity=U
-type=Creature
-mana={2}{R}
-power=2
-subtype=Human Knight
-toughness=2
-[/card]
-[card]
 text=Enchant creature     Enchanted creature gets +3/+3 and has flying.     Whenever enchanted creature deals damage to a player, that player discards two cards.
 id=183024
 name=Elder Mastery
@@ -123,7 +112,6 @@ rarity=U
 type=Instant
 mana={2}{G}
 [/card]
-
 [card]
 text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)  {U}, {T}: Draw a card, then discard a card.
 id=184993
@@ -146,7 +134,6 @@ power=2
 subtype=Human Soldier
 toughness=2
 [/card]
-
 [card]
 text=Flash     Devour 1 (As this comes into play, you may sacrifice any number of creatures. This creature comes into play with that many +1/+1 counters on it.)
 id=179512
@@ -382,17 +369,6 @@ name=Obelisk of Alara
 rarity=R
 type=Artifact
 mana={6}
-[/card]
-[card]
-text=First strike     {W}{U}{B}{R}{G}: Until end of turn, Paragon of the Amesha becomes an Angel, gets +3/+3, and gains flying and lifelink.
-id=179878
-name=Paragon of the Amesha
-rarity=U
-type=Creature
-mana={2}{W}
-power=2
-subtype=Human Knight
-toughness=2
 [/card]
 [card]
 text=Remove target creature from the game. Its controller may search his or her library for a basic land card, put that card into play tapped, then shuffle his or her library.

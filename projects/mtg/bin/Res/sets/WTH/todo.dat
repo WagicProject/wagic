@@ -223,14 +223,6 @@ text={2}{G}{G}: Reveal the top card of your library. If it's a creature card, pu
 rarity=R
 [/card]
 [card]
-id=4431
-name=Chimeric Sphere
-mana={3}
-type=Artifact
-text={2}: Until end of turn, Chimeric Sphere becomes a 2/1 Construct artifact creature with flying. {2}: Until end of turn, Chimeric Sphere becomes a 3/2 Construct artifact creature without flying.
-rarity=U
-[/card]
-[card]
 id=4511
 name=Choking Vines
 mana={X}{G}
@@ -984,14 +976,6 @@ name=Winding Canyons
 mana=
 type=Land
 text={T}: Add {1} to your mana pool. {2}, {T}: Until end of turn, you may play creature cards as though they had flash.
-rarity=R
-[/card]
-[card]
-id=4446
-name=Xanthic Statue
-mana={8}
-type=Artifact
-text={5}: Until end of turn, Xanthic Statue becomes an 8/8 Golem artifact creature with trample.
 rarity=R
 [/card]
 [card]

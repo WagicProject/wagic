@@ -663,6 +663,15 @@ power=3
 toughness=4
 [/card]
 [card]
+text=Whenever you cast a creature spell, Halcyon Glaze becomes a 4/4 Illusion creature with flying until end of turn. It's still an enchantment.
+id=83764
+auto=@movedTo(creature|mystack):becomes(Illusion Creature,4/4,flying) ueot
+name=Halcyon Glaze
+rarity=U
+mana={1}{U}{U}
+type=Enchantment
+[/card]
+[card]
 text=When Infectious Host is put into a graveyard from the battlefield, target player loses 2 life.
 id=87966
 auto=@movedTo(this|graveyard) from(battlefield):life:-2 target(player)
@@ -1531,4 +1540,16 @@ auto={T}:Add {U}
 auto={T}:Add {B}
 type=Land
 subtype=Island Swamp
+[/card]
+[card]
+text={1}{B}{G}, {T}: Target Forest becomes a 4/4 black and green Elemental Horror creature. It's still a land.
+id=83747
+name=Woodwraith Corrupter
+rarity=R
+mana={3}{B}{B}{G}
+type=Creature
+subtype=Elemental Horror
+auto={1}{B}{G}{T}:target(land) becomes(Creature Elemental Horror,4/4,black,green)
+power=3
+toughness=6
 [/card]

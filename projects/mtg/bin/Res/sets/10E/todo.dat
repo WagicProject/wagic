@@ -236,24 +236,6 @@ subtype=Insect
 toughness=1
 [/card]
 [card]
-text=Faerie Conclave comes into play tapped.     {T}: Add {U} to your mana pool.     {1}{U}: Faerie Conclave becomes a 2/1 blue Faerie creature with flying until end of turn. It's still a land. (It can't be blocked except by creatures with flying or reach.)
-id=106531
-name=Faerie Conclave
-rarity=U
-auto=tap
-auto={T}:add {U}
-auto={1}{U}:becomes(Creature Faerie,2/1,flying blue)
-#will only work if activatedability is added for becomes
-type=Land
-[/card]
-[card]
-text=Forbidding Watchtower comes into play tapped.     {T}: Add {W} to your mana pool.     {1}{W}: Forbidding Watchtower becomes a 1/5 white Soldier creature until end of turn. It's still a land.
-id=106428
-name=Forbidding Watchtower
-rarity=U
-type=Land
-[/card]
-[card]
 text=If a source would deal damage to a creature or player, it deals double that damage to that creature or player instead.
 id=129566
 name=Furnace of Rath
@@ -273,13 +255,6 @@ mana={1}{G}
 power=1
 subtype=Elf
 toughness=1
-[/card]
-[card]
-text=Ghitu Encampment comes into play tapped.     {T}: Add {R} to your mana pool.     {1}{R}: Ghitu Encampment becomes a 2/1 red Warrior creature with first strike until end of turn. It's still a land. (It deals combat damage before creatures without first strike.)
-id=106564
-name=Ghitu Encampment
-rarity=U
-type=Land
 [/card]
 [card]
 text=Whenever a creature you control is put into a graveyard from play, each other player sacrifices a creature.
@@ -729,13 +704,6 @@ type=Sorcery
 mana={3}{U}
 [/card]
 [card]
-text=Spawning Pool comes into play tapped.     {T}: Add {B} to your mana pool.     {1}{B}: Spawning Pool becomes a 1/1 black Skeleton creature with "{B}: Regenerate this creature" until end of turn. It's still a land. (If it regenerates, the next time it would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
-id=106556
-name=Spawning Pool
-rarity=U
-type=Land
-[/card]
-[card]
 text=You have no maximum hand size.
 id=129741
 name=Spellbook
@@ -834,13 +802,6 @@ name=Time Stretch
 rarity=R
 type=Sorcery
 mana={8}{U}{U}
-[/card]
-[card]
-text=Treetop Village comes into play tapped.     {T}: Add {G} to your mana pool.     {1}{G}: Treetop Village becomes a 3/3 green Ape creature with trample until end of turn. It's still a land. (If it would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)
-id=106455
-name=Treetop Village
-rarity=U
-type=Land
 [/card]
 [card]
 text=You have shroud. (You can't be the target of spells or abilities.)

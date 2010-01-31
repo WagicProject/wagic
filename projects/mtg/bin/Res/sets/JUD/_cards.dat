@@ -387,6 +387,15 @@ toughness=4
 abilities=defender
 [/card]
 [card]
+text={T}: Add {1} to your mana pool.   Threshold - {G}{W}: Nantuko Monastery becomes a 4/4 green and white Insect Monk creature with first strike until end of turn. It's still a land. Activate this ability only if seven or more cards are in your graveyard.
+id=34401
+name=Nantuko Monastery
+auto={T}:Add{1}
+auto=aslongas(*|mygraveyard) {G}{W}:becomes(Creature Insect Monk,4/4,first strike,green,white) ueot >6
+type=Land
+rarity=U
+[/card]
+[card]
 text=Flying   Threshold - Other creatures you control get +2/+2 as long as seven or more cards are in your graveyard.
 id=36036
 name=Silver Seraph

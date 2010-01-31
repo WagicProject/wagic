@@ -116,6 +116,16 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+text={2}: Until end of turn, Chimeric Sphere becomes a 2/1 Construct artifact creature with flying.   {2}: Until end of turn, Chimeric Sphere becomes a 3/2 Construct artifact creature without flying.
+id=4431
+name=Chimeric Sphere
+auto={2}:becomes(Construct Artifact Creature,2/1,flying) ueot
+auto={2}:becomes(Construct Artifact Creature,3/2) ueot
+rarity=U
+mana={3}
+type=Artifact
+[/card]
+[card]
 text=At the beginning of your upkeep, Cinder Giant deals 2 damage to each other creature you control.
 auto=@each my upkeep:damage:2 all(other creature|myBattlefield)
 id=4539
@@ -669,4 +679,13 @@ name=Vitalize
 rarity=C
 mana={G}
 type=Instant
+[/card]
+[card]
+text={5}: Until end of turn, Xanthic Statue becomes an 8/8 Golem artifact creature with trample.
+id=4446
+name=Xanthic Statue
+auto={5}:becomes(Artifact Creature Golem,8/8,trample) ueot
+rarity=R
+mana={8}
+type=Artifact
 [/card]

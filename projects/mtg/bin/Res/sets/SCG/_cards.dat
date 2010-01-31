@@ -4,6 +4,19 @@ year=2003
 block=Slaughter
 [/meta]
 [card]
+text=Forests you control are 1/1 green Elf creatures that are still lands.   {1}{G}, Sacrifice an Elf: Target creature gets +3/+3 until end of turn.
+auto=lord(forest|myBattlefield) becomes(Elf Creature,1/1,green) 
+auto={1}{G}{S(elf|myBattlefield)}:3/3 target(creature)
+id=43599
+name=Ambush Commander
+rarity=R
+mana={3}{G}{G}
+type=Creature
+subtype=Elf
+power=2
+toughness=2
+[/card]
+[card]
 text={3}, {T}, Sacrifice Ark of Blight: Destroy target land.
 auto={3}{T}{S}:destroy target(land)
 id=47281

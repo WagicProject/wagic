@@ -185,7 +185,7 @@ power=3
 toughness=3
 [/card]
 [card]
-text=Flying -- {T}: Target player loses 1 life.
+text=Flying   {T}: Target player loses 1 life.
 id=73597
 auto={T}:life:-1 target(player)
 name=Cackling Imp
@@ -367,6 +367,17 @@ id=51229
 name=Grinding Station
 rarity=U
 mana={3}
+type=Artifact
+[/card]
+[card]
+text=Guardian Idol enters the battlefield tapped.   {T}: Add {1} to your mana pool.   {2}: Guardian Idol becomes a 2/2 Golem artifact creature until end of turn.
+id=51138
+name=Guardian Idol
+auto=tap
+auto={T}:Add{1}
+auto={2}:becomes(Golem Artifact Creature,2/2) ueot
+rarity=U
+mana={2}
 type=Artifact
 [/card]
 [card]

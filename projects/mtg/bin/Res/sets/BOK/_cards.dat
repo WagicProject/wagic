@@ -160,6 +160,79 @@ power=1
 toughness=1
 [/card]
 [card]
+text=Enchant Forest   {2}: Enchanted Forest becomes a 4/4 green Spirit creature until end of turn. It's still a land.   When enchanted Forest is put into a graveyard, you may return Genju of the Cedars from your graveyard to your hand.
+id=74424
+target=forest
+auto={2}:becomes(Spirit Creature,4/4,green) ueot
+auto=@movedTo(mytgt|mygraveyard) from(battlefield):moveTo(myhand) all(this)
+name=Genju of the Cedars
+rarity=U
+mana={G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Enchant Island   {2}: Enchanted Island becomes a 3/2 blue Spirit creature with flying until end of turn. It's still a land.   When enchanted Island is put into a graveyard, you may return Genju of the Falls from your graveyard to your hand.
+id=74582
+target=island
+auto={2}:becomes(Spirit Creature,3/2,flying,blue) ueot
+auto=@movedTo(mytgt|mygraveyard) from(battlefield):moveTo(myhand) all(this)
+name=Genju of the Falls
+rarity=U
+mana={U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Enchant Swamp   {2}: Until end of turn, enchanted Swamp becomes a 2/2 black Spirit creature with "{B}: This creature gets +1/+1 until end of turn." It's still a land.   When enchanted Swamp is put into a graveyard, you may return Genju of the Fens from your graveyard to your hand.
+id=74035
+target=swamp
+auto={2}:becomes(Spirit Creature,2/2,black) ueot
+auto=@movedTo(mytgt|mygraveyard) from(battlefield):moveTo(myhand) all(this)
+auto={B}:1/1(mytgt)
+name=Genju of the Fens
+rarity=U
+mana={B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Enchant Plains   {2}: Until end of turn, enchanted Plains becomes a 2/5 white Spirit creature with "Whenever this creaure deals damage, its controller gains that much life." It's still a land.   When enchanted Plains is put into a graveyard, you may return Genju of the Fields from your graveyard to your hand.
+id=74087
+target=plains
+auto={2}:becomes(Spirit Creature,2/5,white) ueot
+auto=@movedTo(mytgt|mygraveyard) from(battlefield):moveTo(myhand) all(this)
+name=Genju of the Fields
+rarity=U
+mana={W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Enchant land   {2}: Enchanted land becomes a legendary 8/12 Spirit creature with trample until end of turn. It's still a land.   When enchanted land is put into a graveyard, you may return Genju of the Realm from your graveyard to your hand.
+id=75364
+target=land
+auto={2}:becomes(Spirit Creature,8/12,trample,legendary) ueot
+auto=@movedTo(mytgt|mygraveyard) from(battlefield):moveTo(myhand) all(this)
+name=Genju of the Realm
+rarity=R
+mana={W}{U}{B}{R}{G}
+type=Legendary Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Enchant Mountain   {2}: Enchanted Mountain becomes a 6/1 red Spirit creature until end of turn. It's still a land.   When enchanted Mountain is put into a graveyard, you may return Genju of the Spires from your graveyard to your hand.
+id=74666
+target=mountain
+auto={2}:becomes(Spirit Creature,6/1,red) ueot
+auto=@movedTo(mytgt|mygraveyard) from(battlefield):moveTo(myhand) all(this)
+name=Genju of the Spires
+rarity=U
+mana={R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 id=74435
 name=Gnarled Mass
 rarity=C

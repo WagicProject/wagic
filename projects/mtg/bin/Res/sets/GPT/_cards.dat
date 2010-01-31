@@ -153,6 +153,15 @@ power=3
 toughness=3
 [/card]
 [card]
+text=Each land gets +2/+2 as long as it's a creature.
+id=97238
+name=Earth Surge
+auto=lord(land[creature]) 2/2
+rarity=R
+mana={3}{G}
+type=Enchantment
+[/card]
+[card]
 text=Counter target nonblue spell.
 id=96890
 target=*[-blue]|stack
@@ -244,6 +253,16 @@ id=96859
 name=Gruul Signet
 rarity=C
 mana={2}
+type=Artifact
+[/card]
+[card]
+text=Creatures you control have trample.   {1}{R}{G}: Gruul War Plow becomes a 4/4 Juggernaut artifact creature until end of turn.
+id=107098
+name=Gruul War Plow
+auto=lord(creature|myBattlefield) trample
+auto={1}{R}{G}:becomes(Juggernautt Artifact Creature,4/4) ueot
+rarity=R
+mana={4}
 type=Artifact
 [/card]
 [card]

@@ -687,14 +687,6 @@ subtype=Elemental
 toughness=7
 [/card]
 [card]
-text=Whenever you play a creature spell, Halcyon Glaze becomes a 4/4 Illusion creature with flying until end of turn. It's still an enchantment.
-id=83764
-name=Halcyon Glaze
-rarity=U
-type=Enchantment
-mana={1}{U}{U}
-[/card]
-[card]
 text={B}{B}{B}, {T}: Destroy target land. If that land was nonbasic, untap Helldozer.
 id=88990
 name=Helldozer
@@ -1621,18 +1613,6 @@ name=Wojek Siren
 rarity=C
 type=Instant
 mana={W}
-[/card]
-[card]
-#becomes to test
-text={1}{B}{G}, {T}: Target Forest becomes a 4/4 black and green Elemental Horror creature. It's still a land.
-id=83747
-name=Woodwraith Corrupter
-rarity=R
-type=Creature
-mana={3}{B}{B}{G}
-power=3
-subtype=Elemental Horror
-toughness=6
 [/card]
 [card]
 text=Remove a creature card in your graveyard from the game: Regenerate Woodwraith Strangler.

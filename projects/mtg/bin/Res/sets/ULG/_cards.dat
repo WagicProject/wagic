@@ -179,6 +179,16 @@ power=2
 toughness=1
 [/card]
 [card]
+text=Faerie Conclave enters the battlefield tapped.   {T}: Add {U} to your mana pool.   {1}{U}: Faerie Conclave becomes a 2/1 blue Faerie creature with flying until end of turn. It's still a land. (It can't be blocked except by creatures with flying or reach.)
+id=12495
+name=Faerie Conclave
+auto=tap
+auto={T}:Add{U}
+auto={1}{U}:becomes(Faerie Creature,2/1,flying,blue) ueot
+rarity=U
+type=Land
+[/card]
+[card]
 text={1}{U}: Return Fleeting Image to its owner's hand.
 auto={1}{U}:moveTo(myhand)
 id=12389
@@ -205,16 +215,36 @@ toughness=1
 abilities=flying
 [/card]
 [card]
+text=Forbidding Watchtower enters the battlefield tapped. {T}: Add {W} to your mana pool.   {1}{W}: Forbidding Watchtower becomes a 1/5 white Soldier creature until end of turn. It's still a land.
+id=12494
+name=Forbidding Watchtower
+auto=tap
+auto={T}:Add{W}
+auto={1}{W}:becomes(Soldier Creature,1/5,white) ueot
+rarity=U
+type=Land
+[/card]
+[card]
 text=Whenever Gang of Elk becomes blocked, it gets +2/+2 until end of turn for each creature blocking it.
 id=12950
-auto=rampage(2/2,0)
 name=Gang of Elk
 rarity=U
 mana={5}{G}
 type=Creature
 subtype=Elk Beast
+auto=rampage(2/2,0)
 power=5
 toughness=4
+[/card]
+[card]
+text=Ghitu Encampment enters the battlefield tapped.  {T}: Add {R} to your mana pool.   {1}{R}: Ghitu Encampment becomes a 2/1 red Warrior creature with first strike until end of turn. It's still a land. (It deals combat damage before creatures without first strike.)
+id=12497
+name=Ghitu Encampment
+auto=tap
+auto={T}:Add{R}
+auto={1}{R}:becomes(Soldier Creature,2/1,first strike,red) ueot
+rarity=U
+type=Land
 [/card]
 [card]
 text={R}: Target creature gets +1/+0 until end of turn.
@@ -623,6 +653,17 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+text=Spawning Pool enters the battlefield tapped.   {T}: Add {B} to your mana pool.   {1}{B}: Spawning Pool becomes a 1/1 black Skeleton creature with "{B}: Regenerate this creature" until end of turn. It's still a land. (If it regenerates, the next time it would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
+id=12496
+name=Spawning Pool
+auto=tap
+auto={T}:Add{B}
+auto={1}{B}:becomes(Skeleton Creature,1/1,black) ueot
+auto=aslongas(creature[spawning pool]|myBattlefield) {B}:regenerate notatarget(creature[spawning pool]|myBattlefield))
+rarity=U
+type=Land
+[/card]
+[card]
 text=At the beginning of your upkeep, each opponent loses 1 life. You gain life equal to the life lost this way.
 auto=@each my upkeep:life:1 controller
 auto=@each my upkeep:life:-1 opponent
@@ -681,6 +722,16 @@ type=Creature
 subtype=Human
 power=1
 toughness=1
+[/card]
+[card]
+text=Treetop Village enters the battlefield tapped.   {T}: Add {G} to your mana pool.   {1}{G}: Treetop Village becomes a 3/3 green Ape creature with trample until end of turn. It's still a land. (If it would deal enough damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player or planeswalker.)
+id=12498
+name=Treetop Village
+auto=tap
+auto={T}:Add{G}
+auto={1}{G}:becomes(Ape Creature,3/3,trample,green) ueot
+rarity=U
+type=Land
 [/card]
 [card]
 text=Return target creature card with converted mana cost 3 or less from your graveyard to the battlefield.   Cycling {2} ({2}, Discard this card: Draw a card.)

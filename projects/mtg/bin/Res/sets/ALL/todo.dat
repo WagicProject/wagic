@@ -107,15 +107,6 @@ text=When Balduvian Horde enters the battlefield, sacrifice it unless you discar
 rarity=R
 [/card]
 [card]
-id=3231
-name=Balduvian Trading Post
-type=Land
-text=If Balduvian Trading Post would enter the battlefield, sacrifice an untapped Mountain instead. If you do, put Balduvian Trading Post onto the battlefield. If you don't, put it into its owner's graveyard. {T}: Add {1}{R} to your mana pool. {1}, {T}: Balduvian Trading Post deals 1 damage to target attacking creature.
-auto={T}: add {1}{R}
-auto={1}{T}:damage:1 target(creature[attacking])
-rarity=R
-[/card]
-[card]
 id=3101
 name=Benthic Explorers
 mana={3}{U}
@@ -522,15 +513,6 @@ text={T}: Exile a card from your hand face down. You may look at it for as long 
 rarity=R
 [/card]
 [card]
-id=3232
-name=Heart of Yavimaya
-type=Land
-text=If Heart of Yavimaya would enter the battlefield, sacrifice a Forest instead. If you do, put Heart of Yavimaya onto the battlefield. If you don't, put it into its owner's graveyard. {T}: Add {G} to your mana pool. {T}: Target creature gets +1/+1 until end of turn.
-auto={T}: add {G}
-auto={T}:1/1 target(Creature)
-rarity=R
-[/card]
-[card]
 id=3047
 name=Helm of Obedience
 mana={4}
@@ -641,15 +623,6 @@ auto=aslongas(this[attacking,blocking]|myinplay):token(Deserter,Creature Deserte
 rarity=U
 [/card]
 [card]
-id=3233
-name=Kjeldoran Outpost
-type=Land
-text=If Kjeldoran Outpost would enter the battlefield, sacrifice a Plains instead. If you do, put Kjeldoran Outpost onto the battlefield. If you don't, put it into its owner's graveyard. {T}: Add {W} to your mana pool. {1}{W}, {T}: Put a 1/1 white Soldier creature token onto the battlefield.
-auto={T}: add {W}
-auto={1}{W}{T}:token(soldier,creature solder,1/1,white)
-rarity=R
-[/card]
-[card]
 id=3201
 name=Kjeldoran Pride
 mana={1}{W}
@@ -696,16 +669,6 @@ auto=@next upkeep:draw:1 controller
 auto=lord(mytgt) {T}:damage:1 target(creature,player) && counter(0/-1,1)
 #Wonder if this could work... ;)
 rarity=U
-[/card]
-[card]
-id=3234
-name=Lake of the Dead
-mana=
-type=Land
-text=If Lake of the Dead would enter the battlefield, sacrifice a Swamp instead. If you do, put Lake of the Dead onto the battlefield. If you don't, put it into its owner's graveyard. {T}: Add {B} to your mana pool. {T}, Sacrifice a Swamp: Add {B}{B}{B}{B} to your mana pool.
-rarity=R
-auto={T}: add {B}
-auto={T}{S(swamp|myinplay)}: add {B}{B}{B}{B}
 [/card]
 [card]
 id=3112

@@ -305,14 +305,6 @@ text=Enchant creature Enchanted creature has "{T}: Add one mana of any color to 
 rarity=U
 [/card]
 [card]
-id=26410
-name=Natural Emergence
-mana={2}{R}{G}
-type=Enchantment
-text=When Natural Emergence enters the battlefield, return a red or green enchantment you control to its owner's hand. Lands you control are 2/2 creatures with first strike. They're still lands.
-rarity=R
-[/card]
-[card]
 id=25914
 name=Nightscape Battlemage
 mana={2}{B}

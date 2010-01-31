@@ -961,14 +961,6 @@ mana={1}{W}
 subtype=Aura
 [/card]
 [card]
-text=Until end of turn, all lands become 2/2 creatures that are still lands.
-id=19875
-name=Natural Affinity
-rarity=R
-type=Instant
-mana={2}{G}
-[/card]
-[card]
 text=At the beginning of your upkeep, if Nether Spirit is the only creature card in your graveyard, you may return Nether Spirit to play.
 id=19693
 name=Nether Spirit

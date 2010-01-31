@@ -184,7 +184,6 @@ type=Instant
 text=Choose one: Barbed Lightning deals 3 damage to target creature; or Barbed Lightning deals 3 damage to target player. Entwine {2} (Choose both if you pay the entwine cost.)
 rarity=C
 [/card]
-
 [card]
 id=48572
 name=Carry Away
@@ -233,14 +232,6 @@ subtype=Myr
 power=1
 toughness=1
 text={T}: Put a charge counter on target artifact. Sacrifice Coretapper: Put two charge counters on target artifact.
-rarity=U
-[/card]
-[card]
-id=43563
-name=Darksteel Brute
-mana={2}
-type=Artifact
-text=Darksteel Brute is indestructible. ("Destroy" effects and lethal damage don't destroy it.) {3}: Darksteel Brute becomes a 2/2 Beast artifact creature until end of turn.
 rarity=U
 [/card]
 [card]

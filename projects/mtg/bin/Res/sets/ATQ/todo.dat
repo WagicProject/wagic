@@ -211,17 +211,6 @@ text=As long as Martyrs of Korlis is untapped, all damage that would be dealt to
 rarity=U
 [/card]
 [card]
-id=1073
-name=Mishra's Factory
-mana=
-type=Land
-text={T}: Add {1} to your mana pool. {1}: Mishra's Factory becomes a 2/2 Assembly-Worker artifact creature until end of turn. It's still a land. {T}: Target Assembly-Worker creature gets +1/+1 until end of turn.
-auto={T}:add{1}
-auto={1}:becomes(Artifact Creature Assembly-Worker,2/2)
-auto={T}:1/1 target(Assembly-Worker)
-rarity=U
-[/card]
-[card]
 id=1013
 name=Mishra's War Machine
 mana={7}

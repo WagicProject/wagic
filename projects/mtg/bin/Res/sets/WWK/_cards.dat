@@ -144,6 +144,17 @@ power=4
 toughness=3
 [/card]
 [card]
+text=Celestial Colonnade enters the battlefield tapped.   {T}: Add {W} or {U} to your mana pool.   {3}{W}{U}: Until end of turn, Celestial Colonnade becomes a 4/4 white and blue Elemental creature with flying and vigilance. It's still a land.
+id=177545
+name=Celestial Colonnade
+auto=tap
+auto={T}:Add{W}
+auto={T}:Add{U}
+auto={3}{W}{U}:becomes(Elemental Creature,4/4,flying,vigilance,white,blue) ueot
+rarity=R
+type=Land
+[/card]
+[card]
 text=Chain Reaction deals X damage to each creature, where X is the number of creatures on the battlefield.
 id=201573
 name=Chain Reaction
@@ -175,6 +186,17 @@ type=Creature
 subtype=Elemental
 power=2
 toughness=2
+[/card]
+[card]
+text=Creeping Tar Pit enters the battlefield tapped.   {T}: Add {U} or {B} to your mana pool.   {1}{U}{B}: Until end of turn, Creeping Tar Pit becomes a 3/2 blue and black Elemental creature and is unblockable. It's still a land.
+id=177520
+name=Creeping Tar Pit
+auto=tap
+auto={T}:Add{U}
+auto={T}:Add{B}
+auto={1}{U}{B}:becomes(Elemental Creature,3/2,unblockable,blue,black) ueot
+rarity=R
+type=Land
 [/card]
 [card]
 text=Haste   {T}: Cunning Sparkmage deals 1 damage to target creature or player.
@@ -211,6 +233,15 @@ subtype=Human Shaman
 auto=
 power=1
 toughness=1
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.   {4}: Dread Statuary becomes a 4/2 Golem artifact creature until end of turn. It's still a land.
+id=205425
+name=Dread Statuary
+auto={T}:Add{1}
+auto={4}:becomes(Golem Artifact Creature,4/2) ueot
+rarity=U
+type=Land
 [/card]
 [card]
 text=Landfall - Whenever a land enters the battlefield under your control, Fledgling Griffin gains flying until end of turn.
@@ -555,6 +586,17 @@ auto=@movedTo(land|myBattlefield):vigilance ueot
 power=2
 toughness=3
 abilities=reach
+[/card]
+[card]
+text=Stirring Wildwood enters the battlefield tapped.   {T}: Add {G} or {W} to your mana pool.   {1}{G}{W}: Until end of turn, Stirring Wildwood becomes a 3/4 green and white Elemental creature with reach. It's still a land.
+id=177560
+name=Stirring Wildwood
+auto=tap
+auto={T}:Add{G}
+auto={T}:Add{W}
+auto={1}{G}{W}:becomes(Elemental Creature,3/4,reach,green,white) ueot
+rarity=R
+type=Land
 [/card]
 [card]
 text=When Stoneforge Mystic enters the battlefield, you may search your library for an equipment card, reveal it, and put it into your hand. If you do, shuffle your library.   {1}{W}, {T}: Put an equipment card from your hand onto the battlefield.

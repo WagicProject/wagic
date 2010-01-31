@@ -202,60 +202,6 @@ text=Fumiko the Lowblood has bushido X, where X is the number of attacking creat
 rarity=R
 [/card]
 [card]
-id=74424
-name=Genju of the Cedars
-mana={G}
-type=Enchantment
-subtype=Aura
-text=Enchant Forest {2}: Enchanted Forest becomes a 4/4 green Spirit creature until end of turn. It's still a land. When enchanted Forest is put into a graveyard, you may return Genju of the Cedars from your graveyard to your hand.
-rarity=U
-[/card]
-[card]
-id=74582
-name=Genju of the Falls
-mana={U}
-type=Enchantment
-subtype=Aura
-text=Enchant Island {2}: Enchanted Island becomes a 3/2 blue Spirit creature with flying until end of turn. It's still a land. When enchanted Island is put into a graveyard, you may return Genju of the Falls from your graveyard to your hand.
-rarity=U
-[/card]
-[card]
-id=74035
-name=Genju of the Fens
-mana={B}
-type=Enchantment
-subtype=Aura
-text=Enchant Swamp {2}: Until end of turn, enchanted Swamp becomes a 2/2 black Spirit creature with "{B}: This creature gets +1/+1 until end of turn." It's still a land. When enchanted Swamp is put into a graveyard, you may return Genju of the Fens from your graveyard to your hand.
-rarity=U
-[/card]
-[card]
-id=74087
-name=Genju of the Fields
-mana={W}
-type=Enchantment
-subtype=Aura
-text=Enchant Plains {2}: Until end of turn, enchanted Plains becomes a 2/5 white Spirit creature with "Whenever this creaure deals damage, its controller gains that much life." It's still a land. When enchanted Plains is put into a graveyard, you may return Genju of the Fields from your graveyard to your hand.
-rarity=U
-[/card]
-[card]
-id=75364
-name=Genju of the Realm
-mana={W}{U}{B}{R}{G}
-type=Legendary Enchantment
-subtype=Aura
-text=Enchant land {2}: Enchanted land becomes a legendary 8/12 Spirit creature with trample until end of turn. It's still a land. When enchanted land is put into a graveyard, you may return Genju of the Realm from your graveyard to your hand.
-rarity=R
-[/card]
-[card]
-id=74666
-name=Genju of the Spires
-mana={R}
-type=Enchantment
-subtype=Aura
-text=Enchant Mountain {2}: Enchanted Mountain becomes a 6/1 red Spirit creature until end of turn. It's still a land. When enchanted Mountain is put into a graveyard, you may return Genju of the Spires from your graveyard to your hand.
-rarity=U
-[/card]
-[card]
 id=74475
 name=Goryo's Vengeance
 mana={1}{B}

@@ -28,24 +28,6 @@ text=Enchant creature Enchanted creature gets +2/+2 for each other creature on t
 rarity=U
 [/card]
 [card]
-id=43599
-name=Ambush Commander
-mana={3}{G}{G}
-type=Creature
-subtype=Elf
-power=2
-toughness=2
-text=Forests you control are 1/1 green Elf creatures that are still lands. {1}{G}, Sacrifice an Elf: Target creature gets +3/+3 until end of turn.
-auto=becomes(Elf Creature,1/1,Green) all(forest|myBattlefield)
-# Only works for the forest currently in play
-auto=@movedto(forest|myBattlefield):becomes(Elf Creature,1/1,Green) all(forest|myBattlefield)
-# Will give the bonus to new coming forest but the forest stay 1/1 creature even if the card leaves play
-auto=@movedto(this|Graveyard):becomes(Land) all(forest|myBattlefield)
-# Attempt to correct the fact that the bonus stays even if the card leaves play... crash the game.
-auto={1}{G}{S(elf|myBattlefield)}:3/3 target(creature)
-rarity=R
-[/card]
-[card]
 id=45164
 name=Ancient Ooze
 mana={5}{G}{G}

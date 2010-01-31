@@ -376,14 +376,6 @@ text=Equipped creature gets +3/+2. Whenever Grafted Wargear becomes unattached f
 rarity=U
 [/card]
 [card]
-id=51138
-name=Guardian Idol
-mana={2}
-type=Artifact
-text=Guardian Idol enters the battlefield tapped. {T}: Add {1} to your mana pool. {2}: Guardian Idol becomes a 2/2 Golem artifact creature until end of turn.
-rarity=U
-[/card]
-[card]
 id=51182
 name=Healer's Headdress
 mana={2}

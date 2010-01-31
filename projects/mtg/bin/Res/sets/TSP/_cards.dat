@@ -1006,6 +1006,16 @@ rarity=C
 type=Land
 [/card]
 [card]
+text={T}: Add {W} to your mana pool.   {1}{W}{W}: Thunder Totem becomes a 2/2 white Spirit artifact creature with flying and first strike until end of turn.
+id=108931
+name=Thunder Totem
+auto={T}:Add{W}
+auto={1}{W}{W}:becomes(Artifact Creature Spirit,2/2,flying,first strike,white) ueot
+rarity=U
+mana={3}
+type=Artifact
+[/card]
+[card]
 text=First strike, protection from red   When Tivadar of Thorn enters the battlefield, destroy target Goblin.
 id=116736
 name=Tivadar of Thorn

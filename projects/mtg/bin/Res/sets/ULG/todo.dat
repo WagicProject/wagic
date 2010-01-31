@@ -134,36 +134,12 @@ text=As Engineered Plague enters the battlefield, choose a creature type.  All c
 rarity=U
 [/card]
 [card]
-id=12495
-name=Faerie Conclave
-mana=
-type=Land
-text=Faerie Conclave enters the battlefield tapped. {T}: Add {U} to your mana pool. {1}{U}: Faerie Conclave becomes a 2/1 blue Faerie creature with flying until end of turn. It's still a land. (It can't be blocked except by creatures with flying or reach.)
-rarity=U
-[/card]
-[card]
-id=12494
-name=Forbidding Watchtower
-mana=
-type=Land
-text=Forbidding Watchtower enters the battlefield tapped. {T}: Add {W} to your mana pool. {1}{W}: Forbidding Watchtower becomes a 1/5 white Soldier creature until end of turn. It's still a land.
-rarity=U
-[/card]
-[card]
 id=12375
 name=Frantic Search
 mana={2}{U}
 type=Instant
 text=Draw two cards, then discard two cards. Untap up to three lands.
 rarity=C
-[/card]
-[card]
-id=12497
-name=Ghitu Encampment
-mana=
-type=Land
-text=Ghitu Encampment enters the battlefield tapped. {T}: Add {R} to your mana pool. {1}{R}: Ghitu Encampment becomes a 2/1 red Warrior creature with first strike until end of turn. It's still a land. (It deals combat damage before creatures without first strike.)
-rarity=U
 [/card]
 [card]
 id=12815
@@ -515,14 +491,6 @@ text=Return target creature to its owner's hand. Untap up to two lands.
 rarity=C
 [/card]
 [card]
-id=12496
-name=Spawning Pool
-mana=
-type=Land
-text=Spawning Pool enters the battlefield tapped. {T}: Add {B} to your mana pool. {1}{B}: Spawning Pool becomes a 1/1 black Skeleton creature with "{B}: Regenerate this creature" until end of turn. It's still a land. (If it regenerates, the next time it would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
-rarity=U
-[/card]
-[card]
 id=9840
 name=Tethered Skirge
 mana={2}{B}
@@ -598,14 +566,6 @@ power=2
 toughness=4
 text=Whenever a creature blocks or becomes blocked by Treefolk Mystic, destroy all Auras attached to that creature.
 rarity=C
-[/card]
-[card]
-id=12498
-name=Treetop Village
-mana=
-type=Land
-text=Treetop Village enters the battlefield tapped. {T}: Add {G} to your mana pool. {1}{G}: Treetop Village becomes a 3/3 green Ape creature with trample until end of turn. It's still a land. (If it would deal enough damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player or planeswalker.)
-rarity=U
 [/card]
 [card]
 id=12633

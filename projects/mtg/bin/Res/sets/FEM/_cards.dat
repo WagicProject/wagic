@@ -617,6 +617,18 @@ auto={T}:Add {U}
 auto={T}{S}:Add {U}{U}
 [/card]
 [card]
+text={1}{G}, {T}, Sacrifice a creature: Forests you control become 2/3 creatures until end of turn. They're still lands.
+id=1931
+name=Thelonite Druid
+rarity=U
+mana={2}{G}
+type=Creature
+subtype=Human Cleric Druid
+auto={1}{G}{T}{S(creature|myBattlefield)}:lord(forest|myBattlefield) becomes(Creature,2/3) ueot
+power=1
+toughness=1
+[/card]
+[card]
 text=Enchant creature   Enchanted creature gets +1/+1.   Sacrifice Thrull Retainer: Regenerate enchanted creature.
 id=1867
 target=creature

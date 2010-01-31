@@ -86,6 +86,15 @@ mana={3}{G}
 type=Sorcery
 [/card]
 [card]
+text={0}: Tap all lands you control. Chimeric Idol becomes a 3/3 Turtle artifact creature until end of turn.
+id=24680
+name=Chimeric Idol
+auto={0}:tap all(land|myBattlefield) && becomes(Turtle Artifact Creature,3/3,flying) ueot
+rarity=U
+mana={3}
+type=Artifact
+[/card]
+[card]
 text=At the beginning of each player's end step, Citadel of Pain deals X damage to that player, where X is the number of untapped lands he or she controls.
 auto=@each my end:foreach(land[-tapped]|myBattlefield) damage:1 controller
 auto=@each opponent end:foreach(land[-tapped]|opponentBattlefield) damage:1 opponent

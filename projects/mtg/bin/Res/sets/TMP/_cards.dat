@@ -1197,12 +1197,12 @@ power=1
 toughness=1
 [/card]
 [card]
-text=Whenever one or more creatures attack you, you gain 1 life for each attacking creature.
-auto=@each blockers step:foreach(creature[attacking]|opponentbattlefield) life:1
-id=4891
-name=Orim's Prayer
-rarity=U
-mana={1}{W}{W}
+text=All lands are 2/2 creatures that are still lands.
+id=4774
+name=Nature's Revolt
+auto=lord(land) becomes(Creature,2/2)
+rarity=R
+mana={3}{G}{G}
 type=Enchantment
 [/card]
 [card]
@@ -1223,6 +1223,15 @@ name=Needle Storm
 rarity=U
 mana={2}{G}
 type=Sorcery
+[/card]
+[card]
+text=Whenever one or more creatures attack you, you gain 1 life for each attacking creature.
+auto=@each blockers step:foreach(creature[attacking]|opponentbattlefield) life:1
+id=4891
+name=Orim's Prayer
+rarity=U
+mana={1}{W}{W}
+type=Enchantment
 [/card]
 [card]
 text=Creatures you control get +3/+3 and gain trample until end of turn. (If a creature you control would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)
@@ -1877,6 +1886,15 @@ name=Spell Blast
 rarity=C
 mana={X}{U}
 type=Instant
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.   {6}: Stalking Stones becomes a 3/3 Elemental artifact creature that's still a land. (This effect doesn't end at end of turn.)
+id=4941
+name=Stalking Stones
+auto={T}:Add{1}
+auto={6}:becomes(Artifact Creature Elemental,3/3,flying)
+rarity=U
+type=Land
 [/card]
 [card]
 text=When Staunch Defenders enters the battlefield, you gain 4 life.

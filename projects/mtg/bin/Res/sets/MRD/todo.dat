@@ -1106,13 +1106,6 @@ type=Instant
 mana={B}
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.     {6}: Stalking Stones becomes a 3/3 Elemental artifact creature that's still a land. (This effect doesn't end at end of turn.)
-id=48917
-name=Stalking Stones
-rarity=U
-type=Land
-[/card]
-[card]
 text=Whenever you're dealt damage, put that many charge counters on Sun Droplet.     At the beginning of each upkeep, you may remove a charge counter from Sun Droplet. If you do, you gain 1 life.
 id=48931
 name=Sun Droplet

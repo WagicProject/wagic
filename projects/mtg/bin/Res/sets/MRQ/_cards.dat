@@ -1082,6 +1082,15 @@ type=Basic Land
 subtype=Mountain
 [/card]
 [card]
+text=Until end of turn, all lands become 2/2 creatures that are still lands.
+id=19875
+name=Natural Affinity
+auto=lord(land) becomes(Creature,2/2) ueot
+rarity=R
+mana={2}{G}
+type=Instant
+[/card]
+[card]
 text=Flying, protection from black
 id=19544
 name=Nightwind Glider

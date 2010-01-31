@@ -295,6 +295,19 @@ mana={2}{B}
 type=Instant
 [/card]
 [card]
+text=First strike   {W}{U}{B}{R}{G}: Until end of turn, Dragonsoul Knight becomes a Dragon, gets +5/+3, and gains flying and trample.
+id=186392
+name=Dragonsoul Knight
+rarity=U
+mana={2}{R}
+type=Creature
+subtype=Human Knight
+auto={W}{U}{B}{R}{G}:5/3 && becomes(Dragon Creature,p/t,flying,trample) ueot
+power=2
+toughness=2
+abilities=first strike
+[/card]
+[card]
 text={1}{U}{R}: Dreadwing gets +3/+0 and gains flying until end of turn.
 id=159629
 name=Dreadwing
@@ -640,6 +653,19 @@ type=Creature
 subtype=Beast
 power=5
 toughness=5
+[/card]
+[card]
+text=First strike   {W}{U}{B}{R}{G}: Until end of turn, Paragon of the Amesha becomes an Angel, gets +3/+3, and gains flying and lifelink.
+id=179878
+name=Paragon of the Amesha
+rarity=U
+mana={2}{W}
+type=Creature
+subtype=Human Knight
+auto={W}{U}{B}{R}{G}:3/3 && becomes(Angel Creature,p/t,flying,lifelink) ueot
+power=2
+toughness=2
+abilities=first strike
 [/card]
 [card]
 text=Flying   When Parasitic Strix enters the battlefield, if you control a black permanent, target player loses 2 life and you gain 2 life.

@@ -499,6 +499,18 @@ rarity=U
 type=Land
 [/card]
 [card]
+text={G}, {T}: Target land becomes a 2/2 green creature that's still a land. (This effect lasts indefinitely.)
+id=3673
+name=Quirion Druid
+rarity=R
+mana={2}{G}
+type=Creature
+subtype=Elf Druid
+auto={G}{T}:target(land) becomes(Creature,2/2,green)
+power=1
+toughness=2
+[/card]
+[card]
 text=Whenever Raging Gorilla blocks or becomes blocked, it gets +2/-2 until end of turn.
 id=3697
 name=Raging Gorilla

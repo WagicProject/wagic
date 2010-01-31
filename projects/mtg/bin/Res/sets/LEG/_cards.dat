@@ -900,9 +900,11 @@ mana={2}{W}{W}
 text=All lands are 1/1 creatures that are still lands.
 id=1533
 name=Living Plane
+auto=@movedTo(enchantment[world]|battlefield):bury
+auto=lord(land) becomes(Creature,1/1)
 rarity=R
-type=Enchantment
 mana={2}{G}{G}
+type=World Enchantment
 [/card]
 [card]
 text=First strike, legendary landwalk

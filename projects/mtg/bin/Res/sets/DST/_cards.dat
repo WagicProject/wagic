@@ -45,7 +45,17 @@ toughness=1
 rarity=C
 [/card]
 [card]
-text=Darksteel Citadel is indestructible. ("Destroy" effects and lethal damage don't destroy it.) {T}: Add {1} to your mana pool.
+text=Darksteel Brute is indestructible. ("Destroy" effects and lethal damage don't destroy it.)   {3}: Darksteel Brute becomes a 2/2 Beast artifact creature until end of turn.
+id=43563
+name=Darksteel Brute
+auto={3}:becomes(Beast Artifact Creature,2/2) ueot
+rarity=U
+mana={2}
+type=Artifact
+abilities=indestructible
+[/card]
+[card]
+text=Darksteel Citadel is indestructible. ("Destroy" effects and lethal damage don't destroy it.)   {T}: Add {1} to your mana pool.
 id=45415
 name=Darksteel Citadel
 auto={T}:add{1}

@@ -117,14 +117,6 @@ text={B}: Regenerate Chilling Apparition. Whenever Chilling Apparition deals com
 rarity=U
 [/card]
 [card]
-id=24680
-name=Chimeric Idol
-mana={3}
-type=Artifact
-text={0}: Tap all lands you control. Chimeric Idol becomes a 3/3 Turtle artifact creature until end of turn.
-rarity=U
-[/card]
-[card]
 id=24618
 name=Coffin Puppets
 mana={3}{B}{B}

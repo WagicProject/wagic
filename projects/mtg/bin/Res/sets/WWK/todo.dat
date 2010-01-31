@@ -1,4 +1,4 @@
-[card]
+﻿[card]
 id=197869
 name=Abyssal Persecutor
 mana={2}{B}{B}
@@ -39,7 +39,6 @@ toughness=2
 text={T}: Put target creature card from an opponent's graveyard onto the battlefield under your control if its converted mana cost is less than or equal to the number of Allies you control.
 rarity=R
 [/card]
-
 [card]
 id=191577
 name=Amulet of Vigor
@@ -81,7 +80,6 @@ toughness=4
 text=Flying Whenever Archon of Redemption or another creature with flying enters the battlefield under your control, you may gain life equal to that creature's power.
 rarity=R
 [/card]
-
 [card]
 id=191570
 name=Bloodhusk Ritualist
@@ -101,8 +99,6 @@ type=Land
 text=Bojuka Bog enters the battlefield tapped. When Bojuka Bog enters the battlefield, exile all cards from target player's graveyard. {T}: Add {B} to your mana pool.
 rarity=C
 [/card]
-
-
 [card]
 id=197125
 name=Butcher of Malakir
@@ -125,18 +121,6 @@ toughness=4
 text=Shroud (This creature can't be the target of spells or abilities.) Landfall  EWhenever a land enters the battlefield under your control, you may switch Calcite Snapper's power and toughness until end of turn.
 rarity=C
 [/card]
-
-
-[card]
-id=177545
-name=Celestial Colonnade
-mana=
-type=Land
-text=Celestial Colonnade enters the battlefield tapped. {T}: Add {W} or {U} to your mana pool. {3}{W}{U}: Until end of turn, Celestial Colonnade becomes a 4/4 white and blue Elemental creature with flying and vigilance. It's still a land.
-rarity=R
-[/card]
-
-
 [card]
 id=197766
 name=Comet Storm
@@ -153,15 +137,6 @@ type=Enchantment
 subtype=Aura
 text=Enchant land Enchanted land is a 3/3 black Ooze creature. It's still a land. When enchanted land is put into a graveyard, return that card to its owner's hand.
 rarity=C
-[/card]
-
-[card]
-id=177520
-name=Creeping Tar Pit
-mana=
-type=Land
-text=Creeping Tar Pit enters the battlefield tapped. {T}: Add {U} or {B} to your mana pool. {1}{U}{B}: Until end of turn, Creeping Tar Pit becomes a 3/2 blue and black Elemental creature and is unblockable. It's still a land.
-rarity=R
 [/card]
 [card]
 id=180416
@@ -201,15 +176,6 @@ power=13
 toughness=13
 text=Death's Shadow gets -X/-X, where X is your life total.
 rarity=R
-[/card]
-
-[card]
-id=205425
-name=Dread Statuary
-mana=
-type=Land
-text={T}: Add {1} to your mana pool. {4}: Dread Statuary becomes a 4/2 Golem artifact creature until end of turn. It's still a land.
-rarity=U
 [/card]
 [card]
 id=197767
@@ -254,7 +220,6 @@ type=Sorcery
 text=Put a +1/+1 counter on target creature you control. Another target creature blocks it this turn if able.
 rarity=C
 [/card]
-
 [card]
 id=197771
 name=Gnarlid Pack
@@ -266,8 +231,6 @@ toughness=2
 text=Multikicker {1}{G} (You may pay an additional {1}{G} any number of times as you cast this spell.) Gnarlid Pack enters the battlefield with a +1/+1 counter on it for each time it was kicked.
 rarity=C
 [/card]
-
-
 [card]
 id=191548
 name=Grotag Thrasher
@@ -296,7 +259,6 @@ subtype=Aura
 text=Enchant land Enchanted land is a 2/6 white Wall creature with defender. It's still a land. When enchanted land is put into a graveyard, return that card to its owner's hand.
 rarity=C
 [/card]
-
 [card]
 id=197787
 name=Halimar Depths
@@ -305,7 +267,6 @@ type=Land
 text=Halimar Depths enters the battlefield tapped. When Halimar Depths enters the battlefield, look at the top three cards of your library, then put them back in any order. {T}: Add {U} to your mana pool.
 rarity=C
 [/card]
-
 [card]
 id=197871
 name=Hammer of Ruin
@@ -315,8 +276,6 @@ subtype=Equipment
 text=Equipped creature gets +2/+0. Whenever equipped creature deals combat damage to a player, you may destroy target Equipment that player controls. Equip {2}
 rarity=U
 [/card]
-
-
 [card]
 id=195297
 name=Jace, the Mind Sculptor
@@ -326,8 +285,6 @@ subtype=Jace
 text=+2: Look at the top card of target player's library. You may put that card on the bottom of that player's library. 0: Draw three cards, then put two cards from your hand on top of your library in any order. -1: Return target creature to its owner's hand. -12: Exile all cards from target player's library, then that player shuffles his or her hand into his or her library.
 rarity=M
 [/card]
-
-
 [card]
 id=197765
 name=Joraga Warcaller
@@ -339,7 +296,6 @@ toughness=1
 text=Multikicker {1}{G} (You may pay an additional {1}{G} any number of times as you cast this spell.) Joraga Warcaller enters the battlefield with a +1/+1 counter on it for each time it was kicked. Other Elf creatures you control get +1/+1 for each +1/+1 counter on Joraga Warcaller.
 rarity=R
 [/card]
-
 [card]
 id=197118
 name=Kalastria Highborn
@@ -362,8 +318,6 @@ toughness=4
 text=Whenever a creature an opponent controls attacks, if you're the defending player, put a 3/3 red Ogre creature token onto the battlefield unless that creature's controller pays {3}.
 rarity=R
 [/card]
-
-
 [card]
 id=194018
 name=Kitesail Apprentice
@@ -375,7 +329,6 @@ toughness=1
 text=As long as Kitesail Apprentice is equipped, it gets +1/+1 and has flying.
 rarity=C
 [/card]
-
 [card]
 id=171007
 name=Lavaclaw Reaches
@@ -384,7 +337,6 @@ type=Land
 text=Lavaclaw Reaches enters the battlefield tapped. {T}: Add {B} or {R} to your mana pool. {1}{B}{R}: Until end of turn, Lavaclaw Reaches becomes a 2/2 black and red Elemental creature with "{X}: This creature gets +X/+0 until end of turn." It's still a land.
 rarity=R
 [/card]
-
 [card]
 id=189159
 name=Lightkeeper of Emeria
@@ -396,7 +348,6 @@ toughness=4
 text=Multikicker {W} (You may pay an additional {W} any number of times as you cast this spell.) Flying When Lightkeeper of Emeria enters the battlefield, you gain 2 life for each time it was kicked.
 rarity=U
 [/card]
-
 [card]
 id=191557
 name=Lodestone Golem
@@ -408,7 +359,6 @@ toughness=3
 text=Nonartifact spells cost {1} more to cast.
 rarity=R
 [/card]
-
 [card]
 id=198393
 name=Marshal's Anthem
@@ -444,7 +394,6 @@ type=Instant
 text=Draw two cards. Landfall  EIf you had a land enter the battlefield under your control this turn, draw three cards instead.
 rarity=C
 [/card]
-
 [card]
 id=197836
 name=Nemesis Trap
@@ -496,7 +445,6 @@ subtype=Trap
 text=If an opponent had a green creature enter the battlefield under his or her control this turn, you may pay {U} rather than pay Permafrost Trap's mana cost. Tap up to two target creatures. Those creatures don't untap during their controller's next untap step.
 rarity=U
 [/card]
-
 [card]
 id=197154
 name=Pulse Tracker
@@ -551,7 +499,6 @@ type=Enchantment
 text=At the beginning of your upkeep, you may look at the top card of your library. If it's a creature card, you may reveal it and put a quest counter on Quest for Ula's Temple. At the beginning of each end step, if there are three or more quest counters on Quest for Ula's Temple, you may put a Kraken, Leviathan, Octopus, or Serpent creature card from your hand onto the battlefield.
 rarity=R
 [/card]
-
 [card]
 id=177583
 name=Raging Ravine
@@ -702,8 +649,6 @@ subtype=Trap
 text=If a black creature with flying is attacking, you may pay {G} rather than pay Slingbow Trap's mana cost. Destroy target attacking creature with flying.
 rarity=U
 [/card]
-
-
 [card]
 id=194714
 name=Spell Contortion
@@ -711,14 +656,6 @@ mana={2}{U}
 type=Instant
 text=Multikicker {1}{U} (You may pay an additional {1}{U} any number of times as you cast this spell.) Counter target spell unless its controller pays {2}. Draw a card for each time Spell Contortion was kicked.
 rarity=U
-[/card]
-[card]
-id=177560
-name=Stirring Wildwood
-mana=
-type=Land
-text=Stirring Wildwood enters the battlefield tapped. {T}: Add {G} or {W} to your mana pool. {1}{G}{W}: Until end of turn, Stirring Wildwood becomes a 3/4 green and white Elemental creature with reach. It's still a land.
-rarity=R
 [/card]
 [card]
 id=191552
@@ -729,7 +666,6 @@ subtype=Trap
 text=Stone Idol Trap costs {1} less to cast for each attacking creature. Put a 6/12 colorless Construct artifact creature token with trample onto the battlefield. Exile it at the beginning of your next end step.
 rarity=R
 [/card]
-
 [card]
 id=197875
 name=Strength of the Tajuru
@@ -749,8 +685,6 @@ toughness=2
 text=As long as you control a Mountain, Summit Apes can't be blocked except by two or more creatures.
 rarity=U
 [/card]
-
-
 [card]
 id=197137
 name=Terastodon
@@ -762,7 +696,6 @@ toughness=9
 text=When Terastodon enters the battlefield, you may destroy up to three target noncreature permanents. For each permanent put into a graveyard this way, its controller puts a 3/3 green Elephant creature token onto the battlefield.
 rarity=R
 [/card]
-
 [card]
 id=197973
 name=Thada Adel, Acquisitor
@@ -774,7 +707,6 @@ toughness=2
 text=Islandwalk Whenever Thada Adel, Acquisitor deals combat damage to a player, search that player's library for an artifact card and exile it. Then that player shuffles his or her library. Until end of turn, you may play that card.
 rarity=R
 [/card]
-
 [card]
 id=195307
 name=Tomb Hex
@@ -802,7 +734,6 @@ toughness=2
 text=Whenever Tuktuk Scrapper or another Ally enters the battlefield under your control, you may destroy target artifact. If that artifact is put into a graveyard this way, Tuktuk Scrapper deals damage to that artifact's controller equal to the number of Allies you control.
 rarity=U
 [/card]
-
 [card]
 id=198368
 name=Urge to Feed

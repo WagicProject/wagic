@@ -590,17 +590,6 @@ text=At the beginning of your upkeep, put a spore counter on Thallid Devourer.  
 rarity=U
 [/card]
 [card]
-id=1931
-name=Thelonite Druid
-mana={2}{G}
-type=Creature
-subtype=Human Cleric Druid
-power=1
-toughness=1
-text={1}{G}, {T}, Sacrifice a creature: Forests you control become 2/3 creatures until end of turn. They're still lands.
-rarity=U
-[/card]
-[card]
 id=1932
 name=Thelonite Monk
 mana={2}{G}{G}

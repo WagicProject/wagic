@@ -1710,6 +1710,15 @@ auto={1}{S}:moveTo(exile) target(*|graveyard)
 type=Artifact
 [/card]
 [card]
+text={G}{G}: Still Life becomes a 4/3 Centaur creature until end of turn. It's still an enchantment.
+id=29879
+name=Still Life
+auto={G}{G}:becomes(Creature Centaur,4/3) ueot
+rarity=U
+mana={1}{G}{G}
+type=Enchantment
+[/card]
+[card]
 text={2}, {T}, Sacrifice Sungrass Egg: Add {G}{W} to your mana pool. Draw a card.
 auto={2}{T}{S}:Add{G}{W} && draw:1
 id=30750

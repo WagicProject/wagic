@@ -477,14 +477,6 @@ text=Exchange your graveyard and library. Then shuffle your library.
 rarity=R
 [/card]
 [card]
-id=34401
-name=Nantuko Monastery
-mana=
-type=Land
-text={T}: Add {1} to your mana pool. Threshold - {G}{W}: Nantuko Monastery becomes a 4/4 green and white Insect Monk creature with first strike until end of turn. It's still a land. Activate this ability only if seven or more cards are in your graveyard.
-rarity=U
-[/card]
-[card]
 id=36526
 name=Nantuko Tracer
 mana={1}{G}

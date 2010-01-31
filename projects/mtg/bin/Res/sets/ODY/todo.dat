@@ -1393,14 +1393,6 @@ mana={1}{R}{R}
 subtype=Aura
 [/card]
 [card]
-text={G}{G}: Still Life becomes a 4/3 Centaur creature until end of turn. It's still an enchantment.
-id=29879
-name=Still Life
-rarity=U
-type=Enchantment
-mana={1}{G}{G}
-[/card]
-[card]
 text=Whenever Stone-Tongue Basilisk deals combat damage to a creature, destroy that creature at end of combat.     Threshold - As long as seven or more cards are in your graveyard, all creatures able to block Stone-Tongue Basilisk do so.
 id=29983
 name=Stone-Tongue Basilisk

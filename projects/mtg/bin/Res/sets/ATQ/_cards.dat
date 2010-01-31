@@ -24,15 +24,6 @@ power=1
 toughness=1
 [/card]
 [card]
-text=Sacrifice a creature: Add {2} to your mana pool.
-id=994
-auto={S(creature|myBattlefield)}:Add {2}
-name=Ashnod's Altar
-rarity=U
-mana={3}
-type=Artifact
-[/card]
-[card]
 text=Counter target artifact spell.
 id=1057
 target=artifact|stack
@@ -43,14 +34,23 @@ mana={R}
 type=Instant
 [/card]
 [card]
+text=Sacrifice a creature: Add {2} to your mana pool.
+id=994
+auto={S(creature|myBattlefield)}:Add {2}
+name=Ashnod's Altar
+rarity=U
+mana={3}
+type=Artifact
+[/card]
+[card]
 text=Sacrifice an artifact: Atog gets +2/+2 until end of turn.
-auto={S(artifact|myBattlefield)}:2/2
 id=1058
 name=Atog
 rarity=C
 mana={1}{R}
 type=Creature
 subtype=Atog
+auto={S(artifact|myBattlefield)}:2/2
 power=1
 toughness=2
 [/card]
@@ -204,6 +204,16 @@ name=Millstone
 rarity=U
 mana={2}
 type=Artifact
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.   {1}: Mishra's Factory becomes a 2/2 Assembly-Worker artifact creature until end of turn. It's still a land.   {T}: Target Assembly-Worker creature gets +1/+1 until end of turn.
+id=1073
+name=Mishra's Factory
+auto={T}:add{1}
+auto={1}:becomes(Artifact Creature Assembly-Worker,2/2) ueot
+auto={T}:1/1 target(assembly-worker)
+rarity=U
+type=Land
 [/card]
 [card]
 text={6}, {T}: Return target permanent you own and control to your hand.

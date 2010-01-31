@@ -1083,17 +1083,6 @@ text=Choose any number of target players. For each of those players, reveal card
 rarity=R
 [/card]
 [card]
-id=40538
-name=Kamahl, Fist of Krosa
-mana={4}{G}{G}
-type=Legendary Creature
-subtype=Human Druid
-power=4
-toughness=3
-text={G}: Target land becomes a 1/1 creature until end of turn. It's still a land. {2}{G}{G}{G}: Creatures you control get +3/+3 and gain trample until end of turn.
-rarity=R
-[/card]
-[card]
 id=34228
 name=Kamahl's Summons
 mana={3}{G}

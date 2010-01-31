@@ -1748,14 +1748,6 @@ text=Target creature gets +1/+2 until end of turn. Flashback {W} (You may play t
 rarity=C
 [/card]
 [card]
-id=108931
-name=Thunder Totem
-mana={3}
-type=Artifact
-text={T}: Add {W} to your mana pool. {1}{W}{W}: Thunder Totem becomes a 2/2 white Spirit artifact creature with flying and first strike until end of turn.
-rarity=U
-[/card]
-[card]
 id=108857
 name=Traitor's Clutch
 mana={4}{B}

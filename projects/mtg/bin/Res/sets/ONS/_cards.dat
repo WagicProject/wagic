@@ -776,7 +776,7 @@ name=Jareth Leonine Titan
 rarity=R
 mana={3}{W}{W}{W}
 type=Legendary Creature
-auto=aslongas(jareth leonine titan[blocking]|mybattlefield) 7/7
+auto=lord(jareth leonine titan[blocking]|mybattlefield) 7/7
 auto={W}:protection from white
 auto={W}:protection from blue
 auto={W}:protection from black
@@ -785,6 +785,19 @@ auto={W}:protection from green
 subtype=Cat Giant
 power=4
 toughness=7
+[/card]
+[card]
+text={G}: Target land becomes a 1/1 creature until end of turn. It's still a land.   {2}{G}{G}{G}: Creatures you control get +3/+3 and gain trample until end of turn.
+id=40538
+name=Kamahl, Fist of Krosa
+rarity=R
+mana={4}{G}{G}
+type=Legendary Creature
+subtype=Human Druid
+auto={G}{T}:target(land) becomes(Creature,1/1) ueot
+auto={2}{G}{G}{G}:lord(creature|mybattlefield) 3/3 && lord(creature|mybattlefield) trample ueot
+power=4
+toughness=3
 [/card]
 [card]
 text={G}: Target Beast gains trample until end of turn.
