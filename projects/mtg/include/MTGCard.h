@@ -1,16 +1,13 @@
 #ifndef _MTGCARD_H_
 #define _MTGCARD_H_
 
-#define MTGCARD_NAME_SIZE 30
+#define MTGCARD_NAME_SIZE 16
 
 #define MTG_IMAGE_WIDTH 200
 #define MTG_IMAGE_HEIGHT 285
 
 #define MTG_MINIIMAGE_WIDTH 45
 #define MTG_MINIIMAGE_HEIGHT 64
-
-#define MAX_TYPES_PER_CARD 10
-
 
 #include <string>
 #include <vector>

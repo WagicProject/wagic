@@ -107,7 +107,6 @@ void MTGCardInstance::initMTGCI(){
   type_as_damageable = DAMAGEABLE_MTGCARDINSTANCE;
   banding = NULL;
   owner = NULL;
-  changedZoneRecently = 0;
   counters = NEW Counters(this);
   previousZone = NULL;
   previous = NULL;

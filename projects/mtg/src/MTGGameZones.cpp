@@ -150,7 +150,6 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     MTGCardInstance * ret = copy;
 
     to->addCard(copy);
-    copy->changedZoneRecently = 1.f;
     GameObserver *g = GameObserver::GetInstance();
     WEvent * e = NEW WEventZoneChange(copy, from, to);
     g->receiveEvent(e);

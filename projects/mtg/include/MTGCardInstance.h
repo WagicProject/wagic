@@ -33,7 +33,6 @@ class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable {
 
   int lifeOrig;
   MTGPlayerCards * belongs_to;
-  MTGAbility * untapBlockerAbilities[10];
   MTGCardInstance * getNextPartner();
   void initMTGCI();
   int setDefenser(MTGCardInstance * c);
@@ -57,7 +56,6 @@ class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable {
   // The recommended method to test for summoning Sickness !
   int hasSummoningSickness();
   MTGCardInstance * changeController(Player * newcontroller);
-  float changedZoneRecently;
   Player * owner;
   Counters * counters;
   int typeAsTarget(){return TARGET_CARD;}
