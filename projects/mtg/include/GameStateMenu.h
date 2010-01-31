@@ -48,6 +48,7 @@ class GameStateMenu: public GameState, public JGuiListener
   bool langChoices;
   void runTest(); //!!
   void listPrimitives();
+  void genNbCardsStr(); //computes the contents of nbCardsStr
  public:
   GameStateMenu(GameApp* parent);
   virtual ~GameStateMenu();

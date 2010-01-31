@@ -154,17 +154,20 @@ void GameStateMenu::Start(){
 
   mBg->SetHotSpot(128,50);
 
-  //How many cards total ?
-  PlayerData * playerdata = NEW PlayerData(mParent->collection);
-  if(playerdata && !options[Options::ACTIVE_PROFILE].isDefault())
-    sprintf(nbcardsStr, _("%s: %i cards (%i)").c_str(), options[Options::ACTIVE_PROFILE].str.c_str(), playerdata->collection->totalCards(), mParent->collection->totalCards());
-  else
-    sprintf(nbcardsStr, _("Database: %i cards").c_str(), mParent->collection->totalCards());
-
-  SAFE_DELETE(playerdata);
+  genNbCardsStr();
 
 }
 
+void GameStateMenu::genNbCardsStr(){
+  //How many cards total ?
+  PlayerData * playerdata = NEW PlayerData(mParent->collection);
+  if(playerdata && !options[Options::ACTIVE_PROFILE].isDefault())
+    sprintf(nbcardsStr, _("%s: %i cards (%i) (%i unique)").c_str(), options[Options::ACTIVE_PROFILE].str.c_str(), playerdata->collection->totalCards(), mParent->collection->totalCards(), mParent->collection->primitives.size());
+  else
+    sprintf(nbcardsStr, _("%i cards (%i unique)").c_str(), mParent->collection->totalCards(), mParent->collection->primitives.size());
+
+  SAFE_DELETE(playerdata);
+}
 
 void GameStateMenu::fillScroller(){
   scroller->Reset();
@@ -400,13 +403,8 @@ void GameStateMenu::Update(float dt)
         //Reload list of unlocked sets, now that we know about the sets.
         options.reloadProfile(false);
         
-        //List active profile and database size.        
-        PlayerData * playerdata = NEW PlayerData(mParent->collection);
-        if(playerdata && !options[Options::ACTIVE_PROFILE].isDefault())
-          sprintf(nbcardsStr, _("%s: %i cards (%i)").c_str(), options[Options::ACTIVE_PROFILE].str.c_str(), playerdata->collection->totalCards(), mParent->collection->totalCards());
-        else
-          sprintf(nbcardsStr, _("Database: %i cards").c_str(), mParent->collection->totalCards());
-        SAFE_DELETE(playerdata);
+        genNbCardsStr();
+
         resetDirectory();
         //All major things have been loaded, resize the cache to use it as efficiently as possible
         resources.autoResize();

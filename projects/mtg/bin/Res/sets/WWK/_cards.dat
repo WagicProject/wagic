@@ -1,0 +1,662 @@
+[card]
+text=Haste   Whenever Akoum Battlesinger or another Ally enters the battlefield under your control, you may have Ally creatures you control get +1/+0 until end of turn.
+id=198360
+name=Akoum Battlesinger
+rarity=C
+mana={1}{R}
+type=Creature
+subtype=Human Berserker Ally
+auto=may lord(ally) 1/0 ueot
+auto=@movedTo(other ally|myBattlefield):may lord(ally) 1/0 ueot
+power=1
+toughness=1
+abilities=haste
+[/card]
+[card]
+text={T}: Untap target Forest.
+id=197959
+name=Arbor Elf
+rarity=C
+mana={G}
+type=Creature
+subtype=Elf
+auto={T}:untap target(forest)
+power=1
+toughness=1
+[/card]
+[card]
+text=When Avenger of Zendikar enters the battlefield, put a 0/1 green Plant creature token onto the battlefield for each land you control.   Landfall - Whenever a land enters the battlefield under your control, you may put a +1/+1 counter on each Plant creature you control.
+auto=foreach(land|myBattlefield) token(Plant,creature plant, 0/1,green)
+auto=@movedTo(land|myBattlefield):may counter(1/1) all(plant)
+id=201570
+name=Avenger of Zendikar
+rarity=M
+mana={5}{G}{G}
+type=Creature
+subtype=Elemental
+power=5
+toughness=5
+[/card]
+[card]
+text=Equipped creature has deathtouch and lifelink.   Equip 2
+id=198356
+auto={2}:equip
+auto=deathtouch
+auto=lifelink
+name=Basilisk Collar
+rarity=R
+mana={1}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+text=First strike
+id=198394
+name=Battle Hurda
+rarity=C
+mana={4}{W}
+type=Creature
+subtype=Giant
+power=3
+toughness=3
+abilities=first strike
+[/card]
+[card]
+text={T}: Target player gains control of target artifact, creature or land that you control.
+id=198364
+name=Bazaar Trader
+rarity=R
+mana={1}{R}
+type=Creature
+subtype=Goblin
+auto={T}:moveTo(opponentBattlefield) target(artifact,creature,land|myBattlefield)
+power=1
+toughness=1
+[/card]
+[card]
+text=Put a 1/1 green Snake creature token, a 2/2 green Wolf creature token, and a 3/3 green Elephant creature token onto the battlefield.
+auto=token(Snake,creature snake, 1/1,green)
+auto=token(Wolf,creature wolf, 2/2,green)
+auto=token(Elephant,creature elephant, 3/3,green)
+id=197843
+name=Bestial Menace
+rarity=U
+mana={3}{G}{G}
+type=Sorcery
+[/card]
+[card]
+text=Bojuka Brigand can't block.   Whenever Bojuka Brigand or another Ally creature enters the battlefield under your control, you may put a +1/+1 counter on Bojuka Brigand.
+id=197159
+name=Bojuka Brigand
+rarity=C
+mana={1}{B}
+type=Creature
+subtype=Human Warrior Ally
+auto=may counter(1/1)
+auto=@movedTo(other ally|myBattlefield):may counter(1/1)
+power=1
+toughness=1
+abilities=cantblock
+[/card]
+[card]
+text=Enchant creature or land   When enchanted permanent becomes tapped, destroy it.
+id=201571
+target=creature,land
+auto=@tapped(mytgt):destroy
+name=Brink of Disaster
+rarity=C
+mana={2}{B}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Target creature gets +2/+0 until end of turn.
+id=201560
+target=creature
+auto=2/0
+name=Bull Rush
+rarity=C
+mana={R}
+type=Instant
+[/card]
+[card]
+text=Enchant creature   Enchanted creature can't be blocked except by creatures with flying or reach.   Enchanted creature can't be the target of spells or abilities your opponent controls.
+id=193970
+target=creature
+auto=opponentshroud
+auto=cantbeblockedby(creature[-flying;-reach])
+name=Canopy Cover
+rarity=C
+mana={1}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Landfall - Whenever a land enters the battlefield under your control, you may have target creature get -1/-1 until end of turn.
+auto=@movedTo(land|myBattlefield):may -1/-1 target(creature) ueot
+id=198376
+name=Caustic Crawler
+rarity=U
+mana={3}{B}{B}
+type=Creature
+subtype=Insect
+power=4
+toughness=3
+[/card]
+[card]
+text=Chain Reaction deals X damage to each creature, where X is the number of creatures on the battlefield.
+id=201573
+name=Chain Reaction
+auto=foreach(creature|battlefield) damage:1 all(creature)
+rarity=R
+mana={2}{R}{R}
+type=Sorcery
+[/card]
+[card]
+text=Enchant creature   Enchanted creature gets +1/+0 for each Mountain you control and has first strike.
+id=193975
+target=creature
+auto=foreach(mountain|myBattlefield) 1/0
+auto=first strike
+name=Claws of Valakut
+rarity=C
+mana={1}{R}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+text=Landfall - Whenever a land enters the battlefield under your control, you may have Cosi's Ravager deal 1 damage to target player.
+auto=@movedTo(land|myBattlefield):may damage:1 target(player)
+id=201565
+name=Cosi's Ravager
+rarity=C
+mana={3}{R}
+type=Creature
+subtype=Elemental
+power=2
+toughness=2
+[/card]
+[card]
+text=Haste   {T}: Cunning Sparkmage deals 1 damage to target creature or player.
+id=201563
+name=Cunning Sparkmage
+rarity=U
+mana={2}{R}
+type=Creature
+subtype=Human Shaman
+auto={T}:damage:1 target(creature,player)
+power=0
+toughness=1
+abilities=haste
+[/card]
+[card]
+text=Counter target instant spell.
+id=201562
+target=instant|stack
+auto=fizzle
+name=Dispel
+rarity=U
+mana={U}
+type=Instant
+[/card]
+[card]
+text=At the beginning of your upkeep, if you control six or more lands, put a 5/5 red Dragon creature token with flying onto the battlefield.
+auto=@each my upkeep:aslongas(land|myBattlefield) token(Dragon,creature dragon, 5/5,flying red) >5
+id=197854
+name=Dragonmaster Outcast
+rarity=M
+mana={R}
+type=Creature
+subtype=Human Shaman
+auto=
+power=1
+toughness=1
+[/card]
+[card]
+text=Landfall - Whenever a land enters the battlefield under your control, Fledgling Griffin gains flying until end of turn.
+id=191580
+name=Fledgling Griffin
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Griffin
+auto=@movedTo(land|myBattlefield):flying ueot
+power=2
+toughness=2
+abilities=flying
+[/card]
+[card]
+id=194681
+name=Goblin Roughrider
+rarity=C
+mana={2}{R}
+type=Creature
+subtype=Goblin Knight
+power=3
+toughness=2
+[/card]
+[card]
+text=Flying
+id=197153
+name=Goliath Sphinx
+rarity=R
+mana={5}{U}{U}
+type=Creature
+subtype=Sphinx
+power=8
+toughness=7
+abilities=flying
+[/card]
+[card]
+text=Reach
+id=198371
+name=Grappler Spider
+rarity=C
+mana={1}{G}
+type=Creature
+subtype=Spider
+power=2
+toughness=1
+abilities=reach
+[/card]
+[card]
+text=Trample   Whenever Graypelt Hunter or another Ally enters the battlefield under your control, you may put a +1/+1 counter on Graypelt Hunter.
+id=193994
+name=Graypelt Hunter
+rarity=C
+mana={3}{G}
+type=Creature
+subtype=Human Warrior Ally
+auto=may counter(1/1)
+auto=@movedTo(other ally|myBattlefield):may counter(1/1)
+power=2
+toughness=2
+[/card]
+[card]
+text=Whenever Hada Freeblade or another Ally enters the battlefield under your control, you may put a +1/+1 counter on Hada Freeblade.
+id=198400
+name=Hada Freeblade
+rarity=U
+mana={W}
+type=Creature
+subtype=Human Soldier Ally
+auto=may counter(1/1)
+auto=@movedTo(other ally|myBattlefield):may counter(1/1)
+power=0
+toughness=1
+[/card]
+[card]
+text=Whenever Halimar Excavator or another Ally enters the battlefield under your control, target player puts the top X cards of his or her library into his or her graveyard, where X is the number of Allies you control.
+id=197129
+name=Halimar Excavator
+rarity=C
+mana={1}{U}
+type=Creature
+subtype=Human Wizard Ally
+auto=foreach(ally|myBattlefield) deplete:1 target(player)
+auto=@movedTo(other ally|myBattlefield):foreach(ally|myBattlefield) deplete:1 target(player)
+power=1
+toughness=3
+[/card]
+[card]
+text={T}: Add X mana of any one color to your mana pool where X is the number of Allies you control.
+id=194675
+name=Harabaz Druid
+rarity=R
+mana={1}{G}
+type=Creature
+subtype=Human Druid Ally
+auto={T}:foreach(ally|myBattlefield) add{W}
+auto={T}:foreach(ally|myBattlefield) add{U}
+auto={T}:foreach(ally|myBattlefield) add{B}
+auto={T}:foreach(ally|myBattlefield) add{R}
+auto={T}:foreach(ally|myBattlefield) add{G}
+power=0
+toughness=1
+[/card]
+[card]
+text=Landfall - Whenever a land enters the battlefield under your control, Hedron Rover gets +2/+2 until end of turn.
+id=194686
+name=Hedron Rover
+rarity=C
+mana={4}
+type=Artifact Creature
+subtype=Construct
+auto=@movedTo(land|myBattlefield):2/2 ueot
+power=2
+toughness=2
+[/card]
+[card]
+text=Flying, protection from lands
+id=180412
+name=Horizon Drake
+rarity=U
+mana={1}{U}{U}
+type=Creature
+subtype=Drake
+auto=protection from(land)
+power=3
+toughness=1
+abilities=flying
+[/card]
+[card]
+text=Exile target creature or enchantment.
+id=197880
+target=creature,enchantment
+auto=moveTo(exile)
+name=Iona's Judgment
+rarity=C
+mana={4}{W}
+type=Sorcery
+[/card]
+[card]
+text=Flying
+id=191581
+name=Jagwasp Swarm
+rarity=C
+mana={3}{B}
+type=Creature
+subtype=Insect
+power=3
+toughness=2
+abilities=flying
+[/card]
+[card]
+text=Put two 1/1 white Soldier Ally creature tokens onto the battlefield.
+auto=token(Soldier Ally,creature soldier ally, 1/1,white)*2
+id=194706
+name=Join the Ranks
+rarity=C
+mana={3}{W}
+type=Instant
+[/card]
+[card]
+text=You may have Jwari Shapeshifter enter the battlefield as a copy of any Ally creature on the battlefield.
+id=198390
+name=Jwari Shapeshifter
+rarity=R
+mana={1}{U}
+type=Creature
+subtype=Shapeshifter Ally
+auto=may copy NotATarget(ally)
+power=0
+toughness=0
+[/card]
+[card]
+text=Khalni Garden enters the battlefield tapped.   When Khalni Garden enters the battlefield, put a 0/1 green Plant creature token onto the battlefield.   {T}: Add {G} to your mana pool.
+id=197789
+name=Khalni Garden
+auto=tap
+auto=token(Plant,creature plant, 0/1,green)
+auto={T}:Add {G}
+rarity=C
+type=Land
+[/card]
+[card]
+text=Equipped creature gets +1/+0 and flying.   Equip 2
+id=197152
+auto={2}:equip
+auto=1/0
+auto=deathtouch
+name=Kitesail
+rarity=C
+mana={1}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+text=Protection from Red   Whenever a player casts a Red spell, you may gain 1 life.
+id=194708
+name=Kor Firewalker
+rarity=U
+mana={W}{W}
+type=Creature
+subtype=Kor Soldier
+auto=@movedTo(*[red]|stack):may life:1 controller
+power=2
+toughness=2
+abilities=protection from red
+[/card]
+[card]
+id=197856
+name=Leatherback Baloth
+rarity=U
+mana={G}{G}{G}
+type=Creature
+subtype=Beast
+power=4
+toughness=5
+[/card]
+[card]
+text=Loam Lion gets +1/+2 as long as you control a Forest.
+id=197873
+name=Loam Lion
+rarity=U
+mana={W}
+type=Creature
+subtype=Cat
+auto=aslongas(forest|myBattlefield) 1/2
+power=1
+toughness=1
+[/card]
+[card]
+text=Swampwalk
+id=194718
+name=Marsh Threader
+rarity=C
+mana={1}{W}
+type=Creature
+subtype=Kor Scout
+power=2
+toughness=1
+abilities=swampwalk
+[/card]
+[card]
+text=Destroy target artifact or enchantment. Its controller gains 4 life.
+id=198357
+target=artifact,enchantment
+auto=destroy
+auto=life:4 targetController
+name=Nature's Claim
+rarity=C
+mana={G}
+type=Instant
+[/card]
+[card]
+text=Flying   When Pilgrim's Eye enters the battlefield, search your library for a basic land, reveal it, and put it into your hand. Then shuffle your library.
+id=198367
+name=Pilgrim's Eye
+rarity=C
+mana={3}
+type=Artifact Creature
+subtype=Thopter
+auto=moveTo(ownerhand) target(land[basic]|mylibrary)
+power=1
+toughness=1
+abilities=flying
+[/card]
+[card]
+text={T}: Add {1} Mana to your mana pool.   {T}, Sacrifice Quicksand: Target attacking creature without flying gets -1/-2 until end of turn.
+id=197853
+name=Quicksand
+auto={T}:Add {1}
+auto={T}{S}:-1/-2 target(creature[attacking;-flying])
+rarity=U
+type=Land
+[/card]
+[card]
+text=As long as you control a Plains, Sejiri Merfolk has first strike and lifelink.
+id=197844
+name=Sejiri Merfolk
+rarity=U
+mana={1}{U}
+type=Creature
+subtype=Merfolk Soldier
+auto=aslongas(plains|myBattlefield) first strike
+auto=aslongas(plains|myBattlefield) lifelink
+power=2
+toughness=1
+[/card]
+[card]
+text=Sejiri Steppe enters the battlefield tapped.   When Sejiri Steppe enters the battlefield, you may have target creature gain protection from the color of your choice until end of turn.   {T}: Add {W} to your mana pool.
+id=197788
+name=Sejiri Steppe
+auto=tap
+auto=may protection from white target(creature) ueot
+auto=may protection from blue target(creature) ueot
+auto=may protection from black target(creature) ueot
+auto=may protection from red target(creature) ueot
+auto=may protection from green target(creature) ueot
+auto={T}:Add {W}
+rarity=C
+type=Land
+[/card]
+[card]
+text=When Shoreline Salvager deals combat damage to a player, if you control an Island, draw a card.
+auto=@damaged(player) from(this):aslongas(island|myBattlefield) draw:1 controller
+id=197877
+name=Shoreline Salvager
+rarity=U
+mana={3}{B}
+type=Creature
+subtype=Surrakar
+power=3
+toughness=3
+[/card]
+[card]
+text=Smoldering Spires enters the battlefield tapped.   When Smoldering Spires enters the battlefield, target creature can't block until end of turn.   {T}: Add {R} to your mana pool.
+id=197785
+name=Smoldering Spires
+auto=tap
+auto=cantblock target(creature) ueot
+auto={T}:Add {R}
+rarity=C
+type=Land
+[/card]
+[card]
+text=Destroy target creature with converted mana cost 3 or less. It can't be regenerated.
+id=191578
+target=creature[manacost<=3]
+auto=bury
+name=Smother
+rarity=U
+mana={1}{B}
+type=Instant
+[/card]
+[card]
+text=Landfall - Whenever a land enters the battlefield under your control, Snapping Creeper gains vigilance until end of turn.
+id=191547
+name=Snapping Creeper
+rarity=C
+mana={2}{G}
+type=Creature
+subtype=Plant
+auto=@movedTo(land|myBattlefield):vigilance ueot
+power=2
+toughness=3
+abilities=reach
+[/card]
+[card]
+text=When Stoneforge Mystic enters the battlefield, you may search your library for an equipment card, reveal it, and put it into your hand. If you do, shuffle your library.   {1}{W}, {T}: Put an equipment card from your hand onto the battlefield.
+id=198383
+name=Stoneforge Mystic
+rarity=R
+mana={1}{W}
+auto=may moveTo(myhand) target(equipment|mylibrary)
+auto={1}{W}:moveTo(myBattlefield) target(equipment|myhand)
+type=Creature
+subtype=Kor Artificer
+power=1
+toughness=2
+[/card]
+[card]
+text=When Surrakar Banisher enters the battlefield, you may return target tapped creature to it's owner's hand.
+id=198370
+name=Surrakar Banisher
+rarity=C
+mana={4}{U}
+type=Creature
+subtype=Surrakar
+auto=may moveTo(ownerhand) target(creature[tapped])
+power=3
+toughness=3
+[/card]
+[card]
+text=Whenever Talus Paladin or another Ally enters the battlefield under your control, you may have Allies you control gain lifelink until end of turn and you may put a +1/+1 counter on Talus Paladin.
+id=194672
+name=Talus Paladin
+rarity=R
+mana={3}{W}
+auto=may counter(1/1) all(this) && lord(ally|myBattlefield) lifelink ueot
+auto=@movedTo(other ally|myBattlefield):may counter(1/1) all(this) && lord(ally|myBattlefield) lifelink ueot
+type=Creature
+subtype=Human Knight Ally
+power=2
+toughness=3
+[/card]
+[card]
+text={T}: Add {1} to your mana pool.   {1}, {T}: Sacrifice Tectonic Edge: Destroy target nonbasic land. Activate this ability only if an opponent controls four or more lands.
+id=197855
+name=Tectonic Edge
+auto={T}:Add{1}
+auto=aslongas(land|opponentBattlefield) {1}{T}:destroy target(land[-basic] >3
+rarity=C
+type=Land
+[/card]
+[card]
+text=All lands are indestructible.
+auto=lord(land) indestructible
+id=197866
+name=Terra Eternal
+rarity=W
+mana={2}{W}
+type=Enchantment
+[/card]
+[card]
+text={U}, {T}: You may tap or untap another target creature.   Landfall - Whenever a land enters the battlefield under your control, you may untap Tideforce Elemental.
+id=194012
+name=Tideforce Elemental
+rarity=U
+mana={2}{U}
+type=Creature
+subtype=Elemental
+auto={U}{T}:tap target(other creature)
+auto={U}{T}:untap target(other creature)
+auto=@movedTo(land|myBattlefield):may untap
+power=2
+toughness=1
+[/card]
+[card]
+text=You may tap or untap target artifact, creature, or land.   Draw a card.
+id=198396
+name=Twitch
+auto=may tap target(artifact,creature,land)
+auto=may untap target(artifact,creature,land)
+auto=draw:1 controller
+rarity=C
+mana={2}{U}
+type=Instant
+[/card]
+[card]
+text=Target creature gets +1/+1 until end of turn. Untap that creature.
+id=198384
+target=creature
+auto=untap
+auto=1/1
+name=Veteran's Reflexes
+rarity=C
+mana={W}
+type=Instant
+[/card]
+[card]
+text={T}: You may put a land card from your hand onto the battlefield.
+id=198375
+name=Walking Atlas
+rarity=C
+mana={2}
+type=Artifact Creature
+subtype=Construct
+auto={T}:may moveTo(myBattlefield) target(land|myhand)
+power=1
+toughness=1
+[/card]
