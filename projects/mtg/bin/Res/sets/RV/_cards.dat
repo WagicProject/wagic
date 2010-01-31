@@ -1796,14 +1796,6 @@ mana={2}{W}{W}
 type=Sorcery
 [/card]
 [card]
-text=You gain X life, where X is twice the damage dealt to you so far this turn by artifacts.
-id=1362
-name=Reverse Polarity
-rarity=U
-mana={W}{W}
-type=Instant
-[/card]
-[card]
 text=Target blocking creature gets +7/+7 until end of turn.
 auto=7/7
 target=creature[blocking]

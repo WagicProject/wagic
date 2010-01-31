@@ -1421,19 +1421,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(NEW AOldSchoolDeathtouch(_id,card));
       break;
     }
-  case 1362: //Reverse polarity
-    {
-      ActionStack * as = game->mLayers->stackLayer();
-      Player * controller = card->controller();
-      Damage * current = ((Damage *)as->getNext(NULL,ACTION_SPELL, RESOLVED_OK));
-      while(current){
-	if (current->target == controller && current->source->hasType("artifact")){
-	  controller->life+= current->damage * 2;
-	}
-	current = ((Damage *)as->getNext(current,ACTION_SPELL, RESOLVED_OK));
-      }
-      break;
-    }
   case 1225: //Stasis
     {
       game->addObserver(NEW AStasis(_id, card));

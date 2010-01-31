@@ -398,6 +398,14 @@ type=Instant
 mana={1}{W}{W}
 [/card]
 [card]
+text=You gain X life, where X is twice the damage dealt to you so far this turn by artifacts.
+id=1362
+name=Reverse Polarity
+rarity=U
+mana={W}{W}
+type=Instant
+[/card]
+[card]
 text=Rock Hydra comes into play with X +1/+1 counters on it.       For each 1 damage that would be dealt to Rock Hydra, if it has a +1/+1 counter on it, remove a +1/+1 counter from it and prevent that 1 damage.       {R}: Prevent the next 1 damage that would be dealt to Rock Hydra this turn.       {R}{R}{R}: Put a +1/+1 counter on Rock Hydra. Play this ability only during your upkeep.
 id=1314
 name=Rock Hydra

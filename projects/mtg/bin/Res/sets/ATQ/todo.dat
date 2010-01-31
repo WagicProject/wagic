@@ -1,4 +1,4 @@
-﻿[card]
+[card]
 id=992
 name=Amulet of Kroog
 mana={2}
@@ -303,6 +303,15 @@ name=Rakalite
 mana={6}
 type=Artifact
 text={2}: Prevent the next 1 damage that would be dealt to target creature or player this turn. Return Rakalite to its owner's hand at the beginning of the next end step.
+rarity=U
+[/card]
+[card]
+id=1070
+alias=1362
+name=Reverse Polarity
+mana={W}{W}
+type=Instant
+text=You gain X life, where X is twice the damage dealt to you so far this turn by artifacts.
 rarity=U
 [/card]
 [card]
