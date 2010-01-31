@@ -312,6 +312,7 @@ bool GameStateAwards::enterStats(int option){
     }
   }
 
+  SAFE_DELETE(ddw);
   return true;
 }
 void GameStateAwards::ButtonPressed(int controllerId, int controlId)
