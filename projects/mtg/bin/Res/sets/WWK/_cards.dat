@@ -1,3 +1,8 @@
+[meta]
+author=Wagic Team
+year=2010
+block=Adventure
+[/meta]
 [card]
 text=Haste   Whenever Akoum Battlesinger or another Ally enters the battlefield under your control, you may have Ally creatures you control get +1/+0 until end of turn.
 id=198360
