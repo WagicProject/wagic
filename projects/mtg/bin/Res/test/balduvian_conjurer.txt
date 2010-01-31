@@ -1,0 +1,39 @@
+#Bug: Becomes does not work for target abilities
+#see http://code.google.com/p/wagic/issues/detail?id=308
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Balduvian conjurer,Snow-covered forest
+[PLAYER2]
+[DO]
+Balduvian conjurer
+Snow-covered forest
+next
+#begin
+next
+#attackers
+Snow-covered forest
+choice 0
+next
+#blockers
+eot
+eot
+next
+#upkeep
+next
+#draw
+next
+#main
+next
+#begin
+next
+#attackers
+Snow-covered forest
+[ASSERT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:Balduvian conjurer,Snow-covered forest
+manapool:{G}
+[PLAYER2]
+life:18
+[END]

@@ -100,6 +100,7 @@ ashen_firebeast2.txt
 aura_mutation.txt
 avarice_totem.txt
 aysen_bureaucrats.txt
+balduvian_conjurer.txt
 baneslayer_angel.txt
 baneslayer_angel2.txt
 barbed_sliver.txt

@@ -1388,7 +1388,8 @@ class  GenericInstantAbility: public InstantAbility{
  public:
   MTGAbility * ability;
  GenericInstantAbility(int _id, MTGCardInstance * _source, Damageable * _target, MTGAbility * ability): InstantAbility(_id, _source, _target), ability(ability){
-  }
+    ability->target = _target;
+ }
 
  int addToGame(){
    ability->forceDestroy = -1;
