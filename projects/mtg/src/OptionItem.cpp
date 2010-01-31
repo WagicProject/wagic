@@ -8,17 +8,9 @@
 #include <stdlib.h>
 #include <algorithm>
 
-//WGuiItem
-void WGuiItem::Entering(u32 key){
-  mFocus = true;
-}
+//WGuiBase
 
-bool WGuiItem::Leaving(u32 key){
-  mFocus = false;
-  return true;
-}
-
-PIXEL_TYPE WGuiItem::getColor(int type){
+PIXEL_TYPE WGuiBase::getColor(int type){
   switch(type){
     case WGuiColor::TEXT_BODY:
     case WGuiColor::SCROLLBUTTON:
@@ -40,14 +32,45 @@ PIXEL_TYPE WGuiItem::getColor(int type){
   return ARGB(150,50,50,50);
 }
 
+
+void WGuiBase::renderBack(WGuiBase * it){
+  if(!it) return; 
+  WDecoStyled * styled = dynamic_cast<WDecoStyled*>(it);
+  if(styled)
+    styled->renderBack(styled->getDecorated());
+  else
+    subBack(it);
+}
+
+
+//WGuiItem
+void WGuiItem::Entering(u32 key){
+  mFocus = true;
+}
+
+bool WGuiItem::Leaving(u32 key){
+  mFocus = false;
+  return true;
+}
+
 void WGuiItem::Render(){
   JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
   mFont->SetColor(getColor(WGuiColor::TEXT));
   JRenderer * renderer = JRenderer::GetInstance();
   float fH = (height-mFont->GetHeight())/2;
-  mFont->DrawString(_(displayValue).c_str(),x+(width/2),y+fH,JGETEXT_CENTER);
+  string trans = _(displayValue);
+  float fW = mFont->GetStringWidth(trans.c_str());
+  float boxW = getWidth();
+  float oldS = mFont->GetScale();
+  if(fW > boxW){
+    mFont->SetScale(boxW/fW);
+  }
+  mFont->DrawString(trans,x+(width/2),y+fH,JGETEXT_CENTER);
+  mFont->SetScale(oldS);
 }
-WGuiItem::WGuiItem(string _display){
+
+WGuiItem::WGuiItem(string _display, u8 _mF){
+ mFlags=_mF;
  displayValue = _display;
  mFocus = false;
  width=SCREEN_WIDTH;
@@ -56,11 +79,54 @@ WGuiItem::WGuiItem(string _display){
  y=0;
 }
 
+string WGuiItem::_(string input){
+  if(mFlags & WGuiItem::NO_TRANSLATE)
+    return input;
+  return ::_(input);
+}
+
 void WGuiItem::Update(float dt){
   JGE * mEngine = JGE::GetInstance();
   if (mFocus){
     if (mEngine->GetButtonClick(PSP_CTRL_CIRCLE)) updateValue();
   }
+}
+//WDecoStyled
+void WDecoStyled::subBack(WGuiBase * item){
+  if(!item)
+    return;
+  JRenderer * renderer = JRenderer::GetInstance();
+  if(mStyle & DS_STYLE_BACKLESS)
+    return;
+  //TODO: if(mStyle & DS_STYLE_EDGED) Draw the edged box ala SimpleMenu
+  else{ //Draw standard style
+    WGuiSplit * split = dynamic_cast<WGuiSplit*>(item);
+    if(split && split->left->Visible() && split->right->Visible()){
+      if(split->left)
+        renderer->FillRoundRect(split->left->getX()-2,split->getY()-2,split->left->getWidth()-6,split->getHeight(),2,split->left->getColor(WGuiColor::BACK));
+      if(split->right)
+        renderer->FillRoundRect(split->right->getX()-2,split->getY()-2,split->right->getWidth(),split->getHeight(),2,split->right->getColor(WGuiColor::BACK));
+    }
+    else
+      renderer->FillRoundRect(item->getX()-2,item->getY()-2,item->getWidth(),item->getHeight(),2,item->getColor(WGuiColor::BACK));
+  }
+  
+}
+
+PIXEL_TYPE WDecoStyled::getColor(int type){
+  switch(type){
+    case WGuiColor::BACK:
+    case WGuiColor::BACK_HEADER:
+      if(mStyle & DS_COLOR_DARK)
+        return ARGB(150,35,35,35);
+      else if(mStyle & DS_COLOR_BRIGHT)
+        return ARGB(150,80,80,80);
+      else
+        return ARGB(150,50,50,50);        
+    default:
+      return WGuiBase::getColor(type);
+  }
+  return ARGB(150,50,50,50);
 }
 
 //WGuiHeader
@@ -445,25 +511,22 @@ void WGuiMenu::Entering(u32 key){
     items[currentItem]->Entering(key);
   return;
 }
-void WGuiMenu::renderBack(WGuiBase * it){
-  if(!it)
+
+void WGuiMenu::subBack(WGuiBase * item){
+  if(!item)
     return;
-  WGuiHeader * header = dynamic_cast<WGuiHeader*>(it);
   JRenderer * renderer = JRenderer::GetInstance();
-  if(header)
-    renderer->FillRoundRect(it->getX()-2,it->getY()-2,it->getWidth(),it->getHeight(),2,it->getColor(WGuiColor::BACK_HEADER));
-  else{
-    WGuiSplit * split = dynamic_cast<WGuiSplit*>(it);
-    if(split && split->left->Visible() && split->right->Visible()){
-      if(split->left)
-        renderer->FillRoundRect(split->left->getX()-2,split->getY()-2,split->left->getWidth()-6,split->getHeight(),2,split->left->getColor(WGuiColor::BACK));
-      if(split->right)
-        renderer->FillRoundRect(split->right->getX()-2,split->getY()-2,split->right->getWidth(),split->getHeight(),2,split->right->getColor(WGuiColor::BACK));
-    }
-    else
-      renderer->FillRoundRect(it->getX()-2,it->getY()-2,it->getWidth(),it->getHeight(),2,it->getColor(WGuiColor::BACK));
-    
+
+  WGuiSplit * split = dynamic_cast<WGuiSplit*>(item);
+  if(split && split->left->Visible() && split->right->Visible()){
+    if(split->left)
+      renderer->FillRoundRect(split->left->getX()-2,split->getY()-2,split->left->getWidth()-6,split->getHeight(),2,split->left->getColor(WGuiColor::BACK));
+    if(split->right)
+      renderer->FillRoundRect(split->right->getX()-2,split->getY()-2,split->right->getWidth(),split->getHeight(),2,split->right->getColor(WGuiColor::BACK));
   }
+  else
+    renderer->FillRoundRect(item->getX()-2,item->getY()-2,item->getWidth(),item->getHeight(),2,item->getColor(WGuiColor::BACK));
+
 }
 //WGuiList
 WGuiList::WGuiList(string name, WDataSource * syncme): WGuiMenu(PSP_CTRL_DOWN,PSP_CTRL_UP){
@@ -510,7 +573,7 @@ void WGuiList::Render(){
       }
     }
   }
-  //Find out how large our list is.
+  //Find out how large our list is, with all items and margin.
   for (int pos=0;pos < nbitems; pos++){
     listHeight+=items[pos]->getHeight()+1; //What does the +1 do exactly ?
     if(items[pos]->Selectable()){
@@ -570,7 +633,7 @@ void WGuiList::Render(){
       nowPos += items[pos]->getHeight() + 5;
       renderBack(items[pos]);
       items[pos]->Render();
-      if(nowPos > SCREEN_HEIGHT) 
+      if(nowPos > SCREEN_HEIGHT) //Stop displaying things once we reach the bottom of the screen.
         break;
     }
 
@@ -1217,7 +1280,7 @@ void WGuiAward::Overlay(){
   mFont->SetScale(.8);
   mFont->SetColor(getColor(WGuiColor::TEXT));
 
-  string s = _(details);
+  string s = details;
   if(s.size()){
     float fW = mFont->GetStringWidth(s.c_str());
     float fH = mFont->GetHeight();

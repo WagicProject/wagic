@@ -47,7 +47,7 @@ public:
   
   virtual bool Changed() {return false;};
   virtual void confirmChange(bool confirmed) {};
-  virtual PIXEL_TYPE getColor(int type)=0;
+  virtual PIXEL_TYPE getColor(int type);
   
   virtual void Entering(u32 key)=0;  
   virtual bool Leaving(u32 key)=0;
@@ -79,6 +79,9 @@ public:
   virtual void setId(int _id){};
   virtual void setHidden(bool bHidden) {};
   virtual void setVisible(bool bVisisble) {};
+
+  virtual void renderBack(WGuiBase * it);
+  virtual void subBack(WGuiBase * item) {};
 };
 
 //This is our base class for concrete items. 
@@ -89,11 +92,11 @@ public:
   virtual void Update(float dt);
   virtual void Render();
 
-  WGuiItem(string _display);
+  WGuiItem(string _display, u8 _mF = 0);
   virtual ~WGuiItem() {};
 
-
-  virtual PIXEL_TYPE getColor(int type);
+  string _(string input); //Override global with our flag checker.
+  
   virtual void setData(){};
 
   virtual bool hasFocus() {return mFocus;};
@@ -113,6 +116,12 @@ public:
   virtual void setWidth(float _w){width = _w;};
   virtual void setHeight(float _h){height = _h;};
   
+  enum {
+    NO_TRANSLATE = (1<<1),
+  };
+
+  u8 mFlags;
+
 protected:
   bool mFocus;
   float x, y;
@@ -139,7 +148,7 @@ public:
   virtual JQuad * getImage() {return NULL;};
   virtual MTGCard * getCard() {return NULL;};
   virtual bool thisCard(int mtgid) {return false;};
-  
+  virtual int getControlID() {return -1;}; //TODO FIXME: Need a "not a valid button" define.
   virtual int getPos() {return -1;};
   virtual bool setPos(int pos) {return false;};
   virtual bool next() {return false;};
@@ -176,6 +185,7 @@ protected:
   float mDelay;
   float mLastInput;
 };
+
 
 struct WCardSort{
 public:
@@ -242,6 +252,7 @@ public:
   virtual float getWidth()  {return it->getWidth();};
   virtual float getHeight() {return it->getHeight();};
   virtual PIXEL_TYPE getColor(int type) {return it->getColor(type);};
+  WGuiBase * getDecorated() {return it;};
   
   virtual void setFocus(bool bFocus)  {it->setFocus(bFocus);};
   virtual void setDisplay(string s)   {it->setDisplay(s);};
@@ -363,12 +374,28 @@ protected:
 
 class WGuiHeader:public WGuiItem{
  public:
+
   WGuiHeader(string _displayValue): WGuiItem(_displayValue) {};
-  
   virtual bool Selectable() {return false;};
   virtual void Render();
+
 };
 
+class WDecoStyled: public WGuiDeco{
+public:
+  WDecoStyled(WGuiItem * _it) : WGuiDeco(_it) {mStyle=DS_DEFAULT;};
+  PIXEL_TYPE getColor(int type);
+  void subBack(WGuiBase * item);
+   enum {
+    DS_DEFAULT = (1<<0),
+    DS_COLOR_BRIGHT = (1<<1),
+    DS_COLOR_DARK = (1<<2),
+    DS_STYLE_EDGED = (1<<4),
+    DS_STYLE_BACKLESS = (1<<5), 
+   };
+
+  u8 mStyle;
+};
 
 class WGuiMenu: public WGuiItem{
 public:
@@ -384,8 +411,9 @@ public:
   virtual void confirmChange(bool confirmed);
   virtual bool Leaving(u32 key);
   virtual void Entering(u32 key);
-  virtual void renderBack(WGuiBase * it);
+  virtual void subBack(WGuiBase * item);
   
+
   WGuiBase * Current();
   virtual void nextItem(); 
   virtual void prevItem();
@@ -400,11 +428,6 @@ protected:
   int currentItem;
   u32 held;
   float duration;
-};
-
-class WGuiFlow: public WGuiMenu{
-public:
-  WGuiFlow();
 };
 
 class WGuiList: public WGuiMenu{

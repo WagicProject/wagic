@@ -47,9 +47,6 @@ void GameStateOptions::Start()
 
   optionsList = NEW WGuiList("Game");
   optionsList->Add(NEW WGuiHeader("Interface Options"));
-  WDecoConfirm * cLang = NEW WDecoConfirm(this,NEW OptionLanguage("Language"));
-  cLang->confirm = "Use this Language";
-  optionsList->Add(cLang);
   optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::CLOSEDHAND,"Closed hand",1,1,0)));
   optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::HANDDIRECTION,"Hand direction",1,1,0)));
   optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::MANADISPLAY,"Mana display",2,1,0)));
@@ -72,7 +69,14 @@ void GameStateOptions::Start()
 
   optionsList = NEW WGuiList("Advanced");
   optionsList->Add(NEW WGuiHeader("Advanced Options"));
-  optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::MAX_GRADE,"Cards grade(restart)",Constants::GRADE_DANGEROUS,1,Constants::GRADE_BORDERLINE,"",Constants::GRADE_SUPPORTED)));
+  WDecoStyled * wAdv = NEW WDecoStyled(NEW WGuiHeader("The following options require a restart."));
+  wAdv->mStyle = WDecoStyled::DS_STYLE_BACKLESS;
+  optionsList->Add(wAdv);
+  WDecoConfirm * cLang = NEW WDecoConfirm(this,NEW OptionLanguage("Language"));
+  cLang->confirm = "Use this Language";
+  optionsList->Add(cLang);
+  WDecoEnum * oGra = NEW WDecoEnum(NEW OptionInteger(Options::MAX_GRADE,"Minimum Card Grade",Constants::GRADE_DANGEROUS,1,Constants::GRADE_BORDERLINE,"",Constants::GRADE_SUPPORTED));
+  optionsList->Add(oGra);
   optionsTabs->Add(optionsList);
 
   optionsList = NEW WGuiList("Credits");

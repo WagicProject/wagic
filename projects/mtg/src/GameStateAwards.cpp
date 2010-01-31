@@ -89,11 +89,11 @@ void GameStateAwards::Start()
     }
 
     if(!si->author.size())
-      sprintf(buf,"%i cards.",si->totalCards());
+      sprintf(buf,_("%i cards.").c_str(),si->totalCards());
     else if(si->year > 0)
-      sprintf(buf,"%s (%i): %i cards",si->author.c_str(),si->year,si->totalCards());
+      sprintf(buf,_("%s (%i): %i cards").c_str(),si->author.c_str(),si->year,si->totalCards());
     else
-      sprintf(buf,"%s: %i cards.",si->author.c_str(),si->totalCards());
+      sprintf(buf,_("%s: %i cards.").c_str(),si->author.c_str(),si->totalCards());
     
       
     aw = NEW WGuiAward(Options::optionSet(i),si->getName(),buf,"Card Spoiler");
@@ -106,6 +106,7 @@ void GameStateAwards::Start()
     sprintf(buf,_("Unlocked all %i sets.").c_str(),setlist.size());
     
   wgh->setDisplay(buf);
+  wgh->mFlags = WGuiItem::NO_TRANSLATE;
 
   listview->Entering(0);
   detailview = NULL; 
@@ -282,33 +283,33 @@ bool GameStateAwards::enterStats(int option){
 
     char buf[1024];
     sprintf(buf,_("Total Value: %ic").c_str(),ddw->totalPrice());
-    detailview->Add(NEW WGuiItem(buf));//ddw->colors
+    detailview->Add(NEW WGuiItem(buf,WGuiItem::NO_TRANSLATE));//ddw->colors
     
     sprintf(buf,_("Total Cards (including duplicates): %i").c_str(),ddw->getCount());
-    detailview->Add(NEW WGuiItem(buf));//ddw->colors
+    detailview->Add(NEW WGuiItem(buf,WGuiItem::NO_TRANSLATE));//ddw->colors
 
     sprintf(buf,_("Unique Cards: %i").c_str(),unique);
-    detailview->Add(NEW WGuiItem(buf));
+    detailview->Add(NEW WGuiItem(buf,WGuiItem::NO_TRANSLATE));
 
     if(many){
       sprintf(buf,_("Most Duplicates: %i (%s)").c_str(),dupes,many->data->getName().c_str());
-      detailview->Add(NEW WGuiItem(buf));
+      detailview->Add(NEW WGuiItem(buf,WGuiItem::NO_TRANSLATE));
     }
     if(setid >= 0){
     sprintf(buf,_("Favorite Set: %s").c_str(),setlist[setid].c_str());
-    detailview->Add(NEW WGuiItem(buf));
+    detailview->Add(NEW WGuiItem(buf,WGuiItem::NO_TRANSLATE));
     }
     if(costly){
       sprintf(buf,_("Highest Mana Cost: %i (%s)").c_str(),costly->data->getManaCost()->getConvertedCost(),costly->data->getName().c_str());
-      detailview->Add(NEW WGuiItem(buf));
+      detailview->Add(NEW WGuiItem(buf,WGuiItem::NO_TRANSLATE));
     }
     if(strong){
       sprintf(buf,_("Most Powerful: %i (%s)").c_str(),strong->data->getPower(),strong->data->getName().c_str());
-      detailview->Add(NEW WGuiItem(buf));
+      detailview->Add(NEW WGuiItem(buf,WGuiItem::NO_TRANSLATE));
     }
     if(tough){
       sprintf(buf,_("Toughest: %i (%s)").c_str(),tough->data->getToughness(),strong->data->getName().c_str());
-      detailview->Add(NEW WGuiItem(buf));
+      detailview->Add(NEW WGuiItem(buf,WGuiItem::NO_TRANSLATE));
     }
   }
 
