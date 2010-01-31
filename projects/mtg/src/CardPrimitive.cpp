@@ -63,7 +63,7 @@ const vector<string>& CardPrimitive::formattedText()
 {
   if (ftdText.empty())
     {
-      std::string s = _(text);
+      std::string s = text;
       std::string::size_type found = s.find_first_of("{}");
       while (found!=string::npos)
 	{
