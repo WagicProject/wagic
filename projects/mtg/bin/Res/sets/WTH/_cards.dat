@@ -148,6 +148,7 @@ subtype=Wall
 auto=@each combatends:destroy all(cinder wall[attacking;blocking]|myBattlefield)
 power=3
 toughness=3
+abilities=defender
 [/card]
 [card]
 text=Flying   Cloud Djinn can block only creatures with flying.
