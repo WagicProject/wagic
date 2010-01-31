@@ -1892,7 +1892,7 @@ text={T}: Add {1} to your mana pool.   {6}: Stalking Stones becomes a 3/3 Elemen
 id=4941
 name=Stalking Stones
 auto={T}:Add{1}
-auto={6}:becomes(Artifact Creature Elemental,3/3,flying)
+auto={6}:becomes(Artifact Creature Elemental,3/3)
 rarity=U
 type=Land
 [/card]
