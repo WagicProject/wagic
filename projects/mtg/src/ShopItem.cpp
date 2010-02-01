@@ -547,5 +547,8 @@ bool ShopItems::CheckUserInput(u32 key){
         return true;
     }
  }
+ else if(dialog)
+   return dialog->CheckUserInput(key);
+
  return JGuiController::CheckUserInput(key);
 }
