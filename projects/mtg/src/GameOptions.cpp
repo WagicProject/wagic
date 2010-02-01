@@ -706,11 +706,11 @@ bool GameOptionEnum::read(string input){
 //Enum Definitions
 OptionMaxGrade OptionMaxGrade::mDef;
 OptionMaxGrade::OptionMaxGrade(){  
-  mDef.values.push_back(EnumDefinition::assoc(Constants::GRADE_SUPPORTED, "1 - 100% Supported"));
-  mDef.values.push_back(EnumDefinition::assoc(Constants::GRADE_BORDERLINE, "2 - Borderline (99% OK)"));
-  mDef.values.push_back(EnumDefinition::assoc(Constants::GRADE_CRAPPY, "3 - Crappy (bugs)"));
-  mDef.values.push_back(EnumDefinition::assoc(Constants::GRADE_UNSUPPORTED, "4 - Unsupported"));
-  mDef.values.push_back(EnumDefinition::assoc(Constants::GRADE_DANGEROUS, "5 - Dangerous (risk of crash)"));
+  mDef.values.push_back(EnumDefinition::assoc(Constants::GRADE_SUPPORTED, "1: 100% Supported"));
+  mDef.values.push_back(EnumDefinition::assoc(Constants::GRADE_BORDERLINE, "0: Borderline (99% OK)"));
+  mDef.values.push_back(EnumDefinition::assoc(Constants::GRADE_CRAPPY, "-1: Crappy (bugs)"));
+  mDef.values.push_back(EnumDefinition::assoc(Constants::GRADE_UNSUPPORTED, "-2: Unsupported"));
+  mDef.values.push_back(EnumDefinition::assoc(Constants::GRADE_DANGEROUS, "-3: Dangerous (risk of crash)"));
 
 };
 OptionClosedHand OptionClosedHand::mDef;

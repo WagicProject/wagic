@@ -156,38 +156,41 @@ void GameStateAwards::Update(float dt)
     menu->Update(dt);
   }
   else{
-    switch(mState){
-      case STATE_LISTVIEW:
-        if(listview)
-          listview->Update(dt);
-        break;
-      case STATE_DETAILS:
-        if(detailview)
-          detailview->Update(dt);
-        break;
-    }
-    switch(mEngine->ReadButton()){
-      case PSP_CTRL_START:
-        showMenu = true;
+    u32 key;
+    while ((key = JGE::GetInstance()->ReadButton())){
+      switch(key){
+        case PSP_CTRL_START:
+          showMenu = true;
 
-        SAFE_DELETE(menu);
-        menu = NEW SimpleMenu(-102, this,Constants::MENU_FONT, 50,170);
-        if(mState == STATE_DETAILS)
-          menu->Add(2, "Back to Trophies");
-        menu->Add(1, "Back to Main Menu");
-        menu->Add(3, "Cancel");
-        break;
-      case PSP_CTRL_LTRIGGER:
-        mParent->DoTransition(TRANSITION_FADE,GAME_STATE_MENU);
-        break;
-      case PSP_CTRL_CROSS:
-        if(mState == STATE_LISTVIEW)
+          SAFE_DELETE(menu);
+          menu = NEW SimpleMenu(-102, this,Constants::MENU_FONT, 50,170);
+          if(mState == STATE_DETAILS)
+            menu->Add(2, "Back to Trophies");
+          menu->Add(1, "Back to Main Menu");
+          menu->Add(3, "Cancel");
+          break;
+        case PSP_CTRL_LTRIGGER:
           mParent->DoTransition(TRANSITION_FADE,GAME_STATE_MENU);
-        else{
-          mState = STATE_LISTVIEW;
-          SAFE_DELETE(detailview);
-        }
+          break;
+        case PSP_CTRL_CROSS:
+          if(mState == STATE_LISTVIEW)
+            mParent->DoTransition(TRANSITION_FADE,GAME_STATE_MENU);
+          else{
+            mState = STATE_LISTVIEW;
+            SAFE_DELETE(detailview);
+          }
+          break;
+        default:
+          if(mState == STATE_LISTVIEW && listview){
+            listview->CheckUserInput(key);
+            listview->Update(dt);
+          }
+          else if(mState == STATE_DETAILS && detailview){
+            detailview->CheckUserInput(key);
+            detailview->Update(dt);
+          }
         break;
+      }
     }
 
   }

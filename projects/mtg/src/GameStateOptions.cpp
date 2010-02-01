@@ -70,7 +70,7 @@ void GameStateOptions::Start()
   optionsList = NEW WGuiList("Advanced");
   optionsList->Add(NEW WGuiHeader("Advanced Options"));
   WDecoStyled * wAdv = NEW WDecoStyled(NEW WGuiHeader("The following options require a restart."));
-  wAdv->mStyle = WDecoStyled::DS_STYLE_BACKLESS;
+  wAdv->mStyle = WDecoStyled::DS_STYLE_ALERT;
   optionsList->Add(wAdv);
   WDecoConfirm * cLang = NEW WDecoConfirm(this,NEW OptionLanguage("Language"));
   cLang->confirm = "Use this Language";
@@ -120,11 +120,13 @@ void GameStateOptions::Update(float dt)
   else switch(mState){
     default:
     case SHOW_OPTIONS:
-      optionsTabs->Update(dt);
+      u32 key;
 
-      if (mEngine->ReadButton() == PSP_CTRL_START){
-        mState = SHOW_OPTIONS_MENU;
+      while ((key = JGE::GetInstance()->ReadButton())){
+        if(!optionsTabs->CheckUserInput(key) && key == PSP_CTRL_START)
+          mState = SHOW_OPTIONS_MENU;
       }
+      optionsTabs->Update(dt);
       break;
     case SHOW_OPTIONS_MENU:
       optionsMenu->Update(dt);

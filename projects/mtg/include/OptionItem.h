@@ -29,6 +29,7 @@ public:
     TEXT_BODY,
     //Backgrounds only after this
     BACK,
+    BACK_ALERT,
     BACK_HEADER,
     BACK_FAIL,
     BACK_TAB,
@@ -82,6 +83,8 @@ public:
 
   virtual void renderBack(WGuiBase * it);
   virtual void subBack(WGuiBase * item) {};
+
+  virtual bool CheckUserInput(u32 key) {return false;};
 };
 
 //This is our base class for concrete items. 
@@ -89,7 +92,8 @@ class WGuiItem: public WGuiBase{
 public:
   virtual void Entering(u32 key);  
   virtual bool Leaving(u32 key);
-  virtual void Update(float dt);
+  virtual bool CheckUserInput(u32 key);
+  virtual void Update(float dt) {};
   virtual void Render();
 
   WGuiItem(string _display, u8 _mF = 0);
@@ -115,7 +119,6 @@ public:
   virtual void setY(float _y){y = _y;};
   virtual void setWidth(float _w){width = _w;};
   virtual void setHeight(float _h){height = _h;};
-  
   enum {
     NO_TRANSLATE = (1<<1),
   };
@@ -263,6 +266,7 @@ public:
   virtual void setHeight(float _h) {it->setHeight(_h);};
   virtual void setHidden(bool bHidden) {it->setHidden(bHidden);};
   virtual void setVisible(bool bVisisble) {it->setVisible(bVisisble);};
+  virtual bool CheckUserInput(u32 key) {return it->CheckUserInput(key);};
 protected:
   WGuiBase * it;
 };
@@ -306,7 +310,8 @@ public:
   virtual void confirmChange(bool confirmed);
 
   virtual void Entering(u32 key);  
-  virtual bool Leaving(u32 key);
+  virtual bool Leaving(u32 key);  
+  virtual bool CheckUserInput(u32 key);
 
   bool bRight;
   float percentRight;
@@ -327,6 +332,7 @@ public:
   virtual void Update(float dt);
   virtual void Overlay();
   virtual void ButtonPressed(int controllerId, int controlId);
+  virtual bool CheckUserInput(u32 key);
 
   string confirm;
   string cancel;
@@ -364,7 +370,7 @@ class WGuiButton: public WGuiDeco{
 public:
   WGuiButton( WGuiBase* _it, int _controller, int _control,  JGuiListener * jgl);
   virtual void updateValue();
-  virtual void Update(float dt);
+  virtual bool CheckUserInput(u32 key);
   virtual bool Selectable() {return Visible();};
   virtual PIXEL_TYPE getColor(int type);
 protected:
@@ -390,6 +396,7 @@ public:
     DS_DEFAULT = (1<<0),
     DS_COLOR_BRIGHT = (1<<1),
     DS_COLOR_DARK = (1<<2),
+    DS_STYLE_ALERT = (1<<3), 
     DS_STYLE_EDGED = (1<<4),
     DS_STYLE_BACKLESS = (1<<5), 
    };
@@ -412,11 +419,12 @@ public:
   virtual bool Leaving(u32 key);
   virtual void Entering(u32 key);
   virtual void subBack(WGuiBase * item);
+  virtual bool CheckUserInput(u32 key);
   
 
   WGuiBase * Current();
-  virtual void nextItem(); 
-  virtual void prevItem();
+  virtual bool nextItem(); 
+  virtual bool prevItem();
   virtual bool isModal();
   virtual void setModal(bool val);
 
@@ -441,8 +449,8 @@ class WGuiList: public WGuiMenu{
   virtual void ButtonPressed(int controllerId, int controlId);
   virtual void setData(); 
   
-  virtual void nextItem(); 
-  virtual void prevItem();
+  virtual bool nextItem(); 
+  virtual bool prevItem();
 
   WGuiBase * operator[](int);
 protected:
@@ -548,7 +556,6 @@ class OptionProfile:public OptionDirectory{
   virtual void Reload();
   virtual void Render();
   virtual void confirmChange(bool confirmed);
-  virtual void Update(float dt);
   virtual void updateValue();
   void populate();
 private:  

@@ -84,13 +84,14 @@ string WGuiItem::_(string input){
     return input;
   return ::_(input);
 }
-
-void WGuiItem::Update(float dt){
-  JGE * mEngine = JGE::GetInstance();
-  if (mFocus){
-    if (mEngine->GetButtonClick(PSP_CTRL_CIRCLE)) updateValue();
+bool WGuiItem::CheckUserInput(u32 key){
+  if(mFocus && key == PSP_CTRL_CIRCLE){
+    updateValue();
+    return true;
   }
+  return false; 
 }
+
 //WDecoStyled
 void WDecoStyled::subBack(WGuiBase * item){
   if(!item)
@@ -107,8 +108,9 @@ void WDecoStyled::subBack(WGuiBase * item){
       if(split->right)
         renderer->FillRoundRect(split->right->getX()-2,split->getY()-2,split->right->getWidth(),split->getHeight(),2,split->right->getColor(WGuiColor::BACK));
     }
-    else
-      renderer->FillRoundRect(item->getX()-2,item->getY()-2,item->getWidth(),item->getHeight(),2,item->getColor(WGuiColor::BACK));
+    else{
+      renderer->FillRoundRect(item->getX()-2,item->getY()-2,item->getWidth(),item->getHeight(),2,getColor(WGuiColor::BACK));
+    }
   }
   
 }
@@ -121,6 +123,8 @@ PIXEL_TYPE WDecoStyled::getColor(int type){
         return ARGB(150,35,35,35);
       else if(mStyle & DS_COLOR_BRIGHT)
         return ARGB(150,80,80,80);
+      else if(mStyle & DS_STYLE_ALERT)
+        return ARGB(150,120,80,80);
       else
         return ARGB(150,50,50,50);        
     default:
@@ -316,14 +320,6 @@ void OptionProfile::Render(){
   mFont->DrawString(preview.c_str(),pX,pY+spacing,JGETEXT_LEFT); 
   mFont->SetScale(1);
 
-}
-void OptionProfile::Update(float dt){
-  JGE * mEngine = JGE::GetInstance();
-  
-  if (mFocus && mEngine->GetButtonClick(PSP_CTRL_CIRCLE)){ 
-        updateValue();
-        mEngine->ReadButton();
-  }
 }
 void OptionProfile::Entering(u32 key){
   mFocus = true;
@@ -660,15 +656,17 @@ void WGuiList::setData(){
   }
 }
 
-void WGuiList::nextItem(){
-  WGuiMenu::nextItem();
+bool WGuiList::nextItem(){
+  bool rez = WGuiMenu::nextItem();
   if(sync)
     sync->setPos(currentItem);
+  return rez;
 }
-void WGuiList::prevItem(){
-  WGuiMenu::prevItem();
+bool WGuiList::prevItem(){
+  bool rez = WGuiMenu::prevItem();
   if(sync)
     sync->setPos(currentItem);
+  return rez;
 }
 
 void WGuiList::ButtonPressed(int controllerId, int controlId){
@@ -885,14 +883,24 @@ bool WDecoConfirm::Leaving(u32 key){
   
   return false;
 }
+bool WDecoConfirm::CheckUserInput(u32 key){
+  if(hasFocus()){
+    if (mState == OP_CONFIRMED && key == PSP_CTRL_CIRCLE)
+      mState = OP_UNCONFIRMED;
+    
+    if (mState != OP_CONFIRMING && it){
+      if(it->CheckUserInput(key))
+        return true;
+    } else if(confirmMenu && confirmMenu->CheckUserInput(key))
+      return true;
+  }
+  return false;
+}
+
 void WDecoConfirm::Update(float dt){
   if (hasFocus()){
-      JGE * mEngine = JGE::GetInstance();
-      if (mState == OP_CONFIRMED && mEngine->GetButtonClick(PSP_CTRL_CIRCLE)) mState = OP_UNCONFIRMED;
-  
-    if (it && mState != OP_CONFIRMING){
+    if (it && mState != OP_CONFIRMING)
       it->Update(dt);
-    }
     else
       confirmMenu->Update(dt);
   }
@@ -937,11 +945,12 @@ void WGuiButton::updateValue(){
     mListener->ButtonPressed(controller, control);
 }
 
-void WGuiButton::Update(float dt){
-  JGE * mEngine = JGE::GetInstance();
-  if (hasFocus()){
-    if (mEngine->GetButtonClick(PSP_CTRL_CIRCLE)) updateValue();
+bool WGuiButton::CheckUserInput(u32 key){
+  if (hasFocus() && key == PSP_CTRL_CIRCLE){
+      updateValue();
+      return true;
   }
+  return false;
 }
 
 PIXEL_TYPE WGuiButton::getColor(int type){
@@ -1021,26 +1030,35 @@ void WGuiSplit::setModal(bool val){
   return left->setModal(val);
 }
 
-void WGuiSplit::Update(float dt){
-  JGE * mEngine = JGE::GetInstance();
-
-  if(hasFocus() && !isModal()){
-    if (!bRight && mEngine->GetButtonClick(PSP_CTRL_RIGHT) && right->Selectable())
-      {
-        if(left->Leaving(PSP_CTRL_RIGHT)){
+bool WGuiSplit::CheckUserInput(u32 key){
+    if(hasFocus()){
+      if (!bRight){
+        if(key == PSP_CTRL_RIGHT && !isModal() 
+          && right->Selectable() && left->Leaving(PSP_CTRL_RIGHT)){
           bRight = !bRight;
           right->Entering(PSP_CTRL_RIGHT);
+          return true;
         }
+        if(left->CheckUserInput(key))
+          return true;
       }
-    else if (bRight && mEngine->GetButtonClick(PSP_CTRL_LEFT) && left->Selectable())
+      else 
       {
-        if(right->Leaving(PSP_CTRL_LEFT)){
+        if (key == PSP_CTRL_LEFT && !isModal() 
+          && left->Selectable() && right->Leaving(PSP_CTRL_LEFT)){
           bRight = !bRight;
           left->Entering(PSP_CTRL_LEFT);
+          return true;
         }
       }
-  }
+      if(right->CheckUserInput(key))
+        return true;
+    }
+    
+  return false;
+}
 
+void WGuiSplit::Update(float dt){
   if(bRight)
     right->Update(dt);
   else
@@ -1146,41 +1164,56 @@ void WGuiMenu::Add(WGuiBase * it){
 }
 
 
+bool WGuiMenu::CheckUserInput(u32 key){
+  bool kidModal = false;
+  bool handledInput = false;
+  int nbitems = (int) items.size();
+  JGE * mEngine = JGE::GetInstance();
+
+  if(!mEngine->GetButtonState(held)) //Key isn't held down.
+    held = 0;
+
+  if(currentItem >= 0 && currentItem < nbitems)
+    kidModal = items[currentItem]->isModal();
+
+  if(!kidModal && hasFocus()){
+    if (key == buttonPrev){
+     held = buttonPrev;
+     duration = 0;
+     if(prevItem())
+       return true;
+    } 
+    else if(held == buttonPrev && duration > 1){
+     duration = .92;
+     if(prevItem())
+       return true;
+    } 
+    else if (key == buttonNext){
+     held = buttonNext;
+     duration = 0;
+     if(nextItem())
+       return true;
+    }
+    else if(held == buttonNext && duration > 1){
+      duration = .92;      
+     if(nextItem())
+       return true;
+    }
+  }
+
+  if(currentItem >= 0 && currentItem < nbitems)
+    return items[currentItem]->CheckUserInput(key);
+
+  return false;
+}
 
 void WGuiMenu::Update(float dt){
   int nbitems = (int) items.size();
   JGE * mEngine = JGE::GetInstance();
-  bool kidModal = false;
 
-  if(!mEngine->GetButtonState(held))
-    held = 0;
-  else
+  if(held)
     duration += dt;
   
-  if(currentItem >= 0 && currentItem < nbitems)
-    kidModal = items[currentItem]->isModal();
-   
-  if(!kidModal && hasFocus()){
-    if (mEngine->GetButtonClick(buttonPrev)){
-     prevItem();
-     held = buttonPrev;
-     duration = 0;
-    }
-    else if(held == buttonPrev && duration > 1){
-     prevItem();
-     duration = .92;
-    }
-    else if (mEngine->GetButtonClick(buttonNext)){
-     nextItem();
-     held = buttonNext;
-     duration = 0;
-    }
-    else if(held == buttonNext && duration > 1){
-      nextItem();
-      duration = .92;
-    }
-  }
-
   if(currentItem >= 0 && currentItem < nbitems)
     items[currentItem]->Update(dt);
 
@@ -1190,7 +1223,7 @@ void WGuiMenu::Update(float dt){
   }
 }
 
-void WGuiMenu::nextItem(){
+bool WGuiMenu::nextItem(){
  int potential = currentItem;
  int nbitems = (int) items.size();
 
@@ -1203,11 +1236,13 @@ void WGuiMenu::nextItem(){
     else if(potential != currentItem && items[currentItem]->Leaving(buttonNext)){
         currentItem = potential;
         items[currentItem]->Entering(buttonNext);
+        return true;
     }
   }
+  return false;
 }
 
-void WGuiMenu::prevItem(){
+bool WGuiMenu::prevItem(){
  int potential = currentItem;
 
  if (potential > 0){
@@ -1219,8 +1254,10 @@ void WGuiMenu::prevItem(){
     else if(items[currentItem]->Leaving(buttonPrev)){
         currentItem = potential;
         items[currentItem]->Entering(buttonPrev);
+        return true;
     }
  }
+ return false;
 }
 
 void WGuiMenu::setModal(bool val){
