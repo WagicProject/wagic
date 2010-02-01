@@ -192,7 +192,6 @@ rarity=U
 primitive=Cinder Wall
 id=4540
 rarity=C
-abilities=defender
 [/card]
 [card]
 primitive=Circling Vultures
