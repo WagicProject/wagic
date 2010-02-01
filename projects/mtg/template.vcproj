@@ -493,6 +493,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\GameStateTransitions.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\GuiAvatars.cpp"
 				>
 			</File>
@@ -847,6 +851,10 @@
 			</File>
 			<File
 				RelativePath=".\include\GameStateShop.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\GameStateTransitions.h"
 				>
 			</File>
 			<File

@@ -36,7 +36,7 @@ enum ENUM_MENU_STATE_MINOR
   {
     MENU_STATE_MINOR_NONE = 0,
     MENU_STATE_MINOR_SUBMENU_CLOSING = 0x100,
-
+    MENU_STATE_MINOR_FADEIN = 0x200,
     MENU_STATE_MINOR = 0xF00
   };
 
@@ -133,7 +133,7 @@ void GameStateMenu::Start(){
   JRenderer::GetInstance()->EnableVSync(true);
   subMenuController = NULL;
   SAFE_DELETE(mGuiController);
-
+  
   if (GameApp::HasMusic && !GameApp::music && options[Options::MUSICVOLUME].number > 0){
     GameApp::music = resources.ssLoadMusic("Track0.mp3");
     JSoundSystem::GetInstance()->PlayMusic(GameApp::music, true);
@@ -153,9 +153,12 @@ void GameStateMenu::Start(){
   mBg = resources.RetrieveQuad("menutitle.png", 0, 0, 256, 166);		// Create background quad for rendering.
 
   mBg->SetHotSpot(128,50);
+    genNbCardsStr();
 
-  genNbCardsStr();
 
+  if(currentState == MENU_STATE_MAJOR_MAINMENU){
+    currentState = currentState | MENU_STATE_MINOR_FADEIN;  
+  }
 }
 
 void GameStateMenu::genNbCardsStr(){
@@ -431,7 +434,7 @@ void GameStateMenu::Update(float dt)
       if (mGuiController)
 	      mGuiController->Update(dt);
       if(mEngine->GetButtonState(PSP_CTRL_RTRIGGER)) //Hook for GameStateAward state
-      	mParent->SetNextState(GAME_STATE_AWARDS);
+      	mParent->DoTransition(TRANSITION_FADE,GAME_STATE_AWARDS); //TODO: A slide transition would be nice.
       break;
     case MENU_STATE_MAJOR_SUBMENU :
       subMenuController->Update(dt);
@@ -453,7 +456,7 @@ void GameStateMenu::Update(float dt)
 	          subMenuController->Add(SUBMENUITEM_CANCEL, "Cancel");
 	        }
 	      }else{
-	        mParent->SetNextState(GAME_STATE_DUEL);
+          mParent->DoTransition(TRANSITION_FADE,GAME_STATE_DUEL);
 	        currentState = MENU_STATE_MAJOR_MAINMENU;
 	      }
 	    }
@@ -499,15 +502,11 @@ void GameStateMenu::Update(float dt)
     }
 
   scroller->Update(dt);
-}
-
-
-
-
+    if((currentState & MENU_STATE_MINOR) == MENU_STATE_MINOR_FADEIN){    currentState = currentState ^ MENU_STATE_MINOR_FADEIN;    mParent->DoAnimation(TRANSITION_FADE_IN,.15);  }}
 
 void GameStateMenu::Render()
 {
-  JRenderer * renderer = JRenderer::GetInstance();
+  if((currentState & MENU_STATE_MINOR) == MENU_STATE_MINOR_FADEIN)    return;  JRenderer * renderer = JRenderer::GetInstance();
   renderer->ClearScreen(ARGB(0,0,0,0));
   JLBFont * mFont = resources.GetJLBFont(Constants::MENU_FONT);
   if ((currentState & MENU_STATE_MAJOR) == MENU_STATE_MAJOR_LANG){
@@ -571,7 +570,6 @@ void GameStateMenu::Render()
   if (subMenuController){
     subMenuController->Render();
   }  
-
 }
 
 
@@ -612,25 +610,25 @@ JLBFont * mFont = resources.GetJLBFont(Constants::MENU_FONT);
       }
 	    break;
       case MENUITEM_DECKEDITOR:
-	mParent->SetNextState(GAME_STATE_DECK_VIEWER);
+	mParent->DoTransition(TRANSITION_FADE,GAME_STATE_DECK_VIEWER);
 	break;
       case MENUITEM_SHOP:
-	mParent->SetNextState(GAME_STATE_SHOP);
+	mParent->DoTransition(TRANSITION_FADE,GAME_STATE_SHOP);
 	break;
       case MENUITEM_OPTIONS:
-	mParent->SetNextState(GAME_STATE_OPTIONS);
+	mParent->DoTransition(TRANSITION_FADE,GAME_STATE_OPTIONS);
 	break;
       case MENUITEM_EXIT:
 	mEngine->End();
 	break;
       case SUBMENUITEM_1PLAYER:
-	mParent->players[0] = PLAYER_TYPE_HUMAN;
+  mParent->players[0] = PLAYER_TYPE_HUMAN;
 	mParent->players[1] = PLAYER_TYPE_CPU;
 	subMenuController->Close();
 	currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
 	break;
       case SUBMENUITEM_2PLAYER:
-	mParent->players[0] = PLAYER_TYPE_HUMAN;
+  mParent->players[0] = PLAYER_TYPE_HUMAN;
 	mParent->players[1] = PLAYER_TYPE_HUMAN;
 	subMenuController->Close();
 	currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;

@@ -42,6 +42,7 @@
 #define GAME_TYPE_RANDOM2 3
 
 class MTGAllCards;
+class TransitionBase;
 
 class GameApp:	public JApp
 {
@@ -57,7 +58,6 @@ class GameApp:	public JApp
   GameState* mCurrentState;
   GameState* mNextState;
   GameState* mGameStates[GAME_STATE_MAX];
-
  public:
 
   
@@ -74,15 +74,18 @@ class GameApp:	public JApp
   virtual void Render();
   virtual void Pause();
   virtual void Resume();
+  
 
   void LoadGameStates();
   void SetNextState(int state);
+  void DoTransition(int trans, int tostate, float dur=-1, bool animonly = false);
+  void DoAnimation(int trans, float dur=-1);
   static hgeParticleSystem * Particles[6];
   static int HasMusic;
   static string systemError;
   static JMusic* music;
   static MTGAllCards * collection;
-    static int players[2];
+  static int players[2];
 
 };
 

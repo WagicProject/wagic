@@ -37,6 +37,7 @@ void GameStateAwards::End()
 }
 void GameStateAwards::Start()
 { 
+  mParent->DoAnimation(TRANSITION_FADE_IN);
   char buf[256];
   mState = STATE_LISTVIEW;
   options.checkProfile();
@@ -177,11 +178,11 @@ void GameStateAwards::Update(float dt)
         menu->Add(3, "Cancel");
         break;
       case PSP_CTRL_LTRIGGER:
-        mParent->SetNextState(GAME_STATE_MENU);
+        mParent->DoTransition(TRANSITION_FADE,GAME_STATE_MENU);
         break;
       case PSP_CTRL_CROSS:
         if(mState == STATE_LISTVIEW)
-          mParent->SetNextState(GAME_STATE_MENU);
+          mParent->DoTransition(TRANSITION_FADE,GAME_STATE_MENU);
         else{
           mState = STATE_LISTVIEW;
           SAFE_DELETE(detailview);
@@ -321,7 +322,7 @@ void GameStateAwards::ButtonPressed(int controllerId, int controlId)
    if(controllerId == -102)
   switch (controlId){
     case 1:
-      mParent->SetNextState(GAME_STATE_MENU);
+      mParent->DoTransition(TRANSITION_FADE,GAME_STATE_MENU);
       showMenu = false;
       break;
     case 2:

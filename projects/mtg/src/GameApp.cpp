@@ -10,6 +10,7 @@
 #include "../include/WResourceManager.h"
 #include "../include/GameApp.h"
 #include "../include/Subtypes.h"
+#include "../include/GameStateTransitions.h"
 #include "../include/GameStateDeckViewer.h"
 #include "../include/GameStateMenu.h"
 #include "../include/GameStateDuel.h"
@@ -19,6 +20,8 @@
 #include "../include/DeckStats.h"
 #include "../include/DeckMetaData.h"
 #include "../include/Translate.h"
+
+#define DEFAULT_DURATION .25
 
 hgeParticleSystem* GameApp::Particles[] = {NULL,NULL,NULL,NULL,NULL,NULL};
 MTGAllCards * GameApp::collection = NULL;
@@ -180,6 +183,8 @@ void GameApp::Create()
   mGameStates[GAME_STATE_AWARDS] = NEW GameStateAwards(this);
   mGameStates[GAME_STATE_AWARDS]->Create();
 
+  mGameStates[GAME_STATE_TRANSITION] = NULL;
+
   mCurrentState = NULL;
   mNextState = mGameStates[GAME_STATE_MENU];
 
@@ -263,16 +268,31 @@ void GameApp::Update()
   if (dt > 35.0f)		// min 30 FPS ;)
     dt = 35.0f;
 
-  if (mCurrentState != NULL)
-    mCurrentState->Update(dt);
-
+  TransitionBase * mTrans = NULL;
+  if (mCurrentState){
+       mCurrentState->Update(dt);
+       if(mGameStates[GAME_STATE_TRANSITION] == mCurrentState)
+         mTrans = (TransitionBase *) mGameStates[GAME_STATE_TRANSITION];
+  }
+  //Check for finished transitions.
+  if(mTrans && mTrans->Finished()){
+    mTrans->End();
+    if(mTrans->to != NULL && !mTrans->bAnimationOnly){
+      mCurrentState = mTrans->to;
+      SAFE_DELETE(mGameStates[GAME_STATE_TRANSITION]);
+      mCurrentState->Start();
+    }
+    else{
+      mCurrentState = mTrans->from;
+      SAFE_DELETE(mGameStates[GAME_STATE_TRANSITION]);
+    }
+  }
   if (mNextState != NULL)
-    {
+  {
       if (mCurrentState != NULL)
 	      mCurrentState->End();
 
       mCurrentState = mNextState;
-     
 
 #if defined (WIN32) || defined (LINUX)
 #else
@@ -285,7 +305,6 @@ void GameApp::Update()
    */
 #endif
       mCurrentState->Start();
-
       mNextState = NULL;
     }
 
@@ -302,10 +321,9 @@ void GameApp::Render()
     if (mFont) mFont->DrawString(systemError.c_str(),1,1);
     return;
   }
-  if (mCurrentState != NULL)
-    {
+
+  if (mCurrentState)
       mCurrentState->Render();
-    }
 
 #ifdef DEBUG_CACHE
   resources.DebugRender();
@@ -340,3 +358,40 @@ void GameApp::Resume(){
 
 }
 
+void GameApp::DoTransition(int trans, int tostate, float dur, bool animonly){
+  TransitionBase * tb = NULL;
+  GameState * toState = NULL;
+  if(tostate > GAME_STATE_NONE && tostate < GAME_STATE_MAX)
+    toState = mGameStates[tostate];
+
+  if(mGameStates[GAME_STATE_TRANSITION]){
+   tb =(TransitionBase*) mGameStates[GAME_STATE_TRANSITION];
+   if(toState)
+    tb->to = toState; //Additional calls to transition merely update the destination.
+   return;
+  }
+
+  if(dur < 0)
+    dur = DEFAULT_DURATION; // Default to this value. 
+  switch(trans){
+    case TRANSITION_FADE_IN:
+      tb = NEW TransitionFade(this,mCurrentState,toState,dur,true);
+      break;
+    case TRANSITION_FADE:
+    default:
+      tb = NEW TransitionFade(this,mCurrentState,toState,dur,false);
+  }
+  if(tb){
+    tb->bAnimationOnly = animonly;
+    mGameStates[GAME_STATE_TRANSITION] = tb;
+    mGameStates[GAME_STATE_TRANSITION]->Start();
+    mCurrentState = tb;  //The old current state is ended inside our transition.
+  } else if(toState) { //Somehow failed, just do standard SetNextState behaviour
+    mNextState = toState;
+  }
+}
+
+
+void GameApp::DoAnimation(int trans, float dur){
+  DoTransition(trans,GAME_STATE_NONE,dur,true);
+}

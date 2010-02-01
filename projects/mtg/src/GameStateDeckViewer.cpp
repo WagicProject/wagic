@@ -1409,7 +1409,7 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
       case 10:  //Deck menu
         if (controlId == -1){
           if(!mSwitching)
-            mParent->SetNextState(GAME_STATE_MENU);
+            mParent->DoTransition(TRANSITION_FADE,GAME_STATE_MENU);
           else
             mStage = STAGE_WAITING;
 
@@ -1446,7 +1446,7 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
           mSwitching = true;
           break;
         case 3:
-          mParent->SetNextState(GAME_STATE_MENU);
+          mParent->DoTransition(TRANSITION_FADE,GAME_STATE_MENU);
           break;
         case 4:
           mStage =  STAGE_WAITING;

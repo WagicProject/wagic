@@ -94,6 +94,7 @@ class JGuiController
 
   virtual void Render();
   virtual void Update(float dt);
+  virtual bool CheckUserInput(u32 key);
 
   void Add(JGuiObject* ctrl);
   void RemoveAt(int i);

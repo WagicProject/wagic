@@ -71,34 +71,9 @@ ShopItem::ShopItem(int id, JLBFont *font, int _cardid, float _xy[], bool hasFocu
   if (card->getRarity() == Constants::RARITY_L) quantity = 50;
   quad = NULL;
 
-  thumb = resources.RetrieveCard(card,RETRIEVE_LOCK,TEXTURE_SUB_THUMB);
-#if defined (WIN32) || defined (LINUX)
-  //On pcs we render the big image if the thumbnail is not available
-  if (!thumb) thumb = resources.RetrieveCard(card,RETRIEVE_LOCK);
-#endif
-  if (!thumb)
-    thumb = CardGui::alternateThumbQuad(card);
-  else
-    mRelease = true;
-
-  if (thumb){
-     mesh=NEW hgeDistortionMesh(2,2);
-     mesh->SetTexture(thumb->mTex);
-     float x0,y0,w0,h0;
-     thumb->GetTextureRect(&x0,&y0,&w0,&h0);
-     mesh->SetTextureRect(x0,y0,w0,h0);
-     mesh->Clear(ARGB(0xFF,0xFF,0xFF,0xFF));
-     mesh->SetDisplacement(0, 0, xy[0],xy[1], HGEDISP_NODE);
-     mesh->SetDisplacement(1, 0, xy[2] - w0,xy[3], HGEDISP_NODE);
-     mesh->SetDisplacement(0, 1,xy[4],xy[5]-h0, HGEDISP_NODE);
-     mesh->SetDisplacement(1, 1, xy[6]-w0,xy[7]-h0, HGEDISP_NODE);
-     mesh->SetColor(1,1,ARGB(255,100,100,100));
-     mesh->SetColor(0,1,ARGB(255,100,100,100));
-     mesh->SetColor(1,0,ARGB(255,100,100,100));
-     mesh->SetColor(0,0,ARGB(255,200,200,200));
-  }else{
-    mesh = NULL;
-  }
+  mesh = NULL;
+  thumb = NULL;
+  updateThumb();
 }
 
 
@@ -119,6 +94,49 @@ const char * ShopItem::getText(){
   return mText.c_str();
 }
 
+void ShopItem::updateThumb(){
+  if(card == NULL)
+    return;
+
+  if(thumb && mRelease)
+      resources.Release(thumb->mTex);
+  mRelease = false;
+  
+  if(mesh)
+    SAFE_DELETE(mesh);
+  else if(thumb)
+    SAFE_DELETE(thumb);
+
+  thumb = resources.RetrieveCard(card,RETRIEVE_LOCK,TEXTURE_SUB_THUMB);
+#if defined (WIN32) || defined (LINUX)
+  //On pcs we render the big image if the thumbnail is not available
+  if (!thumb) thumb = resources.RetrieveCard(card,RETRIEVE_LOCK);
+#endif
+  if (!thumb)
+    thumb = CardGui::alternateThumbQuad(card);
+  else
+    mRelease = true;
+
+
+  if (thumb){
+     mesh=NEW hgeDistortionMesh(2,2);
+     mesh->SetTexture(thumb->mTex);
+     float x0,y0,w0,h0;
+     thumb->GetTextureRect(&x0,&y0,&w0,&h0);
+     mesh->SetTextureRect(x0,y0,w0,h0);
+     mesh->Clear(ARGB(0xFF,0xFF,0xFF,0xFF));
+     mesh->SetDisplacement(0, 0, xy[0],xy[1], HGEDISP_NODE);
+     mesh->SetDisplacement(1, 0, xy[2] - w0,xy[3], HGEDISP_NODE);
+     mesh->SetDisplacement(0, 1,xy[4],xy[5]-h0, HGEDISP_NODE);
+     mesh->SetDisplacement(1, 1, xy[6]-w0,xy[7]-h0, HGEDISP_NODE);
+     mesh->SetColor(1,1,ARGB(255,100,100,100));
+     mesh->SetColor(0,1,ARGB(255,100,100,100));
+     mesh->SetColor(1,0,ARGB(255,100,100,100));
+     mesh->SetColor(0,0,ARGB(255,200,200,200));
+  }else{
+    mesh = NULL;
+  }
+}
 
 void ShopItem::Render(){
   if (mHasFocus){
@@ -251,9 +269,9 @@ void ShopItems::Add(char * text, JQuad * quad,JQuad * thumb, int price){
 }
 
 void ShopItems::Update(float dt){
+
   if (display){
-    while (u32 key = JGE::GetInstance()->ReadButton()) display->CheckUserInput(key);
-    if (display) display->Update(dt);
+    display->Update(dt);
   }else{
     if (showPriceDialog!=-1){
       ShopItem * item =  ((ShopItem *)mObjects[showPriceDialog]);
@@ -272,19 +290,6 @@ void ShopItems::Update(float dt){
 	      dialog->Update(dt);
       }
     }else{
-      u32 buttons[] = {PSP_CTRL_LEFT,PSP_CTRL_DOWN,PSP_CTRL_RIGHT,PSP_CTRL_UP,PSP_CTRL_CIRCLE};
-      for (int i = 0; i < 5; ++i){
-        if (JGE::GetInstance()->GetButtonClick(buttons[i])){
-          showCardList = false;
-        }
-      }
-      
-      if(JGE::GetInstance()->GetButtonClick(PSP_CTRL_TRIANGLE)){
-          options[Options::DISABLECARDS].number = !options[Options::DISABLECARDS].number;
-      }
-      if (JGE::GetInstance()->GetButtonClick(PSP_CTRL_CROSS)){
-          showCardList = !showCardList;
-      }
       SAFE_DELETE(dialog);
       JGuiController::Update(dt);
     }
@@ -319,9 +324,7 @@ void ShopItems::Render(){
 
   if (display) display->Render();
 
-  if (showPriceDialog==-1){
-
-  }else{
+  if (showPriceDialog!=-1){
     if(dialog){
       dialog->Render();
     }
@@ -517,4 +520,32 @@ ostream& ShopItem::toString(ostream& out) const
 	     << " ; quantity : " << quantity
 	     << " ; card : " << card
 	     << " ; price : " << price;
+}
+
+bool ShopItems::CheckUserInput(u32 key){
+ if (display && display->CheckUserInput(key))
+   return true;
+ if(showPriceDialog==-1){
+    u32 buttons[] = {PSP_CTRL_LEFT,PSP_CTRL_DOWN,PSP_CTRL_RIGHT,PSP_CTRL_UP,PSP_CTRL_CIRCLE};
+    for (int i = 0; i < 5; ++i){
+      if (key == buttons[i])
+        showCardList = false;
+    }
+    
+    if(key == PSP_CTRL_TRIANGLE){
+        options[Options::DISABLECARDS].number = !options[Options::DISABLECARDS].number;
+        vector<JGuiObject*>::iterator it;
+        for(it=mObjects.begin();it!=mObjects.end();it++){
+          ShopItem * si = dynamic_cast<ShopItem*>(*it);
+          if(si)
+            si->updateThumb();
+        }
+        return true;
+    }
+    if (key == PSP_CTRL_CROSS){
+        showCardList = !showCardList;
+        return true;
+    }
+ }
+ return JGuiController::CheckUserInput(key);
 }

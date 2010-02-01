@@ -26,9 +26,7 @@ void GameStateShop::Create(){
 void GameStateShop::Start()
 {
   menu = NULL;
-
-
-  mStage = STAGE_SHOP_SHOP;
+  mStage = STAGE_FADE_IN;
   
   //alternateRender doesn't lock, so lock our thumbnails for hgeDistort.
   altThumb[0] = resources.RetrieveTexture("artifact_thumb.jpg", RETRIEVE_LOCK);
@@ -53,7 +51,6 @@ void GameStateShop::Start()
   shop = NULL;
   taskList = NULL;
   load();
-
 }
 
 
@@ -138,7 +135,9 @@ void GameStateShop::Update(float dt)
 {
   //  mParent->effect->UpdateSmall(dt);
   //  mParent->effect->UpdateBig(dt);
-  if (mStage == STAGE_SHOP_MENU){
+  u32 btn; 
+  switch(mStage){
+    case STAGE_SHOP_MENU:
     if (menu){
       menu->Update(dt);
     }else{
@@ -147,16 +146,32 @@ void GameStateShop::Update(float dt)
       menu->Add(14,"See available tasks");
       menu->Add(13, "Cancel");
     } 
-  }else{
-    if (mEngine->GetButtonClick(PSP_CTRL_START)){
-      mStage = STAGE_SHOP_MENU;
-    }
-    if (mStage == STAGE_SHOP_TASKS){
-      if ( (mEngine->GetButtonClick(PSP_CTRL_CROSS)) ||
-           (mEngine->GetButtonClick(PSP_CTRL_TRIANGLE)) ) {
-        mStage = STAGE_SHOP_SHOP;
+    break;
+    case STAGE_SHOP_TASKS:      
+      if(menu){
+        menu->Update(dt);
         return;
       }
+      if(taskList){
+      btn = mEngine->ReadButton();
+      taskList->Update(dt);
+        if ( taskList->getState() != TaskList::TASKS_INACTIVE){
+          if( btn == PSP_CTRL_CROSS || btn == PSP_CTRL_TRIANGLE ){
+             taskList->End();
+             return;
+          }else if(taskList->getState() == TaskList::TASKS_ACTIVE && btn == PSP_CTRL_START ){
+            if(!menu){
+              menu = NEW SimpleMenu(11,this,Constants::MENU_FONT,SCREEN_WIDTH/2-100,20);
+              menu->Add(12,"Save & Back to Main Menu");
+              menu->Add(15,"Close tasks");
+              menu->Add(13, "Cancel");
+            }
+          }
+        }
+        else
+          mStage = STAGE_SHOP_SHOP;
+      }
+
 #ifdef TESTSUITE
       if ((mEngine->GetButtonClick(PSP_CTRL_SQUARE)) && (taskList)) {
         taskList->passOneDay();
@@ -167,15 +182,25 @@ void GameStateShop::Update(float dt)
        taskList->save();
       }
 #endif
-    } else {
-      if (mEngine->GetButtonClick(PSP_CTRL_SQUARE)){
+    break;
+    case STAGE_SHOP_SHOP:
+      btn = mEngine->ReadButton();
+      if (btn == PSP_CTRL_START){
+        mStage = STAGE_SHOP_MENU;
+        return;
+      }else if(btn == PSP_CTRL_SQUARE){
         load();
       }
-      if (shop)
+      if (shop){
+        shop->CheckUserInput(btn);
         shop->Update(dt);
-    }
+      }
+      break;
+    case STAGE_FADE_IN:
+      mParent->DoAnimation(TRANSITION_FADE_IN);
+      mStage = STAGE_SHOP_SHOP;
+      break;
   }
-
 }
 
 
@@ -184,43 +209,51 @@ void GameStateShop::Render()
   //Erase
   JRenderer * r = JRenderer::GetInstance();
   r->ClearScreen(ARGB(0,0,0,0));
-  
+  if(mStage == STAGE_FADE_IN)
+    return;
+
   if (mBg) r->RenderQuad(mBg,0,0);
 
 
   if (shop)
     shop->Render();
  
-  if (mStage == STAGE_SHOP_TASKS) {
-    if (!taskList) {
-      taskList = NEW TaskList();
-    }
+  if (mStage == STAGE_SHOP_TASKS && taskList) {
     taskList->Render();
   }
 
-  if (mStage == STAGE_SHOP_MENU && menu){
+  if (menu){
     menu->Render();
   }
 }
 
 void GameStateShop::ButtonPressed(int controllerId, int controlId)
 {
-  switch (controllerId){
-  case 10:
-    if (shop) shop->pricedialog(controlId);
-    break;
-  case 11:
-    if (controlId == 12){
-      if (shop) shop->saveAll();
-      if (taskList) taskList->save();
-      mParent->SetNextState(GAME_STATE_MENU);
-    } else if (controlId == 14){
-      mStage = STAGE_SHOP_TASKS;
-    } else {
-      mStage = STAGE_SHOP_SHOP;
+  if (controllerId == 10){
+    if (shop) 
+      shop->pricedialog(controlId);
+  }
+  else{
+    switch(controlId){
+      case 12:
+        if (shop) shop->saveAll();
+        if (taskList) taskList->save();
+        mParent->DoTransition(TRANSITION_FADE,GAME_STATE_MENU);
+        mStage = STAGE_SHOP_SHOP;
+        break;
+      case 14:          
+        mStage = STAGE_SHOP_TASKS;
+        if (!taskList)
+          taskList = NEW TaskList();
+        taskList->Start();    
+        break;
+      case 15:
+        if(taskList)
+          taskList->End();
+        break;
+      default:
+        mStage = STAGE_SHOP_SHOP;
     }
-    break;
+    SAFE_DELETE(menu);
   }
 }
-
-

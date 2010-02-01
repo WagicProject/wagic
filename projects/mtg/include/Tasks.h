@@ -66,13 +66,27 @@ public:
 class TaskList {
 protected:
   string fileName;
+  float vPos;
+  float mElapsed;
+  int mState;
+  JQuad * mBg[9];
+  JTexture * mBgTex;
+  
 
 public:
   vector<Task*> tasks;
 
+  enum{
+    TASKS_IN,
+    TASKS_ACTIVE,
+    TASKS_OUT,
+    TASKS_INACTIVE,
+  };
+
   TaskList(string _fileName = "");
   int load(string _fileName = "");
   int save(string _fileName = "");
+  int getState() {return mState;};
   void addTask(string params, bool rand = FALSE);
   void addTask(Task *task);
   void addRandomTask(int diff = 100);
@@ -81,8 +95,11 @@ public:
   void getDoneTasks(Player * _p1, Player * _p2, GameApp * _app, vector<Task*>* result);
   int getTaskCount();
 
-  //!!virtual void Update(float dt);
-  virtual void Render();
+  void Start();
+  void End();
+
+  void Update(float dt);
+  void Render();
   //!!virtual void ButtonPressed(int controllerId, int controlId);
 
   ~TaskList();

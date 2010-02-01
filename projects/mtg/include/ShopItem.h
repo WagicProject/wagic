@@ -31,6 +31,7 @@ class ShopItem:public JGuiObject{
   float mTargetScale;
   hgeDistortionMesh* mesh;
 
+  void updateThumb();
 
  public:
   int nameCount;
@@ -83,6 +84,7 @@ class ShopItems:public JGuiController,public JGuiListener{
   void Add(char * text, JQuad * quad, JQuad * thumb,int _price);
   void pricedialog(int id, int mode=1);
   virtual void ButtonPressed(int controllerId, int controlId);
+  bool CheckUserInput(u32 key);
   void savePriceList();
   void saveAll();
   static float _x1[],_y1[],_x2[],_y2[],_x3[],_y3[],_x4[],_y4[];

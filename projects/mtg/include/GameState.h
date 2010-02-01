@@ -11,15 +11,23 @@ using namespace std;
 
 enum ENUM_GAME_STATE
   {
+    GAME_STATE_NONE = -1,
     GAME_STATE_MENU = 1,
     GAME_STATE_DUEL = 2,
     GAME_STATE_DECK_VIEWER = 3,
     GAME_STATE_SHOP = 4,
     GAME_STATE_OPTIONS = 5,
     GAME_STATE_AWARDS = 6,
-    GAME_STATE_MAX = 7,
+    GAME_STATE_TRANSITION = 7,
+    GAME_STATE_MAX = 8,
   };
 
+enum ENUM_GS_TRANSITION
+  {
+    TRANSITION_FADE = 0,
+    TRANSITION_FADE_IN = 1,
+    MAX_TRANSITION
+  };
 
 class GameApp;
 class SimpleMenu;

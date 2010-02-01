@@ -13,12 +13,12 @@
 #define STAGE_SHOP_MENU 3
 #define STAGE_SHOP_SHOP 4
 #define STAGE_SHOP_TASKS 5
+#define STAGE_FADE_IN 6
 
 
 class GameStateShop: public GameState, public JGuiListener
 {
  private:
-
   ShopItems * shop;
   JTexture * altThumb[8];
   JQuad * mBack;
@@ -43,10 +43,6 @@ class GameStateShop: public GameState, public JGuiListener
   virtual void Update(float dt);
   virtual void Render();
   virtual void ButtonPressed(int controllerId, int controlId);
-
-  
-  
-
 };
 
 

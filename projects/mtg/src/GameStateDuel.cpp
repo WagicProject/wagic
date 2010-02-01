@@ -19,7 +19,7 @@
 #include <time.h>
 #endif
 
-enum ENUM_DUEL_STATEseems
+enum ENUM_DUEL_STATE
   {
     DUEL_STATE_START,
     DUEL_STATE_END,
@@ -97,10 +97,13 @@ void GameStateDuel::Start()
     }
   }
 
+  if(deckmenu){
   if (decksneeded){
     deckmenu->Add(-1,_("Create your Deck!").c_str(),"Highly recommended to get\nthe full Wagic experience!");
     premadeDeck = true;
     fillDeckMenu(deckmenu,RESPATH"/player/premade");
+  }
+    deckmenu->Add(-1,_("New Deck...").c_str());
   }
   
   for (int i = 0; i < 2; ++i){
@@ -364,13 +367,16 @@ void GameStateDuel::Update(float dt)
 	mGamePhase = DUEL_STATE_PLAY;
       break;
     case DUEL_STATE_BACK_TO_MAIN_MENU:
-     menu->Update(dt);
-      if (menu->closed) {
-        PlayerData * playerdata = NEW PlayerData(mParent->collection);
-        playerdata->taskList->passOneDay();
-        playerdata->taskList->save();
-        SAFE_DELETE(playerdata);
-        mParent->SetNextState(GAME_STATE_MENU);
+      if(menu){
+        menu->Update(dt);
+        if (menu->closed) {
+          PlayerData * playerdata = NEW PlayerData(mParent->collection);
+          playerdata->taskList->passOneDay();
+          playerdata->taskList->save();
+          SAFE_DELETE(playerdata);
+          SAFE_DELETE(menu);
+          mParent->DoTransition(TRANSITION_FADE,GAME_STATE_MENU,1);
+        }
       }
       break;
     default:
@@ -456,7 +462,8 @@ void GameStateDuel::Render()
         sprintf(buffer,_("Turn:%i").c_str(),game->turn);
         mFont->DrawString(buffer,SCREEN_WIDTH/2,0,JGETEXT_CENTER);
       }
-      menu->Render();
+      if(menu)
+        menu->Render();
   }
   LOG("End Render\n");
 }

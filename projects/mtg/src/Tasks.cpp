@@ -257,6 +257,9 @@ TaskList::TaskList(string _fileName) {
     fileName = options.profileFile(PLAYER_TASKS).c_str();
   }
   load(fileName);
+  for(int i=0;i<9;i++)
+        mBg[i] = NULL;
+  mBgTex = NULL; //We only load the background if we use the task screen.
 }
 
 int TaskList::save(string _fileName) {
@@ -350,7 +353,32 @@ void TaskList::removeTask(Task *task) {
     // TODO: task not found handling.
   }
 }
-
+void TaskList::Start(){
+  vPos = -SCREEN_HEIGHT; //Offscreen
+  mElapsed = 0;
+  mState = TASKS_IN;
+  if(!mBgTex){
+    mBgTex = resources.RetrieveTexture("taskboard.png");
+    if(mBgTex){
+    mBg[0] = NEW JQuad(mBgTex,0,0,64,64);
+    mBg[1] = NEW JQuad(mBgTex,64,0,128,64);
+    mBg[2] = NEW JQuad(mBgTex,192,0,64,64);
+    mBg[3] = NEW JQuad(mBgTex,0,64,64,128);
+    mBg[4] = NEW JQuad(mBgTex,64,64,128,128);
+    mBg[5] = NEW JQuad(mBgTex,192,64,64,128);
+    mBg[6] = NEW JQuad(mBgTex,0,192,64,64);
+    mBg[7] = NEW JQuad(mBgTex,64,192,128,64);
+    mBg[8] = NEW JQuad(mBgTex,192,192,64,64);
+    }
+    else
+      for(int i=0;i<9;i++)
+        SAFE_DELETE(mBg[i]);
+  }
+}
+void TaskList::End(){
+  mState = TASKS_OUT;
+  mElapsed = 0;
+}
 void TaskList::passOneDay() {
   // TODO: "You have failed the task" message to the user when accepted task expires
   for (vector<Task*>::iterator it = tasks.begin(); it!=tasks.end(); ){
@@ -377,24 +405,65 @@ void TaskList::getDoneTasks(Player * _p1, Player * _p2, GameApp * _app, vector<T
 int TaskList::getTaskCount() {
   return tasks.size();
 }
-
+void TaskList::Update(float dt) {
+  mElapsed += dt;
+  
+  if(mState == TASKS_IN && vPos < 0){
+    vPos = -SCREEN_HEIGHT+(SCREEN_HEIGHT*mElapsed/.75); //Todo: more physical drop-in.
+    if(vPos >= 0){
+      vPos = 0;
+      mState = TaskList::TASKS_ACTIVE;
+    }
+  }else if(mState == TASKS_OUT && vPos > -SCREEN_HEIGHT){
+    vPos = -(SCREEN_HEIGHT*mElapsed/.75);
+    if(vPos <= -SCREEN_HEIGHT)
+      mState = TASKS_INACTIVE;
+  }
+}
 void TaskList::Render() {
   JRenderer * r = JRenderer::GetInstance();  
+  //Setup fonts.
   JLBFont * f = resources.GetJLBFont(Constants::MAIN_FONT);
   JLBFont * f2 = resources.GetJLBFont(Constants::MAGIC_FONT);
   JLBFont * f3 = resources.GetJLBFont(Constants::MENU_FONT); //OPTION_FONT
   f2->SetColor(ARGB(255, 205, 237, 240));
   f3->SetColor(ARGB(255, 219, 206, 151));
 
-  r->FillRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT,ARGB(128,0,0,0));
-  r->FillRect(10,10,SCREEN_WIDTH-10,SCREEN_HEIGHT-10,ARGB(128,0,0,0));
+  //Render background board
+  if(mBgTex){
+    r->FillRect(0,vPos,SCREEN_WIDTH,SCREEN_HEIGHT,ARGB(128,0,0,0));
+    r->RenderQuad(mBg[0],0,vPos); //TL
+    r->RenderQuad(mBg[2],SCREEN_WIDTH-64,vPos); //TR
+    r->RenderQuad(mBg[6],0,vPos+SCREEN_HEIGHT-64); //BL
+    r->RenderQuad(mBg[8],SCREEN_WIDTH-64,vPos+SCREEN_HEIGHT-64); //BR
+
+    //Stretch the sides
+    float stretchV = 144.0f/128.0f;
+    float stretchH = 176.0f/128.0f;
+    r->RenderQuad(mBg[3],0,vPos+64,0,1,stretchV); //L
+    r->RenderQuad(mBg[5],SCREEN_WIDTH-64,vPos+64,0,1,stretchV); //R
+    r->RenderQuad(mBg[1],64,vPos,0,stretchH,1); //T1
+    r->RenderQuad(mBg[1],240,vPos,0,stretchH,1); //T1
+    r->RenderQuad(mBg[7],64,vPos+208,0,stretchH,1); //B1
+    r->RenderQuad(mBg[7],240,vPos+208,0,stretchH,1); //B1
+    r->RenderQuad(mBg[4],64,vPos+64,0,stretchH,stretchV); //Center1
+    r->RenderQuad(mBg[4],240,vPos+64,0,stretchH,stretchV); //Center2    
+
+    f2->SetColor(ARGB(255, 55, 46, 34));
+    f=f2;
+  }else{
+    r->FillRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT,ARGB(128,0,0,0));
+    r->FillRect(10,10+vPos,SCREEN_WIDTH-10,SCREEN_HEIGHT-10,ARGB(128,0,0,0));
+  }
+
   
-  float posX = 20, posY = 20;
+  
+  float posX = 40, posY = vPos+20;
   char buffer[300];
   string title = _("Task Board");
 
   f3->DrawString(title.c_str(), (SCREEN_WIDTH-20)/2 - title.length()*4, posY);
-  posY += 20;
+  posY += 30;
 
   if (0 == tasks.size()) {
     f->DrawString(_("There are no tasks that need to be done. Come again tomorrow.").c_str(), posX, posY);
@@ -405,10 +474,12 @@ void TaskList::Render() {
   for (vector<Task*>::iterator it = tasks.begin(); it!=tasks.end(); it++) {
     sprintf(buffer, "%s", (*it)->getShortDesc().c_str());
     f2->DrawString(buffer, posX, posY);
+    if(mBgTex)
+      f->SetScale(.8);
     sprintf(buffer, _("Days left: %i").c_str(), (*it)->getExpiration());
-    f->DrawString(buffer, SCREEN_WIDTH - 180, posY);    
+    f->DrawString(buffer, SCREEN_WIDTH - 190, posY);    
     sprintf(buffer, _("Reward: %i").c_str(), (*it)->getReward());
-    f->DrawString(buffer, SCREEN_WIDTH - 90, posY);    
+    f->DrawString(buffer, SCREEN_WIDTH - 100, posY);    
     posY += 15;
 
     sprintf(buffer, "%s", (*it)->getDesc().c_str());
@@ -416,6 +487,7 @@ void TaskList::Render() {
     posY += 15;
     //r->DrawLine((SCREEN_WIDTH)/2 - 200, posY, (SCREEN_WIDTH)/2 + 200, posY, ARGB(128, 255, 255, 255));
   }
+  f->SetScale(1);
 }
 
 void TaskList::addRandomTask(int diff) {
@@ -430,9 +502,14 @@ void TaskList::addRandomTask(int diff) {
 
 
 TaskList::~TaskList() {
+
   for (unsigned int i=0; i<tasks.size(); i++) {
     SAFE_DELETE(tasks[i]);
   }
+  if(mBgTex)
+    resources.Release(mBgTex);
+  for(int i=0;i<9;i++)
+    SAFE_DELETE(mBg[i]);
 }
 
 /*----------------------------------------*/

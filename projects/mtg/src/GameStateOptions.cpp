@@ -218,7 +218,7 @@ void GameStateOptions::ButtonPressed(int controllerId, int controlId)
     JSoundSystem::GetInstance()->SetSfxVolume(options[Options::SFXVOLUME].number);
     JSoundSystem::GetInstance()->SetMusicVolume(options[Options::MUSICVOLUME].number);
   case 2:
-    mParent->SetNextState(GAME_STATE_MENU);
+    mParent->DoTransition(TRANSITION_FADE,GAME_STATE_MENU);
     break;
   case 3:
     mState = SHOW_OPTIONS;
