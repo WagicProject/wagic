@@ -98,6 +98,7 @@ void GameStateAwards::Start()
     
       
     aw = NEW WGuiAward(Options::optionSet(i),si->getName(),buf,"Card Spoiler");
+    aw->mFlags = WGuiItem::NO_TRANSLATE;
     btn = NEW WGuiButton(aw,-103,Options::optionSet(i),this);
     listview->Add(btn);
   }
