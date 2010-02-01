@@ -80,12 +80,14 @@
         typedef unsigned char BYTE;
         typedef bool BOOL;
 #endif
-#if defined (WIN32) || defined (LINUX)
 
+#if defined (WIN32) || defined (LINUX)
 	#include <GL/gl.h>
 	#include <GL/glu.h>
+#endif
 
-	#include "../Dependencies/include/fmod.h"
+#if defined (WIN32) || defined (LINUX) 
+        #include "../Dependencies/include/fmod.h"
 
 
 typedef int8_t s8;

@@ -43,8 +43,11 @@ void JNetwork::EndInstance(){
 
 
 
-#if defined (WIN32) || defined (LINUX)
+#if defined (WIN32)
   DWORD JNetwork::netthread = 0;
+  int JNetwork::connected_to_ap = 1;
+#elif defined (LINUX)
+  pthread_t JNetwork::netthread = NULL;
   int JNetwork::connected_to_ap = 1;
 #else
   int JNetwork::connected_to_ap = 0;
