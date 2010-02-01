@@ -474,8 +474,9 @@ void TaskList::Render() {
   for (vector<Task*>::iterator it = tasks.begin(); it!=tasks.end(); it++) {
     sprintf(buffer, "%s", (*it)->getShortDesc().c_str());
     f2->DrawString(buffer, posX, posY);
-    if(mBgTex)
+	if(mBgTex){
       f->SetScale(.8);
+	}
     sprintf(buffer, _("Days left: %i").c_str(), (*it)->getExpiration());
     f->DrawString(buffer, SCREEN_WIDTH - 190, posY);    
     sprintf(buffer, _("Reward: %i").c_str(), (*it)->getReward());
@@ -485,6 +486,9 @@ void TaskList::Render() {
     sprintf(buffer, "%s", (*it)->getDesc().c_str());
     f->DrawString(buffer, posX+10, posY);    
     posY += 15;
+	if(mBgTex){
+      f->SetScale(1);
+	}
     //r->DrawLine((SCREEN_WIDTH)/2 - 200, posY, (SCREEN_WIDTH)/2 + 200, posY, ARGB(128, 255, 255, 255));
   }
   f->SetScale(1);
