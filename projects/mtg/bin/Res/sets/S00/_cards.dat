@@ -1,0 +1,285 @@
+[card]
+primitive=Angelic Blessing
+id=25456
+rarity=C
+[/card]
+[card]
+primitive=Armored Pegasus
+id=25498
+rarity=C
+[/card]
+[card]
+primitive=Bog Imp
+id=25492
+rarity=C
+[/card]
+[card]
+primitive=Breath of Life
+id=25447
+rarity=U
+[/card]
+[card]
+primitive=Coercion
+id=25477
+rarity=C
+[/card]
+[card]
+primitive=Counterspell
+id=25503
+rarity=C
+[/card]
+[card]
+primitive=Disenchant
+id=25500
+rarity=C
+[/card]
+[card]
+primitive=Drudge Skeletons
+id=25507
+rarity=C
+[/card]
+[card]
+primitive=Durkwood Boars
+id=25493
+rarity=C
+[/card]
+[card]
+primitive=Eager Cadet
+id=25455
+rarity=C
+[/card]
+[card]
+primitive=Flame Spirit
+id=25514
+rarity=C
+[/card]
+[card]
+primitive=Flight
+id=25510
+rarity=C
+[/card]
+[card]
+primitive=Forest
+id=25483
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=25482
+rarity=L
+[/card]
+[card]
+primitive=Giant Growth
+id=25502
+rarity=C
+[/card]
+[card]
+primitive=Giant Octopus
+id=25457
+rarity=C
+[/card]
+[card]
+primitive=Goblin Hero
+id=25486
+rarity=C
+[/card]
+[card]
+primitive=Hand of Death
+id=25490
+rarity=C
+[/card]
+[card]
+primitive=Hero's Resolve
+id=25536
+rarity=C
+[/card]
+[card]
+primitive=Inspiration
+id=25526
+rarity=C
+[/card]
+[card]
+primitive=Island
+id=25452
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=25451
+rarity=L
+[/card]
+[card]
+primitive=Knight Errant
+id=25450
+rarity=C
+[/card]
+[card]
+primitive=Lava Axe
+id=25488
+rarity=C
+[/card]
+[card]
+primitive=Llanowar Elves
+id=25508
+rarity=C
+[/card]
+[card]
+primitive=Merfolk of the Pearl Trident
+id=25458
+rarity=C
+[/card]
+[card]
+primitive=Mons's Goblin Raiders
+id=25491
+rarity=C
+[/card]
+[card]
+primitive=Monstrous Growth
+id=25475
+rarity=C
+[/card]
+[card]
+primitive=Moon Sprite
+id=25485
+rarity=U
+[/card]
+[card]
+primitive=Mountain
+id=25481
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=25480
+rarity=L
+[/card]
+[card]
+primitive=Obsianus Golem
+id=25528
+rarity=U
+[/card]
+[card]
+primitive=Ogre Warrior
+id=25476
+rarity=C
+[/card]
+[card]
+primitive=Orcish Oriflamme
+id=25540
+rarity=U
+[/card]
+[card]
+primitive=Plains
+id=25454
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=25453
+rarity=L
+[/card]
+[card]
+primitive=Prodigal Sorcerer
+id=25506
+rarity=C
+[/card]
+[card]
+primitive=Python
+id=25499
+rarity=C
+[/card]
+[card]
+primitive=Rod of Ruin
+id=25529
+rarity=U
+[/card]
+[card]
+primitive=Royal Falcon
+id=25459
+rarity=C
+[/card]
+[card]
+primitive=Samite Healer
+id=25533
+rarity=C
+[/card]
+[card]
+primitive=Scathe Zombies
+id=25487
+rarity=C
+[/card]
+[card]
+primitive=Sea Eagle
+id=25460
+rarity=C
+[/card]
+[card]
+primitive=Shock
+id=25501
+rarity=C
+[/card]
+[card]
+primitive=Soul Net
+id=25543
+rarity=U
+[/card]
+[card]
+primitive=Spined Wurm
+id=25496
+rarity=C
+[/card]
+[card]
+primitive=Stone Rain
+id=25497
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=25479
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=25478
+rarity=L
+[/card]
+[card]
+primitive=Terror
+id=25504
+rarity=C
+[/card]
+[card]
+primitive=Time Ebb
+id=25462
+rarity=C
+[/card]
+[card]
+primitive=Trained Orgg
+id=25494
+rarity=R
+[/card]
+[card]
+primitive=Venerable Monk
+id=25515
+rarity=C
+[/card]
+[card]
+primitive=Vizzerdrix
+id=25463
+rarity=R
+[/card]
+[card]
+primitive=Wild Griffin
+id=25449
+rarity=C
+[/card]
+[card]
+primitive=Willow Elf
+id=25484
+rarity=C
+[/card]
+[card]
+primitive=Wind Drake
+id=25448
+rarity=C
+[/card]

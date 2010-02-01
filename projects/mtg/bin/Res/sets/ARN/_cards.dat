@@ -3,467 +3,462 @@ author=Wagic Team
 year=1993
 [/meta]
 [card]
-text={X}, {T}: The next time you would draw a card this turn, instead look at the top X cards of your library, shuffle all but one of them, put the shuffled cards on the bottom of your library, then draw a card. X can't be 0.
-alias=1092
+primitive=Abu Ja'far
+id=968
+rarity=U
+[/card]
+[card]
+primitive=Aladdin
+id=955
+rarity=R
+[/card]
+[card]
+primitive=Aladdin's Lamp
 id=900
-name=Aladdin's Lamp
 rarity=R
-mana={10}
-type=Artifact
 [/card]
 [card]
-text={8}, {T}: Aladdin's Ring deals 4 damage to target creature or player.
+primitive=Aladdin's Ring
 id=901
-auto={8}{T}:damage:4 target(creature,player)
-name=Aladdin's Ring
 rarity=R
-mana={8}
-type=Artifact
 [/card]
 [card]
-text={R}:Tap target wall.
+primitive=Ali Baba
 id=956
-name=Ali Baba
 rarity=U
-mana={R}
-type=Creature
-subtype=Human Rogue
-auto={R}:tap target(wall)
-power=1
-toughness=1
 [/card]
 [card]
-text=Attacking creatures get +2/+0 until end of turn.
-id=969
-auto=lord(creature[attacking]) 2/0 
-name=Army of Allah
-rarity=C
-mana={1}{W}{W}
-type=Instant
+primitive=Ali from Cairo
+id=957
+rarity=R
 [/card]
 [card]
-text=Attacking creatures get +2/+0 until end of turn.
+primitive=Army of Allah
 id=970
-auto=lord(creature[attacking]) 2/0 
-name=Army of Allah
 rarity=C
-mana={1}{W}{W}
-type=Instant
 [/card]
 [card]
-text=Flying
+primitive=Army of Allah
+id=969
+rarity=C
+[/card]
+[card]
+primitive=Bazaar of Baghdad
+id=984
+rarity=U
+[/card]
+[card]
+primitive=Bird Maiden
 id=959
-name=Bird Maiden
 rarity=C
-mana={2}{R}
-type=Creature
-subtype=Human Bird
-power=1
-toughness=2
-abilities=flying
 [/card]
 [card]
-text=Flying
+primitive=Bird Maiden
 id=958
-name=Bird Maiden
 rarity=C
-mana={2}{R}
-type=Creature
-subtype=Human Bird
-power=1
-toughness=2
-abilities=flying
 [/card]
 [card]
-text=Brass Man doesn't untap during your untap step.   At the beginning of your upkeep, you may pay {1}. If you do, untap Brass Man.
+primitive=Bottle of Suleiman
+id=902
+rarity=R
+[/card]
+[card]
+primitive=Brass Man
 id=903
-name=Brass Man
 rarity=U
-mana={1}
-type=Artifact Creature
-subtype=Construct
-auto={1}:untap myUpkeepOnly
-power=1
-toughness=3
-abilities=doesnotuntap
 [/card]
 [card]
-text=Whenever City of Brass becomes tapped,it deals 1 damage to you.   {T}: Add one mana of any color to your mana pool.
+primitive=Camel
+id=971
+rarity=C
+[/card]
+[card]
+primitive=City in a Bottle
+id=904
+rarity=R
+[/card]
+[card]
+primitive=City of Brass
 id=985
-auto=@tapped(this):damage:1 controller
-auto={T}:Add {U}
-auto={T}:Add {R}
-auto={T}:Add {W}
-auto={T}:Add {B}
-auto={T}:Add {G}
-name=City of Brass
 rarity=U
-type=Land
 [/card]
 [card]
-text=Flying (this creature can't be blocked except by creatures with flying)
+primitive=Cuombajj Witches
+id=914
+rarity=C
+[/card]
+[card]
+primitive=Cyclone
+id=942
+rarity=U
+[/card]
+[card]
+primitive=Dancing Scimitar
 id=905
-name=Dancing Scimitar
 rarity=R
-mana={4}
-type=Artifact Creature
-subtype=Spirit
-power=1
-toughness=5
-abilities=flying
 [/card]
 [card]
-text=Dandan can't attack unless defending player controls an Island.   When you control no Islands, sacrifice Dandan.
+primitive=Dandan
 id=929
-name=Dandan
 rarity=C
-mana={U}{U}
-type=Creature
-subtype=Fish
-power=4
-toughness=1
-abilities=islandhome
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.   {T}: Desert deals 1 damage to target attacking creature. Play this ability only during the end of combat step.
+primitive=Desert
 id=986
-auto={T}:Add {1}
-auto={T}:Damage:1 target(creature[attacking])
-name=Desert
 rarity=C
-type=Land
 [/card]
 [card]
-text=Desertwalk   Prevent all damage that would be dealt to Desert Nomads by Deserts.
+primitive=Desert Nomads
 id=960
-name=Desert Nomads
 rarity=C
-mana={2}{R}
-type=Creature
-subtype=Human Nomad
-auto=aslongas(desert|opponentBattlefield) unblockable
-auto=protection from(desert)
-power=2
-toughness=2
 [/card]
 [card]
-text=Destroy target permanent.
+primitive=Desert Twister
 id=943
-target=*
-auto=destroy
-name=Desert Twister
 rarity=U
-mana={4}{G}{G}
-type=Sorcery
 [/card]
 [card]
-text={T}: Untap target attacking creature you control. Prevent all combat damage that would be dealt to and dealt by that creature this turn.
-alias=1108
+primitive=Diamond Valley
+id=987
+rarity=U
+[/card]
+[card]
+primitive=Drop of Honey
+id=944
+rarity=R
+[/card]
+[card]
+primitive=Ebony Horse
 id=906
-name=Ebony horse
-mana={3}
 rarity=R
-type=Artifact
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.   {T}: Regenerate target Elephant.
+primitive=Elephant Graveyard
 id=988
-auto={T}:Add {1}
-auto={T}:Regenerate target(elephant)
-name=Elephant Graveyard
 rarity=R
-type=Land
 [/card]
 [card]
-text=Lifelink
+primitive=El-Hajjaj
 id=915
-name=El-Hajjaj
 rarity=R
-mana={1}{B}{B}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
-abilities=lifelink
 [/card]
 [card]
-text=At the end of your turn, if Erg raiders didn't attack this turn, Erg raiders deals 2 damage to you unless it came under your control this turn.
+primitive=Erg Raiders
+id=917
+rarity=C
+[/card]
+[card]
+primitive=Erg Raiders
 id=916
-alias=1159
-name=Erg Raiders
 rarity=C
-mana={1}{B}
-type=Creature
-subtype=Human Warrior
-power=2
-toughness=3
 [/card]
 [card]
-text=Eye for an Eye deals X damage to the controller of the source of your choice that dealt damage to you this turn, where X is the damage dealt to you by that source this turn.
+primitive=Erhnam Djinn
+id=945
+rarity=R
+[/card]
+[card]
+primitive=Eye for an Eye
 id=972
-alias=1344
-name=Eye for an Eye
-rarity=R
-mana={W}{W}
-type=Instant
+rarity=U
 [/card]
 [card]
-text=Enchant creature (Target a creature as you cast this.   This card enters the battlefield attached to that creature.)   Enchanted creature has islandwalk. (This creature is unblockable as long as defending player controls an Island.)
+primitive=Fishliver Oil
 id=931
-target=creature
-auto=islandwalk
-name=Fishliver Oil
 rarity=C
-mana={1}{U}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text={2}, {T}: Target creature gains flying until end of turn.
+primitive=Fishliver Oil
+id=930
+rarity=C
+[/card]
+[card]
+primitive=Flying Carpet
 id=907
-auto={2}{T}:flying target(creature)
-name=Flying Carpet
-rarity=R
-mana={4}
-type=Artifact
+rarity=U
 [/card]
 [card]
-text=Flying
+primitive=Flying Men
 id=932
-name=Flying Men
 rarity=C
-mana={U}
-type=Creature
-subtype=Human
-power=1
-toughness=1
-abilities=flying
 [/card]
 [card]
-text=Giant Tortoise gets +0/+3 as long as it's untapped.
+primitive=Ghazban Ogre
+id=946
+rarity=C
+[/card]
+[card]
+primitive=Giant Tortoise
 id=934
-name=Giant Tortoise
 rarity=C
-mana={1}{U}
-type=Creature
-subtype=Turtle
-auto=lord(giant tortoise[-tapped]) 0/3
-auto=lord(other giant tortoise[-tapped]) 0/-3
-power=1
-toughness=1
 [/card]
 [card]
-text={T}: Target creature can't be regenerated this turn.
+primitive=Giant Tortoise
+id=933
+rarity=C
+[/card]
+[card]
+primitive=Guardian Beast
+id=918
+rarity=R
+[/card]
+[card]
+primitive=Hasran Ogress
+id=920
+rarity=C
+[/card]
+[card]
+primitive=Hasran Ogress
+id=919
+rarity=C
+[/card]
+[card]
+primitive=Hurr Jackal
 id=961
-name=Hurr Jackal
 rarity=C
-mana={R}
-type=Creature
-subtype=Hound
-auto={T}:cantregenerate target(creature)
-power=1
-toughness=1
 [/card]
 [card]
-text=Island Fish Jasconius can't attack unless defending player controls an Island.   Jasconius doesn't untap during your untap step.   At the beginning of your upkeep, you may pay {U}{U}{U}. If you do, untap Jasconius.   When you control no Islands, sacrifice Jasconius.
+primitive=Ifh-Biff Efreet
+id=947
+rarity=R
+[/card]
+[card]
+primitive=Island Fish Jasconius
 id=935
-auto={U}{U}{U}:untap myUpkeepOnly
-name=Island Fish Jasconius
 rarity=R
-mana={4}{U}{U}{U}
-type=Creature
-subtype=Fish
-power=6
-toughness=8
-abilities=islandhome,doesnotuntap
 [/card]
 [card]
-text={2}, {T}, Discard the last card you drew this turn: Draw a card.
-alias=1117
+primitive=Island of Wak-Wak
+id=989
+rarity=R
+[/card]
+[card]
+primitive=Jandor's Ring
 id=908
-name=Jandor's Ring
 rarity=R
-mana={6}
-type=Artifact
 [/card]
 [card]
-text={3}, {T}: Untap target creature.
+primitive=Jandor's Saddlebags
 id=909
-auto={3}{T}:untap target(creature)
-name=Jandor's Saddlebags
 rarity=R
-mana={2}
-type=Artifact
 [/card]
 [card]
-text=At the beginning of your upkeep, Juzam Djinn deals 1 damage to you.
+primitive=Jeweled Bird
+id=910
+rarity=U
+[/card]
+[card]
+primitive=Jihad
+id=973
+rarity=R
+[/card]
+[card]
+primitive=Junun Efreet
+id=921
+rarity=R
+[/card]
+[card]
+primitive=Juzam Djinn
 id=922
-auto=@each my upkeep:damage:1 controller
-name=Juzam Djinn
 rarity=R
-mana={2}{B}{B}
-type=Creature
-subtype=Djinn
-power=5
-toughness=5
 [/card]
 [card]
-text={T}: Destroy target Djinn or Efreet.
+primitive=Khabal Ghoul
+id=923
+rarity=U
+[/card]
+[card]
+primitive=King Suleiman
 id=974
-name=King Suleiman
 rarity=R
-mana={1}{W}
-type=Creature
-subtype=Human
-auto={T}:destroy target(djinn,efreet)
-power=1
-toughness=1
 [/card]
 [card]
-text=Kird Ape gets +1/+2 as long as you control a Forest.
+primitive=Kird Ape
 id=962
-auto=aslongas(forest|myBattlefield) 1/2
-name=Kird Ape
 rarity=C
-mana={R}
-type=Creature
-subtype=Ape
-power=1
-toughness=1
 [/card]
 [card]
-text=Trample
-id=975
-name=Moorish cavalry
-rarity=C
-mana={2}{W}{W}
-type=Creature
-subtype=Human Knight
-power=3
-toughness=3
-abilities=trample
+primitive=Library of Alexandria
+id=990
+rarity=U
 [/card]
 [card]
-text=Trample
+primitive=Magnetic Mountain
+id=963
+rarity=U
+[/card]
+[card]
+primitive=Merchant Ship
+id=936
+rarity=U
+[/card]
+[card]
+primitive=Metamorphosis
+id=948
+rarity=C
+[/card]
+[card]
+primitive=Mijae Djinn
+id=964
+rarity=R
+[/card]
+[card]
+primitive=Moorish Cavalry
 id=976
-name=Moorish cavalry
 rarity=C
-mana={2}{W}{W}
-type=Creature
-subtype=Human Knight
-power=3
-toughness=3
-abilities=trample
 [/card]
 [card]
-text=Blocking creatures get +0/+3 until end of turn.
-id=977
-auto=lord(creature[blocking]) 0/3
-name=Piety
+primitive=Moorish Cavalry
+id=975
 rarity=C
-mana={2}{W}
-type=Instant
 [/card]
 [card]
-text=Blocking creatures get +0/+3 until end of turn.
+primitive=Mountain
+id=983
+rarity=C
+[/card]
+[card]
+primitive=Nafs Asp
+id=950
+rarity=C
+[/card]
+[card]
+primitive=Nafs Asp
+id=949
+rarity=C
+[/card]
+[card]
+primitive=Oasis
+id=991
+rarity=U
+[/card]
+[card]
+primitive=Old Man of the Sea
+id=937
+rarity=R
+[/card]
+[card]
+primitive=Oubliette
+id=925
+rarity=C
+[/card]
+[card]
+primitive=Oubliette
+id=924
+rarity=C
+[/card]
+[card]
+primitive=Piety
 id=978
-auto=lord(creature[blocking]) 0/3
-name=Piety
 rarity=C
-mana={2}{W}
-type=Instant
 [/card]
 [card]
-text=Protection from red
+primitive=Piety
+id=977
+rarity=C
+[/card]
+[card]
+primitive=Pyramids
+id=911
+rarity=R
+[/card]
+[card]
+primitive=Repentant Blacksmith
 id=979
-name=Repentant blacksmith
 rarity=R
-mana={1}{W}
-type=Creature
-subtype=Human
-power=1
-toughness=2
-abilities=protection from red
 [/card]
 [card]
-text=Sandstorm deals 1 damage to each attacking creature.
+primitive=Ring of Ma'ruf
+id=912
+rarity=R
+[/card]
+[card]
+primitive=Rukh Egg
+id=966
+rarity=C
+[/card]
+[card]
+primitive=Rukh Egg
+id=965
+rarity=C
+[/card]
+[card]
+primitive=Sandals of Abdallah
+id=913
+rarity=U
+[/card]
+[card]
+primitive=Sandstorm
 id=951
-auto=damage:1 all(creature[attacking])
-name=Sandstorm
 rarity=C
-mana={G}
-type=Instant
 [/card]
 [card]
-text=Flying   At the beginning of your upkeep, Serendib Efreet deals 1 damage to you.
-id=939
-name=Serendib Efreet
+primitive=Serendib Djinn
+id=938
 rarity=R
-mana={2}{U}
-type=Creature
-subtype=Efreet
-auto=@each my upkeep:damage:1 controller
-power=3
-toughness=4
-abilities=flying
 [/card]
 [card]
-text=First strike
-id=927
-name=Stone-Throwing Devils
-rarity=C
-mana={B}
-type=Creature
-subtype=Devil
-power=1
-toughness=1
-abilities=first strike
+primitive=Serendib Efreet
+id=939
+rarity=R
 [/card]
 [card]
-text=First strike
+primitive=Shahrazad
+id=980
+rarity=R
+[/card]
+[card]
+primitive=Sindbad
+id=940
+rarity=U
+[/card]
+[card]
+primitive=Singing Tree
+id=952
+rarity=R
+[/card]
+[card]
+primitive=Sorceress Queen
+id=926
+rarity=U
+[/card]
+[card]
+primitive=Stone-Throwing Devils
 id=928
-name=Stone-Throwing Devils
 rarity=C
-mana={B}
-type=Creature
-subtype=Devil
-power=1
-toughness=1
-abilities=first strike
 [/card]
 [card]
-text=Enchant creature   Enchanted creature gets +3/+3.   At the beginning of the upkeep of enchanted creature's controller , put a -1/-1 conuter on that creature.
+primitive=Stone-Throwing Devils
+id=927
+rarity=C
+[/card]
+[card]
+primitive=Unstable Mutation
 id=941
-target=creature
-auto=3/3
-auto=@each targetcontroller upkeep:counter(-1/-1)
-name=Unstable Mutation
 rarity=C
-mana={U}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text={T}: Target creature gets +1/+1 until end of turn.
-id=953
-name=Wyluli Wolf
+primitive=War Elephant
+id=982
 rarity=C
-mana={1}{G}
-type=Creature
-subtype=Wolf
-auto={T}:1/1 target(creature)
-power=1
-toughness=1
 [/card]
 [card]
-text={T}: Target creature gets +1/+1 until end of turn.
+primitive=War Elephant
+id=981
+rarity=C
+[/card]
+[card]
+primitive=Wyluli Wolf
 id=954
-name=Wyluli Wolf
 rarity=C
-mana={1}{G}
-type=Creature
-subtype=Wolf
-auto={T}:1/1 target(creature)
-power=1
-toughness=1
+[/card]
+[card]
+primitive=Wyluli Wolf
+id=953
+rarity=C
+[/card]
+[card]
+primitive=Ydwen Efreet
+id=967
+rarity=R
 [/card]

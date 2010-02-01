@@ -4,702 +4,717 @@ year=1998
 block=Tempest
 [/meta]
 [card]
-text=All Slivers have "{2}, Sacrifice this permanent: This permanent deals 2 damage to target creature or player."
+primitive=Acidic Sliver
 id=5108
-name=Acidic Sliver
 rarity=U
-mana={B}{R}
-type=Creature
-subtype=Sliver
-auto=lord(sliver) {2}{S}:damage:2 target(creature,player)
-power=2
-toughness=2
 [/card]
 [card]
-text=At the beginning of each upkeep, untap all creatures and lands.
+primitive=Amok
+id=5109
+rarity=R
+[/card]
+[card]
+primitive=Awakening
 id=5110
-name=Awakening
 rarity=R
-mana={2}{G}{G}
-auto=@each upkeep:untap all(creature,land)
-type=Enchantment
 [/card]
 [card]
-text=At the beginning of each player's upkeep, that player discards a card at random.
+primitive=Bandage
+id=5111
+rarity=C
+[/card]
+[card]
+primitive=Bottomless Pit
 id=5113
-name=Bottomless Pit
 rarity=U
-mana={1}{B}{B}
-auto=@each my upkeep:discard:1 controller
-auto=@each opponent upkeep:discard:1 opponent
-type=Enchantment
 [/card]
 [card]
+primitive=Brush with Death
+id=5114
+rarity=C
+[/card]
+[card]
+primitive=Bullwhip
 id=5115
-name=Bullwhip
-mana={4}
-type=Artifact
-text={2}, {T}: Bullwhip deals 1 damage to target creature. That creature attacks this turn if able.
-auto={2}{T}:damage:1 target(creature) && mustattack ueot
 rarity=U
 [/card]
 [card]
-text=Trample   {1}{G}: Regenerate Carnassid. 
+primitive=Burgeoning
+id=5116
+rarity=R
+[/card]
+[card]
+primitive=Calming Licid
+id=5117
+rarity=U
+[/card]
+[card]
+primitive=Cannibalize
+id=5118
+rarity=C
+[/card]
+[card]
+primitive=Carnassid
 id=5217
-name=Carnassid
 rarity=R
-mana={4}{G}{G}
-type=Creature
-subtype=Beast
-auto={1}{G}:regenerate
-power=5
-toughness=4
-abilities=trample
 [/card]
 [card]
-text=Flying   Cloud Spirit can block only creatures with flying.
+primitive=Change of Heart
+id=5121
+rarity=C
+[/card]
+[card]
+primitive=Cloud Spirit
 id=5122
-name=Cloud Spirit
-rarity=U
-mana={2}{U}
-type=Creature
-subtype=Spirit
-power=3
-toughness=1
-abilities=cloud,flying
+rarity=C
 [/card]
 [card]
-text=Whenever you cast a spell, you gain 1 life.
+primitive=Constant Mists
+id=5123
+rarity=U
+[/card]
+[card]
+primitive=Contemplation
 id=5125
-auto=@movedTo(*|mystack):life:1
-name=Contemplation
 rarity=U
-mana={1}{W}{W}
-type=Enchantment
 [/card]
 [card]
-text=Enchant creature   Enchanted creature gets +1/+3.   {W}: Return Conviction to its owner's hand.
+primitive=Contempt
+id=5126
+rarity=C
+[/card]
+[card]
+primitive=Conviction
 id=5127
-name=Conviction
 rarity=C
-mana={1}{W}
-target=creature
-auto=1/3
-auto={W}:moveTo(ownerhand)
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text=Craven Giant can't block.
+primitive=Convulsing Licid
+id=5129
+rarity=U
+[/card]
+[card]
+primitive=Corrupting Licid
+id=5128
+rarity=U
+[/card]
+[card]
+primitive=Craven Giant
 id=5130
-name=Craven Giant
 rarity=C
-mana={2}{R}
-type=Creature
-subtype=Giant
-power=4
-toughness=1
-abilities=cantblock
 [/card]
 [card]
-text=Creatures you control gain reach until end of turn. (They can block creatures with flying.)
+primitive=Crossbow Ambush
 id=5131
-auto=lord(creature|myBattlefield) reach
-name=Crossbow Ambush
 rarity=C
-mana={G}
-type=Instant
 [/card]
 [card]
-text=All Slivers have shroud. (They can't be the targets of spells or abilities.)
+primitive=Crovax the Cursed
+id=5106
+rarity=R
+[/card]
+[card]
+primitive=Crystalline Sliver
 id=5134
-name=Crystalline Sliver
 rarity=U
-mana={W}{U}
-type=Creature
-subtype=Sliver
-auto=lord(sliver) shroud
-power=2
-toughness=2
 [/card]
 [card]
-text={T}: Target creature gains shadow until end of turn. (It can block or be blocked by only creatures with shadow.)
+primitive=Dauthi Trapper
 id=5135
-name=Dauthi Trapper
 rarity=U
-mana={2}{B}
-type=Creature
-subtype=Dauthi Minion
-auto={T}:shadow target(creature)
-power=1
-toughness=1
 [/card]
 [card]
-text=Destroy target tapped creature.
-target=creature[tapped]
-auto=destroy
+primitive=Death Stroke
 id=5137
-name=Death Stroke
 rarity=C
-mana={B}{B}
-type=Sorcery
 [/card]
 [card]
-text=Flying   {B}: Dungeon Shade gets +1/+1 until end of turn.
+primitive=Dream Halls
+id=5105
+rarity=R
+[/card]
+[card]
+primitive=Dream Prowler
+id=5140
+rarity=C
+[/card]
+[card]
+primitive=Duct Crawler
+id=5141
+rarity=C
+[/card]
+[card]
+primitive=Dungeon Shade
 id=5142
-name=Dungeon Shade
 rarity=C
-mana={3}{B}
-type=Creature
-subtype=Shade Spirit
-auto={B}:1/1
-power=1
-toughness=1
-abilities=flying
 [/card]
 [card]
-text=When you control a creature with toughness 2 or less, sacrifice Endangered Armodon.
+primitive=Elven Rite
+id=5144
+rarity=U
+[/card]
+[card]
+primitive=Endangered Armodon
 id=5145
-name=Endangered Armodon
 rarity=C
-mana={2}{G}{G}
-type=Creature
-subtype=Elephant
-auto=aslongas(creature[toughness<=2]|myBattlefield) -99/-99
-power=4
-toughness=5
 [/card]
 [card]
-text=Return all creatures to their owners' hands.
+primitive=Ensnaring Bridge
+id=5124
+rarity=R
+[/card]
+[card]
+primitive=Evacuation
 id=5147
-name=Evacuation
-auto=moveTo(ownerhand) all(creature)
 rarity=R
-mana={3}{U}{U}
-type=Instant
 [/card]
 [card]
-text=Enchant creature   {R}: Enchanted creature gets +1/-1 until end of turn.
-target=creature
-auto={R}:1/-1
+primitive=Fanning the Flames
+id=5148
+rarity=U
+[/card]
+[card]
+primitive=Flame Wave
+id=5150
+rarity=U
+[/card]
+[card]
+primitive=Fling
+id=5151
+rarity=C
+[/card]
+[card]
+primitive=Flowstone Blade
 id=5152
-name=Flowstone Blade
 rarity=C
-mana={R}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text=Haste   {0}: Flowstone Hellion gets +1/-1 until end of turn.
+primitive=Flowstone Hellion
 id=5153
-name=Flowstone Hellion
 rarity=U
-mana={4}{R}
-type=Creature
-subtype=Hellion Beast
-auto={0}:1/-1
-power=3
-toughness=3
-abilities=haste
 [/card]
 [card]
-text=Trample   {R}: Flowstone Mauler gets +1/-1 until end of turn.
+primitive=Flowstone Mauler
 id=5154
-name=Flowstone Mauler
 rarity=R
-mana={4}{R}{R}
-type=Creature
-subtype=Beast
-auto={R}:1/-1
-power=4
-toughness=5
-abilities=trample
 [/card]
 [card]
-text={R}: Flowstone Shambler gets +1/-1 until end of turn.
+primitive=Flowstone Shambler
 id=5156
-name=Flowstone Shambler
 rarity=C
-mana={2}{R}
-type=Creature
-subtype=Beast
-auto={R}:1/-1
-power=2
-toughness=2
 [/card]
 [card]
-text=Flying   When Foul Imp enters the battlefield, you lose 2 life.
+primitive=Foul Imp
 id=5158
-name=Foul Imp
 rarity=C
-mana={B}{B}
-type=Creature
-subtype=Imp
-auto=life:-2 controller
-power=2
-toughness=2
-abilities=flying
 [/card]
 [card]
-text=Haste   {R}: Furnace Spirit gets +1/+0 until end of turn.
+primitive=Furnace Spirit
 id=5160
-name=Furnace Spirit
 rarity=C
-mana={2}{R}
-type=Creature
-subtype=Spirit
-auto={R}:1/0
-power=1
-toughness=1
-abilities=haste
 [/card]
 [card]
-text=Hammerhead Shark can't attack unless defending player controls an Island.
+primitive=Gliding Licid
+id=5162
+rarity=U
+[/card]
+[card]
+primitive=Grave Pact
+id=5136
+rarity=R
+[/card]
+[card]
+primitive=Hammerhead Shark
 id=5163
-name=Hammerhead Shark
 rarity=C
-mana={1}{U}
-type=Creature
-subtype=Fish
-auto=aslongas(island|opponentbattlefield) -cantattack
-power=2
-toughness=3
-abilities=cantattack
 [/card]
 [card]
-text=Whenever a creature blocks, Heat of Battle deals 1 damage to that creature's controller.
-auto=@each my combatdamage:foreach(creature[blocking]|opponentBattlefield) damage:1 opponent
-auto=@each opponent combatdamage:foreach(creature[blocking]|myBattlefield) damage:1 controller
+primitive=Heartstone
+id=5164
+rarity=U
+[/card]
+[card]
+primitive=Heat of Battle
 id=5165
-name=Heat of Battle
 rarity=U
-mana={1}{R}
-type=Enchantment
 [/card]
 [card]
-text={W}: Honor Guard gets +0/+1 until end of turn.
+primitive=Hermit Druid
+id=5166
+rarity=R
+[/card]
+[card]
+primitive=Hesitation
+id=5167
+rarity=U
+[/card]
+[card]
+primitive=Hibernation Sliver
+id=5168
+rarity=U
+[/card]
+[card]
+primitive=Hidden Retreat
+id=5169
+rarity=R
+[/card]
+[card]
+primitive=Honor Guard
 id=5170
-name=Honor Guard
 rarity=C
-mana={W}
-type=Creature
-subtype=Human Soldier
-auto={W}:0/1
-power=1
-toughness=1
 [/card]
 [card]
-text=Whenever a player plays a land, that player draws a card.
+primitive=Horn of Greed
 id=5172
-name=Horn of Greed
 rarity=R
-mana={3}
-type=Artifact
-auto=@movedTo(land|myBattlefield):draw:1 controller
-auto=@movedTo(land|opponentBattlefield):draw:1 opponent
 [/card]
 [card]
-text=Creatures don't untap during their controllers' untap steps.   Whenever a creature enters the battlefield, untap all creatures.
+primitive=Hornet Cannon
+id=5173
+rarity=U
+[/card]
+[card]
+primitive=Intruder Alarm
 id=5174
-name=Intruder Alarm
 rarity=R
-mana={2}{U}
-auto=lord(creature) doesnotuntap
-auto=@movedTo(creature|myBattlefield):untap all(creature)
-auto=@movedTo(creature|opponentBattlefield):untap all(creature)
-type=Enchantment
 [/card]
 [card]
-text=Target creature gains flying until end of turn.   Draw a card.
-target=creature
-auto=flying
-auto=draw:1 controller
+primitive=Invasion Plans
+id=5175
+rarity=R
+[/card]
+[card]
+primitive=Jinxed Ring
+id=5177
+rarity=R
+[/card]
+[card]
+primitive=Lab Rats
+id=5178
+rarity=C
+[/card]
+[card]
+primitive=Lancers en-Kor
+id=5179
+rarity=U
+[/card]
+[card]
+primitive=Leap
 id=5180
-name=Leap
 rarity=C
-mana={U}
-type=Instant
 [/card]
 [card]
-text=Whenever an opponent discards a card, Megrim deals 2 damage to that player.
-auto=@movedTo(*|opponentgraveyard) from(opponenthand):damage:2 opponent
+primitive=Lowland Basilisk
+id=5181
+rarity=C
+[/card]
+[card]
+primitive=Mana Leak
+id=5182
+rarity=C
+[/card]
+[card]
+primitive=Mask of the Mimic
+id=5183
+rarity=U
+[/card]
+[card]
+primitive=Megrim
 id=5185
-name=Megrim
 rarity=U
-mana={2}{B}
-type=Enchantment
 [/card]
 [card]
-text=Mob Justice deals damage to target player equal to the number of creatures you control.
+primitive=Mind Games
+id=5186
+rarity=C
+[/card]
+[card]
+primitive=Mind Peel
+id=5187
+rarity=U
+[/card]
+[card]
+primitive=Mindwarper
+id=5188
+rarity=R
+[/card]
+[card]
+primitive=Mob Justice
 id=5101
-target=player
-auto=foreach(creature|myBattlefield) damage:1
-name=Mob Justice
 rarity=C
-mana={1}{R}
-type=Sorcery
 [/card]
 [card]
-text=When another creature enters the battlefield, sacrifice Mogg Bombers. If you do, it deals 3 damage to target player.
-auto=@movedTo(creature|battlefield):bury all(this) && damage:3 target(player)
+primitive=Mogg Bombers
 id=4980
-name=Mogg Bombers
 rarity=C
-mana={3}{R}
-type=Creature
-subtype=Goblin
-power=3
-toughness=4
 [/card]
 [card]
-text=Mogg Flunkies can't attack or block alone.
+primitive=Mogg Flunkies
 id=5100
-name=Mogg Flunkies
 rarity=C
-mana={1}{R}
-type=Creature
-subtype=Goblin
-auto=aslongas(creature[attacking]|myBattlefield) -cantattack
-auto=aslongas(creature[blocking]|myBattlefield) -cantblock
-power=3
-toughness=3
-abilities=cantattack,cantblock
 [/card]
 [card]
-text=If Mox Diamond would enter the battlefield, you may discard a land card instead. If you do, put Mox Diamond onto the battlefield. If you don't, put it into its owner's graveyard. {T}: Add one mana of any color to your mana pool.
-id=5193
-name=Mox Diamond
-auto=moveTo(mygraveyard) notatarget(land|myhand)
-auto=moveTo(mygraveyard) notatarget(this|myBattlefield)
-auto=@movedTo(land|mygraveyard) from(myhand):lord(mox diamond) {T}:Add{W} && lord(mox diamond) {T}:Add{U} && lord(mox diamond) {T}:Add{B} && lord(mox diamond) {T}:Add{R} && lord(mox diamond) {T}:Add{G}
-mana={0}
+primitive=Mogg Infestation
+id=5107
 rarity=R
-type=Artifact
 [/card]
 [card]
-text=Sacrifice Morgue Thrull: Put the top three cards of your library into your graveyard.
+primitive=Mogg Maniac
+id=5120
+rarity=U
+[/card]
+[card]
+primitive=Morgue Thrull
 id=5191
-name=Morgue Thrull
-rarity=U
-mana={2}{B}
-type=Creature
-subtype=Thrull
-auto={S}:deplete:3 controller
-power=2
-toughness=2
+rarity=C
 [/card]
 [card]
-text=Creatures you control have trample. (If a creature you control would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)
-auto=lord(creature|myBattlefield) trample
+primitive=Mortuary
+id=5192
+rarity=R
+[/card]
+[card]
+primitive=Mox Diamond
+id=5193
+rarity=R
+[/card]
+[card]
+primitive=Mulch
+id=5194
+rarity=C
+[/card]
+[card]
+primitive=Nomads en-Kor
+id=5196
+rarity=C
+[/card]
+[card]
+primitive=Overgrowth
+id=5198
+rarity=C
+[/card]
+[card]
+primitive=Portcullis
+id=5202
+rarity=R
+[/card]
+[card]
+primitive=Primal Rage
 id=5149
-name=Primal Rage
 rarity=U
-mana={1}{G}
-type=Enchantment
 [/card]
 [card]
-text={T}: Target blocking creature gets -1/-1 until end of turn.
+primitive=Provoke
+id=5203
+rarity=C
+[/card]
+[card]
+primitive=Pursuit of Knowledge
+id=5204
+rarity=R
+[/card]
+[card]
+primitive=Rabid Rats
 id=5205
-name=Rabid Rats
 rarity=C
-mana={1}{B}
-type=Creature
-subtype=Rat
-auto={T}:-1/-1 target(creature[blocking])
-power=1
-toughness=1
 [/card]
 [card]
-text=Flying   Revenant's power and toughness are each equal to the number of creature cards in your graveyard.
+primitive=Ransack
+id=5206
+rarity=U
+[/card]
+[card]
+primitive=Rebound
+id=5209
+rarity=U
+[/card]
+[card]
+primitive=Reins of Power
+id=5210
+rarity=R
+[/card]
+[card]
+primitive=Revenant
 id=5211
-auto=foreach(creature|mygraveyard) 1/1 
-name=Revenant
 rarity=R
-mana={4}{B}
-type=Creature
-subtype=Spirit
-power=*
-toughness=*
-abilities=flying
 [/card]
 [card]
-text=Wall creatures can attack as though they didn't have defender.
+primitive=Rolling Stones
 id=5212
-auto=lord(wall) -defender
-name=Rolling Stones
 rarity=R
-mana={1}{W}
-type=Enchantment
 [/card]
 [card]
-text=Destroy all nonbasic lands.
+primitive=Ruination
 id=5213
-auto=destroy all(land[-basic])
-name=Ruination
 rarity=R
-mana={3}{R}
-type=Sorcery
 [/card]
 [card]
-text=When Serpent Warrior enters the battlefield, you lose 3 life.
+primitive=Sacred Ground
+id=5214
+rarity=R
+[/card]
+[card]
+primitive=Samite Blessing
+id=5215
+rarity=C
+[/card]
+[card]
+primitive=Scapegoat
+id=5138
+rarity=U
+[/card]
+[card]
+primitive=Seething Anger
+id=5218
+rarity=C
+[/card]
+[card]
+primitive=Serpent Warrior
 id=5219
-name=Serpent Warrior
 rarity=C
-mana={2}{B}
-type=Creature
-subtype=Snake Warrior
-auto=life:-3 controller
-power=3
-toughness=3
 [/card]
 [card]
-text=Flying (This creature can't be blocked except by creatures with flying or reach.)   Sacrifice Shard Phoenix: Shard Phoenix deals 2 damage to each creature without flying.   {R}{R}{R}: Return Shard Phoenix from your graveyard to your hand. Activate this ability only during your upkeep.
-autograveyard={R}{R}{R}:moveTo(myhand) myUpkeeponly
+primitive=Shaman en-Kor
+id=5220
+rarity=R
+[/card]
+[card]
+primitive=Shard Phoenix
 id=5155
-name=Shard Phoenix
 rarity=R
-mana={4}{R}
-type=Creature
-subtype=Phoenix
-auto={S}:damage:2 all(creature[-flying])
-power=2
-toughness=2
-abilities=flying
 [/card]
 [card]
-text=Shock deals 2 damage to target creature or player.
-target=creature,player
-auto=Damage:2
+primitive=Shifting Wall
+id=5222
+rarity=U
+[/card]
+[card]
+primitive=Shock
 id=5143
-name=Shock
 rarity=C
-mana={R}
-type=Instant
 [/card]
 [card]
-text={T}: Target creature with flying gets -1/-1 until end of turn.
+primitive=Sift
+id=5223
+rarity=C
+[/card]
+[card]
+primitive=Silver Wyvern
+id=5103
+rarity=R
+[/card]
+[card]
+primitive=Skeleton Scavengers
+id=5226
+rarity=R
+[/card]
+[card]
+primitive=Skyshroud Archer
 id=5228
-name=Skyshroud Archer
 rarity=C
-mana={G}
-type=Creature
-subtype=Elf Archer
-auto={T}:-1/-1 target(creature[flying])
-power=1
-toughness=1
 [/card]
 [card]
-text=Flying,vigilance
+primitive=Skyshroud Falcon
 id=5224
-name=Skyshroud Falcon
 rarity=C
-mana={1}{W}
-type=Creature
-subtype=Bird
-power=1
-toughness=1
-abilities=flying,vigilance
 [/card]
 [card]
-text={T}: Add {G} to your mana pool.
+primitive=Skyshroud Troopers
 id=5230
-name=Skyshroud Troopers
 rarity=C
-mana={3}{G}
-type=Creature
-subtype=Elf Druid Warrior
-auto={T}:Add {G}
-power=3
-toughness=3
 [/card]
 [card]
-text={2}: Put a 1/1 colorless Sliver creature token onto the battlefield.
+primitive=Sliver Queen
 id=5233
-auto={2}:token(Sliver,creature sliver, 1/1)
-name=Sliver Queen
 rarity=R
-mana={W}{U}{B}{R}{G}
-type=Legendary Creature
-subtype=Sliver
-power=7
-toughness=7
 [/card]
 [card]
-text=Whenever a Sliver becomes blocked, that Sliver gets +1/+1 until end of turn for each creature blocking it.
+primitive=Smite
+id=5234
+rarity=C
+[/card]
+[card]
+primitive=Soltari Champion
+id=5235
+rarity=R
+[/card]
+[card]
+primitive=Spike Breeder
+id=5237
+rarity=R
+[/card]
+[card]
+primitive=Spike Colony
+id=5238
+rarity=C
+[/card]
+[card]
+primitive=Spike Feeder
+id=5239
+rarity=U
+[/card]
+[card]
+primitive=Spike Soldier
+id=5241
+rarity=U
+[/card]
+[card]
+primitive=Spike Worker
+id=5242
+rarity=C
+[/card]
+[card]
+primitive=Spindrift Drake
+id=5243
+rarity=C
+[/card]
+[card]
+primitive=Spined Sliver
 id=5190
-name=Spined Sliver
 rarity=U
-mana={R}{G}
-type=Creature
-subtype=Sliver
-auto=lord(sliver) rampage(1/1,0)
-power=2
-toughness=2
 [/card]
 [card]
+primitive=Spined Wurm
 id=5245
-name=Spined Wurm
 rarity=C
-mana={4}{G}
-type=Creature
-subtype=Wurm
-power=5
-toughness=4
 [/card]
 [card]
-text={T}, Sacrifice a creature: Destroy target nonblack creature.
-auto={T}{S(creature|myBattlefield)}:destroy target(creature[-black])
+primitive=Spirit en-Kor
+id=5236
+rarity=C
+[/card]
+[card]
+primitive=Spitting Hydra
+id=5246
+rarity=R
+[/card]
+[card]
+primitive=Stronghold Assassin
 id=5247
-name=Stronghold Assassin
 rarity=R
-mana={1}{B}{B}
-type=Creature
-subtype=Zombie Assassin
-power=2
-toughness=1
 [/card]
 [card]
-text=Other black creatures get -1/-1.
-auto=lord(creature[black]) -1/-1 other
+primitive=Stronghold Taskmaster
 id=5249
-name=Stronghold Taskmaster
 rarity=U
-mana={2}{B}{B}
-type=Creature
-subtype=Giant Minion
-power=4
-toughness=3
 [/card]
 [card]
-text={T}: Target legendary creature gets +2/+2 until end of turn. 
-auto={T}:2/2 target(creature[legendary])
+primitive=Sword of the Chosen
 id=5250
-name=Sword of the Chosen
 rarity=R
-mana={2}
-type=Legendary Artifact
 [/card]
 [card]
-text=Enchant creature   Enchanted creature gets -3/-0.
-target=creature
-auto=-3/0
+primitive=Temper
+id=5251
+rarity=U
+[/card]
+[card]
+primitive=Tempting Licid
+id=5252
+rarity=U
+[/card]
+[card]
+primitive=Thalakos Deceiver
+id=5253
+rarity=R
+[/card]
+[card]
+primitive=Tidal Surge
+id=5255
+rarity=C
+[/card]
+[card]
+primitive=Tidal Warrior
+id=5256
+rarity=C
+[/card]
+[card]
+primitive=Torment
 id=5257
-name=Torment
 rarity=C
-mana={1}{B}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text=Discard a creature card: Return target creature card from your graveyard to your hand.
-auto={S(creature|myhand)}:moveTo(myhand) target(creature|mygraveyard) 
+primitive=Tortured Existence
 id=5195
-name=Tortured Existence
 rarity=C
-mana={B}
-type=Enchantment
 [/card]
 [card]
-text=When Venerable Monk enters the battlefield, you gain 2 life.
-auto=life:2 controller
+primitive=Venerable Monk
 id=5258
-name=Venerable Monk
 rarity=C
-mana={2}{W}
-type=Creature
-subtype=Human Monk Cleric
-power=2
-toughness=2
 [/card]
 [card]
-text=All Slivers have "{2}, Sacrifice this permanent: You gain 4 life."
+primitive=Verdant Touch
+id=5259
+rarity=R
+[/card]
+[card]
+primitive=Victual Sliver
 id=5197
-name=Victual Sliver
-auto=lord(sliver) {2}{S}:life:4
 rarity=U
-mana={G}{W}
-type=Creature
-subtype=Sliver
-power=2
-toughness=2
 [/card]
 [card]
-text={2}, Tap an untapped creature you control: You gain 2 life. Activate this ability only any time you could cast a sorcery.
+primitive=Volrath's Gardens
 id=5260
-name=Volrath's Gardens
-auto={2}:tap notatarget(creature[-tapped]|myBattlefield) && life:2 controller asSorcery
 rarity=R
-mana={1}{G}
-type=Enchantment
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.   {1}{B}, {T}: Put target creature card from your graveyard on top of your library.
+primitive=Volrath's Laboratory
+id=5261
+rarity=R
+[/card]
+[card]
+primitive=Volrath's Shapeshifter
+id=5262
+rarity=R
+[/card]
+[card]
+primitive=Volrath's Stronghold
 id=5263
-name=Volrath's Stronghold
-auto={T}:Add {1}
-auto={1}{B}{T}:moveTo(myLibrary) target(creature|mygraveyard)
 rarity=R
-type=Legendary Land
 [/card]
 [card]
-text=Walking Dream is unblockable.   Walking Dream doesn't untap during your untap step if an opponent controls two or more creatures.
-auto=aslongas(creature|opponentBattlefield) doesnotuntap >1
+primitive=Walking Dream
 id=5264
-name=Walking Dream
 rarity=U
-mana={3}{U}
-type=Creature
-subtype=Illusion
-power=3
-toughness=3
-abilities=unblockable
 [/card]
 [card]
-text=Defender   When Wall of Blossoms enters the battlefield, draw a card.
+primitive=Wall of Blossoms
 id=5265
-auto=draw:1 controller
-name=Wall of Blossoms
 rarity=U
-mana={1}{G}
-type=Creature
-subtype=Plant Wall
-power=0
-toughness=4
-abilities=defender
 [/card]
 [card]
-text=Defender, first strike    
+primitive=Wall of Essence
+id=5267
+rarity=U
+[/card]
+[card]
+primitive=Wall of Razors
 id=5268
-name=Wall of Razors
 rarity=U
-mana={1}{R}
-type=Creature
-subtype=Wall
-power=4
-toughness=1
-abilities=defender,first strike
 [/card]
 [card]
-text=Flying,lifelink
+primitive=Wall of Souls
+id=5269
+rarity=U
+[/card]
+[card]
+primitive=Wall of Tears
+id=5270
+rarity=U
+[/card]
+[card]
+primitive=Warrior Angel
 id=5271
-name=Warrior Angel
 rarity=R
-mana={4}{W}{W}
-type=Creature
-subtype=Angel
-power=3
-toughness=4
-abilities=flying,lifelink
 [/card]
 [card]
-text=First strike (This creature deals combat damage before creatures without first strike.)
+primitive=Warrior en-Kor
+id=5272
+rarity=U
+[/card]
+[card]
+primitive=Youthful Knight
 id=5274
-name=Youthful Knight
 rarity=C
-mana={1}{W}
-type=Creature
-subtype=Human Knight
-power=2
-toughness=1
-abilities=first strike
 [/card]

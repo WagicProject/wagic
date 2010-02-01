@@ -1,0 +1,75 @@
+[card]
+primitive=Bladewing the Risen
+id=178014
+rarity=R
+[/card]
+[card]
+primitive=Bogardan Hellkite
+id=178017
+rarity=R
+[/card]
+[card]
+primitive=Draco
+id=178018
+rarity=R
+[/card]
+[card]
+primitive=Dragon Whelp
+id=178019
+rarity=R
+[/card]
+[card]
+primitive=Dragonstorm
+id=178015
+rarity=R
+[/card]
+[card]
+primitive=Ebon Dragon
+id=178021
+rarity=R
+[/card]
+[card]
+primitive=Form of the Dragon
+id=178016
+rarity=R
+[/card]
+[card]
+primitive=Hellkite Overlord
+id=178028
+rarity=R
+[/card]
+[card]
+primitive=Kokusho, the Evening Star
+id=178022
+rarity=R
+[/card]
+[card]
+primitive=Nicol Bolas
+id=178020
+rarity=R
+[/card]
+[card]
+primitive=Niv-Mizzet, the Firemind
+id=178023
+rarity=R
+[/card]
+[card]
+primitive=Rith, the Awakener
+id=178024
+rarity=R
+[/card]
+[card]
+primitive=Shivan Dragon
+id=178025
+rarity=R
+[/card]
+[card]
+primitive=Thunder Dragon
+id=178026
+rarity=R
+[/card]
+[card]
+primitive=Two-Headed Dragon
+id=178027
+rarity=R
+[/card]

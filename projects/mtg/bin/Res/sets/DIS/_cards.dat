@@ -4,577 +4,952 @@ year=2006
 block=Guild
 [/meta]
 [card]
-text=Flying, trample
+primitive=AEthermage's Touch
+id=111192
+rarity=R
+[/card]
+[card]
+primitive=Anthem of Rakdos
+id=97110
+rarity=R
+[/card]
+[card]
+primitive=Aquastrand Spider
+id=107472
+rarity=C
+[/card]
+[card]
+primitive=Assault Zeppelid
 id=97107
-name=Assault Zeppelid
 rarity=C
-mana={2}{G}{U}
-type=Creature
-subtype=Beast
-power=3
-toughness=3
-abilities=flying,trample
 [/card]
 [card]
-text=Azorius Chancery enters the battlefield tapped.   When Azorius Chancery enters the battlefield, return a land you control to its owner's hand.   {T}: Add {W}{U} to your mana pool.
+primitive=Aurora Eidolon
+id=110639
+rarity=C
+[/card]
+[card]
+primitive=Avatar of Discord
+id=107437
+rarity=R
+[/card]
+[card]
+primitive=Azorius AEthermage
+id=111256
+rarity=U
+[/card]
+[card]
+primitive=Azorius Chancery
 id=97087
-name=Azorius Chancery
-auto=tap
-auto=moveTo(ownerhand) notatarget(land|mybattlefield)
-auto={T}:Add{W}{U}
 rarity=C
-type=Land
 [/card]
 [card]
-text=Flying, protection from enchantments
+primitive=Azorius First-Wing
 id=97101
-name=Azorius First-Wing
 rarity=C
-mana={W}{U}
-type=Creature
-subtype=Griffin
-auto=protection from(enchantment)
-power=2
-toughness=2
-abilities=flying
 [/card]
 [card]
-text={1}, {T}: Add {W}{U} to your mana pool.
+primitive=Azorius Guildmage
+id=97077
+rarity=U
+[/card]
+[card]
+primitive=Azorius Herald
+id=107577
+rarity=U
+[/card]
+[card]
+primitive=Azorius Ploy
+id=107427
+rarity=U
+[/card]
+[card]
+primitive=Azorius Signet
 id=97085
-name=Azorius Signet
-auto={1}{T}:Add {W}{U}
 rarity=C
-mana={2}
-type=Artifact
 [/card]
 [card]
-text=Flying Whenever Beacon Hawk deals combat damage to a player, you may untap target creature. {W}: Beacon Hawk gets +0/+1 until end of turn.
-auto=@damaged(player) from(this):may untap target(creature)
+primitive=Beacon Hawk
 id=111225
-name=Beacon Hawk
 rarity=C
-mana={1}{W}
-type=Creature
-subtype=Bird
-auto={W}:0/1
-power=1
-toughness=1
-abilities=flying
 [/card]
 [card]
-text=({(g/u)} can be paid with either {G} or {U}.) Draw a card for each creature target player controls, then draw a card for each creature another target player controls.
+primitive=Biomantic Mastery
 id=107277
-auto=foreach(creature|battlefield) draw:1
-name=Biomantic Mastery
 rarity=R
-mana={4}{GU}{GU}{GU}
-type=Sorcery
 [/card]
 [card]
-text=({T}: Add {B} or {R} to your mana pool.)   As Blood Crypt enters the battlefield, you may pay 2 life. If you don't, Blood Crypt enters the battlefield tapped.
+primitive=Blessing of the Nephilim
+id=107307
+rarity=U
+[/card]
+[card]
+primitive=Blood Crypt
 id=97102
-name=Blood Crypt
 rarity=R
-auto=tap
-auto=may untap && life:-2 controller
-auto={T}:Add {B}
-auto={T}:Add {R}
-type=Land
-subtype=Swamp Mountain
 [/card]
 [card]
-text=({T}: Add {G} or {U} to your mana pool.)   As Breeding Pool enters the battlefield, you may pay 2 life. If you don't, Breeding Pool enters the battlefield tapped.
+primitive=Bond of Agony
+id=107306
+rarity=U
+[/card]
+[card]
+primitive=Bound
+id=107373
+rarity=R
+[/card]
+[card]
+primitive=Brace for Impact
+id=107537
+rarity=U
+[/card]
+[card]
+primitive=Brain Pry
+id=107340
+rarity=U
+[/card]
+[card]
+primitive=Breeding Pool
 id=97088
-name=Breeding Pool
 rarity=R
-auto=tap
-auto=may untap && life:-2 controller
-auto={T}:Add {G}
-auto={T}:Add {U}
-type=Land
-subtype=Forest Island
 [/card]
 [card]
-text=Flying Whenever you cast an enchantment spell, put a +1/+1 counter on each creature you control.
-auto=@movedTo(enchantment|mystack):all(creature|mybattlefield) counter(1/1,1)
+primitive=Bronze Bombshell
+id=107327
+rarity=R
+[/card]
+[card]
+primitive=Cackling Flames
+id=107258
+rarity=C
+[/card]
+[card]
+primitive=Carom
+id=107310
+rarity=C
+[/card]
+[card]
+primitive=Celestial Ancient
 id=107317
-name=Celestial Ancient
 rarity=R
-mana={3}{W}{W}
-type=Creature
-subtype=Elemental
-power=3
-toughness=3
-abilities=flying
 [/card]
 [card]
-text=Flying Hellbent - Demon's Jester gets +2/+1 as long as you have no cards in hand.
+primitive=Coiling Oracle
+id=97106
+rarity=C
+[/card]
+[card]
+primitive=Condemn
+id=107494
+rarity=U
+[/card]
+[card]
+primitive=Court Hussar
+id=107265
+rarity=U
+[/card]
+[card]
+primitive=Crime
+id=107285
+rarity=R
+[/card]
+[card]
+primitive=Crypt Champion
+id=107336
+rarity=U
+[/card]
+[card]
+primitive=Cytoplast Manipulator
+id=107353
+rarity=R
+[/card]
+[card]
+primitive=Cytoplast Root-Kin
+id=107507
+rarity=R
+[/card]
+[card]
+primitive=Cytoshape
+id=107346
+rarity=R
+[/card]
+[card]
+primitive=Cytospawn Shambler
+id=107312
+rarity=C
+[/card]
+[card]
+primitive=Delirium Skeins
+id=107435
+rarity=C
+[/card]
+[card]
+primitive=Demand
+id=107464
+rarity=U
+[/card]
+[card]
+primitive=Demonfire
+id=107252
+rarity=R
+[/card]
+[card]
+primitive=Demon's Jester
 id=107599
-name=Demon's Jester
 rarity=C
-mana={3}{B}
-type=Creature
-subtype=Imp
-auto=aslongas(*|myhand)-2/-1
-power=4
-toughness=3
-abilities=flying
 [/card]
 [card]
-text=Trample   Dread Slag gets -4/-4 for each card in your hand.
+primitive=Determined
+id=107373
+rarity=R
+[/card]
+[card]
+primitive=Development
+id=107375
+rarity=R
+[/card]
+[card]
+primitive=Dovescape
+id=107428
+rarity=R
+[/card]
+[card]
+primitive=Dread Slag
 id=107322
-name=Dread Slag
 rarity=R
-mana={3}{B}{R}
-type=Creature
-subtype=Horror
-auto=foreach(*|myhand) -4/-4
-power=9
-toughness=9
-abilities=trample
 [/card]
 [card]
+primitive=Drekavac
+id=111258
+rarity=U
+[/card]
+[card]
+primitive=Elemental Resonance
+id=107369
+rarity=R
+[/card]
+[card]
+primitive=Ends
+id=107445
+rarity=R
+[/card]
+[card]
+primitive=Enemy of the Guildpact
+id=107342
+rarity=C
+[/card]
+[card]
+primitive=Enigma Eidolon
+id=110640
+rarity=C
+[/card]
+[card]
+primitive=Entropic Eidolon
+id=110641
+rarity=C
+[/card]
+[card]
+primitive=Error
+id=107259
+rarity=U
+[/card]
+[card]
+primitive=Evolution Vat
+id=97093
+rarity=R
+[/card]
+[card]
+primitive=Experiment Kraj
+id=107385
+rarity=R
+[/card]
+[card]
+primitive=Fall
+id=107423
+rarity=U
+[/card]
+[card]
+primitive=Fertile Imagination
+id=111203
+rarity=U
+[/card]
+[card]
+primitive=Flame-Kin War Scout
+id=107337
+rarity=U
+[/card]
+[card]
+primitive=Flaring Flame-Kin
+id=111247
+rarity=U
+[/card]
+[card]
+primitive=Flash Foliage
+id=107264
+rarity=U
+[/card]
+[card]
+primitive=Freewind Equenaut
+id=107253
+rarity=C
+[/card]
+[card]
+primitive=Ghost Quarter
+id=107504
+rarity=U
+[/card]
+[card]
+primitive=Gnat Alley Creeper
 id=107526
-name=Gnat Alley Creeper
-mana={2}{R}
-type=Creature
-subtype=Human Rogue
-power=3
-toughness=1
-text=Gnat Alley Creeper can't be blocked by creatures with flying.
-auto=cantbeblockedby(creature[flying])
 rarity=U
 [/card]
 [card]
-text={T}, Sacrifice Haazda Exonerator: Destroy target Aura.
+primitive=Gobhobbler Rats
+id=107542
+rarity=C
+[/card]
+[card]
+primitive=Govern the Guildless
+id=107395
+rarity=R
+[/card]
+[card]
+primitive=Grand Arbiter Augustin IV
+id=107329
+rarity=R
+[/card]
+[card]
+primitive=Guardian of the Guildpact
+id=107583
+rarity=C
+[/card]
+[card]
+primitive=Haazda Exonerator
 id=107467
-name=Haazda Exonerator
 rarity=C
-mana={W}
-type=Creature
-subtype=Human Cleric
-auto={T}{S}:destroy target(aura)
-power=1
-toughness=1
 [/card]
 [card]
-text=({T}: Add {W} or {U} to your mana pool.)   As Hallowed Fountain enters the battlefield, you may pay 2 life. If you don't, Hallowed Fountain enters the battlefield tapped.
+primitive=Haazda Shield Mate
+id=107272
+rarity=R
+[/card]
+[card]
+primitive=Hallowed Fountain
 id=97071
-name=Hallowed Fountain
 rarity=R
-auto=tap
-auto=may untap && life:-2 controller
-auto={T}:Add {W}
-auto={T}:Add {U}
-type=Land
-subtype=Plains Island
 [/card]
 [card]
-text=When Indrik Stomphowler enters the battlefield, destroy target artifact or enchantment.
+primitive=Helium Squirter
+id=107535
+rarity=C
+[/card]
+[card]
+primitive=Hellhole Rats
+id=97100
+rarity=U
+[/card]
+[card]
+primitive=Hide
+id=107315
+rarity=R
+[/card]
+[card]
+primitive=Hit
+id=107387
+rarity=U
+[/card]
+[card]
+primitive=Ignorant Bliss
+id=111281
+rarity=U
+[/card]
+[card]
+primitive=Indrik Stomphowler
 id=107377
-name=Indrik Stomphowler
-mana={4}{G}
-type=Creature
-subtype=Beast
-auto=destroy target(artifact,enchantment)
-power=4
-toughness=4
 rarity=U
 [/card]
 [card]
-text=Flying
+primitive=Infernal Tutor
+id=107308
+rarity=R
+[/card]
+[card]
+primitive=Isperia the Inscrutable
+id=107448
+rarity=R
+[/card]
+[card]
+primitive=Jagged Poppet
+id=97086
+rarity=U
+[/card]
+[card]
+primitive=Kill-Suit Cultist
+id=107493
+rarity=C
+[/card]
+[card]
+primitive=Kindle the Carnage
+id=107446
+rarity=U
+[/card]
+[card]
+primitive=Leafdrake Roost
+id=107557
+rarity=U
+[/card]
+[card]
+primitive=Loaming Shaman
+id=107568
+rarity=R
+[/card]
+[card]
+primitive=Lyzolda, the Blood Witch
+id=107363
+rarity=R
+[/card]
+[card]
+primitive=Macabre Waltz
+id=97116
+rarity=C
+[/card]
+[card]
+primitive=Magewright's Stone
+id=111259
+rarity=U
+[/card]
+[card]
+primitive=Might of the Nephilim
+id=107320
+rarity=U
+[/card]
+[card]
+primitive=Minister of Impediments
+id=97083
+rarity=C
+[/card]
+[card]
+primitive=Mistral Charger
 id=107260
-name=Mistral Charger
 rarity=U
-mana={1}{W}
-type=Creature
-subtype=Pegasus
-power=2
-toughness=1
-abilities=flying
 [/card]
 [card]
-text=When Ogre Gatecrasher enters the battlefield, destroy target creature with defender.
+primitive=Momir Vig, Simic Visionary
+id=107506
+rarity=R
+[/card]
+[card]
+primitive=Muse Vessel
+id=107553
+rarity=R
+[/card]
+[card]
+primitive=Nettling Curse
+id=107374
+rarity=C
+[/card]
+[card]
+primitive=Nightcreep
+id=107415
+rarity=U
+[/card]
+[card]
+primitive=Nihilistic Glee
+id=107517
+rarity=R
+[/card]
+[card]
+primitive=Novijen Sages
+id=97091
+rarity=R
+[/card]
+[card]
+primitive=Novijen, Heart of Progress
+id=97099
+rarity=U
+[/card]
+[card]
+primitive=Ocular Halo
+id=107328
+rarity=C
+[/card]
+[card]
+primitive=Odds
+id=107445
+rarity=R
+[/card]
+[card]
+primitive=Ogre Gatecrasher
 id=107389
-name=Ogre Gatecrasher
-auto=destroy target(creature[defender])
 rarity=C
-mana={3}{R}
-type=Creature
-subtype=Ogre Rogue
-power=3
-toughness=3
 [/card]
 [card]
-text=Whenever Paladin of Prahv deals damage, you gain that much life.   Forecast - {1}{W}, Reveal Paladin of Prahv from your hand: Whenever target creature deals damage this turn, you gain that much life. (Activate this ability only during your upkeep and only once each turn.)
-autohand={1}{W}:lifelink target(creature) limit:1 myUpkeepOnly
+primitive=Omnibian
+id=83737
+rarity=R
+[/card]
+[card]
+primitive=Overrule
+id=97111
+rarity=C
+[/card]
+[card]
+primitive=Pain Magnification
+id=97105
+rarity=U
+[/card]
+[card]
+primitive=Paladin of Prahv
 id=107433
-name=Paladin of Prahv
 rarity=U
-mana={4}{W}{W}
-type=Creature
-subtype=Human Knight
-power=3
-toughness=4
 [/card]
 [card]
+primitive=Palliation Accord
+id=97118
+rarity=U
+[/card]
+[card]
+primitive=Patagia Viper
+id=107549
+rarity=U
+[/card]
+[card]
+primitive=Pillar of the Paruns
+id=107279
+rarity=R
+[/card]
+[card]
+primitive=Plaxcaster Frogling
+id=97104
+rarity=U
+[/card]
+[card]
+primitive=Plaxmanta
+id=107286
+rarity=U
+[/card]
+[card]
+primitive=Plumes of Peace
 id=107379
-name=Plumes of Peace
-mana={1}{W}{U}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature doesn't untap during its controller's untap step. Forecast - {W}{U}, Reveal Plumes of Peace from your hand: Tap target creature. (Activate this ability only during your upkeep and only once each turn.)
 rarity=C
-target=creature
-auto=doesnotuntap
-autohand={W}{U}:tap target(creature) limit:1 myUpkeepOnly
 [/card]
 [card]
-text=Flying   Pride of the Clouds gets +1/+1 for each other creature with flying on the battlefield.   Forecast - {2}{W}{U}, Reveal Pride of the Clouds from your hand: Put a 1/1 white and blue Bird creature token with flying onto the battlefield. (Activate this ability only during your upkeep and only once each turn.)
-autohand={2}{W}{U}:token(Bird,Creature Bird,1/1,blue,white flying) limit:1 myUpkeepOnly
+primitive=Prahv, Spires of Order
+id=97117
+rarity=U
+[/card]
+[card]
+primitive=Pride of the Clouds
 id=97097
-name=Pride of the Clouds
 rarity=R
-mana={W}{U}
-type=Creature
-subtype=Elemental Cat
-auto=foreach(other creature[flying]) 1/1
-power=1
-toughness=1
-abilities=flying
 [/card]
 [card]
-text=Rakdos Carnarium enters the battlefield tapped.   When Rakdos Carnarium enters the battlefield, return a land you control to its owner's hand.   {T}: Add {B}{R} to your mana pool.
+primitive=Proclamation of Rebirth
+id=107341
+rarity=R
+[/card]
+[card]
+primitive=Proper Burial
+id=107466
+rarity=R
+[/card]
+[card]
+primitive=Protean Hulk
+id=107598
+rarity=R
+[/card]
+[card]
+primitive=Psychic Possession
+id=107254
+rarity=R
+[/card]
+[card]
+primitive=Psychotic Fury
+id=107338
+rarity=C
+[/card]
+[card]
+primitive=Punishment
+id=107285
+rarity=R
+[/card]
+[card]
+primitive=Pure
+id=107532
+rarity=U
+[/card]
+[card]
+primitive=Ragamuffyn
+id=107570
+rarity=U
+[/card]
+[card]
+primitive=Rain of Gore
+id=107358
+rarity=R
+[/card]
+[card]
+primitive=Rakdos Augermage
+id=107543
+rarity=R
+[/card]
+[card]
+primitive=Rakdos Carnarium
 id=97082
-name=Rakdos Carnarium
-auto=tap
-auto=moveTo(ownerhand) notatarget(land|myBattlefield)
-auto={T}:Add{B}{R}
 rarity=C
-type=Land
 [/card]
 [card]
-text={T}: Rakdos Ickspitter deals 1 damage to target creature and that creature's controller loses 1 life.
-auto={T}:damage:1 target(creature) && life:-1 targetcontroller
+primitive=Rakdos Guildmage
+id=97108
+rarity=U
+[/card]
+[card]
+primitive=Rakdos Ickspitter
 id=97074
-name=Rakdos Ickspitter
 rarity=C
-mana={1}{B}{R}
-type=Creature
-subtype=Thrull
-power=1
-toughness=1
 [/card]
 [card]
-text={R}{R}: Rakdos Pit Dragon gains flying until end of turn.   {R}: Rakdos Pit Dragon gets +1/+0 until end of turn.   Hellbent - Rakdos Pit Dragon has double strike as long as you have no cards in hand.
+primitive=Rakdos Pit Dragon
 id=111188
-name=Rakdos Pit Dragon
 rarity=R
-mana={2}{R}{R}
-type=Creature
-subtype=Dragon
-auto=aslongas(*|myHand) -double strike
-auto={R}{R}:flying
-auto={R}:1/0
-power=3
-toughness=3
-abilities=double strike
 [/card]
 [card]
-text={1}, {T}: Add {B}{R} to your mana pool.
+primitive=Rakdos Riteknife
+id=97119
+rarity=R
+[/card]
+[card]
+primitive=Rakdos Signet
 id=97098
-auto={1}{T}:Add {B}{R}
-name=Rakdos Signet
 rarity=C
-mana={2}
-type=Artifact
 [/card]
 [card]
-text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.)   At the beginning of your upkeep, you may search your library for a Rat card, reveal it, and put it into your hand. If you do, shuffle your library.
-auto=@each my upkeep:may moveTo(myHand) target(rat|mylibrary)
+primitive=Rakdos the Defiler
+id=107438
+rarity=R
+[/card]
+[card]
+primitive=Ratcatcher
 id=107273
-name=Ratcatcher
 rarity=R
-mana={4}{B}{B}
-type=Creature
-subtype=Ogre Rogue
-power=4
-toughness=4
-abilities=fear
 [/card]
 [card]
-text=({(b/r)} can be paid with either {B} or {R}.)   Enchant creature   Enchanted creature gets +2/-1.
+primitive=Research
+id=107375
+rarity=R
+[/card]
+[card]
+primitive=Riot Spikes
 id=97076
-target=creature
-auto=2/-1
-name=Riot Spikes
 rarity=C
-mana={BR}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text=Sacrifice Seal of Doom: Destroy target nonblack creature. It can't be regenerated.
-auto={S}:bury target(creature[-black])
+primitive=Rise
+id=107423
+rarity=U
+[/card]
+[card]
+primitive=Rix Maadi, Dungeon Palace
+id=97072
+rarity=U
+[/card]
+[card]
+primitive=Run
+id=107387
+rarity=U
+[/card]
+[card]
+primitive=Sandstorm Eidolon
+id=110637
+rarity=C
+[/card]
+[card]
+primitive=Seal of Doom
 id=107534
-name=Seal of Doom
 rarity=C
-mana={2}{B}
-type=Enchantment
 [/card]
 [card]
-text=Sacrifice Seal of Fire: Seal of Fire deals 2 damage to target creature or player.
-auto={S}:damage:2 target(creature,player)
+primitive=Seal of Fire
 id=107531
-name=Seal of Fire
 rarity=C
-mana={R}
-type=Enchantment
 [/card]
 [card]
-text=({GU} can be paid with either {G} or {U}.)   Enchant creature.   When Shielding Plax enters the battlefield, draw a card. Enchanted creature can't be the target of spells or abilities your opponents control.
+primitive=Seek
+id=107315
+rarity=R
+[/card]
+[card]
+primitive=Shielding Plax
 id=97084
-target=creature
-auto=opponentshroud
-auto=draw:1 controller
-name=Shielding Plax
 rarity=C
-mana={2}{GU}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text=Flying   {G}, Sacrifice Silkwing Scout: Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library.
-auto={G}{S}:moveTo(myBattlefield) target(basic|mylibrary) && tap
+primitive=Silkwing Scout
 id=107313
-name=Silkwing Scout
 rarity=C
-mana={2}{U}
-type=Creature
-subtype=Faerie Scout
-power=2
-toughness=1
-abilities=flying
 [/card]
 [card]
-text=Simic Growth Chamber enters the battlefield tapped.   When Simic Growth Chamber enters the battlefield, return a land you control to its owner's hand.   {T}: Add {G}{U} to your mana pool.
+primitive=Simic Basilisk
+id=107347
+rarity=U
+[/card]
+[card]
+primitive=Simic Growth Chamber
 id=97089
-name=Simic Growth Chamber
-auto=tap
-auto=moveTo(ownerhand) notatarget(land|myBattlefield)
-auto={T}:Add{G}{U}
 rarity=C
-type=Land
 [/card]
 [card]
-text={U}: Untap Simic Ragworm.
+primitive=Simic Guildmage
+id=97078
+rarity=U
+[/card]
+[card]
+primitive=Simic Initiate
+id=107441
+rarity=C
+[/card]
+[card]
+primitive=Simic Ragworm
 id=107565
-name=Simic Ragworm
 rarity=C
-mana={3}{G}
-type=Creature
-subtype=Worm
-auto={U}:untap
-power=3
-toughness=3
 [/card]
 [card]
-text={1}, {T}: Add {G}{U} to your mana pool.
+primitive=Simic Signet
 id=97079
-auto={1}{T}:Add{G}{U}
-name=Simic Signet
 rarity=C
-mana={2}
-type=Artifact
 [/card]
 [card]
-text=Flying; trample; shroud (This permanent can't be the target of spells or abilities.)
+primitive=Simic Sky Swallower
 id=111204
-name=Simic Sky Swallower
 rarity=R
-mana={5}{G}{U}
-type=Creature
-subtype=Leviathan
-power=6
-toughness=6
-abilities=flying,trample,shroud
 [/card]
 [card]
-text={T}: You gain 1 life.   {T}, Discard a card: You gain 3 life.
+primitive=Simple
+id=107532
+rarity=U
+[/card]
+[card]
+primitive=Skullmead Cauldron
 id=107326
-auto={T}:life:1
-auto={T}{S(*|myhand)}:life:3
-name=Skullmead Cauldron
 rarity=U
-mana={4}
-type=Artifact
 [/card]
 [card]
-text=Each player draws X cards.   Forecast - {2}{U}, Reveal Skyscribing from your hand: Each player draws a card. (Activate this ability only during your upkeep and only once each turn.)
-autohand={2}{U}:draw:1 controller && draw:1 opponent limit:1 myUpkeepOnly
-auto=Draw:X controller
-auto=Draw:X opponent
+primitive=Sky Hussar
+id=97109
+rarity=U
+[/card]
+[card]
+primitive=Skyscribing
 id=107449
-name=Skyscribing
 rarity=U
-mana={X}{U}{U}
-type=Sorcery
 [/card]
 [card]
-text=Defender (This creature can't attack.)   {B}: Slithering Shade gets +1/+1 until end of turn.   Hellbent - Slithering Shade can attack as though it didn't have defender as long as you have no cards in hand.
+primitive=Slaughterhouse Bouncer
+id=97073
+rarity=C
+[/card]
+[card]
+primitive=Slithering Shade
 id=111283
-name=Slithering Shade
 rarity=U
-mana={B}
-type=Creature
-subtype=Shade
-auto={B}:1/1
-auto=defender
-auto=aslongas(*|myHand) -defender
-power=0
-toughness=1
 [/card]
 [card]
-text=Defender (This creature can't attack.)   {1}{U}, Sacrifice Soulsworn Jury: Counter target creature spell.
+primitive=Soulsworn Jury
 id=107440
-name=Soulsworn Jury
 rarity=C
-mana={2}{W}
-type=Creature
-subtype=Spirit
-auto={1}{U}{S}:fizzle target(creature|stack)
-power=1
-toughness=4
-abilities=defender
 [/card]
 [card]
-text=Counter target spell with converted mana cost 2.
+primitive=Spell Snare
 id=107281
-target=*[manacost=2]|stack
-auto=fizzle
-name=Spell Snare
 rarity=U
-mana={U}
-type=Instant
 [/card]
 [card]
-text=Defender (This creature can't attack.)   Flying   When Stoic Ephemera blocks, sacrifice it at end of combat.
+primitive=Sporeback Troll
+id=107263
+rarity=C
+[/card]
+[card]
+primitive=Sprouting Phytohydra
+id=111220
+rarity=R
+[/card]
+[card]
+primitive=Squealing Devil
+id=107303
+rarity=U
+[/card]
+[card]
+primitive=Stalking Vengeance
+id=107301
+rarity=R
+[/card]
+[card]
+primitive=Steeling Stance
+id=97115
+rarity=C
+[/card]
+[card]
+primitive=Stoic Ephemera
 id=107527
-name=Stoic Ephemera
 rarity=U
-mana={2}{W}
-type=Creature
-subtype=Spirit
-auto=@each combatends:moveTo(ownergraveyard) all(stoic ephemera[attacking;blocking]|myBattlefield)
-power=5
-toughness=5
-abilities=flying,defender
 [/card]
 [card]
-text=Counter all other spells. Draw a card for each spell countered this way.
+primitive=Stomp and Howl
+id=107505
+rarity=U
+[/card]
+[card]
+primitive=Stormscale Anarch
+id=107300
+rarity=R
+[/card]
+[card]
+primitive=Street Savvy
+id=107371
+rarity=C
+[/card]
+[card]
+primitive=Supply
+id=107464
+rarity=U
+[/card]
+[card]
+primitive=Swift Silence
 id=107284
-name=Swift Silence
-auto=foreach(other *|stack) draw:1
-auto=fizzle all(other *|stack)
 rarity=R
-mana={2}{W}{U}{U}
-type=Instant
 [/card]
 [card]
-text=Enchant creature   Enchanted creature gets +2/+0.   Hellbent - Enchanted creature gets an additional +2/+0 as long as you have no cards in hand.
+primitive=Taste for Mayhem
 id=107597
-target=creature
-auto=4/0
-auto=aslongas(*|myhand)-2/0
-name=Taste for Mayhem
 rarity=C
-mana={R}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text=Flying Whenever Trygon Predator deals combat damage to a player, you may destroy target artifact or enchantment that player controls.
-auto=@damaged(player) from(this):may destroy target(artifact,enchantment)
-id=97112
-name=Trygon Predator
-rarity=U
-mana={1}{G}{U}
-type=Creature
-subtype=Beast
-power=2
-toughness=3
-abilities=flying
-[/card]
-[card]
-text=Flying   Utvara Scalper attacks each turn if able.
-id=107276
-name=Utvara Scalper
+primitive=Thrive
+id=107390
 rarity=C
-mana={1}{R}
-type=Creature
-subtype=Goblin Scout
-power=1
-toughness=2
-abilities=flying,mustattack
 [/card]
 [card]
-text={T}, Pay 1 life: Add one mana of any color to your mana pool.
-id=107477
-name=Vesper Ghoul
-rarity=C
-mana={2}{B}
-type=Creature
-subtype=Zombie Druid
-auto={T}:Add{G} && life:-1 controller
-auto={T}:Add{W} && life:-1 controller
-auto={T}:Add{R} && life:-1 controller
-auto={T}:Add{B} && life:-1 controller
-auto={T}:Add{U} && life:-1 controller
-power=1
-toughness=1
-[/card]
-[card]
-text=Each player draws two cards.
-id=107397
-name=Vision Skeins
-auto=draw:2 opponent
-auto=draw:2 controller
-rarity=C
-mana={1}{U}
-type=Instant
-[/card]
-[card]
-text=Defender (This creature can't attack.)   Flying   {1}{W}: Creatures you control with defender can attack this turn as though they didn't have defender.
-id=111226
-name=Wakestone Gargoyle
+primitive=Tidespout Tyrant
+id=107408
 rarity=R
-mana={3}{W}
-type=Creature
-subtype=Gargoyle
-auto={1}{W}:lord(creature[defender]|myBattlefield) -defender
-power=3
-toughness=4
-abilities=defender,flying
 [/card]
 [card]
-text=When Whiptail Moloch enters the battlefield, it deals 3 damage to target creature you control.
+primitive=Transguild Courier
+id=107362
+rarity=U
+[/card]
+[card]
+primitive=Trial
+id=107259
+rarity=U
+[/card]
+[card]
+primitive=Trygon Predator
+id=97112
+rarity=U
+[/card]
+[card]
+primitive=Twinstrike
+id=97114
+rarity=U
+[/card]
+[card]
+primitive=Unliving Psychopath
+id=107451
+rarity=R
+[/card]
+[card]
+primitive=Utopia Sprawl
+id=107569
+rarity=C
+[/card]
+[card]
+primitive=Utvara Scalper
+id=107276
+rarity=C
+[/card]
+[card]
+primitive=Valor Made Real
+id=107431
+rarity=C
+[/card]
+[card]
+primitive=Verdant Eidolon
+id=110638
+rarity=C
+[/card]
+[card]
+primitive=Vesper Ghoul
+id=107477
+rarity=C
+[/card]
+[card]
+primitive=Vigean Graftmage
+id=107321
+rarity=U
+[/card]
+[card]
+primitive=Vigean Hydropon
+id=107293
+rarity=C
+[/card]
+[card]
+primitive=Vigean Intuition
+id=97120
+rarity=U
+[/card]
+[card]
+primitive=Vision Skeins
+id=107397
+rarity=C
+[/card]
+[card]
+primitive=Voidslime
+id=97096
+rarity=R
+[/card]
+[card]
+primitive=Wakestone Gargoyle
+id=111226
+rarity=R
+[/card]
+[card]
+primitive=Walking Archive
+id=97092
+rarity=R
+[/card]
+[card]
+primitive=War's Toll
+id=107492
+rarity=R
+[/card]
+[card]
+primitive=Weight of Spires
+id=107551
+rarity=U
+[/card]
+[card]
+primitive=Whiptail Moloch
 id=97075
-name=Whiptail Moloch
 rarity=C
-mana={4}{R}
-type=Creature
-subtype=Lizard
-auto=damage:3 target(creature|myBattlefield)
-power=6
-toughness=3
 [/card]
 [card]
-text=Destroy target creature or land.
+primitive=Windreaver
+id=97094
+rarity=R
+[/card]
+[card]
+primitive=Wit's End
+id=107562
+rarity=R
+[/card]
+[card]
+primitive=Wrecking Ball
 id=111202
-target=creature,land
-auto=destroy
-name=Wrecking Ball
 rarity=C
-mana={2}{B}{R}
-type=Instant
+[/card]
+[card]
+primitive=Writ of Passage
+id=107413
+rarity=C
 [/card]

@@ -4,386 +4,752 @@ year=2008
 block=Morning
 [/meta]
 [card]
-text=When Ambassador Oak enters the battlefield, put a 1/1 green Elf Warrior creature token onto the battlefield.
+primitive=Ambassador Oak
 id=152998
-name=Ambassador Oak
-auto=token(Elf Warrior,creature elf,1/1,green)
 rarity=C
-mana={3}{G}
-type=Creature
-subtype=Treefolk Warrior
-power=3
-toughness=3
 [/card]
 [card]
-text=At the beginning of your upkeep, you lose 1 life and put a 1/1 black Faerie Rogue creature token with flying onto the battlefield.
-auto=@each my upkeep:life:-1 controller
-auto=@each my upkeep:token(Faerie,creature faerie,1/1,flying black)
+primitive=Auntie's Snitch
+id=153280
+rarity=R
+[/card]
+[card]
+primitive=Ballyrush Banneret
+id=152623
+rarity=C
+[/card]
+[card]
+primitive=Battletide Alchemist
+id=153451
+rarity=R
+[/card]
+[card]
+primitive=Bitterblossom
 id=152648
-name=Bitterblossom
 rarity=R
-mana={1}{B}
-type=Enchantment
-subtype=Faerie
 [/card]
 [card]
-text={T}, Pay 1 life: Add {G} to your mana pool.
+primitive=Blightsoil Druid
 id=152705
-auto={T}:Add {G} && life:-1 controller
-name=Blightsoil Druid
 rarity=C
-mana={1}{B}
-type=Creature
-subtype=Elf Druid
-power=1
-toughness=2
 [/card]
 [card]
-text=Trample   Borderland Behemoth gets +4/+4 for each other Giant you control.
+primitive=Boldwyr Heavyweights
+id=153137
+rarity=R
+[/card]
+[card]
+primitive=Boldwyr Intimidator
+id=152974
+rarity=U
+[/card]
+[card]
+primitive=Borderland Behemoth
 id=153102
-name=Borderland Behemoth
-auto=foreach(giant|myBattlefield) 4/4 other
 rarity=R
-mana={5}{R}{R}
-type=Creature
-subtype=Giant Warrior
-power=4
-toughness=4
-abilities=trample
 [/card]
 [card]
-text=Flying   Reinforce 2—{2}{W} ({2}{W}, Discard this card: Put two +1/+1 counters on target creature.)
+primitive=Bosk Banneret
+id=152557
+rarity=C
+[/card]
+[card]
+primitive=Bramblewood Paragon
+id=153139
+rarity=U
+[/card]
+[card]
+primitive=Brighthearth Banneret
+id=152651
+rarity=C
+[/card]
+[card]
+primitive=Burrenton Bombardier
 id=152694
-name=Burrenton Bombardier
 rarity=C
-mana={2}{W}
-type=Creature
-subtype=Kithkin Soldier
-autohand={2}{W}{S}:counter(1/1,2) target(creature)
-power=2
-toughness=2
-abilities=flying
 [/card]
 [card]
-text=Enchant creature   {1}{W}: Put a +1/+1 counter on enchanted creature.
+primitive=Burrenton Shield-Bearers
+id=152668
+rarity=C
+[/card]
+[card]
+primitive=Cenn's Tactician
+id=152878
+rarity=U
+[/card]
+[card]
+primitive=Chameleon Colossus
+id=153450
+rarity=R
+[/card]
+[card]
+primitive=Changeling Sentinel
+id=143230
+rarity=C
+[/card]
+[card]
+primitive=Cloak and Dagger
+id=152604
+rarity=U
+[/card]
+[card]
+primitive=Coordinated Barrage
+id=153151
+rarity=C
+[/card]
+[card]
+primitive=Countryside Crusher
+id=152980
+rarity=R
+[/card]
+[card]
+primitive=Cream of the Crop
+id=157423
+rarity=R
+[/card]
+[card]
+primitive=Daily Regimen
 id=152838
-name=Daily Regimen
-target=creature
-auto={1}{W}:counter(1/1)
 rarity=U
-mana={W}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text=Return target nonland permanent to its owner's hand.
+primitive=Declaration of Naught
+id=153169
+rarity=R
+[/card]
+[card]
+primitive=Deglamer
+id=154160
+rarity=C
+[/card]
+[card]
+primitive=Dewdrop Spy
+id=152828
+rarity=C
+[/card]
+[card]
+primitive=Disperse
 id=152727
-target=creature,artifact,enchantment
-auto=moveTo(ownerHand)
-name=Disperse
 rarity=C
-mana={1}{U}
-type=Instant
 [/card]
 [card]
-text=Target creature gets +3/+3 until end of turn.   Reinforce 1—{1}{G} ({1}{G}, Discard this card: Put a +1/+1 counter on target creature.)
-id=152710
-target=creature
-auto=3/3
-autohand={1}{G}{S}:counter(1/1,1) target(creature)
-name=Earthbrawn
+primitive=Distant Melody
+id=153133
 rarity=C
-mana={1}{G}
-type=Instant
 [/card]
 [card]
-text=
-id=153003
-name=Elvish Warrior
-rarity=C
-mana={G}{G}
-type=Creature
-subtype=Elf Warrior
-power=2
-toughness=3
-[/card]
-[card]
-text=Flying   {U}: Put Fencer Clique on top of its owner's library.
-id=157424
-name=Fencer Clique
-rarity=C
-mana={2}{U}{U}
-auto={U}:moveTo(ownerlibrary)
-type=Creature
-subtype=Faerie Soldier
-power=3
-toughness=2
-abilities=flying
-[/card]
-[card]
-text=Festercreep enters the battlefield with a +1/+1 counter on it.   {1}{B}, Remove a +1/+1 counter from Festercreep: All other creatures get -1/-1 until end of turn.
-id=152944
-name=Festercreep
-rarity=C
-mana={1}{B}
-auto=counter(1/1)
-auto={1}{B}:counter(1/1,-1) all(this) && lord(creature) -1/-1 other
-type=Creature
-subtype=Elemental
-power=0
-toughness=0
-[/card]
-[card]
-text=Put three 1/1 green Elf Warrior creature tokens onto the battlefield.   Reinforce 3—{3}{G} ({3}{G}, Discard this card: Put three +1/+1 counters on target creature.)
-id=152963
-auto=token(Elf Warrior,Creature Elf Warrior,1/1,green)*3
-autohand={3}{G}{S}:counter(1/1,3) target(creature)
-name=Hunting Triad
+primitive=Diviner's Wand
+id=154163
 rarity=U
-mana={3}{G}
-type=Sorcery
-subtype=Tribal Elf
 [/card]
 [card]
-text=Search your library for an enchantment card, reveal it, and put it into your hand. Then shuffle your library.
+primitive=Door of Destinies
+id=152526
+rarity=R
+[/card]
+[card]
+primitive=Earthbrawn
+id=152710
+rarity=C
+[/card]
+[card]
+primitive=Earwig Squad
+id=153135
+rarity=R
+[/card]
+[card]
+primitive=Elvish Warrior
+id=153003
+rarity=C
+[/card]
+[card]
+primitive=Everbark Shaman
+id=152968
+rarity=C
+[/card]
+[card]
+primitive=Fencer Clique
+id=157424
+rarity=C
+[/card]
+[card]
+primitive=Fendeep Summoner
+id=152607
+rarity=R
+[/card]
+[card]
+primitive=Fertilid
+id=152926
+rarity=C
+[/card]
+[card]
+primitive=Festercreep
+id=152944
+rarity=C
+[/card]
+[card]
+primitive=Feudkiller's Verdict
+id=152649
+rarity=R
+[/card]
+[card]
+primitive=Final-Sting Faerie
+id=152641
+rarity=C
+[/card]
+[card]
+primitive=Fire Juggler
+id=152534
+rarity=C
+[/card]
+[card]
+primitive=Floodchaser
+id=152830
+rarity=C
+[/card]
+[card]
+primitive=Forfend
+id=157431
+rarity=C
+[/card]
+[card]
+primitive=Frogtosser Banneret
+id=152587
+rarity=C
+[/card]
+[card]
+primitive=Game-Trail Changeling
+id=143253
+rarity=C
+[/card]
+[card]
+primitive=Gilt-Leaf Archdruid
+id=153453
+rarity=R
+[/card]
+[card]
+primitive=Graceful Reprieve
+id=153138
+rarity=U
+[/card]
+[card]
+primitive=Greatbow Doyen
+id=153163
+rarity=R
+[/card]
+[card]
+primitive=Grimoire Thief
+id=152870
+rarity=R
+[/card]
+[card]
+primitive=Heritage Druid
+id=152556
+rarity=U
+[/card]
+[card]
+primitive=Hostile Realm
+id=152555
+rarity=C
+[/card]
+[card]
+primitive=Hunting Triad
+id=152963
+rarity=U
+[/card]
+[card]
+primitive=Idyllic Tutor
 id=152938
-target=enchantment|myLibrary
-auto=moveTo(myhand) target(enchantment|myLibrary)
-name=Idyllic Tutor
 rarity=R
-mana={2}{W}
-type=Sorcery
 [/card]
 [card]
+primitive=Indomitable Ancients
 id=152967
-name=Indomitable Ancients
 rarity=R
-mana={2}{W}{W}
-type=Creature
-subtype=Treefolk Warrior
-power=2
-toughness=10
 [/card]
 [card]
-text=Target creature gets +1/+0 and gains first strike until end of turn.
+primitive=Ink Dissolver
+id=152736
+rarity=C
+[/card]
+[card]
+primitive=Inspired Sprite
+id=152826
+rarity=U
+[/card]
+[card]
+primitive=Kindled Fury
 id=152563
-target=creature
-auto=1/0
-auto=first strike
-name=Kindled Fury
 rarity=C
-mana={R}
-type=Instant
 [/card]
 [card]
-text=Knight creatures you control have double strike.
+primitive=Kinsbaile Borderguard
+id=152977
+rarity=R
+[/card]
+[card]
+primitive=Kinsbaile Cavalier
 id=153279
-name=Kinsbaile Cavalier
 rarity=R
-mana={3}{W}
-type=Creature
-subtype=Kithkin Knight
-auto=lord(creature|mybattlefield) double strike
-power=2
-toughness=2
 [/card]
 [card]
-text=Reach (This can block creatures with flying.)   Whenever you cast an Elf spell, you may have Lys Alana Bowmaster deal 2 damage to target creature with flying.
-auto=@movedTo(elf|mystack):may damage:2 target(creature[flying])
+primitive=Kithkin Zephyrnaut
+id=152858
+rarity=C
+[/card]
+[card]
+primitive=Knowledge Exploitation
+id=152664
+rarity=R
+[/card]
+[card]
+primitive=Latchkey Faerie
+id=153122
+rarity=C
+[/card]
+[card]
+primitive=Leaf-Crowned Elder
+id=152682
+rarity=R
+[/card]
+[card]
+primitive=Lightning Crafter
+id=152893
+rarity=R
+[/card]
+[card]
+primitive=Luminescent Rain
+id=153147
+rarity=C
+[/card]
+[card]
+primitive=Lunk Errant
+id=152581
+rarity=C
+[/card]
+[card]
+primitive=Lys Alana Bowmaster
 id=153462
-name=Lys Alana Bowmaster
 rarity=C
-mana={2}{G}
-type=Creature
-subtype=Elf Archer
-power=2
-toughness=2
-abilities=reach
 [/card]
 [card]
-text=When Merrow Witsniper enters the battlefield, target player puts the top card of his or her library into his or her graveyard.
+primitive=Maralen of the Mornsong
+id=152546
+rarity=R
+[/card]
+[card]
+primitive=Meadowboon
+id=157432
+rarity=U
+[/card]
+[card]
+primitive=Merrow Witsniper
 id=152699
-name=Merrow Witsniper
 rarity=C
-mana={U}
-type=Creature
-subtype=Merfolk Rogue
-auto=deplete:1 target(player)
-power=1
-toughness=1
 [/card]
 [card]
-text=Target player discards X cards at random.
+primitive=Mind Shatter
 id=157422
-target=player
-name=Mind Shatter
-alias=1167
 rarity=R
-mana={X}{B}{B}
-type=Sorcery
 [/card]
 [card]
-text=Draw X cards.
-auto=draw:X controller
+primitive=Mind Spring
 id=152628
-name=Mind Spring
 rarity=R
-mana={X}{U}{U}
-type=Sorcery
 [/card]
 [card]
-text=First strike   Reinforce 1—{1}{W} ({1}{W}, Discard this card: Put a +1/+1 counter on target creature.)
+primitive=Moonglove Changeling
+id=143218
+rarity=C
+[/card]
+[card]
+primitive=Morsel Theft
+id=152903
+rarity=C
+[/card]
+[card]
+primitive=Mosquito Guard
 id=152585
-name=Mosquito Guard
 rarity=C
-mana={W}
-type=Creature
-subtype=Kithkin Soldier
-autohand={1}{W}{S}:counter(1/1,1) target(creature)
-power=1
-toughness=1
-abilities=first strike
 [/card]
 [card]
-text=({T}: Add {G} to your mana pool.)   As Murmuring Bosk enters the battlefield, you may reveal a Treefolk card from your hand. If you don't, Murmuring Bosk enters the battlefield tapped.   {T}: Add {W} or {B} to your mana pool. Murmuring Bosk deals 1 damage to you.
+primitive=Mothdust Changeling
+id=143333
+rarity=C
+[/card]
+[card]
+primitive=Mudbutton Clanger
+id=152876
+rarity=C
+[/card]
+[card]
+primitive=Murmuring Bosk
 id=153467
-name=Murmuring Bosk
 rarity=R
-auto=tap
-auto=aslongas(treefolk|myhand) untap
-auto={T}:Add{G}
-auto={T}:Add{W} && damage:1 controller
-auto={T}:Add{B} && damage:1 controller
-type=Land
-subtype=Forest
 [/card]
 [card]
-text=Counter target noncreature spell.
-target=*[-creature]|stack
-auto=fizzle
+primitive=Mutavault
+id=152724
+rarity=R
+[/card]
+[card]
+primitive=Negate
 id=152570
-name=Negate
 rarity=C
-mana={1}{U}
-type=Instant
 [/card]
 [card]
-text=Fear
+primitive=Nevermaker
+id=152934
+rarity=U
+[/card]
+[card]
+primitive=Nightshade Schemers
+id=153001
+rarity=U
+[/card]
+[card]
+primitive=Noggin Whack
+id=152844
+rarity=U
+[/card]
+[card]
+primitive=Notorious Throng
+id=152579
+rarity=R
+[/card]
+[card]
+primitive=Obsidian Battle-Axe
+id=154164
+rarity=U
+[/card]
+[card]
+primitive=Offalsnout
+id=152571
+rarity=U
+[/card]
+[card]
+primitive=Oona's Blackguard
+id=153099
+rarity=U
+[/card]
+[card]
+primitive=Orchard Warden
+id=152991
+rarity=U
+[/card]
+[card]
+primitive=Order of the Golden Cricket
+id=153463
+rarity=C
+[/card]
+[card]
+primitive=Pack's Disdain
+id=153165
+rarity=C
+[/card]
+[card]
+primitive=Preeminent Captain
+id=152595
+rarity=R
+[/card]
+[card]
+primitive=Prickly Boggart
 id=152718
-name=Prickly Boggart
 rarity=C
-mana={B}
-type=Creature
-subtype=Goblin Rogue
-power=1
-toughness=1
-abilities=fear
 [/card]
 [card]
-text=As Rustic Clachan enters the battlefield, you may reveal a Kithkin card from your hand. If you don't, Rustic Clachan enters the battlefield tapped.   {T}: Add {W} to your mana pool.   Reinforce 1—{1}{W} ({1}{W}, Discard this card: Put a +1/+1 counter on target creature.)
+primitive=Primal Beyond
+id=153464
+rarity=R
+[/card]
+[card]
+primitive=Pulling Teeth
+id=152667
+rarity=C
+[/card]
+[card]
+primitive=Pyroclast Consul
+id=153007
+rarity=U
+[/card]
+[card]
+primitive=Rage Forger
+id=153104
+rarity=U
+[/card]
+[card]
+primitive=Reach of Branches
+id=154162
+rarity=R
+[/card]
+[card]
+primitive=Recross the Paths
+id=152874
+rarity=U
+[/card]
+[card]
+primitive=Redeem the Lost
+id=152616
+rarity=U
+[/card]
+[card]
+primitive=Reins of the Vinesteed
+id=152625
+rarity=C
+[/card]
+[card]
+primitive=Release the Ants
+id=152619
+rarity=U
+[/card]
+[card]
+primitive=Research the Deep
+id=152618
+rarity=U
+[/card]
+[card]
+primitive=Reveillark
+id=152716
+rarity=R
+[/card]
+[card]
+primitive=Revive the Fallen
+id=152836
+rarity=U
+[/card]
+[card]
+primitive=Rhys the Exiled
+id=152643
+rarity=R
+[/card]
+[card]
+primitive=Rivals' Duel
+id=152586
+rarity=U
+[/card]
+[card]
+primitive=Roar of the Crowd
+id=153158
+rarity=C
+[/card]
+[card]
+primitive=Rustic Clachan
 id=153460
-name=Rustic Clachan
 rarity=R
-auto=tap
-auto=aslongas(kithkin|myHand) untap
-auto={T}:Add{W}
-autohand={1}{W}{S}:counter(1/1,1) target(creature)
-type=Land
 [/card]
 [card]
-text=Sacrifice an Elemental: Seething Pathblazer gets +2/+0 and gains first strike until end of turn.
+primitive=Sage of Fables
+id=152871
+rarity=U
+[/card]
+[card]
+primitive=Sage's Dousing
+id=152988
+rarity=U
+[/card]
+[card]
+primitive=Scapeshift
+id=146593
+rarity=R
+[/card]
+[card]
+primitive=Scarblade Elite
+id=153278
+rarity=R
+[/card]
+[card]
+primitive=Seething Pathblazer
 id=153101
-name=Seething Pathblazer
 rarity=C
-mana={2}{R}
-type=Creature
-subtype=Elemental Warrior
-auto={S(elemental|myBattlefield)}:2/0 && first strike
-power=2
-toughness=2
 [/card]
 [card]
-text=Whenever Stonybrook Schoolmaster becomes tapped, you may put a 1/1 blue Merfolk Wizard creature token onto the battlefield.
-auto=@tapped(this):may token(Merfolk wizard,creature Merfolk Wizard,1/1,blue)
+primitive=Sensation Gorger
+id=152539
+rarity=R
+[/card]
+[card]
+primitive=Shard Volley
+id=152837
+rarity=C
+[/card]
+[card]
+primitive=Shared Animosity
+id=157433
+rarity=R
+[/card]
+[card]
+primitive=Shinewend
+id=152659
+rarity=C
+[/card]
+[card]
+primitive=Sigil Tracer
+id=152590
+rarity=R
+[/card]
+[card]
+primitive=Slithermuse
+id=157428
+rarity=R
+[/card]
+[card]
+primitive=Spitebellows
+id=152887
+rarity=U
+[/card]
+[card]
+primitive=Squeaking Pie Grubfellows
+id=152847
+rarity=C
+[/card]
+[card]
+primitive=Stenchskipper
+id=153126
+rarity=R
+[/card]
+[card]
+primitive=Stingmoggie
+id=152704
+rarity=C
+[/card]
+[card]
+primitive=Stinkdrinker Bandit
+id=152917
+rarity=U
+[/card]
+[card]
+primitive=Stomping Slabs
+id=157421
+rarity=U
+[/card]
+[card]
+primitive=Stonehewer Giant
+id=152588
+rarity=R
+[/card]
+[card]
+primitive=Stonybrook Banneret
+id=152652
+rarity=C
+[/card]
+[card]
+primitive=Stonybrook Schoolmaster
 id=153166
-name=Stonybrook Schoolmaster
 rarity=C
-mana={2}{W}
-type=Creature
-subtype=Merfolk Wizard
-power=1
-toughness=2
 [/card]
 [card]
-text=Target creature gets -4/-0 until end of turn. If you control a Wizard, draw a card.
+primitive=Stream of Unconsciousness
 id=152720
-target=creature
-auto=-4/0
-auto=aslongas(wizard|myBattlefield) draw:1 controller
-name=Stream of Unconsciousness
 rarity=C
-mana={U}
-type=Instant
-subtype=Wizard Tribal 
 [/card]
 [card]
-text={1}{R}, {T}: Sunflare Shaman deals X damage to target creature or player and X damage to itself, where X is the number of Elemental cards in your graveyard.
+primitive=Sunflare Shaman
 id=153155
-name=Sunflare Shaman
 rarity=C
-mana={1}{R}
-type=Creature
-subtype=Elemental Shaman
-auto={1}{R}{T}:foreach(elemental|mygraveyard) damage:1 target(creature,player) && foreach(elemental|mygraveyard) damage:1 all(this)
-power=2
-toughness=1
 [/card]
 [card]
-text=Vengeful Firebrand has haste as long as a Warrior card is in your graveyard.   {R}: Vengeful Firebrand gets +1/+0 until end of turn.
+primitive=Supreme Exemplar
+id=152533
+rarity=R
+[/card]
+[card]
+primitive=Swell of Courage
+id=152729
+rarity=U
+[/card]
+[card]
+primitive=Taurean Mauler
+id=153452
+rarity=R
+[/card]
+[card]
+primitive=Thieves' Fortune
+id=152815
+rarity=U
+[/card]
+[card]
+primitive=Thornbite Staff
+id=152904
+rarity=U
+[/card]
+[card]
+primitive=Titan's Revenge
+id=152552
+rarity=R
+[/card]
+[card]
+primitive=Unstoppable Ash
+id=152937
+rarity=R
+[/card]
+[card]
+primitive=Vendilion Clique
+id=152549
+rarity=R
+[/card]
+[card]
+primitive=Vengeful Firebrand
 id=153153
-name=Vengeful Firebrand
 rarity=R
-mana={3}{R}
-type=Creature
-subtype=Elemental Warrior
-auto=aslongas(warrior|mygraveyard) haste
-auto={R}:1/0
-power=5
-toughness=2
 [/card]
 [card]
-text=Destroy target nonblack creature. Put a 1/1 black Faerie Rogue creature token with flying onto the battlefield.
+primitive=Veteran's Armaments
+id=153012
+rarity=U
+[/card]
+[card]
+primitive=Violet Pall
 id=157426
-target=creature[-black]
-auto=destroy
-auto=token(Faerie Rogue,Creature Faerie,1/1,flying black)
-name=Violet Pall
 rarity=C
-mana={4}{B}
-type=Instant
-subtype=Faerie Tribal 
 [/card]
 [card]
-text=At the beginning of your upkeep, target creature other than Weed-Pruner Poplar gets -1/-1 until end of turn.
-auto=@each my upkeep:-1/-1 target(other crature)
+primitive=Walker of the Grove
+id=152553
+rarity=U
+[/card]
+[card]
+primitive=Wandering Graybeard
+id=152672
+rarity=U
+[/card]
+[card]
+primitive=Warren Weirding
+id=152732
+rarity=U
+[/card]
+[card]
+primitive=War-Spike Changeling
+id=143199
+rarity=C
+[/card]
+[card]
+primitive=Waterspout Weavers
+id=152656
+rarity=U
+[/card]
+[card]
+primitive=Weed-Pruner Poplar
 id=152741
-name=Weed-Pruner Poplar
 rarity=C
-mana={4}{B}
-type=Creature
-subtype=Treefolk Assassin
-power=3
-toughness=3
 [/card]
 [card]
-text={3}{B}, Sacrifice a Goblin: Put two 1/1 black Goblin Rogue creature tokens onto the battlefield.
+primitive=Weight of Conscience
+id=152737
+rarity=C
+[/card]
+[card]
+primitive=Weirding Shaman
 id=153011
-auto={3}{B}{S(goblin|myBattlefield)}:token(Goblin Rogue,Creature goblin,1/1,black)*2
-name=Weirding Shaman
 rarity=R
-mana={1}{B}
-type=Creature
-subtype=Goblin Shaman
-power=2
-toughness=1
+[/card]
+[card]
+primitive=Winnower Patrol
+id=152669
+rarity=C
+[/card]
+[card]
+primitive=Wolf-Skull Shaman
+id=152728
+rarity=U
 [/card]

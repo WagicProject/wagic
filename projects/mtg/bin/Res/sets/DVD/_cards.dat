@@ -1,0 +1,310 @@
+[card]
+primitive=Abyssal Gatekeeper
+id=197037
+rarity=C
+[/card]
+[card]
+primitive=Abyssal Specter
+id=197008
+rarity=U
+[/card]
+[card]
+primitive=Akroma, Angel of Wrath
+id=193871
+rarity=M
+[/card]
+[card]
+primitive=Angel of Mercy
+id=196990
+rarity=U
+[/card]
+[card]
+primitive=Angelic Benediction
+id=197013
+rarity=U
+[/card]
+[card]
+primitive=Angelic Page
+id=197009
+rarity=C
+[/card]
+[card]
+primitive=Angelic Protector
+id=197035
+rarity=U
+[/card]
+[card]
+primitive=Angel's Feather
+id=196991
+rarity=U
+[/card]
+[card]
+primitive=Angelsong
+id=197014
+rarity=C
+[/card]
+[card]
+primitive=Barren Moor
+id=197029
+rarity=C
+[/card]
+[card]
+primitive=Barter in Blood
+id=197025
+rarity=U
+[/card]
+[card]
+primitive=Breeding Pit
+id=197024
+rarity=U
+[/card]
+[card]
+primitive=Cackling Imp
+id=197003
+rarity=C
+[/card]
+[card]
+primitive=Charging Paladin
+id=197021
+rarity=C
+[/card]
+[card]
+primitive=Consume Spirit
+id=196992
+rarity=U
+[/card]
+[card]
+primitive=Corrupt
+id=197033
+rarity=U
+[/card]
+[card]
+primitive=Cruel Edict
+id=196993
+rarity=U
+[/card]
+[card]
+primitive=Daggerclaw Imp
+id=197022
+rarity=U
+[/card]
+[card]
+primitive=Dark Banishing
+id=197023
+rarity=C
+[/card]
+[card]
+primitive=Dark Ritual
+id=197019
+rarity=C
+[/card]
+[card]
+primitive=Demonic Tutor
+id=193867
+rarity=U
+[/card]
+[card]
+primitive=Demon's Horn
+id=196994
+rarity=U
+[/card]
+[card]
+primitive=Demon's Jester
+id=197018
+rarity=C
+[/card]
+[card]
+primitive=Duress
+id=197004
+rarity=C
+[/card]
+[card]
+primitive=Dusk Imp
+id=196995
+rarity=C
+[/card]
+[card]
+primitive=Faith's Fetters
+id=193869
+rarity=C
+[/card]
+[card]
+primitive=Fallen Angel
+id=197010
+rarity=R
+[/card]
+[card]
+primitive=Foul Imp
+id=197012
+rarity=C
+[/card]
+[card]
+primitive=Healing Salve
+id=197011
+rarity=C
+[/card]
+[card]
+primitive=Icatian Priest
+id=196996
+rarity=U
+[/card]
+[card]
+primitive=Kuro, Pitlord
+id=197015
+rarity=R
+[/card]
+[card]
+primitive=Lord of the Pit
+id=193868
+rarity=M
+[/card]
+[card]
+primitive=Luminous Angel
+id=193872
+rarity=R
+[/card]
+[card]
+primitive=Marble Diamond
+id=197005
+rarity=U
+[/card]
+[card]
+primitive=Oni Possession
+id=197016
+rarity=U
+[/card]
+[card]
+primitive=Otherworldly Journey
+id=197017
+rarity=U
+[/card]
+[card]
+primitive=Overeager Apprentice
+id=197028
+rarity=C
+[/card]
+[card]
+primitive=Pacifism
+id=196997
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=197254
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=197256
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=197255
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=197253
+rarity=L
+[/card]
+[card]
+primitive=Promise of Power
+id=197026
+rarity=R
+[/card]
+[card]
+primitive=Reiver Demon
+id=197027
+rarity=R
+[/card]
+[card]
+primitive=Reya Dawnbringer
+id=196998
+rarity=R
+[/card]
+[card]
+primitive=Righteous Cause
+id=197030
+rarity=U
+[/card]
+[card]
+primitive=Secluded Steppe
+id=197031
+rarity=C
+[/card]
+[card]
+primitive=Serra Advocate
+id=197006
+rarity=U
+[/card]
+[card]
+primitive=Serra Angel
+id=196999
+rarity=R
+[/card]
+[card]
+primitive=Serra's Boon
+id=197032
+rarity=U
+[/card]
+[card]
+primitive=Serra's Embrace
+id=197000
+rarity=U
+[/card]
+[card]
+primitive=Soot Imp
+id=197020
+rarity=U
+[/card]
+[card]
+primitive=Souldrinker
+id=197036
+rarity=U
+[/card]
+[card]
+primitive=Stinkweed Imp
+id=193870
+rarity=C
+[/card]
+[card]
+primitive=Sustainer of the Realm
+id=197007
+rarity=U
+[/card]
+[card]
+primitive=Swamp
+id=197257
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=197258
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=197259
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=197260
+rarity=L
+[/card]
+[card]
+primitive=Twilight Shepherd
+id=197034
+rarity=R
+[/card]
+[card]
+primitive=Unholy Strength
+id=197001
+rarity=C
+[/card]
+[card]
+primitive=Venerable Monk
+id=197002
+rarity=C
+[/card]

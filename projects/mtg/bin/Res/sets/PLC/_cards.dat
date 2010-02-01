@@ -4,699 +4,842 @@ year=2007
 block=Time
 [/meta]
 [card]
-text=All Sliver creatures have trample.
+primitive=Aeon Chronicler
+id=122449
+rarity=R
+[/card]
+[card]
+primitive=AEther Membrane
+id=124504
+rarity=U
+[/card]
+[card]
+primitive=Akroma, Angel of Fury
+id=122432
+rarity=R
+[/card]
+[card]
+primitive=Ana Battlemage
+id=124342
+rarity=U
+[/card]
+[card]
+primitive=Aquamorph Entity
+id=126024
+rarity=C
+[/card]
+[card]
+primitive=Auramancer's Guise
+id=130813
+rarity=U
+[/card]
+[card]
+primitive=Aven Riftwatcher
+id=108899
+rarity=C
+[/card]
+[card]
+primitive=Battering Sliver
 id=126015
-name=Battering Sliver
 rarity=C
-mana={5}{R}
-type=Creature
-subtype=Sliver
-auto=lord(sliver) trample
-power=4
-toughness=4
 [/card]
 [card]
-text={T}: Target player loses 1 life.   {4}, {T}: Search your library for a Rebel permanent card with converted mana cost 3 or less and put it onto the battlefield. Then shuffle your library.
+primitive=Benalish Commander
+id=122408
+rarity=R
+[/card]
+[card]
+primitive=Big Game Hunter
+id=134739
+rarity=U
+[/card]
+[card]
+primitive=Blightspeaker
 id=124506
-name=Blightspeaker
 rarity=C
-mana={1}{B}
-auto={T}:life:-1 target(player)
-auto={4}{T}:moveTo(myBattlefield) target(rebel[manacost<=3]|mylibrary)
-type=Creature
-subtype=Human Rebel Cleric
-power=1
-toughness=1
 [/card]
 [card]
-text=First strike, protection from white
+primitive=Blood Knight
 id=130715
-name=Blood Knight
 rarity=U
-mana={R}{R}
-type=Creature
-subtype=Human Knight
-power=2
-toughness=2
-abilities=first strike,protection from white
 [/card]
 [card]
-text=You may have Body Double enter the battlefield as a copy of any creature card in a graveyard.
-auto=may copy notatarget(creature|graveyard)
+primitive=Body Double
 id=124443
-name=Body Double
 rarity=R
-mana={4}{U}
-type=Creature
-subtype=Shapeshifter
-power=0
-toughness=0
 [/card]
 [card]
-text=Bog Serpent can't attack unless defending player controls a Swamp. When you control no Swamps, sacrifice Bog Serpent.
+primitive=Bog Serpent
 id=122321
-name=Bog Serpent
 rarity=C
-mana={5}{B}
-type=Creature
-subtype=Serpent
-power=5
-toughness=5
-abilities=swamphome
 [/card]
 [card]
-text=Target creature gets +3/+3 until end of turn.
-target=creature
-auto=3/3
+primitive=Boom
+id=126218
+rarity=R
+[/card]
+[card]
+primitive=Braids, Conjurer Adept
+id=124316
+rarity=R
+[/card]
+[card]
+primitive=Brain Gorgers
+id=124040
+rarity=C
+[/card]
+[card]
+primitive=Brute Force
 id=122373
-name=Brute Force
 rarity=C
-mana={R}
-type=Instant
 [/card]
 [card]
-text=Kicker {2}{G} (You may pay an additional {2}{G} as you cast this spell.) When Citanul Woodreaders enters the battlefield, if it was kicked, draw two cards.
+primitive=Bust
+id=126218
+rarity=R
+[/card]
+[card]
+primitive=Calciderm
+id=122360
+rarity=U
+[/card]
+[card]
+primitive=Cautery Sliver
+id=126021
+rarity=U
+[/card]
+[card]
+primitive=Chronozoa
+id=111066
+rarity=R
+[/card]
+[card]
+primitive=Circle of Affliction
+id=126803
+rarity=U
+[/card]
+[card]
+primitive=Citanul Woodreaders
 id=122290
-name=Citanul Woodreaders
 rarity=C
-mana={2}{G}
-kicker={2}{G}
-auto=kicker draw:2
-type=Creature
-subtype=Human Druid
-power=1
-toughness=4
 [/card]
 [card]
-text=Other white creatures get +1/+1.   Nonwhite creatures get -1/-1.   Pay 2 life: Return Crovax, Ascendant Hero to its owner's hand.
-auto=lord(creature[white]) 1/1 other
-auto=lord(creature[-white]) -1/-1
-auto={0}:moveTo(ownerhand) && life:-2 controller
+primitive=Cradle to Grave
+id=110536
+rarity=C
+[/card]
+[card]
+primitive=Crovax, Ascendant Hero
 id=122487
-name=Crovax, Ascendant Hero
 rarity=R
-mana={4}{W}{W}
-type=Legendary Creature
-subtype=Human Lord
-power=4
-toughness=4
 [/card]
 [card]
-text=Destroy all creatures. They can't be regenerated.
-auto=bury all(creature)
+primitive=Damnation
 id=122423
-name=Damnation
 rarity=R
-mana={2}{B}{B}
-type=Sorcery
 [/card]
 [card]
-text=All Slivers have "Sacrifice this permanent: You gain 3 life."
+primitive=Darkheart Sliver
 id=126012
-name=Darkheart Sliver
 rarity=U
-mana={B}{G}
-type=Creature
-subtype=Sliver
-auto=lord(sliver) {S}:life:3
-power=2
-toughness=2
 [/card]
 [card]
-text=All Sliver creatures have defender. All Slivers have "When this permanent enters the battlefield, draw a card."
+primitive=Dash Hopes
+id=126812
+rarity=C
+[/card]
+[card]
+primitive=Dawn Charm
+id=124080
+rarity=C
+[/card]
+[card]
+primitive=Dead
+id=126419
+rarity=C
+[/card]
+[card]
+primitive=Deadly Grub
+id=111046
+rarity=C
+[/card]
+[card]
+primitive=Deadwood Treefolk
+id=109740
+rarity=U
+[/card]
+[card]
+primitive=Detritivore
+id=126811
+rarity=R
+[/card]
+[card]
+primitive=Dichotomancy
+id=122455
+rarity=R
+[/card]
+[card]
+primitive=Dismal Failure
+id=129022
+rarity=U
+[/card]
+[card]
+primitive=Dormant Sliver
 id=126025
-name=Dormant Sliver
 rarity=U
-mana={2}{G}{U}
-type=Creature
-subtype=Sliver
-auto=lord(sliver) defender
-auto=@movedTo(sliver|myBattlefield):draw:1 controller
-auto=@movedTo(sliver|opponentBattlefield):draw:1 opponent
-power=2
-toughness=2
 [/card]
 [card]
-text=Enchant creature   Enchanted creature gets +2/+0 and can't be blocked by creatures with flying.
+primitive=Dreamscape Artist
+id=134743
+rarity=C
+[/card]
+[card]
+primitive=Dunerider Outlaw
+id=128940
+rarity=U
+[/card]
+[card]
+primitive=Dust Corona
 id=110501
-target=creature
-auto=2/0
-auto=cantbeblockedby(creatures[flying])
-name=Dust Corona
 rarity=C
-mana={R}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text=Enchant creature You control enchanted creature. At the beginning of your upkeep, enchanted creature deals 1 damage to its owner.
-target=creature
-auto=@each my upkeep:life:-1 opponent
-alias=1194
+primitive=Dust Elemental
+id=124343
+rarity=R
+[/card]
+[card]
+primitive=Enslave
 id=122413
-name=Enslave
 rarity=U
-mana={4}{B}{B}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text=Whenever another creature enters the battlefield, you gain 1 life.
-auto=@movedTo(other creature|battlefield):life:1 controller
+primitive=Erratic Mutation
+id=124476
+rarity=C
+[/card]
+[card]
+primitive=Essence Warden
 id=122428
-name=Essence Warden
 rarity=C
-mana={G}
-type=Creature
-subtype=Elf Shaman
-power=1
-toughness=1
 [/card]
 [card]
-text=Choose one - Search your library for a basic land card, reveal it, put it into your hand, then shuffle your library; or return target creature card from your graveyard to your hand; or target creature gains flying until end of turn.
+primitive=Evolution Charm
 id=124047
-auto=may moveTo(myhand) target(land[basic]|mylibrary)
-auto=may moveTo(myhand) target(creature|mygraveyard)
-auto=may flying target(creature)
-name=Evolution Charm
 rarity=C
-mana={1}{G}
-type=Instant
 [/card]
 [card]
-text=Creatures you control get +1/+1.
-auto=lord(creature|myBattlefield) 1/1
+primitive=Extirpate
+id=126804
+rarity=R
+[/card]
+[card]
+primitive=Fa'adiyah Seer
+id=122374
+rarity=C
+[/card]
+[card]
+primitive=Fatal Frenzy
+id=124748
+rarity=R
+[/card]
+[card]
+primitive=Firefright Mage
+id=130720
+rarity=C
+[/card]
+[card]
+primitive=Frenetic Sliver
+id=126011
+rarity=U
+[/card]
+[card]
+primitive=Frozen AEther
+id=122402
+rarity=U
+[/card]
+[card]
+primitive=Fungal Behemoth
+id=124065
+rarity=R
+[/card]
+[card]
+primitive=Fury Charm
+id=124039
+rarity=C
+[/card]
+[card]
+primitive=Gaea's Anthem
 id=122367
-name=Gaea's Anthem
 rarity=R
-mana={1}{G}{G}
-type=Enchantment
 [/card]
 [card]
-text={W}, {T}, Discard a card: Creatures you control get +1/+0 until end of turn.
+primitive=Ghost Tactician
 id=126809
-name=Ghost Tactician
 rarity=C
-mana={4}{W}
-type=Creature
-subtype=Spirit Spellshaper
-auto={W}{T}{S(*|myhand)}:lord(creature|mybattlefield) 1/0
-power=2
-toughness=5
 [/card]
 [card]
-text=Trample, haste   At end of turn, sacrifice Groundbreaker.
+primitive=Giant Dustwasp
+id=122313
+rarity=C
+[/card]
+[card]
+primitive=Gone
+id=126419
+rarity=C
+[/card]
+[card]
+primitive=Gossamer Phantasm
+id=122280
+rarity=C
+[/card]
+[card]
+primitive=Groundbreaker
 id=122429
-name=Groundbreaker
 rarity=R
-mana={G}{G}{G}
-type=Creature
-subtype=Elemental
-auto=@next endofturn:bury
-power=6
-toughness=1
-abilities=trample,haste
 [/card]
 [card]
-text=Draw three cards.
-auto=draw:3
+primitive=Hammerheim Deadeye
+id=128948
+rarity=U
+[/card]
+[card]
+primitive=Harmonize
 id=122362
-name=Harmonize
 rarity=U
-mana={2}{G}{G}
-type=Sorcery
 [/card]
 [card]
-text=Hedge Troll gets +1/+1 as long as you control a Plains.   {W}: Regenerate Hedge Troll.
-auto=aslongas(plains|myBattlefield) 1/1
-auto={W}:regenerate
+primitive=Healing Leaves
+id=122371
+rarity=C
+[/card]
+[card]
+primitive=Hedge Troll
 id=122405
-name=Hedge Troll
 rarity=U
-mana={2}{G}
-type=Creature
-subtype=Troll Cleric
-power=2
-toughness=2
 [/card]
 [card]
-####Don't change the phase names!
-text=Forestwalk   Whenever Jedit Ojanen of Efrava attacks or blocks, put a 2/2 green Cat Warrior creature token with forestwalk onto the battlefield.
+primitive=Heroes Remembered
+id=122438
+rarity=R
+[/card]
+[card]
+primitive=Hunting Wilds
+id=122458
+rarity=U
+[/card]
+[card]
+primitive=Imp's Mischief
+id=122434
+rarity=R
+[/card]
+[card]
+primitive=Intet, the Dreamer
+id=124073
+rarity=R
+[/card]
+[card]
+primitive=Jedit Ojanen of Efrava
 id=124344
-name=Jedit Ojanen of Efrava
 rarity=R
-mana={3}{G}{G}{G}
-type=Legendary Creature
-subtype=Cat Warrior
-auto=@each my blockers:aslongas(jedit ojanen of efrava[attacking]|myBattlefield) token(Cat,creature cat, 2/2,green)
-auto=@each opponent combatdamage:aslongas(jedit ojanen of efrava[blocking]|myBattlefield) token(Cat,creature cat, 2/2,green)
-power=5
-toughness=5
-abilities=forestwalk
 [/card]
 [card]
-text={0}: Until end of turn, Jodah's Avenger gets -1/-1 and gains your choice of double strike, protection from red, vigilance, or shadow. (A creature with shadow can block or be blocked by only creatures with shadow.)
+primitive=Jodah's Avenger
 id=124482
-name=Jodah's Avenger
 rarity=U
-mana={5}{U}
-type=Creature
-subtype=Shapeshifter
-auto={0}:double strike && -1/-1
-auto={0}:protection from red && -1/-1
-auto={0}:vigilance && -1/-1
-auto={0}:shadow && -1/-1
-power=4
-toughness=4
 [/card]
 [card]
-text=Enchant creature   Whenever enchanted creature deals damage to an opponent, you may draw a card.
+primitive=Kavu Predator
+id=126813
+rarity=U
+[/card]
+[card]
+primitive=Keen Sense
 id=122451
-target=creature
-auto=@damaged(player) from(mytgt):may draw:1 controller
-name=Keen Sense
 rarity=U
-mana={G}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text={2}, {T}: Add {B} to your mana pool for each Swamp you control.
+primitive=Keldon Marauders
+id=125885
+rarity=C
+[/card]
+[card]
+primitive=Kor Dirge
+id=131006
+rarity=U
+[/card]
+[card]
+primitive=Lavacore Elemental
+id=111055
+rarity=U
+[/card]
+[card]
+primitive=Life and Limb
+id=124471
+rarity=R
+[/card]
+[card]
+primitive=Magus of the Arena
+id=134746
+rarity=R
+[/card]
+[card]
+primitive=Magus of the Bazaar
+id=131008
+rarity=R
+[/card]
+[card]
+primitive=Magus of the Coffers
 id=124507
-name=Magus of the Coffers
 rarity=R
-mana={4}{B}
-type=Creature
-subtype=Human Wizard
-auto={2}{T}:foreach(swamp|myBattlefield) Add:{B}
-power=4
-toughness=4
 [/card]
 [card]
-text=Flying   {W}{W}{W}: Regenerate Malach of the Dawn.
+primitive=Magus of the Library
+id=134741
+rarity=R
+[/card]
+[card]
+primitive=Magus of the Tabernacle
+id=130719
+rarity=R
+[/card]
+[card]
+primitive=Malach of the Dawn
 id=122481
-name=Malach of the Dawn
 rarity=U
-mana={2}{W}{W}
-type=Creature
-subtype=Angel
-auto={W}{W}{W}:regenerate
-power=2
-toughness=4
-abilities=flying
 [/card]
 [card]
-text=Flash (You may cast this spell any time you could cast an instant.) Enchant creature.    Whenever a creature enters the battlefield, enchanted creature gets +2/+2 until end of turn.
+primitive=Mana Tithe
+id=122324
+rarity=C
+[/card]
+[card]
+primitive=Mantle of Leadership
 id=122349
-target=Creature
-auto=@movedTo(creature|myBattlefield):2/2 ueot
-name=Mantle of Leadership
 rarity=U
-mana={1}{W}
-type=Enchantment
-subtype=Aura
-abilities=flash
 [/card]
 [card]
-text=Whenever you cast an enchantment spell, you may draw a card.
+primitive=Melancholy
+id=130714
+rarity=C
+[/card]
+[card]
+primitive=Merfolk Thaumaturgist
+id=125877
+rarity=C
+[/card]
+[card]
+primitive=Mesa Enchantress
 id=126214
-name=Mesa Enchantress
 rarity=R
-mana={1}{W}{W}
-type=Creature
-subtype=Human Druid
-auto=@movedTo(enchantment|mystack):may draw:1
-power=0
-toughness=2
 [/card]
 [card]
-text=Choose one - Midnight Charm deals 1 damage to target creature and you gain 1 life; or target creature gains first strike until end of turn; or tap target creature.
+primitive=Midnight Charm
 id=124034
-auto=may damage:1 target(creature) && life:1 controller
-auto=may first strike target(creature)
-auto=may tap target(creature)
-name=Midnight Charm
 rarity=C
-mana={B}
-type=Instant
 [/card]
 [card]
-text=Flying, first strike, haste   Whenever Mirri the Cursed deals combat damage to a creature, put a +1/+1 counter on Mirri the Cursed.
-id=122406
-name=Mirri the Cursed
-rarity=R
-mana={2}{B}{B}
-type=Legendary Creature
-subtype=Vampire Cat
-auto=@damaged(creature) from(this):counter(1/1,1)
-power=3
-toughness=2
-abilities=flying,first strike,haste
-[/card]
-[card]
-text=All Slivers have "{3}, Sacrifice this permanent: Destroy target permanent."
-id=126023
-name=Necrotic Sliver
-rarity=U
-mana={1}{W}{B}
-type=Creature
-subtype=Sliver
-auto=lord(sliver) {3}{S}:destroy target(*)
-power=2
-toughness=2
-[/card]
-[card]
-####Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1) 
-text=Flying   Whenever Oros, the Avenger deals combat damage to a player, you may pay {2}{W}. If you do, Oros deals 3 damage to each nonwhite creature.
-id=136170
-name=Oros the Avenger
-rarity=R
-mana={3}{W}{B}{R}
-type=Legendary Creature
-subtype=Dragon
-auto=aslongas(oros the avenger[attacking]|mybattlefield) lord(oros the avenger[attacking;-cloud]) {2}{W}:damage:3 all(creature[-white])
-auto=@damaged(player) from(this):cloud
-power=6
-toughness=6
-abilities=flying
-[/card]
-[card]
-text=All Slivers have "{2}, {T}: Regenerate target Sliver."
-id=126014
-name=Poultice Sliver
-rarity=C
-mana={2}{W}
-type=Creature
-subtype=Sliver
-auto=lord(sliver) {T}:regenerate target(sliver)
-power=2
-toughness=2
-[/card]
-[card]
-text=Kicker {2}{G} (You may pay an additional {2}{G} as you cast this spell.) If Pouncing Wurm was kicked, it enters the battlefield with three +1/+1 counters on it and with haste.
-id=122323
-name=Pouncing Wurm
-rarity=U
-mana={3}{G}
-kicker={2}{G}
-auto=kicker haste
-auto=kicker counter(1/1,3)
-type=Creature
-subtype=Wurm
-power=3
-toughness=3
-[/card]
-[card]
-####Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1) 
-text=Whenever Radha, Heir to Keld attacks, you may add {R}{R} to your mana pool. {T}: Add {G} to your mana pool.
-auto=@each my blockers:aslongas(radha heir to keld[attacking]|myBattlefield) may add{R}{R}
-id=128949
-name=Radha Heir to Keld
-rarity=R
-mana={R}{G}
-type=Legendary Creature
-subtype=Elf Warrior
-auto={T}:Add{G}
-power=2
-toughness=2
-[/card]
-[card]
-text={1}{B}, {T}, Discard a card: Target creature gets +1/+0 and gains first strike until end of turn.
-id=130717
-name=Ridged Kusite
-rarity=C
-mana={B}
-type=Creature
-subtype=Horror Spellshaper
-auto={1}{B}{T}{S(*|myhand)}:1/0 && first strike target(creature)
-power=1
-toughness=1
-[/card]
-[card]
-text=Exile Simian Spirit Guide from your hand: Add {R} to your mana pool.
-id=124474
-name=Simian Spirit Guide
-rarity=C
-mana={2}{R}
-type=Creature
-subtype=Ape Spirit
-autohand={0}:moveTo(exile) && add{R}
-power=2
-toughness=2
-[/card]
-[card]
-text=All Sliver creatures get +1/+1.
-id=125879
-name=Sinew Sliver
-rarity=C
-mana={1}{W}
-type=Creature
-subtype=Sliver
-auto=lord(sliver) 1/1
-power=1
-toughness=1
-[/card]
-[card]
-text=Skirk Shaman can't be blocked except by artifact creatures and/or red creatures.
-id=131011
-name=Skirk Shaman
-rarity=C
-mana={1}{R}{R}
-type=Creature
-subtype=Goblin Shaman
-power=2
-toughness=2
-abilities=intimidate
-[/card]
-[card]
-text={2}{G}{G}, {T}, Discard a card: You gain 2 life for each card in your hand.
-id=124505
-name=Sophic Centaur
-rarity=U
-mana={3}{G}
-type=Creature
-subtype=Centaur Spellshaper
-auto={2}{G}{G}{T}{S(*|myhand)}:foreach(*|myhand) life:2 controller
-power=1
-toughness=1
-[/card]
-[card]
-text=All Sliver creatures have first strike.
-id=126022
-name=Spitting Sliver
-rarity=C
-mana={4}{B}
-type=Creature
-subtype=Sliver
-auto=lord(sliver) first strike
-power=3
-toughness=3
-[/card]
-[card]
-text=Sunlance deals 3 damage to target nonwhite creature.
-target=creature[-white]
-auto=Damage:3
-id=122355
-name=Sunlance
-rarity=C
-mana={W}
-type=Sorcery
-[/card]
-[card]
-text=All Sliver creatures have vigilance.
-id=124044
-name=Synchronous Sliver
-rarity=C
-mana={4}{U}
-type=Creature
-subtype=Sliver
-auto=lord(sliver) vigilance
-power=3
-toughness=3
-[/card]
-[card]
-text=Flying, Vigilance
-id=125873
-name=Serra Sphinx
-rarity=R
-type=Creature
-subtype=Sphinx
-mana={3}{U}{U}
-power=4
-toughness=4
-abilities=vigilance,flying
-[/card]
-[card]
-text=Swampwalk   {G}: Regenerate Mire Boa.
+primitive=Mire Boa
 id=122420
-name=Mire Boa
 rarity=C
-mana={1}{G}
-type=Creature
-subtype=Snake
-auto={G}:regenerate
-power=2
-toughness=1
-abilities=swampwalk
 [/card]
 [card]
-text=Reach (This creature can block creatures with flying.)
+primitive=Mirri the Cursed
+id=122406
+rarity=R
+[/card]
+[card]
+primitive=Molten Firebird
+id=134738
+rarity=R
+[/card]
+[card]
+primitive=Muck Drubb
+id=122478
+rarity=U
+[/card]
+[card]
+primitive=Mycologist
+id=124033
+rarity=U
+[/card]
+[card]
+primitive=Necrotic Sliver
+id=126023
+rarity=U
+[/card]
+[card]
+primitive=Needlepeak Spider
 id=122268
-name=Needlepeak Spider
 rarity=C
-mana={3}{R}
-type=Creature
-subtype=Spider
-power=4
-toughness=2
-abilities=reach
 [/card]
 [card]
-text={T}:Prodigal Pyromancer deals 1 damage to target creature or player.
+primitive=Null Profusion
+id=125874
+rarity=R
+[/card]
+[card]
+primitive=Numot, the Devastator
+id=124062
+rarity=R
+[/card]
+[card]
+primitive=Oros, the Avenger
+id=136170
+rarity=R
+[/card]
+[card]
+primitive=Ovinize
+id=126212
+rarity=U
+[/card]
+[card]
+primitive=Pallid Mycoderm
+id=124508
+rarity=C
+[/card]
+[card]
+primitive=Phantasmagorian
+id=124472
+rarity=U
+[/card]
+[card]
+primitive=Piracy Charm
+id=124066
+rarity=C
+[/card]
+[card]
+primitive=Pongify
+id=129015
+rarity=U
+[/card]
+[card]
+primitive=Porphyry Nodes
+id=124470
+rarity=R
+[/card]
+[card]
+primitive=Poultice Sliver
+id=126014
+rarity=C
+[/card]
+[card]
+primitive=Pouncing Wurm
+id=122323
+rarity=U
+[/card]
+[card]
+primitive=Primal Plasma
+id=124757
+rarity=C
+[/card]
+[card]
+primitive=Prodigal Pyromancer
 id=122338
-name=Prodigal Pyromancer
 rarity=C
-mana={2}{R}
-type=Creature
-subtype=Human Wizard
-auto={T}:damage:1 target(creature,player)
-power=1
-toughness=1
 [/card]
 [card]
-text={B}, {T}: Tap target creature.
+primitive=Psychotrope Thallid
+id=128944
+rarity=U
+[/card]
+[card]
+primitive=Pyrohemia
+id=122436
+rarity=U
+[/card]
+[card]
+primitive=Radha, Heir to Keld
+id=128949
+rarity=R
+[/card]
+[card]
+primitive=Rathi Trapper
 id=130718
-name=Rathi Trapper
 rarity=C
-mana={1}{B}
-type=Creature
-subtype=Human Rebel Rogue
-auto={B}{T}:tap target(creature)
-power=1
-toughness=2
 [/card]
 [card]
-text=All Sliver creatures have haste.
+primitive=Reality Acid
+id=125880
+rarity=C
+[/card]
+[card]
+primitive=Rebuff the Wicked
+id=122287
+rarity=U
+[/card]
+[card]
+primitive=Reckless Wurm
+id=126818
+rarity=U
+[/card]
+[card]
+primitive=Reflex Sliver
 id=126018
-name=Reflex Sliver
 rarity=C
-mana={3}{G}
-type=Creature
-subtype=Sliver
-auto=lord(sliver) haste
-power=2
-toughness=2
 [/card]
 [card]
-text={W}:Regenerate Revered Dead.
+primitive=Retether
+id=131007
+rarity=R
+[/card]
+[card]
+primitive=Revered Dead
 id=122282
-name=Revered Dead
 rarity=C
-mana={1}{W}
-type=Creature
-subtype=Spirit Soldier
-auto={W}:regenerate
-power=1
-toughness=1
 [/card]
 [card]
-text=Destroy target nonwhite permanent.
-target=*[-white]
-auto=destroy
+primitive=Ridged Kusite
+id=130717
+rarity=C
+[/card]
+[card]
+primitive=Riftmarked Knight
+id=126816
+rarity=U
+[/card]
+[card]
+primitive=Riptide Pilferer
+id=122325
+rarity=U
+[/card]
+[card]
+primitive=Roiling Horror
+id=122431
+rarity=R
+[/card]
+[card]
+primitive=Rough
+id=126420
+rarity=U
+[/card]
+[card]
+primitive=Saltblast
 id=122435
-name=Saltblast
 rarity=U
-mana={3}{W}{W}
-type=Sorcery
 [/card]
 [card]
-text={T}:Target creature gets -2/-0 until end of turn. 
+primitive=Saltfield Recluse
 id=124037
-name=Saltfield Recluse
 rarity=C
-mana={2}{W}
-type=Creature
-subtype=Human Rebel Cleric
-auto={T}:-2/-0 target(creature)
-power=1
-toughness=2
 [/card]
 [card]
-text=Sacrifice Seal of Primordium: Destroy target artifact or enchantment.
-auto={S}:destroy target(artifact,enchantment)
+primitive=Seal of Primordium
 id=130816
-name=Seal of Primordium
 rarity=C
-mana={1}{G}
-type=Enchantment
 [/card]
 [card]
-####Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1) 
-text=Flying   Whenever Teneb, the Harvester deals combat damage to a player, you may pay {2}{B}. If you do, put target creature card in a graveyard onto the battlefield under your control.
-id=124075
-name=Teneb the Harvester
+primitive=Serendib Sorcerer
+id=122442
 rarity=R
-mana={3}{B}{G}{W}
-type=Legendary Creature
-subtype=Dragon
-auto=aslongas(teneb the harvester[attacking]|mybattlefield) lord(teneb the harvester[attacking;-cloud]) {2}{B}:moveTo(myBattlefield) target(creature|graveyard)
-auto=@damaged(player) from(this):cloud
-power=6
-toughness=6
-abilities=flying
 [/card]
 [card]
-text=Enchant creature   Enchanted creature can't attack or block.   Enchanted creature has "{T}:Add one mana of any color to your mana pool."
-id=131004
-target=creature
-auto=cantattack
-auto=cantblock
-auto={T}:Add{W}
-auto={T}:Add{U}
-auto={T}:Add{B}
-auto={T}:Add{R}
-auto={T}:Add{G}
-name=Utopia Vow
-rarity=C
-mana={1}{G}
-type=Enchantment
-subtype=Aura
+primitive=Serra Sphinx
+id=125873
+rarity=R
 [/card]
 [card]
-text=Enchant creature   Enchanted creature has lifelink.
-id=122366
-target=creature
-name=Vampiric link
+primitive=Serra's Boon
+id=129014
 rarity=U
-mana={B}
-auto=lifelink
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text=Flying   Whenever Vorosh, the Hunter deals combat damage to a player, you may pay {2}{G}. If you do, put six +1/+1 counters on Vorosh.
-id=124057
-name=Vorosh the Hunter
-rarity=R
-mana={3}{G}{U}{B}
-type=Legendary Creature
-subtype=Dragon
-auto=aslongas(vorosh the hunter[attacking]|mybattlefield) lord(vorosh the hunter[attacking;-cloud]) {2}{G}:counter(1/1,6)
-auto=@damaged(player) from(this):cloud
-power=6
-toughness=6
-abilities=flying
-[/card]
-[card]
-text=Flash (You may cast this spell any time you could cast an instant.)   When Whitemane Lion enters the battlefield, return a creature you control to its owner's hand.
-id=122477
-name=Whitemane Lion
+primitive=Shade of Trokair
+id=126408
 rarity=C
-mana={1}{W}
-type=Creature
-subtype=Cat
-auto=moveTo(ownerhand) notatarget(creature|myBattlefield)
-power=2
-toughness=2
-abilities=flash
+[/card]
+[card]
+primitive=Shaper Parasite
+id=122375
+rarity=C
+[/card]
+[card]
+primitive=Shivan Meteor
+id=134740
+rarity=U
+[/card]
+[card]
+primitive=Shivan Wumpus
+id=124445
+rarity=R
+[/card]
+[card]
+primitive=Shrouded Lore
+id=122285
+rarity=U
+[/card]
+[card]
+primitive=Simian Spirit Guide
+id=124474
+rarity=C
+[/card]
+[card]
+primitive=Sinew Sliver
+id=125879
+rarity=C
+[/card]
+[card]
+primitive=Skirk Shaman
+id=131011
+rarity=C
+[/card]
+[card]
+primitive=Sophic Centaur
+id=124505
+rarity=U
+[/card]
+[card]
+primitive=Spellshift
+id=122459
+rarity=R
+[/card]
+[card]
+primitive=Spitting Sliver
+id=126022
+rarity=C
+[/card]
+[card]
+primitive=Stingscourger
+id=134744
+rarity=C
+[/card]
+[card]
+primitive=Stonecloaker
+id=122469
+rarity=U
+[/card]
+[card]
+primitive=Stormfront Riders
+id=122412
+rarity=U
+[/card]
+[card]
+primitive=Sulfur Elemental
+id=122416
+rarity=U
+[/card]
+[card]
+primitive=Sunlance
+id=122355
+rarity=C
+[/card]
+[card]
+primitive=Synchronous Sliver
+id=124044
+rarity=C
+[/card]
+[card]
+primitive=Temporal Extortion
+id=126814
+rarity=R
+[/card]
+[card]
+primitive=Teneb, the Harvester
+id=124075
+rarity=R
+[/card]
+[card]
+primitive=Tidewalker
+id=130814
+rarity=U
+[/card]
+[card]
+primitive=Timbermare
+id=124478
+rarity=R
+[/card]
+[card]
+primitive=Timebender
+id=122370
+rarity=U
+[/card]
+[card]
+primitive=Timecrafting
+id=129012
+rarity=U
+[/card]
+[card]
+primitive=Torchling
+id=126810
+rarity=R
+[/card]
+[card]
+primitive=Treacherous Urge
+id=131002
+rarity=U
+[/card]
+[card]
+primitive=Tumble
+id=126420
+rarity=U
+[/card]
+[card]
+primitive=Uktabi Drake
+id=126306
+rarity=C
+[/card]
+[card]
+primitive=Urborg, Tomb of Yawgmoth
+id=131005
+rarity=R
+[/card]
+[card]
+primitive=Utopia Vow
+id=131004
+rarity=C
+[/card]
+[card]
+primitive=Vampiric Link
+id=122366
+rarity=C
+[/card]
+[card]
+primitive=Veiling Oddity
+id=126806
+rarity=C
+[/card]
+[card]
+primitive=Venarian Glimmer
+id=126216
+rarity=U
+[/card]
+[card]
+primitive=Vitaspore Thallid
+id=128941
+rarity=C
+[/card]
+[card]
+primitive=Voidstone Gargoyle
+id=125882
+rarity=R
+[/card]
+[card]
+primitive=Volcano Hellion
+id=126303
+rarity=R
+[/card]
+[card]
+primitive=Vorosh, the Hunter
+id=124057
+rarity=R
+[/card]
+[card]
+primitive=Waning Wurm
+id=110503
+rarity=U
+[/card]
+[card]
+primitive=Whitemane Lion
+id=122477
+rarity=C
+[/card]
+[card]
+primitive=Wild Pair
+id=122468
+rarity=R
+[/card]
+[card]
+primitive=Wistful Thinking
+id=124055
+rarity=C
 [/card]

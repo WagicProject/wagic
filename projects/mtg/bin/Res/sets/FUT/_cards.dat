@@ -4,499 +4,902 @@ year=2007
 block=Time
 [/meta]
 [card]
-text=Creatures you control have flying, first strike, vigilance, trample, haste, and protection from black and from red.
+primitive=Akroma's Memorial
 id=136150
-name=Akroma's Memorial
 rarity=R
-mana={7}
-type=Legendary Artifact
-auto=lord(creature|myBattlefield) flying
-auto=lord(creature|myBattlefield) first strike
-auto=lord(creature|myBattlefield) vigilance
-auto=lord(creature|myBattlefield) trample
-auto=lord(creature|myBattlefield) haste
-auto=lord(creature|myBattlefield) protection from red
-auto=lord(creature|myBattlefield) protection from black
 [/card]
 [card]
+primitive=Angel of Salvation
+id=130345
+rarity=R
+[/card]
+[card]
+primitive=Arc Blade
+id=126193
+rarity=U
+[/card]
+[card]
+primitive=Arcanum Wings
+id=136055
+rarity=U
+[/card]
+[card]
+primitive=Augur il-Vec
 id=132212
-name=Augur il-Vec
-mana={1}{W}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=3
-text=Shadow (This creature can block or be blocked by only creatures with shadow.) Sacrifice Augur il-Vec: You gain 4 life. Play this ability only during your upkeep.
-abilities=shadow
-auto={S}:life:4 controller myUpkeepOnly
 rarity=C
 [/card]
 [card]
+primitive=Augur of Skulls
+id=132224
+rarity=C
+[/card]
+[card]
+primitive=Aven Augur
+id=132225
+rarity=C
+[/card]
+[card]
+primitive=Aven Mindcensor
+id=136204
+rarity=U
+[/card]
+[card]
+primitive=Barren Glory
+id=136048
+rarity=R
+[/card]
+[card]
+primitive=Baru, Fist of Krosa
+id=136155
+rarity=R
+[/card]
+[card]
+primitive=Bitter Ordeal
+id=136049
+rarity=R
+[/card]
+[card]
+primitive=Blade of the Sixth Pride
 id=130676
-name=Blade of the Sixth Pride
 rarity=C
-mana={1}{W}
-type=Creature
-subtype=Cat Rebel
-power=3
-toughness=1
 [/card]
 [card]
+primitive=Blind Phantasm
 id=126143
-name=Blind Phantasm
 rarity=C
-mana={2}{U}
-type=Creature
-subtype=Illusion
-power=2
-toughness=3
 [/card]
 [card]
-text=Enchant creature   Enchanted creature can't attack or block.
+primitive=Bloodshot Trainee
+id=130686
+rarity=U
+[/card]
+[card]
+primitive=Bogardan Lancer
+id=126161
+rarity=C
+[/card]
+[card]
+primitive=Boldwyr Intimidator
+id=130672
+rarity=U
+[/card]
+[card]
+primitive=Bonded Fetch
+id=132229
+rarity=U
+[/card]
+[card]
+primitive=Bound in Silence
 id=130334
-name=Bound in Silence
 rarity=U
-mana={2}{W}
-target=creature
-auto=cantattack
-auto=cantblock
-type=Enchantment
-subtype=Tribal Rebel Aura
 [/card]
 [card]
-text=Double strike   {R}: Char-Rumbler gets +1/+0 until end of turn.
+primitive=Bridge from Below
+id=136054
+rarity=R
+[/card]
+[card]
+primitive=Centaur Omenreader
+id=130684
+rarity=U
+[/card]
+[card]
+primitive=Char-Rumbler
 id=130582
-name=Char-Rumbler
 rarity=U
-mana={2}{R}{R}
-auto={R}:1/0
-type=Creature
-subtype=Elemental
-power=-1
-toughness=3
-abilities=double strike
 [/card]
 [card]
-text={U}, {T}, Discard a card: Put a 1/1 blue Faerie creature token named Cloud Sprite onto the battlefield with flying and "Cloud Sprite can block only creatures with flying."
+primitive=Chronomantic Escape
+id=126204
+rarity=U
+[/card]
+[card]
+primitive=Cloud Key
+id=136156
+rarity=R
+[/card]
+[card]
+primitive=Cloudseeder
 id=130309
-name=Cloudseeder
 rarity=U
-mana={1}{U}
-type=Creature
-subtype=Faerie Spellshaper
-auto={U}{T}{S(*|myhand)}:token(Cloud Sprite,creature faerie, 1/1,flying,cloud blue)
-power=1
-toughness=1
-abilities=flying
 [/card]
 [card]
+primitive=Coalition Relic
+id=125878
+rarity=R
+[/card]
+[card]
+primitive=Cryptic Annelid
+id=126141
+rarity=U
+[/card]
+[card]
+primitive=Cutthroat il-Dal
+id=126177
+rarity=C
+[/card]
+[card]
+primitive=Cyclical Evolution
+id=126169
+rarity=U
+[/card]
+[card]
+primitive=Dakmor Salvage
+id=136053
+rarity=U
+[/card]
+[card]
+primitive=Darksteel Garrison
+id=126211
+rarity=R
+[/card]
+[card]
+primitive=Daybreak Coronet
+id=130635
+rarity=R
+[/card]
+[card]
+primitive=Death Rattle
+id=136043
+rarity=C
+[/card]
+[card]
+primitive=Deepcavern Imp
+id=132226
+rarity=C
+[/card]
+[card]
+primitive=Delay
+id=132228
+rarity=U
+[/card]
+[card]
+primitive=Dryad Arbor
+id=136196
+rarity=U
+[/card]
+[card]
+primitive=Dust of Moments
+id=136207
+rarity=U
+[/card]
+[card]
+primitive=Edge of Autumn
+id=126132
+rarity=C
+[/card]
+[card]
+primitive=Emberwilde Augur
 id=132214
-name=Emberwilde Augur
-mana={1}{R}
-type=Creature
-subtype=Goblin Shaman
-power=2
-toughness=1
-text=Sacrifice Emberwilde Augur: Emberwilde Augur deals 3 damage to target player. Play this ability only during your upkeep.
-auto={S}:damage:3 target(player) myUpkeepOnly
 rarity=C
 [/card]
 [card]
-text=Enchant creature you control (Target a creature as you cast this. This card enters the battlefield attached to that creature.)   Creatures you control have haste.
+primitive=Emblem of the Warmind
 id=136215
-target=creature|myBattlefield
-name=Emblem of the Warmind
 rarity=U
-mana={1}{R}
-auto=lord(creature|myBattlefield) haste
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text=Enchant creature When Fatal Attraction enters the battlefield, it deals 2 damage to enchanted creature.   At the beginning of your upkeep, Fatal Attraction deals 4 damage to enchanted creature.
+primitive=Epochrasite
+id=136143
+rarity=R
+[/card]
+[card]
+primitive=Even the Odds
+id=136192
+rarity=U
+[/card]
+[card]
+primitive=Fatal Attraction
 id=130699
-name=Fatal Attraction
 rarity=C
-mana={2}{R}
-target=creature
-auto=damage:2
-auto=@each my upkeep:damage:4
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text=Transfigure {1}{B}{B} ({1}{B}{B}, Sacrifice this creature: Search your library for a creature card with the same converted mana cost as this creature and put that card onto the battlefield. Then shuffle your library. Transfigure only as a sorcery.)
+primitive=Festering March
+id=126131
+rarity=U
+[/card]
+[card]
+primitive=Fleshwrither
 id=132220
-name=Fleshwrither
 rarity=U
-mana={2}{B}{B}
-type=Creature
-subtype=Horror
-auto={1}{B}{B}{S}:moveTo(myBattlefield) target(*[manacost=4]|mylibrary) asSorcery
-power=3
-toughness=3
 [/card]
 [card]
-text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.)   {T}: Enchanted creature gets +2/-2 until end of turn.
+primitive=Flowstone Embrace
 id=132227
-target=creature
-name=Flowstone Embrace
 rarity=C
-mana={1}{R}
-auto={T}:2/-2
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
+primitive=Fomori Nomad
 id=126149
-name=Fomori Nomad
 rarity=C
-mana={4}{R}
-type=Creature
-subtype=Nomad Giant
-power=4
-toughness=4
 [/card]
 [card]
-text=Trample
+primitive=Force of Savagery
 id=130713
-name=Force of Savagery
 rarity=R
-mana={2}{G}
-type=Creature
-subtype=Elemental
-power=8
-toughness=0
-abilities=trample
 [/card]
 [card]
-text=Flash (You may cast this spell any time you could cast an instant.)   Enchant creature   Enchanted creature gets +0/+2.
+primitive=Foresee
+id=130669
+rarity=C
+[/card]
+[card]
+primitive=Frenzy Sliver
+id=126187
+rarity=C
+[/card]
+[card]
+primitive=Gathan Raiders
+id=130707
+rarity=C
+[/card]
+[card]
+primitive=Ghostfire
+id=136044
+rarity=C
+[/card]
+[card]
+primitive=Gibbering Descent
+id=130690
+rarity=R
+[/card]
+[card]
+primitive=Gift of Granite
 id=136200
-target=creature
-name=Gift of Granite
 rarity=C
-mana={W}
-auto=0/2
-type=Enchantment
-subtype=Aura
-abilities=flash
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.   {BR}, {T}: Add {B}{B}, {B}{R}, or {R}{R} to your mana pool.
-auto={T}:Add {1}
-auto={RB}{T}:Add {B}{B}
-auto={RB}{T}:Add {B}{R}
-auto={RB}{T}:Add {R}{R}
+primitive=Glittering Wish
+id=136157
+rarity=R
+[/card]
+[card]
+primitive=Goldmeadow Lookout
+id=130311
+rarity=U
+[/card]
+[card]
+primitive=Grave Peril
+id=126159
+rarity=C
+[/card]
+[card]
+primitive=Grave Scrabbler
+id=132211
+rarity=C
+[/card]
+[card]
+primitive=Graven Cairns
 id=130581
-name=Graven Cairns
 rarity=R
-type=Land
 [/card]
 [card]
-text={R}, Return Grinning Ignus to its owner's hand: Add {2}{R} to your mana pool. Play this ability only any time you could cast a sorcery.
+primitive=Grinning Ignus
 id=136040
-name=Grinning Ignus
 rarity=C
-mana={2}{R}
-type=Creature
-subtype=Elemental
-auto={R}:moveTo(ownerhand) && add{2}{R} asSorcery
-power=2
-toughness=2
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.   {T}: Add {R} or {G} to your mana pool. Each opponent gains 1 life.
+primitive=Grove of the Burnwillows
 id=130595
-name=Grove of the Burnwillows
-auto={T}:Add {1}
-auto={T}:Add {R} && life:1 opponent
-auto={T}:Add {G} && life:1 opponent
 rarity=R
-type=Land
 [/card]
 [card]
-text=Whenever a player casts a noncreature spell, each of that player's opponents may draw a card.
-auto=@movedTo(*[-creature]|mystack):draw:1 opponent
-auto=@movedTo(*[-creature]|opponentstack):may draw:1 controller
+primitive=Haze of Rage
+id=130328
+rarity=U
+[/card]
+[card]
+primitive=Heartwood Storyteller
 id=132216
-name=Heartwood Storyteller
-mana={1}{G}{G}
-type=Creature
-subtype=Treefolk
-power=2
-toughness=3
 rarity=R
 [/card]
 [card]
-text={T}: Pay 1 life: Add {G} or {W} to your mana pool.   {1}, {T}, Sacrifice Horizon Canopy: Draw a card.
-auto={T}:Add {G} && life:-1
-auto={T}:Add {W} && life:-1
-auto={1}{T}{S}:Draw:1
+primitive=Henchfiend of Ukor
+id=130695
+rarity=C
+[/card]
+[card]
+primitive=Homing Sliver
+id=126162
+rarity=C
+[/card]
+[card]
+primitive=Horizon Canopy
 id=130574
-name=Horizon Canopy
 rarity=R
-type=Land
 [/card]
 [card]
-text=Flash (You may cast this spell any time you could cast an instant.)   Enchant creature   Enchanted creature gets +3/+3 and doesn't untap during its controller's untap step.
+primitive=Ichor Slick
+id=130683
+rarity=C
+[/card]
+[card]
+primitive=Imperial Mask
+id=136201
+rarity=R
+[/card]
+[card]
+primitive=Imperiosaur
+id=130634
+rarity=U
+[/card]
+[card]
+primitive=Infiltrator il-Kor
+id=130694
+rarity=C
+[/card]
+[card]
+primitive=Intervention Pact
+id=130680
+rarity=R
+[/card]
+[card]
+primitive=Jhoira of the Ghitu
+id=136194
+rarity=R
+[/card]
+[card]
+primitive=Judge Unworthy
+id=126164
+rarity=C
+[/card]
+[card]
+primitive=Kavu Primarch
+id=132218
+rarity=C
+[/card]
+[card]
+primitive=Keldon Megaliths
+id=136046
+rarity=U
+[/card]
+[card]
+primitive=Knight of Sursi
+id=130698
+rarity=C
+[/card]
+[card]
+primitive=Korlash, Heir to Blackblade
+id=136208
+rarity=R
+[/card]
+[card]
+primitive=Leaden Fists
 id=126139
-name=Leaden Fists
 rarity=C
-mana={2}{U}
-target=creature
-abilities=flash
-auto=3/3
-auto=doesnotuntap
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text=Flying
+primitive=Linessa, Zephyr Mage
+id=136198
+rarity=R
+[/card]
+[card]
+primitive=Llanowar Augur
+id=132213
+rarity=C
+[/card]
+[card]
+primitive=Llanowar Empath
+id=126147
+rarity=C
+[/card]
+[card]
+primitive=Llanowar Mentor
+id=126166
+rarity=U
+[/card]
+[card]
+primitive=Llanowar Reborn
+id=136035
+rarity=U
+[/card]
+[card]
+primitive=Logic Knot
+id=126151
+rarity=C
+[/card]
+[card]
+primitive=Lost Auramancers
+id=126146
+rarity=U
+[/card]
+[card]
+primitive=Lost Hours
+id=130332
+rarity=C
+[/card]
+[card]
+primitive=Lucent Liminid
 id=130691
-name=Lucent Liminid
 rarity=C
-mana={3}{W}{W}
-type=Creature
-subtype=Elemental Enchantment
-power=3
-toughness=3
-abilities=flying
 [/card]
 [card]
-text=Creatures without flying can't attack.
+primitive=Lumithread Field
+id=126186
+rarity=C
+[/card]
+[card]
+primitive=Lymph Sliver
+id=126165
+rarity=C
+[/card]
+[card]
+primitive=Maelstrom Djinn
+id=136195
+rarity=R
+[/card]
+[card]
+primitive=Magus of the Abyss
+id=136033
+rarity=R
+[/card]
+[card]
+primitive=Magus of the Future
+id=136051
+rarity=R
+[/card]
+[card]
+primitive=Magus of the Moat
 id=136148
-name=Magus of the Moat
 rarity=R
-mana={2}{W}{W}
-auto=lord(creature[-flying]) cantattack
-type=Creature
-subtype=Human Wizard
-power=0
-toughness=3
 [/card]
 [card]
+primitive=Magus of the Moon
+id=136152
+rarity=R
+[/card]
+[card]
+primitive=Magus of the Vineyard
+id=136159
+rarity=R
+[/card]
+[card]
+primitive=Marshaling Cry
+id=130689
+rarity=C
+[/card]
+[card]
+primitive=Mass of Ghouls
 id=126158
-name=Mass of Ghouls
 rarity=C
-mana={3}{B}{B}
-type=Creature
-subtype=Zombie Warrior
-power=5
-toughness=3
 [/card]
 [card]
-text=You draw X cards and you lose X life, where X is the number of creatures you control.
+primitive=Mesmeric Sliver
+id=136202
+rarity=C
+[/card]
+[card]
+primitive=Minions' Murmurs
 id=130316
-name=Minions' Murmurs
 rarity=U
-mana={2}{B}{B}
-type=Sorcery
-auto=foreach(creature|myBattlefield) draw:1
-auto=foreach(creature|myBattlefield) life:-1
 [/card]
 [card]
+primitive=Mistmeadow Skulk
 id=130346
-name=Mistmeadow Skulk
-mana={1}{W}
-type=Creature
-subtype=Kithkin Rogue
-power=1
-toughness=1
-text=Lifelink, protection from converted mana cost 3 or greater
-auto=protection from(*[manacost>=3])
-abilities=lifelink
 rarity=U
 [/card]
 [card]
+primitive=Molten Disaster
+id=136154
+rarity=R
+[/card]
+[card]
+primitive=Muraganda Petroglyphs
+id=130614
+rarity=R
+[/card]
+[card]
+primitive=Mystic Speculation
+id=126156
+rarity=U
+[/card]
+[card]
+primitive=Nacatl War-Pride
+id=130588
+rarity=U
+[/card]
+[card]
+primitive=Narcomoeba
+id=136140
+rarity=U
+[/card]
+[card]
+primitive=Nessian Courser
 id=136138
-name=Nessian Courser
 rarity=C
-mana={2}{G}
-type=Creature
-subtype=Centaur Warrior
-power=3
-toughness=3
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.   {T}: Add {W} to your mana pool. Play this ability only if you control an Island.   {T}: Add {U} to your mana pool. Play this ability only if you control a Plains.
+primitive=New Benalia
+id=126198
+rarity=U
+[/card]
+[card]
+primitive=Nihilith
+id=136206
+rarity=R
+[/card]
+[card]
+primitive=Nimbus Maze
 id=136045
-name=Nimbus Maze
-auto={T}:Add {1}
-auto=aslongas(island|myBattlefield) {T}:Add {W}
-auto=aslongas(plains|myBattlefield) {T}:Add {U}
 rarity=R
-type=Land
 [/card]
 [card]
-text=Flash (You may cast this spell any time you could cast an instant.)   Enchant creature   Enchanted creature has "Discard a card: This creature gets +1/+1 until end of turn."
+primitive=Nix
+id=130564
+rarity=R
+[/card]
+[card]
+primitive=Oblivion Crown
 id=132219
-target=creature
-name=Oblivion Crown
 rarity=C
-mana={1}{B}
-auto={S(*|myhand)}:1/1
-type=Enchantment
-subtype=Aura
-abilities=flash
 [/card]
 [card]
-text=Enchant land   Whenever enchanted land becomes tapped, its controller loses 2 life.   {3}{B}: Destroy enchanted land.
+primitive=Oriss, Samite Guardian
+id=136210
+rarity=R
+[/card]
+[card]
+primitive=Pact of Negation
+id=130701
+rarity=R
+[/card]
+[card]
+primitive=Pact of the Titan
+id=130638
+rarity=R
+[/card]
+[card]
+primitive=Patrician's Scorn
+id=136213
+rarity=C
+[/card]
+[card]
+primitive=Petrified Plating
+id=132223
+rarity=C
+[/card]
+[card]
+primitive=Phosphorescent Feast
+id=126160
+rarity=U
+[/card]
+[card]
+primitive=Pooling Venom
 id=136211
-target=land
-auto=@tapped(mytgt):life:-2 targetController
-auto={3}{B}:destroy
-name=Pooling Venom
 rarity=U
-mana={1}{B}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text={6}, {T}: Return target Rebel permanent card with converted mana cost 5 or less from your graveyard to the battlefield.
+primitive=Putrid Cyclops
+id=126148
+rarity=C
+[/card]
+[card]
+primitive=Pyromancer's Swath
+id=136216
+rarity=R
+[/card]
+[card]
+primitive=Quagnoth
+id=136153
+rarity=R
+[/card]
+[card]
+primitive=Quiet Disrepair
+id=132217
+rarity=C
+[/card]
+[card]
+primitive=Ramosian Revivalist
 id=136145
-name=Ramosian Revivalist
 rarity=U
-mana={3}{W}
-type=Creature
-subtype=Human Rebel Cleric
-auto={6}{T}:moveTo(myBattlefield) target(rebel[manacost<=5]|mygraveyard)
-power=2
-toughness=2
 [/card]
 [card]
-text={2}: Sarcomite Myr gains flying until end of turn.   {2}, Sacrifice Sarcomite Myr: Draw a card.
+primitive=Ravaging Riftwurm
+id=130339
+rarity=U
+[/card]
+[card]
+primitive=Reality Strobe
+id=126153
+rarity=U
+[/card]
+[card]
+primitive=Riddle of Lightning
+id=126199
+rarity=C
+[/card]
+[card]
+primitive=Rift Elemental
+id=130591
+rarity=C
+[/card]
+[card]
+primitive=Riftsweeper
+id=130353
+rarity=U
+[/card]
+[card]
+primitive=Rites of Flourishing
+id=130670
+rarity=R
+[/card]
+[card]
+primitive=River of Tears
+id=126210
+rarity=R
+[/card]
+[card]
+primitive=Saltskitter
+id=130320
+rarity=C
+[/card]
+[card]
+primitive=Samite Censer-Bearer
+id=130327
+rarity=C
+[/card]
+[card]
+primitive=Sarcomite Myr
 id=136212
-name=Sarcomite Myr
 rarity=C
-mana={2}{U}
-type=Artifact Creature
-subtype=Myr
-auto={2}:flying
-auto={2}{S}:Draw:1
-power=2
-toughness=1
 [/card]
 [card]
-text=Flying   {1}{R}: Scourge of Kher Ridges deals 2 damage to each creature without flying.   {5}{R}: Scourge of Kher Ridges deals 6 damage to each other creature with flying.
+primitive=Scourge of Kher Ridges
 id=136161
-name=Scourge of Kher Ridges
 rarity=R
-mana={6}{R}{R}
-type=Creature
-subtype=Dragon
-power=6
-toughness=6
-auto={1}{R}:damage:2 all(creature[-flying])
-auto={5}{R}:damage:6 all(other creature[flying])
-abilities=flying
 [/card]
 [card]
-text=The next creature card you play this turn can be played as though it had flash.   Draw a card.
+primitive=Scout's Warning
 id=126200
-target=creature|myhand
-auto=flash
-auto=draw:1 controller
-name=Scout's Warning
 rarity=R
-mana={W}
-type=Instant
 [/card]
 [card]
-text={1}, {T}, Discard a card: Put a 1/1 Sliver artifact creature token named Metallic Sliver onto the battlefield.
+primitive=Second Wind
+id=136158
+rarity=U
+[/card]
+[card]
+primitive=Seht's Tiger
+id=130347
+rarity=R
+[/card]
+[card]
+primitive=Shah of Naar Isle
+id=136137
+rarity=R
+[/card]
+[card]
+primitive=Shapeshifter's Marrow
+id=136214
+rarity=R
+[/card]
+[card]
+primitive=Shimian Specter
+id=126134
+rarity=R
+[/card]
+[card]
+primitive=Shivan Sand-Mage
+id=126201
+rarity=U
+[/card]
+[card]
+primitive=Skirk Ridge Exhumer
+id=130314
+rarity=U
+[/card]
+[card]
+primitive=Skizzik Surger
+id=136160
+rarity=U
+[/card]
+[card]
+primitive=Slaughter Pact
+id=130704
+rarity=R
+[/card]
+[card]
+primitive=Sliver Legion
+id=136146
+rarity=R
+[/card]
+[card]
+primitive=Sliversmith
 id=130329
-name=Sliversmith
 rarity=U
-mana={2}
-type=Creature
-subtype=Spellshaper
-auto={1}{T}{S(*|myhand)}:token(Metallic Sliver,artifact creature sliver, 1/1)
-power=1
-toughness=1
 [/card]
 [card]
-text=Swampwalk Cycling - Pay 2 life. (Pay 2 life, Discard this card: Draw a card.)
+primitive=Snake Cult Initiation
+id=130708
+rarity=U
+[/card]
+[card]
+primitive=Soultether Golem
+id=126213
+rarity=U
+[/card]
+[card]
+primitive=Sparkspitter
+id=130341
+rarity=U
+[/card]
+[card]
+primitive=Spellweaver Volute
+id=136032
+rarity=R
+[/card]
+[card]
+primitive=Spellwild Ouphe
+id=130659
+rarity=U
+[/card]
+[card]
+primitive=Spin into Myth
+id=130344
+rarity=U
+[/card]
+[card]
+primitive=Spirit en-Dal
+id=132221
+rarity=U
+[/card]
+[card]
+primitive=Sporoloth Ancient
+id=130323
+rarity=C
+[/card]
+[card]
+primitive=Sprout Swarm
+id=136042
+rarity=C
+[/card]
+[card]
+primitive=Steamflogger Boss
+id=136151
+rarity=R
+[/card]
+[card]
+primitive=Storm Entity
+id=130675
+rarity=U
+[/card]
+[card]
+primitive=Street Wraith
 id=136205
-name=Street Wraith
 rarity=U
-
-mana={3}{B}{B}
-type=Creature
-subtype=Wraith
-autohand={S}:life:-2 && draw:1
-power=3
-toughness=4
-abilities=swampwalk
 [/card]
 [card]
-text=Tarmogoyf's power is equal to the number of card types among cards in all graveyards and its toughness is equal to that number plus 1. (The card types are artifact, creature, enchantment, instant, land, planeswalker, sorcery, and tribal.)
+primitive=Stronghold Rats
+id=136056
+rarity=U
+[/card]
+[card]
+primitive=Summoner's Pact
+id=130706
+rarity=R
+[/card]
+[card]
+primitive=Sword of the Meek
+id=126215
+rarity=U
+[/card]
+[card]
+primitive=Take Possession
+id=136199
+rarity=R
+[/card]
+[card]
+primitive=Tarmogoyf
 id=136142
-name=Tarmogoyf
 rarity=R
-mana={1}{G}
-auto=aslongas(artifact|graveyard) 1/1
-auto=aslongas(creature|graveyard) 1/1
-auto=aslongas(enchantment|graveyard) 1/1
-auto=aslongas(instant|graveyard) 1/1
-auto=aslongas(land|graveyard) 1/1
-auto=aslongas(sorcery|graveyard) 1/1
-auto=aslongas(tribal|graveyard) 1/1
-type=Creature
-subtype=Lhurgoyf
-power=0
-toughness=1
 [/card]
 [card]
-text=Reach (This creature can block creatures with flying.)   Deathtouch (Whenever this creature deals damage to a creature, destroy that creature.)
+primitive=Tarox Bladewing
+id=136139
+rarity=R
+[/card]
+[card]
+primitive=Thornweald Archer
 id=130630
-name=Thornweald Archer
 rarity=C
-mana={1}{G}
-type=Creature
-subtype=Elf Archer
-power=2
-toughness=1
-abilities=reach,deathtouch
 [/card]
 [card]
-text=Tolaria West enters the battlefield tapped.   {T}: Add {U} to your mana pool.   Transmute {1}{U}{U} ({1}{U}{U}, Discard this card: Search your library for a card with converted mana cost 0, reveal it, and put it into your hand. Then shuffle your library. Transmute only as a sorcery.)
-id=136047
-name=Tolaria West
-auto=tap
-auto={T}:Add{U}
-autohand={1}{U}{U}{S}:moveTo(myhand) target(*[manacost=0;land]|mylibrary) asSorcery
-rarity=U
-type=Land
-[/card]
-[card]
-text=Flash (You may cast this spell any time you could cast an instant.)   When Vedalken AEthermage enters the battlefield, return target Sliver to its owner's hand.   Wizardcycling {3} ({3}, Discard this card: Search your library for a Wizard card, reveal it, and put it into your hand. Then shuffle your library.)
-id=130325
-name=Vedalken AEthermage
-rarity=C
-mana={1}{U}
-type=Creature
-subtype=Vedalken Wizard
-autohand={3}{S}:moveTo(myhand) target(wizard|mylibrary)
-auto=moveto(ownerhand) target(sliver)
-power=1
-toughness=2
-abilities=flash
-[/card]
-[card]
-text=Whenever you cast a spell, creatures you control can't be the targets of spells or abilities your opponents control this turn.
-auto=@movedTo(*|mystack):lord(creature|myBattlefield) opponentshroud ueot
-id=136149
-name=Veilstone Amulet
+primitive=Thunderblade Charge
+id=130338
 rarity=R
-mana={3}
-type=Artifact
 [/card]
 [card]
-text=Return target nonland permanent or suspended card to its owner's hand.
-target=*[-land]
-auto=moveTo(ownerhand)
-id=136197
-name=Venser's Diffusion
+primitive=Tolaria West
+id=136047
+rarity=U
+[/card]
+[card]
+primitive=Tombstalker
+id=136041
+rarity=R
+[/card]
+[card]
+primitive=Unblinking Bleb
+id=130342
 rarity=C
-mana={2}{U}
-type=Instant
+[/card]
+[card]
+primitive=Utopia Mycon
+id=130616
+rarity=U
+[/card]
+[card]
+primitive=Vedalken AEthermage
+id=130325
+rarity=C
+[/card]
+[card]
+primitive=Veilstone Amulet
+id=136149
+rarity=R
+[/card]
+[card]
+primitive=Venser, Shaper Savant
+id=136209
+rarity=R
+[/card]
+[card]
+primitive=Venser's Diffusion
+id=136197
+rarity=C
+[/card]
+[card]
+primitive=Virulent Sliver
+id=130644
+rarity=C
+[/card]
+[card]
+primitive=Whetwheel
+id=136141
+rarity=R
+[/card]
+[card]
+primitive=Whip-Spine Drake
+id=126178
+rarity=C
+[/card]
+[card]
+primitive=Witch's Mist
+id=132222
+rarity=U
+[/card]
+[card]
+primitive=Wrap in Vigor
+id=130331
+rarity=C
+[/card]
+[card]
+primitive=Yixlid Jailer
+id=130702
+rarity=U
+[/card]
+[card]
+primitive=Zoetic Cavern
+id=132215
+rarity=U
 [/card]

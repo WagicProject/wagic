@@ -4,1666 +4,1752 @@ year=2002
 block=Slaughter
 [/meta]
 [card]
-text=When Accursed Centaur enters the battlefield, sacrifice a creature.
+primitive=Accursed Centaur
 id=26715
-name=Accursed Centaur
 rarity=C
-mana={B}
-type=Creature
-subtype=Zombie Centaur
-auto=bury notatarget(creature|myBattlefield)
-power=2
-toughness=2
 [/card]
 [card]
-text=Whenever a Beast enters the battlefield under your control, you may have it deal 4 damage to target opponent.
-auto=@movedTo(beast|myBattlefield):may damage:4 opponent
+primitive=AEther Charge
 id=12425
-name=AEher Charge
 rarity=U
-mana={4}{R}
-type=Enchantment
 [/card]
 [card]
-text=Draw a card for each Bird on the battlefield.
+primitive=Aggravated Assault
+id=40195
+rarity=R
+[/card]
+[card]
+primitive=Airborne Aid
 id=39889
-auto=foreach(bird|battlefield) draw:1
-name=Airborne Aid
 rarity=C
-mana={3}{U}
-type=Sorcery
 [/card]
 [card]
-text=Creatures you control gain protection from the color of your choice until end of turn.   Cycling {W} ({W}, Discard this card: Draw a card.)
-auto=may lord(creature|myBattlefield) protection from white
-auto=may lord(creature|myBattlefield) protection from blue
-auto=may lord(creature|myBattlefield) protection from black
-auto=may lord(creature|myBattlefield) protection from red
-auto=may lord(creature|myBattlefield) protection from green
-autohand={W}:cycling
+primitive=Airdrop Condor
+id=39755
+rarity=U
+[/card]
+[card]
+primitive=Akroma's Blessing
 id=41162
-name=Akroma's Blessing
 rarity=U
-mana={2}{W}
-type=Instant
 [/card]
 [card]
-text=Destroy all artifacts, creatures, and enchantments.   Cycling {3} ({3}, Discard this card: Draw a card.)
+primitive=Akroma's Vengeance
 id=41168
-autohand={3}:cycling
-auto=destroy all(artifact,creature,enchantment)
-name=Akroma's Vengeance
 rarity=R
-mana={4}{W}{W}
-type=Sorcery
 [/card]
 [card]
-text=Enchant land (Target a land as you cast this. This card enters the battlefield attached to that land.)   You control enchanted land.
+primitive=Ancestor's Prophet
+id=39882
+rarity=R
+[/card]
+[card]
+primitive=Animal Magnetism
+id=42190
+rarity=R
+[/card]
+[card]
+primitive=Annex
 id=41463
-alias=1194
-target=Land
-name=Annex
 rarity=U
-mana={2}{U}{U}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text=Swampwalk
+primitive=Anurid Murkdiver
 id=43638
-name=Anurid Murkdiver
 rarity=C
-mana={4}{B}{B}
-type=Creature
-subtype=Zombie Beast
-power=4
-toughness=3
-abilities=swampwalk
 [/card]
 [card]
-text={T}: Draw three cards.   {2}{U}{U}: Return Arcanis the Omnipotent to its owner's hand.
+primitive=Aphetto Alchemist
+id=39530
+rarity=U
+[/card]
+[card]
+primitive=Aphetto Dredging
+id=39704
+rarity=C
+[/card]
+[card]
+primitive=Aphetto Grifter
+id=39419
+rarity=U
+[/card]
+[card]
+primitive=Aphetto Vulture
+id=39906
+rarity=U
+[/card]
+[card]
+primitive=Arcanis the Omnipotent
 id=39932
-name=Arcanis the Omnipotent
 rarity=R
-mana={3}{U}{U}{U}
-type=Legendary Creature
-subtype=Wizard
-auto={T}:draw:3
-auto={2}{U}{U}:moveTo(myhand)
-power=3
-toughness=4
 [/card]
 [card]
-text=Put target enchantment on top of its owner's library.   Cycling {2} ({2}, Discard this card: Draw a card.)
+primitive=Artificial Evolution
+id=39923
+rarity=R
+[/card]
+[card]
+primitive=Ascending Aven
+id=25879
+rarity=C
+[/card]
+[card]
+primitive=Astral Slide
+id=41148
+rarity=U
+[/card]
+[card]
+primitive=Aura Extraction
 id=35326
-target=enchantment
-auto=moveTo(ownerhand)
-autohand={2}:cycling
-name=Aura Extraction
 rarity=U
-mana={1}{W}
-type=Instant
 [/card]
 [card]
-text=Haste   When Avarax enters the battlefield, you may search your library for a card named Avarax, reveal it, and put it into your hand. If you do, shuffle your library. {1}{R}: Avarax gets +1/+0 until end of turn.
+primitive=Aurification
+id=39900
+rarity=R
+[/card]
+[card]
+primitive=Avarax
 id=43331
-name=Avarax
 rarity=U
-mana={3}{R}{R}
-type=Creature
-subtype=Beast
-auto=may moveTo(myhand) target(Avarax|mylibrary)
-auto={1}{R}:1/0
-power=3
-toughness=3
-abilities=haste
 [/card]
 [card]
-text=Flying   All other Birds get +1/+1.   All other Soldiers get +1/+1.
+primitive=Aven Brigadier
 id=40131
-name=Aven Brigadier
 rarity=R
-mana={3}{W}{W}{W}
-type=Creature
-auto=lord(soldier) 1/1 other
-auto=lord(bird) 1/1 other
-subtype=Bird Soldier
-power=3
-toughness=5
-abilities=flying
 [/card]
 [card]
-text=Cycling {2} ({2}, Discard this card: Draw a card.)
+primitive=Aven Fateshaper
+id=40655
+rarity=U
+[/card]
+[card]
+primitive=Aven Soulgazer
+id=39520
+rarity=U
+[/card]
+[card]
+primitive=Backslide
+id=26592
+rarity=C
+[/card]
+[card]
+primitive=Barkhide Mauler
 id=34196
-name=Barkhide Mauler
 rarity=C
-mana={4}{G}
-type=Creature
-subtype=Beast
-autohand={2}:cycling
-power=4
-toughness=4
 [/card]
 [card]
-text=Barren Moor enters the battlefield tapped.   {T}: Add {B} to your mana pool.   Cycling {B} ({B}, Discard this card: Draw a card.)
+primitive=Barren Moor
 id=41139
-name=Barren Moor
-auto=tap
-auto={T}:Add {B}
-autohand={B}:cycling
 rarity=C
-type=Land
 [/card]
 [card]
-text=For each opponent, gain control of target permanent that player controls. (This effect doesn't end at end of turn.)
+primitive=Battering Craghorn
+id=39486
+rarity=C
+[/card]
+[card]
+primitive=Battlefield Medic
+id=39430
+rarity=C
+[/card]
+[card]
+primitive=Biorhythm
+id=39913
+rarity=R
+[/card]
+[card]
+primitive=Birchlore Rangers
+id=39836
+rarity=C
+[/card]
+[card]
+primitive=Blackmail
+id=39709
+rarity=U
+[/card]
+[card]
+primitive=Blatant Thievery
 id=41156
-target=*|opponentBattlefield
-auto=moveTo(myBattlefield)
-name=Blatant Thievery
 rarity=R
-mana={4}{U}{U}{U}
-type=Sorcery
 [/card]
 [card]
-text={T}, Pay 1 life, Sacrifice Bloodstained Mire: Search your library for a Swamp or Mountain card and put it into onto the battlefield. Then shuffle your library.
-auto={T}{S}:moveTo(myBattlefield) target(swamp,mountain|mylibrary) && life:-1 controller
+primitive=Blistering Firecat
+id=39737
+rarity=R
+[/card]
+[card]
+primitive=Bloodline Shaman
+id=39903
+rarity=U
+[/card]
+[card]
+primitive=Bloodstained Mire
 id=39505
-name=Bloodstained Mire
 rarity=R
-type=Land
 [/card]
 [card]
-text=Add {R} to your mana pool for each Goblin on the battlefield.
+primitive=Boneknitter
+id=39547
+rarity=U
+[/card]
+[card]
+primitive=Break Open
+id=39868
+rarity=C
+[/card]
+[card]
+primitive=Brightstone Ritual
 id=39846
-auto=foreach(goblin|battlefield) Add:{R}
-name=Brightstone Ritual
 rarity=C
-mana={R}
-type=Instant
 [/card]
 [card]
-text={B}, Sacrifice a Cleric: Target player loses 2 life and you gain 2 life.
-auto={B}{S(cleric|myBattlefield)}:life:-2 target(player) && life:2 controller
+primitive=Broodhatch Nantuko
+id=39742
+rarity=U
+[/card]
+[card]
+primitive=Butcher Orgg
+id=39658
+rarity=R
+[/card]
+[card]
+primitive=Cabal Archon
 id=39545
-name=Cabal Archon
 rarity=U
-mana={2}{B}
-type=Creature
-subtype=Human Cleric
-power=2
-toughness=2
 [/card]
 [card]
-text={2}{G}{G}: Put a 3/3 green Centaur creature token onto the battlefield.
-auto={2}{G}{G}:token(Centaur,creature Centaur token,3/3,green)
+primitive=Cabal Executioner
+id=39851
+rarity=U
+[/card]
+[card]
+primitive=Cabal Slaver
+id=39467
+rarity=U
+[/card]
+[card]
+primitive=Callous Oppressor
+id=39620
+rarity=R
+[/card]
+[card]
+primitive=Catapult Master
+id=19680
+rarity=R
+[/card]
+[card]
+primitive=Catapult Squad
+id=39702
+rarity=U
+[/card]
+[card]
+primitive=Centaur Glade
 id=39678
-name=Centaur Glade
 rarity=U
-mana={3}{G}{G}
-type=Enchantment
 [/card]
 [card]
-text=As Clone enters the battlefield, you may choose a creature on the battlefield. If you do, Clone comes into play as a copy of that creature.
+primitive=Chain of Acid
+id=12445
+rarity=U
+[/card]
+[card]
+primitive=Chain of Plasma
+id=12449
+rarity=U
+[/card]
+[card]
+primitive=Chain of Silence
+id=12446
+rarity=U
+[/card]
+[card]
+primitive=Chain of Smog
+id=12448
+rarity=U
+[/card]
+[card]
+primitive=Chain of Vapor
+id=12447
+rarity=U
+[/card]
+[card]
+primitive=Charging Slateback
+id=39469
+rarity=C
+[/card]
+[card]
+primitive=Choking Tethers
+id=41161
+rarity=C
+[/card]
+[card]
+primitive=Circle of Solace
+id=39615
+rarity=R
+[/card]
+[card]
+primitive=Clone
 id=39533
-name=Clone
-rarity=U
-mana={3}{U}
-type=Creature
-subtype=Shapeshifter
-auto=may copy notatarget(creature)
-power=0
-toughness=0
+rarity=R
 [/card]
 [card]
-text={T}: Target creature with power 2 or less is unblockable this turn.
+primitive=Commando Raid
+id=34397
+rarity=U
+[/card]
+[card]
+primitive=Complicate
+id=41146
+rarity=U
+[/card]
+[card]
+primitive=Contested Cliffs
+id=40540
+rarity=R
+[/card]
+[card]
+primitive=Convalescent Care
+id=19122
+rarity=R
+[/card]
+[card]
+primitive=Cover of Darkness
+id=40129
+rarity=R
+[/card]
+[card]
+primitive=Crafty Pathmage
 id=40060
-auto={T}:unblockable target(creature[power<=2])
-name=Crafty Pathmage
 rarity=C
-mana={2}{U}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
 [/card]
 [card]
-text={3}{W}: Tap target creature.   {3}{W}: Crowd Favorites gets +0/+5 until end of turn.
+primitive=Crowd Favorites
 id=40653
-name=Crowd Favorites
 rarity=U
-mana={6}{W}
-type=Creature
-subtype=Soldier
-auto={3}{W}:tap target(creature)
-auto={3}{W}:0/5
-power=4
-toughness=4
 [/card]
 [card]
-text=First strike   When Daru Cavalier enters the battlefield, you may search your library for a card named Daru Cavalier, reveal it, and put it into your hand. If you do, shuffle your library.
+primitive=Crown of Ascension
+id=39883
+rarity=C
+[/card]
+[card]
+primitive=Crown of Awe
+id=39431
+rarity=C
+[/card]
+[card]
+primitive=Crown of Fury
+id=40058
+rarity=C
+[/card]
+[card]
+primitive=Crown of Suspicion
+id=40059
+rarity=C
+[/card]
+[card]
+primitive=Crown of Vigor
+id=39926
+rarity=C
+[/card]
+[card]
+primitive=Crude Rampart
+id=39425
+rarity=U
+[/card]
+[card]
+primitive=Cruel Revival
+id=10720
+rarity=C
+[/card]
+[card]
+primitive=Cryptic Gateway
+id=39701
+rarity=R
+[/card]
+[card]
+primitive=Custody Battle
+id=39919
+rarity=U
+[/card]
+[card]
+primitive=Daru Cavalier
 id=39523
-name=Daru Cavalier
 rarity=C
-mana={3}{W}
-type=Creature
-subtype=Human Soldier
-auto=may moveTo(myhand) target(daru cavalier|mylibrary)
-power=2
-toughness=2
-abilities=first strike
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.   {W}{T}: Target Soldier gets +1/+1 until end of turn.
+primitive=Daru Encampment
 id=13210
-name=Daru Encampment
 rarity=U
-auto={T}:Add {1}
-auto={W}{T}:1/1 target(Soldier) 
-type=Land 
 [/card]
 [card]
-text=Target creature gets -4/-4 until end of turn.   Cycling {1}{B}{B} ({1}{B}{B}, Discard this card: Draw a card.)   When you cycle Death Pulse, you may have target creature get -1/-1 until end of turn.
+primitive=Daru Healer
+id=39717
+rarity=C
+[/card]
+[card]
+primitive=Daru Lancer
+id=39705
+rarity=C
+[/card]
+[card]
+primitive=Daunting Defender
+id=8785
+rarity=C
+[/card]
+[card]
+primitive=Dawning Purist
+id=39711
+rarity=U
+[/card]
+[card]
+primitive=Death Match
+id=39556
+rarity=R
+[/card]
+[card]
+primitive=Death Pulse
 id=41142
-target=creature
-auto=-4/-4
-autohand={1}{B}{B}:cycling
-autohand={1}{B}{B}:-1/-1 target(creature) && cycling
-name=Death Pulse
 rarity=U
-mana={2}{B}{B}
-type=Instant
 [/card]
 [card]
-text=Destroy target enchantment.
+primitive=Defensive Maneuvers
+id=39822
+rarity=C
+[/card]
+[card]
+primitive=Demystify
 id=41152
-name=Demystify
-target=Enchantment
-auto=destroy
-mana={W}
-type=Instant 
 rarity=C
 [/card]
 [card]
-text=All creatures gain fear until end of turn.   Cycling {1}{B} ({1}{B}, Discard this card: Draw a card.)   When you cycle Dirge of Dread, you may have target creature gain fear until end of turn.
+primitive=Dirge of Dread
 id=41157
-auto=lord(creature) fear
-autohand={1}{B}:cycling
-autohand={1}{B}:fear target(creature) && cycling
-name=Dirge of Dread
 rarity=C
-mana={2}{B}
-type=Sorcery
 [/card]
 [card]
-text=Protection from black   Cycling {2} ({2}, Discard this card: Draw a card.)
+primitive=Disciple of Grace
 id=41133
-name=Disciple of Grace
 rarity=C
-mana={1}{W}
-type=Creature
-subtype=Human Cleric
-autohand={2}:cycling
-power=1
-toughness=2
-auto=protection from black
 [/card]
 [card]
-text=Protection from white   Cycling {2} ({2}, Discard this card: Draw a card.)
+primitive=Disciple of Malice
 id=41134
-name=Disciple of Malice
 rarity=C
-mana={1}{B}
-type=Creature
-subtype=Human Cleric
-autohand={2}:cycling
-power=1
-toughness=2
-auto=protection from white
 [/card]
 [card]
-text={3}{U}, Sacrifice a permanent: Return target permanent to its owner's hand.
-auto={3}{U}{S(*|myBattlefield)}:moveTo(ownerhand) target(*)
+primitive=Discombobulate
+id=39442
+rarity=U
+[/card]
+[card]
+primitive=Dispersing Orb
 id=40128
-name=Dispersing Orb
 rarity=U
-mana={3}{U}{U}
-type=Enchantment 
 [/card]
 [card]
-text=Flying   {T}, Sacrifice Dive Bomber: Dive Bomber deals 2 damage to target attacking or blocking creature.
+primitive=Disruptive Pitmage
+id=39527
+rarity=C
+[/card]
+[card]
+primitive=Dive Bomber
 id=39872
-name=Dive Bomber
 rarity=C
-mana={3}{W} 
-type=Creature
-subtype=Bird Soldier
-auto={T}{S}:damage:2 target(creature[attacking;blocking])
-power=2
-toughness=2
-abilities=flying
 [/card]
 [card]
-text={B}, {T}, Sacrifice Doomed Necromancer: Return target creature card from your graveyard onto the battlefield.
-auto={B}{T}{S}:moveTo(myBattlefield) target(creature|mygraveyard)
+primitive=Doom Cannon
+id=40197
+rarity=R
+[/card]
+[card]
+primitive=Doomed Necromancer
 id=39549
-name=Doomed Necromancer
 rarity=R
-mana={2}{B}
-type=Creature
-subtype=Human Cleric Mercenary
-power=2
-toughness=2
 [/card]
 [card]
-text=Lifelink (Whenever this creature deals damage, you gain that much life.) Doubtless One's power and toughness are each equal to the number of Clerics on the battlefield.
+primitive=Doubtless One
 id=39743
-name=Doubtless One
 rarity=U
-mana={3}{W}
-type=Creature
-subtype=Cleric Avatar
-auto=foreach(cleric) 1/1
-power=*
-toughness=*
-abilities=lifelink
 [/card]
 [card]
-text={5}{R}{R}: Put a 5/5 red Dragon creature token with flying onto the battlefield. (It can't be blocked except by creatures with flying or reach.)
-auto={5}{R}{R}:token(Dragon,creature dragon, 5/5,red flying)
+primitive=Dragon Roost
 id=39665
-name=Dragon Roost
 rarity=R
-mana={4}{R}{R}
-type=Enchantment 
 [/card]
 [card]
-text=Elven Riders can't be blocked except by Walls and/or creatures with flying.
+primitive=Dream Chisel
+id=40196
+rarity=R
+[/card]
+[card]
+primitive=Dwarven Blastminer
+id=39869
+rarity=U
+[/card]
+[card]
+primitive=Ebonblade Reaper
+id=39644
+rarity=R
+[/card]
+[card]
+primitive=Elven Riders
 id=40056
-name=Elven Riders
 rarity=U
-mana={3}{G}{G}
-type=Creature
-subtype=Elf
-auto=cantbeblocked(creature[-flying;-wall])
-power=3
-toughness=3
 [/card]
 [card]
-text={2}{G}: Target Elf gains forestwalk until end of turn.
+primitive=Elvish Guidance
+id=34763
+rarity=C
+[/card]
+[card]
+primitive=Elvish Pathcutter
 id=39494
-name=Elvish Pathcutter
-rarity=C 
-mana={3}{G}
-type=Creature
-subtype=Elf
-auto={2}{G}:forestwalk target(elf)
-power=1
-toughness=2
+rarity=C
 [/card]
 [card]
-text=When Elvish Pioneer enters the battlefield, you may put a basic land card from your hand onto the battlefield tapped.
-auto=may moveTo(myBattlefield) target(land[basic]|myhand) && tap
+primitive=Elvish Pioneer
 id=12463
-name=Elvish Pioneer
 rarity=C
-mana={G}
-type=Creature
-subtype=Elf Druid
-power=1
-toughness=1
 [/card]
 [card]
-text={G}, {T}, Sacrifice Elvish Scrapper: Destroy target artifact.
+primitive=Elvish Scrapper
 id=13778
-name=Elvish Scrapper
 rarity=U
-mana={G}
-auto={G}{T}{S}:destroy target(artifact)
-type=Creature
-subtype=Elf
-power=1
-toughness=1
 [/card]
 [card]
-text=Whenever another Elf enters the battlefield, put a +1/+1 counter on Elvish Vanguard.
+primitive=Elvish Vanguard
 id=5656
-name=Elvish Vanguard
 rarity=R
-mana={1}{G}
-type=Creature
-subtype=Elf Warrior
-auto=@movedTo(other elf|battlefield):counter(1/1)
-power=1
-toughness=1
 [/card]
 [card]
+primitive=Elvish Warrior
 id=39927
-name=Elvish Warrior
 rarity=C
-mana={G}{G}
-type=Creature
-subtype=Elf
-power=2
-toughness=3
 [/card]
 [card]
-text=When Embermage Goblin enters the battlefield, you may search your library for a card named Embermage Goblin, reveal it, and put it into your hand. If you do, shuffle your library. {T}: Embermage Goblin deals 1 damage to target creature or player.
+primitive=Embermage Goblin
 id=39589
-name=Embermage Goblin
 rarity=U
-mana={3}{R}
-type=Creature
-subtype=Goblin Wizard
-auto=may moveTo(myhand) target(embermage goblin|mylibrary)
-auto={T}:damage:1 target(creature,player)
-power=1
-toughness=1
 [/card]
 [card]
-text=Whenever you play an enchantment spell, draw a card.
-auto=@movedTo(enchantment|myBattlefield) from(mystack):draw:1
+primitive=Enchantress's Presence
 id=35514
-name=Enchantress's Presence
 rarity=R
-mana={2}{G}
-type=Enchantment
 [/card]
 [card]
-text=Exile target card in a graveyard.   Cycling {B} ({B}, Discard this card: Draw a card.)
+primitive=Endemic Plague
+id=39612
+rarity=R
+[/card]
+[card]
+primitive=Entrails Feaster
+id=10699
+rarity=R
+[/card]
+[card]
+primitive=Erratic Explosion
+id=12484
+rarity=C
+[/card]
+[card]
+primitive=Essence Fracture
+id=41135
+rarity=U
+[/card]
+[card]
+primitive=Everglove Courier
+id=39593
+rarity=U
+[/card]
+[card]
+primitive=Exalted Angel
+id=39718
+rarity=R
+[/card]
+[card]
+primitive=Explosive Vegetation
+id=41172
+rarity=U
+[/card]
+[card]
+primitive=Fade from Memory
 id=41165
-target=*|graveyard
-auto=moveTo(exile)
-autohand={B}:cycling
-name=Fade from Memory
 rarity=U
-mana={B}
-type=Instant
 [/card]
 [card]
-text=Target creature gets -X/-X until end of turn, where X is the number of Zombies on the battlefield.
+primitive=Fallen Cleric
+id=39849
+rarity=C
+[/card]
+[card]
+primitive=False Cure
+id=26436
+rarity=R
+[/card]
+[card]
+primitive=Feeding Frenzy
 id=41169
-target=creature
-auto=foreach(zombie) -1/-1
-name=Feeding Frenzy
 rarity=U
-mana={2}{B}
-type=Instant
 [/card]
 [card]
-text=When Festering Goblin is put into a graveyard from the battlefield, target creature gets -1/-1 until end of turn.
-auto=@movedTo(this|graveyard):-1/-1 target(creature) ueot
+primitive=Festering Goblin
 id=39905
-name=Festering Goblin
 rarity=C
-mana={B}
-type=Creature
-subtype=Zombie Goblin
-power=1
-toughness=1
 [/card]
 [card]
-text=Choose one: Target creature gains haste until end of turn; or target creature gets +2/+0 until end of turn; or Fever Charm deals 3 damage to target Wizard creature.
+primitive=Fever Charm
 id=39484
-auto=may haste target(creature)
-auto=may 2/0 target(creature)
-auto=may damage:3 target(creature[wizard])
-name=Fever Charm
 rarity=C
-mana={R}
-type=Instant
 [/card]
 [card]
-text={T}, Pay 1 life, Sacrifice Flooded Strand: Search your library for a Plains or Island card and put it onto the battlefield. Then shuffle your library.
-auto={T}{S}:moveTo(myBattlefield) target(plains,island|mylibrary) && life:-1 controller
+primitive=Flamestick Courier
+id=39592
+rarity=U
+[/card]
+[card]
+primitive=Fleeting Aven
+id=41149
+rarity=U
+[/card]
+[card]
+primitive=Flooded Strand
 id=39503
-name=Flooded Strand
 rarity=R
-type=Land
 [/card]
 [card]
-text={G}
-id=40106
-name=Forest
-auto={T}:Add {G}
-type=Basic Land 
-rarity=L
-subtype=Forest
+primitive=Foothill Guide
+id=34410
+rarity=C
 [/card]
 [card]
-text={G}
-id=40105
-name=Forest
-auto={T}:Add {G}
-type=Basic Land 
-rarity=L
-subtype=Forest
-[/card]
-[card]
-text={G}
+primitive=Forest
 id=40116
-name=Forest
-auto={T}:Add {G}
-type=Basic Land 
 rarity=L
-subtype=Forest
 [/card]
 [card]
-text={G}
+primitive=Forest
 id=40115
-name=Forest
-auto={T}:Add {G}
-type=Basic Land 
 rarity=L
-subtype=Forest
 [/card]
 [card]
-text=Forgotten Cave enters the battlefield tapped.   {T}: Add {R} to your mana pool.   Cycling {R} ({R}, Discard this card: Draw a card.)
+primitive=Forest
+id=40106
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=40105
+rarity=L
+[/card]
+[card]
+primitive=Forgotten Cave
 id=41140
-name=Forgotten Cave
-auto=tap
-auto={T}:Add {R}
-autohand={R}:cycling
 rarity=C
-type=Land
 [/card]
 [card]
-text=Shroud (This permanent can't be the target of spells or abilities.)   At the beginning of your upkeep, if Gigapede is in your graveyard, you may discard a card. If you do, return Gigapede to your hand.
-autograveyard={S(*|myhand)}:moveTo(myhand) myUpkeepOnly
+primitive=Frightshroud Courier
+id=39594
+rarity=U
+[/card]
+[card]
+primitive=Future Sight
+id=39628
+rarity=R
+[/card]
+[card]
+primitive=Gangrenous Goliath
+id=39610
+rarity=R
+[/card]
+[card]
+primitive=Ghosthelm Courier
+id=39595
+rarity=U
+[/card]
+[card]
+primitive=Gigapede
 id=39578
-name=Gigapede
 rarity=R
-mana={3}{G}{G}
-type=Creature
-subtype=Insect
-power=6
-toughness=1
-abilities=shroud
 [/card]
 [card]
+primitive=Glarecaster
+id=39423
+rarity=R
+[/card]
+[card]
+primitive=Glory Seeker
 id=39712
-name=Glory Seeker
 rarity=C
-mana={1}{W}
-type=Creature
-subtype=Soldier
-power=2
-toughness=2
 [/card]
 [card]
-text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.)
+primitive=Gluttonous Zombie
 id=33713
-name=Gluttonous Zombie
 rarity=U
-mana={4}{B}
-type=Creature
-subtype=Zombie
-power=3
-toughness=3
-abilities=fear
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.    {1}{R}, {T}: Target Goblin gets +2/+0 until end of turn.
+primitive=Goblin Burrows
 id=13012
-name=Goblin Burrows
 rarity=U
-auto={T}:Add {1}
-auto={1}{R}{T}:2/0 target(goblin) 
-type=Land 
 [/card]
 [card]
-text=When Goblin Pyromancer enters the battlefield, Goblin creatures get +3/+0 until end of turn. At end of turn, destroy all Goblins.
+primitive=Goblin Machinist
+id=39942
+rarity=U
+[/card]
+[card]
+primitive=Goblin Piledriver
+id=40193
+rarity=R
+[/card]
+[card]
+primitive=Goblin Pyromancer
 id=39840
-name=Goblin Pyromancer
 rarity=R
-mana={3}{R}
-type=Creature
-subtype=Goblin Wizard
-auto=lord(goblin) 3/0 ueot
-auto=@next my endofturn:destroy all(goblin)
-power=2
-toughness=2
 [/card]
 [card]
-text=Goblin Sharpshooter doesn't untap during your untap step. Whenever a creature is put into a graveyard from the battlefield, untap Goblin Sharpshooter. {T}: Goblin Sharpshooter deals 1 damage to target creature or player.
+primitive=Goblin Sharpshooter
 id=33695
-name=Goblin Sharpshooter
 rarity=R
-mana={2}{R}
-type=Creature
-subtype=Goblin
-auto={T}:Damage:1 target(creature,player)
-auto=@movedTo(graveyard) from(creature|battlefield):untap
-power=1
-toughness=1
-abilities=doesnotuntap
 [/card]
 [card]
-text=Flying
+primitive=Goblin Sky Raider
 id=39477
-name=Goblin Sky Raider
 rarity=C
-mana={2}{R}
-type=Creature
-subtype=Goblin
-power=1
-toughness=2
-abilities=flying
 [/card]
 [card]
-text=Sacrifice a Goblin: Target creature gets +1/+1 until end of turn.
+primitive=Goblin Sledder
 id=39826
-name=Goblin Sledder
 rarity=C
-mana={R}
-type=Creature
-subtype=Goblin
-auto={S(goblin|mybattlefield)}:1/1 target(creature) 
-power=1
-toughness=1
 [/card]
 [card]
-text=Grand Coliseum enters the battlefield tapped.   {T}: Add {1} to your mana pool. {T}: Add one mana of any color to your mana pool. Grand Coliseum deals 1 damage to you.
+primitive=Goblin Taskmaster
+id=39722
+rarity=C
+[/card]
+[card]
+primitive=Grand Coliseum
 id=39647
-name=Grand Coliseum
-auto=tap
-auto={T}:Add {1}
-auto={T}:Add {B} && damage:1 controller
-auto={T}:Add {G} && damage:1 controller
-auto={T}:Add {R} && damage:1 controller
-auto={T}:Add {U} && damage:1 controller
-auto={T}:Add {W} && damage:1 controller
-type=Land
 rarity=R
 [/card]
 [card]
-text={T}: Target Elf or Soldier gets +2/+2 until end of turn.
+primitive=Grand Melee
+id=31788
+rarity=R
+[/card]
+[card]
+primitive=Grassland Crusader
 id=39715
-name=Grassland Crusader
 rarity=C
-mana={5}{W}
-type=Creature
-subtype=Cleric Soldier
-auto={T}:2/2 target(elf,soldier) 
-power=2
-toughness=4
 [/card]
 [card]
-text=Trample   Heedless One's power and toughness are each equal to the number of Elves on the battlefield.
+primitive=Gratuitous Violence
+id=39666
+rarity=R
+[/card]
+[card]
+primitive=Gravel Slinger
+id=39716
+rarity=C
+[/card]
+[card]
+primitive=Gravespawn Sovereign
+id=10722
+rarity=R
+[/card]
+[card]
+primitive=Graxiplon
+id=29714
+rarity=U
+[/card]
+[card]
+primitive=Grinning Demon
+id=39734
+rarity=R
+[/card]
+[card]
+primitive=Gustcloak Harrier
+id=39432
+rarity=C
+[/card]
+[card]
+primitive=Gustcloak Runner
+id=39420
+rarity=C
+[/card]
+[card]
+primitive=Gustcloak Savior
+id=39602
+rarity=R
+[/card]
+[card]
+primitive=Gustcloak Sentinel
+id=39509
+rarity=U
+[/card]
+[card]
+primitive=Gustcloak Skirmisher
+id=39839
+rarity=U
+[/card]
+[card]
+primitive=Harsh Mercy
+id=39614
+rarity=R
+[/card]
+[card]
+primitive=Haunted Cadaver
+id=39852
+rarity=C
+[/card]
+[card]
+primitive=Head Games
+id=41132
+rarity=R
+[/card]
+[card]
+primitive=Headhunter
+id=39726
+rarity=U
+[/card]
+[card]
+primitive=Heedless One
 id=39744
-name=Heedless One
 rarity=U
-mana={3}{G}
-type=Creature
-subtype=Elf Avatar
-auto=foreach(elf) 1/1
-power=*
-toughness=*
-abilities=trample
 [/card]
 [card]
-text=Enchant creature   Enchanted creature gets +2/+5.   Cycling {3} ({3}, Discard this card: Draw a card.)
+primitive=Hystrodon
+id=34952
+rarity=R
+[/card]
+[card]
+primitive=Imagecrafter
+id=39884
+rarity=C
+[/card]
+[card]
+primitive=Improvised Armor
 id=41163
-target=creature
-auto=2/5
-autohand={3}:cycling
-name=Improvised Armor
 rarity=U
-mana={3}{W}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text=All creatures get -2/-2 until end of turn.
-auto=lord(creature) -2/-2
+primitive=Infest
 id=23280
-name=Infest
 rarity=U
-mana={1}{B}{B}
-type=Sorcery
 [/card]
 [card]
-text=Untap target creature. It gets +2/+4 until end of turn.
+primitive=Information Dealer
+id=39437
+rarity=C
+[/card]
+[card]
+primitive=Inspirit
 id=41154
-target=creature
-auto=untap
-auto=2/4
-name=Inspirit
 rarity=U
-mana={2}{W}
-type=Instant 
 [/card]
 [card]
-text={U}
-id=40119
-name=Island
-auto={T}:Add {U}
-type=Basic Land
-subtype=Island
-rarity=L
+primitive=Insurrection
+id=35457
+rarity=R
 [/card]
 [card]
-text={U}
-id=40118
-name=Island
-auto={T}:Add {U}
-type=Basic Land
-subtype=Island
-rarity=L
+primitive=Invigorating Boon
+id=41151
+rarity=U
 [/card]
 [card]
-text={U}
-id=40117
-name=Island
-auto={T}:Add {U}
-type=Basic Land
-subtype=Island
-rarity=L
+primitive=Ironfist Crusher
+id=39517
+rarity=U
 [/card]
 [card]
-text={U}
+primitive=Island
 id=40120
-name=Island
-auto={T}:Add {U}
-type=Basic Land
-subtype=Island
 rarity=L
 [/card]
 [card]
-####Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1) 
-text=Whenever Jareth Leonine Titan blocks, it gets +7/+7 until end of turn.   {W}: Jareth gains protection from the color of your choice until end of turn.
+primitive=Island
+id=40119
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=40118
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=40117
+rarity=L
+[/card]
+[card]
+primitive=Ixidor, Reality Sculptor
+id=40578
+rarity=R
+[/card]
+[card]
+primitive=Ixidor's Will
+id=39843
+rarity=C
+[/card]
+[card]
+primitive=Jareth, Leonine Titan
 id=39861
-name=Jareth Leonine Titan
 rarity=R
-mana={3}{W}{W}{W}
-type=Legendary Creature
-auto=lord(jareth leonine titan[blocking]|mybattlefield) 7/7
-auto={W}:protection from white
-auto={W}:protection from blue
-auto={W}:protection from black
-auto={W}:protection from red
-auto={W}:protection from green
-subtype=Cat Giant
-power=4
-toughness=7
 [/card]
 [card]
-text={G}: Target land becomes a 1/1 creature until end of turn. It's still a land.   {2}{G}{G}{G}: Creatures you control get +3/+3 and gain trample until end of turn.
+primitive=Kaboom!
+id=39559
+rarity=R
+[/card]
+[card]
+primitive=Kamahl, Fist of Krosa
 id=40538
-name=Kamahl, Fist of Krosa
 rarity=R
-mana={4}{G}{G}
-type=Legendary Creature
-subtype=Human Druid
-auto={G}{T}:target(land) becomes(Creature,1/1) ueot
-auto={2}{G}{G}{G}:lord(creature|mybattlefield) 3/3 && lord(creature|mybattlefield) trample ueot
-power=4
-toughness=3
 [/card]
 [card]
-text={G}: Target Beast gains trample until end of turn.
+primitive=Kamahl's Summons
+id=34228
+rarity=U
+[/card]
+[card]
+primitive=Krosan Colossus
+id=39669
+rarity=R
+[/card]
+[card]
+primitive=Krosan Groundshaker
 id=41056
-name=Krosan Groundshaker
 rarity=U
-mana={4}{G}{G}{G}
-type=Creature
-subtype=Beast
-auto={G}:trample target(beast)
-power=6
-toughness=6
 [/card]
 [card]
-text=Cycling {2}{G} ({2}{G}, Discard this card: Draw a card.) When you cycle Krosan Tusker, you may search your library for a basic land card, reveal that card, put it into your hand, then shuffle your library.
+primitive=Krosan Tusker
 id=43479
-name=Krosan Tusker
 rarity=C
-mana={5}{G}{G}
-type=Creature
-subtype=Boar Beast
-autohand={2}{G}:cycling
-autohand={2}{G}:moveTo(myhand) target(land[basic]|myLibrary) && cycling
-power=6
-toughness=5
 [/card]
 [card]
-text=Destroy target land.   Cycling {2} ({2}, Discard this card: Draw a card.)
+primitive=Lavamancer's Skill
+id=39479
+rarity=C
+[/card]
+[card]
+primitive=Lay Waste
 id=41158
-target=land
-auto=destroy
-autohand={2}:cycling
-name=Lay Waste
 rarity=C
-mana={3}{R}
-type=Sorcery
 [/card]
 [card]
-text=Lonely Sandbar enters the battlefield tapped.   {T}: Add {U} to your mana pool.   Cycling {U} ({U}, Discard this card: Draw a card.)
+primitive=Leery Fogbeast
+id=39675
+rarity=C
+[/card]
+[card]
+primitive=Lightning Rift
+id=41147
+rarity=U
+[/card]
+[card]
+primitive=Lonely Sandbar
 id=41138
-name=Lonely Sandbar
-auto=tap
-auto={T}:Add {U}
-autohand={U}:cycling
 rarity=C
-type=Land
 [/card]
 [card]
-text=Target creature gains shroud until end of turn. (It can't be the target of spells or abilities.)   Cycling {U} ({U}, Discard this card: Draw a card.)
+primitive=Mage's Guile
 id=41155
-target=creature
-auto=shroud
-autohand={U}:cycling
-name=Mage's Guile
 rarity=C
-mana={1}{U}
-type=Instant
 [/card]
 [card]
-text=Choose one: Destroy target Cleric; or return target Cleric card from your graveyard to your hand; or target player loses 2 life.
+primitive=Mana Echoes
+id=39571
+rarity=R
+[/card]
+[card]
+primitive=Meddle
+id=39451
+rarity=U
+[/card]
+[card]
+primitive=Menacing Ogre
+id=35164
+rarity=R
+[/card]
+[card]
+primitive=Misery Charm
 id=39466
-auto=may destroy target(cleric)
-auto=may moveTo(myHand) target(cleric|myGraveyard)
-auto=may life:-2 opponent
-name=Misery Charm
 rarity=C
-mana={B}
-type=Instant
 [/card]
 [card]
-text=Soldier creatures have vigilance. (Attacking doesn't cause them to tap.) {2}{W}: Put a 1/1 white Soldier creature token onto the battlefield.
+primitive=Mistform Dreamer
+id=39436
+rarity=C
+[/card]
+[card]
+primitive=Mistform Mask
+id=39449
+rarity=C
+[/card]
+[card]
+primitive=Mistform Mutant
+id=39529
+rarity=U
+[/card]
+[card]
+primitive=Mistform Shrieker
+id=39525
+rarity=U
+[/card]
+[card]
+primitive=Mistform Skyreaver
+id=39619
+rarity=R
+[/card]
+[card]
+primitive=Mistform Stalker
+id=39441
+rarity=U
+[/card]
+[card]
+primitive=Mistform Wall
+id=39526
+rarity=C
+[/card]
+[card]
+primitive=Mobilization
 id=39699
-name=Mobilization
-auto=lord(soldier) vigilance
-auto={2}{W}:token(Soldier,creature token Soldier, 1/1,white)
 rarity=R
-mana={2}{W}
-type=Enchantment 
 [/card]
 [card]
-text={R}
-id=40107
-name=Mountain
-auto={T}:Add {R}
-type=Basic Land
-subtype=Mountain
-rarity=L
-[/card]
-[card]
-text={R}
-id=40108
-name=Mountain
-auto={T}:Add {R}
-type=Basic Land
-subtype=Mountain
-rarity=L
-[/card]
-[card]
-text={R}
-id=40109
-name=Mountain
-auto={T}:Add {R}
-type=Basic Land
-subtype=Mountain
-rarity=L
-[/card]
-[card]
-text={R}
+primitive=Mountain
 id=40110
-name=Mountain
-auto={T}:Add {R}
-type=Basic Land
-subtype=Mountain
 rarity=L
 [/card]
 [card]
-text=Enchant creature   Enchanted creature gets +8/+8 and has trample.
+primitive=Mountain
+id=40109
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=40108
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=40107
+rarity=L
+[/card]
+[card]
+primitive=Mythic Proportions
 id=34684
-target=creature
-auto=8/8
-auto=trample
-name=Mythic Proportions
 rarity=R
-mana={4}{G}{G}{G}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text=Sacrifice a creature: Nantuko Husk gets +2/+2 until end of turn.
+primitive=Nameless One
+id=39516
+rarity=U
+[/card]
+[card]
+primitive=Nantuko Husk
 id=42186
-name=Nantuko Husk
 rarity=C
-mana={2}{B}
-type=Creature
-subtype=Zombie Insect
-auto={S(creature|myBattlefield)}:2/2
-power=2
-toughness=2
 [/card]
 [card]
-text=Destroy target artifact or enchantment.
+primitive=Naturalize
 id=35414
-name=Naturalize
-target=artifact,enchantment
-auto=destroy
-mana={1}{G}
-type=Instant 
 rarity=C
 [/card]
 [card]
-text={2}{W}, {T}, Sacrifice Nova Cleric: Destroy all enchantments.
+primitive=Nosy Goblin
+id=39710
+rarity=C
+[/card]
+[card]
+primitive=Nova Cleric
 id=39732
-name=Nova Cleric
 rarity=U
-mana={W}
-type=Creature
-subtype=Human Cleric
-auto={2}{W}{T}{S}:destroy all(enchantment)
-power=1
-toughness=2
 [/card]
 [card]
-text=Enchant creature   Enchanted creature can't attack or block.
+primitive=Oblation
+id=39933
+rarity=R
+[/card]
+[card]
+primitive=Oversold Cemetery
+id=33693
+rarity=R
+[/card]
+[card]
+primitive=Overwhelming Instinct
+id=34394
+rarity=U
+[/card]
+[card]
+primitive=Pacifism
 id=19729
-target=creature
-auto=cantattack
-auto=cantblock
-name=Pacifism
 rarity=C
-mana={1}{W}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text=Choose one: Destroy target Aura attached to a creature; or target Soldier creature gets +2/+2 until end of turn; or creatures you control gain vigilance until end of turn.
+primitive=Patriarch's Bidding
+id=26747
+rarity=R
+[/card]
+[card]
+primitive=Pearlspear Courier
+id=39596
+rarity=U
+[/card]
+[card]
+primitive=Peer Pressure
+id=39629
+rarity=R
+[/card]
+[card]
+primitive=Piety Charm
 id=39433
-auto=may destroy target(aura)
-auto=may target(creature[soldier]) 2/2
-auto=may lord(creature|myBattlefield) vigilance ueot
-name=Piety Charm
 rarity=C
-mana={W}
-type=Instant
 [/card]
 [card]
-text={W}
-id=40121
-name=Plains
-auto={T}:Add {W}
-type=Basic Land
-subtype=Plains
-rarity=L
+primitive=Pinpoint Avalanche
+id=40537
+rarity=C
 [/card]
 [card]
-text={W}
-id=40122
-name=Plains
-auto={T}:Add {W}
-type=Basic Land
-subtype=Plains
-rarity=L
-[/card]
-[card]
-text={W}
-id=40123
-name=Plains
-auto={T}:Add {W}
-type=Basic Land
-subtype=Plains
-rarity=L
-[/card]
-[card]
-text={W}
+primitive=Plains
 id=40124
-name=Plains
-auto={T}:Add {W}
-type=Basic Land
-subtype=Plains
 rarity=L
 [/card]
 [card]
-text={T}, Pay 1 life, Sacrifice Polluted Delta: Search your library for an Island or Swamp card and put it onto the battlefield. Then shuffle your library.
-auto={T}{S}:moveTo(myBattlefield) target(island,swamp|mylibrary) && life:-1 controller
+primitive=Plains
+id=40123
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=40122
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=40121
+rarity=L
+[/card]
+[card]
+primitive=Polluted Delta
 id=39504
-name=Polluted Delta
 rarity=R
-type=Land
 [/card]
 [card]
-text=Target creature gets +4/+4 until end of turn.   Cycling {2}{G} ({2}{G}, Discard this card: Draw a card.)   When you cycle Primal Boost, you may have target creature get +1/+1 until end of turn.
+primitive=Primal Boost
 id=41145
-target=creature
-auto=4/4
-autohand={2}{G}:cycling
-autohand={2}{G}:1/1 target(creature) && cycling
-name=Primal Boost
 rarity=U
-mana={2}{G}
-type=Instant
 [/card]
 [card]
-text=Profane Prayers deals X damage to target creature or player and you gain X life, where X is the number of Clerics on the battlefield.
+primitive=Profane Prayers
 id=39845
-target=creature,player
-auto=foreach(cleric) damage:1
-auto=foreach(cleric) life:1 controller
-name=Profane Prayers
 rarity=C
-mana={2}{B}{B}
-type=Sorcery
 [/card]
 [card]
-text=Until end of turn, Wizards you control gain "{T}: Counter target spell."
-auto=lord(wizard|myBattlefield) {T}:fizzle target(*|stack)
+primitive=Prowling Pangolin
+id=26428
+rarity=U
+[/card]
+[card]
+primitive=Psychic Trance
 id=40173
-name=Psychic Trance
 rarity=R
-mana={2}{U}{U}
-type=Instant
 [/card]
 [card]
-text=Sacrifice a Beast: You gain 4 life.
+primitive=Quicksilver Dragon
+id=39539
+rarity=R
+[/card]
+[card]
+primitive=Ravenous Baloth
 id=12444
-name=Ravenous Baloth
 rarity=R
-mana={2}{G}{G}
-type=Creature
-subtype=Beast
-auto={S(beast|myBattlefield)}:life:4
-power=4
-toughness=4
 [/card]
 [card]
-text=Haste   Reckless One's power and toughness are each equal to the number of Goblins on the battlefield.
+primitive=Read the Runes
+id=9839
+rarity=R
+[/card]
+[card]
+primitive=Reckless One
 id=39746
-name=Reckless One
 rarity=U
-mana={3}{R}
-type=Creature
-subtype=Goblin Avatar
-auto=foreach(goblin) 1/1
-power=*
-toughness=*
-abilities=haste
 [/card]
 [card]
-text=Target player shuffles his or her graveyard into his or her library.
+primitive=Reminisce
 id=41462
-target=player
-auto=moveTo(ownerlibrary) all(*|ownergraveyard)
-name=Reminisce
 rarity=U
-mana={2}{U}
-type=Sorcery
 [/card]
 [card]
-text=You gain 6 life.   Cycling {1}{W} ({1}{W}, Discard this card: Draw a card.)   When you cycle Renewed Faith, you may gain 2 life.
+primitive=Renewed Faith
 id=41153
-auto=life:6
-autohand={1}{W}:cycling
-autohand={1}{W}:life:2 && cycling
-name=Renewed Faith
 rarity=C
-mana={2}{W}
-type=Instant
 [/card]
 [card]
-text=Whenever a creature attacks, you gain 1 life.
-auto=@each blockers:foreach(creature[attacking]) life:1
+primitive=Righteous Cause
 id=40656
-name=Righteous Cause
 rarity=U
-mana={3}{W}{W}
-type=Enchantment
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.   {1}{U}, {T}: Return target Wizard you control to its owner's hand.
+primitive=Riptide Biologist
+id=39848
+rarity=C
+[/card]
+[card]
+primitive=Riptide Chronologist
+id=39887
+rarity=U
+[/card]
+[card]
+primitive=Riptide Entrancer
+id=39727
+rarity=R
+[/card]
+[card]
+primitive=Riptide Laboratory
 id=10704
-name=Riptide Laboratory
 rarity=R
-auto={T}:Add {1}
-auto={1}{U}{T}:moveTo(ownerhand) target(wizard|myBattlefield)
-type=Basic Land 
 [/card]
 [card]
-text=Flying, haste
+primitive=Riptide Replicator
+id=40198
+rarity=R
+[/card]
+[card]
+primitive=Riptide Shapeshifter
+id=25812
+rarity=U
+[/card]
+[card]
+primitive=Risky Move
+id=39663
+rarity=R
+[/card]
+[card]
+primitive=Rorix Bladewing
 id=39859
-name=Rorix Bladewing
 rarity=R
-mana={3}{R}{R}{R}
-type=Legendary Creature
-subtype=Dragon
-power=6
-toughness=5
-abilities=flying,haste
 [/card]
 [card]
-text=Whenever Rotlung Reanimator or another Cleric is put into a graveyard from the battlefield, put a 2/2 black Zombie creature token onto the battlefield.
+primitive=Rotlung Reanimator
 id=39640
-name=Rotlung Reanimator
 rarity=R
-mana={2}{B}
-type=Creature
-subtype=Zombie Cleric
-auto=@movedTo(this|graveyard) from(battlefield):token(Zombie,creature token Zombie, 2/2,black)
-auto=@movedTo(graveyard) from(other cleric|battlefield):token(Zombie,creature token Zombie, 2/2,black)
-power=2
-toughness=2
 [/card]
 [card]
-text=Enchant creature   Prevent all combat damage that would be dealt to and dealt by enchanted creature.
+primitive=Rummaging Wizard
+id=40601
+rarity=U
+[/card]
+[card]
+primitive=Run Wild
+id=41160
+rarity=U
+[/card]
+[card]
+primitive=Sage Aven
+id=39440
+rarity=C
+[/card]
+[card]
+primitive=Sandskin
 id=41170
-target=creature
-auto=preventAllCombatDamage from(mytgt)
-auto=preventAllCombatDamage to(mytgt)
-name=Sandskin
 rarity=C
-mana={2}{W}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text=Flying   When Screaming Seahawk enters the battlefield, you may search your library for a card named Screaming Seahawk, reveal it, and put it into your hand. If you do, shuffle your library.
+primitive=Screaming Seahawk
 id=39445
-name=Screaming Seahawk
 rarity=C
-mana={4}{U}
-type=Creature
-subtype=Bird
-auto=may moveTo(myhand) target(screaming seahawk|mylibrary)
-power=2
-toughness=2
-abilities=flying
 [/card]
 [card]
-text=Searing Flesh deals 7 damage to target opponent.
+primitive=Screeching Buzzard
+id=39455
+rarity=C
+[/card]
+[card]
+primitive=Searing Flesh
 id=35386
-name=Searing Flesh
-auto=damage:7 opponent
 rarity=U
-mana={6}{R}
-type=Sorcery 
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.   {W}{U}, {T}, Sacrifice a Bird: Draw a card.
+primitive=Sea's Claim
+id=39446
+rarity=C
+[/card]
+[card]
+primitive=Seaside Haven
 id=40539
-name=Seaside Haven
 rarity=U
-auto={T}:Add {1}
-auto={W}{U}{T}{S(bird|myBattlefield)}:draw:1
-type=Basic Land 
 [/card]
 [card]
-text=Secluded Steppe enters the battlefield tapped.   {T}: Add {W} to your mana pool.   Cycling {W} ({W}, Discard this card: Draw a card.)
+primitive=Secluded Steppe
 id=41137
-name=Secluded Steppe
-auto=tap
-auto={T}:Add {W}
-autohand={W}:cycling
 rarity=C
-type=Land
 [/card]
 [card]
-text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.)
+primitive=Serpentine Basilisk
+id=39731
+rarity=U
+[/card]
+[card]
+primitive=Severed Legion
 id=13204
-name=Severed Legion
 rarity=C
-mana={1}{B}{B}
-type=Creature
-subtype=Zombie
-power=2
-toughness=2
-abilities=fear
 [/card]
 [card]
-text={T}: Each player loses 1 life for each Zombie on the battlefield.
-auto={T}:foreach(zombie) life:-1 opponent && foreach(zombie) life:-1 controller
+primitive=Shade's Breath
+id=41279
+rarity=U
+[/card]
+[card]
+primitive=Shaleskin Bruiser
+id=39656
+rarity=U
+[/card]
+[card]
+primitive=Shared Triumph
+id=40127
+rarity=R
+[/card]
+[card]
+primitive=Shepherd of Rot
 id=39464
-name=Shepherd of Rot
 rarity=C
-mana={1}{B}
-type=Creature
-subtype=Zombie Cleric
-power=1
-toughness=1
 [/card]
 [card]
-text=Shock deals 2 damage to target creature or player.
+primitive=Shieldmage Elder
+id=39879
+rarity=U
+[/card]
+[card]
+primitive=Shock
 id=39482
-target=creature,player
-auto=damage:2
-name=Shock
 rarity=C
-mana={R}
-type=Instant 
 [/card]
 [card]
-text=Trample   {G}: Regenerate Silvos, Rogue Elemental.
+primitive=Sigil of the New Dawn
+id=39605
+rarity=R
+[/card]
+[card]
+primitive=Silent Specter
+id=41280
+rarity=R
+[/card]
+[card]
+primitive=Silklash Spider
+id=39687
+rarity=R
+[/card]
+[card]
+primitive=Silvos, Rogue Elemental
 id=39860
-name=Silvos, Rogue Elemental
 rarity=R
-mana={3}{G}{G}{G}
-type=Legendary Creature
-subtype=Elemental
-auto={G}:regenerate
-power=8
-toughness=5
-abilities=trample
 [/card]
 [card]
-text=Sacrifice a Goblin: Add {R} to your mana pool.
+primitive=Skirk Commando
+id=12417
+rarity=C
+[/card]
+[card]
+primitive=Skirk Fire Marshal
+id=40194
+rarity=R
+[/card]
+[card]
+primitive=Skirk Prospector
 id=39563
-name=Skirk Prospector
 rarity=C
-mana={R}
-type=Creature
-subtype=Goblin
-auto={S(goblin|myBattlefield)}:Add {R}
-power=1
-toughness=1
 [/card]
 [card]
-text={4}, {T}, Discard your hand: Draw a card for each creature you control.
-auto={4}{T}:moveTo(mygraveyard) all(*|myhand) && foreach(creature|myBattlefield) draw:1
+primitive=Skittish Valesk
+id=39754
+rarity=U
+[/card]
+[card]
+primitive=Slate of Ancestry
 id=39696
-name=Slate of Ancestry
 rarity=R
-mana={4}
-type=Artifact
 [/card]
 [card]
-text=Slice and Dice deals 4 damage to each creature.   Cycling {2}{R} ({2}{R}, Discard this card: Draw a card.) When you cycle Slice and Dice, you may have it deal 1 damage to each creature.
+primitive=Slice and Dice
 id=41171
-auto=damage:4 all(creature)
-autohand={2}{R}:cycling
-autohand={2}{R}:damage:1 all(creature) && cycling
-name=Slice and Dice
 rarity=U
-mana={4}{R}{R}
-type=Sorcery
 [/card]
 [card]
-text=Slipstream Eel can't attack unless defending player controls an Island.   Cycling {1}{U} ({1}{U}, Discard this card: Draw a card.)
+primitive=Slipstream Eel
 id=39706
-name=Slipstream Eel
 rarity=C
-mana={5}{U}{U}
-type=Creature
-subtype=Fish Beast
-auto=aslongas(island|opponentbattlefield) -cantattack
-autohand={1}{U}:cycling
-power=6
-toughness=6
-abilities=cantattack
 [/card]
 [card]
-text=Destroy target creature with converted mana cost 3 or less. It can't be regenerated.
+primitive=Smother
 id=41023
-target=creature[manacost<=3]
-auto=bury
-name=Smother
 rarity=U
-mana={1}{B}
-type=Instant
 [/card]
 [card]
-text=Solar Blast deals 3 damage to target creature or player.   Cycling {1}{R}{R} ({1}{R}{R}, Discard this card: Draw a card.)   When you cycle Solar Blast, you may have it deal 1 damage to target creature or player.
+primitive=Snapping Thragg
+id=39729
+rarity=U
+[/card]
+[card]
+primitive=Snarling Undorak
+id=39492
+rarity=C
+[/card]
+[card]
+primitive=Solar Blast
 id=41143
-target=creature,player
-auto=damage:3
-autohand={1}{R}{R}:cycling
-autohand={1}{R}{R}:damage:1 target(creature,player) && cycling
-name=Solar Blast
 rarity=C
-mana={3}{R}
-type=Instant
 [/card]
 [card]
-text=Soulless One's power and toughness are each equal to the number of Zombies on the battlefield plus the number of Zombie cards in all graveyards.
+primitive=Soulless One
 id=39745
-name=Soulless One
 rarity=U
-mana={3}{B}
-type=Creature
-subtype=Zombie Avatar
-auto=foreach(zombie|graveyard) 1/1
-auto=foreach(zombie) 1/1
-power=*
-toughness=*
 [/card]
 [card]
-text={T}: Sparksmith deals X damage to target creature and X damage to you, where X is the number of Goblins on the battlefield.
-auto={T}:foreach(goblin|battlefield) damage:1 target(creature) && foreach(goblin|battlefield) damage:1 controller
+primitive=Sparksmith
 id=39476
-name=Sparksmith
 rarity=C
-mana={1}{R}
-type=Creature
-subtype=Goblin
-power=1
-toughness=1
 [/card]
 [card]
-text=Stag Beetle enters the battlefield with X +1/+1 counters on it, where X is the number of other creatures on the battlefield.
-auto=foreach(other creature|battlefield) counter(1/1,1)
+primitive=Spined Basher
+id=39725
+rarity=C
+[/card]
+[card]
+primitive=Spitfire Handler
+id=39655
+rarity=U
+[/card]
+[card]
+primitive=Spitting Gourna
+id=39720
+rarity=C
+[/card]
+[card]
+primitive=Spurred Wolverine
+id=39835
+rarity=C
+[/card]
+[card]
+primitive=Spy Network
+id=39444
+rarity=C
+[/card]
+[card]
+primitive=Stag Beetle
 id=39676
-name=Stag Beetle
 rarity=R
-mana={3}{G}{G}
-type=Creature
-subtype=Insect
-power=0
-toughness=0
 [/card]
 [card]
-text=Starstorm deals X damage to each creature.   Cycling {3} ({3}, Discard this card: Draw a card.)
+primitive=Standardize
+id=40205
+rarity=R
+[/card]
+[card]
+primitive=Starlit Sanctum
+id=40542
+rarity=U
+[/card]
+[card]
+primitive=Starstorm
 id=41167
-auto=damage:X all(creature)
-autohand={3}:cycling
-name=Starstorm
 rarity=R
-mana={X}{R}{R}
-type=Instant
 [/card]
 [card]
-text={B}
-id=40111
-name=Swamp
-auto={T}:Add {B}
-type=Basic Land
-subtype=Swamp
-rarity=L
+primitive=Steely Resolve
+id=40130
+rarity=R
 [/card]
 [card]
-text={B}
-id=40112
-name=Swamp
-auto={T}:Add {B}
-type=Basic Land
-subtype=Swamp
-rarity=L
+primitive=Strongarm Tactics
+id=26349
+rarity=R
 [/card]
 [card]
-text={B}
-id=40113
-name=Swamp
-auto={T}:Add {B}
-type=Basic Land
-subtype=Swamp
-rarity=L
+primitive=Sunfire Balm
+id=41144
+rarity=U
 [/card]
 [card]
-text={B}
+primitive=Supreme Inquisitor
+id=39862
+rarity=R
+[/card]
+[card]
+primitive=Swamp
 id=40114
-name=Swamp
-auto={T}:Add {B}
-type=Basic Land
-subtype=Swamp
 rarity=L
 [/card]
 [card]
-text=Destroy target creature with power 2 or less.   Cycling {2} ({2}, Discard this card: Draw a card.)
+primitive=Swamp
+id=40113
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=40112
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=40111
+rarity=L
+[/card]
+[card]
+primitive=Swat
 id=41136
-target=creature[power<=2]
-auto=destroy
-autohand={2}:cycling
-name=Swat
 rarity=C
-mana={1}{B}{B}
-type=Instant
 [/card]
 [card]
-text=When Symbiotic Beast is put into a graveyard from the battlefield, put four 1/1 green Insect creature tokens onto the battlefield.
+primitive=Symbiotic Beast
 id=39924
-name=Symbiotic Beast
 rarity=U
-mana={4}{G}{G}
-type=Creature
-subtype=Insect Beast
-auto=@movedTo(this|graveyard) from(battlefield):token(Insect,creature insect, 1/1,green)*4
-power=4
-toughness=4
 [/card]
 [card]
-text=When Symbiotic Elf is put into a graveyard from the battlefield, put two 1/1 green Insect creature tokens onto the battlefield.
+primitive=Symbiotic Elf
 id=32216
-name=Symbiotic Elf
 rarity=C
-mana={3}{G}
-type=Creature
-subtype=Elf
-auto=@movedTo(this|graveyard) from(battlefield):token(Insect,creature insect, 1/1,green)*2
-power=2
-toughness=2
 [/card]
 [card]
-text=When Symbiotic Wurm is put into a graveyard from the battlefield, put seven 1/1 green Insect creature tokens onto the battlefield.
+primitive=Symbiotic Wurm
 id=39925
-name=Symbiotic Wurm
 rarity=R
-mana={5}{G}{G}{G}
-type=Creature
-subtype=Wurm
-auto=@movedTo(this|graveyard) from(battlefield):token(Insect,creature insect, 1/1,green)*7
-power=7
-toughness=7
 [/card]
 [card]
-text=Syphon Soul deals 2 damage to each other player. You gain life equal to the damage dealt this way.
+primitive=Syphon Mind
+id=39825
+rarity=C
+[/card]
+[card]
+primitive=Syphon Soul
 id=39468
-auto=life:-2 opponent
-auto=life:2 controller
-name=Syphon Soul
 rarity=C
-mana={2}{B}
-type=Sorcery
 [/card]
 [card]
-text=Untap target creature and gain control of it until end of turn. That creature gains haste until end of turn.
+primitive=Taunting Elf
+id=39890
+rarity=C
+[/card]
+[card]
+primitive=Tempting Wurm
+id=39929
+rarity=R
+[/card]
+[card]
+primitive=Tephraderm
+id=39659
+rarity=R
+[/card]
+[card]
+primitive=Thoughtbound Primoc
+id=39528
+rarity=U
+[/card]
+[card]
+primitive=Thrashing Mudspawn
+id=39853
+rarity=U
+[/card]
+[card]
+primitive=Threaten
 id=43736
-target=creature
-alias=129767
-auto=haste
-auto=untap
-name=Threaten
-mana={2}{R}
 rarity=U
-type=Sorcery 
 [/card]
 [card]
-text=Thunder of Hooves deals X damage to each creature without flying and each player, where X is the number of Beasts on the Battlefield.
-auto=foreach(beast) damage:1 all(player,creature[-flying])
+primitive=Thunder of Hooves
 id=39847
-name=Thunder of Hooves
 rarity=U
-mana={3}{R}
-type=Sorcery
 [/card]
 [card]
-text=Tranquil Thicket enters the battlefield tapped.   {T}: Add {G} to your mana pool.   Cycling {G} ({G}, Discard this card: Draw a card.)
+primitive=Towering Baloth
+id=39741
+rarity=U
+[/card]
+[card]
+primitive=Trade Secrets
+id=39537
+rarity=R
+[/card]
+[card]
+primitive=Tranquil Thicket
 id=41141
-name=Tranquil Thicket
-auto=tap
-auto={T}:Add {G}
-autohand={G}:cycling
 rarity=C
-type=Land
 [/card]
 [card]
-text=Tribal Golem has trample as long as you control a Beast, haste as long as you control a Goblin, first strike as long as you control a Soldier, flying as long as you control a Wizard, and "{B}: Regenerate Tribal Golem" as long as you control a Zombie.
+primitive=Treespring Lorian
+id=39721
+rarity=C
+[/card]
+[card]
+primitive=Tribal Golem
 id=30764
-name=Tribal Golem
 rarity=R
-mana={6}
-type=Artifact Creature
-subtype=Golem
-auto=aslongas(beast|myBattlefield) trample
-auto=aslongas(goblin|myBattlefield) haste
-auto=aslongas(soldier|myBattlefield) first strike
-auto=aslongas(wizard|myBattlefield) flying
-auto=aslongas(zombie|myBattlefield) {B}:regenerate
-power=4
-toughness=4
 [/card]
 [card]
-text={1}{B}, Discard a card: Return Undead Gladiator from your graveyard to your hand. Activate this ability only during your upkeep.   Cycling {1}{B} ({1}{B}, Discard this card: Draw a card.)
-autograveyard={1}{B}{S(*|myhand):moveTo(myBattlefield) myUpkeepOnly
-autohand={1}{B}:cycling
+primitive=Tribal Unity
+id=39677
+rarity=U
+[/card]
+[card]
+primitive=Trickery Charm
+id=39450
+rarity=C
+[/card]
+[card]
+primitive=True Believer
+id=39606
+rarity=R
+[/card]
+[card]
+primitive=Undead Gladiator
 id=41166
-name=Undead Gladiator
 rarity=R
-mana={1}{B}{B}
-type=Creature
-subtype=Zombie Barbarian
-power=3
-toughness=1
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.   {B}, {T}: Put target Zombie card from your graveyard on top of your library.
+primitive=Unholy Grotto
 id=40541
-name=Unholy Grotto
 rarity=R
-type=Land
-auto={T}:Add {1}
-auto={B}{T}:moveTo(mylibrary) target(zombie|mygraveyard)
 [/card]
 [card]
-text=Flying   {T}: Destroy target creature. It can't be regenerated.
+primitive=Unified Strike
+id=39427
+rarity=C
+[/card]
+[card]
+primitive=Venomspout Brackus
+id=39579
+rarity=U
+[/card]
+[card]
+primitive=Visara the Dreadful
 id=39863
-name=Visara the Dreadful
 rarity=R
-mana={3}{B}{B}{B}
-type=Legendary Creature
-subtype=Gorgon
-auto={T}:bury target(creature)
-power=5
-toughness=5
-abilities=flying
 [/card]
 [card]
-text=Choose one: Put a 1/1 green Insect creature token onto the battlefield; or target creature gets +1/+1 and gains trample until end of turn; or regenerate target Beast.
+primitive=Vitality Charm
 id=39501
-auto=may token(Insect,creature insect, 1/1,green)
-auto=may 1/1 && trample target(creature)
-auto=may regenerate target(beast)
-name=Vitality Charm
 rarity=C
-mana={G}
-type=Instant
 [/card]
 [card]
-text=(Walls can't attack.) {G}, Sacrifice a Wall: Draw a card.
+primitive=Voice of the Woods
+id=40174
+rarity=R
+[/card]
+[card]
+primitive=Voidmage Prodigy
+id=40101
+rarity=R
+[/card]
+[card]
+primitive=Walking Desecration
+id=39552
+rarity=U
+[/card]
+[card]
+primitive=Wall of Mulch
 id=39495
-name=Wall of Mulch
 rarity=U
-mana={1}{G}
-type=Creature
-subtype=Wall
-auto={G}{S(wall|myBattlefield)}:draw:1
-power=0
-toughness=4
-abilities=defender
 [/card]
 [card]
-text={T}: You gain 1 life for each Elf on the battlefield.
+primitive=Wave of Indifference
+id=39483
+rarity=C
+[/card]
+[card]
+primitive=Weathered Wayfarer
+id=39515
+rarity=R
+[/card]
+[card]
+primitive=Weird Harvest
+id=39680
+rarity=R
+[/card]
+[card]
+primitive=Wellwisher
 id=39497
-name=Wellwisher
 rarity=C
-mana={1}{G}
-type=Creature
-subtype=Elf
-auto={T}:foreach(elf) life:1 controller
-power=1
-toughness=1
 [/card]
 [card]
-text=Any number of target opponents each discards his or her hand and draws seven cards.  Draw a card.
+primitive=Wheel and Deal
 id=42184
-name=Wheel and Deal
 rarity=R
-mana={3}{U}
-auto=moveto(graveyard) all(*|opponenthand)
-auto=draw:7 opponent
-auto=draw:1 controller
-type=Instant
 [/card]
 [card]
-text={T}, Pay 1 life, Sacrifice Windswept Heath: Search your library for a Forest or Plains card and put it onto the battlefield. Then shuffle your library.
-auto={T}{S}:moveTo(myBattlefield) target(forest,plains|mylibrary) && life:-1 controller
-id=39507
-name=Windswept Heath
-rarity=R
-type=Land
-[/card]
-[card]
-text={T}: Add {G} to your mana pool.
-id=39828
-name=Wirewood Elf
-rarity=C
-mana={1}{G}
-type=Creature
-subtype=Elf
-auto={T}:Add {G}
-power=1
-toughness=2
-[/card]
-[card]
-text=When Wirewood Herald is put into a graveyard from the battlefield, you may search your library for an Elf card, reveal that card, put it into your hand, then shuffle your library.
-auto=@movedto(this|graveyard) from(battlefield):may moveto(myhand) target(elf|mylibrary)
-id=39907
-name=Wirewood Herald
-rarity=C
-mana={1}{G}
-type=Creature
-subtype=Elf
-power=1
-toughness=1
-[/card]
-[card]
-text={T}: Add {1} to your mana pool.   {G}, {T}: Untap target Elf.
-id=34764
-name=Wirewood Lodge
+primitive=Whipcorder
+id=41024
 rarity=U
-auto={T}:Add {1}
-auto={G}{T}:untap target(elf)
-type=Land 
 [/card]
 [card]
-text=Target creature gets +X/+X until end of turn, where X is the number of Elves on the battlefield.
-id=39841
-target=creature
-auto=foreach(elf) 1/1
-name=Wirewood Pride
-rarity=C
-mana={G}
-type=Instant
-[/card]
-[card]
-text=Whenever a Beast enters the battlefield, you may draw a card.
-id=39703
-name=Wirewood Savage
-rarity=C
-mana={2}{G}
-type=Creature
-subtype=Elf
-auto=@movedTo(beast|battlefield):may draw:1
-power=2
-toughness=2
-[/card]
-[card]
-text={T}, Pay 1 life, Sacrifice Wooded Foothills: Search your library for a Mountain or Forest card and put it onto the battlefield. Then shuffle your library.
-auto={T}{S}:moveTo(myBattlefield) target(mountain,forest|mylibrary) && life:-1 controller
-id=39506
-name=Wooded Foothills
+primitive=Windswept Heath
+id=39507
 rarity=R
-type=Land
 [/card]
 [card]
-text=Whenever another creature enters the battlefield, you lose 1 life.
-auto=@movedTo(other creature|battlefield):life:-1 controller
-id=26689
-name=Wretched Anurid
+primitive=Wirewood Elf
+id=39828
 rarity=C
-mana={1}{B}
-type=Creature
-subtype=Zombie Frog Beast
-power=3
-toughness=3
+[/card]
+[card]
+primitive=Wirewood Herald
+id=39907
+rarity=C
+[/card]
+[card]
+primitive=Wirewood Lodge
+id=34764
+rarity=U
+[/card]
+[card]
+primitive=Wirewood Pride
+id=39841
+rarity=C
+[/card]
+[card]
+primitive=Wirewood Savage
+id=39703
+rarity=C
+[/card]
+[card]
+primitive=Withering Hex
+id=41150
+rarity=U
+[/card]
+[card]
+primitive=Wooded Foothills
+id=39506
+rarity=R
+[/card]
+[card]
+primitive=Words of War
+id=40191
+rarity=R
+[/card]
+[card]
+primitive=Words of Waste
+id=40190
+rarity=R
+[/card]
+[card]
+primitive=Words of Wilding
+id=39684
+rarity=R
+[/card]
+[card]
+primitive=Words of Wind
+id=40188
+rarity=R
+[/card]
+[card]
+primitive=Words of Worship
+id=40189
+rarity=R
+[/card]
+[card]
+primitive=Wretched Anurid
+id=26689
+rarity=C
 [/card]

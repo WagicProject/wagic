@@ -6,1825 +6,1112 @@ year=1997
 block=Portal
 [/meta]
 [card]
-text=Swampwalk (This creature is unblockable as long as defending player controls a Swamp.)
+primitive=Alabaster Dragon
+id=4369
+rarity=R
+[/card]
+[card]
+primitive=Alluring Scent
+id=4286
+rarity=R
+[/card]
+[card]
+primitive=Anaconda
 id=4288
-name=Anaconda
 rarity=U
-mana={3}{G}
-type=Creature
-subtype=Snake
-power=3
-toughness=3
-abilities=swampwalk
 [/card]
 [card]
-text=Target creature gets +3/+3 and gains flying until end of turn.
+primitive=Anaconda
+id=4287
+rarity=U
+[/card]
+[card]
+primitive=Ancestral Memories
+id=4247
+rarity=R
+[/card]
+[card]
+primitive=Angelic Blessing
 id=4370
-target=creature
-auto=3/3
-auto=flying
-name=Angelic Blessing
 rarity=C
-mana={2}{W}
-type=Sorcery
 [/card]
 [card]
-text=Flying, vigilance
+primitive=Archangel
 id=4371
-name=Archangel
 rarity=R
-mana={5}{W}{W}
-type=Creature
-subtype=Angel
-power=5
-toughness=5
-abilities=flying,vigilance
 [/card]
 [card]
-text=Vigilance
+primitive=Ardent Militia
 id=4372
-name=Ardent Militia
 rarity=U
-mana={4}{W}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=5
-abilities=vigilance
 [/card]
 [card]
-text=Destroy all lands.
-auto=destroy all(land)
+primitive=Armageddon
 id=4373
-name=Armageddon
 rarity=R
-mana={3}{W}
-type=Sorcery
 [/card]
 [card]
-text=Flying
+primitive=Armored Pegasus
 id=4374
-name=Armored Pegasus
 rarity=C
-mana={1}{W}
-type=Creature
-subtype=Pegasus
-power=1
-toughness=2
-abilities=flying
 [/card]
 [card]
-text=Flying
+primitive=Arrogant Vampire
 id=4207
-name=Arrogant Vampire
 rarity=U
-mana={3}{B}{B}
-type=Creature
-subtype=Vampire
-power=4
-toughness=3
-abilities=flying
 [/card]
 [card]
-text=Play Assassin's Blade only during the declare attackers step and only if you are the defending player.        Destroy target nonblack attacking creature.
+primitive=Assassin's Blade
 id=4208
-target=creature[-black;attacking]
-auto=destroy
-name=Assassin's Blade
 rarity=U
-mana={1}{B}
-type=Instant
 [/card]
 [card]
-text=Target opponent reveals his or her hand. You draw a card for each Mountain and red card in it.
-auto=foreach(mountain|opponenthand) draw:1
-auto=foreach(*[red]|opponenthand) draw:1
+primitive=Balance of Power
+id=4248
+rarity=R
+[/card]
+[card]
+primitive=Baleful Stare
 id=4249
-name=Baleful Stare
 rarity=U
-mana={2}{U}
-type=Sorcery
 [/card]
 [card]
-text=Bee Sting deals 2 damage to target creature or player.
+primitive=Bee Sting
 id=4289
-target=creature,player
-auto=damage:2
-name=Bee Sting
 rarity=U
-mana={3}{G}
-type=Sorcery
 [/card]
 [card]
-text=Blaze deals X damage to target creature or player.
+primitive=Blaze
 id=4329
-target=creature,player
-auto=damage:X
-name=Blaze
 rarity=U
-type=Sorcery
-mana={X}{R}
 [/card]
 [card]
-text=You gain 3 life for each creature attacking you.
-auto=foreach(creature[attacking]|opponentBattlefield) life:3
+primitive=Blaze
+id=4328
+rarity=U
+[/card]
+[card]
+primitive=Blessed Reversal
 id=4375
-name=Blessed Reversal
 rarity=R
-mana={1}{W}
-type=Instant
 [/card]
 [card]
-text=Tap all nonwhite creatures.
-auto=tap all(creature[-white])
+primitive=Blinding Light
 id=4376
-name=Blinding Light
 rarity=R
-mana={2}{W}
-type=Sorcery
 [/card]
 [card]
-text=Flying
+primitive=Bog Imp
 id=4209
-name=Bog Imp
 rarity=C
-mana={1}{B}
-type=Creature
-subtype=Imp
-power=1
-toughness=1
-abilities=flying
 [/card]
 [card]
-text=Swampwalk
+primitive=Bog Raiders
 id=4210
-name=Bog Raiders
 rarity=C
-mana={2}{B}
-type=Creature
-subtype=Zombie
-power=2
-toughness=2
-abilities=swampwalk
 [/card]
 [card]
-text=Swampwalk (This creature is unblockable as long as defending player controls a Swamp.)
+primitive=Bog Wraith
 id=4211
-name=Bog Wraith
 rarity=U
-mana={3}{B}
-type=Creature
-subtype=Wraith
-power=3
-toughness=3
-abilities=swampwalk
 [/card]
 [card]
-text=Destroy all Islands.
-auto=destroy all(island)
+primitive=Boiling Seas
 id=4330
-name=Boiling Seas
 rarity=U
-mana={3}{R}
-type=Sorcery
 [/card]
 [card]
+primitive=Border Guard
 id=4377
-name=Border Guard
 rarity=C
-mana={2}{W}
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=4
 [/card]
 [card]
-text=Return target creature card from your graveyard to the battlefield.
+primitive=Breath of Life
 id=4378
-target=creature|mygraveyard
-auto=moveTo(myBattlefield)
-name=Breath of Life
 rarity=C
-mana={3}{W}
-type=Sorcery
 [/card]
 [card]
-text=Islandwalk
+primitive=Bull Hippo
 id=4290
-name=Bull Hippo
 rarity=U
-mana={3}{G}
-type=Creature
-subtype=Hippo
-power=3
-toughness=3
-abilities=Islandwalk
 [/card]
 [card]
-text=Target creature gets +2/+0 until end of turn. Burning Cloak deals 2 damage to that creature.
+primitive=Burning Cloak
 id=4331
-target=creature
-auto=2/0
-auto=damage:2
-name=Burning Cloak
 rarity=C
-mana={R}
-type=Sorcery
 [/card]
 [card]
-text=Capricious Sorcerer deals 1 damage to target creature or player. Play this ability only during your turn, before attackers are declared.
+primitive=Capricious Sorcerer
 id=4250
-name=Capricious Sorcerer
 rarity=R
-mana={2}{U}
-type=Creature
-subtype=Human Wizard
-auto={T}:Damage:1 target(creature,player) myTurnOnly
-power=1
-toughness=1
 [/card]
 [card]
-text=Whenever Charging Bandits attacks, it gets +2/+0 until end of turn.
+primitive=Charging Bandits
 id=4212
-name=Charging Bandits
 rarity=U
-mana={4}{B}
-type=Creature
-subtype=Human Rogue
-auto=lord(charging paladin[attacking]|myBattlefield) 2/0
-auto=lord(other charging paladin[attacking]|myBattlefield) -2/0
-power=3
-toughness=3
 [/card]
 [card]
-text=Whenever Charging Paladin attacks, it gets +0/+3 until end of turn.
+primitive=Charging Paladin
 id=4379
-name=Charging Paladin
-auto=lord(charging paladin[attacking]|myBattlefield) 0/3
-auto=lord(other charging paladin[attacking]|myBattlefield) 0/-3
 rarity=U
-mana={2}{W}
-type=Creature
-subtype=Human Knight
-power=2
-toughness=2
 [/card]
 [card]
-text=Target creature gains flying until end of turn.   Draw a card.
+primitive=Charging Rhino
+id=4291
+rarity=R
+[/card]
+[card]
+primitive=Cloak of Feathers
 id=4251
-target=creature
-auto=flying
-auto=draw:1 controller
-name=Cloak of Feathers
 rarity=C
-mana={U}
-type=Sorcery
 [/card]
 [card]
-id=4256
-name=Coral Eel
-rarity=C
-mana={1}{U}
-type=Creature
-subtype=Fish
-power=2
-toughness=1
-[/card]
-[card]
-text=Flying   Cloud Dragon can block only creatures with flying.
+primitive=Cloud Dragon
 id=4252
-name=Cloud Dragon
 rarity=R
-mana={5}{U}
-type=Creature
-subtype=Illusion Dragon
-power=5
-toughness=4
-abilities=cloud,flying
 [/card]
 [card]
-text=Flying   Cloud Pirates can block only creatures with flying.
+primitive=Cloud Pirates
 id=4253
-name=Cloud Pirates
 rarity=C
-mana={U}
-type=Creature
-subtype=Human Pirate
-power=1
-toughness=1
-abilities=cloud,flying
 [/card]
 [card]
-text=Flying   Cloud Spirit can block only creatures with flying.
+primitive=Cloud Spirit
 id=4254
-name=Cloud Spirit
 rarity=U
-mana={2}{U}
-type=Creature
-subtype=Spirit
-power=3
-toughness=1
-abilities=cloud,flying
 [/card]
 [card]
-text=Craven Giant can't block.
+primitive=Command of Unsummoning
+id=4255
+rarity=U
+[/card]
+[card]
+primitive=Coral Eel
+id=4256
+rarity=C
+[/card]
+[card]
+primitive=Craven Giant
 id=4332
-name=Craven Giant
 rarity=C
-mana={2}{R}
-type=Creature
-subtype=Giant
-power=4
-toughness=1
-abilities=cantblock
 [/card]
 [card]
-text=Craven Knight can't block.
+primitive=Craven Knight
 id=4213
-name=Craven Knight
 rarity=C
-mana={1}{B}
-type=Creature
-subtype=Human Knight
-power=2
-toughness=2
-abilities=cantblock
 [/card]
 [card]
-text=Deep-Sea Serpent can't attack unless defending player controls an Island.
-auto=aslongas(island|opponentBattlefield) -cantattack
+primitive=Cruel Bargain
+id=4214
+rarity=R
+[/card]
+[card]
+primitive=Cruel Fate
+id=4257
+rarity=R
+[/card]
+[card]
+primitive=Cruel Tutor
+id=4215
+rarity=R
+[/card]
+[card]
+primitive=Deep Wood
+id=4292
+rarity=U
+[/card]
+[card]
+primitive=Deep-Sea Serpent
 id=4258
-name=Deep-Sea Serpent
 rarity=U
-mana={4}{U}{U}
-type=Creature
-subtype=Serpent
-power=5
-toughness=5
-abilities=cantattack
 [/card]
 [card]
-text=Return target sorcery card from your graveyard to your hand.
+primitive=Defiant Stand
+id=4380
+rarity=U
+[/card]
+[card]
+primitive=Deja Vu
 id=4259
-target=sorcery|myGraveyard
-auto=moveTo(myHand)
-name=Deja vu
 rarity=C
-mana={2}{U}
-type=Sorcery
 [/card]
 [card]
-text=Flying
+primitive=Desert Drake
 id=4333
-name=Desert Drake
 rarity=U
-mana={3}{R}
-type=Creature
-subtype=Drake
-power=2
-toughness=2
-abilities=flying
 [/card]
 [card]
-text=Destroy all creatures and lands.
-auto=destroy all(creature,land)
+primitive=Devastation
 id=4334
-name=Devastation
 rarity=R
-mana={5}{R}{R}
-type=Sorcery
 [/card]
 [card]
+primitive=Devoted Hero
 id=4381
-name=Devoted Hero
 rarity=C
-mana={W}
-type=Creature
-subtype=Elf Soldier
-power=1
-toughness=2
 [/card]
 [card]
-text=Flying
+primitive=Djinn of the Lamp
 id=4260
-name=Djinn of the Lamp
 rarity=R
-mana={5}{U}{U}
-type=Creature
-subtype=Djinn
-power=5
-toughness=6
-abilities=flying
 [/card]
 [card]
-text=Until end of turn, black creatures you control can be blocked only by black creatures.
+primitive=Dread Charge
 id=4216
-auto=lord(creature|myBattlefield) cantbeblockedby(creature[-black])
-name=Dread Charge
 rarity=R
-mana={3}{B}
-type=Sorcery
 [/card]
 [card]
-text=Flying. When Dread Reaper enters the battlefield, you lose 5 life.
-auto=life:-5
+primitive=Dread Reaper
 id=4217
-name=Dread Reaper
 rarity=R
-mana={3}{B}{B}{B}
-type=Creature
-subtype=Horror
-power=6
-toughness=5
-abilities=flying
 [/card]
 [card]
-text=Dry Spell deals 1 damage to each creature and each player.
+primitive=Dry Spell
 id=4218
-name=Dry Spell
-auto=damage:1 all(creature,player)
 rarity=U
-mana={1}{B}
-type=Sorcery
 [/card]
 [card]
-text=Earthquake deals X damage to each creature without flying and each player.
+primitive=Earthquake
 id=4335
-auto=damage:X all(creature[-flying])
-auto=damage:X all(player)
-name=Earthquake
 rarity=R
-mana={X}{R}
-type=Sorcery
 [/card]
 [card]
-text=Forestwalk
+primitive=Ebon Dragon
+id=4219
+rarity=R
+[/card]
+[card]
+primitive=Elite Cat Warrior
+id=4294
+rarity=C
+[/card]
+[card]
+primitive=Elite Cat Warrior
 id=4293
-name=Elite Cat Warrior
 rarity=C
-mana={2}{G}
-type=Creature
-subtype=Cat Warrior
-power=2
-toughness=3
-abilities=forestwalk
 [/card]
 [card]
-text=Return target card from your graveyard to your hand.
+primitive=Elven Cache
 id=4295
-target=*|myGraveyard
-auto=moveTo(myHand)
-name=Elven Cache
 rarity=C
-mana={2}{G}{G}
-type=Sorcery
 [/card]
 [card]
+primitive=Elvish Ranger
 id=4296
-name=Elvish Ranger
 rarity=C
-mana={2}{G}
-type=Creature
-subtype=Elf
-power=4
-toughness=1
 [/card]
 [card]
-text=When Endless Cockroaches is put into a graveyard the battlefield, return Endless Cockroaches to its owner's hand.
-auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(this|mygraveyard)
+primitive=Endless Cockroaches
 id=4220
-name=Endless Cockroaches
 rarity=R
-mana={1}{B}{B}
-type=Creature
-subtype=Insect
-power=1
-toughness=1
 [/card]
 [card]
-text=Flying
+primitive=Exhaustion
+id=4261
+rarity=R
+[/card]
+[card]
+primitive=False Peace
+id=4382
+rarity=C
+[/card]
+[card]
+primitive=Feral Shadow
 id=4221
-name=Feral Shadow
 rarity=C
-mana={2}{B}
-type=Creature
-subtype=Nightstalker
-power=2
-toughness=1
-abilities=flying
 [/card]
 [card]
-text=Flying   When Fire Dragon enters the battlefield, it deals damage equal to the number of Mountains you control to target creature.
+primitive=Final Strike
+id=4222
+rarity=R
+[/card]
+[card]
+primitive=Fire Dragon
 id=4336
-name=Fire Dragon
 rarity=R
-mana={6}{R}{R}{R}
-type=Creature
-subtype=Dragon
-auto=foreach(mountain|myBattlefield) damage:1 target(creature)
-power=6
-toughness=6
-abilities=flying
 [/card]
 [card]
-text=When Fire Imp enters the battlefield, it deals 2 damage to target creature.
+primitive=Fire Imp
 id=4337
-name=Fire Imp
 rarity=U
-mana={2}{R}
-type=Creature
-subtype=Imp
-auto=damage:2 target(creature)
-power=2
-toughness=1
 [/card]
 [card]
-text=When Fire Snake is put into a graveyard from the battlefield, destroy target land.
+primitive=Fire Snake
 id=4338
-name=Fire Snake
 rarity=C
-mana={4}{R}
-type=Creature
-subtype=Snake
-auto=@movedTo(this|mygraveyard) from(battlefield):destroy target(land)
-power=3
-toughness=1
 [/card]
 [card]
-text=Fire Tempest deals 6 damage to each creature and each player.
+primitive=Fire Tempest
 id=4339
-name=Fire Tempest
-auto=damage:6 all(creature,player)
 rarity=R
-mana={5}{R}{R}
-type=Sorcery
 [/card]
 [card]
-text=Destroy all Plains.
-auto=destroy all(plains)
+primitive=Flashfires
 id=4340
-name=Flashfires
 rarity=U
-mana={3}{R}
-type=Sorcery
 [/card]
 [card]
-text=Fleet-Footed Monk can't be blocked by creatures with power 2 or greater.
+primitive=Fleet-Footed Monk
 id=4383
-name=Fleet-Footed Monk
 rarity=C
-mana={1}{W}
-type=Creature
-subtype=Human Monk
-auto=cantbeblockedby(creature[power>=2])
-power=1
-toughness=1
 [/card]
 [card]
+primitive=Flux
+id=4262
+rarity=U
+[/card]
+[card]
+primitive=Foot Soldiers
 id=4384
-name=Foot Soldiers
 rarity=C
-mana={3}{W}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=4
 [/card]
 [card]
-text={T}: Add {G} to your mana pool.
-id=4413
-name=Forest
-auto={T}:Add {G}
-rarity=L
-type=Basic Land
-subtype=Forest
-[/card]
-[card]
-text={T}: Add {G} to your mana pool.
+primitive=Forest
 id=4416
-name=Forest
-auto={T}:Add {G}
 rarity=L
-type=Basic Land
-subtype=Forest
 [/card]
 [card]
-text={T}: Add {G} to your mana pool.
-id=4414
-name=Forest
-auto={T}:Add {G}
-rarity=L
-type=Basic Land
-subtype=Forest
-[/card]
-[card]
-text={T}: Add {G} to your mana pool.
+primitive=Forest
 id=4415
-name=Forest
-auto={T}:Add {G}
 rarity=L
-type=Basic Land
-subtype=Forest
 [/card]
 [card]
-text=You gain 1 life for each Forest on the battlefield.
-auto=foreach(forest) life:1
+primitive=Forest
+id=4414
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=4413
+rarity=L
+[/card]
+[card]
+primitive=Forked Lightning
+id=4341
+rarity=R
+[/card]
+[card]
+primitive=Fruition
 id=4297
-name=Fruition
 rarity=C
-mana={G}
-type=Sorcery
 [/card]
 [card]
+primitive=Giant Octopus
 id=4263
-name=Giant Octopus
 rarity=C
-mana={3}{U}
-type=Creature
-subtype=Octopus
-power=3
-toughness=3
 [/card]
 [card]
-text=Reach 
+primitive=Giant Spider
 id=4298
-name=Giant Spider
 rarity=C
-mana={3}{G}
-type=Creature
-subtype=Spider
-power=2
-toughness=4
-abilities=reach
 [/card]
 [card]
+primitive=Gift of Estates
+id=4385
+rarity=R
+[/card]
+[card]
+primitive=Goblin Bully
 id=4342
-name=Goblin Bully
 rarity=C
-mana={1}{R}
-type=Creature
-subtype=Goblin
-power=2
-toughness=1
 [/card]
 [card]
+primitive=Gorilla Warrior
 id=4299
-name=Gorilla Warrior
 rarity=C
-mana={2}{G}
-type=Creature
-subtype=Ape Warrior
-power=3
-toughness=2
 [/card]
 [card]
-text=When Gravedigger enters the battlefield, you may return target creature card from your graveyard to your hand.
+primitive=Gravedigger
 id=4223
-auto=may moveto(myhand) target(creature|mygraveyard)
-name=Gravedigger
 rarity=U
-mana={3}{B}
-type=Creature
-subtype=Zombie
-power=2
-toughness=2
 [/card]
 [card]
+primitive=Grizzly Bears
 id=4300
-name=Grizzly Bears
 rarity=C
-mana={1}{G}
-type=Creature
-subtype=Bear
-power=2
-toughness=2
 [/card]
 [card]
-text=Destroy target nonblack creature.
-target=creature[-black]
-auto=destroy
+primitive=Hand of Death
 id=4225
-name=Hand of Death
 rarity=C
-mana={2}{B}
-type=Sorcery
 [/card]
 [card]
+primitive=Hand of Death
+id=4224
+rarity=C
+[/card]
+[card]
+primitive=Harsh Justice
+id=4386
+rarity=R
+[/card]
+[card]
+primitive=Highland Giant
 id=4343
-name=Highland Giant
 rarity=C
-mana={2}{R}{R}
-type=Creature
-subtype=Giant
-power=3
-toughness=4
 [/card]
 [card]
+primitive=Hill Giant
 id=4344
-name=Hill Giant
 rarity=C
-mana={3}{R}
-type=Creature
-subtype=Giant
-power=3
-toughness=3
 [/card]
 [card]
+primitive=Horned Turtle
 id=4264
-name=Horned Turtle
 rarity=C
-mana={2}{U}
-type=Creature
-subtype=Turtle
-power=1
-toughness=4
 [/card]
 [card]
-text=Target creature gets +4/+0 until end of turn.
-target=creature
-auto=4/0
+primitive=Howling Fury
 id=4226
-name=Howling Fury
 rarity=C
-mana={2}{B}
-type=Sorcery
 [/card]
 [card]
-text=Hulking Cyclops can't block.
+primitive=Hulking Cyclops
 id=4345
-name=Hulking Cyclops
 rarity=U
-mana={3}{R}{R}
-type=Creature
-subtype=Cyclops
-power=5
-toughness=5
-abilities=cantblock
 [/card]
 [card]
-text=Hulking Goblin can't block.
+primitive=Hulking Goblin
 id=4346
-name=Hulking Goblin
 rarity=C
-mana={1}{R}
-type=Creature
-subtype=Goblin
-power=2
-toughness=2
-abilities=cantblock
 [/card]
 [card]
-text=Hurricane deals X damage to each creature with flying and each player.
+primitive=Hurricane
 id=4301
-alias=1251
-name=Hurricane
 rarity=R
-mana={X}{G}
-type=Sorcery
 [/card]
 [card]
-text={T}: Add {U} to your mana pool.
-auto={T}:Add {U}
-id=4421
-name=Island
-rarity=L
-type=Basic Land
-subtype=Island
+primitive=Ingenious Thief
+id=4265
+rarity=U
 [/card]
 [card]
-text={T}: Add {U} to your mana pool.
-auto={T}:Add {U}
-id=4422
-name=Island
-rarity=L
-type=Basic Land
-subtype=Island
-[/card]
-[card]
-text={T}: Add {U} to your mana pool.
-auto={T}:Add {U}
-id=4423
-name=Island
-rarity=L
-type=Basic Land
-subtype=Island
-[/card]
-[card]
-text={T}: Add {U} to your mana pool.
-auto={T}:Add {U}
+primitive=Island
 id=4424
-name=Island
 rarity=L
-type=Basic Land
-subtype=Island
 [/card]
 [card]
-text=Jungle Lion can't block.
+primitive=Island
+id=4423
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=4422
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=4421
+rarity=L
+[/card]
+[card]
+primitive=Jungle Lion
 id=4302
-name=Jungle Lion
 rarity=C
-mana={G}
-type=Creature
-subtype=Cat
-power=2
-toughness=1
-abilities=cantblock
 [/card]
 [card]
-text=Reach (This creature can block creatures with flying.)
+primitive=Keen-Eyed Archers
 id=4387
-name=Keen-Eyed Archers
 rarity=C
-mana={2}{W}
-type=Creature
-subtype=Elf Archer
-power=2
-toughness=2
-abilities=reach
 [/card]
 [card]
-text={T}: Destroy target tapped creature. Activate this ability only during your turn, before attackers are declared.
-auto={T}:destroy target(creature[tapped]) myTurnOnly
+primitive=King's Assassin
 id=4227
-name=King's Assassin
 rarity=R
-mana={1}{B}{B}
-type=Creature
-subtype=Human Assassin
-power=1
-toughness=1
 [/card]
 [card]
+primitive=Knight Errant
 id=4388
-name=Knight Errant
 rarity=C
-mana={1}{W}
-type=Creature
-subtype=Human Knight
-power=2
-toughness=2
 [/card]
 [card]
-text=Lava Axe deals 5 damage to target player.
-target=player
-auto=Damage:5
+primitive=Last Chance
+id=4347
+rarity=R
+[/card]
+[card]
+primitive=Lava Axe
 id=4348
-name=Lava Axe
 rarity=C
-mana={4}{R}
-type=Sorcery
 [/card]
 [card]
-text=Destroy target creature or land.
-target=creature,land
-auto=destroy
+primitive=Lava Flow
 id=4349
-name=Lava Flow
 rarity=U
-mana={3}{R}{R}
-type=Sorcery
 [/card]
 [card]
+primitive=Lizard Warrior
 id=4350
-name=Lizard Warrior
 rarity=C
-mana={3}{R}
-type=Creature
-subtype=Lizard Warrior
-power=4
-toughness=2
 [/card]
 [card]
-text=When Man-o'-War enters the battlefield, return target creature to its owner's hand.
+primitive=Man-o'-War
 id=4266
-name=Man-o'-War
 rarity=U
-mana={2}{U}
-type=Creature
-subtype=Jellyfish
-auto=moveTo(ownerhand) target(creature)
-power=2
-toughness=2
 [/card]
 [card]
-text=When Mercenary Knight enters the battlefield, sacrifice it unless you discard a creature card.
+primitive=Mercenary Knight
 id=4228
-auto=
-name=Mercenary Knight
 rarity=R
-mana={2}{B}
-type=Creature
-subtype=Human Mercenary Knight
-auto=moveTo(graveyard) notatarget(this|myBattlefield)
-auto=moveTo(graveyard) notatarget(*|myhand)
-power=4
-toughness=4
 [/card]
 [card]
+primitive=Merfolk of the Pearl Trident
 id=4267
-name=Merfolk of the Pearl Trident
 rarity=C
-mana={U}
-type=Creature
-subtype=Merfolk
-power=1
-toughness=1
 [/card]
 [card]
-text=Target opponent discards a card at random.
-target=player
-auto=discard:1
+primitive=Mind Knives
 id=4229
-name=Mind Knives
 rarity=C
-mana={1}{B}
-type=Sorcery
 [/card]
 [card]
+primitive=Mind Rot
+id=4230
+rarity=C
+[/card]
+[card]
+primitive=Minotaur Warrior
 id=4351
-name=Minotaur Warrior
 rarity=C
-mana={2}{R}
-type=Creature
-subtype=Minotaur Warrior
-power=2
-toughness=3
 [/card]
 [card]
-text=Untap all creatures you control.
-auto=untap all(creature|myBattlefield)
+primitive=Mobilize
 id=4303
-name=Mobilize
 rarity=C
-mana={G}
-type=Sorcery
 [/card]
 [card]
-text=Target creature gets +4/+4 until end of turn.
+primitive=Monstrous Growth
+id=4305
+rarity=C
+[/card]
+[card]
+primitive=Monstrous Growth
 id=4304
-target=creature
-auto=4/4
-name=Monstrous Growth
 rarity=C
-mana={1}{G}
-type=Sorcery
 [/card]
 [card]
-text=Flying
+primitive=Moon Sprite
 id=4306
-name=Moon Sprite
 rarity=U
-mana={1}{G}
-type=Creature
-subtype=Faerie
-power=1
-toughness=1
-abilities=flying
 [/card]
 [card]
-text={T}: Add {R} to your mana pool.
-auto={T}:Add {R}
-id=4417
-name=Mountain
-rarity=L
-type=Basic Land
-subtype=Mountain
-[/card]
-[card]
-text={T}: Add {R} to your mana pool.
-auto={T}:Add {R}
-id=4418
-name=Mountain
-rarity=L
-type=Basic Land
-subtype=Mountain
-[/card]
-[card]
-text={T}: Add {R} to your mana pool.
-auto={T}:Add {R}
-id=4419
-name=Mountain
-rarity=L
-type=Basic Land
-subtype=Mountain
-[/card]
-[card]
-text={T}: Add {R} to your mana pool.
-auto={T}:Add {R}
+primitive=Mountain
 id=4420
-name=Mountain
 rarity=L
-type=Basic Land
-subtype=Mountain
 [/card]
 [card]
-text=Mountainwalk
+primitive=Mountain
+id=4419
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=4418
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=4417
+rarity=L
+[/card]
+[card]
+primitive=Mountain Goat
 id=4352
-name=Mountain Goat
 rarity=U
-mana={R}
-type=Creature
-subtype=Goat
-power=1
-toughness=1
-abilities=mountainwalk
 [/card]
 [card]
+primitive=Muck Rats
 id=4231
-name=Muck Rats
 rarity=C
-mana={B}
-type=Creature
-subtype=Rat
-power=1
-toughness=1
 [/card]
 [card]
-text=Counter target creature or sorcery spell.
+primitive=Mystic Denial
 id=4268
-target=creature,sorcery|stack
-auto=fizzle
-name=Mystic Denial
 rarity=U
-mana={1}{U}{U}
-type=Instant
 [/card]
 [card]
-text=Target player gains 8 life.
+primitive=Natural Order
+id=4307
+rarity=R
+[/card]
+[card]
+primitive=Natural Spring
 id=4308
-target=player
-auto=life:8
-name=Natural Spring
 rarity=U
-mana={3}{G}{G}
-type=Sorcery
 [/card]
 [card]
-text=Green creatures you control gain forestwalk until end of turn.
+primitive=Nature's Cloak
 id=4309
-auto=lord(creature|myBattlefield) forestwalk
-name=Nature's Cloak
 rarity=R
-mana={2}{G}
-type=Sorcery
 [/card]
 [card]
-text=Search your library for a Forest card and put that card onto the battlefield. Then shuffle your library.
+primitive=Nature's Lore
 id=4310
-name=Nature's Lore
-target=Forest|myLibrary
-auto=moveTo(myBattlefield)
 rarity=C
-mana={1}{G}
-type=Sorcery
 [/card]
 [card]
-text=Destroy all green creatures.
+primitive=Nature's Ruin
 id=4232
-
-auto=destroy all(creature[green])
-name=Nature's Ruin
 rarity=U
-mana={2}{B}
-type=Sorcery
 [/card]
 [card]
-text=Needle Storm deals 4 damage to each creature with flying.
+primitive=Needle Storm
 id=4311
-auto=damage:4 all(creature[flying])
-name=Needle Storm
 rarity=U
-mana={2}{G}
-type=Sorcery
 [/card]
 [card]
-text=Flying     When Owl Familiar enters the battlefield, draw a card, then discard a card.
+primitive=Noxious Toad
+id=4233
+rarity=U
+[/card]
+[card]
+primitive=Omen
+id=4269
+rarity=C
+[/card]
+[card]
+primitive=Owl Familiar
 id=4270
-name=Owl Familiar
 rarity=C
-mana={1}{U}
-type=Creature
-subtype=Bird
-auto=draw:1
-auto=moveTo(mygraveyard) notatarget(*|myhand)
-power=1
-toughness=1
-abilities=flying
 [/card]
 [card]
+primitive=Panther Warriors
 id=9845
-name=Panther Warriors
 rarity=C
-mana={4}{G}
-type=Creature
-subtype=Cat Warrior
-power=6
-toughness=3
 [/card]
 [card]
-text=Destroy target creature. Its owner gains 4 life.
+primitive=Path of Peace
 id=4389
-target=creature
-auto=destroy
-auto=life:4 targetController
-name=Path of Peace
 rarity=C
-mana={3}{W}
-type=Sorcery
 [/card]
 [card]
-text=Phantom Warrior is unblockable.
+primitive=Personal Tutor
+id=4271
+rarity=U
+[/card]
+[card]
+primitive=Phantom Warrior
 id=4272
-name=Phantom Warrior
 rarity=R
-mana={1}{U}{U}
-type=Creature
-subtype=Illusion Warrior
-power=2
-toughness=2
-abilities=unblockable
 [/card]
 [card]
-text={T}: Add {W} to your mana pool.
-auto={T}:Add {W}
-id=4425
-name=Plains
-rarity=L
-type=Basic Land
-subtype=Plains
+primitive=Pillaging Horde
+id=4353
+rarity=R
 [/card]
 [card]
-text={T}: Add {W} to your mana pool.
-auto={T}:Add {W}
-id=4427
-name=Plains
-rarity=L
-type=Basic Land
-subtype=Plains
-[/card]
-[card]
-text={T}: Add {W} to your mana pool.
-auto={T}:Add {W}
-id=4426
-name=Plains
-rarity=L
-type=Basic Land
-subtype=Plains
-[/card]
-[card]
-text={T}: Add {W} to your mana pool.
-auto={T}:Add {W}
+primitive=Plains
 id=4428
-name=Plains
 rarity=L
-type=Basic Land
-subtype=Plains
 [/card]
 [card]
-text=When Plant Elemental enters the battlefield, sacrifice it unless you sacrifice a Forest.
-auto=moveTo(graveyard) notatarget(this|myBattlefield)
-auto=moveTo(graveyard) notatarget(forest|myBattlefield)
+primitive=Plains
+id=4427
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=4426
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=4425
+rarity=L
+[/card]
+[card]
+primitive=Plant Elemental
 id=4313
-name=Plant Elemental
 rarity=U
-mana={1}{G}
-type=Creature
-subtype=Plant Elemental
-power=3
-toughness=4
 [/card]
 [card]
-text=Each player draws X cards.
+primitive=Primeval Force
+id=4314
+rarity=R
+[/card]
+[card]
+primitive=Prosperity
 id=4273
-auto=Draw:X controller
-auto=Draw:X opponent
-name=Prosperity
 rarity=R
-mana={X}{U}
-type=Sorcery
 [/card]
 [card]
-text=Pyroclasm deals 2 damage to each creature.
+primitive=Pyroclasm
 id=4354
-auto=damage:2 all(creature)
-name=Pyroclasm
-rarity=U
-mana={1}{R}
-type=Sorcery
+rarity=R
 [/card]
 [card]
+primitive=Python
 id=4234
-name=Python
 rarity=C
-mana={1}{B}{B}
-type=Creature
-subtype=Snake
-power=3
-toughness=2
 [/card]
 [card]
-text=Haste
+primitive=Raging Cougar
 id=4355
-name=Raging Cougar
 rarity=C
-mana={2}{R}
-type=Creature
-subtype=Cat
-power=2
-toughness=2
-abilities=haste
 [/card]
 [card]
-text=Haste
+primitive=Raging Goblin
+id=4357
+rarity=C
+[/card]
+[card]
+primitive=Raging Goblin
 id=4356
-name=Raging Goblin
 rarity=C
-mana={R}
-type=Creature
-subtype=Goblin Berserker
-power=1
-toughness=1
-abilities=haste
 [/card]
 [card]
-text=Haste
+primitive=Raging Minotaur
 id=4358
-name=Raging Minotaur
 rarity=C
-mana={2}{R}{R}
-type=Creature
-subtype=Minotaur Berserker
-power=3
-toughness=3
-abilities=haste
 [/card]
 [card]
-text=Destroy target land.
+primitive=Rain of Salt
+id=4359
+rarity=U
+[/card]
+[card]
+primitive=Rain of Tears
 id=4235
-target=land
-auto=destroy
-name=Rain of Tears
 rarity=U
-mana={1}{B}{B}
-type=Sorcery
 [/card]
 [card]
-text=Return target creature card from your graveyard to your hand.
+primitive=Raise Dead
 id=4236
-target=creature|myGraveyard
-auto=moveTo(myHand)
-name=Raise Dead
 rarity=C
-mana={B}
-type=Sorcery
 [/card]
 [card]
+primitive=Redwood Treefolk
 id=4315
-name=Redwood Treefolk
 rarity=C
-mana={4}{G}
-type=Creature
-subtype=Treefolk
-power=3
-toughness=6
 [/card]
 [card]
+primitive=Regal Unicorn
 id=4390
-name=Regal Unicorn
 rarity=C
-mana={2}{W}
-type=Creature
-subtype=Unicorn
-power=2
-toughness=3
 [/card]
 [card]
-text=You gain 2 life for each Mountain target opponent controls.
-auto=foreach(mountain|opponentBattlefield) life:2
+primitive=Renewing Dawn
 id=4391
-name=Renewing Dawn
 rarity=U
-mana={1}{W}
-type=Sorcery
 [/card]
 [card]
+primitive=Rowan Treefolk
 id=4316
-name=Rowan Treefolk
 rarity=C
-mana={3}{G}
-type=Creature
-subtype=Treefolk
-power=3
-toughness=4
 [/card]
 [card]
-text=Sacred Knight can't be blocked by black and/or red creatures.
+primitive=Sacred Knight
 id=4392
-name=Sacred Knight
 rarity=C
-mana={3}{W}
-type=Creature
-subtype=Human Knight
-auto=cantbeblockedby(creature[red;black])
-power=3
-toughness=2
 [/card]
 [card]
-text=You gain 4 life.
-auto=life:4
+primitive=Sacred Nectar
 id=4393
-name=Sacred Nectar
 rarity=C
-mana={1}{W}
-type=Sorcery
 [/card]
 [card]
-text=Scorching Spear deals 1 damage to target creature or player.
-target=creature,player
-auto=Damage:1
+primitive=Scorching Spear
 id=4360
-name=Scorching Spear
 rarity=C
-mana={R}
-type=Sorcery
 [/card]
 [card]
-text=When Serpent Assassin enters the battlefield, you may destroy target nonblack creature.
+primitive=Scorching Winds
+id=4361
+rarity=U
+[/card]
+[card]
+primitive=Seasoned Marshal
+id=4394
+rarity=U
+[/card]
+[card]
+primitive=Serpent Assassin
 id=4237
-name=Serpent Assassin
 rarity=R
-mana={3}{B}{B}
-type=Creature
-subtype=Snake Assassin
-auto=may destroy target(creature[-black])
-power=2
-toughness=2
 [/card]
 [card]
-text=When Serpent Warrior enters the battlefield, you lose 3 life.
+primitive=Serpent Warrior
 id=4238
-name=Serpent Warrior
 rarity=C
-mana={2}{B}
-type=Creature
-subtype=Snake Warrior
-auto=life:-3
-power=3
-toughness=3
 [/card]
 [card]
+primitive=Skeletal Crocodile
 id=4239
-name=Skeletal Crocodile
 rarity=C
-mana={3}{B}
-type=Creature
-subtype=Crocodile Skeleton
-power=5
-toughness=1
 [/card]
 [card]
+primitive=Skeletal Snake
 id=4240
-name=Skeletal Snake
 rarity=C
-mana={1}{B}
-type=Creature
-subtype=Snake Skeleton
-power=2
-toughness=1
 [/card]
 [card]
-text=Flying (This creature can't be blocked except by creatures with flying or reach.)
+primitive=Snapping Drake
 id=4274
-name=Snapping Drake
 rarity=C
-mana={3}{U}
-type=Creature
-subtype=Drake
-power=3
-toughness=2
-abilities=flying
 [/card]
 [card]
-text=Soul Shred deals 3 damage to target nonblack creature. You gain 3 life.
+primitive=Sorcerous Sight
+id=4275
+rarity=C
+[/card]
+[card]
+primitive=Soul Shred
 id=4241
-target=creature[-black]
-auto=destroy
-auto=life:3 controller
-name=Soul Shred
 rarity=C
-mana={3}{B}{B}
-type=Sorcery
 [/card]
 [card]
+primitive=Spined Wurm
 id=4317
-name=Spined Wurm
 rarity=C
-mana={4}{G}
-type=Creature
-subtype=Wurm
-power=5
-toughness=4
 [/card]
 [card]
-text=When Spiritual Guardian enters the battlefield, you gain 4 life.
+primitive=Spiritual Guardian
 id=4395
-name=Spiritual Guardian
 rarity=R
-mana={3}{W}{W}
-type=Creature
-subtype=Spirit
-auto=life:4
-power=3
-toughness=4
 [/card]
 [card]
-text=Spitting Earth deals damage equal to the number of Mountains you control to target creature.
+primitive=Spitting Earth
 id=4362
-target=creature
-auto=foreach(mountain|myBattlefield)damage:1
-name=Spitting Earth
 rarity=C
-type=Sorcery
-mana={1}{R}
 [/card]
 [card]
-text=Flying
+primitive=Spotted Griffin
 id=4396
-name=Spotted Griffin
 rarity=C
-mana={3}{W}
-type=Creature
-subtype=Griffin
-power=2
-toughness=3
-abilities=flying
 [/card]
 [card]
-text=You gain 3 life for each black creature target opponent controls.
-auto=foreach(creature[black]|opponentBattlefield)life:3
+primitive=Stalking Tiger
+id=4318
+rarity=C
+[/card]
+[card]
+primitive=Starlight
 id=4397
-name=Starlight
 rarity=U
-mana={1}{W}
-type=Sorcery
 [/card]
 [card]
-text=Flying
+primitive=Starlit Angel
 id=4398
-name=Starlit Angel
 rarity=U
-mana={3}{W}{W}
-type=Creature
-subtype=Angel
-power=3
-toughness=4
-abilities=flying
 [/card]
 [card]
-text=Creatures you control get +0/+3 until end of turn.
+primitive=Steadfastness
 id=4399
-auto=lord(creature|myBattlefield) 0/3
-name=Steadfastness
 rarity=C
-mana={1}{W}
-type=Sorcery
 [/card]
 [card]
-text={T}: Target creature gets +2/+2 until end of turn. Activate this ability only during your turn, before attackers are declared.
-id=4400 
-name=Stern Marshal
+primitive=Stern Marshal
+id=4400
 rarity=R
-mana={2}{W}
-type=Creature
-subtype=Human Soldier
-auto={T}:2/2 target(creature) myTurnOnly
-power=2
-toughness=2
 [/card]
 [card]
-text=Destroy target land.
+primitive=Stone Rain
 id=4363
-target=land
-auto=destroy
-name=Stone Rain
 rarity=C
-mana={2}{R}
-type=Sorcery
 [/card]
 [card]
-text=Flying
+primitive=Storm Crow
 id=4276
-name=Storm Crow
 rarity=C
-mana={1}{U}
-type=Creature
-subtype=Bird
-power=1
-toughness=2
-abilities=flying
 [/card]
 [card]
-text={T}: Add {B} to your mana pool.
-auto={T}:Add {B}
-id=4409
-name=Swamp
-rarity=L
-type=Basic Land
-subtype=Swamp
+primitive=Summer Bloom
+id=4319
+rarity=R
 [/card]
 [card]
-text={T}: Add {B} to your mana pool.
-auto={T}:Add {B}
-id=4410
-name=Swamp
-rarity=L
-type=Basic Land
-subtype=Swamp
-[/card]
-[card]
-text={T}: Add {B} to your mana pool.
-auto={T}:Add {B}
-id=4411
-name=Swamp
-rarity=L
-type=Basic Land
-subtype=Swamp
-[/card]
-[card]
-text={T}: Add {B} to your mana pool.
-auto={T}:Add {B}
+primitive=Swamp
 id=4412
-name=Swamp
 rarity=L
-type=Basic Land
-subtype=Swamp
 [/card]
 [card]
-text=Return target creature to its owner's hand.   Draw a card.
+primitive=Swamp
+id=4411
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=4410
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=4409
+rarity=L
+[/card]
+[card]
+primitive=Sylvan Tutor
+id=4320
+rarity=R
+[/card]
+[card]
+primitive=Symbol of Unsummoning
 id=4277
-target=creature
-auto=moveTo(ownerhand)
-auto=draw:1 controller
-name=Symbol of Unsummoning
 rarity=C
-mana={2}{U}
-type=Sorcery
 [/card]
 [card]
-text=Draw a card for each tapped creature target opponent controls.
+primitive=Taunt
+id=4278
+rarity=R
+[/card]
+[card]
+primitive=Temporary Truce
+id=4401
+rarity=R
+[/card]
+[card]
+primitive=Theft of Dreams
 id=4279
-name=Theft of Dreams
-auto=foreach(creature[tapped]|opponentBattlefield) draw:1
 rarity=U
-mana={2}{U}
-type=Sorcery
 [/card]
 [card]
-text=When Thundering Wurm enters the battlefield, sacrifice it unless you discard a land card.
+primitive=Thing from the Deep
+id=4280
+rarity=R
+[/card]
+[card]
+primitive=Thundering Wurm
 id=4321
-name=Thundering Wurm
 rarity=R
-mana={2}{G}
-type=Creature
-subtype=Wurm
-auto=moveTo(graveyard) notatarget(this|myBattlefield)
-auto=moveTo(graveyard) notatarget(land|myhand)
-power=4
-toughness=4
 [/card]
 [card]
-text=Haste (This creature can attack the turn it comes under your control.)  When Thundermare enters the battlefield, tap all other creatures.
+primitive=Thundermare
 id=4364
-name=Thundermare
 rarity=R
-mana={5}{R}
-type=Creature
-subtype=Elemental Horse
-auto=tap all(other creature)
-power=5
-toughness=5
-abilities=haste
 [/card]
 [card]
-text=Put target creature on top of its owner's library.
+primitive=Tidal Surge
+id=4281
+rarity=C
+[/card]
+[card]
+primitive=Time Ebb
 id=4282
-target=creature
-auto=moveTo(ownerLibrary)
-name=Time Ebb
 rarity=C
-mana={2}{U}
-type=Sorcery
 [/card]
 [card]
-text=Draw two cards.
+primitive=Touch of Brilliance
 id=4283
-auto=draw:2
-name=Touch of Brilliance
 rarity=C
-mana={3}{U}
-type=Sorcery
 [/card]
 [card]
-text=When Undying Beast is put into a graveyard from the battlefield, put Undying Beast on top of its owner's library.
-auto=@movedTo(this|graveyard) from(battlefield):moveTo(mylibrary) notatarget(this|mygraveyard)
+primitive=Treetop Defense
+id=4322
+rarity=R
+[/card]
+[card]
+primitive=Undying Beast
 id=4242
-name=Undying Beast
 rarity=C
-mana={3}{B}
-type=Creature
-subtype=Beast
-power=3
-toughness=2
 [/card]
 [card]
-text=Search your library for a basic land card and put that card onto the battlefield. Then shuffle your library.
+primitive=Untamed Wilds
 id=4323
-target=land[basic]|myLibrary
-auto=moveTo(myBattlefield)
-name=Untamed Wilds
 rarity=U
-mana={2}{G}
-type=Sorcery
 [/card]
 [card]
-text=White creatures get +2/+0 until end of turn.
+primitive=Valorous Charge
 id=4402
-auto=lord(creature[white]) 2/0
-name=Valorous Charge
 rarity=U
-mana={1}{W}{W}
-type=Sorcery
 [/card]
 [card]
-text=Vampiric Feast deals 4 damage to target creature or player and you gain 4 life.
+primitive=Vampiric Feast
 id=4243
-target=creature,player
-auto=damage:4
-auto=life:4 controller
-name=Vampiric Feast
 rarity=U
-mana={5}{B}{B}
-type=Sorcery
 [/card]
 [card]
-text=Vampiric Touch deals 2 damage to target opponent and you gain 2 life.
+primitive=Vampiric Touch
 id=4244
-auto=damage:2 opponent
-auto=life:2 controller
-name=Vampiric Touch
 rarity=C
-mana={2}{B}
-type=Sorcery
 [/card]
 [card]
-text=When Venerable Monk enters the battlefield, you gain 2 life.
+primitive=Venerable Monk
 id=4403
-name=Venerable Monk
 rarity=U
-mana={2}{W}
-type=Creature
-subtype=Human Monk Cleric
-auto=life:2
-power=2
-toughness=2
 [/card]
 [card]
-text=Destroy target tapped creature.
+primitive=Vengeance
 id=4404
-target=creature[tapped]
-auto=destroy
-name=Vengeance
 rarity=U
-mana={3}{W}
-type=Sorcery
 [/card]
 [card]
-text=Destroy all white creatures.
-auto=destroy all(creature[white])
+primitive=Virtue's Ruin
 id=4245
-name=Virtue's Ruin
 rarity=U
-mana={2}{B}
-type=Sorcery
 [/card]
 [card]
-text=Flying, haste
+primitive=Volcanic Dragon
 id=4365
-name=Volcanic Dragon
 rarity=R
-mana={4}{R}{R}
-type=Creature
-subtype=Dragon
-power=4
-toughness=4
-abilities=flying,haste
 [/card]
 [card]
-text=Volcanic Hammer deals 3 damage to target creature or player.
+primitive=Volcanic Hammer
 id=4366
-target=creature,player
-auto=Damage:3
-name=Volcanic Hammer
 rarity=C
-mana={1}{R}
-type=Sorcery
 [/card]
 [card]
-text=Defender (This creature can't attack.)
+primitive=Wall of Granite
 id=4367
-name=Wall of Granite
 rarity=U
-mana={2}{R}
-type=Creature
-subtype=Wall
-power=0
-toughness=7
-abilities=defender
 [/card]
 [card]
-text=Defender, flying (This creature can't attack, and it can block creatures with flying.)
+primitive=Wall of Swords
 id=4405
-name=Wall of Swords
 rarity=U
-mana={3}{W}
-type=Creature
-subtype=Wall
-power=3
-toughness=5
-abilities=defender,flying
 [/card]
 [card]
-text=Creatures you control get +1/+1 until end of turn.
+primitive=Warrior's Charge
+id=4407
+rarity=C
+[/card]
+[card]
+primitive=Warrior's Charge
 id=4406
-auto=lord(creature|myBattlefield) 1/1
-name=Warrior's Charge
 rarity=C
-mana={2}{W}
-type=Sorcery
 [/card]
 [card]
+primitive=Whiptail Wurm
 id=4324
-name=Whiptail Wurm
 rarity=U
-mana={6}{G}
-type=Creature
-subtype=Wurm
-power=8
-toughness=5
 [/card]
 [card]
-text=Forestwalk
+primitive=Wicked Pact
+id=4246
+rarity=R
+[/card]
+[card]
+primitive=Willow Dryad
 id=4325
-name=Willow Dryad
 rarity=C
-mana={G}
-type=Creature
-subtype=Dryad
-power=1
-toughness=1
-abilities=forestwalk
 [/card]
 [card]
-text=Flying (This creature can't be blocked except by creatures with flying or reach.)
+primitive=Wind Drake
 id=4284
-name=Wind Drake
 rarity=C
-mana={2}{U}
-type=Creature
-subtype=Drake
-power=2
-toughness=2
-abilities=flying
 [/card]
 [card]
-text=Destroy target land.
+primitive=Winds of Change
+id=4368
+rarity=R
+[/card]
+[card]
+primitive=Winter's Grasp
 id=4326
-target=land
-auto=destroy
-name=Winter's Grasp
 rarity=U
-mana={1}{G}{G}
-type=Sorcery
 [/card]
 [card]
-###Wood Elves ability should stay optional ("may") because when you are searching for sth in your library, the official rules say that you don'T have to find anything even if there is a legal target!
-text=When Wood Elves enters the battlefield, search your library for a Forest card and put that card onto the battlefield. Then shuffle your library.
+primitive=Withering Gaze
+id=4285
+rarity=U
+[/card]
+[card]
+primitive=Wood Elves
 id=4327
-name=Wood Elves
 rarity=R
-mana={2}{G}
-type=Creature
-subtype=Elf Scout
-auto=may moveTo(myBattlefield) target(forest|myLibrary)
-power=1
-toughness=1
 [/card]
 [card]
-text=Destroy all creatures. They can't be regenerated.
-auto=bury all(creature)
+primitive=Wrath of God
 id=4408
-name=Wrath of God
 rarity=R
-mana={2}{W}{W}
-type=Sorcery
 [/card]

@@ -4,431 +4,717 @@ year=2002
 block=Odyssey
 [/meta]
 [card]
-text=Target creature gains haste until end of turn.   Draw a card.
-target=creature
-auto=haste
-auto=draw:1 controller
+primitive=Accelerate
 id=29857
-name=Accelerate
 rarity=C
-mana={1}{R}
-type=Instant
 [/card]
 [card]
-text={3}: Target player puts the top three cards of his or her library into his or her graveyard.
+primitive=Acorn Harvest
+id=29873
+rarity=C
+[/card]
+[card]
+primitive=Alter Reality
+id=34832
+rarity=R
+[/card]
+[card]
+primitive=Ambassador Laquatus
 id=34378
-name=Ambassador Laquatus
 rarity=R
-mana={1}{U}{U}
-auto={3}:deplete:3 target(player)
-type=Legendary Creature
-subtype=Merfolk Wizard
-power=1
-toughness=3
 [/card]
 [card]
-text=Flying, first strike
+primitive=Angel of Retribution
 id=32233
-name=Angel of Retribution
 rarity=R
-mana={6}{W}
-type=Creature
-subtype=Angel
-power=5
-toughness=5
-abilities=flying,first strike
 [/card]
 [card]
-text=Flying   {2}{W}, Discard a card: Aven Trooper gets +1/+2 until end of turn.
-id=5584
-name=Aven Trooper
-rarity=C
-mana={3}{W}
-type=Creature
-subtype=Bird Soldier
-auto={2}{W}{S(*|myHand)}:1/2
-power=1
-toughness=1
-abilities=flying
-[/card]
-[card]
-text=Flying   {B}: Balshan Collaborator gets +1/+1 until end of turn.
-id=32915
-name=Balshan Collaborator
+primitive=Anurid Scavenger
+id=33687
 rarity=U
-mana={3}{U}
-type=Creature
-subtype=Bird Soldier
-auto={B}:1/1
-power=2
-toughness=2
-abilities=flying
 [/card]
 [card]
-text=Other Barbarian creatures get +1/+1.   {R}: Another target Barbarian creature gets +1/+0 until end of turn.
-name=Balthor the Stout
+primitive=Aquamoeba
+id=34465
+rarity=C
+[/card]
+[card]
+primitive=Arrogant Wurm
+id=12623
+rarity=U
+[/card]
+[card]
+primitive=Aven Trooper
+id=5584
+rarity=C
+[/card]
+[card]
+primitive=Balshan Collaborator
+id=32915
+rarity=U
+[/card]
+[card]
+primitive=Balthor the Stout
 id=19553
 rarity=R
-mana={1}{R}{R}
-type=Legendary Creature
-subtype=Dwarf Barbarian
-auto=lord(barbarian)1/1 other
-auto={R}:1/0 target(other barbarian)
-power=2
-toughness=2
 [/card]
 [card]
-text={2}, {T}: Add {B} to your mana pool for each Swamp you control.
-name=Cabal Coffers
-id=29896
-auto={2}{T}:foreach(swamp|myBattlefield) add:{B}
+primitive=Barbarian Outcast
+id=26726
+rarity=C
+[/card]
+[card]
+primitive=Basking Rootwalla
+id=35072
+rarity=C
+[/card]
+[card]
+primitive=Boneshard Slasher
+id=32225
 rarity=U
-type=Land
 [/card]
 [card]
-text=Add {B}{B}{B} to your mana pool.   Threshold - Add {B}{B}{B}{B}{B} to your mana pool instead if seven or more cards are in your graveyard.
+primitive=Breakthrough
+id=29927
+rarity=U
+[/card]
+[card]
+primitive=Cabal Coffers
+id=29896
+rarity=U
+[/card]
+[card]
+primitive=Cabal Ritual
 id=30564
-auto=Add{B}{B}{B}
-auto=aslongas(*|mygraveyard) add{B}{B} >6
-name=Cabal Ritual
 rarity=C
-mana={1}{B}
-type=Instant
 [/card]
 [card]
-text={B}, {T}: Target creature gets -1/-1 until end of turn. Threshold - {3}{B}{B}, {T}: Target creature gets -2/-2 until end of turn. Activate this ability only if seven or more cards are in your graveyard.
+primitive=Cabal Surgeon
+id=32224
+rarity=C
+[/card]
+[card]
+primitive=Cabal Torturer
 id=32226
-name=Cabal Torturer
 rarity=C
-mana={1}{B}{B}
-type=Creature
-subtype=Human Minion
-auto={B}{T}:-1/-1 target(creature)
-auto=aslongas(*|mygraveyard) {3}{B}{B}{T}:-2/-2 target(creature) >6
-power=1
-toughness=1
 [/card]
 [card]
-text=Trample   {G}, Discard a card: Regenerate Centaur Veteran.
-name=Centaur Veteran
+primitive=Carrion Rats
+id=26279
+rarity=C
+[/card]
+[card]
+primitive=Carrion Wurm
+id=26449
+rarity=U
+[/card]
+[card]
+primitive=Centaur Chieftain
+id=32218
+rarity=U
+[/card]
+[card]
+primitive=Centaur Veteran
 id=29800
 rarity=C
-mana={5}{G}
-type=Creature
-subtype=Centaur
-auto={G}{S(*|myhand)}:regenerate
-power=3
-toughness=3
-abilities=trample
 [/card]
 [card]
-text=Sacrifice Cephalid Snitch: Target creature loses protection from black until end of turn.
-name=Cephalid Snitch
+primitive=Cephalid Aristocrat
+id=29708
+rarity=C
+[/card]
+[card]
+primitive=Cephalid Illusionist
+id=34776
+rarity=U
+[/card]
+[card]
+primitive=Cephalid Sage
+id=33690
+rarity=U
+[/card]
+[card]
+primitive=Cephalid Snitch
 id=31840
 rarity=C
-mana={1}{U}
-type=Creature
-subtype=Cephalid Wizard
-auto={S}:-protection from black target(creature)
-power=1
-toughness=1
 [/card]
 [card]
-text={1}{U}, Discard a card: Draw a card.   {1}{U}, Sacrifice Compulsion: Draw a card.
-auto={1}{U}{S(*|myhand)}:draw:1 controller
-auto={1}{U}{S}:draw:1 controller
-name=Compulsion
+primitive=Cephalid Vandal
+id=36034
+rarity=R
+[/card]
+[card]
+primitive=Chainer, Dementia Master
+id=32916
+rarity=R
+[/card]
+[card]
+primitive=Chainer's Edict
+id=29603
+rarity=U
+[/card]
+[card]
+primitive=Churning Eddy
+id=29720
+rarity=C
+[/card]
+[card]
+primitive=Circular Logic
+id=34368
+rarity=U
+[/card]
+[card]
+primitive=Cleansing Meditation
+id=29883
+rarity=U
+[/card]
+[card]
+primitive=Compulsion
 id=34473
 rarity=U
-mana={1}{U}
-type=Enchantment
 [/card]
 [card]
-text=Enchant creature   Enchanted creature gets +1/+0.   Sacrifice Crackling Club: Crackling Club deals 1 damage to target creature.
+primitive=Coral Net
+id=19696
+rarity=C
+[/card]
+[card]
+primitive=Crackling Club
 id=34278
-name=Crackling Club
-target=creature
-auto=1/0
-auto={S}:damage:1 target(creature)
 rarity=C
-mana={R}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text={R}, Sacrifice Enslaved Dwarf: Target black creature gets +1/+0 and gains first strike until end of turn.
+primitive=Crazed Firecat
+id=29754
+rarity=U
+[/card]
+[card]
+primitive=Crippling Fatigue
+id=34225
+rarity=C
+[/card]
+[card]
+primitive=Dawn of the Dead
+id=35924
+rarity=R
+[/card]
+[card]
+primitive=Deep Analysis
+id=32237
+rarity=C
+[/card]
+[card]
+primitive=Devastating Dreams
+id=30561
+rarity=R
+[/card]
+[card]
+primitive=Dwell on the Past
+id=26404
+rarity=U
+[/card]
+[card]
+primitive=Enslaved Dwarf
 id=32917
-name=Enslaved Dwarf
 rarity=C
-mana={R}
-type=Creature
-subtype=Dwarf
-auto={R}{S}:1/0 && first strike target(creature[black])
-power=1
-toughness=1
 [/card]
 [card]
-text=You gain life equal to the number of creature cards in all graveyards.
-auto=foreach(creature|myGraveyard)life:1 controller
-auto=foreach(creature|opponentGraveyard)life:1 controller
+primitive=Equal Treatment
+id=29571
+rarity=U
+[/card]
+[card]
+primitive=Faceless Butcher
+id=29739
+rarity=C
+[/card]
+[card]
+primitive=False Memories
+id=5598
+rarity=R
+[/card]
+[card]
+primitive=Far Wanderings
+id=15229
+rarity=C
+[/card]
+[card]
+primitive=Fiery Temper
+id=32918
+rarity=C
+[/card]
+[card]
+primitive=Flaming Gambit
+id=32921
+rarity=U
+[/card]
+[card]
+primitive=Flash of Defiance
+id=29863
+rarity=C
+[/card]
+[card]
+primitive=Floating Shield
+id=32396
+rarity=C
+[/card]
+[card]
+primitive=Frantic Purification
+id=29841
+rarity=C
+[/card]
+[card]
+primitive=Ghostly Wings
+id=32235
+rarity=C
+[/card]
+[card]
+primitive=Gloomdrifter
+id=12405
+rarity=U
+[/card]
+[card]
+primitive=Gravegouger
+id=32210
+rarity=C
+[/card]
+[card]
+primitive=Grim Lavamancer
+id=36111
+rarity=R
+[/card]
+[card]
+primitive=Grotesque Hybrid
+id=32222
+rarity=U
+[/card]
+[card]
+primitive=Gurzigost
+id=32221
+rarity=R
+[/card]
+[card]
+primitive=Hell-Bent Raider
+id=34384
+rarity=R
+[/card]
+[card]
+primitive=Hydromorph Guardian
+id=33627
+rarity=C
+[/card]
+[card]
+primitive=Hydromorph Gull
+id=29719
+rarity=U
+[/card]
+[card]
+primitive=Hypnox
+id=31831
+rarity=R
+[/card]
+[card]
+primitive=Hypochondria
+id=29705
+rarity=U
+[/card]
+[card]
+primitive=Ichorid
+id=35923
+rarity=R
+[/card]
+[card]
+primitive=Insidious Dreams
+id=29825
+rarity=R
+[/card]
+[card]
+primitive=Insist
+id=29886
+rarity=R
+[/card]
+[card]
+primitive=Invigorating Falls
 id=29907
-name=Invigorating Falls
 rarity=C
-mana={2}{G}{G}
-type=Sorcery
 [/card]
 [card]
-text=Kamahl's Sledge deals 4 damage to target creature.   Threshold ・If seven or more cards are in your graveyard, instead Kamahl's Sledge deals 4 damage to that creature and 4 damage to that creature's controller.
+primitive=Kamahl's Sledge
 id=32229
-target=creature
-auto=damage:4
-auto=aslongas(*|mygraveyard) damage:4 targetcontroller >6
-name=Kamahl's Sledge
 rarity=C
-mana={5}{R}{R}
-type=Sorcery
 [/card]
 [card]
-text=Swampwalk   {T}: Target black creature gets -2/-0 until end of turn.
+primitive=Krosan Constrictor
 id=29715
-name=Krosan Constrictor
 rarity=C
-mana={3}{G}
-type=Creature
-subtype=Snake
-auto={T}:-2/0 target(creature[black])
-power=2
-toughness=2
-abilities=swampwalk
 [/card]
 [card]
-text=Flying   {3}{W}{W}, Sacrifice Major Teroh: Exile all black creatures.
+primitive=Krosan Restorer
+id=29872
+rarity=C
+[/card]
+[card]
+primitive=Laquatus's Champion
+id=31869
+rarity=R
+[/card]
+[card]
+primitive=Last Laugh
+id=34467
+rarity=R
+[/card]
+[card]
+primitive=Liquify
+id=34756
+rarity=C
+[/card]
+[card]
+primitive=Llawan, Cephalid Empress
+id=27175
+rarity=R
+[/card]
+[card]
+primitive=Longhorn Firebeast
+id=29770
+rarity=C
+[/card]
+[card]
+primitive=Major Teroh
 id=29912
-name=Major Teroh
 rarity=R
-mana={3}{W}
-type=Legendary Creature
-subtype=Bird Soldier
-auto={3}{W}{W}{S}:moveto(exile) all(creature[black])
-power=2
-toughness=3
-abilities=flying
 [/card]
 [card]
-text=Exile all cards from all graveyards.
-auto=moveto(exile) all(*|graveyard)
+primitive=Mesmeric Fiend
+id=32211
+rarity=C
+[/card]
+[card]
+primitive=Militant Monk
+id=12363
+rarity=C
+[/card]
+[card]
+primitive=Mind Sludge
+id=26432
+rarity=U
+[/card]
+[card]
+primitive=Morningtide
 id=34234
-name=Morningtide
 rarity=R
-mana={1}{W}
-type=Sorcery
 [/card]
 [card]
-text={1}{B}, Discard a card: Exile target card from a graveyard.   {1}{B}, Sacrifice Mortiphobia: Exile target card from a graveyard.
-auto={1}{B}{S(*|myHand)}:moveto(exile) target(*|graveyard)
-auto={1}{B}{S}:moveto(exile) target(*|graveyard)
+primitive=Mortal Combat
+id=29960
+rarity=R
+[/card]
+[card]
+primitive=Mortiphobia
 id=36433
-name=Mortiphobia
 rarity=U
-mana={1}{B}{B}
-type=Enchantment
 [/card]
 [card]
-text=All creatures get -1/-1 until end of turn for each Swamp you control.
-auto=foreach(swamp|myBattlefield)-1/-1 all(creature)
+primitive=Mutilate
 id=35194
-name=Mutilate
 rarity=R
-mana={2}{B}{B}
-type=Sorcery
 [/card]
 [card]
-text=Flying   Threshold ・As long as seven or more cards are in your graveyard, Mystic Familiar gets +1/+1 and has protection from black.
+primitive=Mystic Familiar
 id=30607
-name=Mystic Familiar
 rarity=C
-mana={1}{W}
-type=Creature
-subtype=Bird
-auto=aslongas(*|mygraveyard) 1/1 >6
-auto=aslongas(*|mygraveyard) protection from black >6
-power=1
-toughness=2
-abilities=flying
 [/card]
 [card]
-text=Protection from black   Threshold ・Nantuko Blightcutter gets +1/+1 for each black permanent your opponents control as long as seven or more cards are in your graveyard.
+primitive=Nantuko Blightcutter
 id=32243
-name=Nantuko Blightcutter
 rarity=R
-mana={2}{G}
-type=Creature
-subtype=Insect Druid
-auto=aslongas(*|mygraveyard) foreach(*[black]|opponentBattlefield) 1/1 >6
-power=2
-toughness=2
-abilities=protection from black
 [/card]
 [card]
-text={G}, {T}, Sacrifice Nantuko Calmer: Destroy target enchantment.   Threshold ・Nantuko Calmer gets +1/+1 as long as seven or more cards are in your graveyard.
+primitive=Nantuko Calmer
 id=31851
-name=Nantuko Calmer
 rarity=C
-mana={2}{G}{G}
-type=Creature
-subtype=Insect Druid
-auto={G}{T}{S}:destroy target(enchantment)
-auto=aslongas(*|mygraveyard) 1/1 >6
-power=2
-toughness=3
 [/card]
 [card]
-text={B}: Nantuko Shade gets +1/+1 until end of turn.
-id=35053
-name=Nantuko Shade
+primitive=Nantuko Cultivator
+id=34229
 rarity=R
-mana={B}{B}
-type=Creature
-subtype=Insect Shade
-auto={B}:1/1
-power=2
-toughness=1
 [/card]
 [card]
-text={G}, Discard a card: Target creature gets +2/+2 until end of turn.   {G}, Sacrifice Narcissism: Target creature gets +2/+2 until end of turn.
-auto={G}{S(*|myHand)}:2/2 target(creature)
-auto={G}{S}:2/2 target(creature)
+primitive=Nantuko Shade
+id=35053
+rarity=R
+[/card]
+[card]
+primitive=Narcissism
 id=5663
-name=Narcissism
 rarity=U
-mana={2}{G}
-type=Enchantment
 [/card]
 [card]
-text=First strike   {B}: Pardic Collaborator gets +1/+1 until end of turn.
+primitive=Nostalgic Dreams
+id=32208
+rarity=R
+[/card]
+[card]
+primitive=Obsessive Search
+id=29721
+rarity=C
+[/card]
+[card]
+primitive=Organ Grinder
+id=32238
+rarity=C
+[/card]
+[card]
+primitive=Overmaster
+id=29868
+rarity=R
+[/card]
+[card]
+primitive=Parallel Evolution
+id=29992
+rarity=R
+[/card]
+[card]
+primitive=Pardic Arsonist
+id=32213
+rarity=U
+[/card]
+[card]
+primitive=Pardic Collaborator
 id=35054
-name=Pardic Collaborator
 rarity=U
-mana={3}{R}
-type=Creature
-subtype=Human Barbarian
-auto={B}:1/1
-power=2
-toughness=2
-abilities=first strike
 [/card]
 [card]
-text=Discard a card: Putrid Imp gains flying until end of turn.   Threshold ・As long as seven or more cards are in your graveyard, Putrid Imp gets +1/+1 and can't block.
+primitive=Pardic Lancer
+id=32240
+rarity=C
+[/card]
+[card]
+primitive=Pay No Heed
+id=32232
+rarity=C
+[/card]
+[card]
+primitive=Petradon
+id=29799
+rarity=R
+[/card]
+[card]
+primitive=Petravark
+id=31805
+rarity=C
+[/card]
+[card]
+primitive=Pitchstone Wall
+id=36432
+rarity=U
+[/card]
+[card]
+primitive=Plagiarize
+id=29824
+rarity=R
+[/card]
+[card]
+primitive=Possessed Aven
+id=30658
+rarity=R
+[/card]
+[card]
+primitive=Possessed Barbarian
+id=32231
+rarity=R
+[/card]
+[card]
+primitive=Possessed Centaur
+id=29787
+rarity=R
+[/card]
+[card]
+primitive=Possessed Nomad
+id=29816
+rarity=R
+[/card]
+[card]
+primitive=Psychotic Haze
+id=33691
+rarity=C
+[/card]
+[card]
+primitive=Putrid Imp
 id=34470
-name=Putrid Imp
 rarity=C
-mana={B}
-type=Creature
-subtype=Zombie Imp
-auto={S(*|myHand)}:flying
-auto=aslongas(*|mygraveyard) 1/1 >6
-auto=aslongas(*|mygraveyard) cantblock >6
-power=1
-toughness=1
 [/card]
 [card]
-text=Destroy target land.   Threshold ・If seven or more cards are in your graveyard, instead destroy that land and Rancid Earth deals 1 damage to each creature and each player.
+primitive=Pyromania
+id=34390
+rarity=U
+[/card]
+[card]
+primitive=Radiate
+id=34250
+rarity=R
+[/card]
+[card]
+primitive=Rancid Earth
 id=31598
-target=land
-auto=destroy
-auto=aslongas(*|mygraveyard) damage:1 all(creature,player) >6
-name=Rancid Earth
 rarity=C
-mana={1}{B}{B}
-type=Sorcery
 [/card]
 [card]
-text=Reach (This creature can block creatures with flying.)   Threshold ・Seton's Scout gets +2/+2 as long as seven or more cards are in your graveyard.
+primitive=Reborn Hero
+id=34247
+rarity=R
+[/card]
+[card]
+primitive=Restless Dreams
+id=29908
+rarity=C
+[/card]
+[card]
+primitive=Retraced Image
+id=33698
+rarity=R
+[/card]
+[card]
+primitive=Sengir Vampire
+id=35086
+rarity=R
+[/card]
+[card]
+primitive=Seton's Scout
 id=32244
-name=Seton's Scout
 rarity=U
-mana={1}{G}
-type=Creature
-subtype=Centaur Druid Scout Archer
-auto=aslongas(*|mygraveyard) 2/2 >6
-power=2
-toughness=1
-abilities=reach
 [/card]
 [card]
-text=Flying   Discard a card: Return Skywing Aven to its owner's hand.
+primitive=Shade's Form
+id=23043
+rarity=C
+[/card]
+[card]
+primitive=Shambling Swarm
+id=31822
+rarity=R
+[/card]
+[card]
+primitive=Sickening Dreams
+id=35063
+rarity=U
+[/card]
+[card]
+primitive=Skullscorch
+id=34382
+rarity=R
+[/card]
+[card]
+primitive=Skywing Aven
 id=29713
-name=Skywing Aven
 rarity=C
-mana={2}{U}
-type=Creature
-subtype=Bird Soldier
-auto={S(*|myHand)}:moveto(ownerhand)
-power=2
-toughness=1
-abilities=flying
 [/card]
 [card]
-text={T}: Each player loses 1 life for each Swamp he or she controls.
+primitive=Slithery Stalker
+id=31833
+rarity=U
+[/card]
+[card]
+primitive=Sonic Seizure
+id=35165
+rarity=C
+[/card]
+[card]
+primitive=Soul Scourge
+id=29731
+rarity=C
+[/card]
+[card]
+primitive=Spirit Flare
+id=26361
+rarity=C
+[/card]
+[card]
+primitive=Stern Judge
 id=35082
-name=Stern Judge
 rarity=U
-mana={2}{W}
-type=Creature
-subtype=Human Cleric
-auto={T}:foreach(swamp|mybattlefield) damage:1 controller && foreach(swamp|opponentBattlefield) damage:1 opponent
-power=2
-toughness=2
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.   {T}: Add {W} or {B} to your mana pool. Activate this ability only if you control a Swamp.
+primitive=Strength of Isolation
+id=34782
+rarity=U
+[/card]
+[card]
+primitive=Strength of Lunacy
+id=34222
+rarity=U
+[/card]
+[card]
+primitive=Stupefying Touch
+id=36415
+rarity=U
+[/card]
+[card]
+primitive=Tainted Field
 id=31757
-name=Tainted Field
 rarity=U
-type=Land
-auto={T}:Add {1}
-auto=aslongas(swamp|myBattlefield) {T}:add{B}
-auto=aslongas(swamp|myBattlefield) {T}:add{W}
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.   {T}: Add {U} or {B} to your mana pool. Activate this ability only if you control a Swamp.
+primitive=Tainted Isle
 id=31758
-name=Tainted Isle
 rarity=U
-type=Land
-auto={T}:Add {1}
-auto=aslongas(swamp|myBattlefield) {T}:add{B}
-auto=aslongas(swamp|myBattlefield) {T}:add{U}
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.   {T}: Add {B} or {R} to your mana pool. Activate this ability only if you control a Swamp.
+primitive=Tainted Peak
 id=31759
-name=Tainted Peak
 rarity=U
-type=Land
-auto={T}:Add {1}
-auto=aslongas(swamp|myBattlefield) {T}:add{B}
-auto=aslongas(swamp|myBattlefield) {T}:add{R}
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.   {T}: Add {B} or {G} to your mana pool. Activate this ability only if you control a Swamp.
+primitive=Tainted Wood
 id=31760
-name=Tainted Wood
 rarity=U
-type=Land
-auto={T}:Add {1}
-auto=aslongas(swamp|myBattlefield) {T}:add{B}
-auto=aslongas(swamp|myBattlefield) {T}:add{G}
 [/card]
 [card]
-text=When Teroh's Faithful enters the battlefield, you gain 4 life.
+primitive=Temporary Insanity
+id=32236
+rarity=U
+[/card]
+[card]
+primitive=Teroh's Faithful
 id=12345
-name=Teroh's Faithful
 rarity=C
-mana={3}{W}
-type=Creature
-subtype=Human Cleric
-auto=life:4 controller
-power=1
-toughness=4
+[/card]
+[card]
+primitive=Teroh's Vanguard
+id=32205
+rarity=U
+[/card]
+[card]
+primitive=Transcendence
+id=8875
+rarity=R
+[/card]
+[card]
+primitive=Turbulent Dreams
+id=29827
+rarity=R
+[/card]
+[card]
+primitive=Unhinge
+id=35922
+rarity=C
+[/card]
+[card]
+primitive=Vengeful Dreams
+id=29698
+rarity=R
+[/card]
+[card]
+primitive=Violent Eruption
+id=34253
+rarity=U
+[/card]
+[card]
+primitive=Waste Away
+id=32133
+rarity=C
+[/card]
+[card]
+primitive=Zombie Trailblazer
+id=34819
+rarity=U
 [/card]

@@ -1,0 +1,680 @@
+[card]
+primitive=Abyssal Specter
+id=21167
+rarity=U
+[/card]
+[card]
+primitive=Advance Scout
+id=21186
+rarity=C
+[/card]
+[card]
+primitive=Air Elemental
+id=21121
+rarity=U
+[/card]
+[card]
+primitive=Angelic Page
+id=21177
+rarity=C
+[/card]
+[card]
+primitive=Arc Lightning
+id=21102
+rarity=C
+[/card]
+[card]
+primitive=Argothian Elder
+id=21182
+rarity=U
+[/card]
+[card]
+primitive=Armored Pegasus
+id=21120
+rarity=C
+[/card]
+[card]
+primitive=Azure Drake
+id=21122
+rarity=U
+[/card]
+[card]
+primitive=Blinking Spirit
+id=11177
+rarity=R
+[/card]
+[card]
+primitive=Broken Fall
+id=21099
+rarity=C
+[/card]
+[card]
+primitive=Cackling Fiend
+id=21168
+rarity=C
+[/card]
+[card]
+primitive=Catastrophe
+id=21143
+rarity=R
+[/card]
+[card]
+primitive=Cinder Marsh
+id=21170
+rarity=U
+[/card]
+[card]
+primitive=Control Magic
+id=21141
+rarity=U
+[/card]
+[card]
+primitive=Counterspell
+id=21127
+rarity=C
+[/card]
+[card]
+primitive=Crazed Skirge
+id=21165
+rarity=U
+[/card]
+[card]
+primitive=Curfew
+id=21137
+rarity=C
+[/card]
+[card]
+primitive=Dark Ritual
+id=21154
+rarity=C
+[/card]
+[card]
+primitive=Dirtcowl Wurm
+id=21196
+rarity=R
+[/card]
+[card]
+primitive=Disenchant
+id=21133
+rarity=C
+[/card]
+[card]
+primitive=Disruptive Student
+id=21123
+rarity=C
+[/card]
+[card]
+primitive=Drifting Meadow
+id=21203
+rarity=C
+[/card]
+[card]
+primitive=Elvish Lyrist
+id=21188
+rarity=U
+[/card]
+[card]
+primitive=Exhume
+id=21153
+rarity=C
+[/card]
+[card]
+primitive=Fecundity
+id=21192
+rarity=U
+[/card]
+[card]
+primitive=Fertile Ground
+id=21175
+rarity=C
+[/card]
+[card]
+primitive=Fire Ants
+id=21163
+rarity=U
+[/card]
+[card]
+primitive=Flood
+id=21139
+rarity=C
+[/card]
+[card]
+primitive=Forest
+id=22355
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=22354
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=22353
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=22352
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=22351
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=22349
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=22348
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=22347
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=21119
+rarity=L
+[/card]
+[card]
+primitive=Giant Growth
+id=21194
+rarity=C
+[/card]
+[card]
+primitive=Gorilla Warrior
+id=21205
+rarity=C
+[/card]
+[card]
+primitive=Healing Salve
+id=21130
+rarity=C
+[/card]
+[card]
+primitive=Heat Ray
+id=21159
+rarity=C
+[/card]
+[card]
+primitive=Hurricane
+id=21195
+rarity=U
+[/card]
+[card]
+primitive=Infantry Veteran
+id=21131
+rarity=C
+[/card]
+[card]
+primitive=Island
+id=22367
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=22366
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=22365
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=22364
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=21144
+rarity=L
+[/card]
+[card]
+primitive=Land Tax
+id=21197
+rarity=U
+[/card]
+[card]
+primitive=Lhurgoyf
+id=11380
+rarity=R
+[/card]
+[card]
+primitive=Lightning Elemental
+id=21166
+rarity=C
+[/card]
+[card]
+primitive=Living Death
+id=21155
+rarity=R
+[/card]
+[card]
+primitive=Llanowar Elves
+id=21107
+rarity=C
+[/card]
+[card]
+primitive=Mana Leak
+id=21126
+rarity=C
+[/card]
+[card]
+primitive=Maniacal Rage
+id=21097
+rarity=C
+[/card]
+[card]
+primitive=Man-o'-War
+id=21138
+rarity=C
+[/card]
+[card]
+primitive=Manta Riders
+id=21125
+rarity=C
+[/card]
+[card]
+primitive=Master Decoy
+id=21176
+rarity=C
+[/card]
+[card]
+primitive=Mogg Hollows
+id=21117
+rarity=U
+[/card]
+[card]
+primitive=Mountain
+id=22344
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=22343
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=22342
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=22340
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=22339
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=22336
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=22335
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=22334
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=21118
+rarity=L
+[/card]
+[card]
+primitive=Nekrataal
+id=15391
+rarity=U
+[/card]
+[card]
+primitive=Opportunity
+id=21128
+rarity=U
+[/card]
+[card]
+primitive=Pacifism
+id=21191
+rarity=C
+[/card]
+[card]
+primitive=Pestilence
+id=21149
+rarity=U
+[/card]
+[card]
+primitive=Phyrexian Ghoul
+id=21164
+rarity=C
+[/card]
+[card]
+primitive=Pincher Beetles
+id=21110
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=22363
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=22362
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=22361
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=22360
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=22359
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=22358
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=22357
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=22356
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=21145
+rarity=L
+[/card]
+[card]
+primitive=Plated Rootwalla
+id=21116
+rarity=C
+[/card]
+[card]
+primitive=Polluted Mire
+id=21202
+rarity=C
+[/card]
+[card]
+primitive=Prodigal Sorcerer
+id=21129
+rarity=C
+[/card]
+[card]
+primitive=Raging Goblin
+id=21162
+rarity=C
+[/card]
+[card]
+primitive=Ray of Command
+id=21142
+rarity=C
+[/card]
+[card]
+primitive=Reanimate
+id=21160
+rarity=U
+[/card]
+[card]
+primitive=Remote Isle
+id=21200
+rarity=C
+[/card]
+[card]
+primitive=River Boa
+id=21109
+rarity=U
+[/card]
+[card]
+primitive=Rolling Thunder
+id=21158
+rarity=C
+[/card]
+[card]
+primitive=Sadistic Glee
+id=21150
+rarity=C
+[/card]
+[card]
+primitive=Sanctum Custodian
+id=21184
+rarity=C
+[/card]
+[card]
+primitive=Sanctum Guardian
+id=21185
+rarity=U
+[/card]
+[card]
+primitive=Sandstorm
+id=21193
+rarity=C
+[/card]
+[card]
+primitive=Scaled Wurm
+id=21174
+rarity=C
+[/card]
+[card]
+primitive=Scryb Sprites
+id=21105
+rarity=C
+[/card]
+[card]
+primitive=Seasoned Marshal
+id=21183
+rarity=U
+[/card]
+[card]
+primitive=Seeker of Skybreak
+id=21108
+rarity=C
+[/card]
+[card]
+primitive=Sengir Vampire
+id=21169
+rarity=U
+[/card]
+[card]
+primitive=Sewer Rats
+id=21161
+rarity=C
+[/card]
+[card]
+primitive=Shower of Sparks
+id=21104
+rarity=C
+[/card]
+[card]
+primitive=Skyshroud Elite
+id=21106
+rarity=U
+[/card]
+[card]
+primitive=Slippery Karst
+id=21199
+rarity=C
+[/card]
+[card]
+primitive=Soltari Foot Soldier
+id=21187
+rarity=C
+[/card]
+[card]
+primitive=Songstitcher
+id=21134
+rarity=U
+[/card]
+[card]
+primitive=Soul Warden
+id=21132
+rarity=C
+[/card]
+[card]
+primitive=Spike Colony
+id=21181
+rarity=C
+[/card]
+[card]
+primitive=Spike Feeder
+id=21113
+rarity=U
+[/card]
+[card]
+primitive=Spike Weaver
+id=21179
+rarity=R
+[/card]
+[card]
+primitive=Spike Worker
+id=21198
+rarity=C
+[/card]
+[card]
+primitive=Steam Blast
+id=21204
+rarity=U
+[/card]
+[card]
+primitive=Subversion
+id=21148
+rarity=R
+[/card]
+[card]
+primitive=Sun Clasp
+id=21190
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=22370
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=22369
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=22368
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=21171
+rarity=L
+[/card]
+[card]
+primitive=Swords to Plowshares
+id=21172
+rarity=U
+[/card]
+[card]
+primitive=Symbiosis
+id=21101
+rarity=C
+[/card]
+[card]
+primitive=Syphon Soul
+id=21152
+rarity=C
+[/card]
+[card]
+primitive=Terror
+id=21151
+rarity=C
+[/card]
+[card]
+primitive=Thalakos Lowlands
+id=21146
+rarity=U
+[/card]
+[card]
+primitive=Tranquility
+id=21100
+rarity=C
+[/card]
+[card]
+primitive=Trumpeting Armodon
+id=21114
+rarity=U
+[/card]
+[card]
+primitive=Unnerve
+id=21156
+rarity=C
+[/card]
+[card]
+primitive=Uthden Troll
+id=21112
+rarity=U
+[/card]
+[card]
+primitive=Vec Townships
+id=21178
+rarity=U
+[/card]
+[card]
+primitive=Village Elder
+id=21098
+rarity=C
+[/card]
+[card]
+primitive=Wall of Heat
+id=21147
+rarity=C
+[/card]
+[card]
+primitive=Weakness
+id=21157
+rarity=C
+[/card]
+[card]
+primitive=Wildfire Emissary
+id=21115
+rarity=U
+[/card]
+[card]
+primitive=Wind Drake
+id=21124
+rarity=C
+[/card]
+[card]
+primitive=Windfall
+id=21135
+rarity=U
+[/card]
+[card]
+primitive=Wrath of God
+id=21180
+rarity=R
+[/card]

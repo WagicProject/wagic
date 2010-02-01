@@ -4,1654 +4,1587 @@ year=2004
 block=Kami
 [/meta]
 [card]
-text=Sacrifice a land: Akki Avalanchers gets +2/+0 until end of turn. Activate this ability only once each turn.
+primitive=Akki Avalanchers
 id=75277
-name=Akki Avalanchers
 rarity=C
-mana={R}
-type=Creature
-subtype=Goblin Warrior
-auto={S(land|myBattlefield)}:2/0 limit:1
-power=1
-toughness=1
 [/card]
 [card]
-text=First Strike   {R}{T}: Attacking creatures gain first strike until end of turn.
+primitive=Akki Coalflinger
 id=50338
-name=Akki Coalflinger
 rarity=U
-mana={1}{R}{R}
-type=Creature
-subtype=Goblin Shaman
-auto={R}{T}:lord(creature[attacking]) first strike 
-power=2
-toughness=2
-abilities=first strike
 [/card]
 [card]
-text=When Akki Rockspeaker enters the battlefield, add {R} to your mana pool.
+primitive=Akki Lavarunner
+id=78694
+rarity=R
+[/card]
+[card]
+primitive=Akki Rockspeaker
 id=77919
-name=Akki Rockspeaker
 rarity=C
-mana={1}{R}
-type=Creature
-subtype=Goblin Shaman
-auto=Add{R}
-power=1
-toughness=1
 [/card]
 [card]
-text=Bushido 2 (When this blocks or becomes blocked, it gets +2/+2 until end of turn.)   Battle-Mad Ronin attacks each turn if able.
+primitive=Akki Underminer
+id=75399
+rarity=U
+[/card]
+[card]
+primitive=Ashen-Skin Zubera
+id=80509
+rarity=C
+[/card]
+[card]
+primitive=Aura of Dominion
+id=75353
+rarity=U
+[/card]
+[card]
+primitive=Autumn-Tail, Kitsune Sage
+id=78695
+rarity=R
+[/card]
+[card]
+primitive=Azami, Lady of Scrolls
+id=78697
+rarity=R
+[/card]
+[card]
+primitive=Azusa, Lost but Seeking
+id=80283
+rarity=R
+[/card]
+[card]
+primitive=Battle-Mad Ronin
 id=50383
-name=Battle-Mad Ronin
 rarity=C
-mana={1}{R}
-type=Creature
-subtype=Human Samurai
-auto=rampage(2/2,0)
-auto=rampage(-2/-2,1)
-auto=lord(battle-mad ronin[blocking]|mybattlefield) 2/2
-auto=lord(other battle-mad ronin[blocking]|mybattlefield) -2/-2
-power=1
-toughness=1
-abilities=mustattack
 [/card]
 [card]
-text={T}: Ben-Ben, Akki Hermit deals damage to target attacking creature equal to the number of untapped Mountains you control.
-auto={T}:foreach(mountain[-tapped]|myBattlefield) damage:1 target(creature[attacking])
+primitive=Befoul
+id=50291
+rarity=C
+[/card]
+[card]
+primitive=Ben-Ben, Akki Hermit
 id=79248
-name=Ben-Ben, Akki Hermit
 rarity=R
-mana={2}{R}{R}
-type=Legendary Creature
-subtype=Goblin Shaman
-power=1
-toughness=1
 [/card]
 [card]
-text=Untap target nonlegendary creature and gain control of it until end of turn. That creature gains haste until end of turn.
+primitive=Blessed Breath
+id=50451
+rarity=C
+[/card]
+[card]
+primitive=Blind with Anger
 id=77925
-alias=129767
-target=creature[-legendary]
-auto=haste
-auto=untap
-name=Blind with Anger
 rarity=U
-mana={3}{R}
-type=Instant
-subtype=Arcane
 [/card]
 [card]
-text={1}{R}, Sacrifice a creature: Blood Rites deals 2 damage to target creature or player.
-auto={1}{R}{S(creature|myBattlefield}:damage:2 target(creature,player)
+primitive=Blood Rites
 id=50509
-name=Blood Rites
 rarity=U
-mana={3}{R}{R}
-type=Enchantment
 [/card]
 [card]
-text=Sacrifice Burr Grafter: Target creature gets +2/+2 until end of turn. Soulshift 3 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 3 or less from your graveyard to your hand.)
-auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=3]|mygraveyard)
+primitive=Blood Speaker
+id=79166
+rarity=U
+[/card]
+[card]
+primitive=Bloodthirsty Ogre
+id=79113
+rarity=U
+[/card]
+[card]
+primitive=Boseiju, Who Shelters All
+id=75305
+rarity=R
+[/card]
+[card]
+primitive=Brothers Yamazaki
+id=85106
+rarity=U
+[/card]
+[card]
+primitive=Brothers Yamazaki
+id=78968
+rarity=U
+[/card]
+[card]
+primitive=Brutal Deceiver
+id=76638
+rarity=C
+[/card]
+[card]
+primitive=Budoka Gardener
+id=78687
+rarity=R
+[/card]
+[card]
+primitive=Burr Grafter
 id=50305
-name=Burr Grafter
 rarity=C
-mana={3}{G}
-type=Creature
-subtype=Spirit
-auto={S}:2/2 target(creature)
-power=2
-toughness=2
 [/card]
 [card]
-text=Enchant creature   Enchanted creature can't attack or block.   {1}{W}: Return Cage of Hands to its owner's hand.
-target=creature
-auto=cantattack
-auto=cantblock
-auto={1}{W}:moveTo(ownerhand)
+primitive=Bushi Tenderfoot
+id=78600
+rarity=U
+[/card]
+[card]
+primitive=Cage of Hands
 id=50233
-name=Cage of Hands
 rarity=C
-mana={2}{W}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text=Untap all creatures you control. Samurai creatures you control get +1/+1 until end of turn.
-auto=untap all(creature|myBattlefield)
-auto=lord(samurai|myBattlefield) 1/1
+primitive=Call to Glory
 id=77140
-name=Call to Glory
 rarity=C
-mana={1}{W}
-type=Instant
 [/card]
 [card]
-text=Destroy all enchantments.
-auto=destroy all(enchantment)
+primitive=Callous Deceiver
+id=78190
+rarity=C
+[/card]
+[card]
+primitive=Candles' Glow
+id=80292
+rarity=U
+[/card]
+[card]
+primitive=Cleanfall
 id=80500
-name=Cleanfall
 rarity=U
-mana={2}{W}
-type=Sorcery
-subtype=Arcane
 [/card]
 [card]
-text=Draw two cards.
-auto=draw:2
+primitive=Cloudcrest Lake
+id=79115
+rarity=U
+[/card]
+[card]
+primitive=Commune with Nature
+id=76639
+rarity=C
+[/card]
+[card]
+primitive=Consuming Vortex
+id=80255
+rarity=C
+[/card]
+[card]
+primitive=Counsel of the Soratami
 id=50219
-name=Counsel of the Soratami
 rarity=C
-mana={2}{U}
-type=Sorcery
 [/card]
 [card]
-text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.)   {B}: Cursed Ronin gets +1/+1 until end of turn.
+primitive=Cranial Extraction
+id=80281
+rarity=R
+[/card]
+[card]
+primitive=Cruel Deceiver
+id=75258
+rarity=C
+[/card]
+[card]
+primitive=Crushing Pain
+id=50514
+rarity=C
+[/card]
+[card]
+primitive=Cursed Ronin
 id=75262
-name=Cursed Ronin
 rarity=C
-mana={3}{B}
-type=Creature
-subtype=Human Samurai
-auto=rampage(1/1,0)
-auto=rampage(-1/-1,1)
-auto=lord(cursed ronin[blocking]|mybattlefield) 1/1
-auto=lord(other cursed ronin[blocking]|mybattlefield) -1/-1
-auto={B}:1/1
-power=1
-toughness=1
 [/card]
 [card]
-text=Creatures you control get +1/+0 and gain fear until end of turn.
-auto=lord(creature|myBattlefield) 1/0
-auto=lord(creature|myBattlefield) fear
+primitive=Cut the Tethers
+id=79229
+rarity=U
+[/card]
+[card]
+primitive=Dampen Thought
+id=80284
+rarity=U
+[/card]
+[card]
+primitive=Dance of Shadows
 id=79094
-name=Dance of Shadows
 rarity=U
-mana={3}{B}{B}
-type=Sorcery
-subtype=Arcane
 [/card]
 [card]
-text=When Deathcurse Ogre is put into a graveyard from the battlefield, each player loses 3 life.
-auto=@movedTo(this|graveyard) from(battlefield):life:-3 opponent && life:-3 controller
+primitive=Deathcurse Ogre
 id=80522
-name=Deathcurse Ogre
 rarity=C
-mana={5}{B}
-type=Creature
-subtype=Ogre Warrior
-power=3
-toughness=3
 [/card]
 [card]
-text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.)
+primitive=Desperate Ritual
+id=80275
+rarity=C
+[/card]
+[card]
+primitive=Devoted Retainer
 id=50440
-name=Devoted Retainer
 rarity=C
-mana={W}
-type=Creature
-subtype=Human Samurai
-auto=rampage(1/1,0)
-auto=rampage(-1/-1,1)
-auto=lord(devoted retainer[blocking]|mybattlefield) 1/1
-auto=lord(other devoted retainer[blocking]|mybattlefield) -1/-1
-power=1
-toughness=1
 [/card]
 [card]
-text=Whenever you cast a Spirit or Arcane spell, Earthshaker deals 2 damage to each creature without flying.
-auto=@movedTo(arcane,spirit|mystack):damage:2 all(creature[-flying])
+primitive=Devouring Greed
+id=79151
+rarity=C
+[/card]
+[card]
+primitive=Devouring Rage
+id=75401
+rarity=C
+[/card]
+[card]
+primitive=Distress
+id=79129
+rarity=C
+[/card]
+[card]
+primitive=Dokai, Weaver of Life
+id=78687
+rarity=R
+[/card]
+[card]
+primitive=Dosan the Falling Leaf
+id=80524
+rarity=R
+[/card]
+[card]
+primitive=Dripping-Tongue Zubera
+id=80511
+rarity=C
+[/card]
+[card]
+primitive=Earthshaker
 id=79214
-name=Earthshaker
 rarity=U
-mana={4}{R}{R}
-type=Creature
-subtype=Spirit
-power=4
-toughness=5
 [/card]
 [card]
-text=Search your library for an Arcane card, reveal that card, and put it into your hand. Then shuffle your library.
+primitive=Eerie Procession
 id=80243
-name=Eerie Procession
-target=arcane|mylibrary
-auto=moveto(myhand)
 rarity=U
-mana={2}{U}
-type=Sorcery
-subtype=Arcane
 [/card]
 [card]
-text=Return target permanent to its owner's hand.
-target=*
-auto=moveTo(ownerhand)
+primitive=Eiganjo Castle
+id=79205
+rarity=R
+[/card]
+[card]
+primitive=Eight-and-a-Half-Tails
+id=50296
+rarity=R
+[/card]
+[card]
+primitive=Ember-Fist Zubera
+id=80508
+rarity=C
+[/card]
+[card]
+primitive=Ethereal Haze
+id=80526
+rarity=C
+[/card]
+[card]
+primitive=Eye of Nowhere
 id=79155
-name=Eye of Nowhere
 rarity=C
-mana={U}{U}
-type=Sorcery
-subtype=Arcane
 [/card]
 [card]
-text=Enchant creature   Enchanted creature can't be blocked by Spirits.   {1}{U}: Return Field of Reality to its owner's hand.
+primitive=Feast of Worms
+id=75402
+rarity=U
+[/card]
+[card]
+primitive=Feral Deceiver
+id=50236
+rarity=C
+[/card]
+[card]
+primitive=Field of Reality
 id=50272
-target=creature
-auto=cantbeblockedby(spirit)
-auto={1}{U}:moveTo(ownerhand)
-name=Field of Reality
 rarity=C
-mana={2}{U}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
+primitive=Floating-Dream Zubera
+id=80507
+rarity=C
+[/card]
+[card]
+primitive=Forbidden Orchard
+id=79252
+rarity=R
+[/card]
+[card]
+primitive=Forest
 id=79062
-name=Forest
-auto={T}:Add {G}
-type=Basic Land
-subtype=Forest
-text={G}
 rarity=L
 [/card]
 [card]
+primitive=Forest
 id=79068
-name=Forest
-auto={T}:Add {G}
-type=Basic Land
-subtype=Forest
-text={G}
 rarity=L
 [/card]
 [card]
-id=79078
-name=Forest
-auto={T}:Add {G}
-type=Basic Land
-subtype=Forest
-text={G}
-rarity=L
-[/card]
-[card]
+primitive=Forest
 id=79079
-name=Forest
-auto={T}:Add {G}
-type=Basic Land
-subtype=Forest
-text={G}
 rarity=L
 [/card]
 [card]
-text=Gale Force deals 5 damage to each Creature with flying.
-auto=damage:5 all(creature[flying])
+primitive=Forest
+id=79078
+rarity=L
+[/card]
+[card]
+primitive=Frostwielder
+id=50285
+rarity=C
+[/card]
+[card]
+primitive=Gale Force
 id=79244
-name=Gale Force
 rarity=U
-mana={4}{G}
-type=Sorcery
 [/card]
 [card]
-text=Equipped creature has shroud. (It can't be the target of spells or abilities.)   Prevent all combat damage that would be dealt to equipped creature.   Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
+primitive=General's Kabuto
 id=79862
-name=General's Kabuto
 rarity=R
-mana={4}
-type=Artifact
-subtype=Equipment
-auto={2}:equip
-auto=shroud
-auto=preventAllCombatDamage to(mytgt)
 [/card]
 [card]
-text=Flying   Soulshift 3 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 3 or less from your graveyard to your hand.)
+primitive=Ghostly Prison
+id=75328
+rarity=U
+[/card]
+[card]
+primitive=Gibbering Kami
 id=78966
-name=Gibbering Kami
 rarity=C
-mana={3}{B}
-type=Creature
-subtype=Spirit
-auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=3]|mygraveyard)
-power=2
-toughness=2
-abilities=flying
 [/card]
 [card]
-text=Whenever you cast a Spirit or Arcane spell, target creature gains flying until end of turn.
-auto=@movedTo(arcane,spirit|mystack):flying target(creature) ueot
+primitive=Gifts Ungiven
+id=79090
+rarity=R
+[/card]
+[card]
+primitive=Glacial Ray
+id=80245
+rarity=C
+[/card]
+[card]
+primitive=Glimpse of Nature
+id=75241
+rarity=R
+[/card]
+[card]
+primitive=Godo, Bandit Warlord
+id=78192
+rarity=R
+[/card]
+[card]
+primitive=Goka the Unjust
+id=78688
+rarity=U
+[/card]
+[card]
+primitive=Graceful Adept
+id=79230
+rarity=U
+[/card]
+[card]
+primitive=Guardian of Solitude
 id=79194
-name=Guardian of Solitude
 rarity=U
-mana={1}{U}
-type=Creature
-subtype=Spirit
-power=1
-toughness=2
 [/card]
 [card]
-text={1}{G}, Sacrifice Hana Kami: Return target Arcane card from your graveyard to your hand.
-auto={1}{G}{S}:moveTo(myhand) target(arcane|mygraveyard)
+primitive=Gutwrencher Oni
+id=79088
+rarity=U
+[/card]
+[card]
+primitive=Hair-Strung Koto
+id=79219
+rarity=R
+[/card]
+[card]
+primitive=Hall of the Bandit Lord
+id=77924
+rarity=R
+[/card]
+[card]
+primitive=Hana Kami
 id=77138
-name=Hana Kami
 rarity=U
-mana={G}
-type=Creature
-subtype=Spirit
-power=1
-toughness=1
 [/card]
 [card]
-text=Counter target Spirit or Arcane spell.
-target=spirit,arcane|stack
-auto=fizzle
+primitive=Hanabi Blast
+id=75357
+rarity=U
+[/card]
+[card]
+primitive=Hankyu
+id=50469
+rarity=U
+[/card]
+[card]
+primitive=Harsh Deceiver
+id=50343
 rarity=C
-mana={1}{U}
+[/card]
+[card]
+primitive=He Who Hungers
+id=78602
+rarity=R
+[/card]
+[card]
+primitive=Heartbeat of Spring
+id=50461
+rarity=R
+[/card]
+[card]
+primitive=Hearth Kami
+id=77139
+rarity=C
+[/card]
+[card]
+primitive=Hideous Laughter
+id=79204
+rarity=U
+[/card]
+[card]
+primitive=Hikari, Twilight Guardian
+id=79222
+rarity=R
+[/card]
+[card]
+primitive=Hinder
+id=50426
+rarity=U
+[/card]
+[card]
+primitive=Hisoka, Minamo Sensei
+id=50474
+rarity=R
+[/card]
+[card]
+primitive=Hisoka's Defiance
 id=50439
-name=Hisoka's Defiance
-type=Instant
+rarity=C
 [/card]
 [card]
-text=Blocking creatures get +7/+7 until end of turn.
-auto=lord(creature[blocking]) 7/7
+primitive=Hisoka's Guard
+id=79149
+rarity=C
+[/card]
+[card]
+primitive=Hold the Line
 id=79144
-name=Hold the Line
 rarity=R
-mana={1}{W}{W}
-type=Instant
 [/card]
 [card]
-text=At the beginning of your upkeep, you gain 2 life for each Shrine you control.
-auto=@each my upkeep:foreach(shrine|myBattlefield) life:2
+primitive=Honden of Cleansing Fire
 id=79159
-name=Honden of Cleansing Fire
 rarity=U
-mana={3}{W}
-type=Legendary Enchantment
-subtype=Shrine
 [/card]
 [card]
-text=At the beginning of your upkeep, Honden of Infinite Rage deals damage to target creature or player equal to the number of Shrines you control.
-auto=@each my upkeep:foreach(shrine|myBattlefield) damage:1 target(creature,player)
+primitive=Honden of Infinite Rage
 id=79110
-name=Honden of Infinite Rage
-mana={2}{R}
-type=Legendary Enchantment
-subtype=Shrine
 rarity=U
 [/card]
 [card]
-text=At the beginning of your upkeep, put a 1/1 colorless Spirit creature token onto the battlefield for each Shrine you control.
-auto=@each my upkeep:foreach(shrine|myBattlefield) token(Spirit,Creature Spirit,1/1,artifact)
+primitive=Honden of Life's Web
 id=79180
-name=Honden of Life's Web
 rarity=U
-mana={4}{G}
-type=Legendary Enchantment
-subtype=Shrine
 [/card]
 [card]
-text=At the beginning of your upkeep, draw a card for each Shrine you control.
-auto=@each my upkeep:foreach(shrine|myBattlefield) draw:1
+primitive=Honden of Night's Reach
+id=79098
+rarity=U
+[/card]
+[card]
+primitive=Honden of Seeing Winds
 id=79176
-name=Honden of Seeing Winds
 rarity=U
-mana={4}{U}
-type=Legendary Enchantment
-subtype=Shrine
 [/card]
 [card]
-text=Whenever you cast a Spirit or Arcane spell, regenerate target creature.
-auto=@movedTo(arcane,spirit|mystack):regenerate target(creature)
+primitive=Honor-Worn Shaku
+id=77143
+rarity=U
+[/card]
+[card]
+primitive=Horizon Seed
 id=79226
-name=Horizon Seed
 rarity=U
-mana={4}{W}
-type=Creature
-subtype=Spirit
-power=2
-toughness=1
 [/card]
 [card]
-text=Shroud
+primitive=Horobi, Death's Wail
+id=78854
+rarity=R
+[/card]
+[card]
+primitive=Humble Budoka
 id=78684
-name=Humble Budoka
 rarity=C
-mana={1}{G}
-type=Creature
-subtype=Human Monk
-power=2
-toughness=2
-abilities=shroud
 [/card]
 [card]
-text=Flying   Soulshift 4 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 4 or less from your graveyard to your hand.)
+primitive=Hundred-Talon Kami
 id=79145
-name=Hundred-Talon Kami
 rarity=C
-mana={4}{W}
-type=Creature
-subtype=Spirit
-auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=4]|mygraveyard)
-power=2
-toughness=3
-abilities=flying
 [/card]
 [card]
-text=Enchant Creature   Flash   Enchanted Creature gets +1/+2.
-target=creature
-auto=1/2
+primitive=Imi Statue
+id=50300
+rarity=R
+[/card]
+[card]
+primitive=Iname, Death Aspect
+id=80278
+rarity=R
+[/card]
+[card]
+primitive=Iname, Life Aspect
+id=80282
+rarity=R
+[/card]
+[card]
+primitive=Indomitable Will
 id=50499
-name=Indomitable Will
 rarity=C
-mana={1}{W}
-type=Enchantment
-subtype=Aura
-abilities=flash
 [/card]
 [card]
-text={W}, {T}: Tap target creature.   Whenever you cast a Spirit or Arcane spell, untap Innocence Kami.
+primitive=Initiate of Blood
+id=78688
+rarity=U
+[/card]
+[card]
+primitive=Innocence Kami
 id=76636
-name=Innocence Kami
 rarity=U
-mana={3}{W}{W}
-type=Creature
-subtype=Spirit
-auto={W}{T}:tap target(creature)
-auto=@movedTo(spirit,arcane|mystack):untap
-power=2
-toughness=3
 [/card]
 [card]
+primitive=Isamaru, Hound of Konda
 id=79217
-name=Isamaru, Hound of Konda
 rarity=R
-mana={W}
-type=Legendary Creature
-subtype=Hound
-power=2
-toughness=2
 [/card]
 [card]
-id=79074
-name=Island
-auto={T}:Add {U}
-type=Basic Land
-subtype=Island
-text={U}
-rarity=L
-[/card]
-[card]
-id=79071
-name=Island
-auto={T}:Add {U}
-type=Basic Land
-subtype=Island
-text={U}
-rarity=L
-[/card]
-[card]
+primitive=Island
 id=79061
-name=Island
-auto={T}:Add {U}
-type=Basic Land
-subtype=Island
-text={U}
 rarity=L
 [/card]
 [card]
+primitive=Island
 id=79069
-name=Island
-auto={T}:Add {U}
-type=Basic Land
-subtype=Island
-text={U}
 rarity=L
 [/card]
 [card]
-text=Whenever you cast a Spirit or Arcane spell, Jade Idol becomes a 4/4 Spirit artifact creature until end of turn.
+primitive=Island
+id=79071
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=79074
+rarity=L
+[/card]
+[card]
+primitive=Jade Idol
 id=80531
-name=Jade Idol
-auto=@movedTo(spirit,arcane|mystack):becomes(Artifact Creature Spirit,4/4) ueot
 rarity=U
-mana={4}
-type=Artifact
 [/card]
 [card]
-text={3}, {T}: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.
-auto={3}{T}:moveTo(myHand) target(land[basic]|mylibrary)
+primitive=Journeyer's Kite
 id=79233
-name=Journeyer's Kite
 rarity=R
-mana={2}
-type=Artifact
 [/card]
 [card]
-text=You gain 1 life for each land you control.
-auto=foreach(land|myBattlefield) life:1
+primitive=Joyous Respite
 id=78981
-name=Joyous Respite
 rarity=C
-mana={3}{G}
-type=Sorcery
-subtype=Arcane
 [/card]
 [card]
-text=Forestwalk
+primitive=Jugan, the Rising Star
+id=50247
+rarity=R
+[/card]
+[card]
+primitive=Jukai Messenger
 id=80525
-name=Jukai Messenger
 rarity=C
-mana={G}
-type=Creature
-subtype=Human Monk
-power=1
-toughness=1
-abilities=forestwalk
 [/card]
 [card]
-text=Flying   {T}:Target creature gets +1/+2 until end of turn.
-auto={T}:1/2 target(creature)
+primitive=Junkyo Bell
+id=80280
+rarity=R
+[/card]
+[card]
+primitive=Jushi Apprentice
+id=78686
+rarity=R
+[/card]
+[card]
+primitive=Kabuto Moth
 id=79105
-name=Kabuto Moth
 rarity=C
-mana={2}{W}
-type=Creature
-subtype=Spirit
-power=1
-toughness=2
-abilities=flying
 [/card]
 [card]
-text=Sacrifice Kami of Ancient Law: Destroy target enchantment.
+primitive=Kami of Ancient Law
 id=50349
-name=Kami of Ancient Law
 rarity=C
-mana={1}{W}
-type=Creature
-subtype=Spirit
-auto={S}:destroy target(enchantment)
-power=2
-toughness=2
 [/card]
 [card]
-text=Whenever you cast a Spirit or Arcane spell, target creature can't block this turn.
-auto=@movedTo(arcane,spirit|mystack):cantblock target(creature)
+primitive=Kami of Fire's Roar
 id=79195
-name=Kami of Fire's Roar
 rarity=C
-mana={3}{R}
-type=Creature
-subtype=Spirit
-power=2
-toughness=3
 [/card]
 [card]
-text=Flying   Soulshift 5 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 5 or less from your graveyard to your hand.)
+primitive=Kami of Lunacy
 id=77921
-name=Kami of Lunacy
 rarity=U
-mana={4}{B}{B}
-type=Creature
-subtype=Spirit
-auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=5]|mygraveyard)
-power=4
-toughness=1
-abilities=flying
 [/card]
 [card]
+primitive=Kami of Old Stone
 id=79236
-name=Kami of Old Stone
 rarity=U
-mana={3}{W}
-type=Creature
-subtype=Spirit
-power=1
-toughness=7
 [/card]
 [card]
-text=Whenever you cast a Spirit or Arcane spell, Kami of the Hunt gets +1/+1 until end of turn.
+primitive=Kami of the Hunt
 id=79198
-name=Kami of the Hunt
 rarity=C
-mana={2}{G}
-type=Creature
-subtype=Spirit
-auto=@movedTo(arcane,spirit|mystack):1/1 ueot
-power=2
-toughness=2
 [/card]
 [card]
-text=Whenever you cast a Spirit or Arcane spell, Kami of the Painted Road gains protection from the color of your choice until end of turn.
+primitive=Kami of the Painted Road
 id=77136
-name=Kami of the Painted Road
 rarity=C
-mana={4}{W}
-type=Creature
-subtype=Spirit
-auto=@movedTo(arcane,spirit|mystack):may protection from white ueot
-auto=@movedTo(arcane,spirit|mystack):may protection from blue ueot
-auto=@movedTo(arcane,spirit|mystack):may protection from black ueot
-auto=@movedTo(arcane,spirit|mystack):may protection from red ueot
-auto=@movedTo(arcane,spirit|mystack):may protection from green ueot
-power=3
-toughness=3
 [/card]
 [card]
-text=Flying, first strike   Soulshift 5 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 5 or less from your graveyard to your hand.)
+primitive=Kami of the Palace Fields
 id=50367
-name=Kami of the Palace Fields
 rarity=U
-mana={5}{W}
-type=Creature
-subtype=Spirit
-auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=5]|mygraveyard)
-power=3
-toughness=2
-abilities=flying,first strike
 [/card]
 [card]
-text=Flying   Whenever you cast a Spirit or Arcane spell, target creature gains fear until end of turn.
-auto=@movedTo(arcane,spirit|mystack):fear target(creature)
+primitive=Kami of the Waning Moon
 id=50311
-name=Kami of the Waning Moon
 rarity=C
-mana={2}{B}
-type=Creature
-subtype=Spirit
-power=1
-toughness=1
-abilities=flying
 [/card]
 [card]
-text=Sacrifice Kami of Twisted Reflection: Return target creature you control to its owner's hand.
+primitive=Kami of Twisted Reflection
 id=50228
-name=Kami of Twisted Reflection
 rarity=C
-mana={1}{U}{U}
-type=Creature
-subtype=Spirit
-auto={S}:moveTo(ownerhand) target(creature|mybattlefield)
-power=2
-toughness=2
 [/card]
 [card]
-text=Flying   When Keiga, the Tide Star is put into a graveyard from the battlefield, gain control of target creature.
-auto=@movedTo(this|graveyard) from(battlefield):moveTo(myBattlefield) target(creature)
+primitive=Kashi-Tribe Reaver
+id=76634
+rarity=U
+[/card]
+[card]
+primitive=Kashi-Tribe Warriors
+id=50342
+rarity=C
+[/card]
+[card]
+primitive=Keiga, the Tide Star
 id=75286
-name=Keiga, the Tide Star
 rarity=R
-mana={5}{U}
-type=Legendary Creature
-subtype=Dragon Spirit
-power=5
-toughness=5
-abilities=flying
 [/card]
 [card]
-text=First strike   Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.)
+primitive=Kenzo the Hardhearted
+id=78600
+rarity=U
+[/card]
+[card]
+primitive=Kiki-Jiki, Mirror Breaker
+id=50321
+rarity=R
+[/card]
+[card]
+primitive=Kiku, Night's Flower
+id=78962
+rarity=R
+[/card]
+[card]
+primitive=Kitsune Blademaster
 id=50441
-name=Kitsune Blademaster
 rarity=C
-mana={2}{W}
-type=Creature
-subtype=Fox Samurai
-auto=rampage(1/1,0)
-auto=rampage(-1/-1,1)
-auto=lord(kitsune blademaster[blocking]|mybattlefield) 1/1
-auto=lord(other kitsune blademaster[blocking]|mybattlefield) -1/-1
-power=2
-toughness=2
-abilities=first strike
 [/card]
 [card]
-text={T}: Tap target Spirit.
+primitive=Kitsune Diviner
 id=76652
-name=Kitsune Diviner
 rarity=C
-mana={W}
-type=Creature
-subtype=Fox Cleric
-auto={T}:tap target(spirit)
-power=0
-toughness=1
 [/card]
 [card]
-text=Protection from Spirits and from Arcane
+primitive=Kitsune Healer
+id=50437
+rarity=C
+[/card]
+[card]
+primitive=Kitsune Mystic
+id=78695
+rarity=R
+[/card]
+[card]
+primitive=Kitsune Riftwalker
 id=50412
-name=Kitsune Riftwalker
 rarity=C
-mana={1}{W}{W}
-type=Creature
-subtype=Fox Wizard
-auto=protection from(spirit,arcane)
-power=2
-toughness=1
 [/card]
 [card]
-text=Shroud, trample
+primitive=Kodama of the North Tree
 id=50488
-name=Kodama of the North Tree
 rarity=R
-mana={2}{G}{G}{G}
-type=Legendary Creature
-subtype=Spirit
-power=6
-toughness=4
-abilities=shroud,trample
 [/card]
 [card]
-text=Whenever you cast a Spirit or Arcane spell, each other creature you control gets +1/+1 and gains trample until end of turn.
-auto=@movedTo(arcane,spirit|mystack):lord(creature|myBattlefield) 1/1 other ueot
-auto=@movedTo(arcane,spirit|mystack):lord(creature|myBattlefield) trample other ueot
+primitive=Kodama of the South Tree
 id=80288
-name=Kodama of the South Tree
 rarity=R
-mana={2}{G}{G}
-type=Legendary Creature
-subtype=Spirit
-power=4
-toughness=4
 [/card]
 [card]
-text=Flying When Kokusho, the Evening Star is put into a graveyard from the battlefield, each opponent loses 5 life. You gain life equal to the life lost this way.
+primitive=Kodama's Might
+id=81702
+rarity=C
+[/card]
+[card]
+primitive=Kodama's Reach
+id=50299
+rarity=C
+[/card]
+[card]
+primitive=Kokusho, the Evening Star
 id=50445
-name=Kokusho, the Evening Star
 rarity=R
-mana={4}{B}{B}
-type=Legendary Creature
-subtype=Dragon Spirit
-auto=@movedTo(this|graveyard) from(battlefield):life:5 controller
-auto=@movedTo(this|graveyard) from(battlefield):life:-5 opponent
-power=5
-toughness=5
-abilities=flying
 [/card]
 [card]
-####Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1) 
-text=Vigilance (Attacking doesn't cause this creature to tap.)   Bushido 5 (When this blocks or becomes blocked, it gets +5/+5 until end of turn.)   Konda, Lord of Eiganjo is indestructible.
+primitive=Konda, Lord of Eiganjo
 id=78594
-name=Konda Lord of Eiganjo
 rarity=R
-mana={5}{W}{W}
-type=Legendary Creature
-subtype=Human Samurai
-auto=rampage(5/5,0)
-auto=rampage(-5/-5,1)
-auto=lord(konda lord of eiganjo[blocking]|mybattlefield) 5/5
-power=3
-toughness=3
-abilities=vigilance,indestructible
 [/card]
 [card]
-text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.)   As long as you control a legendary Samurai, Konda's Hatamoto gets +1/+2 and has vigilance. (Attacking doesn't cause this creature to tap.)
+primitive=Konda's Banner
+id=76637
+rarity=R
+[/card]
+[card]
+primitive=Konda's Hatamoto
 id=79201
-name=Konda's Hatamoto
 rarity=U
-mana={1}{W}
-type=Creature
-subtype=Human Samurai
-auto=rampage(1/1,0)
-auto=rampage(-1/-1,1)
-auto=lord(konda's hatamoto[blocking]|mybattlefield) 1/1
-auto=lord(other konda's hatamoto[blocking]|mybattlefield) -1/-1
-auto=aslongas(samurai[legendary]|mybattlefield) 1/2
-auto=aslongas(samurai[legendary]|mybattlefield) vigilance
-power=1
-toughness=2
 [/card]
 [card]
-text=Flying
+primitive=Kumano, Master Yamabushi
+id=78964
+rarity=R
+[/card]
+[card]
+primitive=Kumano's Pupils
+id=75267
+rarity=U
+[/card]
+[card]
+primitive=Kuro, Pitlord
+id=82423
+rarity=R
+[/card]
+[card]
+primitive=Kusari-Gama
+id=75269
+rarity=R
+[/card]
+[card]
+primitive=Lantern Kami
 id=75319
-name=Lantern Kami
 rarity=C
-mana={W}
-type=Creature
-subtype=Spirit
-power=1
-toughness=1
-abilities=flying
 [/card]
 [card]
-text=Lava Spike deals 3 damage to target player.
-target=player
-auto=damage:3
+primitive=Lantern-Lit Graveyard
+id=79080
+rarity=U
+[/card]
+[card]
+primitive=Lava Spike
 id=79084
-name=Lava Spike
 rarity=C
-mana={R}
-type=Sorcery
-subtype=Arcane
 [/card]
 [card]
-text=Rat creatures have fear.   {T}, Sacrifice a Rat: Put X 1/1 black Rat creature tokens onto the battlefield, where X is the number of Rats you control.
-auto={T}{S(rat|myBattlefield)}:foreach(rat|myBattlefield) token(Rat,Creature Rat,1/1,black)
+primitive=Lifted by Clouds
+id=50320
+rarity=C
+[/card]
+[card]
+primitive=Long-Forgotten Gohei
+id=80532
+rarity=R
+[/card]
+[card]
+primitive=Lure
+id=79152
+rarity=U
+[/card]
+[card]
+primitive=Mana Seism
+id=79133
+rarity=U
+[/card]
+[card]
+primitive=Marrow-Gnawer
 id=50253
-name=Marrow-Gnawer
 rarity=R
-mana={3}{B}{B}
-type=Legendary Creature
-subtype=Rat Rogue
-auto=lord(rat) fear
-power=2
-toughness=3
 [/card]
 [card]
-text=Flying   {1}, Return a land you control to its owner's hand: Put a 1/1 blue Illusion creature token with flying onto the battlefield.
-auto={1}:moveTo(ownerhand) target(land|mybattlefield) && token(Illusion,Creature Illusion,1/1,blue flying)
+primitive=Masako the Humorless
+id=79215
+rarity=R
+[/card]
+[card]
+primitive=Matsu-Tribe Decoy
+id=75247
+rarity=C
+[/card]
+[card]
+primitive=Meloku the Clouded Mirror
 id=75268
-name=Meloku the Clouded Mirror
 rarity=R
-mana={4}{U}
-type=Legendary Creature
-subtype=Moonfolk Wizard
-power=2
-toughness=4
-abilities=flying
 [/card]
 [card]
-text=Enchanted Creature has "{B}: This Creature gets +1/+1 until end of turn."
-target=creature
-auto={B}:1/1
+primitive=Midnight Covenant
 id=50449
-name=Midnight Covenant
 rarity=C
-mana={1}{B}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text={T}: Add {U} to your mana pool.   {U}, {T}: Untap target legendary permanent.
-auto={T}:Add{U}
-auto={U}{T}:Untap target(*[legendary])
+primitive=Minamo, School at Water's Edge
 id=79179
-name=Minamo, School at Water's Edge
 rarity=R
-type=Legendary Land
 [/card]
 [card]
-text=Trample
+primitive=Mindblaze
+id=75248
+rarity=R
+[/card]
+[card]
+primitive=Moonring Mirror
+id=73907
+rarity=R
+[/card]
+[card]
+primitive=Moss Kami
 id=76641
-name=Moss Kami
 rarity=C
-mana={5}{G}
-type=Creature
-subtype=Spirit
-power=5
-toughness=5
-abilities=trample
 [/card]
 [card]
-text=Flying   Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.)
+primitive=Mothrider Samurai
 id=50385
-name=Mothrider Samurai
 rarity=C
-mana={3}{W}
-type=Creature
-subtype=Human Samurai
-auto=rampage(1/1,0)
-auto=rampage(-1/-1,1)
-auto=lord(mothrider samurai[blocking]|mybattlefield) 1/1
-auto=lord(other mothrider samurai[blocking]|mybattlefield) -1/-1
-power=2
-toughness=2
-abilities=flying
 [/card]
 [card]
-id=79075
-name=Mountain
-auto={T}:Add {R}
-type=Basic Land
-subtype=Mountain
-text={R}
-rarity=L
-[/card]
-[card]
-id=79070
-name=Mountain
-auto={T}:Add {R}
-type=Basic Land
-subtype=Mountain
-text={R}
-rarity=L
-[/card]
-[card]
+primitive=Mountain
 id=79064
-name=Mountain
-auto={T}:Add {R}
-type=Basic Land
-subtype=Mountain
-text={R}
 rarity=L
 [/card]
 [card]
+primitive=Mountain
+id=79070
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=79075
+rarity=L
+[/card]
+[card]
+primitive=Mountain
 id=79077
-name=Mountain
-auto={T}:Add {R}
-type=Basic Land
-subtype=Mountain
-text={R}
 rarity=L
 [/card]
 [card]
-text=Flash   Enchant creature When Mystic Restraints enters the battlefield, tap enchanted creature.   Enchanted creature doesn't untap during its controller's untap step.
+primitive=Myojin of Cleansing Fire
+id=78681
+rarity=R
+[/card]
+[card]
+primitive=Myojin of Infinite Rage
+id=78986
+rarity=R
+[/card]
+[card]
+primitive=Myojin of Life's Web
+id=78976
+rarity=R
+[/card]
+[card]
+primitive=Myojin of Night's Reach
+id=79112
+rarity=R
+[/card]
+[card]
+primitive=Myojin of Seeing Winds
+id=78608
+rarity=R
+[/card]
+[card]
+primitive=Mystic Restraints
 id=79188
-target=creature
-auto=tap
-auto=doesnotuntap
-name=Mystic Restraints
 rarity=C
-mana={2}{U}{U}
-type=Enchantment
-subtype=Aura
-abilities=flash
 [/card]
 [card]
-####Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1) 
-text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.)   Whenever Nagao, Bound by Honor attacks, Samurai creatures you control get +1/+1 until end of turn.
+primitive=Nagao, Bound by Honor
 id=79136
-name=Nagao Bound by Honor
 rarity=U
-mana={3}{W}
-type=Legendary Creature
-subtype=Human Samurai
-auto=rampage(1/1,0)
-auto=rampage(-1/-1,1)
-auto=lord(nagao bound by honor[blocking]|mybattlefield) 1/1
-auto=aslongas(nagao bound by honor[attacking]|myBattlefield) lord(samurai[attacking]|myBattlefield) 1/1
-power=3
-toughness=3
 [/card]
 [card]
-text=Fear   Nezumi Cutthroat can't block.
+primitive=Nature's Will
+id=80527
+rarity=R
+[/card]
+[card]
+primitive=Nezumi Bone-Reader
+id=79857
+rarity=U
+[/card]
+[card]
+primitive=Nezumi Cutthroat
 id=80521
-name=Nezumi Cutthroat
 rarity=C
-mana={1}{B}
-type=Creature
-subtype=Rat Warrior
-power=2
-toughness=1
-abilities=cantblock,fear
 [/card]
 [card]
-text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.)
+primitive=Nezumi Graverobber
+id=78678
+rarity=U
+[/card]
+[card]
+primitive=Nezumi Ronin
 id=50512
-name=Nezumi Ronin
 rarity=C
-mana={2}{B}
-type=Creature
-subtype=Rat Samurai
-auto=rampage(1/1,0)
-auto=rampage(-1/-1,1)
-auto=lord(nezumin ronin[blocking]|mybattlefield) 1/1
-auto=lord(other nezumi ronin[blocking]|mybattlefield) -1/-1
-power=3
-toughness=1
 [/card]
 [card]
-text=All Creatures get -1/-1.
-auto=lord(creature) -1/-1
+primitive=Nezumi Shortfang
+id=78679
+rarity=R
+[/card]
+[card]
+primitive=Night Dealings
+id=75334
+rarity=R
+[/card]
+[card]
+primitive=Night of Souls' Betrayal
 id=78991
-name=Night of Souls' Betrayal
 rarity=R
-mana={2}{B}{B}
-type=Legendary Enchantment
 [/card]
 [card]
-text=Equipped creature gets +2/+0 and has first strike.   Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery.)
+primitive=Nighteyes the Desecrator
+id=78678
+rarity=U
+[/card]
+[card]
+primitive=Nine-Ringed Bo
+id=50413
+rarity=U
+[/card]
+[card]
+primitive=No-Dachi
 id=75265
-auto={3}:equip
-auto=2/0
-auto=first strike
-name=No-Dachi
 rarity=U
-mana={2}
-type=Artifact
-subtype=Equipment
 [/card]
 [card]
-text=Bushido 2 (When this blocks or becomes blocked, it gets +2/+2 until end of turn.)   {B}, Pay 5 life: Regenerate Numai Outcast.
+primitive=Numai Outcast
 id=50431
-name=Numai Outcast
 rarity=U
-mana={3}{B}
-type=Creature
-subtype=Human Samurai
-auto=rampage(1/1,0)
-auto=rampage(-1/-1,1)
-auto=lord(numai outcast[blocking]|mybattlefield) 1/1
-auto=lord(other numai outcast[blocking]|mybattlefield) -1/-1
-auto={B}:regenerate && life:-5 controller
-power=1
-toughness=1
 [/card]
 [card]
-text={T}: Add {G} to your mana pool.   {G}, {T}: Target legendary Creature gets +1/+1 until end of turn.
+primitive=Oathkeeper, Takeno's Daisho
+id=50484
+rarity=R
+[/card]
+[card]
+primitive=Okina, Temple to the Grandfathers
 id=80251
-name=Okina, Temple to the Grandfathers
-auto={T}:Add {G}
-auto={G}{T}:1/1 target(creature[legendary])
 rarity=R
-type=Legendary Land
 [/card]
 [card]
-text=Enchant creature   At the beginning of your upkeep, sacrifice a creature.   Enchanted creature gets +3/+3 and has trample.   Enchanted creature is a Demon Spirit.
-auto=@each my upkeep:moveTo(graveyard) notatarget(creature|myBattlefield)
-id=197016
-target=creature
-auto=becomes(Creature Demon Spirit,p/t)
-auto=3/3
-auto=trample
-name=Oni Possession
+primitive=Oni Possession
+id=50394
 rarity=U
-mana={2}{B}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text=Reach (This creature can block creatures with flying.)   Whenever you cast a Spirit or Arcane spell, Orbweaver Kumo gains forestwalk until end of turn.
+primitive=Orbweaver Kumo
 id=50261
-name=Orbweaver Kumo
 rarity=U
-mana={4}{G}{G}
-type=Creature
-subtype=Spirit
-auto=@movedTo(arcane,spirit|mystack):forestwalk ueot
-power=3
-toughness=4
-abilities=reach
 [/card]
 [card]
+primitive=Order of the Sacred Bell
 id=50487
-name=Order of the Sacred Bell
 rarity=C
-mana={3}{G}
-type=Creature
-subtype=Human Monk
-power=4
-toughness=3
 [/card]
 [card]
-text=Whenever you cast a Spirit or Arcane spell, you may destroy target nonbasic land.
-auto=@movedTo(spirit,arcane|mystack):may destroy target(land[-basic])
+primitive=Ore Gorger
 id=78984
-name=Ore Gorger
 rarity=U
-mana={3}{R}{R}
-type=Creature
-subtype=Spirit
-power=3
-toughness=1
 [/card]
 [card]
-text={G}: Add one mana of any color to your mana pool.
+primitive=Orochi Eggwatcher
+id=78975
+rarity=U
+[/card]
+[card]
+primitive=Orochi Hatchery
+id=80241
+rarity=R
+[/card]
+[card]
+primitive=Orochi Leafcaller
 id=50319
-name=Orochi Leafcaller
 rarity=C
-mana={G}
-type=Creature
-subtype=Snake Shaman
-auto={G}:Add {W}
-auto={G}:Add {U}
-auto={G}:Add {B}
-auto={G}:Add {R}
-auto={G}:Add {G}
-power=1
-toughness=1
 [/card]
 [card]
-text={T}: Add {G} to your mana pool.
+primitive=Orochi Ranger
+id=50308
+rarity=C
+[/card]
+[card]
+primitive=Orochi Sustainer
 id=75403
-name=Orochi Sustainer
 rarity=C
-mana={1}{G}
-type=Creature
-subtype=Snake Shaman
-auto={T}:Add {G}
-power=1
-toughness=2
 [/card]
 [card]
-text=Return all Creatures you control to their owner’s hand.
-auto=moveTo(ownerhand) all(creature|myBattlefield)
+primitive=Otherworldly Journey
+id=50256
+rarity=U
+[/card]
+[card]
+primitive=Pain Kami
+id=50266
+rarity=U
+[/card]
+[card]
+primitive=Painwracker Oni
+id=79119
+rarity=U
+[/card]
+[card]
+primitive=Part the Veil
 id=80291
-name=Part the Veil
 rarity=R
-mana={3}{U}
-type=Instant
-subtype=Arcane
 [/card]
 [card]
-id=79072
-name=Plains
-auto={T}:Add {W}
-type=Basic Land
-subtype=Plains
-text={W}
-rarity=L
+primitive=Peer Through Depths
+id=78690
+rarity=C
 [/card]
 [card]
+primitive=Petals of Insight
+id=50254
+rarity=U
+[/card]
+[card]
+primitive=Pinecrest Ridge
+id=79132
+rarity=U
+[/card]
+[card]
+primitive=Pious Kitsune
+id=79256
+rarity=C
+[/card]
+[card]
+primitive=Plains
 id=79060
-name=Plains
-auto={T}:Add {W}
-type=Basic Land
-subtype=Plains
-text={W}
 rarity=L
 [/card]
 [card]
+primitive=Plains
 id=79063
-name=Plains
-auto={T}:Add {W}
-type=Basic Land
-subtype=Plains
-text={W}
 rarity=L
 [/card]
 [card]
+primitive=Plains
+id=79072
+rarity=L
+[/card]
+[card]
+primitive=Plains
 id=79076
-name=Plains
-auto={T}:Add {W}
-type=Basic Land
-subtype=Plains
-text={W}
 rarity=L
 [/card]
 [card]
-text=Target Creature gets -5/-5 until end of turn.
-target=creature
-auto=-5/-5
+primitive=Psychic Puppetry
+id=80242
+rarity=C
+[/card]
+[card]
+primitive=Pull Under
 id=78972
-name=Pull Under
 rarity=C
-mana={5}{B}
-type=Instant
-subtype=Arcane
 [/card]
 [card]
-text=Destroy target enchantment.
-target=enchantment
-auto=destroy
+primitive=Quiet Purity
 id=50313
-name=Quiet Purity
 rarity=C
-mana={W}
-type=Instant
-subtype=Arcane
 [/card]
 [card]
-text=Draw a card.
-auto=draw:1
+primitive=Rag Dealer
+id=79237
+rarity=C
+[/card]
+[card]
+primitive=Ragged Veins
+id=79158
+rarity=C
+[/card]
+[card]
+primitive=Reach Through Mists
 id=79247
-name=Reach Through Mists
 rarity=C
-mana={U}
-type=Instant
-subtype=Arcane
 [/card]
 [card]
-text=Destroy target non-Spirit creature.
-auto=destroy
-target=creature[-spirit]
+primitive=Reciprocate
+id=50405
+rarity=U
+[/card]
+[card]
+primitive=Reito Lantern
+id=80273
+rarity=U
+[/card]
+[card]
+primitive=Rend Flesh
 id=75259
-name=Rend Flesh
 rarity=C
-mana={2}{B}
-type=Instant
-subtype=Arcane
 [/card]
 [card]
-text=Destroy target Spirit.
-target=spirit
-auto=destroy
+primitive=Rend Spirit
 id=50293
-name=Rend Spirit
 rarity=C
-mana={2}{B}
-type=Instant
 [/card]
 [card]
+primitive=Reverse the Sands
+id=79125
+rarity=R
+[/card]
+[card]
+primitive=Reweave
+id=79863
+rarity=R
+[/card]
+[card]
+primitive=River Kaijin
 id=78586
-name=River Kaijin
 rarity=C
-type=Creature
-mana={2}{U}
-power=1
-subtype=Spirit
-toughness=4
 [/card]
 [card]
-text=Haste   Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.)
+primitive=Ronin Houndmaster
 id=50262
-name=Ronin Houndmaster
 rarity=C
-mana={2}{R}
-type=Creature
-subtype=Human Samurai
-auto=rampage(1/1,0)
-auto=rampage(-1/-1,1)
-auto=lord(ronin houndmaster[blocking]|mybattlefield) 1/1
-auto=lord(other ronin houndmaster[blocking]|mybattlefield) -1/-1
-power=2
-toughness=2
-abilities=haste
 [/card]
 [card]
-text={G}{G}, Sacrifice Rootrunner: Put target land on top of its owner's library.   Soulshift 3 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 3 or less from your graveyard to your hand.)
+primitive=Rootrunner
 id=75367
-name=Rootrunner
 rarity=U
-mana={2}{G}{G}
-type=Creature
-subtype=Spirit
-auto={G}{G}{S}:moveTo(ownerlibrary) target(land)
-auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=3]|mygraveyard)
-power=3
-toughness=3
 [/card]
 [card]
-text=Flying   When Ryusei, the Falling Star is put into a graveyard from the battlefield, it deals 5 damage to each creature without flying.
-auto=@movedTo(this|graveyard) from(battlefield):damage:5 all(creature[-flying])
+primitive=Ryusei, the Falling Star
 id=79242
-name=Ryusei, the Falling Star
 rarity=R
-mana={5}{R}
-type=Legendary Creature
-subtype=Dragon Spirit
-power=5
-toughness=5
-abilities=flying
 [/card]
 [card]
-text=Other Snake creatures you control get +0/+1.   Shamans you control have "{T}: Add {G}{G} to your mana pool."
+primitive=Sachi, Daughter of Seshiro
 id=80254
-name=Sachi, Daughter of Seshiro
 rarity=U
-mana={2}{G}{G}
-type=Legendary Creature
-subtype=Snake Shaman
-auto=lord(snake|mybattlefield) 0/1 other
-auto=lord(shaman|mybattlefield) {T}:Add{G}{G}
-power=1
-toughness=3
 [/card]
 [card]
-text=Sacrifice Sakura-Tribe Elder: Search your library for a basic land card, put that card onto the battlefield tapped, then shuffle your library.
-auto={S}:moveTo(myBattlefield) target(basic|mylibrary) && tap
+primitive=Sakura-Tribe Elder
 id=50510
-name=Sakura-Tribe Elder
 rarity=C
-mana={1}{G}
-type=Creature
-subtype=Snake Shaman
-power=1
-toughness=1
 [/card]
 [card]
-text=Bushido 2 (When this blocks or becomes blocked, it gets +2/+2 until end of turn.)
+primitive=Samurai Enforcers
 id=50408
-name=Samurai Enforcers
 rarity=U
-mana={4}{W}{W}
-type=Creature
-subtype=Human Samurai
-auto=rampage(2/2,0)
-auto=rampage(-2/-2,1)
-auto=lord(samurai enforcers[blocking]|mybattlefield) 2/2
-auto=lord(other samurai enforcers[blocking]|mybattlefield) -2/-2
-power=4
-toughness=4
 [/card]
 [card]
-text=Sacrifice Scuttling Death: Target creature gets -1/-1 until end of turn.   Soulshift 4 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 4 or less from your graveyard to your hand.)
+primitive=Samurai of the Pale Curtain
+id=75381
+rarity=U
+[/card]
+[card]
+primitive=Scuttling Death
 id=77922
-name=Scuttling Death
 rarity=C
-mana={4}{B}
-type=Creature
-subtype=Spirit
-auto={S}:-1/-1 target(creature)
-auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=4]|mygraveyard)
-power=4
-toughness=2
 [/card]
 [card]
-text=At the beginning of each player's upkeep, that player loses 2 life and draws two cards.
-auto=@each my upkeep:life:-2 controller && draw:2 controller
-auto=@each opponent upkeep:life:-2 opponent && draw:2 opponent
+primitive=Seizan, Perverter of Truth
 id=78965
-name=Seizan, Perverter of Truth
 rarity=R
-mana={3}{B}{B}
-type=Legendary Creature
-subtype=Demon Spirit
-power=6
-toughness=5
 [/card]
 [card]
-text=Flash   Enchant creature   Enchanted creature gets +1/+1.   {G}: Regenerate enchanted creature.
+primitive=Sensei Golden-Tail
+id=78683
+rarity=R
+[/card]
+[card]
+primitive=Sensei's Divining Top
+id=50400
+rarity=U
+[/card]
+[card]
+primitive=Serpent Skin
 id=75404
-target=creature
-auto=1/1
-auto={G}:regenerate
-name=Serpent Skin
 rarity=C
-mana={2}{G}
-type=Enchantment
-subtype=Aura
-abilities=flash
 [/card]
 [card]
-text=Other Snake creatures you control get +2/+2.   Whenever a Snake you control deals combat damage to a player, you may draw a card.
-auto=lord(snake|myBattlefield) 2/2 other
-auto=@damaged(player) from(snake|myBattlefield):may draw:1 controller
+primitive=Seshiro the Anointed
 id=80256
-name=Seshiro the Anointed
 rarity=R
-mana={4}{G}{G}
-type=Legendary Creature
-subtype=Snake Monk
-power=3
-toughness=4
 [/card]
 [card]
-text={T}: Add {R} to your mana pool.   {R}, {T}: Target legendary creature gains first strike until end of turn.
-auto={T}:Add {R}
-auto={R}{T}:first strike target(creature[legendary])
+primitive=Shell of the Last Kappa
+id=75278
+rarity=R
+[/card]
+[card]
+primitive=Shidako, Broodmistress
+id=78975
+rarity=U
+[/card]
+[card]
+primitive=Shimatsu the Bloodcloaked
+id=50318
+rarity=R
+[/card]
+[card]
+primitive=Shinka, the Bloodsoaked Keep
 id=79121
-name=Shinka, the Bloodsoaked Keep
 rarity=R
-type=Legendary Land
 [/card]
 [card]
-text={T}: Add {B} to your mana pool.   {B}, {T}: Target legendary Creature gains fear until end of turn.
-auto={T}:Add {B}
-auto={B}{T}:fear target(creature[legendary])
+primitive=Shisato, Whispering Hunter
+id=78853
+rarity=R
+[/card]
+[card]
+primitive=Shizo, Death's Storehouse
 id=79186
-name=Shizo, Death's Storehouse
 rarity=R
-type=Legendary Land
 [/card]
 [card]
-text=Flying   Whenever you cast a Spirit or Arcane spell, you may draw a card.
+primitive=Sideswipe
+id=80523
+rarity=U
+[/card]
+[card]
+primitive=Sift Through Sands
+id=50459
+rarity=C
+[/card]
+[card]
+primitive=Silent-Chant Zubera
+id=80510
+rarity=C
+[/card]
+[card]
+primitive=Sire of the Storm
 id=50442
-name=Sire of the Storm
 rarity=U
-mana={4}{U}{U}
-type=Creature
-subtype=Spirit
-auto=@movedTo(arcane,spirit|mystack):may draw:1
-power=3
-toughness=3
-abilities=flying
 [/card]
 [card]
-text=Whenever you cast a Spirit or Arcane spell, target land becomes a 3/3 creature until end of turn. It's still a land.
+primitive=Soilshaper
 id=79177
-name=Soilshaper
 rarity=U
-mana={1}{G}
-type=Creature
-subtype=Spirit
-auto=@movedTo(spirit,arcane|mystack):target(land) becomes(Creature,3/3) ueot
-power=1
-toughness=1
 [/card]
 [card]
-text=Mountainwalk
+primitive=Sokenzan Bruiser
 id=79140
-name=Sokenzan Bruiser
 rarity=C
-mana={4}{R}
-type=Creature
-subtype=Ogre Warrior
-power=3
-toughness=3
-abilities=mountainwalk
 [/card]
 [card]
-text=Whenever you cast a Spirit or Arcane spell, Soul of Magma deals 1 damage to target creature.
-auto=@movedTo(arcane,spirit|mystack):damage:1 target(creature)
+primitive=Soratami Cloudskater
+id=50301
+rarity=C
+[/card]
+[card]
+primitive=Soratami Mirror-Guard
+id=80414
+rarity=C
+[/card]
+[card]
+primitive=Soratami Mirror-Mage
+id=80410
+rarity=U
+[/card]
+[card]
+primitive=Soratami Rainshaper
+id=80413
+rarity=C
+[/card]
+[card]
+primitive=Soratami Savant
+id=80417
+rarity=U
+[/card]
+[card]
+primitive=Soratami Seer
+id=80415
+rarity=U
+[/card]
+[card]
+primitive=Sosuke, Son of Seshiro
+id=78989
+rarity=U
+[/card]
+[card]
+primitive=Soul of Magma
 id=79253
-name=Soul of Magma
 rarity=C
-mana={3}{R}{R}
-type=Creature
-subtype=Spirit
-power=2
-toughness=2
 [/card]
 [card]
-text=As an additional cost to play Soulblast, sacrifice all creatures you control.  Soulblast deals damage to target creature or player equal to the total power of the sacrificed creatures.
+primitive=Soulblast
 id=80246
-alias=130369
-name=Soulblast
 rarity=R
-mana={3}{R}{R}{R}
-type=Instant
-target=creature,player
 [/card]
 [card]
-text=Destroy target land.
+primitive=Soulless Revival
+id=50288
+rarity=C
+[/card]
+[card]
+primitive=Squelch
+id=80290
+rarity=U
+[/card]
+[card]
+primitive=Stabwhisker the Odious
+id=78679
+rarity=R
+[/card]
+[card]
+primitive=Stone Rain
 id=79223
-
-target=land
-auto=destroy
-name=Stone Rain
 rarity=C
-mana={2}{R}
-type=Sorcery
 [/card]
 [card]
-text=Target creature gets +X/+X until end of turn, where X is the number of lands you control.
+primitive=Strange Inversion
+id=82000
+rarity=U
+[/card]
+[card]
+primitive=Strength of Cedars
 id=75366
-target=creature
-auto=foreach(land|myBattlefield) 1/1
-name=Strength of Cedars
 rarity=U
-mana={4}{G}
-type=Instant
-subtype=Arcane
 [/card]
 [card]
-text=Swallowing Plague deals X damage to target creature and you gain X life.
+primitive=Struggle for Sanity
+id=79168
+rarity=U
+[/card]
+[card]
+primitive=Student of Elements
+id=78691
+rarity=U
+[/card]
+[card]
+primitive=Swallowing Plague
 id=79089
-target=creature
-auto=damage:X
-auto=life:X controller
-name=Swallowing Plague
 rarity=U
-mana={X}{B}{B}
-type=Sorcery
-subtype=Arcane
 [/card]
 [card]
-id=79073
-name=Swamp
-auto={T}:Add {B}
-type=Basic Land
-subtype=Swamp
-text={B}
-rarity=L
-[/card]
-[card]
+primitive=Swamp
 id=79065
-name=Swamp
-auto={T}:Add {B}
-type=Basic Land
-subtype=Swamp
-text={B}
 rarity=L
 [/card]
 [card]
+primitive=Swamp
 id=79066
-name=Swamp
-auto={T}:Add {B}
-type=Basic Land
-subtype=Swamp
-text={B}
 rarity=L
 [/card]
 [card]
+primitive=Swamp
 id=79067
-name=Swamp
-auto={T}:Add {B}
-type=Basic Land
-subtype=Swamp
-text={B}
 rarity=L
 [/card]
 [card]
-text=Flying   Whenever you cast a Spirit or Arcane spell, you may tap or untap target creature.
-auto=@movedTo(arcane,spirit|mystack):may tap target(creature)
-auto=@movedTo(arcane,spirit|mystack):may untap target(creature)
+primitive=Swamp
+id=79073
+rarity=L
+[/card]
+[card]
+primitive=Swirl the Mists
+id=80276
+rarity=R
+[/card]
+[card]
+primitive=Takeno, Samurai General
+id=75302
+rarity=R
+[/card]
+[card]
+primitive=Tatsumasa, the Dragon's Fang
+id=75291
+rarity=R
+[/card]
+[card]
+primitive=Teller of Tales
 id=75285
-name=Teller of Tales
 rarity=C
-mana={3}{U}{U}
-type=Creature
-subtype=Spirit
-power=3
-toughness=3
-abilities=flying
 [/card]
 [card]
-text=Flying, trample   Whenever The Unspeakable deals combat damage to a player, you may return target Arcane card from your graveyard to your hand.
-auto=@damaged(player) from(this):may moveto(myhand) target(arcane|mygraveyard)
+primitive=Tenza, Godo's Maul
+id=79231
+rarity=U
+[/card]
+[card]
+primitive=Terashi's Cry
+id=80285
+rarity=C
+[/card]
+[card]
+primitive=The Unspeakable
 id=78693
-name=The Unspeakable
 rarity=R
-mana={6}{U}{U}{U}
-type=Legendary Creature
-subtype=Spirit
-power=6
-toughness=7
-abilities=flying,trample
 [/card]
 [card]
-text=Whenever you cast a Spirit or Arcane spell, target opponent loses 1 life and you gain 1 life.   Soulshift 2 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 2 or less from your graveyard to your hand.)
-auto=@movedTo(arcane,spirit|mystack):life:-1 opponent && life:1 controller
-auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=2]|mygraveyard)
+primitive=Thief of Hope
 id=77920
-name=Thief of Hope
 rarity=U
-mana={2}{B}
-type=Creature
-subtype=Spirit
-power=2
-toughness=2
 [/card]
 [card]
-text=Counter target spell with converted mana cost 4 or less.
+primitive=Thoughtbind
 id=50433
-target=*[manacost<=4]|stack
-auto=fizzle
-name=Thoughtbind
 rarity=C
-mana={2}{U}
-type=Instant
 [/card]
 [card]
-text=Soulshift 7 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 7 or less from your graveyard to your hand.)
-auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=7]|mygraveyard)
+primitive=Thousand-legged Kami
 id=50438
-name=Thousand-legged Kami
 rarity=U
-mana={6}{G}{G}
-type=Creature
-subtype=Spirit
-power=6
-toughness=6
 [/card]
 [card]
-text=Search your library for a legendary creature card, reveal it, and put it into your hand. Then shuffle your library.
-id=78987
-target=creature[legendary]|mylibrary
-auto=moveTo(myHand)
-name=Time of Need
-rarity=U
-mana={1}{G}
-type=Sorcery
-[/card]
-[card]
-text=Enchant Creature   Flash   Enchanted Creature gets +2/+2 and attacks each turn if able.
-id=50315
-target=creature
-auto=2/2
-auto=mustattack
-name=Uncontrollable Anger
-rarity=C
-mana={2}{R}{R}
-type=Enchantment
-subtype=Aura
-abilities=flash
-[/card]
-[card]
-text=Target Creature gains haste until end of turn.
-id=77926
-target=creature
-auto=haste
-name=Unnatural Speed
-rarity=C
-mana={R}
-type=Instant
-subtype=Arcane
-[/card]
-[card]
-text=Reach (This creature can block creatures with flying.)   Soulshift 4 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 4 or less from your graveyard to your hand.)
-id=78979
-name=Venerable Kumo
-rarity=C
-mana={4}{G}
-type=Creature
-subtype=Spirit
-auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=4]|mygraveyard)
-power=2
-toughness=3
-abilities=reach
-[/card]
-[card]
-text=Enchant Creature   Enchanted Creature has vigilance.
-id=50414
-target=creature
-auto=vigilance
-name=Vigilance
-rarity=C
-mana={W}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
-text=Villainous Ogre can't block.   As long as you control a Demon, Villainous Ogre has "{B}: Regenerate Villainous Ogre."
-id=80520
-name=Villainous Ogre
-rarity=C
-mana={2}{B}
-type=Creature
-subtype=Ogre Warrior
-auto=aslongas(demon|myBattlefield) {B}:regenerate
-power=3
-toughness=2
-abilities=cantblock
-[/card]
-[card]
-id=50345
-name=Wandering Ones
-rarity=C
-mana={U}
-type=Creature
-subtype=Spirit
-power=1
-toughness=1
-[/card]
-[card]
-text=Whenever a land enters the battlefield, Zo-Zu the Punisher deals 2 damage to that land's controller.
-auto=@movedTo(land|myBattlefield):damage:2 controller
-auto=@movedTo(land|opponentBattlefield):damage:2 opponent
-id=80274
-name=Zo-Zu the Punisher
+primitive=Through the Breach
+id=80250
 rarity=R
-mana={1}{R}{R}
-type=Legendary Creature
-subtype=Goblin Warrior
-power=2
-toughness=2
+[/card]
+[card]
+primitive=Tide of War
+id=78606
+rarity=R
+[/card]
+[card]
+primitive=Time of Need
+id=78987
+rarity=U
+[/card]
+[card]
+primitive=Time Stop
+id=78184
+rarity=R
+[/card]
+[card]
+primitive=Tobita, Master of Winds
+id=78691
+rarity=U
+[/card]
+[card]
+primitive=Tok-Tok, Volcano Born
+id=78694
+rarity=R
+[/card]
+[card]
+primitive=Tomoya the Revealer
+id=78686
+rarity=R
+[/card]
+[card]
+primitive=Tranquil Garden
+id=79196
+rarity=U
+[/card]
+[card]
+primitive=Uba Mask
+id=75254
+rarity=R
+[/card]
+[card]
+primitive=Uncontrollable Anger
+id=50315
+rarity=C
+[/card]
+[card]
+primitive=Unearthly Blizzard
+id=50379
+rarity=C
+[/card]
+[card]
+primitive=Unnatural Speed
+id=77926
+rarity=C
+[/card]
+[card]
+primitive=Untaidake, the Cloud Keeper
+id=79218
+rarity=R
+[/card]
+[card]
+primitive=Uyo, Silent Prophet
+id=78855
+rarity=R
+[/card]
+[card]
+primitive=Vassal's Duty
+id=79199
+rarity=R
+[/card]
+[card]
+primitive=Venerable Kumo
+id=78979
+rarity=C
+[/card]
+[card]
+primitive=Vigilance
+id=50414
+rarity=C
+[/card]
+[card]
+primitive=Villainous Ogre
+id=80520
+rarity=C
+[/card]
+[card]
+primitive=Vine Kami
+id=82001
+rarity=C
+[/card]
+[card]
+primitive=Waking Nightmare
+id=78963
+rarity=C
+[/card]
+[card]
+primitive=Wandering Ones
+id=50345
+rarity=C
+[/card]
+[card]
+primitive=Waterveil Cavern
+id=79191
+rarity=U
+[/card]
+[card]
+primitive=Wear Away
+id=50268
+rarity=C
+[/card]
+[card]
+primitive=Wicked Akuba
+id=50432
+rarity=C
+[/card]
+[card]
+primitive=Yamabushi's Flame
+id=50292
+rarity=C
+[/card]
+[card]
+primitive=Yamabushi's Storm
+id=50346
+rarity=C
+[/card]
+[card]
+primitive=Yosei, the Morning Star
+id=78590
+rarity=R
+[/card]
+[card]
+primitive=Zo-Zu the Punisher
+id=80274
+rarity=R
 [/card]

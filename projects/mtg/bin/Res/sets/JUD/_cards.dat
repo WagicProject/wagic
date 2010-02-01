@@ -4,524 +4,717 @@ year=2002
 block=Odyssey
 [/meta]
 [card]
-text=First strike (This creature deals combat damage before creatures without first strike.)   When Ancestor's Chosen enters the battlefield, you gain 1 life for each card in your graveyard.
+primitive=Ancestor's Chosen
 id=34243
-name=Ancestor's Chosen
 rarity=U
-mana={5}{W}{W}
-type=Creature
-subtype=Human Cleric
-auto=foreach(*|mygraveyard) life:1
-power=4
-toughness=4
-abilities=first strike
 [/card]
 [card]
-text=Threshold - Anurid Barkripper gets +2/+2 as long as seven or more cards are in your graveyard.
+primitive=Anger
+id=33717
+rarity=U
+[/card]
+[card]
+primitive=Anurid Barkripper
 id=36039
-name=Anurid Barkripper
 rarity=C
-mana={1}{G}{G}
-type=Creature
-subtype=Frog Beast
-auto=aslongas(*|mygraveyard) 2/2 >6
-power=2
-toughness=2
 [/card]
 [card]
-text=Flying   When Aven Fogbringer enters the battlefield, return target land to its owner's hand.
+primitive=Anurid Brushhopper
+id=35059
+rarity=R
+[/card]
+[card]
+primitive=Anurid Swarmsnapper
+id=36453
+rarity=U
+[/card]
+[card]
+primitive=Arcane Teachings
+id=36430
+rarity=C
+[/card]
+[card]
+primitive=Aven Fogbringer
 id=21275
-name=Aven Fogbringer
 rarity=C
-mana={3}{U}
-type=Creature
-subtype=Bird Wizard
-auto=moveTo(ownerhand) target(land|battlefield)
-power=2
-toughness=1
-abilities=flying
 [/card]
 [card]
-text=Minion creatures get +1/+1.   {B}{B}{B}, Exile Balthor the Defiled: Each player returns all black and all red creature cards from his or her graveyard to the battlefield.
+primitive=Aven Warcraft
+id=34865
+rarity=U
+[/card]
+[card]
+primitive=Balthor the Defiled
 id=20842
-name=Balthor the Defiled
 rarity=R
-mana={2}{B}{B}
-type=Legendary Creature
-subtype=Zombie Dwarf
-auto=lord(minion) 1/1
-auto={B}{B}{B}:moveTo(myBattlefield) all(creature[black;red]|mygraveyard) && moveTo(opponentBattlefield) all(creature[black;red]|opponentgraveyard) && moveTo(exile) all(this) limit:1
-power=2
-toughness=2
 [/card]
 [card]
-text=Flying Threshold - As long as seven or more cards are in your graveyard, Battlewise Aven gets +1/+1 and has first strike.
+primitive=Barbarian Bully
+id=34818
+rarity=C
+[/card]
+[card]
+primitive=Battle Screech
+id=35079
+rarity=U
+[/card]
+[card]
+primitive=Battlefield Scrounger
+id=36040
+rarity=C
+[/card]
+[card]
+primitive=Battlewise Aven
 id=34464
-name=Battlewise Aven
 rarity=C
-mana={3}{W}
-type=Creature
-subtype=Bird Soldier
-auto=aslongas(*|mygraveyard) 1/1 >6
-auto=aslongas(*|mygraveyard) first strike >6
-power=2
-toughness=2
-abilities=flying
 [/card]
 [card]
-text=Sacrifice Benevolent Bodyguard: Target creature you control gains protection from the color of your choice until end of turn.
+primitive=Benevolent Bodyguard
 id=36118
-name=Benevolent Bodyguard
 rarity=C
-mana={W}
-type=Creature
-subtype=Human Cleric
-auto={S}:protection from green target(creature|mybattlefield)
-auto={S}:protection from black target(creature|mybattlefield)
-auto={S}:protection from white target(creature|mybattlefield)
-auto={S}:protection from red target(creature|mybattlefield)
-auto={S}:protection from blue target(creature|mybattlefield)
-power=1
-toughness=1
 [/card]
 [card]
-text=Vigilance
+primitive=Book Burning
+id=35891
+rarity=C
+[/card]
+[card]
+primitive=Border Patrol
 id=34201
-name=Border Patrol
 rarity=C
-mana={4}{W}
-type=Creature
-subtype=Human Nomad
-power=1
-toughness=6
-abilities=vigilance
 [/card]
 [card]
-text=Sacrifice Cabal Trainee: Target creature gets -2/-0 until end of turn.
+primitive=Brawn
+id=33721
+rarity=U
+[/card]
+[card]
+primitive=Breaking Point
+id=29856
+rarity=R
+[/card]
+[card]
+primitive=Browbeat
+id=36038
+rarity=U
+[/card]
+[card]
+primitive=Burning Wish
+id=34403
+rarity=R
+[/card]
+[card]
+primitive=Cabal Therapy
+id=34789
+rarity=U
+[/card]
+[card]
+primitive=Cabal Trainee
 id=36117
-name=Cabal Trainee
 rarity=C
-mana={B}
-type=Creature
-subtype=Human Minion
-auto={S}:-2/0 target(creature)
-power=1
-toughness=1
 [/card]
 [card]
-text=Enchant creature.   Enchanted creature gets +2/+2 and can't attack.
+primitive=Cagemail
 id=36429
-target=creature
-auto=2/2
-auto=cantattack
-name=Cagemail
 rarity=C
-mana={1}{W}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text=Whenever Centaur Rootcaster deals combat damage to a player, you may search your library for a basic land card and put that card onto the battlefield tapped. If you do, shuffle your library.
-auto=@damaged(player) from(this):may moveTo(myBattlefield) target(land[basic]|mylibrary) && tap
+primitive=Canopy Claws
+id=36410
+rarity=C
+[/card]
+[card]
+primitive=Centaur Rootcaster
 id=37120
-name=Centaur Rootcaster
 rarity=C
-mana={3}{G}
-type=Creature
-subtype=Centaur Druid
-power=2
-toughness=2
 [/card]
 [card]
-text=Discard a card: Cephalid Inkshrouder gains shroud until end of turn and is unblockable this turn. (A permanent with shroud can't be the target of spells or abilities.)
+primitive=Cephalid Constable
+id=26728
+rarity=R
+[/card]
+[card]
+primitive=Cephalid Inkshrouder
 id=34784
-name=Cephalid Inkshrouder
 rarity=U
-mana={2}{U}
-type=Creature
-subtype=Cephalid
-auto={S(*|myHand)}:shroud && unblockable
-power=2
-toughness=1
 [/card]
 [card]
-text=Destroy target attacking creature. You gain life equal to its power.
+primitive=Chastise
 id=34958
-target=creature[attacking]
-auto=destroy
-auto=life:p controller
-name=Chastise
 rarity=U
-mana={3}{W}
-type=Instant
 [/card]
 [card]
-text=Flying, protection from creatures
+primitive=Commander Eesha
 id=35893
-name=Commander Eesha
 rarity=R
-mana={2}{W}{W}
-type=Legendary Creature
-subtype=Bird Soldier
-auto=protection from(creature)
-power=2
-toughness=4
-abilities=flying
 [/card]
 [card]
-text=Enchant creature   Enchanted creature gets +3/+3.   When enchanted creature is put into a graveyard, put a 3/3 green Elephant creature token onto the battlefield.
+primitive=Crush of Wurms
+id=35170
+rarity=R
+[/card]
+[card]
+primitive=Cunning Wish
+id=34400
+rarity=R
+[/card]
+[card]
+primitive=Death Wish
+id=34402
+rarity=R
+[/card]
+[card]
+primitive=Defy Gravity
+id=35076
+rarity=C
+[/card]
+[card]
+primitive=Dwarven Bloodboiler
+id=35074
+rarity=R
+[/card]
+[card]
+primitive=Dwarven Driller
+id=34950
+rarity=U
+[/card]
+[card]
+primitive=Dwarven Scorcher
+id=36116
+rarity=C
+[/card]
+[card]
+primitive=Earsplitting Rats
+id=35080
+rarity=C
+[/card]
+[card]
+primitive=Elephant Guide
 id=12692
-name=Elephant Guide
-target=creature
-auto=3/3
-auto=@movedto(mytgt|graveyard):token(Elephant,Creature Elephant,3/3,green)
 rarity=U
-mana={2}{G}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text=Ember Shot deals 3 damage to target creature or player.   Draw a card.
+primitive=Ember Shot
 id=29862
-target=creature,player
-auto=damage:3
-auto=draw:1 controller
-name=Ember Shot
 rarity=C
-mana={6}{R}
-type=Instant
 [/card]
 [card]
-text=Counter target sorcery spell.
+primitive=Envelop
 id=36414
-target=sorcery|stack
-auto=fizzle
-name=Envelop
 rarity=C
-mana={U}
-type=Instant
 [/card]
 [card]
-text=Enchant creature.   Enchanted creature gets +X/+X, where X is the number of creature cards in all graveyards.
+primitive=Epic Struggle
+id=33697
+rarity=R
+[/card]
+[card]
+primitive=Erhnam Djinn
+id=35553
+rarity=R
+[/card]
+[card]
+primitive=Exoskeletal Armor
 id=29885
-target=creature
-auto=foreach(creature|graveyard) 1/1
-name=Exoskeletal Armor
 rarity=U
-mana={1}{G}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text=Flying   Threshold - As long as seven or more cards are in your graveyard, Fledgling Dragon gets +3/+3 and has "{R}: Fledgling Dragon gets +1/+0 until end of turn."
+primitive=Filth
+id=33722
+rarity=U
+[/card]
+[card]
+primitive=Firecat Blitz
+id=34929
+rarity=U
+[/card]
+[card]
+primitive=Flaring Pain
+id=34214
+rarity=C
+[/card]
+[card]
+primitive=Flash of Insight
+id=29831
+rarity=U
+[/card]
+[card]
+primitive=Fledgling Dragon
 id=34930
-name=Fledgling Dragon
 rarity=R
-mana={2}{R}{R}
-type=Creature
-subtype=Dragon
-auto=aslongas(*|mygraveyard) 3/3 >6
-auto=aslongas(*|mygraveyard) {R}:1/0 >6
-power=2
-toughness=2
-abilities=flying
 [/card]
 [card]
-text=At the beginning of your upkeep, if Genesis is in your graveyard, you may pay {2}{G}. If you do, return target creature card from your graveyard to your hand.
-autograveyard={2}{G}:moveTo(myhand) target(creature|mygraveyard) myUpkeepOnly
+primitive=Folk Medicine
+id=35071
+rarity=C
+[/card]
+[card]
+primitive=Forcemage Advocate
+id=34244
+rarity=U
+[/card]
+[card]
+primitive=Funeral Pyre
+id=34889
+rarity=C
+[/card]
+[card]
+primitive=Genesis
 id=34833
-name=Genesis
 rarity=R
-mana={4}{G}
-type=Creature
-subtype=Incarnation
-power=4
-toughness=4
 [/card]
 [card]
-text=Trample
+primitive=Giant Warthog
 id=36112
-name=Giant Warthog
 rarity=C
-mana={5}{G}
-type=Creature
-subtype=Boar Beast
-power=5
-toughness=5
-abilities=trample
 [/card]
 [card]
-text=Flying   {2}{W}: Creatures you control gain protection from the color of your choice until end of turn. Activate this ability only if Glory is in your graveyard.
+primitive=Glory
 id=34822
-name=Glory
 rarity=R
-mana={3}{W}{W}
-type=Creature
-subtype=Incarnation
-autograveyard={2}{W}:lord(creature|myBattlefield) protection from white ueot
-autograveyard={2}{W}:lord(creature|myBattlefield) protection from blue ueot
-autograveyard={2}{W}:lord(creature|myBattlefield) protection from black ueot
-autograveyard={2}{W}:lord(creature|myBattlefield) protection from red ueot
-autograveyard={2}{W}:lord(creature|myBattlefield) protection from green ueot
-power=3
-toughness=3
-abilities=flying
 [/card]
 [card]
-text=When Goretusk Firebeast enters the battlefield, it deals 4 damage to target player.
+primitive=Golden Wish
+id=34399
+rarity=R
+[/card]
+[card]
+primitive=Goretusk Firebeast
 id=34917
-name=Goretusk Firebeast
 rarity=C
-mana={5}{R}
-type=Creature
-subtype=Elemental Boar Beast
-auto=damage:4 target(player)
-power=2
-toughness=2
 [/card]
 [card]
-text=Target creature gets +1/+0 and gains first strike until end of turn.   Draw a card.
+primitive=Grave Consequences
+id=35161
+rarity=U
+[/card]
+[card]
+primitive=Grip of Amnesia
+id=34808
+rarity=C
+[/card]
+[card]
+primitive=Grizzly Fate
+id=34209
+rarity=U
+[/card]
+[card]
+primitive=Guided Strike
 id=36431
-target=creature
-auto=1/0
-auto=first strike
-auto=draw:1 controller
-name=Guided Strike
 rarity=C
-mana={1}{W}
-type=Instant
 [/card]
 [card]
-text=When Ironshell Beetle enters the battlefield, put a +1/+1 counter on target creature.
+primitive=Guiltfeeder
+id=29890
+rarity=R
+[/card]
+[card]
+primitive=Hapless Researcher
+id=36115
+rarity=C
+[/card]
+[card]
+primitive=Harvester Druid
+id=36411
+rarity=C
+[/card]
+[card]
+primitive=Hunting Grounds
+id=35167
+rarity=R
+[/card]
+[card]
+primitive=Infectious Rage
+id=35087
+rarity=U
+[/card]
+[card]
+primitive=Ironshell Beetle
 id=34758
-name=Ironshell Beetle
 rarity=C
-mana={1}{G}
-type=Creature
-subtype=Insect
-auto=counter(1/1) target(creature)
-power=1
-toughness=1
 [/card]
 [card]
-text=First strike, haste.   {T}: Jeska, Warrior Adept deals 1 damage to target creature or player.
+primitive=Jeska, Warrior Adept
 id=36451
-name=Jeska, Warrior Adept
 rarity=R
-mana={2}{R}{R}
-type=Legendary Creature
-subtype=Human Barbarian Warrior
-auto={T}:damage:1 target(creature,player)
-power=3
-toughness=1
-abilities=first strike,haste
 [/card]
 [card]
-text=Draw a card for each attacking creature.
-auto=foreach(creature[attacking]):draw:1 controller
+primitive=Keep Watch
 id=35168
-name=Keep Watch
 rarity=C
-mana={2}{U}
-type=Instant
 [/card]
 [card]
-text=Sacrifice Krosan Wayfarer: You may put a land card from your hand onto the battlefield.
+primitive=Krosan Reclamation
+id=36113
+rarity=U
+[/card]
+[card]
+primitive=Krosan Verge
+id=30657
+rarity=U
+[/card]
+[card]
+primitive=Krosan Wayfarer
 id=35069
-name=Krosan Wayfarer
 rarity=C
-mana={G}
-type=Creature
-subtype=Human Druid
-auto={S}:moveto(myBattlefield) target(land|myhand)
-power=1
-toughness=1
 [/card]
 [card]
-text={R}, Sacrifice Liberated Dwarf: Target green creature gets +1/+0 and gains first strike until end of turn.
+primitive=Laquatus's Disdain
+id=27145
+rarity=U
+[/card]
+[card]
+primitive=Lava Dart
+id=29766
+rarity=C
+[/card]
+[card]
+primitive=Lead Astray
+id=34768
+rarity=C
+[/card]
+[card]
+primitive=Liberated Dwarf
 id=35083
-name=Liberated Dwarf
 rarity=C
-mana={R}
-type=Creature
-subtype=Dwarf
-auto={S}:1/0 && first strike target(creature[green])
-power=1
-toughness=1
 [/card]
 [card]
-text=Green creatures and white creatures have protection from Gorgons.   Threshold - Masked Gorgon has protection from green and from white as long as seven or more cards are in your graveyard.
+primitive=Lightning Surge
+id=34208
+rarity=R
+[/card]
+[card]
+primitive=Living Wish
+id=34405
+rarity=R
+[/card]
+[card]
+primitive=Lost in Thought
+id=34775
+rarity=C
+[/card]
+[card]
+primitive=Masked Gorgon
 id=34480
-name=Masked Gorgon
 rarity=R
-mana={4}{B}
-type=Creature
-subtype=Gorgon
-auto=lord(creature[green;white] protection from(gorgon)
-auto=aslongas(*|mygraveyard) protection from white >6
-auto=aslongas(*|mygraveyard) protection from green >6
-power=5
-toughness=5
 [/card]
 [card]
-text=Put the top two cards of your library into your graveyard.   Draw a card.
+primitive=Mental Note
 id=36114
-auto=deplete:2 controller
-auto=draw:1 controller
-name=Mental Note
 rarity=C
-mana={U}
-type=Instant
 [/card]
 [card]
-text=Defender (This creature can't attack.).   {W}: Mirror Wall can attack this turn as though it didn't have defender.
+primitive=Mirari's Wake
+id=35057
+rarity=R
+[/card]
+[card]
+primitive=Mirror Wall
 id=36413
-name=Mirror Wall
 rarity=C
-mana={3}{U}
-type=Creature
-subtype=Wall
-auto={W}:-defender
-power=3
-toughness=4
-abilities=defender
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.   Threshold - {G}{W}: Nantuko Monastery becomes a 4/4 green and white Insect Monk creature with first strike until end of turn. It's still a land. Activate this ability only if seven or more cards are in your graveyard.
+primitive=Mist of Stagnation
+id=34777
+rarity=R
+[/card]
+[card]
+primitive=Morality Shift
+id=35171
+rarity=R
+[/card]
+[card]
+primitive=Nantuko Monastery
 id=34401
-name=Nantuko Monastery
-auto={T}:Add{1}
-auto=aslongas(*|mygraveyard) {G}{W}:becomes(Creature Insect Monk,4/4,first strike,green,white) ueot >6
-type=Land
 rarity=U
 [/card]
 [card]
-text=Flying   Threshold - Other creatures you control get +2/+2 as long as seven or more cards are in your graveyard.
+primitive=Nantuko Tracer
+id=36526
+rarity=C
+[/card]
+[card]
+primitive=Nomad Mythmaker
+id=34241
+rarity=R
+[/card]
+[card]
+primitive=Nullmage Advocate
+id=34245
+rarity=C
+[/card]
+[card]
+primitive=Phantom Centaur
+id=35073
+rarity=U
+[/card]
+[card]
+primitive=Phantom Flock
+id=34932
+rarity=U
+[/card]
+[card]
+primitive=Phantom Nantuko
+id=34948
+rarity=R
+[/card]
+[card]
+primitive=Phantom Nishoba
+id=37113
+rarity=R
+[/card]
+[card]
+primitive=Phantom Nomad
+id=34890
+rarity=C
+[/card]
+[card]
+primitive=Phantom Tiger
+id=34934
+rarity=C
+[/card]
+[card]
+primitive=Planar Chaos
+id=35088
+rarity=U
+[/card]
+[card]
+primitive=Prismatic Strands
+id=34233
+rarity=C
+[/card]
+[card]
+primitive=Pulsemage Advocate
+id=35575
+rarity=R
+[/card]
+[card]
+primitive=Quiet Speculation
+id=20431
+rarity=U
+[/card]
+[card]
+primitive=Rats' Feast
+id=36412
+rarity=C
+[/card]
+[card]
+primitive=Ray of Revelation
+id=34199
+rarity=C
+[/card]
+[card]
+primitive=Riftstone Portal
+id=34398
+rarity=U
+[/card]
+[card]
+primitive=Scalpelexis
+id=29928
+rarity=R
+[/card]
+[card]
+primitive=Seedtime
+id=34205
+rarity=R
+[/card]
+[card]
+primitive=Selfless Exorcist
+id=34891
+rarity=R
+[/card]
+[card]
+primitive=Serene Sunset
+id=36454
+rarity=U
+[/card]
+[card]
+primitive=Shaman's Trance
+id=34795
+rarity=R
+[/card]
+[card]
+primitive=Shieldmage Advocate
+id=35067
+rarity=C
+[/card]
+[card]
+primitive=Silver Seraph
 id=36036
-name=Silver Seraph
 rarity=R
-mana={5}{W}{W}{W}
-type=Creature
-subtype=Angel
-auto=aslongas(*|mygraveyard) lord(other creature|myBattlefield) 2/2 >6
-power=6
-toughness=6
-abilities=flying
 [/card]
 [card]
-text=When Spellgorger Barbarian enters the battlefield, discard a card at random.   When Spellgorger Barbarian leaves the battlefield, draw a card.
+primitive=Solitary Confinement
+id=34769
+rarity=R
+[/card]
+[card]
+primitive=Soulcatchers' Aerie
+id=35095
+rarity=U
+[/card]
+[card]
+primitive=Soulgorger Orgg
+id=34942
+rarity=U
+[/card]
+[card]
+primitive=Spellgorger Barbarian
 id=25805
-name=Spellgorger Barbarian
 rarity=C
-mana={3}{R}
-type=Creature
-subtype=Human Nightmare Barbarian
-auto=discard:1 controller
-auto=@movedTo(this|graveyard,exile,library,hand) from(battlefield):draw:1 controller
-power=3
-toughness=1
 [/card]
 [card]
-text=Target creature gets +3/+3 until end of turn.   Draw a card.
+primitive=Spelljack
+id=35169
+rarity=R
+[/card]
+[card]
+primitive=Spirit Cairn
+id=34897
+rarity=U
+[/card]
+[card]
+primitive=Spurnmage Advocate
+id=34242
+rarity=U
+[/card]
+[card]
+primitive=Stitch Together
+id=32209
+rarity=U
+[/card]
+[card]
+primitive=Sudden Strength
 id=35114
-target=creature
-auto=3/3
-auto=draw:1 controller
-name=Sudden Strength
 rarity=C
-mana={3}{G}
-type=Instant
 [/card]
 [card]
-text=Flying (This creature can't be blocked except by creatures with flying or reach.)
+primitive=Suntail Hawk
 id=34207
-name=Suntail Hawk
 rarity=C
-mana={W}
-type=Creature
-subtype=Bird
-power=1
-toughness=1
-abilities=flying
 [/card]
 [card]
-text=Threshold - Swirling Sandstorm deals 5 damage to each creature without flying if seven or more cards are in your graveyard.
+primitive=Sutured Ghoul
+id=29944
+rarity=R
+[/card]
+[card]
+primitive=Swelter
+id=36119
+rarity=U
+[/card]
+[card]
+primitive=Swirling Sandstorm
 id=29762
-name=Swirling Sandstorm
-auto=aslongas(*|mygraveyard) damage:5 all(creature[-flying]) >6
 rarity=C
-mana={3}{R}
-type=Sorcery
 [/card]
 [card]
-text=Sacrifice a land: Target creature you control gains shroud until end of turn. (It can't be the target of spells or abilities.)
+primitive=Sylvan Safekeeper
 id=35062
-name=Sylvan Safekeeper
 rarity=R
-mana={G}
-auto={S(land|myBattlefield)}:shroud target(creature)
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
 [/card]
 [card]
-text={G}, {T}: Target creature gets +5/+5 until end of turn.
+primitive=Telekinetic Bonds
+id=5589
+rarity=R
+[/card]
+[card]
+primitive=Test of Endurance
+id=29924
+rarity=R
+[/card]
+[card]
+primitive=Thriss, Nantuko Primus
 id=36525
-name=Thriss, Nantuko Primus
 rarity=R
-mana={5}{G}{G}
-type=Legendary Creature
-subtype=Insect Druid
-auto={G}{T}:5/5 target(creature)
-power=5
-toughness=5
 [/card]
 [card]
-text=Target nonblack creature gets -1/-1 until end of turn.   Threshold - If seven or more cards are in your graveyard, instead destroy that creature. It can't be regenerated.
+primitive=Toxic Stench
 id=36416
-target=creature
-auto=-1/-1
-auto=aslongas(*|mygraveyard) bury >6
-name=Toxic Stench
 rarity=C
-mana={1}{B}
-type=Instant
 [/card]
 [card]
-text=Discard a card: Regenerate Tunneler Wurm.
+primitive=Trained Pronghorn
+id=35068
+rarity=C
+[/card]
+[card]
+primitive=Treacherous Vampire
+id=34788
+rarity=U
+[/card]
+[card]
+primitive=Treacherous Werewolf
+id=36037
+rarity=C
+[/card]
+[card]
+primitive=Tunneler Wurm
 id=26370
-name=Tunneler Wurm
 rarity=U
-mana={6}{G}{G}
-auto={S(*|myhand)}:regenerate
-type=Creature
-subtype=Wurm
-power=6
-toughness=6
 [/card]
 [card]
-text=Enchant creature   When Unquestioned Authority enters the battlefield, draw a card.   Enchanted creature has protection from creatures.
+primitive=Unquestioned Authority
 id=24541
-target=creature
-auto=draw:1 controller
-auto=protection from(creature)
-name=Unquestioned Authority
 rarity=U
-mana={2}{W}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text=Threshold - As long as seven or more cards are in your graveyard, Vigilant Sentry gets +1/+1 and has "{T}: Target attacking or blocking creature gets +3/+3 until end of turn."
-id=36035
-name=Vigilant Sentry
+primitive=Valor
+id=33719
+rarity=U
+[/card]
+[card]
+primitive=Venomous Vines
+id=36409
 rarity=C
-mana={1}{W}{W}
-type=Creature
-subtype=Human Nomad
-auto=aslongas(*|mygraveyard) 1/1 >6
-auto=aslongas(*|mygraveyard) {T}:3/3 target(creature[attacking;blocking]) >6
-power=2
-toughness=2
+[/card]
+[card]
+primitive=Vigilant Sentry
+id=36035
+rarity=C
+[/card]
+[card]
+primitive=Web of Inertia
+id=34823
+rarity=U
+[/card]
+[card]
+primitive=Wonder
+id=33720
+rarity=U
+[/card]
+[card]
+primitive=Worldgorger Dragon
+id=35056
+rarity=R
+[/card]
+[card]
+primitive=Wormfang Behemoth
+id=34811
+rarity=R
+[/card]
+[card]
+primitive=Wormfang Crab
+id=34927
+rarity=U
+[/card]
+[card]
+primitive=Wormfang Drake
+id=25974
+rarity=C
+[/card]
+[card]
+primitive=Wormfang Manta
+id=34939
+rarity=R
+[/card]
+[card]
+primitive=Wormfang Newt
+id=34809
+rarity=C
+[/card]
+[card]
+primitive=Wormfang Turtle
+id=34954
+rarity=U
 [/card]

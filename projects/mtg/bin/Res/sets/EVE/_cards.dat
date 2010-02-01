@@ -4,1041 +4,902 @@ year=2008
 block=Shadow
 [/meta]
 [card]
-text={2}: Target white creature gains persist until end of turn. (When it's put into a graveyard from the battlefield, if it had no -1/-1 counters on it, return it to the battlefield under its owner's control with a -1/-1 counter on it.)
-auto={2}:persist target(creature)
+primitive=Aerie Ouphes
+id=153427
+rarity=C
+[/card]
+[card]
+primitive=Altar Golem
+id=157974
+rarity=R
+[/card]
+[card]
+primitive=Antler Skulkin
 id=158293
-name=Antler Skulkin
 rarity=C
-mana={5}
-type=Artifact Creature
-subtype=Scarecrow
-power=3
-toughness=3
 [/card]
 [card]
-text=Flying   When Archon of Justice is put into a graveyard from the battlefield, exile target permanent.
-abilities=flying
-auto=@movedTo(this|graveyard) from(battlefield):moveTo(exile) target(*|battlefield)
+primitive=Archon of Justice
 id=146006
-name=Archon of Justice
 rarity=R
-mana={3}{W}{W}
-type=Creature
-subtype=Archon
-power=4
-toughness=4
-abilities=flying
 [/card]
 [card]
-text=Other red creatures you control get +1/+1.   Other white creatures you control get +1/+1.   Whenever you cast a red spell, Balefire Liege deals 3 damage to target player.   Whenever you cast a white spell, you gain 3 life.
+primitive=Ashling, the Extinguisher
+id=151137
+rarity=R
+[/card]
+[card]
+primitive=Balefire Liege
 id=158104
-name=Balefire Liege
 rarity=R
-mana={2}{RW}{RW}{RW}
-type=Creature
-subtype=Spirit Horror
-auto=lord(other creature[red]|myBattlefield) 1/1
-auto=lord(other creature[white]|myBattlefield) 1/1
-auto=@movedto(*[red]|mystack):damage:3 opponent
-auto=@movedto(*[white]|mystack):life:3 controller
-power=2
-toughness=4
 [/card]
 [card]
-text={T}: Tap target creature.   Whenever you cast a white spell, you may untap Ballynock Trapper.
+primitive=Ballynock Trapper
 id=153480
-name=Ballynock Trapper
 rarity=C
-mana={3}{W}
-type=Creature
-subtype=Kithkin Soldier
-auto={T}:tap target(creature)
-auto=@movedTo(*[white]|mystack):may untap
-power=2
-toughness=2
 [/card]
 [card]
-text=Exile target card in a graveyard. Put a 1/1 white and black Spirit creature token with flying into onto the battlefield.
-target=*|graveyard
-auto=moveTo(exile)
-auto=token(Spirit,Token Spirit Creature, 1/1,white black flying)
+primitive=Banishing Knack
+id=154350
+rarity=C
+[/card]
+[card]
+primitive=Battlegate Mimic
+id=151165
+rarity=C
+[/card]
+[card]
+primitive=Batwing Brume
+id=157407
+rarity=U
+[/card]
+[card]
+primitive=Beckon Apparition
 id=157415
-name=Beckon Apparition
 rarity=C
-mana={WB}
-type=Instant
 [/card]
 [card]
-text=First strike   Belligerent Hatchling enters the battlefield with four -1/-1 counters on it.   Whenever you cast a red spell, remove a -1/-1 counter from Belligerent Hatchling.   Whenever you cast a white spell, remove a -1/-1 counter from Belligerent Hatchling.
+primitive=Belligerent Hatchling
 id=153478
-name=Belligerent Hatchling
 rarity=U
-mana={3}{RW}
-type=Creature
-subtype=Elemental
-auto=@movedTo(*[red]|mystack):counter(-1/-1,-1)
-auto=@movedTo(*[white]|mystack):counter(-1/-1,-1)
-auto=counter(-1/-1,4)
-power=6
-toughness=6
-abilities=first strike
 [/card]
 [card]
-text=Flying   Bloodied Ghost enters the battlefield with a -1/-1 counter on it.
+primitive=Bloodied Ghost
 id=151098
-name=Bloodied Ghost
 rarity=U
-mana={1}{WB}{WB}
-type=Creature
-subtype=Spirit
-auto=counter(-1/-1)
-power=3
-toughness=3
-abilities=flying
 [/card]
 [card]
-text=At the beginning of your upkeep, return a permanent you control to its owner's hand.
-auto=@each my upkeep:moveTo(ownerhand) notatarget(*|myBattlefield)
+primitive=Bloom Tender
+id=158901
+rarity=R
+[/card]
+[card]
+primitive=Cache Raiders
 id=153419
-name=Cache Raiders
 rarity=U
-mana={3}{U}{U}
-type=Creature
-subtype=Merfolk Rogue
-power=4
-toughness=4
 [/card]
 [card]
-text=Put a 5/5 blue and red Elemental creature token with flying onto the battlefield.   Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
-autograveyard={5}{UR}{UR}{S(land|myhand)}:token(Elemental,creature elemental, 5/5,flying red,blue) asSorcery
-auto=token(Elemental,creature elemental, 5/5,flying red,blue)
+primitive=Call the Skybreaker
 id=157400
-name=Call the Skybreaker
 rarity=R
-mana={5}{UR}{UR}
-type=Sorcery
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.   {UR}, {T}: Add {U}{U}, {U}{R}, or {R}{R} to your mana pool.
-auto={T}:Add {1}
-auto={UR}{T}:Add {U}{U}
-auto={UR}{T}:Add {U}{R}
-auto={UR}{T}:Add {R}{R}
+primitive=Canker Abomination
+id=152033
+rarity=U
+[/card]
+[card]
+primitive=Cankerous Thirst
+id=157393
+rarity=U
+[/card]
+[card]
+primitive=Cascade Bluffs
 id=153433
-name=Cascade Bluffs
 rarity=R
-type=Land
 [/card]
 [card]
-text=Choose any number of target creatures. Each of those creatures gains persist until end of turn. (When it's put into a graveyard from the battlefiels, if it had no -1/-1 counters on it, return it to the battlefield under its owner's control with a -1/-1 counter on it.)
-target=creatures
-auto=persist
+primitive=Cauldron Haze
 id=151060
-name=Cauldron Haze
 rarity=U
-mana={1}{WB}
-type=Instant
 [/card]
 [card]
-text=Chaotic Backlash deals damage to target player equal to twice the number of white and/or blue permanents he or she controls.
-id=158903
-target=player
-auto=foreach(*[white;blue]|opponentBattlefield) damage:2
-name=Chaotic Backlash
-rarity=U
-mana={4}{R}
-type=Instant
-[/card]
-[card]
-text=Put two 1/1 white Kithkin Soldier creature tokens onto the battlefield.   Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
+primitive=Cenn's Enlistment
 id=153469
-autograveyard={3}{W}{S(land|myhand)}:token(Kithkin Soldier,creature kithkin soldier, 1/1, white)*2 asSorcery
-auto=token(Kithkin Soldier,creature kithkin soldier, 1/1, white)*2
-name=Cenn's Enlistment
 rarity=C
-mana={3}{W}
-type=Sorcery
 [/card]
 [card]
-text={T}: Cinder Pyromancer deals 1 damage to target player.   Whenever you cast a red spell, you may untap Cinder Pyromancer.
+primitive=Chaotic Backlash
+id=158903
+rarity=U
+[/card]
+[card]
+primitive=Cinder Pyromancer
 id=151067
-name=Cinder Pyromancer
 rarity=C
-mana={2}{R}
-type=Creature
-subtype=Elemental Shaman
-auto={T}:damage:1 target(player)
-auto=@movedTo(*[red]|mystack):may untap
-power=0
-toughness=1
 [/card]
 [card]
-text={BG}{BG}: Exile target card in a graveyard. You gain 1 life.
-auto={BG}{BG}:moveTo(exile) target(*|graveyard) && life:1 controller
+primitive=Clout of the Dominus
+id=152092
+rarity=C
+[/card]
+[card]
+primitive=Cold-Eyed Selkie
+id=153471
+rarity=R
+[/card]
+[card]
+primitive=Crackleburr
+id=157420
+rarity=R
+[/card]
+[card]
+primitive=Crag Puca
+id=157285
+rarity=U
+[/card]
+[card]
+primitive=Creakwood Ghoul
 id=157206
-name=Creakwood Ghoul
 rarity=U
-mana={4}{B}
-type=Creature
-subtype=Plant Zombie
-power=3
-toughness=3
 [/card]
 [card]
-text=Other black creatures you control get +1/+1.   Other green creatures you control get +1/+1.   At the beginning of your upkeep, you may put a 1/1 black and green Worm creature token onto the battlefield.
+primitive=Creakwood Liege
 id=157406
-auto=lord(creature[black]|myBattlefield) 1/1 other
-auto=lord(creature[green]|myBattlefield) 1/1 other
-auto=@each my upkeep:may token(Worm,Worm Creature, 1/1,green black)
-name=Creakwood Liege
 rarity=R
-mana={1}{BG}{BG}{BG}
-type=Creature
-subtype=Horror
-power=2
-toughness=2
 [/card]
 [card]
-text=Other white creatures you control get +1/+1.   Other black creatures you control get +1/+1.   Whenever you cast a white spell, you may tap target creature.     Whenever you cast a black spell, you may destroy target creature if it's tapped.
+primitive=Crumbling Ashes
+id=158103
+rarity=U
+[/card]
+[card]
+primitive=Deathbringer Liege
 id=157288
-auto=lord(creature[black]|myBattlefield) 1/1 other
-auto=lord(creature[white]|myBattlefield) 1/1 other
-auto=@movedto(*[black]|mystack):may destroy target(creature[tapped])
-auto=@movedto(*[white]|mystack):may tap target(creature)
-name=Deathbringer Liege
 rarity=R
-mana={2}{WB}{WB}{WB}
-type=Creature
-subtype=Horror
-power=3
-toughness=4
 [/card]
 [card]
-text=Trample   Deity of Scars enters the battlefield with two -1/-1 counters on it.   {BG}, Remove a -1/-1 counter from Deity of Scars: Regenerate Deity of Scars.
+primitive=Deity of Scars
 id=153488
-name=Deity of Scars
 rarity=R
-mana={BG}{BG}{BG}{BG}{BG}
-type=Creature
-subtype=Spirit Avatar
-auto=counter(-1/-1,2)
-auto={BG}:counter(-1/-1,-1) && regenerate
-power=7
-toughness=7
-abilities=trample
 [/card]
 [card]
-text=Target creature gains double strike until end of turn. (It deals both first-strike and regular combat damage.)
-target=creature
-auto=double strike
+primitive=Desecrator Hag
+id=157419
+rarity=C
+[/card]
+[card]
+primitive=Divinity of Pride
+id=150995
+rarity=R
+[/card]
+[card]
+primitive=Dominus of Fealty
+id=151154
+rarity=R
+[/card]
+[card]
+primitive=Doomgape
+id=146010
+rarity=R
+[/card]
+[card]
+primitive=Double Cleave
 id=153039
-name=Double Cleave
 rarity=C
-mana={1}{RW}
-type=Instant
 [/card]
 [card]
-text=Destroy target land. You gain 2 life.
-target=land
-auto=destroy
-auto=life:2 controller
+primitive=Drain the Well
 id=151079
-name=Drain the Well
 rarity=C
-mana={2}{BG}{BG}
-type=Sorcery
 [/card]
 [card]
-text=Counter target spell. Its controller draws a card.   Draw a card.
+primitive=Dream Fracture
 id=153036
-target=*|stack
-auto=fizzle
-auto=draw:1 controller
-auto=draw:1 targetController
-name=Dream Fracture
 rarity=U
-mana={1}{U}{U}
-type=Instant
 [/card]
 [card]
-text=Sacrifice Duergar Assailant: Duergar Assailant deals 1 damage to target attacking or blocking creature.
-auto={S}:damage:1 target(creature[attacking;blocking])
+primitive=Dream Thief
+id=157207
+rarity=C
+[/card]
+[card]
+primitive=Duergar Assailant
 id=150975
-name=Duergar Assailant
 rarity=C
-mana={RW}
-type=Creature
-subtype=Dwarf Soldier
-power=1
-toughness=1
 [/card]
 [card]
-text=Wither (This deals damage to creatures in the form of -1/-1 counters.)   {RW}: Duergar Cave-Guard gets +1/+0 until end of turn.
+primitive=Duergar Cave-Guard
 id=153437
-name=Duergar Cave-Guard
 rarity=U
-mana={3}{R}
-type=Creature
-subtype=Dwarf Warrior
-auto={RW}:1/0
-power=1
-toughness=3
-abilities=wither
 [/card]
 [card]
-text=Trample
+primitive=Duergar Hedge-Mage
+id=159068
+rarity=U
+[/card]
+[card]
+primitive=Duergar Mine-Captain
+id=151106
+rarity=U
+[/card]
+[card]
+primitive=Duskdale Wurm
 id=151164
-name=Duskdale Wurm
 rarity=U
-mana={5}{G}{G}
-type=Creature
-subtype=Wurm
-power=7
-toughness=7
-abilities=trample
 [/card]
 [card]
-text=Whenever you cast a green spell, you may put a 2/2 green Wolf creature token onto the battlefield.   Whenever you cast a blue spell, you may put a 1/1 blue Bird creature token with flying onto the battlefield.
-auto=@movedTo(*[green]|mystack):may token(Wolf,creature wolf,2/2,green)
-auto=@movedTo(*[blue]|mystack):may token(Bird,creature bird,1/1,flying blue)
+primitive=Edge of the Divinity
+id=151155
+rarity=C
+[/card]
+[card]
+primitive=Endless Horizons
+id=157975
+rarity=R
+[/card]
+[card]
+primitive=Endure
+id=157199
+rarity=U
+[/card]
+[card]
+primitive=Evershrike
+id=157978
+rarity=R
+[/card]
+[card]
+primitive=Fable of Wolf and Owl
 id=152087
-name=Fable of Wolf and Owl
 rarity=R
-mana={3}{GU}{GU}{GU}
-type=Enchantment
 [/card]
 [card]
-text={2}: Target black creature gains wither until end of turn. (It deals damage to creatures in the form of -1/-1 counters.)
+primitive=Fang Skulkin
 id=158296
-name=Fang Skulkin
 rarity=C
-mana={2}
-type=Artifact Creature
-subtype=Scarecrow
-auto={2}:wither target(creature[black])
-power=2
-toughness=1
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.   {WB}, {T}: Add {W}{W}, {W}{B}, or {B}{B} to your mana pool.
-auto={T}:Add {1}
-auto={WB}{T}:Add {W}{W}
-auto={WB}{T}:Add {W}{B}
-auto={WB}{T}:Add {B}{B}
+primitive=Favor of the Overbeing
+id=151118
+rarity=C
+[/card]
+[card]
+primitive=Fetid Heath
 id=153446
-name=Fetid Heath
 rarity=R
-type=Land
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.   {GU}, {T}: Add {G}{G}, {G}{U}, or {U}{U} to your mana pool.
-auto={T}:Add {1}
-auto={GU}{T}:Add {G}{G}
-auto={GU}{T}:Add {G}{U}
-auto={GU}{T}:Add {U}{U}
+primitive=Fiery Bombardment
+id=157200
+rarity=R
+[/card]
+[card]
+primitive=Figure of Destiny
+id=158106
+rarity=R
+[/card]
+[card]
+primitive=Fire at Will
+id=151149
+rarity=C
+[/card]
+[card]
+primitive=Flame Jab
+id=153432
+rarity=C
+[/card]
+[card]
+primitive=Flickerwisp
+id=151089
+rarity=U
+[/card]
+[card]
+primitive=Flooded Grove
 id=153481
-name=Flooded Grove
 rarity=R
-type=Land
 [/card]
 [card]
-text=Flying   {U}, Sacrifice Glen Elendra Archmage: Counter target noncreature spell.   Persist (When this creature is put into a graveyard from the battlefield, if it had no -1/-1 counters on it, return it to the battlefield under its owner's control with a -1/-1 counter on it.)
+primitive=Gift of the Deity
+id=151153
+rarity=C
+[/card]
+[card]
+primitive=Gilder Bairn
+id=152046
+rarity=U
+[/card]
+[card]
+primitive=Glamerdye
+id=153439
+rarity=R
+[/card]
+[card]
+primitive=Glen Elendra Archmage
 id=157977
-name=Glen Elendra Archmage
 rarity=R
-mana={3}{U}
-type=Creature
-subtype=Faerie Wizard
-auto={U}{S}:fizzle target(*[-creature]|stack)
-power=2
-toughness=2
-abilities=flying,persist
 [/card]
 [card]
-text=Wither (This deals damage to creatures in the form of -1/-1 counters.)
+primitive=Grazing Kelpie
+id=153428
+rarity=C
+[/card]
+[card]
+primitive=Groundling Pouncer
+id=153056
+rarity=U
+[/card]
+[card]
+primitive=Gwyllion Hedge-Mage
+id=159069
+rarity=U
+[/card]
+[card]
+primitive=Hag Hedge-Mage
+id=157980
+rarity=U
+[/card]
+[card]
+primitive=Hallowed Burial
+id=157394
+rarity=R
+[/card]
+[card]
+primitive=Harvest Gwyllion
 id=152089
-name=Harvest Gwyllion
 rarity=C
-mana={2}{WB}{WB}
-type=Creature
-subtype=Hag
-power=2
-toughness=4
-abilities=wither
 [/card]
 [card]
-text=Double strike
+primitive=Hatchet Bully
+id=147413
+rarity=U
+[/card]
+[card]
+primitive=Hateflayer
+id=152155
+rarity=R
+[/card]
+[card]
+primitive=Hearthfire Hobgoblin
 id=157201
-name=Hearthfire Hobgoblin
 rarity=U
-mana={RW}{RW}{RW}
-type=Creature
-subtype=Goblin Soldier
-power=2
-toughness=2
-abilities=double strike
 [/card]
 [card]
-text=Flying, first strike
+primitive=Heartlash Cinder
+id=141942
+rarity=C
+[/card]
+[card]
+primitive=Helix Pinnacle
+id=150992
+rarity=R
+[/card]
+[card]
+primitive=Hobgoblin Dragoon
 id=151090
-name=Hobgoblin Dragoon
 rarity=C
-mana={2}{RW}
-type=Creature
-subtype=Goblin Knight
-power=1
-toughness=2
-abilities=flying,first strike
 [/card]
 [card]
-text={3}: Target green creature gets +1/+1 until end of turn.
+primitive=Hoof Skulkin
 id=158294
-name=Hoof Skulkin
 rarity=C
-mana={3}
-type=Artifact Creature
-subtype=Scarecrow
-auto={3}:1/1 target(creature[green])
-power=2
-toughness=2
 [/card]
 [card]
-text=Return all nonblue creatures to their owners' hands.
+primitive=Hotheaded Giant
+id=153426
+rarity=C
+[/card]
+[card]
+primitive=Idle Thoughts
+id=157412
+rarity=U
+[/card]
+[card]
+primitive=Impelled Giant
+id=152049
+rarity=U
+[/card]
+[card]
+primitive=Indigo Faerie
+id=153422
+rarity=U
+[/card]
+[card]
+primitive=Inside Out
+id=154263
+rarity=C
+[/card]
+[card]
+primitive=Inundate
 id=142010
-name=Inundate
-auto=moveTo(ownerhand) all(creature[-blue]|battlefield)
 rarity=R
-mana={3}{U}{U}{U}
-type=Sorcery
 [/card]
 [card]
-text={2}: Target red creature gains haste until end of turn.
+primitive=Invert the Skies
+id=151108
+rarity=U
+[/card]
+[card]
+primitive=Jawbone Skulkin
 id=158295
-name=Jawbone Skulkin
 rarity=C
-mana={1}
-type=Artifact Creature
-subtype=Scarecrow
-auto={2}:haste target(creature[red])
-power=1
-toughness=1
 [/card]
 [card]
-text=Flying   {1}{W}, Sacrifice Kithkin Spellduster: Destroy target enchantment.     Persist (When this creature is put into a graveyard from the battlefield, if it had no -1/-1 counters on it, return it to the battlefield under its owner's control with a -1/-1 counter on it.)
-abilities=flying,persist
-auto={1}{W}{S}:destroy target(enchantment)
+primitive=Kithkin Spellduster
 id=152096
-name=Kithkin Spellduster
 rarity=C
-mana={4}{W}
-type=Creature
-subtype=Kithkin Wizard
-power=2
-toughness=3
 [/card]
 [card]
-text=When Kithkin Zealot enters the battlefield, you gain 1 life for each black and/or red permanent target opponent controls.
-auto=foreach(*[red;black]|opponentbattlefield) life:1
+primitive=Kithkin Zealot
 id=154346
-name=Kithkin Zealot
 rarity=C
-mana={1}{W}
-type=Creature
-subtype=Kithkin Cleric
-power=1
-toughness=3
 [/card]
 [card]
-text=Whenever you play a spell, equipped creature gets +2/+2 until end of turn.     Equip {2}
+primitive=Leering Emblem
 id=157971
-name=Leering Emblem
 rarity=R
-type=Artifact
-mana={2}
-subtype=Equipment
-auto={2}:equip
-auto=@movedTo(*|mystack):2/2 ueot
 [/card]
 [card]
-text=Fear   Persist (When this creature is put into a graveyard from the battlefield, if it had no -1/-1 counters on it, return it to the battlefield under its owner's control with a -1/-1 counter on it.)
+primitive=Light from Within
+id=151139
+rarity=R
+[/card]
+[card]
+primitive=Lingering Tormentor
 id=147437
-name=Lingering Tormentor
 rarity=U
-mana={3}{B}
-type=Creature
-subtype=Spirit
-power=2
-toughness=2
-abilities=fear,persist
 [/card]
 [card]
-text=Defender, flying   Whenever you cast a white spell, Loyal Gyrfalcon loses defender until end of turn.
+primitive=Loyal Gyrfalcon
 id=151059
-name=Loyal Gyrfalcon
 rarity=U
-mana={3}{W}
-type=Creature
-subtype=Bird
-auto=@movedTo(*[white]|mystack):-defender ueot
-power=3
-toughness=3
-abilities=defender,flying
 [/card]
 [card]
-text=When Marshdrinker Giant enters the battlefield, destroy target Island or Swamp an opponent controls.
-auto=destroy target(island,swamp|opponentBattlefield)
+primitive=Marshdrinker Giant
 id=142015
-name=Marshdrinker Giant
 rarity=U
-mana={3}{G}{G}
-type=Creature
-subtype=Giant Warrior
-power=4
-toughness=3
 [/card]
 [card]
-text={T}: Target creature gains flying until end of turn.   Whenever you cast a blue spell, you may untap Merrow Levitator.
+primitive=Merrow Bonegnawer
+id=151158
+rarity=C
+[/card]
+[card]
+primitive=Merrow Levitator
 id=151088
-name=Merrow Levitator
 rarity=C
-mana={3}{U}
-type=Creature
-subtype=Merfolk Wizard
-auto={T}:flying target(creature)
-auto=@movedTo(*[blue]|mystack):may untap
-power=2
-toughness=3
 [/card]
 [card]
-text=Other blue creatures you control get +1/+1.   Other red creatures you control get +1/+1.   {UR}{UR}{UR}{UR}: You may put a blue or red creature card from your hand onto the battlefield.
+primitive=Mindwrack Liege
 id=151132
-auto=lord(creature[blue]|myBattlefield) 1/1 other
-auto=lord(creature[red]|myBattlefield) 1/1 other
-auto={UR}{UR}{UR}{UR}:moveTo(myBattlefield) target(creature[blue;red]|myhand)
-name=Mindwrack Liege
 rarity=R
-mana={3}{UR}{UR}{UR}
-type=Creature
-subtype=Horror
-power=4
-toughness=4
 [/card]
 [card]
-text=Target creature gets +4/+4 until end of turn.   Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
-target=creature
-auto=4/4
-autograveyard={3}{G}{S(land|myhand)}:4/4 target(creature) asSorcery
+primitive=Mirror Sheen
+id=152106
+rarity=R
+[/card]
+[card]
+primitive=Monstrify
 id=153441
-name=Monstrify
 rarity=C
-mana={3}{G}
-type=Sorcery
 [/card]
 [card]
-text=Other green creatures you control get +1/+1.   Other blue creatures you control get +1/+1.   Untap all green and/or blue creatures you control during each other player's untap step.
-auto=@each opponent untap:untap all(creature[green;blue]|mybattlefield)
-auto=lord(creature[green]|myBattlefield) 1/1 other
-auto=lord(creature[blue]|myBattlefield) 1/1 other
+primitive=Moonhold
+id=157403
+rarity=U
+[/card]
+[card]
+primitive=Murkfiend Liege
 id=152091
-name=Murkfiend Liege
 rarity=R
-mana={2}{GU}{GU}{GU}
-type=Creature
-subtype=Horror
-power=4
-toughness=4
 [/card]
 [card]
-text=Nettle Sentinel doesn't untap during your untap step.   Whenever you cast a green spell, you may untap Nettle Sentinel.
+primitive=Necroskitter
+id=152080
+rarity=R
+[/card]
+[card]
+primitive=Needle Specter
+id=153474
+rarity=R
+[/card]
+[card]
+primitive=Nettle Sentinel
 id=151095
-name=Nettle Sentinel
 rarity=C
-mana={G}
-type=Creature
-subtype=Elf Warrior
-auto=@movedTo(*[green]|mystack):may untap
-power=2
-toughness=2
-abilities=doesnotuntap
 [/card]
 [card]
-text=Lifelink (Whenever this creature deals damage, you gain that much life.)
+primitive=Nightmare Incursion
+id=157414
+rarity=R
+[/card]
+[card]
+primitive=Nightsky Mimic
+id=151099
+rarity=C
+[/card]
+[card]
+primitive=Nip Gwyllion
 id=150986
-name=Nip Gwyllion
 rarity=C
-mana={WB}
-type=Creature
-subtype=Hag
-power=1
-toughness=1
-abilities=lifelink
 [/card]
 [card]
-text=Flying   Attacking creatures you control get +2/+0.
-auto=lord(creature[attacking]|myBattlefield) 2/0 
+primitive=Nobilis of War
 id=154258
-name=Nobilis of War
 rarity=R
-mana={RW}{RW}{RW}{RW}{RW}
-type=Creature
-subtype=Spirit Avatar
-power=3
-toughness=4
-abilities=flying
 [/card]
 [card]
-text=Noggle Bandit can't be blocked except by creatures with defender.
+primitive=Noggle Bandit
 id=157286
-name=Noggle Bandit
 rarity=C
-mana={1}{UR}{UR}
-type=Creature
-subtype=Noggle Rogue
-auto=cantbeblockedby(creature[-defender])
-power=2
-toughness=2
 [/card]
 [card]
-text=When Noggle Bridgebreaker enters the battlefield, return a land you control to its owner's hand.
+primitive=Noggle Bridgebreaker
 id=158899
-name=Noggle Bridgebreaker
-auto=moveTo(ownerhand) notatarget(land|myBattlefield)
 rarity=C
-mana={2}{UR}{UR}
-type=Creature
-subtype=Noggle Rogue
-power=4
-toughness=3
 [/card]
 [card]
-text=When Noggle Ransacker enters the battlefield, each player draws two cards, then discards a card at random.
+primitive=Noggle Hedge-Mage
+id=159066
+rarity=U
+[/card]
+[card]
+primitive=Noggle Ransacker
 id=152032
-auto=draw:2 controller
-auto=draw:2 opponent
-auto=discard:1 controller
-auto=discard:1 opponent
-name=Noggle Ransacker
 rarity=U
-mana={2}{UR}
-type=Creature
-subtype=Noggle Rogue
-power=2
-toughness=1
 [/card]
 [card]
-text=Noxious Hatchling enters the battlefield with four -1/-1 counters on it.   Wither (This deals damage to creatures in the form of -1/-1 counters.)   Whenever you cast a black spell, remove a -1/-1 counter from Noxious Hatchling.   Whenever you cast a green spell, remove a -1/-1 counter from Noxious Hatchling.
+primitive=Noxious Hatchling
 id=153448
-name=Noxious Hatchling
 rarity=U
-mana={3}{BG}
-type=Creature
-subtype=Elemental
-auto=@movedTo(*[black]|mystack):counter(-1/-1,-1)
-auto=@movedTo(*[green]|mystack):counter(-1/-1,-1)
-auto=counter(-1/-1,4)
-power=6
-toughness=6
-abilities=wither
 [/card]
 [card]
-text={1}{BG}: Regenerate Odious Trow.
+primitive=Nucklavee
+id=153058
+rarity=U
+[/card]
+[card]
+primitive=Odious Trow
 id=150977
-name=Odious Trow
 rarity=C
-mana={BG}
-type=Creature
-subtype=Troll
-auto={1}{BG}:regenerate 
-power=1
-toughness=1
 [/card]
 [card]
-text=Target player draws a card.   Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
-target=player
-auto=draw:1
-autograveyard={2}{U}{S(land|myhand)}:draw:1 target(player)
+primitive=Oona's Grace
 id=153475
-name=Oona's Grace
 rarity=C
-mana={2}{U}
-type=Instant
 [/card]
 [card]
-text=Overbeing of Myth's power and toughness are each equal to the number of cards in your hand.   At the beginning of your draw step, draw a card.
+primitive=Outrage Shaman
+id=153473
+rarity=U
+[/card]
+[card]
+primitive=Overbeing of Myth
 id=151151
-name=Overbeing of Myth
 rarity=R
-mana={GU}{GU}{GU}{GU}{GU}
-type=Creature
-subtype=Spirit Avatar
-auto=foreach(*|myhand) 1/1
-auto=@each my draw:draw:1
-power=*
-toughness=*
 [/card]
 [card]
-text=Wither (This deals damage to creatures in the form of -1/-1 counters.)   Puncture Blast deals 3 damage to target creature or player.
-target=creature,player
-auto=damage:3
+primitive=Patrol Signaler
+id=157210
+rarity=U
+[/card]
+[card]
+primitive=Phosphorescent Feast
+id=151113
+rarity=U
+[/card]
+[card]
+primitive=Primalcrux
+id=153431
+rarity=R
+[/card]
+[card]
+primitive=Puncture Blast
 id=152034
-name=Puncture Blast
 rarity=C
-mana={2}{R}
-type=Instant
-abilities=wither
 [/card]
 [card]
-text=Enchant creature   Enchanted creature can't attack or block.   At the beginning of your upkeep, you may gain 1 life.
-target=creature
-auto=cantattack
-auto=cantblock
-auto=@each my upkeep:may life:1 controller
+primitive=Pyrrhic Revival
+id=157397
+rarity=R
+[/card]
+[card]
+primitive=Quillspike
+id=152086
+rarity=U
+[/card]
+[card]
+primitive=Raven's Crime
+id=153487
+rarity=C
+[/card]
+[card]
+primitive=Razorfin Abolisher
+id=153442
+rarity=U
+[/card]
+[card]
+primitive=Recumbent Bliss
 id=153435
-name=Recumbent Bliss
 rarity=C
-mana={2}{W}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text=When Regal Force enters the battlefield, draw a card for each green creature you control.
+primitive=Regal Force
 id=147373
-name=Regal Force
-auto=foreach(creature[green]|myBattlefield) draw:1
 rarity=R
-mana={4}{G}{G}{G}
-type=Creature
-subtype=Elemental
-power=5
-toughness=5
 [/card]
 [card]
-text=Wither (This deals damage to creatures in the form of -1/-1 counters.)   Persist (When this creature is put into a graveyard from the battlefield, if it had no -1/-1 counters on it, return it to the battlefield under its owner's control with a -1/-1 counter on it.)
+primitive=Rekindled Flame
+id=158108
+rarity=R
+[/card]
+[card]
+primitive=Rendclaw Trow
 id=158902
-name=Rendclaw Trow
 rarity=C
-mana={2}{BG}
-type=Creature
-subtype=Troll
-power=2
-toughness=2
-abilities=wither,persist
 [/card]
 [card]
-text={WB}{WB}{WB}: Restless Apparition gets +3/+3 until end of turn.   Persist (When this creature is put into a graveyard from the battlefield, if it had no -1/-1 counters on it, return it to the battlefield under its owner's control with a -1/-1 counter on it.)
+primitive=Restless Apparition
 id=157291
-name=Restless Apparition
 rarity=U
-mana={WB}{WB}{WB}
-type=Creature
-subtype=Spirit
-auto={WB}{WB}{WB}:3/3
-power=2
-toughness=2
-abilities=persist
 [/card]
 [card]
-text=When Rise of the Hobgoblins enters the battlefield, you may pay {X}. If you do, put X 1/1 red and white Goblin Soldier creature tokens onto the battlefield.   {RW}: Red creatures and white creatures you control gain first strike until end of turn.
-auto={RW}:lord(creature[white;red]|myBattlefield) first strike 
-auto=Token(Goblin Soldier,Creature Goblin Soldier,1/1,red white)*x
+primitive=Rise of the Hobgoblins
 id=151114
-name=Rise of the Hobgoblins
 rarity=R
-mana={X}{RW}{RW}
-type=Enchantment
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.   {RW}, {T}: Add {R}{R}, {R}{W}, or {W}{W} to your mana pool.
-auto={T}:Add {1}
-auto={RW}{T}:Add {R}{R}
-auto={RW}{T}:Add {R}{W}
-auto={RW}{T}:Add {W}{W}
+primitive=Riverfall Mimic
+id=151068
+rarity=C
+[/card]
+[card]
+primitive=Rugged Prairie
 id=153434
-name=Rugged Prairie
 rarity=R
-type=Land
 [/card]
 [card]
-text=Put a 3/3 green Beast creature token onto the battlefield.   Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
+primitive=Sanity Grinding
+id=157204
+rarity=R
+[/card]
+[card]
+primitive=Sapling of Colfenor
+id=157973
+rarity=R
+[/card]
+[card]
+primitive=Savage Conception
 id=153438
-autograveyard={3}{G}{G}{S(land|myhand)}:token(Beast,creature beast, 3/3,green) asSorcery
-auto=token(Beast,creature beast, 3/3,green)
-name=Savage Conception
 rarity=U
-mana={3}{G}{G}
-type=Sorcery
 [/card]
 [card]
-text={1}, Sacrifice a Scarecrow: Draw a card.   {4}, {T}: Return target artifact creature card from your graveyard to the battlefield.
-auto={1}{S(scarecrow|myBattlefield)}:draw:1
-auto={4}{T}:moveTo(myBattlefield) target(artifact[creature]|mygraveyard)
+primitive=Scarecrone
 id=157979
-name=Scarecrone
 rarity=R
-mana={3}
-type=Artifact Creature
-subtype=Scarecrow
-power=1
-toughness=2
 [/card]
 [card]
-text={3}: Target blue creature gains shroud until end of turn.
-auto={3}:shroud target(creature[blue])
+primitive=Scourge of the Nobilis
+id=152015
+rarity=C
+[/card]
+[card]
+primitive=Selkie Hedge-Mage
+id=159067
+rarity=U
+[/card]
+[card]
+primitive=Shell Skulkin
 id=158297
-name=Shell Skulkin
 rarity=C
-mana={4}
-type=Artifact Creature
-subtype=Scarecrow
-power=3
-toughness=2
 [/card]
 [card]
-text=Slippery Bogle can't be the target of spells or abilities your opponents control.
+primitive=Shorecrasher Mimic
+id=151147
+rarity=C
+[/card]
+[card]
+primitive=Shrewd Hatchling
+id=153486
+rarity=U
+[/card]
+[card]
+primitive=Slippery Bogle
 id=150999
-name=Slippery Bogle
 rarity=C
-mana={GU}
-type=Creature
-subtype=Beast
-power=1
-toughness=1
-abilities=opponentshroud
 [/card]
 [card]
-text=Wither (This deals damage to creatures in the form of -1/-1 counters.)
+primitive=Smoldering Butcher
 id=157211
-name=Smoldering Butcher
 rarity=C
-mana={3}{B}
-type=Creature
-subtype=Elemental Warrior
-power=4
-toughness=2
-abilities=wither
 [/card]
 [card]
-text=Flying   Whenever a player casts a nonblack spell, that player loses 1 life.
+primitive=Snakeform
+id=157401
+rarity=C
+[/card]
+[card]
+primitive=Soot Imp
 id=158900
-auto=@movedTo(*[-black]|mystack):life:-1 controller
-auto=@movedTo(*[-black]|opponentstack):life:-1 opponent
-name=Soot Imp
 rarity=U
-mana={1}{B}{B}
-type=Creature
-subtype=Imp
-power=1
-toughness=2
-abilities=flying
 [/card]
 [card]
-text=When Soul Snuffers enters the battlefield, put a -1/-1 counter on each creature.
-auto=all(creature) counter(-1/-1)
+primitive=Soul Reap
+id=151150
+rarity=C
+[/card]
+[card]
+primitive=Soul Snuffers
 id=142054
-name=Soul Snuffers
 rarity=U
-mana={2}{B}{B}
-type=Creature
-subtype=Elemental Shaman
-power=3
-toughness=3
 [/card]
 [card]
-text=Swampwalk, forestwalk
+primitive=Spirit of the Hearth
+id=151169
+rarity=R
+[/card]
+[card]
+primitive=Spitemare
+id=152044
+rarity=U
+[/card]
+[card]
+primitive=Spitting Image
+id=154261
+rarity=R
+[/card]
+[card]
+primitive=Springjack Pasture
+id=157976
+rarity=R
+[/card]
+[card]
+primitive=Springjack Shepherd
+id=153032
+rarity=U
+[/card]
+[card]
+primitive=Stalker Hag
 id=151120
-name=Stalker Hag
 rarity=U
-mana={BG}{BG}{BG}
-type=Creature
-subtype=Hag
-power=3
-toughness=2
-abilities=swampwalk,forestwalk
 [/card]
 [card]
-text=Protection from white and from black   {WB}: Stillmoon Cavalier gains flying until end of turn.   {WB}: Stillmoon Cavalier gains first strike until end of turn.   {WB}{WB}: Stillmoon Cavalier gets +1/+0 until end of turn.
+primitive=Stigma Lasher
+id=153049
+rarity=R
+[/card]
+[card]
+primitive=Stillmoon Cavalier
 id=153037
-name=Stillmoon Cavalier
 rarity=R
-mana={1}{WB}{WB}
-type=Creature
-subtype=Zombie Knight
-auto={WB}:flying
-auto={WB}:first strike
-auto={WB}{WB}:+1/+0
-power=2
-toughness=1
-abilities=protection from black,protection from white
 [/card]
 [card]
-text={UR}: Stream Hopper gains flying until end of turn.
+primitive=Stream Hopper
 id=151124
-name=Stream Hopper
 rarity=C
-mana={UR}
-type=Creature
-subtype=Goblin
-auto={UR}:flying
-power=1
-toughness=1
 [/card]
 [card]
-text=Sturdy Hatchling enters the battlefield with four -1/-1 counters on it.   {GU}: Sturdy Hatchling gains shroud until end of turn.   Whenever you cast a green spell, remove a -1/-1 counter from Sturdy Hatchling.   Whenever you cast a blue spell, remove a -1/-1 counter from Sturdy Hatchling.
+primitive=Sturdy Hatchling
 id=153477
-name=Sturdy Hatchling
 rarity=U
-mana={3}{GU}
-type=Creature
-subtype=Elemental
-auto={GU}:shroud
-auto=@movedTo(*[blue]|mystack):counter(-1/-1,-1)
-auto=@movedTo(*[green]|mystack):counter(-1/-1,-1)
-auto=counter(-1/-1,4)
-power=6
-toughness=6
 [/card]
 [card]
-text=Flying   {WB}{WB}{WB}: Regenerate target creature.
-auto={WB}{WB}{WB}:Regenerate target(creature)
+primitive=Suture Spirit
 id=153420
-name=Suture Spirit
 rarity=U
-mana={1}{W}
-type=Creature
-subtype=Spirit
-power=1
-toughness=1
-abilities=flying
 [/card]
 [card]
-text=Target player loses 2 life and you gain 2 life.   Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
-target=player
-auto=life:-2 && life:2 controller
-autograveyard={1}{B}{B}{S(land|myhand)}:life:-2 && life:2 controller asSorcery
+primitive=Swirling Spriggan
+id=154348
+rarity=U
+[/card]
+[card]
+primitive=Syphon Life
 id=153447
-name=Syphon Life
 rarity=U
-mana={1}{B}{B}
-type=Sorcery
 [/card]
 [card]
-text=Flying   {UR}: Talonrend gets +1/-1 until end of turn.
+primitive=Talara's Bane
+id=151142
+rarity=C
+[/card]
+[card]
+primitive=Talara's Battalion
+id=157395
+rarity=R
+[/card]
+[card]
+primitive=Talonrend
 id=153430
-name=Talonrend
 rarity=U
-mana={4}{U}
-type=Creature
-subtype=Elemental
-auto={UR}:1/-1
-power=0
-toughness=5
-abilities=flying
 [/card]
 [card]
-text=Flash   Persist (When this creature is put into a graveyard from the battlefield, if it had no -1/-1 counters on it, return it to the battlefield under its owner's control with a -1/-1 counter on it.)
+primitive=Thunderblust
+id=157411
+rarity=R
+[/card]
+[card]
+primitive=Tilling Treefolk
+id=151096
+rarity=C
+[/card]
+[card]
+primitive=Trapjaw Kelpie
 id=152140
-name=Trapjaw Kelpie
 rarity=C
-mana={4}{GU}{GU}
-type=Creature
-subtype=Beast
-power=3
-toughness=3
-abilities=flash,persist
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.   {BG}, {T}: Add {B}{B}, {B}{G}, or {G}{G} to your mana pool.
-auto={T}:Add {1}
-auto={BG}{T}:Add {B}{B}
-auto={BG}{T}:Add {B}{G}
-auto={BG}{T}:Add {G}{G}
+primitive=Twilight Mire
 id=153425
-name=Twilight Mire
 rarity=R
-type=Land
 [/card]
 [card]
-text=Wither (This deals damage to creatures in the form of -1/-1 counters.)   {1}{G}: Twinblade Slasher gets +2/+2 until end of turn. Activate this ability only once each turn.
-auto={1}{G}:2/2 limit:1
+primitive=Twinblade Slasher
 id=153436
-name=Twinblade Slasher
 rarity=U
-mana={G}
-type=Creature
-subtype=Elf Warrior
-power=1
-toughness=1
-abilities=wither
 [/card]
 [card]
-text=Exile target creature.
-target=creature
-auto=moveTo(exile)
-id=151083
-name=Unmake
-rarity=C
-mana={WB}{WB}{WB}
-type=Instant
-[/card]
-[card]
-text=Gain control of target creature until end of turn. Untap that creature. It gets +X/+0 and gains haste until end of turn.
-id=157202
-alias=129767
-target=creature
-auto=haste
-auto=untap
-auto=X/0
-name=Unwilling Recruit
-rarity=U
-mana={X}{R}{R}{R}
-type=Sorcery
-[/card]
-[card]
-text=Lifelink   Voracious Hatchling enters the battlefield with four -1/-1 counters on it.   Whenever you cast a white spell, remove a -1/-1 counter from Voracious Hatchling.   Whenever you cast a black spell, remove a -1/-1 counter from Voracious Hatchling.
-id=153444
-name=Voracious Hatchling
-rarity=U
-mana={3}{WB}
-type=Creature
-subtype=Elemental
-auto=@movedTo(*[white]|mystack):counter(-1/-1,-1)
-auto=@movedTo(*[black]|mystack):counter(-1/-1,-1)
-auto=counter(-1/-1,4)
-power=6
-toughness=6
-abilities=lifelink
-[/card]
-[card]
-text={T}: Target red or green creature gets -2/-0 until end of turn.
-id=153476
-name=Wilderness Hypnotist
-rarity=C
-mana={2}{U}{U}
-type=Creature
-subtype=Merfolk Wizard
-auto={T}:-2/0 target(creature[red;green])
-power=1
-toughness=3
-[/card]
-[card]
-text=When Wistful Selkie enters the battlefield, draw a card.
-id=151143
-name=Wistful Selkie
-rarity=U
-mana={GU}{GU}{GU}
-type=Creature
-subtype=Merfolk Wizard
-auto=draw:1
-power=2
-toughness=2
-[/card]
-[card]
-text=Put a 1/1 black and green Worm creature token onto the battlefield for each land card in your graveyard.   Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
-id=151135
-auto=foreach(land|mygraveyard) token(Worm,creature worm, 1/1, black,green)
-autograveyard={2}{BG}{BG}{BG}{S(land|myhand)}:foreach(land|mygraveyard) token(Worm,creature worm, 1/1, black,green) asSorcery
-name=Worm Harvest
+primitive=Umbra Stalker
+id=157399
 rarity=R
-mana={2}{BG}{BG}{BG}
-type=Sorcery
+[/card]
+[card]
+primitive=Unmake
+id=151083
+rarity=C
+[/card]
+[card]
+primitive=Unnerving Assault
+id=157416
+rarity=U
+[/card]
+[card]
+primitive=Unwilling Recruit
+id=157202
+rarity=U
+[/card]
+[card]
+primitive=Voracious Hatchling
+id=153444
+rarity=U
+[/card]
+[card]
+primitive=Wake Thrasher
+id=157405
+rarity=R
+[/card]
+[card]
+primitive=Ward of Bones
+id=157972
+rarity=R
+[/card]
+[card]
+primitive=Waves of Aggression
+id=158107
+rarity=R
+[/card]
+[card]
+primitive=Wickerbough Elder
+id=151097
+rarity=C
+[/card]
+[card]
+primitive=Wilderness Hypnotist
+id=153476
+rarity=C
+[/card]
+[card]
+primitive=Wistful Selkie
+id=151143
+rarity=U
+[/card]
+[card]
+primitive=Woodlurker Mimic
+id=158599
+rarity=C
+[/card]
+[card]
+primitive=Worm Harvest
+id=151135
+rarity=R
 [/card]

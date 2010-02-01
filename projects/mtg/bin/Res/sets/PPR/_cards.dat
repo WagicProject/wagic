@@ -1,0 +1,115 @@
+[card]
+primitive=Arena
+id=97042
+rarity=S
+[/card]
+[card]
+primitive=Avatar of Hope
+id=97060
+rarity=R
+[/card]
+[card]
+primitive=Beast of Burden
+id=97058
+rarity=R
+[/card]
+[card]
+primitive=Dirtcowl Wurm
+id=97043
+rarity=R
+[/card]
+[card]
+primitive=False Prophet
+id=97044
+rarity=R
+[/card]
+[card]
+primitive=Feral Throwback
+id=97066
+rarity=R
+[/card]
+[card]
+primitive=Fungal Shambler
+id=97062
+rarity=R
+[/card]
+[card]
+primitive=Giant Badger
+id=97045
+rarity=S
+[/card]
+[card]
+primitive=Glory
+id=97064
+rarity=R
+[/card]
+[card]
+primitive=Helm of Kaldra
+id=97046
+rarity=R
+[/card]
+[card]
+primitive=Laquatus's Champion
+id=97063
+rarity=R
+[/card]
+[card]
+primitive=Lightning Dragon
+id=97047
+rarity=R
+[/card]
+[card]
+primitive=Monstrous Hound
+id=97049
+rarity=R
+[/card]
+[card]
+primitive=Overtaker
+id=97051
+rarity=R
+[/card]
+[card]
+primitive=Questing Phelddagrif
+id=97052
+rarity=R
+[/card]
+[card]
+primitive=Raging Kavu
+id=97061
+rarity=R
+[/card]
+[card]
+primitive=Rathi Assassin
+id=97059
+rarity=R
+[/card]
+[card]
+primitive=Revenant
+id=97053
+rarity=R
+[/card]
+[card]
+primitive=Ryusei, the Falling Star
+id=97068
+rarity=R
+[/card]
+[card]
+primitive=Shield of Kaldra
+id=97055
+rarity=P
+[/card]
+[card]
+primitive=Silent Specter
+id=97065
+rarity=R
+[/card]
+[card]
+primitive=Soul Collector
+id=97067
+rarity=R
+[/card]
+[card]
+primitive=Sword of Kaldra
+id=97056
+rarity=R
+[/card]

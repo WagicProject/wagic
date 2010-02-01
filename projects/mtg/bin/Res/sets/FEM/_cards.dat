@@ -3,694 +3,937 @@ author=Wagic Team
 year=1994
 [/meta]
 [card]
-text={1}{T}, Sacrifice Aeolipile: Aeolipile deals 2 damage to target creature or player.
-auto={1}{T}{S}:damage:2 target(creature,player)
+primitive=Aeolipile
 id=1827
-name=Aeolipile
 rarity=R
-mana={2}
-type=Artifact
 [/card]
 [card]
-text={T}, Sacrifice Armor Thrull: Put a +1/+2 counter on target creature.
+primitive=Armor Thrull
+id=1841
+rarity=C
+[/card]
+[card]
+primitive=Armor Thrull
+id=1840
+rarity=C
+[/card]
+[card]
+primitive=Armor Thrull
+id=1839
+rarity=C
+[/card]
+[card]
+primitive=Armor Thrull
 id=1838
-name=Armor Thrull
 rarity=C
-mana={2}{B}
-type=Creature
-subtype=Thrull
-auto={T}{S}:counter(1/2) target(creature)
-power=1
-toughness=3
 [/card]
 [card]
-text={T}, Sacrifice Basal Thrull: Add {B}{B} to your mana pool.
-id=1842
-name=Basal Thrull
-rarity=C
-mana={B}{B}
-type=Creature
-subtype=Thrull
-auto={S}:Add {B}{B}
-power=1
-toughness=2
+primitive=Balm of Restoration
+id=1828
+rarity=R
 [/card]
 [card]
-text={T}, Sacrifice Basal Thrull: Add {B}{B} to your mana pool.
-id=1843
-name=Basal Thrull
-rarity=C
-mana={B}{B}
-type=Creature
-subtype=Thrull
-auto={S}:add {B}{B}
-power=1
-toughness=2
-[/card]
-[card]
-text={T}, Sacrifice Basal Thrull: Add {B}{B} to your mana pool.
-id=1844
-name=Basal Thrull
-rarity=C
-mana={B}{B}
-type=Creature
-subtype=Thrull
-auto={S}:Add {B}{B}
-power=1
-toughness=2
-[/card]
-[card]
-text={T}, Sacrifice Basal Thrull: Add {B}{B} to your mana pool.
+primitive=Basal Thrull
 id=1845
-name=Basal Thrull
 rarity=C
-mana={B}{B}
-type=Creature
-subtype=Thrull
-auto={S}:Add {B}{B}
-power=1
-toughness=2
 [/card]
 [card]
-text=Brassclaw Orcs can't block creatures with power 2 or greater.
-id=1937
-name=Brassclaw Orcs
+primitive=Basal Thrull
+id=1844
 rarity=C
-mana={2}{R}
-type=Creature
-subtype=Orc
-auto=lord(creature[power>=2]) cantbeblockedby(brassclaw orcs)
-power=3
-toughness=2
 [/card]
 [card]
-text=Brassclaw Orcs can't block creatures with power 2 or greater.
-id=1938
-name=Brassclaw Orcs
+primitive=Basal Thrull
+id=1843
 rarity=C
-mana={2}{R}
-type=Creature
-subtype=Orc
-auto=lord(creature[power>=2]) cantbeblockedby(brassclaw orcs)
-power=3
-toughness=2
 [/card]
 [card]
-text=Brassclaw Orcs can't block creatures with power 2 or greater.
-id=1940
-name=Brassclaw Orcs
+primitive=Basal Thrull
+id=1842
 rarity=C
-mana={2}{R}
-type=Creature
-subtype=Orc
-auto=lord(creature[power>=2]) cantbeblockedby(brassclaw orcs)
-power=3
-toughness=2
 [/card]
 [card]
-text=Brassclaw Orcs can't block creatures with power 2 or greater.
+primitive=Bottomless Vault
+id=2003
+rarity=R
+[/card]
+[card]
+primitive=Brassclaw Orcs
 id=1966
-name=Brassclaw Orcs
 rarity=C
-mana={2}{R}
-type=Creature
-subtype=Orc
-auto=lord(creature[power>=2]) cantbeblockedby(brassclaw orcs)
-power=3
-toughness=2
 [/card]
 [card]
-text={2}, {T}, Discard a card at random: Regenerate target creature.
-auto={2}{T}:regenerate target(creature) && discard:1
+primitive=Brassclaw Orcs
+id=1940
+rarity=C
+[/card]
+[card]
+primitive=Brassclaw Orcs
+id=1938
+rarity=C
+[/card]
+[card]
+primitive=Brassclaw Orcs
+id=1937
+rarity=C
+[/card]
+[card]
+primitive=Breeding Pit
+id=1846
+rarity=U
+[/card]
+[card]
+primitive=Combat Medic
+id=1973
+rarity=C
+[/card]
+[card]
+primitive=Combat Medic
+id=1972
+rarity=C
+[/card]
+[card]
+primitive=Combat Medic
+id=1971
+rarity=C
+[/card]
+[card]
+primitive=Combat Medic
+id=1970
+rarity=C
+[/card]
+[card]
+primitive=Conch Horn
+id=1829
+rarity=R
+[/card]
+[card]
+primitive=Deep Spawn
+id=1871
+rarity=U
+[/card]
+[card]
+primitive=Delif's Cone
+id=1830
+rarity=C
+[/card]
+[card]
+primitive=Delif's Cube
+id=1831
+rarity=R
+[/card]
+[card]
+primitive=Derelor
+id=1847
+rarity=R
+[/card]
+[card]
+primitive=Draconian Cylix
 id=1832
-name=Draconian Cylix
 rarity=R
-mana={3}
-type=Artifact
 [/card]
 [card]
-text={R}, {T}, Discard a card: Put a +0/+1 counter or a +1/+0 counter on target creature.
+primitive=Dwarven Armorer
 id=1941
-name=Dwarven Armorer
-mana={R}
 rarity=R
-type=Creature
-subtype=Dwarf
-auto={R}{T}{S(*|myhand)}:counter(0/1) target(creature)
-auto={R}{T}{S(*|myhand)}:counter(1/0) target(creature)
-power=0
-toughness=2
 [/card]
 [card]
-text={1}{R}: Target Dwarf creature gets +1/+0 until end of turn.
+primitive=Dwarven Catapult
+id=1942
+rarity=U
+[/card]
+[card]
+primitive=Dwarven Hold
+id=2004
+rarity=R
+[/card]
+[card]
+primitive=Dwarven Lieutenant
 id=1943
-name=Dwarven Lieutenant
 rarity=U
-mana={R}{R}
-type=Creature
-subtype=Dwarf Soldier
-auto={1}{R}:1/0 target(dwarf)
-power=1
-toughness=2
 [/card]
 [card]
-text=Dwarven Ruins enters the battlefield tapped.   {T}: Add {R} to your mana pool.   {T}, Sacrifice Dwarven Ruins: Add {R}{R} to your mana pool.
+primitive=Dwarven Ruins
 id=2005
-name=Dwarven Ruins
-auto=tap
-auto={T}:Add {R}
-auto={T}{S}:Add {R}{R}
 rarity=U
-type=Land
 [/card]
 [card]
-text=Ebon Stronghold enters the battlefield tapped.   {T}: Add {B} to your mana pool.   {T}, Sacrifice Ebon Stronghold: Add {B}{B} to your mana pool.
+primitive=Dwarven Soldier
+id=1946
+rarity=C
+[/card]
+[card]
+primitive=Dwarven Soldier
+id=1945
+rarity=C
+[/card]
+[card]
+primitive=Dwarven Soldier
+id=1944
+rarity=C
+[/card]
+[card]
+primitive=Ebon Praetor
+id=1848
+rarity=R
+[/card]
+[card]
+primitive=Ebon Stronghold
 id=2006
-name=Ebon Stronghold
-auto=tap
-auto={T}:Add {B}
-auto={T}{S}:Add {B}{B}
 rarity=U
-type=Land
 [/card]
 [card]
-text={1}{G}: Target blocking creature gets +0/+1 until end of turn.
-id=1904
-name=Elven Fortress
-auto={1}{G}:0/1 target(creature[blocking])
-rarity=C
-mana={G}
-type=Enchantment
-[/card]
-[card]
-text={1}{G}: Target blocking creature gets +0/+1 until end of turn.
-id=1905
-name=Elven Fortress
-auto={1}{G}:0/1 target(creature[blocking])
-rarity=C
-mana={G}
-type=Enchantment
-[/card]
-[card]
-text={1}{G}: Target blocking creature gets +0/+1 until end of turn.
-id=1906
-name=Elven Fortress
-auto={1}{G}:0/1 target(creature[blocking])
-rarity=C
-mana={G}
-type=Enchantment
-[/card]
-[card]
-text={1}{G}: Target blocking creature gets +0/+1 until end of turn.
+primitive=Elven Fortress
 id=1907
-name=Elven Fortress
-auto={1}{G}:0/1 target(creature[blocking])
 rarity=C
-mana={G}
-type=Enchantment
 [/card]
 [card]
-text={1}, {T}, Sacrifice Elven Lyre: Target creature gets +2/+2 until end of turn.
+primitive=Elven Fortress
+id=1906
+rarity=C
+[/card]
+[card]
+primitive=Elven Fortress
+id=1905
+rarity=C
+[/card]
+[card]
+primitive=Elven Fortress
+id=1904
+rarity=C
+[/card]
+[card]
+primitive=Elven Lyre
 id=1833
-name=Elven Lyre
-auto={1}{T}{S}:2/2 target(creature)
 rarity=R
-mana={2}
-type=Artifact
 [/card]
 [card]
-text={G}, {T}: Untap target attacking creature you control. Prevent all combat damage that would be dealt to and dealt by it this turn.
-auto={G}{T}:untap target(creature[attacking]|myBattlefield) && preventAllCombatDamage to(mytgt) ueot && preventAllCombatDamage from(mytgt) ueot
+primitive=Elvish Farmer
+id=1908
+rarity=R
+[/card]
+[card]
+primitive=Elvish Hunter
+id=1911
+rarity=C
+[/card]
+[card]
+primitive=Elvish Hunter
+id=1910
+rarity=C
+[/card]
+[card]
+primitive=Elvish Hunter
+id=1909
+rarity=C
+[/card]
+[card]
+primitive=Elvish Scout
 id=1914
-name=Elvish Scout
 rarity=C
-mana={G}
-type=Creature
-subtype=Elf Scout
-power=1
-toughness=1
 [/card]
 [card]
-text=Sacrifice a Goblin: Regenerate target creature.
-auto={S(goblin|myBattlefield)}:regenerate target(creature)
-id=1947
-name=Goblin Chirurgeon
+primitive=Elvish Scout
+id=1913
 rarity=C
-mana={R}
-type=Creature
-subtype=Goblin Shaman
-power=0
-toughness=2
 [/card]
 [card]
-text=Sacrifice a Goblin: Regenerate target creature.
-auto={S(goblin|myBattlefield)}:regenerate target(creature)
-id=1948
-name=Goblin Chirurgeon
+primitive=Elvish Scout
+id=1912
 rarity=C
-mana={R}
-type=Creature
-subtype=Goblin Shaman
-power=0
-toughness=2
 [/card]
 [card]
-text=Sacrifice a Goblin: Regenerate target creature.
-auto={S(goblin|myBattlefield)}:regenerate target(creature)
+primitive=Farrelite Priest
+id=1978
+rarity=U
+[/card]
+[card]
+primitive=Farrel's Mantle
+id=1974
+rarity=U
+[/card]
+[card]
+primitive=Farrel's Zealot
+id=1977
+rarity=C
+[/card]
+[card]
+primitive=Farrel's Zealot
+id=1976
+rarity=C
+[/card]
+[card]
+primitive=Farrel's Zealot
+id=1975
+rarity=C
+[/card]
+[card]
+primitive=Feral Thallid
+id=1915
+rarity=U
+[/card]
+[card]
+primitive=Fungal Bloom
+id=1916
+rarity=R
+[/card]
+[card]
+primitive=Goblin Chirurgeon
 id=1949
-name=Goblin Chirurgeon
 rarity=C
-mana={R}
-type=Creature
-subtype=Goblin Shaman
-power=0
-toughness=2
 [/card]
 [card]
-text=Havenwood Battleground enters the battlefield tapped.   {T}: Add {G} to your mana pool.   {T}, Sacrifice Havenwood Battleground: Add {G}{G} to your mana pool.
+primitive=Goblin Chirurgeon
+id=1948
+rarity=C
+[/card]
+[card]
+primitive=Goblin Chirurgeon
+id=1947
+rarity=C
+[/card]
+[card]
+primitive=Goblin Flotilla
+id=1950
+rarity=R
+[/card]
+[card]
+primitive=Goblin Grenade
+id=1953
+rarity=C
+[/card]
+[card]
+primitive=Goblin Grenade
+id=1952
+rarity=C
+[/card]
+[card]
+primitive=Goblin Grenade
+id=1951
+rarity=C
+[/card]
+[card]
+primitive=Goblin Kites
+id=1954
+rarity=U
+[/card]
+[card]
+primitive=Goblin War Drums
+id=1958
+rarity=C
+[/card]
+[card]
+primitive=Goblin War Drums
+id=1957
+rarity=C
+[/card]
+[card]
+primitive=Goblin War Drums
+id=1956
+rarity=C
+[/card]
+[card]
+primitive=Goblin War Drums
+id=1955
+rarity=C
+[/card]
+[card]
+primitive=Goblin Warrens
+id=1959
+rarity=R
+[/card]
+[card]
+primitive=Hand of Justice
+id=1979
+rarity=R
+[/card]
+[card]
+primitive=Havenwood Battleground
 id=2007
-name=Havenwood Battleground
-auto=tap
-auto={T}:Add {G}
-auto={T}{S}:Add {G}{G}
 rarity=U
-type=Land
 [/card]
 [card]
-text={U}: Tap target green creature.
+primitive=Heroism
+id=1980
+rarity=U
+[/card]
+[card]
+primitive=High Tide
+id=1874
+rarity=C
+[/card]
+[card]
+primitive=High Tide
+id=1873
+rarity=C
+[/card]
+[card]
+primitive=High Tide
+id=1872
+rarity=C
+[/card]
+[card]
+primitive=Hollow Trees
+id=2008
+rarity=R
+[/card]
+[card]
+primitive=Homarid
+id=1878
+rarity=C
+[/card]
+[card]
+primitive=Homarid
+id=1877
+rarity=C
+[/card]
+[card]
+primitive=Homarid
+id=1876
+rarity=C
+[/card]
+[card]
+primitive=Homarid
+id=1875
+rarity=C
+[/card]
+[card]
+primitive=Homarid Shaman
 id=1879
-name=Homarid Shaman
 rarity=R
-mana={2}{U}{U}
-type=Creature
-subtype=Homarid Shaman
-auto={U}:tap target(creature[green])
-power=2
-toughness=1
 [/card]
 [card]
-text=Target player discards two cards at random.
-id=1849
-target=player
-auto=discard:2
-name=Hymn to Tourach
+primitive=Homarid Spawning Bed
+id=1880
+rarity=U
+[/card]
+[card]
+primitive=Homarid Warrior
+id=1883
 rarity=C
-mana={B}{B}
-type=Sorcery
 [/card]
 [card]
-text=Target player discards two cards at random.
-id=1850
-target=player
-auto=discard:2
-name=Hymn to Tourach
+primitive=Homarid Warrior
+id=1882
 rarity=C
-mana={B}{B}
-type=Sorcery
 [/card]
 [card]
-text=Target player discards two cards at random.
-id=1851
-target=player
-auto=discard:2
-name=Hymn to Tourach
+primitive=Homarid Warrior
+id=1881
 rarity=C
-mana={B}{B}
-type=Sorcery
 [/card]
 [card]
-text=Target player discards two cards at random.
+primitive=Hymn to Tourach
 id=1852
-target=player
-auto=discard:2
-name=Hymn to Tourach
 rarity=C
-mana={B}{B}
-type=Sorcery
 [/card]
 [card]
-text={1}{W}: Target Soldier creature gets +1/+0 until end of turn.
+primitive=Hymn to Tourach
+id=1851
+rarity=C
+[/card]
+[card]
+primitive=Hymn to Tourach
+id=1850
+rarity=C
+[/card]
+[card]
+primitive=Hymn to Tourach
+id=1849
+rarity=C
+[/card]
+[card]
+primitive=Icatian Infantry
+id=1984
+rarity=C
+[/card]
+[card]
+primitive=Icatian Infantry
+id=1983
+rarity=C
+[/card]
+[card]
+primitive=Icatian Infantry
+id=1982
+rarity=C
+[/card]
+[card]
+primitive=Icatian Infantry
+id=1981
+rarity=C
+[/card]
+[card]
+primitive=Icatian Javelineers
+id=1987
+rarity=C
+[/card]
+[card]
+primitive=Icatian Javelineers
+id=1986
+rarity=C
+[/card]
+[card]
+primitive=Icatian Javelineers
+id=1985
+rarity=C
+[/card]
+[card]
+primitive=Icatian Lieutenant
 id=1988
-name=Icatian Lieutenant
 rarity=R
-mana={W}{W}
-type=Creature
-subtype=Human Soldier
-auto={1}{W}:target(soldier) 1/0
-power=1
-toughness=2
 [/card]
 [card]
-text={1}{W}{W}: Target creature gets +1/+1 until end of turn.
+primitive=Icatian Moneychanger
+id=1991
+rarity=C
+[/card]
+[card]
+primitive=Icatian Moneychanger
+id=1990
+rarity=C
+[/card]
+[card]
+primitive=Icatian Moneychanger
+id=1989
+rarity=C
+[/card]
+[card]
+primitive=Icatian Phalanx
+id=1992
+rarity=U
+[/card]
+[card]
+primitive=Icatian Priest
 id=1993
-name=Icatian Priest
 rarity=U
-mana={W}
-type=Creature
-subtype=Human Cleric
-auto={1}{W}{W}:1/1 target(creature)
-power=1
-toughness=1
 [/card]
 [card]
-text={1}{T}: Target creature gains first strike until end of turn.
-id=1994
-name=Icatian Scout
-rarity=C
-type=Creature
-subtype=Human Soldier Scout
-mana={W}
-power=1
-toughness=1
-auto={1}{T}:first strike target(creature) 
-[/card]
-[card]
-text={1}{T}: Target creature gains first strike until end of turn.
-id=1995
-name=Icatian Scout
-rarity=C
-mana={W}
-type=Creature
-subtype=Human Soldier Scout
-auto={1}{T}:first strike target(creature)
-power=1
-toughness=1 
-[/card]
-[card]
-text={1}{T}: Target creature gains first strike until end of turn.
-id=1996
-name=Icatian Scout
-rarity=C
-mana={W}
-type=Creature
-subtype=Human Soldier Scout
-auto={1}{T}:first strike target(creature)
-power=1
-toughness=1 
-[/card]
-[card]
-text={1}{T}: Target creature gains first strike until end of turn.
+primitive=Icatian Scout
 id=1997
-name=Icatian Scout
 rarity=C
-mana={W}
-type=Creature
-subtype=Human Soldier Scout
-auto={1}{T}:first strike target(creature)
-power=1
-toughness=1 
 [/card]
 [card]
-text=Put four 1/1 white Citizen creature tokens onto the battlefield.
+primitive=Icatian Scout
+id=1996
+rarity=C
+[/card]
+[card]
+primitive=Icatian Scout
+id=1995
+rarity=C
+[/card]
+[card]
+primitive=Icatian Scout
+id=1994
+rarity=C
+[/card]
+[card]
+primitive=Icatian Skirmishers
+id=1998
+rarity=R
+[/card]
+[card]
+primitive=Icatian Store
+id=2009
+rarity=R
+[/card]
+[card]
+primitive=Icatian Town
 id=1999
-name=Icatian Town
-auto=token(Citizen,creature human,1/1,white)*4
 rarity=R
-mana={5}{W}
-type=Sorcery
 [/card]
 [card]
-text={1}{T}, Sacrifice Implements of Sacrifice: Add two mana of any one color to your mana pool.
+primitive=Implements of Sacrifice
 id=1834
-name=Implements of Sacrifice
-auto={1}{T}{S}:Add {B}{B}
-auto={1}{T}{S}:Add {U}{U}
-auto={1}{T}{S}:Add {G}{G}
-auto={1}{T}{S}:Add {R}{R}
-auto={1}{T}{S}:Add {W}{W}
 rarity=R
-mana={2}
-type=Artifact
 [/card]
 [card]
-text=Orcish Veteran can't block white creatures with power 2 or greater.   {R}: Orcish Veteran gains first strike until end of turn.
-id=1939
-name=Orcish Veteran
+primitive=Initiates of the Ebon Hand
+id=1855
 rarity=C
-mana={2}{R}
-type=Creature
-subtype=Orc
-auto=lord(creature[white;power>=2]) cantbeblockedby(orcish veteran)
-auto={R}:first strike
-power=2
-toughness=2
 [/card]
 [card]
-text=Orcish Veteran can't block white creatures with power 2 or greater.   {R}: Orcish Veteran gains first strike until end of turn.
-id=1964
-name=Orcish Veteran
+primitive=Initiates of the Ebon Hand
+id=1854
 rarity=C
-mana={2}{R}
-type=Creature
-subtype=Orc
-auto=lord(creature[white;power>=2]) cantbeblockedby(orcish veteran)
-auto={R}:first strike
-power=2
-toughness=2
 [/card]
 [card]
-text=Orcish Veteran can't block white creatures with power 2 or greater.   {R}: Orcish Veteran gains first strike until end of turn.
-id=1965
-name=Orcish Veteran
+primitive=Initiates of the Ebon Hand
+id=1853
 rarity=C
-mana={2}{R}
-type=Creature
-subtype=Orc
-auto=lord(creature[white;power>=2]) cantbeblockedby(orcish veteran)
-auto={R}:first strike
-power=2
-toughness=2
 [/card]
 [card]
-text=Orcish Veteran can't block white creatures with power 2 or greater.   {R}: Orcish Veteran gains first strike until end of turn.
+primitive=Merseine
+id=1887
+rarity=C
+[/card]
+[card]
+primitive=Merseine
+id=1886
+rarity=C
+[/card]
+[card]
+primitive=Merseine
+id=1885
+rarity=C
+[/card]
+[card]
+primitive=Merseine
+id=1884
+rarity=C
+[/card]
+[card]
+primitive=Mindstab Thrull
+id=1858
+rarity=C
+[/card]
+[card]
+primitive=Mindstab Thrull
+id=1857
+rarity=C
+[/card]
+[card]
+primitive=Mindstab Thrull
+id=1856
+rarity=C
+[/card]
+[card]
+primitive=Necrite
+id=1861
+rarity=C
+[/card]
+[card]
+primitive=Necrite
+id=1860
+rarity=C
+[/card]
+[card]
+primitive=Necrite
+id=1859
+rarity=C
+[/card]
+[card]
+primitive=Night Soil
+id=1919
+rarity=C
+[/card]
+[card]
+primitive=Night Soil
+id=1918
+rarity=C
+[/card]
+[card]
+primitive=Night Soil
+id=1917
+rarity=C
+[/card]
+[card]
+primitive=Orcish Captain
+id=1960
+rarity=U
+[/card]
+[card]
+primitive=Orcish Spy
+id=1963
+rarity=C
+[/card]
+[card]
+primitive=Orcish Spy
+id=1962
+rarity=C
+[/card]
+[card]
+primitive=Orcish Spy
+id=1961
+rarity=C
+[/card]
+[card]
+primitive=Orcish Veteran
 id=1967
-name=Orcish Veteran
 rarity=C
-mana={2}{R}
-type=Creature
-subtype=Orc
-auto=lord(creature[white;power>=2]) cantbeblockedby(orcish veteran)
-auto={R}:first strike
-power=2
-toughness=2
 [/card]
 [card]
-text=Protection from black   {W}: Order of Leitbur gains first strike until end of turn.     {W}{W}: Order of Leitbur gets +1/+0 until end of turn.
-id=2000
-name=Order of Leitbur
+primitive=Orcish Veteran
+id=1965
 rarity=C
-mana={W}{W}
-type=Creature
-subtype=Human Cleric Knight
-auto={W}:first strike
-auto={W}{W}:1/0
-power=2
-toughness=1
-abilities=protection from black
 [/card]
 [card]
-text=Protection from black   {W}: Order of Leitbur gains first strike until end of turn.     {W}{W}: Order of Leitbur gets +1/+0 until end of turn.
-id=2001
-name=Order of Leitbur
+primitive=Orcish Veteran
+id=1964
 rarity=C
-mana={W}{W}
-type=Creature
-subtype=Human Cleric Knight
-auto={W}:first strike
-auto={W}{W}:1/0
-power=2
-toughness=1
-abilities=protection from black
 [/card]
 [card]
-text=Protection from black   {W}: Order of Leitbur gains first strike until end of turn.     {W}{W}: Order of Leitbur gets +1/+0 until end of turn.
+primitive=Orcish Veteran
+id=1939
+rarity=C
+[/card]
+[card]
+primitive=Order of Leitbur
 id=2002
-name=Order of Leitbur
 rarity=C
-mana={W}{W}
-type=Creature
-subtype=Human Cleric Knight
-auto={W}:first strike
-auto={W}{W}:1/0
-power=2
-toughness=1
-abilities=protection from black
 [/card]
 [card]
-text=Protection from white   {B}: Order of the Ebon Hand gains first strike until end of turn.     {B}{B}: Order of the Ebon Hand gets +1/+0 until end of turn.
-id=1862
-name=Order of the Ebon Hand
+primitive=Order of Leitbur
+id=2001
 rarity=C
-mana={B}{B}
-type=Creature
-subtype=Cleric Knight
-auto={B}:first strike
-auto={B}{B}:1/0
-power=2
-toughness=1
-abilities=protection from white
 [/card]
 [card]
-text=Protection from white   {B}: Order of the Ebon Hand gains first strike until end of turn.     {B}{B}: Order of the Ebon Hand gets +1/+0 until end of turn.
-id=1863
-name=Order of the Ebon Hand
+primitive=Order of Leitbur
+id=2000
 rarity=C
-mana={B}{B}
-type=Creature
-subtype=Cleric Knight
-auto={B}:first strike
-auto={B}{B}:1/0
-power=2
-toughness=1
-abilities=protection from white
 [/card]
 [card]
-text=Protection from white   {B}: Order of the Ebon Hand gains first strike until end of turn.     {B}{B}: Order of the Ebon Hand gets +1/+0 until end of turn.
+primitive=Order of the Ebon Hand
 id=1864
-name=Order of the Ebon Hand
 rarity=C
-mana={B}{B}
-type=Creature
-subtype=Cleric Knight
-auto={B}:first strike
-auto={B}{B}:1/0
-power=2
-toughness=1
-abilities=protection from white
 [/card]
 [card]
-text=Trample   Orgg can't attack if defending player controls an untapped creature with power 3 or greater.   Orgg can't block creatures with power 3 or greater.
+primitive=Order of the Ebon Hand
+id=1863
+rarity=C
+[/card]
+[card]
+primitive=Order of the Ebon Hand
+id=1862
+rarity=C
+[/card]
+[card]
+primitive=Orgg
 id=1968
-name=Orgg
 rarity=R
-mana={3}{R}{R}
-type=Creature
-subtype=Orgg
-auto=aslongas(creature[power>=3;-tapped]|opponentbattlefield]) cantattack
-auto=lord(creature[power>=3]) cantbeblockedby(orgg)
-power=6
-toughness=6
-abilities=trample
 [/card]
 [card]
-text={U}: River Merfolk gains mountainwalk until end of turn.
+primitive=Raiding Party
+id=1969
+rarity=U
+[/card]
+[card]
+primitive=Rainbow Vale
+id=2010
+rarity=R
+[/card]
+[card]
+primitive=Ring of Renewal
+id=1835
+rarity=R
+[/card]
+[card]
+primitive=River Merfolk
 id=1888
-name=River Merfolk
 rarity=R
-mana={U}{U}
-type=Creature
-subtype=Merfolk
-auto={U}:mountainwalk
-power=2
-toughness=1
 [/card]
 [card]
-text=Ruins of Trokair enters the battlefield tapped.   {T}: Add {W} to your mana pool.   {T}, Sacrifice Ruins of Trokair: Add {W}{W} to your mana pool.
+primitive=Ruins of Trokair
 id=2011
-name=Ruins of Trokair
-auto=tap
-auto={T}:Add {W}
-auto={T}{S}:Add {W}{W}
 rarity=U
-type=Land
 [/card]
 [card]
-text={U}{U}, {T}: Target creature gains shroud until end of turn. Play this ability only during your upkeep. (It can't be the target of spells or abilities.)
+primitive=Sand Silos
+id=2012
+rarity=R
+[/card]
+[card]
+primitive=Seasinger
+id=1889
+rarity=U
+[/card]
+[card]
+primitive=Soul Exchange
+id=1865
+rarity=U
+[/card]
+[card]
+primitive=Spirit Shield
+id=1836
+rarity=R
+[/card]
+[card]
+primitive=Spore Cloud
+id=1922
+rarity=C
+[/card]
+[card]
+primitive=Spore Cloud
+id=1921
+rarity=C
+[/card]
+[card]
+primitive=Spore Cloud
+id=1920
+rarity=C
+[/card]
+[card]
+primitive=Spore Flower
+id=1923
+rarity=U
+[/card]
+[card]
+primitive=Svyelunite Priest
 id=1890
-name=Svyelunite Priest
 rarity=U
-mana={1}{U}
-type=Creature
-subtype=Merfolk Cleric
-auto={U}{U}{T}:shroud target(creature) myUpkeepOnly
-power=1
-toughness=1
 [/card]
 [card]
-text=Svyelunite Temple enters the battlefield tapped.   {T}: Add {U} to your mana pool.   {T}, Sacrifice Svyelunite Temple: Add {U}{U} to your mana pool.
+primitive=Svyelunite Temple
 id=2013
-name=Svyelunite Temple
 rarity=U
-type=Land
-auto=tap
-auto={T}:Add {U}
-auto={T}{S}:Add {U}{U}
 [/card]
 [card]
-text={1}{G}, {T}, Sacrifice a creature: Forests you control become 2/3 creatures until end of turn. They're still lands.
+primitive=Thallid
+id=1927
+rarity=C
+[/card]
+[card]
+primitive=Thallid
+id=1926
+rarity=C
+[/card]
+[card]
+primitive=Thallid
+id=1925
+rarity=C
+[/card]
+[card]
+primitive=Thallid
+id=1924
+rarity=C
+[/card]
+[card]
+primitive=Thallid Devourer
+id=1928
+rarity=U
+[/card]
+[card]
+primitive=Thelonite Druid
 id=1931
-name=Thelonite Druid
 rarity=U
-mana={2}{G}
-type=Creature
-subtype=Human Cleric Druid
-auto={1}{G}{T}{S(creature|myBattlefield)}:lord(forest|myBattlefield) becomes(Creature,2/3) ueot
-power=1
-toughness=1
 [/card]
 [card]
-text=Enchant creature   Enchanted creature gets +1/+1.   Sacrifice Thrull Retainer: Regenerate enchanted creature.
+primitive=Thelonite Monk
+id=1932
+rarity=R
+[/card]
+[card]
+primitive=Thelon's Chant
+id=1929
+rarity=U
+[/card]
+[card]
+primitive=Thelon's Curse
+id=1930
+rarity=R
+[/card]
+[card]
+primitive=Thorn Thallid
+id=1936
+rarity=C
+[/card]
+[card]
+primitive=Thorn Thallid
+id=1935
+rarity=C
+[/card]
+[card]
+primitive=Thorn Thallid
+id=1934
+rarity=C
+[/card]
+[card]
+primitive=Thorn Thallid
+id=1933
+rarity=C
+[/card]
+[card]
+primitive=Thrull Champion
+id=1866
+rarity=R
+[/card]
+[card]
+primitive=Thrull Retainer
 id=1867
-target=creature
-auto=1/1
-auto={S}:regenerate
-name=Thrull Retainer
 rarity=U
-mana={B}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text=First strike Vodalian Knights can't attack unless defending player controls an Island. When you control no Islands, sacrifice Vodalian Knights.   {U}: Vodalian Knights gains flying until end of turn.
+primitive=Thrull Wizard
+id=1868
+rarity=U
+[/card]
+[card]
+primitive=Tidal Flats
+id=1893
+rarity=C
+[/card]
+[card]
+primitive=Tidal Flats
+id=1892
+rarity=C
+[/card]
+[card]
+primitive=Tidal Flats
+id=1891
+rarity=C
+[/card]
+[card]
+primitive=Tidal Influence
+id=1894
+rarity=U
+[/card]
+[card]
+primitive=Tourach's Chant
+id=1869
+rarity=U
+[/card]
+[card]
+primitive=Tourach's Gate
+id=1870
+rarity=R
+[/card]
+[card]
+primitive=Vodalian Knights
 id=1895
-name=Vodalian Knights
-rarity=U
-mana={1}{U}{U}
-type=Creature
-subtype=Merfolk Knight
-auto={U}:flying
-power=2
-toughness=2
-abilities=islandhome,first strike
+rarity=R
 [/card]
 [card]
-id=1899
-name=Vodalian Soldiers
+primitive=Vodalian Mage
+id=1898
 rarity=C
-mana={1}{U}
-type=Creature
-subtype=Merfolk Soldier
-power=1
-toughness=2
 [/card]
 [card]
-id=1900
-name=Vodalian Soldiers
+primitive=Vodalian Mage
+id=1897
 rarity=C
-mana={1}{U}
-type=Creature
-subtype=Merfolk Soldier
-power=1
-toughness=2
 [/card]
 [card]
-id=1901
-name=Vodalian Soldiers
+primitive=Vodalian Mage
+id=1896
 rarity=C
-mana={1}{U}
-type=Creature
-subtype=Merfolk Soldier
-power=1
-toughness=2
 [/card]
 [card]
-text= 
+primitive=Vodalian Soldiers
 id=1902
-name=Vodalian Soldiers
 rarity=C
-mana={1}{U}
-type=Creature
-subtype=Merfolk Soldier
-power=1
-toughness=2
+[/card]
+[card]
+primitive=Vodalian Soldiers
+id=1901
+rarity=C
+[/card]
+[card]
+primitive=Vodalian Soldiers
+id=1900
+rarity=C
+[/card]
+[card]
+primitive=Vodalian Soldiers
+id=1899
+rarity=C
+[/card]
+[card]
+primitive=Vodalian War Machine
+id=1903
+rarity=R
+[/card]
+[card]
+primitive=Zelyon Sword
+id=1837
+rarity=R
 [/card]

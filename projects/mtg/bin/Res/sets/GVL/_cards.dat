@@ -1,0 +1,315 @@
+[card]
+primitive=Albino Troll
+id=201781
+rarity=U
+[/card]
+[card]
+primitive=Bad Moon
+id=201820
+rarity=R
+[/card]
+[card]
+primitive=Basking Rootwalla
+id=201836
+rarity=C
+[/card]
+[card]
+primitive=Beast Attack
+id=201824
+rarity=U
+[/card]
+[card]
+primitive=Blastoderm
+id=201831
+rarity=C
+[/card]
+[card]
+primitive=Corrupt
+id=201821
+rarity=U
+[/card]
+[card]
+primitive=Deathgreeter
+id=202143
+rarity=C
+[/card]
+[card]
+primitive=Drudge Skeletons
+id=202275
+rarity=C
+[/card]
+[card]
+primitive=Elephant Guide
+id=201832
+rarity=U
+[/card]
+[card]
+primitive=Enslave
+id=201816
+rarity=U
+[/card]
+[card]
+primitive=Faerie Macabre
+id=201822
+rarity=C
+[/card]
+[card]
+primitive=Fleshbag Marauder
+id=202144
+rarity=U
+[/card]
+[card]
+primitive=Forest
+id=204966
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=204965
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=204967
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=204964
+rarity=L
+[/card]
+[card]
+primitive=Garruk Wildspeaker
+id=201347
+rarity=M
+[/card]
+[card]
+primitive=Genju of the Cedars
+id=201792
+rarity=U
+[/card]
+[card]
+primitive=Genju of the Fens
+id=201793
+rarity=U
+[/card]
+[card]
+primitive=Ghost-Lit Stalker
+id=202274
+rarity=U
+[/card]
+[card]
+primitive=Giant Growth
+id=201839
+rarity=C
+[/card]
+[card]
+primitive=Harmonize
+id=201817
+rarity=U
+[/card]
+[card]
+primitive=Hideous End
+id=202147
+rarity=C
+[/card]
+[card]
+primitive=Howling Banshee
+id=202148
+rarity=U
+[/card]
+[card]
+primitive=Ichor Slick
+id=202145
+rarity=C
+[/card]
+[card]
+primitive=Indrik Stomphowler
+id=201834
+rarity=U
+[/card]
+[card]
+primitive=Invigorate
+id=202261
+rarity=C
+[/card]
+[card]
+primitive=Keening Banshee
+id=201796
+rarity=U
+[/card]
+[card]
+primitive=Krosan Tusker
+id=201829
+rarity=C
+[/card]
+[card]
+primitive=Lignify
+id=201837
+rarity=C
+[/card]
+[card]
+primitive=Liliana Vess
+id=201348
+rarity=M
+[/card]
+[card]
+primitive=Mutilate
+id=201819
+rarity=R
+[/card]
+[card]
+primitive=Nature's Lore
+id=201840
+rarity=C
+[/card]
+[card]
+primitive=Overrun
+id=201779
+rarity=U
+[/card]
+[card]
+primitive=Phyrexian Rager
+id=201790
+rarity=C
+[/card]
+[card]
+primitive=Plated Slagwurm
+id=201835
+rarity=R
+[/card]
+[card]
+primitive=Polluted Mire
+id=201782
+rarity=C
+[/card]
+[card]
+primitive=Rancor
+id=201838
+rarity=C
+[/card]
+[card]
+primitive=Ravenous Baloth
+id=201882
+rarity=R
+[/card]
+[card]
+primitive=Ravenous Rats
+id=201791
+rarity=C
+[/card]
+[card]
+primitive=Rise from the Grave
+id=201800
+rarity=U
+[/card]
+[card]
+primitive=Rude Awakening
+id=202281
+rarity=R
+[/card]
+[card]
+primitive=Serrated Arrows
+id=202280
+rarity=C
+[/card]
+[card]
+primitive=Sign in Blood
+id=201801
+rarity=C
+[/card]
+[card]
+primitive=Skeletal Vampire
+id=201809
+rarity=R
+[/card]
+[card]
+primitive=Slippery Karst
+id=201784
+rarity=C
+[/card]
+[card]
+primitive=Snuff Out
+id=201794
+rarity=C
+[/card]
+[card]
+primitive=Stampeding Wildebeests
+id=201881
+rarity=U
+[/card]
+[card]
+primitive=Swamp
+id=204970
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=204969
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=204968
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=204971
+rarity=L
+[/card]
+[card]
+primitive=Tendrils of Corruption
+id=201812
+rarity=C
+[/card]
+[card]
+primitive=Treetop Village
+id=202279
+rarity=U
+[/card]
+[card]
+primitive=Twisted Abomination
+id=201813
+rarity=C
+[/card]
+[card]
+primitive=Urborg Syphon-Mage
+id=202146
+rarity=C
+[/card]
+[card]
+primitive=Vampire Bats
+id=202276
+rarity=C
+[/card]
+[card]
+primitive=Vicious Hunger
+id=202262
+rarity=C
+[/card]
+[card]
+primitive=Vine Trellis
+id=201845
+rarity=C
+[/card]
+[card]
+primitive=Wall of Bone
+id=202277
+rarity=U
+[/card]
+[card]
+primitive=Wild Mongrel
+id=201826
+rarity=C
+[/card]
+[card]
+primitive=Windstorm
+id=201780
+rarity=U
+[/card]
+[card]
+primitive=Wirewood Savage
+id=201830
+rarity=C
+[/card]

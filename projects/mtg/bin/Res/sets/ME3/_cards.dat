@@ -1,0 +1,1150 @@
+[card]
+primitive=Active Volcano
+id=201098
+rarity=U
+[/card]
+[card]
+primitive=Akron Legionnaire
+id=201117
+rarity=R
+[/card]
+[card]
+primitive=Alabaster Potion
+id=201118
+rarity=U
+[/card]
+[card]
+primitive=All Hallow's Eve
+id=201119
+rarity=R
+[/card]
+[card]
+primitive=Amrou Kithkin
+id=201265
+rarity=C
+[/card]
+[card]
+primitive=Anaba Ancestor
+id=201315
+rarity=C
+[/card]
+[card]
+primitive=Anaba Spirit Crafter
+id=201316
+rarity=C
+[/card]
+[card]
+primitive=Angus Mackenzie
+id=201175
+rarity=R
+[/card]
+[card]
+primitive=Arboria
+id=201176
+rarity=R
+[/card]
+[card]
+primitive=Arcades Sabboth
+id=201177
+rarity=R
+[/card]
+[card]
+primitive=Arena of the Ancients
+id=201209
+rarity=R
+[/card]
+[card]
+primitive=Ashes to Ashes
+id=201250
+rarity=U
+[/card]
+[card]
+primitive=Astrolabe
+id=201218
+rarity=C
+[/card]
+[card]
+primitive=Axelrod Gunnarson
+id=201178
+rarity=U
+[/card]
+[card]
+primitive=Banshee
+id=201251
+rarity=U
+[/card]
+[card]
+primitive=Barktooth Warbeard
+id=201259
+rarity=C
+[/card]
+[card]
+primitive=Barl's Cage
+id=201190
+rarity=R
+[/card]
+[card]
+primitive=Bartel Runeaxe
+id=201181
+rarity=U
+[/card]
+[card]
+primitive=Bayou
+id=201400
+rarity=R
+[/card]
+[card]
+primitive=Bazaar of Baghdad
+id=201220
+rarity=R
+[/card]
+[card]
+primitive=Benthic Explorers
+id=201159
+rarity=C
+[/card]
+[card]
+primitive=Black Vise
+id=201239
+rarity=R
+[/card]
+[card]
+primitive=Blood Lust
+id=201272
+rarity=C
+[/card]
+[card]
+primitive=Bone Flute
+id=201140
+rarity=C
+[/card]
+[card]
+primitive=Boomerang
+id=201122
+rarity=C
+[/card]
+[card]
+primitive=Boris Devilboon
+id=201182
+rarity=U
+[/card]
+[card]
+primitive=Borrowing 100,000 Arrows
+id=201257
+rarity=U
+[/card]
+[card]
+primitive=Brilliant Plan
+id=201290
+rarity=C
+[/card]
+[card]
+primitive=Burning of Xinye
+id=201274
+rarity=R
+[/card]
+[card]
+primitive=Call to Arms
+id=201147
+rarity=U
+[/card]
+[card]
+primitive=Capture of Jingzhou
+id=201135
+rarity=R
+[/card]
+[card]
+primitive=Carrion Ants
+id=201125
+rarity=U
+[/card]
+[card]
+primitive=Chain Lightning
+id=201126
+rarity=C
+[/card]
+[card]
+primitive=Chromium
+id=201184
+rarity=R
+[/card]
+[card]
+primitive=Cinder Storm
+id=201323
+rarity=U
+[/card]
+[card]
+primitive=City of Shadows
+id=201252
+rarity=R
+[/card]
+[card]
+primitive=Cleanse
+id=201127
+rarity=R
+[/card]
+[card]
+primitive=Coal Golem
+id=201206
+rarity=C
+[/card]
+[card]
+primitive=Concordant Crossroads
+id=201185
+rarity=R
+[/card]
+[card]
+primitive=Corrupt Eunuchs
+id=201408
+rarity=U
+[/card]
+[card]
+primitive=Cosmic Horror
+id=201129
+rarity=R
+[/card]
+[card]
+primitive=Crimson Kobolds
+id=201130
+rarity=C
+[/card]
+[card]
+primitive=Crimson Manticore
+id=201131
+rarity=U
+[/card]
+[card]
+primitive=Dance of Many
+id=201253
+rarity=U
+[/card]
+[card]
+primitive=D'Avenant Archer
+id=201134
+rarity=C
+[/card]
+[card]
+primitive=Demonic Torment
+id=201166
+rarity=C
+[/card]
+[card]
+primitive=Desert Twister
+id=201210
+rarity=U
+[/card]
+[card]
+primitive=Desperate Charge
+id=206068
+rarity=C
+[/card]
+[card]
+primitive=Didgeridoo
+id=201317
+rarity=U
+[/card]
+[card]
+primitive=Disenchant
+id=201162
+rarity=C
+[/card]
+[card]
+primitive=Disharmony
+id=201133
+rarity=U
+[/card]
+[card]
+primitive=Divine Intervention
+id=201237
+rarity=R
+[/card]
+[card]
+primitive=Dong Zhou, the Tyrant
+id=201123
+rarity=R
+[/card]
+[card]
+primitive=Eightfold Maze
+id=201304
+rarity=U
+[/card]
+[card]
+primitive=Elves of Deep Shadow
+id=201324
+rarity=C
+[/card]
+[card]
+primitive=Evil Presence
+id=201261
+rarity=C
+[/card]
+[card]
+primitive=Exorcist
+id=201255
+rarity=U
+[/card]
+[card]
+primitive=Faerie Noble
+id=201318
+rarity=U
+[/card]
+[card]
+primitive=False Defeat
+id=201275
+rarity=U
+[/card]
+[card]
+primitive=Famine
+id=201276
+rarity=U
+[/card]
+[card]
+primitive=Fellwar Stone
+id=201228
+rarity=C
+[/card]
+[card]
+primitive=Fevered Strength
+id=201169
+rarity=C
+[/card]
+[card]
+primitive=Fire Ambush
+id=201277
+rarity=C
+[/card]
+[card]
+primitive=Fire Drake
+id=201256
+rarity=C
+[/card]
+[card]
+primitive=Fire Sprites
+id=201186
+rarity=C
+[/card]
+[card]
+primitive=Firestorm Phoenix
+id=201216
+rarity=R
+[/card]
+[card]
+primitive=Flash Flood
+id=201137
+rarity=U
+[/card]
+[card]
+primitive=Force Spike
+id=201160
+rarity=C
+[/card]
+[card]
+primitive=Forced Retreat
+id=201278
+rarity=C
+[/card]
+[card]
+primitive=Forest
+id=206069
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=206070
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=206071
+rarity=L
+[/card]
+[card]
+primitive=Forked Lightning
+id=201292
+rarity=U
+[/card]
+[card]
+primitive=Freyalise's Winds
+id=201217
+rarity=R
+[/card]
+[card]
+primitive=Frost Giant
+id=201138
+rarity=U
+[/card]
+[card]
+primitive=Gabriel Angelfire
+id=201188
+rarity=R
+[/card]
+[card]
+primitive=Gaea's Touch
+id=201211
+rarity=U
+[/card]
+[card]
+primitive=Gauntlets of Chaos
+id=201235
+rarity=R
+[/card]
+[card]
+primitive=Ghostly Visit
+id=201279
+rarity=C
+[/card]
+[card]
+primitive=Ghosts of the Damned
+id=201139
+rarity=C
+[/card]
+[card]
+primitive=Giant Growth
+id=201266
+rarity=C
+[/card]
+[card]
+primitive=Grim Tutor
+id=201409
+rarity=R
+[/card]
+[card]
+primitive=Guan Yu, Sainted Warrior
+id=201280
+rarity=U
+[/card]
+[card]
+primitive=Guan Yu's 1,000-Li March
+id=201284
+rarity=R
+[/card]
+[card]
+primitive=Gwendlyn Di Corci
+id=201191
+rarity=R
+[/card]
+[card]
+primitive=Halfdane
+id=201192
+rarity=R
+[/card]
+[card]
+primitive=Hammerheim
+id=201242
+rarity=U
+[/card]
+[card]
+primitive=Hazezon Tamar
+id=201193
+rarity=R
+[/card]
+[card]
+primitive=Heal
+id=201291
+rarity=C
+[/card]
+[card]
+primitive=Heavy Fog
+id=201281
+rarity=C
+[/card]
+[card]
+primitive=Hellfire
+id=201141
+rarity=R
+[/card]
+[card]
+primitive=Hua Tuo, Honored Physician
+id=201273
+rarity=R
+[/card]
+[card]
+primitive=Hunding Gjornersen
+id=201194
+rarity=U
+[/card]
+[card]
+primitive=Hunting Cheetah
+id=201407
+rarity=C
+[/card]
+[card]
+primitive=Hurloon Minotaur
+id=201401
+rarity=C
+[/card]
+[card]
+primitive=Illusionary Mask
+id=201199
+rarity=R
+[/card]
+[card]
+primitive=Immolation
+id=201142
+rarity=C
+[/card]
+[card]
+primitive=Infuse
+id=201264
+rarity=C
+[/card]
+[card]
+primitive=Island
+id=206074
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=206073
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=206072
+rarity=L
+[/card]
+[card]
+primitive=Ivory Guardians
+id=201146
+rarity=U
+[/card]
+[card]
+primitive=Jedit Ojanen
+id=201128
+rarity=C
+[/card]
+[card]
+primitive=Jerrard of the Closed Fist
+id=201196
+rarity=C
+[/card]
+[card]
+primitive=Jungle Lion
+id=201241
+rarity=C
+[/card]
+[card]
+primitive=Karakas
+id=201198
+rarity=R
+[/card]
+[card]
+primitive=Kei Takahashi
+id=201200
+rarity=U
+[/card]
+[card]
+primitive=Killer Bees
+id=201201
+rarity=U
+[/card]
+[card]
+primitive=Kjeldoran Frostbeast
+id=201197
+rarity=U
+[/card]
+[card]
+primitive=Knowledge Vault
+id=201195
+rarity=U
+[/card]
+[card]
+primitive=Kobold Drill Sergeant
+id=201148
+rarity=U
+[/card]
+[card]
+primitive=Kobold Overlord
+id=201149
+rarity=U
+[/card]
+[card]
+primitive=Kobold Taskmaster
+id=201150
+rarity=C
+[/card]
+[card]
+primitive=Kobolds of Kher Keep
+id=201151
+rarity=C
+[/card]
+[card]
+primitive=Kongming, "Sleeping Dragon"
+id=201282
+rarity=R
+[/card]
+[card]
+primitive=Labyrinth Minotaur
+id=201319
+rarity=C
+[/card]
+[card]
+primitive=Lady Caleria
+id=201410
+rarity=U
+[/card]
+[card]
+primitive=Lady Evangela
+id=201203
+rarity=U
+[/card]
+[card]
+primitive=Lady Orca
+id=205867
+rarity=C
+[/card]
+[card]
+primitive=Land Equilibrium
+id=201152
+rarity=R
+[/card]
+[card]
+primitive=Land Tax
+id=201153
+rarity=R
+[/card]
+[card]
+primitive=Lesser Werewolf
+id=201154
+rarity=C
+[/card]
+[card]
+primitive=Life Chisel
+id=201205
+rarity=R
+[/card]
+[card]
+primitive=Lightning Blow
+id=201121
+rarity=C
+[/card]
+[card]
+primitive=Liu Bei, Lord of Shu
+id=201283
+rarity=R
+[/card]
+[card]
+primitive=Living Plane
+id=201207
+rarity=R
+[/card]
+[card]
+primitive=Livonya Silone
+id=201267
+rarity=U
+[/card]
+[card]
+primitive=Loyal Retainers
+id=201136
+rarity=U
+[/card]
+[card]
+primitive=Lu Bu, Master-at-Arms
+id=201285
+rarity=R
+[/card]
+[card]
+primitive=Lu Meng, Wu General
+id=201097
+rarity=U
+[/card]
+[card]
+primitive=Lu Xun, Scholar General
+id=201286
+rarity=U
+[/card]
+[card]
+primitive=Mana Drain
+id=201156
+rarity=R
+[/card]
+[card]
+primitive=Mana Vortex
+id=201260
+rarity=R
+[/card]
+[card]
+primitive=Marhault Elsdragon
+id=201222
+rarity=U
+[/card]
+[card]
+primitive=Meng Huo, Barbarian King
+id=201287
+rarity=R
+[/card]
+[card]
+primitive=Meng Huo's Horde
+id=201219
+rarity=C
+[/card]
+[card]
+primitive=Mind Twist
+id=201311
+rarity=R
+[/card]
+[card]
+primitive=Misfortune's Gain
+id=201288
+rarity=C
+[/card]
+[card]
+primitive=Mountain
+id=206077
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=206076
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=206075
+rarity=L
+[/card]
+[card]
+primitive=Nebuchadnezzar
+id=201212
+rarity=U
+[/card]
+[card]
+primitive=Nether Void
+id=201158
+rarity=R
+[/card]
+[card]
+primitive=Nicol Bolas
+id=201213
+rarity=R
+[/card]
+[card]
+primitive=Nova Pentacle
+id=201214
+rarity=R
+[/card]
+[card]
+primitive=Old Man of the Sea
+id=201144
+rarity=R
+[/card]
+[card]
+primitive=Palladia-Mors
+id=201215
+rarity=R
+[/card]
+[card]
+primitive=Pavel Maliki
+id=205922
+rarity=U
+[/card]
+[card]
+primitive=Peach Garden Oath
+id=201296
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=206080
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=206078
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=206079
+rarity=L
+[/card]
+[card]
+primitive=Plateau
+id=201402
+rarity=R
+[/card]
+[card]
+primitive=Princess Lucrezia
+id=205869
+rarity=U
+[/card]
+[card]
+primitive=Raging Minotaur
+id=201325
+rarity=C
+[/card]
+[card]
+primitive=Ragnar
+id=201221
+rarity=U
+[/card]
+[card]
+primitive=Ramirez DePietro
+id=201310
+rarity=C
+[/card]
+[card]
+primitive=Ramses Overdark
+id=201223
+rarity=U
+[/card]
+[card]
+primitive=Rasputin Dreamweaver
+id=201224
+rarity=R
+[/card]
+[card]
+primitive=Recall
+id=201161
+rarity=U
+[/card]
+[card]
+primitive=Reincarnation
+id=201258
+rarity=U
+[/card]
+[card]
+primitive=Remove Soul
+id=201269
+rarity=C
+[/card]
+[card]
+primitive=Reset
+id=201163
+rarity=R
+[/card]
+[card]
+primitive=Reveka, Wizard Savant
+id=201309
+rarity=U
+[/card]
+[card]
+primitive=Riding the Dilu Horse
+id=201322
+rarity=U
+[/card]
+[card]
+primitive=Riven Turnbull
+id=201225
+rarity=U
+[/card]
+[card]
+primitive=Rohgahh of Kher Keep
+id=201226
+rarity=R
+[/card]
+[card]
+primitive=Rolling Earthquake
+id=201293
+rarity=R
+[/card]
+[card]
+primitive=Rubinia Soulsinger
+id=201227
+rarity=R
+[/card]
+[card]
+primitive=Scrubland
+id=201403
+rarity=R
+[/card]
+[card]
+primitive=Scryb Sprites
+id=201404
+rarity=C
+[/card]
+[card]
+primitive=Shu Cavalry
+id=201294
+rarity=C
+[/card]
+[card]
+primitive=Shu Elite Companions
+id=201295
+rarity=C
+[/card]
+[card]
+primitive=Shu General
+id=201297
+rarity=C
+[/card]
+[card]
+primitive=Shu Soldier-Farmers
+id=201298
+rarity=C
+[/card]
+[card]
+primitive=Sir Shandlar of Eberyn
+id=201229
+rarity=C
+[/card]
+[card]
+primitive=Sivitri Scarzam
+id=205868
+rarity=C
+[/card]
+[card]
+primitive=Slashing Tiger
+id=201187
+rarity=C
+[/card]
+[card]
+primitive=Sol Grail
+id=201183
+rarity=C
+[/card]
+[card]
+primitive=Sorrow's Path
+id=201268
+rarity=R
+[/card]
+[card]
+primitive=Spectral Shield
+id=201189
+rarity=U
+[/card]
+[card]
+primitive=Spiny Starfish
+id=201124
+rarity=U
+[/card]
+[card]
+primitive=Spirit Shackle
+id=201143
+rarity=C
+[/card]
+[card]
+primitive=Spoils of Victory
+id=201299
+rarity=C
+[/card]
+[card]
+primitive=Stangg
+id=201231
+rarity=U
+[/card]
+[card]
+primitive=Stolen Grain
+id=201289
+rarity=U
+[/card]
+[card]
+primitive=Storm World
+id=201165
+rarity=R
+[/card]
+[card]
+primitive=Strategic Planning
+id=201300
+rarity=C
+[/card]
+[card]
+primitive=Sun Ce, Young Conquerer
+id=201301
+rarity=U
+[/card]
+[card]
+primitive=Sun Quan, Lord of Wu
+id=201302
+rarity=R
+[/card]
+[card]
+primitive=Sunastian Falconer
+id=201232
+rarity=U
+[/card]
+[card]
+primitive=Swamp
+id=206083
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=206081
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=206082
+rarity=L
+[/card]
+[card]
+primitive=Sword of the Ages
+id=201233
+rarity=R
+[/card]
+[card]
+primitive=Takklemaggot
+id=201230
+rarity=U
+[/card]
+[card]
+primitive=Tetsuo Umezawa
+id=201234
+rarity=R
+[/card]
+[card]
+primitive=The Abyss
+id=201167
+rarity=R
+[/card]
+[card]
+primitive=The Lady of the Mountain
+id=201204
+rarity=C
+[/card]
+[card]
+primitive=The Tabernacle at Pendrell Vale
+id=201236
+rarity=R
+[/card]
+[card]
+primitive=The Wretched
+id=201168
+rarity=U
+[/card]
+[card]
+primitive=Three Visits
+id=201303
+rarity=C
+[/card]
+[card]
+primitive=Tobias Andrion
+id=205870
+rarity=C
+[/card]
+[card]
+primitive=Tor Wauki
+id=201238
+rarity=U
+[/card]
+[card]
+primitive=Torsten Von Ursus
+id=201157
+rarity=C
+[/card]
+[card]
+primitive=Tracker
+id=201270
+rarity=U
+[/card]
+[card]
+primitive=Trip Wire
+id=201320
+rarity=C
+[/card]
+[card]
+primitive=Tropical Island
+id=201405
+rarity=R
+[/card]
+[card]
+primitive=Tuknir Deathlock
+id=201240
+rarity=U
+[/card]
+[card]
+primitive=Urborg
+id=201202
+rarity=U
+[/card]
+[card]
+primitive=Vaevictis Asmadi
+id=201243
+rarity=R
+[/card]
+[card]
+primitive=Volcanic Island
+id=201406
+rarity=R
+[/card]
+[card]
+primitive=Voodoo Doll
+id=206084
+rarity=R
+[/card]
+[card]
+primitive=Wall of Light
+id=201120
+rarity=C
+[/card]
+[card]
+primitive=Wandering Mage
+id=201179
+rarity=R
+[/card]
+[card]
+primitive=Wei Elite Companions
+id=201305
+rarity=C
+[/card]
+[card]
+primitive=Wei Infantry
+id=206117
+rarity=C
+[/card]
+[card]
+primitive=Wei Night Raiders
+id=201306
+rarity=U
+[/card]
+[card]
+primitive=Wei Strike Force
+id=201307
+rarity=C
+[/card]
+[card]
+primitive=Willow Priestess
+id=201321
+rarity=U
+[/card]
+[card]
+primitive=Willow Satyr
+id=201244
+rarity=R
+[/card]
+[card]
+primitive=Wormwood Treefolk
+id=201271
+rarity=U
+[/card]
+[card]
+primitive=Wu Elite Cavalry
+id=201308
+rarity=C
+[/card]
+[card]
+primitive=Wu Longbowman
+id=201254
+rarity=C
+[/card]
+[card]
+primitive=Wu Warship
+id=201262
+rarity=C
+[/card]
+[card]
+primitive=Xiahou Dun, the One-Eyed
+id=201164
+rarity=U
+[/card]
+[card]
+primitive=Xira Arien
+id=201208
+rarity=R
+[/card]
+[card]
+primitive=Young Wei Recruits
+id=201145
+rarity=C
+[/card]
+[card]
+primitive=Zhang Fei, Fierce Warrior
+id=201312
+rarity=U
+[/card]
+[card]
+primitive=Zodiac Dragon
+id=201313
+rarity=R
+[/card]

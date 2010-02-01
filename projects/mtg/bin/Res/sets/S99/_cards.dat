@@ -1,0 +1,865 @@
+[card]
+primitive=Abyssal Horror
+id=21019
+rarity=R
+[/card]
+[card]
+primitive=Air Elemental
+id=21041
+rarity=U
+[/card]
+[card]
+primitive=Alluring Scent
+id=20221
+rarity=R
+[/card]
+[card]
+primitive=Ancient Craving
+id=20360
+rarity=R
+[/card]
+[card]
+primitive=Angel of Light
+id=20391
+rarity=U
+[/card]
+[card]
+primitive=Angel of Mercy
+id=20392
+rarity=U
+[/card]
+[card]
+primitive=Angelic Blessing
+id=20400
+rarity=C
+[/card]
+[card]
+primitive=Archangel
+id=12825
+rarity=R
+[/card]
+[card]
+primitive=Ardent Militia
+id=21062
+rarity=U
+[/card]
+[card]
+primitive=Armageddon
+id=20387
+rarity=R
+[/card]
+[card]
+primitive=Barbtooth Wurm
+id=21077
+rarity=C
+[/card]
+[card]
+primitive=Bargain
+id=21024
+rarity=U
+[/card]
+[card]
+primitive=Blinding Light
+id=20388
+rarity=R
+[/card]
+[card]
+primitive=Bog Imp
+id=20376
+rarity=C
+[/card]
+[card]
+primitive=Bog Raiders
+id=20384
+rarity=C
+[/card]
+[card]
+primitive=Bog Wraith
+id=20374
+rarity=U
+[/card]
+[card]
+primitive=Border Guard
+id=20396
+rarity=C
+[/card]
+[card]
+primitive=Breath of Life
+id=21022
+rarity=U
+[/card]
+[card]
+primitive=Bull Hippo
+id=20226
+rarity=U
+[/card]
+[card]
+primitive=Champion Lancer
+id=20184
+rarity=R
+[/card]
+[card]
+primitive=Charging Paladin
+id=20402
+rarity=U
+[/card]
+[card]
+primitive=Chorus of Woe
+id=20381
+rarity=C
+[/card]
+[card]
+primitive=Cinder Storm
+id=20201
+rarity=U
+[/card]
+[card]
+primitive=Coercion
+id=20366
+rarity=U
+[/card]
+[card]
+primitive=Coral Eel
+id=21025
+rarity=C
+[/card]
+[card]
+primitive=Counterspell
+id=20382
+rarity=U
+[/card]
+[card]
+primitive=Dakmor Ghoul
+id=20380
+rarity=U
+[/card]
+[card]
+primitive=Dakmor Lancer
+id=20187
+rarity=R
+[/card]
+[card]
+primitive=Dakmor Plague
+id=20367
+rarity=U
+[/card]
+[card]
+primitive=Dakmor Scorpion
+id=20383
+rarity=C
+[/card]
+[card]
+primitive=Dakmor Sorceress
+id=20183
+rarity=R
+[/card]
+[card]
+primitive=Dark Offering
+id=20368
+rarity=U
+[/card]
+[card]
+primitive=Denizen of the Deep
+id=20182
+rarity=R
+[/card]
+[card]
+primitive=Devastation
+id=20191
+rarity=R
+[/card]
+[card]
+primitive=Devoted Hero
+id=21057
+rarity=C
+[/card]
+[card]
+primitive=Devout Monk
+id=20395
+rarity=C
+[/card]
+[card]
+primitive=Dread Reaper
+id=20362
+rarity=R
+[/card]
+[card]
+primitive=Durkwood Boars
+id=21055
+rarity=C
+[/card]
+[card]
+primitive=Eager Cadet
+id=21021
+rarity=C
+[/card]
+[card]
+primitive=Earth Elemental
+id=20199
+rarity=U
+[/card]
+[card]
+primitive=Exhaustion
+id=21044
+rarity=U
+[/card]
+[card]
+primitive=Extinguish
+id=21036
+rarity=C
+[/card]
+[card]
+primitive=Eye Spy
+id=21035
+rarity=U
+[/card]
+[card]
+primitive=False Peace
+id=21063
+rarity=U
+[/card]
+[card]
+primitive=Feral Shadow
+id=20373
+rarity=C
+[/card]
+[card]
+primitive=Fire Elemental
+id=20198
+rarity=U
+[/card]
+[card]
+primitive=Fire Tempest
+id=20192
+rarity=R
+[/card]
+[card]
+primitive=Foot Soldiers
+id=20398
+rarity=C
+[/card]
+[card]
+primitive=Forest
+id=21807
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=21808
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=21805
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=21806
+rarity=L
+[/card]
+[card]
+primitive=Gerrard's Wisdom
+id=20386
+rarity=R
+[/card]
+[card]
+primitive=Giant Octopus
+id=21027
+rarity=C
+[/card]
+[card]
+primitive=Goblin Cavaliers
+id=20214
+rarity=C
+[/card]
+[card]
+primitive=Goblin Chariot
+id=20213
+rarity=C
+[/card]
+[card]
+primitive=Goblin Commando
+id=20196
+rarity=U
+[/card]
+[card]
+primitive=Goblin General
+id=20185
+rarity=U
+[/card]
+[card]
+primitive=Goblin Glider
+id=20195
+rarity=U
+[/card]
+[card]
+primitive=Goblin Hero
+id=21066
+rarity=R
+[/card]
+[card]
+primitive=Goblin Lore
+id=20202
+rarity=U
+[/card]
+[card]
+primitive=Goblin Mountaineer
+id=20211
+rarity=C
+[/card]
+[card]
+primitive=Goblin Settler
+id=20216
+rarity=U
+[/card]
+[card]
+primitive=Gorilla Warrior
+id=21073
+rarity=C
+[/card]
+[card]
+primitive=Gravedigger
+id=20372
+rarity=U
+[/card]
+[card]
+primitive=Grim Tutor
+id=20359
+rarity=R
+[/card]
+[card]
+primitive=Grizzly Bears
+id=20233
+rarity=C
+[/card]
+[card]
+primitive=Hand of Death
+id=20379
+rarity=C
+[/card]
+[card]
+primitive=Hollow Dogs
+id=20385
+rarity=C
+[/card]
+[card]
+primitive=Howling Fury
+id=20369
+rarity=U
+[/card]
+[card]
+primitive=Hulking Goblin
+id=20212
+rarity=C
+[/card]
+[card]
+primitive=Hulking Ogre
+id=20197
+rarity=U
+[/card]
+[card]
+primitive=Ingenious Thief
+id=21043
+rarity=C
+[/card]
+[card]
+primitive=Island
+id=21793
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=21794
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=21800
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=21795
+rarity=L
+[/card]
+[card]
+primitive=Jagged Lightning
+id=20203
+rarity=U
+[/card]
+[card]
+primitive=Knight Errant
+id=20397
+rarity=C
+[/card]
+[card]
+primitive=Last Chance
+id=20194
+rarity=R
+[/card]
+[card]
+primitive=Lava Axe
+id=20205
+rarity=C
+[/card]
+[card]
+primitive=Lone Wolf
+id=20225
+rarity=C
+[/card]
+[card]
+primitive=Loyal Sentry
+id=20390
+rarity=R
+[/card]
+[card]
+primitive=Lynx
+id=21053
+rarity=U
+[/card]
+[card]
+primitive=Man-o'-War
+id=21038
+rarity=U
+[/card]
+[card]
+primitive=Merfolk of the Pearl Trident
+id=21080
+rarity=C
+[/card]
+[card]
+primitive=Mind Rot
+id=20378
+rarity=C
+[/card]
+[card]
+primitive=Mons's Goblin Raiders
+id=21065
+rarity=R
+[/card]
+[card]
+primitive=Monstrous Growth
+id=20234
+rarity=C
+[/card]
+[card]
+primitive=Moon Sprite
+id=20229
+rarity=U
+[/card]
+[card]
+primitive=Mountain
+id=21801
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=21804
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=21803
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=21802
+rarity=L
+[/card]
+[card]
+primitive=Muck Rats
+id=20375
+rarity=C
+[/card]
+[card]
+primitive=Natural Spring
+id=20231
+rarity=U
+[/card]
+[card]
+primitive=Nature's Cloak
+id=20222
+rarity=R
+[/card]
+[card]
+primitive=Nature's Lore
+id=20356
+rarity=C
+[/card]
+[card]
+primitive=Norwood Archers
+id=21054
+rarity=C
+[/card]
+[card]
+primitive=Norwood Ranger
+id=21052
+rarity=C
+[/card]
+[card]
+primitive=Ogre Warrior
+id=21070
+rarity=C
+[/card]
+[card]
+primitive=Owl Familiar
+id=21042
+rarity=U
+[/card]
+[card]
+primitive=Path of Peace
+id=21060
+rarity=C
+[/card]
+[card]
+primitive=Phantom Warrior
+id=21039
+rarity=R
+[/card]
+[card]
+primitive=Piracy
+id=21049
+rarity=R
+[/card]
+[card]
+primitive=Plains
+id=21789
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=21792
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=21791
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=21790
+rarity=L
+[/card]
+[card]
+primitive=Pride of Lions
+id=20223
+rarity=U
+[/card]
+[card]
+primitive=Psychic Transfer
+id=21050
+rarity=R
+[/card]
+[card]
+primitive=Raging Goblin
+id=20210
+rarity=C
+[/card]
+[card]
+primitive=Raise Dead
+id=20377
+rarity=C
+[/card]
+[card]
+primitive=Ransack
+id=21069
+rarity=R
+[/card]
+[card]
+primitive=Ravenous Rats
+id=20370
+rarity=U
+[/card]
+[card]
+primitive=Relearn
+id=21046
+rarity=U
+[/card]
+[card]
+primitive=Relentless Assault
+id=20193
+rarity=R
+[/card]
+[card]
+primitive=Remove Soul
+id=21037
+rarity=C
+[/card]
+[card]
+primitive=Renewing Touch
+id=20357
+rarity=U
+[/card]
+[card]
+primitive=Righteous Charge
+id=21023
+rarity=U
+[/card]
+[card]
+primitive=Righteous Fury
+id=21064
+rarity=R
+[/card]
+[card]
+primitive=Royal Falcon
+id=21056
+rarity=C
+[/card]
+[card]
+primitive=Royal Trooper
+id=20394
+rarity=U
+[/card]
+[card]
+primitive=Sacred Nectar
+id=21061
+rarity=C
+[/card]
+[card]
+primitive=Scathe Zombies
+id=21093
+rarity=C
+[/card]
+[card]
+primitive=Scorching Spear
+id=20209
+rarity=C
+[/card]
+[card]
+primitive=Sea Eagle
+id=21031
+rarity=C
+[/card]
+[card]
+primitive=Serpent Warrior
+id=20371
+rarity=C
+[/card]
+[card]
+primitive=Shrieking Specter
+id=20363
+rarity=U
+[/card]
+[card]
+primitive=Silverback Ape
+id=21072
+rarity=U
+[/card]
+[card]
+primitive=Sleight of Hand
+id=21068
+rarity=C
+[/card]
+[card]
+primitive=Snapping Drake
+id=21030
+rarity=C
+[/card]
+[card]
+primitive=Soul Feast
+id=20365
+rarity=U
+[/card]
+[card]
+primitive=Southern Elephant
+id=21071
+rarity=C
+[/card]
+[card]
+primitive=Spitting Earth
+id=20200
+rarity=U
+[/card]
+[card]
+primitive=Squall
+id=20220
+rarity=C
+[/card]
+[card]
+primitive=Steadfastness
+id=20399
+rarity=C
+[/card]
+[card]
+primitive=Stone Rain
+id=20208
+rarity=C
+[/card]
+[card]
+primitive=Storm Crow
+id=21028
+rarity=C
+[/card]
+[card]
+primitive=Stream of Acid
+id=20364
+rarity=U
+[/card]
+[card]
+primitive=Summer Bloom
+id=21078
+rarity=R
+[/card]
+[card]
+primitive=Swamp
+id=21797
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=21799
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=21796
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=21798
+rarity=L
+[/card]
+[card]
+primitive=Sylvan Basilisk
+id=20218
+rarity=R
+[/card]
+[card]
+primitive=Sylvan Yeti
+id=20217
+rarity=R
+[/card]
+[card]
+primitive=Thorn Elemental
+id=20181
+rarity=R
+[/card]
+[card]
+primitive=Thunder Dragon
+id=20180
+rarity=R
+[/card]
+[card]
+primitive=Tidings
+id=21047
+rarity=U
+[/card]
+[card]
+primitive=Time Ebb
+id=21034
+rarity=C
+[/card]
+[card]
+primitive=Time Warp
+id=21048
+rarity=R
+[/card]
+[card]
+primitive=Touch of Brilliance
+id=21033
+rarity=C
+[/card]
+[card]
+primitive=Trained Orgg
+id=21785
+rarity=R
+[/card]
+[card]
+primitive=Tremor
+id=20207
+rarity=C
+[/card]
+[card]
+primitive=Undo
+id=21045
+rarity=U
+[/card]
+[card]
+primitive=Untamed Wilds
+id=20228
+rarity=U
+[/card]
+[card]
+primitive=Venerable Monk
+id=21059
+rarity=C
+[/card]
+[card]
+primitive=Vengeance
+id=20393
+rarity=U
+[/card]
+[card]
+primitive=Veteran Cavalier
+id=20403
+rarity=U
+[/card]
+[card]
+primitive=Vizzerdrix
+id=20188
+rarity=R
+[/card]
+[card]
+primitive=Volcanic Dragon
+id=21020
+rarity=R
+[/card]
+[card]
+primitive=Volcanic Hammer
+id=20206
+rarity=C
+[/card]
+[card]
+primitive=Water Elemental
+id=21040
+rarity=U
+[/card]
+[card]
+primitive=Whiptail Wurm
+id=20230
+rarity=U
+[/card]
+[card]
+primitive=Whirlwind
+id=20219
+rarity=R
+[/card]
+[card]
+primitive=Wicked Pact
+id=20361
+rarity=R
+[/card]
+[card]
+primitive=Wild Griffin
+id=21058
+rarity=C
+[/card]
+[card]
+primitive=Wild Ox
+id=20227
+rarity=U
+[/card]
+[card]
+primitive=Willow Elf
+id=21051
+rarity=C
+[/card]
+[card]
+primitive=Wind Drake
+id=21029
+rarity=C
+[/card]
+[card]
+primitive=Wind Sail
+id=21076
+rarity=U
+[/card]
+[card]
+primitive=Wood Elves
+id=20224
+rarity=U
+[/card]

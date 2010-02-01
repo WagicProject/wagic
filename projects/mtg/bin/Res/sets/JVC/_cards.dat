@@ -1,0 +1,310 @@
+[card]
+primitive=AEthersnipe
+id=189211
+rarity=C
+[/card]
+[card]
+primitive=Air Elemental
+id=189223
+rarity=U
+[/card]
+[card]
+primitive=Ancestral Vision
+id=189244
+rarity=R
+[/card]
+[card]
+primitive=Bottle Gnomes
+id=189224
+rarity=U
+[/card]
+[card]
+primitive=Brine Elemental
+id=189245
+rarity=U
+[/card]
+[card]
+primitive=Chandra Nalaar
+id=185815
+rarity=M
+[/card]
+[card]
+primitive=Chartooth Cougar
+id=189235
+rarity=C
+[/card]
+[card]
+primitive=Condescend
+id=189237
+rarity=C
+[/card]
+[card]
+primitive=Cone of Flame
+id=189225
+rarity=U
+[/card]
+[card]
+primitive=Counterspell
+id=185820
+rarity=C
+[/card]
+[card]
+primitive=Daze
+id=189255
+rarity=C
+[/card]
+[card]
+primitive=Demonfire
+id=189229
+rarity=R
+[/card]
+[card]
+primitive=Errant Ephemeron
+id=189246
+rarity=C
+[/card]
+[card]
+primitive=Fact or Fiction
+id=185819
+rarity=U
+[/card]
+[card]
+primitive=Fathom Seer
+id=189247
+rarity=C
+[/card]
+[card]
+primitive=Fireball
+id=189231
+rarity=U
+[/card]
+[card]
+primitive=Fireblast
+id=189239
+rarity=C
+[/card]
+[card]
+primitive=Firebolt
+id=189236
+rarity=C
+[/card]
+[card]
+primitive=Fireslinger
+id=189219
+rarity=C
+[/card]
+[card]
+primitive=Flame Javelin
+id=189220
+rarity=U
+[/card]
+[card]
+primitive=Flamekin Brawler
+id=189212
+rarity=C
+[/card]
+[card]
+primitive=Flametongue Kavu
+id=189234
+rarity=U
+[/card]
+[card]
+primitive=Flamewave Invoker
+id=189226
+rarity=U
+[/card]
+[card]
+primitive=Fledgling Mawcor
+id=189248
+rarity=U
+[/card]
+[card]
+primitive=Furnace Whelp
+id=189227
+rarity=U
+[/card]
+[card]
+primitive=Guile
+id=189213
+rarity=R
+[/card]
+[card]
+primitive=Gush
+id=189258
+rarity=C
+[/card]
+[card]
+primitive=Hostility
+id=189214
+rarity=R
+[/card]
+[card]
+primitive=Incinerate
+id=185818
+rarity=C
+[/card]
+[card]
+primitive=Ingot Chewer
+id=189215
+rarity=C
+[/card]
+[card]
+primitive=Inner-Flame Acolyte
+id=189216
+rarity=C
+[/card]
+[card]
+primitive=Island
+id=190588
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=190583
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=190590
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=190589
+rarity=L
+[/card]
+[card]
+primitive=Jace Beleren
+id=185816
+rarity=M
+[/card]
+[card]
+primitive=Keldon Megaliths
+id=189242
+rarity=U
+[/card]
+[card]
+primitive=Magma Jet
+id=189238
+rarity=U
+[/card]
+[card]
+primitive=Man-o'-War
+id=189240
+rarity=C
+[/card]
+[card]
+primitive=Martyr of Frost
+id=189243
+rarity=C
+[/card]
+[card]
+primitive=Mind Stone
+id=189228
+rarity=U
+[/card]
+[card]
+primitive=Mountain
+id=190584
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=190586
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=190587
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=190585
+rarity=L
+[/card]
+[card]
+primitive=Mulldrifter
+id=189217
+rarity=C
+[/card]
+[card]
+primitive=Ophidian
+id=189253
+rarity=C
+[/card]
+[card]
+primitive=Oxidda Golem
+id=189232
+rarity=C
+[/card]
+[card]
+primitive=Pyre Charger
+id=189221
+rarity=U
+[/card]
+[card]
+primitive=Quicksilver Dragon
+id=189254
+rarity=R
+[/card]
+[card]
+primitive=Rakdos Pit Dragon
+id=189230
+rarity=R
+[/card]
+[card]
+primitive=Repulse
+id=189257
+rarity=C
+[/card]
+[card]
+primitive=Riftwing Cloudskate
+id=189249
+rarity=U
+[/card]
+[card]
+primitive=Seal of Fire
+id=185817
+rarity=C
+[/card]
+[card]
+primitive=Slith Firewalker
+id=189222
+rarity=U
+[/card]
+[card]
+primitive=Soulbright Flamekin
+id=189218
+rarity=C
+[/card]
+[card]
+primitive=Spire Golem
+id=189233
+rarity=C
+[/card]
+[card]
+primitive=Terrain Generator
+id=189256
+rarity=U
+[/card]
+[card]
+primitive=Voidmage Apprentice
+id=189250
+rarity=C
+[/card]
+[card]
+primitive=Wall of Deceit
+id=189251
+rarity=U
+[/card]
+[card]
+primitive=Waterspout Djinn
+id=189241
+rarity=U
+[/card]
+[card]
+primitive=Willbender
+id=189252
+rarity=U
+[/card]

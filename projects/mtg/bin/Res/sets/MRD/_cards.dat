@@ -4,1752 +4,1532 @@ year=2003
 block=Mirror
 [/meta]
 [card]
-text={U}, Sacrifice AEther Spellbomb: Return target creature to its owner's hand.   {1}, Sacrifice AEther Spellbomb: Draw a card.
-auto={U}{S}:moveTo(ownerhand) target(creature)
-auto={1}{S}:draw:1
+primitive=AEther Spellbomb
 id=48113
-name=AEther Spellbomb
 rarity=C
-mana={1}
-type=Artifact
 [/card]
 [card]
+primitive=Alpha Myr
 id=49045
-name=Alpha Myr
 rarity=C
-mana={2}
-type=Artifact Creature
-subtype=Myr
-power=2
-toughness=1
 [/card]
 [card]
-text=Exile target artifact or enchantment.
-target=artifact,enchantment
-auto=moveTo(exile)
+primitive=Altar of Shadows
+id=48156
+rarity=R
+[/card]
+[card]
+primitive=Altar's Light
 id=48383
-name=Altar's Light
 rarity=U
-mana={2}{W}{W}
-type=Instant
 [/card]
 [card]
-text=(Ancient Den isn't a spell.)  {T}: Add {W} to your mana pool.
+primitive=Ancient Den
 id=46063
-name=Ancient Den
 rarity=C
-auto={T}:Add {W}
-type=Land
-subtype=Artifact
 [/card]
 [card]
-text=Counter target artifact or enchantment spell.
-target=artifact,enchantment|stack
-auto=fizzle
+primitive=Annul
 id=45976
-name=Annul
 rarity=C
-mana={U}
-type=Instant
 [/card]
 [card]
-text=Sacrifice an artifact: Atog gets +2/+2 until end of turn.
-auto={S(artifact|myBattlefield)}:2/2
+primitive=Arc-Slogger
+id=48436
+rarity=R
+[/card]
+[card]
+primitive=Arrest
+id=48432
+rarity=C
+[/card]
+[card]
+primitive=Assert Authority
+id=49062
+rarity=U
+[/card]
+[card]
+primitive=Atog
 id=46106
-name=Atog
 rarity=U
-mana={1}{R}
-type=Creature
-subtype=Atog
-power=1
-toughness=2
 [/card]
 [card]
-text={W}, {T}: Tap target artifact.
-auto={W}{T}:tap target(artifact)
+primitive=Auriok Bladewarden
+id=48433
+rarity=U
+[/card]
+[card]
+primitive=Auriok Steelshaper
+id=46081
+rarity=R
+[/card]
+[card]
+primitive=Auriok Transfixer
 id=45963
-name=Auriok Transfixer
 rarity=C
-mana={W}
-type=Creature
-subtype=Human Scout
-power=1
-toughness=1
 [/card]
 [card]
-text=Put a +1/+1 counter on target creature.
-target=creature
-auto=counter(1/1)
+primitive=Awe Strike
+id=48074
+rarity=C
+[/card]
+[card]
+primitive=Banshee's Blade
+id=48194
+rarity=U
+[/card]
+[card]
+primitive=Barter in Blood
+id=48591
+rarity=U
+[/card]
+[card]
+primitive=Battlegrowth
 id=48116
-name=Battlegrowth
 rarity=C
-mana={G}
-type=Instant
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.   {2}, {T}: Tap target noncreature artifact.
-auto={T}: Add {1}
-auto={2}{T}:Tap target(artifact[-creature])
+primitive=Betrayal of Flesh
+id=48588
+rarity=U
+[/card]
+[card]
+primitive=Blinding Beam
+id=48099
+rarity=C
+[/card]
+[card]
+primitive=Blinkmoth Urn
+id=46714
+rarity=R
+[/card]
+[card]
+primitive=Blinkmoth Well
 id=48916
-name=Blinkmoth Well
 rarity=U
-type=Land
 [/card]
 [card]
-text=Equipped creature gets +2/+0.     Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery. This card comes into play unattached and stays in play if the creature leaves play.)
+primitive=Bloodscent
+id=48597
+rarity=U
+[/card]
+[card]
+primitive=Bonesplitter
 id=47442
-name=Bonesplitter
 rarity=C
-type=Artifact
-mana={1}
-subtype=Equipment
-auto={1}:equip
-auto=2/0
 [/card]
 [card]
-text=Sacrifice Bottle Gnomes: You gain 3 life.
-auto={S}:life:3
+primitive=Bosh, Iron Golem
+id=48581
+rarity=R
+[/card]
+[card]
+primitive=Bottle Gnomes
 id=46017
-name=Bottle Gnomes
 rarity=U
-mana={3}
-type=Artifact Creature
-subtype=Gnome
-power=1
-toughness=3
 [/card]
 [card]
-text=When Cathodion is put into a graveyard from the battlefield, add {3} to your mana pool.
-auto=@movedTo(this|graveyard) from(battlefield):Add{3}
+primitive=Broodstar
+id=46556
+rarity=R
+[/card]
+[card]
+primitive=Brown Ouphe
+id=46010
+rarity=U
+[/card]
+[card]
+primitive=Cathodion
 id=48195
-name=Cathodion
 rarity=U
-mana={3}
-type=Artifact Creature
-subtype=Construct
-power=3
-toughness=3
 [/card]
 [card]
-text={1}, {T}, Sacrifice Chromatic Sphere: Add one mana of any color to your mana pool. Draw a card.
-auto={1}{T}{S}:Add{G} && Draw:1 controller
-auto={1}{T}{S}:Add{R} && Draw:1 controller
-auto={1}{T}{S}:Add{U} && Draw:1 controller
-auto={1}{T}{S}:Add{B} && Draw:1 controller
-auto={1}{T}{S}:Add{W} && Draw:1 controller
+primitive=Chalice of the Void
+id=48326
+rarity=R
+[/card]
+[card]
+primitive=Chimney Imp
+id=45985
+rarity=C
+[/card]
+[card]
+primitive=Chromatic Sphere
 id=46046
-name=Chromatic Sphere
 rarity=C
-mana={1}
-type=Artifact
 [/card]
 [card]
-text=Clockwork Beetle enters the battlefield with two +1/+1 counters on it.   Whenever Clockwork Beetle attacks or blocks, remove a +1/+1 counter from it at end of combat.
+primitive=Chrome Mox
+id=47446
+rarity=R
+[/card]
+[card]
+primitive=Clockwork Beetle
 id=48119
-name=Clockwork Beetle
 rarity=C
-mana={1}
-type=Artifact Creature
-subtype=Insect
-auto=counter(1/1,2)
-auto=@each combatends:counter(1/1,-1) all(clockwork beetle[attacking;blocking]) && counter(1/1) all(other clockwork beetle[attacking;blocking])
-power=0
-toughness=0
 [/card]
 [card]
-text=Flying   Clockwork Condor enters the battlefield with three +1/+1 counters on it.   Whenever Clockwork Condor attacks or blocks, remove a +1/+1 counter from it at end of combat.
+primitive=Clockwork Condor
 id=46124
-name=Clockwork Condor
 rarity=C
-mana={4}
-type=Artifact Creature
-subtype=Bird
-auto=counter(1/1,3)
-auto=@each combatends:counter(1/1,-1) all(clockwork condor[attacking;blocking]) && counter(1/1) all(other clockwork condor[attacking;blocking])
-power=0
-toughness=0
-abilities=flying
 [/card]
 [card]
-text=Flying   Clockwork Dragon enters the battlefield with six +1/+1 counters on it.   Whenever Clockwork Dragon attacks or blocks, remove a +1/+1 counter from it at end of combat.   {3}: Put a +1/+1 counter on Clockwork Dragon.
+primitive=Clockwork Dragon
 id=46704
-name=Clockwork Dragon
 rarity=R
-mana={7}
-type=Artifact Creature
-subtype=Dragon
-auto=counter(1/1,6)
-auto={3}:counter(1/1)
-auto=@each combatends:counter(1/1,-1) all(clockwork dragon[attacking;blocking]) && counter(1/1) all(other clockwork dragon[attacking;blocking])
-power=0
-toughness=0
-abilities=flying
 [/card]
 [card]
-text=Trample   Clockwork Vorrac enters the battlefield with four +1/+1 counters on it.   Whenever Clockwork Vorrac attacks or blocks, remove a +1/+1 counter from it at end of combat.   {T}: Put a +1/+1 counter on Clockwork Vorrac.
+primitive=Clockwork Vorrac
 id=46123
-name=Clockwork Vorrac
 rarity=U
-mana={5}
-type=Artifact Creature
-subtype=Boar Beast
-auto=counter(1/1,4)
-auto={T}:counter(1/1)
-auto=@each combatends:counter(1/1,-1) all(clockwork vorrac[attacking;blocking]) && counter(1/1) all(other clockwork vorrac[attacking;blocking])
-power=0
-toughness=0
-abilities=trample
 [/card]
 [card]
-text=Cloudpost enters the battlefield tapped.   {T}: Add {1} to your mana pool for each Locus in play.
+primitive=Cloudpost
 id=49050
-name=Cloudpost
-auto=tap
-auto={T}:foreach(locus)add:{1}
 rarity=C
-type=Land
-subtype=Locus
 [/card]
 [card]
-text={1}{U}: Cobalt Golem gains flying until end of turn.
+primitive=Cobalt Golem
 id=48053
-auto={1}{U}:flying
-name=Cobalt Golem
 rarity=C
-mana={4}
-type=Artifact Creature
-subtype=Golem
-power=2
-toughness=3
 [/card]
 [card]
-text={T}: Add {G} to your mana pool.
+primitive=Confusion in the Ranks
+id=49528
+rarity=R
+[/card]
+[card]
+primitive=Consume Spirit
+id=45987
+rarity=C
+[/card]
+[card]
+primitive=Contaminated Bond
+id=49444
+rarity=C
+[/card]
+[card]
+primitive=Copper Myr
 id=46056
-auto={T}:Add {G}
-name=Copper Myr
 rarity=C
-mana={2}
-type=Artifact Creature
-subtype=Myr
-power=1
-toughness=1
 [/card]
 [card]
-text=Copperhoof Vorrac gets +1/+1 for each untapped permanent your opponents control.
+primitive=Copperhoof Vorrac
 id=48603
-name=Copperhoof Vorrac
-mana={3}{G}{G}
-auto=foreach(*[-tapped]|opponentBattlefield) 1/1
-type=Creature
-subtype=Boar Beast
-power=2
-toughness=2
 rarity=R
 [/card]
 [card]
-text=Destroy target artifact, enchantment, or land.
+primitive=Creeping Mold
 id=49108
-target=artifact,enchantment,land
-auto=destroy
-name=Creeping Mold
 rarity=U
-mana={2}{G}{G}
-type=Sorcery
 [/card]
 [card]
-text=Destroy target artifact. Then add {G}{G}{G} to your mana pool.
+primitive=Crystal Shard
+id=46035
+rarity=U
+[/card]
+[card]
+primitive=Culling Scales
+id=47445
+rarity=R
+[/card]
+[card]
+primitive=Damping Matrix
+id=46727
+rarity=R
+[/card]
+[card]
+primitive=Dead-Iron Sledge
+id=48139
+rarity=U
+[/card]
+[card]
+primitive=Deconstruct
 id=49060
-target=artifact
-auto=destroy
-auto=Add:{G}{G}{G}
-name=Deconstruct
 rarity=C
-mana={2}{G}
-type=Sorcery
 [/card]
 [card]
-text=Enchant artifact creature. You control enchanted artifact creature.
-target=creature[artifact]
-alias=1194
-id=48571
-name=Domineer
+primitive=Detonate
+id=46110
 rarity=U
-mana={1}{U}{U}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text=Whenever an artifact is put into a graveyard from the battlefield, you may have target opponent lose 1 life.
+primitive=Disarm
+id=46084
+rarity=C
+[/card]
+[card]
+primitive=Disciple of the Vault
 id=49090
-auto=@movedTo(graveyard) from(artifact|battlefield):may life:-1 opponent
-name=Disciple of the Vault
 rarity=C
-mana={B}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=1
 [/card]
 [card]
-text={3}, {T}: Put a +1/+1 counter on target creature.
-auto={3}{T}:counter(1/1) target(creature)
+primitive=Domineer
+id=48571
+rarity=U
+[/card]
+[card]
+primitive=Dragon Blood
 id=48325
-name=Dragon Blood
 rarity=U
-mana={3}
-type=Artifact
 [/card]
 [card]
-text=Protection from white.    At the end of your turn, you lose 4 life.   Whenever a creature is put into a graveyard from the battlefield, you gain 2 life.
-auto=@movedTo(graveyard) from(creature|battlefield):life:2
-auto=@each my end:life:-4 controller
+primitive=Dream's Grip
+id=48159
+rarity=C
+[/card]
+[card]
+primitive=Dross Harvester
 id=50537
-name=Dross Harvester
 rarity=R
-mana={1}{B}{B}
-type=Creature
-subtype=Horror
-power=4
-toughness=4
-abilities=protection from white
 [/card]
 [card]
-text=Fear
+primitive=Dross Prowler
 id=48570
-name=Dross Prowler
 rarity=C
-mana={2}{B}
-type=Creature
-subtype=Zombie
-power=2
-toughness=1
-abilities=fear
 [/card]
 [card]
-text=Whenever Dross Scorpion or another artifact creature is put into a graveyard from the battlefield, you may untap target artifact.
-auto=@movedTo(graveyard) from(creature[artifact]|battlefield):may untap target(artifact)
+primitive=Dross Scorpion
 id=46434
-name=Dross Scorpion
 rarity=C
-mana={4}
-type=Artifact Creature
-subtype=Scorpion
-power=3
-toughness=1
 [/card]
 [card]
-text={1}{G}, Sacrifice Elf Replica: Destroy target enchantment.
+primitive=Duplicant
+id=49439
+rarity=R
+[/card]
+[card]
+primitive=Duskworker
+id=46014
+rarity=U
+[/card]
+[card]
+primitive=Electrostatic Bolt
+id=49101
+rarity=C
+[/card]
+[card]
+primitive=Elf Replica
 id=46057
-auto={1}{G}{S}:destroy target(enchantment)
-name=Elf Replica
 rarity=C
-mana={3}
-type=Artifact Creature
-subtype=Elf
-power=2
-toughness=2
 [/card]
 [card]
-text=Equipped creature gets +1/+1 for each card in your hand.     Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery. This card comes into play unattached and stays in play if the creature leaves play.)
+primitive=Empyrial Plate
 id=49430
-name=Empyrial Plate
 rarity=R
-type=Artifact
-mana={2}
-auto={2}:equip
-auto=foreach(*|myhand) 1/1
-subtype=Equipment
 [/card]
 [card]
-text=Search your library for an artifact card, reveal it, and put it into your hand. Then shuffle your library.
-target=artifact|mylibrary
-auto=moveTo(myhand)
+primitive=Extraplanar Lens
+id=49440
+rarity=R
+[/card]
+[card]
+primitive=Fabricate
 id=48568
-name=Fabricate
 rarity=U
-mana={2}{U}
-type=Sorcery
 [/card]
 [card]
-text=Trample
+primitive=Fangren Hunter
 id=46115
-name=Fangren Hunter
 rarity=C
-mana={3}{G}{G}
-type=Creature
-subtype=Beast
-power=4
-toughness=4
-abilities=trample
 [/card]
 [card]
-text=Target creature gets +4/+0 until end of turn.
-id=48377
-target=creature
-auto=4/0
-name=Fists of the Anvil
-rarity=C
-mana={1}{R}
-type=Instant
+primitive=Farsight Mask
+id=46135
+rarity=U
 [/card]
 [card]
+primitive=Fatespinner
+id=45970
+rarity=R
+[/card]
+[card]
+primitive=Fiery Gambit
+id=48073
+rarity=R
+[/card]
+[card]
+primitive=Fireshrieker
 id=48203
-name=Fireshrieker
-mana={3}
-type=Artifact
-subtype=Equipment
-text=Equipped creature has double strike. Equip {2}
-auto={2}:equip
-auto=double strike
 rarity=U
 [/card]
 [card]
-text={G}
+primitive=Fists of the Anvil
+id=48377
+rarity=C
+[/card]
+[card]
+primitive=Flayed Nim
+id=46094
+rarity=U
+[/card]
+[card]
+primitive=Forest
 id=48421
-auto={T}:Add {G}
-name=Forest
-type=Basic Land
 rarity=L
-subtype=Forest
 [/card]
 [card]
-text={G}
+primitive=Forest
 id=48422
-auto={T}:Add {G}
-name=Forest
-type=Basic Land
 rarity=L
-subtype=Forest
 [/card]
 [card]
-text={G}
+primitive=Forest
 id=48423
-auto={T}:Add {G}
-name=Forest
-type=Basic Land
 rarity=L
-subtype=Forest
 [/card]
 [card]
-text={G}
+primitive=Forest
 id=48424
-auto={T}:Add {G}
-name=Forest
-type=Basic Land
 rarity=L
-subtype=Forest
 [/card]
 [card]
-text=Flash    {3}{T}: Untap target artifact.
-auto={3}{T}:Untap target(artifact)
+primitive=Forge Armor
+id=46577
+rarity=U
+[/card]
+[card]
+primitive=Fractured Loyalty
+id=48390
+rarity=U
+[/card]
+[card]
+primitive=Frogmite
+id=49429
+rarity=C
+[/card]
+[card]
+primitive=Galvanic Key
 id=48399
-name=Galvanic Key
 rarity=C
-mana={2}
-type=Artifact
-abilities=flash
 [/card]
 [card]
-text={T}: Add three mana of any one color to your mana pool.
+primitive=Gate to the AEther
+id=46721
+rarity=R
+[/card]
+[card]
+primitive=Gilded Lotus
 id=48189
-auto={T}:Add {B}{B}{B}
-auto={T}:Add {G}{G}{G}
-auto={T}:Add {R}{R}{R}
-auto={T}:Add {U}{U}{U}
-auto={T}:Add {W}{W}{W}
-name=Gilded Lotus
 rarity=R
-mana={5}
-type=Artifact
 [/card]
 [card]
-text=Flying     Goblin Dirigible doesn't untap during your untap step.     At the beginning of your upkeep, you may pay {4}. If you do, untap Goblin Dirigible.
+primitive=Glimmervoid
+id=48132
+rarity=R
+[/card]
+[card]
+primitive=Glissa Sunseeker
+id=48386
+rarity=R
+[/card]
+[card]
+primitive=Goblin Charbelcher
+id=49771
+rarity=R
+[/card]
+[card]
+primitive=Goblin Dirigible
 id=48077
-abilities=doesnotuntap,flying
-auto={4}:untap myUpkeepOnly
-name=Goblin Dirigible
 rarity=U
-type=Artifact Creature
-mana={6}
-power=4
-subtype=Construct
-toughness=4
 [/card]
 [card]
-text={3}{R}, Sacrifice Goblin Replica: Destroy target artifact.
+primitive=Goblin Replica
 id=46049
-auto={3}{R}{S}:destroy target(artifact)
-name=Goblin Replica
 rarity=C
-mana={3}
-type=Artifact Creature
-subtype=Goblin
-power=2
-toughness=2
 [/card]
 [card]
-text=First strike, haste
+primitive=Goblin Striker
 id=48592
-name=Goblin Striker
-mana={1}{R}
 rarity=C
-type=Creature
-subtype=Goblin Berserker
-power=1
-toughness=1
-abilities=first strike,haste
 [/card]
 [card]
-text=Goblin War Wagon doesn't untap during your untap step.     At the beginning of your upkeep, you may pay {2}. If you do, untap Goblin War Wagon.
+primitive=Goblin War Wagon
 id=46044
-name=Goblin War Wagon
 rarity=C
-abilities=doesnotuntap
-auto={2}:untap myUpkeepOnly
-type=Artifact Creature
-mana={4}
-power=3
-subtype=Juggernaut
-toughness=3
 [/card]
 [card]
-text={T}: Add {W} to your mana pool.
+primitive=Gold Myr
 id=46024
-auto={T}:Add {W}
-name=Gold Myr
 rarity=C
-mana={2}
-type=Artifact Creature
-subtype=Myr
-power=1
-toughness=1
 [/card]
 [card]
-text={3}, {T} or {R}, {T}: Granite Shard deals 1 damage to target creature or player.
-auto={3}{T}:Damage:1 target(creature,player)
-auto={R}{T}:Damage:1 target(creature,player)
+primitive=Golem-Skin Gauntlets
+id=46061
+rarity=U
+[/card]
+[card]
+primitive=Grab the Reins
+id=49435
+rarity=U
+[/card]
+[card]
+primitive=Granite Shard
 id=46051
-name=Granite Shard
 rarity=U
-mana={3}
-type=Artifact
 [/card]
 [card]
-text=(Great Furnace isn't a spell.)  {T}: Add {R} to your mana pool.
-auto={T}:Add{R}
+primitive=Great Furnace
 id=46066
-name=Great Furnace
 rarity=C
-type=Land
-subtype=Artifact
 [/card]
 [card]
-text={3}, {T} or {G}, {T}:Target creature gains trample until end of turn.
-auto={3}{T}:trample target(creature)
-auto={G}{T}:trample target(creature)
+primitive=Grid Monitor
+id=48178
+rarity=R
+[/card]
+[card]
+primitive=Grim Reminder
+id=49081
+rarity=R
+[/card]
+[card]
+primitive=Groffskithur
+id=48600
+rarity=C
+[/card]
+[card]
+primitive=Heartwood Shard
 id=46059
-name=Heartwood Shard
 rarity=U
-mana={3}
-type=Artifact
 [/card]
 [card]
-text={1}{R}: Hematite Golem gets +2/+0 until end of turn.
+primitive=Hematite Golem
 id=48055
-auto={1}{R}:2/0
-name=Hematite Golem
 rarity=C
-mana={4}
-type=Artifact Creature
-subtype=Golem
-power=1
-toughness=4
 [/card]
 [card]
-text={1}, {T}: Tap target artifact, creature, or land.
+primitive=Hum of the Radix
+id=48082
+rarity=R
+[/card]
+[card]
+primitive=Icy Manipulator
 id=46728
-auto={1}{T}:Tap target(artifact,creature,land)
-name=Icy Manipulator
 rarity=U
-mana={4}
-type=Artifact
 [/card]
 [card]
-text=Enchant artifact   Enchanted artifact doesn't untap during its controller's untap step.
-target=artifact
-auto=doesnotuntap
+primitive=Incite War
+id=48138
+rarity=C
+[/card]
+[card]
+primitive=Inertia Bubble
 id=49443
-name=Inertia Bubble
 rarity=C
-mana={1}{U}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text={T}: Add {R} to your mana pool.
+primitive=Iron Myr
 id=46048
-auto={T}:Add {R}
-name=Iron Myr
-mana={2}
 rarity=C
-type=Artifact Creature
-subtype=Myr
-power=1
-toughness=1
 [/card]
 [card]
-text=Target creature gets -1/-1 until end of turn for each artifact you control.
+primitive=Irradiate
 id=48585
-target=creature
-auto=foreach(artifact|myBattlefield) -1/-1
-name=Irradiate
 rarity=C
-mana={3}{B}
-type=Instant
 [/card]
 [card]
-text={U}
+primitive=Island
 id=48410
-auto={T}:Add {U}
-name=Island
-type=Basic Land
 rarity=L
-subtype=Island
 [/card]
 [card]
-text={U}
+primitive=Island
 id=48411
-auto={T}:Add {U}
-name=Island
-type=Basic Land
 rarity=L
-subtype=Island
 [/card]
 [card]
-text={U}
+primitive=Island
 id=48412
-auto={T}:Add {U}
-name=Island
-type=Basic Land
 rarity=L
-subtype=Island
 [/card]
 [card]
-text={U}
+primitive=Island
 id=48413
-auto={T}:Add {U}
-name=Island
-type=Basic Land
 rarity=L
-subtype=Island
 [/card]
 [card]
-text=Sacrifice an artifact: Krark-Clan Grunt gets +1/+0 and gains first strike until end of turn.
-auto={S(artifact|myBattlefield)}:1/0 && first strike
+primitive=Isochron Scepter
+id=46741
+rarity=U
+[/card]
+[card]
+primitive=Jinxed Choker
+id=46760
+rarity=R
+[/card]
+[card]
+primitive=Journey of Discovery
+id=49437
+rarity=C
+[/card]
+[card]
+primitive=Krark-Clan Grunt
 id=45992
-name=Krark-Clan Grunt
 rarity=C
-mana={2}{R}
-type=Creature
-subtype=Goblin Warrior
-power=2
-toughness=2
 [/card]
 [card]
-text=Sacrifice an artifact: Krark-Clan Shaman deals 1 damage to each creature without flying.
-auto={S(artifact|myBattlefield)}:damage:1 all(creature[-flying])
+primitive=Krark-Clan Shaman
 id=45994
-name=Krark-Clan Shaman
 rarity=C
-mana={R}
-type=Creature
-subtype=Goblin Shaman
-power=1
-toughness=1
 [/card]
 [card]
-text={T}: Add {B} to your mana pool.
+primitive=Krark's Thumb
+id=48923
+rarity=R
+[/card]
+[card]
+primitive=Leaden Myr
 id=46040
-auto={T}:Add {B}
-name=Leaden Myr
 rarity=C
-mana={2}
-type=Artifact Creature
-subtype=Myr
-power=1
-toughness=1
 [/card]
 [card]
-text=Artifacts you control can't be the targets of spells or abilities your opponents control.
-auto=lord(artifact|myBattlefield) opponentshroud
+primitive=Leonin Abunas
 id=46550
-name=Leonin Abunas
 rarity=R
-mana={3}{W}
-type=Creature
-subtype=Cat Cleric
-power=2
-toughness=5
 [/card]
 [card]
-text=Flash   {2}, Sacrifice Leonin Bladetrap: Leonin Bladetrap deals 2 damage to each attacking creature without flying.
-auto={S}:damage:2 all(creature[attacking;-flying])
+primitive=Leonin Bladetrap
 id=48378
-name=Leonin Bladetrap
 rarity=U
-mana={3}
-type=Artifact
-abilities=flash
 [/card]
 [card]
-text=Whenever an artifact enters the battlefield, you may gain 1 life.
-auto=@movedTo(artifact|battlefield):may life:1
+primitive=Leonin Den-Guard
+id=45958
+rarity=C
+[/card]
+[card]
+primitive=Leonin Elder
 id=46072
-name=Leonin Elder
 rarity=C
-mana={W}
-type=Creature
-subtype=Cat Cleric
-power=1
-toughness=1
 [/card]
 [card]
-text=Equipped creature gets +1/+1.     Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
+primitive=Leonin Scimitar
 id=46029
-name=Leonin Scimitar
 rarity=C
-type=Artifact
-mana={1}
-auto={1}:equip
-auto=1/1
-subtype=Equipment
 [/card]
 [card]
-text=Flying
+primitive=Leonin Skyhunter
 id=45960
-name=Leonin Skyhunter
 rarity=U
-mana={W}{W}
-type=Creature
-subtype=Cat Knight
-power=2
-toughness=2
-abilities=flying
 [/card]
 [card]
-text={1}{W}: Creatures you control get +1/+1 until end of turn.
-auto={1}{W}:lord(creature|myBattlefield) 1/1 
+primitive=Leonin Sun Standard
 id=49768
-name=Leonin Sun Standard
 rarity=R
-mana={2}
-type=Artifact
 [/card]
 [card]
-text=When Leveler comes enters the battlefield, exile all cards in your library.
-auto=moveTo(myExile) all(*|myLibrary)
+primitive=Leveler
 id=46708
-name=Leveler
 rarity=R
-mana={5}
-type=Artifact Creature
-subtype=Juggernaut
-power=10
-toughness=10
 [/card]
 [card]
-text=Equipped creature has haste and shroud. (It can't be the target of spells or abilities.) -- Equip 0 ({0}: Attach to target creature you control. Equip only as a sorcery.)
+primitive=Liar's Pendulum
+id=46733
+rarity=R
+[/card]
+[card]
+primitive=Lifespark Spellbomb
+id=48108
+rarity=C
+[/card]
+[card]
+primitive=Lightning Coils
+id=46109
+rarity=R
+[/card]
+[card]
+primitive=Lightning Greaves
 id=46021
-name=Lightning Greaves
 rarity=U
-type=Artifact
-mana={2}
-auto={0}:equip
-auto=shroud
-auto=haste
-subtype=Equipment
 [/card]
 [card]
-text=Flying   When Looming Hoverguard enters the battlefield, put target artifact on top of its owner's library.
+primitive=Living Hive
+id=46694
+rarity=R
+[/card]
+[card]
+primitive=Lodestone Myr
+id=46128
+rarity=R
+[/card]
+[card]
+primitive=Looming Hoverguard
 id=48114
-name=Looming Hoverguard
 rarity=U
-mana={4}{U}{U}
-type=Creature
-subtype=Drone
-auto=moveTo(ownerLibrary) target(artifact)
-power=3
-toughness=3
-abilities=flying
 [/card]
 [card]
-text={W}, {T}: Regenerate target artifact.
-auto={W}{T}:regenerate target(artifact)
+primitive=Loxodon Mender
 id=46071
-name=Loxodon Mender
 rarity=C
-mana={5}{W}
-type=Creature
-subtype=Elephant Cleric
-power=3
-toughness=3
 [/card]
 [card]
-text=Equipped creature gets +3/+0 and has lifelink and trample. (When it deals damage, you gain that much life. If it would deal enough combat damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player.)  Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery.)
+primitive=Loxodon Peacekeeper
+id=48180
+rarity=R
+[/card]
+[card]
+primitive=Loxodon Punisher
+id=46105
+rarity=R
+[/card]
+[card]
+primitive=Loxodon Warhammer
 id=49759
-name=Loxodon Warhammer
 rarity=U
-type=Artifact
-mana={3}
-auto={3}:equip
-auto=3/0
-auto=lifelink
-auto=trample
-subtype=Equipment
 [/card]
 [card]
-text=Flying   Whenever an artifact enters the battlefield under your control, you may tap target permanent.
+primitive=Lumengrid Augur
+id=47791
+rarity=R
+[/card]
+[card]
+primitive=Lumengrid Sentinel
 id=45972
-name=Lumengrid Sentinel
 rarity=U
-mana={2}{U}
-type=Creature
-subtype=Human Wizard
-auto=@movedTo(artifact|myBattlefield):may tap target(*)
-power=1
-toughness=2
-abilities=flying
 [/card]
 [card]
+primitive=Lumengrid Warden
 id=48438
-name=Lumengrid Warden
 rarity=C
-mana={1}{U}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=3
 [/card]
 [card]
-text=Flying   At the beginning of your upkeep, you may put a 1/1 white Spirit creature token with flying onto the battlefield.
-auto=@each my upkeep:may token(Spirit,Creature Spirit,1/1,white flying)
+primitive=Luminous Angel
 id=46546
-name=Luminous Angel
 rarity=R
-mana={4}{W}{W}{W}
-type=Creature
-subtype=Angel
-power=4
-toughness=4
-abilities=flying
 [/card]
 [card]
-text={1}{G}: Malachite Golem gains trample until end of turn.
+primitive=Malachite Golem
 id=48056
-name=Malachite Golem
 rarity=C
-mana={6}
-type=Artifact Creature
-subtype=Golem
-auto={1}{G}:trample
-power=5
-toughness=3
 [/card]
 [card]
-text=All creatures have haste.
-auto=lord(creature) haste
+primitive=March of the Machines
+id=46699
+rarity=R
+[/card]
+[card]
+primitive=Mask of Memory
+id=46153
+rarity=U
+[/card]
+[card]
+primitive=Mass Hysteria
 id=48191
-name=Mass Hysteria
 rarity=R
-mana={R}
-type=Enchantment
 [/card]
 [card]
-text=Sacrifice an artifact: Megatog gets +3/+3 and gains trample until end of turn.
+primitive=Megatog
 id=46579
-name=Megatog
 rarity=R
-mana={4}{R}{R}
-type=Creature
-subtype=Atog
-auto={S(artifact|myBattlefield)}:3/3 && trample
-power=3
-toughness=4
 [/card]
 [card]
-text=When Moriok Scavenger enters the battlefield, you may return target artifact creature card from your graveyard to your hand.
+primitive=Mesmeric Orb
+id=30008
+rarity=R
+[/card]
+[card]
+primitive=Mind's Eye
+id=48919
+rarity=R
+[/card]
+[card]
+primitive=Mindslaver
+id=46724
+rarity=R
+[/card]
+[card]
+primitive=Mindstorm Crown
+id=46715
+rarity=U
+[/card]
+[card]
+primitive=Mirror Golem
+id=48210
+rarity=U
+[/card]
+[card]
+primitive=Molder Slug
+id=48083
+rarity=R
+[/card]
+[card]
+primitive=Molten Rain
+id=46000
+rarity=C
+[/card]
+[card]
+primitive=Moriok Scavenger
 id=45965
-name=Moriok Scavenger
 rarity=C
-mana={3}{B}
-type=Creature
-subtype=Human Rogue
-auto=may moveTo(myhand) target(artifact|mygraveyard)
-power=2
-toughness=3
 [/card]
 [card]
-text={R}
+primitive=Mountain
 id=48417
-auto={T}:Add {R}
-name=Mountain
-type=Basic Land
 rarity=L
-subtype=Mountain
 [/card]
 [card]
-text={R}
+primitive=Mountain
 id=48418
-auto={T}:Add {R}
-name=Mountain
-type=Basic Land
 rarity=L
-subtype=Mountain
 [/card]
 [card]
-text={R}
+primitive=Mountain
 id=48419
-auto={T}:Add {R}
-name=Mountain
-type=Basic Land
 rarity=L
-subtype=Mountain
 [/card]
 [card]
-text={R}
+primitive=Mountain
 id=48420
-auto={T}:Add {R}
-name=Mountain
-type=Basic Land
 rarity=L
-subtype=Mountain
 [/card]
 [card]
-text=When Myr Retriever is put into a graveyard from the battlefield, return another target artifact card from your graveyard to your hand.
-auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) target(other artifact|mygraveyard)
+primitive=Mourner's Shield
+id=50538
+rarity=U
+[/card]
+[card]
+primitive=Myr Adapter
+id=46013
+rarity=C
+[/card]
+[card]
+primitive=Myr Enforcer
+id=46015
+rarity=C
+[/card]
+[card]
+primitive=Myr Incubator
+id=47450
+rarity=R
+[/card]
+[card]
+primitive=Myr Mindservant
+id=48925
+rarity=U
+[/card]
+[card]
+primitive=Myr Prototype
+id=49046
+rarity=U
+[/card]
+[card]
+primitive=Myr Retriever
 id=46126
-name=Myr Retriever
 rarity=U
-mana={2}
-type=Artifact Creature
-subtype=Myr
-power=1
-toughness=1
 [/card]
 [card]
-text=Flash   Protection from artifacts
+primitive=Necrogen Mists
+id=48589
+rarity=R
+[/card]
+[card]
+primitive=Necrogen Spellbomb
+id=46055
+rarity=C
+[/card]
+[card]
+primitive=Needlebug
 id=48930
-name=Needlebug
 rarity=U
-mana={4}
-type=Artifact Creature
-subtype=Insect
-auto=protection from(artifact)
-power=2
-toughness=2
-abilities=flash
 [/card]
 [card]
-text=Equipped creature has flying.  Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
+primitive=Neurok Familiar
+id=46082
+rarity=C
+[/card]
+[card]
+primitive=Neurok Hoversail
 id=46037
-name=Neurok Hoversail
 rarity=C
-type=Artifact
-mana={1}
-auto={2}:equip
-auto=flying
-subtype=Equipment
 [/card]
 [card]
-text=Neurok Spy is unblockable as long as defending player controls an artifact.
+primitive=Neurok Spy
 id=45974
-name=Neurok Spy
 rarity=C
-mana={2}{U}
-type=Creature
-subtype=Human Rogue
-auto=aslongas(artifact|opponentBattlefield) unblockable
-power=2
-toughness=2
 [/card]
 [card]
-text=Nim Lasher gets +1/+0 for each artifact you control.
+primitive=Nightmare Lash
+id=49770
+rarity=R
+[/card]
+[card]
+primitive=Nim Devourer
+id=46090
+rarity=R
+[/card]
+[card]
+primitive=Nim Lasher
 id=12394
-name=Nim Lasher
 rarity=C
-mana={2}{B}
-type=Creature
-subtype=Zombie
-auto=foreach(artifact|myBattlefield) 1/0
-power=1
-toughness=1
 [/card]
 [card]
-text={2}{B}, Sacrifice Nim Replica: Target creature gets -1/-1 until end of turn.
+primitive=Nim Replica
 id=46041
-auto={2}{B}{S}:-1/-1 target(creature)
-name=Nim Replica
 rarity=C
-mana={3}
-type=Artifact Creature
-subtype=Zombie
-power=3
-toughness=1
 [/card]
 [card]
-text=Nim Shambler gets +1/+0 for each artifact you control. Sacrifice a creature: Regenerate Nim Shambler.
+primitive=Nim Shambler
 id=48126
-name=Nim Shambler
 rarity=U
-mana={2}{B}{B}
-type=Creature
-subtype=Zombie
-auto=foreach(artifact|myBattlefield) 1/0
-auto={S(creature|myBattlefield)}:regenerate
-power=2
-toughness=1
 [/card]
 [card]
-text=Flying.   Nim Shrieker gets +1/+0 for each artifact you control.
+primitive=Nim Shrieker
 id=48584
-name=Nim Shrieker
-auto=foreach(artifact|myBattlefield) 1/0
 rarity=C
-mana={3}{B}
-type=Creature
-subtype=Zombie
-power=0
-toughness=1
-abilities=flying
 [/card]
 [card]
-text={2}, {T}: Put a 0/1 Pest artifact creature token onto the battlefield.
+primitive=Nuisance Engine
 id=50104
-auto={2}{T}:token(Pest,artifact creature pest, 0/1, artifact)
-name=Nuisance Engine
 rarity=U
-mana={3}
-type=Artifact
 [/card]
 [card]
+primitive=Oblivion Stone
+id=34901
+rarity=R
+[/card]
+[card]
+primitive=Ogre Leadfoot
+id=45993
+rarity=C
+[/card]
+[card]
+primitive=Omega Myr
 id=48605
-name=Omega Myr
 rarity=C
-mana={2}
-type=Artifact Creature
-subtype=Myr
-power=1
-toughness=2
 [/card]
 [card]
-text=Flying
+primitive=One Dozen Eyes
+id=48385
+rarity=U
+[/card]
+[card]
+primitive=Ornithopter
 id=46016
-name=Ornithopter
 rarity=U
-mana={0}
-type=Artifact Creature
-subtype=Thopter
-power=0
-toughness=2
-abilities=flying
 [/card]
 [card]
-text={1}{B}: Regenerate Pewter Golem.
+primitive=Override
+id=46089
+rarity=C
+[/card]
+[card]
+primitive=Pearl Shard
+id=46027
+rarity=U
+[/card]
+[card]
+primitive=Pentavus
+id=46703
+rarity=R
+[/card]
+[card]
+primitive=Pewter Golem
 id=48054
-auto={1}{B}:regenerate
-name=Pewter Golem
 rarity=C
-mana={5}
-type=Artifact Creature
-subtype=Golem
-power=4
-toughness=2
 [/card]
 [card]
-text={W}
+primitive=Plains
 id=48406
-auto={T}:Add {W}
-name=Plains
-type=Basic Land
 rarity=L
-subtype=Plains
 [/card]
 [card]
-text={W}
+primitive=Plains
 id=48407
-auto={T}:Add {W}
-name=Plains
-type=Basic Land
 rarity=L
-subtype=Plains
 [/card]
 [card]
-text={W}
+primitive=Plains
 id=48408
-auto={T}:Add {W}
-name=Plains
-type=Basic Land
 rarity=L
-subtype=Plains
 [/card]
 [card]
-text={W}
+primitive=Plains
 id=48409
-auto={T}:Add {W}
-name=Plains
-type=Basic Land
 rarity=L
-subtype=Plains
 [/card]
 [card]
-text=Plated Slagwurm can't be the target of spells or abilities your opponents control.
+primitive=Plated Slagwurm
 id=47781
-name=Plated Slagwurm
 rarity=R
-mana={4}{G}{G}{G}
-type=Creature
-subtype=Wurm
-power=8
-toughness=8
-abilities=opponentshroud
 [/card]
 [card]
-text=Target creature gets +3/+3 and gains trample until end of turn.
+primitive=Platinum Angel
+id=48580
+rarity=R
+[/card]
+[card]
+primitive=Power Conduit
+id=49047
+rarity=U
+[/card]
+[card]
+primitive=Predator's Strike
 id=48595
-target=creature
-auto=trample
-auto=3/3
-name=Predator's Strike
 rarity=C
-mana={1}{G}
-type=Instant
 [/card]
 [card]
-text={R}, Sacrifice Pyrite Spellbomb: Pyrite Spellbomb deals 2 damage to target creature or player.   {1}, Sacrifice Pyrite Spellbomb: Draw a card.
-auto={R}{S}:Damage:2 target(creature,player)
-auto={1}{S}:draw:1
+primitive=Promise of Power
+id=48096
+rarity=R
+[/card]
+[card]
+primitive=Proteus Staff
+id=49769
+rarity=R
+[/card]
+[card]
+primitive=Psychic Membrane
+id=48167
+rarity=U
+[/card]
+[card]
+primitive=Psychogenic Probe
+id=46582
+rarity=R
+[/card]
+[card]
+primitive=Pyrite Spellbomb
 id=48110
-name=Pyrite Spellbomb
 rarity=C
-mana={1}
-type=Artifact
 [/card]
 [card]
-text=Put two 1/1 white Soldier creature tokens onto the battlefield.
-auto=token(Soldier,creature soldier, 1/1,white)*2
+primitive=Quicksilver Elemental
+id=46559
+rarity=R
+[/card]
+[card]
+primitive=Quicksilver Fountain
+id=49772
+rarity=R
+[/card]
+[card]
+primitive=Raise the Alarm
 id=48103
-name=Raise the Alarm
 rarity=C
-mana={1}{W}
-type=Instant
 [/card]
 [card]
-text=Return target permanent to its owner's hand.
+primitive=Razor Barrier
+id=47935
+rarity=C
+[/card]
+[card]
+primitive=Regress
 id=49061
-target=*
-auto=moveTo(ownerhand)
-name=Regress
 rarity=C
-mana={2}{U}
-type=Instant
 [/card]
 [card]
-text=Flying   When Reiver Demon enters the battlefield, if you played it from your hand, destroy all nonartifact, nonblack creatures. They can't be regenerated.
+primitive=Reiver Demon
 id=48427
-name=Reiver Demon
 rarity=R
-mana={4}{B}{B}{B}{B}
-type=Creature
-subtype=Demon
-auto=@movedTo(this|myBattlefield) from(mystack):destroy all(creature[-black;-artifact])
-power=6
-toughness=6
-abilities=flying
 [/card]
 [card]
-text=Whenever Rustmouth Ogre deals combat damage to a player, you may destroy target artifact that player controls.
+primitive=Relic Bane
+id=48329
+rarity=U
+[/card]
+[card]
+primitive=Roar of the Kha
+id=48092
+rarity=U
+[/card]
+[card]
+primitive=Rule of Law
+id=48112
+rarity=R
+[/card]
+[card]
+primitive=Rust Elemental
+id=48174
+rarity=U
+[/card]
+[card]
+primitive=Rustmouth Ogre
 id=46118
-auto=@damaged(player) from(this):may destroy target(artifact|opponentBattlefield)
-name=Rustmouth Ogre
 rarity=U
-type=Creature
-mana={4}{R}{R}
-power=5
-subtype=Ogre
-toughness=4
 [/card]
 [card]
-text=When Rustspore Ram enters the battlefield, destroy target Equipment.
+primitive=Rustspore Ram
 id=46138
-name=Rustspore Ram
 rarity=U
-mana={4}
-type=Artifact Creature
-subtype=Sheep
-auto=destroy target(equipment)
-power=1
-toughness=3
 [/card]
 [card]
-text=As Sculpting Steel enters the battlefield, you may choose an artifact on the battlefield. If you do, Sculpting Steel enters the battlefield as a copy of that artifact.
-auto=may copy notatarget(artifact)
+primitive=Scale of Chiss-Goria
+id=48400
+rarity=C
+[/card]
+[card]
+primitive=Scrabbling Claws
+id=49763
+rarity=U
+[/card]
+[card]
+primitive=Sculpting Steel
 id=46720
-name=Sculpting Steel
 rarity=R
-mana={3}
-type=Artifact
 [/card]
 [card]
-text=(Seat of the Synod isn't a spell.)  {T}: Add {U} to your mana pool.
-auto={T}:Add{U}
+primitive=Scythe of the Wretched
+id=49048
+rarity=R
+[/card]
+[card]
+primitive=Seat of the Synod
 id=46064
-name=Seat of the Synod
 rarity=C
-type=Land
-subtype=Artifact
 [/card]
 [card]
-text=Add {R}{R}{R}{R}{R} to your mana pool.
+primitive=Second Sunrise
+id=49009
+rarity=R
+[/card]
+[card]
+primitive=Seething Song
 id=34945
-auto=Add:{R}{R}{R}{R}{R}
-name=Seething Song
 rarity=C
-mana={2}{R}
-type=Instant
 [/card]
 [card]
-text=Destroy target artifact.
+primitive=Serum Tank
+id=46156
+rarity=U
+[/card]
+[card]
+primitive=Shared Fate
+id=49764
+rarity=R
+[/card]
+[card]
+primitive=Shatter
 id=45999
-target=artifact
-auto=destroy
-name=Shatter
 rarity=C
-mana={1}{R}
-type=Instant
 [/card]
 [card]
-text={T}: Add {U} to your mana pool.
+primitive=Shrapnel Blast
+id=49835
+rarity=U
+[/card]
+[card]
+primitive=Silver Myr
 id=46032
-auto={T}:Add {U}
-name=Silver Myr
 rarity=C
-mana={2}
-type=Artifact Creature
-subtype=Myr
-power=1
-toughness=1
 [/card]
 [card]
-text={3}, {T} or {B}, {T}: Return target artifact creature card from your graveyard to your hand.
-auto={3}{T}:moveTo(myhand) target(creature[artifact]|mygraveyard)
-auto={B}{T}:moveTo(myhand) target(creature[artifact]|mygraveyard)
+primitive=Skeleton Shard
 id=49774
-name=Skeleton Shard
 rarity=U
-mana={3}
-type=Artifact
 [/card]
 [card]
-text=Flying, first strike
+primitive=Skyhunter Cub
+id=48046
+rarity=C
+[/card]
+[card]
+primitive=Skyhunter Patrol
 id=48431
-name=Skyhunter Patrol
 rarity=C
-mana={2}{W}{W}
-type=Creature
-subtype=Cat Knight
-power=2
-toughness=3
-abilities=flying,first strike
 [/card]
 [card]
-text=Equipped creature gets +0/+6.     Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery.)
+primitive=Slagwurm Armor
 id=46028
-name=Slagwurm Armor
 rarity=C
-type=Artifact
-mana={1}
-auto={3}:equip
-auto=0/6
-subtype=Equipment
 [/card]
 [card]
-text=Flying Whenever Slith Ascendant deals combat damage to a player, put a +1/+1 counter on it.
+primitive=Slith Ascendant
 id=46069
-name=Slith Ascendant
-abilities=flying
-auto=@damaged(player) from(this):counter(1/1,1)
 rarity=U
-type=Creature
-mana={1}{W}{W}
-power=1
-subtype=Slith
-toughness=1
 [/card]
 [card]
-text=Whenever Slith Bloodletter deals combat damage to a player, put a +1/+1 counter on it.     {1}{B}: Regenerate Slith Bloodletter.
+primitive=Slith Bloodletter
 id=46091
-name=Slith Bloodletter
-auto=@damaged(player) from(this):counter(1/1,1)
-auto={1}{B}:regenerate
 rarity=U
-type=Creature
-mana={B}{B}
-power=1
-subtype=Slith
-toughness=1
 [/card]
 [card]
-text=Haste Whenever Slith Firewalker deals combat damage to a player, put a +1/+1 counter on it.
+primitive=Slith Firewalker
 id=46102
-name=Slith Firewalker
-abilities=haste
-auto=@damaged(player) from(this):counter(1/1,1)
 rarity=U
-type=Creature
-mana={R}{R}
-power=1
-subtype=Slith
-toughness=1
 [/card]
 [card]
-text=Trample     Whenever Slith Predator deals combat damage to a player, put a +1/+1 counter on it.
+primitive=Slith Predator
 id=46113
-name=Slith Predator
-abilities=trample
-auto=@damaged(player) from(this):counter(1/1,1)
 rarity=U
-type=Creature
-mana={G}{G}
-power=1
-subtype=Slith
-toughness=1
 [/card]
 [card]
-text={1}{W}, Sacrifice Soldier Replica: Soldier Replica deals 3 damage to target attacking or blocking creature.
+primitive=Slith Strider
+id=46080
+rarity=U
+[/card]
+[card]
+primitive=Solar Tide
+id=48437
+rarity=R
+[/card]
+[card]
+primitive=Soldier Replica
 id=46025
-auto={1}{W}{S}:Damage:3 target(creature[attacking;blocking])
-name=Soldier Replica
 rarity=C
-mana={3}
-type=Artifact Creature
-subtype=Soldier
-power=1
-toughness=3
 [/card]
 [card]
+primitive=Solemn Simulacrum
 id=49434
-name=Solemn Simulacrum
 rarity=R
-type=Artifact Creature
-mana={4}
-text=When Solemn Simulacrum comes into play, you may search your library for a basic land card and put that card into play tapped. If you do, shuffle your library.     When Solemn Simulacrum is put into a graveyard from play, you may draw a card.
-auto=may moveTo(myBattlefield) target(land[basic]|mylibrary) && tap
-auto=@movedTo(this|graveyard) from(Battlefield):may draw:1 controller
-power=2
-subtype=Golem
-toughness=2
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.   {6}: Stalking Stones becomes a 3/3 Elemental artifact creature that's still a land. (This effect doesn't end at end of turn.)
+primitive=Somber Hoverguard
+id=45973
+rarity=C
+[/card]
+[card]
+primitive=Soul Foundry
+id=46723
+rarity=R
+[/card]
+[card]
+primitive=Soul Nova
+id=48101
+rarity=U
+[/card]
+[card]
+primitive=Spellweaver Helix
+id=48047
+rarity=R
+[/card]
+[card]
+primitive=Sphere of Purity
+id=45968
+rarity=C
+[/card]
+[card]
+primitive=Spikeshot Goblin
+id=46103
+rarity=C
+[/card]
+[card]
+primitive=Spoils of the Vault
+id=46572
+rarity=R
+[/card]
+[card]
+primitive=Stalking Stones
 id=48917
-name=Stalking Stones
-auto={T}:Add{1}
-auto={6}:becomes(Artifact Creature Elemental,3/3)
 rarity=U
-type=Land
 [/card]
 [card]
-text=Defender (This creature can't attack.)
+primitive=Steel Wall
 id=48910
-name=Steel Wall
 rarity=C
-mana={1}
-type=Artifact Creature
-subtype=Wall
-power=0
-toughness=4
-abilities=defender
 [/card]
 [card]
-text={W}, Sacrifice Sunbeam Spellbomb: You gain 5 life.       {1}, Sacrifice Sunbeam Spellbomb: Draw a card.
-auto={W}{S}:life:5 controller
-auto={1}{S}:draw:1 controller
+primitive=Sun Droplet
+id=48931
+rarity=U
+[/card]
+[card]
+primitive=Sunbeam Spellbomb
 id=48214
-name=Sunbeam Spellbomb
 rarity=C
-mana={1}
-type=Artifact
 [/card]
 [card]
-text={B}
+primitive=Swamp
 id=48414
-auto={T}:Add {B}
-name=Swamp
-type=Basic Land
 rarity=L
-subtype=Swamp
 [/card]
 [card]
-text={B}
+primitive=Swamp
 id=48415
-auto={T}:Add {B}
-name=Swamp
-type=Basic Land
 rarity=L
-subtype=Swamp
 [/card]
 [card]
-text={B}
+primitive=Swamp
 id=48416
-auto={T}:Add {B}
-name=Swamp
-type=Basic Land
 rarity=L
-subtype=Swamp
 [/card]
 [card]
-text={B}
+primitive=Swamp
 id=48425
-auto={T}:Add {B}
-name=Swamp
-type=Basic Land
 rarity=L
-subtype=Swamp
 [/card]
 [card]
-text=Search your library for a land card, reveal it, and put it into your hand. Then shuffle your library.
-target=land|mylibrary
-auto=moveTo(myhand)
+primitive=Sword of Kaldra
+id=48583
+rarity=R
+[/card]
+[card]
+primitive=Sylvan Scrying
 id=49529
-name=Sylvan Scrying
 rarity=U
-mana={1}{G}
-type=Sorcery
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.   {T}: Add {U} or {B} to your mana pool. Talisman of Dominance deals 1 damage to you.
+primitive=Synod Sanctum
+id=46719
+rarity=U
+[/card]
+[card]
+primitive=Taj-Nar Swordsmith
+id=46079
+rarity=U
+[/card]
+[card]
+primitive=Talisman of Dominance
 id=39598
-name=Talisman of Dominance
-auto={T}:Add {1}
-auto={T}:Add {U} && damage:1 controller
-auto={T}:Add {B} && damage:1 controller
 rarity=U
-mana={2}
-type=Artifact
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.   {T}: Add {R} or {G} to your mana pool. Talisman of Impulse deals 1 damage to you.
+primitive=Talisman of Impulse
 id=39600
-name=Talisman of Impulse
-auto={T}:Add {1}
-auto={T}:Add {R} && damage:1 controller
-auto={T}:Add {G} && damage:1 controller
 rarity=U
-mana={2}
-type=Artifact
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.   {T}: Add {B} or {R} to your mana pool. Talisman of Indulgence deals 1 damage to you.
+primitive=Talisman of Indulgence
 id=39599
-name=Talisman of Indulgence
-auto={T}:Add {1}
-auto={T}:Add {B} && damage:1 controller
-auto={T}:Add {R} && damage:1 controller
 rarity=U
-mana={2}
-type=Artifact
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.   {T}: Add {W} or {U} to your mana pool. Talisman of Progress deals 1 damage to you.
+primitive=Talisman of Progress
 id=39597
-name=Talisman of Progress
-auto={T}:Add {1}
-auto={T}:Add {W} && damage:1 controller
-auto={T}:Add {U} && damage:1 controller
 rarity=U
-mana={2}
-type=Artifact
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.   {T}: Add {G} or {W} to your mana pool. Talisman of Unity deals 1 damage to you.
+primitive=Talisman of Unity
 id=39601
-name=Talisman of Unity
-auto={T}:Add {1}
-auto={T}:Add {G} && damage:1 controller
-auto={T}:Add {W} && damage:1 controller
 rarity=U
-mana={2}
-type=Artifact
 [/card]
 [card]
-text={1}, {T}: You gain 1 life.
+primitive=Tanglebloom
 id=48913
-name=Tanglebloom
-auto={1}{T}:life:1
-mana={1}
-type=Artifact
 rarity=C
 [/card]
 [card]
-text=Protection from artifacts; reach (This creature can block creatures with flying.)
+primitive=Tangleroot
+id=49767
+rarity=R
+[/card]
+[card]
+primitive=Tel-Jilad Archers
 id=46004
-name=Tel-Jilad Archers
 rarity=C
-mana={4}{G}
-type=Creature
-subtype=Elf Archer
-auto=protection from(artifact)
-power=2
-toughness=4
-abilities=reach
 [/card]
 [card]
-text=Protection from artifacts
+primitive=Tel-Jilad Chosen
 id=46003
-name=Tel-Jilad Chosen
 rarity=C
-mana={1}{G}
-type=Creature
-subtype=Elf Warrior
-auto=protection from(artifact)
-power=2
-toughness=1
 [/card]
 [card]
-text={1}{G}: Regenerate Tel-Jilad Exile.
+primitive=Tel-Jilad Exile
 id=49436
-name=Tel-Jilad Exile
 rarity=C
-mana={3}{G}
-type=Creature
-subtype=Troll Warrior
-power=2
-toughness=3
-auto={1}{G}:regenerate
 [/card]
 [card]
-text=Destroy all enchantments.
+primitive=Tel-Jilad Stylus
+id=46729
+rarity=U
+[/card]
+[card]
+primitive=Tempest of Light
 id=46075
-auto=Destroy all(enchantment)
-name=Tempest of Light
 rarity=U
-mana={2}{W}
-type=Instant
 [/card]
 [card]
-text=Destroy target nonartifact, nonblack creature. It can't be regenerated.
+primitive=Temporal Cascade
+id=49055
+rarity=R
+[/card]
+[card]
+primitive=Terror
 id=45988
-target=creature[-artifact;-black]
-auto=bury
-name=Terror
 rarity=C
-mana={1}{B}
-type=Instant
 [/card]
 [card]
-text={1}{W}: Titanium Golem gains first strike until end of turn.
+primitive=Thirst for Knowledge
+id=45978
+rarity=U
+[/card]
+[card]
+primitive=Thought Prison
+id=48915
+rarity=U
+[/card]
+[card]
+primitive=Thoughtcast
+id=46085
+rarity=C
+[/card]
+[card]
+primitive=Timesifter
+id=49053
+rarity=R
+[/card]
+[card]
+primitive=Titanium Golem
 id=48052
-auto={1}{W}:first strike
-name=Titanium Golem
 rarity=C
-mana={5}
-type=Artifact Creature
-subtype=Golem
-power=3
-toughness=3
 [/card]
 [card]
-text={8}, {T}: Target creature gets +6/+6 until end of turn.
+primitive=Tooth and Nail
+id=48122
+rarity=R
+[/card]
+[card]
+primitive=Tooth of Chiss-Goria
+id=48401
+rarity=C
+[/card]
+[card]
+primitive=Tower of Champions
 id=48155
-auto={8}{T}:6/6 target(creature)
-name=Tower of Champions
 rarity=R
-mana={4}
-type=Artifact
 [/card]
 [card]
-text={8}, {T}: You gain 10 life.
+primitive=Tower of Eons
 id=48914
-auto={8}{T}:life:10
-name=Tower of Eons
 rarity=R
-mana={4}
-type=Artifact
 [/card]
 [card]
-text={8}, {T}: Draw four cards.
+primitive=Tower of Fortunes
 id=35464
-name=Tower of Fortunes
-auto={8}{T}:Draw:4
-mana={4}
-type=Artifact
 rarity=R
 [/card]
 [card]
-text={8}, {T}: Target player puts the top eight cards of his or her library into his or her graveyard.
+primitive=Tower of Murmurs
 id=46730
-auto={8}{T}:deplete:8 target(player)
-name=Tower of Murmurs
 rarity=R
-type=Artifact
-mana={4}
 [/card]
 [card]
-text=(Tree of Tales isn't a spell.)  {T}: Add {G} to your mana pool.
+primitive=Trash for Treasure
+id=48586
+rarity=R
+[/card]
+[card]
+primitive=Tree of Tales
 id=46067
-name=Tree of Tales
-auto={T}:Add{G}
 rarity=C
-type=Land
-subtype=Artifact
 [/card]
 [card]
-text=Troll Ascetic can't be the target of spells or abilities your opponents control.     {1}{G}: Regenerate Troll Ascetic. (The next time this creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
+primitive=Triskelion
+id=46702
+rarity=R
+[/card]
+[card]
+primitive=Troll Ascetic
 id=49828
-name=Troll Ascetic
 rarity=R
-mana={1}{G}{G}
-type=Creature
-subtype=Troll Shaman
-auto={1}{G}:regenerate
-power=3
-toughness=2
-abilities=opponentshroud
 [/card]
 [card]
-text={1}{G}: Regenerate target green creature.
+primitive=Trolls of Tel-Jilad
 id=46117
-name=Trolls of Tel-Jilad
 rarity=U
-mana={5}{G}{G}
-type=Creature
-subtype=Troll Shaman
-auto={1}{G}:regenerate target(creature[green])
-power=5
-toughness=6
 [/card]
 [card]
-text=Destroy target Equipment. Then add {G} to your mana pool.
+primitive=Turn to Dust
 id=48594
-target=equipment
-auto=destroy
-auto=add:{G}
-name=Turn to Dust
 rarity=C
-mana={G}
-type=Instant
 [/card]
 [card]
-text=(Vault of Whispers isn't a spell.)  {T}: Add {B} to your mana pool.
+primitive=Vault of Whispers
 id=46065
-name=Vault of Whispers
-auto={T}:Add{B}
 rarity=C
-type=Land
-subtype=Artifact
 [/card]
 [card]
-text=Whenever you cast an artifact spell, draw a card.
+primitive=Vedalken Archmage
 id=46557
-name=Vedalken Archmage
 rarity=R
-mana={2}{U}{U}
-type=Creature
-subtype=Vedalken Wizard
-auto=@movedTo(artifact|mystack):draw:1 controller
-power=0
-toughness=2
 [/card]
 [card]
-text=Whenever an artifact enters the battlefield, Vermiculos gets +4/+4 until end of turn.
+primitive=Vermiculos
 id=47936
-name=Vermiculos
 rarity=R
-mana={4}{B}
-type=Creature
-subtype=Horror
-auto=@movedTo(artifact|battlefield):4/4 ueot
-power=1
-toughness=1
 [/card]
 [card]
-text=When Viridian Shaman enters the battlefield, destroy target artifact.
+primitive=Viridian Joiner
+id=46114
+rarity=C
+[/card]
+[card]
+primitive=Viridian Longbow
+id=46018
+rarity=C
+[/card]
+[card]
+primitive=Viridian Shaman
 id=46119
-name=Viridian Shaman
 rarity=U
-mana={2}{G}
-type=Creature
-subtype=Elf Shaman
-auto=destroy target(artifact)
-power=2
-toughness=2
 [/card]
 [card]
-text=Equipped creature gets +3/+3.   Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery. This card comes into play unattached and stays in play if the creature leaves play.)
+primitive=Vorrac Battlehorns
+id=46053
+rarity=C
+[/card]
+[card]
+primitive=Vulshok Battlegear
 id=48121
-name=Vulshok Battlegear
 rarity=U
-type=Artifact
-mana={3}
-auto={3}:equip
-auto=3/3
-subtype=Equipment
 [/card]
 [card]
-text=Haste
+primitive=Vulshok Battlemaster
+id=48125
+rarity=R
+[/card]
+[card]
+primitive=Vulshok Berserker
 id=5585
-name=Vulshok Berserker
 rarity=C
-mana={3}{R}
-type=Creature
-subtype=Human Berserker
-power=3
-toughness=2
-abilities=haste
 [/card]
 [card]
-text=Equipped creature gets +4/+2 and doesn't untap during its controller's untap step.     Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery. This card comes into play unattached and stays in play if the creature leaves play.)
+primitive=Vulshok Gauntlets
 id=48397
-name=Vulshok Gauntlets
 rarity=C
-type=Artifact
-mana={2}
-auto={3}
-auto=4/2
-auto=doesnotuntap
-subtype=Equipment
 [/card]
 [card]
-text=Sacrifice Welding Jar: Regenerate target artifact.
-auto={S}:regenerate target(artifact)
-id=48328
-name=Welding Jar
+primitive=Wail of the Nim
+id=48105
 rarity=C
-mana={0}
-type=Artifact
 [/card]
 [card]
-text=Fear Whenever Woebearer deals combat damage to a player, you may return target creature card from your graveyard to your hand.
-id=46074
-name=Woebearer
-abilities=fear
-auto=@damaged(player) from(this):may moveto(myhand) target(creature|myGraveyard)
+primitive=Wall of Blood
+id=48184
 rarity=U
-type=Creature
-mana={4}{B}
-power=2
-subtype=Zombie
-toughness=3
-[/card] 
+[/card]
 [card]
-text=Vigilance
-id=46026
-name=Yotian Soldier
+primitive=Wanderguard Sentry
+id=48439
 rarity=C
-mana={3}
-type=Artifact Creature
-subtype=Soldier
-power=1
-toughness=4
-abilities=vigilance
+[/card]
+[card]
+primitive=War Elemental
+id=43614
+rarity=R
+[/card]
+[card]
+primitive=Welding Jar
+id=48328
+rarity=C
+[/card]
+[card]
+primitive=Wizard Replica
+id=46033
+rarity=C
+[/card]
+[card]
+primitive=Woebearer
+id=46074
+rarity=U
+[/card]
+[card]
+primitive=Worldslayer
+id=46791
+rarity=R
+[/card]
+[card]
+primitive=Wrench Mind
+id=45990
+rarity=C
+[/card]
+[card]
+primitive=Wurmskin Forger
+id=48599
+rarity=C
+[/card]
+[card]
+primitive=Yotian Soldier
+id=46026
+rarity=C
 [/card]

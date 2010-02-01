@@ -3,1522 +3,902 @@ author=Wagic Team
 block=Portal
 [/meta]
 [card]
-text=Vigilance (Attacking doesn't cause this creature to tap.)
+primitive=Alert Shu Infantry
 id=10487
-name=Alert Shu Infantry
 rarity=U
-mana={2}{W}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=2
-abilities=vigilance
 [/card]
 [card]
-text=You draw three cards and you lose 3 life.
+primitive=Ambition's Cost
 id=10493
-auto=draw:3
-auto=life:-3
-name=Ambition's Cost
-rarity=U
-mana={3}{B}
-type=Sorcery
+rarity=R
 [/card]
 [card]
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)
+primitive=Balance of Power
+id=10580
+rarity=R
+[/card]
+[card]
+primitive=Barbarian General
 id=10574
-name=Barbarian General
 rarity=U
-mana={4}{R}
-type=Creature
-subtype=Human Barbarian Soldier
-power=3
-toughness=2
-abilities=horsemanship
 [/card]
 [card]
+primitive=Barbarian Horde
 id=10578
-name=Barbarian Horde
 rarity=C
-mana={3}{R}
-type=Creature
-subtype=Human Barbarian Soldier
-power=3
-toughness=3
 [/card]
 [card]
-text=Blaze deals X damage to target creature or player.
-target=creature,player
-alias=1291
+primitive=Blaze
 id=10507
-name=Blaze
 rarity=U
-type=Sorcery
-mana={X}{R}
 [/card]
 [card]
-text=Draw a card for each tapped creature target opponent controls.
-auto=foreach(creature[tapped]|opponentBattlefield) draw:1 controller
+primitive=Borrowing 100,000 Arrows
 id=10620
-auto=draw:3
-name=Borrowing 100,000 Arrows
 rarity=U
-mana={2}{U}
-type=Sorcery
 [/card]
 [card]
-text=Borrowing the East Wind deals X damage to each creature with horsemanship and each player.
+primitive=Borrowing the East Wind
 id=10549
-auto=damage:X all(player)
-auto=damage:X all(creature[horsemanship])
-name=Borrowing the East Wind
 rarity=R
-mana={X}{G}{G}
-type=Sorcery
 [/card]
 [card]
-text=Draw three cards.
+primitive=Brilliant Plan
 id=10623
-auto=draw:3
-name=Brilliant Plan
 rarity=U
-mana={4}{U}
-type=Sorcery
 [/card]
 [card]
-text=Burning Fields deals 5 damage to target opponent.
+primitive=Broken Dam
+id=10621
+rarity=C
+[/card]
+[card]
+primitive=Burning Fields
 id=10555
-auto=Damage:5 opponent
-name=Burning Fields
-rarity=U
-mana={4}{R}
-type=Sorcery
+rarity=C
 [/card]
 [card]
-text=Play Champion's Victory only during the declare attackers step and only if you are the defending player.   Return target attacking creature to its owner's hand.
-id=10593
-target=creature[attacking]|opponentBattlefield
-auto=moveTo(ownerhand)
-name=Champion's Victory
-rarity=U
-mana={U}
-type=Instant
+primitive=Burning of Xinye
+id=10637
+rarity=R
 [/card]
 [card]
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)   When Cao Ren, Wei Commander enters the battlefield, you lose 3 life.
+primitive=Cao Cao, Lord of Wei
+id=10548
+rarity=R
+[/card]
+[card]
+primitive=Cao Ren, Wei Commander
 id=10712
-name=Cao Ren, Wei Commander
 rarity=R
-mana={2}{B}{B}
-type=Legendary Creature
-subtype=Human Soldier Warrior
-auto=life:-3
-power=3
-toughness=3
-abilities=horsemanship
 [/card]
 [card]
-text=When Corrupt Eunuchs enters the battlefield, it deals 2 damage to target creature.
+primitive=Capture of Jingzhou
+id=10619
+rarity=R
+[/card]
+[card]
+primitive=Champion's Victory
+id=10593
+rarity=U
+[/card]
+[card]
+primitive=Coercion
+id=10514
+rarity=U
+[/card]
+[card]
+primitive=Control of the Court
+id=10538
+rarity=U
+[/card]
+[card]
+primitive=Corrupt Court Official
+id=10595
+rarity=U
+[/card]
+[card]
+primitive=Corrupt Eunuchs
 id=10734
-name=Corrupt Eunuchs
 rarity=U
-mana={3}{R}
-type=Creature
-subtype=Human Advisor
-auto=damage:2 target(creature)
-power=2
-toughness=2
 [/card]
 [card]
-text=When Council of Advisors enters the battlefield, draw a card.
+primitive=Council of Advisors
 id=10601
-auto=draw:1
-name=Council of Advisors
 rarity=U
-mana={2}{U}
-type=Creature
-subtype=Human Advisor
-power=1
-toughness=1
 [/card]
 [card]
-text=Desert Sandstorm deals 1 damage to each creature.
-auto=damage:1 all(creature)
+primitive=Counterintelligence
+id=10628
+rarity=U
+[/card]
+[card]
+primitive=Cunning Advisor
+id=10533
+rarity=U
+[/card]
+[card]
+primitive=Deception
+id=10560
+rarity=C
+[/card]
+[card]
+primitive=Desert Sandstorm
 id=10626
-name=Desert Sandstorm
-rarity=U
-type=Sorcery
-mana={2}{R}
+rarity=C
 [/card]
 [card]
-text=Creatures you control get +2/+0 until end of turn.
-auto=lord(creature|myBattlefield) 2/0
+primitive=Desperate Charge
 id=10512
-name=Desperate Charge
 rarity=U
-type=Sorcery
-mana={2}{B}
 [/card]
 [card]
-text=Play Eightfold Maze only during the declare attackers step and only if you are the defending player.        Destroy target attacking creature.
+primitive=Diaochan, Artful Beauty
+id=10544
+rarity=R
+[/card]
+[card]
+primitive=Dong Zhou, the Tyrant
+id=10730
+rarity=R
+[/card]
+[card]
+primitive=Eightfold Maze
 id=10553
-target=creature[attacking]|opponentBattlefield
-auto=destroy
-name=Eightfold Maze
 rarity=R
-mana={2}{W}
-type=Instant
 [/card]
 [card]
-text=Counter target sorcery spell.
+primitive=Empty City Ruse
+id=10504
+rarity=U
+[/card]
+[card]
+primitive=Eunuchs' Intrigues
+id=10543
+rarity=U
+[/card]
+[card]
+primitive=Exhaustion
+id=10527
+rarity=R
+[/card]
+[card]
+primitive=Extinguish
 id=10528
-target=sorcery|stack
-auto=fizzle
-name=Extinguish
 rarity=C
-mana={1}{U}
-type=Instant
 [/card]
 [card]
-text=Return target creature card from your graveyard to the battlefield.
+primitive=False Defeat
 id=10509
-target=creature|mygraveyard
-auto=moveTo(myBattlefield)
-name=False Defeat
 rarity=C
-mana={3}{W}
-type=Sorcery
 [/card]
 [card]
-text=Put target card from your graveyard on top of your library.
+primitive=False Mourning
 id=10599
-target=creature|mygraveyard
-auto=moveTo(mylibrary)
-name=False Mourning
 rarity=U
-mana={G}
-type=Sorcery
 [/card]
 [card]
-text=Famine deals 3 damage to each creature and each player.
-auto=damage:3 all(creature,player)
+primitive=Famine
 id=10518
-name=Famine
 rarity=U
-type=Sorcery
-mana={3}{B}{B}
 [/card]
 [card]
-text=Fire Ambush deals 3 damage to target creature or player.
+primitive=Fire Ambush
 id=10632
-target=creature;player
-auto=Damage:3
-name=Fire Ambush
 rarity=C
-mana={1}{R}
-type=Sorcery
 [/card]
 [card]
+primitive=Fire Bowman
 id=10535
-name=Fire Bowman
 rarity=U
-mana={R}
-type=Creature
-subtype=Human Soldier Archer
-text=Sacrifice Fire Bowman: Fire Bowman deals 1 damage to target creature or player. Activate this ability only during your turn, before attackers are declared.
-auto={S}:damage:1 target(creature,player) myTurnOnly
-power=1
-toughness=1
 [/card]
 [card]
-text=Put target creature on top of its owner's library.
+primitive=Flanking Troops
+id=10486
+rarity=U
+[/card]
+[card]
+primitive=Forced Retreat
 id=10622
-target=creature|battlefield
-auto=moveTo(ownerlibrary)
-name=Forced Retreat
 rarity=C
-mana={2}{U}
-type=Sorcery
 [/card]
 [card]
-text={T}: Add {G} to your mana pool.
-auto={T}:Add {G}
-id=10640
-name=Forest
-rarity=L
-type=Basic Land
-subtype=Forest
-[/card]
-[card]
-text={T}: Add {G} to your mana pool.
-auto={T}:Add {G}
-id=10639
-name=Forest
-rarity=L
-type=Basic Land
-subtype=Forest
-[/card]
-[card]
-text={T}: Add {G} to your mana pool.
-auto={T}:Add {G}
+primitive=Forest
 id=10532
-name=Forest
 rarity=L
-type=Basic Land
-subtype=Forest
 [/card]
 [card]
+primitive=Forest
+id=10639
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=10640
+rarity=L
+[/card]
+[card]
+primitive=Forest Bear
 id=10505
-name=Forest Bear
 rarity=C
-mana={1}{G}
-type=Creature
-subtype=Bear
-power=2
-toughness=2
 [/card]
 [card]
-text=Destroy target nonblack creature.
+primitive=Ghostly Visit
 id=10546
-target=creature[-black]
-auto=destroy
-name=Ghostly Visit
 rarity=C
-mana={2}{B}
-type=Sorcery
 [/card]
 [card]
-text=Destroy all tapped creatures.
+primitive=Guan Yu, Sainted Warrior
+id=10494
+rarity=R
+[/card]
+[card]
+primitive=Guan Yu's 1,000-Li March
 id=10597
-auto=destroy all(creature[tapped])
-name=Guan Yu's 1,000-Li March
 rarity=R
-mana={4}{W}{W}
-type=Sorcery
 [/card]
 [card]
-text={T}: Put target creature card from your graveyard on top of your library. Activate this ability only during your turn, before attackers are declared.
+primitive=Heavy Fog
+id=10523
+rarity=U
+[/card]
+[card]
+primitive=Hua Tuo, Honored Physician
 id=10570
-name=Hua Tuo, Honored Physician
 rarity=R
-mana={1}{G}{G}
-type=Legendary Creature
-subtype=Human
-auto={T}:moveTo(mylibrary) target(creature|mygraveyard) myTurnOnly
-power=1
-toughness=2
 [/card]
 [card]
-text=Whenever Hunting Cheetah deals damage to an opponent, you may search your library for a Forest card, reveal that card, put it into your hand, then shuffle your library.
-auto=@damaged(player) from(this):may moveTo(myHand) target(forest|mylibrary)
+primitive=Huang Zhong, Shu General
+id=10714
+rarity=R
+[/card]
+[card]
+primitive=Hunting Cheetah
 id=10572
-name=Hunting Cheetah
 rarity=U
-mana={2}{G}
-type=Creature
-subtype=Cat
-power=2
-toughness=3
 [/card]
 [card]
-text=When Imperial Recruiter enters the battlefield, search your library for a creature card with power 2 or less, reveal it, and put it into your hand. Then shuffle your library.
-auto=may moveTo(myhand) target(creature[power<=2]|mylibrary)
+primitive=Imperial Edict
+id=10515
+rarity=C
+[/card]
+[card]
+primitive=Imperial Recruiter
 id=10539
-name=Imperial Recruiter
 rarity=U
-mana={2}{R}
-type=Creature
-subtype=Human Advisor
-power=1
-toughness=1
 [/card]
 [card]
+primitive=Imperial Seal
+id=10728
+rarity=R
+[/card]
+[card]
+primitive=Independent Troops
 id=10541
-name=Independent Troops
 rarity=C
-mana={1}{R}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=1
 [/card]
 [card]
-text={T}: Add {U} to your mana pool.
-auto={T}:Add {U}
+primitive=Island
 id=10551
-name=Island
 rarity=L
-type=Basic Land
-subtype=Island
 [/card]
 [card]
-text={T}: Add {U} to your mana pool.
-auto={T}:Add {U}
+primitive=Island
 id=10641
-name=Island
 rarity=L
-type=Basic Land
-subtype=Island
 [/card]
 [card]
-text={T}: Add {U} to your mana pool.
-auto={T}:Add {U}
+primitive=Island
 id=10642
-name=Island
 rarity=L
-type=Basic Land
-subtype=Island
 [/card]
 [card]
-text=Other creatures you control get +1/+1.
+primitive=Kongming, "Sleeping Dragon"
 id=10490
-name=Kongming, "Sleeping Dragon"
 rarity=R
-mana={2}{W}{W}
-type=Legendary Creature
-subtype=Human Advisor
-auto=lord(creature|myBattlefield) 1/1 other
-power=2
-toughness=2
 [/card]
 [card]
-text={T}: Kongming's Contraptions deals 2 damage to target attacking creature. Play this ability only during the declare attackers step, and only on an opponent's turn.
+primitive=Kongming's Contraptions
 id=10495
-name=Kongming's Contraptions
 rarity=R
-mana={3}{W}
-type=Creature
-subtype=Human Soldier
-auto={T}:damage:2 target(creature[attacking]|opponentBattlefield)
-power=2
-toughness=4
 [/card]
 [card]
-text={T}: Return Lady Sun and another target creature to their owners' hands. Activate this ability only during your turn, before attackers are declared.
+primitive=Lady Sun
 id=10721
-name=Lady Sun
 rarity=R
-mana={1}{U}{U}
-type=Legendary Creature
-subtype=Human Advisor
-auto={T}:moveTo(ownerhand) all(this) && moveTo(ownerhand) target(creature) myTurnOnly
-power=1
-toughness=1
 [/card]
 [card]
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)
+primitive=Lady Zhurong, Warrior Queen
 id=10609
-name=Lady Zhurong, Warrior Queen
 rarity=R
-mana={4}{G}
-type=Legendary Creature
-subtype=Human Soldier Warrior
-power=4
-toughness=3
-abilities=horsemanship
 [/card]
 [card]
-text=Sacrifice Loyal Retainers: Return target legendary creature card from your graveyard onto the battlefield. Play this ability only during your turn, before attackers are declared.
-auto={S}:moveTo(myBattlefield) target(creature[legendary]|mygraveyard) myTurnOnly
+primitive=Liu Bei, Lord of Shu
+id=10499
+rarity=R
+[/card]
+[card]
+primitive=Lone Wolf
+id=10556
+rarity=U
+[/card]
+[card]
+primitive=Loyal Retainers
 id=10491
-name=Loyal Retainers
 rarity=U
-mana={2}{W}
-type=Creature
-subtype=Human Advisor
-power=1
-toughness=1
 [/card]
 [card]
-text=Haste; horsemanship (This creature can't be blocked except by creatures with horsemanship.)
+primitive=Lu Bu, Master-at-Arms
 id=10536
-name=Lu Bu, Master-at-Arms
 rarity=R
-mana={5}{R}
-type=Legendary Creature
-subtype=Human Soldier Warrior
-power=4
-toughness=3
-abilities=horsemanship,haste
 [/card]
 [card]
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)
+primitive=Lu Meng, Wu General
 id=10710
-name=Lu Meng, Wu General
-rarity=U
-mana={3}{U}{U}
-type=Legendary Creature
-subtype=Human Soldier
-power=4
-toughness=4
-abilities=horsemanship
+rarity=R
 [/card]
 [card]
-text={T}: Draw a card. Activate this ability only during your turn, before attackers are declared.
+primitive=Lu Su, Wu Advisor
 id=10614
-name=Lu Su, Wu Advisor
 rarity=R
-mana={3}{U}{U}
-type=Legendary Creature
-subtype=Human Advisor
-auto={T}:Draw:1 myTurnOnly
-power=1
-toughness=2
 [/card]
 [card]
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)   Whenever Lu Xun, Scholar General deals damage to an opponent, you may draw a card.
-auto=@damaged(player) from(this):may draw:1 controller
+primitive=Lu Xun, Scholar General
 id=10616
-name=Lu Xun, Scholar General
-rarity=U
-mana={2}{U}{U}
-type=Legendary Creature
-subtype=Human Soldier
-power=1
-toughness=3
-abilities=horsemanship
+rarity=R
 [/card]
 [card]
-text=Other green creatures you control get +1/+1.
+primitive=Ma Chao, Western Warrior
+id=10729
+rarity=R
+[/card]
+[card]
+primitive=Marshaling the Troops
+id=10547
+rarity=R
+[/card]
+[card]
+primitive=Meng Huo, Barbarian King
 id=10732
-name=Meng Huo, Barbarian King
 rarity=R
-mana={3}{G}{G}
-type=Legendary Creature
-subtype=Human Barbarian Soldier
-auto=lord(creature[green]|myBattlefield) 1/1 other
-power=4
-toughness=4
 [/card]
 [card]
+primitive=Meng Huo's Horde
 id=10503
-name=Meng Huo's Horde
 rarity=C
-mana={4}{G}
-type=Creature
-subtype=Human Soldier
-power=4
-toughness=5
 [/card]
 [card]
-text=Destroy target creature. Its owner gains 4 life.
+primitive=Misfortune's Gain
 id=10579
-target=creature
-auto=destroy && life:4 targetController
-name=Misfortune's Gain
 rarity=C
-mana={3}{W}
-type=Sorcery
 [/card]
 [card]
-text={T}: Add {R} to your mana pool.
-auto={T}:Add {R}
-id=10644
-name=Mountain
-rarity=L
-type=Basic Land
-subtype=Mountain
-[/card]
-[card]
-text={T}: Add {R} to your mana pool.
-auto={T}:Add {R}
-id=10643
-name=Mountain
-rarity=L
-type=Basic Land
-subtype=Mountain
-[/card]
-[card]
-text={T}: Add {R} to your mana pool.
-auto={T}:Add {R}
+primitive=Mountain
 id=10563
-name=Mountain
 rarity=L
-type=Basic Land
-subtype=Mountain
 [/card]
 [card]
-text=Haste
+primitive=Mountain
+id=10643
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=10644
+rarity=L
+[/card]
+[card]
+primitive=Mountain Bandit
 id=10585
-name=Mountain Bandit
 rarity=C
-mana={R}
-type=Creature
-subtype=Human Soldier Rogue
-power=1
-toughness=1
-abilities=haste
 [/card]
 [card]
-text=Counter target creature or sorcery spell.
+primitive=Mystic Denial
 id=10565
-target=sorcery,creature|stack
-auto=fizzle
-name=Mystic Denial
 rarity=U
-mana={1}{U}{U}
-type=Instant
 [/card]
 [card]
-text={T}: Target creature gets +0/+2 until end of turn. Activate this ability only during your turn, before attackers are declared.
+primitive=Overwhelming Forces
+id=10521
+rarity=R
+[/card]
+[card]
+primitive=Pang Tong, "Young Phoenix"
 id=10713
-name=Pang Tong, "Young Phoenix"
 rarity=R
-mana={1}{W}{W}
-type=Legendary Creature
-subtype=Human Advisor
-auto={T}:0/2 target(creature) myTurnOnly
-power=1
-toughness=2
 [/card]
 [card]
-text=You gain 2 life for each creature you control.
+primitive=Peach Garden Oath
 id=10531
-auto=foreach(creature|myBattlefield) life:2 controller
-name=Peach Garden Oath
 rarity=U
-mana={W}
-type=Sorcery
 [/card]
 [card]
-text={T}: Add {W} to your mana pool.
-auto={T}:Add {W}
-id=10645
-name=Plains
-rarity=L
-type=Basic Land
-subtype=Plains
-[/card]
-[card]
-text={T}: Add {W} to your mana pool.
-auto={T}:Add {W}
-id=10646
-name=Plains
-rarity=L
-type=Basic Land
-subtype=Plains
-[/card]
-[card]
-text={T}: Add {W} to your mana pool.
-auto={T}:Add {W}
+primitive=Plains
 id=10581
-name=Plains
 rarity=L
-type=Basic Land
-subtype=Plains
 [/card]
 [card]
-text=Destroy target nonblack creature. You gain 3 life.
+primitive=Plains
+id=10645
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=10646
+rarity=L
+[/card]
+[card]
+primitive=Poison Arrow
 id=10587
-target=creature[-black]
-auto=destroy
-auto=life:3 controller
-name=Poison Arrow
 rarity=U
-mana={4}{B}{B}
-type=Sorcery
 [/card]
 [card]
-text=Counter target creature spell.
+primitive=Preemptive Strike
 id=10530
-target=creature|stack
-auto=fizzle
-name=Preemptive Strike
 rarity=C
-mana={1}{U}
-type=Instant
 [/card]
 [card]
-text=Destroy all lands.
+primitive=Rally the Troops
+id=10589
+rarity=U
+[/card]
+[card]
+primitive=Ravages of War
 id=10500
-auto=destroy all(land)
-name=Ravages of War
 rarity=R
-mana={3}{W}
-type=Sorcery
 [/card]
 [card]
-text=When Ravaging Horde enters the battlefield, destroy target land.
+primitive=Ravaging Horde
 id=13805
-name=Ravaging Horde
 rarity=U
-mana={3}{R}{R}
-type=Creature
-subtype=Human Soldier
-auto=destroy target(land)
-power=3
-toughness=3
 [/card]
 [card]
-text=Red Cliffs Armada can't attack unless defending player controls an Island.
+primitive=Red Cliffs Armada
 id=10501
-name=Red Cliffs Armada
 rarity=U
-mana={4}{U}
-type=Creature
-subtype=Human Soldier
-auto=aslongas(island|opponentBattlefield) -cantattack
-power=5
-toughness=4
-abilities=cantattack
 [/card]
 [card]
-text=Haste
+primitive=Relentless Assault
+id=10592
+rarity=R
+[/card]
+[card]
+primitive=Renegade Troops
 id=10576
-name=Renegade Troops
 rarity=U
-mana={4}{R}
-type=Creature
-subtype=Human Soldier
-power=4
-toughness=2
-abilities=haste
 [/card]
 [card]
-text=Return target creature card from your graveyard to your hand.
+primitive=Return to Battle
 id=10588
-target=creature|mygraveyard
-auto=moveTo(myhand)
-name=Return to Battle
 rarity=C
-mana={B}
-type=Sorcery
 [/card]
 [card]
-text=Target creature gets +3/+3 and gains horsemanship until end of turn. (It can't be blocked except by creatures with horsemanship.)
+primitive=Riding Red Hare
 id=10496
-target=creature
-auto=3/3
-auto=horsemanship
-name=Riding Red Hare
 rarity=C
-mana={2}{W}
-type=Sorcery
 [/card]
 [card]
-text=Rockslide Ambush deals damage equal to the number of Mountains you control to target creature.
+primitive=Riding the Dilu Horse
+id=10731
+rarity=R
+[/card]
+[card]
+primitive=Rockslide Ambush
 id=10603
-target=creature
-auto=foreach(mountain|myBattlefield) damage:1
-name=Rockslide Ambush
 rarity=U
-mana={1}{R}
-type=Sorcery
 [/card]
 [card]
-text=Rolling Earthquake deals X damage to each creature without horsemanship and each player.
+primitive=Rolling Earthquake
 id=10526
-auto=damage:X all(player)
-auto=damage:X all(creature[-horsemanship])
-name=Rolling Earthquake
 rarity=R
-mana={X}{R}
-type=Sorcery
 [/card]
 [card]
-text=Return target sorcery card from your graveyard to your hand.
+primitive=Sage's Knowledge
 id=10524
-target=sorcery|mygraveyard
-auto=moveTo(myhand)
-name=Sage's Knowledge
 rarity=C
-mana={2}{U}
-type=Sorcery
 [/card]
 [card]
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)
+primitive=Shu Cavalry
 id=10635
-name=Shu Cavalry
 rarity=C
-mana={2}{W}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=2
-abilities=horsemanship
 [/card]
 [card]
-text=Whenever Shu Defender blocks, it gets +0/+2 until end of turn.
+primitive=Shu Defender
 id=10624
-name=Shu Defender
 rarity=C
-mana={2}{W}
-type=Creature
-subtype=Human Soldier
-auto=lord(shu defender[blocking]|mybattlefield) 0/2
-auto=lord(other shu defender[blocking]|mybattlefield) 0/-2
-power=2
-toughness=2
 [/card]
 [card]
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)
+primitive=Shu Elite Companions
 id=10497
-name=Shu Elite Companions
 rarity=U
-mana={4}{W}
-type=Creature
-subtype=Human Soldier
-power=3
-toughness=3
-abilities=horsemanship
 [/card]
 [card]
+primitive=Shu Elite Infantry
 id=10627
-name=Shu Elite Infantry
 rarity=C
-mana={3}{W}
-type=Creature
-subtype=Human Soldier
-power=3
-toughness=3
 [/card]
 [card]
-text={T}: You gain 1 life. Activate this ability only during your turn, before attackers are declared.
+primitive=Shu Farmer
 id=10618
-name=Shu Farmer
 rarity=C
-mana={1}{W}
-type=Creature
-subtype=Human
-auto={T}:life:1 myTurnOnly
-power=1
-toughness=1
 [/card]
 [card]
+primitive=Shu Foot Soldiers
 id=10489
-name=Shu Foot Soldiers
 rarity=C
-mana={2}{W}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=3
 [/card]
 [card]
-text=Vigilance; horsemanship (This creature can't be blocked except by creatures with horsemanship.)
+primitive=Shu General
 id=10502
-name=Shu General
 rarity=U
-mana={3}{W}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=2
-abilities=horsemanship,vigilance
 [/card]
 [card]
-text=When Shu Grain Caravan enters the battlefield, you gain 2 life.
+primitive=Shu Grain Caravan
 id=10617
-name=Shu Grain Caravan
 rarity=C
-mana={2}{W}
-type=Creature
-subtype=Human Soldier
-auto=life:2
-power=2
-toughness=2
 [/card]
 [card]
-text=When Shu Soldier-Farmers enters the battlefield, you gain 4 life.
+primitive=Shu Soldier-Farmers
 id=10488
-name=Shu Soldier-Farmers
 rarity=U
-mana={4}{W}
-type=Creature
-subtype=Human Soldier
-auto=life:4
-power=2
-toughness=4
 [/card]
 [card]
-text=Sima Yi, Wei Field Marshal's power is equal to the number of Swamps you control.
+primitive=Sima Yi, Wei Field Marshal
 id=10630
-name=Sima Yi, Wei Field Marshal
 rarity=R
-mana={5}{B}
-type=Legendary Creature
-subtype=Human Soldier
-auto=foreach(swamp|myBattlefield) 1/0
-power=*
-toughness=4
 [/card]
 [card]
-text=Whenever Slashing Tiger becomes blocked, it gets +2/+2 until end of turn.
+primitive=Slashing Tiger
 id=10591
-name=Slashing Tiger
 rarity=R
-mana={2}{G}{G}
-type=Creature
-subtype=Cat
-auto=rampage(2/2,0)
-auto=rampage(-2/-2,1)
-power=3
-toughness=3
 [/card]
 [card]
+primitive=Southern Elephant
 id=10545
-name=Southern Elephant
 rarity=C
-mana={3}{G}
-type=Creature
-subtype=Elephant
-power=3
-toughness=4
 [/card]
 [card]
-text=Search your library for a Plains, Island, Swamp, Mountain, or Forest card and put that card onto the battlefield. Then shuffle your library.
+primitive=Spoils of Victory
 id=10629
-target=plains,island,swamp,mountain,forest|mylibrary
-auto=moveTo|myBattlefield
-name=Spoils of Victory
 rarity=U
-mana={2}{G}
-type=Sorcery
 [/card]
 [card]
-text=You gain 8 life.
+primitive=Spring of Eternal Peace
 id=10566
-auto=life:8
-name=Spring of Eternal Peace
 rarity=C
-mana={3}{G}{G}
-type=Sorcery
 [/card]
 [card]
-text=Stolen Grain deals 5 damage to target opponent. You gain 5 life.
+primitive=Stalking Tiger
+id=10550
+rarity=C
+[/card]
+[card]
+primitive=Stolen Grain
 id=10554
-auto=damage:5 opponent
-auto=life:5 controller
-name=Stolen Grain
 rarity=U
-mana={4}{B}{B}
-type=Sorcery
 [/card]
 [card]
-text={T}: Destroy target tapped nonblack creature. Activate this ability only during your turn, before attackers are declared.
+primitive=Stone Catapult
 id=10508
-name=Stone Catapult
 rarity=R
-mana={4}{B}
-type=Creature
-subtype=Human Soldier
-auto={T}:destroy target(creature[black;tapped]) myTurnOnly
-power=1
-toughness=2
 [/card]
 [card]
-text=Destroy target land.
+primitive=Stone Rain
 id=10606
-target=land
-auto=Destroy
-name=Stone Rain
 rarity=C
-mana={2}{R}
-type=Sorcery
 [/card]
 [card]
+primitive=Strategic Planning
+id=10602
+rarity=U
+[/card]
+[card]
+primitive=Straw Soldiers
 id=10613
-name=Straw Soldiers
 rarity=C
-mana={1}{U}
-type=Creature
-subtype=Scarecrow Soldier
-power=1
-toughness=3
 [/card]
 [card]
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)   When Sun Ce, Young Conquerer enters the battlefield, you may return target creature to its owner's hand.
+primitive=Sun Ce, Young Conquerer
 id=10709
-name=Sun Ce, Young Conquerer
-rarity=U
-mana={3}{U}{U}
-type=Legendary Creature
-subtype=Human Soldier
-auto=may moveto(ownerhand) target(creature|battlefield)
-power=3
-toughness=3
-abilities=horsemanship
+rarity=R
 [/card]
 [card]
-text=Creatures you control have horsemanship. (They can't be blocked except by creatures with horsemanship.)
+primitive=Sun Quan, Lord of Wu
 id=10513
-name=Sun Quan, Lord of Wu
 rarity=R
-mana={4}{U}{U}
-type=Legendary Creature
-subtype=Human Soldier
-auto=lord(creature|battlefield) horsemanship
-power=4
-toughness=4
 [/card]
 [card]
-text={T}: Add {B} to your mana pool.
-auto={T}:Add {B}
-id=10647
-name=Swamp
-rarity=L
-type=Basic Land
-subtype=Swamp
-[/card]
-[card]
-text={T}: Add {B} to your mana pool.
-auto={T}:Add {B}
-id=10648
-name=Swamp
-rarity=L
-type=Basic Land
-subtype=Swamp
-[/card]
-[card]
-text={T}: Add {B} to your mana pool.
-auto={T}:Add {B}
+primitive=Swamp
 id=10607
-name=Swamp
 rarity=L
-type=Basic Land
-subtype=Swamp
 [/card]
 [card]
-text=Taoist Hermit can't be the target of spells or abilities your opponents control.
+primitive=Swamp
+id=10647
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=10648
+rarity=L
+[/card]
+[card]
+primitive=Taoist Hermit
 id=10569
-name=Taoist Hermit
 rarity=U
-mana={2}{G}
-type=Creature
-subtype=Human Mystic
-power=2
-toughness=2
-abilities=opponentshroud
 [/card]
 [card]
-text=Taoist Mystic can't be blocked by creatures with horsemanship.
+primitive=Taoist Mystic
 id=10733
-name=Taoist Mystic
 rarity=R
-mana={2}{G}
-type=Creature
-subtype=Human Mystic
-auto=cantbeblockedby(creature[horsemanship])
-power=2
-toughness=2
 [/card]
 [card]
-text=Search your library for a Forest card and put that card onto the battlefield. Then shuffle your library.
+primitive=Taunting Challenge
+id=10492
+rarity=R
+[/card]
+[card]
+primitive=Three Visits
 id=10567
-target=forest|mylibrary
-auto=moveTo|myBattlefield
-name=Three Visits
-rarity=U
-mana={1}{G}
-type=Sorcery
+rarity=C
 [/card]
 [card]
-text=Whenever Trained Cheetah becomes blocked, it gets +1/+1 until end of turn.
+primitive=Trained Cheetah
 id=10573
-name=Trained Cheetah
 rarity=U
-mana={2}{G}
-type=Creature
-subtype=Cat
-auto=rampage(1/1,0)
-auto=rampage(-1/-1,1)
-power=2
-toughness=2
 [/card]
 [card]
+primitive=Trained Jackal
 id=10571
-name=Trained Jackal
 rarity=C
-mana={G}
-type=Creature
-subtype=Hound
-power=1
-toughness=2
 [/card]
 [card]
-text=Destroy target creature with horsemanship.
+primitive=Trip Wire
 id=10625
-target=creature[horsemanship]
-auto=destroy
-name=Trip Wire
 rarity=U
-mana={2}{G}
-type=Sorcery
 [/card]
 [card]
-text=Destroy target tapped creature.
+primitive=Vengeance
 id=10631
-target=creature[tapped]
-auto=Destroy
-name=Vengeance
 rarity=U
-mana={3}{W}
-type=Sorcery
 [/card]
 [card]
-text=Creatures you control get +1/+1 until end of turn.
-auto=lord(creature|myBattlefield) 1/1
+primitive=Virtuous Charge
 id=10596
-name=Virtuous Charge
 rarity=C
-mana={2}{W}
-type=Sorcery
 [/card]
 [card]
+primitive=Volunteer Militia
 id=10483
-name=Volunteer Militia
 rarity=C
-mana={W}
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=2
 [/card]
 [card]
-text=Whenever Wei Ambush Force attacks, it gets +2/+0 until end of turn.
+primitive=Warrior's Oath
+id=10552
+rarity=R
+[/card]
+[card]
+primitive=Warrior's Stand
+id=10633
+rarity=U
+[/card]
+[card]
+primitive=Wei Ambush Force
 id=10557
-name=Wei Ambush Force
 rarity=C
-mana={1}{B}
-type=Creature
-subtype=Human Soldier
-auto=lord(wei ambush force[attacking]|mybattlefield) 2/0
-auto=lord(other wei ambush force[attacking]|mybattlefield) -2/0
-power=1
-toughness=1
 [/card]
 [card]
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)
+primitive=Wei Assassins
+id=10583
+rarity=U
+[/card]
+[card]
+primitive=Wei Elite Companions
 id=10511
-name=Wei Elite Companions
 rarity=U
-mana={4}{B}
-type=Creature
-subtype=Human Soldier
-power=3
-toughness=3
-abilities=horsemanship
 [/card]
 [card]
+primitive=Wei Infantry
 id=10519
-name=Wei Infantry
 rarity=C
-mana={1}{B}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=1
 [/card]
 [card]
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)
+primitive=Wei Night Raiders
+id=10484
+rarity=U
+[/card]
+[card]
+primitive=Wei Scout
 id=10517
-name=Wei Scout
 rarity=C
-mana={1}{B}
-type=Creature
-subtype=Human Soldier Scout
-power=1
-toughness=1
-abilities=horsemanship
 [/card]
 [card]
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)
+primitive=Wei Strike Force
 id=10561
-name=Wei Strike Force
 rarity=C
-mana={2}{B}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=1
-abilities=horsemanship
 [/card]
 [card]
-text=Target creature gets +4/+4 until end of turn.
+primitive=Wielding the Green Dragon
 id=10562
-target=creature
-auto=4/4
-name=Wielding the Green Dragon
-rarity=U
-mana={1}{G}
-type=Sorcery
+rarity=C
 [/card]
 [card]
-text=Wu Admiral gets +1/+1 as long as an opponent controls an Island.
+primitive=Wolf Pack
+id=10522
+rarity=R
+[/card]
+[card]
+primitive=Wu Admiral
 id=10485
-name=Wu Admiral
 rarity=U
-mana={4}{U}
-type=Creature
-subtype=Human Soldier
-auto=aslongas(island|opponentBattlefield) 1/1
-power=3
-toughness=3
 [/card]
 [card]
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)
+primitive=Wu Elite Cavalry
 id=10611
-name=Wu Elite Cavalry
 rarity=C
-mana={3}{U}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=3
-abilities=horsemanship
 [/card]
 [card]
+primitive=Wu Infantry
 id=10600
-name=Wu Infantry
 rarity=C
-mana={1}{U}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=1
 [/card]
 [card]
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)
+primitive=Wu Light Cavalry
 id=10615
-name=Wu Light Cavalry
 rarity=C
-mana={1}{U}
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=2
-abilities=horsemanship
 [/card]
 [card]
-text={T}: Wu Longbowman deals 1 damage to target creature or player. Activate this ability only during your turn, before attackers are declared.
+primitive=Wu Longbowman
 id=10498
-name=Wu Longbowman
 rarity=U
-mana={2}{U}
-type=Creature
-subtype=Human Soldier
-auto={T}:damage:1 target(creature,player) myTurnOnly
-power=1
-toughness=1
 [/card]
 [card]
-text=Wu Warship can't attack unless defending player controls an Island.
+primitive=Wu Scout
+id=10612
+rarity=C
+[/card]
+[card]
+primitive=Wu Spy
+id=10529
+rarity=U
+[/card]
+[card]
+primitive=Wu Warship
 id=10605
-name=Wu Warship
 rarity=C
-mana={2}{U}
-type=Creature
-subtype=Human Soldier
-auto=aslongas(island|opponentBattlefield) -cantattack
-power=3
-toughness=3
-abilities=cantattack
 [/card]
 [card]
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)   Sacrifice Xiahou Dun, the One-Eyed: Return target black card from your graveyard to your hand. Activate this ability only during your turn, before attackers are declared.
+primitive=Xiahou Dun, the One-Eyed
 id=10590
-name=Xiahou Dun, the One-Eyed
-rarity=U
-mana={2}{B}{B}
-type=Legendary Creature
-subtype=Human Soldier
-auto={S}:moveTo(ownerhand) target(*[black]|mygraveyard) myTurnOnly
-power=3
-toughness=2
-abilities=horsemanship
+rarity=R
 [/card]
 [card]
-text={T}: Target creature gets +2/+0 until end of turn. Activate this ability only during your turn, before attackers are declared.
+primitive=Xun Yu, Wei Advisor
 id=13831
-name=Xun Yu, Wei Advisor 
 rarity=R
-mana={1}{B}{B}
-type=Legendary Creature
-subtype=Human Advisor
-auto={T}:2/0 target(creature|myBattlefield) myTurnOnly
-power=1
-toughness=1
 [/card]
 [card]
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)   Yellow Scarves Cavalry can't block.
+primitive=Yellow Scarves Cavalry
 id=10537
-name=Yellow Scarves Cavalry
 rarity=C
-mana={1}{R}
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=1
-abilities=horsemanship,cantblock
 [/card]
 [card]
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.) Yellow Scarves General can't block.
+primitive=Yellow Scarves General
 id=10577
-name=Yellow Scarves General
 rarity=R
-mana={3}{R}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=2
-abilities=horsemanship,cantblock
 [/card]
 [card]
-text=Yellow Scarves Troops can't block.
+primitive=Yellow Scarves Troops
 id=10542
-name=Yellow Scarves Troops
 rarity=C
-mana={1}{R}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=2
-abilities=cantblock
 [/card]
 [card]
-text=Young Wei Recruits can't block.
+primitive=Young Wei Recruits
 id=10584
-name=Young Wei Recruits
 rarity=C
-mana={1}{B}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=2
-abilities=cantblock
 [/card]
 [card]
-text=Whenever Yuan Shao's Infantry attacks alone, Yuan Shao's Infantry is unblockable this combat.
+primitive=Yuan Shao, the Indecisive
+id=10516
+rarity=R
+[/card]
+[card]
+primitive=Yuan Shao's Infantry
 id=10559
-name=Yuan Shao's Infantry
 rarity=U
-mana={3}{R}
-type=Creature
-subtype=Human Soldier
-auto=aslongas(other creature[attacking]|myBattlefield) -unblockable
-power=2
-toughness=2
-abilities=unblockable
 [/card]
 [card]
-text=Vigilance; horsemanship (This creature can't be blocked except by creatures with horsemanship.)
+primitive=Zhang Fei, Fierce Warrior
 id=10604
-name=Zhang Fei, Fierce Warrior
-rarity=U
-mana={4}{W}{W}
-type=Legendary Creature
-subtype=Human Soldier Warrior
-power=4
-toughness=4
-abilities=horsemanship,vigilance
+rarity=R
 [/card]
 [card]
-####Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1) 
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)   Whenever Zhang He, Wei General attacks, each other creature you control gets +1/+0 until end of turn.
+primitive=Zhang He, Wei General
 id=10520
-name=Zhang He Wei General
 rarity=R
-mana={3}{B}{B}
-type=Legendary Creature
-subtype=Human Soldier
-auto=aslongas(zhang he wei general[attacking]|myBattlefield) lord(creature[-zhang he wei general]|myBattlefield) 0/1
-power=4
-toughness=2
-abilities=horsemanship
 [/card]
 [card]
-####Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1) 
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)   Whenever Zhao Zilong, Tiger General blocks, it gets +1/+1 until end of turn.
+primitive=Zhang Liao, Hero of Hefei
+id=10727
+rarity=R
+[/card]
+[card]
+primitive=Zhao Zilong, Tiger General
 id=10686
-name=Zhao Zilong Tiger General
 rarity=R
-mana={3}{W}{W}
-type=Legendary Creature
-subtype=Human Soldier Warrior
-auto=lord(zhao zilong tiger general[blocking]|myBattlefield) 1/1
-power=3
-toughness=3
-auto=horsemanship
 [/card]
 [card]
-text=Zhou Yu, Chief Commander can't attack unless defending player controls an Island.
+primitive=Zhou Yu, Chief Commander
 id=10525
-name=Zhou Yu, Chief Commander
 rarity=R
-mana={5}{U}{U}
-type=Creature
-subtype=Human Soldier
-auto=aslongas(island|opponentBattlefield) -cantattack
-power=8
-toughness=8
-abilities=cantattack
 [/card]
 [card]
-text={T}: Target creature is unblockable this turn. Activate this ability only during your turn, before attackers are declared.
+primitive=Zhuge Jin, Wu Strategist
 id=10711
-name=Zhuge Jin, Wu Strategist
 rarity=R
-mana={1}{U}{U}
-type=Legendary Creature
-subtype=Human Advisor
-auto={T}:unblockable target(creature) myTurnOnly
-power=1
-toughness=1
 [/card]
 [card]
-text=Mountainwalk
+primitive=Zodiac Dog
 id=10534
-name=Zodiac Dog
 rarity=C
-mana={2}{R}
-type=Creature
-subtype=Hound
-power=2
-toughness=2
-abilities=mountainwalk
 [/card]
 [card]
-text=When Zodiac Dragon is put into your graveyard from the battlefield, you may return it to your hand.
-auto=@movedTo(this|mygraveyard) from(mybattlefield):may moveTo(ownerhand)
+primitive=Zodiac Dragon
 id=10510
-name=Zodiac Dragon
 rarity=R
-mana={7}{R}{R}
-type=Creature
-subtype=Dragon
-power=8
-toughness=8
 [/card]
 [card]
-text=Mountainwalk
+primitive=Zodiac Goat
 id=10540
-name=Zodiac Goat
 rarity=C
-mana={R}
-type=Creature
-subtype=Goat
-power=1
-toughness=1
-abilities=mountainwalk
 [/card]
 [card]
-text=Islandwalk
+primitive=Zodiac Horse
 id=10598
-name=Zodiac Horse
 rarity=U
-mana={3}{G}
-type=Creature
-subtype=Horse
-power=3
-toughness=3
-abilities=islandwalk
 [/card]
 [card]
-text=Forestwalk
+primitive=Zodiac Monkey
 id=10558
-name=Zodiac Monkey
 rarity=C
-mana={1}{G}
-type=Creature
-subtype=Ape
-power=2
-toughness=1
-abilities=forestwalk
 [/card]
 [card]
-text=Swampwalk
+primitive=Zodiac Ox
 id=10636
-name=Zodiac Ox
 rarity=U
-mana={3}{G}
-type=Creature
-subtype=Ox
-power=3
-toughness=3
-abilities=swampwalk
 [/card]
 [card]
-text=Swampwalk
+primitive=Zodiac Pig
 id=10586
-name=Zodiac Pig
 rarity=U
-mana={3}{B}
-type=Creature
-subtype=Boar
-power=3
-toughness=3
-abilities=swampwalk
 [/card]
 [card]
-text=Forestwalk
+primitive=Zodiac Rabbit
 id=10582
-name=Zodiac Rabbit
 rarity=C
-mana={G}
-type=Creature
-subtype=Rabbit
-power=1
-toughness=1
-abilities=forestwalk
 [/card]
 [card]
-text=Swampwalk
+primitive=Zodiac Rat
 id=10564
-name=Zodiac Rat
 rarity=C
-mana={B}
-type=Creature
-subtype=Rat
-power=1
-toughness=1
-abilities=swampwalk
 [/card]
 [card]
-text=Plainswalk
+primitive=Zodiac Rooster
 id=10506
-name=Zodiac Rooster
 rarity=C
-mana={1}{G}
-type=Creature
-subtype=Bird
-power=2
-toughness=1
-abilities=plainswalk
 [/card]
 [card]
-text=Swampwalk
+primitive=Zodiac Snake
 id=10608
-name=Zodiac Snake
 rarity=C
-mana={2}{B}
-type=Creature
-subtype=Snake
-power=2
-toughness=2
-abilities=swampwalk
 [/card]
 [card]
-text=Forestwalk
+primitive=Zodiac Tiger
 id=10594
-name=Zodiac Tiger
 rarity=U
-mana={2}{G}{G}
-type=Creature
-subtype=Tiger
-power=3
-toughness=4
-abilities=forestwalk
 [/card]
 [card]
-text=Zuo Ci, the Mocking Sage can't be blocked by creatures with horsemanship. Zuo Ci can't be the target of spells or abilities your opponents control.
+primitive=Zuo Ci, the Mocking Sage
 id=10610
-name=Zuo Ci, the Mocking Sage
 rarity=R
-mana={1}{G}{G}
-type=Legendary Creature
-subtype=Human Advisor
-auto=cantbeblockedby(creature[horsemanship])
-power=1
-toughness=2
-abilities=opponentshroud
 [/card]

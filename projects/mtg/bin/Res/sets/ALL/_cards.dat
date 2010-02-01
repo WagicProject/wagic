@@ -4,607 +4,992 @@ year=1996
 block=Ice
 [/meta]
 [card]
-text=Flying   Aesthir Glider can't block.
-id=3040
-name=Aesthir Glider
-rarity=C
-mana={3}
-type=Artifact Creature
-subtype=Bird
-power=2
-toughness=1
-abilities=flying,cantblock
-[/card]
-[card]
-text=Flying   Aesthir Glider can't block.
+primitive=Aesthir Glider
 id=3041
-name=Aesthir Glider
 rarity=C
-mana={3}
-type=Artifact Creature
-subtype=Bird
-power=2
-toughness=1
-abilities=flying,cantblock
 [/card]
 [card]
-text={R}: Add {B} to your mana pool.
-id=3159
-name=Agent of Stromgald
-rarity=C
-mana={R}
-type=Creature
-subtype=Human Knight
-auto={R}:Add {B}
-power=1
-toughness=1
-[/card]
-[card]
-text={R}: Add {B} to your mana pool.
+primitive=Agent of Stromgald
 id=3160
-name=Agent of Stromgald
 rarity=C
-mana={R}
-type=Creature
-subtype=Human Knight
-auto={R}:Add {B}
-power=1
-toughness=1
 [/card]
 [card]
-text=If Balduvian Trading Post would enter the battlefield, sacrifice an untapped Mountain instead. If you do, put Balduvian Trading Post onto the battlefield. If you don't, put it into its owner's graveyard.   {T}: Add {1}{R} to your mana pool.   {1}, {T}: Balduvian Trading Post deals 1 damage to target attacking creature.
+primitive=Agent of Stromgald
+id=3159
+rarity=C
+[/card]
+[card]
+primitive=Arcane Denial
+id=3098
+rarity=C
+[/card]
+[card]
+primitive=Arcane Denial
+id=3097
+rarity=C
+[/card]
+[card]
+primitive=Ashnod's Cylix
+id=3042
+rarity=R
+[/card]
+[card]
+primitive=Astrolabe
+id=3044
+rarity=C
+[/card]
+[card]
+primitive=Astrolabe
+id=3043
+rarity=C
+[/card]
+[card]
+primitive=Awesome Presence
+id=3100
+rarity=C
+[/card]
+[card]
+primitive=Awesome Presence
+id=3099
+rarity=C
+[/card]
+[card]
+primitive=Balduvian Dead
+id=3066
+rarity=U
+[/card]
+[card]
+primitive=Balduvian Horde
+id=3161
+rarity=R
+[/card]
+[card]
+primitive=Balduvian Trading Post
 id=3231
-name=Balduvian Trading Post
-auto=moveTo(graveyard) notatarget(mountain[-tapped]|myBattlefield)
-auto=moveTo(graveyard) notatarget(this|myBattlefield)
-auto=@movedTo(mountain[-tapped]|mygraveyard) from(myBattlefield):lord(this) {T}:Add{1}{R} && lord(this) {1}{T}:damage:1 target(creature[attacking])
-rarity=U
-type=Land
+rarity=R
 [/card]
 [card]
-text=Haste   Rampage 1 (Whenever this creature becomes blocked, it gets +1/+1 until end of turn for each creature blocking it beyond the first.)
-id=3162
-name=Balduvian War-Makers
-rarity=C
-mana={4}{R}
-type=Creature
-subtype=Human Barbarian
-auto=rampage(1/1,1)
-power=3
-toughness=3
-abilities=haste
-[/card]
-[card]
-text=Haste   Rampage 1 (Whenever this creature becomes blocked, it gets +1/+1 until end of turn for each creature blocking it beyond the first.)
+primitive=Balduvian War-Makers
 id=3163
-name=Balduvian War-Makers
 rarity=C
-mana={4}{R}
-type=Creature
-subtype=Human Barbarian
-auto=rampage(1/1,1)
-power=3
-toughness=3
-abilities=haste
 [/card]
 [card]
-text=Flying   When Carrier Pigeons enters the battlefield, draw a card at the beginning of the next turn's upkeep.
-id=3190
-name=Carrier Pigeons
+primitive=Balduvian War-Makers
+id=3162
 rarity=C
-mana={3}{W}
-type=Creature
-subtype=Bird
-auto=@next upkeep:draw:1
-power=1
-toughness=1
-abilities=flying
 [/card]
 [card]
-text=Flying   When Carrier Pigeons enters the battlefield, draw a card at the beginning of the next turn's upkeep.
+primitive=Benthic Explorers
+id=3102
+rarity=C
+[/card]
+[card]
+primitive=Benthic Explorers
+id=3101
+rarity=C
+[/card]
+[card]
+primitive=Bestial Fury
+id=3165
+rarity=C
+[/card]
+[card]
+primitive=Bestial Fury
+id=3164
+rarity=C
+[/card]
+[card]
+primitive=Bounty of the Hunt
+id=3128
+rarity=U
+[/card]
+[card]
+primitive=Browse
+id=3103
+rarity=U
+[/card]
+[card]
+primitive=Burnout
+id=3166
+rarity=U
+[/card]
+[card]
+primitive=Carrier Pigeons
 id=3191
-name=Carrier Pigeons
 rarity=C
-mana={3}{W}
-type=Creature
-subtype=Bird
-auto=@next upkeep:draw:1
-power=1
-toughness=1
-abilities=flying
 [/card]
 [card]
-text=Shroud (This permanent can't be the target of spells or abilities.)
-id=3129
-name=Deadly Insect
+primitive=Carrier Pigeons
+id=3190
 rarity=C
-mana={4}{G}
-type=Creature
-subtype=Insect
-power=6
-toughness=1
-abilities=shroud
 [/card]
 [card]
-text=Shroud (This permanent can't be the target of spells or abilities.)
+primitive=Casting of Bones
+id=3068
+rarity=C
+[/card]
+[card]
+primitive=Casting of Bones
+id=3067
+rarity=C
+[/card]
+[card]
+primitive=Chaos Harlequin
+id=3167
+rarity=R
+[/card]
+[card]
+primitive=Contagion
+id=3069
+rarity=U
+[/card]
+[card]
+primitive=Deadly Insect
 id=3130
-name=Deadly Insect
 rarity=C
-mana={4}{G}
-type=Creature
-subtype=Insect
-power=6
-toughness=1
-abilities=shroud
 [/card]
 [card]
-id=3132
-name=Elvish Ranger
+primitive=Deadly Insect
+id=3129
 rarity=C
-mana={2}{G}
-type=Creature
-subtype=Elf
-power=4
-toughness=1
 [/card]
 [card]
+primitive=Death Spark
+id=3168
+rarity=U
+[/card]
+[card]
+primitive=Diminishing Returns
+id=3104
+rarity=R
+[/card]
+[card]
+primitive=Diseased Vermin
+id=3070
+rarity=U
+[/card]
+[card]
+primitive=Dystopia
+id=3071
+rarity=R
+[/card]
+[card]
+primitive=Elvish Bard
+id=3131
+rarity=U
+[/card]
+[card]
+primitive=Elvish Ranger
 id=3133
-name=Elvish Ranger
 rarity=C
-mana={2}{G}
-type=Creature
-subtype=Elf
-power=4
-toughness=1
 [/card]
 [card]
-text=Exile Elvish Spirit Guide from your hand: Add {G} to your mana pool.
+primitive=Elvish Ranger
+id=3132
+rarity=C
+[/card]
+[card]
+primitive=Elvish Spirit Guide
 id=3134
-name=Elvish Spirit Guide
 rarity=U
-mana={2}{G}
-type=Creature
-subtype=Elf Spirit
-autohand={0}:moveto(exile) && add{G}
-power=2
-toughness=2
 [/card]
 [card]
-text={2}: Enslaved Scout gains mountainwalk until end of turn.
+primitive=Energy Arc
+id=3221
+rarity=U
+[/card]
+[card]
+primitive=Enslaved Scout
 id=3170
-name=Enslaved Scout
 rarity=C
-mana={2}{R}
-type=Creature
-subtype=Goblin Scout
-auto={2}:mountainwalk
-power=2
-toughness=2
 [/card]
 [card]
-text=Exile target nonwhite attacking creature. You gain life equal to its toughness.
+primitive=Enslaved Scout
+id=3169
+rarity=C
+[/card]
+[card]
+primitive=Errand of Duty
+id=3193
+rarity=C
+[/card]
+[card]
+primitive=Errand of Duty
+id=3192
+rarity=C
+[/card]
+[card]
+primitive=Exile
 id=3194
-target=creature[-white;attacking]
-auto=moveto(exile)
-auto=life:t controller
-name=Exile
 rarity=R
-mana={2}{W}
-type=Instant
 [/card]
 [card]
-text=Choose one - Put a 2/2 black Zombie creature token onto the battlefield; or destroy target nonblack, nonartifact creature and it can't be regenerated.
-auto=may token(Zombie,Creature Zombie,2/2,black)
-auto=may bury target(creature[-black;-artifact])
-id=3073
-name=Feast or Famine
+primitive=False Demise
+id=3106
 rarity=C
-mana={3}{B}
-type=Instant
 [/card]
 [card]
-text=Choose one - Put a 2/2 black Zombie creature token onto the battlefield; or destroy target nonblack, nonartifact creature and it can't be regenerated.
-auto=may token(Zombie,Creature Zombie,2/2,black)
-auto=may bury target(creature[-black;-artifact])
+primitive=False Demise
+id=3105
+rarity=C
+[/card]
+[card]
+primitive=Fatal Lore
+id=3072
+rarity=R
+[/card]
+[card]
+primitive=Feast or Famine
 id=3074
-name=Feast or Famine
 rarity=C
-mana={3}{B}
-type=Instant
 [/card]
 [card]
-text=Target creature gets +2/+0 until end of turn.   Draw a card at the beginning of the next turn's upkeep.
-id=3075
-target=Creature
-auto=2/0
-auto=@next upkeep:draw:1 controller
-name=Fevered Strength
+primitive=Feast or Famine
+id=3073
 rarity=C
-mana={2}{B}
-type=Instant
 [/card]
 [card]
-text=Target creature gets +2/+0 until end of turn.   Draw a card at the beginning of the next turn's upkeep.
+primitive=Fevered Strength
 id=3076
-target=Creature
-auto=2/0
-auto=@next upkeep:draw:1 controller
-name=Fevered Strength
 rarity=C
-mana={2}{B}
-type=Instant
 [/card]
 [card]
-text={1}{G}: Regenerate Gorilla Chieftain.
-id=3142
-name=Gorilla Chieftain
+primitive=Fevered Strength
+id=3075
 rarity=C
-mana={2}{G}{G}
-type=Creature
-subtype=Ape
-auto={1}G}:regenerate
-power=3
-toughness=3
 [/card]
 [card]
-text={1}{G}: Regenerate Gorilla Chieftain.
+primitive=Floodwater Dam
+id=3045
+rarity=R
+[/card]
+[card]
+primitive=Force of Will
+id=3107
+rarity=U
+[/card]
+[card]
+primitive=Foresight
+id=3109
+rarity=C
+[/card]
+[card]
+primitive=Foresight
+id=3108
+rarity=C
+[/card]
+[card]
+primitive=Fyndhorn Druid
+id=3136
+rarity=C
+[/card]
+[card]
+primitive=Fyndhorn Druid
+id=3135
+rarity=C
+[/card]
+[card]
+primitive=Gargantuan Gorilla
+id=3137
+rarity=R
+[/card]
+[card]
+primitive=Gift of the Woods
+id=3139
+rarity=C
+[/card]
+[card]
+primitive=Gift of the Woods
+id=3138
+rarity=C
+[/card]
+[card]
+primitive=Gorilla Berserkers
+id=3141
+rarity=C
+[/card]
+[card]
+primitive=Gorilla Berserkers
+id=3140
+rarity=C
+[/card]
+[card]
+primitive=Gorilla Chieftain
 id=3143
-name=Gorilla Chieftain
 rarity=C
-mana={2}{G}{G}
-type=Creature
-subtype=Ape
-auto={1}G}:regenerate
-power=3
-toughness=3
 [/card]
 [card]
-text=If Heart of Yavimaya would enter the battlefield, sacrifice a Forest instead. If you do, put Heart of Yavimaya onto the battlefield. If you don't, put it into its owner's graveyard.   {T}: Add {G} to your mana pool.   {T}: Target creature gets +1/+1 until end of turn.
-id=3232
-name=Heart of Yavimaya
-auto=moveTo(graveyard) notatarget(this|myBattlefield)
-auto=moveTo(graveyard) notatarget(forest[-tapped]|myBattlefield)
-auto=@movedTo(forest[-tapped]|mygraveyard) from(myBattlefield):lord(this|myBattlefield) {T}:Add{G} && lord(this|myBattlefield) {T}:1/1 target(creature)
+primitive=Gorilla Chieftain
+id=3142
+rarity=C
+[/card]
+[card]
+primitive=Gorilla Shaman
+id=3172
+rarity=C
+[/card]
+[card]
+primitive=Gorilla Shaman
+id=3171
+rarity=C
+[/card]
+[card]
+primitive=Gorilla War Cry
+id=3174
+rarity=C
+[/card]
+[card]
+primitive=Gorilla War Cry
+id=3173
+rarity=C
+[/card]
+[card]
+primitive=Guerrilla Tactics
+id=3176
+rarity=C
+[/card]
+[card]
+primitive=Guerrilla Tactics
+id=3175
+rarity=C
+[/card]
+[card]
+primitive=Gustha's Scepter
+id=3046
 rarity=R
-type=Land
 [/card]
 [card]
-text=Hail Storm deals 2 damage to each attacking creature and 1 damage to you and each creature you control.
+primitive=Hail Storm
 id=3144
-auto=damage:2 all(creature[attacking])
-auto=damage:1 controller
-auto=damage:1 all(creature|myBattlefield)
-name=Hail Storm
 rarity=U
-mana={1}{G}{G}
-type=Instant
 [/card]
 [card]
-text=Green creatures you control get +1/+1.
-id=184553
-name=Kaysa
+primitive=Heart of Yavimaya
+id=3232
 rarity=R
-mana={3}{G}{G}
-type=Legendary Creature
-subtype=Elf Druid
-auto=lord(creature[green]|myBattlefield)1/1
-power=2
-toughness=3
 [/card]
 [card]
-text=If Kjeldoran Outpost would enter the battlefield, sacrifice a Plains instead. If you do, put Kjeldoran Outpost onto the battlefield. If you don't, put it into its owner's graveyard.   {T}: Add {W} to your mana pool.   {1}{W}, {T}: Put a 1/1 white Soldier creature token onto the battlefield.
+primitive=Helm of Obedience
+id=3047
+rarity=R
+[/card]
+[card]
+primitive=Inheritance
+id=3195
+rarity=U
+[/card]
+[card]
+primitive=Insidious Bookworms
+id=3078
+rarity=C
+[/card]
+[card]
+primitive=Insidious Bookworms
+id=3077
+rarity=C
+[/card]
+[card]
+primitive=Ivory Gargoyle
+id=3196
+rarity=R
+[/card]
+[card]
+primitive=Juniper Order Advocate
+id=3197
+rarity=U
+[/card]
+[card]
+primitive=Kaysa
+id=3145
+rarity=R
+[/card]
+[card]
+primitive=Keeper of Tresserhorn
+id=3079
+rarity=R
+[/card]
+[card]
+primitive=Kjeldoran Escort
+id=3199
+rarity=C
+[/card]
+[card]
+primitive=Kjeldoran Escort
+id=3198
+rarity=C
+[/card]
+[card]
+primitive=Kjeldoran Home Guard
+id=3200
+rarity=U
+[/card]
+[card]
+primitive=Kjeldoran Outpost
 id=3233
-name=Kjeldoran Outpost
-auto=moveTo(graveyard) notatarget(this|myBattlefield)
-auto=moveTo(graveyard) notatarget(plains[-tapped]|myBattlefield)
-auto=@movedTo(plains[-tapped]|mygraveyard) from(myBattlefield):lord(this|myBattlefield) {T}:Add{W} && lord(this|myBattlefield) {1}{W}{T}:token(Soldier,creature soldier, 1/1,white)
 rarity=R
-type=Land
 [/card]
 [card]
-text=If Lake of the Dead would enter the battlefield, sacrifice a Swamp instead. If you do, put Lake of the Dead onto the battlefield. If you don't, put it into its owner's graveyard.   {T}: Add {B} to your mana pool.   {T}, Sacrifice a Swamp: Add {B}{B}{B}{B} to your mana pool.
+primitive=Kjeldoran Pride
+id=3202
+rarity=C
+[/card]
+[card]
+primitive=Kjeldoran Pride
+id=3201
+rarity=C
+[/card]
+[card]
+primitive=Krovikan Horror
+id=3080
+rarity=R
+[/card]
+[card]
+primitive=Krovikan Plague
+id=3081
+rarity=U
+[/card]
+[card]
+primitive=Lake of the Dead
 id=3234
-name=Lake of the Dead
-auto=moveTo(graveyard) notatarget(this|myBattlefield)
-auto=moveTo(graveyard) notatarget(swamp[-tapped]|myBattlefield)
-auto=@movedTo(swamp[-tapped]|mygraveyard) from(myBattlefield):lord(this|myBattlefield) {T}:Add{B} && lord(this|myBattlefield) {T}{S(swamp|myBattlefield)}:Add{B}{B}{B}{B}
 rarity=R
-type=Land
 [/card]
 [card]
-text=Shuffle a card from your hand into your library.   If you do, draw two cards at the beginning of the next turn's upkeep.
-id=3110
-target=*|myHand
-auto=moveto(mylibrary) && shuffle
-auto=@next upkeep:draw:2 controller
-name=Lat-Nam's Legacy
-rarity=C
-mana={1}{U}
-type=Instant
-[/card]
-[card]
-text=Shuffle a card from your hand into your library.   If you do, draw two cards at the beginning of the next turn's upkeep.
+primitive=Lat-Nam's Legacy
 id=3111
-target=*|myHand
-auto=moveto(mylibrary) && shuffle
-auto=@next upkeep:draw:2 controller
-name=Lat-Nam's Legacy
 rarity=C
-mana={1}{U}
-type=Instant
 [/card]
 [card]
-text=First strike   {1}{B}: Regenerate Lim-Dûl's High Guard.
-id=3082
-name=Lim-Dul's High Guard
-rarity=U
-mana={1}{B}{B}
-type=Creature
-subtype=Skeleton
-auto={1}{B}:regenerate
-power=2
-toughness=1
-abilities=first strike
+primitive=Lat-Nam's Legacy
+id=3110
+rarity=C
 [/card]
 [card]
-text=First strike   {1}{B}: Regenerate Lim-Dûl's High Guard.
+primitive=Library of Lat-Nam
+id=3112
+rarity=R
+[/card]
+[card]
+primitive=Lim-Dul's High Guard
 id=3083
-name=Lim-Dul's High Guard
-rarity=U
-mana={1}{B}{B}
-type=Creature
-subtype=Skeleton
-auto={1}{B}:regenerate
-power=2
-toughness=1
-abilities=first strike
-[/card]
-[card]
-text={1}{W}: Target creature gains first strike until end of turn.
-auto={1}{W}:first strike target(creature)
-id=3205
-name=Noble Steeds
 rarity=C
-mana={2}{W}
-type=Enchantment
 [/card]
 [card]
-text={1}{W}: Target creature gains first strike until end of turn.
-auto={1}{W}:first strike target(creature)
+primitive=Lim-Dul's High Guard
+id=3082
+rarity=C
+[/card]
+[card]
+primitive=Lim-Dul's Paladin
+id=3222
+rarity=U
+[/card]
+[card]
+primitive=Lim-Dul's Vault
+id=3223
+rarity=U
+[/card]
+[card]
+primitive=Lodestone Bauble
+id=3048
+rarity=R
+[/card]
+[card]
+primitive=Lord of Tresserhorn
+id=3224
+rarity=R
+[/card]
+[card]
+primitive=Martyrdom
+id=3204
+rarity=C
+[/card]
+[card]
+primitive=Martyrdom
+id=3203
+rarity=C
+[/card]
+[card]
+primitive=Misfortune
+id=3225
+rarity=R
+[/card]
+[card]
+primitive=Mishra's Groundbreaker
+id=3049
+rarity=U
+[/card]
+[card]
+primitive=Misinformation
+id=3084
+rarity=U
+[/card]
+[card]
+primitive=Mystic Compass
+id=3050
+rarity=U
+[/card]
+[card]
+primitive=Nature's Blessing
+id=3226
+rarity=U
+[/card]
+[card]
+primitive=Nature's Chosen
+id=3146
+rarity=U
+[/card]
+[card]
+primitive=Nature's Wrath
+id=3147
+rarity=R
+[/card]
+[card]
+primitive=Noble Steeds
 id=3206
-name=Noble Steeds
 rarity=C
-mana={2}{W}
-type=Enchantment
 [/card]
 [card]
-text=Destroy target artifact or land. It can't be regenerated.
+primitive=Noble Steeds
+id=3205
+rarity=C
+[/card]
+[card]
+primitive=Omen of Fire
+id=3177
+rarity=R
+[/card]
+[card]
+primitive=Phantasmal Fiend
+id=3086
+rarity=C
+[/card]
+[card]
+primitive=Phantasmal Fiend
+id=3085
+rarity=C
+[/card]
+[card]
+primitive=Phantasmal Sphere
+id=3113
+rarity=R
+[/card]
+[card]
+primitive=Phelddagrif
+id=3227
+rarity=R
+[/card]
+[card]
+primitive=Phyrexian Boon
+id=3088
+rarity=C
+[/card]
+[card]
+primitive=Phyrexian Boon
+id=3087
+rarity=C
+[/card]
+[card]
+primitive=Phyrexian Devourer
+id=3051
+rarity=R
+[/card]
+[card]
+primitive=Phyrexian Portal
+id=3052
+rarity=R
+[/card]
+[card]
+primitive=Phyrexian War Beast
+id=3054
+rarity=C
+[/card]
+[card]
+primitive=Phyrexian War Beast
+id=3053
+rarity=C
+[/card]
+[card]
+primitive=Pillage
 id=3178
-target=artifact,land
-auto=bury
-name=Pillage
 rarity=U
-mana={1}{R}{R}
-type=Sorcery
 [/card]
 [card]
-text=Destroy target creature with power 4 or greater. It can't be regenerated.
-id=3209
-target=creature[power>=4]
-auto=bury
-name=Reprisal
+primitive=Primitive Justice
+id=3179
 rarity=U
-mana={1}{W}
-type=Instant
 [/card]
 [card]
-text=Destroy target creature with power 4 or greater. It can't be regenerated.
+primitive=Pyrokinesis
+id=3180
+rarity=U
+[/card]
+[card]
+primitive=Reinforcements
+id=3208
+rarity=C
+[/card]
+[card]
+primitive=Reinforcements
+id=3207
+rarity=C
+[/card]
+[card]
+primitive=Reprisal
 id=3210
-target=creature[power>=4]
-auto=bury
-name=Reprisal
-rarity=U
-mana={1}{W}
-type=Instant
+rarity=C
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.   {2}, {T}: Add one mana of any color to your mana pool.
+primitive=Reprisal
+id=3209
+rarity=C
+[/card]
+[card]
+primitive=Ritual of the Machine
+id=3089
+rarity=R
+[/card]
+[card]
+primitive=Rogue Skycaptain
+id=3181
+rarity=R
+[/card]
+[card]
+primitive=Royal Decree
+id=3211
+rarity=R
+[/card]
+[card]
+primitive=Royal Herbalist
+id=3213
+rarity=C
+[/card]
+[card]
+primitive=Royal Herbalist
+id=3212
+rarity=C
+[/card]
+[card]
+primitive=Scarab of the Unseen
+id=3055
+rarity=U
+[/card]
+[card]
+primitive=Scars of the Veteran
+id=3214
+rarity=U
+[/card]
+[card]
+primitive=School of the Unseen
 id=3235
-name=School of the Unseen
-auto={T}:Add {1}
-auto={2}{T}:Add {W}
-auto={2}{T}:Add {U}
-auto={2}{T}:Add {B}
-auto={2}{T}:Add {R}
-auto={2}{T}:Add {G}
 rarity=U
-type=Land
 [/card]
 [card]
-text=Defender   Whenever Shield Sphere blocks, put a -0/-1 counter on it.
+primitive=Seasoned Tactician
+id=3215
+rarity=U
+[/card]
+[card]
+primitive=Sheltered Valley
+id=3236
+rarity=R
+[/card]
+[card]
+primitive=Shield Sphere
 id=3056
-name=Shield Sphere
 rarity=U
-mana={0}
-type=Artifact Creature
-subtype=Wall
-auto=@each combatdamage:counter(0/-1) all(shield sphere[blocking]|myBattlefield) && counter(0/1) all(other shield sphere[blocking]|myBattlefield)
-power=0
-toughness=6
-abilities=defender
 [/card]
 [card]
-text=Whenever Soldevi Steam Beast becomes tapped, target opponent gains 2 life.   {2}: Regenerate Soldevi Steam Beast.
-id=3061
-name=Soldevi Steam Beast
+primitive=Sol Grail
+id=3057
+rarity=U
+[/card]
+[card]
+primitive=Soldevi Adnate
+id=3091
 rarity=C
-mana={5}
-type=Artifact Creature
-subtype=Beast
-auto={2}:regenerate
-auto=@tapped(this):life:2 opponent
-power=4
-toughness=2
 [/card]
 [card]
-text=Whenever Soldevi Steam Beast becomes tapped, target opponent gains 2 life.   {2}: Regenerate Soldevi Steam Beast.
+primitive=Soldevi Adnate
+id=3090
+rarity=C
+[/card]
+[card]
+primitive=Soldevi Digger
+id=3058
+rarity=R
+[/card]
+[card]
+primitive=Soldevi Excavations
+id=3237
+rarity=R
+[/card]
+[card]
+primitive=Soldevi Heretic
+id=3115
+rarity=C
+[/card]
+[card]
+primitive=Soldevi Heretic
+id=3114
+rarity=C
+[/card]
+[card]
+primitive=Soldevi Sage
+id=3117
+rarity=C
+[/card]
+[card]
+primitive=Soldevi Sage
+id=3116
+rarity=C
+[/card]
+[card]
+primitive=Soldevi Sentry
+id=3060
+rarity=C
+[/card]
+[card]
+primitive=Soldevi Sentry
+id=3059
+rarity=C
+[/card]
+[card]
+primitive=Soldevi Steam Beast
 id=3062
-name=Soldevi Steam Beast
 rarity=C
-mana={5}
-type=Artifact Creature
-subtype=Beast
-auto={2}:regenerate
-auto=@tapped(this):life:2 opponent
-power=4
-toughness=2
 [/card]
 [card]
-text=Nonartifact creatures get -1/-1 until end of turn.
-auto=lord(creature[-artifact]) -1/-1
-id=3092
-name=Stench of Decay
+primitive=Soldevi Steam Beast
+id=3061
 rarity=C
-mana={1}{B}{B}
-type=Instant
 [/card]
 [card]
-text=Nonartifact creatures get -1/-1 until end of turn.
-auto=lord(creature[-artifact]) -1/-1
+primitive=Soldier of Fortune
+id=3182
+rarity=U
+[/card]
+[card]
+primitive=Spiny Starfish
+id=3118
+rarity=U
+[/card]
+[card]
+primitive=Splintering Wind
+id=3148
+rarity=R
+[/card]
+[card]
+primitive=Stench of Decay
 id=3093
-name=Stench of Decay
 rarity=C
-mana={1}{B}{B}
-type=Instant
 [/card]
 [card]
-text=Flying (This creature can't be blocked except by creatures with flying or reach.)
-id=3119
-name=Storm Crow
+primitive=Stench of Decay
+id=3092
 rarity=C
-mana={1}{U}
-type=Creature
-subtype=Bird
-power=1
-toughness=2
-abilities=flying
 [/card]
 [card]
-text=Flying (This creature can't be blocked except by creatures with flying or reach.)
+primitive=Storm Cauldron
+id=3063
+rarity=R
+[/card]
+[card]
+primitive=Storm Crow
 id=3120
-name=Storm Crow
 rarity=C
-mana={1}{U}
-type=Creature
-subtype=Bird
-power=1
-toughness=2
-abilities=flying
 [/card]
 [card]
-text={R}: Storm Shaman gets +1/+0 until end of turn.
-id=3183
-name=Storm Shaman
+primitive=Storm Crow
+id=3119
+rarity=C
+[/card]
+[card]
+primitive=Storm Elemental
+id=3121
 rarity=U
-mana={2}{R}
-type=Creature
-subtype=Human Cleric Shaman
-auto={R}:1/0
-power=0
-toughness=4
 [/card]
 [card]
-text={R}: Storm Shaman gets +1/+0 until end of turn.
+primitive=Storm Shaman
 id=3184
-name=Storm Shaman
-rarity=U
-mana={2}{R}
-type=Creature
-subtype=Human Cleric Shaman
-auto={R}:1/0
-power=0
-toughness=4
+rarity=C
 [/card]
 [card]
-text={1}{W}: Target nonattacking, nonblocking creature gets +0/+2 until end of turn.
-auto={1}{W}:0/2 target(creature[-attacking;-blocking])
+primitive=Storm Shaman
+id=3183
+rarity=C
+[/card]
+[card]
+primitive=Stromgald Spy
+id=3094
+rarity=U
+[/card]
+[card]
+primitive=Suffocation
+id=3122
+rarity=U
+[/card]
+[card]
+primitive=Surge of Strength
+id=3228
+rarity=U
+[/card]
+[card]
+primitive=Sustaining Spirit
+id=3216
+rarity=R
+[/card]
+[card]
+primitive=Swamp Mosquito
+id=3096
+rarity=C
+[/card]
+[card]
+primitive=Swamp Mosquito
+id=3095
+rarity=C
+[/card]
+[card]
+primitive=Sworn Defender
+id=3217
+rarity=R
+[/card]
+[card]
+primitive=Taste of Paradise
+id=3150
+rarity=C
+[/card]
+[card]
+primitive=Taste of Paradise
+id=3149
+rarity=C
+[/card]
+[card]
+primitive=Thawing Glaciers
+id=3238
+rarity=R
+[/card]
+[card]
+primitive=Thought Lash
+id=3123
+rarity=R
+[/card]
+[card]
+primitive=Tidal Control
+id=3124
+rarity=R
+[/card]
+[card]
+primitive=Tornado
+id=3151
+rarity=R
+[/card]
+[card]
+primitive=Undergrowth
+id=3153
+rarity=C
+[/card]
+[card]
+primitive=Undergrowth
+id=3152
+rarity=C
+[/card]
+[card]
+primitive=Unlikely Alliance
 id=3218
-name=Unlikely Alliance
 rarity=U
-mana={1}{W}
-type=Enchantment
 [/card]
 [card]
-text=Enchant creature   Enchanted creature gets +1/+1.   {1}{U}: Return Viscerid Armor to its owner's hand.
-id=3125
-target=creature
-auto=1/1
-auto={1}{U}:moveto(ownerhand)
-name=Viscerid Armor
+primitive=Urza's Engine
+id=3064
+rarity=U
+[/card]
+[card]
+primitive=Varchild's Crusader
+id=3186
 rarity=C
-mana={1}{U}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text=Enchant creature   Enchanted creature gets +1/+1.   {1}{U}: Return Viscerid Armor to its owner's hand.
+primitive=Varchild's Crusader
+id=3185
+rarity=C
+[/card]
+[card]
+primitive=Varchild's War-Riders
+id=3187
+rarity=R
+[/card]
+[card]
+primitive=Veteran's Voice
+id=3189
+rarity=C
+[/card]
+[card]
+primitive=Veteran's Voice
+id=3188
+rarity=C
+[/card]
+[card]
+primitive=Viscerid Armor
 id=3126
-target=creature
-auto=1/1
-auto={1}{U}:moveto(ownerhand)
-name=Viscerid Armor
 rarity=C
-mana={1}{U}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text=Flying, first strike   {W}{W}: Wild Aesthir gets +2/+0 until end of turn. Activate this ability only once each turn.
-id=3219
-name=Wild Aesthir
+primitive=Viscerid Armor
+id=3125
 rarity=C
-mana={2}{W}
-type=Creature
-subtype=Bird
-auto={W}{W}:2/0 limit:1
-power=1
-toughness=1
-abilities=flying,first strike
 [/card]
 [card]
-text=Flying, first strike   {W}{W}: Wild Aesthir gets +2/+0 until end of turn. Activate this ability only once each turn.
+primitive=Viscerid Drone
+id=3127
+rarity=U
+[/card]
+[card]
+primitive=Wandering Mage
+id=3229
+rarity=R
+[/card]
+[card]
+primitive=Whip Vine
+id=3155
+rarity=C
+[/card]
+[card]
+primitive=Whip Vine
+id=3154
+rarity=C
+[/card]
+[card]
+primitive=Whirling Catapult
+id=3065
+rarity=U
+[/card]
+[card]
+primitive=Wild Aesthir
 id=3220
-name=Wild Aesthir
 rarity=C
-mana={2}{W}
-type=Creature
-subtype=Bird
-auto={W}{W}:2/0 limit:1
-power=1
-toughness=1
-abilities=flying,first strike
 [/card]
 [card]
-text={G}: Yavimaya Ancients gets +1/-2 until end of turn.
-id=3156
-name=Yavimaya Ancients
-rarity=U
-mana={3}{G}{G}
-type=Creature
-subtype=Treefolk
-auto={G}:1/-2
-power=2
-toughness=7
+primitive=Wild Aesthir
+id=3219
+rarity=C
 [/card]
 [card]
-text={G}: Yavimaya Ancients gets +1/-2 until end of turn.
+primitive=Winter's Night
+id=3230
+rarity=R
+[/card]
+[card]
+primitive=Yavimaya Ancients
 id=3157
-name=Yavimaya Ancients
+rarity=C
+[/card]
+[card]
+primitive=Yavimaya Ancients
+id=3156
+rarity=C
+[/card]
+[card]
+primitive=Yavimaya Ants
+id=3158
 rarity=U
-mana={3}{G}{G}
-type=Creature
-subtype=Treefolk
-auto={G}:1/-2
-power=2
-toughness=7
 [/card]

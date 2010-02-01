@@ -1,0 +1,450 @@
+[card]
+primitive=Air Elemental
+id=26654
+rarity=U
+[/card]
+[card]
+primitive=Balduvian Horde
+id=26655
+rarity=R
+[/card]
+[card]
+primitive=Ball Lightning
+id=26620
+rarity=R
+[/card]
+[card]
+primitive=Blizzard Elemental
+id=26653
+rarity=R
+[/card]
+[card]
+primitive=Bloodrock Cyclops
+id=26626
+rarity=C
+[/card]
+[card]
+primitive=Bone Harvest
+id=27245
+rarity=C
+[/card]
+[card]
+primitive=Brainstorm
+id=27246
+rarity=C
+[/card]
+[card]
+primitive=Clockwork Avian
+id=26606
+rarity=R
+[/card]
+[card]
+primitive=Clockwork Beast
+id=26617
+rarity=R
+[/card]
+[card]
+primitive=Cloud Djinn
+id=26625
+rarity=U
+[/card]
+[card]
+primitive=Cloud Elemental
+id=27247
+rarity=C
+[/card]
+[card]
+primitive=Coercion
+id=27248
+rarity=C
+[/card]
+[card]
+primitive=Counterspell
+id=26644
+rarity=C
+[/card]
+[card]
+primitive=Crash of Rhinos
+id=27249
+rarity=C
+[/card]
+[card]
+primitive=Crashing Boars
+id=26640
+rarity=U
+[/card]
+[card]
+primitive=Dark Ritual
+id=26632
+rarity=C
+[/card]
+[card]
+primitive=Deadly Insect
+id=27250
+rarity=C
+[/card]
+[card]
+primitive=Death Stroke
+id=26629
+rarity=C
+[/card]
+[card]
+primitive=Diabolic Edict
+id=27251
+rarity=C
+[/card]
+[card]
+primitive=Diabolic Vision
+id=26613
+rarity=U
+[/card]
+[card]
+primitive=Drain Life
+id=26618
+rarity=C
+[/card]
+[card]
+primitive=Dwarven Ruins
+id=26651
+rarity=U
+[/card]
+[card]
+primitive=Ebon Stronghold
+id=26650
+rarity=U
+[/card]
+[card]
+primitive=Erhnam Djinn
+id=27227
+rarity=U
+[/card]
+[card]
+primitive=Fallen Angel
+id=26660
+rarity=R
+[/card]
+[card]
+primitive=Feral Shadow
+id=27564
+rarity=C
+[/card]
+[card]
+primitive=Fireball
+id=26621
+rarity=C
+[/card]
+[card]
+primitive=Fog
+id=26648
+rarity=C
+[/card]
+[card]
+primitive=Fog Elemental
+id=26657
+rarity=C
+[/card]
+[card]
+primitive=Force of Nature
+id=26609
+rarity=R
+[/card]
+[card]
+primitive=Forest
+id=27244
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=27243
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=27242
+rarity=L
+[/card]
+[card]
+primitive=Gaseous Form
+id=26641
+rarity=C
+[/card]
+[card]
+primitive=Giant Crab
+id=26627
+rarity=C
+[/card]
+[card]
+primitive=Giant Growth
+id=26649
+rarity=C
+[/card]
+[card]
+primitive=Gravedigger
+id=27253
+rarity=C
+[/card]
+[card]
+primitive=Havenwood Battleground
+id=26652
+rarity=U
+[/card]
+[card]
+primitive=Hollow Dogs
+id=27254
+rarity=C
+[/card]
+[card]
+primitive=Hulking Cyclops
+id=26624
+rarity=U
+[/card]
+[card]
+primitive=Impulse
+id=26616
+rarity=C
+[/card]
+[card]
+primitive=Island
+id=27238
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=27237
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=27236
+rarity=L
+[/card]
+[card]
+primitive=Killer Whale
+id=26638
+rarity=U
+[/card]
+[card]
+primitive=Kird Ape
+id=26605
+rarity=C
+[/card]
+[card]
+primitive=Lava Axe
+id=26643
+rarity=C
+[/card]
+[card]
+primitive=Leviathan
+id=26619
+rarity=R
+[/card]
+[card]
+primitive=Lightning Bolt
+id=27255
+rarity=C
+[/card]
+[card]
+primitive=Llanowar Elves
+id=27256
+rarity=C
+[/card]
+[card]
+primitive=Lowland Giant
+id=27257
+rarity=C
+[/card]
+[card]
+primitive=Mahamoti Djinn
+id=26608
+rarity=R
+[/card]
+[card]
+primitive=Mountain
+id=27241
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=27240
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=27239
+rarity=L
+[/card]
+[card]
+primitive=Plated Spider
+id=26661
+rarity=C
+[/card]
+[card]
+primitive=Polluted Mire
+id=26637
+rarity=C
+[/card]
+[card]
+primitive=Power Sink
+id=26658
+rarity=C
+[/card]
+[card]
+primitive=Quirion Elves
+id=26614
+rarity=C
+[/card]
+[card]
+primitive=Raging Goblin
+id=27258
+rarity=C
+[/card]
+[card]
+primitive=Rampant Growth
+id=27259
+rarity=C
+[/card]
+[card]
+primitive=Remote Isle
+id=26636
+rarity=C
+[/card]
+[card]
+primitive=Scaled Wurm
+id=27260
+rarity=C
+[/card]
+[card]
+primitive=Segmented Wurm
+id=26628
+rarity=U
+[/card]
+[card]
+primitive=Sengir Vampire
+id=26607
+rarity=U
+[/card]
+[card]
+primitive=Shambling Strider
+id=26611
+rarity=C
+[/card]
+[card]
+primitive=Shivan Dragon
+id=26622
+rarity=R
+[/card]
+[card]
+primitive=Shock
+id=26645
+rarity=C
+[/card]
+[card]
+primitive=Skittering Horror
+id=26656
+rarity=C
+[/card]
+[card]
+primitive=Skittering Skirge
+id=27261
+rarity=C
+[/card]
+[card]
+primitive=Slippery Karst
+id=26634
+rarity=C
+[/card]
+[card]
+primitive=Smoldering Crater
+id=26635
+rarity=C
+[/card]
+[card]
+primitive=Snapping Drake
+id=27262
+rarity=C
+[/card]
+[card]
+primitive=Sonic Burst
+id=26639
+rarity=C
+[/card]
+[card]
+primitive=Svyelunite Temple
+id=26623
+rarity=U
+[/card]
+[card]
+primitive=Swamp
+id=27235
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=27234
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=27233
+rarity=L
+[/card]
+[card]
+primitive=Talruum Minotaur
+id=26646
+rarity=C
+[/card]
+[card]
+primitive=Tar Pit Warrior
+id=26615
+rarity=C
+[/card]
+[card]
+primitive=Terror
+id=26659
+rarity=C
+[/card]
+[card]
+primitive=Thunderbolt
+id=27270
+rarity=C
+[/card]
+[card]
+primitive=Thundering Giant
+id=26633
+rarity=U
+[/card]
+[card]
+primitive=Tolarian Winds
+id=27264
+rarity=C
+[/card]
+[card]
+primitive=Viashino Warrior
+id=27265
+rarity=C
+[/card]
+[card]
+primitive=Vigilant Drake
+id=26642
+rarity=C
+[/card]
+[card]
+primitive=Wayward Soul
+id=27266
+rarity=C
+[/card]
+[card]
+primitive=Wild Growth
+id=26647
+rarity=C
+[/card]
+[card]
+primitive=Woolly Spider
+id=27271
+rarity=C
+[/card]
+[card]
+primitive=Yavimaya Wurm
+id=26631
+rarity=C
+[/card]

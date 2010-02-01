@@ -4,744 +4,732 @@ year=2001
 block=Invasion
 [/meta]
 [card]
-text=Domain ÅETarget player draws a card for each basic land type among lands he or she controls.
+primitive=Allied Strategies
 id=26383
-auto=aslongas(plains|myBattlefield) draw:1
-auto=aslongas(island|myBattlefield) draw:1
-auto=aslongas(swamp|myBattlefield) draw:1
-auto=aslongas(mountain|myBattlefield) draw:1
-auto=aslongas(forest|myBattlefield) draw:1
-name=Allied Strategies
 rarity=U
-mana={4}{U}
-type=Sorcery
 [/card]
 [card]
-text={1}{G}: Target Kavu creature gets -1/+1 until end of turn.
+primitive=Alpha Kavu
 id=27613
-name=Alpha Kavu
 rarity=U
-mana={2}{G}
-type=Creature
-subtype=Kavu
-auto={1}{G}:-1/1 target(kavu)
-power=2
-toughness=2
 [/card]
 [card]
-text=First strike, reach (This creature can block creatures with flying.)
+primitive=Amphibious Kavu
+id=26409
+rarity=C
+[/card]
+[card]
+primitive=Ancient Spider
 id=19149
-name=Ancient Spider
 rarity=R
-mana={2}{G}{W}
-type=Creature
-subtype=Spider
-power=2
-toughness=5
-abilities=first strike,reach
 [/card]
 [card]
-text=Destroy target enchantment.   Draw a card.
+primitive=Arctic Merfolk
+id=26360
+rarity=C
+[/card]
+[card]
+primitive=Aura Blast
 id=26382
-target=enchantment
-auto=destroy
-auto=draw:1 controller
-name=Aura Blast
 rarity=C
-mana={1}{W}
-type=Instant
 [/card]
 [card]
-text=Flying   When Cavern Harpy enters the battlefield, return a blue or black creature you control to its owner's hand.   Pay 1 life: Return Cavern Harpy to its owner's hand.
+primitive=Aurora Griffin
+id=26284
+rarity=C
+[/card]
+[card]
+primitive=Bog Down
+id=25943
+rarity=C
+[/card]
+[card]
+primitive=Caldera Kavu
+id=26437
+rarity=C
+[/card]
+[card]
+primitive=Cavern Harpy
 id=25926
-name=Cavern Harpy
 rarity=C
-mana={U}{B}
-type=Creature
-subtype=Harpy Beast
-auto=moveTo(ownerhand) notatarget(creature[blue;black]|myBattlefield)
-auto={0}:moveTo(ownerhand) && life:-1 controller
-power=2
-toughness=1
-abilities=flying
 [/card]
 [card]
-text=When Crosis's Catacombs enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand.   {T}: Add {U}, {B}, or {R} to your mana pool.
+primitive=Cloud Cover
+id=25899
+rarity=R
+[/card]
+[card]
+primitive=Confound
+id=27714
+rarity=C
+[/card]
+[card]
+primitive=Crosis's Catacombs
 id=25936
-name=Crosis's Catacombs
-auto=aslongas(land[-lair]|myBattlefield) moveTo(ownerhand) notatarget(land[-lair]|myBattlefield)
-auto=moveTo(graveyard) notatarget(this|myBattlefield)
-auto=@movedTo(land[-lair]|myhand) from(myBattlefield):lord(crosis's catacombs) {T}:Add{U} && lord(crosis's catacombs) {T}:Add{B} && lord(crosis's catacombs) {T}:Add{R}
 rarity=U
-type=Land
-subtype=Lair
 [/card]
 [card]
-text=Choose one - Return target permanent to its owner's hand; or destroy target nonblack creature, and it can't be regenerated; or destroy target artifact.
+primitive=Crosis's Charm
 id=25863
-name=Crosis's Charm
-auto=may moveTo(ownerhand) target(*)
-auto=may bury target(creature[black])
-auto=may destroy target(artifact)
 rarity=U
-mana={U}{B}{R}
-type=Instant
 [/card]
 [card]
-text=When Darigaaz's Caldera enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand.   {T}: Add {B}, {R}, or {G} to your mana pool.
+primitive=Darigaaz's Caldera
 id=25938
-name=Darigaaz's Caldera
-auto=aslongas(land[-lair]|myBattlefield) moveTo(ownerhand) notatarget(land[-lair]|myBattlefield)
-auto=moveTo(graveyard) notatarget(this|myBattlefield)
-auto=@movedTo(land[-lair]|myhand) from(myBattlefield):lord(darigaaz's caldera) {T}:Add{B} && lord(darigaaz's caldera) {T}:Add{R} && lord(darigaaz's caldera) {T}:Add{G}
 rarity=U
-type=Land
-subtype=Lair
 [/card]
 [card]
-text=Choose one - Return target creature card from your graveyard to your hand; or Darigaaz's Charm deals 3 damage to target creature or player; or target creature gets +3/+3 until end of turn.
+primitive=Darigaaz's Charm
 id=25864
-name=Darigaaz's Charm
-auto=may moveTo(myhand) target(creature|mygraveyard)
-auto=may damage:3 target(creature,player)
-auto=may 3/3 target(creature)
 rarity=U
-mana={B}{R}{G}
-type=Instant
 [/card]
 [card]
-text=Target creature gets +1/+1 and gains flying and first strike until end of turn.
+primitive=Daring Leap
 id=25822
-target=creature
-auto=1/1
-auto=first strike
-auto=flying
-name=Daring Leap
 rarity=C
-mana={1}{W}{U}
-type=Instant
 [/card]
 [card]
-text={R}, Sacrifice a Zombie: Deadapult deals 2 damage to target creature or player.
-auto={S(zombie|myBattlefield)}:Damage:2 target(creature,player)
+primitive=Dark Suspicions
+id=26414
+rarity=R
+[/card]
+[card]
+primitive=Deadapult
 id=26837
-name=Deadapult
 rarity=R
-mana={2}{R}
-type=Enchantment
 [/card]
 [card]
-text=Until end of turn, creatures you control gain protection from white if you control a Plains, from blue if you control an Island, from black if you control a Swamp, from red if you control a Mountain, and from green if you control a Forest.
+primitive=Death Bomb
+id=26782
+rarity=C
+[/card]
+[card]
+primitive=Destructive Flow
+id=9690
+rarity=R
+[/card]
+[card]
+primitive=Diabolic Intent
+id=26422
+rarity=R
+[/card]
+[card]
+primitive=Disciple of Kangee
+id=26285
+rarity=C
+[/card]
+[card]
+primitive=Dominaria's Judgment
 id=26423
-
-auto=aslongas(plains|myBattlefield) lord(creature|myBattlefield) protection from white
-auto=aslongas(island|myBattlefield) lord(creature|myBattlefield) protection from blue
-auto=aslongas(swamp|myBattlefield) lord(creature|myBattlefield) protection from black
-auto=aslongas(mountain|myBattlefield) lord(creature|myBattlefield) protection from red
-auto=aslongas(forest|myBattlefield) lord(creature|myBattlefield) protection from green
-name=Dominaria's Judgment
 rarity=R
-mana={2}{W}
-type=Instant
 [/card]
 [card]
-text=When Dromar's Cavern enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand.   {T}: Add {W}, {U}, or {B} to your mana pool.
+primitive=Doomsday Specter
+id=23051
+rarity=R
+[/card]
+[card]
+primitive=Draco
+id=25797
+rarity=R
+[/card]
+[card]
+primitive=Dralnu's Crusade
+id=26840
+rarity=R
+[/card]
+[card]
+primitive=Dralnu's Pet
+id=15144
+rarity=R
+[/card]
+[card]
+primitive=Dromar's Cavern
 id=25932
-name=Dromar's Cavern
-auto=aslongas(land[-lair]|myBattlefield) moveTo(ownerhand) notatarget(land[-lair]|myBattlefield)
-auto=moveTo(graveyard) notatarget(this|myBattlefield)
-auto=@movedTo(land[-lair]|myhand) from(myBattlefield):lord(dromar's cavern) {T}:Add{W} && lord(dromar's cavern) {T}:Add{U} && lord(dromar's cavern) {T}:Add{B}
 rarity=U
-type=Land
-subtype=Lair
 [/card]
 [card]
-text=Choose one - You gain 5 life; or counter target spell; or target creature gets -2/-2 until end of turn.
+primitive=Dromar's Charm
 id=25862
-name=Dromar's Charm
-auto=may life:5 controller
-auto=may fizzle target(*|stack)
-auto=may -2/-2 target(creature)
 rarity=U
-mana={W}{U}{B}
-type=Instant
 [/card]
 [card]
-text=Search your library for a creature card, reveal it, and put it into your hand. Then shuffle your library.
+primitive=Eladamri's Call
 id=25646
-target=creature|mylibrary
-auto=moveTo(myHand)
-name=Eladamri's Call
 rarity=R
-mana={G}{W}
-type=Instant
 [/card]
 [card]
-text={U}, {T}, Sacrifice a creature or enchantment: Counter target spell.
+primitive=Ertai, the Corrupted
 id=29292
-name=Ertai, the Corrupted
 rarity=R
-mana={2}{W}{U}{B}
-auto={U}{T}{S(creature,enchantment|myBattlefield)}:fizzle target(*|stack)
-type=Legendary Creature
-subtype=Wizard
-power=3
-toughness=4
 [/card]
 [card]
-text={2}{U}: Return target white or black creature you control to its owner's hand.
-auto={2}{U}:moveTo(ownerhand) target(creature[white,black]|myBattlefield)
+primitive=Ertai, the Corrupted
+id=25614
+rarity=R
+[/card]
+[card]
+primitive=Ertai's Trickery
+id=26590
+rarity=U
+[/card]
+[card]
+primitive=Escape Routes
 id=21276
-name=Escape Routes
 rarity=C
-mana={2}{U}
-type=Enchantment
 [/card]
 [card]
-text=Domain Å- Target player loses X life and you gain X life, where X is the number of basic land types among lands you control.
+primitive=Exotic Disease
 id=25931
-auto=aslongas(plains|myBattlefield) life:-1 opponent && life:1 controller
-auto=aslongas(island|myBattlefield) life:-1 opponent && life:1 controller
-auto=aslongas(swamp|myBattlefield) life:-1 opponent && life:1 controller
-auto=aslongas(mountain|myBattlefield) life:-1 opponent && life:1 controller
-auto=aslongas(forest|myBattlefield) life:-1 opponent && life:1 controller
-name=Exotic Disease
 rarity=U
-mana={4}{B}
-type=Sorcery
 [/card]
 [card]
-text=When Flametongue Kavu enters the battlefield, it deals 4 damage to target creature.
+primitive=Falling Timber
+id=25945
+rarity=C
+[/card]
+[card]
+primitive=Flametongue Kavu
 id=26262
-name=Flametongue Kavu
 rarity=U
-mana={3}{R}
-type=Creature
-subtype=Kavu
-auto=damage:4 target(creature)
-power=4
-toughness=2
 [/card]
 [card]
-text=Flash   When Fleetfoot Panther enters the battlefield, return a green or white creature you control to its owner's hand.
+primitive=Fleetfoot Panther
 id=26479
-name=Fleetfoot Panther
 rarity=U
-mana={1}{G}{W}
-type=Creature
-subtype=Cat
-auto=moveTo(ownerhand) notatarget(creature[green;white]|myBattlefield)
-power=3
-toughness=4
-abilities=flash
 [/card]
 [card]
-text=Forsaken City doesn't untap during your untap step. At the beginning of your upkeep, you may exile a card from your hand. If you do, untap Forsaken City.   {T}: Add one mana of any color to your mana pool.
+primitive=Forsaken City
 id=25893
-name=Forsaken City
-auto={0}:untap all(this) && moveto(exile) target(*|myHand) limit:1 myUpkeepOnly
-auto={T}:add{G}
-auto={T}:add{W}
-auto={T}:add{R}
-auto={T}:add{B}
-auto={T}:add{U}
 rarity=R
-type=Land
-abilities=doesnotuntap
 [/card]
 [card]
-text=Domain - Target creature gets +1/+1 until end of turn for each basic land type among lands you control.
+primitive=Gaea's Herald
+id=26411
+rarity=R
+[/card]
+[card]
+primitive=Gaea's Might
 id=26838
-target=creature
-auto=aslongas(forest|myBattlefield) 1/1
-auto=aslongas(mountain|myBattlefield) 1/1
-auto=aslongas(plains|myBattlefield) 1/1
-auto=aslongas(swamp|myBattlefield) 1/1
-auto=aslongas(island|myBattlefield) 1/1
-name=Gaea's Might
 rarity=C
-mana={G}
-type=Instant
 [/card]
 [card]
-text=Counter target blue spell.
-target=*[blue]|stack
-auto=fizzle
+primitive=Gainsay
 id=27189
-name=Gainsay
 rarity=U
-mana={1}{U}
-type=Instant
 [/card]
 [card]
-text=Untap target creature. It gets +3/+3 until end of turn.
-target=creature
-auto=untap
-auto=3/3
+primitive=Gerrard's Command
 id=25873
-name=Gerrard's Command
 rarity=C
-mana={G}{W}
-type=Instant
 [/card]
 [card]
-text=When Honorable Scout enters the battlefield, you gain 2 life for each black and/or red creature target opponent controls.
-auto=foreach(creature[black]|opponentBattlefield) life:2 controller
-auto=foreach(creature[red]|opponentBattlefield) life:2 controller
+primitive=Goblin Game
+id=8902
+rarity=R
+[/card]
+[card]
+primitive=Guard Dogs
+id=19141
+rarity=U
+[/card]
+[card]
+primitive=Heroic Defiance
+id=26420
+rarity=C
+[/card]
+[card]
+primitive=Hobble
+id=26292
+rarity=C
+[/card]
+[card]
+primitive=Honorable Scout
 id=26263
-name=Honorable Scout
 rarity=C
-mana={W}
-type=Creature
-subtype=Human Soldier Scout
-power=1
-toughness=1
 [/card]
 [card]
-text=When Horned Kavu enters the battlefield, return a red or green creature you control to its owner's hand.
+primitive=Horned Kavu
 id=25928
-name=Horned Kavu
 rarity=C
-mana={R}{G}
-type=Creature
-subtype=Kavu
-auto=moveTo(ownerhand) notatarget(creature[red;green]|myBattlefield)
-power=3
-toughness=4
 [/card]
 [card]
-text=Flying   When Hunting Drake enters the battlefield, put target red or green creature on top of its owner's library.
+primitive=Hull Breach
+id=25872
+rarity=C
+[/card]
+[card]
+primitive=Hunting Drake
 id=22980
-name=Hunting Drake
 rarity=C
-mana={4}{U}
-type=Creature
-subtype=Drake
-auto=moveTo(ownerLibrary) target(creature[red;green]|battlefield)
-power=2
-toughness=2
-abilities=flying
 [/card]
 [card]
-text=Destroy target land.   Draw a card.
+primitive=Implode
 id=26260
-target=land
-auto=destroy
-auto=draw:1 controller
-name=Implode
 rarity=U
-mana={4}{R}
-type=Sorcery
 [/card]
 [card]
-text=Enchant creature   Whenever enchanted creature becomes tapped, Insolence deals 2 damage to that creature's controller.
-alias=1218
+primitive=Insolence
 id=26415
-target=creature
-name=Insolence
 rarity=C
-mana={2}{R}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text=Enchant creature   {B}: Regenerate enchanted creature.   {R}: Enchanted creature gets +1/+0 until end of turn.   {G}: Enchanted creature gains trample until end of turn.
+primitive=Kavu Recluse
+id=26268
+rarity=C
+[/card]
+[card]
+primitive=Keldon Mantle
 id=19358
-target=creature
-auto={B}:regenerate
-auto={R}:1/0 
-auto={G}:trample
-name=Keldon Mantle
 rarity=C
-mana={1}{R}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text=When Lava Zombie enters the battlefield, return a black or red creature you control to its owner's hand.   {2}: Lava Zombie gets +1/+0 until end of turn.
+primitive=Keldon Twilight
+id=21323
+rarity=R
+[/card]
+[card]
+primitive=Lashknife Barrier
+id=26833
+rarity=U
+[/card]
+[card]
+primitive=Lava Zombie
 id=25927
-name=Lava Zombie
 rarity=C
-mana={1}{B}{R}
-type=Creature
-subtype=Zombie
-auto=moveTo(ownerhand) notatarget(creature[black;red]|myBattlefield)
-auto={2}:1/0
-power=4
-toughness=3
 [/card]
 [card]
-text=Other Zombie creatures get +1/+1.   {1}{B}, {T}: Return target Zombie card from your graveyard to your hand.
+primitive=Lord of the Undead
 id=10742
-name=Lord of the Undead
 rarity=R
-mana={1}{B}{B}
-type=Creature
-subtype=Zombie
-auto=lord(zombie) 1/1 other
-auto={1}{B}{T}:moveTo(myhand) target(zombie|mygraveyard)
-power=2
-toughness=2
 [/card]
 [card]
-text=When Maggot Carrier enters the battlefield, each player loses 1 life.
+primitive=Maggot Carrier
 id=26266
-name=Maggot Carrier
 rarity=C
-mana={B}
-type=Creature
-subtype=Zombie
-auto=life:-1 controller
-auto=life:-1 opponent
-power=1
-toughness=1
 [/card]
 [card]
-text=Domain - For each basic land type among lands you control, Magnigoth Treefolk has landwalk of that type.
+primitive=Magma Burst
+id=25944
+rarity=C
+[/card]
+[card]
+primitive=Magnigoth Treefolk
 id=26397
-name=Magnigoth Treefolk
 rarity=R
-mana={4}{G}
-type=Creature
-subtype=Treefolk
-auto=aslongas(plains|myBattlefield) plainswalk
-auto=aslongas(island|myBattlefield) islandwalk
-auto=aslongas(swamp|myBattlefield) swampwalk
-auto=aslongas(mountain|myBattlefield) mountainwalk
-auto=aslongas(forest|myBattlefield) forestwalk
-power=2
-toughness=6
 [/card]
 [card]
-text={1}, {T}: Add one mana of any color to your mana pool.
+primitive=Malicious Advice
+id=25870
+rarity=C
+[/card]
+[card]
+primitive=Mana Cylix
 id=26381
-name=Mana Cylix
 rarity=U
-mana={1}
-type=Artifact
-auto={1}{T}:Add {W}
-auto={1}{T}:Add {U} 
-auto={1}{T}:Add {B}
-auto={1}{T}:Add {R}
-auto={1}{T}:Add {G}
 [/card]
 [card]
-text={T}: Choose a color of a permanent you control. Add one mana of that color to your mana pool.
+primitive=March of Souls
+id=26277
+rarity=R
+[/card]
+[card]
+primitive=Marsh Crocodile
+id=25934
+rarity=U
+[/card]
+[card]
+primitive=Meddling Mage
+id=26591
+rarity=R
+[/card]
+[card]
+primitive=Meteor Crater
 id=25979
-auto=aslongas(*[white]|myBattlefield) {T}:Add {W}
-auto=aslongas(*[blue]|myBattlefield) {T}:Add {U}
-auto=aslongas(*[black]|myBattlefield) {T}:Add {B}
-auto=aslongas(*[red]|myBattlefield) {T}:Add {R}
-auto=aslongas(*[green]|myBattlefield) {T}:Add {G}
-name=Meteor Crater
 rarity=R
-type=Land
 [/card]
 [card]
-text=Mire Kavu gets +1/+1 as long as you control a Swamp.
+primitive=Mire Kavu
 id=26363
-name=Mire Kavu
 rarity=C
-mana={3}{R}
-type=Creature
-subtype=Kavu
-auto=aslongas(swamp|myBattlefield) 1/1
-power=3
-toughness=2
 [/card]
 [card]
-text=Mogg Jailer can't attack if defending player controls an untapped creature with power 2 or less.
-auto=aslongas(creature[power<=2;-tapped]|opponentBattlefield) cantattack
+primitive=Mirrorwood Treefolk
+id=26839
+rarity=U
+[/card]
+[card]
+primitive=Mogg Jailer
 id=26275
-name=Mogg Jailer
 rarity=U
-mana={1}{R}
-type=Creature
-subtype=Goblin
-power=2
-toughness=2
 [/card]
 [card]
-text=Whenever an opponent casts a spell, Mogg Sentry gets +2/+2 until end of turn.
+primitive=Mogg Sentry
 id=26269
-name=Mogg Sentry
 rarity=R
-mana={R}
-type=Creature
-subtype=Goblin Warrior
-auto=@movedTo(*|opponentstack):2/2 ueot
-power=1
-toughness=1
 [/card]
 [card]
-text=Sacrifice Morgue Toad: Add {U}{R} to your mana pool.
-auto={S}:Add {U}{R}
+primitive=Morgue Toad
 id=27589
-name=Morgue Toad
 rarity=C
-mana={2}{B}
-type=Creature
-subtype=Frog
-power=2
-toughness=2
 [/card]
 [card]
-text=When Natural Emergence enters the battlefield, return a red or green enchantment you control to its owner's hand.   Lands you control are 2/2 creatures with first strike. They're still lands.
+primitive=Multani's Harmony
+id=22298
+rarity=U
+[/card]
+[card]
+primitive=Natural Emergence
 id=26410
-name=Natural Emergence
-auto=moveTo(ownerhand) notatarget(enchantment[red;green]|myBattlefield)
-auto=@movedTo(enchantment[red;green]|myhand) from(myBattlefield):lord(land|myBattlefield) becomes(Creature,2/2,first strike)
 rarity=R
-mana={2}{R}{G}
-type=Enchantment
 [/card]
 [card]
-text={2}{G}: Put a 1/1 green Saproling creature token onto the battlefield.   Sacrifice a Saproling: Saproling creatures get +1/+1 until end of turn.
+primitive=Nemata, Grove Guardian
 id=26412
-name=Nemata, Grove Guardian
 rarity=R
-mana={4}{G}{G}
-type=Legendary Creature
-subtype=Treefolk
-auto={2}{G}:token(Saproling,creature saproling,1/1,green)
-auto={S(saproling|myBattlefield)}:lord(saproling) 1/1 ueot
-power=4
-toughness=5
 [/card]
 [card]
-text=When Phyrexian Bloodstock leaves the battlefield, destroy target white creature. It can't be regenerated.
-auto=@moveTo(this|exile,graveyard,hand,library) from(battlefield):bury target(creature[white])
+primitive=Nightscape Battlemage
+id=25914
+rarity=U
+[/card]
+[card]
+primitive=Nightscape Familiar
+id=25693
+rarity=C
+[/card]
+[card]
+primitive=Noxious Vapors
+id=26478
+rarity=U
+[/card]
+[card]
+primitive=Orim's Chant
+id=26852
+rarity=R
+[/card]
+[card]
+primitive=Phyrexian Bloodstock
 id=26280
-name=Phyrexian Bloodstock
 rarity=C
-mana={4}{B}
-type=Creature
-subtype=Zombie
-power=3
-toughness=3
 [/card]
 [card]
-text=When Pygmy Kavu enters the battlefield, draw a card for each black creature your opponents control.
-auto=foreach(creature[black]|opponentBattlefield) draw:1 controller
+primitive=Phyrexian Scuta
+id=26477
+rarity=R
+[/card]
+[card]
+primitive=Phyrexian Tyranny
+id=26281
+rarity=R
+[/card]
+[card]
+primitive=Planar Overlay
+id=26835
+rarity=R
+[/card]
+[card]
+primitive=Planeswalker's Favor
+id=25890
+rarity=R
+[/card]
+[card]
+primitive=Planeswalker's Fury
+id=25889
+rarity=R
+[/card]
+[card]
+primitive=Planeswalker's Mirth
+id=25886
+rarity=R
+[/card]
+[card]
+primitive=Planeswalker's Mischief
+id=25887
+rarity=R
+[/card]
+[card]
+primitive=Planeswalker's Scorn
+id=25888
+rarity=R
+[/card]
+[card]
+primitive=Pollen Remedy
+id=25941
+rarity=C
+[/card]
+[card]
+primitive=Primal Growth
+id=26396
+rarity=C
+[/card]
+[card]
+primitive=Pygmy Kavu
 id=23113
-name=Pygmy Kavu
 rarity=C
-mana={3}{G}
-type=Creature
-subtype=Kavu
-power=1
-toughness=2
 [/card]
 [card]
-text=Whenever you cast a white, blue, black, or red spell, put a +1/+1 counter on Quirion Dryad.
-auto=@movedTo(*[white;blue;black;red]|myStack):counter(1/1)
+primitive=Questing Phelddagrif
+id=27634
+rarity=R
+[/card]
+[card]
+primitive=Quirion Dryad
 id=26286
-name=Quirion Dryad
 rarity=R
-mana={1}{G}
-type=Creature
-subtype=Dryad
-power=1
-toughness=1
 [/card]
 [card]
-text=When Rith's Grove enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand.   {T}: Add {R}, {G}, or {W} to your mana pool.
+primitive=Quirion Explorer
+id=26348
+rarity=C
+[/card]
+[card]
+primitive=Radiant Kavu
+id=12691
+rarity=R
+[/card]
+[card]
+primitive=Razing Snidd
+id=25937
+rarity=U
+[/card]
+[card]
+primitive=Rith's Charm
+id=25865
+rarity=U
+[/card]
+[card]
+primitive=Rith's Grove
 id=25939
-name=Rith's Grove
-auto=aslongas(land[-lair]|myBattlefield) moveTo(ownerhand) notatarget(land[-lair]|myBattlefield)
-auto=moveTo(graveyard) notatarget(this|myBattlefield)
-auto=@movedTo(land[-lair]|myhand) from(myBattlefield):lord(rith's grove) {T}:Add{R} && lord(rith's grove) {T}:Add{G} && lord(rith's grove) {T}:Add{W}
 rarity=U
-type=Land
-subtype=Lair
 [/card]
 [card]
-text={2}{G}, {T}, Sacrifice Root Greevil: Destroy all enchantments of the color of your choice.
+primitive=Root Greevil
 id=8827
-name=Root Greevil
 rarity=C
-mana={3}{G}
-type=Creature
-subtype=Beast
-auto={2}{G}{T}{S}:destroy all(enchantment[white])
-auto={2}{G}{T}{S}:destroy all(enchantment[blue])
-auto={2}{G}{T}{S}:destroy all(enchantment[black])
-auto={2}{G}{T}{S}:destroy all(enchantment[red])
-auto={2}{G}{T}{S}:destroy all(enchantment[green])
-power=2
-toughness=3
 [/card]
 [card]
-text=Trample   When Shivan Wurm enters the battlefield, return a red or green creature you control to its owner's hand.
-id=25924
-name=Shivan Wurm
+primitive=Rushing River
+id=25942
+rarity=C
+[/card]
+[card]
+primitive=Samite Elder
+id=22962
 rarity=R
-mana={3}{R}{G}
-type=Creature
-subtype=Wurm
-auto=moveTo(ownerhand) notatarget(creature[red;green]|myBattlefield)
-power=7
-toughness=7
-abilities=trample
 [/card]
 [card]
-text=Target creature gains fear until end of turn.
+primitive=Samite Pilgrim
+id=26271
+rarity=C
+[/card]
+[card]
+primitive=Sawtooth Loon
+id=25933
+rarity=U
+[/card]
+[card]
+primitive=Sea Snidd
+id=26362
+rarity=C
+[/card]
+[card]
+primitive=Shifting Sky
+id=26290
+rarity=U
+[/card]
+[card]
+primitive=Shivan Wurm
+id=25924
+rarity=R
+[/card]
+[card]
+primitive=Shriek of Dread
 id=27229
-target=creature
-auto=fear
-name=Shriek of Dread
 rarity=C
-mana={1}{B}
-type=Instant
 [/card]
 [card]
-text=Flying   When Silver Drake enters the battlefield, return a white or blue creature you control to its owner's hand.
+primitive=Silver Drake
 id=25925
-name=Silver Drake
 rarity=C
-mana={1}{W}{U}
-type=Creature
-subtype=Drake
-auto=moveTo(ownerhand) notatarget(creature[white;blue]|myBattlefield)
-power=3
-toughness=3
-abilities=flying
 [/card]
 [card]
-text=Lands gain shroud until end of turn. (They can't be the targets of spells or abilities.)   Draw a card.
+primitive=Singe
+id=25900
+rarity=C
+[/card]
+[card]
+primitive=Sinister Strength
+id=25954
+rarity=C
+[/card]
+[card]
+primitive=Sisay's Ingenuity
+id=26407
+rarity=C
+[/card]
+[card]
+primitive=Skyship Weatherlight
+id=29293
+rarity=R
+[/card]
+[card]
+primitive=Skyship Weatherlight
+id=26480
+rarity=R
+[/card]
+[card]
+primitive=Skyshroud Blessing
 id=26402
-auto=lord(land) shroud
-auto=draw:1 controller
-name=Skyshroud Blessing
 rarity=U
-mana={1}{G}
-type=Instant
 [/card]
 [card]
-text=Destroy target green creature. It can't be regenerated.   Draw a card.
+primitive=Slay
 id=15137
-target=creature[green]
-auto=bury
-auto=draw:1 controller
-name=Slay
 rarity=U
-mana={2}{B}
-type=Instant
 [/card]
 [card]
-text={R}, {T}: Slingshot Goblin deals 2 damage to target blue creature.
+primitive=Sleeping Potion
+id=26781
+rarity=C
+[/card]
+[card]
+primitive=Slingshot Goblin
 id=22025
-name=Slingshot Goblin
 rarity=C
-mana={2}{R}
-type=Creature
-subtype=Goblin
-auto={R}{T}:Damage:2 target(creature[blue])
-power=2
-toughness=2
 [/card]
 [card]
-text=When Sparkcaster enters the battlefield, return a red or green creature you control to its owner's hand.   When Sparkcaster enters the battlefield, it deals 1 damage to target player.
+primitive=Sparkcaster
 id=25935
-name=Sparkcaster
 rarity=U
-mana={2}{R}{G}
-type=Creature
-subtype=Kavu
-auto=moveTo(ownerhand) notatarget(creature[red;green]|myBattlefield)
-auto=damage:1 opponent
-power=5
-toughness=3
 [/card]
 [card]
-text=Star Compass enters the battlefield tapped.   {T}: Add to your mana pool one mana of any color a basic land you control could produce.
+primitive=Star Compass
 id=25880
-name=Star Compass
 rarity=U
-mana={2}
-type=Artifact
-auto=tap
-auto=aslongas(plains|myBattlefield) {T}:Add {W}
-auto=aslongas(island|myBattlefield) {T}:Add {U} 
-auto=aslongas(swamp|myBattlefield) {T}:Add {B}
-auto=aslongas(mountain|myBattlefield) {T}:Add {R}
-auto=aslongas(forest|myBattlefield) {T}:Add {G}
 [/card]
 [card]
-text=First strike   When Steel Leaf Paladin enters the battlefield, return a green or white creature you control to its owner's hand.
+primitive=Steel Leaf Paladin
 id=25929
-name=Steel Leaf Paladin
 rarity=C
-mana={4}{G}{W}
-type=Creature
-subtype=Elf Knight
-auto=moveTo(ownerhand) notatarget(creature[green;white]|myBattlefield)
-power=4
-toughness=4
-abilities=first strike
 [/card]
 [card]
-text={R}: Stone Kavu gets +1/+0 until end of turn.   {W}: Stone Kavu gets +0/+1 until end of turn.
+primitive=Stone Kavu
 id=26377
-name=Stone Kavu
-mana={4}{G}
 rarity=C
-type=Creature
-subtype=Kavu
-auto={R}:1/0
-auto={W}:0/1
-power=3
-toughness=3
 [/card]
 [card]
-text=Strafe deals 3 damage to target nonred creature.
-target=creature[-red]
-auto=Damage:3
+primitive=Stormscape Battlemage
+id=25913
+rarity=U
+[/card]
+[card]
+primitive=Stormscape Familiar
+id=25616
+rarity=C
+[/card]
+[card]
+primitive=Strafe
 id=26288
-name=Strafe
 rarity=U
-mana={R}
-type=Sorcery
 [/card]
 [card]
-text={2},{T}, Sacrifice Terminal Moraine: Search your library for a basic land card and put it into play tapped. Then shuffle your library.
-auto={2}{T}{S}:moveTo(myBattlefield) target(basic|mylibrary) && tap
+primitive=Stratadon
+id=25869
+rarity=U
+[/card]
+[card]
+primitive=Sunken Hope
+id=21305
+rarity=R
+[/card]
+[card]
+primitive=Sunscape Battlemage
+id=25912
+rarity=U
+[/card]
+[card]
+primitive=Sunscape Familiar
+id=25615
+rarity=C
+[/card]
+[card]
+primitive=Surprise Deployment
+id=26403
+rarity=U
+[/card]
+[card]
+primitive=Tahngarth, Talruum Hero
+id=29291
+rarity=R
+[/card]
+[card]
+primitive=Tahngarth, Talruum Hero
+id=26408
+rarity=R
+[/card]
+[card]
+primitive=Terminal Moraine
 id=25980
-name=Terminal Moraine
-rarity=C
-type=Land
-[/card]
-[card]
-text=Destroy target creature. It can't be regenerated.
-target=creature
-auto=bury
-id=25871
-name=Terminate
-rarity=C
-mana={B}{R}
-type=Instant
-[/card]
-[card]
-text=When Treva's Ruins enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand.   {T}: Add {G}, {W}, or {U} to your mana pool.
-id=25940
-name=Treva's Ruins
-auto=aslongas(land[-lair]|myBattlefield) moveTo(ownerhand) notatarget(land[-lair]|myBattlefield)
-auto=moveTo(graveyard) notatarget(this|myBattlefield)
-auto=@movedTo(land[-lair]|myhand) from(myBattlefield):lord(treva's ruins) {T}:Add{G} && lord(treva's ruins) {T}:Add{W} && lord(treva's ruins) {T}:Add{U}
 rarity=U
-type=Land
-subtype=Lair
 [/card]
 [card]
-text=Flying   {1}{R}: Volcano Imp gains first strike until end of turn.
-id=26368
-name=Volcano Imp
-mana={3}{B}
+primitive=Terminate
+id=25871
 rarity=C
-type=Creature
-subtype=Imp
-auto={1}{R}:first strike
-power=2
-toughness=2
-abilities=flying
+[/card]
+[card]
+primitive=Thornscape Battlemage
+id=25916
+rarity=U
+[/card]
+[card]
+primitive=Thornscape Familiar
+id=25618
+rarity=C
+[/card]
+[card]
+primitive=Thunderscape Battlemage
+id=25915
+rarity=U
+[/card]
+[card]
+primitive=Thunderscape Familiar
+id=25617
+rarity=C
+[/card]
+[card]
+primitive=Treva's Charm
+id=25866
+rarity=U
+[/card]
+[card]
+primitive=Treva's Ruins
+id=25940
+rarity=U
+[/card]
+[card]
+primitive=Urza's Guilt
+id=25918
+rarity=R
+[/card]
+[card]
+primitive=Voice of All
+id=26417
+rarity=U
+[/card]
+[card]
+primitive=Volcano Imp
+id=26368
+rarity=C
+[/card]
+[card]
+primitive=Warped Devotion
+id=26836
+rarity=U
+[/card]
+[card]
+primitive=Waterspout Elemental
+id=26851
+rarity=R
 [/card]

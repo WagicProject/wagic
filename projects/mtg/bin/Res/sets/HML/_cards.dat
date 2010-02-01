@@ -3,883 +3,702 @@ author=Wagic Team
 year=1995
 [/meta]
 [card]
-abilities=Flying,protection from red
+primitive=Abbey Gargoyles
 id=3010
-name=Abbey Gargoyles
 rarity=U
-mana={2}{W}{W}{W}
-type=Creature
-subtype=Gargoyle
-power=3
-toughness=4
-text=flying,protection from red
 [/card]
 [card]
-text={W}, {T}: Abbey Matron gets +0/+3 until end of turn.
-id=3011
-name=Abbey Matron
-rarity=C
-mana={2}{W}
-type=Creature
-subtype=Human Cleric
-auto={W}{T}:0/3
-power=1
-toughness=3
-[/card]
-[card]
-text={W}, {T}: Abbey Matron gets +0/+3 until end of turn.
+primitive=Abbey Matron
 id=3012
-name=Abbey Matron
 rarity=C
-mana={2}{W}
-type=Creature
-subtype=Human Cleric
-auto={W}{T}:0/3
-power=1
-toughness=3
 [/card]
 [card]
-text=Target blocking creature gets +3/+1 until end of turn.
-id=2985
-target=creature[blocking]
-auto=3/1
-name=Aliban's Tower
+primitive=Abbey Matron
+id=3011
 rarity=C
-mana={1}{R}
-type=Instant
 [/card]
 [card]
-text=Target blocking creature gets +3/+1 until end of turn.
+primitive=AEther Storm
+id=2935
+rarity=U
+[/card]
+[card]
+primitive=Aliban's Tower
 id=2986
-target=creature[blocking]
-auto=3/1
-name=Aliban's Tower
 rarity=C
-mana={1}{R}
-type=Instant
 [/card]
 [card]
-text=Blocking creatures gain first strike until end of turn.
-auto=lord(creature[blocking]) first strike
+primitive=Aliban's Tower
+id=2985
+rarity=C
+[/card]
+[card]
+primitive=Ambush
 id=2987
-name=Ambush
 rarity=C
-mana={3}{R}
-type=Instant
 [/card]
 [card]
-text=First strike, haste
-id=2988
-name=Ambush Party
-rarity=C
-mana={4}{R}
-type=Creature
-subtype=Human Rogue
-power=3
-toughness=1
-abilities=first strike,haste
-[/card]
-[card]
-text=First strike, haste
+primitive=Ambush Party
 id=2989
-name=Ambush Party
 rarity=C
-mana={4}{R}
-type=Creature
-subtype=Human Rogue
-power=3
-toughness=1
-abilities=first strike,haste
 [/card]
 [card]
-text={T}: Another target Minotaur creature gets +1/+1 until end of turn.
+primitive=Ambush Party
+id=2988
+rarity=C
+[/card]
+[card]
+primitive=Anaba Ancestor
 id=2991
-name=Anaba Ancestor
 rarity=R
-mana={1}{R}
-type=Creature
-subtype=Minotaur Spirit
-auto={T}:1/1 target(other minotaur)
-power=1
-toughness=1
 [/card]
 [card]
-text=First strike (This creature deals combat damage before creatures without first strike.)
+primitive=Anaba Bodyguard
 id=2993
-name=Anaba Bodyguard
 rarity=C
-mana={3}{R}
-type=Creature
-subtype=Minotaur
-power=2
-toughness=3
-abilities=first strike
 [/card]
 [card]
-text={R}, {T}: Anaba Shaman deals 1 damage to target creature or player.
-id=2994
-name=Anaba Shaman
+primitive=Anaba Bodyguard
+id=2992
 rarity=C
-mana={3}{R}
-type=Creature
-subtype=Minotaur Shaman
-auto={R}{T}:damage:1 target(creature,player)
-power=2
-toughness=2
 [/card]
 [card]
-text={R}, {T}: Anaba Shaman deals 1 damage to target creature or player.
+primitive=Anaba Shaman
 id=2995
-name=Anaba Shaman
 rarity=C
-mana={3}{R}
-type=Creature
-subtype=Minotaur Shaman
-auto={R}{T}:damage:1 target(creature,player)
-power=2
-toughness=2
 [/card]
 [card]
-text=Minotaur creatures get +1/+0.
+primitive=Anaba Shaman
+id=2994
+rarity=C
+[/card]
+[card]
+primitive=Anaba Spirit Crafter
 id=2996
-name=Anaba Spirit Crafter
 rarity=R
-mana={2}{R}{R}
-type=Creature
-subtype=Minotaur Shaman
-auto=lord(minotaur) 1/0
-power=1
-toughness=3
 [/card]
 [card]
-text=An-Havva Constable's toughness is equal to 1 plus the number of green creatures on the battlefield.
+primitive=An-Havva Constable
 id=2960
-name=An-Havva Constable
 rarity=R
-mana={1}{G}{G}
-type=Creature
-subtype=Human
-auto=foreach(creature[green]|battlefield) 0/1
-power=2
-toughness=1
 [/card]
 [card]
-text=You gain X plus 1 life, where X is the number of green creatures on the battlefield.
-auto=foreach(creature[green]|battlefield)life:1 controller
-auto=life:1 controller
+primitive=An-Havva Inn
 id=2961
-name=An-Havva Inn
 rarity=U
-mana={1}{G}{G}
-type=Sorcery
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.   {1}, {T}: Add {G} to your mana pool.   {2}, {T}: Add {R} or {W} to your mana pool.
+primitive=An-Havva Township
 id=3035
-name=An-Havva Township
-auto={T}:Add{1}
-auto={1}{T}:Add{G}
-auto={2}{T}:Add{R}
-auto={2}{T}:Add{W}
 rarity=U
-type=Land
 [/card]
 [card]
-#Slightly borderline assumption you will never activate this ability to let the opponent target Autumn Willow
-text=Shroud   {G}: Until end of turn, Autumn Willow can be the target of spells and abilities controlled by target player as though it didn't have shroud.
+primitive=An-Zerrin Ruins
+id=2990
+rarity=R
+[/card]
+[card]
+primitive=Apocalypse Chime
+id=2900
+rarity=R
+[/card]
+[card]
+primitive=Autumn Willow
 id=2962
-name=Autumn Willow
 rarity=R
-mana={4}{G}{G}
-type=Legendary Creature
-subtype=Avatar
-auto={G}:-shroud
-power=4
-toughness=4
-abilities=opponentshroud,shroud
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.   {1}, {T}: Add {W} to your mana pool.   {2}, {T}: Add {G} or {U} to your mana pool.
+primitive=Aysen Abbey
 id=3036
-name=Aysen Abbey
-auto={T}:Add{1}
-auto={1}{T}:Add{W}
-auto={2}{T}:Add{G}
-auto={2}{T}:Add{U}
 rarity=U
-type=Land
 [/card]
 [card]
-text={T}: Tap target creature with power 2 or less.
-id=3013
-name=Aysen Bureaucrats
-rarity=C
-mana={1}{W}
-type=Creature
-subtype=Human Advisor
-auto={T}:tap target(creature[power<=2])
-power=1
-toughness=1
-[/card]
-[card]
-text={T}: Tap target creature with power 2 or less.
+primitive=Aysen Bureaucrats
 id=3014
-name=Aysen Bureaucrats
 rarity=C
-mana={1}{W}
-type=Creature
-subtype=Human Advisor
-auto={T}:tap target(creature[power<=2])
-power=1
-toughness=1
 [/card]
 [card]
-text=Aysen Crusader's power and toughness are each equal to 2 plus the number of Soldiers and Warriors you control.
+primitive=Aysen Bureaucrats
+id=3013
+rarity=C
+[/card]
+[card]
+primitive=Aysen Crusader
 id=3015
-name=Aysen Crusader
-rarity=U
-mana={2}{W}{W}
-type=Creature
-subtype=Human Knight
-auto=foreach(soldier|myBattlefield)1/1
-auto=foreach(warrior|myBattlefield)1/1
-power=2
-toughness=2
+rarity=R
 [/card]
 [card]
-text=White creatures have plainswalk.
-auto=lord(creature[white])plainswalk
+primitive=Aysen Highway
 id=3016
-name=Aysen Highway
 rarity=R
-mana={3}{W}{W}{W}
-type=Enchantment
 [/card]
 [card]
-text=Trample   Black Carriage doesn't untap during your untap step.   Sacrifice a creature: Untap Black Carriage. Activate this ability only during your upkeep.
+primitive=Baki's Curse
+id=2936
+rarity=R
+[/card]
+[card]
+primitive=Baron Sengir
+id=2910
+rarity=R
+[/card]
+[card]
+primitive=Beast Walkers
+id=3017
+rarity=R
+[/card]
+[card]
+primitive=Black Carriage
 id=2911
-name=Black Carriage
 rarity=R
-mana={3}{B}{B}
-type=Creature
-subtype=Horse
-auto={S(creature|myBattlefield)}:untap myUpkeepOnly
-power=4
-toughness=4
-abilities=trample,doesnotuntap
 [/card]
 [card]
-text=Enchant creature   Enchanted creature gets +0/+2.   Sacrifice Carapace: Regenerate enchanted creature.
-id=2963
-target=creature
-auto=0/2
-auto={S}:regenerate
-name=Carapace
-rarity=C
-mana={G}
-type=Enchantment
-subtype=Aura
+primitive=Broken Visage
+id=2912
+rarity=R
 [/card]
 [card]
-text=Enchant creature   Enchanted creature gets +0/+2.   Sacrifice Carapace: Regenerate enchanted creature.
+primitive=Carapace
 id=2964
-target=creature
-auto=0/2
-auto={S}:regenerate
-name=Carapace
 rarity=C
-mana={G}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.   {1}, {T}: Add {B} to your mana pool.   {2}, {T}: Add {U} or {R} to your mana pool.
+primitive=Carapace
+id=2963
+rarity=C
+[/card]
+[card]
+primitive=Castle Sengir
 id=3037
-name=Castle Sengir
-auto={T}:Add{1}
-auto={1}{T}:Add{B}
-auto={2}{T}:Add{U}
-auto={2}{T}:Add{R}
 rarity=U
-type=Land
 [/card]
 [card]
-text=Defender (This creature can't attack.)   Protection from black
-id=2913
-name=Cemetery Gate
-rarity=C
-mana={2}{B}
-type=Creature
-subtype=Wall
-power=0
-toughness=5
-abilities=defender,protection from black
-[/card]
-[card]
-text=Defender (This creature can't attack.)   Protection from black
+primitive=Cemetery Gate
 id=2914
-name=Cemetery Gate
 rarity=C
-mana={2}{B}
-type=Creature
-subtype=Wall
-power=0
-toughness=5
-abilities=defender,protection from black
 [/card]
 [card]
-text={R}{R}{R}, {T}: Destroy target artifact creature.
+primitive=Cemetery Gate
+id=2913
+rarity=C
+[/card]
+[card]
+primitive=Chain Stasis
+id=2937
+rarity=R
+[/card]
+[card]
+primitive=Chandler
 id=2997
-name=Chandler
 rarity=C
-mana={4}{R}
-type=Legendary Creature
-subtype=Human Rogue
-auto={R}{R}{R}{T}:destroy target(creature[artifact])
-power=3
-toughness=3
 [/card]
 [card]
-text={3}, {T}: Regenerate target artifact creature.
+primitive=Clockwork Gnomes
 id=2901
-name=Clockwork Gnomes
 rarity=C
-mana={4}
-type=Artifact Creature
-subtype=Gnome
-auto={3}{T}:regenerate target(creature[artifact])
-power=2
-toughness=2
 [/card]
 [card]
-text=Protection from black
+primitive=Clockwork Steed
+id=2902
+rarity=C
+[/card]
+[card]
+primitive=Clockwork Swarm
+id=2903
+rarity=C
+[/card]
+[card]
+primitive=Coral Reef
+id=2938
+rarity=C
+[/card]
+[card]
+primitive=Dark Maze
+id=2940
+rarity=C
+[/card]
+[card]
+primitive=Dark Maze
+id=2939
+rarity=C
+[/card]
+[card]
+primitive=Daughter of Autumn
+id=2965
+rarity=R
+[/card]
+[card]
+primitive=Death Speakers
 id=3018
-name=Death Speakers
 rarity=U
-mana={W}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=1
-abilities=protection from black
 [/card]
 [card]
-text={3}: You may put a Minotaur permanent card from your hand onto the battlefield.
-auto={3}:moveTo(myBattlefield) target(minotaur|myhand)
+primitive=Didgeridoo
 id=2904
-name=Didgeridoo
+rarity=R
+[/card]
+[card]
+primitive=Drudge Spell
+id=2915
 rarity=U
-mana={1}
-type=Artifact
 [/card]
 [card]
-text=Dry Spell deals 1 damage to each creature and each player.
-id=2916
-auto=damage:1 all(creature,player)
-name=Dry Spell
-rarity=C
-mana={1}{B}
-type=Sorcery
-[/card]
-[card]
-text=Dry Spell deals 1 damage to each creature and each player.
+primitive=Dry Spell
 id=2917
-auto=damage:1 all(creature,player)
-name=Dry Spell
 rarity=C
-mana={1}{B}
-type=Sorcery
 [/card]
 [card]
-text={1}{R}, {T}: Target Dwarf creature gains mountainwalk until end of turn.
+primitive=Dry Spell
+id=2916
+rarity=C
+[/card]
+[card]
+primitive=Dwarven Pony
 id=2998
-name=Dwarven Pony
 rarity=R
-mana={R}
-type=Creature
-subtype=Horse
-auto={1}{R}{T}:mountainwalk target(dwarf)
-power=1
-toughness=1
 [/card]
 [card]
-id=3000
-name=Dwarven Trader
-rarity=C
-mana={R}
-type=Creature
-subtype=Dwarf
-power=1
-toughness=1
+primitive=Dwarven Sea Clan
+id=2999
+rarity=R
 [/card]
 [card]
+primitive=Dwarven Trader
 id=3001
-name=Dwarven Trader
 rarity=C
-mana={R}
-type=Creature
-subtype=Dwarf
-power=1
-toughness=1
 [/card]
 [card]
-text=Trample
+primitive=Dwarven Trader
+id=3000
+rarity=C
+[/card]
+[card]
+primitive=Ebony Rhino
 id=2905
-name=Ebony Rhino
 rarity=C
-mana={7}
-type=Artifact Creature
-subtype=Rhino
-power=4
-toughness=5
-abilities=trample
 [/card]
 [card]
-text=Haste   {R}{R}{R}: Regenerate Eron the Relentless.
+primitive=Eron the Relentless
 id=3002
-name=Eron the Relentless
 rarity=U
-mana={3}{R}{R}
-type=Legendary Creature
-subtype=Human Rogue
-auto={R}{R}{R}:regenerate
-power=5
-toughness=2
-abilities=haste
 [/card]
 [card]
-text=Evaporate deals 1 damage to each creature that's white or blue.
+primitive=Evaporate
 id=3003
-auto=damage:1 all(creature[white;blue])
-name=Evaporate
 rarity=U
-mana={2}{R}
-type=Sorcery
 [/card]
 [card]
-text=Flying   Other Faerie creatures you control get +0/+1.   {T}: Other Faerie creatures you control get +1/+0 until end of turn.
+primitive=Faerie Noble
 id=2966
-name=Faerie Noble
-rarity=U
-mana={2}{G}
-type=Creature
-subtype=Faerie
-auto=lord(other faerie|myBattlefield) 0/1
-auto={T}:lord(other faerie|myBattlefield) 1/0 ueot
-power=1
-toughness=2
-abilities=flying
+rarity=R
 [/card]
 [card]
-text=Enchant creature Enchanted creature gets +4/+0.
-id=2918
-target=creature
-auto=4/0
-name=Feast of the Unicorn
-rarity=C
-mana={3}{B}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
-text=Enchant creature Enchanted creature gets +4/+0.
+primitive=Feast of the Unicorn
 id=2919
-target=creature
-auto=4/0
-name=Feast of the Unicorn
 rarity=C
-mana={3}{B}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text=Whenever Folk of An-Havva blocks, it gets +2/+0 until end of turn.
-id=2967
-name=Folk of An-Havva
+primitive=Feast of the Unicorn
+id=2918
 rarity=C
-mana={G}
-type=Creature
-subtype=Human
-auto=lord(folk of an-havva[blocking]|mybattlefield) 2/0
-auto=lord(other folk of an-havva[blocking]|mybattlefield) -2/0
-power=1
-toughness=1
 [/card]
 [card]
-text=Whenever Folk of An-Havva blocks, it gets +2/+0 until end of turn.
+primitive=Feroz's Ban
+id=2906
+rarity=R
+[/card]
+[card]
+primitive=Folk of An-Havva
 id=2968
-name=Folk of An-Havva
 rarity=C
-mana={G}
-type=Creature
-subtype=Human
-auto=lord(folk of an-havva[blocking]|mybattlefield) 2/0
-auto=lord(other folk of an-havva[blocking]|mybattlefield) -2/0
-power=1
-toughness=1
 [/card]
 [card]
-text={1}{B}, {T}: Target creature gets -1/-1 until end of turn.
+primitive=Folk of An-Havva
+id=2967
+rarity=C
+[/card]
+[card]
+primitive=Forget
+id=2941
+rarity=R
+[/card]
+[card]
+primitive=Funeral March
+id=2920
+rarity=C
+[/card]
+[card]
+primitive=Ghost Hounds
+id=2921
+rarity=U
+[/card]
+[card]
+primitive=Giant Albatross
+id=2943
+rarity=C
+[/card]
+[card]
+primitive=Giant Albatross
+id=2942
+rarity=C
+[/card]
+[card]
+primitive=Giant Oyster
+id=2944
+rarity=U
+[/card]
+[card]
+primitive=Grandmother Sengir
 id=2922
-name=Grandmother Sengir
 rarity=R
-mana={4}{B}
-type=Legendary Creature
-subtype=Human Wizard
-auto={1}{B}{T}:-1/-1 target(creature)
-power=3
-toughness=3
 [/card]
 [card]
-text=Exile target card in a graveyard.   Draw a card at the beginning of the next turn's upkeep.
+primitive=Greater Werewolf
+id=2923
+rarity=C
+[/card]
+[card]
+primitive=Hazduhr the Abbot
+id=3019
+rarity=R
+[/card]
+[card]
+primitive=Headstone
 id=2924
-target=*|graveyard
-auto=moveto(exile)
-auto=@next upkeep:draw:1 controller
-name=Headstone
 rarity=C
-mana={1}{B}
-type=Instant
 [/card]
 [card]
-text=Protection from white
+primitive=Heart Wolf
+id=3004
+rarity=R
+[/card]
+[card]
+primitive=Hungry Mist
+id=2970
+rarity=C
+[/card]
+[card]
+primitive=Hungry Mist
+id=2969
+rarity=C
+[/card]
+[card]
+primitive=Ihsan's Shade
 id=2925
-name=Ihsan's Shade
 rarity=U
-mana={3}{B}{B}{B}
-type=Legendary Creature
-subtype=Shade Knight
-power=5
-toughness=5
-abilities=protection from white
 [/card]
 [card]
-text={R}{R}{R}, {T}: Destroy target noncreature artifact.
+primitive=Irini Sengir
+id=2926
+rarity=U
+[/card]
+[card]
+primitive=Ironclaw Curse
+id=3005
+rarity=R
+[/card]
+[card]
+primitive=Jinx
+id=2945
+rarity=C
+[/card]
+[card]
+primitive=Joven
 id=3006
-name=Joven
 rarity=C
-mana={3}{R}{R}
-type=Legendary Creature
-subtype=Human Rogue
-auto={R}{R}{R}{T}:destroy target(artifact[-creature])
-power=3
-toughness=3
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.   {1}, {T}: Add {R} to your mana pool.   {2}, {T}: Add {B} or {G} to your mana pool.
+primitive=Joven's Ferrets
+id=2971
+rarity=C
+[/card]
+[card]
+primitive=Joven's Tools
+id=2907
+rarity=U
+[/card]
+[card]
+primitive=Koskun Falls
+id=2927
+rarity=R
+[/card]
+[card]
+primitive=Koskun Keep
 id=3038
-name=Koskun Keep
-auto={T}:Add{1}
-auto={1}{T}:Add{R}
-auto={2}{T}:Add{B}
-auto={2}{T}:Add{G}
 rarity=U
-type=Land
 [/card]
 [card]
-text={1}{G}: Leaping Lizard gains flying and gets -0/-1 until end of turn.
+primitive=Labyrinth Minotaur
+id=2947
+rarity=C
+[/card]
+[card]
+primitive=Labyrinth Minotaur
+id=2946
+rarity=C
+[/card]
+[card]
+primitive=Leaping Lizard
 id=2972
-name=Leaping Lizard
 rarity=C
-mana={1}{G}{G}
-type=Creature
-subtype=Lizard
-auto={1}{G}:flying && 0/-1
-power=2
-toughness=3
 [/card]
 [card]
-text=Marjhan doesn't untap during your untap step.   Marjhan can't attack unless defending player controls an Island.   When you control no Islands, sacrifice Marjhan.   {U}{U}, Sacrifice a creature: Untap Marjhan. Activate this ability only during your upkeep.   {U}{U}: Marjhan gets -1/-0 until end of turn and deals 1 damage to target attacking creature without flying.
-auto={U}{U}{S(creature|myBattlefield)}:untap myUpkeepOnly
-auto={U}{U}:damage:1 target(creature[attacking;-flying]) && -1/0 all(this)
+primitive=Leeches
+id=3020
+rarity=R
+[/card]
+[card]
+primitive=Mammoth Harness
+id=2973
+rarity=R
+[/card]
+[card]
+primitive=Marjhan
 id=2948
-name=Marjhan
 rarity=R
-mana={5}{U}{U}
-type=Creature
-subtype=Leviathan
-power=8
-toughness=8
-abilities=islandhome,doesnotuntap
 [/card]
 [card]
-text=Search your library for a blue instant card, reveal that card, and put it into your hand. Then shuffle your library.
+primitive=Memory Lapse
+id=2950
+rarity=C
+[/card]
+[card]
+primitive=Memory Lapse
+id=2949
+rarity=C
+[/card]
+[card]
+primitive=Merchant Scroll
 id=2951
-target=instant[blue]|mylibrary
-auto=moveTo(myhand)
-name=Merchant Scroll
-rarity=U
-mana={1}{U}
-type=Sorcery
-[/card]
-[card]
-text=Flying   {1}{W}: Mesa Falcon gets +0/+1 until end of turn.
-id=3021
-name=Mesa Falcon
 rarity=C
-mana={1}{W}
-type=Creature
-subtype=Bird
-auto={1}{W}:0/1
-power=1
-toughness=1
-abilities=flying
 [/card]
 [card]
-text=Flying   {1}{W}: Mesa Falcon gets +0/+1 until end of turn.
+primitive=Mesa Falcon
 id=3022
-name=Mesa Falcon
 rarity=C
-mana={1}{W}
-type=Creature
-subtype=Bird
-auto={1}{W}:0/1
-power=1
-toughness=1
-abilities=flying
 [/card]
 [card]
-text=All creatures lose flying and islandwalk.
-auto=lord(creature) -islandwalk
-auto=lord(creature) -flying
-auto=@movedTo(enchantment[world]|battlefield):bury
+primitive=Mesa Falcon
+id=3021
+rarity=C
+[/card]
+[card]
+primitive=Mystic Decree
 id=2952
-name=Mystic Decree
 rarity=R
-mana={2}{U}{U}
-type=World Enchantment
 [/card]
 [card]
-text=First strike, protection from red
+primitive=Narwhal
 id=2953
-name=Narwhal
-rarity=U
-mana={2}{U}{U}
-type=Creature
-subtype=Whale
-power=2
-toughness=2
-abilities=first strike,protection from red
+rarity=R
 [/card]
 [card]
-text=At the beginning of each player's upkeep, Primal Order deals damage to that player equal to the number of nonbasic lands he or she controls.
-auto=@each my upkeep:foreach(land[-basic]|myBattlefield):damage:1 controller
-auto=@each opponent upkeep:foreach(land[-basic]|opponentBattlefield):damage:1 opponent
+primitive=Orcish Mine
+id=3007
+rarity=U
+[/card]
+[card]
+primitive=Primal Order
 id=2974
-name=Primal Order
 rarity=R
-mana={2}{G}{G}
-type=Enchantment
 [/card]
 [card]
-text=Whenever Reef Pirates deals damage to an opponent, that player puts the top card of his or her library into his or her graveyard.
-id=2954
-name=Reef Pirates
+primitive=Prophecy
+id=3023
 rarity=C
-mana={1}{U}{U}
-type=Creature
-subtype=Zombie Pirate
-auto=@damaged(player) from(this):deplete:1 opponent
-power=2
-toughness=2
 [/card]
 [card]
-text=Whenever Reef Pirates deals damage to an opponent, that player puts the top card of his or her library into his or her graveyard.
+primitive=Rashka the Slayer
+id=3024
+rarity=U
+[/card]
+[card]
+primitive=Reef Pirates
 id=2955
-name=Reef Pirates
 rarity=C
-mana={1}{U}{U}
-type=Creature
-subtype=Zombie Pirate
-auto=@damaged(player) from(this):deplete:1 opponent
-power=2
-toughness=2
 [/card]
 [card]
-text=Whenever Root Spider blocks, it gets +1/+0 and gains first strike until end of turn.
+primitive=Reef Pirates
+id=2954
+rarity=C
+[/card]
+[card]
+primitive=Renewal
+id=2975
+rarity=C
+[/card]
+[card]
+primitive=Retribution
+id=3008
+rarity=U
+[/card]
+[card]
+primitive=Reveka, Wizard Savant
+id=2956
+rarity=R
+[/card]
+[card]
+primitive=Root Spider
 id=2976
-name=Root Spider
 rarity=U
-mana={3}{G}
-type=Creature
-subtype=Spider
-auto=lord(root spider[attacking]|mybattlefield) 1/0 && lord(root spider[attacking]|mybattlefield) first strike
-auto=lord(other root spider[attacking]|mybattlefield) -1/0
-power=2
-toughness=2
 [/card]
 [card]
-text=Enchant creature without flying   When Roots enters the battlefield, tap enchanted creature.   Enchanted creature doesn't untap during its controller's untap step.
+primitive=Roots
 id=2977
-target=creature[-flying]
-auto=tap
-auto=doesnotuntap
-name=Roots
 rarity=U
-mana={3}{G}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text=Flying   {2}: Roterothopter gets +1/+0 until end of turn. Activate this ability no more than twice each turn.
+primitive=Roterothopter
 id=2908
-name=Roterothopter
 rarity=C
-mana={1}
-type=Artifact Creature
-subtype=Thopter
-auto={2}:2/0 limit:2
-power=0
-toughness=2
-abilities=flying
 [/card]
 [card]
-text=Flying, protection from red
+primitive=Rysorian Badger
+id=2978
+rarity=R
+[/card]
+[card]
+primitive=Samite Alchemist
+id=3026
+rarity=C
+[/card]
+[card]
+primitive=Samite Alchemist
+id=3025
+rarity=C
+[/card]
+[card]
+primitive=Sea Sprite
 id=2957
-name=Sea Sprite
 rarity=U
-mana={1}{U}
-type=Creature
-subtype=Faerie
-power=1
-toughness=1
-abilities=flying,protection from red
 [/card]
 [card]
-text=When Sengir Autocrat enters the battlefield, put three 0/1 black Serf creature tokens onto the battlefield. When Sengir Autocrat leaves the battlefield, exile all Serf tokens.
-auto=token(Serf,creature serf,0/1,black)*3
-auto=@movedTo(this|graveyard,exile,library,hand):moveTo(exile) all(serf)
+primitive=Sea Troll
+id=2958
+rarity=U
+[/card]
+[card]
+primitive=Sengir Autocrat
 id=2928
-name=Sengir Autocrat
 rarity=U
-mana={3}{B}
-type=Creature
-subtype=Human
-power=2
-toughness=2
 [/card]
 [card]
-text=Creatures with flying get +1/+1.
-auto=lord(creature[flying]) 1/1
-auto=@movedTo(enchantment[world]|battlefield):bury
+primitive=Sengir Bats
+id=2930
+rarity=C
+[/card]
+[card]
+primitive=Sengir Bats
+id=2929
+rarity=C
+[/card]
+[card]
+primitive=Serra Aviary
 id=3027
-name=Serra Aviary
 rarity=R
-mana={3}{W}
-type=World Enchantment
 [/card]
 [card]
-text=Target creature gets -5/-0 until end of turn.
-id=2979
-target=creature
-auto=-5/0
-name=Shrink
+primitive=Serra Bestiary
+id=3028
 rarity=C
-mana={G}
-type=Instant
 [/card]
 [card]
-text=Target creature gets -5/-0 until end of turn.
+primitive=Serra Inquisitors
+id=3029
+rarity=U
+[/card]
+[card]
+primitive=Serra Paladin
+id=3030
+rarity=C
+[/card]
+[card]
+primitive=Serrated Arrows
+id=2909
+rarity=C
+[/card]
+[card]
+primitive=Shrink
 id=2980
-target=creature
-auto=-5/0
-name=Shrink
 rarity=C
-mana={G}
-type=Instant
 [/card]
 [card]
-text=Enchant creature   {1}{B}: Put a -1/-1 counter on enchanted creature.
-id=2932
-target=creature
-auto={1}{B}:counter(-1/-1)
-name=Torture
+primitive=Shrink
+id=2979
 rarity=C
-mana={B}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text=Enchant creature   {1}{B}: Put a -1/-1 counter on enchanted creature.
+primitive=Soraya the Falconer
+id=3031
+rarity=R
+[/card]
+[card]
+primitive=Spectral Bears
+id=2981
+rarity=U
+[/card]
+[card]
+primitive=Timmerian Fiends
+id=2931
+rarity=R
+[/card]
+[card]
+primitive=Torture
 id=2933
-target=creature
-auto={1}{B}:counter(-1/-1)
-name=Torture
 rarity=C
-mana={B}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text={1}{B}{B}: Veldrane of Sengir gets -3/-0 and gains forestwalk until end of turn.
+primitive=Torture
+id=2932
+rarity=C
+[/card]
+[card]
+primitive=Trade Caravan
+id=3033
+rarity=C
+[/card]
+[card]
+primitive=Trade Caravan
+id=3032
+rarity=C
+[/card]
+[card]
+primitive=Truce
+id=3034
+rarity=R
+[/card]
+[card]
+primitive=Veldrane of Sengir
 id=2934
-name=Veldrane of Sengir
 rarity=R
-mana={5}{B}{B}
-type=Legendary Creature
-subtype=Human Rogue
-auto={1}{B}{B}:-3/0 && forestwalk
-power=5
-toughness=5
 [/card]
 [card]
-text=Defender (This creature can't attack.)   {U}{U}, {T}: Put a 0/1 blue Plant Wall creature token with defender named Kelp onto the battlefield.
+primitive=Wall of Kelp
 id=2959
-name=Wall of Kelp
 rarity=R
-mana={U}{U}
-type=Creature
-subtype=Plant Wall
-auto={U}{U}{T}:token(Kelp,creature plant wall,0/1,defender blue)
-power=0
-toughness=3
-abilities=defender
 [/card]
 [card]
-text=Flying
-id=2982
-name=Willow Faerie
-rarity=C
-mana={1}{G}
-type=Creature
-subtype=Faerie
-power=1
-toughness=2
-abilities=flying
-[/card]
-[card]
-text=Flying
+primitive=Willow Faerie
 id=2983
-name=Willow Faerie
 rarity=C
-mana={1}{G}
-type=Creature
-subtype=Faerie
-power=1
-toughness=2
-abilities=flying
 [/card]
 [card]
-text={T}: You may put a Faerie permanent card from your hand onto the battlefield. {2}{G}: Target green creature gains protection from black until end of turn.
+primitive=Willow Faerie
+id=2982
+rarity=C
+[/card]
+[card]
+primitive=Willow Priestess
 id=2984
-name=Willow Priestess
-rarity=U
-mana={2}{G}{G}
-type=Creature
-subtype=Faerie Druid
-auto={T}:moveTo(myBattlefield) target(faerie|myhand)
-auto={2}{G}:protection from black target(creature[green])
-power=2
-toughness=2
+rarity=R
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.   {1}, {T}: Add {U} to your mana pool.   {2}, {T}: Add {W} or {B} to your mana pool.
+primitive=Winter Sky
+id=3009
+rarity=R
+[/card]
+[card]
+primitive=Wizards' School
 id=3039
-name=Wizards' School
-auto={T}:Add{1}
-auto={1}{T}:Add{U}
-auto={2}{T}:Add{W}
-auto={2}{T}:Add{B}
 rarity=U
-type=Land
 [/card]

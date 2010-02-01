@@ -4,547 +4,717 @@ year=2000
 block=Masks
 [/meta]
 [card]
-text={1}{B}, Sacrifice a land: Target creature gets +2/+0 until end of turn.
+primitive=Abolish
+id=24561
+rarity=U
+[/card]
+[card]
+primitive=Agent of Shauku
 id=24601
-name=Agent of Shauku
 rarity=C
-mana={1}{B}
-type=Creature
-subtype=Human Mercenary
-auto={S(land|myBattlefield)}:2/0 target(creature)
-power=1
-toughness=1
 [/card]
 [card]
-text=Flash   Enchant creature   Enchanted creature has shroud. (It can't be the target of spells or abilities.)
+primitive=Alexi, Zephyr Mage
+id=24591
+rarity=R
+[/card]
+[card]
+primitive=Alexi's Cloak
 id=24579
-target=creature
-auto=shroud
-name=Alexi's Cloak
 rarity=C
-mana={1}{U}
-type=Enchantment
-subtype=Aura
-abilities=flash
 [/card]
 [card]
-text=Sacrifice a land: Destroy target enchantment.
-auto={S(land|myBattlefield)}:destroy target(enchantment)
+primitive=Aura Fracture
 id=24560
-name=Aura Fracture
 rarity=C
-mana={2}{W}
-type=Enchantment
 [/card]
 [card]
-text=Protection from white   At the beginning of your upkeep, sacrifice Bog Elemental unless you sacrifice a land.
-auto=@each my upkeep:moveTo(mygraveyard) notatarget(bog elemental,land|myBattlefield)
+primitive=Avatar of Fury
+id=24644
+rarity=R
+[/card]
+[card]
+primitive=Avatar of Hope
+id=24564
+rarity=R
+[/card]
+[card]
+primitive=Avatar of Might
+id=24671
+rarity=R
+[/card]
+[card]
+primitive=Avatar of Will
+id=24590
+rarity=R
+[/card]
+[card]
+primitive=Avatar of Woe
+id=24621
+rarity=R
+[/card]
+[card]
+primitive=Barbed Field
+id=24634
+rarity=U
+[/card]
+[card]
+primitive=Blessed Wind
+id=24569
+rarity=R
+[/card]
+[card]
+primitive=Bog Elemental
 id=24620
-name=Bog Elemental
 rarity=R
-mana={3}{B}{B}
-type=Creature
-subtype=Elemental
-power=5
-toughness=4
-abilities=protection from white
 [/card]
 [card]
-text=Flying   {T}, Sacrifice a land: Search your library for a Mercenary permanent card with converted mana cost 2 or less and put that card onto the battlefield. Then shuffle your library.
+primitive=Bog Glider
 id=24600
-name=Bog Glider
 rarity=C
-mana={2}{B}
-type=Creature
-subtype=Human Mercenary
-auto={T}{S(land|myBattlefield)}:moveTo(myBattlefield) target(mercenary[manacost<=2]|mylibrary)
-power=1
-toughness=1
-abilities=flying
 [/card]
 [card]
-text=Branded Brawlers can't attack if defending player controls an untapped land.   Branded Brawlers can't block if you control an untapped land.
+primitive=Branded Brawlers
 id=24638
-name=Branded Brawlers
 rarity=C
-mana={R}
-type=Creature
-subtype=Human Soldier
-auto=aslongas(land[-tapped]|opponentBattlefield) cantattack
-auto=aslongas(land[-tapped]|myBattlefield) cantblock
-power=2
-toughness=2
 [/card]
 [card]
-text=Destroy all enchantments you don't control. Then, if you control an untapped land, destroy all enchantments you control.
+primitive=Brutal Suppression
+id=24635
+rarity=U
+[/card]
+[card]
+primitive=Calming Verse
 id=24659
-auto=destroy all(enchantment|opponentBattlefield)
-auto=aslongas(land[-tapped]|myBattlefield) destroy all(enchantment|myBattlefield)
-name=Calming Verse
 rarity=C
-mana={3}{G}
-type=Sorcery
 [/card]
 [card]
-text={0}: Tap all lands you control. Chimeric Idol becomes a 3/3 Turtle artifact creature until end of turn.
+primitive=Celestial Convergence
+id=24567
+rarity=R
+[/card]
+[card]
+primitive=Chilling Apparition
+id=25362
+rarity=U
+[/card]
+[card]
+primitive=Chimeric Idol
 id=24680
-name=Chimeric Idol
-auto={0}:tap all(land|myBattlefield) && becomes(Turtle Artifact Creature,3/3) ueot
 rarity=U
-mana={3}
-type=Artifact
 [/card]
 [card]
-text=At the beginning of each player's end step, Citadel of Pain deals X damage to that player, where X is the number of untapped lands he or she controls.
-auto=@each my end:foreach(land[-tapped]|myBattlefield) damage:1 controller
-auto=@each opponent end:foreach(land[-tapped]|opponentBattlefield) damage:1 opponent
+primitive=Citadel of Pain
 id=24643
-name=Citadel of Pain
 rarity=U
-mana={2}{R}
-type=Enchantment
 [/card]
 [card]
-text=Sacrifice a land: Coastal Hornclaw gains flying until end of turn.
+primitive=Coastal Hornclaw
 id=24574
-name=Coastal Hornclaw
 rarity=C
-mana={4}{U}
-type=Creature
-subtype=Bird
-auto={S(land|myBattlefield)}:flying
-power=3
-toughness=3
 [/card]
 [card]
-text=Destroy target land. Its controller loses 2 life.
+primitive=Coffin Puppets
+id=24618
+rarity=R
+[/card]
+[card]
+primitive=Copper-Leaf Angel
+id=24682
+rarity=R
+[/card]
+[card]
+primitive=Darba
+id=24657
+rarity=U
+[/card]
+[card]
+primitive=Death Charmer
+id=24599
+rarity=C
+[/card]
+[card]
+primitive=Denying Wind
+id=24596
+rarity=R
+[/card]
+[card]
+primitive=Despoil
 id=24615
-target=land
-auto=destroy
-auto=life:-2 targetcontroller
-name=Despoil
 rarity=C
-mana={3}{B}
-type=Sorcery
 [/card]
 [card]
-text=Destroy target land. Devastate deals 1 damage to each creature and each player.
+primitive=Devastate
 id=24631
-target=land
-auto=destroy
-auto=damage:1 all(creature,player)
-name=Devastate
 rarity=C
-mana={3}{R}{R}
-type=Sorcery
 [/card]
 [card]
-text=Flying, vigilance
+primitive=Diving Griffin
 id=24548
-name=Diving Griffin
 rarity=C
-mana={1}{W}{W}
-type=Creature
-subtype=Griffin
-power=2
-toughness=2
-abilities=flying,vigilance
 [/card]
 [card]
-text=Sacrifice a land: Fault Riders gets +2/+0 and gains first strike until end of turn. Activate this ability only once each turn.
+primitive=Dual Nature
+id=24678
+rarity=R
+[/card]
+[card]
+primitive=Elephant Resurgence
+id=21382
+rarity=R
+[/card]
+[card]
+primitive=Endbringer's Revel
+id=24616
+rarity=U
+[/card]
+[card]
+primitive=Entangler
+id=24557
+rarity=U
+[/card]
+[card]
+primitive=Excavation
+id=24586
+rarity=U
+[/card]
+[card]
+primitive=Excise
+id=24553
+rarity=C
+[/card]
+[card]
+primitive=Fault Riders
 id=24626
-name=Fault Riders
 rarity=C
-mana={2}{R}
-type=Creature
-subtype=Human Soldier
-auto={S(land|myBattlefield)}:2/0 && first strike limit:1
-power=2
-toughness=2
 [/card]
 [card]
-text=Fen Stalker has fear as long as you control no untapped lands.
+primitive=Fen Stalker
 id=24602
-name=Fen Stalker
 rarity=C
-mana={3}{B}
-type=Creature
-subtype=Nightstalker
-auto=aslongas(land[-tapped]|myBattlefield) -fear
-power=3
-toughness=2
-abilities=fear
 [/card]
 [card]
-text=Flash   Enchant creature   Enchanted creature -3/-0.
+primitive=Fickle Efreet
+id=24649
+rarity=R
+[/card]
+[card]
+primitive=Flameshot
+id=24642
+rarity=U
+[/card]
+[card]
+primitive=Flay
+id=24606
+rarity=C
+[/card]
+[card]
+primitive=Flowering Field
+id=24552
+rarity=U
+[/card]
+[card]
+primitive=Foil
+id=24587
+rarity=U
+[/card]
+[card]
+primitive=Forgotten Harvest
+id=24676
+rarity=R
+[/card]
+[card]
+primitive=Glittering Lion
+id=24558
+rarity=U
+[/card]
+[card]
+primitive=Glittering Lynx
+id=24549
+rarity=C
+[/card]
+[card]
+primitive=Greel, Mind Raker
+id=24619
+rarity=R
+[/card]
+[card]
+primitive=Greel's Caress
 id=24604
-target=creature
-auto=-3/-0
-name=Greel's Caress
 rarity=C
-mana={1}{B}
-type=Enchantment
-subtype=Aura
-abilities=flash
 [/card]
 [card]
-text=Hazy Homunculus is unblockable as long as defending player controls an untapped land.
-auto=aslongas(land[-tapped]|opponentBattlefield) unblockable
+primitive=Gulf Squid
+id=24573
+rarity=C
+[/card]
+[card]
+primitive=Hazy Homunculus
 id=24572
-name=Hazy Homunculus
 rarity=C
-mana={1}{U}
-type=Creature
-subtype=Homunculus Illusion
-power=1
-toughness=1
 [/card]
 [card]
-text=As Heightened Awareness enters the battlefield, discard your hand. At the beginning of your draw step, draw an additional card.
+primitive=Heightened Awareness
 id=24594
-auto=moveTo(mygraveyard) all(*|myhand)
-auto=@each my draw:draw:1
-name=Heightened Awareness
 rarity=R
-mana={3}{U}{U}
-type=Enchantment
 [/card]
 [card]
-text=Flash   Enchant creature   
-target=creature
-auto={1}{G}:regenerate
+primitive=Hollow Warrior
+id=24679
+rarity=U
+[/card]
+[card]
+primitive=Infernal Genesis
+id=24624
+rarity=R
+[/card]
+[card]
+primitive=Inflame
+id=24640
+rarity=C
+[/card]
+[card]
+primitive=Jeweled Spirit
+id=24566
+rarity=R
+[/card]
+[card]
+primitive=Jolrael, Empress of Beasts
+id=24673
+rarity=R
+[/card]
+[card]
+primitive=Jolrael's Favor
 id=24660
-name=Jolrael's Favor
 rarity=C
-mana={1}{G}
-type=Enchantment
-subtype=Aura
-abilities=flash
 [/card]
 [card]
-text=Enchant land   Enchanted land is a 5/6 green Treefolk creature that's still a land.
+primitive=Keldon Arsonist
+id=24637
+rarity=U
+[/card]
+[card]
+primitive=Keldon Battlewagon
+id=24683
+rarity=R
+[/card]
+[card]
+primitive=Keldon Berserker
+id=24629
+rarity=C
+[/card]
+[card]
+primitive=Keldon Firebombers
+id=24648
+rarity=R
+[/card]
+[card]
+primitive=Latulla, Keldon Overseer
+id=24646
+rarity=R
+[/card]
+[card]
+primitive=Latulla's Orders
+id=24632
+rarity=C
+[/card]
+[card]
+primitive=Lesser Gargadon
+id=24647
+rarity=U
+[/card]
+[card]
+primitive=Living Terrain
 id=24667
-target=land
-auto=becomes(Creature Treefolk,5/6,green)
-name=Living Terrain
 rarity=U
-mana={2}{G}{G}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text=Flash   Enchant creature   Enchanted creature gets +1/+2.
-target=creature
-auto=1/2
+primitive=Mageta the Lion
+id=24565
+rarity=R
+[/card]
+[card]
+primitive=Mageta's Boon
 id=24550
-name=Mageta's Boon
 rarity=C
-mana={1}{W}
-type=Enchantment
-subtype=Aura
-abilities=flash
 [/card]
 [card]
-text=Swampwalk
+primitive=Mana Vapors
+id=24578
+rarity=U
+[/card]
+[card]
+primitive=Marsh Boa
 id=24664
-name=Marsh Boa
 rarity=C
-mana={G}
-type=Creature
-subtype=Snake
-power=1
-toughness=1
-abilities=swampwalk
 [/card]
 [card]
-text={T}, Sacrifice Mine Bearer: Destroy target attacking creature.
+primitive=Mercenary Informer
+id=24563
+rarity=R
+[/card]
+[card]
+primitive=Mine Bearer
 id=24555
-name=Mine Bearer
 rarity=C
-mana={2}{W}
-type=Creature
-subtype=Human Soldier
-auto={T}{S}:destroy target(creature[attacking])
-power=1
-toughness=1
 [/card]
 [card]
-text=You can't untap more than one land during your untap step.
-auto=@each my untap:untap notatarget(land|myBattlefield)
+primitive=Mirror Strike
+id=24554
+rarity=U
+[/card]
+[card]
+primitive=Mungha Wurm
 id=24675
-name=Mungha Wurm
 rarity=R
-mana={G}
-type=Creature
-subtype=Wurm
-auto=lord(land|myBattlefield) doesnotuntap
-power=6
-toughness=5
 [/card]
 [card]
-text=Destroy all creatures you don't control. They can't be regenerated.
-auto=bury all(creature|opponentBattlefield)
+primitive=Nakaya Shade
+id=24598
+rarity=U
+[/card]
+[card]
+primitive=Noxious Field
+id=24686
+rarity=U
+[/card]
+[card]
+primitive=Outbreak
+id=24613
+rarity=U
+[/card]
+[card]
+primitive=Overburden
+id=24597
+rarity=R
+[/card]
+[card]
+primitive=Panic Attack
+id=24639
+rarity=C
+[/card]
+[card]
+primitive=Pit Raptor
+id=24612
+rarity=U
+[/card]
+[card]
+primitive=Plague Fiend
+id=24610
+rarity=C
+[/card]
+[card]
+primitive=Plague Wind
 id=24622
-name=Plague Wind
 rarity=R
-mana={7}{B}{B}
-type=Sorcery
 [/card]
 [card]
-text=Trample
+primitive=Psychic Theft
+id=24593
+rarity=R
+[/card]
+[card]
+primitive=Pygmy Razorback
 id=24663
-name=Pygmy Razorback
 rarity=C
-mana={1}{G}
-type=Creature
-subtype=Boar
-power=2
-toughness=1
-abilities=trample
 [/card]
 [card]
-text=Reach (This creature can block creatures with flying.)
+primitive=Quicksilver Wall
+id=24582
+rarity=U
+[/card]
+[card]
+primitive=Rebel Informer
+id=24617
+rarity=R
+[/card]
+[card]
+primitive=Rethink
+id=24588
+rarity=C
+[/card]
+[card]
+primitive=Reveille Squad
+id=24559
+rarity=U
+[/card]
+[card]
+primitive=Rhystic Cave
+id=24685
+rarity=U
+[/card]
+[card]
+primitive=Rhystic Circle
+id=24562
+rarity=C
+[/card]
+[card]
+primitive=Rhystic Deluge
+id=24576
+rarity=C
+[/card]
+[card]
+primitive=Rhystic Lightning
+id=24633
+rarity=C
+[/card]
+[card]
+primitive=Rhystic Scrying
+id=24577
+rarity=U
+[/card]
+[card]
+primitive=Rhystic Shield
+id=24551
+rarity=C
+[/card]
+[card]
+primitive=Rhystic Study
+id=24589
+rarity=C
+[/card]
+[card]
+primitive=Rhystic Syphon
+id=24623
+rarity=U
+[/card]
+[card]
+primitive=Rhystic Tutor
+id=24614
+rarity=R
+[/card]
+[card]
+primitive=Rib Cage Spider
 id=24653
-name=Rib Cage Spider
 rarity=C
-mana={2}{G}
-type=Creature
-subtype=Spider
-power=1
-toughness=4
-abilities=reach
 [/card]
 [card]
-text={R}: Ridgeline Rager gets +1/+0 until end of turn.
+primitive=Ribbon Snake
+id=24571
+rarity=C
+[/card]
+[card]
+primitive=Ridgeline Rager
 id=24627
-name=Ridgeline Rager
 rarity=C
-mana={2}{R}
-type=Creature
-subtype=Beast
-auto={R}:1/0
-power=1
-toughness=2
 [/card]
 [card]
-text=Mercenaries don't untap during their controllers' untap steps.
+primitive=Root Cage
 id=24665
-auto=lord(mercenary) doesnotuntap
-name=Root Cage
 rarity=U
-mana={1}{G}
-type=Enchantment
 [/card]
 [card]
-text=Scoria Cat gets +3/+3 as long as you control no untapped lands.
+primitive=Samite Sanctuary
+id=24570
+rarity=R
+[/card]
+[card]
+primitive=Scoria Cat
 id=24636
-name=Scoria Cat
 rarity=U
-mana={3}{R}{R}
-type=Creature
-subtype=Cat
-auto=aslongas(land[-tapped]|myBattlefield) -3/-3
-power=6
-toughness=6
 [/card]
 [card]
-text=Searing Wind deals 10 damage to target creature or player.
+primitive=Search for Survivors
+id=24641
+rarity=R
+[/card]
+[card]
+primitive=Searing Wind
 id=24650
-target=creature,player
-auto=damage:10
-name=Searing Wind
 rarity=R
-mana={8}{R}
-type=Instant
 [/card]
 [card]
-text=Basic lands each player controls have shroud as long as that player controls three or fewer lands. (They can't be the targets of spells or abilities.)
-auto=aslongas(land|myBattlefield) lord(land[basic]|myBattlefield) shroud <4
-auto=aslongas(land|opponentBattlefield) lord(land[basic]|opponentBattlefield) shroud <4
+primitive=Sheltering Prayers
 id=24568
-name=Sheltering Prayers
 rarity=R
-mana={W}
-type=Enchantment
 [/card]
 [card]
-text=When Silt Crawler enters the battlefield, tap all lands you control.
+primitive=Shield Dancer
+id=24556
+rarity=U
+[/card]
+[card]
+primitive=Shrouded Serpent
+id=24595
+rarity=R
+[/card]
+[card]
+primitive=Silt Crawler
 id=24655
-name=Silt Crawler
 rarity=C
-mana={2}{G}
-type=Creature
-subtype=Beast
-auto=tap all(land|myBattlefield)
-power=3
-toughness=3
 [/card]
 [card]
-text=Reach (This creature can block creatures with flying.) Sacrifice a land: Spitting Spider deals 1 damage to each creature with flying.
+primitive=Snag
+id=24668
+rarity=U
+[/card]
+[card]
+primitive=Soul Charmer
+id=24611
+rarity=C
+[/card]
+[card]
+primitive=Soul Strings
+id=24605
+rarity=C
+[/card]
+[card]
+primitive=Spiketail Drake
+id=24592
+rarity=U
+[/card]
+[card]
+primitive=Spiketail Hatchling
+id=24581
+rarity=C
+[/card]
+[card]
+primitive=Spitting Spider
 id=24666
-name=Spitting Spider
 rarity=U
-mana={3}{G}{G}
-type=Creature
-subtype=Spider
-auto={S(land|myBattlefield)}:damage:1 all(creature[flying])
-power=3
-toughness=5
 [/card]
 [card]
-text=Sacrifice Spore Frog: Prevent all combat damage that would be dealt this turn.
+primitive=Spore Frog
 id=24654
-name=Spore Frog
 rarity=C
-mana={G}
-type=Creature
-subtype=Frog
-auto={S}:preventAllcombatDamage ueot
-power=1
-toughness=1
 [/card]
 [card]
-text=Spur Grappler gets +2/+1 as long as you control no untapped lands.
+primitive=Spur Grappler
 id=24625
-name=Spur Grappler
 rarity=C
-mana={2}{R}
-type=Creature
-subtype=Beast
-auto=aslongas(land[-tapped]|myBattlefield) -2/-1
-power=4
-toughness=2
 [/card]
 [card]
-text={1}{G}, Sacrifice a land: Put two 1/1 green Squirrel creature tokens onto the battlefield.   {1}{G}, Sacrifice a land: Squirrel creatures get +1/+1 until end of turn.
+primitive=Squirrel Wrangler
 id=24672
-name=Squirrel Wrangler
 rarity=R
-mana={2}{G}{G}
-type=Creature
-subtype=Human Druid
-auto={1}{G}{S(land|myBattlefield)}:token(Squirrel,creature squirrel,1/1,green)*2
-auto={1}{G}{S(land|myBattlefield)}:lord(squirrel) 1/1 ueot
-power=2
-toughness=2
 [/card]
 [card]
-text=Flying   Sacrifice a land: Return Stormwatch Eagle to its owner's hand.
+primitive=Steal Strength
+id=24608
+rarity=C
+[/card]
+[card]
+primitive=Stormwatch Eagle
 id=24583
-name=Stormwatch Eagle
 rarity=C
-mana={3}{U}
-type=Creature
-subtype=Bird
-auto={S(land|myBattlefield)}:moveTo(ownerhand)
-power=2
-toughness=1
-abilities=flying
 [/card]
 [card]
-text={W}{W}: Target attacking creature gets -1/-0 until end of turn.
+primitive=Sunken Field
+id=24575
+rarity=U
+[/card]
+[card]
+primitive=Sword Dancer
 id=24544
-name=Sword Dancer
 rarity=U
-mana={1}{W}
-type=Creature
-subtype=Human Rebel
-auto={W}{W}:-1/0 target(creature[attacking])
-power=1
-toughness=2
 [/card]
 [card]
-text=Sacrifice a land: Trenching Steed gets +0/+3 until end of turn.
-id=24546
-name=Trenching Steed
+primitive=Task Mage Assembly
+id=24651
+rarity=R
+[/card]
+[card]
+primitive=Thresher Beast
+id=24658
 rarity=C
-mana={3}{W}
-type=Creature
-subtype=Horse Rebel
-auto={S(land|myBattlefield)}:0/3
-power=2
-toughness=3
 [/card]
 [card]
-text=Flying   At the beginning of your end step, tap all lands you control.
-auto=@each my end:tap all(land|myBattlefield)
+primitive=Thrive
+id=24669
+rarity=C
+[/card]
+[card]
+primitive=Trenching Steed
+id=24546
+rarity=C
+[/card]
+[card]
+primitive=Troubled Healer
+id=24547
+rarity=C
+[/card]
+[card]
+primitive=Troublesome Spirit
 id=24584
-name=Troublesome Spirit
 rarity=R
-mana={2}{U}{U}
-type=Creature
-subtype=Spirit
-power=3
-toughness=4
-abilities=flying
 [/card]
 [card]
-text=Veteran Brawlers can't attack if defending player controls an untapped land.   Veteran Brawlers can't block if you control an untapped land.
+primitive=Verdant Field
+id=24662
+rarity=U
+[/card]
+[card]
+primitive=Veteran Brawlers
 id=24645
-name=Veteran Brawlers
 rarity=R
-mana={1}{R}
-type=Creature
-subtype=Human Soldier
-auto=aslongas(land[-tapped]|opponentBattlefield) cantattack
-auto=aslongas(land[-tapped]|myBattlefield) cantblock
-power=4
-toughness=4
 [/card]
 [card]
-text=Vintara Snapper has shroud as long as you control no untapped lands. (It can't be the target of spells or abilities.)
+primitive=Vintara Elephant
+id=24652
+rarity=C
+[/card]
+[card]
+primitive=Vintara Snapper
 id=24656
-name=Vintara Snapper
 rarity=U
-mana={G}{G}
-type=Creature
-subtype=Turtle
-auto=aslongas(land[-tapped]|myBattlefield) -shroud
-power=2
-toughness=2
-abilities=shroud
 [/card]
 [card]
-text=Creatures you control get +7/+7 until end of turn.
+primitive=Vitalizing Wind
 id=24677
-name=Vitalizing Wind
-auto=lord(creature|myBattlefield) 7/7 ueot
 rarity=R
-mana={8}{G}
-type=Instant
 [/card]
 [card]
-text={R}: Target creature gains haste until end of turn. (It can attack this turn.)
+primitive=Wall of Vipers
+id=24609
+rarity=U
+[/card]
+[card]
+primitive=Well of Discovery
+id=24684
+rarity=R
+[/card]
+[card]
+primitive=Well of Life
+id=24681
+rarity=U
+[/card]
+[card]
+primitive=Whip Sergeant
 id=24628
-name=Whip Sergeant
 rarity=U
-mana={2}{R}
-type=Creature
-subtype=Human Soldier
-auto={R}:haste target(creature)
-power=2
-toughness=1
 [/card]
 [card]
-text=Flying   Whenever Windscouter attacks or blocks, return it to its owner's hand at end of combat.
+primitive=Whipstitched Zombie
+id=24603
+rarity=C
+[/card]
+[card]
+primitive=Wild Might
+id=24661
+rarity=C
+[/card]
+[card]
+primitive=Windscouter
 id=24585
-name=Windscouter
 rarity=U
-mana={3}{U}
-type=Creature
-subtype=Human Scout
-auto=@each combatends:moveTo(ownerhand) all(windscouter[attacking;blocking]|myBattlefield)
-power=3
-toughness=3
-abilities=flying
 [/card]
 [card]
-text=Wing Storm deals damage to each player equal to twice the number of creatures with flying that player controls.
-auto=foreach(creature[flying]|myBattlefield) damage:2 controller
-auto=foreach(creature[flying]|opponentBattlefield) damage:2 opponent
+primitive=Wing Storm
 id=25523
-name=Wing Storm
 rarity=U
-mana={2}{G}
-type=Sorcery
+[/card]
+[card]
+primitive=Wintermoon Mesa
+id=23318
+rarity=R
+[/card]
+[card]
+primitive=Withdraw
+id=24580
+rarity=C
+[/card]
+[card]
+primitive=Zerapa Minotaur
+id=24630
+rarity=C
 [/card]

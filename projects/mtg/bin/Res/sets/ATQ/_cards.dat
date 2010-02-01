@@ -3,459 +3,502 @@ author=Wagic Team
 year=1994
 [/meta]
 [card]
-text=At the beginning of your upkeep, put a doom counter on Armageddon Clock. At the beginning of your draw step, Armageddon Clock deals damage to each player equal to the number of doom counters on it. {4}: Remove a doom counter from Armageddon Clock. Any player may activate this ability but only during any upkeep step.
-id=993
-alias=1095
-name=Armageddon Clock
-rarity=U
-mana={6}
-type=Artifact
+primitive=Amulet of Kroog
+id=992
+rarity=C
 [/card]
 [card]
-text={W}{W}{T}: Return target artifact card from your graveyard to your hand.
+primitive=Argivian Archaeologist
 id=1064
-name=Argivian Archaeologist
 rarity=R
-mana={1}{W}{W}
-type=Creature
-subtype=Human Artificer
-auto={T}{W}{W}:moveto(myhand) target(artifact|mygraveyard)
-power=1
-toughness=1
 [/card]
 [card]
-text=Counter target artifact spell.
+primitive=Argivian Blacksmith
+id=1065
+rarity=C
+[/card]
+[card]
+primitive=Argothian Pixies
+id=1050
+rarity=C
+[/card]
+[card]
+primitive=Argothian Treefolk
+id=1051
+rarity=C
+[/card]
+[card]
+primitive=Armageddon Clock
+id=993
+rarity=U
+[/card]
+[card]
+primitive=Artifact Blast
 id=1057
-target=artifact|stack
-auto=fizzle
-name=Artifact Blast
 rarity=C
-mana={R}
-type=Instant
 [/card]
 [card]
-text=Sacrifice a creature: Add {2} to your mana pool.
+primitive=Artifact Possession
+id=1036
+rarity=C
+[/card]
+[card]
+primitive=Artifact Ward
+id=1066
+rarity=C
+[/card]
+[card]
+primitive=Ashnod's Altar
 id=994
-auto={S(creature|myBattlefield)}:Add {2}
-name=Ashnod's Altar
 rarity=U
-mana={3}
-type=Artifact
 [/card]
 [card]
-text=Sacrifice an artifact: Atog gets +2/+2 until end of turn.
+primitive=Ashnod's Battle Gear
+id=995
+rarity=U
+[/card]
+[card]
+primitive=Ashnod's Transmogrant
+id=996
+rarity=U
+[/card]
+[card]
+primitive=Atog
 id=1058
-name=Atog
 rarity=C
-mana={1}{R}
-type=Creature
-subtype=Atog
-auto={S(artifact|myBattlefield)}:2/2
-power=1
-toughness=2
 [/card]
 [card]
-text=Whenever an opponent casts an artifact spell, put a +1/+1 counter on Citanul Druid.
+primitive=Battering Ram
+id=997
+rarity=C
+[/card]
+[card]
+primitive=Bronze Tablet
+id=998
+rarity=R
+[/card]
+[card]
+primitive=Candelabra of Tawnos
+id=999
+rarity=R
+[/card]
+[card]
+primitive=Circle of Protection: Artifacts
+id=1067
+rarity=U
+[/card]
+[card]
+primitive=Citanul Druid
 id=1052
-name=Citanul Druid
-auto=@movedTo(artifact|opponentBattlefield):counter(1/1,1)
 rarity=U
-mana={1}{G}
-type=Creature
-subtype=Human Druid
-power=1
-toughness=1
 [/card]
 [card]
-text={2}:Regenerate Clay Statue.
+primitive=Clay Statue
 id=1000
-name=Clay Statue
 rarity=C
-mana={4}
-type=Artifact Creature
-subtype=Golem
-auto={2}:regenerate 
-power=3
-toughness=1
 [/card]
 [card]
-text=Trample (If this creature would deal enough damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player or planeswalker.)   Colossus of Sardia doesn't untap during your untap step.   {9}: Untap Colossus of Sardia. Activate this ability only during your upkeep.
+primitive=Clockwork Avian
+id=1001
+rarity=R
+[/card]
+[card]
+primitive=Colossus of Sardia
 id=1002
-name=Colossus of Sardia
 rarity=R
-mana={9}
-type=Artifact Creature
-subtype=Golem
-auto={9}:untap myUpkeepOnly
-power=9
-toughness=9
-abilities=doesnotuntap,trample
 [/card]
 [card]
-text=Destroy target artifact. It can't be regenerated.   That artifact's controller gains life equal to its converted mana cost.
+primitive=Coral Helm
+id=1003
+rarity=R
+[/card]
+[card]
+primitive=Crumble
 id=1053
-target=artifact
-auto=bury
-auto=life:manacost targetcontroller
-name=Crumble
 rarity=C
-mana={G}
-type=Instant
 [/card]
 [card]
-text={2}: Dragon Engine gets +1/+0 until end of turn.
+primitive=Cursed Rack
+id=1004
+rarity=U
+[/card]
+[card]
+primitive=Damping Field
+id=1068
+rarity=U
+[/card]
+[card]
+primitive=Detonate
+id=1059
+rarity=U
+[/card]
+[card]
+primitive=Drafna's Restoration
+id=1037
+rarity=C
+[/card]
+[card]
+primitive=Dragon Engine
 id=1005
-name=Dragon Engine
 rarity=C
-mana={3}
-type=Artifact Creature
-subtype=Construct
-auto={2}:1/0
-power=1
-toughness=3
 [/card]
 [card]
-text=Sacrifice an artifact: Put a +1/+1 counter on target creature. Activate this ability only during your upkeep.
+primitive=Dwarven Weaponsmith
 id=1060
-name=Dwarven Weaponsmith
-auto={T}{S(artifact|myBattlefield)}:counter(1/1,1) target(creature) myTurnOnly
 rarity=U
-mana={1}{R}
-type=Creature
-subtype=Dwarf Artificer
-power=1
-toughness=1
 [/card]
 [card]
+primitive=Energy Flux
+id=1038
+rarity=U
+[/card]
+[card]
+primitive=Feldon's Cane
 id=1006
-name=Feldon's Cane
-mana={1}
-type=Artifact
-text={T}, Exile Feldon's Cane: Shuffle your graveyard into your library.
-auto={T}:moveto(myLibrary) all(*|myGraveyard) && shuffle && moveto(exile) all(this)
 rarity=U
 [/card]
 [card]
-text=Gaea's Avenger's power and toughness are each equal to 1 plus the number of artifacts your opponents control.
+primitive=Gaea's Avenger
 id=1054
-name=Gaea's Avenger
-auto=foreach(artifact|opponentBattlefield) 1/1
 rarity=R
-mana={1}{G}{G}
-type=Creature
-subtype=Treefolk
-power=1
-toughness=1
 [/card]
 [card]
-text=Sacrifice a creature: Destroy target artifact. Activate this ability only during your upkeep and only once each turn.
-auto={S(creature|myBattlefield)}:destroy target(artifact) limit:1 myUpkeepOnly
+primitive=Gate to Phyrexia
 id=1039
-name=Gate to Phyrexia
 rarity=U
-mana={B}{B}
-type=Enchantment
 [/card]
 [card]
-text={T}:Grapeshot Catapult deals 1 damage to target creature with flying.
+primitive=Goblin Artisans
+id=1061
+rarity=U
+[/card]
+[card]
+primitive=Golgothian Sylex
+id=1007
+rarity=R
+[/card]
+[card]
+primitive=Grapeshot Catapult
 id=1008
-name=Grapeshot Catapult
 rarity=C
-mana={4}
-type=Artifact Creature
-subtype=Construct
-auto={T}:Damage:1 target(creature[flying])
-power=2
-toughness=3
 [/card]
 [card]
-text=Return all artifacts target player owns to his or her hand.
+primitive=Haunting Wind
+id=1040
+rarity=U
+[/card]
+[card]
+primitive=Hurkyl's Recall
 id=1041
-alias=1202
-name=Hurkyl's Recall
-target=player
 rarity=R
-mana={1}{U}
-type=Instant
 [/card]
 [card]
-text=During your upkeep phase, gain 1 life for each card in your hand above four.
+primitive=Ivory Tower
 id=1009
-auto=@each my upkeep:foreach(*|myhand)life:1 controller >4
-name=Ivory Tower
 rarity=U
-mana={1}
-type=Artifact
 [/card]
 [card]
-text=Attacking creatures get +1/+0.
+primitive=Jalum Tome
+id=1010
+rarity=U
+[/card]
+[card]
+primitive=Martyrs of Korlis
+id=1069
+rarity=U
+[/card]
+[card]
+primitive=Mightstone
 id=1011
-name=Mightstone
-auto=lord(creature[attacking]) 1/0
 rarity=U
-mana={4}
-type=Artifact
 [/card]
 [card]
-text={2}, {T}: Target player puts the top two cards of his or her library into his or her graveyard.
+primitive=Millstone
 id=1012
-auto={2}{T}:deplete:2 target(player)
-name=Millstone
 rarity=U
-mana={2}
-type=Artifact
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.   {1}: Mishra's Factory becomes a 2/2 Assembly-Worker artifact creature until end of turn. It's still a land.   {T}: Target Assembly-Worker creature gets +1/+1 until end of turn.
+primitive=Mishra's Factory
+id=1074
+rarity=U
+[/card]
+[card]
+primitive=Mishra's Factory
 id=1073
-name=Mishra's Factory
-auto={T}:add{1}
-auto={1}:becomes(Artifact Creature Assembly-Worker,2/2) ueot
-auto={T}:1/1 target(assembly-worker)
-rarity=U
-type=Land
+rarity=R
 [/card]
 [card]
-text={6}, {T}: Return target permanent you own and control to your hand.
+primitive=Mishra's Factory
+id=1072
+rarity=R
+[/card]
+[card]
+primitive=Mishra's Factory
+id=1071
+rarity=R
+[/card]
+[card]
+primitive=Mishra's War Machine
+id=1013
+rarity=R
+[/card]
+[card]
+primitive=Mishra's Workshop
+id=1075
+rarity=R
+[/card]
+[card]
+primitive=Obelisk of Undoing
 id=1014
-auto={6}{T}:moveto(myhand) target(*|myBattlefield)
-name=Obelisk of Undoing
 rarity=R
-mana={1}
-type=Artifact
 [/card]
 [card]
-text=When Onulet is put into a graveyard from the battlefield, you gain 2 life.
+primitive=Onulet
 id=1015
-name=Onulet
-auto=@movedTo(this|graveyard):life:2 controller
 rarity=U
-mana={3}
-type=Artifact Creature
-subtype=Construct
-power=2
-toughness=2
 [/card]
 [card]
-text={T}, Sacrifice an artifact: Orcish Mechanics deals 2 damage to target creature or player.
+primitive=Orcish Mechanics
 id=1062
-name=Orcish Mechanics
 rarity=C
-mana={2}{R}
-type=Creature
-subtype=Orc
-auto={T}{S(artifact|myBattlefield)}:damage:2 target(creature,player)
-power=1
-toughness=1
 [/card]
 [card]
-text=Flying
+primitive=Ornithopter
 id=1016
-name=Ornithopter
 rarity=C
-mana={0}
-type=Artifact Creature
-subtype=Thopter
-power=0
-toughness=2
-abilities=flying
 [/card]
 [card]
-text=Return target artifact card from your graveyard to your hand.
+primitive=Phyrexian Gremlins
+id=1042
+rarity=C
+[/card]
+[card]
+primitive=Power Artifact
+id=1043
+rarity=U
+[/card]
+[card]
+primitive=Powerleech
+id=1055
+rarity=U
+[/card]
+[card]
+primitive=Priest of Yawgmoth
+id=1044
+rarity=C
+[/card]
+[card]
+primitive=Primal Clay
+id=1017
+rarity=U
+[/card]
+[card]
+primitive=Rakalite
+id=1018
+rarity=U
+[/card]
+[card]
+primitive=Reconstruction
 id=1045
-target=artifact|myGraveyard
-auto=moveTo(myHand)
-name=Reconstruction
 rarity=C
-mana={U}
-type=Sorcery
 [/card]
 [card]
-text={T}: Sacrifice an artifact: Draw a card.
+primitive=Reverse Polarity
+id=1070
+rarity=C
+[/card]
+[card]
+primitive=Rocket Launcher
+id=1019
+rarity=U
+[/card]
+[card]
+primitive=Sage of Lat-Nam
 id=1046
-name=Sage of Lat-Nam
 rarity=C
-mana={1}{U}
-type=Creature
-subtype=Human Artificer
-auto={T}{S(artifact|myBattlefield)}:draw:1
-power=1
-toughness=2
 [/card]
 [card]
-text=Destroy all artifacts. They can't be regenerated.
+primitive=Shapeshifter
+id=1020
+rarity=R
+[/card]
+[card]
+primitive=Shatterstorm
 id=1063
-auto=bury all(artifact)
-name=Shatterstorm
 rarity=R
-mana={2}{R}{R}
-type=Sorcery
 [/card]
 [card]
-text={3}{T}:Target creature gets -2/-0 until end of turn
+primitive=Staff of Zegon
 id=1021
-name=Staff of Zegon
-auto={3}{T}:-2/0 target(creature)
 rarity=C
-mana={4}
-type=Artifact
 [/card]
 [card]
-text={T}: Add {1} to your mana pool.   Sacrifice Strip Mine: Destroy target land.
-id=1076
-auto={T}:Add {1}
-auto={T}{S}:destroy target(land)
-name=Strip Mine
-rarity=R
-type=Land
-[/card]
-[card]
-text={T}: Add {1} to your mana pool.   Sacrifice Strip Mine: Destroy target land.
-id=1077
-auto={T}:Add {1}
-auto={T}{S}:destroy target(land)
-name=Strip Mine
-rarity=R
-type=Land
-[/card]
-[card]
-text={T}: Add {1} to your mana pool.   Sacrifice Strip Mine: Destroy target land.
-id=1078
-auto={T}:Add {1}
-auto={T}{S}:destroy target(land)
-name=Strip Mine
-rarity=R
-type=Land
-[/card]
-[card]
-text={T}: Add {1} to your mana pool.   Sacrifice Strip Mine: Destroy target land.
+primitive=Strip Mine
 id=1079
-auto={T}:Add {1}
-auto={T}{S}:destroy target(land)
-name=Strip Mine
+rarity=U
+[/card]
+[card]
+primitive=Strip Mine
+id=1078
 rarity=R
-type=Land
 [/card]
 [card]
-text=When Su-Chi is put into a graveyard from the battlefield, add {4} to your mana pool.
+primitive=Strip Mine
+id=1077
+rarity=R
+[/card]
+[card]
+primitive=Strip Mine
+id=1076
+rarity=R
+[/card]
+[card]
+primitive=Su-Chi
 id=1022
-name=Su-Chi
 rarity=U
-mana={4}
-type=Artifact Creature
-subtype=Construct
-auto=@movedTo(this|graveyard):add {4}
-power=4
-toughness=4
 [/card]
 [card]
-text={2}, {T}:Target creature with power 2 or less is unblockable this turn.
+primitive=Tablet of Epityr
+id=1023
+rarity=C
+[/card]
+[card]
+primitive=Tawnos's Coffin
+id=1024
+rarity=R
+[/card]
+[card]
+primitive=Tawnos's Wand
 id=1025
-auto={T}:unblockable target(creature[power<=2])
-name=Tawnos's Wand
 rarity=U
-mana={4}
-type=Artifact
 [/card]
 [card]
-text=As The Rack enters the battlefield, choose an opponent. At the beginning of the chosen player's upkeep, The Rack deals X damage to that player, where X is 3 minus the number of cards in his or her hand
+primitive=Tawnos's Weaponry
+id=1026
+rarity=U
+[/card]
+[card]
+primitive=Tetravus
+id=1027
+rarity=R
+[/card]
+[card]
+primitive=The Rack
 id=1028
-alias=1139
-name=The Rack
 rarity=U
-mana={1}
-type=Artifact
 [/card]
 [card]
-id=1080
-primitive=Urza's Mine
+primitive=Titania's Song
+id=1056
+rarity=U
+[/card]
+[card]
+primitive=Transmute Artifact
+id=1047
+rarity=U
+[/card]
+[card]
+primitive=Triskelion
+id=1029
+rarity=R
+[/card]
+[card]
+primitive=Urza's Avenger
+id=1030
+rarity=R
+[/card]
+[card]
+primitive=Urza's Chalice
+id=1031
 rarity=C
 [/card]
 [card]
-id=1081
 primitive=Urza's Mine
-rarity=C
-[/card]
-[card]
-id=1082
-primitive=Urza's Mine
-rarity=C
-[/card]
-[card]
 id=1083
+rarity=U
+[/card]
+[card]
 primitive=Urza's Mine
+id=1082
 rarity=C
 [/card]
 [card]
-id=1084
-primitive=Urza's Power Plant
+primitive=Urza's Mine
+id=1081
 rarity=U
 [/card]
 [card]
-id=1085
-primitive=Urza's Power Plant
-rarity=U
+primitive=Urza's Mine
+id=1080
+rarity=C
 [/card]
 [card]
-id=1086
-primitive=Urza's Power Plant
-rarity=U
+primitive=Urza's Miter
+id=1032
+rarity=R
 [/card]
 [card]
+primitive=Urza's Power Plant
 id=1087
+rarity=U
+[/card]
+[card]
 primitive=Urza's Power Plant
-rarity=U
-[/card]
-[card]
-id=1088
-primitive=Urza's Tower
-rarity=U
-[/card]
-[card]
-id=1089
-primitive=Urza's Tower
-rarity=U
-[/card]
-[card]
-id=1090
-primitive=Urza's Tower
-rarity=U
-[/card]
-[card]
-id=1091
-primitive=Urza's Tower
-rarity=U
-[/card]
-[card]
-text=Defender (This creature can't attack.)   First strike
-id=1033
-name=Wall of Spears
-rarity=U
-mana={3}
-type=Artifact Creature
-subtype=Wall
-power=2
-toughness=3
-abilities=first strike,defender
-[/card]
-[card]
-text=Attacking creatures get -1/-0.
-id=1034
-auto=lord(creature[attacking]) -1/0
-name=Weakstone
-rarity=U
-mana={4}
-type=Artifact
-[/card]
-[card]
-text=Vigilance
-id=1035
-name=Yotian Soldier
+id=1086
 rarity=C
-mana={3}
-type=Artifact Creature
-subtype=Soldier
-power=1
-toughness=4
-abilities=vigilance
+[/card]
+[card]
+primitive=Urza's Power Plant
+id=1085
+rarity=C
+[/card]
+[card]
+primitive=Urza's Power Plant
+id=1084
+rarity=U
+[/card]
+[card]
+primitive=Urza's Tower
+id=1091
+rarity=U
+[/card]
+[card]
+primitive=Urza's Tower
+id=1090
+rarity=C
+[/card]
+[card]
+primitive=Urza's Tower
+id=1089
+rarity=U
+[/card]
+[card]
+primitive=Urza's Tower
+id=1088
+rarity=U
+[/card]
+[card]
+primitive=Wall of Spears
+id=1033
+rarity=U
+[/card]
+[card]
+primitive=Weakstone
+id=1034
+rarity=U
+[/card]
+[card]
+primitive=Xenic Poltergeist
+id=1048
+rarity=U
+[/card]
+[card]
+primitive=Yawgmoth Demon
+id=1049
+rarity=R
+[/card]
+[card]
+primitive=Yotian Soldier
+id=1035
+rarity=C
 [/card]

@@ -4,2118 +4,1247 @@ name=Wagic 2010
 year=2009
 [/meta]
 [card]
-text=Deathtouch (Creatures dealt damage by this creature are destroyed. You can divide this creature's combat damage among any of the creatures blocking or blocked by it.)   When Acidic Slime enters the battlefield, destroy target artifact, enchantment, or land.
+primitive=Acidic Slime
 id=189880
-name=Acidic Slime
-rarity=U
-mana={3}{G}{G}
-type=Creature
-subtype=Ooze
-auto=destroy target(artifact,enchantment,land)
-power=2
-toughness=2
-abilities=deathtouch
-[/card]
-[card]
-id=191082
-alias=129767
-name=Act of Treason
-mana={2}{R}
-target=creature
-auto=haste
-auto=untap
-type=Sorcery
-text=Gain control of target creature until end of turn. Untap that creature. It gains haste until end of turn. (It can attack and {T} this turn.)
 rarity=U
 [/card]
 [card]
+primitive=Acolyte of Xathrid
 id=190579
-name=Acolyte of Xathrid
-mana={B}
-type=Creature
-subtype=Human Cleric
-power=0
-toughness=1
-text={1}{B}, {T}: Target player loses 1 life.
-auto={1}{B}{T}:life:-1 target(player)
 rarity=C
 [/card]
 [card]
+primitive=Act of Treason
+id=191082
+rarity=U
+[/card]
+[card]
+primitive=Air Elemental
 id=189884
-name=Air Elemental
-mana={3}{U}{U}
-type=Creature
-subtype=Elemental
-power=4
-toughness=4
-text=Flying
-abilities=flying
 rarity=U
 [/card]
 [card]
-id=189894
-name=Alluring Siren
-mana={1}{U}
-type=Creature
-subtype=Siren
-power=1
-toughness=1
-text={T}: Target creature an opponent controls attacks you this turn if able.
-auto={T}:mustattack target(creature|opponentinplay)
-rarity=U
-[/card]
-[card]
-id=191245
-name=Angel's Feather
-mana={2}
-type=Artifact
-text=Whenever a player casts a white spell, you may gain 1 life.
-auto=@movedTo(*[white]|stack):may life:1
-rarity=U
-[/card]
-[card]
-id=190549
-name=Angel's Mercy
-mana={2}{W}{W}
-type=Instant
-text=You gain 7 life.
-auto=life:7
-rarity=C
-[/card]
-[card]
-id=191063
-name=Ant Queen
-mana={3}{G}{G}
-type=Creature
-subtype=Insect
-power=5
-toughness=5
-text={1}{G}: Put a 1/1 green Insect creature token onto the battlefield.
-auto={1}{G}:token(Insect,Creature Insect, 1/1,green)
-rarity=R
-[/card]
-[card]
-id=193738
-name=Armored Ascension
-mana={3}{W}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature gets +1/+1 for each Plains you control and has flying.
-target=creature
-auto=flying
-auto=foreach(plains|mybattlefield) 1/1
-rarity=U
-[/card]
-[card]
-id=193745
-name=Assassinate
-mana={2}{B}
-type=Sorcery
-text=Destroy target tapped creature.
-target=creature[tapped]
-auto=destroy
-rarity=C
-[/card]
-[card]
-id=191393
-name=Ball Lightning
-mana={R}{R}{R}
-type=Creature
-subtype=Elemental
-power=6
-toughness=1
-text=Trample (If this creature would deal enough damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player or planeswalker.) Haste (This creature can attack and {T} as soon as it comes under your control.) At the beginning of the end step, sacrifice Ball Lightning.
-rarity=R
-auto=@next end:bury
-abilities=trample,haste
-[/card]
-[card]
-id=191065
-name=Baneslayer Angel
-mana={3}{W}{W}
-type=Creature
-subtype=Angel
-power=5
-toughness=5
-text=Flying, first strike, lifelink, protection from Demons and from Dragons
-abilities=flying,first strike,lifelink
-auto=protection from(demon,dragon)
+primitive=Ajani Goldmane
+id=191239
 rarity=M
 [/card]
 [card]
+primitive=Alluring Siren
+id=189894
+rarity=U
+[/card]
+[card]
+primitive=Angel's Feather
+id=191245
+rarity=U
+[/card]
+[card]
+primitive=Angel's Mercy
+id=190549
+rarity=C
+[/card]
+[card]
+primitive=Ant Queen
+id=191063
+rarity=R
+[/card]
+[card]
+primitive=Armored Ascension
+id=193738
+rarity=U
+[/card]
+[card]
+primitive=Assassinate
+id=193745
+rarity=C
+[/card]
+[card]
+primitive=Awakener Druid
+id=189907
+rarity=U
+[/card]
+[card]
+primitive=Ball Lightning
+id=191393
+rarity=R
+[/card]
+[card]
+primitive=Baneslayer Angel
+id=191065
+rarity=M
+[/card]
+[card]
+primitive=Berserkers of Blood Ridge
 id=191071
-name=Berserkers of Blood Ridge
-mana={4}{R}
-type=Creature
-subtype=Human Berserker
-power=4
-toughness=4
-text=Berserkers of Blood Ridge attacks each turn if able.
-auto=mustattack
 rarity=C
 [/card]
 [card]
+primitive=Birds of Paradise
 id=191080
-name=Birds of Paradise
-mana={G}
-type=Creature
-subtype=Bird
-power=0
-toughness=1
-text=Flying {T}: Add one mana of any color to your mana pool.
-abilities=flying
-auto={T}:Add{G}
-auto={T}:Add{R}
-auto={T}:Add{U}
-auto={T}:Add{B}
-auto={T}:Add{W}
 rarity=R
 [/card]
 [card]
+primitive=Black Knight
 id=190540
-name=Black Knight
-mana={B}{B}
-type=Creature
-subtype=Human Knight
-power=2
-toughness=2
-text=First strike (This creature deals combat damage before creatures without first strike.) Protection from white (This creature can't be blocked, targeted, dealt damage, or enchanted by anything white.)
 rarity=U
-abilities=first strike,protection from white
 [/card]
 [card]
+primitive=Blinding Mage
 id=190195
-name=Blinding Mage
-mana={1}{W}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=2
-text={W}, {T}: Tap target creature.
-auto={W}{T}:tap target(creature)
 rarity=C
 [/card]
 [card]
+primitive=Bog Wraith
 id=190165
-name=Bog Wraith
-mana={3}{B}
-type=Creature
-subtype=Wraith
-power=3
-toughness=3
-text=Swampwalk (This creature is unblockable as long as defending player controls a Swamp.)
-abilities=swampwalk
 rarity=U
 [/card]
 [card]
+primitive=Bogardan Hellkite
+id=191340
+rarity=M
+[/card]
+[card]
+primitive=Borderland Ranger
 id=189905
-name=Borderland Ranger
-mana={2}{G}
-type=Creature
-subtype=Human Scout
-power=2
-toughness=2
-text=When Borderland Ranger enters the battlefield, you may search your library for a basic land card, reveal it, and put it into your hand. If you do, shuffle your library.
-auto=may moveTo(myHand) target(basic|myLibrary)
 rarity=C
 [/card]
 [card]
+primitive=Bountiful Harvest
 id=189913
-name=Bountiful Harvest
-mana={4}{G}
-type=Sorcery
-text=You gain 1 life for each land you control.
-auto=foreach(land|mybattlefield) life:1
 rarity=C
 [/card]
 [card]
-text=Whenever Bramble Creeper attacks, it gets +5/+0 until end of turn.
+primitive=Bramble Creeper
 id=189915
-name=Bramble Creeper
 rarity=C
-mana={4}{G}
-type=Creature
-subtype=Elemental
-auto=lord(bramble creeper[attacking]|mybattlefield) 5/0
-auto=lord(other bramble creeper[attacking]|mybattlefield) -5/0
-power=0
-toughness=3
 [/card]
 [card]
+primitive=Burning Inquiry
 id=191096
-name=Burning Inquiry
-mana={R}
-type=Sorcery
-text=Each player draws three cards, then discards three cards at random.
-auto=draw:3 opponent
-auto=draw:3 controller
-auto=discard:3 opponent
-auto=discard:3 controller
 rarity=C
 [/card]
 [card]
+primitive=Burst of Speed
 id=191061
-name=Burst of Speed
-mana={R}
-type=Sorcery
-text=Creatures you control gain haste until end of turn. (They can attack and {T} even if they just came under your control.)
-auto=lord(creature|myBattlefield) haste
 rarity=C
 [/card]
 [card]
+primitive=Cancel
 id=189918
-name=Cancel
-mana={1}{U}{U}
-type=Instant
-text=Counter target spell.
-target=*|stack
-auto=fizzle
 rarity=C
 [/card]
 [card]
+primitive=Canyon Minotaur
 id=191059
-name=Canyon Minotaur
-mana={3}{R}
-type=Creature
-subtype=Minotaur Warrior
-power=3
-toughness=3
 rarity=C
 [/card]
 [card]
+primitive=Capricious Efreet
+id=189914
+rarity=R
+[/card]
+[card]
+primitive=Captain of the Watch
 id=191070
-name=Captain of the Watch
-mana={4}{W}{W}
-type=Creature
-subtype=Human Soldier
-power=3
-toughness=3
-text=Vigilance (Attacking doesn't cause this creature to tap.) Other Soldier creatures you control get +1/+1 and have vigilance. When Captain of the Watch enters the battlefield, put three 1/1 white Soldier creature tokens onto the battlefield.
-auto=lord(soldier|myBattlefield) 1/1 other
-auto=lord(soldier|myBattlefield) vigilance other
-auto=token(Soldier,Creature Soldier,1/1,white)*3
-abilities=vigilance
 rarity=R
 [/card]
 [card]
+primitive=Celestial Purge
 id=191595
-name=Celestial Purge
-mana={1}{W}
-type=Instant
-text=Exile target black or red permanent.
-target=*[red;black]
-auto=moveTo(Exile)
 rarity=U
 [/card]
 [card]
+primitive=Cemetery Reaper
 id=190193
-name=Cemetery Reaper
-mana={1}{B}{B}
-type=Creature
-subtype=Zombie
-power=2
-toughness=2
-text=Other Zombie creatures you control get +1/+1. {2}{B}, {T}: Exile target creature card from a graveyard. Put a 2/2 black Zombie creature token onto the battlefield.
-auto=lord(zombie|myBattlefield) 1/1 other
-auto={2}{B}{T}:moveTo(Exile) target(creature|graveyard) && token(Zombie,Creature Zombie,2/2,black)
 rarity=R
 [/card]
 [card]
+primitive=Centaur Courser
 id=189883
-name=Centaur Courser
-mana={2}{G}
-type=Creature
-subtype=Centaur Warrior
-power=3
-toughness=3
 rarity=C
 [/card]
 [card]
+primitive=Chandra Nalaar
+id=191242
+rarity=M
+[/card]
+[card]
+primitive=Child of Night
 id=191068
-name=Child of Night
-mana={1}{B}
-type=Creature
-subtype=Vampire
-power=2
-toughness=1
-text=Lifelink (Damage dealt by this creature also causes you to gain that much life.)
-abilities=lifelink
 rarity=C
 [/card]
 [card]
+primitive=Clone
 id=191321
-name=Clone
-mana={3}{U}
-type=Creature
-subtype=Shapeshifter
-power=0
-toughness=0
-text=You may have Clone enter the battlefield as a copy of any creature on the battlefield.
-auto=may copy notatarget(creature)
 rarity=R
 [/card]
 [card]
+primitive=Coat of Arms
+id=191314
+rarity=R
+[/card]
+[card]
+primitive=Consume Spirit
 id=189893
-alias=1156
-target=creature,player
-name=Consume Spirit
-mana={X}{1}{B}
-type=Sorcery
-text=Spend only black mana on X.  Consume Spirit deals X damage to target creature or player and you gain X life.
 rarity=U
 [/card]
 [card]
+primitive=Convincing Mirage
+id=190161
+rarity=C
+[/card]
+[card]
+primitive=Coral Merfolk
 id=193749
-name=Coral Merfolk
-mana={1}{U}
-type=Creature
-subtype=Merfolk
-power=2
-toughness=1
 rarity=C
 [/card]
 [card]
+primitive=Craw Wurm
 id=189903
-name=Craw Wurm
-mana={4}{G}{G}
-type=Creature
-subtype=Wurm
-power=6
-toughness=4
 rarity=C
 [/card]
 [card]
+primitive=Cudgel Troll
 id=189898
-name=Cudgel Troll
-mana={2}{G}{G}
-type=Creature
-subtype=Troll
-power=4
-toughness=3
-text={G}: Regenerate Cudgel Troll. (The next time this creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
-auto={G}:regenerate
 rarity=U
 [/card]
 [card]
-text=Reach (This creature can block creatures with flying.) Deathtouch (Creatures dealt damage by this creature are destroyed. You can divide this creature's combat damage among any of the creatures blocking or blocked by it.)
+primitive=Darksteel Colossus
+id=191312
+rarity=M
+[/card]
+[card]
+primitive=Deadly Recluse
 id=189924
-name=Deadly Recluse
-mana={1}{G}
-type=Creature
-subtype=Spider
-power=1
-toughness=2
-abilities=deathtouch,reach
 rarity=C
 [/card]
 [card]
+primitive=Deathmark
 id=190581
-name=Deathmark
-mana={B}
-type=Sorcery
-text=Destroy target green or white creature.
-target=creature[green;white]
-auto=destroy
 rarity=U
 [/card]
 [card]
+primitive=Demon's Horn
 id=191247
-name=Demon's Horn
-mana={2}
-type=Artifact
-text=Whenever a player casts a black spell, you may gain 1 life.
-auto=@movedTo(*[black]|stack):may life:1
 rarity=U
 [/card]
 [card]
+primitive=Diabolic Tutor
 id=190533
-name=Diabolic Tutor
-mana={2}{B}{B}
-type=Sorcery
-text=Search your library for a card and put that card into your hand. Then shuffle your library.
-target=*|myLibrary
-auto=moveTo(myHand)
 rarity=U
 [/card]
 [card]
+primitive=Disentomb
 id=190559
-name=Disentomb
-mana={B}
-type=Sorcery
-text=Return target creature card from your graveyard to your hand.
-target=creature|myGraveyard
-auto=moveTo(myHand)
 rarity=C
 [/card]
 [card]
+primitive=Disorient
 id=190171
-name=Disorient
-mana={3}{U}
-type=Instant
-text=Target creature gets -7/-0 until end of turn.
-target=creature
-auto=-7/-0
 rarity=C
 [/card]
 [card]
+primitive=Divination
 id=190172
-name=Divination
-mana={2}{U}
-type=Sorcery
-text=Draw two cards.
-auto=draw:2
 rarity=C
 [/card]
 [card]
+primitive=Divine Verdict
 id=189912
-name=Divine Verdict
-mana={3}{W}
-type=Instant
-text=Destroy target attacking or blocking creature.
-target=creature[attacking;blocking]
-auto=destroy
 rarity=C
 [/card]
 [card]
+primitive=Djinn of Wishes
+id=190198
+rarity=R
+[/card]
+[card]
+primitive=Doom Blade
 id=190535
-name=Doom Blade
-mana={1}{B}
-type=Instant
-text=Destroy target nonblack creature.
-target=creature[-black]
-auto=destroy
 rarity=C
 [/card]
 [card]
-id=191244
-name=Dragon's Claw
-mana={2}
-type=Artifact
-text=Whenever a player casts a red spell, you may gain 1 life.
-auto=@movedTo(*[red]|stack):may life:1
-rarity=U
-[/card]
-[card]
-id=191091
-name=Dragonskull Summit
-auto=tap
-auto=aslongas(mountain,swamp|myBattelfield) untap
-auto={T}:Add {B}
-auto={T}:Add {R}
-type=Land
-text=Dragonskull Summit enters the battlefield tapped unless you control a Swamp or a Mountain. {T}: Add {B} or {R} to your mana pool.
-rarity=R
-[/card]
-[card]
+primitive=Dragon Whelp
 id=191060
-name=Dragon Whelp
-mana={2}{R}{R}
-type=Creature
-subtype=Dragon
-power=2
-toughness=3
-text=Flying {R}: Dragon Whelp gets +1/+0 until end of turn. If this ability has been activated four or more times this turn, sacrifice Dragon Whelp at the beginning of the next end step.
-abilities=flying
-alias=1284
 rarity=U
 [/card]
 [card]
+primitive=Dragon's Claw
+id=191244
+rarity=U
+[/card]
+[card]
+primitive=Dragonskull Summit
+id=191091
+rarity=R
+[/card]
+[card]
+primitive=Dread Warlock
 id=190575
-name=Dread Warlock
-mana={1}{B}{B}
-type=Creature
-subtype=Human Wizard
-auto=cantbeblockedby(creature[-black])
-power=2
-toughness=2
-text=Dread Warlock can't be blocked except by black creatures.
 rarity=C
 [/card]
 [card]
+primitive=Drowned Catacomb
 id=191067
-name=Drowned Catacomb
-auto=tap
-auto=aslongas(island,swamp|myBattelfield) untap
-auto={T}:Add {U}
-auto={T}:Add {B}
-type=Land
-text=Drowned Catacomb enters the battlefield tapped unless you control an Island or a Swamp. {T}: Add {U} or {B} to your mana pool.
 rarity=R
 [/card]
 [card]
+primitive=Drudge Skeletons
 id=190552
-name=Drudge Skeletons
-mana={1}{B}
-type=Creature
-subtype=Skeleton
-power=1
-toughness=1
-text={B}: Regenerate Drudge Skeletons. (The next time this creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
-auto={B}:Regenerate
-rarity=U
+rarity=C
 [/card]
 [card]
+primitive=Duress
+id=190580
+rarity=C
+[/card]
+[card]
+primitive=Earthquake
 id=190551
-auto=damage:X all(creature[-flying])
-auto=damage:X all(player)
-name=Earthquake
-mana={X}{R}
-type=Sorcery
-text=Earthquake deals X damage to each creature without flying and each player.
 rarity=R
 [/card]
 [card]
+primitive=Elite Vanguard
 id=189902
-name=Elite Vanguard
-mana={W}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=1
 rarity=U
 [/card]
 [card]
+primitive=Elvish Archdruid
 id=191392
-name=Elvish Archdruid
-mana={1}{G}{G}
-type=Creature
-subtype=Elf Druid
-power=2
-toughness=2
-text=Other Elf creatures you control get +1/+1. {T}: Add {G} to your mana pool for each Elf you control.
-auto=lord(elf|myBattlefield) 1/1 other
-auto={T}:foreach(elf|myBattlefield) add:{G}
 rarity=R
 [/card]
 [card]
+primitive=Elvish Piper
 id=191317
-name=Elvish Piper
-mana={3}{G}
-type=Creature
-subtype=Elf Shaman
-power=1
-toughness=1
-text={G}, {T}: You may put a creature card from your hand onto the battlefield.
-auto={G}{T}:moveTo(myBattlefield) target(creature|myHand)
 rarity=R
 [/card]
 [card]
+primitive=Elvish Visionary
 id=194424
-name=Elvish Visionary
-mana={1}{G}
-type=Creature
-subtype=Elf Shaman
-power=1
-toughness=1
-text=When Elvish Visionary enters the battlefield, draw a card.
-auto=draw:1
 rarity=C
 [/card]
 [card]
+primitive=Emerald Oryx
 id=189890
-name=Emerald Oryx
-mana={3}{G}
-type=Creature
-subtype=Antelope
-power=2
-toughness=3
-text=Forestwalk (This creature is unblockable as long as defending player controls a Forest.)
-abilities=forestwalk
 rarity=C
 [/card]
 [card]
+primitive=Enormous Baloth
 id=189882
-name=Enormous Baloth
-mana={6}{G}
-type=Creature
-subtype=Beast
-power=7
-toughness=7
 rarity=U
 [/card]
 [card]
+primitive=Entangling Vines
 id=189901
-name=Entangling Vines
-mana={3}{G}
-type=Enchantment
-subtype=Aura
-text=Enchant tapped creature Enchanted creature doesn't untap during its controller's untap step.
-target=creature[tapped]
-auto=doesnotuntap
 rarity=C
 [/card]
 [card]
+primitive=Essence Scatter
 id=193742
-name=Essence Scatter
-mana={1}{U}
-type=Instant
-text=Counter target creature spell.
-target=creature|stack
-auto=fizzle
 rarity=C
 [/card]
 [card]
+primitive=Excommunicate
 id=190173
-name=Excommunicate
-mana={2}{W}
-type=Sorcery
-text=Put target creature on top of its owner's library.
-target=creature
-auto=moveTo(library)
 rarity=C
 [/card]
 [card]
+primitive=Fabricate
 id=189876
-name=Fabricate
-mana={2}{U}
-type=Sorcery
-text=Search your library for an artifact card, reveal it, and put it into your hand. Then shuffle your library.
-target=artifact|myLibrary
-auto=moveTo(myHand)
 rarity=U
 [/card]
 [card]
+primitive=Fiery Hellhound
 id=191075
-name=Fiery Hellhound
-mana={1}{R}{R}
-type=Creature
-subtype=Elemental Hound
-power=2
-toughness=2
-text={R}: Fiery Hellhound gets +1/+0 until end of turn.
-auto={R}:1/0
 rarity=C
 [/card]
 [card]
+primitive=Fireball
 id=191076
-name=Fireball
-mana={X}{R}
-type=Sorcery
-target=creatures,players
-text=Fireball deals X damage divided evenly, rounded down, among any number of target creatures and/or players. Fireball costs {1} more to cast for each target beyond the first.
 rarity=U
-alias=1291
 [/card]
 [card]
+primitive=Firebreathing
 id=191079
-name=Firebreathing
-mana={R}
-type=Enchantment
-subtype=Aura
-text=Enchant creature {R}: Enchanted creature gets +1/+0 until end of turn.
-target=creature
-auto={R}:1/0
 rarity=C
 [/card]
 [card]
+primitive=Flashfreeze
 id=190168
-name=Flashfreeze
-mana={1}{U}
-type=Instant
-text=Counter target red or green spell.
-target=*[red;green]|stack
-auto=fizzle
 rarity=U
 [/card]
 [card]
-text=Prevent all combat damage that would be dealt this turn.
-auto=preventAllcombatDamage ueot
+primitive=Fog
 id=189919
-name=Fog
 rarity=C
-mana={G}
-type=Instant
 [/card]
 [card]
-id=191407
-name=Forest
-type=Basic Land
-subtype=Forest
-text=G
-auto={T}:Add{G}
-rarity=L
-[/card]
-[card]
-id=191406
-name=Forest
-type=Basic Land
-subtype=Forest
-text=G
-auto={T}:Add{G}
-rarity=L
-[/card]
-[card]
+primitive=Forest
 id=191405
-name=Forest
-type=Basic Land
-subtype=Forest
-text=G
-auto={T}:Add{G}
 rarity=L
 [/card]
 [card]
+primitive=Forest
+id=191406
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=191407
+rarity=L
+[/card]
+[card]
+primitive=Forest
 id=191409
-name=Forest
-type=Basic Land
-subtype=Forest
-text=G
-auto={T}:Add{G}
 rarity=L
 [/card]
 [card]
+primitive=Gargoyle Castle
 id=193754
-name=Gargoyle Castle
-mana=
-type=Land
-text={T}: Add {1} to your mana pool. {5}, {T}, Sacrifice Gargoyle Castle: Put a 3/4 colorless Gargoyle artifact creature token with flying onto the battlefield.
 rarity=R
-auto={T}:Add{1}
-auto={5}{T}{S}:token(Gargoyle,Creature Gargoyle Artifact,3/4,flying artifact)
 [/card]
 [card]
+primitive=Garruk Wildspeaker
+id=191243
+rarity=M
+[/card]
+[card]
+primitive=Giant Growth
 id=189879
-name=Giant Growth
-mana={G}
-type=Instant
-text=Target creature gets +3/+3 until end of turn.
-target=creature
-auto=3/3
 rarity=C
 [/card]
 [card]
+primitive=Giant Spider
 id=189895
-name=Giant Spider
-mana={3}{G}
-type=Creature
-subtype=Spider
-power=2
-toughness=4
-text=Reach (This creature can block creatures with flying.)
-abilities=reach
 rarity=C
 [/card]
 [card]
+primitive=Glacial Fortress
 id=190562
-name=Glacial Fortress
-auto=tap
-auto=aslongas(plains,island|myBattelfield) untap
-auto={T}:Add {W}
-auto={T}:Add {U}
-type=Land
-text=Glacial Fortress enters the battlefield tapped unless you control a Plains or an Island. {T}: Add {W} or {U} to your mana pool.
 rarity=R
 [/card]
 [card]
+primitive=Glorious Charge
 id=190196
-name=Glorious Charge
-mana={1}{W}
-type=Instant
-text=Creatures you control get +1/+1 until end of turn.
-auto=lord(creature|myBattlefield) 1/1
 rarity=C
 [/card]
 [card]
+primitive=Goblin Artillery
 id=191092
-name=Goblin Artillery
-mana={1}{R}{R}
-type=Creature
-subtype=Goblin Warrior
-power=1
-toughness=3
-text={T}: Goblin Artillery deals 2 damage to target creature or player and 3 damage to you.
-auto={T}:damage:2 target(player,creature) && damage:3 controller
 rarity=U
 [/card]
 [card]
+primitive=Goblin Chieftain
 id=190558
-name=Goblin Chieftain
-mana={1}{R}{R}
-type=Creature
-subtype=Goblin
-power=2
-toughness=2
-text=Haste (This creature can attack and {T} as soon as it comes under your control.) Other Goblin creatures you control get +1/+1 and have haste.
-auto=lord(goblin|myBattlefield) 1/1 other
-auto=lord(goblin|myBattlefield) haste other
-abilities=haste
 rarity=R
 [/card]
 [card]
+primitive=Goblin Piker
 id=191074
-name=Goblin Piker
-mana={1}{R}
-type=Creature
-subtype=Goblin Warrior
-power=2
-toughness=1
 rarity=C
 [/card]
 [card]
+primitive=Gorgon Flail
 id=191597
-name=Gorgon Flail
-mana={2}
-type=Artifact
-subtype=Equipment
-text=Equipped creature gets +1/+1 and has deathtouch. (Creatures dealt damage by this creature are destroyed. You can divide its combat damage among any of the creatures blocking or blocked by it.) Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
-auto={2}:equip
-auto=1/1
-auto=deathtouch
 rarity=U
 [/card]
 [card]
+primitive=Gravedigger
 id=190570
-name=Gravedigger
-mana={3}{B}
-type=Creature
-subtype=Zombie
-power=2
-toughness=2
-text=When Gravedigger enters the battlefield, you may return target creature card from your graveyard to your hand.
-auto=may moveTo(myHand) target(creature|myGraveyard)
-rarity=U
+rarity=C
 [/card]
 [card]
+primitive=Great Sable Stag
 id=193759
-name=Great Sable Stag
-mana={1}{G}{G}
-type=Creature
-subtype=Elk
-power=3
-toughness=3
-abilities=nofizzle,protection from black,protection from blue
-text=Great Sable Stag can't be countered. Protection from blue and from black (This creature can't be blocked, targeted, dealt damage, or enchanted by anything blue or black.)
 rarity=R
 [/card]
 [card]
+primitive=Griffin Sentinel
 id=190170
-name=Griffin Sentinel
-mana={2}{W}
-type=Creature
-subtype=Griffin
-power=1
-toughness=3
-text=Flying Vigilance (Attacking doesn't cause this creature to tap.)
-abilities=flying,vigilance
 rarity=C
 [/card]
 [card]
+primitive=Guardian Seraph
+id=193766
+rarity=R
+[/card]
+[card]
+primitive=Harm's Way
+id=190166
+rarity=U
+[/card]
+[card]
+primitive=Haunting Echoes
+id=190577
+rarity=R
+[/card]
+[card]
+primitive=Hive Mind
+id=190556
+rarity=R
+[/card]
+[card]
+primitive=Holy Strength
 id=190538
-name=Holy Strength
-mana={W}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature gets +1/+2.
-target=creature
-auto=1/2
 rarity=C
 [/card]
 [card]
+primitive=Honor of the Pure
 id=191058
-name=Honor of the Pure
-mana={1}{W}
-type=Enchantment
-text=White creatures you control get +1/+1.
-auto=lord(creature[white]|myBattlefield) 1/1
 rarity=R
 [/card]
 [card]
+primitive=Horned Turtle
 id=190178
-name=Horned Turtle
-mana={2}{U}
-type=Creature
-subtype=Turtle
-power=1
-toughness=4
 rarity=C
 [/card]
 [card]
+primitive=Howl of the Night Pack
 id=189908
-name=Howl of the Night Pack
-mana={6}{G}
-type=Sorcery
-text=Put a 2/2 green Wolf creature token onto the battlefield for each Forest you control.
-auto=foreach(forest|myBattlefield) token(Wolf,Creature Wolf,2/2,green)
 rarity=U
 [/card]
 [card]
+primitive=Howling Banshee
 id=190548
-name=Howling Banshee
-mana={2}{B}{B}
-type=Creature
-subtype=Spirit
-power=3
-toughness=3
-text=Flying When Howling Banshee enters the battlefield, each player loses 3 life.
-abilities=flying
-auto=life:-3 controller
-auto=life:-3 opponent
 rarity=U
 [/card]
 [card]
+primitive=Howling Mine
 id=191315
-name=Howling Mine
-mana={2}
-alias=1112
-type=Artifact
-text=At the beginning of each player's draw step, if Howling Mine is untapped, that player draws an additional card.
 rarity=R
 [/card]
 [card]
+primitive=Hypnotic Specter
 id=190566
-name=Hypnotic Specter
-mana={1}{B}{B}
-type=Creature
-subtype=Specter
-power=2
-toughness=2
-text=Flying Whenever Hypnotic Specter deals damage to an opponent, that player discards a card at random.
 rarity=R
-alias=1165
-abilities=flying
 [/card]
 [card]
+primitive=Ice Cage
+id=189920
+rarity=C
+[/card]
+[card]
+primitive=Ignite Disorder
+id=190544
+rarity=U
+[/card]
+[card]
+primitive=Illusionary Servant
+id=189897
+rarity=C
+[/card]
+[card]
+primitive=Indestructibility
 id=190568
-name=Indestructibility
-mana={3}{W}
-type=Enchantment
-subtype=Aura
-text=Enchant permanent Enchanted permanent is indestructible. (Effects that say "destroy" don't destroy that permanent. An indestructible creature can't be destroyed by damage.)
-target=creature
-auto=indestructible
 rarity=R
 [/card]
 [card]
+primitive=Inferno Elemental
+id=191090
+rarity=U
+[/card]
+[card]
+primitive=Island
 id=191387
-name=Island
-auto={T}:Add{U}
-type=Basic Land
-subtype=Island
-text=U
 rarity=L
 [/card]
 [card]
+primitive=Island
 id=191389
-name=Island
-auto={T}:Add{U}
-type=Basic Land
-subtype=Island
-text=U
 rarity=L
 [/card]
 [card]
-id=191400
-name=Island
-auto={T}:Add{U}
-type=Basic Land
-subtype=Island
-text=U
-rarity=L
-[/card]
-[card]
+primitive=Island
 id=191390
-name=Island
-auto={T}:Add{U}
-type=Basic Land
-subtype=Island
-text=U
 rarity=L
 [/card]
 [card]
+primitive=Island
+id=191400
+rarity=L
+[/card]
+[card]
+primitive=Jace Beleren
+id=191240
+rarity=M
+[/card]
+[card]
+primitive=Jackal Familiar
 id=191073
-name=Jackal Familiar
-mana={R}
-abilities=cantattack,cantblock
-auto=aslongas(creature[attacking]|myBattlefield) -cantattack
-auto=aslongas(creature[blocking]|myBattlefield) -cantblock
-type=Creature
-subtype=Hound
-power=2
-toughness=2
-text=Jackal Familiar can't attack or block alone.
 rarity=C
 [/card]
 [card]
+primitive=Jump
 id=193743
-name=Jump
-mana={U}
-type=Instant
-text=Target creature gains flying until end of turn.
-target=creature
-auto=flying
 rarity=C
 [/card]
 [card]
+primitive=Kalonian Behemoth
 id=191394
-name=Kalonian Behemoth
-mana={5}{G}{G}
-type=Creature
-subtype=Beast
-power=9
-toughness=9
-text=Shroud (This creature can't be the target of spells or abilities.)
-abilities=shroud
 rarity=R
 [/card]
 [card]
+primitive=Kelinore Bat
 id=190536
-name=Kelinore Bat
-mana={2}{B}
-type=Creature
-subtype=Bat
-power=2
-toughness=1
-text=Flying
-abilities=flying
 rarity=C
 [/card]
 [card]
+primitive=Kindled Fury
 id=193741
-name=Kindled Fury
-mana={R}
-type=Instant
-text=Target creature gets +1/+0 and gains first strike until end of turn. (It deals combat damage before creatures without first strike.)
-target=creature
-auto=1/0
-auto=first strike
 rarity=C
 [/card]
 [card]
+primitive=Kraken's Eye
 id=191246
-name=Kraken's Eye
-mana={2}
-type=Artifact
-text=Whenever a player casts a blue spell, you may gain 1 life.
-auto=@movedTo(*[blue]|stack):may life:1
 rarity=U
 [/card]
 [card]
+primitive=Lava Axe
 id=191084
-name=Lava Axe
-mana={4}{R}
-type=Sorcery
-text=Lava Axe deals 5 damage to target player.
-target=player
-auto=damage:5
 rarity=C
 [/card]
 [card]
+primitive=Levitation
 id=190191
-name=Levitation
-mana={2}{U}{U}
-type=Enchantment
-text=Creatures you control have flying.
-auto=lord(creature|myBattlefield) flying
 rarity=U
 [/card]
 [card]
+primitive=Lifelink
 id=190180
-name=Lifelink
-mana={W}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature has lifelink. (Damage dealt by the creature also causes its controller to gain that much life.)
-target=creature
-auto=lifelink
 rarity=C
 [/card]
 [card]
+primitive=Lightning Bolt
 id=191089
-name=Lightning Bolt
-mana={R}
-type=Instant
-text=Lightning Bolt deals 3 damage to target creature or player.
-target=creature,player
-auto=damage:3
 rarity=C
 [/card]
 [card]
+primitive=Lightning Elemental
 id=191054
-name=Lightning Elemental
-mana={3}{R}
-type=Creature
-subtype=Elemental
-power=4
-toughness=1
-text=Haste (This creature can attack and {T} as soon as it comes under your control.)
-abilities=haste
 rarity=C
 [/card]
 [card]
+primitive=Lightwielder Paladin
+id=193763
+rarity=R
+[/card]
+[card]
+primitive=Liliana Vess
+id=191241
+rarity=M
+[/card]
+[card]
+primitive=Llanowar Elves
 id=189878
-name=Llanowar Elves
-mana={G}
-type=Creature
-subtype=Elf Druid
-power=1
-toughness=1
-text={T}: Add {G} to your mana pool.
-auto={T}:Add{G}
 rarity=C
 [/card]
 [card]
+primitive=Looming Shade
 id=190550
-name=Looming Shade
-mana={2}{B}
-type=Creature
-subtype=Shade
-power=1
-toughness=1
-text={B}: Looming Shade gets +1/+1 until end of turn.
-auto={B}:1/1
 rarity=C
 [/card]
 [card]
-text=Flying   When Magma Phoenix is put into a graveyard from the battlefield, it deals 3 damage to each creature and each player.   {3}{R}{R}: Return Magma Phoenix from your graveyard to your hand.
+primitive=Lurking Predators
+id=191388
+rarity=R
+[/card]
+[card]
+primitive=Magebane Armor
+id=191591
+rarity=R
+[/card]
+[card]
+primitive=Magma Phoenix
 id=191397
-auto=@movedTo(this|graveyard) from(myBattlefield):damage:3 all(creature,player)
-autograveyard={3}{R}{R}:moveTo(myhand)
-name=Magma Phoenix
 rarity=R
-mana={3}{R}{R}
-type=Creature
-subtype=Phoenix
-power=3
-toughness=3
-abilities=flying
 [/card]
 [card]
+primitive=Manabarbs
+id=193748
+rarity=R
+[/card]
+[card]
+primitive=Master of the Wild Hunt
+id=191064
+rarity=M
+[/card]
+[card]
+primitive=Megrim
 id=189904
-name=Megrim
-mana={2}{B}
-type=Enchantment
-auto=@movedTo(*|opponentgraveyard) from(opponenthand):damage:2 opponent
-text=Whenever an opponent discards a card, Megrim deals 2 damage to that player.
 rarity=U
 [/card]
 [card]
-id=191378
-name=Mesa Enchantress
-mana={1}{W}{W}
-type=Creature
-subtype=Human Druid
-power=0
-toughness=2
-text=Whenever you cast an enchantment spell, you may draw a card.
-auto=@movedTo(enchantment|mystack): may draw:1
-rarity=R
+primitive=Merfolk Looter
+id=190174
+rarity=C
 [/card]
 [card]
+primitive=Merfolk Sovereign
 id=191087
-name=Merfolk Sovereign
-mana={1}{U}{U}
-type=Creature
-subtype=Merfolk
-power=2
-toughness=2
-text=Other Merfolk creatures you control get +1/+1. {T}: Target Merfolk creature is unblockable this turn.
-auto=lord(merfolk|myBattlefield) 1/1 other
-auto={T}:unblockable target(merfolk) other
 rarity=R
 [/card]
 [card]
+primitive=Mesa Enchantress
+id=191378
+rarity=R
+[/card]
+[card]
+primitive=Might of Oaks
 id=191316
-name=Might of Oaks
-mana={3}{G}
-type=Instant
-text=Target creature gets +7/+7 until end of turn.
-target=creature
-auto=7/7
 rarity=R
 [/card]
 [card]
+primitive=Mind Control
 id=190197
-name=Mind Control
-mana={3}{U}{U}
-type=Enchantment
-subtype=Aura
-text=Enchant creature You control enchanted creature.
-target=creature
-alias=1194
 rarity=U
 [/card]
 [card]
+primitive=Mind Rot
+id=190555
+rarity=C
+[/card]
+[card]
+primitive=Mind Shatter
 id=191324
-alias=1167
-target=player
-name=Mind Shatter
-mana={X}{B}{B}
-type=Sorcery
-text=Target player discards X cards at random.
 rarity=R
 [/card]
 [card]
+primitive=Mind Spring
 id=191323
-alias=1192
-name=Mind Spring
-mana={X}{U}{U}
-type=Sorcery
-text=Draw X cards.
-auto=Draw:X
 rarity=R
 [/card]
 [card]
+primitive=Mirror of Fate
+id=193878
+rarity=R
+[/card]
+[card]
+primitive=Mist Leopard
 id=189921
-name=Mist Leopard
-mana={3}{G}
-type=Creature
-subtype=Cat
-power=3
-toughness=2
-text=Shroud (This creature can't be the target of spells or abilities.)
-abilities=shroud
 rarity=C
 [/card]
 [card]
+primitive=Mold Adder
 id=189909
-name=Mold Adder
-mana={G}
-type=Creature
-subtype=Fungus Snake
-power=1
-toughness=1
-text=Whenever an opponent casts a blue or black spell, you may put a +1/+1 counter on Mold Adder.
-auto=@movedTo(*[black;blue]|opponentStack):may counter(1/1)
 rarity=U
 [/card]
 [card]
+primitive=Mountain
 id=191402
-name=Mountain
-auto={T}:Add{R}
-type=Basic Land
-subtype=Mountain
-text=R
 rarity=L
 [/card]
 [card]
-id=191401
-name=Mountain
-auto={T}:Add{R}
-type=Basic Land
-subtype=Mountain
-text=R
-rarity=L
-[/card]
-[card]
-id=191404
-name=Mountain
-auto={T}:Add{R}
-type=Basic Land
-subtype=Mountain
-text=R
-rarity=L
-[/card]
-[card]
+primitive=Mountain
 id=191403
-name=Mountain
-auto={T}:Add{R}
-type=Basic Land
-subtype=Mountain
-text=R
 rarity=L
 [/card]
 [card]
+primitive=Mountain
+id=191404
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=191401
+rarity=L
+[/card]
+[card]
+primitive=Naturalize
 id=189896
-name=Naturalize
-mana={1}{G}
-type=Instant
-text=Destroy target artifact or enchantment.
-target=artifact,enchantment
-auto=destroy
 rarity=C
 [/card]
 [card]
+primitive=Nature's Spiral
 id=189917
-name=Nature's Spiral
-mana={1}{G}
-type=Sorcery
-text=Return target permanent card from your graveyard to your hand. (A permanent card is an artifact, creature, enchantment, land, or planeswalker card.)
-target=*|myGraveyard
-auto=moveTo(myHand)
 rarity=U
 [/card]
 [card]
+primitive=Negate
 id=190164
-name=Negate
-mana={1}{U}
-type=Instant
-text=Counter target noncreature spell.
-target=*[-creature]|stack
-auto=fizzle
 rarity=C
 [/card]
 [card]
+primitive=Nightmare
 id=191319
-name=Nightmare
-mana={5}{B}
-type=Creature
-subtype=Nightmare Horse
-power=*
-toughness=*
-text=Flying Nightmare's power and toughness are each equal to the number of Swamps you control.
-auto=foreach(swamp|myBattlefield) 1/1
-abilities=flying
 rarity=R
 [/card]
 [card]
+primitive=Oakenform
 id=189922
-name=Oakenform
-mana={2}{G}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature gets +3/+3.
-target=creature
-auto=3/3
 rarity=C
 [/card]
 [card]
+primitive=Open the Vaults
 id=193877
-name=Open the Vaults
-mana={4}{W}{W}
-type=Sorcery
-text=Return all artifact and enchantment cards from all graveyards to the battlefield under their owners' control. (Auras with nothing to enchant remain in graveyards.)
-auto=moveTo(myBattlefield) all(artifact,enchantment|myGraveyard)
-auto=moveTo(opponentBattlefield) all(artifact,enchantment|opponentGraveyard)
 rarity=R
 [/card]
 [card]
+primitive=Ornithopter
 id=191337
-name=Ornithopter
-mana={0}
-type=Artifact Creature
-subtype=Thopter
-power=0
-toughness=2
-text=Flying
-abilities=flying
 rarity=U
 [/card]
 [card]
+primitive=Overrun
 id=189906
-name=Overrun
-mana={2}{G}{G}{G}
-type=Sorcery
-text=Creatures you control get +3/+3 and gain trample until end of turn. (If a creature you control would deal enough damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player or planeswalker.)
-auto=lord(creature|myBattlefield) 3/3
-auto=lord(creature|myBattlefield) trample
 rarity=U
 [/card]
 [card]
+primitive=Pacifism
 id=190574
-name=Pacifism
-mana={1}{W}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature can't attack or block.
-target=creature
-auto=cantattack
-auto=cantblock
 rarity=C
 [/card]
 [card]
+primitive=Palace Guard
+id=190534
+rarity=C
+[/card]
+[card]
+primitive=Panic Attack
+id=191081
+rarity=C
+[/card]
+[card]
+primitive=Phantom Warrior
 id=189892
-name=Phantom Warrior
-mana={1}{U}{U}
-type=Creature
-subtype=Illusion Warrior
-power=2
-toughness=2
-text=Phantom Warrior is unblockable.
-abilities=unblockable
 rarity=U
 [/card]
 [card]
-id=191382
-name=Plains
-auto={T}:Add{W}
-type=Basic Land
-subtype=Plains
-text=W
-rarity=L
+primitive=Pithing Needle
+id=191592
+rarity=R
 [/card]
 [card]
+primitive=Plains
 id=191395
-name=Plains
-auto={T}:Add{W}
-type=Basic Land
-subtype=Plains
-text=W
 rarity=L
 [/card]
 [card]
-id=191396
-name=Plains
-auto={T}:Add{W}
-type=Basic Land
-subtype=Plains
-text=W
+primitive=Plains
+id=191382
 rarity=L
 [/card]
 [card]
+primitive=Plains
 id=191385
-name=Plains
-auto={T}:Add{W}
-type=Basic Land
-subtype=Plains
-text=W
 rarity=L
 [/card]
 [card]
+primitive=Plains
+id=191396
+rarity=L
+[/card]
+[card]
+primitive=Planar Cleansing
 id=191599
-name=Planar Cleansing
-mana={3}{W}{W}{W}
-type=Sorcery
-text=Destroy all nonland permanents.
-auto=destroy all(*[-land])
 rarity=R
 [/card]
 [card]
+primitive=Platinum Angel
+id=191313
+rarity=M
+[/card]
+[card]
+primitive=Polymorph
+id=191380
+rarity=R
+[/card]
+[card]
+primitive=Ponder
+id=190159
+rarity=C
+[/card]
+[card]
+primitive=Prized Unicorn
+id=189900
+rarity=U
+[/card]
+[card]
+primitive=Prodigal Pyromancer
 id=191102
-name=Prodigal Pyromancer
-mana={2}{R}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
-text={T}: Prodigal Pyromancer deals 1 damage to target creature or player.
-auto={T}:Damage:1 target(creature,player)
 rarity=U
 [/card]
 [card]
+primitive=Protean Hydra
+id=193753
+rarity=M
+[/card]
+[card]
+primitive=Pyroclasm
 id=194425
-name=Pyroclasm
-mana={1}{R}
-type=Sorcery
-text=Pyroclasm deals 2 damage to each creature.
-auto=damage:2 all(creature)
 rarity=U
 [/card]
 [card]
+primitive=Raging Goblin
 id=191056
-name=Raging Goblin
-mana={R}
-type=Creature
-subtype=Goblin Berserker
-power=1
-toughness=1
-text=Haste (This creature can attack and {T} as soon as it comes under your control.)
-abilities=haste
 rarity=C
 [/card]
 [card]
+primitive=Rampant Growth
 id=189887
-name=Rampant Growth
-mana={1}{G}
-type=Sorcery
-text=Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library.
-target=basic|myLibrary
-auto=moveTo(myBattlefield) && tap
 rarity=C
 [/card]
 [card]
+primitive=Razorfoot Griffin
 id=189891
-name=Razorfoot Griffin
-mana={3}{W}
-type=Creature
-subtype=Griffin
-power=2
-toughness=2
-text=Flying First strike (This creature deals combat damage before creatures without first strike.)
-abilities=flying,first strike
 rarity=C
 [/card]
 [card]
+primitive=Regenerate
 id=193739
-name=Regenerate
-mana={1}{G}
-type=Instant
-text=Regenerate target creature. (The next time that creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
-target=creature
-auto=regenerate
 rarity=C
 [/card]
 [card]
+primitive=Relentless Rats
 id=191336
-name=Relentless Rats
-mana={1}{B}{B}
-type=Creature
-subtype=Rat
-power=2
-toughness=2
-text=Relentless Rats gets +1/+1 for each other creature on the battlefield named Relentless Rats. A deck can have any number of cards named Relentless Rats.
-auto=foreach(Relentless Rats) 1/1 other
 rarity=U
 [/card]
 [card]
+primitive=Rhox Pikemaster
 id=190576
-name=Rhox Pikemaster
-mana={2}{W}{W}
-type=Creature
-subtype=Rhino Soldier
-power=3
-toughness=3
-text=First strike (This creature deals combat damage before creatures without first strike.) Other Soldier creatures you control have first strike.
-abilities=first strike
-auto=lord(soldiers|mybattlefield) first strike other
 rarity=U
 [/card]
 [card]
+primitive=Righteousness
 id=191341
-name=Righteousness
-mana={W}
-type=Instant
-text=Target blocking creature gets +7/+7 until end of turn.
-target=creature[blocking]
-auto=7/7
 rarity=U
 [/card]
 [card]
+primitive=Rise from the Grave
+id=190192
+rarity=U
+[/card]
+[card]
+primitive=Rod of Ruin
 id=191339
-name=Rod of Ruin
-mana={4}
-type=Artifact
-text={3}, {T}: Rod of Ruin deals 1 damage to target creature or player.
-auto={3}{T}:Damage:1 target(creature,player)
 rarity=U
 [/card]
 [card]
+primitive=Rootbound Crag
 id=191057
-name=Rootbound Crag
-auto=tap
-auto=aslongas(mountain,forest|myBattlefield) untap
-auto={T}:Add {R}
-auto={T}:Add {G}
-type=Land
-text=Rootbound Crag enters the battlefield tapped unless you control a Mountain or a Forest. {T}: Add {R} or {G} to your mana pool.
 rarity=R
 [/card]
 [card]
-id=191318
 primitive=Royal Assassin
+id=191318
 rarity=R
 [/card]
 [card]
+primitive=Runeclaw Bear
 id=189888
-name=Runeclaw Bear
-mana={1}{G}
-type=Creature
-subtype=Bear
-power=2
-toughness=2
 rarity=C
 [/card]
 [card]
+primitive=Safe Passage
+id=190176
+rarity=C
+[/card]
+[card]
+primitive=Sage Owl
+id=190188
+rarity=C
+[/card]
+[card]
+primitive=Sanguine Bond
+id=190190
+rarity=R
+[/card]
+[card]
+primitive=Seismic Strike
 id=191095
-name=Seismic Strike
-mana={2}{R}
-type=Instant
-text=Seismic Strike deals damage to target creature equal to the number of Mountains you control.
-target=creature
-auto=foreach(mountain|myBattlefield) damage:1
 rarity=C
 [/card]
 [card]
+primitive=Serpent of the Endless Sea
 id=190169
-name=Serpent of the Endless Sea
-mana={4}{U}
-type=Creature
-subtype=Serpent
-power=*
-toughness=*
-text=Serpent of the Endless Sea's power and toughness are each equal to the number of Islands you control. Serpent of the Endless Sea can't attack unless defending player controls an Island.
-abilities=cantattack
-auto=aslongas(island|opponentBattlefield) -cantattack
-auto=foreach(island|myBattlefield) 1/1
 rarity=C
 [/card]
 [card]
+primitive=Serra Angel
 id=193767
-name=Serra Angel
-mana={3}{W}{W}
-type=Creature
-subtype=Angel
-power=4
-toughness=4
-text=Flying Vigilance (Attacking doesn't cause this creature to tap.)
-abilities=flying,vigilance
 rarity=U
 [/card]
 [card]
+primitive=Shatter
 id=191086
-name=Shatter
-mana={1}{R}
-type=Instant
-text=Destroy target artifact.
-target=artifact
-auto=destroy
 rarity=C
 [/card]
 [card]
+primitive=Shivan Dragon
 id=191320
-name=Shivan Dragon
-mana={4}{R}{R}
-type=Creature
-subtype=Dragon
-power=5
-toughness=5
-text=Flying {R}: Shivan Dragon gets +1/+0 until end of turn.
-abilities=flying
-auto={R}:1/0
 rarity=R
 [/card]
 [card]
+primitive=Siege Mastodon
 id=193931
-name=Siege Mastodon
-mana={4}{W}
-type=Creature
-subtype=Elephant
-power=3
-toughness=5
 rarity=C
 [/card]
 [card]
+primitive=Siege-Gang Commander
 id=193751
-name=Siege-Gang Commander
-mana={3}{R}{R}
-type=Creature
-subtype=Goblin
-power=2
-toughness=2
-text=When Siege-Gang Commander enters the battlefield, put three 1/1 red Goblin creature tokens onto the battlefield. {1}{R}, Sacrifice a Goblin: Siege-Gang Commander deals 2 damage to target creature or player.
-auto=token(Goblin,Creature Goblin,1/1,red)*3
-auto={1}{R}{S(goblin|myinplay)}:damage:2 target(creature,player)
 rarity=R
 [/card]
 [card]
+primitive=Sign in Blood
 id=190537
-name=Sign in Blood
-mana={B}{B}
-type=Sorcery
-text=Target player draws two cards and loses 2 life.
-target=player
-auto=draw:2
-auto=life:-2
 rarity=C
 [/card]
 [card]
+primitive=Silence
+id=191083
+rarity=R
+[/card]
+[card]
+primitive=Silvercoat Lion
 id=193750
-name=Silvercoat Lion
-mana={1}{W}
-type=Creature
-subtype=Cat
-power=2
-toughness=2
 rarity=C
 [/card]
 [card]
+primitive=Sleep
+id=190186
+rarity=U
+[/card]
+[card]
+primitive=Snapping Drake
 id=190163
-name=Snapping Drake
-mana={3}{U}
-type=Creature
-subtype=Drake
-power=3
-toughness=2
-text=Flying
-abilities=flying
 rarity=C
 [/card]
 [card]
-text=Destroy target artifact or enchantment. You gain 4 life.
+primitive=Solemn Offering
 id=189875
-name=Solemn Offering
-mana={2}{W}
-type=Sorcery
-target=artifact,enchantment
-auto=destroy
-auto=life:4 controller
 rarity=C
 [/card]
 [card]
-text=Enchant creature   At the beginning of the upkeep of enchanted creature's controller, that player loses 1 life.
+primitive=Soul Bleed
 id=190557
-target=creature
-auto=@each targetcontroller upkeep:life:-1 targetController
-name=Soul Bleed
 rarity=C
-mana={2}{B}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-text=Whenever another creature enters the battlefield, you gain 1 life.
+primitive=Soul Warden
 id=190571
-name=Soul Warden
-rarity=U
-mana={W}
-type=Creature
-subtype=Human Cleric
-auto=@movedTo(creature|battlefield):life:1
-power=1
-toughness=1
+rarity=C
 [/card]
 [card]
-text=When Sparkmage Apprentice enters the battlefield, it deals 1 damage to target creature or player.
+primitive=Sparkmage Apprentice
 id=191053
-name=Sparkmage Apprentice
 rarity=C
-mana={1}{R}
-type=Creature
-subtype=Human Wizard
-auto=damage:1 target(creature,player)
-power=1
-toughness=1
 [/card]
 [card]
+primitive=Spellbook
+id=191338
+rarity=U
+[/card]
+[card]
+primitive=Sphinx Ambassador
+id=191098
+rarity=M
+[/card]
+[card]
+primitive=Stampeding Rhino
 id=189899
-name=Stampeding Rhino
-mana={4}{G}
-type=Creature
-subtype=Rhino
-power=4
-toughness=4
-text=Trample (If this creature would deal enough damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player or planeswalker.)
-abilities=trample
 rarity=C
 [/card]
 [card]
+primitive=Stone Giant
+id=191094
+rarity=U
+[/card]
+[card]
+primitive=Stormfront Pegasus
 id=190543
-name=Stormfront Pegasus
-mana={1}{W}
-type=Creature
-subtype=Pegasus
-power=2
-toughness=1
-text=Flying
-abilities=flying
 rarity=C
 [/card]
 [card]
+primitive=Sunpetal Grove
 id=191100
-name=Sunpetal Grove
-auto=tap
-auto=aslongas(forest,plains|myBattlefield) untap
-auto={T}:Add {G}
-auto={T}:Add {W}
-type=Land
-text=Sunpetal Grove enters the battlefield tapped unless you control a Forest or a Plains. {T}: Add {G} or {W} to your mana pool.
 rarity=R
 [/card]
 [card]
-id=191398
-name=Swamp
-auto={T}:Add{B}
-type=Basic Land
-subtype=Swamp
-text=B
-rarity=L
-[/card]
-[card]
-id=191391
-name=Swamp
-auto={T}:Add{B}
-type=Basic Land
-subtype=Swamp
-text=B
-rarity=L
-[/card]
-[card]
-id=191381
-name=Swamp
-auto={T}:Add{B}
-type=Basic Land
-subtype=Swamp
-text=B
-rarity=L
-[/card]
-[card]
+primitive=Swamp
 id=191399
-name=Swamp
-auto={T}:Add{B}
-type=Basic Land
-subtype=Swamp
-text=B
 rarity=L
 [/card]
 [card]
-id=190564
-name=Tempest of Light
-mana={2}{W}
-type=Instant
-text=Destroy all enchantments.
-auto=destroy all(enchantment)
+primitive=Swamp
+id=191391
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=191381
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=191398
+rarity=L
+[/card]
+[card]
+primitive=Telepathy
+id=189910
 rarity=U
 [/card]
 [card]
+primitive=Tempest of Light
+id=190564
+rarity=U
+[/card]
+[card]
+primitive=Tendrils of Corruption
 id=193744
-name=Tendrils of Corruption
-mana={3}{B}
-target=creature
-auto=foreach(swamp|myBattlefield) damage:1
-auto=foreach(swamp|myBattlefield) life:1 controller
-type=Instant
-text=Tendrils of Corruption deals X damage to target creature and you gain X life, where X is the number of Swamps you control.
 rarity=C
 [/card]
 [card]
+primitive=Terramorphic Expanse
 id=190560
-name=Terramorphic Expanse
-mana=
-type=Land
-text={T}, Sacrifice Terramorphic Expanse: Search your library for a basic land card and put it onto the battlefield tapped. Then shuffle your library.
-auto={T}{S}:moveTo(myBattlefield) target(basic|mylibrary) && tap
 rarity=C
 [/card]
 [card]
+primitive=Time Warp
+id=191379
+rarity=M
+[/card]
+[card]
+primitive=Tome Scour
 id=191598
-name=Tome Scour
-mana={U}
-type=Sorcery
-text=Target player puts the top five cards of his or her library into his or her graveyard.
-target=player
-auto=deplete:5
 rarity=C
 [/card]
 [card]
+primitive=Traumatize
 id=190177
-target=player
-alias=129774
-name=Traumatize
-mana={3}{U}{U}
-type=Sorcery
-text=Target player puts the top half of his or her library, rounded down, into his or her graveyard.
 rarity=R
 [/card]
 [card]
+primitive=Trumpet Blast
 id=191077
-name=Trumpet Blast
-mana={2}{R}
-type=Instant
-text=Attacking creatures get +2/+0 until end of turn.
-auto=lord(creature[attacking]) 2/0
 rarity=C
 [/card]
 [card]
+primitive=Twincast
+id=191322
+rarity=R
+[/card]
+[card]
+primitive=Undead Slayer
 id=190582
-name=Undead Slayer
-mana={2}{W}
-type=Creature
-subtype=Human Cleric
-power=2
-toughness=2
-text={W}, {T}: Exile target Skeleton, Vampire, or Zombie.
-auto={W}{T}:moveTo(Exile) target(Skeleton,Vampire,Zombie)
 rarity=U
 [/card]
 [card]
+primitive=Underworld Dreams
 id=191343
-name=Underworld Dreams
-mana={B}{B}{B}
-type=Enchantment
-text=Whenever an opponent draws a card, Underworld Dreams deals 1 damage to him or her.
-auto=@movedTo(opponentHand) from(opponentLibrary):damage:1 opponent
-rarity=U
+rarity=R
 [/card]
 [card]
+primitive=Unholy Strength
 id=190546
-name=Unholy Strength
-mana={B}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature gets +2/+1.
-target=creature
-auto=2/1
 rarity=C
 [/card]
 [card]
+primitive=Unsummon
 id=190183
-name=Unsummon
-mana={U}
-type=Instant
-text=Return target creature to its owner's hand.
-target=creature
-auto=moveTo(ownerHand)
 rarity=C
 [/card]
 [card]
+primitive=Vampire Aristocrat
 id=190563
-name=Vampire Aristocrat
-mana={2}{B}
-type=Creature
-subtype=Vampire Rogue
-power=2
-toughness=2
-text=Sacrifice a creature: Vampire Aristocrat gets +2/+2 until end of turn.
-auto={S(creature|myBattlefield)}:2/2
 rarity=C
 [/card]
 [card]
+primitive=Vampire Nocturnus
+id=191384
+rarity=M
+[/card]
+[card]
+primitive=Veteran Armorsmith
 id=189923
-name=Veteran Armorsmith
-mana={W}{W}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=3
-text=Other Soldier creatures you control get +0/+1.
-auto=lord(soldier|myBattlefield) 0/1 other
 rarity=C
 [/card]
 [card]
+primitive=Veteran Swordsmith
 id=190194
-name=Veteran Swordsmith
-mana={2}{W}
-type=Creature
-subtype=Human Soldier
-power=3
-toughness=2
-text=Other Soldier creatures you control get +1/+0.
-auto=lord(soldier|myBattlefield) 1/0 other
 rarity=C
 [/card]
 [card]
+primitive=Viashino Spearhunter
 id=191072
-name=Viashino Spearhunter
-mana={2}{R}
-type=Creature
-subtype=Viashino Warrior
-power=2
-toughness=1
-text=First strike (This creature deals combat damage before creatures without first strike.)
-auto=first strike
 rarity=C
 [/card]
 [card]
+primitive=Wall of Bone
 id=190578
-name=Wall of Bone
-mana={2}{B}
-type=Creature
-subtype=Skeleton Wall
-power=1
-toughness=4
-text=Defender (This creature can't attack.) {B}: Regenerate Wall of Bone. (The next time this creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
-abilities=defender
-auto={B}:Regenerate
 rarity=U
 [/card]
 [card]
+primitive=Wall of Faith
 id=190182
-name=Wall of Faith
-mana={3}{W}
-type=Creature
-subtype=Wall
-power=0
-toughness=5
-text=Defender (This creature can't attack.) {W}: Wall of Faith gets +0/+1 until end of turn.
-abilities=defender
-auto={W}:0/1
 rarity=C
 [/card]
 [card]
+primitive=Wall of Fire
 id=194423
-name=Wall of Fire
-mana={1}{R}{R}
-type=Creature
-subtype=Wall
-power=0
-toughness=5
-text=Defender (This creature can't attack.) {R}: Wall of Fire gets +1/+0 until end of turn.
-abilities=defender
-auto={R}:1/0
 rarity=U
 [/card]
 [card]
+primitive=Wall of Frost
+id=190160
+rarity=U
+[/card]
+[card]
+primitive=Warp World
+id=190187
+rarity=R
+[/card]
+[card]
+primitive=Warpath Ghoul
 id=193740
-name=Warpath Ghoul
-mana={2}{B}
-type=Creature
-subtype=Zombie
-power=3
-toughness=2
 rarity=C
 [/card]
 [card]
+primitive=Weakness
 id=190539
-name=Weakness
-mana={B}
-type=Enchantment
-subtype=Aura
-text=Enchant creature Enchanted creature gets -2/-1.
-target=creature
-auto=-2/-1
 rarity=C
 [/card]
 [card]
+primitive=Whispersilk Cloak
 id=191078
-name=Whispersilk Cloak
-mana={3}
-type=Artifact
-subtype=Equipment
-text=Equipped creature is unblockable. Equipped creature has shroud. (It can't be the target of spells or abilities.) Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
-auto={2}:equip
-auto=unblockable
-auto=shroud
 rarity=U
 [/card]
 [card]
+primitive=White Knight
 id=189877
-name=White Knight
-mana={W}{W}
-type=Creature
-subtype=Human Knight
-power=2
-toughness=2
-text=First strike (This creature deals combat damage before creatures without first strike.) Protection from black (This creature can't be blocked, targeted, dealt damage, or enchanted by anything black.)
 rarity=U
-abilities=first strike,protection from black
 [/card]
 [card]
+primitive=Wind Drake
 id=193962
-name=Wind Drake
-mana={2}{U}
-type=Creature
-subtype=Drake
-power=2
-toughness=2
-text=Flying
-abilities=flying
 rarity=C
 [/card]
 [card]
+primitive=Windstorm
 id=191596
-name=Windstorm
-mana={X}{G}
-type=Instant
-text=Windstorm deals X damage to each creature with flying.
-auto=damage:X all(creature[flying])
 rarity=U
 [/card]
 [card]
+primitive=Wurm's Tooth
 id=191248
-name=Wurm's Tooth
-mana={2}
-type=Artifact
-text=Whenever a player casts a green spell, you may gain 1 life.
-auto=@movedTo(*[green]|stack): may life:1
 rarity=U
 [/card]
 [card]
-id=190167
-name=Zephyr Sprite
-mana={U}
-type=Creature
-subtype=Faerie
-power=1
-toughness=1
-text=Flying
-abilities=flying
+primitive=Xathrid Demon
+id=189885
+rarity=M
+[/card]
+[card]
+primitive=Yawning Fissure
+id=191088
 rarity=C
 [/card]
 [card]
+primitive=Zephyr Sprite
+id=190167
+rarity=C
+[/card]
+[card]
+primitive=Zombie Goliath
 id=190545
-name=Zombie Goliath
-mana={4}{B}
-type=Creature
-subtype=Zombie Giant
-power=4
-toughness=3
 rarity=C
 [/card]

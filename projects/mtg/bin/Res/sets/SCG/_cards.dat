@@ -4,505 +4,717 @@ year=2003
 block=Slaughter
 [/meta]
 [card]
-text=Forests you control are 1/1 green Elf creatures that are still lands.   {1}{G}, Sacrifice an Elf: Target creature gets +3/+3 until end of turn.
-auto=lord(forest|myBattlefield) becomes(Elf Creature,1/1,green) 
-auto={1}{G}{S(elf|myBattlefield)}:3/3 target(creature)
+primitive=Accelerated Mutation
+id=43539
+rarity=C
+[/card]
+[card]
+primitive=Ageless Sentinels
+id=43713
+rarity=R
+[/card]
+[card]
+primitive=Alpha Status
+id=35409
+rarity=U
+[/card]
+[card]
+primitive=Ambush Commander
 id=43599
-name=Ambush Commander
 rarity=R
-mana={3}{G}{G}
-type=Creature
-subtype=Elf
-power=2
-toughness=2
 [/card]
 [card]
-text={3}, {T}, Sacrifice Ark of Blight: Destroy target land.
-auto={3}{T}{S}:destroy target(land)
+primitive=Ancient Ooze
+id=45164
+rarity=R
+[/card]
+[card]
+primitive=Aphetto Runecaster
+id=44339
+rarity=U
+[/card]
+[card]
+primitive=Ark of Blight
 id=47281
-name=Ark of Blight
 rarity=U
-mana={2}
-type=Artifact
 [/card]
 [card]
-text=Flying   When Bladewing the Risen enters the battlefield, you may return target Dragon permanent card from your graveyard to the battlefield.   {B}{R}: Dragon creatures get +1/+1 until end of turn.
-auto=may moveTo(myBattlefield) target(dragon[-instant;-sorcery]|mygraveyard)
+primitive=Astral Steel
+id=45833
+rarity=C
+[/card]
+[card]
+primitive=Aven Farseer
+id=44343
+rarity=C
+[/card]
+[card]
+primitive=Aven Liberator
+id=43626
+rarity=C
+[/card]
+[card]
+primitive=Bladewing the Risen
 id=42024
-name=Bladewing the Risen
 rarity=R
-mana={3}{B}{B}{R}{R}
-type=Legendary Creature
-subtype=Zombie Dragon
-auto={B}{R}:lord(dragon) 1/1
-power=4
-toughness=4
-abilities=flying
 [/card]
 [card]
-text=Destroy target artifact or enchantment.   Cycling {2} ({2}, Discard this card: Draw a card.)
+primitive=Bladewing's Thrall
+id=47224
+rarity=U
+[/card]
+[card]
+primitive=Bonethorn Valesk
+id=44342
+rarity=C
+[/card]
+[card]
+primitive=Brain Freeze
+id=47599
+rarity=U
+[/card]
+[card]
+primitive=Break Asunder
 id=47219
-target=artifact,enchantment
-auto=destroy
-autohand={2}:cycling
-name=Break Asunder
 rarity=C
-mana={2}{G}{G}
-type=Sorcery
 [/card]
 [card]
+primitive=Cabal Conditioning
+id=44491
+rarity=R
+[/card]
+[card]
+primitive=Cabal Interrogator
+id=39750
+rarity=U
+[/card]
+[card]
+primitive=Call to the Grave
+id=43725
+rarity=R
+[/card]
+[card]
+primitive=Carbonize
+id=47226
+rarity=U
+[/card]
+[card]
+primitive=Carrion Feeder
 id=43512
-name=Carrion Feeder
-mana={B}
-type=Creature
-subtype=Zombie
-abilities=cantblock
-auto={S(creature|myBattlefield)}:counter(1/1,1)
-power=1
-toughness=1
-text=Carrion Feeder can't block. Sacrifice a creature: Put a +1/+1 counter on Carrion Feeder.
 rarity=C
 [/card]
 [card]
-text={R}: Chartooth Cougar gets +1/+0 until end of turn.   Mountaincycling {2} ({2}, Discard this card: Search your library for a Mountain card, reveal it, and put it into your hand. Then shuffle your library.)
+primitive=Chartooth Cougar
 id=44281
-name=Chartooth Cougar
 rarity=C
-mana={5}{R}
-type=Creature
-subtype=Cat Beast
-auto={R}:1/0
-autohand={2}{S}:moveTo(myhand) target(mountain|mylibrary)
-power=4
-toughness=4
 [/card]
 [card]
-text=Claws of Wirewood deals 3 damage to each creature with flying and each player.   Cycling {2} ({2}, Discard this card: Draw a card.)
+primitive=Chill Haunting
+id=45863
+rarity=U
+[/card]
+[card]
+primitive=Claws of Wirewood
 id=43541
-auto=damage:3 all(creature[flying])
-auto=damage:3 all(player)
-autohand={2}:cycling
-name=Claws of Wirewood
 rarity=U
-mana={3}{G}
-type=Sorcery
 [/card]
 [card]
+primitive=Clutch of Undeath
+id=44264
+rarity=C
+[/card]
+[card]
+primitive=Coast Watcher
 id=47228
-name=Coast Watcher
-mana={1}{U}
-type=Creature
-subtype=Bird Soldier
-power=1
-toughness=1
-text=Flying, protection from green
-abilities=Flying,protection from green
 rarity=C
 [/card]
 [card]
+primitive=Consumptive Goo
 id=47029
-name=Consumptive Goo
-mana={B}{B}
-type=Creature
-subtype=Ooze
-power=1
-toughness=1
-text={2}{B}{B}: Target creature gets -1/-1 until end of turn. Put a +1/+1 counter on Consumptive Goo.
-auto={2}{B}{B}:counter(1/1) all(this) && -1/-1 target(creature)
 rarity=R
 [/card]
 [card]
+primitive=Daru Spiritualist
+id=45139
+rarity=C
+[/card]
+[card]
+primitive=Daru Warchief
+id=43625
+rarity=U
+[/card]
+[card]
+primitive=Dawn Elemental
+id=44311
+rarity=R
+[/card]
+[card]
+primitive=Day of the Dragons
+id=43602
+rarity=R
+[/card]
+[card]
+primitive=Death's-Head Buzzard
 id=47223
-name=Death's-Head Buzzard
-mana={1}{B}{B}
-type=Creature
-subtype=Bird
-power=2
-toughness=1
-text=Flying When Death's-Head Buzzard is put into a graveyard from the battlefield, all creatures get -1/-1 until end of turn.
-abilities=flying
-auto=@movedto(this|graveyard) from(battlefield):-1/-1 all(creature|Battlefield) ueot
 rarity=C
 [/card]
 [card]
-text=Exile all artifacts, creatures, and lands from the battlefield, all cards from all graveyards, and all cards from all hands.   Cycling {5}{R}{R} ({5}{R}{R}, Discard this card: Draw a card.) When you cycle Decree of Annihilation, destroy all lands.
+primitive=Decree of Annihilation
 id=44335
-auto=moveTo(exile) all(artifact,creature,land|battlefield)
-auto=moveTo(exile) all(*|mygraveyard)
-auto=moveTo(exile) all(*|opponentgraveyard)
-auto=moveTo(exile) all(*|myhand)
-auto=moveTo(exile) all(*|opponenthand)
-autohand={5}{R}{R}:destroy all(land) && cycling
-name=Decree of Annihilation
 rarity=R
-mana={8}{R}{R}
-type=Sorcery
 [/card]
 [card]
-text=Put four +1/+1 counters on each creature you control.   Cycling {4}{G}{G} ({4}{G}{G}, Discard this card: Draw a card.) When you cycle Decree of Savagery, you may put four +1/+1 counters on target creature.
+primitive=Decree of Justice
+id=45141
+rarity=R
+[/card]
+[card]
+primitive=Decree of Pain
+id=43522
+rarity=R
+[/card]
+[card]
+primitive=Decree of Savagery
 id=46423
-auto=lord(creature|myBattlefield) counter(1/1,4)
-autohand={4}{G}{G}:cycling
-autohand={4}{G}{G}:counter(1/1,4) target(creature) && cycling
-name=Decree of Savagery
 rarity=R
-mana={7}{G}{G}
-type=Instant
 [/card]
 [card]
+primitive=Decree of Silence
+id=46430
+rarity=R
+[/card]
+[card]
+primitive=Dimensional Breach
+id=43573
+rarity=R
+[/card]
+[card]
+primitive=Dispersal Shield
+id=35344
+rarity=C
+[/card]
+[card]
+primitive=Divergent Growth
 id=45864
-name=Divergent Growth
-mana={G}
-type=Instant
-text=Until end of turn, lands you control gain "{T}: Add one mana of any color to your mana pool."
-auto=lord(land|myBattlefield) {T}:add {G}
-auto=lord(land|myBattlefield) {T}:add {W}
-auto=lord(land|myBattlefield) {T}:add {B}
-auto=lord(land|myBattlefield) {T}:add {U}
-auto=lord(land|myBattlefield) {T}:add {R}
 rarity=C
 [/card]
 [card]
-text=Flying   Whenever Dragon Mage deals combat damage to a player, each player discards his or her hand and draws seven cards.
-auto=@damaged(player) from(this):moveto(graveyard) all(*|myhand) && draw:7 controller && moveto(graveyard) all(*|opponenthand) && draw:7 opponent
+primitive=Dragon Breath
+id=43533
+rarity=C
+[/card]
+[card]
+primitive=Dragon Fangs
+id=47165
+rarity=C
+[/card]
+[card]
+primitive=Dragon Mage
 id=43569
-name=Dragon Mage
 rarity=R
-mana={5}{R}{R}
-type=Creature
-subtype=Dragon Wizard
-power=5
-toughness=5
-abilities=flying
 [/card]
 [card]
-text=Flying, protection from Dragons
+primitive=Dragon Scales
+id=44400
+rarity=C
+[/card]
+[card]
+primitive=Dragon Shadow
+id=45155
+rarity=C
+[/card]
+[card]
+primitive=Dragon Tyrant
+id=43711
+rarity=R
+[/card]
+[card]
+primitive=Dragon Wings
+id=46427
+rarity=C
+[/card]
+[card]
+primitive=Dragonspeaker Shaman
+id=46615
+rarity=U
+[/card]
+[card]
+primitive=Dragonstalker
 id=39714
-name=Dragonstalker
 rarity=U
-mana={4}{W}
-type=Creature
-subtype=Bird Soldier
-auto=protection from(dragon)
-power=3
-toughness=3
-abilities=flying
 [/card]
 [card]
-text={T}: Add {G}{G}{G} to your mana pool.   Forestcycling {2} ({2}, Discard this card: Search your library for a Forest card, reveal it, and put it into your hand. Then shuffle your library.)
+primitive=Dragonstorm
+id=46426
+rarity=R
+[/card]
+[card]
+primitive=Edgewalker
+id=43513
+rarity=U
+[/card]
+[card]
+primitive=Elvish Aberration
 id=43538
-name=Elvish Aberration
 rarity=U
-mana={5}{G}
-type=Creature
-subtype=Elf Mutant
-auto={T}:add{G}{G}{G}
-autohand={2}{S}:moveTo(myhand) target(forest|mylibrary)
-power=4
-toughness=5
 [/card]
 [card]
-text=Target creature gets +X/+0 until end of turn.
+primitive=Enrage
 id=45844
-target=creature
-auto=X/0
-name=Enrage
 rarity=U
-mana={X}{R}
-type=Instant
 [/card]
 [card]
-text=Flying   {3}{W}{W}: Return Eternal Dragon from your graveyard to your hand. Activate this ability only during your upkeep.   Plainscycling {2} ({2}, Discard this card: Search your library for a Plains card, reveal it, and put it into your hand. Then shuffle your library.)
+primitive=Eternal Dragon
 id=44398
-name=Eternal Dragon
 rarity=R
-mana={5}{W}{W}
-type=Creature
-subtype=Dragon Spirit
-autohand={2}{S}:moveTo(myhand) target(plains|mylibrary)
-autograveyard={3}{W}{W}:moveTo(myhand) myUpkeepOnly
-power=5
-toughness=5
-abilities=flying
 [/card]
 [card]
-text=When Fierce Empath enters the battlefield, you may search your library for a creature card with converted mana cost 6 or more, reveal it, put it into your hand, then shuffle your library.
-auto=may moveTo(myhand) target(creature[manacost>=6]|mylibrary)
+primitive=Exiled Doomsayer
+id=40648
+rarity=R
+[/card]
+[card]
+primitive=Extra Arms
+id=43595
+rarity=U
+[/card]
+[card]
+primitive=Faces of the Past
+id=45869
+rarity=R
+[/card]
+[card]
+primitive=Fatal Mutation
+id=44220
+rarity=U
+[/card]
+[card]
+primitive=Fierce Empath
 id=44218
-name=Fierce Empath
 rarity=C
-mana={2}{G}
-type=Creature
-subtype=Elf
-power=1
-toughness=1
 [/card]
 [card]
-text=Enchant creature   Enchanted creature doesn't untap during its controller's untap step.   When enchanted creature is dealt damage, destroy it.
+primitive=Final Punishment
+id=43611
+rarity=R
+[/card]
+[card]
+primitive=Force Bubble
+id=45138
+rarity=R
+[/card]
+[card]
+primitive=Forgotten Ancient
+id=44219
+rarity=R
+[/card]
+[card]
+primitive=Form of the Dragon
+id=43566
+rarity=R
+[/card]
+[card]
+primitive=Frontline Strategist
+id=43493
+rarity=C
+[/card]
+[card]
+primitive=Frozen Solid
 id=43500
-target=creature
-auto=doesnotuntap
-auto=@damaged(mytgt):destroy
-name=Frozen Solid
-rarity=C 
-mana={1}{U}{U}
-type=Enchantment
-subtype=Aura 
+rarity=C
 [/card]
 [card]
-text=Goblin Brigand attacks each turn if able.
+primitive=Gilded Light
+id=43623
+rarity=U
+[/card]
+[card]
+primitive=Goblin Brigand
 id=43525
-name=Goblin Brigand
 rarity=C
-mana={1}{R}
-type=Creature
-subtype=Goblin Warrior
-power=2
-toughness=2
-abilities=mustattack
 [/card]
 [card]
-text=Goblin War Strike deals damage equal to the number of Goblins you control to target player.
+primitive=Goblin Psychopath
+id=43567
+rarity=U
+[/card]
+[card]
+primitive=Goblin War Strike
 id=44292
-target=player
-auto=foreach(goblin|myBattlefield) damage:1
-name=Goblin War Strike
 rarity=C
-mana={R}
-type=Sorcery
 [/card]
 [card]
-text=Whenever you cast a creature spell with converted mana cost 6 or more, put three +1/+1 counters on Kurgadon.
+primitive=Goblin Warchief
+id=43591
+rarity=U
+[/card]
+[card]
+primitive=Grip of Chaos
+id=47274
+rarity=R
+[/card]
+[card]
+primitive=Guilty Conscience
+id=46464
+rarity=C
+[/card]
+[card]
+primitive=Hindering Touch
+id=45837
+rarity=C
+[/card]
+[card]
+primitive=Hunting Pack
+id=45848
+rarity=U
+[/card]
+[card]
+primitive=Karona, False God
+id=44263
+rarity=R
+[/card]
+[card]
+primitive=Karona's Zealot
+id=45858
+rarity=U
+[/card]
+[card]
+primitive=Krosan Drover
+id=44320
+rarity=C
+[/card]
+[card]
+primitive=Krosan Warchief
+id=43535
+rarity=U
+[/card]
+[card]
+primitive=Kurgadon
 id=45165
-name=Kurgadon
 rarity=U
-mana={4}{G}
-type=Creature
-subtype=Beast
-auto=@movedTo(creature[manacost>=6]|mystack):counter(1/1,3)
-power=3
-toughness=3
 [/card]
 [card]
-text=Vigilance   Plainscycling {2} ({2}, Discard this card: Search your library for a Plains card, reveal it, and put it into your hand. Then shuffle your library.)
+primitive=Lethal Vapors
+id=47586
+rarity=R
+[/card]
+[card]
+primitive=Lingering Death
+id=43727
+rarity=C
+[/card]
+[card]
+primitive=Long-Term Plans
+id=43605
+rarity=U
+[/card]
+[card]
+primitive=Mercurial Kite
+id=47222
+rarity=C
+[/card]
+[card]
+primitive=Metamorphose
+id=43733
+rarity=U
+[/card]
+[card]
+primitive=Mind's Desire
+id=46424
+rarity=R
+[/card]
+[card]
+primitive=Mischievous Quanar
+id=44403
+rarity=R
+[/card]
+[card]
+primitive=Misguided Rage
+id=43555
+rarity=C
+[/card]
+[card]
+primitive=Mistform Warchief
+id=47218
+rarity=U
+[/card]
+[card]
+primitive=Nefashu
+id=43616
+rarity=R
+[/card]
+[card]
+primitive=Noble Templar
 id=45834
-name=Noble Templar
 rarity=C
-mana={5}{W}
-type=Creature
-subtype=Human Cleric Soldier
-autohand={2}{S}:moveTo(myhand) target(plains|mylibrary)
-power=3
-toughness=6
-abilities=vigilance
 [/card]
 [card]
-text=Enchant creature   {U}: Untap enchanted creature.   {U}: Enchanted creature gains flying until end of turn.   {U}: Enchanted creature gains shroud until end of turn. (It can't be the target of spells or abilities.)   {1}: Enchanted creature gets +1/-1 or -1/+1 until end of turn.
+primitive=One with Nature
+id=43543
+rarity=U
+[/card]
+[card]
+primitive=Parallel Thoughts
+id=43604
+rarity=R
+[/card]
+[card]
+primitive=Pemmin's Aura
 id=43581
-name=Pemmin's Aura
 rarity=U
-mana={1}{U}{U}
-type=Enchantment
-subtype=Aura
-target=creature
-auto={U}:untap mytgt
-auto={U}:flying mytgt
-auto={U}:shroud mytgt
-auto={1}:+1/-1 mytgt
-auto={1}:-1/+1 mytgt
 [/card]
 [card]
-text=Whenever a player casts a spell with converted mana cost 3 or less, Pyrostatic Pillar deals 2 damage to that player.
-auto=@movedTo(*[manacost<=3]|mystack):damage:2 controller
-auto=@movedTo(*[manacost<=3]|opponentstack):damage:2 opponent
+primitive=Primitive Etchings
+id=46465
+rarity=R
+[/card]
+[card]
+primitive=Proteus Machine
+id=46705
+rarity=U
+[/card]
+[card]
+primitive=Putrid Raptor
+id=45861
+rarity=U
+[/card]
+[card]
+primitive=Pyrostatic Pillar
 id=44290
-name=Pyrostatic Pillar
 rarity=U
-mana={1}{R}
-type=Enchantment
 [/card]
 [card]
-text=Rain of Blades deals 1 damage to each attacking creature.
-auto=damage:1 all(creature[attacking])
+primitive=Rain of Blades
 id=43622
-name=Rain of Blades
 rarity=U
-mana={W}
-type=Instant
 [/card]
 [card]
-text=Flying   Islandcycling {2} ({2}, Discard this card: Search your library for an Island card, reveal it, and put it into your hand. Then shuffle your library.)
+primitive=Raven Guild Initiate
+id=44337
+rarity=C
+[/card]
+[card]
+primitive=Raven Guild Master
+id=43582
+rarity=R
+[/card]
+[card]
+primitive=Reaping the Graves
+id=45845
+rarity=C
+[/card]
+[card]
+primitive=Recuperate
+id=47590
+rarity=C
+[/card]
+[card]
+primitive=Reward the Faithful
+id=44401
+rarity=U
+[/card]
+[card]
+primitive=Riptide Survivor
+id=43578
+rarity=U
+[/card]
+[card]
+primitive=Rock Jockey
+id=22011
+rarity=C
+[/card]
+[card]
+primitive=Root Elemental
+id=44333
+rarity=R
+[/card]
+[card]
+primitive=Rush of Knowledge
+id=43729
+rarity=C
+[/card]
+[card]
+primitive=Scattershot
+id=45843
+rarity=C
+[/card]
+[card]
+primitive=Scornful Egotist
+id=46509
+rarity=C
+[/card]
+[card]
+primitive=Shoreline Ranger
 id=45841
-name=Shoreline Ranger
 rarity=C
-mana={5}{U}
-type=Creature
-subtype=Bird Soldier
-autohand={2}{S}:moveTo(myhand) target(plains|mylibrary)
-power=3
-toughness=4
-abilities=flying
 [/card]
 [card]
-text=When Siege-Gang Commander enters the battlefield, put three 1/1 red Goblin creature tokens onto the battlefield.   {1}{R}, Sacrifice a Goblin: Siege-Gang Commander deals 2 damage to target creature or player.
+primitive=Siege-Gang Commander
 id=43552
-name=Siege-Gang Commander
 rarity=R
-mana={3}{R}{R}
-type=Creature
-subtype=Goblin
-auto=token(Goblin,creature goblin, 1/1,red)*3
-auto={1}{R}{S(goblin|myinplay)}:Damage:2 target(creature,player)
-power=2
-toughness=2
 [/card]
 [card]
-text=First strike, protection from red
+primitive=Silver Knight
 id=44313
-name=Silver Knight
 rarity=U
-mana={W}{W}
-type=Creature
-subtype=Human Knight
-power=2
-toughness=2
-abilities=first strike,protection from red
 [/card]
 [card]
+primitive=Skirk Volcanist
+id=43590
+rarity=U
+[/card]
+[card]
+primitive=Skulltap
 id=43734
-name=Skulltap
-mana={1}{B}
-type=Sorcery
-text=As an additional cost to cast Skulltap, sacrifice a creature. Draw two cards.
-target=creature|myBattlefield
-auto=bury
-auto=draw:2 controller
 rarity=C
 [/card]
 [card]
+primitive=Sliver Overlord
 id=45166
-name=Sliver Overlord
-mana={W}{U}{B}{R}{G}
-type=Legendary Creature
-subtype=Sliver Mutant
-power=7
-toughness=7
-text={3}: Search your library for a Sliver card, reveal that card, and put it into your hand. Then shuffle your library. {3}: Gain control of target Sliver. (This effect lasts indefinitely.)
-auto={3}:moveto(hand) target(sliver|myLibrary)
-auto={3}:moveto(myBattlefield) target(sliver|battlefield)
 rarity=R
 [/card]
 [card]
-text=Spark Spray deals 1 damage to target creature or player.   Cycling {R} ({R}, Discard this card: Draw a card.)
+primitive=Soul Collector
+id=43615
+rarity=R
+[/card]
+[card]
+primitive=Spark Spray
 id=44484
-target=creature,player
-auto=damage:1
-autohand={R}:cycling
-name=Spark Spray
 rarity=C
-mana={R}
-type=Instant
 [/card]
 [card]
-text={T}: Add {2} to your mana pool. Activate this ability only if you control five or more lands.
+primitive=Sprouting Vines
+id=45847
+rarity=C
+[/card]
+[card]
+primitive=Stabilizer
+id=46466
+rarity=R
+[/card]
+[card]
+primitive=Stifle
+id=46558
+rarity=R
+[/card]
+[card]
+primitive=Sulfuric Vortex
+id=47461
+rarity=R
+[/card]
+[card]
+primitive=Temple of the False God
 id=44336
-name=Temple of the False God
-auto=aslongas(land|myBattlefield){T}:add{2} >5
 rarity=U
-type=Land
 [/card]
 [card]
-text=Flying   {3}{U}: Tap all creatures with toughness 2 or less.   {3}{U}: All other creatures lose flying until end of turn.
+primitive=Temporal Fissure
+id=45836
+rarity=C
+[/card]
+[card]
+primitive=Tendrils of Agony
+id=45842
+rarity=U
+[/card]
+[card]
+primitive=Thundercloud Elemental
 id=43606
-name=Thundercloud Elemental
 rarity=U
-mana={5}{U}{U}
-type=Creature
-subtype=Elemental
-auto={3}{U}:tap all(creature[toughness<=2])
-auto={3}{U}:lord(other creature) -flying ueot
-power=3
-toughness=4
-abilities=flying
 [/card]
 [card]
-text=Treetop Scout can't be blocked except by creatures with flying.
+primitive=Titanic Bulvox
+id=46691
+rarity=C
+[/card]
+[card]
+primitive=Torrent of Fire
+id=43530
+rarity=C
+[/card]
+[card]
+primitive=Trap Digger
+id=43577
+rarity=R
+[/card]
+[card]
+primitive=Treetop Scout
 id=43501
-name=Treetop Scout
 rarity=C
-mana={G}
-type=Creature
-subtype=Elf Scout
-auto=cantbeblockedby(creature[-flying])
-power=1
-toughness=1
 [/card]
 [card]
-text={B}: Regenerate Twisted Abomination.   Swampcycling {2} ({2}, Discard this card: Search your library for a Swamp card, reveal it, and put it into your hand. Then shuffle your library.)
+primitive=Twisted Abomination
 id=43717
-name=Twisted Abomination
 rarity=C
-mana={5}{B}
-type=Creature
-subtype=Zombie Mutant
-auto={B}:regenerate
-autohand={2}{S}:moveTo(myhand) target(swamp|mylibrary)
-power=5
-toughness=3
 [/card]
 [card]
-text=Enchant nonbasic land   When enchanted land becomes tapped, destroy it.
+primitive=Unburden
+id=41164
+rarity=C
+[/card]
+[card]
+primitive=Uncontrolled Infestation
 id=46614
-target=land[-basic]
-auto=@tapped(mytgt):destroy
-name=Uncontrolled Infestation
 rarity=C
-mana={1}{R}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
-id=46418
-name=Unspeakable Symbol
-mana={1}{B}{B}
-type=Enchantment
-text=Pay 3 life: Put a +1/+1 counter on target creature.
-auto={0}:counter(1/1,1) target(creature) && life:-3 controller
+primitive=Undead Warchief
+id=43586
 rarity=U
 [/card]
 [card]
+primitive=Unspeakable Symbol
+id=46418
+rarity=U
+[/card]
+[card]
+primitive=Upwelling
+id=43558
+rarity=R
+[/card]
+[card]
+primitive=Vengeful Dead
 id=45862
-name=Vengeful Dead
-mana={3}{B}
-type=Creature
-subtype=Zombie
-power=3
-toughness=2
-text=Whenever Vengeful Dead or another Zombie is put into a graveyard from the battlefield, each opponent loses 1 life.
-auto=@movedto(zombie other|graveyard) from(battlefield): life:-1 opponent
-auto=@movedto(this|graveyard) from(battlefield): life:-1 opponent
 rarity=C
 [/card]
 [card]
-text=Exile target enchantment.   Cycling {3} ({3}, Discard this card: Draw a card.)
+primitive=Wing Shards
+id=45835
+rarity=U
+[/card]
+[card]
+primitive=Wipe Clean
 id=47221
-target=enchantment
-auto=moveto(exile)
-autohand={3}:cycling
-name=Wipe Clean
 rarity=C
-mana={1}{W}
-type=Instant
 [/card]
 [card]
-text=Forestcycling   {2} ({2}, Discard this card: Search your library for a Forest card, reveal it, and put it into your hand. Then shuffle your library.)
+primitive=Wirewood Guardian
 id=43537
-name=Wirewood Guardian
 rarity=C
-mana={5}{G}{G}
-type=Creature
-subtype=Elf Mutant
-autohand={2}{S}:moveTo(myhand) target(forest|mylibrary)
-power=6
-toughness=6
+[/card]
+[card]
+primitive=Wirewood Symbiote
+id=45859
+rarity=U
+[/card]
+[card]
+primitive=Woodcloaker
+id=43596
+rarity=C
+[/card]
+[card]
+primitive=Xantid Swarm
+id=43564
+rarity=R
+[/card]
+[card]
+primitive=Zealous Inquisitor
+id=42040
+rarity=C
+[/card]
+[card]
+primitive=Zombie Cutthroat
+id=43515
+rarity=C
 [/card]

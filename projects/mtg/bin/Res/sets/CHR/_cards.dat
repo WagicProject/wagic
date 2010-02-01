@@ -1,0 +1,625 @@
+[card]
+primitive=Abu Ja'far
+id=2838
+rarity=U
+[/card]
+[card]
+primitive=Active Volcano
+id=2839
+rarity=C
+[/card]
+[card]
+primitive=Akron Legionnaire
+id=2853
+rarity=R
+[/card]
+[card]
+primitive=Aladdin
+id=2840
+rarity=U
+[/card]
+[card]
+primitive=Angelic Voices
+id=2854
+rarity=R
+[/card]
+[card]
+primitive=Arcades Sabboth
+id=2866
+rarity=R
+[/card]
+[card]
+primitive=Arena of the Ancients
+id=2775
+rarity=R
+[/card]
+[card]
+primitive=Argothian Pixies
+id=2824
+rarity=C
+[/card]
+[card]
+primitive=Ashnod's Altar
+id=2776
+rarity=C
+[/card]
+[card]
+primitive=Ashnod's Transmogrant
+id=2777
+rarity=C
+[/card]
+[card]
+primitive=Axelrod Gunnarson
+id=2867
+rarity=R
+[/card]
+[card]
+primitive=Ayesha Tanaka
+id=2868
+rarity=R
+[/card]
+[card]
+primitive=Azure Drake
+id=2796
+rarity=U
+[/card]
+[card]
+primitive=Banshee
+id=2797
+rarity=U
+[/card]
+[card]
+primitive=Barl's Cage
+id=2778
+rarity=R
+[/card]
+[card]
+primitive=Beasts of Bogardan
+id=2841
+rarity=U
+[/card]
+[card]
+primitive=Blood Moon
+id=2842
+rarity=R
+[/card]
+[card]
+primitive=Blood of the Martyr
+id=2855
+rarity=U
+[/card]
+[card]
+primitive=Bog Rats
+id=2798
+rarity=C
+[/card]
+[card]
+primitive=Book of Rass
+id=2779
+rarity=R
+[/card]
+[card]
+primitive=Boomerang
+id=2799
+rarity=C
+[/card]
+[card]
+primitive=Bronze Horse
+id=2780
+rarity=R
+[/card]
+[card]
+primitive=Cat Warriors
+id=2825
+rarity=C
+[/card]
+[card]
+primitive=Chromium
+id=2869
+rarity=R
+[/card]
+[card]
+primitive=City of Brass
+id=2886
+rarity=R
+[/card]
+[card]
+primitive=Cocoon
+id=2826
+rarity=U
+[/card]
+[card]
+primitive=Concordant Crossroads
+id=2827
+rarity=R
+[/card]
+[card]
+primitive=Craw Giant
+id=2828
+rarity=U
+[/card]
+[card]
+primitive=Cuombajj Witches
+id=2800
+rarity=C
+[/card]
+[card]
+primitive=Cyclone
+id=2829
+rarity=R
+[/card]
+[card]
+primitive=Dakkon Blackblade
+id=2870
+rarity=R
+[/card]
+[card]
+primitive=Dance of Many
+id=2801
+rarity=R
+[/card]
+[card]
+primitive=Dandan
+id=2802
+rarity=C
+[/card]
+[card]
+primitive=D'Avenant Archer
+id=2856
+rarity=C
+[/card]
+[card]
+primitive=Divine Offering
+id=2857
+rarity=C
+[/card]
+[card]
+primitive=Emerald Dragonfly
+id=2830
+rarity=C
+[/card]
+[card]
+primitive=Enchantment Alteration
+id=2803
+rarity=U
+[/card]
+[card]
+primitive=Erhnam Djinn
+id=2831
+rarity=U
+[/card]
+[card]
+primitive=Fallen Angel
+id=2804
+rarity=U
+[/card]
+[card]
+primitive=Feldon's Cane
+id=2781
+rarity=C
+[/card]
+[card]
+primitive=Fire Drake
+id=2843
+rarity=U
+[/card]
+[card]
+primitive=Fishliver Oil
+id=2805
+rarity=C
+[/card]
+[card]
+primitive=Flash Flood
+id=2806
+rarity=C
+[/card]
+[card]
+primitive=Fountain of Youth
+id=2782
+rarity=C
+[/card]
+[card]
+primitive=Gabriel Angelfire
+id=2871
+rarity=R
+[/card]
+[card]
+primitive=Gauntlets of Chaos
+id=2783
+rarity=R
+[/card]
+[card]
+primitive=Ghazban Ogre
+id=2832
+rarity=C
+[/card]
+[card]
+primitive=Giant Slug
+id=2807
+rarity=C
+[/card]
+[card]
+primitive=Goblin Artisans
+id=2844
+rarity=U
+[/card]
+[card]
+primitive=Goblin Digging Team
+id=2845
+rarity=C
+[/card]
+[card]
+primitive=Goblin Shrine
+id=2846
+rarity=C
+[/card]
+[card]
+primitive=Goblins of the Flarg
+id=2847
+rarity=C
+[/card]
+[card]
+primitive=Hasran Ogress
+id=2808
+rarity=C
+[/card]
+[card]
+primitive=Hell's Caretaker
+id=2809
+rarity=R
+[/card]
+[card]
+primitive=Horn of Deafening
+id=2784
+rarity=R
+[/card]
+[card]
+primitive=Indestructible Aura
+id=2858
+rarity=C
+[/card]
+[card]
+primitive=Ivory Guardians
+id=2859
+rarity=U
+[/card]
+[card]
+primitive=Jalum Tome
+id=2785
+rarity=R
+[/card]
+[card]
+primitive=Jeweled Bird
+id=2786
+rarity=R
+[/card]
+[card]
+primitive=Johan
+id=2872
+rarity=R
+[/card]
+[card]
+primitive=Juxtapose
+id=2810
+rarity=R
+[/card]
+[card]
+primitive=Keepers of the Faith
+id=2860
+rarity=C
+[/card]
+[card]
+primitive=Kei Takahashi
+id=2873
+rarity=U
+[/card]
+[card]
+primitive=Land's Edge
+id=2848
+rarity=R
+[/card]
+[card]
+primitive=Living Armor
+id=2787
+rarity=C
+[/card]
+[card]
+primitive=Marhault Elsdragon
+id=2874
+rarity=U
+[/card]
+[card]
+primitive=Metamorphosis
+id=2833
+rarity=C
+[/card]
+[card]
+primitive=Mountain Yeti
+id=2849
+rarity=C
+[/card]
+[card]
+primitive=Nebuchadnezzar
+id=2875
+rarity=R
+[/card]
+[card]
+primitive=Nicol Bolas
+id=2876
+rarity=R
+[/card]
+[card]
+primitive=Obelisk of Undoing
+id=2788
+rarity=R
+[/card]
+[card]
+primitive=Palladia-Mors
+id=2877
+rarity=R
+[/card]
+[card]
+primitive=Petra Sphinx
+id=2861
+rarity=R
+[/card]
+[card]
+primitive=Primordial Ooze
+id=2850
+rarity=U
+[/card]
+[card]
+primitive=Puppet Master
+id=2811
+rarity=U
+[/card]
+[card]
+primitive=Rabid Wombat
+id=2834
+rarity=U
+[/card]
+[card]
+primitive=Rakalite
+id=2789
+rarity=R
+[/card]
+[card]
+primitive=Recall
+id=2812
+rarity=U
+[/card]
+[card]
+primitive=Remove Soul
+id=2813
+rarity=C
+[/card]
+[card]
+primitive=Repentant Blacksmith
+id=2862
+rarity=C
+[/card]
+[card]
+primitive=Revelation
+id=2835
+rarity=R
+[/card]
+[card]
+primitive=Rubinia Soulsinger
+id=2878
+rarity=R
+[/card]
+[card]
+primitive=Runesword
+id=2790
+rarity=C
+[/card]
+[card]
+primitive=Safe Haven
+id=2887
+rarity=R
+[/card]
+[card]
+primitive=Scavenger Folk
+id=2836
+rarity=C
+[/card]
+[card]
+primitive=Sentinel
+id=2791
+rarity=R
+[/card]
+[card]
+primitive=Serpent Generator
+id=2792
+rarity=R
+[/card]
+[card]
+primitive=Shield Wall
+id=2863
+rarity=U
+[/card]
+[card]
+primitive=Shimian Night Stalker
+id=2814
+rarity=U
+[/card]
+[card]
+primitive=Sivitri Scarzam
+id=2879
+rarity=U
+[/card]
+[card]
+primitive=Sol'kanar the Swamp King
+id=2880
+rarity=R
+[/card]
+[card]
+primitive=Stangg
+id=2881
+rarity=R
+[/card]
+[card]
+primitive=Storm Seeker
+id=2837
+rarity=U
+[/card]
+[card]
+primitive=Takklemaggot
+id=2815
+rarity=U
+[/card]
+[card]
+primitive=Teleport
+id=2816
+rarity=R
+[/card]
+[card]
+primitive=The Fallen
+id=2817
+rarity=U
+[/card]
+[card]
+primitive=The Wretched
+id=2818
+rarity=R
+[/card]
+[card]
+primitive=Tobias Andrion
+id=2882
+rarity=U
+[/card]
+[card]
+primitive=Tor Wauki
+id=2883
+rarity=U
+[/card]
+[card]
+primitive=Tormod's Crypt
+id=2793
+rarity=C
+[/card]
+[card]
+primitive=Transmutation
+id=2819
+rarity=C
+[/card]
+[card]
+primitive=Triassic Egg
+id=2794
+rarity=R
+[/card]
+[card]
+primitive=Urza's Mine
+id=2891
+rarity=U
+[/card]
+[card]
+primitive=Urza's Mine
+id=2890
+rarity=U
+[/card]
+[card]
+primitive=Urza's Mine
+id=2889
+rarity=U
+[/card]
+[card]
+primitive=Urza's Mine
+id=2888
+rarity=U
+[/card]
+[card]
+primitive=Urza's Power Plant
+id=2895
+rarity=U
+[/card]
+[card]
+primitive=Urza's Power Plant
+id=2894
+rarity=U
+[/card]
+[card]
+primitive=Urza's Power Plant
+id=2893
+rarity=U
+[/card]
+[card]
+primitive=Urza's Power Plant
+id=2892
+rarity=U
+[/card]
+[card]
+primitive=Urza's Tower
+id=2899
+rarity=U
+[/card]
+[card]
+primitive=Urza's Tower
+id=2898
+rarity=U
+[/card]
+[card]
+primitive=Urza's Tower
+id=2897
+rarity=U
+[/card]
+[card]
+primitive=Urza's Tower
+id=2896
+rarity=U
+[/card]
+[card]
+primitive=Vaevictis Asmadi
+id=2884
+rarity=R
+[/card]
+[card]
+primitive=Voodoo Doll
+id=2795
+rarity=R
+[/card]
+[card]
+primitive=Wall of Heat
+id=2851
+rarity=C
+[/card]
+[card]
+primitive=Wall of Opposition
+id=2852
+rarity=U
+[/card]
+[card]
+primitive=Wall of Shadows
+id=2820
+rarity=C
+[/card]
+[card]
+primitive=Wall of Vapor
+id=2821
+rarity=C
+[/card]
+[card]
+primitive=Wall of Wonder
+id=2822
+rarity=U
+[/card]
+[card]
+primitive=War Elephant
+id=2864
+rarity=C
+[/card]
+[card]
+primitive=Witch Hunter
+id=2865
+rarity=U
+[/card]
+[card]
+primitive=Xira Arien
+id=2885
+rarity=R
+[/card]
+[card]
+primitive=Yawgmoth Demon
+id=2823
+rarity=R
+[/card]
