@@ -33326,6 +33326,17 @@ text={T}: Add {R} to your mana pool.   {R}, {T}: Target legendary creature gains
 type=Legendary Land
 [/card]
 [card]
+name=Shiv's Embrace
+target=creature
+auto=2/2
+auto=flying
+auto={R}:1/0
+text=Enchant creature    Enchanted creature gets +2/+2 and has flying.   {R}: Enchanted creature gets +1/+0 until end of turn.
+mana={2}{R}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Shivan Dragon
 abilities=flying
 auto={R}:1/0
@@ -33335,17 +33346,6 @@ type=Creature
 subtype=Dragon
 power=5
 toughness=5
-[/card]
-[card]
-name=Shivan Embrace
-target=creature
-auto=2/2
-auto=flying
-auto={R}:1/0
-text=Enchant creature    Enchanted creature gets +2/+2 and has flying.   {R}: Enchanted creature gets +1/+0 until end of turn.
-mana={2}{R}{R}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Shivan Emissary
