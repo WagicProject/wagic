@@ -449,12 +449,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Akroma's Blessing
-text=Creatures you control gain protection from the color of your choice until end of turn. Cycling {W} ({W}, Discard this card: Draw a card.)
-mana={2}{W}
-type=Instant
-[/card]
-[card]
 name=Akroma, Angel of Fury
 text=Akroma, Angel of Fury can't be countered. Flying, trample, protection from white and from blue {R}: Akroma, Angel of Fury gets +1/+0 until end of turn. Morph {3}{R}{R}{R} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 mana={5}{R}{R}{R}
@@ -2284,15 +2278,6 @@ name=Balancing Act
 text=Each player chooses a number of permanents he or she controls equal to the number of permanents controlled by the player who controls the fewest, then sacrifices the rest. Each player discards cards the same way.
 mana={2}{W}{W}
 type=Sorcery
-[/card]
-[card]
-name=Balduvian Conjurer
-text={T}: Target snow land becomes a 2/2 creature until end of turn. It's still a land.
-mana={1}{U}
-type=Creature
-subtype=Human Wizard
-power=0
-toughness=2
 [/card]
 [card]
 name=Balduvian Dead
@@ -4686,12 +4671,6 @@ power=5
 toughness=5
 [/card]
 [card]
-name=Cabal Ritual
-text=Add {B}{B}{B} to your mana pool. Threshold - Add {B}{B}{B}{B}{B} to your mana pool instead if seven or more cards are in your graveyard.
-mana={1}{B}
-type=Instant
-[/card]
-[card]
 name=Cabal Shrine
 text=Whenever a player plays a spell, that player discards X cards, where X is the number of cards in all graveyards with the same name as that spell.
 mana={1}{B}{B}
@@ -5590,12 +5569,6 @@ type=Creature
 subtype=Illusion Spirit
 power=*
 toughness=*
-[/card]
-[card]
-name=Champion's Victory
-text=Cast Champion's Victory only during the declare attackers step and only if you've been attacked this step. Return target attacking creature to its owner's hand.
-mana={U}
-type=Instant
 [/card]
 [card]
 name=Chance Encounter
@@ -6800,12 +6773,6 @@ type=Instant
 name=Consult the Necrosages
 text=Choose one - Target player draws two cards; or target player discards two cards.
 mana={1}{U}{B}
-type=Sorcery
-[/card]
-[card]
-name=Consume Spirit
-text=Spend only black mana on X.     Consume Spirit deals X damage to target creature or player and you gain X life.
-mana={X}{1}{B}
 type=Sorcery
 [/card]
 [card]
@@ -8022,13 +7989,6 @@ type=Creature
 subtype=Wall
 power=4
 toughness=5
-[/card]
-[card]
-name=Dark Privilege
-text=Enchant creature Enchanted creature gets +1/+1. Sacrifice a creature: Regenerate enchanted creature.
-mana={1}{B}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Dark Sphere
@@ -14168,13 +14128,6 @@ type=Creature
 subtype=Human Assassin
 power=2
 toughness=2
-[/card]
-[card]
-name=Gaseous Form
-text=Enchant creature     Prevent all combat damage that would be dealt to and dealt by enchanted creature.
-mana={2}{U}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Gate Hound
@@ -21861,15 +21814,6 @@ mana={2}{U}
 type=Instant
 [/card]
 [card]
-name=Lithophage
-text=At the beginning of your upkeep, sacrifice Lithophage unless you sacrifice a Mountain.
-mana={3}{R}{R}
-type=Creature
-subtype=Insect
-power=7
-toughness=7
-[/card]
-[card]
 name=Liu Bei, Lord of Shu
 text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.) Liu Bei, Lord of Shu gets +2/+2 as long as you control a permanent named Guan Yu, Sainted Warrior or a permanent named Zhang Fei, Fierce Warrior.
 mana={3}{W}{W}
@@ -22265,15 +22209,6 @@ type=Creature
 subtype=Human Soldier
 power=1
 toughness=1
-[/card]
-[card]
-name=Lucent Liminid
-text=Flying
-mana={3}{W}{W}
-type=Creature
-subtype=Elemental Enchantment
-power=3
-toughness=3
 [/card]
 [card]
 name=Lullmage Mentor
@@ -28901,13 +28836,6 @@ mana={3}{G}{G}
 type=Sorcery
 [/card]
 [card]
-name=Plumes of Peace
-text=Enchant creature Enchanted creature doesn't untap during its controller's untap step. Forecast - {W}{U}, Reveal Plumes of Peace from your hand: Tap target creature. (Activate this ability only during your upkeep and only once each turn.)
-mana={1}{W}{U}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Plunder
 text=Destroy target artifact or land. Suspend 4?{1}{R} (Rather than play this card from your hand, you may pay {1}{R} and remove it from the game with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, play it without paying its mana cost.)
 mana={4}{R}
@@ -29214,12 +29142,6 @@ text=Enchant creature     Enchanted creature has "{T}: Put a 1/1 green Elf Warri
 mana={2}{G}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Presence of the Master
-text=Whenever a player plays an enchantment spell, counter it.
-mana={3}{W}
-type=Enchantment
 [/card]
 [card]
 name=Pretender's Claim
@@ -30166,12 +30088,6 @@ type=Creature
 subtype=Licid
 power=1
 toughness=1
-[/card]
-[card]
-name=Quicksilver Amulet
-text={4}, {T}: You may put a creature card from your hand onto the battlefield.
-mana={4}
-type=Artifact
 [/card]
 [card]
 name=Quicksilver Behemoth
@@ -31409,12 +31325,6 @@ type=Sorcery
 name=Reroute
 text=Change the target of target activated ability with a single target.     Draw a card.
 mana={1}{R}
-type=Instant
-[/card]
-[card]
-name=Rescue
-text=Return target permanent you control to its owner's hand.
-mana={U}
 type=Instant
 [/card]
 [card]
@@ -35257,13 +35167,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Sigil of the Nayan Gods
-text=Enchant creature Enchanted creature gets +1/+1 for each creature you control. Cycling {(g/w)} ({(g/w)}, Discard this card: Draw a card.)
-mana={1}{G}{W}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Sigil of the New Dawn
 text=Whenever a creature is put into your graveyard from play, you may pay {1}{W}. If you do, return that card to your hand.
 mana={3}{W}
@@ -37705,15 +37608,6 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
-name=Squirming Mass
-text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.)
-mana={1}{B}
-type=Creature
-subtype=Horror
-power=1
-toughness=1
-[/card]
-[card]
 name=Squirrel Nest
 target=land
 auto={T}:token(Squirrel,Creature Squirrel,1/1,green)
@@ -38988,15 +38882,6 @@ type=Legendary Creature
 subtype=Merfolk Rogue
 power=1
 toughness=3
-[/card]
-[card]
-name=Sylvan Basilisk
-text=Whenever Sylvan Basilisk becomes blocked by a creature, destroy that creature.
-mana={3}{G}{G}
-type=Creature
-subtype=Basilisk
-power=2
-toughness=4
 [/card]
 [card]
 name=Sylvan Echoes
@@ -41840,12 +41725,6 @@ mana={G}
 type=Instant
 [/card]
 [card]
-name=Underworld Dreams
-text=Whenever an opponent draws a card, Underworld Dreams deals 1 damage to him or her.
-mana={B}{B}{B}
-type=Enchantment
-[/card]
-[card]
 name=Undiscovered Paradise
 text={T}: Add one mana of any color to your mana pool. During your next untap step, as you untap your permanents, return Undiscovered Paradise to its owner's hand.
 type=Land
@@ -42688,15 +42567,6 @@ mana={2}{B}{G}
 type=Legendary Creature
 subtype=Human Warrior
 power=3
-toughness=3
-[/card]
-[card]
-name=Viashino Bey
-text=If Viashino Bey attacks, all creatures you control attack if able.
-mana={2}{R}{R}
-type=Creature
-subtype=Viashino
-power=4
 toughness=3
 [/card]
 [card]
@@ -44481,12 +44351,6 @@ name=Wing Shards
 text=Target player sacrifices an attacking creature. Storm (When you cast this spell, copy it for each spell cast before it this turn.)
 mana={1}{W}{W}
 type=Instant
-[/card]
-[card]
-name=Wing Snare
-text=Destroy target creature with flying.
-mana={2}{G}
-type=Sorcery
 [/card]
 [card]
 name=Wingbeat Warrior
