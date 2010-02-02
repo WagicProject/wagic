@@ -74,6 +74,7 @@ return 0;
 }
 
 
+/*
 #ifdef LINUX
 
 #include <execinfo.h>
@@ -86,7 +87,9 @@ void dumpStack()
   printf("\n");
   free(tab);
 }
+
 #endif
+*/
 
 
 /* RAM simple check functions source */
