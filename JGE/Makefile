@@ -121,7 +121,6 @@ clean:
 endif
 
 Makefile.linux:
-	g++ -o /dev/null src/testfeatures.c -L$(LIBDIR) -lfmod-3.75
-	@if [ "0" = "$$?" ]; then echo 'FMOD=-DWITH_FMOD'; else echo 'FMOD=-DWITHOUT_FMOD'; fi > $@
+	g++ -o /dev/null src/testfeatures.c -L$(LIBDIR) -lfmod-3.75 > /dev/null 2>&1 ; if [ "0" = "$$?" ]; then echo 'FMOD=-DWITH_FMOD'; else echo 'FMOD=-DWITHOUT_FMOD'; fi > $@
 
 -include Makefile.$(TARGET_ARCHITECTURE)
