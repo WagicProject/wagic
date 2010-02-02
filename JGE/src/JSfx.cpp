@@ -48,7 +48,7 @@ JSample::~JSample()
 		releaseWaveData(mSample);
 }
 
-unsigned long JSample;:fileSize()
+unsigned long JSample::fileSize()
 {
   return mSample->fileSize;
 }
