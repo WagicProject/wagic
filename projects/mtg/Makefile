@@ -75,7 +75,7 @@ else
 
 
 $(TARGET): Makefile.$(TARGET_ARCHITECTURE) $(OBJS) ../../JGE/lib/linux/libjge.a
-	g++ -o $(TARGET) $(OBJS) $(LIBS) $(LIBDIR)
+	$(CXX) -o $(TARGET) $(OBJS) $(LIBS) $(LIBDIR)
 
 linux: $(TARGET)
 
@@ -100,7 +100,7 @@ Makefile.psp:
 
 Makefile.linux:
 	g++ -o /dev/null src/testfeatures.c $(LIBDIR) -lfmod-3.75
-	@if [ "0" == "$?" ]; then echo 'FMOD=-lfmod-3.75'; else echo 'FMOD='; fi > $@
+	@if [ "0" = "$$?" ]; then echo 'FMOD=-lfmod-3.75'; else echo 'FMOD='; fi > $@
 
 -include $(DEPS)
 -include Makefile.$(TARGET_ARCHITECTURE)
