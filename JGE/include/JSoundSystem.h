@@ -74,6 +74,7 @@ class JSample
 
   int mVoice;
 
+  unsigned long fileSize();
 #if defined (WIN32) || defined (LINUX)
   #ifdef WITH_FMOD
   FSOUND_SAMPLE *mSample;

@@ -58,6 +58,14 @@ JSample::~JSample()
 #endif
 }
 
+unsigned long JSample::fileSize()
+{
+#ifdef WITH_FMOD
+  return FSOUND_Sample_GetLength(mSample);
+#else
+  return 0;
+#endif
+}
 
 //////////////////////////////////////////////////////////////////////////
 JSoundSystem* JSoundSystem::mInstance = NULL;

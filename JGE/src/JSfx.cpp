@@ -48,6 +48,11 @@ JSample::~JSample()
 		releaseWaveData(mSample);
 }
 
+unsigned long JSample;:fileSize()
+{
+  return mSample->fileSize;
+}
+
 JSoundSystem* JSoundSystem::mInstance = NULL;
 
 JSoundSystem* JSoundSystem::GetInstance()
