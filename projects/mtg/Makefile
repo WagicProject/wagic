@@ -95,9 +95,6 @@ $(DEPS): deps/%.d: src/%.cpp
 .DEFAULT:
 	@echo $@ has been deleted : updating deps.
 
-Makefile.psp:
-	echo > Makefile.psp
-
 Makefile.linux:
 	$(CXX) -o /dev/null src/testfeatures.c $(LIBDIR) -lfmod-3.75 > /dev/null 2>&1 ; if [ "0" = "$$?" ]; then echo 'FMOD=-lfmod-3.75'; else echo 'FMOD='; fi > $@
 
