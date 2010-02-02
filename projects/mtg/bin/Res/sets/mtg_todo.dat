@@ -6,6 +6,12 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
+name=AEther Flash
+text=Whenever a creature enters the battlefield, AEther Flash deals 2 damage to it.
+mana={2}{R}{R}
+type=Enchantment
+[/card]
+[card]
 name=AEther Membrane
 text=Defender; reach (This creature can block creatures with flying.) Whenever ﾃ・her Membrane blocks a creature, return that creature to its owner's hand at end of combat.
 mana={1}{R}{R}
@@ -31,6 +37,12 @@ name=AEther Tide
 text=As an additional cost to play AEher Tide, discard X creature cards. Return X target creatures to their owners' hands.
 mana={X}{U}
 type=Sorcery
+[/card]
+[card]
+name=AEther Tradewinds
+text=Return target permanent you control and target permanent you don't control to their owners' hands.
+mana={2}{U}
+type=Instant
 [/card]
 [card]
 name=AEther Vial
@@ -2180,6 +2192,15 @@ power=0
 toughness=2
 [/card]
 [card]
+name=Azorius AEthermage
+text=Whenever a permanent is returned to your hand, you may pay {1}. If you do, draw a card.
+mana={1}{W}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+[/card]
+[card]
 name=Azorius Guildmage
 text=({(w/u)} can be paid with either {W} or {U}.) {2}{W}: Tap target creature. {2}{U}: Counter target activated ability. (Mana abilities can't be targeted.)
 mana={WU}{WU}
@@ -2202,15 +2223,6 @@ name=Azorius Ploy
 text=Prevent all combat damage target creature would deal this turn. Prevent all combat damage that would be dealt to target creature this turn.
 mana={1}{W}{W}{U}
 type=Instant
-[/card]
-[card]
-name=Azorius ﾃ・hermage
-text=Whenever a permanent is returned to your hand, you may pay {1}. If you do, draw a card.
-mana={1}{W}{U}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
 [/card]
 [card]
 name=Azusa, Lost but Seeking
@@ -4621,7 +4633,7 @@ power=5
 toughness=4
 [/card]
 [card]
-name=Bﾃｶsium Strip
+name=Bosium Strip
 text={3}, {T}: Until end of turn, if the top card of your graveyard is an instant or sorcery card, you may cast that card. If a card cast this way would be put into a graveyard this turn, exile it instead.
 mana={3}
 type=Artifact
@@ -13778,7 +13790,7 @@ power=1
 toughness=2
 [/card]
 [card]
-name=Frozen ﾃ・her
+name=Frozen AEther
 text=Artifacts, creatures, and lands your opponents control enter the battlefield tapped.
 mana={3}{U}
 type=Enchantment
@@ -14304,7 +14316,7 @@ power=0
 toughness=0
 [/card]
 [card]
-name=Ghazbﾃ｡n Ogre
+name=Ghazban Ogre
 text=At the beginning of your upkeep, if a player has more life than any other, that player gains control of Ghazbﾃ｡n Ogre.
 mana={G}
 type=Creature
@@ -18022,8 +18034,8 @@ mana={3}{U}
 type=Enchantment
 [/card]
 [card]
-name=Ifh-Bﾃｭff Efreet
-text=Flying {G}: Ifh-Bﾃｭff Efreet deals 1 damage to each creature with flying and each player. Any player may activate this ability.
+name=Ifh-Biff Efreet
+text=Flying {G}: Ifh-Biff Efreet deals 1 damage to each creature with flying and each player. Any player may activate this ability.
 mana={2}{G}{G}
 type=Creature
 subtype=Efreet
@@ -19469,8 +19481,8 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-name=Junﾃｺn Efreet
-text=Flying At the beginning of your upkeep, sacrifice Junﾃｺn Efreet unless you pay {B}{B}.
+name=Junun Efreet
+text=Flying At the beginning of your upkeep, sacrifice Junun Efreet unless you pay {B}{B}.
 mana={1}{B}{B}
 type=Creature
 subtype=Efreet
@@ -19507,7 +19519,7 @@ mana={3}{U}
 type=Sorcery
 [/card]
 [card]
-name=Jun Grunt
+name=Jotun Grunt
 text=Cumulative upkeep猶ut two cards in a single graveyard on the bottom of their owner's library. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
 mana={1}{W}
 type=Creature
@@ -19516,7 +19528,7 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Jun Owl Keeper
+name=Jotun Owl Keeper
 text=Cumulative upkeep {W} or {U} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) When Jun Owl Keeper is put into a graveyard from the battlefield, put a 1/1 white Bird creature token with flying onto the battlefield for each age counter on it.
 mana={2}{W}
 type=Creature
@@ -20068,8 +20080,8 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Khabﾃ｡l Ghoul
-text=At the beginning of the end step, put a +1/+1 counter on Khabﾃ｡l Ghoul for each creature put into a graveyard from the battlefield this turn.
+name=Khabal Ghoul
+text=At the beginning of the end step, put a +1/+1 counter on Khabal Ghoul for each creature put into a graveyard from the battlefield this turn.
 mana={2}{B}
 type=Creature
 subtype=Zombie
@@ -21722,7 +21734,7 @@ mana={1}{U}
 type=Enchantment
 [/card]
 [card]
-name=Lim-D?l the Necromancer
+name=Lim-Dul the Necromancer
 text=Whenever a creature an opponent controls is put into a graveyard from play, you may pay {1}{B}. If you do, return that card to play under your control. If it's a creature, it's a Zombie in addition to its other creature types. {1}{B}: Regenerate target Zombie.
 mana={5}{B}{B}
 type=Legendary Creature
@@ -31847,8 +31859,8 @@ mana={5}
 type=Artifact
 [/card]
 [card]
-name=Ring of Ma'rﾃｻf
-text={5}, {T}, Exile Ring of Ma'rﾃｻf: The next time you would draw a card this turn, instead choose a card you own from outside the game and put it into your hand.
+name=Ring of Ma'ruf
+text={5}, {T}, Exile Ring of Ma'ruf: The next time you would draw a card this turn, instead choose a card you own from outside the game and put it into your hand.
 mana={5}
 type=Artifact
 [/card]
@@ -38556,15 +38568,6 @@ type=Artifact Creature
 subtype=Myr
 power=0
 toughness=0
-[/card]
-[card]
-name=Sunweb
-text=Defender (This creature can't attack.)  Flying     Sunweb can't block creatures with power 2 or less.
-mana={3}{W}
-type=Creature
-subtype=Wall
-power=5
-toughness=6
 [/card]
 [card]
 name=Superior Numbers
@@ -45346,16 +45349,4 @@ type=Creature
 subtype=Human Wizard
 power=1
 toughness=1
-[/card]
-[card]
-name=ﾃ・her Flash
-text=Whenever a creature enters the battlefield, ﾃ・her Flash deals 2 damage to it.
-mana={2}{R}{R}
-type=Enchantment
-[/card]
-[card]
-name=ﾃ・her Tradewinds
-text=Return target permanent you control and target permanent you don't control to their owners' hands.
-mana={2}{U}
-type=Instant
 [/card]

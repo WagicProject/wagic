@@ -39,6 +39,14 @@ mana={3}{G}{U}
 type=Sorcery
 [/card]
 [card]
+name=AEther Shockwave
+auto=may tap all(spirit)
+auto=may tap all(creature[-spirit])
+text=Choose one ÅETap all Spirits; or tap all non-Spirit creatures.
+mana={3}{W}
+type=Instant
+[/card]
+[card]
 name=AEther Spellbomb
 auto={U}{S}:moveTo(ownerhand) target(creature)
 auto={1}{S}:draw:1
@@ -373,14 +381,6 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Aether Shockwave
-auto=may tap all(spirit)
-auto=may tap all(creature[-spirit])
-text=Choose one ÅETap all Spirits; or tap all non-Spirit creatures.
-mana={3}{W}
-type=Instant
-[/card]
-[card]
 name=Afflict
 target=creature
 auto=-1/-1
@@ -450,6 +450,8 @@ type=Instant
 [/card]
 [card]
 name=Agrus Kos Wojek Veteran
+#The comma needed to be stripped from the name to make the card work.
+#Reintroducing it requires an update to RAV/_cards.dat as well.
 auto=aslongas(agrus kos wojek veteran[attacking]|myBattlefield) lord(creature[red;attacking]) 2/0
 auto=aslongas(agrus kos wojek veteran[attacking]|myBattlefield) lord(creature[white;attacking]) 0/2
 text=Whenever Agrus Kos, Wojek Veteran attacks, attacking red creatures get +2/+0 and attacking white creatures get +0/+2 until end of turn.
@@ -9063,14 +9065,6 @@ mana={2}{U}
 type=Sorcery
 [/card]
 [card]
-name=Deja vu
-target=sorcery|myGraveyard
-auto=moveTo(myHand)
-text=Return target sorcery card from your graveyard to your hand.
-mana={2}{U}
-type=Sorcery
-[/card]
-[card]
 name=Deluge
 auto=tap all(creature[-flying])
 text=Tap all creatures without flying.
@@ -10880,13 +10874,6 @@ type=Creature
 subtype=Treefolk
 power=3
 toughness=3
-[/card]
-[card]
-name=Ebony horse
-alias=1108
-text={T}: Untap target attacking creature you control. Prevent all combat damage that would be dealt to and dealt by that creature this turn.
-mana={3}
-type=Artifact
 [/card]
 [card]
 name=Eerie Procession
@@ -18905,12 +18892,14 @@ toughness=2
 [/card]
 [card]
 name=Isao Enlightened Bushi
+#The comma needed to be stripped from the name to make the card work.
+#Reintroducing it requires an update to BOK/_cards.dat as well.
+#Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1)
 abilities=nofizzle
 auto=rampage(2/2,0)
 auto=rampage(-2/-2,1)
 auto=lord(isao enlighted bushi[blocking]|mybattlefield) 2/2
 auto={2}:regenerate target(samurai)
-####Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1)
 text=Isao, Enlightened Bushi can't be countered.   Bushido 2 (When this blocks or becomes blocked, it gets +2/+2 until end of turn.)   {2}: Regenerate target Samurai.
 mana={2}{G}
 type=Legendary Creature
@@ -19095,13 +19084,15 @@ type=Artifact
 [/card]
 [card]
 name=Jareth Leonine Titan
+#The comma needed to be stripped from the name to make the card work.
+#Reintroducing it requires an update to ONS/_cards.dat as well.
+#Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1)
 auto=lord(jareth leonine titan[blocking]|mybattlefield) 7/7
 auto={W}:protection from white
 auto={W}:protection from blue
 auto={W}:protection from black
 auto={W}:protection from red
 auto={W}:protection from green
-####Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1)
 text=Whenever Jareth Leonine Titan blocks, it gets +7/+7 until end of turn.   {W}: Jareth gains protection from the color of your choice until end of turn.
 mana={3}{W}{W}{W}
 type=Legendary Creature
@@ -20808,11 +20799,13 @@ toughness=5
 [/card]
 [card]
 name=Konda Lord of Eiganjo
+#The comma needed to be stripped from the name to make the card work.
+#Reintroducing it requires an update to CHK/_cards.dat as well.
+#Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1)
 abilities=vigilance,indestructible
 auto=rampage(5/5,0)
 auto=rampage(-5/-5,1)
 auto=lord(konda lord of eiganjo[blocking]|mybattlefield) 5/5
-####Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1)
 text=Vigilance (Attacking doesn't cause this creature to tap.)   Bushido 5 (When this blocks or becomes blocked, it gets +5/+5 until end of turn.)   Konda, Lord of Eiganjo is indestructible.
 mana={5}{W}{W}
 type=Legendary Creature
@@ -24461,7 +24454,7 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Moorish cavalry
+name=Moorish Cavalry
 abilities=trample
 text=Trample
 mana={2}{W}{W}
@@ -25107,11 +25100,13 @@ toughness=1
 [/card]
 [card]
 name=Nagao Bound by Honor
+#The comma needed to be stripped from the name to make the card work.
+#Reintroducing it requires an update to CHK/_cards.dat as well.
+#Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1)
 auto=rampage(1/1,0)
 auto=rampage(-1/-1,1)
 auto=lord(nagao bound by honor[blocking]|mybattlefield) 1/1
 auto=aslongas(nagao bound by honor[attacking]|myBattlefield) lord(samurai[attacking]|myBattlefield) 1/1
-####Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1)
 text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.)   Whenever Nagao, Bound by Honor attacks, Samurai creatures you control get +1/+1 until end of turn.
 mana={3}{W}
 type=Legendary Creature
@@ -26775,10 +26770,12 @@ toughness=2
 [/card]
 [card]
 name=Oros the Avenger
+#The comma needed to be stripped from the name to make the card work.
+#Reintroducing it requires an update to PLC/_cards.dat as well.
+#Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1)
 abilities=flying
 auto=aslongas(oros the avenger[attacking]|mybattlefield) lord(oros the avenger[attacking;-cloud]) {2}{W}:damage:3 all(creature[-white])
 auto=@damaged(player) from(this):cloud
-####Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1)
 text=Flying   Whenever Oros, the Avenger deals combat damage to a player, you may pay {2}{W}. If you do, Oros deals 3 damage to each nonwhite creature.
 mana={3}{W}{B}{R}
 type=Legendary Creature
@@ -27748,8 +27745,10 @@ toughness=3
 [/card]
 [card]
 name=Pianna Nomad Captain
+#The comma needed to be stripped from the name to make the card work.
+#Reintroducing it requires an update to ODY/_cards.dat as well.
+#Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1)
 auto=aslongas(pianna nomad captain[attacking]|myBattlefield) lord(creature[attacking]) 1/1
-####Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1)
 text=Whenever Pianna Nomad Captain attacks, attacking creatures get +1/+1 until end of turn.
 mana={1}{W}{W}
 type=Legendary Creature
@@ -29014,9 +29013,11 @@ toughness=2
 [/card]
 [card]
 name=Radha Heir to Keld
+#The comma needed to be stripped from the name to make the card work.
+#Reintroducing it requires an update to PLC/_cards.dat as well.
+#Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1)
 auto=@each my blockers:aslongas(radha heir to keld[attacking]|myBattlefield) may add{R}{R}
 auto={T}:Add{G}
-####Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1)
 text=Whenever Radha, Heir to Keld attacks, you may add {R}{R} to your mana pool. {T}: Add {G} to your mana pool.
 mana={R}{G}
 type=Legendary Creature
@@ -30084,7 +30085,7 @@ mana={2}{W}
 type=Sorcery
 [/card]
 [card]
-name=Repentant blacksmith
+name=Repentant Blacksmith
 abilities=protection from red
 text=Protection from red
 mana={1}{W}
@@ -38477,10 +38478,12 @@ type=Instant
 [/card]
 [card]
 name=Teneb the Harvester
+#The comma needed to be stripped from the name to make the card work.
+#Reintroducing it requires an update to PLC/_cards.dat as well.
+#Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1)
 abilities=flying
 auto=aslongas(teneb the harvester[attacking]|mybattlefield) lord(teneb the harvester[attacking;-cloud]) {2}{B}:moveTo(myBattlefield) target(creature|graveyard)
 auto=@damaged(player) from(this):cloud
-####Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1)
 text=Flying   Whenever Teneb, the Harvester deals combat damage to a player, you may pay {2}{B}. If you do, put target creature card in a graveyard onto the battlefield under your control.
 mana={3}{B}{G}{W}
 type=Legendary Creature
@@ -39929,16 +39932,6 @@ power=2
 toughness=*
 [/card]
 [card]
-name=Treetop Bracer
-target=creature
-auto=1/1
-auto=cantbeblockedby(creature[-flying])
-text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.)   Enchanted creature gets +1/+1 and can't be blocked except by creatures with flying.
-mana={1}{G}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Treetop Bracers
 target=creature
 auto=1/1
@@ -40705,7 +40698,7 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Unyaro Bee StinG
+name=Unyaro Bee Sting
 target=creature,player
 auto=damage:2
 text=Unyaro Bee Sting deals 2 damage to target creature or player.
@@ -42255,6 +42248,9 @@ toughness=6
 [/card]
 [card]
 name=Vorosh the Hunter
+#The comma needed to be stripped from the name to make the card work.
+#Reintroducing it requires an update to PLC/_cards.dat as well.
+#Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1)
 abilities=flying
 auto=aslongas(vorosh the hunter[attacking]|mybattlefield) lord(vorosh the hunter[attacking;-cloud]) {2}{G}:counter(1/1,6)
 auto=@damaged(player) from(this):cloud
@@ -44705,9 +44701,11 @@ toughness=4
 [/card]
 [card]
 name=Zhang He Wei General
+#The comma needed to be stripped from the name to make the card work.
+#Reintroducing it requires an update to PTK/_cards.dat as well.
+#Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1)
 abilities=horsemanship
 auto=aslongas(zhang he wei general[attacking]|myBattlefield) lord(creature[-zhang he wei general]|myBattlefield) 0/1
-####Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1)
 text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)   Whenever Zhang He, Wei General attacks, each other creature you control gets +1/+0 until end of turn.
 mana={3}{B}{B}
 type=Legendary Creature
@@ -44717,9 +44715,11 @@ toughness=2
 [/card]
 [card]
 name=Zhao Zilong Tiger General
+#The comma needed to be stripped from the name to make the card work.
+#Reintroducing it requires an update to PTK/_cards.dat as well.
+#Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1)
 auto=lord(zhao zilong tiger general[blocking]|myBattlefield) 1/1
 auto=horsemanship
-####Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1)
 text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)   Whenever Zhao Zilong, Tiger General blocks, it gets +1/+1 until end of turn.
 mana={3}{W}{W}
 type=Legendary Creature

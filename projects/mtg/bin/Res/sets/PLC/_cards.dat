@@ -484,7 +484,9 @@ id=124062
 rarity=R
 [/card]
 [card]
-primitive=Oros, the Avenger
+primitive=Oros the Avenger
+#The comma needed to be stripped from the name to make the card work.
+#Reintroducing it requires an update to mtg.txt as well.
 id=136170
 rarity=R
 [/card]
@@ -549,7 +551,9 @@ id=122436
 rarity=U
 [/card]
 [card]
-primitive=Radha, Heir to Keld
+primitive=Radha Heir to Keld
+#The comma needed to be stripped from the name to make the card work.
+#Reintroducing it requires an update to mtg.txt as well.
 id=128949
 rarity=R
 [/card]
@@ -734,7 +738,9 @@ id=126814
 rarity=R
 [/card]
 [card]
-primitive=Teneb, the Harvester
+primitive=Teneb the Harvester
+#The comma needed to be stripped from the name to make the card work.
+#Reintroducing it requires an update to mtg.txt as well.
 id=124075
 rarity=R
 [/card]
@@ -819,7 +825,9 @@ id=126303
 rarity=R
 [/card]
 [card]
-primitive=Vorosh, the Hunter
+primitive=Vorosh the Hunter
+#The comma needed to be stripped from the name to make the card work.
+#Reintroducing it requires an update to mtg.txt as well.
 id=124057
 rarity=R
 [/card]

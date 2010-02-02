@@ -4,7 +4,9 @@ year=2005
 block=Guild
 [/meta]
 [card]
-primitive=Agrus Kos, Wojek Veteran
+primitive=Agrus Kos Wojek Veteran
+#The comma needed to be stripped from the name to make the card work.
+#Reintroducing it requires an update to mtg.txt as well.
 id=89101
 rarity=R
 [/card]
