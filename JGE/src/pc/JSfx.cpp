@@ -3,7 +3,7 @@
 // JGE++ is a hardware accelerated 2D game SDK for PSP/Windows.
 //
 // Licensed under the BSD license, see LICENSE in JGE root for details.
-// 
+//
 // Copyright (c) 2007 James Hui (a.k.a. Dr.Watson) <jhkhui@gmail.com>
 //
 //-------------------------------------------------------------------------------------
@@ -115,7 +115,7 @@ JMusic *JSoundSystem::LoadMusic(const char *fileName)
 {
 #ifndef WITH_FMOD
   return NULL;
-#elif
+#else
   JMusic* music = new JMusic();
   if (music)
     {
@@ -126,7 +126,7 @@ JMusic *JSoundSystem::LoadMusic(const char *fileName)
 	  char *buffer = new char[size];
 	  fileSystem->ReadFile(buffer, size);
 	  music->mTrack = FSOUND_Sample_Load(FSOUND_UNMANAGED, buffer, FSOUND_LOADMEMORY, 0, size);
-				
+
 	  delete[] buffer;
 	  fileSystem->CloseFile();
 	}
@@ -176,7 +176,7 @@ void JSoundSystem::SetMusicVolume(int volume)
 }
 
 void JSoundSystem::SetSfxVolume(int volume){
-  //this sets the volume to all channels then reverts back the volume for music.. 
+  //this sets the volume to all channels then reverts back the volume for music..
   //that's a bit dirty but it works
 #ifdef WITH_FMOD
   FSOUND_SetVolumeAbsolute(FSOUND_ALL, volume * 2.55);

@@ -39,7 +39,9 @@
 	#include "JMP3.h"
 
 #endif
-
+#ifdef WITH_FMOD
+        #include "../Dependencies/include/fmod.h"
+#endif
 
 //------------------------------------------------------------------------------------------------
 class JMusic
