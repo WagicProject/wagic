@@ -271,7 +271,8 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
         s += _(Subtypes::subtypesList->find(card->data->types[i]));
         s += " - ";
       }
-    s += _(Subtypes::subtypesList->find(card->data->types[0]));
+    if(card->data->types.size())
+      s += _(Subtypes::subtypesList->find(card->data->types[0]));
     font->DrawString(s.c_str(), x + (22 - BigWidth / 2)*pos.actZ, pos.actY + (49 - BigHeight / 2)*pos.actZ);
   }
 
