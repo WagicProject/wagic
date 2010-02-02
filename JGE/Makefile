@@ -82,7 +82,7 @@ OBJS = $(GENERIC_OBJS) $(LINUX_OBJS)
 TARGET_LIB = libjge.a
 TARGET_HGE = libhgetools.a
 INCDIR = $(shell freetype-config --cflags 2> /dev/null) -I/usr/X11/include
-CXXFLAGS += -DLINUX
+CXXFLAGS += -DLINUX $(FMOD)
 CXXFLAGS += $(INCDIR)
 LIBDIR = lib/linux
 endif
@@ -95,7 +95,7 @@ ifeq ($(TARGET_ARCHITECTURE),psp)
 include $(PSPSDK)/lib/build.mak
 endif
 
-all: $(DEFAULT_RULE) hge
+all: $(DEFAULT_RULE) Makefile.$(TARGET_ARCHITECTURE) hge
 
 debug: $(DEFAULT_RULE) hge
 
@@ -117,5 +117,11 @@ $(TARGET_HGE): $(HGE_OBJS)
 	ar r $(TARGET_HGE) $(HGE_OBJS)
 
 clean:
-	$(RM) -f $(OBJS) $(HGE_OBJS)
+	$(RM) -f $(OBJS) $(HGE_OBJS) Makefile.$(TARGET_ARCHITECTURE)
 endif
+
+Makefile.linux:
+	g++ -o /dev/null src/testfeatures.c -L$(LIBDIR) -lfmod-3.75
+	@if [ "0" == "$?" ]; then echo 'FMOD=-DWITH_FMOD'; else echo 'FMOD=-DWITHOUT_FMOD'; fi > $@
+
+-include Makefile.$(TARGET_ARCHITECTURE)

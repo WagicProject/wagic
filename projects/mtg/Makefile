@@ -40,9 +40,9 @@ INCDIR = ../../JGE/include ../../JGE/include/psp ../../JGE/include/psp/freetype2
 LIBDIR = ../../JGE/lib/psp
 else
 OBJS += objs/TestSuiteAI.o
-INCDIR = -I ../../JGE/include -I ../../JGE/src
-LIBDIR = -L ../../JGE/lib/linux -L ../../JGE
-LIBS = -ljge -lfreetype -ljpeg -lgif -lpng -lz -lm -lstdc++ -lglut -lhgetools -lfmod-3.75
+INCDIR = -I../../JGE/include -I../../JGE/src -I/usr/X11/include
+LIBDIR = -L../../JGE/lib/linux -L../../JGE -L/usr/X11/lib
+LIBS = -ljge -lfreetype -ljpeg -lgif -lpng -lz -lm -lstdc++ -lhgetools -lGL -lGLU -lX11 $(FMOD)
 CFLAGS = $(INCDIR) -DLINUX
 ASFLAGS = $(CXXFLAGS)
 
@@ -55,7 +55,7 @@ CFLAGS := -Wall -W -Werror -Wno-unused $(CFLAGS)
 CXXFLAGS += $(CFLAGS)
 # -fno-exceptions
 
-LDFLAGS = $(LIBS)
+LDFLAGS += $(LIBS)
 
 
 
@@ -74,7 +74,7 @@ else
 
 
 
-$(TARGET): $(OBJS) ../../JGE/lib/linux/libjge.a
+$(TARGET): Makefile.$(TARGET_ARCHITECTURE) $(OBJS) ../../JGE/lib/linux/libjge.a
 	g++ -o $(TARGET) $(OBJS) $(LIBS) $(LIBDIR)
 
 linux: $(TARGET)
@@ -82,7 +82,7 @@ linux: $(TARGET)
 debug: linux
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) Makefile.$(TARGET_ARCHITECTURE)
 
 endif
 
@@ -95,4 +95,12 @@ $(DEPS): deps/%.d: src/%.cpp
 .DEFAULT:
 	@echo $@ has been deleted : updating deps.
 
+Makefile.psp:
+	echo > Makefile.psp
+
+Makefile.linux:
+	g++ -o /dev/null src/testfeatures.c $(LIBDIR) -lfmod-3.75
+	@if [ "0" == "$?" ]; then echo 'FMOD=-lfmod-3.75'; else echo 'FMOD='; fi > $@
+
 -include $(DEPS)
+-include Makefile.$(TARGET_ARCHITECTURE)

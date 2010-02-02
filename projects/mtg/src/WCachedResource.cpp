@@ -317,7 +317,11 @@ unsigned long WCachedSample::size(){
     return 0;
 
 #if defined WIN32 || defined LINUX
+  #if defined __LP64__
+  return 0;
+  #else
   return FSOUND_Sample_GetLength(sample->mSample);
+  #endif
 #else
   return sample->mSample->fileSize;
 #endif

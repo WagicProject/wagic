@@ -5,6 +5,7 @@
 #include <X11/XKBlib.h>
 #include <sys/time.h>
 #include <queue>
+#include <iostream>
 
 #include "../../JGE/include/JGE.h"
 #include "../../JGE/include/JTypes.h"
@@ -49,7 +50,7 @@ Display* gXDisplay = NULL;
 Window gXWindow = NULL;
 GLXWindow glxWin = NULL;
 
-static queue< pair<KeyCode, u32> > gKeyBuffer;
+static queue< pair<KeySym, u32> > gKeyBuffer;
 static u32 gControllerState = 0;
 static u32 gPrevControllerState = 0;
 static u32 gHolds = 0;
@@ -80,7 +81,7 @@ static const struct { KeySym keysym; u32 pspCode; } gDefaultBindings[] =
     { XK_F3,		PSP_CTRL_NOTE }
   };
 
-static vector< pair<KeyCode, u32> > gKeyCodes;
+static vector< pair<KeySym, u32> > gKeyCodes;
 
 GLvoid ReSizeGLScene(GLsizei width, GLsizei height)	// Resize The GL Window
 {
@@ -210,7 +211,7 @@ BOOL CreateGLWindow(char* title, int width, int height, int bits __attribute__((
     }
 
   for (signed int i = sizeof(gDefaultBindings)/sizeof(gDefaultBindings[0]) - 1; i >= 0; --i)
-    gKeyCodes.push_back(make_pair(XKeysymToKeycode(gXDisplay, gDefaultBindings[i].keysym), gDefaultBindings[i].pspCode));
+    gKeyCodes.push_back(make_pair(gDefaultBindings[i].keysym, gDefaultBindings[i].pspCode));
 
   // Get a suitable framebuffer config
   int numReturned;
@@ -437,26 +438,32 @@ int main(int argc, char* argv[])
 	switch (event.type)
 	  {
 	  case KeyPress:
-	    if (XKeycodeToKeysym(gXDisplay, event.xkey.keycode, 1) == XK_F)
-	      fullscreen();
-	    for (vector< pair<KeyCode, u32> >::iterator it = gKeyCodes.begin(); it != gKeyCodes.end(); ++it)
-	      if (event.xkey.keycode == it->first)
-		{
-		  if (!(gHolds & it->second))
-		    gKeyBuffer.push(*it);
-		  gControllerState |= it->second;
-		  gHolds |= it->second;
-		  break;
-		}
+	    {
+	      KeySym sym = XKeycodeToKeysym(gXDisplay, event.xkey.keycode, 1);
+	      if (XK_F == sym)
+		fullscreen();
+	      for (vector< pair<KeySym, u32> >::iterator it = gKeyCodes.begin(); it != gKeyCodes.end(); ++it)
+		if (sym == it->first)
+		  {
+		    if (!(gHolds & it->second))
+		      gKeyBuffer.push(*it);
+		    gControllerState |= it->second;
+		    gHolds |= it->second;
+		    break;
+		  }
+	    }
 	    break;
 	  case KeyRelease:
-	    for (vector< pair<KeyCode, u32> >::iterator it = gKeyCodes.begin(); it != gKeyCodes.end(); ++it)
-	      if (event.xkey.keycode == it->first)
-		{
-		  gControllerState &= ~it->second;
-		  gHolds &= ~it->second;
-		  break;
-		}
+	    {
+	      KeySym sym = XKeycodeToKeysym(gXDisplay, event.xkey.keycode, 1);
+	      for (vector< pair<KeySym, u32> >::iterator it = gKeyCodes.begin(); it != gKeyCodes.end(); ++it)
+		if (sym == it->first)
+		  {
+		    gControllerState &= ~it->second;
+		    gHolds &= ~it->second;
+		    break;
+		  }
+	    }
 	    break;
 	  case ConfigureNotify:
 	    ReSizeGLScene(event.xconfigure.width, event.xconfigure.height);

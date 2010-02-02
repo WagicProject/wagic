@@ -20,8 +20,6 @@
 
 //////////////////////////////////////////////////////////////////////////
 #if defined (WIN32)    // WIN32 specific code
-#include "../../Dependencies/include/png.h"
-#include "../../Dependencies/include/fmod.h"
 
 int JGE::GetTime(void)
 {

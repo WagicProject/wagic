@@ -51,9 +51,13 @@ public:
   int getPlayTime();
 
 #if defined (WIN32) || defined (LINUX)
-	FSOUND_SAMPLE *mTrack;		// MP3 needed to be of "sample" type for FMOD, FMUSIC_MODULE is for MODs
+  #ifdef WITH_FMOD
+  FSOUND_SAMPLE* mTrack;		// MP3 needed to be of "sample" type for FMOD, FMUSIC_MODULE is for MODs
+  #else
+  void* mTrack;
+  #endif
 #else
-	JMP3* mTrack;
+  JMP3* mTrack;
 #endif
 
 };
@@ -62,16 +66,20 @@ public:
 //------------------------------------------------------------------------------------------------
 class JSample
 {
-public:
-	JSample();
-	~JSample();
+ public:
+  JSample();
+  ~JSample();
 
-	int mVoice;
+  int mVoice;
 
 #if defined (WIN32) || defined (LINUX)
-	FSOUND_SAMPLE *mSample;
+  #ifdef WITH_FMOD
+  FSOUND_SAMPLE *mSample;
+  #else
+  void* mSample;
+  #endif
 #else
-	WAVDATA *mSample;
+  WAVDATA *mSample;
 #endif
 };
 

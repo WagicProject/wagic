@@ -381,7 +381,7 @@ void GameStateMenu::Update(float dt)
         //Debug
 #ifdef _DEBUG
         char buf[4096];
-        sprintf(buf, "\n==\nTotal MTGCard: %i\nTotal CardPrimitives: %i\n==\n", mParent->collection->collection.size(), mParent->collection->primitives.size());
+        sprintf(buf, "\n==\nTotal MTGCard: %lu\nTotal CardPrimitives: %lu\n==\n", (long unsigned)mParent->collection->collection.size(), (long unsigned)mParent->collection->primitives.size());
         OutputDebugString(buf);
 #endif
 

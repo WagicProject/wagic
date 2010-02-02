@@ -75,9 +75,9 @@
 	#include <windows.h>
 #endif
 #ifdef LINUX
-        typedef unsigned char byte;
-        typedef unsigned long DWORD;
-        typedef unsigned char BYTE;
+        typedef uint8_t byte;
+        typedef uint32_t DWORD;
+        typedef uint8_t BYTE;
         typedef bool BOOL;
 #endif
 
@@ -87,8 +87,6 @@
 #endif
 
 #if defined (WIN32) || defined (LINUX) 
-        #include "../Dependencies/include/fmod.h"
-
 
 typedef int8_t s8;
 typedef int16_t s16;

@@ -17,7 +17,6 @@
 
 
 #include "../../Dependencies/include/png.h"
-#include "../../Dependencies/include/fmod.h"
 
 #ifdef __cplusplus
 extern "C" {
