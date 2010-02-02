@@ -42296,7 +42296,7 @@ toughness=2
 [/card]
 [card]
 name=Vulshok Gauntlets
-auto={3}
+auto={3}:equip
 auto=4/2
 auto=doesnotuntap
 text=Equipped creature gets +4/+2 and doesn't untap during its controller's untap step.     Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery. This card comes into play unattached and stays in play if the creature leaves play.)
