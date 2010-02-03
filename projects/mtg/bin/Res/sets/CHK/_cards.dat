@@ -958,6 +958,11 @@ id=78678
 rarity=U
 [/card]
 [card]
+primitive=Nezumi Graverobber (Nighteyes the Desecrator)
+id=78678
+rarity=U
+[/card]
+[card]
 primitive=Nezumi Ronin
 id=50512
 rarity=C
@@ -981,11 +986,6 @@ rarity=R
 primitive=Night of Souls' Betrayal
 id=78991
 rarity=R
-[/card]
-[card]
-primitive=Nighteyes the Desecrator
-id=78678
-rarity=U
 [/card]
 [card]
 primitive=Nine-Ringed Bo

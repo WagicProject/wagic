@@ -1,5 +1,17 @@
 # The cards in this file are not implemented yet
 [card]
+name=AEther Barrier
+text=Whenever a player casts a creature spell, that player sacrifices a permanent unless he or she pays {1}.
+mana={2}{U}
+type=Enchantment
+[/card]
+[card]
+name=AEther Storm
+text=Creature spells can't be cast. -- Pay 4 life: Destroy AEther Storm. It can't be regenerated. Any player may activate this ability.
+mana={3}{U}
+type=Enchantment
+[/card]
+[card]
 name=AEther Burst
 text=Return up to X target creatures to their owners' hands, where X is one plus the number of cards named AEther Burst in all graveyards as you play AEther Burst.
 mana={1}{U}
@@ -51,6 +63,12 @@ mana={1}
 type=Artifact
 [/card]
 [card]
+name=AEthermage's Touch
+text=Reveal the top four cards of your library. You may put a creature card from among them onto the battlefield. It has "At the beginning of your end step, return this creature to its owner's hand." Then put the rest of the cards revealed this way on the bottom of your library in any order.
+mana={2}{W}{U}
+type=Instant
+[/card]
+[card]
 name=AEtherplasm
 text=Whenever ÁEherplasm blocks a creature, you may return ÁEherplasm to its owner's hand. If you do, you may put a creature card from your hand onto the battlefield blocking that creature.
 mana={2}{U}{U}
@@ -79,6 +97,13 @@ name=Abandon Hope
 text=As an additional cost to play Abandon Hope, discard X cards.     Look at target opponent's hand and choose X cards from it. That player discards those cards.
 mana={X}{1}{B}
 type=Sorcery
+[/card]
+[card]
+name=Abduction
+text=Enchant creature -- When Abduction enters the battlefield, untap enchanted creature. -- You control enchanted creature. -- When enchanted creature is put into a graveyard, return that card to the battlefield under its owner's control.
+mana={2}{U}{U}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Abeyance
@@ -126,6 +151,36 @@ power=3
 toughness=3
 [/card]
 [card]
+name=About Face
+text=Switch target creature's power and toughness until end of turn.
+mana={R}
+type=Instant
+[/card]
+[card]
+name=Absolver Thrull
+text=Haunt (When this card is put into a graveyard from the battlefield, exile it haunting target creature.) -- When Absolver Thrull enters the battlefield or the creature it haunts is put into a graveyard, destroy target enchantment.
+mana={3}{W}
+type=Creature
+subtype=Thrull Cleric
+power=2
+toughness=3
+[/card]
+[card]
+name=Abu Ja'far
+text=When Abu Ja'far is put into a graveyard from the battlefield, destroy all creatures blocking or blocked by it. They can't be regenerated.
+mana={W}
+type=Creature
+subtype=Human
+power=0
+toughness=1
+[/card]
+[card]
+name=Abuna's Chant
+text=Choose one - You gain 5 life; or prevent the next 5 damage that would be dealt to target creature this turn. -- Entwine {2} (Choose both if you pay the entwine cost.)
+mana={3}{W}
+type=Instant
+[/card]
+[card]
 name=Abundance
 text=If you would draw a card, you may instead choose land or nonland and reveal cards from the top of your library until you reveal a card of the chosen kind. Put that card into your hand and put all other cards revealed this way on the bottom of your library in any order.
 mana={2}{G}{G}
@@ -168,6 +223,15 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Abyssal Persecutor
+text=Flying, trample -- You can't win the game and your opponents can't lose the game.
+mana={2}{B]{B]
+type=Creature
+subtype=Demon
+power=6
+toughness=6
+[/card]
+[card]
 name=Abyssal Specter
 abilities=flying
 alias=1165
@@ -195,6 +259,12 @@ type=Creature
 subtype=Human Wizard
 power=2
 toughness=2
+[/card]
+[card]
+name=Accelerated Mutation
+text=Target creature gets +X/+X until end of turn, where X is the highest converted mana cost among permanents you control.
+mana={3}{G}{G}
+type=Instant
 [/card]
 [card]
 name=Acceptable Losses
@@ -301,6 +371,15 @@ name=Aegis of Honor
 text={1}: The next time an instant or sorcery spell would deal damage to you this turn, that spell deals that damage to its controller instead.
 mana={W}
 type=Enchantment
+[/card]
+[card]
+name=Aeon Chronicler
+text=Aeon Chronicler's power and toughness are each equal to the number of cards in your hand. -- Suspend X-{X}{3}{U}. X can't be 0.  (Rather than cast this card from your hand, you may pay {X}{3}{U} and exile it with X time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.) -- Whenever a time counter is removed from Aeon Chronicler while it's exiled, draw a card.
+mana={3}{U}{U}
+type=Creature
+subtype=Avatar
+power=*
+toughness=*
 [/card]
 [card]
 name=Aerial Caravan
@@ -433,6 +512,15 @@ mana={2}{R}{W}
 type=Planeswalker
 subtype=Ajani
 toughness=3
+[/card]
+[card]
+name=Akki Blizzard-Herder
+text=When Akki Blizzard-Herder is put into a graveyard from the battlefield, each player sacrifices a land.
+mana={1}{R}
+type=Creature
+subtype=Goblin Shaman
+power=1
+toughness=1
 [/card]
 [card]
 name=Akki Lavarunner
@@ -711,6 +799,23 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Amok
+auto=aslongas(*|myHand) {1}:counter(1/1,1) target(creature) && discard:1 controller
+#Does not work in WTH 0.10
+text={1}, Discard a card at random: Put a +1/+1 counter on target creature.
+mana={1}{R}
+type=Enchantment
+[/card]
+[card]
+name=Amphibious Kavu
+text=Whenever Amphibious Kavu blocks or becomes blocked by one or more blue and/or black creatures, Amphibious Kavu gets +3/+3 until end of turn.
+mana={2}{G}
+type=Creature
+subtype=Kavu
+power=2
+toughness=2
+[/card]
+[card]
 name=Amulet of Kroog
 text={2}, {T}: Prevent the next 1 damage that would be dealt to target creature or player this turn.
 mana={2}
@@ -742,6 +847,12 @@ type=Creature
 subtype=Human Wizard
 power=2
 toughness=2
+[/card]
+[card]
+name=Ana Sanctuary
+text=At the beginning of your upkeep, if you control a blue or black permanent, target creature gets +1/+1 until end of turn. If you control a blue permanent and a black permanent, that creature gets +5/+5 until end of turn instead.
+mana={2}{G}
+type=Enchantment
 [/card]
 [card]
 name=Anathemancer
@@ -851,6 +962,15 @@ power=3
 toughness=5
 [/card]
 [card]
+name=Angel of Salvation
+text=Flash; convoke (Each creature you tap while casting this spell reduces its cost by {1} or by one mana of that creature's color.) -- Flying -- When Angel of Salvation enters the battlefield, prevent the next 5 damage that would be dealt this turn to any number of target creatures and/or players, divided as you choose.
+mana={6}{W}{W}
+type=Creature
+subtype=Angel
+power=5
+toughness=5
+[/card]
+[card]
 name=Angel's Grace
 text=Split second (As long as this spell is on the stack, players can't play spells or activated abilities that aren't mana abilities.) You can't lose the game this turn and your opponents can't win the game this turn. Until end of turn, damage that would reduce your life total to less than 1 reduces it to 1 instead.
 mana={W}
@@ -897,6 +1017,15 @@ name=Angelic Renewal
 text=Whenever a creature is put into your graveyard from the battlefield, you may sacrifice Angelic Renewal. If you do, return that card to the battlefield.
 mana={1}{W}
 type=Enchantment
+[/card]
+[card]
+name=Anger
+text=Haste -- As long as Anger is in your graveyard and you control a Mountain, creatures you control have haste.
+mana={3}{R}
+type=Creature
+subtype=Incarnation
+power=2
+toughness=2
 [/card]
 [card]
 name=Angus Mackenzie
@@ -1460,6 +1589,11 @@ mana={1}{W}{U}
 type=Enchantment
 [/card]
 [card]
+name=Arena
+text={3}, {T}: Tap target creature you control and target creature of an opponent's choice he or she controls. Each of those creatures deals damage equal to its power to the other.
+type=Land
+[/card]
+[card]
 name=Argivian Blacksmith
 text={T}: Prevent the next 2 damage that would be dealt to target artifact creature this turn.
 mana={1}{W}{W}
@@ -1503,6 +1637,15 @@ type=Creature
 subtype=Wurm
 power=6
 toughness=6
+[/card]
+[card]
+name=Armament Master
+text=Other Kor creatures you control get +2/+2 for each Equipment attached to Armament Master.
+mana={W}{W}
+type=Creature
+subtype=Kor Soldier
+power=2
+toughness=2
 [/card]
 [card]
 name=Armillary Sphere
@@ -1758,6 +1901,15 @@ type=Creature
 subtype=Kithkin Wizard
 power=2
 toughness=2
+[/card]
+[card]
+name=Auntie's Snitch
+text=Auntie's Snitch can't block. -- Prowl {1}{B} (You may cast this for its prowl cost if you dealt combat damage to a player this turn with a Goblin or Rogue.) -- Whenever a Goblin or Rogue you control deals combat damage to a player, if Auntie's Snitch is in your graveyard, you may return Auntie's Snitch to your hand.
+mana={2}{B}
+type=Creature
+subtype=Goblin Rogue
+power=3
+toughness=1
 [/card]
 [card]
 name=Aura Barbs
@@ -2120,6 +2272,15 @@ mana={3}{W}{W}
 type=Creature
 subtype=Angel
 power=3
+toughness=3
+[/card]
+[card]
+name=Avenging Druid
+text=Whenever Avenging Druid deals damage to an opponent, you may reveal cards from the top of your library until you reveal a land card. If you do, put that card onto the battlefield and put all other cards revealed this way into your graveyard.
+mana={2}{G}
+type=Creature
+subtype=Human Druid
+power=1
 toughness=3
 [/card]
 [card]
@@ -4809,6 +4970,15 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Caldera Kavu
+text={1}{B}: Caldera Kavu gets +1/+1 until end of turn. -- {G}: Caldera Kavu becomes the color of your choice until end of turn.
+mana={2}{R}
+type=Creature
+subtype=Kavu
+power=2
+toughness=2
+[/card]
+[card]
 name=Call for Blood
 text=As an additional cost to cast Call for Blood, sacrifice a creature. Target creature gets -X/-X until end of turn, where X is the sacrificed creature's power.
 mana={4}{B}
@@ -6146,6 +6316,12 @@ type=Enchantment
 [card]
 name=Circle of Protection: Artifacts
 text={2}: The next time an artifact source of your choice would deal damage to you this turn, prevent that damage.
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Circle of Protection: Shadow
+text={1}: The next time a creature of your choice with shadow would deal damage to you this turn, prevent that damage.
 mana={1}{W}
 type=Enchantment
 [/card]
@@ -7544,6 +7720,12 @@ auto=may moveto(myhand) target(Zombie|mygraveyard)
 text=Destroy target non-Zombie creature. It can't be regenerated. Return up to one target Zombie card from your graveyard to your hand.
 mana={4}{B}
 type=Instant
+[/card]
+[card]
+name=Cruel Tutor
+text=Search your library for a card, then shuffle your library and put that card on top of it. You lose 2 life.
+mana={2}{B}
+type=Sorcery
 [/card]
 [card]
 name=Cruel Ultimatum
@@ -9104,6 +9286,15 @@ text=As an additional cost to play Devouring Rage, you may sacrifice any number 
 mana={4}{R}
 type=Instant
 subtype=Arcane
+[/card]
+[card]
+name=Devout Harpist
+text={T}: Destroy target Aura attached to a creature.
+mana={W}
+type=Creature
+subtype=Human
+power=1
+toughness=1
 [/card]
 [card]
 name=Dewdrop Spy
@@ -12996,6 +13187,15 @@ mana={X}{R}
 type=Instant
 [/card]
 [card]
+name=Flanking Troops
+text=Whenever Flanking Troops attacks, you may tap target creature.
+mana={2}{W}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+[/card]
+[card]
 name=Flaring Flame-Kin
 text=As long as Flaring Flame-Kin is enchanted, it gets +2/+2, has trample, and has "{R}: Flaring Flame-Kin gets +1/+0 until end of turn."
 mana={2}{R}
@@ -14976,6 +15176,16 @@ toughness=2
 name=Glyph of Delusion
 text=Put X glyph counters on target creature that target Wall blocked this turn, where X is the power of that blocked creature. The creature gains "This creature doesn't untap during your untap step if it has a glyph counter on it" and "At the beginning of your upkeep, remove a glyph counter from this creature."
 mana={U}
+type=Instant
+[/card]
+[card]
+name=Glyph of Destruction
+target=creature(wall[blocking]|mybattlefield)
+auto=10/0
+auto=preventallcombatdamage to(mytgt)
+auto=@next my upkeep: bury
+text=Target blocking Wall you control gets +10/+0 until end of combat. Prevent all damage that would be dealt to it this turn. Destroy it at the beginning of the next end step.
+mana={R}
 type=Instant
 [/card]
 [card]
@@ -25677,6 +25887,15 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Necra Disciple
+text={G}, {T}: Add one mana of any color to your mana pool. -- {W}, {T}: Prevent the next 1 damage that would be dealt to target creature or player this turn.
+mana={B}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+[/card]
+[card]
 name=Necra Sanctuary
 text=At the beginning of your upkeep, if you control a green or white permanent, target player loses 1 life. If you control a green permanent and a white permanent, that player loses 3 life instead.
 mana={2}{B}
@@ -25982,6 +26201,15 @@ type=Creature
 subtype=Rat Rogue
 power=2
 toughness=1
+[/card]
+[card]
+name=Nezumi Graverobber (Nighteyes the Desecrator)
+text={4}{B}: Put target creature card in a graveyard onto the battlefield under your control.
+mana={1}{B}
+type=Legendary Creature
+subtype=Rat Wizard
+power=4
+toughness=2
 [/card]
 [card]
 name=Nezumi Shortfang
@@ -29253,6 +29481,15 @@ name=Price of Glory
 text=Whenever a player taps a land for mana, if it's not that player's turn, destroy that land.
 mana={2}{R}
 type=Enchantment
+[/card]
+[card]
+name=Pride of Lions
+text=You may have Pride of Lions assign its combat damage as though it weren't blocked.
+mana={3}{G}{G}
+type=Creature
+subtype=Cat
+power=4
+toughness=4
 [/card]
 [card]
 name=Priest of Yawgmoth
@@ -38555,6 +38792,13 @@ text=If a creature spell you cast this turn was countered by a spell or ability 
 mana={4}{G}{G}
 type=Instant
 subtype=Trap
+[/card]
+[card]
+name=Sun Clasp
+text=Enchant creature -- Enchanted creature gets +1/+3. -- {W}: Return enchanted creature to its owner's hand.
+mana={1}{W}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Sun Droplet

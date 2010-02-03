@@ -1128,6 +1128,16 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Angel of Light
+abilities=flying,vigilance
+text=Flying, vigilance
+mana={4}{W}
+type=Creature
+subtype=Angel
+power=3
+toughness=3
+[/card]
+[card]
 name=Angel of Mercy
 abilities=flying
 auto=life:3
@@ -1818,6 +1828,15 @@ auto=token(Saproling,Creature Saproling,1/1,green)*manacost
 text=Destroy target artifact. It can't be regenerated. Put X 1/1 green Saproling creature tokens onto the battlefield, where X is its converted mana cost.
 mana={R}{G}
 type=Instant
+[/card]
+[card]
+name=Artifact Ward
+target=creature
+auto=protection from(artifact)
+text=Enchant creature -- Enchanted creature has protection from artifacts. This effect doesn't remove Artifact Ward.
+mana={W}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Artificer's Intuition
@@ -6154,6 +6173,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Champion Lancer
+auto=preventAllCombatDamage from(creature) to(this)
+text=Prevent all damage that would be dealt to Champion Lancer by creatures.
+mana={4}{W}{W}
+type=Creature
+subtype=Human Knight
+power=3
+toughness=3
+[/card]
+[card]
 name=Champion's Victory
 target=creature[attacking]|opponentBattlefield
 auto=moveTo(ownerhand)
@@ -6457,6 +6486,14 @@ type=Creature
 subtype=Elemental Shaman
 power=0
 toughness=1
+[/card]
+[card]
+name=Cinder Storm
+target=creature,player
+auto=damage:7
+text=Cinder Storm deals 7 damage to target creature or player.
+mana={6}{R}
+type=Sorcery
 [/card]
 [card]
 name=Cinder Wall
@@ -8196,6 +8233,27 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Dakmor Ghoul
+auto=life:-2 opponent
+auto=life:2 controller
+text=When Dakmor Ghoul enters the battlefield, target opponent loses 2 life and you gain 2 life.
+mana={2}{B}{B}
+type=Creature
+subtype=Zombie
+power=2
+toughness=2
+[/card]
+[card]
+name=Dakmor Lancer
+auto=destroy target(creature[-black])
+text=When Dakmor Lancer enters the battlefield, destroy target nonblack creature.
+mana={4}{B}{B}
+type=Creature
+subtype=Human Knight
+power=3
+toughness=3
+[/card]
+[card]
 name=Dakmor Plague
 auto=damage:3 all(player,creature)
 text=Dakmor Plague deals 3 damage to each creature and each player.
@@ -9394,6 +9452,16 @@ type=Creature
 subtype=Kor Cleric
 power=2
 toughness=2
+[/card]
+[card]
+name=Devout Monk
+auto=life:1 controller
+text=When Devout Monk enters the battlefield, you gain 1 life.
+mana={W}
+type=Creature
+subtype=Human Monk Cleric
+power=1
+toughness=1
 [/card]
 [card]
 name=Devout Witness
@@ -10774,6 +10842,14 @@ text=Sacrifice an artifact: Put a +1/+1 counter on target creature. Activate thi
 mana={1}{R}
 type=Creature
 subtype=Dwarf Artificer
+power=1
+toughness=1
+[/card]
+[card]
+name=Eager Cadet
+mana={W}
+type=Creature
+subtype=Human Soldier
 power=1
 toughness=1
 [/card]
@@ -14773,6 +14849,17 @@ mana={1}{B}
 type=Instant
 [/card]
 [card]
+name=Giant Badger
+auto=lord(giant badger[blocking]|mybattlefield) 2/2
+auto=lord(other giant badger[blocking]|mybattlefield) -2/-2
+text=Whenever Giant Badger blocks, it gets +2/+2 until end of turn.
+mana={1}{G}{G}
+type=Creature
+subtype=Badger
+power=2
+toughness=2
+[/card]
+[card]
 name=Giant Caterpillar
 auto={G}{S}:token(Butterfly,creature insect, 1/1,flying green)
 text={G}, Sacrifice Giant Caterpillar: Put a 1/1 green Insect creature token with flying named Butterfly onto the battlefield at end of turn.
@@ -15305,6 +15392,16 @@ power=3
 toughness=2
 [/card]
 [card]
+name=Goblin Chariot
+abilities=haste
+text=Haste (This creature can attack the turn it comes under your control.)
+mana={2}{R}
+type=Creature
+subtype=Goblin Warrior
+power=2
+toughness=2
+[/card]
+[card]
 name=Goblin Chieftain
 abilities=haste
 auto=lord(goblin|myBattlefield) 1/1 other
@@ -15347,6 +15444,16 @@ text=Goblin Cohort can't attack unless you've cast a creature spell this turn.
 mana={R}
 type=Creature
 subtype=Goblin Warrior
+power=2
+toughness=2
+[/card]
+[card]
+name=Goblin Commando
+auto=damage:2 target(creature)
+text=When Goblin Commando enters the battlefield, it deals 2 damage to target creature.
+mana={4}{R}
+type=Creature
+subtype=Goblin
 power=2
 toughness=2
 [/card]
@@ -15603,6 +15710,16 @@ auto=token(Goblin Scout,creature token Goblin Scout, 1/1,mountainwalk red)*3
 text=Put three 1/1 red Goblin Scout creature tokens with mountainwalk onto the battlefield.
 mana={3}{R}{R}
 type=Sorcery
+[/card]
+[card]
+name=Goblin Settler
+auto=destroy taret(land)
+text=When Goblin Settler enters the battlefield, destroy target land.
+mana={3}{R}
+type=Creature
+subtype=Goblin
+power=1
+toughness=1
 [/card]
 [card]
 name=Goblin Sharpshooter
@@ -16336,6 +16453,14 @@ auto={T}:add:{3}
 text=Grim Monolith doesn't untap during your untap step.   {T}: Add 3 to your mana pool.   {4}: Untap Grim Monolith.
 mana={2}
 type=Artifact
+[/card]
+[card]
+name=Grim Tutor
+auto=moveTo(myhand) target(*|myLibrary)
+auto=life:-3 controller
+text=Search your library for a card and put that card into your hand, then shuffle your library. You lose 3 life.
+mana={1}{B}{B}
+type=Sorcery
 [/card]
 [card]
 name=Grimclaw Bats
@@ -20423,7 +20548,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Kiri-Onna
 name=Kiri-Onna
 auto=moveTo(ownerhand) target(creature)
 auto=@movedto(arcane,spirit|mystack):may moveTo(ownerhand)
@@ -31222,6 +31346,27 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Royal Falcon
+abilities=flying
+text=Flying
+mana={1}{W}
+type=Creature
+subtype=Bird
+power=1
+toughness=1
+[/card]
+[card]
+name=Royal Trooper
+auto=lord(royal trooper[blocking]) 2/2
+auto=lord(other royal trooper[blocking]) -2/-2
+text=Whenever Royal Trooper blocks, it gets +2/+2 until end of turn.
+mana={2}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+[/card]
+[card]
 name=Rugged Prairie
 auto={T}:Add {1}
 auto={RW}{T}:Add {R}{R}
@@ -32336,6 +32481,16 @@ power=3
 toughness=2
 [/card]
 [card]
+name=Sea Eagle
+abilities=flying
+text=Flying
+mana={1}{U}
+type=Creature
+subtype=Bird
+power=1
+toughness=1
+[/card]
+[card]
 name=Sea Gate Loremaster
 auto={T}:foreach(ally|myBattlefield) draw:1 controller
 text={T}: Draw a card for each Ally you control.
@@ -32711,6 +32866,15 @@ type=Creature
 subtype=Merfolk Soldier
 power=2
 toughness=1
+[/card]
+[card]
+name=Sejiri Refuge
+auto=tap
+auto=life:1 controller
+auto={T}:add{W}
+auto={T}:add{U}
+text=Sejiri Refuge enters the battlefield tapped. -- When Sejiri Refuge enters the battlefield, you gain 1 life. -- {T}: Add {W} or {U} to your mana pool.
+type=Land
 [/card]
 [card]
 name=Sejiri Steppe
@@ -33663,6 +33827,17 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Shrieking Specter
+abilities=flying
+auto=@each combatblockers: foreach(shrieking specter[attacking]) discard:1 opponent
+text=Flying -- Whenever Shrieking Specter attacks, defending player discards a card.
+mana={5}{B}
+type=Creature
+subtype=Specter
+power=2
+toughness=2
+[/card]
+[card]
 name=Shrink
 target=creature
 auto=-5/0
@@ -33984,6 +34159,14 @@ type=Creature
 subtype=Angel
 power=6
 toughness=6
+[/card]
+[card]
+name=Silverback Ape
+mana={3}{G}{G}
+type=Creature
+subtype=Ape
+power=5
+toughness=5
 [/card]
 [card]
 name=Silvercoat Lion
@@ -37075,6 +37258,14 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Stream of Acid
+auto=may destroy target(land)
+auto=may destroy target(creature[-black])
+text=Destroy target land or nonblack creature.
+mana={2}{B}{B}
+type=Sorcery
+[/card]
+[card]
 name=Stream of Life
 target=player
 auto=life:X
@@ -39154,6 +39345,17 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Thunder Dragon
+abilities=flying
+auto=damage:3 all(creature[-flying])
+text=Flying -- When Thunder Dragon enters the battlefield, it deals 3 damage to each creature without flying.
+mana={5}{R}{R}
+type=Creature
+subtype=Dragon
+power=5
+toughness=5
+[/card]
+[card]
 name=Thunder Spirit
 abilities=flying,first strike
 text=Flying, first strike
@@ -39930,6 +40132,14 @@ type=Creature
 subtype=Hound
 power=1
 toughness=2
+[/card]
+[card]
+name=Trained Orgg
+mana={6}{R}
+type=Creature
+subtype=Orgg
+power=6
+toughness=6
 [/card]
 [card]
 name=Tranquil Domain
@@ -41626,6 +41836,16 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Veteran Cavalier
+abilities=vigilance
+text=Vigilance (Attacking doesn't cause this creature to tap.)
+mana={W}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=2
+[/card]
+[card]
 name=Veteran Swordsmith
 auto=lord(soldier|myBattlefield) 1/0 other
 text=Other Soldier creatures you control get +1/+0.
@@ -42155,6 +42375,14 @@ auto=draw:1 controller
 text=Target land becomes a 3/3 creature until end of turn. It's still a land.   Draw a card.
 mana={2}{G}
 type=Instant
+[/card]
+[card]
+name=Vizzerdrix
+mana={6}{U}
+type=Creature
+subtype=Rabbit Beast
+power=6
+toughness=6
 [/card]
 [card]
 name=Vodalian Knights
@@ -43224,7 +43452,7 @@ toughness=3
 [/card]
 [card]
 name=Weed-Pruner Poplar
-auto=@each my upkeep:-1/-1 target(other crature)
+auto=@each my upkeep:-1/-1 target(other creature)
 text=At the beginning of your upkeep, target creature other than Weed-Pruner Poplar gets -1/-1 until end of turn.
 mana={4}{B}
 type=Creature
@@ -43728,6 +43956,14 @@ text=Forestwalk
 mana={G}
 type=Creature
 subtype=Dryad
+power=1
+toughness=1
+[/card]
+[card]
+name=Willow Elf
+mana={G}
+type=Creature
+subtype=Elf
 power=1
 toughness=1
 [/card]
