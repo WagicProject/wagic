@@ -854,7 +854,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\GameStateTransitions.h"
+				RelativePath=".\include\GameStateTransitions.h"
 				>
 			</File>
 			<File

@@ -14,7 +14,7 @@ GameStateShop::GameStateShop(GameApp* parent): GameState(parent) {}
 
 
 GameStateShop::~GameStateShop() {
-  //End(); TODO FIX THAT
+  End(); 
 }
 
 void GameStateShop::Create(){
@@ -245,7 +245,7 @@ void GameStateShop::ButtonPressed(int controllerId, int controlId)
         mStage = STAGE_SHOP_TASKS;
         if (!taskList)
           taskList = NEW TaskList();
-        taskList->Start();    
+          taskList->Start();    
         break;
       case 15:
         if(taskList)
