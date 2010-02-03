@@ -273,6 +273,14 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
       }
     if(card->data->types.size())
       s += _(Subtypes::subtypesList->find(card->data->types[0]));
+#ifdef _DEBUG    
+    else{
+      char buf[2048];
+      sprintf(buf, "\n==\nTypeless card: %s %s\n", setlist[card->setId].c_str(), card->data->getName().c_str());
+      OutputDebugString(buf);
+      }
+#endif
+    
     font->DrawString(s.c_str(), x + (22 - BigWidth / 2)*pos.actZ, pos.actY + (49 - BigHeight / 2)*pos.actZ);
   }
 
