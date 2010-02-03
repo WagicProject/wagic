@@ -1043,6 +1043,14 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Ancestral Recall
+target=player
+auto=draw:3
+text=Target player draws three cards.
+mana={U}
+type=Instant
+[/card]
+[card]
 name=Ancient Amphitheater
 auto=tap
 auto=aslongas(giant|myHand) untap
@@ -3400,6 +3408,17 @@ type=Creature
 subtype=Human Knight
 power=2
 toughness=2
+[/card]
+[card]
+name=Black Lotus
+auto={T}{S}:add {W}{W}{W}
+auto={T}{S}:add {U}{U}{U}
+auto={T}{S}:add {B}{B}{B}
+auto={T}{S}:add {R}{R}{R}
+auto={T}{S}:add {G}{G}{G}
+text={T}, Sacrifice Black Lotus: Add three mana of any one color to your mana pool.
+mana={0}
+type=Artifact
 [/card]
 [card]
 name=Black Poplar Shaman
@@ -7314,6 +7333,14 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Copper Tablet
+auto=@each opponent upkeep:damage:1 opponent
+auto=@each my upkeep:damage:1 controller
+text=At the beginning of each player's upkeep, Copper Tablet deals 1 damage to that player.
+mana={2}
+type=Artifact
+[/card]
+[card]
 name=Copperhoof Vorrac
 auto=foreach(*[-tapped]|opponentBattlefield) 1/1
 text=Copperhoof Vorrac gets +1/+1 for each untapped permanent your opponents control.
@@ -10642,6 +10669,16 @@ auto={2}{S(land|myBattlefield):counter(2/2,1) target(creature) OpponentUpkeepOnl
 text={2}, Sacrifice a land: Put a +2/+2 counter on target creature. Play this ability only during any upkeep step.
 mana={2}{R}{R}
 type=Enchantment
+[/card]
+[card]
+name=Dwarven Demolition Team
+auto={T}:destroy target(wall)
+text={T}: Destroy target Wall.
+mana={2}{R}
+type=Creature
+subtype=Dwarf
+power=1
+toughness=1
 [/card]
 [card]
 name=Dwarven Grunt
@@ -14360,6 +14397,16 @@ auto={S(creature|myBattlefield)}:destroy target(artifact) limit:1 myUpkeepOnly
 text=Sacrifice a creature: Destroy target artifact. Activate this ability only during your upkeep and only once each turn.
 mana={B}{B}
 type=Enchantment
+[/card]
+[card]
+name=Gauntlet of Might
+grade=2
+auto=lord(creature[red]) 1/1
+auto=lord(land[mountain]) {T}:add{R}{R}
+#Note: Only works because there are no other cards implemented which change the mountain's mana outout. Also, you get a choice of either {R} or {R}{R} (instead of just adding one {R})
+text=Red creatures get +1/+1. -- Whenever a Mountain is tapped for mana, its controller adds {R} to his or her mana pool (in addition to the mana the land produces).
+mana={4}
+type=Artifact
 [/card]
 [card]
 name=Gaze of Adamaro
@@ -18225,6 +18272,14 @@ mana={5}{W}
 type=Sorcery
 [/card]
 [card]
+name=Ice Storm
+target=land
+auto=destroy
+text=Destroy target land.
+mana={2}{G}
+type=Sorcery
+[/card]
+[card]
 name=Icy Manipulator
 auto={1}{T}:tap target(artifact,creature,land)
 text={1}, {T}: Tap target artifact, creature, or land.
@@ -18750,6 +18805,15 @@ mana={2}{G}{G}
 type=Sorcery
 [/card]
 [card]
+name=Invisibility
+target=creature
+auto=cantBeBlockedBy(creature[-wall])
+text=Enchant creature -- Enchanted creature can't be blocked except by Walls.
+mana={U}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Invoke the Firemind
 auto=may draw:X
 auto=may damage:X target(creature,player)
@@ -18839,12 +18903,22 @@ toughness=4
 [/card]
 [card]
 name=Ironclaw Buzzardiers
-auto=cantbeblockedby(creature[power>=2])
+auto=lord(creature[power>=2]|opponentbattlefield) cantbeblockedby(ironclaw buzzardiers)
 auto={R}:flying
 text=Ironclaw Buzzardiers can't block creatures with power 2 or greater.   {R}: Ironclaw Buzzardiers gains flying until end of turn.
 mana={2}{R}
 type=Creature
 subtype=Orc Scout
+power=2
+toughness=2
+[/card]
+[card]
+name=Ironclaw Orcs
+auto=lord(creature[power>=2]|opponentbattlefield) cantbeblockedby(ironclaw orcs)
+text=Ironclaw Orcs can't block creatures with power 2 or greater.
+mana={1}{R}
+type=Creature
+subtype=Orc
 power=2
 toughness=2
 [/card]
@@ -24759,6 +24833,41 @@ mana={0}
 type=Artifact
 [/card]
 [card]
+name=Mox Emerald
+auto={T}:add{G}
+text={T}: Add {G} to your mana pool.
+mana={0}
+type=Artifact
+[/card]
+[card]
+name=Mox Jet
+auto={T}:add{B}
+text={T}: Add {B} to your mana pool.
+mana={0}
+type=Artifact
+[/card]
+[card]
+name=Mox Pearl
+auto={T}:add{W}
+text={T}: Add {W} to your mana pool.
+mana={0}
+type=Artifact
+[/card]
+[card]
+name=Mox Ruby
+auto={T}:add{R}
+text={T}: Add {R} to your mana pool.
+mana={0}
+type=Artifact
+[/card]
+[card]
+name=Mox Sapphire
+auto={T}:add{U}
+text={T}: Add {U} to your mana pool.
+mana={0}
+type=Artifact
+[/card]
+[card]
 name=Mtenda Griffin
 abilities=flying
 auto={W}{T}:moveTo(ownerhand) all(this) && moveTo(ownerhand) target(griffin|mygraveyard) myUpkeepOnly
@@ -28559,6 +28668,14 @@ type=Creature
 subtype=Nightstalker
 power=2
 toughness=2
+[/card]
+[card]
+name=Psionic Blast
+target=creature,player
+auto=damage:4 && damage:2 controller
+text=Psionic Blast deals 4 damage to target creature or player and 2 damage to you.
+mana={2}{U}
+type=Instant
 [/card]
 [card]
 name=Psionic Entity
@@ -34021,6 +34138,14 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Sinkhole
+target=land
+auto=destroy
+text=Destroy target land.
+mana={B}{B}
+type=Sorcery
+[/card]
+[card]
 name=Sir Shandlar of Eberyn
 mana={4}{G}{W}
 type=Legendary Creature
@@ -39289,6 +39414,18 @@ mana={1}{G}
 type=Sorcery
 [/card]
 [card]
+name=Timetwister
+auto=moveto(opponentgraveyard) all(*|opponenthand)
+auto=moveto(opponentlibrary) all(*|opponentgraveyard)
+auto=draw:7 opponent
+auto=moveto(mygraveyard) all(*|myhand)
+auto=moveto(mylibrary) all(*|mygraveyard)
+auto=draw:7 controller
+text=Each player shuffles his or her hand and graveyard into his or her library, then draws seven cards. (Then put Timetwister into its owner's graveyard.)
+mana={2}{U}
+type=Sorcery
+[/card]
+[card]
 name=Timid Drake
 abilities=flying
 auto=@movedto(other creature|battlefield):moveto(ownerhand)
@@ -40335,6 +40472,14 @@ type=Creature
 subtype=Elf Scout Ally
 power=2
 toughness=2
+[/card]
+[card]
+name=Twiddle
+auto=may tap target(artifact,creature,land)
+auto=may untap target(artifact,creature,land)
+text=You may tap or untap target artifact, creature, or land.
+mana={U}
+type=Instant
 [/card]
 [card]
 name=Twilight Mire

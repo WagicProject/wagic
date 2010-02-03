@@ -3038,6 +3038,12 @@ mana={1}{B}
 type=Enchantment
 [/card]
 [card]
+name=Berserk
+text=Cast Berserk only before the combat damage step. -- Target creature gains trample and gets +X/+0 until end of turn, where X is its power. At the beginning of the next end step, destroy that creature if it attacked this turn.
+mana={G}
+type=Instant
+[/card]
+[card]
 name=Beseech the Queen
 text=({2B} can be paid with any two mana or with {B}. This card's converted mana cost is 6.)  Search your library for a card with converted mana cost less than or equal to the number of lands you control, reveal it, and put it into your hand. Then shuffle your library.
 mana={2B}{2B}{2B}
@@ -3197,6 +3203,12 @@ type=Creature
 subtype=Beast
 power=5
 toughness=5
+[/card]
+[card]
+name=Blaze of Glory
+text=Target creature can block any number of creatures this turn. It must block each attacking creature this turn if able.
+mana={W}
+type=Instant
 [/card]
 [card]
 name=Blazing Blade Askari
@@ -4912,6 +4924,12 @@ power=0
 toughness=1
 [/card]
 [card]
+name=Camouflage
+text=Cast Camouflage only during your declare attackers step. -- This turn, instead of declaring blockers, each defending player chooses any number of creatures he or she controls and divides them into a number of piles equal to the number of attacking creatures for whom that player is the defending player. Assign each pile to a different one of those attacking creatures at random. Each creature that can block the creature its pile is assigned to does so. (Piles can be empty.)
+mana={G}
+type=Instant
+[/card]
+[card]
 name=Candelabra of Tawnos
 #X cost can't be coded in wagic now...
 text={X}, {T}: Untap X target lands.
@@ -5686,6 +5704,12 @@ name=Chaos Moon
 text=At the beginning of each upkeep, count the number of permanents. If the number is odd, until end of turn, red creatures get +1/+1 and whenever a player taps a Mountain for mana, that player adds {R} to his or her mana pool (in addition to the mana the land produces). If the number is even, until end of turn, red creatures get -1/-1 and if a player taps a Mountain for mana, that Mountain produces colorless mana instead of any other type.
 mana={3}{R}
 type=Enchantment
+[/card]
+[card]
+name=Chaos Orb
+text={1}, {T}: If Chaos Orb is on the battlefield, flip Chaos Orb onto the battlefield from a height of at least one foot. If Chaos Orb turns over completely at least once during the flip, destroy all permanents it touches. Then destroy Chaos Orb.
+mana={2}
+type=Artifact
 [/card]
 [card]
 name=Chaotic Goo
@@ -6768,6 +6792,13 @@ auto={T}{S}:moveto(ownerlibrary) target(*|mygraveyard) && draw:1 controller
 text={T}, Sacrifice Conjurer's Bauble: Put up to one target card from your graveyard on the bottom of your library. Draw a card.
 mana={1}
 type=Artifact
+[/card]
+[card]
+name=Consecrate Land
+text=Enchant land -- Enchanted land is indestructible and can't be enchanted by other Auras.
+mana={W}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Consign to Dream
@@ -7868,6 +7899,12 @@ name=Cyclopean Snare
 auto={3}{T}:tap target(creature) && moveto(ownerhand)
 text={3}, {T}: Tap target creature, then return Cyclopean Snare to its owner's hand.
 mana={2}
+type=Artifact
+[/card]
+[card]
+name=Cyclopean Tomb
+text={2}, {T}: Put a mire counter on target non-Swamp land. That land is a Swamp for as long as it has a mire counter on it. Activate this ability only during your upkeep. -- When Cyclopean Tomb is put into a graveyard from the battlefield, at the beginning of each of your upkeeps for the rest of the game, remove all mire counters from a land that a mire counter was put onto with Cyclopean Tomb but that a mire counter has not been removed from with Cyclopean Tomb.
+mana={4}
 type=Artifact
 [/card]
 [card]
@@ -12099,6 +12136,12 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
+name=False Orders
+text=Cast False Orders only during the declare blockers step.  -- Remove target creature defending player controls from combat. Creatures it was blocking that had become blocked by only that creature this combat become unblocked. You may have it block an attacking creature of your choice.
+mana={R}
+type=Instant
+[/card]
+[card]
 name=False Peace
 text=Target player skips all combat phases of his or her next turn.
 mana={W}
@@ -13414,6 +13457,12 @@ name=Forced March
 text=Destroy all creatures with converted mana cost X or less.
 mana={X}{B}{B}{B}
 type=Sorcery
+[/card]
+[card]
+name=Forcefield
+text={1}: The next time target unblocked creature would deal combat damage to you this turn, prevent all but 1 of that damage.
+mana={3}
+type=Artifact
 [/card]
 [card]
 name=Forcemage Advocate
@@ -18121,6 +18170,12 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Illusionary Mask
+text={X}: You may choose a creature card in your hand whose mana cost could be paid by some amount of, or all of, the mana you spent on {X}. If you do, you may cast that card face down as a 2/2 creature spell without paying its mana cost. If the creature that spell becomes as it resolves has not been turned face up and would assign or deal damage, be dealt damage, or become tapped, instead it's turned face up and assigns or deals damage, is dealt damage, or becomes tapped. Activate this ability only any time you could cast a sorcery.
+mana={2}
+type=Artifact
+[/card]
+[card]
 name=Illusionary Presence
 text=Cumulative upkeep {U} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)  At the beginning of your upkeep, choose a land type. Illusionary Presence gains landwalk of the chosen type until end of turn.
 mana={1}{U}{U}
@@ -19138,6 +19193,13 @@ name=Jade Monolith
 text={1}: The next time a source of your choice would deal damage to target creature this turn, that source deals that damage to you instead.
 mana={4}
 color=Artifact
+type=Artifact
+[/card]
+[card]
+name=Jade Statue
+text={2}: Jade Statue becomes a 3/6 Golem artifact creature until end of combat. Activate this ability only during combat.
+# might be codeable with "becomes" now?
+mana={4}
 type=Artifact
 [/card]
 [card]
@@ -21487,6 +21549,12 @@ text=You have no maximum hand size.     If an effect causes you to discard a car
 mana={1}
 color=Artifact
 type=Artifact
+[/card]
+[card]
+name=Lich
+text=As Lich enters the battlefield, your life total becomes 0. -- You don't lose the game for having 0 or less life. -- If you would gain life, draw that many cards instead. -- Whenever you're dealt damage, sacrifice that many permanents. -- When Lich leaves the battlefield, you lose the game.
+mana={B}{B}{B}{B}
+type=Enchantment
 [/card]
 [card]
 name=Lich's Mirror
@@ -25547,6 +25615,12 @@ name=Natural Order
 text=As an additional cost to play Natural Order, sacrifice a green creature.     Search your library for a green creature card and put it into play. Then shuffle your library.
 mana={2}{G}{G}
 type=Sorcery
+[/card]
+[card]
+name=Natural Selection
+text=Look at the top three cards of target player's library and put them back in any order. You may have that player shuffle his or her library.
+mana={G}
+type=Instant
 [/card]
 [card]
 name=Nature's Blessing
@@ -30349,6 +30423,12 @@ subtype=Aura
 name=Raging Ravine
 text=Raging Ravine enters the battlefield tapped. {T}: Add {R} or {G} to your mana pool. {2}{R}{G}: Until end of turn, Raging Ravine becomes a 3/3 red and green Elemental creature with "Whenever this creature attacks, put a +1/+1 counter on it." It's still a land.
 type=Land
+[/card]
+[card]
+name=Raging River
+text=Whenever one or more creatures you control attack, each defending player divides all creatures without flying he or she controls into a "left" pile and a "right" pile. Then, for each attacking creature you control, choose "left" or "right." That creature can't be blocked this combat except by creatures with flying and creatures in a pile with the chosen label.
+mana={R}{R}
+type=Enchantment
 [/card]
 [card]
 name=Raging Spirit
@@ -40673,6 +40753,18 @@ mana={8}{U}{U}
 type=Sorcery
 [/card]
 [card]
+name=Time Vault
+text=Time Vault enters the battlefield tapped. -- Time Vault doesn't untap during your untap step. -- If you would begin your turn while Time Vault is tapped, you may skip that turn instead. If you do, untap Time Vault. -- {T}: Take an extra turn after this one.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Time Walk
+text=Take an extra turn after this one.
+mana={1}{U}
+type=Sorcery
+[/card]
+[card]
 name=Time Warp
 text=Target player takes an extra turn after this one.
 mana={3}{U}{U}
@@ -41610,6 +41702,15 @@ text=Flying     {1}{R}: Two-Headed Dragon gets +2/+0 until end of turn.     Two-
 mana={4}{R}{R}
 type=Creature
 subtype=Dragon
+power=4
+toughness=4
+[/card]
+[card]
+name=Two-Headed Giant of Foriys
+text=Trample -- Two-Headed Giant of Foriys can block an additional creature.
+mana={4}{R}
+type=Creature
+subtype=Giant
 power=4
 toughness=4
 [/card]
@@ -44728,6 +44829,12 @@ name=Word of Binding
 text=Tap X target creatures.
 mana={X}{B}{B}
 type=Sorcery
+[/card]
+[card]
+name=Word of Command
+text=Look at target opponent's hand and choose a card from it. That player plays that card with his or her own mana, but you make all decisions it calls for. The player is required only to spend mana in his or her mana pool and/or mana that can be produced by lands.
+mana={B}{B}
+type=Instant
 [/card]
 [card]
 name=Word of Seizing
