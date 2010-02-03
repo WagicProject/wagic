@@ -359,6 +359,8 @@ void TaskList::Start(){
   mState = TASKS_IN;
   if(!mBgTex){
     mBgTex = resources.RetrieveTexture("taskboard.png");
+    for(int i=0;i<9;i++)
+      SAFE_DELETE(mBg[i]);
     if(mBgTex){
     mBg[0] = NEW JQuad(mBgTex,0,0,64,64);
     mBg[1] = NEW JQuad(mBgTex,64,0,128,64);
@@ -370,9 +372,6 @@ void TaskList::Start(){
     mBg[7] = NEW JQuad(mBgTex,64,192,128,64);
     mBg[8] = NEW JQuad(mBgTex,192,192,64,64);
     }
-    else
-      for(int i=0;i<9;i++)
-        SAFE_DELETE(mBg[i]);
   }
 }
 void TaskList::End(){

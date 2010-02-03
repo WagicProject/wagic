@@ -35,12 +35,13 @@ void TransitionBase::Start() {
 
 void TransitionBase::End() {
   mElapsed = 0;
+};
+TransitionBase::~TransitionBase(){
   if(!bAnimationOnly){
     if(from)
       from->End();
   }
-};
-
+}
 void TransitionFade::Render(){
   if(from)
     from->Render();

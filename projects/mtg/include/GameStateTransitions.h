@@ -8,6 +8,7 @@
 class TransitionBase: public GameState, public JGuiListener{
 public:
   TransitionBase(GameApp* parent, GameState* _from, GameState* _to, float duration);
+  ~TransitionBase();
   virtual void Start();
   virtual void End();
 
