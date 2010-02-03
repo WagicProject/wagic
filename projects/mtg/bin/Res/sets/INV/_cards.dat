@@ -94,15 +94,26 @@ id=23195
 rarity=R
 [/card]
 [card]
-primitive=Assault
+primitive=Assault // Battery (Assault)
 id=20580
 rarity=U
 [/card]
 [card]
-primitive=Assault
+primitive=Assault // Battery (Assault)
 id=20579
 rarity=U
 [/card]
+[card]
+primitive=Assault // Battery (Battery)
+id=20580
+rarity=U
+[/card]
+[card]
+primitive=Assault // Battery (Battery)
+id=20579
+rarity=U
+[/card]
+[card]
 [card]
 primitive=Atalya, Samite Master
 id=22964
@@ -133,17 +144,6 @@ primitive=Barrin's Unmaking
 id=22984
 rarity=C
 [/card]
-[card]
-primitive=Battery
-id=20580
-rarity=U
-[/card]
-[card]
-primitive=Battery
-id=20579
-rarity=U
-[/card]
-[card]
 primitive=Benalish Emissary
 id=22948
 rarity=U
@@ -341,16 +341,6 @@ rarity=R
 [card]
 primitive=Defiling Tears
 id=23046
-rarity=U
-[/card]
-[card]
-primitive=Deliver
-id=20574
-rarity=U
-[/card]
-[card]
-primitive=Deliver
-id=20573
 rarity=U
 [/card]
 [card]
@@ -749,16 +739,6 @@ id=23102
 rarity=R
 [/card]
 [card]
-primitive=Malice
-id=20576
-rarity=U
-[/card]
-[card]
-primitive=Malice
-id=20575
-rarity=U
-[/card]
-[card]
 primitive=Mana Maze
 id=23009
 rarity=R
@@ -889,12 +869,22 @@ id=23070
 rarity=C
 [/card]
 [card]
-primitive=Pain
+primitive=Pain // Suffering (Pain)
 id=20578
 rarity=U
 [/card]
 [card]
-primitive=Pain
+primitive=Pain // Suffering (Pain)
+id=20577
+rarity=U
+[/card]
+[card]
+primitive=Pain // Suffering (Suffering)
+id=20578
+rarity=U
+[/card]
+[card]
+primitive=Pain // Suffering (Suffering)
 id=20577
 rarity=U
 [/card]
@@ -1354,12 +1344,22 @@ id=22950
 rarity=U
 [/card]
 [card]
-primitive=Spite
+primitive=Spite // Malice (Malice)
 id=20576
 rarity=U
 [/card]
 [card]
-primitive=Spite
+primitive=Spite // Malice (Malice)
+id=20575
+rarity=U
+[/card]
+[card]
+primitive=Spite // Malice (Spite)
+id=20576
+rarity=U
+[/card]
+[card]
+primitive=Spite // Malice (Spite)
 id=20575
 rarity=U
 [/card]
@@ -1374,12 +1374,22 @@ id=25752
 rarity=R
 [/card]
 [card]
-primitive=Stand
+primitive=Stand // Deliver (Stand)
 id=20574
 rarity=U
 [/card]
 [card]
-primitive=Stand
+primitive=Stand // Deliver (Stand)
+id=20573
+rarity=U
+[/card]
+[card]
+primitive=Stand // Deliver (Deliver)
+id=20574
+rarity=U
+[/card]
+[card]
+primitive=Stand // Deliver (Deliver)
 id=20573
 rarity=U
 [/card]
@@ -1412,16 +1422,6 @@ rarity=C
 primitive=Stun
 id=23073
 rarity=C
-[/card]
-[card]
-primitive=Suffering
-id=20578
-rarity=U
-[/card]
-[card]
-primitive=Suffering
-id=20577
-rarity=U
 [/card]
 [card]
 primitive=Sulam Djinn
@@ -1749,27 +1749,27 @@ id=23119
 rarity=C
 [/card]
 [card]
-primitive=Wane
-id=20582
-rarity=U
-[/card]
-[card]
-primitive=Wane
-id=20581
-rarity=U
-[/card]
-[card]
 primitive=Wash Out
 id=25320
 rarity=U
 [/card]
 [card]
-primitive=Wax
+primitive=Wax // Wane (Wane)
 id=20582
 rarity=U
 [/card]
 [card]
-primitive=Wax
+primitive=Wax // Wane (Wane)
+id=20581
+rarity=U
+[/card]
+[card]
+primitive=Wax // Wane (Wax)
+id=20582
+rarity=U
+[/card]
+[card]
+primitive=Wax // Wane (Wax)
 id=20581
 rarity=U
 [/card]

@@ -9,7 +9,12 @@ id=109739
 rarity=S
 [/card]
 [card]
-primitive=Assault
+primitive=Assault // Battery (Assault)
+id=109704
+rarity=S
+[/card]
+[card]
+primitive=Assault // Battery (Battery)
 id=109704
 rarity=S
 [/card]
@@ -36,11 +41,6 @@ rarity=S
 [card]
 primitive=Bad Moon
 id=108818
-rarity=S
-[/card]
-[card]
-primitive=Battery
-id=109704
 rarity=S
 [/card]
 [card]

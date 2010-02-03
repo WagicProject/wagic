@@ -94,7 +94,12 @@ id=107306
 rarity=U
 [/card]
 [card]
-primitive=Bound
+primitive=Bound // Determined (Bound)
+id=107373
+rarity=R
+[/card]
+[card]
+primitive=Bound // Determined (Determined)
 id=107373
 rarity=R
 [/card]
@@ -149,7 +154,12 @@ id=107265
 rarity=U
 [/card]
 [card]
-primitive=Crime
+primitive=Crime // Punishment (Crime)
+id=107285
+rarity=R
+[/card]
+[card]
+primitive=Crime // Punishment (Punishment)
 id=107285
 rarity=R
 [/card]
@@ -184,11 +194,6 @@ id=107435
 rarity=C
 [/card]
 [card]
-primitive=Demand
-id=107464
-rarity=U
-[/card]
-[card]
 primitive=Demonfire
 id=107252
 rarity=R
@@ -197,16 +202,6 @@ rarity=R
 primitive=Demon's Jester
 id=107599
 rarity=C
-[/card]
-[card]
-primitive=Determined
-id=107373
-rarity=R
-[/card]
-[card]
-primitive=Development
-id=107375
-rarity=R
 [/card]
 [card]
 primitive=Dovescape
@@ -229,11 +224,6 @@ id=107369
 rarity=R
 [/card]
 [card]
-primitive=Ends
-id=107445
-rarity=R
-[/card]
-[card]
 primitive=Enemy of the Guildpact
 id=107342
 rarity=C
@@ -249,11 +239,6 @@ id=110641
 rarity=C
 [/card]
 [card]
-primitive=Error
-id=107259
-rarity=U
-[/card]
-[card]
 primitive=Evolution Vat
 id=97093
 rarity=R
@@ -262,11 +247,6 @@ rarity=R
 primitive=Experiment Kraj
 id=107385
 rarity=R
-[/card]
-[card]
-primitive=Fall
-id=107423
-rarity=U
 [/card]
 [card]
 primitive=Fertile Imagination
@@ -349,12 +329,22 @@ id=97100
 rarity=U
 [/card]
 [card]
-primitive=Hide
+primitive=Hide // Seek (Hide)
 id=107315
 rarity=R
 [/card]
 [card]
-primitive=Hit
+primitive=Hide // Seek (Seek)
+id=107315
+rarity=R
+[/card]
+[card]
+primitive=Hit // Run (Hit)
+id=107387
+rarity=U
+[/card]
+[card]
+primitive=Hit // Run (Run)
 id=107387
 rarity=U
 [/card]
@@ -474,7 +464,12 @@ id=107328
 rarity=C
 [/card]
 [card]
-primitive=Odds
+primitive=Odds // Ends (Ends)
+id=107445
+rarity=R
+[/card]
+[card]
+primitive=Odds // Ends (Odds)
 id=107445
 rarity=R
 [/card]
@@ -569,12 +564,12 @@ id=107338
 rarity=C
 [/card]
 [card]
-primitive=Punishment
-id=107285
-rarity=R
+primitive=Pure // Simple (Pure)
+id=107532
+rarity=U
 [/card]
 [card]
-primitive=Pure
+primitive=Pure // Simple (Simple)
 id=107532
 rarity=U
 [/card]
@@ -634,7 +629,12 @@ id=107273
 rarity=R
 [/card]
 [card]
-primitive=Research
+primitive=Research // Development (Development)
+id=107375
+rarity=R
+[/card]
+[card]
+primitive=Research // Development (Research)
 id=107375
 rarity=R
 [/card]
@@ -644,18 +644,18 @@ id=97076
 rarity=C
 [/card]
 [card]
-primitive=Rise
+primitive=Rise // Fall (Fall)
+id=107423
+rarity=U
+[/card]
+[card]
+primitive=Rise // Fall (Rise)
 id=107423
 rarity=U
 [/card]
 [card]
 primitive=Rix Maadi, Dungeon Palace
 id=97072
-rarity=U
-[/card]
-[card]
-primitive=Run
-id=107387
 rarity=U
 [/card]
 [card]
@@ -672,11 +672,6 @@ rarity=C
 primitive=Seal of Fire
 id=107531
 rarity=C
-[/card]
-[card]
-primitive=Seek
-id=107315
-rarity=R
 [/card]
 [card]
 primitive=Shielding Plax
@@ -722,11 +717,6 @@ rarity=C
 primitive=Simic Sky Swallower
 id=111204
 rarity=R
-[/card]
-[card]
-primitive=Simple
-id=107532
-rarity=U
 [/card]
 [card]
 primitive=Skullmead Cauldron
@@ -809,7 +799,12 @@ id=107371
 rarity=C
 [/card]
 [card]
-primitive=Supply
+primitive=Supply // Demand (Demand)
+id=107464
+rarity=U
+[/card]
+[card]
+primitive=Supply // Demand (Supply)
 id=107464
 rarity=U
 [/card]
@@ -839,7 +834,12 @@ id=107362
 rarity=U
 [/card]
 [card]
-primitive=Trial
+primitive=Trial // Error (Error)
+id=107259
+rarity=U
+[/card]
+[card]
+primitive=Trial // Error (Trial)
 id=107259
 rarity=U
 [/card]

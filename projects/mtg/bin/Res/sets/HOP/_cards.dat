@@ -34,7 +34,12 @@ id=205263
 rarity=R
 [/card]
 [card]
-primitive=Assault
+primitive=Assault // Battery (Assault)
+id=205409
+rarity=U
+[/card]
+[card]
+primitive=Assault // Battery (Battery)
 id=205409
 rarity=U
 [/card]
@@ -42,11 +47,6 @@ rarity=U
 primitive=Balefire Liege
 id=205377
 rarity=R
-[/card]
-[card]
-primitive=Battery
-id=205409
-rarity=U
 [/card]
 [card]
 primitive=Battlegate Mimic
@@ -152,11 +152,6 @@ rarity=U
 primitive=Cerodon Yearling
 id=205802
 rarity=C
-[/card]
-[card]
-primitive=Chaos
-id=205384
-rarity=U
 [/card]
 [card]
 primitive=Cinder Elemental
@@ -549,7 +544,12 @@ id=205396
 rarity=C
 [/card]
 [card]
-primitive=Order
+primitive=Order // Chaos (Chaos)
+id=205384
+rarity=U
+[/card]
+[card]
+primitive=Order // Chaos (Order)
 id=205384
 rarity=U
 [/card]

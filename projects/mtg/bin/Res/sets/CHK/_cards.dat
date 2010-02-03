@@ -19,6 +19,11 @@ id=78694
 rarity=R
 [/card]
 [card]
+primitive=Akki Lavarunner (Tok-Tok, Volcano Born)
+id=78694
+rarity=R
+[/card]
+[card]
 primitive=Akki Rockspeaker
 id=77919
 rarity=C
@@ -37,11 +42,6 @@ rarity=C
 primitive=Aura of Dominion
 id=75353
 rarity=U
-[/card]
-[card]
-primitive=Autumn-Tail, Kitsune Sage
-id=78695
-rarity=R
 [/card]
 [card]
 primitive=Azami, Lady of Scrolls
@@ -119,12 +119,22 @@ id=78687
 rarity=R
 [/card]
 [card]
+primitive=Budoka Gardener (Dokai, Weaver of Life)
+id=78687
+rarity=R
+[/card]
+[card]
 primitive=Burr Grafter
 id=50305
 rarity=C
 [/card]
 [card]
 primitive=Bushi Tenderfoot
+id=78600
+rarity=U
+[/card]
+[card]
+primitive=Bushi Tenderfoot (Kenzo the Hardhearted)
 id=78600
 rarity=U
 [/card]
@@ -237,11 +247,6 @@ rarity=C
 primitive=Distress
 id=79129
 rarity=C
-[/card]
-[card]
-primitive=Dokai, Weaver of Life
-id=78687
-rarity=R
 [/card]
 [card]
 primitive=Dosan the Falling Leaf
@@ -377,11 +382,6 @@ rarity=R
 primitive=Godo, Bandit Warlord
 id=78192
 rarity=R
-[/card]
-[card]
-primitive=Goka the Unjust
-id=78688
-rarity=U
 [/card]
 [card]
 primitive=Graceful Adept
@@ -554,6 +554,11 @@ id=78688
 rarity=U
 [/card]
 [card]
+primitive=Initiate of Blood (Goka the Unjust)
+id=78688
+rarity=U
+[/card]
+[card]
 primitive=Innocence Kami
 id=76636
 rarity=U
@@ -615,6 +620,11 @@ rarity=R
 [/card]
 [card]
 primitive=Jushi Apprentice
+id=78686
+rarity=R
+[/card]
+[card]
+primitive=Jushi Apprentice (Tomoya the Revealer)
 id=78686
 rarity=R
 [/card]
@@ -684,11 +694,6 @@ id=75286
 rarity=R
 [/card]
 [card]
-primitive=Kenzo the Hardhearted
-id=78600
-rarity=U
-[/card]
-[card]
 primitive=Kiki-Jiki, Mirror Breaker
 id=50321
 rarity=R
@@ -715,6 +720,11 @@ rarity=C
 [/card]
 [card]
 primitive=Kitsune Mystic
+id=78695
+rarity=R
+[/card]
+[card]
+primitive=Kitsune Mystic (Autumn-Tail, Kitsune Sage)
 id=78695
 rarity=R
 [/card]
@@ -958,6 +968,11 @@ id=78679
 rarity=R
 [/card]
 [card]
+primitive=Nezumi Shortfang (Stabwhisker the Odious)
+id=78679
+rarity=R
+[/card]
+[card]
 primitive=Night Dealings
 id=75334
 rarity=R
@@ -1019,6 +1034,11 @@ rarity=U
 [/card]
 [card]
 primitive=Orochi Eggwatcher
+id=78975
+rarity=U
+[/card]
+[card]
+primitive=Orochi Eggwatcher (Shidako, Broodmistress)
 id=78975
 rarity=U
 [/card]
@@ -1238,11 +1258,6 @@ id=75278
 rarity=R
 [/card]
 [card]
-primitive=Shidako, Broodmistress
-id=78975
-rarity=U
-[/card]
-[card]
 primitive=Shimatsu the Bloodcloaked
 id=50318
 rarity=R
@@ -1348,11 +1363,6 @@ id=80290
 rarity=U
 [/card]
 [card]
-primitive=Stabwhisker the Odious
-id=78679
-rarity=R
-[/card]
-[card]
 primitive=Stone Rain
 id=79223
 rarity=C
@@ -1374,6 +1384,11 @@ rarity=U
 [/card]
 [card]
 primitive=Student of Elements
+id=78691
+rarity=U
+[/card]
+[card]
+primitive=Student of Elements (Tobita, Master of Winds)
 id=78691
 rarity=U
 [/card]
@@ -1470,21 +1485,6 @@ rarity=U
 [card]
 primitive=Time Stop
 id=78184
-rarity=R
-[/card]
-[card]
-primitive=Tobita, Master of Winds
-id=78691
-rarity=U
-[/card]
-[card]
-primitive=Tok-Tok, Volcano Born
-id=78694
-rarity=R
-[/card]
-[card]
-primitive=Tomoya the Revealer
-id=78686
 rarity=R
 [/card]
 [card]

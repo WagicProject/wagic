@@ -74,7 +74,12 @@ id=122321
 rarity=C
 [/card]
 [card]
-primitive=Boom
+primitive=Boom // Bust (Boom)
+id=126218
+rarity=R
+[/card]
+[card]
+primitive=Boom // Bust (Bust)
 id=126218
 rarity=R
 [/card]
@@ -92,11 +97,6 @@ rarity=C
 primitive=Brute Force
 id=122373
 rarity=C
-[/card]
-[card]
-primitive=Bust
-id=126218
-rarity=R
 [/card]
 [card]
 primitive=Calciderm
@@ -154,7 +154,12 @@ id=124080
 rarity=C
 [/card]
 [card]
-primitive=Dead
+primitive=Dead // Gone (Dead)
+id=126419
+rarity=C
+[/card]
+[card]
+primitive=Dead // Gone (Gone)
 id=126419
 rarity=C
 [/card]
@@ -281,11 +286,6 @@ rarity=C
 [card]
 primitive=Giant Dustwasp
 id=122313
-rarity=C
-[/card]
-[card]
-primitive=Gone
-id=126419
 rarity=C
 [/card]
 [card]
@@ -613,7 +613,12 @@ id=122431
 rarity=R
 [/card]
 [card]
-primitive=Rough
+primitive=Rough // Tumble (Rough)
+id=126420
+rarity=U
+[/card]
+[card]
+primitive=Rough // Tumble (Tumble)
 id=126420
 rarity=U
 [/card]
@@ -772,11 +777,6 @@ rarity=R
 [card]
 primitive=Treacherous Urge
 id=131002
-rarity=U
-[/card]
-[card]
-primitive=Tumble
-id=126420
 rarity=U
 [/card]
 [card]

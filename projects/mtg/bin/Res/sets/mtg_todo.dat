@@ -1670,10 +1670,16 @@ power=2
 toughness=3
 [/card]
 [card]
-name=Assault // Battery
-text=Assault deals 2 damage to target creature or player.     //     Put a 3/3 green Elephant creature token into play.
-mana={R} // {3}{G}
-type=Sorcery // Sorcery
+name=Assault // Battery (Assault)
+text=Assault deals 2 damage to target creature or player.
+mana={R}
+type=Sorcery
+[/card]
+[card]
+name=Assault // Battery (Battery)
+text=Put a 3/3 green Elephant creature token onto the battlefield.
+mana={3}{G}
+type=Sorcery
 [/card]
 [card]
 name=Assembly Hall
@@ -27439,10 +27445,16 @@ mana={0}
 type=Instant
 [/card]
 [card]
-name=Pain // Suffering
-text=Target player discards a card.     //     Destroy target land.
-mana={B} // {3}{R}
-type=Sorcery // Sorcery
+name=Pain // Suffering (Pain)
+text=Target player discards a card.
+mana={B}
+type=Sorcery
+[/card]
+[card]
+name=Pain // Suffering (Suffering)
+text=Destroy target land.
+mana={3}{R}
+type=Sorcery
 [/card]
 [card]
 name=Pain Kami
@@ -37293,10 +37305,16 @@ type=Instant
 subtype=Arcane
 [/card]
 [card]
-name=Spite // Malice
-text=Counter target noncreature spell.     //     Destroy target nonblack creature. It can't be regenerated.
-mana={3}{U} // {3}{B}
-type=Instant // Instant
+name=Spite // Malice (Malice)
+text=Destroy target nonblack creature. It can't be regenerated.
+mana={3}{B}
+type=Instant
+[/card]
+[card]
+name=Spite // Malice (Spite)
+text=Counter target noncreature spell.
+mana={3}{U}
+type=Instant
 [/card]
 [card]
 name=Spitebellows
@@ -37678,10 +37696,16 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Stand // Deliver
-text=Prevent the next 2 damage that would be dealt to target creature this turn.     //     Return target permanent to its owner's hand.
-mana={W} // {2}{U}
-type=Instant // Instant
+name=Stand // Deliver (Deliver)
+text=Return target permanent to its owner's hand.
+mana={2}{U}
+type=Instant
+[/card]
+[card]
+name=Stand // Deliver (Stand)
+text=Prevent the next 2 damage that would be dealt to target creature this turn.
+mana={W}
+type=Instant
 [/card]
 [card]
 name=Stand Firm
@@ -43773,10 +43797,16 @@ mana={3}{RW}{RW}
 type=Sorcery
 [/card]
 [card]
-name=Wax // Wane
-text=Target creature gets +2/+2 until end of turn.     //     Destroy target enchantment.
-mana={G} // {W}
-type=Instant // Instant
+name=Wax // Wane (Wane)
+text=Destroy target enchantment.
+mana={W}
+type=Instant
+[/card]
+[card]
+name=Wax // Wane (Wax)
+text=Target creature gets +2/+2 until end of turn.
+mana={G}
+type=Instant
 [/card]
 [card]
 name=Waxmane Baku

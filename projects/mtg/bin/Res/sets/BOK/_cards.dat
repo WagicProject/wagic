@@ -134,6 +134,11 @@ id=74093
 rarity=U
 [/card]
 [card]
+primitive=Faithful Squire (Kaiso, Memory of Loyalty)
+id=74093
+rarity=U
+[/card]
+[card]
 primitive=Final Judgment
 id=81991
 rarity=R
@@ -318,11 +323,6 @@ rarity=U
 [card]
 primitive=Kaijin of the Vanishing Touch
 id=74443
-rarity=U
-[/card]
-[card]
-primitive=Kaiso, Memory of Loyalty
-id=74093
 rarity=U
 [/card]
 [card]
