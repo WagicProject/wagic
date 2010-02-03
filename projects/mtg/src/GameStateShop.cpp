@@ -10,7 +10,16 @@
 #include "../include/GameOptions.h"
 
 
-GameStateShop::GameStateShop(GameApp* parent): GameState(parent) {}
+GameStateShop::GameStateShop(GameApp* parent): GameState(parent) {
+  shop = NULL;
+  for(int i=0;i<8;i++)
+    altThumb[i] = NULL;
+  mBack = NULL;
+  mBg = NULL;
+  mBgTex = NULL;
+  taskList = NULL;
+  menu = NULL;
+}
 
 
 GameStateShop::~GameStateShop() {
