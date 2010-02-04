@@ -1,0 +1,19 @@
+#NAME: Exalted i143
+#DESC: Exalted creature gets negaive bonus if it didn't attack alone
+#see http://code.google.com/p/wagic/issues/detail?id=310
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:raging goblin,akrasan squire
+[PLAYER2]
+[DO]
+raging goblin
+akrasan squire
+eot
+[ASSERT]
+untap
+[PLAYER1]
+inplay:raging goblin,akrasan squire
+[PLAYER2]
+life:18
+[END]

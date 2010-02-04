@@ -1564,6 +1564,7 @@ class AExalted:public TriggeredAbility{
           }
         }
         if (nbattackers == 1) return 1;
+        else luckyWinner = NULL;
       }
     }
     return 0;

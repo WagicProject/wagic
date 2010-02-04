@@ -145,11 +145,13 @@ void GameStateShop::Update(float dt)
   //  mParent->effect->UpdateSmall(dt);
   //  mParent->effect->UpdateBig(dt);
   u32 btn; 
+  if (menu){
+    menu->Update(dt);
+    if (menu->closed) SAFE_DELETE(menu);
+  }
   switch(mStage){
     case STAGE_SHOP_MENU:
-    if (menu){
-      menu->Update(dt);
-    }else{
+    if (!menu){
       menu = NEW SimpleMenu(11,this,Constants::MENU_FONT,SCREEN_WIDTH/2-100,20);
       menu->Add(12,"Save & Back to Main Menu");
       menu->Add(14,"See available tasks");
@@ -158,7 +160,6 @@ void GameStateShop::Update(float dt)
     break;
     case STAGE_SHOP_TASKS:      
       if(menu){
-        menu->Update(dt);
         return;
       }
       if(taskList){
@@ -263,6 +264,6 @@ void GameStateShop::ButtonPressed(int controllerId, int controlId)
       default:
         mStage = STAGE_SHOP_SHOP;
     }
-    SAFE_DELETE(menu);
+    if (menu) menu->Close();
   }
 }
