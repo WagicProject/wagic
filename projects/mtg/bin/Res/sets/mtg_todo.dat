@@ -23089,6 +23089,12 @@ mana={R}
 type=Sorcery
 [/card]
 [card]
+name=Mana Crypt
+text=At the beginning of your upkeep, flip a coin. If you lose the flip, Mana Crypt deals 3 damage to you. -- {T}: Add {2} to your mana pool.
+mana={0}
+type=Artifact
+[/card]
+[card]
 name=Mana Drain
 text=Counter target spell. At the beginning of your next main phase, add {X} to your mana pool, where X is that spell's converted mana cost.
 mana={U}{U}
@@ -25718,6 +25724,15 @@ name=Naked Singularity
 text=Cumulative upkeep {3} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)  If tapped for mana, Plains produce {R}, Islands produce {G}, Swamps produce {W}, Mountains produce {U}, and Forests produce {B} instead of any other type.
 mana={5}
 type=Artifact
+[/card]
+[card]
+name=Nalathni Dragon
+text=Flying; banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.) -- {R}: Nalathni Dragon gets +1/+0 until end of turn. If this ability has been activated four or more times this turn, sacrifice Nalathni Dragon at the beginning of the next end step.
+mana={2}{R}{R}
+type=Creature
+subtype=Dragon
+power=1
+toughness=1
 [/card]
 [card]
 name=Nameless Inversion
@@ -34719,6 +34734,12 @@ name=Serum Visions
 text=Draw a card. Scry 2. (To scry 2, look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
 mana={U}
 type=Sorcery
+[/card]
+[card]
+name=Sewers of Estark
+text=Choose target creature. If it's attacking, it's unblockable this turn. If it's blocking, prevent all combat damage that would be dealt this turn by it and each creature it's blocking.
+mana={2}{B}{B}
+type=Instant
 [/card]
 [card]
 name=Servant of Volrath

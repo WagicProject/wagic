@@ -1,4 +1,9 @@
 [card]
+primitive=Air Elemental
+id=691
+rarity=U
+[/card]
+[card]
 primitive=Ancestral Recall
 id=692
 rarity=R

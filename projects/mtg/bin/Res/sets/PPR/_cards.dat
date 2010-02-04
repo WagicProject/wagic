@@ -59,9 +59,19 @@ id=97047
 rarity=R
 [/card]
 [card]
+primitive=Mana Crypt
+id=97048
+rarity=S
+[/card]
+[card]
 primitive=Monstrous Hound
 id=97049
 rarity=R
+[/card]
+[card]
+primitive=Nalathni Dragon
+id=97050
+rarity=S
 [/card]
 [card]
 primitive=Overtaker
@@ -94,6 +104,11 @@ id=97068
 rarity=R
 [/card]
 [card]
+primitive=Sewers of Estark
+id=97054
+rarity=S
+[/card]
+[card]
 primitive=Shield of Kaldra
 id=97055
 rarity=P
@@ -112,4 +127,9 @@ rarity=R
 primitive=Sword of Kaldra
 id=97056
 rarity=R
+[/card]
+[card]
+primitive=Windseeker Centaur
+id=97057
+rarity=S
 [/card]

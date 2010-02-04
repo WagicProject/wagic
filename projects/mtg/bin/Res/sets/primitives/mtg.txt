@@ -44070,6 +44070,16 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Windseeker Centaur
+abilities=vigilance
+text=Vigilance
+mana={1}{R}{R}
+type=Creature
+subtype=Centaur
+power=2
+toughness=2
+[/card]
+[card]
 name=Windstorm
 auto=damage:X all(creature[flying])
 text=Windstorm deals X damage to each creature with flying.

@@ -114,7 +114,6 @@ id=20579
 rarity=U
 [/card]
 [card]
-[card]
 primitive=Atalya, Samite Master
 id=22964
 rarity=R
@@ -144,6 +143,7 @@ primitive=Barrin's Unmaking
 id=22984
 rarity=C
 [/card]
+[card]
 primitive=Benalish Emissary
 id=22948
 rarity=U
