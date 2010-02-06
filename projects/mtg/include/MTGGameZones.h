@@ -74,7 +74,6 @@ class MTGGameZone {
    MTGGameZone();
    ~MTGGameZone();
    void shuffle();
-   virtual MTGCardInstance * draw();
    void addCard(MTGCardInstance * card);
    void debugPrint();
    MTGCardInstance * removeCard(MTGCardInstance * card, int createCopy = 1);
@@ -96,7 +95,6 @@ class MTGGameZone {
 class MTGLibrary: public MTGGameZone {
  public:
   void shuffleTopToBottom(int nbcards);
-  MTGCardInstance * draw();
   virtual ostream& toString(ostream&) const;
   const char * getName(){return "library";}
 };

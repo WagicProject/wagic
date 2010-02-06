@@ -330,6 +330,7 @@ TargetChooser::TargetChooser(MTGCardInstance * card, int _maxtargets, bool _othe
 //Default targetter : every card can be targetted, unless it is protected from the targetter card
 // For spells that do not "target" a specific card, set targetter to NULL
 bool TargetChooser::canTarget(Targetable * target){
+  if (!target) return false;
   if (target->typeAsTarget() == TARGET_CARD){
     MTGCardInstance * card = (MTGCardInstance *) target;
     if (other){

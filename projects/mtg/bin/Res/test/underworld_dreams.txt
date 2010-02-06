@@ -1,0 +1,17 @@
+#Test underworld dream
+[INIT]
+DRAW
+[PLAYER1]
+library:forest
+[PLAYER2]
+inplay:Underworld Dreams
+[DO]
+next
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+life:19
+hand:forest
+[PLAYER2]
+inplay:Underworld Dreams
+[END]

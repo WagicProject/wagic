@@ -78,13 +78,13 @@ void MTGPlayerCards::initGame(int shuffle, int draw){
 }
 
 void MTGPlayerCards::drawFromLibrary(){
-  MTGCardInstance * drawnCard = library->draw();
-  if(drawnCard){
-    hand->addCard(drawnCard);
-    GameObserver *g = GameObserver::GetInstance();
-    WEvent * e = NEW WEventZoneChange(drawnCard,library,hand);
-    g->receiveEvent(e);
+  if (!library->nb_cards) {
+     GameObserver::GetInstance()->gameOver = library->owner;
+     return;
   }
+  MTGCardInstance * toMove = library->cards[library->nb_cards-1];
+  library->lastCardDrawn = toMove;
+  putInZone(toMove, library, hand);
 }
 
 void MTGPlayerCards::resetLibrary(){
@@ -290,21 +290,6 @@ void MTGGameZone::addCard(MTGCardInstance * card){
 
 }
 
-MTGCardInstance * MTGGameZone::draw(){
-  if (!nb_cards) return NULL;
-  nb_cards--;
-  lastCardDrawn = cards[nb_cards];
-  cards.pop_back();
-  cardsMap.erase( lastCardDrawn);
-  return lastCardDrawn;
-}
-
-MTGCardInstance * MTGLibrary::draw(){
-  if (!nb_cards) {
-    GameObserver::GetInstance()->gameOver = this->owner;
-  }
-  return MTGGameZone::draw();
-}
 
 void MTGGameZone::debugPrint(){
   for (int i = 0; i < nb_cards; i++)
