@@ -17922,13 +17922,6 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Horn of Deafening
-auto={2}{T}:preventAllCombatDamage from target(creature)
-text={2}, {T}: Prevent all combat damage that would be dealt by target creature this turn.
-mana={4}
-type=Artifact
-[/card]
-[card]
 name=Horn of Greed
 auto=@movedTo(land|myBattlefield):draw:1 controller
 auto=@movedTo(land|opponentBattlefield):draw:1 opponent
@@ -21094,13 +21087,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Kor Haven
-auto={T}:Add {1}
-auto={1}{W}{T}:preventAllCombatDamage from target(creature[attacking]) ueot
-text={T}: Add {1} to your mana pool.   {1}{W}, {T}: Prevent all combat damage that would be dealt by target attacking creature this turn.
-type=Legendary Land
-[/card]
-[card]
 name=Kor Sanctifiers
 kicker={W}
 auto=kicker destroy target(artifact,enchantment)
@@ -21397,16 +21383,6 @@ type=Legendary Creature
 subtype=Human Archer
 power=3
 toughness=6
-[/card]
-[card]
-name=Lady Evangela
-auto={W}{B}{T}:preventAllCombatDamage from target(creature) ueot
-text={W}{B}, {T}: Prevent all combat damage that would be dealt by target creature this turn.
-mana={W}{U}{B}
-type=Legendary Creature
-subtype=Human Cleric
-power=1
-toughness=2
 [/card]
 [card]
 name=Lady Orca
@@ -30391,16 +30367,6 @@ power=2
 toughness=3
 [/card]
 [card]
-name=Resistance Fighter
-auto={S}:preventAllCombatDamage from target(creature) ueot
-text=Sacrifice Resistance Fighter: Prevent all combat damage target creature would deal this turn.
-mana={W}
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=1
-[/card]
-[card]
 name=Resounding Roar
 target=creature
 auto=3/3
@@ -31602,13 +31568,6 @@ text=Enchant creature   Whenever a creature is put into a graveyard from the bat
 mana={B}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Safeguard
-auto={2}{W}:preventAllCombatDamage from target(creature) ueot
-text={2}{W}: Prevent all combat damage that would be dealt by target creature this turn.
-mana={3}{W}{W}
-type=Enchantment
 [/card]
 [card]
 name=Safehold Duo
@@ -35550,16 +35509,6 @@ mana={B}
 type=Instant
 [/card]
 [card]
-name=Songstitcher
-auto={1}{W}:preventAllCombatDamage from target(creature[attacking;flying]) ueot
-text={1}{W}: Prevent all combat damage that would be dealt this turn by target attacking creature with flying.
-mana={W}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=1
-[/card]
-[card]
 name=Soot Imp
 abilities=flying
 auto=@movedTo(*[-black]|mystack):life:-1 controller
@@ -35621,14 +35570,6 @@ type=Legendary Creature
 subtype=Spirit
 power=*
 toughness=*
-[/card]
-[card]
-name=Soratami Cloud Chariot
-auto={2}:flying target(creature|myBattlefield)
-auto={2}:preventAllCombatDamage from target(creature|myBattlefield) ueot && preventAllCombatDamage to(mytgt) ueot
-text={2}: Target creature you control gains flying until end of turn.   {2}: Prevent all combat damage that would be dealt to and dealt by target creature you control this turn.
-mana={5}
-type=Artifact
 [/card]
 [card]
 name=Soul Bleed

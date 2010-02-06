@@ -1269,7 +1269,7 @@ subtype=Merfolk
 [/card]
 [card]
 name=Arashi, the Sky Asunder
-text={X}{G}, {T}: Arashi, the Sky Asunder deals X damage to target creature with flying. Channel ó {X}{G}{G}, Discard Arashi: Arashi deals X damage to each creature with flying.
+text={X}{G}, {T}: Arashi, the Sky Asunder deals X damage to target creature with flying. Channel ÅE{X}{G}{G}, Discard Arashi: Arashi deals X damage to each creature with flying.
 mana={3}{G}{G}
 type=Legendary Creature
 subtype=Spirit
@@ -2748,7 +2748,7 @@ toughness=5
 [/card]
 [card]
 name=Barrel Down Sokenzan
-text=Sweep ó Return any number of Mountains you control to their owner's hand. Barrel Down Sokenzan deals damage to target creature equal to twice the number of Mountains returned this way.
+text=Sweep ÅEReturn any number of Mountains you control to their owner's hand. Barrel Down Sokenzan deals damage to target creature equal to twice the number of Mountains returned this way.
 mana={2}{R}
 type=Instant
 subtype=Arcane
@@ -2812,7 +2812,7 @@ type=Sorcery
 [/card]
 [card]
 name=Baru, Fist of Krosa
-text=Whenever a Forest comes into play, green creatures you control get +1/+1 and gain trample until end of turn. Grandeur ‚Äî Discard another card named Baru, Fist of Krosa: Put an X/X green Wurm creature token into play, where X is the number of lands you control.
+text=Whenever a Forest comes into play, green creatures you control get +1/+1 and gain trample until end of turn. Grandeur ‚ÄÅEDiscard another card named Baru, Fist of Krosa: Put an X/X green Wurm creature token into play, where X is the number of lands you control.
 mana={3}{G}{G}
 type=Legendary Creature
 subtype=Human Druid
@@ -5898,7 +5898,7 @@ type=Instant
 [/card]
 [card]
 name=Charge Across the Araba
-text=Sweep ó Return any number of Plains you control to their owner's hand. Creatures you control get +1/+1 until end of turn for each Plains returned this way.
+text=Sweep ÅEReturn any number of Plains you control to their owner's hand. Creatures you control get +1/+1 until end of turn for each Plains returned this way.
 mana={4}{W}
 type=Instant
 subtype=Arcane
@@ -8032,7 +8032,7 @@ type=Sorcery
 name=Cutthroat il-Dal
 abilities=shadow
 auto=aslongas(*|myhand)-shadow
-text=Hellbent ‚Äî Cutthroat il-Dal has shadow as long as you have no cards in hand. (It can block or be blocked by only creatures with shadow.)
+text=Hellbent ‚ÄÅECutthroat il-Dal has shadow as long as you have no cards in hand. (It can block or be blocked by only creatures with shadow.)
 mana={3}{B}
 type=Creature
 subtype=Human Rogue
@@ -10481,7 +10481,7 @@ toughness=6
 [/card]
 [card]
 name=Dust of Moments
-text=Choose one ‚Äî Remove two time counters from each permanent and each suspended card; or put two time counters on each permanent with a time counter on it and each suspended card.
+text=Choose one ‚ÄÅERemove two time counters from each permanent and each suspended card; or put two time counters on each permanent with a time counter on it and each suspended card.
 mana={2}{W}
 type=Instant
 [/card]
@@ -14422,7 +14422,7 @@ toughness=2
 [/card]
 [card]
 name=Gathan Raiders
-text=Hellbent ‚Äî Gathan Raiders gets +2/+2 if you have no cards in hand. Morph‚ÄîDiscard a card. (You may play this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+text=Hellbent ‚ÄÅEGathan Raiders gets +2/+2 if you have no cards in hand. Morph‚ÄîDiscard a card. (You may play this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 mana={3}{R}{R}
 type=Creature
 subtype=Human Warrior
@@ -14644,7 +14644,7 @@ type=Land
 [/card]
 [card]
 name=Ghost-Lit Stalker
-text={4}{B}, {T}: Target player discards two cards. Activate this ability only any time you could cast a sorcery. Channel ó {5}{B}{B}, Discard Ghost-Lit Stalker: Target player discards four cards. Activate this ability only any time you could cast a sorcery.
+text={4}{B}, {T}: Target player discards two cards. Activate this ability only any time you could cast a sorcery. Channel ÅE{5}{B}{B}, Discard Ghost-Lit Stalker: Target player discards four cards. Activate this ability only any time you could cast a sorcery.
 mana={B}
 type=Creature
 subtype=Spirit
@@ -14653,7 +14653,7 @@ toughness=1
 [/card]
 [card]
 name=Ghost-Lit Warder
-text={3}{U}, {T}: Counter target spell unless its controller pays {2}. Channel ó {3}{U}, Discard Ghost-Lit Warder: Counter target spell unless its controller pays {4}.
+text={3}{U}, {T}: Counter target spell unless its controller pays {2}. Channel ÅE{3}{U}, Discard Ghost-Lit Warder: Counter target spell unless its controller pays {4}.
 mana={1}{U}
 type=Creature
 subtype=Spirit
@@ -14810,7 +14810,7 @@ type=Sorcery
 [/card]
 [card]
 name=Gibbering Descent
-text=At the beginning of each player's upkeep, that player loses 1 life and discards a card. Hellbent ‚Äî Skip your upkeep step if you have no cards in hand. Madness {2}{B}{B} (If you discard this card, you may play it for its madness cost instead of putting it into your graveyard.)
+text=At the beginning of each player's upkeep, that player loses 1 life and discards a card. Hellbent ‚ÄÅESkip your upkeep step if you have no cards in hand. Madness {2}{B}{B} (If you discard this card, you may play it for its madness cost instead of putting it into your graveyard.)
 mana={4}{B}{B}
 type=Enchantment
 [/card]
@@ -17822,6 +17822,14 @@ power=*
 toughness=*
 [/card]
 [card]
+#"prevent from target" does not work in Wagic 0.11
+name=Horn of Deafening
+auto={2}{T}:preventAllCombatDamage from target(creature)
+text={2}, {T}: Prevent all combat damage that would be dealt by target creature this turn.
+mana={4}
+type=Artifact
+[/card]
+[card]
 name=Horn of Plenty
 text=Whenever a player plays a spell, he or she may pay {1}. If that player does, he or she draws a card at end of turn.
 mana={6}
@@ -19594,7 +19602,7 @@ type=Artifact
 [/card]
 [card]
 name=Jiwari, the Earth Aflame
-text={X}{R}, {T}: Jiwari, the Earth Aflame deals X damage to target creature without flying. Channel ó {X}{R}{R}{R}, Discard Jiwari: Jiwari deals X damage to each creature without flying.
+text={X}{R}, {T}: Jiwari, the Earth Aflame deals X damage to target creature without flying. Channel ÅE{X}{R}{R}{R}, Discard Jiwari: Jiwari deals X damage to each creature without flying.
 mana={3}{R}{R}
 type=Legendary Creature
 subtype=Spirit
@@ -20311,7 +20319,7 @@ toughness=3
 [/card]
 [card]
 name=Keldon Megaliths
-text=Keldon Megaliths comes into play tapped. {T}: Add {R} to your mana pool. Hellbent ‚Äî {1}{R}, {T}: Keldon Megaliths deals 1 damage to target creature or player. Play this ability only if you have no cards in hand.
+text=Keldon Megaliths comes into play tapped. {T}: Add {R} to your mana pool. Hellbent ‚ÄÅE{1}{R}, {T}: Keldon Megaliths deals 1 damage to target creature or player. Play this ability only if you have no cards in hand.
 type=Land
 [/card]
 [card]
@@ -20474,6 +20482,14 @@ auto=lord(artifact,creature,land|opponentinplay)tap
 text=Artifacts, creatures, and lands your opponents control come into play tapped.
 mana={3}{W}
 type=Enchantment
+[/card]
+[card]
+#"prevent from target" does not work
+name=Kor Haven
+auto={T}:Add {1}
+auto={1}{W}{T}:preventAllCombatDamage from target(creature[attacking]) ueot
+text={T}: Add {1} to your mana pool.   {1}{W}, {T}: Prevent all combat damage that would be dealt by target attacking creature this turn.
+type=Legendary Land
 [/card]
 [card]
 name=Kitesail Apprentice
@@ -20875,7 +20891,7 @@ toughness=2
 [/card]
 [card]
 name=Korlash, Heir to Blackblade
-text=Korlash, Heir to Blackblade's power and toughness are each equal to the number of Swamps you control. {1}{B}: Regenerate Korlash. Grandeur ‚Äî Discard another card named Korlash, Heir to Blackblade: Search your library for up to two Swamp cards, put them into play tapped, then shuffle your library.
+text=Korlash, Heir to Blackblade's power and toughness are each equal to the number of Swamps you control. {1}{B}: Regenerate Korlash. Grandeur ‚ÄÅEDiscard another card named Korlash, Heir to Blackblade: Search your library for up to two Swamp cards, put them into play tapped, then shuffle your library.
 mana={2}{B}{B}
 type=Legendary Creature
 subtype=Zombie Warrior
@@ -21250,6 +21266,17 @@ type=Creature
 subtype=Beast
 power=1
 toughness=1
+[/card]
+[card]
+#"prevent from target" does not work in Wagic 0.11
+name=Lady Evangela
+auto={W}{B}{T}:preventAllCombatDamage from target(creature) ueot
+text={W}{B}, {T}: Prevent all combat damage that would be dealt by target creature this turn.
+mana={W}{U}{B}
+type=Legendary Creature
+subtype=Human Cleric
+power=1
+toughness=2
 [/card]
 [card]
 name=Lairwatch Giant
@@ -22074,7 +22101,7 @@ toughness=3
 [/card]
 [card]
 name=Linessa, Zephyr Mage
-text={X}{U}{U}, {T}: Return target creature with converted mana cost X to its owner's hand. Grandeur ‚Äî Discard another card named Linessa, Zephyr Mage: Target player returns a creature he or she controls to its owner's hand, then repeats this process for an artifact, an enchantment, and a land.
+text={X}{U}{U}, {T}: Return target creature with converted mana cost X to its owner's hand. Grandeur ‚ÄÅEDiscard another card named Linessa, Zephyr Mage: Target player returns a creature he or she controls to its owner's hand, then repeats this process for an artifact, an enchantment, and a land.
 mana={3}{U}
 type=Legendary Creature
 subtype=Human Wizard
@@ -27491,7 +27518,7 @@ toughness=3
 [/card]
 [card]
 name=Oriss, Samite Guardian
-text={T}: Prevent all damage that would be dealt to target creature this turn. Grandeur ‚Äî Discard another card named Oriss, Samite Guardian: Target player can't play spells this turn, and creatures that player controls can't attack this turn.
+text={T}: Prevent all damage that would be dealt to target creature this turn. Grandeur ‚ÄÅEDiscard another card named Oriss, Samite Guardian: Target player can't play spells this turn, and creatures that player controls can't attack this turn.
 mana={1}{W}{W}
 type=Legendary Creature
 subtype=Human Cleric
@@ -29165,7 +29192,7 @@ toughness=2
 [/card]
 [card]
 name=Plow Through Reito
-text=Sweep ó Return any number of Plains you control to their owner's hand. Target creature gets +1/+1 until end of turn for each Plains returned this way.
+text=Sweep ÅEReturn any number of Plains you control to their owner's hand. Target creature gets +1/+1 until end of turn for each Plains returned this way.
 mana={1}{W}
 type=Instant
 subtype=Arcane
@@ -30490,7 +30517,7 @@ toughness=6
 [/card]
 [card]
 name=Quiet Disrepair
-text=Enchant artifact or enchantment At the beginning of your upkeep, choose one ‚Äî Destroy enchanted permanent; or you gain 2 life.
+text=Enchant artifact or enchantment At the beginning of your upkeep, choose one ‚ÄÅEDestroy enchanted permanent; or you gain 2 life.
 mana={1}{G}
 type=Enchantment
 subtype=Aura
@@ -31712,6 +31739,17 @@ name=Reshape
 text=As an additional cost to cast Reshape, sacrifice an artifact. Search your library for an artifact card with converted mana cost X or less and put it onto the battlefield. Then shuffle your library.
 mana={X}{U}{U}
 type=Sorcery
+[/card]
+[card]
+#"prevent from target" does not work in Wagic 0.11
+name=Resistance Fighter
+auto={S}:preventAllCombatDamage from target(creature) ueot
+text=Sacrifice Resistance Fighter: Prevent all combat damage target creature would deal this turn.
+mana={W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
 [/card]
 [card]
 name=Resize
@@ -33237,6 +33275,14 @@ name=Safe Passage
 text=Prevent all damage that would be dealt to you and creatures you control this turn.
 mana={2}{W}
 type=Instant
+[/card]
+[card]
+#"prevent from target" does not work in Wagic 0.11
+name=Safeguard
+auto={2}{W}:preventAllCombatDamage from target(creature) ueot
+text={2}{W}: Prevent all combat damage that would be dealt by target creature this turn.
+mana={3}{W}{W}
+type=Enchantment
 [/card]
 [card]
 name=Safehold Sentry
@@ -35198,7 +35244,7 @@ type=Instant
 [/card]
 [card]
 name=Shinen of Life's Roar
-text=All creatures able to block Shinen of Life's Roar do so. Channel ó {2}{G}{G}, Discard Shinen of Life's Roar: All creatures able to block target creature this turn do so.
+text=All creatures able to block Shinen of Life's Roar do so. Channel ÅE{2}{G}{G}, Discard Shinen of Life's Roar: All creatures able to block target creature this turn do so.
 mana={1}{G}
 type=Creature
 subtype=Spirit
@@ -35268,7 +35314,7 @@ toughness=1
 [/card]
 [card]
 name=Shivan Sand-Mage
-text=When Shivan Sand-Mage comes into play, choose one ‚Äî Remove two time counters from target permanent or suspended card; or put two time counters on target permanent with a time counter on it or suspended card. Suspend 4‚Äî{R}
+text=When Shivan Sand-Mage comes into play, choose one ‚ÄÅERemove two time counters from target permanent or suspended card; or put two time counters on target permanent with a time counter on it or suspended card. Suspend 4‚Äî{R}
 mana={2}{R}{R}
 type=Creature
 subtype=Viashino Shaman
@@ -35720,7 +35766,7 @@ subtype=Aura
 [/card]
 [card]
 name=Sink into Takenuma
-text=Sweep ó Return any number of Swamps you control to their owner's hand. Target player discards a card for each Swamp returned this way.
+text=Sweep ÅEReturn any number of Swamps you control to their owner's hand. Target player discards a card for each Swamp returned this way.
 mana={3}{B}
 type=Sorcery
 subtype=Arcane
@@ -36631,6 +36677,17 @@ mana={1}{G}
 type=Enchantment
 [/card]
 [card]
+#"prevent from target" does not work in Wagic 0.11
+name=Songstitcher
+auto={1}{W}:preventAllCombatDamage from target(creature[attacking;flying]) ueot
+text={1}{W}: Prevent all combat damage that would be dealt this turn by target attacking creature with flying.
+mana={W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
+[/card]
+[card]
 name=Sonic Burst
 target=creature,player
 auto=damage:4
@@ -36664,6 +36721,15 @@ name=Soothsaying
 text={3}{U}{U}: Shuffle your library.       {X}: Look at the top X cards of your library and put them back in any order.
 mana={U}
 type=Enchantment
+[/card]
+[card]
+#"prevent from target" does not work in Wagic 0.11
+name=Soratami Cloud Chariot
+auto={2}:flying target(creature|myBattlefield)
+auto={2}:preventAllCombatDamage from target(creature|myBattlefield) ueot && preventAllCombatDamage to(mytgt) ueot
+text={2}: Target creature you control gains flying until end of turn.   {2}: Prevent all combat damage that would be dealt to and dealt by target creature you control this turn.
+mana={5}
+type=Artifact
 [/card]
 [card]
 name=Soratami Cloudskater
@@ -37582,7 +37648,7 @@ type=Artifact
 [/card]
 [card]
 name=Spirit en-Dal
-text=Shadow (This creature can block or be blocked by only creatures with shadow.) Forecast ‚Äî {1}{W}, Reveal Spirit en-Dal from your hand: Target creature gains shadow until end of turn. (Play this ability only during your upkeep and only once each turn.)
+text=Shadow (This creature can block or be blocked by only creatures with shadow.) Forecast ‚ÄÅE{1}{W}, Reveal Spirit en-Dal from your hand: Target creature gains shadow until end of turn. (Play this ability only during your upkeep and only once each turn.)
 mana={2}{W}
 type=Creature
 subtype=Spirit
@@ -39608,7 +39674,7 @@ type=Sorcery
 [/card]
 [card]
 name=Tarox Bladewing
-text=Flying, haste Grandeur ‚Äî Discard another card named Tarox Bladewing: Tarox Bladewing gets +X/+X until end of turn, where X is its power.
+text=Flying, haste Grandeur ‚ÄÅEDiscard another card named Tarox Bladewing: Tarox Bladewing gets +X/+X until end of turn, where X is its power.
 mana={2}{R}{R}{R}
 type=Legendary Creature
 subtype=Dragon
