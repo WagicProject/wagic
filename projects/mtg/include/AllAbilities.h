@@ -637,6 +637,8 @@ public:
   WParsedInt * multiplier;
   ATokenCreator(int _id,MTGCardInstance * _source,ManaCost * _cost, int tokenId, int _doTap, WParsedInt * multiplier = NULL):ActivatedAbility(_id,_source,_cost,0,_doTap), tokenId(tokenId), multiplier(multiplier){
     if(!multiplier) this->multiplier = NEW WParsedInt(1);
+    MTGCard * card = GameApp::collection->getCardById(tokenId);
+    if (card) name = card->data->getName();      
   }
 
   ATokenCreator(int _id,MTGCardInstance * _source,ManaCost * _cost, string sname, string stypes,int _power,int _toughness, string sabilities, int _doTap, WParsedInt * multiplier = NULL):ActivatedAbility(_id,_source,_cost,0,_doTap), multiplier(multiplier){
@@ -706,9 +708,8 @@ public:
   }
 
   const char * getMenuText(){
-    string s = "Token:";
-    s.append(name);
-    return s.c_str();
+    sprintf(menuText, "Create %s",name.c_str());
+    return menuText;
   }
 
   virtual ostream& toString(ostream& out) const
