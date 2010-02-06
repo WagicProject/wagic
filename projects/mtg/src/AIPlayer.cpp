@@ -313,8 +313,9 @@ int AIPlayer::effectBadOrGood(MTGCardInstance * card, int mode, TargetChooser * 
 
 
 
-int AIPlayer::chooseTarget(TargetChooser * tc){
+int AIPlayer::chooseTarget(TargetChooser * _tc, Player * forceTarget){
   vector<Targetable *>potentialTargets;
+  TargetChooser * tc = _tc;
   int nbtargets = 0;
   GameObserver * gameObs = GameObserver::GetInstance();
   int checkOnly = 0;
@@ -325,10 +326,14 @@ int AIPlayer::chooseTarget(TargetChooser * tc){
   }
   if (!tc) return 0;
   if (!(gameObs->currentlyActing() == this)) return 0;
-  Player * target = this;
-  int cardEffect = effectBadOrGood(tc->source, MODE_TARGET, tc);
-  if (cardEffect != BAKA_EFFECT_GOOD){
-    target = this->opponent();
+  Player * target = forceTarget;
+  
+  if (!target){
+    target = this;
+    int cardEffect = effectBadOrGood(tc->source, MODE_TARGET, tc);
+    if (cardEffect != BAKA_EFFECT_GOOD){
+      target = this->opponent();
+    }
   }
 
   if (!tc->alreadyHasTarget(target) &&  tc->canTarget(target) && nbtargets < 50){
@@ -383,8 +388,13 @@ int AIPlayer::chooseTarget(TargetChooser * tc){
       }
     }
   }
-  //Couldn't find any valid target (why did we play that in the first place ?)
-  gameObs->cancelCurrentAction();
+  //Couldn't find any valid target,
+  //usually that's because we played a card that has bad side effects (ex: when X comes into play, return target land you own to your hand)
+  //so we try again to choose a target in the other player's field...
+  int cancel = gameObs->cancelCurrentAction();
+  if (!cancel && !forceTarget) return chooseTarget(_tc,target->opponent());
+
+  //ERROR!!!
   return 0;
 }
 

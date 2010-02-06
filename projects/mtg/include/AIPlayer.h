@@ -74,7 +74,7 @@ class AIPlayer: public Player{
   AIPlayer(MTGPlayerCards * deck, string deckFile, string deckFileSmall);
   virtual ~AIPlayer();
   virtual MTGCardInstance * chooseCard(TargetChooser * tc, MTGCardInstance * source, int random = 0);
-  virtual int chooseTarget(TargetChooser * tc = NULL);
+  virtual int chooseTarget(TargetChooser * tc = NULL, Player * forceTarget =NULL);
   virtual int Act(float dt);
   virtual int affectCombatDamages(CombatStep);
   int isAI(){return 1;};
