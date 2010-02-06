@@ -7672,6 +7672,13 @@ type=Artifact
 [/card]
 [card]
 name=Crucible of Worlds
+auto={0}:may moveTo(myBattlefield) target(land|mygraveyard) limit:1 myTurnOnly
+# Above line does not work: "May moveto" from graveyards does
+# not work due to interface issues. The "limit:1" doesn't work
+# here either. Even if both worked, then the card would allow
+# you to play lands *in addition* to the 1 land you can play per
+# turn. Instead it should just give you the option to play this
+# 1 land from your hand or your graveyard.
 text=You may play land cards from your graveyard.
 mana={3}
 type=Artifact
@@ -8280,8 +8287,9 @@ type=Sorcery
 [/card]
 [card]
 name=Darksteel Colossus
+abilities=indestructible
 text=Trample Darksteel Colossus is indestructible. If Darksteel Colossus would be put into a graveyard from anywhere, reveal Darksteel Colossus and shuffle it into its owner's library instead.
-mana={1}{1}
+mana={11}
 type=Artifact Creature
 subtype=Golem
 power=11
@@ -16512,6 +16520,10 @@ subtype=Aura
 [/card]
 [card]
 name=Guerrilla Tactics
+target=creature,player
+auto=damage:2
+auto=@movedto(graveyard) from(myhand):damage:4
+#Target does not work with @ unless there is a may
 text=Guerrilla Tactics deals 2 damage to target creature or player.     When a spell or ability an opponent controls causes you to discard Guerrilla Tactics, Guerrilla Tactics deals 4 damage to target creature or player.
 mana={1}{R}
 type=Instant
@@ -18163,6 +18175,7 @@ toughness=2
 name=Icatian Infantry
 auto={1}:banding
 auto={1}:first strike
+#Banding is not supported in Wagic 0.9
 text={1}: Icatian Infantry gains banding until end of turn.     {1}: Icatian Infantry gains first strike until end of turn.
 mana={W}
 type=Creature
@@ -20653,7 +20666,7 @@ toughness=5
 [card]
 name=Kjeldoran Pride
 target=Creature
-auto=:1/2
+auto=1/2
 auto={2}{U}:moveto(creature|myinplay)
 text=Enchant creature Enchanted creature gets +1/+2. {2}{U}: Attach Kjeldoran Pride to target creature other than enchanted creature.
 mana={1}{W}
@@ -21622,12 +21635,11 @@ toughness=2
 [/card]
 [card]
 name=Legacy Weapon
-abilities=legendary
 auto={W}{U}{B}{R}{G}:moveto(exile) target(*)
 #as the same ability as darksteel collosus
 text={W}{U}{B}{R}{G}: Remove target permanent from the game.     If Legacy Weapon would be put into a graveyard from anywhere, reveal Legacy Weapon and shuffle it into its owner's library instead.
 mana={7}
-type=Artifact
+type=Legendary Artifact
 [/card]
 [card]
 name=Legacy's Allure
@@ -22910,6 +22922,8 @@ type=Enchantment
 [/card]
 [card]
 name=Magnetic Mountain
+auto=lord(creature[blue]) doesnotuntap
+auto=lord(creature[blue]) {4}:untap
 text=Blue creatures don't untap during their controllers' untap steps. At the beginning of each player's upkeep, that player may choose any number of tapped blue creatures he or she controls and pay {4} for each creature chosen this way. If the player does, untap those creatures.
 mana={1}{R}{R}
 type=Enchantment
@@ -24257,6 +24271,9 @@ type=Sorcery
 [/card]
 [card]
 name=Mind Rot
+target=player
+auto=discard:2
+#No Discard unless random
 text=Target player discards two cards.
 mana={2}{B}
 type=Sorcery
@@ -24655,6 +24672,7 @@ type=Artifact
 [/card]
 [card]
 name=Mishra's War Machine
+abilities=Banding
 text=Banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.) At the beginning of your upkeep, unless you discard a card, tap Mishra's War Machine and it deals 3 damage to you.
 mana={7}
 type=Artifact Creature
@@ -34596,6 +34614,7 @@ toughness=4
 [/card]
 [card]
 name=Sengir Vampire
+abilities=flying
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  Whenever a creature dealt damage by Sengir Vampire this turn is put into a graveyard, put a +1/+1 counter on Sengir Vampire.
 mana={3}{B}{B}
 type=Creature

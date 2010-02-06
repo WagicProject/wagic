@@ -1160,7 +1160,7 @@ toughness=5
 [/card]
 [card]
 name=Angel's Feather
-auto=@movedTo(*[white]|stack):may life:1
+auto=@movedTo(*[white]|stack):may life:1 controller
 text=Whenever a player casts a white spell, you may gain 1 life.
 mana={2}
 type=Artifact
@@ -2210,7 +2210,7 @@ toughness=2
 [card]
 name=Aven Fisher
 abilities=flying
-auto=@movedTo(this|graveyard):draw:1
+auto=@movedTo(this|graveyard) from(battlefield):may draw:1
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)  When Aven Fisher is put into a graveyard from the battlefield, you may draw a card.
 mana={3}{U}
 type=Creature
@@ -2531,7 +2531,7 @@ type=Sorcery
 [card]
 name=Ball Lightning
 abilities=trample,haste
-auto=@next endofturn:bury
+auto=@next end:bury
 text=Trample (If this creature would deal enough damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player or planeswalker.)   Haste (This creature can attack and  as soon as it comes under your control.)   At the beginning of the end step, sacrifice Ball Lightning.
 mana={R}{R}{R}
 type=Creature
@@ -3376,11 +3376,12 @@ toughness=2
 [card]
 name=Birds of Paradise
 abilities=flying
+auto={T}:Add{G}
+# put {G} first so that the AI can produce it.
 auto={T}:Add{W}
 auto={T}:Add{U}
 auto={T}:Add{B}
 auto={T}:Add{R}
-auto={T}:Add{G}
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)   {T}: Add one mana of any color to your mana pool.
 mana={G}
 type=Creature
@@ -3569,7 +3570,6 @@ type=Sorcery
 name=Blaze
 target=creature,player
 auto=damage:X
-alias=1291
 text=Blaze deals X damage to target creature or player.
 mana={X}{R}
 type=Sorcery
@@ -4783,7 +4783,7 @@ type=Sorcery
 [/card]
 [card]
 name=Breath of Life
-target=creature(myGraveyard)
+target=creature|mygraveyard
 auto=moveTo(myBattlefield)
 text=Return target creature card from your graveyard to the battlefield.
 mana={3}{W}
@@ -6433,11 +6433,11 @@ type=Sorcery
 [/card]
 [card]
 name=Chromatic Sphere
-auto={1}{T}{S}:Add{G} && Draw:1
-auto={1}{T}{S}:Add{R} && Draw:1
-auto={1}{T}{S}:Add{U} && Draw:1
-auto={1}{T}{S}:Add{B} && Draw:1
-auto={1}{T}{S}:Add{W} && Draw:1
+auto={1}{T}{S}:Add{G} && Draw:1 controller
+auto={1}{T}{S}:Add{R} && Draw:1 controller
+auto={1}{T}{S}:Add{U} && Draw:1 controller
+auto={1}{T}{S}:Add{B} && Draw:1 controller
+auto={1}{T}{S}:Add{W} && Draw:1 controller
 text={1}, {T}, Sacrifice Chromatic Sphere: Add one mana of any color to your mana pool. Draw a card.
 mana={1}
 type=Artifact
@@ -7752,7 +7752,7 @@ type=Land
 name=Cremate
 target=*|graveyard
 auto=moveto(exile)
-auto=draw:1
+auto=draw:1 controller
 text=Exile target card in a graveyard. Draw a card.
 mana={B}
 type=Instant
@@ -7905,6 +7905,7 @@ toughness=*
 [/card]
 [card]
 name=Crown of Flames
+target=creature
 auto={R}:1/0
 auto={R}:moveTo(ownerhand)
 text=Enchant creature   {R}: Enchanted creature gets +1/+0 until end of turn.     {R}: Return Crown of Flames to its owner's hand.
@@ -8420,7 +8421,7 @@ subtype=Aura
 [/card]
 [card]
 name=Dark Ritual
-auto=Add {B}{B}{B}
+auto=Add{B}{B}{B}
 text=Add {B}{B}{B} to your mana pool.
 mana={B}
 type=Instant
@@ -9174,7 +9175,7 @@ type=Sorcery
 [/card]
 [card]
 name=Demon's Horn
-auto=@movedTo(*[black]|stack):may life:1
+auto=@movedTo(*[black]|stack):may life:1 controller
 text=Whenever a player casts a black spell, you may gain 1 life.
 mana={2}
 type=Artifact
@@ -10127,7 +10128,7 @@ toughness=3
 [/card]
 [card]
 name=Dragon's Claw
-auto=@movedTo(*[red]|stack):may life:1
+auto=@movedTo(*[red]|stack):may life:1 controller
 text=Whenever a player casts a red spell, you may gain 1 life.
 mana={2}
 type=Artifact
@@ -10327,7 +10328,6 @@ toughness=5
 name=Dreamborn Muse
 auto=@each my upkeep:foreach(*|myhand) deplete:1 controller
 auto=@each opponent upkeep:foreach(*|opponenthand) deplete:1 opponent
-alias=135246
 text=At the beginning of each player's upkeep, that player puts the top X cards of his or her library into his or her graveyard, where X is the number of cards in his or her hand.
 mana={2}{U}{U}
 type=Creature
@@ -10456,7 +10456,7 @@ toughness=3
 [/card]
 [card]
 name=Dross Crocodile
-mana={3}{B
+mana={3}{B}
 type=Creature
 subtype=Zombie Crocodile
 power=5
@@ -10837,7 +10837,7 @@ toughness=1
 [/card]
 [card]
 name=Dwarven Weaponsmith
-auto={T}{S(artifact|myBattlefield)}:counter(1/1,1) target(creature) myTurnOnly
+auto={T}{S(artifact|myBattlefield)}:counter(1/1,1) target(creature) myUpkeepOnly
 text=Sacrifice an artifact: Put a +1/+1 counter on target creature. Activate this ability only during your upkeep.
 mana={1}{R}
 type=Creature
@@ -14781,7 +14781,7 @@ toughness=5
 [/card]
 [card]
 name=Ghost Warden
-auto={T}:1/1 target(creature)
+auto={T}:1/1 target(creature[attacking;blocking])
 text={T}: Target creature gets +1/+1 until end of turn.
 mana={1}{W}
 type=Creature
@@ -18274,7 +18274,6 @@ toughness=1
 name=Hurricane
 auto=damage:X all(creature[flying])
 auto=damage:X all(player)
-alias=1251
 text=Hurricane deals X damage to each creature with flying and each player.
 mana={X}{G}
 type=Sorcery
@@ -20145,7 +20144,7 @@ toughness=2
 [/card]
 [card]
 name=Kavu Climber
-auto=draw:1
+auto=draw:1 controller
 text=When Kavu Climber enters the battlefield, draw a card.
 mana={3}{G}{G}
 type=Creature
@@ -21135,7 +21134,7 @@ toughness=4
 [/card]
 [card]
 name=Kraken's Eye
-auto=@movedTo(*[blue]|stack): may life:1
+auto=@movedTo(*[blue]|stack): may life:1 controller
 text=Whenever a player casts a blue spell, you may gain 1 life.
 mana={2}
 type=Artifact
@@ -22646,7 +22645,6 @@ toughness=2
 [card]
 name=Lumengrid Warden
 mana={1}{U}
-mana={1}{U}
 type=Creature
 subtype=Human Wizard
 power=1
@@ -23745,7 +23743,7 @@ toughness=1
 [/card]
 [card]
 name=Mesa Enchantress
-auto=@movedTo(enchantment|mystack): may draw:1
+auto=@movedTo(enchantment|mystack): may draw:1 controller
 text=Whenever you cast an enchantment spell, you may draw a card.
 mana={1}{W}{W}
 type=Creature
@@ -23982,8 +23980,7 @@ type=Sorcery
 [/card]
 [card]
 name=Mind Spring
-auto=Draw:X
-alias=1192
+auto=draw:X controller
 text=Draw X cards.
 mana={X}{U}{U}
 type=Sorcery
@@ -26641,7 +26638,7 @@ type=Enchantment
 [/card]
 [card]
 name=Onulet
-auto=@movedTo(this|graveyard):life:2 controller
+auto=@movedTo(this|graveyard) from(this|battlefield):life:2 controller
 text=When Onulet is put into a graveyard from the battlefield, you gain 2 life.
 mana={3}
 type=Artifact Creature
@@ -29963,7 +29960,7 @@ type=Sorcery
 name=Recover
 target=creature|mygraveyard
 auto=moveTo(myhand)
-auto=draw:1
+auto=draw:1 controller
 text=Return target creature card from your graveyard to your hand.     Draw a card.
 mana={2}{B}
 type=Sorcery
@@ -30202,6 +30199,8 @@ toughness=2
 [card]
 name=Reminisce
 target=player
+# auto=moveTo(ownerlibrary) all(*|ownergraveyard)
+# Found one hardcoded and one softcoded copy of the card - todo: check whether softcoding works
 alias=129698
 text=Target player shuffles his or her graveyard into his or her library.
 mana={2}{U}
@@ -30542,8 +30541,8 @@ type=Sorcery
 [/card]
 [card]
 name=Reviving Dose
-auto=life:3
-auto=draw:1
+auto=life:3 controller
+auto=draw:1 controller
 text=You gain 3 life.   Draw a card.
 mana={2}{W}
 type=Instant
@@ -32990,7 +32989,7 @@ subtype=Aura
 [/card]
 [card]
 name=Serpent Warrior
-auto=life:-3
+auto=life:-controller
 text=When Serpent Warrior enters the battlefield, you lose 3 life.
 mana={2}{B}
 type=Creature
@@ -36587,7 +36586,7 @@ type=Sorcery
 [/card]
 [card]
 name=Starlight Invoker
-auto={7}{W}:life:5
+auto={7}{W}:life:5 controller
 text={7}{W}: You gain 5 life.
 mana={1}{W}
 type=Creature
@@ -38959,6 +38958,8 @@ subtype=Aura
 [card]
 name=The Hive
 auto={5}{T}:token(Wasp,creature artifact insect, 1/1,flying artifact)
+#auto={5},{T}:token(-1138)
+#Todo: find a good way to reconcile the new token syntax with the new primitives/reprints structure
 text={5}, {T}: Put a 1/1 Insect artifact creature token with flying named Wasp into play. (It can't be blocked except by creatures with flying or reach.)
 mana={5}
 type=Artifact
@@ -38991,7 +38992,7 @@ toughness=7
 [/card]
 [card]
 name=Theft of Dreams
-auto=foreach(creature[-tapped]|opponentBattlefield) draw:1
+auto=foreach(creature[tapped]|opponentBattlefield) draw:1
 text=Draw a card for each tapped creature target opponent controls.
 mana={2}{U}
 type=Sorcery
@@ -40965,7 +40966,7 @@ type=Instant
 [card]
 name=Untamed Wilds
 target=basic|myLibrary
-auto=moveTo(myInPlay)
+auto=moveTo(myBattlefield)
 text=Search your library for a basic land card and put that card onto the battlefield. Then shuffle your library.
 mana={2}{G}
 type=Sorcery
@@ -41574,7 +41575,7 @@ toughness=3
 [/card]
 [card]
 name=Venerable Monk
-auto=life:2
+auto=life:2 controller
 text=When Venerable Monk enters the battlefield, you gain 2 life.
 mana={2}{W}
 type=Creature
@@ -44618,7 +44619,7 @@ toughness=3
 [/card]
 [card]
 name=Wurm's Tooth
-auto=@movedTo(*[green]|stack): may life:1
+auto=@movedTo(*[green]|stack): may life:1 controller
 text=Whenever a player casts a green spell, you may gain 1 life.
 mana={2}
 type=Artifact
@@ -44734,7 +44735,7 @@ toughness=1
 [/card]
 [card]
 name=Yavimaya Enchantress
-auto=foreach(enchantment) 1/1
+auto=foreach(enchantment|battlefield) 1/1
 text=Yavimaya Enchantress gets +1/+1 for each enchantment on the battlefield.
 mana={2}{G}
 type=Creature
