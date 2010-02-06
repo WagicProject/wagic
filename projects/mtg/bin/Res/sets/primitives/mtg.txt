@@ -14781,7 +14781,7 @@ toughness=5
 [/card]
 [card]
 name=Ghost Warden
-auto={T}:1/1 target(creature[attacking;blocking])
+auto={T}:1/1 target(creature)
 text={T}: Target creature gets +1/+1 until end of turn.
 mana={1}{W}
 type=Creature
