@@ -705,6 +705,12 @@ public:
     return 1;
   }
 
+  const char * getMenuText(){
+    string s = "Token:";
+    s.append(name);
+    return s.c_str();
+  }
+
   virtual ostream& toString(ostream& out) const
   {
     out << "ATokenCreator ::: abilities : ?" // << abilities

@@ -22,6 +22,7 @@
 #ifdef WIN32
 
 	#include <windows.h>
+#define WITH_FMOD
 #elif defined (LINUX)
 #else
 
