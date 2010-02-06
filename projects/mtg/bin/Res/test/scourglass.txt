@@ -1,0 +1,18 @@
+#Bug:Scourglass
+[INIT]
+UNTAP
+[PLAYER1]
+inplay:scourglass
+[PLAYER2]
+inplay:mountain,plains,swamp,grizzly bears
+[DO]
+next
+scourglass
+[ASSERT]
+UPKEEP
+[PLAYER1]
+graveyard:scourglass
+[PLAYER2]
+inplay:mountain,plains,swamp
+graveyard:grizzly bears
+[END]

@@ -32296,7 +32296,7 @@ toughness=6
 [/card]
 [card]
 name=Scourglass
-auto={T}{S}:destroy all(*[-artifact;-land]) myUpkeepOnly
+auto={T}{S}:all(*[-artifact;-land]) destroy myUpkeepOnly
 text={T}, Sacrifice Scourglass: Destroy all permanents except for artifacts and lands. Play this ability only during your upkeep.
 mana={3}{W}{W}
 type=Artifact

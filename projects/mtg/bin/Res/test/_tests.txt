@@ -348,6 +348,7 @@ sacred_foundry_i275.txt
 safehold_duo.txt
 scourge_of_kher_ridges.txt
 scourge_of_kher_ridges2.txt
+scourglass.txt
 scouts_warning.txt
 sedge_sliver.txt
 seedcradle_witch.txt
