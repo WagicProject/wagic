@@ -1,0 +1,21 @@
+#Bug: Goblin Gardener
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:goblin gardener
+hand:terror
+manapool:{1}{B}
+[PLAYER2]
+inplay:forest
+[DO]
+terror
+goblin gardener
+choice 0
+forest
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:terror,goblin gardener
+[PLAYER2]
+graveyard:forest
+[END]

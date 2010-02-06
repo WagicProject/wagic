@@ -15523,7 +15523,7 @@ toughness=1
 [/card]
 [card]
 name=Goblin Gardener
-auto=@movedTo(this|graveyard) from(battlefield):destroy target(artifact)
+auto=@movedTo(this|graveyard) from(battlefield):destroy target(land)
 text=When Goblin Gardener is put into a graveyard from the battlefield, destroy target land.
 mana={3}{R}
 type=Creature
@@ -35081,8 +35081,7 @@ toughness=1
 [card]
 name=Slithering Shade
 auto={B}:1/1
-auto=defender
-auto=aslongas(*|myHand) -defender
+auto=aslongas(*|myHand) defender
 text=Defender (This creature can't attack.)   {B}: Slithering Shade gets +1/+1 until end of turn.   Hellbent - Slithering Shade can attack as though it didn't have defender as long as you have no cards in hand.
 mana={B}
 type=Creature

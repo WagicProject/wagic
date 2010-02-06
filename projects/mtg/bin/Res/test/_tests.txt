@@ -234,6 +234,7 @@ gnat_alley_creeper1.txt
 gnat_alley_creeper2.txt
 goblin_balloon_brigade.txt
 goblin_balloon_brigade2.txt
+goblin_gardener.txt
 goblin_king.txt
 goblin_lackey1.txt
 goblin_lackey2.txt
