@@ -503,7 +503,7 @@ text=[+1]: You gain 2 life.     [-1]: Put a +1/+1 counter on each creature you c
 mana={2}{W}{W}
 type=Planeswalker
 subtype=Ajani
-toughness=4
+loyalty=4
 [/card]
 [card]
 name=Ajani Vengeant
@@ -511,7 +511,7 @@ text=+1: Target permanent doesn't untap during its controller's next untap step.
 mana={2}{R}{W}
 type=Planeswalker
 subtype=Ajani
-toughness=3
+loyalty=3
 [/card]
 [card]
 name=Akki Blizzard-Herder
@@ -535,7 +535,8 @@ toughness=1
 name=Akki Lavarunner (Tok-Tok, Volcano Born)
 text=Protection from red If a red source would deal damage to a player, it deals that much damage plus 1 to that player instead.
 mana={3}{R}
-type=Legendary Creature ?EGoblin Shaman
+type=Legendary Creature
+subtype=Goblin Shaman
 power=2
 toughness=2
 [/card]
@@ -2349,11 +2350,10 @@ toughness=2
 [/card]
 [card]
 name=Azami, Lady of Scrolls
-abilities=legendary
 auto={0}:tap target(wizard[-tapped]|myinplay) && draw:1 #{0}activation costs don't work
 text=Tap an untapped Wizard you control: Draw a card.
 mana={2}{U}{U}{U}
-type=Creature
+type=Legendary Creature
 subtype=Human Wizard
 power=0
 toughness=2
@@ -2622,7 +2622,7 @@ type=Instant
 [card]
 name=Bant Sureblade
 text=As long as you control another multicolored permanent, Bant Sureblade gets +1/+1 and has first strike.
-mana={(}{G}{/}{U}{)}{W}
+mana={G/U}{W}
 type=Creature
 subtype=Human Soldier
 power=2
@@ -3497,7 +3497,7 @@ subtype=Equipment
 [card]
 name=Blinkmoth Infusion
 text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) Untap all artifacts.
-mana={1}{2}{U}{U}
+mana={12}{U}{U}
 type=Instant
 [/card]
 [card]
@@ -3539,8 +3539,8 @@ auto=@damaged(player)from (this):may moveto(ownerhand) target(*|opponentBattlefi
 auto=@damaged(player)from (this):may discard:1 opponent
 text=Flying Whenever Blizzard Specter deals combat damage to a player, choose one: That player returns a permanent he or she controls to its owner's hand; or that player discards a card.
 mana={2}{U}{B}
-type=Creature
-subtype=Specter Snow
+type=Snow Creature
+subtype=Specter
 power=2
 toughness=3
 [/card]
@@ -3998,8 +3998,8 @@ name=Boreal Centaur
 auto={0}:tap target(land[snow]|myBattlefield) && 1/1 limit:1
 text={S}i}: Boreal Centaur gets +1/+1 until end of turn. Activate this ability only once each turn. ({S}i} can be paid with one mana from a snow permanent.)
 mana={1}{G}
-type=Creature
-subtype=Centaur Warrior Snow
+type=Snow Creature
+subtype=Centaur Warrior
 power=2
 toughness=2
 [/card]
@@ -4007,8 +4007,8 @@ toughness=2
 name=Boreal Griffin
 text=Flying {S}i}: Boreal Griffin gains first strike until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
 mana={3}{W}{W}
-type=Creature
-subtype=Griffin Snow
+type=Snow Creature
+subtype=Griffin
 power=3
 toughness=2
 [/card]
@@ -4072,11 +4072,10 @@ type=Instant
 [/card]
 [card]
 name=Bounteous Kirin
-abilities=legendary
 auto=@movedto(arcane,spirit|mystack):
 text=Flying Whenever you cast a Spirit or Arcane spell, you may gain life equal to that spell's converted mana cost.
 mana={5}{G}{G}
-type=Creature
+type=Legendary Creature
 subtype=Kirin Spirit
 power=4
 toughness=4
@@ -4852,11 +4851,10 @@ toughness=1
 [/card]
 [card]
 name=Cabal Patriarch
-abilities=Legendary
 auto={2}{B}{S(creature|myinplay):-2/-2 target(creature)
 text={2}{B}, Sacrifice a creature: Target creature gets -2/-2 until end of turn.     {2}{B}, Remove a creature card in your graveyard from the game: Target creature gets -2/-2 until end of turn.
 mana={3}{B}{B}{B}
-type=Creature
+type=Legendary Creature
 subtype=Human Wizard
 power=5
 toughness=5
@@ -4987,7 +4985,7 @@ subtype=Arcane
 [/card]
 [card]
 name=Call of the Herd
-text=Put a 3/3 green Elephant creature token into play.     Flashback {3}{G} (You may play this card from your graveyard for its flashback cost. Then remove it from the game.)
+Put a 3/3 green Elephant creature token onto the battlefield. -- Flashback {3}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={2}{G}
 type=Sorcery
 [/card]
@@ -5497,11 +5495,10 @@ toughness=2
 [/card]
 [card]
 name=Celestial Kirin
-abilities=legendary
 auto=@movedto(arcane,spirit|mystack):
 text=Flying Whenever you cast a Spirit or Arcane spell, destroy all permanents with that spell's converted mana cost.
 mana={2}{W}{W}
-type=Creature
+type=Legendary Creature
 subtype=Kirin Spirit
 power=3
 toughness=3
@@ -5788,6 +5785,7 @@ text=+1: Discard a card. If a red card is discarded this way, Chandra Ablaze dea
 mana={4}{R}{R}
 type=Planeswalker
 subtype=Chandra
+loyalty=5
 [/card]
 [card]
 name=Chandra Nalaar
@@ -5795,7 +5793,7 @@ text=[+1]: Chandra Nalaar deals 1 damage to target player.     [-X]: Chandra Nal
 mana={3}{R}{R}
 type=Planeswalker
 subtype=Chandra
-toughness=6
+loyalty=6
 [/card]
 [card]
 name=Change of Heart
@@ -6007,8 +6005,8 @@ toughness=1
 name=Chilling Shade
 text=Flying {S}i}: Chilling Shade gets +1/+1 until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
 mana={2}{B}
-type=Creature
-subtype=Shade Snow
+type=Snow Creature
+subtype=Shade
 power=1
 toughness=1
 [/card]
@@ -6150,10 +6148,9 @@ type=Instant
 [/card]
 [card]
 name=Chorus of the Conclave
-abilities=legendary
 text=Forestwalk     As an additional cost to play creature spells, you may pay any amount of mana. If you do, that creature comes into play with that many additional +1/+1 counters on it.
 mana={4}{G}{G}{W}{W}
-type=Creature
+type=Legendary Creature
 subtype=Dryad
 power=3
 toughness=8
@@ -6191,11 +6188,11 @@ toughness=3
 [/card]
 [card]
 name=Chromium
-abilities=flying,Legendary
+abilities=flying
 auto=rampage(2/2,1)
 text=Flying     Rampage 2 (Whenever this creature becomes blocked, it gets +2/+2 until end of turn for each creature blocking it beyond the first.)  At the beginning of your upkeep, sacrifice Chromium unless you pay {W}{U}{B}.
 mana={2}{W}{W}{U}{U}{B}{B}
-type=Creature
+type=Legendary Creature
 subtype=Elder Dragon
 power=7
 toughness=7
@@ -6342,10 +6339,9 @@ toughness=2
 [/card]
 [card]
 name=Circu, Dimir Lobotomist
-abilities=legendary
 text=Whenever you play a blue spell, remove the top card of target library from the game.     Whenever you play a black spell, remove the top card of target library from the game.     Your opponents can't play nonland cards with the same name as a card removed from the game with Circu, Dimir Lobotomist.
 mana={2}{U}{B}
-type=Creature
+type=Legendary Creature
 subtype=Human Wizard
 power=2
 toughness=3
@@ -6583,11 +6579,10 @@ toughness=3
 [/card]
 [card]
 name=Cloudhoof Kirin
-abilities=legendary
 auto=@movedto(arcane,spirit|mystack):
 text=Flying Whenever you cast a Spirit or Arcane spell, you may put the top X cards of target player's library into his or her graveyard, where X is that spell's converted mana cost.
 mana={3}{U}{U}
-type=Creature
+type=Legendary Creature
 subtype=Kirin Spirit
 power=4
 toughness=4
@@ -6604,7 +6599,7 @@ toughness=2
 [card]
 name=Cloudstone Curio
 text=Whenever a nonartifact permanent enters the battlefield under your control, you may return another permanent you control that shares a card type with it to its owner's hand.
-mana={1}
+mana={3}
 type=Artifact
 [/card]
 [card]
@@ -7613,12 +7608,11 @@ toughness=6
 [/card]
 [card]
 name=Crovax the Cursed
-abilities=legendary
 auto=counter(1/1,4)
 auto=may
 text=Crovax the Cursed enters the battlefield with four +1/+1 counters on it. At the beginning of your upkeep, you may sacrifice a creature. If you do, put a +1/+1 counter on Crovax. If you don't, remove a +1/+1 counter from Crovax. {B}: Crovax gains flying until end of turn.
 mana={2}{B}{B}
-type=Creature
+type=Legendary Creature
 subtype=Vampire
 power=0
 toughness=0
@@ -7872,7 +7866,7 @@ type=Instant
 [card]
 name=Crystallization
 text=Enchant creature Enchanted creature can't attack or block. When enchanted creature becomes the target of a spell or ability, remove that creature from the game.
-mana={(}{G}{/}{U}{)}{W}
+mana={G/U}{W}
 type=Enchantment
 subtype=Aura
 [/card]
@@ -8192,10 +8186,9 @@ toughness=4
 [/card]
 [card]
 name=Darien, King of Kjeldor
-abilities=Legendary
 text=Whenever you're dealt damage, you may put that many 1/1 white Soldier creature tokens onto the battlefield.
 mana={4}{W}{W}
-type=Creature
+type=Legendary Creature
 subtype=Human Soldier
 power=3
 toughness=3
@@ -8385,10 +8378,9 @@ type=Instant
 [/card]
 [card]
 name=Daughter of Autumn
-abilities=legendary
 text={W}: The next 1 damage that would be dealt to target white creature this turn is dealt to Daughter of Autumn instead.
 mana={2}{G}{G}
-type=Creature
+type=Legendary Creature
 subtype=Avatar
 power=2
 toughness=4
@@ -9341,8 +9333,8 @@ type=Sorcery
 name=Diamond Faerie
 text=Flying {1}{S}i}: Snow creatures you control get +1/+1 until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
 mana={2}{G}{W}{U}
-type=Creature
-subtype=Faerie Snow
+type=Snow Creature
+subtype=Faerie
 power=3
 toughness=3
 [/card]
@@ -9514,7 +9506,6 @@ type=Instant
 name=Disintegrate
 text=Disintegrate deals X damage to target creature or player. That creature can't be regenerated this turn. If the creature would be put into a graveyard this turn, remove it from the game instead.
 mana={X}{R}
-color=Red
 type=Sorcery
 [/card]
 [card]
@@ -9686,7 +9677,7 @@ toughness=4
 [card]
 name=Djinn Illuminatus
 text=({(u/r)} can be paid with either {U} or {R}.) Flying Each instant and sorcery spell you cast has replicate. The replicate cost is equal to its mana cost. (When you cast it, copy it for each time you paid its replicate cost. You may choose new targets for the copies.)
-mana={5}{(}{U}{/}{R}{)}{(}{U}{/}{R}{)}
+mana={5}{UR}{UR}
 type=Creature
 subtype=Djinn
 power=3
@@ -9721,7 +9712,6 @@ name=Dogged Hunter
 auto={T}:destroy target(token)
 text=Tap: Destroy target creature token.
 mana={2}{W}
-color=white
 type=Creature
 subtype=Human Nomad
 power=1
@@ -9849,7 +9839,7 @@ type=Enchantment
 [card]
 name=Dovescape
 text=({(w/u)} can be paid with either {W} or {U}.) Whenever a player casts a noncreature spell, counter that spell. That player puts X 1/1 white and blue Bird creature tokens with flying onto the battlefield, where X is the spell's converted mana cost.
-mana={3}{(}{W}{/}{U}{)}{(}{W}{/}{U}{)}{(}{W}{/}{U}{)}
+mana={3}{WU}{WU}{WU}
 type=Enchantment
 [/card]
 [card]
@@ -9861,7 +9851,7 @@ type=Instant
 [card]
 name=Draco
 text=Domain 窶・Draco costs {2} less to cast for each basic land type among lands you control. Flying Domain 窶・At the beginning of your upkeep, sacrifice Draco unless you pay {1}0}. This cost is reduced by {2} for each basic land type among lands you control.
-mana={1}{6}
+mana={16}
 type=Artifact Creature
 subtype=Dragon
 power=9
@@ -10014,7 +10004,7 @@ name=Dralnu, Lich Lord
 text=If damage would be dealt to Dralnu, sacrifice that many permanents instead.  {T}: Target instant or sorcery card in your graveyard gains flashback until end of turn. The flashback cost is equal to its mana cost. (You may play that card from your graveyard for its flashback cost. Then remove it from the game.)
 mana={3}{U}{B}
 type=Legendary Creature
-subtype=Zombie
+subtype=Zombie Wizard
 power=3
 toughness=3
 [/card]
@@ -11009,7 +10999,7 @@ text=+1: Put a 1/1 white Soldier creature token into play.     +1: Target creatu
 mana={2}{W}{W}
 type=Planeswalker
 subtype=Elspeth
-toughness=4
+loyalty=4
 [/card]
 [card]
 name=Elven Rite
@@ -11700,7 +11690,7 @@ toughness=3
 [card]
 name=Esper Stormblade
 text=As long as you control another multicolored permanent, Esper Stormblade gets +1/+1 and has flying.
-mana={(}{W}{/}{B}{)}{U}
+mana={WB}{U}
 type=Artifact Creature
 subtype=Vedalken Wizard
 power=2
@@ -12157,8 +12147,8 @@ auto=@movedTo(*|mystack):may token(Elemental,creature elemental,4/4,green) oppon
 ###opponentTurnOnly does not work here! (0.10.1)
 text=Whenever an opponent casts a blue spell during your turn, you may put a 4/4 green Elemental creature token onto the battlefield.
 mana={1}{G}
-type=Enchantment
-subtype=Tribal Elemental
+type=Tribal Enchantment
+subtype=Elemental
 [/card]
 [card]
 name=Fa'adiyah Seer
@@ -12275,7 +12265,8 @@ toughness=2
 name=Faithful Squire (Kaiso, Memory of Loyalty)
 text=Flying Remove a ki counter from Kaiso, Memory of Loyalty: Prevent all damage that would be dealt to target creature this turn.
 mana={1}{W}{W}
-type=Legendary Creature 窶・Spirit
+type=Legendary Creature
+subtype=Spirit
 power=3
 toughness=4
 [/card]
@@ -13775,7 +13766,6 @@ type=Artifact
 name=Fork
 text=Copy target instant or sorcery spell, except that it copies Fork's color. You may choose new targets for the copy.
 mana={R}{R}
-color=Red
 type=Instant
 [/card]
 [card]
@@ -14287,7 +14277,6 @@ toughness=1
 name=Gaea's Liege
 text=As long as Gaea's Liege isn't attacking, its power and toughness are each equal to the number of Forests you control. As long as Gaea's Liege is attacking, its power and toughness are each equal to the number of Forests defending player controls.     {T}: Target land becomes a Forest until Gaea's Liege leaves play.
 mana={3}{G}{G}{G}
-color=Green
 type=Creature
 subtype=Avatar
 power=*
@@ -14324,7 +14313,6 @@ auto=first strike
 auto=Damage:3 target(creature,player)
 text=Enchant creature     When Galvanic Arc comes into play, it deals 3 damage to target creature or player.        Enchanted creature has first strike.
 mana={2}{R}
-color=Red
 type=Enchantment
 subtype=Aura
 [/card]
@@ -14382,15 +14370,14 @@ text=[+1]: Untap two target lands.     [-1]: Put a 3/3 green Beast creature toke
 mana={2}{G}{G}
 type=Planeswalker
 subtype=Garruk
-toughness=3
+loyalty=3
 [/card]
 [card]
 name=Garza Zol, Plague Queen
-abilities=Legendary
 auto=@damaged(player) from(this):may draw:1 controller
 text=Flying, haste Whenever a creature dealt damage by Garza Zol, Plague Queen this turn is put into a graveyard, put a +1/+1 counter on Garza Zol. Whenever Garza Zol deals combat damage to a player, you may draw a card.
 mana={4}{U}{B}{R}
-type=Creature
+type=Legendary Creature
 subtype=Vampire
 power=5
 toughness=5
@@ -14493,8 +14480,8 @@ type=Instant
 name=Gelid Shackles
 text=Enchant creature Enchanted creature can't block and its activated abilities can't be activated. {S}i}: Enchanted creature gains defender until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
 mana={W}
-type=Enchantment
-subtype=Aura Snow
+type=Snow Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Gemini Engine
@@ -14940,8 +14927,8 @@ type=Land
 name=Glacial Plating
 text=Enchant creature Cumulative upkeep {S}i} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it. {S}i} can be paid with one mana from a snow permanent.) Enchanted creature gets +3/+3 for each age counter on Glacial Plating.
 mana={2}{W}{W}
-type=Enchantment
-subtype=Aura Snow
+type=Snow Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Glacial Ray
@@ -15114,7 +15101,6 @@ type=Sorcery
 name=Gloom
 text=White spells and activated abilities of white enchantments cost {3} more to play.
 mana={2}{B}
-color=Black
 type=Enchantment
 [/card]
 [card]
@@ -15520,8 +15506,8 @@ toughness=1
 name=Goblin Rimerunner
 text={T}: Target creature can't block this turn. {S}i}: Goblin Rimerunner gains haste until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
 mana={2}{R}
-type=Creature
-subtype=Goblin Warrior Snow
+type=Snow Creature
+subtype=Goblin Warrior
 power=2
 toughness=2
 [/card]
@@ -16319,7 +16305,7 @@ type=Instant
 [card]
 name=Grixis Grimblade
 text=As long as you control another multicolored permanent, Grixis Grimblade gets +1/+1 and has deathtouch. (Whenever it deals damage to a creature, destroy that creature.)
-mana={(}{U}{/}{R}{)}{B}
+mana={UR}{B}
 type=Creature
 subtype=Zombie Warrior
 power=2
@@ -16465,7 +16451,6 @@ toughness=2
 name=Guardian Angel
 text=Prevent the next X damage that would be dealt to target creature or player this turn. Until end of turn, you may pay {1} any time you could play an instant. If you do, prevent the next 1 damage that would be dealt to that creature or player this turn.
 mana={X}{W}
-color=White
 type=Instant
 [/card]
 [card]
@@ -16664,13 +16649,14 @@ toughness=4
 [card]
 name=Guul Draz Specter
 auto=aslongas(*|opponenthand):-3/-3
+# above rule would need P/T to be modified to 5/5 to work
 alias=1165
 text=Flying Guul Draz Specter gets +3/+3 as long as an opponent has no cards in hand. Whenever Guul Draz Specter deals combat damage to a player, that player discards a card.
 mana={2}{B}{B}
 type=Creature
 subtype=Specter
-power=5
-toughness=5
+power=2
+toughness=2
 [/card]
 [card]
 name=Guul Draz Vampire
@@ -16701,10 +16687,9 @@ toughness=2
 [/card]
 [card]
 name=Haakon, Stromgald Scourge
-abilities=Legendary
 text=You may cast Haakon, Stromgald Scourge from your graveyard, but not from anywhere else. As long as Haakon is on the battlefield, you may play Knight cards from your graveyard. When Haakon is put into a graveyard from the battlefield, you lose 2 life.
 mana={1}{B}{B}
-type=Creature
+type=Legendary Creature
 subtype=Zombie Knight
 power=3
 toughness=3
@@ -16835,11 +16820,10 @@ subtype=Equipment
 [/card]
 [card]
 name=Hammerheim
-abilities=legendary
 auto={T}:Add {R}
 auto={T}:-plainswalk && -islandwalk && -swampwalk && -mountainwalk && -forestwalk target(creature)
 text={T}: Add {R} to your mana pool.   {T}: Target creature loses all landwalk abilities until end of turn.
-type=Land
+type=Legendary Land
 [/card]
 [card]
 name=Hammerheim Deadeye
@@ -17066,7 +17050,7 @@ auto=@next my upkeep:foreach(land|myBattlefield) token(Sand Warrior,Creature San
 auto=@movedTo(this|graveyard,exile,library,hand) from(battlefield):moveto(exile) all(sand warrior)
 ####PROBLEM: The token effect triggers at each controllers upkeep.
 text=When Hazezon Tamar enters the battlefield, put X 1/1 Sand Warrior creature tokens that are red, green, and white onto the battlefield at the beginning of your next upkeep, where X is the number of lands you control at that time.   When Hazezon leaves the battlefield, exile all Sand Warriors.
-mana={G}
+mana={4}{R}{G}{W}
 type=Legendary Creature
 subtype=Human Warrior
 power=2
@@ -17785,10 +17769,9 @@ toughness=4
 [/card]
 [card]
 name=Homura, Human Ascendant (Homura's Essence)
-abilities=legendary
 text=Creatures you control get +2/+2 and have flying and {R}: This creature gets +1/+0 until end of turn
 mana={4}{R}{R}
-type=Enchantment
+type=Legendary Enchantment
 power=2
 toughness=2
 [/card]
@@ -18123,6 +18106,7 @@ toughness=3
 name=Hypergenesis
 text=Hypergenesis is green. Suspend 3?{1}{G}{G} Starting with you, each player may put an artifact, creature, enchantment, or land card from his or her hand into play. Repeat this process until no one puts a card into play.
 mana={0}
+color=green
 type=Sorcery
 [/card]
 [card]
@@ -18498,7 +18482,7 @@ toughness=3
 [card]
 name=Impending Disaster
 text=At the beginning of your upkeep, if there are seven or more lands on the battlefield, sacrifice Impending Disaster. If you do, destroy all lands.
-mana={G}
+mana={1}{R}
 type=Enchantment
 [/card]
 [card]
@@ -18781,11 +18765,10 @@ type=Sorcery
 [/card]
 [card]
 name=Infernal Kirin
-abilities=legendary
 auto=@movedto(arcane,spirit|mystack):
 text=Flying Whenever you cast a Spirit or Arcane spell, target player reveals his or her hand and discards all cards with that spell's converted mana cost.
 mana={2}{B}{B}
-type=Creature
+type=Legendary Creature
 subtype=Kirin Spirit
 power=3
 toughness=3
@@ -19036,7 +19019,7 @@ auto=@movedTo(wizard|mystack):may untap
 auto={T}:draw:1 && moveto(graveyard) target(*|myhand)
 #Draw a card, then discard a card works but discard happen first, which is incorrect
 text=Flash. Flying. Whenever you cast a Wizard spell, you may untap Inspired Sprite. {T}: Draw a card, then discard a card.
-mana={U}{3}
+mana={3}{U}
 type=Creature
 subtype=Faerie Wizard
 power=2
@@ -19198,10 +19181,9 @@ toughness=2
 [/card]
 [card]
 name=Irini Sengir
-abilities=legendary
 text=White enchantment spells and green enchantment spells cost {2} more to cast.
 mana={2}{B}{B}
-type=Creature
+type=Legendary Creature
 subtype=Vampire Dwarf
 power=2
 toughness=2
@@ -19368,7 +19350,7 @@ toughness=*
 [card]
 name=Izzet Guildmage
 text=({(u/r)} can be paid with either {U} or {R}.) {2}{U}: Copy target instant spell you control with converted mana cost 2 or less. You may choose new targets for the copy. {2}{R}: Copy target sorcery spell you control with converted mana cost 2 or less. You may choose new targets for the copy.
-mana={(}{U}{/}{R}{)}{(}{U}{/}{R}{)}
+mana={UR}{UR}
 type=Creature
 subtype=Human Wizard
 power=2
@@ -19392,7 +19374,7 @@ text=[+2]: Each player draws a card.     [-1]: Target player draws a card.     [
 mana={1}{U}{U}
 type=Planeswalker
 subtype=Jace
-toughness=3
+loyalty=3
 [/card]
 [card]
 name=Jace, the Mind Sculptor
@@ -19423,7 +19405,6 @@ toughness=5
 name=Jade Monolith
 text={1}: The next time a source of your choice would deal damage to target creature this turn, that source deals that damage to you instead.
 mana={4}
-color=Artifact
 type=Artifact
 [/card]
 [card]
@@ -19728,7 +19709,7 @@ type=Artifact
 [card]
 name=Jund Hackblade
 text=As long as you control another multicolored permanent, Jund Hackblade gets +1/+1 and has haste.
-mana={(}{B}{/}{G}{)}{R}
+mana={BG}{R}
 type=Creature
 subtype=Goblin Berserker
 power=2
@@ -19801,7 +19782,8 @@ toughness=2
 name=Jushi Apprentice (Tomoya the Revealer)
 text={3}{U}{U}, {T}: Target player draws X cards, where X is the number of cards in your hand.
 mana={1}{U}
-type=Legendary Creature ?EHuman Wizard
+type=Legendary Creature
+subtype=Human Wizard
 power=2
 toughness=3
 [/card]
@@ -19981,12 +19963,12 @@ toughness=5
 [/card]
 [card]
 name=Karona, False God
-abilities=Legendary,haste
+abilities=haste
 auto=@each my upkeep:moveto(myBattlefield)
 auto=@each opponent upkeep:moveto(opponentBattlefield)
 text=Haste At the beginning of each player's upkeep, that player untaps Karona, False God and gains control of it. Whenever Karona attacks, creatures of the creature type of your choice get +3/+3 until end of turn.
 mana={1}{W}{U}{B}{R}{G}
-type=Creature
+type=Legendary Creature
 subtype=Avatar
 power=5
 toughness=5
@@ -21464,10 +21446,9 @@ subtype=Aura
 [/card]
 [card]
 name=Latulla, Keldon Overseer
-abilities=legendary
 text={X}{R}, {T}, Discard two cards: Latulla, Keldon Overseer deals X damage to target creature or player.
 mana={3}{R}{R}
-type=Creature
+type=Legendary Creature
 subtype=Human Spellshaper
 power=3
 toughness=3
@@ -21796,7 +21777,6 @@ type=Sorcery
 name=Library of Leng
 text=You have no maximum hand size.     If an effect causes you to discard a card, discard it, but you may put it on top of your library instead of into your graveyard.
 mana={1}
-color=Artifact
 type=Artifact
 [/card]
 [card]
@@ -22048,7 +22028,7 @@ text=[+1]: Target player discards a card.     [-2]: Search your library for a ca
 mana={3}{B}{B}
 type=Planeswalker
 subtype=Liliana
-toughness=5
+loyalty=5
 [/card]
 [card]
 name=Lilting Refrain
@@ -22382,10 +22362,9 @@ toughness=2
 [/card]
 [card]
 name=Lord of Tresserhorn
-abilities=legendary
 text=When Lord of Tresserhorn enters the battlefield, you lose 2 life and sacrifice two creatures, and an opponent draws two cards. {B}: Regenerate Lord of Tresserhorn.
 mana={1}{U}{B}{R}
-type=Creature
+type=Legendary Creature
 subtype=Zombie
 power=10
 toughness=4
@@ -22703,12 +22682,11 @@ toughness=3
 [/card]
 [card]
 name=Lyzolda, the Blood Witch
-abilities=legendary
 auto={2}{S(creature[red]|myBattlefield)}:damage:2 target(creature,player)
 auto={2}{S(creature[black]|myBattlefield)}:draw: 1 controller
 text={2}, Sacrifice a creature: Lyzolda, the Blood Witch deals 2 damage to target creature or player if the sacrificed creature was red. Draw a card if the sacrificed creature was black.
 mana={1}{B}{R}
-type=Creature
+type=Legendary Creature
 subtype=Human Cleric
 power=3
 toughness=1
@@ -22830,10 +22808,9 @@ type=Instant
 [/card]
 [card]
 name=Mageta the Lion
-abilities=Legendary
 text={2}{W}{W}, {T}, Discard two cards: Destroy all creatures except for Mageta the Lion. Those creatures can't be regenerated.
 mana={3}{W}{W}
-type=Creature
+type=Legendary Creature
 subtype=Human Spellshaper
 power=3
 toughness=3
@@ -22848,7 +22825,6 @@ type=Artifact
 name=Magical Hack
 text=Change the text of target spell or permanent by replacing all instances of one basic land type with another. (For example, you may change "swampwalk" to "plainswalk.") (This effect doesn't end at end of turn.)
 mana={U}
-color=Blue
 type=Instant
 [/card]
 [card]
@@ -23151,7 +23127,6 @@ type=Enchantment
 name=Mana Flare
 text=Whenever a player taps a land for mana, that player adds one mana of that type to his or her mana pool.
 mana={2}{R}
-color=Red
 type=Enchantment
 [/card]
 [card]
@@ -24464,7 +24439,7 @@ toughness=*
 [card]
 name=Minister of Impediments
 text=({(w/u)} can be paid with either {W} or {U}.) {T}: Tap target creature.
-mana={2}{(}{W}{/}{U}{)}
+mana={2}{WU}
 type=Creature
 subtype=Human Advisor
 power=1
@@ -24520,10 +24495,9 @@ type=Sorcery
 [/card]
 [card]
 name=Miren, the Moaning Well
-abilities=legendary
 auto={T}:add {1}
 text={T}: Add {1} to your mana pool. {3}, {T}, Sacrifice a creature: You gain life equal to the sacrificed creature's toughness.
-type=Land
+type=Legendary Land
 [/card]
 [card]
 name=Mirozel
@@ -25113,7 +25087,7 @@ name=Monkey Cage
 auto=@movedTo(creature[-token]|battlefield):token(Ape,creature ape, 2/2,green)*manacost && bury
 ####Tested. Causes infinite loops no matter how the autoline is coded.
 text=When a creature comes into play, sacrifice Monkey Cage and put into play a number of 2/2 green Ape creature tokens equal to that creature's converted mana cost.
-mana={1}
+mana={5}
 type=Artifact
 [/card]
 [card]
@@ -25543,7 +25517,7 @@ toughness=4
 [card]
 name=Mycosynth Golem
 text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) Artifact creature spells you cast have affinity for artifacts. (They cost {1} less to cast for each artifact you control.)
-mana={1}{1}
+mana={11}
 type=Artifact Creature
 subtype=Golem
 power=4
@@ -25931,7 +25905,7 @@ type=Enchantment
 [card]
 name=Naya Hushblade
 text=As long as you control another multicolored permanent, Naya Hushblade gets +1/+1 and has shroud. (It can't be the target of spells or abilities.)
-mana={(}{R}{/}{W}{)}{G}
+mana={RW}{G}
 type=Creature
 subtype=Elf Rogue
 power=2
@@ -26146,7 +26120,6 @@ name=Nether Shadow
 abilities=haste
 text=Haste       At the beginning of your upkeep, if Nether Shadow is in your graveyard with three creature cards above it, you may put Nether Shadow into play.
 mana={B}{B}
-color=Black
 type=Creature
 subtype=Spirit
 power=1
@@ -26194,7 +26167,6 @@ subtype=Aura
 name=Nettling Imp
 text={T}: Target non-Wall creature the active player controls attacks this turn, if able. At end of turn, if that creature didn't attack this turn, destroy it. Ignore this effect if that player didn't control the creature continuously since the beginning of the turn. Play this ability only during an opponent's turn before attackers are declared.
 mana={2}{B}
-color=Black
 type=Creature
 subtype=Imp
 power=1
@@ -26304,7 +26276,7 @@ text=+3: Destroy target noncreature permanent.     -2: Gain control of target cr
 mana={4}{U}{B}{B}{R}
 type=Planeswalker
 subtype=Bolas
-toughness=5
+loyalty=5
 [/card]
 [card]
 name=Night // Day (Day)
@@ -26468,6 +26440,7 @@ text=+1: Search your library for a card named Nissa's Chosen and put it onto the
 mana={2}{G}{G}
 type=Planeswalker
 subtype=Nissa
+loyalty=2
 [/card]
 [card]
 name=Nissa's Chosen
@@ -26480,12 +26453,12 @@ toughness=3
 [/card]
 [card]
 name=Niv-Mizzet, the Firemind
-abilities=legendary,flying
+abilities=flying
 auto=@movedTo(*|myhand) from(mylibrary):damage:1 target(creature,player)
 auto={T}:draw:1
 text=Flying. Whenever you draw a card, Niv-Mizzet, the Firemind deals 1 damage to target creature or player. {T}: Draw a card.
 mana={2}{U}{U}{R}{R}
-type=Creature
+type=Legendary Creature
 subtype=Dragon Wizard
 power=4
 toughness=4
@@ -27562,7 +27535,8 @@ toughness=1
 name=Orochi Eggwatcher (Shidako, Broodmistress)
 text={G}, Sacrifice a creature: Target creature gets +3/+3 until end of turn.
 mana={2}{G}
-type=Legendary Creature ?ESnake Shaman
+type=Legendary Creature
+subtype=Snake Shaman
 power=3
 toughness=3
 [/card]
@@ -28429,9 +28403,8 @@ type=Sorcery
 name=Personal Incarnation
 text={0}: The next 1 damage that would be dealt to Personal Incarnation this turn is dealt to its owner instead. Any player may play this ability, but only if he or she owns Personal Incarnation.     When Personal Incarnation is put into a graveyard from play, its owner loses half his or her life, rounded up.
 mana={3}{W}{W}{W}
-color=White
 type=Creature
-subtype=Avatar
+subtype=Avatar Incarnation
 power=6
 toughness=6
 [/card]
@@ -28478,7 +28451,7 @@ toughness=6
 [card]
 name=Petrahydrox
 text=({(u/r)} can be paid with either {U} or {R}.) When Petrahydrox becomes the target of a spell or ability, return Petrahydrox to its owner's hand.
-mana={3}{(}{U}{/}{R}{)}
+mana={3}{UR}
 type=Creature
 subtype=Weird
 power=3
@@ -28541,9 +28514,8 @@ name=Phantasmal Forces
 abilities=flying
 text=Flying       At the beginning of your upkeep, sacrifice Phantasmal Forces unless you pay {U}.
 mana={3}{U}
-color=Blue
 type=Creature
-subtype=Phantasm
+subtype=Illusion
 power=4
 toughness=1
 [/card]
@@ -28649,7 +28621,7 @@ name=Phobian Phantasm
 abilities=Flying,Fear
 text=Flying; fear (This creature can't be blocked except by artifact creatures and/or black creatures.) Cumulative upkeep {B} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
 mana={1}{B}{B}
-type=Creatureｨ
+type=Creature
 subtype=Illusion
 power=3
 toughness=3
@@ -28744,8 +28716,8 @@ name=Phyrexian Ironfoot
 auto=doesnotuntap
 text=Phyrexian Ironfoot doesn't untap during your untap step. {1}{S}i}: Untap Phyrexian Ironfoot. ({S}i} can be paid with one mana from a snow permanent.)
 mana={3}
-type=Artifact Creature
-subtype=Construct Snow
+type=Snow Artifact Creature
+subtype=Construct
 power=3
 toughness=4
 [/card]
@@ -28826,8 +28798,8 @@ name=Phyrexian Snowcrusher
 auto=mustattack
 text=Phyrexian Snowcrusher attacks each turn if able. {1}{S}i}: Phyrexian Snowcrusher gets +1/+0 until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
 mana={6}
-type=Artifact Creature
-subtype=Juggernaut Snow
+type=Snow Artifact Creature
+subtype=Juggernaut
 power=6
 toughness=5
 [/card]
@@ -28835,8 +28807,8 @@ toughness=5
 name=Phyrexian Soulgorger
 text=Cumulative upkeep祐acrifice a creature. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
 mana={3}
-type=Artifact Creature
-subtype=Construct Snow
+type=Snow Artifact Creature
+subtype=Construct
 power=8
 toughness=8
 [/card]
@@ -29776,14 +29748,14 @@ type=Sorcery
 [/card]
 [card]
 name=Progenitus
-abilities=legendary,shroud,unblockable,protection from white,protection from blue,protection from black,protection from red,protection from green
+abilities=shroud,unblockable,protection from white,protection from blue,protection from black,protection from red,protection from green
 auto=@movedTo(this|graveyard):moveTo(ownerlibrary) && shuffle
 ####
 ####The auto-line does not work for now! :( (0.9.1)
 ####
 text=Protection from everything   If Progenitus would be put into a graveyard from anywhere, reveal Progenitus and shuffle it into its owner's library instead.
 mana={W}{W}{U}{U}{B}{B}{R}{R}{G}{G}
-type=Creature
+type=Legendary Creature
 subtype=Hydra Avatar
 power=10
 toughness=10
@@ -30968,11 +30940,11 @@ toughness=4
 [/card]
 [card]
 name=Rashka the Slayer
-abilities=legendary,reach
+abilities=reach
 auto=@blocked(creature[black]) from(this):1/2
 text=Reach (This creature can block creatures with flying.) Whenever Rashka blocks one or more black creatures, Rashka gets +1/+2 until end of turn.
 mana={3}{W}{W}
-type=Creature
+type=Legendary Creature
 subtype=Human Archer
 power=3
 toughness=3
@@ -31959,7 +31931,6 @@ type=Sorcery
 name=Reverse Damage
 text=The next time a source of your choice would deal damage to you this turn, prevent that damage. You gain life equal to the damage prevented this way.
 mana={1}{W}{W}
-color=White
 type=Instant
 [/card]
 [card]
@@ -32198,15 +32169,15 @@ type=Enchantment
 name=Rime Transfusion
 text=Enchant creature Enchanted creature gets +2/+1 and has ｫ{S}i}: This creature can't be blocked this turn except by snow creatures.ｻ ({S}i} can be paid with one mana from a snow permanent.)
 mana={1}{B}
-type=Enchantment
-subtype=Aura Snow
+type=Snow Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Rimebound Dead
 text={S}i}: Regenerate Rimebound Dead. ({S}i} can be paid with one mana from a snow permanent.)
 mana={B}
-type=Creature
-subtype=Skeleton Snow
+type=Snow Creature
+subtype=Skeleton
 power=1
 toughness=1
 [/card]
@@ -32214,8 +32185,8 @@ toughness=1
 name=Rimefeather Owl
 text=Flying Rimefeather Owl's power and toughness are each equal to the number of snow permanents on the battlefield. {1}{S}i}: Put an ice counter on target permanent. Permanents with ice counters on them are snow.
 mana={5}{U}{U}
-type=Creature
-subtype=Bird Snow
+type=Snow Creature
+subtype=Bird
 power=*
 toughness=*
 [/card]
@@ -32223,8 +32194,8 @@ toughness=*
 name=Rimehorn Aurochs
 text=Trample Whenever Rimehorn Aurochs attacks, it gets +1/+0 until end of turn for each other attacking Aurochs. {2}{S}i}: Target creature blocks target creature this turn if able. ({S}i} can be paid with one mana from a snow permanent.)
 mana={4}{G}
-type=Creature
-subtype=Aurochs Snow
+type=Snow Creature
+subtype=Aurochs
 power=3
 toughness=3
 [/card]
@@ -32232,8 +32203,8 @@ toughness=3
 name=Rimescale Dragon
 text=Flying {2}{S}i}: Tap target creature and put an ice counter on it. ({S}i} can be paid with one mana from a snow permanent.) Creatures with ice counters on them don't untap during their controllers' untap steps.
 mana={5}{R}{R}
-type=Creature
-subtype=Dragon Snow
+type=Snow Creature
+subtype=Dragon
 power=5
 toughness=5
 [/card]
@@ -32587,7 +32558,6 @@ toughness=1
 name=Rock Hydra
 text=Rock Hydra comes into play with X +1/+1 counters on it.       For each 1 damage that would be dealt to Rock Hydra, if it has a +1/+1 counter on it, remove a +1/+1 counter from it and prevent that 1 damage.       {R}: Prevent the next 1 damage that would be dealt to Rock Hydra this turn.       {R}{R}{R}: Put a +1/+1 counter on Rock Hydra. Play this ability only during your upkeep.
 mana={X}{R}{R}
-color=Red
 type=Creature
 subtype=Hydra
 power=0
@@ -32723,8 +32693,8 @@ abilities=cantattack
 auto=aslongas(land[snow]|opponentBattlefield)-cantattack
 text=Ronom Serpent can't attack unless defending player controls a snow land. When you control no snow lands, sacrifice Ronom Serpent.
 mana={5}{U}
-type=Creature
-subtype=Serpent Snow
+type=Snow Creature
+subtype=Serpent
 power=5
 toughness=6
 [/card]
@@ -33762,7 +33732,7 @@ text=+1: Creatures you control get +1/+1 and gain haste until end of turn.     -
 mana={2}{R}{G}
 type=Planeswalker
 subtype=Sarkhan
-toughness=4
+loyalty=4
 [/card]
 [card]
 name=Sarpadian Empires, Vol. VII
@@ -33994,9 +33964,8 @@ type=Instant
 name=Scavenging Ghoul
 text=At end of turn, put a corpse counter on Scavenging Ghoul for each creature put into a graveyard from play that turn.       Remove a corpse counter from Scavenging Ghoul: Regenerate Scavenging Ghoul.
 mana={3}{B}
-color=Black
 type=Creature
-subtype=Ghoul
+subtype=Zombie
 power=2
 toughness=2
 [/card]
@@ -34224,8 +34193,7 @@ type=Artifact
 [card]
 name=Scrying Sheets
 text={T}: Add {1} to your mana pool. {1}{S}i}, {T}: Look at the top card of your library. If that card is snow, you may reveal it and put it into your hand. ({S}i} can be paid with one mana from a snow permanent.)
-type=Land
-subtype=Snow
+type=Snow Land
 [/card]
 [card]
 name=Scute Mob
@@ -35089,7 +35057,7 @@ type=Instant
 name=Sheltered Valley
 auto={T}: add {1}
 text=If Sheltered Valley would enter the battlefield, instead sacrifice each other permanent named Sheltered Valley you control, then put Sheltered Valley onto the battlefield. At the beginning of your upkeep, if you control three or fewer lands, you gain 1 life. {T}: Add {1} to your mana pool.
-type=land
+type=Land
 [/card]
 [card]
 name=Sheltering Ancient
@@ -35817,7 +35785,6 @@ subtype=Aura
 name=Siren's Call
 text=Play Siren's Call only during an opponent's turn and only before attackers are declared.     Creatures the active player controls attack this turn if able.     At end of turn, destroy all non-Wall creatures that player controls that didn't attack this turn. Ignore this effect for each creature the player didn't control continuously since the beginning of the turn.
 mana={U}
-color=Blue
 type=Instant
 [/card]
 [card]
@@ -35907,11 +35874,11 @@ toughness=0
 [/card]
 [card]
 name=Skeleton Ship
-abilities=legendary,islandhome
+abilities=islandhome
 auto={T}:counter(-1/-1,1) target(creature)
 text=When you control no Islands, sacrifice Skeleton Ship.     {T}: Put a -1/-1 counter on target creature.
 mana={3}{U}{B}
-type=Creature
+type=Legendary Creature
 subtype=Skeleton
 power=0
 toughness=3
@@ -36127,11 +36094,10 @@ toughness=4
 [/card]
 [card]
 name=Skyfire Kirin
-abilities=legendary
 auto=@movedto(arcane,spirit|mystack):
 text=Flying Whenever you cast a Spirit or Arcane spell, you may gain control of target creature with that spell's converted mana cost until end of turn.
 mana={2}{R}{R}
-type=Creature
+type=Legendary Creature
 subtype=Kirin Spirit
 power=3
 toughness=3
@@ -36338,11 +36304,10 @@ toughness=1
 [/card]
 [card]
 name=Sliver Legion
-abilities=legendary
 auto=lord(sliver) foreach(sliver)1/1 other
 text=All Sliver creatures get +1/+1 for each other Sliver in play.
 mana={W}{U}{B}{R}{G}
-type=Creature
+type=Legendary Creature
 subtype=Sliver
 power=7
 toughness=7
@@ -36394,7 +36359,6 @@ toughness=2
 name=Smoke
 text=Players can't untap more than one creature during their untap steps.
 mana={R}{R}
-color=Red
 type=Enchantment
 [/card]
 [card]
@@ -36815,12 +36779,11 @@ toughness=3
 [/card]
 [card]
 name=Soraya the Falconer
-abilities=legendary
 auto=lord(bird) 1/1
 auto={1}{W}:target(bird) banding
 text=Bird creatures get +1/+1. {1}{W}: Target Bird creature gains banding until end of turn. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding a player controls are blocking or being blocked by a creature, that player divides that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
 mana={1}{W}{W}
-type=Creature
+type=Legendary Creature
 subtype=Human
 power=2
 toughness=2
@@ -36846,6 +36809,7 @@ text=+2: Sorin Markov deals 2 damage to target creature or player and you gain 2
 mana={3}{B}{B}{B}
 type=Planeswalker
 subtype=Sorin
+loyalty=4
 [/card]
 [card]
 name=Sorrow's Path
@@ -38103,8 +38067,8 @@ toughness=5
 name=Stalking Yeti
 text=When Stalking Yeti enters the battlefield, if it's on the battlefield, it deals damage equal to its power to target creature an opponent controls and that creature deals damage equal to its power to Stalking Yeti. {2}{S}i}: Return Stalking Yeti to its owner's hand. Activate this ability only any time you could cast a sorcery. ({S}i} can be paid with one mana from a snow permanent.)
 mana={2}{R}{R}
-type=Creature
-subtype=Yeti Snow
+type=Snow Creature
+subtype=Yeti
 power=3
 toughness=3
 [/card]
@@ -38621,7 +38585,7 @@ type=Instant
 [card]
 name=Stratadon
 text=Domain 窶・Stratadon costs {1} less to cast for each basic land type among lands you control. Trample
-mana={1}{0}
+mana={10}
 type=Artifact Creature
 subtype=Beast
 power=5
@@ -38731,7 +38695,8 @@ toughness=1
 name=Student of Elements (Tobita, Master of Winds)
 text=Creatures you control have flying.
 mana={1}{U}
-type=Legendary Creature ?EHuman Wizard
+type=Legendary Creature
+subtype=Human Wizard
 power=3
 toughness=3
 [/card]
@@ -40209,7 +40174,7 @@ text=+1: Untap up to two target artifacts.     -X: Search your library for an ar
 mana={3}{U}{U}
 type=Planeswalker
 subtype=Tezzeret
-toughness=4
+loyalty=4
 [/card]
 [card]
 name=Thada Adel, Acquisitor
@@ -40466,7 +40431,7 @@ type=Instant
 name=Thopter Foundry
 auto={1}{S(artifact[-token]|myinplay)}:token(Thopter,artifact creature thopter,1/1,blue flying) && life:1
 text={1}, Sacrifice a nontoken artifact: Put a 1/1 blue Thopter artifact creature token with flying into play. You gain 1 life.
-mana={(}{W}{/}{B}{)}{U}
+mana={WB}{U}
 type=Artifact
 [/card]
 [card]
@@ -40828,10 +40793,9 @@ toughness=1
 [/card]
 [card]
 name=Thrumming Stone
-abilities=Legendary
 text=Spells you cast have ripple 4. (Whenever you cast a spell, you may reveal the top four cards of your library. You may cast any revealed cards with the same name as the spell without paying their mana costs. Put the rest on the bottom of your library.)
 mana={5}
-type=Artifact
+type=Legendary Artifact
 [/card]
 [card]
 name=Thumbscrews
@@ -41226,11 +41190,10 @@ subtype=Arcane
 [/card]
 [card]
 name=Tolaria
-abilities=legendary
 auto={T}: Add {U}
 auto={T}:-banding target(creature)
 text=Legendary. {T}: Add {U} to your mana pool. {T}: Target Target creature loses banding and all "bands with other" abilities until end of turn. Play this ability only during any upkeep step.
-type=Land
+type=Legendary Land
 [/card]
 [card]
 name=Tolarian Drake
@@ -41264,12 +41227,11 @@ type=Instant
 [/card]
 [card]
 name=Tomb of Urami
-abilities=Legendary
 auto={T}:add {B} && aslongas(*[-ogre]|myBattlefield) damage:1 controller
 auto={T}:bury all(land|myBattlefield) && token(Urami,Creature Demon Spirit,5/5,legendary flying black)
 ####Tested ingame and removed: The first ability cannot be coded yet because you will always suffer 1 damage from Tomb of Urami even if you control an ogre!!
 text={T}: Add {B} to your mana pool. Tomb of Urami deals 1 damage to you if you don't control an Ogre.   {2}{B}{B}, {T}, Sacrifice all lands you control: Put a legendary 5/5 black Demon Spirit creature token with flying named Urami onto the battlefield.
-type=Land
+type=Legendary Land
 [/card]
 [card]
 name=Tombfire
@@ -41488,7 +41450,7 @@ toughness=1
 [card]
 name=Trace of Abundance
 text=Enchant land Enchanted land has shroud. (It can't be the target of spells or abilities.) Whenever enchanted land is tapped for mana, its controller adds one mana of any color to his or her mana pool (in addition to the mana the land produces).
-mana={(}{R}{/}{W}{)}{G}
+mana={RW}{G}
 type=Enchantment
 subtype=Aura
 [/card]
@@ -42111,7 +42073,6 @@ auto={1}:counter(1/1,-1) && damage:1 target(creature)
 auto={1}:token(Saproling,creature saproling,1/1,green) && counter(1/1,-1)
 text=Ulasht, the Hate Seed enters the battlefield with a +1/+1 counter on it for each other red creature you control and a +1/+1 counter on it for each other green creature you control.   {1}, Remove a +1/+1 counter from Ulasht: Choose one - Ulasht deals 1 damage to target creature; or put a 1/1 green Saproling creature token onto the battlefield.
 mana={2}{R}{G}
-color=Red,Green
 type=Legendary Creature
 subtype=Hellion Hydra
 power=0
@@ -42308,13 +42269,12 @@ type=Instant
 [/card]
 [card]
 name=Unscythe, Killer of Kings
-abilities=Legendary
 auto={2}:equip
 auto=first strike
 auto=@damaged(creature) from(mytgt):may moveTo(removedfromgame) ### erm... so close....!!!
 text=Equipped creature gets +3/+3 and has first strike. Whenever a creature dealt damage by equipped creature this turn is put into a graveyard, you may remove that card from the game. If you do, put a 2/2 black Zombie creature token into play. Equip {2}
 mana={U}{B}{B}{R}
-type=Artifact
+type=Legendary Artifact
 subtype=Equipment
 [/card]
 [card]
@@ -42553,7 +42513,7 @@ type=Land
 [/card]
 [card]
 name=Valor
-text=First strike As long as Valor is in your graveyard and you control a Plains, creatures you control have first strike.
+text=First strike -- As long as Valor is in your graveyard and you control a Plains, creatures you control have first strike.
 mana={3}{W}
 type=Creature
 subtype=Incarnation
@@ -42924,7 +42884,6 @@ type=Sorcery
 [/card]
 [card]
 name=Verdeloth the Ancient
-abilities=legendary
 kicker={X}
 auto=lord(treefolk) 1/1 other
 auto=lord(saproling) 1/1 other
@@ -42932,7 +42891,7 @@ auto=kicker token(saproling,creature saproling,1/1,green)*x
 ##doesn't yet work
 text=Kicker {X} (You may pay an additional {X} as you play this spell.)  Other Treefolk creatures and Saproling creatures get +1/+1.     When Verdeloth the Ancient comes into play, if the kicker cost was paid, put X 1/1 green Saproling creature tokens into play.
 mana={4}{G}{G}
-type=Creature
+type=Legendary Creature
 subtype=Treefolk
 power=4
 toughness=7
@@ -42963,9 +42922,8 @@ toughness=3
 name=Vesuvan Doppelganger
 text=As Vesuvan Doppelganger comes into play, you may choose a creature in play. If you do, Vesuvan Doppelganger comes into play as a copy of that creature except for its color and gains "At the beginning of your upkeep, you may have this creature become a copy of target creature except for its color. If you do, this creature gains this ability."
 mana={3}{U}{U}
-color=Blue
 type=Creature
-subtype=Doppelganger
+subtype=Shapeshifter
 power=0
 toughness=0
 [/card]
@@ -42982,9 +42940,8 @@ toughness=0
 name=Veteran Bodyguard
 text=As long as Veteran Bodyguard is untapped, all damage that would be dealt to you by unblocked creatures is dealt to Veteran Bodyguard instead.
 mana={3}{W}{W}
-color=White
 type=Creature
-subtype=Bodyguard
+subtype=Human
 power=2
 toughness=5
 [/card]
@@ -44876,7 +44833,6 @@ type=Sorcery
 name=Winter Orb
 text=As long as Winter Orb is untapped, players can't untap more than one land during their untap steps.
 mana={2}
-color=Artifact
 type=Artifact
 [/card]
 [card]
@@ -45813,10 +45769,10 @@ toughness=2
 [/card]
 [card]
 name=Zur the Enchanter
-abilities=Legendary,Flying
+abilities=Flying
 text=Flying Whenever Zur the Enchanter attacks, you may search your library for an enchantment card with converted mana cost 3 or less and put it onto the battlefield. If you do, shuffle your library.
 mana={1}{W}{U}{B}
-type=Creature
+type=Legendary Creature
 subtype=Human Wizard
 power=1
 toughness=4

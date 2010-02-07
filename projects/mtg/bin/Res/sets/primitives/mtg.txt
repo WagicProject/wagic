@@ -925,7 +925,7 @@ mana={1}{G}{G}
 type=Creature
 subtype=Human
 power=2
-toughness=1
+toughness=1+*
 [/card]
 [card]
 name=An-Havva Inn
@@ -1071,8 +1071,7 @@ type=Sorcery
 name=Ancient Den
 auto={T}:Add {W}
 text=(Ancient Den isn't a spell.)  {T}: Add {W} to your mana pool.
-type=Land
-subtype=Artifact
+type=Artifact Land
 [/card]
 [card]
 name=Ancient Runes
@@ -1264,8 +1263,8 @@ text=Trample   As long as it's your turn, Angry Mob's power and toughness are ea
 mana={2}{W}{W}
 type=Creature
 subtype=Human
-power=2
-toughness=2
+power=2+*
+toughness=2+*
 [/card]
 [card]
 name=Animate Artifact
@@ -1283,6 +1282,7 @@ alias=1143
 text=Enchant creature card in a graveyard   When Animate Dead enters the battlefield, if it's on the battlefield, it loses "enchant creature card in a graveyard" and gains "enchant creature put onto the battlefield with Animate Dead." Return enchanted creature card to the battlefield under your control and attach Animate Dead to it. When Animate Dead leaves the battlefield, that creature's controller sacrifices it.   Enchanted creature gets -1/-0.
 mana={1}{B}
 type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Animate Land
@@ -1381,7 +1381,7 @@ abilities=swampwalk
 text=Swampwalk
 mana={4}{B}{B}
 type=Creature
-subtype=Zombie Beast
+subtype=Zombie Frog Beast
 power=4
 toughness=3
 [/card]
@@ -1419,7 +1419,7 @@ auto={U}{T}:Add {3}
 text={U}{T}: Add {3} to your mana pool.
 mana={1}{U}{U}
 type=Creature
-subtype=Wizard
+subtype=Human Wizard
 power=0
 toughness=1
 [/card]
@@ -1537,8 +1537,7 @@ auto=tap
 auto={T}:Add {G}
 auto={T}:Add {W}
 text=Arctic Flats enters the battlefield tapped.   {T}: Add {G} or {W} to your mana pool.
-type=Land
-subtype=Snow
+type=Snow Land
 [/card]
 [card]
 name=Ardent Militia
@@ -1781,7 +1780,7 @@ auto={1}{R}{S(goblin|myBattlefield)}:Damage:4 target(creature)
 text={1}{R}, Sacrifice a Goblin: Arms Dealer deals 4 damage to target creature.
 mana={2}{R}
 type=Creature
-subtype=Goblin
+subtype=Goblin Rogue
 power=1
 toughness=1
 [/card]
@@ -2170,7 +2169,7 @@ auto={2}{W}{T}:damage:2 target(creature[attacking;blocking])
 text=Flying. {2}{W}{T}: Aven Archer deals 2 damage to target attacking or blocking creature.
 mana={3}{W}{W}
 type=Creature
-subtype=Bird Soldier
+subtype=Bird Soldier Archer
 power=2
 toughness=2
 [/card]
@@ -2339,8 +2338,8 @@ text=Aysen Crusader's power and toughness are each equal to 2 plus the number of
 mana={2}{W}{W}
 type=Creature
 subtype=Human Knight
-power=2
-toughness=2
+power=2+*
+toughness=2+*
 [/card]
 [card]
 name=Aysen Highway
@@ -2441,7 +2440,7 @@ name=Badlands
 auto={T}:Add {B}
 auto={T}:Add {R}
 type=Land
-subtype=Mountain Swamp
+subtype=Swamp Mountain
 [/card]
 [card]
 name=Balduvian Barbarians
@@ -3405,7 +3404,7 @@ auto=@each my upkeep:life:-1 controller
 auto=@each my upkeep:token(Faerie,creature faerie,1/1,flying black)
 text=At the beginning of your upkeep, you lose 1 life and put a 1/1 black Faerie Rogue creature token with flying onto the battlefield.
 mana={1}{B}
-type=Enchantment
+type=Tribal Enchantment
 subtype=Faerie
 [/card]
 [card]
@@ -4310,8 +4309,8 @@ target=goblin(mygraveyard)
 auto=moveTo(myHand)
 text=Return target Goblin card from your graveyard to your hand.
 mana={B}
-type=Sorcery
-subtype=Tribal Goblin
+type=Tribal Sorcery
+subtype=Goblin
 [/card]
 [card]
 name=Boggart Forager
@@ -4349,7 +4348,7 @@ name=Boggart Shenanigans
 auto=@movedTo(other goblin|graveyard) from(myBattlefield):may damage:1 target(player)
 text=Whenever another Goblin you control is put into a graveyard the battlefield, you may have Boggart Shenanigans deal 1 damage to target player.
 mana={2}{R}
-type=Enchantment
+type=Tribal Enchantment
 subtype=Goblin
 [/card]
 [card]
@@ -4523,8 +4522,8 @@ name=Boreal Druid
 auto={T}:Add {1}
 text={T}: Add {1} to your mana pool.
 mana={G}
-type=Creature
-subtype=Elf Druid Snow
+type=Snow Creature
+subtype=Elf Druid
 power=1
 toughness=1
 [/card]
@@ -4534,8 +4533,7 @@ auto=tap
 auto={T}:Add {U}
 auto={T}:Add {W}
 text=Boreal Shelf enters the battlefield tapped.   {T}: Add {W} or {U} to your mana pool.
-type=Land
-subtype=Snow
+type=Snow Land
 [/card]
 [card]
 name=Boris Devilboon
@@ -4644,8 +4642,8 @@ auto=cantattack
 auto=cantblock
 text=Enchant creature   Enchanted creature can't attack or block.
 mana={2}{W}
-type=Enchantment
-subtype=Tribal Rebel Aura
+type=Tribal Enchantment
+subtype=Rebel Aura
 [/card]
 [card]
 name=Bountiful Harvest
@@ -5549,7 +5547,7 @@ abilities=defender
 text=Defender
 mana={3}{G}
 type=Creature
-subtype=Wall Plant
+subtype=Plant Wall
 power=4
 toughness=5
 [/card]
@@ -6063,7 +6061,7 @@ auto={2}{U}{S(land|myBattlefield)}:draw:1
 text=Flying   {2}{U}, Sacrifice a land: Draw a card.
 mana={1}{U}
 type=Creature
-subtype=Cephalid Wizard
+subtype=Cephalid Wizard Scout
 power=1
 toughness=1
 [/card]
@@ -7121,8 +7119,8 @@ text=Mountainwalk   {G}: Colos Yearling gets +1/+0 until end of turn.
 mana={2}{R}
 type=Creature
 subtype=Goat Beast
-power=2
-toughness=2
+power=1
+toughness=1
 [/card]
 [card]
 name=Colossal Might
@@ -7301,8 +7299,8 @@ auto=may damage:4 target(creature[-elemental])
 auto=may damage:7 target(treefolk)
 text=Choose one - Consuming Bonfire deals 4 damage to target non-Elemental creature; or Consuming Bonfire deals 7 damage to target Treefolk creature.
 mana={3}{R}{R}
-type=Sorcery
-subtype=Tribal Elemental
+type=Tribal Sorcery
+subtype=Elemental
 [/card]
 [card]
 name=Consumptive Goo
@@ -7551,6 +7549,7 @@ type=Creature
 subtype=Dragon
 power=-90
 toughness=-90
+# P/T modified to make auto rule possible
 [/card]
 [card]
 name=Crabapple Cohort
@@ -7614,7 +7613,7 @@ abilities=trample
 text=Trample
 mana={6}{G}{G}
 type=Creature
-subtype=Rhinos
+subtype=Rhino
 power=8
 toughness=4
 [/card]
@@ -7877,7 +7876,7 @@ auto={0}:moveTo(ownerhand) && life:-2 controller
 text=Other white creatures get +1/+1.   Nonwhite creatures get -1/-1.   Pay 2 life: Return Crovax, Ascendant Hero to its owner's hand.
 mana={4}{W}{W}
 type=Legendary Creature
-subtype=Human Lord
+subtype=Human
 power=4
 toughness=4
 [/card]
@@ -7888,7 +7887,7 @@ auto={3}{W}:0/5
 text={3}{W}: Tap target creature.   {3}{W}: Crowd Favorites gets +0/+5 until end of turn.
 mana={6}{W}
 type=Creature
-subtype=Soldier
+subtype=Human Soldier
 power=4
 toughness=4
 [/card]
@@ -8041,7 +8040,7 @@ name=Crystal Vein
 auto={T}:Add {1}
 auto={T}{S}:Add {2}
 text={T}: Add {1} to your mana pool.   {T}:Sacrifice Crystal Vein: Add {2} to your mana pool.
-type=Basic Land
+type=Land
 [/card]
 [card]
 name=Crystalline Sliver
@@ -8217,7 +8216,7 @@ subtype=Aura
 name=Dakkon Blackblade
 auto=foreach(land|myBattlefield) 1/1
 text=Dakkon Blackblade's power and toughness are each equal to the number of lands you control.
-mana={2}{B}{U}{U}{W}
+mana={2}{W}{U}{U}{B}
 type=Legendary Creature
 subtype=Human Warrior
 power=*
@@ -8276,7 +8275,7 @@ text=Dakmor Sorceress's power is equal to the number of Swamps you control.
 mana={5}{B}
 type=Creature
 subtype=Human Wizard
-power=0
+power=*
 toughness=4
 [/card]
 [card]
@@ -8487,8 +8486,7 @@ name=Darksteel Citadel
 abilities=indestructible
 auto={T}:add{1}
 text=Darksteel Citadel is indestructible. ("Destroy" effects and lethal damage don't destroy it.)   {T}: Add {1} to your mana pool.
-type=Land
-subtype=Artifact
+type=Artifact Land
 [/card]
 [card]
 name=Darksteel Forge
@@ -8942,7 +8940,7 @@ toughness=2
 name=Debtors' Knell
 auto=@each my upkeep:moveTo(myBattlefield) target(creature|graveyard)
 text=({WB} can be paid with either White or Black.)   At the beginning of your upkeep, put target creature card in a graveyard onto the battlefield under your control.
-mana={4}{BW}{BW}{BW}
+mana={4}{WB}{WB}{WB}
 type=Enchantment
 [/card]
 [card]
@@ -8981,7 +8979,7 @@ auto={W}{S}:life:3
 text={W}, Sacrifice Dedicated Martyr: You gain 3 life.
 mana={W}
 type=Creature
-subtype=Cleric
+subtype=Human Cleric
 power=1
 toughness=1
 [/card]
@@ -9190,6 +9188,7 @@ type=Creature
 subtype=Imp
 power=4
 toughness=3
+# P/T modified to make auto rule possible
 [/card]
 [card]
 name=Demonic Torment
@@ -9262,6 +9261,7 @@ auto={T}:Add {1}
 auto={T}:Damage:1 target(creature[attacking])
 text={T}: Add {1} to your mana pool.   {T}: Desert deals 1 damage to target attacking creature. Play this ability only during the end of combat step.
 type=Land
+subtype=Desert
 [/card]
 [card]
 name=Desert Drake
@@ -10831,7 +10831,7 @@ auto={T}:unblockable target(creature[power<=2])
 text={T}: Target creature with power 2 or less is unblockable this turn.
 mana={2}{R}
 type=Creature
-subtype=Dwarf
+subtype=Dwarf Warrior
 power=1
 toughness=1
 [/card]
@@ -11335,7 +11335,7 @@ auto={2}{G}:forestwalk target(elf)
 text={2}{G}: Target Elf gains forestwalk until end of turn.
 mana={3}{G}
 type=Creature
-subtype=Elf
+subtype=Elf Scout
 power=1
 toughness=2
 [/card]
@@ -11364,8 +11364,8 @@ name=Elvish Promenade
 auto=foreach(elf|myBattlefield) token(Elf Warrior,creature Elf Warrior,1/1,green)
 text=Put a 1/1 green Elf Warrior creature token onto the battlefield for each Elf you control.
 mana={3}{G}
-type=Sorcery
-subtype=Tribal Elf
+type=Tribal Sorcery
+subtype=Elf
 [/card]
 [card]
 name=Elvish Ranger
@@ -11605,6 +11605,7 @@ type=Creature
 subtype=Crocodile
 power=-90
 toughness=-90
+# P/T modified to make auto rule possible
 [/card]
 [card]
 name=Empress Galina
@@ -11886,7 +11887,7 @@ auto={U}{T}{S(creature,enchantment|myBattlefield)}:fizzle target(*|stack)
 text={U}, {T}, Sacrifice a creature or enchantment: Counter target spell.
 mana={2}{W}{U}{B}
 type=Legendary Creature
-subtype=Wizard
+subtype=Human Wizard
 power=3
 toughness=4
 [/card]
@@ -11897,7 +11898,7 @@ auto={U}{S(*|myhand)}:moveTo(ownerhand)
 text=Escape Artist is unblockable.   {U}, Discard a card from your hand: Return Escape Artist to its owner's hand.
 mana={1}{U}
 type=Creature
-subtype=Wizard
+subtype=Human Wizard
 power=1
 toughness=1
 [/card]
@@ -12264,7 +12265,7 @@ type=Artifact
 name=Expendable Troops
 auto={T}{S}:damage:2 target(creature[attacking;blocking])
 text={T}, Sacrifice Expendable Troops: Expendable Troops deals 2 damage to target attacking or blocking creature.
-mana={2}{W}
+mana={1}{W}
 type=Creature
 subtype=Human Soldier
 power=2
@@ -12346,8 +12347,8 @@ target=creature[-elf]
 auto=destroy
 text=Destroy target non-Elf creature.
 mana={2}{B}
-type=Instant
-subtype=Tribal Elf
+type=Tribal Instant
+subtype=Elf
 [/card]
 [card]
 name=Fable of Wolf and Owl
@@ -14082,8 +14083,8 @@ name=Freewind Falcon
 abilities=flying,protection from red
 text=Flying, protection from red
 mana={1}{W}
-type=creature
-subtype=bird
+type=Creature
+subtype=Bird
 power=1
 toughness=1
 [/card]
@@ -14153,8 +14154,7 @@ auto=tap
 auto={T}:Add {U}
 auto={T}:Add {B}
 text=Frost Marsh enters the battlefield tapped.   {T}: Add {U} or {B} to your mana pool.
-type=Land
-subtype=Snow
+type=Snow Land
 [/card]
 [card]
 name=Frost Ogre
@@ -14225,7 +14225,7 @@ auto=@damaged(this):counter(1/1,1)
 text=Whenever Fungusaur is dealt damage, put a +1/+1 counter on it.
 mana={3}{G}
 type=Creature
-subtype=Fungusaur
+subtype=Fungus Lizard
 power=2
 toughness=2
 [/card]
@@ -14337,8 +14337,8 @@ text=Gaea's Avenger's power and toughness are each equal to 1 plus the number of
 mana={1}{G}{G}
 type=Creature
 subtype=Treefolk
-power=1
-toughness=1
+power=1+*
+toughness=1+*
 [/card]
 [card]
 name=Gaea's Cradle
@@ -14754,7 +14754,7 @@ auto={3}{G}:2/2 limit:1
 text=First Strike   {3}{G}: Ghor-Clan Bloodscale gets +2/+2 until end of turn. Activate this ability only once each turn.
 mana={3}{R}
 type=Creature
-subtype=Beast
+subtype=Viashino Warrior
 power=2
 toughness=1
 [/card]
@@ -14990,8 +14990,8 @@ auto=damage:4
 auto=aslongas(giant|myBattlefield) draw:1 controller
 text=Giant's Ire deals 4 damage to target player. If you control a Giant, draw a card.
 mana={3}{R}
-type=Sorcery
-subtype=Tribal Giant
+type=Tribal Sorcery
+subtype=Giant
 [/card]
 [card]
 name=Gibbering Hyenas
@@ -15077,6 +15077,7 @@ abilities=defender
 text=Defender (This creature can't attack.)
 mana={2}{U}
 type=Creature
+subtype=Wall
 power=0
 toughness=7
 [/card]
@@ -15187,7 +15188,7 @@ auto={7}{U}:3/3 && flying
 text={7}{U}: Glintwing Invoker gets +3/+3 and gains flying until end of turn.
 mana={4}{U}
 type=Creature
-subtype=Wizard Mutant
+subtype=Human Wizard Mutant
 power=3
 toughness=3
 [/card]
@@ -15245,7 +15246,7 @@ toughness=3
 name=Glory Seeker
 mana={1}{W}
 type=Creature
-subtype=Soldier
+subtype=Human Soldier
 power=2
 toughness=2
 [/card]
@@ -15797,7 +15798,7 @@ toughness=1
 name=Goblin Trenches
 auto={2}{S(land|myBattlefield)}:token(Goblin Soldier,creature goblin soldier, 1/1,red white)*2
 text={2}, Sacrifice a land: Put two 1/1 red and white Goblin Soldier creature tokens into play.
-mana={1}{W}{R}
+mana={1}{R}{W}
 type=Enchantment
 [/card]
 [card]
@@ -16182,7 +16183,7 @@ auto={T}:2/2 target(elf,soldier)
 text={T}: Target Elf or Soldier gets +2/+2 until end of turn.
 mana={5}{W}
 type=Creature
-subtype=Cleric Soldier
+subtype=Human Cleric Soldier
 power=2
 toughness=4
 [/card]
@@ -16331,8 +16332,7 @@ type=Instant
 name=Great Furnace
 auto={T}:Add{R}
 text=(Great Furnace isn't a spell.)  {T}: Add {R} to your mana pool.
-type=Land
-subtype=Artifact
+type=Artifact Land
 [/card]
 [card]
 name=Great Sable Stag
@@ -16478,7 +16478,7 @@ name=Grinding Station
 auto=@movedTo(artifact|battlefield):may untap
 auto={T}{S(artifact|myBattlefield)}:deplete:3 target(player)
 text={T}, Sacrifice an artifact: Target player puts the top three cards of his or her library into his or her graveyard.   Whenever an artifact enters the battlefield, you may untap Grinding Station
-mana={3}
+mana={2}
 type=Artifact
 [/card]
 [card]
@@ -16690,8 +16690,8 @@ name=Gutless Ghoul
 auto={1}{S(creature|myBattlefield)}:life:2 controller
 text={1}, Sacrifice a creature: You gain 2 life.
 mana={2}{B}
-type=Creature
-subtype=Zombie Snow
+type=Snow Creature
+subtype=Zombie
 power=2
 toughness=2
 [/card]
@@ -17059,7 +17059,7 @@ text=Flying   As Haunting Apparition enters the battlefield, choose an opponent.
 mana={1}{U}{B}
 type=Creature
 subtype=Spirit
-power=1
+power=1+*
 toughness=2
 [/card]
 [card]
@@ -17615,8 +17615,7 @@ auto=tap
 auto={T}:Add {R}
 auto={T}:Add {G}
 text=Highland Weald enters the battlefield tapped.   {T}: Add {R} or {G} to your mana pool.
-type=Land
-subtype=Snow
+type=Snow Land
 [/card]
 [card]
 name=Highway Robber
@@ -18233,8 +18232,8 @@ auto=token(Elf Warrior,Creature Elf Warrior,1/1,green)*3
 autohand={3}{G}{S}:counter(1/1,3) target(creature)
 text=Put three 1/1 green Elf Warrior creature tokens onto the battlefield.   Reinforce 3—{3}{G} ({3}{G}, Discard this card: Put three +1/+1 counters on target creature.)
 mana={3}{G}
-type=Sorcery
-subtype=Tribal Elf
+type=Tribal Sorcery
+subtype=Elf
 [/card]
 [card]
 name=Hurkyl's Recall
@@ -18308,7 +18307,7 @@ name=Hymn of Rebirth
 target=creature|graveyard
 auto=moveTo(myBattlefield)
 text=Put target creature card in a graveyard onto the battlefield under your control.
-mana={3}{W}{G}
+mana={3}{G}{W}
 type=Sorcery
 [/card]
 [card]
@@ -19091,7 +19090,7 @@ auto=rampage(2/2,0)
 auto=rampage(-2/-2,1)
 auto=lord(isao enlighted bushi[blocking]|mybattlefield) 2/2
 auto={2}:regenerate target(samurai)
-text=Isao, Enlightened Bushi can't be countered.   Bushido 2 (When this blocks or becomes blocked, it gets +2/+2 until end of turn.)   {2}: Regenerate target Samurai.
+text=Isao, Enlightened Bushi can't be countered. -- Bushido 2 (When this blocks or becomes blocked, it gets +2/+2 until end of turn.) -- {2}: Regenerate target Samurai.
 mana={2}{G}
 type=Legendary Creature
 subtype=Human Samurai
@@ -19284,7 +19283,7 @@ auto={W}:protection from blue
 auto={W}:protection from black
 auto={W}:protection from red
 auto={W}:protection from green
-text=Whenever Jareth Leonine Titan blocks, it gets +7/+7 until end of turn.   {W}: Jareth gains protection from the color of your choice until end of turn.
+Whenever Jareth, Leonine Titan blocks, it gets +7/+7 until end of turn. -- {W}: Jareth gains protection from the color of your choice until end of turn.
 mana={3}{W}{W}{W}
 type=Legendary Creature
 subtype=Cat Giant
@@ -19373,7 +19372,7 @@ toughness=3
 [/card]
 [card]
 name=Jerrard of the Closed Fist
-mana={3}{G}{G}{R}
+mana={3}{R}{G}{G}
 type=Legendary Creature
 subtype=Human Knight
 power=6
@@ -19656,7 +19655,7 @@ auto=draw:1
 text=Defender (This creature can't attack.)   When Jungle Barrier enters the battlefield, draw a card.
 mana={2}{G}{U}
 type=Creature
-subtype=Wall
+subtype=Plant Wall
 power=2
 toughness=6
 [/card]
@@ -20124,7 +20123,7 @@ toughness=0
 [/card]
 [card]
 name=Kasimir the Lone Wolf
-mana={4}{U}{W}
+mana={4}{W}{U}
 type=Legendary Creature
 subtype=Human Warrior
 power=5
@@ -20203,7 +20202,7 @@ auto=aslongas(swamp|myBattlefield) 1/0
 text=Domain - Kavu Scout gets +1/+0 for each basic land type among lands you control.
 mana={2}{R}
 type=Creature
-subtype=Kavu
+subtype=Kavu Scout
 power=0
 toughness=2
 [/card]
@@ -20766,7 +20765,7 @@ toughness=1
 name=Kjeldoran Frostbeast
 alias=1267
 text=Whenever Kjeldoran Frostbeast blocks or becomes blocked by a creature, destroy that creature at end of combat.
-mana={3}{W}{G}
+mana={3}{G}{W}
 type=Creature
 subtype=Elemental Beast
 power=2
@@ -20825,7 +20824,7 @@ auto={W}{W}:protection from blue
 auto={W}{W}:protection from black
 auto={W}{W}:protection from red
 auto={W}{W}:protection from green
-text=First strike   {W}{W}: Knight of Dawn gains protection from the color of your choice until end of turn.
+text=First strike -- {W}{W}: Knight of Dawn gains protection from the color of your choice until end of turn.
 mana={1}{W}{W}
 type=Creature
 subtype=Human Knight
@@ -20996,7 +20995,7 @@ abilities=vigilance,indestructible
 auto=rampage(5/5,0)
 auto=rampage(-5/-5,1)
 auto=lord(konda lord of eiganjo[blocking]|mybattlefield) 5/5
-text=Vigilance (Attacking doesn't cause this creature to tap.)   Bushido 5 (When this blocks or becomes blocked, it gets +5/+5 until end of turn.)   Konda, Lord of Eiganjo is indestructible.
+text=Vigilance (Attacking doesn't cause this creature to tap.) -- Bushido 5 (When this blocks or becomes blocked, it gets +5/+5 until end of turn.) -- Konda, Lord of Eiganjo is indestructible.
 mana={5}{W}{W}
 type=Legendary Creature
 subtype=Human Samurai
@@ -21358,7 +21357,7 @@ abilities=flying
 auto={G}:0/1 limit:1
 auto=aslongas(viashivan dragon|mylibrary) {S(spitting drake|myBattlefield)}:moveTo(mygraveyard) all(this) && moveTo(myBattlefield) target(viashivan dragon|mylibrary) limit:1
 text=Flying   {G}: Kyscu Drake gets +0/+1 until end of turn. Activate this ability only once each turn.   Sacrifice Kyscu Drake and a creature named Spitting Drake: Search your library for a card named Viashivan Dragon and put that card onto the battlefield. Then shuffle your library.
-mana={2}{G}
+mana={3}{G}
 type=Creature
 subtype=Drake
 power=2
@@ -21840,7 +21839,7 @@ mana={2}{G}{G}
 type=Creature
 subtype=Lhurgoyf
 power=*
-toughness=1
+toughness=1+*
 [/card]
 [card]
 name=Liability
@@ -22014,7 +22013,7 @@ target=creature,player
 auto=Damage:3
 auto=life:3 controller
 text=Lightning Helix deals 3 damage to target creature or player and you gain 3 life.
-mana={W}{R}
+mana={R}{W}
 type=Instant
 [/card]
 [card]
@@ -22440,8 +22439,8 @@ text=As Lost Order of Jarkeld enters the battlefield, choose an opponent. Lost O
 mana={2}{W}{W}
 type=Creature
 subtype=Human Knight
-power=1
-toughness=1
+power=1+*
+toughness=1+*
 [/card]
 [card]
 name=Lost Soul
@@ -22608,8 +22607,8 @@ name=Lucent Liminid
 abilities=flying
 text=Flying
 mana={3}{W}{W}
-type=Creature
-subtype=Elemental Enchantment
+type=Enchantment Creature
+subtype=Elemental
 power=3
 toughness=3
 [/card]
@@ -23196,7 +23195,7 @@ toughness=3
 name=Marhault Elsdragon
 auto=rampage(1/1,1)
 text=Rampage 1 (Whenever this creature becomes blocked, it gets +1/+1 until end of turn for each creature blocking it beyond the first.)
-mana={3}{G}{R}{R}
+mana={3}{R}{R}{G}
 type=Legendary Creature
 subtype=Elf Warrior
 power=4
@@ -23644,7 +23643,7 @@ auto=draw:1
 text=When Merchant of Secrets enters the battlefield, draw a card.
 mana={2}{U}
 type=Creature
-subtype=Wizard
+subtype=Human Wizard
 power=1
 toughness=1
 [/card]
@@ -23654,7 +23653,7 @@ auto={T}:destroy target(creature[islandwalk])
 text={T}: Destroy target creature with islandwalk.
 mana={U}{U}
 type=Creature
-subtype=Merfolk
+subtype=Merfolk Assassin
 power=1
 toughness=2
 [/card]
@@ -23665,7 +23664,7 @@ auto={2}{U}:tap target(creature[-flying])
 text=Islandwalk   {2}{U}: Tap target creature without flying.
 mana={3}{U}
 type=Creature
-subtype=Merfolk Wizard
+subtype=Merfolk Scout
 power=2
 toughness=3
 [/card]
@@ -24676,7 +24675,7 @@ auto=@movedTo(artifact|graveyard) from(battlefield):may counter(1/1)
 text=Whenever an artifact is put into a graveyard from the battlefield, you may put a +1/+1 counter on Moriok Rigger.
 mana={2}{B}
 type=Creature
-subtype=Human Rogue
+subtype=Human Rogue Rigger
 power=2
 toughness=2
 [/card]
@@ -25040,7 +25039,7 @@ name=Mungha Wurm
 auto=@each my untap:untap notatarget(land|myBattlefield)
 auto=lord(land|myBattlefield) doesnotuntap
 text=You can't untap more than one land during your untap step.
-mana={G}
+mana={2}{G}{G}
 type=Creature
 subtype=Wurm
 power=6
@@ -25313,7 +25312,7 @@ auto=rampage(1/1,0)
 auto=rampage(-1/-1,1)
 auto=lord(nagao bound by honor[blocking]|mybattlefield) 1/1
 auto=aslongas(nagao bound by honor[attacking]|myBattlefield) lord(samurai[attacking]|myBattlefield) 1/1
-text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.)   Whenever Nagao, Bound by Honor attacks, Samurai creatures you control get +1/+1 until end of turn.
+text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.) -- Whenever Nagao, Bound by Honor attacks, Samurai creatures you control get +1/+1 until end of turn.
 mana={3}{W}
 type=Legendary Creature
 subtype=Human Samurai
@@ -25498,7 +25497,7 @@ auto=foreach(creature|mygraveyard) draw:1 controller
 auto=foreach(creature|opponentgraveyard) draw:1 opponent
 text=Each player draws a card for each creature card in his or her graveyard.
 mana={2}{G}{G}
-type=Instant
+type=Sorcery
 [/card]
 [card]
 name=Nature's Revolt
@@ -25527,7 +25526,7 @@ name=Nausea
 auto=lord(creature) -1/-1
 text=All creatures get -1/-1 until end of turn.
 mana={1}{B}
-type=Instant
+type=Sorcery
 [/card]
 [card]
 name=Naya Battlemage
@@ -26982,7 +26981,7 @@ name=Oros the Avenger
 abilities=flying
 auto=aslongas(oros the avenger[attacking]|mybattlefield) lord(oros the avenger[attacking;-cloud]) {2}{W}:damage:3 all(creature[-white])
 auto=@damaged(player) from(this):cloud
-text=Flying   Whenever Oros, the Avenger deals combat damage to a player, you may pay {2}{W}. If you do, Oros deals 3 damage to each nonwhite creature.
+text=Flying -- Whenever Oros, the Avenger deals combat damage to a player, you may pay {2}{W}. If you do, Oros deals 3 damage to each nonwhite creature.
 mana={3}{W}{B}{R}
 type=Legendary Creature
 subtype=Dragon
@@ -27593,8 +27592,8 @@ auto=-1/-1
 auto=aslongas(faerie|myBattlefield) draw:1
 text=Target creature gets -1/-1 until end of turn. If you control a Faerie, draw a card.
 mana={B}
-type=Instant
-subtype=Tribal Faerie
+type=Tribal Instant
+subtype=Faerie
 [/card]
 [card]
 name=Peregrine Mask
@@ -27955,7 +27954,7 @@ name=Pianna Nomad Captain
 #Reintroducing it requires an update to ODY/_cards.dat as well.
 #Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1)
 auto=aslongas(pianna nomad captain[attacking]|myBattlefield) lord(creature[attacking]) 1/1
-text=Whenever Pianna Nomad Captain attacks, attacking creatures get +1/+1 until end of turn.
+text=Whenever Pianna, Nomad Captain attacks, attacking creatures get +1/+1 until end of turn.
 mana={1}{W}{W}
 type=Legendary Creature
 subtype=Human Nomad
@@ -28001,7 +28000,7 @@ type=Sorcery
 name=Pillarfield Ox
 mana={3}{W}
 type=Creature
-subtype=OX
+subtype=Ox
 power=2
 toughness=4
 [/card]
@@ -28123,8 +28122,8 @@ text=Plague Rats's power and toughness are each equal to the number of creatures
 mana={2}{B}
 type=Creature
 subtype=Rat
-power=0
-toughness=0
+power=*
+toughness=*
 [/card]
 [card]
 name=Plague Sliver
@@ -28233,7 +28232,7 @@ name=Plateau
 auto={T}:Add {W}
 auto={T}:Add {R}
 type=Land
-subtype=Plains Mountain
+subtype=Mountain Plains
 [/card]
 [card]
 name=Plated Geopede
@@ -28753,8 +28752,8 @@ name=Prowess of the Fair
 auto=@movedTo(graveyard) from(other elf|battlefield):may token(Elf Warrior,creature elf warrior,1/1,green)
 text=Whenever another nontoken Elf is put into your graveyard from the battlefield, you may put a 1/1 green Elf Warrior creature token onto the battlefield.
 mana={1}{B}
-type=Enchantment
-subtype=Tribal Elf
+type=Tribal Enchantment
+subtype=Elf
 [/card]
 [card]
 name=Prowling Nightstalker
@@ -28778,7 +28777,7 @@ type=Instant
 name=Psionic Entity
 auto={T}:damage:2 target(creature,player) && damage:3 all(this)
 text={T}: Psionic Entity deals 2 damage to target creature or player and 3 damage to itself.
-mana={G}
+mana={4}{U}
 type=Creature
 subtype=Illusion
 power=2
@@ -29232,7 +29231,7 @@ name=Radha Heir to Keld
 #Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1)
 auto=@each my blockers:aslongas(radha heir to keld[attacking]|myBattlefield) may add{R}{R}
 auto={T}:Add{G}
-text=Whenever Radha, Heir to Keld attacks, you may add {R}{R} to your mana pool. {T}: Add {G} to your mana pool.
+text=Whenever Radha, Heir to Keld attacks, you may add {R}{R} to your mana pool. -- {T}: Add {G} to your mana pool.
 mana={R}{G}
 type=Legendary Creature
 subtype=Elf Warrior
@@ -29361,7 +29360,7 @@ toughness=3
 name=Ragnar
 auto={W}{U}{G}{T}:regenerate target(creature)
 text={W}{U}{G}, {T}: Regenerate target creature.
-mana={W}{U}{G}
+mana={G}{W}{U}
 type=Legendary Creature
 subtype=Human Cleric
 power=2
@@ -29567,8 +29566,8 @@ text=Trample   Landfall - Whenever a land enters the battlefield under your cont
 mana={4}{G}{G}
 type=Creature
 subtype=Beast
-power=4
-toughness=4
+power=6
+toughness=6
 [/card]
 [card]
 name=Rampant Growth
@@ -29614,7 +29613,7 @@ name=Ranger en-Vec
 abilities=first strike
 auto={G}:regenerate
 text=First strike   {G}: Regenerate Ranger en-Vec.
-mana={1}{W}{G}
+mana={1}{G}{W}
 type=Creature
 subtype=Human Soldier Archer
 power=2
@@ -30438,7 +30437,7 @@ auto={B}:regenerate
 text={B}: Regenerate Restless Dead.
 mana={1}{B}
 type=Creature
-subtype=Skeletons
+subtype=Skeleton
 power=1
 toughness=1
 [/card]
@@ -30573,7 +30572,7 @@ toughness=3
 name=Rhox Brute
 mana={2}{R}{G}
 type=Creature
-subtype=Rhino
+subtype=Rhino Warrior
 power=4
 toughness=4
 [/card]
@@ -30798,7 +30797,7 @@ name=Riptide Laboratory
 auto={T}:Add {1}
 auto={1}{U}{T}:moveTo(ownerhand) target(wizard|myBattlefield)
 text={T}: Add {1} to your mana pool.   {1}{U}, {T}: Return target Wizard you control to its owner's hand.
-type=Basic Land
+type=Land
 [/card]
 [card]
 name=Rise of the Hobgoblins
@@ -30806,6 +30805,7 @@ auto={RW}:lord(creature[white;red]|myBattlefield) first strike
 auto=Token(Goblin Soldier,Creature Goblin Soldier,1/1,red white)*x
 text=When Rise of the Hobgoblins enters the battlefield, you may pay {X}. If you do, put X 1/1 red and white Goblin Soldier creature tokens onto the battlefield.   {RW}: Red creatures and white creatures you control gain first strike until end of turn.
 mana={X}{RW}{RW}
+# mana cost changed to make auto line work
 type=Enchantment
 [/card]
 [card]
@@ -31175,8 +31175,8 @@ auto=destroy
 auto=aslongas(treefolk|myBattlefield) draw:1 controller
 text=Destroy target noncreature permanent. If you control a Treefolk, draw a card.
 mana={4}{G}
-type=Instant
-subtype=Tribal Treefolk
+type=Tribal Instant
+subtype=Treefolk
 [/card]
 [card]
 name=Rootrunner
@@ -31928,7 +31928,7 @@ name=Savannah
 auto={T}:Add {W}
 auto={T}:Add {G}
 type=Land
-subtype=Plains Forest
+subtype=Forest Plains
 [/card]
 [card]
 name=Savannah Lions
@@ -31964,7 +31964,7 @@ type=Artifact
 name=Scalebane's Elite
 abilities=protection from black
 text=Protection from black
-mana={3}{W}{G}
+mana={3}{G}{W}
 type=Creature
 subtype=Human Soldier
 power=4
@@ -32057,7 +32057,7 @@ type=Sorcery
 [/card]
 [card]
 name=Scarwood Goblins
-mana={G}{R}
+mana={R}{G}
 type=Creature
 subtype=Goblin
 power=2
@@ -32229,6 +32229,7 @@ type=Creature
 subtype=Cat
 power=6
 toughness=6
+# P/T modified to make auto rule possible
 [/card]
 [card]
 name=Scornful AEther-Lich
@@ -32621,14 +32622,13 @@ name=Seaside Haven
 auto={T}:Add {1}
 auto={W}{U}{T}{S(bird|myBattlefield)}:draw:1
 text={T}: Add {1} to your mana pool.   {W}{U}, {T}, Sacrifice a Bird: Draw a card.
-type=Basic Land
+type=Land
 [/card]
 [card]
 name=Seat of the Synod
 auto={T}:Add{U}
 text=(Seat of the Synod isn't a spell.)  {T}: Add {U} to your mana pool.
-type=Land
-subtype=Artifact
+type=Artifact Land
 [/card]
 [card]
 name=Secluded Glen
@@ -34473,6 +34473,7 @@ type=Creature
 subtype=Kavu
 power=2
 toughness=2
+# P/T modified to make auto rule possible
 [/card]
 [card]
 name=Skred
@@ -35073,7 +35074,7 @@ name=Sliversmith
 auto={1}{T}{S(*|myhand)}:token(Metallic Sliver,artifact creature sliver, 1/1)
 text={1}, {T}, Discard a card: Put a 1/1 Sliver artifact creature token named Metallic Sliver onto the battlefield.
 mana={2}
-type=Creature
+type=Artifact Creature
 subtype=Spellshaper
 power=1
 toughness=1
@@ -35233,36 +35234,36 @@ toughness=1
 name=Snow-Covered Forest
 auto={T}:Add {G}
 text={G}
-type=Basic Land
-subtype=Forest Snow
+type=Basic Snow Land
+subtype=Forest
 [/card]
 [card]
 name=Snow-Covered Island
 auto={T}:Add {U}
 text={U}
-type=Basic Land
-subtype=Island Snow
+type=Basic Snow Land
+subtype=Island
 [/card]
 [card]
 name=Snow-Covered Mountain
 auto={T}:Add {R}
 text={R}
-type=Basic Land
-subtype=Mountain Snow
+type=Basic Snow Land
+subtype=Mountain
 [/card]
 [card]
 name=Snow-Covered Plains
 auto={T}:Add {W}
 text={W}
-type=Basic Land
-subtype=Plains Snow
+type=Basic Snow Land
+subtype=Plains
 [/card]
 [card]
 name=Snow-Covered Swamp
 auto={T}:Add {B}
 text={B}
-type=Basic Land
-subtype=Swamp Snow
+type=Basic Snow Land
+subtype=Swamp
 [/card]
 [card]
 name=Soaring Hope
@@ -36339,6 +36340,7 @@ type=Creature
 subtype=Beast
 power=4
 toughness=2
+# P/T modified to make auto rule possible
 [/card]
 [card]
 name=Squall
@@ -36353,8 +36355,8 @@ abilities=flying
 auto={T}:Add {W}
 text=Flying   {W}, {T}: Tap target creature.
 mana={1}{W}
-type=Creature
-subtype=Elemental Snow
+type=Snow Creature
+subtype=Elemental
 power=1
 toughness=1
 [/card]
@@ -36559,7 +36561,7 @@ auto=token(Stangg Twin,legendary creature human warrior, 3/4,red green)
 auto=@movedTo(this|exile,graveyard,library,hand) from(battlefield):moveTo(exile) all(stangg twin)
 auto=@movedTo(stangg twin|exile,graveyard,library,hand) from(battlefield):bury all(this)
 text=When Stangg enters the battlefield, put a legendary 3/4 red and green Human Warrior creature token named Stangg Twin onto the battlefield.   When Stangg leaves the battlefield, exile that token.   When that token leaves the battlefield, sacrifice Stangg.
-mana={4}{G}{R}
+mana={4}{R}{G}
 type=Legendary Creature
 subtype=Human Warrior
 power=3
@@ -37078,7 +37080,7 @@ name=Storm Spirit
 abilities=flying
 auto={T}:damage:2 target(creature)
 text=Flying   {T}: Storm Spirit deals 2 damage to target creature.
-mana={3}{W}{U}{G}
+mana={3}{G}{W}{U}
 type=Creature
 subtype=Elemental Spirit
 power=3
@@ -37218,8 +37220,8 @@ auto=-4/0
 auto=aslongas(wizard|myBattlefield) draw:1 controller
 text=Target creature gets -4/-0 until end of turn. If you control a Wizard, draw a card.
 mana={U}
-type=Instant
-subtype=Wizard Tribal
+type=Tribal Instant
+subtype=Wizard
 [/card]
 [card]
 name=Street Wraith
@@ -37234,7 +37236,7 @@ toughness=4
 [/card]
 [card]
 name=Streetbreaker Wurm
-mana={4}{R}{G}
+mana={3}{R}{G}
 type=Creature
 subtype=Wurm
 power=6
@@ -37740,8 +37742,8 @@ auto=lord(creature|myBattlefield) 1/1
 auto=aslongas(kithkin|myBattlefield) draw:1 controller
 text=Creatures you control get +1/+1 until end of turn. If you control a Kithkin, draw a card.
 mana={1}{W}
-type=Instant
-subtype=Tribal Kithkin
+type=Tribal Instant
+subtype=Kithkin
 [/card]
 [card]
 name=Surrakar Banisher
@@ -38037,7 +38039,7 @@ auto=@damaged(player) from(sliver|opponentBattlefield):draw:1 opponent
 text=Whenever a Sliver deals combat damage to a player, its controller may draw a card.
 mana={4}{U}
 type=Creature
-subtype=Elf
+subtype=Sliver
 power=3
 toughness=3
 [/card]
@@ -38368,8 +38370,8 @@ target=creature,player
 auto=damage:2
 text=Tarfire deals 2 damage to target creature or player.
 mana={R}
-type=Instant
-subtype=Tribal Goblin
+type=Tribal Instant
+subtype=Goblin
 [/card]
 [card]
 name=Tarmogoyf
@@ -38384,8 +38386,8 @@ text=Tarmogoyf's power is equal to the number of card types among cards in all g
 mana={1}{G}
 type=Creature
 subtype=Lhurgoyf
-power=0
-toughness=1
+power=*
+toughness=1+*
 [/card]
 [card]
 name=Tarnished Citadel
@@ -38738,7 +38740,7 @@ name=Teneb the Harvester
 abilities=flying
 auto=aslongas(teneb the harvester[attacking]|mybattlefield) lord(teneb the harvester[attacking;-cloud]) {2}{B}:moveTo(myBattlefield) target(creature|graveyard)
 auto=@damaged(player) from(this):cloud
-text=Flying   Whenever Teneb, the Harvester deals combat damage to a player, you may pay {2}{B}. If you do, put target creature card in a graveyard onto the battlefield under your control.
+text=Flying -- Whenever Teneb, the Harvester deals combat damage to a player, you may pay {2}{B}. If you do, put target creature card in a graveyard onto the battlefield under your control.
 mana={3}{B}{G}{W}
 type=Legendary Creature
 subtype=Dragon
@@ -38880,6 +38882,7 @@ type=Creature
 subtype=Griffin
 power=-90
 toughness=-90
+# P/T modified to make auto rule possible
 [/card]
 [card]
 name=Thalakos Drifters
@@ -38951,7 +38954,7 @@ target=creature
 auto=1/0
 auto={R}{R}{R}:regenerate
 text=Enchant creature (Target a creature as you play this. This card comes into play attached to that creature.)  Enchanted creature gets +1/+0.   {R}{R}{R}: Regenerate enchanted creature.
-mana={R}
+mana={1}{R}
 type=Enchantment
 subtype=Aura
 [/card]
@@ -39476,7 +39479,7 @@ auto={T}:untap target(*)
 text=Defender (This creature can't attack.)   {4}: Tidewater Minion loses defender until end of turn. {T}: Untap target permanent.
 mana={3}{U}{U}
 type=Creature
-subtype=Elemental
+subtype=Elemental Minion
 power=4
 toughness=4
 [/card]
@@ -39494,7 +39497,7 @@ target=creature
 auto=1/1
 auto=trample
 text=Flash   Enchant creature   Enchanted creature gets +1/+1 and has trample.
-mana={1}{G}
+mana=mana={2}{G}
 type=Enchantment
 subtype=Aura
 [/card]
@@ -40205,8 +40208,7 @@ toughness=1
 name=Tree of Tales
 auto={T}:Add{G}
 text=(Tree of Tales isn't a spell.)  {T}: Add {G} to your mana pool.
-type=Land
-subtype=Artifact
+type=Artifact Land
 [/card]
 [card]
 name=Treefolk Seedlings
@@ -40309,8 +40311,7 @@ auto=tap
 auto={T}:Add {B}
 auto={T}:Add {R}
 text=Tresserhorn Sinks enters the battlefield tapped.   {T}: Add {B} or {R} to your mana pool.
-type=Land
-subtype=Snow
+type=Snow Land
 [/card]
 [card]
 name=Treva's Attendant
@@ -40459,7 +40460,7 @@ name=Tropical Island
 auto={T}:Add {U}
 auto={T}:Add {G}
 type=Land
-subtype=Island Forest
+subtype=Forest Island
 [/card]
 [card]
 name=Tropical Storm
@@ -40669,6 +40670,7 @@ auto=3/-1
 text=Enchant creature   Enchanted creature gets +3/-1.
 mana={1}{B}
 type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Twitch
@@ -41184,6 +41186,7 @@ auto={T}:Add {1}
 auto={7}{T}:token(Assembly-Worker,creature artifact, 2/2, artifact)
 text={T}: Add {1} to your mana pool.   {7}, {T}: Put a 2/2 Assembly-Worker artifact creature token onto the battlefield.
 type=Land
+subtype=Urza's
 [/card]
 [card]
 name=Urza's Mine
@@ -41204,6 +41207,7 @@ name=Urza's Tower
 auto={T}:add {1} && aslongas(Urza's Power Plant|myinplay)aslongas(Urza's Mine|myinplay) add{2}
 text={T} Add {1} to your mana pool. If you control an Urza's Mine and an Urza's Power-Plant, add {3} to your mana pool instead.
 type=Land
+subtype=Urza's Tower
 [/card]
 [card]
 name=Uthden Troll
@@ -41429,8 +41433,7 @@ toughness=6
 name=Vault of Whispers
 auto={T}:Add{B}
 text=(Vault of Whispers isn't a spell.)  {T}: Add {B} to your mana pool.
-type=Land
-subtype=Artifact
+type=Artifact Land
 [/card]
 [card]
 name=Vebulid
@@ -41681,7 +41684,7 @@ target=artifact
 auto=destroy
 text=Destroy target artifact.
 mana={2}{G}
-type=Sorcery
+type=Instant
 [/card]
 [card]
 name=Verduran Emissary
@@ -41833,6 +41836,7 @@ type=Creature
 subtype=Insect
 power=6
 toughness=6
+# P/T modified to make auto rule possible
 [/card]
 [card]
 name=Viashino Bey
@@ -42139,8 +42143,8 @@ auto=destroy
 auto=token(Faerie Rogue,Creature Faerie,1/1,flying black)
 text=Destroy target nonblack creature. Put a 1/1 black Faerie Rogue creature token with flying onto the battlefield.
 mana={4}{B}
-type=Instant
-subtype=Faerie Tribal
+type=Tribal Instant
+subtype=Faerie
 [/card]
 [card]
 name=Viridian Acolyte
@@ -42567,7 +42571,7 @@ name=Vorosh the Hunter
 abilities=flying
 auto=aslongas(vorosh the hunter[attacking]|mybattlefield) lord(vorosh the hunter[attacking;-cloud]) {2}{G}:counter(1/1,6)
 auto=@damaged(player) from(this):cloud
-text=Flying   Whenever Vorosh, the Hunter deals combat damage to a player, you may pay {2}{G}. If you do, put six +1/+1 counters on Vorosh.
+text=Flying -- Whenever Vorosh, the Hunter deals combat damage to a player, you may pay {2}{G}. If you do, put six +1/+1 counters on Vorosh.
 mana={3}{G}{U}{B}
 type=Legendary Creature
 subtype=Dragon
@@ -42759,7 +42763,7 @@ auto={G}:regenerate
 text=Defender (This creature can't attack.)   {G}: Regenerate Wall of Brambles.
 mana={2}{G}
 type=Creature
-subtype=Wall
+subtype=Plant Wall
 power=2
 toughness=3
 [/card]
@@ -42769,7 +42773,7 @@ abilities=defender,flying,shroud
 text=Defender, flying, shroud
 mana={1}{W}{U}
 type=Creature
-subtype=Illusion Wall
+subtype=Wall
 power=0
 toughness=8
 [/card]
@@ -42886,7 +42890,7 @@ mana={2}{W}
 type=Creature
 subtype=Wall
 power=1
-toughness=6
+toughness=5
 [/card]
 [card]
 name=Wall of Mulch
@@ -43160,7 +43164,7 @@ abilities=flying,lifelink
 text=Flying,lifelink
 mana={4}{W}{W}
 type=Creature
-subtype=Angel
+subtype=Angel Warrior
 power=3
 toughness=4
 [/card]
@@ -44049,7 +44053,7 @@ target=creature[flying]
 auto=destroy
 text=Destroy target creature with flying.
 mana={2}{G}
-type=Instant
+type=Sorcery
 [/card]
 [card]
 name=Wing Storm
@@ -44149,7 +44153,7 @@ auto={T}:foreach(elf|myBattlefield) add:{G}
 text={T}: Add X mana of any one color to your mana pool, where X is the number of Elves on the battlefield.
 mana={3}{G}
 type=Creature
-subtype=Elf
+subtype=Elf Druid
 power=2
 toughness=2
 [/card]
@@ -44159,7 +44163,7 @@ auto={T}:Add {G}
 text={T}: Add {G} to your mana pool.
 mana={1}{G}
 type=Creature
-subtype=Elf
+subtype=Elf Druid
 power=1
 toughness=2
 [/card]
@@ -44602,7 +44606,7 @@ auto={T}:damage:1 target(creature,player) myTurnOnly
 text={T}: Wu Longbowman deals 1 damage to target creature or player. Activate this ability only during your turn, before attackers are declared.
 mana={2}{U}
 type=Creature
-subtype=Human Soldier
+subtype=Human Soldier Archer
 power=1
 toughness=1
 [/card]
@@ -45037,7 +45041,7 @@ name=Zhang He Wei General
 #Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1)
 abilities=horsemanship
 auto=aslongas(zhang he wei general[attacking]|myBattlefield) lord(creature[-zhang he wei general]|myBattlefield) 0/1
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)   Whenever Zhang He, Wei General attacks, each other creature you control gets +1/+0 until end of turn.
+text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.) -- Whenever Zhang He, Wei General attacks, each other creature you control gets +1/+0 until end of turn.
 mana={3}{B}{B}
 type=Legendary Creature
 subtype=Human Soldier
@@ -45051,7 +45055,7 @@ name=Zhao Zilong Tiger General
 #Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1)
 auto=lord(zhao zilong tiger general[blocking]|myBattlefield) 1/1
 auto=horsemanship
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)   Whenever Zhao Zilong, Tiger General blocks, it gets +1/+1 until end of turn.
+text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.) -- Whenever Zhao Zilong, Tiger General blocks, it gets +1/+1 until end of turn.
 mana={3}{W}{W}
 type=Legendary Creature
 subtype=Human Soldier Warrior
@@ -45064,7 +45068,7 @@ abilities=cantattack
 auto=aslongas(island|opponentBattlefield) -cantattack
 text=Zhou Yu, Chief Commander can't attack unless defending player controls an Island.
 mana={5}{U}{U}
-type=Creature
+type=Legendary Creature
 subtype=Human Soldier
 power=8
 toughness=8
@@ -45206,7 +45210,7 @@ abilities=forestwalk
 text=Forestwalk
 mana={2}{G}{G}
 type=Creature
-subtype=Tiger
+subtype=Cat
 power=3
 toughness=4
 [/card]
