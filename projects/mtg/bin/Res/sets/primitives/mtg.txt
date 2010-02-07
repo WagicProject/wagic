@@ -37545,7 +37545,7 @@ toughness=3
 [/card]
 [card]
 name=Sun Quan, Lord of Wu
-auto=lord(creature|battlefield) horsemanship
+auto=lord(creature|mybattlefield) horsemanship
 text=Creatures you control have horsemanship. (They can't be blocked except by creatures with horsemanship.)
 mana={4}{U}{U}
 type=Legendary Creature
