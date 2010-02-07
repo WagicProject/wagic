@@ -1453,7 +1453,7 @@ auto={T}:untap target(forest)
 text={T}: Untap target Forest.
 mana={G}
 type=Creature
-subtype=Elf
+subtype=Elf Druid
 power=1
 toughness=1
 [/card]
@@ -20601,7 +20601,7 @@ auto={2}:equip
 auto=1/0
 auto=deathtouch
 text=Equipped creature gets +1/+0 and flying.   Equip 2
-mana={1}
+mana={2}
 type=Artifact
 subtype=Equipment
 [/card]
