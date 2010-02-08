@@ -126,7 +126,7 @@ string GameStateShop::descPurchase(int controlId, bool tiny){
      if(mBooster[controlId].altSet == mBooster[controlId].mainSet)
        mBooster[controlId].altSet = NULL;
      if(mBooster[controlId].altSet)
-       sprintf(buffer,_("%s & %s Booster (15 Cards)").c_str(),mBooster[controlId].mainSet->id.c_str(),mBooster[controlId].altSet->id.c_str());
+       sprintf(buffer,_("%s & %s (15 Cards)").c_str(),mBooster[controlId].mainSet->id.c_str(),mBooster[controlId].altSet->id.c_str());
      else
       sprintf(buffer,_("%s Booster (15 Cards)").c_str(),mBooster[controlId].mainSet->id.c_str());
      name = buffer;

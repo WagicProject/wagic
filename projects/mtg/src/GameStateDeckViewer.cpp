@@ -1512,6 +1512,12 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
         case -1:                               // (PSY) Cheatmode: Complete the collection
           playerdata->collection->complete();  // Add the cards
           playerdata->collection->save();      // Save the new collection
+          for(int i=0;i<setlist.size();i++){
+            GameOptionAward * goa = dynamic_cast<GameOptionAward*>(&options[Options::optionSet(i)]);
+            if(goa)
+              goa->giveAward();
+          }
+          options.save();
           mStage =  STAGE_WELCOME;             // Reset the deck viewer, so that the new collection gets loaded
           break;
         case 0:
