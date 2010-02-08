@@ -102,8 +102,9 @@ class Constants
     DEATHTOUCH = 44,
     HORSEMANSHIP = 45,
     CANTREGENERATE = 46,
+    ONEBLOCKER = 47,
 
-    NB_BASIC_ABILITIES = 47,
+    NB_BASIC_ABILITIES = 48,
 
 
     RARITY_M = 'M',   //Mythics

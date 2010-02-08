@@ -38047,15 +38047,6 @@ mana={3}
 type=Artifact
 [/card]
 [card]
-name=Stalking Tiger
-text=Stalking Tiger can't be blocked by more than one creature.
-mana={3}{G}
-type=Creature
-subtype=Cat
-power=3
-toughness=3
-[/card]
-[card]
 name=Stalking Vengeance
 text=Haste Whenever another creature you control is put into a graveyard from the battlefield, it deals damage equal to its power to target player.
 mana={5}{R}{R}
