@@ -1,0 +1,25 @@
+#Testing Oneblocker
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:Stalking Tiger
+[PLAYER2]
+inplay:Grizzly Bears,Serra Angel
+[DO]
+Stalking Tiger
+next
+#blockers
+Grizzly Bears
+Serra Angel
+next
+#damage
+next
+#combat end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Stalking Tiger
+[PLAYER2]
+inplay:Serra Angel
+graveyard:Grizzly Bears
+[END]

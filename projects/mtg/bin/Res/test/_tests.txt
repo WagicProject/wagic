@@ -37,6 +37,7 @@ generic/m10_blockers2.txt
 generic/must1.txt
 generic/must2.txt
 generic/nofizzle.txt
+generic/oneblocker.txt
 generic/persist.txt
 generic/persist2.txt
 generic/persist3.txt
