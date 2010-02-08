@@ -110,6 +110,13 @@ public:
   bool isMatch(MTGCard * c);
   string getCode();
 };
+class WCFilterProducesColor: public WCFilterColor{
+public:
+  WCFilterProducesColor(int _c) : WCFilterColor(_c) {};
+  WCFilterProducesColor(string arg) : WCFilterColor(arg) {};
+  bool isMatch(MTGCard * c);
+  string getCode();
+};
 class WCFilterNumeric: public WCardFilter{
 public:
   WCFilterNumeric(int _num) {number = _num;};

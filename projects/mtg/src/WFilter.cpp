@@ -136,6 +136,8 @@ WCardFilter * WCFilterFactory::Terminal(string type, string arg){
     return NEW WCFilterAbility(arg);
   else if(type == "cmc")
     return NEW WCFilterCMC(arg);
+  else if(type == "produces" || type == "ma")
+    return NEW WCFilterProducesColor(arg);
   else if(type == "pow" || type == "power")
     return NEW WCFilterPower(arg);
   else if(type == "tgh" || type == "tough" || type == "toughness")
@@ -195,6 +197,25 @@ string WCFilterOnlyColor::getCode(){
   if(color < 0 || color >= Constants::MTG_NB_COLORS)
     c = Constants::MTGColorChars[color];
   sprintf(buf,"xcolor:%c;",c); 
+  return buf;
+}
+//WCFilterProducesColor
+bool WCFilterProducesColor::isMatch(MTGCard * c){
+ if(!c || !c->data)
+    return false;
+  string s = c->data->magicText;
+  size_t t = s.find("add");
+  if(t == string::npos)
+    return false;
+  ManaCost * mc = ManaCost::parseManaCost(s.substr(t));
+  return (mc->hasColor(color) > 0);
+}
+string WCFilterProducesColor::getCode(){
+  char buf[12]; 
+  char c = '?';
+  if(color < 0 || color >= Constants::MTG_NB_COLORS)
+    c = Constants::MTGColorChars[color];
+  sprintf(buf,"produces:%c;",c); 
   return buf;
 }
 //WCFilterNumeric

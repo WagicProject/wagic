@@ -1446,7 +1446,7 @@ if(!list) return false;
 }
 bool WGuiFilters::isAvailable(int type){
  if(!list) return false;
- int colors = 0;
+ int colors = 0, ma = 0;
   WGuiList * wgl = dynamic_cast<WGuiList*>(list->Current());
   if(wgl){
     vector<WGuiBase*>::iterator it;
@@ -1456,6 +1456,9 @@ bool WGuiFilters::isAvailable(int type){
       switch(type){
         case WGuiFilterItem::FILTER_BASIC:
           return true;
+        case WGuiFilterItem::FILTER_PRODUCE:
+          if(wgfi->filterType == type)
+            ma++;
         case WGuiFilterItem::FILTER_COLOR:
           if(wgfi->filterType == type)
             colors++;
@@ -1466,6 +1469,8 @@ bool WGuiFilters::isAvailable(int type){
       }
     }
     if(colors >= 5)
+      return false;
+    if(ma >= 5)
       return false;
     return true;
   }
@@ -1497,6 +1502,10 @@ void WGuiFilterItem::updateValue(){
       }
       if(mParent->isAvailable(FILTER_COLOR)){
         mParent->subMenu->Add(FILTER_COLOR,"Color");
+        delMenu = false;
+      }
+      if(mParent->isAvailable(FILTER_PRODUCE)){
+        mParent->subMenu->Add(FILTER_PRODUCE,"Mana Ability");
         delMenu = false;
       }
       if(mParent->isAvailable(FILTER_TYPE)){
@@ -1574,6 +1583,12 @@ void WGuiFilterItem::updateValue(){
         addArg("Red","c:r;");
         addArg("Green","c:g;");
         addArg("Black","c:b;");
+      }else if(filterType == FILTER_PRODUCE){
+        addArg("White mana abiltity","ma:w;");
+        addArg("Blue mana abiltity","ma:u;");
+        addArg("Red mana abiltity","ma:r;");
+        addArg("Green mana abiltity","ma:g;");
+        addArg("Black mana abiltity","ma:b;");
       }else if(filterType == FILTER_BASIC){
         char buf[512];
         for(int i=0;i<Constants::NB_BASIC_ABILITIES;i++){
