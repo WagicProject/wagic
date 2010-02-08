@@ -221,7 +221,8 @@ void GameStateMenu::fillScroller(){
   sprintf(buff2, _("You have unlocked %i expansions out of %i").c_str(),nbunlocked, setlist.size());
   scroller->Add(buff2);
 
-  DeckDataWrapper* ddw = NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(PLAYER_COLLECTION).c_str(), mParent->collection));
+  PlayerData * playerdata = NEW PlayerData(mParent->collection);
+  DeckDataWrapper* ddw = NEW DeckDataWrapper(playerdata->collection);
   int totalCards = ddw->getCount();
   if (totalCards){
     sprintf(buff2, _("You have a total of %i cards in your collection").c_str(),totalCards);
@@ -234,9 +235,8 @@ void GameStateMenu::fillScroller(){
       sprintf(buff2, _("The cards in your collection have an average value of %i credits").c_str(),estimatedValue/totalCards);
       scroller->Add(buff2);
   }
-  delete ddw;
+  SAFE_DELETE(ddw);
 
-  PlayerData * playerdata = NEW PlayerData(mParent->collection);
   sprintf(buff2, _("You currently have %i credits").c_str(),playerdata->credits);
   SAFE_DELETE(playerdata);
   scroller->Add(buff2);
