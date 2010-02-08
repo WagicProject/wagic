@@ -377,7 +377,6 @@ void GameStateMenu::Update(float dt)
       if (!nextDirectory(RESPATH"/sets/","_cards.dat")){
         //Remove temporary translations
         Translator::GetInstance()->tempValues.clear();
-
         //Debug
 #ifdef _DEBUG
         char buf[4096];

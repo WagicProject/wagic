@@ -727,6 +727,43 @@ MTGSetInfo* MTGSets::getInfo(int setID){
   return setinfo[setID];
 }
 
+MTGSetInfo* MTGSets::randomSet(int blockId, int atleast){
+  char * unlocked = (char *)calloc(size(),sizeof(char));
+  int attempts = 50;
+  //Figure out which sets are available.
+  for (int i = 0; i < size(); i++){    
+    unlocked[i] = options[Options::optionSet(i)].number;
+  }
+  //No luck randomly. Now iterate from a random location.
+  int a = 0, iter = 0;
+  while(iter < 3){
+    a = rand()%size(); 
+    for(int i=a;i<size();i++){
+      if(unlocked[i] 
+      && (blockId == -1 || setinfo[i]->block == blockId)
+        && (atleast == -1 || setinfo[i]->totalCards() >= atleast)){
+        free(unlocked);
+        return setinfo[i];      
+      }
+    }
+    for(int i=0;i<a;i++){
+      if(unlocked[i] 
+      && (blockId == -1 || setinfo[i]->block == blockId)
+        && (atleast == -1 || setinfo[i]->totalCards() >= atleast)){
+        free(unlocked);
+        return setinfo[i];
+      }
+    }
+    blockId = -1;
+    iter++;
+    if(iter == 2)
+      atleast = -1;
+  }
+  free(unlocked);
+  return NULL;
+}
+  int blockSize(int blockId);
+
 int MTGSets::Add(const char * name){
   int setid = findSet(name);
   if(setid != -1)
@@ -781,11 +818,17 @@ string MTGSets::operator[](int id){
 
   return si->id;
 }
-
+int MTGSets::getSetNum(MTGSetInfo*i){
+  int it;
+  for(it=0;it<size();it++){
+    if(setinfo[it] == i)
+      return it;
+  }
+  return -1;
+}
 int MTGSets::size(){
   return (int) setinfo.size();
 }
-
 
 //MTGSetInfo
 MTGSetInfo::MTGSetInfo(string _id) {

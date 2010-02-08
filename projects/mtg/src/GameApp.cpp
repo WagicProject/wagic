@@ -20,6 +20,7 @@
 #include "../include/DeckStats.h"
 #include "../include/DeckMetaData.h"
 #include "../include/Translate.h"
+#include "../include/WFilter.h"
 
 #define DEFAULT_DURATION .25
 
@@ -233,7 +234,7 @@ void GameApp::Destroy()
 
   SAFE_DELETE(music);
   Translator::EndInstance();
-
+  WCFilterFactory::Destroy();
   SimpleMenu::destroy();
 
   options.theGame = NULL;

@@ -7,7 +7,7 @@
 
 class WGuiList;
 class WGuiMenu;
-class WSrcMTGSet;
+class WSrcCards;
 
 class GameStateAwards: public GameState, public JGuiListener
 {
@@ -16,7 +16,7 @@ class GameStateAwards: public GameState, public JGuiListener
   WGuiMenu * detailview;
   JQuad * mBg;
   JTexture * mBgTex;
-  WSrcMTGSet * setSrc;
+  WSrcCards * setSrc;
   SimpleMenu * menu;
   bool showMenu;
   bool showAlt;

@@ -4,6 +4,7 @@
 #include "../include/MTGDefinitions.h"
 #include "../include/MTGCard.h"
 #include "../include/CardPrimitive.h"
+#include "../include/WDataSrc.h"
 #include <map>
 #include <string>
 using std::map;
@@ -23,27 +24,22 @@ class Cmp1 { // compares cards by their name
   }
 };
 
-class DeckDataWrapper{
+class DeckDataWrapper: public WSrcDeck {
  public:
-  int colors[Constants::MTG_NB_COLORS+1];
-  int currentColor;
-  map<MTGCard *, int,Cmp1> cards;
   MTGDeck * parent;
+  int counts[Constants::MTG_NB_COLORS];
 
   DeckDataWrapper(MTGDeck * deck);
   ~DeckDataWrapper();
 
-  int Add(MTGCard * card, int quantity = 1);
+  int Add(MTGCard * c, int quantity=1);
+  int Remove(MTGCard * c, int quantity=1, bool erase=false);
   int Add(MTGDeck * deck);
-  int Remove(MTGCard * card);
-  MTGCard * getNext(MTGCard * previous = NULL, int color = -1);
-  MTGCard * getPrevious(MTGCard * next = NULL, int color = -1);
-  void updateCounts(MTGCard * card = NULL, int quantity = 1);
-  int getCount(int color = -1);
-  int totalPrice();
+  int getCount(int color=-1);
+  void updateCounts();
+  bool next() {currentPos++; return true;};
+  bool prev() {currentPos--; return true;};
   void save();
-  int countByName(MTGCard * card);
-  int count(MTGCard *  card);
 };
 
 #endif

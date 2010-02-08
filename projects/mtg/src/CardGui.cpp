@@ -276,7 +276,7 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
 #ifdef _DEBUG    
     else{
       char buf[2048];
-      sprintf(buf, "\n==\nTypeless card: %s %s\n", setlist[card->setId].c_str(), card->data->getName().c_str());
+      sprintf(buf, "Typeless card: %s %s (%i)\n", setlist[card->setId].c_str(), card->data->getName().c_str(), card->getId());
       OutputDebugString(buf);
       }
 #endif

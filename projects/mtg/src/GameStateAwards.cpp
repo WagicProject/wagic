@@ -210,20 +210,23 @@ bool GameStateAwards::enterSet(int setid){
   SAFE_DELETE(detailview);
   SAFE_DELETE(setSrc);
 
-  setSrc = NEW WSrcMTGSet(setid);
+  setSrc = NEW WSrcCards();
+  setSrc->addFilter(NEW WCFilterSet(setid));
+  setSrc->loadMatches(mParent->collection);
+  setSrc->bakeFilters();
+  setSrc->Sort(WSrcCards::SORT_COLLECTOR);
+
   detailview = NEW WGuiMenu(PSP_CTRL_DOWN,PSP_CTRL_UP);
   
   WGuiList * spoiler = NEW WGuiList("Spoiler",setSrc);
   spoiler->setX(210);
   spoiler->setWidth(SCREEN_WIDTH - 220);
-  while(true){
-    MTGCard * c = setSrc->getCard();
+  for(int t=0;t<setSrc->Size();t++){
+    MTGCard * c = setSrc->getCard(t);
     if(c)
       spoiler->Add(NEW WGuiItem(c->data->name));
-    if(!setSrc->next())
-      break;
   }
-  setSrc->setPos(0);
+  setSrc->setOffset(0);
   spoiler->Entering(0);
   WGuiCardImage * wi = NEW WGuiCardImage(setSrc);
   wi->setX(105);
@@ -257,18 +260,18 @@ bool GameStateAwards::enterStats(int option){
     MTGCard * costly = NULL;
     MTGCard * strong = NULL;
     MTGCard * tough = NULL;
-    map<MTGCard *,int,Cmp1>::iterator it;
 
-    for (it = ddw->cards.begin(); it!=ddw->cards.end(); it++){
-      MTGCard * c = it->first;
+    for (int t=0;t<ddw->Size();t++){
+      MTGCard * c = ddw->getCard(t);
       if(!c)
         continue;
-      if(!c->data->isLand() && (many == NULL || it->second > dupes)){
+      int count = ddw->count(c);
+      if(!c->data->isLand() && (many == NULL || count > dupes)){
         many = c;
-        dupes = it->second;
+        dupes = count;
       }
       unique++;
-      counts[c->setId]+=it->second;
+      counts[c->setId]+=count;
       if(costly == NULL 
         || c->data->getManaCost()->getConvertedCost() > costly->data->getManaCost()->getConvertedCost())
         costly = c;
@@ -290,7 +293,7 @@ bool GameStateAwards::enterStats(int option){
     sprintf(buf,_("Total Value: %ic").c_str(),ddw->totalPrice());
     detailview->Add(NEW WGuiItem(buf,WGuiItem::NO_TRANSLATE));//ddw->colors
     
-    sprintf(buf,_("Total Cards (including duplicates): %i").c_str(),ddw->getCount());
+    sprintf(buf,_("Total Cards (including duplicates): %i").c_str(),ddw->totalCopies());
     detailview->Add(NEW WGuiItem(buf,WGuiItem::NO_TRANSLATE));//ddw->colors
 
     sprintf(buf,_("Unique Cards: %i").c_str(),unique);

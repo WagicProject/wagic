@@ -4,7 +4,11 @@
 #include <JGE.h>
 #include "../include/GameState.h"
 #include "../include/SimpleMenu.h"
-#include "../include/ShopItem.h"
+#include "../include/OptionItem.h"
+#include "../include/PriceList.h"
+#include "../include/PlayerData.h"
+#include "../include/CardDisplay.h"
+#include "../include/DeckDataWrapper.h"
 #include "../include/Tasks.h"
 
 
@@ -14,28 +18,74 @@
 #define STAGE_SHOP_SHOP 4
 #define STAGE_SHOP_TASKS 5
 #define STAGE_FADE_IN 6
+#define STAGE_ASK_ABOUT 7
 
+#define BOOSTER_SLOTS 3
+#define SHOP_SLOTS 11
+
+#define SHOP_ITEMS SHOP_SLOTS+1
+#define LIST_FADEIN 11
+
+struct ShopBooster{
+  MTGSetInfo * mainSet;
+  MTGSetInfo * altSet;
+};
 
 class GameStateShop: public GameState, public JGuiListener
 {
  private:
-  ShopItems * shop;
+  WSrcCards * srcCards;
   JTexture * altThumb[8];
   JQuad * mBack;
   JQuad * mBg;
   JTexture * mBgTex;
   TaskList * taskList;
+  float mElapsed;
+  WGuiMenu * shopMenu;
+  WGuiFilters * filterMenu; //Filter menu slides in sideways from right, or up from bottom.
+  WGuiCardImage * bigDisplay;
+  CardDisplay * boosterDisplay;
+  vector<MTGCardInstance*> subBooster;
+  MTGDeck * booster;
+  bool bListCards;
 
-  SimpleMenu * menu;
+  void beginFilters();
+  void makeDisplay(MTGDeck * d);
+  void deleteDisplay();
+
+  WSyncable bigSync;
+  SimpleMenu * menu;  
+  PriceList * pricelist;
+  PlayerData * playerdata;
+  bool mTouched;
+  int mPrices[SHOP_ITEMS];
+  int mCounts[SHOP_ITEMS];
+  int mInventory[SHOP_ITEMS];
+  int lightAlpha;
+  int alphaChange;
+
+  DeckDataWrapper * myCollection;
+  
   int mStage;
-  char starterBuffer[128], boosterBuffer[128];
-  char setNames[SHOP_BOOSTERS][128];
-  int setIds[SHOP_BOOSTERS];
+  ShopBooster mBooster[BOOSTER_SLOTS];
+  
   void load();
+  void save(bool force=false);
+  
+  void assembleBooster(int controlId);
+  void beginPurchase(int controlId);
+  void purchaseCard(int controlId);
+  void purchaseBooster(int controlId);
+  int purchasePrice(int offset);
+  string descPurchase(int controlId, bool tiny = false);
+
+
+  static int randomKey; 
  public:
   GameStateShop(GameApp* parent);
   virtual ~GameStateShop();
 
+  static void passOneDay() {randomKey = rand();};
   virtual void Start();
   virtual void End();
   virtual void Create();
@@ -43,6 +93,7 @@ class GameStateShop: public GameState, public JGuiListener
   virtual void Update(float dt);
   virtual void Render();
   virtual void ButtonPressed(int controllerId, int controlId);
+  static float _x1[],_y1[],_x2[],_y2[],_x3[],_y3[],_x4[],_y4[];
 };
 
 

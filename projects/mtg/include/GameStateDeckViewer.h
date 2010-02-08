@@ -15,6 +15,8 @@
 #include "../include/PlayerData.h"
 #include "../include/DeckDataWrapper.h"
 #include "../include/DeckStats.h"
+#include "../include/WDataSrc.h"
+#include "../include/WGui.h"
 
 #define NO_USER_ACTIVITY_HELP_DELAY 10
 #define NO_USER_ACTIVITY_SHOWCARD_DELAY 0.1
@@ -28,7 +30,8 @@ enum
     STAGE_TRANSITION_DOWN = 4,
     STAGE_ONSCREEN_MENU = 5,
     STAGE_WELCOME = 6,
-    STAGE_MENU = 7
+    STAGE_MENU = 7,
+    STAGE_FILTERS = 8
   };
 
 
@@ -40,6 +43,8 @@ enum
 #define HIGH_SPEED 15.0
 #define MED_SPEED 5.0
 #define LOW_SPEED 1.5
+
+#define MAX_SAVED_FILTERS 8
 
 static const int STATS_FOR_TURNS = 8;
 static const int STATS_MAX_MANA_COST = 9; 
@@ -100,11 +105,12 @@ private:
   int mStage;
   int nbDecks;
   int deckNum;
-  int colorFilter;
+  int useFilter[2];
   JMusic * bgMusic;
   JQuad * backQuad;
+  WGuiFilters * filterDeck;
+  WGuiFilters * filterCollection;
   SimpleMenu * welcome_menu;
-  bool showing_user_deck;
   SimpleMenu * menu;
   SimpleMenu * sellMenu;
   PriceList* pricelist;
@@ -116,7 +122,6 @@ private:
   MTGCard * currentCard;
   MTGCard *  cardIndex[7];
   int hudAlpha;
-  float scrollSpeed;
   int delSellMenu;
   string newDeckname;
   StatsWrapper stw;
@@ -127,12 +132,12 @@ public:
   virtual ~GameStateDeckViewer();
   void updateDecks();
   void rotateCards(int direction);
-  void loadIndexes(MTGCard * current = NULL);
+  void loadIndexes();
+  void updateFilters();
   void switchDisplay();
   void Start();
   virtual void End();
   void addRemove(MTGCard * card);
-  int Remove(MTGCard * card);
   virtual void Update(float dt);
   void renderOnScreenBasicInfo();
   void renderSlideBar();

@@ -30,7 +30,6 @@ MTGCard::MTGCard(MTGCard * source){
   mtgid = source->mtgid;
   setId = source->setId;
   data = source->data;
-
 }
 
 int MTGCard::init(){
@@ -57,7 +56,6 @@ int MTGCard::getMTGId(){
 int MTGCard::getId(){
   return mtgid;
 }
-
 char MTGCard::getRarity(){
   return rarity;
 }

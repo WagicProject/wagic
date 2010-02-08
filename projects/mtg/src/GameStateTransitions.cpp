@@ -7,7 +7,6 @@
 #include "../include/Translate.h"
 #include "../include/OptionItem.h"
 #include "../include/GameOptions.h"
-#include "../include/DeckDataWrapper.h"
 
 TransitionBase::TransitionBase(GameApp* parent, GameState* _from, GameState* _to, float duration): GameState(parent){
   from = _from;
@@ -15,7 +14,12 @@ TransitionBase::TransitionBase(GameApp* parent, GameState* _from, GameState* _to
   mDuration = duration;
   bAnimationOnly = false;
 }
-
+TransitionBase::~TransitionBase(){
+  if(!bAnimationOnly){
+    if(from)
+      from->End();
+  }
+}
 void TransitionBase::Update(float dt){
   if(from && !Finished())
     from->Update(dt);  
@@ -36,12 +40,7 @@ void TransitionBase::Start() {
 void TransitionBase::End() {
   mElapsed = 0;
 };
-TransitionBase::~TransitionBase(){
-  if(!bAnimationOnly){
-    if(from)
-      from->End();
-  }
-}
+
 void TransitionFade::Render(){
   if(from)
     from->Render();

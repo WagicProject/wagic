@@ -61,14 +61,16 @@ public:
   int Add(const char * subtype);
   int findSet(string value);
   int findBlock(string s);
-
   int size();
+
+  int getSetNum(MTGSetInfo*i);
 
   int operator[](string id); //Returns set id index, -1 for failure.
   string operator[](int id); //Returns set id name, "" for failure.
     
   MTGSetInfo* getInfo(int setID); 
-  
+  MTGSetInfo* randomSet(int blockId = -1, int atleast = -1); //Tries to match, otherwise 100% random unlocked set
+ 
 protected:
   vector<string> blocks;
   vector<MTGSetInfo*> setinfo;

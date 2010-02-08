@@ -7,6 +7,7 @@
 #include "../include/Translate.h"
 #include "../include/MTGDeck.h"
 #include "../include/GameObserver.h"
+#include "../include/GameStateShop.h"
 
   CreditBonus::CreditBonus(int _value, string _text){
     value = _value;
@@ -150,6 +151,7 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
 
 
     playerdata->credits += value;
+    GameStateShop::passOneDay();
     playerdata->taskList->passOneDay();
     if (playerdata->taskList->getTaskCount() < 6) {
       playerdata->taskList->addRandomTask();

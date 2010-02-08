@@ -629,10 +629,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\ShopItem.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\src\SimpleMenu.cpp"
 				>
 			</File>
@@ -689,7 +685,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\WDataSrc.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\WEvent.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\WFilter.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\WGui.cpp"
 				>
 			</File>
 			<File
@@ -994,10 +1002,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\include\ShopItem.h"
-				>
-			</File>
-			<File
 				RelativePath=".\include\SimpleMenu.h"
 				>
 			</File>
@@ -1058,7 +1062,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\WDataSrc.h"
+				>
+			</File>
+			<File
 				RelativePath=".\include\WEvent.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\WFilter.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\WGui.h"
 				>
 			</File>
 			<File

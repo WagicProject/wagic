@@ -19,6 +19,7 @@ using namespace std;
 
 class MTGCard {
  protected:
+   friend class MTGSetInfo;
   int mtgid;
   char rarity;
   char image_name[MTGCARD_NAME_SIZE];
@@ -36,7 +37,6 @@ class MTGCard {
   void setMTGId(int id);
   int getMTGId();
   int getId();
-
 
 
   char getRarity();

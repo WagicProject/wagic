@@ -164,8 +164,6 @@ void Task::loadAIDeckNames() {
   while (found){
     found = 0;
     char buffer[512];
-    char smallDeckName[512];
-    char deckDesc[512];
     sprintf(buffer, "%s/deck%i.txt",RESPATH"/ai/baka",nbDecks + 1);
 
     if(fileExists(buffer)){
