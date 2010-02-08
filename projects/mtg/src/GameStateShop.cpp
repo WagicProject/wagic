@@ -309,7 +309,7 @@ void GameStateShop::load(){
       mInventory[i] = 0;
       continue;
     }
-    mPrices[i] = purchasePrice(i);
+    mPrices[i] = purchasePrice(i-BOOSTER_SLOTS);
     mCounts[i] = myCollection->countByName(c);
     switch(c->getRarity()){ 
       case Constants::RARITY_C:
