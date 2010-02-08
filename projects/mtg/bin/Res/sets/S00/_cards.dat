@@ -1,3 +1,9 @@
+[meta]
+author=Wagic Team
+name=Starter '00
+block=Starter
+year=2000
+[/meta]
 [card]
 primitive=Angelic Blessing
 id=25456
