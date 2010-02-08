@@ -80,14 +80,9 @@ class GameStateShop: public GameState, public JGuiListener
   void purchaseBooster(int controlId);
   int purchasePrice(int offset);
   string descPurchase(int controlId, bool tiny = false);
-
-
-  static int randomKey; 
  public:
   GameStateShop(GameApp* parent);
   virtual ~GameStateShop();
-
-  static void passOneDay() {randomKey = rand();};
   virtual void Start();
   virtual void End();
   virtual void Create();

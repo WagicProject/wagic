@@ -114,6 +114,10 @@ class Constants
     RARITY_L = 'L',   //Lands
     RARITY_T = 'T',   //Tokens
 
+    //Price flux
+    PRICE_FLUX_RANGE = 20,
+    PRICE_FLUX_MINUS = 10,
+
     //Price for singles
     PRICE_1M = 3000,
     PRICE_1R = 500,

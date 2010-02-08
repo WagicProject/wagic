@@ -327,9 +327,7 @@ void GameStateDeckViewer::Update(float dt)
       {
         MTGCard * card  = cardIndex[2];
         if (card && displayed_deck->count(card)){
-          int rnd = (rand() % 20);
-          price = pricelist->getPrice(card->getMTGId()) / 2;
-          price = price - price * (rnd -10)/100;
+          int price = pricelist->getSellPrice(card->getMTGId());
           sprintf(buffer,"%s : %i %s",_(card->data->getName()).c_str(),price,_("credits").c_str());
           sellMenu = NEW SimpleMenu(2,this,Constants::MAIN_FONT,SCREEN_WIDTH-300,SCREEN_HEIGHT/2,buffer);
           sellMenu->Add(20,"Yes");

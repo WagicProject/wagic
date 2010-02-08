@@ -22,8 +22,6 @@ float GameStateShop::_y3[] = {164,205,257,184,180,170,219,212,195,251,252};
 float GameStateShop::_x4[] = { 76, 90, 65,131,171,221,123,187,225,141,237};
 float GameStateShop::_y4[] = {169,188,250,182,182,168,220,208,198,259,245};
 
-int GameStateShop::randomKey = 0;
-
 GameStateShop::GameStateShop(GameApp* parent): GameState(parent) {
   menu = NULL;
   for(int i=0;i<8;i++)
@@ -48,8 +46,6 @@ GameStateShop::GameStateShop(GameApp* parent): GameState(parent) {
     mCounts[i] = 0;
   }
   mTouched = false;
-  if(randomKey == 0)
-    randomKey = rand();
 }
 
 
@@ -284,9 +280,7 @@ int GameStateShop::purchasePrice(int offset){
   MTGCard * c = NULL;
   if(!pricelist || !srcCards || (c = srcCards->getCard(offset)) == NULL)
     return 0;
-  int rnd = abs(c->getMTGId() + randomKey) % 20; 
-  float price = (float) pricelist->getPrice(c->getMTGId());
-  price = price + price * (rnd -10)/100;    
+  float price = (float) pricelist->getPurchasePrice(c->getMTGId());
   return (int) (price + price * srcCards->filterFee());
 }
 

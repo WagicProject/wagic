@@ -1,7 +1,7 @@
 #include "../include/config.h"
 #include "../include/PriceList.h"
 
-
+int PriceList::randomKey = 0;
 
 PriceList::PriceList(const char * _filename, MTGAllCards * _collection):collection(_collection){
   filename = _filename;
@@ -15,6 +15,8 @@ PriceList::PriceList(const char * _filename, MTGAllCards * _collection):collecti
     }
     file.close();
   }
+  if(randomKey == 0)
+    randomKey = rand();
 }
 
 
@@ -60,12 +62,20 @@ int PriceList::getPrice(int cardId){
   default:
     return Constants::PRICE_1C;
     break;
-
   }
 
 }
 
 int PriceList::setPrice(int cardId, int price){
   prices[cardId] = price;
+  return price;
+}
+int PriceList::getSellPrice(int cardid){
+  return getPurchasePrice(cardid) / 2;
+}
+int PriceList::getPurchasePrice(int cardid){
+  float price = (float) getPrice(cardid);
+  int rnd = abs(cardid + randomKey) % (1+Constants::PRICE_FLUX_RANGE);
+  price += price * (float)(rnd - Constants::PRICE_FLUX_MINUS)/100.0f;
   return price;
 }

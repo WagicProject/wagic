@@ -151,7 +151,7 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
 
 
     playerdata->credits += value;
-    GameStateShop::passOneDay();
+    PriceList::updateKey();
     playerdata->taskList->passOneDay();
     if (playerdata->taskList->getTaskCount() < 6) {
       playerdata->taskList->addRandomTask();
