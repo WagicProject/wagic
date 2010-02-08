@@ -395,6 +395,7 @@ void GameStateShop::Update(float dt)
       if (menu)
         menu->Update(dt);
       beginPurchase(mBuying);
+      mStage = STAGE_SHOP_SHOP;
       break;
     case STAGE_SHOP_MENU:
     if (menu){
