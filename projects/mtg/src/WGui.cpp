@@ -1532,6 +1532,10 @@ void WGuiFilterItem::updateValue(){
         mParent->subMenu->Add(FILTER_TOUGH,"Toughness");
         delMenu = false;
       }
+      if(mParent->isAvailable(FILTER_ALPHA)){
+        mParent->subMenu->Add(FILTER_ALPHA,"First Letter");
+        delMenu = false;
+      }
       if(!mNew)
         mParent->subMenu->Add(-2,"Remove");
       mParent->subMenu->Add(-1,"Cancel");
@@ -1605,6 +1609,14 @@ void WGuiFilterItem::updateValue(){
           sprintf(buf,"s:%s;",setlist[i].c_str());
           addArg((setlist.getInfo(i))->getName(),buf);
         }
+      }else if(filterType == FILTER_ALPHA){
+        char buf[24], pretty[16];
+        for(char c='a';c<='z';c++){
+          sprintf(buf,"alpha:%c;",c);
+          sprintf(pretty,"Letter %c",toupper(c));
+          addArg(pretty,buf);
+        }
+        addArg("Digit","alpha:#;");
       }
       mParent->subMenu->Add(-1,"Cancel");
     break;

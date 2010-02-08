@@ -130,6 +130,8 @@ WCardFilter * WCFilterFactory::Terminal(string type, string arg){
     return NEW WCFilterOnlyColor(arg);
   else if(type == "s" || type == "set")
     return NEW WCFilterSet(arg);
+  else if(type == "alpha")
+    return NEW WCFilterLetter(arg);
   else if(type == "t" || type == "type")
     return NEW WCFilterType(arg);
   else if(type == "a" || type == "ability")
@@ -145,7 +147,28 @@ WCardFilter * WCFilterFactory::Terminal(string type, string arg){
 
   return NEW WCFilterNULL();
 }
-
+//WCFilterLetter
+WCFilterLetter::WCFilterLetter(string arg){
+  if(!arg.size())
+    alpha = 'a';
+  else
+    alpha = tolower(arg[0]);
+}
+bool WCFilterLetter::isMatch(MTGCard * c){
+  if(!c || !c->data)
+    return false;
+  string s = c->data->getLCName();
+  if(!s.size())
+    return false;
+  if(s[0] == alpha || (alpha == '#' && (isdigit(s[0]) || ispunct(s[0]))))
+    return true;
+  return false;
+}
+string WCFilterLetter::getCode(){
+  char buf[24];
+  sprintf(buf,"alpha:%c;",alpha);
+  return buf;
+}
 //WCFilterSet
 WCFilterSet::WCFilterSet(string arg){
   setid = setlist.findSet(arg);

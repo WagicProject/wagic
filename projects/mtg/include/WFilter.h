@@ -93,6 +93,15 @@ public:
 protected:
   int setid;
 };
+class WCFilterLetter: public WCardFilter{
+public:
+  WCFilterLetter(string arg);
+  bool isMatch(MTGCard * c);
+  string getCode();
+  float filterFee() {return 1.0f;}; //Alpha searches are expensive!
+protected:
+  char alpha;
+};
 class WCFilterColor: public WCardFilter{
 public:
   WCFilterColor(int _c) {color = _c;};
