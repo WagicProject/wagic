@@ -103,6 +103,48 @@ public:
 protected:
   int color;
 };
+class WCFilterOnlyColor: public WCFilterColor{
+public:
+  WCFilterOnlyColor(int _c) : WCFilterColor(_c) {};
+  WCFilterOnlyColor(string arg) : WCFilterColor(arg) {};
+  bool isMatch(MTGCard * c);
+  string getCode();
+};
+class WCFilterNumeric: public WCardFilter{
+public:
+  WCFilterNumeric(int _num) {number = _num;};
+  WCFilterNumeric(string arg);
+  bool isMatch(MTGCard * c) = 0;
+  string getCode() = 0;
+  float filterFee() = 0;
+protected:
+  int number;
+};
+class WCFilterCMC: public WCFilterNumeric{
+public:
+  WCFilterCMC(int amt) : WCFilterNumeric(amt) {};
+  WCFilterCMC(string arg) : WCFilterNumeric(arg) {};
+  bool isMatch(MTGCard * c);
+  string getCode();
+  float filterFee() {return number/20.0f;};
+};
+class WCFilterPower: public WCFilterNumeric{
+public:
+  WCFilterPower(int amt) : WCFilterNumeric(amt) {};
+  WCFilterPower(string arg) : WCFilterNumeric(arg) {};
+  bool isMatch(MTGCard * c);
+  string getCode();
+  float filterFee() {return number/12.0f;};
+};
+class WCFilterToughness: public WCFilterNumeric{
+public:
+  WCFilterToughness(int amt) : WCFilterNumeric(amt) {};
+  WCFilterToughness(string arg) : WCFilterNumeric(arg) {};
+  bool isMatch(MTGCard * c);
+  string getCode();
+  float filterFee() {return number/12.0f;};
+};
+
 class WCFilterType: public WCardFilter{
 public:
   WCFilterType(string arg) {type = arg;};

@@ -1478,6 +1478,8 @@ WGuiFilterItem::WGuiFilterItem(WGuiFilters * parent): WGuiItem("Cards..."){
 };
 void WGuiFilterItem::updateValue(){
   bool delMenu = true;
+  char buf_name[512];
+  char buf_code[512];
   if(!mParent)
     return;
   switch(mState){
@@ -1504,8 +1506,21 @@ void WGuiFilterItem::updateValue(){
       if(mParent->isAvailable(FILTER_RARITY)){
         mParent->subMenu->Add(FILTER_RARITY,"Rarity");
         delMenu = false;
-      }if(mParent->isAvailable(FILTER_BASIC)){
+      }
+      if(mParent->isAvailable(FILTER_BASIC)){
         mParent->subMenu->Add(FILTER_BASIC,"Ability");
+        delMenu = false;
+      }
+      if(mParent->isAvailable(FILTER_CMC)){
+        mParent->subMenu->Add(FILTER_CMC,"Mana Cost");
+        delMenu = false;
+      }
+      if(mParent->isAvailable(FILTER_POWER)){
+        mParent->subMenu->Add(FILTER_POWER,"Power");
+        delMenu = false;
+      }
+      if(mParent->isAvailable(FILTER_TOUGH)){
+        mParent->subMenu->Add(FILTER_TOUGH,"Toughness");
         delMenu = false;
       }
       if(!mNew)
@@ -1535,6 +1550,24 @@ void WGuiFilterItem::updateValue(){
         addArg("Rare","r:r;");
         addArg("Uncommon","r:u;");
         addArg("Common","r:c;");
+      }else if(filterType == FILTER_CMC){
+        for(int i=0;i<20;i++){
+          sprintf(buf_code,"cmc:%i;",i);
+          sprintf(buf_name,"%i Mana",i);
+          addArg(buf_name,buf_code);
+        }
+      }else if(filterType == FILTER_POWER){
+        for(int i=0;i<14;i++){
+          sprintf(buf_code,"pow:%i;",i);
+          sprintf(buf_name,"%i power",i);
+          addArg(buf_name,buf_code);
+        }
+      }else if(filterType == FILTER_TOUGH){
+        for(int i=0;i<14;i++){
+          sprintf(buf_code,"tgh:%i;",i);
+          sprintf(buf_name,"%i toughness",i);
+          addArg(buf_name,buf_code);
+        }
       }else if(filterType == FILTER_COLOR){
         addArg("White","c:w;");
         addArg("Blue","c:u;");

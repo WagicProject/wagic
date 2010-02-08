@@ -456,6 +456,9 @@ public:
     FILTER_COLOR,
     FILTER_TYPE,
     FILTER_BASIC,
+    FILTER_CMC,
+    FILTER_POWER,
+    FILTER_TOUGH,
     END_FILTERS
   };
 protected:
