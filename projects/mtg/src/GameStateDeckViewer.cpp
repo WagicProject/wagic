@@ -143,12 +143,12 @@ void GameStateDeckViewer::Start()
   myDeck = NULL;
 
   menu = NEW SimpleMenu(11,this,Constants::MENU_FONT,SCREEN_WIDTH/2-150,20);
-  menu->Add(0,"Save");
-  menu->Add(1,"Save & Rename");
+  menu->Add(22,"Filter by...");
   menu->Add(2,"Switch decks without saving");
   if(options[Options::CHEATMODE].number)
       menu->Add(-1,"*Complete collection & reset*");
-  menu->Add(22,"Filter by...");
+  menu->Add(1,"Save & Rename");
+  menu->Add(0,"Save & Back to Main Menu");
   menu->Add(3,"Back to main menu");
   menu->Add(4,"Cancel");
 
@@ -1511,7 +1511,7 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
           myDeck->save();
           playerdata->save();
           pricelist->save();
-          mStage =  STAGE_WAITING;
+          mParent->DoTransition(TRANSITION_FADE,GAME_STATE_MENU);
           break;
         case 1:
           if(myDeck && myDeck->parent){

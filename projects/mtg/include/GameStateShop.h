@@ -19,6 +19,7 @@
 #define STAGE_SHOP_TASKS 5
 #define STAGE_FADE_IN 6
 #define STAGE_ASK_ABOUT 7
+#define STAGE_SHOP_PURCHASE 8
 
 #define BOOSTER_SLOTS 3
 #define SHOP_SLOTS 11
@@ -63,6 +64,7 @@ class GameStateShop: public GameState, public JGuiListener
   int mInventory[SHOP_ITEMS];
   int lightAlpha;
   int alphaChange;
+  int mBuying;
 
   DeckDataWrapper * myCollection;
   

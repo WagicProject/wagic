@@ -84,8 +84,8 @@ void GameStateOptions::Start()
   optionsTabs->Add(optionsList);
 
   optionsMenu = NEW SimpleMenu(-102, this,Constants::MENU_FONT, 50,170);
-  optionsMenu->Add(1, "Save & Back to Main Menu");
   optionsMenu->Add(2, "Back to Main Menu");
+  optionsMenu->Add(1, "Save & Back to Main Menu");
   optionsMenu->Add(3, "Cancel");
 
   optionsTabs->Entering(0);

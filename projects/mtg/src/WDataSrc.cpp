@@ -415,7 +415,7 @@ int WSrcDeck::totalPrice(){
       int nb =  it->second;
       if (nb) total += pricelist->getPrice(it->first);
   }
-  delete pricelist;
+  SAFE_DELETE(pricelist);
   return total;
 }
 

@@ -128,7 +128,7 @@ string GameStateShop::descPurchase(int controlId, bool tiny){
    string name;
    if(controlId < BOOSTER_SLOTS){
      if(mBooster[controlId].altSet == mBooster[controlId].mainSet)
-       mBooster[controlId].altSet = 0;
+       mBooster[controlId].altSet = NULL;
      if(mBooster[controlId].altSet)
        sprintf(buffer,_("%s & %s Booster (15 Cards)").c_str(),mBooster[controlId].mainSet->id.c_str(),mBooster[controlId].altSet->id.c_str());
      else
@@ -323,8 +323,6 @@ void GameStateShop::load(){
     }
 
   }
-
-
 }
 void GameStateShop::save(bool force)
 {
@@ -393,6 +391,11 @@ void GameStateShop::Update(float dt)
 
   u32 btn; 
   switch(mStage){
+    case STAGE_SHOP_PURCHASE:
+      if (menu)
+        menu->Update(dt);
+      beginPurchase(mBuying);
+      break;
     case STAGE_SHOP_MENU:
     if (menu){
       menu->Update(dt);
@@ -421,8 +424,8 @@ void GameStateShop::Update(float dt)
           }else if(taskList->getState() == TaskList::TASKS_ACTIVE && btn == PSP_CTRL_START ){
             if(!menu){
               menu = NEW SimpleMenu(11,this,Constants::MENU_FONT,SCREEN_WIDTH/2-100,20);
-              menu->Add(12,"Save & Back to Main Menu");
               menu->Add(15,"Return to shop");
+              menu->Add(12,"Save & Back to Main Menu");
               menu->Add(13, "Cancel");
             }
           }
@@ -620,11 +623,15 @@ void GameStateShop::ButtonPressed(int controllerId, int controlId)
 
   switch(controllerId){
     case -102: //Buying something...
-      beginPurchase(controlId);
+      mStage = STAGE_SHOP_PURCHASE;
+      if(menu)
+        menu->Close();
+      mBuying = controlId;
       return;
     case -145: 
       if(controlId == -1){ //Nope, don't buy.
         menu->Close();
+        mStage = STAGE_SHOP_SHOP;
         return;
       }
       if(sel > -1 && sel < SHOP_ITEMS){        
@@ -635,14 +642,16 @@ void GameStateShop::ButtonPressed(int controllerId, int controlId)
         else
           purchaseCard(sel);
       }
+      mStage = STAGE_SHOP_SHOP;
       return;    
   }
   //Basic Menu.
   switch(controlId){
   case 12:
     if (taskList) taskList->save();
-    mParent->DoTransition(TRANSITION_FADE,GAME_STATE_MENU);
     mStage = STAGE_SHOP_SHOP;
+    mParent->DoTransition(TRANSITION_FADE,GAME_STATE_MENU);
+    save();
     break;
   case 14:          
     mStage = STAGE_SHOP_TASKS;
@@ -662,5 +671,5 @@ void GameStateShop::ButtonPressed(int controllerId, int controlId)
   default:
     mStage = STAGE_SHOP_SHOP;
   }
-  SAFE_DELETE(menu);
+  menu->Close();
 }
