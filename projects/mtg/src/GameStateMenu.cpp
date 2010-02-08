@@ -57,6 +57,7 @@ enum
   SUBMENUITEM_CLASSIC,
   SUBMENUITEM_RANDOM1,
   SUBMENUITEM_RANDOM2,
+  SUBMENUITEM_PEASANT,
 };
 
 
@@ -452,9 +453,11 @@ void GameStateMenu::Update(float dt)
 		          subMenuController->Add(SUBMENUITEM_RANDOM1, "Random 1 Color");
 		          subMenuController->Add(SUBMENUITEM_RANDOM2, "Random 2 Colors");
 	          }
+            if(true)
+              subMenuController->Add(SUBMENUITEM_PEASANT, "Peasant's Magic");
 	          subMenuController->Add(SUBMENUITEM_CANCEL, "Cancel");
 	        }
-	      }else{
+        }else{
           mParent->DoTransition(TRANSITION_FADE,GAME_STATE_DUEL);
 	        currentState = MENU_STATE_MAJOR_MAINMENU;
 	      }
@@ -667,6 +670,12 @@ JLBFont * mFont = resources.GetJLBFont(Constants::MENU_FONT);
   case SUBMENUITEM_RANDOM2:
     this->hasChosenGameType = 1;
     mParent->gameType = GAME_TYPE_RANDOM2;
+    subMenuController->Close();
+    currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
+    break;
+  case SUBMENUITEM_PEASANT:
+    this->hasChosenGameType = 1;
+    mParent->gameType = GAME_TYPE_PEASANT;
     subMenuController->Close();
     currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
     break;

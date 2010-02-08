@@ -44,7 +44,10 @@ GameStateDeckViewer::GameStateDeckViewer(GameApp* parent): GameState(parent) {
 
 GameStateDeckViewer::~GameStateDeckViewer() {
   SAFE_DELETE(bgMusic);
-  SAFE_DELETE(myDeck);
+  if(myDeck){
+    SAFE_DELETE(myDeck->parent);
+    SAFE_DELETE(myDeck);
+  }
   SAFE_DELETE(myCollection);
   SAFE_DELETE(filterDeck);
   SAFE_DELETE(filterCollection);
@@ -218,7 +221,10 @@ void GameStateDeckViewer::End()
 
   resources.Release(pspIconsTexture);
   SAFE_DELETE(myCollection);
-  SAFE_DELETE(myDeck);
+  if(myDeck){
+    SAFE_DELETE(myDeck->parent);
+    SAFE_DELETE(myDeck);
+  }
   SAFE_DELETE(pricelist);
   SAFE_DELETE(playerdata);
   SAFE_DELETE(filterDeck);
@@ -1409,7 +1415,10 @@ int GameStateDeckViewer::loadDeck(int deckid){
   displayed_deck = myCollection;
   char deckname[256];
   sprintf(deckname,"deck%i.txt",deckid);
-  SAFE_DELETE(myDeck);
+  if(myDeck){
+    SAFE_DELETE(myDeck->parent);
+    SAFE_DELETE(myDeck);
+  }
   myDeck = NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(deckname,"",false,false).c_str(), mParent->collection));
   
   // Check whether the cards in the deck are actually available in the player's collection:

@@ -321,6 +321,7 @@ bool GameStateAwards::enterStats(int option){
     }
   }
 
+  SAFE_DELETE(ddw->parent);
   SAFE_DELETE(ddw);
   return true;
 }
