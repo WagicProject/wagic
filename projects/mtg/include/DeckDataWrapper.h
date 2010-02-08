@@ -30,7 +30,6 @@ class DeckDataWrapper: public WSrcDeck {
   int counts[Constants::MTG_NB_COLORS];
 
   DeckDataWrapper(MTGDeck * deck);
-  ~DeckDataWrapper();
 
   int Add(MTGCard * c, int quantity=1);
   int Remove(MTGCard * c, int quantity=1, bool erase=false);

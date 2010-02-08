@@ -70,16 +70,12 @@ void GameStateShop::Start(){
   booster = NULL;
   srcCards = NEW WSrcUnlockedCards(.25);
   srcCards->setElapsed(15);
-  WCFilterFactory * wff = WCFilterFactory::GetInstance();
-  
-  //srcCards->addFilter(wff->Construct("c:red;&t:instant;"));
-  //srcCards->bakeFilters();
 
   bigSync = 0;
   shopMenu = NEW WGuiMenu(PSP_CTRL_DOWN,PSP_CTRL_UP,true,&bigSync);
   MTGAllCards * ac = GameApp::collection;
   playerdata = NEW PlayerData(ac);;
-  myCollection = 	 NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(PLAYER_COLLECTION).c_str(), ac));
+  myCollection = 	 NEW DeckDataWrapper(playerdata->collection);
   pricelist = NEW PriceList(RESPATH"/settings/prices.dat",ac);
   for(int i=0;i<SHOP_SLOTS;i++){
     WGuiCardDistort * dist;
@@ -230,7 +226,6 @@ void GameStateShop::purchaseCard(int controlId){
   MTGCard * c = srcCards->getCard(controlId-BOOSTER_SLOTS);
   if(!c || !c->data || playerdata->credits - mPrices[controlId] < 0)
     return;
-  playerdata->collection->add(c);
   myCollection->Add(c);
   playerdata->credits -= mPrices[controlId];
   mCounts[controlId]++; 
@@ -279,6 +274,7 @@ void GameStateShop::purchaseBooster(int controlId){
   myCollection->Add(booster);
   makeDisplay(booster);
 
+  mTouched = true;
   save(true);
   SAFE_DELETE(pool);
   menu->Close();
@@ -333,10 +329,12 @@ void GameStateShop::load(){
 void GameStateShop::save(bool force)
 {
   if(mTouched || force){
-    if(pricelist)
-      pricelist->save();
+    if(myCollection)
+      myCollection->Rebuild(playerdata->collection);
     if(playerdata)
       playerdata->save();
+    if(pricelist)
+      pricelist->save();
   }  
   mTouched = false;
 }

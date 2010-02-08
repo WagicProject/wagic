@@ -58,11 +58,8 @@ void DeckDataWrapper::updateCounts(){
   }
 }
 void DeckDataWrapper::save(){
-  Rebuild(parent);
-  parent->save();
-}
-
-
-DeckDataWrapper::~DeckDataWrapper(){
-  SAFE_DELETE(parent);
+  if(parent){
+    Rebuild(parent);
+    parent->save();
+  }
 }
