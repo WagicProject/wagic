@@ -1418,11 +1418,17 @@ int GameStateDeckViewer::loadDeck(int deckid){
     MTGCard * current = myDeck->getCard(i);
     int howmanyinDeck = myDeck->count(current);
     for (int i = myCollection->count(current); i < howmanyinDeck; i++){
-      if(cheatmode)                           //Are we cheating?
-        playerdata->collection->add(current); //Yup, add it to collection.
-      else
+      if(cheatmode){                           //Are we cheating?
+        playerdata->collection->add(current); //Yup, add it to collection permanently.
+        myCollection->Add(current);
+      }
+      else{
         myDeck->Remove(current);              //Nope. Remove it from deck.
+        break;
+      }
     }
+    
+    myCollection->Remove(current,myDeck->count(current));
   }
   currentCard = NULL;
     // Load deck statistics
