@@ -6279,10 +6279,10 @@ toughness=3
 [/card]
 [card]
 name=Charging Rhino
+abilities=oneblocker
 text=Charging Rhino can't be blocked by more than one creature.
 mana={3}{G}{G}
 type=Creature
-abilities=oneblocker
 subtype=Rhino
 power=4
 toughness=4
@@ -12542,10 +12542,10 @@ type=Instant
 [/card]
 [card]
 name=Familiar Ground
+auto=lord(creature|myBattlefield) oneblocker
 text=Each creature you control can't be blocked by more than one creature.
 mana={2}{G}
 type=Enchantment
-auto=lord(creature|myBattlefield) oneblocker
 [/card]
 [card]
 name=Famine
@@ -18133,11 +18133,11 @@ toughness=5
 [/card]
 [card]
 name=Huang Zhong, Shu General
+abilities=oneblocker
 text=Huang Zhong, Shu General can't be blocked by more than one creature.
 mana={2}{W}{W}
 type=Legendary Creature
 subtype=Human Soldier
-abilities=oneblocker
 power=2
 toughness=3
 [/card]
@@ -19067,13 +19067,13 @@ toughness=2
 [/card]
 [card]
 name=Ironhoof Ox
+abilities=oneblocker
 text=Ironhoof Ox can't be blocked by more than one creature.
 mana={3}{G}{G}
 type=Creature
 subtype=Ox
 power=4
 toughness=4
-abilities=oneblocker
 [/card]
 [card]
 name=Ironroot Treefolk
@@ -19320,7 +19320,7 @@ auto={W}:protection from blue
 auto={W}:protection from black
 auto={W}:protection from red
 auto={W}:protection from green
-Whenever Jareth, Leonine Titan blocks, it gets +7/+7 until end of turn. -- {W}: Jareth gains protection from the color of your choice until end of turn.
+text=Whenever Jareth, Leonine Titan blocks, it gets +7/+7 until end of turn. -- {W}: Jareth gains protection from the color of your choice until end of turn.
 mana={3}{W}{W}{W}
 type=Legendary Creature
 subtype=Cat Giant
@@ -26249,11 +26249,11 @@ toughness=2
 [/card]
 [card]
 name=Norwood Riders
+abilities=oneblocker
 text=Norwood Riders can't be blocked by more than one creature.
 mana={3}{G}
 type=Creature
 subtype=Elf
-abilities=oneblocker
 power=3
 toughness=3
 [/card]
@@ -42623,6 +42623,7 @@ toughness=6
 [card]
 name=Vorrac Battlehorns
 auto={1}:equip
+auto=trample
 auto=oneblocker
 text=Equipped creature has trample and can't be blocked by more than one creature. -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
 mana={2}
@@ -44962,11 +44963,11 @@ toughness=1
 [/card]
 [card]
 name=Yuan Shao, the Indecisive
+auto=lord(creature|myBattlefield) oneblocker
 text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.) -- Each creature you control can't be blocked by more than one creature.
 mana={4}{R}
 type=Legendary Creature
 subtype=Human Soldier
-auto=lord(creature|myBattlefield) oneblocker
 power=2
 toughness=3
 [/card]
