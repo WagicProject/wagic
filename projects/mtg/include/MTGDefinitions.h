@@ -114,9 +114,6 @@ class Constants
     RARITY_L = 'L',   //Lands
     RARITY_T = 'T',   //Tokens
 
-    //Economic values (Placeholders for stuff later set by economic difficulty)
-    PRICE_FILTER_SCALAR = 4,
-
     ECON_NORMAL = 0, //Options default to 0.
     ECON_HARD = 1,
     ECON_LUCK = 2,

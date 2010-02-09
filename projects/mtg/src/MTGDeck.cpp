@@ -4,6 +4,7 @@
 #include "../include/Subtypes.h"
 #include "../include/Translate.h"
 #include "../include/DeckMetaData.h"
+#include "../include/PriceList.h"
 #include <algorithm>
 #include <string>
 #include <sstream>
@@ -336,8 +337,8 @@ bool MTGAllCards::addCardToCollection(MTGCard * card, int setId){
 
 CardPrimitive * MTGAllCards::addPrimitive(CardPrimitive * primitive, MTGCard * card){
   int maxGrade = options[Options::MAX_GRADE].number;
-  if (!maxGrade) maxGrade = Constants::GRADE_BORDERLINE;
-  if (currentGrade >maxGrade) {
+  if (!maxGrade) maxGrade = Constants::GRADE_BORDERLINE; //Default setting for grade is borderline?
+  if (currentGrade > maxGrade) {
     SAFE_DELETE(primitive);
     return NULL;
   }
@@ -900,7 +901,8 @@ int MTGSetInfo::boosterCost(){
         price += booster[i] * Constants::PRICE_XR;
   }
 
-  return price;
+  price += price + PriceList::difficultyScalar(price,setlist.findSet(id));
+  return (price/3); //Boosters only 33% influenced by economic difficulty.
 }
 
 string MTGSetInfo::getName(){

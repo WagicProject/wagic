@@ -73,15 +73,14 @@ int PriceList::setPrice(int cardId, int price){
 int PriceList::getSellPrice(int cardid){
   return getPurchasePrice(cardid) / 2;
 }
-int PriceList::getPurchasePrice(int cardid){
-  float price = (float) getPrice(cardid);
+float PriceList::difficultyScalar(float price, int cardid){
   float badluck = (float)(abs(cardid + randomKey) % 201) / 100; //Float between 0 and 2.
 
   switch(options[Options::ECON_DIFFICULTY].number){
     case Constants::ECON_EASY:
       badluck -= 1.5; price /= 2; break; //Price from .25x to .75x, .25x more likely.
     case Constants::ECON_NORMAL: default: 
-      badluck -= 1; break; //price from 1x to 2x, even probability.
+      badluck /= 2; break; //price from 1x to 2x, even probability.
     case Constants::ECON_HARD:
       price *= 1.5; break; //price from 1.5x to 3x, 3x being twice as likely.
     case Constants::ECON_LUCK: 
@@ -90,4 +89,9 @@ int PriceList::getPurchasePrice(int cardid){
   if(badluck > 1) badluck = 1;
   else if(badluck < -1) badluck = -1;
   return (price + price * badluck);
+}
+int PriceList::getPurchasePrice(int cardid){
+  float p = difficultyScalar(getPrice(cardid),cardid);
+  if(p < 2) p = 2; //Prevents "Sell for 0 credits"
+  return (int)p;    
 }

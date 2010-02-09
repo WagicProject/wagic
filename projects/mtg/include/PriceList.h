@@ -22,6 +22,7 @@ class PriceList{
   int getPurchasePrice(int cardid);
   int getPrice(int cardId);
   int setPrice(int cardId, int price);
+  static float difficultyScalar(float price, int cardid=0);
   static void updateKey() {randomKey = rand();};
 };
 
