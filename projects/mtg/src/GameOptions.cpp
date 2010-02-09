@@ -47,6 +47,13 @@ const char * Options::optionNames[] = {
   "interruptEndTurn",
   "interruptCleanup",
   "interruptAfterEnd",
+//Unlocked modes
+  "prx_handler",
+  "prx_rimom",
+  "prx_eviltwin",
+  "prx_rnddeck",
+  "aw_collector",
+
 };
 int Options::getID(string name){
   if(!name.size())
