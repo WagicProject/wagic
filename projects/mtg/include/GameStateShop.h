@@ -25,7 +25,7 @@
 #define SHOP_SLOTS 11
 
 #define SHOP_ITEMS SHOP_SLOTS+1
-#define LIST_FADEIN 11
+#define LIST_FADEIN 15
 
 struct ShopBooster{
   MTGSetInfo * mainSet;
