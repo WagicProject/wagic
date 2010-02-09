@@ -89,7 +89,7 @@ public:
   WCFilterSet(string arg);
   bool isMatch(MTGCard *c) {return (setid==-1 || c->setId == setid);};
   string getCode();
-  float filterFee() {return 0.1f;};
+  float filterFee() {return 0.2f;};
 protected:
   int setid;
 };
@@ -98,7 +98,7 @@ public:
   WCFilterLetter(string arg);
   bool isMatch(MTGCard * c);
   string getCode();
-  float filterFee() {return 1.0f;}; //Alpha searches are expensive!
+  float filterFee() {return 4.0f;}; //Alpha searches are expensive!
 protected:
   char alpha;
 };
@@ -108,7 +108,7 @@ public:
   WCFilterColor(string arg);
   bool isMatch(MTGCard * c);
   string getCode();
-  float filterFee() {return 0.1f;};
+  float filterFee() {return 0.2f;};
 protected:
   int color;
 };
@@ -150,7 +150,7 @@ public:
   WCFilterPower(string arg) : WCFilterNumeric(arg) {};
   bool isMatch(MTGCard * c);
   string getCode();
-  float filterFee() {return number/12.0f;};
+  float filterFee() {return 2*number/12.0f;};
 };
 class WCFilterToughness: public WCFilterNumeric{
 public:
@@ -158,7 +158,7 @@ public:
   WCFilterToughness(string arg) : WCFilterNumeric(arg) {};
   bool isMatch(MTGCard * c);
   string getCode();
-  float filterFee() {return number/12.0f;};
+  float filterFee() {return 2*number/12.0f;};
 };
 
 class WCFilterType: public WCardFilter{
@@ -166,7 +166,7 @@ public:
   WCFilterType(string arg) {type = arg;};
   bool isMatch(MTGCard * c);
   string getCode();
-  float filterFee() {return 0.2f;};
+  float filterFee() {return 0.4f;};
 protected:
   string type;
 };

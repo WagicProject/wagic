@@ -34,10 +34,10 @@ void GameStateOptions::Start()
     optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::MUSICVOLUME,"Music volume",100,10,100),OptionVolume::getInstance()));
   optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::SFXVOLUME,"SFX volume",100,10,100),OptionVolume::getInstance()));
   optionsList->Add(NEW OptionInteger(Options::OSD, "Display InGame extra information"));
-  if (options[Options::DIFFICULTY_MODE_UNLOCKED].number)
+  if (options[Options::DIFFICULTY_MODE_UNLOCKED].number){
     optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::DIFFICULTY,"Difficulty",3,1,0),OptionDifficulty::getInstance()));
-  
-  optionsList->Add(NEW WDecoCheat(NEW OptionInteger(Options::CHEATMODE, "Enable cheat mode")));
+    optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::ECON_DIFFICULTY,"Economic Difficuly",Constants::ECON_EASY)));
+  }
   optionsList->Add(NEW OptionInteger(Options::INTERRUPT_SECONDS, "Seconds to pause for an Interrupt", 20, 1));
   optionsList->Add(NEW OptionInteger(Options::INTERRUPTMYSPELLS, "Interrupt my spells"));
   optionsList->Add(NEW OptionInteger(Options::INTERRUPTMYABILITIES, "Interrupt my abilities")); 
@@ -56,7 +56,6 @@ void GameStateOptions::Start()
 
   optionsList = NEW WGuiList("User");
   optionsList->Add(NEW WGuiHeader("User Options"));
-
   WDecoConfirm * cPrf = NEW WDecoConfirm(this,NEW OptionProfile(mParent,this));
   cPrf->confirm = "Use this Profile";
   OptionDirectory * od = NEW OptionTheme();
@@ -65,6 +64,7 @@ void GameStateOptions::Start()
   
   optionsList->Add(NEW WGuiSplit(cPrf,cThm));
   optionsList->Add(NEW WGuiButton(NEW WGuiHeader("New Profile"),-102,4,this));
+  optionsList->Add(NEW WDecoCheat(NEW OptionInteger(Options::CHEATMODE, "Enable cheat mode")));
   optionsTabs->Add(optionsList);
 
   optionsList = NEW WGuiList("Advanced");

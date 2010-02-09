@@ -281,7 +281,15 @@ int GameStateShop::purchasePrice(int offset){
   if(!pricelist || !srcCards || (c = srcCards->getCard(offset)) == NULL)
     return 0;
   float price = (float) pricelist->getPurchasePrice(c->getMTGId());
-  return (int) (price + price * srcCards->filterFee());
+  float filteradd = srcCards->Size(true); 
+  filteradd = ((filteradd - srcCards->Size())/filteradd);
+
+  switch(options[Options::ECON_DIFFICULTY].number){
+    case Constants::ECON_EASY:    filteradd /= 2; break;
+    case Constants::ECON_HARD:    filteradd *= 2; break;
+    default:                      break;    
+  }
+  return (int) price + price * (filteradd*srcCards->filterFee());
 }
 
 void GameStateShop::load(){

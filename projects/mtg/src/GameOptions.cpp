@@ -27,8 +27,9 @@ const char * Options::optionNames[] = {
   "mana_display",
   "reverse_triggers",
   "disable_cards",
-  "interruptSeconds",
   "maxGrade",
+  "economic_difficulty",
+  "interruptSeconds",
   "interruptMySpells",
   "interruptMyAbilities",
 //General interrupts
@@ -46,12 +47,6 @@ const char * Options::optionNames[] = {
   "interruptEndTurn",
   "interruptCleanup",
   "interruptAfterEnd",
-//Unlocked modes
-  "prx_handler",
-  "prx_rimom",
-  "prx_eviltwin",
-  "prx_rnddeck",
-  "aw_collector",
 };
 int Options::getID(string name){
   if(!name.size())
@@ -364,6 +359,11 @@ GameOption * GameOptions::get(int optionID) {
         case Options::MAX_GRADE:
           goEnum = NEW GameOptionEnum();
           goEnum->def = OptionMaxGrade::getInstance();
+          go = goEnum;
+          break;
+        case Options::ECON_DIFFICULTY:
+          goEnum = NEW GameOptionEnum();
+          goEnum->def = OptionEconDifficulty::getInstance();
           go = goEnum;
           break;
        default:
@@ -742,7 +742,13 @@ OptionDifficulty::OptionDifficulty(){
     mDef.values.push_back(EnumDefinition::assoc(HARDER, "Harder"));
     mDef.values.push_back(EnumDefinition::assoc(EVIL, "Evil"));
 };
-
+OptionEconDifficulty OptionEconDifficulty::mDef;
+OptionEconDifficulty::OptionEconDifficulty(){  
+  mDef.values.push_back(EnumDefinition::assoc(Constants::ECON_NORMAL, "Normal"));
+  mDef.values.push_back(EnumDefinition::assoc(Constants::ECON_HARD, "Hard"));
+  mDef.values.push_back(EnumDefinition::assoc(Constants::ECON_LUCK, "Luck"));
+  mDef.values.push_back(EnumDefinition::assoc(Constants::ECON_EASY, "Easy"));
+};
 //GameOptionAward
 GameOptionAward::GameOptionAward(){
 	achieved = time(NULL);

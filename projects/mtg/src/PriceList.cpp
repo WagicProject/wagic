@@ -63,7 +63,7 @@ int PriceList::getPrice(int cardId){
     return Constants::PRICE_1C;
     break;
   }
-
+  
 }
 
 int PriceList::setPrice(int cardId, int price){
@@ -75,7 +75,19 @@ int PriceList::getSellPrice(int cardid){
 }
 int PriceList::getPurchasePrice(int cardid){
   float price = (float) getPrice(cardid);
-  int rnd = abs(cardid + randomKey) % (1+Constants::PRICE_FLUX_RANGE);
-  price += price * (float)(rnd - Constants::PRICE_FLUX_MINUS)/100.0f;
-  return price;
+  float badluck = (float)(abs(cardid + randomKey) % 201) / 100; //Float between 0 and 2.
+
+  switch(options[Options::ECON_DIFFICULTY].number){
+    case Constants::ECON_EASY:
+      badluck -= 1.5; price /= 2; break; //Price from .25x to .75x, .25x more likely.
+    case Constants::ECON_NORMAL: default: 
+      badluck -= 1; break; //price from 1x to 2x, even probability.
+    case Constants::ECON_HARD:
+      price *= 1.5; break; //price from 1.5x to 3x, 3x being twice as likely.
+    case Constants::ECON_LUCK: 
+      badluck += .25; return price*badluck; break; //Price from .25x to 2.25x, randomly.
+  }
+  if(badluck > 1) badluck = 1;
+  else if(badluck < -1) badluck = -1;
+  return (price + price * badluck);
 }

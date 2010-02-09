@@ -283,10 +283,10 @@ string WCFilterToughness::getCode(){
 //WCFilterRarity
 float WCFilterRarity::filterFee(){
   switch(rarity){
-    case 'M': return 0.4f;
-    case 'R': return 0.2f;
-    case 'U': return 0.1f;
-    case 'C': return 0.01f;
+    case 'M': return 2.0f;
+    case 'R': return 1.0f;
+    case 'U': return 0.5f;
+    case 'C': return 0.2f;
   }
   return 0.0f;
 }
@@ -360,7 +360,7 @@ float WCFilterAbility::filterFee(){
     case Constants::UNBLOCKABLE:
     case Constants::WITHER:
     case Constants::PERSIST:
-      return 0.4f;
+      return 0.8f;
     case Constants::PROTECTIONBLACK:
     case Constants::PROTECTIONWHITE:
     case Constants::PROTECTIONBLUE:
@@ -368,24 +368,24 @@ float WCFilterAbility::filterFee(){
     case Constants::PROTECTIONGREEN:
     case Constants::DOUBLESTRIKE:
     case Constants::LIFELINK:
-      return 0.35f;
+      return 0.7f;
     case Constants::TRAMPLE:
     case Constants::FLYING:
     case Constants::FEAR:
     case Constants::VIGILANCE:
     case Constants::FIRSTSTRIKE:
-      return 0.3f;
+      return 0.6f;
     case Constants::PLAINSHOME:
     case Constants::SWAMPHOME:
     case Constants::ISLANDHOME:    
     case Constants::MOUNTAINHOME:
     case Constants::FORESTHOME:
-      return -0.1f;
+      return -0.2f;
     case Constants::DEFENDER:
     case Constants::CLOUD:
-      return 0.1f;
-    default:
       return 0.2f;
+    default:
+      return 0.4f;
   }
   return 0.0f;
 }
