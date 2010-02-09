@@ -5902,15 +5902,6 @@ type=Instant
 subtype=Arcane
 [/card]
 [card]
-name=Charging Rhino
-text=Charging Rhino can't be blocked by more than one creature.
-mana={3}{G}{G}
-type=Creature
-subtype=Rhino
-power=4
-toughness=4
-[/card]
-[card]
 name=Charging Slateback
 text=Charging Slateback can't block. -- Morph {4}{R} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 mana={4}{R}
@@ -12338,12 +12329,6 @@ mana={W}
 type=Sorcery
 [/card]
 [card]
-name=Familiar Ground
-text=Each creature you control can't be blocked by more than one creature.
-mana={2}{G}
-type=Enchantment
-[/card]
-[card]
 name=Familiar's Ruse
 text=As an additional cost to cast Familiar's Ruse, return a creature you control to its owner's hand. -- Counter target spell.
 mana={U}{U}
@@ -17921,15 +17906,6 @@ text=Hideaway (This land enters the battlefield tapped. When it does, look at th
 type=Land
 [/card]
 [card]
-name=Huang Zhong, Shu General
-text=Huang Zhong, Shu General can't be blocked by more than one creature.
-mana={2}{W}{W}
-type=Legendary Creature
-subtype=Human Soldier
-power=2
-toughness=3
-[/card]
-[card]
 name=Hull Breach
 text=Choose one - Destroy target artifact; or destroy target enchantment; or destroy target artifact and target enchantment.
 mana={R}{G}
@@ -19217,15 +19193,6 @@ mana={4}{W}
 type=Creature
 subtype=Human Soldier
 power=2
-toughness=4
-[/card]
-[card]
-name=Ironhoof Ox
-text=Ironhoof Ox can't be blocked by more than one creature.
-mana={3}{G}{G}
-type=Creature
-subtype=Ox
-power=4
 toughness=4
 [/card]
 [card]
@@ -26612,15 +26579,6 @@ name=North Star
 text={4}, {T}: For one spell this turn, you may spend mana as though it were mana of any color to pay that spell's mana cost. (Additional costs are still paid normally.)
 mana={4}
 type=Artifact
-[/card]
-[card]
-name=Norwood Riders
-text=Norwood Riders can't be blocked by more than one creature.
-mana={3}{G}
-type=Creature
-subtype=Elf
-power=3
-toughness=3
 [/card]
 [card]
 name=Nostalgic Dreams
@@ -43521,13 +43479,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Vorrac Battlehorns
-text=Equipped creature has trample and can't be blocked by more than one creature. -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
-mana={2}
-type=Artifact
-subtype=Equipment
-[/card]
-[card]
 name=Voyager Drake
 text=Multikicker {U} (You may pay an additional {U} any number of times as you cast this spell.) -- Flying -- When Voyager Drake enters the battlefield, up to X target creatures gain flying until end of turn, where X is the number of times Voyager Drake was kicked.
 mana={3}{U}
@@ -45541,15 +45492,6 @@ type=Legendary Creature
 subtype=Dragon Spirit
 power=5
 toughness=5
-[/card]
-[card]
-name=Yuan Shao, the Indecisive
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.) -- Each creature you control can't be blocked by more than one creature.
-mana={4}{R}
-type=Legendary Creature
-subtype=Human Soldier
-power=2
-toughness=3
 [/card]
 [card]
 name=Zanam Djinn

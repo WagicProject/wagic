@@ -6278,6 +6278,16 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Charging Rhino
+text=Charging Rhino can't be blocked by more than one creature.
+mana={3}{G}{G}
+type=Creature
+abilities=oneblocker
+subtype=Rhino
+power=4
+toughness=4
+[/card]
+[card]
 name=Charging Paladin
 auto=lord(charging paladin[attacking]|myBattlefield) 0/3
 auto=lord(other charging paladin[attacking]|myBattlefield) 0/-3
@@ -12531,6 +12541,13 @@ mana={1}{R}
 type=Instant
 [/card]
 [card]
+name=Familiar Ground
+text=Each creature you control can't be blocked by more than one creature.
+mana={2}{G}
+type=Enchantment
+auto=lord(creature|myBattlefield) oneblocker
+[/card]
+[card]
 name=Famine
 auto=damage:3 all(creature,player)
 text=Famine deals 3 damage to each creature and each player.
@@ -18115,6 +18132,16 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Huang Zhong, Shu General
+text=Huang Zhong, Shu General can't be blocked by more than one creature.
+mana={2}{W}{W}
+type=Legendary Creature
+subtype=Human Soldier
+abilities=oneblocker
+power=2
+toughness=3
+[/card]
+[card]
 name=Hulking Goblin
 abilities=cantblock
 text=Hulking Goblin can't block.
@@ -19037,6 +19064,16 @@ type=Creature
 subtype=Orc
 power=2
 toughness=2
+[/card]
+[card]
+name=Ironhoof Ox
+text=Ironhoof Ox can't be blocked by more than one creature.
+mana={3}{G}{G}
+type=Creature
+subtype=Ox
+power=4
+toughness=4
+abilities=oneblocker
 [/card]
 [card]
 name=Ironroot Treefolk
@@ -26209,6 +26246,16 @@ type=Creature
 subtype=Elf Scout
 power=1
 toughness=2
+[/card]
+[card]
+name=Norwood Riders
+text=Norwood Riders can't be blocked by more than one creature.
+mana={3}{G}
+type=Creature
+subtype=Elf
+abilities=oneblocker
+power=3
+toughness=3
 [/card]
 [card]
 name=Norwood Warrior
@@ -42574,6 +42621,15 @@ power=6
 toughness=6
 [/card]
 [card]
+name=Vorrac Battlehorns
+auto={1}:equip
+auto=oneblocker
+text=Equipped creature has trample and can't be blocked by more than one creature. -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
+mana={2}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
 name=Vorosh the Hunter
 #The comma needed to be stripped from the name to make the card work.
 #Reintroducing it requires an update to PLC/_cards.dat as well.
@@ -44903,6 +44959,16 @@ type=Creature
 subtype=Human Knight
 power=2
 toughness=1
+[/card]
+[card]
+name=Yuan Shao, the Indecisive
+text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.) -- Each creature you control can't be blocked by more than one creature.
+mana={4}{R}
+type=Legendary Creature
+subtype=Human Soldier
+auto=lord(creature|myBattlefield) oneblocker
+power=2
+toughness=3
 [/card]
 [card]
 name=Yuan Shao's Infantry
