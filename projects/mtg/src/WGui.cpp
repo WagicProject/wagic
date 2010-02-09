@@ -1435,9 +1435,8 @@ if(!list) return false;
     for(it=wgl->items.begin();it!=wgl->items.end();it++){
       WGuiFilterItem * wgfi = dynamic_cast<WGuiFilterItem*>(*it);
       if(!wgfi || wgfi->mState != WGuiFilterItem::STATE_FINISHED) continue;
-      if(wgfi->filterVal < 0 || (int)wgfi->args.size() < wgfi->filterVal) continue;
-      string s = wgfi->args[wgfi->filterVal].second;
-      if(s == code)
+      if(!wgfi->mCode.size()) continue;
+      if(wgfi->mCode == code)
         return false;
     }
     return true;
@@ -1459,6 +1458,7 @@ bool WGuiFilters::isAvailable(int type){
         case WGuiFilterItem::FILTER_PRODUCE:
           if(wgfi->filterType == type)
             ma++;
+          break;
         case WGuiFilterItem::FILTER_COLOR:
           if(wgfi->filterType == type)
             colors++;
@@ -1476,6 +1476,16 @@ bool WGuiFilters::isAvailable(int type){
   }
   return false; //For some reason, we don't have any rows?
 }
+void WGuiFilters::clearArgs(){
+  tempArgs.clear();
+}
+void WGuiFilters::addArg(string display, string code){
+  if(!subMenu || !isAvailableCode(code))
+    return;
+  subMenu->Add((int)tempArgs.size(),display.c_str());
+  tempArgs.push_back(pair<string,string>(display,code));
+}
+
 //WGuiFilterItem
 WGuiFilterItem::WGuiFilterItem(WGuiFilters * parent): WGuiItem("Cards..."){
   filterType = -1; filterVal = -1; mState = 0;
@@ -1495,17 +1505,13 @@ void WGuiFilterItem::updateValue(){
     case STATE_UNSET:
       SAFE_DELETE(mParent->subMenu);
       mState = STATE_CHOOSE_TYPE;
-      mParent->subMenu = NEW SimpleMenu(-1234,this,Constants::MENU_FONT,20,20,"Filter By...");
+      mParent->subMenu = NEW SimpleMenu(-1234,this,Constants::MENU_FONT,20,20,"Filter By...",10);
       if(mParent->isAvailable(FILTER_SET)){
         mParent->subMenu->Add(FILTER_SET,"Set");
         delMenu = false;
       }
       if(mParent->isAvailable(FILTER_COLOR)){
         mParent->subMenu->Add(FILTER_COLOR,"Color");
-        delMenu = false;
-      }
-      if(mParent->isAvailable(FILTER_PRODUCE)){
-        mParent->subMenu->Add(FILTER_PRODUCE,"Mana Ability");
         delMenu = false;
       }
       if(mParent->isAvailable(FILTER_TYPE)){
@@ -1516,12 +1522,16 @@ void WGuiFilterItem::updateValue(){
         mParent->subMenu->Add(FILTER_RARITY,"Rarity");
         delMenu = false;
       }
-      if(mParent->isAvailable(FILTER_BASIC)){
-        mParent->subMenu->Add(FILTER_BASIC,"Ability");
-        delMenu = false;
-      }
       if(mParent->isAvailable(FILTER_CMC)){
         mParent->subMenu->Add(FILTER_CMC,"Mana Cost");
+        delMenu = false;
+      }
+      if(mParent->isAvailable(FILTER_BASIC)){
+        mParent->subMenu->Add(FILTER_BASIC,"Basic Ability");
+        delMenu = false;
+      }
+      if(mParent->isAvailable(FILTER_PRODUCE)){
+        mParent->subMenu->Add(FILTER_PRODUCE,"Mana Ability");
         delMenu = false;
       }
       if(mParent->isAvailable(FILTER_POWER)){
@@ -1546,60 +1556,66 @@ void WGuiFilterItem::updateValue(){
       break;
     case STATE_CHOOSE_TYPE:
       SAFE_DELETE(mParent->subMenu);
-      args.clear();
+      mParent->clearArgs();
       mState = STATE_CHOOSE_VAL;
       mParent->subMenu = NEW SimpleMenu(-1234,this,Constants::MENU_FONT,20,20,"Filter:");
       if(filterType == FILTER_TYPE){
-        addArg("Artifact","t:Artifact;");
-        addArg("Artifact Creature","t:Artifact;&t:Creature;");
-        addArg("Creature","t:Creature;");
-        addArg("Enchantment","t:Enchantment;");
-        addArg("Instant","t:Instant;");
-        addArg("Land","t:Land;");
-        addArg("Legendary","t:Legendary;");
-        addArg("Sorcery","t:Sorcery;");        
+        mParent->addArg("Artifact","t:Artifact;");
+        mParent->addArg("Artifact Creature","t:Artifact;&t:Creature;");
+        mParent->addArg("Creature","t:Creature;");
+        mParent->addArg("Enchantment","t:Enchantment;");
+        mParent->addArg("Instant","t:Instant;");
+        mParent->addArg("Land","t:Land;");
+        mParent->addArg("Legendary","t:Legendary;");
+        mParent->addArg("Sorcery","t:Sorcery;");        
       }else if(filterType == FILTER_RARITY){
-        addArg("Mythic","r:m;");
-        addArg("Rare","r:r;");
-        addArg("Uncommon","r:u;");
-        addArg("Common","r:c;");
+        mParent->addArg("Mythic","r:m;");
+        mParent->addArg("Rare","r:r;");
+        mParent->addArg("Uncommon","r:u;");
+        mParent->addArg("Common","r:c;");
       }else if(filterType == FILTER_CMC){
         for(int i=0;i<20;i++){
           sprintf(buf_code,"cmc:%i;",i);
           sprintf(buf_name,"%i Mana",i);
-          addArg(buf_name,buf_code);
+          mParent->addArg(buf_name,buf_code);
         }
       }else if(filterType == FILTER_POWER){
         for(int i=0;i<14;i++){
           sprintf(buf_code,"pow:%i;",i);
           sprintf(buf_name,"%i power",i);
-          addArg(buf_name,buf_code);
+          mParent->addArg(buf_name,buf_code);
         }
       }else if(filterType == FILTER_TOUGH){
         for(int i=0;i<14;i++){
           sprintf(buf_code,"tgh:%i;",i);
           sprintf(buf_name,"%i toughness",i);
-          addArg(buf_name,buf_code);
+          mParent->addArg(buf_name,buf_code);
         }
       }else if(filterType == FILTER_COLOR){
-        addArg("White","c:w;");
-        addArg("Blue","c:u;");
-        addArg("Red","c:r;");
-        addArg("Green","c:g;");
-        addArg("Black","c:b;");
+        mParent->addArg("White","c:w;");
+        mParent->addArg("Blue","c:u;");
+        mParent->addArg("Black","c:b;");
+        mParent->addArg("Red","c:r;");
+        mParent->addArg("Green","c:g;");
+        mParent->addArg("Exclusively White","xc:w;");
+        mParent->addArg("Exclusively Blue","xc:u;");
+        mParent->addArg("Exclusively Black","xc:b;");
+        mParent->addArg("Exclusively Red","xc:r;");
+        mParent->addArg("Exclusively Green","xc:g;");
       }else if(filterType == FILTER_PRODUCE){
-        addArg("White mana abiltity","ma:w;");
-        addArg("Blue mana abiltity","ma:u;");
-        addArg("Red mana abiltity","ma:r;");
-        addArg("Green mana abiltity","ma:g;");
-        addArg("Black mana abiltity","ma:b;");
+        mParent->addArg("White mana abiltity","ma:w;");
+        mParent->addArg("Blue mana abiltity","ma:u;");
+        mParent->addArg("Black mana abiltity","ma:b;");
+        mParent->addArg("Red mana abiltity","ma:r;");
+        mParent->addArg("Green mana abiltity","ma:g;");
+        mParent->addArg("Colorless mana abiltity","ma:x;");
       }else if(filterType == FILTER_BASIC){
         char buf[512];
         for(int i=0;i<Constants::NB_BASIC_ABILITIES;i++){
           string s = Constants::MTGBasicAbilities[i];
           sprintf(buf,"a:%s;",s.c_str());
           s[0] = toupper(s[0]);
-          addArg(s,buf);
+          mParent->addArg(s,buf);
         }
       }else if(filterType == FILTER_SET){
         char buf[512];
@@ -1607,16 +1623,16 @@ void WGuiFilterItem::updateValue(){
           if(options[Options::optionSet(i)].number == 0)
             continue;
           sprintf(buf,"s:%s;",setlist[i].c_str());
-          addArg((setlist.getInfo(i))->getName(),buf);
+          mParent->addArg((setlist.getInfo(i))->getName(),buf);
         }
       }else if(filterType == FILTER_ALPHA){
         char buf[24], pretty[16];
         for(char c='a';c<='z';c++){
           sprintf(buf,"alpha:%c;",c);
           sprintf(pretty,"Letter %c",toupper(c));
-          addArg(pretty,buf);
+          mParent->addArg(pretty,buf);
         }
-        addArg("Digit","alpha:#;");
+        mParent->addArg("Digit","alpha:#;");
       }
       mParent->subMenu->Add(-1,"Cancel");
     break;
@@ -1625,19 +1641,14 @@ void WGuiFilterItem::updateValue(){
       if(mNew && mParent)
         mParent->addColumn();
       mNew = false;
-      if(filterVal > -1 && filterVal < (int) args.size())
-        displayValue = args[filterVal].first;
+      if(filterVal > -1 && filterVal < (int) mParent->tempArgs.size()){
+        displayValue = mParent->tempArgs[filterVal].first;
+        mCode = mParent->tempArgs[filterVal].second;
+      }
       SAFE_DELETE(mParent->subMenu);
       break;
   }
 }
-void WGuiFilterItem::addArg(string display, string code){
-  if(!mParent || !mParent->subMenu || !mParent->isAvailableCode(code))
-    return;
-  mParent->subMenu->Add((int)args.size(),display.c_str());
-  args.push_back(pair<string,string>(display,code));
-}
-
 void WGuiFilterItem::ButtonPressed(int controllerId, int controlId){
   if(!mParent) return;
 
@@ -1678,7 +1689,7 @@ bool WGuiFilterItem::isModal(){
 }
 
 string WGuiFilterItem::getCode(){
-  if(mState != STATE_FINISHED || filterVal < 0 || filterVal > (int) args.size())
+  if(mState != STATE_FINISHED || !mCode.size())
     return "";
-  return args[filterVal].second;
+  return mCode;
 }

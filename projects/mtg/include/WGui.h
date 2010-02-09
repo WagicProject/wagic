@@ -428,6 +428,9 @@ public:
   void ButtonPressed(int controllerId, int controlId);
   void buildList();
 protected:
+  void clearArgs();
+  void addArg(string display, string code);
+  vector< pair<string,string> > tempArgs; //TODO FIXME this is inefficient
   bool bFinished;
   WSrcCards* source;
   SimpleMenu* subMenu;
@@ -464,10 +467,9 @@ public:
     END_FILTERS
   };
 protected:
-  void addArg(string display, string code);
+  string mCode;
   int filterType;
   int filterVal;
-  vector< pair<string,string> > args;
   int mState;
   bool mNew;
   WGuiFilters * mParent;
