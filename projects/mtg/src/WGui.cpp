@@ -1299,18 +1299,24 @@ WGuiListRow::WGuiListRow(string n, WSyncable * s) : WGuiList(n,s) {
   height = 20;
 }
 //WGuiFilterUI
-void WGuiFilters::Finish(){
+bool WGuiFilters::Finish(){
   bFinished = true;
+  string src;
   if(source){
-    string src = getCode();
+    src = getCode();
+    if(priorFilter == src)
+      return false;
     source->clearFilters();
     if(src.size()){
       WCFilterFactory * wc = WCFilterFactory::GetInstance();
       source->addFilter(wc->Construct(src));
     }
-    if(!source->Size())
-      source->clearFilters(); //TODO: Pop a "No results found" warning.
+    if(!source->Size()){
+      source->clearFilters(); //TODO: Pop a "No results found" warning
+    }
   }
+  priorFilter = src;
+  return true;
 }
 void WGuiFilters::ButtonPressed(int controllerId, int controlId){
   if(controllerId == -102){

@@ -63,6 +63,7 @@ void GameStateShop::Start(){
   mTouched = false;
   mStage = STAGE_FADE_IN;
   mElapsed = 0;
+  needLoad = true;
   booster = NULL;
   srcCards = NEW WSrcUnlockedCards(0);
   srcCards->setElapsed(15);
@@ -467,12 +468,13 @@ void GameStateShop::Update(float dt)
       }
       if(filterMenu){
         if(btn == PSP_CTRL_SELECT){
-          filterMenu->Finish();
+          needLoad = filterMenu->Finish();
           filterMenu->Update(dt);
           return;
         }
         if(filterMenu->isFinished()){
-          load();
+          if(needLoad)
+            load();
           mStage = STAGE_SHOP_SHOP;
         }else{
           filterMenu->CheckUserInput(btn);

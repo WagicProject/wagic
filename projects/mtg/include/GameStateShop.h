@@ -59,6 +59,7 @@ class GameStateShop: public GameState, public JGuiListener
   PriceList * pricelist;
   PlayerData * playerdata;
   bool mTouched;
+  bool needLoad;
   int mPrices[SHOP_ITEMS];
   int mCounts[SHOP_ITEMS];
   int mInventory[SHOP_ITEMS];

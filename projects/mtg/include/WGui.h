@@ -423,7 +423,7 @@ public:
   void addColumn();
   bool isAvailable(int type);
   bool isAvailableCode(string code);
-  void Finish();
+  bool Finish(); //Returns true if card set reasonably expected to be changed.
   bool isFinished() {return bFinished;};
   void ButtonPressed(int controllerId, int controlId);
   void buildList();
@@ -432,6 +432,7 @@ protected:
   void addArg(string display, string code);
   vector< pair<string,string> > tempArgs; //TODO FIXME this is inefficient
   bool bFinished;
+  string priorFilter;
   WSrcCards* source;
   SimpleMenu* subMenu;
   WGuiList * list;
