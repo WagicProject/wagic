@@ -146,9 +146,9 @@ string GameStateShop::descPurchase(int controlId, bool tiny){
    }
 
    if(tiny){
-     if(controlId < BOOSTER_SLOTS)
+     if(controlId < BOOSTER_SLOTS || mCounts[controlId] == 0)
       return name;
-
+     
      sprintf(buffer,_("%s (%i)").c_str(),name.c_str(),mCounts[controlId]);
      return buffer;
    }
