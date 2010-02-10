@@ -362,6 +362,12 @@ void GameApp::Resume(){
 void GameApp::DoTransition(int trans, int tostate, float dur, bool animonly){
   TransitionBase * tb = NULL;
   GameState * toState = NULL;
+  if(options[Options::TRANSITIONS].number != 0){
+    if(tostate != GAME_STATE_NONE)
+      SetNextState(tostate);
+    return;
+  }
+
   if(tostate > GAME_STATE_NONE && tostate < GAME_STATE_MAX)
     toState = mGameStates[tostate];
 

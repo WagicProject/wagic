@@ -29,6 +29,7 @@ const char * Options::optionNames[] = {
   "disable_cards",
   "maxGrade",
   "economic_difficulty",
+  "transitions",
   "interruptSeconds",
   "interruptMySpells",
   "interruptMyAbilities",

@@ -43,6 +43,7 @@ public:
     DISABLECARDS,
     MAX_GRADE,
     ECON_DIFFICULTY,
+    TRANSITIONS,
     INTERRUPT_SECONDS,
     //My interrupts    
     INTERRUPTMYSPELLS,
@@ -161,7 +162,6 @@ private:
   OptionManaDisplay();
   static OptionManaDisplay mDef;
 };
-
 class OptionMaxGrade: public EnumDefinition {
 public:
   static EnumDefinition * getInstance() {return &mDef;};

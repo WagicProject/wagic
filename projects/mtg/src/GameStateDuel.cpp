@@ -375,7 +375,7 @@ void GameStateDuel::Update(float dt)
           playerdata->taskList->save();
           SAFE_DELETE(playerdata);
           SAFE_DELETE(menu);
-          mParent->DoTransition(TRANSITION_FADE,GAME_STATE_MENU,1);
+          mParent->DoTransition(TRANSITION_FADE,GAME_STATE_MENU);
         }
       }
       break;
