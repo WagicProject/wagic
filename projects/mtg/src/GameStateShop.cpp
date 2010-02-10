@@ -145,9 +145,13 @@ string GameStateShop::descPurchase(int controlId, bool tiny){
      return buffer;
    }
 
-   if(tiny)
-     return name;
+   if(tiny){
+     if(controlId < BOOSTER_SLOTS)
+      return name;
 
+     sprintf(buffer,_("%s (%i)").c_str(),name.c_str(),mCounts[controlId]);
+     return buffer;
+   }
    if(mCounts[controlId] < 1)
      sprintf(buffer,_("%s : %i credits").c_str(),name.c_str(),mPrices[controlId]);
    else
@@ -224,8 +228,8 @@ void GameStateShop::purchaseCard(int controlId){
     return;
   myCollection->Add(c);
   playerdata->credits -= mPrices[controlId];
-  mCounts[controlId]++; 
   mInventory[controlId]--; 
+  updateCounts();
   mTouched = true;
   menu->Close();
 }
@@ -291,7 +295,13 @@ int GameStateShop::purchasePrice(int offset){
   }
   return (int) price + price * (filteradd*srcCards->filterFee());
 }
-
+void GameStateShop::updateCounts(){
+  for(int i=BOOSTER_SLOTS;i<SHOP_ITEMS;i++){
+    MTGCard * c = srcCards->getCard(i-BOOSTER_SLOTS);
+    if(!c)    mCounts[i] = 0;
+    else      mCounts[i] = myCollection->countByName(c);
+  }
+}
 void GameStateShop::load(){
   int nbsets = 0;
   int nbboostersets = 0;

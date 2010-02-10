@@ -53,7 +53,6 @@ JQuad * WSrcCards::getImage( int offset){
       return resources.RetrieveCard(getCard(offset),RETRIEVE_EXISTING);
   }
 #endif
-  
   return resources.RetrieveCard(getCard(offset));
 }
 JQuad * WSrcCards::getThumb( int offset){
@@ -397,11 +396,14 @@ int WSrcDeck::countByName(MTGCard * card, bool editions){
   int total = 0;
   vector<MTGCard*>::iterator it;
   for(it = cards.begin();it!=cards.end();it++){
-    if(*it && (*it)->data->getLCName() == card->data->getLCName()){
+    if(*it && (*it)->data->getLCName() == name){
       if(editions)
         total++;
-      else
-        total += copies[card->getMTGId()];
+      else{
+        map<int,int>::iterator mi = copies.find((*it)->getMTGId());
+        if(mi != copies.end())
+          total += mi->second;
+      }
     }
   }
  return total;
