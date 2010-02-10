@@ -302,7 +302,7 @@ void WSrcCards::Sort(int method){
   validateFilters();
 }
 //WSrcUnlockedCards
-WSrcUnlockedCards::WSrcUnlockedCards(float delay): WSrcCards(mDelay){
+WSrcUnlockedCards::WSrcUnlockedCards(float delay): WSrcCards(delay){
   MTGAllCards * ac = GameApp::collection;
   map<int, MTGCard*>::iterator it;
 

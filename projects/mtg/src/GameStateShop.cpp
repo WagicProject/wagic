@@ -238,7 +238,7 @@ void GameStateShop::purchaseBooster(int controlId){
     return;
   playerdata->credits -= mPrices[controlId];
   mInventory[controlId]--;
-  WSrcCards * pool = NEW WSrcCards();
+  WSrcCards * pool = NEW WSrcCards(0);
   WCFilterSet *main, *alt;
 
   int num = setlist.getSetNum(mBooster[controlId].mainSet);
