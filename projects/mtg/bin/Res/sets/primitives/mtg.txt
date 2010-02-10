@@ -23657,8 +23657,8 @@ type=Instant
 [/card]
 [card]
 name=Mercenary Knight
-auto=moveTo(graveyard) notatarget(this|myBattlefield)
-auto=moveTo(graveyard) notatarget(*|myhand)
+auto=moveTo(mygraveyard) notatarget(this|myBattlefield)
+auto=moveTo(mygraveyard) notatarget(creature|myhand)
 text=When Mercenary Knight enters the battlefield, sacrifice it unless you discard a creature card.
 mana={2}{B}
 type=Creature
