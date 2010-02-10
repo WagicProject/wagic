@@ -839,12 +839,18 @@ void WGuiMenu::Update(float dt){
 bool WGuiMenu::nextItem(){
  int potential = currentItem;
  int nbitems = (int) items.size();
+ if(nbitems < 2)
+    return false;
+
  WGuiBase * now = NULL;
  if(currentItem < nbitems && currentItem > -1)
    now = items[currentItem];
 
-  if (potential < nbitems-1){
-    potential++;
+   if (potential < nbitems-1)
+      potential++;
+   else 
+      potential = 0;
+
     while(potential < nbitems-1 && items[potential]->Selectable() == false)
       potential++;
     if(potential == nbitems || !items[potential]->Selectable())
@@ -857,7 +863,7 @@ bool WGuiMenu::nextItem(){
           syncMove();
         return true;
     }
-  }
+  
   if(sync)
     syncMove();
   return false;
@@ -866,26 +872,32 @@ bool WGuiMenu::nextItem(){
 bool WGuiMenu::prevItem(){
  int potential = currentItem;
  WGuiBase * now = NULL;
- if(currentItem < (int)items.size() && currentItem > -1)
-   now = items[currentItem];
+ int nbitems = (int) items.size();
+ if(nbitems < 2)
+    return false;
 
- if (potential > 0){
-    potential--;
-    while(potential > 0 && items[potential]->Selectable() == false)
-      potential--;
-    if(potential < 0 || !items[potential]->Selectable())
-      potential = -1;
-    else if(potential != currentItem && (!now || now->Leaving(buttonNext))){
-        currentItem = potential;
-        items[currentItem]->Entering(buttonPrev);
-        if(sync)
-          syncMove();
-        return true;
-    }
- }
- if(sync)
-   syncMove();
- return false;
+ if(currentItem < (int)items.size() && currentItem > -1)
+  now = items[currentItem];
+
+ if (potential > 0)
+   potential--;
+ else
+   potential = nbitems-1;
+
+ while(potential > 0 && items[potential]->Selectable() == false)
+   potential--;
+ if(potential < 0 || !items[potential]->Selectable())
+   potential = -1;
+ else if(potential != currentItem && (!now || now->Leaving(buttonNext))){
+   currentItem = potential;
+   items[currentItem]->Entering(buttonPrev);
+   if(sync)
+     syncMove();
+   return true;
+  }
+  if(sync)
+    syncMove();
+  return false;
 }
 
 void WGuiMenu::setModal(bool val){

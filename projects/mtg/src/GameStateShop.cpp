@@ -64,7 +64,7 @@ void GameStateShop::Start(){
   mStage = STAGE_FADE_IN;
   mElapsed = 0;
   booster = NULL;
-  srcCards = NEW WSrcUnlockedCards(.25);
+  srcCards = NEW WSrcUnlockedCards(0);
   srcCards->setElapsed(15);
 
   bigSync = 0;

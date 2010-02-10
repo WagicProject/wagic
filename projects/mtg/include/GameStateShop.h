@@ -73,7 +73,7 @@ class GameStateShop: public GameState, public JGuiListener
   
   void load();
   void save(bool force=false);
-  
+
   void assembleBooster(int controlId);
   void beginPurchase(int controlId);
   void purchaseCard(int controlId);
