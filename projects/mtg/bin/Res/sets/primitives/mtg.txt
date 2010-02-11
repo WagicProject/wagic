@@ -38825,6 +38825,7 @@ subtype=Arcane
 [/card]
 [card]
 name=Terminal Moraine
+auto={T}:Add{1}
 auto={2}{T}{S}:moveTo(myBattlefield) target(basic|mylibrary) && tap
 text={T}: Add {1} to your mana pool. -- {2}, {T}, Sacrifice Terminal Moraine: Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library.
 type=Land
@@ -44011,6 +44012,7 @@ toughness=4
 [/card]
 [card]
 name=Wind Dancer
+abilities=flying
 auto={T}:flying target(creature)
 text=Flying -- {T}: Target creature gains flying until end of turn.
 mana={1}{U}
@@ -45118,7 +45120,7 @@ name=Zhang He Wei General
 #Reintroducing it requires an update to PTK/_cards.dat as well.
 #Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1)
 abilities=horsemanship
-auto=aslongas(zhang he wei general[attacking]|myBattlefield) lord(creature[-zhang he wei general]|myBattlefield) 0/1
+auto=aslongas(zhang he wei general[attacking]|myBattlefield) lord(other creature|myBattlefield) 1/0
 text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.) -- Whenever Zhang He, Wei General attacks, each other creature you control gets +1/+0 until end of turn.
 mana={3}{B}{B}
 type=Legendary Creature
