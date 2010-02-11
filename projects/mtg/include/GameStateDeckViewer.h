@@ -119,7 +119,6 @@ private:
   DeckDataWrapper * displayed_deck;
   DeckDataWrapper * myDeck;
   DeckDataWrapper * myCollection;
-  MTGCard * currentCard;
   MTGCard *  cardIndex[7];
   int hudAlpha;
   int delSellMenu;

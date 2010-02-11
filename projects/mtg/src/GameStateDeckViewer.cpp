@@ -114,7 +114,6 @@ void GameStateDeckViewer::switchDisplay(){
   }else{
     displayed_deck = myCollection;
   }
-  currentCard = NULL;
   updateFilters();
   loadIndexes();
 }
@@ -199,7 +198,6 @@ void GameStateDeckViewer::Start()
   mSlide = 0;
   mAlpha = 255;
 
-  currentCard = NULL;
   loadIndexes();
   last_user_activity = NO_USER_ACTIVITY_HELP_DELAY + 1;
   onScreenTransition = 0;
@@ -284,12 +282,10 @@ void GameStateDeckViewer::Update(float dt)
     {
     case PSP_CTRL_LEFT :
       last_user_activity = 0;
-      currentCard = displayed_deck->getCard(1);
       mStage = STAGE_TRANSITION_LEFT;
       break;
     case PSP_CTRL_RIGHT :
       last_user_activity = 0;
-      currentCard = displayed_deck->getCard(-1);
       mStage = STAGE_TRANSITION_RIGHT;
       break;
     case PSP_CTRL_UP :
@@ -1437,7 +1433,6 @@ int GameStateDeckViewer::loadDeck(int deckid){
     
     myCollection->Remove(current,myDeck->count(current));
   }
-  currentCard = NULL;
     // Load deck statistics
     // TODO: Code cleanup (Copypasted with slight changes from GameStateMenu.cpp)
     char buffer[512];
@@ -1521,6 +1516,8 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
           SAFE_DELETE(myCollection);
           myCollection = NEW DeckDataWrapper(playerdata->collection);
           myCollection->Sort(WSrcCards::SORT_ALPHA);
+          displayed_deck = myCollection;
+          loadIndexes();
           break;
         case 0:
           myDeck->save();
