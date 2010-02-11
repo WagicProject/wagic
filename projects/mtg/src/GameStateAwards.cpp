@@ -114,6 +114,7 @@ void GameStateAwards::Start()
   detailview = NULL; 
   setSrc = NULL;
   showMenu = false;
+  resources.Unmiss("awardback.jpg"); //Last resort, same as shop.
   mBgTex = resources.RetrieveTexture("awardback.jpg",TEXTURE_SUB_5551);
   mBg = resources.RetrieveQuad("awardback.jpg");
 }

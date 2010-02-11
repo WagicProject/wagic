@@ -1,0 +1,18 @@
+<PACK name="???" type="Pack" pool="unlocked" price="1500" requires="set:PLC;|set:TSP;|set:FUT;">
+	<slot copies="15">
+		<random_card copies="2">rarity:rare;|rarity:mythic</random_card>
+		<random_card>rarity:rare;</random_card>
+		<random_card>rarity:uncommon;</random_card>
+		<random_card>rarity:uncommon;</random_card>
+		<random_card>rarity:uncommon;</random_card>
+		<random_card copies="2">rarity:uncommon;</random_card>
+		<random_card>rarity:common;</random_card>
+		<random_card>rarity:common;</random_card>
+		<random_card>rarity:common;</random_card>
+		<random_card>rarity:common;</random_card>
+		<random_card>rarity:common;</random_card>
+		<random_card copies="2">rarity:common;|rarity:land;</random_card>
+		<random_card copies="2">rarity:common;|rarity:land;</random_card>
+		<random_card copies="2">rarity:common;|rarity:land;</random_card>
+	</slot>
+</PACK>

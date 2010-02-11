@@ -1,0 +1,21 @@
+<PACK name="Mage Class" type="Booster" pool="unlocked type:cleric;|type:druid;|type:shaman;|type:wizard;|type:mystic;" requires="set:MOR;" price="750">
+	<slot copies="1">
+		<random_card>rarity:mythic;</random_card>
+		<random_card>rarity:rare;</random_card>
+		<random_card>rarity:rare;</random_card>
+		<random_card>rarity:rare;</random_card>
+		<random_card>rarity:rare;</random_card>
+		<random_card>rarity:rare;</random_card>
+		<random_card>rarity:rare;</random_card>
+		<random_card>rarity:rare;</random_card>
+	</slot>
+	<slot copies="3">
+		<random_card>rarity:uncommon;</random_card>
+	</slot>
+	<slot copies="10">
+		<random_card>rarity:common;</random_card>
+	</slot>
+	<slot copies="1" pool="unlocked">
+		<random_card>rarity:land;type:basic;</random_card>
+	</slot>
+</PACK>

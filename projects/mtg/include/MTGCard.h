@@ -35,18 +35,14 @@ class MTGCard {
   MTGCard(MTGCard * source);
 
   void setMTGId(int id);
-  int getMTGId();
-  int getId();
-
-
-  char getRarity();
   void setRarity(char _rarity);
-
   //void setImageName( char * value);
-  char * getImageName ();
-
   void setPrimitive(CardPrimitive * cp);
 
+  int getMTGId() const;
+  int getId() const;
+  char getRarity() const;
+  char * getImageName();
 };
 
 

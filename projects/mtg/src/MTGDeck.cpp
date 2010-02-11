@@ -676,7 +676,7 @@ int MTGDeck::remove(MTGCard * card){
 
 int MTGDeck::save(){
   std::ofstream file(filename.c_str());
-  char writer[10];
+  char writer[512];
   if (file){
 #if defined (WIN32) || defined (LINUX)
     OutputDebugString("saving");

@@ -5,8 +5,10 @@ class WCardFilter;
 struct WCardSort;
 struct WDistort;
 class PriceList;
+class MTGCard;
 class MTGDeck;
 class MTGAllCards;
+class JQuad;
 
 class WSyncable{
 public:
@@ -69,22 +71,29 @@ public:
   
   virtual void Sort(int method);
   virtual bool setOffset(int pos);
+  virtual bool isEmptySet(WCardFilter * f);
   virtual void addFilter(WCardFilter * f);
   virtual void clearFilters();
+  virtual WCardFilter* unhookFilters();
   virtual bool matchesFilters(MTGCard * c);
   virtual void validateFilters();
   virtual void bakeFilters(); //Discards all invalidated cards.
   virtual float filterFee();
 
-  virtual int addToDeck(MTGDeck * i, int num=-1); //Returns num that didn't add
+  //Loads into us.
   virtual int loadMatches(MTGAllCards* ac); //loadMatches adds the cards from something
   virtual int loadMatches(MTGDeck * deck);  //into this, if it matches our filter
   virtual int loadMatches(WSrcCards* src, bool all=false);  //If all==true, ignore filters on src.
   
+  //We load it
+  virtual int addRandomCards(MTGDeck * i, int howmany=1);
+  virtual int addToDeck(MTGDeck * i, int num=-1); //Returns num that didn't add
+
   enum {
      MAX_CYCLES = 4, //How many cycles to search, for addToDeck
      SORT_COLLECTOR,
-     SORT_ALPHA
+     SORT_ALPHA,
+     SORT_RARITY
   };
 protected:
   vector<MTGCard*> cards;
@@ -119,6 +128,11 @@ struct WCSortCollector{
 };
 
 struct WCSortAlpha{
+  bool operator()(const MTGCard*l, const MTGCard*r);
+};
+
+struct WCSortRarity{
+  int rareToInt(char r);
   bool operator()(const MTGCard*l, const MTGCard*r);
 };
 

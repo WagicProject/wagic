@@ -50,13 +50,13 @@ void MTGCard::setMTGId(int id){
   }
 }
 
-int MTGCard::getMTGId(){
+int MTGCard::getMTGId() const {
   return mtgid;
 }
-int MTGCard::getId(){
+int MTGCard::getId() const {
   return mtgid;
 }
-char MTGCard::getRarity(){
+char MTGCard::getRarity() const {
   return rarity;
 }
 
@@ -64,7 +64,7 @@ void MTGCard::setRarity(char _rarity){
   rarity = _rarity;
 }
 
-char * MTGCard::getImageName(){
+char * MTGCard::getImageName() {
   return image_name;
 }
 

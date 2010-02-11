@@ -6,6 +6,7 @@
 #include "../include/GameStateShop.h"
 #include "../include/GameApp.h"
 #include "../include/MTGDeck.h"
+#include "../include/MTGPack.h"
 #include "../include/Translate.h"
 #include "../include/GameOptions.h"
 #include <hge/hgedistort.h>
@@ -35,6 +36,7 @@ GameStateShop::GameStateShop(GameApp* parent): GameState(parent) {
   shopMenu = NULL;
   bigDisplay = NULL;
   myCollection = NULL;
+  packlist = NULL;
   pricelist = NULL;
   playerdata = NULL;
   booster = NULL;
@@ -117,6 +119,8 @@ void GameStateShop::Start(){
   JRenderer::GetInstance()->EnableVSync(true);
 
   taskList = NULL;
+  packlist = NEW MTGPacks();
+  packlist->loadAll();
   load();
 }
 
@@ -124,13 +128,7 @@ string GameStateShop::descPurchase(int controlId, bool tiny){
    char buffer[4096];
    string name;
    if(controlId < BOOSTER_SLOTS){
-     if(mBooster[controlId].altSet == mBooster[controlId].mainSet)
-       mBooster[controlId].altSet = NULL;
-     if(mBooster[controlId].altSet)
-       sprintf(buffer,_("%s & %s (15 Cards)").c_str(),mBooster[controlId].mainSet->id.c_str(),mBooster[controlId].altSet->id.c_str());
-     else
-      sprintf(buffer,_("%s Booster (15 Cards)").c_str(),mBooster[controlId].mainSet->id.c_str());
-     name = buffer;
+     name = mBooster[controlId].getName();
    }
    else{
      MTGCard * c = srcCards->getCard(controlId-BOOSTER_SLOTS);
@@ -158,43 +156,6 @@ string GameStateShop::descPurchase(int controlId, bool tiny){
    else
      sprintf(buffer,_("%s (%i) : %i credits").c_str(),name.c_str(),mCounts[controlId],mPrices[controlId]);
    return buffer;
-}
-void GameStateShop::assembleBooster(int controlId){
-  int mSet = -1;
-  MTGSetInfo * si = setlist.randomSet(-1);
-  mBooster[controlId].mainSet = si;
-  mBooster[controlId].altSet = NULL;
-
-  int mSetCount = si->counts[MTGSetInfo::TOTAL_CARDS];
-  if(mSetCount < 80){
-    if(rand() % 100 < 50){ //50% Chance of picking a pure pack instead. Combo packs are more rare :)
-      si = setlist.randomSet(-1,80);
-      mSetCount = si->counts[MTGSetInfo::TOTAL_CARDS];
-      mBooster[controlId].mainSet = si;
-    }else
-      mBooster[controlId].altSet = setlist.randomSet(si->block,mSetCount);
-  }
-  else {
-    mBooster[controlId].altSet = NULL;
-    if(rand() % 100 < 10) //10% chance of having a mixed booster anyways.
-      mBooster[controlId].altSet = setlist.randomSet(si->block);      
-  }
-
-  for(int attempts=0;attempts<10;attempts++){
-    if(mBooster[controlId].altSet != mBooster[controlId].mainSet)
-      break;
-    mBooster[controlId].altSet = setlist.randomSet(-1,mSetCount);
-  }
-
-  int price = mBooster[controlId].mainSet->boosterCost();
-  mInventory[controlId] = 2+rand()%4;
-  if(mBooster[controlId].altSet != NULL){
-    price += mBooster[controlId].altSet->boosterCost();
-    price /= 2;
-    price = price + .05 * price; //Mixed sets add a 5% premium.
-    mInventory[controlId] = 1+rand()%2;
-  }
-  mPrices[controlId] = price;
 }
 void GameStateShop::beginPurchase(int controlId){
   JLBFont * mFont = resources.GetJLBFont(Constants::MENU_FONT);
@@ -239,45 +200,31 @@ void GameStateShop::purchaseBooster(int controlId){
     return;
   playerdata->credits -= mPrices[controlId];
   mInventory[controlId]--;
-  WSrcCards * pool = NEW WSrcCards(0);
-  WCFilterSet *main, *alt;
-
-  int num = setlist.getSetNum(mBooster[controlId].mainSet);
-  main = NEW WCFilterSet(num);
-  if(mBooster[controlId].altSet){
-    num = setlist.getSetNum(mBooster[controlId].altSet);
-    alt = NEW WCFilterSet(num);
-    pool->addFilter(NEW WCFilterOR(main,alt));
-  }else
-    pool->addFilter(main);
-  pool->loadMatches(srcCards,true);
-  pool->Shuffle();
-
   SAFE_DELETE(booster);
+  deleteDisplay();
   booster = NEW MTGDeck(mParent->collection);
-
-  //Add cards to booster. Pool is shuffled, so just step through.
-  int carryover = 1;
-  if(!(rand() % 8)){
-    pool->addFilter(NEW WCFilterRarity(Constants::RARITY_M));
-    carryover = pool->addToDeck(booster,carryover);
-  }
-  pool->clearFilters();
-  pool->addFilter(NEW WCFilterRarity(Constants::RARITY_R));
-  carryover = pool->addToDeck(booster,carryover); 
-  pool->clearFilters();
-  pool->addFilter(NEW WCFilterRarity(Constants::RARITY_U));
-  carryover = pool->addToDeck(booster,carryover+3); 
-  pool->clearFilters();
-  pool->addFilter(NEW WCFilterRarity(Constants::RARITY_C));
-  carryover = pool->addToDeck(booster,carryover+11); 
+  boosterDisplay = NEW CardDisplay(12,NULL, SCREEN_WIDTH - 200, SCREEN_HEIGHT/2,this,NULL,5);
+  mBooster[controlId].addToDeck(booster,srcCards);
   
-  myCollection->Add(booster);
-  makeDisplay(booster);
+  string sort = mBooster[controlId].getSort();
+  DeckDataWrapper * ddw = NEW DeckDataWrapper(booster);
+  if(sort == "alpha")
+    ddw->Sort(WSrcCards::SORT_ALPHA);
+  else if(sort == "collector")
+    ddw->Sort(WSrcCards::SORT_COLLECTOR);
+  else
+    ddw->Sort(WSrcCards::SORT_RARITY);
+  for (int x=0;x<ddw->Size();x++){
+    MTGCard * c = ddw->getCard(x);
+    MTGCardInstance * ci = NEW MTGCardInstance(c, NULL);
+    boosterDisplay->AddCard(ci);
+    subBooster.push_back(ci);
+  }
+  SAFE_DELETE(ddw);
 
+  myCollection->Add(booster);
   mTouched = true;
   save(true);
-  SAFE_DELETE(pool);
   menu->Close();
 }
 
@@ -308,8 +255,11 @@ void GameStateShop::load(){
   int nbboostersets = 0;
 
   JQuad * mBackThumb = resources.GetQuad("back_thumb");
-  for(int i=0;i<BOOSTER_SLOTS;i++)
-    assembleBooster(i);
+  for(int i=0;i<BOOSTER_SLOTS;i++){
+    mBooster[i].randomize(packlist);
+    mInventory[i] = 1+rand()%mBooster[i].maxInventory();
+    mPrices[i] = pricelist->getOtherPrice(mBooster[i].basePrice()); 
+  }
   for(int i=BOOSTER_SLOTS;i<SHOP_ITEMS;i++){
     MTGCard * c = NULL;
     if((c = srcCards->getCard(i-BOOSTER_SLOTS)) == NULL){
@@ -365,6 +315,7 @@ void GameStateShop::End()
   SAFE_DELETE(myCollection);
   SAFE_DELETE(booster);
   SAFE_DELETE(filterMenu);
+  SAFE_DELETE(packlist);
   deleteDisplay();
 
   //Release alternate thumbnails.
@@ -530,17 +481,7 @@ void GameStateShop::Update(float dt)
 }
 
 void GameStateShop::makeDisplay(MTGDeck * d){
-  deleteDisplay();
-  boosterDisplay = NEW CardDisplay(12,NULL, SCREEN_WIDTH - 200, SCREEN_HEIGHT/2,this,NULL,5);
 
-  map<int,int>::iterator it;
-
-   for (it = d->cards.begin(); it!=d->cards.end(); it++){
-          MTGCard * c = d->getCardById(it->first);
-          MTGCardInstance * ci = NEW MTGCardInstance(c, NULL); 
-          boosterDisplay->AddCard(ci);
-          subBooster.push_back(ci);
-   }
 }
 void GameStateShop::deleteDisplay(){
   vector<MTGCardInstance*>::iterator i;
@@ -687,4 +628,125 @@ void GameStateShop::ButtonPressed(int controllerId, int controlId)
     mStage = STAGE_SHOP_SHOP;
   }
   menu->Close();
+}
+
+//ShopBooster
+ShopBooster::ShopBooster(){
+  pack = NULL;
+  mainSet = NULL;
+  altSet = NULL;
+}
+string ShopBooster::getSort() {
+  if(pack) 
+    return pack->getSort(); 
+  return "";
+};
+string ShopBooster::getName(){
+  char buffer[512];
+  if(!pack){
+    if(altSet == mainSet)
+      altSet = NULL;
+    if(altSet)
+      sprintf(buffer,_("%s & %s (15 Cards)").c_str(),mainSet->id.c_str(),altSet->id.c_str());
+    else if(mainSet)
+      sprintf(buffer,_("%s Booster (15 Cards)").c_str(),mainSet->id.c_str());
+  }else{
+    return pack->getName();
+  }
+  return buffer;
+}
+
+void ShopBooster::randomize(MTGPacks * packlist){
+  mainSet = NULL;  altSet = NULL;  pack = NULL;
+  if(!setlist.size()) return;
+  if(packlist && setlist.size() > 10){  //FIXME make these an unlockable item.
+    int rnd = rand() % 100;
+    if(rnd <= Constants::CHANCE_CUSTOM_PACK){  
+      randomCustom(packlist);
+      return;
+    }
+  }
+  randomStandard();
+}
+int ShopBooster::basePrice(){
+  if(pack)
+    return pack->getPrice();
+  else if(altSet)
+    return Constants::PRICE_MIXED_BOOSTER;
+  return Constants::PRICE_BOOSTER;
+}
+void ShopBooster::randomCustom(MTGPacks * packlist){
+  pack = packlist->randomPack();
+  if(pack && !pack->isUnlocked())
+    pack = NULL;
+  if(!pack){
+    randomStandard();
+  }
+}
+void ShopBooster::randomStandard(){
+  int mSet = -1;
+  MTGSetInfo * si = setlist.randomSet(-1);
+  mainSet = si;
+  altSet = NULL;
+
+  int mSetCount = si->counts[MTGSetInfo::TOTAL_CARDS];
+  if(mSetCount < 80){
+    if(rand() % 100 < Constants::CHANCE_PURE_OVERRIDE){ //Chance of picking a pure pack instead.
+      si = setlist.randomSet(-1,80);
+      mSetCount = si->counts[MTGSetInfo::TOTAL_CARDS];
+      mainSet = si;
+    }else
+      altSet = setlist.randomSet(si->block,80-mSetCount);
+  }
+  else if(rand() % 100 < Constants::CHANCE_MIXED_OVERRIDE) //Chance of having a mixed booster anyways.
+    altSet = setlist.randomSet(si->block);      
+
+  for(int attempts=0;attempts<10;attempts++){ //Try to prevent altSet == mainSet.
+    if(altSet != mainSet) break;
+    altSet = setlist.randomSet(-1,80-mSetCount);
+  }
+  if(altSet == mainSet) altSet = NULL; //Prevent "10E & 10E Booster"
+  
+}
+int ShopBooster::maxInventory(){
+  if(altSet || pack)
+    return 2;
+  return 5;
+}
+void ShopBooster::addToDeck(MTGDeck * d, WSrcCards * srcCards){
+
+  if(pack){
+    pack->assemblePack(d);
+  }
+  else{
+    WSrcCards * pool = NEW WSrcCards(0);
+    WCFilterSet *main, *alt;
+    int num = setlist.getSetNum(mainSet);
+    main = NEW WCFilterSet(num);
+    if(altSet){
+      num = setlist.getSetNum(altSet);
+      alt = NEW WCFilterSet(num);
+      pool->addFilter(NEW WCFilterOR(main,alt));
+    } else
+      pool->addFilter(main);
+    pool->loadMatches(srcCards,true);
+    pool->Shuffle();
+
+    //Add cards to booster. Pool is shuffled, so just step through.
+    int carryover = 1;
+    if(!(rand() % 8)){
+      pool->addFilter(NEW WCFilterRarity(Constants::RARITY_M));
+      carryover = pool->addToDeck(d,carryover);
+    }
+    pool->clearFilters();
+    pool->addFilter(NEW WCFilterRarity(Constants::RARITY_R));
+    carryover = pool->addToDeck(d,carryover); 
+    pool->clearFilters();
+    pool->addFilter(NEW WCFilterRarity(Constants::RARITY_U));
+    carryover = pool->addToDeck(d,carryover+3); 
+    pool->clearFilters();
+    pool->addFilter(NEW WCFilterRarity(Constants::RARITY_C));
+    carryover = pool->addToDeck(d,carryover+11); 
+    SAFE_DELETE(pool);
+  }
 }

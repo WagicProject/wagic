@@ -95,3 +95,8 @@ int PriceList::getPurchasePrice(int cardid){
   if(p < 2) p = 2; //Prevents "Sell for 0 credits"
   return (int)p;    
 }
+int PriceList::getOtherPrice(int amt){
+  float p = difficultyScalar(amt,0);
+  if(p < 2) p = 2;
+  return (int)p;    
+}

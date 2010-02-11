@@ -1105,8 +1105,13 @@ void WGuiCardImage::Render(){
 
   if(!source || (c = source->getCard(mOffset.getPos())) == NULL){
       JQuad * q;      
-    if(bThumb)
+    if(bThumb){
       q = resources.GetQuad("back_thumb");
+#if defined WIN32 || defined LINUX
+      if(!q)
+        q = resources.GetQuad("back");
+#endif
+      }
     else
       q = resources.GetQuad("back");
     float scale = p.actZ * 257.f / q->mHeight;
@@ -1116,8 +1121,13 @@ void WGuiCardImage::Render(){
       return;
     if(bThumb){
       JQuad * q = NULL;
-      if(!options[Options::DISABLECARDS].number)
+      if(!options[Options::DISABLECARDS].number){
         q = source->getThumb(mOffset.getPos());
+#if defined WIN32 || defined LINUX
+        if(!q)
+          q = source->getImage(mOffset.getPos());
+#endif
+      }
       if(!q && (q = CardGui::alternateThumbQuad(c)) == NULL)
         return; //TODO Some kind of error image.
       renderer->RenderQuad(q,p.x,p.y);
@@ -1153,8 +1163,13 @@ void WGuiCardDistort::Render(){
   
   if(!source){
     //Default to back.
-    if(bThumb)
+    if(bThumb){
       q = resources.GetQuad("back_thumb");
+#if defined WIN32 || defined LINUX
+      if(!q)
+        q = resources.GetQuad("back");
+#endif
+    }
     else
       q = resources.GetQuad("back");
   }else {
@@ -1164,6 +1179,10 @@ void WGuiCardDistort::Render(){
     
     if(bThumb){
       q = source->getThumb(mOffset.getPos());
+#if defined WIN32 || defined LINUX
+      if(!q)
+        q = source->getImage(mOffset.getPos());
+#endif
       if(!q || options[Options::DISABLECARDS].number)
         q = CardGui::alternateThumbQuad(c);
     }

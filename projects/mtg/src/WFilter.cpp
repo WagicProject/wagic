@@ -29,15 +29,11 @@ size_t WCFilterFactory::findNext(string src, size_t start,char open, char close)
   }
   return string::npos;
 }
-WCardFilter * WCFilterFactory::Construct(string in){
+WCardFilter * WCFilterFactory::Construct(string src){
   size_t x = 0;
-  string src;
-
-  for(x=0;x < in.size();x++){
-    if(isspace(in[x]))
-      continue;
-    src+=in[x];
-  }
+  string whitespaces (" \t\f\v\n\r");
+  x = src.find_first_not_of(whitespaces);
+  if(x != string::npos) src = src.substr(x);
 
   if(!src.size())
     return NEW WCFilterNULL(); //Empty string.
@@ -89,6 +85,9 @@ WCardFilter * WCFilterFactory::Construct(string in){
 
 WCardFilter * WCFilterFactory::Leaf(string src){
   string filter;
+  string whitespaces (" \t\f\v\n\r");
+  size_t x = src.find_first_not_of(whitespaces);
+  if(x != string::npos) src = src.substr(x);
 
   for(size_t i=0;i<src.size();i++){
     unsigned char c = src[i];
@@ -120,8 +119,14 @@ WCardFilter * WCFilterFactory::Leaf(string src){
   return NEW WCFilterNULL();
 }
 
-WCardFilter * WCFilterFactory::Terminal(string type, string arg){
+WCardFilter * WCFilterFactory::Terminal(string src, string arg){
+  string type;
+  for(size_t x=0;x<src.size();x++){
+    if(isspace(src[x])) continue;
+    type += src[x];
+  }
   std::transform(type.begin(),type.end(),type.begin(),::tolower);
+
   if(type == "r" || type == "rarity")
     return NEW WCFilterRarity(arg);
   else if(type == "c" || type == "color")

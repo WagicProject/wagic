@@ -149,10 +149,10 @@ void GameStateDeckViewer::Start()
   menu->Add(22,"Filter by...");
   menu->Add(2,"Switch decks without saving");
   if(options[Options::CHEATMODE].number)
-      menu->Add(-1,"*Complete collection & reset*");
+      menu->Add(-1,"Complete Collection");
   menu->Add(1,"Save & Rename");
+  menu->Add(3,"Back to Main Menu");
   menu->Add(0,"Save & Back to Main Menu");
-  menu->Add(3,"Back to main menu");
   menu->Add(4,"Cancel");
 
 
@@ -646,7 +646,7 @@ void GameStateDeckViewer::renderOnScreenMenu(){
         if (value > 9){nb_letters += 3;}else{nb_letters+=2;}
       }
     }
-    int value = myDeck->getCount();
+    int value = myDeck->totalCopies();
     sprintf(buffer, _("Your Deck: %i cards").c_str(),  value);
     font->DrawString(buffer, SCREEN_WIDTH-200+rightTransition, SCREEN_HEIGHT/2 + 25);
 
@@ -1090,7 +1090,7 @@ void GameStateDeckViewer::updateStats() {
 
   stw.needUpdate = false; 
 
-  stw.cardCount = myDeck->getCount();
+  stw.cardCount = myDeck->totalCopies();
   stw.countLands = myDeck->getCount(Constants::MTG_COLOR_LAND);
   stw.totalPrice = myDeck->totalPrice();
 
@@ -1518,7 +1518,9 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
               goa->giveAward();
           }
           options.save();
-          mStage =  STAGE_WELCOME;             // Reset the deck viewer, so that the new collection gets loaded
+          SAFE_DELETE(myCollection);
+          myCollection = NEW DeckDataWrapper(playerdata->collection);
+          myCollection->Sort(WSrcCards::SORT_ALPHA);
           break;
         case 0:
           myDeck->save();

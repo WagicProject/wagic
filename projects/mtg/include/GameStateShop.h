@@ -27,7 +27,22 @@
 #define SHOP_ITEMS SHOP_SLOTS+1
 #define LIST_FADEIN 15
 
-struct ShopBooster{
+class MTGPack;
+class MTGPacks;
+
+class ShopBooster{
+public:
+  ShopBooster();
+  string getName();
+  void randomize(MTGPacks * packlist);
+  int basePrice();
+  int maxInventory();
+  void addToDeck(MTGDeck * d, WSrcCards * srcCards);
+  string getSort();
+private:
+  void randomCustom(MTGPacks * packlist);
+  void randomStandard();
+  MTGPack * pack;
   MTGSetInfo * mainSet;
   MTGSetInfo * altSet;
 };
@@ -58,6 +73,7 @@ class GameStateShop: public GameState, public JGuiListener
   SimpleMenu * menu;  
   PriceList * pricelist;
   PlayerData * playerdata;
+  MTGPacks * packlist;
   bool mTouched;
   bool needLoad;
   int mPrices[SHOP_ITEMS];
@@ -75,7 +91,6 @@ class GameStateShop: public GameState, public JGuiListener
   void load();
   void save(bool force=false);
   void updateCounts();
-  void assembleBooster(int controlId);
   void beginPurchase(int controlId);
   void purchaseCard(int controlId);
   void purchaseBooster(int controlId);

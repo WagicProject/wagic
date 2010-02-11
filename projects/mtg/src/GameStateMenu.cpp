@@ -10,6 +10,7 @@
 #include "../include/PlayerData.h"
 #include "../include/utils.h"
 #include "../include/DeckDataWrapper.h"
+#include "../include/MTGPack.h"
 
 static const char* GAME_VERSION = "WTH?! 0.11.0 - by wololo";
 
@@ -404,9 +405,7 @@ void GameStateMenu::Update(float dt)
 
         //Reload list of unlocked sets, now that we know about the sets.
         options.reloadProfile(false);
-        
         genNbCardsStr();
-
         resetDirectory();
         //All major things have been loaded, resize the cache to use it as efficiently as possible
         resources.autoResize();

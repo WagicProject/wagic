@@ -127,7 +127,11 @@ class Constants
     PRICE_1L = 5,
 
     //Price in booster
-    PRICE_XM = 2500,
+    PRICE_BOOSTER = 700,
+    PRICE_MIXED_BOOSTER = 800,
+    CHANCE_CUSTOM_PACK = 15,
+    CHANCE_PURE_OVERRIDE = 50,
+    CHANCE_MIXED_OVERRIDE = 25,
     PRICE_XR = 355,
     PRICE_XU = 88,
     PRICE_XC = 8,

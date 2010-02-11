@@ -160,6 +160,22 @@ int WSrcCards::loadMatches(WSrcCards* src, bool all){
   validateFilters();
   return count;  
 }
+int WSrcCards::addRandomCards(MTGDeck * i, int howmany){
+  if(!cards.size() || (filtersRoot && !validated.size()))
+    return howmany;
+  for(int x=0;x<howmany;x++){
+    if(validated.size()){
+      size_t pos = rand() % validated.size();
+      i->add(cards[validated[pos]]);
+    }
+    else{
+      size_t pos = rand() % cards.size();
+      i->add(cards[pos]);
+    }
+  }
+  return 0;
+}
+
 int WSrcCards::addToDeck(MTGDeck * i, int num){
   int oldpos = getOffset();
   int added = 0;
@@ -256,6 +272,7 @@ void WSrcCards::Shuffle(){
 }
 void WSrcCards::validateFilters(){
   validated.clear();
+  if(filtersRoot == NULL) return; //No filter, no validation
   for(size_t t=0;t<cards.size();t++){
     if(matchesFilters(cards[t]))
       validated.push_back(t);
@@ -269,6 +286,19 @@ bool WSrcCards::thisCard(int mtgid){
     }
   }
   return false;
+}
+bool WSrcCards::isEmptySet(WCardFilter * f){
+  size_t max = cards.size();
+  if(validated.size()) max = validated.size();
+  if(!f) return (max > 0);
+  for(size_t t=0;t<max;t++){
+    if(validated.size()){
+      if(f->isMatch(cards[validated[t]]))
+        return false;
+    }else if(f->isMatch(cards[t]))
+        return false;
+  }
+  return true;
 }
 
 void WSrcCards::addFilter(WCardFilter * f) {
@@ -288,13 +318,21 @@ void WSrcCards::clearFilters() {
   SAFE_DELETE(filtersRoot);
   validated.clear();
 }
-
+WCardFilter* WSrcCards::unhookFilters(){
+  WCardFilter* temp = filtersRoot;
+  filtersRoot = NULL;
+  clearFilters();
+  return temp;
+}
 void WSrcCards::Sort(int method){
   switch(method){
-    case SORT_COLLECTOR:
+    case WSrcCards::SORT_COLLECTOR:
       std::sort(cards.begin(),cards.end(),WCSortCollector());
       break;
-    case SORT_ALPHA:
+    case WSrcCards::SORT_RARITY:
+      std::sort(cards.begin(),cards.end(),WCSortRarity());
+      break;
+    case WSrcCards::SORT_ALPHA:
     default:
       std::sort(cards.begin(),cards.end(),WCSortAlpha());
       break;
@@ -386,6 +424,8 @@ void WSrcDeck::Rebuild(MTGDeck * d){
 }
 
 int WSrcDeck::count(MTGCard * c){
+  if(!c)
+    return totalCopies();
   if(copies.find(c->getMTGId()) == copies.end())
     return 0;
   return copies[c->getMTGId()];
@@ -425,12 +465,28 @@ int WSrcDeck::totalCopies(){
   return totalCards;
 }
 //Sorting methods:
-
+int WCSortRarity::rareToInt(char r){
+  switch(r){
+    default: case Constants::RARITY_T: return 0;
+    case Constants::RARITY_L: return 1;
+    case Constants::RARITY_C: return 2;
+    case Constants::RARITY_U: return 3;
+    case Constants::RARITY_R: return 4;
+    case Constants::RARITY_M: return 5;
+  }
+}
+bool WCSortRarity::operator()(const MTGCard*l, const MTGCard*r){
+  if(!l || !r || !l->data || !r->data)
+    return false;
+  return (rareToInt(l->getRarity()) < rareToInt(r->getRarity()));
+}
 bool WCSortAlpha::operator()(const MTGCard*l, const MTGCard*r){
   if(!l || !r || !l->data || !r->data)
     return false;
   string ln = l->data->getLCName();
   string rn = r->data->getLCName();
+  if(ln == rn)
+    return l->getMTGId() < r->getMTGId();
   return (ln < rn);
 }
 bool WCSortCollector::operator()(const MTGCard*l, const MTGCard*r){

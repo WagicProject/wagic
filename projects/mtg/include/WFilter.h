@@ -8,11 +8,11 @@ public:
   WCFilterFactory() {};
   static WCFilterFactory * GetInstance();
   static void Destroy();
-  WCardFilter * Construct(string x);
+  WCardFilter * Construct(string src);
 private:
   size_t findNext(string src, size_t start, char open='(', char close=')');
   WCardFilter * Leaf(string src);
-  WCardFilter * Terminal(string type, string arg);
+  WCardFilter * Terminal(string src, string arg);
   static WCFilterFactory * me;
 };
 

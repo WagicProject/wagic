@@ -21,7 +21,8 @@ class PriceList{
   int getSellPrice(int cardid);
   int getPurchasePrice(int cardid);
   int getPrice(int cardId);
-  int setPrice(int cardId, int price);
+  int setPrice(int cardId,int price);
+  int getOtherPrice(int amt);
   static float difficultyScalar(float price, int cardid=0);
   static void updateKey() {randomKey = rand();};
 };
