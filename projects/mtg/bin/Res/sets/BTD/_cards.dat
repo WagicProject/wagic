@@ -1,3 +1,8 @@
+[meta]
+author=Wagic Team
+year=2000
+block=Duel
+[/meta]
 [card]
 primitive=Air Elemental
 id=26654
