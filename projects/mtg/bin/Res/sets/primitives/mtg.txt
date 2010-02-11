@@ -7848,7 +7848,7 @@ subtype=Lair
 [card]
 name=Crosis's Charm
 auto=may moveTo(ownerhand) target(*)
-auto=may bury target(creature[black])
+auto=may bury target(creature[-black])
 auto=may destroy target(artifact)
 text=Choose one - Return target permanent to its owner's hand; or destroy target nonblack creature, and it can't be regenerated; or destroy target artifact.
 mana={U}{B}{R}
@@ -26544,7 +26544,7 @@ type=Instant
 [/card]
 [card]
 name=Ogre Arsonist
-auto=destroy target(lad)
+auto=destroy target(land)
 text=When Ogre Arsonist enters the battlefield, destroy target land.
 mana={4}{R}
 type=Creature
@@ -44797,6 +44797,7 @@ type=Land
 name=Yavimaya Dryad
 abilities=forestwalk
 auto=may moveTo(myBattlefield) target(forest|mylibrary) && tap
+auto=may moveTo(opponentBattlefield) target(forest|mylibrary) && tap
 text=Forestwalk -- When Yavimaya Dryad enters the battlefield, you may search your library for a Forest card and put it onto the battlefield tapped under target player's control. If you do, shuffle your library.
 mana={1}{G}{G}
 type=Creature
