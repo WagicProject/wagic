@@ -121,7 +121,10 @@ void MTGPack::load(string filename){
   TiXmlHandle hDoc(&packfile);
   TiXmlElement * pPack;
   pPack = hDoc.FirstChildElement().Element();
-  if(!pPack ) return;
+  if(!pPack ){ 
+    
+    return;
+  }
   //root should be "pack"
   string tag = pPack->Value();
   std::transform(tag.begin(),tag.end(),tag.begin(),::tolower);
@@ -211,6 +214,7 @@ MTGPack * MTGPacks::randomPack(int key){
 void MTGPacks::loadAll(){
   DIR *mDip = opendir(RESPATH"/packs/");  
   struct dirent *mDit;
+  if(!mDip) return;
 
   while ((mDit = readdir(mDip))){
     char myFilename[4096];
