@@ -122,10 +122,12 @@ void GameStateDeckViewer::updateDecks(){
   SAFE_DELETE(welcome_menu);
 
   welcome_menu = NEW SimpleMenu(10,this,Constants::MENU_FONT,20,20);
+  welcome_menu->Add(nbDecks+1, _("--NEW--").c_str());
+  if(options[Options::CHEATMODE].number && (!myCollection || myCollection->Size(true) < GameApp::collection->totalCards()))
+      welcome_menu->Add(-12,"--UNLOCK ALL--");
   nbDecks = fillDeckMenu(welcome_menu,options.profileFile());
   deckNum = 0;
   newDeckname = "";
-  welcome_menu->Add(nbDecks+1, _("--NEW--").c_str());
   welcome_menu->Add(-1, _("Cancel").c_str());
 
 }
@@ -147,8 +149,6 @@ void GameStateDeckViewer::Start()
   menu = NEW SimpleMenu(11,this,Constants::MENU_FONT,SCREEN_WIDTH/2-150,20);
   menu->Add(22,"Filter by...");
   menu->Add(2,"Switch decks without saving");
-  if(options[Options::CHEATMODE].number)
-      menu->Add(-1,"Complete Collection");
   menu->Add(1,"Save & Rename");
   menu->Add(3,"Back to Main Menu");
   menu->Add(0,"Save & Back to Main Menu");
@@ -1078,12 +1078,13 @@ void GameStateDeckViewer::renderOnScreenMenu(){
 }
 
 void GameStateDeckViewer::updateStats() {
-  if (!stw.needUpdate) {
+  if (!stw.needUpdate || !myDeck) {
     return;
   }
 
   AbilityFactory * af = NEW AbilityFactory();
 
+  myDeck->updateCounts();
   stw.needUpdate = false; 
 
   stw.cardCount = myDeck->totalCopies();
@@ -1246,8 +1247,8 @@ void GameStateDeckViewer::updateStats() {
 // or at least be calculated for all common types in one go
 int GameStateDeckViewer::countCardsByType(const char * _type) {
   int result = 0;
-  for(int i=0;i<myDeck->Size();i++){
-    MTGCard * current = myDeck->getCard(i);
+  for(int i=0;i<myDeck->Size(true);i++){
+    MTGCard * current = myDeck->getCard(i,true);
     if(current->data->hasType(_type)){
       result += myDeck->count(current);
     }
@@ -1496,18 +1497,10 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
 
           mSwitching = false;
           break;
-        }
-        loadDeck(controlId);
-        mStage = STAGE_WAITING;
-        deckNum = controlId;
-        break;
-      case 11: //Save / exit menu
-        switch (controlId)
-        {
-        case -1:                               // (PSY) Cheatmode: Complete the collection
+        } else if(controlId == -12){           // (PSY) Cheatmode: Complete the collection
           playerdata->collection->complete();  // Add the cards
           playerdata->collection->save();      // Save the new collection
-          for(int i=0;i<setlist.size();i++){
+          for(int i=0;i<setlist.size();i++){   // Update unlocked sets
             GameOptionAward * goa = dynamic_cast<GameOptionAward*>(&options[Options::optionSet(i)]);
             if(goa)
               goa->giveAward();
@@ -1518,7 +1511,17 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
           myCollection->Sort(WSrcCards::SORT_ALPHA);
           displayed_deck = myCollection;
           loadIndexes();
+          mStage = STAGE_WAITING;
           break;
+        }
+        loadDeck(controlId);
+        mStage = STAGE_WAITING;
+        deckNum = controlId;
+        break;
+      case 11: //Save / exit menu
+        switch (controlId)
+        {
+      
         case 0:
           myDeck->save();
           playerdata->save();
