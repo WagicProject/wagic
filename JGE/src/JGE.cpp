@@ -28,18 +28,16 @@
 
 u8 JGE::GetAnalogX()
 {
-  if (JGEGetKeyState(VK_LEFT)) return 0;
-  if (JGEGetKeyState(VK_RIGHT)) return 0xff;
-
+  if (GetButtonState(JGE_BTN_LEFT)) return 0;
+  if (GetButtonState(JGE_BTN_RIGHT)) return 0xff;
   return 0x80;
 }
 
 
 u8 JGE::GetAnalogY()
 {
-  if (JGEGetKeyState(VK_UP)) return 0;
-  if (JGEGetKeyState(VK_DOWN)) return 0xff;
-
+  if (GetButtonState(JGE_BTN_UP)) return 0;
+  if (GetButtonState(JGE_BTN_DOWN)) return 0xff;
   return 0x80;
 }
 
