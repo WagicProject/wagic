@@ -159,7 +159,7 @@ JGameLauncher* g_launcher = NULL;
 static u32 gButtons = 0;
 static u32 gOldButtons = 0;
 
-static const struct { LocalKeyCode keysym; JButton; } gDefaultBindings[] =
+static const struct { LocalKeySym keysym; JButton keycode; } gDefaultBindings[] =
   {
     { VK_CONTROL,	JGE_BTN_CTRL },
     { VK_RETURN,	JGE_BTN_MENU },
@@ -302,9 +302,8 @@ int DrawGLScene(void)									// Here's Where We Do All The Drawing
   return TRUE;										// Everything Went OK
 }
 
-void Update(int dt)
+void Update(float dt)
 {
-  gPrevControllerState = gControllerState;
   g_engine->SetDelta(dt);
   g_engine->Update(dt);
 }
