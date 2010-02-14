@@ -69,6 +69,9 @@ u8 JGE::GetAnalogY()
 
 #endif
 
+#ifndef NAN
+#define NAN Single::NaN
+#endif
 
 static map<JButton, float> holds;
 static map<JButton, float> oldHolds;
