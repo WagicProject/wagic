@@ -123,7 +123,7 @@ void GameStateDeckViewer::updateDecks(){
 
   welcome_menu = NEW SimpleMenu(10,this,Constants::MENU_FONT,20,20);
   welcome_menu->Add(nbDecks+1, _("--NEW--").c_str());
-  if(options[Options::CHEATMODE].number && (!myCollection || myCollection->Size(true) < GameApp::collection->totalCards()))
+  if(options[Options::CHEATMODE].number)
       welcome_menu->Add(-12,"--UNLOCK ALL--");
   nbDecks = fillDeckMenu(welcome_menu,options.profileFile());
   deckNum = 0;
