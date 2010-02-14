@@ -159,29 +159,29 @@ JGameLauncher* g_launcher = NULL;
 static u32 gButtons = 0;
 static u32 gOldButtons = 0;
 
-static const struct { WPARAM keysym; u32 pspCode; } gDefaultBindings[] =
+static const struct { LocalKeyCode keysym; JButton; } gDefaultBindings[] =
   {
-    { VK_CONTROL,	PSP_CTRL_SELECT },
-    { VK_RETURN,	PSP_CTRL_START },
-    { VK_ESCAPE,	PSP_CTRL_START },
-    { VK_UP,		PSP_CTRL_UP },
-    { VK_RIGHT,		PSP_CTRL_RIGHT },
-    { VK_DOWN,		PSP_CTRL_DOWN },
-    { VK_LEFT,		PSP_CTRL_LEFT },
-    { 'Z',		PSP_CTRL_UP },
-    { 'D',		PSP_CTRL_RIGHT },
-    { 'S',		PSP_CTRL_DOWN },
-    { 'Q',		PSP_CTRL_LEFT },
-    { 'A',		PSP_CTRL_LTRIGGER },
-    { 'E',		PSP_CTRL_RTRIGGER },
-    { 'I',		PSP_CTRL_TRIANGLE },
-    { 'L',		PSP_CTRL_CIRCLE },
-    { VK_SPACE,		PSP_CTRL_CIRCLE },
-    { 'K',		PSP_CTRL_CROSS },
-    { 'J',		PSP_CTRL_SQUARE },
-    { VK_F1,		PSP_CTRL_HOME },
-    { VK_F2,		PSP_CTRL_HOLD },
-    { VK_F3,		PSP_CTRL_NOTE }
+    { VK_CONTROL,	JGE_BTN_CTRL },
+    { VK_RETURN,	JGE_BTN_MENU },
+    { VK_ESCAPE,	JGE_BTN_MENU },
+    { VK_UP,		JGE_BTN_UP },
+    { VK_RIGHT,		JGE_BTN_RIGHT },
+    { VK_DOWN,		JGE_BTN_DOWN },
+    { VK_LEFT,		JGE_BTN_LEFT },
+    { 'Z',		JGE_BTN_UP },
+    { 'D',		JGE_BTN_RIGHT },
+    { 'S',		JGE_BTN_DOWN },
+    { 'Q',		JGE_BTN_LEFT },
+    { 'A',		JGE_BTN_PREV },
+    { 'E',		JGE_BTN_NEXT },
+    { 'I',		JGE_BTN_CANCEL },
+    { 'L',		JGE_BTN_OK },
+    { VK_SPACE,		JGE_BTN_OK },
+    { 'K',		JGE_BTN_SEC },
+    { 'J',		JGE_BTN_PRI },
+    { VK_F1,		JGE_BTN_QUIT },
+    { VK_F2,		JGE_BTN_POWER },
+    { VK_F3,		JGE_BTN_SOUND }
   };
 
 void JGECreateDefaultBindings()
@@ -693,7 +693,7 @@ int WINAPI WinMain(	HINSTANCE	hInstance,			// Instance
 		  tickCount = GetTickCount();					// Get The Tick Count
 		  dt = (tickCount - lastTickCount);
 		  lastTickCount = tickCount;
-		  Update(dt);									// Update frame
+		  Update((float)dt/1000.0f);									// Update frame
 
 		  //Mint2D::BackupKeys();
 
