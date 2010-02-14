@@ -8,8 +8,9 @@
 
 using std::cout;
 
-
-
+#ifdef True
+#undef True
+#endif
 
 struct Left : public Exp { static inline bool test(CardSelector::Target* ref, CardSelector::Target* test)
   { return ref->x - test->x > fabs(ref->y - test->y); } };
@@ -119,26 +120,26 @@ bool CardSelector::CheckUserInput(u32 key)
   Target* oldactive = active;
   switch (key)
     {
-    case PSP_CTRL_CROSS:
+    case JGE_BTN_SEC:
       GameObserver::GetInstance()->cancelCurrentAction();
       return true;
-    case PSP_CTRL_CIRCLE:
+    case JGE_BTN_OK:
       GameObserver::GetInstance()->ButtonPressed(active);
       return true;
       break;
-    case PSP_CTRL_LEFT:
+    case JGE_BTN_LEFT:
       active = closest<Left>(cards, limitor, active);
       break;
-    case PSP_CTRL_RIGHT:
+    case JGE_BTN_RIGHT:
       active = closest<Right>(cards, limitor, active);
       break;
-    case PSP_CTRL_UP:
+    case JGE_BTN_UP:
       active = closest<Up>(cards, limitor, active);
       break;
-    case PSP_CTRL_DOWN:
+    case JGE_BTN_DOWN:
       active = closest<Down>(cards, limitor, active);
       break;
-    case PSP_CTRL_TRIANGLE:
+    case JGE_BTN_CANCEL:
       bigMode = (bigMode+1) % NB_BIG_MODES;
       if(bigMode == BIG_MODE_TEXT)
         options[Options::DISABLECARDS].number = 1;
@@ -160,10 +161,10 @@ bool CardSelector::CheckUserInput(u32 key)
               if (PlayGuiObject* old = fetchMemory(lasts[owner]))
                 switch (key)
                   {
-                  case PSP_CTRL_LEFT:     if (old->x < oldactive->x) active = old; break;
-                  case PSP_CTRL_RIGHT:    if (old->x > oldactive->x) active = old; break;
-                  case PSP_CTRL_UP:       if (old->y < oldactive->y) active = old; break;
-                  case PSP_CTRL_DOWN:     if (old->y > oldactive->y) active = old; break;
+                  case JGE_BTN_LEFT:     if (old->x < oldactive->x) active = old; break;
+                  case JGE_BTN_RIGHT:    if (old->x > oldactive->x) active = old; break;
+                  case JGE_BTN_UP:       if (old->y < oldactive->y) active = old; break;
+                  case JGE_BTN_DOWN:     if (old->y > oldactive->y) active = old; break;
                   default:                if (old) active = old; break;
                   }
             }

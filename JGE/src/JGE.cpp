@@ -8,6 +8,9 @@
 //
 //-------------------------------------------------------------------------------------
 
+#include <iostream>
+#include <map>
+
 #include "../include/JGE.h"
 #include "../include/JApp.h"
 #include "../include/JRenderer.h"
@@ -20,11 +23,8 @@
 
 //////////////////////////////////////////////////////////////////////////
 #if defined (WIN32)    // WIN32 specific code
-
-int JGE::GetTime(void)
-{
-  return (int)GetTickCount();
-}
+#include "../../Dependencies/include/png.h"
+#include "../../Dependencies/include/fmod.h"
 
 u8 JGE::GetAnalogX()
 {
@@ -48,12 +48,6 @@ u8 JGE::GetAnalogY()
 #include "png.h"
 #include "../Dependencies/include/fmod.h"
 
-int JGE::GetTime(void)
-{
-  struct timeval tv;
-  gettimeofday(&tv, NULL);
-  return tv.tv_sec * 1000 + tv.tv_usec / 1000;
-}
 
 u8 JGE::GetAnalogX()
 {
@@ -78,17 +72,156 @@ u8 JGE::GetAnalogY()
 #endif
 
 
+static map<JButton, float> holds;
+static map<JButton, float> oldHolds;
+#define REPEAT_DELAY 0.5
+#define REPEAT_PERIOD 0.07
 
-#if defined (WIN32) || defined (LINUX) // Non-PSP code
+void JGE::PressKey(const LocalKeySym sym)
+{
+  const pair<keycodes_it, keycodes_it> rng = keyBinds.equal_range(sym);
+  for (keycodes_it it = rng.first; it != rng.second; ++it)
+    keyBuffer.push(it->second);
+}
+void JGE::PressKey(const JButton sym)
+{
+  keyBuffer.push(sym);
+}
+void JGE::HoldKey(const LocalKeySym sym)
+{
+  const pair<keycodes_it, keycodes_it> rng = keyBinds.equal_range(sym);
+  for (keycodes_it it = rng.first; it != rng.second; ++it)
+    {
+      keyBuffer.push(it->second);
+      if (holds.end() == holds.find(it->second))
+        holds[it->second] = REPEAT_DELAY;
+    }
+}
+void JGE::HoldKey_NoRepeat(const LocalKeySym sym)
+{
+  const pair<keycodes_it, keycodes_it> rng = keyBinds.equal_range(sym);
+  for (keycodes_it it = rng.first; it != rng.second; ++it)
+    {
+      keyBuffer.push(it->second);
+      if (holds.end() == holds.find(it->second))
+        holds[it->second] = NAN;
+    }
+}
+void JGE::HoldKey(const JButton sym)
+{
+  keyBuffer.push(sym);
+  if (holds.end() == holds.find(sym)) holds[sym] = REPEAT_DELAY;
+}
+void JGE::HoldKey_NoRepeat(const JButton sym)
+{
+  keyBuffer.push(sym);
+  if (holds.end() == holds.find(sym)) holds[sym] = NAN;
+}
+void JGE::ReleaseKey(const LocalKeySym sym)
+{
+  const pair<keycodes_it, keycodes_it> rng = keyBinds.equal_range(sym);
+  for (keycodes_it it = rng.first; it != rng.second; ++it)
+    holds.erase(it->second);
+}
+void JGE::ReleaseKey(const JButton sym)
+{
+  holds.erase(sym);
+}
+void JGE::Update(float dt)
+{
+  for (map<JButton, float>::iterator it = holds.begin(); it != holds.end(); ++it)
+    {
+      if (it->second < 0) { keyBuffer.push(it->first); it->second = REPEAT_PERIOD; }
+      it->second -= dt;
+    }
+  if (mApp != NULL) mApp->Update();
+  oldHolds = holds;
+}
+
+
+bool JGE::GetButtonState(JButton button)
+{
+  return (holds.end() != holds.find(button));
+}
+
+
+bool JGE::GetButtonClick(JButton button)
+{
+  cout << "HOLDS : ";
+  for (map<JButton, float>::iterator it = holds.begin(); it != holds.end(); ++it)
+    cout << it->first << " ";
+  cout << endl << "OLDHOLDS : ";
+  for (map<JButton, float>::iterator it = oldHolds.begin(); it != oldHolds.end(); ++it)
+    cout << it->first << " ";
+  cout << endl;
+  return ((holds.end() != holds.find(button)) && (oldHolds.end() == oldHolds.find(button)));
+}
+
+
+JButton JGE::ReadButton()
+{
+  if (keyBuffer.empty()) return JGE_BTN_NONE;
+  JButton val = keyBuffer.front();
+  keyBuffer.pop();
+  return val;
+}
+
+u32 JGE::BindKey(LocalKeySym sym, JButton button)
+{
+  keyBinds.insert(make_pair(sym, button));
+  return keyBinds.size();
+}
+
+u32 JGE::UnbindKey(LocalKeySym sym, JButton button)
+{
+  for (keycodes_it it = keyBinds.begin(); it != keyBinds.end(); )
+    if (sym == it->first && button == it->second)
+      {
+        keycodes_it er = it;
+        ++it;
+        keyBinds.erase(er);
+      }
+    else ++it;
+  return keyBinds.size();
+}
+
+u32 JGE::UnbindKey(LocalKeySym sym)
+{
+  pair<keycodes_it, keycodes_it> rng = keyBinds.equal_range(sym);
+  keyBinds.erase(rng.first, rng.second);
+  return keyBinds.size();
+}
+
+void JGE::ClearBindings()
+{
+  keyBinds.clear();
+}
+
+void JGE::ResetBindings()
+{
+  keyBinds.clear();
+  JGECreateDefaultBindings();
+}
+
+
+JGE::keybindings_it JGE::KeyBindings_begin() { return keyBinds.begin(); }
+JGE::keybindings_it JGE::KeyBindings_end()   { return keyBinds.end(); }
+
+void JGE::ResetInput()
+{
+  while (!keyBuffer.empty()) keyBuffer.pop();
+  holds.clear();
+}
+
 
 JGE::JGE()
 {
   mApp = NULL;
-
+#if defined (WIN32) || defined (LINUX)
   strcpy(mDebuggingMsg, "");
   mCurrentMusic = NULL;
+#endif
   Init();
-
 }
 
 
@@ -100,126 +233,51 @@ JGE::~JGE()
 }
 
 
+
+#if defined (WIN32) || defined (LINUX) // Non-PSP code
 
 void JGE::Init()
 {
   mDone = false;
   mPaused = false;
   mCriticalAssert = false;
-
   JRenderer::GetInstance();
   JFileSystem::GetInstance();
   JSoundSystem::GetInstance();
 }
 
-void JGE::Run()
+void JGE::SetDelta(float delta)
 {
-
-}
-
-void JGE::SetDelta(int delta)
-{
-  mDeltaTime = (float)delta / 1000.0f;		// change to second
+  mDeltaTime = (float)delta;
 }
 
 float JGE::GetDelta()
 {
   return mDeltaTime;
-  //return hge->Timer_GetDelta()*1000;
 }
-
 
 float JGE::GetFPS()
 {
-  //return (float)hge->Timer_GetFPS();
   return 0.0f;
 }
 
 
-bool JGE::GetButtonState(u32 button)
-{
-  //return (gButtons&button)==button;
-  return JGEGetButtonState(button);
-}
-
-
-bool JGE::GetButtonClick(u32 button)
-{
-  //return (gButtons&button)==button && (gOldButtons&button)!=button;
-  return JGEGetButtonClick(button);
-}
-
-u32 JGE::ReadButton()
-{
-  return JGEReadKey();
-}
-
-void JGE::ResetInput()
-{
-  JGEResetInput();
-}
-
 //////////////////////////////////////////////////////////////////////////
-#else		///// PSP specified code
-
-
-
-#include <queue>
-static queue<u32> gKeyBuffer;
-static const int gKeyCodeList[] = {
-  PSP_CTRL_SELECT, // Select button.
-  PSP_CTRL_START, // Start button.
-  PSP_CTRL_UP, // Up D-Pad button.
-  PSP_CTRL_RIGHT, // Right D-Pad button.
-  PSP_CTRL_DOWN, // Down D-Pad button.
-  PSP_CTRL_LEFT, // Left D-Pad button.
-  PSP_CTRL_LTRIGGER, // Left trigger.
-  PSP_CTRL_RTRIGGER, // Right trigger.
-  PSP_CTRL_TRIANGLE, // Triangle button.
-  PSP_CTRL_CIRCLE, // Circle button.
-  PSP_CTRL_CROSS, // Cross button.
-  PSP_CTRL_SQUARE, // Square button.
-  PSP_CTRL_HOLD, // Hold button.
-  /* Do not test keys we cannot get anyway, that's just wasted proc time
-  PSP_CTRL_HOME, // Home button.
-  PSP_CTRL_NOTE, // Music Note button.
-  PSP_CTRL_SCREEN, // Screen button.
-  PSP_CTRL_VOLUP, // Volume up button.
-  PSP_CTRL_VOLDOWN, // Volume down button.
-  PSP_CTRL_WLAN, // _UP    Wlan switch up.
-  PSP_CTRL_REMOTE, // Remote hold position.
-  PSP_CTRL_DISC, // Disc present.
-  PSP_CTRL_MS // Memory stick present.
-  */
-};
-static u32 gHolds = 0;
-
-
-JGE::JGE()
-{
-  mApp = NULL;
-
-  Init();
-
-
-}
-
-JGE::~JGE()
-{
-  JRenderer::Destroy();
-  JSoundSystem::Destroy();
-  JFileSystem::Destroy();
-
-}
+#else		///// PSP specific code
 
 
 void JGE::Init()
 {
-
 #ifdef DEBUG_PRINT
   mDebug = true;
 #else
   mDebug = false;
+#endif
+
+#if defined (WIN32) || defined (LINUX)
+  tickFrequency = 120;
+#else
+  tickFrequency = sceRtcGetTickResolution();
 #endif
 
   if (mDebug)
@@ -237,22 +295,7 @@ void JGE::Init()
   mDone = false;
   mPaused = false;
   mCriticalAssert = false;
-  mOldButtons = mVeryOldButtons = 0;
-
-  mTickFrequency = sceRtcGetTickResolution();
-  sceRtcGetCurrentTick(&mLastTime);
 }
-
-
-// returns number of milliseconds since game started
-int JGE::GetTime(void)
-{
-
-  u64 curr;
-  sceRtcGetCurrentTick(&curr);
-  return (int)((curr * 1000) / mTickFrequency);
-}
-
 
 float JGE::GetDelta()
 {
@@ -265,7 +308,19 @@ float JGE::GetFPS()
   return 1.0f / mDelta;
 }
 
+u8 JGE::GetAnalogX()
+{
+  return JGEGetAnalogX();
+}
 
+u8 JGE::GetAnalogY()
+{
+  return JGEGetAnalogY();
+}
+
+
+
+/*
 bool JGE::GetButtonState(u32 button)
 {
   return (mCtrlPad.Buttons&button)==button;
@@ -291,92 +346,22 @@ void JGE::ResetInput()
 {
   while (!gKeyBuffer.empty()) gKeyBuffer.pop();
 }
-
-u8 JGE::GetAnalogX()
-{
-  return mCtrlPad.Lx;
-}
+*/
 
 
-u8 JGE::GetAnalogY()
-{
-  return mCtrlPad.Ly;
-}
-
-#define REPEAT_DELAY 0.5
-#define REPEAT_FREQUENCY 7
-void JGE::Run()
-{
-  u64 curr;
-  long long int nextInput = 0;
-
-  const u32 ticksPerSecond = sceRtcGetTickResolution();
-  const u64 repeatDelay = REPEAT_DELAY * ticksPerSecond;
-  const u64 repeatPeriod = ticksPerSecond / REPEAT_FREQUENCY;
-
-  while (!mDone)
-    {
-      if (!mPaused)
-	{
-	  sceRtcGetCurrentTick(&curr);
-
-	  mDelta = (curr-mLastTime) / (float)mTickFrequency;// * 1000.0f;
-
-	  sceCtrlPeekBufferPositive(&mCtrlPad, 1);
-	  for (signed int i = sizeof(gKeyCodeList)/sizeof(gKeyCodeList[0]) - 1; i >= 0; --i)
-	    {
-	      if (gKeyCodeList[i] & mCtrlPad.Buttons)
-		{
-		  if (!(gKeyCodeList[i] & mOldButtons))
-		    {
-		      if (!(gHolds & gKeyCodeList[i])) gKeyBuffer.push(gKeyCodeList[i]);
-		      nextInput = repeatDelay;
-		      gHolds |= gKeyCodeList[i];
-		    }
-		  else if (nextInput < 0)
-		    {
-		      if (!(gHolds & gKeyCodeList[i])) gKeyBuffer.push(gKeyCodeList[i]);
-		      nextInput = repeatPeriod;
-		      gHolds |= gKeyCodeList[i];
-		    }
-		}
-	      if (!(gKeyCodeList[i] & mCtrlPad.Buttons))
-		if (gKeyCodeList[i] & mOldButtons)
-		  gHolds &= ~gKeyCodeList[i];
-	    }
-	  mOldButtons = mCtrlPad.Buttons;
-
-	  nextInput -= (curr - mLastTime);
-	  mLastTime = curr;
-
-	  Update();
-	  Render();
-
-	  if (mDebug)
-	    {
-	      if (strlen(mDebuggingMsg)>0)
-		{
-		  pspDebugScreenSetXY(0, 0);
-		  pspDebugScreenPrintf(mDebuggingMsg);
-		}
-	  }
-     mVeryOldButtons = mCtrlPad.Buttons;
-	  }
-      else
-	  {
-     sceKernelDelayThread(1);
-	  }
-  }
-}
-
-
-
-#endif		///// PSP specified code
+#endif		///// PSP specific code
 
 
 //////////////////////////////////////////////////////////////////////////
 JGE* JGE::mInstance = NULL;
 //static int gCount = 0;
+
+// returns number of milliseconds since game started
+int JGE::GetTime()
+{
+  return JGEGetTime();
+}
+
 
 JGE* JGE::GetInstance()
 {
@@ -406,22 +391,12 @@ void JGE::SetApp(JApp *app)
   mApp = app;
 }
 
-
-void JGE::Update()
-{
-  if (mApp != NULL)
-    mApp->Update();
-}
-
 void JGE::Render()
 {
   JRenderer* renderer = JRenderer::GetInstance();
 
   renderer->BeginScene();
-
-  if (mApp != NULL)
-    mApp->Render();
-
+  if (mApp != NULL) mApp->Render();
   renderer->EndScene();
 }
 
@@ -473,3 +448,6 @@ void JGE::Assert(const char *filename, long lineNumber)
 
 
 }
+
+std::queue<JButton> JGE::keyBuffer;
+std::multimap<LocalKeySym, JButton> JGE::keyBinds;

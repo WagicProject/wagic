@@ -139,7 +139,7 @@ void GuiHandSelf::Repos()
 
 bool GuiHandSelf::CheckUserInput(u32 key)
 {
-  u32 trigger = (options[Options::REVERSETRIGGERS].number ? PSP_CTRL_LTRIGGER : PSP_CTRL_RTRIGGER);
+  u32 trigger = (options[Options::REVERSETRIGGERS].number ? JGE_BTN_PREV : JGE_BTN_NEXT);
   if (trigger == key)
     {
       state = (Open == state ? Closed : Open);

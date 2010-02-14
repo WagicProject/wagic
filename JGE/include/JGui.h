@@ -67,7 +67,7 @@ class JGuiController
   bool mActive;
 
 
-  u32	mActionButton;
+  JButton mActionButton;
   int mCurr;
   int mStyle;
 
@@ -94,14 +94,14 @@ class JGuiController
 
   virtual void Render();
   virtual void Update(float dt);
-  virtual bool CheckUserInput(u32 key);
+  virtual bool CheckUserInput(JButton key);
 
   void Add(JGuiObject* ctrl);
   void RemoveAt(int i);
   void Remove(int id);
   void Remove(JGuiObject* ctrl);
 
-  void SetActionButton(u32 button);
+  void SetActionButton(JButton button);
   void SetStyle(int style);
   void SetCursor(JSprite* cursor);
 

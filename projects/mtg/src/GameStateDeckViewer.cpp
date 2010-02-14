@@ -280,43 +280,43 @@ void GameStateDeckViewer::Update(float dt)
   if (mStage == STAGE_WAITING || mStage == STAGE_ONSCREEN_MENU){
     switch (mEngine->ReadButton())
     {
-    case PSP_CTRL_LEFT :
+    case JGE_BTN_LEFT :
       last_user_activity = 0;
       mStage = STAGE_TRANSITION_LEFT;
       break;
-    case PSP_CTRL_RIGHT :
+    case JGE_BTN_RIGHT :
       last_user_activity = 0;
       mStage = STAGE_TRANSITION_RIGHT;
       break;
-    case PSP_CTRL_UP :
+    case JGE_BTN_UP :
       last_user_activity = 0;
       mStage = STAGE_TRANSITION_UP;
       useFilter[myD]++;
       if(useFilter[myD] >= MAX_SAVED_FILTERS)
         useFilter[myD] = 0;
       break;
-    case PSP_CTRL_DOWN :
+    case JGE_BTN_DOWN :
       last_user_activity = 0;
       mStage = STAGE_TRANSITION_DOWN;
       useFilter[myD]--;
       if(useFilter[myD] < 0)
         useFilter[myD] = MAX_SAVED_FILTERS-1;
       break;
-    case PSP_CTRL_TRIANGLE:
+    case JGE_BTN_CANCEL:
       options[Options::DISABLECARDS].number = !options[Options::DISABLECARDS].number;
       break;
-    case PSP_CTRL_SQUARE :
+    case JGE_BTN_PRI :
       if (last_user_activity > 0.2)
       {
         last_user_activity = 0;
         switchDisplay();
       }
       break;
-    case PSP_CTRL_CIRCLE :
+    case JGE_BTN_OK :
       last_user_activity = 0;
       addRemove(cardIndex[2]);
       break;
-    case PSP_CTRL_CROSS :
+    case JGE_BTN_SEC :
       last_user_activity = 0;
       SAFE_DELETE(sellMenu);
       char buffer[4096];
@@ -332,7 +332,7 @@ void GameStateDeckViewer::Update(float dt)
       }
       stw.needUpdate = true;
       break;
-    /*case PSP_CTRL_SQUARE :
+    /*case JGE_BTN_PRI :
       if (last_user_activity < NO_USER_ACTIVITY_HELP_DELAY){
         last_user_activity = NO_USER_ACTIVITY_HELP_DELAY + 1;
       }else{
@@ -340,58 +340,52 @@ void GameStateDeckViewer::Update(float dt)
         mStage = STAGE_WAITING;
       }
       break;*/
-    case PSP_CTRL_START :
+    case JGE_BTN_MENU :
       mStage = STAGE_MENU;
       break;
-    case PSP_CTRL_SELECT :
+    case JGE_BTN_CTRL :
       mStage = STAGE_FILTERS;
-      if(displayed_deck == myDeck){
-        if(!filterDeck)
+      if (displayed_deck == myDeck) {
+        if (!filterDeck)
           filterDeck = NEW WGuiFilters("Filter by...",myDeck);
-        filterDeck->Entering(0);
-      }else if(displayed_deck == myCollection){
-        if(!filterCollection)
+        filterDeck->Entering(JGE_BTN_NONE);
+      } else if(displayed_deck == myCollection) {
+        if (!filterCollection)
           filterCollection = NEW WGuiFilters("Filter by...",myCollection);
-        filterCollection->Entering(0);
+        filterCollection->Entering(JGE_BTN_NONE);
       }
       break;
-    case PSP_CTRL_LTRIGGER :
-      if (last_user_activity < NO_USER_ACTIVITY_HELP_DELAY){
+    case JGE_BTN_PREV :
+      if (last_user_activity < NO_USER_ACTIVITY_HELP_DELAY)
         last_user_activity = NO_USER_ACTIVITY_HELP_DELAY + 1;
-      }
-      else if ((mStage == STAGE_ONSCREEN_MENU) && (--stw.currentPage < 0)) {
+      else if ((mStage == STAGE_ONSCREEN_MENU) && (--stw.currentPage < 0))
         stw.currentPage = stw.pageCount;
-      }
       break;
-    case PSP_CTRL_RTRIGGER :
-      if (last_user_activity < NO_USER_ACTIVITY_HELP_DELAY){
+    case JGE_BTN_NEXT :
+      if (last_user_activity < NO_USER_ACTIVITY_HELP_DELAY)
         last_user_activity = NO_USER_ACTIVITY_HELP_DELAY + 1;
-      }
-      else if ((mStage == STAGE_ONSCREEN_MENU) && (++stw.currentPage > stw.pageCount)) {
+      else if ((mStage == STAGE_ONSCREEN_MENU) && (++stw.currentPage > stw.pageCount))
         stw.currentPage = 0;
-      }
       break;
     default :  // no keypress
       if (last_user_activity > NO_USER_ACTIVITY_HELP_DELAY){
         if  (mStage != STAGE_ONSCREEN_MENU){
           mStage = STAGE_ONSCREEN_MENU;
           onScreenTransition = 1;
-        }else{
-          if (onScreenTransition >0){
+        } else {
+          if (onScreenTransition >0)
             onScreenTransition-= 0.05f;
-          }else{
+          else
             onScreenTransition = 0;
-          }
         }
-      }else{
+      } else
         last_user_activity+= dt;
-      }
     }
 
   } if (mStage == STAGE_TRANSITION_RIGHT || mStage == STAGE_TRANSITION_LEFT) {
     if (mStage == STAGE_TRANSITION_RIGHT){
       mRotation -= dt * MED_SPEED;
-      if (mRotation < -1.0f){
+      if (mRotation < -1.0f) {
         do {
           rotateCards(mStage);
           mRotation += 1;
@@ -399,7 +393,7 @@ void GameStateDeckViewer::Update(float dt)
         mStage = STAGE_WAITING;
         mRotation = 0;
       }
-    }else if(mStage == STAGE_TRANSITION_LEFT){
+    } else if (mStage == STAGE_TRANSITION_LEFT) {
       mRotation += dt * MED_SPEED;
       if (mRotation > 1.0f){
         do {
@@ -410,47 +404,47 @@ void GameStateDeckViewer::Update(float dt)
         mRotation = 0;
       }
     }
-  } if (mStage == STAGE_TRANSITION_DOWN || mStage == STAGE_TRANSITION_UP){
-    if (mStage == STAGE_TRANSITION_DOWN){
+  } if (mStage == STAGE_TRANSITION_DOWN || mStage == STAGE_TRANSITION_UP) {
+    if (mStage == STAGE_TRANSITION_DOWN) {
       mSlide -= 0.05f;
       if (mSlide < -1.0f){
         updateFilters();
         loadIndexes();
         mSlide = 1;
-      }else if (mSlide > 0 && mSlide < 0.05){
+      } else if (mSlide > 0 && mSlide < 0.05) {
         mStage = STAGE_WAITING;
         mSlide = 0;
       }
-    } if (mStage == STAGE_TRANSITION_UP){
+    } if (mStage == STAGE_TRANSITION_UP) {
       mSlide += 0.05f;
       if (mSlide > 1.0f){
         updateFilters();
         loadIndexes();
         mSlide = -1;
-      }else if (mSlide < 0 && mSlide > -0.05){
+      } else if (mSlide < 0 && mSlide > -0.05) {
         mStage = STAGE_WAITING;
         mSlide = 0;
       }
     }
 
 
-  }else if (mStage == STAGE_WELCOME){
+  } else if (mStage == STAGE_WELCOME)
     welcome_menu->Update(dt);
-  }else if (mStage == STAGE_MENU){
+  else if (mStage == STAGE_MENU)
     menu->Update(dt);
-  }else if(mStage == STAGE_FILTERS){
-    u32 key = mEngine->ReadButton();
+  else if(mStage == STAGE_FILTERS){
+    JButton key = mEngine->ReadButton();
 
-    if(displayed_deck == myDeck){
-      if(filterDeck){
-        if(key == PSP_CTRL_SELECT){
+    if (displayed_deck == myDeck) {
+      if (filterDeck) {
+        if (key == JGE_BTN_CTRL) {
           useFilter[(displayed_deck == myDeck)] = 0;
           filterDeck->Finish();
           filterDeck->Update(dt);
           loadIndexes();
           return;
         }
-        if(!filterDeck->isFinished()){
+        if (!filterDeck->isFinished()) {
         filterDeck->CheckUserInput(key);
         filterDeck->Update(dt);
         } else {
@@ -458,23 +452,23 @@ void GameStateDeckViewer::Update(float dt)
           loadIndexes();
         }
       }
-    }else{
-      if(filterCollection ){
-        if(key == PSP_CTRL_SELECT){
+    } else {
+      if (filterCollection) {
+        if (key == JGE_BTN_CTRL) {
           useFilter[(displayed_deck == myDeck)] = 0;
           filterCollection->Finish();
           filterCollection->Update(dt);
           loadIndexes();
           return;
         }
-        if(!filterCollection->isFinished()){
+        if (!filterCollection->isFinished()) {
             filterCollection->CheckUserInput(key);
             filterCollection->Update(dt);
         } else {
             mStage = STAGE_WAITING;
             loadIndexes();
         }
-      } 
+      }
     }
   }
 
@@ -1550,11 +1544,11 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
           if(displayed_deck == myDeck){
             if(!filterDeck)
               filterDeck = NEW WGuiFilters("Filter by...",myDeck);
-            filterDeck->Entering(0);
+            filterDeck->Entering(JGE_BTN_NONE);
           }else if(displayed_deck == myCollection){
             if(!filterCollection)
               filterCollection = NEW WGuiFilters("Filter by...",myCollection);
-            filterCollection->Entering(0);
+            filterCollection->Entering(JGE_BTN_NONE);
           }
           break;
         }
@@ -1581,21 +1575,18 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
   }
 }
 
-// n cards total, a of them are of desired type (A), x drawn 
+// n cards total, a of them are of desired type (A), x drawn
 // returns probability of no A's
 float noLuck(int n, int a, int x) {
-  if ( (a >= n) || (a == 0)) {
+  if ((a >= n) || (a == 0))
     return 1;
-  }
-  if ((n == 0) || (x == 0) || (x > n) || (n-a < x)) {
+  if ((n == 0) || (x == 0) || (x > n) || (n-a < x))
     return 0;
-  }
-  
+
   a = n - a;
   float result = 1;
-  
-  for (int i=0; i<x; i++) {
+
+  for (int i=0; i<x; i++)
     result *= (float)(a-i)/(n-i);
-  }
   return result;
-} 
+}

@@ -431,7 +431,7 @@ void GameStateMenu::Update(float dt)
       }
       if (mGuiController)
 	      mGuiController->Update(dt);
-      if(mEngine->GetButtonState(PSP_CTRL_RTRIGGER)) //Hook for GameStateAward state
+      if(mEngine->GetButtonState(JGE_BTN_NEXT)) //Hook for GameStateAward state
       	mParent->DoTransition(TRANSITION_FADE,GAME_STATE_AWARDS); //TODO: A slide transition would be nice.
       break;
     case MENU_STATE_MAJOR_SUBMENU :
@@ -471,8 +471,8 @@ void GameStateMenu::Update(float dt)
     case MENU_STATE_MINOR_NONE :
       ;// Nothing to do.
     }
-  
-  if(mEngine->GetButtonState(PSP_CTRL_LTRIGGER)) {
+
+  if(mEngine->GetButtonState(JGE_BTN_PREV)) {
     //Reset deck of cards
     angleMultiplier = MIN_ANGLE_MULTIPLIER;
     yW = 55;
@@ -480,12 +480,12 @@ void GameStateMenu::Update(float dt)
 
   if (yW <= 55)
     {
-      if (mEngine->GetButtonState(PSP_CTRL_SQUARE)) angleMultiplier += STEP_ANGLE_MULTIPLIER;
+      if (mEngine->GetButtonState(JGE_BTN_PRI)) angleMultiplier += STEP_ANGLE_MULTIPLIER;
       else angleMultiplier *= 0.9999;
       if (angleMultiplier > MAX_ANGLE_MULTIPLIER) angleMultiplier = MAX_ANGLE_MULTIPLIER;
       else if (angleMultiplier < MIN_ANGLE_MULTIPLIER) angleMultiplier = MIN_ANGLE_MULTIPLIER;
 
-      if (mEngine->GetButtonState(PSP_CTRL_TRIANGLE) && (dt != 0))
+      if (mEngine->GetButtonState(JGE_BTN_CANCEL) && (dt != 0))
 	{
 	  angleMultiplier = (cos(timeIndex)*angleMultiplier - M_PI/3 - 0.1 - angleW) / dt;
 	  yW = yW + 5*dt + (yW - 45) *5*  dt;

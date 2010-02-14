@@ -52,7 +52,7 @@ int ActionLayer::reactToTargetClick(ActionElement* ability, Targetable * card){
 
 bool ActionLayer::CheckUserInput(u32 key){
   GameObserver * g = GameObserver::GetInstance();
-  if (g->waitForExtraPayment && key == PSP_CTRL_CROSS){
+  if (g->waitForExtraPayment && key == JGE_BTN_SEC){
     g->waitForExtraPayment = NULL;
     return 1;
   }

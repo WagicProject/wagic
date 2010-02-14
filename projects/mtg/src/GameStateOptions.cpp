@@ -28,9 +28,9 @@ void GameStateOptions::Start()
   WGuiList * optionsList;
 
   optionsList = NEW WGuiList("Settings");
-  
+
   optionsList->Add(NEW WGuiHeader("General Options"));
-  if (GameApp::HasMusic) 
+  if (GameApp::HasMusic)
     optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::MUSICVOLUME,"Music volume",100,10,100),OptionVolume::getInstance()));
   optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::SFXVOLUME,"SFX volume",100,10,100),OptionVolume::getInstance()));
   optionsList->Add(NEW OptionInteger(Options::OSD, "Display InGame extra information"));
@@ -40,9 +40,9 @@ void GameStateOptions::Start()
   }
   optionsList->Add(NEW OptionInteger(Options::INTERRUPT_SECONDS, "Seconds to pause for an Interrupt", 20, 1));
   optionsList->Add(NEW OptionInteger(Options::INTERRUPTMYSPELLS, "Interrupt my spells"));
-  optionsList->Add(NEW OptionInteger(Options::INTERRUPTMYABILITIES, "Interrupt my abilities")); 
-  optionsList->Add(NEW OptionInteger(Options::INTERRUPT_SECONDMAIN, "Interrupt opponent's end of turn")); 
-  optionsTabs = NEW WGuiTabMenu();  
+  optionsList->Add(NEW OptionInteger(Options::INTERRUPTMYABILITIES, "Interrupt my abilities"));
+  optionsList->Add(NEW OptionInteger(Options::INTERRUPT_SECONDMAIN, "Interrupt opponent's end of turn"));
+  optionsTabs = NEW WGuiTabMenu();
   optionsTabs->Add(optionsList);
 
   optionsList = NEW WGuiList("Game");
@@ -61,8 +61,8 @@ void GameStateOptions::Start()
   cPrf->confirm = "Use this Profile";
   OptionDirectory * od = NEW OptionTheme();
   WDecoConfirm * cThm = NEW WDecoConfirm(this,od);
-  cThm->confirm = "Use this Theme";  
-  
+  cThm->confirm = "Use this Theme";
+
   optionsList->Add(NEW WGuiSplit(cPrf,cThm));
   optionsList->Add(NEW WGuiButton(NEW WGuiHeader("New Profile"),-102,4,this));
   optionsList->Add(NEW WDecoCheat(NEW OptionInteger(Options::CHEATMODE, "Enable cheat mode")));
@@ -80,6 +80,9 @@ void GameStateOptions::Start()
   optionsList->Add(oGra);
   optionsTabs->Add(optionsList);
 
+  optionsList = NEW WGuiList("Key Bindings");
+  optionsTabs->Add(optionsList);
+
   optionsList = NEW WGuiList("Credits");
   optionsList->failMsg = "";
   optionsTabs->Add(optionsList);
@@ -89,7 +92,7 @@ void GameStateOptions::Start()
   optionsMenu->Add(1, "Save & Back to Main Menu");
   optionsMenu->Add(3, "Cancel");
 
-  optionsTabs->Entering(0);
+  optionsTabs->Entering(JGE_BTN_NONE);
 }
 
 
@@ -102,7 +105,7 @@ void GameStateOptions::End()
 
 
 void GameStateOptions::Update(float dt)
-{ 
+{
   timer += dt * 10;
 
   if(options.keypadActive()){
@@ -121,23 +124,23 @@ void GameStateOptions::Update(float dt)
   else switch(mState){
     default:
     case SHOW_OPTIONS:
-      u32 key;
+      JButton key;
 
       while ((key = JGE::GetInstance()->ReadButton())){
-        if(!optionsTabs->CheckUserInput(key) && key == PSP_CTRL_START)
+        if(!optionsTabs->CheckUserInput(key) && key == JGE_BTN_MENU)
           mState = SHOW_OPTIONS_MENU;
       }
       optionsTabs->Update(dt);
       break;
     case SHOW_OPTIONS_MENU:
       optionsMenu->Update(dt);
-    break;
-  }  
+      break;
+    }
   if(mReload){
     options.reloadProfile(true);
     Translator::EndInstance();
     Translator::GetInstance()->init();
-    optionsTabs->Reload();    
+    optionsTabs->Reload();
     mReload = false;
   }
 }
@@ -157,7 +160,7 @@ void GameStateOptions::Render()
       "Art: Ilya B, Julio, Jeck, J, Lakeesha",
       "Check themeinfo.txt for the full credits of each theme!",
       "",
-      "Dev Team: Abrasax, Daddy32, Dr.Solomat, J, Jeck", 
+      "Dev Team: Abrasax, Daddy32, Dr.Solomat, J, Jeck",
       "Leungclj, Superhiro, Psyringe, Wololo, Yeshua",
       "",
       "Music by Celestial Aeon Project, http://www.jamendo.com",
@@ -189,7 +192,7 @@ void GameStateOptions::Render()
   float startpos = 272 - timer;
   float pos = startpos;
   int size = sizeof(CreditsText) / sizeof(CreditsText[0]);
-  
+
   for (int i = 0; i < size; i++){
     pos = startpos + 20 * i;
     if (pos > -20 && pos < SCREEN_HEIGHT + 20){
@@ -197,13 +200,13 @@ void GameStateOptions::Render()
     }
   }
 
-  if (pos < -20) 
+  if (pos < -20)
     timer = 0;
 
 
   optionsTabs->Render();
 
-  if(mState == SHOW_OPTIONS_MENU)    
+  if(mState == SHOW_OPTIONS_MENU)
       optionsMenu->Render();
 
   if(options.keypadActive())

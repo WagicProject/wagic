@@ -538,7 +538,7 @@ void ActionStack::Update(float dt){
     for (int i = 0; i < mCount ; i++){
       Interruptible * current = (Interruptible *)mObjects[i];
       if (tc->canTarget(current)){
-	      if (mObjects[mCurr]) mObjects[mCurr]->Leaving(PSP_CTRL_UP);
+	      if (mObjects[mCurr]) mObjects[mCurr]->Leaving(JGE_BTN_UP);
 	      current->display = 1;
 	      mCurr = i;
 	      mObjects[mCurr]->Entering();
@@ -621,32 +621,32 @@ void ActionStack::endOfInterruption(){
 
 
 bool ActionStack::CheckUserInput(u32 key){
-  u32 trigger = (options[Options::REVERSETRIGGERS].number ? PSP_CTRL_RTRIGGER : PSP_CTRL_LTRIGGER);
+  u32 trigger = (options[Options::REVERSETRIGGERS].number ? JGE_BTN_NEXT : JGE_BTN_PREV);
   if (mode == ACTIONSTACK_STANDARD){
     if (askIfWishesToInterrupt){
-      if (PSP_CTRL_CROSS == key){
+      if (JGE_BTN_SEC == key){
 	      setIsInterrupting(askIfWishesToInterrupt);
 	      return true;
-      }else if ((PSP_CTRL_CIRCLE == key) || (trigger == key) ){
+      }else if ((JGE_BTN_OK == key) || (trigger == key) ){
 	      cancelInterruptOffer();
 	      return true;
-      }else if ((PSP_CTRL_SQUARE == key)){
+      }else if ((JGE_BTN_PRI == key)){
 	      cancelInterruptOffer(2);
 	      return true;
       }
       return true;
     }else if (game->isInterrupting){
-      if (PSP_CTRL_CROSS == key){
+      if (JGE_BTN_SEC == key){
 	      endOfInterruption();
 	      return true;
       }
     }
   }else if (mode == ACTIONSTACK_TARGET){
     if (modal){
-      if (PSP_CTRL_UP == key){
+      if (JGE_BTN_UP == key){
 	      if( mObjects[mCurr]){
 	        int n = getPreviousIndex(((Interruptible *) mObjects[mCurr]), 0, 0, 1);
-	        if (n != -1 && n != mCurr && mObjects[mCurr]->Leaving(PSP_CTRL_UP)){
+	        if (n != -1 && n != mCurr && mObjects[mCurr]->Leaving(JGE_BTN_UP)){
 	          mCurr = n;
 	          mObjects[mCurr]->Entering();
 #if defined (WIN32) || defined (LINUX)
@@ -657,10 +657,10 @@ bool ActionStack::CheckUserInput(u32 key){
 	        }
 	      }
 	      return true;
-      }else if (PSP_CTRL_DOWN == key){
+      }else if (JGE_BTN_DOWN == key){
 	      if( mObjects[mCurr]){
 	        int n = getNextIndex(((Interruptible *) mObjects[mCurr]), 0, 0, 1);
-	        if (n!= -1 && n != mCurr && mObjects[mCurr]->Leaving(PSP_CTRL_DOWN)){
+	        if (n!= -1 && n != mCurr && mObjects[mCurr]->Leaving(JGE_BTN_DOWN)){
 	          mCurr = n;
 	          mObjects[mCurr]->Entering();
 #if defined (WIN32) || defined (LINUX)
@@ -671,7 +671,7 @@ bool ActionStack::CheckUserInput(u32 key){
 	        }
 	      }
 	      return true;
-      }else if (PSP_CTRL_CIRCLE == key){
+      }else if (JGE_BTN_OK == key){
 #if defined (WIN32) || defined (LINUX)
 	      char buf[4096];
 	      sprintf(buf, "ACTIONSTACK CLIKED mCurr = %i\n", mCurr);
@@ -682,7 +682,7 @@ bool ActionStack::CheckUserInput(u32 key){
       }
       return true; //Steal the input to other layers if we're visible
     }
-    if (PSP_CTRL_TRIANGLE == key){
+    if (JGE_BTN_CANCEL == key){
       if (modal) modal = 0; else modal = 1;
       return true;
     }

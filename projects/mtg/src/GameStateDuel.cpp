@@ -218,7 +218,7 @@ void GameStateDuel::Update(float dt)
   switch (mGamePhase)
     {
     case DUEL_STATE_ERROR_NO_DECK:
-      if (PSP_CTRL_CIRCLE == mEngine->ReadButton())
+      if (JGE_BTN_OK == mEngine->ReadButton())
 	mParent->SetNextState(GAME_STATE_DECK_VIEWER);
       break;
     case DUEL_STATE_CHOOSE_DECK1:
@@ -291,11 +291,11 @@ void GameStateDuel::Update(float dt)
       }
       else
 	{
-    if (opponentMenu->closed) mGamePhase = DUEL_STATE_PLAY;
-    else opponentMenu->Update(dt);
+          if (opponentMenu->closed) mGamePhase = DUEL_STATE_PLAY;
+          else opponentMenu->Update(dt);
 	}
       break;
-    case DUEL_STATE_PLAY:	
+    case DUEL_STATE_PLAY:
       if (!game){
 	      GameObserver::Init(mPlayers, 2);
 	      game = GameObserver::GetInstance();
@@ -344,9 +344,8 @@ void GameStateDuel::Update(float dt)
 	    loadTestSuitePlayers();
 	    mGamePhase = DUEL_STATE_PLAY;
 	    testSuite->initGame();
-	  }else{
+	  }else
 	    mGamePhase = DUEL_STATE_END;
-	  }
 	}else
 #endif
 	  if (mParent->players[0] == PLAYER_TYPE_CPU && mParent->players[1] == PLAYER_TYPE_CPU){
@@ -354,9 +353,8 @@ void GameStateDuel::Update(float dt)
 	    Start();
 	  }
       }
-      if (mEngine->GetButtonClick(PSP_CTRL_START)){
-	mGamePhase = DUEL_STATE_MENU;
-      }
+      if (mEngine->GetButtonClick(JGE_BTN_MENU))
+        mGamePhase = DUEL_STATE_MENU;
       break;
     case DUEL_STATE_MENU:
       menu->Update(dt);
@@ -380,9 +378,8 @@ void GameStateDuel::Update(float dt)
       }
       break;
     default:
-      if (PSP_CTRL_CIRCLE == mEngine->ReadButton()){
+      if (JGE_BTN_OK == mEngine->ReadButton())
 	mParent->SetNextState(GAME_STATE_MENU);
-      }
     }
 }
 
@@ -439,14 +436,13 @@ void GameStateDuel::Render()
     case DUEL_STATE_CHOOSE_DECK1_TO_2:
     case DUEL_STATE_CHOOSE_DECK2:
     case DUEL_STATE_CHOOSE_DECK2_TO_PLAY:
-      if (mParent->gameType != GAME_TYPE_CLASSIC){
+      if (mParent->gameType != GAME_TYPE_CLASSIC)
         mFont->DrawString(_("LOADING DECKS").c_str(),0,SCREEN_HEIGHT/2);
-      }else{
-        if (opponentMenu){
+      else{
+        if (opponentMenu)
 	        opponentMenu->Render();
-        }else if (deckmenu){
+        else if (deckmenu)
 	        deckmenu->Render();
-        }
       }
       break;
     case DUEL_STATE_ERROR_NO_DECK:

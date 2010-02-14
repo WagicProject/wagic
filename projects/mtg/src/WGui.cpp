@@ -40,7 +40,7 @@ void WGuiBase::renderBack(WGuiBase * it){
 
 
 //WGuiItem
-void WGuiItem::Entering(u32 key){
+void WGuiItem::Entering(JButton key){
   mFocus = true;
 } 
 float WGuiItem::minWidth(){
@@ -52,7 +52,7 @@ float WGuiItem::minHeight(){
   return mFont->GetHeight();
 }
 
-bool WGuiItem::Leaving(u32 key){
+bool WGuiItem::Leaving(JButton key){
   mFocus = false;
   return true;
 }
@@ -90,12 +90,12 @@ string WGuiItem::_(string input){
     return input;
   return ::_(input);
 }
-bool WGuiItem::CheckUserInput(u32 key){
-  if(mFocus && key == PSP_CTRL_CIRCLE){
+bool WGuiItem::CheckUserInput(JButton key){
+  if(mFocus && key == JGE_BTN_OK){
     updateValue();
     return true;
   }
-  return false; 
+  return false;
 }
 
 //WDecoStyled
@@ -149,7 +149,7 @@ void WGuiHeader::Render(){
 }
 
 
-bool WGuiMenu::Leaving(u32 key){
+bool WGuiMenu::Leaving(JButton key){
   int nbitems = (int) items.size();
   if(key == buttonNext && currentItem < nbitems-1)
     return false;
@@ -163,7 +163,7 @@ bool WGuiMenu::Leaving(u32 key){
   mFocus = false;
   return true;
 }
-void WGuiMenu::Entering(u32 key){  
+void WGuiMenu::Entering(JButton key){
   mFocus = true;
 
   //Try to force a selectable option.
@@ -198,7 +198,7 @@ void WGuiMenu::subBack(WGuiBase * item){
 
 }
 //WGuiList
-WGuiList::WGuiList(string name, WSyncable * syncme): WGuiMenu(PSP_CTRL_DOWN,PSP_CTRL_UP,false,syncme){
+WGuiList::WGuiList(string name, WSyncable * syncme): WGuiMenu(JGE_BTN_DOWN, JGE_BTN_UP, false, syncme){
   failMsg = "NO OPTIONS AVAILABLE";
   width = SCREEN_WIDTH-10;
   height = SCREEN_HEIGHT-10;
@@ -237,7 +237,7 @@ void WGuiList::Render(){
       if(items[i]->Selectable()) {
         currentItem = i;
         if(hasFocus())
-          items[currentItem]->Entering(0);
+          items[currentItem]->Entering(JGE_BTN_NONE);
         break;
       }
     }
@@ -405,7 +405,7 @@ WDecoConfirm::~WDecoConfirm(){
   SAFE_DELETE(confirmMenu);
 }
 
-void WDecoConfirm::Entering(u32 key){
+void WDecoConfirm::Entering(JButton key){
   setFocus(true);
 
   if(it)
@@ -435,7 +435,7 @@ void WDecoConfirm::setData(){
   it->setData();
 }
 
-bool WDecoConfirm::Leaving(u32 key){
+bool WDecoConfirm::Leaving(JButton key){
   if(!it)
     return true;
 
@@ -458,9 +458,9 @@ bool WDecoConfirm::Leaving(u32 key){
   
   return false;
 }
-bool WDecoConfirm::CheckUserInput(u32 key){
+bool WDecoConfirm::CheckUserInput(JButton key){
   if(hasFocus()){
-    if (mState == OP_CONFIRMED && key == PSP_CTRL_CIRCLE)
+    if (mState == OP_CONFIRMED && key == JGE_BTN_OK)
       mState = OP_UNCONFIRMED;
     
     if (mState != OP_CONFIRMING && it){
@@ -520,8 +520,8 @@ void WGuiButton::updateValue(){
     mListener->ButtonPressed(controller, control);
 }
 
-bool WGuiButton::CheckUserInput(u32 key){
-  if (hasFocus() && key == PSP_CTRL_CIRCLE){
+bool WGuiButton::CheckUserInput(JButton key){
+  if (hasFocus() && key == JGE_BTN_OK){
       updateValue();
       return true;
   }
@@ -605,15 +605,15 @@ void WGuiSplit::setModal(bool val){
   return left->setModal(val);
 }
 
-bool WGuiSplit::CheckUserInput(u32 key){
+bool WGuiSplit::CheckUserInput(JButton key){
     if(hasFocus()){
       if (!bRight){
         if(left->CheckUserInput(key))
           return true;
-        if(key == PSP_CTRL_RIGHT && !isModal() 
-          && right->Selectable() && left->Leaving(PSP_CTRL_RIGHT)){
+        if(key == JGE_BTN_RIGHT && !isModal() 
+          && right->Selectable() && left->Leaving(JGE_BTN_RIGHT)){
           bRight = !bRight;
-          right->Entering(PSP_CTRL_RIGHT);
+          right->Entering(JGE_BTN_RIGHT);
           return true;
         }
       }
@@ -621,10 +621,10 @@ bool WGuiSplit::CheckUserInput(u32 key){
       {
         if(right->CheckUserInput(key))
           return true;
-        if (key == PSP_CTRL_LEFT && !isModal() 
-          && left->Selectable() && right->Leaving(PSP_CTRL_LEFT)){
+        if (key == JGE_BTN_LEFT && !isModal() 
+          && left->Selectable() && right->Leaving(JGE_BTN_LEFT)){
           bRight = !bRight;
-          left->Entering(PSP_CTRL_LEFT);
+          left->Entering(JGE_BTN_LEFT);
           return true;
         }
       }
@@ -640,14 +640,14 @@ void WGuiSplit::Update(float dt){
     left->Update(dt);
 }
 
-void WGuiSplit::Entering(u32 key){
+void WGuiSplit::Entering(JButton key){
   mFocus = true;
   if(bRight)
     right->Entering(key);
   else
     left->Entering(key);
 }
-bool WGuiSplit::Leaving(u32 key){
+bool WGuiSplit::Leaving(JButton key){
 
    if(bRight){
      if(right->Leaving(key)){
@@ -693,7 +693,7 @@ void WGuiSplit::confirmChange(bool confirmed){
 }
 
 //WGuiMenu
-WGuiMenu::WGuiMenu(u32 next  = PSP_CTRL_RIGHT, u32 prev = PSP_CTRL_LEFT, bool m, WSyncable * syncme): WGuiItem(""){
+WGuiMenu::WGuiMenu(JButton next = JGE_BTN_RIGHT, JButton prev = JGE_BTN_LEFT, bool m, WSyncable * syncme): WGuiItem(""){
   buttonNext = next;
   buttonPrev = prev;
   currentItem = -1;
@@ -738,14 +738,14 @@ void WGuiMenu::Add(WGuiBase * it){
   if(it)
     items.push_back(it);
 }
-bool WGuiMenu::CheckUserInput(u32 key){
+bool WGuiMenu::CheckUserInput(JButton key){
   bool kidModal = false;
   bool handledInput = false;
   int nbitems = (int) items.size();
   JGE * mEngine = JGE::GetInstance();
 
   if(!mEngine->GetButtonState(held)) //Key isn't held down.
-    held = 0;
+    held = JGE_BTN_NONE;
 
   if(currentItem >= 0 && currentItem < nbitems)
     kidModal = items[currentItem]->isModal();
@@ -790,32 +790,34 @@ void WGuiMenu::syncMove(){
   while(i > 0 && sync->next())
     i = currentItem - sync->getPos();
 }
-bool WGuiMenu::isButtonDir(u32 key, int dir){
+bool WGuiMenu::isButtonDir(JButton key, int dir){
   if(!mDPad)
     return ((dir > 0 && key == buttonNext) || (dir <= 0 && key == buttonPrev));
   
   if(dir <= 0){
     switch(buttonPrev){
-      case PSP_CTRL_LEFT:
-        if(key == PSP_CTRL_UP)
+      case JGE_BTN_LEFT:
+        if(key == JGE_BTN_UP)
           return true;
         break;
-      case PSP_CTRL_UP:
-        if(key == PSP_CTRL_LEFT)
+      case JGE_BTN_UP:
+        if(key == JGE_BTN_LEFT)
           return true;
         break;
+    default: ; // Nothing
     }
     return (key == buttonPrev);
   }else {
     switch(buttonNext){
-      case PSP_CTRL_RIGHT:
-        if(key == PSP_CTRL_DOWN)
+      case JGE_BTN_RIGHT:
+        if(key == JGE_BTN_DOWN)
           return true;
         break;
-      case PSP_CTRL_DOWN:
-        if(key == PSP_CTRL_RIGHT)
+      case JGE_BTN_DOWN:
+        if(key == JGE_BTN_RIGHT)
           return true;
         break;
+    default: ; // Nothing
     }
     return (key == buttonNext);
   }
@@ -1259,7 +1261,7 @@ void WGuiListRow::Render(){
       if(items[i]->Selectable()) {
         currentItem = i;
         if(hasFocus())
-          items[currentItem]->Entering(0);
+          items[currentItem]->Entering(JGE_BTN_NONE);
         break;
       }
     }
@@ -1312,8 +1314,8 @@ void WGuiListRow::Render(){
     setHeight(tallestRow*numRows+10);
 }
 WGuiListRow::WGuiListRow(string n, WSyncable * s) : WGuiList(n,s) {
-  buttonNext = PSP_CTRL_RIGHT;
-  buttonPrev = PSP_CTRL_LEFT;
+  buttonNext = JGE_BTN_RIGHT;
+  buttonPrev = JGE_BTN_LEFT;
   width = SCREEN_WIDTH;
   height = 20;
 }
@@ -1367,7 +1369,7 @@ void WGuiFilters::buildList(){
   subMenu = NULL; 
   list->Add(NEW WGuiHeader(displayValue));
   list->Add(wgs);
-  list->Entering(0);
+  list->Entering(JGE_BTN_NONE);
 }
 WGuiFilters::WGuiFilters(string header, WSrcCards * src) : WGuiItem(header) {
   bFinished = false;
@@ -1417,12 +1419,11 @@ void WGuiFilters::Update(float dt){
         it = wgl->items.erase(it);
         bDeleted = true;
     }
-    if(bDeleted){
-     wgl->Entering(0);
-    }
+    if(bDeleted)
+     wgl->Entering(JGE_BTN_NONE);
   }
 }
-void WGuiFilters::Entering(u32 key){
+void WGuiFilters::Entering(JButton key){
   bFinished = false;
   WGuiItem::Entering(key);
 }
@@ -1439,10 +1440,10 @@ void WGuiFilters::Render(){
   if(subMenu && !subMenu->closed) 
     subMenu->Render();
 }
-bool WGuiFilters::CheckUserInput(u32 key){
+bool WGuiFilters::CheckUserInput(JButton key){
   if(subMenu && !subMenu->closed && subMenu->CheckUserInput(key))
     return true;
-  if(key == PSP_CTRL_CROSS){//|| key == PSP_CTRL_START){
+  if(key == JGE_BTN_SEC){//|| key == JGE_BTN_MENU){
     //TODO Pop up a "Are you sure?" dialog.
     return true;
   }

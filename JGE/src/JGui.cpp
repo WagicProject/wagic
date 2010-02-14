@@ -75,7 +75,7 @@ JGuiController::JGuiController(int id, JGuiListener* listener) : mId(id), mListe
   mCursorY = SCREEN_HEIGHT/2;
   mShowCursor = false;
 
-  mActionButton = PSP_CTRL_CIRCLE;
+  mActionButton = JGE_BTN_OK;
 
   mStyle = JGUI_STYLE_WRAPPING;
 
@@ -98,7 +98,7 @@ void JGuiController::Render()
     if (mObjects[i]!=NULL)
       mObjects[i]->Render();
 }
-bool JGuiController::CheckUserInput(u32 key){
+bool JGuiController::CheckUserInput(JButton key){
 
   if (key == mActionButton)
   {
@@ -109,7 +109,7 @@ bool JGuiController::CheckUserInput(u32 key){
       return true;
     }
   }
-  else if ((PSP_CTRL_LEFT == key) || (PSP_CTRL_UP == key)) // || mEngine->GetAnalogY() < 64 || mEngine->GetAnalogX() < 64)
+  else if ((JGE_BTN_LEFT == key) || (JGE_BTN_UP == key)) // || mEngine->GetAnalogY() < 64 || mEngine->GetAnalogX() < 64)
   {
     int n = mCurr;
     n--;
@@ -121,14 +121,14 @@ bool JGuiController::CheckUserInput(u32 key){
         n = 0;
     }
 
-    if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(PSP_CTRL_UP))
+    if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(JGE_BTN_UP))
     {
       mCurr = n;
       mObjects[mCurr]->Entering();
     }
     return true;
   }
-  else if ((PSP_CTRL_RIGHT == key) || (PSP_CTRL_DOWN == key)) // || mEngine->GetAnalogY()>192 || mEngine->GetAnalogX()>192)
+  else if ((JGE_BTN_RIGHT == key) || (JGE_BTN_DOWN == key)) // || mEngine->GetAnalogY()>192 || mEngine->GetAnalogX()>192)
   {
     int n = mCurr;
     n++;
@@ -140,7 +140,7 @@ bool JGuiController::CheckUserInput(u32 key){
         n = mCount-1;
     }
 
-    if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(PSP_CTRL_DOWN))
+    if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(JGE_BTN_DOWN))
     {
       mCurr = n;
       mObjects[mCurr]->Entering();
@@ -155,7 +155,7 @@ void JGuiController::Update(float dt)
     if (mObjects[i]!=NULL)
       mObjects[i]->Update(dt);
 
-  u32 key = mEngine->ReadButton();
+  JButton key = mEngine->ReadButton();
   CheckUserInput(key);
 }
 
@@ -200,7 +200,7 @@ void JGuiController::Remove(JGuiObject* ctrl)
 }
 
 
-void JGuiController::SetActionButton(u32 button) { mActionButton = button; }
+void JGuiController::SetActionButton(JButton button) { mActionButton = button; }
 void JGuiController::SetStyle(int style) { mStyle = style;	}
 void JGuiController::SetCursor(JSprite* cursor) { mCursor = cursor; }
 bool JGuiController::IsActive() { return mActive; }

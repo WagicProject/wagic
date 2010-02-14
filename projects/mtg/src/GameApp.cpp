@@ -248,22 +248,21 @@ void GameApp::Update()
 {
   if (systemError.size()) return;
   JGE* mEngine = JGE::GetInstance();
-  if (mEngine->GetButtonState(PSP_CTRL_START) && mEngine->GetButtonClick(PSP_CTRL_TRIANGLE))
+  if (mEngine->GetButtonState(JGE_BTN_MENU) && mEngine->GetButtonClick(JGE_BTN_CANCEL))
     {
       char s[80];
       sprintf(s, "ms0:/psp/photo/MTG%d.png", mScreenShotCount++);
       JRenderer::GetInstance()->ScreenShot(s);
     }
   //Exit when START and X ARE PRESSED SIMULTANEOUSLY
-  if (mEngine->GetButtonState(PSP_CTRL_START) && mEngine->GetButtonState(PSP_CTRL_CROSS)){
+  if (mEngine->GetButtonState(JGE_BTN_MENU) && mEngine->GetButtonState(JGE_BTN_SEC)){
     mEngine->End();
     return;
   }
 
   //Restart Rendering engine when START and SQUARE ARE PRESSED SIMULTANEOUSLY
-  if (mEngine->GetButtonState(PSP_CTRL_START) && mEngine->GetButtonState(PSP_CTRL_SQUARE)){
+  if (mEngine->GetButtonState(JGE_BTN_MENU) && mEngine->GetButtonState(JGE_BTN_PRI))
     JRenderer::Destroy();
-  }
 
   float dt = mEngine->GetDelta();
   if (dt > 35.0f)		// min 30 FPS ;)
@@ -337,10 +336,10 @@ void GameApp::Render()
   nbUpdates+=1;
   JLBFont * mFont= resources.GetJLBFont("simon");
   char buf[512];
-  sprintf(buf, "avg:%f - %f fps",totalFPS/nbUpdates, fps);
+  sprintf(buf, "avg:%.02f - %.02f fps",totalFPS/nbUpdates, fps);
   if (mFont) {
     mFont->SetColor(ARGB(255,255,255,255));
-    mFont->DrawString(buf,1,1);
+    mFont->DrawString(buf,1,10);
   }
 #endif
 

@@ -5,12 +5,13 @@
 #include "../include/Translate.h"
 #include "../include/OptionItem.h"
 #include <iostream>
+#include <sstream>
 #include <fstream>
 #include <string>
 #include <stdlib.h>
 #include <JGE.h>
 
-const char * Options::optionNames[] = {
+const string Options::optionNames[] = {
 //Global options
   "Profile",
   "Lang",
@@ -31,6 +32,13 @@ const char * Options::optionNames[] = {
   "economic_difficulty",
   "transitions",
   "interruptSeconds",
+#if defined(WIN32)
+  "keybindings_win",
+#elsif defined(LINUX)
+  "keybindings_x",
+#else
+  "keybindings_psp",
+#endif
   "interruptMySpells",
   "interruptMyAbilities",
 //General interrupts
@@ -57,8 +65,7 @@ const char * Options::optionNames[] = {
 
 };
 int Options::getID(string name){
-  if(!name.size())
-    INVALID_OPTION;
+  if (0 == name.size()) INVALID_OPTION;
 
   std::transform(name.begin(),name.end(),name.begin(),::tolower);
 
@@ -335,9 +342,6 @@ GameOption& GameOptions::operator[](int optionID){
 }
 
 GameOption * GameOptions::get(int optionID) {
-  GameOption * go = NULL;
-  GameOptionEnum * goEnum = NULL;
-
   //Invalid options!
   if(optionID < 0)
     return NULL;
@@ -347,39 +351,44 @@ GameOption * GameOptions::get(int optionID) {
   values.reserve(optionID);
 
   while(x <= optionID){
-      switch(x){
-        //Enum options
-        case Options::HANDDIRECTION:
-          goEnum = NEW GameOptionEnum();
-          goEnum->def = OptionHandDirection::getInstance();
-          go = goEnum;
-          break;
-        case Options::CLOSEDHAND:
-          goEnum = NEW GameOptionEnum();
-          goEnum->def = OptionClosedHand::getInstance();
-          go = goEnum;
-          break;
-        case Options::MANADISPLAY:
-          goEnum = NEW GameOptionEnum();
-          goEnum->def = OptionManaDisplay::getInstance();
-          go = goEnum;
-          break;
-        case Options::MAX_GRADE:
-          goEnum = NEW GameOptionEnum();
-          goEnum->def = OptionMaxGrade::getInstance();
-          go = goEnum;
-          break;
-        case Options::ECON_DIFFICULTY:
-          goEnum = NEW GameOptionEnum();
-          goEnum->def = OptionEconDifficulty::getInstance();
-          go = goEnum;
-          break;
-       default:
-         if(x >= Options::BEGIN_AWARDS)
-           go = NEW GameOptionAward();
-         else
-           go = NEW GameOption();
-          break;
+    GameOption * go = NULL;
+    GameOptionEnum * goEnum = NULL;
+    switch(x){
+      //Enum options
+    case Options::HANDDIRECTION:
+      goEnum = NEW GameOptionEnum();
+      goEnum->def = OptionHandDirection::getInstance();
+      go = goEnum;
+      break;
+    case Options::CLOSEDHAND:
+      goEnum = NEW GameOptionEnum();
+      goEnum->def = OptionClosedHand::getInstance();
+      go = goEnum;
+      break;
+    case Options::MANADISPLAY:
+      goEnum = NEW GameOptionEnum();
+      goEnum->def = OptionManaDisplay::getInstance();
+      go = goEnum;
+      break;
+    case Options::MAX_GRADE:
+      goEnum = NEW GameOptionEnum();
+      goEnum->def = OptionMaxGrade::getInstance();
+      go = goEnum;
+      break;
+    case Options::KEY_BINDINGS:
+      go = NEW GameOptionKeyBindings();
+      break;
+    case Options::ECON_DIFFICULTY:
+      goEnum = NEW GameOptionEnum();
+      goEnum->def = OptionEconDifficulty::getInstance();
+      go = goEnum;
+      break;
+    default:
+      if(x >= Options::BEGIN_AWARDS)
+        go = NEW GameOptionAward();
+      else
+        go = NEW GameOption();
+      break;
     }
     values.push_back(go);
     x++;
@@ -684,10 +693,7 @@ bool GameOptionEnum::write(std::ofstream * file, string name){
   if(!file || !def || number <= 0 || number >= (int) def->values.size())
    return false;
 
-  char writer[1024];
-  sprintf(writer,"%s=%s\n", name.c_str(), menuStr().c_str());
-
-  (*file)<<writer;
+  (*file) << name << "=" << menuStr() << endl;
   return true;
 }
 
@@ -870,4 +876,36 @@ string GameOptionAward::menuStr(){
 	  return "Error";
   strftime(buf,255,_("%B %d, %I:%M%p %Y").c_str(),lt);
   return buf;
+}
+
+static JButton u32_to_button(u32 b)
+{
+  if (b < JGE_BTN_MAX) return static_cast<JButton>(b);
+  else return JGE_BTN_NONE;
+}
+
+bool GameOptionKeyBindings::read(string input){
+  istringstream iss(input);
+  vector< pair<LocalKeySym, JButton> > assoc;
+
+  while (iss.good())
+  {
+    stringstream s;
+    iss.get(*(s.rdbuf()), ',');
+    iss.get();
+
+    LocalKeySym local; char sep; u32 button;
+    s >> local >> sep >> button;
+    if (':' != sep) return false;
+    assoc.push_back(make_pair(local, u32_to_button(button)));
+  }
+
+  if (assoc.empty()) return false;
+  JGE* j = JGE::GetInstance();
+
+  j->ClearBindings();
+  for (vector< pair<LocalKeySym, JButton> >::const_iterator it = assoc.begin(); it != assoc.end(); ++it)
+    j->BindKey(it->first, it->second);
+
+  return true;
 }

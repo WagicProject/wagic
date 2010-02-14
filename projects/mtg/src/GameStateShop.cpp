@@ -71,7 +71,7 @@ void GameStateShop::Start(){
   srcCards->setElapsed(15);
 
   bigSync = 0;
-  shopMenu = NEW WGuiMenu(PSP_CTRL_DOWN,PSP_CTRL_UP,true,&bigSync);
+  shopMenu = NEW WGuiMenu(JGE_BTN_DOWN, JGE_BTN_UP, true, &bigSync);
   MTGAllCards * ac = GameApp::collection;
   playerdata = NEW PlayerData(ac);;
   myCollection = 	 NEW DeckDataWrapper(playerdata->collection);
@@ -87,7 +87,7 @@ void GameStateShop::Start(){
     dist->xy = WDistort(_x1[i],_y1[i],_x2[i],_y2[i],_x3[i],_y3[i],_x4[i],_y4[i]);
     shopMenu->Add(NEW WGuiButton(dist,-102,i,this));
   }
-  shopMenu->Entering(0);
+  shopMenu->Entering(JGE_BTN_NONE);
 
   if(!bigDisplay){
     bigDisplay = NEW WGuiCardImage(srcCards);
@@ -337,11 +337,11 @@ void GameStateShop::beginFilters(){
     filterMenu->setHeight(SCREEN_HEIGHT-2);      
   }
   mStage = STAGE_ASK_ABOUT;
-  filterMenu->Entering(0);
+  filterMenu->Entering(JGE_BTN_NONE);
 }
 void GameStateShop::Update(float dt)
-{  
-  if(menu && menu->closed)
+{
+  if (menu && menu->closed)
     SAFE_DELETE(menu);
   srcCards->Update(dt);
   alphaChange = (500 - (rand() % 1000)) * dt;
@@ -350,10 +350,10 @@ void GameStateShop::Update(float dt)
   if (lightAlpha > 50) lightAlpha = 50;
   //  mParent->effect->UpdateSmall(dt);
   //  mParent->effect->UpdateBig(dt);
-  if(mStage != STAGE_FADE_IN)
+  if (mStage != STAGE_FADE_IN)
     mElapsed += dt;
 
-  u32 btn; 
+  JButton btn;
   switch(mStage){
     case STAGE_SHOP_PURCHASE:
       if (menu)
@@ -362,32 +362,32 @@ void GameStateShop::Update(float dt)
       mStage = STAGE_SHOP_SHOP;
       break;
     case STAGE_SHOP_MENU:
-    if (menu){
+    if (menu)
       menu->Update(dt);
-    }else{
+    else{
       menu = NEW SimpleMenu(11,this,Constants::MENU_FONT,SCREEN_WIDTH/2-100,20);
       menu->Add(22,"Ask about...");
       menu->Add(14,"Check task board");
-      if(options[Options::CHEATMODE].number) 
+      if (options[Options::CHEATMODE].number)
         menu->Add(-2,"Steal 1,000 credits");
       menu->Add(12,"Save & Back to Main Menu");
       menu->Add(13, "Cancel");
-    } 
+    }
     break;
-    case STAGE_SHOP_TASKS:      
-      if(menu){
+    case STAGE_SHOP_TASKS:
+      if (menu){
         menu->Update(dt);
         return;
       }
-      if(taskList){
+      if (taskList){
       btn = mEngine->ReadButton();
       taskList->Update(dt);
         if ( taskList->getState() != TaskList::TASKS_INACTIVE){
-          if( btn == PSP_CTRL_CROSS || btn == PSP_CTRL_TRIANGLE ){
+          if ( btn == JGE_BTN_SEC || btn == JGE_BTN_CANCEL ){
              taskList->End();
              return;
-          }else if(taskList->getState() == TaskList::TASKS_ACTIVE && btn == PSP_CTRL_START ){
-            if(!menu){
+          } else if (taskList->getState() == TaskList::TASKS_ACTIVE && btn == JGE_BTN_MENU){
+            if (!menu) {
               menu = NEW SimpleMenu(11,this,Constants::MENU_FONT,SCREEN_WIDTH/2-100,20);
               menu->Add(15,"Return to shop");
               menu->Add(12,"Save & Back to Main Menu");
@@ -400,7 +400,7 @@ void GameStateShop::Update(float dt)
       }
 
 #ifdef TESTSUITE
-      if ((mEngine->GetButtonClick(PSP_CTRL_SQUARE)) && (taskList)) {
+      if ((mEngine->GetButtonClick(JGE_BTN_PRI)) && (taskList)) {
         taskList->passOneDay();
         if (taskList->getTaskCount() < 6) {
           taskList->addRandomTask();
@@ -412,19 +412,19 @@ void GameStateShop::Update(float dt)
     break;
     case STAGE_ASK_ABOUT:
       btn = mEngine->ReadButton();
-      if(menu && !menu->closed){
+      if (menu && !menu->closed){
         menu->CheckUserInput(btn);
         menu->Update(dt);
         return;
       }
-      if(filterMenu){
-        if(btn == PSP_CTRL_SELECT){
+      if (filterMenu){
+        if (btn == JGE_BTN_CTRL) {
           needLoad = filterMenu->Finish();
           filterMenu->Update(dt);
           return;
         }
-        if(filterMenu->isFinished()){
-          if(needLoad)
+        if (filterMenu->isFinished()){
+          if (needLoad)
             load();
           mStage = STAGE_SHOP_SHOP;
         }else{
@@ -436,42 +436,41 @@ void GameStateShop::Update(float dt)
       break;
     case STAGE_SHOP_SHOP:
       btn = mEngine->ReadButton();
-      if(menu && !menu->closed){
+      if (menu && !menu->closed){
         menu->CheckUserInput(btn);
         menu->Update(dt);
         return;
       }
-      if (btn == PSP_CTRL_START){
-        if(boosterDisplay){
+      if (btn == JGE_BTN_MENU){
+        if (boosterDisplay){
           deleteDisplay();
           return;
         }
         mStage = STAGE_SHOP_MENU;
         return;
-      }else if(btn == PSP_CTRL_SELECT){
+      } else if (btn == JGE_BTN_CTRL)
         beginFilters();
-      }else if(btn == PSP_CTRL_SQUARE){
+      else if (btn == JGE_BTN_PRI) {
         srcCards->Shuffle();
-        load();        
-      }else if(btn == PSP_CTRL_TRIANGLE){
+        load();
+      } else if (btn == JGE_BTN_CANCEL)
         options[Options::DISABLECARDS].number = !options[Options::DISABLECARDS].number;
-      }else if (boosterDisplay){
-        if(btn == PSP_CTRL_CROSS)
+      else if (boosterDisplay){
+        if (btn == JGE_BTN_SEC)
           deleteDisplay();
         else {
-        boosterDisplay->CheckUserInput(btn);
-        boosterDisplay->Update(dt);}
+          boosterDisplay->CheckUserInput(btn);
+          boosterDisplay->Update(dt);}
         return;
-      }else if(btn == PSP_CTRL_CROSS){
-        bListCards = !bListCards;      
-      }else if(shopMenu){
-        if(shopMenu->CheckUserInput(btn))
+      }else if (btn == JGE_BTN_SEC)
+        bListCards = !bListCards;
+      else if (shopMenu){
+        if (shopMenu->CheckUserInput(btn))
           srcCards->Touch();
       }
-
-      if(shopMenu)
+      if (shopMenu)
         shopMenu->Update(dt);
-      
+
       break;
     case STAGE_FADE_IN:
       mParent->DoAnimation(TRANSITION_FADE_IN);
@@ -486,7 +485,7 @@ void GameStateShop::makeDisplay(MTGDeck * d){
 void GameStateShop::deleteDisplay(){
   vector<MTGCardInstance*>::iterator i;
   for(i=subBooster.begin();i!=subBooster.end();i++){
-    if(!*i) continue;
+    if (!*i) continue;
     delete *i;
   }
   subBooster.clear();

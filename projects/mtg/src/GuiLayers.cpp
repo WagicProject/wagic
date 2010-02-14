@@ -7,7 +7,7 @@ GuiLayer::GuiLayer(){
   hasFocus = false;
   mCount = 0;
   mCurr = 0;
-  mActionButton = PSP_CTRL_CIRCLE;
+  mActionButton = JGE_BTN_OK;
 }
 
 GuiLayer::~GuiLayer(){
@@ -20,16 +20,15 @@ void GuiLayer::Add(JGuiObject *object){
 }
 
 int GuiLayer::Remove(JGuiObject *object){
-  for (int i=0;i<mCount;i++){
+  for (int i=0;i<mCount;i++)
     if (mObjects[i]==object){
       delete mObjects[i];
       mObjects.erase(mObjects.begin()+i);
       mCount--;
       if (mCurr == mCount)
-	      mCurr = 0;
+        mCurr = 0;
       return 1;
     }
-  }
   return 0;
 }
 

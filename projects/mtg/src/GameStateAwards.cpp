@@ -110,8 +110,8 @@ void GameStateAwards::Start()
   wgh->setDisplay(buf);
   wgh->mFlags = WGuiItem::NO_TRANSLATE;
 
-  listview->Entering(0);
-  detailview = NULL; 
+  listview->Entering(JGE_BTN_NONE);
+  detailview = NULL;
   setSrc = NULL;
   showMenu = false;
   resources.Unmiss("awardback.jpg"); //Last resort, same as shop.
@@ -151,19 +151,18 @@ void GameStateAwards::Render()
 
 void GameStateAwards::Update(float dt)
 {
-  if(mEngine->GetButtonClick(PSP_CTRL_TRIANGLE))
+  if(mEngine->GetButtonClick(JGE_BTN_CANCEL))
     options[Options::DISABLECARDS].number = !options[Options::DISABLECARDS].number;
 
   if(showMenu){
     menu->Update(dt);
   }
   else{
-    u32 key;
+    JButton key;
     while ((key = JGE::GetInstance()->ReadButton())){
       switch(key){
-        case PSP_CTRL_START:
+      case JGE_BTN_MENU:
           showMenu = true;
-
           SAFE_DELETE(menu);
           menu = NEW SimpleMenu(-102, this,Constants::MENU_FONT, 50,170);
           if(mState == STATE_DETAILS)
@@ -171,10 +170,10 @@ void GameStateAwards::Update(float dt)
           menu->Add(1, "Back to Main Menu");
           menu->Add(3, "Cancel");
           break;
-        case PSP_CTRL_LTRIGGER:
+      case JGE_BTN_PREV:
           mParent->DoTransition(TRANSITION_FADE,GAME_STATE_MENU);
           break;
-        case PSP_CTRL_CROSS:
+        case JGE_BTN_SEC:
           if(mState == STATE_LISTVIEW)
             mParent->DoTransition(TRANSITION_FADE,GAME_STATE_MENU);
           else{
@@ -194,9 +193,7 @@ void GameStateAwards::Update(float dt)
         break;
       }
     }
-
   }
-
   if(setSrc)
     setSrc->Update(dt);
 }
@@ -217,7 +214,7 @@ bool GameStateAwards::enterSet(int setid){
   setSrc->bakeFilters();
   setSrc->Sort(WSrcCards::SORT_COLLECTOR);
 
-  detailview = NEW WGuiMenu(PSP_CTRL_DOWN,PSP_CTRL_UP);
+  detailview = NEW WGuiMenu(JGE_BTN_DOWN, JGE_BTN_UP);
   
   WGuiList * spoiler = NEW WGuiList("Spoiler",setSrc);
   spoiler->setX(210);
@@ -228,13 +225,13 @@ bool GameStateAwards::enterSet(int setid){
       spoiler->Add(NEW WGuiItem(c->data->name));
   }
   setSrc->setOffset(0);
-  spoiler->Entering(0);
+  spoiler->Entering(JGE_BTN_NONE);
   WGuiCardImage * wi = NEW WGuiCardImage(setSrc);
   wi->setX(105);
   wi->setY(137);
   detailview->Add(wi);
   detailview->Add(spoiler);
-  detailview->Entering(0);
+  detailview->Entering(JGE_BTN_NONE);
   return true;
 }
 bool GameStateAwards::enterStats(int option){
@@ -248,7 +245,7 @@ bool GameStateAwards::enterStats(int option){
   detailview = NEW WGuiList("Details");
   
   detailview->Add(NEW WGuiHeader("Collection Stats"));
-  detailview->Entering(0);
+  detailview->Entering(JGE_BTN_NONE);
 
   //Discover favorite set and unique cards
   int unique = 0;

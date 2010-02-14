@@ -45,6 +45,7 @@ public:
     ECON_DIFFICULTY,
     TRANSITIONS,
     INTERRUPT_SECONDS,
+    KEY_BINDINGS,
     //My interrupts    
     INTERRUPTMYSPELLS,
     INTERRUPTMYABILITIES,
@@ -80,7 +81,7 @@ public:
   static string getName(int option);
 
 private:
-  static const char* optionNames[];
+  static const string optionNames[];
 };
 
 class GameOption {
@@ -128,6 +129,10 @@ public:
 private:
   time_t achieved; //When was it awarded?
   bool viewed;     //Flag it as "New!" or not.  
+};
+
+class GameOptionKeyBindings : public GameOption {
+  virtual bool read(string input);
 };
 
 class OptionVolume: public EnumDefinition{

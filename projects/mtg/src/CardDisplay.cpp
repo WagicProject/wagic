@@ -78,7 +78,7 @@ void CardDisplay::Update(float dt){
 }
 
 bool CardDisplay::CheckUserInput(u32 key){
-  if (PSP_CTRL_CROSS == key)
+  if (JGE_BTN_SEC == key)
     {
       if (listener){
 	      listener->ButtonPressed(mId, 0);
@@ -108,7 +108,7 @@ bool CardDisplay::CheckUserInput(u32 key){
 
   switch(key)
     {
-    case PSP_CTRL_LEFT :
+    case JGE_BTN_LEFT :
       {
 	int n = mCurr;
 	n--;
@@ -116,13 +116,13 @@ bool CardDisplay::CheckUserInput(u32 key){
 	  if (n< 0){n = 0;}
 	  else{ rotateLeft();}
 	}
-	if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(PSP_CTRL_LEFT)){
+	if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(JGE_BTN_LEFT)){
 	  mCurr = n;
 	  mObjects[mCurr]->Entering();
 	}
 	return true;
       }
-    case PSP_CTRL_RIGHT :
+    case JGE_BTN_RIGHT :
       {
 	int n = mCurr;
 	n++;
@@ -130,7 +130,7 @@ bool CardDisplay::CheckUserInput(u32 key){
 	if (n>= start_item + nb_displayed_items){
 	  rotateRight();
 	}
-	if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(PSP_CTRL_RIGHT)){
+	if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(JGE_BTN_RIGHT)){
 	  mCurr = n;
 	  mObjects[mCurr]->Entering();
 	}

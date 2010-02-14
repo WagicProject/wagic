@@ -9,7 +9,7 @@
 #include "../include/WFilter.h"
 #include "../include/DeckDataWrapper.h"
 #include "../include/MTGPack.h"
-#include "../../../JGE/src/TinyXML/tinyxml.h"
+#include "../../../JGE/src/tinyxml/tinyxml.h"
 
 int MTGPackEntryRandom::addCard(WSrcCards *pool, MTGDeck *to){
   int fails = 0;

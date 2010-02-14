@@ -61,7 +61,7 @@ void OptionSelect::initSelections(){
     }
 }
 
-void OptionSelect::Entering(u32 key){
+void OptionSelect::Entering(JButton key){
   OptionItem::Entering(key);
   prior_value = value;
 }
@@ -187,7 +187,7 @@ void OptionProfile::Render(){
   mFont->SetScale(1);
 
 }
-void OptionProfile::Entering(u32 key){
+void OptionProfile::Entering(JButton key){
   mFocus = true;
   initialValue = value;
 }

@@ -168,7 +168,7 @@ void SimpleMenu::Add(int id, const char * text,string desc, bool forceFocus){
   JGuiController::Add(smi);
   if (mCount <= maxItems) mHeight += LINE_HEIGHT;
   if (forceFocus){
-    mObjects[mCurr]->Leaving(PSP_CTRL_DOWN);
+    mObjects[mCurr]->Leaving(JGE_BTN_DOWN);
     mCurr = mCount-1;
     smi->Entering();
   }

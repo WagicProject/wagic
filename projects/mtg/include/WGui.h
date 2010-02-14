@@ -46,8 +46,8 @@ public:
   virtual PIXEL_TYPE getColor(int type);
   virtual float getMargin(int type) {return 4;};
   
-  virtual void Entering(u32 key)=0;  
-  virtual bool Leaving(u32 key)=0;
+  virtual void Entering(JButton key)=0;  
+  virtual bool Leaving(JButton key)=0;
 
   virtual void Update(float dt)=0;
   virtual void updateValue(){};
@@ -82,15 +82,15 @@ public:
   virtual void renderBack(WGuiBase * it);
   virtual void subBack(WGuiBase * item) {};
 
-  virtual bool CheckUserInput(u32 key) {return false;};
+  virtual bool CheckUserInput(JButton key) {return false;};
 };
 
 //This is our base class for concrete items. 
 class WGuiItem: public WGuiBase{
 public:
-  virtual void Entering(u32 key);  
-  virtual bool Leaving(u32 key);
-  virtual bool CheckUserInput(u32 key);
+  virtual void Entering(JButton key);  
+  virtual bool Leaving(JButton key);
+  virtual bool CheckUserInput(JButton key);
   virtual void Update(float dt) {};
   virtual void Render();
 
@@ -177,8 +177,8 @@ public:
   virtual bool Changed() {return it->Changed();};
   virtual void confirmChange(bool confirmed) {it->confirmChange(confirmed);};
  
-  virtual void Entering(u32 key)       {it->Entering(key);};  
-  virtual bool Leaving(u32 key)        {return it->Leaving(key);};
+  virtual void Entering(JButton key)       {it->Entering(key);};  
+  virtual bool Leaving(JButton key)        {return it->Leaving(key);};
   virtual void Update(float dt) {it->Update(dt);};
   virtual void updateValue()    {it->updateValue();};
   virtual void Reload()         {it->Reload();};
@@ -208,7 +208,7 @@ public:
   virtual void setHeight(float _h) {it->setHeight(_h);};
   virtual void setHidden(bool bHidden) {it->setHidden(bHidden);};
   virtual void setVisible(bool bVisisble) {it->setVisible(bVisisble);};
-  virtual bool CheckUserInput(u32 key) {return it->CheckUserInput(key);};
+  virtual bool CheckUserInput(JButton key) {return it->CheckUserInput(key);};
 protected:
   WGuiBase * it;
 };
@@ -251,9 +251,9 @@ public:
   virtual void ButtonPressed(int controllerId, int controlId);
   virtual void confirmChange(bool confirmed);
 
-  virtual void Entering(u32 key);  
-  virtual bool Leaving(u32 key);  
-  virtual bool CheckUserInput(u32 key);
+  virtual void Entering(JButton key);  
+  virtual bool Leaving(JButton key);  
+  virtual bool CheckUserInput(JButton key);
 
   bool bRight;
   float percentRight;
@@ -269,12 +269,12 @@ public:
   virtual bool isModal();
   virtual void setData();
   virtual void setModal(bool val);
-  virtual void Entering(u32 key);
-  virtual bool Leaving(u32 key);
+  virtual void Entering(JButton key);
+  virtual bool Leaving(JButton key);
   virtual void Update(float dt);
   virtual void Overlay();
   virtual void ButtonPressed(int controllerId, int controlId);
-  virtual bool CheckUserInput(u32 key);
+  virtual bool CheckUserInput(JButton key);
 
   string confirm;
   string cancel;
@@ -312,7 +312,7 @@ class WGuiButton: public WGuiDeco{
 public:
   WGuiButton( WGuiBase* _it, int _controller, int _control,  JGuiListener * jgl);
   virtual void updateValue();
-  virtual bool CheckUserInput(u32 key);
+  virtual bool CheckUserInput(JButton key);
   virtual bool Selectable() {return Visible();};
   virtual PIXEL_TYPE getColor(int type);
   virtual int getControlID() {return control;};
@@ -350,7 +350,7 @@ class WGuiMenu: public WGuiItem{
 public:
   friend class WGuiFilters;
   virtual ~WGuiMenu();
-  WGuiMenu(u32 next, u32 prev, bool mDPad = false, WSyncable * syncme=NULL);
+  WGuiMenu(JButton next, JButton prev, bool mDPad = false, WSyncable * syncme=NULL);
 
   virtual void Render();
   virtual void Reload();
@@ -358,10 +358,10 @@ public:
   virtual void ButtonPressed(int controllerId, int controlId);
   virtual void Add(WGuiBase* item); //Remember, does not set X & Y of items automatically.
   virtual void confirmChange(bool confirmed);
-  virtual bool Leaving(u32 key);
-  virtual void Entering(u32 key);
+  virtual bool Leaving(JButton key);
+  virtual void Entering(JButton key);
   virtual void subBack(WGuiBase * item);
-  virtual bool CheckUserInput(u32 key);
+  virtual bool CheckUserInput(JButton key);
   WGuiBase * Current();
   virtual int getSelected() {return currentItem;};
   virtual bool nextItem(); 
@@ -373,12 +373,12 @@ public:
   
 protected:
   virtual void syncMove();
-  virtual bool isButtonDir(u32 key, int dir); //For the DPad override.
-  u32 buttonNext, buttonPrev;
+  virtual bool isButtonDir(JButton key, int dir); //For the DPad override.
+  JButton buttonNext, buttonPrev;
   bool mDPad;
   vector<WGuiBase*> items;
   int currentItem;
-  u32 held;
+  JButton held;
   WSyncable * sync;
   float duration;
 };
@@ -399,7 +399,7 @@ protected:
 };
 class WGuiTabMenu: public WGuiMenu {
  public:
-   WGuiTabMenu() : WGuiMenu(PSP_CTRL_RTRIGGER,PSP_CTRL_LTRIGGER) {};
+   WGuiTabMenu() : WGuiMenu(JGE_BTN_NEXT, JGE_BTN_PREV) {};
   virtual void Render();
   virtual void Add(WGuiBase * it);
   void save();
@@ -415,11 +415,11 @@ public:
   friend class WGuiFilterItem;
   WGuiFilters(string header, WSrcCards * src);
   ~WGuiFilters();
-  bool CheckUserInput(u32 key);
+  bool CheckUserInput(JButton key);
   string getCode(); //For use in filter factory.
   void Update(float dt);
   void Render();
-  void Entering(u32 key);
+  void Entering(JButton key);
   void addColumn();
   bool isAvailable(int type);
   bool isAvailableCode(string code);

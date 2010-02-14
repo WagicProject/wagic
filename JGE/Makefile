@@ -110,6 +110,8 @@ install: $(TARGET_LIB) hge
 hge: $(TARGET_HGE)
 
 ifeq ($(TARGET_ARCHITECTURE),linux)
+
+
 $(TARGET_LIB): $(OBJS)
 	ar r $(TARGET_LIB) $(OBJS)
 
@@ -119,6 +121,9 @@ $(TARGET_HGE): $(HGE_OBJS)
 clean:
 	$(RM) -f $(OBJS) $(HGE_OBJS) Makefile.$(TARGET_ARCHITECTURE)
 endif
+
+Makefile.psp:
+	@echo > $@
 
 Makefile.linux:
 	$(CXX) -o /dev/null src/testfeatures.c -L$(LIBDIR) -lfmod-3.75 > /dev/null 2>&1 ; if [ "0" = "$$?" ]; then echo 'FMOD=-DWITH_FMOD'; else echo 'FMOD=-DWITHOUT_FMOD'; fi > $@

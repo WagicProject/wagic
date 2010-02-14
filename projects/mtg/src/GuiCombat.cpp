@@ -143,7 +143,7 @@ bool GuiCombat::CheckUserInput(u32 key)
   DamagerDamaged* oldActive = active;
   switch (key)
     {
-    case PSP_CTRL_CIRCLE:
+    case JGE_BTN_OK:
       if (BLK == cursor_pos)
         {
           if (ORDER == step) go->cardClick(active->card); //  { activeAtk->card->raiseBlockerRankOrder(active->card); }
@@ -173,7 +173,7 @@ bool GuiCombat::CheckUserInput(u32 key)
            clickOK();
         }
       break;
-    case PSP_CTRL_TRIANGLE:
+    case JGE_BTN_CANCEL:
       if (BLK == cursor_pos)
         {
           oldActive->zoom = 2.2;
@@ -181,7 +181,7 @@ bool GuiCombat::CheckUserInput(u32 key)
           cursor_pos = ATK;
         }
       return true;
-    case PSP_CTRL_LEFT:
+    case JGE_BTN_LEFT:
       switch (cursor_pos)
 	{
 	case NONE : break;
@@ -206,7 +206,7 @@ bool GuiCombat::CheckUserInput(u32 key)
       break;
 	}
       break;
-    case PSP_CTRL_RIGHT:
+    case JGE_BTN_RIGHT:
       switch (cursor_pos)
 	{
 	case NONE :
@@ -232,22 +232,22 @@ bool GuiCombat::CheckUserInput(u32 key)
 	  break;
 	}
       break;
-    case PSP_CTRL_DOWN:
+    case JGE_BTN_DOWN:
       if (ORDER == step || BLK != cursor_pos || active->sumDamages() <= 0) break;
       removeOne(active, step);
       break;
-    case PSP_CTRL_UP:
+    case JGE_BTN_UP:
       if (ORDER == step || BLK != cursor_pos) break;
       addOne(active, step);
       break;
-    case PSP_CTRL_SQUARE:
+    case JGE_BTN_PRI:
       active = activeAtk = NULL; cursor_pos = OK;
       break;
-    case PSP_CTRL_RTRIGGER:
+    case JGE_BTN_NEXT:
       if (!options[Options::REVERSETRIGGERS].number) return false;
       active = activeAtk = NULL; cursor_pos = OK;
       break;
-    case PSP_CTRL_LTRIGGER:
+    case JGE_BTN_PREV:
       if (options[Options::REVERSETRIGGERS].number) return false;
       active = activeAtk = NULL; cursor_pos = OK;
       break;

@@ -140,7 +140,7 @@ int MTGAttackRule::reactToClick(MTGCardInstance * card){
   if(!card->isAttacker()){
     CardSelector * cs = game->mLayers->cs;
     cs->Limit(this,CardSelector::playZone);
-    cs->CheckUserInput(PSP_CTRL_RIGHT);
+    cs->CheckUserInput(JGE_BTN_RIGHT);
     cs->Limit(NULL,CardSelector::playZone);
   }
   card->toggleAttacker();

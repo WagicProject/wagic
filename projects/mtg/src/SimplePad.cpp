@@ -184,79 +184,69 @@ void SimplePad::MoveSelection(unsigned char moveto)
     moveto = KPD_INPUT;
   else if(!bShowCancel && moveto == KPD_CANCEL )
     moveto = KPD_SPACE;
-  
-  if(selected < KPD_MAX && selected >= 0) 
+
+  if (selected < KPD_MAX && selected >= 0)
     priorKey = selected;
 
-  if(moveto < KPD_MAX) {
+  if (moveto < KPD_MAX)
     selected = moveto;
-  }
-  else if(moveto == KPD_INPUT)
+  else if (moveto == KPD_INPUT)
     selected = KPD_INPUT;
 }
 
 void SimplePad::Update(float dt){
   JGE * mEngine = JGE::GetInstance();
   u32 key = mEngine->ReadButton();
-  
+
   //Start button changes capslock setting.
-  if(key & PSP_CTRL_START)
+  if (key == JGE_BTN_MENU)
   {
-    if(selected != KPD_OK)
+    if (selected != KPD_OK)
       selected = KPD_OK;
     else
       Finish();
    }
-  else if(key & PSP_CTRL_SELECT){
+  else if (key == JGE_BTN_CTRL)
     bCapslock = !bCapslock;
-  }
 
-  if(selected == KPD_SPACE){
-    if(bShowCancel && mEngine->GetButtonClick(PSP_CTRL_RIGHT))
+  if (selected == KPD_SPACE){
+    if (bShowCancel && mEngine->GetButtonClick(JGE_BTN_RIGHT))
       selected = KPD_CANCEL;
-    else if (key & PSP_CTRL_LEFT || key & PSP_CTRL_RIGHT
-      || key & PSP_CTRL_UP || key & PSP_CTRL_DOWN)
+    else if (key == JGE_BTN_LEFT || key == JGE_BTN_RIGHT
+      || key == JGE_BTN_UP || key == JGE_BTN_DOWN)
       selected = priorKey;
   } //Moving within/from the text field.
-  else if(selected == KPD_INPUT){
-    if (key & PSP_CTRL_DOWN )
+  else if (selected == KPD_INPUT){
+    if (key == JGE_BTN_DOWN )
       selected = priorKey;
-    if (key & PSP_CTRL_LEFT){
-      if(cursor > 0)
-        cursor--;
-    }
-    else if (key & PSP_CTRL_RIGHT){
-      if(cursor < buffer.size())
-        cursor++;
-    }
+    if (key == JGE_BTN_LEFT && cursor > 0) cursor--;
+    else if (key == JGE_BTN_RIGHT && cursor < buffer.size()) cursor++;
   }
-  else if(selected >= 0 && keys[selected]){
-    if (key & PSP_CTRL_LEFT)
+  else if (selected >= 0 && keys[selected]){
+    if (key == JGE_BTN_LEFT)
       MoveSelection(keys[selected]->adjacency[KPD_LEFT]);
-    else if (key & PSP_CTRL_RIGHT)
+    else if (key == JGE_BTN_RIGHT)
       MoveSelection(keys[selected]->adjacency[KPD_RIGHT]);
-    if (key & PSP_CTRL_DOWN)
+    if (key == JGE_BTN_DOWN)
       MoveSelection(keys[selected]->adjacency[KPD_DOWN]);
-    else if (key & PSP_CTRL_UP)
+    else if (key == JGE_BTN_UP)
       MoveSelection(keys[selected]->adjacency[KPD_UP]);
   }
- 
+
 
   //These bits require a valid key...
-  if(selected >= 0 && selected < nbitems && keys[selected]){
-  if (key & PSP_CTRL_CIRCLE)
-    pressKey(keys[selected]->id);
+  if (selected >= 0 && selected < nbitems && keys[selected])
+    if (key == JGE_BTN_OK)
+      pressKey(keys[selected]->id);
+  if (buffer.size() > 0 && key == JGE_BTN_SEC)
+    buffer = buffer.substr(0, buffer.size() - 1);
+  if (buffer.size() && key == JGE_BTN_PREV) {
+    if (cursor > 0) cursor--;
   }
-  if (buffer.size() > 0 && key & PSP_CTRL_CROSS)
-    buffer = buffer.substr(0,buffer.size() - 1);
-  if (buffer.size() && key & PSP_CTRL_LTRIGGER){
-      if(cursor > 0)
-        cursor--;
-  }
-  else if (key & PSP_CTRL_RTRIGGER){
-    if(cursor < buffer.size())
+  else if (key == JGE_BTN_NEXT) {
+    if (cursor < buffer.size())
         cursor++;
-    else{
+    else {
       buffer += ' ';
       cursor = buffer.size();
     }

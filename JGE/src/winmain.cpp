@@ -158,7 +158,6 @@ JGameLauncher* g_launcher = NULL;
 
 static u32 gButtons = 0;
 static u32 gOldButtons = 0;
-static queue< pair<u32, u32> > gKeyBuffer;
 
 static const struct { WPARAM keysym; u32 pspCode; } gDefaultBindings[] =
   {
@@ -185,45 +184,23 @@ static const struct { WPARAM keysym; u32 pspCode; } gDefaultBindings[] =
     { VK_F3,		PSP_CTRL_NOTE }
   };
 
-static vector< pair<WPARAM, u32> > gKeyCodes;
-
-void JGEControl()
+void JGECreateDefaultBindings()
 {
-  gOldButtons = gButtons;
-
-  gButtons = 0;
-  for (vector< pair<WPARAM, u32> >::iterator it = gKeyCodes.begin(); it != gKeyCodes.end(); ++it)
-    if (g_keys[it->first])
-      gButtons |= it->second;
+  for (signed int i = sizeof(gDefaultBindings)/sizeof(gDefaultBindings[0]) - 1; i >= 0; --i)
+    g_engine->BindKey(gDefaultBindings[i].keysym, gDefaultBindings[i].keycode);
 }
 
-
-BOOL JGEGetKeyState(int key)
+int JGEGetTime()
 {
-  return (g_keys[key]);
+  return (int)GetTickCount();
 }
-
-
-bool JGEGetButtonState(u32 button)
-{
-  return (gButtons&button)==button;
-}
-
-
-bool JGEGetButtonClick(u32 button)
-{
-  return (gButtons&button)==button && (gOldButtons&button)!=button;
-}
-
 
 LRESULT	CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);	// Declaration For WndProc
 
 GLvoid ReSizeGLScene(GLsizei width, GLsizei height)		// Resize And Initialize The GL Window
 {
   if (height==0)										// Prevent A Divide By Zero By
-    {
       height=1;										// Making Height Equal One
-    }
 
   actualWidth = width;
   actualHeight = height;
@@ -327,15 +304,9 @@ int DrawGLScene(void)									// Here's Where We Do All The Drawing
 
 void Update(int dt)
 {
-  JGEControl();
-
+  gPrevControllerState = gControllerState;
   g_engine->SetDelta(dt);
-
-  //if (g_app)
-  //	g_app->Update();
-
-  g_engine->Update();
-
+  g_engine->Update(dt);
 }
 
 void KillGLWindow(void)								// Properly Kill The Window
@@ -351,14 +322,9 @@ void KillGLWindow(void)								// Properly Kill The Window
   if (hRC)											// Do We Have A Rendering Context?
     {
       if (!wglMakeCurrent(NULL,NULL))					// Are We Able To Release The DC And RC Contexts?
-	{
-	  MessageBox(NULL,"Release Of DC And RC Failed.","SHUTDOWN ERROR",MB_OK | MB_ICONINFORMATION);
-	}
-
+        MessageBox(NULL,"Release Of DC And RC Failed.","SHUTDOWN ERROR",MB_OK | MB_ICONINFORMATION);
       if (!wglDeleteContext(hRC))						// Are We Able To Delete The RC?
-	{
-	  MessageBox(NULL,"Release Rendering Context Failed.","SHUTDOWN ERROR",MB_OK | MB_ICONINFORMATION);
-	}
+        MessageBox(NULL,"Release Rendering Context Failed.","SHUTDOWN ERROR",MB_OK | MB_ICONINFORMATION);
       hRC=NULL;										// Set RC To NULL
     }
 
@@ -573,29 +539,6 @@ BOOL CreateGLWindow(char* title, int width, int height, int bits, bool fullscree
   return TRUE;									// Success
 }
 
-u32 JGEReadKey()
-{
-  if (gKeyBuffer.empty()) return 0;
-  pair<u32, u32> val = gKeyBuffer.front();
-  g_holds[val.first] = false;
-  gKeyBuffer.pop();
-  return val.second;
-}
-
-u32 JGEReadLocalKey()
-{
-  if (gKeyBuffer.empty()) return 0;
-  u32 val = gKeyBuffer.front().first;
-  g_holds[val] = false;
-  gKeyBuffer.pop();
-  return val;
-}
-
-void JGEResetInput()
-{
-  while (!gKeyBuffer.empty()) gKeyBuffer.pop();
-}
-
 LRESULT CALLBACK WndProc(	HWND	hWnd,			// Handle For This Window
 				UINT	uMsg,			// Message For This Window
 				WPARAM	wParam,			// Additional Message Information
@@ -641,14 +584,7 @@ LRESULT CALLBACK WndProc(	HWND	hWnd,			// Handle For This Window
     case WM_KEYDOWN:												// Update Keyboard Buffers For Keys Pressed
       if ((wParam >= 0) && (wParam <= 255))						// Is Key (wParam) In A Valid Range?
 	{
-	  g_keys[wParam] = true;					// Set The Selected Key (wParam) To True
-	  if (false == g_holds[wParam])
-	    {
-	      g_holds[wParam] = true;
-	      for (vector< pair<WPARAM, u32> >::iterator it = gKeyCodes.begin(); it != gKeyCodes.end(); ++it)
-		if (it->first == wParam)
-		  gKeyBuffer.push(*it);
-	    }
+          g_engine->HoldKey_NoRepeat(wParam);
 	  return 0;
 	}
       break;															// Break
@@ -656,8 +592,7 @@ LRESULT CALLBACK WndProc(	HWND	hWnd,			// Handle For This Window
     case WM_KEYUP:													// Update Keyboard Buffers For Keys Released
       if ((wParam >= 0) && (wParam <= 255))						// Is Key (wParam) In A Valid Range?
 	{
-	  g_keys[wParam] = FALSE;					// Set The Selected Key (wParam) To False
-	  g_holds[wParam] = FALSE;
+          g_engine->ReleaseKey(wParam);
 	  return 0;												// Return
 	}
       break;
@@ -721,8 +656,7 @@ int WINAPI WinMain(	HINSTANCE	hInstance,			// Instance
 
   u32 flags = g_launcher->GetInitFlags();
 
-  for (signed int i = sizeof(gDefaultBindings)/sizeof(gDefaultBindings[0]) - 1; i >= 0; --i)
-    gKeyCodes.push_back(make_pair(gDefaultBindings[i].keysym, gDefaultBindings[i].pspCode));
+  JGECreateDefaultBindings();
 
   if ((flags&JINIT_FLAG_ENABLE3D)!=0)
     JRenderer::Set3DFlag(true);
@@ -753,9 +687,7 @@ int WINAPI WinMain(	HINSTANCE	hInstance,			// Instance
 	  if (active)								// Program Active?
 	    {
 	      if (g_engine->IsDone())
-		{
-		  done=TRUE;						// ESC Signalled A Quit
-		}
+                done=TRUE;						// ESC Signalled A Quit
 	      else								// Not Time To Quit, Update Screen
 		{
 		  tickCount = GetTickCount();					// Get The Tick Count

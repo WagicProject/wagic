@@ -5,7 +5,8 @@
 #include <X11/XKBlib.h>
 #include <sys/time.h>
 #include <queue>
-#include <iostream>
+#include <map>
+#include <set>
 
 #include "../../JGE/include/JGE.h"
 #include "../../JGE/include/JTypes.h"
@@ -29,9 +30,9 @@ struct window_state_t
 
 enum
  {
- _NET_WM_STATE_REMOVE =0,
- _NET_WM_STATE_ADD = 1,
- _NET_WM_STATE_TOGGLE =2
+   _NET_WM_STATE_REMOVE =0,
+   _NET_WM_STATE_ADD = 1,
+   _NET_WM_STATE_TOGGLE =2
  };
 
 
@@ -50,38 +51,34 @@ Display* gXDisplay = NULL;
 Window gXWindow = NULL;
 GLXWindow glxWin = NULL;
 
-static queue< pair<KeySym, u32> > gKeyBuffer;
-static u32 gControllerState = 0;
-static u32 gPrevControllerState = 0;
-static u32 gHolds = 0;
+static std::multiset<JButton> gControllerState;
+static std::multiset<JButton> gPrevControllerState;
 
-static const struct { KeySym keysym; u32 pspCode; } gDefaultBindings[] =
+static const struct { LocalKeySym keysym; JButton keycode; } gDefaultBindings[] =
   {
-    { XK_Escape,	PSP_CTRL_START },
-    { XK_Return,	PSP_CTRL_START },
-    { XK_BackSpace,	PSP_CTRL_SELECT },
-    { XK_Up,		PSP_CTRL_UP },
-    { XK_KP_Up,		PSP_CTRL_UP },
-    { XK_Down,		PSP_CTRL_DOWN },
-    { XK_KP_Down,	PSP_CTRL_DOWN },
-    { XK_Left,		PSP_CTRL_LEFT },
-    { XK_KP_Left,	PSP_CTRL_LEFT },
-    { XK_Right,		PSP_CTRL_RIGHT },
-    { XK_KP_Right,	PSP_CTRL_RIGHT },
-    { XK_space,		PSP_CTRL_CIRCLE },
-    { XK_Control_L,	PSP_CTRL_CIRCLE },
-    { XK_Control_R,	PSP_CTRL_CIRCLE },
-    { XK_Tab,		PSP_CTRL_TRIANGLE },
-    { XK_Alt_L,		PSP_CTRL_SQUARE },
-    { XK_Caps_Lock,	PSP_CTRL_CROSS },
-    { XK_Shift_L,	PSP_CTRL_LTRIGGER },
-    { XK_Shift_R,	PSP_CTRL_RTRIGGER },
-    { XK_F1,		PSP_CTRL_HOME },
-    { XK_F2,		PSP_CTRL_HOLD },
-    { XK_F3,		PSP_CTRL_NOTE }
+    { XK_Escape,	JGE_BTN_MENU },
+    { XK_Return,	JGE_BTN_MENU },
+    { XK_BackSpace,	JGE_BTN_CTRL },
+    { XK_Up,		JGE_BTN_UP },
+    { XK_KP_Up,		JGE_BTN_UP },
+    { XK_Down,		JGE_BTN_DOWN },
+    { XK_KP_Down,	JGE_BTN_DOWN },
+    { XK_Left,		JGE_BTN_LEFT },
+    { XK_KP_Left,	JGE_BTN_LEFT },
+    { XK_Right,		JGE_BTN_RIGHT },
+    { XK_KP_Right,	JGE_BTN_RIGHT },
+    { XK_space,		JGE_BTN_OK },
+    { XK_Control_L,	JGE_BTN_OK },
+    { XK_Control_R,	JGE_BTN_OK },
+    { XK_Tab,		JGE_BTN_CANCEL },
+    { XK_Alt_L,		JGE_BTN_PRI },
+    { XK_Caps_Lock,	JGE_BTN_SEC },
+    { XK_Shift_L,	JGE_BTN_PREV },
+    { XK_Shift_R,	JGE_BTN_NEXT },
+    { XK_F1,		JGE_BTN_QUIT },
+    { XK_F2,		JGE_BTN_POWER },
+    { XK_F3,		JGE_BTN_SOUND }
   };
-
-static vector< pair<KeySym, u32> > gKeyCodes;
 
 GLvoid ReSizeGLScene(GLsizei width, GLsizei height)	// Resize The GL Window
 {
@@ -210,9 +207,6 @@ BOOL CreateGLWindow(char* title, int width, int height, int bits __attribute__((
       return false;
     }
 
-  for (signed int i = sizeof(gDefaultBindings)/sizeof(gDefaultBindings[0]) - 1; i >= 0; --i)
-    gKeyCodes.push_back(make_pair(gDefaultBindings[i].keysym, gDefaultBindings[i].pspCode));
-
   // Get a suitable framebuffer config
   int numReturned;
   GLXFBConfig *fbConfigs = glXChooseFBConfig(gXDisplay, DefaultScreen(gXDisplay), doubleBufferAttributes, &numReturned);
@@ -266,83 +260,37 @@ BOOL CreateGLWindow(char* title, int width, int height, int bits __attribute__((
 }
 
 
-
-
-
-
-
-
-
-void JGEControl()
+void Update(float dt)
 {
   gPrevControllerState = gControllerState;
-}
-
-void Update(int dt)
-{
   g_engine->SetDelta(dt);
-  g_engine->Update();
-  JGEControl();
+  g_engine->Update(dt);
 }
 
 
-int DrawGLScene(void)									// Here's Where We Do All The Drawing
+int DrawGLScene(void)
 {
-
-// 	glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);		// Clear Screen And Depth Buffer
-// 	glLoadIdentity ();											// Reset The Modelview Matrix
-
-	//if (g_app)
-	//	g_app->Render();
 	g_engine->Render();
-
-//	glFlush ();
-
-	return true;										// Everything Went OK
+	return true;
 }
 
-
-
-bool JGEGetButtonState(u32 button)
+template <typename T>
+static inline bool include(multiset<T> set, T button)
 {
-  return gControllerState & button;
+  return set.end() != set.find(button);
 }
 
-bool JGEGetButtonClick(u32 button)
+void JGECreateDefaultBindings()
 {
-  return ((gControllerState & button) && (!(gPrevControllerState & button)));
+  for (signed int i = sizeof(gDefaultBindings)/sizeof(gDefaultBindings[0]) - 1; i >= 0; --i)
+    g_engine->BindKey(gDefaultBindings[i].keysym, gDefaultBindings[i].keycode);
 }
 
-bool JGEGetKeyState(int key __attribute__((unused)))
+int JGEGetTime()
 {
-  return false;
-}
-
-u32 JGEReadKey()
-{
-  if (gKeyBuffer.empty()) return 0;
-  u32 val = gKeyBuffer.front().second;
-  gHolds &= ~val;
-  gKeyBuffer.pop();
-  return val;
-}
-
-u32 JGEReadLocalKey()
-{
-  if (gKeyBuffer.empty()) return 0;
-  pair <KeyCode, u32> val = gKeyBuffer.front();
-  gHolds &= ~val.second;
-  gKeyBuffer.pop();
-  return val.first;
-}
-
-void JGEBindLocalKey(u32 localKey, u32 pspSymbol)
-{
-}
-
-void JGEResetInput()
-{
-  while (!gKeyBuffer.empty()) gKeyBuffer.pop();
+  struct timeval tv;
+  gettimeofday(&tv, NULL);
+  return tv.tv_sec * 1000 + tv.tv_usec / 1000;
 }
 
 void reshapeFunc(int width, int height)
@@ -420,6 +368,8 @@ int main(int argc, char* argv[])
   XSelectInput(gXDisplay, gXWindow, KeyPressMask | KeyReleaseMask | StructureNotifyMask);
   XkbSetDetectableAutoRepeat(gXDisplay, true, NULL);
 
+  JGECreateDefaultBindings();
+
   static uint64_t tickCount;
   while (!g_engine->IsDone())
     {
@@ -430,7 +380,7 @@ int main(int argc, char* argv[])
       tickCount = tv.tv_sec * 1000 + tv.tv_usec / 1000;
       dt = (tickCount - lastTickCount);
       lastTickCount = tickCount;
-      Update(dt);						// Update frame
+      Update((float)dt / 1000.0f);						// Update frame
 
       DrawGLScene();						// Draw The Scene
       glXSwapBuffers(gXDisplay, glxWin);
@@ -438,33 +388,15 @@ int main(int argc, char* argv[])
 	switch (event.type)
 	  {
 	  case KeyPress:
-	    {
-	      KeySym sym = XKeycodeToKeysym(gXDisplay, event.xkey.keycode, 1);
-	      if (XK_F == sym)
-		fullscreen();
-	      for (vector< pair<KeySym, u32> >::iterator it = gKeyCodes.begin(); it != gKeyCodes.end(); ++it)
-		if (sym == it->first)
-		  {
-		    if (!(gHolds & it->second))
-		      gKeyBuffer.push(*it);
-		    gControllerState |= it->second;
-		    gHolds |= it->second;
-		    break;
-		  }
-	    }
-	    break;
+            {
+              const KeySym sym = XKeycodeToKeysym(gXDisplay, event.xkey.keycode, 1);
+              if (sym == XK_F) fullscreen();
+              g_engine->HoldKey_NoRepeat(sym);
+            }
+            break;
 	  case KeyRelease:
-	    {
-	      KeySym sym = XKeycodeToKeysym(gXDisplay, event.xkey.keycode, 1);
-	      for (vector< pair<KeySym, u32> >::iterator it = gKeyCodes.begin(); it != gKeyCodes.end(); ++it)
-		if (sym == it->first)
-		  {
-		    gControllerState &= ~it->second;
-		    gHolds &= ~it->second;
-		    break;
-		  }
-	    }
-	    break;
+            g_engine->ReleaseKey(XKeycodeToKeysym(gXDisplay, event.xkey.keycode, 1));
+            break;
 	  case ConfigureNotify:
 	    ReSizeGLScene(event.xconfigure.width, event.xconfigure.height);
 	    break;

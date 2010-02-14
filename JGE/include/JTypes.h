@@ -86,7 +86,7 @@
 	#include <GL/glu.h>
 #endif
 
-#if defined (WIN32) || defined (LINUX) 
+#if defined (WIN32) || defined (LINUX)
 
 typedef int8_t s8;
 typedef int16_t s16;
@@ -110,25 +110,6 @@ typedef uint32_t u32;
 
 	#define ARGB(a, r, g, b)		(((a) << 24) | ((r) << 16) | ((g) << 8) | (b))
 	#define RGBA(r, g, b, a)		(((a) << 24) | ((b) << 16) | ((g) << 8) | (r))
-
-        typedef enum PspCtrlButtons
-	{
-		PSP_CTRL_SELECT     = 0x000001,
-		PSP_CTRL_START      = 0x000008,
-		PSP_CTRL_UP         = 0x000010,
-		PSP_CTRL_RIGHT      = 0x000020,
-		PSP_CTRL_DOWN      	= 0x000040,
-		PSP_CTRL_LEFT      	= 0x000080,
-		PSP_CTRL_LTRIGGER   = 0x000100,
-		PSP_CTRL_RTRIGGER   = 0x000200,
-		PSP_CTRL_TRIANGLE   = 0x001000,
-		PSP_CTRL_CIRCLE     = 0x002000,
-		PSP_CTRL_CROSS      = 0x004000,
-		PSP_CTRL_SQUARE     = 0x008000,
-		PSP_CTRL_HOME       = 0x010000,
-		PSP_CTRL_HOLD       = 0x020000,
-		PSP_CTRL_NOTE       = 0x800000
-	} PspCtrlButtons;
 
   #define TEXTURE_FORMAT			0
   #define GU_PSM_8888 0
@@ -226,6 +207,29 @@ typedef uint32_t u32;
 
 #endif
 
+
+
+typedef enum Buttons
+  {
+    JGE_BTN_NONE = 0,   // No button pressed
+    JGE_BTN_QUIT,   // Home on PSP
+    JGE_BTN_MENU,   // Start on PSP
+    JGE_BTN_CTRL,   // Select
+    JGE_BTN_POWER,  // Hold
+    JGE_BTN_SOUND,  // Music note
+    JGE_BTN_RIGHT,
+    JGE_BTN_LEFT,
+    JGE_BTN_UP,
+    JGE_BTN_DOWN,
+    JGE_BTN_OK,     // Circle in Japan, Cross in Europe
+    JGE_BTN_CANCEL, // Triangle
+    JGE_BTN_PRI,    // Square (primary)
+    JGE_BTN_SEC,    // Cross or Circle (secondary)
+    JGE_BTN_PREV,   // Left trigger
+    JGE_BTN_NEXT,    // Right trigger
+
+    JGE_BTN_MAX = JGE_BTN_NEXT + 1
+  } JButton;
 
 
 

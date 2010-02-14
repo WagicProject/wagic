@@ -58,7 +58,7 @@ class OptionSelect:public OptionItem{
   virtual void Reload(){initSelections();};
   virtual void Render();
   virtual bool Selectable();
-  virtual void Entering(u32 key);
+  virtual void Entering(JButton key);
   virtual bool Changed() {return (value != prior_value);};
   virtual void setData();
   virtual void initSelections();
@@ -118,7 +118,7 @@ class OptionProfile:public OptionDirectory{
   virtual void addSelection(string s);
   virtual bool Selectable() {return canSelect;};
   virtual bool Changed() {return (initialValue != value);};
-  virtual void Entering(u32 key);
+  virtual void Entering(JButton key);
   virtual void Reload();
   virtual void Render();
   virtual void confirmChange(bool confirmed);
