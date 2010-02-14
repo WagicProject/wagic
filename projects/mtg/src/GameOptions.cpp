@@ -34,10 +34,12 @@ const string Options::optionNames[] = {
   "interruptSeconds",
 #if defined(WIN32)
   "keybindings_win",
-#elsif defined(LINUX)
+#else
+#if defined(LINUX)
   "keybindings_x",
 #else
   "keybindings_psp",
+#endif
 #endif
   "interruptMySpells",
   "interruptMyAbilities",
