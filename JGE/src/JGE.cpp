@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include <map>
+#include <limits>
 
 #include "../include/JGE.h"
 #include "../include/JApp.h"
@@ -105,7 +106,7 @@ void JGE::HoldKey_NoRepeat(const LocalKeySym sym)
     {
       keyBuffer.push(it->second);
       if (holds.end() == holds.find(it->second))
-        holds[it->second] = NAN;
+        holds[it->second] = std::numeric_limits<float>::quiet_NaN();
     }
 }
 void JGE::HoldKey(const JButton sym)
@@ -116,7 +117,7 @@ void JGE::HoldKey(const JButton sym)
 void JGE::HoldKey_NoRepeat(const JButton sym)
 {
   keyBuffer.push(sym);
-  if (holds.end() == holds.find(sym)) holds[sym] = NAN;
+  if (holds.end() == holds.find(sym)) holds[sym] = std::numeric_limits<float>::quiet_NaN();
 }
 void JGE::ReleaseKey(const LocalKeySym sym)
 {

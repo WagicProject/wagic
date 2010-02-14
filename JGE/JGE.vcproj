@@ -508,10 +508,6 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\src\JInputSystem.cpp"
-				>
-			</File>
-			<File
 				RelativePath="src\JLBFont.cpp"
 				>
 				<FileConfiguration
@@ -755,10 +751,6 @@
 			</File>
 			<File
 				RelativePath="include\JGui.h"
-				>
-			</File>
-			<File
-				RelativePath=".\include\JInputSystem.h"
 				>
 			</File>
 			<File

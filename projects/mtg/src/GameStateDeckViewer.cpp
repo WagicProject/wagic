@@ -48,8 +48,8 @@ GameStateDeckViewer::~GameStateDeckViewer() {
     SAFE_DELETE(myDeck->parent);
     SAFE_DELETE(myDeck);
   }
-  if(myCollection{
-    SAFE_DELETE(myCollection->parent)
+  if(myCollection){
+    SAFE_DELETE(myCollection->parent);
     SAFE_DELETE(myCollection);
   }
   SAFE_DELETE(filterDeck);
@@ -221,8 +221,8 @@ void GameStateDeckViewer::End()
   SAFE_DELETE(menu);
 
   resources.Release(pspIconsTexture);
-  if(myCollection{
-    SAFE_DELETE(myCollection->parent)
+  if(myCollection){
+    SAFE_DELETE(myCollection->parent);
     SAFE_DELETE(myCollection);
   }
   if(myDeck){
