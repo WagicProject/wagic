@@ -8,6 +8,8 @@
 #include <map>
 #include <set>
 
+#include <iostream>
+
 #include "../../JGE/include/JGE.h"
 #include "../../JGE/include/JTypes.h"
 #include "../../JGE/include/JApp.h"
@@ -71,7 +73,7 @@ static const struct { LocalKeySym keysym; JButton keycode; } gDefaultBindings[] 
     { XK_Control_L,	JGE_BTN_OK },
     { XK_Control_R,	JGE_BTN_OK },
     { XK_Tab,		JGE_BTN_CANCEL },
-    { XK_Alt_L,		JGE_BTN_PRI },
+    { XK_Mode_switch,	JGE_BTN_PRI },
     { XK_Caps_Lock,	JGE_BTN_SEC },
     { XK_Shift_L,	JGE_BTN_PREV },
     { XK_Shift_R,	JGE_BTN_NEXT },
@@ -390,6 +392,8 @@ int main(int argc, char* argv[])
 	  case KeyPress:
             {
               const KeySym sym = XKeycodeToKeysym(gXDisplay, event.xkey.keycode, 1);
+	      std::cout << sym << " " << XK_Alt_L << std::endl;
+
               if (sym == XK_F) fullscreen();
               g_engine->HoldKey_NoRepeat(sym);
             }
