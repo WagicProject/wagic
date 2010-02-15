@@ -487,6 +487,10 @@ struct WLFiltersSort{
 class WGuiKeyBinder : public WGuiList {
  public:
   WGuiKeyBinder(string name);
+  virtual bool isModal();
+  virtual bool CheckUserInput(JButton);
+ protected:
+  bool modal;
 };
 
 #endif
