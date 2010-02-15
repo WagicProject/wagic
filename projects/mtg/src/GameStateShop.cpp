@@ -383,7 +383,7 @@ void GameStateShop::Update(float dt)
       btn = mEngine->ReadButton();
       taskList->Update(dt);
         if ( taskList->getState() != TaskList::TASKS_INACTIVE){
-          if ( btn == JGE_BTN_SEC || btn == JGE_BTN_CANCEL ){
+          if ( btn == JGE_BTN_SEC || btn == JGE_BTN_CANCEL || btn == JGE_BTN_PREV ){
              taskList->End();
              return;
           } else if (taskList->getState() == TaskList::TASKS_ACTIVE && btn == JGE_BTN_MENU){
@@ -450,6 +450,12 @@ void GameStateShop::Update(float dt)
         return;
       } else if (btn == JGE_BTN_CTRL)
         beginFilters();
+      else if(btn == JGE_BTN_NEXT){
+        mStage = STAGE_SHOP_TASKS;
+        if (!taskList)
+          taskList = NEW TaskList();
+        taskList->Start();    
+      }
       else if (btn == JGE_BTN_PRI) {
         srcCards->Shuffle();
         load();
