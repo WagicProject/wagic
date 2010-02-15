@@ -145,13 +145,6 @@ bool JGE::GetButtonState(JButton button)
 
 bool JGE::GetButtonClick(JButton button)
 {
-  cout << "HOLDS : ";
-  for (map<JButton, float>::iterator it = holds.begin(); it != holds.end(); ++it)
-    cout << it->first << " ";
-  cout << endl << "OLDHOLDS : ";
-  for (map<JButton, float>::iterator it = oldHolds.begin(); it != oldHolds.end(); ++it)
-    cout << it->first << " ";
-  cout << endl;
   return ((holds.end() != holds.find(button)) && (oldHolds.end() == oldHolds.find(button)));
 }
 
