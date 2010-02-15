@@ -28,6 +28,7 @@ class DeckDataWrapper: public WSrcDeck {
  public:
   MTGDeck * parent;
   int counts[Constants::MTG_NB_COLORS];
+  unsigned short minCards; //Fewest number of copies of any given card in the deck.
 
   DeckDataWrapper(MTGDeck * deck);
 

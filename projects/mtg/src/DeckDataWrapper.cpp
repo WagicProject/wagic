@@ -45,6 +45,7 @@ void DeckDataWrapper::updateCounts(){
   map<int,int>::iterator it;
   for(int c=0;c<Constants::MTG_NB_COLORS;c++)
     counts[c] = 0;
+  minCards = 	65500;
 
   for(int i=0;i<Size(true);i++){
     for(int c=0;c<Constants::MTG_NB_COLORS;c++){
@@ -53,6 +54,9 @@ void DeckDataWrapper::updateCounts(){
         it = copies.find(card->getMTGId());
         if(it != copies.end())
           counts[c]+=it->second;
+        if(it->second < minCards)
+          minCards = it->second;
+
       }
     }
   }

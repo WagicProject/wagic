@@ -111,8 +111,8 @@ private:
   WGuiFilters * filterDeck;
   WGuiFilters * filterCollection;
   SimpleMenu * welcome_menu;
+  SimpleMenu * subMenu;
   SimpleMenu * menu;
-  SimpleMenu * sellMenu;
   PriceList* pricelist;
   PlayerData * playerdata;
   int price;
@@ -121,7 +121,6 @@ private:
   DeckDataWrapper * myCollection;
   MTGCard *  cardIndex[7];
   int hudAlpha;
-  int delSellMenu;
   string newDeckname;
   StatsWrapper stw;
   bool mSwitching;

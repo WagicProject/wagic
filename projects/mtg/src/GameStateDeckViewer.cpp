@@ -40,6 +40,11 @@ GameStateDeckViewer::GameStateDeckViewer(GameApp* parent): GameState(parent) {
   myDeck = NULL;
   filterDeck = NULL;
   filterCollection = NULL;
+  hudAlpha = 0;  
+  subMenu = NULL;
+  mRotation = 0;
+  mSlide = 0;
+  mAlpha = 255;
 }
 
 GameStateDeckViewer::~GameStateDeckViewer() {
@@ -66,6 +71,7 @@ void GameStateDeckViewer::rotateCards(int direction){
   loadIndexes();
 }
 void GameStateDeckViewer::updateFilters(){
+  if(!displayed_deck) return;
   displayed_deck->clearFilters();
   int i = (displayed_deck == myDeck);
 
@@ -126,7 +132,7 @@ void GameStateDeckViewer::updateDecks(){
 
   welcome_menu = NEW SimpleMenu(10,this,Constants::MENU_FONT,20,20);
   welcome_menu->Add(nbDecks+1, _("--NEW--").c_str());
-  if(options[Options::CHEATMODE].number)
+  if(options[Options::CHEATMODE].number && (!myCollection || myCollection->minCards < 4))
       welcome_menu->Add(-12,"--UNLOCK ALL--");
   nbDecks = fillDeckMenu(welcome_menu,options.profileFile());
   deckNum = 0;
@@ -139,16 +145,21 @@ void GameStateDeckViewer::Start()
 {
   hudAlpha = 0;
   mSwitching = false;
-  delSellMenu = 0;
+  subMenu = NULL;
+  myDeck = NULL;  
+  mStage = STAGE_WELCOME;
+  mRotation = 0;
+  mSlide = 0;
+  mAlpha = 255;
+  last_user_activity = NO_USER_ACTIVITY_HELP_DELAY + 1;
+  onScreenTransition = 0;
+
   pricelist = NEW PriceList(RESPATH"/settings/prices.dat",mParent->collection);
   playerdata = NEW PlayerData(mParent->collection);
-  sellMenu = NULL;
-  MTGDeck * myC = NEW MTGDeck(options.profileFile(PLAYER_COLLECTION).c_str(), mParent->collection);
-  myCollection =    NEW DeckDataWrapper(myC);
+  myCollection =    NEW DeckDataWrapper(playerdata->collection);
   myCollection->Sort(WSrcCards::SORT_ALPHA);
   displayed_deck =  myCollection;
-  myDeck = NULL;
-
+  //Build menu.
   menu = NEW SimpleMenu(11,this,Constants::MENU_FONT,SCREEN_WIDTH/2-150,20);
   menu->Add(22,"Filter by...");
   menu->Add(2,"Switch decks without saving");
@@ -158,7 +169,7 @@ void GameStateDeckViewer::Start()
   menu->Add(4,"Cancel");
 
 
-  //icon images
+  //Icons
   mIcons[Constants::MTG_COLOR_ARTIFACT] = resources.GetQuad("c_artifact");
   mIcons[Constants::MTG_COLOR_LAND] = resources.GetQuad("c_land");
   mIcons[Constants::MTG_COLOR_WHITE] = resources.GetQuad("c_white");
@@ -196,15 +207,7 @@ void GameStateDeckViewer::Start()
     }
   }
 
-  mStage = STAGE_WELCOME;
-  mRotation = 0;
-  mSlide = 0;
-  mAlpha = 255;
-
   loadIndexes();
-  last_user_activity = NO_USER_ACTIVITY_HELP_DELAY + 1;
-  onScreenTransition = 0;
-
   mEngine->ResetInput();
   JRenderer::GetInstance()->EnableVSync(true);
 }
@@ -219,10 +222,10 @@ void GameStateDeckViewer::End()
   }
   SAFE_DELETE(welcome_menu);
   SAFE_DELETE(menu);
+  SAFE_DELETE(subMenu);
 
   resources.Release(pspIconsTexture);
   if(myCollection){
-    SAFE_DELETE(myCollection->parent);
     SAFE_DELETE(myCollection);
   }
   if(myDeck){
@@ -275,11 +278,10 @@ void GameStateDeckViewer::Update(float dt)
   }
   hudAlpha = (float) 255-(last_user_activity * 500);
   if (hudAlpha < 0) hudAlpha = 0;
-  if (sellMenu){
-    sellMenu->Update(dt);
-    if (delSellMenu){
-      SAFE_DELETE(sellMenu);
-      delSellMenu = 0;
+  if (subMenu){
+    subMenu->Update(dt);
+    if (subMenu->closed){
+      SAFE_DELETE(subMenu);
     }
     return;
   }
@@ -324,16 +326,16 @@ void GameStateDeckViewer::Update(float dt)
       break;
     case JGE_BTN_SEC :
       last_user_activity = 0;
-      SAFE_DELETE(sellMenu);
+      SAFE_DELETE(subMenu);
       char buffer[4096];
       {
         MTGCard * card  = cardIndex[2];
         if (card && displayed_deck->count(card)){
           price = pricelist->getSellPrice(card->getMTGId());
           sprintf(buffer,"%s : %i %s",_(card->data->getName()).c_str(),price,_("credits").c_str());
-          sellMenu = NEW SimpleMenu(2,this,Constants::MAIN_FONT,SCREEN_WIDTH-300,SCREEN_HEIGHT/2,buffer);
-          sellMenu->Add(20,"Yes");
-          sellMenu->Add(21,"No","",true);
+          subMenu = NEW SimpleMenu(2,this,Constants::MAIN_FONT,SCREEN_WIDTH-300,SCREEN_HEIGHT/2,buffer);
+          subMenu->Add(20,"Yes");
+          subMenu->Add(21,"No","",true);
         }
       }
       stw.needUpdate = true;
@@ -1381,7 +1383,7 @@ void GameStateDeckViewer::Render() {
   if (mStage == STAGE_MENU){
     menu->Render();
   }
-  if (sellMenu) sellMenu->Render();
+  if (subMenu) subMenu->Render();
 
   if(displayed_deck == myDeck){
     if(filterDeck && !filterDeck->isFinished())
@@ -1511,7 +1513,7 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
           myCollection->Sort(WSrcCards::SORT_ALPHA);
           displayed_deck = myCollection;
           loadIndexes();
-          mStage = STAGE_WAITING;
+          mStage = STAGE_WELCOME;
           break;
         }
         loadDeck(controlId);
@@ -1575,7 +1577,7 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
           }
         }
       case 21:
-        delSellMenu = 1;
+        subMenu->Close();
         break;
     }
   }
