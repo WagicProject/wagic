@@ -392,8 +392,6 @@ int main(int argc, char* argv[])
 	  case KeyPress:
             {
               const KeySym sym = XKeycodeToKeysym(gXDisplay, event.xkey.keycode, 1);
-	      std::cout << sym << " " << XK_Alt_L << std::endl;
-
               if (sym == XK_F) fullscreen();
               g_engine->HoldKey_NoRepeat(sym);
             }
