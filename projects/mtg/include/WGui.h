@@ -484,10 +484,9 @@ struct WLFiltersSort{
   bool operator()(const WGuiBase*l, const WGuiBase*r);
 };
 
-class WGuiKeyBinder : public WGuiItem {
+class WGuiKeyBinder : public WGuiList {
  public:
-  WGuiKeyBinder();
-  virtual void Render();
+  WGuiKeyBinder(string name);
 };
 
 #endif

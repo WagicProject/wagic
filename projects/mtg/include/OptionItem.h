@@ -131,4 +131,12 @@ private:
   string preview;
   size_t initialValue;
 };
+
+class OptionKey : public WGuiItem {
+ public:
+  OptionKey(LocalKeySym, JButton);
+  LocalKeySym from;
+  JButton to;
+  virtual void Render();
+};
 #endif

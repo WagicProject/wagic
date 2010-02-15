@@ -4,6 +4,7 @@
 #include "../include/PlayerData.h"
 #include "../include/Translate.h"
 #include "../include/Subtypes.h"
+#include "../include/TranslateKeys.h"
 #include <dirent.h>
 #include <stdlib.h>
 #include <algorithm>
@@ -427,4 +428,19 @@ void OptionTheme::confirmChange(bool confirmed){
     resources.Refresh(); //Update images
     prior_value = value;
   }
+}
+
+OptionKey::OptionKey(LocalKeySym from, JButton to) : WGuiItem(""), from(from), to(to){}
+
+void OptionKey::Render(){
+  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
+  mFont->SetColor(getColor(WGuiColor::TEXT));
+  JRenderer * renderer = JRenderer::GetInstance();
+
+  const KeyRep& rep = translateKey(from);
+  if (NULL == rep.icon)
+    mFont->DrawString(rep.text, x + 4, y + 2, JGETEXT_LEFT);
+  const KeyRep& rep2 = translateKey(to);
+  if (NULL == rep2.icon)
+    mFont->DrawString(rep2.text, width - 4, y + 2, JGETEXT_RIGHT);
 }

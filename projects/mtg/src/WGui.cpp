@@ -1732,26 +1732,14 @@ string WGuiFilterItem::getCode(){
   return mCode;
 }
 
-WGuiKeyBinder::WGuiKeyBinder() : WGuiItem("KB", 0) {}
-void WGuiKeyBinder::Render()
+WGuiKeyBinder::WGuiKeyBinder(string name) : WGuiList(name)
 {
-  JRenderer* renderer = JRenderer::GetInstance();
   JGE* j = JGE::GetInstance();
   JGE::keybindings_it start = j->KeyBindings_begin(), end = j->KeyBindings_end();
-  JLBFont * font = resources.GetJLBFont(Constants::OPTION_FONT);
-  font->SetColor(getColor(WGuiColor::TEXT_BODY));
 
   u32 y = 40;
   for (JGE::keybindings_it it = start; it != end; ++it)
     {
-      //      renderer->FillRoundRect(2, y, SCREEN_WIDTH - 4, 23, 2, getColor(WGuiColor::BACK));
-      char tmp[11];
-      sprintf(tmp, "%lu", it->first);
-      font->DrawString(tmp, 4, y+2, JGETEXT_LEFT);
-      sprintf(tmp, "%i", it->second);
-      font->DrawString(tmp, SCREEN_WIDTH - 4, y+2, JGETEXT_RIGHT);
-
-      y += 25;
-      //      cout << it->first << " > " << it->second << endl;
+      Add(NEW OptionKey(it->first, it->second));
     }
 }

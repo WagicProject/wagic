@@ -80,8 +80,7 @@ void GameStateOptions::Start()
   optionsList->Add(oGra);
   optionsTabs->Add(optionsList);
 
-  optionsList = NEW WGuiList("Key Bindings");
-  optionsList->Add(NEW WGuiKeyBinder());
+  optionsList = NEW WGuiKeyBinder("Key Bindings");
   optionsTabs->Add(optionsList);
 
   optionsList = NEW WGuiList("Credits");
