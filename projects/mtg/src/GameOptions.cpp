@@ -903,11 +903,12 @@ bool GameOptionKeyBindings::read(string input){
   }
 
   if (assoc.empty()) return false;
+
   JGE* j = JGE::GetInstance();
 
   j->ClearBindings();
   for (vector< pair<LocalKeySym, JButton> >::const_iterator it = assoc.begin(); it != assoc.end(); ++it)
     j->BindKey(it->first, it->second);
-
+  
   return true;
 }
