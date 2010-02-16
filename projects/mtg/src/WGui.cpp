@@ -931,7 +931,7 @@ void WGuiTabMenu::Render(){
     return;
 
   int offset = x;
-  
+  mFont->SetScale(0.8);  
   for(vector<WGuiBase*>::iterator it = items.begin();it!=items.end();it++){
     int w = mFont->GetStringWidth(_((*it)->getDisplay()).c_str());
     mFont->SetColor((*it)->getColor(WGuiColor::TEXT_TAB));
@@ -939,6 +939,7 @@ void WGuiTabMenu::Render(){
     mFont->DrawString(_((*it)->getDisplay()).c_str(),offset+10,10);
     offset += w + 10 + 2;
   }
+  mFont->SetScale(1);
 
   WGuiBase * c = Current();
   if(c)
