@@ -1,5 +1,6 @@
 #include <map>
 #include "../include/Translate.h"
+#include "../include/WResourceManager.h"
 #include "../include/TranslateKeys.h"
 
 using std::string;
@@ -34,6 +35,10 @@ const KeyRep& translateKey(LocalKeySym key) {
     if ((res = fattable.find(key)) != fattable.end())
       return *(res->second);
   }
+
+  // Here goes PSP button-to-image code :
+  // k->icon = resources.RetrieveQuad("iconspsp.png", (float)4*32, 0, 32, 32, "", RETRIEVE_NORMAL);
+
   char* str = new char[11];
   sprintf(str, "%d", key);
   KeyRep* k = new KeyRep(NULL, str);
