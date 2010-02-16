@@ -123,7 +123,7 @@ clean:
 endif
 
 Makefile.psp:
-	echo #foo > $@
+	echo #Makefile.psp > $@
 
 Makefile.linux:
 	$(CXX) -o /dev/null src/testfeatures.c -L$(LIBDIR) -lfmod-3.75 > /dev/null 2>&1 ; if [ "0" = "$$?" ]; then echo 'FMOD=-DWITH_FMOD'; else echo 'FMOD=-DWITHOUT_FMOD'; fi > $@
