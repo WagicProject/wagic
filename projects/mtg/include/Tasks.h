@@ -71,6 +71,7 @@ protected:
   int mState;
   JQuad * mBg[9];
   JTexture * mBgTex;
+  float sH, sW;
   
 
 public:

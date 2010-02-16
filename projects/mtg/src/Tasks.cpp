@@ -357,19 +357,26 @@ void TaskList::Start(){
   mState = TASKS_IN;
   if(!mBgTex){
     mBgTex = resources.RetrieveTexture("taskboard.png");
+    float unitH = mBgTex->mHeight / 4;
+    float unitW = mBgTex->mWidth / 4;
+    if(unitH == 0 || unitW == 0) return;
+
     for(int i=0;i<9;i++)
       SAFE_DELETE(mBg[i]);
     if(mBgTex){
-    mBg[0] = NEW JQuad(mBgTex,0,0,64,64);
-    mBg[1] = NEW JQuad(mBgTex,64,0,128,64);
-    mBg[2] = NEW JQuad(mBgTex,192,0,64,64);
-    mBg[3] = NEW JQuad(mBgTex,0,64,64,128);
-    mBg[4] = NEW JQuad(mBgTex,64,64,128,128);
-    mBg[5] = NEW JQuad(mBgTex,192,64,64,128);
-    mBg[6] = NEW JQuad(mBgTex,0,192,64,64);
-    mBg[7] = NEW JQuad(mBgTex,64,192,128,64);
-    mBg[8] = NEW JQuad(mBgTex,192,192,64,64);
+      mBg[0] = NEW JQuad(mBgTex, 0,       0,        unitW,    unitH);
+      mBg[1] = NEW JQuad(mBgTex, unitW,   0,        unitW*2,  unitH);
+      mBg[2] = NEW JQuad(mBgTex, unitW*3, 0,        unitW,    unitH);
+      mBg[3] = NEW JQuad(mBgTex, 0,       unitH,    unitW,    unitH*2);
+      mBg[4] = NEW JQuad(mBgTex, unitW,   unitH,    unitW*2,  unitH*2);
+      mBg[5] = NEW JQuad(mBgTex, unitW*3, unitH,    unitW,    unitH*2);
+      mBg[6] = NEW JQuad(mBgTex, 0,       unitH*3,  unitW,    unitH);
+      mBg[7] = NEW JQuad(mBgTex, unitW,   unitH*3,  unitW*2,  unitH);
+      mBg[8] = NEW JQuad(mBgTex, unitW*3, unitH*3,  unitW,    unitH);
     }
+    
+    sH = 64 / unitH;
+    sW = 64 / unitW;
   }
 }
 void TaskList::End(){
@@ -429,20 +436,20 @@ void TaskList::Render() {
   //Render background board
   if(mBgTex){
     r->FillRect(0,vPos,SCREEN_WIDTH,SCREEN_HEIGHT,ARGB(128,0,0,0));
-    r->RenderQuad(mBg[0],0,vPos); //TL
-    r->RenderQuad(mBg[2],SCREEN_WIDTH-64,vPos); //TR
-    r->RenderQuad(mBg[6],0,vPos+SCREEN_HEIGHT-64); //BL
-    r->RenderQuad(mBg[8],SCREEN_WIDTH-64,vPos+SCREEN_HEIGHT-64); //BR
+    r->RenderQuad(mBg[0],0,vPos,0,sW,sH); //TL
+    r->RenderQuad(mBg[2],SCREEN_WIDTH-64,vPos,0,sW,sH); //TR
+    r->RenderQuad(mBg[6],0,vPos+SCREEN_HEIGHT-64,0,sW,sH); //BL
+    r->RenderQuad(mBg[8],SCREEN_WIDTH-64,vPos+SCREEN_HEIGHT-64,0,sW,sH); //BR
 
     //Stretch the sides
-    float stretchV = 144.0f/128.0f;
-    float stretchH = 176.0f/128.0f;
-    r->RenderQuad(mBg[3],0,vPos+64,0,1,stretchV); //L
-    r->RenderQuad(mBg[5],SCREEN_WIDTH-64,vPos+64,0,1,stretchV); //R
-    r->RenderQuad(mBg[1],64,vPos,0,stretchH,1); //T1
-    r->RenderQuad(mBg[1],240,vPos,0,stretchH,1); //T1
-    r->RenderQuad(mBg[7],64,vPos+208,0,stretchH,1); //B1
-    r->RenderQuad(mBg[7],240,vPos+208,0,stretchH,1); //B1
+    float stretchV = (144.0f/128.0f)*sH;
+    float stretchH = (176.0f/128.0f)*sW;
+    r->RenderQuad(mBg[3],0,vPos+64,0,sW,stretchV); //L
+    r->RenderQuad(mBg[5],SCREEN_WIDTH-64,vPos+64,0,sW,stretchV); //R
+    r->RenderQuad(mBg[1],64,vPos,0,stretchH,sH); //T1
+    r->RenderQuad(mBg[1],240,vPos,0,stretchH,sH); //T1
+    r->RenderQuad(mBg[7],64,vPos+208,0,stretchH,sH); //B1
+    r->RenderQuad(mBg[7],240,vPos+208,0,stretchH,sH); //B1
     r->RenderQuad(mBg[4],64,vPos+64,0,stretchH,stretchV); //Center1
     r->RenderQuad(mBg[4],240,vPos+64,0,stretchH,stretchV); //Center2    
 
