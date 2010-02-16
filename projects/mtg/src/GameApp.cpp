@@ -17,6 +17,8 @@
 #include "../include/GameStateOptions.h"
 #include "../include/GameStateShop.h"
 #include "../include/GameStateAwards.h"
+//Story mode not yet ready
+//#include "../include/GameStateStory.h"
 #include "../include/DeckStats.h"
 #include "../include/DeckMetaData.h"
 #include "../include/Translate.h"
@@ -183,6 +185,11 @@ void GameApp::Create()
 
   mGameStates[GAME_STATE_AWARDS] = NEW GameStateAwards(this);
   mGameStates[GAME_STATE_AWARDS]->Create();
+
+  //Story mode not yet ready
+  //mGameStates[GAME_STATE_STORY] = NEW GameStateStory(this);
+  //mGameStates[GAME_STATE_STORY]->Create();
+
 
   mGameStates[GAME_STATE_TRANSITION] = NULL;
 

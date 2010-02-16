@@ -609,6 +609,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\GameStateStory.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\GameStateTransitions.cpp"
 				>
 			</File>
@@ -761,6 +765,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\StoryFlow.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\Subtypes.cpp"
 				>
 			</File>
@@ -790,6 +798,10 @@
 			</File>
 			<File
 				RelativePath=".\src\Translate.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\TranslateKeys.cpp"
 				>
 			</File>
 			<File
@@ -982,6 +994,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\GameStateStory.h"
+				>
+			</File>
+			<File
 				RelativePath=".\include\GameStateTransitions.h"
 				>
 			</File>
@@ -1138,6 +1154,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\StoryFlow.h"
+				>
+			</File>
+			<File
 				RelativePath=".\include\Subtypes.h"
 				>
 			</File>
@@ -1171,6 +1191,10 @@
 			</File>
 			<File
 				RelativePath=".\include\Translate.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\TranslateKeys.h"
 				>
 			</File>
 			<File

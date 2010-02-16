@@ -45,6 +45,7 @@ class Player: public Damageable{
 class HumanPlayer: public Player{
  public:
   HumanPlayer(MTGPlayerCards * deck, string deckFile, string deckFileSmall);
+  HumanPlayer(string deckFile);
 
 };
 

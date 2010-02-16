@@ -246,6 +246,8 @@ void Rules::initPlayers(){
     MTGDeck * deck = buildDeck(i);
     if (deck) {
       p->game->initDeck(deck);
+      SAFE_DELETE(deck);
+      p->game->setOwner(p);
     }
   }
 }
@@ -321,7 +323,11 @@ Rules::Rules(string filename){
 int Rules::load(string _filename){
 
   char filename[4096];
-  sprintf(filename, RESPATH"/rules/%s", _filename.c_str());
+  if (fileExists(_filename.c_str())){
+    sprintf(filename, "%s", _filename.c_str());
+  }else{
+    sprintf(filename, RESPATH"/rules/%s", _filename.c_str());
+  }
   std::ifstream file(filename);
   std::string s;
 

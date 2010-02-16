@@ -65,6 +65,8 @@ HumanPlayer::HumanPlayer(MTGPlayerCards * deck, string file, string fileSmall) :
     mAvatar = NULL;
 }
 
+
+
 ManaPool * Player::getManaPool(){
   return manaPool;
 }

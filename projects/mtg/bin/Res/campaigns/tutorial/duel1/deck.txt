@@ -1,0 +1,21 @@
+#NAME:Magnivore
+#DESC:Do not underestimate
+#DESC:this... thing... because
+#DESC:it happens to be blind.
+#DESC:For if you do, it will
+#DESC:be your last mistake!
+Hymn to Tourach (FEM)        * 4 #
+Magnivore (ODY)              * 4 #
+Stone Rain (CHK)             * 4 #
+Mountain (RAV)               * 4 #
+Swamp (RAV)                  * 4 #
+Swamp (TSP)                  * 4 #
+Mountain (TSP)               * 4 #
+Damnation (PLC)              * 4 #
+Demolish (10E)               * 4 #
+Mountain (LRW)               * 4 #
+Swamp (LRW)                  * 4 #
+Blightning (ALA)             * 4 #
+Megrim (M10)                 * 4 #
+Sign in Blood (M10)          * 4 #
+Pyroclasm (M10)              * 4 #

@@ -58,6 +58,7 @@ enum
   SUBMENUITEM_CLASSIC,
   SUBMENUITEM_RANDOM1,
   SUBMENUITEM_RANDOM2,
+  SUBMENUITEM_STORY,
 };
 
 
@@ -444,6 +445,8 @@ void GameStateMenu::Update(float dt)
 	        currentState = MENU_STATE_MAJOR_SUBMENU;
 	        subMenuController = NEW SimpleMenu(102, this, Constants::MENU_FONT, 150,60);
 	        if (subMenuController){
+            //Story mode not yet ready
+            //subMenuController->Add(SUBMENUITEM_STORY,"Story");
 	          subMenuController->Add(SUBMENUITEM_CLASSIC,"Classic");
 	          if (options[Options::MOMIR_MODE_UNLOCKED].number)
 		          subMenuController->Add(SUBMENUITEM_MOMIR, "Momir Basic");
@@ -454,7 +457,10 @@ void GameStateMenu::Update(float dt)
 	          subMenuController->Add(SUBMENUITEM_CANCEL, "Cancel");
 	        }
         }else{
-          mParent->DoTransition(TRANSITION_FADE,GAME_STATE_DUEL);
+          if (mParent->gameType == GAME_TYPE_STORY)
+            mParent->DoTransition(TRANSITION_FADE,GAME_STATE_STORY);
+          else
+            mParent->DoTransition(TRANSITION_FADE,GAME_STATE_DUEL);
 	        currentState = MENU_STATE_MAJOR_MAINMENU;
 	      }
 	    }
@@ -669,6 +675,14 @@ JLBFont * mFont = resources.GetJLBFont(Constants::MENU_FONT);
     subMenuController->Close();
     currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
     break;
+
+  case SUBMENUITEM_STORY:
+    this->hasChosenGameType = 1;
+    mParent->gameType = GAME_TYPE_STORY;
+    subMenuController->Close();
+    currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
+    break;
+
 #ifdef TESTSUITE
       case SUBMENUITEM_TESTSUITE:
 	mParent->players[0] = PLAYER_TYPE_TESTSUITE;
