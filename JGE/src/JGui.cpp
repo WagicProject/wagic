@@ -100,6 +100,7 @@ void JGuiController::Render()
 }
 bool JGuiController::CheckUserInput(JButton key){
 
+  if (!mCount) return false;
   if (key == mActionButton)
   {
     if (mObjects[mCurr] != NULL && mObjects[mCurr]->ButtonPressed())
