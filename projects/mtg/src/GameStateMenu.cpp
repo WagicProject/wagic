@@ -557,14 +557,22 @@ void GameStateMenu::Render()
     if(mBg)
       renderer->RenderQuad(mBg,SCREEN_WIDTH/2,50);
 
-    JQuad * jq = resources.RetrieveTempQuad("button_trophy.png");
+    JQuad * jq = resources.RetrieveTempQuad("button_shoulder.png");
     if(jq){
       int alp = 255;
       if(options.newAward())
-        alp = (int) (sin(timeIndex) * 255);
-
+        alp = (int)(sin(timeIndex) * 255);
+      float olds = mFont->GetScale();
+      mFont = resources.GetJLBFont(Constants::OPTION_FONT);
       jq->SetColor(ARGB(abs(alp),255,255,255));        
-      renderer->RenderQuad(jq, SCREEN_WIDTH-64, 0);
+      mFont->SetColor(ARGB(abs(alp),0,0,0)); 
+      string s = _("Trophy Room");;
+      mFont->SetScale(1.0f);
+      mFont->SetScale(50.0f/mFont->GetStringWidth(s.c_str()));
+      renderer->RenderQuad(jq, SCREEN_WIDTH-64, 2);
+      mFont->DrawString(s,SCREEN_WIDTH-10,9,JGETEXT_RIGHT);
+      mFont = resources.GetJLBFont(Constants::MENU_FONT); 
+      mFont->SetScale(olds);
     }
   }
   if (subMenuController){
