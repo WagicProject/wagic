@@ -4454,7 +4454,7 @@ toughness=2
 [/card]
 [card]
 name=Book of Rass
-auto={2}:draw:2 && life:-2
+auto={2}:draw:1 && life:-2
 text={2}, Pay 2 life: Draw a card.
 mana={6}
 type=Artifact
