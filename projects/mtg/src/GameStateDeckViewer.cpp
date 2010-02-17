@@ -32,8 +32,7 @@ GameStateDeckViewer::GameStateDeckViewer(GameApp* parent): GameState(parent) {
   bgMusic = NULL;
   nbDecks = 0;
   deckNum = 0;
-  useFilter[0] = 0;
-  useFilter[1] = 0;
+  useFilter = 0;
   mSwitching = false;
   welcome_menu = NULL;
   myCollection = NULL;
@@ -74,41 +73,15 @@ void GameStateDeckViewer::updateFilters(){
   if(!displayed_deck) return;
   displayed_deck->clearFilters();
   int i = (displayed_deck == myDeck);
-
-  if(useFilter[i] == 0){
-    if(i && filterDeck)
+  if(i && filterDeck){
+      filterDeck->recolorFilter(useFilter-1);
       filterDeck->Finish();
-    else if(filterCollection)
-      filterCollection->Finish();
-    return;
   }
-  WCFilterFactory * wc = WCFilterFactory::GetInstance();
-  switch(useFilter[i]-1){
-    case Constants::MTG_COLOR_ARTIFACT:
-      displayed_deck->addFilter(wc->Construct("c:x;"));
-      break;
-      case Constants::MTG_COLOR_GREEN:
-      displayed_deck->addFilter(wc->Construct("c:g;"));
-      break;
-      case Constants::MTG_COLOR_BLUE:
-      displayed_deck->addFilter(wc->Construct("c:u;"));
-      break;
-      case Constants::MTG_COLOR_RED:
-      displayed_deck->addFilter(wc->Construct("c:r;"));
-      break;
-      case Constants::MTG_COLOR_BLACK:
-      displayed_deck->addFilter(wc->Construct("c:b;"));
-      break;
-      case Constants::MTG_COLOR_WHITE:
-      displayed_deck->addFilter(wc->Construct("c:w;"));
-      break;
-      case Constants::MTG_COLOR_LAND:
-      displayed_deck->addFilter(wc->Construct("t:Land;"));
-      break;
+  else if(filterCollection){
+    filterCollection->recolorFilter(useFilter-1);
+    filterCollection->Finish();
   }
-  //No sanity checking for color filters
-  //if(!displayed_deck->Size())
-  //  displayed_deck->clearFilters();
+  return;
 }
 void GameStateDeckViewer::loadIndexes(){
   int x=0;
@@ -299,16 +272,16 @@ void GameStateDeckViewer::Update(float dt)
     case JGE_BTN_UP :
       last_user_activity = 0;
       mStage = STAGE_TRANSITION_UP;
-      useFilter[myD]++;
-      if(useFilter[myD] >= MAX_SAVED_FILTERS)
-        useFilter[myD] = 0;
+      useFilter++;
+      if(useFilter >= MAX_SAVED_FILTERS)
+        useFilter = 0;
       break;
     case JGE_BTN_DOWN :
       last_user_activity = 0;
       mStage = STAGE_TRANSITION_DOWN;
-      useFilter[myD]--;
-      if(useFilter[myD] < 0)
-        useFilter[myD] = MAX_SAVED_FILTERS-1;
+      useFilter--;
+      if(useFilter < 0)
+        useFilter = MAX_SAVED_FILTERS-1;
       break;
     case JGE_BTN_CANCEL:
       options[Options::DISABLECARDS].number = !options[Options::DISABLECARDS].number;
@@ -446,7 +419,7 @@ void GameStateDeckViewer::Update(float dt)
     if (displayed_deck == myDeck) {
       if (filterDeck) {
         if (key == JGE_BTN_CTRL) {
-          useFilter[(displayed_deck == myDeck)] = 0;
+          useFilter = 0;
           filterDeck->Finish();
           filterDeck->Update(dt);
           loadIndexes();
@@ -463,7 +436,7 @@ void GameStateDeckViewer::Update(float dt)
     } else {
       if (filterCollection) {
         if (key == JGE_BTN_CTRL) {
-          useFilter[(displayed_deck == myDeck)] = 0;
+          useFilter = 0;
           filterCollection->Finish();
           filterCollection->Update(dt);
           loadIndexes();
@@ -501,8 +474,8 @@ void GameStateDeckViewer::renderOnScreenBasicInfo(){
   float w = mFont->GetStringWidth(buffer);
   JRenderer::GetInstance()->FillRoundRect(SCREEN_WIDTH-(w+27),y-5,w+10,15,5,ARGB(128,0,0,0));
   mFont->DrawString(buffer, SCREEN_WIDTH-22, y+5,JGETEXT_RIGHT);
-  if (useFilter[myD] != 0)
-    JRenderer::GetInstance()->RenderQuad(mIcons[useFilter[myD]-1], SCREEN_WIDTH-10  , y + 10 , 0.0f,0.5,0.5);
+  if (useFilter != 0)
+    JRenderer::GetInstance()->RenderQuad(mIcons[useFilter-1], SCREEN_WIDTH-10  , y + 10 , 0.0f,0.5,0.5);
 }
 
 

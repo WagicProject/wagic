@@ -421,6 +421,7 @@ public:
   void Render();
   void Entering(JButton key);
   void addColumn();
+  void recolorFilter(int color);
   bool isAvailable(int type);
   bool isAvailableCode(string code);
   bool Finish(); //Returns true if card set reasonably expected to be changed.
@@ -433,6 +434,7 @@ protected:
   vector< pair<string,string> > tempArgs; //TODO FIXME this is inefficient
   bool bFinished;
   string priorFilter;
+  int recolorTo, priorRecolor;
   WSrcCards* source;
   SimpleMenu* subMenu;
   WGuiList * list;

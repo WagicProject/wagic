@@ -1326,12 +1326,18 @@ bool WGuiFilters::Finish(){
   string src;
   if(source){
     src = getCode();
-    if(priorFilter == src)
+    if(priorFilter == src && recolorTo == priorRecolor)
       return false;
     source->clearFilters();
     if(src.size()){
       WCFilterFactory * wc = WCFilterFactory::GetInstance();
-      source->addFilter(wc->Construct(src));
+      WCardFilter * f = wc->Construct(src);
+      if(recolorTo > -1 && recolorTo < Constants::MTG_NB_COLORS){
+        if(!f->filtersColor())
+          f = NEW WCFilterAND(f,NEW WCFilterColor(recolorTo));
+        f->recolor(recolorTo);
+      }
+      source->addFilter(f);
     }
     if(!source->Size()){
       source->clearFilters(); //TODO: Pop a "No results found" warning
@@ -1375,7 +1381,13 @@ void WGuiFilters::buildList(){
 WGuiFilters::WGuiFilters(string header, WSrcCards * src) : WGuiItem(header) {
   bFinished = false;
   source = src;
+  recolorTo = -1;
+  priorRecolor = -1;
   buildList();
+}
+void  WGuiFilters::recolorFilter(int color){
+  priorRecolor = recolorTo;
+  recolorTo = color;
 }
 string WGuiFilters::getCode(){
   if(!list)

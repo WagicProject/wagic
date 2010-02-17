@@ -105,7 +105,7 @@ private:
   int mStage;
   int nbDecks;
   int deckNum;
-  int useFilter[2];
+  int useFilter;
   JMusic * bgMusic;
   JQuad * backQuad;
   WGuiFilters * filterDeck;

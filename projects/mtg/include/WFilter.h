@@ -19,6 +19,8 @@ private:
 class WCardFilter{
 public:
   WCardFilter() {};
+  virtual void recolor(int mtgcolor) {};
+  virtual bool filtersColor() {return false;};
   virtual ~WCardFilter() {};
   virtual bool isMatch(MTGCard * c) {return true;};
   virtual string getCode() = 0;
@@ -29,8 +31,10 @@ class WCFBranch: public WCardFilter{
 public:
   WCFBranch(WCardFilter * a, WCardFilter * b) {lhs=a;rhs=b;};
   ~WCFBranch() {SAFE_DELETE(lhs); SAFE_DELETE(rhs);};
+  virtual bool filtersColor() {return (rhs->filtersColor() || lhs->filtersColor());};
   virtual bool isMatch(MTGCard * c) = 0;
   virtual string getCode() = 0;
+  virtual void recolor(int mtgcolor) {rhs->recolor(mtgcolor);lhs->recolor(mtgcolor);}; 
   virtual WCardFilter * Right(){return rhs;};
   virtual WCardFilter * Left(){return lhs;};
 protected:
@@ -57,6 +61,8 @@ class WCFilterGROUP: public WCardFilter{
 public:
   WCFilterGROUP(WCardFilter * _k) {kid = _k;};
   ~WCFilterGROUP() {SAFE_DELETE(kid);};
+  virtual void recolor(int mtgcolor) {kid->recolor(mtgcolor);}; 
+  virtual bool filtersColor() {return (kid->filtersColor());};
   bool isMatch(MTGCard *c) {return kid->isMatch(c);};
   string getCode();
   float filterFee() {return kid->filterFee();};
@@ -68,6 +74,8 @@ class WCFilterNOT: public WCardFilter{
 public:
   WCFilterNOT(WCardFilter * _k) {kid = _k;};
   ~WCFilterNOT() {SAFE_DELETE(kid);};
+  virtual void recolor(int mtgcolor) {kid->recolor(mtgcolor);}; 
+  virtual bool filtersColor() {return (kid->filtersColor());};
   bool isMatch(MTGCard *c) {return !kid->isMatch(c);};
   string getCode();
 protected:
@@ -105,9 +113,11 @@ protected:
 class WCFilterColor: public WCardFilter{
 public:
   WCFilterColor(int _c) {color = _c;};
+  virtual void recolor(int mtgcolor) {color = mtgcolor;};
   WCFilterColor(string arg);
   bool isMatch(MTGCard * c);
   string getCode();
+  bool filtersColor() {return true;};
   float filterFee() {return 0.2f;};
 protected:
   int color;
@@ -124,6 +134,8 @@ public:
   WCFilterProducesColor(int _c) : WCFilterColor(_c) {};
   WCFilterProducesColor(string arg) : WCFilterColor(arg) {};
   bool isMatch(MTGCard * c);
+  void recolor(int mtgcolor) {return;}; 
+  bool filtersColor() {return false;}; //We only want to know about filtering against card color, not produced.
   string getCode();
 };
 class WCFilterNumeric: public WCardFilter{
