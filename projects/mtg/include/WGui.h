@@ -434,7 +434,7 @@ protected:
   vector< pair<string,string> > tempArgs; //TODO FIXME this is inefficient
   bool bFinished;
   string priorFilter;
-  int recolorTo, priorRecolor;
+  int recolorTo;
   WSrcCards* source;
   SimpleMenu* subMenu;
   WGuiList * list;

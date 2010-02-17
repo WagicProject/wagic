@@ -132,6 +132,10 @@ void GameStateDeckViewer::Start()
   myCollection =    NEW DeckDataWrapper(playerdata->collection);
   myCollection->Sort(WSrcCards::SORT_ALPHA);
   displayed_deck =  myCollection;
+  filterDeck = NEW WGuiFilters("Filter by...",myDeck);
+  filterDeck->Finish();
+  filterCollection = NEW WGuiFilters("Filter by...",myCollection);
+  filterCollection->Finish();
   //Build menu.
   menu = NEW SimpleMenu(11,this,Constants::MENU_FONT,SCREEN_WIDTH/2-150,20);
   menu->Add(22,"Filter by...");
@@ -1482,6 +1486,7 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
               goa->giveAward();
           }
           options.save();
+          SAFE_DELETE(filterCollection);
           SAFE_DELETE(myCollection);
           myCollection = NEW DeckDataWrapper(playerdata->collection);
           myCollection->Sort(WSrcCards::SORT_ALPHA);
