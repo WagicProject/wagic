@@ -94,6 +94,8 @@ class GameStateShop: public GameState, public JGuiListener
   void beginPurchase(int controlId);
   void purchaseCard(int controlId);
   void purchaseBooster(int controlId);
+  void cancelCard(int controlId);
+  void cancelBooster(int controlId);
   int purchasePrice(int offset);
   string descPurchase(int controlId, bool tiny = false);
  public:

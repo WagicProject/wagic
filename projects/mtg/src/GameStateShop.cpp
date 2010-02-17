@@ -151,10 +151,21 @@ string GameStateShop::descPurchase(int controlId, bool tiny){
      sprintf(buffer,_("%s (%i)").c_str(),name.c_str(),mCounts[controlId]);
      return buffer;
    }
-   if(mCounts[controlId] < 1)
-     sprintf(buffer,_("%s : %i credits").c_str(),name.c_str(),mPrices[controlId]);
-   else
-     sprintf(buffer,_("%s (%i) : %i credits").c_str(),name.c_str(),mCounts[controlId],mPrices[controlId]);
+   switch(options[Options::ECON_DIFFICULTY].number){
+     case Constants::ECON_HARD:
+     case Constants::ECON_NORMAL:
+       if(mCounts[controlId] < 1)
+         sprintf(buffer,_("%s").c_str(),name.c_str());
+       else
+         sprintf(buffer,_("%s (%i)").c_str(),name.c_str(),mCounts[controlId]);
+       break;
+     default:
+       if(mCounts[controlId] < 1)
+         sprintf(buffer,_("%s : %i credits").c_str(),name.c_str(),mPrices[controlId]);
+       else
+         sprintf(buffer,_("%s (%i) : %i credits").c_str(),name.c_str(),mCounts[controlId],mPrices[controlId]);
+       break;
+   }
    return buffer;
 }
 void GameStateShop::beginPurchase(int controlId){
@@ -173,23 +184,62 @@ void GameStateShop::beginPurchase(int controlId){
     }
   }
   else{
-    string s;
+    char buf[512];
     if(controlId < BOOSTER_SLOTS)
-      s = _("Purchase Booster");
+      sprintf(buf,_("Purchase Booster: %i credits").c_str(),mPrices[controlId]);
     else
-      s = _("Purchase Card");
-  menu = NEW SimpleMenu(-145,this,Constants::MENU_FONT,SCREEN_WIDTH-300,SCREEN_HEIGHT/2,s.c_str());
-  menu->Add(controlId,"Yes");
-  menu->Add(-1,"No");
+      sprintf(buf,_("Purchase Card: %i credits").c_str(),mPrices[controlId]);
+    menu = NEW SimpleMenu(-145,this,Constants::MENU_FONT,SCREEN_WIDTH-300,SCREEN_HEIGHT/2,buf);
+    
+    menu->Add(controlId,"Yes");
+    menu->Add(-1,"No");
   }
 }
+void GameStateShop::cancelCard(int controlId){
+  //Update prices
+  MTGCard * c = srcCards->getCard(controlId-BOOSTER_SLOTS);
+  if(!c || !c->data || playerdata->credits - mPrices[controlId] < 0) 
+    return; //We only care about their oppinion if they /can/ buy it.
 
+  int price = mPrices[controlId];
+  int rnd;
+  switch(options[Options::ECON_DIFFICULTY].number){
+    case Constants::ECON_HARD:
+      rnd = rand() % 10; break;
+    case Constants::ECON_EASY:
+      rnd = rand() % 50; break;
+    default: 
+      rnd = rand() % 25; break;
+  }  
+  price = price - (rnd * price)/100;
+  pricelist->setPrice(c->getMTGId(),price);
+  //Prices do not immediately go down when you ignore something.
+  return;
+}
+void GameStateShop::cancelBooster(int controlId){
+  return; //TODO FIXME Tie boosters into pricelist.
+}
 void GameStateShop::purchaseCard(int controlId){
   MTGCard * c = srcCards->getCard(controlId-BOOSTER_SLOTS);
   if(!c || !c->data || playerdata->credits - mPrices[controlId] < 0)
     return;
   myCollection->Add(c);
-  playerdata->credits -= mPrices[controlId];
+  int price = mPrices[controlId];
+  pricelist->setPrice(c->getMTGId(),price); // In case they changed their minds after cancelling.
+  playerdata->credits -= price;
+  //Update prices
+  int rnd;
+  switch(options[Options::ECON_DIFFICULTY].number){
+    case Constants::ECON_HARD:
+      rnd = rand() % 50; break;
+    case Constants::ECON_EASY:
+      rnd = rand() % 10; break;
+    default: 
+      rnd = rand() % 25; break;
+  }  
+  price = price + (rnd * price)/100;
+  pricelist->setPrice(c->getMTGId(),price);
+  mPrices[controlId] = pricelist->getPurchasePrice(c->getMTGId()); //Prices go up immediately.
   mInventory[controlId]--; 
   updateCounts();
   mTouched = true;
@@ -277,6 +327,7 @@ void GameStateShop::load(){
       case Constants::RARITY_L:
         mInventory[i] = 100;
         break;
+      default: //We're using some non-coded rarities (S) in cards.dat.
       case Constants::RARITY_U:
         mInventory[i] = 1 + rand() % 5;
         break;
@@ -591,13 +642,17 @@ void GameStateShop::ButtonPressed(int controllerId, int controlId)
       return;
     case -145: 
       if(controlId == -1){ //Nope, don't buy.
+        if(sel < BOOSTER_SLOTS)
+          cancelBooster(sel);
+        else
+          cancelCard(sel);
         menu->Close();
         mStage = STAGE_SHOP_SHOP;
         return;
       }
       if(sel > -1 && sel < SHOP_ITEMS){        
         if(controlId == -2)
-          playerdata->credits += mPrices[sel];
+          playerdata->credits += mPrices[sel]; //We stole it.
         if(sel < BOOSTER_SLOTS) //Clicked a booster.
           purchaseBooster(sel);
         else
