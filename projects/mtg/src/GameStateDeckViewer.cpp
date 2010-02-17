@@ -490,14 +490,15 @@ void GameStateDeckViewer::renderOnScreenBasicInfo(){
   int myD = (displayed_deck == myDeck);
 
   float y = 0;
-  JRenderer::GetInstance()->FillRoundRect(SCREEN_WIDTH-125,y-5,110,15,5,ARGB(128,0,0,0));
   int now, total;
   now = displayed_deck->Size();
   total = displayed_deck->Size(true);
   if(now != total)
-    sprintf(buffer, "%s%i of %i (%i cards)", (displayed_deck == myDeck) ? "DECK: " : " ", now, total,displayed_deck->totalCopies());
+    sprintf(buffer, "%s%i cards (%i of %i unique)", (displayed_deck == myDeck) ? "DECK: " : " ", displayed_deck->totalCopies(),now, total);
   else
-    sprintf(buffer, "%s%i (%i cards)", (displayed_deck == myDeck) ? "DECK: " : " " , total,displayed_deck->totalCopies());
+    sprintf(buffer, "%s%i cards (%i unique)", (displayed_deck == myDeck) ? "DECK: " : " " , displayed_deck->totalCopies(),total);
+  float w = mFont->GetStringWidth(buffer);
+  JRenderer::GetInstance()->FillRoundRect(SCREEN_WIDTH-(w+27),y-5,w+10,15,5,ARGB(128,0,0,0));
   mFont->DrawString(buffer, SCREEN_WIDTH-22, y+5,JGETEXT_RIGHT);
   if (useFilter[myD] != 0)
     JRenderer::GetInstance()->RenderQuad(mIcons[useFilter[myD]-1], SCREEN_WIDTH-10  , y + 10 , 0.0f,0.5,0.5);
