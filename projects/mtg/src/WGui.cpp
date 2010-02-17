@@ -1756,4 +1756,16 @@ WGuiKeyBinder::WGuiKeyBinder(string name) : WGuiList(name), modal(false)
     Add(NEW OptionKey(it->first, it->second));
 }
 bool WGuiKeyBinder::isModal() { return modal; }
-bool WGuiKeyBinder::CheckUserInput(JButton key) { return false; }
+bool WGuiKeyBinder::CheckUserInput(JButton key)
+{
+  switch (key)
+    {
+    case JGE_BTN_UP:
+      prevItem(); break;
+    case JGE_BTN_DOWN:
+      nextItem(); break;
+    default:
+      ;
+    }
+  return false;
+}

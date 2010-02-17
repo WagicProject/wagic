@@ -68,8 +68,8 @@ const KeyRep& translateKey(JButton key) {
   slimtable[JGE_BTN_CANCEL] = new KeyRep(NULL, _("Cancel"));
   slimtable[JGE_BTN_PRI] =    new KeyRep(NULL, _("Primary"));
   slimtable[JGE_BTN_SEC] =    new KeyRep(NULL, _("Secondary"));
-  slimtable[JGE_BTN_PREV] =   new KeyRep(NULL, _("Previous"));
-  slimtable[JGE_BTN_NEXT] =   new KeyRep(NULL, _("Next"));
+  slimtable[JGE_BTN_PREV] =   new KeyRep(NULL, _("Next phase/Previous item"));
+  slimtable[JGE_BTN_NEXT] =   new KeyRep(NULL, _("Open hand/Next item"));
 
   return *slimtable[key];
 }
