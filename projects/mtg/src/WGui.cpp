@@ -1106,7 +1106,7 @@ void WGuiCardImage::Render(){
   MTGCard * c = NULL;
   Pos p(x+margin, y+margin, 1,0,255);
 
-  if(!source || (c = source->getCard(mOffset.getPos())) == NULL){
+  if(!source || (c = source->getCard(mOffset.getPos())) == NULL){ //No card, use card back.
       JQuad * q;      
     if(bThumb){
       q = resources.GetQuad("back_thumb");
@@ -1119,10 +1119,8 @@ void WGuiCardImage::Render(){
       q = resources.GetQuad("back");
     float scale = p.actZ * 257.f / q->mHeight;
     renderer->RenderQuad(q,p.x,p.y,0,scale,scale);
-  }else{
-    if(!c)
-      return;
-    if(bThumb){
+  }else{ //Have card.
+    if(bThumb){ //Thumbnail.
       JQuad * q = NULL;
       if(!options[Options::DISABLECARDS].number){
         q = source->getThumb(mOffset.getPos());
@@ -1135,12 +1133,12 @@ void WGuiCardImage::Render(){
         return; //TODO Some kind of error image.
       renderer->RenderQuad(q,p.x,p.y);
     }
-    else{
-    JQuad * q = source->getImage(mOffset.getPos());
-    if(!q || options[Options::DISABLECARDS].number)
-      CardGui::alternateRender(c,p);
-    else
-      CardGui::RenderBig(c,p);
+    else{ //Normal card.
+      JQuad * q = source->getImage(mOffset.getPos());
+      if(!q || options[Options::DISABLECARDS].number)
+        CardGui::alternateRender(c,p);
+      else
+        CardGui::RenderBig(c,p);
     }
   }
 }
@@ -1321,13 +1319,11 @@ WGuiListRow::WGuiListRow(string n, WSyncable * s) : WGuiList(n,s) {
   height = 20;
 }
 //WGuiFilterUI
-bool WGuiFilters::Finish(){
+bool WGuiFilters::Finish(bool emptyset){
   bFinished = true;
   string src;
   if(source){
     src = getCode();
-    if(priorFilter == src && recolorTo < 0)
-      return false;
     source->clearFilters();
     if(src.size()){
       WCFilterFactory * wc = WCFilterFactory::GetInstance();
@@ -1342,11 +1338,10 @@ bool WGuiFilters::Finish(){
         source->addFilter(f);
       }
     }
-    if(!source->Size()){
+    if(!source->Size() && !emptyset){
       source->clearFilters(); //TODO: Pop a "No results found" warning
     }
   }
-  priorFilter = src;
   return true;
 }
 void WGuiFilters::ButtonPressed(int controllerId, int controlId){
@@ -1359,7 +1354,8 @@ void WGuiFilters::ButtonPressed(int controllerId, int controlId){
       Finish();
     }
     else{
-      source->clearFilters();
+      if(source)
+        source->clearFilters();
       SAFE_DELETE(list);
       buildList();
     }

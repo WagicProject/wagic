@@ -71,15 +71,15 @@ void GameStateDeckViewer::rotateCards(int direction){
 }
 void GameStateDeckViewer::updateFilters(){
   if(!displayed_deck) return;
-  displayed_deck->clearFilters();
+//  displayed_deck->clearFilters();
   int i = (displayed_deck == myDeck);
   if(i && filterDeck){
       filterDeck->recolorFilter(useFilter-1);
-      filterDeck->Finish();
+      filterDeck->Finish(true);
   }
   else if(filterCollection){
     filterCollection->recolorFilter(useFilter-1);
-    filterCollection->Finish();
+    filterCollection->Finish(true);
   }
   return;
 }
@@ -92,7 +92,7 @@ void GameStateDeckViewer::loadIndexes(){
 
 void GameStateDeckViewer::switchDisplay(){
   if (displayed_deck == myCollection){
-    displayed_deck = myDeck;
+    displayed_deck = myDeck;    
   }else{
     displayed_deck = myCollection;
   }
@@ -112,7 +112,6 @@ void GameStateDeckViewer::updateDecks(){
   if(options[Options::CHEATMODE].number && (!myCollection || myCollection->getCount(WSrcDeck::UNFILTERED_MIN_COPIES) < 4))
       welcome_menu->Add(-12,"--UNLOCK CARDS--");
   welcome_menu->Add(-1, _("Cancel").c_str());
-
 }
 
 void GameStateDeckViewer::Start()
@@ -134,7 +133,7 @@ void GameStateDeckViewer::Start()
   myCollection->Sort(WSrcCards::SORT_ALPHA);
   displayed_deck =  myCollection;
   filterCollection = NEW WGuiFilters("Filter by...",myCollection);
-  filterCollection->Finish();
+  filterCollection->Finish(true);
   //Build menu.
   menu = NEW SimpleMenu(11,this,Constants::MENU_FONT,SCREEN_WIDTH/2-150,20);
   menu->Add(22,"Filter by...");
@@ -423,7 +422,7 @@ void GameStateDeckViewer::Update(float dt)
       if (filterDeck) {
         if (key == JGE_BTN_CTRL) {
           useFilter = 0;
-          filterDeck->Finish();
+          filterDeck->Finish(true);
           filterDeck->Update(dt);
           loadIndexes();
           return;
@@ -440,7 +439,7 @@ void GameStateDeckViewer::Update(float dt)
       if (filterCollection) {
         if (key == JGE_BTN_CTRL) {
           useFilter = 0;
-          filterCollection->Finish();
+          filterCollection->Finish(true);
           filterCollection->Update(dt);
           loadIndexes();
           return;
@@ -1403,7 +1402,7 @@ int GameStateDeckViewer::loadDeck(int deckid){
   myDeck = NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(deckname,"",false,false).c_str(), mParent->collection));
   if(filterDeck) SAFE_DELETE(filterDeck);
   filterDeck = NEW WGuiFilters("Filter by...",myDeck);
-  filterDeck->Finish();
+  filterDeck->Finish(true);
 
   // Check whether the cards in the deck are actually available in the player's collection:
   int cheatmode = options[Options::CHEATMODE].number;

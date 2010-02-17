@@ -159,7 +159,6 @@ public:
   WGuiCardDistort(WDataSource * wds, bool _thumb=false, WDataSource * _distort=NULL);
   ~WGuiCardDistort();
   virtual void Render();
-  
   WDistort xy; 
 protected:
   hgeDistortionMesh* mesh;
@@ -424,7 +423,7 @@ public:
   void recolorFilter(int color);
   bool isAvailable(int type);
   bool isAvailableCode(string code);
-  bool Finish(); //Returns true if card set reasonably expected to be changed.
+  bool Finish(bool emptyset = false); //Returns true if card set reasonably expected to be changed.
   bool isFinished() {return bFinished;};
   void ButtonPressed(int controllerId, int controlId);
   void buildList();
@@ -433,7 +432,6 @@ protected:
   void addArg(string display, string code);
   vector< pair<string,string> > tempArgs; //TODO FIXME this is inefficient
   bool bFinished;
-  string priorFilter;
   int recolorTo;
   WSrcCards* source;
   SimpleMenu* subMenu;
