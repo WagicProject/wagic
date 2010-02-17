@@ -247,9 +247,7 @@ bool GameStateAwards::enterStats(int option){
   detailview->Add(NEW WGuiHeader("Collection Stats"));
   detailview->Entering(JGE_BTN_NONE);
 
-  //Discover favorite set and unique cards
-  int unique = 0;
-
+  //Discover favorite set
   if(setlist.size() > 0){
     int * counts = (int*)calloc(setlist.size(),sizeof(int));
     int setid = -1;
@@ -268,7 +266,6 @@ bool GameStateAwards::enterStats(int option){
         many = c;
         dupes = count;
       }
-      unique++;
       counts[c->setId]+=count;
       if(costly == NULL 
         || c->data->getManaCost()->getConvertedCost() > costly->data->getManaCost()->getConvertedCost())
@@ -279,7 +276,6 @@ bool GameStateAwards::enterStats(int option){
 
       if(c->data->isCreature() && (tough == NULL || c->data->getToughness() > tough->data->getToughness()))
         tough = c;
-
     }
     for(int i=0;i<setlist.size();i++){
       if(setid < 0 || counts[i] > counts[setid])
@@ -291,10 +287,10 @@ bool GameStateAwards::enterStats(int option){
     sprintf(buf,_("Total Value: %ic").c_str(),ddw->totalPrice());
     detailview->Add(NEW WGuiItem(buf,WGuiItem::NO_TRANSLATE));//ddw->colors
     
-    sprintf(buf,_("Total Cards (including duplicates): %i").c_str(),ddw->totalCopies());
+    sprintf(buf,_("Total Cards (including duplicates): %i").c_str(),ddw->getCount(WSrcDeck::UNFILTERED_COPIES));
     detailview->Add(NEW WGuiItem(buf,WGuiItem::NO_TRANSLATE));//ddw->colors
 
-    sprintf(buf,_("Unique Cards: %i").c_str(),unique);
+    sprintf(buf,_("Unique Cards: %i").c_str(),ddw->getCount(WSrcDeck::UNFILTERED_UNIQUE));
     detailview->Add(NEW WGuiItem(buf,WGuiItem::NO_TRANSLATE));
 
     if(many){

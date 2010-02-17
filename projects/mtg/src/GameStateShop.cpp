@@ -222,7 +222,7 @@ void GameStateShop::purchaseBooster(int controlId){
   }
   SAFE_DELETE(ddw);
 
-  myCollection->Add(booster);
+  myCollection->loadMatches(booster);
   mTouched = true;
   save(true);
   menu->Close();

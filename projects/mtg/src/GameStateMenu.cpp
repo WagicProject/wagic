@@ -9,8 +9,6 @@
 #include "../include/DeckStats.h"
 #include "../include/PlayerData.h"
 #include "../include/utils.h"
-#include "../include/DeckDataWrapper.h"
-#include "../include/MTGPack.h"
 
 static const char* GAME_VERSION = "WTH?! 0.11.0 - by wololo";
 
@@ -224,20 +222,18 @@ void GameStateMenu::fillScroller(){
   scroller->Add(buff2);
 
   PlayerData * playerdata = NEW PlayerData(mParent->collection);
-  DeckDataWrapper* ddw = NEW DeckDataWrapper(playerdata->collection);
-  int totalCards = ddw->getCount();
+  int totalCards = playerdata->collection->totalCards();
   if (totalCards){
     sprintf(buff2, _("You have a total of %i cards in your collection").c_str(),totalCards);
       scroller->Add(buff2);
 
-      int estimatedValue = ddw->totalPrice();
+      int estimatedValue = playerdata->collection->totalPrice();
       sprintf(buff2, _("The shopkeeper would buy your entire collection for around %i credits").c_str(),estimatedValue/2);
       scroller->Add(buff2);
 
       sprintf(buff2, _("The cards in your collection have an average value of %i credits").c_str(),estimatedValue/totalCards);
       scroller->Add(buff2);
   }
-  SAFE_DELETE(ddw);
 
   sprintf(buff2, _("You currently have %i credits").c_str(),playerdata->credits);
   SAFE_DELETE(playerdata);

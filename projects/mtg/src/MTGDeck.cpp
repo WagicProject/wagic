@@ -473,7 +473,17 @@ MTGDeck::MTGDeck(MTGAllCards * _allcards){
   filename ="";
   meta_name = "";
 }
-
+int MTGDeck::totalPrice(){
+  int total = 0;
+  PriceList * pricelist = NEW PriceList(RESPATH"/settings/prices.dat",GameApp::collection);
+  map<int,int>::iterator it;
+  for ( it=cards.begin() ; it != cards.end(); it++ ){
+      int nb =  it->second;
+      if (nb) total += pricelist->getPrice(it->first);
+  }
+  SAFE_DELETE(pricelist);
+  return total;
+}
 MTGDeck::MTGDeck(const char * config_file, MTGAllCards * _allcards, int meta_only){
   total_cards = 0;
   database = _allcards;

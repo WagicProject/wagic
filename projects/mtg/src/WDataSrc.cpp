@@ -122,7 +122,8 @@ int WSrcCards::loadMatches(MTGAllCards* ac){
       count++;
     }
   }
-  validateFilters();
+  validate();
+  updateCounts();
   return count;
 }
 int WSrcCards::loadMatches(MTGDeck * deck){
@@ -137,7 +138,8 @@ int WSrcCards::loadMatches(MTGDeck * deck){
       count++;
     }
   }
-  validateFilters();
+  validate();
+  updateCounts();
   return count;
 }
 int WSrcCards::loadMatches(WSrcCards* src, bool all){
@@ -157,7 +159,8 @@ int WSrcCards::loadMatches(WSrcCards* src, bool all){
     }
   }
   src->setOffset(oldp);
-  validateFilters();
+  validate();
+  updateCounts();
   return count;  
 }
 int WSrcCards::addRandomCards(MTGDeck * i, int howmany){
@@ -166,7 +169,8 @@ int WSrcCards::addRandomCards(MTGDeck * i, int howmany){
   for(int x=0;x<howmany;x++){
     if(validated.size()){
       size_t pos = rand() % validated.size();
-      i->add(cards[validated[pos]]);
+      MTGCard * c = cards[validated[pos]];
+      i->add(c);
     }
     else{
       size_t pos = rand() % cards.size();
@@ -268,11 +272,11 @@ void WSrcCards::Shuffle(){
 #else //PSP does a straight swap for speed.
   cards.swap(a);
 #endif
-  validateFilters();
+  validate();
 }
-void WSrcCards::validateFilters(){
+void WSrcCards::validate(){
   validated.clear();
-  if(filtersRoot == NULL) return; //No filter, no validation
+  if(!filtersRoot) return;
   for(size_t t=0;t<cards.size();t++){
     if(matchesFilters(cards[t]))
       validated.push_back(t);
@@ -306,7 +310,8 @@ void WSrcCards::addFilter(WCardFilter * f) {
     filtersRoot = f;
   else
     filtersRoot = NEW WCFilterAND(f,filtersRoot);
-  validateFilters();
+  validate();
+  updateCounts();
   currentPos = 0;
 }
 float WSrcCards::filterFee(){
@@ -337,7 +342,7 @@ void WSrcCards::Sort(int method){
       std::sort(cards.begin(),cards.end(),WCSortAlpha());
       break;
   }
-  validateFilters();
+  validate();
 }
 //WSrcUnlockedCards
 WSrcUnlockedCards::WSrcUnlockedCards(float delay): WSrcCards(delay){
@@ -380,17 +385,48 @@ int WSrcDeck::loadMatches(MTGDeck * deck){
       count++;
     }
   }
-  validateFilters();
+  validate();
+  updateCounts();
   return count;
 }
+void WSrcDeck::updateCounts(){
+  vector<MTGCard*>::iterator it;
+  map<int,int>::iterator ccount;
+  clearCounts();
+  for(it=cards.begin();it!=cards.end();it++){
+    ccount = copies.find((*it)->getMTGId());
+    if(ccount == copies.end()) continue;
+    addCount((*it),ccount->second);
+  }
+}
+void WSrcDeck::clearCounts(){
+  counts[UNFILTERED_MIN_COPIES] = -1;
+  counts[UNFILTERED_MAX_COPIES] = 0;
+  for(int i=0;i<MAX_COUNTS;i++)
+    counts[i] = 0;
+}
+void WSrcDeck::addCount(MTGCard * c, int qty){
+  if(!c || !c->data) return;
+  if(matchesFilters(c)){
+    counts[FILTERED_COPIES]+=qty;
+    counts[FILTERED_UNIQUE]++;
+  }
+  counts[UNFILTERED_COPIES] += qty;
+  counts[UNFILTERED_UNIQUE]++;
+  for(int i=Constants::MTG_COLOR_GREEN;i<=Constants::MTG_COLOR_WHITE;i++)
+    if (c->data->hasColor(i)) counts[i]+= qty;
+  if(counts[UNFILTERED_MIN_COPIES] < 0 || qty < counts[UNFILTERED_MIN_COPIES]) counts[UNFILTERED_MIN_COPIES] = qty;
+  if(qty > counts[UNFILTERED_MAX_COPIES]) counts[UNFILTERED_MAX_COPIES] = qty;
 
+}
 int WSrcDeck::Add(MTGCard * c, int quantity){
   if(!c)
     return 0;
   if(copies.find(c->getMTGId()) == copies.end())
     cards.push_back(c); //FIXME Make sure these two stay synced.
   copies[c->getMTGId()] += quantity;
-  totalCards += quantity;
+  addCount(c,quantity);
+  validate();
   return 1;
 }
 
@@ -409,7 +445,8 @@ int WSrcDeck::Remove(MTGCard * c, int quantity, bool erase){
     if(i != cards.end())
       cards.erase(i);
   }
-  totalCards -= quantity;
+  validate();
+  addCount(c,-quantity);
   return 1;
 }
 
@@ -425,7 +462,7 @@ void WSrcDeck::Rebuild(MTGDeck * d){
 
 int WSrcDeck::count(MTGCard * c){
   if(!c)
-    return totalCopies();
+    return counts[UNFILTERED_COPIES];
   if(copies.find(c->getMTGId()) == copies.end())
     return 0;
   return copies[c->getMTGId()];
@@ -448,7 +485,11 @@ int WSrcDeck::countByName(MTGCard * card, bool editions){
   }
  return total;
 }
-
+int WSrcDeck::getCount(int count){
+  if(count < 0 || count >=MAX_COUNTS)
+    return counts[UNFILTERED_COPIES];
+  return counts[count];
+}
 int WSrcDeck::totalPrice(){
   int total = 0;
   PriceList * pricelist = NEW PriceList(RESPATH"/settings/prices.dat",GameApp::collection);
@@ -461,9 +502,6 @@ int WSrcDeck::totalPrice(){
   return total;
 }
 
-int WSrcDeck::totalCopies(){
-  return totalCards;
-}
 //Sorting methods:
 int WCSortRarity::rareToInt(char r){
   switch(r){

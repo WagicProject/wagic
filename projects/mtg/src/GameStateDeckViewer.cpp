@@ -132,7 +132,7 @@ void GameStateDeckViewer::updateDecks(){
 
   welcome_menu = NEW SimpleMenu(10,this,Constants::MENU_FONT,20,20);
   welcome_menu->Add(nbDecks+1, _("--NEW--").c_str());
-  if(options[Options::CHEATMODE].number && (!myCollection || myCollection->minCards < 4))
+  if(options[Options::CHEATMODE].number && (!myCollection || myCollection->getCount(WSrcDeck::UNFILTERED_MIN_COPIES) < 4))
       welcome_menu->Add(-12,"--UNLOCK ALL--");
   nbDecks = fillDeckMenu(welcome_menu,options.profileFile());
   deckNum = 0;
@@ -490,13 +490,14 @@ void GameStateDeckViewer::renderOnScreenBasicInfo(){
   int myD = (displayed_deck == myDeck);
 
   float y = 0;
-  int now, total;
-  now = displayed_deck->Size();
-  total = displayed_deck->Size(true);
-  if(now != total)
-    sprintf(buffer, "%s%i cards (%i of %i unique)", (displayed_deck == myDeck) ? "DECK: " : " ", displayed_deck->totalCopies(),now, total);
+  int allCopies, nowCopies;
+  nowCopies = displayed_deck->getCount(WSrcDeck::FILTERED_COPIES);
+  allCopies = displayed_deck->getCount(WSrcDeck::UNFILTERED_COPIES);
+
+  if(allCopies != nowCopies)
+    sprintf(buffer, "%s %i of %i cards (%i unique)", (displayed_deck == myDeck) ? "DECK: " : " ", nowCopies,allCopies, WSrcDeck::FILTERED_UNIQUE);
   else
-    sprintf(buffer, "%s%i cards (%i unique)", (displayed_deck == myDeck) ? "DECK: " : " " , displayed_deck->totalCopies(),total);
+    sprintf(buffer, "%s%i cards (%i unique)", (displayed_deck == myDeck) ? "DECK: " : " " , allCopies, WSrcDeck::UNFILTERED_UNIQUE);
   float w = mFont->GetStringWidth(buffer);
   JRenderer::GetInstance()->FillRoundRect(SCREEN_WIDTH-(w+27),y-5,w+10,15,5,ARGB(128,0,0,0));
   mFont->DrawString(buffer, SCREEN_WIDTH-22, y+5,JGETEXT_RIGHT);
@@ -513,7 +514,6 @@ void GameStateDeckViewer::renderSlideBar(){
   float y = SCREEN_HEIGHT_F-25;
   float bar_size  = SCREEN_WIDTH_F - 2*filler;
   JRenderer * r = JRenderer::GetInstance();
-  typedef map<MTGCard *,int,Cmp1>::reverse_iterator rit;
   int currentPos = displayed_deck->getOffset();
   if(total == 0)
     return;
@@ -645,7 +645,7 @@ void GameStateDeckViewer::renderOnScreenMenu(){
         if (value > 9){nb_letters += 3;}else{nb_letters+=2;}
       }
     }
-    int value = myDeck->totalCopies();
+    int value = myDeck->getCount(WSrcDeck::UNFILTERED_COPIES);
     sprintf(buffer, _("Your Deck: %i cards").c_str(),  value);
     font->DrawString(buffer, SCREEN_WIDTH-200+rightTransition, SCREEN_HEIGHT/2 + 25);
 
@@ -1087,10 +1087,10 @@ void GameStateDeckViewer::updateStats() {
 
   AbilityFactory * af = NEW AbilityFactory();
 
-  myDeck->updateCounts();
+  myDeck->validate();
   stw.needUpdate = false; 
 
-  stw.cardCount = myDeck->totalCopies();
+  stw.cardCount = myDeck->getCount(WSrcDeck::UNFILTERED_COPIES);
   stw.countLands = myDeck->getCount(Constants::MTG_COLOR_LAND);
   stw.totalPrice = myDeck->totalPrice();
 
