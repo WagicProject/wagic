@@ -127,7 +127,9 @@ void MTGCardInstance::addType(int type){
   bool before = hasType(type);
   CardPrimitive::addType(type);
   WEvent * e = NEW WEventCardChangeType(this,type,before,true);
-  GameObserver::GetInstance()->receiveEvent(e);
+  GameObserver * go = GameObserver::GetInstance();
+  if(go) go->receiveEvent(e);
+  else SAFE_DELETE(e);
 }
 
 void MTGCardInstance::addType(char * type_text){
@@ -152,7 +154,9 @@ int MTGCardInstance::removeType(int id, int removeAll){
   int result = CardPrimitive::removeType(id,removeAll);
   bool after = hasType(id);
   WEvent * e = NEW WEventCardChangeType(this,id,before,after);
-  GameObserver::GetInstance()->receiveEvent(e);
+  GameObserver * go = GameObserver::GetInstance();
+  if(go) go->receiveEvent(e);
+  else SAFE_DELETE(e);
   return result;
 }
 
@@ -400,7 +404,9 @@ int MTGCardInstance::setAttacker(int value){
   if (attacker) previousTarget = p;
   attacker = value;
   WEvent * e = NEW WEventCreatureAttacker(this,previousTarget, target);
-  GameObserver::GetInstance()->receiveEvent(e);
+  GameObserver * go = GameObserver::GetInstance();
+  if(go) go->receiveEvent(e);
+  else SAFE_DELETE(e);
   return 1;
 }
 
@@ -443,7 +449,9 @@ int MTGCardInstance::raiseBlockerRankOrder(MTGCardInstance * blocker){
 
   std::iter_swap(it1,it2);
   WEvent* e = NEW WEventCreatureBlockerRank(*it1,*it2,this);
-  GameObserver::GetInstance()->receiveEvent(e);
+  GameObserver * go = GameObserver::GetInstance();
+  if(go) go->receiveEvent(e);
+  else SAFE_DELETE(e);
   //delete(e);
   return 1;
 }
