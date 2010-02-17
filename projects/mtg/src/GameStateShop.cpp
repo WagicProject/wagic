@@ -134,7 +134,7 @@ string GameStateShop::descPurchase(int controlId, bool tiny){
      MTGCard * c = srcCards->getCard(controlId-BOOSTER_SLOTS);
      if(!c)
        return "";   
-     name = c->data->getName();
+     name = _(c->data->getName());
    }
    if(mInventory[controlId] <= 0){
      if(tiny)
@@ -536,9 +536,6 @@ void GameStateShop::Update(float dt)
   }
 }
 
-void GameStateShop::makeDisplay(MTGDeck * d){
-
-}
 void GameStateShop::deleteDisplay(){
   vector<MTGCardInstance*>::iterator i;
   for(i=subBooster.begin();i!=subBooster.end();i++){

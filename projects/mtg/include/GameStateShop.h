@@ -66,7 +66,6 @@ class GameStateShop: public GameState, public JGuiListener
   bool bListCards;
 
   void beginFilters();
-  void makeDisplay(MTGDeck * d);
   void deleteDisplay();
 
   WSyncable bigSync;
