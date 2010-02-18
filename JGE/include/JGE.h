@@ -28,15 +28,15 @@
 #if defined(WIN32)
 #include <windows.h>
 typedef WPARAM LocalKeySym;
-#define LOCAL_NO_KEY ((WPARAM)-1)
+#define LOCAL_KEY_NONE ((WPARAM)-1)
 #elif defined(LINUX)
 #include <X11/XKBlib.h>
 #include <X11/keysym.h>
 typedef KeySym LocalKeySym;
-#define LOCAL_NO_KEY XK_VoidSymbol
+#define LOCAL_KEY_NONE XK_VoidSymbol
 #else
 typedef u32 LocalKeySym;
-#define LOCAL_NO_KEY ((u32)-1)
+#define LOCAL_KEY_NONE ((u32)-1)
 #endif
 
 
