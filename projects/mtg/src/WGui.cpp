@@ -1746,17 +1746,26 @@ WGuiKeyBinder::WGuiKeyBinder(string name, GameStateOptions* parent) : WGuiList(n
   JGE* j = JGE::GetInstance();
   JGE::keybindings_it start = j->KeyBindings_begin(), end = j->KeyBindings_end();
 
-  u32 y = 40;
+  Add(NEW OptionKey(parent, LOCAL_KEY_NONE, JGE_BTN_NONE));
   for (JGE::keybindings_it it = start; it != end; ++it)
     Add(NEW OptionKey(parent, it->first, it->second));
 }
 bool WGuiKeyBinder::isModal() { return modal; }
 bool WGuiKeyBinder::CheckUserInput(JButton key)
 {
-  switch (key) {
-    case JGE_BTN_OK: items[currentItem]->CheckUserInput(key); break;
-    default:
-      return WGuiList::CheckUserInput(key);
+  if (!items[currentItem]->CheckUserInput(key))
+    return WGuiList::CheckUserInput(key);
+  if (!items[currentItem]->Selectable())
+    nextItem();
+  return true;
+}
+void WGuiKeyBinder::setData(){
+  JGE* j = JGE::GetInstance();
+  j->ClearBindings();
+  for (vector<WGuiBase*>::iterator it = items.begin(); it != items.end(); ++it)
+    {
+      OptionKey* o = dynamic_cast<OptionKey*>(*it);
+      if (o && LOCAL_KEY_NONE != o->from && JGE_BTN_NONE != o->to)
+        j->BindKey(o->from, o->to);
     }
-  return false;
 }

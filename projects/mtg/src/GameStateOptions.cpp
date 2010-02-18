@@ -120,7 +120,7 @@ void GameStateOptions::Update(float dt)
         JButton key;
         if (grabber) {
             LocalKeySym sym;
-            if (LOCAL_NO_KEY != (sym = j->ReadLocalKey()))
+            if (LOCAL_KEY_NONE != (sym = j->ReadLocalKey()))
               grabber->KeyPressed(sym);
           }
         else while ((key = JGE::GetInstance()->ReadButton())){

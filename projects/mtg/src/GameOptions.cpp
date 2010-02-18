@@ -909,6 +909,17 @@ bool GameOptionKeyBindings::read(string input){
   j->ClearBindings();
   for (vector< pair<LocalKeySym, JButton> >::const_iterator it = assoc.begin(); it != assoc.end(); ++it)
     j->BindKey(it->first, it->second);
-  
+
+  return true;
+}
+
+bool GameOptionKeyBindings::write(std::ofstream* file, string name) {
+  JGE* j = JGE::GetInstance();
+  *file << name << "=";
+  JGE::keybindings_it start = j->KeyBindings_begin(), end = j->KeyBindings_end();
+  if (start != end) { *file << start->first << ":" << start->second; ++start; }
+  for (JGE::keybindings_it it = start; it != end; ++it)
+    *file << "," << it->first << ":" << it->second;
+  *file << endl;
   return true;
 }

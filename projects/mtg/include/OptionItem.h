@@ -139,12 +139,17 @@ class OptionKey : public WGuiItem, public KeybGrabber {
   LocalKeySym from;
   JButton to;
   virtual void Render();
+  virtual void Update(float);
   virtual void Overlay();
   virtual bool CheckUserInput(JButton key);
   virtual void KeyPressed(LocalKeySym key);
   virtual bool isModal();
+  virtual void ButtonPressed(int controllerId, int controlId);
+  virtual bool Visible();
+  virtual bool Selectable();
  protected:
   bool grabbed;
   GameStateOptions* g;
+  SimpleMenu* btnMenu;
 };
 #endif

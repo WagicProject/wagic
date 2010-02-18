@@ -133,6 +133,7 @@ private:
 
 class GameOptionKeyBindings : public GameOption {
   virtual bool read(string input);
+  virtual bool write(std::ofstream*, string);
 };
 
 class OptionVolume: public EnumDefinition{
