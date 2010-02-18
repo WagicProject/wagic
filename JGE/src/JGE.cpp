@@ -78,8 +78,10 @@ static map<JButton, float> oldHolds;
 void JGE::PressKey(const LocalKeySym sym)
 {
   const pair<keycodes_it, keycodes_it> rng = keyBinds.equal_range(sym);
-  for (keycodes_it it = rng.first; it != rng.second; ++it)
-    keyBuffer.push(*it);
+  if (rng.first == rng.second)
+    keyBuffer.push(make_pair(sym, JGE_BTN_NONE));
+  else for (keycodes_it it = rng.first; it != rng.second; ++it)
+         keyBuffer.push(*it);
 }
 void JGE::PressKey(const JButton sym)
 {
@@ -88,7 +90,9 @@ void JGE::PressKey(const JButton sym)
 void JGE::HoldKey(const LocalKeySym sym)
 {
   const pair<keycodes_it, keycodes_it> rng = keyBinds.equal_range(sym);
-  for (keycodes_it it = rng.first; it != rng.second; ++it)
+  if (rng.first == rng.second)
+    keyBuffer.push(make_pair(sym, JGE_BTN_NONE));
+  else for (keycodes_it it = rng.first; it != rng.second; ++it)
     {
       keyBuffer.push(*it);
       if (holds.end() == holds.find(it->second))
@@ -98,7 +102,9 @@ void JGE::HoldKey(const LocalKeySym sym)
 void JGE::HoldKey_NoRepeat(const LocalKeySym sym)
 {
   const pair<keycodes_it, keycodes_it> rng = keyBinds.equal_range(sym);
-  for (keycodes_it it = rng.first; it != rng.second; ++it)
+  if (rng.first == rng.second)
+    keyBuffer.push(make_pair(sym, JGE_BTN_NONE));
+  else for (keycodes_it it = rng.first; it != rng.second; ++it)
     {
       keyBuffer.push(*it);
       if (holds.end() == holds.find(it->second))
