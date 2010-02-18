@@ -79,18 +79,18 @@ void JGE::PressKey(const LocalKeySym sym)
 {
   const pair<keycodes_it, keycodes_it> rng = keyBinds.equal_range(sym);
   for (keycodes_it it = rng.first; it != rng.second; ++it)
-    keyBuffer.push(it->second);
+    keyBuffer.push(*it);
 }
 void JGE::PressKey(const JButton sym)
 {
-  keyBuffer.push(sym);
+  keyBuffer.push(make_pair(LOCAL_NO_KEY, sym));
 }
 void JGE::HoldKey(const LocalKeySym sym)
 {
   const pair<keycodes_it, keycodes_it> rng = keyBinds.equal_range(sym);
   for (keycodes_it it = rng.first; it != rng.second; ++it)
     {
-      keyBuffer.push(it->second);
+      keyBuffer.push(*it);
       if (holds.end() == holds.find(it->second))
         holds[it->second] = REPEAT_DELAY;
     }
@@ -100,19 +100,19 @@ void JGE::HoldKey_NoRepeat(const LocalKeySym sym)
   const pair<keycodes_it, keycodes_it> rng = keyBinds.equal_range(sym);
   for (keycodes_it it = rng.first; it != rng.second; ++it)
     {
-      keyBuffer.push(it->second);
+      keyBuffer.push(*it);
       if (holds.end() == holds.find(it->second))
         holds[it->second] = std::numeric_limits<float>::quiet_NaN();
     }
 }
 void JGE::HoldKey(const JButton sym)
 {
-  keyBuffer.push(sym);
+  keyBuffer.push(make_pair(LOCAL_NO_KEY, sym));
   if (holds.end() == holds.find(sym)) holds[sym] = REPEAT_DELAY;
 }
 void JGE::HoldKey_NoRepeat(const JButton sym)
 {
-  keyBuffer.push(sym);
+  keyBuffer.push(make_pair(LOCAL_NO_KEY, sym));
   if (holds.end() == holds.find(sym)) holds[sym] = std::numeric_limits<float>::quiet_NaN();
 }
 void JGE::ReleaseKey(const LocalKeySym sym)
@@ -129,7 +129,7 @@ void JGE::Update(float dt)
 {
   for (map<JButton, float>::iterator it = holds.begin(); it != holds.end(); ++it)
     {
-      if (it->second < 0) { keyBuffer.push(it->first); it->second = REPEAT_PERIOD; }
+      if (it->second < 0) { keyBuffer.push(make_pair(LOCAL_NO_KEY, it->first)); it->second = REPEAT_PERIOD; }
       it->second -= dt;
     }
   if (mApp != NULL) mApp->Update();
@@ -152,7 +152,15 @@ bool JGE::GetButtonClick(JButton button)
 JButton JGE::ReadButton()
 {
   if (keyBuffer.empty()) return JGE_BTN_NONE;
-  JButton val = keyBuffer.front();
+  JButton val = keyBuffer.front().second;
+  keyBuffer.pop();
+  return val;
+}
+
+LocalKeySym JGE::ReadLocalKey()
+{
+  if (keyBuffer.empty()) return LOCAL_NO_KEY;
+  LocalKeySym val = keyBuffer.front().first;
   keyBuffer.pop();
   return val;
 }
@@ -440,5 +448,5 @@ void JGE::Assert(const char *filename, long lineNumber)
 
 }
 
-std::queue<JButton> JGE::keyBuffer;
+std::queue< pair<LocalKeySym, JButton> > JGE::keyBuffer;
 std::multimap<LocalKeySym, JButton> JGE::keyBinds;

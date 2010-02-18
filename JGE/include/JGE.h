@@ -28,11 +28,15 @@
 #if defined(WIN32)
 #include <windows.h>
 typedef WPARAM LocalKeySym;
+#define LOCAL_NO_KEY ((WPARAM)-1)
 #elif defined(LINUX)
 #include <X11/XKBlib.h>
+#include <X11/keysym.h>
 typedef KeySym LocalKeySym;
+#define LOCAL_NO_KEY XK_VoidSymbol
 #else
 typedef u32 LocalKeySym;
+#define LOCAL_NO_KEY ((u32)-1)
 #endif
 
 
@@ -97,7 +101,7 @@ class JGE
   static JGE* mInstance;
 
 
-  static std::queue<JButton> keyBuffer;
+  static std::queue< std::pair<LocalKeySym, JButton> > keyBuffer;
   static std::multimap<LocalKeySym, JButton> keyBinds;
   typedef std::multimap<LocalKeySym, JButton>::iterator keycodes_it;
 
@@ -171,6 +175,7 @@ class JGE
   /// @return Next pressed button, or 0 if none.
   //////////////////////////////////////////////////////////////////////////
   JButton ReadButton();
+  LocalKeySym ReadLocalKey();
 
   //////////////////////////////////////////////////////////////////////////
   /// Bind an actual key to a symbolic button. A key can be bound to
