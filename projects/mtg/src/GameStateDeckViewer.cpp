@@ -432,6 +432,7 @@ void GameStateDeckViewer::Update(float dt)
         filterDeck->Update(dt);
         } else {
           mStage = STAGE_WAITING;
+          updateFilters();
           loadIndexes();
         }
       }
@@ -441,6 +442,7 @@ void GameStateDeckViewer::Update(float dt)
           useFilter = 0;
           filterCollection->Finish(true);
           filterCollection->Update(dt);
+          updateFilters();
           loadIndexes();
           return;
         }
@@ -449,6 +451,7 @@ void GameStateDeckViewer::Update(float dt)
             filterCollection->Update(dt);
         } else {
             mStage = STAGE_WAITING;
+            updateFilters();
             loadIndexes();
         }
       }
