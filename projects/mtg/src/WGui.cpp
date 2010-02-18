@@ -1768,4 +1768,5 @@ void WGuiKeyBinder::setData(){
       if (o && LOCAL_KEY_NONE != o->from && JGE_BTN_NONE != o->to)
         j->BindKey(o->from, o->to);
     }
+  j->ResetInput();
 }
