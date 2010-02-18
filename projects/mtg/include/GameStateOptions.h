@@ -1,6 +1,7 @@
 #ifndef _GAME_STATE_OPTIONS_H_
 #define _GAME_STATE_OPTIONS_H_
 
+#include <JGE.h>
 #include <JGui.h>
 #include "../include/GameState.h"
 
@@ -12,17 +13,21 @@ class WGuiTabMenu;
 class SimpleMenu;
 class SimplePad;
 
-class GameStateOptions: public GameState, public JGuiListener
-{
+struct KeybGrabber {
+  virtual void KeyPressed(LocalKeySym) = 0;
+};
+
+class GameStateOptions: public GameState, public JGuiListener {
 private:
   float timer;
   bool mReload;
+  KeybGrabber* grabber;
 
  public:
   SimpleMenu * optionsMenu;
   WGuiTabMenu * optionsTabs;
   int mState;
-  
+
   GameStateOptions(GameApp* parent);
   virtual ~GameStateOptions();
 
@@ -30,6 +35,8 @@ private:
   virtual void End();
   virtual void Update(float dt);
   virtual void Render();
+  virtual void GrabKeyboard(KeybGrabber*);
+  virtual void UngrabKeyboard(const KeybGrabber*);
   void ButtonPressed(int controllerId, int ControlId);
 
   string newProfile;

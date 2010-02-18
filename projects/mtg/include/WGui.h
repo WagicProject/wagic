@@ -2,6 +2,7 @@
 #define _WGUI_H_
 
 class hgeDistortionMesh;
+class GameStateOptions;
 
 class WGuiColor{
 public:
@@ -486,10 +487,11 @@ struct WLFiltersSort{
 
 class WGuiKeyBinder : public WGuiList {
  public:
-  WGuiKeyBinder(string name);
+  WGuiKeyBinder(string name, GameStateOptions* parent);
   virtual bool isModal();
   virtual bool CheckUserInput(JButton);
  protected:
+  GameStateOptions* parent;
   bool modal;
 };
 

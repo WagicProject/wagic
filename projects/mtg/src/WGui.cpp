@@ -1742,26 +1742,21 @@ string WGuiFilterItem::getCode(){
   return mCode;
 }
 
-WGuiKeyBinder::WGuiKeyBinder(string name) : WGuiList(name), modal(false)
-{
+WGuiKeyBinder::WGuiKeyBinder(string name, GameStateOptions* parent) : WGuiList(name), parent(parent), modal(false) {
   JGE* j = JGE::GetInstance();
   JGE::keybindings_it start = j->KeyBindings_begin(), end = j->KeyBindings_end();
 
   u32 y = 40;
   for (JGE::keybindings_it it = start; it != end; ++it)
-    Add(NEW OptionKey(it->first, it->second));
+    Add(NEW OptionKey(parent, it->first, it->second));
 }
 bool WGuiKeyBinder::isModal() { return modal; }
 bool WGuiKeyBinder::CheckUserInput(JButton key)
 {
-  switch (key)
-    {
-    case JGE_BTN_UP:
-      prevItem(); break;
-    case JGE_BTN_DOWN:
-      nextItem(); break;
+  switch (key) {
+    case JGE_BTN_OK: items[currentItem]->CheckUserInput(key); break;
     default:
-      ;
+      return WGuiList::CheckUserInput(key);
     }
   return false;
 }

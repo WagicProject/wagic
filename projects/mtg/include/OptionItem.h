@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 #include "../include/GameApp.h"
+#include "../include/GameStateOptions.h"
 #include "../include/GameOptions.h"
 #include "../include/WFilter.h"
 #include "../include/WDataSrc.h"
@@ -132,11 +133,18 @@ private:
   size_t initialValue;
 };
 
-class OptionKey : public WGuiItem {
+class OptionKey : public WGuiItem, public KeybGrabber {
  public:
-  OptionKey(LocalKeySym, JButton);
+  OptionKey(GameStateOptions* g, LocalKeySym, JButton);
   LocalKeySym from;
   JButton to;
   virtual void Render();
+  virtual void Overlay();
+  virtual bool CheckUserInput(JButton key);
+  virtual void KeyPressed(LocalKeySym key);
+  virtual bool isModal();
+ protected:
+  bool grabbed;
+  GameStateOptions* g;
 };
 #endif

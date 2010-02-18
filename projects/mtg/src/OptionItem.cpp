@@ -430,9 +430,9 @@ void OptionTheme::confirmChange(bool confirmed){
   }
 }
 
-OptionKey::OptionKey(LocalKeySym from, JButton to) : WGuiItem(""), from(from), to(to){}
+OptionKey::OptionKey(GameStateOptions* g, LocalKeySym from, JButton to) : WGuiItem(""), from(from), to(to), grabbed(false), g(g) {}
 
-void OptionKey::Render(){
+void OptionKey::Render() {
   JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
   mFont->SetColor(getColor(WGuiColor::TEXT));
   JRenderer * renderer = JRenderer::GetInstance();
@@ -447,4 +447,32 @@ void OptionKey::Render(){
     renderer->RenderQuad(rep2.icon, x + 2, y + 2);
   else
     mFont->DrawString(rep2.text, width - 4, y + 2, JGETEXT_RIGHT);
+}
+bool OptionKey::CheckUserInput(JButton key) {
+  if (JGE_BTN_OK == key)
+    {
+      grabbed = true;
+      g->GrabKeyboard(this);
+      return true;
+    }
+  return false;
+}
+void OptionKey::KeyPressed(LocalKeySym key) {
+  cout << "KEY : " << key << endl;
+  g->UngrabKeyboard(this);
+  grabbed = false;
+}
+bool OptionKey::isModal() { return grabbed; }
+void OptionKey::Overlay()
+{
+  JRenderer * renderer = JRenderer::GetInstance();
+  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
+  mFont->SetColor(ARGB(255, 0, 0, 0));
+  if (grabbed)
+    {
+      //      static const int x = 30, y = 45;
+      renderer->FillRoundRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, 2, ARGB(255, 255, 255, 255));
+      string msg = _("Press a key to associate.");
+      mFont->DrawString(msg, (SCREEN_WIDTH - mFont->GetStringWidth(msg.c_str())) / 2, y + 2);
+    }
 }

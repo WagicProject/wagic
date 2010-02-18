@@ -7,16 +7,8 @@
 #include "../include/GameOptions.h"
 #include "../include/Translate.h"
 
-GameStateOptions::GameStateOptions(GameApp* parent): GameState(parent) {
-  optionsTabs = NULL;
-  optionsMenu = NULL;
-  mReload = false;
-}
-
-
-GameStateOptions::~GameStateOptions() {
-
-}
+GameStateOptions::GameStateOptions(GameApp* parent): GameState(parent), mReload(false), grabber(NULL), optionsMenu(NULL), optionsTabs(NULL) {}
+GameStateOptions::~GameStateOptions() {}
 
 void GameStateOptions::Start()
 {
@@ -80,7 +72,7 @@ void GameStateOptions::Start()
   optionsList->Add(oGra);
   optionsTabs->Add(optionsList);
 
-  optionsList = NEW WGuiKeyBinder("Key Bindings");
+  optionsList = NEW WGuiKeyBinder("Key Bindings", this);
   optionsTabs->Add(optionsList);
 
   optionsList = NEW WGuiList("Credits");
@@ -123,15 +115,21 @@ void GameStateOptions::Update(float dt)
   }
   else switch(mState){
     default:
-    case SHOW_OPTIONS:
-      JButton key;
-
-      while ((key = JGE::GetInstance()->ReadButton())){
-        if(!optionsTabs->CheckUserInput(key) && key == JGE_BTN_MENU)
-          mState = SHOW_OPTIONS_MENU;
+    case SHOW_OPTIONS: {
+        JGE* j = JGE::GetInstance();
+        JButton key;
+        if (grabber) {
+            LocalKeySym sym;
+            if (LOCAL_NO_KEY != (sym = j->ReadLocalKey()))
+              grabber->KeyPressed(sym);
+          }
+        else while ((key = JGE::GetInstance()->ReadButton())){
+            if(!optionsTabs->CheckUserInput(key) && key == JGE_BTN_MENU)
+              mState = SHOW_OPTIONS_MENU;
+          }
+        optionsTabs->Update(dt);
+        break;
       }
-      optionsTabs->Update(dt);
-      break;
     case SHOW_OPTIONS_MENU:
       optionsMenu->Update(dt);
       break;
@@ -240,3 +238,10 @@ void GameStateOptions::ButtonPressed(int controllerId, int controlId)
   else
     optionsTabs->ButtonPressed(controllerId, controlId);
 };
+
+void GameStateOptions::GrabKeyboard(KeybGrabber* g) {
+  grabber = g;
+}
+void GameStateOptions::UngrabKeyboard(const KeybGrabber* g) {
+  if (g == grabber) grabber = NULL;
+}
