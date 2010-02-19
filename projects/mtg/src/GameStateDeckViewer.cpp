@@ -14,18 +14,16 @@
 //!! helper function; this is probably handled somewhere in the code already.
 // If not, should be placed in general library
 void StringExplode(string str, string separator, vector<string>* results){
-    int found;
+    size_t found;
     found = str.find_first_of(separator);
-    while(found != (int)string::npos){
-        if(found > 0){
+    while (found != string::npos){
+        if (found > 0)
             results->push_back(str.substr(0,found));
-        }
         str = str.substr(found+1);
         found = str.find_first_of(separator);
     }
-    if(str.length() > 0){
+    if (str.length() > 0)
         results->push_back(str);
-    }
 }
 
 GameStateDeckViewer::GameStateDeckViewer(GameApp* parent): GameState(parent) {
