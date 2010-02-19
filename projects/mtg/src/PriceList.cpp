@@ -47,6 +47,9 @@ int PriceList::getPrice(int cardId){
   case Constants::RARITY_M:
     return Constants::PRICE_1M;
     break;
+  case Constants::RARITY_S:
+    return Constants::PRICE_1S;
+    break;
   case Constants::RARITY_R:
     return Constants::PRICE_1R;
     break;

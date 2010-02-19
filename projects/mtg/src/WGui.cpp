@@ -1621,6 +1621,7 @@ void WGuiFilterItem::updateValue(){
         mParent->addArg("Rare","r:r;");
         mParent->addArg("Uncommon","r:u;");
         mParent->addArg("Common","r:c;");
+        mParent->addArg("Special Rarity","{r:m;|r:t;|r:r;|r:u;|r:c;}");
       }else if(filterType == FILTER_CMC){
         for(int i=0;i<20;i++){
           sprintf(buf_code,"cmc:%i;",i);

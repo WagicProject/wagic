@@ -511,6 +511,7 @@ int WCSortRarity::rareToInt(char r){
     case Constants::RARITY_U: return 3;
     case Constants::RARITY_R: return 4;
     case Constants::RARITY_M: return 5;
+    case Constants::RARITY_S: return 6;
   }
 }
 bool WCSortRarity::operator()(const MTGCard*l, const MTGCard*r){

@@ -14,10 +14,11 @@ using std::string;
 class GameApp;
 class MTGCard;
 class CardPrimitive;
-
+class MTGPack;
 class MTGSetInfo{
 public:
   MTGSetInfo(string _id);
+  ~MTGSetInfo();
   string id;      //Short name: 10E, RAV, etc. Automatic from folder.
   string author;  //Author of set, for crediting mod makers, etc.
   string name;    //Long name: Tenth Edition
@@ -30,8 +31,6 @@ public:
   int totalCards();
   string getName();
   string getBlock();
-  int boosterCost();
-  int boosterSize();
   void processConfLine(string line);
 
   enum {
@@ -46,10 +45,10 @@ public:
     MAX_COUNT = 6
   };
 
+  MTGPack * mPack; //Does it use a specialized booster pack?
   bool bZipped;       //Is this set's images present as a zip file?
   bool bThemeZipped;  //[...] in the theme?
-  int counts[MTGSetInfo::MAX_COUNT];   
-  int booster[MAX_RARITY];
+  int counts[MTGSetInfo::MAX_COUNT];  
 };
 
 class MTGSets{

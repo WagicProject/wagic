@@ -304,8 +304,12 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
       case Constants::RARITY_L:
         sprintf(buf,_("%s Land").c_str(),setlist[card->setId].c_str());
         break;
+      case Constants::RARITY_T:
+        sprintf(buf,_("%s Token").c_str(),setlist[card->setId].c_str());
+        break;
       default:
-        sprintf(buf,"%s",setlist[card->setId].c_str());
+      case Constants::RARITY_S:
+        sprintf(buf,_("%s Special").c_str(),setlist[card->setId].c_str());
         break;
     }
     

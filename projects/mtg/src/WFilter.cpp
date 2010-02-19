@@ -298,13 +298,15 @@ float WCFilterRarity::filterFee(){
 bool WCFilterRarity::isMatch(MTGCard * c){
   if(!c || !c->data)
     return false;
+  if(rarity == 'A') return true; //A for "Any" or "All"
   return (c->getRarity() == rarity);
 }
 string WCFilterRarity::getCode(){
   char buf[64]; 
-  const char* rarities[7] = {"any","token","land","common","uncommon","rare","mythic"};
+  const char* rarities[8] = {"any","token","land","common","uncommon","rare","mythic","special"};
   int x = 0;
   switch(rarity){
+    case 'S': x=7; break;
     case 'M': x=6; break;
     case 'R': x=5; break;
     case 'U': x=4; break;
@@ -319,6 +321,7 @@ WCFilterRarity::WCFilterRarity(string arg){
   rarity = -1;
   char c = toupper(arg[0]);
   switch(c){
+    case 'S':
     case 'M':
     case 'R':
     case 'U':
@@ -326,8 +329,9 @@ WCFilterRarity::WCFilterRarity(string arg){
     case 'L':
     case 'T':
       rarity = c;
-      break;
+      return;
   }
+  rarity = 'A';
 }
 //WCFilterAbility
 bool WCFilterAbility::isMatch(MTGCard * c){

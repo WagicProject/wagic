@@ -11,6 +11,8 @@
 #include "../include/MTGPack.h"
 #include "../../../JGE/src/tinyxml/tinyxml.h"
 
+MTGPack MTGPacks::defaultBooster;
+
 int MTGPackEntryRandom::addCard(WSrcCards *pool, MTGDeck *to){
   int fails = 0;
   if(!pool) return 1;
@@ -39,7 +41,7 @@ int MTGPackSlot::add(WSrcCards * ocean, MTGDeck *to, int carryover){
   int amt = copies + carryover;
   WSrcCards * myPool = NULL;
   if(pool.size())
-    MTGPack::getPool(pool);
+    myPool = MTGPack::getPool(pool);
   if(!myPool) myPool = ocean;
   for(int i=0;i<amt;i++){
     size_t pos = rand() % entries.size();
@@ -90,8 +92,8 @@ void MTGPackSlot::addEntry(MTGPackEntry*item){
 int MTGPack::assemblePack(MTGDeck *to){
   int carryover = 0;
   WSrcCards * p = getPool(pool);
-  if(!p)
-    return -1;
+  if(!p) return -1;
+  p->Shuffle();
   
   for(size_t i=0;i<slots.size();i++){
     carryover = slots[i]->add(p,to,carryover);
@@ -140,7 +142,9 @@ void MTGPack::load(string filename){
   holder = pPack->Attribute("pool");
   if(holder) pool = holder; else pool = "";
   holder = pPack->Attribute("type");
-  if(holder) type = holder; else type = "Booster";
+  if(holder){
+    type = holder;
+  }else type = "Booster";
   holder = pPack->Attribute("name");
   if(holder) name = holder; else name = "Special";
   holder = pPack->Attribute("requires");
@@ -160,6 +164,8 @@ void MTGPack::load(string filename){
     holder = pSlot->Attribute("copies");
     if(holder) s->copies = atoi(holder);
     else       s->copies = 1;
+    holder = pSlot->Attribute("pool");
+    if(holder) s->pool = holder;
 
     for(pEntry = pSlot->FirstChildElement();pEntry!=NULL;pEntry=pEntry->NextSiblingElement()){
       tag = pEntry->Value();
@@ -221,7 +227,8 @@ void MTGPacks::loadAll(){
   while ((mDit = readdir(mDip))){
     char myFilename[4096];
     sprintf(myFilename, RESPATH"/packs/%s", mDit->d_name);
-    if(myFilename[0] == '.') continue;
+    if(mDit->d_name[0] == '.') continue;
+    if(!strcmp(mDit->d_name,"default_booster.txt")) continue;
     MTGPack * p = NEW MTGPack(myFilename);
     if(!p->isValid()){
       SAFE_DELETE(p);
@@ -265,6 +272,32 @@ bool MTGPack::isUnlocked(){
       unlockStatus = -1;
   }
   return (unlockStatus > 0);
+}
+
+MTGPack * MTGPacks::getDefault(){
+  if(!defaultBooster.isValid()){
+    defaultBooster.load(RESPATH"/packs/default_booster.txt");
+    defaultBooster.unlockStatus = 1;
+  }
+  if(!defaultBooster.isValid()){
+    MTGPackSlot * ps = NEW MTGPackSlot(); ps->copies = 1;
+    ps->addEntry(NEW MTGPackEntryRandom("rarity:mythic;"));
+    for(int i=0;i<7;i++)
+      ps->addEntry(NEW MTGPackEntryRandom("rarity:rare;"));
+    defaultBooster.slots.push_back(ps);
+    ps = NEW MTGPackSlot(); ps->copies = 3;
+    ps->addEntry(NEW MTGPackEntryRandom("rarity:uncommon;"));
+    defaultBooster.slots.push_back(ps);
+    ps = NEW MTGPackSlot(); ps->copies = 1;
+    ps->addEntry(NEW MTGPackEntryRandom("rarity:land;"));
+    defaultBooster.slots.push_back(ps);
+    ps = NEW MTGPackSlot(); ps->copies = 10;
+    ps->addEntry(NEW MTGPackEntryRandom("rarity:common;"));
+    defaultBooster.slots.push_back(ps);    
+    defaultBooster.bValid = true;
+    defaultBooster.unlockStatus = 1;
+  }
+  return &defaultBooster;
 }
 
 void MTGPacks::refreshUnlocked(){

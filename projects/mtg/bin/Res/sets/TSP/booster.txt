@@ -1,0 +1,21 @@
+<PACK name="TSP" type="Booster" pool="unlocked set:TSP;" price="700">
+	<slot copies="1">
+		<random_card>rarity:mythic;</random_card>
+		<random_card>rarity:rare;</random_card>
+		<random_card>rarity:rare;</random_card>
+		<random_card>rarity:rare;</random_card>
+		<random_card>rarity:rare;</random_card>
+		<random_card>rarity:rare;</random_card>
+		<random_card>rarity:rare;</random_card>
+		<random_card>rarity:rare;</random_card>
+	</slot>
+	<slot copies="3">
+		<random_card>rarity:uncommon;</random_card>
+	</slot>
+	<slot copies="1" pool="all set:TSB;">
+		<random_card>rarity:special;</random_card>
+	</slot>
+	<slot copies="10">
+		<random_card>rarity:common;</random_card>
+	</slot>
+</PACK>

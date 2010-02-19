@@ -736,9 +736,8 @@ void ShopBooster::randomCustom(MTGPacks * packlist){
   pack = packlist->randomPack();
   if(pack && !pack->isUnlocked())
     pack = NULL;
-  if(!pack){
+  if(!pack)
     randomStandard();
-  }
 }
 void ShopBooster::randomStandard(){
   int mSet = -1;
@@ -763,6 +762,7 @@ void ShopBooster::randomStandard(){
     altSet = setlist.randomSet(-1,80-mSetCount);
   }
   if(altSet == mainSet) altSet = NULL; //Prevent "10E & 10E Booster"
+  if(!altSet) pack = mainSet->mPack;
   
 }
 int ShopBooster::maxInventory(){
@@ -771,39 +771,15 @@ int ShopBooster::maxInventory(){
   return 5;
 }
 void ShopBooster::addToDeck(MTGDeck * d, WSrcCards * srcCards){
-
-  if(pack){
+  if(!pack){ //A combination booster.
+    MTGPack * mP = MTGPacks::getDefault();
+    if(!altSet && mainSet->mPack) mP = mainSet->mPack;
+    char buf[512];
+    if(!altSet) sprintf(buf,"set:%s;",mainSet->id.c_str());
+    else sprintf(buf,"set:%s;|set:%s;",mainSet->id.c_str(),altSet->id.c_str());
+    mP->pool = buf;
+    mP->assemblePack(d); //Use the primary packfile. assemblePack deletes pool.
+  }
+  else
     pack->assemblePack(d);
-  }
-  else{
-    WSrcCards * pool = NEW WSrcCards(0);
-    WCFilterSet *main, *alt;
-    int num = setlist.getSetNum(mainSet);
-    main = NEW WCFilterSet(num);
-    if(altSet){
-      num = setlist.getSetNum(altSet);
-      alt = NEW WCFilterSet(num);
-      pool->addFilter(NEW WCFilterOR(main,alt));
-    } else
-      pool->addFilter(main);
-    pool->loadMatches(srcCards,true);
-    pool->Shuffle();
-
-    //Add cards to booster. Pool is shuffled, so just step through.
-    int carryover = 1;
-    if(!(rand() % 8)){
-      pool->addFilter(NEW WCFilterRarity(Constants::RARITY_M));
-      carryover = pool->addToDeck(d,carryover);
-    }
-    pool->clearFilters();
-    pool->addFilter(NEW WCFilterRarity(Constants::RARITY_R));
-    carryover = pool->addToDeck(d,carryover); 
-    pool->clearFilters();
-    pool->addFilter(NEW WCFilterRarity(Constants::RARITY_U));
-    carryover = pool->addToDeck(d,carryover+3); 
-    pool->clearFilters();
-    pool->addFilter(NEW WCFilterRarity(Constants::RARITY_C));
-    carryover = pool->addToDeck(d,carryover+11); 
-    SAFE_DELETE(pool);
-  }
 }

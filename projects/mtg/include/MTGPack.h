@@ -1,6 +1,8 @@
 #ifndef _MTGPACCK_H_
 #define _MTGPACK_H_
 
+class ShopBooster;
+
 class MTGPackEntry{
 public:
   virtual int addCard(WSrcCards * pool,MTGDeck * to) = 0;
@@ -9,6 +11,8 @@ public:
 
 class MTGPackEntryRandom: public MTGPackEntry{
 public:
+  MTGPackEntryRandom() {filter = ""; copies=1;};
+  MTGPackEntryRandom(string f, int c=1) {filter = f; copies = c;};
   int addCard(WSrcCards * pool,MTGDeck * to);
   string filter;
 };
@@ -36,13 +40,16 @@ public:
 class MTGPack{
 public:
   friend class MTGPacks;
+  friend class ShopBooster;
+  friend class MTGSetInfo;
   bool meetsRequirements(); //Check if pool contains locked cards.
   bool isUnlocked();
   bool isValid() {return bValid;};
   void load(string filename);
   int assemblePack(MTGDeck * to);
   
-  MTGPack(string s) {bValid = false; load(s); unlockStatus=0;};
+  MTGPack() {bValid = false; unlockStatus = 0; price=Constants::PRICE_BOOSTER;};
+  MTGPack(string s) {bValid = false; load(s); unlockStatus = 0;};
   ~MTGPack();
   string getName();
   string getSort() {return sort;};
@@ -72,8 +79,9 @@ public:
   int size() {return (int)packs.size();};
   void refreshUnlocked();
   
-
+  static MTGPack * getDefault();
 private:
+  static MTGPack defaultBooster;
   vector<MTGPack*> packs;
 };
 #endif

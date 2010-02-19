@@ -107,6 +107,7 @@ class Constants
     NB_BASIC_ABILITIES = 48,
 
 
+    RARITY_S = 'S',   //Special Rarity
     RARITY_M = 'M',   //Mythics
     RARITY_R = 'R',   //Rares
     RARITY_U = 'U',   //Uncommons
@@ -122,6 +123,7 @@ class Constants
     //Price for singles
     PRICE_1M = 3000,
     PRICE_1R = 500,
+    PRICE_1S = 200,
     PRICE_1U = 100,
     PRICE_1C = 20,
     PRICE_1L = 5,
@@ -132,10 +134,6 @@ class Constants
     CHANCE_CUSTOM_PACK = 15,
     CHANCE_PURE_OVERRIDE = 50,
     CHANCE_MIXED_OVERRIDE = 25,
-    PRICE_XR = 355,
-    PRICE_XU = 88,
-    PRICE_XC = 8,
-    PRICE_XL = 1,
 
     MAIN_FONT = 0,
     MENU_FONT = 1,

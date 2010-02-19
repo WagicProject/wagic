@@ -5,6 +5,8 @@
 #include "../include/Translate.h"
 #include "../include/DeckMetaData.h"
 #include "../include/PriceList.h"
+#include "../include/WDataSrc.h"
+#include "../include/MTGPack.h"
 #include <algorithm>
 #include <string>
 #include <sstream>
@@ -842,6 +844,10 @@ int MTGSets::size(){
 }
 
 //MTGSetInfo
+MTGSetInfo::~MTGSetInfo(){
+  if(mPack != MTGPacks::getDefault())
+    SAFE_DELETE(mPack);
+}
 MTGSetInfo::MTGSetInfo(string _id) {
   string whitespaces (" \t\f\v\n\r");
   id = _id;
@@ -851,12 +857,14 @@ MTGSetInfo::MTGSetInfo(string _id) {
   for(int i=0;i<MTGSetInfo::MAX_COUNT;i++)
     counts[i] = 0;
 
-  booster[MTGSetInfo::LAND] = 1;
-  booster[MTGSetInfo::COMMON] = 10;
-  booster[MTGSetInfo::UNCOMMON] = 3;
-  booster[MTGSetInfo::RARE] = 1;
-
-  //Load metadata. (FIXME - Removed for release 0.1.0, will be fully implemented next release)
+  char myFilename[4096];
+  sprintf(myFilename, RESPATH"/sets/%s/booster.txt", id.c_str());
+  mPack = NEW MTGPack(myFilename);
+  if(!mPack->isValid()){
+    SAFE_DELETE(mPack);
+  }
+  bZipped = false;
+  bThemeZipped = false;
 }
 
 void MTGSetInfo::count(MTGCard*c){
@@ -889,32 +897,6 @@ int MTGSetInfo::totalCards(){
   return counts[MTGSetInfo::TOTAL_CARDS];
 }
 
-int MTGSetInfo::boosterSize(){
-  int size = 0;
-
-  for(int i = 0; i<MTGSetInfo::MAX_RARITY;i++)
-    size += booster[i];
-
-  return size;
-}
-
-int MTGSetInfo::boosterCost(){
-  int price = 0;
-  for(int i = 0; i<MTGSetInfo::MAX_RARITY;i++){
-      if(i == MTGSetInfo::LAND)
-        price += booster[i] * Constants::PRICE_XL;
-      else if(i == MTGSetInfo::COMMON)
-        price += booster[i] * Constants::PRICE_XC;
-      else if(i == MTGSetInfo::UNCOMMON)
-        price += booster[i] * Constants::PRICE_XU;
-      else
-        price += booster[i] * Constants::PRICE_XR;
-  }
-
-  price += price + PriceList::difficultyScalar(price,setlist.findSet(id));
-  return (price/3); //Boosters only 33% influenced by economic difficulty.
-}
-
 string MTGSetInfo::getName(){
   if(name.size()) 
     return _(name); //Pretty name is translated.
@@ -926,8 +908,6 @@ string MTGSetInfo::getBlock(){
 
   return setlist.blocks[block];
 }
-
-
 void MTGSetInfo::processConfLine(string line){
   size_t i = line.find_first_of("=");
   if (i == string::npos)
