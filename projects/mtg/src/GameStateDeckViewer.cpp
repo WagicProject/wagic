@@ -444,9 +444,9 @@ void GameStateDeckViewer::renderOnScreenBasicInfo(){
   allCopies = displayed_deck->getCount(WSrcDeck::UNFILTERED_COPIES);
 
   if(allCopies != nowCopies)
-    sprintf(buffer, "%s %i of %i cards (%i unique)", (displayed_deck == myDeck) ? "DECK: " : " ", nowCopies,allCopies, WSrcDeck::FILTERED_UNIQUE);
+    sprintf(buffer, "%s %i of %i cards (%i unique)", (displayed_deck == myDeck) ? "DECK: " : " ", nowCopies,allCopies, displayed_deck->getCount(WSrcDeck::FILTERED_UNIQUE));
   else
-    sprintf(buffer, "%s%i cards (%i unique)", (displayed_deck == myDeck) ? "DECK: " : " " , allCopies, WSrcDeck::UNFILTERED_UNIQUE);
+    sprintf(buffer, "%s%i cards (%i unique)", (displayed_deck == myDeck) ? "DECK: " : " " , allCopies, displayed_deck->getCount(WSrcDeck::UNFILTERED_UNIQUE));
   float w = mFont->GetStringWidth(buffer);
   JRenderer::GetInstance()->FillRoundRect(SCREEN_WIDTH-(w+27),y-5,w+10,15,5,ARGB(128,0,0,0));
   mFont->DrawString(buffer, SCREEN_WIDTH-22, y+5,JGETEXT_RIGHT);
