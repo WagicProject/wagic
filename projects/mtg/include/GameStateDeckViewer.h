@@ -108,8 +108,10 @@ private:
   int useFilter;
   JMusic * bgMusic;
   JQuad * backQuad;
-  WGuiFilters * filterDeck;
-  WGuiFilters * filterCollection;
+  
+  WGuiFilters * filterMenu;
+  WSrcDeckViewer * source;
+
   SimpleMenu * welcome_menu;
   SimpleMenu * subMenu;
   SimpleMenu * menu;

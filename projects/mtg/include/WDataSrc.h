@@ -107,6 +107,44 @@ protected:
   float mDelay;
 };
 
+class WSrcDeckViewer: public WSrcCards{
+public:
+  WSrcDeckViewer(WSrcCards * _active, WSrcCards * _inactive);
+  ~WSrcDeckViewer();
+  void swapSrc();
+
+//Wrapped functions
+  JQuad * getImage(int offset=0) {return active->getImage(offset);};
+  JQuad * getThumb(int offset=0) {return active->getThumb(offset);};
+  MTGCard * getCard(int offset=0, bool ignore=false) {return active->getCard(offset,ignore);};
+  int Size(bool all=false) {return active->Size();}; 
+  void Shuffle() {active->Shuffle();};
+  bool thisCard(int mtgid) {return active->thisCard(mtgid);};
+  bool next() {return active->next();};
+  bool prev() {return active->prev();};  
+  void Sort(int method) {active->Sort(method);};
+  bool setOffset(int pos) {return active->setOffset(pos);};
+  bool isEmptySet(WCardFilter * f) {return active->isEmptySet(f);};
+  void addFilter(WCardFilter * f) {active->addFilter(f);};
+  void clearFilters() {active->clearFilters();};
+  WCardFilter* unhookFilters() {return active->unhookFilters();};
+  bool matchesFilters(MTGCard * c) {return active->matchesFilters(c);};
+  void validate() {active->validate();};
+  void bakeFilters() {active->bakeFilters();}; //Discards all invalidated cards.
+  float filterFee() {return active->filterFee();};
+  void updateCounts() {active->updateCounts();};
+  void clearCounts() {active->clearCounts();};
+  void addCount(MTGCard * c, int qty=1) { active->addCount(c,qty); };
+  int loadMatches(MTGAllCards* ac) {return active->loadMatches(ac);};
+  int loadMatches(MTGDeck * deck) {return active->loadMatches(deck);};
+  int loadMatches(WSrcCards* src, bool all=false) {return loadMatches(src,all);};
+  int addRandomCards(MTGDeck * i, int howmany=1) {return active->addRandomCards(i,howmany);};
+  int addToDeck(MTGDeck * i, int num=-1) {return active->addToDeck(i,num);};
+protected:
+  WSrcCards * active;
+  WSrcCards * inactive;
+};
+
 class WSrcUnlockedCards: public WSrcCards{ //Only unlocked cards.
 public:
   WSrcUnlockedCards(float mDelay=0.2);

@@ -501,7 +501,20 @@ int WSrcDeck::totalPrice(){
   SAFE_DELETE(pricelist);
   return total;
 }
+//WSrcDeckViewer
+WSrcDeckViewer::WSrcDeckViewer(WSrcCards * _active, WSrcCards * _inactive): WSrcCards(0.2) {
+  active = _active;
+  inactive = _inactive;
+}
 
+void WSrcDeckViewer::swapSrc(){
+  WSrcCards * temp = active;
+  active = inactive;
+  inactive = temp;
+}
+WSrcDeckViewer::~WSrcDeckViewer(){
+  //Do nothing.
+}
 //Sorting methods:
 int WCSortRarity::rareToInt(char r){
   switch(r){

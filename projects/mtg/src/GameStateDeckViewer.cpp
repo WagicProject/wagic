@@ -35,8 +35,8 @@ GameStateDeckViewer::GameStateDeckViewer(GameApp* parent): GameState(parent) {
   welcome_menu = NULL;
   myCollection = NULL;
   myDeck = NULL;
-  filterDeck = NULL;
-  filterCollection = NULL;
+  filterMenu = NULL;
+  source = NULL;
   hudAlpha = 0;  
   subMenu = NULL;
   mRotation = 0;
@@ -54,8 +54,7 @@ GameStateDeckViewer::~GameStateDeckViewer() {
     SAFE_DELETE(myCollection->parent);
     SAFE_DELETE(myCollection);
   }
-  SAFE_DELETE(filterDeck);
-  SAFE_DELETE(filterCollection);
+  SAFE_DELETE(filterMenu);
 }
 
 
@@ -68,25 +67,17 @@ void GameStateDeckViewer::rotateCards(int direction){
   loadIndexes();
 }
 void GameStateDeckViewer::rebuildFilters(){
-  SAFE_DELETE(filterDeck);
-  SAFE_DELETE(filterCollection);
-  filterCollection = NEW WGuiFilters("Filter by...",myCollection);
-  filterDeck = NEW WGuiFilters("Filter by...",myDeck);
-  filterDeck->Finish(true);
-  filterCollection->Finish(true);
+  SAFE_DELETE(filterMenu);
+  SAFE_DELETE(source);
+  source = NEW WSrcDeckViewer(myDeck,myCollection);
+  if(displayed_deck != myDeck) source->swapSrc();
+  filterMenu = NEW WGuiFilters("Filter by...",source);
+  filterMenu->Finish(true);
 }
 void GameStateDeckViewer::updateFilters(){
   if(!displayed_deck) return;
-//  displayed_deck->clearFilters();
-  int i = (displayed_deck == myDeck);
-  if(i && filterDeck){
-      filterDeck->recolorFilter(useFilter-1);
-      filterDeck->Finish(true);
-  }
-  else if(filterCollection){
-    filterCollection->recolorFilter(useFilter-1);
-    filterCollection->Finish(true);
-  }
+  filterMenu->recolorFilter(useFilter-1);
+  filterMenu->Finish(true);
   return;
 }
 void GameStateDeckViewer::loadIndexes(){
@@ -102,6 +93,7 @@ void GameStateDeckViewer::switchDisplay(){
   }else{
     displayed_deck = myCollection;
   }
+  source->swapSrc();
   updateFilters();
   loadIndexes();
 }
@@ -212,8 +204,8 @@ void GameStateDeckViewer::End()
   }
   SAFE_DELETE(pricelist);
   SAFE_DELETE(playerdata);
-  SAFE_DELETE(filterDeck);
-  SAFE_DELETE(filterCollection);
+  SAFE_DELETE(filterMenu);
+  SAFE_DELETE(source);
 }
 
 
@@ -331,13 +323,8 @@ void GameStateDeckViewer::Update(float dt)
       break;
     case JGE_BTN_CTRL :
       mStage = STAGE_FILTERS;
-      if (displayed_deck == myDeck) {
-        if (!filterDeck) rebuildFilters();
-        filterDeck->Entering(JGE_BTN_NONE);
-      } else if(displayed_deck == myCollection) {
-        if (!filterCollection) rebuildFilters();
-        filterCollection->Entering(JGE_BTN_NONE);
-      }
+      rebuildFilters();
+      filterMenu->Entering(JGE_BTN_NONE);
       break;
     case JGE_BTN_PREV :
       if (last_user_activity < NO_USER_ACTIVITY_HELP_DELAY)
@@ -418,43 +405,22 @@ void GameStateDeckViewer::Update(float dt)
     menu->Update(dt);
   else if(mStage == STAGE_FILTERS){
     JButton key = mEngine->ReadButton();
-
-    if (displayed_deck == myDeck) {
-      if (filterDeck) {
-        if (key == JGE_BTN_CTRL) {
-          useFilter = 0;
-          filterDeck->Finish(true);
-          filterDeck->Update(dt);
-          loadIndexes();
-          return;
-        }
-        if (!filterDeck->isFinished()) {
-        filterDeck->CheckUserInput(key);
-        filterDeck->Update(dt);
-        } else {
-          mStage = STAGE_WAITING;
-          updateFilters();
-          loadIndexes();
-        }
+    if (filterMenu) {
+      if (key == JGE_BTN_CTRL) {
+        useFilter = 0;
+        filterMenu->Finish(true);
+        filterMenu->Update(dt);
+        loadIndexes();
+        return;
       }
-    } else {
-      if (filterCollection) {
-        if (key == JGE_BTN_CTRL) {
-          useFilter = 0;
-          filterCollection->Finish(true);
-          filterCollection->Update(dt);
-          updateFilters();
-          loadIndexes();
-          return;
-        }
-        if (!filterCollection->isFinished()) {
-            filterCollection->CheckUserInput(key);
-            filterCollection->Update(dt);
-        } else {
-            mStage = STAGE_WAITING;
-            updateFilters();
-            loadIndexes();
-        }
+      if (!filterMenu->isFinished()) {
+        filterMenu->CheckUserInput(key);
+        filterMenu->Update(dt);
+      }
+      else {
+        mStage = STAGE_WAITING;
+        updateFilters();
+        loadIndexes();
       }
     }
   }
@@ -1365,13 +1331,8 @@ void GameStateDeckViewer::Render() {
   }
   if (subMenu) subMenu->Render();
 
-  if(displayed_deck == myDeck){
-    if(filterDeck && !filterDeck->isFinished())
-      filterDeck->Render();
-  }else{
-    if(filterCollection && !filterCollection->isFinished())
-      filterCollection->Render();
-  }
+  if(filterMenu && !filterMenu->isFinished())
+    filterMenu->Render();
 
   if(options.keypadActive())
     options.keypadRender();
@@ -1496,11 +1457,11 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
               goa->giveAward();
           }
           options.save();
-          SAFE_DELETE(filterCollection);
           SAFE_DELETE(myCollection);
           myCollection = NEW DeckDataWrapper(playerdata->collection);
           myCollection->Sort(WSrcCards::SORT_ALPHA);
           displayed_deck = myCollection;
+          rebuildFilters();
           loadIndexes();
           mStage = STAGE_WELCOME;
           break;
@@ -1537,14 +1498,9 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
           mStage =  STAGE_WAITING;
           break;
         case 22:
-          mStage = STAGE_FILTERS;
-          if(displayed_deck == myDeck){
-            if(!filterDeck) rebuildFilters();
-            filterDeck->Entering(JGE_BTN_NONE);
-          }else if(displayed_deck == myCollection){
-            if(!filterCollection) rebuildFilters();
-            filterCollection->Entering(JGE_BTN_NONE);
-          }
+          mStage = STAGE_FILTERS;         
+          if(!filterMenu) rebuildFilters();
+          filterMenu->Entering(JGE_BTN_NONE);       
           break;
         }
       break;
