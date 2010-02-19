@@ -67,6 +67,14 @@ void GameStateDeckViewer::rotateCards(int direction){
     displayed_deck->prev();
   loadIndexes();
 }
+void GameStateDeckViewer::rebuildFilters(){
+  SAFE_DELETE(filterDeck);
+  SAFE_DELETE(filterCollection);
+  filterCollection = NEW WGuiFilters("Filter by...",myCollection);
+  filterDeck = NEW WGuiFilters("Filter by...",myDeck);
+  filterDeck->Finish(true);
+  filterCollection->Finish(true);
+}
 void GameStateDeckViewer::updateFilters(){
   if(!displayed_deck) return;
 //  displayed_deck->clearFilters();
@@ -130,8 +138,6 @@ void GameStateDeckViewer::Start()
   myCollection =    NEW DeckDataWrapper(playerdata->collection);
   myCollection->Sort(WSrcCards::SORT_ALPHA);
   displayed_deck =  myCollection;
-  filterCollection = NEW WGuiFilters("Filter by...",myCollection);
-  filterCollection->Finish(true);
   //Build menu.
   menu = NEW SimpleMenu(11,this,Constants::MENU_FONT,SCREEN_WIDTH/2-150,20);
   menu->Add(22,"Filter by...");
@@ -140,7 +146,6 @@ void GameStateDeckViewer::Start()
   menu->Add(3,"Back to Main Menu");
   menu->Add(0,"Save & Back to Main Menu");
   menu->Add(4,"Cancel");
-
 
   //Icons
   mIcons[Constants::MTG_COLOR_ARTIFACT] = resources.GetQuad("c_artifact");
@@ -327,12 +332,10 @@ void GameStateDeckViewer::Update(float dt)
     case JGE_BTN_CTRL :
       mStage = STAGE_FILTERS;
       if (displayed_deck == myDeck) {
-        if (!filterDeck)
-          filterDeck = NEW WGuiFilters("Filter by...",myDeck);
+        if (!filterDeck) rebuildFilters();
         filterDeck->Entering(JGE_BTN_NONE);
       } else if(displayed_deck == myCollection) {
-        if (!filterCollection)
-          filterCollection = NEW WGuiFilters("Filter by...",myCollection);
+        if (!filterCollection) rebuildFilters();
         filterCollection->Entering(JGE_BTN_NONE);
       }
       break;
@@ -1401,10 +1404,7 @@ int GameStateDeckViewer::loadDeck(int deckid){
     SAFE_DELETE(myDeck);
   }
   myDeck = NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(deckname,"",false,false).c_str(), mParent->collection));
-  if(filterDeck) SAFE_DELETE(filterDeck);
-  filterDeck = NEW WGuiFilters("Filter by...",myDeck);
-  filterDeck->Finish(true);
-
+  
   // Check whether the cards in the deck are actually available in the player's collection:
   int cheatmode = options[Options::CHEATMODE].number;
   for(int i=0;i<myDeck->Size();i++){
@@ -1470,6 +1470,7 @@ int GameStateDeckViewer::loadDeck(int deckid){
     }    
     
   myDeck->Sort(WSrcCards::SORT_ALPHA);
+  rebuildFilters();
   loadIndexes();
   return 1;
 }
@@ -1538,12 +1539,10 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
         case 22:
           mStage = STAGE_FILTERS;
           if(displayed_deck == myDeck){
-            if(!filterDeck)
-              filterDeck = NEW WGuiFilters("Filter by...",myDeck);
+            if(!filterDeck) rebuildFilters();
             filterDeck->Entering(JGE_BTN_NONE);
           }else if(displayed_deck == myCollection){
-            if(!filterCollection)
-              filterCollection = NEW WGuiFilters("Filter by...",myCollection);
+            if(!filterCollection) rebuildFilters();
             filterCollection->Entering(JGE_BTN_NONE);
           }
           break;

@@ -132,6 +132,7 @@ public:
   void rotateCards(int direction);
   void loadIndexes();
   void updateFilters();
+  void rebuildFilters();
   void switchDisplay();
   void Start();
   virtual void End();

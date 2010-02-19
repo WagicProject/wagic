@@ -2,6 +2,7 @@
 #include "../include/OptionItem.h"
 #include "../include/PlayerData.h"
 #include "../include/Translate.h"
+#include "../include/Subtypes.h"
 #include <algorithm>
 #include <hge/hgedistort.h>
 
@@ -1501,8 +1502,9 @@ bool WGuiFilters::isAvailable(int type){
       WGuiFilterItem * wgfi = dynamic_cast<WGuiFilterItem*>(*it);
       if(!wgfi || wgfi->mState != WGuiFilterItem::STATE_FINISHED) continue;
       switch(type){
+        case WGuiFilterItem::FILTER_SUBTYPE:
         case WGuiFilterItem::FILTER_BASIC:
-          return true;
+          return true;        
         case WGuiFilterItem::FILTER_PRODUCE:
           if(wgfi->filterType == type)
             ma++;
@@ -1566,6 +1568,10 @@ void WGuiFilterItem::updateValue(){
         mParent->subMenu->Add(FILTER_TYPE,"Type");
         delMenu = false;
       }
+      if(mParent->isAvailable(FILTER_SUBTYPE)){
+        mParent->subMenu->Add(FILTER_SUBTYPE,"Subtype");
+        delMenu = false;
+      }
       if(mParent->isAvailable(FILTER_RARITY)){
         mParent->subMenu->Add(FILTER_RARITY,"Rarity");
         delMenu = false;
@@ -1616,6 +1622,13 @@ void WGuiFilterItem::updateValue(){
         mParent->addArg("Land","t:Land;");
         mParent->addArg("Legendary","t:Legendary;");
         mParent->addArg("Sorcery","t:Sorcery;");        
+      }else if(filterType == FILTER_SUBTYPE){
+        for(int i=Subtypes::LAST_TYPE+1;;i++){
+          string s = Subtypes::subtypesList->find(i);
+          if(s == "") break;
+          char buf[1024]; sprintf(buf,"t:%s;",s.c_str());
+          mParent->addArg(s,buf);
+        }
       }else if(filterType == FILTER_RARITY){
         mParent->addArg("Mythic","r:m;");
         mParent->addArg("Rare","r:r;");

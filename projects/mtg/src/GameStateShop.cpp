@@ -700,16 +700,12 @@ string ShopBooster::getSort() {
 };
 string ShopBooster::getName(){
   char buffer[512];
-  if(!pack){
-    if(altSet == mainSet)
-      altSet = NULL;
-    if(altSet)
-      sprintf(buffer,_("%s & %s (15 Cards)").c_str(),mainSet->id.c_str(),altSet->id.c_str());
-    else if(mainSet)
-      sprintf(buffer,_("%s Booster (15 Cards)").c_str(),mainSet->id.c_str());
-  }else{
-    return pack->getName();
-  }
+  if(!mainSet && pack) return pack->getName();
+  if(altSet == mainSet) altSet = NULL;
+  if(altSet)
+    sprintf(buffer,_("%s & %s (15 Cards)").c_str(),mainSet->id.c_str(),altSet->id.c_str());
+  else if(mainSet)
+    sprintf(buffer,_("%s Booster (15 Cards)").c_str(),mainSet->id.c_str());
   return buffer;
 }
 

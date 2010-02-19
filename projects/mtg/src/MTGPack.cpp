@@ -40,8 +40,7 @@ int MTGPackSlot::add(WSrcCards * ocean, MTGDeck *to, int carryover){
   int fails = 0;
   int amt = copies + carryover;
   WSrcCards * myPool = NULL;
-  if(pool.size())
-    myPool = MTGPack::getPool(pool);
+  if(pool.size()) myPool = MTGPack::getPool(pool);
   if(!myPool) myPool = ocean;
   for(int i=0;i<amt;i++){
     size_t pos = rand() % entries.size();

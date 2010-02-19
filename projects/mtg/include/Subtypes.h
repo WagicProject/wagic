@@ -19,6 +19,7 @@ public:
     TYPE_LAND = 5,
     TYPE_ARTIFACT = 6,
     TYPE_LEGENDARY = 7,
+    LAST_TYPE = TYPE_LEGENDARY,
   };
 
 
