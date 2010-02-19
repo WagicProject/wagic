@@ -447,12 +447,12 @@ void OptionKey::Render() {
     {
       const KeyRep& rep = translateKey(from);
       if (rep.icon)
-        renderer->RenderQuad(rep.icon, x + 2, y + 2);
+        renderer->RenderQuad(rep.icon, x + 4, y + 2);
       else
         mFont->DrawString(rep.text, x + 4, y + 2, JGETEXT_LEFT);
       const KeyRep& rep2 = translateKey(to);
       if (rep2.icon)
-        renderer->RenderQuad(rep2.icon, x + 2, y + 2);
+        renderer->RenderQuad(rep2.icon, x + 4, y + 2);
       else
         mFont->DrawString(rep2.text, width - 4, y + 2, JGETEXT_RIGHT);
     }
