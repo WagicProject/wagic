@@ -67,11 +67,10 @@ void GameStateDeckViewer::rotateCards(int direction){
   loadIndexes();
 }
 void GameStateDeckViewer::rebuildFilters(){
-  SAFE_DELETE(filterMenu);
-  SAFE_DELETE(source);
+  if(!filterMenu) filterMenu = NEW WGuiFilters("Filter by...",NULL);
   source = NEW WSrcDeckViewer(myDeck,myCollection);
+  filterMenu->setSrc(source);
   if(displayed_deck != myDeck) source->swapSrc();
-  filterMenu = NEW WGuiFilters("Filter by...",source);
   filterMenu->Finish(true);
 }
 void GameStateDeckViewer::updateFilters(){
@@ -323,7 +322,12 @@ void GameStateDeckViewer::Update(float dt)
       break;
     case JGE_BTN_CTRL :
       mStage = STAGE_FILTERS;
-      rebuildFilters();
+      if(!filterMenu){
+        filterMenu = NEW WGuiFilters("Filter by...",NULL);
+        source = NEW WSrcDeckViewer(myDeck,myCollection);
+        filterMenu->setSrc(source);
+        if(displayed_deck != myDeck) source->swapSrc();
+      }
       filterMenu->Entering(JGE_BTN_NONE);
       break;
     case JGE_BTN_PREV :
@@ -407,7 +411,7 @@ void GameStateDeckViewer::Update(float dt)
     JButton key = mEngine->ReadButton();
     if (filterMenu) {
       if (key == JGE_BTN_CTRL) {
-        useFilter = 0;
+        //useFilter = 0;
         filterMenu->Finish(true);
         filterMenu->Update(dt);
         loadIndexes();
@@ -1431,6 +1435,7 @@ int GameStateDeckViewer::loadDeck(int deckid){
     }    
     
   myDeck->Sort(WSrcCards::SORT_ALPHA);
+  SAFE_DELETE(filterMenu);
   rebuildFilters();
   loadIndexes();
   return 1;

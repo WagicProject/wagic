@@ -1413,6 +1413,10 @@ string WGuiFilters::getCode(){
   }
   return res;
 }
+void WGuiFilters::setSrc(WSrcCards * wsc){
+  SAFE_DELETE(source);
+  source = wsc;
+}
 void WGuiFilters::Update(float dt){
    if(subMenu && !subMenu->closed) 
      subMenu->Update(dt); 
@@ -1623,9 +1627,16 @@ void WGuiFilterItem::updateValue(){
         mParent->addArg("Legendary","t:Legendary;");
         mParent->addArg("Sorcery","t:Sorcery;");        
       }else if(filterType == FILTER_SUBTYPE){
+        vector<string> stlist;
         for(int i=Subtypes::LAST_TYPE+1;;i++){
           string s = Subtypes::subtypesList->find(i);
           if(s == "") break;
+          if(s.find(" ") != string::npos) continue;
+          stlist.push_back(s);
+        }
+        std::sort(stlist.begin(),stlist.end());
+        for(size_t t=0;t<stlist.size();t++){
+          string s=stlist[t];
           char buf[1024]; sprintf(buf,"t:%s;",s.c_str());
           mParent->addArg(s,buf);
         }

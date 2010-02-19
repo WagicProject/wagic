@@ -428,6 +428,7 @@ public:
   bool isFinished() {return bFinished;};
   void ButtonPressed(int controllerId, int controlId);
   void buildList();
+  void setSrc(WSrcCards * wsc);
 protected:
   void clearArgs();
   void addArg(string display, string code);
