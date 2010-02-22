@@ -37040,7 +37040,7 @@ toughness=4
 [card]
 name=Stoneforge Mystic
 auto=may moveTo(myhand) target(equipment|mylibrary)
-auto={1}{W}:moveTo(myBattlefield) target(equipment|myhand)
+auto={1}{W}{T}:moveTo(myBattlefield) target(equipment|myhand)
 text=When Stoneforge Mystic enters the battlefield, you may search your library for an Equipment card, reveal it, put it into your hand, then shuffle your library. -- {1}{W}, {T}: You may put an Equipment card from your hand onto the battlefield.
 mana={1}{W}
 type=Creature
