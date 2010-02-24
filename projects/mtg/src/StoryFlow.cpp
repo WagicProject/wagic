@@ -52,7 +52,7 @@ void StoryChoice::Entering()
 }
 
 
-bool  StoryChoice::Leaving(u32 key)
+bool  StoryChoice::Leaving(JButton key)
 {
   mHasFocus = false;
   mTargetScale = 1.0f;

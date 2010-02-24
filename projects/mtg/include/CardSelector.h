@@ -57,7 +57,7 @@ class ObjectSelector : public GuiLayer
  int bigMode;
  void Add(T*);
  void Remove(T*);
- bool CheckUserInput(u32 key);
+ bool CheckUserInput(JButton key);
  void Update(float dt);
  void Render();
  void Limit(LimitorFunctor<T>* limitor, SelectorZone);

@@ -24,7 +24,6 @@
 
 //////////////////////////////////////////////////////////////////////////
 #if defined (WIN32)    // WIN32 specific code
-#include "../../Dependencies/include/png.h"
 #include "../../Dependencies/include/fmod.h"
 
 u8 JGE::GetAnalogX()
@@ -44,7 +43,6 @@ u8 JGE::GetAnalogY()
 
 #elif defined (LINUX)    // Unix specific code
 #include <sys/time.h>
-#include "png.h"
 #include "../Dependencies/include/fmod.h"
 
 
@@ -253,7 +251,7 @@ void JGE::Init()
 
 void JGE::SetDelta(float delta)
 {
-  mDeltaTime = (float)delta;
+  mDeltaTime = delta;
 }
 
 float JGE::GetDelta()
@@ -277,12 +275,6 @@ void JGE::Init()
   mDebug = true;
 #else
   mDebug = false;
-#endif
-
-#if defined (WIN32) || defined (LINUX)
-  tickFrequency = 120;
-#else
-  tickFrequency = sceRtcGetTickResolution();
 #endif
 
   if (mDebug)

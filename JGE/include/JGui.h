@@ -51,7 +51,7 @@ class JGuiObject
   virtual void Update(float dt);
 
   virtual void Entering();			// when focus is transferring to this obj
-  virtual bool Leaving(u32 key);		// when focus is transferring away from this obj, true to go ahead
+  virtual bool Leaving(JButton key);		// when focus is transferring away from this obj, true to go ahead
   virtual bool ButtonPressed();		// action button pressed, return false to ignore
 
   int GetId();

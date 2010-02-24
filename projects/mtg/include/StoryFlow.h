@@ -5,7 +5,7 @@
 #include <map>
 #include <vector>
 using namespace std;
-#include "../../../JGE/src/TinyXML/tinyxml.h"
+#include "../../../JGE/src/tinyxml/tinyxml.h"
 #include <JGui.h>
 class GameObserver;
 #define CAMPAIGNS_FOLDER "Res/campaigns/"
@@ -24,7 +24,7 @@ public:
   void Update(float dt);
 
   void Entering();
-  bool Leaving(u32 key);
+  bool Leaving(JButton key);
   bool ButtonPressed();
   bool hasFocus();
   virtual ostream& toString(ostream& out) const;

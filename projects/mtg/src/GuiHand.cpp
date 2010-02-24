@@ -137,9 +137,9 @@ void GuiHandSelf::Repos()
     }
 }
 
-bool GuiHandSelf::CheckUserInput(u32 key)
+bool GuiHandSelf::CheckUserInput(JButton key)
 {
-  u32 trigger = (options[Options::REVERSETRIGGERS].number ? JGE_BTN_PREV : JGE_BTN_NEXT);
+  JButton trigger = (options[Options::REVERSETRIGGERS].number ? JGE_BTN_PREV : JGE_BTN_NEXT);
   if (trigger == key)
     {
       state = (Open == state ? Closed : Open);

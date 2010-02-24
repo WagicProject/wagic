@@ -1,6 +1,6 @@
 #include "GuiMessageBox.h"
 
-bool GuiMessageBox::CheckUserInput(u32 key){
+bool GuiMessageBox::CheckUserInput(JButton key){
   if (mActionButton == key)
     {
       if (mObjects[mCurr] != NULL && mObjects[mCurr]->ButtonPressed())

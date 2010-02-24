@@ -51,7 +51,7 @@ class Interruptible: public PlayGuiObject, public Targetable{
   int state, display;
   MTGCardInstance * source;
   virtual void Entering(){mHasFocus = true;};
-  virtual bool Leaving(u32 key){mHasFocus = false;return true;};
+  virtual bool Leaving(JButton key){mHasFocus = false;return true;};
   virtual bool ButtonPressed(){return true;};
   virtual int resolve(){return 0;};
   virtual void Render(){};
@@ -169,7 +169,7 @@ class ActionStack :public GuiLayer{
   int addDamage(MTGCardInstance * _source, Damageable * target, int _damage);
   int addAbility(MTGAbility * ability);
   void Update(float dt);
-  bool CheckUserInput(u32 key);
+  bool CheckUserInput(JButton key);
   virtual void Render();
   ActionStack(GameObserver* game);
   int resolve();

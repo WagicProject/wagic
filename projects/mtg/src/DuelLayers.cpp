@@ -48,7 +48,7 @@ void DuelLayers::init(){
 }
 
 void DuelLayers::CheckUserInput(int isAI){
-  u32 key;
+  JButton key;
   while ((key = JGE::GetInstance()->ReadButton())){
     if ((!isAI) && (0 != key))
       {

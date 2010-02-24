@@ -7,7 +7,7 @@ void GuiStatic::Entering()
 {
   parent->Activate(this);
 }
-bool GuiStatic::Leaving(u32 key)
+bool GuiStatic::Leaving(JButton key)
 {
   parent->Deactivate(this);
   return false;
@@ -151,7 +151,7 @@ void GuiGameZone::ButtonPressed(int controllerId, int controlId){
   GameObserver::GetInstance()->ButtonPressed(this);
 }
 
-bool GuiGameZone::CheckUserInput(u32 key){
+bool GuiGameZone::CheckUserInput(JButton key){
   if (showCards) return cd->CheckUserInput(key);
   return false;
 }

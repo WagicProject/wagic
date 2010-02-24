@@ -53,7 +53,7 @@ void SimpleMenuItem::Entering()
 }
 
 
-bool SimpleMenuItem::Leaving(u32 key)
+bool SimpleMenuItem::Leaving(JButton key)
 {
   mHasFocus = false;
   return true;

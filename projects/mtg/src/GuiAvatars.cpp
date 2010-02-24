@@ -66,7 +66,7 @@ int GuiAvatars::receiveEventMinus(WEvent* e)
   return 1;
 }
 
-bool GuiAvatars::CheckUserInput(u32 key){
+bool GuiAvatars::CheckUserInput(JButton key){
   if (self->CheckUserInput(key)) return true;
   if (opponent->CheckUserInput(key)) return true;
   if (selfGraveyard->CheckUserInput(key)) return true;

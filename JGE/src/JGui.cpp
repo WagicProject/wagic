@@ -28,7 +28,7 @@ JGuiObject::~JGuiObject()
 }
 
 
-bool JGuiObject::Leaving(u32 key __attribute__((unused)))
+bool JGuiObject::Leaving(JButton key __attribute__((unused)))
 {
   return true;
 }

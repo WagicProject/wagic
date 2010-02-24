@@ -72,7 +72,7 @@ class GuiHandSelf : public GuiHand
   virtual int receiveEventMinus(WEvent* e);
 
   void Repos();
-  bool CheckUserInput(u32 key);
+  bool CheckUserInput(JButton key);
   virtual void Render();
   void Update(float dt);
   float LeftBoundary();

@@ -4,7 +4,7 @@
 class OSDLayer : public PlayGuiObjectController
 {
   virtual void Update(float dt);
-  virtual bool CheckUserInput(u32 key);
+  virtual bool CheckUserInput(JButton key);
   virtual void Render();
 };
 

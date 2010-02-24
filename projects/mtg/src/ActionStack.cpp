@@ -620,8 +620,8 @@ void ActionStack::endOfInterruption(){
 }
 
 
-bool ActionStack::CheckUserInput(u32 key){
-  u32 trigger = (options[Options::REVERSETRIGGERS].number ? JGE_BTN_NEXT : JGE_BTN_PREV);
+bool ActionStack::CheckUserInput(JButton key){
+  JButton trigger = (options[Options::REVERSETRIGGERS].number ? JGE_BTN_NEXT : JGE_BTN_PREV);
   if (mode == ACTIONSTACK_STANDARD){
     if (askIfWishesToInterrupt){
       if (JGE_BTN_SEC == key){

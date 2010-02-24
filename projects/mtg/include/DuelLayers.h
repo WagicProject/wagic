@@ -2,10 +2,7 @@
 #define _DUELLAYERS_H_
 
 #include "GuiLayers.h"
-#include "PlayGuiObject.h"
-
-template <typename T> class ObjectSelector;
-typedef ObjectSelector<PlayGuiObject> CardSelector;
+#include "CardSelector.h"
 
 class MTGGuiHand;
 class MTGGuiPlay;

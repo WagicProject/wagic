@@ -24,7 +24,7 @@ class ActionLayer: public GuiLayer, public JGuiListener{
   int stuffHappened;
   virtual void Render();
   virtual void Update(float dt);
-  bool CheckUserInput(u32 key);
+  bool CheckUserInput(JButton key);
   ActionLayer();
   ~ActionLayer();
   int cancelCurrentAction();

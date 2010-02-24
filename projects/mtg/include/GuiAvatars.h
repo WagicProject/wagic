@@ -27,7 +27,7 @@ class GuiAvatars : public GuiLayer
   void Deactivate(PlayGuiObject* c);
   int receiveEventPlus(WEvent*);
   int receiveEventMinus(WEvent*);
-  bool CheckUserInput(u32 key);
+  bool CheckUserInput(JButton key);
   float LeftBoundarySelf();
 };
 

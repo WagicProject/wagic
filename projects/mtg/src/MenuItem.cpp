@@ -94,7 +94,7 @@ void MenuItem::Entering()
 }
 
 
-bool MenuItem::Leaving(u32 key)
+bool MenuItem::Leaving(JButton key)
 {
   mParticleSys->Stop(true);
   mHasFocus = false;

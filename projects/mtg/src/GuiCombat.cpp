@@ -137,7 +137,7 @@ bool GuiCombat::clickOK(){
   return false;
 }
 
-bool GuiCombat::CheckUserInput(u32 key)
+bool GuiCombat::CheckUserInput(JButton key)
 {
   if (NONE == cursor_pos) return false;
   DamagerDamaged* oldActive = active;
@@ -251,6 +251,8 @@ bool GuiCombat::CheckUserInput(u32 key)
       if (options[Options::REVERSETRIGGERS].number) return false;
       active = activeAtk = NULL; cursor_pos = OK;
       break;
+    default:
+      ;
     }
   if (oldActive != active)
     {

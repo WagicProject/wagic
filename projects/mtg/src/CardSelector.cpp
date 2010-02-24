@@ -8,6 +8,9 @@
 
 using std::cout;
 
+// The X lib annoyingly defines True to be 1, leading to
+// hard to understand syntax errors. Not using it, so it's
+// safe to undefine it.
 #ifdef True
 #undef True
 #endif
@@ -98,13 +101,13 @@ void CardSelector::Pop()
     {
       { CardView* c = dynamic_cast<CardView*>(oldactive); if (c) c->zoom = 1.0; } //Is this needed, I think it is one in Leaving(0) ?
       { CardView* c = dynamic_cast<CardView*>(active); if (c) c->zoom = 1.4; } //Is this needed, I think it is one in Entering() ?
-      if (oldactive) oldactive->Leaving(0);
+      if (oldactive) oldactive->Leaving(JGE_BTN_NONE);
       if (active) active->Entering();
     }
 }
 
 template<>
-bool CardSelector::CheckUserInput(u32 key)
+bool CardSelector::CheckUserInput(JButton key)
 {
   if (!active)
     {
@@ -175,7 +178,7 @@ bool CardSelector::CheckUserInput(u32 key)
     {
       { CardView* c = dynamic_cast<CardView*>(oldactive); if (c) c->zoom = 1.0; }
       { CardView* c = dynamic_cast<CardView*>(active); if (c) c->zoom = 1.4; }
-      if (oldactive) oldactive->Leaving(0);
+      if (oldactive) oldactive->Leaving(JGE_BTN_NONE);
       if (active) active->Entering();
     }
   return true;
@@ -248,7 +251,7 @@ void CardSelector::Limit(LimitorFunctor<Target>* limitor, SelectorZone destzone)
         {
           { CardView* c = dynamic_cast<CardView*>(oldactive); if (c) c->zoom = 1.0; }
           { CardView* c = dynamic_cast<CardView*>(active); if (c) c->zoom = 1.4; }
-          if (oldactive) oldactive->Leaving(0);
+          if (oldactive) oldactive->Leaving(JGE_BTN_NONE);
           if (active) active->Entering();
         }
     }

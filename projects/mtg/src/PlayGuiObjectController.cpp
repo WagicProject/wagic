@@ -85,7 +85,7 @@ void PlayGuiObjectController::Update(float dt){
 }
 
 
-bool PlayGuiObjectController::CheckUserInput(u32 key){
+bool PlayGuiObjectController::CheckUserInput(JButton key){
   /*
   if (!mCount)
     return false;

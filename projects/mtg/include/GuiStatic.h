@@ -13,7 +13,7 @@ struct GuiStatic : public PlayGuiObject{
   GuiAvatars* parent;
   GuiStatic(float desiredHeight, float x, float y, bool hasFocus, GuiAvatars* parent);
   virtual void Entering();
-  virtual bool Leaving(u32 key);
+  virtual bool Leaving(JButton key);
 };
 
 struct GuiAvatar : public GuiStatic{
@@ -42,7 +42,7 @@ struct GuiGameZone : public GuiStatic{
   CardDisplay * cd;
   int showCards;
   virtual void Render();
-  virtual bool CheckUserInput(u32 key);
+  virtual bool CheckUserInput(JButton key);
   virtual void Update(float dt);
   GuiGameZone(float x, float y, bool hasFocus, MTGGameZone * zone, GuiAvatars* parent);
   ~GuiGameZone();

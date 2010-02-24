@@ -95,7 +95,6 @@ class JGE
   bool mCriticalAssert;
   const char *mAssertFile;
   int mAssertLine;
-  u32 tickFrequency;
 
 
   static JGE* mInstance;

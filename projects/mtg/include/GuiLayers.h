@@ -14,7 +14,7 @@ class Player;
 
 class GuiLayer{
  protected:
-  u32	mActionButton;
+ JButton mActionButton;
  public:
   int mCount;
   int mCurr;
@@ -28,7 +28,7 @@ class GuiLayer{
   GuiLayer();
   virtual ~GuiLayer();
   virtual void Update(float dt);
-  virtual bool CheckUserInput(u32 key){ return false; };
+  virtual bool CheckUserInput(JButton key){ return false; };
   int getIndexOf(JGuiObject * object);
   JGuiObject * getByIndex (int index);
   virtual void Render();

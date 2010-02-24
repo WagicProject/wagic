@@ -196,7 +196,7 @@ void SimplePad::MoveSelection(unsigned char moveto)
 
 void SimplePad::Update(float dt){
   JGE * mEngine = JGE::GetInstance();
-  u32 key = mEngine->ReadButton();
+  JButton key = mEngine->ReadButton();
 
   //Start button changes capslock setting.
   if (key == JGE_BTN_MENU)

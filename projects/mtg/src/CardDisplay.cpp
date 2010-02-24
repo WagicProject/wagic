@@ -77,7 +77,7 @@ void CardDisplay::Update(float dt){
   if (update) init(zone);
 }
 
-bool CardDisplay::CheckUserInput(u32 key){
+bool CardDisplay::CheckUserInput(JButton key){
   if (JGE_BTN_SEC == key)
     {
       if (listener){
@@ -136,6 +136,8 @@ bool CardDisplay::CheckUserInput(u32 key){
 	}
       }
       return true;
+    default:
+      ;
     }
   return false;
 }
