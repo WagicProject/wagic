@@ -85,6 +85,10 @@ class JGE
 #if defined (WIN32) || defined (LINUX)
   float mDeltaTime;
   JMusic *mCurrentMusic;
+#else
+ public:
+  void Run();
+ private:
 #endif
 
   bool mDone;

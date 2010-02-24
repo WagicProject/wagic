@@ -48,21 +48,16 @@ u8 JGE::GetAnalogY()
 
 u8 JGE::GetAnalogX()
 {
-  /* FIXME
-     if (JGEGetKeyState(VK_LEFT)) return 0;
-     if (JGEGetKeyState(VK_RIGHT)) return 0xff;
-  */
+  if (GetButtonState(JGE_BTN_LEFT)) return 0;
+  if (GetButtonState(JGE_BTN_RIGHT)) return 0xff;
   return 0x80;
 }
 
 
 u8 JGE::GetAnalogY()
 {
-  /* FIXME
-     if (JGEGetKeyState(VK_UP)) return 0;
-     if (JGEGetKeyState(VK_DOWN)) return 0xff;
-  */
-
+  if (GetButtonState(JGE_BTN_UP)) return 0;
+  if (GetButtonState(JGE_BTN_DOWN)) return 0xff;
   return 0x80;
 }
 
@@ -315,43 +310,78 @@ u8 JGE::GetAnalogY()
   return JGEGetAnalogY();
 }
 
+static SceCtrlData gCtrlPad;
 
-
-/*
-bool JGE::GetButtonState(u32 button)
+void JGE::Run()
 {
-  return (mCtrlPad.Buttons&button)==button;
+  static const int keyCodeList[] = {
+    PSP_CTRL_SELECT, // Select button.
+    PSP_CTRL_START, // Start button.
+    PSP_CTRL_UP, // Up D-Pad button.
+    PSP_CTRL_RIGHT, // Right D-Pad button.
+    PSP_CTRL_DOWN, // Down D-Pad button.
+    PSP_CTRL_LEFT, // Left D-Pad button.
+    PSP_CTRL_LTRIGGER, // Left trigger.
+    PSP_CTRL_RTRIGGER, // Right trigger.
+    PSP_CTRL_TRIANGLE, // Triangle button.
+    PSP_CTRL_CIRCLE, // Circle button.
+    PSP_CTRL_CROSS, // Cross button.
+    PSP_CTRL_SQUARE, // Square button.
+    PSP_CTRL_HOLD, // Hold button.
+  };
+  u64 curr;
+  long long int nextInput = 0;
+  u64 lastTime;
+  u32 oldButtons;
+  u32 veryOldButtons;
+  u32 gTickFrequency = sceRtcGetTickResolution();
 
+  sceRtcGetCurrentTick(&lastTime);
+  oldButtons = veryOldButtons = 0;
+  JGECreateDefaultBindings();
+  while (!mDone)
+    {
+      if (!mPaused)
+       {
+         sceRtcGetCurrentTick(&curr);
+          float dt = (curr - lastTime) / (float)gTickFrequency;
+         mDelta = dt;
+         sceCtrlPeekBufferPositive(&gCtrlPad, 1);
+         for (signed int i = sizeof(keyCodeList)/sizeof(keyCodeList[0]) - 1; i >= 0; --i)
+           {
+             if (keyCodeList[i] & gCtrlPad.Buttons)
+                {
+                  if (!(keyCodeList[i] & oldButtons))
+                    HoldKey(keyCodeList[i]);
+                }
+              else
+                if (keyCodeList[i] & oldButtons)
+                  ReleaseKey(keyCodeList[i]);
+           }
+         oldButtons = gCtrlPad.Buttons;
+         Update(dt);
+         Render();
+         if (mDebug)
+           {
+             if (strlen(mDebuggingMsg)>0)
+               {
+                 pspDebugScreenSetXY(0, 0);
+                 pspDebugScreenPrintf(mDebuggingMsg);
+               }
+            }
+          veryOldButtons = gCtrlPad.Buttons;
+        }
+      else
+        sceKernelDelayThread(1);
+      lastTime = curr;
+    }
 }
-
-
-bool JGE::GetButtonClick(u32 button)
-{
-  return (mCtrlPad.Buttons&button)==button && (mVeryOldButtons&button)!=button;
-}
-
-u32 JGE::ReadButton()
-{
-  if (gKeyBuffer.empty()) return 0;
-  u32 val = gKeyBuffer.front();
-  gHolds &= ~val;
-  gKeyBuffer.pop();
-  return val;
-}
-
-void JGE::ResetInput()
-{
-  while (!gKeyBuffer.empty()) gKeyBuffer.pop();
-}
-*/
-
 
 #endif		///// PSP specific code
 
 
 //////////////////////////////////////////////////////////////////////////
 JGE* JGE::mInstance = NULL;
-//static int gCount = 0;
 
 // returns number of milliseconds since game started
 int JGE::GetTime()
@@ -362,19 +392,13 @@ int JGE::GetTime()
 
 JGE* JGE::GetInstance()
 {
-  if (mInstance == NULL)
-    {
-      mInstance = new JGE();
-    }
-
-  //gCount++;
+  if (mInstance == NULL) mInstance = new JGE();
   return mInstance;
 }
 
 
 void JGE::Destroy()
 {
-  //gCount--;
   if (mInstance)
     {
       delete mInstance;
@@ -397,13 +421,10 @@ void JGE::Render()
   renderer->EndScene();
 }
 
-
 void JGE::End()
 {
   mDone = true;
 }
-
-
 
 void JGE::printf(const char *format, ...)
 {
@@ -415,14 +436,12 @@ void JGE::printf(const char *format, ...)
 
 }
 
-
 void JGE::Pause()
 {
   if (mPaused) return;
 
   mPaused = true;
-  if (mApp != NULL)
-    mApp->Pause();
+  if (mApp != NULL) mApp->Pause();
 }
 
 
@@ -436,14 +455,11 @@ void JGE::Resume()
     }
 }
 
-
 void JGE::Assert(const char *filename, long lineNumber)
 {
   mAssertFile = filename;
   mAssertLine = lineNumber;
   mCriticalAssert = true;
-
-
 }
 
 std::queue< pair<LocalKeySym, JButton> > JGE::keyBuffer;

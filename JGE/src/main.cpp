@@ -326,36 +326,30 @@ void Run()
 
   while (!g_engine->mDone)
     {
+      sceRtcGetCurrentTick(&curr);
+      float dt = (curr - lastTime) / (float)gTickFrequency;
+      g_engine->mDelta = dt;
       if (!g_engine->mPaused)
 	{
-	  sceRtcGetCurrentTick(&curr);
-          float dt = (curr - lastTime) / (float)gTickFrequency;
-	  g_engine->mDelta = dt;
-
 	  sceCtrlPeekBufferPositive(&gCtrlPad, 1);
 	  for (signed int i = sizeof(keyCodeList)/sizeof(keyCodeList[0]) - 1; i >= 0; --i)
-	    {
-	      if (keyCodeList[i] & gCtrlPad.Buttons)
-                {
-                  if (!(keyCodeList[i] & oldButtons))
-                    g_engine->HoldKey(keyCodeList[i]);
-                }
-              else
-                if (keyCodeList[i] & oldButtons)
-                  g_engine->ReleaseKey(keyCodeList[i]);
-	    }
-	  oldButtons = gCtrlPad.Buttons;
+            if (keyCodeList[i] & gCtrlPad.Buttons)
+              {
+                if (!(keyCodeList[i] & oldButtons))
+                  g_engine->HoldKey(keyCodeList[i]);
+              }
+            else
+              if (keyCodeList[i] & oldButtons)
+                g_engine->ReleaseKey(keyCodeList[i]);
 
+	  oldButtons = gCtrlPad.Buttons;
 	  g_engine->Update(dt);
 	  g_engine->Render();
 
-	  if (g_engine->mDebug)
-	    {
-	      if (strlen(g_engine->mDebuggingMsg)>0)
-		{
-		  pspDebugScreenSetXY(0, 0);
-		  pspDebugScreenPrintf(g_engine->mDebuggingMsg);
-		}
+	  if (g_engine->mDebug && strlen(g_engine->mDebuggingMsg) > 0)
+            {
+              pspDebugScreenSetXY(0, 0);
+              pspDebugScreenPrintf(g_engine->mDebuggingMsg);
             }
           veryOldButtons = gCtrlPad.Buttons;
         }
@@ -388,7 +382,7 @@ int main()
   game->Create();
 
   g_engine->SetApp(game);
-  Run();
+  g_engine->Run();
 
   game->Destroy();
   delete game;
