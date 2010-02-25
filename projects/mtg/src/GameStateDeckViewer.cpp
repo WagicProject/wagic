@@ -1094,7 +1094,6 @@ void GameStateDeckViewer::updateStats() {
       stw.totalSpellCost += convertedCost * currentCount;
     } 
     
-    //if (current->isLand()) {
     // Lets look for mana producing abilities
     MTGCardInstance * cin;
     MTGAbility * ab = NULL;
@@ -1137,8 +1136,7 @@ void GameStateDeckViewer::updateStats() {
       }
     }
     SAFE_DELETE(cin);
-    //OutputDebugString("...Done\n");
-    //}
+
     // Add to the per color counters
     //  a. regular costs
     for (int j=0; j<Constants::MTG_NB_COLORS;j++){
@@ -1243,10 +1241,10 @@ void GameStateDeckViewer::renderCard(int id, float rotation){
     }
   }
 
+  int quadAlpha = alpha;
+  if ( !displayed_deck->count(card)) quadAlpha /=2;
   if (quad){
     showName = 0;
-    int quadAlpha = alpha;
-    if ( !displayed_deck->count(card)) quadAlpha /=2;
     quad->SetColor(ARGB(mAlpha,quadAlpha,quadAlpha,quadAlpha));
     float _scale = scale *(285 / quad->mHeight);
     JRenderer::GetInstance()->RenderQuad(quad, x   , y , 0.0f,_scale,_scale);
@@ -1268,6 +1266,11 @@ void GameStateDeckViewer::renderCard(int id, float rotation){
       quad->SetColor(ARGB(40,255,255,255));
       JRenderer::GetInstance()->RenderQuad(quad,x,y,0,_scale,_scale);
     }
+    quadAlpha = 255 - quadAlpha;
+    if (quadAlpha > 0){
+      JRenderer::GetInstance()->FillRect(x - scale* 100 ,y - scale * 142.5,scale* 200,scale*285,ARGB(quadAlpha,0,0,0));
+    }
+
   }
   if (last_user_activity < 3){
     int fontAlpha = alpha;
