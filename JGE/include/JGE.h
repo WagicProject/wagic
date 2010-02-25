@@ -104,7 +104,7 @@ class JGE
   static JGE* mInstance;
 
 
-  static std::queue< std::pair<LocalKeySym, JButton> > keyBuffer;
+  static std::queue< std::pair<std::pair<LocalKeySym, JButton>, bool> > keyBuffer;
   static std::multimap<LocalKeySym, JButton> keyBinds;
   typedef std::multimap<LocalKeySym, JButton>::iterator keycodes_it;
 

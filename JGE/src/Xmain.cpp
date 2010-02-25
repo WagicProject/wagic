@@ -368,7 +368,7 @@ int main(int argc, char* argv[])
     }
 
   XSelectInput(gXDisplay, gXWindow, KeyPressMask | KeyReleaseMask | StructureNotifyMask);
-  XkbSetDetectableAutoRepeat(gXDisplay, true, NULL);
+  XkbSetDetectableAutoRepeat(gXDisplay, True, NULL);
 
   JGECreateDefaultBindings();
 
