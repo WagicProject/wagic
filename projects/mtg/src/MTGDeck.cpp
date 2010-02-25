@@ -845,8 +845,7 @@ int MTGSets::size(){
 
 //MTGSetInfo
 MTGSetInfo::~MTGSetInfo(){
-  if(mPack != MTGPacks::getDefault())
-    SAFE_DELETE(mPack);
+  SAFE_DELETE(mPack);
 }
 MTGSetInfo::MTGSetInfo(string _id) {
   string whitespaces (" \t\f\v\n\r");

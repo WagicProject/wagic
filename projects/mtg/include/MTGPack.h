@@ -5,6 +5,7 @@ class ShopBooster;
 
 class MTGPackEntry{
 public:
+  virtual ~MTGPackEntry() {};
   virtual int addCard(WSrcCards * pool,MTGDeck * to) = 0;
   int copies;  
 };

@@ -52,6 +52,8 @@ int MTGPackSlot::add(WSrcCards * ocean, MTGDeck *to, int carryover){
   fails = entries[pos]->addCard(myPool,to); 
 #endif
   }
+  if(myPool != ocean)
+    SAFE_DELETE(myPool);
   return fails;
 }
 
@@ -232,7 +234,7 @@ void MTGPacks::loadAll(){
     if(!p->isValid()){
       SAFE_DELETE(p);
       continue;
-    }
+    } 
     packs.push_back(p);
   }
   closedir(mDip);
@@ -277,24 +279,24 @@ MTGPack * MTGPacks::getDefault(){
   if(!defaultBooster.isValid()){
     defaultBooster.load(RESPATH"/packs/default_booster.txt");
     defaultBooster.unlockStatus = 1;
-  }
-  if(!defaultBooster.isValid()){
-    MTGPackSlot * ps = NEW MTGPackSlot(); ps->copies = 1;
-    ps->addEntry(NEW MTGPackEntryRandom("rarity:mythic;"));
-    for(int i=0;i<7;i++)
-      ps->addEntry(NEW MTGPackEntryRandom("rarity:rare;"));
-    defaultBooster.slots.push_back(ps);
-    ps = NEW MTGPackSlot(); ps->copies = 3;
-    ps->addEntry(NEW MTGPackEntryRandom("rarity:uncommon;"));
-    defaultBooster.slots.push_back(ps);
-    ps = NEW MTGPackSlot(); ps->copies = 1;
-    ps->addEntry(NEW MTGPackEntryRandom("rarity:land;"));
-    defaultBooster.slots.push_back(ps);
-    ps = NEW MTGPackSlot(); ps->copies = 10;
-    ps->addEntry(NEW MTGPackEntryRandom("rarity:common;"));
-    defaultBooster.slots.push_back(ps);    
-    defaultBooster.bValid = true;
-    defaultBooster.unlockStatus = 1;
+    if(!defaultBooster.isValid()){
+      MTGPackSlot * ps = NEW MTGPackSlot(); ps->copies = 1;
+      ps->addEntry(NEW MTGPackEntryRandom("rarity:mythic;"));
+      for(int i=0;i<7;i++)
+        ps->addEntry(NEW MTGPackEntryRandom("rarity:rare;"));
+      defaultBooster.slots.push_back(ps);
+      ps = NEW MTGPackSlot(); ps->copies = 3;
+      ps->addEntry(NEW MTGPackEntryRandom("rarity:uncommon;"));
+      defaultBooster.slots.push_back(ps);
+      ps = NEW MTGPackSlot(); ps->copies = 1;
+      ps->addEntry(NEW MTGPackEntryRandom("rarity:land;&type:basic;"));
+      defaultBooster.slots.push_back(ps);
+      ps = NEW MTGPackSlot(); ps->copies = 10;
+      ps->addEntry(NEW MTGPackEntryRandom("rarity:common;"));
+      defaultBooster.slots.push_back(ps);    
+      defaultBooster.bValid = true;
+      defaultBooster.unlockStatus = 1;
+    }
   }
   return &defaultBooster;
 }
