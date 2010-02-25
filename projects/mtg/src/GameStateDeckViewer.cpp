@@ -1038,8 +1038,8 @@ void GameStateDeckViewer::updateStats() {
 
   myDeck->validate();
   stw.needUpdate = false; 
-
   stw.cardCount = myDeck->getCount(WSrcDeck::UNFILTERED_COPIES);
+  stw.countLands = myDeck->getCount(Constants::MTG_COLOR_LAND);
   stw.totalPrice = myDeck->totalPrice();
 
   stw.countManaProducers = 0;
@@ -1073,16 +1073,11 @@ void GameStateDeckViewer::updateStats() {
     }
   }
 
-  stw.countLands = 0;
   for(int ic=0;ic<myDeck->Size();ic++){
     current = myDeck->getCard(ic);
     currentCost = current->data->getManaCost();
     convertedCost = currentCost->getConvertedCost();
     currentCount = myDeck->count(current);
-
-    if(current->data->isLand())
-      stw.countLands += currentCount;
-      
     
     // Add to the cards per cost counters
     stw.totalManaCost += convertedCost * currentCount;
