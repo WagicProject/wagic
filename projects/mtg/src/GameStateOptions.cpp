@@ -42,7 +42,6 @@ void GameStateOptions::Start()
   optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::CLOSEDHAND,"Closed hand",1,1,0)));
   optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::HANDDIRECTION,"Hand direction",1,1,0)));
   optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::MANADISPLAY,"Mana display",2,1,0)));
-  optionsList->Add(NEW OptionInteger(Options::REVERSETRIGGERS, "Reverse left and right triggers"));
   optionsList->Add(NEW OptionInteger(Options::DISABLECARDS,"Disable card images"));
   optionsList->Add(NEW OptionInteger(Options::TRANSITIONS,"Disable screen transitions"));
   optionsTabs->Add(optionsList);

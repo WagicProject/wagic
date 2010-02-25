@@ -139,7 +139,7 @@ void GuiHandSelf::Repos()
 
 bool GuiHandSelf::CheckUserInput(JButton key)
 {
-  JButton trigger = (options[Options::REVERSETRIGGERS].number ? JGE_BTN_PREV : JGE_BTN_NEXT);
+  JButton trigger = JGE_BTN_NEXT;
   if (trigger == key)
     {
       state = (Open == state ? Closed : Open);

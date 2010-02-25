@@ -26,7 +26,6 @@ const string Options::optionNames[] = {
   "closed_hand",
   "hand_direction",
   "mana_display",
-  "reverse_triggers",
   "disable_cards",
   "maxGrade",
   "economic_difficulty",

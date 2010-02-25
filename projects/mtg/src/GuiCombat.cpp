@@ -243,12 +243,7 @@ bool GuiCombat::CheckUserInput(JButton key)
     case JGE_BTN_PRI:
       active = activeAtk = NULL; cursor_pos = OK;
       break;
-    case JGE_BTN_NEXT:
-      if (!options[Options::REVERSETRIGGERS].number) return false;
-      active = activeAtk = NULL; cursor_pos = OK;
-      break;
     case JGE_BTN_PREV:
-      if (options[Options::REVERSETRIGGERS].number) return false;
       active = activeAtk = NULL; cursor_pos = OK;
       break;
     default:
