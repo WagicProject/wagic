@@ -68,7 +68,7 @@ static map<JButton, float> oldHolds;
 #define REPEAT_DELAY 0.5
 #define REPEAT_PERIOD 0.07
 
-static inline bool held(const JButton sym) { return holds.end() == holds.find(sym); }
+static inline bool held(const JButton sym) { return holds.end() != holds.find(sym); }
 static inline pair<pair<LocalKeySym, JButton>, bool> triplet(LocalKeySym k, JButton b, bool h) { return make_pair(make_pair(k, b), h); }
 static inline pair<pair<LocalKeySym, JButton>, bool> triplet(pair<LocalKeySym, JButton> p, bool h) { return make_pair(p, h); }
 
@@ -91,12 +91,12 @@ void JGE::HoldKey(const LocalKeySym sym)
     keyBuffer.push(triplet(sym, JGE_BTN_NONE, false));
   else for (keycodes_it it = rng.first; it != rng.second; ++it)
     {
-      if (held(it->second))
+      if (!held(it->second))
         {
-          keyBuffer.push(triplet(*it, true));
+          keyBuffer.push(triplet(*it, false));
           holds[it->second] = REPEAT_DELAY;
         }
-      else keyBuffer.push(triplet(*it, false));
+      else keyBuffer.push(triplet(*it, true));
     }
 }
 void JGE::HoldKey_NoRepeat(const LocalKeySym sym)
@@ -106,31 +106,25 @@ void JGE::HoldKey_NoRepeat(const LocalKeySym sym)
     keyBuffer.push(triplet(sym, JGE_BTN_NONE, false));
   else for (keycodes_it it = rng.first; it != rng.second; ++it)
     {
-      if (held(it->second))
-        {
-          keyBuffer.push(triplet(*it, false));
-          holds[it->second] = std::numeric_limits<float>::quiet_NaN();
-        }
-      else keyBuffer.push(triplet(*it, false));
+      keyBuffer.push(triplet(*it, true));
+      if (!held(it->second))
+        holds[it->second] = std::numeric_limits<float>::quiet_NaN();
     }
 }
 void JGE::HoldKey(const JButton sym)
 {
-  if (held(sym))
+  if (!held(sym))
     {
-      keyBuffer.push(triplet(LOCAL_KEY_NONE, sym, true));
+      keyBuffer.push(triplet(LOCAL_KEY_NONE, sym, false));
       holds[sym] = REPEAT_DELAY;
     }
-  else keyBuffer.push(triplet(LOCAL_KEY_NONE, sym, false));
+  else keyBuffer.push(triplet(LOCAL_KEY_NONE, sym, true));
 }
 void JGE::HoldKey_NoRepeat(const JButton sym)
 {
-  if (held(sym))
-    {
-      keyBuffer.push(triplet(LOCAL_KEY_NONE, sym, true));
-      holds[sym] = std::numeric_limits<float>::quiet_NaN();
-    }
-  else keyBuffer.push(triplet(LOCAL_KEY_NONE, sym, false));
+  keyBuffer.push(triplet(LOCAL_KEY_NONE, sym, true));
+  if (!held(sym))
+    holds[sym] = std::numeric_limits<float>::quiet_NaN();
 }
 void JGE::ReleaseKey(const LocalKeySym sym)
 {
@@ -138,20 +132,26 @@ void JGE::ReleaseKey(const LocalKeySym sym)
   for (keycodes_it it = rng.first; it != rng.second; ++it)
     holds.erase(it->second);
 
-  /*
   queue< pair<pair<LocalKeySym, JButton>, bool> > r;
   while (!keyBuffer.empty())
     {
       pair<pair<LocalKeySym, JButton>, bool> q = keyBuffer.front();
       keyBuffer.pop();
-      if ((q.first.first != sym)) r.push(q);
+      if ((!q.second)) r.push(q);
     }
   keyBuffer = r;
-  */
 }
 void JGE::ReleaseKey(const JButton sym)
 {
   holds.erase(sym);
+  queue< pair<pair<LocalKeySym, JButton>, bool> > r;
+  while (!keyBuffer.empty())
+    {
+      pair<pair<LocalKeySym, JButton>, bool> q = keyBuffer.front();
+      keyBuffer.pop();
+      if ((!q.second) || (q.first.second != sym)) r.push(q);
+    }
+  keyBuffer = r;
 }
 void JGE::Update(float dt)
 {
