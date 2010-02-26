@@ -33,7 +33,7 @@ void MTGGamePhase::Update(float dt){
 bool MTGGamePhase::CheckUserInput(JButton key){
   GameObserver * game = GameObserver::GetInstance();
   if (activeState == INACTIVE){
-    JButton trigger = JGE_BTN_PREV;
+    JButton trigger = (options[Options::REVERSETRIGGERS].number ? JGE_BTN_NEXT : JGE_BTN_PREV);
     if ((trigger == key) && game->currentActionPlayer == game->currentlyActing())
       {
 	activeState = ACTIVE;

@@ -621,7 +621,7 @@ void ActionStack::endOfInterruption(){
 
 
 bool ActionStack::CheckUserInput(JButton key){
-  JButton trigger = JGE_BTN_PREV;
+  JButton trigger = (options[Options::REVERSETRIGGERS].number ? JGE_BTN_NEXT : JGE_BTN_PREV);
   if (mode == ACTIONSTACK_STANDARD){
     if (askIfWishesToInterrupt){
       if (JGE_BTN_SEC == key){
