@@ -255,8 +255,6 @@ static const struct { LocalKeySym keysym; JButton keycode; } gDefaultBindings[] 
     { PSP_CTRL_HOME,     JGE_BTN_QUIT },
     { PSP_CTRL_START,    JGE_BTN_MENU },
     { PSP_CTRL_SELECT,   JGE_BTN_CTRL },
-    { PSP_CTRL_HOLD,     JGE_BTN_POWER },
-    { PSP_CTRL_NOTE,     JGE_BTN_SOUND },
     { PSP_CTRL_RIGHT,    JGE_BTN_RIGHT },
     { PSP_CTRL_LEFT,     JGE_BTN_LEFT },
     { PSP_CTRL_UP,       JGE_BTN_UP },
