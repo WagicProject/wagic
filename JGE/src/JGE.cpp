@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include <map>
+#include <set>
 #include <limits>
 
 #include "../include/JGE.h"
@@ -128,16 +129,20 @@ void JGE::HoldKey_NoRepeat(const JButton sym)
 }
 void JGE::ReleaseKey(const LocalKeySym sym)
 {
+  set<JButton> s;
   const pair<keycodes_it, keycodes_it> rng = keyBinds.equal_range(sym);
   for (keycodes_it it = rng.first; it != rng.second; ++it)
-    holds.erase(it->second);
+    {
+      s.insert(it->second);
+      holds.erase(it->second);
+    }
 
   queue< pair<pair<LocalKeySym, JButton>, bool> > r;
   while (!keyBuffer.empty())
     {
       pair<pair<LocalKeySym, JButton>, bool> q = keyBuffer.front();
       keyBuffer.pop();
-      if ((!q.second)) r.push(q);
+      if ((!q.second) || (s.end() == s.find(q.first.second))) r.push(q);
     }
   keyBuffer = r;
 }
