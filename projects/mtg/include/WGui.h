@@ -493,6 +493,7 @@ class WGuiKeyBinder : public WGuiList {
   virtual bool isModal();
   virtual bool CheckUserInput(JButton);
   virtual void setData();
+  virtual void Update(float);
  protected:
   GameStateOptions* parent;
   bool modal;

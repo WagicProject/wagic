@@ -1,17 +1,11 @@
 #ifndef _TRANSLATEKEYS_H_
 #define _TRANSLATEKEYS_H_
 
+#include <utility>
 #include <string>
 #include "JGE.h"
 
-struct KeyRep
-{
-  KeyRep(JQuad*, std::string);
-  JQuad* icon;
-  std::string text;
-};
-
-
+typedef pair<string, JQuad*> KeyRep;
 const KeyRep& translateKey(LocalKeySym);
 const KeyRep& translateKey(JButton);
 

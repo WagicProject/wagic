@@ -1775,7 +1775,20 @@ WGuiKeyBinder::WGuiKeyBinder(string name, GameStateOptions* parent) : WGuiList(n
   for (JGE::keybindings_it it = start; it != end; ++it)
     Add(NEW OptionKey(parent, it->first, it->second));
 }
-bool WGuiKeyBinder::isModal() { return modal; }
+void WGuiKeyBinder::Update(float dt) {
+  OptionKey* o = dynamic_cast<OptionKey*>(items[0]);
+  if (!o) return;
+  if (LOCAL_KEY_NONE != o->from) {
+      items.insert(items.begin(), NEW OptionKey(parent, LOCAL_KEY_NONE, JGE_BTN_NONE));
+      if (0 == currentItem) ++currentItem;
+    }
+  for (vector<WGuiBase*>::iterator it = items.begin(); it != items.end(); ++it) (*it)->Update(dt);
+}
+bool WGuiKeyBinder::isModal() {
+  for (vector<WGuiBase*>::iterator it = items.begin(); it != items.end(); ++it)
+    if ((*it)->isModal()) return true;
+  return modal;
+}
 bool WGuiKeyBinder::CheckUserInput(JButton key)
 {
   if (!items[currentItem]->CheckUserInput(key))
@@ -1787,8 +1800,7 @@ bool WGuiKeyBinder::CheckUserInput(JButton key)
 void WGuiKeyBinder::setData(){
   JGE* j = JGE::GetInstance();
   j->ClearBindings();
-  for (vector<WGuiBase*>::iterator it = items.begin(); it != items.end(); ++it)
-    {
+  for (vector<WGuiBase*>::iterator it = items.begin(); it != items.end(); ++it) {
       OptionKey* o = dynamic_cast<OptionKey*>(*it);
       if (o && LOCAL_KEY_NONE != o->from && JGE_BTN_NONE != o->to)
         j->BindKey(o->from, o->to);

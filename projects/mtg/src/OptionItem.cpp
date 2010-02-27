@@ -446,15 +446,15 @@ void OptionKey::Render() {
   else
     {
       const KeyRep& rep = translateKey(from);
-      if (rep.icon)
-        renderer->RenderQuad(rep.icon, x + 4, y + 2, 0, 0.5, 0.5);
+      if (rep.second)
+        renderer->RenderQuad(rep.second, x + 4, y + 2, 0, 16.0 / rep.second->mHeight, 16.0 / rep.second->mHeight);
       else
-        mFont->DrawString(rep.text, x + 4, y + 2, JGETEXT_LEFT);
+        mFont->DrawString(rep.first, x + 4, y + 2, JGETEXT_LEFT);
       const KeyRep& rep2 = translateKey(to);
-      if (rep2.icon)
-        renderer->RenderQuad(rep2.icon, x + 4, y + 2, 0, 0.5, 0.5);
+      if (rep2.second)
+        renderer->RenderQuad(rep2.second, x + 4, y + 2, 0, 16.0 / rep2.second->mHeight, 16.0 / rep2.second->mHeight);
       else
-        mFont->DrawString(rep2.text, width - 4, y + 2, JGETEXT_RIGHT);
+        mFont->DrawString(rep2.first, width - 4, y + 2, JGETEXT_RIGHT);
     }
 }
 bool OptionKey::CheckUserInput(JButton key) {
@@ -479,13 +479,12 @@ void OptionKey::KeyPressed(LocalKeySym key) {
   grabbed = false;
 
   btnMenu = NEW SimpleMenu(0, this, Constants::MENU_FONT, 80, 10);
-  for (int i = sizeof(btnList) / sizeof(btnList[0]) - 1; i >= 0; --i)
-    {
+  for (int i = sizeof(btnList) / sizeof(btnList[0]) - 1; i >= 0; --i) {
       const KeyRep& rep = translateKey(btnList[i]);
-      btnMenu->Add(i, rep.text.c_str());
+      btnMenu->Add(i, rep.first.c_str());
     }
 }
-bool OptionKey::isModal() { return grabbed; }
+bool OptionKey::isModal() { return grabbed || btnMenu; }
 void OptionKey::Overlay()
 {
   JRenderer * renderer = JRenderer::GetInstance();
@@ -500,8 +499,7 @@ void OptionKey::Overlay()
   else if (btnMenu)
     btnMenu->Render();
 }
-void OptionKey::ButtonPressed(int controllerId, int controlId)
-{
+void OptionKey::ButtonPressed(int controllerId, int controlId) {
   to = btnList[controlId];
   SAFE_DELETE(btnMenu);
   btnMenu = NULL;
