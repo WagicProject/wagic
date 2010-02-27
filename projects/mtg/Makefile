@@ -15,7 +15,6 @@ TARGET = wagic
 endif
 ifeq ($(MAKECMDGOALS),debug)
 DEFAULT_RULE = debug
-TARGET_ARCHITECTURE = linux
 endif
 ifeq ($(MAKECMDGOALS),linux)
 DEFAULT_RULE = linux
@@ -66,6 +65,8 @@ debug: CXXFLAGS += -ggdb3 -D_DEBUG -DDEBUG
 
 ifeq ($(TARGET_ARCHITECTURE),psp)
 include $(PSPSDK)/lib/build.mak
+
+debug: all
 
 3xx:
 	@echo Rule 3xx is deprecated. Did you want to use just "make" ?
