@@ -68,15 +68,19 @@ void GameStateDeckViewer::rotateCards(int direction){
 }
 void GameStateDeckViewer::rebuildFilters(){
   if(!filterMenu) filterMenu = NEW WGuiFilters("Filter by...",NULL);
-  source = NEW WSrcDeckViewer(myDeck,myCollection);
+  if(!source) source = NEW WSrcDeckViewer(myDeck,myCollection);
   filterMenu->setSrc(source);
   if(displayed_deck != myDeck) source->swapSrc();
   filterMenu->Finish(true);
+  updateStats();
+  source->updateCounts();
 }
 void GameStateDeckViewer::updateFilters(){
   if(!displayed_deck) return;
   filterMenu->recolorFilter(useFilter-1);
   filterMenu->Finish(true);
+  source->updateCounts();
+  updateStats();
   return;
 }
 void GameStateDeckViewer::loadIndexes(){

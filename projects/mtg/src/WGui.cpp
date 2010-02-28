@@ -1381,7 +1381,7 @@ bool WGuiFilters::Finish(bool emptyset){
         source->addFilter(f);
       }
     }
-    if(!source->Size() && !emptyset){
+    if((!source->Size() && !emptyset)){
       source->clearFilters(); //TODO: Pop a "No results found" warning
     }
   }
@@ -1601,6 +1601,7 @@ void WGuiFilterItem::updateValue(){
     case STATE_UNSET:
       SAFE_DELETE(mParent->subMenu);
       mState = STATE_CHOOSE_TYPE;
+      SAFE_DELETE(mParent->subMenu);
       mParent->subMenu = NEW SimpleMenu(-1234,this,Constants::MENU_FONT,20,20,"Filter By...",10);
       if(mParent->isAvailable(FILTER_SET)){
         mParent->subMenu->Add(FILTER_SET,"Set");
