@@ -1,8 +1,13 @@
 #ifndef _DEBUG_H_
 #define _DEBUG_H_
 
+#if WIN32
+#define snprintf sprintf_s
+#endif 
+
 #if defined (WIN32) || defined (LINUX)
 #define TESTSUITE 1
+
 #else
 #define OutputDebugString(val) {}
 #endif
