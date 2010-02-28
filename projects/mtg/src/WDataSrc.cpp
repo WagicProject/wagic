@@ -409,10 +409,10 @@ void WSrcDeck::addCount(MTGCard * c, int qty){
   if(!c || !c->data) return;
   if(matchesFilters(c)){
     counts[FILTERED_COPIES]+=qty;
-    counts[FILTERED_UNIQUE]++;
+    counts[FILTERED_UNIQUE]+=qty;
   }
   counts[UNFILTERED_COPIES] += qty;
-  counts[UNFILTERED_UNIQUE]++;
+  counts[UNFILTERED_UNIQUE]+=qty;
   for(int i=Constants::MTG_COLOR_ARTIFACT;i<=Constants::MTG_COLOR_LAND;i++)
     if (c->data->hasColor(i)) counts[i]+= qty;
   if(counts[UNFILTERED_MIN_COPIES] < 0 || qty < counts[UNFILTERED_MIN_COPIES]) counts[UNFILTERED_MIN_COPIES] = qty;
