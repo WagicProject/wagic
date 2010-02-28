@@ -29,18 +29,39 @@ const KeyRep& translateKey(LocalKeySym key) {
 }
 #else
 #ifdef WIN32
+
+
 const KeyRep& translateKey(LocalKeySym key) {
   {
     map<const LocalKeySym, KeyRep>::iterator res;
     if ((res = fattable.find(key)) != fattable.end())
-      return *(res->second);
+      return (res->second);
+  }
+  unsigned int sc = MapVirtualKey(key, 0);
+
+  switch (key)
+  {
+      case VK_LEFT: case VK_UP: case VK_RIGHT: case VK_DOWN: // arrow keys
+      case VK_PRIOR: case VK_NEXT: // page up and page down
+      case VK_END: case VK_HOME:
+      case VK_INSERT: case VK_DELETE:
+      case VK_DIVIDE: // numpad slash
+      case VK_NUMLOCK:
+      {
+          sc |= 0x100; // set extended bit
+          break;
+      }
   }
 
-  /* I think the code should look like this ?
-     Documentation from : http://msdn.microsoft.com/en-us/library/ms171538.aspx
 
-  Keys keyCode = (Keys)((int)key) & Keys::KeyCode;
-  string s = keyCode.ToString();
+  char buf[256];
+  memset(buf, 0, 256);
+
+  string s;
+  // Convert to ANSI string
+  if (GetKeyNameTextA(sc << 16, buf, 256) > 0)
+    s = buf;
+
   KeyRep k;
   if (0 == s.length()) {
     char*str = new char[11];
@@ -51,15 +72,6 @@ const KeyRep& translateKey(LocalKeySym key) {
   fattable[key] = k;
   return fattable[key];
 
-  ... Instead of the following :
-  */
-
-
-  char* str = new char[11];
-  sprintf(str, "%d", key);
-  const KeyRep k = make_pair(str, static_cast<JQuad*>(NULL));
-  fattable[key] = k;
-  return fattable[key];
 }
 #else // PSP
 
