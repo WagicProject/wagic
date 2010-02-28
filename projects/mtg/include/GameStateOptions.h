@@ -5,9 +5,6 @@
 #include <JGui.h>
 #include "../include/GameState.h"
 
-#define SHOW_OPTIONS 1
-#define SHOW_OPTIONS_MENU 2
-
 class GameApp;
 class WGuiTabMenu;
 class SimpleMenu;
@@ -19,6 +16,11 @@ struct KeybGrabber {
 
 class GameStateOptions: public GameState, public JGuiListener {
 private:
+  enum {
+    SHOW_OPTIONS,
+    SHOW_OPTIONS_MENU,
+    SAVE
+  };
   float timer;
   bool mReload;
   KeybGrabber* grabber;

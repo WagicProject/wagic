@@ -1,5 +1,6 @@
 #ifndef _WGUI_H_
 #define _WGUI_H_
+#include <set>
 
 class hgeDistortionMesh;
 class GameStateOptions;
@@ -35,19 +36,27 @@ protected:
 //Complete item interface
 class WGuiBase: public JGuiListener {
 public:
+  typedef enum {
+    CONFIRM_NEED,   // Still needs confirmation
+    CONFIRM_OK,       // Is okay (no need to confirm, or has been confirmed)
+    CONFIRM_CANCEL,   // Is not okay, must cancel save
+  } CONFIRM_TYPE;
+
   WGuiBase() {};
   virtual ~WGuiBase() {};
 
   virtual bool Selectable() {return true;};
   virtual bool isModal() {return false;};
   virtual bool Visible() {return true;};
-  
+
   virtual bool Changed() {return false;};
   virtual void confirmChange(bool confirmed) {};
+  virtual CONFIRM_TYPE needsConfirm();
+  virtual bool yieldFocus();
   virtual PIXEL_TYPE getColor(int type);
   virtual float getMargin(int type) {return 4;};
-  
-  virtual void Entering(JButton key)=0;  
+
+  virtual void Entering(JButton key)=0;
   virtual bool Leaving(JButton key)=0;
 
   virtual void Update(float dt)=0;
@@ -84,6 +93,8 @@ public:
   virtual void subBack(WGuiBase * item) {};
 
   virtual bool CheckUserInput(JButton key) {return false;};
+ protected:
+  vector<WGuiBase*> items;
 };
 
 //This is our base class for concrete items. 
@@ -176,7 +187,9 @@ public:
   virtual bool Visible() {return it->Visible();};
   virtual bool Changed() {return it->Changed();};
   virtual void confirmChange(bool confirmed) {it->confirmChange(confirmed);};
- 
+  virtual CONFIRM_TYPE needsConfirm() { return it->needsConfirm();};
+  virtual bool yieldFocus() {return it->yieldFocus();};
+
   virtual void Entering(JButton key)       {it->Entering(key);};  
   virtual bool Leaving(JButton key)        {return it->Leaving(key);};
   virtual void Update(float dt) {it->Update(dt);};
@@ -235,6 +248,7 @@ public:
   WGuiSplit(WGuiBase* _left,WGuiBase* _right);
   virtual ~WGuiSplit();
 
+  virtual bool yieldFocus();
   virtual void Reload();
   virtual void Overlay();
   virtual void Underlay();
@@ -352,6 +366,7 @@ public:
   virtual ~WGuiMenu();
   WGuiMenu(JButton next, JButton prev, bool mDPad = false, WSyncable * syncme=NULL);
 
+  virtual bool yieldFocus();
   virtual void Render();
   virtual void Reload();
   virtual void Update(float dt);
@@ -364,6 +379,7 @@ public:
   virtual bool CheckUserInput(JButton key);
   WGuiBase * Current();
   virtual int getSelected() {return currentItem;};
+  virtual void setSelected(vector<WGuiBase*>::iterator& it);
   virtual bool nextItem(); 
   virtual bool prevItem();
   virtual bool isModal();
@@ -376,7 +392,6 @@ protected:
   virtual bool isButtonDir(JButton key, int dir); //For the DPad override.
   JButton buttonNext, buttonPrev;
   bool mDPad;
-  vector<WGuiBase*> items;
   int currentItem;
   JButton held;
   WSyncable * sync;
@@ -494,9 +509,20 @@ class WGuiKeyBinder : public WGuiList {
   virtual bool CheckUserInput(JButton);
   virtual void setData();
   virtual void Update(float);
+  virtual void Render();
+  virtual CONFIRM_TYPE needsConfirm();
+  virtual void ButtonPressed(int controllerId, int controlId);
+  virtual bool yieldFocus();
  protected:
   GameStateOptions* parent;
+  SimpleMenu* confirmMenu;
   bool modal;
+  CONFIRM_TYPE confirmed;
+  LocalKeySym confirmingKey;
+  JButton confirmingButton;
+  set<LocalKeySym> confirmedKeys;
+  set<JButton> confirmedButtons;
+  string confirmationString;
 };
 
 #endif

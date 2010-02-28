@@ -3,6 +3,8 @@
 #include "../include/PlayerData.h"
 #include "../include/Translate.h"
 #include "../include/Subtypes.h"
+#include "../include/TranslateKeys.h"
+#include <sstream>
 #include <algorithm>
 #include <hge/hgedistort.h>
 
@@ -24,7 +26,10 @@ PIXEL_TYPE WGuiBase::getColor(int type){
           return ARGB(255,255,255,255);
       }
       else
-        return ARGB(150,50,50,50);
+        if(hasFocus())
+          return ARGB(150,200,200,200);
+        else
+          return ARGB(150,50,50,50);
   }
   return ARGB(150,50,50,50);
 }
@@ -37,6 +42,21 @@ void WGuiBase::renderBack(WGuiBase * it){
     styled->renderBack(styled->getDecorated());
   else
     subBack(it);
+}
+WGuiBase::CONFIRM_TYPE WGuiBase::needsConfirm() {
+  for (vector<WGuiBase*>::iterator it = items.begin(); it != items.end(); ++it) {
+    switch((*it)->needsConfirm()) {
+    case CONFIRM_NEED: return CONFIRM_NEED;
+    case CONFIRM_CANCEL: return CONFIRM_CANCEL;
+    case CONFIRM_OK: /* Nothing special : continue iteration */ ;
+    }
+  }
+  return CONFIRM_OK;
+}
+bool WGuiBase::yieldFocus() {
+  for (vector<WGuiBase*>::iterator it = items.begin(); it != items.end(); ++it)
+    if ((*it)->yieldFocus()) { return true; }
+  return false;
 }
 
 
@@ -198,6 +218,23 @@ void WGuiMenu::subBack(WGuiBase * item){
     renderer->FillRoundRect(item->getX(),item->getY(),item->getWidth()-4,item->getHeight()-2,2,item->getColor(WGuiColor::BACK));
 
 }
+
+void WGuiMenu::setSelected(vector<WGuiBase*>::iterator& it) {
+  int c = it - items.begin();
+  if (c != currentItem)
+    {
+      items[currentItem]->Leaving(JGE_BTN_NONE);
+      currentItem = c;
+      items[currentItem]->Entering(JGE_BTN_NONE);
+    }
+}
+bool WGuiMenu::yieldFocus() {
+  for (vector<WGuiBase*>::iterator it = items.begin(); it != items.end(); ++it)
+    if ((*it)->yieldFocus()) { setSelected(it); return true; }
+  return false;
+}
+
+
 //WGuiList
 WGuiList::WGuiList(string name, WSyncable * syncme): WGuiMenu(JGE_BTN_DOWN, JGE_BTN_UP, false, syncme){
   failMsg = "NO OPTIONS AVAILABLE";
@@ -367,10 +404,10 @@ void WDecoEnum::Render()
   JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
   mFont->SetColor(getColor(WGuiColor::TEXT));
   JRenderer * renderer = JRenderer::GetInstance();
-  mFont->DrawString(_(getDisplay()).c_str(),getX(),getY());
+  mFont->DrawString(_(getDisplay()).c_str(), getX() + 2, getY() + 3);
   OptionInteger* opt = dynamic_cast<OptionInteger*>(it);
   if(opt)
-    mFont->DrawString(_(lookupVal(opt->value)).c_str(), getWidth() -10, getY(), JGETEXT_RIGHT);
+    mFont->DrawString(_(lookupVal(opt->value)).c_str(), getWidth() - 5, getY() + 3, JGETEXT_RIGHT);
 }
 
 WDecoEnum::WDecoEnum(WGuiBase * _it, EnumDefinition *_edef) : WGuiDeco(_it) {edef = _edef;}
@@ -691,6 +728,11 @@ void WGuiSplit::Reload(){
 void WGuiSplit::confirmChange(bool confirmed){
   right->confirmChange(confirmed);
   left->confirmChange(confirmed);
+}
+bool WGuiSplit::yieldFocus() {
+  if (right->yieldFocus()) { bRight = true; return true; }
+  if (left->yieldFocus()) { bRight = false; return true; }
+  return false;
 }
 
 //WGuiMenu
@@ -1767,7 +1809,7 @@ string WGuiFilterItem::getCode(){
   return mCode;
 }
 
-WGuiKeyBinder::WGuiKeyBinder(string name, GameStateOptions* parent) : WGuiList(name), parent(parent), modal(false) {
+WGuiKeyBinder::WGuiKeyBinder(string name, GameStateOptions* parent) : WGuiList(name), parent(parent), confirmMenu(NULL), modal(false), confirmed(CONFIRM_NEED), confirmingKey(LOCAL_KEY_NONE), confirmingButton(JGE_BTN_NONE), confirmationString("") {
   JGE* j = JGE::GetInstance();
   JGE::keybindings_it start = j->KeyBindings_begin(), end = j->KeyBindings_end();
 
@@ -1783,27 +1825,131 @@ void WGuiKeyBinder::Update(float dt) {
       if (0 == currentItem) ++currentItem;
     }
   for (vector<WGuiBase*>::iterator it = items.begin(); it != items.end(); ++it) (*it)->Update(dt);
+  if (confirmMenu) confirmMenu->Update(dt);
 }
 bool WGuiKeyBinder::isModal() {
   for (vector<WGuiBase*>::iterator it = items.begin(); it != items.end(); ++it)
     if ((*it)->isModal()) return true;
   return modal;
 }
-bool WGuiKeyBinder::CheckUserInput(JButton key)
-{
+bool WGuiKeyBinder::CheckUserInput(JButton key) {
+  if (confirmMenu)
+    return confirmMenu->CheckUserInput(key);
   if (!items[currentItem]->CheckUserInput(key))
     return WGuiList::CheckUserInput(key);
   if (!items[currentItem]->Selectable())
     nextItem();
   return true;
 }
-void WGuiKeyBinder::setData(){
+void WGuiKeyBinder::setData() {
   JGE* j = JGE::GetInstance();
   j->ClearBindings();
   for (vector<WGuiBase*>::iterator it = items.begin(); it != items.end(); ++it) {
-      OptionKey* o = dynamic_cast<OptionKey*>(*it);
+      OptionKey* o = static_cast<OptionKey*>(*it);
       if (o && LOCAL_KEY_NONE != o->from && JGE_BTN_NONE != o->to)
         j->BindKey(o->from, o->to);
     }
   j->ResetInput();
+}
+
+static const JButton btnToCheck[] = {JGE_BTN_MENU, JGE_BTN_CTRL,   JGE_BTN_RIGHT,
+                                     JGE_BTN_LEFT, JGE_BTN_UP,     JGE_BTN_DOWN,
+                                     JGE_BTN_OK,   JGE_BTN_CANCEL, JGE_BTN_PRI,
+                                     JGE_BTN_SEC,  JGE_BTN_PREV,   JGE_BTN_NEXT };
+
+#define C(o) (static_cast<OptionKey*>(o))
+WGuiBase::CONFIRM_TYPE WGuiKeyBinder::needsConfirm() {
+  if (CONFIRM_CANCEL == confirmed) { confirmedKeys.clear(); confirmedButtons.clear(); confirmed = CONFIRM_NEED; return CONFIRM_CANCEL; }
+  if (confirmMenu) return CONFIRM_NEED;
+
+  // Check whether any key is bound to two functions.
+  confirmingKey = LOCAL_KEY_NONE;
+  for (vector<WGuiBase*>::iterator it = items.begin(); it != items.end(); ++it) {
+      if (!(*it)->Visible()) continue;
+
+      vector<JButton> boundFunctionsList;
+      for (vector<WGuiBase*>::iterator jt = it + 1; jt != items.end(); ++jt) {
+          if (!(*jt)->Visible()) continue;
+          if (C(*it)->from == C(*jt)->from)
+            if (confirmedKeys.end() == find(confirmedKeys.begin(), confirmedKeys.end(), C(*it)->from)) {
+                confirmingKey = C(*it)->from;
+                if (boundFunctionsList.empty()) boundFunctionsList.push_back(C(*it)->to);
+                boundFunctionsList.push_back(C(*jt)->to);
+            }
+        }
+
+      if (LOCAL_KEY_NONE != confirmingKey) {
+        // There is a conflict. Generate the error message...
+        char s[1024];
+        snprintf(s, 1024, _("Warning : the %s key is bound to\n%i different functions:").c_str(), translateKey(confirmingKey).first.c_str(), boundFunctionsList.size());
+        stringstream ss;
+        ss << s << "\n";
+        vector<JButton>::iterator jt = boundFunctionsList.begin();
+        ss << translateKey(*jt).first.c_str();
+        for (++jt; jt != boundFunctionsList.end(); ++jt) ss << ", " << translateKey(*jt).first.c_str();
+        confirmationString = ss.str();
+
+        // Then create the menu.
+        confirmMenu = NEW SimpleMenu(0, this, Constants::MENU_FONT, 40, 130, "Conflict");
+        confirmMenu->Add(1, _("Cancel and return to the options menu").c_str());
+        confirmMenu->Add(2, _("This is okay, validate and save").c_str());
+        return CONFIRM_NEED;
+      }
+    }
+
+  // Check whether any button has no key associated to it.
+  confirmingButton = JGE_BTN_NONE;
+  for (signed int i = (sizeof(btnToCheck) / sizeof(btnToCheck[0])) - 1; i >= 0; --i) {
+    if (confirmedButtons.end() != find(confirmedButtons.begin(), confirmedButtons.end(), btnToCheck[i])) continue;
+    bool found = false;
+    for (vector<WGuiBase*>::iterator it = items.begin(); it != items.end(); ++it)
+      if (btnToCheck[i] == C(*it)->to) { found = true; break; }
+    if (found) continue;
+
+    char s[1024];
+    snprintf(s, 1024, _("Warning : no key is associated to\nthe %s function.\nThis may make the game unusable.").c_str(), translateKey(btnToCheck[i]).first.c_str());
+    confirmationString = s;
+
+    confirmingButton = btnToCheck[i];
+    confirmMenu = NEW SimpleMenu(1, this, Constants::MENU_FONT, 40, 130, "Binding missing");
+    confirmMenu->Add(1, _("Cancel and return to the options menu").c_str());
+    confirmMenu->Add(2, _("This is okay, validate and save").c_str());
+    return CONFIRM_NEED;
+  }
+
+  return CONFIRM_OK;
+}
+void WGuiKeyBinder::ButtonPressed(int controllerId, int controlId) {
+  if (2 == controlId)
+    switch(controllerId) {
+    case 0: confirmedKeys.insert(confirmingKey); break;
+    case 1: confirmedButtons.insert(confirmingButton); break;
+    }
+  else
+    confirmed = CONFIRM_CANCEL;
+  SAFE_DELETE(confirmMenu);
+  confirmMenu = NULL;
+}
+void WGuiKeyBinder::Render() {
+  WGuiList::Render();
+  if (confirmMenu) {
+    JRenderer * renderer = JRenderer::GetInstance();
+    JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
+    mFont->SetColor(ARGB(255, 255, 0, 0));
+    renderer->FillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, ARGB(230, 255, 240, 240));
+
+    size_t pos = 0;
+    u32 y = 20;
+    do {
+      size_t t = confirmationString.find_first_of("\n", pos);
+      string s = confirmationString.substr(pos, t - pos);
+      pos = (string::npos == t) ? t : t + 1;
+      mFont->DrawString(s, SCREEN_WIDTH / 2, y, JGETEXT_CENTER);
+      y += 20;
+    } while (pos != string::npos);
+    confirmMenu->Render();
+  }
+}
+bool WGuiKeyBinder::yieldFocus() {
+  return true;
 }

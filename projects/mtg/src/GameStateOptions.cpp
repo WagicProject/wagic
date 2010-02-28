@@ -115,6 +115,24 @@ void GameStateOptions::Update(float dt)
   }
   else switch(mState){
     default:
+    case SAVE:
+      switch (optionsTabs->needsConfirm())
+        {
+        case WGuiBase::CONFIRM_CANCEL:
+          mState = SHOW_OPTIONS;
+          break;
+        case WGuiBase::CONFIRM_OK:
+          optionsTabs->save();
+          JSoundSystem::GetInstance()->SetSfxVolume(options[Options::SFXVOLUME].number);
+          JSoundSystem::GetInstance()->SetMusicVolume(options[Options::MUSICVOLUME].number);
+          mParent->DoTransition(TRANSITION_FADE,GAME_STATE_MENU);
+          mState = SHOW_OPTIONS;
+          break;
+        case WGuiBase::CONFIRM_NEED:
+          optionsTabs->yieldFocus();
+          break;
+        }
+      // Note : No break here : must continue to continue updating the menu elements.
     case SHOW_OPTIONS: {
         JGE* j = JGE::GetInstance();
         JButton key;
@@ -217,10 +235,9 @@ void GameStateOptions::ButtonPressed(int controllerId, int controlId)
   if(controllerId == -102)
   switch (controlId){
   case 1:
-    optionsTabs->save();
+    mState = SAVE;
+    break;
     //Set Audio volume
-    JSoundSystem::GetInstance()->SetSfxVolume(options[Options::SFXVOLUME].number);
-    JSoundSystem::GetInstance()->SetMusicVolume(options[Options::MUSICVOLUME].number);
   case 2:
     mParent->DoTransition(TRANSITION_FADE,GAME_STATE_MENU);
     break;

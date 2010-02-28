@@ -21,7 +21,7 @@ void OptionInteger::Render(){
   mFont->SetColor(getColor(WGuiColor::TEXT));
   JRenderer * renderer = JRenderer::GetInstance();
 
-  mFont->DrawString(_(displayValue).c_str(),x,y);
+  mFont->DrawString(_(displayValue).c_str(), x + 2, y + 3);
   char buf[512];
   if (maxValue == 1){
     if (value)
@@ -34,7 +34,7 @@ void OptionInteger::Render(){
     else
       sprintf(buf, "%i", value);
   }
-  mFont->DrawString(buf,width -10 ,y,JGETEXT_RIGHT);
+  mFont->DrawString(buf, width - 5, y + 3, JGETEXT_RIGHT);
 }
 
 OptionInteger::OptionInteger(int _id, string _displayValue, int _maxValue, int _increment, int _defV, string _sDef, int _minValue): OptionItem(_id, _displayValue){
@@ -72,12 +72,12 @@ void OptionSelect::Render(){
   mFont->SetColor(getColor(WGuiColor::TEXT));
 
   JRenderer * renderer = JRenderer::GetInstance();
-  mFont->DrawString(_(displayValue).c_str(),x,y);
+  mFont->DrawString(_(displayValue).c_str(), x, y + 2);
 
   if (value < selections.size())
-    mFont->DrawString(_(selections[value]).c_str(),x+width-10,y,JGETEXT_RIGHT);
+    mFont->DrawString(_(selections[value]).c_str(), x + width - 10, y + 2, JGETEXT_RIGHT);
   else
-    mFont->DrawString(_("Unset").c_str(),x+width-10,y,JGETEXT_RIGHT);
+    mFont->DrawString(_("Unset").c_str(),x + width - 10, y + 2, JGETEXT_RIGHT);
 }
 
 void OptionSelect::setData(){
@@ -181,10 +181,10 @@ void OptionProfile::Render(){
   }
 
   mFont->SetColor(getColor(WGuiColor::TEXT_HEADER));
-  mFont->DrawString(selections[value].c_str(),pX,pY,JGETEXT_LEFT);
+  mFont->DrawString(selections[value].c_str(), pX, pY + 2, JGETEXT_LEFT);
   mFont->SetScale(.8);
   mFont->SetColor(getColor(WGuiColor::TEXT_BODY));
-  mFont->DrawString(preview.c_str(),pX,pY+spacing,JGETEXT_LEFT);
+  mFont->DrawString(preview.c_str(), pX, pY + spacing + 2, JGETEXT_LEFT);
   mFont->SetScale(1);
 
 }
@@ -401,13 +401,13 @@ void OptionTheme::Render(){
     renderer->RenderQuad(q,x, y,0,scale,scale);
   }
 
-  mFont->DrawString(buf,x,y);
+  mFont->DrawString(buf, x + 2, y + 2);
   if(bChecked && author.size()){
     mFont->SetColor(getColor(WGuiColor::TEXT_BODY));
      mFont->SetScale(.8);
     float hi = mFont->GetHeight();
     sprintf(buf,_("Artist: %s").c_str(),author.c_str());
-    mFont->DrawString(buf,x,y+getHeight()-hi);
+    mFont->DrawString(buf, x + 2, y + getHeight() - hi);
     mFont->SetScale(1);
   }
 }
@@ -447,14 +447,17 @@ void OptionKey::Render() {
     {
       const KeyRep& rep = translateKey(from);
       if (rep.second)
-        renderer->RenderQuad(rep.second, x + 4, y + 2, 0, 16.0 / rep.second->mHeight, 16.0 / rep.second->mHeight);
+        renderer->RenderQuad(rep.second, x + 4, y + 3, 0, 16.0 / rep.second->mHeight, 16.0 / rep.second->mHeight);
       else
-        mFont->DrawString(rep.first, x + 4, y + 2, JGETEXT_LEFT);
+        mFont->DrawString(rep.first, x + 4, y + 3, JGETEXT_LEFT);
       const KeyRep& rep2 = translateKey(to);
       if (rep2.second)
-        renderer->RenderQuad(rep2.second, x + 4, y + 2, 0, 16.0 / rep2.second->mHeight, 16.0 / rep2.second->mHeight);
+        {
+          float ratio = 16.0 / rep2.second->mHeight;
+          renderer->RenderQuad(rep2.second, x + width - (ratio * rep2.second->mWidth) - 2, y + 3, 0, ratio, ratio);
+        }
       else
-        mFont->DrawString(rep2.first, width - 4, y + 2, JGETEXT_RIGHT);
+        mFont->DrawString(rep2.first, width - 4, y + 3, JGETEXT_RIGHT);
     }
 }
 bool OptionKey::CheckUserInput(JButton key) {
@@ -468,11 +471,14 @@ bool OptionKey::CheckUserInput(JButton key) {
   return false;
 }
 
-static JButton btnList[] = {JGE_BTN_MENU, JGE_BTN_CTRL,   JGE_BTN_RIGHT,
-                            JGE_BTN_LEFT, JGE_BTN_UP,     JGE_BTN_DOWN,
-                            JGE_BTN_OK,   JGE_BTN_CANCEL, JGE_BTN_PRI,
-                            JGE_BTN_SEC,  JGE_BTN_PREV,   JGE_BTN_NEXT,
-                            JGE_BTN_NONE};
+static const JButton btnList[] = {JGE_BTN_MENU, JGE_BTN_CTRL,   JGE_BTN_RIGHT,
+                                  JGE_BTN_LEFT, JGE_BTN_UP,     JGE_BTN_DOWN,
+                                  JGE_BTN_OK,   JGE_BTN_CANCEL, JGE_BTN_PRI,
+                                  JGE_BTN_SEC,  JGE_BTN_PREV,   JGE_BTN_NEXT,
+#ifdef LINUX
+                                  JGE_BTN_FULLSCREEN,
+#endif
+                                  JGE_BTN_NONE};
 void OptionKey::KeyPressed(LocalKeySym key) {
   from = key;
   g->UngrabKeyboard(this);
