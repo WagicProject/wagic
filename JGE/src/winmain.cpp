@@ -179,9 +179,6 @@ static const struct { LocalKeySym keysym; JButton keycode; } gDefaultBindings[] 
     { VK_SPACE,		JGE_BTN_OK },
     { 'K',		JGE_BTN_SEC },
     { 'J',		JGE_BTN_PRI },
-    { VK_F1,		JGE_BTN_QUIT },
-    { VK_F2,		JGE_BTN_POWER },
-    { VK_F3,		JGE_BTN_SOUND }
   };
 
 void JGECreateDefaultBindings()
@@ -632,6 +629,11 @@ LRESULT CALLBACK WndProc(	HWND	hWnd,			// Handle For This Window
 
   // Pass All Unhandled Messages To DefWindowProc
   return DefWindowProc(hWnd,uMsg,wParam,lParam);
+}
+
+bool JGEToggleFullscreen()
+{
+  return false; // Not implemented under windows
 }
 
 int WINAPI WinMain(	HINSTANCE	hInstance,			// Instance

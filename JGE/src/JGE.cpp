@@ -78,11 +78,18 @@ void JGE::PressKey(const LocalKeySym sym)
   const pair<keycodes_it, keycodes_it> rng = keyBinds.equal_range(sym);
   if (rng.first == rng.second)
     keyBuffer.push(triplet(sym, JGE_BTN_NONE, false));
-  else for (keycodes_it it = rng.first; it != rng.second; ++it)
+  else for (keycodes_it it = rng.first; it != rng.second; ++it) {
+#if defined (WIN32) || defined (LINUX)
+      if (JGE_BTN_FULLSCREEN == it->second) JGEToggleFullscreen();
+#endif
          keyBuffer.push(triplet(*it, held(it->second)));
+    }
 }
 void JGE::PressKey(const JButton sym)
 {
+#if defined (WIN32) || defined (LINUX)
+  if (sym == JGE_BTN_FULLSCREEN) JGEToggleFullscreen();
+#endif
   keyBuffer.push(triplet(LOCAL_KEY_NONE, sym, held(sym)));
 }
 void JGE::HoldKey(const LocalKeySym sym)
@@ -92,6 +99,9 @@ void JGE::HoldKey(const LocalKeySym sym)
     keyBuffer.push(triplet(sym, JGE_BTN_NONE, false));
   else for (keycodes_it it = rng.first; it != rng.second; ++it)
     {
+#if defined (WIN32) || defined (LINUX)
+      if (JGE_BTN_FULLSCREEN == it->second) JGEToggleFullscreen();
+#endif
       if (!held(it->second))
         {
           keyBuffer.push(triplet(*it, false));
@@ -107,6 +117,9 @@ void JGE::HoldKey_NoRepeat(const LocalKeySym sym)
     keyBuffer.push(triplet(sym, JGE_BTN_NONE, false));
   else for (keycodes_it it = rng.first; it != rng.second; ++it)
     {
+#if defined (WIN32) || defined (LINUX)
+      if (JGE_BTN_FULLSCREEN == it->second) JGEToggleFullscreen();
+#endif
       keyBuffer.push(triplet(*it, true));
       if (!held(it->second))
         holds[it->second] = std::numeric_limits<float>::quiet_NaN();
@@ -114,6 +127,9 @@ void JGE::HoldKey_NoRepeat(const LocalKeySym sym)
 }
 void JGE::HoldKey(const JButton sym)
 {
+#if defined (WIN32) || defined (LINUX)
+  if (JGE_BTN_FULLSCREEN == sym) JGEToggleFullscreen();
+#endif
   if (!held(sym))
     {
       keyBuffer.push(triplet(LOCAL_KEY_NONE, sym, false));
@@ -123,6 +139,9 @@ void JGE::HoldKey(const JButton sym)
 }
 void JGE::HoldKey_NoRepeat(const JButton sym)
 {
+#if defined (WIN32) || defined (LINUX)
+  if (JGE_BTN_FULLSCREEN == sym) JGEToggleFullscreen();
+#endif
   keyBuffer.push(triplet(LOCAL_KEY_NONE, sym, true));
   if (!held(sym))
     holds[sym] = std::numeric_limits<float>::quiet_NaN();

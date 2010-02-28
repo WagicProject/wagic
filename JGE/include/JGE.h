@@ -46,6 +46,7 @@ void JGECreateDefaultBindings();
 int JGEGetTime();
 u8 JGEGetAnalogX();
 u8 JGEGetAnalogY();
+bool JGEToggleFullscreen();
 
 #if !defined(WIN32) && !defined(LINUX)
 

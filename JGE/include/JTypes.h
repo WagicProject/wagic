@@ -227,6 +227,7 @@ typedef enum Buttons
     JGE_BTN_SEC,    // Cross or Circle (secondary)
     JGE_BTN_PREV,   // Left trigger
     JGE_BTN_NEXT,    // Right trigger
+    JGE_BTN_FULLSCREEN,    // Switch to fullscreen (obviously, PC only)
 
     JGE_BTN_MAX = JGE_BTN_NEXT + 1
   } JButton;

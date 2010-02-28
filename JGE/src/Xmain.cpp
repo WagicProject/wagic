@@ -77,9 +77,7 @@ static const struct { LocalKeySym keysym; JButton keycode; } gDefaultBindings[] 
     { XK_Caps_Lock,	JGE_BTN_SEC },
     { XK_Shift_L,	JGE_BTN_PREV },
     { XK_Shift_R,	JGE_BTN_NEXT },
-    { XK_F1,		JGE_BTN_QUIT },
-    { XK_F2,		JGE_BTN_POWER },
-    { XK_F3,		JGE_BTN_SOUND }
+    { XK_F,             JGE_BTN_FULLSCREEN },
   };
 
 GLvoid ReSizeGLScene(GLsizei width, GLsizei height)	// Resize The GL Window
@@ -300,7 +298,7 @@ void reshapeFunc(int width, int height)
   ReSizeGLScene(width, height);
 }
 
-void fullscreen()
+bool JGEToggleFullscreen()
 {
   Atom wmState = XInternAtom(gXDisplay, "_NET_WM_STATE", False);
   Atom fullScreen = XInternAtom(gXDisplay, "_NET_WM_STATE_FULLSCREEN", False);
@@ -337,6 +335,7 @@ void fullscreen()
       XGetWindowAttributes(gXDisplay, DefaultRootWindow(gXDisplay), &xwa);
       XMoveResizeWindow(gXDisplay, gXWindow, 0, 0, xwa.width, xwa.height);
     }
+  return true;
 }
 
 int main(int argc, char* argv[])
@@ -392,7 +391,6 @@ int main(int argc, char* argv[])
 	  case KeyPress:
             {
               const KeySym sym = XKeycodeToKeysym(gXDisplay, event.xkey.keycode, 1);
-              if (sym == XK_F) fullscreen();
               g_engine->HoldKey_NoRepeat(sym);
             }
             break;
