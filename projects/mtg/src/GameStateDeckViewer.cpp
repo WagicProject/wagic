@@ -68,7 +68,8 @@ void GameStateDeckViewer::rotateCards(int direction){
 }
 void GameStateDeckViewer::rebuildFilters(){
   if(!filterMenu) filterMenu = NEW WGuiFilters("Filter by...",NULL);
-  if(!source) source = NEW WSrcDeckViewer(myDeck,myCollection);
+  if(source) SAFE_DELETE(source);
+  source = NEW WSrcDeckViewer(myDeck,myCollection);
   filterMenu->setSrc(source);
   if(displayed_deck != myDeck) source->swapSrc();
   filterMenu->Finish(true);
@@ -103,7 +104,6 @@ void GameStateDeckViewer::switchDisplay(){
 
 void GameStateDeckViewer::updateDecks(){
   SAFE_DELETE(welcome_menu);
-
   welcome_menu = NEW SimpleMenu(10,this,Constants::MENU_FONT,20,20);
 
   nbDecks = fillDeckMenu(welcome_menu,options.profileFile());
@@ -328,6 +328,7 @@ void GameStateDeckViewer::Update(float dt)
       mStage = STAGE_FILTERS;
       if(!filterMenu){
         filterMenu = NEW WGuiFilters("Filter by...",NULL);
+        if(source) SAFE_DELETE(source);
         source = NEW WSrcDeckViewer(myDeck,myCollection);
         filterMenu->setSrc(source);
         if(displayed_deck != myDeck) source->swapSrc();
