@@ -138,8 +138,8 @@ void GameStateDeckViewer::Start()
   menu->Add(22,"Filter by...");
   menu->Add(2,"Switch decks without saving");
   menu->Add(1,"Save & Rename");
-  menu->Add(3,"Back to Main Menu");
   menu->Add(0,"Save & Back to Main Menu");
+  menu->Add(3,"Back to Main Menu");
   menu->Add(4,"Cancel");
 
   //Icons
@@ -313,14 +313,7 @@ void GameStateDeckViewer::Update(float dt)
       }
       stw.needUpdate = true;
       break;
-    /*case JGE_BTN_PRI :
-      if (last_user_activity < NO_USER_ACTIVITY_HELP_DELAY){
-        last_user_activity = NO_USER_ACTIVITY_HELP_DELAY + 1;
-      }else{
-        last_user_activity = 0;
-        mStage = STAGE_WAITING;
-      }
-      break;*/
+
     case JGE_BTN_MENU :
       mStage = STAGE_MENU;
       break;
@@ -1039,7 +1032,8 @@ void GameStateDeckViewer::updateStats() {
     return;
   }
 
-  AbilityFactory * af = NEW AbilityFactory();
+  //rmove filters away from the deck to count things correctly
+  WCardFilter* backup = myDeck->unhookFilters();
 
   myDeck->validate();
   stw.needUpdate = false; 
@@ -1117,7 +1111,8 @@ void GameStateDeckViewer::updateStats() {
     for (int i=0; i<(int)abilityStrings.size(); i++) {
       found = abilityStrings.at(i).find("add");
       if (found != (int)string::npos){ //Parse only mana abilities
-        ab = af->parseMagicLine(abilityStrings.at(i),0,0,cin);
+        AbilityFactory af;
+        ab = af.parseMagicLine(abilityStrings.at(i),0,0,cin);
         AManaProducer * amp = dynamic_cast<AManaProducer*>(ab);
         
         if (amp){
@@ -1194,7 +1189,9 @@ void GameStateDeckViewer::updateStats() {
     stw.noCreaturesProbInTurn[i] = noLuck(stw.cardCount, stw.countCreatures, 7+i)*100;
   }
 
-  SAFE_DELETE(af);
+  //put filters back;
+  myDeck->addFilter(backup);
+  myDeck->validate();
 }
 
 // This should probably be cached in DeckDataWrapper

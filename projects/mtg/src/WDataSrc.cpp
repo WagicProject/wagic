@@ -276,7 +276,6 @@ void WSrcCards::Shuffle(){
 }
 void WSrcCards::validate(){
   validated.clear();
-  if(!filtersRoot) return;
   for(size_t t=0;t<cards.size();t++){
     if(matchesFilters(cards[t]))
       validated.push_back(t);
