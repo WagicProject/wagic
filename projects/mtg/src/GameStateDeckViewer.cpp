@@ -1087,48 +1087,34 @@ void GameStateDeckViewer::updateStats() {
     } 
     
     // Lets look for mana producing abilities
-    MTGCardInstance * cin;
-    MTGAbility * ab = NULL;
     int found;
-
-    // TODO: Creating card instance for the sole purpose of getting the card abilities is dirty. Do something about it.
-    cin = new MTGCardInstance(current, NULL);      
 
     vector<string> abilityStrings;
     string thisstring = current->data->magicText;
     StringExplode(thisstring, "\n", &abilityStrings);
 
-    /*char buf[4096];
-    sprintf(buf, "Card: %s Ability count:%i Iterating....", (current->name).c_str(),(int)abilityStrings.size());
-    OutputDebugString(buf);*/
-
-    for (int i=0; i<(int)abilityStrings.size(); i++) {
-      found = abilityStrings.at(i).find("add");
-      if (found != (int)string::npos){ //Parse only mana abilities
-        AbilityFactory af;
-        ab = af.parseMagicLine(abilityStrings.at(i),0,0,cin);
-        AManaProducer * amp = dynamic_cast<AManaProducer*>(ab);
-        
-        if (amp){
-          //OutputDebugString("M ");
-          for (int j=0; j<Constants::MTG_NB_COLORS;j++){
-            if (amp->output->hasColor(j)) {
-              if (current->data->isLand()) {
-                if (current->data->hasType("Basic")) {
-                  stw.countBasicLandsPerColor[j] += currentCount;
-                } else {
-                  stw.countLandsPerColor[j] += currentCount;
-                }
+    for(int v=0;v<abilityStrings.size();v++){
+      string s = abilityStrings[v];
+      size_t t = s.find("add");
+      if(t != string::npos){
+        s = s.substr(t+3);
+        ManaCost * mc = ManaCost::parseManaCost(s);
+        for (int j=0; j<Constants::MTG_NB_COLORS;j++){
+          if(mc->hasColor(j)){
+            if (current->data->isLand()) {
+              if (current->data->hasType("Basic")) {
+                stw.countBasicLandsPerColor[j] += currentCount;
               } else {
-                stw.countNonLandProducersPerColor[j] += currentCount;
+                stw.countLandsPerColor[j] += currentCount;
               }
+            } else {
+              stw.countNonLandProducersPerColor[j] += currentCount;
             }
           }
         }
-        SAFE_DELETE(ab);
+        SAFE_DELETE(mc);
       }
     }
-    SAFE_DELETE(cin);
 
     // Add to the per color counters
     //  a. regular costs
@@ -1388,6 +1374,7 @@ int GameStateDeckViewer::loadDeck(int deckid){
 	myDeck->validate();
 	myCollection->validate();
   }
+
     // Load deck statistics
     // TODO: Code cleanup (Copypasted with slight changes from GameStateMenu.cpp)
     char buffer[512];
@@ -1521,7 +1508,8 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
             pricelist->setPrice(card->getMTGId(),price*2);
             playerdata->collection->remove(card->getMTGId());
             displayed_deck->Remove(card,1);
-			displayed_deck->validate();
+			      displayed_deck->validate();
+            stw.needUpdate = true;
             loadIndexes();
           }
         }

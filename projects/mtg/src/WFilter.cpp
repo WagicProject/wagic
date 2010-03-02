@@ -229,14 +229,19 @@ string WCFilterOnlyColor::getCode(){
 }
 //WCFilterProducesColor
 bool WCFilterProducesColor::isMatch(MTGCard * c){
+  bool bMatch = false;
  if(!c || !c->data)
     return false;
   string s = c->data->magicText;
   size_t t = s.find("add");
-  if(t == string::npos)
-    return false;
-  ManaCost * mc = ManaCost::parseManaCost(s.substr(t));
-  return (mc->hasColor(color) > 0);
+  while(t != string::npos){
+    s = s.substr(t+3);
+    ManaCost * mc = ManaCost::parseManaCost(s);
+    if(mc->hasColor(color) > 0) {bMatch = true; SAFE_DELETE(mc); break;}
+    SAFE_DELETE(mc);
+    t = s.find("add");    
+  }
+  return bMatch;
 }
 string WCFilterProducesColor::getCode(){
   char buf[12]; 
