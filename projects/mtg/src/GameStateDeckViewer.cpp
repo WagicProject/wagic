@@ -1093,7 +1093,7 @@ void GameStateDeckViewer::updateStats() {
     string thisstring = current->data->magicText;
     StringExplode(thisstring, "\n", &abilityStrings);
 
-    for(int v=0;v<abilityStrings.size();v++){
+    for(int v=0;v<(int)abilityStrings.size();v++){
       string s = abilityStrings[v];
       size_t t = s.find("add");
       if(t != string::npos){
