@@ -123,7 +123,6 @@ int WSrcCards::loadMatches(MTGAllCards* ac){
     }
   }
   validate();
-  updateCounts();
   return count;
 }
 int WSrcCards::loadMatches(MTGDeck * deck){
@@ -139,7 +138,6 @@ int WSrcCards::loadMatches(MTGDeck * deck){
     }
   }
   validate();
-  updateCounts();
   return count;
 }
 int WSrcCards::loadMatches(WSrcCards* src, bool all){
@@ -160,7 +158,6 @@ int WSrcCards::loadMatches(WSrcCards* src, bool all){
   }
   src->setOffset(oldp);
   validate();
-  updateCounts();
   return count;  
 }
 int WSrcCards::addRandomCards(MTGDeck * i, int howmany){
@@ -276,6 +273,8 @@ void WSrcCards::Shuffle(){
 }
 void WSrcCards::validate(){
   validated.clear();
+  updateCounts();
+  if(!filtersRoot) return;
   for(size_t t=0;t<cards.size();t++){
     if(matchesFilters(cards[t]))
       validated.push_back(t);
@@ -310,7 +309,6 @@ void WSrcCards::addFilter(WCardFilter * f) {
   else
     filtersRoot = NEW WCFilterAND(f,filtersRoot);
   validate();
-  updateCounts();
   currentPos = 0;
 }
 float WSrcCards::filterFee(){
@@ -385,7 +383,6 @@ int WSrcDeck::loadMatches(MTGDeck * deck){
     }
   }
   validate();
-  updateCounts();
   return count;
 }
 void WSrcDeck::updateCounts(){
@@ -406,26 +403,28 @@ void WSrcDeck::clearCounts(){
 }
 void WSrcDeck::addCount(MTGCard * c, int qty){
   if(!c || !c->data) return;
+  map<int,int>::iterator cp = copies.find(c->getMTGId());
+
   if(matchesFilters(c)){
     counts[FILTERED_COPIES]+=qty;
-    counts[FILTERED_UNIQUE]+=qty;
+    if(qty > 1 && cp != copies.end() && (*cp).second == qty ) counts[FILTERED_UNIQUE]++;
+    else if(qty < 1 && (cp == copies.end() || (*cp).second == 0) ) counts[FILTERED_UNIQUE]--;
   }
   counts[UNFILTERED_COPIES] += qty;
-  counts[UNFILTERED_UNIQUE]+=qty;
+    if(qty > 1 && cp != copies.end() && (*cp).second == qty ) counts[UNFILTERED_UNIQUE]++;
+    else if(qty < 1 && (cp == copies.end() || (*cp).second == 0) ) counts[UNFILTERED_UNIQUE]--;
   for(int i=Constants::MTG_COLOR_ARTIFACT;i<=Constants::MTG_COLOR_LAND;i++)
     if (c->data->hasColor(i)) counts[i]+= qty;
   if(counts[UNFILTERED_MIN_COPIES] < 0 || qty < counts[UNFILTERED_MIN_COPIES]) counts[UNFILTERED_MIN_COPIES] = qty;
   if(qty > counts[UNFILTERED_MAX_COPIES]) counts[UNFILTERED_MAX_COPIES] = qty;
-
 }
 int WSrcDeck::Add(MTGCard * c, int quantity){
-  if(!c)
-    return 0;
-  if(copies.find(c->getMTGId()) == copies.end())
-    cards.push_back(c); //FIXME Make sure these two stay synced.
+  if(!c) return 0;
+  if(copies.find(c->getMTGId()) == copies.end()){
+    cards.push_back(c); 
+  }
   copies[c->getMTGId()] += quantity;
   addCount(c,quantity);
-  validate();
   return 1;
 }
 
@@ -444,7 +443,6 @@ int WSrcDeck::Remove(MTGCard * c, int quantity, bool erase){
     if(i != cards.end())
       cards.erase(i);
   }
-  validate();
   addCount(c,-quantity);
   return 1;
 }

@@ -74,13 +74,11 @@ void GameStateDeckViewer::rebuildFilters(){
   if(displayed_deck != myDeck) source->swapSrc();
   filterMenu->Finish(true);
   updateStats();
-  source->updateCounts();
 }
 void GameStateDeckViewer::updateFilters(){
   if(!displayed_deck) return;
   filterMenu->recolorFilter(useFilter-1);
   filterMenu->Finish(true);
-  source->updateCounts();
   updateStats();
   return;
 }
@@ -222,6 +220,8 @@ void GameStateDeckViewer::addRemove(MTGCard * card){
       myCollection->Add(card);
     }
   }
+  myCollection->validate();
+  myDeck->validate();
   stw.needUpdate = true;
   loadIndexes();
 }
@@ -1028,14 +1028,8 @@ void GameStateDeckViewer::renderOnScreenMenu(){
 }
 
 void GameStateDeckViewer::updateStats() {
-  if (!stw.needUpdate || !myDeck) {
+  if (!stw.needUpdate || !myDeck) 
     return;
-  }
-
-  //rmove filters away from the deck to count things correctly
-  WCardFilter* backup = myDeck->unhookFilters();
-
-  myDeck->validate();
   stw.needUpdate = false; 
   stw.cardCount = myDeck->getCount(WSrcDeck::UNFILTERED_COPIES);
   stw.countLands = myDeck->getCount(Constants::MTG_COLOR_LAND);
@@ -1072,7 +1066,7 @@ void GameStateDeckViewer::updateStats() {
     }
   }
 
-  for(int ic=0;ic<myDeck->Size();ic++){
+  for(int ic=0;ic<myDeck->Size(true);ic++){
     current = myDeck->getCard(ic);
     currentCost = current->data->getManaCost();
     convertedCost = currentCost->getConvertedCost();
@@ -1188,10 +1182,6 @@ void GameStateDeckViewer::updateStats() {
     stw.noLandsProbInTurn[i] = noLuck(stw.cardCount, stw.countLands, 7+i)*100;
     stw.noCreaturesProbInTurn[i] = noLuck(stw.cardCount, stw.countCreatures, 7+i)*100;
   }
-
-  //put filters back;
-  myDeck->addFilter(backup);
-  myDeck->validate();
 }
 
 // This should probably be cached in DeckDataWrapper
@@ -1376,10 +1366,12 @@ int GameStateDeckViewer::loadDeck(int deckid){
   
   // Check whether the cards in the deck are actually available in the player's collection:
   int cheatmode = options[Options::CHEATMODE].number;
-  for(int i=0;i<myDeck->Size();i++){
-    MTGCard * current = myDeck->getCard(i);
+  bool bPure = true;
+  for(int i=0;i<myDeck->Size(true);i++){
+    MTGCard * current = myDeck->getCard(i,true);
     int howmanyinDeck = myDeck->count(current);
     for (int i = myCollection->count(current); i < howmanyinDeck; i++){
+	  bPure = false;
       if(cheatmode){                           //Are we cheating?
         playerdata->collection->add(current); //Yup, add it to collection permanently.
         myCollection->Add(current);
@@ -1391,6 +1383,10 @@ int GameStateDeckViewer::loadDeck(int deckid){
     }
     
     myCollection->Remove(current,myDeck->count(current));
+  }
+  if(!bPure){
+	myDeck->validate();
+	myCollection->validate();
   }
     // Load deck statistics
     // TODO: Code cleanup (Copypasted with slight changes from GameStateMenu.cpp)
@@ -1525,6 +1521,7 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
             pricelist->setPrice(card->getMTGId(),price*2);
             playerdata->collection->remove(card->getMTGId());
             displayed_deck->Remove(card,1);
+			displayed_deck->validate();
             loadIndexes();
           }
         }
