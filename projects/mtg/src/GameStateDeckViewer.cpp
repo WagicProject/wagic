@@ -440,9 +440,10 @@ void GameStateDeckViewer::renderOnScreenBasicInfo(){
   int allCopies, nowCopies;
   nowCopies = displayed_deck->getCount(WSrcDeck::FILTERED_COPIES);
   allCopies = displayed_deck->getCount(WSrcDeck::UNFILTERED_COPIES);
+  WCardFilter * wc =  displayed_deck->getFiltersRoot();
 
-  if(allCopies != nowCopies)
-    sprintf(buffer, "%s %i of %i cards (%i unique)", (displayed_deck == myDeck) ? "DECK: " : " ", nowCopies,allCopies, displayed_deck->getCount(WSrcDeck::FILTERED_UNIQUE));
+  if(wc)
+    sprintf(buffer, "%s %i of %i cards (%i unique)", (displayed_deck == myDeck) ? "DECK: " : " ", nowCopies,allCopies,  displayed_deck->getCount(WSrcDeck::FILTERED_UNIQUE));
   else
     sprintf(buffer, "%s%i cards (%i unique)", (displayed_deck == myDeck) ? "DECK: " : " " , allCopies, displayed_deck->getCount(WSrcDeck::UNFILTERED_UNIQUE));
   float w = mFont->GetStringWidth(buffer);
@@ -1067,7 +1068,7 @@ void GameStateDeckViewer::updateStats() {
   }
 
   for(int ic=0;ic<myDeck->Size(true);ic++){
-    current = myDeck->getCard(ic);
+    current = myDeck->getCard(ic,true);
     currentCost = current->data->getManaCost();
     convertedCost = currentCost->getConvertedCost();
     currentCount = myDeck->count(current);

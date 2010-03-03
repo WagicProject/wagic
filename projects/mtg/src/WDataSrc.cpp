@@ -407,12 +407,12 @@ void WSrcDeck::addCount(MTGCard * c, int qty){
 
   if(matchesFilters(c)){
     counts[FILTERED_COPIES]+=qty;
-    if(qty > 1 && cp != copies.end() && (*cp).second == qty ) counts[FILTERED_UNIQUE]++;
-    else if(qty < 1 && (cp == copies.end() || (*cp).second == 0) ) counts[FILTERED_UNIQUE]--;
+    if(qty > 0 && cp != copies.end() && (*cp).second == qty ) counts[FILTERED_UNIQUE]++;
+    else if(qty < 0 && (cp == copies.end() || (*cp).second == 0) ) counts[FILTERED_UNIQUE]--;
   }
   counts[UNFILTERED_COPIES] += qty;
-    if(qty > 1 && cp != copies.end() && (*cp).second == qty ) counts[UNFILTERED_UNIQUE]++;
-    else if(qty < 1 && (cp == copies.end() || (*cp).second == 0) ) counts[UNFILTERED_UNIQUE]--;
+    if(qty > 0 && cp != copies.end() && (*cp).second == qty ) counts[UNFILTERED_UNIQUE]++;
+    else if(qty < 0 && (cp == copies.end() || (*cp).second == 0) ) counts[UNFILTERED_UNIQUE]--;
   for(int i=Constants::MTG_COLOR_ARTIFACT;i<=Constants::MTG_COLOR_LAND;i++)
     if (c->data->hasColor(i)) counts[i]+= qty;
   if(counts[UNFILTERED_MIN_COPIES] < 0 || qty < counts[UNFILTERED_MIN_COPIES]) counts[UNFILTERED_MIN_COPIES] = qty;

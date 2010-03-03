@@ -55,6 +55,12 @@ protected:
 };
 
 class WSrcCards: public WDataSource{
+protected:
+  vector<MTGCard*> cards;
+  vector<size_t> validated; 
+  WCardFilter * filtersRoot;
+  float mDelay;
+
 public:
   WSrcCards(float delay=0.2);
   ~WSrcCards();
@@ -93,6 +99,7 @@ public:
   //We put it into something else
   virtual int addRandomCards(MTGDeck * i, int howmany=1);
   virtual int addToDeck(MTGDeck * i, int num=-1); //Returns num that didn't add
+  virtual WCardFilter * getFiltersRoot(){return filtersRoot;};
 
   enum {
      MAX_CYCLES = 4, //How many cycles to search, for addToDeck
@@ -100,11 +107,7 @@ public:
      SORT_ALPHA,
      SORT_RARITY
   };
-protected:
-  vector<MTGCard*> cards;
-  vector<size_t> validated; 
-  WCardFilter * filtersRoot;
-  float mDelay;
+
 };
 
 class WSrcDeckViewer: public WSrcCards{
@@ -118,6 +121,7 @@ public:
   JQuad * getThumb(int offset=0) {return active->getThumb(offset);};
   MTGCard * getCard(int offset=0, bool ignore=false) {return active->getCard(offset,ignore);};
   int Size(bool all=false) {return active->Size();}; 
+  WCardFilter * getfiltersRoot() {return active->getFiltersRoot();};
   void Shuffle() {active->Shuffle();};
   bool thisCard(int mtgid) {return active->thisCard(mtgid);};
   bool next() {return active->next();};
