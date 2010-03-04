@@ -13836,7 +13836,7 @@ toughness=2
 [card]
 name=Fog Elemental
 abilities=flying
-auto=@each combatends:moveTo(ownerhand) all(fog elemental[attacking;blocking]|myBattlefield)
+auto=@each combatends:moveTo(ownerGraveyard) all(fog elemental[attacking;blocking]|myBattlefield)
 text=Flying (This creature can't be blocked except by creatures with flying or reach.) -- When Fog Elemental attacks or blocks, sacrifice it at end of combat.
 mana={2}{U}
 type=Creature
