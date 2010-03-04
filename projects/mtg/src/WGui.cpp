@@ -1161,6 +1161,7 @@ void WGuiCardImage::Render(){
     else
       q = resources.GetQuad("back");
     float scale = p.actZ * 257.f / q->mHeight;
+    q->SetColor(ARGB(255,255,255,255));
     renderer->RenderQuad(q,p.x,p.y,0,scale,scale);
   }else{ //Have card.
     if(bThumb){ //Thumbnail.

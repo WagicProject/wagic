@@ -125,6 +125,7 @@ void GameStateDeckViewer::Start()
   mAlpha = 255;
   last_user_activity = NO_USER_ACTIVITY_HELP_DELAY + 1;
   onScreenTransition = 0;
+  useFilter = 0;
 
   pricelist = NEW PriceList(RESPATH"/settings/prices.dat",mParent->collection);
   playerdata = NEW PlayerData(mParent->collection);

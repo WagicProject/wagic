@@ -304,7 +304,6 @@ void GameStateShop::load(){
   int nbsets = 0;
   int nbboostersets = 0;
 
-  JQuad * mBackThumb = resources.GetQuad("back_thumb");
   for(int i=0;i<BOOSTER_SLOTS;i++){
     mBooster[i].randomize(packlist);
     mInventory[i] = 1+rand()%mBooster[i].maxInventory();

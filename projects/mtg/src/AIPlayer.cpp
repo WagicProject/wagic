@@ -391,8 +391,9 @@ int AIPlayer::chooseTarget(TargetChooser * _tc, Player * forceTarget){
   //Couldn't find any valid target,
   //usually that's because we played a card that has bad side effects (ex: when X comes into play, return target land you own to your hand)
   //so we try again to choose a target in the other player's field...
+  if (checkOnly) return 0;
   int cancel = gameObs->cancelCurrentAction();
-  if (!cancel && !forceTarget) return chooseTarget(_tc,target->opponent());
+  if ( !cancel && !forceTarget) return chooseTarget(_tc,target->opponent());
 
   //ERROR!!!
   return 0;
