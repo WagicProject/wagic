@@ -48,6 +48,7 @@ class ObjectSelector : public GuiLayer
  LimitorFunctor<T>* limitor;
  Pos bigpos;
  map<const SelectorZone, SelectorMemory> lasts;
+ stack< pair<LimitorFunctor<T>*, SelectorZone> > limitorStack;
  stack<SelectorMemory> memoryStack;
 
  T* fetchMemory(SelectorMemory&);
@@ -60,9 +61,12 @@ class ObjectSelector : public GuiLayer
  bool CheckUserInput(JButton key);
  void Update(float dt);
  void Render();
- void Limit(LimitorFunctor<T>* limitor, SelectorZone);
  void Push();
  void Pop();
+
+ void Limit(LimitorFunctor<T>* limitor, SelectorZone);
+ void PushLimitor();
+ void PopLimitor();
 
  typedef T Target;
 };
