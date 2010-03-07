@@ -148,9 +148,6 @@ void SimpleMenu::Update(float dt){
   stars->Update(dt);
   selectionT += 3*dt;
   selectionY += (selectionTargetY - selectionY) * 8 * dt;
-  printf("%f\n", selectionY);
-  printf("%f\n", selectionT);
-  printf("%i\n", startId);
   stars->MoveTo(mX + HMARGIN + ((mWidth-2*HMARGIN)*(1+cos(selectionT))/2), selectionY + 5 * cos(selectionT*2.35) + LINE_HEIGHT / 2 - LINE_HEIGHT * startId);
   if (timeOpen < 0) {
     timeOpen += dt * 10;
