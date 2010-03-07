@@ -40,9 +40,10 @@ SimpleMenu::SimpleMenu(int id, JGuiListener* listener, int fontId, int x, int y,
   timeOpen = 0;
   closed = false;
   ++refCount;
+  selectionTargetY = selectionY = y + VMARGIN;
 
   JRenderer* renderer = JRenderer::GetInstance();
-  
+
   if (!spadeLTex)  spadeLTex= resources.RetrieveTexture("spade_ul.png", RETRIEVE_MANAGE);
   if (!spadeRTex) spadeRTex = resources.RetrieveTexture("spade_ur.png", RETRIEVE_MANAGE);
   if (!jewelTex)   jewelTex= renderer->CreateTexture(5, 5, TEX_TYPE_USE_VRAM);
@@ -51,14 +52,11 @@ SimpleMenu::SimpleMenu(int id, JGuiListener* listener, int fontId, int x, int y,
   if (NULL == spadeR) spadeR = resources.RetrieveQuad("spade_ur.png", 2, 1, 16, 13, "spade_ur", RETRIEVE_MANAGE);
   if (NULL == jewel)  jewel  = NEW JQuad(jewelTex, 1, 1, 3, 3);
   if (NULL == side)   side   = resources.RetrieveQuad("menuside.png", 1, 1, 1, 7,"menuside", RETRIEVE_MANAGE);
-  
-  if (NULL == stars) { 
-    JQuad * starQuad = resources.GetQuad("stars");
-    hgeParticleSystemInfo * psi = resources.RetrievePSI("stars.psi", starQuad);
-    if(psi) stars = NEW hgeParticleSystem(psi);
-  }
 
-  stars->MoveTo(mX, mY);
+  if (NULL == stars)
+    stars = NEW hgeParticleSystem(resources.RetrievePSI("stars.psi", resources.GetQuad("stars")));
+
+  stars->FireAt(mX, mY);
 }
 
 void SimpleMenu::drawHorzPole(int x, int y, int width) {
@@ -93,14 +91,14 @@ void SimpleMenu::Render() {
   if (0 == mWidth) {
     float sY = mY + VMARGIN;
     for (int i = startId; i < startId + mCount; ++i) {
-	    int width = (static_cast<SimpleMenuItem*>(mObjects[i]))->GetWidth();
-	    if (mWidth < width) mWidth = width;
-	  }
+      int width = (static_cast<SimpleMenuItem*>(mObjects[i]))->GetWidth();
+      if (mWidth < width) mWidth = width;
+    }
     if ((!title.empty()) && (mWidth < titleFont->GetStringWidth(title.c_str()))) mWidth = titleFont->GetStringWidth(title.c_str());
     mWidth += 2*HMARGIN;
     for (int i = startId; i < startId + mCount; ++i) {
       float y = mY + VMARGIN + i * LINE_HEIGHT;
-	    SimpleMenuItem * smi = static_cast<SimpleMenuItem*>(mObjects[i]);
+      SimpleMenuItem * smi = static_cast<SimpleMenuItem*>(mObjects[i]);
       smi->Relocate(mX + mWidth / 2, y);
       if (smi->hasFocus()) sY = y;
     }
@@ -132,11 +130,10 @@ void SimpleMenu::Render() {
     if ((static_cast<SimpleMenuItem*>(mObjects[i]))->mY - LINE_HEIGHT * startId < mY + height - LINE_HEIGHT + 7) {
       if (static_cast<SimpleMenuItem*>(mObjects[i])->hasFocus()){
         resources.GetJLBFont(Constants::MAIN_FONT)->DrawString(static_cast<SimpleMenuItem*>(mObjects[i])->desc.c_str(),mX+mWidth+10,mY+15);
-	      mFont->SetColor(ARGB(255,255,255,0));
-      } else {
+        mFont->SetColor(ARGB(255,255,255,0));
+      } else
         mFont->SetColor(ARGB(150,255,255,255));
-      }
-	    (static_cast<SimpleMenuItem*>(mObjects[i]))->RenderWithOffset(-LINE_HEIGHT*startId);
+      (static_cast<SimpleMenuItem*>(mObjects[i]))->RenderWithOffset(-LINE_HEIGHT*startId);
     }
   }
   drawHorzPole(mX - 25, mY + height, mWidth + 50);
@@ -144,18 +141,20 @@ void SimpleMenu::Render() {
 
 void SimpleMenu::Update(float dt){
   JGuiController::Update(dt);
-  if (mCurr > startId + maxItems-1){
+  if (mCurr > startId + maxItems-1)
     startId = mCurr - maxItems +1;
-  }else if (mCurr < startId){
+  else if (mCurr < startId)
     startId = mCurr;
-  }
   stars->Update(dt);
   selectionT += 3*dt;
   selectionY += (selectionTargetY - selectionY) * 8 * dt;
+  printf("%f\n", selectionY);
+  printf("%f\n", selectionT);
+  printf("%i\n", startId);
   stars->MoveTo(mX + HMARGIN + ((mWidth-2*HMARGIN)*(1+cos(selectionT))/2), selectionY + 5 * cos(selectionT*2.35) + LINE_HEIGHT / 2 - LINE_HEIGHT * startId);
   if (timeOpen < 0) {
     timeOpen += dt * 10;
-    if (timeOpen >= 0) { timeOpen = 0; closed = true; }
+    if (timeOpen >= 0) { timeOpen = 0; closed = true; stars->FireAt(mX, mY); }
   } else {
     closed = false;
     timeOpen += dt * 10;
@@ -163,7 +162,7 @@ void SimpleMenu::Update(float dt){
 }
 
 void SimpleMenu::Add(int id, const char * text,string desc, bool forceFocus){
-  SimpleMenuItem * smi = NEW SimpleMenuItem(this, id, fontId, text, 0, mY + VMARGIN + mCount*LINE_HEIGHT, (mCount == 0),autoTranslate);
+  SimpleMenuItem * smi = NEW SimpleMenuItem(this, id, fontId, text, 0, mY + VMARGIN + mCount*LINE_HEIGHT, (mCount == 0), autoTranslate);
   smi->desc = desc;
   JGuiController::Add(smi);
   if (mCount <= maxItems) mHeight += LINE_HEIGHT;
