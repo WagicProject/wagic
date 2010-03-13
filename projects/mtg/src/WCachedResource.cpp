@@ -152,12 +152,14 @@ WTrackedQuad * WCachedTexture::GetTrackedQuad(float offX, float offY, float widt
 
   if(!quad){
     quad = NEW JQuad(texture,offX,offY,width,height);
+/*
+There's a risk this erases the texture calling the quad creation.... Erwan 2010/03/13
     if(!quad) {
       //Probably out of memory. Try again.
       resources.Cleanup();
       quad = NEW JQuad(texture,offX,offY,width,height);
     }
-
+*/
     if(!quad){
       if(allocated && tq)
         SAFE_DELETE(tq);

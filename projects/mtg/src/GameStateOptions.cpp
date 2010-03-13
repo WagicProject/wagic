@@ -25,7 +25,6 @@ void GameStateOptions::Start()
   if (GameApp::HasMusic)
     optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::MUSICVOLUME,"Music volume",100,10,100),OptionVolume::getInstance()));
   optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::SFXVOLUME,"SFX volume",100,10,100),OptionVolume::getInstance()));
-  optionsList->Add(NEW OptionInteger(Options::OSD, "Display InGame extra information"));
   if (options[Options::DIFFICULTY_MODE_UNLOCKED].number){
     optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::DIFFICULTY,"Difficulty",3,1,0),OptionDifficulty::getInstance()));
     optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::ECON_DIFFICULTY,"Economic Difficuly",Constants::ECON_EASY)));
@@ -45,6 +44,7 @@ void GameStateOptions::Start()
   optionsList->Add(NEW OptionInteger(Options::REVERSETRIGGERS, "Reverse left and right triggers"));
   optionsList->Add(NEW OptionInteger(Options::DISABLECARDS,"Disable card images"));
   optionsList->Add(NEW OptionInteger(Options::TRANSITIONS,"Disable screen transitions"));
+  optionsList->Add(NEW OptionInteger(Options::OSD, "Display InGame extra information"));
   optionsTabs->Add(optionsList);
 
   optionsList = NEW WGuiList("User");

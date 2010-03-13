@@ -172,8 +172,8 @@ void OptionProfile::Render(){
     sprintf(buf,"player/avatar.jpg");
   else
     sprintf(buf,"profiles/%s/avatar.jpg",selections[value].c_str());
-
-  JQuad * mAvatar = resources.RetrieveQuad(buf,0,0,0,0,"temporary",RETRIEVE_NORMAL,TEXTURE_SUB_EXACT);
+  string filename = buf;
+  JQuad * mAvatar = resources.RetrieveTempQuad(filename,TEXTURE_SUB_EXACT);
 
   if(mAvatar){
     renderer->RenderQuad(mAvatar,x,pY);
@@ -358,8 +358,8 @@ JQuad * OptionTheme::getImage(){
     sprintf(buf,"graphics/preview.png");
   else
     sprintf(buf,"themes/%s/preview.png",val.c_str());
-
-  return resources.RetrieveQuad(buf,0,0,0,0,"temporary",RETRIEVE_NORMAL,TEXTURE_SUB_EXACT);
+  string filename = buf;
+  return resources.RetrieveTempQuad(filename,TEXTURE_SUB_EXACT);
 }
 
 float OptionTheme::getHeight(){
@@ -372,9 +372,6 @@ void OptionTheme::updateValue(){
 
 void OptionTheme::Render(){
   JRenderer * renderer = JRenderer::GetInstance();
-  JQuad * q = getImage();
-  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
-  mFont->SetColor(getColor(WGuiColor::TEXT_HEADER));
   char buf[512];
   if(!bChecked){
     author = "";
@@ -396,11 +393,14 @@ void OptionTheme::Render(){
   }
   sprintf(buf,_("Theme: %s").c_str(),selections[value].c_str());
 
+  JQuad * q = getImage();
   if(q){
     float scale = 128 / q->mHeight;
     renderer->RenderQuad(q,x, y,0,scale,scale);
   }
 
+  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
+  mFont->SetColor(getColor(WGuiColor::TEXT_HEADER));
   mFont->DrawString(buf, x + 2, y + 2);
   if(bChecked && author.size()){
     mFont->SetColor(getColor(WGuiColor::TEXT_BODY));

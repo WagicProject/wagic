@@ -199,7 +199,7 @@ void GameStateShop::cancelCard(int controlId){
   //Update prices
   MTGCard * c = srcCards->getCard(controlId-BOOSTER_SLOTS);
   if(!c || !c->data || playerdata->credits - mPrices[controlId] < 0) 
-    return; //We only care about their oppinion if they /can/ buy it.
+    return; //We only care about their opinion if they /can/ buy it.
 
   int price = mPrices[controlId];
   int rnd;
@@ -212,7 +212,8 @@ void GameStateShop::cancelCard(int controlId){
       rnd = rand() % 25; break;
   }  
   price = price - (rnd * price)/100;
-  pricelist->setPrice(c->getMTGId(),price);
+  if (price < pricelist->getPrice(c->getMTGId())) //filters have a tendancy to increase the price instead of lowering it!
+    pricelist->setPrice(c->getMTGId(),price);
   //Prices do not immediately go down when you ignore something.
   return;
 }

@@ -742,6 +742,7 @@ WGuiMenu::WGuiMenu(JButton next = JGE_BTN_RIGHT, JButton prev = JGE_BTN_LEFT, bo
   currentItem = -1;
   mDPad = m;
   sync = syncme;
+  held = JGE_BTN_NONE;
 }
 WGuiMenu::~WGuiMenu(){
   for(vector<WGuiBase*>::iterator it = items.begin();it!=items.end();it++)
