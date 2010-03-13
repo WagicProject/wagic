@@ -126,6 +126,7 @@ private:
   string newDeckname;
   StatsWrapper stw;
   bool mSwitching;
+  void saveDeck(); //Saves the deck and additional necessary information
 
 public:
   GameStateDeckViewer(GameApp* parent);

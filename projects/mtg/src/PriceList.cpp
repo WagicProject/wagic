@@ -74,7 +74,7 @@ int PriceList::setPrice(int cardId, int price){
   return price;
 }
 int PriceList::getSellPrice(int cardid){
-  return getPurchasePrice(cardid) / 2;
+  return getPrice(cardid);
 }
 float PriceList::difficultyScalar(float price, int cardid){
   float badluck = (float)(abs(cardid + randomKey) % 201) / 100; //Float between 0 and 2.

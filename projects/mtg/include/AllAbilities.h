@@ -1212,6 +1212,7 @@ class AProtectionFrom: public MTGAbility{
 
   AProtectionFrom * clone() const{
     AProtectionFrom * a =  NEW AProtectionFrom(*this);
+    a->fromTc = fromTc->clone();
     a->isClone = 1;
     return a;
   }
@@ -1244,6 +1245,7 @@ class ACantBeBlockedBy: public MTGAbility{
 
   ACantBeBlockedBy * clone() const{
     ACantBeBlockedBy * a =  NEW ACantBeBlockedBy(*this);
+    a->fromTc = fromTc->clone();
     a->isClone = 1;
     return a;
   }

@@ -227,6 +227,12 @@ void GameStateDeckViewer::addRemove(MTGCard * card){
   loadIndexes();
 }
 
+void GameStateDeckViewer::saveDeck(){
+  myDeck->save();
+  playerdata->save();
+  pricelist->save();
+}
+
 void GameStateDeckViewer::Update(float dt)
 {
   
@@ -241,7 +247,7 @@ void GameStateDeckViewer::Update(float dt)
       if(newDeckname != ""){    
         if(myDeck && myDeck->parent){
           myDeck->parent->meta_name = newDeckname;
-          myDeck->save();
+          saveDeck();
         }
         mStage = STAGE_WAITING;
       }
@@ -1469,9 +1475,7 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
         {
       
         case 0:
-          myDeck->save();
-          playerdata->save();
-          pricelist->save();
+          saveDeck();
           mParent->DoTransition(TRANSITION_FADE,GAME_STATE_MENU);
           break;
         case 1:
@@ -1507,7 +1511,7 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
             int rnd = (rand() % 25);
             playerdata->credits += price;
             price = price - (rnd * price)/100;
-            pricelist->setPrice(card->getMTGId(),price*2);
+            pricelist->setPrice(card->getMTGId(),price);
             playerdata->collection->remove(card->getMTGId());
             displayed_deck->Remove(card,1);
 			      displayed_deck->validate();
