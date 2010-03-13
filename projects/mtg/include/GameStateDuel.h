@@ -38,7 +38,7 @@ class GameStateDuel: public GameState, public JGuiListener
   
   bool MusicExist(string FileName);
   void loadPlayer(int playerId, int decknb = 0, int isAI = 0);
-
+  void ensureOpponentMenu(); //loads the opponentMenu if it doesn't exist
   
  public:
   GameStateDuel(GameApp* parent);

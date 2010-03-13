@@ -10,7 +10,7 @@
 #include "../include/PlayerData.h"
 #include "../include/utils.h"
 
-static const char* GAME_VERSION = "WTH?! 0.11.0 - by wololo";
+static const char* GAME_VERSION = "WTH?! 0.11.1 - by wololo";
 
 #define DEFAULT_ANGLE_MULTIPLIER 0.4
 #define MAX_ANGLE_MULTIPLIER (3*M_PI)
@@ -100,7 +100,7 @@ void GameStateMenu::Create()
 	  }
   }
 
-  currentState = MENU_STATE_MAJOR_LOADING_CARDS | MENU_STATE_MINOR_NONE;
+  currentState = MENU_STATE_MAJOR_LOADING_CARDS;
   bool langChosen = false;
   string lang = options[Options::LANG].str;
   if (lang.size()){
@@ -340,6 +340,20 @@ void GameStateMenu::listPrimitives(){
   primitivesLoadCounter = 0;
 }
 
+void GameStateMenu::ensureMGuiController(){
+  if (!mGuiController) {
+    mGuiController = NEW JGuiController(100, this);
+    if (mGuiController) {
+      JLBFont * mFont = resources.GetJLBFont(Constants::MENU_FONT);
+      mFont->SetColor(ARGB(255,255,255,255));
+      mGuiController->Add(NEW MenuItem(MENUITEM_PLAY, mFont, "Play", 80,         50 + SCREEN_HEIGHT/2, mIcons[8], mIcons[9],"particle1.psi",resources.GetQuad("particles"),  true));
+      mGuiController->Add(NEW MenuItem(MENUITEM_DECKEDITOR, mFont, "Deck Editor", 160, 50 + SCREEN_HEIGHT/2, mIcons[2], mIcons[3],"particle2.psi",resources.GetQuad("particles")));
+      mGuiController->Add(NEW MenuItem(MENUITEM_SHOP, mFont, "Shop", 240,        50 + SCREEN_HEIGHT/2, mIcons[0], mIcons[1],"particle3.psi",resources.GetQuad("particles")));
+      mGuiController->Add(NEW MenuItem(MENUITEM_OPTIONS, mFont, "Options", 320,     50 + SCREEN_HEIGHT/2, mIcons[6], mIcons[7],"particle4.psi",resources.GetQuad("particles")));
+      mGuiController->Add(NEW MenuItem(MENUITEM_EXIT, mFont, "Exit", 400,        50 + SCREEN_HEIGHT/2, mIcons[4], mIcons[5],"particle5.psi",resources.GetQuad("particles")));
+    }
+  }
+}
 
 void GameStateMenu::Update(float dt)
 {
@@ -414,25 +428,16 @@ void GameStateMenu::Update(float dt)
       break;
     case MENU_STATE_MAJOR_MAINMENU :
       if (!scrollerSet) fillScroller();
-      if (!mGuiController) {
-        mGuiController = NEW JGuiController(100, this);
-        if (mGuiController) {
-          JLBFont * mFont = resources.GetJLBFont(Constants::MENU_FONT);
-          mFont->SetColor(ARGB(255,255,255,255));
-          mGuiController->Add(NEW MenuItem(MENUITEM_PLAY, mFont, "Play", 80,         50 + SCREEN_HEIGHT/2, mIcons[8], mIcons[9],"particle1.psi",resources.GetQuad("particles"),  true));
-          mGuiController->Add(NEW MenuItem(MENUITEM_DECKEDITOR, mFont, "Deck Editor", 160, 50 + SCREEN_HEIGHT/2, mIcons[2], mIcons[3],"particle2.psi",resources.GetQuad("particles")));
-          mGuiController->Add(NEW MenuItem(MENUITEM_SHOP, mFont, "Shop", 240,        50 + SCREEN_HEIGHT/2, mIcons[0], mIcons[1],"particle3.psi",resources.GetQuad("particles")));
-          mGuiController->Add(NEW MenuItem(MENUITEM_OPTIONS, mFont, "Options", 320,     50 + SCREEN_HEIGHT/2, mIcons[6], mIcons[7],"particle4.psi",resources.GetQuad("particles")));
-          mGuiController->Add(NEW MenuItem(MENUITEM_EXIT, mFont, "Exit", 400,        50 + SCREEN_HEIGHT/2, mIcons[4], mIcons[5],"particle5.psi",resources.GetQuad("particles")));
-        }
-      }
+      ensureMGuiController();
       if (mGuiController)
 	      mGuiController->Update(dt);
       if(mEngine->GetButtonState(JGE_BTN_NEXT)) //Hook for GameStateAward state
       	mParent->DoTransition(TRANSITION_FADE,GAME_STATE_AWARDS); //TODO: A slide transition would be nice.
       break;
     case MENU_STATE_MAJOR_SUBMENU :
-      subMenuController->Update(dt);
+      if (subMenuController)
+        subMenuController->Update(dt);
+      ensureMGuiController();
       mGuiController->Update(dt);
       break;
     case MENU_STATE_MAJOR_DUEL :
@@ -464,6 +469,10 @@ void GameStateMenu::Update(float dt)
 
   switch (MENU_STATE_MINOR & currentState){
     case MENU_STATE_MINOR_SUBMENU_CLOSING :
+      if (!subMenuController){ //http://code.google.com/p/wagic/issues/detail?id=379
+        currentState &= ~MENU_STATE_MINOR_SUBMENU_CLOSING;
+        break;
+      }
       if (subMenuController->closed) {
 	      SAFE_DELETE(subMenuController);
 	      currentState &= ~MENU_STATE_MINOR_SUBMENU_CLOSING;
@@ -540,7 +549,7 @@ void GameStateMenu::Render()
     };
     renderer->FillRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT,colors);  
 
-    if (mGuiController!=NULL)
+    if (mGuiController)
       mGuiController->Render();
 
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);

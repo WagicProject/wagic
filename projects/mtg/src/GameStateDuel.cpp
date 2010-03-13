@@ -213,6 +213,16 @@ bool GameStateDuel::MusicExist(string FileName){
     return false;
 }
 
+void GameStateDuel::ensureOpponentMenu(){
+  if (!opponentMenu){
+    opponentMenu = NEW SimpleMenu(DUEL_MENU_CHOOSE_OPPONENT, this, Constants::MENU_FONT, 35, 25, "Choose Opponent");
+    opponentMenu->Add(0,"Random");
+    if (options[Options::EVILTWIN_MODE_UNLOCKED].number)
+      opponentMenu->Add(-1,"Evil Twin", "Can you play against yourself?");
+    fillDeckMenu(opponentMenu,RESPATH"/ai/baka", "ai_baka", mPlayers[0]);
+  }
+}
+
 void GameStateDuel::Update(float dt)
 {
   switch (mGamePhase)
@@ -270,13 +280,7 @@ void GameStateDuel::Update(float dt)
 	deckmenu->Update(dt);
       else{
 	if (mParent->players[0] ==  PLAYER_TYPE_HUMAN){
-	  if (!opponentMenu){
-	    opponentMenu = NEW SimpleMenu(DUEL_MENU_CHOOSE_OPPONENT, this, Constants::MENU_FONT, 35, 25, "Choose Opponent");
-	    opponentMenu->Add(0,"Random");
-	    if (options[Options::EVILTWIN_MODE_UNLOCKED].number)
-	      opponentMenu->Add(-1,"Evil Twin", "Can you play against yourself?");
-	    fillDeckMenu(opponentMenu,RESPATH"/ai/baka", "ai_baka", mPlayers[0]);
-	  }
+	  ensureOpponentMenu();
 	  opponentMenu->Update(dt);
 	}else{
 	  loadPlayer(1);
@@ -286,14 +290,14 @@ void GameStateDuel::Update(float dt)
       break;
     case DUEL_STATE_CHOOSE_DECK2_TO_PLAY:
       if (mParent->players[1] ==  PLAYER_TYPE_HUMAN){
-	if (deckmenu->closed) mGamePhase = DUEL_STATE_PLAY;
-	else deckmenu->Update(dt);
+	      if (deckmenu->closed) mGamePhase = DUEL_STATE_PLAY;
+	      else deckmenu->Update(dt);
       }
-      else
-	{
+      else{
+          ensureOpponentMenu();
           if (opponentMenu->closed) mGamePhase = DUEL_STATE_PLAY;
           else opponentMenu->Update(dt);
-	}
+	    }
       break;
     case DUEL_STATE_PLAY:
       if (!game){

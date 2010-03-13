@@ -49,6 +49,7 @@ class GameStateMenu: public GameState, public JGuiListener
   void runTest(); //!!
   void listPrimitives();
   void genNbCardsStr(); //computes the contents of nbCardsStr
+  void ensureMGuiController(); //creates the MGuiController if it doesn't exist
  public:
   GameStateMenu(GameApp* parent);
   virtual ~GameStateMenu();
