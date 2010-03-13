@@ -472,7 +472,11 @@ void GameStateDeckViewer::renderSlideBar(){
   int currentPos = displayed_deck->getOffset();
   if(total == 0)
     return;
-  currentPos = abs(currentPos) % total;
+
+  currentPos+= 2; //we start by displaying card number 3
+  currentPos =  currentPos % total + 1;
+  if (currentPos <0) currentPos = (total + currentPos);
+  if (!currentPos) currentPos = total;
   float cursor_pos = bar_size * currentPos / total;
 
   r->FillRoundRect(filler + 5,y+5,bar_size,0,3,ARGB(hudAlpha/2,0,0,0));
