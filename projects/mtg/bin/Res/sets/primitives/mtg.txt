@@ -31309,7 +31309,7 @@ toughness=5
 [card]
 name=Roterothopter
 abilities=flying
-auto={2}:2/0 limit:2
+auto={2}:1/0 limit:2
 text=Flying -- {2}: Roterothopter gets +1/+0 until end of turn. Activate this ability no more than twice each turn.
 mana={1}
 type=Artifact Creature
