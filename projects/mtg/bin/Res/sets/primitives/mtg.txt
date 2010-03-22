@@ -1467,6 +1467,14 @@ text=Arcane Sanctum enters the battlefield tapped. -- {T}: Add {W}, {U}, or {B} 
 type=Land
 [/card]
 [card]
+name=Arcane Spyglass
+auto={2}{T}{S(land|mybattlefield)}:counter(0/0,1,Charge) && draw:1 controller
+auto={C(0/0,-3,Charge)}:draw:1
+text={2}, {T}, Sacrifice a land: Draw a card and put a charge counter on Arcane Spyglass. -- Remove three charge counters from Arcane Spyglass: Draw a card.
+mana={4}
+type=Artifact
+[/card]
+[card]
 name=Arcanis the Omnipotent
 auto={T}:draw:3
 auto={2}{U}{U}:moveTo(ownerhand)
@@ -2443,6 +2451,14 @@ type=Land
 subtype=Swamp Mountain
 [/card]
 [card]
+name=Baku Altar
+auto={2}{T}{C(0/0,-2,Ki)}:token(Spirit,Creature Spirit,1/1)
+auto=@movedTo(spirit,arcane|mystack):counter(0/0,1,Ki)
+text=Whenever you cast a Spirit or Arcane spell, you may put a ki counter on Baku Altar. -- {2}, {T}, Remove a ki counter from Baku Altar: Put a 1/1 colorless Spirit creature token onto the battlefield.
+mana={2}
+type=Artifact
+[/card]
+[card]
 name=Balduvian Barbarians
 mana={1}{R}{R}
 type=Creature
@@ -2962,7 +2978,7 @@ toughness=2
 [card]
 name=Battlegrowth
 target=creature
-auto=counter(1/1)
+auto=counter(1/1,1)
 text=Put a +1/+1 counter on target creature.
 mana={G}
 type=Instant
@@ -3391,7 +3407,7 @@ toughness=1
 [card]
 name=Biting Tether
 target=creature
-auto=@each my upkeep:counter(-1/-1)
+auto=@each my upkeep:counter(-1/-1,1)
 alias=1194
 text=Enchant creature -- You control enchanted creature. -- At the beginning of your upkeep, put a -1/-1 counter on enchanted creature.
 mana={4}{U}
@@ -3979,7 +3995,7 @@ toughness=1
 [card]
 name=Bloodied Ghost
 abilities=flying
-auto=counter(-1/-1)
+auto=counter(-1/-1,1)
 text=Flying -- Bloodied Ghost enters the battlefield with a -1/-1 counter on it.
 mana={1}{WB}{WB}
 type=Creature
@@ -4470,7 +4486,7 @@ type=Instant
 [card]
 name=Borborygmos
 abilities=trample
-auto=@damaged(player) from(this):lord(creature|mybattlefield) counter(1/1)
+auto=@damaged(player) from(this):lord(creature|mybattlefield) counter(1/1,1)
 text=Trample -- Whenever Borborygmos deals combat damage to a player, put a +1/+1 counter on each creature you control.
 mana={3}{R}{R}{G}{G}
 type=Legendary Creature
@@ -4844,7 +4860,7 @@ toughness=1
 [/card]
 [card]
 name=Briarknit Kami
-auto=@movedto(arcane,spirit|mystack):counter(1/1) target(creature)
+auto=@movedto(arcane,spirit|mystack):counter(1/1,1) target(creature)
 text=Whenever you cast a Spirit or Arcane spell, put a +1/+1 counter on target creature.
 mana={3}{G}{G}
 type=Creature
@@ -6411,6 +6427,14 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Chimeric Egg
+auto=@movedTo(*[-artifact]|opponentstack):counter(0/0,1,Charge)
+auto={C(0/0,-3,Charge)}:becomes(Construct Artifact Creature,6/6,trample) ueot
+text=Whenever an opponent casts a nonartifact spell, put a charge counter on Chimeric Egg. -- Remove three charge counters from Chimeric Egg: Chimeric Egg becomes a 6/6 Construct artifact creature with trample until end of turn.
+mana={3}
+type=Artifact
+[/card]
+[card]
 name=Chimeric Idol
 auto={0}:tap all(land|myBattlefield) && becomes(Turtle Artifact Creature,3/3) ueot
 text={0}: Tap all lands you control. Chimeric Idol becomes a 3/3 Turtle artifact creature until end of turn.
@@ -6424,7 +6448,7 @@ auto={2}:becomes(Construct Artifact Creature,3/2) ueot
 text={2}: Until end of turn, Chimeric Sphere becomes a 2/1 Construct artifact creature with flying. -- {2}: Until end of turn, Chimeric Sphere becomes a 3/2 Construct artifact creature without flying.
 mana={3}
 type=Artifact
-[/card]
+[/card
 [card]
 name=Choke
 auto=lord(island) doesnotuntap
@@ -6770,7 +6794,7 @@ toughness=4
 [card]
 name=Clockwork Beetle
 auto=counter(1/1,2)
-auto=@each combatends:counter(1/1,-1) all(clockwork beetle[attacking;blocking]) && counter(1/1) all(other clockwork beetle[attacking;blocking])
+auto=@each combatends:counter(1/1,-1) all(clockwork beetle[attacking;blocking]) && counter(1/1,1) all(other clockwork beetle[attacking;blocking])
 text=Clockwork Beetle enters the battlefield with two +1/+1 counters on it. -- Whenever Clockwork Beetle attacks or blocks, remove a +1/+1 counter from it at end of combat.
 mana={1}
 type=Artifact Creature
@@ -6782,7 +6806,7 @@ toughness=0
 name=Clockwork Condor
 abilities=flying
 auto=counter(1/1,3)
-auto=@each combatends:counter(1/1,-1) all(clockwork condor[attacking;blocking]) && counter(1/1) all(other clockwork condor[attacking;blocking])
+auto=@each combatends:counter(1/1,-1) all(clockwork condor[attacking;blocking]) && counter(1/1,1) all(other clockwork condor[attacking;blocking])
 text=Flying -- Clockwork Condor enters the battlefield with three +1/+1 counters on it. -- Whenever Clockwork Condor attacks or blocks, remove a +1/+1 counter from it at end of combat.
 mana={4}
 type=Artifact Creature
@@ -6795,7 +6819,7 @@ name=Clockwork Dragon
 abilities=flying
 auto=counter(1/1,6)
 auto={3}:counter(1/1)
-auto=@each combatends:counter(1/1,-1) all(clockwork dragon[attacking;blocking]) && counter(1/1) all(other clockwork dragon[attacking;blocking])
+auto=@each combatends:counter(1/1,-1) all(clockwork dragon[attacking;blocking]) && counter(1/1,1) all(other clockwork dragon[attacking;blocking])
 text=Flying -- Clockwork Dragon enters the battlefield with six +1/+1 counters on it. -- Whenever Clockwork Dragon attacks or blocks, remove a +1/+1 counter from it at end of combat. -- {3}: Put a +1/+1 counter on Clockwork Dragon.
 mana={7}
 type=Artifact Creature
@@ -6817,8 +6841,8 @@ toughness=2
 name=Clockwork Vorrac
 abilities=trample
 auto=counter(1/1,4)
-auto={T}:counter(1/1)
-auto=@each combatends:counter(1/1,-1) all(clockwork vorrac[attacking;blocking]) && counter(1/1) all(other clockwork vorrac[attacking;blocking])
+auto={T}:counter(1/1,1)
+auto=@each combatends:counter(1/1,-1) all(clockwork vorrac[attacking;blocking]) && counter(1/1,1) all(other clockwork vorrac[attacking;blocking])
 text=Trample -- Clockwork Vorrac enters the battlefield with four +1/+1 counters on it. -- Whenever Clockwork Vorrac attacks or blocks, remove a +1/+1 counter from it at end of combat. -- {T}: Put a +1/+1 counter on Clockwork Vorrac.
 mana={5}
 type=Artifact Creature
@@ -7314,7 +7338,7 @@ subtype=Elemental
 [/card]
 [card]
 name=Consumptive Goo
-auto={2}{B}{B}:counter(1/1) all(this) && -1/-1 target(creature)
+auto={2}{B}{B}:counter(1/1,1) all(this) && -1/-1 target(creature)
 text={2}{B}{B}: Target creature gets -1/-1 until end of turn. Put a +1/+1 counter on Consumptive Goo.
 mana={B}{B}
 type=Creature
@@ -7418,6 +7442,17 @@ mana={1}{U}
 type=Creature
 subtype=Merfolk
 power=2
+toughness=1
+[/card]
+[card]
+name=Coretapper
+auto={T}:counter(0/0,1,Charge) target(artifact)
+auto={S}:counter(0/0,2,Charge) target(artifact)
+text={T}: Put a charge counter on target artifact. -- Sacrifice Coretapper: Put two charge counters on target artifact.
+mana={2}
+type=Artifact Creature
+subtype=Myr
+power=1
 toughness=1
 [/card]
 [card]
@@ -8090,7 +8125,7 @@ type=Instant
 [/card]
 [card]
 name=Cultbrand Cinder
-auto=counter(-1/-1) target(creature)
+auto=counter(-1/-1,1) target(creature)
 text=When Cultbrand Cinder enters the battlefield, put a -1/-1 counter on target creature.
 mana={4}{BR}
 type=Creature
@@ -8216,7 +8251,7 @@ toughness=1
 [card]
 name=Daily Regimen
 target=creature
-auto={1}{W}:counter(1/1)
+auto={1}{W}:counter(1/1,1)
 text=Enchant creature -- {1}{W}: Put a +1/+1 counter on enchanted creature.
 mana={W}
 type=Enchantment
@@ -8622,7 +8657,7 @@ type=Enchantment
 [card]
 name=Dauthi Ghoul
 abilities=shadow
-auto=@movedTo(graveyard) from(creature[shadow]|battlefield):counter(1/1)
+auto=@movedTo(graveyard) from(creature[shadow]|battlefield):counter(1/1,1)
 text=Shadow (This creature can block or be blocked by only creatures with shadow.) -- Whenever a creature with shadow is put into a graveyard from the battlefield, put a +1/+1 counter on Dauthi Ghoul.
 mana={1}{B}
 type=Creature
@@ -8882,6 +8917,17 @@ type=Creature
 subtype=Horror
 power=3
 toughness=4
+[/card]
+[card]
+name=Deathbringer Thoctar
+text=Whenever another creature is put into a graveyard from the battlefield, you may put a +1/+1 counter on Deathbringer Thoctar. -- Remove a +1/+1 counter from Deathbringer Thoctar: Deathbringer Thoctar deals 1 damage to target creature or player.
+mana={4}{B}{R}
+type=Creature
+subtype=Zombie Beast
+auto=@moveTo(other creature|graveyard) from(battlefield):counter(1/1,1)
+auto={C(1/1,-1)}:damage:1 target(creature,player)
+power=3
+toughness=3
 [/card]
 [card]
 name=Deathcurse Ogre
@@ -9154,7 +9200,7 @@ subtype=Aura
 name=Deity of Scars
 abilities=trample
 auto=counter(-1/-1,2)
-auto={BG}:counter(-1/-1,-1) && regenerate
+auto={BG}{C(-1/-1,-1)}:regenerate
 text=Trample -- Deity of Scars enters the battlefield with two -1/-1 counters on it. -- {(b/g)}, Remove a -1/-1 counter from Deity of Scars: Regenerate Deity of Scars.
 mana={BG}{BG}{BG}{BG}{BG}
 type=Creature
@@ -9257,8 +9303,7 @@ type=Enchantment
 [/card]
 [card]
 name=Descendant of Masumaro
-auto=@each my upkeep:foreach(*|myHand) counter(1/1,1)
-auto=@each opponent upkeep:foreach(*|opponentHand) counter(1/1,-1)
+auto=@each my upkeep:foreach(*|myHand) counter(1/1,1) && foreach(*|opponentHand) counter(1/1,-1)
 text=At the beginning of your upkeep, put a +1/+1 counter on Descendant of Masumaro for each card in your hand, then remove a +1/+1 counter from Descendant of Masumaro for each card in target opponent's hand.
 mana={2}{G}
 type=Creature
@@ -9405,7 +9450,7 @@ type=Sorcery
 [card]
 name=Devoted Druid
 auto={T}:Add {G}
-auto={0}:counter(-1/-1) && untap
+auto={C(-1/-1,1)}:untap
 text={T}: Add {G} to your mana pool. -- Put a -1/-1 counter on Devoted Druid: Untap Devoted Druid.
 mana={1}{G}
 type=Creature
@@ -9617,7 +9662,7 @@ type=Sorcery
 [/card]
 [card]
 name=Dirtcowl Wurm
-auto=@movedTo(land|opponentbattlefield):counter(1/1)
+auto=@movedTo(land|opponentbattlefield):counter(1/1,1)
 text=Whenever an opponent plays a land, put a +1/+1 counter on Dirtcowl Wurm.
 mana={4}{G}
 type=Creature
@@ -10097,7 +10142,7 @@ type=Instant
 [/card]
 [card]
 name=Dragon Blood
-auto={3}{T}:counter(1/1) target(creature)
+auto={3}{T}:counter(1/1,1) target(creature)
 text={3}, {T}: Put a +1/+1 counter on target creature.
 mana={3}
 type=Artifact
@@ -10743,8 +10788,8 @@ subtype=Aura
 [/card]
 [card]
 name=Dwarven Armorer
-auto={R}{T}{S(*|myhand)}:counter(0/1) target(creature)
-auto={R}{T}{S(*|myhand)}:counter(1/0) target(creature)
+auto={R}{T}{S(*|myhand)}:counter(0/1,1) target(creature)
+auto={R}{T}{S(*|myhand)}:counter(1/0,1) target(creature)
 text={R}, {T}, Discard a card: Put a +0/+1 counter or a +1/+0 counter on target creature.
 mana={R}
 type=Creature
@@ -11315,7 +11360,7 @@ toughness=2
 [/card]
 [card]
 name=Elvish Handservant
-auto=@movedTo(giant|stack):may counter(1/1)
+auto=@movedTo(giant|stack):may counter(1/1,1)
 text=Whenever a player casts a Giant spell, you may put a +1/+1 counter on Elvish Handservant.
 mana={G}
 type=Creature
@@ -11451,7 +11496,7 @@ toughness=2
 [/card]
 [card]
 name=Elvish Vanguard
-auto=@movedTo(other elf|battlefield):counter(1/1)
+auto=@movedTo(other elf|battlefield):counter(1/1,1)
 text=Whenever another Elf enters the battlefield, put a +1/+1 counter on Elvish Vanguard.
 mana={1}{G}
 type=Creature
@@ -11731,7 +11776,7 @@ toughness=9
 [/card]
 [card]
 name=Energizer
-auto={2}{T}:counter(1/1)
+auto={2}{T}:counter(1/1,1)
 text={2}, {T}: Put a +1/+1 counter on Energizer.
 mana={4}
 type=Artifact Creature
@@ -12001,7 +12046,7 @@ type=Sorcery
 name=Essence Flare
 target=creature
 auto=2/0
-auto=@each targetcontroller upkeep:counter(0/-1)
+auto=@each targetcontroller upkeep:counter(0/-1,1)
 text=Enchant creature -- Enchanted creature gets +2/+0. -- At the beginning of the upkeep of enchanted creature's controller, put a -0/-1 counter on that creature.
 mana={U}
 type=Enchantment
@@ -12885,8 +12930,8 @@ type=Enchantment
 [/card]
 [card]
 name=Festercreep
-auto=counter(1/1)
-auto={1}{B}:counter(1/1,-1) all(this) && lord(creature) -1/-1 other
+auto=counter(1/1,1)
+auto={1}{B}{C(1/1,-1)}:lord(creature) -1/-1 other
 text=Festercreep enters the battlefield with a +1/+1 counter on it. -- {1}{B}, Remove a +1/+1 counter from Festercreep: All other creatures get -1/-1 until end of turn.
 mana={1}{B}
 type=Creature
@@ -12949,7 +12994,7 @@ type=Instant
 [/card]
 [card]
 name=Fevered Convulsions
-auto={2}{B}{B}:counter(-1/-1) target(creature)
+auto={2}{B}{B}:counter(-1/-1,1) target(creature)
 text={2}{B}{B}: Put a -1/-1 counter on target creature.
 mana={B}{B}
 type=Enchantment
@@ -14005,6 +14050,17 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Forgotten Ancient
+auto=@movedTo(*|stack):counter(1/1,1)
+auto={0}{counter(1/1,-1)}:counter(1/1,1) target(creature) myUpkeepOnly
+text=Whenever a player casts a spell, you may put a +1/+1 counter on Forgotten Ancient. -- At the beginning of your upkeep, you may move any number of +1/+1 counters from Forgotten Ancient onto other creatures.
+mana={3}{G}
+type=Creature
+subtype=Elemental
+power=0
+toughness=3
+[/card]
+[card]
 name=Forgotten Cave
 auto=tap
 auto={T}:Add {R}
@@ -14328,6 +14384,15 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Fury Charm
+auto=may destroy target(artifact)
+auto=may 1/1 && trample target(creature)
+auto=may counter(0/0,-2,Time) target(*)
+text=Choose one - Destroy target artifact; or target creature gets +1/+1 and gains trample until end of turn; or remove two time counters from target permanent or suspended card.
+mana={1}{R}
+type=Instant
+[/card]
+[card]
 name=Fury Sliver
 auto=lord(sliver) double strike
 text=All Sliver creatures have double strike.
@@ -14628,6 +14693,18 @@ type=Creature
 subtype=Elf
 power=2
 toughness=2
+[/card]
+[card]
+name=Gemstone Array
+auto={2}:counter(0/0,1,Charge)
+auto={C(0/0,-1,Charge):add{W}
+auto={C(0/0,-1,Charge):add{U}
+auto={C(0/0,-1,Charge):add{B}
+auto={C(0/0,-1,Charge):add{R}
+auto={C(0/0,-1,Charge):add{G}
+text={2}: Put a charge counter on Gemstone Array. -- Remove a charge counter from Gemstone Array: Add one mana of any color to your mana pool.
+mana={4}
+type=Artifact
 [/card]
 [card]
 name=General's Kabuto
@@ -15331,7 +15408,7 @@ toughness=3
 [/card]
 [card]
 name=Gnarled Effigy
-auto={4}{T}:counter(-1/-1) target(creature)
+auto={4}{T}:counter(-1/-1,1) target(creature)
 text={4}, {T}: Put a -1/-1 counter on target creature.
 mana={4}
 type=Artifact
@@ -15962,7 +16039,7 @@ toughness=8
 [/card]
 [card]
 name=Godtracker of Jund
-auto=@movedTo(creature[power>=5]|myBattlefield):may counter(1/1)
+auto=@movedTo(creature[power>=5]|myBattlefield):may counter(1/1,1)
 text=Whenever a creature with power 5 or greater enters the battlefield under your control, you may put a +1/+1 counter on Godtracker of Jund.
 mana={1}{R}{G}
 type=Creature
@@ -16018,7 +16095,7 @@ type=Enchantment
 [card]
 name=Golgari Guildmage
 auto={4}{B}{S(creature|myBattlefield)}:moveto(myhand) target(creature|mygraveyard)
-auto={4}{G}:counter(1/1) target(creature)
+auto={4}{G}:counter(1/1,1) target(creature)
 text=({(b/g)} can be paid with either {B} or {G}.) -- {4}{B}, Sacrifice a creature: Return target creature card from your graveyard to your hand. -- {4}{G}: Put a +1/+1 counter on target creature.
 mana={BG}{BG}
 type=Creature
@@ -16341,8 +16418,8 @@ toughness=2
 [/card]
 [card]
 name=Graypelt Hunter
-auto=may counter(1/1)
-auto=@movedTo(other ally|myBattlefield):may counter(1/1)
+auto=may counter(1/1,1)
+auto=@movedTo(other ally|myBattlefield):may counter(1/1,1)
 text=Trample -- Whenever Graypelt Hunter or another Ally enters the battlefield under your control, you may put a +1/+1 counter on Graypelt Hunter.
 mana={3}{G}
 type=Creature
@@ -16503,6 +16580,17 @@ type=Creature
 subtype=Griffin
 power=1
 toughness=3
+[/card]
+[card]
+name=Grim Poppet
+auto=counter(-1/-1,3)
+auto={C(-1/-1,-1)}:counter(-1/-1) target(other creature)
+text=Grim Poppet enters the battlefield with three -1/-1 counters on it. -- Remove a -1/-1 counter from Grim Poppet: Put a -1/-1 counter on another target creature.
+mana={7}
+type=Artifact Creature
+Subtype=Scarecrow
+power=4
+toughness=4
 [/card]
 [card]
 name=Grim Monolith
@@ -16784,8 +16872,8 @@ toughness=1
 [/card]
 [card]
 name=Hada Freeblade
-auto=may counter(1/1)
-auto=@movedTo(other ally|myBattlefield):may counter(1/1)
+auto=may counter(1/1,1)
+auto=@movedTo(other ally|myBattlefield):may counter(1/1,1)
 text=Whenever Hada Freeblade or another Ally enters the battlefield under your control, you may put a +1/+1 counter on Hada Freeblade.
 mana={W}
 type=Creature
@@ -16989,7 +17077,7 @@ toughness=1
 [/card]
 [card]
 name=Harbinger of Night
-auto=@each my upkeep:all(creature) counter(-1/-1)
+auto=@each my upkeep:all(creature) counter(-1/-1,1)
 text=At the beginning of your upkeep, put a -1/-1 counter on each creature.
 mana={2}{B}{B}
 type=Creature
@@ -18420,6 +18508,17 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Icatian Javelineers
+auto=counter(0/0,1,Javelin)
+auto={T}{C(0/0,-1,Javelin)}:damage:1 target(creature,player)
+text=Icatian Javelineers enters the battlefield with a javelin counter on it. -- {T}, Remove a javelin counter from Icatian Javelineers: Icatian Javelineers deals 1 damage to target creature or player.
+mana={W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+[/card]
+[card]
 name=Icatian Lieutenant
 auto={1}{W}:target(soldier) 1/0
 text={1}{W}: Target Soldier creature gets +1/+0 until end of turn.
@@ -18573,7 +18672,7 @@ toughness=4
 [/card]
 [card]
 name=Immaculate Magistrate
-auto={T}:foreach(elf|myBattlefield) counter(1/1) target(creature)
+auto={T}:foreach(elf|myBattlefield) counter(1/1,1) target(creature)
 text={T}: Put a +1/+1 counter on target creature for each Elf you control.
 mana={3}{G}
 type=Creature
@@ -18655,7 +18754,7 @@ auto=rampage(1/1,0)
 auto=rampage(-1/-1,1)
 auto=lord(indebted samurai[blocking]|mybattlefield) 1/1
 auto=lord(other indebted samurai[blocking]|mybattlefield) -1/-1
-auto=@movedTo(samurai|mygraveyard) from(myBattlefield):may counter(1/1)
+auto=@movedTo(samurai|mygraveyard) from(myBattlefield):may counter(1/1,1)
 text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.) -- Whenever a Samurai you control is put into a graveyard from the battlefield, you may put a +1/+1 counter on Indebted Samurai.
 mana={3}{W}
 type=Creature
@@ -19013,6 +19112,14 @@ auto=moveTo(exile)
 text=Exile target creature or enchantment.
 mana={4}{W}
 type=Sorcery
+[/card]
+[card]
+name=Ior Ruin Expedition
+auto=@movedTo(land|myBattlefield):may counter(0/0,1,Quest)
+auto={C(0/0,-3,Quest)}{S}:draw:2
+text=Landfall — Whenever a land enters the battlefield under your control, you may put a quest counter on Ior Ruin Expedition. -- Remove three quest counters from Ior Ruin Expedition and sacrifice it: Draw two cards.
+mana={1}{U}
+type=Enchantment
 [/card]
 [card]
 name=Ire of Kaminari
@@ -20252,7 +20359,7 @@ type=Enchantment
 [card]
 name=Kavu Monarch
 auto=lord(kavu) trample
-auto=@movedTo(other kavu|battlefield):counter(1/1)
+auto=@movedTo(other kavu|battlefield):counter(1/1,1)
 text=Kavu creatures have trample. -- Whenever another Kavu enters the battlefield, put a +1/+1 counter on Kavu Monarch.
 mana={2}{R}{R}
 type=Creature
@@ -20310,8 +20417,8 @@ toughness=3
 [card]
 name=Kazandu Blademaster
 abilities=first strike,vigilance
-auto=may counter(1/1)
-auto=@movedTo(other ally|myBattlefield):counter(1/1)
+auto=may counter(1/1,1)
+auto=@movedTo(other ally|myBattlefield):may counter(1/1,1)
 text=First strike, vigilance -- Whenever Kazandu Blademaster or another Ally enters the battlefield under your control, you may put a +1/+1 counter on Kazandu Blademaster.
 mana={W}{W}
 type=Creature
@@ -20330,8 +20437,8 @@ type=Land
 [/card]
 [card]
 name=Kazuul Warlord
-auto=may all(ally|myBattlefield) counter(1/1)
-auto=@movedTo(ally|myBattlefield):may all(ally|myBattlefield) counter(1/1)
+auto=may all(ally|myBattlefield) counter(1/1,1)
+auto=@movedTo(ally|myBattlefield):may all(ally|myBattlefield) counter(1/1,1)
 text=Whenever Kazuul Warlord or another Ally enters the battlefield under your control, you may put a +1/+1 counter on each Ally creature you control.
 mana={4}{R}
 type=Creature
@@ -20983,7 +21090,7 @@ toughness=2
 [/card]
 [card]
 name=Knucklebone Witch
-auto=@movedTo(goblin|graveyard) from(myBattlefield):may counter(1/1)
+auto=@movedTo(goblin|graveyard) from(myBattlefield):may counter(1/1,1)
 text=Whenever a Goblin you control is put into a graveyard from the battlefield, you may put a +1/+1 counter on Knucklebone Witch.
 mana={B}
 type=Creature
@@ -23013,8 +23120,8 @@ toughness=3
 [card]
 name=Makindi Shieldmate
 abilities=defender
-auto=may counter(1/1)
-auto=@movedTo(other ally|myBattlefield):may counter(1/1)
+auto=may counter(1/1,1)
+auto=@movedTo(other ally|myBattlefield):may counter(1/1,1)
 text=Defender -- Whenever Makindi Shieldmate or another Ally enters the battlefield under your control, you may put a +1/+1 counter on Makindi Shieldmate.
 mana={2}{W}
 type=Creature
@@ -23317,7 +23424,7 @@ name=Mark of Mutiny
 target=creature
 auto=untap
 auto=haste
-auto=counter(1/1)
+auto=counter(1/1,1)
 alias=129767
 text=Gain control of target creature until end of turn. Put a +1/+1 counter on it and untap it. That creature gains haste until end of turn.
 mana={2}{R}
@@ -23919,7 +24026,7 @@ type=Land
 [card]
 name=Midnight Banshee
 abilities=wither
-auto=@each my upkeep:all(creature[-black]) counter(-1/-1)
+auto=@each my upkeep:all(creature[-black]) counter(-1/-1,1)
 text=Wither (This deals damage to creatures in the form of -1/-1 counters.) -- At the beginning of your upkeep, put a -1/-1 counter on each nonblack creature.
 mana={3}{B}{B}{B}
 type=Creature
@@ -24083,7 +24190,7 @@ type=Sorcery
 name=Mindless Automaton
 auto=counter(1/1,2)
 auto={1}{S(*|myhand)}:counter(1/1)
-auto={0}:counter(1/1,-2) && draw:1 controller
+auto={C(1/1,-2)}:draw:1 controller
 text=Mindless Automaton enters the battlefield with two +1/+1 counters on it. -- {1}, Discard a card: Put a +1/+1 counter on Mindless Automaton. -- Remove two +1/+1 counters from Mindless Automaton: Draw a card.
 mana={4}
 type=Artifact Creature
@@ -24179,7 +24286,7 @@ toughness=3
 name=Miraculous Recovery
 target=creature|mygraveyard
 auto=moveTo(myBattlefield)
-auto=counter(1/1)
+auto=counter(1/1,1)
 text=Return target creature card from your graveyard to the battlefield with a +1/+1 counter on it.
 mana={4}{W}
 type=Instant
@@ -24216,7 +24323,7 @@ toughness=2
 [/card]
 [card]
 name=Mire Shade
-auto={B}{S(swamp|myBattlefield)}:counter(1/1) asSorcery
+auto={B}{S(swamp|myBattlefield)}:counter(1/1,1) asSorcery
 text={B}, Sacrifice a Swamp: Put a +1/+1 counter on Mire Shade. Activate this ability only any time you could cast a sorcery.
 mana={1}{B}
 type=Creature
@@ -24244,6 +24351,18 @@ type=Legendary Creature
 subtype=Cat Warrior
 power=2
 toughness=3
+[/card]
+[card]
+name=Mirrodin's Core
+auto={T}:add{1}
+auto={T}:counter(0/0,1,Charge)
+auto={T}{C(0/0,-1,Charge)}:add{W}
+auto={T}{C(0/0,-1,Charge)}:add{U}
+auto={T}{C(0/0,-1,Charge)}:add{B}
+auto={T}{C(0/0,-1,Charge)}:add{R}
+auto={T}{C(0/0,-1,Charge)}:add{G}
+text={T}: Add {1} to your mana pool. -- {T}: Put a charge counter on Mirrodin's Core. -- {T}, Remove a charge counter from Mirrodin's Core: Add one mana of any color to your mana pool.
+type=Land
 [/card]
 [card]
 name=Mirror Wall
@@ -24750,7 +24869,7 @@ toughness=2
 [/card]
 [card]
 name=Moriok Rigger
-auto=@movedTo(artifact|graveyard) from(battlefield):may counter(1/1)
+auto=@movedTo(artifact|graveyard) from(battlefield):may counter(1/1,1)
 text=Whenever an artifact is put into a graveyard from the battlefield, you may put a +1/+1 counter on Moriok Rigger.
 mana={2}{B}
 type=Creature
@@ -24799,6 +24918,21 @@ type=Creature
 subtype=Shapeshifter
 power=3
 toughness=3
+[/card]
+[card]
+name=Morselhoarder
+auto=counter(-1/-1,2)
+auto={C(-1/-1,-1)}:add{W}
+auto={C(-1/-1,-1)}:add{U}
+auto={C(-1/-1,-1)}:add{B}
+auto={C(-1/-1,-1)}:add{R}
+auto={C(-1/-1,-1)}:add{G}
+text=Morselhoarder enters the battlefield with two -1/-1 counters on it.   Remove a -1/-1 counter from Morselhoarder: Add one mana of any color to your mana pool.
+mana={4}{RG}{RG}
+type=Creature
+subtype=Elemental
+power=6
+toughness=4
 [/card]
 [card]
 name=Mortal Wound
@@ -25648,9 +25782,9 @@ type=Land
 [/card]
 [card]
 name=Naya Sojourners
-auto=@movedTo(this|graveyard) from(battlefield):may counter(1/1) target(creature)
+auto=@movedTo(this|graveyard) from(battlefield):may counter(1/1,1) target(creature)
 autohand={2}{G}:cycling
-autohand={2}{G}:counter(1/1) target(creature) && cycling
+autohand={2}{G}:counter(1/1,1) target(creature) && cycling
 text=When you cycle Naya Sojourners or it's put into a graveyard from the battlefield, you may put a +1/+1 counter on target creature. -- Cycling {2}{G} ({2}{G}, Discard this card: Draw a card.)
 mana={2}{R}{G}{W}
 type=Creature
@@ -26092,8 +26226,8 @@ toughness=1
 [/card]
 [card]
 name=Nimana Sell-Sword
-auto=may counter(1/1)
-auto=@movedTo(ally|myBattlefield):may counter(1/1)
+auto=may counter(1/1,1)
+auto=@movedTo(ally|myBattlefield):may counter(1/1,1)
 text=Whenever Nimana Sell-Sword or another Ally enters the battlefield under your control, you may put a +1/+1 counter on Nimana Sell-Sword.
 mana={3}{B}
 type=Creature
@@ -26812,8 +26946,8 @@ toughness=3
 [/card]
 [card]
 name=Oran-Rief Survivalist
-auto=may counter(1/1)
-auto=@movedTo(ally|myBattlefield):may counter(1/1)
+auto=may counter(1/1,1)
+auto=@movedTo(ally|myBattlefield):may counter(1/1,1)
 text=Whenever Oran-Rief Survivalist or another Ally enters the battlefield under your control, you may put a +1/+1 counter on Oran-Rief Survivalist.
 mana={1}{G}
 type=Creature
@@ -27645,6 +27779,18 @@ type=Creature
 subtype=Drake
 power=2
 toughness=3
+[/card]
+[card]
+name=Pentavus
+auto=counter(1/1,5)
+auto={1}{C(1/1,-1)}:token(Pentavite,Artifact Creature Pentavite,1/1,flying)
+auto={1}{S(pentavite|myBattlefield)}:counter(1/1,1)
+text=Pentavus enters the battlefield with five +1/+1 counters on it. -- {1}, Remove a +1/+1 counter from Pentavus: Put a 1/1 colorless Pentavite artifact creature token with flying onto the battlefield. -- {1}, Sacrifice a Pentavite: Put a +1/+1 counter on Pentavus.
+mana={7}
+type=Artifact Creature
+subtype=Construct
+power=0
+toughness=0
 [/card]
 [card]
 name=Penumbra Bobcat
@@ -29233,6 +29379,14 @@ type=Creature
 subtype=Zombie Druid
 power=2
 toughness=2
+[/card]
+[card]
+name=Quest for the Gravelord
+auto=@movedTo(creature|graveyard) from(battlefield):may counter(0/0,1,Quest)
+auto={C(0/0,-3,Quest)}{S}:token(Zombie Giant,creature zombie giant, 5/5,black)
+text=Whenever a creature is put into a graveyard from the battlefield, you may put a quest counter on Quest for the Gravelord. -- Remove three quest counters from Quest for the Gravelord and sacrifice it: Put a 5/5 black Zombie Giant creature token onto the battlefield.
+mana={B}
+type=Enchantment
 [/card]
 [card]
 name=Quicksand
@@ -33248,6 +33402,15 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Serum Tank
+auto=counter(0/0,1,Charge)
+auto=@movedTo(other artifact|Battlefield):counter(0/0,1,Charge)
+auto={3}{T}{C(0/0,-1,Charge)}:draw:1
+text=Whenever Serum Tank or another artifact enters the battlefield, put a charge counter on Serum Tank. -- {3}, {T}, Remove a charge counter from Serum Tank: Draw a card.
+mana={3}
+type=Artifact
+[/card]
+[card]
 name=Seshiro the Anointed
 auto=lord(snake|myBattlefield) 2/2 other
 auto=@damaged(player) from(snake|myBattlefield):may draw:1 controller
@@ -33700,6 +33863,18 @@ type=Creature
 subtype=Spirit
 power=2
 toughness=1
+[/card]
+[card]
+name=Shinewend
+abilities=flying
+auto=counter(1/1,1)
+auto={1}{W}{C(1/1,-1)}:destroy target(enchantment)
+text=Flying -- Shinewend enters the battlefield with a +1/+1 counter on it. -- {1}{W}, Remove a +1/+1 counter from Shinewend: Destroy target enchantment.
+mana={1}{W}
+type=Creature
+subtype=Elemental
+power=0
+toughness=0
 [/card]
 [card]
 name=Shinka, the Bloodsoaked Keep
@@ -35974,6 +36149,14 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Spawning Pit
+auto={S(creature|myBattlefield):counter(0/0,1,Charge)
+auto={1}{T}{C(0/0,-2,Charge)}:token(Spawn,artifact creature spawn, 2/2)
+text=Whenever Serum Tank or another artifact enters the battlefield, put a charge counter on Serum Tank. -- {3}, {T}, Remove a charge counter from Serum Tank: Draw a card.
+mana={3}
+type=Artifact
+[/card]
+[card]
 name=Spawning Pool
 auto=tap
 auto={T}:Add{B}
@@ -36141,7 +36324,7 @@ mana={3}{G}
 type=Creature
 subtype=Spike
 auto=counter(1/1,3)
-auto={2}{C(1/1,-1)}:counter(1/1) target(creature)
+auto={2}{C(1/1,-1)}:counter(1/1,1) target(creature)
 auto={2}{C(1/1,-1)}:token(Spike,creature spike, 1/1,green)
 power=0
 toughness=0
@@ -36153,7 +36336,7 @@ mana={G}
 type=Creature
 subtype=Spike Colony
 auto=counter(1/1,4)
-auto={2}{C(1/1,-1)}:counter(1/1) target(creature)
+auto={2}{C(1/1,-1)}:counter(1/1,1) target(creature)
 power=0
 toughness=0
 [/card]
@@ -36164,7 +36347,7 @@ mana={G}
 type=Creature
 subtype=Spike Drone
 auto=counter(1/1,1)
-auto={2}{C(1/1,-1)}:counter(1/1) target(creature)
+auto={2}{C(1/1,-1)}:counter(1/1,1) target(creature)
 power=0
 toughness=0
 [/card]
@@ -36175,7 +36358,7 @@ mana={1}{G}{G}
 type=Creature
 subtype=Spike
 auto=counter(1/1,2)
-auto={2}{C(1/1,-1)}:counter(1/1) target(creature)
+auto={2}{C(1/1,-1)}:counter(1/1,1) target(creature)
 auto={C(1/1,-1)}:life:2
 power=0
 toughness=0
@@ -36187,7 +36370,7 @@ mana={6}{G}
 type=Creature
 subtype=Spike
 auto=counter(1/1,6)
-auto={2}{C(1/1,-1)}:counter(1/1) target(creature)
+auto={2}{C(1/1,-1)}:counter(1/1,1) target(creature)
 auto={1}{C(1/1,-1)}:regenerate
 power=0
 toughness=0
@@ -36199,7 +36382,7 @@ mana={2}{G}{G}
 type=Creature
 subtype=Spike Soldier
 auto=counter(1/1,3)
-auto={2}{C(1/1,-1)}:counter(1/1) target(creature)
+auto={2}{C(1/1,-1)}:counter(1/1,1) target(creature)
 auto={C(1/1,-1)}:2/2
 power=0
 toughness=0
@@ -36211,7 +36394,7 @@ mana={3}{G}{G}
 type=Creature
 subtype=Spike
 auto=counter(1/1,3)
-auto={2}{C(1/1,-1)}:counter(1/1) target(creature)
+auto={2}{C(1/1,-1)}:counter(1/1,1) target(creature)
 auto={2}{C(1/1,-1)}:target(land) becomes(Creature,2/2,green) && counter(1/1)
 power=0
 toughness=0
@@ -36223,7 +36406,7 @@ mana={2{G}
 type=Creature
 subtype=Spike
 auto=counter(1/1,2)
-auto={2}{C(1/1,-1)}:counter(1/1) target(creature)
+auto={2}{C(1/1,-1)}:counter(1/1,1) target(creature)
 power=0
 toughness=0
 [/card]
@@ -36427,6 +36610,17 @@ auto=foreach(mountain|myBattlefield)damage:1
 text=Spitting Earth deals damage equal to the number of Mountains you control to target creature.
 mana={1}{R}
 type=Sorcery
+[/card]
+[card]
+name=Spitting Hydra
+auto=counter(1/1,4)
+auto={1}{R}{C(1/1,-1)}:damage:1 target(creature)
+text=Spitting Hydra enters the battlefield with four +1/+1 counters on it. -- {1}{R}, Remove a +1/+1 counter from Spitting Hydra: Spitting Hydra deals 1 damage to target creature.
+mana={3}{R}{R}
+type=Creature
+subtype=Hydra
+power=0
+toughness=0
 [/card]
 [card]
 name=Spitting Sliver
@@ -37140,6 +37334,17 @@ type=Creature
 subtype=Wall
 power=0
 toughness=4
+[/card]
+[card]
+name=Stingmoggie
+auto=counter(1/1,2)
+auto={3}{R}{C(1/1,-1)}:destroy target(artifact,land)
+text=Stingmoggie enters the battlefield with two +1/+1 counters on it. -- {3}{R}, Remove a +1/+1 counter from Stingmoggie: Destroy target artifact or land.
+mana={3}{R}
+type=Creature
+subtype=Elemental
+power=0
+toughness=0
 [/card]
 [card]
 name=Stirring Wildwood
@@ -37965,6 +38170,14 @@ type=Creature
 subtype=Human Druid Wizard
 power=1
 toughness=1
+[/card]
+[card]
+name=Sunspring Expedition
+auto=@movedTo(land|myBattlefield):may counter(0/0,1,Quest)
+auto={C(0/0,-3,Quest)}{S}:life:8
+text=Landfall — Whenever a land enters the battlefield under your control, you may put a quest counter on Sunspring Expedition. -- Remove three quest counters from Sunspring Expedition and sacrifice it: You gain 8 life.
+mana={W}
+type=Enchantment
 [/card]
 [card]
 name=Sunstone
@@ -38994,6 +39207,18 @@ mana={1}{G}{U}
 type=Sorcery
 [/card]
 [card]
+name=Tendo Ice Bridge
+auto=counter(0/0,1,Charge)
+auto={T}:add{1}
+auto={T}{C(0/0,-1,Charge)}:add{W}
+auto={T}{C(0/0,-1,Charge)}:add{U}
+auto={T}{C(0/0,-1,Charge)}:add{B}
+auto={T}{C(0/0,-1,Charge)}:add{R}
+auto={T}{C(0/0,-1,Charge)}:add{G}
+text={T}: Add {1} to your mana pool. -- {T}, Remove a charge counter from Tendo Ice Bridge: Add one mana of any color to your mana pool.
+type=Land
+[/card]
+[card]
 name=Tendrils of Corruption
 target=creature
 auto=foreach(swamp|myBattlefield) damage:1
@@ -39411,6 +39636,19 @@ type=Creature
 subtype=Kithkin Knight
 power=1
 toughness=3
+[/card]
+[card]
+name=Thopter Squadron
+abilities=flying
+auto=counter(1/1,3)
+auto={1}{C(1/1,-1)}:token(Thopter,Artifact Creature Thopter,1/1,flying) asSorcery
+auto={1}{S(other thopter|myBattlefield)}:counter(1/1,1) asSorcery
+text=Pentavus enters the battlefield with five +1/+1 counters on it. -- {1}, Remove a +1/+1 counter from Pentavus: Put a 1/1 colorless Pentavite artifact creature token with flying onto the battlefield. -- {1}, Sacrifice a Pentavite: Put a +1/+1 counter on Pentavus.
+mana={5}
+type=Artifact Creature
+subtype=Thopter
+power=0
+toughness=0
 [/card]
 [card]
 name=Thorn Thallid
@@ -40344,6 +40582,17 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Trade Caravan
+auto=@each my upkeep:counter(0/0,1,Currency)
+auto={C(0/0,-2,Currency)}:untap target(land[basic]) myUpkeepOnly
+text=At the beginning of your upkeep, put a currency counter on Trade Caravan. -- Remove two currency counters from Trade Caravan: Untap target basic land. Activate this ability only during an opponent's upkeep.
+mana={W}
+type=Creature
+subtype=Human Nomad
+power=1
+toughness=1
+[/card]
+[card]
 name=Trade Routes
 auto={1}:moveTo(ownerhand) target(land|myBattlefield)
 auto={1}{S(land|myhand)}:draw:1
@@ -40662,6 +40911,14 @@ type=Land
 subtype=Lair
 [/card]
 [card]
+name=Triassic Egg
+auto={3}{T}:counter(0/0,1,Hatchling)
+auto={C(0/0,-2,Hatchling)}{S}:moveTo(myBattlefield) target(creature|myhand,mygraveyard)
+text={3}{T}: Put a hatchling counter on Triassic Egg. -- Remove two hatchling counters from Triassic Egg, Sacrifice Triassic Egg: You may put a creature card from your hand or graveyard onto the battlefield.
+mana={4}
+type=Artifact
+[/card]
+[card]
 name=Tribal Flames
 target=creature,player
 auto=aslongas(forest|myBattlefield) damage:1
@@ -40734,6 +40991,30 @@ auto=destroy
 text=Destroy target creature with horsemanship.
 mana={2}{G}
 type=Sorcery
+[/card]
+[card]
+name=Triskelavus
+abilities=flying
+auto=counter(1/1,3)
+auto={1}{C(1/1,-1)}:token(Triskelavite,Artifact Creature Triskelavite,1/1,flying)
+auto=lord(triskelavite) {S}:damage:1 target(creature,player)
+text=Flying -- Triskelavus enters the battlefield with three +1/+1 counters on it. -- {1}, Remove a +1/+1 counter from Triskelavus: Put a 1/1 colorless Triskelavite artifact creature token with flying onto the battlefield. It has "Sacrifice this creature: This creature deals 1 damage to target creature or player."
+mana={7}
+type=Artifact Creature
+subtype=Construct
+power=1
+toughness=1
+[/card]
+[card]
+name=Triskelion
+auto=counter(1/1,3)
+auto={C(1/1,-1)}:damage:1 target(creature,player)
+text=Triskelion enters the battlefield with three +1/+1 counters on it. -- Remove a +1/+1 counter from Triskelion: Triskelion deals 1 damage to target creature or player.
+mana={6}
+type=Artifact Creature
+subtype=Construct
+power=1
+toughness=1
 [/card]
 [card]
 name=Trokin High Guard
@@ -40962,6 +41243,17 @@ mana={U}
 type=Instant
 [/card]
 [card]
+name=Twilight Drover
+auto=@movedTo(creature[token]|exile,hand,library,graveyard) from(battlefield):counter(1/1,1)
+auto={2}{W}{C(1/1,-2)}:token(Spirit,Creature Spirit,1/1,white,flying)*2
+text=Whenever a creature token leaves the battlefield, put a +1/+1 counter on Twilight Drover. -- {2}{W}, Remove a +1/+1 counter from Twilight Drover: Put two 1/1 white Spirit creature tokens with flying onto the battlefield.
+mana={2}{W}
+type=Creature
+subtype=Spirit
+power=1
+toughness=1
+[/card]
+[card]
 name=Twilight Mire
 auto={T}:Add {1}
 auto={BG}{T}:Add {B}{B}
@@ -41060,16 +41352,41 @@ power=*
 toughness=*
 [/card]
 [card]
+name=Ulasht, the Hate Seed
+auto=foreach(other creature[red]|myBattlefield) counter(1/1,1)
+auto=foreach(other creature[green]|myBattlefield) counter(1/1,1)
+auto={1}{C(1/1,-1)}:damage:1 target(creature)
+auto={1}{C(1/1,-1)}:token(Saproling,Creature Saproling,1/1,green)
+text=Ulasht, the Hate Seed enters the battlefield with a +1/+1 counter on it for each other red creature you control and a +1/+1 counter on it for each other green creature you control. -- {1}, Remove a +1/+1 counter from Ulasht: Choose one — Ulasht deals 1 damage to target creature; or put a 1/1 green Saproling creature token onto the battlefield.
+mana={2}{R}{G}
+type=Legendary Creature
+subtype=Hellion Hydra
+power=*
+toughness=*
+[/card]
+[card]
 name=Umara Raptor
 abilities=flying
 auto=may counter(1/1)
-auto=@movedTo(other ally|myBattlefield):counter(1/1)
+auto=@movedTo(other ally|myBattlefield):counter(0/0,2,Charge) all(this)
 text=Flying -- Whenever Umara Raptor or another Ally enters the battlefield under your control, you may put a +1/+1 counter on Umara Raptor.
 mana={2}{U}
 type=Creature
 subtype=Bird Ally
 power=1
 toughness=1
+[/card]
+[card]
+name=Umezawa's Jitte
+auto={2}:equip
+auto=@damaged(creature,player) from(mytgt):counter(0/0,2,Charge) all(this)
+auto={C(0/0,-1,Charge)}:2/2
+auto={C(0/0,-1,Charge)}:-1/-1 target(creature)
+auto={C(0/0,-1,Charge)}:life:2 controller
+text=Whenever equipped creature deals combat damage, put two charge counters on Umezawa's Jitte. -- Remove a charge counter from Umezawa's Jitte: Choose one — Equipped creature gets +2/+2 until end of turn; or target creature gets -1/-1 until end of turn; or you gain 2 life. -- Equip {2}
+mana={2}
+type=Legendary Artifact
+subtype=Equipment
 [/card]
 [card]
 name=Unbender Tine
@@ -42669,6 +42986,71 @@ text={T}: Add {1} to your mana pool. -- {2}{G}{W}, {T}: Put a 1/1 green Saprolin
 type=Land
 [/card]
 [card]
+name=Vivid Crag
+auto=counter(0/0,2,Charge)
+auto=tap
+auto={T}:add{R}
+auto={T}{C(0/0,-1,Charge)}:add{W}
+auto={T}{C(0/0,-1,Charge)}:add{U}
+auto={T}{C(0/0,-1,Charge)}:add{B}
+auto={T}{C(0/0,-1,Charge)}:add{R}
+auto={T}{C(0/0,-1,Charge)}:add{G}
+text=Vivid Crag enters the battlefield tapped with two charge counters on it. -- {T}: Add {R} to your mana pool. -- {T}, Remove a charge counter from Vivid Crag: Add one mana of any color to your mana pool.
+type=Land
+[/card]
+[card]
+name=Vivid Creek
+auto=counter(0/0,2,Charge)
+auto=tap
+auto={T}:add{U}
+auto={T}{C(0/0,-1,Charge)}:add{W}
+auto={T}{C(0/0,-1,Charge)}:add{U}
+auto={T}{C(0/0,-1,Charge)}:add{B}
+auto={T}{C(0/0,-1,Charge)}:add{R}
+auto={T}{C(0/0,-1,Charge)}:add{G}
+text=Vivid Creek enters the battlefield tapped with two charge counters on it. -- {T}: Add {U} to your mana pool. -- {T}, Remove a charge counter from Vivid Creek: Add one mana of any color to your mana pool.
+type=Land
+[/card]
+[card]
+name=Vivid Grove
+auto=counter(0/0,2,Charge)
+auto=tap
+auto={T}:add{G}
+auto={T}{C(0/0,-1,Charge)}:add{W}
+auto={T}{C(0/0,-1,Charge)}:add{U}
+auto={T}{C(0/0,-1,Charge)}:add{B}
+auto={T}{C(0/0,-1,Charge)}:add{R}
+auto={T}{C(0/0,-1,Charge)}:add{G}
+text=Vivid Grove enters the battlefield tapped with two charge counters on it. -- {T}: Add {G} to your mana pool. -- {T}, Remove a charge counter from Vivid Grove: Add one mana of any color to your mana pool.
+type=Land
+[/card]
+[card]
+name=Vivid Marsh
+auto=counter(0/0,2,Charge)
+auto=tap
+auto={T}:add{B}
+auto={T}{C(0/0,-1,Charge)}:add{W}
+auto={T}{C(0/0,-1,Charge)}:add{U}
+auto={T}{C(0/0,-1,Charge)}:add{B}
+auto={T}{C(0/0,-1,Charge)}:add{R}
+auto={T}{C(0/0,-1,Charge)}:add{G}
+text=Vivid Marsh enters the battlefield tapped with two charge counters on it. -- {T}: Add {B} to your mana pool. -- {T}, Remove a charge counter from Vivid Marsh: Add one mana of any color to your mana pool.
+type=Land
+[/card]
+[card]
+name=Vivid Meadow
+auto=counter(0/0,2,Charge)
+auto=tap
+auto={T}:add{W}
+auto={T}{C(0/0,-1,Charge)}:add{W}
+auto={T}{C(0/0,-1,Charge)}:add{U}
+auto={T}{C(0/0,-1,Charge)}:add{B}
+auto={T}{C(0/0,-1,Charge)}:add{R}
+auto={T}{C(0/0,-1,Charge)}:add{G}
+text=Vivid Meadow enters the battlefield tapped with two charge counters on it. -- {T}: Add {W} to your mana pool. -- {T}, Remove a charge counter from Vivid Meadow: Add one mana of any color to your mana pool.
+type=Land
+[/card]
+[card]
 name=Vivify
 target=land
 auto=becomes(Creature,3/3) ueot
@@ -43305,7 +43687,7 @@ toughness=1
 [card]
 name=Wall of Roots
 abilities=defender
-auto={0}:counter(-0/-1,1) && Add{G} limit:1
+auto={C(-0/-1,1)}:Add{G} limit:1
 text=Defender -- Put a -0/-1 counter on Wall of Roots: Add {G} to your mana pool. Activate this ability only once each turn.
 mana={1}{G}
 type=Creature
@@ -44098,6 +44480,17 @@ power=6
 toughness=6
 [/card]
 [card]
+name=Wickerbough Elder
+auto=counter(-1/-1,2)
+auto={G}{C(-1/-1,-1)}:destroy target(artifact,enchantment)
+text=Wickerbough Elder enters the battlefield with a -1/-1 counter on it. -- {G}, Remove a -1/-1 counter from Wickerbough Elder: Destroy target artifact or enchantment.
+mana={4}{G}
+type=Creature
+subtype=Treefolk Shaman
+power=4
+toughness=4
+[/card]
+[card]
 name=Wielding the Green Dragon
 target=creature
 auto=4/4
@@ -44234,7 +44627,7 @@ name=Wildsize
 target=creature
 auto=2/2
 auto=trample
-auto=draw:1
+auto=draw:1 controller
 text=Target creature gets +2/+2 and gains trample until end of turn. -- Draw a card.
 mana={2}{G}
 type=Instant
@@ -44812,7 +45205,7 @@ type=Instant
 [card]
 name=Workhorse
 auto=counter(1/1,4)
-auto={0}:counter(1/1,-1) && add{1}
+auto={C(1/1,-1)}:add{1}
 text=Workhorse enters the battlefield with four +1/+1 counters on it. -- Remove a +1/+1 counter from Workhorse: Add {1} to your mana pool.
 mana={6}
 type=Artifact Creature
