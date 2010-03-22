@@ -202,10 +202,11 @@ public:
 //counters
 class AACounter: public ActivatedAbility{
  public:
+  string name;
   int nb;
   int power;
   int toughness;
- AACounter(int id, MTGCardInstance * source, MTGCardInstance * target, int power, int toughness, int nb, ManaCost * cost = NULL, int doTap = 0) : ActivatedAbility(id, source, cost, 0, doTap), nb(nb), power(power), toughness(toughness) {
+ AACounter(int id, MTGCardInstance * source, MTGCardInstance * target, const char * _name, int power, int toughness, int nb, ManaCost * cost = NULL, int doTap = 0) : ActivatedAbility(id, source, cost, 0, doTap), nb(nb), power(power), toughness(toughness), name(_name) {
 	  this->target = target;
  }
 
@@ -215,11 +216,11 @@ class AACounter: public ActivatedAbility{
      MTGCardInstance * _target = (MTGCardInstance *)target;
      if (nb>0){
        for (int i=0; i < nb; i++){
-        _target->counters->addCounter(power, toughness);
+        _target->counters->addCounter(name.c_str(), power, toughness);
        }
      }else{
        for (int i=0; i < -nb; i++){
-        _target->counters->removeCounter(power, toughness);
+        _target->counters->removeCounter(name.c_str(), power, toughness);
        }
      }
      return nb;

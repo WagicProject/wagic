@@ -1,0 +1,41 @@
+#Checking savage hunger Cycle only bug
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Craw Wurm
+[PLAYER2]
+hand:Fog
+inplay:Forest,Spore Frog
+[DO]
+next
+#startcombat
+next
+#declare attackers
+Craw Wurm
+next
+#declare blockers
+Spore Frog
+choice 1
+eot
+eot
+next
+next
+next
+#First Main
+next
+next
+Craw Wurm
+next
+next
+next
+next
+[ASSERT]
+SECONDMAIN
+[PLAYER1]
+inplay:Craw Wurm
+[PLAYER2]
+hand:Fog
+inplay:Forest
+graveyard:Spore Frog
+life:14
+[END]

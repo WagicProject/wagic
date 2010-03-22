@@ -397,6 +397,7 @@ terror.txt
 terror2.txt
 threaten.txt
 throne_of_bone.txt
+thallid.txt
 titanic_ultimatum.txt
 torture.txt
 tranquil_domain.txt

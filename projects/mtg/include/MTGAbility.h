@@ -252,10 +252,10 @@ class GenericTriggeredAbility:public TriggeredAbility{
 class AbilityFactory{
  private:
    int countCards(TargetChooser * tc, Player * player = NULL, int option = 0);
-  int parsePowerToughness(string s, int *power, int *toughness);
   TriggeredAbility * parseTrigger(string s, int id, Spell * spell, MTGCardInstance *card, Targetable * target);
   int parseRestriction(string s);
  public:
+  int parsePowerToughness(string s, int *power, int *toughness);
   int getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCardInstance * card = NULL, int id = 0,MTGGameZone * dest = NULL);
   MTGAbility * parseMagicLine(string s, int id, Spell * spell, MTGCardInstance *card, int activated = 0, int forceUEOT = 0,MTGGameZone * dest = NULL);
   int abilityEfficiency(MTGAbility * a, Player * p, int mode = MODE_ABILITY, TargetChooser * tc = NULL);

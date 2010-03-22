@@ -29,6 +29,7 @@ struct CardGui : public PlayGuiObject {
   void RenderBig(const Pos&); //Tries to render the Big version of a card picture, backups to text version in case of failure
   static void RenderBig(MTGCard * card, const Pos& pos);
   void alternateRenderBig(const Pos&); //Renders Text Version of a card
+  void renderCountersBig(const Pos& pos);
   virtual void Update(float dt);
   static void alternateRender(MTGCard * card, const Pos& pos);
   static JQuad * alternateThumbQuad(MTGCard * card);

@@ -40161,15 +40161,7 @@ auto={T}: Add {U}
 text={T}: Add {1} to your mana pool. -- {T}: Add {W} or {U} to your mana pool. Thalakos Lowlands doesn't untap during your next untap step.
 type=Land
 [/card]
-[card]
-name=Thallid
-text=At the beginning of your upkeep, put a spore counter on Thallid. -- Remove three spore counters from Thallid: Put a 1/1 green Saproling creature token onto the battlefield.
-mana={G}
-type=Creature
-subtype=Fungus
-power=1
-toughness=1
-[/card]
+
 [card]
 name=Thallid Devourer
 text=At the beginning of your upkeep, put a spore counter on Thallid Devourer. -- Remove three spore counters from Thallid Devourer: Put a 1/1 green Saproling creature token onto the battlefield. -- Sacrifice a Saproling: Thallid Devourer gets +1/+2 until end of turn.

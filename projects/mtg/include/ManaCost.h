@@ -46,11 +46,12 @@ class ManaCost{
   int add(int color, int value);
 
   //
-  // Extra Costs (sacrifice...)
+  // Extra Costs (sacrifice,counters...)
   //
   int addExtraCost(ExtraCost * _cost);
   int setExtraCostsAction(MTGAbility * action, MTGCardInstance * card);
   int isExtraPaymentSet();
+  int canPayExtra();
   int doPayExtra();
 
   int addHybrid(int c1, int v1, int c2, int v2);

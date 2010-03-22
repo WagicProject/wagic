@@ -31887,6 +31887,14 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Saproling
+type=Creature
+subtype=Saproling
+power=1
+toughness=1
+color=green
+[/card]
+[card]
 name=Sapseep Forest
 auto=tap
 auto={T}:Add {G}
@@ -38994,6 +39002,17 @@ type=Creature
 subtype=Thalakos Soldier
 power=1
 toughness=2
+[/card]
+[card]
+name=Thallid
+text=At the beginning of your upkeep, put a spore counter on Thallid. -- Remove three spore counters from Thallid: Put a 1/1 green Saproling creature token onto the battlefield.
+mana={G}
+type=Creature
+subtype=Fungus
+auto=@each my upkeep:counter(0/0,1,Spore)
+auto={C(0/0,-3,Spore)}:Token(-1924)
+power=1
+toughness=1
 [/card]
 [card]
 name=Thaumatog

@@ -702,17 +702,23 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   if (found != string::npos){
     found+=8;
     int nb = 1;
+    string name = "";
     size_t end = s.find(")", found);
     size_t separator = s.find(",", found);
     if (separator != string::npos){
-      string nbstr = s.substr(separator+1,end-separator-1);
+      size_t separator2 = s.find(",", separator+1);    
+      if (separator2 != string::npos) {
+        name = s.substr(separator2+1,end-separator2-1);
+      }    
+      string nbstr = s.substr(separator+1,separator2-separator-1);
       nb = atoi(nbstr.c_str()); 
       end = separator;
     }
+    
     string spt = s.substr(found,end-found);
     int power, toughness;
     if ( parsePowerToughness(spt,&power, &toughness)){
-      MTGAbility * a = NEW AACounter(id,card,target,power,toughness,nb);
+      MTGAbility * a = NEW AACounter(id,card,target,name.c_str(),power,toughness,nb);
 	    a->oneShot = 1;
       return a;
     }
@@ -1742,17 +1748,19 @@ int ActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 
   if (card == source && source->controller()==player && (!needsTapping || (!source->isTapped() && !source->hasSummoningSickness()))){
     if (!cost) return 1;
+    cost->setExtraCostsAction(this, card);
     if (!mana) mana = player->getManaPool();
     if (!mana->canAfford(cost)) return 0;
+    if (!cost->canPayExtra()) return 0;
     return 1;
   }
   return 0;
 }
 
 int ActivatedAbility::reactToClick(MTGCardInstance * card){
+//  if (cost) cost->setExtraCostsAction(this, card);
   if (!isReactingToClick(card)) return 0;
   if (cost){
-    cost->setExtraCostsAction(this, card);
     if (!cost->isExtraPaymentSet()){
       game->waitForExtraPayment = cost->extraCosts;
       return 0;

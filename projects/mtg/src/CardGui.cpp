@@ -8,7 +8,7 @@
 #include "../include/GameObserver.h"
 #include <Vector2D.h>
 #include <assert.h>
-
+#include "../include/Counters.h"
 
 const float CardGui::Width = 28.0;
 const float CardGui::Height = 40.0;
@@ -111,6 +111,22 @@ void CardGui::Render()
     mFont->SetScale(actZ);
     mFont->DrawString(buffer, actX - 10*actZ , actY + 8*actZ);
     mFont->SetScale(1);
+  }
+
+  if (card->counters->mCount > 0) {
+    unsigned c = -1;
+    for (int i = 0; i < card->counters->mCount; i++) {
+      if (card->counters->counters[i]->name != "") c = i; break;      
+    }
+    if (c + 1) {
+      mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
+      char buffer[200];
+      sprintf(buffer, "%i",card->counters->counters[0]->nb);
+      mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));
+      mFont->SetScale(actZ);
+      mFont->DrawString(buffer, actX - 10*actZ , actY -(12 * actZ));
+      mFont->SetScale(1);
+    }
   }
 
   if (tc && !tc->canTarget(card)) {
@@ -334,6 +350,7 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
 
 void CardGui::alternateRenderBig(const Pos& pos){
   alternateRender(card,pos);
+  renderCountersBig(pos);
 }
 
 void CardGui::RenderBig(MTGCard* card, const Pos& pos){
@@ -362,8 +379,39 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos){
   alternateRender(card,pos);
 }
 
+void CardGui::renderCountersBig(const Pos& pos){
+  // Write Named Counters
+  if (card->counters) {
+    JLBFont * font = resources.GetJLBFont("magic");
+    font->SetColor(ARGB((int)pos.actA, 0, 0, 0));
+    font->SetScale(0.8 * pos.actZ);
+    std::vector<string> txt = card->formattedText();
+    unsigned i = txt.size() + 1;
+    Counter * c = NULL;
+    for (int t = 0; t < card->counters->mCount; t++, i++) {
+      if (c) {
+        c = card->counters->getNext(c);
+      }else{
+        c = card->counters->counters[0];
+      }
+      if (c->nb > 0) {
+        char buf[512];
+        if (c->name != "") {
+          std::string s = c->name;
+          s[0] = toupper(s[0]);
+          sprintf(buf,_("%s counters: %i").c_str(),s.c_str(),c->nb);
+        }else{
+          sprintf(buf,_("%i/%i counters: %i").c_str(),c->power,c->toughness,c->nb);
+        }
+        font->DrawString(buf, pos.actX + (22 - BigWidth / 2)*pos.actZ, pos.actY + (-BigHeight/2 + 80 + 11 * i)*pos.actZ);
+      }
+    }
+  }
+}
+
 void CardGui::RenderBig(const Pos& pos){
   RenderBig(card,pos);
+  renderCountersBig(pos);
 }
 
 

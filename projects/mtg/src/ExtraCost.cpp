@@ -4,6 +4,7 @@
 #include "../include/Translate.h"
 #include "../include/config.h"
 #include "../include/Player.h"
+#include "../include/Counters.h"
 #include <JGE.h>
 
 ExtraCost::ExtraCost( TargetChooser *_tc):tc(_tc){
@@ -55,6 +56,11 @@ int SacrificeCost::isPaymentSet(){
   return 0;
 }
 
+int SacrificeCost::canPay(){
+  //Sacrifice does not have any additional restrictions.
+  return 1;
+}
+
 int SacrificeCost::doPay(){
   if(target){
 	  target->controller()->game->putInGraveyard(target);
@@ -73,6 +79,100 @@ void SacrificeCost::Render(){
   char buffer[200];
   sprintf(buffer, "%s", _("sacrifice").c_str());
   mFont->DrawString(buffer, 20 ,20, JGETEXT_LEFT);
+}
+
+//Counter costs
+
+CounterCost * CounterCost::clone() const{
+  CounterCost * ec =  NEW CounterCost(*this);
+  if (tc) ec->tc = tc->clone();
+  if (counter) ec->counter = NEW Counter(counter->target, counter->name.c_str(),counter->power, counter->toughness);
+  return ec;
+}
+
+CounterCost::CounterCost(Counter * _counter,TargetChooser *_tc):ExtraCost(_tc) {
+  if (tc) tc->targetter = NULL;
+  target = NULL;
+  counter = _counter;
+  hasCounters = 0;
+}
+
+int CounterCost::setSource(MTGCardInstance * _source){
+  ExtraCost::setSource(_source);
+  if (tc) tc->targetter = NULL;
+  if (!tc) target = _source;
+  return 1;
+}
+
+int CounterCost::setPayment(MTGCardInstance *card){
+  if (tc) {
+    int result = tc->addTarget(card);
+    if (result) {
+      if (counter->nb >= 0) return 1; //add counters always possible 
+      target = card;
+      Counter * targetCounter = target->counters->hasCounter(counter->name.c_str(),counter->power,counter->toughness);
+      if (targetCounter && targetCounter->nb >= - counter->nb) {
+        hasCounters = 1;
+        return result;
+      }
+    }
+  }
+  return 0;  
+}
+
+int CounterCost::isPaymentSet(){
+  if (!target) return 0;
+  if (counter->nb >=0) return 1; //add counters always possible
+  Counter * targetCounter = target->counters->hasCounter(counter->name.c_str(),counter->power,counter->toughness);
+    if (targetCounter && targetCounter->nb >= - counter->nb) {
+      hasCounters = 1;  
+    }
+  if (target && hasCounters) return 1;
+  return 0;
+}
+
+int CounterCost::canPay(){
+  // if target needs to be chosen, then move on.
+  if (tc) return 1;
+  if (counter->nb >=0) return 1; //add counters always possible
+  // otherwise, move on only if target has enough counters
+  Counter * targetCounter = target->counters->hasCounter(counter->name.c_str(),counter->power,counter->toughness);
+  if (targetCounter && targetCounter->nb >= - counter->nb) return 1;
+  return 0;
+}
+
+int CounterCost::doPay(){
+  if (!target) return 0;
+
+  if (counter->nb >=0) { //Add counters as a cost
+    for (int i = 0; i < counter->nb; i++) {
+      target->counters->addCounter(counter->name.c_str(),counter->power,counter->toughness);
+    }
+    return 1;
+  }
+
+  //remove counters as a cost
+  if (hasCounters) {
+    for (int i = 0; i < - counter->nb; i++) {
+      target->counters->removeCounter(counter->name.c_str(),counter->power,counter->toughness);
+    }
+    hasCounters = 0;
+    return 1;
+  }
+  return 0;
+}
+
+void CounterCost::Render(){
+  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
+  mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
+  mFont->SetColor(ARGB(255,255,255,255));
+  char buffer[200];
+  sprintf(buffer, "%s", _("counters").c_str());
+  mFont->DrawString(buffer, 20 ,20, JGETEXT_LEFT);
+}
+
+CounterCost::~CounterCost(){
+  SAFE_DELETE(counter);
 }
 
 //
@@ -125,6 +225,13 @@ int ExtraCosts::tryToSetPayment(MTGCardInstance * card){
 int ExtraCosts::isPaymentSet(){
   for (size_t i = 0; i < costs.size(); i++){
     if (!costs[i]->isPaymentSet()) return 0;
+  }
+  return 1;
+}
+
+int ExtraCosts::canPay(){
+  for (size_t i = 0; i < costs.size(); i++){
+    if (!costs[i]->canPay()) return 0;
   }
   return 1;
 }

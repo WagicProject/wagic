@@ -6,6 +6,7 @@
 #include "../include/Targetable.h"
 #include "../include/Player.h"
 #include "../include/WEvent.h"
+#include "../include/MTGAbility.h"
 
 #if defined (WIN32)
 
@@ -64,6 +65,46 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
       tc = tcf.createTargetChooser(target,c);
     }
     manaCost->addExtraCost(NEW SacrificeCost(tc));
+  }else if (value[0] == 'c'){
+    //Counters
+    OutputDebugString("Counter\n");
+    size_t counter_start = value.find("(");
+    int nb = 1;
+    string name = "";
+    size_t counter_end = value.find(")", counter_start);
+    size_t end = value.find(")", counter_start);
+    size_t separator = value.find(",", counter_start);
+    size_t separator2 = string::npos;
+    if (separator != string::npos){
+      separator2 = value.find(",", separator+1);    
+      if (separator2 != string::npos) {
+        name = value.substr(separator2+1,counter_end-separator2-1);
+      }    
+      string nbstr = value.substr(separator+1,separator2-separator-1);
+      nb = atoi(nbstr.c_str()); 
+      counter_end = separator;
+    }
+    
+    string spt = value.substr(counter_start+1,counter_end-counter_start-1);
+    int power, toughness;
+    Counter * counter = NULL;
+    AbilityFactory abf;
+    if ( abf.parsePowerToughness(spt,&power, &toughness)){
+      counter = NEW Counter(c,name.c_str(),power,toughness);
+      counter->nb = nb;
+    }
+    TargetChooserFactory tcf;
+    TargetChooser * tc = NULL;
+    size_t target_start = string::npos;
+    if (separator2 != string::npos) {
+      target_start = value.find(",",separator2+1);
+    }
+    size_t target_end = end;
+    if (target_start!=string::npos && target_end!=string::npos){
+      string target = value.substr(target_start+1, target_end-1 - target_start);
+      tc = tcf.createTargetChooser(target,c);
+    }
+    manaCost->addExtraCost(NEW CounterCost(counter,tc));
 	}else{
 	  int intvalue = atoi(value.c_str());
 	  int colors[2];
@@ -247,7 +288,7 @@ int ManaCost::addHybrid(int c1, int v1, int c2, int v2){
 int ManaCost::addExtraCost(ExtraCost * _cost){
   if (!extraCosts) extraCosts = NEW ExtraCosts();
   extraCosts->costs.push_back(_cost);
-  OutputDebugString("Adding Sacrifice\n");
+  OutputDebugString("Adding Extra cost\n");
   return 1;
 }
 
@@ -256,6 +297,12 @@ int ManaCost::isExtraPaymentSet(){
   if (!extraCosts) return 1;
   OutputDebugString("Checking costs\n");
   return extraCosts->isPaymentSet();
+}
+
+int ManaCost::canPayExtra(){
+  if (!extraCosts) return 1;
+  OutputDebugString("Checking costs for payability\n");
+  return extraCosts->canPay();
 }
 
 int ManaCost::doPayExtra(){
