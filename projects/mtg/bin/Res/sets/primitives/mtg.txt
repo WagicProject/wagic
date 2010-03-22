@@ -5568,17 +5568,6 @@ power=4
 toughness=5
 [/card]
 [card]
-name=Carpet of Flowers
-auto=@each my firstmain:may foreach(island|opponentbattlefield) Add{W}
-auto=@each my firstmain:may foreach(island|opponentbattlefield) Add{U}
-auto=@each my firstmain:may foreach(island|opponentbattlefield) Add{B}
-auto=@each my firstmain:may foreach(island|opponentbattlefield) Add{R}
-auto=@each my firstmain:may foreach(island|opponentbattlefield) Add{G}
-text=At the beginning of each of your main phases, if you haven't added mana to your mana pool with Carpet of Flowers this turn, you may add up to X mana of any one color to your mana pool, where X is the number of Islands target opponent controls.
-mana={G}
-type=Enchantment
-[/card]
-[card]
 name=Carrier Pigeons
 abilities=flying
 auto=@next upkeep:draw:1
