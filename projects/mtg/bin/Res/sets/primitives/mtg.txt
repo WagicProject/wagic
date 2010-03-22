@@ -20799,8 +20799,8 @@ power=3
 toughness=1
 [/card]
 [card]
+alias=2732
 name=Kjeldoran Frostbeast
-alias=1267
 text=At end of combat, destroy all creatures blocking or blocked by Kjeldoran Frostbeast.
 mana={3}{G}{W}
 type=Creature

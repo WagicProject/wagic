@@ -1463,6 +1463,12 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       break;
     }
 
+  case 2732: //Kjeldoran Frostbeast
+	{
+	  game->addObserver(NEW AKjeldoranFrostbeast(_id,card));
+      break;
+	}
+
     // --- addon Mirage ---
 
 	  case 3410: //Seed of Innocence

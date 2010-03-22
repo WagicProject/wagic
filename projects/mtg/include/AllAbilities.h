@@ -2664,7 +2664,6 @@ class AFarmstead:public ActivatedAbility{
   }
 };
 
-
 //1112 Howling Mine
 class AHowlingMine:public MTGAbility{
  public:
@@ -2688,6 +2687,55 @@ class AHowlingMine:public MTGAbility{
   }
 };
 
+//Kjeldoran Frostbeast
+class AKjeldoranFrostbeast:public MTGAbility{
+ public:
+  MTGCardInstance * opponents[20];
+  int nbOpponents;
+ AKjeldoranFrostbeast(int _id, MTGCardInstance * _source):MTGAbility(_id, _source){
+    nbOpponents = 0;
+  }
+
+  void Update(float dt){
+    if (newPhase != currentPhase){
+      if( newPhase == Constants::MTG_PHASE_COMBATEND){
+	nbOpponents = 0;
+	MTGCardInstance * opponent = source->getNextOpponent();
+	while (opponent && !opponent->hasSubtype("wall")){
+	  opponents[nbOpponents] = opponent;
+	  nbOpponents ++;
+	  opponent = source->getNextOpponent(opponent);
+	}
+	if (source->isInPlay()) {
+	  for (int i = 0; i < nbOpponents ; i++){
+      opponents[i]->destroy();
+	  }
+	}
+      }
+    }
+  }
+
+  int testDestroy(){
+    if(!game->isInPlay(source) && currentPhase != Constants::MTG_PHASE_UNTAP){
+      return 0;
+    }else{
+      return MTGAbility::testDestroy();
+    }
+  }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AKjeldoranFrostbeast ::: opponents : " << opponents
+	<< " ; nbOpponents : " << nbOpponents
+	<< " (";
+    return MTGAbility::toString(out) << ")";
+  }
+  AKjeldoranFrostbeast * clone() const{
+    AKjeldoranFrostbeast * a =  NEW AKjeldoranFrostbeast(*this);
+    a->isClone = 1;
+    return a;
+  }
+};
 
 //Living Artifact
 class ALivingArtifact:public MTGAbility{

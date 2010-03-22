@@ -272,6 +272,7 @@ keldon_warlord.txt
 keldon_warlord2.txt
 kird_ape.txt
 kjeldoran_frostbeast1.txt
+kjeldoran_frostbeast2_i167.txt
 knight_captain_of_eos_i294.txt
 knight_captain_of_eos_i294_2.txt
 kormus_bell_i301.txt
