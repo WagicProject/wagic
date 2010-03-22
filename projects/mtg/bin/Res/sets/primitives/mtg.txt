@@ -8947,6 +8947,18 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Deathspore Thallid
+text=At the beginning of your upkeep, put a spore counter on Deathspore Thallid. -- Remove three spore counters from Deathspore Thallid: Put a 1/1 green Saproling creature token onto the battlefield. -- Sacrifice a Saproling: Target creature gets -1/-1 until end of turn.
+mana={1}{B}
+type=Creature
+subtype=Zombie Fungus
+auto=@each my upkeep:counter(0/0,1,Spore)
+auto={C(0/0,-3,Spore)}:Token(-1924)
+auto={S(saproling|myBattlefield)}:-1/-1 target(creature)
+power=1
+toughness=1
+[/card]
+[card]
 name=Debtors' Knell
 auto=@each my upkeep:moveTo(myBattlefield) target(creature|graveyard)
 text=({(w/b)} can be paid with either {W} or {B}.) -- At the beginning of your upkeep, put target creature card in a graveyard onto the battlefield under your control.
@@ -11290,6 +11302,18 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Elvish Farmer
+text=At the beginning of your upkeep, put a spore counter on Elvish Farmer. -- Remove three spore counters from Elvish Farmer: Put a 1/1 green Saproling creature token onto the battlefield. -- Sacrifice a Saproling: You gain 2 life.
+mana={1}{G}
+type=Creature
+subtype=Elf
+auto=@each my upkeep:counter(0/0,1,Spore)
+auto={C(0/0,-3,Spore)}:Token(-1924)
+auto={S(saproling|myBattlefield)}:life:2
+power=0
+toughness=2
+[/card]
+[card]
 name=Elvish Handservant
 auto=@movedTo(giant|stack):may counter(1/1)
 text=Whenever a player casts a Giant spell, you may put a +1/+1 counter on Elvish Handservant.
@@ -12825,6 +12849,17 @@ mana={3}{R}{R}{R}
 type=Sorcery
 [/card]
 [card]
+name=Feral Thallid
+text=At the beginning of your upkeep, put a spore counter on Feral Thallid. -- Remove three spore counters from Feral Thallid: Regenerate Feral Thallid.
+mana={3}{G}{G}{G}
+type=Creature
+subtype=Thallid
+auto=@each my upkeep:counter(0/0,1,Spore)
+auto={C(0/0,-3,Spore)}:regenerat
+power=6
+toughness=3
+[/card]
+[card]
 name=Feral Shadow
 abilities=flying
 text=Flying
@@ -14235,6 +14270,13 @@ type=Creature
 subtype=Elemental Shaman
 power=2
 toughness=2
+[/card]
+[card]
+name=Fungal Bloom
+text={G}{G}: Put a spore counter on target Fungus.
+mana={G}
+type=Enchantment
+auto={G}:counter(0/0,1,Spore) target(fungus)
 [/card]
 [card]
 name=Fungusaur
@@ -25144,6 +25186,18 @@ mana={2}{B}{B}
 type=Sorcery
 [/card]
 [card]
+name=Mycologist
+text=At the beginning of your upkeep, put a spore counter on Mycologist. -- Remove three spore counters from Mycologist: Put a 1/1 green Saproling creature token onto the battlefield. -- Sacrifice a Saproling: You gain 2 life.
+mana={1}{W}
+type=Creature
+subtype=Human Druid
+auto=@each my upkeep:counter(0/0,1,Spore)
+auto={C(0/0,-3,Spore)}:Token(-1924)
+auto={S(saproling|myBattlefield)}:life:2
+power=0
+toughness=2
+[/card]
+[card]
 name=Mycoid Shepherd
 auto=@movedTo(this|graveyard) from(myBattlefield):may life:5 controller
 auto=@movedTo(graveyard) from(other creature[power>=5]|myBattlefield):may life:5 controller
@@ -27262,6 +27316,18 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Pallid Mycoderm
+text=At the beginning of your upkeep, put a spore counter on Pallid Mycoderm. -- Remove three spore counters from Pallid Mycoderm: Put a 1/1 green Saproling creature token onto the battlefield. -- Sacrifice a Saproling: Fungus and/or Saproling creatures you control get +1/+1 until end of turn.
+mana={3}{W}
+type=Creature
+subtype=Fungus
+auto=@each my upkeep:counter(0/0,1,Spore)
+auto={C(0/0,-3,Spore)}:Token(-1924)
+auto={S(saproling|myBattlefield)}:lord(saproling,fungus|myBattlefield) 1/1 ueot
+power=2
+toughness=4
+[/card]
+[card]
 name=Pallimud
 auto=foreach(land[tapped]|opponentBattlefield) 1/0
 text=As Pallimud enters the battlefield, choose an opponent. -- Pallimud's power is equal to the number of tapped lands the chosen player controls.
@@ -28853,6 +28919,18 @@ text=Enchant land -- Whenever enchanted land becomes tapped, Psychic Venom deals
 mana={1}{U}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Psychotrope Thallid
+text=At the beginning of your upkeep, put a spore counter on Psychotrope Thallid. -- Remove three spore counters from Psychotrope Thallid: Put a 1/1 green Saproling creature token onto the battlefield. -- {1}, Sacrifice a Saproling: Draw a card.
+mana={2}{G}
+type=Creature
+subtype=Fungus
+auto=@each my upkeep:counter(0/0,1,Spore)
+auto={C(0/0,-3,Spore)}:Token(-1924)
+auto={1}{S(saproling|myBattlefield)}:draw:1
+power=1
+toughness=1
 [/card]
 [card]
 name=Pteron Ghost
@@ -31970,6 +32048,18 @@ text=Enchant creature -- Enchanted creature gets +2/+2 and has "{1}{G}: Regenera
 mana={2}{G}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Savage Thallid
+text=At the beginning of your upkeep, put a spore counter on Savage Thallid. -- Remove three spore counters from Savage Thallid: Put a 1/1 green Saproling creature token onto the battlefield. -- Sacrifice a Saproling: Regenerate target Fungus.
+mana={3}{G}{G}
+type=Creature
+subtype=Fungus
+auto=@each my upkeep:counter(0/0,1,Spore)
+auto={C(0/0,-3,Spore)}:Token(-1924)
+auto={S(saproling|myBattlefield)}:regenerate target(fungus)
+power=5
+toughness=2
 [/card]
 [card]
 name=Savage Twister
@@ -36310,6 +36400,28 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Sporesower Thallid
+text=At the beginning of your upkeep, put a spore counter on each Fungus you control. -- Remove three spore counters from Sporesower Thallid: Put a 1/1 green Saproling creature token onto the battlefield.
+mana={2}{G}{G}
+type=Creature
+subtype=Fungus
+auto=@each my upkeep:counter(0/0,1,Spore) all(fungus|myBattlefield)
+auto={C(0/0,-3,Spore)}:Token(-1924)
+power=4
+toughness=4
+[/card]
+[card]
+name=Sporesower Ancient
+text=At the beginning of your upkeep, put a spore counter on Sporoloth Ancient. -- Creatures you control have "Remove two spore counters from this creature: Put a 1/1 green Saproling creature token onto the battlefield."
+mana={3}{G}{G}
+type=Creature
+subtype=Fungus
+auto=@each my upkeep:counter(0/0,1,Spore)
+auto=lord(fungus|myBattlefield) {C(0/0,-2,Spore)}:Token(-1924)
+power=4
+toughness=4
+[/card]
+[card]
 name=Spotted Griffin
 abilities=flying
 text=Flying
@@ -39015,6 +39127,42 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Thallid Devourer
+text=At the beginning of your upkeep, put a spore counter on Thallid Devourer. -- Remove three spore counters from Thallid Devourer: Put a 1/1 green Saproling creature token onto the battlefield. -- Sacrifice a Saproling: Thallid Devourer gets +1/+2 until end of turn.
+mana={1}{G}{G}
+type=Creature
+subtype=Fungus
+auto=@each my upkeep:counter(0/0,1,Spore)
+auto={C(0/0,-3,Spore)}:Token(-1924)
+auto={1}{S(saproling|myBattlefield)}:1/2
+power=2
+toughness=2
+[/card]
+[card]
+name=Thallid Germinator
+text=At the beginning of your upkeep, put a spore counter on Thallid Germinator. -- Remove three spore counters from Thallid Germinator: Put a 1/1 green Saproling creature token onto the battlefield. -- Sacrifice a Saproling: Target creature gets +1/+1 until end of turn.
+mana={2}{G}
+type=Creature
+subtype=Fungus
+auto=@each my upkeep:counter(0/0,1,Spore)
+auto={C(0/0,-3,Spore)}:Token(-1924)
+auto={1}{S(saproling|myBattlefield)}:1/1 target(creature)
+power=2
+toughness=2
+[/card]
+[card]
+name=Thallid Shell-Dweller
+abilities=defender
+text=At the beginning of your upkeep, put a spore counter on Thallid Shell-Dweller. -- Remove three spore counters from Thallid Shell-Dweller: Put a 1/1 green Saproling creature token onto the battlefield.
+mana={1}{G}
+type=Creature
+subtype=Fungus
+auto=@each my upkeep:counter(0/0,1,Spore)
+auto={C(0/0,-3,Spore)}:Token(-1924)
+power=0
+toughness=5
+[/card]
+[card]
 name=Thaumatog
 auto={S(land|myBattlefield)}:1/1
 auto={S(enchantment|myBattlefield)}:1/1
@@ -39170,6 +39318,17 @@ type=Creature
 subtype=Kithkin Knight
 power=1
 toughness=3
+[/card]
+[card]
+name=Thorn Thallid
+text=At the beginning of your upkeep, put a spore counter on Thorn Thallid. -- Remove three spore counters from Thorn Thallid: Thorn Thallid deals 1 damage to target creature or player.
+mana={1}{G}{G}
+type=Creature
+subtype=Fungus
+auto=@each my upkeep:counter(0/0,1,Spore)
+auto={C(0/0,-3,Spore)}:damage:1 target(creature,player)
+power=2
+toughness=2
 [/card]
 [card]
 name=Thornling
@@ -41297,6 +41456,22 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Utopia Mycon
+text=At the beginning of your upkeep, put a spore counter on Utopia Mycon. -- Remove three spore counters from Utopia Mycon: Put a 1/1 green Saproling creature token onto the battlefield. -- Sacrifice a Saproling: Add one mana of any color to your mana pool.
+mana={G}
+type=Creature
+subtype=Fungus
+auto=@each my upkeep:counter(0/0,1,Spore)
+auto={C(0/0,-3,Spore)}:Token(-1924)
+auto={S(saproling|myBattlefield)}:add{W}
+auto={S(saproling|myBattlefield)}:add{U}
+auto={S(saproling|myBattlefield)}:add{B}
+auto={S(saproling|myBattlefield)}:add{R}
+auto={S(saproling|myBattlefield)}:add{G}
+power=0
+toughness=2
+[/card]
+[card]
 name=Utopia Tree
 auto={T}:Add {W}
 auto={T}:Add {U}
@@ -42339,6 +42514,18 @@ auto=draw:2 controller
 text=Each player draws two cards.
 mana={1}{U}
 type=Instant
+[/card]
+[card]
+name=Vitaspore Thallid
+text=At the beginning of your upkeep, put a spore counter on Vitaspore Thallid. -- Remove three spore counters from Vitaspore Thallid: Put a 1/1 green Saproling creature token onto the battlefield. -- Sacrifice a Saproling: Target creature gains haste until end of turn.
+mana={1}{G}
+type=Creature
+subtype=Fungus
+auto=@each my upkeep:counter(0/0,1,Spore)
+auto={C(0/0,-3,Spore)}:Token(-1924)
+auto={S(saproling|myBattlefield)}:haste target(creature)
+power=1
+toughness=1
 [/card]
 [card]
 name=Vitality Charm
