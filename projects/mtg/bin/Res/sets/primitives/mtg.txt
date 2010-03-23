@@ -8179,7 +8179,7 @@ subtype=Aura
 [card]
 name=Cursed Land
 target=land
-auto=@each opponent upkeep:damage:1 targetController
+auto=@each targetController upkeep:damage:1 targetController
 text=Enchant land -- At the beginning of the upkeep of enchanted land's controller, Cursed Land deals 1 damage to that player.
 mana={2}{B}{B}
 type=Enchantment
@@ -28259,7 +28259,7 @@ auto=cantattack
 auto=cantblock
 auto=@each targetcontroller upkeep:life:-1 targetController
 text=Enchant creature -- Enchanted creature can't attack or block. -- Enchanted creature has "At the beginning of your upkeep, you lose 1 life."
-mana={1}{W}{B}
+mana={1}{B}{W}
 type=Enchantment
 subtype=Aura
 [/card]
