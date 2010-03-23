@@ -202,10 +202,10 @@ public:
 //counters
 class AACounter: public ActivatedAbility{
  public:
-  string name;
   int nb;
   int power;
   int toughness;
+  string name;
  AACounter(int id, MTGCardInstance * source, MTGCardInstance * target, const char * _name, int power, int toughness, int nb, ManaCost * cost = NULL, int doTap = 0) : ActivatedAbility(id, source, cost, 0, doTap), nb(nb), power(power), toughness(toughness), name(_name) {
 	  this->target = target;
  }
