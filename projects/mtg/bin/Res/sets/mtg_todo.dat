@@ -574,17 +574,6 @@ mana={5}
 type=Artifact
 [/card]
 [card]
-name=Alabaster Dragon
-auto=@movedTo(this|mygraveyard) from(myBattlefield):moveTo(ownerlibrary) all(this) && shuffle
-#This do not work in WTH 0.10
-text=Flying -- When Alabaster Dragon is put into a graveyard from the battlefield, shuffle Alabaster Dragon into its owner's library.
-mana={4}{W}{W}
-type=Creature
-subtype=Dragon
-power=4
-toughness=4
-[/card]
-[card]
 name=Alabaster Leech
 text=White spells you cast cost {W} more to cast.
 mana={W}
@@ -952,15 +941,6 @@ type=Creature
 subtype=Leech
 power=2
 toughness=2
-[/card]
-[card]
-name=Angel of Fury
-text=Flying -- When Angel of Fury is put into your graveyard from the battlefield, you may shuffle it into your library.
-mana={4}{W}{W}
-type=Creature
-subtype=Angel
-power=3
-toughness=5
 [/card]
 [card]
 name=Angel of Salvation
@@ -2258,16 +2238,6 @@ type=Creature
 subtype=Human Spellshaper
 power=1
 toughness=1
-[/card]
-[card]
-name=Avenging Angel
-auto=@movedTo(this|graveyard) from(inplay):may moveto(ownerlibrary)
-text=Flying -- When Avenging Angel is put into a graveyard from the battlefield, you may put Avenging Angel on top of its owner's library.
-mana={3}{W}{W}
-type=Creature
-subtype=Angel
-power=3
-toughness=3
 [/card]
 [card]
 name=Avenging Druid
@@ -8039,16 +8009,6 @@ type=Creature
 subtype=Zombie Giant
 power=4
 toughness=2
-[/card]
-[card]
-name=Cyclopean Mummy
-auto=@movedTo(this|graveyard) from(inplay):moveto(exile)
-text=When Cyclopean Mummy is put into a graveyard from the battlefield, exile Cyclopean Mummy.
-mana={1}{B}
-type=Creature
-subtype=Zombie
-power=2
-toughness=1
 [/card]
 [card]
 name=Cyclopean Snare
@@ -16365,15 +16325,6 @@ type=Creature
 subtype=Human Berserker
 power=3
 toughness=2
-[/card]
-[card]
-name=Guan Yu, Sainted Warrior
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.) -- When Guan Yu, Sainted Warrior is put into your graveyard from the battlefield, you may shuffle Guan Yu into your library.
-mana={3}{W}{W}
-type=Legendary Creature
-subtype=Human Soldier Warrior
-power=3
-toughness=5
 [/card]
 [card]
 name=Guard Dogs
@@ -25711,17 +25662,6 @@ type=Creature
 subtype=Insect Druid Mutant
 power=3
 toughness=2
-[/card]
-[card]
-name=Narcomoeba
-abilities=flying
-auto=@movedTo(this|mygraveyard) from(mylibrary):may moveto(myinplay)  ## "this" only works for inplay area in wTH 0.8.1
-text=Flying -- When Narcomoeba is put into your graveyard from your library, you may put it onto the battlefield.
-mana={1}{U}
-type=Creature
-subtype=Illusion
-power=1
-toughness=1
 [/card]
 [card]
 name=Nath's Elite
