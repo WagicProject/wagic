@@ -2289,7 +2289,7 @@ auto=@movedTo(this|exile,graveyard,hand,library) from(myBattlefield):life:2
 auto=@each my upkeep:counter(0/0,-1,Time)
 auto=lord(aven riftwatcher[-counter{0/0.1.Time}]|myBattlefield) -99/-99
 text=Flying -- Vanishing 3 (This permanent enters the battlefield with three time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- When Aven Riftwatcher enters the battlefield or leaves the battlefield, you gain 2 life.
-mana={G}
+mana={2}{W}
 type=Creature
 subtype=Bird rebel Soldier
 power=2
@@ -5324,6 +5324,19 @@ text=Enchant creature -- Enchanted creature gets +2/+2 and can't attack.
 mana={1}{W}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=calciderm
+abilities=shroud
+auto=counter(0/0,4,Time)
+auto=@each my upkeep:counter(0/0,-1,Time)
+auto=lord(calciderm[-counter{0/0.1.Time}]|myBattlefield) -99/-99
+text=Shroud -- Vanishing 4 (This permanent enters the battlefield with three time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.)
+mana={2}{W}{W}
+type=Creature
+subtype=Beast
+power=5
+toughness=5
 [/card]
 [card]
 name=Caldera Lake
@@ -8876,6 +8889,20 @@ type=Creature
 subtype=Minotaur
 power=3
 toughness=4
+[/card]
+[card]
+name=Deadwood Treefolk
+auto=counter(0/0,3,Time)
+auto=@each my upkeep:counter(0/0,-1,Time)
+auto=moveTo(myhand) target(other creature|myGraveyard)
+auto=@movedTo(this|exile,graveyard,hand.library) from(myBattlefield):moveTo(myhand) target(other creature|myGraveyard)
+auto=lord(deadwood treefolk[-counter{0/0.1.Time}]|myBattlefield) -99/-99
+text=Vanishing 3 (This permanent enters the battlefield with three time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- When Deadwood Treefolk enters the battlefield or leaves the battlefield, return another target creature card from your graveyard to your hand.
+mana={5}{G}
+type=Creature
+subtype=Treefolk
+power=3
+toughness=6
 [/card]
 [card]
 name=Death Baron
@@ -14765,6 +14792,18 @@ mana={4}
 type=Artifact
 [/card]
 [card]
+name=Gemstone Mine
+auto=counter(0/0,3,Mining)
+auto={T}{C(0/0,-1,Mining)}:Add{W}
+auto={T}{C(0/0,-1,Mining)}:Add{U}
+auto={T}{C(0/0,-1,Mining)}:Add{B}
+auto={T}{C(0/0,-1,Mining)}:Add{R}
+auto={T}{C(0/0,-1,Mining)}:Add{G}
+auto=@tapped(this):bury all(gemstone mine[-counter{0/0.1.Mining}])
+text=Gemstone Mine enters the battlefield with three mining counters on it. -- {T}, Remove a mining counter from Gemstone Mine: Add one mana of any color to your mana pool. If there are no mining counters on Gemstone Mine, sacrifice it.
+type=Land
+[/card]
+[card]
 name=General's Kabuto
 auto={2}:equip
 auto=shroud
@@ -17785,6 +17824,14 @@ mana={2}{U}
 type=Instant
 [/card]
 [card]
+name=Hickory Woodlot
+auto=counter(0/0,2,Depletion)
+auto={T}{C(0/0,-1,Depletion)}:Add{G}{G}
+auto=@tapped(this):bury all(hickory woodlot[-counter{0/0.1.Depletion}]|)
+text=Hickory Woodlot enters the battlefield tapped with two depletion counters on it. -- {T}, Remove a depletion counter from Hickory Woodlot: Add {G}{G} to your mana pool. If there are no depletion counters on Hickory Woodlot, sacrifice it.
+type=Land
+[/card]
+[card]
 name=Hidden Horror
 auto=moveTo(graveyard) notatarget(this|myBattlefield)
 auto=moveTo(graveyard) notatarget(creature|myhand)
@@ -20624,6 +20671,20 @@ text=Enchant creature -- {B}: Regenerate enchanted creature. -- {R}: Enchanted c
 mana={1}{R}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Keldon Marauders
+auto=counter(0/0,2,Time)
+auto=@each my upkeep:counter(0/0,-1,Time)
+auto=damage:1 target(creature,player)
+auto=@movedTo(this|exile,graveyard,hand.library) from(myBattlefield):damage:1 target(creature,player)
+auto=lord(deadwood treefolk[-counter{0/0.1.Time}]|myBattlefield) -99/-99
+text=Vanishing 2 (This permanent enters the battlefield with two time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- When Keldon Marauders enters the battlefield or leaves the battlefield, it deals 1 damage to target player.
+mana={1}{R}
+type=Creature
+subtype=Human Warrior
+power=3
+toughness=3
 [/card]
 [card]
 name=Keldon Necropolis
@@ -27827,6 +27888,14 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Peat Bog
+auto=counter(0/0,2,Depletion)
+auto={T}{C(0/0,-1,Depletion)}:Add{B}{B}
+auto=@tapped(this):bury all(peat bog[-counter{0/0.1.Depletion}]|myBattlefield)
+text=Peat Bog enters the battlefield tapped with two depletion counters on it. -- {T}, Remove a depletion counter from Peat Bog: Add {B}{B} to your mana pool. If there are no depletion counters on Peat Bog, sacrifice it.
+type=Land
+[/card]
+[card]
 name=Pegasus Charger
 abilities=flying,first strike
 text=Flying (This creature can't be blocked except by creatures with flying or reach.) -- First strike (This creature deals combat damage before creatures without first strike.)
@@ -30589,6 +30658,14 @@ mana={2}{U}
 type=Sorcery
 [/card]
 [card]
+name=Remote Farm
+auto=counter(0/0,2,Depletion)
+auto={T}{C(0/0,-1,Depletion)}:Add{W}{W}
+auto=@tapped(this):bury all(remote farm[-counter{0/0.1.Depletion}]|myBattlefield)
+text=Remote Farm enters the battlefield tapped with two depletion counters on it. -- {T}, Remove a depletion counter from Remote Farm: Add {W}{W} to your mana pool. If there are no depletion counters on Remote Farm, sacrifice it.
+type=Land
+[/card]
+[card]
 name=Remote Isle
 auto=tap
 auto={T}:Add {U}
@@ -32145,6 +32222,14 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Sandstone Needle
+auto=counter(0/0,2,Depletion)
+auto={T}{C(0/0,-1,Depletion)}:Add{R}{R}
+auto=@tapped(this):bury all(sandstone needle[-counter{0/0.1.Depletion}]|myBattlefield) bury
+text=Sandstone Needle enters the battlefield tapped with two depletion counters on it. -- {T}, Remove a depletion counter from Sandstone Needle: Add {R}{R} to your mana pool. If there are no depletion counters on Sandstone Needle, sacrifice it.
+type=Land
+[/card]
+[card]
 name=Sandstone Warrior
 abilities=first strike
 auto={R}:1/0
@@ -32221,6 +32306,14 @@ type=Creature
 subtype=Merfolk
 power=5
 toughness=5
+[/card]
+[card]
+name=Saprazzan Skerry
+auto=counter(0/0,2,Depletion)
+auto={T}{C(0/0,-1,Depletion)}:Add{U}{U}
+auto=@tapped(this):bury all(saprazzan skerry[-counter{0/0.1.Depletion}]|myBattlefield) bury
+text=Saprazzan Skerry enters the battlefield tapped with two depletion counters on it. -- {T}, Remove a depletion counter from Saprazzan Skerry: Add {U}{U} to your mana pool. If there are no depletion counters on Saprazzan Skerry, sacrifice it.
+type=Land
 [/card]
 [card]
 name=Saproling
@@ -35184,6 +35277,18 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Skyshroud Ridgeback
+auto=counter(0/0,2,Fade)
+auto=@each my upkeep:counter(0/0,-1,Fade)
+auto=@each my upkeep:moveTo(mygraveyard) all(this[-counter{0/0.1.Fade}]|myBattlefield)
+text=Fading 2 (This creature enters the battlefield with two fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.)
+mana={G}
+type=Creature
+subtype=Beast
+power=2
+toughness=3
+[/card]
+[card]
 name=Skyshroud Troll
 auto={1}{G}:regenerate
 text={1}{G}: Regenerate Skyshroud Troll.
@@ -36152,6 +36257,19 @@ type=Creature
 subtype=Spirit
 power=1
 toughness=4
+[/card]
+[card]
+name=Soultether Golem
+auto=counter(0/0,1,Time)
+auto=@each my upkeep:counter(0/0,-1,Time)
+auto=@movedTo(other creature|myBattlefield):counter(0/0,1,Time)
+auto=lord(soultether golem[-counter{0/0.1.Time}]|myBattlefield) -99/-99
+text=Vanishing 1 (This permanent enters the battlefield with a time counter on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- Whenever another creature enters the battlefield under your control, put a time counter on Soultether Golem.
+mana={2}
+type=Artifact Creature
+subtype=Golem
+power=3
+toughness=3
 [/card]
 [card]
 name=Southern Elephant
@@ -43930,6 +44048,18 @@ auto={T}:Add {W}
 auto={T}:Add {U}
 text=As Wanderwine Hub enters the battlefield, you may reveal a Merfolk card from your hand. If you don't, Wanderwine Hub enters the battlefield tapped. -- {T}: Add {W} or {U} to your mana pool.
 type=Land
+[/card]
+[card]
+name=Waning Wurm
+auto=@each my upkeep:counter(0/0,-1,Time)
+auto=@movedTo(other creature|myBattlefield):counter(0/0,1,Time)
+auto=lord(waning wurm[-counter{0/0.1.Time}]|myBattlefield) -99/-99
+text=Vanishing 2 (This permanent enters the battlefield with two time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.)
+mana={3}{B}
+type=Creature
+subtype=Zombie Wurm
+power=7
+toughness=6
 [/card]
 [card]
 name=War Chariot
