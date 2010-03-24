@@ -6,10 +6,15 @@
 
 CardDescriptor::CardDescriptor(): MTGCardInstance(){
   init();
+  counterName = "";
+  counterPower = 0;
+  counterToughness = 0;
+  counterNB = 0;
   mode = CD_AND;
   powerComparisonMode = COMPARISON_NONE;
   toughnessComparisonMode = COMPARISON_NONE;
   manacostComparisonMode = COMPARISON_NONE;
+  counterComparisonMode = COMPARISON_NONE;
   convertedManacost = -1;
 }
 
@@ -18,6 +23,7 @@ int CardDescriptor::init(){
   attacker = 0;
   defenser = NULL;
   banding = NULL;
+  anyCounter = 0;
   //Remove unnecessary pointers
   SAFE_DELETE(counters);
   SAFE_DELETE(previous);
@@ -134,7 +140,7 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card){
   }
 
 
-
+ 
 
   //Abilities
   for(map<int,int>::const_iterator it = basicAbilities.begin(); it != basicAbilities.end(); ++it){
@@ -175,6 +181,27 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card){
     }
   }
 
+  //Counters
+  if (anyCounter) {
+    if (!(card->counters->mCount)) {
+      match = NULL;
+    }else{
+      int hasCounter = 0;
+      for (int i = 0; i < card->counters->mCount; i++) {
+        if (card->counters->counters[i]->nb > 0) hasCounter = 1;
+      }
+      if (!hasCounter) match = NULL;
+    }
+  }else{
+    if (counterComparisonMode) {
+      Counter * targetCounter = card->counters->hasCounter(counterName.c_str(),counterPower,counterToughness);
+      if (targetCounter) {
+        if (!valueInRange(counterComparisonMode,targetCounter->nb,counterNB)) match = NULL;
+      } else {
+        if (counterComparisonMode != COMPARISON_LESS && counterComparisonMode != COMPARISON_AT_MOST) match = NULL;
+      }
+    }
+  }
 
   return match;
 }

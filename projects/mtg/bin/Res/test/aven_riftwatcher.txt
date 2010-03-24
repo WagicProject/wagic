@@ -1,0 +1,22 @@
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Aven Riftwatcher
+manapool:{2}{W}
+[PLAYER2]
+[DO]
+aven riftwatcher
+eot
+eot
+eot
+eot
+eot
+eot
+eot
+[ASSERT]
+untap
+[PLAYER1]
+graveyard:Aven Riftwatcher
+life:24
+[PLAYER2]
+[END]

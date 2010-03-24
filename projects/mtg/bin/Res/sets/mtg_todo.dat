@@ -16556,15 +16556,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Gwafa Hazid, Profiteer
-text={W}{U}, {T}: Put a bribery counter on target creature you don't control. Its controller draws a card. -- Creatures with bribery counters on them can't attack or block.
-mana={1}{W}{U}
-type=Legendary Creature
-subtype=Human Rogue
-power=2
-toughness=2
-[/card]
-[card]
 name=Gwyllion Hedge-Mage
 text=When Gwyllion Hedge-Mage enters the battlefield, if you control two or more Plains, you may put a 1/1 white Kithkin Soldier creature token onto the battlefield. -- When Gwyllion Hedge-Mage enters the battlefield, if you control two or more Swamps, you may put a -1/-1 counter on target creature.
 mana={2}{WB}
@@ -20957,15 +20948,6 @@ mana={3}{U}
 type=Creature
 subtype=Serpent
 power=4
-toughness=3
-[/card]
-[card]
-name=Kulrath Knight
-text=Flying -- Wither (This deals damage to creatures in the form of -1/-1 counters.) -- Creatures your opponents control with counters on them can't attack or block.
-mana={3}{BR}{BR}
-type=Creature
-subtype=Elemental Knight
-power=3
 toughness=3
 [/card]
 [card]

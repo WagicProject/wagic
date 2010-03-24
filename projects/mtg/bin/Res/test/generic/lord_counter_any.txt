@@ -1,0 +1,29 @@
+[INIT]
+MAINPHASE
+[PLAYER1]
+inplay:Kulrath Knight,Cinderbones
+[PLAYER2]
+inplay:Shivan Dragon
+[DO]
+next
+next
+Cinderbones
+next
+Shivan Dragon
+eot
+next
+next
+next
+next
+next
+Shivan Dragon
+eot
+[ASSERT]
+UNTAP
+[PLAYER1]
+graveyard:Cinderbones
+inplay:Kulrath Knight
+life:20
+[PLAYER2]
+inplay:Shivan Dragon
+[END]

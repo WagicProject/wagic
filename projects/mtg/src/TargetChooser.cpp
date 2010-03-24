@@ -4,6 +4,7 @@
 #include "../include/MTGGameZones.h"
 #include "../include/GameObserver.h"
 #include "../include/Subtypes.h"
+#include "../include/Counters.h"
 
 
 
@@ -196,6 +197,30 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
         }else if (attribute.find("manacost") != string::npos){
           cd->convertedManacost = comparisonCriterion;
           cd->manacostComparisonMode = comparisonMode;
+        //Counter Restrictions
+        }else if (attribute.find("counter") != string::npos) {
+          if (attribute.find("{any}") != string::npos) {
+            cd->anyCounter = 1;
+          }else{
+            size_t start = attribute.find("{");
+            size_t end = attribute.find("}");
+            string counterString = attribute.substr(start,end-start+1);
+            counterString.replace(0,1,"(");
+            counterString.replace(counterString.length() - 1,1,")");
+            AbilityFactory * abf = NEW AbilityFactory();
+            Counter * counter = abf->parseCounter(counterString,card);
+            if (counter) {
+              cd->counterName = counter->name;
+              cd->counterNB = counter->nb;
+              cd->counterPower = counter->power;
+              cd->counterToughness = counter->toughness;
+            }
+            if (minus) {
+              cd->counterComparisonMode = COMPARISON_LESS;
+            }else{
+              cd->counterComparisonMode = COMPARISON_AT_MOST;
+            }
+          }
         }else{
           int attributefound = 0;
           //Colors

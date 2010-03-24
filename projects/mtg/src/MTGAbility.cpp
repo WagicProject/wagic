@@ -35,6 +35,34 @@ int AbilityFactory::countCards(TargetChooser * tc, Player * player, int option){
   return result;
 }
 
+Counter * AbilityFactory::parseCounter(string s, MTGCardInstance * target) {
+  int nb = 1;
+    string name = "";
+    size_t start = s.find("(") + 1;
+    size_t end = s.find(")", start);
+    size_t separator = s.find(",", start);
+    if (separator == string::npos) separator = s.find(".", start);
+    if (separator != string::npos){
+      size_t separator2 = s.find(",", separator+1);
+      if (separator2 == string::npos) separator2 = s.find(".", separator+1);
+      if (separator2 != string::npos) {
+        name = s.substr(separator2+1,end-separator2-1);
+      }    
+      string nbstr = s.substr(separator+1,separator2-separator-1);
+      nb = atoi(nbstr.c_str()); 
+      end = separator;
+    }
+    
+    string spt = s.substr(start,end-start);
+    int power, toughness;
+    if ( parsePowerToughness(spt,&power, &toughness)){
+      Counter * counter = NEW Counter(target,name.c_str(),power,toughness);
+      counter->nb = nb;
+      return counter;
+    }
+    return NULL;
+}
+
 int AbilityFactory::parsePowerToughness(string s, int *power, int *toughness){
     size_t found = s.find("/");
     if (found != string::npos){
@@ -700,25 +728,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   //counter
   found = s.find("counter(");
   if (found != string::npos){
-    found+=8;
-    int nb = 1;
-    string name = "";
-    size_t end = s.find(")", found);
-    size_t separator = s.find(",", found);
-    if (separator != string::npos){
-      size_t separator2 = s.find(",", separator+1);    
-      if (separator2 != string::npos) {
-        name = s.substr(separator2+1,end-separator2-1);
-      }    
-      string nbstr = s.substr(separator+1,separator2-separator-1);
-      nb = atoi(nbstr.c_str()); 
-      end = separator;
-    }
-    
-    string spt = s.substr(found,end-found);
-    int power, toughness;
-    if ( parsePowerToughness(spt,&power, &toughness)){
-      MTGAbility * a = NEW AACounter(id,card,target,name.c_str(),power,toughness,nb);
+    size_t start = s.find("(");
+    size_t end = s.find(")");
+    string counterString = s.substr(start,end-start+1);
+    Counter * counter = parseCounter(counterString,target);
+    if (counter){
+      MTGAbility * a = NEW AACounter(id,card,target,counter->name.c_str(),counter->power,counter->toughness,counter->nb);
 	    a->oneShot = 1;
       return a;
     }

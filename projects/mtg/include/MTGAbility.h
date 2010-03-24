@@ -12,6 +12,7 @@ class MTGGameZone;
 class Player;
 class AManaProducer;
 class WEvent;
+class Counter;
 
 #include "../include/GameObserver.h"
 #include "ActionElement.h"
@@ -255,6 +256,7 @@ class AbilityFactory{
   TriggeredAbility * parseTrigger(string s, int id, Spell * spell, MTGCardInstance *card, Targetable * target);
   int parseRestriction(string s);
  public:
+  Counter * parseCounter(string s, MTGCardInstance * target);
   int parsePowerToughness(string s, int *power, int *toughness);
   int getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCardInstance * card = NULL, int id = 0,MTGGameZone * dest = NULL);
   MTGAbility * parseMagicLine(string s, int id, Spell * spell, MTGCardInstance *card, int activated = 0, int forceUEOT = 0,MTGGameZone * dest = NULL);

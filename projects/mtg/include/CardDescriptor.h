@@ -7,6 +7,7 @@
 
 #include "MTGCardInstance.h"
 #include "MTGGameZones.h"
+#include "Counters.h"
 
 #define CD_OR 1
 #define CD_AND 2
@@ -32,11 +33,17 @@ class CardDescriptor: public MTGCardInstance{
   int powerComparisonMode;
   int toughnessComparisonMode;
   int manacostComparisonMode;
+  int counterComparisonMode;
   int convertedManacost; // might fit better into MTGCardInstance?
+  int anyCounter;
   int init();
   CardDescriptor();
   void unsecureSetTapped(int i);
   void setNegativeSubtype( string value);
+  int counterPower;
+  int counterToughness;
+  int counterNB;
+  string counterName;
   MTGCardInstance * match(MTGCardInstance * card);
   MTGCardInstance * match(MTGGameZone * zone);
   MTGCardInstance * nextmatch(MTGGameZone * zone, MTGCardInstance * previous);

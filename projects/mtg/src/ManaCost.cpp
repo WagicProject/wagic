@@ -69,29 +69,14 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
     //Counters
     OutputDebugString("Counter\n");
     size_t counter_start = value.find("(");
-    int nb = 1;
-    string name = "";
     size_t counter_end = value.find(")", counter_start);
-    size_t end = value.find(")", counter_start);
-    size_t separator = value.find(",", counter_start);
+    AbilityFactory * abf = NEW AbilityFactory();
+    string counterString = value.substr(counter_start,counter_end-counter_start);
+    Counter * counter = abf->parseCounter(counterString,c);
+    size_t separator = value.find(",",counter_start);
     size_t separator2 = string::npos;
-    if (separator != string::npos){
-      separator2 = value.find(",", separator+1);    
-      if (separator2 != string::npos) {
-        name = value.substr(separator2+1,counter_end-separator2-1);
-      }    
-      string nbstr = value.substr(separator+1,separator2-separator-1);
-      nb = atoi(nbstr.c_str()); 
-      counter_end = separator;
-    }
-    
-    string spt = value.substr(counter_start+1,counter_end-counter_start-1);
-    int power, toughness;
-    Counter * counter = NULL;
-    AbilityFactory abf;
-    if ( abf.parsePowerToughness(spt,&power, &toughness)){
-      counter = NEW Counter(c,name.c_str(),power,toughness);
-      counter->nb = nb;
+    if (separator != string::npos) {
+      separator2 = value.find(",",separator + 1);
     }
     TargetChooserFactory tcf;
     TargetChooser * tc = NULL;
@@ -99,7 +84,7 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
     if (separator2 != string::npos) {
       target_start = value.find(",",separator2+1);
     }
-    size_t target_end = end;
+    size_t target_end = counter_end;
     if (target_start!=string::npos && target_end!=string::npos){
       string target = value.substr(target_start+1, target_end-1 - target_start);
       tc = tcf.createTargetChooser(target,c);

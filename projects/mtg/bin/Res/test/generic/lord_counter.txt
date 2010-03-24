@@ -1,0 +1,28 @@
+[INIT]
+firstmain
+[PLAYER1]
+inplay:185811
+manapool:{W}{U}
+[PLAYER2]
+inplay:Shivan Dragon
+library:Forest,Island
+[DO]
+185811
+Shivan Dragon
+eot
+next
+next
+next
+next
+next
+Shivan Dragon
+eot
+[ASSERT]
+untap
+[PLAYER1]
+inplay:185811
+life:20
+[PLAYER2]
+inplay:Shivan Dragon
+hand:Forest,Island
+[END]

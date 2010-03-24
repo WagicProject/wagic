@@ -2281,6 +2281,21 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Aven Riftwatcher
+abilities=flying
+auto=counter(0/0,3,Time)
+auto=life:2
+auto=@movedTo(this|exile,graveyard,hand,library) from(myBattlefield):life:2
+auto=@each my upkeep:counter(0/0,-1,Time)
+auto=lord(aven riftwatcher[-counter{0/0.1.Time}]|myBattlefield) -99/-99
+text=Flying -- Vanishing 3 (This permanent enters the battlefield with three time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- When Aven Riftwatcher enters the battlefield or leaves the battlefield, you gain 2 life.
+mana={G}
+type=Creature
+subtype=Bird rebel Soldier
+power=2
+toughness=3
+[/card]
+[card]
 name=Aven Smokeweaver
 abilities=flying,protection from red
 text=Flying, protection from red
@@ -16905,6 +16920,18 @@ mana={RG}
 type=Instant
 [/card]
 [card]
+name=Gwafa Hazid, Profiteer
+mana={1}{W}{U}
+type=Creature
+subtpe=Legendary Human Rogue
+text={W}{U}, {T}: Put a bribery counter on target creature you don't control. Its controller draws a card. -- Creatures with bribery counters on them can't attack or block.
+power=2
+toughness=2
+auto={W}{U}{T}:counter(0/0,1,Bribe) target(creature|opponentbattlefield) && draw:1
+auto=lord(creature[counter{0/0.1.Bribe}]) cantattack
+auto=lord(creature[counter{0/0.1.Bribe}]) cantblock
+[/card]
+[card]
 name=Gwendlyn Di Corci
 auto={T}:discard:1 target(player) myTurnOnly
 text={T}: Target player discards a card at random. Activate this ability only during your turn.
@@ -21546,6 +21573,18 @@ text=Enchant land -- When enchanted land becomes tapped, destroy it. That land's
 mana={1}{G}{G}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Kulrath Knight
+mana={3}{BR}{BR}
+power=3
+toughness=3
+type=Creature
+subtype=Elemental Knight
+abilities=flying,wither
+text=Flying -- Wither (This deals damage to creatures in the form of -1/-1 counters.) -- Creatures your opponents control with counters on them can't attack or block.
+auto=lord(creature[counter{any}]|opponentbattlefield) cantattack
+auto=lord(creature[counter{any}]|opponentbattlefield) cantblock
 [/card]
 [card]
 name=Kurgadon

@@ -31,6 +31,8 @@ generic/kicker.txt
 generic/kicker2.txt
 generic/landwalk.txt
 generic/legendary.txt
+generic/lord_counter.txt
+generic/lord_counter_any.txt
 generic/lifelink.txt
 generic/m10_blockers.txt
 generic/m10_blockers2.txt
@@ -101,6 +103,8 @@ ashen_firebeast.txt
 ashen_firebeast2.txt
 aura_mutation.txt
 avarice_totem.txt
+aven_riftwatcher.txt
+aven_riftwatcher2.txt
 aysen_bureaucrats.txt
 balduvian_conjurer.txt
 baneslayer_angel.txt

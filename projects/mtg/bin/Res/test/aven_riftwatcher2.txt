@@ -1,0 +1,16 @@
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Aven Riftwatcher
+manapool:{2}{W}
+[PLAYER2]
+[DO]
+aven riftwatcher
+eot
+[ASSERT]
+untap
+[PLAYER1]
+inplay:Aven Riftwatcher
+life:22
+[PLAYER2]
+[END]
