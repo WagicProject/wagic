@@ -4743,6 +4743,17 @@ mana={4}{G}
 type=Sorcery
 [/card]
 [card]
+name=Bounty Hunter
+auto={T}:counter(0/0,1,Bounty) target(creature[-black])
+auto={T}:destroy target(creature[counter{0/0.1.Bounty}])
+text={T}: Put a bounty counter on target nonblack creature.
+mana={2}{B}{B}
+type=Creature
+subtype=Human Archer Minion
+power=2
+toughness=2
+[/card]
+[card]
 name=Braidwood Cup
 auto={T}:life:1
 text={T}: You gain 1 life.
@@ -8074,6 +8085,13 @@ mana={G}
 type=Instant
 [/card]
 [card]
+name=Crumbling Ashes
+auto=@each my upkeep:destroy target(creature[counter{-1/-1.1}])
+text=At the beginning of your upkeep, destroy target creature with a -1/-1 counter on it.
+mana={1}{B}
+type=Enchantment
+[/card]
+[card]
 name=Crumbling Necropolis
 auto=tap
 auto={T}:Add {U}
@@ -8535,6 +8553,14 @@ auto=bury
 text=Destroy target nonblack creature. It can't be regenerated.
 mana={2}{B}
 type=Instant
+[/card]
+[card]
+name=Dark Depths
+auto=counter(0/0,10,Ice)
+auto={3}:(counter(0/0,-1,Ice) all(this) && bury all(dark depths[-counter{0/0.1.Ice}])
+auto=@movedTo(dark depths[-counter{0/0.1.Ice}]|mygraveyard) from(myBattlefield):token(Marit Lage,creature avatar, 20/20,flying,indestructible,black)
+text=Dark Depths enters the battlefield with ten ice counters on it. -- {3}: Remove an ice counter from Dark Depths. -- When Dark Depths has no ice counters on it, sacrifice it. If you do, put a legendary 20/20 black Avatar creature token with flying and "This creature is indestructible" named Marit Lage onto the battlefield.
+type=Legendary Snow Land
 [/card]
 [card]
 name=Dark Hatchling
@@ -18520,6 +18546,17 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Hunter of Eyeblights
+auto=counter(1/1,1) target(creature|opponentBattlefield)
+auto={2}{B}{T}:destroy target(creature[counter{any}])
+text=When Hunter of Eyeblights enters the battlefield, put a +1/+1 counter on target creature you don't control. -- {2}{B}, {T}: Destroy target creature with a counter on it.
+mana={3}{B}{B}
+type=Creature
+subtype=Elf Assassin
+power=3
+toughness=3
+[/card]
+[card]
 name=Hunting Cheetah
 auto=@damaged(player) from(this):may moveTo(myHand) target(forest|mylibrary)
 text=Whenever Hunting Cheetah deals damage to an opponent, you may search your library for a Forest card, reveal that card, put it into your hand, then shuffle your library.
@@ -22303,6 +22340,14 @@ mana={1}{W}
 type=Instant
 [/card]
 [card]
+name=Life Matrix
+auto={4}{T}:counter(0/0,1,Matrix) target(creature) myUpkeepOnly
+auto=lord(creature[counter{0/0.1.Matrix}]) {C(0/0,-1,Matrix)}:regenerate
+text={4}, {T}: Put a matrix counter on target creature and that creature gains "Remove a matrix counter from this creature: Regenerate this creature." Activate this ability only during your upkeep.
+mana={4}
+type=Artifact
+[/card]
+[card]
 name=Lifeblood
 auto=@tapped(mountain|opponentBattlefield):life:1 controller
 text=Whenever a Mountain an opponent controls becomes tapped, you gain 1 life.
@@ -22715,6 +22760,17 @@ type=Creature
 subtype=Spirit
 power=1
 toughness=1
+[/card]
+[card]
+name=Lockjaw Snapper
+abilities=wither
+auto=@movedTo(this|graveyard) from(myBattlefield):counter(-1/-1) all(creature[counter{-1/-1}])
+text=Wither (This deals damage to creatures in the form of -1/-1 counters.) -- When Lockjaw Snapper is put into a graveyard from the battlefield, put a -1/-1 counter on each creature with a -1/-1 counter on it.
+mana={4}
+type=Artifact Creature
+subtype=Scarecrow
+power=2
+toughness=2
 [/card]
 [card]
 name=Locust Swarm
@@ -39831,6 +39887,14 @@ power=0
 toughness=5
 [/card]
 [card]
+name=That Which Was Taken
+auto={4}{T}:counter(0/0,1,Divinity) target(*)
+auto=lord(*[counter{0/0.1.Divinity}]) indestructible
+text={4}, {T}: Put a divinity counter on target permanent other than That Which Was Taken. -- Each permanent with a divinity counter on it is indestructible.
+mana={4}
+type=Legendary Artifact
+[/card]
+[card]
 name=Thaumatog
 auto={S(land|myBattlefield)}:1/1
 auto={S(enchantment|myBattlefield)}:1/1
@@ -40250,6 +40314,17 @@ auto=foreach(beast) damage:1 all(player,creature[-flying])
 text=Thunder of Hooves deals X damage to each creature without flying and each player, where X is the number of Beasts on the battlefield.
 mana={3}{R}
 type=Sorcery
+[/card]
+[card]
+name=Thunderblust
+abilities=haste,persist
+auto=lord(thunderblust[counter{-1/-1.1}]) trample
+text=Haste -- Thunderblust has trample as long as it has a -1/-1 counter on it. -- Persist (When this creature is put into a graveyard from the battlefield, if it had no -1/-1 counters on it, return it to the battlefield under its owner's control with a -1/-1 counter on it.)
+mana={2}{R}{R}{R}
+type=Creature
+subtype=Elemental
+power=7
+toughness=2
 [/card]
 [card]
 name=Thunderbolt

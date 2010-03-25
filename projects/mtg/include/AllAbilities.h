@@ -228,6 +228,10 @@ class AACounter: public ActivatedAbility{
    return 0;
  }
 
+  const char* getMenuText() {
+    return "Counter";
+  }
+
   AACounter * clone() const{
     AACounter * a =  NEW AACounter(*this);
     a->isClone = 1;

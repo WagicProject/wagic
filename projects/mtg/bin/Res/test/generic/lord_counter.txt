@@ -4,7 +4,7 @@ firstmain
 inplay:185811
 manapool:{W}{U}
 [PLAYER2]
-inplay:Shivan Dragon
+inplay:Shivan Dragon,Grizzly Bears
 library:Forest,Island
 [DO]
 185811
@@ -16,13 +16,14 @@ next
 next
 next
 Shivan Dragon
+Grizzly Bears
 eot
 [ASSERT]
 untap
 [PLAYER1]
 inplay:185811
-life:20
+life:18
 [PLAYER2]
-inplay:Shivan Dragon
+inplay:Shivan Dragon,Grizzly Bears
 hand:Forest,Island
 [END]

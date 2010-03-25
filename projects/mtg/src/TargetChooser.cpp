@@ -218,7 +218,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
             if (minus) {
               cd->counterComparisonMode = COMPARISON_LESS;
             }else{
-              cd->counterComparisonMode = COMPARISON_AT_MOST;
+              cd->counterComparisonMode = COMPARISON_AT_LEAST;
             }
           }
         }else{

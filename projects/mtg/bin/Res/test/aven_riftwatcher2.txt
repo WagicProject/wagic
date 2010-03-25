@@ -2,7 +2,7 @@
 FIRSTMAIN
 [PLAYER1]
 hand:Aven Riftwatcher
-manapool:{2}{W}
+manapool:{G}
 [PLAYER2]
 [DO]
 aven riftwatcher
