@@ -15947,7 +15947,7 @@ type=Sorcery
 [/card]
 [card]
 name=Goblin Settler
-auto=destroy taret(land)
+auto=destroy target(land)
 text=When Goblin Settler enters the battlefield, destroy target land.
 mana={3}{R}
 type=Creature
@@ -23835,7 +23835,7 @@ type=Land
 name=Measure of Wickedness
 auto=@next my endofturn:bury
 auto=@next my endofturn:life:-8 controller
-auto=@movedto(graveyard) from(* other|*):moveto(opponentBattlefield)
+auto=@movedto(* other|graveyard) from(exile,library,graveyard,hand,battlefield):moveto(opponentBattlefield)
 text=At the beginning of your end step, sacrifice Measure of Wickedness and you lose 8 life. -- Whenever another card is put into your graveyard from anywhere, target opponent gains control of Measure of Wickedness.
 mana={3}{B}
 type=Enchantment
