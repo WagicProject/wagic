@@ -1085,6 +1085,19 @@ text=(Ancient Den isn't a spell.) -- {T}: Add {W} to your mana pool.
 type=Artifact Land
 [/card]
 [card]
+name=Ancient Hydra
+auto=counter(0/0,5,Fade)
+auto={1}{C(0/0,-1,Fade)}:damage:1 target(creature,player)
+auto=@each my upkeep:counter(0/0,-1,Fade)
+auto=@each my untap:moveTo(mygraveyard) all(ancient hydra[-counter{0/0.1.Fade}]|myBattlefield)
+text=Fading 5 (This creature enters the battlefield with five fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- {1}, Remove a fade counter from Ancient Hydra: Ancient Hydra deals 1 damage to target creature or player.
+mana={4}{R}
+type=Creature
+subtype=Hydra
+power=5
+toughness=1
+[/card]
+[card]
 name=Ancient Runes
 auto=@each my upkeep:foreach(artifact|myBattlefield) damage:1 controller
 auto=@each opponent upkeep:foreach(artifact|opponentBattlefield) damage:1 opponent
@@ -3620,6 +3633,19 @@ auto={T}{S(creature|myBattlefield)}:damage:1 target(creature,player)
 text={T}, Sacrifice a creature: Blasting Station deals 1 damage to target creature or player. -- Whenever a creature enters the battlefield, you may untap Blasting Station.
 mana={3}
 type=Artifact
+[/card]
+[card]
+name=Blastoderm
+abilities=shroud
+auto=counter(0/0,3,Fade)
+auto=@each my upkeep:counter(0/0,-1,Fade)
+auto=@each my untap:moveTo(mygraveyard) all(blastoderm[counter{0/0.0.Fade}]|myBattlefield)
+text=Shroud (This permanent can't be the target of spells or abilities.) -- Fading 3 (This creature enters the battlefield with three fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.)
+mana={2}{G}{G}
+type=Creature
+subtype=Beast
+power=5
+toughness=5
 [/card]
 [card]
 name=Blatant Thievery
@@ -7041,6 +7067,19 @@ type=Creature
 subtype=Faerie Spellshaper
 power=1
 toughness=1
+[/card]
+[card]
+name=Cloudskate
+abilities=flying
+auto=counter(0/0,3,Fade)
+auto=@each my upkeep:counter(0/0,-1,Fade)
+auto=@each my untap:moveTo(mygraveyard) all(cloudskate[counter{0/0.0.Fade}]|myBattlefield)
+text=Flying -- Fading 3 (This creature enters the battlefield with three fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.)
+mana={1}{U}
+type=Creature
+subtype=Illusion
+power=2
+toughness=2
 [/card]
 [card]
 name=Clutch of the Undercity
@@ -19841,6 +19880,19 @@ mana={2}{U}
 type=Instant
 [/card]
 [card]
+name=Jolting Merfolk
+auto=counter(0/0,4,Fade)
+auto={1}{C(0/0,-1,Fade)}:tap target(creature)
+auto=@each my upkeep:counter(0/0,-1,Fade)
+auto=@each my untap:moveTo(mygraveyard) all(jolting merfolk[-counter{0/0.1.Fade}]|myBattlefield)
+text=Fading 4 (This creature enters the battlefield with five fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- {1}, Remove a fade counter from Ancient Hydra: Ancient Hydra deals 1 damage to target creature or player.
+mana={2}{U}{U}
+type=Creature
+subtype=Merfolk
+power=2
+toughness=2
+[/card]
+[card]
 name=Joraga Bard
 auto=may lord(ally|myBattlefield) vigilance ueot
 auto=@movedTo(other ally|myBattlefield):may lord(ally|myBattlefield) vigilance ueot
@@ -21768,6 +21820,16 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Land Cap
+auto=@each my upkeep:counter(0/0,-1,Depletion)
+auto={T}:counter(0/0,1,Depletion) && Add{W}
+auto={T}:counter(0/0,1,Depletion) && Add{U}
+auto=lord(land cap[counter{0/0.1.Depletion}]) doesnotuntap
+auto=@each my untap:untap all(land cap[-counter{0/0.1.Depletion}])
+text=Land Cap doesn't untap during your untap step if it has a depletion counter on it. -- At the beginning of your upkeep, remove a depletion counter from Land Cap. -- {T}: Add {W} or {B} to your mana pool. Put a depletion counter on Land Cap.
+type=Land
+[/card]
+[card]
 name=Land Leeches
 abilities=first strike
 text=First strike
@@ -21904,6 +21966,16 @@ auto=may damage:2 all(creature[blocking])
 text=Lava Storm deals 2 damage to each attacking creature or Lava Storm deals 2 damage to each blocking creature.
 mana={3}{R}{R}
 type=Instant
+[/card]
+[card]
+name=Lava Tubes
+auto=@each my upkeep:counter(0/0,-1,Depletion)
+auto={T}:counter(0/0,1,Depletion) && Add{B}
+auto={T}:counter(0/0,1,Depletion) && Add{R}
+auto=lord(lava tubes[counter{0/0.1.Depletion}]) doesnotuntap
+auto=@each my untap:untap all(lava tubes[-counter{0/0.1.Depletion}])
+text=Lava Tubes doesn't untap during your untap step if it has a depletion counter on it. -- At the beginning of your upkeep, remove a depletion counter from Lava Tubes.-- {T}: Add {B} or {R} to your mana pool. Put a depletion counter on Lava Tubes.
+type=Land
 [/card]
 [card]
 name=Lava Zombie
@@ -28341,6 +28413,19 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Phyrexian Prowler
+auto=counter(0/0,3,Fade)
+auto={C(0/0,-1,Fade)}:1/1
+auto=@each my upkeep:counter(0/0,-1,Fade)
+auto=@each my upkeep:moveTo(mygraveyard) all(phyrexian prowler[-counter{0/0.1.Fade}]|myBattlefield)
+text=Fading 3 (This creature enters the battlefield with three fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- Remove a fade counter from Phyrexian Prowler: Phyrexian Prowler gets +1/+1 until end of turn.
+mana={3}{B}
+type=Creature
+subtype=Zombie Mercenary
+power=3
+toughness=3
+[/card]
+[card]
 name=Phyrexian Rager
 auto=draw:1
 auto=life:-1
@@ -30595,6 +30680,16 @@ mana={3}{G}
 type=Sorcery
 [/card]
 [card]
+name=Rejuvenation Chamber
+auto=counter(0/0,2,Fade)
+auto={T}:life:2
+auto=@each my upkeep:counter(0/0,-1,Fade)
+auto=@each my untap:moveTo(mygraveyard) all(Rejuvenation Chamber[-counter{0/0.1.Fade}]|myBattlefield)
+text=Fading 2 (This artifact enters the battlefield with two fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- {T}: You gain 2 life.
+mana={3}
+type=Artifact
+[/card]
+[card]
 name=Reki, the History of Kamigawa
 auto=@movedto(*[legendary]|mystack):draw:1 controller
 text=Whenever you cast a legendary spell, draw a card.
@@ -31361,6 +31456,16 @@ type=Creature
 subtype=Snake
 power=2
 toughness=1
+[/card]
+[card]
+name=River Delta
+auto=@each my upkeep:counter(0/0,-1,Depletion)
+auto={T}:counter(0/0,1,Depletion) && Add{U}
+auto={T}:counter(0/0,1,Depletion) && Add{B}
+auto=lord(river delta[counter{0/0.1.Depletion}]) doesnotuntap
+auto=@each my untap:untap all(river delta[-counter{0/0.1.Depletion}])
+text=River Delta doesn't untap during your untap step if it has a depletion counter on it. -- At the beginning of your upkeep, remove a depletion counter from River Delta. -- {T}: Add {W} or {B} to your mana pool. Put a depletion counter on River Delta.
+type=Land
 [/card]
 [card]
 name=River Kaijin
@@ -33589,6 +33694,16 @@ text={T}: Add {W} to your mana pool for each enchantment you control.
 type=Legendary Land
 [/card]
 [card]
+name=Serrated Arrows
+auto=counter(0/0,3,Arrowhead)
+auto=@each my upkeep:lord(serrated arrows[-counter{0/0.1.Arrowhead}])
+auto={C(0/0,-1,Arrowhead)}{T}:counter(-1/-1,1) target(creature)
+auto=@tapped(this):bury all(serrated arrows[-counter{0/0.1.Arrowhead}])
+text=Serrated Arrows enters the battlefield with three arrowhead counters on it. -- At the beginning of your upkeep, if there are no arrowhead counters on Serrated Arrows, sacrifice it. -- {T}, Remove an arrowhead counter from Serrated Arrows: Put a -1/-1 counter on target creature.
+mana={4}
+type=Artifact
+[/card]
+[card]
 name=Serrated Biskelion
 auto={T}:counter(-1/-1) all(this) && counter(-1/-1) target(creature)
 text={T}: Put a -1/-1 counter on Serrated Biskelion and a -1/-1 counter on target creature.
@@ -35208,6 +35323,19 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Skyshroud Behemoth
+auto=tap
+auto=counter(0/0,2,Fade)
+auto=@each my upkeep:counter(0/0,-1,Fade)
+auto=@each my untap:moveTo(mygraveyard) all(skyshroud behemoth[-counter{0/0.1.Fade}]|myBattlefield)
+text=Fading 2 (This creature enters the battlefield with two fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- Skyshroud Behemoth enters the battlefield tapped.
+mana={5}{G}{G}
+type=Creature
+subtype=Beast
+power=10
+toughness=10
+[/card]
+[card]
 name=Skyshroud Blessing
 auto=lord(land) shroud
 auto=draw:1 controller
@@ -35280,7 +35408,7 @@ toughness=1
 name=Skyshroud Ridgeback
 auto=counter(0/0,2,Fade)
 auto=@each my upkeep:counter(0/0,-1,Fade)
-auto=@each my upkeep:moveTo(mygraveyard) all(this[-counter{0/0.1.Fade}]|myBattlefield)
+auto=@each my untap:moveTo(mygraveyard) all(skyshroud ridgeback[-counter{0/0.1.Fade}]|myBattlefield)
 text=Fading 2 (This creature enters the battlefield with two fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.)
 mana={G}
 type=Creature
@@ -40322,6 +40450,16 @@ text=Timberland Ruins enters the battlefield tapped. -- {T}: Add {G} to your man
 type=Land
 [/card]
 [card]
+name=Timberline Ridge
+auto=@each my upkeep:counter(0/0,-1,Depletion)
+auto={T}:counter(0/0,1,Depletion) && Add{R}
+auto={T}:counter(0/0,1,Depletion) && Add{G}
+auto=lord(timberline ridge[counter{0/0.1.Depletion}]) doesnotuntap
+auto=@each my untap:untap all(timberline ridge[-counter{0/0.1.Depletion}])
+text=Timberline Ridge doesn't untap during your untap step if it has a depletion counter on it. -- At the beginning of your upkeep, remove a depletion counter from Timberline Ridge. -- {T}: Add {R} or {G} to your mana pool. Put a depletion counter on Timberline Ridge.
+type=Land
+[/card]
+[card]
 name=Timberwatch Elf
 auto={T}:foreach(elf) 1/1 target(creature)
 text={T}: Target creature gets +X/+X until end of turn, where X is the number of Elves on the battlefield.
@@ -42439,6 +42577,16 @@ type=Legendary Creature
 subtype=Human Rogue
 power=5
 toughness=5
+[/card]
+[card]
+name=Veldt
+auto=@each my upkeep:counter(0/0,-1,Depletion)
+auto={T}:counter(0/0,1,Depletion) && Add{G}
+auto={T}:counter(0/0,1,Depletion) && Add{W}
+auto=lord(veldt[counter{0/0.1.Depletion}]) doesnotuntap
+auto=@each my untap:untap all(veldt[-counter{0/0.1.Depletion}])
+text=Veldt doesn't untap during your untap step if it has a depletion counter on it. -- At the beginning of your upkeep, remove a depletion counter from Veldt. -- {T}: Add {G} or {W} to your mana pool. Put a depletion counter on Veldt.
+type=Land
 [/card]
 [card]
 name=Vendetta
@@ -45390,6 +45538,19 @@ type=Creature
 subtype=Human Druid
 power=1
 toughness=2
+[/card]
+[card]
+name=Woodripper
+auto=counter(0/0,3,Fade)
+auto=@each my upkeep:counter(0/0,-1,Fade)
+auto=auto={1}{C(0/0,-1,Fade)}:destroy target(artifact)
+auto=@each my untap:moveTo(mygraveyard) all(woodripper[-counter{0/0.1.Fade}]|myBattlefield)
+text=Fading 3 (This creature enters the battlefield with three fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- {1}, Remove a fade counter from Woodripper: Destroy target artifact.
+mana={3}{G}{G}
+type=Creature
+subtype=Beast
+power=4
+toughness=6
 [/card]
 [card]
 name=Woodwraith Corrupter
