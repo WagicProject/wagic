@@ -8,6 +8,7 @@
 #include "../include/CardGui.h"
 #include "../include/MTGDeck.h"
 #include "../include/Translate.h"
+#include "../include/ThisDescriptor.h"
 
 
 int AbilityFactory::countCards(TargetChooser * tc, Player * player, int option){
@@ -38,8 +39,8 @@ int AbilityFactory::countCards(TargetChooser * tc, Player * player, int option){
 Counter * AbilityFactory::parseCounter(string s, MTGCardInstance * target) {
   int nb = 1;
     string name = "";
-    size_t start = s.find("(") + 1;
-    size_t end = s.find(")", start);
+    size_t start = 0;
+    size_t end = s.length();
     size_t separator = s.find(",", start);
     if (separator == string::npos) separator = s.find(".", start);
     if (separator != string::npos){
@@ -362,11 +363,79 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     multi->oneShot=1;
     return multi;
   }
-
-  //Lord, foreach, aslongas
-  string lords[] = {"lord(","foreach(", "aslongas(", "all("};
+  
+  //rather dirty way to stop thises and lords from conflicting with each other.
+  string prelords[] = {"foreach(","lord(","aslongas(", "all("};
+  size_t lord = string::npos;
+  for (int j = 0; j < 4; ++j){
+    size_t found2 = s.find(prelords[j]);
+    if (found2!=string::npos && ((found == string::npos) || found2 < found)){
+      lord = found2;
+    }
+  }
+  
+ //This, ThisForEach;
+  string thises[] = {"this(","thisforeach("};
   found = string::npos;
   int i = -1;
+  for (int j = 0; j < 2; ++j){
+    size_t found2 = s.find(thises[j]);
+    if (found2!=string::npos && ((found == string::npos) || found2 < found)){
+      found = found2;
+      i = j;
+    }
+  }
+  if (found != string::npos && found < lord) {
+     size_t header = thises[i].size();
+     size_t end = s.find(")", found+header);
+     string s1;
+     if (found == 0 || end != s.size()-1){
+       s1 = s.substr(end+1);
+     }else{
+       s1 = s.substr(0, found);
+     }
+     if (end != string::npos){
+         string thisDescriptorString = s.substr(found+header,end-found-header);
+         ThisDescriptorFactory tdf;
+         ThisDescriptor * td = tdf.createThisDescriptor(thisDescriptorString);
+         
+         if (!td){
+           OutputDebugString("MTGABILITY: Parsing Error:");
+           OutputDebugString(s.c_str());
+           OutputDebugString("\n");
+           return NULL;
+         }
+
+          MTGAbility * a = parseMagicLine(s1,id,spell, card,0,activated); 
+          if (!a){
+            SAFE_DELETE(td);
+            return NULL;
+          }
+          MTGAbility * result = NULL;
+          int oneShot = 0;
+          if (activated) oneShot = 1;
+          if (card->hasType("sorcery") || card->hasType("instant")) oneShot = 1;
+          if (a->oneShot) oneShot = 1;
+          Damageable * _target = NULL;
+	        if (spell) _target = spell->getNextDamageableTarget();
+          if (!_target) _target = target;
+
+          switch(i){
+            case 0: result =  NEW AThis(id, card, _target, td, a); break;
+            case 1: result =  NEW AThisForEach(id, card, _target, td, a); break;
+            default: result =  NULL;
+          }
+          if (result) result->oneShot = oneShot;
+          return result;
+        }
+      return NULL;
+  }
+
+
+  //Lord, foreach, aslongas
+  string lords[] = {"lord(","foreach(","aslongas(", "all("};
+  found = string::npos;
+  i = -1;
   for (int j = 0; j < 4; ++j){
     size_t found2 = s.find(lords[j]);
     if (found2!=string::npos && ((found == string::npos) || found2 < found)){
@@ -450,6 +519,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   }
 
   SAFE_DELETE(tc);
+
+  
 
    //Cycling
   found = s.find("cycling");
@@ -730,7 +801,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   if (found != string::npos){
     size_t start = s.find("(");
     size_t end = s.find(")");
-    string counterString = s.substr(start,end-start+1);
+    string counterString = s.substr(start+1,end-start-1);
     Counter * counter = parseCounter(counterString,target);
     if (counter){
       MTGAbility * a = NEW AACounter(id,card,target,counter->name.c_str(),counter->power,counter->toughness,counter->nb);

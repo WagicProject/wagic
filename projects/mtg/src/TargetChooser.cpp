@@ -204,9 +204,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
           }else{
             size_t start = attribute.find("{");
             size_t end = attribute.find("}");
-            string counterString = attribute.substr(start,end-start+1);
-            counterString.replace(0,1,"(");
-            counterString.replace(counterString.length() - 1,1,")");
+            string counterString = attribute.substr(start+1,end-start-1);
             AbilityFactory * abf = NEW AbilityFactory();
             Counter * counter = abf->parseCounter(counterString,card);
             if (counter) {

@@ -1,0 +1,35 @@
+[init]
+firstmain
+[player1]
+inplay:Knight of Cliffhaven
+manapool:{12}
+[player2]
+inplay:island,forest,swamp,moat
+hand:assassinate
+[do]
+Knight of Cliffhaven
+Knight of Cliffhaven
+Knight of Cliffhaven
+Knight of Cliffhaven
+next
+next
+Knight of Cliffhaven
+eot
+next
+next
+next
+island
+forest
+swamp
+assassinate
+Knight of Cliffhaven
+[assert]
+firstmain
+[player1]
+inplay:Knight of Cliffhaven
+[player2]
+inplay:island,forest,swamp,moat
+hand:assassinate
+manapool:{G}{U}{B}
+life:16
+[end]

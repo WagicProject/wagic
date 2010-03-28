@@ -1,0 +1,26 @@
+[init]
+untap
+[player1]
+inplay:Urza's Mine,Urza's Tower,Urza's Power Plant,Barrin's Codex
+library:forest,mountain,island,swamp
+[player2]
+[do]
+next
+choice 0
+eot
+eot
+next
+choice 0
+next
+next
+Urza's Mine
+Urza's Power Plant
+Barrin's Codex
+[assert]
+firstmain
+[player1]
+inplay:Urza's Mine,Urza's Tower,Urza's Power Plant
+graveyard:Barrin's Codex
+hand:forest,mountain,island,swamp
+[player2]
+[end]

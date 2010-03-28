@@ -2887,6 +2887,14 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Barrin's Codex
+auto=@each my upkeep:may counter(0/0,1,Page)
+auto={4}{T}{S}:thisforeach(counter{0/0.1.Page}) draw:1 controller
+text=At the beginning of your upkeep, you may put a page counter on Barrin's Codex. -- {4}, {T}, Sacrifice Barrin's Codex: Draw X cards, where X is the number of page counters on Barrin's Codex.
+mana={4}
+type=Artifact
+[/card]
+[card]
 name=Basal Sliver
 auto=lord(sliver) {S}:Add {B}{B}
 text=All Slivers have "Sacrifice this permanent: Add {B}{B} to your mana pool."
@@ -3515,6 +3523,14 @@ auto={T}{S}:add {G}{G}{G}
 text={T}, Sacrifice Black Lotus: Add three mana of any one color to your mana pool.
 mana={0}
 type=Artifact
+[/card]
+[card]
+name=Black Market
+auto=@movedTo(creature|graveyard) from(battlefield):counter(0/0,1,Charge)
+auto=@each my firstmain:thisforeach(counter{0/0.1.Charge}) add{B} controller
+text=Whenever a creature is put into a graveyard from the battlefield, put a charge counter on Black Market. -- At the beginning of your precombat main phase, add Black to your mana pool for each charge counter on Black Market.
+mana={3}{B}{B}
+type=Enchantment
 [/card]
 [card]
 name=Black Poplar Shaman
@@ -15974,6 +15990,17 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Goblin Razerunners
+auto={1}{R}{S(land|myBattlefield?)}:counter(1/1,1)
+auto=@each my endofturn:may thisforeach(counter{1/1,1}) damage:1 target(player)
+text={1}{R}, Sacrifice a land: Put a +1/+1 counter on Goblin Razerunners. -- At the beginning of your end step, you may have Goblin Razerunners deal damage equal to the number of +1/+1 counters on it to target player.
+mana={2}{R}{R}
+type=Creature
+subtype=Goblin Warrior
+power=3
+toughness=4
+[/card]
+[card]
 name=Goblin Replica
 auto={3}{R}{S}:destroy target(artifact)
 text={3}{R}, Sacrifice Goblin Replica: Destroy target artifact.
@@ -21230,6 +21257,21 @@ name=Knight Errant
 mana={1}{W}
 type=Creature
 subtype=Human Knight
+power=2
+toughness=2
+[/card]
+####Preemptive addition for Rise of the Eldrazi and to test new counter functions.
+[card]
+name=Knight of Cliffhaven
+auto={3}:counter(0/0,1,Level Up) asSorcery
+auto=this(counter{0/0,1,Level Up}) flying 
+auto=this(counter{0/0,1,Level Up}) 0/1
+auto=this(counter{0/0,4,Level Up}) vigilance
+auto=this(counter{0/0,4,Level Up}) 2/1
+text=Level up 3 -- [Level 1-3] Flying (2/3) -- [Level 4+] Flying, vigilance (4/4)
+mana={1}{W}
+type=Creature
+subtype=Kor Knight
 power=2
 toughness=2
 [/card]
@@ -39956,6 +39998,17 @@ auto=foreach(creature[tapped]|opponentBattlefield) draw:1
 text=Draw a card for each tapped creature target opponent controls.
 mana={2}{U}
 type=Sorcery
+[/card]
+[card]
+name=Thelon of Havenwood
+auto={B}{G}:moveTo(exile) target(fungus|mygraveyard) && counter(0/0,1,Spore) all(fungus)
+auto=lord(fungus) thisforeach(counter{0/0,1,Spore}) 1/1
+text=Each Fungus creature gets +1/+1 for each spore counter on it. -- {B}{G}, Exile a Fungus card from a graveyard: Put a spore counter on each Fungus on the battlefield.
+mana={G}{G}
+type=Legendary Creature
+subtype=Elf Druid
+power=2
+toughness=2
 [/card]
 [card]
 name=Thelonite Druid

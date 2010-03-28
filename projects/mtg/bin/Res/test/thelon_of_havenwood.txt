@@ -1,0 +1,31 @@
+[init]
+untap
+[player1]
+inplay:Thelon Of Havenwood,Thallid,Deathspore Thallid,forest,swamp
+graveyard:fungusaur
+[player2]
+[do]
+next
+next
+next
+forest
+swamp
+Thelon of Havenwood
+fungusaur
+next
+next
+Thallid
+choice 0
+Deathspore thallid
+choice 0
+next
+next
+next
+next
+[assert]
+secondmain
+[player1]
+inplay:Thelon Of Havenwood,Thallid,Deathspore Thallid,forest,swamp
+[player2]
+life:14
+[end]

@@ -793,6 +793,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\ThisDescriptor.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\Token.cpp"
 				>
 			</File>
@@ -1183,6 +1187,10 @@
 			</File>
 			<File
 				RelativePath=".\include\TextScroller.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\ThisDescriptor.h"
 				>
 			</File>
 			<File

@@ -1,0 +1,21 @@
+[init]
+draw
+[player1]
+inplay:Brass Secretary,Heart Warden,Limestone Golem,Black Market
+manapool:{6}
+[player2]
+[do]
+Heart Warden
+choice 1
+Brass Secretary
+Limestone Golem
+p1
+next
+[assert]
+firstmain
+[player1]
+inplay:Black Market
+graveyard:Brass Secretary,Heart Warden,Limestone Golem
+manapool:{B}{B}{B}
+[player2]
+[end]

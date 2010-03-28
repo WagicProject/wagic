@@ -31,6 +31,9 @@ generic/kicker.txt
 generic/kicker2.txt
 generic/landwalk.txt
 generic/legendary.txt
+###Level up tests disabled until knight of cliffhaven has an id
+###generic/level_up.txt
+###generic/level_up2.txt
 generic/lord_counter.txt
 generic/lord_counter_any.txt
 generic/lifelink.txt
@@ -55,6 +58,7 @@ generic/summoning_sickness.txt
 generic/targetController_life.txt
 generic/targetController_life2.txt
 generic/targetController_damage.txt
+generic/thisforeach.txt
 generic/tokens.txt
 generic/tokens2.txt
 generic/trample.txt
@@ -121,6 +125,7 @@ behemoth_sledge4.txt
 behemoth_sledge5.txt
 belligerent_hatchling.txt
 benalish_knight.txt
+black_market.txt
 black_vise.txt
 blessed_wine.txt
 blinking_spirit.txt
@@ -246,6 +251,7 @@ goblin_lackey2.txt
 goblin_lackey3.txt
 goblin_lackey4.txt
 goblin_offensive.txt
+goblin_razerunners.txt
 golgari_germination_i153.txt
 gravedigger.txt
 great_defender.txt
@@ -399,9 +405,10 @@ tanglesap.txt
 telekinetic_sliver.txt
 terror.txt
 terror2.txt
+thallid.txt
+thellon_of_havenwood.txt
 threaten.txt
 throne_of_bone.txt
-thallid.txt
 titanic_ultimatum.txt
 torture.txt
 tranquil_domain.txt

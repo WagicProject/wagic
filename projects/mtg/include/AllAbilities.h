@@ -14,6 +14,7 @@
 #include "WEvent.h"
 #include "GuiStatic.h"
 #include "GameObserver.h"
+#include "ThisDescriptor.h"
 
 #include <JGui.h>
 #include <hge/hgeparticle.h>
@@ -1875,8 +1876,148 @@ class AForeach:public ListMaintainerAbility{
 
 };
 
+ 
+class AThis:public MTGAbility{
+ public:
+   MTGAbility * ability;
+   MTGAbility * a;
+   ThisDescriptor * td;
+ AThis(int _id, MTGCardInstance * _source, Damageable * _target, ThisDescriptor * _td, MTGAbility * ability):MTGAbility(_id, _source,_target),ability(ability){
+    td = _td;
+    ability->source = source;
+    ability->target = target;
+    a = NULL;
+    SAFE_DELETE(tc);
+ }
+  int removeFromGame(){
+    return removeAbilityFromGame();
+  }
+
+  int addToGame(){
+    return MTGAbility::addToGame();
+  }
+
+  void Update(float dt){
+    resolve();
+  }
+
+  int resolve(){
+    //TODO check if ability is oneShot ?
+    if (td->match(source) > 0){
+      addAbilityToGame();
+    }
+    if (ability->oneShot) a = NULL; //allows to call the effect several times
+    return 1;
+  }
+
+  int addAbilityToGame(){
+    if (a) return 0;
+    a = ability->clone();
+    if (a->oneShot){
+      a->resolve();
+      delete(a);
+    }else{
+      a->addToGame();
+    }
+    return 1;    
+  }
+
+  int removeAbilityFromGame(){
+     if (!a) return 0;
+     game->removeObserver(a);
+     a = NULL;
+     return 1;
+  }
+
+  ~AThis(){
+    if (!isClone) SAFE_DELETE(ability); SAFE_DELETE(td);
+  }
 
 
+  AThis * clone() const{
+    AThis * a =  NEW AThis(*this);
+    a->isClone = 1;
+    return a;
+  }
+};
+
+class AThisForEach:public MTGAbility{
+ public:
+   MTGAbility * ability;
+   ThisDescriptor * td;
+   vector<MTGAbility *> abilities;
+ AThisForEach(int _id, MTGCardInstance * _source, Damageable * _target, ThisDescriptor * _td, MTGAbility * ability):MTGAbility(_id, _source,_target),ability(ability){
+    td = _td;
+    ability->source = source;
+    ability->target = target;
+    SAFE_DELETE(tc);
+ }
+
+  int removeFromGame(){
+    return removeAbilityFromGame();
+  }
+
+  int addToGame(){
+    return MTGAbility::addToGame();
+  }
+
+  void Update(float dt){
+    resolve();
+  }
+
+  int resolve(){
+    //TODO check if ability is oneShot ?
+    int matches = td->match(source);
+    if (matches > 0) {
+      if (abilities.size()){     
+        removeAbilityFromGame();
+      }
+      for (int i = 0; i < matches; i++) {
+        addAbilityToGame();
+      }
+    }
+    return 1;
+  }
+
+  int addAbilityToGame(){
+    MTGAbility * a = ability->clone();
+    a->target = target;
+    if (a->oneShot){
+      a->resolve();
+      delete(a);
+    }else{
+      a->addToGame();
+      abilities.push_back(a);
+      //abilities[abilities.size()] = a;
+    }
+    return 1;  
+  }
+
+  int removeAbilityFromGame(){
+    for (int i = abilities.size(); i > 0; i--){
+      game->removeObserver(abilities[i-1]);
+    }
+    abilities.clear();
+    return 1;
+  }
+
+  ~AThisForEach(){
+    if (!isClone){
+      SAFE_DELETE(ability);
+      SAFE_DELETE(td);
+    }
+    if (abilities.size()){
+      removeAbilityFromGame();
+    }
+  }
+
+
+  AThisForEach * clone() const{
+    AThisForEach * a =  NEW AThisForEach(*this);
+    a->isClone = 1;
+    return a;
+  }
+};
 
 class AADamager:public ActivatedAbilityTP{
 public:

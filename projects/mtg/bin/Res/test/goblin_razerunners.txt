@@ -1,0 +1,26 @@
+[init]
+firstmain
+[player1]
+inplay:Goblin Razerunners,Forest,Island
+manapool:{R}{R}{R}{R}
+[player2]
+[do]
+goblin razerunners
+forest
+goblin razerunners
+island
+next
+next
+next
+next
+next
+choice 0
+p2
+[assert]
+endofturn
+[player1]
+inplay:Goblin Razerunners
+graveyard:forest,island
+[player2]
+life:18
+[end]
