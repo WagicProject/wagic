@@ -750,12 +750,6 @@ mana={2}
 type=Artifact
 [/card]
 [card]
-name=Altar of Shadows
-text=At the beginning of your precombat main phase, add {B} to your mana pool for each charge counter on Altar of Shadows. -- {7}, {T}: Destroy target creature. Then put a charge counter on Altar of Shadows.
-mana={7}
-type=Artifact
-[/card]
-[card]
 name=Alter Reality
 text=Change the text of target permanent or spell by replacing all instances of one color word with another. (This effect lasts indefinitely.) -- Flashback {1}{U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={1}{U}
@@ -900,15 +894,6 @@ name=Ancient Grudge
 text=Destroy target artifact. -- Flashback {G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={1}{R}
 type=Instant
-[/card]
-[card]
-name=Ancient Hydra
-text=Fading 5 (This creature enters the battlefield with five fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- {1}, Remove a fade counter from Ancient Hydra: Ancient Hydra deals 1 damage to target creature or player.
-mana={4}{R}
-type=Creature
-subtype=Hydra
-power=5
-toughness=1
 [/card]
 [card]
 name=Ancient Kavu
@@ -2170,16 +2155,7 @@ type=Creature
 subtype=Bird Cleric
 power=2
 toughness=2
-[/card]
-[card]
-name=Aven Riftwatcher
-text=Flying -- Vanishing 3 (This permanent enters the battlefield with three time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- When Aven Riftwatcher enters the battlefield or leaves the battlefield, you gain 2 life.
-mana={2}{W}
-type=Creature
-subtype=Bird Rebel Soldier
-power=2
-toughness=3
-[/card]
+[/card
 [card]
 name=Aven Shrine
 text=Whenever a player casts a spell, that player gains X life, where X is the number of cards in all graveyards with the same name as that spell.
@@ -2705,12 +2681,6 @@ type=Creature
 subtype=Kithkin Cleric
 power=0
 toughness=4
-[/card]
-[card]
-name=Barrin's Codex
-text=At the beginning of your upkeep, you may put a page counter on Barrin's Codex. -- {4}, {T}, Sacrifice Barrin's Codex: Draw X cards, where X is the number of page counters on Barrin's Codex.
-mana={4}
-type=Artifact
 [/card]
 [card]
 name=Barrin's Spite
@@ -3239,12 +3209,6 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-name=Black Market
-text=Whenever a creature is put into a graveyard from the battlefield, put a charge counter on Black Market. -- At the beginning of your precombat main phase, add {B} to your mana pool for each charge counter on Black Market.
-mana={3}{B}{B}
-type=Enchantment
-[/card]
-[card]
 name=Blackmail
 text=Target player reveals three cards from his or her hand and you choose one of them. That player discards that card.
 mana={B}
@@ -3293,15 +3257,6 @@ name=Blanket of Night
 text=Each land is a Swamp in addition to its other land types.
 mana={1}{B}{B}
 type=Enchantment
-[/card]
-[card]
-name=Blastoderm
-text=Shroud (This permanent can't be the target of spells or abilities.) -- Fading 3 (This creature enters the battlefield with three fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.)
-mana={2}{G}{G}
-type=Creature
-subtype=Beast
-power=5
-toughness=5
 [/card]
 [card]
 name=Blaze of Glory
@@ -3614,12 +3569,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Bloodletter Quill
-text={2}, {T}, Put a blood counter on Bloodletter Quill: Draw a card, then lose 1 life for each blood counter on Bloodletter Quill. -- {U}{B}: Remove a blood counter from Bloodletter Quill.
-mana={3}
-type=Artifact
-[/card]
-[card]
 name=Bloodline Shaman
 text={T}: Choose a creature type. Reveal the top card of your library. If that card is a creature card of the chosen type, put it into your hand. Otherwise, put it into your graveyard.
 mana={1}{G}
@@ -3669,15 +3618,6 @@ type=Creature
 subtype=Beast
 power=3
 toughness=4
-[/card]
-[card]
-name=Bloodthirsty Ogre
-text={T}: Put a devotion counter on Bloodthirsty Ogre. -- {T}: Target creature gets -X/-X until end of turn, where X is the number of devotion counters on Bloodthirsty Ogre. Activate this ability only if you control a Demon.
-mana={2}{B}
-type=Creature
-subtype=Ogre Warrior Shaman
-power=3
-toughness=1
 [/card]
 [card]
 name=Bloom Tender
@@ -4017,15 +3957,6 @@ type=Legendary Creature
 subtype=Kirin Spirit
 power=4
 toughness=4
-[/card]
-[card]
-name=Bounty Hunter
-text={T}: Put a bounty counter on target nonblack creature. -- {T}: Destroy target creature with a bounty counter on it.
-mana={2}{B}{B}
-type=Creature
-subtype=Human Archer Minion
-power=2
-toughness=2
 [/card]
 [card]
 name=Bounty of the Hunt
@@ -4872,15 +4803,6 @@ type=Creature
 subtype=Shapeshifter
 power=4
 toughness=4
-[/card]
-[card]
-name=Calciderm
-text=Shroud (This permanent can't be the target of spells or abilities.) -- Vanishing 4 (This permanent enters the battlefield with four time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.)
-mana={2}{W}{W}
-type=Creature
-subtype=Beast
-power=5
-toughness=5
 [/card]
 [card]
 name=Calciform Pools
@@ -6288,11 +6210,6 @@ mana={2}
 type=Artifact
 [/card]
 [card]
-name=City of Shadows
-text={T}, Exile a creature you control: Put a storage counter on City of Shadows. -- {T}: Add {X} to your mana pool, where X is the number of storage counters on City of Shadows.
-type=Land
-[/card]
-[card]
 name=City of Solitude
 text=Players can cast spells and activate abilities only during their own turns.
 mana={2}{G}
@@ -6500,15 +6417,6 @@ type=Legendary Creature
 subtype=Kirin Spirit
 power=4
 toughness=4
-[/card]
-[card]
-name=Cloudskate
-text=Flying -- Fading 3 (This creature enters the battlefield with three fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.)
-mana={1}{U}
-type=Creature
-subtype=Illusion
-power=2
-toughness=2
 [/card]
 [card]
 name=Cloudstone Curio
@@ -7629,9 +7537,6 @@ type=Sorcery
 [/card]
 [card]
 name=Cruel Revival
-auto=bury target(creature[-Zombie])
-auto=may moveto(myhand) target(Zombie|mygraveyard)
-###THIS CANNOT WORK RIGHT NOW BECAUSE IT HAS TWO TARGETS!
 text=Destroy target non-Zombie creature. It can't be regenerated. Return up to one target Zombie card from your graveyard to your hand.
 mana={4}{B}
 type=Instant
@@ -7647,12 +7552,6 @@ name=Cruel Ultimatum
 text=Target opponent sacrifices a creature, discards three cards, then loses 5 life. You return a creature card from your graveyard to your hand, draw three cards, then gain 5 life.
 mana={U}{U}{B}{B}{B}{R}{R}
 type=Sorcery
-[/card]
-[card]
-name=Crumbling Ashes
-text=At the beginning of your upkeep, destroy target creature with a -1/-1 counter on it.
-mana={1}{B}
-type=Enchantment
 [/card]
 [card]
 name=Crumbling Sanctuary
@@ -8116,14 +8015,7 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Dark Depths
-text=Dark Depths enters the battlefield with ten ice counters on it. -- {3}: Remove an ice counter from Dark Depths. -- When Dark Depths has no ice counters on it, sacrifice it. If you do, put a legendary 20/20 black Avatar creature token with flying and "This creature is indestructible" named Marit Lage onto the battlefield.
-type=Legendary Snow Land
-[/card]
-[card]
 name=Dark Maze
-abilities=defender
-auto={0}:defender && @next end:moveto(exile)
 text=Defender (This creature can't attack.) -- {0}: Dark Maze can attack this turn as though it didn't have defender. Exile it at the beginning of the next end step.
 mana={4}{U}
 type=Creature
@@ -8429,15 +8321,6 @@ name=Deadshot
 text=Tap target creature. It deals damage equal to its power to another target creature.
 mana={3}{R}
 type=Sorcery
-[/card]
-[card]
-name=Deadwood Treefolk
-text=Vanishing 3 (This permanent enters the battlefield with three time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- When Deadwood Treefolk enters the battlefield or leaves the battlefield, return another target creature card from your graveyard to your hand.
-mana={5}{G}
-type=Creature
-subtype=Treefolk
-power=3
-toughness=6
 [/card]
 [card]
 name=Death Bomb
@@ -12598,13 +12481,6 @@ mana={3}{B}{B}
 type=Sorcery
 [/card]
 [card]
-name=Festering Wound
-text=Enchant creature -- At the beginning of your upkeep, you may put an infection counter on Festering Wound. -- At the beginning of the upkeep of enchanted creature's controller, Festering Wound deals X damage to that player, where X is the number of infection counters on Festering Wound.
-mana={1}{B}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Festival
 text=Cast Festival only during an opponent's upkeep. -- Creatures can't attack this turn.
 mana={W}
@@ -14372,11 +14248,6 @@ text=If Gemstone Caverns is in your opening hand and you're not playing first, y
 type=Legendary Land
 [/card]
 [card]
-name=Gemstone Mine
-text=Gemstone Mine enters the battlefield with three mining counters on it. -- {T}, Remove a mining counter from Gemstone Mine: Add one mana of any color to your mana pool. If there are no mining counters on Gemstone Mine, sacrifice it.
-type=Land
-[/card]
-[card]
 name=General Jarkeld
 text={T}: Switch the blocking creatures of two target attacking creatures. Activate this ability only during the declare blockers step.
 mana={3}{W}
@@ -15351,15 +15222,6 @@ type=Creature
 subtype=Goblin Mutant
 power=5
 toughness=5
-[/card]
-[card]
-name=Goblin Razerunners
-text={1}{R}, Sacrifice a land: Put a +1/+1 counter on Goblin Razerunners. -- At the beginning of your end step, you may have Goblin Razerunners deal damage equal to the number of +1/+1 counters on it to target player.
-mana={2}{R}{R}
-type=Creature
-subtype=Goblin Warrior
-power=3
-toughness=4
 [/card]
 [card]
 name=Goblin Recruiter
@@ -17300,11 +17162,6 @@ mana={4}{G}
 type=Enchantment
 [/card]
 [card]
-name=Hickory Woodlot
-text=Hickory Woodlot enters the battlefield tapped with two depletion counters on it. -- {T}, Remove a depletion counter from Hickory Woodlot: Add {G}{G} to your mana pool. If there are no depletion counters on Hickory Woodlot, sacrifice it.
-type=Land
-[/card]
-[card]
 name=Hidden Ancients
 text=When an opponent casts an enchantment spell, if Hidden Ancients is an enchantment, Hidden Ancients becomes a 5/5 Treefolk creature.
 mana={1}{G}
@@ -17880,15 +17737,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Hunter of Eyeblights
-text=When Hunter of Eyeblights enters the battlefield, put a +1/+1 counter on target creature you don't control. -- {2}{B}, {T}: Destroy target creature with a counter on it.
-mana={3}{B}{B}
-type=Creature
-subtype=Elf Assassin
-power=3
-toughness=3
-[/card]
-[card]
 name=Hunting Grounds
 text=Threshold - As long as seven or more cards are in your graveyard, Hunting Grounds has "Whenever an opponent casts a spell, you may put a creature card from your hand onto the battlefield."
 mana={G}{W}
@@ -18007,15 +17855,6 @@ type=Creature
 subtype=Human Soldier
 power=1
 toughness=1
-[/card]
-[card]
-name=Icatian Moneychanger
-text=Icatian Moneychanger enters the battlefield with three credit counters on it. -- When Icatian Moneychanger enters the battlefield, it deals 3 damage to you. -- At the beginning of your upkeep, put a credit counter on Icatian Moneychanger. -- Sacrifice Icatian Moneychanger: You gain 1 life for each credit counter on Icatian Moneychanger. Activate this ability only during your upkeep.
-mana={W}
-type=Creature
-subtype=Human
-power=0
-toughness=2
 [/card]
 [card]
 name=Icatian Phalanx
@@ -18438,13 +18277,6 @@ type=Creature
 subtype=Elemental Shaman
 power=2
 toughness=2
-[/card]
-[card]
-name=Incendiary
-text=Enchant creature -- At the beginning of your upkeep, you may put a fuse counter on Incendiary. -- When enchanted creature is put into a graveyard, Incendiary deals X damage to target creature or player, where X is the number of fuse counters on Incendiary.
-mana={R}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Incendiary Command
@@ -19453,15 +19285,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Jolting Merfolk
-text=Fading 4 (This creature enters the battlefield with four fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- Remove a fade counter from Jolting Merfolk: Tap target creature.
-mana={2}{U}{U}
-type=Creature
-subtype=Merfolk
-power=2
-toughness=2
-[/card]
-[card]
 name=Joraga Warcaller
 text=Multikicker {1}{G} (You may pay an additional {1}{G} any number of times as you cast this spell.) -- Joraga Warcaller enters the battlefield with a +1/+1 counter on it for each time it was kicked. -- Other Elf creatures you control get +1/+1 for each +1/+1 counter on Joraga Warcaller.
 mana={G}
@@ -20114,15 +19937,6 @@ type=Creature
 subtype=Human Warrior
 power=4
 toughness=1
-[/card]
-[card]
-name=Keldon Marauders
-text=Vanishing 2 (This permanent enters the battlefield with two time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- When Keldon Marauders enters the battlefield or leaves the battlefield, it deals 1 damage to target player.
-mana={1}{R}
-type=Creature
-subtype=Human Warrior
-power=3
-toughness=3
 [/card]
 [card]
 name=Keldon Megaliths
@@ -21101,11 +20915,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Land Cap
-text=Land Cap doesn't untap during your untap step if it has a depletion counter on it. -- At the beginning of your upkeep, remove a depletion counter from Land Cap. -- {T}: Add {W} or {U} to your mana pool. Put a depletion counter on Land Cap.
-type=Land
-[/card]
-[card]
 name=Land Equilibrium
 text=If an opponent who controls at least as many lands as you do would put a land onto the battlefield, that player instead puts that land onto the battlefield then sacrifices a land.
 mana={2}{U}{U}
@@ -21282,11 +21091,6 @@ type=Creature
 subtype=Lizard
 power=2
 toughness=2
-[/card]
-[card]
-name=Lava Tubes
-text=Lava Tubes doesn't untap during your untap step if it has a depletion counter on it. -- At the beginning of your upkeep, remove a depletion counter from Lava Tubes. -- {T}: Add {B} or {R} to your mana pool. Put a depletion counter on Lava Tubes.
-type=Land
 [/card]
 [card]
 name=Lavaball Trap
@@ -21651,12 +21455,6 @@ type=Sorcery
 [card]
 name=Life Chisel
 text=Sacrifice a creature: You gain life equal to the sacrificed creature's toughness. Activate this ability only during your upkeep.
-mana={4}
-type=Artifact
-[/card]
-[card]
-name=Life Matrix
-text={4}, {T}: Put a matrix counter on target creature and that creature gains "Remove a matrix counter from this creature: Regenerate this creature." Activate this ability only during your upkeep.
 mana={4}
 type=Artifact
 [/card]
@@ -22085,15 +21883,6 @@ mana={1}
 type=Artifact
 [/card]
 [card]
-name=Lockjaw Snapper
-text=Wither (This deals damage to creatures in the form of -1/-1 counters.) -- When Lockjaw Snapper is put into a graveyard from the battlefield, put a -1/-1 counter on each creature with a -1/-1 counter on it.
-mana={4}
-type=Artifact Creature
-subtype=Scarecrow
-power=2
-toughness=2
-[/card]
-[card]
 name=Locust Miser
 text=Each opponent's maximum hand size is reduced by two.
 mana={2}{B}{B}
@@ -22221,12 +22010,6 @@ subtype=Aura
 [card]
 name=Lotus Bloom
 text=Suspend 3 - {0} (Rather than cast this card from your hand, pay {0} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.) -- {T}, Sacrifice Lotus Bloom: Add three mana of any one color to your mana pool.
-type=Artifact
-[/card]
-[card]
-name=Lotus Blossom
-text=At the beginning of your upkeep, you may put a petal counter on Lotus Blossom. -- {T}, Sacrifice Lotus Blossom: Add X mana of any one color to your mana pool, where X is the number of petal counters on Lotus Blossom.
-mana={2}
 type=Artifact
 [/card]
 [card]
@@ -22656,12 +22439,6 @@ name=Magma Jet
 text=Magma Jet deals 2 damage to target creature or player. -- Scry 2. (To scry 2, look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
 mana={1}{R}
 type=Instant
-[/card]
-[card]
-name=Magma Mine
-text={4}: Put a pressure counter on Magma Mine. -- {T}, Sacrifice Magma Mine: Magma Mine deals damage equal to the number of pressure counters on it to target creature or player.
-mana={1}
-type=Artifact
 [/card]
 [card]
 name=Magma Rift
@@ -23890,12 +23667,6 @@ mana={X}{2}{B}
 type=Sorcery
 [/card]
 [card]
-name=Midsummer Revel
-text=At the beginning of your upkeep, you may put a verse counter on Midsummer Revel. -- {G}, Sacrifice Midsummer Revel: Put X 3/3 green Beast creature tokens onto the battlefield, where X is the number of verse counters on Midsummer Revel.
-mana={3}{G}{G}
-type=Enchantment
-[/card]
-[card]
 name=Might of Old Krosa
 text=Target creature gets +2/+2 until end of turn. If you cast this spell during your main phase, that creature gets +4/+4 until end of turn instead.
 mana={G}
@@ -24840,13 +24611,6 @@ name=Momentary Blink
 text=Exile target creature you control, then return it to the battlefield under its owner's control. -- Flashback {3}{U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={1}{W}
 type=Instant
-[/card]
-[card]
-name=Momentum
-text=Enchant creature -- At the beginning of your upkeep, you may put a growth counter on Momentum. -- Enchanted creature gets +1/+1 for each growth counter on Momentum.
-mana={2}{G}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Momir Vig, Simic Visionary
@@ -28006,11 +27770,6 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Peat Bog
-text=Peat Bog enters the battlefield tapped with two depletion counters on it. -- {T}, Remove a depletion counter from Peat Bog: Add {B}{B} to your mana pool. If there are no depletion counters on Peat Bog, sacrifice it.
-type=Land
-[/card]
-[card]
 name=Pedantic Learning
 text=Whenever a land card is put into your graveyard from your library, you may pay {1}. If you do, draw a card.
 mana={U}{U}
@@ -28490,15 +28249,6 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-name=Phyrexian Prowler
-text=Fading 3 (This creature enters the battlefield with three fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- Remove a fade counter from Phyrexian Prowler: Phyrexian Prowler gets +1/+1 until end of turn.
-mana={3}{B}
-type=Creature
-subtype=Zombie Mercenary
-power=3
-toughness=3
-[/card]
-[card]
 name=Phyrexian Purge
 text=Destroy any number of target creatures. -- Phyrexian Purge costs 3 life more to cast for each target.
 mana={2}{B}{R}
@@ -28665,19 +28415,9 @@ type=Land
 name=Pinpoint Avalanche
 target=creature
 auto=damage:4
-###THIS CARD VERSION WON'T PREVENT THE CARD FROM BEING REGENERATED!!! 0.9.1
 text=Pinpoint Avalanche deals 4 damage to target creature. The damage can't be prevented.
 mana={3}{R}{R}
 type=Instant
-[/card]
-[card]
-name=Pious Kitsune
-text=At the beginning of your upkeep, put a devotion counter on Pious Kitsune. Then if a creature named Eight-and-a-Half-Tails is on the battlefield, you gain 1 life for each devotion counter on Pious Kitsune. -- {T}, Remove a devotion counter from Pious Kitsune: You gain 1 life.
-mana={2}{W}
-type=Creature
-subtype=Fox Cleric
-power=1
-toughness=2
 [/card]
 [card]
 name=Pious Warrior
@@ -29447,13 +29187,6 @@ toughness=3
 name=Prison Term
 text=Enchant creature -- Enchanted creature can't attack or block and its activated abilities can't be activated. -- Whenever a creature enters the battlefield under an opponent's control, you may attach Prison Term to that creature.
 mana={1}{W}{W}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
-name=Private Research
-text=Enchant creature -- At the beginning of your upkeep, you may put a page counter on Private Research. -- When enchanted creature is put into a graveyard, draw a card for each page counter on Private Research.
-mana={U}
 type=Enchantment
 subtype=Aura
 [/card]
@@ -30700,15 +30433,6 @@ mana={X}{B}
 type=Sorcery
 [/card]
 [card]
-name=Ravaging Riftwurm
-text=Kicker {4} (You may pay an additional {4} as you cast this spell.) -- Vanishing 2 (This permanent enters the battlefield with two time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- If Ravaging Riftwurm was kicked, it enters the battlefield with three additional time counters on it.
-mana={1}{G}{G}
-type=Creature
-subtype=Wurm
-power=6
-toughness=6
-[/card]
-[card]
 name=Raven Familiar
 text=Flying -- Echo {2}{U} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Raven Familiar enters the battlefield, look at the top three cards of your library. Put one of them into your hand and the rest on the bottom of your library in any order.
 mana={2}{U}
@@ -30861,15 +30585,6 @@ name=Razor Pendulum
 text=At the beginning of each player's end step, if that player has 5 or less life, Razor Pendulum deals 2 damage to him or her.
 mana={4}
 type=Artifact
-[/card]
-[card]
-name=Razorfin Abolisher
-text={1}{U}, {T}: Return target creature with a counter on it to its owner's hand.
-mana={2}{U}
-type=Creature
-subtype=Merfolk Wizard
-power=2
-toughness=2
 [/card]
 [card]
 name=Razorgrass Screen
@@ -31246,12 +30961,6 @@ mana={2}
 type=Artifact
 [/card]
 [card]
-name=Rejuvenation Chamber
-text=Fading 2 (This artifact enters the battlefield with two fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- {T}: You gain 2 life.
-mana={3}
-type=Artifact
-[/card]
-[card]
 name=Rekindled Flame
 target=creature,player
 text=Rekindled Flame deals 4 damage to target creature or player. -- At the beginning of your upkeep, if an opponent has no cards in hand, you may return Rekindled Flame from your graveyard to your hand.
@@ -31327,11 +31036,6 @@ name=Remembrance
 text=Whenever a nontoken creature you control is put into a graveyard from the battlefield, you may search your library for a card with the same name as that creature, reveal it, and put it into your hand. If you do, shuffle your library.
 mana={3}{W}
 type=Enchantment
-[/card]
-[card]
-name=Remote Farm
-text=Remote Farm enters the battlefield tapped with two depletion counters on it. -- {T}, Remove a depletion counter from Remote Farm: Add {W}{W} to your mana pool. If there are no depletion counters on Remote Farm, sacrifice it.
-type=Land
 [/card]
 [card]
 name=Remove Enchantments
@@ -32208,11 +31912,6 @@ mana={3}{R}
 type=Sorcery
 [/card]
 [card]
-name=River Delta
-text=River Delta doesn't untap during your untap step if it has a depletion counter on it. -- At the beginning of your upkeep, remove a depletion counter from River Delta. -- {T}: Add {U} or {B} to your mana pool. Put a depletion counter on River Delta.
-type=Land
-[/card]
-[card]
 name=River of Tears
 text={T}: Add {U} to your mana pool. If you played a land this turn, add {B} to your mana pool instead.
 type=Land
@@ -32269,15 +31968,6 @@ mana={2}{R}
 type=Creature
 subtype=Insect
 power=1
-toughness=1
-[/card]
-[card]
-name=Roc Hatchling
-text=Roc Hatchling enters the battlefield with four shell counters on it. -- At the beginning of your upkeep, remove a shell counter from Roc Hatchling. -- As long as Roc Hatchling has no shell counters on it, it gets +3/+2 and has flying.
-mana={R}
-type=Creature
-subtype=Bird
-power=0
 toughness=1
 [/card]
 [card]
@@ -32857,15 +32547,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Rusting Golem
-text=Fading 5 (This creature enters the battlefield with five fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- Rusting Golem's power and toughness are each equal to the number of fade counters on it.
-mana={4}
-type=Artifact Creature
-subtype=Golem
-power=*
-toughness=*
-[/card]
-[card]
 name=Ruthless Cullblade
 text=Ruthless Cullblade gets +2/+1 as long as an opponent has 10 or less life.
 mana={1}{B}
@@ -33293,11 +32974,6 @@ mana={3}
 type=Artifact
 [/card]
 [card]
-name=Sandstone Needle
-text=Sandstone Needle enters the battlefield tapped with two depletion counters on it. -- {T}, Remove a depletion counter from Sandstone Needle: Add {R}{R} to your mana pool. If there are no depletion counters on Sandstone Needle, sacrifice it.
-type=Land
-[/card]
-[card]
 name=Sandstorm Eidolon
 text={R}, Sacrifice Sandstorm Eidolon: Target creature can't block this turn. -- Whenever you cast a multicolored spell, you may return Sandstorm Eidolon from your graveyard to your hand.
 mana={3}{R}
@@ -33407,11 +33083,6 @@ type=Creature
 subtype=Merfolk
 power=1
 toughness=2
-[/card]
-[card]
-name=Saprazzan Skerry
-text=Saprazzan Skerry enters the battlefield tapped with two depletion counters on it. -- {T}, Remove a depletion counter from Saprazzan Skerry: Add {U}{U} to your mana pool. If there are no depletion counters on Saprazzan Skerry, sacrifice it.
-type=Land
 [/card]
 [card]
 name=Saproling Burst
@@ -34469,12 +34140,6 @@ name=Serra's Liturgy
 text=At the beginning of your upkeep, you may put a verse counter on Serra's Liturgy. -- {W}, Sacrifice Serra's Liturgy: Destroy up to X target artifacts and/or enchantments, where X is the number of verse counters on Serra's Liturgy.
 mana={2}{W}{W}
 type=Enchantment
-[/card]
-[card]
-name=Serrated Arrows
-text=Serrated Arrows enters the battlefield with three arrowhead counters on it. -- At the beginning of your upkeep, if there are no arrowhead counters on Serrated Arrows, sacrifice it. -- {T}, Remove an arrowhead counter from Serrated Arrows: Put a -1/-1 counter on target creature.
-mana={4}
-type=Artifact
 [/card]
 [card]
 name=Serum Powder
@@ -35844,15 +35509,6 @@ mana={4}
 type=Legendary Artifact
 [/card]
 [card]
-name=Skyshroud Behemoth
-text=Fading 2 (This creature enters the battlefield with two fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- Skyshroud Behemoth enters the battlefield tapped.
-mana={5}{G}{G}
-type=Creature
-subtype=Beast
-power=10
-toughness=10
-[/card]
-[card]
 name=Skyshroud Claim
 text=Search your library for up to two Forest cards and put them onto the battlefield. Then shuffle your library.
 mana={3}{G}
@@ -35875,15 +35531,6 @@ type=Creature
 subtype=Beast
 power=2
 toughness=2
-[/card]
-[card]
-name=Skyshroud Ridgeback
-text=Fading 2 (This creature enters the battlefield with two fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.)
-mana={G}
-type=Creature
-subtype=Beast
-power=2
-toughness=3
 [/card]
 [card]
 name=Skyshroud Sentinel
@@ -36690,12 +36337,6 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Soulcatchers' Aerie
-text=Whenever a Bird is put into your graveyard from the battlefield, put a feather counter on Soulcatchers' Aerie. -- Bird creatures get +1/+1 for each feather counter on Soulcatchers' Aerie.
-mana={1}{W}
-type=Enchantment
-[/card]
-[card]
 name=Soulgorger Orgg
 text=Trample -- When Soulgorger Orgg enters the battlefield, you lose all but 1 life. -- When Soulgorger Orgg leaves the battlefield, you gain life equal to the life you lost when it entered the battlefield.
 mana={3}{R}{R}
@@ -36725,15 +36366,6 @@ name=Soulshriek
 text=Target creature you control gets +X/+0 until end of turn, where X is the number of creature cards in your graveyard. Sacrifice that creature at the beginning of the next end step.
 mana={B}
 type=Instant
-[/card]
-[card]
-name=Soultether Golem
-text=Vanishing 1 (This permanent enters the battlefield with a time counter on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- Whenever another creature enters the battlefield under your control, put a time counter on Soultether Golem.
-mana={2}
-type=Artifact Creature
-subtype=Golem
-power=3
-toughness=3
 [/card]
 [card]
 name=Sound the Call
@@ -39769,12 +39401,6 @@ text={T}: Add {1} to your mana pool. -- {T}: Add {W} or {U} to your mana pool. T
 type=Land
 [/card]
 [card]
-name=That Which Was Taken
-text={4}, {T}: Put a divinity counter on target permanent other than That Which Was Taken. -- Each permanent with a divinity counter on it is indestructible.
-mana={5}
-type=Legendary Artifact
-[/card]
-[card]
 name=Thawing Glaciers
 auto=tap
 auto={1}{T}:moveto(myBattlefield) target(land[basic]|myLibrary) && tap && token(grrrt)
@@ -39811,15 +39437,6 @@ type=Creature
 subtype=Demon
 power=2
 toughness=5
-[/card]
-[card]
-name=Thelon of Havenwood
-text=Each Fungus creature gets +1/+1 for each spore counter on it. -- {B}{G}, Exile a Fungus card from a graveyard: Put a spore counter on each Fungus on the battlefield.
-mana={G}{G}
-type=Legendary Creature
-subtype=Elf Druid
-power=2
-toughness=2
 [/card]
 [card]
 name=Thelon's Chant
@@ -40323,16 +39940,6 @@ mana={1}{R}{R}
 type=Sorcery
 [/card]
 [card]
-name=Thunderblust
-abilities=haste,persist
-text=Haste -- Thunderblust has trample as long as it has a -1/-1 counter on it. -- Persist (When this creature is put into a graveyard from the battlefield, if it had no -1/-1 counters on it, return it to the battlefield under its owner's control with a -1/-1 counter on it.)
-mana={2}{R}{R}{R}
-type=Creature
-subtype=Elemental
-power=7
-toughness=2
-[/card]
-[card]
 name=Thunderclap
 text=You may sacrifice a Mountain rather than pay Thunderclap's mana cost. -- Thunderclap deals 3 damage to target creature.
 mana={2}{R}
@@ -40508,11 +40115,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Timberline Ridge
-text=Timberline Ridge doesn't untap during your untap step if it has a depletion counter on it. -- At the beginning of your upkeep, remove a depletion counter from Timberline Ridge. -- {T}: Add {R} or {G} to your mana pool. Put a depletion counter on Timberline Ridge.
-type=Land
-[/card]
-[card]
 name=Timbermare
 text=Haste -- Echo {5}{G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Timbermare enters the battlefield, tap all other creatures.
 mana={3}{G}
@@ -40529,12 +40131,6 @@ type=Creature
 subtype=Beast
 power=2
 toughness=2
-[/card]
-[card]
-name=Time Bomb
-text=At the beginning of your upkeep, put a time counter on Time Bomb. -- {1}, {T}, Sacrifice Time Bomb: Time Bomb deals damage to each creature and each player equal to the number of time counters on Time Bomb.
-mana={4}
-type=Artifact
 [/card]
 [card]
 name=Time Elemental
@@ -40807,12 +40403,6 @@ type=Creature
 subtype=Goblin Shaman
 power=2
 toughness=2
-[/card]
-[card]
-name=Torch Song
-text=At the beginning of your upkeep, you may put a verse counter on Torch Song. -- {2}{R}, Sacrifice Torch Song: Torch Song deals X damage to target creature or player, where X is the number of verse counters on Torch Song.
-mana={2}{R}
-type=Enchantment
 [/card]
 [card]
 name=Torchling
@@ -42203,11 +41793,6 @@ mana={1}{B}{R}
 type=Artifact
 [/card]
 [card]
-name=Veldt
-text=Veldt doesn't untap during your untap step if it has a depletion counter on it. -- At the beginning of your upkeep, remove a depletion counter from Veldt. -- {T}: Add {G} or {W} to your mana pool. Put a depletion counter on Veldt.
-type=Land
-[/card]
-[card]
 name=Venarian Glimmer
 text=Target player reveals his or her hand. You choose a nonland card with converted mana cost X or less from it. That player discards that card.
 mana={X}{U}
@@ -43312,15 +42897,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Waning Wurm
-text=Vanishing 2 (This permanent enters the battlefield with two time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.)
-mana={3}{B}
-type=Creature
-subtype=Zombie Wurm
-power=7
-toughness=6
-[/card]
-[card]
 name=War Barge
 text={3}: Target creature gains islandwalk until end of turn. When War Barge leaves the battlefield this turn, destroy that creature. A creature destroyed this way can't be regenerated.
 mana={4}
@@ -43330,12 +42906,6 @@ type=Artifact
 name=War Cadence
 text={X}{R}: Creatures can't block this turn unless their controller pays {X} for each blocking creature he or she controls.
 mana={2}{R}
-type=Enchantment
-[/card]
-[card]
-name=War Dance
-text=At the beginning of your upkeep, you may put a verse counter on War Dance. -- Sacrifice War Dance: Target creature gets +X/+X until end of turn, where X is the number of verse counters on War Dance.
-mana={G}
 type=Enchantment
 [/card]
 [card]
@@ -44473,15 +44043,6 @@ type=Creature
 subtype=Shapeshifter
 power=2
 toughness=1
-[/card]
-[card]
-name=Woodripper
-text=Fading 3 (This creature enters the battlefield with three fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- {1}, Remove a fade counter from Woodripper: Destroy target artifact.
-mana={3}{G}{G}
-type=Creature
-subtype=Beast
-power=4
-toughness=6
 [/card]
 [card]
 name=Woodwraith Strangler
