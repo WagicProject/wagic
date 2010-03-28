@@ -1421,6 +1421,17 @@ power=4
 toughness=3
 [/card]
 [card]
+name=Aphetto Vulture
+abilities=flying
+autograveyard=@movedTo(this|graveyard) from(battlefield):may moveto(mylibrary) target(zombie other|mygraveyard)
+text=Flying -- When Aphetto Vulture is put into a graveyard from the battlefield, you may put target Zombie card from your graveyard on top of your library.
+mana={4}{B}{B}
+type=Creature
+subtype=Zombie Bird
+power=3
+toughness=2
+[/card]
+[card]
 name=Apocalypse
 auto=moveTo(exile) all(*|battlefield)
 auto=moveTo(mygraveyard) all(*|myhand)
@@ -2830,6 +2841,17 @@ auto=life:7 controller
 text=Target opponent draws a card. -- You gain 7 life.
 mana={2}{W}
 type=Sorcery
+[/card]
+[card]
+name=Barishi
+auto=@movedto(this|graveyard) from(battlefield):moveto(mylibrary) all(other creature|myGraveyard) && shuffle
+autograveyard=@movedto(this|graveyard) from(battlefield):moveto(exile)
+text=When Barishi is put into a graveyard from the battlefield, exile Barishi, then shuffle all creature cards from your graveyard into your library.
+mana={2}{G}{G}
+type=Creature
+subtype=Elemental
+power=4
+toughness=3
 [/card]
 [card]
 name=Barkhide Mauler
@@ -6552,6 +6574,16 @@ text={2}: Until end of turn, Chimeric Sphere becomes a 2/1 Construct artifact cr
 mana={3}
 type=Artifact
 [/card
+[card]
+name=Cho-Manno, Revolutionary
+auto=preventAllCombatDamage to(this)
+text=Prevent all damage that would be dealt to Cho-Manno, Revolutionary.
+mana={2}{W}{W}
+type=Legendary Creature
+subtype=Human Rebel
+power=2
+toughness=2
+[/card]
 [card]
 name=Choke
 auto=lord(island) doesnotuntap
@@ -18972,6 +19004,15 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Incinerate
+target=creature,player
+auto=cantregenerate
+auto=damage:3
+text=Incinerate deals 3 damage to target creature or player. A creature dealt damage this way can't be regenerated this turn.
+mana={1}{R}
+type=Instant
+[/card]
+[card]
 name=Incurable Ogre
 mana={3}{R}
 type=Creature
@@ -23545,6 +23586,7 @@ type=Instant
 name=Mana Vault
 auto=doesnotuntap
 auto={4}:untap myUpkeepOnly
+auto={T}:add {3}
 alias=1124
 text=Mana Vault doesn't untap during your untap step. -- At the beginning of your upkeep, you may pay {4}. If you do, untap Mana Vault. -- At the beginning of your draw step, if Mana Vault is tapped, it deals 1 damage to you. -- {T}: Add {3} to your mana pool.
 mana={1}
@@ -23857,6 +23899,17 @@ type=Creature
 subtype=Giant Warrior
 power=4
 toughness=3
+[/card]
+[card]
+name=Marton Stromgald
+auto=@each combatblockers:aslongas(Marton Stromgald[attacking]) foreach(other creature[attacking]) all(other creature[attacking]) 1/1 ueot
+auto=@each combatblockers:aslongas(Marton Stromgald[blocking]) foreach(other creature[blocking]) all(other creature[blocking]) 1/1 ueot 
+text=Whenever Marton Stromgald attacks, other attacking creatures get +1/+1 until end of turn for each attacking creature other than Marton Stromgald. -- Whenever Marton Stromgald blocks, other blocking creatures get +1/+1 until end of turn for each blocking creature other than Marton Stromgald.
+mana={2}{R}{R}
+type=Legendary Creature
+subtype=Human Knight
+power=1
+toughness=1
 [/card]
 [card]
 name=Martyred Rusalka
@@ -30102,6 +30155,13 @@ type=Creature
 subtype=Beast
 power=5
 toughness=3
+[/card]
+[card]
+name=Raking Canopy
+auto=@each opponent blockers:damage:4 all(creature[flying;attacking])
+text=Whenever a creature with flying attacks you, Raking Canopy deals 4 damage to it.
+mana={1}{G}{G}
+type=Enchantment
 [/card]
 [card]
 name=Rakka Mar

@@ -1174,17 +1174,6 @@ power=2
 toughness=3
 [/card]
 [card]
-name=Aphetto Vulture
-abilities=flying
-auto=@movedTo(this|graveyard) from(inplay):may moveto(mylibrary) target(zombie|mygraveyard) ##don't understand why this doesnt work...
-text=Flying -- When Aphetto Vulture is put into a graveyard from the battlefield, you may put target Zombie card from your graveyard on top of your library.
-mana={4}{B}{B}
-type=Creature
-subtype=Zombie Bird
-power=3
-toughness=2
-[/card]
-[card]
 name=Aphotic Wisps
 text=Target creature becomes black and gains fear until end of turn. (It can't be blocked except by artifact creatures and/or black creatures.) -- Draw a card.
 mana={B}
@@ -2673,15 +2662,6 @@ name=Bargaining Table
 text={X}, {T}: Draw a card. X is the number of cards in an opponent's hand as you activate this ability.
 mana={5}
 type=Artifact
-[/card]
-[card]
-name=Barishi
-text=When Barishi is put into a graveyard from the battlefield, exile Barishi, then shuffle all creature cards from your graveyard into your library.
-mana={2}{G}{G}
-type=Creature
-subtype=Elemental
-power=4
-toughness=3
 [/card]
 [card]
 name=Barkshell Blessing
@@ -6048,15 +6028,6 @@ text=Flash -- Enchant creature -- As Cho-Manno's Blessing enters the battlefield
 mana={W}{W}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Cho-Manno, Revolutionary
-text=Prevent all damage that would be dealt to Cho-Manno, Revolutionary.
-mana={2}{W}{W}
-type=Legendary Creature
-subtype=Human Rebel
-power=2
-toughness=2
 [/card]
 [card]
 name=Choice of Damnations
@@ -18482,12 +18453,6 @@ mana={3}{R}{R}
 type=Sorcery
 [/card]
 [card]
-name=Incinerate
-text=Incinerate deals 3 damage to target creature or player. A creature dealt damage this way can't be regenerated this turn.
-mana={1}{R}
-type=Instant
-[/card]
-[card]
 name=Incite Hysteria
 text=Radiance - Until end of turn, target creature and each other creature that shares a color with it gain "This creature can't block."
 mana={2}{R}
@@ -23239,18 +23204,6 @@ name=Martial Coup
 text=Put X 1/1 white Soldier creature tokens onto the battlefield. If X is 5 or more, destroy all other creatures.
 mana={X}{W}{W}
 type=Sorcery
-[/card]
-[card]
-name=Marton Stromgald
-auto=aslongas(marton stromgald[attacking]|myBattlefield) lord(creature[attacking]) foreach(creature[attacking]|myBattlefield) 1/1 other
-auto=aslongas(marton stromgald[blocking]|myBattlefield) lord(creature[blocking]) foreach(creature[blocking]|myBattlefield) 1/1 other
-###Does not work!
-text=Whenever Marton Stromgald attacks, other attacking creatures get +1/+1 until end of turn for each attacking creature other than Marton Stromgald. -- Whenever Marton Stromgald blocks, other blocking creatures get +1/+1 until end of turn for each blocking creature other than Marton Stromgald.
-mana={2}{R}{R}
-type=Legendary Creature
-subtype=Human Knight
-power=1
-toughness=1
 [/card]
 [card]
 name=Martyr of Ashes
@@ -30611,12 +30564,6 @@ type=Legendary Creature
 subtype=Demon
 power=7
 toughness=6
-[/card]
-[card]
-name=Raking Canopy
-text=Whenever a creature with flying attacks you, Raking Canopy deals 4 damage to it.
-mana={1}{G}{G}
-type=Enchantment
 [/card]
 [card]
 name=Raksha Golden Cub
