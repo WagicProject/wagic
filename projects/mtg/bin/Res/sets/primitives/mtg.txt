@@ -817,6 +817,14 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Altar of Shadows
+auto=@each my firstmain:thisforeach(counter{0/0.1.Charge}) add{B}
+auto={7}{T}:destroy target(creature) && counter(0/0,1,Charge) all(this)
+text=At the beginning of your precombat main phase, add Black to your mana pool for each charge counter on Altar of Shadows. -- {7}, {T}: Destroy target creature. Then put a charge counter on Altar of Shadows.
+mana={7}
+type=Artifact
+[/card]
+[card]
 name=Altar's Light
 target=artifact,enchantment
 auto=moveTo(exile)
@@ -4116,6 +4124,14 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Bloodletter Quill
+auto={2}{T}{C(0/0,1,Blood)}:thisforeach(counter{0/0.1.Blood}) life:-1 controller && draw:1
+auto={U}{B}:counter(0/0,-1,Blood)
+text={2}, {T}, Put a blood counter on Bloodletter Quill: Draw a card, then lose 1 life for each blood counter on Bloodletter Quill. -- {U}{B}: Remove a blood counter from Bloodletter Quill.
+mana={3}
+type=Artifact
+[/card]
+[card]
 name=Bloodmark Mentor
 auto=lord(creature[red]|myBattlefield) first strike
 text=Red creatures you control have first strike.
@@ -4167,6 +4183,17 @@ auto={T}:Add {R}
 text={T}: Add {B} or {R} to your mana pool.
 mana={3}
 type=Artifact
+[/card]
+[card]
+name=Bloodthirsty Ogre
+auto={T}:counter(0/0,1,Devotion)
+auto=aslongas(demon|myBattlefield) {T}:thisforeach(counter{0/0.1.Devotion}) -1/-1 target(creature)
+text={T}: Put a devotion counter on Bloodthirsty Ogre. -- {T}: arget creature gets -X/-X until end of turn, where X is the number of devotion counters on Bloodthirsty Ogre. Activate this ability only if you control a Demon.
+mana={2}{B}
+type=Creature
+subtype=Ogre Warrior Shaman
+power=3
+toughness=1
 [/card]
 [card]
 name=Bloodthorn Taunter
@@ -6767,6 +6794,13 @@ auto={T}:Add {W}
 auto={T}:Add {B}
 auto={T}:Add {G}
 text=Whenever City of Brass becomes tapped, it deals 1 damage to you. -- {T}: Add one mana of any color to your mana pool.
+type=Land
+[/card]
+[card]
+name=City of Shadows
+text={T}, Exile a creature you control: Put a storage counter on City of Shadows. -- {T}: Add {X} to your mana pool, where X is the number of storage counters on City of Shadows.
+auto={T}:moveTo(exile) target(creature|myBattlefield) && counter(0/0,1,Storage) all(this)
+auto={T}:thisforeach(counter{0/0.1.Storage}) Add{1}
 type=Land
 [/card]
 [card]
@@ -13156,6 +13190,16 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Festering Wound
+target=creature
+auto=@each my upkeep:counter(0/0,1,Infection)
+auto=@each targetController upkeep:thisforeach(counter{0/0.1.Infection}) damage:1 targetController
+text=Enchant creature -- At the beginning of your upkeep, you may put an infection counter on Festering Wound. -- At the beginning of the upkeep of enchanted creature's controller, Festering Wound deals X damage to that player, where X is the number of infection counters on Festering Wound.
+mana={1}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Festival of Trokin
 auto=foreach(creature|myBattlefield) life:2
 text=You gain 2 life for each creature you control.
@@ -18792,6 +18836,19 @@ power=1
 toughness=2
 [/card]
 [card]
+name=Icatian Moneychanger
+auto=counter(0/0,3,Credit)
+auto=damage:3 controller
+auto=@each my upkeep:counter(0/0,1,Credit)
+auto={S}:thisforeach(counter{0/0.1.Credit}) life:1 controller myUpkeepOnly
+text=Icatian Moneychanger enters the battlefield with three credit counters on it. -- When Icatian Moneychanger enters the battlefield, it deals 3 damage to you. -- At the beginning of your upkeep, put a credit counter on Icatian Moneychanger. -- Sacrifice Icatian Moneychanger: You gain 1 life for each credit counter on Icatian Moneychanger. Activate this ability only during your upkeep.
+mana={W}
+type=Creature
+subtype=Human
+power=0
+toughness=2
+[/card]
+[card]
 name=Icatian Priest
 auto={1}{W}{W}:1/1 target(creature)
 text={1}{W}{W}: Target creature gets +1/+1 until end of turn.
@@ -19000,6 +19057,16 @@ auto=2/5
 autohand={3}:cycling
 text=Enchant creature -- Enchanted creature gets +2/+5. -- Cycling {3} ({3}, Discard this card: Draw a card.)
 mana={3}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Incendiary
+target=creature
+auto=@each my upkeep:counter(0/0,1,Fuse)
+auto=@movedTo(mytgt|graveyard):thisforeach(counter{0/0.1.Fuse}) damage:1 target(creature,player)
+text=Enchant creature -- At the beginning of your upkeep, you may put a fuse counter on Incendiary. -- When enchanted creature is put into a graveyard, Incendiary deals X damage to target creature or player, where X is the number of fuse counters on Incendiary.
+mana={R}
 type=Enchantment
 subtype=Aura
 [/card]
@@ -23004,6 +23071,18 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Lotus Blossom
+auto=@each my upkeep:may counter(0/0,1,Petal)
+auto={T}{S}:thisforeach(counter{0/0.1.Petal}) add{W} controller
+auto={T}{S}:thisforeach(counter{0/0.1.Petal}) add{U} controller
+auto={T}{S}:thisforeach(counter{0/0.1.Petal}) add{B} controller
+auto={T}{S}:thisforeach(counter{0/0.1.Petal}) add{R} controller
+auto={T}{S}:thisforeach(counter{0/0.1.Petal}) add{G} controller
+text=At the beginning of your upkeep, you may put a petal counter on Lotus Blossom. -- {T}, Sacrifice Lotus Blossom: Add X mana of any one color to your mana pool, where X is the number of petal counters on Lotus Blossom.
+mana={2}
+type=Artifact
+[/card]
+[card]
 name=Lotus Guardian
 abilities=flying
 auto={T}:Add {W}
@@ -23371,6 +23450,14 @@ type=Creature
 subtype=Giant
 power=5
 toughness=5
+[/card]
+[card]
+name=Magma Mine
+auto={4}:counter(0/0,1,Pressure)
+auto={T}{S}:thisforeach(counter{0/0.1.Pressure}) damage:1 target(creature,player)
+text={4}: Put a pressure counter on Magma Mine. -- {T}, Sacrifice Magma Mine: Magma Mine deals damage equal to the number of pressure counters on it to target creature or player.
+mana={1}
+type=Artifact
 [/card]
 [card]
 name=Magma Phoenix
@@ -24430,6 +24517,14 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Midsummer Revel 
+auto=@each my upkeep:may counter(0/0,1,Verse)
+auto={G}{S}:thisforeach(counter{0/0.1.Verse}) token(Beast,Creature Beast,3/3,green)
+text=At the beginning of your upkeep, you may put a verse counter on Midsummer Revel. -- {G}, Sacrifice Midsummer Revel: Put X 3/3 green Beast creature tokens onto the battlefield, where X is the number of verse counters on Midsummer Revel.
+mana={3}{G}{G}
+type=Enchantment
+[/card]
+[card]
 name=Might Sliver
 auto=lord(sliver) 2/2
 text=All Sliver creatures get +2/+2.
@@ -25061,6 +25156,16 @@ auto={0}:moveTo(ownerhand) all(this) && regenerate target(creature) limit:1
 text=Return Molting Skin to its owner's hand: Regenerate target creature.
 mana={2}{G}
 type=Enchantment
+[/card]
+[card]
+name=Momentum
+target=creature
+auto=@each my upkeep:counter(0/0,1,Growth)
+auto=thisforeach(counter{0/0.1.Growth}) damage:1 target(creature,player)
+text=Enchant creature -- At the beginning of your upkeep, you may put a fuse counter on Incendiary. -- When enchanted creature is put into a graveyard, Incendiary deals X damage to target creature or player, where X is the number of fuse counters on Incendiary.
+mana={2}{G}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Monk Idealist
@@ -28715,6 +28820,18 @@ text=Pine Barrens enters the battlefield tapped. -- {T}: Add {1} to your mana po
 type=Land
 [/card]
 [card]
+name=Pious Kitsune
+auto=@each my upkeep:aslongas(eight-and-a-half-tails|myBattlefield) thisforeach(counter{0/0.1.Devotion}) life:1 controller
+auto=@each my upkeep:counter(0/0,1,Devotion)
+auto={T}{C(0/0,-1,Devotion)}:life:1
+text=At the beginning of your upkeep, put a devotion counter on Pious Kitsune. Then if a creature named Eight-and-a-Half-Tails is on the battlefield, you gain 1 life for each devotion counter on Pious Kitsune. -- {T}, Remove a devotion counter from Pious Kitsune: You gain 1 life.
+mana={2}{W}
+type=Creature
+subtype=Fox Cleric
+power=1
+toughness=2
+[/card]
+[card]
 name=Piranha Marsh
 auto=tap
 auto=life:-1 opponent
@@ -29335,6 +29452,16 @@ type=Creature
 subtype=Angel
 power=4
 toughness=4
+[/card]
+[card]
+name=Private Research
+target=creature
+auto=@each my upkeep:counter(0/0,1,Page) all(this)
+auto=@movedTo(mytgt|graveyard):thisforeach(counter{0/0.1.Page}) draw:1 controller
+text=Enchant creature -- At the beginning of your upkeep, you may put a page counter on Private Research. -- When enchanted creature is put into a graveyard, draw a card for each page counter on Private Research.
+mana={U}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Privileged Position
@@ -30045,6 +30172,20 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Raging Riftwurm
+auto=counter(0/0,2,Time)
+auto=@each my upkeep:counter(0/0,-1,Time)
+kicker={4}
+auto=kicker counter(0/0,3,Time)
+auto=lord(raging riftwurm[-counter{0/0.1.Time}]|myBattlefield) -99/-99
+text=Kicker {4} (You may pay an additional 4 as you cast this spell.) -- Vanishing 2 (This permanent enters the battlefield with two time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- If Ravaging Riftwurm was kicked, it enters the battlefield with three additional time counters on it.
+mana={1}{G}{G}
+type=Creature
+subtype=Wurm
+power=6
+toughness=6
+[/card]
+[card]
 name=Ragnar
 auto={W}{U}{G}{T}:regenerate target(creature)
 text={G}{W}{U}, {T}: Regenerate target creature.
@@ -30512,6 +30653,16 @@ type=Creature
 subtype=Bear
 power=3
 toughness=3
+[/card]
+[card]
+name=Razorfin Abolisher
+auto={1}{U}{T}:moveTo(ownerhand) target(creature[counter{any}])
+text={1}{U}, {T}: Return target creature with a counter on it to its owner's hand.
+mana={2}{U}
+type=Creature
+subtype=Merfolk Wizard
+power=2
+toughness=2
 [/card]
 [card]
 name=Razorfin Hunter
@@ -31686,6 +31837,20 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Roc Hatchling
+auto=counter(0/0,4,Shell)
+auto=@each my upkeep:counter(0/0,-1,Shell)
+auto=lord(roc hatchling[-counter{0/0.1.Shell}]) 3/2
+auto=lord(other roc hatchling[-counter{0/0.1.Shell}]) -3/-2
+auto=lord(roc hatchling[-counter{0/0.1.Shell}]) flying
+text=Roc Hatchling enters the battlefield with four shell counters on it. -- At the beginning of your upkeep, remove a shell counter from Roc Hatchling. -- As long as Roc Hatchling has no shell counters on it, it gets +3/+2 and has flying.
+mana={R}
+type=Creature
+subtype=Bird
+power=0
+toughness=1
+[/card]
+[card]
 name=Roc of Kher Ridges
 abilities=flying
 text=Flying
@@ -32146,6 +32311,18 @@ auto={T}:Add{W}
 autohand={1}{W}{S}:counter(1/1,1) target(creature)
 text=As Rustic Clachan enters the battlefield, you may reveal a Kithkin card from your hand. If you don't, Rustic Clachan enters the battlefield tapped. -- {T}: Add {W} to your mana pool. -- Reinforce 1 - {1}{W} ({1}{W}, Discard this card: Put a +1/+1 counter on target creature.)
 type=Land
+[/card]
+[card]
+name=Rusting Golem
+auto=counter(0/0,5,Fade)
+auto=@each my upkeep:counter(0/0,-1,Fade)
+auto=thisforeach(counter{0/0.1.Fade}) 1/1
+text=Fading 5 (This creature enters the battlefield with five fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- Rusting Golem's power and toughness are each equal to the number of fade counters on it.
+mana={4}
+type=Artifact Creature
+subtype=Golem
+power=*
+toughness=*
 [/card]
 [card]
 name=Rustmouth Ogre
@@ -36498,6 +36675,14 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Soulcatchers' Aerie
+auto=@movedTo(bird|mygraveyard) from(myBattlefield):counter(0/0,1,Feather)
+auto=thisforeach(counter{0/0.1.Feather}) lord(bird) 1/1
+text=Whenever a Bird is put into your graveyard from the battlefield, put a feather counter on Soulcatchers' Aerie. -- Bird creatures get +1/+1 for each feather counter on Soulcatchers' Aerie.
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
 name=Souldrinker
 auto={0}:counter(1/1) && life:-3 controller
 text=Pay 3 life: Put a +1/+1 counter on Souldrinker.
@@ -40658,6 +40843,14 @@ power=1
 toughness=2
 [/card]
 [card]
+name=Time Bomb
+auto=@each my upkeep:may counter(0/0,1,Time)
+auto={1}{T}{S}:thisforeach(counter{0/0.1.Time}) damage:1 all(creature,player)
+text=At the beginning of your upkeep, put a time counter on Time Bomb. -- {1}, {T}, Sacrifice Time Bomb: Time Bomb deals damage to each creature and each player equal to the number of time counters on Time Bomb.
+mana={4}
+type=Artifact
+[/card]
+[card]
 name=Time Ebb
 target=creature
 auto=moveTo(ownerLibrary)
@@ -40908,6 +41101,14 @@ type=Creature
 subtype=Drake
 power=2
 toughness=2
+[/card]
+[card]
+name=Torch Song 
+auto=@each my upkeep:may counter(0/0,1,Verse)
+auto={2}{R}{S}:thisforeach(counter{0/0.1.Verse}) damage:1 target(creature,player)
+text=At the beginning of your upkeep, you may put a verse counter on Midsummer Revel. -- {G}, Sacrifice Midsummer Revel: Put X 3/3 green Beast creature tokens onto the battlefield, where X is the number of verse counters on Midsummer Revel.
+mana={2}{R}
+type=Enchantment
 [/card]
 [card]
 name=Torii Watchward
@@ -44349,6 +44550,20 @@ mana={1}
 type=Artifact
 [/card]
 [card]
+name=Wandering Archive
+abilities=defender
+auto=counter(1/1,1)
+auto=@each my upkeep:thisforeach(counter{1/1.1}) draw:1 controller
+auto=@each opponent upkeep:thisforeach(counter{1/1.1}) draw:1 opponent
+auto={2}{W}{U}:counter(1/1,1)
+text=Defender (This creature can't attack.) -- Walking Archive enters the battlefield with a +1/+1 counter on it. -- At the beginning of each player's upkeep, that player draws a card for each +1/+1 counter on Walking Archive. -- {2}{W}{U}: Put a +1/+1 counter on Walking Archive.
+mana={3}
+type=Artifact Creature
+subtype=Golem
+power=1
+toughness=1
+[/card]
+[card]
 name=Wandering Ones
 mana={U}
 type=Creature
@@ -44396,6 +44611,14 @@ type=Creature
 subtype=Zombie Wurm
 power=7
 toughness=6
+[/card]
+[card]
+name=War Dance
+auto=@each my upkeep:may counter(0/0,1,Verse)
+auto={S}:thisforeach(counter{0/0.1.Verse}) 1/1 target(creature)
+text=At the beginning of your upkeep, you may put a verse counter on War Dance. -- Sacrifice War Dance: Target creature gets +X/+X until end of turn, where X is the number of verse counters on War Dance.
+mana={G}
+type=Enchantment
 [/card]
 [card]
 name=War Chariot
