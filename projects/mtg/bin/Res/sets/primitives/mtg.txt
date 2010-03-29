@@ -30172,20 +30172,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Raging Riftwurm
-auto=counter(0/0,2,Time)
-auto=@each my upkeep:counter(0/0,-1,Time)
-kicker={4}
-auto=kicker counter(0/0,3,Time)
-auto=lord(raging riftwurm[-counter{0/0.1.Time}]|myBattlefield) -99/-99
-text=Kicker {4} (You may pay an additional 4 as you cast this spell.) -- Vanishing 2 (This permanent enters the battlefield with two time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- If Ravaging Riftwurm was kicked, it enters the battlefield with three additional time counters on it.
-mana={1}{G}{G}
-type=Creature
-subtype=Wurm
-power=6
-toughness=6
-[/card]
-[card]
 name=Ragnar
 auto={W}{U}{G}{T}:regenerate target(creature)
 text={G}{W}{U}, {T}: Regenerate target creature.
@@ -30580,6 +30566,20 @@ type=Creature
 subtype=Human Soldier
 power=3
 toughness=3
+[/card]
+[card]
+name=Ravaging Riftwurm
+auto=counter(0/0,2,Time)
+auto=@each my upkeep:counter(0/0,-1,Time)
+kicker={4}
+auto=kicker counter(0/0,3,Time)
+auto=lord(ravaging riftwurm[-counter{0/0.1.Time}]|myBattlefield) -99/-99
+text=Kicker {4} (You may pay an additional 4 as you cast this spell.) -- Vanishing 2 (This permanent enters the battlefield with two time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- If Ravaging Riftwurm was kicked, it enters the battlefield with three additional time counters on it.
+mana={1}{G}{G}
+type=Creature
+subtype=Wurm
+power=6
+toughness=6
 [/card]
 [card]
 name=Raven's Run Dragoon
@@ -37345,7 +37345,7 @@ type=Instant
 [/card]
 [card]
 name=Spoils of Victory
-target=plains,island,swamp,mountain,forest|mylibrary
+target=basic|mylibrary
 auto=moveTo|myBattlefield
 text=Search your library for a Plains, Island, Swamp, Mountain, or Forest card and put that card onto the battlefield. Then shuffle your library.
 mana={2}{G}
@@ -41859,7 +41859,7 @@ subtype=Equipment
 [card]
 name=Trygon Predator
 abilities=flying
-auto=@damaged(player) from(this):may destroy target(artifact,enchantment)
+auto=@damaged(player) from(this):may destroy target(artifact,enchantment|opponentBattlefield)
 text=Flying -- Whenever Trygon Predator deals combat damage to a player, you may destroy target artifact or enchantment that player controls.
 mana={1}{G}{U}
 type=Creature
@@ -42215,7 +42215,7 @@ subtype=Island Swamp
 name=Undermine
 target=*|stack
 auto=fizzle
-auto=life:-3 targetController
+auto=life:-3 opponent
 text=Counter target spell. Its controller loses 3 life.
 mana={U}{U}{B}
 type=Instant
@@ -44179,6 +44179,20 @@ power=3
 toughness=4
 [/card]
 [card]
+name=Walking Archive
+abilities=defender
+auto=counter(1/1,1)
+auto=@each my upkeep:thisforeach(counter{1/1.1}) draw:1 controller
+auto=@each opponent upkeep:thisforeach(counter{1/1.1}) draw:1 opponent
+auto={2}{W}{U}:counter(1/1,1)
+text=Defender (This creature can't attack.) -- Walking Archive enters the battlefield with a +1/+1 counter on it. -- At the beginning of each player's upkeep, that player draws a card for each +1/+1 counter on Walking Archive. -- {2}{W}{U}: Put a +1/+1 counter on Walking Archive.
+mana={3}
+type=Artifact Creature
+subtype=Golem
+power=1
+toughness=1
+[/card]
+[card]
 name=Walking Atlas
 auto={T}:may moveTo(myBattlefield) target(land|myhand)
 text={T}: You may put a land card from your hand onto the battlefield.
@@ -44548,20 +44562,6 @@ auto={1}{S}:moveTo(myhand) target(land[basic]|mylibrary)
 text={1}, Sacrifice Wanderer's Twig: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.
 mana={1}
 type=Artifact
-[/card]
-[card]
-name=Wandering Archive
-abilities=defender
-auto=counter(1/1,1)
-auto=@each my upkeep:thisforeach(counter{1/1.1}) draw:1 controller
-auto=@each opponent upkeep:thisforeach(counter{1/1.1}) draw:1 opponent
-auto={2}{W}{U}:counter(1/1,1)
-text=Defender (This creature can't attack.) -- Walking Archive enters the battlefield with a +1/+1 counter on it. -- At the beginning of each player's upkeep, that player draws a card for each +1/+1 counter on Walking Archive. -- {2}{W}{U}: Put a +1/+1 counter on Walking Archive.
-mana={3}
-type=Artifact Creature
-subtype=Golem
-power=1
-toughness=1
 [/card]
 [card]
 name=Wandering Ones
