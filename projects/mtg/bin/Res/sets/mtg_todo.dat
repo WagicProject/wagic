@@ -1836,15 +1836,6 @@ mana={2}{W}{W}
 type=Enchantment
 [/card]
 [card]
-name=Auriok Bladewarden
-text={T}: Target creature gets +X/+X until end of turn, where X is Auriok Bladewarden's power.
-mana={1}{W}
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=1
-[/card]
-[card]
 name=Auriok Glaivemaster
 text=As long as Auriok Glaivemaster is equipped, it gets +1/+1 and has first strike.
 mana={W}
@@ -1879,27 +1870,6 @@ type=Creature
 subtype=Human Wizard
 power=2
 toughness=3
-[/card]
-[card]
-name=Aurochs
-text=Trample -- Whenever Aurochs attacks, it gets +1/+0 until end of turn for each other attacking Aurochs.
-mana={3}{G}
-type=Creature
-subtype=Aurochs
-power=2
-toughness=3
-[/card]
-[card]
-name=Aurochs Herd
-abilities=trample
-auto=may moveto(myHand) target(Aurochs|myLibrary)
-auto=aslongas(Auroch Herd[attacking]|myBattlefield)foreach(Aurochs other[attacking]|myBattlefield)1/0
-text=Trample -- When Aurochs Herd enters the battlefield, you may search your library for an Aurochs card, reveal it, and put it into your hand. If you do, shuffle your library. -- Whenever Aurochs Herd attacks, it gets +1/+0 until end of turn for each other attacking Aurochs.
-mana={5}{G}
-type=Creature
-subtype=Aurochs
-power=4
-toughness=4
 [/card]
 [card]
 name=Aurora Eidolon
@@ -3539,15 +3509,6 @@ power=3
 toughness=4
 [/card]
 [card]
-name=Bloom Tender
-text={T}: For each color among permanents you control, add one mana of that color to your mana pool.
-mana={1}{G}
-type=Creature
-subtype=Elf Druid
-power=1
-toughness=1
-[/card]
-[card]
 name=Blowfly Infestation
 text=Whenever a creature is put into a graveyard from the battlefield, if it had a -1/-1 counter on it, put a -1/-1 counter on target creature.
 mana={2}{B}
@@ -4426,18 +4387,6 @@ mana={X}{X}{R}
 type=Sorcery
 [/card]
 [card]
-name=Bull Aurochs
-abilities=trample
-auto=may moveto(myHand) target(Aurochs|myLibrary)
-auto=aslongas(Bull Aurochs[attacking]|myBattlefield)foreach(Aurochs other[attacking]|myBattlefield)1/0
-text=Trample -- Whenever Bull Aurochs attacks, it gets +1/+0 until end of turn for each other attacking Aurochs.
-mana={1}{G}
-type=Creature
-subtype=Aurochs
-power=2
-toughness=1
-[/card]
-[card]
 name=Bull Elephant
 text=When Bull Elephant enters the battlefield, sacrifice it unless you return two Forests you control to their owner's hand.
 mana={3}{G}
@@ -5305,17 +5254,6 @@ power=1
 toughness=2
 [/card]
 [card]
-name=Cenn's Heir
-auto=aslongas(this[attacking])foreach(other Kithkin[attacking]) 1/1
-#"this is only compatible with @ auto line in WTH0.8.1
-text=Whenever Cenn's Heir attacks, it gets +1/+1 until end of turn for each other attacking Kithkin.
-mana={1}{W}
-type=Creature
-subtype=Kithkin Soldier
-power=1
-toughness=1
-[/card]
-[card]
 name=Cenn's Tactician
 text={W}, {T}: Put a +1/+1 counter on target Soldier creature. -- Each creature you control with a +1/+1 counter on it can block an additional creature.
 mana={W}
@@ -5406,15 +5344,6 @@ name=Cephalid Shrine
 text=Whenever a player casts a spell, counter that spell unless that player pays {X}, where X is the number of cards in all graveyards with the same name as the spell.
 mana={1}{U}{U}
 type=Enchantment
-[/card]
-[card]
-name=Cephalid Vandal
-text=At the beginning of your upkeep, put a shred counter on Cephalid Vandal. Then put the top card of your library into your graveyard for each shred counter on Cephalid Vandal.
-mana={1}{U}
-type=Creature
-subtype=Cephalid Rogue
-power=1
-toughness=1
 [/card]
 [card]
 name=Cerebral Vortex
@@ -6032,15 +5961,6 @@ text={2}{R}, {T}: Reveal any number of red cards in your hand. Cinder Seer deals
 mana={3}{R}
 type=Creature
 subtype=Human Wizard
-power=1
-toughness=1
-[/card]
-[card]
-name=Cinder Shade
-text={B}: Cinder Shade gets +1/+1 until end of turn. -- {R}, Sacrifice Cinder Shade: Cinder Shade deals damage equal to its power to target creature.
-mana={1}{B}{R}
-type=Creature
-subtype=Shade
 power=1
 toughness=1
 [/card]
@@ -12762,15 +12682,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Flame Elemental
-text={R}, {T}, Sacrifice Flame Elemental: Flame Elemental deals damage equal to its power to target creature.
-mana={2}{R}{R}
-type=Creature
-subtype=Elemental
-power=3
-toughness=2
-[/card]
-[card]
 name=Flame Jab
 target=player,creature
 auto=damage:1
@@ -14237,15 +14148,6 @@ name=Ghitu Fire
 text=You may cast Ghitu Fire any time you could cast an instant if you pay {2} more to cast it. -- Ghitu Fire deals X damage to target creature or player.
 mana={X}{R}
 type=Sorcery
-[/card]
-[card]
-name=Ghitu Fire-Eater
-text={T}, Sacrifice Ghitu Fire-Eater: Ghitu Fire-Eater deals damage equal to its power to target creature or player.
-mana={2}{R}
-type=Creature
-subtype=Human Nomad
-power=2
-toughness=2
 [/card]
 [card]
 name=Ghitu Slinger
@@ -18999,15 +18901,6 @@ power=3
 toughness=4
 [/card]
 [card]
-name=Jagged-Scar Archers
-text=Jagged-Scar Archers's power and toughness are each equal to the number of Elves you control. -- {T}: Jagged-Scar Archers deals damage equal to its power to target creature with flying.
-mana={1}{G}{G}
-type=Creature
-subtype=Elf Archer
-power=*
-toughness=*
-[/card]
-[card]
 name=Jalum Tome
 auto={2}{T}{S(*|myHand)}:draw:1 controller
 text={2}, {T}: Draw a card, then discard a card.
@@ -19658,15 +19551,6 @@ type=Creature
 subtype=Kavu
 power=4
 toughness=5
-[/card]
-[card]
-name=Kavu Mauler
-text=Trample -- Whenever Kavu Mauler attacks, it gets +1/+1 until end of turn for each other attacking Kavu.
-mana={4}{G}{G}
-type=Creature
-subtype=Kavu
-power=4
-toughness=4
 [/card]
 [card]
 name=Kavu Predator
@@ -23937,15 +23821,6 @@ type=Creature
 subtype=Minotaur Scout
 power=3
 toughness=3
-[/card]
-[card]
-name=Minotaur Illusionist
-text={1}{U}: Minotaur Illusionist gains shroud until end of turn. (It can't be the target of spells or abilities.) -- {R}, Sacrifice Minotaur Illusionist: Minotaur Illusionist deals damage equal to its power to target creature.
-mana={3}{U}{R}
-type=Creature
-subtype=Minotaur Wizard
-power=3
-toughness=4
 [/card]
 [card]
 name=Miracle Worker
@@ -31342,15 +31217,6 @@ power=5
 toughness=5
 [/card]
 [card]
-name=Rhys the Exiled
-text=Whenever Rhys the Exiled attacks, you gain 1 life for each Elf you control. -- {B}, Sacrifice an Elf: Regenerate Rhys the Exiled.
-mana={2}{G}
-type=Legendary Creature
-subtype=Elf Warrior
-power=3
-toughness=2
-[/card]
-[card]
 name=Rhys the Redeemed
 text={2}{(g/w)}, {T}: Put a 1/1 green and white Elf Warrior creature token onto the battlefield. -- {4}{(g/w){(g/w)}, {T}: For each creature token you control, put a token that's a copy of that creature onto the battlefield.
 mana={GW}
@@ -36642,15 +36508,6 @@ type=Creature
 subtype=Spike
 power=0
 toughness=0
-[/card]
-[card]
-name=Spikeshot Goblin
-text={R}, {T}: Spikeshot Goblin deals damage equal to its power to target creature or player.
-mana={2}{R}
-type=Creature
-subtype=Goblin Shaman
-power=1
-toughness=2
 [/card]
 [card]
 name=Spiketail Drake
@@ -42777,15 +42634,6 @@ mana={2}{U}
 type=Creature
 subtype=Illusion
 power=1
-toughness=3
-[/card]
-[card]
-name=Wandering Goblins
-text=Domain - {3}: Wandering Goblins gets +1/+0 until end of turn for each basic land type among lands you control.
-mana={2}{R}
-type=Creature
-subtype=Goblin Warrior
-power=0
 toughness=3
 [/card]
 [card]

@@ -2279,6 +2279,16 @@ power=1
 toughness=2
 [/card]
 [card]
+name=Auriok Bladewarden
+auto={T}:thisforeach(power>=1) 1/1 target(creature)
+text={T}: Target creature gets +X/+X until end of turn, where X is Auriok Bladewarden's power.
+mana={1}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+[/card]
+[card]
 name=Auriok Champion
 abilities=protection from black,protection from red
 auto=@movedTo(creature|battlefield):may life:1 controller
@@ -2308,6 +2318,31 @@ type=Creature
 subtype=Human Scout
 power=1
 toughness=1
+[/card]
+[card]
+name=Aurochs
+abilities=trample
+auto=lord(aurochs[attacking]) foreach(other aurochs[attacking]) 1/0
+auto=lord(aurochs[attacking]) foreach(other aurochs[attacking]) -1/0 other
+text=Trample -- Whenever Aurochs attacks, it gets +1/+0 until end of turn for each other attacking Aurochs.
+mana={3}{G}
+type=Creature
+subtype=Aurochs
+power=2
+toughness=3
+[/card]
+[card]
+name=Aurochs Herd
+abilities=trample
+auto=may moveto(myHand) target(aurochs|myLibrary)
+auto=lord(aurochs herd[attacking]) foreach(other aurochs herd[attacking]) 1/0
+auto=lord(aurochs herd[attacking]) foreach(other aurochs herd[attacking]) -1/0 other
+text=Trample -- When Aurochs Herd enters the battlefield, you may search your library for an Aurochs card, reveal it, and put it into your hand. If you do, shuffle your library. -- Whenever Aurochs Herd attacks, it gets +1/+0 until end of turn for each other attacking Aurochs.
+mana={5}{G}
+type=Creature
+subtype=Aurochs
+power=4
+toughness=4
 [/card]
 [card]
 name=Autumn Willow
@@ -4262,6 +4297,16 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Bloom Tender
+auto={T}:aslongas(*[white]|myBattlefield) add{W} && aslongas(*[blue]|myBattlefield) add{U} && aslongas(*[black]|myBattlefield) add{B} && aslongas(*[red]|myBattlefield) add{R} && aslongas(*[green]|myBattlefield) add{G}
+text={T}: For each color among permanents you control, add one mana of that color to your mana pool.
+mana={1}{G}
+type=Creature
+subtype=Elf Druid
+power=1
+toughness=1
+[/card]
+[card]
 name=Bloodpyre Elemental
 auto={S}:damage:4 target(creature) asSorcery
 text=Sacrifice Bloodpyre Elemental: Bloodpyre Elemental deals 4 damage to target creature. Activate this ability only any time you could cast a sorcery.
@@ -5301,6 +5346,18 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Bull Aurochs
+abilities=trample
+auto=lord(bull aurochs[attacking]) foreach(other aurochs[attacking]) 1/0
+auto=lord(bull aurochs[attacking]) foreach(other aurochs[attacking]) -1/0 other
+text=Trample -- Whenever Bull Aurochs attacks, it gets +1/+0 until end of turn for each other attacking Aurochs.
+mana={1}{G}
+type=Creature
+subtype=Aurochs
+power=2
+toughness=1
+[/card]
+[card]
 name=Bull Cerodon
 abilities=vigilance,haste
 text=Vigilance, haste
@@ -6249,6 +6306,17 @@ mana={3}{W}
 type=Sorcery
 [/card]
 [card]
+name=Cenn's Heir
+auto=lord(cenn's heir[attacking]|myBattlefield) foreach(other kithkin[attacking]|myBattledfield) 1/1
+auto=lord(cenn's heir[attacking]|myBattlefield) foreach(other kithkin[attacking]|myBattledfield) -1/-1 other
+text=Whenever Cenn's Heir attacks, it gets +1/+1 until end of turn for each other attacking Kithkin.
+mana={1}{W}
+type=Creature
+subtype=Kithkin Soldier
+power=1
+toughness=1
+[/card]
+[card]
 name=Centaur Archer
 auto={T}:damage:1 target(creature[flying])
 text={T}: Centaur Archer deals 1 damage to target creature with flying.
@@ -6360,6 +6428,17 @@ text=Sacrifice Cephalid Snitch: Target creature loses protection from black unti
 mana={1}{U}
 type=Creature
 subtype=Cephalid Wizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Cephalid Vandal
+auto=@each my upkeep:thisforeach(counter{0/0,1,Shred}) deplete:1 controller
+auto=@each my upkeep:counter(0/0,1,Shred)
+text=At the beginning of your upkeep, put a shred counter on Cephalid Vandal. Then put the top card of your library into your graveyard for each shred counter on Cephalid Vandal.
+mana={1}{U}
+type=Creature
+subtype=Cephalid Rogue
 power=1
 toughness=1
 [/card]
@@ -6799,6 +6878,17 @@ mana={2}{R}
 type=Creature
 subtype=Elemental Shaman
 power=0
+toughness=1
+[/card]
+[card]
+name=Cinder Shade
+auto={B}:1/1
+auto={R}{S}:thisforeach(power>=1) damage:1 target(creature)
+text={B}: Cinder Shade gets +1/+1 until end of turn. -- {R}, Sacrifice Cinder Shade: Cinder Shade deals damage equal to its power to target creature.
+mana={1}{B}{R}
+type=Creature
+subtype=Shade
+power=1
 toughness=1
 [/card]
 [card]
@@ -13229,6 +13319,16 @@ power=3
 toughness=2
 [/card]
 [card]
+name=Feral Animist
+auto={G}:p/0
+text={3}: Feral Animist gets +X/+0 until end of turn, where X is its power.
+mana={G}
+type=Creature
+subtype=Goblin Shaman
+power=2
+toughness=1
+[/card]
+[card]
 name=Feral Instinct
 target=creature
 auto=1/1
@@ -13775,6 +13875,16 @@ auto=foreach(Pardic Firecat|graveyard) Damage:1
 text=Flame Burst deals X damage to target creature or player, where X is 2 plus the number of cards named Flame Burst in all graveyards.
 mana={1}{R}
 type=Instant
+[/card]
+[card]
+name=Flame Elemental
+auto={R}{T}{S}:thisforeach(power>=1) damage:1 target(creature)
+text={R}, {T}, Sacrifice Flame Elemental: Flame Elemental deals damage equal to its power to target creature.
+mana={2}{R}{R}
+type=Creature
+subtype=Elemental
+power=3
+toughness=2
 [/card]
 [card]
 name=Flame Fusillade
@@ -15249,6 +15359,16 @@ text=Flash (You may cast this spell any time you could cast an instant.) -- Ench
 mana={1}{R}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Ghitu Fire-Eater
+auto={T}{S}:thisforeach(power>=1) damage:1 target(creature)
+text={T}, Sacrifice Ghitu Fire-Eater: Ghitu Fire-Eater deals damage equal to its power to target creature or player.
+mana={2}{R}
+type=Creature
+subtype=Human Nomad
+power=2
+toughness=2
 [/card]
 [card]
 name=Ghitu War Cry
@@ -19884,6 +20004,17 @@ mana={4}
 type=Artifact
 [/card]
 [card]
+name=Jagged-Scar Archers
+auto=foreach(elf|myBattlefield) 1/1
+auto={T}:thisforeach(power>=1) damage:1 target(creature[flying])
+text=Jagged-Scar Archers's power and toughness are each equal to the number of Elves you control. -- {T}: Jagged-Scar Archers deals damage equal to its power to target creature with flying.
+mana={1}{G}{G}
+type=Creature
+subtype=Elf Archer
+power=*
+toughness=*
+[/card]
+[card]
 name=Jagwasp Swarm
 abilities=flying
 text=Flying
@@ -20827,6 +20958,18 @@ auto=@movedTo(creature[power>=4|opponentBattlefield):draw:1 opponent
 text=Whenever a creature with power 4 or greater enters the battlefield, its controller draws a card.
 mana={2}{G}
 type=Enchantment
+[/card]
+[card]
+name=Kavu Mauler
+abilities=trample
+auto=lord(kavu mauler[attacking]) foreach(other kavu[attacking]) 1/1
+auto=lord(kavu mauler[attacking]) foreach(other kavu[attacking]) -1/-1 other
+text=Trample -- Whenever Kavu Mauler attacks, it gets +1/+1 until end of turn for each other attacking Kavu.
+mana={4}{G}{G}
+type=Creature
+subtype=Kavu
+power=4
+toughness=4
 [/card]
 [card]
 name=Kavu Monarch
@@ -24853,6 +24996,17 @@ auto=foreach(creature|myBattlefield) life:-1
 text=You draw X cards and you lose X life, where X is the number of creatures you control.
 mana={2}{B}{B}
 type=Sorcery
+[/card]
+[card]
+name=Minotaur Illusionist
+auto={1}{U}:shroud
+auto={R}{S}:thisforeach(power>=1) damage:1 target(creature)
+text={1}{U}: Minotaur Illusionist gains shroud until end of turn. (It can't be the target of spells or abilities.) -- {R}, Sacrifice Minotaur Illusionist: Minotaur Illusionist deals damage equal to its power to target creature.
+mana={3}{U}{R}
+type=Creature
+subtype=Minotaur Wizard
+power=3
+toughness=4
 [/card]
 [card]
 name=Minotaur Tactician
@@ -31602,6 +31756,17 @@ power=3
 toughness=4
 [/card]
 [card]
+name=Rhys the Exiled
+auto=@each my blockers:aslongas(rhys the exiled[attacking]|myBattlefield) foreach(elf|myBattlefield) life:1 controller
+auto={B}{S(elf|myBattlefield)}:regenerate
+text=Whenever Rhys the Exiled attacks, you gain 1 life for each Elf you control. -- {B}, Sacrifice an Elf: Regenerate Rhys the Exiled.
+mana={G}
+type=Legendary Creature
+subtype=Elf Warrior
+power=3
+toughness=2
+[/card]
+[card]
 name=Rib Cage Spider
 abilities=reach
 text=Reach (This creature can block creatures with flying.)
@@ -37222,6 +37387,16 @@ auto=counter(1/1,2)
 auto={2}{C(1/1,-1)}:counter(1/1,1) target(creature)
 power=0
 toughness=0
+[/card]
+[card]
+name=Spikeshot Goblin
+auto={R}{T}}:thisforeach(power>=1) damage:1 target(creature)
+text={R}, {T}: Spikeshot Goblin deals damage equal to its power to target creature or player.
+mana={2}{R}
+type=Creature
+subtype=Goblin Shaman
+power=1
+toughness=2
 [/card]
 [card]
 name=Spinal Villain
@@ -44682,6 +44857,16 @@ auto={1}{S}:moveTo(myhand) target(land[basic]|mylibrary)
 text={1}, Sacrifice Wanderer's Twig: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.
 mana={1}
 type=Artifact
+[/card]
+[card]
+name=Wandering Goblins
+auto=aslongas(plains|myBattlefield]) 1/0 && aslongas(island|myBattlefield]) 1/0 && aslongas(swamp|myBattlefield]) 1/0 && aslongas(mountain|myBattlefield]) 1/0 && aslongas(forest|myBattlefield]) 1/0
+text=Domain - {3}: Wandering Goblins gets +1/+0 until end of turn for each basic land type among lands you control.
+mana={2}{R}
+type=Creature
+subtype=Goblin Warrior
+power=0
+toughness=3
 [/card]
 [card]
 name=Wandering Ones
