@@ -1319,92 +1319,11 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Arcbound Bruiser
-text=Modular 3 (This enters the battlefield with three +1/+1 counters on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
-mana={5}
-type=Artifact Creature
-subtype=Golem
-power=0
-toughness=0
-[/card]
-[card]
-name=Arcbound Crusher
-text=Trample -- Whenever another artifact enters the battlefield, put a +1/+1 counter on Arcbound Crusher. -- Modular 1 (This enters the battlefield with a +1/+1 counter on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
-mana={4}
-type=Artifact Creature
-subtype=Juggernaut
-power=0
-toughness=0
-[/card]
-[card]
-name=Arcbound Fiend
-text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- At the beginning of your upkeep, you may move a +1/+1 counter from target creature onto Arcbound Fiend. -- Modular 3 (This enters the battlefield with three +1/+1 counters on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
-mana={6}
-type=Artifact Creature
-subtype=Horror
-power=0
-toughness=0
-[/card]
-[card]
-name=Arcbound Hybrid
-text=Haste -- Modular 2 (This enters the battlefield with two +1/+1 counters on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
-mana={4}
-type=Artifact Creature
-subtype=Beast
-power=0
-toughness=0
-[/card]
-[card]
-name=Arcbound Lancer
-text=First strike -- Modular 4 (This enters the battlefield with four +1/+1 counters on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
-mana={7}
-type=Artifact Creature
-subtype=Beast
-power=0
-toughness=0
-[/card]
-[card]
 name=Arcbound Overseer
 text=At the beginning of your upkeep, put a +1/+1 counter on each creature with modular you control. -- Modular 6 (This enters the battlefield with six +1/+1 counters on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
 mana={8}
 type=Artifact Creature
 subtype=Golem
-power=0
-toughness=0
-[/card]
-[card]
-name=Arcbound Ravager
-text=Sacrifice an artifact: Put a +1/+1 counter on Arcbound Ravager. -- Modular 1 (This enters the battlefield with a +1/+1 counter on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
-mana={2}
-type=Artifact Creature
-subtype=Beast
-power=0
-toughness=0
-[/card]
-[card]
-name=Arcbound Reclaimer
-text=Remove a +1/+1 counter from Arcbound Reclaimer: Put target artifact card from your graveyard on top of your library. -- Modular 2 (This enters the battlefield with two +1/+1 counters on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
-mana={4}
-type=Artifact Creature
-subtype=Golem
-power=0
-toughness=0
-[/card]
-[card]
-name=Arcbound Slith
-text=Whenever Arcbound Slith deals combat damage to a player, put a +1/+1 counter on it. -- Modular 1 (This enters the battlefield with a +1/+1 counter on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
-mana={2}
-type=Artifact Creature
-subtype=Slith
-power=0
-toughness=0
-[/card]
-[card]
-name=Arcbound Stinger
-text=Flying -- Modular 1 (This enters the battlefield with a +1/+1 counter on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
-mana={2}
-type=Artifact Creature
-subtype=Insect
 power=0
 toughness=0
 [/card]

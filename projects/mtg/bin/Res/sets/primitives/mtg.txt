@@ -1540,6 +1540,126 @@ power=3
 toughness=4
 [/card]
 [card]
+name=Arcbound Bruiser
+auto=counter(1/1,3)
+auto=@movedTo(this|mygraveyard) from(myBattlefield):may thisforeach(counter{1/1.1}) counter(1/1,1) target(creature[artifact])
+text=Modular 3 (This enters the battlefield with three +1/+1 counters on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
+mana={5}
+type=Artifact Creature
+subtype=Golem
+power=0
+toughness=0
+[/card]
+[card]
+name=Arcbound Crusher
+abilities=trample
+auto=@movedTo(other artifact|myBattlefield):counter(1/1,1)
+auto=counter(1/1,1)
+auto=@movedTo(this|mygraveyard) from(myBattlefield):may thisforeach(counter{1/1.1}) counter(1/1,1) target(creature[artifact])
+text=Trample -- Whenever another artifact enters the battlefield, put a +1/+1 counter on Arcbound Crusher. -- Modular 1 (This enters the battlefield with a +1/+1 counter on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
+mana={4}
+type=Artifact Creature
+subtype=Juggernaut
+power=0
+toughness=0
+[/card]
+[card]
+name=Arcbound Fiend
+abilities=fear
+auto=@each my upkeep:counter(1/1,-1) target(creature) && counter(1/1,1) all(this)
+auto=counter(1/1,3)
+auto=@movedTo(this|mygraveyard) from(myBattlefield):may thisforeach(counter{1/1.1}) counter(1/1,1) target(creature[artifact])
+text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- At the beginning of your upkeep, you may move a +1/+1 counter from target creature onto Arcbound Fiend. -- Modular 3 (This enters the battlefield with three +1/+1 counters on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
+mana={6}
+type=Artifact Creature
+subtype=Horror
+power=0
+toughness=0
+[/card]
+[card]
+name=Arcbound Hybrid
+abilities=haste
+auto=counter(1/1,2)
+auto=@movedTo(this|mygraveyard) from(myBattlefield):may thisforeach(counter{1/1.1}) counter(1/1,1) target(creature[artifact])
+text=Haste -- Modular 2 (This enters the battlefield with two +1/+1 counters on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
+mana={4}
+type=Artifact Creature
+subtype=Beast
+power=0
+toughness=0
+[/card]
+[card]
+name=Arcbound Lancer
+abilities=first strike
+auto=counter(1/1,4)
+auto=@movedTo(this|mygraveyard) from(myBattlefield):may thisforeach(counter{1/1.1}) counter(1/1,1) target(creature[artifact])
+text=First strike -- Modular 4 (This enters the battlefield with four +1/+1 counters on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
+mana={7}
+type=Artifact Creature
+subtype=Beast
+power=0
+toughness=0
+[/card]
+[card]
+name=Arcbound Ravager
+auto=counter(1/1,1)
+auto={S(artifact|myBattlefield)}:counter(1/1,1)
+auto=@movedTo(this|mygraveyard) from(myBattlefield):may thisforeach(counter{1/1.1}) counter(1/1,1) target(creature[artifact])
+text=Sacrifice an artifact: Put a +1/+1 counter on Arcbound Ravager. -- Modular 1 (This enters the battlefield with a +1/+1 counter on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
+mana={2}
+type=Artifact Creature
+subtype=Beast
+power=0
+toughness=0
+[/card]
+[card]
+name=Arcbound Reclaimer
+auto=counter(1/1,2)
+auto={C(1/1,-1)}:moveTo(myLibrary) target(artifact|mygraveyard)
+auto=@movedTo(this|mygraveyard) from(myBattlefield):may thisforeach(counter{1/1.1}) counter(1/1,1) target(creature[artifact])
+text=Remove a +1/+1 counter from Arcbound Reclaimer: Put target artifact card from your graveyard on top of your library. -- Modular 2 (This enters the battlefield with two +1/+1 counters on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
+mana={4}
+type=Artifact Creature
+subtype=Golem
+power=0
+toughness=0
+[/card]
+[card]
+name=Arcbound Slith
+auto=counter(1/1,1)
+auto=@damaged(player) from(this):counter(1/1,1)
+auto=@movedTo(this|mygraveyard) from(myBattlefield):may thisforeach(counter{1/1.1}) counter(1/1,1) target(creature[artifact])
+text=Whenever Arcbound Slith deals combat damage to a player, put a +1/+1 counter on it. -- Modular 1 (This enters the battlefield with a +1/+1 counter on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
+mana={2}
+type=Artifact Creature
+subtype=Slith
+power=0
+toughness=0
+[/card]
+[card]
+name=Arcbound Stinger
+abilities=flying
+auto=counter(1/1,1)
+auto=@movedTo(this|mygraveyard) from(myBattlefield):may thisforeach(counter{1/1.1}) counter(1/1,1) target(creature[artifact])
+text=Flying -- Modular 1 (This enters the battlefield with a +1/+1 counter on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
+mana={2}
+type=Artifact Creature
+subtype=Insect
+power=0
+toughness=0
+[/card]
+[card]
+name=Arcbound Worker
+auto=counter(1/1,1)
+auto=@movedTo(this|mygraveyard) from(myBattlefield):may thisforeach(counter{1/1.1}) counter(1/1,1) target(creature[artifact])
+text=Modular 1 (This enters the battlefield with a +1/+1 counter on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
+mana={1}
+type=Artifact Creature
+subtype=Construct
+power=0
+toughness=0
+[/card]
+[card]
 name=Archaeological Dig
 auto={T}:Add{1}
 auto={T}{S}:Add{W}
