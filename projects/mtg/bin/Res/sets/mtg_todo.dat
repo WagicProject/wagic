@@ -17727,12 +17727,6 @@ text=You may choose not to untap Ice Floe during your untap step. -- {T}: Tap ta
 type=Land
 [/card]
 [card]
-name=Iceberg
-text=Iceberg enters the battlefield with X ice counters on it. -- {3}: Put an ice counter on Iceberg. -- Remove an ice counter from Iceberg: Add {1} to your mana pool.
-mana={X}{U}{U}
-type=Enchantment
-[/card]
-[card]
 name=Icefall
 text=Destroy target artifact or land. -- Recover {R}{R} (When a creature is put into your graveyard from the battlefield, you may pay {R}{R}. If you do, return this card from your graveyard to your hand. Otherwise, exile this card.)
 mana={2}{R}{R}
@@ -18759,15 +18753,6 @@ name=Ivory Mask
 text=You have shroud. (You can't be the target of spells or abilities.)
 mana={2}{W}{W}
 type=Enchantment
-[/card]
-[card]
-name=Ivy Elemental
-text=Ivy Elemental enters the battlefield with X +1/+1 counters on it.
-mana={X}{G}
-type=Creature
-subtype=Elemental
-power=0
-toughness=0
 [/card]
 [card]
 name=Ivy Seer
@@ -20329,15 +20314,6 @@ mana={2}{B}{B}
 type=World Enchantment
 [/card]
 [card]
-name=Krakilin
-text=Krakilin enters the battlefield with X +1/+1 counters on it. -- {1}{G}: Regenerate Krakilin.
-mana={X}{G}{G}
-type=Creature
-subtype=Beast
-power=0
-toughness=0
-[/card]
-[card]
 name=Krark's Thumb
 text=If you would flip a coin, instead flip two coins and ignore one.
 mana={2}
@@ -21387,18 +21363,6 @@ mana={1}{R}
 type=Enchantment
 [/card]
 [card]
-name=Lightning Serpent
-abilities=trample,haste
-auto=counter(1/0,x)
-auto=@next end:bury
-text=Trample, haste -- Lightning Serpent enters the battlefield with X +1/+0 counters on it. -- At the beginning of the end step, sacrifice Lightning Serpent.
-mana={X}{R}
-type=Creature
-subtype=Elemental Serpent
-power=2
-toughness=1
-[/card]
-[card]
 name=Lightning Storm
 text=Lightning Storm deals X damage to target creature or player, where X is 3 plus the number of charge counters on it. -- Discard a land card: Put two charge counters on Lightning Storm. You may choose a new target for it. Any player may activate this ability but only if Lightning Storm is on the stack.
 mana={1}{R}{R}
@@ -22161,15 +22125,6 @@ name=Maelstrom Pulse
 text=Destroy target nonland permanent and all other permanents with the same name as that permanent.
 mana={1}{B}{G}
 type=Sorcery
-[/card]
-[card]
-name=Maga, Traitor to Mortals
-text=Maga, Traitor to Mortals enters the battlefield with X +1/+1 counters on it. -- When Maga enters the battlefield, target player loses life equal to the number of +1/+1 counters on it.
-mana={X}{B}{B}{B}
-type=Legendary Creature
-subtype=Human Wizard
-power=0
-toughness=0
 [/card]
 [card]
 name=Mage Slayer
@@ -34323,15 +34278,6 @@ name=Shifting Sky
 text=As Shifting Sky enters the battlefield, choose a color. -- All nonland permanents are the chosen color.
 mana={2}{U}
 type=Enchantment
-[/card]
-[card]
-name=Shifting Wall
-text=Defender (This creature can't attack.) -- Shifting Wall enters the battlefield with X +1/+1 counters on it.
-mana={X}
-type=Artifact Creature
-subtype=Wall
-power=0
-toughness=0
 [/card]
 [card]
 name=Shifty Doppelganger

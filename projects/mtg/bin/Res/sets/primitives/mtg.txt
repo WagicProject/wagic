@@ -13318,27 +13318,29 @@ subtype=Faerie Soldier
 power=3
 toughness=2
 [/card]
+
 [card]
+
 name=Feral Hydra
+
 type=Creature
+
 subtype=Hydra Beast
+
 mana={X}{G}
+
 power=0
+
 toughness=0
-text=Feral Hydra comes into play with X +1/+1 counters on it. -- {3}: Put a +1/+1 counter on Feral Hydra. Any player may play this ability
+
+text=Feral Hydra enters the battlefield with X +1/+1 counters on it. -- {3}: Put a +1/+1 counter on Feral Hydra. Any player may play this ability
+
 auto=counter(1/1,X)
+
 auto={3}:counter(1/1)
+
 grade=borderline
-[/card]
-[card]
-name=Feral Animist
-auto={G}:p/0
-text={3}: Feral Animist gets +X/+0 until end of turn, where X is its power.
-mana={G}
-type=Creature
-subtype=Goblin Shaman
-power=2
-toughness=1
+
 [/card]
 [card]
 name=Feral Instinct
@@ -19128,6 +19130,15 @@ mana={5}{W}
 type=Sorcery
 [/card]
 [card]
+name=Iceberg
+auto=counter(0/0,X,Ice)
+auto={3}:counter(0/0,1,Ice)
+auto={C(0/0,-1,Ice)}:Add{1}
+text=Iceberg enters the battlefield with X ice counters on it. -- {3}: Put an ice counter on Iceberg. -- Remove an ice counter from Iceberg: Add {1} to your mana pool.
+mana={X}{U}{U}
+type=Enchantment
+[/card]
+[card]
 name=Ice Storm
 target=land
 auto=destroy
@@ -19950,6 +19961,16 @@ type=Creature
 subtype=Dryad Shaman
 power=1
 toughness=2
+[/card]
+[card]
+name=Ivy Elemental
+auto=counter(1/1,X)
+text=Ivy Elemental enters the battlefield with X +1/+1 counters on it.
+mana={X}{G}
+type=Creature
+subtype=Elemental
+power=0
+toughness=0
 [/card]
 [card]
 name=Izzet Boilerworks
@@ -21981,6 +22002,17 @@ mana={2}
 type=Artifact
 [/card]
 [card]
+name=Krakilin
+auto=counter(1/1,X)
+auto={1}{G}:regenerate
+text=Krakilin enters the battlefield with X +1/+1 counters on it. -- {1}{G}: Regenerate Krakilin.
+mana={X}{G}{G}
+type=Creature
+subtype=Beast
+power=0
+toughness=0
+[/card]
+[card]
 name=Kranioceros
 auto={1}{W}:0/3
 text={1}{W}: Kranioceros gets +0/+3 until end of turn.
@@ -22909,6 +22941,18 @@ power=3
 toughness=2
 [/card]
 [card]
+name=Lightning Serpent
+abilities=trample,haste
+auto=counter(1/0,X)
+auto=@next end:bury
+text=Trample, haste -- Lightning Serpent enters the battlefield with X +1/+0 counters on it. -- At the beginning of the end step, sacrifice Lightning Serpent.
+mana={X}{R}
+type=Creature
+subtype=Elemental Serpent
+power=2
+toughness=1
+[/card]
+[card]
 name=Lightning Talons
 target=creature
 auto=3/0
@@ -23648,6 +23692,16 @@ type=Creature
 subtype=Cyclops Warrior
 power=3
 toughness=4
+[/card]
+[card]
+name=Maga, Traitor to Mortals
+auto=counter(1/1,X) && life:-X opponent
+text=Maga, Traitor to Mortals enters the battlefield with X +1/+1 counters on it. -- When Maga enters the battlefield, target player loses life equal to the number of +1/+1 counters on it.
+mana={X}{B}{B}{B}
+type=Legendary Creature
+subtype=Human Wizard
+power=0
+toughness=0
 [/card]
 [card]
 name=Mage il-Vec
@@ -34731,6 +34785,17 @@ type=Creature
 subtype=Sliver
 power=2
 toughness=2
+[/card]
+[card]
+name=Shifting Wall
+abilities=defender
+auto=counter(1/1,X)
+text=Defender (This creature can't attack.) -- Shifting Wall enters the battlefield with X +1/+1 counters on it.
+mana={X}
+type=Artifact Creature
+subtype=Wall
+power=0
+toughness=0
 [/card]
 [card]
 name=Shimmering Barrier
