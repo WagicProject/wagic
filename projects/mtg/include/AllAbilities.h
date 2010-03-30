@@ -183,8 +183,8 @@ public:
   int triggerOnEvent(WEvent * event){
     WEventDamage * e = dynamic_cast<WEventDamage *>(event);
     if (!e) return 0;
-	if(!tc->canTarget(e->damage->target)) return 0;
-	if (fromTc && !fromTc->canTarget(e->damage->source)) return 0;
+  	if(!tc->canTarget(e->damage->target)) return 0;
+  	if (fromTc && !fromTc->canTarget(e->damage->source)) return 0;
     return 1;
   }
 

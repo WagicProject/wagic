@@ -36,7 +36,7 @@ int AbilityFactory::countCards(TargetChooser * tc, Player * player, int option){
   return result;
 }
 
-Counter * AbilityFactory::parseCounter(string s, MTGCardInstance * target) {
+Counter * AbilityFactory::parseCounter(string s, MTGCardInstance * target, Spell * spell) {
   int nb = 1;
     string name = "";
     size_t start = 0;
@@ -50,7 +50,13 @@ Counter * AbilityFactory::parseCounter(string s, MTGCardInstance * target) {
         name = s.substr(separator2+1,end-separator2-1);
       }    
       string nbstr = s.substr(separator+1,separator2-separator-1);
-      nb = atoi(nbstr.c_str()); 
+      WParsedInt * wpi;
+      if (target){
+        wpi = NEW WParsedInt(nbstr,spell,target);
+      }else{
+        wpi = NEW WParsedInt(atoi(nbstr.c_str()));
+      }
+      nb = wpi->getValue();
       end = separator;
     }
     
@@ -802,7 +808,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     size_t start = s.find("(");
     size_t end = s.find(")");
     string counterString = s.substr(start+1,end-start-1);
-    Counter * counter = parseCounter(counterString,target);
+    Counter * counter = parseCounter(counterString,target,spell);
     if (counter){
       MTGAbility * a = NEW AACounter(id,card,target,counter->name.c_str(),counter->power,counter->toughness,counter->nb);
 	    a->oneShot = 1;

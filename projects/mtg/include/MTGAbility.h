@@ -256,7 +256,7 @@ class AbilityFactory{
   TriggeredAbility * parseTrigger(string s, int id, Spell * spell, MTGCardInstance *card, Targetable * target);
   int parseRestriction(string s);
  public:
-  Counter * parseCounter(string s, MTGCardInstance * target);
+  Counter * parseCounter(string s, MTGCardInstance * target, Spell * spell = NULL);
   int parsePowerToughness(string s, int *power, int *toughness);
   int getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCardInstance * card = NULL, int id = 0,MTGGameZone * dest = NULL);
   MTGAbility * parseMagicLine(string s, int id, Spell * spell, MTGCardInstance *card, int activated = 0, int forceUEOT = 0,MTGGameZone * dest = NULL);
