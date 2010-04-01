@@ -31826,7 +31826,7 @@ name=Rhys the Exiled
 auto=@each my blockers:aslongas(rhys the exiled[attacking]|myBattlefield) foreach(elf|myBattlefield) life:1 controller
 auto={B}{S(elf|myBattlefield)}:regenerate
 text=Whenever Rhys the Exiled attacks, you gain 1 life for each Elf you control. -- {B}, Sacrifice an Elf: Regenerate Rhys the Exiled.
-mana={G}
+mana={2}{G}
 type=Legendary Creature
 subtype=Elf Warrior
 power=3
@@ -37457,7 +37457,7 @@ toughness=0
 [card]
 name=Spike Worker
 text=Spike Worker enters the battlefield with a +1/+1 counter on it. -- {2}, Remove a +1/+1 counter from Spike Worker: Put a +1/+1 counter on target creature.
-mana={2{G}
+mana={2}{G}
 type=Creature
 subtype=Spike
 auto=counter(1/1,2)
@@ -44937,7 +44937,7 @@ type=Artifact
 [/card]
 [card]
 name=Wandering Goblins
-auto=aslongas(plains|myBattlefield]) 1/0 && aslongas(island|myBattlefield]) 1/0 && aslongas(swamp|myBattlefield]) 1/0 && aslongas(mountain|myBattlefield]) 1/0 && aslongas(forest|myBattlefield]) 1/0
+auto={3}:aslongas(plains|myBattlefield]) 1/0 && aslongas(island|myBattlefield]) 1/0 && aslongas(swamp|myBattlefield]) 1/0 && aslongas(mountain|myBattlefield]) 1/0 && aslongas(forest|myBattlefield]) 1/0
 text=Domain - {3}: Wandering Goblins gets +1/+0 until end of turn for each basic land type among lands you control.
 mana={2}{R}
 type=Creature
