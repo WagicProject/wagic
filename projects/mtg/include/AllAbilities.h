@@ -275,13 +275,12 @@ class AAFizzler:public ActivatedAbility{
 
 
 //MayAbility: May do ...
-class MayAbility:public MTGAbility{
+class MayAbility:public MTGAbility, public NestedAbility{
 public:
   int triggered;
   bool must;
-  MTGAbility * ability;
   MTGAbility * mClone;
-  MayAbility(int _id, MTGAbility * _ability,  MTGCardInstance * _source, bool must = false):MTGAbility(_id,_source),must(must),ability(_ability){
+  MayAbility(int _id, MTGAbility * _ability,  MTGCardInstance * _source, bool must = false):MTGAbility(_id,_source),must(must),NestedAbility(_ability){
     triggered = 0;
     mClone = NULL;
   }
@@ -389,13 +388,12 @@ public:
 
 //Generic Activated Ability
 
-class GenericActivatedAbility:public ActivatedAbility{
+class GenericActivatedAbility:public ActivatedAbility, public NestedAbility{
  public:
-  MTGAbility * ability;
   int limitPerTurn;
   int counters;
   MTGGameZone * activeZone;
- GenericActivatedAbility(int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int _tap = 0, int limit = 0, int restrictions = 0, MTGGameZone * dest = NULL):ActivatedAbility(_id, card,_cost,restrictions,_tap),ability(a),limitPerTurn(limit),activeZone(dest){
+ GenericActivatedAbility(int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int _tap = 0, int limit = 0, int restrictions = 0, MTGGameZone * dest = NULL):ActivatedAbility(_id, card,_cost,restrictions,_tap),NestedAbility(a),limitPerTurn(limit),activeZone(dest){
    counters = 0;
    target = ability->target;
   }
@@ -1399,10 +1397,9 @@ class APowerToughnessModifierUntilEndOfTurn: public ActivatedAbility{
 };
 
 
-class  GenericInstantAbility: public InstantAbility{
+class  GenericInstantAbility: public InstantAbility, public NestedAbility{
  public:
-  MTGAbility * ability;
- GenericInstantAbility(int _id, MTGCardInstance * _source, Damageable * _target, MTGAbility * ability): InstantAbility(_id, _source, _target), ability(ability){
+ GenericInstantAbility(int _id, MTGCardInstance * _source, Damageable * _target, MTGAbility * ability): InstantAbility(_id, _source, _target), NestedAbility(ability){
     ability->target = _target;
  }
 
@@ -1643,13 +1640,12 @@ class AConvertLandToCreatures:public ListMaintainerAbility{
 };
 
 //Generic Kird Ape
-class AAsLongAs:public ListMaintainerAbility{
+class AAsLongAs:public ListMaintainerAbility, public NestedAbility{
  public:
-   MTGAbility * ability;
    MTGAbility * a;
   int includeSelf;
   int mini,maxi;
- AAsLongAs(int _id, MTGCardInstance * _source, Damageable * _target, TargetChooser * _tc, int _includeSelf, MTGAbility * ability,int mini = 0, int maxi = 0):ListMaintainerAbility(_id, _source,_target),ability(ability),mini(mini),maxi(maxi){
+ AAsLongAs(int _id, MTGCardInstance * _source, Damageable * _target, TargetChooser * _tc, int _includeSelf, MTGAbility * ability,int mini = 0, int maxi = 0):ListMaintainerAbility(_id, _source,_target),NestedAbility(ability),mini(mini),maxi(maxi){
     tc = _tc;
     includeSelf = _includeSelf;
     tc->targetter  = NULL;
@@ -1731,13 +1727,12 @@ class AAsLongAs:public ListMaintainerAbility{
 };
 
 //Lords (Merfolk lord...) give power and toughness to OTHER creatures of their type, they can give them special abilities, regeneration
-class ALord:public ListMaintainerAbility{
+class ALord:public ListMaintainerAbility, public NestedAbility{
  public:
-   MTGAbility * ability;
   int includeSelf;
   map<Damageable *, MTGAbility *> abilities;
 
- ALord(int _id, MTGCardInstance * card, TargetChooser * _tc, int _includeSelf, MTGAbility * a):ListMaintainerAbility(_id,card), ability(a){
+ ALord(int _id, MTGCardInstance * card, TargetChooser * _tc, int _includeSelf, MTGAbility * a):ListMaintainerAbility(_id,card), NestedAbility(a){
     tc = _tc;
     tc->targetter = NULL;
     includeSelf = _includeSelf;
@@ -1811,14 +1806,13 @@ class ALord:public ListMaintainerAbility{
 
 
 //Foreach (plague rats...)
-class AForeach:public ListMaintainerAbility{
+class AForeach:public ListMaintainerAbility, public NestedAbility{
  public:
-   MTGAbility * ability;
   int includeSelf;
   int mini;
   int maxi;
   map<Damageable *, MTGAbility *> abilities;
- AForeach(int _id, MTGCardInstance * card,Damageable  * _target, TargetChooser * _tc, int _includeSelf, MTGAbility * a, int mini = 0, int maxi = 0):ListMaintainerAbility(_id,card,_target), ability(a),mini(mini),maxi(maxi){
+ AForeach(int _id, MTGCardInstance * card,Damageable  * _target, TargetChooser * _tc, int _includeSelf, MTGAbility * a, int mini = 0, int maxi = 0):ListMaintainerAbility(_id,card,_target), NestedAbility(a),mini(mini),maxi(maxi){
     tc = _tc;
     tc->targetter = NULL;
     includeSelf = _includeSelf;
@@ -1877,12 +1871,11 @@ class AForeach:public ListMaintainerAbility{
 };
 
  
-class AThis:public MTGAbility{
- public:
-   MTGAbility * ability;
+class AThis:public MTGAbility, public NestedAbility{
+public:
    MTGAbility * a;
    ThisDescriptor * td;
- AThis(int _id, MTGCardInstance * _source, Damageable * _target, ThisDescriptor * _td, MTGAbility * ability):MTGAbility(_id, _source,_target),ability(ability){
+ AThis(int _id, MTGCardInstance * _source, Damageable * _target, ThisDescriptor * _td, MTGAbility * ability):MTGAbility(_id, _source,_target),NestedAbility(ability){
     td = _td;
     ability->source = source;
     ability->target = target;
@@ -1941,12 +1934,11 @@ class AThis:public MTGAbility{
   }
 };
 
-class AThisForEach:public MTGAbility{
+class AThisForEach:public MTGAbility, public NestedAbility{
  public:
-   MTGAbility * ability;
    ThisDescriptor * td;
    vector<MTGAbility *> abilities;
- AThisForEach(int _id, MTGCardInstance * _source, Damageable * _target, ThisDescriptor * _td, MTGAbility * ability):MTGAbility(_id, _source,_target),ability(ability){
+ AThisForEach(int _id, MTGCardInstance * _source, Damageable * _target, ThisDescriptor * _td, MTGAbility * ability):MTGAbility(_id, _source,_target),NestedAbility(ability){
     td = _td;
     ability->source = source;
     ability->target = target;

@@ -30,6 +30,13 @@ power=1
 toughness=1
 [/card]
 [card]
+name=AEther Flash
+auto=@movedto(creature|battlefield):all(trigger) damage:2
+text=Whenever a creature enters the battlefield, Æther Flash deals 2 damage to it.
+mana={2}{R}{R}
+type=Enchantment
+[/card]
+[card]
 name=AEther Mutation
 target=creature
 auto=moveTo(ownerhand)
@@ -5015,6 +5022,17 @@ type=Creature
 subtype=Elemental
 power=0
 toughness=3
+[/card]
+[card]
+name=Bramblewood Paragon
+auto=@movedto(other warrior|myBattlefield):all(trigger) counter(1/1,1)
+auto=lord(creature[counter{1/1.1}]|myBattlefield) trample
+text=Each other Warrior creature you control enters the battlefield with an additional +1/+1 counter on it. -- Each creature you control with a +1/+1 counter on it has trample.
+mana={1}{G}
+type=Creature
+subtype=Elf Warrior
+power=2
+toughness=2
 [/card]
 [card]
 name=Branded Brawlers
@@ -14821,6 +14839,16 @@ type=Enchantment
 auto={G}{G}:counter(0/0,1,Spore) target(fungus)
 [/card]
 [card]
+name=Fungus Sliver
+auto=@damaged(sliver):all(trigger[to]) counter(1/1)
+text=All Sliver creatures have "Whenever this creature is dealt damage, put a +1/+1 counter on it." (The damage is dealt before the counter is put on.)
+mana={3}{G}
+type=Creature
+subtype=Fungus Sliver
+power=2
+toughness=2
+[/card]
+[card]
 name=Fungusaur
 auto=@damaged(this):counter(1/1,1)
 text=Whenever Fungusaur is dealt damage, put a +1/+1 counter on it.
@@ -19324,6 +19352,14 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=In the Web of War
+auto=@movedto(creature|myBattlefield):all(trigger) 2/0 ueot
+auto=@movedto(creature|myBattlefield):all(trigger) haste ueot
+text=Whenever a creature enters the battlefield under your control, it gets +2/+0 and gains haste until end of turn.
+mana={3}{R}{R}
+type=Enchantment
+[/card]
+[card]
 name=Incendiary
 target=creature
 auto=@each my upkeep:counter(0/0,1,Fuse)
@@ -20560,6 +20596,17 @@ type=Creature
 subtype=Human Cleric Druid
 power=1
 toughness=1
+[/card]
+[card]
+name=Juniper Order Ranger
+auto=@movedto(other creature|myBattlefield):counter(1/1,1)
+auto=@movedto(other creature|myBattlefield):all(trigger) counter(1/1)
+text=Whenever another creature enters the battlefield under your control, put a +1/+1 counter on that creature and a +1/+1 counter on Juniper Order Ranger.
+mana={3}{G}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=4
 [/card]
 [card]
 name=Junk Diver
@@ -25793,6 +25840,13 @@ power=*
 toughness=*
 [/card]
 [card]
+name=Mortuary
+auto=@movedTo(creature|mygraveyard) from(myBattlefield):all(trigger) moveTo(myLibrary)
+text=Whenever a creature is put into your graveyard from the battlefield, put that card on top of your library.
+mana={2}{B}
+type=Enchantment
+[/card]
+[card]
 name=Mosquito Guard
 abilities=first strike
 autohand={1}{W}{S}:counter(1/1,1) target(creature)
@@ -29698,6 +29752,16 @@ autohand={2}{G}:1/1 target(creature) && cycling
 text=Target creature gets +4/+4 until end of turn. -- Cycling {2}{G} ({2}{G}, Discard this card: Draw a card.) -- When you cycle Primal Boost, you may have target creature get +1/+1 until end of turn.
 mana={2}{G}
 type=Instant
+[/card]
+[card]
+name=Primal Forcemage
+auto=@movedto(creature|myBattlefield):all(trigger) 3/3 ueot
+text=Whenever another creature enters the battlefield under your control, that creature gets +3/+3 until end of turn.
+mana={2}{G}
+type=Creature
+subtype=Elf Shaman
+power=2
+toughness=2
 [/card]
 [card]
 name=Primal Frenzy
@@ -35554,6 +35618,17 @@ auto=moveTo(ownerhand) notatarget(land|myBattlefield)
 auto={T}:Add{G}{U}
 text=Simic Growth Chamber enters the battlefield tapped. -- When Simic Growth Chamber enters the battlefield, return a land you control to its owner's hand. -- {T}: Add {G}{U} to your mana pool.
 type=Land
+[/card]
+[card]
+name=Simic Initiate
+text=Graft 1 (This creature enters the battlefield with a +1/+1 counter on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.)
+auto=counter(1/1)
+auto=@movedto(creature|battlefield):this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
+mana={G}
+type=Creature
+subtype=Human Mutant
+power=0
+toughness=0
 [/card]
 [card]
 name=Simic Ragworm
@@ -47260,3 +47335,4 @@ subtype=Human Wizard
 power=1
 toughness=1
 [/card]
+###########

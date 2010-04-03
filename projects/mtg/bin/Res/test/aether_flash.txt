@@ -1,0 +1,16 @@
+[init]
+firstmain
+[player1]
+inplay:Aether Flash
+hand:Grizzly Bears
+manapool:{G}{G}
+[player2]
+[do]
+Grizzly Bears
+[assert]
+firstmain
+[player1]
+inplay:Aether Flash
+graveyard:Grizzly Bears
+[player2]
+[end]

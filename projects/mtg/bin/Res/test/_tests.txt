@@ -1,7 +1,6 @@
 ########################
 #Generic engine features
 ########################
-zzz.txt
 generic/attacks_each_turn.txt
 generic/cycling.txt
 generic/cycling2.txt
@@ -73,6 +72,7 @@ generic/wither.txt
 act_of_treason.txt
 aegis_of_the_meek.txt
 aether_mutation.txt
+aether_flash.txt
 afflict.txt
 akron_legionnaire.txt
 alluring_siren.txt
@@ -140,6 +140,7 @@ boggart_arsonists.txt
 borderland_behemoth.txt
 bottle_gnomes.txt
 bottle_gnomes2.txt
+bramblewood_paragon.txt
 brass_man.txt
 brass_man_i161.txt
 cage_of_hands.txt
@@ -216,6 +217,7 @@ farmstead.txt
 fastbond.txt
 fastbond2.txt
 fault_line.txt
+feral_hydra.txt
 fire_tempest.txt
 fists_of_ironwood.txt
 flagstones.txt
@@ -233,6 +235,7 @@ force_of_nature.txt
 force_of_nature2.txt
 force_of_nature3.txt
 fountain_of_youth.txt
+fungus_sliver.txt
 gamble.txt
 gempalm_avenger.txt
 ghost_warden.txt
@@ -278,6 +281,7 @@ iron_will_i270.txt
 jodahs_avenger.txt
 juggernaut.txt
 jump.txt
+juniper_order_ranger.txt
 karns_touch_i233.txt
 keldon_warlord.txt
 keldon_warlord2.txt
@@ -313,6 +317,7 @@ millstone.txt
 misc01.txt
 moat.txt
 mobile_fort.txt
+mortuary.txt
 nantuko_husk.txt
 necrogenesis.txt
 Nevinyrrals_Disk.txt
@@ -383,6 +388,7 @@ shock.txt
 shock2.txt
 siege_gang_commander.txt
 silent_arbiter.txt
+simic_initiate.txt
 slate_of_ancestry.txt
 sleeper_agent.txt
 slith_bloodletter.txt

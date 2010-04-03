@@ -1,0 +1,24 @@
+[init]
+secondmain
+[player1]
+manapool:{5}{G}
+hand:Feral Hydra
+[player2]
+[do]
+Feral Hydra
+eot
+eot
+next
+next
+next
+next
+next
+Feral Hydra
+eot
+[assert]
+untap
+[player1]
+inplay:feral hydra
+[player2]
+life:15
+[end]

@@ -83,6 +83,11 @@ class MTGAbility: public ActionElement{
   };
 };
 
+class NestedAbility{
+  public:
+  MTGAbility * ability;
+  NestedAbility(MTGAbility * _ability);
+};
 
 class TriggeredAbility:public MTGAbility{
  public:
@@ -164,9 +169,8 @@ class ActivatedAbility:public MTGAbility{
   virtual ostream& toString(ostream& out) const;
 };
 
-class TargetAbility:public ActivatedAbility{
+class TargetAbility:public ActivatedAbility, public NestedAbility{
  public:
-  MTGAbility * ability;
   TargetAbility(int id, MTGCardInstance * card, TargetChooser * _tc,ManaCost * _cost = NULL, int _playerturnonly = 0,int tap = 1);
   TargetAbility(int id, MTGCardInstance * card,ManaCost * _cost = NULL, int _playerturnonly = 0,int tap = 1);
   virtual int reactToClick(MTGCardInstance * card);
@@ -233,16 +237,16 @@ class TriggerNextPhase:public TriggerAtPhase{
 };
 
 
-class GenericTriggeredAbility:public TriggeredAbility{
+class GenericTriggeredAbility:public TriggeredAbility, public NestedAbility{
  public:
   TriggeredAbility * t;
-  MTGAbility * ability;
   MTGAbility * destroyCondition;
   GenericTriggeredAbility(int id, MTGCardInstance * _source,  TriggeredAbility * _t, MTGAbility * a,MTGAbility * dc = NULL, Targetable * _target = NULL);
   virtual int trigger();
   virtual int triggerOnEvent(WEvent * e);
   virtual int resolve();
   virtual int testDestroy();
+  void setTriggerTargets(WEvent * e, MTGAbility * a);
   void Update(float dt);
   virtual GenericTriggeredAbility* clone() const;
   const char * getMenuText();

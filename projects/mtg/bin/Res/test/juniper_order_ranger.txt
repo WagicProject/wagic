@@ -1,0 +1,26 @@
+[init]
+firstmain
+[player1]
+inplay:Juniper Order Ranger
+hand:eager cadet
+manapool:{W}
+[player2]
+[do]
+eager cadet
+eot
+eot
+next
+next
+next
+next
+next
+eager cadet
+juniper order ranger
+eot
+[assert]
+untap
+[player1]
+inplay:eager cadet,juniper order ranger
+[player2]
+life:15
+[end]

@@ -19,10 +19,18 @@ public:
     DAMAGE = 2,
     CHANGE_PHASE = 3,
   };
+  //for getTargets, in  case  event has more than one possible "target", like with damage events.
+  enum {
+    TARGET_NONE = 0,
+    TARGET_TO,
+    TARGET_FROM,
+  };
   int type; //Deprecated, use dynamic casting instead
   WEvent(int type = NOT_SPECIFIED);
   virtual ~WEvent() {};
   virtual std::ostream& toString(std::ostream& out) const;
+  virtual int getValue() {return 0;};
+  virtual Targetable * getTarget(int target) {return 0;};
 };
 
 struct WEventZoneChange : public WEvent {
@@ -32,6 +40,7 @@ struct WEventZoneChange : public WEvent {
   WEventZoneChange(MTGCardInstance * card, MTGGameZone * from, MTGGameZone *to);
   virtual ~WEventZoneChange() {};
   virtual std::ostream& toString(std::ostream& out) const;
+  virtual Targetable * getTarget(int target);
 };
 
 
@@ -39,6 +48,8 @@ struct WEventDamage : public WEvent {
   Damage * damage;
   WEventDamage(Damage * damage);
   virtual std::ostream& toString(std::ostream& out) const;
+  virtual int getValue();
+  virtual Targetable * getTarget(int target);
 };
 
 struct WEventPhaseChange : public WEvent {
@@ -67,6 +78,7 @@ struct WEventCardTap : public WEventCardUpdate {
   bool before;
   bool after;
   WEventCardTap(MTGCardInstance * card, bool before, bool after);
+  virtual Targetable * getTarget(int target);
 };
 
 //Event when a card's "attacker" status changes

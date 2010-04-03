@@ -223,7 +223,7 @@ MTGAbility * AbilityFactory::getCoreAbility(MTGAbility * a){
 }
 
 //Parses a string and returns the corresponding MTGAbility object
-// Returns NULL if parsing failed
+//Returns NULL if parsing failed
 //Beware, Spell CAN be null when the function is called by the AI trying to analyze the effects of a given card
 MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTGCardInstance *card, int activated, int forceUEOT, MTGGameZone * dest){
   size_t found;
@@ -1805,6 +1805,10 @@ ostream& MTGAbility::toString(ostream& out) const
 	     << " ; source : " << source;
 }
 
+NestedAbility::NestedAbility(MTGAbility * _ability){
+  ability = _ability;
+}
+
 //
 
 ActivatedAbility::ActivatedAbility(int id, MTGCardInstance * card, ManaCost * _cost, int restrictions,int tap):MTGAbility(id,card), restrictions(restrictions), needsTapping(tap){
@@ -1893,14 +1897,12 @@ ostream& ActivatedAbility::toString(ostream& out) const
 }
 
 
-TargetAbility::TargetAbility(int id, MTGCardInstance * card, TargetChooser * _tc,ManaCost * _cost, int _playerturnonly,int tap):ActivatedAbility(id, card,_cost,_playerturnonly, tap){
+TargetAbility::TargetAbility(int id, MTGCardInstance * card, TargetChooser * _tc,ManaCost * _cost, int _playerturnonly,int tap):ActivatedAbility(id, card,_cost,_playerturnonly, tap), NestedAbility(NULL){
   tc = _tc;
-  ability = NULL;
 }
 
-TargetAbility::TargetAbility(int id, MTGCardInstance * card,ManaCost * _cost, int _playerturnonly,int tap):ActivatedAbility(id, card,_cost,_playerturnonly, tap){
+TargetAbility::TargetAbility(int id, MTGCardInstance * card,ManaCost * _cost, int _playerturnonly,int tap):ActivatedAbility(id, card,_cost,_playerturnonly, tap), NestedAbility(NULL){
   tc = NULL;
-  ability = NULL;
 }
 
 
@@ -2187,10 +2189,9 @@ TriggerNextPhase* TriggerNextPhase::clone() const{
     return a;
 }
 
-GenericTriggeredAbility::GenericTriggeredAbility(int id, MTGCardInstance * _source,  TriggeredAbility * _t, MTGAbility * a , MTGAbility * dc, Targetable * _target ): TriggeredAbility(id, _source,_target){
+GenericTriggeredAbility::GenericTriggeredAbility(int id, MTGCardInstance * _source,  TriggeredAbility * _t, MTGAbility * a , MTGAbility * dc, Targetable * _target ): TriggeredAbility(id, _source,_target), NestedAbility(a){
   if (!target) target = source;
   t = _t;
-  ability = a;
   destroyCondition = dc;
 
   t->source = source;
@@ -2209,7 +2210,30 @@ int GenericTriggeredAbility::trigger(){
 
 
 int GenericTriggeredAbility::triggerOnEvent(WEvent * e){
-  return t->triggerOnEvent(e);
+  if (t->triggerOnEvent(e)) {
+
+    setTriggerTargets(e,ability);
+    return 1;
+  }
+  return 0;
+}
+
+void GenericTriggeredAbility::setTriggerTargets(WEvent * e,MTGAbility * a){
+  TriggerTargetChooser * ttc = dynamic_cast<TriggerTargetChooser *>(a->tc);
+  if (ttc) {
+    a->target = e->getTarget(ttc->triggerTarget);
+    ttc->target = e->getTarget(ttc->triggerTarget);
+  }
+  
+  NestedAbility * na = dynamic_cast<NestedAbility *>(a);
+  if (na) setTriggerTargets(e,na->ability);
+
+  MultiAbility * ma = dynamic_cast<MultiAbility *>(a);
+  if (ma) {
+    for (int i = 0; i < ma->abilities.size(); i++) {
+      setTriggerTargets(e,ma->abilities[i]);
+    }
+  }
 }
 
 void GenericTriggeredAbility::Update(float dt){

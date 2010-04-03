@@ -1,0 +1,24 @@
+[init]
+firstmain
+[player1]
+inplay:Bramblewood Paragon
+hand:Goblin Chariot
+manapool:{2}{R}
+[player2]
+inplay:Drudge Skeletons
+[do]
+goblin chariot
+next
+next
+goblin chariot
+next
+drudge skeletons
+eot
+[assert]
+untap
+[player1]
+inplay:Bramblewood Paragon,Goblin Chariot
+[player2]
+life:18
+graveyard:Drudge Skeletons
+[end]

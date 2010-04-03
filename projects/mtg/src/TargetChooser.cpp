@@ -5,7 +5,7 @@
 #include "../include/GameObserver.h"
 #include "../include/Subtypes.h"
 #include "../include/Counters.h"
-
+#include "../include/WEvent.h"
 
 
 TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInstance * card, MTGAbility * ability){
@@ -27,6 +27,16 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
   if (found == 0){
     other = true;
     s=s.substr(6);
+  }
+
+  found = s.find("trigger");
+  if (found == 0){
+    if (s.length() > 7 && s.find("[") == 7) {
+      string s1 = s.substr(7,s.find("]"));
+      if (s1.find("to") != string::npos) return NEW TriggerTargetChooser(WEvent::TARGET_TO);
+      if (s1.find("from") != string::npos) return NEW TriggerTargetChooser(WEvent::TARGET_FROM);
+    }
+    return NEW TriggerTargetChooser(1);
   }
 
   found = s.find("player");
@@ -761,3 +771,22 @@ bool DamageTargetChooser::canTarget(Targetable * target){
      DamageTargetChooser * a =  NEW   DamageTargetChooser(*this);
     return a;
   }
+
+    TriggerTargetChooser::TriggerTargetChooser(int _triggerTarget){
+      triggerTarget = _triggerTarget;
+      target = NULL;
+    }
+
+    bool TriggerTargetChooser::targetsZone(MTGGameZone * z){
+      return true;
+    }
+
+    bool TriggerTargetChooser::canTarget(Targetable * _target){
+      if (_target == target) return true;
+      return false;
+    }
+
+    TriggerTargetChooser * TriggerTargetChooser::clone() const{
+      TriggerTargetChooser * a = NEW TriggerTargetChooser(*this);
+      return a;
+    }

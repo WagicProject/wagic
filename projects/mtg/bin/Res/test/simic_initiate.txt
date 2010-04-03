@@ -1,0 +1,27 @@
+[init]
+firstmain
+[player1]
+hand:simic initiate,grizzly bears
+manapool:{G}{G}{G}
+[player2]
+[do]
+simic initiate
+grizzly bears
+choice 0
+eot
+eot
+next
+next
+next
+next
+next
+grizzly bears
+eot
+[assert]
+untap
+[player1]
+inplay:grizzly bears
+graveyard:simic initiate
+[player2]
+life:17
+[end]

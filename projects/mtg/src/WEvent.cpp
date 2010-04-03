@@ -30,6 +30,30 @@ WEventEmptyManaPool::WEventEmptyManaPool(ManaPool * source) : WEvent(), source(s
 
 WEventCombatStepChange::WEventCombatStepChange(CombatStep step) : WEvent(), step(step) {};
 
+Targetable * WEventDamage::getTarget(int target) {
+  switch (target) {
+    case TARGET_TO : 
+      return damage->target;
+    case TARGET_FROM :
+      return damage->source;
+  }
+  return NULL;
+}
+
+int WEventDamage::getValue() {
+  return damage->damage;
+}
+
+Targetable * WEventZoneChange::getTarget(int target) {
+  if (target) return card;
+  return NULL;
+}
+
+Targetable * WEventCardTap::getTarget(int target){
+  if (target) return card;
+  return NULL;
+}
+
 std::ostream& WEvent::toString(std::ostream& out) const
 {
   return out << "EVENT";

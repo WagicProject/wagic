@@ -1,0 +1,24 @@
+[init]
+firstmain
+[player1]
+inplay:Fungus Sliver,Sliver Overlord,Fury Sliver
+hand:Lightning Bolt,Resounding Thunder
+manapool:{2}{R}{R}
+[player2]
+[do]
+lightning bolt
+sliver overlord
+resounding thunder
+fury sliver
+next
+next
+sliver overlord
+eot
+[assert]
+untap
+[player1]
+inplay:Fungus Sliver,Sliver Overlord
+graveyard:Lightning bolt,resounding thunder,fury sliver
+[player2]
+life:12
+[end]

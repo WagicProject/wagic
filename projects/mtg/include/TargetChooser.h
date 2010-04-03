@@ -53,8 +53,6 @@ class TargetChooser: public TargetsList {
   virtual ~TargetChooser(){};
   int targetListSet();
   virtual TargetChooser* clone() const = 0;
-
-
 };
 
 
@@ -166,5 +164,15 @@ class DamageTargetChooser:public TargetChooser{
   virtual DamageTargetChooser * clone() const;
 };
 
+//Should only be used for triggered abilities.
+class TriggerTargetChooser:public TargetChooser{
+public:
+  Targetable * target;
+  int triggerTarget;
+  TriggerTargetChooser(int _triggerTarget);
+  virtual bool targetsZone(MTGGameZone * z);
+  virtual bool canTarget(Targetable * _target);
+  virtual TriggerTargetChooser * clone() const;
+};
 
 #endif
