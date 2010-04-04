@@ -1270,6 +1270,13 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Angelic Renewal
+auto=@movedTo(creature|mygraveyard) from(myBattlefield):all(trigger) moveTo(myBattlefield) && moveTo(mygraveyard) all(this)
+text=Whenever a creature is put into your graveyard from the battlefield, you may sacrifice Angelic Renewal. If you do, return that card to the battlefield.
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
 name=Angelic Shield
 auto=lord(creature|myBattlefield) 0/1
 auto={S}:moveTo(ownerhand) target(creature)
@@ -1483,6 +1490,18 @@ type=Creature
 subtype=Human Wizard
 power=0
 toughness=1
+[/card]
+[card]
+name=Aquastrand Spider
+auto=counter(1/1,2)
+auto=@movedto(creature|battlefield):this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
+auto={G}:reach target(creature[counter{1/1.1}])
+text=Graft 2 (This creature enters the battlefield with two +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {G}: Target creature with a +1/+1 counter on it gains reach until end of turn. (It can block creatures with flying.)
+mana={1}{G}
+type=Creature
+subtype=Spider Mutant
+power=0
+toughness=0
 [/card]
 [card]
 name=Araba Mothrider
@@ -8665,6 +8684,31 @@ type=Creature
 subtype=Elf Shaman
 power=2
 toughness=2
+[/card]
+[card]
+name=Cytoplast Root-Kin
+auto=counter(1/1,4)
+auto=@movedto(creature|battlefield):this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
+auto=counter(1/1,1) all(creature[counter{1/1.1}]|myBattlefield)
+auto={2}:counter(1/1,-1) target(creature[counter{1/1.1}]|myBattlefield) && counter(1/1,1) all(this)
+text=Graft 4 (This creature enters the battlefield with four +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- When Cytoplast Root-Kin enters the battlefield, put a +1/+1 counter on each other creature you control that has a +1/+1 counter on it. -- {2}: Move a +1/+1 counter from target creature you control onto Cytoplast Root-Kin.
+mana={2}{G}{G}
+type=Creature
+subtype=Elemental Mutant
+power=0
+toughness=0
+[/card]
+[card]
+name=Cytoplast Shambler
+auto=counter(1/1,6)
+auto=@movedto(creature|battlefield):this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
+auto={G}:trample target(creature[counter{1/1.1}])
+text=Graft 6 (This creature enters the battlefield with six +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {G}: Target creature with a +1/+1 counter on it gains trample until end of turn.
+mana={6}{G}
+type=Creature
+subtype=Elemental Mutant
+power=0
+toughness=0
 [/card]
 [card]
 name=D'Avenant Archer
@@ -18139,6 +18183,18 @@ power=1
 toughness=2
 [/card]
 [card]
+name=Helium Squirter
+auto=counter(1/1,3)
+auto=@movedto(creature|battlefield):this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
+auto={1}:flying target(creature[counter{1/1.1}])
+text=Graft 3 (This creature enters the battlefield with three +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {1}: Target creature with a +1/+1 counter on it gains flying until end of turn.
+mana={4}{U}
+type=Creature
+subtype=Beast Mutant
+power=0
+toughness=0
+[/card]
+[card]
 name=Hell Swarm
 auto=lord(creature) -1/0
 text=All creatures get -1/-0 until end of turn.
@@ -23222,6 +23278,15 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Llanowar Reborn
+auto=tap
+auto={T}:Add{G}
+auto=counter(1/1,1)
+auto=@movedto(creature|battlefield):this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
+text=Llanowar Reborn enters the battlefield tapped. -- {T}: Add {G} to your mana pool. -- Graft 1 (This land enters the battlefield with a +1/+1 counter on it. Whenever a creature enters the battlefield, you may move a +1/+1 counter from this land onto it.)
+type=Land
+[/card]
+[card]
 name=Llanowar Vanguard
 auto={T}:0/4
 text={T}: Llanowar Vanguard gets +0/+4 until end of turn.
@@ -24946,6 +25011,13 @@ auto=lord(creature[attacking]) 1/0
 text=Attacking creatures get +1/+0.
 mana={4}
 type=Artifact
+[/card]
+[card]
+name=Mighty Emergence
+auto=@movedTo(creature|myBattlefield):all(trigger) counter(1/1,2)
+text=Whenever a creature with power 5 or greater enters the battlefield under your control, you may put two +1/+1 counters on it.
+mana={2}{G}
+type=Enchantment
 [/card]
 [card]
 name=Mikokoro, Center of the Sea
@@ -29386,6 +29458,13 @@ mana={6}
 type=Artifact
 [/card]
 [card]
+name=Planar Void
+auto=@movedTo(*|graveyard):all(trigger) moveTo(exile)
+text=Whenever another card is put into a graveyard from anywhere, exile that card.
+mana={B}
+type=Enchantment
+[/card]
+[card]
 name=Plant Elemental
 auto=moveTo(graveyard) notatarget(this|myBattlefield)
 auto=moveTo(graveyard) notatarget(forest|myBattlefield)
@@ -29471,6 +29550,18 @@ type=Creature
 subtype=Wurm
 power=4
 toughness=5
+[/card]
+[card]
+name=Plaxcaster Frogling
+auto=counter(1/1,3)
+auto={2}:shroud target(creature[counter{1/1.1}])
+auto=@movedto(creature|battlefield):this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
+text=Graft 3 (This creature enters the battlefield with three +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {2}: Target creature with a +1/+1 counter on it gains shroud until end of turn. (It can't be the target of spells or abilities.)
+mana={1}{G}{U}
+type=Creature
+subtype=Frog Mutant
+power=0
+toughness=0
 [/card]
 [card]
 name=Pledge of Loyalty
@@ -32112,6 +32203,13 @@ auto=foreach(Rite of Flame|opponentGraveyard) add{R}
 text=Add {R}{R} to your mana pool, then add {R} to your mana pool for each card named Rite of Flame in each graveyard.
 mana={R}
 type=Sorcery
+[/card]
+[card]
+name=Rite of Passage
+auto=@damaged(creature|myBattlefield)):all(trigger[to]) counter(1/1)
+text=Whenever a creature you control is dealt damage, put a +1/+1 counter on it. (The damage is dealt before the counter is put on.)
+mana={2}{G}
+type=Enchantment
 [/card]
 [card]
 name=Rith's Attendant
@@ -35351,6 +35449,16 @@ mana={G}{W}
 type=Instant
 [/card]
 [card]
+name=Sigil Captain
+auto=@movedTo(creature[power=1;toughness=1]|myBattlefield):all(trigger) counter(1/1,2)
+text=Whenever a creature enters the battlefield under your control, if that creature is 1/1, put two +1/+1 counters on it.
+mana={1}{G}{W}{W}
+type=Creature
+subtype=Rhino Soldier
+power=3
+toughness=3
+[/card]
+[card]
 name=Sigil of the Empty Throne
 auto=@movedTo(enchantment|mystack):token(Angel,Creature Angel,4/4,white flying)
 text=Whenever you cast an enchantment spell, put a 4/4 white Angel creature token with flying onto the battlefield.
@@ -37825,6 +37933,18 @@ type=Creature
 subtype=Frog
 power=1
 toughness=1
+[/card]
+[card]
+name=Sporeback Troll
+auto=counter(1/1,2)
+auto=@movedto(creature|battlefield):this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
+auto={1}{G}:regenerate target(creature[counter{1/1.1}])
+text=Graft 2 (This creature enters the battlefield with two +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {1}{G}: Regenerate target creature with a +1/+1 counter on it.
+mana={G}
+type=Creature
+subtype=Human Mutant
+power=0
+toughness=0
 [/card]
 [card]
 name=Sporesower Thallid
@@ -43880,6 +44000,30 @@ type=Creature
 subtype=Sliver
 power=2
 toughness=2
+[/card]
+[card]
+name=Vigean Graftmage
+auto=counter(1/1,2)
+auto=@movedto(creature|battlefield):this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
+auto={1}{U}:untap target(creature[counter{1/1.1}])
+text=Graft 2 (This creature enters the battlefield with two +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {1}{U}: Untap target creature with a +1/+1 counter on it.
+mana={2}{U}
+type=Creature
+subtype=Vedalken Wizard Mutant
+power=0
+toughness=0
+[/card]
+[card]
+name=Vigean Hydropon
+abilities=cantattack,cantblock
+auto=counter(1/1,5)
+auto=@movedto(creature|battlefield):this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
+text=Graft 5 (This creature enters the battlefield with five +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- Vigean Hydropon can't attack or block.
+mana={1}{G}{U}
+type=Creature
+subtype=Vedalken Wizard Mutant
+power=0
+toughness=0
 [/card]
 [card]
 name=Vigilance
