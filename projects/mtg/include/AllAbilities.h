@@ -280,7 +280,7 @@ public:
   int triggered;
   bool must;
   MTGAbility * mClone;
-  MayAbility(int _id, MTGAbility * _ability,  MTGCardInstance * _source, bool must = false):MTGAbility(_id,_source),must(must),NestedAbility(_ability){
+  MayAbility(int _id, MTGAbility * _ability,  MTGCardInstance * _source, bool must = false):MTGAbility(_id,_source),NestedAbility(_ability),must(must){
     triggered = 0;
     mClone = NULL;
   }

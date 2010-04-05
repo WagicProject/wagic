@@ -2230,7 +2230,7 @@ void GenericTriggeredAbility::setTriggerTargets(WEvent * e,MTGAbility * a){
 
   MultiAbility * ma = dynamic_cast<MultiAbility *>(a);
   if (ma) {
-    for (int i = 0; i < ma->abilities.size(); i++) {
+    for (size_t i = 0; i < ma->abilities.size(); i++) {
       setTriggerTargets(e,ma->abilities[i]);
     }
   }
