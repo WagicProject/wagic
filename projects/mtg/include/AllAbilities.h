@@ -1898,6 +1898,8 @@ public:
     //TODO check if ability is oneShot ?
     if (td->match(source) > 0){
       addAbilityToGame();
+    }else{
+      removeAbilityFromGame();
     }
     if (ability->oneShot) a = NULL; //allows to call the effect several times
     return 1;
