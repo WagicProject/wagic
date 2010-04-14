@@ -158,9 +158,11 @@ class ActivatedAbility:public MTGAbility{
     CLEANUP = 56,
     AFTER_EOT = 57,
    };
+   ManaCost * abilityCost;
   int restrictions;
   int needsTapping;
   ActivatedAbility(int id, MTGCardInstance * card,ManaCost * _cost = NULL, int _restrictions = NO_RESTRICTION,int tap = 1);
+  virtual ~ActivatedAbility();
   virtual int reactToClick(MTGCardInstance * card);
   virtual int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
   virtual int reactToTargetClick(Targetable * object);

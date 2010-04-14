@@ -1813,6 +1813,7 @@ NestedAbility::NestedAbility(MTGAbility * _ability){
 
 ActivatedAbility::ActivatedAbility(int id, MTGCardInstance * card, ManaCost * _cost, int restrictions,int tap):MTGAbility(id,card), restrictions(restrictions), needsTapping(tap){
   cost = _cost;
+  abilityCost = 0;
 }
 
 
@@ -1856,13 +1857,17 @@ int ActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 int ActivatedAbility::reactToClick(MTGCardInstance * card){
 //  if (cost) cost->setExtraCostsAction(this, card);
   if (!isReactingToClick(card)) return 0;
+  Player * player = game->currentlyActing();
   if (cost){
     if (!cost->isExtraPaymentSet()){
       game->waitForExtraPayment = cost->extraCosts;
       return 0;
     }
+    ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
     game->currentlyActing()->getManaPool()->pay(cost);
     cost->doPayExtra();
+    abilityCost = previousManaPool->Diff(player->getManaPool());
+    delete previousManaPool;
   }
   if (needsTapping && source->isInPlay()) source->tap();
   fireAbility();
@@ -1873,19 +1878,29 @@ int ActivatedAbility::reactToClick(MTGCardInstance * card){
 
 int ActivatedAbility::reactToTargetClick(Targetable * object){
   if (!isReactingToTargetClick(object)) return 0;
+  Player * player = game->currentlyActing();
   if (cost){
     if (object->typeAsTarget() == TARGET_CARD) cost->setExtraCostsAction(this, (MTGCardInstance *) object);
     if (!cost->isExtraPaymentSet()){
       game->waitForExtraPayment = cost->extraCosts;
       return 0;
     }
+    ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
     game->currentlyActing()->getManaPool()->pay(cost);
     cost->doPayExtra();
+    abilityCost = previousManaPool->Diff(player->getManaPool());
+    delete previousManaPool;
   }
   if (needsTapping  && source->isInPlay()) source->tap();
   fireAbility();
   return 1;
 
+}
+
+ActivatedAbility::~ActivatedAbility(){
+  if (!isClone){
+    SAFE_DELETE(abilityCost);
+  }
 }
 
 ostream& ActivatedAbility::toString(ostream& out) const

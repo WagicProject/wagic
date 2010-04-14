@@ -12,12 +12,12 @@ using namespace std;
 
 class CardPrimitive {
  protected:
-  ManaCost manaCost;
   vector<string> ftdText;
   int init();
   string lcname;
 
  public:
+  ManaCost manaCost;
   string text;
   string name;
 

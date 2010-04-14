@@ -400,6 +400,9 @@ class GenericActivatedAbility:public ActivatedAbility, public NestedAbility{
 
   int resolve(){
     counters++;
+    SAFE_DELETE(ability->cost);
+    ability->cost = abilityCost->Diff(cost);
+    SAFE_DELETE(abilityCost);
     ability->target = target; //may have been updated...
     if (ability) return ability->resolve();
     return 0;
@@ -1896,7 +1899,14 @@ public:
 
   int resolve(){
     //TODO check if ability is oneShot ?
-    if (td->match(source) > 0){
+    int match;
+    if (!td->compareAbility){
+      match = td->match(source);
+    }else{
+      match = td->match(this);
+    }
+
+    if (match){
       addAbilityToGame();
     }else{
       removeAbilityFromGame();
@@ -1961,7 +1971,12 @@ class AThisForEach:public MTGAbility, public NestedAbility{
 
   int resolve(){
     //TODO check if ability is oneShot ?
-    int matches = td->match(source);
+    int matches;
+    if (!td->compareAbility){
+      matches = td->match(source);
+    }else{
+      matches = td->match(this);
+    }
     if (matches > 0) {
       if (abilities.size()){     
         removeAbilityFromGame();

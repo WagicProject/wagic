@@ -144,15 +144,28 @@ ThisDescriptor * ThisDescriptorFactory::createThisDescriptor(string s){
     return NULL;
   }
 
+  // X
+  found = s.find("x");
+  if (found != string::npos) {
+    ThisX * td = NEW ThisX(criterion);
+    if (td){
+      td->comparisonMode = mode;
+      return td;
+    }
+    return NULL;
+  }
+
   return NULL;
 }
 
 ThisCounter::ThisCounter(Counter * _counter){
+  compareAbility = 0;
   counter = _counter;
   comparisonCriterion = counter->nb;
 }
 
 ThisCounter::ThisCounter(int power, int toughness, int nb, const char * name){
+  compareAbility = 0;
   counter = NEW Counter(NULL,name,power,toughness);
   comparisonCriterion = nb;
 }
@@ -184,6 +197,7 @@ ThisCounter::~ThisCounter() {
 }
 
 ThisPower::ThisPower(int power){
+  compareAbility = 0;
   comparisonCriterion = power;
 }
 
@@ -192,6 +206,7 @@ int ThisPower::match(MTGCardInstance * card){
 }
 
 ThisToughness::ThisToughness(int toughness){
+  compareAbility = 0;
   comparisonCriterion = toughness;
 }
 
@@ -200,6 +215,7 @@ int ThisToughness::match(MTGCardInstance * card){
 }
 
 ThisCounterAny::ThisCounterAny(int nb){
+  compareAbility = 0;
   comparisonCriterion = nb;
 }
 
@@ -209,4 +225,13 @@ int ThisCounterAny::match(MTGCardInstance * card){
     result += card->counters->counters[i]->nb;
   }
   return matchValue(result);
+}
+
+ThisX::ThisX(int x){
+  comparisonCriterion = x;
+  compareAbility = 1;
+}
+
+int ThisX::match(MTGAbility * ability){
+  return matchValue(ability->cost->hasX());
 }
