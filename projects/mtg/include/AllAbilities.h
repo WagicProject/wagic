@@ -400,14 +400,28 @@ class GenericActivatedAbility:public ActivatedAbility, public NestedAbility{
 
   int resolve(){
     counters++;
-    SAFE_DELETE(ability->cost);
-    ability->cost = abilityCost->Diff(cost);
+    setAbilityCost(ability);
     SAFE_DELETE(abilityCost);
     ability->target = target; //may have been updated...
     if (ability) return ability->resolve();
     return 0;
   }
 
+
+  void setAbilityCost(MTGAbility * _ability){
+    SAFE_DELETE(_ability->cost);
+    _ability->cost = abilityCost->Diff(cost);
+
+    NestedAbility * na = dynamic_cast<NestedAbility *>(_ability);
+    if (na) setAbilityCost(na->ability);
+
+    MultiAbility * ma = dynamic_cast<MultiAbility *>(_ability);
+    if (ma) {
+      for (size_t i = 0; i < ma->abilities.size(); i++) {
+        setAbilityCost(ma->abilities[i]);
+      }
+    }
+  }
   const char * getMenuText(){
     if (ability) return ability->getMenuText();
     return "Error";
