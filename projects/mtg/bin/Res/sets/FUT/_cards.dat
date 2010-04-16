@@ -274,6 +274,11 @@ id=136157
 rarity=R
 [/card]
 [card]
+primitive=Goldmeadow Harrier
+id=-130311
+rarity=T
+[/card]
+[card]
 primitive=Goldmeadow Lookout
 id=130311
 rarity=U
@@ -397,6 +402,11 @@ rarity=R
 primitive=Llanowar Augur
 id=132213
 rarity=C
+[/card]
+[card]
+primitive=Llanowar Elves
+id=-126166
+rarity=T
 [/card]
 [card]
 primitive=Llanowar Empath
@@ -737,6 +747,11 @@ rarity=U
 primitive=Soultether Golem
 id=126213
 rarity=U
+[/card]
+[card]
+primitive=Spark Elemental
+id=-130341
+rarity=T
 [/card]
 [card]
 primitive=Sparkspitter

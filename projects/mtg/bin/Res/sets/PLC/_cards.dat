@@ -114,6 +114,11 @@ id=111066
 rarity=R
 [/card]
 [card]
+primitive=Chronozoa
+id=-111066
+rarity=T
+[/card]
+[card]
 primitive=Circle of Affliction
 id=126803
 rarity=U

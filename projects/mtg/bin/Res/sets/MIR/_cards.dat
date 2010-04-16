@@ -1684,6 +1684,11 @@ id=3558
 rarity=R
 [/card]
 [card]
+primitive=Wave
+id=-3371
+rarity=T
+[/card]
+[card]
 primitive=Wave Elemental
 id=3373
 rarity=U

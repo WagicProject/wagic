@@ -289,6 +289,11 @@ id=107542
 rarity=C
 [/card]
 [card]
+primitive=Goblin (Rakdos Guildmage)
+id=-97108
+rarity=T
+[/card]
+[card]
 primitive=Govern the Guildless
 id=107395
 rarity=R
@@ -762,6 +767,11 @@ rarity=C
 primitive=Sprouting Phytohydra
 id=111220
 rarity=R
+[/card]
+[card]
+primitive=Sprouting Phytohydra
+id=-111220
+rarity=C
 [/card]
 [card]
 primitive=Squealing Devil

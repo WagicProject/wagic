@@ -769,6 +769,11 @@ id=121230
 rarity=R
 [/card]
 [card]
+primitive=Wolf (Sound the Call)
+id=-121156
+rarity=T
+[/card]
+[card]
 primitive=Zombie Musher
 id=121154
 rarity=C

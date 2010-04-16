@@ -794,6 +794,11 @@ id=9847
 rarity=R
 [/card]
 [card]
+primitive=Knight (Waylay)
+id=-5833
+rarity=T
+[/card]
+[card]
 primitive=Launch
 id=5832
 rarity=C
