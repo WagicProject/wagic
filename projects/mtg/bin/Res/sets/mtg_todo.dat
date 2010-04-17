@@ -22312,12 +22312,6 @@ mana={1}{G}
 type=Sorcery
 [/card]
 [card]
-name=Martial Coup
-text=Put X 1/1 white Soldier creature tokens onto the battlefield. If X is 5 or more, destroy all other creatures.
-mana={X}{W}{W}
-type=Sorcery
-[/card]
-[card]
 name=Martyr of Ashes
 text={2}, Reveal X red cards from your hand, Sacrifice Martyr of Ashes: Martyr of Ashes deals X damage to each creature without flying.
 mana={R}
