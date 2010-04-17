@@ -1413,6 +1413,17 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Anthroplasm
+auto=counter(1/1,2)
+auto={X}{T}:thisforeach(counter{1/1.1}) counter(1/1,-1) && thisforeach(X) all(this) counter(1/1,1)
+text=Anthroplasm enters the battlefield with two +1/+1 counters on it. -- {X}, {T}: Remove all +1/+1 counters from Anthroplasm and put X +1/+1 counters on it.
+mana={2}{U}{U}
+type=Creature
+subtype=Shapeshifter
+power=0
+toughness=0
+[/card]
+[card]
 name=Antler Skulkin
 auto={2}:persist target(creature)
 text={2}: Target white creature gains persist until end of turn. (When it's put into a graveyard from the battlefield, if it had no -1/-1 counters on it, return it to the battlefield under its owner's control with a -1/-1 counter on it.)
@@ -1751,7 +1762,6 @@ toughness=1
 [/card]
 [card]
 name=Archon of Justice
-abilities=flying
 abilities=flying
 auto=@movedTo(this|graveyard) from(battlefield):moveTo(exile) target(*|battlefield)
 text=Flying -- When Archon of Justice is put into a graveyard from the battlefield, exile target permanent.
@@ -6930,6 +6940,14 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Chimeric Coils
+auto={X}{1}:becomes(artifact creature construct,*/*) ueot && thisforeach(X) all(this) 1/1
+auto=@each endofturn:bury all(creature[chimeric coils])
+text={X}{1}: Chimeric Coils becomes an X/X Construct artifact creature. Sacrifice it at the beginning of the next end step.
+mana={1}
+type=Artifact
+[/card]
+[card]
 name=Chimeric Egg
 auto=@movedTo(*[-artifact]|opponentstack):counter(0/0,1,Charge)
 auto={C(0/0,-3,Charge)}:becomes(Construct Artifact Creature,6/6,trample) ueot
@@ -6951,7 +6969,14 @@ auto={2}:becomes(Construct Artifact Creature,3/2) ueot
 text={2}: Until end of turn, Chimeric Sphere becomes a 2/1 Construct artifact creature with flying. -- {2}: Until end of turn, Chimeric Sphere becomes a 3/2 Construct artifact creature without flying.
 mana={3}
 type=Artifact
-[/card
+[/card]
+[card]
+name=Chimeric Staff
+auto={X}:becomes(Artifact Creature Construct,*/*) ueot && thisforeach(X) all(this) 1/1
+text={X}: Chimeric Staff becomes an X/X Construct artifact creature until end of turn.
+mana={4}
+type=Artifact
+[/card]
 [card]
 name=Cho-Manno, Revolutionary
 auto=preventAllCombatDamage to(this)
@@ -7340,6 +7365,19 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Clockwork Avian
+abilities=flying
+auto=counter(1/0,4)
+auto=@each combatends:counter(1/0,-1) all(clockwork avian[attacking;blocking]) && counter(1/0,1) all(other clockwork avian[attacking;blocking])
+auto={X}{T}:thisforeach(X) all(this) counter(1/0,1) && thisforeach(counter{1/0.1}>4) counter(1/0,-1) myUpkeepOnly
+text=Flying -- Clockwork Avian enters the battlefield with four +1/+0 counters on it. -- At end of combat, if Clockwork Avian attacked or blocked this combat, remove a +1/+0 counter from it. -- {X}, {T}: Put up to X +1/+0 counters on Clockwork Avian. This ability can't cause the total number of +1/+0 counters on Clockwork Avian to be greater than four. Activate this ability only during your upkeep.
+mana={5}
+type=Artifact Creature
+subtype=Bird
+power=0
+toughness=4
+[/card]
+[card]
 name=Clockwork Beast
 alias=1101
 text=Clockwork Beast enters the battlefield with seven +1/+0 counters on it. -- At end of combat, if Clockwork Beast attacked or blocked this combat, remove a +1/+0 counter from it. -- {X}, {T}: Put up to X +1/+0 counters on Clockwork Beast. This ability can't cause the total number of +1/+0 counters on Clockwork Beast to be greater than seven. Activate this ability only during your upkeep.
@@ -7394,6 +7432,32 @@ type=Artifact Creature
 subtype=Gnome
 power=2
 toughness=2
+[/card]
+[card]
+name=Clockwork Steed
+auto=counter(1/0,4)
+auto=cantbeblockedby(creature[artifact])
+auto=@each combatends:counter(1/0,-1) all(clockwork steed[attacking;blocking]) && counter(1/0,1) all(other clockwork steed[attacking;blocking])
+auto={X}{T}:thisforeach(X) all(this) counter(1/0,1) && thisforeach(counter{1/0.1}>4) counter(1/0,-1) myUpkeepOnly
+text=Clockwork Steed enters the battlefield with four +1/+0 counters on it. -- Clockwork Steed can't be blocked by artifact creatures. -- At end of combat, if Clockwork Steed attacked or blocked this combat, remove a +1/+0 counter from it. -- {X}, {T}: Put up to X +1/+0 counters on Clockwork Steed. This ability can't cause the total number of +1/+0 counters on Clockwork Steed to be greater than four. Activate this ability only during your upkeep.
+mana={4}
+type=Artifact Creature
+subtype=Horse
+power=0
+toughness=3
+[/card]
+[card]
+name=Clockwork Swarm
+auto=counter(1/0,4)
+auto=cantbeblockedby(wall)
+auto=@each combatends:counter(1/0,-1) all(clockwork swarm[attacking;blocking]) && counter(1/0,1) all(other clockwork warm[attacking;blocking])
+auto={X}{T}:thisforeach(X) all(this) counter(1/0,1) && thisforeach(counter{1/0.1}>4) counter(1/0,-1) myUpkeepOnly
+text=Clockwork Swarm enters the battlefield with four +1/+0 counters on it. -- Clockwork Swarm can't be blocked by Walls. -- At end of combat, if Clockwork Swarm attacked or blocked this combat, remove a +1/+0 counter from it. -- {X}, {T}: Put up to X +1/+0 counters on Clockwork Swarm. This ability can't cause the total number of +1/+0 counters on Clockwork Swarm to be greater than four. Activate this ability only during your upkeep.
+mana={4}
+type=Artifact Creature
+subtype=Insect
+power=0
+toughness=3
 [/card]
 [card]
 name=Clockwork Vorrac
@@ -28519,6 +28583,16 @@ mana={4}{U}{U}
 type=Instant
 [/card]
 [card]
+name=Oracle of Nectars
+auto={X}{T}:thisforeach(X) life:X
+text={X}, {T}: You gain X life.
+mana={2}{GW}
+type=Creature
+subtype=Elf Cleric
+power=2
+toughness=2
+[/card]
+[card]
 name=Oran-Rief Recluse
 abilities=reach
 kicker={2}{G}
@@ -36307,6 +36381,17 @@ mana={G}
 type=Instant
 [/card]
 [card]
+name=Silklash Spider
+abilities=reach
+auto={X}{G}{G}:thisforeach(X) damage:1 all(creature[flying])
+text=Reach (This creature can block creatures with flying.) -- {X}{G}{G}: Silklash Spider deals X damage to each creature with flying.
+mana={3}{G}{G}
+type=Creature
+subtype=Spider
+power=2
+toughness=7
+[/card]
+[card]
 name=Silkwing Scout
 abilities=flying
 auto={G}{S}:moveTo(myBattlefield) target(basic|mylibrary) && tap
@@ -37466,6 +37551,13 @@ auto=bury
 text=Destroy target creature with converted mana cost 3 or less. It can't be regenerated.
 mana={1}{B}
 type=Instant
+[/card]
+[card]
+name=Snake Basket
+auto={X}{S}:thisforeach(X):token(Snake,creature token snake,1/1,green) asSorcery
+text={X}, Sacrifice Snake Basket: Put X 1/1 green Snake creature tokens onto the battlefield. Activate this ability only any time you could cast a sorcery.
+mana={4}
+type=Artifact
 [/card]
 [card]
 name=Snake Pit
@@ -41521,6 +41613,13 @@ mana={1}{B}
 type=Instant
 [/card]
 [card]
+name=Testament of Faith
+auto={X}:becomes(Creature Wall,*/*,defender) ueot && thisforeach(X) all(this) 1/1
+text={X}: Testament of Faith becomes an X/X Wall creature with defender until end of turn. It's still an enchantment.
+mana={W}
+type=Enchantment
+[/card]
+[card]
 name=Tethered Griffin
 abilities=flying
 auto=aslongas(enchantment|myBattlefield) 92/93
@@ -44570,6 +44669,14 @@ type=Artifact Creature
 subtype=Sliver
 power=3
 toughness=3
+[/card]
+[card]
+name=Ventifact Bottle
+auto={X}{1}{T}:thisforeach(X) all(this) counter(0/0,1,Charge) asSorcery
+auto=@each my firstmain:tap all(ventifact bottle[counter{0/0.1.Charge}]|myBattlefield) && thisforeach(counter{0/0.1.Charge}) add{1} && thisforeach(counter{0/0.1.Charge}) counter(0/0,-1,Charge)
+text={X}{1}, {T}: Put X charge counters on Ventifact Bottle. Activate this ability only any time you could cast a sorcery. -- At the beginning of your precombat main phase, if Ventifact Bottle has a charge counter on it, tap it and remove all charge counters from it. Add {1} to your mana pool for each charge counter removed this way.
+mana={3}
+type=Artifact
 [/card]
 [card]
 name=Verdant Catacombs

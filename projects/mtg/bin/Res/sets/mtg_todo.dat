@@ -1043,15 +1043,6 @@ mana={2}{B}{R}{R}
 type=Enchantment
 [/card]
 [card]
-name=Anthroplasm
-text=Anthroplasm enters the battlefield with two +1/+1 counters on it. -- {X}, {T}: Remove all +1/+1 counters from Anthroplasm and put X +1/+1 counters on it.
-mana={2}{U}{U}
-type=Creature
-subtype=Shapeshifter
-power=0
-toughness=0
-[/card]
-[card]
 name=Anti-Magic Aura
 text=Enchant creature -- Enchanted creature can't be the target of spells and can't be enchanted. This effect doesn't remove Anti-Magic Aura.
 mana={2}{U}
@@ -1215,6 +1206,8 @@ subtype=Merfolk
 [/card]
 [card]
 name=Arashi, the Sky Asunder
+auto={X}{G}{T}:thisforeach(X) damage:1 target(creature[flying])
+autohand={X}{G}{G}{S}:thisforeach(X) damage:1 all(creature[flying])
 text={X}{G}, {T}: Arashi, the Sky Asunder deals X damage to target creature with flying. -- Channel - {X}{G}{G}, Discard Arashi: Arashi deals X damage to each creature with flying.
 mana={3}{G}{G}
 type=Legendary Creature
@@ -5654,26 +5647,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Chimeric Coils
-auto={X}{1}:becomes(construct artifact Creature,X/X)
-auto={X}{1}:becomes(construct artifact Creature,X/X) && @next endofturn:bury
-auto=@each endofturn:bury all(chimeric coils[construct])
-# Following line does not work: card does not become a creature
-# Following line does not work: we cannot chain triggers to paid abilities
-# Following line would be a very dirty & hackish replacement for the line above:
-text={X}{1}: Chimeric Coils becomes an X/X Construct artifact creature. Sacrifice it at the beginning of the next end step.
-mana={1}
-type=Artifact
-[/card]
-[card]
-name=Chimeric Staff
-auto={X}:becomes(Artifact Creature Construct,x/x)
-#X cannot be used in abilities yet
-text={X}: Chimeric Staff becomes an X/X Construct artifact creature until end of turn.
-mana={4}
-type=Artifact
-[/card]
-[card]
 name=Chimney Imp
 text=Flying -- When Chimney Imp is put into a graveyard from the battlefield, target opponent puts a card from his or her hand on top of his or her library.
 mana={4}{B}
@@ -6087,10 +6060,6 @@ subtype=Aura
 [/card]
 [card]
 name=Clock of Omens
-auto={T(artifact[-tapped]|myinplay)}{T(artifact[-tapped]|myinplay)}:untap target(artifact[tapped])
-# Following line does not work: Can't have several singular targets in one auto line
-##auto={0}:tap target(artifact[-tapped]|myinplay) && tap target(artifact[-tapped]|myinplay) && untap target(artifact[tapped])
-# Following line does not work: Can't specify tap targets in cost segment
 text=Tap two untapped artifacts you control: Untap target artifact.
 mana={4}
 type=Artifact
@@ -6102,15 +6071,6 @@ mana={U}
 type=Instant
 [/card]
 [card]
-name=Clockwork Avian
-text=Flying -- Clockwork Avian enters the battlefield with four +1/+0 counters on it. -- At end of combat, if Clockwork Avian attacked or blocked this combat, remove a +1/+0 counter from it. -- {X}, {T}: Put up to X +1/+0 counters on Clockwork Avian. This ability can't cause the total number of +1/+0 counters on Clockwork Avian to be greater than four. Activate this ability only during your upkeep.
-mana={5}
-type=Artifact Creature
-subtype=Bird
-power=0
-toughness=4
-[/card]
-[card]
 name=Clockwork Hydra
 text=Clockwork Hydra enters the battlefield with four +1/+1 counters on it. -- Whenever Clockwork Hydra attacks or blocks, remove a +1/+1 counter from it. If you do, Clockwork Hydra deals 1 damage to target creature or player. -- {T}: Put a +1/+1 counter on Clockwork Hydra.
 mana={5}
@@ -6118,27 +6078,6 @@ type=Artifact Creature
 subtype=Hydra
 power=0
 toughness=0
-[/card]
-[card]
-name=Clockwork Steed
-auto=counter(1/0,-3)
-alias=1101
-#not 100% correct all this Clockwork cards could be hardcoded
-text=Clockwork Steed enters the battlefield with four +1/+0 counters on it. -- Clockwork Steed can't be blocked by artifact creatures. -- At end of combat, if Clockwork Steed attacked or blocked this combat, remove a +1/+0 counter from it. -- {X}, {T}: Put up to X +1/+0 counters on Clockwork Steed. This ability can't cause the total number of +1/+0 counters on Clockwork Steed to be greater than four. Activate this ability only during your upkeep.
-mana={4}
-type=Artifact Creature
-subtype=Horse
-power=0
-toughness=3
-[/card]
-[card]
-name=Clockwork Swarm
-text=Clockwork Swarm enters the battlefield with four +1/+0 counters on it. -- Clockwork Swarm can't be blocked by Walls. -- At end of combat, if Clockwork Swarm attacked or blocked this combat, remove a +1/+0 counter from it. -- {X}, {T}: Put up to X +1/+0 counters on Clockwork Swarm. This ability can't cause the total number of +1/+0 counters on Clockwork Swarm to be greater than four. Activate this ability only during your upkeep.
-mana={4}
-type=Artifact Creature
-subtype=Insect
-power=0
-toughness=3
 [/card]
 [card]
 name=Close Quarters
@@ -18767,15 +18706,6 @@ mana={2}
 type=Artifact
 [/card]
 [card]
-name=Jiwari, the Earth Aflame
-text={X}{R}, {T}: Jiwari, the Earth Aflame deals X damage to target creature without flying. -- Channel - {X}{R}{R}{R}, Discard Jiwari: Jiwari deals X damage to each creature without flying.
-mana={3}{R}{R}
-type=Legendary Creature
-subtype=Spirit
-power=3
-toughness=3
-[/card]
-[card]
 name=Johan
 text=At the beginning of your combat phase, you may have Johan gain "Johan can't attack" until end of combat. If you do, attacking doesn't cause creatures you control to tap this combat if Johan is untapped.
 mana={3}{R}{G}{W}
@@ -26152,15 +26082,6 @@ text=You may play an additional land on each of your turns. -- Play with the top
 mana={3}{G}
 type=Creature
 subtype=Elf Shaman
-power=2
-toughness=2
-[/card]
-[card]
-name=Oracle of Nectars
-text={X}, {T}: You gain X life.
-mana={2}{GW}
-type=Creature
-subtype=Elf Cleric
 power=2
 toughness=2
 [/card]
@@ -34235,15 +34156,6 @@ power=3
 toughness=5
 [/card]
 [card]
-name=Silklash Spider
-text=Reach (This creature can block creatures with flying.) -- {X}{G}{G}: Silklash Spider deals X damage to each creature with flying.
-mana={3}{G}{G}
-type=Creature
-subtype=Spider
-power=2
-toughness=7
-[/card]
-[card]
 name=Silver Wyvern
 text=Flying -- {U}: Change the target of target spell or ability that targets only Silver Wyvern. The new target must be a creature.
 mana={3}{U}{U}
@@ -34964,12 +34876,6 @@ name=Snag
 text=You may discard a Forest card rather than pay Snag's mana cost. -- Prevent all combat damage that would be dealt by unblocked creatures this turn.
 mana={3}{G}
 type=Instant
-[/card]
-[card]
-name=Snake Basket
-text={X}, Sacrifice Snake Basket: Put X 1/1 green Snake creature tokens onto the battlefield. Activate this ability only any time you could cast a sorcery.
-mana={4}
-type=Artifact
 [/card]
 [card]
 name=Snake Cult Initiation
@@ -38434,12 +38340,6 @@ mana={1}{W}
 type=Instant
 [/card]
 [card]
-name=Testament of Faith
-text={X}: Testament of Faith becomes an X/X Wall creature with defender until end of turn. It's still an enchantment.
-mana={W}
-type=Enchantment
-[/card]
-[card]
 name=Tethered Skirge
 text=Flying -- Whenever Tethered Skirge becomes the target of a spell or ability, you lose 1 life.
 mana={2}{B}
@@ -40953,12 +40853,6 @@ type=Legendary Creature
 subtype=Human Wizard
 power=2
 toughness=2
-[/card]
-[card]
-name=Ventifact Bottle
-text={X}{1}, {T}: Put X charge counters on Ventifact Bottle. Activate this ability only any time you could cast a sorcery. -- At the beginning of your precombat main phase, if Ventifact Bottle has a charge counter on it, tap it and remove all charge counters from it. Add {1} to your mana pool for each charge counter removed this way.
-mana={3}
-type=Artifact
 [/card]
 [card]
 name=Verdant Eidolon
