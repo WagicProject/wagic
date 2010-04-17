@@ -309,6 +309,8 @@ living_artifact_i169.txt
 living_lands.txt
 lord_of_the_pit.txt
 lord_of_the_pit2.txt
+martial_coup.txt
+martial_coup2.txt
 master_decoy.txt
 master_of_etherium.txt
 meekstone.txt

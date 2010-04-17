@@ -400,28 +400,13 @@ class GenericActivatedAbility:public ActivatedAbility, public NestedAbility{
 
   int resolve(){
     counters++;
-    setAbilityCost(ability);
+    source->X = abilityCost->Diff(cost)->hasX();
     SAFE_DELETE(abilityCost);
     ability->target = target; //may have been updated...
     if (ability) return ability->resolve();
     return 0;
   }
 
-
-  void setAbilityCost(MTGAbility * _ability){
-    SAFE_DELETE(_ability->cost);
-    _ability->cost = abilityCost->Diff(cost);
-
-    NestedAbility * na = dynamic_cast<NestedAbility *>(_ability);
-    if (na) setAbilityCost(na->ability);
-
-    MultiAbility * ma = dynamic_cast<MultiAbility *>(_ability);
-    if (ma) {
-      for (size_t i = 0; i < ma->abilities.size(); i++) {
-        setAbilityCost(ma->abilities[i]);
-      }
-    }
-  }
   const char * getMenuText(){
     if (ability) return ability->getMenuText();
     return "Error";
@@ -1914,13 +1899,8 @@ public:
   int resolve(){
     //TODO check if ability is oneShot ?
     int match;
-    if (!td->compareAbility){
-      match = td->match(source);
-    }else{
-      match = td->match(this);
-    }
-
-    if (match){
+    match = td->match(source);
+    if (match > 0){
       addAbilityToGame();
     }else{
       removeAbilityFromGame();
@@ -1986,11 +1966,7 @@ class AThisForEach:public MTGAbility, public NestedAbility{
   int resolve(){
     //TODO check if ability is oneShot ?
     int matches;
-    if (!td->compareAbility){
-      matches = td->match(source);
-    }else{
-      matches = td->match(this);
-    }
+    matches = td->match(source);
     if (matches > 0) {
       if (abilities.size()){     
         removeAbilityFromGame();

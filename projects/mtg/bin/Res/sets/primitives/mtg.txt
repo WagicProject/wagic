@@ -25061,6 +25061,14 @@ power=4
 toughness=3
 [/card]
 [card]
+name=Martial Coup
+mana={X}{W}{W}
+type=Sorcery
+text=Put X 1/1 soldier creature tokens into play. If X is 5 or more, destroy all other creatures.
+auto=this(X>=5) destroy all(creature)
+auto=token(Soldier,creature soldier,1/1,white) *X
+[/card]
+[card]
 name=Marton Stromgald
 auto=@each combatblockers:aslongas(Marton Stromgald[attacking]) foreach(other creature[attacking]) all(other creature[attacking]) 1/1 ueot
 auto=@each combatblockers:aslongas(Marton Stromgald[blocking]) foreach(other creature[blocking]) all(other creature[blocking]) 1/1 ueot 

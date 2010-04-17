@@ -43,6 +43,7 @@ class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable {
  public:
   MTGGameZone * currentZone;
   Pos* view;
+  int X;
   int regenerateTokens;
   int isToken;
   int stillInUse();

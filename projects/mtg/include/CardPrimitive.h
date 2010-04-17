@@ -15,9 +15,9 @@ class CardPrimitive {
   vector<string> ftdText;
   int init();
   string lcname;
+  ManaCost manaCost;
 
  public:
-  ManaCost manaCost;
   string text;
   string name;
 

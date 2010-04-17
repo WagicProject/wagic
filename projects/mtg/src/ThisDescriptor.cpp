@@ -159,13 +159,11 @@ ThisDescriptor * ThisDescriptorFactory::createThisDescriptor(string s){
 }
 
 ThisCounter::ThisCounter(Counter * _counter){
-  compareAbility = 0;
   counter = _counter;
   comparisonCriterion = counter->nb;
 }
 
 ThisCounter::ThisCounter(int power, int toughness, int nb, const char * name){
-  compareAbility = 0;
   counter = NEW Counter(NULL,name,power,toughness);
   comparisonCriterion = nb;
 }
@@ -197,7 +195,6 @@ ThisCounter::~ThisCounter() {
 }
 
 ThisPower::ThisPower(int power){
-  compareAbility = 0;
   comparisonCriterion = power;
 }
 
@@ -206,7 +203,6 @@ int ThisPower::match(MTGCardInstance * card){
 }
 
 ThisToughness::ThisToughness(int toughness){
-  compareAbility = 0;
   comparisonCriterion = toughness;
 }
 
@@ -215,7 +211,6 @@ int ThisToughness::match(MTGCardInstance * card){
 }
 
 ThisCounterAny::ThisCounterAny(int nb){
-  compareAbility = 0;
   comparisonCriterion = nb;
 }
 
@@ -229,9 +224,8 @@ int ThisCounterAny::match(MTGCardInstance * card){
 
 ThisX::ThisX(int x){
   comparisonCriterion = x;
-  compareAbility = 1;
 }
 
-int ThisX::match(MTGAbility * ability){
-  return matchValue(ability->cost->hasX());
+int ThisX::match(MTGCardInstance * card){
+  return matchValue(card->X);
 }

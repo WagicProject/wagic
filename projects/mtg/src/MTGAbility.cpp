@@ -1971,6 +1971,7 @@ void TargetAbility::Render(){
 int TargetAbility::resolve(){
   Targetable * t = tc->getNextTarget();
   if (t && ability){
+    source->X = abilityCost->Diff(cost)->hasX();
     ability->target = t;
     if (ability->oneShot) return ability->resolve();
     MTGAbility * a =  ability->clone();

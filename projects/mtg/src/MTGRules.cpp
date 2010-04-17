@@ -70,6 +70,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card){
     }else{
       spell = game->mLayers->stackLayer()->addSpell(copy,NULL, spellCost, payResult);
     }
+     copy->X = spell->computeX(copy); 
   }
   return 1;
 }
