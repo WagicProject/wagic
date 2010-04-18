@@ -5476,6 +5476,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Brush with Death
+target=player
+auto=damage:2 && life:2 controller
+auto=kicker moveto(myhand)
+text=Buyback {2}{B}{B} (You may pay an additional {2}{B}{B} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Target opponent loses 2 life. You gain 2 life.
+mana={2}{B}
+kicker={2}{B}{B}
+type=Sorcery
+[/card]
+[card]
 name=Brushland
 auto={T}:Add {1}
 auto={T}:Add {G} && Damage:1 controller
@@ -13089,6 +13099,15 @@ type=Creature
 subtype=Eye
 power=3
 toughness=6
+[/card]
+[card]
+name=Evincar's Justice
+auto=damage:2 all(creature,player)
+auto=kicker moveto(myhand)
+text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Evincar's Justice deals 2 damage to each creature and each player.
+mana={2}{B}{B}
+kicker={3}
+type=Sorcery
 [/card]
 [card]
 name=Eviscerator
@@ -22960,6 +22979,15 @@ type=Creature
 subtype=Drake
 power=2
 toughness=2
+[/card]
+[card]
+name=Lab Rats
+auto=token(Rat,creature token rat,1/1,black)
+auto=kicker moveTo(myhand)
+text=Buyback {4} (You may pay an additional {4} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Put a 1/1 black Rat creature token onto the battlefield.
+mana={B}
+kicker={4}
+type=Sorcery
 [/card]
 [card]
 name=Lace with Moonglove
@@ -46964,6 +46992,15 @@ type=Creature
 subtype=Shade
 power=1
 toughness=1
+[/card]
+[card]
+name=Whispers of the Muse
+auto=draw:1
+auto=kicker moveTo(myhand)
+text=Buyback {5} (You may pay an additional {5} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Draw a card.
+mana={U}
+kicker={5}
+type=Instant
 [/card]
 [card]
 name=Whispersilk Cloak

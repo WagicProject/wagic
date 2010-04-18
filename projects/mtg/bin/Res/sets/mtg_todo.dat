@@ -4230,12 +4230,6 @@ mana={2}{U}{U}
 type=Enchantment
 [/card]
 [card]
-name=Brush with Death
-text=Buyback {2}{B}{B} (You may pay an additional {2}{B}{B} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Target opponent loses 2 life. You gain 2 life.
-mana={2}{B}
-type=Sorcery
-[/card]
-[card]
 name=Brutal Deceiver
 text={1}: Look at the top card of your library. -- {2}: Reveal the top card of your library. If it's a land card, Brutal Deceiver gets +1/+0 and gains first strike until end of turn. Activate this ability only once each turn.
 mana={2}{R}
@@ -11291,12 +11285,6 @@ text=Enchant land -- Enchanted land is a Swamp.
 mana={B}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Evincar's Justice
-text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Evincar's Justice deals 2 damage to each creature and each player.
-mana={2}{B}{B}
-type=Sorcery
 [/card]
 [card]
 name=Evolution Vat
@@ -20196,12 +20184,6 @@ name=Kyren Toy
 text={1}, {T}: Put a charge counter on Kyren Toy. -- {T}, Remove X charge counters from Kyren Toy: Add {X}{1} to your mana pool.
 mana={3}
 type=Artifact
-[/card]
-[card]
-name=Lab Rats
-text=Buyback {4} (You may pay an additional {4} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Put a 1/1 black Rat creature token onto the battlefield.
-mana={B}
-type=Sorcery
 [/card]
 [card]
 name=Labyrinth Minotaur
@@ -42351,12 +42333,6 @@ toughness=2
 name=Whirlpool Whelm
 text=Clash with an opponent, then return target creature to its owner's hand. If you win, you may put that creature on top of its owner's library instead. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
 mana={1}{U}
-type=Instant
-[/card]
-[card]
-name=Whispers of the Muse
-text=Buyback {5} (You may pay an additional {5} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Draw a card.
-mana={U}
 type=Instant
 [/card]
 [card]
