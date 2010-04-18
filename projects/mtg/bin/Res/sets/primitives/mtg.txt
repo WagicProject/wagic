@@ -1561,6 +1561,17 @@ power=2
 toughness=6
 [/card]
 [card]
+name=Arashi, the Sky Asunder
+auto={X}{G}{T}:thisforeach(X) damage:1 target(creature[flying])
+autohand={X}{G}{G}{S}:thisforeach(X) damage:1 all(creature[flying])
+text={X}{G}, {T}: Arashi, the Sky Asunder deals X damage to target creature with flying. -- Channel - {X}{G}{G}, Discard Arashi: Arashi deals X damage to each creature with flying.
+mana={3}{G}{G}
+type=Legendary Creature
+subtype=Spirit
+power=5
+toughness=5
+[/card]
+[card]
 name=Arbor Elf
 auto={T}:untap target(forest)
 text={T}: Untap target Forest.
@@ -2879,6 +2890,16 @@ power=6
 toughness=1
 [/card]
 [card]
+name=Ballista Squad
+auto={X}{W}{T}:thisforeach(X) damage:1 target(creature[attacking;blocking])
+text={X}{W}, {T}: Ballista Squad deals X damage to target attacking or blocking creature.
+mana={3}{W}
+type=Creature
+subtype=Human Rebel
+power=2
+toughness=2
+[/card]
+[card]
 name=Balloon Peddler
 auto={U}{T}{S(*|myhand)}:flying target(creature)
 text={U}, {T}, Discard a card: Target creature gains flying until end of turn.
@@ -3536,6 +3557,13 @@ text=Equipped creature gets +2/+2 and has lifelink and trample. -- Equip {3}
 mana={1}{G}{W}
 type=Artifact
 subtype=Equipment
+[/card]
+[card]
+name=Belbe's Armor
+auto={X}{T}:thisforeach(X) -1/1 target(creature)
+text={X}, {T}: Target creature gets -X/+X until end of turn.
+mana={3}
+type=Artifact
 [/card]
 [card]
 name=Belbe's Percher
@@ -5716,6 +5744,16 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Cackling Witch
+auto={X}{B}{T}{S(*|myhand)}:thisforeach(X) 1/0 target(creature)
+text={X}{B}, {T}, Discard a card: Target creature gets +X/+0 until end of turn.
+mana={1}{B}
+type=Creature
+subtype=Human Spellshaper
+power=1
+toughness=1
+[/card]
+[card]
 name=Cackling Imp
 abilities=flying
 auto={T}:life:-1 target(player)
@@ -7062,6 +7100,27 @@ type=Creature
 subtype=Frog
 power=1
 toughness=1
+[/card]
+[card]
+name=Goblin Dynamo
+auto={T}:damage:1 target(creature,player)
+auto={X}{R}{T}{S}:thisforeach(X) damage:1 target(creature,player)
+text={T}: Goblin Dynamo deals 1 damage to target creature or player. -- {X}{R}, {T}, Sacrifice Goblin Dynamo: Goblin Dynamo deals X damage to target creature or player.
+mana={5}{R}{R}
+type=Creature
+subtype=Goblin Mutant
+power=4
+toughness=4
+[/card]
+[card]
+name=Cinder Elemental
+auto={X}{R}{T}{S}:thisforeach(X) damage:1 target(creature,player)
+text={X}{R}, {T}, Sacrifice Cinder Elemental: Cinder Elemental deals X damage to target creature or player.
+mana={3}{R}
+type=Creature
+subtype=Elemental
+power=2
+toughness=2
 [/card]
 [card]
 name=Cinder Giant
@@ -20880,6 +20939,17 @@ mana={2}
 type=Artifact
 [/card]
 [card]
+name=Jiwari, the Earth Aflame
+auto={X}{R}{T}:thisforeach(X) damage:1 target(creature[-flying])
+autohand={X}{R}{R}{R}{S}:thisforeach(X) damage:1 all(creature[-flying])
+text={X}{R}, {T}: Jiwari, the Earth Aflame deals X damage to target creature without flying. -- Channel - {X}{R}{R}{R}, Discard Jiwari: Jiwari deals X damage to each creature without flying.
+mana={3}{R}{R}
+type=Legendary Creature
+subtype=Spirit
+power=3
+toughness=3
+[/card]
+[card]
 name=Jodah's Avenger
 auto={0}:double strike && -1/-1
 auto={0}:protection from red && -1/-1
@@ -29072,6 +29142,16 @@ text=Enchant creature -- Enchanted creature can't attack or block.
 mana={1}{W}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Pain Kami
+auto={X}{R}{S}:thisforeach(X) damage:1 target(creature)
+text={X}{R}, Sacrifice Pain Kami: Pain Kami deals X damage to target creature.
+mana={2}{R}
+type=Creature
+subtype=Spirit
+power=2
+toughness=2
 [/card]
 [card]
 name=Paladin en-Vec
@@ -40567,6 +40647,14 @@ auto=destroy
 autohand={2}:cycling
 text=Destroy target creature with power 2 or less. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={1}{B}{B}
+type=Instant
+[/card]
+[card]
+name=Swell of Courage
+auto=lord(creature|myBattlefield) 2/2
+autohand={X}{W}{W}{S}:thisfroeach(X) counter(1/1,1) target(creature)
+text=Creatures you control get +2/+2 until end of turn. -- Reinforce X - {X}{W}{W} ({X}{W}{W}, Discard this card: Put X +1/+1 counters on target creature.)
+mana={3}{W}{W}
 type=Instant
 [/card]
 [card]

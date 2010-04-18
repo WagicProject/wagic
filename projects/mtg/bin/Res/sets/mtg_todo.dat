@@ -1205,17 +1205,6 @@ type=Tribal Sorcery
 subtype=Merfolk
 [/card]
 [card]
-name=Arashi, the Sky Asunder
-auto={X}{G}{T}:thisforeach(X) damage:1 target(creature[flying])
-autohand={X}{G}{G}{S}:thisforeach(X) damage:1 all(creature[flying])
-text={X}{G}, {T}: Arashi, the Sky Asunder deals X damage to target creature with flying. -- Channel - {X}{G}{G}, Discard Arashi: Arashi deals X damage to each creature with flying.
-mana={3}{G}{G}
-type=Legendary Creature
-subtype=Spirit
-power=5
-toughness=5
-[/card]
-[card]
 name=Arbiter of Knollridge
 text=Vigilance -- When Arbiter of Knollridge enters the battlefield, each player's life total becomes the highest life total among all players.
 mana={6}{W}
@@ -2299,17 +2288,6 @@ power=3
 toughness=2
 [/card]
 [card]
-name=Ballista Squad
-auto={X}{W}{T}:damage:x target(creature[attacking;blocking])
-#X cost doesn't work for abilities yet :(
-text={X}{W}, {T}: Ballista Squad deals X damage to target attacking or blocking creature.
-mana={3}{W}
-type=Creature
-subtype=Human Rebel
-power=2
-toughness=2
-[/card]
-[card]
 name=Ballyrush Banneret
 text=Kithkin spells and Soldier spells you cast cost {1} less to cast.
 mana={1}{W}
@@ -2813,12 +2791,6 @@ type=Creature
 subtype=Elf Shaman
 power=1
 toughness=1
-[/card]
-[card]
-name=Belbe's Armor
-text={X}, {T}: Target creature gets -X/+X until end of turn.
-mana={3}
-type=Artifact
 [/card]
 [card]
 name=Belbe's Portal
@@ -4574,20 +4546,9 @@ toughness=1
 [/card]
 [card]
 name=Cackling Flames
-target=creature,player
-auto=aslongas(*|myHand)damage:3
 text=Cackling Flames deals 3 damage to target creature or player. -- Hellbent - Cackling Flames deals 5 damage to that creature or player instead if you have no cards in hand.
 mana={3}{R}
 type=Instant
-[/card]
-[card]
-name=Cackling Witch
-text={X}{B}, {T}, Discard a card: Target creature gets +X/+0 until end of turn.
-mana={1}{B}
-type=Creature
-subtype=Human Spellshaper
-power=1
-toughness=1
 [/card]
 [card]
 name=Cadaverous Knight
@@ -5856,15 +5817,6 @@ mana={1}{R}
 type=Creature
 subtype=Salamander
 power=1
-toughness=2
-[/card]
-[card]
-name=Cinder Elemental
-text={X}{R}, {T}, Sacrifice Cinder Elemental: Cinder Elemental deals X damage to target creature or player.
-mana={3}{R}
-type=Creature
-subtype=Elemental
-power=2
 toughness=2
 [/card]
 [card]
@@ -14632,15 +14584,6 @@ name=Goblin Charbelcher
 text={3}, {T}: Reveal cards from the top of your library until you reveal a land card. Goblin Charbelcher deals damage equal to the number of nonland cards revealed this way to target creature or player. If the revealed land card was a Mountain, Goblin Charbelcher deals double that damage instead. Put the revealed cards on the bottom of your library in any order.
 mana={4}
 type=Artifact
-[/card]
-[card]
-name=Goblin Dynamo
-text={T}: Goblin Dynamo deals 1 damage to target creature or player. -- {X}{R}, {T}, Sacrifice Goblin Dynamo: Goblin Dynamo deals X damage to target creature or player.
-mana={5}{R}{R}
-type=Creature
-subtype=Goblin Mutant
-power=4
-toughness=4
 [/card]
 [card]
 name=Goblin Festival
@@ -26557,15 +26500,6 @@ mana={3}{R}
 type=Sorcery
 [/card]
 [card]
-name=Pain Kami
-text={X}{R}, Sacrifice Pain Kami: Pain Kami deals X damage to target creature.
-mana={2}{R}
-type=Creature
-subtype=Spirit
-power=2
-toughness=2
-[/card]
-[card]
 name=Pain Magnification
 text=Whenever an opponent is dealt 3 or more damage by a single source, that player discards a card.
 mana={1}{B}{R}
@@ -37445,15 +37379,6 @@ name=Sway of the Stars
 text=Each player shuffles his or her hand, graveyard, and permanents he or she owns into his or her library, then draws seven cards. Each player's life total becomes 7.
 mana={8}{U}{U}
 type=Sorcery
-[/card]
-[card]
-name=Swell of Courage
-auto=lord(creature|myBattlefield)2/2
-autohand={X}{W}{W}{S}:counter(1/1,x) target(creature)
-#Counter does not accept x value
-text=Creatures you control get +2/+2 until end of turn. -- Reinforce X - {X}{W}{W} ({X}{W}{W}, Discard this card: Put X +1/+1 counters on target creature.)
-mana={3}{W}{W}
-type=Instant
 [/card]
 [card]
 name=Swelter
