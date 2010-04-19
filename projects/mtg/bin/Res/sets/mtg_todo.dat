@@ -283,12 +283,6 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-name=Acorn Harvest
-text=Put two 1/1 green Squirrel creature tokens onto the battlefield. -- Flashback - {1}{G}, Pay 3 life. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={3}{G}
-type=Sorcery
-[/card]
-[card]
 name=Acridian
 text=Echo {1}{G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
 mana={1}{G}
@@ -878,22 +872,9 @@ mana={2}{U}{U}{U}
 type=Sorcery
 [/card]
 [card]
-name=Ancestral Tribute
-auto=foreach(*|mygraveyard):life:2
-text=You gain 2 life for each card in your graveyard. -- Flashback {9}{W}{W}{W} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={5}{W}{W}
-type=Sorcery
-[/card]
-[card]
 name=Ancestral Vision
 text=Ancestral Vision is blue. -- Suspend 4 - {U} (Rather than cast this card from your hand, pay {U} and exile it with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.) -- Target player draws three cards.
 type=Sorcery
-[/card]
-[card]
-name=Ancient Grudge
-text=Destroy target artifact. -- Flashback {G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={1}{R}
-type=Instant
 [/card]
 [card]
 name=Ancient Kavu
@@ -2579,12 +2560,6 @@ power=2
 toughness=4
 [/card]
 [card]
-name=Bash to Bits
-text=Destroy target artifact. -- Flashback {4}{R}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={3}{R}
-type=Instant
-[/card]
-[card]
 name=Basking Rootwalla
 text={1}{G}: Basking Rootwalla gets +2/+2 until end of turn. Activate this ability only once each turn. -- Madness {0} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
 mana={G}
@@ -2744,12 +2719,6 @@ name=Bearscape
 text={1}{G}, Exile two cards from your graveyard: Put a 2/2 green Bear creature token onto the battlefield.
 mana={1}{G}{G}
 type=Enchantment
-[/card]
-[card]
-name=Beast Attack
-text=Put a 4/4 green Beast creature token onto the battlefield. -- Flashback {2}{G}{G}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={2}{G}{G}{G}
-type=Instant
 [/card]
 [card]
 name=Beast Hunt
@@ -4604,12 +4573,6 @@ type=Instant
 subtype=Arcane
 [/card]
 [card]
-name=Call of the Herd
-text=Put a 3/3 green Elephant creature token onto the battlefield. -- Flashback {3}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={2}{G}
-type=Sorcery
-[/card]
-[card]
 name=Call of the Wild
 text={2}{G}{G}: Reveal the top card of your library. If it's a creature card, put it onto the battlefield. Otherwise, put it into your graveyard.
 mana={2}{G}{G}
@@ -4757,12 +4720,6 @@ name=Cannibalize
 text=Choose two target creatures controlled by the same player. Exile one of those creatures and put two +1/+1 counters on the other.
 mana={1}{B}
 type=Sorcery
-[/card]
-[card]
-name=Canopy Claws
-text=Target creature loses flying until end of turn. -- Flashback {G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={G}
-type=Instant
 [/card]
 [card]
 name=Canopy Crawler
@@ -7216,12 +7173,6 @@ type=Tribal Instant
 subtype=Giant
 [/card]
 [card]
-name=Crush of Wurms
-text=Put three 6/6 green Wurm creature tokens onto the battlefield. -- Flashback {9}{G}{G}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={6}{G}{G}{G}
-type=Sorcery
-[/card]
-[card]
 name=Crusher Zendikon
 text=Enchant land -- Enchanted land is a 4/2 red Beast creature with trample. It's still a land. -- When enchanted land is put into a graveyard, return that card to its owner's hand.
 mana={2}{R}
@@ -8157,18 +8108,6 @@ mana={6}{U}{U}
 type=Enchantment
 [/card]
 [card]
-name=Deep Analysis
-text=Target player draws two cards. -- Flashback - {1}{U}, Pay 3 life. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={3}{U}
-type=Sorcery
-[/card]
-[card]
-name=Deep Reconnaissance
-text=Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library. -- Flashback {4}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={2}{G}
-type=Sorcery
-[/card]
-[card]
 name=Deep Spawn
 text=Trample -- At the beginning of your upkeep, sacrifice Deep Spawn unless you put the top two cards of your library into your graveyard. -- {U}: Deep Spawn gains shroud until end of turn and doesn't untap during your next untap step. Tap Deep Spawn. (A permanent with shroud can't be the target of spells or abilities.)
 mana={5}{U}{U}{U}
@@ -8335,12 +8274,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Defy Gravity
-text=Target creature gains flying until end of turn. -- Flashback {U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={U}
-type=Instant
-[/card]
-[card]
 name=Dega Sanctuary
 text=At the beginning of your upkeep, if you control a black or red permanent, you gain 2 life. If you control a black permanent and a red permanent, you gain 4 life instead.
 mana={2}{W}
@@ -8405,12 +8338,6 @@ type=Creature
 subtype=Horror
 power=6
 toughness=6
-[/card]
-[card]
-name=Dematerialize
-text=Return target permanent to its owner's hand. -- Flashback {5}{U}{U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={3}{U}
-type=Sorcery
 [/card]
 [card]
 name=Dementia Sliver
@@ -10037,12 +9964,6 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Earth Rift
-text=Destroy target land. -- Flashback {5}{R}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={3}{R}
-type=Sorcery
-[/card]
-[card]
 name=Earthcraft
 text=Tap an untapped creature you control: Untap target basic land.
 mana={1}{G}
@@ -10320,12 +10241,6 @@ text=Enchant permanent -- At the beginning of your precombat main phase, add man
 mana={2}{G}{G}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Elephant Ambush
-text=Put a 3/3 green Elephant creature token onto the battlefield. -- Flashback {6}{G}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={2}{G}{G}
-type=Instant
 [/card]
 [card]
 name=Elephant Grass
@@ -12058,12 +11973,6 @@ power=0
 toughness=0
 [/card]
 [card]
-name=Fervent Denial
-text=Counter target spell. -- Flashback {5}{U}{U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={3}{U}{U}
-type=Instant
-[/card]
-[card]
 name=Festering March
 text=Creatures your opponents control get -1/-1 until end of turn. Exile Festering March with three time counters on it. -- Suspend 3 - {2}{B} (Rather than cast this card from your hand, you may pay {2}{B} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
 mana={3}{B}{B}
@@ -12308,12 +12217,6 @@ name=Fireblast
 text=You may sacrifice two Mountains rather than pay Fireblast's mana cost. -- Fireblast deals 4 damage to target creature or player.
 mana={4}{R}{R}
 type=Instant
-[/card]
-[card]
-name=Firebolt
-text=Firebolt deals 2 damage to target creature or player. -- Flashback {4}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={R}
-type=Sorcery
 [/card]
 [card]
 name=Firecat Blitz
@@ -12571,12 +12474,6 @@ name=Flash Foliage
 text=Cast Flash Foliage only during combat after blockers are declared. -- Put a 1/1 green Saproling creature token onto the battlefield blocking target creature attacking you. -- Draw a card.
 mana={2}{G}
 type=Instant
-[/card]
-[card]
-name=Flash of Defiance
-text=Green creatures and white creatures can't block this turn. -- Flashback - {1}{R}, Pay 3 life. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={1}{R}
-type=Sorcery
 [/card]
 [card]
 name=Flash of Insight
@@ -12861,12 +12758,6 @@ type=Instant
 name=Fold into AEther
 text=Counter target spell. If that spell is countered this way, its controller may put a creature card from his or her hand onto the battlefield.
 mana={2}{U}{U}
-type=Instant
-[/card]
-[card]
-name=Folk Medicine
-text=You gain 1 life for each creature you control. -- Flashback {1}{W} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={2}{G}
 type=Instant
 [/card]
 [card]
@@ -15573,14 +15464,7 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Grizzly Fate
-text=Put two 2/2 green Bear creature tokens onto the battlefield. -- Threshold - Put four 2/2 green Bear creature tokens onto the battlefield instead if seven or more cards are in your graveyard. -- Flashback {5}{G}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={3}{G}{G}
-type=Sorcery
-[/card]
-[card]
 name=Groffskithur
-auto=lord(Groffskithur[blocking]|myinplay):may moveto(myhand) target(Groffskithur|mygraveyard)
 text=Whenever Groffskithur becomes blocked, you may return target card named Groffskithur from your graveyard to your hand.
 mana={5}{G}
 type=Creature
@@ -17085,12 +16969,6 @@ type=Creature
 subtype=Drone
 power=5
 toughness=6
-[/card]
-[card]
-name=Howling Gale
-text=Howling Gale deals 1 damage to each creature with flying and each player. -- Flashback {1}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={1}{G}
-type=Instant
 [/card]
 [card]
 name=Howling Wolf
@@ -20436,12 +20314,6 @@ mana={X}{R}
 type=Sorcery
 [/card]
 [card]
-name=Lava Dart
-text=Lava Dart deals 1 damage to target creature or player. -- Flashback - Sacrifice a Mountain. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={R}
-type=Instant
-[/card]
-[card]
 name=Lava Runner
 text=Haste -- Whenever Lava Runner becomes the target of a spell or ability, that spell or ability's controller sacrifices a land.
 mana={1}{R}{R}
@@ -22225,12 +22097,6 @@ mana={2}{W}{W}
 type=Enchantment
 [/card]
 [card]
-name=Marshaling Cry
-text=Creatures you control get +1/+1 and gain vigilance until end of turn. -- Cycling {2} ({2}, Discard this card: Draw a card.) -- Flashback {3}{W} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={1}{W}{W}
-type=Sorcery
-[/card]
-[card]
 name=Marshaling the Troops
 text=Tap any number of untapped creatures you control. You gain 4 life for each creature tapped this way.
 mana={1}{G}
@@ -23829,12 +23695,6 @@ mana={W}
 type=Instant
 [/card]
 [card]
-name=Moment's Peace
-text=Prevent all combat damage that would be dealt this turn. -- Flashback {2}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={1}{G}
-type=Instant
-[/card]
-[card]
 name=Momentary Blink
 text=Exile target creature you control, then return it to the battlefield under its owner's control. -- Flashback {3}{U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={1}{W}
@@ -23931,12 +23791,6 @@ mana={1}
 type=Artifact
 [/card]
 [card]
-name=Morbid Hunger
-text=Morbid Hunger deals 3 damage to target creature or player. You gain 3 life. -- Flashback {7}{B}{B} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={4}{B}{B}
-type=Sorcery
-[/card]
-[card]
 name=Mordant Dragon
 text=Flying -- {1}{R}: Mordant Dragon gets +1/+0 until end of turn. -- Whenever Mordant Dragon deals combat damage to a player, you may have it deal that much damage to target creature that player controls.
 mana={3}{R}{R}{R}
@@ -23944,12 +23798,6 @@ type=Creature
 subtype=Dragon
 power=5
 toughness=5
-[/card]
-[card]
-name=Morgue Theft
-text=Return target creature card from your graveyard to your hand. -- Flashback {4}{B} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={1}{B}
-type=Sorcery
 [/card]
 [card]
 name=Morinfen
@@ -29600,29 +29448,13 @@ toughness=3
 [/card]
 [card]
 name=Raving Oni-Slave
-auto=aslongas(*[-demon]|mybattlefield) life:-3 controller
-auto=@movedto(this|graveyard) from(Battlefield):aslongas(*[-demon]|mybattlefield)life:-3 controller
-auto=@movedto(this|exile) from(Battlefield):aslongas(*[-demon]|mybattlefield)life:-3 controller
-auto=@movedto(this|ownerhand) from(Battlefield):aslongas(*[-demon]|mybattlefield)life:-3 controller
-####Tested ingame, does not work!
+#Tested ingame, does not work!
 text=When Raving Oni-Slave enters the battlefield or leaves the battlefield, you lose 3 life if you don't control a Demon.
 mana={1}{B}
 type=Creature
 subtype=Ogre Warrior
 power=3
 toughness=3
-[/card]
-[card]
-name=Ray of Distortion
-text=Destroy target artifact or enchantment. -- Flashback {4}{W}{W} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={3}{W}
-type=Instant
-[/card]
-[card]
-name=Ray of Revelation
-text=Destroy target enchantment. -- Flashback {G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={1}{W}
-type=Instant
 [/card]
 [card]
 name=Rayne, Academy Chancellor
@@ -31035,12 +30867,6 @@ name=Roar of the Kha
 text=Choose one - Creatures you control get +1/+1 until end of turn; or untap all creatures you control. -- Entwine {1}{W} (Choose both if you pay the entwine cost.)
 mana={1}{W}
 type=Instant
-[/card]
-[card]
-name=Roar of the Wurm
-text=Put a 6/6 green Wurm creature token onto the battlefield. -- Flashback {3}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={6}{G}
-type=Sorcery
 [/card]
 [card]
 name=Robber Fly
@@ -32501,12 +32327,6 @@ name=Scorching Lava
 text=Kicker {R} (You may pay an additional {R} as you cast this spell.) -- Scorching Lava deals 2 damage to target creature or player. If Scorching Lava was kicked, that creature can't be regenerated this turn and if it would be put into a graveyard this turn, exile it instead.
 mana={1}{R}
 type=Instant
-[/card]
-[card]
-name=Scorching Missile
-text=Scorching Missile deals 4 damage to target player. -- Flashback {9}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={3}{R}
-type=Sorcery
 [/card]
 [card]
 name=Scorching Winds
@@ -36755,12 +36575,6 @@ type=Instant
 subtype=Arcane
 [/card]
 [card]
-name=Strangling Soot
-text=Destroy target creature with toughness 3 or less. -- Flashback {5}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={2}{B}
-type=Instant
-[/card]
-[card]
 name=Stratadon
 text=Domain - Stratadon costs {1} less to cast for each basic land type among lands you control. -- Trample
 mana={10}
@@ -38470,12 +38284,6 @@ mana={2}{U}
 type=Enchantment
 [/card]
 [card]
-name=Think Twice
-text=Draw a card. -- Flashback {2}{U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={1}{U}
-type=Instant
-[/card]
-[card]
 name=Thirst
 text=Enchant creature -- When Thirst enters the battlefield, tap enchanted creature. -- Enchanted creature doesn't untap during its controller's untap step. -- At the beginning of your upkeep, sacrifice Thirst unless you pay {U}.
 mana={2}{U}
@@ -38778,12 +38586,6 @@ type=Creature
 subtype=Beast
 power=4
 toughness=4
-[/card]
-[card]
-name=Thrill of the Hunt
-text=Target creature gets +1/+2 until end of turn. -- Flashback {W} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={G}
-type=Instant
 [/card]
 [card]
 name=Thrive
@@ -41296,12 +41098,6 @@ toughness=3
 name=Volcanic Awakening
 text=Destroy target land. -- Storm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)
 mana={4}{R}{R}
-type=Sorcery
-[/card]
-[card]
-name=Volcanic Spray
-text=Volcanic Spray deals 1 damage to each creature without flying and each player. -- Flashback {1}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={1}{R}
 type=Sorcery
 [/card]
 [card]

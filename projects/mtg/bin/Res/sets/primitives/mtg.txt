@@ -258,6 +258,14 @@ power=0
 toughness=1
 [/card]
 [card]
+name=Acorn Harvest
+auto=token(Squirrel,creature squirrel, 1/1,green)*2
+autograveyard={1}{G}:copy(this) && moveTo(mystack) && life:-3 controller asSorcery
+text=Put two 1/1 green Squirrel creature tokens onto the battlefield. -- Flashback {1}{G}, Pay 3 life. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={3}{G}
+type=Sorcery
+[/card]
+[card]
 name=Acquire
 target=artifact|opponentLibrary
 auto=moveTo(myBattlefield)
@@ -1077,6 +1085,14 @@ mana={U}
 type=Instant
 [/card]
 [card]
+name=Ancestral Tribute
+auto=foreach(*|mygraveyard) life:2
+autograveyard={9}{W}{W}{W}:copy(this) && moveTo(mystack) asSorcery
+text=You gain 2 life for each card in your graveyard. -- Flashback {9}{W}{W}{W} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={5}{W}{W}
+type=Sorcery
+[/card]
+[card]
 name=Ancient Amphitheater
 auto=tap
 auto=aslongas(giant|myHand) untap
@@ -1098,6 +1114,14 @@ name=Ancient Den
 auto={T}:Add {W}
 text=(Ancient Den isn't a spell.) -- {T}: Add {W} to your mana pool.
 type=Artifact Land
+[/card]
+[card]
+name=Ancient Grudge
+auto=destroy target(artifact)
+autograveyard={G}:copy(this) && moveTo(mystack)
+text=Destroy target artifact. -- Flashback {G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={1}{R}
+type=Instant
 [/card]
 [card]
 name=Ancient Hydra
@@ -3219,6 +3243,14 @@ mana={3}
 type=Artifact
 [/card]
 [card]
+name=Bash to Bits
+auto=destroy target(artifact)
+autograveyard={4}{R}{R}:copy(this) && moveTo(mystack)
+text=Destroy target artifact. -- Flashback {4}{R}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={3}{R}
+type=Instant
+[/card]
+[card]
 name=Basilisk Collar
 auto={2}:equip
 auto=deathtouch
@@ -3511,6 +3543,14 @@ auto=(counter{0/0.7.Level Up}) lord(creature|myBattlefield) 5/5
 text=Whenever a creature you control attacks, you may put a quest counter on Beastmaster Ascension. -- As long as Beastmaster Ascension has seven or more quest counters on it, creatures you control get +5/+5.
 mana={2}{G}
 type=Enchantment
+[/card]
+[card]
+name=Beast Attack
+auto=token(Beast,creature beast, 4/4,green)
+autograveyard={2}{G}{G}{G}:copy(this) && moveTo(mystack)
+text=Put a 4/4 green Beast creature token onto the battlefield. -- Flashback {2}{G}{G}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={2}{G}{G}{G}
+type=Instant
 [/card]
 [card]
 name=Beasts of Bogardan
@@ -5837,6 +5877,14 @@ text=Caldera Lake enters the battlefield tapped. -- {T}: Add {1} to your mana po
 type=Land
 [/card]
 [card]
+name=Call of the Herd
+auto=token(Elephant,creature elephant, 3/3,green)
+autograveyard={3}{G}:copy(this) && moveTo(mystack) asSorcery
+text=Put a 3/3 green Elephant creature token onto the battlefield. -- Flashback {3}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={2}{G}
+type=Sorcery
+[/card]
+[card]
 name=Call the Skybreaker
 auto=token(Elemental,creature elemental, 5/5,flying red,blue)
 autograveyard={5}{UR}{UR}{S(land|myhand)}:token(Elemental,creature elemental, 5/5,flying red,blue) asSorcery
@@ -5885,6 +5933,14 @@ target=*|stack
 auto=fizzle
 text=Counter target spell.
 mana={1}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Canopy Claws
+auto=-flying target(creature)
+autograveyard={G}:copy(this) && moveTo(mystack)
+text=Target creature loses flying until end of turn. -- Flashback {G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={G}
 type=Instant
 [/card]
 [card]
@@ -6918,6 +6974,14 @@ mana={3}{W}
 type=Instant
 [/card]
 [card]
+name=Chatter of the Squirrel
+auto=token(Squirrel,creature squirrel, 1/1,green)
+autograveyard={1}{G}:copy(this) && moveTo(mystack) asSorcery
+text=Put a 1/1 green Squirrel creature token onto the battlefield. -- Flashback {1}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={G}
+type=Sorcery
+[/card]
+[card]
 name=Chieftain en-Dal
 auto=aslongas(chieftain en-dal[attacking]|mybattlefield) lord(creature[attacking]) first strike
 text=Whenever Chieftain en-Dal attacks, attacking creatures gain first strike until end of turn.
@@ -7794,6 +7858,14 @@ power=2
 toughness=4
 [/card]
 [card]
+name=Coffin Purge
+auto=exile target(*|graveyard)
+autograveyard={B}:copy(this) && moveTo(mystack)
+text=Exile target card in a graveyard. -- Flashback {B} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={B}
+type=Instant
+[/card]
+[card]
 name=Cognivore
 abilities=flying
 auto=foreach(instant|graveyard) 1/1
@@ -8588,6 +8660,14 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Crippling Fatigue
+auto=-2/-2 target(creature)
+autograveyard={1}{B}:copy(this) && moveTo(mystack) && life:-3 controller asSorcery
+text=Target creature gets -2/-2 until end of turn. -- Flashback {1}{B}, Pay 3 life (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={1}{B}{B}
+type=Sorcery
+[/card]
+[card]
 name=Crookshank Kobolds
 text=Crookshank Kobolds is red.
 mana={0}
@@ -8742,6 +8822,14 @@ type=Creature
 subtype=Human Knight
 power=2
 toughness=2
+[/card]
+[card]
+name=Crush of Wurms
+auto=token(Wurm,creature wurm, 6/6,green)*3
+autograveyard={9}{G}{G}{G}:copy(this) && moveTo(mystack) asSorcery
+text=Put three 6/6 green Wurm creature tokens onto the battlefield. -- Flashback {9}{G}{G}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={6}{G}{G}{G}
+type=Sorcery
 [/card]
 [card]
 name=Cryoclasm
@@ -9896,6 +9984,22 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Deep Analysis
+auto=draw:2 target(player)
+autograveyard={1}{U}:copy(this) moveTo(mystack) && life:-3 controller asSorcery
+text=Target player draws two cards. -- Flashback {1}{U}, Pay 3 life. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={3}{U}
+type=Sorcery
+[/card]
+[card]
+name=Deep Reconnaissance
+auto=moveTo(myBattlefield) target(land[basic]|mylibrary) && tap
+autograveyard={4}{G}:copy(this) && moveTo(mystack) asSorcery
+text=Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library. -- Flashback {4}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={2}{G}
+type=Sorcery
+[/card]
+[card]
 name=Deep-Sea Serpent
 abilities=cantattack
 auto=aslongas(island|opponentBattlefield) -cantattack
@@ -10021,6 +10125,14 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Defy Gravity
+auto=flying target(creature)
+autograveyard={U}:copy(this) && moveTo(mystack)
+text=Target creature gains flying until end of turn. -- Flashback {U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={U}
+type=Instant
+[/card]
+[card]
 name=Dega Disciple
 auto={B}{T}:-2/-0 target(creature)
 auto={R}{T}:2/0 target(creature)
@@ -10074,6 +10186,14 @@ auto=@movedTo(this|graveyard,library,hand,exile) from(battlefield):life:-10 cont
 text=When Delusions of Mediocrity enters the battlefield, you gain 10 life. -- When Delusions of Mediocrity leaves the battlefield, you lose 10 life.
 mana={3}{U}
 type=Enchantment
+[/card]
+[card]
+name=Dematerialize
+auto=moveTo(ownerhand) target(*)
+autograveyard={5}{U}{U}:copy(this) && moveTo(mystack) asSorcery
+text=Return target permanent to its owner's hand. -- Flashback {4}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={3}{U}
+type=Sorcery
 [/card]
 [card]
 name=Demolish
@@ -11803,6 +11923,14 @@ power=4
 toughness=5
 [/card]
 [card]
+name=Earth Rift
+auto=destroy target(land)
+autograveyard={5}{R}{R}:copy(this) && moveTo(mystack) asSorcery
+text=Destroy target land. -- Flashback {5}{R}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={3}{R}
+type=Sorcery
+[/card]
+[card]
 name=Earth Surge
 auto=lord(land[creature]) 2/2
 text=Each land gets +2/+2 as long as it's a creature.
@@ -12046,6 +12174,14 @@ text=Trample,haste
 power=7
 toughness=1
 colour=red
+[/card]
+[card]
+name=Elephant Ambush
+auto=token(Elephant,creature elephant, 3/3,green)
+autograveyard={6}{G}{G}:copy(this) && moveTo(mystack)
+text=Put a 3/3 green Elephant creature token onto the battlefield. -- Flashback {2}{G}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={2}{G}{G}
+type=Instant
 [/card]
 [card]
 name=Elephant Graveyard
@@ -13847,6 +13983,14 @@ mana={1}{W}{B}{R}
 type=Enchantment
 [/card]
 [card]
+name=Fervent Denial
+auto=fizzle target(*|stack)
+autograveyard={5}{U}{U}:copy(this) && moveTo(mystack)
+text=Counter target spell. -- Flashback {5}{U}{U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={3}{U}{U}
+type=Instant
+[/card]
+[card]
 name=Fervor
 auto=lord(creature|myBattlefield) haste
 text=Creatures you control have haste.
@@ -14083,6 +14227,14 @@ type=Creature
 subtype=Insect
 power=2
 toughness=1
+[/card]
+[card]
+name=Fire Bolt
+auto=damage:2 target(creature)
+autograveyard={4}{R}:copy(this) && moveTo(mystack) asSorcery
+text=Firebolt deals 2 damage to target creature or player. -- Flashback {4}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={R}
+type=Sorcery
 [/card]
 [card]
 name=Fire Bowman
@@ -14487,6 +14639,15 @@ mana={U}
 type=Instant
 [/card]
 [card]
+name=Flash of Defiance
+auto=lord(creature[green]) cantblock
+auto=lord(creature[white]) cantblock
+autograveyard={1}{R}:copy(this) && moveTo(mystack) && life:-3 controller asSorcery
+text=Green creatures and white creatures can't block this turn. -- Flashback {1}{R}, Pay 3 life. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={1}{R}
+type=Sorcery
+[/card]
+[card]
 name=Flashfires
 auto=destroy all(plains)
 text=Destroy all Plains.
@@ -14889,6 +15050,14 @@ type=Creature
 subtype=Insect
 power=1
 toughness=1
+[/card]
+[card]
+name=Folk Medicine
+auto=foreach(creature|mybattlefield) life:1
+autograveyard={1}{W}:copy(this) && moveTo(mystack)
+text=You gain 1 life for each creature you control. -- Flashback {2}{G}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={2}{G}
+type=Instant
 [/card]
 [card]
 name=Folk of An-Havva
@@ -16039,8 +16208,8 @@ toughness=3
 [/card]
 [card]
 name=Giant Growth
-target=creature
-auto=3/3
+#target=creature
+#auto=3/3
 text=Target creature gets +3/+3 until end of turn.
 mana={G}
 type=Instant
@@ -17764,6 +17933,15 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Grizzly Fate
+auto=token(Bear,creature bear, 2/2,green)*2
+auto=aslongas(*|mygraveyard) token(Bear,creature bear, 2/2,green)*2 >6
+autograveyard={5}{G}{G}:copy(this) && moveTo(mystack) asSorcery
+text=Put two 2/2 green Bear creature tokens onto the battlefield. -- Threshold — Put four 2/2 green Bear creature tokens onto the battlefield instead if seven or more cards are in your graveyard. -- Flashback {2}{G}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={3}{G}{G}
+type=Sorcery
+[/card]
+[card]
 name=Ground Seal
 auto=lord(*|graveyard) shroud
 auto=draw:1
@@ -19398,6 +19576,15 @@ auto=4/0
 text=Target creature gets +4/+0 until end of turn.
 mana={2}{B}
 type=Sorcery
+[/card]
+[card]
+name=Howling Gale
+auto=damage:1 all(creature[flying])
+auto=damage:1 all(player)
+autograveyard={1}{G}:copy(this) && moveTo(mystack)
+text=Howling Gale deals 1 damage to each creature with flying and each player. -- Flashback {1}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={1}{G}
+type=Instant
 [/card]
 [card]
 name=Howling Mine
@@ -23166,6 +23353,14 @@ mana={4}{R}
 type=Sorcery
 [/card]
 [card]
+name=Lava Dart
+auto=damage:1 target(creature,player)
+autograveyard={S(mountain|mybattlefield)}:copy(this) && moveTo(mystack)
+text=Lava Dart deals 1 damage to target creature. -- Flashback - Sacrifice a Mountain. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={R}
+type=Instant
+[/card]
+[card]
 name=Lava Flow
 target=creature,land
 auto=destroy
@@ -25149,6 +25344,16 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Marshaling Cry
+auto=lord(creature|myBattlefield) 1/1
+auto=lord(creature|myBattlefield) vigilance
+autohand={2}:cycling
+autograveyard={3}{W}:copy(this) && moveTo(mystack) asSorcery
+text=Creatures you control get +1/+1 and gain vigilance until end of turn. -- Cycling {2} ({2}, Discard this card: Draw a card.) -- Flashback {3}{W} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={1}{W}{W}
+type=Sorcery
+[/card]
+[card]
 name=Marshdrinker Giant
 auto=destroy target(island,swamp|opponentBattlefield)
 text=When Marshdrinker Giant enters the battlefield, destroy target Island or Swamp an opponent controls.
@@ -26383,6 +26588,14 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Moment's Peace
+auto=preventAllcombatDamage ueot
+autograveyard={2}{G}:copy(this) && moveTo(mystack)
+text=Prevent all combat damage that would be dealt this turn. -- Flashback {2}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={1}{G}
+type=Instant
+[/card]
+[card]
 name=Monk Idealist
 auto=moveTo(myhand) target(enchantment|mygraveyard)
 text=When Monk Idealist enters the battlefield, return target enchantment card from your graveyard to your hand.
@@ -26552,8 +26765,25 @@ mana={4}{B}{G}
 type=Sorcery
 [/card]
 [card]
+name=Morbid Hunger
+auto=damage:3 target(creature,player)
+auto=life:3 controller
+autograveyard={7}{B}{B}:copy(this) && moveTo(mystack) asSorcery
+text=Morbid Hunger deals 3 damage to target creature or player. You gain 3 life. -- Flashback {7}{B}{B} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={4}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Morgue Theft
+auto=moveTo(myhand) target(creature|mygraveyard)
+autograveyard={4}{B}:copy(this) && moveTo(mystack) asSorcery
+text=Return target creature card from your graveyard to your hand. -- Flashback {4}{B} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
 name=Morgue Thrull
-auto={S}:deplete:3 controller
+auto={S}:deplete:3
 text=Sacrifice Morgue Thrull: Put the top three cards of your library into your graveyard.
 mana={2}{B}
 type=Creature
@@ -26563,7 +26793,7 @@ toughness=2
 [/card]
 [card]
 name=Morgue Toad
-auto={S}:Add {U}{R}
+auto={S}:Add{U}{R}
 text=Sacrifice Morgue Toad: Add {U}{R} to your mana pool.
 mana={2}{B}
 type=Creature
@@ -26583,7 +26813,7 @@ toughness=2
 [/card]
 [card]
 name=Moriok Scavenger
-auto=may moveTo(myhand) target(artifact|mygraveyard)
+auto=may moveTo(myhand) target(creature[artifact]|mygraveyard)
 text=When Moriok Scavenger enters the battlefield, you may return target artifact creature card from your graveyard to your hand.
 mana={3}{B}
 type=Creature
@@ -32034,12 +32264,28 @@ mana={3}{U}
 type=Instant
 [/card]
 [card]
+name=Ray of Distortion
+auto=destroy target(artifact,enchantment)
+autograveyard={4}{W}{W}:copy(this) && moveTo(mystack)
+text=Destroy target artifact or enchantment. -- Flashback {4}{W}{W} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={3}{W}
+type=Instant
+[/card]
+[card]
 name=Ray of Erasure
 target=player
 auto=deplete:1
 auto=@next upkeep:draw:1 controller
 text=Target player puts the top card of his or her library into his or her graveyard. -- Draw a card at the beginning of the next turn's upkeep.
 mana={U}
+type=Instant
+[/card]
+[card]
+name=Ray of Revelation
+auto=destroy target(enchantment)
+autograveyard={G}:copy(this) && moveTo(mystack)
+text=Destroy target enchantment. -- Flashback {G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={1}{W}
 type=Instant
 [/card]
 [card]
@@ -33245,6 +33491,14 @@ auto=moveTo(mybattlefield) all(artifact|mygraveyard)
 auto=moveTo(opponentbattlefield) all(artifact|opponentgraveyard)
 text=Each player returns all artifact cards from his or her graveyard to the battlefield.
 mana={5}{W}{W}
+type=Sorcery
+[/card]
+[card]
+name=Roar of the Wurm
+auto=token(Wurm,creature wurm, 6/6,green)
+autograveyard={3}{G}:copy(this) && moveTo(mystack) asSorcery
+text=Put a 6/6 green Wurm creature token onto the battlefield. -- Flashback {3}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={6}{G}
 type=Sorcery
 [/card]
 [card]
@@ -34613,9 +34867,17 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Scorching Missile
+auto=damage:4 target(player)
+autograveyard={9}{R}:copy(this) && moveTo(mystack) asSorcery
+text=Scorching Missile deals 4 damage to target player. -- Flashback {9}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={3}{R}
+type=Sorcery
+[/card]
+[card]
 name=Scorching Spear
 target=creature,player
-auto=Damage:1
+auto=damage:1
 text=Scorching Spear deals 1 damage to target creature or player.
 mana={R}
 type=Sorcery
@@ -38599,7 +38861,7 @@ toughness=0
 [card]
 name=Spike Colony
 text=Spike Colony enters the battlefield with a +1/+1 counter on it. -- {2}, Remove a +1/+1 counter from Spike Colony: Put a +1/+1 counter on target creature.
-mana={G}
+mana={4}{G}
 type=Creature
 subtype=Spike Colony
 auto=counter(1/1,4)
@@ -39943,6 +40205,14 @@ auto={B}{B}{S(swamp|myBattlefield)}:moveTo(myBattlefield) target(creature|mygrav
 text={B}{B}, Pay 2 life, Sacrifice a Swamp: Return target creature card from your graveyard to the battlefield.
 mana={2}{B}{B}
 type=Enchantment
+[/card]
+[card]
+name=Strangling Soot
+auto=destroy target(creature[toughness<=3])
+autograveyard={5}{R}:copy(this) && moveTo(mystack) asSorcery
+text=Destroy target creature with toughness 3 or less. -- Flashback {5}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={2}{B}
+type=Instant
 [/card]
 [card]
 name=Stratozeppelid
@@ -42009,6 +42279,14 @@ power=1
 toughness=3
 [/card]
 [card]
+name=Think Twice
+auto=draw:1
+autograveyard={2}{U}:copy(this) && moveTo(mystack)
+text=Draw a card. -- Flashback {2}{U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={1}{U}
+type=Instant
+[/card]
+[card]
 name=Thistledown Duo
 auto=@movedTo(*[white]|mystack):1/1 ueot
 auto=@movedTo(*[blue]|mystack):flying ueot
@@ -42220,6 +42498,14 @@ auto=moveTo|myBattlefield
 text=Search your library for a Forest card and put that card onto the battlefield. Then shuffle your library.
 mana={1}{G}
 type=Sorcery
+[/card]
+[card]
+name=Thrill of the Hunt
+auto=1/2 target(creature)
+autograveyard={W}:copy(this) && moveTo(mystack)
+text=Target creature gets +1/+2 until end of turn. -- Flashback {W} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={G}
+type=Instant
 [/card]
 [card]
 name=Thriss, Nantuko Primus
@@ -45742,6 +46028,15 @@ type=Land
 subtype=Island Mountain
 [/card]
 [card]
+name=Volcanic Spray
+auto=damage:1 all(creature[-flying])
+auto=damage:1 all(player)
+autograveyard={1}{R}:copy(this) && moveTo(mystack) asSorcery
+text=Volcanic Spray deals 1 damage to each creature without flying and each player. -- Flashback {1}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={1}{R}
+type=Sorcery
+[/card]
+[card]
 name=Volcanic Submersion
 target=artifact,land
 auto=destroy
@@ -47735,7 +48030,7 @@ toughness=4
 [card]
 name=Wood Elves
 auto=may moveTo(mybattlefield) target(forest|myLibrary)
-###Wood Elves ability should stay optional ("may") because when you are searching for sth in your library, the official rules say that you don'T have to find anything even if there is a legal target!
+#Wood Elves ability should stay optional ("may") because when you are searching for sth in your library, the official rules say that you don'T have to find anything even if there is a legal target!
 text=When Wood Elves enters the battlefield, search your library for a Forest card and put that card onto the battlefield. Then shuffle your library.
 mana={2}{G}
 type=Creature
