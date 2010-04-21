@@ -526,7 +526,45 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 
   SAFE_DELETE(tc);
 
-  
+  //Upkeep Cost
+  found = s.find("upcost");
+  if (found != string::npos){
+    size_t start = s.find("[");
+    size_t end = s.find("]",start);
+    string s1 = s.substr(start + 1,end - start - 1);
+    size_t seperator = s1.find(",");
+    int phase = Constants::MTG_PHASE_UPKEEP;
+    int once = 0;
+    if (seperator != string::npos){
+      for (int i = 0; i < Constants::NB_MTG_PHASES; i++){
+        if (s1.find("next") != string::npos) once = 1;
+        if(s1.find(Constants::MTGPhaseCodeNames[i]) != string::npos){
+          phase = i;
+        }
+      }
+      s1 = s1.substr(0,seperator - 1);
+    }
+    ManaCost * cost = ManaCost::parseManaCost(s1);
+
+    if (!cost){
+      OutputDebugString("MTGABILITY: Parsing Error:");
+      OutputDebugString(s.c_str());
+      OutputDebugString("\n");
+      return NULL;
+    }
+    
+    string sAbility = s.substr(end + 1);
+    MTGAbility * a = parseMagicLine(sAbility,id,spell,card);
+
+    if (!a){
+      OutputDebugString("MTGABILITY: Parsing Error:");
+      OutputDebugString(s.c_str());
+      OutputDebugString("\n");
+      return NULL;
+    }
+
+    return NEW AUpkeep(id,card,a,cost,doTap,restrictions,phase,once);
+  }
 
    //Cycling
   found = s.find("cycling");
@@ -944,6 +982,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     a->oneShot = 1;
     return a;
   }
+
+
 
   return NULL;
 

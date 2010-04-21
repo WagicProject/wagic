@@ -2504,6 +2504,61 @@ public:
 
 };
 
+//Upkeep Cost
+class AUpkeep:public ActivatedAbility, public NestedAbility{
+public:
+  int paidThisTurn;
+  int phase;
+  int once;
+
+  AUpkeep(int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int _tap = 0, int restrictions = 0, int _phase = Constants::MTG_PHASE_UPKEEP, int _once = 0):ActivatedAbility(_id, card,_cost,restrictions,_tap),NestedAbility(a),phase(_phase),once(_once){
+    paidThisTurn = 0;
+  }
+
+  void Update(float dt){
+    // once: 0 means always go off, 1 means go off only once, 2 means go off only once and already has.
+    if (newPhase != currentPhase && source->controller() == game->currentPlayer && once < 2){
+      if (newPhase == Constants::MTG_PHASE_UNTAP){
+      	paidThisTurn = 0;
+      }else if( newPhase == phase + 1 && !paidThisTurn){
+        ability->resolve();
+      }
+      if(newPhase == phase + 1 && once) once = 2;
+    }
+    ActivatedAbility::Update(dt);
+  }
+
+  int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL){
+    if (currentPhase != phase || paidThisTurn || once >= 2) return 0;
+    return ActivatedAbility::isReactingToClick(card,mana);
+  }
+
+  int resolve(){
+    paidThisTurn = 1;
+    return 1;
+  }
+
+  const char * getMenuText(){
+    return "Upkeep";
+  }
+
+  virtual ostream& toString(ostream& out) const
+  {
+    out << "AUpkeep ::: paidThisTurn : " << paidThisTurn
+	<< " (";
+    return ActivatedAbility::toString(out) << ")";
+  }
+  
+  ~AUpkeep(){
+    if(!isClone) SAFE_DELETE(ability);
+  }
+
+  AUpkeep * clone() const{
+    AUpkeep * a =  NEW AUpkeep(*this);
+    a->isClone = 1;
+    return a;
+  }
+};
 
 /*
   Specific Classes
@@ -2979,6 +3034,7 @@ class ALordOfThePit: public TargetAbility{
     return a;
   }
 };
+
 //1143 Animate Dead
 class AAnimateDead:public MTGAbility{
  public:
