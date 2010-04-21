@@ -274,6 +274,16 @@ mana={3}{U}{U}
 type=Sorcery
 [/card]
 [card]
+name=Acridian
+auto=upcost[{1}{G},next upkeep] moveTo(graveyard)
+text=Echo {1}{G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
+mana={1}{G}
+type=Creature
+subtype=Insect
+power=2
+toughness=4
+[/card]
+[card]
 name=Act of Treason
 target=creature
 auto=haste
@@ -742,6 +752,17 @@ auto=1/3
 text=Untap target nonattacking creature. It gets +1/+3 until end of turn.
 mana={1}{W}
 type=Instant
+[/card]
+[card]
+name=Albino Troll
+auto=upcost[{1}{G},next upkeep] moveTo(graveyard)
+auto={1}{G}:regenerate
+text=Echo {1}{G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- {1}{G}: Regenerate Albino Troll.
+mana={1}{G}
+type=Creature
+subtype=Troll
+power=3
+toughness=3
 [/card]
 [card]
 name=Alert Shu Infantry
@@ -1604,6 +1625,19 @@ type=Creature
 subtype=Elf Druid
 power=1
 toughness=1
+[/card]
+[card]
+name=Arcades Sabboth
+abilities=flying
+auto=lord(creature[-attacking;-tapped]|mybattlefield) 0/2
+auto=upcost[{G}{W}{U}] moveTo(graveyard)
+auto={W}:0/1
+text=Flying -- At the beginning of your upkeep, sacrifice Arcades Sabboth unless you pay {G}{W}{U}. -- Each untapped creature you control gets +0/+2 as long as it's not attacking. -- {W}: Arcades Sabboth gets +0/+1 until end of turn.
+mana={2}{G}{G}{W}{W}{U}{U}
+type=Legendary Creature
+subtype=Elder Dragon
+power=7
+toughness=7
 [/card]
 [card]
 name=Arcane Sanctum
@@ -2471,6 +2505,18 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Avalanche Riders
+abilities=haste
+auto=destroy target(land)
+auto=upcost[{3}{R},next upkeep] moveTo(graveyard)
+text=Haste -- Echo {3}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Avalanche Riders enters the battlefield, destroy target land.
+mana={3}{R}
+type=Creature
+subtype=Human Nomad
+power=2
+toughness=2
+[/card]
+[card]
 name=Avarax
 abilities=haste
 auto=may moveTo(myhand) target(Avarax|mylibrary)
@@ -3231,6 +3277,18 @@ mana={B}{B}
 type=Creature
 subtype=Thrull
 power=1
+toughness=2
+[/card]
+[card]
+name=Basalt Gargoyle
+abilities=flying
+auto={R}:0/1
+auto=upcost[{2}{R},next upkeep] moveTo(graveyard)
+text=Flying -- Echo {2}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- {R}: Basalt Gargoyle gets +0/+1 until end of turn.
+mana={2}{R}
+type=Creature
+subtype=Gargoyle
+power=3
 toughness=2
 [/card]
 [card]
@@ -4963,6 +5021,18 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
+name=Bone Shredder
+abilities=flying
+auto=destroy target(creature[-black;-artifact])
+auto=upcost[{2}{B},next upkeep] moveTo(graveyard)
+text=Flying -- Echo {2}{B} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Bone Shredder enters the battlefield, destroy target nonartifact, nonblack creature.
+mana={2}{B}
+type=Creature
+subtype=Minion
+power=1
+toughness=1
+[/card]
+[card]
 name=Bonesplitter
 auto={1}:equip
 auto=2/0
@@ -5353,6 +5423,14 @@ type=Creature
 subtype=Nightstalker
 power=2
 toughness=2
+[/card]
+[card]
+name=Breeding Pit
+auto=upcost[{B}{B}] moveTo(graveyard)
+auto=@each my endofturn:token(Thrull,creature token thrull,0/1,black)
+text=At the beginning of your upkeep, sacrifice Breeding Pit unless you pay {B}{B}. -- At the beginning of your end step, put a 0/1 black Thrull creature token onto the battlefield.
+mana={3}{B}
+type=Enchantment
 [/card]
 [card]
 name=Breeding Pool
@@ -7003,6 +7081,17 @@ power=6
 toughness=6
 [/card]
 [card]
+name=Child of Gaea
+abilities=trample
+auto=upcost[{G}{G}] moveTo(graveyard)
+text=Trample -- At the beginning of your upkeep, sacrifice Child of Gaea unless you pay {G}{G}. -- {1}{G}: Regenerate Child of Gaea.
+mana={3}{G}{G}{G}
+type=Creature
+subtype=Elemental
+power=7
+toughness=7
+[/card]
+[card]
 name=Child of Night
 abilities=lifelink
 text=Lifelink (Damage dealt by this creature also causes you to gain that much life.)
@@ -7136,6 +7225,18 @@ mana={1}
 type=Artifact
 [/card]
 [card]
+name=Chromium
+abilities=flying
+auto=rampage(2/2,1)
+auto=upcost[{W}{U}{B}] moveTo(graveyard)
+text=Flying -- Rampage 2 (Whenever this creature becomes blocked, it gets +2/+2 until end of turn for each creature blocking it beyond the first.) -- At the beginning of your upkeep, sacrifice Chromium unless you pay {W}{U}{B}.
+mana={2}{W}{W}{U}{U}{B}{B}
+type=Legendary Creature
+subtype=Elder Dragon
+power=7
+toughness=7
+[/card]
+[card]
 name=Chronozoa
 abilities=flying
 auto=counter(0/0,3,Time)
@@ -7150,7 +7251,7 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Chronozoa
+name=Chronozoa (Chronozoa)
 type=Creature
 subtype=Illusion
 abilities=flying
@@ -7300,6 +7401,17 @@ auto=@each opponent end:foreach(land[-tapped]|opponentBattlefield) damage:1 oppo
 text=At the beginning of each player's end step, Citadel of Pain deals X damage to that player, where X is the number of untapped lands he or she controls.
 mana={2}{R}
 type=Enchantment
+[/card]
+[card]
+name=Citanul Centaurs
+abilities=shroud
+auto=upcost[{3}{G},next upkeep] moveTo(graveyard)
+text=Shroud (This permanent can't be the target of spells or abilities.) -- Echo {3}{G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
+mana={3}{G}
+type=Creature
+subtype=Centaur
+power=6
+toughness=3
 [/card]
 [card]
 name=Citanul Druid
@@ -8422,6 +8534,17 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Cradle Guard
+abilities=trample
+auto=upcost[{1}{G}{G},next upkeep] moveTo(graveyard)
+text=Trample -- Echo {1}{G}{G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
+mana={1}{G}{G}
+type=Creature
+subtype=Treefolk
+power=4
+toughness=4
+[/card]
+[card]
 name=Crafty Pathmage
 auto={T}:unblockable target(creature[power<=2])
 text={T}: Target creature with power 2 or less is unblockable this turn.
@@ -8481,6 +8604,17 @@ type=Creature
 subtype=Centaur
 power=3
 toughness=4
+[/card]
+[card]
+name=Crater Hellion
+auto=damage:4 all(other creature)
+auto=upcost[{4}{R}{R},next upkeep] moveTo(graveyard)
+text=Echo {4}{R}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Crater Hellion enters the battlefield, it deals 4 damage to each other creature.
+mana={4}{R}{R}
+type=Creature
+subtype=Hellion Beast
+power=6
+toughness=6
 [/card]
 [card]
 name=Craven Giant
@@ -9248,6 +9382,16 @@ type=Creature
 subtype=Griffin
 power=2
 toughness=2
+[/card]
+[card]
+name=Darba
+auto=upcost[{G}{G}] moveTo(graveyard)
+text=At the beginning of your upkeep, sacrifice Darba unless you pay {G}{G}.
+mana={3}{G}
+type=Creature
+subtype=Bird Beast
+power=5
+toughness=4
 [/card]
 [card]
 name=Darigaaz's Attendant
@@ -10023,6 +10167,17 @@ power=7
 toughness=7
 [/card]
 [card]
+name=Deepcavern Imp
+abilities=flying,haste
+auto=upcost[{S(*|myhand)},next upkeep] moveTo(graveyard)
+text=Flying, haste -- Echo - Discard a card. (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
+mana={2}{B}
+type=Creature
+subtype=Imp Rebel
+power=2
+toughness=2
+[/card]
+[card]
 name=Deepchannel Mentor
 auto=lord(creature[blue]|myBattlefield) unblockable
 text=Blue creatures you control are unblockable.
@@ -10264,6 +10419,18 @@ auto=lord(creature[flying]) cloud
 text=Creatures with flying can block only creatures with flying.
 mana={1}{G}
 type=Enchantment
+[/card]
+[card]
+name=Deranged Hermit
+auto=token(Squirrel,creature token squirrel,1/1,green)*4
+auto=lord(squirrel) 1/1
+auto=upcost[{3}{G}{G},next upkeep] moveTo(graveyard)
+text=Echo {3}{G}{G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Deranged Hermit enters the battlefield, put four 1/1 green Squirrel creature tokens onto the battlefield. -- Squirrel creatures get +1/+1.
+mana={3}{G}{G}
+type=Creature
+subtype=Elf
+power=1
+toughness=1
 [/card]
 [card]
 name=Descendant of Masumaro
@@ -11147,6 +11314,18 @@ mana={4}{R}{R}
 type=Enchantment
 [/card]
 [card]
+name=Dragon Tyrant
+abilities=flying,trample,double strike
+auto=upcost[{R}{R}{R}{R}] moveTo(mygraveyard)
+auto={R}:1/0
+text=Flying, trample -- Double strike (This creature deals both first-strike and regular combat damage.) -- At the beginning of your upkeep, sacrifice Dragon Tyrant unless you pay {R}{R}{R}{R}. -- {R}: Dragon Tyrant gets +1/+0 until end of turn.
+mana={8}{R}{R}
+type=Creature
+subtype=Dragon
+power=6
+toughness=6
+[/card]
+[card]
 name=Dragon Whelp
 abilities=flying
 alias=1284
@@ -11423,6 +11602,29 @@ type=Creature
 subtype=Wall
 power=*
 toughness=*
+[/card]
+[card]
+name=Drifter il-Dal
+abilities=shadow
+auto=upcost[{U}] moveTo(graveyard)
+text=Shadow (This creature can block or be blocked by only creatures with shadow.) -- At the beginning of your upkeep, sacrifice Drifter il-Dal unless you pay {U}.
+mana={U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=1
+[/card]
+[card]
+name=Drifting Djinn
+abilities=flying
+auto=upcost[{1}{U}] moveTo(graveyard)
+autohand={2}:cycling
+text=Flying -- At the beginning of your upkeep, sacrifice Drifting Djinn unless you pay {1}{U}. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={4}{U}{U}
+type=Creature
+subtype=Djinn
+power=5
+toughness=5
 [/card]
 [card]
 name=Drifting Meadow
@@ -12319,6 +12521,7 @@ toughness=5
 [card]
 name=Elvish Archdruid
 auto=lord(elf|myBattlefield) 1/1 other
+auto={T}:foreach(other elf|myBattlefield) add{G}
 text=Other Elf creatures you control get +1/+1. -- {T}: Add {G} to your mana pool for each Elf you control.
 mana={1}{G}{G}
 type=Creature
@@ -13424,6 +13627,17 @@ mana={U}
 type=Sorcery
 [/card]
 [card]
+name=Extruder
+auto={S(artifact|myBattlefield)}:counter(1/1,1) target(creature)
+auto=upcost[{4},next upkeep] moveTo(graveyard)
+text=Echo {4} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- Sacrifice an artifact: Put a +1/+1 counter on target creature.
+mana={4}
+type=Artifact Creature
+subtype=Juggernaut
+power=4
+toughness=3
+[/card]
+[card]
 name=Exuberant Firestoker
 auto=@each my end:aslongas(creature[power>=5]|myBattlefield) may damage:2 target(player)
 auto={T}:Add{1}
@@ -14383,6 +14597,18 @@ power=4
 toughness=3
 [/card]
 [card]
+name=Firemaw Kavu
+auto=damage:2 target(creature)
+auto=@movedTo(this|exile,graveyard,hand,library) from(battlefield):damage:4 target(creature)
+auto=upcost[{5}{R},next upkeep] moveTo(graveyard)
+text=Echo {5}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Firemaw Kavu enters the battlefield, it deals 2 damage to target creature. -- When Firemaw Kavu leaves the battlefield, it deals 4 damage to target creature.
+mana={5}{R}
+type=Creature
+subtype=Kavu
+power=4
+toughness=2
+[/card]
+[card]
 name=Fires of Yavimaya
 auto=lord(creature|myBattlefield) haste
 auto={s}:2/2 target(creature)
@@ -14561,6 +14787,16 @@ auto=lord(creature[-flying]) cantregenerate
 text=Flamebreak deals 3 damage to each creature without flying and each player. Creatures dealt damage this way can't be regenerated this turn.
 mana={R}{R}{R}
 type=Sorcery
+[/card]
+[card]
+name=Flamecore Elemental
+auto=upcost[{2}{R}{R},next upkeep] moveTo(graveyard)
+text=Echo {2}{R}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
+mana={2}{R}{R}
+type=Creature
+subtype=Elemental
+power=5
+toughness=4
 [/card]
 [card]
 name=Flamekin Brawler
@@ -15125,7 +15361,7 @@ type=Land
 [card]
 name=Force of Nature
 abilities=trample
-alias=1245
+auto=upcost[{G}{G}{G}{G}] damage:8 controller
 text=Trample (If this creature would deal enough damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player or planeswalker.) -- At the beginning of your upkeep, Force of Nature deals 8 damage to you unless you pay {G}{G}{G}{G}.
 mana={2}{G}{G}{G}{G}
 type=Creature
@@ -16060,6 +16296,17 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Ghitu Slinger
+auto=damage:2 target(creature,player)
+auto=upcost[{2}{R},next upkeep] moveTo(graveyard)
+text=Echo {2}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Ghitu Slinger enters the battlefield, it deals 2 damage to target creature or player.
+mana={2}{R}
+type=Creature
+subtype=Human Nomad
+power=2
+toughness=2
+[/card]
+[card]
 name=Ghitu War Cry
 auto={R}:1/0 target(creature)
 text={R}: Target creature gets +1/+0 until end of turn.
@@ -16208,8 +16455,8 @@ toughness=3
 [/card]
 [card]
 name=Giant Growth
-#target=creature
-#auto=3/3
+target=creature
+auto=3/3
 text=Target creature gets +3/+3 until end of turn.
 mana={G}
 type=Instant
@@ -16941,6 +17188,18 @@ mana={1}{R}
 type=Sorcery
 [/card]
 [card]
+name=Goblin Marshal
+auto=token(Goblin,creature token goblin,1/1,red)*2
+auto=@movedTo(this|graveyard) from(battlefield):token(Goblin,creature token goblin,1/1,red)*2
+auto=upcost[{4}{R}{R},next upkeep] moveTo(graveyard)
+text=Echo {4}{R}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Goblin Marshal enters the battlefield or is put into a graveyard from the battlefield, put two 1/1 red Goblin creature tokens onto the battlefield.
+mana={4}{R}{R}
+type=Creature
+subtype=Goblin Warrior
+power=3
+toughness=3
+[/card]
+[card]
 name=Goblin Masons
 auto=@movedTo(this|graveyard) from(battlefield):destroy target(wall)
 text=When Goblin Masons is put into a graveyard from the battlefield, destroy target Wall.
@@ -16957,6 +17216,16 @@ text=When Goblin Matron enters the battlefield, you may search your library for 
 mana={2}{R}
 type=Creature
 subtype=Goblin
+power=1
+toughness=1
+[/card]
+[card]
+name=Goblin Medics
+auto=@tapped(this):damage:1 target(creature,player)
+text=Whenever Goblin Medics becomes tapped, it deals 1 damage to target creature or player.
+mana={2}{R}
+type=Creature
+subtype=Goblin Shaman
 power=1
 toughness=1
 [/card]
@@ -16998,6 +17267,16 @@ type=Creature
 subtype=Goblin Scout
 power=2
 toughness=2
+[/card]
+[card]
+name=Goblin Patrol
+auto=upcost[{R},next upkeep] moveTo(graveyard)
+text=Echo {R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
+mana={R}
+type=Creature
+subtype=Goblin
+power=2
+toughness=1
 [/card]
 [card]
 name=Goblin Piker
@@ -17119,6 +17398,16 @@ power=1
 toughness=2
 [/card]
 [card]
+name=Goblin Skycutter
+auto={S}:damage:2 && -flying target(creature[flying])
+text=Sacrifice Goblin Skycutter: Goblin Skycutter deals 2 damage to target creature with flying. That creature loses flying until end of turn.
+mana={1}{R}
+type=Creature
+subtype=Goblin Warrior
+power=2
+toughness=1
+[/card]
+[card]
 name=Goblin Sledder
 auto={S(goblin|mybattlefield)}:1/1 target(creature)
 text=Sacrifice a Goblin: Target creature gets +1/+1 until end of turn.
@@ -17174,6 +17463,17 @@ type=Creature
 subtype=Goblin Mercenary
 power=2
 toughness=1
+[/card]
+[card]
+name=Goblin War Buggy
+abilities=haste
+auto=upcost[{1}{R},next upkeep] moveTo(graveyard)
+text=Haste -- Echo {1}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
+mana={1}{R}
+type=Creature
+subtype=Goblin
+power=2
+toughness=2
 [/card]
 [card]
 name=Goblin War Paint
@@ -17314,7 +17614,7 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Goldmeadow Harrier
+name=Goldmeadow Harrier (Goldmeadow Lookout)
 type=Creature
 subtype=Kithkin Soldier
 auto={W}{T}:tap target(creature)
@@ -17836,7 +18136,7 @@ auto={C(-1/-1,-1)}:counter(-1/-1) target(other creature)
 text=Grim Poppet enters the battlefield with three -1/-1 counters on it. -- Remove a -1/-1 counter from Grim Poppet: Put a -1/-1 counter on another target creature.
 mana={7}
 type=Artifact Creature
-Subtype=Scarecrow
+subtype=Scarecrow
 power=4
 toughness=4
 [/card]
@@ -18276,6 +18576,17 @@ mana={1}{U}
 type=Creature
 subtype=Fish
 power=2
+toughness=3
+[/card]
+[card]
+name=Hammerheim Deadeye
+auto=destroy target(creature[flying])
+auto=upcost[{5}{R},next upkeep] moveTo(graveyard)
+text=Echo {5}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Hammerheim Deadeye enters the battlefield, destroy target creature with flying.
+mana={3}{R}
+type=Creature
+subtype=Giant Warrior
+power=3
 toughness=3
 [/card]
 [card]
@@ -18938,6 +19249,18 @@ power=1
 toughness=4
 [/card]
 [card]
+name=Henchfiend of Ukor
+abilities=haste
+auto={BR}:1/0
+auto=upcost[{1}{B},next upkeep] moveTo(graveyard)
+text=Haste -- Echo {1}{B} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice this permanent unless you pay its echo cost.) -- {(b/r)}: Henchfiend of Ukor gets +1/+0 until end of turn.
+mana={3}{R}
+type=Creature
+subtype=Ogre
+power=3
+toughness=2
+[/card]
+[card]
 name=Henge Guardian
 auto={2}:trample
 text={2}: Henge Guardian gains trample until end of turn.
@@ -18957,6 +19280,17 @@ auto={2}{T}:Add {R}
 auto={2}{T}:Add {G}
 text={T}: Add {1} to your mana pool. -- {2}, {T}: Add one mana of any color to your mana pool.
 type=Land
+[/card]
+[card]
+name=Herald of Serra
+abilities=flying,vigilance
+auto=upcost[{2}{W}{W},next upkeep] moveTo(graveyard)
+text=Flying, vigilance -- Echo {2}{W}{W} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
+mana={2}{W}{W}
+type=Creature
+subtype=Angel
+power=3
+toughness=4
 [/card]
 [card]
 name=Herbal Poultice
@@ -19693,6 +20027,16 @@ mana={1}{B}
 type=Sorcery
 [/card]
 [card]
+name=Hungry Mist
+auto=upcost[{G}{G}] moveTo(graveyard)
+text=At the beginning of your upkeep, sacrifice Hungry Mist unless you pay {G}{G}.
+mana={2}{G}{G}
+type=Creature
+subtype=Elemental
+power=6
+toughness=2
+[/card]
+[card]
 name=Hungry Spriggan
 abilities=trample
 auto=lord(hungry spriggan[attacking]|mybattlefield) 3/3
@@ -19805,6 +20149,18 @@ type=Creature
 subtype=Kavu
 power=2
 toughness=3
+[/card]
+[card]
+name=Hunting Moa
+auto=counter(1/1,1) target(creature)
+auto=@movedTo(this|graveyard) from(battlefield):counter(1/1,1) target(creature)
+auto=upcost[{2}{G},next upkeep] moveTo(graveyard)
+text=Echo {2}{G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Hunting Moa enters the battlefield or is put into a graveyard from the battlefield, put a +1/+1 counter on target creature.
+mana={2}{G}
+type=Creature
+subtype=Bird Beast
+power=3
+toughness=2
 [/card]
 [card]
 name=Hunting Triad
@@ -21481,6 +21837,17 @@ mana={2}
 type=Artifact
 [/card]
 [card]
+name=Junun Efreet
+abilities=flying
+auto=upcost[{B}{B}] moveTo(graveyard)
+text=Flying -- At the beginning of your upkeep, sacrifice Junun Efreet unless you pay {B}{B}.
+mana={1}{B}{B}
+type=Creature
+subtype=Efreet
+power=3
+toughness=3
+[/card]
+[card]
 name=Just Fate
 target=creature[attacking]|opponentBattlefield
 auto=destroy
@@ -21759,6 +22126,17 @@ power=3
 toughness=2
 [/card]
 [card]
+name=Kami of the Tended Garden
+auto=upcost[{G}] moveTo(graveyard)
+auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=3]|mygraveyard)
+text=At the beginning of your upkeep, sacrifice Kami of the Tended Garden unless you pay {G}. -- Soulshift 3 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 3 or less from your graveyard to your hand.)
+mana={3}{G}
+type=Creature
+subtype=Spirit
+power=4
+toughness=4
+[/card]
+[card]
 name=Kami of the Waning Moon
 abilities=flying
 auto=@movedTo(arcane,spirit|mystack):fear target(creature)
@@ -21783,6 +22161,18 @@ auto=@each opponent upkeep:foreach(swamp|opponentBattlefield) damage:1 opponent
 text=At the beginning of each player's upkeep, Karma deals damage to that player equal to the number of Swamps he or she controls.
 mana={2}{W}{W}
 type=Enchantment
+[/card]
+[card]
+name=Karmic Guide
+abilities=flying,protection from black
+auto=moveTo(myBattlefield) target(creature|mygraveyard)
+auto=upcost[{3}{W}{W},next upkeep] moveTo(graveyard)
+text=Flying, protection from black -- Echo {3}{W}{W} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Karmic Guide enters the battlefield, return target creature card from your graveyard to the battlefield.
+mana={3}{W}{W}
+type=Creature
+subtype=Angel Spirit
+power=2
+toughness=2
 [/card]
 [card]
 name=Karn's Touch
@@ -22083,6 +22473,18 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Keldon Champion
+abilities=haste
+auto=damage:3 target(player)
+auto=upcost[{2}{R}{R},next upkeep] moveTo(graveyard)
+text=Haste -- Echo {2}{R}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Keldon Champion enters the battlefield, it deals 3 damage to target player.
+mana={2}{R}{R}
+type=Creature
+subtype=Human Barbarian
+power=3
+toughness=2
+[/card]
+[card]
 name=Keldon Mantle
 target=creature
 auto={B}:regenerate
@@ -22113,6 +22515,17 @@ auto={T}:Add {1}
 auto={4}{R}{T}{S(creature|myBattlefield)}:Damage:2 target(creature,player)
 text={T}: Add {1} to your mana pool. -- {4}{R}, {T}, Sacrifice a creature: Keldon Necropolis deals 2 damage to target creature or player.
 type=Legendary Land
+[/card]
+[card]
+name=Keldon Vandals
+auto=destroy target(artifact)
+auto=upcost[{2}{R},next upkeep] moveTo(graveyard)
+text=Echo {2}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Keldon Vandals enters the battlefield, destroy target artifact.
+mana={2}{R}
+type=Creature
+subtype=Human Rogue
+power=4
+toughness=1
 [/card]
 [card]
 name=Keldon Warlord
@@ -23858,6 +24271,18 @@ mana={R}
 type=Instant
 [/card]
 [card]
+name=Lightning Dragon
+abilities=flying
+auto={R}:1/0
+auto=upcost[{2}{R}{R},next upkeep] moveTo(graveyard)
+text=Flying -- Echo {2}{R}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- {R}: Lightning Dragon gets +1/+0 until end of turn.
+mana={2}{R}{R}
+type=Creature
+subtype=Dragon
+power=4
+toughness=4
+[/card]
+[card]
 name=Lightning Elemental
 abilities=haste
 text=Haste (This creature can attack and {T} as soon as it comes under your control.)
@@ -24141,7 +24566,7 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Llanowar Elves
+name=Llanowar Elves (Llanowar Mentor)
 type=Creature
 subtype=Elf Druid
 auto={T}:Add {G}
@@ -24346,6 +24771,7 @@ toughness=*
 name=Lord of the Pit
 abilities=flying,trample
 alias=1166
+auto=upcost[{S(other creature|myBattlefield)}] damage:7 controller
 text=Flying, trample -- At the beginning of your upkeep, sacrifice a creature other than Lord of the Pit. If you can't, Lord of the Pit deals 7 damage to you.
 mana={4}{B}{B}{B}
 type=Creature
@@ -25468,6 +25894,18 @@ power=*
 toughness=*
 [/card]
 [card]
+name=Masticore
+auto=upcost[{S(*|myhand)]} moveTo(mygraveyard)
+auto={2}:damage:1 target(creature)
+auto={2}:regenerate
+text=At the beginning of your upkeep, sacrifice Masticore unless you discard a card. -- {2}: Masticore deals 1 damage to target creature. -- {2}: Regenerate Masticore.
+mana={4}
+type=Artifact Creature
+subtype=Masticore
+power=4
+toughness=4
+[/card]
+[card]
 name=Masumaro, First to Live
 auto=foreach(*|myhand) 2/2
 text=Masumaro, First to Live's power and toughness are each equal to twice the number of cards in your hand.
@@ -25514,7 +25952,7 @@ toughness=3
 [/card]
 [card]
 name=Maze of Ith
-auto={2}{T}:untap target(creature[attacking]) && preventAllCombatDamage to(mytgt) ueot && preventAllCombatDamage from(mytgt) ueot
+auto={T}:untap target(creature[attacking]) && preventAllCombatDamage to(mytgt) ueot && preventAllCombatDamage from(mytgt) ueot
 text={T}: Untap target attacking creature. Prevent all combat damage that would be dealt to and dealt by that creature this turn.
 type=Land
 [/card]
@@ -26118,6 +26556,17 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Minion of Tevesh Szat
+auto=upcost[{B}{B}] damage:2 controller
+auto={T}:3/-2 target(creature)
+text=At the beginning of your upkeep, Minion of Tevesh Szat deals 2 damage to you unless you pay {B}{B}. -- {T}: Target creature gets +3/-2 until end of turn.
+mana={4}{B}{B}{B}
+type=Creature
+subtype=Demon Minion
+power=4
+toughness=4
+[/card]
+[card]
 name=Minions' Murmurs
 auto=foreach(creature|myBattlefield) draw:1
 auto=foreach(creature|myBattlefield) life:-1
@@ -26510,6 +26959,18 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Mogg War Marshal
+auto=token(Goblin,creature token goblin,1/1,red)
+auto=@movedTo(this|graveyard) from(battlefield):token(Goblin,creature token goblin,1/1,red)
+auto=upcost[{1}{R},next upkeep] moveTo(graveyard)
+text=Echo {1}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Mogg War Marshal enters the battlefield or is put into a graveyard from the battlefield, put a 1/1 red Goblin creature token onto the battlefield.
+mana={1}{R}
+type=Creature
+subtype=Goblin Warrior
+power=1
+toughness=1
+[/card]
+[card]
 name=Moggcatcher
 auto={3}{T}:moveTo(myBattlefield) target(goblin[-instant;-sorcery]|mylibrary)
 text={3}, {T}: Search your library for a Goblin permanent card and put that card onto the battlefield. Then shuffle your library.
@@ -26569,6 +27030,17 @@ type=Creature
 subtype=Elemental
 power=0
 toughness=4
+[/card]
+[card]
+name=Molting Harpy
+abilities=flying
+auto=upcost[{2}] moveTo(graveyard)
+text=Flying -- At the beginning of your upkeep, sacrifice Molting Harpy unless you pay {2}.
+mana={B}
+type=Creature
+subtype=Harpy Mercenary
+power=2
+toughness=1
 [/card]
 [card]
 name=Molting Skin
@@ -27187,6 +27659,17 @@ type=Legendary Creature
 subtype=Elemental
 power=*
 toughness=*
+[/card]
+[card]
+name=Multani's Acolyte
+auto=draw:1
+auto=upcost[{G}{G},next upkeep] moveTo(graveyard)
+text=Echo {G}{G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Multani's Acolyte enters the battlefield, draw a card.
+mana={G}{G}
+type=Creature
+subtype=Elf
+power=2
+toughness=1
 [/card]
 [card]
 name=Mungha Wurm
@@ -28031,6 +28514,18 @@ type=Creature
 subtype=Ouphe
 power=2
 toughness=2
+[/card]
+[card]
+name=Nicol Bolas
+auto=flying
+auto=upcost[{U}{B}{R}] moveTo(graveyard)
+auto=@damaged(player) from(nicol bolas[attacking]|myBattlefield):moveTo(opponentgraveyard) all(*|opponenthand)
+text=Flying -- At the beginning of your upkeep, sacrifice Nicol Bolas unless you pay {U}{B}{R}. -- Whenever Nicol Bolas deals damage to an opponent, that player discards his or her hand.
+mana={2}{U}{U}{B}{B}{R}{R}
+type=Legendary Creature
+subtype=Elder Dragon
+power=7
+toughness=7
 [/card]
 [card]
 name=Night of Souls' Betrayal
@@ -29463,6 +29958,17 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Palladia-Mors
+abilities=flying,trample
+auto=upcost[{R}{G}{W}] moveTo(graveyard)
+text=Flying, trample -- At the beginning of your upkeep, sacrifice Palladia-Mors unless you pay {R}{G}{W}.
+mana={2}{R}{R}{G}{G}{W}{W}
+type=Legendary Creature
+subtype=Elder Dragon
+power=7
+toughness=7
+[/card]
+[card]
 name=Pallid Mycoderm
 text=At the beginning of your upkeep, put a spore counter on Pallid Mycoderm. -- Remove three spore counters from Pallid Mycoderm: Put a 1/1 green Saproling creature token onto the battlefield. -- Sacrifice a Saproling: Fungus and/or Saproling creatures you control get +1/+1 until end of turn.
 mana={3}{W}
@@ -29714,6 +30220,17 @@ type=Legendary Creature
 subtype=Human
 power=5
 toughness=3
+[/card]
+[card]
+name=Peacekeeper
+auto=upcost[{1}{W}] moveTo(graveyard)
+auto=lord(creature) cantattack
+text=At the beginning of your upkeep, sacrifice Peacekeeper unless you pay {1}{W}. -- Creatures can't attack.
+mana={2}{W}
+type=Creature
+subtype=Human
+power=1
+toughness=1
 [/card]
 [card]
 name=Peace of Mind
@@ -29987,6 +30504,17 @@ type=Artifact Creature
 subtype=Golem
 power=4
 toughness=2
+[/card]
+[card]
+name=Phantasmal Forces
+abilities=flying
+auto=upcost[{U}] moveTo(graveyard)
+text=Flying -- At the beginning of your upkeep, sacrifice Phantasmal Forces unless you pay {U}.
+mana={3}{U}
+type=Creature
+subtype=Illusion
+power=4
+toughness=1
 [/card]
 [card]
 name=Phantatog
@@ -30419,6 +30947,17 @@ power=0
 toughness=1
 [/card]
 [card]
+name=Pit Raptor
+abilities=flying,first strike
+auto=upcost[{2}{B}{B}] moveTo(graveyard)
+text=Flying, first strike -- At the beginning of your upkeep, sacrifice Pit Raptor unless you pay {2}{B}{B}.
+mana={2}{B}{B}
+type=Creature
+subtype=Bird Mercenary
+power=4
+toughness=3
+[/card]
+[card]
 name=Pit Trap
 auto={2}{T}{S}:bury target(creature[-flying;attacking])
 text={2}, {T}, Sacrifice Pit Trap: Destroy target attacking creature without flying. It can't be regenerated.
@@ -30774,6 +31313,16 @@ text=All Slivers have "{2}, {T}: Regenerate target Sliver."
 mana={2}{W}
 type=Creature
 subtype=Sliver
+power=2
+toughness=2
+[/card]
+[card]
+name=Pouncing Jaguar
+auto=upcost[{G},next upkeep] moveTo(graveyard)
+text=Echo {G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
+mana={G}
+type=Creature
+subtype=Cat
 power=2
 toughness=2
 [/card]
@@ -31671,6 +32220,17 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Radiant's Dragoons
+auto=life:5
+auto=upcost[{3}{W},next upkeep] moveTo(graveyard)
+text=Echo {3}{W} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Radiant's Dragoons enters the battlefield, you gain 5 life.
+mana={3}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=5
+[/card]
+[card]
 name=Radiant's Judgment
 target=creature[power>=4]
 auto=destroy
@@ -32041,7 +32601,6 @@ type=Sorcery
 name=Rancor
 target=creature
 autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
-auto=doesnotuntap
 auto=2/0
 auto=trample
 text=Enchant creature -- Enchanted creature gets +2/+0 and has trample. -- When Rancor is put into a graveyard from the battlefield, return Rancor to its owner's hand.
@@ -32287,6 +32846,18 @@ autograveyard={G}:copy(this) && moveTo(mystack)
 text=Destroy target enchantment. -- Flashback {G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={1}{W}
 type=Instant
+[/card]
+[card]
+name=Razormane Masticore
+auto=first strike
+auto=upcost[{S(*|myhand)}] moveTo(graveyard)
+auto=@each my draw:may damage:3 target(creature)
+text=First strike (This creature deals combat damage before creatures without first strike.) -- At the beginning of your upkeep, sacrifice Razormane Masticore unless you discard a card. -- At the beginning of your draw step, you may have Razormane Masticore deal 3 damage to target creature.
+mana={5}
+type=Artifact Creature
+subtype=Masticore
+power=5
+toughness=5
 [/card]
 [card]
 name=Razorclaw Bear
@@ -33273,6 +33844,14 @@ type=Creature
 subtype=Human Wizard
 power=1
 toughness=2
+[/card]
+[card]
+name=Ring of Gix
+auto={1}{T}:tap target(artifact,creature,land)
+auto=upcost[{3},next upkeep] moveTo(graveyard)
+text=Echo {3} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- {1}, {T}: Tap target artifact, creature, or land.
+mana={3}
+type=Artifact
 [/card]
 [card]
 name=Riot Spikes
@@ -34812,6 +35391,16 @@ mana={1}{U}{U}
 type=Artifact
 [/card]
 [card]
+name=School of Piranha
+auto=upcost[{1}{U}] moveTo(graveyard)
+text=At the beginning of your upkeep, sacrifice School of Piranha unless you pay {1}{U}.
+mana={1}{U}
+type=Creature
+subtype=Fish
+power=3
+toughness=3
+[/card]
+[card]
 name=School of the Unseen
 auto={T}:Add {1}
 auto={2}{T}:Add {W}
@@ -36345,6 +36934,17 @@ power=3
 toughness=4
 [/card]
 [card]
+name=Shivan Raptor
+abilities=first strike,haste
+auto=upcost[{2}{R},next upkeep] moveTo(graveyard)
+text=First strike, haste -- Echo {2}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
+mana={2}{R}
+type=Creature
+subtype=Lizard
+power=3
+toughness=1
+[/card]
+[card]
 name=Shivan Reef
 auto={T}:Add {1}
 auto={T}:Add {U} && Damage:1 controller
@@ -36932,6 +37532,17 @@ type=Creature
 subtype=Ape Warrior
 power=3
 toughness=3
+[/card]
+[card]
+name=Simian Grunts
+abilities=flash
+auto=upcost[{2}{G},next upkeep] moveTo(graveyard)
+text=Flash -- Echo {2}{G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
+mana={2}{G}
+type=Creature
+subtype=Ape
+power=3
+toughness=4
 [/card]
 [card]
 name=Simian Spirit Guide
@@ -38585,7 +39196,7 @@ power=3
 toughness=1
 [/card]
 [card]
-name=Spark Elemental
+name=Spark Elemental (Sparkspitter)
 type=Creature
 subtype=Elemental
 abilities=trample,haste
@@ -38958,6 +39569,17 @@ type=Creature
 subtype=Beast
 power=1
 toughness=2
+[/card]
+[card]
+name=Spindrift Drake
+abilities=flying
+auto=upcost[{U}] moveTo(graveyard)
+text=Flying -- At the beginning of your upkeep, sacrifice Spindrift Drake unless you pay {U}.
+mana={U}
+type=Creature
+subtype=Drake
+power=2
+toughness=1
 [/card]
 [card]
 name=Spined Fluke
@@ -39338,7 +39960,7 @@ power=0
 toughness=2
 [/card]
 [card]
-name=Sprouting Phytohydra
+name=Sprouting Phytohydra (Sprouting Phytohydra)
 type=Creature
 subtype=Plant Hydra
 abilities=defender
@@ -39917,6 +40539,17 @@ type=Creature
 subtype=Elemental
 power=0
 toughness=0
+[/card]
+[card]
+name=Stingscourger
+auto=moveTo(ownerhand) target(creature|opponentbattlefield)
+auto=upcost[{3}{R},next upkeep] moveTo(graveyard)
+text=Echo {3}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Stingscourger enters the battlefield, return target creature an opponent controls to its owner's hand.
+mana={1}{R}
+type=Creature
+subtype=Goblin Warrior
+power=2
+toughness=2
 [/card]
 [card]
 name=Stirring Wildwood
@@ -40506,6 +41139,18 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Subterranean Shambler
+auto=damage:1 all(creature[-flying]) && damage:1 all(player)
+auto=@movedTo(this|exile,graveyard,hand,library) from(battlefield):damage:1 all(creature[-flying]) && damage:1 all(player)
+auto=upcost[{3}{R},next upkeep] moveTo(graveyard)
+text=Echo {3}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Subterranean Shambler enters the battlefield or leaves the battlefield, it deals 1 damage to each creature without flying.
+mana={3}{R}
+type=Creature
+subtype=Elemental
+power=2
+toughness=3
+[/card]
+[card]
 name=Subterranean Spirit
 abilities=protection from red
 auto={T}:damage:1 all(creature[-flying])
@@ -40680,6 +41325,14 @@ auto={T}:Add {1}
 auto={2}{R}{W}{T}:double strike target(creature)
 text={T}: Add {1} to your mana pool. -- {2}{R}{W}, {T}: Target creature gains double strike until end of turn.
 type=Land
+[/card]
+[card]
+name=Sunken City
+auto=upcost[{U}{U}] moveTo(graveyard)
+auto=lord(creature[blue]) 1/1
+text=At the beginning of your upkeep, sacrifice Sunken City unless you pay {U}{U}. -- Blue creatures get +1/+1.
+mana={U}{U}
+type=Enchantment
 [/card]
 [card]
 name=Sunken Ruins
@@ -41620,6 +42273,17 @@ text={T}: Add {1} to your mana pool. -- {1}, {T}, Sacrifice Tectonic Edge: Destr
 type=Land
 [/card]
 [card]
+name=Tectonic Fiend
+abilities=mustattack
+auto=upcost[{4}{R}{R},next upkeep] moveTo(graveyard)
+text=Echo {4}{R}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- Tectonic Fiend attacks each turn if able.
+mana={4}{R}{R}
+type=Creature
+subtype=Elemental
+power=7
+toughness=7
+[/card]
+[card]
 name=Tectonic Instability
 auto=@movedTo(land|opponentBattlefield):tap all(land|opponentBattlefield)
 auto=@movedTo(land|myBattlefield):tap all(land|myBattlefield)
@@ -42463,6 +43127,17 @@ mana={4}
 type=Artifact
 [/card]
 [card]
+name=Thran war Machine
+abilities=mustattack
+auto=upcost[{4},next upkeep] moveTo(graveyard)
+text=Echo {4} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- Thran War Machine attacks each turn if able.
+mana={4}
+type=Artifact Creature
+subtype=Construct
+power=4
+toughness=5
+[/card]
+[card]
 name=Thrashing Wumpus
 auto={B}:damage:1 all(creature,player)
 text={B}: Thrashing Wumpus deals 1 damage to each creature and each player.
@@ -42698,6 +43373,17 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Ticking Gnomes
+auto={S}:damage:1 target(creature,player)
+auto=upcost[{3}] moveTo(graveyard)
+text=Echo {3} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- Sacrifice Ticking Gnomes: Ticking Gnomes deals 1 damage to target creature or player.
+mana={3}
+type=Artifact Creature
+subtype=Gnome
+power=3
+toughness=3
+[/card]
+[card]
 name=Tidal Kraken
 abilities=unblockable
 text=Tidal Kraken is unblockable.
@@ -42830,6 +43516,18 @@ auto=lord(timberline ridge[counter{0/0.1.Depletion}]) doesnotuntap
 auto=@each my untap:untap all(timberline ridge[-counter{0/0.1.Depletion}])
 text=Timberline Ridge doesn't untap during your untap step if it has a depletion counter on it. -- At the beginning of your upkeep, remove a depletion counter from Timberline Ridge. -- {T}: Add {R} or {G} to your mana pool. Put a depletion counter on Timberline Ridge.
 type=Land
+[/card]
+[card]
+name=Timbermare
+abilities=haste
+auto=tap all(other creature)
+auto=upcost[{5}{G},next upkeep] moveTo(graveyard)
+text=Haste -- Echo {5}{G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Timbermare enters the battlefield, tap all other creatures.
+mana={3}{G}
+type=Creature
+subtype=Elemental Horse
+power=5
+toughness=5
 [/card]
 [card]
 name=Timberwatch Elf
@@ -44069,6 +44767,17 @@ power=5
 toughness=4
 [/card]
 [card]
+name=Uktabi Drake
+abilities=flying,haste
+auto=upcost[{1}{G}{G},next upkeep] moveTo(graveyard)
+text=Flying, haste -- Echo {1}{G}{G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
+mana={G}
+type=Creature
+subtype=Drake
+power=2
+toughness=1
+[/card]
+[card]
 name=Uktabi Faerie
 abilities=flying
 auto={3}{G}{S}:destroy target(artifact)
@@ -44583,6 +45292,14 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Urza's Blueprints
+auto={T}:draw:1
+auto=upcost[{6},next upkeep] moveTo(graveyard)
+text=Echo {6} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- {T}: Draw a card.
+mana={6}
+type=Artifact
+[/card]
+[card]
 name=Urza's Factory
 auto={T}:Add {1}
 auto={7}{T}:token(Assembly-Worker,creature artifact, 2/2, artifact)
@@ -44675,6 +45392,20 @@ type=Creature
 subtype=Goblin Scout
 power=1
 toughness=2
+[/card]
+[card]
+name=Vaevictis Asmadi
+abilities=flying
+auto=upcost[{B}{R}{G}] moveTo(graveyard)
+auto={B}:1/0
+auto={R}:1/0
+auto={G}:1/0
+text=Flying -- At the beginning of your upkeep, sacrifice Vaevictis Asmadi unless you pay {B}{R}{G}. -- {B}: Vaevictis Asmadi gets +1/+0 until end of turn. -- {R}: Vaevictis Asmadi gets +1/+0 until end of turn. -- {G}: Vaevictis Asmadi gets +1/+0 until end of turn.
+mana={2}{B}{B}{R}{R}{G}{G}
+type=Legendary Creature
+subtype=Elder Dragon
+power=7
+toughness=7
 [/card]
 [card]
 name=Vagrant Plowbeasts
@@ -45325,6 +46056,16 @@ type=Creature
 subtype=Viashino
 power=3
 toughness=1
+[/card]
+[card]
+name=Viashino Outrider
+auto=upcost[{2}{R},next upkeep] moveTo(graveyard)
+text=Echo {2}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
+mana={2}{R}
+type=Creature
+subtype=Viashino
+power=4
+toughness=3
 [/card]
 [card]
 name=Viashino Sandscout
@@ -46153,6 +46894,17 @@ type=Creature
 subtype=Human Soldier
 power=1
 toughness=1
+[/card]
+[card]
+name=Vug Lizard
+abilities=mountainwalk
+auto=upcost[{1}{R}{R},next upkeep] moveTo(graveyard)
+text=Mountainwalk -- Echo {1}{R}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
+mana={1}{R}{R}
+type=Creature
+subtype=Lizard
+power=3
+toughness=4
 [/card]
 [card]
 name=Vulshok Battlegear
@@ -47223,6 +47975,16 @@ power=6
 toughness=4
 [/card]
 [card]
+name=Whipstitched Zombie
+auto=upcost[{B}] moveTo(graveyard)
+text=At the beginning of your upkeep, sacrifice Whipstitched Zombie unless you pay {B}.
+mana={1}{B}
+type=Creature
+subtype=Zombie
+power=2
+toughness=2
+[/card]
+[card]
 name=Whip Sergeant
 auto={R}:haste target(creature)
 text={R}: Target creature gains haste until end of turn. (It can attack this turn.)
@@ -47460,6 +48222,16 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Wild Leotau
+auto=upcost[{G}] moveTo(graveyard)
+text=At the beginning of your upkeep, sacrifice Wild Leotau unless you pay {G}.
+mana={2}{G}{G}
+type=Creature
+subtype=Cat
+power=5
+toughness=4
+[/card]
+[card]
 name=Wild Nacatl
 auto=aslongas(mountain|myBattlefield) 1/1
 auto=aslongas(plains|myBattlefield) 1/1
@@ -47639,6 +48411,16 @@ type=Creature
 subtype=Bird
 power=5
 toughness=7
+[/card]
+[card]
+name=Winding Wurm
+auto=upcost[{4}{G},next upkeep] moveTo(graveyard)
+text=Echo {4}{G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
+mana={4}{G}
+type=Creature
+subtype=Wurm
+power=6
+toughness=6
 [/card]
 [card]
 name=Windreaper Falcon
@@ -48010,7 +48792,7 @@ toughness=5
 [card]
 name=Wolf (Sound the Call)
 type=Creature
-Subtype=Wolf
+subtype=Wolf
 auto=foreach(sound the call|graveyard) 1/1
 text=This creature gets +1/+1 for each card named Sound the Call in each graveyard.
 power=1
@@ -48454,6 +49236,17 @@ type=Creature
 subtype=Insect
 power=0
 toughness=1
+[/card]
+[card]
+name=Yavimaya Granger
+auto=moveTo(myBattlefield) target(land[basic]|myLibrary) && tap
+auto=upcost[{2}{G},next upkeep] moveTo(graveyard)
+text=Echo {2}{G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Yavimaya Granger enters the battlefield, you may search your library for a basic land card, put that card onto the battlefield tapped, then shuffle your library.
+mana={2}{G}
+type=Creature
+subtype=Elf
+power=2
+toughness=2
 [/card]
 [card]
 name=Yavimaya Hollow

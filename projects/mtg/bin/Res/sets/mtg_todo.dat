@@ -283,15 +283,6 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-name=Acridian
-text=Echo {1}{G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
-mana={1}{G}
-type=Creature
-subtype=Insect
-power=2
-toughness=4
-[/card]
-[card]
 name=Ad Nauseam
 text=Reveal the top card of your library and put that card into your hand. You lose life equal to its converted mana cost. You may repeat this process any number of times.
 mana={3}{B}{B}
@@ -617,15 +608,6 @@ type=Creature
 subtype=Human Rogue
 power=1
 toughness=1
-[/card]
-[card]
-name=Albino Troll
-text=Echo {1}{G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- {1}{G}: Regenerate Albino Troll.
-mana={1}{G}
-type=Creature
-subtype=Troll
-power=3
-toughness=3
 [/card]
 [card]
 name=Alchor's Tomb
@@ -1229,15 +1211,6 @@ type=Creature
 subtype=Beast
 power=4
 toughness=5
-[/card]
-[card]
-name=Arcades Sabboth
-text=Flying -- At the beginning of your upkeep, sacrifice Arcades Sabboth unless you pay {G}{W}{U}. -- Each untapped creature you control gets +0/+2 as long as it's not attacking. -- {W}: Arcades Sabboth gets +0/+1 until end of turn.
-mana={2}{G}{G}{W}{W}{U}{U}
-type=Legendary Creature
-subtype=Elder Dragon
-power=7
-toughness=7
 [/card]
 [card]
 name=Arcane Denial
@@ -1854,15 +1827,6 @@ name=Avalanche
 text=Destroy X target snow lands.
 mana={X}{2}{R}{R}
 type=Sorcery
-[/card]
-[card]
-name=Avalanche Riders
-text=Haste -- Echo {3}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Avalanche Riders enters the battlefield, destroy target land.
-mana={3}{R}
-type=Creature
-subtype=Human Nomad
-power=2
-toughness=2
 [/card]
 [card]
 name=Avatar of Discord
@@ -2540,15 +2504,6 @@ type=Legendary Creature
 subtype=Human Druid
 power=4
 toughness=4
-[/card]
-[card]
-name=Basalt Gargoyle
-text=Flying -- Echo {2}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- {R}: Basalt Gargoyle gets +0/+1 until end of turn.
-mana={2}{R}
-type=Creature
-subtype=Gargoyle
-power=3
-toughness=2
 [/card]
 [card]
 name=Basalt Golem
@@ -3556,20 +3511,10 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Bone Shredder
-text=Flying -- Echo {2}{B} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Bone Shredder enters the battlefield, destroy target nonartifact, nonblack creature.
-mana={2}{B}
-type=Creature
-subtype=Minion
-power=1
-toughness=1
-[/card]
-[card]
 name=Bone Splinters
 target=creature
 auto=destroy
 text=As an additional cost to cast Bone Splinters, sacrifice a creature. -- Destroy target creature.
-mana={B},{S(creature|myinplay)}
 type=Sorcery
 [/card]
 [card]
@@ -3935,12 +3880,6 @@ subtype=Aura
 name=Breathstealer's Crypt
 text=If a player would draw a card, instead he or she draws a card and reveals it. If it's a creature card, that player discards it unless he or she pays 3 life.
 mana={2}{U}{B}
-type=Enchantment
-[/card]
-[card]
-name=Breeding Pit
-text=At the beginning of your upkeep, sacrifice Breeding Pit unless you pay {B}{B}. -- At the beginning of your end step, put a 0/1 black Thrull creature token onto the battlefield.
-mana={3}{B}
 type=Enchantment
 [/card]
 [card]
@@ -5505,21 +5444,6 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-name=Chatter of the Squirrel
-text=Put a 1/1 green Squirrel creature token onto the battlefield. -- Flashback {1}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={G}
-type=Sorcery
-[/card]
-[card]
-name=Child of Gaea
-text=Trample -- At the beginning of your upkeep, sacrifice Child of Gaea unless you pay {G}{G}. -- {1}{G}: Regenerate Child of Gaea.
-mana={3}{G}{G}{G}
-type=Creature
-subtype=Elemental
-power=7
-toughness=7
-[/card]
-[card]
 name=Children of Korlis
 text=Sacrifice Children of Korlis: You gain life equal to the life you've lost this turn. (Damage causes loss of life.)
 mana={W}
@@ -5700,17 +5624,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Chromium
-abilities=flying
-auto=rampage(2/2,1)
-text=Flying -- Rampage 2 (Whenever this creature becomes blocked, it gets +2/+2 until end of turn for each creature blocking it beyond the first.) -- At the beginning of your upkeep, sacrifice Chromium unless you pay {W}{U}{B}.
-mana={2}{W}{W}{U}{U}{B}{B}
-type=Legendary Creature
-subtype=Elder Dragon
-power=7
-toughness=7
-[/card]
-[card]
 name=Chronatog
 text={0}: Chronatog gets +3/+3 until end of turn. You skip your next turn. Activate this ability only once each turn.
 mana={1}{U}
@@ -5846,15 +5759,6 @@ name=Circular Logic
 text=Counter target spell unless its controller pays {1} for each card in your graveyard. -- Madness {U} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
 mana={2}{U}
 type=Instant
-[/card]
-[card]
-name=Citanul Centaurs
-text=Shroud (This permanent can't be the target of spells or abilities.) -- Echo {3}{G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
-mana={3}{G}
-type=Creature
-subtype=Centaur
-power=6
-toughness=3
 [/card]
 [card]
 name=Citanul Flute
@@ -6822,15 +6726,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Cradle Guard
-text=Trample -- Echo {1}{G}{G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
-mana={1}{G}{G}
-type=Creature
-subtype=Treefolk
-power=4
-toughness=4
-[/card]
-[card]
 name=Cradle of Vitality
 text=Whenever you gain life, you may pay {1}{W}. If you do, put a +1/+1 counter on target creature for each 1 life you gained.
 mana={3}{W}
@@ -6881,15 +6776,6 @@ type=Creature
 subtype=Boar
 power=4
 toughness=4
-[/card]
-[card]
-name=Crater Hellion
-text=Echo {4}{R}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Crater Hellion enters the battlefield, it deals 4 damage to each other creature.
-mana={4}{R}{R}
-type=Creature
-subtype=Hellion Beast
-power=6
-toughness=6
 [/card]
 [card]
 name=Crawlspace
@@ -7572,15 +7458,6 @@ mana={U}{U}
 type=Enchantment
 [/card]
 [card]
-name=Darba
-text=At the beginning of your upkeep, sacrifice Darba unless you pay {G}{G}.
-mana={3}{G}
-type=Creature
-subtype=Bird Beast
-power=5
-toughness=4
-[/card]
-[card]
 name=Darien, King of Kjeldor
 text=Whenever you're dealt damage, you may put that many 1/1 white Soldier creature tokens onto the battlefield.
 mana={4}{W}{W}
@@ -8138,15 +8015,6 @@ power=6
 toughness=6
 [/card]
 [card]
-name=Deepcavern Imp
-text=Flying, haste -- Echo - Discard a card. (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
-mana={2}{B}
-type=Creature
-subtype=Imp Rebel
-power=2
-toughness=2
-[/card]
-[card]
 name=Deepfire Elemental
 text={X}{X}{1}: Destroy target artifact or creature with converted mana cost X.
 mana={4}{B}{R}
@@ -8438,15 +8306,6 @@ name=Denying Wind
 text=Search target player's library for up to seven cards and exile them. Then that player shuffles his or her library.
 mana={7}{U}{U}
 type=Sorcery
-[/card]
-[card]
-name=Deranged Hermit
-text=Echo {3}{G}{G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Deranged Hermit enters the battlefield, put four 1/1 green Squirrel creature tokens onto the battlefield. -- Squirrel creatures get +1/+1.
-mana={3}{G}{G}
-type=Creature
-subtype=Elf
-power=1
-toughness=1
 [/card]
 [card]
 name=Derelor
@@ -9250,15 +9109,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Dragon Tyrant
-text=Flying, trample -- Double strike (This creature deals both first-strike and regular combat damage.) -- At the beginning of your upkeep, sacrifice Dragon Tyrant unless you pay {R}{R}{R}{R}. -- {R}: Dragon Tyrant gets +1/+0 until end of turn.
-mana={8}{R}{R}
-type=Creature
-subtype=Dragon
-power=6
-toughness=6
-[/card]
-[card]
 name=Dragon Wings
 text=Enchant creature -- Enchanted creature has flying. -- Cycling {1}{U} ({1}{U}, Discard this card: Draw a card.) -- When a creature with converted mana cost 6 or more enters the battlefield, you may return Dragon Wings from your graveyard to the battlefield attached to that creature.
 mana={1}{U}
@@ -9518,24 +9368,6 @@ type=Creature
 subtype=Yeti Mutant
 power=3
 toughness=3
-[/card]
-[card]
-name=Drifter il-Dal
-text=Shadow (This creature can block or be blocked by only creatures with shadow.) -- At the beginning of your upkeep, sacrifice Drifter il-Dal unless you pay {U}.
-mana={U}
-type=Creature
-subtype=Human Wizard
-power=2
-toughness=1
-[/card]
-[card]
-name=Drifting Djinn
-text=Flying -- At the beginning of your upkeep, sacrifice Drifting Djinn unless you pay {1}{U}. -- Cycling {2} ({2}, Discard this card: Draw a card.)
-mana={4}{U}{U}
-type=Creature
-subtype=Djinn
-power=5
-toughness=5
 [/card]
 [card]
 name=Drinker of Sorrow
@@ -11380,15 +11212,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Extruder
-text=Echo {4} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- Sacrifice an artifact: Put a +1/+1 counter on target creature.
-mana={4}
-type=Artifact Creature
-subtype=Juggernaut
-power=4
-toughness=3
-[/card]
-[card]
 name=Eye Spy
 text=Look at the top card of target player's library. You may put that card into his or her graveyard.
 mana={U}
@@ -12234,15 +12057,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Firemaw Kavu
-text=Echo {5}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Firemaw Kavu enters the battlefield, it deals 2 damage to target creature. -- When Firemaw Kavu leaves the battlefield, it deals 4 damage to target creature.
-mana={5}{R}
-type=Creature
-subtype=Kavu
-power=4
-toughness=2
-[/card]
-[card]
 name=Firespout
 text=Firespout deals 3 damage to each creature without flying if {R} was spent to cast Firespout and 3 damage to each creature with flying if {G} was spent to cast it. (Do both if {R}{G} was spent.)
 mana={2}{RG}
@@ -12378,15 +12192,6 @@ type=Creature
 subtype=Dragon
 power=5
 toughness=5
-[/card]
-[card]
-name=Flamecore Elemental
-text=Echo {2}{R}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
-mana={2}{R}{R}
-type=Creature
-subtype=Elemental
-power=5
-toughness=4
 [/card]
 [card]
 name=Flamekin Bladewhirl
@@ -13762,15 +13567,6 @@ mana={X}{R}
 type=Sorcery
 [/card]
 [card]
-name=Ghitu Slinger
-text=Echo {2}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Ghitu Slinger enters the battlefield, it deals 2 damage to target creature or player.
-mana={2}{R}
-type=Creature
-subtype=Human Nomad
-power=2
-toughness=2
-[/card]
-[card]
 name=Ghor-Clan Savage
 text=Bloodthirst 3 (If an opponent was dealt damage this turn, this creature enters the battlefield with three +1/+1 counters on it.)
 mana={3}{G}{G}
@@ -14585,33 +14381,6 @@ power=0
 toughness=5
 [/card]
 [card]
-name=Goblin Marshal
-text=Echo {4}{R}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Goblin Marshal enters the battlefield or is put into a graveyard from the battlefield, put two 1/1 red Goblin creature tokens onto the battlefield.
-mana={4}{R}{R}
-type=Creature
-subtype=Goblin Warrior
-power=3
-toughness=3
-[/card]
-[card]
-name=Goblin Medics
-text=Whenever Goblin Medics becomes tapped, it deals 1 damage to target creature or player.
-mana={2}{R}
-type=Creature
-subtype=Goblin Shaman
-power=1
-toughness=1
-[/card]
-[card]
-name=Goblin Patrol
-text=Echo {R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
-mana={R}
-type=Creature
-subtype=Goblin
-power=2
-toughness=1
-[/card]
-[card]
 name=Goblin Piledriver
 text=Protection from blue -- Whenever Goblin Piledriver attacks, it gets +2/+0 until end of turn for each other attacking Goblin.
 mana={1}{R}
@@ -14691,16 +14460,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Goblin Skycutter
-auto={S}:damage:2 target(creature{-flying}) && -flying ...........
-text=Sacrifice Goblin Skycutter: Goblin Skycutter deals 2 damage to target creature with flying. That creature loses flying until end of turn.
-mana={1}{R}
-type=Creature
-subtype=Goblin Warrior
-power=2
-toughness=1
-[/card]
-[card]
 name=Goblin Snowman
 text=Whenever Goblin Snowman blocks, prevent all combat damage that would be dealt to and dealt by it this turn. -- {T}: Goblin Snowman deals 1 damage to target creature it's blocking.
 mana={3}{R}
@@ -14753,15 +14512,6 @@ type=Creature
 subtype=Goblin Rogue
 power=1
 toughness=1
-[/card]
-[card]
-name=Goblin War Buggy
-text=Haste -- Echo {1}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
-mana={1}{R}
-type=Creature
-subtype=Goblin
-power=2
-toughness=2
 [/card]
 [card]
 name=Goblin War Cry
@@ -15926,15 +15676,6 @@ text={T}: Add {R} to your mana pool. -- {T}: Target creature loses all landwalk 
 type=Legendary Land
 [/card]
 [card]
-name=Hammerheim Deadeye
-text=Echo {5}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Hammerheim Deadeye enters the battlefield, destroy target creature with flying.
-mana={3}{R}
-type=Creature
-subtype=Giant Warrior
-power=3
-toughness=3
-[/card]
-[card]
 name=Hanabi Blast
 text=Hanabi Blast deals 2 damage to target creature or player. Return Hanabi Blast to its owner's hand, then discard a card at random.
 mana={1}{R}{R}
@@ -16442,30 +16183,12 @@ mana={2}
 type=Artifact
 [/card]
 [card]
-name=Henchfiend of Ukor
-text=Haste -- Echo {1}{B} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice this permanent unless you pay its echo cost.) -- {(b/r)}: Henchfiend of Ukor gets +1/+0 until end of turn.
-mana={3}{R}
-type=Creature
-subtype=Ogre
-power=3
-toughness=2
-[/card]
-[card]
 name=Herald of Leshrac
 text=Flying -- Cumulative upkeep - Gain control of a land you don't control. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Herald of Leshrac gets +1/+1 for each land you control but don't own. -- When Herald of Leshrac leaves the battlefield, each player gains control of each land he or she owns that you control.
 mana={6}{B}
 type=Creature
 subtype=Avatar
 power=2
-toughness=4
-[/card]
-[card]
-name=Herald of Serra
-text=Flying, vigilance -- Echo {2}{W}{W} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
-mana={2}{W}{W}
-type=Creature
-subtype=Angel
-power=3
 toughness=4
 [/card]
 [card]
@@ -17016,15 +16739,6 @@ type=Instant
 subtype=Arcane
 [/card]
 [card]
-name=Hungry Mist
-text=At the beginning of your upkeep, sacrifice Hungry Mist unless you pay {G}{G}.
-mana={2}{G}{G}
-type=Creature
-subtype=Elemental
-power=6
-toughness=2
-[/card]
-[card]
 name=Hunt Down
 text=Target creature blocks target creature this turn if able.
 mana={G}
@@ -17053,15 +16767,6 @@ name=Hunting Grounds
 text=Threshold - As long as seven or more cards are in your graveyard, Hunting Grounds has "Whenever an opponent casts a spell, you may put a creature card from your hand onto the battlefield."
 mana={G}{W}
 type=Enchantment
-[/card]
-[card]
-name=Hunting Moa
-text=Echo {2}{G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Hunting Moa enters the battlefield or is put into a graveyard from the battlefield, put a +1/+1 counter on target creature.
-mana={2}{G}
-type=Creature
-subtype=Bird Beast
-power=3
-toughness=2
 [/card]
 [card]
 name=Hunting Pack
@@ -18663,15 +18368,6 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-name=Junun Efreet
-text=Flying -- At the beginning of your upkeep, sacrifice Junun Efreet unless you pay {B}{B}.
-mana={1}{B}{B}
-type=Creature
-subtype=Efreet
-power=3
-toughness=3
-[/card]
-[card]
 name=Jushi Apprentice
 text={2}{U}, {T}: Draw a card. If you have nine or more cards in hand, flip Jushi Apprentice.
 mana={1}{U}
@@ -18813,29 +18509,11 @@ power=3
 toughness=5
 [/card]
 [card]
-name=Kami of the Tended Garden
-text=At the beginning of your upkeep, sacrifice Kami of the Tended Garden unless you pay {G}. -- Soulshift 3 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 3 or less from your graveyard to your hand.)
-mana={3}{G}
-type=Creature
-subtype=Spirit
-power=4
-toughness=4
-[/card]
-[card]
 name=Kangee, Aerie Keeper
 text=Kicker {X}{2} (You may pay an additional {X}{2} as you cast this spell.) -- Flying -- When Kangee, Aerie Keeper enters the battlefield, if it was kicked, put X feather counters on it. -- Other Bird creatures get +1/+1 for each feather counter on Kangee, Aerie Keeper.
 mana={2}{W}{U}
 type=Legendary Creature
 subtype=Bird Wizard
-power=2
-toughness=2
-[/card]
-[card]
-name=Karmic Guide
-text=Flying, protection from black -- Echo {3}{W}{W} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Karmic Guide enters the battlefield, return target creature card from your graveyard to the battlefield.
-mana={3}{W}{W}
-type=Creature
-subtype=Angel Spirit
 power=2
 toughness=2
 [/card]
@@ -19170,15 +18848,6 @@ power=2
 toughness=3
 [/card]
 [card]
-name=Keldon Champion
-text=Haste -- Echo {2}{R}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Keldon Champion enters the battlefield, it deals 3 damage to target player.
-mana={2}{R}{R}
-type=Creature
-subtype=Human Barbarian
-power=3
-toughness=2
-[/card]
-[card]
 name=Keldon Firebombers
 text=When Keldon Firebombers enters the battlefield, each player sacrifices all lands he or she controls except for three.
 mana={3}{R}{R}
@@ -19208,17 +18877,7 @@ mana={1}{B}{R}
 type=Enchantment
 [/card]
 [card]
-name=Keldon Vandals
-text=Echo {2}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Keldon Vandals enters the battlefield, destroy target artifact.
-mana={2}{R}
-type=Creature
-subtype=Human Rogue
-power=4
-toughness=1
-[/card]
-[card]
 name=Kemuri-Onna
-auto=@movedto(arcane,spirit|mystack):
 text=When Kemuri-Onna enters the battlefield, target player discards a card. -- Whenever you cast a Spirit or Arcane spell, you may return Kemuri-Onna to its owner's hand.
 mana={4}{B}
 type=Creature
@@ -20768,15 +20427,6 @@ mana={1}{R}
 type=Instant
 [/card]
 [card]
-name=Lightning Dragon
-text=Flying -- Echo {2}{R}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- {R}: Lightning Dragon gets +1/+0 until end of turn.
-mana={2}{R}{R}
-type=Creature
-subtype=Dragon
-power=4
-toughness=4
-[/card]
-[card]
 name=Lightning Reaver
 text=Haste; fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- Whenever Lightning Reaver deals combat damage to a player, put a charge counter on it. -- At the beginning of your end step, Lightning Reaver deals damage equal to the number of charge counters on it to each opponent.
 mana={3}{B}{R}
@@ -22293,15 +21943,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Masticore
-text=At the beginning of your upkeep, sacrifice Masticore unless you discard a card. -- {2}: Masticore deals 1 damage to target creature. -- {2}: Regenerate Masticore.
-mana={4}
-type=Artifact Creature
-subtype=Masticore
-power=4
-toughness=4
-[/card]
-[card]
 name=Matsu-Tribe Birdstalker
 text=Whenever Matsu-Tribe Birdstalker deals combat damage to a creature, tap that creature and it doesn't untap during its controller's next untap step. -- {G}: Matsu-Tribe Birdstalker gains reach until end of turn. (It can block creatures with flying.)
 mana={2}{G}{G}
@@ -23101,15 +22742,6 @@ mana={5}
 type=Artifact
 [/card]
 [card]
-name=Minion of Tevesh Szat
-text=At the beginning of your upkeep, Minion of Tevesh Szat deals 2 damage to you unless you pay {B}{B}. -- {T}: Target creature gets +3/-2 until end of turn.
-mana={4}{B}{B}{B}
-type=Creature
-subtype=Demon Minion
-power=4
-toughness=4
-[/card]
-[card]
 name=Minion of the Wastes
 text=Trample -- As Minion of the Wastes enters the battlefield, pay any amount of life. -- Minion of the Wastes's power and toughness are each equal to the life paid as it entered the battlefield.
 mana={3}{B}{B}{B}
@@ -23580,15 +23212,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Mogg War Marshal
-text=Echo {1}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Mogg War Marshal enters the battlefield or is put into a graveyard from the battlefield, put a 1/1 red Goblin creature token onto the battlefield.
-mana={1}{R}
-type=Creature
-subtype=Goblin Warrior
-power=1
-toughness=1
-[/card]
-[card]
 name=Mold Demon
 text=When Mold Demon enters the battlefield, sacrifice it unless you sacrifice two Swamps.
 mana={5}{B}{B}
@@ -23678,15 +23301,6 @@ toughness=*
 name=Molten Slagheap
 text={T}: Add {1} to your mana pool. -- {1}, {T}: Put a storage counter on Molten Slagheap. -- {1}, Remove X storage counters from Molten Slagheap: Add X mana in any combination of {B} and/or {R} to your mana pool.
 type=Land
-[/card]
-[card]
-name=Molting Harpy
-text=Flying -- At the beginning of your upkeep, sacrifice Molting Harpy unless you pay {2}.
-mana={B}
-type=Creature
-subtype=Harpy Mercenary
-power=2
-toughness=1
 [/card]
 [card]
 name=Moment of Silence
@@ -23976,15 +23590,6 @@ type=Creature
 subtype=Elemental
 power=2
 toughness=2
-[/card]
-[card]
-name=Multani's Acolyte
-text=Echo {G}{G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Multani's Acolyte enters the battlefield, draw a card.
-mana={G}{G}
-type=Creature
-subtype=Elf
-power=2
-toughness=1
 [/card]
 [card]
 name=Multani's Decree
@@ -24837,15 +24442,6 @@ type=Legendary Creature
 subtype=Rat Shaman
 power=3
 toughness=3
-[/card]
-[card]
-name=Nicol Bolas
-text=Flying -- At the beginning of your upkeep, sacrifice Nicol Bolas unless you pay {U}{B}{R}. -- Whenever Nicol Bolas deals damage to an opponent, that player discards his or her hand.
-mana={2}{U}{U}{B}{B}{R}{R}
-type=Legendary Creature
-subtype=Elder Dragon
-power=7
-toughness=7
 [/card]
 [card]
 name=Nicol Bolas, Planeswalker
@@ -26408,15 +26004,6 @@ power=4
 toughness=5
 [/card]
 [card]
-name=Palladia-Mors
-text=Flying, trample -- At the beginning of your upkeep, sacrifice Palladia-Mors unless you pay {R}{G}{W}.
-mana={2}{R}{R}{G}{G}{W}{W}
-type=Legendary Creature
-subtype=Elder Dragon
-power=7
-toughness=7
-[/card]
-[card]
 name=Palliation Accord
 text=Whenever a creature an opponent controls becomes tapped, put a shield counter on Palliation Accord. -- Remove a shield counter from Palliation Accord: Prevent the next 1 damage that would be dealt to you this turn.
 mana={3}{W}{U}
@@ -26747,15 +26334,6 @@ mana={1}{W}
 type=Instant
 [/card]
 [card]
-name=Peacekeeper
-text=At the beginning of your upkeep, sacrifice Peacekeeper unless you pay {1}{W}. -- Creatures can't attack.
-mana={2}{W}
-type=Creature
-subtype=Human
-power=1
-toughness=1
-[/card]
-[card]
 name=Pearl Medallion
 text=White spells you cast cost {1} less to cast.
 mana={2}
@@ -27012,16 +26590,6 @@ type=Creature
 subtype=Illusion
 power=1
 toughness=5
-[/card]
-[card]
-name=Phantasmal Forces
-abilities=flying
-text=Flying -- At the beginning of your upkeep, sacrifice Phantasmal Forces unless you pay {U}.
-mana={3}{U}
-type=Creature
-subtype=Illusion
-power=4
-toughness=1
 [/card]
 [card]
 name=Phantasmal Mount
@@ -27455,15 +27023,6 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Pit Raptor
-text=Flying, first strike -- At the beginning of your upkeep, sacrifice Pit Raptor unless you pay {2}{B}{B}.
-mana={2}{B}{B}
-type=Creature
-subtype=Bird Mercenary
-power=4
-toughness=3
-[/card]
-[card]
 name=Pit Scorpion
 text=Whenever Pit Scorpion deals damage to a player, that player gets a poison counter. (A player with ten or more poison counters loses the game.)
 mana={2}{B}
@@ -27798,15 +27357,6 @@ name=Possessed Portal
 text=If a player would draw a card, that player skips that draw instead. -- At the beginning of each end step, each player sacrifices a permanent unless he or she discards a card.
 mana={8}
 type=Artifact
-[/card]
-[card]
-name=Pouncing Jaguar
-text=Echo {G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
-mana={G}
-type=Creature
-subtype=Cat
-power=2
-toughness=2
 [/card]
 [card]
 name=Powder Keg
@@ -29067,15 +28617,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Radiant's Dragoons
-text=Echo {3}{W} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Radiant's Dragoons enters the battlefield, you gain 5 life.
-mana={3}{W}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=5
-[/card]
-[card]
 name=Radiate
 text=Choose target instant or sorcery spell that targets only a single permanent or player. Copy that spell for each other permanent or player the spell could target. Each copy targets a different one of those permanents and players.
 mana={3}{R}{R}
@@ -29531,15 +29072,6 @@ type=Artifact Creature
 subtype=Wall
 power=2
 toughness=1
-[/card]
-[card]
-name=Razormane Masticore
-text=First strike (This creature deals combat damage before creatures without first strike.) -- At the beginning of your upkeep, sacrifice Razormane Masticore unless you discard a card. -- At the beginning of your draw step, you may have Razormane Masticore deal 3 damage to target creature.
-mana={5}
-type=Artifact Creature
-subtype=Masticore
-power=5
-toughness=5
 [/card]
 [card]
 name=Reach of Branches
@@ -30565,12 +30097,6 @@ type=Creature
 subtype=Human Wizard
 power=2
 toughness=3
-[/card]
-[card]
-name=Ring of Gix
-text=Echo {3} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- {1}, {T}: Tap target artifact, creature, or land.
-mana={3}
-type=Artifact
 [/card]
 [card]
 name=Ring of Immortals
@@ -32294,15 +31820,6 @@ mana={1}{U}{R}
 type=Instant
 [/card]
 [card]
-name=School of Piranha
-text=At the beginning of your upkeep, sacrifice School of Piranha unless you pay {1}{U}.
-mana={1}{U}
-type=Creature
-subtype=Fish
-power=3
-toughness=3
-[/card]
-[card]
 name=Scion of the Ur-Dragon
 text=Flying -- {2}: Search your library for a Dragon permanent card and put it into your graveyard. If you do, Scion of the Ur-Dragon becomes a copy of that card until end of turn. Then shuffle your library.
 mana={W}{U}{B}{R}{G}
@@ -33534,15 +33051,6 @@ mana={3}{R}{R}
 type=Sorcery
 [/card]
 [card]
-name=Shivan Raptor
-text=First strike, haste -- Echo {2}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
-mana={2}{R}
-type=Creature
-subtype=Lizard
-power=3
-toughness=1
-[/card]
-[card]
 name=Shivan Sand-Mage
 text=When Shivan Sand-Mage enters the battlefield, choose one - Remove two time counters from target permanent or suspended card; or put two time counters on target permanent with a time counter on it or suspended card. -- Suspend 4 - {R} (Rather than cast this card from your hand, you may pay {R} and exile it with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.)
 mana={2}{R}{R}
@@ -33902,15 +33410,6 @@ type=Creature
 subtype=Merfolk Wizard
 power=2
 toughness=1
-[/card]
-[card]
-name=Simian Grunts
-text=Flash -- Echo {2}{G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
-mana={2}{G}
-type=Creature
-subtype=Ape
-power=3
-toughness=4
 [/card]
 [card]
 name=Simic Basilisk
@@ -35604,15 +35103,6 @@ power=0
 toughness=2
 [/card]
 [card]
-name=Spindrift Drake
-text=Flying -- At the beginning of your upkeep, sacrifice Spindrift Drake unless you pay {U}.
-mana={U}
-type=Creature
-subtype=Drake
-power=2
-toughness=1
-[/card]
-[card]
 name=Spined Basher
 text=Morph {2}{B} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 mana={2}{B}
@@ -36295,15 +35785,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Stingscourger
-text=Echo {3}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Stingscourger enters the battlefield, return target creature an opponent controls to its owner's hand.
-mana={1}{R}
-type=Creature
-subtype=Goblin Warrior
-power=2
-toughness=2
-[/card]
-[card]
 name=Stinkdrinker Bandit
 text=Prowl {1}{B} (You may cast this for its prowl cost if you dealt combat damage to a player this turn with a Goblin or Rogue.) -- Whenever a Rogue you control attacks and isn't blocked, it gets +2/+1 until end of turn.
 mana={3}{B}
@@ -36738,15 +36219,6 @@ text=Subterranean Hangar enters the battlefield tapped. -- {T}: Put a storage co
 type=Land
 [/card]
 [card]
-name=Subterranean Shambler
-text=Echo {3}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Subterranean Shambler enters the battlefield or leaves the battlefield, it deals 1 damage to each creature without flying.
-mana={3}{R}
-type=Creature
-subtype=Elemental
-power=2
-toughness=3
-[/card]
-[card]
 name=Sudden Death
 text=Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- Target creature gets -4/-4 until end of turn.
 mana={1}{B}{B}
@@ -36914,19 +36386,12 @@ subtype=Equipment
 [/card]
 [card]
 name=Sunhome Enforcer
-#lifelink ? no!
 text=Whenever Sunhome Enforcer deals combat damage, you gain that much life. -- {1}{R}: Sunhome Enforcer gets +1/+0 until end of turn.
 mana={2}{R}{W}
 type=Creature
 subtype=Giant Soldier
 power=2
 toughness=4
-[/card]
-[card]
-name=Sunken City
-text=At the beginning of your upkeep, sacrifice Sunken City unless you pay {U}{U}. -- Blue creatures get +1/+1.
-mana={U}{U}
-type=Enchantment
 [/card]
 [card]
 name=Sunken Field
@@ -37695,15 +37160,6 @@ name=Tectonic Break
 text=Each player sacrifices X lands.
 mana={X}{R}{R}
 type=Sorcery
-[/card]
-[card]
-name=Tectonic Fiend
-text=Echo {4}{R}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- Tectonic Fiend attacks each turn if able.
-mana={4}{R}{R}
-type=Creature
-subtype=Elemental
-power=7
-toughness=7
 [/card]
 [card]
 name=Teferi's Curse
@@ -38527,15 +37983,6 @@ mana={1}
 type=Artifact
 [/card]
 [card]
-name=Thran War Machine
-text=Echo {4} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- Thran War Machine attacks each turn if able.
-mana={4}
-type=Artifact Creature
-subtype=Construct
-power=4
-toughness=5
-[/card]
-[card]
 name=Thran Weaponry
 text=Echo {4} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- You may choose not to untap Thran Weaponry during your untap step. -- {2}, {T}: All creatures get +2/+2 for as long as Thran Weaponry remains tapped.
 mana={4}
@@ -38707,15 +38154,6 @@ mana={2}{U}{U}
 type=Instant
 [/card]
 [card]
-name=Ticking Gnomes
-text=Echo {3} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- Sacrifice Ticking Gnomes: Ticking Gnomes deals 1 damage to target creature or player.
-mana={3}
-type=Artifact Creature
-subtype=Gnome
-power=3
-toughness=3
-[/card]
-[card]
 name=Tidal Bore
 text=You may return an Island you control to its owner's hand rather than pay Tidal Bore's mana cost. -- You may tap or untap target creature.
 mana={1}{U}
@@ -38814,15 +38252,6 @@ type=Creature
 subtype=Wolf
 power=1
 toughness=1
-[/card]
-[card]
-name=Timbermare
-text=Haste -- Echo {5}{G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Timbermare enters the battlefield, tap all other creatures.
-mana={3}{G}
-type=Creature
-subtype=Elemental Horse
-power=5
-toughness=5
 [/card]
 [card]
 name=Timbermaw Larva
@@ -39798,15 +39227,6 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-name=Uktabi Drake
-text=Flying, haste -- Echo {1}{G}{G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
-mana={G}
-type=Creature
-subtype=Drake
-power=2
-toughness=1
-[/card]
-[card]
 name=Uktabi Efreet
 text=Cumulative upkeep {G} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
 mana={2}{G}{G}
@@ -40137,12 +39557,6 @@ mana={0}
 type=Artifact
 [/card]
 [card]
-name=Urza's Blueprints
-text=Echo {6} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- {T}: Draw a card.
-mana={6}
-type=Artifact
-[/card]
-[card]
 name=Urza's Chalice
 text=Whenever a player casts an artifact spell, you may pay {1}. If you do, you gain 1 life.
 mana={1}
@@ -40210,15 +39624,6 @@ name=Vacuumelt
 text=Replicate {2}{U} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.) -- Return target creature to its owner's hand.
 mana={2}{U}
 type=Sorcery
-[/card]
-[card]
-name=Vaevictis Asmadi
-text=Flying -- At the beginning of your upkeep, sacrifice Vaevictis Asmadi unless you pay {B}{R}{G}. -- {B}: Vaevictis Asmadi gets +1/+0 until end of turn. -- {R}: Vaevictis Asmadi gets +1/+0 until end of turn. -- {G}: Vaevictis Asmadi gets +1/+0 until end of turn.
-mana={2}{B}{B}{R}{R}{G}{G}
-type=Legendary Creature
-subtype=Elder Dragon
-power=7
-toughness=7
 [/card]
 [card]
 name=Valakut, the Molten Pinnacle
@@ -40716,15 +40121,6 @@ power=1
 toughness=3
 [/card]
 [card]
-name=Viashino Outrider
-text=Echo {2}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
-mana={2}{R}
-type=Creature
-subtype=Viashino
-power=4
-toughness=3
-[/card]
-[card]
 name=Viashino Runner
 text=Viashino Runner can't be blocked except by two or more creatures.
 mana={3}{R}
@@ -41196,15 +40592,6 @@ name=Voyager Staff
 text={2}, Sacrifice Voyager Staff: Exile target creature. Return the exiled card to the battlefield under its owner's control at the beginning of the next end step.
 mana={1}
 type=Artifact
-[/card]
-[card]
-name=Vug Lizard
-text=Mountainwalk -- Echo {1}{R}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
-mana={1}{R}{R}
-type=Creature
-subtype=Lizard
-power=3
-toughness=4
 [/card]
 [card]
 name=Vulshok Battlemaster
@@ -42075,15 +41462,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Whipstitched Zombie
-text=At the beginning of your upkeep, sacrifice Whipstitched Zombie unless you pay {B}.
-mana={1}{B}
-type=Creature
-subtype=Zombie
-power=2
-toughness=2
-[/card]
-[card]
 name=Whirling Catapult
 text={2}, Exile the top two cards of your library: Whirling Catapult deals 1 damage to each creature with flying and each player.
 mana={4}
@@ -42183,15 +41561,6 @@ text=Enchant land -- Whenever enchanted land is tapped for mana, its controller 
 mana={G}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Wild Leotau
-text=At the beginning of your upkeep, sacrifice Wild Leotau unless you pay {G}.
-mana={2}{G}{G}
-type=Creature
-subtype=Cat
-power=5
-toughness=4
 [/card]
 [card]
 name=Wild Mammoth
@@ -42339,15 +41708,6 @@ type=Sorcery
 name=Winding Canyons
 text={T}: Add {1} to your mana pool. -- {2}, {T}: Until end of turn, you may play creature cards as though they had flash.
 type=Land
-[/card]
-[card]
-name=Winding Wurm
-text=Echo {4}{G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
-mana={4}{G}
-type=Creature
-subtype=Wurm
-power=6
-toughness=6
 [/card]
 [card]
 name=Winds of Change
@@ -43034,15 +42394,6 @@ type=Creature
 subtype=Human Druid
 power=2
 toughness=1
-[/card]
-[card]
-name=Yavimaya Granger
-text=Echo {2}{G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Yavimaya Granger enters the battlefield, you may search your library for a basic land card, put that card onto the battlefield tapped, then shuffle your library.
-mana={2}{G}
-type=Creature
-subtype=Elf
-power=2
-toughness=2
 [/card]
 [card]
 name=Yawgmoth Demon
