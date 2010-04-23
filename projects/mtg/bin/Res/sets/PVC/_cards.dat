@@ -1,0 +1,375 @@
+[meta]
+name=Duel Decks: Phyrexia vs. the Coalition
+year=2010
+author=Wagic Team
+[/meta]
+[card]
+primitive=Allied Strategies
+id=209148
+rarity=U
+[/card]
+[card]
+primitive=Armadillo Cloak
+id=207890
+rarity=C
+[/card]
+[card]
+primitive=Bone Shredder
+id=209123
+rarity=U
+[/card]
+[card]
+primitive=Carrion Feeder
+id=210133
+rarity=C
+[/card]
+[card]
+primitive=Charging Troll
+id=210556
+rarity=U
+[/card]
+[card]
+primitive=Coalition Relic
+id=209158
+rarity=R
+[/card]
+[card]
+primitive=Darigaaz, the Igniter
+id=209111
+rarity=R
+[/card]
+[card]
+primitive=Darigaaz's Charm
+id=209149
+rarity=U
+[/card]
+[card]
+primitive=Dark Ritual
+id=209137
+rarity=C
+[/card]
+[card]
+primitive=Elfhame Palace
+id=209112
+rarity=U
+[/card]
+[card]
+primitive=Evasive Action
+id=210153
+rarity=U
+[/card]
+[card]
+primitive=Exotic Curse
+id=210143
+rarity=C
+[/card]
+[card]
+primitive=Fertile Ground
+id=209113
+rarity=C
+[/card]
+[card]
+primitive=Forest
+id=210509
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=210510
+rarity=L
+[/card]
+[card]
+primitive=Gerrard Capashen
+id=209157
+rarity=R
+[/card]
+[card]
+primitive=Gerrard's Command
+id=210559
+rarity=C
+[/card]
+[card]
+primitive=Harrow
+id=209114
+rarity=C
+[/card]
+[card]
+primitive=Hideous End
+id=210141
+rarity=C
+[/card]
+[card]
+primitive=Hornet
+id=209163
+rarity=T
+[/card]
+[card]
+primitive=Hornet Cannon
+id=209146
+rarity=U
+[/card]
+[card]
+primitive=Island
+id=210511
+rarity=L
+[/card]
+[card]
+primitive=Lightning Greaves
+id=209141
+rarity=U
+[/card]
+[card]
+primitive=Living Death
+id=210138
+rarity=R
+[/card]
+[card]
+primitive=Minion
+id=207998
+rarity=T
+[/card]
+[card]
+primitive=Mountain
+id=210512
+rarity=L
+[/card]
+[card]
+primitive=Narrow Escape
+id=210152
+rarity=C
+[/card]
+[card]
+primitive=Nomadic Elf
+id=209115
+rarity=C
+[/card]
+[card]
+primitive=Order of Yawgmoth
+id=209128
+rarity=U
+[/card]
+[card]
+primitive=Phyrexian Arena
+id=209132
+rarity=R
+[/card]
+[card]
+primitive=Phyrexian Battleflies
+id=209116
+rarity=C
+[/card]
+[card]
+primitive=Phyrexian Broodlings
+id=210134
+rarity=C
+[/card]
+[card]
+primitive=Phyrexian Colossus
+id=209160
+rarity=R
+[/card]
+[card]
+primitive=Phyrexian Debaser
+id=209124
+rarity=C
+[/card]
+[card]
+primitive=Phyrexian Defiler
+id=209125
+rarity=U
+[/card]
+[card]
+primitive=Phyrexian Denouncer
+id=209126
+rarity=C
+[/card]
+[card]
+primitive=Phyrexian Gargantua
+id=210135
+rarity=U
+[/card]
+[card]
+primitive=Phyrexian Ghoul
+id=209129
+rarity=C
+[/card]
+[card]
+primitive=Phyrexian Hulk
+id=209133
+rarity=U
+[/card]
+[card]
+primitive=Phyrexian Negator
+id=207891
+rarity=M
+[/card]
+[card]
+primitive=Phyrexian Plaguelord
+id=209127
+rarity=R
+[/card]
+[card]
+primitive=Phyrexian Processor
+id=207888
+rarity=R
+[/card]
+[card]
+primitive=Phyrexian Totem
+id=209142
+rarity=U
+[/card]
+[card]
+primitive=Phyrexian Vault
+id=210136
+rarity=U
+[/card]
+[card]
+primitive=Plains
+id=210513
+rarity=L
+[/card]
+[card]
+primitive=Power Armor
+id=209117
+rarity=U
+[/card]
+[card]
+primitive=Priest of Gix
+id=209130
+rarity=U
+[/card]
+[card]
+primitive=Puppet Strings
+id=209139
+rarity=U
+[/card]
+[card]
+primitive=Quirion Elves
+id=210557
+rarity=C
+[/card]
+[card]
+primitive=Rith, the Awakener
+id=209118
+rarity=R
+[/card]
+[card]
+primitive=Rith's Charm
+id=209152
+rarity=U
+[/card]
+[card]
+primitive=Sanguine Guard
+id=209161
+rarity=U
+[/card]
+[card]
+primitive=Saproling
+id=209162
+rarity=T
+[/card]
+[card]
+primitive=Shivan Oasis
+id=209119
+rarity=U
+[/card]
+[card]
+primitive=Slay
+id=209134
+rarity=U
+[/card]
+[card]
+primitive=Sunscape Battlemage
+id=209153
+rarity=U
+[/card]
+[card]
+primitive=Swamp
+id=210505
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=210506
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=210507
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=210508
+rarity=L
+[/card]
+[card]
+primitive=Tendrils of Corruption
+id=210139
+rarity=C
+[/card]
+[card]
+primitive=Terramorphic Expanse
+id=209159
+rarity=C
+[/card]
+[card]
+primitive=Thornscape Apprentice
+id=209120
+rarity=C
+[/card]
+[card]
+primitive=Thornscape Battlemage
+id=209144
+rarity=U
+[/card]
+[card]
+primitive=Thunderscape Battlemage
+id=209155
+rarity=U
+[/card]
+[card]
+primitive=Treva, the Renewer
+id=209121
+rarity=R
+[/card]
+[card]
+primitive=Treva's Charm
+id=209156
+rarity=U
+[/card]
+[card]
+primitive=Tribal Flames
+id=209145
+rarity=C
+[/card]
+[card]
+primitive=Urza's Rage
+id=207886
+rarity=M
+[/card]
+[card]
+primitive=Verduran Emissary
+id=210558
+rarity=U
+[/card]
+[card]
+primitive=Voltaic Key
+id=207889
+rarity=U
+[/card]
+[card]
+primitive=Whispersilk Cloak
+id=210140
+rarity=U
+[/card]
+[card]
+primitive=Worn Powerstone
+id=210137
+rarity=U
+[/card]
+[card]
+primitive=Yavimaya Elder
+id=207887
+rarity=C
+[/card]
