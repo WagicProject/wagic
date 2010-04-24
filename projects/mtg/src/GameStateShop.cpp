@@ -69,6 +69,7 @@ void GameStateShop::Start(){
   booster = NULL;
   srcCards = NEW WSrcUnlockedCards(0);
   srcCards->setElapsed(15);
+  srcCards->addFilter(NEW WCFilterNOT(NEW WCFilterRarity("T")));
 
   bigSync = 0;
   shopMenu = NEW WGuiMenu(JGE_BTN_DOWN, JGE_BTN_UP, true, &bigSync);
@@ -475,8 +476,14 @@ void GameStateShop::Update(float dt)
           return;
         }
         if (filterMenu->isFinished()){
-          if (needLoad)
+          if (needLoad){
+            srcCards->addFilter(NEW WCFilterNOT(NEW WCFilterRarity("T")));
+            if(!srcCards->Size()){
+              srcCards->clearFilters(); //Repetition of check at end of filterMenu->Finish(), for the token removal
+              srcCards->addFilter(NEW WCFilterNOT(NEW WCFilterRarity("T")));
+            }
             load();
+          }
           mStage = STAGE_SHOP_SHOP;
         }else{
           filterMenu->CheckUserInput(btn);
