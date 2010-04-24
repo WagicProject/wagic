@@ -124,6 +124,17 @@ power=1
 toughness=3
 [/card]
 [card]
+name=Aboroth
+auto=@each my upkeep:counter(0/0,1,Age)
+auto=thisforeach(counter{0/0.1.Age}) upcost[{C(-1/-1)}] moveTo(graveyard)
+text=Cumulative upkeep - Put a -1/-1 counter on Aboroth. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
+mana={4}{G}{G}
+type=Creature
+subtype=Elemental
+power=9
+toughness=9
+[/card]
+[card]
 name=Aboshan's Desire
 target=creature
 auto=flying
@@ -1898,6 +1909,31 @@ power=2
 toughness=5
 [/card]
 [card]
+name=Arctic Nishoba
+abilities=trample
+auto=@each my upkeep:counter(0/0,1,Age)
+auto=thisforeach(counter{0/0.1.Age}) upcost[{GW}] moveTo(graveyard)
+auto=@movedTo(this|graveyard) from(battlefield):thisforeach(counter{0/0.1.Age}) life:2
+text=Trample -- Cumulative upkeep {G} or {W} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- When Arctic Nishoba is put into a graveyard from the battlefield, you gain 2 life for each age counter on it.
+mana={5}{G}
+type=Creature
+subtype=Cat Warrior
+power=6
+toughness=6
+[/card]
+[card]
+name=Arctic Wolves
+auto=draw:1
+auto=@each my upkeep:counter(0/0,1,Age)
+auto=thisforeach(counter{0/0.1.Age}) upcost[{2}] moveTo(graveyard)
+text=Cumulative upkeep {2} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- When Arctic Wolves enters the battlefield, draw a card.
+mana={3}{G}{G}
+type=Creature
+subtype=Wolf
+power=4
+toughness=5
+[/card]
+[card]
 name=Ardent Soldier
 kicker={2}
 auto=vigilance
@@ -2148,6 +2184,15 @@ auto=lord(creature[attacking]) 2/0
 text=Attacking creatures get +2/+0 until end of turn.
 mana={1}{W}{W}
 type=Instant
+[/card]
+[card]
+name=Arnjlot's Ascent
+auto={1}:flying target(creature)
+auto=@each my upkeep:counter(0/0,1,Age)
+auto=thisforeach(counter{0/0.1.Age}) upcost[{U}] moveTo(graveyard)
+text=Cumulative upkeep {U} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- {1}: Target creature gains flying until end of turn.
+mana={1}{U}{U}
+type=Enchantment
 [/card]
 [card]
 name=Arrogant Vampire
@@ -5363,6 +5408,15 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Braid of Fire
+auto=@each my upkeep:may moveTo(mygraveyard)
+auto=@each my upkeep:thisforeach(counter{0/0.1.Age}) add{R}
+auto=@each my upkeep:counter(0/0,1,Age)
+text=Cumulative upkeep - Add {R} to your mana pool. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
+mana={1}{R}
+type=Enchantment
+[/card]
+[card]
 name=Braidwood Cup
 auto={T}:life:1
 text={T}: You gain 1 life.
@@ -5668,6 +5722,15 @@ text=Enchant creature or land -- When enchanted permanent becomes tapped, destro
 mana={2}{B}{B}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Broken Dam
+auto=target
+auto=creature[-horsemanship]
+auto=tap target(creature[-horsemanship])
+text=Tap one or two target creatures without horsemanship.
+mana={U}
+type=Sorcery
 [/card]
 [card]
 name=Broken Fall
@@ -8187,6 +8250,16 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Cold Snap
+auto=@each my upkeep:foreach(land[snow]|myBattlefield) damage:1 controller
+auto=@each opponent upkeep:foreach(land[snow]|opponentBattlefield) damage:1 opponent
+auto=@each my upkeep:counter(0/0,1,Age)
+auto=thisforeach(counter{0/0.1.Age}) upcost[{2}] moveTo(graveyard)
+text=Cumulative upkeep {2} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- At the beginning of each player's upkeep, Cold Snap deals damage to that player equal to the number of snow lands he or she controls.
+mana={2}{W}
+type=Enchantment
+[/card]
+[card]
 name=Collapsing Borders
 auto=@each my upkeep:aslongas(plains|myBattlefield) life:1 controller
 auto=@each my upkeep:aslongas(island|myBattlefield) life:1 controller
@@ -8614,6 +8687,15 @@ name=Counsel of the Soratami
 auto=draw:2
 text=Draw two cards.
 mana={2}{U}
+type=Sorcery
+[/card]
+[card]
+name=Counterintelligence
+target=creature
+auto=moveTo(ownerhand)
+auto=moveTo(ownerhand) target(creature)
+text=Return one or two target creatures to their owners' hands.
+mana={2}{U}{U}
 type=Sorcery
 [/card]
 [card]
@@ -11446,6 +11528,15 @@ mana={1}{RW}
 type=Instant
 [/card]
 [card]
+name=Double Negative
+target=*|stack
+auto=fizzle
+auto=fizzle target(*|stack)
+text=Counter up to two target spells.
+mana={U}{U}{R}
+type=Instant
+[/card]
+[card]
 name=Doubtless One
 abilities=lifelink
 auto=foreach(cleric) 1/1
@@ -12424,6 +12515,19 @@ mana={1}{G}
 type=Instant
 [/card]
 [card]
+name=Earthen Goo
+abilities=trample
+auto=@each my upkeep:counter(0/0,1,Age)
+auto=thisforeach(counter{0/0.1.Age}) upcost[{RG}] moveTo(graveyard)
+auto=thisforeach(counter{0/0.1.Age}) 1/1
+text=Trample -- Cumulative upkeep {R} or {G} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Earthen Goo gets +1/+1 for each age counter on it.
+mana={2}{R}
+type=Creature
+subtype=Ooze
+power=2
+toughness=2
+[/card]
+[card]
 name=Earthquake
 auto=damage:X all(creature[-flying])
 auto=damage:X all(player)
@@ -12620,6 +12724,16 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Electrolyze
+target=creature,player
+auto=damage:1
+auto=damage:1 target(creature,player)
+auto=draw:1 controller
+text=Electrolyze deals 2 damage divided as you choose among one or two target creatures and/or players. -- Draw a card.
+mana={1}{U}{R}
+type=Instant
+[/card]
+[card]
 name=Elemental (Feral Lightning)
 type=Creature
 subtype=Elemental
@@ -12760,6 +12874,15 @@ type=Creature
 subtype=Elf
 power=3
 toughness=3
+[/card]
+[card]
+name=Elven Rite
+target=creature
+auto=counter(1/1,1)
+auto=counter(1/1,1) target(creature)
+text=Distribute two +1/+1 counters among one or two target creatures.
+mana={1}{G}
+type=Sorcery
 [/card]
 [card]
 name=Elves of Deep Shadow
@@ -14960,6 +15083,18 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Firestorm Hellkite
+abilities=flying,trample
+auto=@each my upkeep:counter(0/0,1,Age)
+auto=thisforeach(counter{0/0.1.Age}) upcost[{U}{R}] moveTo(graveyard)
+text=Flying, trample -- Cumulative upkeep {U}{R} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
+mana={4}{U}{R}
+type=Creature
+subtype=Dragon
+power=6
+toughness=6
+[/card]
+[card]
 name=Firewake Sliver
 auto=lord(sliver) haste
 auto=lord(sliver) {1}{S}:2/2 target(sliver)
@@ -15391,6 +15526,18 @@ mana={5}{U}
 type=Sorcery
 [/card]
 [card]
+name=Flow of Maggots
+auto=cantbeblockedby(creature[-wall])
+auto=@each my upkeep:counter(0/0,1,Age)
+auto=thisforeach(counter{0/0.1.Age}) upcost[{1}] moveTo(graveyard)
+text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Flow of Maggots can't be blocked by non-Wall creatures.
+mana={2}{B}
+type=Creature
+subtype=Insect
+power=2
+toughness=2
+[/card]
+[card]
 name=Flowstone Blade
 target=creature
 auto={R}:1/-1
@@ -15760,6 +15907,15 @@ text=Forgotten Cave enters the battlefield tapped. -- {T}: Add {R} to your mana 
 type=Land
 [/card]
 [card]
+name=Forked Bolt
+target=creature,player
+auto=damage:1
+auto=damage:1 target(creature,player)
+text=Forked Bolt deals 2 damage divided as you choose among one or two target creatures and/or players.
+mana={R}
+type=Sorcery
+[/card]
+[card]
 name=Forsaken City
 abilities=doesnotuntap
 auto={0}:untap all(this) && moveto(exile) target(*|myHand) limit:1 myUpkeepOnly
@@ -15914,6 +16070,13 @@ type=Creature
 subtype=Human Rebel
 power=2
 toughness=2
+[/card]
+[card]
+name=Freyalise's Radiance
+auto=lord(*[snow]) doesnotuntap
+text=Cumulative upkeep {2} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Snow permanents don't untap during their controllers' untap steps.
+mana={1}{G}
+type=Enchantment
 [/card]
 [card]
 name=Freyalise's Winds
@@ -16178,13 +16341,23 @@ toughness=1
 [/card]
 [card]
 name=Fyndhorn Elves
-auto={T}:Add {G}
+auto={T}:Add{G}
 text={T}: Add {G} to your mana pool.
 mana={G}
 type=Creature
 subtype=Elf Druid
 power=1
 toughness=1
+[/card]
+[card]
+name=Fyndhorn Pollen
+auto=lord(creature) -1/0
+auto={1}{G}:-1/0 all(creature)
+auto=@each my upkeep:counter(0/0,1,Age)
+auto=thisforeach(counter{0/0.1.Age}) upcost[{1}] moveTo(graveyard)
+text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- All creatures get -1/-0. -- {1}{G}: All creatures get -1/-0 until end of turn.
+mana={2}{G}
+type=Enchantment
 [/card]
 [card]
 name=Gaea's Anthem
@@ -16275,6 +16448,19 @@ auto=draw:1 controller
 text=Target blocking creature gets +4/+4 until end of turn. -- Draw a card.
 mana={1}{W}
 type=Instant
+[/card]
+[card]
+name=Gallowbraid
+abilities=trample
+auto=@each my upkeep:thisforeach(counter{0/0.1.Age}) life:-1 controller
+auto=@each my upkeep:may moveTo(mygraveyard)
+auto=@each my upkeep:counter(0/0,1,Age)
+text=Trample -- Cumulative upkeep - Pay 1 life. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
+mana={3}{B}{B}
+type=Legendary Creature
+subtype=Horror
+power=5
+toughness=5
 [/card]
 [card]
 name=Galvanic Key
@@ -20917,6 +21103,40 @@ mana={W}{W}
 type=Instant
 [/card]
 [card]
+name=Illusionary Forces
+abilities=flying
+auto=@each my upkeep:counter(0/0,1,Age)
+auto=thisforeach(counter{0/0.1.Age}) upcost[{U}] moveTo(graveyard)
+text=Flying -- Cumulative upkeep {U} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
+mana={3}{U}
+type=Creature
+subtype=Illusion
+power=4
+toughness=4
+[/card]
+[card]
+name=Illusionary Wall
+abilities=defender,flying,first strike
+auto=@each my upkeep:counter(0/0,1,Age)
+auto=thisforeach(counter{0/0.1.Age}) upcost[{U}] moveTo(graveyard)
+text=Defender, flying, first strike -- Cumulative upkeep {U} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
+mana={4}{U}
+type=Creature
+subtype=Illusion Wall
+power=7
+toughness=4
+[/card]
+[card]
+name=Illusions of Grandeur
+auto=life:20
+auto=@movedTo(this|exile,hand,graveyard,library) from(battlefield):life:-20
+auto=@each my upkeep:counter(0/0,1,Age)
+auto=thisforeach(counter{0/0.1.Age}) upcost[{2}] moveTo(graveyard)
+text=Cumulative upkeep {2} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- When Illusions of Grandeur enters the battlefield, you gain 20 life. -- When Illusions of Grandeur leaves the battlefield, you lose 20 life.
+mana={3}{U}
+type=Enchantment
+[/card]
+[card]
 name=Illusory Demon
 abilities=flying
 auto=@movedTo(*|mystack):bury
@@ -22085,6 +22305,18 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Jotun Owl Keeper
+auto=@each my upkeep:counter(0/0,1,Age)
+auto=thisforeach(counter{0/0.1.Age}) upcost[{WU}] moveTo(graveyard)
+auto=@movedTo(this|graveyard) from(battlefield):thisforeach(counter{0/0.1.Age}) token(Bird,creature token bird,1/1,white flying)
+text=Cumulative upkeep {W} or {U} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- When Jotun Owl Keeper is put into a graveyard from the battlefield, put a 1/1 white Bird creature token with flying onto the battlefield for each age counter on it.
+mana={2}{W}
+type=Creature
+subtype=Giant
+power=3
+toughness=3
+[/card]
+[card]
 name=Journeyer's Kite
 auto={3}{T}:moveTo(myHand) target(land[basic]|mylibrary)
 text={3}, {T}: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.
@@ -22136,6 +22368,16 @@ type=Artifact Creature
 subtype=Juggernaut
 power=5
 toughness=3
+[/card]
+[card]
+name=Juju Bubble
+auto=@movedTo(*|myBattlefield):moveTo(graveyard)
+auto={2}:life:1
+auto=@each my upkeep:counter(0/0,1,Age)
+auto=thisforeach(counter{0/0.1.Age}) upcost[{1}] moveTo(graveyard)
+text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- When you play a card, sacrifice Juju Bubble. -- {2}: You gain 1 life.
+mana={1}
+type=Artifact
 [/card]
 [card]
 name=Jukai Messenger
@@ -23498,6 +23740,18 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Kjeldoran Javelineer
+auto=@each my upkeep:counter(0/0,1,Age)
+auto=thisforeach(counter{0/0.1.Age}) upcost[{1}] moveTo(graveyard)
+auto={T}:thisforeach(counter{0/0.1.Age]}) damage:1 target(creature[attacking;blocking])
+text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- {T}: Kjeldoran Javelineer deals damage to target attacking or blocking creature equal to the number of age counters on Kjeldoran Javelineer.
+mana={W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=2
+[/card]
+[card]
 name=Kjeldoran Outpost
 auto=moveTo(graveyard) notatarget(this|myBattlefield)
 auto=moveTo(graveyard) notatarget(plains[-tapped]|myBattlefield)
@@ -24069,6 +24323,18 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Krovikan Whispers
+alias=1194
+target=creature
+auto=@each my upkeep:counter(0/0,1,Age)
+auto=thisforeach(counter{0/0.1.Age}) upcost[{UB}] moveTo(graveyard)
+auto=@movedTo(this|graveyard) from(battlefield):thisforeach(counter{0/0.1.Age}) life:-2 controller
+text=Enchant creature -- Cumulative upkeep {U} or {B} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- You control enchanted creature. -- When Krovikan Whispers is put into a graveyard from the battlefield, you lose 2 life for each age counter on it.
+mana={3}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Kudzu
 target=land
 alias=1254
@@ -24472,6 +24738,15 @@ auto=moveTo(myHand)
 text=Search your library for a basic land card, reveal that card, and put it into your hand. Then shuffle your library.
 mana={G}
 type=Sorcery
+[/card]
+[card]
+name=Lead Astray
+target=creature
+auto=tap
+auto=tap target(creature)
+text=Tap up to two target creatures.
+mana={1}{W}
+type=Instant
 [/card]
 [card]
 name=Leaden Fists
@@ -25777,6 +26052,17 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Maddening Wind
+target=creature
+auto=@each targetcontroller upkeep:damage:2 targetController
+auto=@each my upkeep:counter(0/0,1,Age)
+auto=thisforeach(counter{0/0.1.Age}) upcost[{G}] moveTo(graveyard)
+text=Enchant creature -- Cumulative upkeep {G} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- At the beginning of the upkeep of enchanted creature's controller, Maddening Wind deals 2 damage to that player.
+mana={2}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Madrush Cyclops
 auto=lord(creature|myBattlefield) haste
 text=Creatures you control have haste.
@@ -26072,6 +26358,15 @@ name=Malevolent Awakening
 auto={1}{B}{B}{S(creature|myBattlefield)}:moveTo(myhand) target(creature|mygraveyard)
 text={1}{B}{B}, Sacrifice a creature: Return target creature card from your graveyard to your hand.
 mana={1}{B}{B}
+type=Enchantment
+[/card]
+[card]
+name=Malignant Growth
+auto=@each opponent upkeep:thisforeach(counter{0/0.1.Age}) draw:1 opponent && thisforeach(counter{0/0.1.Age}) damage:1 opponent
+auto=@each my upkeep:counter(0/0,1,Age)
+auto=thisforeach(counter{0/0.1.Age}) upcost[{G}] moveTo(graveyard)
+text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- At the beginning of your upkeep, put a growth counter on Malignant Growth. -- At the beginning of each opponent's draw step, that player draws an additional card for each growth counter on Malignant Growth, then Malignant Growth deals damage to the player equal to the number of cards he or she drew this way.
+mana={3}{G}{U}
 type=Enchantment
 [/card]
 [card]
@@ -26895,6 +27190,15 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Mesmeric Trance
+auto={U}{S|myhand}:draw:1
+auto=@each my upkeep:counter(0/0,1,Age)
+auto=thisforeach(counter{0/0.1.Age}) upcost[{U}] moveTo(graveyard)
+text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- {U}, Discard a card: Draw a card.
+mana={1}{U}{U}
+type=Enchantment
+[/card]
+[card]
 name=Messenger Falcons
 abilities=flying
 auto=draw:1
@@ -27106,6 +27410,16 @@ target=creature
 alias=1194
 text=Enchant creature -- You control enchanted creature.
 mana={3}{U}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Mind Harness
+target=creature(red;green)
+auto=@each my upkeep:counter(0/0,1,Age)
+auto=thisforeach(counter{0/0.1.Age}) upcost[{1}] moveTo(graveyard)
+text=Enchant red or green creature -- Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- You control enchanted creature.
+mana={U}
 type=Enchantment
 subtype=Aura
 [/card]
@@ -27964,6 +28278,19 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Morinfen
+abilities=flying
+auto=@each my upkeep:thisforeach(counter{0/0.1.Age}) life:-1 controller
+auto=@each my upkeep:may moveTo(mygraveyard)
+auto=@each my upkeep:counter(0/0,1,Age)
+text=Flying -- Cumulative upkeep - Pay 1 life. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
+mana={3}{B}{B}
+type=Legendary Creature
+subtype=Horror
+power=5
+toughness=4
+[/card]
+[card]
 name=Moriok Rigger
 auto=@movedTo(artifact|graveyard) from(battlefield):may counter(1/1,1)
 text=Whenever an artifact is put into a graveyard from the battlefield, you may put a +1/+1 counter on Moriok Rigger.
@@ -28432,6 +28759,18 @@ auto=foreach(swamp|myBattlefield)-1/-1 all(creature)
 text=All creatures get -1/-1 until end of turn for each Swamp you control.
 mana={2}{B}{B}
 type=Sorcery
+[/card]
+[card]
+name=Mwonvuli Ooze
+auto=thisforeach(counter{0/0.1.Age}) 1/1
+auto=@each my upkeep:counter(0/0,1,Age)
+auto=thisforeach(counter{0/0.1.Age}) upcost[{G}] moveTo(graveyard)
+text=Cumulative upkeep {2} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay {2} for each age counter on it.) -- Mwonvuli Ooze's power and toughness are each equal to 1 plus twice the number of age counters on it.
+mana={G}
+type=Creature
+subtype=Ooze
+power=1+*
+toughness=1+*
 [/card]
 [card]
 name=Mycologist
@@ -31418,6 +31757,18 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Phobian Phantasm
+abilities=flying,fear
+auto=@each my upkeep:counter(0/0,1,Age)
+auto=thisforeach(counter{0/0.1.Age}) upcost[{B}] moveTo(graveyard)
+text=Flying; fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- Cumulative upkeep {B} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
+mana={1}{B}{B}
+type=Creature
+subtype=Illusion
+power=3
+toughness=3
+[/card]
+[card]
 name=Phyrexian Altar
 auto={S(creature|myBattlefield)}:Add {W}
 auto={S(creature|myBattlefield)}:Add {U}
@@ -31507,6 +31858,16 @@ type=Creature
 subtype=Zombie Mercenary
 power=1
 toughness=1
+[/card]
+[card]
+name=Phyrexian Etchings
+auto=@each my upkeep:counter(0/0,1,Age)
+auto=thisforeach(counter{0/0.1.Age}) upcost[{B}] moveTo(graveyard)
+auto=@each my endofturn:thisforeach(counter{0/0.1.Age}) draw:1
+auto=@movedTo(this|graveyard) from(battlefield):thisforeach(counter{0/0.1.Age}) life:-2
+text=Cumulative upkeep {B} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- At the beginning of your end step, draw a card for each age counter on Phyrexian Etchings. -- When Phyrexian Etchings is put into a graveyard from the battlefield, you lose 2 life for each age counter on it.
+mana={B}{B}{B}
+type=Enchantment
 [/card]
 [card]
 name=Phyrexian Gargantua
@@ -31609,6 +31970,17 @@ auto={1}{B}:moveTo(myhand) target(creature|mygraveyard) && life:-2 controller
 text={1}{B}, Pay 2 life: Return target creature card from your graveyard to your hand.
 mana={B}
 type=Enchantment
+[/card]
+[card]
+name=Phyrexian Soulgorger
+auto=@each my upkeep:counter(0/0,1,Age)
+auto=thisforeach(counter{0/0.1.Age}) upcost[{S(creature|myBattlefield)}] moveTo(graveyard)
+text=Cumulative upkeep - Sacrifice a creature. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
+mana={3}
+type=Snow Artifact Creature
+subtype=Construct
+power=8
+toughness=8
 [/card]
 [card]
 name=Phyrexian Tower
@@ -32113,6 +32485,19 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Polar Kraken
+abilities=trample
+auto=tap
+auto=@each my upkeep:counter(0/0,1,Age)
+auto=thisforeach(counter{0/0.1.Age}) upcost[{S(land|myBattlefield)}] moveTo(graveyard)
+text=Trample -- Polar Kraken enters the battlefield tapped. -- Cumulative upkeep - Sacrifice a land. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
+mana={8}{U}{U}{U}
+type=Creature
+subtype=Kraken
+power=11
+toughness=11
+[/card]
+[card]
 name=Polluted Bonds
 auto=@movedTo(land|opponentBattlefield):life:-2 opponent
 auto=@movedTo(land|opponentBattlefield):life:2 controller
@@ -32595,6 +32980,17 @@ text=Enchant land -- Whenever enchanted land becomes tapped, Psychic Venom deals
 mana={1}{U}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Psychic Vortex
+auto=@each my upkeep:thisforeach(counter{0/0.1.Age}) draw:1 controller
+auto=@each my upkeep:may moveTo(mygraveyard)
+auto=@each my upkeep:counter(0/0,1,Age)
+auto=@each my endofturn:moveTo(mygraveyard) notatarget(land|myBattlefield)
+auto=@each my endofturn:moveTo(mygraveyard all(*|myhand)
+text=Cumulative upkeep - Draw a card. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- At the beginning of your end step, sacrifice a land and discard your hand.
+mana={2}{U}{U}
+type=Enchantment
 [/card]
 [card]
 name=Psychotrope Thallid
@@ -34259,6 +34655,16 @@ mana={1}{W}
 type=Sorcery
 [/card]
 [card]
+name=Repel the Darkness
+target=creature
+auto=tap
+auto=tap target(creature)
+auto=draw:1 controller
+text=Tap up to two target creatures. -- Draw a card.
+mana={2}{W}
+type=Instant
+[/card]
+[card]
 name=Repel
 target=creature
 auto=moveTo(ownerLibrary)
@@ -34498,6 +34904,18 @@ type=Creature
 subtype=Spirit Soldier
 power=1
 toughness=1
+[/card]
+[card]
+name=Revered Unicorn
+auto=@each my upkeep:counter(0/0,1,Age)
+auto=thisforeach(counter{0/0.1.Age}) upcost[{1}] moveTo(graveyard)
+auto=@movedTo(this|exile,graveyard,hand,library) from(battlefield):thisforeach(counter{0/0.1.Age}) life:1 controller
+text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- When Revered Unicorn leaves the battlefield, you gain life equal to the number of age counters on it.
+mana={1}{W}
+type=Creature
+subtype=Unicorn
+power=2
+toughness=3
 [/card]
 [card]
 name=Reverence
@@ -35139,6 +35557,18 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Ronom Hulk
+auto=protection from(*[snow])
+auto=@each my upkeep:counter(0/0,1,Age)
+auto=thisforeach(counter{0/0.1.Age}) upcost[{1}] moveTo(graveyard)
+text=Protection from snow -- Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
+mana={4}{G}
+type=Creature
+subtype=Beast
+power=5
+toughness=6
+[/card]
+[card]
 name=Ronom Unicorn
 auto={S}:destroy target(enchantment)
 text=Sacrifice Ronom Unicorn: Destroy target enchantment.
@@ -35356,6 +35786,18 @@ type=Creature
 subtype=Human Assassin
 power=1
 toughness=1
+[/card]
+[card]
+name=Royal Decree
+auto=@tapped(*[black;red]|mybattlefield):damage:1 controller
+auto=@tapped(*[black;red]|opponentbattlefield):damage:1 opponent
+auto=@tapped(swamp,mountain|mybattlefield):damage:1 controller
+auto=@tapped(swamp,mountain|opponentbattlefield):damage:1 opponent
+auto=@each my upkeep:counter(0/0,1,Age)
+auto=thisforeach(counter{0/0.1.Age}) upcost[{W}] moveTo(graveyard)
+text=Cumulative upkeep {W} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Whenever a Swamp, Mountain, black permanent, or red permanent becomes tapped, Royal Decree deals 1 damage to that permanent's controller.
+mana={2}{W}{W}
+type=Enchantment
 [/card]
 [card]
 name=Royal Falcon
@@ -37553,6 +37995,19 @@ power=3
 toughness=2
 [/card]
 [card]
+name=Sheltering Ancient
+abilities=trample
+auto=@each my upkeep:thisforeach(counter{0/0.1.Age}) counter(1/1) all(creature|opponentBattlefield)
+auto=@each my upkeep:may moveTo(mygraveyard)
+auto=@each my upkeep:counter(0/0,1,Age)
+text=Trample -- Cumulative upkeep - Put a +1/+1 counter on a creature an opponent controls. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
+mana={1}{G}
+type=Creature
+subtype=Treefolk
+power=5
+toughness=5
+[/card]
+[card]
 name=Sheltering Prayers
 auto=aslongas(land|myBattlefield) lord(land[basic]|myBattlefield) shroud <4
 auto=aslongas(land|opponentBattlefield) lord(land[basic]|opponentBattlefield) shroud <4
@@ -39695,6 +40150,18 @@ power=5
 toughness=3
 [/card]
 [card]
+name=Soldevi Simulacrum
+auto={1}:1/0
+auto=@each my upkeep:counter(0/0,1,Age)
+auto=thisforeach(counter{0/0.1.Age}) upcost[{1}] moveTo(graveyard)
+text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- {1}: Soldevi Simulacrum gets +1/+0 until end of turn.
+mana={4}
+type=Artifact Creature
+subtype=Soldier
+power=2
+toughness=4
+[/card]
+[card]
 name=Soldevi Steam Beast
 auto={2}:regenerate
 auto=@tapped(this):life:2 opponent
@@ -40807,6 +41274,26 @@ type=Creature
 subtype=Spider
 power=3
 toughness=5
+[/card]
+[card]
+name=Splinter Token
+type=Creature
+subtype=Splinter
+abilities=flying
+auto=@each my upkeep:counter(0/0,1,Age)
+auto=thisforeach(counter{0/0.1.Age}) upcost[{G}] moveTo(graveyard)
+text=This creature gets +1/+1 for each card named Sound the Call in each graveyard.
+power=1
+toughness=1
+colour=green
+[/card]
+[card]
+name=Splintering Wind
+auto={2}{G}:damage:1 target(creature) && token(-3148)
+auto=@movedTo(splinter token|exile,graveyard,hand,library) from(mybattlefield):damage:1 all(creature) && damage:1 controller
+text={2}{G}: Splintering Wind deals 1 damage to target creature. Put a 1/1 green Splinter creature token onto the battlefield. It has flying and "Cumulative upkeep {G}." (At the beginning of its controller's upkeep, that player puts an age counter on it, then sacrifices it unless he or she pays its upkeep cost for each age counter on it.) -- Whenever a Splinter token leaves the battlefield, it deals 1 damage to you and each creature you control.
+mana={2}{G}{G}
+type=Enchantment
 [/card]
 [card]
 name=Spoils of Evil
@@ -45904,6 +46391,17 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Uktabi Efreet
+auto=@each my upkeep:counter(0/0,1,Age)
+auto=thisforeach(counter{0/0.1.Age}) upcost[{G}] moveTo(graveyard)
+text=Cumulative upkeep {G} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
+mana={2}{G}{G}
+type=Creature
+subtype=Efreet
+power=5
+toughness=4
+[/card]
+[card]
 name=Uktabi Faerie
 abilities=flying
 auto={3}{G}{S}:destroy target(artifact)
@@ -46400,6 +46898,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Urborg Uprising
+target=creature|mygraveyard
+auto=moveTo(ownerhand)
+auto=moveTo(ownerhand) target(creature|mygraveyard)
+auto=draw:1 controller
+text=Return up to two target creature cards from your graveyard to your hand. -- Draw a card.
+mana={4}{B}
+type=Sorcery
+[/card]
+[card]
 name=Urborg Volcano
 auto=tap
 auto={T}:Add {B}
@@ -46695,6 +47203,20 @@ auto=destroy
 text=Destroy target blocking creature.
 mana={2}{W}
 type=Instant
+[/card]
+[card]
+name=Varchild's War-Riders
+abilities=trample
+auto=rampage(1/1,1)
+auto=@each my upkeep:thisforeach(counter{0/0.1.Age}) token(Survivor,creature token survivor,1/1,red) && moveTo(opponentBattlefield) all(survivor)
+auto=@each my upkeep:may moveTo(mygraveyard)
+auto=@each my upkeep:counter(0/0,1,Age)
+text=Cumulative upkeep - Put a 1/1 red Survivor creature token onto the battlefield under an opponent's control. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Trample; rampage 1 (Whenever this creature becomes blocked, it gets +1/+1 until end of turn for each creature blocking it beyond the first.)
+mana={1}{R}
+type=Creature
+subtype=Human Warrior
+power=3
+toughness=4
 [/card]
 [card]
 name=Vastwood Gorger
@@ -47151,6 +47673,19 @@ subtype=Insect
 power=6
 toughness=6
 # P/T modified to make auto rule possible
+[/card]
+[card]
+name=Vexing Sphinx
+abilities=flying
+auto=@each my upkeep:counter(0/0,1,Age)
+auto=thisforeach(counter{0/0.1.Age}) upcost[{S(*|myhand)}] moveTo(graveyard)
+auto=@movedTo(this|graveyard) from(battlefield):thisforeach(counter{0/0.1.Age}) draw:1 controller
+text=Flying -- Cumulative upkeep - Discard a card. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- When Vexing Sphinx is put into a graveyard from the battlefield, draw a card for each age counter on it.
+mana={1}{U}{U}
+type=Creature
+subtype=Sphinx
+power=4
+toughness=4
 [/card]
 [card]
 name=Viashino Bey
@@ -48447,6 +48982,19 @@ power=0
 toughness=5
 [/card]
 [card]
+name=Wall of Shards
+abilities=defender,flying
+auto=@each my upkeep:thisforeach(counter{0/0.1.Age}) life:1 opponent
+auto=@each my upkeep:may moveTo(mygraveyard)
+auto=@each my upkeep:counter(0/0,1,Age)
+text=Defender, flying -- Cumulative upkeep - An opponent gains 1 life. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
+mana={1}{W}
+type=Snow Creature
+subtype=Wall
+power=1
+toughness=8
+[/card]
+[card]
 name=Wall of Spears
 abilities=first strike,defender
 text=Defender (This creature can't attack.) -- First strike
@@ -49572,6 +50120,15 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Wind Sail
+target=creature
+auto=flying
+auto=flying target(creature)
+text=One or two target creatures gain flying until end of turn.
+mana={1}{U}
+type=Sorcery
+[/card]
+[card]
 name=Wind Shear
 auto=lord(creature[attacking;flying]) -2/-2
 auto=lord(creature[attacking;flying]) -flying
@@ -50363,6 +50920,18 @@ type=Creature
 subtype=Treefolk
 power=2
 toughness=7
+[/card]
+[card]
+name=Yavimaya Ants
+abilities=trample,haste
+auto=@each my upkeep:counter(0/0,1,Age)
+auto=thisforeach(counter{0/0.1.Age}) upcost[{G}{G}] moveTo(graveyard)
+text=Trample, haste -- Cumulative upkeep {G}{G} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
+mana={2}{G}{G}
+type=Creature
+subtype=Insect
+power=5
+toughness=1
 [/card]
 [card]
 name=Yavimaya Barbarian

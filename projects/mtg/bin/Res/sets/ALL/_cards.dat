@@ -779,6 +779,11 @@ id=3118
 rarity=U
 [/card]
 [card]
+primitive=Splinter Token
+id=-3148
+rarity=T
+[/card]
+[card]
 primitive=Splintering Wind
 id=3148
 rarity=R

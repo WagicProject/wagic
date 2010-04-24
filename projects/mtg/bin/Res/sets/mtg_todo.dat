@@ -133,15 +133,6 @@ power=2
 toughness=6
 [/card]
 [card]
-name=Aboroth
-text=Cumulative upkeep - Put a -1/-1 counter on Aboroth. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
-mana={4}{G}{G}
-type=Creature
-subtype=Elemental
-power=9
-toughness=9
-[/card]
-[card]
 name=Aboshan, Cephalid Emperor
 text=Tap an untapped Cephalid you control: Tap target permanent. -- {U}{U}{U}: Tap all creatures without flying.
 mana={4}{U}{U}
@@ -1320,24 +1311,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Arctic Nishoba
-text=Trample -- Cumulative upkeep {G} or {W} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- When Arctic Nishoba is put into a graveyard from the battlefield, you gain 2 life for each age counter on it.
-mana={5}{G}
-type=Creature
-subtype=Cat Warrior
-power=6
-toughness=6
-[/card]
-[card]
-name=Arctic Wolves
-text=Cumulative upkeep {2} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- When Arctic Wolves enters the battlefield, draw a card.
-mana={3}{G}{G}
-type=Creature
-subtype=Wolf
-power=4
-toughness=5
-[/card]
-[card]
 name=Arcum Dagsson
 text={T}: Target artifact creature's controller sacrifices it. That player may search his or her library for a noncreature artifact card, put it onto the battlefield, then shuffle his or her library.
 mana={3}{U}
@@ -1348,10 +1321,6 @@ toughness=2
 [/card]
 [card]
 name=Arcum's Sleigh
-auto=aslongas(land[snow]|opponentBattlefield) {2}{T}:vigilance target(creature)
-####
-####Aslongas-lines with activation costs don't work yet!! (0.9.1)
-####
 text={2}, {T}: Target creature gains vigilance until end of turn. Activate this ability only during combat and only if defending player controls a snow land.
 mana={1}
 type=Artifact
@@ -1445,12 +1414,6 @@ text=You may cast Armor of Thorns as though it had flash. If you cast it any tim
 mana={1}{G}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Arnjlot's Ascent
-text=Cumulative upkeep {U} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- {1}: Target creature gains flying until end of turn.
-mana={1}{U}{U}
-type=Enchantment
 [/card]
 [card]
 name=Arrest
@@ -3683,12 +3646,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Braid of Fire
-text=Cumulative upkeep - Add {R} to your mana pool. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
-mana={1}{R}
-type=Enchantment
-[/card]
-[card]
 name=Braids, Cabal Minion
 text=At the beginning of each player's upkeep, that player sacrifices an artifact, creature, or land.
 mana={2}{B}{B}
@@ -4021,18 +3978,7 @@ mana={X}{U}
 type=Instant
 [/card]
 [card]
-name=Broken Dam
-text=Tap one or two target creatures without horsemanship.
-mana={U}
-type=Sorcery
-[/card]
-[card]
 name=Broken Visage
-target=creature[attacking,-artifact]
-auto=bury
-auto=token(Spirit,Creature Spirit ofielskdh,p/t,black)
-auto=@next end:destroy all(ofielskdh)
-#require testing
 text=Destroy target nonartifact attacking creature. It can't be regenerated. Put a black Spirit creature token with that creature's power and toughness onto the battlefield. Sacrifice the token at the beginning of the next end step.
 mana={4}{B}
 type=Instant
@@ -6098,12 +6044,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Cold Snap
-text=Cumulative upkeep {2} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- At the beginning of each player's upkeep, Cold Snap deals damage to that player equal to the number of snow lands he or she controls.
-mana={2}{W}
-type=Enchantment
-[/card]
-[card]
 name=Cold Storage
 text={3}: Exile target creature you control. -- Sacrifice Cold Storage: Return each creature card exiled with Cold Storage to the battlefield under your control.
 mana={4}
@@ -6653,12 +6593,6 @@ name=Counterbore
 text=Counter target spell. Search its controller's graveyard, hand, and library for all cards with the same name as that spell and exile them. Then that player shuffles his or her library.
 mana={3}{U}{U}
 type=Instant
-[/card]
-[card]
-name=Counterintelligence
-text=Return one or two target creatures to their owners' hands.
-mana={2}{U}{U}
-type=Sorcery
 [/card]
 [card]
 name=Countryside Crusher
@@ -9000,12 +8934,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Double Negative
-text=Counter up to two target spells.
-mana={U}{U}{R}
-type=Instant
-[/card]
-[card]
 name=Doubling Cube
 text={3}, {T}: Double the amount of each type of mana in your mana pool.
 mana={2}
@@ -9802,15 +9730,6 @@ mana={1}{G}
 type=Enchantment
 [/card]
 [card]
-name=Earthen Goo
-text=Trample -- Cumulative upkeep {R} or {G} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Earthen Goo gets +1/+1 for each age counter on it.
-mana={2}{R}
-type=Creature
-subtype=Ooze
-power=2
-toughness=2
-[/card]
-[card]
 name=Earthlink
 text=At the beginning of your upkeep, sacrifice Earthlink unless you pay {2}. -- Whenever a creature is put into a graveyard from the battlefield, that creature's controller sacrifices a land.
 mana={3}{B}{R}{G}
@@ -10020,12 +9939,6 @@ mana={5}
 type=Artifact
 [/card]
 [card]
-name=Electrolyze
-text=Electrolyze deals 2 damage divided as you choose among one or two target creatures and/or players. -- Draw a card.
-mana={1}{U}{R}
-type=Instant
-[/card]
-[card]
 name=Electropotence
 text=Whenever a creature enters the battlefield under your control, you may pay {2}{R}. If you do, that creature deals damage equal to its power to target creature or player.
 mana={2}{R}
@@ -10126,12 +10039,6 @@ mana={2}{W}{W}
 type=Planeswalker
 subtype=Elspeth
 loyalty=4
-[/card]
-[card]
-name=Elven Rite
-text=Distribute two +1/+1 counters among one or two target creatures.
-mana={1}{G}
-type=Sorcery
 [/card]
 [card]
 name=Elven Warhounds
@@ -12069,15 +11976,6 @@ mana={R}
 type=Instant
 [/card]
 [card]
-name=Firestorm Hellkite
-text=Flying, trample -- Cumulative upkeep {U}{R} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
-mana={4}{U}{R}
-type=Creature
-subtype=Dragon
-power=6
-toughness=6
-[/card]
-[card]
 name=Firestorm Phoenix
 auto=@movedTo(this|graveyard) from(inplay):moveto(ownerhand)
 text=Flying -- If Firestorm Phoenix would be put into a graveyard from the battlefield, return Firestorm Phoenix to its owner's hand instead. Until that player's next turn, that player plays with that card revealed in his or her hand and can't play it.
@@ -12481,15 +12379,6 @@ name=Flourishing Defenses
 text=Whenever a -1/-1 counter is placed on a creature, you may put a 1/1 green Elf Warrior creature token onto the battlefield.
 mana={4}{G}
 type=Enchantment
-[/card]
-[card]
-name=Flow of Maggots
-text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Flow of Maggots can't be blocked by non-Wall creatures.
-mana={2}{B}
-type=Creature
-subtype=Insect
-power=2
-toughness=2
 [/card]
 [card]
 name=Flowering Field
@@ -12974,12 +12863,6 @@ mana={G}{G}
 type=Enchantment
 [/card]
 [card]
-name=Freyalise's Radiance
-text=Cumulative upkeep {2} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Snow permanents don't untap during their controllers' untap steps.
-mana={1}{G}
-type=Enchantment
-[/card]
-[card]
 name=Frightshroud Courier
 text=You may choose not to untap Frightshroud Courier during your untap step. -- {2}{B}, {T}: Target Zombie creature gets +2/+2 and has fear for as long as Frightshroud Courier remains tapped. (It can't be blocked except by artifact creatures and/or black creatures.)
 mana={2}{B}
@@ -13206,7 +13089,6 @@ subtype=Aura
 [/card]
 [card]
 name=Fyndhorn Druid
-auto=@movedto(this|graveyard) from(myBattlefield):life:4 controller
 text=When Fyndhorn Druid is put into a graveyard from the battlefield, if it was blocked this turn, you gain 4 life.
 mana={2}{G}
 type=Creature
@@ -13215,16 +13097,7 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Fyndhorn Pollen
-text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- All creatures get -1/-0. -- {1}{G}: All creatures get -1/-0 until end of turn.
-mana={2}{G}
-type=Enchantment
-[/card]
-[card]
 name=Gabriel Angelfire
-auto=@each my upkeep:may flying
-auto=@each my upkeep:may first strike
-auto=@each my upkeep:may rampage(3/3,1)
 text=At the beginning of your upkeep, choose flying, first strike, trample, or rampage 3. Gabriel Angelfire gains that ability until your next upkeep. (Whenever a creature with rampage 3 becomes blocked, it gets +3/+3 until end of turn for each creature blocking it beyond the first.)
 mana={3}{G}{G}{W}{W}
 type=Legendary Creature
@@ -13293,15 +13166,6 @@ type=Creature
 subtype=Kithkin Wizard
 power=3
 toughness=3
-[/card]
-[card]
-name=Gallowbraid
-text=Trample -- Cumulative upkeep - Pay 1 life. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
-mana={3}{B}{B}
-type=Legendary Creature
-subtype=Horror
-power=5
-toughness=5
 [/card]
 [card]
 name=Galvanic Arc
@@ -17058,15 +16922,6 @@ mana={2}{G}
 type=Instant
 [/card]
 [card]
-name=Illusionary Forces
-text=Flying -- Cumulative upkeep {U} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
-mana={3}{U}
-type=Creature
-subtype=Illusion
-power=4
-toughness=4
-[/card]
-[card]
 name=Illusionary Mask
 text={X}: You may choose a creature card in your hand whose mana cost could be paid by some amount of, or all of, the mana you spent on {X}. If you do, you may cast that card face down as a 2/2 creature spell without paying its mana cost. If the creature that spell becomes as it resolves has not been turned face up and would assign or deal damage, be dealt damage, or become tapped, instead it's turned face up and assigns or deals damage, is dealt damage, or becomes tapped. Activate this ability only any time you could cast a sorcery.
 mana={2}
@@ -17094,21 +16949,6 @@ toughness=4
 name=Illusionary Terrain
 text=Cumulative upkeep {2} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- As Illusionary Terrain enters the battlefield, choose two basic land types. -- Basic lands of the first chosen type are the second chosen type.
 mana={U}{U}
-type=Enchantment
-[/card]
-[card]
-name=Illusionary Wall
-text=Defender, flying, first strike -- Cumulative upkeep {U} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
-mana={4}{U}
-type=Creature
-subtype=Illusion Wall
-power=7
-toughness=4
-[/card]
-[card]
-name=Illusions of Grandeur
-text=Cumulative upkeep {2} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- When Illusions of Grandeur enters the battlefield, you gain 20 life. -- When Illusions of Grandeur leaves the battlefield, you lose 20 life.
-mana={3}{U}
 type=Enchantment
 [/card]
 [card]
@@ -18308,12 +18148,6 @@ power=5
 toughness=5
 [/card]
 [card]
-name=Juju Bubble
-text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- When you play a card, sacrifice Juju Bubble. -- {2}: You gain 1 life.
-mana={1}
-type=Artifact
-[/card]
-[card]
 name=Jund Hackblade
 text=As long as you control another multicolored permanent, Jund Hackblade gets +1/+1 and has haste.
 mana={BG}{R}
@@ -18331,17 +18165,6 @@ type=Creature
 subtype=Human Knight
 power=1
 toughness=2
-[/card]
-[card]
-name=Juniper Order Ranger
-auto=@movedto(creature|myBattelfield):counter(1/1,1)
-auto=@movedto(creature|myBattelfield):counter(1/1,1) target(this)
-text=Whenever another creature enters the battlefield under your control, put a +1/+1 counter on that creature and a +1/+1 counter on Juniper Order Ranger.
-mana={3}{G}{W}
-type=Creature
-subtype=Human Knight
-power=2
-toughness=4
 [/card]
 [card]
 name=Junk Golem
@@ -18405,15 +18228,6 @@ type=Creature
 subtype=Giant Soldier
 power=4
 toughness=4
-[/card]
-[card]
-name=Jotun Owl Keeper
-text=Cumulative upkeep {W} or {U} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- When Jotun Owl Keeper is put into a graveyard from the battlefield, put a 1/1 white Bird creature token with flying onto the battlefield for each age counter on it.
-mana={2}{W}
-type=Creature
-subtype=Giant
-power=3
-toughness=3
 [/card]
 [card]
 name=Kabira Evangel
@@ -19139,23 +18953,12 @@ toughness=1
 [/card]
 [card]
 name=Kjeldoran Home Guard
-auto=aslongas(this[attacking,blocking]|myinplay):counter(0/-1,1)
-auto=aslongas(this[attacking,blocking]|myinplay):token(Deserter,Creature Deserter,0/1,white)
 text=At end of combat, if Kjeldoran Home Guard attacked or blocked this combat, put a -0/-1 counter on Kjeldoran Home Guard and put a 0/1 white Deserter creature token onto the battlefield.
 mana={3}{W}
 type=Creature
 subtype=Human Soldier
 power=1
 toughness=6
-[/card]
-[card]
-name=Kjeldoran Javelineer
-text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- {T}: Kjeldoran Javelineer deals damage to target attacking or blocking creature equal to the number of age counters on Kjeldoran Javelineer.
-mana={W}
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=2
 [/card]
 [card]
 name=Kjeldoran Knight
@@ -19581,8 +19384,6 @@ type=Instant
 [/card]
 [card]
 name=Krovikan Sorcerer
-auto={T}{S(*[-black]|myhand)}:draw:1
-auto={T}{S(*[black]|myhand)}:draw:2 && discard:1
 text={T}, Discard a nonblack card: Draw a card. -- {T}, Discard a black card: Draw two cards, then discard one of them.
 mana={2}{U}
 type=Creature
@@ -19598,13 +19399,6 @@ type=Creature
 subtype=Vampire
 power=3
 toughness=3
-[/card]
-[card]
-name=Krovikan Whispers
-text=Enchant creature -- Cumulative upkeep {U} or {B} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- You control enchanted creature. -- When Krovikan Whispers is put into a graveyard from the battlefield, you lose 2 life for each age counter on it.
-mana={3}{U}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Kry Shield
@@ -20005,12 +19799,6 @@ text=Enchant creature -- Enchanted creature has "{T}: This creature deals 1 dama
 mana={1}{R}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Lead Astray
-text=Tap up to two target creatures.
-mana={1}{W}
-type=Instant
 [/card]
 [card]
 name=Lead Golem
@@ -21123,13 +20911,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Maddening Wind
-text=Enchant creature -- Cumulative upkeep {G} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- At the beginning of the upkeep of enchanted creature's controller, Maddening Wind deals 2 damage to that player.
-mana={2}{G}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Maelstrom Archangel
 text=Flying -- Whenever Maelstrom Archangel deals combat damage to a player, you may cast a nonland card from your hand without paying its mana cost.
 mana={W}{U}{B}{R}{G}
@@ -21426,12 +21207,6 @@ name=Malicious Advice
 text=Tap X target artifacts, creatures, and/or lands. You lose X life.
 mana={X}{U}{B}
 type=Instant
-[/card]
-[card]
-name=Malignant Growth
-text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- At the beginning of your upkeep, put a growth counter on Malignant Growth. -- At the beginning of each opponent's draw step, that player draws an additional card for each growth counter on Malignant Growth, then Malignant Growth deals damage to the player equal to the number of cards he or she drew this way.
-mana={3}{G}{U}
-type=Enchantment
 [/card]
 [card]
 name=Mammoth Harness
@@ -22339,12 +22114,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Mesmeric Trance
-text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- {U}, Discard a card: Draw a card.
-mana={1}{U}{U}
-type=Enchantment
-[/card]
-[card]
 name=Metalworker
 text={T}: Reveal any number of artifact cards in your hand. Add {2} to your mana pool for each card revealed this way.
 mana={3}
@@ -22535,13 +22304,6 @@ name=Mind Games
 text=Buyback {2}{U} (You may pay an additional {2}{U} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Tap target artifact, creature, or land.
 mana={U}
 type=Instant
-[/card]
-[card]
-name=Mind Harness
-text=Enchant red or green creature -- Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- You control enchanted creature.
-mana={U}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Mind Maggots
@@ -23414,15 +23176,6 @@ power=5
 toughness=5
 [/card]
 [card]
-name=Morinfen
-text=Flying -- Cumulative upkeep - Pay 1 life. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
-mana={3}{B}{B}
-type=Legendary Creature
-subtype=Horror
-power=5
-toughness=4
-[/card]
-[card]
 name=Morsel Theft
 text=Prowl {1}{B} (You may cast this for its prowl cost if you dealt combat damage to a player this turn with a Rogue.) -- Target player loses 3 life and you gain 3 life. If Morsel Theft's prowl cost was paid, draw a card.
 mana={2}{B}{B}
@@ -23694,15 +23447,6 @@ name=Mwonvuli Acid-Moss
 text=Destroy target land. Search your library for a Forest card and put that card onto the battlefield tapped. Then shuffle your library.
 mana={2}{G}{G}
 type=Sorcery
-[/card]
-[card]
-name=Mwonvuli Ooze
-text=Cumulative upkeep {2} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay {2} for each age counter on it.) -- Mwonvuli Ooze's power and toughness are each equal to 1 plus twice the number of age counters on it.
-mana={G}
-type=Creature
-subtype=Ooze
-power=1+*
-toughness=1+*
 [/card]
 [card]
 name=Mycologist
@@ -26680,25 +26424,6 @@ power=2
 toughness=0
 [/card]
 [card]
-name=Phelddagrif
-text={G}: Phelddagrif gains trample until end of turn. Target opponent puts a 1/1 green Hippo creature token onto the battlefield. -- {W}: Phelddagrif gains flying until end of turn. Target opponent gains 2 life. -- {U}: Return Phelddagrif to its owner's hand. Target opponent may draw a card.
-mana={1}{G}{W}{U}
-type=Legendary Creature
-subtype=Phelddagrif
-power=4
-toughness=4
-[/card]
-[card]
-name=Phobian Phantasm
-abilities=Flying,Fear
-text=Flying; fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- Cumulative upkeep {B} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
-mana={1}{B}{B}
-type=Creature
-subtype=Illusion
-power=3
-toughness=3
-[/card]
-[card]
 name=Phosphorescent Feast
 text=Chroma - Reveal any number of cards in your hand. You gain 2 life for each green mana symbol in those cards' mana costs.
 mana={2}{G}{G}{G}
@@ -26712,9 +26437,6 @@ type=Sorcery
 [/card]
 [card]
 name=Phyrexian Boon
-target=creature
-auto=aslongas(mytgt[black]) 2/1
-auto=aslongas(mytgt[-black]) -1/-2
 text=Enchant creature -- Enchanted creature gets +2/+1 as long as it's black. Otherwise, it gets -1/-2.
 mana={2}{B}
 type=Enchantment
@@ -26755,12 +26477,6 @@ type=Artifact Creature
 subtype=Dreadnought
 power=12
 toughness=12
-[/card]
-[card]
-name=Phyrexian Etchings
-text=Cumulative upkeep {B} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- At the beginning of your end step, draw a card for each age counter on Phyrexian Etchings. -- When Phyrexian Etchings is put into a graveyard from the battlefield, you lose 2 life for each age counter on it.
-mana={B}{B}{B}
-type=Enchantment
 [/card]
 [card]
 name=Phyrexian Furnace
@@ -26865,15 +26581,6 @@ type=Snow Artifact Creature
 subtype=Juggernaut
 power=6
 toughness=5
-[/card]
-[card]
-name=Phyrexian Soulgorger
-text=Cumulative upkeep - Sacrifice a creature. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
-mana={3}
-type=Snow Artifact Creature
-subtype=Construct
-power=8
-toughness=8
 [/card]
 [card]
 name=Phyrexian Splicer
@@ -27233,15 +26940,6 @@ name=Plunge into Darkness
 text=Choose one - Sacrifice any number of creatures, then you gain 3 life for each sacrificed creature; or pay X life, then look at the top X cards of your library, put one of those cards into your hand, and exile the rest. -- Entwine {B} (Choose both if you pay the entwine cost.)
 mana={1}{B}
 type=Instant
-[/card]
-[card]
-name=Polar Kraken
-text=Trample -- Polar Kraken enters the battlefield tapped. -- Cumulative upkeep - Sacrifice a land. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
-mana={8}{U}{U}{U}
-type=Creature
-subtype=Kraken
-power=11
-toughness=11
 [/card]
 [card]
 name=Political Trickery
@@ -27959,12 +27657,6 @@ name=Psychic Transfer
 text=If the difference between your life total and target player's life total is 5 or less, exchange life totals with that player.
 mana={4}{U}
 type=Sorcery
-[/card]
-[card]
-name=Psychic Vortex
-text=Cumulative upkeep - Draw a card. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- At the beginning of your end step, sacrifice a land and discard your hand.
-mana={2}{U}{U}
-type=Enchantment
 [/card]
 [card]
 name=Psychogenic Probe
@@ -29791,15 +29483,6 @@ power=1
 toughness=2
 [/card]
 [card]
-name=Revered Unicorn
-text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- When Revered Unicorn leaves the battlefield, you gain life equal to the number of age counters on it.
-mana={1}{W}
-type=Creature
-subtype=Unicorn
-power=2
-toughness=3
-[/card]
-[card]
 name=Reverent Mantra
 text=You may exile a white card from your hand rather than pay Reverent Mantra's mana cost. -- All creatures gain protection from the color of your choice until end of turn.
 mana={3}{W}
@@ -30528,15 +30211,6 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
-name=Ronom Hulk
-text=Protection from snow -- Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
-mana={4}{G}
-type=Creature
-subtype=Beast
-power=5
-toughness=6
-[/card]
-[card]
 name=Ronom Serpent
 abilities=cantattack
 auto=aslongas(land[snow]|opponentBattlefield)-cantattack
@@ -30688,14 +30362,7 @@ mana={2}{G}{G}
 type=Enchantment
 [/card]
 [card]
-name=Royal Decree
-text=Cumulative upkeep {W} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Whenever a Swamp, Mountain, black permanent, or red permanent becomes tapped, Royal Decree deals 1 damage to that permanent's controller.
-mana={2}{W}{W}
-type=Enchantment
-[/card]
-[card]
 name=Royal Herbalist
-auto=moveto(exile) target(*[top]|library) && life:1 controller
 text={2}, Exile the top card of your library: You gain 1 life.
 mana={W}
 type=Creature
@@ -32841,15 +32508,6 @@ text=If Sheltered Valley would enter the battlefield, instead sacrifice each oth
 type=Land
 [/card]
 [card]
-name=Sheltering Ancient
-text=Trample -- Cumulative upkeep - Put a +1/+1 counter on a creature an opponent controls. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
-mana={1}{G}
-type=Creature
-subtype=Treefolk
-power=5
-toughness=5
-[/card]
-[card]
 name=Shield Bearer
 abilities=banding
 text=Banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
@@ -34277,15 +33935,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Soldevi Simulacrum
-text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- {1}: Soldevi Simulacrum gets +1/+0 until end of turn.
-mana={4}
-type=Artifact Creature
-subtype=Soldier
-power=2
-toughness=4
-[/card]
-[card]
 name=Soldier of Fortune
 auto={R}{T}:shuffle target(library)
 text={R}, {T}: Target player shuffles his or her library.
@@ -35305,12 +34954,6 @@ name=Splinter
 text=Exile target artifact. Search its controller's graveyard, hand, and library for all cards with the same name as that artifact and exile them. That player then shuffles his or her library.
 mana={2}{G}{G}
 type=Sorcery
-[/card]
-[card]
-name=Splintering Wind
-text={2}{G}: Splintering Wind deals 1 damage to target creature. Put a 1/1 green Splinter creature token onto the battlefield. It has flying and "Cumulative upkeep {G}." (At the beginning of its controller's upkeep, that player puts an age counter on it, then sacrifices it unless he or she pays its upkeep cost for each age counter on it.) -- Whenever a Splinter token leaves the battlefield, it deals 1 damage to you and each creature you control.
-mana={2}{G}{G}
-type=Enchantment
 [/card]
 [card]
 name=Split-Tail Miko
@@ -39227,15 +38870,6 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-name=Uktabi Efreet
-text=Cumulative upkeep {G} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
-mana={2}{G}{G}
-type=Creature
-subtype=Efreet
-power=5
-toughness=4
-[/card]
-[card]
 name=Umbilicus
 text=At the beginning of each player's upkeep, that player returns a permanent he or she controls to its owner's hand unless he or she pays 2 life.
 mana={4}
@@ -39501,12 +39135,6 @@ power=3
 toughness=1
 [/card]
 [card]
-name=Urborg Uprising
-text=Return up to two target creature cards from your graveyard to your hand. -- Draw a card.
-mana={4}{B}
-type=Sorcery
-[/card]
-[card]
 name=Urborg, Tomb of Yawgmoth
 text=Each land is a Swamp in addition to its other land types.
 type=Legendary Land
@@ -39741,17 +39369,6 @@ type=Creature
 subtype=Human Knight
 power=3
 toughness=2
-[/card]
-[card]
-name=Varchild's War-Riders
-abilities=trample
-auto=rampage(1/1,1)
-text=Cumulative upkeep - Put a 1/1 red Survivor creature token onto the battlefield under an opponent's control. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Trample; rampage 1 (Whenever this creature becomes blocked, it gets +1/+1 until end of turn for each creature blocking it beyond the first.)
-mana={1}{R}
-type=Creature
-subtype=Human Warrior
-power=3
-toughness=4
 [/card]
 [card]
 name=Vassal's Duty
@@ -40092,15 +39709,6 @@ type=Creature
 subtype=Goblin Shaman
 power=2
 toughness=2
-[/card]
-[card]
-name=Vexing Sphinx
-text=Flying -- Cumulative upkeep - Discard a card. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- When Vexing Sphinx is put into a graveyard from the battlefield, draw a card for each age counter on it.
-mana={1}{U}{U}
-type=Creature
-subtype=Sphinx
-power=4
-toughness=4
 [/card]
 [card]
 name=Vhati il-Dal
@@ -40816,15 +40424,6 @@ type=Creature
 subtype=Wall
 power=0
 toughness=1
-[/card]
-[card]
-name=Wall of Shards
-text=Defender, flying -- Cumulative upkeep - An opponent gains 1 life. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
-mana={1}{W}
-type=Snow Creature
-subtype=Wall
-power=1
-toughness=8
 [/card]
 [card]
 name=Wall of Shields
@@ -41653,12 +41252,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Wind Sail
-text=One or two target creatures gain flying until end of turn.
-mana={1}{U}
-type=Sorcery
-[/card]
-[card]
 name=Wind Spirit
 text=Flying -- Wind Spirit can't be blocked except by two or more creatures.
 mana={4}{U}
@@ -42375,16 +41968,6 @@ name=Yare
 text=Target creature defending player controls gets +3/+0 until end of turn. That creature can block up to two additional creatures this turn.
 mana={2}{W}
 type=Instant
-[/card]
-[card]
-name=Yavimaya Ants
-abilities=trample,haste
-text=Trample, haste -- Cumulative upkeep {G}{G} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
-mana={2}{G}{G}
-type=Creature
-subtype=Insect
-power=5
-toughness=1
 [/card]
 [card]
 name=Yavimaya Elder
