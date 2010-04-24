@@ -1968,10 +1968,10 @@ class AThisForEach:public MTGAbility, public NestedAbility{
     int matches;
     matches = td->match(source);
     if (matches > 0) {
-      if (abilities.size()){     
+      if (abilities.size() > matches){     
         removeAbilityFromGame();
       }
-      for (int i = 0; i < matches; i++) {
+      for (int i = 0; i < matches - abilities.size(); i++) {
         addAbilityToGame();
       }
     }
