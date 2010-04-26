@@ -1,9 +1,0 @@
-[INIT]
-mode=mtg
-[PLAYERS]
-life:4
-auto=shuffle
-auto=draw:7
-auto=@each my draw:draw:1
-[PLAYER2]
-library:forest,forest,forest,mountain,mountain,plains,raging goblin,goblin king

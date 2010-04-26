@@ -57,6 +57,7 @@ Counter * AbilityFactory::parseCounter(string s, MTGCardInstance * target, Spell
         wpi = NEW WParsedInt(atoi(nbstr.c_str()));
       }
       nb = wpi->getValue();
+      delete(wpi);
       end = separator;
     }
     
@@ -560,6 +561,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
       OutputDebugString("MTGABILITY: Parsing Error:");
       OutputDebugString(s.c_str());
       OutputDebugString("\n");
+      delete(cost);
       return NULL;
     }
 
@@ -757,6 +759,16 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     return a;
   }
 
+  // Win the game
+  found = s.find("wingame");
+  if (found != string::npos){
+    Damageable * d = NULL;
+    if (spell) d = spell->getNextDamageableTarget();
+    MTGAbility * a =  NEW AAWinGame(id,card,d,NULL,0,who);
+    a->oneShot = 1;
+    return a;
+  }
+
   //Draw
   found = s.find("draw:");
   if (found != string::npos){
@@ -849,6 +861,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     Counter * counter = parseCounter(counterString,target,spell);
     if (counter){
       MTGAbility * a = NEW AACounter(id,card,target,counter->name.c_str(),counter->power,counter->toughness,counter->nb);
+      delete(counter);
 	    a->oneShot = 1;
       return a;
     }
@@ -1297,11 +1310,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
       game->addObserver(NEW AFireball(_id, card,spell, x));
       break;
     }
-  case 1245: //Force of Nature
-    {
-      game->addObserver(NEW AForceOfNature(_id,card));
-      break;
-    }
   case 1112: //Howling Mine
     {
       game->addObserver(NEW AHowlingMine(_id, card));
@@ -1455,11 +1463,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
   case 1258: //Living Artifact
     {
       game->addObserver(NEW ALivingArtifact( _id, card, card->target));
-      break;
-    }
-  case 1166: //Lord Of The Pit
-    {
-      game->addObserver(NEW ALordOfThePit( _id, card));
       break;
     }
   case 1209: //Mana Short
@@ -1906,6 +1909,7 @@ int ActivatedAbility::reactToClick(MTGCardInstance * card){
     ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
     game->currentlyActing()->getManaPool()->pay(cost);
     cost->doPayExtra();
+    SAFE_DELETE(abilityCost);
     abilityCost = previousManaPool->Diff(player->getManaPool());
     delete previousManaPool;
   }
@@ -1928,6 +1932,7 @@ int ActivatedAbility::reactToTargetClick(Targetable * object){
     ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
     game->currentlyActing()->getManaPool()->pay(cost);
     cost->doPayExtra();
+    SAFE_DELETE(abilityCost);
     abilityCost = previousManaPool->Diff(player->getManaPool());
     delete previousManaPool;
   }
@@ -1938,9 +1943,12 @@ int ActivatedAbility::reactToTargetClick(Targetable * object){
 }
 
 ActivatedAbility::~ActivatedAbility(){
-  if (!isClone){
+  //Ok, this will probably lead to crashes, maybe with lord abilities involving "X" costs.
+  // If that's the case, we need to improve the clone() method of GenericActivatedAbility and GenericTargetAbility, I think
+  // Erwan 2004/04/25
+  //if (!isClone){
     SAFE_DELETE(abilityCost);
-  }
+  //}
 }
 
 ostream& ActivatedAbility::toString(ostream& out) const
@@ -2011,7 +2019,9 @@ void TargetAbility::Render(){
 int TargetAbility::resolve(){
   Targetable * t = tc->getNextTarget();
   if (t && ability){
-    source->X = abilityCost->Diff(cost)->hasX();
+    ManaCost * diff = abilityCost->Diff(cost);
+    source->X = diff->hasX();
+    delete (diff);
     ability->target = t;
     if (ability->oneShot) return ability->resolve();
     MTGAbility * a =  ability->clone();

@@ -1,0 +1,149 @@
+<?xml version="1.0" ?>
+
+<page id="start">
+<type>dialog</type>
+<text align="center">WELCOME YOUNG ADVENTURER...</text>
+<img y="15">_gfx/shopkeeper.jpg</img>
+<text y="115">So you want to become a sorcerer?</text>
+<text y="130">You've come to the right place. I'm myself just</text>
+<text y="145">a humble retailer, but I've met a lot of adventurers like you</text>
+<text y="160">in my life, enough to understand the basics of their craft...</text>
+
+<answer goto="tap_mana_intro">Interested?</answer>
+</page>
+
+<page id="tap_mana_intro">
+<type>dialog</type>
+<text align="center">TAPPING LANDS FOR MANA</text>
+<text y="15">In your quests you will have to fight against other wizards.</text>
+<text y="30">You will only have your brain and your spells to help you.</text>
+<text y="45">The basic Energy to cast your spells in Wagic is called mana.</text>
+<text y="60">The most frequent sources of Mana are called "Lands".</text>
+<text y="90">For a land to produce mana,</text>
+<text y="105">you just have to click on it with the action button (CIRCLE by default)</text>
+<answer goto="tap_mana">Go ahead and tap some mana!</answer>
+</page>
+
+<page id="tap_mana">
+<type>duel</type>
+<onwin>tap_mana_ok</onwin>
+<onlose>tap_mana_try_again</onlose>
+</page>
+
+<page id="tap_mana_try_again">
+<type>dialog</type>
+<text align="center">HMMM...</text>
+<text y="15">It seems you didn't get that right</text>
+<text y="30">Simply navigate (with the D-Pad) to the land that appears on your screen,</text>
+<text y="45">then click on the action button (CIRCLE by default)</text>
+<answer goto="tap_mana">Let's try again!</answer>
+</page>
+
+<page id="tap_mana_ok">
+<type>dialog</type>
+<text align="center">WELL DONE...NOW LET'S CAST A SPELL</text>
+<text y="15">That was too easy for you!</text>
+<text y="30">Now let's see if you can cast a spell...</text>
+<text y="45">Spells have a cost represented by mana symbols on the top right corner</text>
+<text y="60">of the card. For example, 2 white mana icons on the top right of the card</text>
+<text y="75">means that you have to produce 2 white manas (by activating 2 plains)</text>
+<text y="90">in order to put it into play.</text>
+<answer goto="cast_spell_1">Try to produce 2 white mana and put a white knight in play</answer>
+</page>
+
+<page id="cast_spell_1">
+<type>duel</type>
+<onwin>cast_spell_1_ok</onwin>
+<onlose>cast_spell_1_try_again</onlose>
+</page>
+
+<page id="cast_spell_1_try_again">
+<type>dialog</type>
+<text align="center">HMMM...</text>
+<text y="15">It seems you didn't get that right</text>
+<text y="30">Simply navigate (with the D-Pad) to the lands that appear on your screen,</text>
+<text y="45">then click on the action button (CIRCLE by default) on each of them to produce 2 white mana.</text>
+<text y="60">Once this is done, navigate to the White Knight in your hand and click (CIRCLE by default) on it.</text>
+<text y="75">Depending on your configuration, you might need to display your hand (RTRIGGER by default)</text>
+<answer goto="cast_spell_1">Let's try again!</answer>
+</page>
+
+<page id="cast_spell_1_ok">
+<type>dialog</type>
+<text align="center">PERFECT...BUT THERE'S MORE TO IT</text>
+<text y="15">You did great, young adventurer!</text>
+<text y="30">But you will see that some spells have slighlty different costs.</text>
+<text y="45">Sometimes the cost contains a number with no mana color. It means you can</text>
+<text y="60">pay with mana of whatever color you want.</text>
+<text y="75">for example a card which cost has a number "1" and a green icon</text>
+<text y="90">needs you to pay 1 green mana +  a mana of any color if you want to play it.</text>
+<answer goto="cast_spell_2">Try to put a grizzly bear card in play.</answer>
+</page>
+
+<page id="cast_spell_2">
+<type>duel</type>
+<onwin>cast_spell_2_ok</onwin>
+<onlose>cast_spell_2_try_again</onlose>
+</page>
+
+<page id="cast_spell_2_try_again">
+<type>dialog</type>
+<text align="center">HMMM...</text>
+<text y="15">It seems you didn't get that right</text>
+<text y="30">Simply navigate (with the D-Pad) to the lands that appear on your screen,</text>
+<text y="45">then click on the action button (CIRCLE by default) on some of them to produce some mana.</text>
+<text y="60">Remember, you need 1 green mana and one other mana of any color.</text>
+<text y="75">Once this is done, navigate to the Grizzly Bears in your hand and click (CIRCLE by default) on it.</text>
+<answer goto="cast_spell_2">Let's try again!</answer>
+</page>
+
+<page id="cast_spell_2_ok">
+<type>dialog</type>
+<text align="center">GREAT. NOW LET'S TALK ABOUT PHASES</text>
+<text y="15">Once you put them into play, you will want your creatures to attack your opponent.</text>
+<text y="30">After all, they are here to help you defeat other sorcerers!</text>
+<text y="45">Your creatures can't attack anytime they want, however,</text>
+<text y="60">they must wait for the combat phase of your turn.</text>
+<text y="75">Your turn is divided into several phases. You can go through the phases by</text>
+<text y="90">clicking on LTRIGGER by default. The name of the current phase is displayed on the</text>
+<text y="105">top right corner of the screen.</text>
+
+<answer goto="attack">Go to the "Attackers" phase, then click on your White Knight to attack.</answer>
+</page>
+
+<page id="attack">
+<type>duel</type>
+<onwin>attack_ok</onwin>
+<onlose>attack_try_again</onlose>
+</page>
+
+<page id="attack_try_again">
+<type>dialog</type>
+<text align="center">HMMM...</text>
+<text y="15">It seems you didn't get that right</text>
+<text y="30">Go to the "Attackers" phase by clicking on LTRIGGER several times,</text>
+<text y="45">then click on your White Knight (with CIRCLE by default) to attack your opponent.</text>
+<answer goto="attack">Let's try again!</answer>
+</page>
+
+<page id="attack_ok">
+<type>dialog</type>
+<text align="center">GOOD!</text>
+<text y="15">Let me tell you a bit more about phases.</text>
+<text y="30">Your turn is divided into several phases. The actions you can perform</text>
+<text y="45">Depend on the phase you're in. For now, let's say that you can:</text>
+<text y="60">- Play creatures during the "main phase 1" and the "main phase 2" phases of your turn.</text>
+<text y="75">- Attack with your creatures during the "Attackers" phase of your turn.</text>
+<text y="90">- Block your opponent's attacking creatures during the "blockers" phase of his turn.</text>
+<text y="120">There are lots of other phases but we'll discuss them later</text>
+
+<answer goto="End">Continue</answer>
+</page>
+
+<page id="End">
+<type>End</type>
+<text align="center">CONGRATULATIONS!</text>
+<text y="15">This is the end of this tutorial,</text>
+<text y="30">now time for you to fight some real ennemies!</text>
+<text y="60">Click on the action button to go back to the main menu</text>
+</page>

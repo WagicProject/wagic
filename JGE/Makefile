@@ -5,6 +5,7 @@ endif
 
 GENERIC_OBJS = src/JApp.o src/JGBKFont.o \
 	src/JGE.o src/JGui.o src/JLBFont.o \
+    src/JLogger.o \
 	src/JGameObject.o src/JSpline.o src/JAnimator.o \
 	src/JResourceManager.o src/JFileSystem.o \
 	src/JNetwork.o \

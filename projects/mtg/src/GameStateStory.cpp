@@ -71,11 +71,13 @@ void GameStateStory::Update(float dt) {
     //return;
   }
   if (flow){
-    flow->Update(dt);
     if (flow->currentPageId == "End") {
       if (mEngine->GetButtonClick(JGE_BTN_OK) || mEngine->GetButtonClick(JGE_BTN_SEC)){
         mParent->DoTransition(TRANSITION_FADE,GAME_STATE_MENU);
       }
+    }
+    else {
+      flow->Update(dt);
     }
   }
 }

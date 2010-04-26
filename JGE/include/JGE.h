@@ -23,7 +23,6 @@
 
 #define DEBUG_PRINT
 
-//#define _MP3_ENABLED_
 
 #if defined(WIN32)
 #include <windows.h>
@@ -62,9 +61,6 @@ bool JGEToggleFullscreen();
 
 #endif
 
-//#include "JGEInit.h"
-
-//#include "JTypes.h"
 
 #include "Vector2D.h"
 

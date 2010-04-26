@@ -1,0 +1,7 @@
+[INIT]
+mode=mtg
+[PLAYER1]
+inplay:plains,plains
+hand:white knight
+auto=@movedTo(creature|myinplay):wingame controller
+auto=@next combatbegins:wingame opponent

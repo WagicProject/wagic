@@ -1,0 +1,7 @@
+[INIT]
+mode=mtg
+[PLAYER1]
+inplay:white knight
+auto=@tapped(creature):wingame controller
+auto=lord(*) haste
+auto=@next secondmain:wingame opponent

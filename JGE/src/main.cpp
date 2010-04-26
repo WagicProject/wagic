@@ -20,6 +20,7 @@
 #include "../../JGE/include/JApp.h"
 #include "../../JGE/include/JGameLauncher.h"
 #include "../../JGE/include/JRenderer.h"
+#include "../../JGE/include/JLogger.h"
 
 
 #ifndef JGEApp_Title
@@ -360,8 +361,10 @@ void Run()
 // The main loop
 int main()
 {
+  JLOG("SetupCallbacks()");
   SetupCallbacks();
 #ifdef DEVHOOK
+  JLOG("initExceptionHandler()");
   initExceptionHandler();
 #endif
   g_engine = NULL;
@@ -372,12 +375,16 @@ int main()
   if ((flags&JINIT_FLAG_ENABLE3D) != 0)
     JRenderer::Set3DFlag(true);
 
+  JLOG("sceRtcGetTickResolution()");
   gTickFrequency = sceRtcGetTickResolution();
+  JLOG("JGE::GetInstance()");
   g_engine = JGE::GetInstance();
 
+  JLOG("Create Game");
   game = launcher->GetGameApp();
   game->Create();
 
+  JLOG("Run Game");
   g_engine->SetApp(game);
   g_engine->Run();
 

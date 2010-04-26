@@ -17,8 +17,7 @@
 #include "../include/GameStateOptions.h"
 #include "../include/GameStateShop.h"
 #include "../include/GameStateAwards.h"
-//Story mode not yet ready
-//#include "../include/GameStateStory.h"
+#include "../include/GameStateStory.h"
 #include "../include/DeckStats.h"
 #include "../include/DeckMetaData.h"
 #include "../include/Translate.h"
@@ -89,8 +88,10 @@ void GameApp::Create()
   options.theGame = this;
 
   //Ensure that options are partially loaded before loading files.
+  LOG("options.reloadProfile()");
   options.reloadProfile();
 
+  LOG("Checking for music files");
   //Test for Music files presence
   string filepath = RESPATH;
   filepath = filepath + "/" + resources.musicFile("Track0.mp3");
@@ -108,7 +109,10 @@ void GameApp::Create()
   else
     HasMusic = 0;
 
+  LOG("Loading Textures");
+  LOG("--Loading menuicons.png");
   resources.RetrieveTexture("menuicons.png",RETRIEVE_MANAGE);
+
   //Creating thes quad in this specific order allows us to have them in the correct order to call them by integer id
   manaIcons[Constants::MTG_COLOR_GREEN] = resources.RetrieveQuad("menuicons.png", 2 + 0*36, 38, 32, 32, "c_green",RETRIEVE_MANAGE);
   manaIcons[Constants::MTG_COLOR_BLUE] = resources.RetrieveQuad("menuicons.png", 2 + 1*36, 38, 32, 32, "c_blue",RETRIEVE_MANAGE);
@@ -121,6 +125,7 @@ void GameApp::Create()
 
   for (int i = sizeof(manaIcons)/sizeof(manaIcons[0]) - 1; i >= 0; --i) manaIcons[i]->SetHotSpot(16,16);
 
+  LOG("--Loading Other Textures");
   resources.RetrieveTexture("back.jpg",RETRIEVE_MANAGE);
   JQuad * jq = resources.RetrieveQuad("back.jpg", 0, 0, 0, 0, "back",RETRIEVE_MANAGE);
   if (jq) jq->SetHotSpot(jq->mWidth/2, jq->mHeight/2);
@@ -158,9 +163,11 @@ void GameApp::Create()
   jq = resources.RetrieveQuad("shadow.png", 0, 0, 16, 16,"shadow",RETRIEVE_MANAGE);
   jq->SetHotSpot(8, 8);
   jq = resources.RetrieveQuad("phasebar.png",0,0,0,0,"phasebar",RETRIEVE_MANAGE);
-  
+
+  LOG("Init Collection");
   collection = NEW MTGAllCards();
 
+  LOG("Loading Particles");
   Particles[0] = NEW hgeParticleSystem("graphics/particle1.psi", resources.GetQuad("particles"));
   Particles[1] = NEW hgeParticleSystem("graphics/particle2.psi", resources.GetQuad("particles"));
   Particles[2] = NEW hgeParticleSystem("graphics/particle3.psi", resources.GetQuad("particles"));
@@ -168,6 +175,7 @@ void GameApp::Create()
   Particles[4] = NEW hgeParticleSystem("graphics/particle5.psi", resources.GetQuad("particles"));
   Particles[5] = NEW hgeParticleSystem("graphics/particle7.psi", resources.GetQuad("particles"));
 
+  LOG("Creating Game States");
   mGameStates[GAME_STATE_DECK_VIEWER] = NEW GameStateDeckViewer(this);
   mGameStates[GAME_STATE_DECK_VIEWER]->Create();
 
@@ -186,10 +194,8 @@ void GameApp::Create()
   mGameStates[GAME_STATE_AWARDS] = NEW GameStateAwards(this);
   mGameStates[GAME_STATE_AWARDS]->Create();
 
-  //Story mode not yet ready
-  //mGameStates[GAME_STATE_STORY] = NEW GameStateStory(this);
-  //mGameStates[GAME_STATE_STORY]->Create();
-
+  mGameStates[GAME_STATE_STORY] = NEW GameStateStory(this);
+  mGameStates[GAME_STATE_STORY]->Create();
 
   mGameStates[GAME_STATE_TRANSITION] = NULL;
 
@@ -206,6 +212,7 @@ void GameApp::Create()
 
   sprintf(buf, "size of CardPrimitive : %llu\n" , (long long unsigned int)sizeof(CardPrimitive));
   OutputDebugString(buf);
+  LOG("Game Creation Done.");
 }
 
 

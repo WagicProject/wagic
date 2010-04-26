@@ -534,6 +534,11 @@ string WResourceManager::graphicsFile(const string filename){
       if(fileOK(buf,true))
         return buf;
 
+     //Failure. Check raw faile.       
+     sprintf(buf,"%s",filename.c_str());
+      if(fileOK(buf,true))
+        return buf;
+
      //Complete abject failure. Probably a crash...
      return graphdir;
 }

@@ -8,8 +8,63 @@
 #include <JGE.h>
 #include <JFileSystem.h>
 
+
+StoryGraphicalElement::StoryGraphicalElement(float x, float y): JGuiObject(0), mX(x),mY(y) {
+}
+
+StoryText::StoryText(string text, float _mX, float _mY, string _align):StoryGraphicalElement(_mX,_mY), text(text) {
+  align = JGETEXT_LEFT;
+  if (_align.compare("center") == 0) {
+    align = JGETEXT_CENTER;
+  }else if (_align.compare("right") == 0) {
+    align = JGETEXT_RIGHT;
+  }
+  if (align == JGETEXT_CENTER && mX == 0){
+    mX = SCREEN_WIDTH/2;
+  }
+}
+void StoryText::Render() {
+  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
+  mFont->SetColor(ARGB(200,255,255,255));
+  mFont->SetScale(1.0);
+  mFont->DrawString(text.c_str(), mX, mY, align);
+}
+  void StoryText::Update(float dt){
+    //Nothing for now
+  }
+
+  ostream& StoryText::toString(ostream& out) const
+{
+  return out << "StoryText ::: text : " << text;
+}
+
+  StoryImage::StoryImage(string img, float mX, float mY):StoryGraphicalElement(mX,mY), img(img) {
+
+}
+void StoryImage::Render() {
+  JQuad * quad = resources.RetrieveQuad(img);
+  if (quad) {
+    float x = mX;
+    if (mX == -1) {
+      x = SCREEN_WIDTH/2;
+      quad->SetHotSpot(quad->mWidth/2, 0);
+    }
+    JRenderer::GetInstance()->RenderQuad(quad,x, mY);
+  }
+}
+  void StoryImage::Update(float dt){
+    //Nothing for now
+  }
+
+  ostream& StoryImage::toString(ostream& out) const
+{
+  return out << "StoryImage ::: img : " << img;
+}
+
 StoryPage::StoryPage(StoryFlow * mParent):mParent(mParent){
 }
+
+
 
 StoryFlow::StoryFlow(string folder): folder(folder){
   string path = "campaigns/";
@@ -155,15 +210,43 @@ void StoryDuel::Render(){
   game->Render();
 }
 
+string StoryDialog::safeAttribute(TiXmlElement* element, string attribute) {
+  string s;
+  if (element->Attribute(attribute.c_str())){
+    s = element->Attribute(attribute.c_str());
+  }
+  return s;
+}
 
-StoryDialog::StoryDialog(TiXmlElement* root, StoryFlow * mParent):JGuiListener(), JGuiController(1,NULL), StoryPage(mParent) {
+
+StoryDialog::StoryDialog(TiXmlElement* root, StoryFlow * mParent):StoryPage(mParent), JGuiListener(), JGuiController(1,NULL) {
 
   for (TiXmlNode* node = root->FirstChild(); node; node = node->NextSibling()) {
 		  TiXmlElement* element = node->ToElement();
 		  if (element) {
 			  if (strcmp(element->Value(), "text")==0) {
-            const char* textC = element->GetText();
-            text = textC;
+          string sX = safeAttribute(element, "x");
+          float x = atof(sX.c_str());
+          string sY = safeAttribute(element,"y");
+          float y = atof(sY.c_str());
+          string align = safeAttribute(element,"align");
+          const char* textC = element->GetText();
+          string text = textC;
+          graphics.push_back(NEW StoryText(text,x,y,align));
+			  }
+        else if (strcmp(element->Value(), "img")==0) {
+          string sX = safeAttribute(element,"x");
+          float x = atof(sX.c_str());
+          //special case to force center
+          if (sX.compare("") == 0 ){
+            x = -1;
+          }
+          string sY = safeAttribute(element,"y");
+          float y = atof(sY.c_str());
+          const char* imgC = element->GetText();
+          string img = imgC;
+          img = string("campaigns/").append(mParent->folder).append("/").append(img);
+          graphics.push_back(NEW StoryImage(img,x,y));
 			  }
         else if (strcmp(element->Value(), "answer")==0){
           string id = element->Attribute("goto");
@@ -183,19 +266,27 @@ StoryDialog::StoryDialog(TiXmlElement* root, StoryFlow * mParent):JGuiListener()
 
 void StoryDialog::Update(float dt){
   JGuiController::Update(dt);
+  for (size_t i = 0; i < graphics.size(); ++i){
+    graphics[i]->Update(dt);
+  }
 }
 
 
 void StoryDialog::Render() {
-  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
-  mFont->SetColor(ARGB(255,255,255,255));
-  mFont->SetScale(1.0);
-  mFont->DrawString(text.c_str(), 0, 0);
+  for (size_t i = 0; i < graphics.size(); ++i){
+    graphics[i]->Render();
+  }
    JGuiController::Render();
 }
 
 void StoryDialog::ButtonPressed(int controllerid,int controlid)  {
   mParent->gotoPage(((StoryChoice *)mObjects[controlid])->pageId);
+}
+
+StoryDialog::~StoryDialog(){
+    for (size_t i = 0; i < graphics.size(); ++i){
+    delete(graphics[i]);
+  }
 }
 
 StoryPage * StoryFlow::loadPage(TiXmlElement* element){

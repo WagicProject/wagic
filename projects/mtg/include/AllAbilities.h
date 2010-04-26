@@ -400,7 +400,9 @@ class GenericActivatedAbility:public ActivatedAbility, public NestedAbility{
 
   int resolve(){
     counters++;
-    source->X = abilityCost->Diff(cost)->hasX();
+    ManaCost * diff = abilityCost->Diff(cost);
+    source->X = diff->hasX();
+    SAFE_DELETE(diff);
     SAFE_DELETE(abilityCost);
     ability->target = target; //may have been updated...
     if (ability) return ability->resolve();
@@ -626,6 +628,35 @@ class AALifer:public ActivatedAbilityTP{
 
   ~AALifer(){
     SAFE_DELETE(life);
+  }
+
+};
+
+/*Player Wins Game*/
+class AAWinGame:public ActivatedAbilityTP{
+ public:
+  AAWinGame(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost = NULL, int _tap = 0, int who = TargetChooser::UNSET):ActivatedAbilityTP(_id, card,_target,_cost,_tap,who){
+  }
+
+  int resolve(){
+    Damageable * _target = (Damageable *) getTarget();
+    if (_target){
+      if (_target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE){
+        _target = ((MTGCardInstance *)_target)->controller();
+      }
+      game->gameOver = ((Player *)_target)->opponent();
+    }
+    return 1;
+  }
+
+  const char * getMenuText(){
+    return "Win Game";
+  }
+
+  AAWinGame * clone() const{
+    AAWinGame * a =  NEW AAWinGame(*this);
+    a->isClone = 1;
+    return a;
   }
 
 };
@@ -1968,10 +1999,10 @@ class AThisForEach:public MTGAbility, public NestedAbility{
     int matches;
     matches = td->match(source);
     if (matches > 0) {
-      if (abilities.size() > matches){     
+      if ((int)(abilities.size()) > matches){     
         removeAbilityFromGame();
       }
-      for (int i = 0; i < matches - abilities.size(); i++) {
+      for (int i = 0; i < matches - (int)(abilities.size()); i++) {
         addAbilityToGame();
       }
     }
@@ -2988,53 +3019,6 @@ class ALivingArtifact:public MTGAbility{
   }
 };
 
-//Lord of the Pit
-class ALordOfThePit: public TargetAbility{
- public:
-  int paidThisTurn;
- ALordOfThePit(int _id, MTGCardInstance * source):TargetAbility(_id, source, NEW CreatureTargetChooser(),0,1,0){
-    paidThisTurn = 1;
-  }
-
-  void Update(float dt){
-    if (newPhase != currentPhase && source->controller() == game->currentPlayer){
-      if (newPhase == Constants::MTG_PHASE_UNTAP){
-	paidThisTurn = 0;
-      }else if( newPhase == Constants::MTG_PHASE_UPKEEP + 1 && !paidThisTurn){
-	game->mLayers->stackLayer()->addDamage(source,source->controller(), 7);
-      }
-    }
-    TargetAbility::Update(dt);
-  }
-
-  int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL){
-    if (currentPhase != Constants::MTG_PHASE_UPKEEP || paidThisTurn) return 0;
-    return TargetAbility::isReactingToClick(card,mana);
-  }
-
-  int resolve(){
-    MTGCardInstance * card = tc->getNextCardTarget();
-    if (card && card != source && card->controller() == source->controller()){
-      card->controller()->game->putInGraveyard(card);
-      paidThisTurn = 1;
-      return 1;
-    }
-    return 0;
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "ALordOfThePit ::: paidThisTurn : " << paidThisTurn
-	<< " (";
-    return TargetAbility::toString(out) << ")";
-  }
-  ALordOfThePit * clone() const{
-    ALordOfThePit * a =  NEW ALordOfThePit(*this);
-    a->isClone = 1;
-    return a;
-  }
-};
-
 //1143 Animate Dead
 class AAnimateDead:public MTGAbility{
  public:
@@ -3572,48 +3556,6 @@ class AFireball:public InstantAbility{
   }
   AFireball * clone() const{
     AFireball * a =  NEW AFireball(*this);
-    a->isClone = 1;
-    return a;
-  }
-};
-
-//1245 ForceOfNature
-class AForceOfNature:public ActivatedAbility{
- public:
-  int dealDamageThisTurn;
- AForceOfNature(int _id, MTGCardInstance * card):ActivatedAbility(_id,card, NEW ManaCost(),1,0){
-    dealDamageThisTurn = 0;
-    cost->add(Constants::MTG_COLOR_GREEN,4);
-  }
-
-  void Update(float dt){
-    if (newPhase !=currentPhase){
-      if (newPhase == Constants::MTG_PHASE_UNTAP){
-	dealDamageThisTurn = 1;
-      }else if (newPhase == Constants::MTG_PHASE_DRAW && dealDamageThisTurn && game->currentPlayer==source->controller() ){
-	game->mLayers->stackLayer()->addDamage(source,source->controller(),8);
-      }
-    }
-    ActivatedAbility::Update(dt);
-  }
-
-  int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL){
-    return (dealDamageThisTurn && currentPhase == Constants::MTG_PHASE_UPKEEP && ActivatedAbility::isReactingToClick(card,mana));
-  }
-
-  int resolve(){
-    dealDamageThisTurn = 0;
-    return 1;
-  }
-
-  virtual ostream& toString(ostream& out) const
-  {
-    out << "AForceOfNature ::: dealDamageThisTurn : " << dealDamageThisTurn
-	<< " (";
-    return ActivatedAbility::toString(out) << ")";
-  }
-  AForceOfNature * clone() const{
-    AForceOfNature * a =  NEW AForceOfNature(*this);
     a->isClone = 1;
     return a;
   }

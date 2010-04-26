@@ -16,6 +16,7 @@ class ThisDescriptor{
    int comparisonCriterion;
    virtual int match(MTGCardInstance * card) = 0;
    int matchValue(int value);  
+   virtual ~ThisDescriptor();
 };
 
 class ThisDescriptorFactory{

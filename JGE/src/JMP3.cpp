@@ -8,14 +8,17 @@
 #include "../include/JAudio.h"
 #include "../include/JFileSystem.h"
 #include "../include/JMP3.h"
-
+#include "../include/JLogger.h"
 
 JMP3* JMP3::mInstance = NULL;
+bool JMP3::init_done = false;
 
 
 
 void JMP3::init() {
-   loadModules();
+  if (!init_done) {
+    init_done = loadModules();
+  }
 }
 
 JMP3::JMP3() :
@@ -27,6 +30,7 @@ JMP3::~JMP3() {
 }
 
 bool JMP3::loadModules() {
+    JLOG("loading Audio modules");
    int loadAvCodec = sceUtilityLoadModule(PSP_MODULE_AV_AVCODEC);
    if (loadAvCodec < 0) {
       return false;
@@ -36,11 +40,16 @@ bool JMP3::loadModules() {
    if (loadMp3 < 0) {
       return false;
    }
-
+   JLOG("Audio modules loaded");
    return true;
 }
 
 bool JMP3::fillBuffers() {
+   JLOG("Start JMP3::fillBuffers");
+   if (!init_done) {
+      JLOG("JMP3::fillBuffers called but init_done is false!");
+      return false;
+   }
    SceUChar8* dest;
    SceInt32 length;
    SceInt32 pos;
@@ -72,6 +81,7 @@ bool JMP3::fillBuffers() {
    if (ret < 0)
       return false;
 
+     JLOG("End JMP3::fillBuffers");
    return true;
 }
 int JMP3::GetID3TagSize(char *fname) 
@@ -105,6 +115,11 @@ int JMP3::GetID3TagSize(char *fname)
 }
 
 bool JMP3::load(const std::string& filename, int inBufferSize, int outBufferSize) {
+JLOG("Start JMP3::load");
+   if (!init_done) {
+      JLOG("JMP3::load called but init_done is false!");
+      return false;
+   }
       m_inBufferSize = inBufferSize;
       //m_inBuffer = new char[m_inBufferSize];
       //if (!m_inBuffer)
@@ -166,10 +181,16 @@ bool JMP3::load(const std::string& filename, int inBufferSize, int outBufferSize
       m_numChannels = sceMp3GetMp3ChannelNum(m_mp3Handle);
       m_samplingRate = sceMp3GetSamplingRate(m_mp3Handle);
 
+JLOG("End JMP3::load");      
    return true;
 }
 
 bool JMP3::unload() {
+JLOG("Start JMP3::unload");
+   if (!init_done) {
+      JLOG("JMP3::unload called but init_done is false!");
+      return false;
+   }
    if (m_channel >= 0)
       sceAudioSRCChRelease();
 
@@ -182,11 +203,14 @@ bool JMP3::unload() {
    //delete[] m_inBuffer;
 
    //delete[] m_outBuffer;
-
+JLOG("End JMP3::unload");
    return true;
 }
 
 bool JMP3::update() {
+   if (!init_done) {
+      return false;
+   }
 	int retry = 8;//FIXME:magic number
 	JMP3_update_start:
 
@@ -238,7 +262,6 @@ bool JMP3::update() {
 
       }
    }
-
    return true;
 }
 
@@ -251,8 +274,14 @@ bool JMP3::pause() {
 }
 
 bool JMP3::setLoop(bool loop) {
+JLOG("Start JMP3::setLoop");
+   if (!init_done) {
+      JLOG("JMP3::setLoop called but init_done is false!");
+      return false;
+   }
    sceMp3SetLoopNum(m_mp3Handle, (loop == true) ? -1 : 0);
    return (m_loop = loop);
+JLOG("End JMP3::setLoop");   
 }
 
 int JMP3::setVolume(int volume) {

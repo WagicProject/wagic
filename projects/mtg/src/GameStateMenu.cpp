@@ -130,6 +130,7 @@ void GameStateMenu::Destroy()
 }
 
 void GameStateMenu::Start(){
+  LOG("GameStateMenu::Start");
   JRenderer::GetInstance()->EnableVSync(true);
   subMenuController = NULL;
   SAFE_DELETE(mGuiController);
@@ -293,6 +294,7 @@ void GameStateMenu::setLang(int id){
 }
 
 void GameStateMenu::loadLangMenu(){
+  LOG("GameStateMenu::loadLangMenu");
   subMenuController = NEW SimpleMenu(103, this, Constants::MENU_FONT, 150,60);
   if (!subMenuController) return;
   resetDirectory();
@@ -320,9 +322,11 @@ void GameStateMenu::loadLangMenu(){
     }
   }
   resetDirectory();
+  LOG("GameStateMenu::loadLangMenu - Done");
 }
 
 void GameStateMenu::listPrimitives(){
+  LOG("GameStateMenu::listPrimitives");
   resetDirectory();
   if (!mDip){
     mDip = opendir("Res/sets/primitives/");
@@ -338,6 +342,7 @@ void GameStateMenu::listPrimitives(){
   }
   resetDirectory();
   primitivesLoadCounter = 0;
+  LOG("GameStateMenu::listPrimitives - Done");
 }
 
 void GameStateMenu::ensureMGuiController(){
@@ -446,8 +451,7 @@ void GameStateMenu::Update(float dt)
 	        currentState = MENU_STATE_MAJOR_SUBMENU;
 	        subMenuController = NEW SimpleMenu(102, this, Constants::MENU_FONT, 150,60);
 	        if (subMenuController){
-            //Story mode not yet ready
-            //subMenuController->Add(SUBMENUITEM_STORY,"Story");
+            subMenuController->Add(SUBMENUITEM_STORY,"Story");
 	          subMenuController->Add(SUBMENUITEM_CLASSIC,"Classic");
 	          if (options[Options::MOMIR_MODE_UNLOCKED].number)
 		          subMenuController->Add(SUBMENUITEM_MOMIR, "Momir Basic");
@@ -458,8 +462,8 @@ void GameStateMenu::Update(float dt)
 	          subMenuController->Add(SUBMENUITEM_CANCEL, "Cancel");
 	        }
         }else{
-          if (mParent->gameType == GAME_TYPE_STORY)
-            mParent->DoTransition(TRANSITION_FADE,GAME_STATE_STORY);
+          if (mParent->gameType == GAME_TYPE_STORY )
+            mParent->DoTransition(TRANSITION_FADE, GAME_STATE_STORY);
           else
             mParent->DoTransition(TRANSITION_FADE,GAME_STATE_DUEL);
 	        currentState = MENU_STATE_MAJOR_MAINMENU;

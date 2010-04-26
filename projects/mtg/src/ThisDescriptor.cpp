@@ -5,6 +5,10 @@
 #include "../include/CardDescriptor.h"
 
 
+ThisDescriptor::~ThisDescriptor(){
+  //nothing to do for now
+}
+
 //Returns the amount by which a value passes the comparison.
 int ThisDescriptor::matchValue(int value){
   switch (comparisonMode){
@@ -98,8 +102,8 @@ ThisDescriptor * ThisDescriptorFactory::createThisDescriptor(string s){
     size_t start = s.find("{");
     size_t end = s.find("}");
     string counterString = s.substr(start+1,end-start-1);
-    AbilityFactory * abf = NEW AbilityFactory();
-    Counter * counter = abf->parseCounter(counterString,NULL);
+    AbilityFactory abf;
+    Counter * counter = abf.parseCounter(counterString,NULL);
     if (counter) {
       if (criterionFound) counter->nb = criterion;
       ThisCounter * td = NEW ThisCounter(counter);

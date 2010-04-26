@@ -215,13 +215,14 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
             size_t start = attribute.find("{");
             size_t end = attribute.find("}");
             string counterString = attribute.substr(start+1,end-start-1);
-            AbilityFactory * abf = NEW AbilityFactory();
-            Counter * counter = abf->parseCounter(counterString,card);
+            AbilityFactory abf;
+            Counter * counter = abf.parseCounter(counterString,card);
             if (counter) {
               cd->counterName = counter->name;
               cd->counterNB = counter->nb;
               cd->counterPower = counter->power;
               cd->counterToughness = counter->toughness;
+              delete(counter);
             }
             if (minus) {
               cd->counterComparisonMode = COMPARISON_LESS;

@@ -10,12 +10,39 @@ using namespace std;
 class GameObserver;
 #define CAMPAIGNS_FOLDER "Res/campaigns/"
 
+
+class StoryGraphicalElement:public JGuiObject {
+public:
+  float mX;
+  float mY;
+ StoryGraphicalElement(float x, float y);
+};
+
+class StoryText:public StoryGraphicalElement {
+public : 
+  string text;
+  int align;
+StoryText(string text, float mX, float mY, string align = "center");
+  void Render();
+  void Update(float dt);
+  virtual ostream& toString(ostream& out) const;
+};
+class StoryImage:public StoryGraphicalElement {
+public :
+  string img;
+StoryImage(string img, float mX, float mY);
+  void Render();
+  void Update(float dt);
+  virtual ostream& toString(ostream& out) const;
+};
+
 class StoryChoice:public JGuiObject {
 public:
   string pageId;
   string text;
-  int mX;
-  int mY;
+  float mX;
+  float mY;
+
   bool mHasFocus;
   float mScale;
   float mTargetScale;
@@ -42,10 +69,12 @@ public:
 
 class StoryDialog:public StoryPage, public JGuiListener,public JGuiController {
 private:
-  string text;
+  vector<StoryGraphicalElement *>graphics;
+  string safeAttribute(TiXmlElement* element, string attribute);
 
 public:
   StoryDialog(TiXmlElement* el,StoryFlow * mParent);
+  ~StoryDialog();
   void Update(float dt);
   void Render();
   void ButtonPressed(int,int);

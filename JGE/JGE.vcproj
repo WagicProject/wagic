@@ -543,6 +543,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\src\JLogger.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\JMD2Model.cpp"
 				>
 			</File>
@@ -755,6 +759,10 @@
 			</File>
 			<File
 				RelativePath="include\JLBFont.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\JLogger.h"
 				>
 			</File>
 			<File

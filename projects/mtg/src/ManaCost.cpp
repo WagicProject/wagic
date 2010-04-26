@@ -70,9 +70,9 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
     OutputDebugString("Counter\n");
     size_t counter_start = value.find("(");
     size_t counter_end = value.find(")", counter_start);
-    AbilityFactory * abf = NEW AbilityFactory();
+    AbilityFactory abf;
     string counterString = value.substr(counter_start+1,counter_end-counter_start-1);
-    Counter * counter = abf->parseCounter(counterString,c);
+    Counter * counter = abf.parseCounter(counterString,c);
     size_t separator = value.find(",",counter_start);
     size_t separator2 = string::npos;
     if (separator != string::npos) {
