@@ -69,6 +69,26 @@ mana={3}{R}
 type=Enchantment
 [/card]
 [card]
+name=AEther Vial
+auto=@each my upkeep:may counter(0/0.1.Charge)
+auto=this(counter{0/0,1,Charge}<1) {T}:moveTo(myBattlefield) target(creature[manacost=0]|myhand)
+auto=this(counter{0/0,1,Charge}=) {T}:moveTo(myBattlefield) target(creature[manacost=1]|myhand)
+auto=this(counter{0/0,2,Charge}=) {T}:moveTo(myBattlefield) target(creature[manacost=2]|myhand)
+auto=this(counter{0/0,3,Charge}=) {T}:moveTo(myBattlefield) target(creature[manacost=3]|myhand)
+auto=this(counter{0/0,4,Charge}=) {T}:moveTo(myBattlefield) target(creature[manacost=4]|myhand)
+auto=this(counter{0/0,5,Charge}=) {T}:moveTo(myBattlefield) target(creature[manacost=5]|myhand)
+auto=this(counter{0/0,6,Charge}=) {T}:moveTo(myBattlefield) target(creature[manacost=6]|myhand)
+auto=this(counter{0/0,7,Charge}=) {T}:moveTo(myBattlefield) target(creature[manacost=7]|myhand)
+auto=this(counter{0/0,8,Charge}=) {T}:moveTo(myBattlefield) target(creature[manacost=8]|myhand)
+auto=this(counter{0/0,9,Charge}=) {T}:moveTo(myBattlefield) target(creature[manacost=9]|myhand)
+auto=this(counter{0/0,10,Charge}=) {T}:moveTo(myBattlefield) target(creature[manacost=10]|myhand)
+auto=this(counter{0/0,11,Charge}=) {T}:moveTo(myBattlefield) target(creature[manacost=11]|myhand)
+auto=this(counter{0/0,12,Charge}=) {T}:moveTo(myBattlefield) target(creature[manacost=12]|myhand)
+text=At the beginning of your upkeep, you may put a charge counter on AEther Vial. -- {T}: You may put a creature card with converted mana cost equal to the number of charge counters on AEther Vial from your hand onto the battlefield.
+mana={1}
+type=Artifact
+[/card]
+[card]
 name=AEther Web
 abilities=flash
 target=creature
@@ -403,6 +423,17 @@ text=Flying -- {1}{G}{U}: Creatures you control gain shroud until end of turn.
 mana={4}{W}
 type=Creature
 subtype=Bird Wizard
+power=3
+toughness=3
+[/card]
+[card]
+name=Aerie Ouphes
+abilities=persist
+auto={S}:thisforeach(power>=1) damage:1 target(creature[flying])
+text=Sacrifice Aerie Ouphes: Aerie Ouphes deals damage equal to its power to target creature with flying. -- Persist (When this creature is put into a graveyard from the battlefield, if it had no -1/-1 counters on it, return it to the battlefield under its owner's control with a -1/-1 counter on it.)
+mana={4}{G}
+type=Creature
+subtype=Ouphe
 power=3
 toughness=3
 [/card]
@@ -3469,6 +3500,13 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Battle of Wits
+auto=@each my upkeep:aslongas(*|mylibrary) winGame >199
+text=At the beginning of your upkeep, if you have 200 or more cards in your library, you win the game.
+mana={3}{U}{U}
+type=Enchantment
+[/card]
+[card]
 name=Battle Rampart
 abilities=defender
 auto={T}:haste target(creature)
@@ -3540,17 +3578,6 @@ type=Creature
 subtype=Bird
 power=2
 toughness=2
-[/card]
-[card]
-name=Rafiq of the Many
-abilities=exalted
-auto=@each my combatblockers:aslongas(creature[attacking]|myBattlefield) all(creature[attacking]|myBattlefield) double strike <2
-text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.) -- Whenever a creature you control attacks alone, it gains double strike until end of turn.
-mana={1}{G}{W}{U}
-type=Legendary Creature
-subtype=Human Knight
-power=3
-toughness=3
 [/card]
 [card]
 text=Flying -- Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.) -- Whenever a creature you control attacks alone, it gains lifelink until end of turn.
@@ -3723,7 +3750,7 @@ toughness=2
 [card]
 name=Beastmaster Ascension
 auto=@each my blockers:foreach(creature[attacking]|myBattlefield) counter(0/0,1,Quest)
-auto=(counter{0/0.7.Level Up}) lord(creature|myBattlefield) 5/5
+auto=(counter{0/0.7.Quest}) lord(creature|myBattlefield) 5/5
 text=Whenever a creature you control attacks, you may put a quest counter on Beastmaster Ascension. -- As long as Beastmaster Ascension has seven or more quest counters on it, creatures you control get +5/+5.
 mana={2}{G}
 type=Enchantment
@@ -6414,9 +6441,9 @@ subtype=Aura
 [card]
 name=Caravan Escort
 auto={2}:counter(0/0,1,Level Up) asSorcery 
-auto=this(counter{0/0,1,Level Up}) 1/1
-auto=this(counter{0/0,5,Level Up}) first strike
-auto=this(counter{0/0,5,Level Up}) 3/3
+auto=this(counter{0/0.1.Level Up}) 1/1
+auto=this(counter{0/0.5.Level Up}) first strike
+auto=this(counter{0/0.5.Level Up}) 3/3
 text=Level up {2} -- [Level 1-4] (2/2) -- [Level 5+] First strike (5/5)
 mana={W}
 type=Creature
@@ -6590,6 +6617,14 @@ type=Creature
 subtype=Cat Warrior
 power=2
 toughness=2
+[/card]
+[card]
+name=Catalog
+auto=draw:2
+auto=moveTo(mygraveyard) target(*|myhand)
+text=Draw two cards, then discard a card.
+mana={2}{U}
+type=Instant
 [/card]
 [card]
 name=Catastrophe
@@ -8123,6 +8158,13 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Coalition Victory
+auto=aslongas(plains|myBattlefield)aslongas(island|myBattlefield)aslongas(swamp|myBattlefield)aslongas(mountain|myBattlefield)aslongas(forest|myBattlefield)aslongas(creature[white]|myBattlefield)aslongas(creature[blue]|myBattlefield)aslongas(creature[black]|myBattlefield)aslongas(creature[red]|myBattlefield)aslongas(creature[green]|myBattlefield) winGame
+text=You win the game if you control a land of each basic land type and a creature of each color.
+mana={3}{W}{U}{B}{R}{G}
+type=Sorcery
+[/card]
+[card]
 name=Coast Watcher
 abilities=Flying,protection from green
 text=Flying, protection from green
@@ -9485,7 +9527,7 @@ power=0
 toughness=0
 [/card]
 [card]
-name=Cytoplast Shambler
+name=Cytospawn Shambler
 auto=counter(1/1,6)
 auto=@movedto(creature|battlefield):this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
 auto={G}:trample target(creature[counter{1/1.1}])
@@ -11491,6 +11533,13 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Door to Nothingness
+auto={W}{W}{U}{U}{B}{B}{R}{R}{G}{G}{T}{S}:winGame
+text=Door to Nothingness enters the battlefield tapped. -- {W}{W}{U}{U}{B}{B}{R}{R}{G}{G}, {T}, Sacrifice Door to Nothingness: Target player loses the game.
+mana={5}
+type=Artifact
+[/card]
+[card]
 name=Dormant Sliver
 auto=lord(sliver) defender
 auto=@movedTo(sliver|myBattlefield):draw:1 controller
@@ -12908,7 +12957,7 @@ toughness=5
 [card]
 name=Elvish Archdruid
 auto=lord(elf|myBattlefield) 1/1 other
-auto={T}:foreach(elf|myBattlefield)add:{G}
+auto={T}:foreach(elf|myBattlefield) add{G}
 text=Other Elf creatures you control get +1/+1. -- {T}: Add {G} to your mana pool for each Elf you control.
 mana={1}{G}{G}
 type=Creature
@@ -13541,6 +13590,13 @@ text=Flash -- Enchant creature -- Enchanted creature gets +5/+5 and has trample.
 mana={4}{G}{G}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Epic Struggle
+auto=@each my upkeep:aslongas(creature|myBattlefield) winGame >19
+text=At the beginning of your upkeep, if you control twenty or more creatures, you win the game.
+mana={2}{G}{G}
+type=Enchantment
 [/card]
 [card]
 name=Erase
@@ -21073,9 +21129,9 @@ toughness=3
 [card]
 name=Ikiral Outrider
 auto={4}:counter(0/0,1,Level Up) asSorcery 
-auto=this(counter{0/0,1,Level Up}) vigilance
-auto=this(counter{0/0,1,Level Up}) 1/4
-auto=this(counter{0/0,4,Level Up}) 1/4
+auto=this(counter{0/0.1.Level Up}) vigilance
+auto=this(counter{0/0.1.Level Up}) 1/4
+auto=this(counter{0/0.4.Level Up}) 1/4
 text=Level up {4} -- [Level 1-3] Vigilance (2/6) -- [Level 4+] Vigilance (3/10)
 mana={1}{W}
 type=Creature
@@ -22551,6 +22607,18 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Junk Golem
+auto=counter(1/1,3)
+auto=upcost[{C(1/1,-1}] moveTo(graveyard)
+auto={S(*|myhand)}:counter(1/1)
+text=Junk Golem enters the battlefield with three +1/+1 counters on it. -- At the beginning of your upkeep, sacrifice Junk Golem unless you remove a +1/+1 counter from it. -- {1}, Discard a card: Put a +1/+1 counter on Junk Golem.
+mana={4}
+type=Artifact Creature
+subtype=Golem
+power=0
+toughness=0
+[/card]
+[card]
 name=Juntu Stakes
 auto=lord(creature[power<=1]) doesnotuntap
 text=Creatures with power 1 or less don't untap during their controllers' untap steps.
@@ -22635,10 +22703,10 @@ type=Land
 [card]
 name=Kabira Vindicator
 auto={2}{W}:counter(0/0,1,Level Up) asSorcery 
-auto=this(counter{0/0,2,Level Up}) lord(creature|myBattlefield) 1/1 other
-auto=this(counter{0/0,2,Level Up}) 1/2
-auto=this(counter{0/0,5,Level Up}) lord(creature|myBattlefield) 1/1 other
-auto=this(counter{0/0,5,Level Up}) 1/2
+auto=this(counter{0/0.2.Level Up}) lord(creature|myBattlefield) 1/1 other
+auto=this(counter{0/0.2.Level Up}) 1/2
+auto=this(counter{0/0.5.Level Up}) lord(creature|myBattlefield) 1/1 other
+auto=this(counter{0/0.5.Level Up}) 1/2
 text=Level up {2}{W} -- [Level 2-4] Other creatures you control get +1/+1. (3/6) -- [Level 5+] Other creatures you control get +1/+1. (4/8)
 mana={3}{W}
 type=Creature
@@ -26907,6 +26975,15 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Mayael's Aria
+auto=@each my upkeep:aslongas(creature[power>=20]|myBattlefield) winGame
+auto=@each my upkeep:aslongas(creature[power>=10]|myBattlefield) life:10
+auto=@each my upkeep:aslongas(creature[power>=5]|myBattlefield) counter(1/1) target(creature)
+text=At the beginning of your upkeep, put a +1/+1 counter on each creature you control if you control a creature with power 5 or greater. Then you gain 10 life if you control a creature with power 10 or greater. Then you win the game if you control a creature with power 20 or greater.
+mana={R}{G}{W}
+type=Enchantment
+[/card]
+[card]
 name=Maze of Ith
 auto={T}:untap target(creature[attacking]) && preventAllCombatDamage to(mytgt) ueot && preventAllCombatDamage from(mytgt) ueot
 text={T}: Untap target attacking creature. Prevent all combat damage that would be dealt to and dealt by that creature this turn.
@@ -28356,6 +28433,13 @@ type=Creature
 subtype=Elemental
 power=6
 toughness=4
+[/card]
+[card]
+name=Mortal Combat
+auto=@each my upkeep:aslongas(creature|mygraveyard) winGame >19
+text=At the beginning of your upkeep, if twenty or more creature cards are in your graveyard, you win the game.
+mana={2}{B}{B}
+type=Enchantment
 [/card]
 [card]
 name=Mortal Wound
@@ -33513,6 +33597,17 @@ type=Creature
 subtype=Spirit
 power=3
 toughness=2
+[/card]
+[card]
+name=Rafiq of the Many
+abilities=exalted
+auto=@each my combatblockers:aslongas(creature[attacking]|myBattlefield) all(creature[attacking]|myBattlefield) double strike <2
+text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.) -- Whenever a creature you control attacks alone, it gains double strike until end of turn.
+mana={1}{G}{W}{U}
+type=Legendary Creature
+subtype=Human Knight
+power=3
+toughness=3
 [/card]
 [card]
 name=Rage Nimbus
@@ -39558,7 +39653,7 @@ auto=this(counter{0/0.1.Level Up}) flying
 auto=this(counter{0/0.1.Level Up}) 1/1
 auto=this(counter{0/0.3.Level Up}) 2/0
 text=Level up {3} -- [Level 1-2] : Flying (2/2) -- [Level 3+] : Flying (4/2)
-mana={1}{U}
+mana={U}
 type=Creature
 subtype=LevelUp Merfolk Soldier
 power=1
@@ -44039,6 +44134,17 @@ type=Creature
 subtype=Human Wizard
 power=1
 toughness=1
+[/card]
+[card]
+name=Temporal Distortion
+auto=@tapped(creature,land):all(trigger) counter(0/0,1,Hourglass)
+auto=lord(creature[counter{0/0.1.Hourglass}]) doesnotuntap
+auto=lord(land[counter{0/0.1.Hourglass}]) doesnotuntap
+auto=@each my upkeep:counter(0/0,-1,Hourglass) all(*[counter{0/0.1.Hourglass}]|myBattlefield)
+auto=@each opponent upkeep:counter(0/0,-1,Hourglass) all(*[counter{0/0.1.Hourglass}]|opponentBattlefield)
+text=Whenever a creature or land becomes tapped, put an hourglass counter on it. -- Permanents with hourglass counters on them don't untap during their controllers' untap steps. -- At the beginning of each player's upkeep, remove all hourglass counters from permanents that player controls.
+mana={3}{U}{U}
+type=Enchantment
 [/card]
 [card]
 name=Temporal Eddy
@@ -51578,4 +51684,3 @@ subtype=Human Wizard
 power=1
 toughness=1
 [/card]
-###########

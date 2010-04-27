@@ -57,12 +57,6 @@ mana={2}{U}
 type=Instant
 [/card]
 [card]
-name=AEther Vial
-text=At the beginning of your upkeep, you may put a charge counter on AEther Vial. -- {T}: You may put a creature card with converted mana cost equal to the number of charge counters on AEther Vial from your hand onto the battlefield.
-mana={1}
-type=Artifact
-[/card]
-[card]
 name=AEthermage's Touch
 text=Reveal the top four cards of your library. You may put a creature card from among them onto the battlefield. It has "At the beginning of your end step, return this creature to its owner's hand." Then put the rest of the cards revealed this way on the bottom of your library in any order.
 mana={2}{W}{U}
@@ -364,16 +358,6 @@ mana={4}{U}{U}
 type=Creature
 subtype=Human Soldier
 power=4
-toughness=3
-[/card]
-[card]
-name=Aerie Ouphes
-abilities=persist
-text=Sacrifice Aerie Ouphes: Aerie Ouphes deals damage equal to its power to target creature with flying. -- Persist (When this creature is put into a graveyard from the battlefield, if it had no -1/-1 counters on it, return it to the battlefield under its owner's control with a -1/-1 counter on it.)
-mana={4}{G}
-type=Creature
-subtype=Ouphe
-power=3
 toughness=3
 [/card]
 [card]
@@ -2548,12 +2532,6 @@ name=Battle Screech
 text=Put two 1/1 white Bird creature tokens with flying onto the battlefield. -- Flashback - Tap three untapped white creatures you control. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={2}{W}{W}
 type=Sorcery
-[/card]
-[card]
-name=Battle of Wits
-text=At the beginning of your upkeep, if you have 200 or more cards in your library, you win the game.
-mana={3}{U}{U}
-type=Enchantment
 [/card]
 [card]
 name=Battlefield Medic
@@ -4816,12 +4794,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Catalog
-text=Draw two cards, then discard a card.
-mana={2}{U}
-type=Instant
-[/card]
-[card]
 name=Catalyst Stone
 text=Flashback costs you pay cost up to {2} less. -- Flashback costs your opponents pay cost {2} more.
 mana={2}
@@ -5972,12 +5944,6 @@ mana={3}
 type=Artifact
 [/card]
 [card]
-name=Coalition Victory
-text=You win the game if you control a land of each basic land type and a creature of each color.
-mana={3}{W}{U}{B}{R}{G}
-type=Sorcery
-[/card]
-[card]
 name=Coat of Arms
 text=Each creature gets +1/+1 for each other creature on the battlefield that shares at least one creature type with it. (For example, if two Goblin Warriors and a Goblin Shaman are on the battlefield, each gets +2/+2.)
 mana={5}
@@ -6855,17 +6821,6 @@ power=6
 toughness=6
 [/card]
 [card]
-name=Crovax the Cursed
-auto=counter(1/1,4)
-auto=may
-text=Crovax the Cursed enters the battlefield with four +1/+1 counters on it. -- At the beginning of your upkeep, you may sacrifice a creature. If you do, put a +1/+1 counter on Crovax. If you don't, remove a +1/+1 counter from Crovax. -- {B}: Crovax gains flying until end of turn.
-mana={2}{B}{B}
-type=Legendary Creature
-subtype=Vampire
-power=0
-toughness=0
-[/card]
-[card]
 name=Crown of Ascension
 text=Enchant creature -- Enchanted creature has flying. -- Sacrifice Crown of Ascension: Enchanted creature and other creatures that share a creature type with it gain flying until end of turn.
 mana={1}{U}
@@ -7489,12 +7444,6 @@ subtype=Fortification
 name=Darksteel Pendant
 text=Darksteel Pendant is indestructible. ("Destroy" effects and lethal damage don't destroy it.) -- {1}, {T}: Look at the top card of your library. You may put that card on the bottom of your library.
 mana={2}
-type=Artifact
-[/card]
-[card]
-name=Darksteel Reactor
-text=Darksteel Reactor is indestructible. ("Destroy" effects and lethal damage don't destroy it.) -- At the beginning of your upkeep, you may put a charge counter on Darksteel Reactor. -- When Darksteel Reactor has twenty or more charge counters on it, you win the game.
-mana={4}
 type=Artifact
 [/card]
 [card]
@@ -8907,12 +8856,6 @@ toughness=3
 name=Door of Destinies
 text=As Door of Destinies enters the battlefield, choose a creature type. -- Whenever you cast a spell of the chosen type, put a charge counter on Door of Destinies. -- Creatures you control of the chosen type get +1/+1 for each charge counter on Door of Destinies.
 mana={4}
-type=Artifact
-[/card]
-[card]
-name=Door to Nothingness
-text=Door to Nothingness enters the battlefield tapped. -- {W}{W}{U}{U}{B}{B}{R}{R}{G}{G}, {T}, Sacrifice Door to Nothingness: Target player loses the game.
-mana={5}
 type=Artifact
 [/card]
 [card]
@@ -10524,12 +10467,6 @@ name=Eon Hub
 text=Players skip their upkeep steps.
 mana={5}
 type=Artifact
-[/card]
-[card]
-name=Epic Struggle
-text=At the beginning of your upkeep, if you control twenty or more creatures, you win the game.
-mana={2}{G}{G}
-type=Enchantment
 [/card]
 [card]
 name=Epicenter
@@ -18158,22 +18095,12 @@ toughness=1
 [/card]
 [card]
 name=Juniper Order Advocate
-auto=aslongas(this[-tapped]) lord(creature[green]|myinplay)1/1 #Aslongas does work with "this" keyword
 text=Green creatures you control get +1/+1 as long as Juniper Order Advocate is untapped.
 mana={2}{W}
 type=Creature
 subtype=Human Knight
 power=1
 toughness=2
-[/card]
-[card]
-name=Junk Golem
-text=Junk Golem enters the battlefield with three +1/+1 counters on it. -- At the beginning of your upkeep, sacrifice Junk Golem unless you remove a +1/+1 counter from it. -- {1}, Discard a card: Put a +1/+1 counter on Junk Golem.
-mana={4}
-type=Artifact Creature
-subtype=Golem
-power=0
-toughness=0
 [/card]
 [card]
 name=Junktroller
@@ -19888,14 +19815,6 @@ type=Creature
 subtype=Beast
 power=4
 toughness=2
-[/card]
-[card]
-name=Legacy Weapon
-auto={W}{U}{B}{R}{G}:moveto(exile) target(*)
-#as the same ability as darksteel collosus
-text={W}{U}{B}{R}{G}: Exile target permanent. -- If Legacy Weapon would be put into a graveyard from anywhere, reveal Legacy Weapon and shuffle it into its owner's library instead.
-mana={7}
-type=Legendary Artifact
 [/card]
 [card]
 name=Legacy's Allure
@@ -21763,12 +21682,6 @@ power=2
 toughness=3
 [/card]
 [card]
-name=Mayael's Aria
-text=At the beginning of your upkeep, put a +1/+1 counter on each creature you control if you control a creature with power 5 or greater. Then you gain 10 life if you control a creature with power 10 or greater. Then you win the game if you control a creature with power 20 or greater.
-mana={R}{G}{W}
-type=Enchantment
-[/card]
-[card]
 name=Meadowboon
 text=When Meadowboon leaves the battlefield, put a +1/+1 counter on each creature target player controls. -- Evoke {3}{W} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
 mana={2}{W}{W}
@@ -23181,12 +23094,6 @@ text=Prowl {1}{B} (You may cast this for its prowl cost if you dealt combat dama
 mana={2}{B}{B}
 type=Tribal Sorcery
 subtype=Rogue
-[/card]
-[card]
-name=Mortal Combat
-text=At the beginning of your upkeep, if twenty or more creature cards are in your graveyard, you win the game.
-mana={2}{B}{B}
-type=Enchantment
 [/card]
 [card]
 name=Mortipede
@@ -32922,16 +32829,6 @@ mana={1}{R}
 type=Sorcery
 [/card]
 [card]
-name=Sift
-target=*|myhand
-auto=draw:3 controller
-auto=moveto(mygraveyard)
-#the following works but you have to discard first then you draw 3 cards. no other combination would work because moveto(x) target(y) when put in play does not work
-text=Draw three cards, then discard a card.
-mana={3}{U}
-type=Sorcery
-[/card]
-[card]
 name=Sift Through Sands
 text=Draw two cards, then discard a card. -- If you've cast a spell named Peer Through Depths and a spell named Reach Through Mists this turn, you may search your library for a card named The Unspeakable, put it onto the battlefield, then shuffle your library.
 mana={1}{U}{U}
@@ -36995,12 +36892,6 @@ name=Temporal Cascade
 text=Choose one - Each player shuffles his or her hand and graveyard into his or her library; or each player draws seven cards. -- Entwine {2} (Choose both if you pay the entwine cost.)
 mana={5}{U}{U}
 type=Sorcery
-[/card]
-[card]
-name=Temporal Distortion
-text=Whenever a creature or land becomes tapped, put an hourglass counter on it. -- Permanents with hourglass counters on them don't untap during their controllers' untap steps. -- At the beginning of each player's upkeep, remove all hourglass counters from permanents that player controls.
-mana={3}{U}{U}
-type=Enchantment
 [/card]
 [card]
 name=Temporal Extortion
