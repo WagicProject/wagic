@@ -533,7 +533,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     size_t start = s.find("[");
     size_t end = s.find("]",start);
     string s1 = s.substr(start + 1,end - start - 1);
-    size_t seperator = s1.find(",");
+    size_t seperator = s1.find(";");
     int phase = Constants::MTG_PHASE_UPKEEP;
     int once = 0;
     if (seperator != string::npos){
