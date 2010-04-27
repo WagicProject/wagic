@@ -132,7 +132,7 @@ void Task::randomize() {
   opponent = rand() % getAIDeckCount() + 1;
   opponentName = "";
   setExpiration((rand()%3)+1);
-  getReward();
+  reward = computeReward();
 }
 
 bool Task::isExpired() {  
@@ -860,7 +860,7 @@ TaskWisdom::TaskWisdom(int _color, int _cardCount) : Task(TASK_WISDOM) {
 }
 
 int TaskWisdom::computeReward() {  
-  return rand()%150 + pow(cardCount, 1.4) * 50 + (cardCount>7)*200;
+  return (rand()%150) + (cardCount * 50) + (cardCount>7 ? 200 : 0);
 }
 
 string TaskWisdom::createDesc() {
@@ -927,7 +927,7 @@ void TaskWisdom::restoreCustomAttribs() {
 
 void TaskWisdom::randomize() {
   color = rand()%(Constants::MTG_NB_COLORS - 1) + 1;
-  cardCount = 2 + ((Constants::MTG_COLOR_LAND == color) ? rand()%5 : rand()%11);
+  cardCount = 2 + ((Constants::MTG_COLOR_LAND == color) ? rand()%5 : rand()%7);
   Task::randomize();
 }
 
