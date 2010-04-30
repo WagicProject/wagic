@@ -26919,7 +26919,7 @@ toughness=*
 [/card]
 [card]
 name=Masticore
-auto=upcost[{S(*|myhand)]} moveTo(mygraveyard)
+auto=upcost[{S(*|myhand)}] moveTo(mygraveyard)
 auto={2}:damage:1 target(creature)
 auto={2}:regenerate
 text=At the beginning of your upkeep, sacrifice Masticore unless you discard a card. -- {2}: Masticore deals 1 damage to target creature. -- {2}: Regenerate Masticore.
