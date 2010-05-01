@@ -1,6 +1,13 @@
 #Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
 [card]
+name=Miren, the Moaning Well
+auto={T}:Add {1}
+auto={T}:moveTo(mygraveyard) notatarget(creature|mybattlefield) && life:t controller
+text={T}: Add {1} to your mana pool. -- {3}{T}, sacrifice a creature: You gain life equal to the sacrificed creature's toughness.
+type=Legendary Land
+[/card]
+[card]
 name=AErathi Berserker
 auto=rampage(3/3,1)
 text=Rampage 3 (Whenever this creature becomes blocked, it gets +3/+3 until end of turn for each creature blocking it beyond the first.)
@@ -9447,7 +9454,7 @@ subtype=Aura
 [card]
 name=Curse of Marit Lage
 auto=tap all(island)
-auto=lord(island) doesntuntap
+auto=lord(island) doesnotuntap
 text=When Curse of Marit Lage enters the battlefield, tap all Islands. -- Islands don't untap during their controllers' untap steps.
 mana={3}{R}{R}
 type=Enchantment
@@ -12988,6 +12995,10 @@ toughness=1
 [/card]
 [card]
 name=Elvish Berserker
+alias=129767
+target=creature|opponentBattlefield
+auto=haste
+auto=untap
 auto=rampage(1/1,0)
 text=Whenever Elvish Berserker becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.
 mana={G}
@@ -35362,7 +35373,7 @@ type=Sorcery
 [/card]
 [card]
 name=Rite of Passage
-auto=@damaged(creature|myBattlefield)):all(trigger[to]) counter(1/1)
+auto=@damaged(creature|myBattlefield):all(trigger[to]) counter(1/1)
 text=Whenever a creature you control is dealt damage, put a +1/+1 counter on it. (The damage is dealt before the counter is put on.)
 mana={2}{G}
 type=Enchantment
@@ -46617,7 +46628,7 @@ subtype=Aura
 [card]
 name=Undead Gladiator
 autohand={1}{B}:cycling
-autograveyard={1}{B}{S(*|myhand):moveTo(myBattlefield) myUpkeepOnly
+autograveyard={1}{B}{S(*|myhand)}:moveTo(myBattlefield) myUpkeepOnly
 text={1}{B}, Discard a card: Return Undead Gladiator from your graveyard to your hand. Activate this ability only during your upkeep. -- Cycling {1}{B} ({1}{B}, Discard this card: Draw a card.)
 mana={1}{B}{B}
 type=Creature
