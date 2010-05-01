@@ -19889,6 +19889,15 @@ power=0
 toughness=0
 [/card]
 [card]
+name=Helix Pinnacle
+abilities=shroud
+auto={X}:thisforeach(X) all(this) counter(0/0,1,Tower)
+auto=@each my upkeep:aslongas(helix pinnacle[counter{0/0.100.Tower}]|myBattlefield) winGame
+text=Shroud -- {X}: Put X tower counters on Helix Pinnacle. -- At the beginning of your upkeep, if there are 100 or more tower counters on Helix Pinnacle, you win the game.
+mana={G}
+type=Enchantment
+[/card]
+[card]
 name=Hell Swarm
 auto=lord(creature) -1/0
 text=All creatures get -1/-0 until end of turn.
@@ -33147,7 +33156,7 @@ type=Instant
 [/card]
 [card]
 name=Puppet Conjurer
-auto={U}{T}:token(Homonculus,Creature Homonclulus,0/1,blue)
+auto={U}{T}:token(Homonculus,Artifact Creature Homonculus,0/1,blue)
 auto=@each my upkeep:bury notatarget(homonculus|myBattlefield)
 text={U}, {T}: Put a 0/1 blue Homunculus artifact creature token onto the battlefield. -- At the beginning of your upkeep, sacrifice a Homunculus.
 mana={1}{B}
