@@ -3743,7 +3743,7 @@ auto=lord(other beastbreaker of bala ged[counter{0/0.4.Level Up}]) -2/-2
 text=Level up {2}{G}  ({2}{G}: Put a Level counter on this. Level up only as a sorcery.) -- [Level 1-3] (4/4) -- [Level 4+] Trample (6/6)
 mana={1}{G}
 type=Creature
-subtype=LevelUp Human Warrior
+subtype=Levelup Human Warrior
 power=2
 toughness=2
 [/card]
@@ -5726,7 +5726,7 @@ auto=this(counter{0/0.3.Level Up}) {T}:damage:3 target(creature,player)
 text=Level up {3}{R} -- [Level 1-2] {T}: Brimstone Mage deals 1 damage to target creature or player. [2/3] -- [Level 3+] {T}: Brimstone Mage deals 3 damage to target creature or player. [2/4
 mana={2}{R}
 type=Creature
-subtype=LevelUp Human Shaman
+subtype=Levelup Human Shaman
 power=2
 toughness=2
 [/card]
@@ -6447,7 +6447,7 @@ auto=this(counter{0/0.5.Level Up}) 3/3
 text=Level up {2} -- [Level 1-4] (2/2) -- [Level 5+] First strike (5/5)
 mana={W}
 type=Creature
-subtype=LevelUp Human Knight
+subtype=Levelup Human Knight
 power=1
 toughness=1
 [/card]
@@ -8617,7 +8617,7 @@ auto=this(counter{0/0.4.Level Up}) 1/1
 text=Level up {1} -- [Level 2-3] : Flying (3/3) -- [Level 4+] : Flying, other Merfolk you control get +1/+1. (4/4)
 mana={U}{U}
 type=Creature
-subtype=LevelUp Merfolk Soldier
+subtype=Levelup Merfolk Soldier
 power=2
 toughness=2
 [/card]
@@ -11819,6 +11819,17 @@ auto=moveto(myBattlefield)
 text=You may put a green creature card from your hand onto the battlefield.
 mana={3}{G}{G}
 type=Instant
+[/card]
+[card]
+name=Drana, Kalastria Bloodchief
+abilities=flying
+auto={X}{B}{B}:thisforeach(X) 0/-1 target(creature) && thisforeach(X) 1/0 all(this)
+text=Flying -- {X}{B}{B}: Target creature gets -0/-X until end of turn and Drana, Kalastria Bloodchief gets +X/+0 until end of turn.
+mana={3}{B}{B}
+type=Legendary Creature
+subtype=Vampire Shaman
+power=4
+toughness=4
 [/card]
 [card]
 name=Drastic Revelation
@@ -19087,7 +19098,7 @@ auto=this(counter{0/0.4.Level Up}) 2/2
 text=Level up {1}{B}  ({1}{B}: Put a Level counter on this. Level up only as a sorcery.) -- [Level 2-3] {B}, {T}: Target creature gets -2/-2 until end of turn. (2/2) -- [Level 4+] {B}, {T}: Target creature gets -4/-4 until end of turn. (4/4)
 mana={B}
 type=Creature
-subtype=LevelUp Vampire Assassin
+subtype=Levelup Vampire Assassin
 power=1
 toughness=1
 [/card]
@@ -19144,7 +19155,7 @@ auto=this(counter{0/0.3.Level Up}) 1/1
 text=Level up {2}{U} -- [Level 1-2]: Hada Spy Patrol is unblockable. (2/2) -- [Level 3+]: Hada Spy Patrol is unblockable, Shroud (3/3)
 mana={1}{U}
 type=Creature
-subtype=LevelUp Human Rogue
+subtype=Levelup Human Rogue
 power=1
 toughness=1
 [/card]
@@ -21135,7 +21146,7 @@ auto=this(counter{0/0.4.Level Up}) 1/4
 text=Level up {4} -- [Level 1-3] Vigilance (2/6) -- [Level 4+] Vigilance (3/10)
 mana={1}{W}
 type=Creature
-subtype=LevelUp Human Soldier
+subtype=Levelup Human Soldier
 power=1
 toughness=2
 [/card]
@@ -22356,7 +22367,7 @@ auto=this(counter{0/0.5.Level Up}) 0/2
 text=Level up {2}{G}  ({2}{G}: Put a Level counter on this. Level up only as a sorcery.) -- [Level 1-3] (4/4) -- [Level 4+] Trample (6/6)
 mana={G}
 type=Creature
-subtype=LevelUp Elf Druid
+subtype=Levelup Elf Druid
 power=1
 toughness=1
 [/card]
@@ -22710,7 +22721,7 @@ auto=this(counter{0/0.5.Level Up}) 1/2
 text=Level up {2}{W} -- [Level 2-4] Other creatures you control get +1/+1. (3/6) -- [Level 5+] Other creatures you control get +1/+1. (4/8)
 mana={3}{W}
 type=Creature
-subtype=LevelUp Human Knight
+subtype=Levelup Human Knight
 power=2
 toughness=4
 [/card]
@@ -22977,7 +22988,7 @@ auto=this(counter{0/0.8.Level Up}) {R}:1/0
 text=Level up {R} -- [Level 4-7] Flying (4/4) -- [Level 8+] Flying, trample  {R}: Kargan Dragonlord gets +1/+0 until end of turn. (8/8)
 mana={R}{R}
 type=Creature
-subtype=LevelUp Human Warrior
+subtype=Levelup Human Warrior
 power=2
 toughness=2
 [/card]
@@ -23209,7 +23220,7 @@ auto=this(counter{0/0.6.Level Up}) {T}:token(Elephant,Creature Elephant,3/3,gree
 text=Level up {1}{G} -- [Level 2-5] {T}: Put a 3/3 green Elephant creature token onto the battlefield. (1/1) -- [Level 6+] {T}: Put two 3/3 green Elephant creature tokens onto the battlefield. (1/1)
 mana={1}{G}
 type=Creature
-subtype=LevelUp Human Shaman
+subtype=Levelup Human Shaman
 power=1
 toughness=1
 [/card]
@@ -23874,7 +23885,7 @@ auto=this(counter{0/0,4,Level Up}) 2/1
 text=Level up 3 -- [Level 1-3] Flying (2/3) -- [Level 4+] Flying, vigilance (4/4)
 mana={1}{W}
 type=Creature
-subtype=Kor Knight
+subtype=Levelup Kor Knight
 power=2
 toughness=2
 [/card]
@@ -25737,7 +25748,7 @@ auto=@each my blockers:aslongas(lord of shatterskull pass[attacking;counter{0/0.
 text=Level up {1}{R} -- [Level 1-5] (6/6) -- [Level 6+] Whenever Lord of Shatterskull Pass attacks, it deals 6 damage to each creature defending player controls. (6/6)
 mana={3}{R}
 type=Creature
-subtype=LevelUp Minotaur Shaman
+subtype=Levelup Minotaur Shaman
 power=3
 toughness=3
 [/card]
@@ -29899,7 +29910,7 @@ auto=this(counter{0/0.3.Level Up}) 1/1
 text=Level up {2}{B}  ({2}{B}: Put a Level counter on this. Level up only as a sorcery.) -- [Level 1-2]: Deathtouch (4/3) -- [Level 3+]: First strike, deathtouch (5/4)
 mana={2}{B}
 type=Creature
-subtype=LevelUp Vampire Warrior
+subtype=Levelup Vampire Warrior
 power=3
 toughness=2
 [/card]
@@ -30159,7 +30170,7 @@ auto=this(counter{0/0.4.Level Up}) 3/1
 text=Level up {3}  ({3}: Put a Level counter on this. Level up only as a sorcery.) -- [Level 1-3]: (4/2) -- [Level 4+]: {B}: Regnerate Null Champion (7/3)
 mana={1}{B}
 type=Creature
-subtype=LevelUp Zombie Warrior
+subtype=Levelup Zombie Warrior
 power=1
 toughness=1
 [/card]
@@ -39655,7 +39666,7 @@ auto=this(counter{0/0.3.Level Up}) 2/0
 text=Level up {3} -- [Level 1-2] : Flying (2/2) -- [Level 3+] : Flying (4/2)
 mana={U}
 type=Creature
-subtype=LevelUp Merfolk Soldier
+subtype=Levelup Merfolk Soldier
 power=1
 toughness=1
 [/card]
@@ -42724,7 +42735,7 @@ auto=this(counter{0/0,7,Level Up}) 1/1
 text=Level up {W} -- [Level 2-6] First strike (3/3) -- [Level 7+] Double strike (4/4)
 mana={W}
 type=Creature
-subtype=LevelUp Human Knight
+subtype=Levelup Human Knight
 power=1
 toughness=1
 [/card]
@@ -45849,7 +45860,7 @@ auto=this(counter{0/0,12,Level Up}) 3/3
 text=Level up {1} -- [Level 6-11] Lifelink (6/6) -- [Level 12+] Lifelink  Transcendent Master is indestructible. (9/9)
 mana={1}{W}{W}
 type=Creature
-subtype=LevelUp Human Cleric Avatar
+subtype=Levelup Human Cleric Avatar
 power=3
 toughness=3
 [/card]
@@ -47501,9 +47512,9 @@ toughness=2
 [/card]
 [card]
 name=Venerated Teacher
-auto=counter(0/0,2,Level Up) all(creature[levelup]|myBattlefield)
+auto=counter(0/0,2,Level Up) all(creature[levelup]|myBattlefield) 
 text=When Venerated Teacher enters the battlefield, put two level counters on each creature you control with level up.
-mana={2}{U}
+mana={G}
 type=Creature
 subtype=Human Wizard
 power=2
@@ -51652,7 +51663,7 @@ auto=this(counter{0/0.3.Level Up}) 2/2
 text=Level up {4}  ({4}: Put a Level counter on this. Level up only as a sorcery.) -- [Level 1-2]: (3/3) -- [Level 3+]: Zulaport Enforcer can't be blocked except by black creatures. (5/5)
 mana={B}
 type=Creature
-subtype=LevelUp Human Warrior
+subtype=Levelup Human Warrior
 power=1
 toughness=1
 [/card]
