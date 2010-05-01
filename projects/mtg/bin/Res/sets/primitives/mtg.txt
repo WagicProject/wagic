@@ -1,13 +1,6 @@
 #Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
 [card]
-name=Miren, the Moaning Well
-auto={T}:Add {1}
-auto={T}:moveTo(mygraveyard) notatarget(creature|mybattlefield) && life:t controller
-text={T}: Add {1} to your mana pool. -- {3}{T}, sacrifice a creature: You gain life equal to the sacrificed creature's toughness.
-type=Legendary Land
-[/card]
-[card]
 name=AErathi Berserker
 auto=rampage(3/3,1)
 text=Rampage 3 (Whenever this creature becomes blocked, it gets +3/+3 until end of turn for each creature blocking it beyond the first.)
@@ -12995,10 +12988,6 @@ toughness=1
 [/card]
 [card]
 name=Elvish Berserker
-alias=129767
-target=creature|opponentBattlefield
-auto=haste
-auto=untap
 auto=rampage(1/1,0)
 text=Whenever Elvish Berserker becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.
 mana={G}
@@ -27686,15 +27675,6 @@ type=Creature
 subtype=Minotaur Warrior
 power=2
 toughness=3
-[/card]
-[card]
-name=Miraculous Recovery
-target=creature|mygraveyard
-auto=moveTo(myBattlefield)
-auto=counter(1/1,1)
-text=Return target creature card from your graveyard to the battlefield with a +1/+1 counter on it.
-mana={4}{W}
-type=Instant
 [/card]
 [card]
 name=Mire Blight

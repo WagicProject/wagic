@@ -22456,6 +22456,16 @@ power=1
 toughness=1
 [/card]
 [card]
+###Does not work 0.11.1.
+name=Miraculous Recovery
+target=creature|mygraveyard
+auto=counter(1/1,1)
+auto=moveTo(myBattlefield)
+text=Return target creature card from your graveyard to the battlefield with a +1/+1 counter on it.
+mana={4}{W}
+type=Instant
+[/card]
+[card]
 name=Mirari
 text=Whenever you cast an instant or sorcery spell, you may pay {3}. If you do, copy that spell. You may choose new targets for the copy.
 mana={5}
