@@ -1643,7 +1643,7 @@ toughness=3
 [card]
 name=Aquastrand Spider
 auto=counter(1/1,2)
-auto=@movedto(creature|battlefield):this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
+auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
 auto={G}:reach target(creature[counter{1/1.1}])
 text=Graft 2 (This creature enters the battlefield with two +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {G}: Target creature with a +1/+1 counter on it gains reach until end of turn. (It can block creatures with flying.)
 mana={1}{G}
@@ -3750,7 +3750,7 @@ toughness=2
 [card]
 name=Beastmaster Ascension
 auto=@each my blockers:foreach(creature[attacking]|myBattlefield) counter(0/0,1,Quest)
-auto=(counter{0/0.7.Quest}) lord(creature|myBattlefield) 5/5
+auto=this(counter{0/0.7.Quest}) lord(creature|myBattlefield) 5/5
 text=Whenever a creature you control attacks, you may put a quest counter on Beastmaster Ascension. -- As long as Beastmaster Ascension has seven or more quest counters on it, creatures you control get +5/+5.
 mana={2}{G}
 type=Enchantment
@@ -9516,8 +9516,8 @@ toughness=2
 [card]
 name=Cytoplast Root-Kin
 auto=counter(1/1,4)
-auto=@movedto(creature|battlefield):this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
-auto=counter(1/1,1) all(creature[counter{1/1.1}]|myBattlefield)
+auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
+auto=counter(1/1,1) all(other creature[counter{1/1.1}]|myBattlefield)
 auto={2}:counter(1/1,-1) target(creature[counter{1/1.1}]|myBattlefield) && counter(1/1,1) all(this)
 text=Graft 4 (This creature enters the battlefield with four +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- When Cytoplast Root-Kin enters the battlefield, put a +1/+1 counter on each other creature you control that has a +1/+1 counter on it. -- {2}: Move a +1/+1 counter from target creature you control onto Cytoplast Root-Kin.
 mana={2}{G}{G}
@@ -9529,7 +9529,7 @@ toughness=0
 [card]
 name=Cytospawn Shambler
 auto=counter(1/1,6)
-auto=@movedto(creature|battlefield):this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
+auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
 auto={G}:trample target(creature[counter{1/1.1}])
 text=Graft 6 (This creature enters the battlefield with six +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {G}: Target creature with a +1/+1 counter on it gains trample until end of turn.
 mana={6}{G}
@@ -19879,7 +19879,7 @@ toughness=2
 [card]
 name=Helium Squirter
 auto=counter(1/1,3)
-auto=@movedto(creature|battlefield):this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
+auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
 auto={1}:flying target(creature[counter{1/1.1}])
 text=Graft 3 (This creature enters the battlefield with three +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {1}: Target creature with a +1/+1 counter on it gains flying until end of turn.
 mana={4}{U}
@@ -27235,18 +27235,6 @@ power=2
 toughness=3
 [/card]
 [card]
-name=Merrow Reejerey
-auto=lord(merfolk|myBattlefield) 1/1 other
-auto=@movedTo(merfolk|mystack):may tap target(*)
-auto=@movedTo(merfolk|mystack):may untap target(*)
-text=Other Merfolk creatures you control get +1/+1. -- Whenever you cast a Merfolk spell, you may tap or untap target permanent.
-mana={2}{U}
-type=Creature
-subtype=Merfolk Soldier
-power=2
-toughness=2
-[/card]
-[card]
 name=Merrow Witsniper
 auto=deplete:1 target(player)
 text=When Merrow Witsniper enters the battlefield, target player puts the top card of his or her library into his or her graveyard.
@@ -32490,7 +32478,7 @@ toughness=5
 name=Plaxcaster Frogling
 auto=counter(1/1,3)
 auto={2}:shroud target(creature[counter{1/1.1}])
-auto=@movedto(creature|battlefield):this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1}) counter(1/1,-1)
+auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1}) counter(1/1,-1)
 text=Graft 3 (This creature enters the battlefield with three +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {2}: Target creature with a +1/+1 counter on it gains shroud until end of turn. (It can't be the target of spells or abilities.)
 mana={1}{G}{U}
 type=Creature
@@ -39023,7 +39011,7 @@ type=Land
 name=Simic Initiate
 text=Graft 1 (This creature enters the battlefield with a +1/+1 counter on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.)
 auto=counter(1/1)
-auto=@movedto(creature|battlefield):this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
+auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1}) counter(1/1,-1)
 mana={G}
 type=Creature
 subtype=Human Mutant
@@ -41439,7 +41427,7 @@ toughness=1
 [card]
 name=Sporeback Troll
 auto=counter(1/1,2)
-auto=@movedto(creature|battlefield):this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
+auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
 auto={1}{G}:regenerate target(creature[counter{1/1.1}])
 text=Graft 2 (This creature enters the battlefield with two +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {1}{G}: Regenerate target creature with a +1/+1 counter on it.
 mana={G}
@@ -47983,7 +47971,7 @@ toughness=2
 [card]
 name=Vigean Graftmage
 auto=counter(1/1,2)
-auto=@movedto(creature|battlefield):this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
+auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
 auto={1}{U}:untap target(creature[counter{1/1.1}])
 text=Graft 2 (This creature enters the battlefield with two +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {1}{U}: Untap target creature with a +1/+1 counter on it.
 mana={2}{U}
@@ -47996,7 +47984,7 @@ toughness=0
 name=Vigean Hydropon
 abilities=cantattack,cantblock
 auto=counter(1/1,5)
-auto=@movedto(creature|battlefield):this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
+auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
 text=Graft 5 (This creature enters the battlefield with five +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- Vigean Hydropon can't attack or block.
 mana={1}{G}{U}
 type=Creature
