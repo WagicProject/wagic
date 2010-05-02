@@ -46,6 +46,11 @@ GameApp::GameApp(): JApp()
    nbUpdates = 0;
    totalFPS = 0;
 #endif
+
+#ifdef DOLOG
+   remove(LOG_FILE);
+#endif
+
   mScreenShotCount = 0;
 
   for (int i=0; i < GAME_STATE_MAX	; i++)
@@ -112,7 +117,7 @@ void GameApp::Create()
   LOG("Loading Textures");
   LOG("--Loading menuicons.png");
   resources.RetrieveTexture("menuicons.png",RETRIEVE_MANAGE);
-
+  LOG("---Gettings menuicons.png quads");
   //Creating thes quad in this specific order allows us to have them in the correct order to call them by integer id
   manaIcons[Constants::MTG_COLOR_GREEN] = resources.RetrieveQuad("menuicons.png", 2 + 0*36, 38, 32, 32, "c_green",RETRIEVE_MANAGE);
   manaIcons[Constants::MTG_COLOR_BLUE] = resources.RetrieveQuad("menuicons.png", 2 + 1*36, 38, 32, 32, "c_blue",RETRIEVE_MANAGE);
@@ -125,7 +130,7 @@ void GameApp::Create()
 
   for (int i = sizeof(manaIcons)/sizeof(manaIcons[0]) - 1; i >= 0; --i) manaIcons[i]->SetHotSpot(16,16);
 
-  LOG("--Loading Other Textures");
+  LOG("--Loading back.jpg");
   resources.RetrieveTexture("back.jpg",RETRIEVE_MANAGE);
   JQuad * jq = resources.RetrieveQuad("back.jpg", 0, 0, 0, 0, "back",RETRIEVE_MANAGE);
   if (jq) jq->SetHotSpot(jq->mWidth/2, jq->mHeight/2);
@@ -133,12 +138,14 @@ void GameApp::Create()
   resources.RetrieveTexture("back_thumb.jpg",RETRIEVE_MANAGE);
   resources.RetrieveQuad("back_thumb.jpg", 0, 0, MTG_MINIIMAGE_WIDTH, MTG_MINIIMAGE_HEIGHT, "back_thumb",RETRIEVE_MANAGE);
 
+  LOG("--Loading particles.png");
   resources.RetrieveTexture("particles.png",RETRIEVE_MANAGE);
   jq = resources.RetrieveQuad("particles.png", 0, 0, 32, 32, "particles",RETRIEVE_MANAGE);
   jq->SetHotSpot(16,16);
   jq = resources.RetrieveQuad("particles.png", 64, 0, 32, 32, "stars",RETRIEVE_MANAGE);
   jq->SetHotSpot(16,16);
 
+  LOG("--Loading fonts");
   resources.LoadJLBFont("simon",11);
   resources.GetJLBFont("simon")->SetTracking(-1);
   resources.LoadJLBFont("f3",16);
@@ -146,6 +153,7 @@ void GameApp::Create()
   resources.LoadJLBFont("smallface", 7);
 
 
+  LOG("--Loading various textures");
   resources.RetrieveTexture("phasebar.png",RETRIEVE_MANAGE);
   resources.RetrieveTexture("wood.png",RETRIEVE_MANAGE);
   resources.RetrieveTexture("gold.png",RETRIEVE_MANAGE);

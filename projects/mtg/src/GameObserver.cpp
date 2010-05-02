@@ -362,13 +362,10 @@ void GameObserver::cardClick (MTGCardInstance * card, Targetable * object){
     int result;
     if (card) {
       if (card == cardWaitingForTargets){
-	      LOG("attempt to close targetting");
 	      int _result = targetChooser->ForceTargetListReady();
 	      if (_result){
 	        result = TARGET_OK_FULL;
 	      }else{
-
-	        LOG("...but we cant!\n");
 	        result = targetChooser->targetsReadyCheck();
 	      }
       }else{

@@ -1,5 +1,7 @@
 #include "../include/config.h"
 #include "../include/Logger.h"
+#ifdef DOLOG
+
 #include <iostream>
 #include <fstream>
 using namespace std;
@@ -21,3 +23,5 @@ void Logger::Log(const char * text){
 #endif
 
 }
+
+#endif

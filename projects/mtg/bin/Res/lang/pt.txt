@@ -1,19 +1,20 @@
 #LANG:Portugues
-#TraduÁ„o em PortuguÍs PT para Wagic 0.10.1,
+#Tradu??o em Portugu?s PT para Wagic 0.10.1,
 #traduzido por Nuno "Vesgo" Santos
-#Renomeie este arquivo para "_lang.txt ou substitua pt por _lang no nome do arquivo para jogar Wagic em portuguÍs
+#Corrigido para o release 2001 por almosthumane
+#Renomeie este arquivo para "_lang.txt ou substitua pt por _lang no nome do arquivo para jogar Wagic em portugu?s
 
 #Note to translators:
 # - Cards' names and types are translated here (see bottom of the file)
 # - Cards' rules text is translated in a separate file: Res\lang\pt_cards.txt
 # - Translations are case sensitive
 # - Limitation: Special characters that are not in the limited 128 ASCII
-#     set can not be used, the game won't display them.
+# set can not be used, the game won't display them.
 # - DO NOT TRANSLATE ANYTHING in the _cards.dat files.
 
 
 ##########################
-# USER INTERFACE:        #
+# USER INTERFACE: #
 ##########################
 
 Yes=Sim
@@ -24,8 +25,8 @@ Save & Back to Main Menu=Salvar e voltar ao Menu
 Back to Main Menu=Voltar ao Menu
 Back to main menu=Voltar ao Menu
 # Note: There's no sense in providing a translation for "Cancel"
-#  here, since there's a spell of this name, and the translation
-#  of this spell will override anything we set here.
+# here, since there's a spell of this name, and the translation
+# of this spell will override anything we set here.
 
 # Simple Pad:
 Spacebar=Barra de espacos
@@ -35,15 +36,15 @@ Confirm=Confirmar
 
 
 ##########################
-# MAIN MENU              #
+# MAIN MENU #
 ##########################
 
 # Engine initialization:
-LOADING SET: %s=A CARREGAR SET: %s
+LOADING SET: %s=A CARREGAR EXPANCAO: %s
 
 # Main menu:
 Play=Jogar
-Deck Editor=Editor de Deck
+Deck Editor=Editor de Baralho
 Shop=Loja
 Options=Opcoes
 Exit=Sair
@@ -53,26 +54,26 @@ Exit=Sair
 Database: %i cards=Base dados: %i cartas
 
 # Scrolling messages:
-You have a %i%% victory ratio with Deck%i=Tem um racio de vitoria de %i%% com o Deck %i
-You have played %i games with Deck%i=Jogou %i partidas com o Deck %i
+You have a %i%% victory ratio with Deck%i=Tem um racio de vitoria de %i%% com o baralho %i
+You have played %i games with Deck%i=Jogou %i partidas com o baralho %i
 You have played a total of %i games=Jogou um total de %i partidas
 Unlock the difficult mode for more challenging duels!=Desbloqueia o modo de Dificuldade para duelos mais competitivos!
 Interested in playing Momir Basic? You'll have to unlock it first :)=Interessado em jogar Momir Basic? Desbloqueia-o primeiro! :)
-You haven't unlocked the random deck mode yet=Ainda nao desbloqueou o modo de Deck "Aleatorio"
+You haven't unlocked the random deck mode yet=Ainda nao desbloqueou o modo de baralho "Aleatorio"
 You haven't unlocked the evil twin mode yet=Ainda nao desbloqueou o modo "Evil Twin"
 You have unlocked %i expansions out of %i=Desbloqueou %i expansoes de um total de %i
 You have a total of %i cards in your collection=Tem um total de %i cartas na sua coleccao
 The cards in your collection have an average value of %i credits=A sua coleccao tem um valor medio de %i creditos
-The shopkeeper would buy your entire collection for around %i credits=O vendedor da loja compraria a sua coleccao por %i creditos
+The shopkeeper would buy your entire collection for around %i credits=O vendedor da loja compra a sua coleccao completa por %i creditos
 You currently have %i credits=Actualmente tem %i creditos
 More cards and mods at http://wololo.net/wagic=Mais cartas e mods em http://wololo.net/wagic
 These stats will be updated next time you run Wagic=Estas estatisticas serao actualizadas da proxima vez que iniciar Wagic
 
 # Number of players menu:
-1 Player=1 jogador
-2 Players=2 jogadores
-Demo=Demo
-Test Suite=Modo de teste
+1 Player=1 Jogador
+2 Players=2 Jogadores
+Demo=Demonstracao
+Test Suite=Modo de Teste
 
 # Game type menu:
 Classic=Classico
@@ -81,11 +82,11 @@ Random 1 Color=Aleatorio (1 cor)
 Random 2 Colors=Aleatorio (2 cores)
 
 # Player deck menu:
-Choose a Deck=Escolher Deck
-Create your Deck!=Criar Deck!
+Choose a Deck=Escolher baralho
+Create your Deck!=Criar baralho!
 Premade G/R=Pre-construido G/R
-NO DECK AVAILABLE,=Sem Deck disponivel,
-PRESS CIRCLE TO GO TO THE DECK EDITOR!=PRESSIONE CIRCULO PARA EDITOR DE DECK!
+NO DECK AVAILABLE,=Sem baralho disponivel,
+PRESS CIRCLE TO GO TO THE DECK EDITOR!=PRESSIONE CIRCULO PARA EDITOR DE BARALHO!
 
 # Opponent deck menu:
 Choose Opponent=Escolher Adversario
@@ -93,57 +94,57 @@ Choose Opponent=Escolher Adversario
 (hard)=(***)
 Random=Aleatorio
 Evil Twin=Evil Twin
-LOADING DECKS=A CARREGAR DECKS
+LOADING DECKS=A CARREGAR BARALHOS
 
 
 ##########################
-# DUEL                   #
+# DUEL #
 ##########################
 
 # Players:
 Player 1=jogador 1
-Player 2=jogador 2 
+Player 2=jogador 2
 
 # Turns & Priority:
 your turn=O seu turno
-opponent's turn=turno do oponente
-opponent plays=oponente joga
+opponent's turn=turno do Adversario
+opponent plays=Adversario joga
 you play=Voce joga
 
 # Phases & Steps:
-Untap=Desvirar
-Upkeep=Manutencao
+Untap=Fase de Desvirar
+Upkeep=Fase de Manutencao
 Draw=Compra
-Main phase 1=1 fase principal
-Combat begins=Inicio combate
+Main phase 1=1a Fase Principal
+Combat begins=Inicio Combate
 Attackers=Atacantes
 Blockers=Bloqueadores
-Combat damage=Dano combate
-Combat ends=Fim combate
-Main phase 2=2 fase principal
-End=Etapa final
+Combat damage=Dano de Combate
+Combat ends=Fim Combate
+Main phase 2=2a Fase Principal
+End=Final do Turno
 Cleanup=Limpeza
 
 # Interrupts:
 Interrupt?=Magica Interrupcao?
-X Interrupt - 0 No - [] No to All=X Sim - 0 Nao - [] Nao a todos
+X Interrupt - 0 No - [] No to All=X Sim - 0 Nao - [] Nao a Todas
 X Interrupt - 0 No=X Sim - 0 Nao
 
 # Stack:
 Deals %i damage to=Causa %i dano a:
-is exiled=ÅEexilado
+is exiled=?Exilado
 Player %i draws %i card=Jogador %i compra %i carta
 goes to graveyard=vai para o cemiterio
 %s goes to graveyard=%s vai para o cemiterio
 
 # Abilities:
-Ability=Abilidade
+Ability=Habilidade
 Attacker=Atacante
 Blocker=Bloqueador
 Copy=Copiar
 Cycling=Reciclar
 Damage=Dano
-Deathtouch=Toque mort˙Éero
+Deathtouch=Toque mortifero
 Destroy=Destroi
 Draw=Comprar
 Equip=Equipar
@@ -151,13 +152,13 @@ Fizzle=Impedir
 Life=Vida
 Momir=Momir
 Move=Mover
-Put into play=Colocar em jogo
+Put into play=Colocar em Jogo
 # Regenerate gets its translation from the card of the same name
 Tap=Virar
 # Untap gets its translation from the phase of the same name
 
 # Abilities (special cases):
-Add =Adicionar 
+Add =Adicionar
 white=branco
 blue=azul
 black=preto
@@ -169,20 +170,20 @@ mana=mana
 sacrifice=Sacrificar
 
 # End of Match / Victory screen:
-Difficulty Bonus=Bonus de dificuldade
+Difficulty Bonus=Bonus de Dificuldade
 'Live dangerously and you live right' Bonus=Bonus de Ousadia
-Life Delta Bonus=Bonus de vida
-'Decree of Theophilus' Bonus=Bonus 'Decreto de Theophilus'
-Miller Bonus=Bonus de moleiro
-'Fast and Furious' Bonus=Bonus 'Velocidade Furiosa' 
+Life Delta Bonus=Bonus de Vida
+'Decree of Theophilus' Bonus=Bonus do 'Decreto de Theophilus'
+Miller Bonus=Bonus de Moleiro
+'Fast and Furious' Bonus=Bonus de 'Velocidade Furiosa'
 Victory=Vitoria
 Task: %s=Tarefa: %s
 Credits per minute: %i=Creditos por minuto: %i
-Game length: %i seconds=Tempo de jogo: %i segundos
+Game length: %i turns (%i seconds)=Tempo de jogo: %i turnos (%i segundos)
 Congratulations! You earn %i credits=Parabens! Ganhou %i creditos!
 You have been defeated=Foi derrotado!
 Player %i wins (%i)=Jogador %i vence (%i)
-Please check your deck (not enough cards?)=Verificar Deck - Sem cartas suficientes?
+Please check your deck (not enough cards?)=Verificar Baralho - Sem cartas suficientes?
 Please support this project!=Suporte este projecto!
 Wagic is free, open source, and developed on the little free time I have=Wagic e gratuito, open source, e desenvolvido no meu tempo livre
 If you enjoy this game, please consider donating a few bucks=Se gosta deste jogo, por favor considere doar algum dinheiro
@@ -190,68 +191,71 @@ If you enjoy this game, please consider donating a few bucks=Se gosta deste jogo
 Thanks in advance for your support.=Obrigado pelo seu suporte.
 
 # Error Messages:
-AN ERROR OCCURRED, CHECK FILE NAMES=Ocorreu um erro, verifique nome dos ficheiros
+AN ERROR OCCURRED, CHECK FILE NAMES=OCORREU UM ERRO, VERIFIQUE NOME DOS FICHEIROS
 
 ##########################
-# DECK EDITOR            #
+# DECK EDITOR #
 ##########################
 
 # Deck editor menu:
 --NEW--=--Novo--
+
+Filter by...=Filtrar por...
 Save=Salvar
 Save & Rename=Salvar e Renomear
-Switch decks without saving=Trocar Decks sem salvar
+Switch decks without saving=Trocar Baralhos sem salvar
 *Complete collection & reset*=*Completar coleccao e reiniciar*
-Rename deck=Renomear Deck
+Rename deck=Renomear Baralho
 
 # Info layer - directional keys:
-Prev. color=Cor anterior
-Next color=Cor seguinte
-Prev.=ant.
-Next=prox.
-card=carta
-cards=cartas
+Prev. edition=Cor anterior
+Next edition=Cor seguinte
+Prev.=Ant.
+Next=Prox.
+card=Carta
+cards=Cartas
 
 # Info layer - symbol keys:
-Toggle Images=Activar imagens
-View Collection=Ver coleccao
-View Deck=Ver Deck
-Add card=Adicionar carta
-Remove card=Remover carta
-Sell card=Vender carta
+Toggle Images=Activar Imagens
+View Collection=Ver Coleccao
+View Deck=Ver Baralho
+Add card=Adic. Carta
+Remove card=Remover Carta
+Sell card=Vender Carta
 
 # Info layer - explanations:
-Use SQUARE to view collection,=Usar [] para ver coleccao
-Use SQUARE to view your deck,=Usar [] para ver Deck
-Press L/R to cycle through=Pressionar L/R para navegar
-deck statistics.=estatisticas do Deck.
+Use SQUARE to view collection,=Usar [] para ver Coleccao
+Use SQUARE to view your deck,=Usar [] para ver Baralho
+Press L/R to cycle through=Pressionar L/R para Navegar
+deck statistics.=Estatisticas do Baralho.
 
 # Other strings:
-Collection=coleccao
-Deck=Deck
+Collection=Coleccao
+Deck=Baralho
 No Card=Sem carta
-Your Deck: %i cards=O seu Deck: %i cartas
+Your Deck: %i cards=O seu Baralho: %i cartas
 menu=Menu
-in: collection=in: coleccao
-in: deck=in: Deck
+filter=Filtro
+in: collection=in: Coleccao
+in: deck=in: Baralho
 
 # Statistics - page 1:
-Statistics Summary=Resumo de estatisticas
+Statistics Summary=Resumo de Estatisticas
 Lands=Terrenos
 Creatures=Criaturas
-Spells=magicas
+Spells=Magicas
 Instants=Instantaneas
 Enchantments=Encantamentos
-Sorceries=feiticos
-Average converted mana cost=Custo md. mana convertido
+Sorceries=Feiticos
+Average converted mana cost=Custo md. Mana Convertido
 Probabilities=Probabilidades
-No land in 1st hand=S/ terreno na 1 Mao
+No land in 1st hand=S/ terreno na 1a Mao
 No land in 9 cards=S/ terreno em 9 cartas
 No creatures in 1st hand=S/ criaturas na 1 Mao
-Playgame statistics=Estatisticas de jogo
-Games played=Partidas jogadas
-Victory ratio=Racio de vitoria 
-Total price (credits)=Preco total (creditos)
+Playgame statistics=Estatisticas de Jogo
+Games played=Partidas Jogadas
+Victory ratio=Racio de Vitoria
+Total price (credits)=Preco Total (Creditos)
 
 # Statistics - page 2:
 Mana cost detail=Detalhe custo de mana
@@ -266,7 +270,7 @@ Mana cost detail - Creatures=Detalhe custo mana - Criaturas
 Creature counts per mana cost:=Contagem de criaturas por custo mana:
 
 # Statistics - page 4:
-Mana cost detail - Spells=Detalhe custo mana - Magicas 
+Mana cost detail - Spells=Detalhe custo mana - Magicas
 Non-creature spell counts per mana cost:=Contagem de nao-criaturas por custo mana:
 
 # Statistics - page 5:
@@ -277,7 +281,7 @@ BL - Basic lands=TB - Terrenos basicos
 NB=TE
 NB - Non-basic lands=TE - Terrenos Especiais
 O=O
-O - Other (non-land) manasources=O - Outra (Nao-terreno) fonte mana
+O - Other (non-land) manasources=O - Outra (Nao-terreno) Fonte de Mana
 T=T
 T - Totals=T - Totais
 
@@ -297,26 +301,27 @@ No creatures in first n cards:=S/ criaturas nas primeiras n cartas:
 Victory statistics=Estatisticas de vitoria
 Victories against AI:=Vitorias contra IA:
 Games played: %i=Partidas jogadas: %i
-Victory ratio: %i%%=racio de vitoria: %i%% 
+Victory ratio: %i%%=racio de vitoria: %i%%
 
 
 ##########################
-# SHOP                   #
+# SHOP #
 ##########################
 
-credits: %i=creditos: %i
-[]:other cards=[]:outras cartas
-See available tasks=Ver tarefas disponiveis
-*Steal 1,000 credits*=*Roubar 1.000 creditos*
-
+credits: %i=Creditos: %i
+[]:other cards=[]:Outras Cartas
+See available tasks=Ver Tarefas Disponiveis
+Steal 1,000 credits=*Roubar 1.000 creditos*
+Check task board=Ver Missoes
+Ask about...=Pedir Cartas
 
 ##########################
-# TASKS:                 #
+# TASKS: #
 ##########################
 
 Task Board=Lista de Tarefas
 There are no tasks that need to be done. Come again tomorrow.=Nao existem tarefas. Volte amanha.
-Days left: %i=Dias a faltar: %i
+Days left: %i=Dias Restantes: %i
 Reward: %i=Premio: %i
 You have to defeat %s before it causes too much harm.=Tem que derrotar %s antes que cause danos.
 Please defeat %s as soon as possible.=Por favor, derrote %s o mais cedo possivel.
@@ -330,21 +335,67 @@ Defeat %s and make sure it doesn't take more than %i turns.=Derrote %s no maximo
 Defeat %s, in a duel no longer than %i turns.=Derrote %s em duelo que nao tenha mais de %i turnos.
 Delay %s for %i turns=Atrase %s durante %i turnos
 Defeat %s before turn %i=Derrote %s antes do %i turno
-Defeat any opponent, having at least %i lives in the end.=Derrote qualque oponente, tendo no minimo %i pontos de vida no final.
 Win flawlessly (%i lives)=Ganhe sem falhas (%i vidas)
 Reach Invulnerability (%i lives)=Alcance Invulnerabiliade (%i vidas)
 Reach Immortality! (%i lives)=Alcance Imortalidade! (%i vidas)
-Bury %i %s cards to your opponent's graveyard and defeat him.=Enterre %i cartas de %s do adversario e derrote-o.
+Bury %i %s cards to your opponent's graveyard and defeat him.=Enterre %i %scartas do adversario e derrote-o.
 Tame the nature (%i)=Controle a natureza (%i)
 Evaporation (%i)=Evaporacao (%i)
 Bring the order (%i)=Traga ordem (%i)
 Exorcism (%i)=Exorcismo (%i)
 Dusk (%i)=Amanhecer (%i)
 Selective disaster (%i)=Desastre selectivo (%i)
+##
+Necropotence (%i)=Necropotencia (%i)
+Win a game with at least %i black cards in your hand.=Ganhe um jogo tendo pelo menos %i cartas negras na m?o.
+Reach Invulnerability (%i life)=Atingir a Invulnerabilidade(%i de vida)
+Defeat any opponent, having at least %i life in the end. =Derrote qualque adversario, tendo no minimo %i de vida no final.
+
+Return to shop=Regressar a Loja
+
+##########################
+# FILTER: #
+##########################
+
+Add filter=Adicionar filtro#not translated
+Clear=Limpar
+Done=OK
+Cards...=Cartas...
+Set=Expansao
+Color=Cor
+Type=Tipo
+Subtype=Subtipo
+Rarity=Raridade
+Mana Cost=Custo de Mana
+Basic Ability=Habilidade Basica
+Mana Ability=Habilidade de Mana
+Power=Poder
+Toughness=Resistencia
+First Letter=Primeira Letra
+
+#not translated
+White=Branco
+Blue=Azul
+Black=Preto
+Red=Vermelho
+Green=Verde
+Exclusively White=Exclusivamente Branca
+Exclusively Blue=Exclusivamente Azul
+Exclusively Black=Exclusivamente Preta
+Exclusively Red=Exclusivamente Vermelha
+Exclusively Green=Exclusivamente Verde
+
+Artifact=Artefacto
+Artifact Creature=Criatura Artefacto
+Enchantment=Encantamento
+Instant=M?gica Instantanea
+Land=Terreno
+Legendary=Lendaria
+Sorcery=Feiti?o
 
 
 ##########################
-# OPTIONS                #
+# OPTIONS #
 ##########################
 
 # Options tab:
@@ -359,47 +410,60 @@ Normal=Normal
 Hard=Medio
 Harder=Dificil
 Evil=Diabolico
-Display InGame extra information=Mostrar informacao extra no jogo
-Enable cheat mode=Ligar modo de batota
-Seconds to pause for an Interrupt=Segundos a pausar para Interrupcao
-Interrupt my abilities=Interromper as minhas habilidades
-Interrupt my spells=Interromper as minhas magicas
-Interrupt opponent's end of turn=Interromper final de turno do oponente
+Display InGame extra information=Mostrar Informacao Extra enquanto Joga
+Enable cheat mode=Ligar Modo de Batota
+Seconds to pause for an Interrupt=Segundos a Pausar para Interrupcao
+Economic Difficuly=Dificuldade Financeira
+Luck=A Sorte
+Easy=Facil
+Interrupt my abilities=Interromper as minhas Habilidades
+Interrupt my spells=Interromper as minhas Magicas
+Interrupt opponent's end of turn=Interromper Final de Turno do Adversario
 
 # Game tab:
 Game=Jogo
-Interface Options=Opcoes de interface
+Interface Options=Opcoes de Interface
 Language=Lingua
-Closed hand=Mao fechada
-visible=visivel
-invisible=invisivel
+Closed hand=Mao
+visible=Visivel
+invisible=Escondida
 Hand direction=Direccao da Mao
-horizontal=horizontal
-vertical=vertical
-Mana display=Mostrar mana
-Simple=simples
-Eye candy=Eye candy
+horizontal=Horizontal
+vertical=Vertical
+Mana display=Mostrar Mana
+Simple=Simples
+Eye candy=Sofiticado
 Both=Ambos
 Reverse left and right triggers=Trocar botoes L/R
 Disable card image loading=Desligar imagem de carta
 User=Utilizador
-User Options=Opcoes de utilizador
-Credits: %i=creditos: %i
+User Options=Opcoes de Utilizador
+Credits: %i=Creditos: %i
 Cards: %i=Cartas: %i
 Sets: %i (of %i)=Expansoes: %i (de %i)
 Theme: %s=Tema: %s
 Artist: %s=Artista: %s
 Default=Padrao
 New Profile=Novo perfil
-Use this Profile=Usar este perfil
+Use this Profile=Usar este Perfil
 Use this Theme=Usar este Tema
 
+#Advanced Tab
+
+Advanced=Avancadas
+Advanced Options=Opcoes Avancadas
+1: 100% Supported=1: Excelentes (100% OK)
+0: Borderline (99% OK)=0: Boas (99% OK)
+-1: Crappy (bugs)=-1: Fracas (com erros)
+-2: Unsupported=-2: Nao suportadas
+-3: Dangerous (risk of crash)=-3: Perigosas (Risco de crash)
+
 # Credits tab:
-Credits=creditos
+Credits=Creditos
 
 
 ##########################
-# CREDITS                #
+# CREDITS #
 ##########################
 
 # The game currently does not translate its credits screen.
@@ -415,32 +479,32 @@ Credits=creditos
 #Thanks to everyone who contributes code/content on the forums!=Danke auch an alle, die in den Foren Code, Karten, Grafiken usw. beigetragen haben!
 #Developed with the JGE++ Library (http://jge.khors.com)=Entwickelt mit der JGE++ Bibliothek (http://jge.khors.com)
 #Player's avatar from http://mathieuchoinet.blogspot.com, under CC License=Spieler-Avatar von http://mathieuchoinet.blogspot.com, unter CC-Lizenz
-#Background picture and some art from the KDE project, www.kde.org=Hintergrundbild und einige Grafiken vom KDE project, www.kde.org
-#SFX From www.soundsnap.com=Soundeffekte von www.soundsnap.com
+#Background picture and some art from the KDE project, http://www.kde.org=Hintergrundbild und einige Grafiken vom KDE project, http://www.kde.org
+#SFX From http://www.soundsnap.com=Soundeffekte von http://www.soundsnap.com
 #Music by Celestial Aeon Project, http://www.jamendo.com=Musik von Celestial Aeon Project, http://www.jamendo.com
 #This work is not related to or endorsed by Wizards of the Coast, Inc=Dieses Programm steht in keiner Beziehung zu und wird nicht unterstuetzt von Wizards of the Coast, Inc.
 #Please support this project with donations at http://wololo.net/wagic=Bitte unterstuetze dieses Projekt mit Spenden auf http://wololo.net/wagic
 
 
 ##########################
-# TROPHY ROOM:           #
+# TROPHY ROOM: #
 ##########################
 
 Achievements=Conquistas
-Difficulty Modes=Modos de dificuldade
-Achieved a 66% victory ratio.=Alcancado racio de 66% de vitorias.
+Difficulty Modes=Modos de Dificuldade
+Achieved a 66% victory ratio.=Alcancado racio de 66% de vitorias
 Momir Mode=Modo Momir
-Won with exactly 8 lands.=Ganho com exactamente 8 terrenos.
+Won with exactly 8 lands.=Ganhou com exactamente 8 terrenos
 Evil Twin Mode=Modo 'Evil Twin'
-Won with same army size.=Ganho com mesmo tamanho de Exercito.
-Random Deck Mode=Modo Deck Aleatorio
-Won against a higher difficulty.=Ganho contra dificuldade superior.
-Valuable Collection=coleccao de valor
-Collection valued over 10,000c.=coleccao avaliada em mais de 10.000c.
-Collection Info=Informacao da coleccao
-Card Spoiler=Amostra de cartas
-%i locked sets remain.=%i Sets por desbloquear.
-Unlocked all %i sets.=Desbloqueados %i Sets.
+Won with same army size.=Ganhou com exercito equivalente
+Random Deck Mode=Modo Baralho Aleatorio
+Won against a higher difficulty.=Ganhou contra dificuldade superior
+Valuable Collection=Coleccao de Valor
+Collection valued over 10,000c.=Coleccao Avaliada em mais de 10.000c
+Collection Info=Informacao da Coleccao
+Card Spoiler=Cartas
+%i locked sets remain.=%i expans?es por desbloquear
+Unlocked all %i sets.=Desbloqueadas %i Expansoes
 
 Back to Trophies=Regressar aos Trofeus
 
@@ -453,26 +517,60 @@ Total Value: %ic=Valor total: %ic
 Total Cards (including duplicates): %i=Total de cartas (inc. duplicadas): %i
 Unique Cards: %i=Cartas unicas: %i
 Most Duplicates: %i (%s)=Mais duplicadas: %i (%s)
-Favorite Set: %s=Set Favorito: %s
+Favorite Set: %s=Expansao Favorita: %s
 Highest Mana Cost: %i (%s)=Custo de mana mais alto: %i (%s)
 Most Powerful: %i (%s)=Mais poderosa: %i (%s)
 Toughest: %i (%s)=Mais dificil: %i (%s)
 
 
 ##########################
-# CARD DATA: RARITY      #
+# CARD DATA: RARITY #
 ##########################
 
 %s Common=%s Comum
 %s Uncommon=%s Incomum
 %s Rare=%s Rara
 %s Mythic=%s Mitica
-
+%S Special Rarity=%s Raridade Especial
 
 
 
 
 ##########################
-# NOTES:                 #
+# NOTES: #
 ##########################
 
+
+
+Artist: %s=Artista: %s
+Cancel=Cancelar
+Closed hand=Mao
+Credits=Creditos
+Disable card images=Nao mostar imagens
+Disable screen transitions=Nao fazer transicoes de ecra
+Display InGame extra information=Mostrar informacao extra
+English=Ingles
+Eye candy=Sofisticado
+Game=Jogo
+General Options=Opcoes gerais
+Hand direction=Direcao da mao
+Key Bindings=Teclado
+Language=Linguagem
+Mana display=Informa??o de mana
+Minimum Card Grade=Usar Cartas
+Mute=Som desligado
+New Profile=Novo Perfil
+New binding...=Nova tecla...
+No=Nao
+Reverse left and right triggers=Inverter gatilho esquerdo com o direito
+SFX volume=Volume dos efeitos
+Seconds to pause for an Interrupt=Segundos a Parar por Interrupcao
+Settings=Configuracoes
+The following options require a restart.=As opcoes segintes requerem um reinicio
+Theme: %s=Tema: %s
+Use this Language=Usar esta lingua
+Use this Theme=Usar este tema
+User=Utilizador
+User Options=Opcoes do Utilizador
+invisible=Escondida
+vertical=Vertical

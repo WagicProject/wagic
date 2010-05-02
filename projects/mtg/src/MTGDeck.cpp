@@ -687,7 +687,9 @@ int MTGDeck::remove(MTGCard * card){
 }
 
 int MTGDeck::save(){
-  std::ofstream file(filename.c_str());
+  string tmp = filename;
+  tmp.append(".tmp"); //not thread safe
+  std::ofstream file(tmp.c_str());
   char writer[512];
   if (file){
 #if defined (WIN32) || defined (LINUX)
@@ -716,6 +718,8 @@ int MTGDeck::save(){
       }
     }
     file.close();
+    std::remove(filename.c_str());
+    rename(tmp.c_str(),filename.c_str());
   }
   DeckMetaDataList::decksMetaData->invalidate(filename);
   return 1;

@@ -160,6 +160,8 @@ void GameStateMenu::Start(){
   if(currentState == MENU_STATE_MAJOR_MAINMENU){
     currentState = currentState | MENU_STATE_MINOR_FADEIN;  
   }
+
+  wallpaper = "";
 }
 
 void GameStateMenu::genNbCardsStr(){
@@ -278,6 +280,28 @@ void GameStateMenu::End()
   
   resources.Release(bgTexture);
   SAFE_DELETE(mGuiController);
+}
+
+string GameStateMenu::loadRandomWallpaper() {
+  if (wallpaper.size()) 
+    return wallpaper;
+
+  vector<string> wallpapers;
+  std::ifstream file("Res/graphics/wallpapers.txt");
+
+  if (!file) return wallpaper;
+
+  string s;
+  while (std::getline(file,s)) {
+    if (!s.size()) continue;
+    if (s[s.size()-1] == '\r') s.erase(s.size()-1); //Handle DOS files
+    wallpapers.push_back(s);
+  }
+
+  int rnd = rand() % (wallpapers.size());
+  wallpaper = wallpapers[rnd];
+  return wallpaper;
+
 }
 
 string GameStateMenu::getLang(string s){
@@ -530,8 +554,17 @@ void GameStateMenu::Render()
     }
     if (mSplash)
       renderer->RenderQuad(mSplash,0,0);
+    else {
+      string wp = loadRandomWallpaper();
+      if (wp.size()) {
+        JTexture * wpTex = resources.RetrieveTexture(wp);
+        if (wpTex) {
+          JQuad * wpQuad = resources.RetrieveTempQuad(wp);
+          renderer->RenderQuad(wpQuad,0,0,0,SCREEN_WIDTH_F / wpQuad->mWidth, SCREEN_HEIGHT_F / wpQuad->mHeight);
+        }
+      }
+    }
     char text[512];
-    mFont->SetColor(ARGB(255,255,255,255));
     if (mCurrentSetName[0]) {
       sprintf(text, _("LOADING SET: %s").c_str(), mCurrentSetName);
     }else{
@@ -540,7 +573,10 @@ void GameStateMenu::Render()
       else
         sprintf(text,"LOADING...");
     }
-    mFont->DrawString(text,SCREEN_WIDTH/2,SCREEN_HEIGHT/2,JGETEXT_CENTER);
+    mFont->SetColor(ARGB(170,0,0,0));
+    mFont->DrawString(text,SCREEN_WIDTH/2 + 2 ,SCREEN_HEIGHT - 50 + 2,JGETEXT_CENTER);
+    mFont->SetColor(ARGB(255,255,255,255));
+    mFont->DrawString(text,SCREEN_WIDTH/2,SCREEN_HEIGHT - 50,JGETEXT_CENTER);
   }else{
     mFont = resources.GetJLBFont(Constants::MAIN_FONT);
     PIXEL_TYPE colors[] =

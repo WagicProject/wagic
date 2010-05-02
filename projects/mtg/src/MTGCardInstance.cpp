@@ -20,12 +20,9 @@ MTGCardInstance MTGCardInstance::ExtraRules[] = {MTGCardInstance(), MTGCardInsta
 
 
 MTGCardInstance::MTGCardInstance(): CardPrimitive(), MTGCard(), Damageable(0), view(NULL){
-  LOG("==Creating MTGCardInstance==");
   initMTGCI();
-  LOG("==Creating MTGCardInstance Successful==");
 }
 MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to): CardPrimitive(card->data),MTGCard(card), Damageable(card->data->getToughness()), view(NULL){
-  LOG("==Creating MTGCardInstance==");
   initMTGCI();
   model = card;
   attacker = 0;
@@ -37,8 +34,6 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
   defenser = NULL;
   banding = NULL;
   life = toughness;
-  LOG("==Creating MTGCardInstance Successful==");
-
 }
 
 void MTGCardInstance::copy(MTGCardInstance * card){
@@ -80,10 +75,8 @@ void MTGCardInstance::copy(MTGCardInstance * card){
 }
 
 MTGCardInstance::~MTGCardInstance(){
-  LOG("==Deleting MTGCardInstance==");
   SAFE_DELETE(counters);
   SAFE_DELETE(previous);
-  LOG("==Deleting MTGCardInstance Succesfull==");
 }
 
 int MTGCardInstance::init(){

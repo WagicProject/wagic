@@ -28,6 +28,7 @@ class GameStateMenu: public GameState, public JGuiListener
   char nbcardsStr[400];
   vector<string> langs;
   vector<string> primitives;
+  string wallpaper;
   int primitivesLoadCounter;
 
   DIR *mDip;
@@ -50,6 +51,7 @@ class GameStateMenu: public GameState, public JGuiListener
   void listPrimitives();
   void genNbCardsStr(); //computes the contents of nbCardsStr
   void ensureMGuiController(); //creates the MGuiController if it doesn't exist
+  string loadRandomWallpaper(); //loads a list of string of textures that can be randolmy shown on the loading screen
  public:
   GameStateMenu(GameApp* parent);
   virtual ~GameStateMenu();

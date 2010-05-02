@@ -1,0 +1,7 @@
+wallpapers/final_saga1.jpg
+wallpapers/final_saga2.jpg
+wallpapers/final_saga3.jpg
+wallpapers/wagic1.png
+graphics/shop.jpg
+themes/Classic/backdrop.jpg
+themes/Jade/backdrop.jpg

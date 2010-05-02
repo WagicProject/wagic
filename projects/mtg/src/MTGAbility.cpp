@@ -2350,16 +2350,11 @@ other solutions need to be provided for abilities that add mana (ex: mana flare)
 
 AManaProducer::AManaProducer(int id, MTGCardInstance * card, Targetable * t, ManaCost * _output, ManaCost * _cost , int doTap, int who):ActivatedAbilityTP(id, card,t,_cost,doTap,who){
 
-  LOG("==Creating ManaProducer Object");
   aType = MTGAbility::MANA_PRODUCER;
   cost = _cost;
   output = _output;
  
   menutext = "";
-
- 
-
-  LOG("==ManaProducer Object Creation successful !");
 }
 
   int AManaProducer::isReactingToClick(MTGCardInstance *  _card, ManaCost * mana){
@@ -2446,10 +2441,8 @@ AManaProducer::AManaProducer(int id, MTGCardInstance * card, Targetable * t, Man
 
 
   AManaProducer::~AManaProducer(){
-    LOG("==Destroying ManaProducer Object");
     SAFE_DELETE(cost);
     SAFE_DELETE(output);
-    LOG("==Destroying ManaProducer Object Successful!");
   }
 
   AManaProducer * AManaProducer::clone() const{

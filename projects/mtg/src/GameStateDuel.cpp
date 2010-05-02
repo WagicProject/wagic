@@ -249,9 +249,6 @@ void GameStateDuel::Update(float dt)
 	        loadTestSuitePlayers();
 	        mGamePhase = DUEL_STATE_PLAY;
 	        testSuite->initGame();
-	        char buf[4096];
-	        sprintf(buf, "nb cards in player2's graveyard : %i\n",mPlayers[1]->game->graveyard->nb_cards);
-	        LOG(buf);
 	      }else{
           if (!game){
             mGamePhase = DUEL_STATE_ERROR;
@@ -391,7 +388,6 @@ void GameStateDuel::Update(float dt)
 void GameStateDuel::Render()
 {
   JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
-  LOG("Start Render\n");
   JRenderer * r = JRenderer::GetInstance();
   r->ClearScreen(ARGB(0,0,0,0));
 
@@ -466,7 +462,6 @@ void GameStateDuel::Render()
       if(menu)
         menu->Render();
   }
-  LOG("End Render\n");
 }
 
 void GameStateDuel::ButtonPressed(int controllerId, int controlId)

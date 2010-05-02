@@ -11,24 +11,18 @@ MTGPutInPlayRule::MTGPutInPlayRule(int _id):MTGAbility(_id, NULL){
 int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana){
   Player * player = game->currentlyActing();
   Player * currentPlayer = game->currentPlayer;
-  LOG("CANPUTINPLAY- check if card belongs to current player\n");
   if (!player->game->hand->hasCard(card)) return 0;
-  LOG("CANPUTINPLAY- check if card is land or can be played\n");
   if (card->hasType("land")){
-    LOG("CANPUTINPLAY- card is land - check if can be played\n");
     if (player == currentPlayer && currentPlayer->canPutLandsIntoPlay && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN)){
-      LOG("CANPUTINPLAY- Land, ok\n");
       return 1;
     }
   }else if ((card->hasType("instant")) || card->has(Constants::FLASH) || (player == currentPlayer && !game->isInterrupting && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN))){
-    LOG("CANPUTINPLAY- correct time to play\n");
     ManaCost * playerMana = player->getManaPool();
     ManaCost * cost = card->getManaCost();
 #ifdef WIN32
   cost->Dump();
 #endif
     if (playerMana->canAfford(cost)){
-      LOG("CANPUTINPLAY- ManaCost ok\n");
       return 1;
     }
   }
@@ -41,7 +35,6 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card){
   ManaCost * cost = card->getManaCost();
   if (cost->isExtraPaymentSet()){
     if (!game->targetListIsSet(card)){
-      LOG("CANPUTINPLAY- Targets not chosen yet\n");
       return 0;
     }
   }else{
@@ -279,11 +272,8 @@ int MTGMomirRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana){
   if (alreadyplayed) return 0;
   Player * player = game->currentlyActing();
   Player * currentPlayer = game->currentPlayer;
-  LOG("CANPUTINPLAY- check if card belongs to current player\n");
   if (!player->game->hand->hasCard(card)) return 0;
-  LOG("CANPUTINPLAY- check if card is land or can be played\n");
   if (player == currentPlayer && !game->isInterrupting && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN)){
-    LOG("CANPUTINPLAY- correct time to play\n");
 	return 1;
   }
   return 0;
