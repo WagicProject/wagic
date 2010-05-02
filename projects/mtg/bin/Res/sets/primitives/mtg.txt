@@ -5768,7 +5768,7 @@ type=Enchantment
 [/card]
 [card]
 name=Brood Birthing
-auto=aslongas(eldrazi spawn|myBattlefield) Token(-193507)*3
+auto=aslongas(eldrazi spawn|myBattlefield) Token(-193507)*2 && Token(-193507)
 text=If you control at least one 0/1 Eldrazi Spawn creature token, put 3 0/1 colorless Eldrazi Spawn creature tokens onto the battlefield. They have "Sacrifice this creature: Add {1} to your mana pool."
 mana={1}{R}
 type=Sorcery
@@ -17050,8 +17050,6 @@ toughness=3
 [/card]
 [card]
 name=Giant Growth
-target=creature
-auto=3/3
 text=Target creature gets +3/+3 until end of turn.
 mana={G}
 type=Instant
@@ -38772,17 +38770,6 @@ mana={B}{B}
 type=Sorcery
 [/card]
 [card]
-name=Silent Arbiter
-auto=aslongas(creature[attacking]|battlefield) lord(creature[-attacking]|battlefield) cantattack
-auto=aslongas(creature[blocking]|battlefield) lord(creature[-blocking]|battlefield) cantblock
-text=No more than one creature can attack each combat. -- No more than one creature can block each combat.
-mana={4}
-type=Artifact Creature
-subtype=Construct
-power=1
-toughness=5
-[/card]
-[card]
 name=Silent Attendant
 auto={T}:life:1
 text={T}: You gain 1 life.
@@ -44414,7 +44401,7 @@ type=Creature
 subtype=Fungus
 auto=@each my upkeep:counter(0/0,1,Spore)
 auto={C(0/0,-3,Spore)}:Token(-1924)
-auto={1}{S(saproling|myBattlefield)}:1/2
+auto={S(saproling|myBattlefield)}:1/2
 power=2
 toughness=2
 [/card]
@@ -44426,7 +44413,7 @@ type=Creature
 subtype=Fungus
 auto=@each my upkeep:counter(0/0,1,Spore)
 auto={C(0/0,-3,Spore)}:Token(-1924)
-auto={1}{S(saproling|myBattlefield)}:1/1 target(creature)
+auto={S(saproling|myBattlefield)}:1/1 target(creature)
 power=2
 toughness=2
 [/card]
@@ -47997,7 +47984,7 @@ auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(
 text=Graft 5 (This creature enters the battlefield with five +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- Vigean Hydropon can't attack or block.
 mana={1}{G}{U}
 type=Creature
-subtype=Vedalken Wizard Mutant
+subtype=Plant Mutant
 power=0
 toughness=0
 [/card]

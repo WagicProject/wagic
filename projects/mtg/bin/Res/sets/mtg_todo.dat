@@ -15862,22 +15862,6 @@ mana={5}
 type=Artifact
 [/card]
 [card]
-name=Helium Squirter
-text=Graft 3 (This creature enters the battlefield with three +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {1}: Target creature with a +1/+1 counter on it gains flying until end of turn.
-mana={4}{U}
-type=Creature
-subtype=Beast Mutant
-power=0
-toughness=0
-[/card]
-[card]
-name=Helix Pinnacle
-abilities=shroud
-text=Shroud -- {X}: Put X tower counters on Helix Pinnacle. -- At the beginning of your upkeep, if there are 100 or more tower counters on Helix Pinnacle, you win the game.
-mana={G}
-type=Enchantment
-[/card]
-[card]
 name=Hell's Thunder
 text=Flying, haste -- At the beginning of the end step, sacrifice Hell's Thunder. -- Unearth {4}{R} ({4}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={1}{R}{R}
@@ -32907,6 +32891,20 @@ name=Silence
 text=Your opponents can't cast spells this turn. (Spells cast before this resolves are unaffected.)
 mana={W}
 type=Instant
+[/card]
+[card]
+####This card does not work. Opponent can always attack or block with more then one creature although Silent Arbiter is in play.
+name=Silent Arbiter
+auto=aslongas(creature[attacking]|mybattlefield) lord(creature[-attacking]|mybattlefield) cantattack
+auto=aslongas(creature[blocking]|mybattlefield) lord(creature[-blocking]|mybattlefield) cantblock
+auto=aslongas(creature[attacking]|opponentbattlefield) lord(creature|opponentbattlefield) cantattack
+auto=aslongas(creature[blocking]|opponentbattlefield) lord(creature|opponentbattlefield) cantblock
+text=No more than one creature can attack each combat. -- No more than one creature can block each combat.
+mana={4}
+type=Artifact Creature
+subtype=Construct
+power=1
+toughness=5
 [/card]
 [card]
 name=Silent Assassin
