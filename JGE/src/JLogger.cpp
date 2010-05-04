@@ -14,7 +14,7 @@ void JLogger::Log(const char * text){
     file << "\n";
     file.close();
   }
-#if defined (WIN32) || defined (LINUX)
+#if defined (WIN32)
   OutputDebugString(text);
   OutputDebugString("\n");
 #else
