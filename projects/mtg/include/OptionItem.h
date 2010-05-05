@@ -122,11 +122,12 @@ class OptionProfile:public OptionDirectory{
   virtual void Entering(JButton key);
   virtual void Reload();
   virtual void Render();
+  virtual void initSelections();
   virtual void confirmChange(bool confirmed);
   virtual void updateValue();
   void populate();
-private:  
-  GameApp * app;  
+private:
+  GameApp * app;
   JGuiListener * listener;
   bool canSelect;
   string preview;

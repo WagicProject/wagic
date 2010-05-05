@@ -56,10 +56,9 @@ void OptionInteger::setData(){
 //Option Select
 void OptionSelect::initSelections(){
   //Find currently active bit in the list.
-    for(size_t i=0;i<selections.size();i++){
-      if(selections[i] == options[id].str)
-        value = i;
-    }
+  for (size_t i = 0; i < selections.size(); ++i)
+    if (selections[i] == options[id].str)
+      value = i;
 }
 
 void OptionSelect::Entering(JButton key){
@@ -106,6 +105,11 @@ OptionProfile::OptionProfile(GameApp * _app, JGuiListener * jgl) : OptionDirecto
   initSelections();
   populate();
 };
+
+void OptionProfile::initSelections() {
+  OptionSelect::initSelections();
+  initialValue = value;
+}
 
 void OptionProfile::addSelection(string s){
   OptionDirectory::addSelection(s);
