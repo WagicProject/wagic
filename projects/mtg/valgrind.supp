@@ -1,0 +1,22 @@
+# The following seems to be a problem in zlib
+# http://www.mail-archive.com/debian-bugs-dist@lists.debian.org/msg770425.html
+# See also http://www.zlib.net/zlib_faq.html#faq36 which points at a tricky part in the same code but apparently a different place. Chances are, it is likewise harmless. It is still strange behavior from the zlib, but regardless, it's in the library code, so whatever we do we cannot fix it on our side (short of stopping to use pnglib, which would have intricate consequences).
+#
+# Reference on Wagic wiki : http://wololo.net/miki/index.php/Wagic/Dev/Issue380
+{
+   Zlib inflateReset uninitialized.
+   Memcheck:Cond
+   fun:inflateReset2
+   fun:inflateInit2_
+   fun:inflateInit_
+   fun:png_create_read_struct_2
+   fun:png_create_read_struct
+   fun:_ZN9JRenderer7LoadPNGERNS_11TextureInfoEPKcii
+   fun:_ZN9JRenderer11LoadTextureEPKcii
+   fun:_ZN14WCachedTexture7AttemptESsiRi
+   fun:_ZN6WCacheI14WCachedTexture8JTextureE10AttemptNewESsi
+   fun:_ZN6WCacheI14WCachedTexture8JTextureE3GetEiSsii
+   fun:_ZN6WCacheI14WCachedTexture8JTextureE8RetrieveEiSsii
+   fun:_ZN16WResourceManager15RetrieveTextureESsii
+}
+
