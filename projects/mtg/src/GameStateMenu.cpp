@@ -154,12 +154,9 @@ void GameStateMenu::Start(){
   mBg = resources.RetrieveQuad("menutitle.png", 0, 0, 256, 166);		// Create background quad for rendering.
 
   mBg->SetHotSpot(128,50);
-    genNbCardsStr();
 
-
-  if(currentState == MENU_STATE_MAJOR_MAINMENU){
-    currentState = currentState | MENU_STATE_MINOR_FADEIN;  
-  }
+  if (MENU_STATE_MAJOR_MAINMENU == currentState)
+    currentState = currentState | MENU_STATE_MINOR_FADEIN;
 
   wallpaper = "";
 }
