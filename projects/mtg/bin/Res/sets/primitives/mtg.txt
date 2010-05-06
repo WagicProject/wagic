@@ -1698,6 +1698,42 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Arc Lightning
+target=creature,player
+auto=damage:1
+auto=damage:1 target(creature,player)
+auto=token(-1111112)
+text=Arc Lightning deals 3 damage divided as you choose among one, two, or three target creatures and/or players.
+mana={2}{R}
+type=Sorcery
+[/card]
+[card]
+name=Arc Lightning's 3rd Damage
+auto=counter(0/0,1,Arc Lightning)
+auto=@damaged(creature,player):thisforeach(counter{0/0.1.Arc Lightning}>0) damage:1 target(creature,player) && counter(0/0,-1,Arc Lightning) && counter(0/0,1,Bury)
+auto=thisforeach(counter{0/0.1.Bury}>0) bury
+type=Nothing
+id=-1111112
+[/card]
+[card]
+name=Arc Mage
+auto={2}{R}{T}:token(-1111113) && damage:1 target(creature,player)
+text={2}{R}, {T}, Discard a card: Arc Mage deals 2 damage divided as you choose among one or two target creatures and/or players.
+mana={2}{R}
+type=Creature
+subtype=Human Spellshaper
+power=2
+toughness=2
+[/card]
+[card]
+name=Arc Mage's 2nd Damage
+auto=counter(0/0,1,Arc Mage)
+auto=@damaged(creature,player):thisforeach(counter{0/0.1.Arc Mage}>0) damage:1 target(creature,player) && counter(0/0,-1,Arc Mage) && counter(0/0,1,Bury)
+auto=thisforeach(counter{0/0.1.Bury}>0) bury
+id=-1111113
+type=Nothing
+[/card]
+[card]
 name=Arcades Sabboth
 abilities=flying
 auto=lord(creature[-attacking;-tapped]|mybattlefield) 0/2
@@ -5178,6 +5214,25 @@ mana={2}{W}
 type=Instant
 [/card]
 [card]
+name=Bonded Fetch
+abilities=defender,haste
+auto={T}:token(-1111113) && draw:1
+text=Defender, haste -- {T}: Draw a card, then discard a card.
+mana={2}{U}
+type=Creature
+subtype=Homunculus
+power=0
+toughness=2
+[/card]
+[card]
+name=Bonded Fetch's Discard
+auto=counter(0/0,1,Bonded Fetch)
+auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Bonded Fetch}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Bonded Fetch) && counter(0/0,1,Bury)
+auto=thisforeach(counter{0/0.1.Bury}>0) bury
+id=-1111113
+tape=Nothing
+[/card]
+[card]
 name=Bone Flute
 auto={2}{T}:lord(creature) -1/0 ueot
 text={2}, {T}: All creatures get -1/-0 until end of turn.
@@ -5464,6 +5519,23 @@ auto=draw:X
 text=Target player draws X cards.
 mana={X}{U}{U}
 type=Sorcery
+[/card]
+[card]
+name=Brainstorm
+auto=draw:3
+auto=moveTo(myLibrary) target(*|myhand)
+auto=token(-1111114)
+text=Draw three cards, then put two cards from your hand on top of your library in any order.
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Brainstorm's 2nd MoveToTop
+auto=counter(0/0,1,Brainstorm)
+auto=@movedTo(*|myLibrary) from(myhand):thisforeach(counter{0/0.1.Brainstorm}>0) moveTo(myLibrary) target(*|myhand) && counter(0/0,-1,Brainstorm) && counter(0/0,1,Bury)
+auto=thisforeach(counter{0/0.1.Bury}>0) bury
+id=-1111114
+tape=Nothing
 [/card]
 [card]
 name=Bramble Creeper
@@ -6032,6 +6104,24 @@ mana={R}
 type=Sorcery
 [/card]
 [card]
+name=Buried Alive
+target=*|myLibrary
+auto=moveto(mygraveyard)
+auto=may moveto(mygraveyard) target(*|myLibrary)
+auto=token(-1111115)
+text=Search your library for up to three creature cards and put them into your graveyard. Then shuffle your library.
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+name=3rd Creature Buried Alive
+auto=counter(0/0,1,Buried Alive)
+auto=@movedTo(creature|mygraveyard) from(myLibrary):thisforeach(counter{0/0.1.Buried Alive}>0) may moveto(mygraveyard) target(*|myLibrary) && counter(0/0,-1,Buried Alive) && counter(0/0,1,Bury)
+auto=thisforeach(counter{0/0.1.Bury}>0) bury
+id=-1111115
+type=Nothing
+[/card]
+[card]
 name=Cabal Archon
 auto={B}{S(cleric|myBattlefield)}:life:-2 target(player) && life:2 controller
 text={B}, Sacrifice a Cleric: Target player loses 2 life and you gain 2 life.
@@ -6460,6 +6550,23 @@ type=Creature
 subtype=Giant
 power=1
 toughness=5
+[/card]
+[card]
+name=Careful Study
+auto=draw:2
+auto=moveTo(mygraveyard) target(*|myhand)
+auto=token(-1111116)
+text=Draw two cards, then discard two cards.
+mana={U}
+type=Sorcery
+[/card]
+[card]
+name=Careful Studies 2nd Discard
+auto=counter(0/0,1,Careful Study)
+auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Careful Study}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Careful Study) && counter(0/0,1,Bury)
+auto=thisforeach(counter{0/0.1.Bury}>0) bury
+id=-1111116
+tape=Nothing
 [/card]
 [card]
 name=Carnage Altar
@@ -7642,7 +7749,8 @@ type=Enchantment
 name=Circle of Protection: Green
 alias=1337
 text={1}: The next time a green source of your choice would deal damage to you this turn, prevent that damage.
-mana={1}{W}
+###mana={1}{W}
+mana={G}
 type=Enchantment
 [/card]
 [card]
@@ -8662,7 +8770,7 @@ name=Corpse Hatch
 target=creature[-black]
 auto=destroy
 auto=Token(-193507)*2
-text=Destroy target nonblack creature. -- Put two 0/1 colorless Eldrazi Spawn creature tokens onto the battlefield. They have “Sacrifice this creature: Add {1} to your mana pool.E
+text=Destroy target nonblack creature. -- Put two 0/1 colorless Eldrazi Spawn creature tokens onto the battlefield. They have “Sacrifice this creature: Add {1} to your mana pool.”
 mana={3}{B}{B}
 type=Sorcery
 [/card]
@@ -9223,6 +9331,15 @@ auto=lord(dragon|myBattlefield) 3/3
 text=Dragon creatures you control get +3/+3.
 mana={3}{R}
 type=Enchantment
+[/card]
+[card]
+name=Cruel Revival
+target=creature[-zombie]
+auto=bury
+auto=may moveTo(myhand) target(zombie|mygraveyard)
+text=Destroy target non-Zombie creature. It can't be regenerated. Return up to one target Zombie card from your graveyard to your hand.
+mana={4}{B}
+type=Instant
 [/card]
 [card]
 name=Crumble
@@ -12184,6 +12301,24 @@ text=Drowned Catacomb enters the battlefield tapped unless you control an Island
 type=Land
 [/card]
 [card]
+name=Drowned Rusalka
+auto={U}{S(creature|myBattlefield)}:token(-1111117) && draw:1
+text={U}, Sacrifice a creature: Discard a card, then draw a card.
+mana={U}
+type=Creature
+subtype=Spirit
+power=1
+toughness=1
+[/card]
+[card]
+name=Drowned Rusalkas Discard
+auto=counter(0/0,1,Drowned Rusalka)
+auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Drowned Rusalka}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Drowned Rusalka) && counter(0/0,1,Bury)
+auto=thisforeach(counter{0/0.1.Bury}>0) bury
+id=-1111117
+tape=Nothing
+[/card]
+[card]
 name=Drudge Reavers
 abilities=flash
 auto={B}:regenerate
@@ -12511,6 +12646,24 @@ type=Creature
 subtype=Human Soldier
 power=1
 toughness=1
+[/card]
+[card]
+name=Early Frost
+target=land
+auto=tap
+auto=may tap target(land)
+auto=token(-1111118)
+text=Tap up to three target lands.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Early Frost's 3rd Tap
+auto=counter(0/0,1,Early Frost)
+auto=@tapped(land):thisforeach(counter{0/0.1.Early Frost}>0) may tap target(land) && counter(0/0,-1,Early Frost) && counter(0/0,1,Bury)
+auto=thisforeach(counter{0/0.1.Bury}>0) bury
+id=-1111118
+type=Nothing
 [/card]
 [card]
 name=Earnest Fellowship
@@ -13325,6 +13478,21 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Emmessi Tome
+auto={5}{T}:token(-1111119) && draw:2
+text={5}, {T}: Draw two cards, then discard a card.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Emmessi Tome's Discard
+auto=counter(0/0,1,Emmessi Tome)
+auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Emmessi Tome}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Emmessi Tome) && counter(0/0,1,Bury)
+auto=thisforeach(counter{0/0.1.Bury}>0) bury
+id=-1111119
+tape=Nothing
+[/card]
+[card]
 name=Emissary of Despair
 abilities=flying
 auto=@damaged(player) from(this):foreach(artifact|opponentbattlefield) life:-1 opponent
@@ -13433,6 +13601,27 @@ auto=@movedTo(enchantment|myBattlefield) from(mystack):draw:1
 text=Whenever you cast an enchantment spell, draw a card.
 mana={2}{G}
 type=Enchantment
+[/card]
+[card]
+name=Enclave Cryptologist
+auto={1}{U}:counter(0/0,1,Level Up) asSorcery
+auto=this(counter{0/0.1.Level Up}=) {T}:token(-1111120) && draw:1
+auto=this(counter{0/0.2.Level Up}=) {T}:token(-1111120) && draw:1
+auto=this(counter{0/0.3.Level Up}) {T}:draw:1
+text=Level up {1}{U} -- [Level 1-2]: {T}: Draw a card, then discard a card. (0/1) -- [Level 3+]: {T}: Draw a card. (0/1)
+mana={1}{U}
+type=Creature
+subtype=Levelup Merfolk Wizard
+power=0
+toughness=1
+[/card]
+[card]
+name=Enclave Cryptologist's Discard
+auto=counter(0/0,1,Enclave Cryptologist)
+auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Enclave Cryptologist}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Enclave Cryptologist) && counter(0/0,1,Bury)
+auto=thisforeach(counter{0/0.1.Bury}>0) bury
+id=-1111120
+tape=Nothing
 [/card]
 [card]
 name=Endangered Armodon
@@ -14947,6 +15136,24 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Fire at Will
+target=creature[attacking;blocking]
+auto=damage:3
+auto=may damage:3 target(creature[attacking;blocking])
+auto=token(-1111121)
+text=Fire at Will deals 3 damage divided as you choose among one, two, or three target attacking or blocking creatures.
+mana={RW}{RW}{RW}
+type=Instant
+[/card]
+[card]
+name=Fire at Will's 3rd Damage
+auto=counter(0/0,1,Fire)
+auto=@damaged(creature,player):thisforeach(counter{0/0.1.Fire}>0) may damage:3 target(creature,player) && counter(0/0,-1,Fire) && counter(0/0,1,Bury)
+auto=thisforeach(counter{0/0.1.Bury}>0) bury
+id=-1111121
+type=Nothing
+[/card]
+[card]
 name=Fire Bolt
 auto=damage:2 target(creature)
 autograveyard={4}{R}:copy(this) && moveTo(mystack) asSorcery
@@ -16188,6 +16395,25 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Frontline Sage
+abilities=exalted
+auto={T}:token(-1111122) && draw:1
+text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.) -- {U}, {T}: Draw a card, then discard a card.
+mana={2}{U}
+type=Creature
+subtype=Human Wizard
+power=0
+toughness=1
+[/card]
+[card]
+name=Frontline Sage's Discard
+auto=counter(0/0,1,Frontline Sage)
+auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Frontline Sage}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Frontline Sage) && counter(0/0,1,Bury)
+auto=thisforeach(counter{0/0.1.Bury}>0) bury
+id=-1111122
+tape=Nothing
+[/card]
+[card]
 name=Frost Giant
 auto=rampage(2/2,1)
 text=Rampage 2 (Whenever this creature becomes blocked, it gets +2/+2 until end of turn for each creature blocking it beyond the first.)
@@ -16442,6 +16668,15 @@ type=Creature
 subtype=Treefolk
 power=1+*
 toughness=1+*
+[/card]
+[card]
+name=Gaea's Bounty
+target=forest|myLibrary
+auto=moveTo(myBattlefield)
+auto=may moveTo(myBattlefield) target(forest|myLibrary)
+text=Search your library for up to two Forest cards, reveal those cards, and put them into your hand. Then shuffle your library.
+mana={2}{G}
+type=Sorcery
 [/card]
 [card]
 name=Gaea's Cradle
@@ -17050,10 +17285,10 @@ toughness=3
 [/card]
 [card]
 name=Giant Growth
-text=Target creature gets +3/+3 until end of turn.
-mana={G}
 target=creature
 auto=3/3
+text=Target creature gets +3/+3 until end of turn.
+mana={G}
 type=Instant
 [/card]
 [card]
@@ -18839,6 +19074,25 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Grixis Battlemage
+auto={U}{T}:token(-1111123) && draw:1
+auto={R}{T}:cantblock target(creature)
+text={U}, {T}: Draw a card, then discard a card. -- {R}, {T}: Target creature can't block this turn.
+mana={2}{B}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Grixis Battlemage's Discard
+auto=counter(0/0,1,Grixis Battlemage)
+auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Grixis Battlemage}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Grixis Battlemage) && counter(0/0,1,Bury)
+auto=thisforeach(counter{0/0.1.Bury}>0) bury
+id=-1111123
+tape=Nothing
+[/card]
+[card]
 name=Grixis Panorama
 auto={T}:Add{1}
 auto={1}{T}{S}:moveTo(myBattlefield) target(island,swamp,mountain|mylibrary) && tap
@@ -18878,7 +19132,7 @@ name=Grizzly Fate
 auto=token(Bear,creature bear, 2/2,green)*2
 auto=aslongas(*|mygraveyard) token(Bear,creature bear, 2/2,green)*2 >6
 autograveyard={5}{G}{G}:copy(this) && moveTo(mystack) asSorcery
-text=Put two 2/2 green Bear creature tokens onto the battlefield. -- Threshold EPut four 2/2 green Bear creature tokens onto the battlefield instead if seven or more cards are in your graveyard. -- Flashback {2}{G}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+text=Put two 2/2 green Bear creature tokens onto the battlefield. -- Threshold — Put four 2/2 green Bear creature tokens onto the battlefield instead if seven or more cards are in your graveyard. -- Flashback {2}{G}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={3}{G}{G}
 type=Sorcery
 [/card]
@@ -19439,6 +19693,24 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Harrow
+target=land|myBattlefield
+auto=bury
+auto=moveTo(myBattlefield) target(land[basic]|myLibrary)
+auto=token(-1111126)
+text=As an additional cost to cast Harrow, sacrifice a land. -- Search your library for up to two basic land cards and put them onto the battlefield. Then shuffle your library.
+mana={2}{G}
+type=Instant
+[/card]
+[card]
+name=Harrow's 2nd Land
+auto=counter(0/0,1,Harrow)
+auto=@movedTo(land|myBattlefield):thisforeach(counter{0/0.1.Harrow}>0) may moveTo(myBattlefield) target(land[basic]|myLibrary) && counter(0/0,-1,Harrow) && counter(0/0,1,Bury)
+auto=thisforeach(counter{0/0.1.Bury}>0) bury
+id=-1111126
+tape=Nothing
+[/card]
+[card]
 name=Haru-Onna
 auto=draw:1 controller
 auto=@movedto(arcane,spirit|mystack):may moveto(ownerhand)
@@ -19906,7 +20178,7 @@ type=Instant
 [/card]
 [card]
 name=Hell's Caretaker
-auto={B}{T}{S(creature|myBattlefield)}:moveTo(myBattlefield) target(creature|mygraveyard) myUpkeepOnly
+auto={T}{S(creature|myBattlefield)}:moveTo(myBattlefield) target(creature|mygraveyard) myUpkeepOnly
 text={T}, Sacrifice a creature: Return target creature card from your graveyard to the battlefield. Activate this ability only during your upkeep.
 mana={3}{B}
 type=Creature
@@ -20590,6 +20862,26 @@ subtype=Drone
 power=3
 toughness=3
 [/card]
+[card]
+name=Hoverguard Sweepers
+abilities=flying
+auto=may moveTo(ownerhand) target(creature)
+auto=token(-1111125)
+text=Flying -- When Hoverguard Sweepers enters the battlefield, you may return up to two target creatures to their owners' hands.
+mana={6}{U}{U}
+type=Creature
+subtype=Drone
+power=5
+toughness=6
+[/card]
+[card]
+name=Hoverguard Sweeper's 2nd Bounce
+auto=counter(0/0,1,Hoverguard Sweeper)
+auto=@movedTo(creature|ownerhand) from(battlefield):thisforeach(counter{0/0.1.Hoverguard Sweeper}>0) may moveTo(ownerhand) target(creature) && counter(0/0,-1,Hoverguard Sweeper) && counter(0/0,1,Bury)
+auto=thisforeach(counter{0/0.1.Bury}>0) bury
+id=-1111125
+type=Nothing
+[/card
 [card]
 name=Howl from Beyond
 target=creature
@@ -21581,6 +21873,26 @@ mana={3}{U}
 type=Instant
 [/card]
 [card]
+name=Inspired Sprite
+abilities=flash,flying
+auto=@movedTo(wizard|mystack):may untap
+auto={T}:token(-1111127) && draw:1
+text=Flash -- Flying -- Whenever you cast a Wizard spell, you may untap Inspired Sprite. -- {T}: Draw a card, then discard a card.
+mana={3}{U}
+type=Creature
+subtype=Faerie Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Inspired Sprite's Discard
+auto=counter(0/0,1,Inspired Sprite)
+auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Inspired Sprite}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Inspired Sprite) && counter(0/0,1,Bury)
+auto=thisforeach(counter{0/0.1.Bury}>0) bury
+id=-1111127
+tape=Nothing
+[/card]
+[card]
 name=Inspirit
 target=creature
 auto=untap
@@ -21715,7 +22027,7 @@ type=Enchantment
 name=Ior Ruin Expedition
 auto=@movedTo(land|myBattlefield):may counter(0/0,1,Quest)
 auto={C(0/0,-3,Quest)}{S}:draw:2
-text=Landfall EWhenever a land enters the battlefield under your control, you may put a quest counter on Ior Ruin Expedition. -- Remove three quest counters from Ior Ruin Expedition and sacrifice it: Draw two cards.
+text=Landfall — Whenever a land enters the battlefield under your control, you may put a quest counter on Ior Ruin Expedition. -- Remove three quest counters from Ior Ruin Expedition and sacrifice it: Draw two cards.
 mana={1}{U}
 type=Enchantment
 [/card]
@@ -22052,6 +22364,21 @@ type=Creature
 subtype=Insect
 power=3
 toughness=2
+[/card]
+[card]
+name=Jalum Tome
+auto={2}{T}:token(-1111128) && draw:1
+text={2}, {T}: Draw a card, then discard a card.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Jalum Tome's Discard
+auto=counter(0/0,1,Jalum Tome)
+auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Jalum Tome}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Jalum Tome) && counter(0/0,1,Bury)
+auto=thisforeach(counter{0/0.1.Bury}>0) bury
+id=-1111128
+tape=Nothing
 [/card]
 [card]
 name=Jamuraan Lion
@@ -25827,6 +26154,27 @@ mana={2}
 type=Artifact
 [/card]
 [card]
+name=Lotus Cobra
+auto=@movedTo(land|myBattlefield):may token(-1111129)
+text=Landfall — Whenever a land enters the battlefield under your control, you may add one mana of any color to your mana pool.
+mana={1}{G}
+type=Creature
+subtype=Snake
+power=2
+toughness=1
+[/card]
+[card]
+name=Lotus Cobra's Mana
+auto=may Add{W}
+auto=may Add{U}
+auto=may Add{B}
+auto=may Add{R}
+auto=may Add{G}
+auto=moveto(exile) all(this)
+id=-1111129
+tape=Nothing
+[/card]
+[card]
 name=Lotus Guardian
 abilities=flying
 auto={T}:Add {W}
@@ -27183,6 +27531,24 @@ power=1
 toughness=2
 [/card]
 [card]
+name=Merfolk Looter
+auto={T}:token(-1111130) && draw:2
+text={T}: Draw a card, then discard a card.
+mana={1}{U}
+type=Creature
+subtype=Merfolk Rogue
+power=1
+toughness=1
+[/card]
+[card]
+name=Merfolk Looter's Discard
+auto=counter(0/0,1,Merfolk Looter)
+auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Merfolk Looter}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Merfolk Looter) && counter(0/0,1,Bury)
+auto=thisforeach(counter{0/0.1.Bury}>0) bury
+id=-1111130
+tape=Nothing
+[/card]
+[card]
 name=Merfolk Seastalkers
 abilities=islandwalk
 auto={2}{U}:tap target(creature[-flying])
@@ -27817,6 +28183,23 @@ auto={T}{S}:becomes(Artifact Creature Land,3/3) target(land|myBattlefield)
 text={T}, Sacrifice Mishra's Groundbreaker: Target land becomes a 3/3 artifact creature that's still a land. (This effect lasts indefinitely.)
 mana={4}
 type=Artifact
+[/card]
+[card]
+name=Misinformation
+target=*|opponentgraveyard
+auto=moveTo(ownerLibrary)
+auto=may moveTo(ownerLibrary) target(*|opponentgraveyard)
+auto=token(-1111131)
+text=Put up to three target cards from an opponent's graveyard on top of his or her library in any order.
+mana={B}
+type=Instant
+[/card]
+[card]
+name=Misinformation's 3rd Return
+auto=counter(0/0,1,Misinformation)
+auto=@movedTo(*|opponentLibrary) from(opponentgraveyard):thisforeach(counter{0/0.1.Misinformation}>0) may moveTo(opponentLibrary) target(*|opponentgraveyard) && counter(0/0,-1,Misinformation) && counter(0/0,1,Bury)
+auto=thisforeach(counter{0/0.1.Bury}>0) bury
+id=-1111131
 [/card]
 [card]
 name=Misshapen Fiend
@@ -30266,6 +30649,25 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Obelisk of Alara
+auto={1}{W}{T}:life:5
+auto={1}{U}{T}:(-1111132) && Draw:1
+auto={1}{B}{T}:-2/-2 target(creature)
+auto={1}{R}{T}:damage:3 target(player)
+auto={1}{G}{T}:4/4 target(creature)
+text={1}{W}, {T}: You gain 5 life. -- {1}{U}, {T}: Draw a card, then discard a card. -- {1}{B}, {T}: Target creature gets -2/-2 until end of turn. -- {1}{R}, {T}: Obelisk of Alara deals 3 damage to target player. -- {1}{G}, {T}: Target creature gets +4/+4 until end of turn.
+mana={6}
+type=Artifact
+[/card]
+[card]
+name=Obelisk of Alara's Discard
+auto=counter(0/0,1,Obelisk)
+auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Obelisk}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Obelisk) && counter(0/0,1,Bury)
+auto=thisforeach(counter{0/0.1.Bury}>0) bury
+id=-1111132
+tape=Nothing
+[/card]
+[card]
 name=Obelisk of Bant
 auto={T}:Add {G}
 auto={T}:Add {W}
@@ -31674,9 +32076,8 @@ type=Enchantment
 [/card]
 [card]
 name=Perilous Research
-target=*|myBattlefield
-auto=bury
 auto=draw:2 controller
+auto=moveTo(ownergraveyard) notatarget(*|myBattlefield)
 text=Draw two cards, then sacrifice a permanent.
 mana={1}{U}
 type=Instant
@@ -32921,6 +33322,25 @@ mana={2}{GW}{GW}{GW}
 type=Enchantment
 [/card]
 [card]
+name=Proclamation of Rebirth
+target=creature[manacost<=1]|mygraveyard
+auto=moveTo(myhand)
+auto=may moveTo(myhand) target(creature[manacost<=1]|mygraveyard) 
+auto=token(-1111133)
+autohand={5}{W}:moveTo(myhand) target(creature[manacost<=1]|mygraveyard) limit:1 myUpkeepOnly
+text=Return up to three target creature cards with converted mana cost 1 or less from your graveyard to the battlefield. -- Forecast - {5}{W}, Reveal Proclamation of Rebirth from your hand: Return target creature card with converted mana cost 1 or less from your graveyard to the battlefield. (Activate this ability only during your upkeep and only once each turn.)
+mana={2}{W}
+type=Sorcery
+[/card]
+[card]
+name=Proclamation's 3rd Return
+auto=counter(0/0,1,Proclamation)
+auto=@movedTo(creature|myhand) from(mygraveyard):thisforeach(counter{0/0.1.Proclamation}>0) may moveTo(myhand) target(creature[manacost<=1]|mygraveyard) && counter(0/0,-1,Proclamation) && counter(0/0,1,Bury)
+auto=thisforeach(counter{0/0.1.Bury}>0) bury
+id=-1111133
+tape=Nothing
+[/card]
+[card]
 name=Prodigal Pyromancer
 auto={T}:damage:1 target(creature,player)
 text={T}: Prodigal Pyromancer deals 1 damage to target creature or player.
@@ -33986,6 +34406,24 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Ranger of Eos
+auto=may token(-1111134) && may moveTo(myHand) target(creature[manacost<=1]|myLibrary)
+text=When Ranger of Eos enters the battlefield, you may search your library for up to two creature cards with converted mana cost 1 or less, reveal them, and put them into your hand. If you do, shuffle your library.
+mana={3}{W}
+type=Creature
+subtype=Human Soldier
+power=3
+toughness=2
+[/card]
+[card]
+name=Ranger of Eos' 2nd Creature
+auto=counter(0/0,1,Eos)
+auto=@movedTo(creature[manacost<=1]|myHand):thisforeach(counter{0/0.1.Eos}>0) may moveTo(myHand) target(creature[manacost<=1]|myLibrary) && counter(0/0,-1,Eos) && counter(0/0,1,Bury)
+auto=thisforeach(counter{0/0.1.Bury}>0) bury
+id=-1111134
+type=Nothing
+[/card]
+[card]
 name=Rank and File
 auto=lord(creature[green]|myBattlefield) -1/-1 ueot
 text=When Rank and File enters the battlefield, all green creatures get -1/-1 until end of turn.
@@ -34563,6 +35001,24 @@ mana={1}{G}
 type=Sorcery
 [/card]
 [card]
+name=Reinforcements
+target=creature|mygraveyard
+auto=moveTo(myLibrary)
+auto=may moveTo(myLibrary) target(creature|mygraveyard)
+auto=token(-1111135)
+text=Put up to three target creature cards from your graveyard on top of your library.
+mana={W}
+type=Instant
+[/card]
+[card]
+name=Reinforcements' 3rd Return
+auto=counter(0/0,1,Reinforcements)
+auto=@movedTo(creature|myLibrary) from(mygraveyard):thisforeach(counter{0/0.1.Reinforcements}>0) may moveTo(myLibrary) target(creature|mygraveyard && counter(0/0,-1,Reinforcements) && counter(0/0,1,Bury)
+auto=thisforeach(counter{0/0.1.Bury}>0) bury
+id=-1111135
+type=Nothing
+[/card]
+[card]
 name=Reiver Demon
 abilities=flying
 auto=@movedTo(this|myBattlefield) from(mystack):destroy all(creature[-black;-artifact])
@@ -34642,6 +35098,15 @@ auto={T}:tap target(artifact)
 text={T}: Tap target artifact.
 mana={2}
 type=Artifact
+[/card]
+[card]
+name=Relic Crush
+target=artifact,enchantment
+auto=destroy
+auto=may destroy target(artifact,enchantment)
+text=Destroy target artifact or enchantment and up to one other target artifact or enchantment.
+mana={4}{G}
+type=Instant
 [/card]
 [card]
 name=Reliquary Monk
@@ -37420,6 +37885,24 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Seek the Horizon
+target=land[basic]|myLibrary
+auto=moveTo(myHand)
+auto=may moveTo(myHand) target(land[basic]|myLibrary)
+auto=token(-1111136)
+text=Search your library for up to three basic land cards, reveal them, and put them into your hand. Then shuffle your library.
+mana={3}{G}
+type=Sorcery
+[/card]
+[card]
+name=Seek the Horizon's 3rd Land
+auto=counter(0/0,1,Horizon)
+auto=@movedTo(land[basic]|myHand) from(myLibrary):thisforeach(counter{0/0.1.Horizon}>0) may moveTo(myHand) target(land[basic]|myLibrary) && counter(0/0,-1,Horizon) && counter(0/0,1,Bury)
+auto=thisforeach(counter{0/0.1.Bury}>0) bury
+id=-1111136
+type=Nothing
+[/card]
+[card]
 name=Seething Pathblazer
 auto={S(elemental|myBattlefield)}:2/0 && first strike
 text=Sacrifice an Elemental: Seething Pathblazer gets +2/+0 and gains first strike until end of turn.
@@ -39520,6 +40003,15 @@ mana={1}{G}
 type=Instant
 [/card]
 [card]
+name=Skyshroud Claim
+target=forest|myLibrary
+auto=moveTo(myBattlefield)
+auto=may moveTo(myBattlefield) target(forest|myLibrary)
+text=Search your library for up to two Forest cards and put them onto the battlefield. Then shuffle your library.
+mana={3}{G}
+type=Sorcery
+[/card]
+[card]
 name=Skyshroud Elf
 auto={T}:Add {G}
 auto={1}:Add {W}
@@ -40028,6 +40520,24 @@ auto=@movedTo(*[blue;black]|opponentstack):may token(Snake,Creature Snake,1/1,gr
 text=Whenever an opponent casts a blue or black spell, you may put a 1/1 green Snake creature token onto the battlefield.
 mana={3}{G}
 type=Enchantment
+[/card]
+[card]
+name=Snap
+auto=token(-1111137)
+target=creature
+auto=moveTo(ownerhand)
+auto=may untap target(land)
+text=Return target creature to its owner's hand. Untap up to two lands.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Snap's 2nd Untap
+auto=counter(0/0,1,Snap)
+auto=@movedTo(creature|ownerhand) from(battlefield):thisforeach(counter{0/0.1.Snap}>0) may untap target(land) && counter(0/0,-1,Snap) && counter(0/0,1,Bury)
+auto=thisforeach(counter{0/0.1.Bury}>0) bury
+id=-1111137
+type=Nothing
 [/card]
 [card]
 name=Snapping Creeper
@@ -43028,7 +43538,7 @@ toughness=1
 name=Sunspring Expedition
 auto=@movedTo(land|myBattlefield):may counter(0/0,1,Quest)
 auto={C(0/0,-3,Quest)}{S}:life:8
-text=Landfall EWhenever a land enters the battlefield under your control, you may put a quest counter on Sunspring Expedition. -- Remove three quest counters from Sunspring Expedition and sacrifice it: You gain 8 life.
+text=Landfall — Whenever a land enters the battlefield under your control, you may put a quest counter on Sunspring Expedition. -- Remove three quest counters from Sunspring Expedition and sacrifice it: You gain 8 life.
 mana={W}
 type=Enchantment
 [/card]
@@ -43129,6 +43639,26 @@ auto={G}{S(creature|myhand)}:moveTo(myhand) target(creature|myLibrary)
 text={G}, Discard a creature card: Search your library for a creature card, reveal that card, and put it into your hand. Then shuffle your library.
 mana={1}{G}
 type=Enchantment
+[/card]
+[card]
+name=Survivor of the Unseen
+auto={T}:token(-1111138) && draw:1
+auto=@each my upkeep:counter(0/0,1,Age)
+auto=thisforeach(counter{0/0.1.Age}) upcost[{2}] moveTo(graveyard)
+text=Cumulative upkeep {2} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- {T}: Draw two cards, then put a card from your hand on top of your library.
+mana={2}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=1
+[/card]
+[card]
+name=Survivor's MoveToTop
+auto=counter(0/0,1,Survivor)
+auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Survivor}>0) moveTo(myLibrary) target(*|myhand) && counter(0/0,-1,Survivor) && counter(0/0,1,Bury)
+auto=thisforeach(counter{0/0.1.Bury}>0) bury
+id=-1111138
+tape=Nothing
 [/card]
 [card]
 name=Sustainer of the Realm
@@ -44187,6 +44717,24 @@ power=6
 toughness=6
 [/card]
 [card]
+name=Terashi's Cry
+target=creature
+auto=tap
+auto=may tap target(creature)
+auto=token(-1111139)
+text=Tap up to three target creatures.
+mana={3}{W}
+type=Sorcery
+subtype=Arcane
+[/card]
+[card]
+name=Terashi's Cry 3rd Tap
+auto=counter(0/0,1,Terashi)
+auto=@tapped(creature):thisforeach(counter{0/0.1.Terashi}>0) may tap target(creature) && counter(0/0,-1,Terashi) && counter(0/0,1,Bury)
+auto=thisforeach(counter{0/0.1.Bury}>0) bury
+id=-1111139
+[/card]
+[card]
 name=Terashi's Grasp
 target=artifact,enchantment
 auto=destroy
@@ -44722,6 +45270,24 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Thought Courier
+auto={T}:token(-1111140) && draw:1
+text={T}: Draw a card, then discard a card.
+mana={1}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Thought Courier's Discard
+auto=counter(0/0,1,Thought Courier)
+auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Thought Courier}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Thought Courier) && counter(0/0,1,Bury)
+auto=thisforeach(counter{0/0.1.Bury}>0) bury
+id=-1111140
+tape=Nothing
+[/card]
+[card]
 name=Thought Gorger
 abilities=trample
 auto=foreach(*|myhand) counter(1/1,1) && moveTo(mygraveyard) all(*|myhand)
@@ -45048,6 +45614,24 @@ power=6
 toughness=6
 [/card]
 [card]
+name=Tidal Surge
+target=creature[-flying]
+auto=tap
+auto=may tap target(creature[-flying])
+auto=token(-1111141)
+text=Tap up to three target creatures without flying.
+mana={1}{U}
+type=Sorcery
+[/card]
+[card]
+name=Tidal Surge's 3rd Tap
+auto=counter(0/0,1,Tidal Surge)
+auto=@tapped(creature[-flying]):thisforeach(counter{0/0.1.Tidal Surge}>0) may tap target(creature[-flying]) && counter(0/0,-1,Tidal Surge) && counter(0/0,1,Bury)
+auto=thisforeach(counter{0/0.1.Bury}>0) bury
+id=-11111141
+type=Nothing
+[/card]
+[card]
 name=Tidal Wave
 auto=token(-3371)
 text=Put a 5/5 blue Wall creature token with defender onto the battlefield. Sacrifice it at the beginning of the next end step.
@@ -45137,6 +45721,24 @@ auto={T}:Add {W}
 text={T}: Add {G} or {W} to your mana pool.
 mana={3}
 type=Artifact
+[/card]
+[card]
+name=Tilling Treefolk
+auto=may token(-1111142) && moveTo(myHand) target(land|mygraveyard)
+text=When Tilling Treefolk enters the battlefield, you may return up to two target land cards from your graveyard to your hand.
+mana={2}{G}
+type=Creature
+subtype=Treefolk Druid
+power=1
+toughness=3
+[/card]
+[card]
+name=Tilling Treefolk's 2nd LandReturn
+auto=counter(0/0,1,Tilling)
+auto=@movedTo(land|myHand) from(mygraveyard):thisforeach(counter{0/0.1.Tilling}>0) may moveTo(myHand) target(land|mygraveyard) && counter(0/0,-1,Tilling) && counter(0/0,1,Bury)
+auto=thisforeach(counter{0/0.1.Bury}>0) bury
+id=-1111142
+type=Nothing
 [/card]
 [card]
 name=Timber Protector
@@ -46035,13 +46637,30 @@ type=Snow Land
 [/card]
 [card]
 name=Treva's Attendant
-auto={1}{S}:Add {G}{W}{U}
+auto={1}{S}:Add{G}{W}{U}
 text={1}, Sacrifice Treva's Attendant: Add {G}{W}{U} to your mana pool.
 mana={5}
 type=Artifact Creature
 subtype=Golem
 power=3
 toughness=3
+[/card]
+[card]
+name=Treva's Charm
+auto=may destroy target(enchantment)
+auto=may moveTo(exile) target(creature[attacking])
+auto=may token(-1111143) && draw:1
+text=Choose one - Destroy target enchantment; or exile target attacking creature; or draw a card, then discard a card.
+mana={G}{W}{U}
+type=Instant
+[/card]
+[card]
+name=Treva's Charm's Discard
+auto=counter(0/0,1,Treva)
+auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Treva}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Treva) && counter(0/0,1,Bury)
+auto=thisforeach(counter{0/0.1.Bury}>0) bury
+id=-1111143
+tape=Nothing
 [/card]
 [card]
 name=Treva's Ruins
@@ -46533,7 +47152,7 @@ auto=foreach(other creature[red]|myBattlefield) counter(1/1,1)
 auto=foreach(other creature[green]|myBattlefield) counter(1/1,1)
 auto={1}{C(1/1,-1)}:damage:1 target(creature)
 auto={1}{C(1/1,-1)}:token(Saproling,Creature Saproling,1/1,green)
-text=Ulasht, the Hate Seed enters the battlefield with a +1/+1 counter on it for each other red creature you control and a +1/+1 counter on it for each other green creature you control. -- {1}, Remove a +1/+1 counter from Ulasht: Choose one EUlasht deals 1 damage to target creature; or put a 1/1 green Saproling creature token onto the battlefield.
+text=Ulasht, the Hate Seed enters the battlefield with a +1/+1 counter on it for each other red creature you control and a +1/+1 counter on it for each other green creature you control. -- {1}, Remove a +1/+1 counter from Ulasht: Choose one — Ulasht deals 1 damage to target creature; or put a 1/1 green Saproling creature token onto the battlefield.
 mana={2}{R}{G}
 type=Legendary Creature
 subtype=Hellion Hydra
@@ -46559,7 +47178,7 @@ auto=@damaged(creature,player) from(mytgt):counter(0/0,2,Charge) all(this)
 auto={C(0/0,-1,Charge)}:2/2
 auto={C(0/0,-1,Charge)}:-1/-1 target(creature)
 auto={C(0/0,-1,Charge)}:life:2 controller
-text=Whenever equipped creature deals combat damage, put two charge counters on Umezawa's Jitte. -- Remove a charge counter from Umezawa's Jitte: Choose one EEquipped creature gets +2/+2 until end of turn; or target creature gets -1/-1 until end of turn; or you gain 2 life. -- Equip {2}
+text=Whenever equipped creature deals combat damage, put two charge counters on Umezawa's Jitte. -- Remove a charge counter from Umezawa's Jitte: Choose one — Equipped creature gets +2/+2 until end of turn; or target creature gets -1/-1 until end of turn; or you gain 2 life. -- Equip {2}
 mana={2}
 type=Legendary Artifact
 subtype=Equipment
@@ -47491,7 +48110,7 @@ toughness=2
 name=Venerated Teacher
 auto=counter(0/0,2,Level Up) all(creature[levelup]|myBattlefield) 
 text=When Venerated Teacher enters the battlefield, put two level counters on each creature you control with level up.
-mana={G}
+mana={2}{U}
 type=Creature
 subtype=Human Wizard
 power=2
@@ -51056,6 +51675,25 @@ type=Creature
 subtype=Dryad
 power=2
 toughness=1
+[/card]
+[card]
+name=Yavimaya Elder
+auto={S}:draw:1
+auto=@movedto(this|graveyard) from(battlefield):may token(-1111144) && moveTo(myHand) target(land[basic]|myLibrary)
+text=When Yavimaya Elder is put into a graveyard from the battlefield, you may search your library for up to two basic land cards, reveal them, and put them into your hand. If you do, shuffle your library. -- {2}, Sacrifice Yavimaya Elder: Draw a card.
+mana={1}{G}{G}
+type=Creature
+subtype=Human Druid
+power=2
+toughness=1
+[/card]
+[card]
+name=Yavimaya Elder's 2nd Land
+auto=counter(0/0,1,Elder)
+auto=@movedTo(land|myHand):thisforeach(counter{0/0.1.Elder}>0) may moveTo(myHand) target(land[basic]|myLibrary) && counter(0/0,-1,Elder) && counter(0/0,1,Bury)
+auto=thisforeach(counter{0/0.1.Bury}>0) bury
+id=-1111144
+type=Nothing
 [/card]
 [card]
 name=Yavimaya Enchantress
