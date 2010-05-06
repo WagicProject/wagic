@@ -41,7 +41,6 @@
 
 #endif
 
-
 #include "Vector2D.h"
 
 #define USING_MATH_TABLE
@@ -532,7 +531,7 @@ private:
 	};
 
 	void LoadJPG(TextureInfo &textureInfo, const char *filename, int mode = 0, int TextureFormat = TEXTURE_FORMAT);
-	void LoadPNG(TextureInfo &textureInfo, const char *filename, int mode = 0, int TextureFormat = TEXTURE_FORMAT);
+	int LoadPNG(TextureInfo &textureInfo, const char *filename, int mode = 0, int TextureFormat = TEXTURE_FORMAT);
 	void LoadGIF(TextureInfo &textureInfo, const char *filename, int mode = 0, int TextureFormat = TEXTURE_FORMAT);
 	int image_readgif(void * handle, TextureInfo &textureInfo, DWORD * bgcolor, InputFunc readFunc,int mode = 0, int TextureFormat = TEXTURE_FORMAT);
 

@@ -39,6 +39,13 @@
 
 #define MAX_CHANNEL		128
 
+enum {
+  JGE_ERR_CANT_OPEN_FILE = -1,
+  JGE_ERR_PNG = -2,  
+  JGE_ERR_MALLOC_FAILED = -4,
+  JGE_ERR_GENERIC = -5,
+};
+
 
 #ifndef M_PI
 #define M_PI	3.14159265358979323846f

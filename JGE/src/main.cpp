@@ -361,6 +361,9 @@ void Run()
 // The main loop
 int main()
 {
+#ifdef DOJLOG
+  remove(JGE_LOG_FILE);
+#endif
   JLOG("SetupCallbacks()");
   SetupCallbacks();
 #ifdef DEVHOOK

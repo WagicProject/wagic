@@ -14,6 +14,7 @@
 
 #include "../include/JGE.h"
 #include "../include/JFileSystem.h"
+#include "../include/JLogger.h"
 #include "tinyxml/tinyxml.h"
 #include "unzip/unzip.h"
 
@@ -155,6 +156,8 @@ bool JFileSystem::OpenFile(const string &filename)
 {
 
 	string path = mResourceRoot + filename;
+  JLOG("JFileSystem::OpenFile");
+  JLOG(path.c_str());
 
 	if (mZipAvailable && mZipFile != NULL)
 	{

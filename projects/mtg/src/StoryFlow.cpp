@@ -9,26 +9,42 @@
 #include <JFileSystem.h>
 
 
-StoryGraphicalElement::StoryGraphicalElement(float x, float y): JGuiObject(0), mX(x),mY(y) {
+#define LINE_SPACE 2
+#define SPACE_BEFORE_CHOICES 10
+
+float StoryDialog::currentY = 2;
+float StoryDialog::previousY = 2;
+
+StoryDialogElement::StoryDialogElement(float x, float y, int id): JGuiObject(id), mX(x),mY(y) {
 }
 
-StoryText::StoryText(string text, float _mX, float _mY, string _align):StoryGraphicalElement(_mX,_mY), text(text) {
+StoryText::StoryText(string text, float _mX, float _mY, string _align, int _font, int id):StoryDialogElement(_mX,_mY, id), text(text), font(_font) {
   align = JGETEXT_LEFT;
   if (_align.compare("center") == 0) {
     align = JGETEXT_CENTER;
+    if (mX == 0)
+      mX = SCREEN_WIDTH/2;
   }else if (_align.compare("right") == 0) {
     align = JGETEXT_RIGHT;
+        if (mX == 0)
+      mX = SCREEN_WIDTH - 10;
   }
-  if (align == JGETEXT_CENTER && mX == 0){
-    mX = SCREEN_WIDTH/2;
+  if (align == JGETEXT_LEFT && mX <= 0){
+    mX += 10; //left margin
   }
 }
 void StoryText::Render() {
-  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
+  JLBFont * mFont = resources.GetJLBFont(font);
   mFont->SetColor(ARGB(200,255,255,255));
   mFont->SetScale(1.0);
   mFont->DrawString(text.c_str(), mX, mY, align);
 }
+
+float StoryText::getHeight() {
+  JLBFont * mFont = resources.GetJLBFont(font);
+  return mFont->GetHeight();
+}
+
   void StoryText::Update(float dt){
     //Nothing for now
   }
@@ -38,7 +54,7 @@ void StoryText::Render() {
   return out << "StoryText ::: text : " << text;
 }
 
-  StoryImage::StoryImage(string img, float mX, float mY):StoryGraphicalElement(mX,mY), img(img) {
+  StoryImage::StoryImage(string img, float mX, float mY):StoryDialogElement(mX,mY), img(img) {
 
 }
 void StoryImage::Render() {
@@ -52,6 +68,15 @@ void StoryImage::Render() {
     JRenderer::GetInstance()->RenderQuad(quad,x, mY);
   }
 }
+
+float StoryImage::getHeight() {
+JQuad * quad = resources.RetrieveQuad(img);
+  if (quad) {
+  return quad->mHeight;
+  }
+  return 0;
+}
+
   void StoryImage::Update(float dt){
     //Nothing for now
   }
@@ -76,11 +101,16 @@ StoryFlow::StoryFlow(string folder): folder(folder){
 
 void  StoryChoice::Render()
 {
-  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
+  JLBFont * mFont = resources.GetJLBFont(font);
   mFont->SetColor(ARGB(200,255,255,255));
   if (mHasFocus) mFont->SetColor(ARGB(255,255,255,0));
   mFont->SetScale(mScale);
-  mFont->DrawString(text.c_str(), mX, mY, JGETEXT_CENTER);
+  mFont->DrawString(text.c_str(), mX, mY, align);
+}
+
+float StoryChoice::getHeight() {
+  JLBFont * mFont = resources.GetJLBFont(font);
+  return mFont->GetHeight() * mScale;
 }
 
 void  StoryChoice::Update(float dt)
@@ -133,7 +163,7 @@ ostream& StoryChoice::toString(ostream& out) const
 }
 
 
-StoryChoice::StoryChoice(string pageId, string text, int JGOid, float mX, float mY, bool hasFocus):JGuiObject(JGOid),pageId(pageId),text(text),mX(mX),mY(mY),mHasFocus(hasFocus){
+StoryChoice::StoryChoice(string pageId, string text, int JGOid, float mX, float mY, string _align, int _font, bool hasFocus):StoryText(text,  mX,  mY,  _align,  _font, JGOid),pageId(pageId),mHasFocus(hasFocus){
     mScale = 1.0f;
   mTargetScale = 1.0f;
   if(hasFocus) mTargetScale = 1.2f;
@@ -221,39 +251,47 @@ string StoryDialog::safeAttribute(TiXmlElement* element, string attribute) {
 
 StoryDialog::StoryDialog(TiXmlElement* root, StoryFlow * mParent):StoryPage(mParent), JGuiListener(), JGuiController(1,NULL) {
 
+  currentY = 0;
+
   for (TiXmlNode* node = root->FirstChild(); node; node = node->NextSibling()) {
 		  TiXmlElement* element = node->ToElement();
 		  if (element) {
+        string sX = safeAttribute(element, "x");
+        float x = atof(sX.c_str());
+        if (x>0 && x < 1){
+          x = SCREEN_WIDTH_F * x;
+        }
+        string sY = safeAttribute(element,"y");
+        float y = atof(sY.c_str());
+        if (y>0 && y < 1){
+          y = SCREEN_HEIGHT_F * y;
+        }
+        string align = safeAttribute(element,"align");
+        const char* textC = element->GetText();
+        string text = textC;
+        string sFont = safeAttribute(element,"font");
+        int font = atoi(sFont.c_str());
+
 			  if (strcmp(element->Value(), "text")==0) {
-          string sX = safeAttribute(element, "x");
-          float x = atof(sX.c_str());
-          string sY = safeAttribute(element,"y");
-          float y = atof(sY.c_str());
-          string align = safeAttribute(element,"align");
-          const char* textC = element->GetText();
-          string text = textC;
-          graphics.push_back(NEW StoryText(text,x,y,align));
+          graphics.push_back(NEW StoryText(text,x,y,align, font));
+			  }
+        else if (strcmp(element->Value(), "title")==0) {
+          graphics.push_back(NEW StoryText(text,x,y,"center", Constants::MENU_FONT));
 			  }
         else if (strcmp(element->Value(), "img")==0) {
-          string sX = safeAttribute(element,"x");
-          float x = atof(sX.c_str());
           //special case to force center
           if (sX.compare("") == 0 ){
             x = -1;
           }
-          string sY = safeAttribute(element,"y");
-          float y = atof(sY.c_str());
-          const char* imgC = element->GetText();
-          string img = imgC;
-          img = string("campaigns/").append(mParent->folder).append("/").append(img);
+          string img = string("campaigns/").append(mParent->folder).append("/").append(text);
           graphics.push_back(NEW StoryImage(img,x,y));
 			  }
         else if (strcmp(element->Value(), "answer")==0){
           string id = element->Attribute("goto");
-          const char* answerC = element->GetText();
-          string answer = answerC;
+          if (!align.size()) align = "center";
           int i = mObjects.size();
-          StoryChoice * sc = NEW StoryChoice(id,answer,i,SCREEN_WIDTH/2, SCREEN_HEIGHT-20 - i *20 , (i==0));
+          StoryChoice * sc = NEW StoryChoice(id,text,i,x, y , align, font,  (i==0));
+          graphics.push_back(sc);
           Add(sc);
         }else {
           //Error
@@ -265,18 +303,38 @@ StoryDialog::StoryDialog(TiXmlElement* root, StoryFlow * mParent):StoryPage(mPar
 }
 
 void StoryDialog::Update(float dt){
-  JGuiController::Update(dt);
   for (size_t i = 0; i < graphics.size(); ++i){
     graphics[i]->Update(dt);
   }
+
+  JButton key = mEngine->ReadButton();
+  CheckUserInput(key);
+
 }
 
 
+void StoryDialog::RenderElement(StoryDialogElement * elmt) {
+    float mYBackup = elmt->mY;
+    if (! elmt->mY) elmt->mY = currentY;
+    if (elmt->mY == -1) {
+      elmt->mY = previousY;
+    }
+    elmt->Render();
+    previousY = currentY;
+    currentY = elmt->mY + elmt->getHeight()  + LINE_SPACE;
+    elmt->mY = mYBackup;
+}
+
 void StoryDialog::Render() {
+  currentY = 2;
+  previousY = currentY;
   for (size_t i = 0; i < graphics.size(); ++i){
-    graphics[i]->Render();
+    StoryDialogElement * elmt = (StoryDialogElement *)(graphics[i]);
+    if (elmt == mObjects[0])
+      currentY += SPACE_BEFORE_CHOICES;
+    RenderElement(elmt);
   }
-   JGuiController::Render();
+
 }
 
 void StoryDialog::ButtonPressed(int controllerid,int controlid)  {
@@ -284,7 +342,8 @@ void StoryDialog::ButtonPressed(int controllerid,int controlid)  {
 }
 
 StoryDialog::~StoryDialog(){
-    for (size_t i = 0; i < graphics.size(); ++i){
+  mCount = 0; //avoid parent deleting
+  for (size_t i = 0; i < graphics.size(); ++i){
     delete(graphics[i]);
   }
 }

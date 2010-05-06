@@ -472,7 +472,6 @@ void GameStateMenu::Update(float dt)
 	        currentState = MENU_STATE_MAJOR_SUBMENU;
 	        subMenuController = NEW SimpleMenu(102, this, Constants::MENU_FONT, 150,60);
 	        if (subMenuController){
-            subMenuController->Add(SUBMENUITEM_STORY,"Story");
 	          subMenuController->Add(SUBMENUITEM_CLASSIC,"Classic");
 	          if (options[Options::MOMIR_MODE_UNLOCKED].number)
 		          subMenuController->Add(SUBMENUITEM_MOMIR, "Momir Basic");
@@ -480,6 +479,7 @@ void GameStateMenu::Update(float dt)
 		          subMenuController->Add(SUBMENUITEM_RANDOM1, "Random 1 Color");
 		          subMenuController->Add(SUBMENUITEM_RANDOM2, "Random 2 Colors");
 	          }
+            subMenuController->Add(SUBMENUITEM_STORY,"Story");
 	          subMenuController->Add(SUBMENUITEM_CANCEL, "Cancel");
 	        }
         }else{

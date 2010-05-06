@@ -389,7 +389,6 @@ shivan_hellkite.txt
 shock.txt
 shock2.txt
 siege_gang_commander.txt
-silent_arbiter.txt
 simic_initiate.txt
 slate_of_ancestry.txt
 sleeper_agent.txt

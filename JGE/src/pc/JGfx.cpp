@@ -813,7 +813,7 @@ JTexture* JRenderer::LoadTexture(const char* filename, int mode, int TextureForm
 	return tex;
 }
 
-void JRenderer::LoadPNG(TextureInfo &textureInfo, const char *filename, int mode __attribute__((unused)), int TextureFormat __attribute__((unused)))
+int JRenderer::LoadPNG(TextureInfo &textureInfo, const char *filename, int mode __attribute__((unused)), int TextureFormat __attribute__((unused)))
 {
 	//TextureInfo* textureInfo = new TextureInfo;
 
@@ -836,7 +836,7 @@ void JRenderer::LoadPNG(TextureInfo &textureInfo, const char *filename, int mode
 
     //if ((fp = fopen(filename, "rb")) == NULL) return NULL;
 	JFileSystem* fileSystem = JFileSystem::GetInstance();
-	if (!fileSystem->OpenFile(filename)) return;
+	if (!fileSystem->OpenFile(filename)) return JGE_ERR_CANT_OPEN_FILE;
 
     png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
     if (png_ptr == NULL)
@@ -844,7 +844,7 @@ void JRenderer::LoadPNG(TextureInfo &textureInfo, const char *filename, int mode
         //fclose(fp);
 		fileSystem->CloseFile();
 
-        return;
+        return JGE_ERR_PNG;
     }
 
     png_set_error_fn(png_ptr, (png_voidp) NULL, (png_error_ptr) NULL, PNGCustomWarningFn);
@@ -856,7 +856,7 @@ void JRenderer::LoadPNG(TextureInfo &textureInfo, const char *filename, int mode
 
         png_destroy_read_struct(&png_ptr, png_infopp_NULL, png_infopp_NULL);
 
-        return;
+        return JGE_ERR_PNG;
     }
     png_init_io(png_ptr, NULL);
 	png_set_read_fn(png_ptr, (png_voidp)fileSystem, PNGCustomReadDataFn);
@@ -878,7 +878,7 @@ void JRenderer::LoadPNG(TextureInfo &textureInfo, const char *filename, int mode
 		fileSystem->CloseFile();
 
         png_destroy_read_struct(&png_ptr, png_infopp_NULL, png_infopp_NULL);
-        return;
+        return JGE_ERR_MALLOC_FAILED;
     }
 
 
@@ -893,23 +893,9 @@ void JRenderer::LoadPNG(TextureInfo &textureInfo, const char *filename, int mode
 
 	if (buffer)
 	{
-// 		tex->mFilter = TEX_FILTER_LINEAR;
-// 		tex->mWidth = width;
-// 		tex->mHeight = height;
-// 		tex->mTexWidth = tw;
-// 		tex->mTexHeight = th;
 
-// 		GLuint texid;
-// 		glGenTextures(1, &texid);
-// 		tex->mTexId = texid;
 
-//		if (texid != 0)
-		{
-
-			// OpenGL texture has (0,0) at lower-left
-			// Pay attention when doing texture mapping!!!
-
-			p32 = (DWORD*) buffer;// + (height-1)*width;
+			p32 = (DWORD*) buffer;
 
 			for (y = 0; y < (int)height; y++)
 			{
@@ -917,7 +903,6 @@ void JRenderer::LoadPNG(TextureInfo &textureInfo, const char *filename, int mode
 				for (x = 0; x < (int)width; x++)
 				{
 					DWORD color32 = line[x];
-					//u16 color16;
 					int a = (color32 >> 24) & 0xff;
 					int r = color32 & 0xff;
 					int g = (color32 >> 8) & 0xff;
@@ -931,40 +916,8 @@ void JRenderer::LoadPNG(TextureInfo &textureInfo, const char *filename, int mode
 
 			}
 
-
-// 			glBindTexture(GL_TEXTURE_2D, texid);								// Bind To The Texture ID
-//
-//
-// 			if (mode == TEX_TYPE_MIPMAP)			// generate mipmaps
-// 			{
-// 				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-// 				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-// 				glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_NEAREST);
-// 				glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR_MIPMAP_LINEAR);
-// 				gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, tw, th, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
-// 			}
-// 			else if (mode == TEX_TYPE_SKYBOX)		// for skybox
-// 			{
-// 				#define GL_CLAMP_TO_EDGE	0x812F
-//
-// 				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-// 				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-// 				gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, tw, th, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
-// 			}
-// 			else									// single texture
-// 			{
-// 				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-// 				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-// 				glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
-// 				glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
-// 				glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, tw, th, 0, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
-// 			}
-
-//			ret = TRUE;
-
 		}
 
-//		delete buffer;
 
 	}
 
@@ -973,17 +926,8 @@ void JRenderer::LoadPNG(TextureInfo &textureInfo, const char *filename, int mode
     png_read_end(png_ptr, info_ptr);
     png_destroy_read_struct(&png_ptr, &info_ptr, png_infopp_NULL);
 
-    //fclose(fp);
 	fileSystem->CloseFile();
 
-// 	if (!ret)
-// 	{
-// 		if (tex)
-// 			delete tex;
-// 		tex = NULL;
-// 	}
-//
-// 	return tex;
 
 	textureInfo.mBits = buffer;
 	textureInfo.mWidth = width;
@@ -991,6 +935,7 @@ void JRenderer::LoadPNG(TextureInfo &textureInfo, const char *filename, int mode
 	textureInfo.mTexWidth = tw;
 	textureInfo.mTexHeight = th;
 
+  return 1;
 	//return textureInfo;
 
 }

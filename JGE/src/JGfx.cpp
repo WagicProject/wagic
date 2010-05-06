@@ -19,6 +19,7 @@
 #include <pspdisplay.h>
 #include <png.h>
 #include "../include/vram.h"
+#include "../include/JLogger.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -39,66 +40,12 @@ static unsigned int __attribute__((aligned(16))) list[262144];
 
 extern void SwizzlePlot(u8* out, PIXEL_TYPE color, int i, int j, unsigned int width);
 
-/*
-//START PurpleScreen Debug
-int JRenderer::debugged = 0;
-typedef struct
-{
-        unsigned int* start;
-        unsigned int* current;
-        int parent_context;
-} GuDisplayList;
-
-typedef struct
-{
-        GuDisplayList list;
-        int scissor_enable;
-        int scissor_start[2];
-        int scissor_end[2];
-        int near_plane;
-        int far_plane;
-        int depth_offset;
-        int fragment_2x;
-        int texture_function;
-        int texture_proj_map_mode;
-        int texture_map_mode;
-        int sprite_mode[4];
-        unsigned int clear_color;
-        unsigned int clear_stencil;
-        unsigned int clear_depth;
-        int texture_mode;
-} GuContext;
-
-typedef struct
-{
-        int pixel_size;
-        int frame_width;
-        void* frame_buffer;
-        void* disp_buffer;
-        void* depth_buffer;
-       int depth_width;
-         int width;
-        int height;
- } GuDrawBuffer;
-
-extern int gu_curr_context;
-extern GuDrawBuffer gu_draw_buffer;
-extern GuContext gu_contexts[3];
-extern GuDisplayList* gu_list;
-
-
-//END PurpleScreen Debug
-
-*/
-
 void Swap(float *a, float *b)
 {
 	float n=*a;
 	*a = *b;
 	*b = n;
 }
-
-
 
 JQuad::JQuad(JTexture *tex, float x, float y, float width, float height)
 		:mTex(tex), mX(x), mY(y), mWidth(width), mHeight(height)
@@ -402,30 +349,6 @@ void JRenderer::EndScene()
 
 	mCurrentTex = -1;
 	mCurrentBlend = -1;
-
-  /*
-//START PurpleScreen Debug
-  if (!debugged){
-    debugged = 1;
-  FILE * pFile;
-  pFile = fopen ("graphiclog.txt","w");
-  char temp[4096];
-  sprintf(temp,"fbp0:%p\nfbp1:%p\nBuffer Format:%d\nFrame Buffer Width:%d\nScreen Width:%d\nScreen Height:%d\n",fbp0,fbp1,BUFFER_FORMAT,FRAME_BUFFER_WIDTH,SCREEN_WIDTH,SCREEN_HEIGHT);
-  fputs(temp,pFile);
-  sprintf(temp,"\nDRAW BUFFER:\npixel_size:%d\nframe_width:%d\nframe_buffer:%p\n",gu_draw_buffer.pixel_size,gu_draw_buffer.frame_width,gu_draw_buffer.frame_buffer);
-  fputs(temp,pFile);
-  sprintf(temp,"disp_buffer:%p\ndepth_buffer:%p\ndepth_width:%d\nwidth:%d\nheight:%d\n",gu_draw_buffer.disp_buffer,gu_draw_buffer.depth_buffer,gu_draw_buffer.depth_width,gu_draw_buffer.width,gu_draw_buffer.height);
-  fputs(temp,pFile);
-  
-  GuContext gc = gu_contexts[gu_curr_context];
-
-  sprintf(temp,"\nGU CONTEXT:\nscissor_enable:%d\ndepth_offset:%d\nfragment_2x:%d\ntexture_function:%d\ntexture_mode:%d\n",gc.scissor_enable,gc.depth_offset,gc.fragment_2x,gc.texture_function,gc.texture_mode);
-  fputs(temp,pFile);
-  fclose (pFile);
-  }
-//END PurpleScreen Debug
-*/
-
 }
 
 
@@ -1039,6 +962,7 @@ int JRenderer::PixelSize(int textureMode){
 
 void JRenderer::LoadJPG(TextureInfo &textureInfo, const char *filename, int mode, int textureMode)
 {
+  JLOG("JRenderer::LoadJPG");
 	textureInfo.mBits = NULL;
 	char filenamenew[4096];
 #ifdef RESPATH
@@ -1241,14 +1165,18 @@ void JRenderer::LoadJPG(TextureInfo &textureInfo, const char *filename, int mode
 
 	jpeg_destroy_decompress(&cinfo);
   delete [] rawdata;
+  JLOG("-- OK  -- JRenderer::LoadJPG");
 }
 
 
 JTexture* JRenderer::LoadTexture(const char* filename, int mode, int textureMode)
 {
+  JLOG("JRenderer::LoadTexture");
 	TextureInfo textureInfo;
 	textureInfo.mVRAM = false;
 	textureInfo.mBits = NULL;
+
+  int ret = 0;
 
 	if (strstr(filename, ".jpg")!=NULL || strstr(filename, ".JPG")!=NULL)
 		LoadJPG(textureInfo, filename, mode, textureMode);
@@ -1258,7 +1186,12 @@ JTexture* JRenderer::LoadTexture(const char* filename, int mode, int textureMode
   }
   else if(strstr(filename, ".png")!=NULL || strstr(filename, ".PNG")!=NULL) {
     textureMode = TEXTURE_FORMAT; //textureMode not supported in PNG yet
-		LoadPNG(textureInfo, filename, mode, textureMode);
+		ret = LoadPNG(textureInfo, filename, mode, textureMode);
+    if (ret < 0) {
+      char buf[512];
+      sprintf(buf, "--LoadPNG sent error code: %i for file %s", ret, filename);
+      JLOG(buf);
+    }
   }
 
 	if (textureInfo.mBits == NULL)
@@ -1290,6 +1223,7 @@ JTexture* JRenderer::LoadTexture(const char* filename, int mode, int textureMode
 		SAFE_DELETE(tex);
 	}
 
+  JLOG("-- OK  -- JRenderer::LoadTexture");
 	return tex;
 
 }
@@ -1300,8 +1234,9 @@ JTexture* JRenderer::LoadTexture(const char* filename, int mode, int textureMode
 // http://svn.ps2dev.org/filedetails.php?repname=psp&path=/trunk/libpng/screenshot/main.c&rev=0&sc=0
 // Load PNG as texture
 //------------------------------------------------------------------------------------------------
-void JRenderer::LoadPNG(TextureInfo &textureInfo, const char* filename, int mode, int textureMode)
+int JRenderer::LoadPNG(TextureInfo &textureInfo, const char* filename, int mode, int textureMode)
 {
+  JLOG("JRenderer::LoadPNG");
 	textureInfo.mBits = NULL;
 
 	bool useVideoRAM = (mode == TEX_TYPE_USE_VRAM);
@@ -1317,19 +1252,19 @@ void JRenderer::LoadPNG(TextureInfo &textureInfo, const char* filename, int mode
     u32* line;
 
 	JFileSystem* fileSystem = JFileSystem::GetInstance();
-	if (!fileSystem->OpenFile(filename)) return;
+	if (!fileSystem->OpenFile(filename)) return JGE_ERR_CANT_OPEN_FILE;
 
     png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
     if (png_ptr == NULL) {
 			fileSystem->CloseFile();
-      return;
+      return JGE_ERR_PNG;
     }
     png_set_error_fn(png_ptr, (png_voidp) NULL, (png_error_ptr) NULL, PNGCustomWarningFn);
     info_ptr = png_create_info_struct(png_ptr);
     if (info_ptr == NULL) {
 			fileSystem->CloseFile();
       png_destroy_read_struct(&png_ptr, png_infopp_NULL, png_infopp_NULL);
-      return;
+      return JGE_ERR_PNG;
     }
     png_init_io(png_ptr, NULL);
 	  png_set_read_fn(png_ptr, (png_voidp)fileSystem, PNGCustomReadDataFn);
@@ -1347,7 +1282,7 @@ void JRenderer::LoadPNG(TextureInfo &textureInfo, const char* filename, int mode
     if (!line) {
 			fileSystem->CloseFile();
       png_destroy_read_struct(&png_ptr, png_infopp_NULL, png_infopp_NULL);
-      return;
+      return JGE_ERR_MALLOC_FAILED;
     }
 
 	int texWidth = getNextPower2(width);
@@ -1440,7 +1375,8 @@ void JRenderer::LoadPNG(TextureInfo &textureInfo, const char* filename, int mode
 		textureInfo.mTexWidth = texWidth;
 		textureInfo.mTexHeight = texHeight;
 		textureInfo.mVRAM = videoRAMUsed;
-
+    JLOG("-- OK -- JRenderer::LoadPNG");
+    return 1;
 
 	}
 	else
@@ -1452,6 +1388,7 @@ void JRenderer::LoadPNG(TextureInfo &textureInfo, const char* filename, int mode
 			vfree(bits);
 		else
 			free(bits);
+    return JGE_ERR_GENERIC;
 	}
 
 }
