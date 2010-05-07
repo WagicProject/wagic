@@ -5535,7 +5535,7 @@ auto=counter(0/0,1,Brainstorm)
 auto=@movedTo(*|myLibrary) from(myhand):thisforeach(counter{0/0.1.Brainstorm}>0) moveTo(myLibrary) target(*|myhand) && counter(0/0,-1,Brainstorm) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111114
-type=nothing
+type=Nothing
 [/card]
 [card]
 name=Bramble Creeper
@@ -6563,7 +6563,7 @@ type=Sorcery
 [card]
 name=Careful Studies 2nd Discard
 auto=counter(0/0,1,Careful Study)
-auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Careful Study}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Careful Study) && counter(0/0,1,Bury)
+auto=@movedTo(*|mygraveyard) from(myhand):thisforeach(counter{0/0.1.Careful Study}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Careful Study) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111116
 type=Nothing
