@@ -815,13 +815,10 @@ JTexture* JRenderer::LoadTexture(const char* filename, int mode, int TextureForm
 
 int JRenderer::LoadPNG(TextureInfo &textureInfo, const char *filename, int mode __attribute__((unused)), int TextureFormat __attribute__((unused)))
 {
-	//TextureInfo* textureInfo = new TextureInfo;
 
-	//if (textureInfo == NULL) return NULL;
 
 	textureInfo.mBits = NULL;
 
-	// BOOL ret = FALSE;
 
 	DWORD* p32;
 
@@ -831,17 +828,13 @@ int JRenderer::LoadPNG(TextureInfo &textureInfo, const char *filename, int mode 
     png_uint_32 width, height, tw, th;
     int bit_depth, color_type, interlace_type, x, y;
     DWORD* line;
-    //FILE *fp;
 
-
-    //if ((fp = fopen(filename, "rb")) == NULL) return NULL;
 	JFileSystem* fileSystem = JFileSystem::GetInstance();
 	if (!fileSystem->OpenFile(filename)) return JGE_ERR_CANT_OPEN_FILE;
 
     png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
     if (png_ptr == NULL)
 	{
-        //fclose(fp);
 		fileSystem->CloseFile();
 
         return JGE_ERR_PNG;
@@ -918,8 +911,6 @@ int JRenderer::LoadPNG(TextureInfo &textureInfo, const char *filename, int mode 
 
 		}
 
-
-	}
 
     free (line);
 
