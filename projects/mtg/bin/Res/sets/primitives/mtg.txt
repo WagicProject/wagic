@@ -5230,7 +5230,7 @@ auto=counter(0/0,1,Bonded Fetch)
 auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Bonded Fetch}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Bonded Fetch) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111113
-tape=Nothing
+type=nothing
 [/card]
 [card]
 name=Bone Flute
@@ -5535,7 +5535,7 @@ auto=counter(0/0,1,Brainstorm)
 auto=@movedTo(*|myLibrary) from(myhand):thisforeach(counter{0/0.1.Brainstorm}>0) moveTo(myLibrary) target(*|myhand) && counter(0/0,-1,Brainstorm) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111114
-tape=Nothing
+type=nothing
 [/card]
 [card]
 name=Bramble Creeper
@@ -6566,7 +6566,7 @@ auto=counter(0/0,1,Careful Study)
 auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Careful Study}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Careful Study) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111116
-tape=Nothing
+type=Nothing
 [/card]
 [card]
 name=Carnage Altar
@@ -12316,7 +12316,7 @@ auto=counter(0/0,1,Drowned Rusalka)
 auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Drowned Rusalka}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Drowned Rusalka) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111117
-tape=Nothing
+type=nothing
 [/card]
 [card]
 name=Drudge Reavers
@@ -13490,7 +13490,7 @@ auto=counter(0/0,1,Emmessi Tome)
 auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Emmessi Tome}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Emmessi Tome) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111119
-tape=Nothing
+type=nothing
 [/card]
 [card]
 name=Emissary of Despair
@@ -13621,7 +13621,7 @@ auto=counter(0/0,1,Enclave Cryptologist)
 auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Enclave Cryptologist}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Enclave Cryptologist) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111120
-tape=Nothing
+type=nothing
 [/card]
 [card]
 name=Endangered Armodon
@@ -16411,7 +16411,7 @@ auto=counter(0/0,1,Frontline Sage)
 auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Frontline Sage}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Frontline Sage) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111122
-tape=Nothing
+type=nothing
 [/card]
 [card]
 name=Frost Giant
@@ -19090,7 +19090,7 @@ auto=counter(0/0,1,Grixis Battlemage)
 auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Grixis Battlemage}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Grixis Battlemage) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111123
-tape=Nothing
+type=nothing
 [/card]
 [card]
 name=Grixis Panorama
@@ -19708,7 +19708,7 @@ auto=counter(0/0,1,Harrow)
 auto=@movedTo(land|myBattlefield):thisforeach(counter{0/0.1.Harrow}>0) may moveTo(myBattlefield) target(land[basic]|myLibrary) && counter(0/0,-1,Harrow) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111126
-tape=Nothing
+type=nothing
 [/card]
 [card]
 name=Haru-Onna
@@ -21890,7 +21890,7 @@ auto=counter(0/0,1,Inspired Sprite)
 auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Inspired Sprite}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Inspired Sprite) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111127
-tape=Nothing
+type=nothing
 [/card]
 [card]
 name=Inspirit
@@ -22378,7 +22378,7 @@ auto=counter(0/0,1,Jalum Tome)
 auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Jalum Tome}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Jalum Tome) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111128
-tape=Nothing
+type=nothing
 [/card]
 [card]
 name=Jamuraan Lion
@@ -26173,7 +26173,7 @@ auto=may Add{R}
 auto=may Add{G}
 auto=moveto(exile) all(this)
 id=-1111129
-tape=Nothing
+type=nothing
 [/card]
 [card]
 name=Lotus Guardian
@@ -27547,7 +27547,7 @@ auto=counter(0/0,1,Merfolk Looter)
 auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Merfolk Looter}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Merfolk Looter) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111130
-tape=Nothing
+type=nothing
 [/card]
 [card]
 name=Merfolk Seastalkers
@@ -30666,7 +30666,7 @@ auto=counter(0/0,1,Obelisk)
 auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Obelisk}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Obelisk) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111132
-tape=Nothing
+type=nothing
 [/card]
 [card]
 name=Obelisk of Bant
@@ -33339,7 +33339,7 @@ auto=counter(0/0,1,Proclamation)
 auto=@movedTo(creature|myhand) from(mygraveyard):thisforeach(counter{0/0.1.Proclamation}>0) may moveTo(myhand) target(creature[manacost<=1]|mygraveyard) && counter(0/0,-1,Proclamation) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111133
-tape=Nothing
+type=nothing
 [/card]
 [card]
 name=Prodigal Pyromancer
@@ -43659,7 +43659,7 @@ auto=counter(0/0,1,Survivor)
 auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Survivor}>0) moveTo(myLibrary) target(*|myhand) && counter(0/0,-1,Survivor) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111138
-tape=Nothing
+type=nothing
 [/card]
 [card]
 name=Sustainer of the Realm
@@ -45286,7 +45286,7 @@ auto=counter(0/0,1,Thought Courier)
 auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Thought Courier}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Thought Courier) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111140
-tape=Nothing
+type=nothing
 [/card]
 [card]
 name=Thought Gorger
@@ -46661,7 +46661,7 @@ auto=counter(0/0,1,Treva)
 auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Treva}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Treva) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111143
-tape=Nothing
+type=nothing
 [/card]
 [card]
 name=Treva's Ruins
