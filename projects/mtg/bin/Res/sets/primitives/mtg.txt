@@ -23317,6 +23317,7 @@ type=Legendary Land
 name=Kargan Dragonlord
 auto={R}:counter(0/0,1,Level Up) asSorcery
 auto=this(counter{0/0.4.Level Up}) 2/2
+auto=this(counter{0/0.4.Level Up}) flying
 auto=this(counter{0/0.8.Level Up}) 4/4
 auto=this(counter{0/0.8.Level Up}) flying
 auto=this(counter{0/0.8.Level Up}) trample
@@ -26079,7 +26080,7 @@ toughness=*
 [card]
 name=Lord of Shatterskull Pass
 auto={1}{R}:counter(0/0,1,Level Up) asSorcery
-auto=this(counter{0/0,1,Level Up}) 6/6
+auto=this(counter{0/0,1,Level Up}) 3/3
 auto=@each my blockers:aslongas(lord of shatterskull pass[attacking;counter{0/0.6.Level Up}]|myBattlefield) damage:6 all(creature|opponentBattlefield)
 text=Level up {1}{R} -- [Level 1-5] (6/6) -- [Level 6+] Whenever Lord of Shatterskull Pass attacks, it deals 6 damage to each creature defending player controls. (6/6)
 mana={3}{R}
