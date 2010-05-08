@@ -1,0 +1,17 @@
+#Testing Whispers of the Muse with Buyback
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Whispers of the Muse
+library:Plains
+manapool:{5}{U}
+[PLAYER2]
+[DO]
+Whispers of the Muse
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+hand:Plains,Whispers of the Muse
+manapool{0}
+[PLAYER2]
+[END]

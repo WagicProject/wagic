@@ -1,0 +1,28 @@
+#Testing Ivy Elemental (example for X-cost spells)
+#Ivy Elemental enters the battlefield with X +1/+1 counters on it.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Ivy Elemental
+inplay:fervor
+manapool:{G}{G}{G}{G}
+[PLAYER2]
+[DO]
+Ivy Elemental
+next
+#begin
+next
+#attackers
+Ivy Elemental
+next
+#blockers
+next
+#damage
+[ASSERT]
+COMBATDAMAGE
+[PLAYER1]
+inplay:Fervor,Ivy Elemental
+manapool:{0}
+[PLAYER2]
+life:17
+[END]

@@ -97,6 +97,7 @@ animated_legendaries3_i221.txt
 ankh_of_mishra.txt
 arcanis_the_omnipotent.txt
 arcanis_the_omnipotent2.txt
+arcbound.txt
 ardakar_wastes.txt
 ardent_soldier.txt
 argothian_enchantress.txt
@@ -279,6 +280,7 @@ imaginary_pet.txt
 immaculate_magistrate.txt
 instill_energy_i166.txt
 iron_will_i270.txt
+ivy_elemental.txt
 jodahs_avenger.txt
 juggernaut.txt
 jump.txt
@@ -314,6 +316,8 @@ martial_coup.txt
 martial_coup2.txt
 master_decoy.txt
 master_of_etherium.txt
+masticore.txt
+masticore2.txt
 meekstone.txt
 memory_erosion.txt
 millstone.txt
@@ -350,6 +354,7 @@ quilled_sliver.txt
 rain_of_filth_i206.txt
 rain_of_filth_i283.txt
 rampant_growth.txt
+rancor.txt
 ray_of_command.txt
 ray_of_command_i176.txt
 reclusive_wight.txt
@@ -437,6 +442,7 @@ wall_of_diffusion.txt
 wall_of_diffusion2.txt
 warren_instigator.txt
 welkin_hawk.txt
+whispers_of_the_muse.txt
 white_knight1.txt
 windswept_heath.txt
 wrath_of_god.txt

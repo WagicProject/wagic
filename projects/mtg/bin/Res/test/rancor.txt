@@ -1,0 +1,21 @@
+#Testing Rancor
+#When Rancor is put into a graveyard from the battlefield, return Rancor to its owner's hand.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Llanowar Elves
+hand:Rancor,Shock
+manapool:{G}{R}
+[PLAYER2]
+[DO]
+Rancor
+Llanowar Elves
+Shock
+Llanowar Elves
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Llanowar Elves,Shock
+hand:Rancor
+manapool:{0}
+[END]

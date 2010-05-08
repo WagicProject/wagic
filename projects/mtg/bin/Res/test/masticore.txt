@@ -1,0 +1,18 @@
+#Tested Masticore's upcost ability: What happens if paid?
+[INIT]
+UPKEEP
+[PLAYER1]
+inplay:Masticore
+hand:Forest
+[PLAYER2]
+[DO]
+Masticore
+Forest
+next
+[ASSERT]
+DRAW
+[PLAYER1]
+inplay:Masticore
+graveyard:Forest
+[PLAYER2]
+[END]
