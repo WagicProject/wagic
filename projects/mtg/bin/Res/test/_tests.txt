@@ -140,6 +140,7 @@ boggart_arsonists.txt
 borderland_behemoth.txt
 bottle_gnomes.txt
 bottle_gnomes2.txt
+brainstorm.txt
 bramblewood_paragon.txt
 brass_man.txt
 brass_man_i161.txt

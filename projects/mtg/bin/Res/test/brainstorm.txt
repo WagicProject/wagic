@@ -1,0 +1,24 @@
+#Testing Brainstorm
+#Draw three cards, then put two cards from your hand on top of your library in any order.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:brainstorm
+library:plains,forest,island
+manapool:{U}
+[PLAYER2]
+[DO]
+brainstorm
+choice 0
+plains
+choice 0
+forest
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+hand:island
+library:plains,forest
+graveyard:brainstorm
+manapool{0}
+[PLAYER2]
+[END]
