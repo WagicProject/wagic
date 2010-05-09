@@ -295,7 +295,7 @@ int Credits::unlockRandomSet(bool force){
 
   if (force) {
     int init = setId;
-    boolean found = false;
+    bool found = false;
     do {
       if (1 != options[Options::optionSet(setId)].number)
         found = true;
