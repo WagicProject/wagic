@@ -1,0 +1,28 @@
+#Testing Creatures with Unearth (example: Dregscape Zombie)
+#This test shows that the unearth ability works and that the unearthed creature has haste.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:swamp,dregscape zombie
+manapool:{B}
+[PLAYER2]
+[DO]
+dregscape zombie
+next
+#begin
+next
+#attackers
+dregscape zombie unearthed
+next
+#blockers
+next
+#damage
+[ASSERT]
+COMBATDAMAGE
+[PLAYER1]
+inplay:dregscape zombie unearthed
+graveyard:swamp
+manapool:{0}
+[PLAYER2]
+life:18
+[END]

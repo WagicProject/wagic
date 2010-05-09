@@ -1149,6 +1149,28 @@ mana={2}{R}{R}
 type=Sorcery
 [/card]
 [card]
+name=Anathemancer
+auto=foreach(land[basic]|opponentBattlefield) damage:1 opponent
+autograveyard={5}{B}{R}:moveto(exile) && token(17953811) asSorcery
+text=When Anathemancer enters the battlefield, it deals damage to target player equal to the number of nonbasic lands that player controls. -- Unearth {5}{B}{R} ({5}{B}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+mana={1}{B}{R}
+type=Creature
+subtype=Zombie Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Anathemancer Unearthed
+type=Creature
+subtype=Zombie Wizard
+abilities=haste
+auto=foreach(land[basic]|opponentBattlefield) damage:1 opponent
+auto=@next end:moveTo(exile)
+power=2
+toughness=2
+mana={1}{B}{R}
+[/card]
+[card]
 name=Ancestor's Chosen
 abilities=first strike
 auto=foreach(*|mygraveyard) life:1
@@ -5490,6 +5512,28 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Brackwater Elemental
+auto=@each combatends:moveTo(ownerGraveyard) all(brackwater elemental[attacking;blocking]|myBattlefield)
+autograveyard={2}{U}:moveto(exile) && token(18014711) asSorcery
+text=When Brackwater Elemental attacks or blocks, sacrifice it at the beginning of the next end step. -- Unearth {2}{U} ({2}{U}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+mana={2}{U}
+type=Creature
+subtype=Elemental
+power=4
+toughness=4
+[/card]
+[card]
+name=Brackwater Elemental Unearthed
+type=Creature
+subtype=Elemental
+abilities=haste
+auto=@each combatends:moveTo(ownerGraveyard) all(brackwater elemental[attacking;blocking]|myBattlefield)
+auto=@next end:moveTo(exile)
+power=4
+toughness=4
+mana={2}{U}
+[/card]
+[card]
 name=Braid of Fire
 auto=@each my upkeep:may moveTo(mygraveyard)
 auto=@each my upkeep:thisforeach(counter{0/0.1.Age}) add{R}
@@ -8765,6 +8809,28 @@ type=Artifact Creature
 subtype=Myr
 power=1
 toughness=1
+[/card]
+[card]
+name=Corpse Connoisseur
+auto=may moveTo(mygraveyard) target(creature|myLibrary)
+autograveyard={4}{B}:moveto(exile) && token(17644811) asSorcery
+text=When Corpse Connoisseur enters the battlefield, you may search your library for a creature card and put that card into your graveyard. If you do, shuffle your library. -- Unearth {3}{B} ({3}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+mana={4}{B}
+type=Creature
+subtype=Zombie Wizard
+power=3
+toughness=3
+[/card]
+[card]
+name=Corpse Connoisseur Unearthed
+type=Creature
+subtype=Zombie Wizard
+abilities=haste
+auto=may moveTo(mygraveyard) target(creature|myLibrary)
+auto=@next end:moveTo(exile)
+power=3
+toughness=3
+mana={4}{B}
 [/card]
 [card]
 name=Corpse Hatch
@@ -12107,6 +12173,26 @@ power=4
 toughness=3
 [/card]
 [card]
+name=Dregscape Zombie
+autograveyard={B}:moveto(exile) && token(17483511) asSorcery
+text=Unearth {B} ({B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+mana={1}{B}
+type=Creature
+subtype=Zombie
+power=2
+toughness=1
+[/card]
+[card]
+name=Dregscape Zombie Unearthed
+type=Creature
+subtype=Zombie
+abilities=haste
+auto=@next end:moveTo(exile)
+power=2
+toughness=1
+mana={1}{B}
+[/card]
+[card]
 name=Drift of Phantasms
 abilities=defender,flying
 autohand={1}{U}{U}{S}:moveTo(myhand) target(*[manacost=3]|mylibrary) asSorcery
@@ -14072,6 +14158,26 @@ type=Creature
 subtype=Elemental
 power=4
 toughness=3
+[/card]
+[card]
+name=Etherium Abomination
+autograveyard={1}{U}{B}:moveto(exile) && token(17957311) asSorcery
+text=Unearth {1}{U}{B} ({1}{U}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+mana={3}{U}{B}
+type=Artifact Creature
+subtype=Horror
+power=4
+toughness=3
+[/card]
+[card]
+name=Etherium Abomination Unearthed
+type=Creature
+subtype=Horror
+abilities=haste
+auto=@next end:moveTo(exile)
+power=4
+toughness=3
+mana={3}{U}{B}
 [/card]
 [card]
 name=Etherium Astrolabe
