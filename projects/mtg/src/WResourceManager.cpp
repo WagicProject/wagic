@@ -586,13 +586,17 @@ string WResourceManager::avatarFile(const string filename){
         return buf;
        
      //Failure. Check graphics       
-     char graphdir[512];
-     sprintf(graphdir,"graphics/%s",filename.c_str());
-      if(fileOK(graphdir,true))
-        return graphdir;
-    
+     sprintf(buf,"graphics/%s",filename.c_str());
+      if(fileOK(buf,true))
+        return buf;
+
+     //Failure. Check raw faile.       
+     sprintf(buf,"%s",filename.c_str());
+      if(fileOK(buf,true))
+        return buf;
+
      //Complete abject failure. Probably a crash...
-     return graphdir;
+     return "";
 }
 
 string WResourceManager::cardFile(const string filename){

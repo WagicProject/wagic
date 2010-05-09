@@ -40,7 +40,7 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
   p1 = _p1;
   p2 = _p2;
   app = _app;
-  showMsg = (WRand() % 5);
+  showMsg = (WRand() % 3);
   GameObserver * g = GameObserver::GetInstance();
   if (!g->turn) return;
   PlayerData * playerdata = NEW PlayerData(app->collection);
@@ -126,18 +126,17 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
       }else if((unlocked = unlockRandomSet())) {
           unlockedTex = resources.RetrieveTexture("set_unlocked.png");
           unlockedQuad = resources.RetrieveQuad("set_unlocked.png", 2, 2, 396, 96);
-          goa = (GameOptionAward*) &options[Options::optionSet(unlocked - 1)];
-          goa->giveAward();
-          options.save();
           MTGSetInfo * si = setlist.getInfo(unlocked - 1);
           if(si) unlockedString = si->getName(); //Show the set's pretty name for unlocks.
       }
+
       if (unlocked && options[Options::SFXVOLUME].number > 0){
         JSample * sample = resources.RetrieveSample("bonus.wav");
         if (sample){
           JSoundSystem::GetInstance()->PlaySample(sample);
         }
       }
+
     }
 
     vector<CreditBonus *>::iterator it;
@@ -283,11 +282,36 @@ int Credits::isRandomDeckUnlocked(){
   return 0;
 }
 
-int Credits::unlockRandomSet(){
+int Credits::addCreditBonus(int value){
+  PlayerData * playerdata = NEW PlayerData();
+  playerdata->credits += value;
+  playerdata->save();
+  SAFE_DELETE(playerdata);
+  return value;
+}
+
+int Credits::unlockRandomSet(bool force){
   int setId = WRand() % setlist.size();
+
+  if (force) {
+    int init = setId;
+    boolean found = false;
+    do {
+      if (1 != options[Options::optionSet(setId)].number)
+        found = true;
+      else {
+        setId++;
+        if (setId == setlist.size()) 
+          setId = 0;
+      }
+    } while (setId != init && !found);
+  }
 
   if (1 == options[Options::optionSet(setId)].number) 
     return 0;
 
+  GameOptionAward* goa = (GameOptionAward*) &options[Options::optionSet(setId)];
+  goa->giveAward();
+  options.save();
   return setId + 1; //We add 1 here to show success/failure. Be sure to subtract later.
 }

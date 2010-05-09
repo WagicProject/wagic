@@ -12,9 +12,9 @@
 
 static const char* GAME_VERSION = "WTH?! 0.11.1 - by wololo";
 
-#define DEFAULT_ANGLE_MULTIPLIER 0.4
+#define DEFAULT_ANGLE_MULTIPLIER 0.4f
 #define MAX_ANGLE_MULTIPLIER (3*M_PI)
-#define MIN_ANGLE_MULTIPLIER 0.4
+#define MIN_ANGLE_MULTIPLIER 0.4f
 static const double STEP_ANGLE_MULTIPLIER = 0.0002;
 
 

@@ -10,7 +10,8 @@
 <text>in my life, enough to understand the basics of their craft...</text>
 
 <answer goto="tap_mana_intro" align="center" x="0.30" font="1">I want to know more</answer>
-<answer goto="tap_mana_intro" x="0.80" y="-1">Take me back to the menu</answer> 
+<answer goto="End" x="0.80" y="-1">Take me back to the menu</answer> 
+<answer goto="block">Continue</answer>
 </page>
 
 <page id="tap_mana_intro">
@@ -138,13 +139,48 @@
 <text>- Block your opponent's attacking creatures during the "blockers" phase of his turn.</text>
 <text>There are lots of other phases but we'll discuss them later</text>
 
+<answer goto="block_1">Continue</answer>
+</page>
+
+<page id="block_1">
+<type>dialog</type>
+<title>blocking</title>
+<text>Now let's block!</text>
+<text>Your opponent will attack you with one of its creatures.</text>
+<text>When comes the "blockers" phase, I want you to click on your own creature</text>
+<text>to block his attack</text>
+<text>If you don't, his creature will kill you</text>
+
+<answer goto="block">Continue</answer>
+</page>
+
+<page id="block">
+<type>duel</type>
+<onwin>block_ok</onwin>
+<onlose>block_try_again</onlose>
+</page>
+
+<page id="block_try_again">
+<type>dialog</type>
+<title>Oh well</title>
+<text>Your opponent killed you</text>
+<text>Be sure to click once on your grizzly bears when the opponent attacks you</text>
+<answer goto="block">Let's try again!</answer>
+</page>
+
+<page id="block_ok">
+<type>dialog</type>
+<title>Great!</title>
+<text>You now understand the basics of the combat phase</text>
 <answer goto="End">Continue</answer>
 </page>
 
 <page id="End">
 <type>End</type>
 <title>CONGRATULATIONS!</title>
-<text>This is the end of this tutorial,</text>
-<text>now time for you to fight some real ennemies!</text>
+<text>This is the end of this tutorial.</text>
+<reward type="credits" value="1000">Here's a 1000 credits coupon to get you started, come and visit my shop!</reward>
+<reward type="unlockset" >And I'm nice, I unlocked ${SET} for you!</reward>
+<text>Now time for you to fight some real ennemies!</text>
 <text>Click on the action button to go back to the main menu</text>
 </page>

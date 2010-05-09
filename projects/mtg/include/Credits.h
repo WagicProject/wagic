@@ -29,7 +29,6 @@ private:
   int isMomirUnlocked();
   int isEvilTwinUnlocked();
   int isRandomDeckUnlocked();
-  int unlockRandomSet();
 public:
   int value;
   Player * p1, *p2;
@@ -44,6 +43,8 @@ public:
   ~Credits();
   void compute(Player * _p1, Player * _p2, GameApp * _app);
   void Render();
+  static int unlockRandomSet(bool force = false);
+  static int addCreditBonus(int value);
 };
 
 #endif

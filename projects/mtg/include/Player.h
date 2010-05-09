@@ -40,6 +40,7 @@ class Player: public Damageable{
 
   virtual int receiveEvent(WEvent * event){return 0;};
   virtual void Render(){};
+  void loadAvatar(string file);
 };
 
 class HumanPlayer: public Player{

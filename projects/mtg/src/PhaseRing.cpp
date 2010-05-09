@@ -73,29 +73,31 @@ Phase * PhaseRing::getCurrentPhase(){
   return *current;
 }
 
-Phase * PhaseRing::forward(){
+Phase * PhaseRing::forward(bool sendEvents){
   Phase * cPhaseOld = *current;
   if (current != ring.end()) current++;
   if (current == ring.end()) current = ring.begin();
 
-  //Warn the layers about the phase Change
-  WEvent * e = NEW WEventPhaseChange(cPhaseOld, *current);
-  GameObserver::GetInstance()->receiveEvent(e);
-  //delete e;
+  if (sendEvents) {
+    //Warn the layers about the phase Change
+    WEvent * e = NEW WEventPhaseChange(cPhaseOld, *current);
+    GameObserver::GetInstance()->receiveEvent(e);
+  }
 
   return *current;
 }
 
-Phase * PhaseRing::goToPhase(int id, Player * player){
+Phase * PhaseRing::goToPhase(int id, Player * player, bool sendEvents){
   Phase * currentPhase = *current;
   while(currentPhase->id !=id || currentPhase->player != player){ //Dangerous, risk for inifinte loop !
 #ifdef WIN32
     OutputDebugString("goto");
 #endif
-    currentPhase = forward();
+    currentPhase = forward(sendEvents);
   }
   return currentPhase;
 }
+
 
 int PhaseRing::addPhase(Phase * phase){
   ring.push_back(phase);

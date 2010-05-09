@@ -29,6 +29,19 @@ Player::~Player(){
   mAvatarTex = NULL;
 }
 
+void Player::loadAvatar(string file){
+  if (mAvatarTex) {
+    resources.Release(mAvatarTex);
+    mAvatar = NULL;
+    mAvatarTex = NULL;
+  }
+  mAvatarTex = resources.RetrieveTexture(file,RETRIEVE_LOCK,TEXTURE_SUB_AVATAR);
+  if (mAvatarTex)
+    mAvatar = resources.RetrieveQuad(file,0,0,35,50,"playerAvatar",RETRIEVE_NORMAL,TEXTURE_SUB_AVATAR);
+  else 
+    mAvatar = NULL;
+}
+
 const string Player::getDisplayName() const {
   GameObserver  * g = GameObserver::GetInstance();
   if (this == g->players[0]) return "Player 1";
@@ -58,11 +71,7 @@ Player * Player::opponent(){
 }
 
 HumanPlayer::HumanPlayer(MTGPlayerCards * deck, string file, string fileSmall) : Player(deck, file, fileSmall) {
-  mAvatarTex = resources.RetrieveTexture("avatar.jpg",RETRIEVE_LOCK,TEXTURE_SUB_AVATAR);
-  if (mAvatarTex)
-    mAvatar = resources.RetrieveQuad("avatar.jpg",0,0,35,50,"playerAvatar",RETRIEVE_NORMAL,TEXTURE_SUB_AVATAR);
-  else 
-    mAvatar = NULL;
+  loadAvatar("avatar.jpg");
 }
 
 

@@ -76,9 +76,7 @@ void GameStateStory::Update(float dt) {
         mParent->DoTransition(TRANSITION_FADE,GAME_STATE_MENU);
       }
     }
-    else {
-      flow->Update(dt);
-    }
+    flow->Update(dt);
   }
 }
 

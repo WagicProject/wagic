@@ -193,11 +193,13 @@ void GameObserver::startGame(Rules * rules){
   mLayers = NEW DuelLayers();
   mLayers->init();
 
+  currentPlayerId = 0;
   currentPlayer = players[0];
   currentActionPlayer = currentPlayer;
   phaseRing = NEW PhaseRing(players,nbPlayers);
   if (rules) 
     rules->initGame();
+
 
   //Preload images from hand
   if (!players[0]->isAI()){

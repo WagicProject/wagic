@@ -45,6 +45,25 @@ StoryImage(string img, float mX, float mY);
   float getHeight();
 };
 
+class StoryReward:public StoryText {
+public:
+  enum {
+    STORY_REWARD_CREDITS,
+    STORY_REWARD_SET
+  };
+
+  int rewardDone;
+  string value;
+  int type;
+
+  StoryReward(string _type, string _value, string text, float _mX, float _mY, string align = "center", int font = 0, int id = 0);
+  void Update(float dt);
+  void Render();
+
+  static bool rewardSoundPlayed;
+  static bool rewardsEnabled;
+};
+
 class StoryChoice:public StoryText {
 public:
   string pageId;
@@ -110,6 +129,7 @@ private:
   map<string,StoryPage *>pages;
   bool parse(string filename);
   StoryPage * loadPage(TiXmlElement* element);
+  bool _gotoPage(string id);
 public: 
   string currentPageId;
   string folder;
@@ -117,6 +137,7 @@ public:
   ~StoryFlow();
 
   bool gotoPage(string id);
+  bool loadPageId(string id);
   void Update(float dt);
   void Render();
 };

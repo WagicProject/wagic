@@ -25,6 +25,7 @@ class RulesPlayerData{
  public:
   vector <string> extraRules;
   int life;
+  string avatar;
   ManaCost * manapool;
   RulesPlayerZone zones[5];
   RulesPlayerData();
@@ -36,6 +37,7 @@ class RulesPlayerData{
 class RulesState{
  public:
   int phase;
+  int player;
   void parsePlayerState(int playerId, string s);
   RulesState();
   RulesPlayerData playerData[2];

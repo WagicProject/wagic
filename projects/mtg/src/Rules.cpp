@@ -40,6 +40,7 @@ MTGCardInstance * Rules::getCardByMTGId(int mtgid){
 RulesPlayerData::RulesPlayerData(){
   life = 20;
   manapool = NEW ManaCost();
+  avatar = "";
 }
 
 RulesPlayerData::~RulesPlayerData(){
@@ -55,7 +56,7 @@ void RulesPlayerZone::add(int cardId){
 
 RulesState::RulesState(){
   phase = Constants::MTG_PHASE_FIRSTMAIN;
-
+  player = 0;
 }
 
 void RulesState::parsePlayerState(int playerId, string s){
@@ -75,6 +76,9 @@ void RulesState::parsePlayerState(int playerId, string s){
       area = 3;
     }else if(areaS.compare("life")  == 0){
       playerData[playerId].life = atoi((s.substr(limiter+1)).c_str());
+      return;
+    }else if(areaS.compare("avatar")  == 0){
+      playerData[playerId].avatar = s.substr(limiter+1);
       return;
     }else if(areaS.compare("manapool")  == 0){
       SAFE_DELETE(playerData[playerId].manapool);
@@ -256,12 +260,23 @@ void Rules::initGame(){
   //Put the GameObserver in the initial state
   GameObserver * g = GameObserver::GetInstance();
   OutputDebugString("RULES Init Game\n");
-  g->phaseRing->goToPhase(initState.phase, g->players[0]);
+
+  //Set the current player/phase
+  g->currentPlayer = g->players[initState.player];
+  g->currentActionPlayer = g->currentPlayer;
+  g->currentPlayerId = initState.player;
+  g->phaseRing->goToPhase(0, g->currentPlayer, false);
+  g->phaseRing->goToPhase(initState.phase, g->currentPlayer);
   g->currentGamePhase = initState.phase;
+
+
   for (int i = 0; i < 2; i++){
     Player * p =  g->players[i];
     p->life = initState.playerData[i].life;
     p->getManaPool()->copy(initState.playerData[i].manapool);
+    if (initState.playerData[i].avatar.size()) {
+      p->loadAvatar(initState.playerData[i].avatar);
+    }
     MTGGameZone * playerZones[] = {p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay};
     for (int j = 0; j < 4; j++){
       MTGGameZone * zone = playerZones[j];
@@ -371,6 +386,8 @@ int Rules::load(string _filename){
           extraRules.push_back(s.substr(5));
         }else if (s.find("mode=") == 0) {
           gamemode = strToGameMode(s.substr(5));
+        }else if (s.find("player=") == 0) {
+          initState.player = atoi(s.substr(7).c_str())-1;
         }else{
           initState.phase = PhaseRing::phaseStrToInt(s);
         }

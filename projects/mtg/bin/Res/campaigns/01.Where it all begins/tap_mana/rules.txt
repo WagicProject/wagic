@@ -1,6 +1,7 @@
 [INIT]
 mode=mtg
 [PLAYER1]
+avatar:campaigns/01.Where it all begins/_gfx/willow.jpg
 inplay:forest
 auto=@tapped(land|myinplay):wingame controller
 auto=@next combatbegins:wingame opponent

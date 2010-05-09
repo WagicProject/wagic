@@ -26,8 +26,8 @@ private:
   list<Phase *> ring;
   list<Phase *>::iterator current;
   Phase * getCurrentPhase();
-  Phase * forward();
-  Phase * goToPhase(int id, Player * player);
+  Phase * forward(bool sendEvents = true);
+  Phase * goToPhase(int id, Player * player,bool sendEvents = true);
   PhaseRing(Player* players[], int nbPlayers=2);
   ~PhaseRing();
   int addPhase(Phase * phase);

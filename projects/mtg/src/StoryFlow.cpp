@@ -4,6 +4,8 @@
 #include "../include/WResourceManager.h"
 #include "../include/AIPlayer.h"
 #include "../include/Rules.h"
+#include "../include/Credits.h"
+#include "../include/PlayerData.h"
 #include <JLBFont.h>
 #include <JGE.h>
 #include <JFileSystem.h>
@@ -14,6 +16,8 @@
 
 float StoryDialog::currentY = 2;
 float StoryDialog::previousY = 2;
+bool StoryReward::rewardSoundPlayed = false;
+bool StoryReward::rewardsEnabled = true;
 
 StoryDialogElement::StoryDialogElement(float x, float y, int id): JGuiObject(id), mX(x),mY(y) {
 }
@@ -47,6 +51,70 @@ float StoryText::getHeight() {
 
   void StoryText::Update(float dt){
     //Nothing for now
+  }
+
+
+  StoryReward::StoryReward(string _type, string _value, string text, float _mX, float _mY, string _align, int _font, int id):StoryText(text,_mX,_mY, _align, _font, id) {
+  type = STORY_REWARD_CREDITS;
+  if (_type.compare("unlockset") == 0) {
+    type = STORY_REWARD_SET;
+  }
+  value = _value;
+  rewardDone = 0;
+
+}
+
+void StoryReward::Render(){
+  if (rewardDone <=0)
+      return;
+  StoryText::Render();
+}
+
+void StoryReward::Update(float dt){
+    if (rewardDone)
+       return;
+
+    int result = 0;
+
+    switch (type){
+    case STORY_REWARD_CREDITS:
+      result = Credits::addCreditBonus(atoi(value.c_str()));
+      break;
+    case STORY_REWARD_SET:
+      {
+        result = Credits::unlockRandomSet(true);
+        MTGSetInfo * si = setlist.getInfo(result - 1);
+        if(si) {
+          string unlockedString = si->getName();
+          size_t pos = text.find("${SET}");
+          if (pos != string::npos) {
+            text.replace(pos,pos + 6,unlockedString);
+          }
+        }
+        break;
+      }
+    default:
+      break;
+    }
+
+    if (!result) {
+      rewardDone = -1;
+      return;
+    }
+
+    if (!rewardsEnabled) {
+      rewardDone = -1;
+      return;
+    }
+
+    if (!rewardSoundPlayed && options[Options::SFXVOLUME].number > 0){
+      JSample * sample = resources.RetrieveSample("bonus.wav");
+      if (sample){
+        JSoundSystem::GetInstance()->PlaySample(sample);
+      }
+      rewardSoundPlayed = 1;
+    }
+    rewardDone = 1;
   }
 
   ostream& StoryText::toString(ostream& out) const
@@ -88,15 +156,6 @@ JQuad * quad = resources.RetrieveQuad(img);
 
 StoryPage::StoryPage(StoryFlow * mParent):mParent(mParent){
 }
-
-
-
-StoryFlow::StoryFlow(string folder): folder(folder){
-  string path = "campaigns/";
-  path.append(folder).append("/story.xml");
-  parse(path);
-}
-
 
 
 void  StoryChoice::Render()
@@ -182,7 +241,7 @@ void StoryDuel::init(){
   players[0] = NEW HumanPlayer(NEW MTGPlayerCards(tempDeck),deckFile,deckFileSmall);
   SAFE_DELETE(tempDeck);
 
-  sprintf(deckFile,"%s/ennemy_deck.txt", folder);
+  sprintf(deckFile,"%s/opponent_deck.txt", folder);
   tempDeck = NEW MTGDeck(deckFile, GameApp::collection);
   sprintf(deckFileSmall, "campaign_ennemy_%s_%s",  mParent->folder.c_str(), pageId.c_str());
   players[1] = NEW AIPlayerBaka(NEW MTGPlayerCards(tempDeck),deckFile,deckFileSmall,"baka.jpg");
@@ -293,6 +352,10 @@ StoryDialog::StoryDialog(TiXmlElement* root, StoryFlow * mParent):StoryPage(mPar
           StoryChoice * sc = NEW StoryChoice(id,text,i,x, y , align, font,  (i==0));
           graphics.push_back(sc);
           Add(sc);
+        }else if (strcmp(element->Value(), "reward")==0){
+          string type = safeAttribute(element,"type");
+          string value = safeAttribute(element,"value");
+          graphics.push_back(NEW StoryReward(type, value, text,x,y,align, font));
         }else {
           //Error
         }
@@ -330,7 +393,7 @@ void StoryDialog::Render() {
   previousY = currentY;
   for (size_t i = 0; i < graphics.size(); ++i){
     StoryDialogElement * elmt = (StoryDialogElement *)(graphics[i]);
-    if (elmt == mObjects[0])
+    if (mCount && elmt == mObjects[0])
       currentY += SPACE_BEFORE_CHOICES;
     RenderElement(elmt);
   }
@@ -348,6 +411,14 @@ StoryDialog::~StoryDialog(){
   }
 }
 
+
+StoryFlow::StoryFlow(string folder): folder(folder){
+  string path = "campaigns/";
+  path.append(folder).append("/story.xml");
+  parse(path);
+}
+
+
 StoryPage * StoryFlow::loadPage(TiXmlElement* element){
   TiXmlNode* typeNode = element->FirstChild("type");
   if (!typeNode) return NULL;
@@ -361,10 +432,26 @@ StoryPage * StoryFlow::loadPage(TiXmlElement* element){
   return result;
 
 }
+
+
 //
-bool StoryFlow::gotoPage(string id){
+bool StoryFlow::_gotoPage(string id){
+  StoryReward::rewardSoundPlayed = false;
+  if (pages.find(id) == pages.end()) {
+    return false;
+  }
   currentPageId = id;
   return true;
+}
+
+bool StoryFlow::gotoPage(string id){
+  StoryReward::rewardsEnabled = true;
+  return _gotoPage(id);
+}
+
+bool StoryFlow::loadPageId(string id) {
+  StoryReward::rewardsEnabled = false;
+  return _gotoPage(id);
 }
 
 bool StoryFlow::parse(string path)
@@ -399,6 +486,15 @@ bool StoryFlow::parse(string path)
 		}
 	}
 
+  //autoLoad
+  PlayerData * pd = NEW PlayerData();
+  map<string,string>::iterator it = pd->storySaves.find(folder);
+  if (it!=pd->storySaves.end()) {
+    if (it->second.compare("End") !=0)
+      loadPageId(it->second);
+  }
+  SAFE_DELETE(pd);
+
 	return true;
 }
 
@@ -417,4 +513,10 @@ StoryFlow::~StoryFlow(){
     SAFE_DELETE(i->second);
   }
   pages.clear();
+  
+  //autoSave progress
+  PlayerData * pd = NEW PlayerData();
+  pd->storySaves[folder] = currentPageId;
+  pd->save();
+  SAFE_DELETE(pd);
 }

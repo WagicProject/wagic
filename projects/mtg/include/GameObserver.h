@@ -30,10 +30,10 @@ class GameObserver{
   queue<WEvent *> eventsQueue;
 
   int nbPlayers;
-  int currentPlayerId;
   int untap(MTGCardInstance * card);
 
  public:
+  int currentPlayerId;
   CombatStep combatStep;
   int turn;
   int forceShuffleLibraries();
