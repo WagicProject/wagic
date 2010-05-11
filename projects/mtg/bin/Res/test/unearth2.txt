@@ -1,0 +1,30 @@
+#Testing Unearth - text=Unearth {B} ({B}: Return this card from your graveyard to the battlefield.
+#It gains haste. Exile it at the beginning of the next end step or if it would
+#leave the battlefield. Unearth only as a sorcery.)
+#test2- testing if it only works as a sorcery, by playing the ability other than main phase.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Dregscape Zombie,129754
+[PLAYER2]
+inplay:Grizzly Bears
+[DO]
+next
+next
+Dregscape Zombie
+next
+Grizzly Bears
+next
+next
+129754
+Dregscape Zombie
+next
+[ASSERT]
+SECONDMAIN
+[PLAYER1]
+graveyard:Dregscape Zombie
+inplay:129754
+[PLAYER2]
+graveyard:Grizzly Bears
+life:20
+[END]
