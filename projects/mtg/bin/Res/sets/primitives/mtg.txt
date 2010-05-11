@@ -1166,6 +1166,7 @@ subtype=Zombie Wizard
 abilities=haste
 auto=foreach(land[basic]|opponentBattlefield) damage:1 opponent
 auto=@next end:moveTo(exile)
+text=When Anathemancer enters the battlefield, it deals damage to target player equal to the number of nonbasic lands that player controls. -- Unearth {5}{B}{R} ({5}{B}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 power=2
 toughness=2
 mana={1}{B}{R}
@@ -5529,6 +5530,7 @@ subtype=Elemental
 abilities=haste
 auto=@each combatends:moveTo(ownerGraveyard) all(brackwater elemental[attacking;blocking]|myBattlefield)
 auto=@next end:moveTo(exile)
+text=When Brackwater Elemental attacks or blocks, sacrifice it at the beginning of the next end step. -- Unearth {2}{U} ({2}{U}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 power=4
 toughness=4
 mana={2}{U}
@@ -7794,8 +7796,7 @@ type=Enchantment
 name=Circle of Protection: Green
 alias=1337
 text={1}: The next time a green source of your choice would deal damage to you this turn, prevent that damage.
-###mana={1}{W}
-mana={G}
+mana={1}{W}
 type=Enchantment
 [/card]
 [card]
@@ -8828,6 +8829,7 @@ subtype=Zombie Wizard
 abilities=haste
 auto=may moveTo(mygraveyard) target(creature|myLibrary)
 auto=@next end:moveTo(exile)
+text=When Corpse Connoisseur enters the battlefield, you may search your library for a creature card and put that card into your graveyard. If you do, shuffle your library. -- Unearth {3}{B} ({3}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 power=3
 toughness=3
 mana={4}{B}
@@ -14175,6 +14177,7 @@ type=Creature
 subtype=Horror
 abilities=haste
 auto=@next end:moveTo(exile)
+text=Unearth {1}{U}{B} ({1}{U}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 power=4
 toughness=3
 mana={3}{U}{B}
@@ -14425,6 +14428,30 @@ auto=moveTo(exile)
 text=Search target player's library for a card and exile it. Then that player shuffles his or her library.
 mana={U}
 type=Sorcery
+[/card]
+[card]
+name=Extractor Demon
+abilities=flying
+autograveyard={B}:moveto(exile) && token(18908211) asSorcery
+auto=@movedTo(other creature|exile,graveyard,hand,library) from(battlefield):may deplete:2 target(player)
+text=Flying -- Whenever another creature leaves the battlefield, you may have target player put the top two cards of his or her library into his or her graveyard. -- Unearth {2}{B} ({2}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+mana={4}{B}{B}
+type=Creature
+subtype=Demon
+power=5
+toughness=5
+[/card]
+[card]
+name=Extractor Demon Unearthed
+type=Creature
+subtype=Demon
+abilities=haste,flying
+auto=@next end:moveTo(exile)
+auto=@movedTo(other creature|exile,graveyard,hand,library) from(battlefield):may deplete:2 target(player)
+text=Flying -- Whenever another creature leaves the battlefield, you may have target player put the top two cards of his or her library into his or her graveyard. -- Unearth {2}{B} ({2}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+power=5
+toughness=5
+mana={4}{B}{B}
 [/card]
 [card]
 name=Extruder
@@ -14770,6 +14797,31 @@ text=Enchant creature -- When Fatal Attraction enters the battlefield, it deals 
 mana={2}{R}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Fatestitcher
+auto={T}:Tap target(other *)
+auto={T}:Untap target(other *)
+autograveyard={U}:moveto(exile) && token(17645611) asSorcery
+text={T}: You may tap or untap another target permanent. -- Unearth {U} ({U}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+mana={3}{U}
+type=Creature
+subtype=Zombie Wizard
+power=1
+toughness=2
+[/card]
+[card]
+name=Fatestitcher Unearthed
+type=Creature
+subtype=Zombie Wizard
+abilities=haste
+auto={T}:Tap target(other *)
+auto={T}:Untap target(other *)
+auto=@next end:moveTo(exile)
+text={T}: You may tap or untap another target permanent. -- Unearth {U} ({U}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+power=1
+toughness=2
+mana={3}{U}
 [/card]
 [card]
 name=Fault Line
@@ -15353,6 +15405,28 @@ auto=damage:6 all(creature,player)
 text=Fire Tempest deals 6 damage to each creature and each player.
 mana={5}{R}{R}
 type=Sorcery
+[/card]
+[card]
+name=Fire-Field Ogre
+abilities=first strike
+autograveyard={U}{B}{R}:moveto(exile) && token(17644711) asSorcery
+text=First strike -- Unearth {U}{B}{R} ({U}{B}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+mana={1}{U}{B}{R}
+type=Creature
+subtype=Ogre Mutant
+power=4
+toughness=2
+[/card]
+[card]
+name=Fire-Field Ogre Unearthed
+type=Creature
+subtype=Ogre Mutant
+abilities=haste,first strike
+auto=@next end:moveTo(exile)
+text=First strike -- Unearth {U}{B}{R} ({U}{B}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+power=4
+toughness=2
+mana={1}{U}{B}{R}
 [/card]
 [card]
 name=Fire-Lit Thicket
@@ -19197,7 +19271,7 @@ auto=counter(0/0,1,Grixis Battlemage)
 auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Grixis Battlemage}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Grixis Battlemage) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111123
-type=nothing
+type=Nothing
 [/card]
 [card]
 name=Grixis Panorama
@@ -19205,6 +19279,29 @@ auto={T}:Add{1}
 auto={1}{T}{S}:moveTo(myBattlefield) target(island,swamp,mountain|mylibrary) && tap
 text={T}: Add {1} to your mana pool. -- {1}, {T}, Sacrifice Grixis Panorama: Search your library for a basic Island, Swamp, or Mountain card and put it onto the battlefield tapped. Then shuffle your library.
 type=Land
+[/card]
+[card]
+name=Grixis Slavedriver
+auto=token(Zombie,Creature Token Zombie,2/2,black)
+autograveyard={3}{B}:moveto(exile) && token(17980411) asSorcery
+text=When Grixis Slavedriver leaves the battlefield, put a 2/2 black Zombie creature token onto the battlefield. -- Unearth {3}{B} ({3}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+mana={5}{B}
+type=Creature
+subtype=Zombie Giant
+power=4
+toughness=4
+[/card]
+[card]
+name=Grixis Slavedriver Unearthed
+type=Creature
+subtype=Zombie Giant
+abilities=haste
+auto=token(Zombie,Creature Token Zombie,2/2,black)
+auto=@next end:moveTo(exile)
+text=When Grixis Slavedriver leaves the battlefield, put a 2/2 black Zombie creature token onto the battlefield. -- Unearth {3}{B} ({3}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+mana={5}{B}
+power=4
+toughness=4
 [/card]
 [card]
 name=Grixis Sojourners
@@ -20295,10 +20392,33 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Hell's Thunder
+abilities=flying,haste
+auto=@each endofturn:moveTo(ownergraveyard)
+autograveyard={4}{R}:moveto(exile) && token(17645511) asSorcery
+text=Flying, haste -- At the beginning of the end step, sacrifice Hell's Thunder. -- Unearth {4}{R} ({4}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+mana={1}{R}{R}
+type=Creature
+subtype=Elemental
+power=4
+toughness=4
+[/card]
+[card]
+name=Hell's Thunder Unearthed
+type=Creature
+subtype=Elemental
+abilities=flying,haste
+auto=@next end:moveTo(exile)
+text=Flying, haste -- At the beginning of the end step, sacrifice Hell's Thunder. -- Unearth {4}{R} ({4}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+mana={1}{R}{R}
+power=4
+toughness=4
+[/card]
+[card]
 name=Hellfire
 auto=foreach(creature[-black]) damage:1 controller
 auto=damage:3 controller
-auto=destroy all(creature[-black])
+auto=destroy all(creature[-black;-indestructible])
 text=Destroy all nonblack creatures. Hellfire deals X plus 3 damage to you, where X is the number of creatures put into all graveyards this way.
 mana={2}{B}{B}{B}
 type=Sorcery
@@ -20314,6 +20434,29 @@ type=Creature
 subtype=Dragon
 power=8
 toughness=8
+[/card]
+[card]
+name=Hellspark Elemental
+abilities=trample,haste
+auto=@each endofturn:moveTo(ownergraveyard)
+autograveyard={1}{R}:moveto(exile) && token(17483511) asSorcery
+text=Trample, haste -- At the beginning of the end step, sacrifice Hellspark Elemental. -- Unearth {1}{R} ({1}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+mana={1}{R}
+type=Creature
+subtype=Elemental
+power=3
+toughness=1
+[/card]
+[card]
+name=Hellspark Elemental Unearthed
+type=Creature
+subtype=Elemental
+abilities=trample,haste
+auto=@next endofturn:moveTo(exile)
+text=Trample, haste -- At the beginning of the end step, sacrifice Hellspark Elemental. -- Unearth {1}{R} ({1}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+power=3
+toughness=1
+mana={1}{R}
 [/card]
 [card]
 name=Helm of Kaldra
@@ -23526,6 +23669,52 @@ power=5
 toughness=3
 [/card]
 [card]
+name=Kathari Bomber
+abilities=flying
+auto=@damaged(player) from(this):token(Goblin,Creature Token Goblin,1/1,red) && moveTo(ownergraveyard) all(this)
+autograveyard={3}{B}{R}:moveto(exile) && token(17960211) asSorcery
+text=Flying -- When Kathari Bomber deals combat damage to a player, put two 1/1 red Goblin creature tokens onto the battlefield and sacrifice Kathari Bomber. -- Unearth {3}{B}{R} ({3}{B}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+mana={1}{B}{R}
+type=Creature
+subtype=Bird Shaman
+power=2
+toughness=2
+[/card]
+[card]
+name=Kathari Bomber Unearthed
+type=Creature
+subtype=Bird Shaman
+abilities=haste,flying
+auto=@next end:moveTo(exile)
+auto=@damaged(player) from(this):token(Goblin,Creature Token Goblin,1/1,red) && moveTo(exile) all(this)
+text=Flying -- When Kathari Bomber deals combat damage to a player, put two 1/1 red Goblin creature tokens onto the battlefield and sacrifice Kathari Bomber. -- Unearth {3}{B}{R} ({3}{B}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+power=2
+toughness=2
+mana={1}{B}{R}
+[/card]
+[card]
+name=Kathari Screecher
+abilities=flying
+autograveyard={2}{U}:moveto(exile) && token(17483711) asSorcery
+text=Flying -- Unearth {2}{U} ({2}{U}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+mana={2}{U}
+type=Creature
+subtype=Bird Soldier
+power=2
+toughness=2
+[/card]
+[card]
+name=Kathari Screecher Unearthed
+type=Creature
+subtype=Bird Soldier
+abilities=haste,flying
+auto=@next end:moveTo(exile)
+text=Flying -- Unearth {2}{U} ({2}{U}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+power=2
+toughness=2
+mana={2}{U}
+[/card]
+[card]
 name=Kavu Aggressor
 abilities=cantblock
 kicker={4}
@@ -23682,6 +23871,29 @@ type=Creature
 subtype=Minotaur Warrior Ally
 power=3
 toughness=3
+[/card]
+[card]
+name=Kederekt Leviathan
+auto=moveTo(ownerhand) all(other *[-land])
+autograveyard={6}{U}:moveto(exile) && token(17488211) asSorcery
+text=When Kederekt Leviathan enters the battlefield, return all other nonland permanents to their owners' hands. -- Unearth {6}{U} ({6}{U}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+mana={6}{U}{U}
+type=Creature
+subtype=Leviathan
+power=5
+toughness=5
+[/card]
+[card]
+name=Kederekt Leviathan Unearthed
+type=Creature
+subtype=Leviathan
+abilities=haste
+auto=moveTo(ownerhand) all(other *[-land])
+auto=@next end:moveTo(exile)
+text=When Kederekt Leviathan enters the battlefield, return all other nonland permanents to their owners' hands. -- Unearth {6}{U} ({6}{U}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+power=5
+toughness=5
+mana={6}{U}{U}
 [/card]
 [card]
 name=Kederekt Parasite
@@ -37504,6 +37716,29 @@ power=2
 toughness=4
 [/card]
 [card]
+name=Scourge Devil
+auto=1/0 all(creature|myBattlefield)
+autograveyard={2}{R}:moveto(exile) && token(17484511) asSorcery
+text=When Scourge Devil enters the battlefield, creatures you control get +1/+0 until end of turn. -- Unearth {2}{R} ({2}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+mana={4}{R}
+type=Creature
+subtype=Devil
+power=3
+toughness=3
+[/card]
+[card]
+name=Scourge Devil Unearthed
+type=Creature
+subtype=Devil
+abilities=haste
+auto=1/0 all(creature|myBattlefield)
+auto=@next end:moveTo(exile)
+text=When Scourge Devil enters the battlefield, creatures you control get +1/+0 until end of turn. -- Unearth {2}{R} ({2}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+power=3
+toughness=3
+mana={4}{R}
+[/card]
+[card]
 name=Scourge of Kher Ridges
 abilities=flying
 auto={1}{R}:damage:2 all(creature[-flying])
@@ -38572,6 +38807,28 @@ auto=damage:2 all(creature[shadow])
 text=Shadowstorm deals 2 damage to each creature with shadow.
 mana={R}
 type=Sorcery
+[/card]
+[card]
+name=Shambling Remains
+abilities=cantblock
+autograveyard={B}{R}:moveto(exile) && token(18499111) asSorcery
+text=Shambling Remains can't block. -- Unearth {B}{R} ({B}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+mana={1}{B}{R}
+type=Creature
+subtype=Zombie Horror
+power=4
+toughness=3
+[/card]
+[card]
+name=Shambling Remains Unearthed
+type=Creature
+subtype=Zombie Horror
+abilities=haste,cantblock
+auto=@next end:moveTo(exile)
+text=Shambling Remains can't block. -- Unearth {B}{R} ({B}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+power=4
+toughness=3
+mana={1}{B}{R}
 [/card]
 [card]
 name=Shambling Strider
@@ -47323,6 +47580,29 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Undead Leotau
+auto={R}:1/-1
+autograveyard={2}{B}:moveto(exile) && token(17645211) asSorcery
+text={R}: Undead Leotau gets +1/-1 until end of turn. -- Unearth {2}{B} ({2}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+mana={5}{B}
+type=Creature
+subtype=Zombie Cat
+power=3
+toughness=4
+[/card]
+[card]
+name=Undead Leotau Unearthed
+type=Creature
+subtype=Zombie Cat
+abilities=haste
+auto={R}:1/-1
+auto=@next end:moveTo(exile)
+text={R}: Undead Leotau gets +1/-1 until end of turn. -- Unearth {2}{B} ({2}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+power=3
+toughness=4
+mana={5}{B}
+[/card]
+[card]
 name=Undead Gladiator
 autohand={1}{B}:cycling
 autograveyard={1}{B}{S(*|myhand)}:moveTo(myBattlefield) myUpkeepOnly
@@ -48944,6 +49224,28 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Viscera Dragger
+autohand={2}:cycling
+autograveyard={1}{B}:moveto(exile) && token(17514411) asSorcery
+text=Cycling {2} ({2}, Discard this card: Draw a card.) -- Unearth {1}{B} ({1}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+mana={3}{B}
+type=Creature
+subtype=Zombie Ogre Warrior
+power=3
+toughness=3
+[/card]
+[card]
+name=Viscera Dragger Unearthed
+type=Creature
+subtype=Zombie Ogre Warrior
+abilities=haste
+auto=@next end:moveTo(exile)
+text=Cycling {2} ({2}, Discard this card: Draw a card.) -- Unearth {1}{B} ({1}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+power=3
+toughness=3
+mana={3}{B}
+[/card]
+[card]
 name=Viscerid Armor
 target=creature
 auto=1/1
@@ -49033,6 +49335,29 @@ type=Creature
 subtype=Human Shaman
 power=3
 toughness=2
+[/card]
+[card]
+name=Vithian Stinger
+auto={T}:damage:1 target(creature,player)
+autograveyard={B}:moveto(exile) && token(17492211) asSorcery
+text={T}: Vithian Stinger deals 1 damage to target creature or player. -- Unearth {1}{R} ({1}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+mana={2}{R}
+type=Creature
+subtype=Human Shaman
+power=0
+toughness=1
+[/card]
+[card]
+name=Vithian Stinger Unearthed
+type=Creature
+subtype=Human Shaman
+abilities=haste
+auto={T}:damage:1 target(creature,player)
+auto=@next end:moveTo(exile)
+text={T}: Vithian Stinger deals 1 damage to target creature or player. -- Unearth {1}{R} ({1}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+power=0
+toughness=1
+mana={2}{R}
 [/card]
 [card]
 name=Vitu-Ghazi, the City-Tree

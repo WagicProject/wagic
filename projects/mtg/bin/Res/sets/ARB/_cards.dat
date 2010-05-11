@@ -9,6 +9,11 @@ id=179538
 rarity=U
 [/card]
 [card]
+primitive=Anathemancer Unearthed
+id=17953811
+rarity=T
+[/card]
+[card]
 primitive=Architects of Will
 id=179597
 rarity=C
@@ -179,6 +184,11 @@ id=179573
 rarity=C
 [/card]
 [card]
+primitive=Etherium Abomination Unearthed
+id=17957311
+rarity=T
+[/card]
+[card]
 primitive=Ethersworn Shieldmage
 id=179578
 rarity=C
@@ -312,6 +322,11 @@ rarity=M
 primitive=Kathari Bomber
 id=179602
 rarity=C
+[/card]
+[card]
+primitive=Kathari Bomber Unearthed
+id=17960211
+rarity=T
 [/card]
 [card]
 primitive=Kathari Remnant

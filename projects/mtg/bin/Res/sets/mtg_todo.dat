@@ -10912,15 +10912,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Extractor Demon
-text=Flying -- Whenever another creature leaves the battlefield, you may have target player put the top two cards of his or her library into his or her graveyard. -- Unearth {2}{B} ({2}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
-mana={4}{B}{B}
-type=Creature
-subtype=Demon
-power=5
-toughness=5
-[/card]
-[card]
 name=Extraplanar Lens
 text=Imprint - When Extraplanar Lens enters the battlefield, you may exile target land you control. -- Whenever a land with the same name as the exiled card is tapped for mana, its controller adds one mana to his or her mana pool of any type that land produced.
 mana={3}
@@ -11278,15 +11269,6 @@ text=At the beginning of each opponent's upkeep, that player chooses draw step, 
 mana={1}{U}{U}
 type=Creature
 subtype=Human Wizard
-power=1
-toughness=2
-[/card]
-[card]
-name=Fatestitcher
-text={T}: You may tap or untap another target permanent. -- Unearth {U} ({U}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
-mana={3}{U}
-type=Creature
-subtype=Zombie Wizard
 power=1
 toughness=2
 [/card]
@@ -11742,15 +11724,6 @@ type=Creature
 subtype=Shapeshifter
 power=1
 toughness=1
-[/card]
-[card]
-name=Fire-Field Ogre
-text=First strike -- Unearth {U}{B}{R} ({U}{B}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
-mana={1}{U}{B}{R}
-type=Creature
-subtype=Ogre Mutant
-power=4
-toughness=2
 [/card]
 [card]
 name=Fireblast
@@ -14846,15 +14819,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Grixis Slavedriver
-text=When Grixis Slavedriver leaves the battlefield, put a 2/2 black Zombie creature token onto the battlefield. -- Unearth {3}{B} ({3}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
-mana={5}{B}
-type=Creature
-subtype=Zombie Giant
-power=4
-toughness=4
-[/card]
-[card]
 name=Grizzled Wolverine
 text=Whenever Grizzled Wolverine becomes blocked, you may pay {R}. If you do, Grizzled Wolverine gets +2/+0 until end of turn.
 mana={1}{R}{R}
@@ -15699,15 +15663,6 @@ mana={5}
 type=Artifact
 [/card]
 [card]
-name=Hell's Thunder
-text=Flying, haste -- At the beginning of the end step, sacrifice Hell's Thunder. -- Unearth {4}{R} ({4}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
-mana={1}{R}{R}
-type=Creature
-subtype=Elemental
-power=4
-toughness=4
-[/card]
-[card]
 name=Hell-Bent Raider
 auto=first strike,haste
 auto={S(*|myHand)}:protection from white ####this is not what the wording says!
@@ -15762,15 +15717,6 @@ type=Creature
 subtype=Dragon
 power=2
 toughness=2
-[/card]
-[card]
-name=Hellspark Elemental
-text=Trample, haste -- At the beginning of the end step, sacrifice Hellspark Elemental. -- Unearth {1}{R} ({1}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
-mana={1}{R}
-type=Creature
-subtype=Elemental
-power=3
-toughness=1
 [/card]
 [card]
 name=Helm of Awakening
@@ -18180,15 +18126,6 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Kathari Bomber
-text=Flying -- When Kathari Bomber deals combat damage to a player, put two 1/1 red Goblin creature tokens onto the battlefield and sacrifice Kathari Bomber. -- Unearth {3}{B}{R} ({3}{B}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
-mana={1}{B}{R}
-type=Creature
-subtype=Bird Shaman
-power=2
-toughness=2
-[/card]
-[card]
 name=Kathari Remnant
 text=Flying -- {B}: Regenerate Kathari Remnant. -- Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.)
 mana={2}{U}{B}
@@ -18196,15 +18133,6 @@ type=Creature
 subtype=Bird Skeleton
 power=0
 toughness=1
-[/card]
-[card]
-name=Kathari Screecher
-text=Flying -- Unearth {2}{U} ({2}{U}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
-mana={2}{U}
-type=Creature
-subtype=Bird Soldier
-power=2
-toughness=2
 [/card]
 [card]
 name=Kavu Chameleon
@@ -18268,15 +18196,6 @@ type=Creature
 subtype=Horror
 power=2
 toughness=3
-[/card]
-[card]
-name=Kederekt Leviathan
-text=When Kederekt Leviathan enters the battlefield, return all other nonland permanents to their owners' hands. -- Unearth {6}{U} ({6}{U}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
-mana={6}{U}{U}
-type=Creature
-subtype=Leviathan
-power=5
-toughness=5
 [/card]
 [card]
 name=Keeper of Progenitus
@@ -31199,15 +31118,6 @@ mana={2}{W}{W}
 type=Instant
 [/card]
 [card]
-name=Scourge Devil
-text=When Scourge Devil enters the battlefield, creatures you control get +1/+0 until end of turn. -- Unearth {2}{R} ({2}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
-mana={4}{R}
-type=Creature
-subtype=Devil
-power=3
-toughness=3
-[/card]
-[card]
 name=Scourge of Numai
 text=At the beginning of your upkeep, you lose 2 life if you don't control an Ogre.
 mana={3}{B}
@@ -31984,15 +31894,6 @@ name=Shaman's Trance
 text=Until end of turn, other players can't play cards from their graveyards, and you may play cards from other players' graveyards as though they were in your graveyard.
 mana={2}{R}
 type=Instant
-[/card]
-[card]
-name=Shambling Remains
-text=Shambling Remains can't block. -- Unearth {B}{R} ({B}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
-mana={1}{B}{R}
-type=Creature
-subtype=Zombie Horror
-power=4
-toughness=3
 [/card]
 [card]
 name=Shambling Shell
@@ -38515,15 +38416,6 @@ power=1
 toughness=3
 [/card]
 [card]
-name=Undead Leotau
-text={R}: Undead Leotau gets +1/-1 until end of turn. -- Unearth {2}{B} ({2}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
-mana={5}{B}
-type=Creature
-subtype=Zombie Cat
-power=3
-toughness=4
-[/card]
-[card]
 name=Undead Warchief
 text=Zombie spells you cast cost {1} less to cast. -- Zombie creatures you control get +2/+1.
 mana={2}{B}{B}
@@ -39505,17 +39397,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Viscera Dragger
-autohand={2}:cycling
-autograveyard={1}{B}:moveTo(myhand) && haste && @end of turn:moveto(removedfromgame) ## ar... too bad it is 100% correct
-text=Cycling {2} ({2}, Discard this card: Draw a card.) -- Unearth {1}{B} ({1}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
-mana={3}{B}
-type=Creature
-subtype=Zombie Ogre Warrior
-power=3
-toughness=3
-[/card]
-[card]
 name=Viscerid Deepwalker
 text={U}: Viscerid Deepwalker gets +1/+0 until end of turn. -- Suspend 4 - {U} (Rather than cast this card from your hand, you may pay {U} and exile it with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.)
 mana={4}{U}
@@ -39551,15 +39432,6 @@ text=You gain 3 life. -- Splice onto Arcane {1}{G} (As you cast an Arcane spell,
 mana={1}{G}
 type=Instant
 subtype=Arcane
-[/card]
-[card]
-name=Vithian Stinger
-text={T}: Vithian Stinger deals 1 damage to target creature or player. -- Unearth {1}{R} ({1}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
-mana={2}{R}
-type=Creature
-subtype=Human Shaman
-power=0
-toughness=1
 [/card]
 [card]
 name=Vodalian Hypnotist

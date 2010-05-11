@@ -184,6 +184,11 @@ id=176448
 rarity=U
 [/card]
 [card]
+primitive=Corpse Connoisseur Unearthed
+id=17644811
+rarity=T
+[/card]
+[card]
 primitive=Courier's Capsule
 id=174800
 rarity=C
@@ -359,6 +364,11 @@ id=176456
 rarity=U
 [/card]
 [card]
+primitive=Fatestitcher Unearthed
+id=17645611
+rarity=T
+[/card]
+[card]
 primitive=Feral Hydra
 id=174973
 rarity=R
@@ -372,6 +382,11 @@ rarity=U
 primitive=Fire-Field Ogre
 id=176447
 rarity=U
+[/card]
+[card]
+primitive=Fire-Field Ogre Unearthed
+id=17644711
+rarity=T
 [/card]
 [card]
 primitive=Flameblast Dragon
@@ -479,6 +494,11 @@ id=176455
 rarity=R
 [/card]
 [card]
+primitive=Hell's Thunder Unearthed
+id=17645511
+rarity=T
+[/card]
+[card]
 primitive=Hindering Light
 id=177598
 rarity=C
@@ -569,6 +589,11 @@ id=174837
 rarity=C
 [/card]
 [card]
+primitive=Kathari Screecher Unearthed
+id=17483711
+rarity=T
+[/card]
+[card]
 primitive=Kederekt Creeper
 id=179430
 rarity=C
@@ -577,6 +602,11 @@ rarity=C
 primitive=Kederekt Leviathan
 id=174882
 rarity=R
+[/card]
+[card]
+primitive=Kederekt Leviathan Unearthed
+id=17488211
+rarity=T
 [/card]
 [card]
 primitive=Keeper of Progenitus
@@ -954,6 +984,11 @@ id=174845
 rarity=U
 [/card]
 [card]
+primitive=Scourge Devil Unearthed
+id=17484511
+rarity=T
+[/card]
+[card]
 primitive=Scourglass
 id=174853
 rarity=R
@@ -1177,6 +1212,11 @@ rarity=U
 primitive=Undead Leotau
 id=176452
 rarity=C
+[/card]
+[card]
+primitive=Undead Leotau Unearthed
+id=17645211
+rarity=T
 [/card]
 [card]
 primitive=Vectis Silencers
