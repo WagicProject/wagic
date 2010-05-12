@@ -1,0 +1,33 @@
+#Testing Devour ability (Example: Thunder-Thrash Elder)
+[init]
+firstmain
+[player1]
+hand:Thunder-Thrash Elder
+inplay:fervor,ornithopter,elvish berserker,grizzly bears
+manapool:{2}{R}
+[player2]
+[do]
+Thunder-Thrash Elder
+choice 0
+ornithopter
+choice 0
+elvish berserker
+choice 1
+next
+#begin
+next
+#attackers
+Thunder-Thrash Elder
+next
+#blockers
+next
+#damage
+[ASSERT]
+COMBATDAMAGE
+[PLAYER1]
+graveyard:ornithopter,elvish berserker
+inplay:fervor,Thunder-Thrash Elder,grizzly bears
+manapool:{0}
+[PLAYER2]
+life:13
+[END]

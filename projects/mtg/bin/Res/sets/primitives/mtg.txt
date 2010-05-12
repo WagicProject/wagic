@@ -11159,6 +11159,48 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Devour 1 (Mechanic)
+auto=may moveTo(ownergraveyard) notatarget(creature[-counter{0/0.1.devour}]|mybattlefield) && counter(1/1,1,Devoured) all(creature[counter{0/0.1.devour}]) && token(22222224) && bury all(this)
+id=22222221
+auto=moveto(exile)
+type=nothing
+[/card]
+[card]
+name=Devour 2 (Mechanic)
+auto=may moveTo(ownergraveyard) notatarget(creature[-counter{0/0.1.devour}]|mybattlefield) && counter(1/1,2,Devoured) all(creature[counter{0/0.1.devour}]) && token(22222225) && bury all(this)
+id=22222222
+auto=moveto(exile)
+type=nothing
+[/card]
+[card]
+name=Devour 3 (Mechanic)
+auto=may moveTo(ownergraveyard) notatarget(creature[-counter{0/0.1.devour}]|mybattlefield) && counter(1/1,3,Devoured) all(creature[counter{0/0.1.devour}]) && token(22222226) && bury all(this)
+id=22222223
+auto=moveto(exile)
+type=nothing
+[/card]
+[card]
+name=Sac Devour 1
+auto=may moveTo(ownergraveyard) notatarget(creature[-counter{0/0.1.devour}]|mybattlefield) && counter(1/1,1,Devoured) all(creature[counter{0/0.1.devour}]) && token(22222224) && bury all(this)
+auto=moveto(exile)
+id=22222224
+type=nothing
+[/card]
+[card]
+name=Devour Sac 2
+auto=may moveTo(ownergraveyard) notatarget(creature[-counter{0/0.1.devour}]|mybattlefield) && counter(1/1,2,Devoured) all(creature[counter{0/0.1.devour}]) && token(22222225) && bury all(this)
+auto=moveto(exile)
+id=22222225
+type=nothing
+[/card]
+[card]
+name=Devour Sac 3
+auto=may moveTo(ownergraveyard) notatarget(creature[-counter{0/0.1.devour}]|mybattlefield) && counter(1/1,3,Devoured) all(creature[counter{0/0.1.devour}]) && token(22222226) && bury all(this)
+auto=moveto(exile)
+id=22222226
+type=nothing
+[/card]
+[card]
 name=Devour in Shadow
 target=creature
 auto=destroy
@@ -11841,6 +11883,31 @@ auto={3}{T}:counter(1/1,1) target(creature)
 text={3}, {T}: Put a +1/+1 counter on target creature.
 mana={3}
 type=Artifact
+[/card]
+[card]
+name=Dragon Broodmother
+auto=@each upkeep: token(22222220)
+###mana={2}{R}{R}{R}{G}
+mana={G}
+type=Creature
+subtype=Dragon
+text=Flying -- At the beginning of each upkeep, put a 1/1 red and green Dragon creature token with flying and devour 2 onto the battlefield. (As the token enters the battlefield, you may sacrifice any number of creatures. It enters the battlefield with twice that many +1/+1 counters on it.)
+power=4
+toughness=4
+abilities=flying
+[/card]
+[card]
+name=Dragon (Dragon Broodmother)
+type=Creature
+subtype=Dragon
+abilities=flying
+auto=counter(0/0,-1,devour) all(other creature)
+auto=counter(0/0,1,devour)
+auto=token(22222222)
+text=Flying -- Devour 2 (As this enters the battlefield, you may sacrifice any number of creatures. This creature enters the battlefield with that many +1/+1 counters on it.)
+power=1
+toughness=1
+color=Red,Green
 [/card]
 [card]
 name=Dragon Engine
@@ -17859,6 +17926,19 @@ power=1
 toughness=3
 [/card]
 [card]
+name=Gluttonous Slime
+abilities=flash
+auto=counter(0/0,-1,devour) all(other creature)
+auto=counter(0/0,1,devour)
+auto=token(22222221)
+text=Flash -- Devour 1 (As this enters the battlefield, you may sacrifice any number of creatures. This creature enters the battlefield with that many +1/+1 counters on it.)
+mana={2}{G}
+type=Creature
+subtype=Ooze
+power=2
+toughness=2
+[/card]
+[card]
 name=Gluttonous Zombie
 abilities=fear
 text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.)
@@ -18756,6 +18836,18 @@ type=Creature
 subtype=Elemental Boar Beast
 power=2
 toughness=2
+[/card]
+[card]
+name=Gorger Wurm
+auto=counter(0/0,-1,devour) all(other creature)
+auto=counter(0/0,1,devour)
+auto=token(22222221)
+text=Devour 1 (As this enters the battlefield, you may sacrifice any number of creatures. This creature enters the battlefield with that many +1/+1 counters on it.)
+mana={3}{R}{G}
+type=Creature
+subtype=Wurm
+power=5
+toughness=5
 [/card]
 [card]
 name=Gorgon Flail
@@ -20422,6 +20514,20 @@ auto=destroy all(creature[-black;-indestructible])
 text=Destroy all nonblack creatures. Hellfire deals X plus 3 damage to you, where X is the number of creatures put into all graveyards this way.
 mana={2}{B}{B}{B}
 type=Sorcery
+[/card]
+[card]
+name=Hellkite Hatchling
+auto=counter(0/0,-1,devour) all(other creature)
+auto=counter(0/0,1,devour)
+auto=token(22222221)
+auto=this(counter{1/1.1.Devoured}) trample
+auto=this(counter{1/1.1.Devoured}) flying
+text=Devour 1 (As this enters the battlefield, you may sacrifice any number of creatures. This creature enters the battlefield with that many +1/+1 counters on it.) -- Hellkite Hatchling has flying and trample if it devoured a creature.
+mana={2}{R}{G}
+type=Creature
+subtype=Dragon
+power=2
+toughness=2
 [/card]
 [card]
 name=Hellkite Overlord
@@ -27413,6 +27519,32 @@ power=*
 toughness=*
 [/card]
 [card]
+name=Marrow Chomper
+auto=counter(0/0,-1,devour) all(other creature)
+auto=counter(0/0,1,devour)
+auto=token(22222227)
+mana={3}{B}{G}
+type=Creature
+subtype=Zombie Lizard
+text=Devour 2 (As this enters the battlefield, you may sacrifice any number of creatures. This creature enters the battlefield with twice that many +1/+1 counters on it.) -- When Marrow Chomper enters the battlefield, you gain 2 life for each creature it devoured.
+power=3
+toughness=3
+[/card]
+[card]
+name=Marrow Chomper Devour
+auto=may moveTo(ownergraveyard) notatarget(creature[-counter{0/0.1.devour}]|mybattlefield) && counter(1/1,2,Devoured) all(creature[counter{0/0.1.devour}]) && token(22222228) && life:2 controller && bury all(this)
+id=22222227
+auto=moveto(exile)
+type=nothing
+[/card]
+[card]
+name=Marrow Chomper Devour Sac
+auto=may moveTo(ownergraveyard) notatarget(creature[-counter{0/0.1.devour}]|mybattlefield) && counter(1/1,2,Devoured) all(creature[counter{0/0.1.devour}]) && token(22222228) && life:2 controller && bury all(this)
+auto=moveto(exile)
+id=22222228
+type=nothing
+[/card]
+[card]
 name=Marrow-Gnawer
 auto={T}{S(rat|myBattlefield)}:foreach(rat|myBattlefield) token(Rat,Creature Rat,1/1,black)
 auto=lord(rat) fear
@@ -29573,6 +29705,19 @@ auto={C(0/0,-3,Spore)}:Token(-1924)
 auto={S(saproling|myBattlefield)}:life:2
 power=0
 toughness=2
+[/card]
+[card]
+name=Mycoloth
+auto=counter(0/0,-1,devour) all(other creature)
+auto=counter(0/0,1,devour)
+auto=token(22222222)
+auto=@each my upkeep:thisforeach(counter{1/1.1}) token(Saproling,creature saproling, 1/1, green)
+text=Devour 2 (As this enters the battlefield, you may sacrifice any number of creatures. This creature enters the battlefield with twice that many +1/+1 counters on it.) -- At the beginning of your upkeep, put a 1/1 green Saproling creature token onto the battlefield for each +1/+1 counter on Mycoloth.
+mana={3}{G}{G}
+type=Creature
+subtype=Fungus
+power=4
+toughness=4
 [/card]
 [card]
 name=Mycoid Shepherd
@@ -33416,6 +33561,19 @@ auto=3/3
 text=Target creature gets +3/+3 and gains trample until end of turn.
 mana={1}{G}
 type=Instant
+[/card]
+[card]
+name=Predator Dragon
+abilities=flying, haste
+auto=counter(0/0,-1,devour) all(other creature)
+auto=counter(0/0,1,devour)
+auto=token(22222222)
+text=Flying, haste -- Devour 2 (As this enters the battlefield, you may sacrifice any number of creatures. This creature enters the battlefield with twice that many +1/+1 counters on it.)
+mana={3}{R}{R}{R}
+type=Creature
+subtype=Dragon
+power=4
+toughness=4
 [/card]
 [card]
 name=Predator, Flagship
@@ -40203,6 +40361,32 @@ mana={4}
 type=Artifact
 [/card]
 [card]
+name=Skullmulcher
+auto=counter(0/0,-1,devour) all(other creature)
+auto=counter(0/0,1,devour)
+auto=token(22222229)
+text=Devour 1 (As this enters the battlefield, you may sacrifice any number of creatures. This creature enters the battlefield with that many +1/+1 counters on it.) -- When Skullmulcher enters the battlefield, draw a card for each creature it devoured.
+mana={4}{G}
+type=Creature
+subtype=Elemental
+power=3
+toughness=3
+[/card]
+[card]
+name=Skullmulcher Devour
+auto=may moveTo(ownerhand) notatarget(creature[-counter{0/0.1.devour}]|mybattlefield) && counter(1/1,1,Devoured) all(creature[counter{0/0.1.devour}]) && token(22222228) && draw:1 controller && bury all(this)
+id=22222229
+auto=moveto(exile)
+type=nothing
+[/card]
+[card]
+name=Skullmulcher Devour Sac
+auto=may moveTo(ownerhand) notatarget(creature[-counter{0/0.1.devour}]|mybattlefield) && counter(1/1,1,Devoured) all(creature[counter{0/0.1.devour}]) && token(22222228) && draw:1 controller && bury all(this)
+auto=moveto(exile)
+id=22222230
+type=nothing
+[/card]
+[card]
 name=Skulltap
 target=creature|myBattlefield
 auto=bury
@@ -45639,6 +45823,19 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Thorn-Thrash Viashino
+auto=counter(0/0,-1,devour) all(other creature)
+auto=counter(0/0,1,devour)
+auto=token(22222222)
+auto={G}:trample
+mana={3}{R}
+type=Creature
+subtype=Viashino Warrior
+text=Devour 2 (As this enters the battlefield, you may sacrifice any number of creatures. This creature enters the battlefield with twice that many +1/+1 counters on it.) -- {G}: Thorn-Thrash Viashino gains trample until end of turn.
+power=2
+toughness=2
+[/card]
+[card]
 name=Thought Courier
 auto={T}:token(-1111140) && draw:1
 text={T}: Draw a card, then discard a card.
@@ -45948,6 +46145,18 @@ mana={R}{W}
 type=Creature
 subtype=Human Soldier
 power=2
+toughness=1
+[/card]
+[card]
+name=Thunder-Thrash Elder
+auto=counter(0/0,-1,devour) all(other creature)
+auto=counter(0/0,1,devour)
+auto=token(22222223)
+mana={2}{R}
+type=Creature
+subtype=Viashino Warrior
+text=Devour 3 (As this enters the battlefield, you may sacrifice any number of creatures. This creature enters the battlefield with three times that many +1/+1 counters on it.)
+power=1
 toughness=1
 [/card]
 [card]

@@ -423,6 +423,7 @@ thallid.txt
 thellon_of_havenwood.txt
 threaten.txt
 throne_of_bone.txt
+thunder-thrash_elder.txt
 titanic_ultimatum.txt
 torture.txt
 tranquil_domain.txt
