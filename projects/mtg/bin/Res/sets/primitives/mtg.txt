@@ -1654,16 +1654,6 @@ power=0
 toughness=1
 [/card]
 [card]
-name=Aquamoeba
-auto={S(*|myhand)}:thisforeach(power>=1) -1/1 && thisforeach(toughness>=1) 1/-1
-text=Discard a card: Switch Aquamoeba's power and toughness until end of turn.
-mana={1}{U}
-type=Creature
-subtype=Elemental Beast
-power=1
-toughness=3
-[/card]
-[card]
 name=Aquastrand Spider
 auto=counter(1/1,2)
 auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
@@ -8292,6 +8282,12 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Cloudstone Curio
+text=Whenever a nonartifact permanent enters the battlefield under your control, you may return another permanent you control that shares a card type with it to its owner's hand.
+mana={1}
+type=Artifact
+[/card]
+[card]
 name=Clutch of the Undercity
 target=*
 auto=moveto(ownerhand)
@@ -9040,16 +9036,6 @@ type=Creature
 subtype=Human Wizard
 power=1
 toughness=1
-[/card]
-[card]
-name=Crag Puca
-auto={UR}:thisforeach(power>=1) -1/1 && thisforeach(toughness>=1) 1/-1
-text={(u/r)}: Switch Crag Puca's power and toughness until end of turn.
-mana={UR}{UR}{UR}
-type=Creature
-subtype=Shapeshifter
-power=2
-toughness=4
 [/card]
 [card]
 name=Cranial Plating
@@ -11887,8 +11873,7 @@ type=Artifact
 [card]
 name=Dragon Broodmother
 auto=@each upkeep: token(22222220)
-###mana={2}{R}{R}{R}{G}
-mana={G}
+mana={2}{R}{R}{R}{G}
 type=Creature
 subtype=Dragon
 text=Flying -- At the beginning of each upkeep, put a 1/1 red and green Dragon creature token with flying and devour 2 onto the battlefield. (As the token enters the battlefield, you may sacrifice any number of creatures. It enters the battlefield with twice that many +1/+1 counters on it.)
@@ -20545,7 +20530,7 @@ toughness=8
 name=Hellspark Elemental
 abilities=trample,haste
 auto=@each endofturn:moveTo(ownergraveyard)
-autograveyard={1}{R}:moveto(exile) && token(17479969) asSorcery
+autograveyard={1}{R}:moveto(exile) && token(17479911) asSorcery
 text=Trample, haste -- At the beginning of the end step, sacrifice Hellspark Elemental. -- Unearth {1}{R} ({1}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={1}{R}
 type=Creature
@@ -29750,16 +29735,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Myr Quadropod
-auto={3}:thisforeach(power>=1) -1/1 && thisforeach(toughness>=1) 1/-1
-text={3}: Switch Myr Quadropod's power and toughness until end of turn.
-mana={4}
-type=Artifact Creature
-subtype=Myr
-power=1
-toughness=4
-[/card]
-[card]
 name=Myr Retriever
 auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) target(other artifact|mygraveyard)
 text=When Myr Retriever is put into a graveyard from the battlefield, return another target artifact card from your graveyard to your hand.
@@ -34385,8 +34360,7 @@ toughness=1
 [/card]
 [card]
 name=Quirion Trailblazer
-target=land[basic]|mylibrary
-auto=may moveTo(myBattlefield) && tap
+auto=may moveTo(myBattlefield) target(land[basic]|mylibrary) && tap
 text=When Quirion Trailblazer enters the battlefield, you may search your library for a basic land card and put that card onto the battlefield tapped. If you do, shuffle your library.
 mana={3}{G}
 type=Creature
@@ -51525,20 +51499,6 @@ type=Creature
 subtype=Bird
 power=1
 toughness=1
-[/card]
-[card]
-name=Windreaver
-abilities=flying
-auto={W}:vigilance
-auto={W}:0/1
-auto={U}:thisforeach(power>=1) -1/1 && thisforeach(toughness>=1) 1/-1
-auto={U}:moveTo(ownerhand)
-text=Flying -- {W}: Windreaver gains vigilance until end of turn. -- {W}: Windreaver gets +0/+1 until end of turn. -- {U}: Switch Windreaver's power and toughness until end of turn. -- {U}: Return Windreaver to its owner's hand.
-mana={3}{W}{U}
-type=Creature
-subtype=Elemental
-power=1
-toughness=3
 [/card]
 [card]
 name=Windrider Eel

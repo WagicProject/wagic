@@ -1109,6 +1109,17 @@ power=1
 toughness=1
 [/card]
 [card]
+####Behaviour is not stabile.
+name=Aquamoeba
+auto={S(*|myhand)}:thisforeach(power>=1) -1/1 && thisforeach(toughness>=1) 1/-1
+text=Discard a card: Switch Aquamoeba's power and toughness until end of turn.
+mana={1}{U}
+type=Creature
+subtype=Elemental Beast
+power=1
+toughness=3
+[/card]
+[card]
 name=Aquamorph Entity
 text=As Aquamorph Entity enters the battlefield or is turned face up, it becomes your choice of 5/1 or 1/5. -- Morph {2}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 mana={2}{U}{U}
@@ -6555,6 +6566,17 @@ name=Cradle to Grave
 text=Destroy target nonblack creature that entered the battlefield this turn.
 mana={1}{B}
 type=Instant
+[/card]
+[card]
+###Instabile behaviour!
+name=Crag Puca
+auto={UR}:thisforeach(power>=1) -1/1 && thisforeach(toughness>=1) 1/-1
+text={(u/r)}: Switch Crag Puca's power and toughness until end of turn.
+mana={UR}{UR}{UR}
+type=Creature
+subtype=Shapeshifter
+power=2
+toughness=4
 [/card]
 [card]
 name=Crag Saurian
@@ -23198,6 +23220,17 @@ type=Artifact Creature
 subtype=Myr
 power=2
 toughness=2
+[/card]
+[card]
+###Instabile behaviour!!
+name=Myr Quadropod
+auto={3}:thisforeach(power>=1) -1/1 && thisforeach(toughness>=1) 1/-1
+text={3}: Switch Myr Quadropod's power and toughness until end of turn.
+mana={4}
+type=Artifact Creature
+subtype=Myr
+power=1
+toughness=4
 [/card]
 [card]
 name=Mysteries of the Deep
@@ -40765,6 +40798,21 @@ type=Sorcery
 name=Winding Canyons
 text={T}: Add {1} to your mana pool. -- {2}, {T}: Until end of turn, you may play creature cards as though they had flash.
 type=Land
+[/card]
+[card]
+###Instabile behaviour!!
+name=Windreaver
+abilities=flying
+auto={W}:vigilance
+auto={W}:0/1
+auto={U}:thisforeach(power>=1) -1/1 && thisforeach(toughness>=1) 1/-1
+auto={U}:moveTo(ownerhand)
+text=Flying -- {W}: Windreaver gains vigilance until end of turn. -- {W}: Windreaver gets +0/+1 until end of turn. -- {U}: Switch Windreaver's power and toughness until end of turn. -- {U}: Return Windreaver to its owner's hand.
+mana={3}{W}{U}
+type=Creature
+subtype=Elemental
+power=1
+toughness=3
 [/card]
 [card]
 name=Winds of Change
