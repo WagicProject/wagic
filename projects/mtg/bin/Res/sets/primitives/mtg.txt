@@ -13678,7 +13678,7 @@ toughness=3
 [/card]
 [card]
 name=Emrakul's Hatcher
-auto=Token(-193507)
+auto=Token(-193507)*3
 text=When Emrakul's Hatcher enters the battlefield, put three 0/1 colorless Eldrazi Spawn creatures onto the battlefield. They have "Sacrifice this creature: Add {1} to your mana pool."
 mana={4}{R}
 type=Creature
