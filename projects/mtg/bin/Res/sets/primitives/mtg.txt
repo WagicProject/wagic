@@ -34863,7 +34863,7 @@ toughness=2
 [/card]
 [card]
 name=Ranger of Eos
-auto=may token(-1111134) && may moveTo(myHand) target(creature[manacost<=1]|myLibrary)
+auto=may token(-1111134) && moveTo(myHand) target(creature[manacost<=1]|myLibrary)
 text=When Ranger of Eos enters the battlefield, you may search your library for up to two creature cards with converted mana cost 1 or less, reveal them, and put them into your hand. If you do, shuffle your library.
 mana={3}{W}
 type=Creature
