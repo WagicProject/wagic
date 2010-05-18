@@ -10,7 +10,7 @@
 #include "../include/PlayerData.h"
 #include "../include/utils.h"
 
-static const char* GAME_VERSION = "WTH?! 0.11.1 - by wololo";
+static const char* GAME_VERSION = "WTH?! 0.12.0 - by wololo";
 
 #define DEFAULT_ANGLE_MULTIPLIER 0.4f
 #define MAX_ANGLE_MULTIPLIER (3*M_PI)
@@ -145,11 +145,13 @@ void GameStateMenu::Start(){
     SAFE_DELETE(GameApp::music);
   }
 
-  hasChosenGameType = 1;
+  hasChosenGameType = 0;
   mParent->gameType = GAME_TYPE_CLASSIC;
+
+  /*
   if (options[Options::MOMIR_MODE_UNLOCKED].number) hasChosenGameType = 0;
   if (options[Options::RANDOMDECK_MODE_UNLOCKED].number) hasChosenGameType = 0;
-  
+  */
   bgTexture = resources.RetrieveTexture("menutitle.png", RETRIEVE_LOCK);
   mBg = resources.RetrieveQuad("menutitle.png", 0, 0, 256, 166);		// Create background quad for rendering.
 
@@ -536,12 +538,18 @@ void GameStateMenu::Update(float dt)
     }
 
   scroller->Update(dt);
-    if((currentState & MENU_STATE_MINOR) == MENU_STATE_MINOR_FADEIN){    currentState = currentState ^ MENU_STATE_MINOR_FADEIN;    mParent->DoAnimation(TRANSITION_FADE_IN,.15);  }}
+  if((currentState & MENU_STATE_MINOR) == MENU_STATE_MINOR_FADEIN){
+    currentState = currentState ^ MENU_STATE_MINOR_FADEIN;    
+    mParent->DoAnimation(TRANSITION_FADE_IN,.15);  
+  }
+}
 
 void GameStateMenu::Render()
 {
-  if((currentState & MENU_STATE_MINOR) == MENU_STATE_MINOR_FADEIN)    return;  JRenderer * renderer = JRenderer::GetInstance();
-  renderer->ClearScreen(ARGB(0,0,0,0));
+  if((currentState & MENU_STATE_MINOR) == MENU_STATE_MINOR_FADEIN)
+    return;  
+
+  JRenderer * renderer = JRenderer::GetInstance();
   JLBFont * mFont = resources.GetJLBFont(Constants::MENU_FONT);
   if ((currentState & MENU_STATE_MAJOR) == MENU_STATE_MAJOR_LANG){
   }else if ((currentState & MENU_STATE_MAJOR) == MENU_STATE_MAJOR_LOADING_CARDS){

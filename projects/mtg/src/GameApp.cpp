@@ -344,6 +344,9 @@ void GameApp::Render()
     return;
   }
 
+  JRenderer * renderer = JRenderer::GetInstance();
+  renderer->ClearScreen(ARGB(0,0,0,0));
+
   if (mCurrentState)
       mCurrentState->Render();
 

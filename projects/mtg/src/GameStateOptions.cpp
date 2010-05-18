@@ -177,7 +177,7 @@ void GameStateOptions::Render()
       "Check themeinfo.txt for the full credits of each theme!",
       "",
       "Dev Team: Abrasax, Daddy32, Dr.Solomat, J, Jeck",
-      "Leungclj, Superhiro, Psyringe, Wololo, Yeshua",
+      "Leungclj, Salmelo, Superhiro, Psyringe, Wololo, Yeshua",
       "",
       "Music by Celestial Aeon Project, http://www.jamendo.com",
       "",
