@@ -45201,7 +45201,7 @@ type=Sorcery
 [/card]
 [card]
 name=Temporal Spring
-target=creature
+target=*
 auto=moveTo(ownerLibrary)
 text=Put target permanent on top of its owner's library.
 mana={1}{G}{U}
