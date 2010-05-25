@@ -1564,7 +1564,7 @@ toughness=0
 [/card]
 [card]
 name=Antler Skulkin
-auto={2}:persist target(creature)
+auto={2}:persist target(creature[white])
 text={2}: Target white creature gains persist until end of turn. (When it's put into a graveyard from the battlefield, if it had no -1/-1 counters on it, return it to the battlefield under its owner's control with a -1/-1 counter on it.)
 mana={5}
 type=Artifact Creature
@@ -13744,27 +13744,6 @@ mana={2}{G}
 type=Enchantment
 [/card]
 [card]
-name=Enclave Cryptologist
-auto={1}{U}:counter(0/0,1,Level Up) asSorcery
-auto=this(counter{0/0.1.Level Up}=) {T}:token(-1111120) && draw:1
-auto=this(counter{0/0.2.Level Up}=) {T}:token(-1111120) && draw:1
-auto=this(counter{0/0.3.Level Up}) {T}:draw:1
-text=Level up {1}{U} -- [Level 1-2]: {T}: Draw a card, then discard a card. (0/1) -- [Level 3+]: {T}: Draw a card. (0/1)
-mana={1}{U}
-type=Creature
-subtype=Levelup Merfolk Wizard
-power=0
-toughness=1
-[/card]
-[card]
-name=Enclave Cryptologist's Discard
-auto=counter(0/0,1,Enclave Cryptologist)
-auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Enclave Cryptologist}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Enclave Cryptologist) && counter(0/0,1,Bury)
-auto=thisforeach(counter{0/0.1.Bury}>0) bury
-id=-1111120
-type=nothing
-[/card]
-[card]
 name=Endangered Armodon
 auto=aslongas(creature[toughness<=2]|myBattlefield) -99/-99
 text=When you control a creature with toughness 2 or less, sacrifice Endangered Armodon.
@@ -24108,9 +24087,9 @@ subtype=Aura
 name=Keldon Marauders
 auto=counter(0/0,2,Time)
 auto=@each my upkeep:counter(0/0,-1,Time)
-auto=damage:1 target(creature,player)
-auto=@movedTo(this|exile,graveyard,hand.library) from(myBattlefield):damage:1 target(creature,player)
-auto=lord(deadwood treefolk[-counter{0/0.1.Time}]|myBattlefield) -99/-99
+auto=damage:1 target(player)
+auto=@movedTo(this|exile,graveyard,hand.library) from(myBattlefield):damage:1 target(player)
+auto=lord(keldon marauders[-counter{0/0.1.Time}]|myBattlefield) -99/-99
 text=Vanishing 2 (This permanent enters the battlefield with two time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- When Keldon Marauders enters the battlefield or leaves the battlefield, it deals 1 damage to target player.
 mana={1}{R}
 type=Creature
@@ -52551,7 +52530,7 @@ toughness=2
 [card]
 name=Zektar Shrine Expedition
 auto=@movedTo(land|myBattlefield):counter(0/0,1,Quest)
-auto={C(0,0,-3,Quest)}:token(-183403)
+auto={C(0,0,-3,Quest)}{S}:token(-183403)
 text=Landfall - Whenever a land enters the battlefield under your control, you may put a quest counter on Zektar Shrine Expedition. -- Remove three quest counters from Zektar Shrine Expedition and sacrifice it: Put a 7/1 red Elemental creature token with trample and haste onto the battlefield. Exile it at the beginning of the next end step.
 mana={1}{R}
 type=Enchantment
