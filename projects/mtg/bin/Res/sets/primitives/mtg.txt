@@ -31337,7 +31337,7 @@ toughness=1
 [/card]
 [card]
 name=Ondu Giant
-auto=moveTo(myBattlefield) target(land[basic]|myLibrary) && tap
+auto=may moveTo(myBattlefield) target(basic|mylibrary) && tap
 text=When Ondu Giant enters the battlefield, search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library.
 mana={3}{G}
 type=Creature
@@ -45145,7 +45145,7 @@ subtype=Forest Plains
 [/card]
 [card]
 name=Temple of the False God
-auto=aslongas(land|myBattlefield){T}:add{2} >5
+auto=aslongas(land|myBattlefield){T}:add{2} >4
 text={T}: Add {2} to your mana pool. Activate this ability only if you control five or more lands.
 type=Land
 [/card]
