@@ -7624,11 +7624,12 @@ type=Artifact
 [/card]
 [card]
 name=Chromatic Star
-auto={1}{T}{S}:Add{W} && draw:1 controller
-auto={1}{T}{S}:Add{U} && draw:1 controller
-auto={1}{T}{S}:Add{B} && draw:1 controller
-auto={1}{T}{S}:Add{R} && draw:1 controller
-auto={1}{T}{S}:Add{G} && draw:1 controller
+auto={1}{T}{S}:Add{W}
+auto={1}{T}{S}:Add{U}
+auto={1}{T}{S}:Add{B}
+auto={1}{T}{S}:Add{R}
+auto={1}{T}{S}:Add{G}
+auto=@movedTo(this|graveyard) from(myBattlefield):draw:1 controller
 text={1}, {T}, Sacrifice Chromatic Star: Add one mana of any color to your mana pool. -- When Chromatic Star is put into a graveyard from the battlefield, draw a card.
 mana={1}
 type=Artifact
@@ -24270,7 +24271,7 @@ toughness=2
 [/card]
 [card]
 name=Kinsbaile Cavalier
-auto=lord(creature|mybattlefield) double strike
+auto=lord(creature[knight]|mybattlefield) double strike
 text=Knight creatures you control have double strike.
 mana={3}{W}
 type=Creature
