@@ -32086,7 +32086,7 @@ target=creature
 auto=3/2
 auto=counter(0/0,1,Fade)
 auto=@each my upkeep:counter(0/0,-1,Fade)
-auto=@each my upkeep:moveTo(mygraveyard) all(phyrexian prowler[-counter{0/0.1.Fade}]|myBattlefield)
+auto=@each my upkeep:moveTo(mygraveyard) all(parallax dementia[-counter{0/0.1.Fade}]|myBattlefield)
 auto=@movedTo(this|exile,graveyard,hand,library) from(battlefield):bury(mytgt)
 text=Enchant creature -- Fading 1 (This enchantment enters the battlefield with one fade counter on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- Enchanted creature gets +3/+2. -- When Parallax Dementia leaves the battlefield, destroy enchanted creature. That creature can't be regenerated.
 mana={1}{B}
@@ -46126,7 +46126,7 @@ toughness=3
 [card]
 name=Ticking Gnomes
 auto={S}:damage:1 target(creature,player)
-auto=upcost[{3}] moveTo(graveyard)
+auto=upcost[{3},next upkeep] moveTo(graveyard)
 text=Echo {3} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- Sacrifice Ticking Gnomes: Ticking Gnomes deals 1 damage to target creature or player.
 mana={3}
 type=Artifact Creature
