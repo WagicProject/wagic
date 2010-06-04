@@ -44149,7 +44149,7 @@ type=Enchantment
 [/card]
 [card]
 name=Survivor of the Unseen
-auto={T}:token(-1111138) && draw:1
+auto={T}:token(-1111138) && draw:2
 auto=@each my upkeep:counter(0/0,1,Age)
 auto=thisforeach(counter{0/0.1.Age}) upcost[{2}] moveTo(graveyard)
 text=Cumulative upkeep {2} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- {T}: Draw two cards, then put a card from your hand on top of your library.
