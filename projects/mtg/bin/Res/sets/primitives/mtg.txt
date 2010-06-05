@@ -33833,7 +33833,7 @@ auto={1}{T}:add{B}
 auto={1}{T}:add{R}
 auto={1}{T}:add{G}
 text=When Prophetic Prism enters the battlefield, draw a card. -- {1}, {T}: Add one mana of any color to your mana pool.
-mana={6}
+mana={2}
 type=Artifact
 [/card]
 [card]
