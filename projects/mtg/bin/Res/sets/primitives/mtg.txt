@@ -28600,7 +28600,7 @@ type=Land
 [/card]
 [card]
 name=Mishra's Groundbreaker
-auto={T}{S}:becomes(Artifact Creature Land,3/3) target(land|myBattlefield)
+auto={T}{S}:becomes(Artifact Creature,3/3) target(land|myBattlefield)
 text={T}, Sacrifice Mishra's Groundbreaker: Target land becomes a 3/3 artifact creature that's still a land. (This effect lasts indefinitely.)
 mana={4}
 type=Artifact
@@ -36934,6 +36934,7 @@ name=Rusting Golem
 auto=counter(0/0,5,Fade)
 auto=@each my upkeep:counter(0/0,-1,Fade)
 auto=thisforeach(counter{0/0.1.Fade}) 1/1
+auto=@each my untap:moveTo(mygraveyard) all(rusting golem[-counter{0/0.1.Fade}]|myBattlefield)
 text=Fading 5 (This creature enters the battlefield with five fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- Rusting Golem's power and toughness are each equal to the number of fade counters on it.
 mana={4}
 type=Artifact Creature
