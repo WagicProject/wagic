@@ -28758,6 +28758,18 @@ mana={2}
 type=Artifact
 [/card]
 [card]
+#####Never worked! Needs some engine fixing....
+name=Reiver Demon
+abilities=flying
+auto=@movedTo(this|myBattlefield) from(mystack):destroy all(creature[-black;-artifact])
+text=Flying -- When Reiver Demon enters the battlefield, if you cast it from your hand, destroy all nonartifact, nonblack creatures. They can't be regenerated.
+mana={4}{B}{B}{B}{B}
+type=Creature
+subtype=Demon
+power=6
+toughness=6
+[/card]
+[card]
 name=Rekindled Flame
 target=creature,player
 text=Rekindled Flame deals 4 damage to target creature or player. -- At the beginning of your upkeep, if an opponent has no cards in hand, you may return Rekindled Flame from your graveyard to your hand.

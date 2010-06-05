@@ -6142,9 +6142,9 @@ type=Sorcery
 [/card]
 [card]
 name=Buried Alive
-target=*|myLibrary
+target=creature|myLibrary
 auto=moveto(mygraveyard)
-auto=may moveto(mygraveyard) target(*|myLibrary)
+auto=may moveto(mygraveyard) target(creature|myLibrary)
 auto=token(-1111115)
 text=Search your library for up to three creature cards and put them into your graveyard. Then shuffle your library.
 mana={2}{B}
@@ -6153,7 +6153,7 @@ type=Sorcery
 [card]
 name=3rd Creature Buried Alive
 auto=counter(0/0,1,Buried Alive)
-auto=@movedTo(creature|mygraveyard) from(myLibrary):thisforeach(counter{0/0.1.Buried Alive}>0) may moveto(mygraveyard) target(*|myLibrary) && counter(0/0,-1,Buried Alive) && counter(0/0,1,Bury)
+auto=@movedTo(creature|mygraveyard) from(myLibrary):thisforeach(counter{0/0.1.Buried Alive}>0) may moveto(mygraveyard) target(creature|myLibrary) && counter(0/0,-1,Buried Alive) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111115
 type=Nothing
@@ -35452,17 +35452,6 @@ auto=@movedTo(creature|myLibrary) from(mygraveyard):thisforeach(counter{0/0.1.Re
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111135
 type=Nothing
-[/card]
-[card]
-name=Reiver Demon
-abilities=flying
-auto=@movedTo(this|myBattlefield) from(mystack):destroy all(creature[-black;-artifact])
-text=Flying -- When Reiver Demon enters the battlefield, if you cast it from your hand, destroy all nonartifact, nonblack creatures. They can't be regenerated.
-mana={4}{B}{B}{B}{B}
-type=Creature
-subtype=Demon
-power=6
-toughness=6
 [/card]
 [card]
 name=Rejuvenate
