@@ -6295,17 +6295,6 @@ power=5
 toughness=5
 [/card]
 [card]
-name=Calcite Snapper
-abilities=shroud
-auto=@movedTo(land|myBattlefield):
-text=Shroud (This creature can't be the target of spells or abilities.) -- Landfall - Whenever a land enters the battlefield under your control, you may switch Calcite Snapper's power and toughness until end of turn.
-mana={1}{U}{U}
-type=Creature
-subtype=Turtle
-power=1
-toughness=4
-[/card]
-[card]
 name=Caldera Lake
 auto=tap
 auto={T}:Add{1}
@@ -17791,6 +17780,20 @@ text=Target player puts the top ten cards of his or her library into his or her 
 mana={U}{B}
 type=Sorcery
 [/card]
+[Card]
+name=Glimpse of Nature
+auto=token(-752411111)
+text=Whenever you cast a creature spell this turn, draw a card.
+mana={G}
+type=Sorcery
+[/Card]
+[Card]
+name=Glimpse of Nature's Draw
+auto=@movedTo(creature|mystack):draw:1
+auto=@next endofturn:moveto(exile)
+type=Nothing
+id=-752411111
+[/Card]
 [card]
 name=Glint-Eye Nephilim
 auto=@damaged(player) from(this):thisforeach(power>=1) draw:1

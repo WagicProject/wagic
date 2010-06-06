@@ -13686,14 +13686,6 @@ text=At the beginning of the end step, if you control no artifacts, sacrifice Gl
 type=Land
 [/card]
 [card]
-name=Glimpse of Nature
-auto=@movedTo(creature|mystack):draw:1 controller ueot
-#Glimpse of Nature can't be added in Wagic 0.9. "ueot" works only for some specific keywords, mostly abilities and P/T change
-text=Whenever you cast a creature spell this turn, draw a card.
-mana={G}
-type=Sorcery
-[/card]
-[card]
 name=Glissa Sunseeker
 text=First strike -- {T}: Destroy target artifact if its converted mana cost is equal to the amount of mana in your mana pool.
 mana={2}{G}{G}
