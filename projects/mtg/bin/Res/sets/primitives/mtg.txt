@@ -36859,9 +36859,8 @@ toughness=2
 [/card]
 [card]
 name=Runed Servitor
-auto=draw:1 controller
-auto=draw:1 opponent
-text=When Runed Servitor enters the battlefield, each player draws a card.
+auto=@movedTo(this|graveyard) from(battlefield):draw:1 controller && draw:1 opponent
+text=When Runed Servitor is put into a graveyard from the battlefield, each player draws a card.
 mana={2}
 type=Artifact Creature
 subtype=Construct
