@@ -31,7 +31,7 @@ int Subtypes::find(string value, bool forceAdd){
 
 int Subtypes::find(const char * subtype, bool forceAdd){
   string value = subtype;
-  return (find(value), forceAdd);
+  return find(value, forceAdd);
 }
 
 string Subtypes::find(unsigned int id){
