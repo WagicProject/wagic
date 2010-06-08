@@ -42,20 +42,20 @@ class CardPrimitive {
 
   int has(int ability);
 
-  void setText(string value);
+  void setText(const string& value);
   const char * getText();
 
   void addMagicText(string value);
   void addMagicText(string value, string zone);
 
-  void setName(string value);
+  void setName(const string& value);
   const string getName() const;
   const string getLCName() const;
 
   void addType(char * type_text);
   void addType(int id);
-  void setType(const char * type_text);
-  void setSubtype( string value);
+  void setType(const string& type_text);
+  void setSubtype(const string& value);
   int removeType(string value, int removeAll = 0);
   int removeType(int value, int removeAll = 0);
   bool hasSubtype(int _subtype);

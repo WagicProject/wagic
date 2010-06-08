@@ -109,11 +109,10 @@ private:
   int countByType(const char * _type);
   int countByColor(int color);
   int countBySet(int setId);
-  int readConfLine(ifstream &file, int set_id);
   int totalCards();
   int randomCardId();
  private:
-  int processConfLine(string s, MTGCard* card, CardPrimitive * primitive);
+  int processConfLine(string &s, MTGCard* card, CardPrimitive * primitive);
   bool addCardToCollection(MTGCard * card, int setId);
   CardPrimitive * addPrimitive(CardPrimitive * primitive, MTGCard * card = NULL);
 };

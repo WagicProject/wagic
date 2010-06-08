@@ -17,16 +17,13 @@ CardPrimitive::CardPrimitive(){
 
 
 CardPrimitive::CardPrimitive(CardPrimitive * source){
-  for(map<int,int>::const_iterator it = source->basicAbilities.begin(); it != source->basicAbilities.end(); ++it){
+  for (map<int,int>::const_iterator it = source->basicAbilities.begin(); it != source->basicAbilities.end(); ++it)
     basicAbilities[it->first] = source->basicAbilities[it->first];
-  }
 
-  for (size_t i = 0; i< source->types.size(); i++){
+  for (size_t i = 0; i< source->types.size(); ++i)
     types.push_back(source->types[i]);
-  }
-  for (int i = 0; i< Constants::MTG_NB_COLORS; i++){
+  for (int i = 0; i< Constants::MTG_NB_COLORS; ++i)
     colors[i] = source->colors[i];
-  }
   manaCost.copy(source->getManaCost());
 
   text = source->text;
@@ -36,9 +33,8 @@ CardPrimitive::CardPrimitive(CardPrimitive * source){
   toughness = source->toughness;
 
   magicText = source->magicText;
-  for(map<string,string>::const_iterator it = source->magicTexts.begin(); it != source->magicTexts.end(); ++it){
+  for(map<string,string>::const_iterator it = source->magicTexts.begin(); it != source->magicTexts.end(); ++it)
     magicTexts[it->first] = source->magicTexts[it->first];
-  }
   spellTargetType = source->spellTargetType;
   alias = source->alias;
 }
@@ -48,9 +44,8 @@ int CardPrimitive::init(){
 
   types.clear();
 
-  for (int i = 0; i< Constants::MTG_NB_COLORS; i++){
+  for (int i = 0; i < Constants::MTG_NB_COLORS; ++i)
     colors[i] = 0;
-  }
 
   magicText = "";
   magicTexts.clear();
@@ -121,11 +116,8 @@ void CardPrimitive::setColor(string _color, int removeAllOthers){
 }
 
 void CardPrimitive::setColor(int _color, int removeAllOthers){
-  if (removeAllOthers){
-    for (int i=0; i<Constants::MTG_NB_COLORS; i++){
-      colors[i] = 0;
-    }
-  }
+  if (removeAllOthers)
+    for (int i=0; i<Constants::MTG_NB_COLORS; i++) colors[i] = 0;
   colors[_color] = 1;
 }
 
@@ -134,11 +126,8 @@ void CardPrimitive::removeColor(int _color){
 }
 
 int CardPrimitive::getColor(){
-  for (int i=1; i<Constants::MTG_NB_COLORS; i++){
-    if (colors[i]){
-      return i;
-    }
-  }
+  for (int i=1; i<Constants::MTG_NB_COLORS; i++)
+    if (colors[i]) return i;
   return 0;
 }
 
@@ -149,9 +138,8 @@ int CardPrimitive::hasColor(int color){
 
 int CardPrimitive::countColors(){
   int result = 0;
-  for(int i=Constants::MTG_COLOR_GREEN;i<=Constants::MTG_COLOR_WHITE;i++){
-    if (hasColor(i)) result++;
-  }
+  for (int i = Constants::MTG_COLOR_GREEN; i <= Constants::MTG_COLOR_WHITE; ++i)
+    if (hasColor(i)) ++result;
   return result;
 }
 
@@ -166,7 +154,7 @@ void CardPrimitive::setManaCost(string s){
 }
 
 
-void CardPrimitive::setType(const char * _type_text){
+void CardPrimitive::setType(const string& _type_text){
   setSubtype(_type_text);
 }
 
@@ -174,9 +162,9 @@ void CardPrimitive::addType(char * _type_text){
   setSubtype(_type_text);
 }
 
-void CardPrimitive::setSubtype( string value){
-      int id = Subtypes::subtypesList->find(value);
-      addType(id);
+void CardPrimitive::setSubtype(const string& value){
+  int id = Subtypes::subtypesList->find(value);
+  addType(id);
 }
 
 void CardPrimitive::addType(int id){
@@ -208,7 +196,7 @@ int CardPrimitive::removeType(int id, int removeAll){
 
 
 
-void CardPrimitive::setText( string value){
+void CardPrimitive::setText(const string& value){
   text = value;
 }
 
@@ -217,21 +205,21 @@ const char * CardPrimitive::getText(){
 }
 
 void CardPrimitive::addMagicText(string value){
-  std::transform( value.begin(), value.end(), value.begin(),::tolower );
+  std::transform(value.begin(), value.end(), value.begin(), ::tolower);
   if (magicText.size()) magicText.append("\n");
   magicText.append(value);
 }
 
 void CardPrimitive::addMagicText(string value, string key){
-  std::transform( value.begin(), value.end(), value.begin(),::tolower );
+  std::transform(value.begin(), value.end(), value.begin(), ::tolower);
   if (magicTexts[key].size()) magicTexts[key].append("\n");
   magicTexts[key].append(value);
 }
 
-void CardPrimitive::setName( string value){
+void CardPrimitive::setName(const string& value) {
   name = value;
   lcname = value;
-  std::transform( lcname.begin(), lcname.end(),lcname.begin(),::tolower );
+  std::transform(lcname.begin(), lcname.end(), lcname.begin(), ::tolower);
   //This is a bug fix for plague rats and the "foreach ability"
   //Right now we add names as types, so that they get recognized
   if (lcname.at(value.length()-1) == 's') Subtypes::subtypesList->find(lcname);
