@@ -2572,11 +2572,6 @@ mana={1}{WB}
 type=Instant
 [/card]
 [card]
-name=Bazaar of Baghdad
-text={T}: Draw two cards, then discard three cards.
-type=Land
-[/card]
-[card]
 name=Bazaar of Wonders
 text=When Bazaar of Wonders enters the battlefield, exile all cards from all graveyards. -- Whenever a player casts a spell, counter it if a card with the same name is in a graveyard or a nontoken permanent with the same name is on the battlefield.
 mana={3}{U}{U}
@@ -20753,15 +20748,6 @@ type=Creature
 subtype=Human Wizard
 power=5
 toughness=5
-[/card]
-[card]
-name=Magus of the Bazaar
-text={T}: Draw two cards, then discard three cards.
-mana={1}{U}
-type=Creature
-subtype=Human Wizard
-power=0
-toughness=1
 [/card]
 [card]
 name=Magus of the Candelabra

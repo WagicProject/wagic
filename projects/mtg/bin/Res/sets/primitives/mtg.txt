@@ -3699,6 +3699,20 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Bazaar of Baghdad
+auto={T}:token(-20122011)*3 && draw:2
+text={T}: Draw 2 cards, then discard 3 cards.
+type=Land
+[/card]
+[card]
+name=Bazaar of Baghdad Discard
+auto=counter(0/0,1,Bazaar of Baghdad)
+auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Bazaar of Baghdad}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Bazaar of Baghdad) && counter(0/0,1,Bury)
+auto=thisforeach(counter{0/0.1.Bury}>0) bury
+type=Nothing
+id=-20122011
+[/card]
+[card]
 name=Bazaar Trader
 auto={T}:moveTo(opponentBattlefield) target(artifact,creature,land|myBattlefield)
 text={T}: Target player gains control of target artifact, creature, or land you control.
@@ -27068,6 +27082,24 @@ type=Creature
 subtype=Lhurgoyf
 power=*
 toughness=*
+[/card]
+[card]
+name=Magus of the Bazaar
+auto={T}:token(-13100811)*3 && draw:2
+text={T}: Draw two cards, then discard three cards.
+mana={1}{U}
+type=Creature
+subtype=Human Wizard
+power=0
+toughness=1
+[/card]
+[card]
+name=Magus of the Bazaar Discard
+auto=counter(0/0,1,Magus of Bazaar)
+auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Magus of Bazaar}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Magus of Bazaar) && counter(0/0,1,Bury)
+auto=thisforeach(counter{0/0.1.Bury}>0) bury
+type=Nothing
+id=-13100811
 [/card]
 [card]
 name=Magus of the Coffers
