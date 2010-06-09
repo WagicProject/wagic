@@ -2282,15 +2282,6 @@ power=1
 toughness=2
 [/card]
 [card]
-name=Barbarian Outcast
-text=When you control no Swamps, sacrifice Barbarian Outcast.
-mana={1}{R}
-type=Creature
-subtype=Human Barbarian Beast
-power=2
-toughness=2
-[/card]
-[card]
 name=Barbed Field
 text=Enchant land -- Enchanted land has "{T}: This land deals 1 damage to target creature or player."
 mana={2}{R}{R}
@@ -13670,17 +13661,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Glimmervoid
-auto=@each endofturn:aslongas(-artifact|myinplay)destroy
-auto={T}: add {G}
-auto={T}: add {B}
-auto={T}: add {U}
-auto={T}: add {W}
-auto={T}: add {R}
-text=At the beginning of the end step, if you control no artifacts, sacrifice Glimmervoid. -- {T}: Add one mana of any color to your mana pool.
-type=Land
-[/card]
-[card]
 name=Glissa Sunseeker
 text=First strike -- {T}: Destroy target artifact if its converted mana cost is equal to the amount of mana in your mana pool.
 mana={2}{G}{G}
@@ -15143,6 +15123,7 @@ type=Artifact
 [/card]
 [card]
 name=Gutwrencher Oni
+abilities=trample
 text=Trample -- At the beginning of your upkeep, discard a card if you don't control an Ogre.
 mana={3}{B}{B}
 type=Creature
@@ -18384,15 +18365,6 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Kezzerdrix
-text=First strike -- At the beginning of your upkeep, if your opponents control no creatures, Kezzerdrix deals 4 damage to you.
-mana={2}{B}{B}
-type=Creature
-subtype=Rabbit Beast
-power=4
-toughness=4
-[/card]
-[card]
 name=Khabal Ghoul
 text=At the beginning of each end step, put a +1/+1 counter on Khabal Ghoul for each creature put into a graveyard from the battlefield this turn.
 mana={2}{B}
@@ -18412,15 +18384,6 @@ name=Khalni Heart Expedition
 text=Landfall - Whenever a land enters the battlefield under your control, you may put a quest counter on Khalni Heart Expedition. -- Remove three quest counters from Khalni Heart Expedition and sacrifice it: Search your library for up to two basic land cards, put them onto the battlefield tapped, then shuffle your library.
 mana={1}{G}
 type=Enchantment
-[/card]
-[card]
-name=Kiki-Jiki, Mirror Breaker
-text=Haste -- {T}: Put a token that's a copy of target nonlegendary creature you control onto the battlefield. That token has haste. Sacrifice it at the beginning of the next end step.
-mana={2}{R}{R}{R}
-type=Legendary Creature
-subtype=Goblin Shaman
-power=2
-toughness=2
 [/card]
 [card]
 name=Kiku, Night's Flower
@@ -27584,12 +27547,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Pyrohemia
-text=At the beginning of the end step, if no creatures are on the battlefield, sacrifice Pyrohemia. -- {R}: Pyrohemia deals 1 damage to each creature and each player.
-mana={2}{R}{R}
-type=Enchantment
-[/card]
-[card]
 name=Pyrokinesis
 text=You may exile a red card from your hand rather than pay Pyrokinesis's mana cost. -- Pyrokinesis deals 4 damage divided as you choose among any number of target creatures.
 mana={4}{R}{R}
@@ -29831,17 +29788,6 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
-name=Ronom Serpent
-abilities=cantattack
-auto=aslongas(land[snow]|opponentBattlefield)-cantattack
-text=Ronom Serpent can't attack unless defending player controls a snow land. -- When you control no snow lands, sacrifice Ronom Serpent.
-mana={5}{U}
-type=Snow Creature
-subtype=Serpent
-power=5
-toughness=6
-[/card]
-[card]
 name=Root Elemental
 text=Morph {5}{G}{G} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Root Elemental is turned face up, you may put a creature card from your hand onto the battlefield.
 mana={4}{G}{G}
@@ -31161,15 +31107,6 @@ name=Scour
 text=Exile target enchantment. Search its controller's graveyard, hand, and library for all cards with the same name as that enchantment and exile them. That player then shuffles his or her library.
 mana={2}{W}{W}
 type=Instant
-[/card]
-[card]
-name=Scourge of Numai
-text=At the beginning of your upkeep, you lose 2 life if you don't control an Ogre.
-mana={3}{B}
-type=Creature
-subtype=Demon Spirit
-power=4
-toughness=4
 [/card]
 [card]
 name=Scourge of the Nobilis
@@ -32862,17 +32799,6 @@ type=Creature
 subtype=Skeleton
 power=0
 toughness=0
-[/card]
-[card]
-name=Skeleton Ship
-abilities=islandhome
-auto={T}:counter(-1/-1,1) target(creature)
-text=When you control no Islands, sacrifice Skeleton Ship. -- {T}: Put a -1/-1 counter on target creature.
-mana={3}{U}{B}
-type=Legendary Creature
-subtype=Skeleton
-power=0
-toughness=3
 [/card]
 [card]
 name=Skeletonize
@@ -34974,17 +34900,6 @@ mana={2}{B}{B}
 type=Sorcery
 [/card]
 [card]
-name=Stenchskipper
-auto=@each my endofturn:aslongas(goblin|myinplay)regenerate
-auto=@each my endofturn:destroy
-text=Flying -- At the beginning of the end step, if you control no Goblins, sacrifice Stenchskipper.
-mana={3}{B}
-type=Creature
-subtype=Elemental
-power=6
-toughness=5
-[/card]
-[card]
 name=Sterling Grove
 text=Other enchantments you control have shroud. (They can't be the targets of spells or abilities.) -- {1}, Sacrifice Sterling Grove: Search your library for an enchantment card and reveal that card. Shuffle your library, then put the card on top of it.
 mana={G}{W}
@@ -36031,17 +35946,6 @@ type=Creature
 subtype=Vedalken Artificer
 power=1
 toughness=2
-[/card]
-[card]
-name=Synod Centurion
-auto=aslongas(artifact other|myBattlefield) -99/-99 <1
-####Removed because "<" does not work for now!
-text=When you control no other artifacts, sacrifice Synod Centurion.
-mana={4}
-type=Artifact Creature
-subtype=Construct
-power=4
-toughness=4
 [/card]
 [card]
 name=Synod Sanctum
@@ -37162,11 +37066,6 @@ mana={2}
 type=Artifact
 [/card]
 [card]
-name=Thran Quarry
-text=At the beginning of the end step, if you control no creatures, sacrifice Thran Quarry. -- {T}: Add one mana of any color to your mana pool.
-type=Land
-[/card]
-[card]
 name=Thran Tome
 text={5}, {T}: Reveal the top three cards of your library. Target opponent chooses one of those cards. Put that card into your graveyard, then draw two cards.
 mana={4}
@@ -37634,14 +37533,6 @@ name=Tomb Hex
 text=Target creature gets -2/-2 until end of turn. -- Landfall - If you had a land enter the battlefield under your control this turn, that creature gets -4/-4 until end of turn instead.
 mana={2}{B}
 type=Instant
-[/card]
-[card]
-name=Tomb of Urami
-auto={T}:add {B} && aslongas(*[-ogre]|myBattlefield) damage:1 controller
-auto={T}:bury all(land|myBattlefield) && token(Urami,Creature Demon Spirit,5/5,legendary flying black)
-####Tested ingame and removed: The first ability cannot be coded yet because you will always suffer 1 damage from Tomb of Urami even if you control an ogre!!
-text={T}: Add {B} to your mana pool. Tomb of Urami deals 1 damage to you if you don't control an Ogre. -- {2}{B}{B}, {T}, Sacrifice all lands you control: Put a legendary 5/5 black Demon Spirit creature token with flying named Urami onto the battlefield.
-type=Legendary Land
 [/card]
 [card]
 name=Tombfire
@@ -40433,21 +40324,9 @@ mana={X}{G}{G}
 type=Sorcery
 [/card]
 [card]
-name=Well of Discovery
-text=At the beginning of your end step, if you control no untapped lands, draw a card.
-mana={6}
-type=Artifact
-[/card]
-[card]
 name=Well of Knowledge
 text={2}: Draw a card. Any player may activate this ability but only during his or her draw step.
 mana={3}
-type=Artifact
-[/card]
-[card]
-name=Well of Life
-text=At the beginning of your end step, if you control no untapped lands, you gain 2 life.
-mana={4}
 type=Artifact
 [/card]
 [card]

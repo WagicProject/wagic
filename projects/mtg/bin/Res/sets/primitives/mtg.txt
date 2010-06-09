@@ -3317,6 +3317,17 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Barbarian Outcast
+auto=aslongas(swamp|myBattlefield) moveTo(mygraveyard) <1
+auto=@movedTo(swamp|graveyard,exile,library,hand) from(myBattlefield):aslongas(swamp|myBattlefield) moveTo(mygraveyard) <1
+text=When you control no Swamps, sacrifice Barbarian Outcast.
+mana={1}{R}
+type=Creature
+subtype=Human Barbarian Beast
+power=2
+toughness=2
+[/card]
+[card]
 name=Barbarian Riftcutter
 auto={R}{S}:Destroy target(land)
 text={R}, Sacrifice Barbarian Riftcutter: Destroy target land.
@@ -8984,13 +8995,14 @@ toughness=2
 [card]
 name=Covetous Dragon
 abilities=flying
-auto=aslongas(artifact|myBattlefield) 96/95
+auto=aslongas(artifact|myBattlefield) moveTo(mygraveyard) <1
+auto=@movedTo(artifact|graveyard,exile,library,hand) from(myBattlefield):aslongas(artifact|myBattlefield) moveTo(mygraveyard) <1
 text=Flying -- When you control no artifacts, sacrifice Covetous Dragon.
 mana={4}{R}
 type=Creature
 subtype=Dragon
-power=-90
-toughness=-90
+power=6
+toughness=5
 # P/T modified to make auto rule possible
 [/card]
 [card]
@@ -13661,14 +13673,14 @@ toughness=1
 [/card]
 [card]
 name=Emperor Crocodile
-auto=aslongas(other creature|myBattlefield) 95/95
+auto=aslongas(other creature|myBattlefield) moveTo(mygraveyard) <1
+auto=@movedTo(creature|graveyard,exile,library,hand) from(myBattlefield):aslongas(other creature|myBattlefield) moveTo(mygraveyard) <1
 text=When you control no other creatures, sacrifice Emperor Crocodile.
 mana={3}{G}
 type=Creature
 subtype=Crocodile
-power=-90
-toughness=-90
-# P/T modified to make auto rule possible
+power=5
+toughness=5
 [/card]
 [card]
 name=Empress Galina
@@ -17787,6 +17799,17 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Glimmervoid
+auto={T}:add{W}
+auto={T}:add{U}
+auto={T}:add{B}
+auto={T}:add{R}
+auto={T}:add{G}
+auto=@next endofturn:aslongas(artifact|mybattlefield) bury <1
+text=At the beginning of the end step, if you control no artifacts, sacrifice Glimmervoid. -- {T}: Add one mana of any color to your mana pool.
+type=Land
+[/card]
+[card]
 name=Glimpse the Unthinkable
 target=player
 auto=deplete:10
@@ -17968,7 +17991,7 @@ colour=red
 [/card]
 [card]
 name=Goblin Arsonist
-auto=@movedTo(graveyard) from(battlefield):may damage:1 target(creature,player)
+auto=@movedTo(this|graveyard) from(battlefield):may damage:1 target(creature,player)
 text=When Goblin Arsonist is put into the graveyard from the battlefield, you may have it deal 1 damage to target creature or player. 
 mana={R}
 type=Creature
@@ -24164,6 +24187,17 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Kezzerdrix
+abilities=first strike
+auto=@each my upkeep:aslongas(creature|opponentBattlefield) dama<ge:4 controller <1
+text=First strike -- At the beginning of your upkeep, if your opponents control no creatures, Kezzerdrix deals 4 damage to you.
+mana={2}{B}{B}
+type=Creature
+subtype=Rabbit Beast
+power=4
+toughness=4
+[/card]
+[card]
 name=Khalni Garden
 auto=tap
 auto=token(Plant,creature plant, 0/1,green)
@@ -24177,6 +24211,27 @@ auto={T}:Add {1}
 auto={1}{R}{T}:token(Kobolds of Kher Keep,creature kobold, 0/1, red)
 text={T}: Add {1} to your mana pool. -- {1}{R}, {T}: Put a 0/1 red Kobold creature token named Kobolds of Kher Keep onto the battlefield.
 type=Legendary Land
+[/card]
+[card]
+name=Kiki-Jiki, Mirror Breaker
+abilities=haste
+auto=aslongas(creature[-legendary]|myBattlefield) {T}:token(5032111)
+text=Tap: Put a token that's a copy of target nonlegendary creature you control onto the battlefield. That token has haste. Sacrifice it at the beginning of the next end step.
+mana={2}{R}{R}{R}
+type=Legendary Creature
+subtype=Goblin Shaman
+power=2
+toughness=2
+[/card]
+[card]
+name=Kiki's Cloning Object
+auto=haste
+auto=@next endofturn:bury
+auto=copy notatarget(creature[-legendary]|myBattlefield)
+text=Haste -- Copy target nonlegendary creature. -- Sacrifice it at end of turn.
+type=Creature
+power=0
+toughness=0
 [/card]
 [card]
 name=Kiku's Shadow
@@ -26311,7 +26366,7 @@ name=Llanowar Reborn
 auto=tap
 auto={T}:Add{G}
 auto=counter(1/1,1)
-auto=@movedto(creature|battlefield):this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
+auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
 text=Llanowar Reborn enters the battlefield tapped. -- {T}: Add {G} to your mana pool. -- Graft 1 (This land enters the battlefield with a +1/+1 counter on it. Whenever a creature enters the battlefield, you may move a +1/+1 counter from this land onto it.)
 type=Land
 [/card]
@@ -34245,6 +34300,13 @@ mana={1}{R}
 type=Sorcery
 [/card]
 [card]
+name=Pyrohemia
+auto={R}:damage:1 all(creature,player)
+auto=@next endofturn:aslongas(creature|battlefield) moveto(mygraveyard) <1
+mana={2}{R}{R}
+type=Enchantment
+[/card]
+[card]
 name=Pyrostatic Pillar
 auto=@movedTo(*[manacost<=3]|mystack):damage:2 controller
 auto=@movedTo(*[manacost<=3]|opponentstack):damage:2 opponent
@@ -36587,6 +36649,19 @@ power=5
 toughness=6
 [/card]
 [card]
+name=Ronom Serpent
+abilities=cantattack
+auto=aslongas(land[snow]|opponentBattlefield)-cantattack
+auto=aslongas(land[snow]|myBattlefield) moveTo(mygraveyard) <1
+auto=@movedTo(land[snow]|graveyard,exile,library,hand) from(myBattlefield):aslongas(land[snow]|myBattlefield) moveTo(mygraveyard) <1
+text=Ronom Serpent can't attack unless defending player controls a snow land. -- When you control no snow lands, sacrifice Ronom Serpent.
+mana={5}{U}
+type=Snow Creature
+subtype=Serpent
+power=5
+toughness=6
+[/card]
+[card]
 name=Ronom Unicorn
 auto={S}:destroy target(enchantment)
 text=Sacrifice Ronom Unicorn: Destroy target enchantment.
@@ -37884,6 +37959,16 @@ type=Creature
 subtype=Dragon
 power=6
 toughness=6
+[/card]
+[card]
+name=Scourge of Numai
+auto=@each my upkeep:aslongas(ogre|myBattlefield) life:-2 <1
+text=At the beginning of your upkeep, you lose 2 life if you don't control an Ogre.
+mana={3}{B}
+type=Creature
+subtype=Demon Spirit
+power=4
+toughness=4
 [/card]
 [card]
 name=Scourglass
@@ -40177,6 +40262,19 @@ auto={B}{T}:moveTo(myhand) target(creature[artifact]|mygraveyard)
 text={3}, {T} or {B}, {T}: Return target artifact creature card from your graveyard to your hand.
 mana={3}
 type=Artifact
+[/card]
+[card]
+name=Skeleton Ship
+abilities=islandhome
+auto={T}:counter(-1/-1,1) target(creature)
+auto=aslongas(island|myBattlefield) moveTo(mygraveyard) <1
+auto=@movedTo(island|graveyard,exile,library,hand) from(myBattlefield):aslongas(island|myBattlefield) moveTo(mygraveyard) <1
+text=When you control no Islands, sacrifice Skeleton Ship. -- {T}: Put a -1/-1 counter on target creature.
+mana={3}{U}{B}
+type=Legendary Creature
+subtype=Skeleton
+power=0
+toughness=3
 [/card]
 [card]
 name=Skirge Familiar
@@ -43077,6 +43175,17 @@ mana={W}
 type=Sorcery
 [/card]
 [card]
+name=Stenchskipper
+abilities=flying
+auto=@next endofturn:aslongas(goblin|mybattlefield) moveTo(mygraveyard) <1
+text=Flying -- At the beginning of the end step, if you control no Goblins, sacrifice Stenchskipper.
+mana={3}{B}
+type=Creature
+subtype=Elemental
+power=6
+toughness=5
+[/card]
+[card]
 name=Stench of Decay
 auto=lord(creature[-artifact]) -1/-1
 text=Nonartifact creatures get -1/-1 until end of turn.
@@ -44500,6 +44609,17 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Synod Centurion
+auto=aslongas(other artifact|myBattlefield) moveTo(mygraveyard) <1
+auto=@movedTo(other artifact|graveyard,exile,library,hand) from(myBattlefield):aslongas(other artifact|myBattlefield) moveTo(mygraveyard) <1
+text=When you control no other artifacts, sacrifice Synod Centurion.
+mana={4}
+type=Artifact Creature
+subtype=Construct
+power=4
+toughness=4
+[/card]
+[card]
 name=Syphon Life
 target=player
 auto=life:-2 && life:2 controller
@@ -45400,14 +45520,14 @@ type=Enchantment
 [card]
 name=Tethered Griffin
 abilities=flying
-auto=aslongas(enchantment|myBattlefield) 92/93
+auto=aslongas(enchantment|myBattlefield) moveTo(mygraveyard) <1
+auto=@movedTo(enchantment|graveyard,exile,library,hand) from(myBattlefield):aslongas(enchantment|myBattlefield) moveTo(mygraveyard) <1
 text=Flying -- When you control no enchantments, sacrifice Tethered Griffin.
 mana={W}
 type=Creature
 subtype=Griffin
-power=-90
-toughness=-90
-# P/T modified to make auto rule possible
+power=2
+toughness=3
 [/card]
 [card]
 name=Thalakos Drifters
@@ -45888,6 +46008,17 @@ auto={T}:Add {3}
 text={T}: Add {3} to your mana pool.
 mana={4}
 type=Artifact
+[/card]
+[card]
+name=Thran Quarry
+auto={T}:add{W}
+auto={T}:add{U}
+auto={T}:add{B}
+auto={T}:add{R}
+auto={T}:add{G}
+auto=@next endofturn:aslongas(creature|mybattlefield) bury <1
+text=At the end of each turn, if you control no creatures, sacrifice Thran Quarry. {T}: Add one mana of any color to your mana pool.
+type=Land
 [/card]
 [card]
 name=Thran war Machine
@@ -46561,6 +46692,23 @@ type=Legendary Creature
 subtype=Elf Warrior
 power=3
 toughness=4
+[/card]
+[card]
+name=Tomb of Urami
+auto={T}:add{B} && aslongas(ogre|myBattlefield) damage:1 controller <1
+auto={2}{B}{B}{T}:moveTo(mygraveyard) all(land|myBattlefield) && token(-74492)
+text={T}: Add {B} to your mana pool. Tomb of Urami deals 1 damage to you if you don't control an Ogre. -- {2}{B}{B}, {T}, Sacrifice all lands you control: Put a legendary 5/5 black Demon Spirit creature token with flying named Urami onto the battlefield.
+type=Legendary Land
+[/card]
+[card]
+name=Urami
+abilities=flying
+text=Flying
+type=Legendary Creature
+subtype=Demon Spirit
+power=5
+toughness=5
+color=black
 [/card]
 [card]
 name=Tome Scour
@@ -50945,6 +51093,20 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Well of Discovery
+auto=@next endofturn:aslongas(land[-tapped]|mybattlefield) draw:1 <1
+text=At the beginning of your end step, if you control no untapped lands, draw a card.
+mana={6}
+type=Artifact
+[/card]
+[card]
+name=Well of Life
+auto=@next endofturn:aslongas(land[-tapped]|mybattlefield) life:2 <1
+text=At the beginning of your end step, if you control no untapped lands, you gain 2 life.
+mana={4}
+type=Artifact
+[/card]
+[card]
 name=Wellwisher
 auto={T}:foreach(elf) life:1 controller
 text={T}: You gain 1 life for each Elf on the battlefield.
@@ -52506,7 +52668,7 @@ toughness=1
 [/card]
 [card]
 name=Yukora, the Prisoner
-auto=@movedto(this|mygraveyard):bury all(creature[-ogre]|myBattlefield)
+auto=@movedto(this|mygraveyard):moveTo(mygraveyard) all(creature[-ogre]|myBattlefield)
 text=When Yukora, the Prisoner leaves the battlefield, sacrifice all non-Ogre creatures you control.
 mana={2}{B}{B}
 type=Legendary Creature
