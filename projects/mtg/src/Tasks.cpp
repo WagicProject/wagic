@@ -219,6 +219,9 @@ Task* Task::createFromStr(string params, bool rand) {
     case TASK_WISDOM:
       result = new TaskWisdom();
       break;      
+    case TASK_PACIFISM:
+      result = new TaskPacifism();
+      break;      
     default:
       #if defined (WIN32) || defined (LINUX)
         OutputDebugString("\nTasks.cpp::createFromStr: Undefined class type\n");
@@ -928,6 +931,61 @@ void TaskWisdom::restoreCustomAttribs() {
 void TaskWisdom::randomize() {
   color = rand()%(Constants::MTG_NB_COLORS - 1) + 1;
   cardCount = 2 + ((Constants::MTG_COLOR_LAND == color) ? rand()%5 : rand()%7);
+  Task::randomize();
+}
+
+/* ------------ TaskPacifism ------------ */
+
+TaskPacifism::TaskPacifism(int _lifeSlashCardMin) : Task(TASK_PACIFISM) {
+  lifeSlashCardMin = _lifeSlashCardMin;
+  if (lifeSlashCardMin == 0) {
+    randomize();
+  }
+}
+
+int TaskPacifism::computeReward() { 
+  return 200 + (rand()%50) + (lifeSlashCardMin * 5) + (lifeSlashCardMin>20 ? 200 : 0);
+}
+
+string TaskPacifism::createDesc() {
+  char buffer[4096];
+  
+  switch (rand()%2) {
+    case 0:
+      sprintf(buffer, _("Let your opponent live with at least %i life and cards in library, but defeat him.").c_str(), lifeSlashCardMin);
+      break;
+    case 1:
+      sprintf(buffer, _("Win a game with your opponent having at least %i life and cards in library.").c_str(), lifeSlashCardMin);
+      break;
+  }
+  return buffer;
+}
+
+string TaskPacifism::getShortDesc(){
+  char buffer[4096];
+  sprintf(buffer, _("Pacifism (%i)").c_str(), lifeSlashCardMin);
+  return buffer;
+}
+
+bool TaskPacifism::isDone(Player * _p1, Player * _p2, GameApp * _app) {
+  GameObserver * g = GameObserver::GetInstance();
+  return (!_p1->isAI()) && (_p2->isAI()) && (g->gameOver != _p1) // Human player wins
+          && (_p2->life >= lifeSlashCardMin) && ((int)_p2->game->library->cards.size() >= lifeSlashCardMin);
+}
+
+void TaskPacifism::storeCustomAttribs() {
+  char buff[256];
+
+  sprintf(buff, "%i", lifeSlashCardMin);
+  persistentAttribs.push_back(buff);
+}
+
+void TaskPacifism::restoreCustomAttribs() {
+  lifeSlashCardMin = atoi(persistentAttribs[COMMON_ATTRIBS_COUNT].c_str());
+}
+
+void TaskPacifism::randomize() {
+  lifeSlashCardMin = rand()%25 + 1;
   Task::randomize();
 }
 

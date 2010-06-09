@@ -13,7 +13,8 @@
 #define TASK_IMMORTAL 'I'
 #define TASK_MASSIVE_BURIAL 'M'
 #define TASK_WISDOM 'O'
-#define TASKS_ALL "WSDIMO"
+#define TASK_PACIFISM 'P'
+#define TASKS_ALL "WSDIMOP"
 
 #define ITEM_SEPARATOR "|"
 
@@ -192,6 +193,23 @@ public:
   virtual void restoreCustomAttribs();
   virtual void randomize();
 };
+
+class TaskPacifism : public Task {
+protected:
+  virtual int computeReward();
+  int lifeSlashCardMin;
+public:  
+  TaskPacifism(int _lifeSlashCardMin = 0);
+
+  virtual string createDesc();
+  virtual string getShortDesc();
+  virtual bool isDone(Player * _p1, Player * _p2, GameApp * _app); 
+  virtual void storeCustomAttribs();
+  virtual void restoreCustomAttribs();
+  virtual void randomize();
+};  
+
+
 /* ------------ Task template ------------ 
 
 class TaskXX : public Task {
