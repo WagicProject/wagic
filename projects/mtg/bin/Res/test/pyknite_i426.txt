@@ -1,0 +1,25 @@
+#Bug: The phrase "@next upkeep" does not work for permanents
+[INIT]
+SECONDMAIN
+[PLAYER1]
+manapool:{2}{G}
+hand:pyknite
+library:forest,plains,mountain
+[PLAYER2]
+[DO]
+pyknite
+eot
+eot
+next
+#upkeep
+next
+#draw
+next
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:pyknite
+hand:mountain,plains
+library:forest
+[PLAYER2]
+[END]

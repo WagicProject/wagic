@@ -2707,7 +2707,7 @@ type=Artifact
 [card]
 name=Avenging Angel
 auto=flying
-autograveyard=@movedTo(this|mygraveyard) from(myBattlefield):moveTo(mylibrary) && shuffle
+autograveyard=@movedTo(this|mygraveyard) from(myBattlefield):moveTo(mylibrary)
 text=Flying -- When Avenging Angel is put into a graveyard from the battlefield, shuffle Avenging Angel into its owner's library.
 mana={3}{W}{W}
 type=Creature
@@ -5254,7 +5254,7 @@ type=Instant
 [card]
 name=Bonded Fetch
 abilities=defender,haste
-auto={T}:token(-1111113) && draw:1
+auto={T}:token(-1111145) && draw:1
 text=Defender, haste -- {T}: Draw a card, then discard a card.
 mana={2}{U}
 type=Creature
@@ -5267,7 +5267,7 @@ name=Bonded Fetch's Discard
 auto=counter(0/0,1,Bonded Fetch)
 auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Bonded Fetch}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Bonded Fetch) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
-id=-1111113
+id=-1111145
 type=nothing
 [/card]
 [card]
@@ -8850,7 +8850,7 @@ name=Corpse Hatch
 target=creature[-black]
 auto=destroy
 auto=Token(-193507)*2
-text=Destroy target nonblack creature. -- Put two 0/1 colorless Eldrazi Spawn creature tokens onto the battlefield. They have ìSacrifice this creature: Add {1} to your mana pool.î
+text=Destroy target nonblack creature. -- Put two 0/1 colorless Eldrazi Spawn creature tokens onto the battlefield. They have ìSacrifice this creature: Add {1} to your mana pool.ÅE
 mana={3}{B}{B}
 type=Sorcery
 [/card]
@@ -19433,7 +19433,7 @@ name=Grizzly Fate
 auto=token(Bear,creature bear, 2/2,green)*2
 auto=aslongas(*|mygraveyard) token(Bear,creature bear, 2/2,green)*2 >6
 autograveyard={5}{G}{G}:copy(this) && moveTo(mystack) asSorcery
-text=Put two 2/2 green Bear creature tokens onto the battlefield. -- Threshold ó Put four 2/2 green Bear creature tokens onto the battlefield instead if seven or more cards are in your graveyard. -- Flashback {2}{G}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+text=Put two 2/2 green Bear creature tokens onto the battlefield. -- Threshold ÅEPut four 2/2 green Bear creature tokens onto the battlefield instead if seven or more cards are in your graveyard. -- Flashback {2}{G}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={3}{G}{G}
 type=Sorcery
 [/card]
@@ -22389,7 +22389,7 @@ type=Enchantment
 name=Ior Ruin Expedition
 auto=@movedTo(land|myBattlefield):may counter(0/0,1,Quest)
 auto={C(0/0,-3,Quest)}{S}:draw:2
-text=Landfall ó Whenever a land enters the battlefield under your control, you may put a quest counter on Ior Ruin Expedition. -- Remove three quest counters from Ior Ruin Expedition and sacrifice it: Draw two cards.
+text=Landfall ÅEWhenever a land enters the battlefield under your control, you may put a quest counter on Ior Ruin Expedition. -- Remove three quest counters from Ior Ruin Expedition and sacrifice it: Draw two cards.
 mana={1}{U}
 type=Enchantment
 [/card]
@@ -26623,7 +26623,7 @@ type=Artifact
 [card]
 name=Lotus Cobra
 auto=@movedTo(land|myBattlefield):may token(-1111129)
-text=Landfall ó Whenever a land enters the battlefield under your control, you may add one mana of any color to your mana pool.
+text=Landfall ÅEWhenever a land enters the battlefield under your control, you may add one mana of any color to your mana pool.
 mana={1}{G}
 type=Creature
 subtype=Snake
@@ -44177,7 +44177,7 @@ toughness=1
 name=Sunspring Expedition
 auto=@movedTo(land|myBattlefield):may counter(0/0,1,Quest)
 auto={C(0/0,-3,Quest)}{S}:life:8
-text=Landfall ó Whenever a land enters the battlefield under your control, you may put a quest counter on Sunspring Expedition. -- Remove three quest counters from Sunspring Expedition and sacrifice it: You gain 8 life.
+text=Landfall ÅEWhenever a land enters the battlefield under your control, you may put a quest counter on Sunspring Expedition. -- Remove three quest counters from Sunspring Expedition and sacrifice it: You gain 8 life.
 mana={W}
 type=Enchantment
 [/card]
@@ -47855,7 +47855,7 @@ auto=foreach(other creature[red]|myBattlefield) counter(1/1,1)
 auto=foreach(other creature[green]|myBattlefield) counter(1/1,1)
 auto={1}{C(1/1,-1)}:damage:1 target(creature)
 auto={1}{C(1/1,-1)}:token(Saproling,Creature Saproling,1/1,green)
-text=Ulasht, the Hate Seed enters the battlefield with a +1/+1 counter on it for each other red creature you control and a +1/+1 counter on it for each other green creature you control. -- {1}, Remove a +1/+1 counter from Ulasht: Choose one ó Ulasht deals 1 damage to target creature; or put a 1/1 green Saproling creature token onto the battlefield.
+text=Ulasht, the Hate Seed enters the battlefield with a +1/+1 counter on it for each other red creature you control and a +1/+1 counter on it for each other green creature you control. -- {1}, Remove a +1/+1 counter from Ulasht: Choose one ÅEUlasht deals 1 damage to target creature; or put a 1/1 green Saproling creature token onto the battlefield.
 mana={2}{R}{G}
 type=Legendary Creature
 subtype=Hellion Hydra
@@ -47881,7 +47881,7 @@ auto=@damaged(creature,player) from(mytgt):counter(0/0,2,Charge) all(this)
 auto={C(0/0,-1,Charge)}:2/2
 auto={C(0/0,-1,Charge)}:-1/-1 target(creature)
 auto={C(0/0,-1,Charge)}:life:2 controller
-text=Whenever equipped creature deals combat damage, put two charge counters on Umezawa's Jitte. -- Remove a charge counter from Umezawa's Jitte: Choose one ó Equipped creature gets +2/+2 until end of turn; or target creature gets -1/-1 until end of turn; or you gain 2 life. -- Equip {2}
+text=Whenever equipped creature deals combat damage, put two charge counters on Umezawa's Jitte. -- Remove a charge counter from Umezawa's Jitte: Choose one ÅEEquipped creature gets +2/+2 until end of turn; or target creature gets -1/-1 until end of turn; or you gain 2 life. -- Equip {2}
 mana={2}
 type=Legendary Artifact
 subtype=Equipment

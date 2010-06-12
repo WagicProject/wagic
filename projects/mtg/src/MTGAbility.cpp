@@ -2205,6 +2205,7 @@ TriggerAtPhase::TriggerAtPhase(int id, MTGCardInstance * source, Targetable * ta
 }
 
 int TriggerAtPhase::trigger(){
+  if (testDestroy()) return 0; // http://code.google.com/p/wagic/issues/detail?id=426
   GameObserver * g = GameObserver::GetInstance();
   int result = 0;
   if (currentPhase != newPhase && newPhase == phaseId){
@@ -2242,8 +2243,10 @@ TriggerNextPhase::TriggerNextPhase(int id, MTGCardInstance * source, Targetable 
 }
 
 int TriggerNextPhase::testDestroy(){
-  if (newPhase <= phaseId) destroyActivated = 1;
-  if ( newPhase > phaseId && destroyActivated){
+  //dirty hack because of http://code.google.com/p/wagic/issues/detail?id=426
+  if (newPhase <= phaseId && !destroyActivated) destroyActivated = 1;
+  if (destroyActivated > 1 || (newPhase > phaseId && destroyActivated)){
+    destroyActivated++;
     return 1;
   }
   return 0;
@@ -2266,7 +2269,7 @@ GenericTriggeredAbility::GenericTriggeredAbility(int id, MTGCardInstance * _sour
   ability->target = target;
   if (destroyCondition){
     destroyCondition->source = source;
-    destroyCondition->target = target;;
+    destroyCondition->target = target;
   }
 }
 
