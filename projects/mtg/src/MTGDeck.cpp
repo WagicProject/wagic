@@ -19,6 +19,7 @@ using std::string;
 #include <time.h>
 #endif
 
+
 static inline int getGrade(int v) {
   switch (v) {
   case 'S': case 's': return Constants::GRADE_SUPPORTED;
@@ -216,7 +217,7 @@ void MTGAllCards::init(){
 
 int MTGAllCards::load(const char * config_file, const char * set_name,int autoload){
   conf_read_mode = 0;
-  const int set_id = set_name ? setlist.Add(set_name) : 0;
+  const int set_id = set_name ? setlist.Add(set_name) : -1;
   MTGSetInfo *si = setlist.getInfo(set_id);
 
   std::ifstream setFile(config_file);

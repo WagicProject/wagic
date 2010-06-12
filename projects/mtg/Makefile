@@ -60,12 +60,15 @@ LDFLAGS += $(LIBS)
 
 debug: CXXFLAGS += -ggdb3 -D_DEBUG -DDEBUG
 
+log: CXXFLAGS += -DDOLOG
+
 
 
 
 ifeq ($(TARGET_ARCHITECTURE),psp)
 include $(PSPSDK)/lib/build.mak
 
+log: all
 debug: all
 
 3xx:

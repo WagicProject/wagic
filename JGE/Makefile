@@ -2,6 +2,10 @@ ifeq ($(MAKECMDGOALS),debug)
 DEBUG = true
 endif
 
+ifeq ($(MAKECMDGOALS),log)
+DOLOG = true
+endif
+
 
 GENERIC_OBJS = src/JApp.o src/JGBKFont.o \
 	src/JGE.o src/JGui.o src/JLBFont.o \
@@ -29,7 +33,11 @@ HGE_OBJS = src/hge/hgecolor.o src/hge/hgeparticle.o \
 CXXFLAGS = -W -Wall -Werror -Wno-unused
 
 ifdef DEBUG
-CXXFLAGS += -ggdb3
+CXXFLAGS += -ggdb3 -DDOJLOG
+endif
+
+ifdef DOLOG
+CXXFLAGS += -DDOJLOG
 endif
 
 # Determination of target.
