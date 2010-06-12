@@ -244,6 +244,7 @@ ghost_warden.txt
 glen_elendra_archmage_i222.txt
 giant_growth.txt
 giant_growth2.txt
+Glimmervoid.txt
 glimpse_the_unthinkable.txt
 gnarled_effigy.txt
 gnat_alley_creeper1.txt
@@ -334,6 +335,7 @@ northern_paladin.txt
 northern_paladin2.txt
 Nyxathid.txt
 ondu_cleric.txt
+OneDozenEyes.txt
 orcish_artillery.txt
 orcish_lumberjack.txt
 overrun.txt

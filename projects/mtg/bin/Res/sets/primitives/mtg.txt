@@ -17805,7 +17805,7 @@ auto={T}:add{U}
 auto={T}:add{B}
 auto={T}:add{R}
 auto={T}:add{G}
-auto=@next endofturn:aslongas(artifact|mybattlefield) bury <1
+auto=@each my endofturn:aslongas(artifact|mybattlefield) bury <1
 text=At the beginning of the end step, if you control no artifacts, sacrifice Glimmervoid. -- {T}: Add one mana of any color to your mana pool.
 type=Land
 [/card]
@@ -31436,6 +31436,25 @@ subtype=Giant
 power=2
 toughness=4
 [/card]
+[card]
+name=One Dozen Eyes
+kicker={G}{G}{G}
+auto=kicker token(-483851111)
+auto=may token(Beast,creature beast, 5/5,green)
+auto=may token(Insect,creature insect, 1/1,green)*5
+text=Choose one — Put a 5/5 green Beast creature token onto the battlefield; or put five 1/1 green Insect creature tokens onto the battlefield. -- Entwine {G}{G}{G} (Choose both if you pay the entwine cost.)
+mana={5}{G}
+type=Sorcery
+[/card]
+[card]
+name=One Dozen Eyes Entwine
+auto=counter(0/0,1,Entwine)
+auto=@movedTo(insect|mybattlefield):thisforeach(counter{0/0.1.Entwine}>0) token(Beast,creature beast, 5/5,green) && counter(0/0,-1,Entwine) && counter(0/0,1,Bury)
+auto=@movedTo(beast|mybattlefield):thisforeach(counter{0/0.1.Entwine}>0) token(Insect,creature insect, 1/1,green)*5 && counter(0/0,-1,Entwine) && counter(0/0,1,Bury)
+auto=thisforeach(counter{0/0.1.Bury}>0) bury
+id=-483851111
+type=Nothing
+[/Card]
 [card]
 name=One with Nothing
 auto=moveto(mygraveyard) all(*|myhand)
@@ -46016,7 +46035,7 @@ auto={T}:add{U}
 auto={T}:add{B}
 auto={T}:add{R}
 auto={T}:add{G}
-auto=@next endofturn:aslongas(creature|mybattlefield) bury <1
+auto=@each my endofturn:aslongas(creature|mybattlefield) bury <1
 text=At the end of each turn, if you control no creatures, sacrifice Thran Quarry. {T}: Add one mana of any color to your mana pool.
 type=Land
 [/card]

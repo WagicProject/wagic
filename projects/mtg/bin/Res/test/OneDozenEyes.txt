@@ -1,0 +1,32 @@
+#Testing One Dozen Eyes (Entwine keyword)
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:One Dozen Eyes,Beast of Burden
+inplay:Fervor
+manapool:{11}{G}{G}{G}{G}
+[PLAYER2]
+life:20
+[DO]
+One Dozen Eyes
+choice 0
+Beast of Burden
+next
+#begin
+next
+#attackers
+Beast of Burden
+next
+#blockers
+next
+#damage
+[ASSERT]
+COMBATDAMAGE
+[PLAYER1]
+inplay:Beast of Burden,*,*,*,*,*,*,Fervor
+graveyard:One Dozen Eyes
+manapool:{0}
+life:20
+[PLAYER2]
+life:13
+[END]
