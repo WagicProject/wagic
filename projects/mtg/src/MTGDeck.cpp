@@ -1,3 +1,4 @@
+#include <string.h>
 #include "../include/config.h"
 #include "../include/MTGDeck.h"
 #include "../include/utils.h"
@@ -146,7 +147,7 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
     case 's': //subtype
       if(!primitive) primitive = NEW CardPrimitive();
       while (true){
-        char* found = index(val, ' ');
+        char* found = strchr(val, ' ');
         if (found) {
           string value(val, found - val);
           primitive->setSubtype(value);
@@ -169,7 +170,7 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
         primitive->setText(val);
       else if (0 == strcmp("type", key)) {
         while (true){
-          char* found = index(val, ' ');
+          char* found = strchr(val, ' ');
           if (found) {
             string value(val, found - val);
             primitive->setType(value);
