@@ -18,7 +18,7 @@ void JLogger::Log(const char * text){
   OutputDebugString(text);
   OutputDebugString("\n");
 #else
-  printf(text);
+  printf("%s", text);
   printf("\n");
 #endif
 
