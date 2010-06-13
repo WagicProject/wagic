@@ -1,0 +1,11 @@
+[INIT]
+mode=mtg
+player=2
+#phase=firstmain
+[PLAYER1]
+inplay:island,island
+hand:counterspell
+auto=@movedTo(Lightning Bolt|graveyard): winGame controller
+[PLAYER2]
+hand:Lightning Bolt,Lightning Bolt,Lightning Bolt
+inplay:mountain

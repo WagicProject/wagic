@@ -2,21 +2,19 @@
 
 <page id="start">
 <type>dialog</type>
-<title>WELCOME YOUNG ADVENTURER...</title>
+<title>Welcome young adventurer...</title>
 <img>_gfx/shopkeeper.jpg</img>
 <text>So you want to become a sorcerer?</text>
 <text>You've come to the right place. I'm myself just</text>
 <text>a humble retailer, but I've met a lot of adventurers like you</text>
 <text>in my life, enough to understand the basics of their craft...</text>
-
-<answer goto="tap_mana_intro" align="center" x="0.30" font="1">I want to know more</answer>
-<answer goto="End" x="0.80" y="-1">Take me back to the menu</answer> 
-<answer goto="block">Continue</answer>
+<answer goto="tap_mana_intro">Continue</answer>
+<text y="250">Push "start" at any time to go back to the main menu</text>
 </page>
 
 <page id="tap_mana_intro">
 <type>dialog</type>
-<title>TAPPING LANDS FOR MANA</title>
+<title>Tapping lands for mana</title>
 <text>In your quests you will have to fight against other wizards.</text>
 <text>You will only have your brain and your spells to help you.</text>
 <text>The basic Energy to cast your spells in Wagic is called mana.</text>
@@ -34,7 +32,7 @@
 
 <page id="tap_mana_try_again">
 <type>dialog</type>
-<title>HMMM...</title>
+<title>Hmmm...</title>
 <text>It seems you didn't get that right</text>
 <text>Simply navigate (with the D-Pad) to the land that appears on your screen,</text>
 <text>then click on the action button (CIRCLE by default)</text>
@@ -43,7 +41,7 @@
 
 <page id="tap_mana_ok">
 <type>dialog</type>
-<title>WELL DONE...NOW LET'S CAST A SPELL</title>
+<title>Well done...now let's cast a spell</title>
 <text>That was too easy for you!</text>
 <text>Now let's see if you can cast a spell...</text>
 <text>Spells have a cost represented by mana symbols on the top right corner</text>
@@ -61,7 +59,7 @@
 
 <page id="cast_spell_1_try_again">
 <type>dialog</type>
-<title>HMMM...</title>
+<title>Hmm...</title>
 <text>It seems you didn't get that right</text>
 <text>Simply navigate (with the D-Pad) to the lands that appear on your screen,</text>
 <text>then click on the action button (CIRCLE by default) on each of them to produce 2 white mana.</text>
@@ -72,7 +70,7 @@
 
 <page id="cast_spell_1_ok">
 <type>dialog</type>
-<title>PERFECT...BUT THERE'S MORE TO IT</title>
+<title>Perfect...but there's more to it</title>
 <text>You did great, young adventurer!</text>
 <text>But you will see that some spells have slighlty different costs.</text>
 <text>Sometimes the cost contains a number with no mana color. It means you can</text>
@@ -90,7 +88,7 @@
 
 <page id="cast_spell_2_try_again">
 <type>dialog</type>
-<title>HMMM...</title>
+<title>Hmm...</title>
 <text>It seems you didn't get that right</text>
 <text>Simply navigate (with the D-Pad) to the lands that appear on your screen,</text>
 <text>then click on the action button (CIRCLE by default) on some of them to produce some mana.</text>
@@ -101,7 +99,7 @@
 
 <page id="cast_spell_2_ok">
 <type>dialog</type>
-<title>GREAT. NOW LET'S TALK ABOUT PHASES</title>
+<title>Great. now let's talk about phases</title>
 <text>Once you put them into play, you will want your creatures to attack your opponent.</text>
 <text>After all, they are here to help you defeat other sorcerers!</text>
 <text>Your creatures can't attack anytime they want, however,</text>
@@ -121,7 +119,7 @@
 
 <page id="attack_try_again">
 <type>dialog</type>
-<title>HMMM...</title>
+<title>Hmmm...</title>
 <text>It seems you didn't get that right</text>
 <text>Go to the "Attackers" phase by clicking on LTRIGGER several times,</text>
 <text>then click on your White Knight (with CIRCLE by default) to attack your opponent.</text>
@@ -130,7 +128,7 @@
 
 <page id="attack_ok">
 <type>dialog</type>
-<title>GOOD!</title>
+<title>Good!</title>
 <text>Let me tell you a bit more about phases.</text>
 <text>Your turn is divided into several phases. The actions you can perform</text>
 <text>Depend on the phase you're in. For now, let's say that you can:</text>
@@ -138,13 +136,12 @@
 <text>- Attack with your creatures during the "Attackers" phase of your turn.</text>
 <text>- Block your opponent's attacking creatures during the "blockers" phase of his turn.</text>
 <text>There are lots of other phases but we'll discuss them later</text>
-
 <answer goto="block_1">Continue</answer>
 </page>
 
 <page id="block_1">
 <type>dialog</type>
-<title>blocking</title>
+<title>Blocking</title>
 <text>Now let's block!</text>
 <text>Your opponent will attack you with one of its creatures.</text>
 <text>When comes the "blockers" phase, I want you to click on your own creature</text>
@@ -172,12 +169,42 @@
 <type>dialog</type>
 <title>Great!</title>
 <text>You now understand the basics of the combat phase</text>
+<answer goto="first_duel_1">Continue</answer>
+</page>
+
+<page id="first_duel_1">
+<type>dialog</type>
+<title>How about a real fight?</title>
+<text>Now let's have a real duel</text>
+<text>This is just a training, it won't be too hard.</text>
+<text>Remember, you have to bring your opponent's life to 0</text>
+<answer goto="first_duel">Continue</answer>
+</page>
+
+<page id="first_duel">
+<type>duel</type>
+<onwin>first_duel_ok</onwin>
+<onlose>first_duel_try_again</onlose>
+</page>
+
+<page id="first_duel_try_again">
+<type>dialog</type>
+<title>Oh well</title>
+<text>Your opponent won</text>
+<text>Better luck this time</text>
+<answer goto="first_duel">Let's try again!</answer>
+</page>
+
+<page id="first_duel_ok">
+<type>dialog</type>
+<title>Nice!</title>
+<text>That wasn't too hard, was it?</text>
 <answer goto="End">Continue</answer>
 </page>
 
 <page id="End">
 <type>End</type>
-<title>CONGRATULATIONS!</title>
+<title>Congratulations!</title>
 <text>This is the end of this tutorial.</text>
 <reward type="credits" value="1000">Here's a 1000 credits coupon to get you started, come and visit my shop!</reward>
 <reward type="unlockset" >And I'm nice, I unlocked ${SET} for you!</reward>

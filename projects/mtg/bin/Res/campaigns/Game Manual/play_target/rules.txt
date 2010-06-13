@@ -1,0 +1,9 @@
+[INIT]
+mode=mtg
+[PLAYER2]
+inplay:swamp,mountain,plains,raging goblin,bog rats,bone flute
+[PLAYER1]
+inplay:forest,swamp (10E)
+hand:terror,forest
+auto=@movedto(raging goblin|opponentgraveyard):wingame controller
+auto=@next combatbegins:wingame opponent

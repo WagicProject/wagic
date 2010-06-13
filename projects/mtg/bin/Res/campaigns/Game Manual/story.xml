@@ -1,0 +1,325 @@
+<?xml version="1.0" ?>
+
+<page id="start">
+ <type>dialog</type>
+ <answer goto="dueling">1.Duel Screen</answer>
+ <answer goto="deck_editor">2.Creating a deck</answer>
+ <answer goto="playing">3.Playing Cards</answer>
+ <answer goto="attacking_blocking">4.Attacking and Blocking</answer>
+</page> 
+
+<page id="dueling"> 
+ <type>dialog</type>
+ <answer goto="ingame">0.Overview</answer>
+ <answer goto="zones">1.The Zones</answer>
+ <answer goto="cards">2.Card description</answer>
+ <answer goto="game_phase1">3.Game Phases</answer>
+ <answer goto="start">Main Menu</answer>
+</page>
+
+<page id="ingame"> 
+ <type>dialog</type>
+ <img>_gfx/InGame.png</img>
+ <answer goto="start" y="245">Main Menu</answer>
+ <answer goto="dueling">back</answer>
+</page>
+
+<page id="zones"> 
+ <type>dialog</type>
+ <img>_gfx/zones.jpg</img>
+ <text y="90">Both players have a portrait (used whenever you must choose “target player”)</text>
+ <text y="105">,a graveyard, library, and a hand. The numbers symbolize either amount</text>
+ <text y="120">of cards in the pile (for graveyard and library), or total number  of life</text>
+ <text y="135">points (for the portraits). You can easely navigate between zone with the D pad.</text>
+ <text y="150">You can access both your graveyard and the graveyard of the opponent at any time</text>
+ <text y="165">Move to the graveyard you want to see and press (O) to access, press (X) to quit.</text>
+ <text y="180">You can access your hand by pressing the R-Trigger,</text>
+ <text y="195">except specified you cannot access Opponent hand.</text>
+ <text y="210">Except specified you will not be able to browse any of the libraries</text>
+ <answer goto="start">Main Menu</answer>
+ <answer goto="dueling">back</answer>
+</page>
+
+<page id="cards"> 
+ <type>dialog</type>
+ <img>_gfx/cards.png</img>
+ <answer goto="start" y="245">Main Menu</answer>
+ <answer goto="dueling">back</answer>
+</page>
+
+<page id="game_phase1"> 
+ <type>dialog</type>
+ <img>_gfx/phasebar.png</img>
+ <img x="1" y="45">_gfx/untap.png</img>
+ <text x="45" y="45">The untap step. Wagic will automatically untap any cards that</text> 
+ <text x="45" y="60">may be untapped now. Some cards do not untap.</text>
+ <img x="1" y="75">_gfx/upkeep.png</img>
+ <text x="45" y="75">The upkeep step. All upkeep costs must be paid during this</text> 
+ <text x="45" y="90">step.</text>
+ <img x="1" y="105">_gfx/draw.png</img>
+ <text x="45" y="105">The draw step. Wagic will deal you one card from your library</text> 
+ <text x="45" y="120">into your hand. If you have no cards left to be dealt, you lose.</text>
+ <img x="1" y="135">_gfx/1main.png</img>
+ <text x="45" y="135">The first main phase. Except for instants and cards with certain</text> 
+ <text x="45" y="150">special abilities, cards can only be played during a main phase.</text>
+ <img x="1" y="165">_gfx/combat_begin.png</img>
+ <text x="45" y="165">Beginning of combat. This is an opportunity to cast spells and</text> 
+ <text x="45" y="180">activate abilities that may alter the course of battle.</text>
+ <img x="1" y="195">_gfx/attacker.png</img>
+ <text x="45" y="195">Declare attackers. Choose which creatures will attack your</text> 
+ <text x="45" y="210">opponent. Those that are tapped or recently played can’t attack.</text> 
+ <answer goto="game_phase2">Next</answer>
+</page>
+
+<page id="game_phase2"> 
+ <type>dialog</type>
+ <img>_gfx/phasebar.png</img>
+<img x="1" y="45">_gfx/blocker.png</img>
+ <text x="45" y="45">Declare blockers. The defending player decides which creatures</text> 
+ <text x="45" y="60">will block the opponent. Tapped creatures can’t block.</text>
+ <img x="1" y="75">_gfx/damage.png</img>
+ <text x="45" y="75">Combat damage. Unblocked attackers deal damage to the target</text> 
+ <text x="45" y="90">player. Creatures dealt damage equal to their toughness die.</text>
+ <img x="1" y="105">_gfx/combat_end.png</img> 
+ <text x="45" y="105">End of combat. Cast instants and abilities before your</text>
+ <text x="45" y="120">second main phase.</text>
+ <img x="1" y="135">_gfx/2main.png</img>  
+ <text x="45" y="135">Second main phase. Identical to the first main phase. You may</text> 
+ <text x="45" y="150">only play one land card per turn, during either main phase.</text>
+ <img x="1" y="165">_gfx/end.png</img>
+ <text x="45" y="165">End step. Abilities that trigger “at the end of the turn”.</text>
+ <text x="45" y="180">occur now</text>
+ <img x="1" y="195">_gfx/cleanup.png</img>
+ <text x="45" y="195">Cleanup. If the current player has more than seven cards in their</text> 
+ <text x="45" y="210">hand, they are forced to discard the extras.</text>
+ <answer goto="dueling">Back</answer>
+ <answer goto="start">Menu</answer>
+</page>
+
+<page id="deck_editor"> 
+ <type>dialog</type>
+ <text x="45">DECK EDITOR</text>  
+ <img x="5">_gfx/deck.png</img> 
+ <text y="45">Half the fun of Wagic comes from putting together the perfect</text>
+ <text y="60">deck of cards. To use the deck editor, navigate with the D-pad,</text>
+ <text y="75">add and remove cards using (O), press (X) to sell cards, and use</text>
+ <text y="90">the start menu to save or cancel your changes.</text>
+ <text y="120">Note that you can build as many different decks as you’d like,</text>
+ <text y="135">all using the same cards from your collection. If you own two of</text>
+ <text y="150">a particular card, you may use it twice in each deck you build.</text>
+ <img x="10" y="180">_gfx/BattleIcon.png</img>
+ <text x="45" y="180">PRO TIP !</text>
+ <text x="45" y="195">Press([]) to show the deck overview, then</text>
+ <text x="45" y="210">R-trigger and L-trigger to view useful statistics.</text>
+ <answer goto="start">Main Menu</answer>
+</page>
+
+<page id="playing"> 
+ <type>dialog</type>
+ <answer goto="playing_land">1.Putting a land in play</answer>
+ <answer goto="playing_mana">2.Tapping for mana</answer>
+ <answer goto="playing_spell">3.Casting a spell</answer>
+ <answer goto="playing_targets">4.Choosing a target</answer>
+ <answer goto="playing_interrupt">5.Playing interrupt</answer>
+ <answer goto="start">Main Menu</answer>
+</page>
+
+<page id="playing_land"> 
+ <type>dialog</type>
+ <text align="center">PLAYING AND USING CARDS</text> 
+ <text y="15">It is your turn, so press the R-Trigger to show your hand.</text>
+ <text y="30">Select a card using the left and right buttons, and use circle</text>
+ <text y="45">to put it into play. Once a card is in play, it can be</text>
+ <text y="60">tapped (used) by pressing circle.</text>
+ <text y="75">The first card you will usually put in play are lands</text>
+ <text y="90">You can only put one land per turn into play and only</text>
+ <text y="105">during your first or second main phase</text>
+ <answer goto="play_land">Go ahead and play a land!</answer> 
+ <answer goto="playing">Back</answer>
+</page> 
+
+<page id="play_land"> 
+ <type>duel</type> 
+ <onwin>playing_land</onwin> 
+ <onlose>play_land_try_again</onlose> 
+</page> 
+  
+<page id="play_land_try_again"> 
+ <type>dialog</type> 
+ <text align="center">HMMM...</text> 
+ <text y="15">It seems you didn't get that right</text>
+ <text y="30">Simply open your hand with the R-trigger</text>
+ <text y="45">then navigate (with the D-Pad) to one of the land</text> 
+ <text y="60">that appears in you hand,</text> 
+ <text y="75">then click on the action button (CIRCLE by default)</text> 
+ <answer goto="play_land">Let's try again!</answer> 
+</page> 
+
+<page id="playing_mana"> 
+ <type>dialog</type> 
+ <text align="center">TAPPING LANDS FOR MANA</text> 
+ <text y="15">In your quests you will have to fight against other wizards.</text> 
+ <text y="30">You will only have your brain and your spells to help you.</text> 
+ <text y="45">The basic Energy to cast your spells in Wagic is called mana.</text> 
+ <text y="60">The most frequent sources of Mana are called "Lands".</text> 
+ <text y="90">For a land to produce mana,</text> 
+ <text y="105">you just have to click on it with the action button (CIRCLE by default)</text> 
+ <answer goto="tap_mana">Go ahead and tap some mana!</answer> 
+ <answer goto="playing">Back</answer>
+</page> 
+  
+<page id="tap_mana"> 
+ <type>duel</type> 
+ <onwin>playing_mana</onwin> 
+ <onlose>tap_mana_try_again</onlose> 
+</page> 
+  
+<page id="tap_mana_try_again"> 
+ <type>dialog</type> 
+ <text align="center">HMMM...</text> 
+ <text y="15">It seems you didn't get that right</text> 
+ <text y="30">Simply navigate (with the D-Pad) to the land that appears on your screen,</text> 
+ <text y="45">then click on the action button (CIRCLE by default)</text> 
+ <answer goto="tap_mana">Let's try again!</answer> 
+</page> 
+
+<page id="playing_spell"> 
+ <type>dialog</type> 
+ <text align="center">CASTING A SPELL</text> 
+ <text y="15">In most cases, playing a card from your hand is called “playing a spell”</text> 
+ <text y="30">while using a card on the battlefield involves “using an ability”.</text> 
+ <text y="45">Spells have a cost represented by mana symbols on the top right corner</text> 
+ <text y="60">of the card. For example, 2 white mana icons on the top right of the card</text> 
+ <text y="75">means that you have to produce 2 white manas (by activating 2 plains)</text> 
+ <text y="90">in order to put it into play.</text> 
+ <answer goto="cast_spell_1">Try to produce 2 white mana and put a white knight in play</answer>
+ <answer goto="playing">Back</answer>
+</page> 
+  
+<page id="cast_spell_1"> 
+ <type>duel</type> 
+ <onwin>playing_spell</onwin> 
+ <onlose>cast_spell_1_try_again</onlose> 
+</page> 
+  
+<page id="cast_spell_1_try_again"> 
+ <type>dialog</type> 
+ <text align="center">HMMM...</text> 
+ <text y="15">It seems you didn't get that right</text> 
+ <text y="30">Simply navigate (with the D-Pad) to the lands that appear on your screen,</text> 
+ <text y="45">then click on the action button (CIRCLE by default) on each of them to produce 2 white mana.</text> 
+ <text y="60">Once this is done, navigate to the White Knight in your hand and click (CIRCLE by default) on it.</text> 
+ <text y="75">Depending on your configuration, you might need to display your hand (RTRIGGER by default)</text> 
+ <answer goto="cast_spell_1">Let's try again!</answer> 
+</page> 
+  
+<page id="playing_targets"> 
+ <type>dialog</type> 
+ <text align="center">CHOOSING A TARGET</text> 
+ <text y="15">While many spells and abilities work without any extra</text> 
+ <text y="30">fuss, you’ll often find yourself needing to choose a target. Using</text> 
+ <text y="45">these spells will automatically put you into “targetting mode”.</text> 
+ <text y="60">When you’ve entered targetting mode, a thin red rectangle will</text> 
+ <text y="75">appear on the borders of your screen, and invalid targets will be</text> 
+ <text y="90">grayed out. Navigate to a brightly lit card (or player portrait), and</text> 
+ <text y="105">click on it with (O) to select it as a target. You can cancel target</text> 
+ <text y="120">mode at any time by pressing (X)</text> 
+ <answer goto="playing">Back</answer>
+ <answer goto="play_target">Try it !</answer>
+</page> 
+  
+<page id="play_target"> 
+ <type>duel</type> 
+ <onwin>playing_targets</onwin> 
+ <onlose>target_try_again</onlose> 
+</page>
+
+<page id="target_try_again"> 
+ <type>dialog</type> 
+ <text align="center">HMMM...</text> 
+ <text y="15">It seems you didn't get that right</text> 
+ <text y="30">Simply navigate (with the D-Pad) to the lands that appear on your screen,</text> 
+ <text y="45">then click on the action button (O) on each of them to produce 2 mana.</text> 
+ <text y="60">Once this is done, navigate to the terror in your hand and click (O) on it.</text> 
+ <text y="75">Depending on your configuration, you might need to display your hand (RTRIGGER)</text>
+ <text y="90">You should see that some card a greyed out, navigate to the card non-greyed</text>
+ <text y="105">then press (O) to confirm the target and let the spell resolve</text>
+ <answer goto="play_target">Let's try again!</answer> 
+</page>
+
+<page id="playing_interrupt"> 
+ <type>dialog</type> 
+ <text align="center">PLaying interrupt</text> 
+ <text y="15">Whenever you or your opponent plays a spell it goes on the stack</text> 
+ <text y="30">When a card goes on a stack you will see a message box asking you</text> 
+ <text y="45">if you want to interrupt the spell.</text> 
+ <text y="60">By pressing (X), you will be able to play a card from</text> 
+ <text y="75">your hand or to play an activated ability from a card on the battlefield.</text> 
+ <text y="105">Note that you can change some of the setting for interrupting spells</text> 
+ <text y="120">in the option menu</text> 
+ <answer goto="playing">Back</answer>
+ <answer goto="interrupt">Try it !</answer>
+</page> 
+
+<page id="interrupt"> 
+ <type>duel</type> 
+ <onwin>playing_interrupt</onwin> 
+ <onlose>interrupt_try_again</onlose> 
+</page>
+
+<page id="interrupt_try_again"> 
+ <type>dialog</type> 
+ <text align="center">HMMM...</text> 
+ <text y="15">It seems you didn't get that right</text> 
+ <answer goto="interrupt">Let's try again!</answer> 
+</page>
+
+<page id="attacking_blocking">
+ <type>dialog</type>
+ <text x="45">Attacking and Blocking</text>
+ <img x="5">_gfx/deck.png</img> 
+ <text y="45">Dueling isn’t just tossing spells back and forth, of course. A large</text>
+ <text y="60">part of dueling is the battle between creatures! When it’s your</text>
+ <text y="75">turn, you can select attackers (using (O) ) to send against your enemy.</text>
+ <text y="90">If they aren’t blocked by a creature, your attackers will deal</text>
+ <text y="105">damage directly to the enemy.</text>
+ <answer goto="attack" y="120">Try to attack</answer>
+ <text y="135">But what to do when you’re under attack? Use (O) to select</text>
+ <text y="150">creatures as blockers. Use (O) again to move a particular blocker</text>
+ <text y="165">to a new attacker. Try to create matches where your creature’s</text>
+ <text y="180">toughness (the second number) is higher than the enemy’s power</text>
+ <text y="195">(the first number), otherwise your blocking creatures will die.</text>
+ <answer goto="block" y="210">Try to block</answer>
+ <answer goto="start">Main Menu</answer>
+</page>
+
+<page id="attack"> 
+ <type>duel</type> 
+ <onwin>attacking_blocking</onwin> 
+ <onlose>attack_try_again</onlose> 
+</page> 
+  
+<page id="block"> 
+ <type>duel</type> 
+ <onwin>attacking_blocking</onwin> 
+ <onlose>block_try_again</onlose>
+</page>
+
+<page id="block_try_again">
+ <type>dialog</type>
+ <title>Oh well</title>
+ <text>Your opponent killed you</text>
+ <text>Be sure to click once on your grizzly bears when the opponent attacks you</text>
+ <answer goto="block">Let's try again!</answer>
+</page>
+
+<page id="attack_try_again"> 
+ <type>dialog</type> 
+ <text align="center">HMMM...</text> 
+ <text y="15">It seems you didn't get that right</text> 
+ <text y="30">Go to the "Attackers" phase by clicking on LTRIGGER several times,</text> 
+ <text y="45">then click on your White Knight (with CIRCLE by default) to attack your opponent.</text> 
+ <answer goto="attack">Let's try again!</answer> 
+</page> 
+ 
+   

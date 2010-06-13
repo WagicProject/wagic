@@ -1,0 +1,11 @@
+[INIT]
+mode=mtg
+player=2
+phase=combat_attackers
+[PLAYER1]
+inplay:grizzly bears
+life:1
+auto=@movedTo(*|graveyard): winGame controller
+[PLAYER2]
+inplay:raging goblin
+auto=lord(goblin) mustattack
