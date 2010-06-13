@@ -2,28 +2,37 @@
 #include "../include/MTGDefinitions.h"
 #include "../include/Pos.h"
 #include "../include/CardGui.h"
+#include "../include/DamagerDamaged.h"
 #include "../include/Trash.h"
 
-void Trash::put_out()
+template <class T>
+void TrashBin<T>::put_out()
 {
-  for (std::vector<Pos*>::iterator it = bin.begin(); it != bin.end(); ++it)
-    {
-      if (CardView *c = dynamic_cast<CardView*>(*it))
-        SAFE_DELETE(c);
-      else
-        SAFE_DELETE(*it);
-    }
+  for (typename std::vector<T*>::iterator it = bin.begin(); it != bin.end(); ++it)
+    SAFE_DELETE(*it);
   bin.clear();
 }
 
-static Trash PosTrash;
+static TrashBin<CardView> CardViewTrash;
+static TrashBin<DefenserDamaged> DefenserDamagedTrash;
+static TrashBin<AttackerDamaged> AttackerDamagedTrash;
 
 void Trash::cleanup()
 {
-  PosTrash.put_out();
+  CardViewTrash.put_out();
+  DefenserDamagedTrash.put_out();
+  AttackerDamagedTrash.put_out();
 }
 
-void trash(Pos* garbage)
+template<> void trash(CardView* garbage)
 {
-  PosTrash.bin.push_back(garbage);
+  CardViewTrash.bin.push_back(garbage);
+}
+template<> void trash(DefenserDamaged* garbage)
+{
+  DefenserDamagedTrash.bin.push_back(garbage);
+}
+template<> void trash(AttackerDamaged* garbage)
+{
+  AttackerDamagedTrash.bin.push_back(garbage);
 }

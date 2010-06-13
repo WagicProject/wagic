@@ -4,6 +4,7 @@
 #include "../include/GuiCombat.h"
 #include "../include/AIPlayer.h"
 #include "../include/GameObserver.h"
+#include "../include/Trash.h"
 #include "Closest.cpp"
 
 static const float MARGIN = 70;
@@ -386,7 +387,7 @@ int GuiCombat::receiveEventMinus(WEvent* e)
               AttackerDamaged* d = *it;
               if (activeAtk == *it) activeAtk = NULL;
               attackers.erase(it);
-              SAFE_DELETE(d);
+              trash(d);
               return 1;
             }
           else
@@ -395,7 +396,7 @@ int GuiCombat::receiveEventMinus(WEvent* e)
                 {
                   DefenserDamaged* d = *q;
                   (*it)->blockers.erase(q);
-                  SAFE_DELETE(d);
+                  trash(d);
                   return 1;
                 }
         return 0;
@@ -408,7 +409,7 @@ int GuiCombat::receiveEventMinus(WEvent* e)
 	  {
             AttackerDamaged* d = *it;
 	    attackers.erase(it);
-            SAFE_DELETE(d);
+            trash(d);
 	    return 1;
 	  }
       return 0;
@@ -422,7 +423,7 @@ int GuiCombat::receiveEventMinus(WEvent* e)
               {
                 DefenserDamaged* d = *q;
                 (*it)->blockers.erase(q);
-                SAFE_DELETE(d);
+                trash(d);
                 return 1;
               }
       return 0;
