@@ -38,37 +38,37 @@ int AbilityFactory::countCards(TargetChooser * tc, Player * player, int option){
 
 Counter * AbilityFactory::parseCounter(string s, MTGCardInstance * target, Spell * spell) {
   int nb = 1;
-    string name = "";
-    size_t start = 0;
-    size_t end = s.length();
-    size_t separator = s.find(",", start);
-    if (separator == string::npos) separator = s.find(".", start);
-    if (separator != string::npos){
-      size_t separator2 = s.find(",", separator+1);
-      if (separator2 == string::npos) separator2 = s.find(".", separator+1);
-      if (separator2 != string::npos) {
-        name = s.substr(separator2+1,end-separator2-1);
-      }    
-      string nbstr = s.substr(separator+1,separator2-separator-1);
-      WParsedInt * wpi;
-      if (target){
-        wpi = NEW WParsedInt(nbstr,spell,target);
-      }else{
-        wpi = NEW WParsedInt(atoi(nbstr.c_str()));
-      }
-      nb = wpi->getValue();
-      delete(wpi);
-      end = separator;
+  string name = "";
+  size_t start = 0;
+  size_t end = s.length();
+  size_t separator = s.find(",", start);
+  if (separator == string::npos) separator = s.find(".", start);
+  if (separator != string::npos){
+    size_t separator2 = s.find(",", separator+1);
+    if (separator2 == string::npos) separator2 = s.find(".", separator+1);
+    if (separator2 != string::npos) {
+      name = s.substr(separator2+1,end-separator2-1);
+    }    
+    string nbstr = s.substr(separator+1,separator2-separator-1);
+    WParsedInt * wpi;
+    if (target){
+      wpi = NEW WParsedInt(nbstr,spell,target);
+    }else{
+      wpi = NEW WParsedInt(atoi(nbstr.c_str()));
     }
-    
-    string spt = s.substr(start,end-start);
-    int power, toughness;
-    if ( parsePowerToughness(spt,&power, &toughness)){
-      Counter * counter = NEW Counter(target,name.c_str(),power,toughness);
-      counter->nb = nb;
-      return counter;
-    }
-    return NULL;
+    nb = wpi->getValue();
+    delete(wpi);
+    end = separator;
+  }
+  
+  string spt = s.substr(start,end-start);
+  int power, toughness;
+  if ( parsePowerToughness(spt,&power, &toughness)){
+    Counter * counter = NEW Counter(target,name.c_str(),power,toughness);
+    counter->nb = nb;
+    return counter;
+  }
+  return NULL;
 }
 
 int AbilityFactory::parsePowerToughness(string s, int *power, int *toughness){
@@ -393,6 +393,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
   }
   if (found != string::npos && found < lord) {
+    //why does tc even exist here? This shouldn't happen...
+    SAFE_DELETE(tc); //http://code.google.com/p/wagic/issues/detail?id=424
+
      size_t header = thises[i].size();
      size_t end = s.find(")", found+header);
      string s1;
