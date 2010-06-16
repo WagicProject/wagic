@@ -1518,7 +1518,6 @@ Callow Jushi=Jushi novice
 Calming Licid=Litique calmant
 Calming Verse=Poeme apaisant
 Caltrops=Chausse-trappes
-Cancel=Revocation
 Candles' Glow=Lueur des bougies
 Candles of Leng=Bougies de Leng
 Canker Abomination=Abomination chancreuse
