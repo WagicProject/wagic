@@ -31040,13 +31040,6 @@ mana={3}
 type=Artifact
 [/card]
 [card]
-name=Null Brooch
-auto={2}{T}:fizzle target(*[-creature]|stack) && moveTo(graveyard) all(*|myhand)
-text={2}, {T}, Discard your hand: Counter target noncreature spell.
-mana={4}
-type=Artifact
-[/card]
-[card]
 name=Null Champion
 auto={3}:counter(0/0,1,Level Up) asSorcery
 auto=this(counter{0/0.1.Level Up}) 3/1
@@ -33662,13 +33655,6 @@ auto=fizzle
 text=Counter target creature spell.
 mana={1}{U}
 type=Instant
-[/card]
-[card]
-name=Presence of the Master
-auto=@movedTo(enchantment|stack):fizzle all(enchantment|stack)
-text=Whenever a player casts an enchantment spell, counter it.
-mana={3}{W}
-type=Enchantment
 [/card]
 [card]
 name=Presence of the Wise

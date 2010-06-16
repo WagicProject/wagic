@@ -24246,6 +24246,14 @@ power=4
 toughness=4
 [/card]
 [card]
+### Obviously never worked.
+name=Null Brooch
+auto={2}{T}:fizzle target(*[-creature]|stack) && moveTo(graveyard) all(*|myhand)
+text={2}, {T}, Discard your hand: Counter target noncreature spell.
+mana={4}
+type=Artifact
+[/card]
+[card]
 name=Null Chamber
 text=As Null Chamber enters the battlefield, you and an opponent each name a card other than a basic land card. -- The named cards can't be played.
 mana={3}{W}
@@ -26822,6 +26830,14 @@ text=Enchant creature -- Enchanted creature has "{T}: Put a 1/1 green Elf Warrio
 mana={2}{G}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+####Reported not to work. Maybe never worked at all. There are no tests in the test suite for this card.
+name=Presence of the Master
+auto=@movedTo(enchantment|stack):fizzle all(enchantment|stack)
+text=Whenever a player casts an enchantment spell, counter it.
+mana={3}{W}
+type=Enchantment
 [/card]
 [card]
 name=Pretender's Claim
