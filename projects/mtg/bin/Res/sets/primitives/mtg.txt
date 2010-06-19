@@ -13782,7 +13782,7 @@ toughness=1
 [card]
 name=Endless Wurm
 abilities=trample
-auto=@each my upkeep:moveTo(graveyard) notatarget(this,enchantment|myBattlefield)
+auto=upcost[{S(enchantment|myBattlefield)}] moveTo(mygraveyard)
 text=Trample -- At the beginning of your upkeep, sacrifice Endless Wurm unless you sacrifice an enchantment.
 mana={3}{G}{G}
 type=Creature
