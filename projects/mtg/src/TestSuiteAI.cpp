@@ -437,7 +437,7 @@ int TestSuite::loadNext(){
   if (currentfile >= nbfiles) return 0;
   currentfile++;
   if (!load(files[currentfile-1].c_str())) return loadNext();
-
+  else cout << "Starting test : " << files[currentfile-1] << endl;
   //load(files[currentfile].c_str());
   //currentfile++;
   return currentfile;
