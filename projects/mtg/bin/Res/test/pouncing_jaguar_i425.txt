@@ -1,0 +1,31 @@
+#Bug: Echo doesn't work
+# http://code.google.com/p/wagic/issues/detail?id=425
+[INIT]
+SECONDMAIN
+[PLAYER1]
+manapool:{G}
+inplay:forest
+hand:pouncing jaguar
+[PLAYER2]
+[DO]
+pouncing jaguar
+eot
+eot
+next
+#upkeep
+forest
+pouncing jaguar
+eot
+eot
+next
+#upkeep
+next
+#draw
+next
+#main
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:pouncing jaguar,forest
+[PLAYER2]
+[END]
