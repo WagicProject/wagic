@@ -26700,7 +26700,7 @@ toughness=3
 [card]
 name=Loxodon Hierarch
 auto=life:4
-auto={S}:regenerate all(creature|myBattlefield)
+auto={G}{W}{S}:regenerate all(creature|myBattlefield)
 text=When Loxodon Hierarch enters the battlefield, you gain 4 life. -- {G}{W}, Sacrifice Loxodon Hierarch: Regenerate each creature you control.
 mana={2}{G}{W}
 type=Creature
@@ -32817,7 +32817,7 @@ toughness=1
 [/card]
 [card]
 name=Phyrexian Bloodstock
-auto=@moveTo(this|exile,graveyard,hand,library) from(battlefield):bury target(creature[white])
+auto=@movedTo(this|exile,graveyard,hand,library) from(battlefield):bury target(creature[white])
 text=When Phyrexian Bloodstock leaves the battlefield, destroy target white creature. It can't be regenerated.
 mana={4}{B}
 type=Creature
@@ -47958,7 +47958,7 @@ mana={5}{B}
 [card]
 name=Undead Gladiator
 autohand={1}{B}:cycling
-autograveyard={1}{B}{S(*|myhand)}:moveTo(myBattlefield) myUpkeepOnly
+autograveyard={1}{B}{S(*|myhand)}:moveTo(myhand) myUpkeepOnly
 text={1}{B}, Discard a card: Return Undead Gladiator from your graveyard to your hand. Activate this ability only during your upkeep. -- Cycling {1}{B} ({1}{B}, Discard this card: Draw a card.)
 mana={1}{B}{B}
 type=Creature
