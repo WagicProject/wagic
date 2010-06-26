@@ -28043,7 +28043,7 @@ toughness=2
 [/card]
 [card]
 name=Merfolk Looter
-auto={T}:token(-1111130) && draw:2
+auto={T}:token(-1111130) && draw:1
 text={T}: Draw a card, then discard a card.
 mana={1}{U}
 type=Creature
