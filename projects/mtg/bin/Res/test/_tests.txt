@@ -456,6 +456,7 @@ windswept_heath.txt
 wrath_of_god.txt
 wrath_of_god2.txt
 wreak_havoc.txt
+Zombie_Infestation.txt
 zombie_master.txt
 zombify.txt
 ########################

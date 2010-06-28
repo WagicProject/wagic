@@ -1,0 +1,24 @@
+#Testing Zombie Infestation
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Swamp,Scathe Zombies
+inplay:Zombie Infestation
+[PLAYER2]
+life:20
+[DO]
+Zombie Infestation
+choice 0
+Swamp
+choice 0
+Scathe Zombies
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Zombie Infestation,*
+graveyard:Swamp,Scathe Zombies
+manapool:{0}
+life:20
+[PLAYER2]
+life:20
+[END]

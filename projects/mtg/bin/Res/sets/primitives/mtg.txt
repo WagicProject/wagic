@@ -1,6 +1,5 @@
 #Primitives Pack for Wagic the Homebrew.
-#Please keep these card alphabetized, and try to have the "name=" line at the top of each card
-[card]
+#Please keep these card alphabetized, and try to have the "name=" line at the top of each card[card]
 name=AErathi Berserker
 auto=rampage(3/3,1)
 text=Rampage 3 (Whenever this creature becomes blocked, it gets +3/+3 until end of turn for each creature blocking it beyond the first.)
@@ -53018,6 +53017,29 @@ type=Creature
 subtype=Zombie Giant
 power=4
 toughness=3
+[/card]
+[card]
+name=Zombie Infestation
+auto={0}:aslongas(*|myhand) token(-220579111) >1
+text=Discard two cards: Put a 2/2 black Zombie creature token onto the battlefield.
+mana={G}
+type=Enchantment
+[/card]
+[card]
+name=ZombInfs First Discard
+auto=moveto(mygraveyard) target(*|myhand)
+auto=@movedto(this|exile):token(-220579112)
+auto=moveto(exile) all(this)
+id=-220579111
+type=nothing
+[/card]
+[card]
+name=ZombInfs Second Discard
+auto=moveto(mygraveyard) target(*|myhand)
+auto=@movedto(this|exile):token(Zombie,creature zombie,2/2,black)
+auto=moveto(exile) all(this)
+id=-220579112
+type=nothing
 [/card]
 [card]
 name=Zombie Master
