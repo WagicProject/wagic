@@ -15690,7 +15690,7 @@ toughness=2
 [/card]
 [card]
 name=Flame Fusillade
-auto=lord(creature|myBattlefield) {T}:damage:1 target(creature,player)
+auto=lord(creature,enchantment,land,artifact|myBattlefield) {T}:damage:1 target(creature,player)
 text=Until end of turn, permanents you control gain "{T}: This permanent deals 1 damage to target creature or player."
 mana={3}{R}
 type=Sorcery
