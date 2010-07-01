@@ -1,5 +1,6 @@
 #Primitives Pack for Wagic the Homebrew.
-#Please keep these card alphabetized, and try to have the "name=" line at the top of each card[card]
+#Please keep these card alphabetized, and try to have the "name=" line at the top of each card
+[card]
 name=AErathi Berserker
 auto=rampage(3/3,1)
 text=Rampage 3 (Whenever this creature becomes blocked, it gets +3/+3 until end of turn for each creature blocking it beyond the first.)
@@ -44230,7 +44231,7 @@ toughness=1
 [/card]
 [card]
 name=Sunweb
-abilities=defender
+abilities=defender,flying
 auto=lord(creature[power<=2]) cantbeblockedby(sunweb)
 text=Defender (This creature can't attack.) -- Flying -- Sunweb can't block creatures with power 2 or less.
 mana={3}{W}
