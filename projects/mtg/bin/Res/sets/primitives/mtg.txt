@@ -50905,7 +50905,7 @@ type=Artifact
 [/card]
 [card]
 name=Wayfaring Giant
-auto=aslongas(forest|myBattlefield}) 1/1
+auto=aslongas(forest|myBattlefield) 1/1
 auto=aslongas(island|myBattlefield) 1/1
 auto=aslongas(plains|myBattlefield) 1/1
 auto=aslongas(mountain|myBattlefield) 1/1
