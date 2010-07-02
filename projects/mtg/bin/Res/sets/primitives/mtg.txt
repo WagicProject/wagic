@@ -32431,12 +32431,12 @@ name=Pelakka Wurm
 abilities=trample
 auto=life:7
 auto=@movedTo(this|mygraveyard) from(myBattlefield):draw:1 controller
-text=Defender -- {T}: Add {G} to your mana pool for each creature with defender you control.
-mana={1}{G}
+text=Trample -- When Pelakka Wurm enters the battlefield, you gain 7 life. -- When Pelakka Wurm is put into a graveyard from the battlefield, draw a card.
+mana={4}{G}{G}{G}
 type=Creature
-subtype=Wall
-power=0
-toughness=4
+subtype=Wurm
+power=7
+toughness=7
 [/card]
 [card]
 name=Pemmin's Aura
