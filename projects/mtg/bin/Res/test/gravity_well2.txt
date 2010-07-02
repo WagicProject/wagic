@@ -1,0 +1,24 @@
+#Testing Gravity Well with flying creature on player's side attacking, and Rishadan Airship (block only creature with flying)
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Tidehollow Strix,Gravity Well
+[PLAYER2]
+inplay:Rishadan Airship
+[DO]
+next
+next
+Tidehollow Strix
+next
+Rishadan Airship
+next
+next
+next
+[ASSERT]
+SECONDMAIN
+[PLAYER1]
+inplay:Gravity Well,Tidehollow Strix
+[PLAYER2]
+inplay:Rishadan Airship
+life:18
+[END]

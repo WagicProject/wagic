@@ -19077,8 +19077,7 @@ type=World Enchantment
 [/card]
 [card]
 name=Gravity Well
-auto=@each my blockers:-flying all(creature[attacking;flying]|opponentBattlefield)
-auto=@each opponent blockers:-flying all(creature[attacking;flying]|myBattlefield)
+auto=@each blockers:all(creature[attacking;flying]|battlefield) -flying
 text=Whenever a creature with flying attacks, it loses flying until end of turn.
 mana={1}{G}{G}
 type=Enchantment
@@ -31781,7 +31780,7 @@ toughness=6
 [/card]
 [card]
 name=Orim's Prayer
-auto=@each blockers step:foreach(creature[attacking]|opponentbattlefield) life:1
+auto=@each blockers:foreach(creature[attacking]|opponentbattlefield) life:1
 text=Whenever one or more creatures attack you, you gain 1 life for each attacking creature.
 mana={1}{W}{W}
 type=Enchantment

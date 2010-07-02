@@ -261,6 +261,8 @@ goblin_offensive.txt
 goblin_razerunners.txt
 golgari_germination_i153.txt
 gravedigger.txt
+gravity_well.txt
+gravity_well2.txt
 great_defender.txt
 hannas_custody.txt
 harpoon_sniper.txt
