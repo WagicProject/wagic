@@ -3612,7 +3612,7 @@ toughness=1
 [/card]
 [card]
 name=Battle-Rattle Shaman
-auto=@each my combatbegins:may 2/0 target(creature)
+auto=@each my combatbegins:may 2/0 target(creature) ueot
 text=At the beginning of combat on your turn, you may have target creature +2/+0 until end of turn.
 mana={3}{R}
 type=Creature
@@ -9311,15 +9311,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Crosis's Catacombs
-auto=aslongas(land[-lair]|myBattlefield) moveTo(ownerhand) notatarget(land[-lair]|myBattlefield)
-auto=moveTo(graveyard) notatarget(this|myBattlefield)
-auto=@movedTo(land[-lair]|myhand) from(myBattlefield):lord(crosis's catacombs) {T}:Add{U} && lord(crosis's catacombs) {T}:Add{B} && lord(crosis's catacombs) {T}:Add{R}
-text=When Crosis's Catacombs enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand. -- {T}: Add {U}, {B}, or {R} to your mana pool.
-type=Land
-subtype=Lair
-[/card]
-[card]
 name=Crosis's Charm
 auto=may moveTo(ownerhand) target(*)
 auto=may bury target(creature[-black])
@@ -9910,15 +9901,6 @@ type=Artifact Creature
 subtype=Golem
 power=3
 toughness=3
-[/card]
-[card]
-name=Darigaaz's Caldera
-auto=aslongas(land[-lair]|myBattlefield) moveTo(ownerhand) notatarget(land[-lair]|myBattlefield)
-auto=moveTo(graveyard) notatarget(this|myBattlefield)
-auto=@movedTo(land[-lair]|myhand) from(myBattlefield):lord(darigaaz's caldera) {T}:Add{B} && lord(darigaaz's caldera) {T}:Add{R} && lord(darigaaz's caldera) {T}:Add{G}
-text=When Darigaaz's Caldera enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand. -- {T}: Add {B}, {R}, or {G} to your mana pool.
-type=Land
-subtype=Lair
 [/card]
 [card]
 name=Darigaaz's Charm
@@ -12345,15 +12327,6 @@ type=Artifact Creature
 subtype=Golem
 power=3
 toughness=3
-[/card]
-[card]
-name=Dromar's Cavern
-auto=aslongas(land[-lair]|myBattlefield) moveTo(ownerhand) notatarget(land[-lair]|myBattlefield)
-auto=moveTo(graveyard) notatarget(this|myBattlefield)
-auto=@movedTo(land[-lair]|myhand) from(myBattlefield):lord(dromar's cavern) {T}:Add{W} && lord(dromar's cavern) {T}:Add{U} && lord(dromar's cavern) {T}:Add{B}
-text=When Dromar's Cavern enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand. -- {T}: Add {W}, {U}, or {B} to your mana pool.
-type=Land
-subtype=Lair
 [/card]
 [card]
 name=Dromar's Charm
@@ -36371,15 +36344,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Rith's Grove
-auto=aslongas(land[-lair]|myBattlefield) moveTo(ownerhand) notatarget(land[-lair]|myBattlefield)
-auto=moveTo(graveyard) notatarget(this|myBattlefield)
-auto=@movedTo(land[-lair]|myhand) from(myBattlefield):lord(rith's grove) {T}:Add{R} && lord(rith's grove) {T}:Add{G} && lord(rith's grove) {T}:Add{W}
-text=When Rith's Grove enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand. -- {T}: Add {R}, {G}, or {W} to your mana pool.
-type=Land
-subtype=Lair
-[/card]
-[card]
 name=Ritual of Restoration
 target=artifact|myGraveyard
 auto=moveto(myHand)
@@ -47385,15 +47349,6 @@ id=-1111143
 type=nothing
 [/card]
 [card]
-name=Treva's Ruins
-auto=aslongas(land[-lair]|myBattlefield) moveTo(ownerhand) notatarget(land[-lair]|myBattlefield)
-auto=moveTo(graveyard) notatarget(this|myBattlefield)
-auto=@movedTo(land[-lair]|myhand) from(myBattlefield):lord(treva's ruins) {T}:Add{G} && lord(treva's ruins) {T}:Add{W} && lord(treva's ruins) {T}:Add{U}
-text=When Treva's Ruins enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand. -- {T}: Add {G}, {W}, or {U} to your mana pool.
-type=Land
-subtype=Lair
-[/card]
-[card]
 name=Triassic Egg
 auto={3}{T}:counter(0/0,1,Hatchling)
 auto={C(0/0,-2,Hatchling)}{S}:moveTo(myBattlefield) target(creature|myhand,mygraveyard)
@@ -50199,7 +50154,7 @@ toughness=1
 [/card]
 [card]
 name=Walking Atlas
-auto={T}:may moveTo(myBattlefield) target(land|myhand)
+auto={T}:moveTo(myBattlefield) target(land|myhand)
 text={T}: You may put a land card from your hand onto the battlefield.
 mana={2}
 type=Artifact Creature

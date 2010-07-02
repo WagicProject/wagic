@@ -6748,6 +6748,12 @@ power=6
 toughness=6
 [/card]
 [card]
+name=Crosis's Catacombs
+text=When Crosis's Catacombs enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand. -- {T}: Add {U}, {B}, or {R} to your mana pool.
+type=Land
+subtype=Lair
+[/card]
+[card]
 name=Crown of Ascension
 text=Enchant creature -- Enchanted creature has flying. -- Sacrifice Crown of Ascension: Enchanted creature and other creatures that share a creature type with it gain flying until end of turn.
 mana={1}{U}
@@ -7284,6 +7290,12 @@ type=Legendary Creature
 subtype=Dragon
 power=6
 toughness=6
+[/card]
+[card]
+name=Darigaaz's Caldera
+text=When Darigaaz's Caldera enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand. -- {T}: Add {B}, {R}, or {G} to your mana pool.
+type=Land
+subtype=Lair
 [/card]
 [card]
 name=Dark Confidant
@@ -9193,6 +9205,12 @@ type=Legendary Creature
 subtype=Dragon
 power=6
 toughness=6
+[/card]
+[card]
+name=Dromar's Cavern
+text=When Dromar's Cavern enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand. -- {T}: Add {W}, {U}, or {B} to your mana pool.
+type=Land
+subtype=Lair
 [/card]
 [card]
 name=Droning Bureaucrats
@@ -29592,6 +29610,12 @@ mana={R}{G}{W}
 type=Instant
 [/card]
 [card]
+name=Rith's Grove
+text=When Rith's Grove enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand. -- {T}: Add {R}, {G}, or {W} to your mana pool.
+type=Land
+subtype=Lair
+[/card]
+[card]
 name=Rith, the Awakener
 text=Flying -- Whenever Rith, the Awakener deals combat damage to a player, you may pay {2}{G}. If you do, choose a color, then put a 1/1 green Saproling creature token onto the battlefield for each permanent of that color.
 mana={3}{R}{G}{W}
@@ -38016,6 +38040,12 @@ type=Legendary Creature
 subtype=Dragon
 power=6
 toughness=6
+[/card]
+[card]
+name=Treva's Ruins
+text=When Treva's Ruins enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand. -- {T}: Add {G}, {W}, or {U} to your mana pool.
+type=Land
+subtype=Lair
 [/card]
 [card]
 name=Trial // Error (Error)
