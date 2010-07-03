@@ -1,0 +1,25 @@
+#Testing Lightmine Field
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Living Airship,Loam Lion
+[PLAYER2]
+inplay:Lightmine Field
+[DO]
+next
+next
+Loam Lion
+Living Airship
+next
+next
+next
+next
+[ASSERT]
+SECONDMAIN
+[PLAYER1]
+inplay:Living Airship
+graveyard:Loam Lion
+[PLAYER2]
+inplay:Lightmine Field
+life:18
+[END]

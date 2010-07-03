@@ -311,6 +311,8 @@ lhurgoyf.txt
 liability.txt
 lifeforce.txt
 lifetap.txt
+lightmine_field1.txt
+lightmine_field2.txt
 living_artifact_i169.txt
 living_lands.txt
 lord_of_the_pit.txt

@@ -1,0 +1,23 @@
+#Testing Lightmine Field
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Runeclaw Bear,Grizzly Bears
+[PLAYER2]
+inplay:Lightmine Field
+[DO]
+next
+next
+Grizzly Bears
+Runeclaw Bear
+next
+next
+next
+[ASSERT]
+SECONDMAIN
+[PLAYER1]
+graveyard:Runeclaw Bear,Grizzly Bears
+[PLAYER2]
+inplay:Lightmine Field
+life:20
+[END]
