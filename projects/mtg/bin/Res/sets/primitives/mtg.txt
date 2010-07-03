@@ -450,7 +450,7 @@ toughness=1
 [card]
 name=Affa Guard Hound
 abilities=flash
-auto=0/3 target(creature)
+auto=0/3 target(creature) ueot
 text=Flash -- When Affa Guard Hound enters the battlefield, target creature gets +0/+3 until end of turn.
 mana={2}{W}
 type=Creature
