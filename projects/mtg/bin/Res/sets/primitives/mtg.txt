@@ -19747,6 +19747,19 @@ power=1
 toughness=3
 [/card]
 [card]
+name=Halimar Wavewatch
+auto={2}:counter(0/0,1,Level Up) asSorcery
+auto=this(counter{0/0.1.Level Up}) 0/3
+auto=this(counter{0/0.5.Level Up}) islandwalk
+auto=this(counter{0/0.5.Level Up}) 6/0
+text=Level up {2} -- [Level 1-4]: (0/6) -- [Level 5+]: Islandwalk (6/6)
+mana={1}{U}
+type=Creature
+subtype=Levelup Merfolk Soldier
+power=0
+toughness=3
+[/card]
+[card]
 name=Hallowed Fountain
 auto=tap
 auto=may untap && life:-2 controller
