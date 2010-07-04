@@ -6269,7 +6269,7 @@ toughness=2
 [card]
 name=Cadaver Imp
 abilities=flying
-auto=moveTo(myhand) target(creature|myBattlefield)
+auto=moveTo(myhand) target(creature|myGraveyard)
 text=Flying -- When Kadaver Imp enters the battlefield, return target creature card from your graveyard to your hand.
 mana={1}{B}{B}
 type=Creature
@@ -6609,6 +6609,7 @@ auto=moveTo(mygraveyard) target(*|myhand)
 auto=token(-1111116)
 text=Draw two cards, then discard two cards.
 mana={U}
+
 type=Sorcery
 [/card]
 [card]
