@@ -33964,7 +33964,7 @@ subtype=Elf
 [/card]
 [card]
 name=Prowling Nightstalker
-auto=cantbeblockedby(creature[-black]
+auto=cantbeblockedby(creature[-black])
 text=Prowling Nightstalker can't be blocked except by black creatures.
 mana={3}{B}
 type=Creature
