@@ -2194,7 +2194,7 @@ toughness=4
 [/card]
 [card]
 name=Armored Griffin
-auto=flying,vigilance
+abilities=flying,vigilance
 text=Flying, vigilance
 mana={3}{W}
 type=Creature
@@ -6690,7 +6690,7 @@ toughness=1
 [/card]
 [card]
 name=Carrion Howler
-auto={0}:2/1 && life:-1 controller
+auto={0}:2/-1 && life:-1 controller
 text=Pay 1 life: Carrion Howler gets +2/-1 until end of turn.
 mana={3}{B}
 type=Creature
@@ -45055,7 +45055,7 @@ subtype=Aura
 [/card]
 [card]
 name=Tawnos's Wand
-auto={T}:unblockable target(creature[power<=2])
+auto={2}{T}:unblockable target(creature[power<=2])
 text={2}, {T}: Target creature with power 2 or less is unblockable this turn.
 mana={4}
 type=Artifact
