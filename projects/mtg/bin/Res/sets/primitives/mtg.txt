@@ -4681,9 +4681,9 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Blood Throne Vampire
+name=Bloodthrone Vampire
 auto={S(creature|myBattlefield)}:2/2
-text=Sacrifice a creature: Blood Throne Vampire gets +2/+2 until end of turn.
+text=Sacrifice a creature: Bloodthrone Vampire gets +2/+2 until end of turn.
 mana={1}{B}
 type=Creature
 subtype=Vampire
@@ -24201,7 +24201,7 @@ type=Legendary Land
 [card]
 name=Kiki-Jiki, Mirror Breaker
 abilities=haste
-auto=aslongas(creature[-legendary]|myBattlefield) {T}:token(5032111)
+auto=aslongas(creature[-legendary]|myBattlefield) {T}:token(-5032111)
 text=Tap: Put a token that's a copy of target nonlegendary creature you control onto the battlefield. That token has haste. Sacrifice it at the beginning of the next end step.
 mana={2}{R}{R}{R}
 type=Legendary Creature
@@ -24278,7 +24278,7 @@ type=Instant
 [/card]
 [card]
 name=King Cheetah
-abilities=shroud
+abilities=flash
 text=Flash
 mana={3}{G}
 type=Creature
@@ -25347,8 +25347,8 @@ toughness=3
 [card]
 name=Lake of the Dead
 auto=moveTo(graveyard) notatarget(this|myBattlefield)
-auto=moveTo(graveyard) notatarget(swamp[-tapped]|myBattlefield)
-auto=@movedTo(swamp[-tapped]|mygraveyard) from(myBattlefield):lord(this|myBattlefield) {T}:Add{B} && lord(this|myBattlefield) {T}{S(swamp|myBattlefield)}:Add{B}{B}{B}{B}
+auto=moveTo(graveyard) notatarget(swamp|myBattlefield)
+auto=@movedTo(swamp|mygraveyard) from(myBattlefield):lord(this|myBattlefield) {T}:Add{B} && lord(this|myBattlefield) {T}{S(swamp|myBattlefield)}:Add{B}{B}{B}{B}
 text=If Lake of the Dead would enter the battlefield, sacrifice a Swamp instead. If you do, put Lake of the Dead onto the battlefield. If you don't, put it into its owner's graveyard. -- {T}: Add {B} to your mana pool. -- {T}, Sacrifice a Swamp: Add {B}{B}{B}{B} to your mana pool.
 type=Land
 [/card]
@@ -29012,8 +29012,8 @@ type=Instant
 name=Momentum
 target=creature
 auto=@each my upkeep:counter(0/0,1,Growth)
-auto=thisforeach(counter{0/0.1.Growth}) damage:1 target(creature,player)
-text=Enchant creature -- At the beginning of your upkeep, you may put a fuse counter on Incendiary. -- When enchanted creature is put into a graveyard, Incendiary deals X damage to target creature or player, where X is the number of fuse counters on Incendiary.
+auto=thisforeach(counter{0/0.1.Growth}) 1/1
+text=Enchant creature -- At the beginning of your upkeep, you may put a growth counter on Momentum. -- Enchanted creature gets +1/+1 for each growth counter on Momentum.
 mana={2}{G}
 type=Enchantment
 subtype=Aura
@@ -29905,17 +29905,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Mystic Snake
-abilities=flash
-auto=fizzle target(*|stack)
-text=Flash (You may cast this spell any time you could cast an instant.) -- When Mystic Snake enters the battlefield, counter target spell.
-mana={1}{G}{U}{U}
-type=Creature
-subtype=Snake
-power=2
-toughness=2
-[/card]
-[card]
 name=Mystic Zealot
 auto=aslongas(*|mygraveyard) 1/1 >6
 auto=aslongas(*|mygraveyard) flying >6
@@ -30189,7 +30178,7 @@ type=Sorcery
 [/card]
 [card]
 name=Nature's Spiral
-target=*|myGraveyard
+target=artifact,creature,enchantment,land|myGraveyard
 auto=moveTo(myHand)
 text=Return target permanent card from your graveyard to your hand. (A permanent card is an artifact, creature, enchantment, land, or planeswalker card.)
 mana={1}{G}
@@ -39158,7 +39147,7 @@ toughness=2
 [card]
 name=Sheltering Ancient
 abilities=trample
-auto=@each my upkeep:thisforeach(counter{0/0.1.Age}) counter(1/1) all(creature|opponentBattlefield)
+auto=@each my upkeep:thisforeach(counter{0/0.1.Age}) counter(1/1) target(creature|opponentBattlefield)
 auto=@each my upkeep:may moveTo(mygraveyard)
 auto=@each my upkeep:counter(0/0,1,Age)
 text=Trample -- Cumulative upkeep - Put a +1/+1 counter on a creature an opponent controls. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
@@ -48428,21 +48417,6 @@ power=0
 toughness=2
 [/card]
 [card]
-name=Utopia Vow
-target=creature
-auto=cantattack
-auto=cantblock
-auto={T}:Add{W}
-auto={T}:Add{U}
-auto={T}:Add{B}
-auto={T}:Add{R}
-auto={T}:Add{G}
-text=Enchant creature -- Enchanted creature can't attack or block. -- Enchanted creature has "{T}: Add one mana of any color to your mana pool."
-mana={1}{G}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Utvara Scalper
 abilities=flying,mustattack
 text=Flying -- Utvara Scalper attacks each turn if able.
@@ -49393,7 +49367,7 @@ type=Sorcery
 [/card]
 [card]
 name=Vindictive Mob
-auto=moveTo(ownergraveyard) notatarget(creature)
+auto=moveTo(ownergraveyard) notatarget(creature|myBattlefield)
 auto=cantbeblockedby(saproling)
 text=When Vindictive Mob enters the battlefield, sacrifice a creature. -- Vindictive Mob can't be blocked by Saprolings.
 mana={4}{B}{B}

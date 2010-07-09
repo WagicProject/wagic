@@ -23239,6 +23239,15 @@ mana={U}
 type=Enchantment
 [/card]
 [card]
+name=Mystic Snake
+text=Flash (You may cast this spell any time you could cast an instant.) -- When Mystic Snake enters the battlefield, counter target spell.
+mana={1}{G}{U}{U}
+type=Creature
+subtype=Snake
+power=2
+toughness=2
+[/card]
+[card]
 name=Mystic Speculation
 text=Buyback {2} (You may pay an additional {2} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Scry 3. (To scry 3, look at the top three cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
 mana={U}
@@ -38701,6 +38710,13 @@ type=Instant
 name=Utopia Sprawl
 text=Enchant Forest -- As Utopia Sprawl enters the battlefield, choose a color. -- Whenever enchanted Forest is tapped for mana, its controller adds one mana of the chosen color to his or her mana pool (in addition to the mana the land produces).
 mana={G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Utopia Vow
+text=Enchant creature -- Enchanted creature can't attack or block. -- Enchanted creature has "{T}: Add one mana of any color to your mana pool."
+mana={1}{G}
 type=Enchantment
 subtype=Aura
 [/card]
