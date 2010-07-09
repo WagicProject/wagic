@@ -474,6 +474,15 @@ subtype=Ajani
 loyalty=3
 [/card]
 [card]
+name=Ajani's Pridemate
+text=Whenever you gain life, you may put a +1/+1 counter on Ajani's Pridemate.
+mana={1}{W}
+type=Creature
+subtype=Cat Soldier
+power=2
+toughness=2
+[/card]
+[card]
 name=Akki Blizzard-Herder
 text=When Akki Blizzard-Herder is put into a graveyard from the battlefield, each player sacrifices a land.
 mana={1}{R}
@@ -891,6 +900,15 @@ name=Angelic Benediction
 text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.) -- Whenever a creature you control attacks alone, you may tap target creature.
 mana={3}{W}
 type=Enchantment
+[/card]
+[card]
+name=Angelic Arbiter
+text=Flying -- Each opponent who cast a spell this turn can't attack with creatures. -- Each opponent who attacked with creatures this turn can't cast spells.
+mana={5}{W}{W}
+type=Creature
+subtype=Angel
+power=5
+toughness=6
 [/card]
 [card]
 name=Angelic Favor
@@ -1623,6 +1641,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Augury Owl
+abilities=flying
+text=Flying -- When Augury Owl enters the battlefield, scry 3.
+mana={1}{U}
+type=Creature
+subtype=Owl
+power=1
+toughness=1
+[/card]
+[card]
 name=Auntie's Snitch
 text=Auntie's Snitch can't block. -- Prowl {1}{B} (You may cast this for its prowl cost if you dealt combat damage to a player this turn with a Goblin or Rogue.) -- Whenever a Goblin or Rogue you control deals combat damage to a player, if Auntie's Snitch is in your graveyard, you may return Auntie's Snitch to your hand.
 mana={2}{B}
@@ -1755,6 +1783,12 @@ type=Creature
 subtype=Wurm
 power=9
 toughness=14
+[/card]
+[card]
+name=Autumn's Veil
+text=Spells you control can't be countered by blue or black spells this turn, and creatures you control can't be the targets of blue or black spells this turn.
+mana={G}
+type=Instant
 [/card]
 [card]
 name=Avalanche
@@ -3179,6 +3213,15 @@ mana={B}
 type=Enchantment
 [/card]
 [card]
+name=Bloodcrazed Goblin
+text=Bloodcrazed Goblin can't attack unless an opponent was dealt noncombat damage this turn.
+mana={R}
+type=Creature
+subtype=Goblin Berserker
+power=2
+toughness=2
+[/card]
+[card]
 name=Bloodcurdler
 text=Flying -- At the beginning of your upkeep, put the top card of your library into your graveyard. -- Threshold - As long as seven or more cards are in your graveyard, Bloodcurdler gets +1/+1 and has "At the beginning of your end step, exile two cards from your graveyard."
 mana={1}{B}
@@ -4574,6 +4617,15 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Captivating Vampire 
+text=Other Vampire creatures you control get +1/+1. -- Tap five untapped Vampires you control: Gain control of target creature. It becomes a Vampire in addition to its other types. (This effect doesn't end at end of turn)
+mana={1}{B}{B}
+type=Creature
+subtype=Vampire
+power=2
+toughness=2
+[/card]
+[card]
 name=Capture of Jingzhou
 text=Take an extra turn after this one.
 mana={3}{U}{U}
@@ -5133,6 +5185,16 @@ mana={3}{R}{R}
 type=Planeswalker
 subtype=Chandra
 loyalty=6
+[/card]
+[card]
+name=Chandra's Spitfire
+abilities=flying
+text=Flying -- Whenever an opponent is dealt noncombat damage, Chandra's Spitfire gets +3/+0 until end of turn.
+mana={2}{R}
+type=Creature
+subtype=Elemental
+power=1
+toughness=3
 [/card]
 [card]
 name=Change of Heart
@@ -6240,6 +6302,16 @@ mana={2}{U}{U}
 type=Instant
 [/card]
 [card]
+name=Conundrum Sphinx
+abilities=flying
+text=Flying -- Whenever Conundrum Sphinx attacks, each player names a card. Then each player reveals the top card of his or her library. If the card a player revealed is the card he or she named, that player puts that card into his or her hand. If it's not, that player puts it on the bottom of his or her library.
+mana={2}{U}{U}
+type=Creature
+subtype=Sphinx
+power=4
+toughness=4
+[/card]
+[card]
 name=Convalescence
 text=At the beginning of your upkeep, if you have 10 or less life, you gain 1 life.
 mana={1}{W}
@@ -6949,6 +7021,12 @@ mana={3}{B}
 type=Enchantment
 [/card]
 [card]
+name=Crystal Ball
+text={1}, {T}: Scry 2.
+mana={3}
+type=Artifact
+[/card]
+[card]
 name=Crystal Golem
 text=At the beginning of your end step, Crystal Golem phases out. (While it's phased out, it's treated as though it doesn't exist. It phases in before you untap during your next untap step.)
 mana={4}
@@ -6990,6 +7068,12 @@ name=Culling Scales
 text=At the beginning of your upkeep, destroy target nonland permanent with the lowest converted mana cost. (If two or more permanents are tied for lowest cost, target any one of them.)
 mana={3}
 type=Artifact
+[/card]
+[card]
+name=Cultivate
+text=Search your library for up to two basic land cards, reveal those cards, and put one onto the battlefield tapped and the other in your hand. Then shuffle your library.
+mana={2}{G}
+type=Sorcery
 [/card]
 [card]
 name=Cultural Exchange
@@ -7196,6 +7280,15 @@ mana={4}
 type=Artifact
 [/card]
 [card]
+name=Cyclops Gladiator
+text=When Cyclops Gladiator attacks, you may have it deal damage equal to its power to target creature defending player controls. If you do, that creature deals damage equal to its power to Cyclops Gladiator.
+mana={1}{R}{R}{R}
+type=Creature
+subtype=Giant
+power=4
+toughness=4
+[/card]
+[card]
 name=Cytoplast Manipulator
 text=Graft 2 (This creature enters the battlefield with two +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {U}, {T}: Gain control of target creature with a +1/+1 counter on it for as long as Cytoplast Manipulator remains on the battlefield.
 mana={2}{U}{U}
@@ -7341,6 +7434,12 @@ name=Dark Triumph
 text=If you control a Swamp, you may sacrifice a creature rather than pay Dark Triumph's mana cost. -- Creatures you control get +2/+0 until end of turn.
 mana={4}{B}
 type=Instant
+[/card]
+[card]
+name=Dark Tutelage
+text=At the beginning of your upkeep, reveal the top card of your library and put that card into your hand. You lose life equal to its converted mana cost.
+mana={2}{B}
+type=Enchantment
 [/card]
 [card]
 name=Dark Withering
@@ -8099,6 +8198,15 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Demon of Death's Gate 
+text=Flying, trample -- You may pay 6 life and sacrifice three black creatures rather than pay Demon of Death's Gate's mana cost.
+mana={6}{B}{B}{B}
+type=Creature
+subtype=Demon
+power=9
+toughness=9
+[/card]
+[card]
 name=Demonspine Whip
 text={X}: Equipped creature gets +X/+0 until end of turn. -- Equip {1}
 mana={B}{R}
@@ -8216,6 +8324,12 @@ name=Destructive Flow
 text=At the beginning of each player's upkeep, that player sacrifices a nonbasic land.
 mana={B}{R}{G}
 type=Enchantment
+[/card]
+[card]
+name=Destructive Force
+text=Each player sacrifices five lands. Destructive force deals 5 damage to each creature.
+mana={5}{R}{R}
+type=Sorcery
 [/card]
 [card]
 name=Destructive Urge
@@ -8366,6 +8480,12 @@ name=Dimensional Breach
 text=Exile all permanents. For as long as any of those cards remain exiled, at the beginning of each player's upkeep, that player returns one of the exiled cards he or she owns to the battlefield.
 mana={5}{W}{W}
 type=Sorcery
+[/card]
+[card]
+name=Diminish
+text=Target creature becomes a 1/1 until end of turn.
+mana={U}
+type=Instant
 [/card]
 [card]
 name=Diminishing Returns
@@ -11752,6 +11872,15 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Fire Servant
+text=If a Red instant or sorcery spell you control would deal damage to a creature or player, it deals double that damage to that creature or player instead.
+mana={3}{R}{R}
+type=Creature
+subtype=Elemental
+power=4
+toughness=3
+[/card]
+[card]
 name=Fire Whip
 text=Enchant creature you control -- Enchanted creature has "{T}: This creature deals 1 damage to target creature or player." -- Sacrifice Fire Whip: Fire Whip deals 1 damage to target creature or player.
 mana={1}{R}
@@ -12739,6 +12868,15 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Frost Titan
+text=Whenever Frost Titan becomes the target of a spell or ability and opponent controls, counter that spell or ability unless its controller pays {2}. -- Whenever Frost Titan enters the battlefield or attacks, tap target permanent. That permanent doesn't untap during its controller's next untap step.
+mana={4}{U}{U}
+type=Creature
+subtype=Giant
+power=6
+toughness=6
+[/card]
+[card]
 name=Frostweb Spider
 text=Reach (This creature can block creatures with flying.) -- Whenever Frostweb Spider blocks a creature with flying, put a +1/+1 counter on Frostweb Spider at end of combat.
 mana={2}{G}
@@ -12967,6 +13105,15 @@ type=Creature
 subtype=Avatar
 power=*
 toughness=*
+[/card]
+[card]
+name=Gaea's Revenge
+text=Gaea's Revenge can't be countered. -- Haste -- Gaea's Revenge can't be the target of nongreen spells or abilities from nongreen sources.
+mana={5}{G}{G}
+type=Creature
+subtype=Elemental
+power=8
+toughness=5
 [/card]
 [card]
 name=Gaea's Touch
@@ -14522,6 +14669,15 @@ text=You may cast Grave Servitude as though it had flash. If you cast it any tim
 mana={1}{B}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Grave Titan
+text=Deathtouch -- Whenever Grave Titan enters the battlefield or attacks, put two 2/2 black Zombie creature tokens onto the battlefield.
+mana={4}{G}{G}
+type=Creature
+subtype=Giant
+power=6
+toughness=6
 [/card]
 [card]
 name=Grave-Shell Scarab
@@ -16084,6 +16240,16 @@ mana={3}{B}
 type=Sorcery
 [/card]
 [card]
+name=Hoarding Dragon
+abilities=flying
+text=Flying -- When Hoarding Dragon enters the battlefield, you may search your library for an artifact card, exile it, then shuffle your library. -- When Hoarding Dragon is put into a graveyard from the battlefield, you may put the exiled card into its owner's hand.
+mana={3}{R}{R}
+type=Creature
+subtype=Dragon
+power=4
+toughness=4
+[/card]
+[card]
 name=Hobble
 text=Enchant creature -- When Hobble enters the battlefield, draw a card. -- Enchanted creature can't attack. -- Enchanted creature can't block if it's black.
 mana={2}{W}
@@ -16861,6 +17027,12 @@ mana={3}{R}{R}
 type=Sorcery
 [/card]
 [card]
+name=Incite
+text=Target creature becomes red until end of turn and attacks this turn if able.
+mana={R}
+type=Instant
+[/card]
+[card]
 name=Incite Hysteria
 text=Radiance - Until end of turn, target creature and each other creature that shares a color with it gain "This creature can't block."
 mana={2}{R}
@@ -17021,6 +17193,16 @@ type=Creature
 subtype=Elemental
 power=4
 toughness=4
+[/card]
+[card]
+name=Inferno Titan
+auto={R}:1/0
+text={R}: Inferno Titan gets +1/+0 until end of turn. -- Whenever Inferno Titan enters the battlefield or attacks, it deals 3 damage divided as you choose among one, two or three target creatures and/or players.
+mana={4}{R}{R}
+type=Creature
+subtype=Giant
+power=6
+toughness=6
 [/card]
 [card]
 name=Inferno Trap
@@ -19644,6 +19826,12 @@ mana={3}{G}
 type=Enchantment
 [/card]
 [card]
+name=Leyline of Anticipation
+text=If Leyline of Anticipation is in your opening hand, you may begin the game with it on the battlefield. -- You may cast nonland cards as though they had flash.
+mana={2}{U}{U}
+type=Enchantment
+[/card]
+[card]
 name=Leyline of Lifeforce
 text=If Leyline of Lifeforce is in your opening hand, you may begin the game with it on the battlefield. -- Creature spells can't be countered.
 mana={2}{G}{G}
@@ -19656,6 +19844,18 @@ mana={2}{R}{R}
 type=Enchantment
 [/card]
 [card]
+name=Leyline of Punishment
+text=If Leyline of Punishment is in your opening hand, you may begin the game with it on the battlefield. -- Players can't gain life. -- Damage can't be prevented.
+mana={2}{R}{R}
+type=Enchantment
+[/card]
+[card]
+name=Leyline of Sanctity
+text=If Leyline of Sanctity is in your opening hand, you may begin the game with it on the battlefield. -- You can't be the target of spells or abilities your opponents control.
+mana={2}{W}{W}
+type=Enchantment
+[/card]
+[card]
 name=Leyline of Singularity
 text=If Leyline of Singularity is in your opening hand, you may begin the game with it on the battlefield. -- All nonland permanents are legendary.
 mana={2}{U}{U}
@@ -19665,6 +19865,12 @@ type=Enchantment
 name=Leyline of the Meek
 text=If Leyline of the Meek is in your opening hand, you may begin the game with it on the battlefield. -- Creature tokens get +1/+1.
 mana={2}{W}{W}
+type=Enchantment
+[/card]
+[card]
+name=Leyline of Vitality
+text=If Leyline of Sanctity is in your opening hand, you may begin the game with it on the battlefield. -- Creatures you control get +0/+1. -- Whenever a creature enters the battlefield under your control, you gain 1 life.
+mana={2}{G}{G}
 type=Enchantment
 [/card]
 [card]
@@ -19919,6 +20125,16 @@ mana={3}{B}{B}
 type=Planeswalker
 subtype=Liliana
 loyalty=5
+[/card]
+[card]
+name=Liliana's Specter
+abilities=flying
+text=Flying -- When Liliana's Specter enters the battlefield, each opponent discards a card.
+mana={1}{B}{B}
+type=Creature
+subtype=Specter
+power=2
+toughness=1
 [/card]
 [card]
 name=Lilting Refrain
@@ -21279,6 +21495,12 @@ mana={2}{B}{B}
 type=Sorcery
 [/card]
 [card]
+name=Mass Polymorph
+text=Exile all creatures you control, then reveal cards from the top of your library until you reveal that many creature cards. Put all creature cards revealed this way onto the battlefield and shuffle the rest into your library.
+mana={5}{U}
+type=Enchantment
+[/card]
+[card]
 name=Master Apothecary
 text=Tap an untapped Cleric you control: Prevent the next 2 damage that would be dealt to target creature or player this turn.
 mana={W}{W}{W}
@@ -21621,6 +21843,15 @@ type=Creature
 subtype=Merfolk Wizard
 power=2
 toughness=2
+[/card]
+[card]
+name=Merfolk Spy
+text=Islandwalk -- Whenever Merfolk Spy deals combat damage to a player, that player reveals a card at random from his or her hand.
+mana={1}{U}
+type=Creature
+subtype=Merfolk Rogue
+power=1
+toughness=1
 [/card]
 [card]
 name=Merfolk Thaumaturgist
@@ -23282,6 +23513,11 @@ mana={U}
 type=Instant
 [/card]
 [card]
+name=Mystifying Maze
+text={T}: Add {1} to your mana pool. -- {4}, {T}: Exile target attacking creature an opponent controls. At the beginning of the next end step, return it to the battlefield tapped under its owner's control.
+type=Land
+[/card]
+[card]
 name=Nacatl Hunt-Pride
 abilities=vigilance
 auto={R}{T}:cantblock target(creature)
@@ -23607,6 +23843,14 @@ type=Creature
 subtype=Elemental
 power=1
 toughness=4
+[/card]
+[card]
+name=Necrotic Plague
+target=creature
+text=Enchant creature -- Enchanted creature has "At the beginning of your upkeep, sacrifice this creature." -- When enchanted creature is put into a graveyard, its controller chooses target creature one of his or her opponents controls. Return Necrotic Plague from its owner's graveyard to the battlefield attached to that creature.
+mana={2}{B}{B}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Needle Drop
@@ -24463,6 +24707,16 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Obstinate Baloth
+auto=life:4
+text=When Obstinate Baloth enters the battlefield, you gain 4 life. -- If a spell or ability an opponent controls causes you to discard Hardheaded Baloth, put it onto the battlefield instead of putting it into your graveyard.
+mana={2}{G}{G}
+type=Creature
+subtype=Beast
+power=4
+toughness=4
+[/card]
+[card]
 name=Obstinate Familiar
 text=If you would draw a card, you may skip that draw instead.
 mana={R}
@@ -25249,6 +25503,12 @@ mana={2}{G}
 type=Enchantment
 [/card]
 [card]
+name=Overwhelming Stampede
+text=Creatures you control get +X/+X and gain trample until end of turn, where X is the highest power among creatures you control.
+mana={3}{G}{G}
+type=Sorcery
+[/card]
+[card]
 name=Ovinize
 text=Target creature loses all abilities and becomes 0/1 until end of turn.
 mana={1}{U}
@@ -26000,6 +26260,15 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Phantom Beast
+text=When Phantom Beast becomes the target of a spell or ability, sacrifice it.
+mana={3}{U}
+type=Creature
+subtype=Illusion Beast
+power=4
+toughness=5
+[/card]
+[card]
 name=Phantom Centaur
 text=Protection from black -- Phantom Centaur enters the battlefield with three +1/+1 counters on it. -- If damage would be dealt to Phantom Centaur, prevent that damage. Remove a +1/+1 counter from Phantom Centaur.
 mana={2}{G}{G}
@@ -26073,6 +26342,15 @@ name=Phthisis
 text=Destroy target creature. Its controller loses life equal to its power plus its toughness. -- Suspend 5 - {1}{B} (Rather than cast this card from your hand, you may pay {1}{B} and exile it with five time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
 mana={3}{B}{B}{B}{B}
 type=Sorcery
+[/card]
+[card]
+name=Phylactery Lich
+text=As Phylactery Lich enters the battlefield, put a Phylactery counter on an artifact you control. -- Phylactery Lich is indestructible. -- When you control no permanents with phylactery counters on them, sacrifice Phylactery Lich.
+mana={B}{B}{B}
+type=Creature
+subtype=Zombie
+power=5
+toughness=5
 [/card]
 [card]
 name=Phyrexian Boon
@@ -26852,6 +27130,12 @@ mana={1}{B}
 type=Sorcery
 [/card]
 [card]
+name=Preordain
+text=Scry 2, then draw a card.
+mana={U}
+type=Sorcery
+[/card]
+[card]
 name=Presence of Gond
 text=Enchant creature -- Enchanted creature has "{T}: Put a 1/1 green Elf Warrior creature token onto the battlefield."
 mana={2}{G}
@@ -26918,6 +27202,14 @@ power=*
 toughness=*
 [/card]
 [card]
+name=Primal Cocoon
+target=creature
+text=Enchant creature -- Enchanted creature has "At the beginning of your upkeep, sacrifice this creature." -- When enchanted creature is put into a graveyard, its controller chooses target creature one of his or her opponents controls. Return Necrotic Plague from its owner's graveyard to the battlefield attached to that creature.
+mana={G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Primal Command
 text=Choose two - Target player gains 7 life; or put target noncreature permanent on top of its owner's library; or target player shuffles his or her graveyard into his or her library; or search your library for a creature card, reveal it, put it into your hand, then shuffle your library.
 mana={3}{G}{G}
@@ -26980,6 +27272,15 @@ name=Primeval Light
 text=Destroy all enchantments target player controls.
 mana={3}{G}
 type=Sorcery
+[/card]
+[card]
+name=Primeval Titan
+text=Trample -- Whenever Primeval Titan enters the battlefield or attacks, you may search your library for up to two land cards, put them onto the battlefield tapped, then shuffle your library.
+mana={4}{G}{G}
+type=Creature
+subtype=Giant
+power=6
+toughness=6
 [/card]
 [card]
 name=Primitive Etchings
@@ -28651,6 +28952,12 @@ mana={1}{W}
 type=Instant
 [/card]
 [card]
+name=Redirect
+text=You may choose new targets for target spell.
+mana={U}{U}
+type=Instant
+[/card]
+[card]
 name=Reef Shaman
 text={T}: Target land becomes the basic land type of your choice until end of turn.
 mana={U}
@@ -29086,6 +29393,12 @@ type=Creature
 subtype=Spirit
 power=4
 toughness=3
+[/card]
+[card]
+name=Reverberate
+text=Copy target instant or sorcery spell. You may choose new targets for the copy.
+mana={R}{R}
+type=Instant
 [/card]
 [card]
 name=Reverberation
@@ -31732,6 +32045,15 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Serra Ascendant
+text=Lifelink -- As long as you have 30 or more life, Serra Ascendant gets +5/+5 and has flying.
+mana={W}
+type=Creature
+subtype=Human Monk
+power=1
+toughness=1
+[/card]
+[card]
 name=Serra Avatar
 text=Serra Avatar's power and toughness are each equal to your life total. -- When Serra Avatar is put into a graveyard from anywhere, shuffle it into its owner's library.
 mana={4}{W}{W}{W}
@@ -33701,6 +34023,12 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Sorcerer's Strongbox
+text={2}, {T}: Flip a coin. If you win the flip, sacrifice Sorcerer's Strongbox and draw three cards.
+mana={4}
+type=Artifact
+[/card]
+[card]
 name=Sorceress Queen
 text={T}: Target creature other than Sorceress Queen becomes 0/2 until end of turn.
 mana={1}{B}{B}
@@ -34663,6 +34991,16 @@ mana={U}
 type=Instant
 [/card]
 [card]
+name=Squadron Hawk
+abilities=flying
+text=Flying -- When Squardon Hawk enters the battlefield, you may search your library for up to three cards named Squadron Hawk, reveal them, put them into your hand, then shuffle your library.
+mana={1}{W}
+type=Creature
+subtype=Bird
+power=1
+toughness=1
+[/card]
+[card]
 name=Squallmonger
 text={2}: Squallmonger deals 1 damage to each creature with flying and each player. Any player may activate this ability.
 mana={3}{G}
@@ -35229,6 +35567,15 @@ type=Creature
 subtype=Bird
 power=1
 toughness=1
+[/card]
+[card]
+name=Stormtide Leviathan
+text=Islandwalk -- All lands are Islands in addition to their original type. -- Creatures without flying or islandwalk can't attack.
+mana={5}{U}{U}{U}
+type=Creature
+subtype=Leviathan
+power=8
+toughness=8
 [/card]
 [card]
 name=Story Circle
@@ -39013,6 +39360,15 @@ power=3
 toughness=1
 [/card]
 [card]
+name=Vengeful Archon
+text=Flying -- {X}: Prevent the next X damage that would be dealt to you this turn. If damage is prevented this way, Vengeful Archon deals that much damage to target player.
+mana={4}{W}{W}{W}
+type=Creature
+subtype=Archon
+power=7
+toughness=7
+[/card]
+[card]
 name=Vengeful Dreams
 text=As an additional cost to cast Vengeful Dreams, discard X cards. -- Exile X target attacking creatures.
 mana={W}{W}
@@ -39391,6 +39747,15 @@ text=All Sliver creatures have poisonous 1. (Whenever a Sliver deals combat dama
 mana={G}
 type=Creature
 subtype=Sliver
+power=1
+toughness=1
+[/card]
+[card]
+name=Viscera Seer
+text=Sacrifice a creature: Scry 1
+mana={B}
+type=Creature
+subtype=Vampire Wizard
 power=1
 toughness=1
 [/card]
@@ -40603,6 +40968,12 @@ type=Creature
 subtype=Hound
 power=2
 toughness=1
+[/card]
+[card]
+name=Wild Evocation
+text=At the beginning of each player's upkeep, that player reveals a card at random from his or her hand. If it's a land card, the player puts in onto battlefield. Otherwise, the players casts it without paying its mana cost if able.
+mana={5}{R}
+type=Instant
 [/card]
 [card]
 name=Wild Growth

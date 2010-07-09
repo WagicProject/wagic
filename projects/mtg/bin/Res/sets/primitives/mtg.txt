@@ -11,6 +11,16 @@ power=2
 toughness=4
 [/card]
 [card]
+name=AEther Adept
+auto=moveTo(ownerhand) target(creature)
+text=When Æther Adept enters the battlefield, return target creature to its owner's hand.
+mana={1}{U}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
+[/card]
+[card]
 name=AEther Charge
 auto=@movedTo(beast|myBattlefield):may damage:4 opponent
 text=Whenever a Beast enters the battlefield under your control, you may have it deal 4 damage to target opponent.
@@ -560,11 +570,29 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Air Servant
+abilities=flying
+auto={2}{U}:tap target(creature[flying])
+text={2}{U}:Tap target creature with flying.
+mana={1}{U}{U}
+type=Creature
+subtype=Elemental
+power=4
+toughness=3
+[/card]
+[card]
 name=Airborne Aid
 auto=foreach(bird|battlefield) draw:1
 text=Draw a card for each Bird on the battlefield.
 mana={3}{U}
 type=Sorcery
+[/card]
+[card]
+name=Ajani's Mantra
+auto=@each my upkeep:may life:1 controller
+text=At the beginning of your upkeep, you may gain 1 life.
+mana={1}{W}
+type=Enchantment
 [/card]
 [card]
 name=Akki Avalanchers
@@ -1239,6 +1267,17 @@ mana={1}{R}
 type=Instant
 [/card]
 [card]
+name=Ancient Hellkite
+abilities=flying
+auto=lord(ancient hellkite[attacking]) {R}:damage:1 target(creature|opponentBattlefield)
+text=Flying -- {R}: Ancient Helkite deals 1 damage to target creature defending player controls. Activate this ability only if Ancient Hellkite is attacking.
+mana={2}{U}{U}
+type=Creature
+subtype=Dragon
+power=6
+toughness=6
+[/card]
+[card]
 name=Ancient Hydra
 auto=counter(0/0,5,Fade)
 auto={1}{C(0/0,-1,Fade)}:damage:1 target(creature,player)
@@ -1747,6 +1786,17 @@ id=-1111113
 type=Nothing
 [/card]
 [card]
+name=Arc Runner
+abilities=haste
+auto=@next end:bury
+text=Haste -- At the beginning of the end step, sacrifice Arc Runner.
+mana={2}{R}
+type=Creature
+subtype=Elemental Ox
+power=5
+toughness=1
+[/card]
+[card]
 name=Arcades Sabboth
 abilities=flying
 auto=lord(creature[-attacking;-tapped]|mybattlefield) 0/2
@@ -2182,6 +2232,15 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Armored Cancrix
+text=
+mana={4}{U}
+type=Creature
+subtype=Crab
+power=2
+toughness=5
+[/card]
+[card]
 name=Armored Galleon
 abilities=cantattack
 auto=aslongas(island|opponentBattlefield) -cantattack
@@ -2439,6 +2498,16 @@ auto=destroy
 text=Destroy target tapped creature.
 mana={2}{B}
 type=Sorcery
+[/card]
+[card]
+name=Assault Griffin
+abilities=flying
+text=Flying
+mana={3}{W}
+type=Creature
+subtype=Griffin
+power=3
+toughness=2
 [/card]
 [card]
 name=Assault Zeppelid
@@ -2988,6 +3057,13 @@ mana={2}{U}
 type=Enchantment
 [/card]
 [card]
+name=Back to Nature
+auto=destroy all(enchantment)
+text=Destroy all enchantments.
+mana={1}{G}
+type=Instant
+[/card]
+[card]
 name=Backlash
 target=creature[-tapped]
 auto=tap
@@ -3406,6 +3482,15 @@ type=Legendary Creature
 subtype=Human Warrior
 power=6
 toughness=5
+[/card]
+[card]
+name=Barony Vampire
+text=
+mana={2}{B}
+type=Creature
+subtype=Vampire
+power=3
+toughness=2
 [/card]
 [card]
 name=Barreling Attack
@@ -4681,6 +4766,14 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Blood Tithe
+auto=life:-3 opponent
+auto=life:3 controller
+text=Each opponent loses 3 life. You gain life equal to the life lost this way.
+mana={3}{B}
+type=Sorcery
+[/card]
+[card]
 name=Bloodthrone Vampire
 auto={S(creature|myBattlefield)}:2/2
 text=Sacrifice a creature: Bloodthrone Vampire gets +2/+2 until end of turn.
@@ -5865,6 +5958,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Brindle Boa
+auto={S}:life:4
+text=Sacrifice Brindle Boar: You gain 4 life.
+mana={2}{G}
+type=Creature
+subtype=Beast
+power=2
+toughness=2
+[/card]
+[card]
 name=Brine Shaman
 auto={T}{S(creature|myBattlefield)}:2/2 target(creature)
 auto={1}{U}{U}{S(creature|myBattlefield)}:fizzle target(creature|stack)
@@ -5883,6 +5986,13 @@ text=Enchant creature or land -- When enchanted permanent becomes tapped, destro
 mana={2}{B}{B}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Brittle Effigy
+auto={4}{T}:moveTo(exile) target(creature) && moveTo(exile) all(this)
+text={4},{T}, exile Brittle Effigy: Exile target creature.
+mana={1}
+type=Artifact
 [/card]
 [card]
 name=Broken Dam
@@ -6360,6 +6470,14 @@ auto=draw:1 targetController
 text=Return target creature to its owner's hand. Its controller draws a card.
 mana={1}{U}
 type=Instant
+[/card]
+[card]
+name=Call to Mind
+target=instant,sorcery|mygraveyard
+auto=moveTo(myhand)
+text=Return target instant or sorcery card from your graveyard to your hand.
+mana={2}{U}
+type=Sorcery
 [/card]
 [card]
 name=Caller of Gales
@@ -7334,6 +7452,15 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Chandra's Outrage
+target=creature
+auto=damage:4
+auto=damage:2 targetController
+text=Chandra's Outrage deals 4 damage to target creature and 2 damage to that creature's controller.
+mana={2}{R}{R}
+type=Instant
+[/card]
+[card]
 name=Channel the Suns
 auto=Add{W}{U}{B}{R}{G}
 text=Add {W}{U}{B}{R}{G} to your mana pool.
@@ -8163,6 +8290,16 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Cloud Crusader
+abilities=flying,first strike
+text=Flying, first strike
+mana={2}{W}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=3
+[/card]
+[card]
 name=Cloud Djinn
 abilities=flying,cloud
 text=Flying -- Cloud Djinn can block only creatures with flying.
@@ -8531,6 +8668,15 @@ text=Enchant artifact or creature -- Enchanted permanent doesn't untap during it
 mana={4}{U}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Combust
+abilities=nofizzle
+target=creature[blue;white]
+auto=damage:5
+text=Combust can't be countered by a spell or ability. -- Combust deals 5 damage to target blue or white creature. This damage can't be prevented.
+mana={1}{R}
+type=Instant
 [/card]
 [card]
 name=Commander Eesha
@@ -12511,6 +12657,15 @@ mana={1}{B}
 type=Sorcery
 [/card]
 [card]
+name=Dryad's Favor
+target=creature
+auto=forestwalk
+text=Enchant creature -- Enchanted creature has forestwalk.
+mana={G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Dryad Sophisticate
 auto=aslongas(land[-basic]|opponentBattlefield) unblockable
 text=Nonbasic landwalk
@@ -12822,6 +12977,16 @@ autograveyard={5}{R}{R}:copy(this) && moveTo(mystack) asSorcery
 text=Destroy target land. -- Flashback {5}{R}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={3}{R}
 type=Sorcery
+[/card]
+[card]
+name=Earth Servant
+auto=foreach(mountain|myBattlefield) 0/1
+text=Earth Servant gets +0/+1 for each Mountain you control.
+mana={5}{R}
+type=Creature
+subtype=Elemental
+power=4
+toughness=4
 [/card]
 [card]
 name=Earth Surge
@@ -13171,6 +13336,13 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Elixir of Immortality
+auto={2}{T}:life:5 && moveTo(mylibrary) all(this) && moveTo(mylibrary) all(*|mygraveyard) && shuffle
+text={2},{T}: You gain 5 life. Shuffle Elixir of Immortality and your graveyard into library.
+mana={1}
+type=Artifact
+[/card]
+[card]
 name=Elixir of Vitality
 auto=tap
 auto={T}{S}:life:4
@@ -13504,6 +13676,16 @@ auto=damage:1 all(creature[white;blue]|opponentBattlefield)
 text=Creatures target player controls can't block this turn. Ember Gale deals 1 damage to each white and/or blue creature that player controls.
 mana={3}{R}
 type=Sorcery
+[/card]
+[card]
+name=Ember Hauler
+auto={1}{S}:damage:2 target(creature,player)
+text={1}, Sacrifice Ember Hauler: Ember Hauler deals 2 damage to target creature or player.
+mana={R}{R}
+type=Creature
+subtype=Goblin
+power=2
+toughness=2
 [/card]
 [card]
 name=Ember Shot
@@ -14859,6 +15041,16 @@ text=Sacrifice a land: Fault Riders gets +2/+0 and gains first strike until end 
 mana={2}{R}
 type=Creature
 subtype=Human Soldier
+power=2
+toughness=2
+[/card]
+[card]
+name=Fauna Shaman
+auto={G}{T}{S(creature|myhand)}:moveTo(myhand) target(creature|myLibrary)
+text={G},{T}, Discard a creature card: Search your library for a creature card, reveal that card, and put it into your hand. Then shuffle your library.
+mana={1}{G}
+type=Creature
+subtype=Elf Shaman
 power=2
 toughness=2
 [/card]
@@ -17009,6 +17201,37 @@ auto={T}:Add{1}
 auto={5}{T}{S}:token(Gargoyle,Creature Gargoyle Artifact,3/4,flying artifact)
 text={T}: Add {1} to your mana pool. -- {5}, {T}, Sacrifice Gargoyle Castle: Put a 3/4 colorless Gargoyle artifact creature token with flying onto the battlefield.
 type=Land
+[/card]
+[card]
+name=Gargoyle Sentinel
+abilities=defender
+auto={3}:-defender && flying
+text=Defender -- {3}: Gargoyle Sentinel loses defender and gains flying until end of turn.
+mana={3}
+type=Artifact Creature
+subtype=Gargoyle
+power=3
+toughness=3
+[/card]
+[card]
+name=Garruk's Companion
+abilities=trample
+text=Trample
+mana={G}{G}
+type=Creature
+subtype=Beast
+power=3
+toughness=2
+[/card]
+[card]
+name=Garruk's Packleader
+auto=@movedTo(other creature[power>=3]|myBattlefield):may draw:1
+text=Whenever another creature with power 3 or greater enters the battlefield under your control, you may draw a card.
+mana={4}{G}
+type=Creature
+subtype=Beast
+power=4
+toughness=4
 [/card]
 [card]
 name=Gaseous Form
@@ -19163,6 +19386,16 @@ mana={2}{W}
 type=Enchantment
 [/card]
 [card]
+name=Greater Basilisk
+abilities=deathtouch
+text=Deathtouch (Any amount of damage this deals to a creature is enough to destroy it.)
+mana={3}{G}{G}
+type=Creature
+subtype=Basilisk
+power=3
+toughness=5
+[/card]
+[card]
 name=Greater Forgeling
 auto={1}{R}:3/-3
 text={1}{R}: Greater Forgeling gets +3/-3 until end of turn.
@@ -19926,6 +20159,18 @@ type=Creature
 subtype=Spirit
 power=2
 toughness=1
+[/card]
+[card]
+name=Harbor Serpent
+abilities=islandwalk
+auto=aslongas(island|battlefield) cantattack <5
+auto=@movedTo(island|exile,graveyard,hand,library) from(battlefield):aslongas(island|myBattlefield) cantattack <5
+text=Islandwalk -- Harbor Serpent can't attack unless there are five or more Islands on the battlefield.
+mana={4}{U}{U}
+type=Creature
+subtype=Serpent
+power=5
+toughness=5
 [/card]
 [card]
 name=Harmattan Efreet
@@ -21174,6 +21419,14 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Hornet Sting
+target=creature,player
+auto=damage:1
+text=Hornet Sting deals 1 damage to target creature or player.
+mana={G}
+type=Instant
+[/card]
+[card]
 name=Horrible Hordes
 auto=rampage(1/1,1)
 text=Rampage 1 (Whenever this creature becomes blocked, it gets +1/+1 until end of turn for each creature blocking it beyond the first.)
@@ -22221,6 +22474,13 @@ mana={3}{U}
 type=Instant
 [/card]
 [card]
+name=Inspired Charge
+auto=lord(creature|myBattlefield) 1/2 ueot
+text=Creatures you control get +2/+1 until end of turn.
+mana={2}{W}{W}
+type=Instant
+[/card]
+[card]
 name=Inspired Sprite
 abilities=flash,flying
 auto=@movedTo(wizard|mystack):may untap
@@ -22652,6 +22912,20 @@ auto={1}{T}:Add {U}{R}
 text={1}, {T}: Add {U}{R} to your mana pool.
 mana={2}
 type=Artifact
+[/card]
+[card]
+name=Jace's Erasure
+auto=@movedTo(*|myhand) from(mylibrary):may deplete:1 target(player)
+text=Whenever you draw a card, you may have target player put the top card of his or her library into his or her graveyard.
+mana={1}{U}
+type=Enchantment
+[/card]
+[card]
+name=Jace's Ingenuity
+auto=draw:3
+text=Draw three cards.
+mana={3}{U}{U}
+type=Instant
 [/card]
 [card]
 name=Jackal Familiar
@@ -24665,6 +24939,18 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Knight Exemplar
+abilities=first strike
+auto=lord(knight|myBattlefield) 1/1
+auto=lord(knight|myBattlefield) indestructible
+text=First Strike -- Other Knight creatures you control get +1/+1 and are indestructible.
+mana={1}{W}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=2
+[/card]
+[card]
 name=Knight of Cliffhaven
 auto={3}:counter(0/0,1,Level Up) asSorcery
 auto=this(counter{0/0,1,Level Up}) flying 
@@ -26095,6 +26381,13 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Liliana's Caress
+auto=@movedTo(*|opponentgraveyard) from(opponenthand):life:-2 opponent
+text=Whenever an opponent discards a card, that player loses 2 life.
+mana={1}{B}
+type=Enchantment
+[/card]
+[card]
 name=Lim-Dul's High Guard
 abilities=first strike
 auto={1}{B}:regenerate
@@ -27395,6 +27688,16 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Manic Vandal
+auto=destroy target(artifact)
+text=When Manic Vandal enters the battlefield, destroy target artifact.
+mana={2}{R}
+type=Creature
+subtype=Human Warrior
+power=2
+toughness=2
+[/card]
+[card]
 name=Manta Ray
 abilities=islandhome
 auto=cantbeblockedby(creature[-blue])
@@ -27503,6 +27806,15 @@ type=Creature
 subtype=Cat Warrior
 power=2
 toughness=4
+[/card]
+[card]
+name=Maritime Guard
+text=
+mana={1}{U}
+type=Creature
+subtype=Merfolk Soldier
+power=1
+toughness=3
 [/card]
 [card]
 name=Marjhan
@@ -28321,6 +28633,15 @@ mana={2}{G}
 type=Enchantment
 [/card]
 [card]
+name=Mighty Leap
+target=creature
+auto=2/2
+auto=flying
+text=Target creature gets +2/+2 and gains flying until end of turn. (It can't be blocked except by creatures with flying or reach.)
+mana={1}{W}
+type=Instant
+[/card]
+[card]
 name=Mikokoro, Center of the Sea
 auto={T}:Add {1}
 auto={2}{T}:draw:1 controller && draw:1 opponent
@@ -28743,6 +29064,16 @@ name=Misty Rainforest
 auto={T}{S}:moveTo(myBattlefield) target(forest,island|mylibrary) && life:-1 controller
 text={T}, Pay 1 life, Sacrifice Misty Rainforest: Search your library for a Forest or Island card and put it onto the battlefield. Then shuffle your library.
 type=Land
+[/card]
+[card]
+name=Mitotic Slime
+auto=@movedTo(this|graveyard) from(battlefield):token(66666666)*2
+text=When Mitotic Slime is put into a graveyard from the battlefield, put two 2/2 green Ooze creature tokens onto the battlefield. They have "When this creature is put into a graveyard, put two 1/1 green Ooze creature tokens onto the battlefield."
+mana={4}{G}
+type=Creature
+subtype=Ooze
+power=4
+toughness=4
 [/card]
 [card]
 name=Mnemonic Nexus
@@ -30406,6 +30737,15 @@ power=2
 toughness=4
 [/card]
 [card]
+name=Nether Horror
+text=
+mana={3}{B}
+type=Creature
+subtype=Horror
+power=4
+toughness=2
+[/card]
+[card]
 name=Netter en-Dal
 auto={W}{T}{S(*|myhand)}:cantattack target(creature)
 text={W}, {T}, Discard a card: Target creature can't attack this turn.
@@ -30645,6 +30985,17 @@ type=Creature
 subtype=Human Rebel
 power=2
 toughness=1
+[/card]
+[card]
+name=Nightwing Shade
+abilities=flying
+auto={1}{B}:1/1
+text=Flying -- {1}{B}: Nightwing Shade gets +1/+1 until end of turn.
+mana={4}{B}
+type=Creature
+subtype=Shade
+power=2
+toughness=2
 [/card]
 [card]
 name=Nikko-Onna
@@ -31501,6 +31852,25 @@ autograveyard={2}{U}{S(land|myhand)}:draw:1 target(player)
 text=Target player draws a card. -- Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
 mana={2}{U}
 type=Instant
+[/card]
+[card]
+name=Ooze (Mitotic Slime)
+type=Creature
+subtype=Ooze
+auto=@movedTo(this|graveyard) from(battlefield):token(77777777)*2
+text=When this creature is put into a graveyard, put two 1/1 green Ooze creature tokens onto the battlefield.
+power=2
+toughness=2
+color=green
+[/card]
+[card]
+name=Ooze (Ooze)
+type=Creature
+subtype=Ooze
+text=
+power=1
+toughness=1
+color=green
 [/card]
 [card]
 name=Open the Vaults
@@ -33436,6 +33806,14 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Plummet
+target=creature[flying]
+auto=destroy
+text=Destroy target creature with flying.
+mana={G}
+type=Instant
+[/card]
+[card]
 name=Plumeveil
 abilities=flash,flying,defender
 text=Flash -- Defender, flying
@@ -34271,6 +34649,13 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Pyretic Ritual
+auto={R}{R}{R}
+text=Add {R}{R}{R} to your mana pool.
+mana={1}{R}
+type=Instant
+[/card]
+[card]
 name=Pyrite Spellbomb
 auto={R}{S}:Damage:2 target(creature,player)
 auto={1}{S}:draw:1
@@ -34325,6 +34710,15 @@ type=Creature
 subtype=Cat Wizard
 power=2
 toughness=2
+[/card]
+[card]
+name=Quag Sickness
+target=creature
+auto=foreach(swamp|myBattlefield) -1/-1
+text=Enchant creature -- Enchanted creature gets -1/-1 for each Swamp you control.
+mana={2}{B}
+type=Creature
+subtype=Aura
 [/card]
 [card]
 name=Quagmire
@@ -35296,6 +35690,16 @@ type=Legendary Artifact Creature
 subtype=Scarecrow
 power=6
 toughness=6
+[/card]
+[card]
+name=Reassembling Skeleton
+autograveyard={1}{B}:moveTo(myBattlefield) && tap
+text={1}{B}: Return Reassembling Skeleton from your graveyard to the battlefield tapped.
+mana={1}{B}
+type=Creature
+subtype=Skeleton Warrior
+power=1
+toughness=1
 [/card]
 [card]
 name=Rebuild
@@ -36472,6 +36876,17 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Roc Egg
+abilities=defender
+auto=@movedTo(this|graveyard) from(battlefield):token(Bird,creature bird, 3/3,flying,white)
+text=Defender -- When Roc Egg is put into a graveyard from the battlefield, put a 3/3 white Bird creature token with flying onto the battlefield.
+mana={2}{W}
+type=Creature
+subtype=Bird
+power=0
+toughness=3
+[/card]
+[card]
 name=Roc Hatchling
 auto=counter(0/0,4,Shell)
 auto=@each my upkeep:counter(0/0,-1,Shell)
@@ -36837,6 +37252,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Rotting Legion
+auto=tap
+text=Rotting Legion enters the battlefield tapped.
+mana={4}{B}
+type=Creature
+subtype=Zombie
+power=4
+toughness=5
+[/card]
+[card]
 name=Roughshod Mentor
 auto=lord(creature[green]|myBattlefield) trample
 text=Green creatures you control have trample.
@@ -37150,6 +37575,16 @@ auto=life:4
 text=You gain 4 life.
 mana={1}{W}
 type=Sorcery
+[/card]
+[card]
+name=Sacred Wolf
+abilities=opponentshroud
+text=Sacred Wolf can't be the target of spells or abilities your opponents control.
+mana={2}{G}
+type=Creature
+subtype=Wolf
+power=3
+toughness=1
 [/card]
 [card]
 name=Sacrifice
@@ -38072,6 +38507,16 @@ auto=aslongas(*|myhand) {2}{T}:draw:1 >6
 text={2}, {T}: Draw a card if you have seven or more cards in hand.
 mana={2}
 type=Artifact
+[/card]
+[card]
+name=Scroll Thief
+auto=@damaged(player) from(this):draw:1
+text=Whenever Scroll Thief deals combat damage to a player, draw a card.
+mana={2}{U}
+type=Creature
+subtype=Merfolk Rogue
+power=1
+toughness=3
 [/card]
 [card]
 name=Scrubland
@@ -42773,6 +43218,15 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Stabbing Pain
+target=creature
+auto=-1/-1
+auto=tap
+text=Target creature gets -1/-1 until end of turn. Tap that creature.
+mana={B}
+type=Instant
+[/card]
+[card]
 name=Staff of Domination
 auto={1}:untap
 auto={2}{T}:life:1 controller
@@ -43121,6 +43575,16 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Steel Overseer
+auto={T}:counter(1/1,1) all(creature[artifact]|myBattlefield)
+text={T}: Put a +1/+1 counter on each artifact creature you control.
+mana={2}
+type=Artifact Creature
+subtype=Construct
+power=1
+toughness=1
+[/card]
+[card]
 name=Steel Wall
 abilities=defender
 text=Defender (This creature can't attack.)
@@ -43337,6 +43801,15 @@ type=Creature
 subtype=Human Soldier
 power=1
 toughness=2
+[/card]
+[card]
+name=Stone Golem
+text=
+mana={5}
+type=Artifact Creature
+subtype=Golem
+power=4
+toughness=4
 [/card]
 [card]
 name=Stone Kavu
@@ -44009,6 +44482,18 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Sun Titan
+abilities=vigilance
+auto=may moveto(myBattlefield) target(*[manacost<=3]|mygraveyard)
+auto=lord(sun titan[attacking]|myBattlefield) {0}:moveto(myBattlefield) target(*[manacost<=3]|mygraveyard) limit:1
+text=Vigilance -- Whenever Sun Titan enters the battlefield or attacks, you may return target permanent card with converted mana cost 3 or less from your graveyard to the battlefield.
+mana={4}{W}
+type=Creature
+subtype=Giant
+power=6
+toughness=6
+[/card]
+[card]
 name=Sunastian Falconer
 auto={T}:Add {2}
 text={T}: Add {2} to your mana pool.
@@ -44451,6 +44936,19 @@ mana={2}
 type=Legendary Artifact
 [/card]
 [card]
+name=Sword of Vengeance
+auto={3}:equip
+auto=2/0
+auto=first strike
+auto=vigilance
+auto=trample
+auto=haste
+text=Equipped creature gets +3/+0 and has first strike, vigilance, trample, and haste. -- Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery.)
+mana={3}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
 name=Swords to Plowshares
 target=creature
 auto=moveto(exile)
@@ -44503,6 +45001,16 @@ type=Creature
 subtype=Human Cleric
 power=1
 toughness=2
+[/card]
+[card]
+name=Sylvan Ranger
+auto=may moveTo(myhand) target(land[basic]|mylibrary) && tap
+text=When Sylvan Ranger enters the battlefield, you may search your library for a basic land card, reveal it, and put it into your hand. If you do, shuffle your library.
+mana={1}{G}
+type=Creature
+subtype=Elf Scout
+power=1
+toughness=1
 [/card]
 [card]
 name=Sylvan Safekeeper
@@ -45250,6 +45758,13 @@ type=Creature
 subtype=Human Cleric
 power=1
 toughness=3
+[/card]
+[card]
+name=Temple Bell
+auto={T}:draw:1 controller && draw:1 opponent
+text={T}:Each player draws a card.
+mana={3}
+type=Artifact
 [/card]
 [card]
 name=Temple Elder
@@ -46109,6 +46624,15 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Thunder Strike
+target=creature
+auto=2/0
+auto=first strike
+text=Target creature gets +2/+0 and gains first strike until end of turn. (It can't be blocked except by creatures with flying or reach.)
+mana={1}{W}
+type=Instant
+[/card]
+[card]
 name=Thunder Totem
 auto={T}:Add{W}
 auto={1}{W}{W}:becomes(Artifact Creature Spirit,2/2,flying,first strike,white) ueot
@@ -46497,6 +47021,19 @@ mana={1}{G}
 type=Sorcery
 [/card]
 [card]
+name=Time Reversal
+auto=moveTo(exile)
+auto=moveto(opponentgraveyard) all(*|opponenthand)
+auto=moveto(opponentlibrary) all(*|opponentgraveyard) && shuffle
+auto=draw:7 opponent
+auto=moveto(mygraveyard) all(*|myhand)
+auto=moveto(mylibrary) all(*|mygraveyard) && shuffle
+auto=draw:7 controller
+text=Each player shuffles his or her hand and graveyard into his or her library, then draws seven cards. Exile Time Reversal.
+mana={2}{U}
+type=Sorcery
+[/card]
+[card]
 name=Timetwister
 auto=moveto(opponentgraveyard) all(*|opponenthand)
 auto=moveto(opponentlibrary) all(*|opponentgraveyard) && shuffle
@@ -46526,6 +47063,16 @@ auto={T}:Add {G}
 auto={T}{S}:Add {R}{W}
 text=Tinder Farm enters the battlefield tapped. -- {T}: Add {G} to your mana pool. -- {T}, Sacrifice Tinder Farm: Add {R}{W} to your mana pool.
 type=Land
+[/card]
+[card]
+name=Tireless Missionaries
+auto=life:3
+text=When Tireless Missionaries enters the battlefield, you gain 3 life.
+mana={4}{W}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=3
 [/card]
 [card]
 name=Tireless Tribe
@@ -49904,6 +50451,16 @@ mana={1}{R}
 type=Sorcery
 [/card]
 [card]
+name=Volcanic Strength
+target=creature
+auto=2/2
+auto=mountainwalk
+text=Enchant Creature -- Enchanted creature gets +2/+2 and has mountainwalk.
+mana={1}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Volcanic Submersion
 target=artifact,land
 auto=destroy
@@ -50469,6 +51026,16 @@ power=3
 toughness=5
 [/card]
 [card]
+name=Wall of Vines
+abilities=defender,reach
+text=Defender,reach
+mana={G}
+type=Creature
+subtype=Plant Wall
+power=0
+toughness=3
+[/card]
+[card]
 name=Wall of Water
 abilities=defender
 auto={U}:1/0
@@ -50618,6 +51185,16 @@ power=3
 toughness=3
 [/card]
 [card]
+name=War Priest of Thune
+auto=may destroy target(enchantment)
+text=When Warpriest of Thune enters the battlefield, you may destroy target enchantment.
+mana={1}{W}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=2
+[/card]
+[card]
 name=War-Torch Goblin
 auto={R}{S}:Damage:2 target(creature[blocking])
 text={R}, Sacrifice War-Torch Goblin: War-Torch Goblin deals 2 damage to target blocking creature.
@@ -50626,6 +51203,15 @@ type=Creature
 subtype=Goblin Warrior
 power=1
 toughness=1
+[/card]
+[card]
+name=Warlord's Axe
+auto={4}:equip
+auto=3/1
+text=Equipped creature gets +3/+1.
+mana={3}
+type=Artifact
+subtype=Equipment
 [/card]
 [card]
 name=Warmonger's Chariot
@@ -50784,6 +51370,17 @@ mana={3}{U}{U}
 type=Creature
 subtype=Elemental
 power=5
+toughness=4
+[/card]
+[card]
+name=Water Servant
+auto={U}:1/-1
+auto={U}:-1/1
+text={U}: Water Servant gets +1/-1 until end of turn. -- {U}: Water Servant gets -1/+1 until end of turn.
+mana={2}{U}{U}
+type=Creature
+subtype=Elemental
+power=3
 toughness=4
 [/card]
 [card]
