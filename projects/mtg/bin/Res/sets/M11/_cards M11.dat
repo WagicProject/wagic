@@ -840,7 +840,7 @@ rarity=U
 [/card]
 [card]
 primitive=Overwhelming Stampede
-id=206331
+id=205003
 rarity=R
 [/card]
 [card]
@@ -1090,8 +1090,8 @@ rarity=R
 [/card]
 [card]
 primitive=Sun Titan
-id=205029
-rarity=C
+id=205030
+rarity=M
 [/card]
 [card]
 primitive=Sunpetal Grove
