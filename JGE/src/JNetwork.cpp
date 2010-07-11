@@ -5,8 +5,12 @@
 */
 
 
+#include "../include/JNetwork.h"
+
 #if defined (WIN32) || defined (LINUX)
 #else
+#ifdef NETWORK_SUPPORT
+
 #include <pspkernel.h>
 #include <pspdebug.h>
 #include <pspsdk.h>
@@ -24,8 +28,10 @@
 #include <errno.h>
 #endif
 
+#endif
 
-#include "../include/JNetwork.h"
+
+
 #include "../include/JSocket.h"
 
 JNetwork* JNetwork::mInstance = NULL;
@@ -139,6 +145,7 @@ int JNetwork::connect(string serverIP)
 #else
 int net_thread(SceSize args, void *argp)
 {
+#ifdef NETWORK_SUPPORT
 	do
 	{
     JSocket::mInstance = new JSocket();
@@ -157,12 +164,13 @@ int net_thread(SceSize args, void *argp)
 		}
 	}
 	while(0);
-
+#endif
 	return 0;
 }
 
 
 int JNetwork::connect(string serverIP){
+#ifdef NETWORK_SUPPORT
   int err;
   char buffer[4096];
   if(netthread) return 0;
@@ -192,7 +200,7 @@ sceUtilityLoadNetModule(3);
 	  sceKernelStartThread(netthread, 0, NULL);
     return netthread;
   }
-
+#endif
   return 0;
 }
 
@@ -200,6 +208,7 @@ sceUtilityLoadNetModule(3);
 /* Connect to an access point */
 int JNetwork::connect_to_apctl(int config)
 {
+#ifdef NETWORK_SUPPORT
 	int err;
 	int stateLast = -1;
   char buffer[4096];
@@ -248,7 +257,7 @@ int JNetwork::connect_to_apctl(int config)
 	{
 		return 0;
 	}
-
+#endif
 	return 1;
 }
 #endif

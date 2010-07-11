@@ -1,7 +1,8 @@
 #ifndef _JNETWORK_H_
 #define _JNETWORK_H_
 
-
+//Network support for PSP
+//#define NETWORK_SUPPORT
 
 #include "JGE.h"
 #include <string>

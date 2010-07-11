@@ -1,9 +1,19 @@
+
+//MP3 support for PSP
+#define MP3_SUPPORT
+
+#ifdef MP3_SUPPORT
+
 #include <pspkernel.h>
 #include <pspdebug.h>
 #include <stdio.h>
 #include <pspaudio.h>
 #include <pspmp3.h>
 #include <psputility.h>
+
+#else
+#define PSP_AUDIO_VOLUME_MAX 100
+#endif
 
 #include "../include/JAudio.h"
 #include "../include/JFileSystem.h"
@@ -31,6 +41,7 @@ JMP3::~JMP3() {
 
 bool JMP3::loadModules() {
     JLOG("loading Audio modules");
+#ifdef MP3_SUPPORT    
    int loadAvCodec = sceUtilityLoadModule(PSP_MODULE_AV_AVCODEC);
    if (loadAvCodec < 0) {
       return false;
@@ -41,6 +52,7 @@ bool JMP3::loadModules() {
       return false;
    }
    JLOG("Audio modules loaded");
+#endif   
    return true;
 }
 
@@ -50,6 +62,7 @@ bool JMP3::fillBuffers() {
       JLOG("JMP3::fillBuffers called but init_done is false!");
       return false;
    }
+#ifdef MP3_SUPPORT   
    SceUChar8* dest;
    SceInt32 length;
    SceInt32 pos;
@@ -80,7 +93,7 @@ bool JMP3::fillBuffers() {
    ret = sceMp3NotifyAddStreamData(m_mp3Handle, readLength);
    if (ret < 0)
       return false;
-
+#endif
      JLOG("End JMP3::fillBuffers");
    return true;
 }
@@ -120,6 +133,7 @@ JLOG("Start JMP3::load");
       JLOG("JMP3::load called but init_done is false!");
       return false;
    }
+#ifdef MP3_SUPPORT   
       m_inBufferSize = inBufferSize;
       //m_inBuffer = new char[m_inBufferSize];
       //if (!m_inBuffer)
@@ -180,6 +194,7 @@ JLOG("Start JMP3::load");
 
       m_numChannels = sceMp3GetMp3ChannelNum(m_mp3Handle);
       m_samplingRate = sceMp3GetSamplingRate(m_mp3Handle);
+#endif
 
 JLOG("End JMP3::load");      
    return true;
@@ -191,6 +206,7 @@ JLOG("Start JMP3::unload");
       JLOG("JMP3::unload called but init_done is false!");
       return false;
    }
+#ifdef MP3_SUPPORT   
    if (m_channel >= 0)
       sceAudioSRCChRelease();
 
@@ -203,6 +219,7 @@ JLOG("Start JMP3::unload");
    //delete[] m_inBuffer;
 
    //delete[] m_outBuffer;
+#endif   
 JLOG("End JMP3::unload");
    return true;
 }
@@ -211,6 +228,7 @@ bool JMP3::update() {
    if (!init_done) {
       return false;
    }
+#ifdef MP3_SUPPORT   
 	int retry = 8;//FIXME:magic number
 	JMP3_update_start:
 
@@ -262,6 +280,7 @@ bool JMP3::update() {
 
       }
    }
+#endif   
    return true;
 }
 
@@ -279,7 +298,9 @@ JLOG("Start JMP3::setLoop");
       JLOG("JMP3::setLoop called but init_done is false!");
       return false;
    }
+#ifdef MP3_SUPPORT   
    sceMp3SetLoopNum(m_mp3Handle, (loop == true) ? -1 : 0);
+#endif   
    return (m_loop = loop);
 JLOG("End JMP3::setLoop");   
 }

@@ -359,7 +359,7 @@ void Run()
 
 //------------------------------------------------------------------------------------------------
 // The main loop
-int main()
+int main(int argc, char *argv[])
 {
 #ifdef DOJLOG
   remove(JGE_LOG_FILE);
@@ -382,6 +382,7 @@ int main()
   gTickFrequency = sceRtcGetTickResolution();
   JLOG("JGE::GetInstance()");
   g_engine = JGE::GetInstance();
+  g_engine->SetARGV(argc, argv);
 
   JLOG("Create Game");
   game = launcher->GetGameApp();

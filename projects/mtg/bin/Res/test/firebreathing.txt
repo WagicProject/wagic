@@ -1,0 +1,26 @@
+#Testing Firebreathing twice
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:firebreathing
+inplay:grizzly bears
+manapool:{R}{R}{R}
+[PLAYER2]
+[DO]
+firebreathing
+grizzly bears
+firebreathing
+firebreathing
+next
+#begin combat
+next
+#attackers
+grizzly bears
+eot
+[ASSERT]
+UNTAP
+[PLAYER1]
+inplay:grizzly bears,firebreathing
+[PLAYER2]
+life:16
+[END]

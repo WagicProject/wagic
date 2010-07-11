@@ -10,7 +10,7 @@
 #include "../include/PlayerData.h"
 #include "../include/utils.h"
 
-static const char* GAME_VERSION = "WTH?! 0.12.0 - by wololo";
+static const char* GAME_VERSION = "WTH?! 0.12.1 - by wololo";
 
 #define DEFAULT_ANGLE_MULTIPLIER 0.4f
 #define MAX_ANGLE_MULTIPLIER (3*M_PI)

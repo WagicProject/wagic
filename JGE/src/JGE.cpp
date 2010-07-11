@@ -335,7 +335,7 @@ void JGE::Init()
 
   JRenderer::GetInstance();
   JFileSystem::GetInstance();
-  JSoundSystem::GetInstance();
+  //JSoundSystem::GetInstance(); let's do lazy loading
 
   mDone = false;
   mPaused = false;
@@ -459,6 +459,16 @@ void JGE::Destroy()
     }
 }
 
+void JGE::SetARGV(int argc, char * argv[]){
+    for (int i = 0; i < argc; ++i){
+        string s = argv[i];
+        mArgv.push_back(s);
+    }
+}
+
+std::vector<std::string> JGE::GetARGV() {
+    return mArgv;
+}
 
 void JGE::SetApp(JApp *app)
 {

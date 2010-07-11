@@ -221,6 +221,7 @@ fastbond2.txt
 fault_line.txt
 feral_hydra.txt
 fire_tempest.txt
+firebreathing.txt
 fists_of_ironwood.txt
 flagstones.txt
 flame_fusillade_i265.txt
