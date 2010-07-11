@@ -7530,8 +7530,8 @@ type=Artifact
 [/card]
 [card]
 name=Charging Bandits
-auto=lord(charging paladin[attacking]|myBattlefield) 2/0
-auto=lord(other charging paladin[attacking]|myBattlefield) -2/0
+auto=lord(charging bandits[attacking]|myBattlefield) 2/0
+auto=lord(other charging bandits[attacking]|myBattlefield) -2/0
 text=Whenever Charging Bandits attacks, it gets +2/+0 until end of turn.
 mana={4}{B}
 type=Creature
