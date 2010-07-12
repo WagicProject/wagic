@@ -47216,13 +47216,22 @@ toughness=7
 name=Tolsimir Wolfblood
 auto=lord(creature[green]|myBattlefield) 1/1 other
 auto=lord(creature[white]|myBattlefield) 1/1 other
-auto={T}:token(Voja,creature wolf, 2/2,green white legendary)
+auto={T}:token(-89110)
 text=Other green creatures you control get +1/+1. -- Other white creatures you control get +1/+1. -- {T}: Put a legendary 2/2 green and white Wolf creature token named Voja onto the battlefield.
 mana={4}{G}{W}
 type=Legendary Creature
 subtype=Elf Warrior
 power=3
 toughness=4
+[/card]
+[card]
+name=Voja
+id=-89110
+mana={G}{W}
+type=Legendary Creature
+subtype=Wolf
+power=2
+toughness=2
 [/card]
 [card]
 name=Tomb of Urami

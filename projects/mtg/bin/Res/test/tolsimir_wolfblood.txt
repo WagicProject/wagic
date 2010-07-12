@@ -1,0 +1,29 @@
+#testing ledgendary token + multicolour via manacost.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Tolsimir Wolfblood
+[PLAYER2]
+[DO]
+Tolsimir Wolfblood
+eot
+eot
+next
+next
+next
+next
+next
+Voja
+next
+next
+next
+Tolsimir Wolfblood
+next
+next
+[ASSERT]
+endofturn
+[PLAYER1]
+inplay:Tolsimir Wolfblood
+[PLAYER2]
+life:16
+[END]

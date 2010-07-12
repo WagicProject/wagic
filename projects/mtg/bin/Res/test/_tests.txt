@@ -434,6 +434,7 @@ threaten.txt
 throne_of_bone.txt
 thunder-thrash_elder.txt
 titanic_ultimatum.txt
+tolsimir_wolfblood.txt
 torture.txt
 tranquil_domain.txt
 twitch.txt
