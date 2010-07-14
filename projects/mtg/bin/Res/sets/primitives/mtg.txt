@@ -17349,11 +17349,11 @@ toughness=2
 [card]
 name=Gemstone Array
 auto={2}:counter(0/0,1,Charge)
-auto={C(0/0,-1,Charge):add{W}
-auto={C(0/0,-1,Charge):add{U}
-auto={C(0/0,-1,Charge):add{B}
-auto={C(0/0,-1,Charge):add{R}
-auto={C(0/0,-1,Charge):add{G}
+auto={C(0/0,-1,Charge)}:add{W}
+auto={C(0/0,-1,Charge)}:add{U}
+auto={C(0/0,-1,Charge)}:add{B}
+auto={C(0/0,-1,Charge)}:add{R}
+auto={C(0/0,-1,Charge)}:add{G}
 text={2}: Put a charge counter on Gemstone Array. -- Remove a charge counter from Gemstone Array: Add one mana of any color to your mana pool.
 mana={4}
 type=Artifact
