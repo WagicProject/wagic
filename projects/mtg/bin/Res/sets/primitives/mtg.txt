@@ -51157,8 +51157,8 @@ type=Land
 [/card]
 [card]
 name=Waning Wurm
+auto=counter(0/0,2,Time)
 auto=@each my upkeep:counter(0/0,-1,Time)
-auto=@movedTo(other creature|myBattlefield):counter(0/0,1,Time)
 auto=lord(waning wurm[-counter{0/0.1.Time}]|myBattlefield) -99/-99
 text=Vanishing 2 (This permanent enters the battlefield with two time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.)
 mana={3}{B}
