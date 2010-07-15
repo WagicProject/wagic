@@ -4357,12 +4357,6 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Cackling Flames
-text=Cackling Flames deals 3 damage to target creature or player. -- Hellbent - Cackling Flames deals 5 damage to that creature or player instead if you have no cards in hand.
-mana={3}{R}
-type=Instant
-[/card]
-[card]
 name=Cadaverous Knight
 abilities=flanking
 auto={1}{B}{B}:regenerate
@@ -7227,17 +7221,6 @@ name=Cut the Tethers
 text=For each Spirit, return it to its owner's hand unless that player pays {3}.
 mana={2}{U}{U}
 type=Sorcery
-[/card]
-[card]
-name=Cutthroat il-Dal
-abilities=shadow
-auto=aslongas(*|myhand)-shadow
-text=Hellbent - Cutthroat il-Dal has shadow as long as you have no cards in hand. (It can block or be blocked by only creatures with shadow.)
-mana={3}{B}
-type=Creature
-subtype=Human Rogue
-power=4
-toughness=1
 [/card]
 [card]
 name=Cycle of Life
@@ -18534,11 +18517,6 @@ type=Creature
 subtype=Human Warrior
 power=4
 toughness=1
-[/card]
-[card]
-name=Keldon Megaliths
-text=Keldon Megaliths enters the battlefield tapped. -- {T}: Add {R} to your mana pool. -- Hellbent - {1}{R}, {T}: Keldon Megaliths deals 1 damage to target creature or player. Activate this ability only if you have no cards in hand.
-type=Land
 [/card]
 [card]
 name=Keldon Twilight
@@ -31124,12 +31102,6 @@ power=1
 toughness=2
 [/card]
 [card]
-name=Sarcomancy
-text=When Sarcomancy enters the battlefield, put a 2/2 black Zombie creature token onto the battlefield. -- At the beginning of your upkeep, if there are no Zombies on the battlefield, Sarcomancy deals 1 damage to you.
-mana={B}
-type=Enchantment
-[/card]
-[card]
 name=Sarkhan Vol
 text=+1: Creatures you control get +1/+1 and gain haste until end of turn. -- -2: Gain control of target creature until end of turn. Untap that creature. It gains haste until end of turn. -- -6: Put five 4/4 red Dragon creature tokens with flying onto the battlefield.
 mana={2}{R}{G}
@@ -34701,12 +34673,6 @@ name=Spirit Flare
 text=Tap target untapped creature you control. If you do, it deals damage equal to its power to target attacking or blocking creature an opponent controls. -- Flashback - {1}{W}, Pay 3 life. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={3}{W}
 type=Instant
-[/card]
-[card]
-name=Spirit Mirror
-text=At the beginning of your upkeep, if there are no Reflection tokens on the battlefield, put a 2/2 white Reflection creature token onto the battlefield. -- {0}: Destroy target Reflection.
-mana={2}{W}{W}
-type=Enchantment
 [/card]
 [card]
 name=Spirit Shield

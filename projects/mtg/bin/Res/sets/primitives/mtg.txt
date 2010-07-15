@@ -6356,6 +6356,15 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Cackling Flames
+target=creature,player
+auto=damage:3
+auto=aslongas(creature|myhand) damage:2 <1
+text=Cackling Flames deals 3 damage to target creature or player. -- Hellbent - Cackling Flames deals 5 damage to that creature or player instead if you have no cards in hand.
+mana={3}{R}
+type=Instant
+[/card]
+[card]
 name=Cackling Witch
 auto={X}{B}{T}{S(*|myhand)}:thisforeach(X) 1/0 target(creature)
 text={X}{B}, {T}, Discard a card: Target creature gets +X/+0 until end of turn.
@@ -9812,6 +9821,16 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Cutthroat il-Dal
+auto=aslongas(*|myhand) shadow <1
+text=Hellbent - Cutthroat il-Dal has shadow as long as you have no cards in hand. (It can block or be blocked by only creatures with shadow.)
+mana={3}{B}
+type=Creature
+subtype=Human Rogue
+power=4
+toughness=1
+[/card]
+[card]
 name=Cyclopean Mummy
 auto=@movedTo(this|graveyard) from(battlefield):moveto(exile)
 text=When Cyclopean Mummy is put into a graveyard from the battlefield, exile Cyclopean Mummy.
@@ -11037,18 +11056,17 @@ type=Artifact
 [card]
 name=Demon's Jester
 abilities=flying
-auto=aslongas(*|myhand)-2/-1
+auto=aslongas(*|myhand) 2/1 <1
 text=Flying -- Hellbent - Demon's Jester gets +2/+1 as long as you have no cards in hand.
 mana={3}{B}
 type=Creature
 subtype=Imp
-power=4
-toughness=3
-# P/T modified to make auto rule possible
+power=2
+toughness=1
 [/card]
 [card]
 name=Demonic Appetite
-target=creature|myBattlefield)
+target=creature|myBattlefield
 auto=3/3
 auto=@each my upkeep:moveTo(mygraveyard) target(creature|myBattlefield)
 text=Enchant creature you control -- Enchanted creature gets +3/+3. -- At the beginning of your upkeep, sacrifice a creature.
@@ -12107,7 +12125,6 @@ type=Artifact
 [card]
 name=Dragonmaster Outcast
 auto=@each my upkeep:aslongas(land|myBattlefield) token(Dragon,creature dragon, 5/5,flying red) >5
-auto=
 text=At the beginning of your upkeep, if you control six or more lands, put a 5/5 red Dragon creature token with flying onto the battlefield.
 mana={R}
 type=Creature
@@ -15173,8 +15190,7 @@ toughness=4
 [/card]
 [card]
 name=Fen Stalker
-abilities=fear
-auto=aslongas(land[-tapped]|myBattlefield) -fear
+auto=aslongas(land[-tapped]|myBattlefield) fear <1
 text=Fen Stalker has fear as long as you control no untapped lands. (It can't be blocked except by artifact creatures and/or black creatures.)
 mana={3}{B}
 type=Creature
@@ -24399,6 +24415,13 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Keldon Megaliths
+auto={T}:Add{R}
+auto=aslongas(creature|myhand) {1}{R}{T}:damage:1 target(creature,player) <1
+text=Keldon Megaliths enters the battlefield tapped. -- {T}: Add {R} to your mana pool. -- Hellbent - {1}{R}, {T}: Keldon Megaliths deals 1 damage to target creature or player. Activate this ability only if you have no cards in hand.
+type=Land
+[/card]
+[card]
 name=Keldon Necropolis
 auto={T}:Add {1}
 auto={4}{R}{T}{S(creature|myBattlefield)}:Damage:2 target(creature,player)
@@ -24449,7 +24472,7 @@ toughness=1
 [card]
 name=Kezzerdrix
 abilities=first strike
-auto=@each my upkeep:aslongas(creature|opponentBattlefield) dama<ge:4 controller <1
+auto=@each my upkeep:aslongas(creature|opponentBattlefield) damage:4 controller <1
 text=First strike -- At the beginning of your upkeep, if your opponents control no creatures, Kezzerdrix deals 4 damage to you.
 mana={2}{B}{B}
 type=Creature
@@ -35138,10 +35161,9 @@ toughness=1
 [/card]
 [card]
 name=Rakdos Pit Dragon
-abilities=double strike
-auto=aslongas(*|myHand) -double strike
 auto={R}{R}:flying
 auto={R}:1/0
+auto=aslongas(*|myHand) double strike <1
 text={R}{R}: Rakdos Pit Dragon gains flying until end of turn. -- {R}: Rakdos Pit Dragon gets +1/+0 until end of turn. -- Hellbent - Rakdos Pit Dragon has double strike as long as you have no cards in hand.
 mana={2}{R}{R}
 type=Creature
@@ -35737,7 +35759,7 @@ type=Instant
 [/card]
 [card]
 name=Reclusive Wight
-auto=@each my upkeep:aslongas(other *[-land]|mybattlefield) bury
+auto=@each my upkeep:aslongas(other *[-land]|mybattlefield) moveTo(mygraveyard)
 text=At the beginning of your upkeep, if you control another nonland permanent, sacrifice Reclusive Wight.
 mana={3}{B}
 type=Creature
@@ -37922,6 +37944,14 @@ type=Land
 subtype=Forest
 [/card]
 [card]
+name=Sarcomancy
+auto=token(Zombie,Creature Zombie,2/2,black)
+auto=@each my upkeep:aslongas(zombie|myBattlefield) damage:1 controller <1
+text=When Sarcomancy enters the battlefield, put a 2/2 black Zombie creature token onto the battlefield. -- At the beginning of your upkeep, if there are no Zombies on the battlefield, Sarcomancy deals 1 damage to you.
+mana={B}
+type=Enchantment
+[/card]
+[card]
 name=Sarcomite Myr
 auto={2}:flying
 auto={2}{S}:Draw:1
@@ -38325,14 +38355,13 @@ type=Sorcery
 [/card]
 [card]
 name=Scoria Cat
-auto=aslongas(land[-tapped]|myBattlefield) -3/-3
+auto=aslongas(land[-tapped]|myBattlefield) 3/3 <1
 text=Scoria Cat gets +3/+3 as long as you control no untapped lands.
 mana={3}{R}{R}
 type=Creature
 subtype=Cat
-power=6
-toughness=6
-# P/T modified to make auto rule possible
+power=3
+toughness=3
 [/card]
 [card]
 name=Scornful AEther-Lich
@@ -41443,8 +41472,9 @@ toughness=1
 [/card]
 [card]
 name=Slithering Shade
+abilities=defender
 auto={B}:1/1
-auto=aslongas(*|myHand) defender
+auto=aslongas(*|myHand) -defender <1
 text=Defender (This creature can't attack.) -- {B}: Slithering Shade gets +1/+1 until end of turn. -- Hellbent - Slithering Shade can attack as though it didn't have defender as long as you have no cards in hand.
 mana={B}
 type=Creature
@@ -42797,6 +42827,14 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Spirit Mirror
+auto={0}:destroy target(reflection)
+auto=@each my upkeep:aslongas(reflection|myBattlefield) token(Reflection,Creature Reflection,2/2,white) <1
+text=At the beginning of your upkeep, if there are no Reflection tokens on the battlefield, put a 2/2 white Reflection creature token onto the battlefield. -- {0}: Destroy target Reflection.
+mana={2}{W}{W}
+type=Enchantment
+[/card]
+[card]
 name=Spirit Shackle
 target=creature
 auto=@tapped(mytgt):counter(0/-2)
@@ -43141,14 +43179,13 @@ toughness=3
 [/card]
 [card]
 name=Spur Grappler
-auto=aslongas(land[-tapped]|myBattlefield) -2/-1
+auto=aslongas(land[-tapped]|myBattlefield) 2/1 <1
 text=Spur Grappler gets +2/+1 as long as you control no untapped lands.
 mana={2}{R}
 type=Creature
 subtype=Beast
-power=4
-toughness=2
-# P/T modified to make auto rule possible
+power=2
+toughness=1
 [/card]
 [card]
 name=Squall
@@ -45498,8 +45535,8 @@ toughness=1
 [card]
 name=Taste for Mayhem
 target=creature
-auto=4/0
-auto=aslongas(*|myhand)-2/0
+auto=2/0
+auto=aslongas(*|myhand) 2/0 <1
 text=Enchant creature -- Enchanted creature gets +2/+0. -- Hellbent - Enchanted creature gets an additional +2/+0 as long as you have no cards in hand.
 mana={R}
 type=Enchantment
@@ -45579,7 +45616,7 @@ toughness=1
 [card]
 name=Tectonic Edge
 auto={T}:Add{1}
-auto=aslongas(land|opponentBattlefield) {1}{T}{S}:destroy target(land[-basic] >3
+auto=aslongas(land|opponentBattlefield) {1}{T}{S}:destroy target(land[-basic]) >3
 text={T}: Add {1} to your mana pool. -- {1}, {T}, Sacrifice Tectonic Edge: Destroy target nonbasic land. Activate this ability only if an opponent controls four or more lands.
 type=Land
 [/card]
@@ -49973,8 +50010,7 @@ type=Instant
 [/card]
 [card]
 name=Vintara Snapper
-abilities=shroud
-auto=aslongas(land[-tapped]|myBattlefield) -shroud
+auto=aslongas(land[-tapped]|myBattlefield) shroud <1
 text=Vintara Snapper has shroud as long as you control no untapped lands. (It can't be the target of spells or abilities.)
 mana={G}{G}
 type=Creature
@@ -53578,7 +53614,7 @@ toughness=3
 name=Zombie Infestation
 auto={0}:aslongas(*|myhand) token(-220579111) >1
 text=Discard two cards: Put a 2/2 black Zombie creature token onto the battlefield.
-mana={G}
+mana={1}{B}
 type=Enchantment
 [/card]
 [card]
