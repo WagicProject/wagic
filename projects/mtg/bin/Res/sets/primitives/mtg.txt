@@ -38543,6 +38543,15 @@ mana={3}
 type=Artifact
 [/card]
 [card]
+name=Scute Mob
+auto=@each myupkeep:aslongas(land|mybattlefield) counter(1/1,4) >4
+text=At the beginning of your upkeep, if you control five or more lands, put four +1/+1 counters on Scute Mob.
+type=Creature
+subtype=Insect
+power=1
+toughness=1
+[/card]
+[card]
 name=Scuttling Death
 auto={S}:-1/-1 target(creature)
 auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=4]|mygraveyard)

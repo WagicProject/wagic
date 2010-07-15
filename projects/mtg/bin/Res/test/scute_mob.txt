@@ -1,0 +1,54 @@
+Testing Scute Mob's upkeep trigger for several upkeeps.
+[INIT]
+UNTAP
+[PLAYER1]
+inplay:Forest,Forest,Forest,Forest,Forest,Scute Mob
+[PLAYER2]
+[DO]
+next
+#upkeep
+next
+#draw
+next
+#firstmain
+next
+#combatbegins
+next
+#attackers
+Scute Mob
+next
+#blockers
+next
+#combatdamage
+next
+#combatends
+next
+#secondmain
+eot
+eot
+next
+#upkeep
+next
+#draw
+next
+#firstmain
+next
+#combatbegins
+next
+#attackers
+Scute Mob
+next
+#blockers
+next
+#combatdamage
+next
+#combatends
+next
+#secondmain
+[ASSERT]
+SECONDMAIN
+[PLAYER1]
+inplay:Forest,Forest,Forest,Forest,Forest,Scute Mob
+[PLAYER2]
+life:6
+[END]
