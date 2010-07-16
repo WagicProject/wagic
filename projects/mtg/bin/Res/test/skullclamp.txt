@@ -1,0 +1,37 @@
+#Testing Skillclamp basic funtion
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+manapool:{1}
+inplay:Runeclaw Bear,Skullclamp
+library:Mountain,Forest,Swamp
+[PLAYER2]
+inplay:Grizzly Bears
+[DO]
+Skullclamp
+Skullclamp
+Runeclaw Bear
+next
+#begin
+next
+#attackers
+Runeclaw Bear
+next
+#blocker
+Grizzly Bears
+next
+#damage
+next
+#end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+life:20
+graveyard:Runeclaw Bear
+inplay:Skullclamp
+hand:Forest,Swamp
+library:Mountain
+[PLAYER2]
+graveyard:Grizzly Bears
+life:20
+[END]

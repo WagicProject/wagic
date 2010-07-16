@@ -400,6 +400,7 @@ skullcage4_i239.txt
 skullcage5_i239.txt
 skullcage6_i239.txt
 skullcage7_i239.txt
+skullclamp.txt
 shepherd_of_rot.txt
 shivan_hellkite.txt
 shock.txt
