@@ -1,0 +1,36 @@
+#Testing Skillclamp with unsummon cast on equiped creature
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+manapool:{1}
+inplay:Runeclaw Bear,Skullclamp
+library:Mountain,Forest,Swamp
+[PLAYER2]
+inplay:Island
+hand:Unsummon
+[DO]
+Skullclamp
+Skullclamp
+Runeclaw Bear
+eot
+next
+#upkeeep
+next
+#draw
+next
+#firstmain
+Island
+Unsummon
+Runeclaw Bear
+[ASSERT]
+firstmain
+[PLAYER1]
+life:20
+inplay:Skullclamp
+library:Mountain,Forest,Swamp
+hand:Runeclaw Bear
+[PLAYER2]
+graveyard:Unsummon
+inplay:Island
+life:20
+[END]
