@@ -6,6 +6,7 @@
 #include "../include/Rules.h"
 #include "../include/Credits.h"
 #include "../include/PlayerData.h"
+#include "../include/MTGDeck.h"
 #include <JLBFont.h>
 #include <JGE.h>
 #include <JFileSystem.h>
@@ -18,6 +19,7 @@ float StoryDialog::currentY = 2;
 float StoryDialog::previousY = 2;
 bool StoryReward::rewardSoundPlayed = false;
 bool StoryReward::rewardsEnabled = true;
+MTGDeck * StoryReward::collection = NULL;
 
 StoryDialogElement::StoryDialogElement(float x, float y, int id): JGuiObject(id), mX(x),mY(y) {
 }
@@ -58,6 +60,8 @@ float StoryText::getHeight() {
   type = STORY_REWARD_CREDITS;
   if (_type.compare("unlockset") == 0) {
     type = STORY_REWARD_SET;
+  } else if (_type.compare("card") == 0) {
+    type = STORY_REWARD_CARD;
   }
   value = _value;
   rewardDone = 0;
@@ -82,7 +86,12 @@ void StoryReward::Update(float dt){
       break;
     case STORY_REWARD_SET:
       {
-        result = Credits::unlockRandomSet(true);
+        if (value.size()) {
+          result = Credits::unlockSetByName(value);
+        } else {
+          result = Credits::unlockRandomSet(true);
+        }
+        if (!result) break;
         MTGSetInfo * si = setlist.getInfo(result - 1);
         if(si) {
           string unlockedString = si->getName();
@@ -90,6 +99,33 @@ void StoryReward::Update(float dt){
           if (pos != string::npos) {
             text.replace(pos,pos + 6,unlockedString);
           }
+        }
+        break;
+      }
+    case STORY_REWARD_CARD:
+      {
+        int cardId = 0;
+        MTGCard * card = NULL;
+        if (value.size()) {
+           card = GameApp::collection->getCardByName(value);
+          if (card) {
+            cardId = card->getId();
+          } 
+        } else {
+          cardId = GameApp::collection->randomCardId();
+          card = GameApp::collection->getCardById(cardId);
+        }
+        
+        if (!cardId) break;
+
+        if (!collection) {
+          collection = NEW MTGDeck(options.profileFile(PLAYER_COLLECTION).c_str(), GameApp::collection);
+        }
+
+        result = Credits::addCardToCollection(cardId, collection);
+        size_t pos = text.find("${CARD}");
+        if (pos != string::npos && card) {
+          text.replace(pos,pos + 7,card->data->getName());
         }
         break;
       }
@@ -228,7 +264,7 @@ StoryChoice::StoryChoice(string pageId, string text, int JGOid, float mX, float 
   if(hasFocus) mTargetScale = 1.2f;
 }
 
-//Actually loads "game"
+//Actually loads a duel
 void StoryDuel::init(){
   Player * players[2];
 
@@ -249,7 +285,7 @@ void StoryDuel::init(){
 
   string rulesFile = folder;
   rulesFile.append("/rules.txt");
-  rules = NEW Rules(rulesFile);
+  rules = NEW Rules(rulesFile, bg);
 
   GameObserver::Init(players, 2);
   game = GameObserver::GetInstance();
@@ -263,15 +299,18 @@ StoryDuel::StoryDuel(TiXmlElement* root,StoryFlow * mParent): StoryPage(mParent)
   for (TiXmlNode* node = root->FirstChild(); node; node = node->NextSibling()) {
 	  TiXmlElement* element = node->ToElement();
 	  if (element) {
-		  if (strcmp(element->Value(), "onwin")==0) {
-          const char* textC = element->GetText();
+      const char* textC = element->GetText();
+		  if (strcmp(element->Value(), "onwin")==0) {   
           onWin = textC;
 		  }
       else if (strcmp(element->Value(), "onlose")==0) {
-          const char* textC = element->GetText();
           onLose = textC;
-		  }else {
-        //Error
+		  } else if (strcmp(element->Value(), "bg")==0) {
+          string text = textC;
+          bg = string("campaigns/").append(mParent->folder).append("/").append(text);
+          if (!fileExists(bg.c_str())) bg = text;
+		  } else {
+        StoryPage::loadElement(element); //Father
       }
 	  }
 	}
@@ -299,7 +338,7 @@ void StoryDuel::Render(){
   game->Render();
 }
 
-string StoryDialog::safeAttribute(TiXmlElement* element, string attribute) {
+string StoryPage::safeAttribute(TiXmlElement* element, string attribute) {
   string s;
   if (element->Attribute(attribute.c_str())){
     s = element->Attribute(attribute.c_str());
@@ -307,6 +346,18 @@ string StoryDialog::safeAttribute(TiXmlElement* element, string attribute) {
   return s;
 }
 
+int StoryPage::loadElement(TiXmlElement* element) {
+  if (!element) return 0;
+  const char* textC = element->GetText();
+  string text = textC;
+  if (strcmp(element->Value(), "music")==0) {
+    musicFile = string("campaigns/").append(mParent->folder).append("/").append(text);
+    if (!fileExists(musicFile.c_str())) 
+      musicFile = text;
+    return 1;
+  }
+  return 0;
+}
 
 StoryDialog::StoryDialog(TiXmlElement* root, StoryFlow * mParent):StoryPage(mParent), JGuiListener(), JGuiController(1,NULL) {
 
@@ -357,7 +408,7 @@ StoryDialog::StoryDialog(TiXmlElement* root, StoryFlow * mParent):StoryPage(mPar
           string value = safeAttribute(element,"value");
           graphics.push_back(NEW StoryReward(type, value, text,x,y,align, font));
         }else {
-          //Error
+          StoryPage::loadElement(element); //Father
         }
 		  }
 	  }
@@ -368,6 +419,11 @@ StoryDialog::StoryDialog(TiXmlElement* root, StoryFlow * mParent):StoryPage(mPar
 void StoryDialog::Update(float dt){
   for (size_t i = 0; i < graphics.size(); ++i){
     graphics[i]->Update(dt);
+  }
+
+  if (StoryReward::collection) {
+    StoryReward::collection->save();
+    SAFE_DELETE(StoryReward::collection);
   }
 
   JButton key = mEngine->ReadButton();
@@ -441,6 +497,9 @@ bool StoryFlow::_gotoPage(string id){
     return false;
   }
   currentPageId = id;
+  if (pages[currentPageId]->musicFile.size()) {
+    GameApp::playMusic(pages[currentPageId]->musicFile);
+  }
   return true;
 }
 
@@ -476,9 +535,15 @@ bool StoryFlow::parse(string path)
 		if (element != NULL) {
 			if (strcmp(element->Value(), "page")==0) {
         string id = element->Attribute("id");
+
+        OutputDebugString("\nparsing ");
+        OutputDebugString(id.c_str());
+        OutputDebugString("...\n");
+
 				StoryPage * sp = loadPage(element);
         pages[id] = sp;
         if (!currentPageId.size()) gotoPage(id);
+        OutputDebugString("OK\n");
 			}
       else {
         //Error

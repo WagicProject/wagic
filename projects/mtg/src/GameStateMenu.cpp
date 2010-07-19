@@ -135,15 +135,7 @@ void GameStateMenu::Start(){
   subMenuController = NULL;
   SAFE_DELETE(mGuiController);
   
-  if (GameApp::HasMusic && !GameApp::music && options[Options::MUSICVOLUME].number > 0){
-    GameApp::music = resources.ssLoadMusic("Track0.mp3");
-    JSoundSystem::GetInstance()->PlayMusic(GameApp::music, true);
-  }
-
-  if (GameApp::HasMusic && GameApp::music && options[Options::MUSICVOLUME].number == 0){
-    JSoundSystem::GetInstance()->StopMusic(GameApp::music);
-    SAFE_DELETE(GameApp::music);
-  }
+  GameApp::playMusic("Track0.mp3");
 
   hasChosenGameType = 0;
   mParent->gameType = GAME_TYPE_CLASSIC;

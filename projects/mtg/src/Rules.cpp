@@ -330,9 +330,9 @@ void Rules::cleanup(){
   initState.cleanup();
 }
 
-Rules::Rules(string filename){
+Rules::Rules(string filename, string _bg){
+  bg = _bg;
   load(filename);
-
 }
 
 int Rules::load(string _filename){

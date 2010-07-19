@@ -44,7 +44,10 @@ public:
   void compute(Player * _p1, Player * _p2, GameApp * _app);
   void Render();
   static int unlockRandomSet(bool force = false);
+  static int unlockSetByName(string name);
   static int addCreditBonus(int value);
+  static int addCardToCollection(int cardId, MTGDeck * collection);
+  static int addCardToCollection(int cardId);
 };
 
 #endif

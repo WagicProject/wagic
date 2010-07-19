@@ -700,9 +700,15 @@ string WResourceManager::musicFile(const string filename){
      sprintf(defdir,"sound/%s",filename.c_str());
      if(fileOK(defdir,true))
        return defdir;      
-    
+
+     //Failure. Check raw faile.       
+     sprintf(defdir,"%s",filename.c_str());
+      if(fileOK(defdir,true))
+        return defdir;
+
+
      //Complete abject failure. Probably a crash...
-     return defdir;
+     return "";
 }
 
 string WResourceManager::sfxFile(const string filename){
@@ -826,7 +832,9 @@ void WResourceManager::autoResize(){
 }
 
 JMusic * WResourceManager::ssLoadMusic(const char *fileName){
-  return JSoundSystem::GetInstance()->LoadMusic(musicFile(fileName).c_str());
+  string file = musicFile(fileName);
+  if (!file.size()) return NULL;
+  return JSoundSystem::GetInstance()->LoadMusic(file.c_str());
 }
 
 

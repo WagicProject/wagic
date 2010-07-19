@@ -46,6 +46,7 @@ GameObserver::GameObserver(Player * _players[], int _nb_players){
   phaseRing = NULL;
   replacementEffects = NEW ReplacementEffects();
   combatStep = BLOCKERS;
+  mRules = NULL;
 }
 
 int GameObserver::getCurrentGamePhase(){
@@ -187,6 +188,7 @@ int GameObserver::forceShuffleLibraries(){
 
 void GameObserver::startGame(Rules * rules){
   turn = 0;
+  mRules = rules;
   if (rules) 
     rules->initPlayers();
   
@@ -200,6 +202,7 @@ void GameObserver::startGame(Rules * rules){
   if (rules) 
     rules->initGame();
 
+  
 
   //Preload images from hand
   if (!players[0]->isAI()){

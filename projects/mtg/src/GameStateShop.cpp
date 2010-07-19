@@ -53,6 +53,7 @@ GameStateShop::GameStateShop(GameApp* parent): GameState(parent) {
 
 GameStateShop::~GameStateShop() {
   End();
+
 }
 
 void GameStateShop::Create(){
@@ -74,7 +75,7 @@ void GameStateShop::Start(){
   bigSync = 0;
   shopMenu = NEW WGuiMenu(JGE_BTN_DOWN, JGE_BTN_UP, true, &bigSync);
   MTGAllCards * ac = GameApp::collection;
-  playerdata = NEW PlayerData(ac);;
+  playerdata = NEW PlayerData(ac);
   myCollection = 	 NEW DeckDataWrapper(playerdata->collection);
   pricelist = NEW PriceList(RESPATH"/settings/prices.dat",ac);
   for(int i=0;i<SHOP_SLOTS;i++){

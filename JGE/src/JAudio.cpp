@@ -403,6 +403,8 @@ void audioInit()  // 初始化
 
 void audioDestroy()
 {
+  pspAudioEndPre();
+  sceKernelDelayThread(100000);
 	pspAudioEnd();
 }
 

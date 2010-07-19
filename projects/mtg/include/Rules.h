@@ -60,7 +60,10 @@ public:
     PARSE_PLAYER2,
     PARSE_PLAYERS
   };
-  Rules(string filename);
+
+  string bg;
+
+  Rules(string filename, string bg = "");
   int load(string filename);
   int gamemode;
   void initPlayers();
@@ -71,6 +74,7 @@ public:
   RulesState initState;
   static int getMTGId(string name);
   static MTGCardInstance * getCardByMTGId(int mtgid);
+
 };
 
 #endif

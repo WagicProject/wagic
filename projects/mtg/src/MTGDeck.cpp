@@ -426,6 +426,12 @@ MTGCard * MTGAllCards::_(int index){
 MTGCard * MTGAllCards::getCardByName(string name){
   if (!name.size()) return NULL;
   if (name[0] == '#') return NULL;
+
+  int cardnb = atoi(name.c_str());
+  if (cardnb){
+    return getCardById(cardnb);
+  }
+
   std::transform(name.begin(), name.end(), name.begin(),::tolower );
   int setId = -1;
   size_t found = name.find(" (");

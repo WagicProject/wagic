@@ -49,6 +49,7 @@ class GameObserver{
   Player * gameOver;
   Player * players[2]; //created outside
   time_t startedAt;
+  Rules * mRules;
 
   TargetChooser * getCurrentTargetChooser();
   void stackObjectClicked(Interruptible * action);

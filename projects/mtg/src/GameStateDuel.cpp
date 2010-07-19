@@ -173,11 +173,7 @@ void GameStateDuel::End()
   OutputDebugString("Ending GamestateDuel\n");
 #endif
   SAFE_DELETE(deckmenu);
-  //stop game music
-  if (GameApp::music){
-	      JSoundSystem::GetInstance()->StopMusic(GameApp::music);
-	      SAFE_DELETE(GameApp::music);
-      }
+
   JRenderer::GetInstance()->EnableVSync(false);
   if (mPlayers[0] && mPlayers[1]) mPlayers[0]->End();
   GameObserver::EndInstance();
@@ -304,13 +300,8 @@ void GameStateDuel::Update(float dt)
         if (mParent->gameType == GAME_TYPE_MOMIR){
           game->addObserver(NEW MTGMomirRule(-1, mParent->collection));
         }
-        //stop menu music
-        if (GameApp::music){
-          JSoundSystem::GetInstance()->StopMusic(GameApp::music);
-          SAFE_DELETE(GameApp::music);
-        }
+
         //start of in game music code
-        if (GameApp::HasMusic && options[Options::MUSICVOLUME].number > 0){
 	         musictrack = "";
 	         //check opponent id and choose the music track based on it
 	         if(OpponentsDeckid) {
@@ -328,12 +319,7 @@ void GameStateDuel::Update(float dt)
           if(!MusicExist(musictrack))
 	          musictrack = "ai_baka_music.mp3";
 
-	        if (MusicExist(musictrack)){
-	          GameApp::music = resources.ssLoadMusic(musictrack.c_str());
-            JSoundSystem::GetInstance()->PlayMusic(GameApp::music, true);
-          }
-        }
-        //end of music code
+          GameApp::playMusic(musictrack);
       }
       game->Update(dt);
       if (game->gameOver){

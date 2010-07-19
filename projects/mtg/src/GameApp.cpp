@@ -254,7 +254,8 @@ void GameApp::Destroy()
   SAFE_DELETE(Subtypes::subtypesList);
   SAFE_DELETE(DeckMetaDataList::decksMetaData);
 
-  SAFE_DELETE(music);
+  playMusic("none");
+
   Translator::EndInstance();
   WCFilterFactory::Destroy();
   SimpleMenu::destroy();
@@ -425,4 +426,16 @@ void GameApp::DoTransition(int trans, int tostate, float dur, bool animonly){
 
 void GameApp::DoAnimation(int trans, float dur){
   DoTransition(trans,GAME_STATE_NONE,dur,true);
+}
+
+void GameApp::playMusic(string filename, bool loop) {
+  if (music) {
+    JSoundSystem::GetInstance()->StopMusic(music);
+    SAFE_DELETE(music);
+  }
+
+  if (HasMusic && options[Options::MUSICVOLUME].number > 0){
+    music = resources.ssLoadMusic(filename.c_str());
+    if (music) JSoundSystem::GetInstance()->PlayMusic(music, loop);
+  }
 }

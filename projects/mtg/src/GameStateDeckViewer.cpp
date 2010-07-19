@@ -168,16 +168,7 @@ void GameStateDeckViewer::Start()
   //init welcome menu
   updateDecks();
 
-  if (GameApp::HasMusic && options[Options::MUSICVOLUME].number > 0){
-    if (GameApp::music){
-      JSoundSystem::GetInstance()->StopMusic(GameApp::music);
-      SAFE_DELETE(GameApp::music);
-    }
-    GameApp::music = resources.ssLoadMusic("track1.mp3");
-    if (GameApp::music){
-      JSoundSystem::GetInstance()->PlayMusic(GameApp::music, true);
-    }
-  }
+  GameApp::playMusic("track1.mp3");
 
   loadIndexes();
   mEngine->ResetInput();
@@ -188,10 +179,7 @@ void GameStateDeckViewer::Start()
 void GameStateDeckViewer::End()
 {
   JRenderer::GetInstance()->EnableVSync(false);
-  if (GameApp::music){
-    JSoundSystem::GetInstance()->StopMusic(GameApp::music);
-    SAFE_DELETE(GameApp::music);
-  }
+
   SAFE_DELETE(welcome_menu);
   SAFE_DELETE(menu);
   SAFE_DELETE(subMenu);

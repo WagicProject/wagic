@@ -8,6 +8,7 @@ using namespace std;
 #include "../../../JGE/src/tinyxml/tinyxml.h"
 #include <JGui.h>
 class GameObserver;
+class MTGDeck;
 #define CAMPAIGNS_FOLDER "Res/campaigns/"
 
 
@@ -49,7 +50,8 @@ class StoryReward:public StoryText {
 public:
   enum {
     STORY_REWARD_CREDITS,
-    STORY_REWARD_SET
+    STORY_REWARD_SET,
+    STORY_REWARD_CARD,
   };
 
   int rewardDone;
@@ -62,6 +64,7 @@ public:
 
   static bool rewardSoundPlayed;
   static bool rewardsEnabled;
+  static MTGDeck * collection;
 };
 
 class StoryChoice:public StoryText {
@@ -85,18 +88,21 @@ public:
 
 class StoryFlow;
 class StoryPage {
+protected:
+    string safeAttribute(TiXmlElement* element, string attribute);
 public: 
   StoryFlow * mParent;
+  string musicFile;
   StoryPage(StoryFlow * mParent);
   virtual void Update(float dt)=0;
   virtual void Render()=0;
   virtual ~StoryPage(){};
+  int loadElement(TiXmlElement* element);
 };
 
 class StoryDialog:public StoryPage, public JGuiListener,public JGuiController {
 private:
   vector<StoryDialogElement *>graphics;
-  string safeAttribute(TiXmlElement* element, string attribute);
   void RenderElement(StoryDialogElement * elmt);
 public:
   StoryDialog(TiXmlElement* el,StoryFlow * mParent);
@@ -115,6 +121,7 @@ class StoryDuel:public StoryPage {
 public:
   string pageId;
   string onWin, onLose;
+  string bg; //background file
   GameObserver * game;
   Rules * rules;
   StoryDuel(TiXmlElement* el,StoryFlow * mParent);

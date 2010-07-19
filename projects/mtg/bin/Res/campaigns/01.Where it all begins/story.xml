@@ -2,6 +2,7 @@
 
 <page id="start">
 <type>dialog</type>
+<music>_sfx/siege.mp3</music>
 <title>Welcome young adventurer...</title>
 <img>_gfx/shopkeeper.jpg</img>
 <text>So you want to become a sorcerer?</text>
@@ -15,6 +16,7 @@
 <page id="tap_mana_intro">
 <type>dialog</type>
 <title>Tapping lands for mana</title>
+<reward type="unlockset" value="RV">I unlocked ${SET} for you</reward>
 <text>In your quests you will have to fight against other wizards.</text>
 <text>You will only have your brain and your spells to help you.</text>
 <text>The basic Energy to cast your spells in Wagic is called mana.</text>
@@ -26,6 +28,7 @@
 
 <page id="tap_mana">
 <type>duel</type>
+<bg>_gfx/back_green.jpg</bg>
 <onwin>tap_mana_ok</onwin>
 <onlose>tap_mana_try_again</onlose>
 </page>
@@ -41,8 +44,10 @@
 
 <page id="tap_mana_ok">
 <type>dialog</type>
+<music>none</music>
 <title>Well done...now let's cast a spell</title>
 <text>That was too easy for you!</text>
+<reward type="card" value="Forest (10E)">As a reward, I give you a ${CARD}</reward>
 <text>Now let's see if you can cast a spell...</text>
 <text>Spells have a cost represented by mana symbols on the top right corner</text>
 <text>of the card. For example, 2 white mana icons on the top right of the card</text>
@@ -169,6 +174,7 @@
 <type>dialog</type>
 <title>Great!</title>
 <text>You now understand the basics of the combat phase</text>
+<reward type="unlockset" value="RV">I unlocked ${SET} for you</reward>
 <answer goto="first_duel_1">Continue</answer>
 </page>
 

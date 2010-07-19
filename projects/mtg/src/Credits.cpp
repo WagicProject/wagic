@@ -8,6 +8,7 @@
 #include "../include/MTGDeck.h"
 #include "../include/GameObserver.h"
 #include "../include/GameStateShop.h"
+#include "../include/PlayerData.h"
 
   CreditBonus::CreditBonus(int _value, string _text){
     value = _value;
@@ -288,6 +289,37 @@ int Credits::addCreditBonus(int value){
   playerdata->save();
   SAFE_DELETE(playerdata);
   return value;
+}
+/*
+ * adds a Card to a deck
+ * @param cardId id of the card
+ * @param collection deck representing player's collection
+*/
+int Credits::addCardToCollection(int cardId, MTGDeck * collection) {
+  return collection->add(cardId);
+}
+
+/*
+ * adds a Card to player's collection
+ * prefer to call the above function if you want to add several cards, since saving is expensive
+ */
+int Credits::addCardToCollection(int cardId) {
+  MTGAllCards * ac = GameApp::collection;
+  PlayerData * playerdata = NEW PlayerData(ac);
+  int result = addCardToCollection(cardId, playerdata->collection);
+  playerdata->collection->save();
+  return result;
+}
+
+int Credits::unlockSetByName(string name){
+  int setId = setlist.findSet(name);
+  if (setId < 0) return 0;
+
+  GameOptionAward* goa = (GameOptionAward*) &options[Options::optionSet(setId)];
+  goa->giveAward();
+  options.save();
+  return setId + 1; //We add 1 here to show success/failure. Be sure to subtract later.
+  
 }
 
 int Credits::unlockRandomSet(bool force){
