@@ -10205,28 +10205,6 @@ mana={U}
 type=Instant
 [/card]
 [card]
-###The first two level up abilities refuse to work.
-name=Enclave Cryptologist
-auto={1}{U}:counter(0/0,1,Level Up) asSorcery
-auto=this(counter{0/0.1.Level Up}=) {T}:token(-1111120) && draw:1
-auto=this(counter{0/0.2.Level Up}=) {T}:token(-1111120) && draw:1
-auto=this(counter{0/0.3.Level Up}) {T}:draw:1
-text=Level up {1}{U} -- [Level 1-2]: {T}: Draw a card, then discard a card. (0/1) -- [Level 3+]: {T}: Draw a card. (0/1)
-mana={1}{U}
-type=Creature
-subtype=Levelup Merfolk Wizard
-power=0
-toughness=1
-[/card]
-[card]
-name=Enclave Cryptologist's Discard
-auto=counter(0/0,1,Enclave Cryptologist)
-auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Enclave Cryptologist}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Enclave Cryptologist) && counter(0/0,1,Bury)
-auto=thisforeach(counter{0/0.1.Bury}>0) bury
-id=-1111120
-type=nothing
-[/card]
-[card]
 name=Enclave Elite
 text=Multikicker {1}{U} (You may pay an additional {1}{U} any number of times as you cast this spell.) -- Islandwalk -- Enclave Elite enters the battlefield with a +1/+1 counter on it for each time it was kicked.
 mana={2}{U}

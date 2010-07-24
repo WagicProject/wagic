@@ -13933,6 +13933,27 @@ mana={2}{G}
 type=Enchantment
 [/card]
 [card]
+name=Enclave Cryptologist
+auto={1}{U}:counter(0/0,1,Level Up) asSorcery
+auto=this(counter{0/0.1.Level Up}=1) {T}:token(-194903111)
+auto=this(counter{0/0.1.Level Up}=2) {T}:token(-194903111)
+auto=this(counter{0/0.1.Level Up}>2) {T}:draw:1 controller
+text=Level up {1}{U} -- [Level 1-2] {T}:Draw a card, then discard a card. -- [Level 3+] Draw a card.
+mana={U}
+type=Creature
+subtype=Melfolk Wizard
+power=0
+toughness=1
+[/card]
+[card]
+name=Enclave Cryptologist's Draw-Discard
+type=nothing
+id=-194903111
+auto=draw:1 controller
+auto=@movedto(this|exile):moveto(mygraveyard) target(*|myhand)
+auto=moveto(exile) all(this)
+[/card]
+[card]
 name=Endangered Armodon
 auto=aslongas(creature[toughness<=2]|myBattlefield) -99/-99
 text=When you control a creature with toughness 2 or less, sacrifice Endangered Armodon.
