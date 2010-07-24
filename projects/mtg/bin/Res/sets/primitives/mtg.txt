@@ -24416,6 +24416,7 @@ toughness=3
 [/card]
 [card]
 name=Keldon Megaliths
+auto=tap
 auto={T}:Add{R}
 auto=aslongas(creature|myhand) {1}{R}{T}:damage:1 target(creature,player) <1
 text=Keldon Megaliths enters the battlefield tapped. -- {T}: Add {R} to your mana pool. -- Hellbent - {1}{R}, {T}: Keldon Megaliths deals 1 damage to target creature or player. Activate this ability only if you have no cards in hand.
@@ -31895,6 +31896,21 @@ power=1
 toughness=1
 color=green
 [/card]
+[Card]
+name=Opalescence
+auto=lord(enchantment[-aura;manacost=1]) becomes(Creature,1/1)
+auto=lord(enchantment[-aura;manacost=2]) becomes(Creature,2/2)
+auto=lord(enchantment[-aura;manacost=3]) becomes(Creature,3/3)
+auto=lord(other enchantment[-aura;manacost=4]) becomes(creature,4/4)
+auto=lord(enchantment[-aura;manacost=5]) becomes(Creature,5/5)
+auto=lord(enchantment[-aura;manacost=6]) becomes(Creature,6/6)
+auto=lord(enchantment[-aura;manacost=7]) becomes(Creature,7/7)
+auto=lord(enchantment[-aura;manacost=8]) becomes(Creature,8/8)
+auto=aslongas(Opalescence|battlefield) becomes(Creature,4/4) >1
+mana={2}{W}{W}
+type=Enchantment
+text=Each other non-Aura enchantment is a creature with power and toughness each equal to its converted mana cost. It's still an enchantment.
+[/Card]
 [card]
 name=Open the Vaults
 auto=moveTo(myBattlefield) all(artifact,enchantment|myGraveyard)
