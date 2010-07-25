@@ -22,11 +22,12 @@ using std::string;
 
 static inline int getGrade(int v) {
   switch (v) {
-  case 'S': case 's': return Constants::GRADE_SUPPORTED;
-  case 'B': case 'b': return Constants::GRADE_BORDERLINE;
-  case 'C': case 'c': return Constants::GRADE_CRAPPY;
-  case 'U': case 'u': return Constants::GRADE_UNSUPPORTED;
-  case 'D': case 'd': return Constants::GRADE_DANGEROUS;
+  case 'P': case 'p': return Constants::GRADE_SUPPORTED;
+  case 'R': case 'r': return Constants::GRADE_BORDERLINE;
+  case 'O': case 'o': return Constants::GRADE_UNOFFICIAL;
+  case 'A': case 'a': return Constants::GRADE_CRAPPY;
+  case 'S': case 's': return Constants::GRADE_UNSUPPORTED;
+  case 'N': case 'n': return Constants::GRADE_DANGEROUS;
   }
   return 0;
 }
@@ -96,7 +97,7 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
       break;
 
     case 'g': //grade
-      currentGrade = getGrade(val[0]);
+      if (s.size() - i - 1 > 2) currentGrade = getGrade(val[2]);
       break;
     case 'k': //kicker
       if (!primitive) primitive = NEW CardPrimitive();
@@ -233,6 +234,16 @@ int MTGAllCards::load(const char * config_file, const char * set_name,int autolo
       if (s[0] == '['){
         currentGrade = Constants::GRADE_SUPPORTED; // Default value
         conf_read_mode = ('m' == s[1]) ? MTGAllCards::READ_METADATA : MTGAllCards::READ_CARD; // M for metadata.
+      } else {
+        //Global grade for file, to avoid reading the entire file if unnnecessary
+        if (s[0]=='g' && s.size() > 8) {
+          int fileGrade = getGrade(s[8]);
+          int maxGrade = options[Options::MAX_GRADE].number;
+          if (!maxGrade) maxGrade = Constants::GRADE_BORDERLINE; //Default setting for grade is borderline?
+          if (fileGrade > maxGrade) {
+            return total_cards;
+          }
+        }
       }
       continue;
     case MTGAllCards::READ_METADATA:

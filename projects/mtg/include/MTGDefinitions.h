@@ -142,9 +142,10 @@ class Constants
 
     GRADE_SUPPORTED = 0,
     GRADE_BORDERLINE = 1,
-    GRADE_CRAPPY = 2,
-    GRADE_UNSUPPORTED = 3,
-    GRADE_DANGEROUS = 4,
+    GRADE_UNOFFICIAL = 2,
+    GRADE_CRAPPY = 3,
+    GRADE_UNSUPPORTED = 4,
+    GRADE_DANGEROUS = 5,
   };
 
   static char MTGColorChars[];

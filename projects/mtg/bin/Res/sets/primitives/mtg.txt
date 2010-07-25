@@ -8444,12 +8444,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Cloudstone Curio
-text=Whenever a nonartifact permanent enters the battlefield under your control, you may return another permanent you control that shares a card type with it to its owner's hand.
-mana={1}
-type=Artifact
-[/card]
-[card]
 name=Clutch of the Undercity
 target=*
 auto=moveto(ownerhand)
@@ -50642,21 +50636,6 @@ text=Equipped creature has trample and can't be blocked by more than one creatur
 mana={2}
 type=Artifact
 subtype=Equipment
-[/card]
-[card]
-name=Vorosh the Hunter
-#The comma needed to be stripped from the name to make the card work.
-#Reintroducing it requires an update to PLC/_cards.dat as well.
-#Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1)
-abilities=flying
-auto=aslongas(vorosh the hunter[attacking]|mybattlefield) lord(vorosh the hunter[attacking;-cloud]) {2}{G}:counter(1/1,6)
-auto=@damaged(player) from(this):cloud
-text=Flying -- Whenever Vorosh, the Hunter deals combat damage to a player, you may pay {2}{G}. If you do, put six +1/+1 counters on Vorosh.
-mana={3}{G}{U}{B}
-type=Legendary Creature
-subtype=Dragon
-power=6
-toughness=6
 [/card]
 [card]
 name=Votary of the Conclave

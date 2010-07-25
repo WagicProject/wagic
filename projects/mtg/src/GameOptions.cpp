@@ -724,9 +724,10 @@ OptionMaxGrade OptionMaxGrade::mDef;
 OptionMaxGrade::OptionMaxGrade(){  
   mDef.values.push_back(EnumDefinition::assoc(Constants::GRADE_SUPPORTED, "1: 100% Supported"));
   mDef.values.push_back(EnumDefinition::assoc(Constants::GRADE_BORDERLINE, "0: Borderline (99% OK)"));
-  mDef.values.push_back(EnumDefinition::assoc(Constants::GRADE_CRAPPY, "-1: Crappy (bugs)"));
-  mDef.values.push_back(EnumDefinition::assoc(Constants::GRADE_UNSUPPORTED, "-2: Unsupported"));
-  mDef.values.push_back(EnumDefinition::assoc(Constants::GRADE_DANGEROUS, "-3: Dangerous (risk of crash)"));
+  mDef.values.push_back(EnumDefinition::assoc(Constants::GRADE_UNOFFICIAL, "-1: Unofficial (unverified cards)"));
+  mDef.values.push_back(EnumDefinition::assoc(Constants::GRADE_CRAPPY, "-2: Crappy (bugs)"));
+  mDef.values.push_back(EnumDefinition::assoc(Constants::GRADE_UNSUPPORTED, "-3: Unsupported"));
+  mDef.values.push_back(EnumDefinition::assoc(Constants::GRADE_DANGEROUS, "-4: Dangerous (risk of crash)"));
 
 };
 OptionClosedHand OptionClosedHand::mDef;
