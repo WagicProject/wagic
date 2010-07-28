@@ -1,0 +1,24 @@
+#Testing Natural Order (--> Sacrifice effects as part of the casting cost).
+#As an additional cost to cast Natural Order, sacrifice a green creature. -- Search your library for a green creature card and put it onto the battlefield. Then shuffle your library.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:forest,grizzly bears
+hand:natural order
+library:force of nature
+manapool:{2}{G}{G}
+[PLAYER2]
+[DO]
+natural order
+choice 0
+grizzly bears
+choice 0
+force of nature
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:forest,force of nature
+graveyard:grizzly bears,natural order
+manapool:{0}
+[PLAYER2]
+[END]

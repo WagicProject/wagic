@@ -332,6 +332,7 @@ moat.txt
 mobile_fort.txt
 mortuary.txt
 nantuko_husk.txt
+natural_order.txt
 necrogenesis.txt
 Nevinyrrals_Disk.txt
 Nevinyrrals_Disk2.txt
@@ -391,6 +392,7 @@ seedcradle_witch.txt
 seismic_assault.txt
 seismic_spike_i191.txt
 selesnya_guildmage.txt
+shard_volley.txt
 silver_seraph_i300.txt
 skullcage0_i239.txt
 skullcage1_i239.txt

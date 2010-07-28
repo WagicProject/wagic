@@ -106,12 +106,6 @@ mana={1}{W}
 type=Instant
 [/card]
 [card]
-name=Abjure
-text=As an additional cost to cast Abjure, sacrifice a blue permanent. -- Counter target spell.
-mana={U}
-type=Instant
-[/card]
-[card]
 name=Abolish
 text=You may discard a Plains card rather than pay Abolish's mana cost. -- Destroy target artifact or enchantment.
 mana={1}{W}{W}
@@ -696,12 +690,6 @@ type=Artifact Creature
 subtype=Golem
 power=*
 toughness=*
-[/card]
-[card]
-name=Altar of Bone
-text=As an additional cost to cast Altar of Bone, sacrifice a creature. -- Search your library for a creature card, reveal that card, and put it into your hand. Then shuffle your library.
-mana={G}{W}
-type=Sorcery
 [/card]
 [card]
 name=Altar of Dementia
@@ -3457,13 +3445,6 @@ type=Creature
 subtype=Giant Shaman
 power=3
 toughness=3
-[/card]
-[card]
-name=Bone Splinters
-target=creature
-auto=destroy
-text=As an additional cost to cast Bone Splinters, sacrifice a creature. -- Destroy target creature.
-type=Sorcery
 [/card]
 [card]
 name=Boneknitter
@@ -6386,6 +6367,16 @@ mana={2}{U}
 type=Enchantment
 [/card]
 [card]
+###this land cycle does not work! 0.12.1
+name=Coral Atoll
+auto=tap
+auto=moveTo(ownerhand) notatarget(island[-tapped]|myBattlefield)
+auto=moveTo(graveyard) notatarget(this|myBattlefield)
+auto=@movedTo(island[-tapped]|myhand) from(myBattlefield):lord(coral atoll) {T}:Add{1}{U}
+text=Coral Atoll enters the battlefield tapped. -- When Coral Atoll enters the battlefield, sacrifice it unless you return an untapped Island you control to its owner's hand. -- {T}: Add {1}{U} to your mana pool.
+type=Land
+[/card]
+[card]
 name=Coral Fighters
 text=Whenever Coral Fighters attacks and isn't blocked, look at the top card of defending player's library. You may put that card on the bottom of that player's library.
 mana={1}{U}
@@ -6797,12 +6788,6 @@ name=Crooked Scales
 text={4}, {T}: Flip a coin. If you win the flip, destroy target creature an opponent controls. If you lose the flip, destroy target creature you control unless you pay {3} and repeat this process.
 mana={4}
 type=Artifact
-[/card]
-[card]
-name=Crop Rotation
-text=As an additional cost to cast Crop Rotation, sacrifice a land. -- Search your library for a land card and put that card onto the battlefield. Then shuffle your library.
-mana={G}
-type=Instant
 [/card]
 [card]
 name=Crosis, the Purger
@@ -7678,12 +7663,6 @@ mana={3}{R}
 type=Sorcery
 [/card]
 [card]
-name=Death Bomb
-text=As an additional cost to cast Death Bomb, sacrifice a creature. -- Destroy target nonblack creature. It can't be regenerated. Its controller loses 2 life.
-mana={3}{B}
-type=Instant
-[/card]
-[card]
 name=Death Charmer
 text=Whenever Death Charmer deals combat damage to a creature, that creature's controller loses 2 life unless he or she pays {2}.
 mana={2}{B}
@@ -8412,12 +8391,6 @@ mana={1}{B}
 type=Instant
 [/card]
 [card]
-name=Diabolic Intent
-text=As an additional cost to cast Diabolic Intent, sacrifice a creature. -- Search your library for a card and put that card into your hand. Then shuffle your library.
-mana={1}{B}
-type=Sorcery
-[/card]
-[card]
 name=Diabolic Servitude
 text=When Diabolic Servitude enters the battlefield, return target creature card from your graveyard to the battlefield. -- When the creature put onto the battlefield with Diabolic Servitude is put into a graveyard, exile it and return Diabolic Servitude to its owner's hand. -- When Diabolic Servitude leaves the battlefield, exile the creature put onto the battlefield with Diabolic Servitude.
 mana={3}{B}
@@ -8908,6 +8881,16 @@ type=Legendary Creature
 subtype=Treefolk Shaman
 power=0
 toughness=5
+[/card]
+[card]
+###This land cycle does not work!
+name=Dormant Volcano
+auto=tap
+auto=aslongas(mountain[-tapped]|myBattlefield) moveTo(ownerhand) notatarget(mountain[-tapped]|myBattlefield)
+auto=moveTo(graveyard) notatarget(this|myBattlefield)
+auto=@movedTo(mountain[-tapped]|myhand) from(myBattlefield):lord(dormant volcano) {T}:Add{1}{R}
+text=Dormant Volcano enters the battlefield tapped. -- When Dormant Volcano enters the battlefield, sacrifice it unless you return an untapped Mountain you control to its owner's hand. -- {T}: Add {1}{R} to your mana pool.
+type=Land
 [/card]
 [card]
 name=Dosan the Falling Leaf
@@ -10837,6 +10820,16 @@ mana={0}
 type=Artifact
 [/card]
 [card]
+###This land cyclce does not work!
+name=Everglades
+auto=tap
+auto=aslongas(swamp[-tapped]|myBattlefield) moveTo(ownerhand) notatarget(swamp[-tapped]|myBattlefield)
+auto=moveTo(graveyard) notatarget(this|myBattlefield)
+auto=@movedTo(swamp[-tapped]|myhand) from(myBattlefield):lord(everglades) {T}:Add{1}{B}
+text=Everglades enters the battlefield tapped. -- When Everglades enters the battlefield, sacrifice it unless you return an untapped Swamp you control to its owner's hand. -- {T}: Add {1}{B} to your mana pool.
+type=Land
+[/card]
+[card]
 name=Everglove Courier
 text=You may choose not to untap Everglove Courier during your untap step. -- {2}{G}, {T}: Target Elf creature gets +2/+2 and has trample for as long as Everglove Courier remains tapped.
 mana={2}{G}
@@ -11690,12 +11683,6 @@ name=Fiery Bombardment
 text=Chroma - {2}, Sacrifice a creature: Fiery Bombardment deals damage to target creature or player equal to the number of red mana symbols in the sacrificed creature's mana cost.
 mana={1}{R}
 type=Enchantment
-[/card]
-[card]
-name=Fiery Conclusion
-text=As an additional cost to cast Fiery Conclusion, sacrifice a creature. -- Fiery Conclusion deals 5 damage to target creature.
-mana={1}{R}
-type=Instant
 [/card]
 [card]
 name=Fiery Gambit
@@ -14094,12 +14081,6 @@ type=Creature
 subtype=Goblin
 power=1
 toughness=1
-[/card]
-[card]
-name=Goblin Grenade
-text=As an additional cost to cast Goblin Grenade, sacrifice a Goblin. -- Goblin Grenade deals 5 damage to target creature or player.
-mana={R}
-type=Sorcery
 [/card]
 [card]
 name=Goblin Grenadiers
@@ -18011,6 +17992,16 @@ power=2
 toughness=1
 [/card]
 [card]
+###This land cycle does not work!
+name=Jungle Basin
+auto=tap
+auto=aslongas(forest[-tapped]|myBattlefield) moveTo(ownerhand) notatarget(forest[-tapped]|myBattlefield)
+auto=moveTo(graveyard) notatarget(this|myBattlefield)
+auto=@movedTo(forest[-tapped]|myhand) from(myBattlefield):lord(jungle basin) {T}:Add{1}{G}
+text=Jungle Basin enters the battlefield tapped. -- When Jungle Basin enters the battlefield, sacrifice it unless you return an untapped Forest you control to its owner's hand. -- {T}: Add {1}{G} to your mana pool.
+type=Land
+[/card]
+[card]
 name=Juniper Order Advocate
 text=Green creatures you control get +1/+1 as long as Juniper Order Advocate is untapped.
 mana={2}{W}
@@ -18210,6 +18201,16 @@ type=Legendary Creature
 subtype=Avatar
 power=5
 toughness=5
+[/card]
+[card]
+###This land cycle does not work!
+name=Karoo
+auto=tap
+auto=aslongas(plains[-tapped]|myBattlefield) moveTo(ownerhand) notatarget(plains[-tapped]|myBattlefield)
+auto=moveTo(graveyard) notatarget(this|myBattlefield)
+auto=@movedTo(plains[-tapped]|myhand) from(myBattlefield):lord(karoo) {T}:Add{1}{W}
+text=Karoo enters the battlefield tapped. -- When Karoo enters the battlefield, sacrifice it unless you return an untapped Plains you control to its owner's hand. -- {T}: Add {1}{W} to your mana pool.
+type=Land
 [/card]
 [card]
 name=Karplusan Giant
@@ -20822,12 +20823,6 @@ name=Magma Jet
 text=Magma Jet deals 2 damage to target creature or player. -- Scry 2. (To scry 2, look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
 mana={1}{R}
 type=Instant
-[/card]
-[card]
-name=Magma Rift
-text=As an additional cost to cast Magma Rift, sacrifice a land. -- Magma Rift deals 5 damage to target creature.
-mana={2}{R}
-type=Sorcery
 [/card]
 [card]
 name=Magma Sliver
@@ -23620,12 +23615,6 @@ toughness=2
 [card]
 name=Natural Balance
 text=Each player who controls six or more lands chooses five lands he or she controls and sacrifices the rest. Each player who controls four or fewer lands may search his or her library for X basic land cards and put them onto the battlefield, where X is five minus the number of lands he or she controls. Then each player who searched his or her library this way shuffles it.
-mana={2}{G}{G}
-type=Sorcery
-[/card]
-[card]
-name=Natural Order
-text=As an additional cost to cast Natural Order, sacrifice a green creature. -- Search your library for a green creature card and put it onto the battlefield. Then shuffle your library.
 mana={2}{G}{G}
 type=Sorcery
 [/card]
@@ -28576,12 +28565,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Raze
-text=As an additional cost to cast Raze, sacrifice a land. -- Destroy target land.
-mana={R}
-type=Sorcery
-[/card]
-[card]
 name=Razia's Purification
 text=Each player chooses three permanents he or she controls, then sacrifices the rest.
 mana={4}{R}{W}
@@ -28787,12 +28770,6 @@ name=Reciprocate
 text=Exile target creature that dealt damage to you this turn.
 mana={W}
 type=Instant
-[/card]
-[card]
-name=Reckless Abandon
-text=As an additional cost to cast Reckless Abandon, sacrifice a creature. -- Reckless Abandon deals 4 damage to target creature or player.
-mana={R}
-type=Sorcery
 [/card]
 [card]
 name=Reckless Charge
@@ -29093,14 +29070,6 @@ type=Creature
 subtype=Human Warrior
 power=3
 toughness=3
-[/card]
-[card]
-name=Renewal
-auto={s(land|myinplay)}:moveTo(myHand) target(land[basic]|myLibrary)
-auto=@next upkeep:draw:1
-text=As an additional cost to cast Renewal, sacrifice a land. -- Search your library for a basic land card and put that card onto the battlefield. Then shuffle your library. -- Draw a card at the beginning of the next turn's upkeep.
-mana={2}{G}
-type=Sorcery
 [/card]
 [card]
 name=Renewing Touch
@@ -29907,14 +29876,6 @@ name=Ritual of Subdual
 text=Cumulative upkeep {2} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- If a land is tapped for mana, it produces colorless mana instead of any other type.
 mana={4}{G}{G}
 type=Enchantment
-[/card]
-[card]
-name=Ritual of the Machine
-target=(creature[-black;-artifact])
-alias=1194
-text=As an additional cost to cast Ritual of the Machine, sacrifice a creature. -- Gain control of target nonblack, nonartifact creature.
-mana={2}{B}{B}
-type=Sorcery
 [/card]
 [card]
 name=Rivalry
@@ -32272,12 +32233,6 @@ mana={3}{G}
 type=Sorcery
 [/card]
 [card]
-name=Shard Volley
-text=As an additional cost to cast Shard Volley, sacrifice a land. -- Shard Volley deals 3 damage to target creature or player.
-mana={R}
-type=Instant
-[/card]
-[card]
 name=Sharding Sphinx
 text=Flying -- Whenever an artifact creature you control deals combat damage to a player, you may put a 1/1 blue Thopter artifact creature token with flying onto the battlefield.
 mana={4}{U}{U}
@@ -32623,12 +32578,6 @@ type=Sorcery
 name=Shower of Sparks
 text=Shower of Sparks deals 1 damage to target creature and 1 damage to target player.
 mana={R}
-type=Instant
-[/card]
-[card]
-name=Shrapnel Blast
-text=As an additional cost to cast Shrapnel Blast, sacrifice an artifact. -- Shrapnel Blast deals 5 damage to target creature or player.
-mana={1}{R}
 type=Instant
 [/card]
 [card]
@@ -34815,12 +34764,6 @@ type=Sorcery
 name=Spoils of the Vault
 text=Name a card. Reveal cards from the top of your library until you reveal the named card, then put that card into your hand. Exile all other cards revealed this way, and you lose 1 life for each of the exiled cards.
 mana={B}
-type=Instant
-[/card]
-[card]
-name=Spontaneous Combustion
-text=As an additional cost to cast Spontaneous Combustion, sacrifice a creature. -- Spontaneous Combustion deals 3 damage to each creature.
-mana={1}{B}{R}
 type=Instant
 [/card]
 [card]
@@ -37797,12 +37740,6 @@ power=0
 toughness=3
 [/card]
 [card]
-name=Tinker
-text=As an additional cost to cast Tinker, sacrifice an artifact. -- Search your library for an artifact card and put that card onto the battlefield. Then shuffle your library.
-mana={2}{U}
-type=Sorcery
-[/card]
-[card]
 name=Titan's Revenge
 text=Titan's Revenge deals X damage to target creature or player. Clash with an opponent. If you win, return Titan's Revenge to its owner's hand. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
 mana={X}{R}{R}
@@ -38203,12 +38140,6 @@ toughness=3
 name=Trapfinder's Trick
 text=Target player reveals his or her hand and discards all Trap cards.
 mana={1}{U}
-type=Sorcery
-[/card]
-[card]
-name=Trash for Treasure
-text=As an additional cost to cast Trash for Treasure, sacrifice an artifact. -- Return target artifact card from your graveyard to the battlefield.
-mana={2}{R}
 type=Sorcery
 [/card]
 [card]
@@ -40492,15 +40423,6 @@ mana={3}{U}
 type=Sorcery
 [/card]
 [card]
-name=Waste Away
-target=creature
-auto=discard:1 controller
-auto=-5/-5
-text=As an additional cost to cast Waste Away, discard a card. -- Target creature gets -5/-5 until end of turn.
-mana={4}{B}
-type=Instant
-[/card]
-[card]
 name=Watchdog
 text=Watchdog blocks each turn if able. -- As long as Watchdog is untapped, all creatures attacking you get -1/-0.
 mana={3}
@@ -40887,12 +40809,6 @@ name=Wicked Pact
 text=Destroy two target nonblack creatures. You lose 5 life.
 mana={1}{B}{B}
 type=Sorcery
-[/card]
-[card]
-name=Wicked Reward
-text=As an additional cost to cast Wicked Reward, sacrifice a creature. -- Target creature gets +4/+2 until end of turn.
-mana={1}{B}
-type=Instant
 [/card]
 [card]
 name=Wiitigo

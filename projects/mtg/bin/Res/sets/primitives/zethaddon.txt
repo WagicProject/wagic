@@ -17,28 +17,6 @@ type=Mana-token
 id=-66775544
 [/card]
 [card]
-name=Diabolic Intent
-mana={1}{B}{s;target(creature|mybattlefield)}
-auto=moveTo(myhand) target(*|myLibrary)
-text=As an additional cost to cast Diabolic Intent, sacrifice a creature. Search your library for a card and put that card into your hand. Then shuffle your library.
-type=sorcery
-[/card]
-[card]
-name=Abjure
-target=*|stack
-auto=fizzle
-text=As an additional cost to cast Abjure, sacrifice a blue permanent. Counter target spell.
-mana={U}{s;target(*[blue]|mybattlefield)}
-type=Instant
-[/card]
-[card]
-name=Altar of Bone
-mana={G}{W}{s;target(creature|mybattlefield)}
-auto=moveTo(myhand) target(Creature|myLibrary)
-text=As an additional cost to cast Altar of Bone, sacrifice a creature. Search your library for a creature card, reveal that card, and put it into your hand. Then shuffle your library.
-type=sorcery
-[/card]
-[card]
 name=Disaster Radius
 target=creature|myhand
 auto=damage:manacost all(creature|opponentbattlefield)
@@ -56,49 +34,12 @@ type=instant
 subtype=arcane
 [/card]
 [card]
-name=Bone Splinters
-auto=destroy notatarget(creature)
-text=Sacrifice a creature. Destroy target creature.
-mana={B}{s;target(creature|mybattlefield)}
-type=Sorcery
-[/card]
-[card]
-name=crop Rotation
-auto=moveTo(mybattlefield) notatarget(land|myLibrary)
-text=As an additional cost to cast Crop Rotation, sacrifice a land. Search your library for a land card and put that card onto the battlefield. Then shuffle your library.
-mana={G}{s;target(land|mybattlefield)}
-type=instant
-[/card]
-[card]
-name=Natural Order
-auto=moveTo(myBattlefield) notatarget(creature[green]|myLibrary)
-text=Sacrifice a green creature: Search your library for a green creature card and put it into play as thourhg it were just played. Shuffle your library afterwards.
-mana={2}{G}{G}{s;target(creature[green]|mybattlefield)}
-type=Sorcery
-[/card]
-[card]
-name=Death Bomb
-auto=destroy notatarget(creature[-black])
-auto=life:-2 opponent
-text=As an additional cost to cast Death Bomb, sacrifice a creature. Destroy target nonblack creature. It can't be regenerated. Its controller loses 2 life.
-mana={B}{3}{s;target(creature|mybattlefield)}
-type=instant
-[/card]
-[card]
 name=Familiar's Ruse
 target=creature|mybattlefield
 auto=moveTo(ownerHand)
 auto=fizzle target(*|stack)
 text=As an additional cost to cast Familiar's Ruse, return a creature you control to its owner's hand. Counter target spell.
 mana={U}{U}
-type=Instant
-[/card]
-[card]
-name=Fiery Conclusion
-target=Creature
-auto=damage:5
-text=As an additional cost to cast Fiery Conclusion, sacrifice a creature. Fiery Conclusion deals 5 damage to target creature.
-mana={1}{R}{s;target(creature|mybattlefield)}
 type=Instant
 [/card]
 [card]
@@ -133,15 +74,6 @@ type=nothing
 id=-33445566
 [/card]
 [card]
-name=Fodder Launch
-auto=-5/-5 target(creature)
-auto=damage:5 targetcontroller
-text=As an additional cost to cast Fodder Launch, sacrifice a Goblin. Target creature gets -5/-5 until end of turn. Fodder Launch deals 5 damage to that creature's controller.
-mana={1}{R}{s;target(Goblin|mybattlefield)}
-type=sorcery
-subtype=tribal
-[/card]
-[card]
 name=Fling
 target=creature|mybattlefield
 auto=destroy
@@ -149,13 +81,6 @@ auto=damage:p notatarget(creature,player)
 text=As an additional cost to cast Fling, sacrifice a creature. Fling deals damage equal to the sacrificed creature's power to target creature or player.
 mana={1}{R}
 type=Instant
-[/card]
-[card]
-name=Tinker
-auto=moveto(mybattlefield) target(artifact|mylibrary)
-text=As an additional cost to cast Tinker, sacrifice an artifact.Search your library for an artifact card and put that card onto the battlefield. Then shuffle your library.
-mana={2}{U}{s;target(Artifact|mybattlefield)}
-type=Sorcery
 [/card]
 [card]
 name=Reiver Demon

@@ -154,6 +154,14 @@ power=1
 toughness=3
 [/card]
 [card]
+name=Abjure
+target=*|stack
+auto=fizzle
+text=As an additional cost to cast Abjure, sacrifice a blue permanent. -- Counter target spell.
+mana={U}{s;notatarget(*[blue]|mybattlefield)}
+type=Instant
+[/card]
+[card]
 name=Aboroth
 auto=@each my upkeep:counter(0/0,1,Age)
 auto=thisforeach(counter{0/0.1.Age}) upcost[{C(-1/-1)}] moveTo(graveyard)
@@ -950,6 +958,13 @@ type=Artifact Creature
 subtype=Myr
 power=2
 toughness=1
+[/card]
+[card]
+name=Altar of Bone
+auto=moveTo(myhand) target(Creature|myLibrary)
+text=As an additional cost to cast Altar of Bone, sacrifice a creature. -- Search your library for a creature card, reveal that card, and put it into your hand. Then shuffle your library.
+mana={G}{W}{s;notatarget(creature|mybattlefield)}
+type=Sorcery
 [/card]
 [card]
 name=Altar of Shadows
@@ -5392,6 +5407,13 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Bone Splinters
+auto=destroy target(creature)
+text=As an additional cost to cast Bone Splinters, sacrifice a creature. -- Destroy target creature.
+mana={B}{s;notatarget(creature|mybattlefield)}
+type=Sorcery
+[/card]
+[card]
 name=Bonesplitter
 auto={1}:equip
 auto=2/0
@@ -8937,15 +8959,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Coral Atoll
-auto=tap
-auto=aslongas(island[-tapped]|myBattlefield) moveTo(ownerhand) notatarget(island[-tapped]|myBattlefield)
-auto=moveTo(graveyard) notatarget(this|myBattlefield)
-auto=@movedTo(island[-tapped]|myhand) from(myBattlefield):lord(coral atoll) {T}:Add{1}{U}
-text=Coral Atoll enters the battlefield tapped. -- When Coral Atoll enters the battlefield, sacrifice it unless you return an untapped Island you control to its owner's hand. -- {T}: Add {1}{U} to your mana pool.
-type=Land
-[/card]
-[card]
 name=Coral Eel
 mana={1}{U}
 type=Creature
@@ -9451,6 +9464,13 @@ power=0
 toughness=1
 [/card]
 [card]
+name=Crop Rotation
+auto=moveTo(mybattlefield) target(land|myLibrary)
+text=As an additional cost to cast Crop Rotation, sacrifice a land. -- Search your library for a land card and put that card onto the battlefield. Then shuffle your library.
+mana={G}{s;notatarget(land|mybattlefield)}
+type=instant
+[/card]
+[card]
 name=Crosis's Attendant
 auto={1}{S}:Add {U}{B}{R}
 text={1}, Sacrifice Crosis's Attendant: Add {U}{B}{R} to your mana pool.
@@ -9720,11 +9740,9 @@ type=Sorcery
 [/card]
 [card]
 name=Culling the Weak
-target=creature|myBattlefield
-auto=bury
 auto=Add {B}{B}{B}{B}
 text=As an additional cost to cast Culling the Weak, sacrifice a creature. -- Add {B}{B}{B}{B} to your mana pool.
-mana={B}
+mana={B}{s;target(creature|mybattlefield)}
 type=Instant
 [/card]
 [card]
@@ -10574,6 +10592,14 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Death Bomb
+auto=destroy target(creature[-black])
+auto=life:-2 opponent
+text=As an additional cost to cast Death Bomb, sacrifice a creature. -- Destroy target nonblack creature. It can't be regenerated. Its controller loses 2 life.
+mana={3}{B}{s;notatarget(creature|mybattlefield)}
+type=Instant
+[/card]
+[card]
 name=Death Cultist
 auto={S}:life:-1 target(player) && life:1 controller
 text=Sacrifice Death Cultist: Target loses 1 life and you gain 1 life.
@@ -11406,6 +11432,13 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Diabolic Intent
+auto=moveTo(myhand) target(*|myLibrary)
+text=As an additional cost to cast Diabolic Intent, sacrifice a creature. -- Search your library for a card and put that card into your hand. Then shuffle your library.
+mana={1}{B}{s;notatarget(creature|mybattlefield)}
+type=Sorcery
+[/card]
+[card]
 name=Diabolic Machine
 auto={3}:regenerate
 text={3}: Regenerate Diabolic Machine.
@@ -11921,15 +11954,6 @@ type=Creature
 subtype=Sliver
 power=2
 toughness=2
-[/card]
-[card]
-name=Dormant Volcano
-auto=tap
-auto=aslongas(mountain[-tapped]|myBattlefield) moveTo(ownerhand) notatarget(mountain[-tapped]|myBattlefield)
-auto=moveTo(graveyard) notatarget(this|myBattlefield)
-auto=@movedTo(mountain[-tapped]|myhand) from(myBattlefield):lord(dormant volcano) {T}:Add{1}{R}
-text=Dormant Volcano enters the battlefield tapped. -- When Dormant Volcano enters the battlefield, sacrifice it unless you return an untapped Mountain you control to its owner's hand. -- {T}: Add {1}{R} to your mana pool.
-type=Land
 [/card]
 [card]
 name=Dosan's Oldest Chant
@@ -14452,15 +14476,6 @@ mana={2}{R}
 type=Sorcery
 [/card]
 [card]
-name=Everglades
-auto=tap
-auto=aslongas(swamp[-tapped]|myBattlefield) moveTo(ownerhand) notatarget(swamp[-tapped]|myBattlefield)
-auto=moveTo(graveyard) notatarget(this|myBattlefield)
-auto=@movedTo(swamp[-tapped]|myhand) from(myBattlefield):lord(everglades) {T}:Add{1}{B}
-text=Everglades enters the battlefield tapped. -- When Everglades enters the battlefield, sacrifice it unless you return an untapped Swamp you control to its owner's hand. -- {T}: Add {1}{B} to your mana pool.
-type=Land
-[/card]
-[card]
 name=Evil Eye of Orms-by-Gore
 auto=lord(creature[-eye]|myBattlefield) cantattack
 auto=cantbeblockedby(creature[-wall])
@@ -15432,6 +15447,13 @@ type=Creature
 subtype=Elf
 power=1
 toughness=1
+[/card]
+[card]
+name=Fiery Conclusion
+auto=damage:5 target(creature)
+text=As an additional cost to cast Fiery Conclusion, sacrifice a creature. -- Fiery Conclusion deals 5 damage to target creature.
+mana={1}{R}{s;notatarget(creature|mybattlefield)}
+type=Instant
 [/card]
 [card]
 name=Fiery Fall
@@ -16410,6 +16432,15 @@ auto={4}{T}{S(creature|myBattlefield)}:Damage:4 target(creature)
 text={4}, {T}, Sacrifice a creature: Fodder Cannon deals 4 damage to target creature.
 mana={4}
 type=Artifact
+[/card]
+[card]
+name=Fodder Launch
+auto=-5/-5 target(creature)
+auto=damage:5 targetcontroller
+text=As an additional cost to cast Fodder Launch, sacrifice a Goblin. -- Target creature gets -5/-5 until end of turn. Fodder Launch deals 5 damage to that creature's controller.
+mana={3}{B}{s;notatarget(goblin|mybattlefield)}
+type=Sorcery
+subtype=Tribal
 [/card]
 [card]
 name=Fog
@@ -18471,6 +18502,13 @@ type=Creature
 subtype=Goblin
 power=1
 toughness=1
+[/card]
+[card]
+name=Goblin Grenade
+auto=damage:5 target(creature,player)
+text=As an additional cost to cast Goblin Grenade, sacrifice a Goblin. -- Goblin Grenade deals 5 damage to target creature or player.
+mana={R}{s;notatarget(goblin|mybattlefield)}
+type=Sorcery
 [/card]
 [card]
 name=Goblin Hero
@@ -23493,15 +23531,6 @@ power=2
 toughness=6
 [/card]
 [card]
-name=Jungle Basin
-auto=tap
-auto=aslongas(forest[-tapped]|myBattlefield) moveTo(ownerhand) notatarget(forest[-tapped]|myBattlefield)
-auto=moveTo(graveyard) notatarget(this|myBattlefield)
-auto=@movedTo(forest[-tapped]|myhand) from(myBattlefield):lord(jungle basin) {T}:Add{1}{G}
-text=Jungle Basin enters the battlefield tapped. -- When Jungle Basin enters the battlefield, sacrifice it unless you return an untapped Forest you control to its owner's hand. -- {T}: Add {1}{G} to your mana pool.
-type=Land
-[/card]
-[card]
 name=Jungle Lion
 abilities=cantblock
 text=Jungle Lion can't block.
@@ -23997,15 +24026,6 @@ auto=becomes(Creature,manacost/manacost) ueot
 text=Target noncreature artifact becomes an artifact creature with power and toughness each equal to its converted mana cost until end of turn. (It retains its abilities.)
 mana={U}{U}
 type=Instant
-[/card]
-[card]
-name=Karoo
-auto=tap
-auto=aslongas(plains[-tapped]|myBattlefield) moveTo(ownerhand) notatarget(plains[-tapped]|myBattlefield)
-auto=moveTo(graveyard) notatarget(this|myBattlefield)
-auto=@movedTo(plains[-tapped]|myhand) from(myBattlefield):lord(karoo) {T}:Add{1}{W}
-text=Karoo enters the battlefield tapped. -- When Karoo enters the battlefield, sacrifice it unless you return an untapped Plains you control to its owner's hand. -- {T}: Add {1}{W} to your mana pool.
-type=Land
 [/card]
 [card]
 name=Karoo Meerkat
@@ -27388,6 +27408,13 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Magma Rift
+auto=damage:5 target(creature)
+text=As an additional cost to cast Magma Rift, sacrifice a land. -- Magma Rift deals 5 damage to target creature.
+mana={2}{R}{s;notatarget(land|mybattlefield)}
+type=Sorcery
+[/card]
+[card]
 name=Magma Vein
 auto={R}{S(land|myBattlefield)}:damage:1 all(creature[-flying])
 text={R}, Sacrifice a land: Magma Vein deals 1 damage to each creature without flying.
@@ -30471,6 +30498,13 @@ auto=@movedTo(enchantment[red;green]|myhand) from(myBattlefield):lord(land|myBat
 text=When Natural Emergence enters the battlefield, return a red or green enchantment you control to its owner's hand. -- Lands you control are 2/2 creatures with first strike. They're still lands.
 mana={2}{R}{G}
 type=Enchantment
+[/card]
+[card]
+name=Natural Order
+auto=moveTo(myBattlefield) target(creature[green]|myLibrary)
+text=As an additional cost to cast Natural Order, sacrifice a green creature. -- Search your library for a green creature card and put it onto the battlefield. Then shuffle your library.
+mana={2}{G}{G}{s;notatarget(creature[green]|mybattlefield)}
+type=Sorcery
 [/card]
 [card]
 name=Natural Spring
@@ -35623,6 +35657,13 @@ mana={1}{W}
 type=Instant
 [/card]
 [card]
+name=Raze
+auto=destroy target(land)
+text=As an additional cost to cast Raze, sacrifice a land. -- Destroy target land.
+mana={R}{s;notatarget(land|mybattlefield)}
+type=Sorcery
+[/card]
+[card]
 name=Razormane Masticore
 auto=first strike
 auto=upcost[{S(*|myhand)}] moveTo(graveyard)
@@ -35749,6 +35790,13 @@ autohand={2}:cycling
 text=Return all artifacts to their owners' hands. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={2}{U}
 type=Instant
+[/card]
+[card]
+name=Reckless Abandon
+auto=damage:4 target(creature,player)
+text=As an additional cost to cast Reckless Abandon, sacrifice a creature. -- Reckless Abandon deals 4 damage to target creature or player.
+mana={R}{s;notatarget(creature|mybattlefield)}
+type=Sorcery
 [/card]
 [card]
 name=Reckless Assault
@@ -36155,6 +36203,14 @@ type=Creature
 subtype=Human Soldier
 power=4
 toughness=2
+[/card]
+[card]
+name=Renewal
+auto=moveTo(myHand) target(land[basic]|myLibrary)
+auto=@next upkeep:draw:1 controller
+text=As an additional cost to cast Renewal, sacrifice a land. -- Search your library for a basic land card and put that card onto the battlefield. Then shuffle your library. -- Draw a card at the beginning of the next turn's upkeep.
+mana={2}{G}{s;notatarget(land|mybattlefield)}
+type=Sorcery
 [/card]
 [card]
 name=Renewed Faith
@@ -36806,6 +36862,13 @@ text=Enchant creature -- When Ritual of Steel enters the battlefield, draw a car
 mana={2}{W}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Ritual of the Machine
+auto=moveTo(myBattlefield) target(creature[-black;-artifact])
+text=As an additional cost to cast Ritual of the Machine, sacrifice a creature. -- Gain control of target nonblack, nonartifact creature.
+mana={2}{B}{B}{s;notatarget(creature|mybattlefield)}
+type=Sorcery
 [/card]
 [card]
 name=Riven Turnbull
@@ -39580,6 +39643,13 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Shard Volley
+auto=damage:3 target(creature,player)
+text=As an additional cost to cast Shard Volley, sacrifice a land. -- Shard Volley deals 3 damage to target creature or player.
+mana={R}{s;notatarget(land|mybattlefield)}
+type=Instant
+[/card]
+[card]
 name=Sharuum the Hegemon
 abilities=flying
 auto=may moveTo(myBattlefield) target(artifact|mygraveyard)
@@ -40060,6 +40130,13 @@ name=Shoving Match
 auto=lord(creature) {T}:tap target(creature)
 text=Until end of turn, all creatures gain "{T}: Tap target creature."
 mana={2}{U}
+type=Instant
+[/card]
+[card]
+name=Shrapnel Blast
+auto=damage:5 target(creature,player)
+text=As an additional cost to cast Shrapnel Blast, sacrifice an artifact. -- Shrapnel Blast deals 5 damage to target creature or player.
+mana={1}{R}{s;notatarget(artifact|mybattlefield)}
 type=Instant
 [/card]
 [card]
@@ -40949,11 +41026,9 @@ type=nothing
 [/card]
 [card]
 name=Skulltap
-target=creature|myBattlefield
-auto=bury
 auto=draw:2 controller
 text=As an additional cost to cast Skulltap, sacrifice a creature. -- Draw two cards.
-mana={1}{B}
+mana={1}{B}{s;notatarget(creature|mybattlefield)}
 type=Sorcery
 [/card]
 [card]
@@ -43025,6 +43100,13 @@ auto=moveTo|myBattlefield
 text=Search your library for a Plains, Island, Swamp, Mountain, or Forest card and put that card onto the battlefield. Then shuffle your library.
 mana={2}{G}
 type=Sorcery
+[/card]
+[card]
+name=Spontaneous Combustion
+auto=damage:3 all(creature)
+text=As an additional cost to cast Spontaneous Combustion, sacrifice a creature. -- Spontaneous Combustion deals 3 damage to each creature.
+mana={1}{B}{R}{G}{s;notatarget(creature|mybattlefield)}
+type=Instant
 [/card]
 [card]
 name=Spontaneous Generation
@@ -47129,6 +47211,13 @@ text=Tinder Farm enters the battlefield tapped. -- {T}: Add {G} to your mana poo
 type=Land
 [/card]
 [card]
+name=Tinker
+auto=moveto(mybattlefield) target(artifact|mylibrary)
+text=As an additional cost to cast Tinker, sacrifice an artifact. -- Search your library for an artifact card and put that card onto the battlefield. Then shuffle your library.
+mana={2}{U}{s;notatarget(artifact|mybattlefield)}
+type=Sorcery
+[/card]
+[card]
 name=Tireless Missionaries
 auto=life:3
 text=When Tireless Missionaries enters the battlefield, you gain 3 life.
@@ -47788,6 +47877,13 @@ type=Creature
 subtype=Spirit
 power=0
 toughness=*
+[/card]
+[card]
+name=Trash for Treasure
+auto=moveTo(myBattlefield) target(artifact|mygraveyard)
+text=As an additional cost to cast Trash for Treasure, sacrifice an artifact. -- Return target artifact card from your graveyard to the battlefield.
+mana={2}{R}{s;notatarget(artifact|mybattlefield)}
+type=Sorcery
 [/card]
 [card]
 name=Traumatic Visions
@@ -51386,6 +51482,13 @@ power=3
 toughness=2
 [/card]
 [card]
+name=Waste Away
+auto=-5/-5 target(creature)
+text=As an additional cost to cast Waste Away, discard a card. -- Target creature gets -5/-5 until end of turn.
+mana={4}{B}{s;notatarget(*|myhand)}
+type=Instant
+[/card]
+[card]
 name=Wasteland
 auto={T}:Add {1}
 auto={T}{S}:destroy target(land[-basic])
@@ -51955,6 +52058,13 @@ auto=lord(creature) -flying
 autograveyard={S(land[snow]|myBattlefield)}:moveTo(myhand)
 text=All creatures lose flying until end of turn. -- Sacrifice a snow land: Return Whiteout from your graveyard to your hand.
 mana={1}{G}
+type=Instant
+[/card]
+[card]
+name=Wicked Reward
+auto=4/2 target(creature)
+text=As an additional cost to cast Wicked Reward, sacrifice a creature. -- Target creature gets +4/+2 until end of turn.
+mana={1}{B}{s;notatarget(creature|mybattlefield)}
 type=Instant
 [/card]
 [card]

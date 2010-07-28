@@ -1,0 +1,26 @@
+#Testing Shard Volley (--> Sacrifice effects as part of the casting cost).
+#As an additional cost to cast Shard Volley, sacrifice a land. -- Shard Volley deals 3 damage to target creature or player.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:shard volley,scathe zombies
+inplay:mountain,island,island,swamp
+manapool:{R}
+[PLAYER2]
+inplay:hill giant
+[DO]
+shard volley
+choice 0
+swamp
+choice 0
+hill giant
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+hand:scathe zombies
+inplay:mountain,island,island
+graveyard:swamp,shard volley
+manapool{0}
+[PLAYER2]
+graveyard:hill giant
+[END]
