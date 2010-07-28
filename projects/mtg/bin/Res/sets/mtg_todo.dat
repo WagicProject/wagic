@@ -428,12 +428,6 @@ mana={2}{B}{B}
 type=Sorcery
 [/card]
 [card]
-name=Agony Warp
-text=Target creature gets -3/-0 until end of turn. -- Target creature gets -0/-3 until end of turn.
-mana={U}{B}
-type=Instant
-[/card]
-[card]
 name=Airdrop Condor
 text=Flying -- {1}{R}, Sacrifice a Goblin creature: Airdrop Condor deals damage equal to the sacrificed creature's power to target creature or player.
 mana={4}{R}
@@ -13939,15 +13933,6 @@ text=When Goatnapper enters the battlefield, untap target Goat and gain control 
 mana={2}{R}
 type=Creature
 subtype=Goblin Rogue
-power=2
-toughness=2
-[/card]
-[card]
-name=Gobhobbler Rats
-text=Hellbent - As long as you have no cards in hand, Gobhobbler Rats gets +1/+0 and has "{B}: Regenerate Gobhobbler Rats."
-mana={B}{R}
-type=Creature
-subtype=Rat
 power=2
 toughness=2
 [/card]
@@ -28208,15 +28193,6 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Ragamuffyn
-text=Hellbent - {T}, Sacrifice a creature or land: Draw a card. Activate this ability only if you have no cards in hand.
-mana={2}{B}
-type=Creature
-subtype=Zombie Cleric
-power=2
-toughness=2
-[/card]
-[card]
 name=Rage Forger
 text=When Rage Forger enters the battlefield, put a +1/+1 counter on each other Shaman creature you control. -- Whenever a creature you control with a +1/+1 counter on it attacks, you may have that creature deal 1 damage to target player.
 mana={2}{R}
@@ -38517,12 +38493,6 @@ name=Twinning Glass
 text={1}, {T}: You may cast a nonland card from your hand without paying its mana cost if it has the same name as a spell that was cast this turn.
 mana={4}
 type=Artifact
-[/card]
-[card]
-name=Twinstrike
-text=Twinstrike deals 2 damage to each of two target creatures. -- Hellbent - Destroy those creatures instead if you have no cards in hand.
-mana={3}{B}{R}
-type=Instant
 [/card]
 [card]
 name=Twist Allegiance
