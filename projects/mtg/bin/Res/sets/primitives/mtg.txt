@@ -7869,6 +7869,17 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Gobhobbler Rats
+mana={B}{R}
+text=Hellbent -- As long as you have no cards in hand, Gobhobbler Rats gets +1/+0 and has "{B}: Regenerate Gobhobbler Rats."
+type=creature
+subtype=Rat
+auto=aslongas(*|myhand) 1/0 <1
+auto=aslongas{*|myhand} {B}:regenerate <1
+power=2
+toughness=2
+[/card]
+[card]
 name=Goblin Dynamo
 auto={T}:damage:1 target(creature,player)
 auto={X}{R}{T}{S}:thisforeach(X) damage:1 target(creature,player)
