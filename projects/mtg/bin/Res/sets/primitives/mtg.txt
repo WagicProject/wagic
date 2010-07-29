@@ -18084,20 +18084,20 @@ text=Target player puts the top ten cards of his or her library into his or her 
 mana={U}{B}
 type=Sorcery
 [/card]
-[Card]
+[card]
 name=Glimpse of Nature
 auto=token(-752411111)
 text=Whenever you cast a creature spell this turn, draw a card.
 mana={G}
 type=Sorcery
-[/Card]
-[Card]
+[/card]
+[card]
 name=Glimpse of Nature's Draw
 auto=@movedTo(creature|mystack):draw:1
 auto=@next endofturn:moveto(exile)
 type=Nothing
 id=-752411111
-[/Card]
+[/card]
 [card]
 name=Glint-Eye Nephilim
 auto=@damaged(player) from(this):thisforeach(power>=1) draw:1
@@ -31860,7 +31860,7 @@ auto=@movedTo(beast|mybattlefield):thisforeach(counter{0/0.1.Entwine}>0) token(I
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-483851111
 type=Nothing
-[/Card]
+[/card]
 [card]
 name=One with Nothing
 auto=moveto(mygraveyard) all(*|myhand)
@@ -31953,7 +31953,7 @@ power=1
 toughness=1
 color=green
 [/card]
-[Card]
+[card]
 name=Opalescence
 auto=lord(enchantment[-aura;manacost=1]) becomes(Creature,1/1)
 auto=lord(enchantment[-aura;manacost=2]) becomes(Creature,2/2)
@@ -31967,7 +31967,7 @@ auto=aslongas(Opalescence|battlefield) becomes(Creature,4/4) >1
 mana={2}{W}{W}
 type=Enchantment
 text=Each other non-Aura enchantment is a creature with power and toughness each equal to its converted mana cost. It's still an enchantment.
-[/Card]
+[/card]
 [card]
 name=Open the Vaults
 auto=moveTo(myBattlefield) all(artifact,enchantment|myGraveyard)
@@ -44486,7 +44486,7 @@ toughness=3
 [/card]
 [card]
 name=Student of Warfare
-auto={1}:counter(0/0,1,Level Up) asSorcery
+auto={W}:counter(0/0,1,Level Up) asSorcery
 auto=this(counter{0/0,2,Level Up}) first strike 
 auto=this(counter{0/0,2,Level Up}) 2/2
 auto=this(counter{0/0,7,Level Up}) double strike
@@ -48470,7 +48470,7 @@ subtype=Elf Warrior
 power=1
 toughness=1
 [/card]
-[Card]
+[card]
 name=Twinstrike
 target=creature
 auto=aslongas(*|myhand) damage:2 >=1
@@ -48480,7 +48480,7 @@ auto=aslongas(*|myhand) destroy target(other creature) <1
 mana={3}{B}{R}
 text=Twinstrike deals 2 damage to each of two target creatures. -- Hellbent — Destroy those creatures instead if you have no cards in hand.
 type=Instant
-[/Card]
+[/card]
 [card]
 name=Twisted Abomination
 auto={B}:regenerate
