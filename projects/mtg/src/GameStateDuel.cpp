@@ -80,9 +80,7 @@ void GameStateDuel::Start()
   mGamePhase = DUEL_STATE_CHOOSE_DECK1;
   credits = NEW Credits();
 
-  menu = NEW SimpleMenu(DUEL_MENU_GAME_MENU, this, Constants::MENU_FONT, SCREEN_WIDTH/2-100, 25);
-  menu->Add(12,"Back to main menu");
-  menu->Add(13, "Cancel");
+  menu = NULL;
 
   int decksneeded = 0;
 
@@ -340,16 +338,37 @@ void GameStateDuel::Update(float dt)
 	    Start();
 	  }
       }
-      if (mEngine->GetButtonClick(JGE_BTN_MENU))
+      if (mEngine->GetButtonClick(JGE_BTN_MENU)) {
+        if (!menu) {
+          menu = NEW SimpleMenu(DUEL_MENU_GAME_MENU, this, Constants::MENU_FONT, SCREEN_WIDTH/2-100, 25);
+          int cardsinhand = game->players[0]->game->hand->nb_cards;
+    		  
+          //almosthumane - mulligan
+          if ((game->turn < 1) && (cardsinhand != 0) 
+	          && game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN
+	          && game->players[0]->game->inPlay->nb_cards == 0
+	          && game->players[0]->game->graveyard->nb_cards == 0
+	          && game->players[0]->game->exile->nb_cards == 0) //1st Play Check 
+	          //IF there was no play at the moment automatically mulligan
+          {
+            menu->Add(14,"Mulligan");
+          }
+          //END almosthumane - mulligan
+          menu->Add(12,"Back to main menu");
+          menu->Add(13, "Cancel");
+        }
         mGamePhase = DUEL_STATE_MENU;
+      }
       break;
     case DUEL_STATE_MENU:
       menu->Update(dt);
       break;
     case DUEL_STATE_CANCEL:
       menu->Update(dt);
-      if (menu->closed)
-	mGamePhase = DUEL_STATE_PLAY;
+      if (menu->closed) {
+	      mGamePhase = DUEL_STATE_PLAY;
+        SAFE_DELETE(menu);
+      }
       break;
     case DUEL_STATE_BACK_TO_MAIN_MENU:
       if(menu){
@@ -450,8 +469,7 @@ void GameStateDuel::Render()
   }
 }
 
-void GameStateDuel::ButtonPressed(int controllerId, int controlId)
-{
+void GameStateDuel::ButtonPressed(int controllerId, int controlId) {
   switch (controllerId){
     case DUEL_MENU_CHOOSE_OPPONENT:
       {
@@ -463,11 +481,10 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
             break;
           default:
             loadPlayer(1,controlId,1);
-			OpponentsDeckid=controlId;
+			      OpponentsDeckid=controlId;
 	          opponentMenu->Close();
 	          mGamePhase = DUEL_STATE_CHOOSE_DECK2_TO_PLAY;
             break;
-
         }
         break;
       }
@@ -494,14 +511,31 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
         {
 
           case 12:
-	    menu->Close();
-	    mGamePhase = DUEL_STATE_BACK_TO_MAIN_MENU;
+	          menu->Close();
+	          mGamePhase = DUEL_STATE_BACK_TO_MAIN_MENU;
             break;
           case 13:
-	    menu->Close();
+	          menu->Close();
             mGamePhase = DUEL_STATE_CANCEL;
             break;
-        }
+          case 14:
+          //almosthumane - mulligan
+          {
+
+		        int cardsinhand = game->players[0]->game->hand->nb_cards;
+
+		        for (int i = 0 ; i < cardsinhand; i ++) //Discard hand
+		          game->currentPlayer->game->putInZone(game->currentPlayer->game->hand->cards[0],game->currentPlayer->game->hand ,game->currentPlayer->game->library);
+      		  
+	            game->currentPlayer->game->library->shuffle(); //Shuffle
+
+	            for (int i = 0; i < (cardsinhand-1); i ++)	game->draw(); //Draw hand with 1 less card penalty //almhum	  
+            menu->Close();
+            mGamePhase = DUEL_STATE_CANCEL;
+            break;
+          }
+          //END almosthumane - mulligan
       }
+    }
   }
 }

@@ -475,6 +475,59 @@ class AACopier:public ActivatedAbility{
   }
 };
 
+class AAMover:public ActivatedAbility{
+public:
+  string destination;
+  AAMover(int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest, ManaCost * _cost=NULL, int doTap=0):ActivatedAbility(_id,_source,_cost,0,doTap),destination(dest){
+    if (_target) target = _target; 
+ }
+
+  MTGGameZone * destinationZone(){
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    return MTGGameZone::stringToZone(destination, source,_target);
+  }
+
+  int resolve(){
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    if(target){
+      Player* p = _target->controller();
+      if (p){
+        GameObserver * g = GameObserver::GetInstance();
+        MTGGameZone * fromZone = _target->getCurrentZone();
+        MTGGameZone * destZone = destinationZone();
+
+        //inplay is a special zone !
+        for (int i=0; i < 2; i++){
+          if (destZone == g->players[i]->game->inPlay && fromZone != g->players[i]->game->inPlay && fromZone != g->players[i]->opponent()->game->inPlay){
+              MTGCardInstance * copy = g->players[i]->game->putInZone(_target,  fromZone, g->players[i]->game->temp);
+              Spell * spell = NEW Spell(copy);
+              spell->resolve();
+              delete spell;
+              return 1;
+          }
+        }
+        p->game->putInZone(_target,fromZone,destZone);
+        return 1;
+      }
+    }
+    return 0;
+  }
+
+  const char * getMenuText(){
+    string result = "Move to ";
+    result.append(destination);
+    return (result.c_str());
+  }
+
+  AAMover * clone() const{
+    AAMover * a =  NEW AAMover(*this);
+    a->isClone = 1;
+    return a;
+  }
+
+};
+
+
 
 /* Generic TargetAbility */
 class GenericTargetAbility:public TargetAbility{
@@ -489,6 +542,40 @@ public:
     if (dynamic_cast<AACopier *>(core)) tc->other = true; //http://code.google.com/p/wagic/issues/detail?id=209 (avoid inifinite loop)
     counters = 0;
   }
+
+  const char * getMenuText(){
+    if (!ability) return "Error";
+
+    MTGAbility * core = AbilityFactory::getCoreAbility(ability);
+    if (AAMover * move = dynamic_cast<AAMover *>(core)) {
+      MTGGameZone * dest = move->destinationZone();
+      GameObserver * g = GameObserver::GetInstance();
+      for (int i=0; i < 2; i++){  
+        if (dest == g->players[i]->game->hand && tc->targetsZone(g->players[i]->game->inPlay)){
+          return "Bounce";
+        }else if (dest == g->players[i]->game->hand && tc->targetsZone(g->players[i]->game->graveyard)){
+          return "Reclaim";
+        }else if (dest == g->players[i]->game->graveyard && tc->targetsZone(g->players[i]->game->inPlay)){
+          return "Sacrifice";
+        }else if (dest == g->players[i]->game->library && tc->targetsZone(g->players[i]->game->graveyard)){
+          return "Recycle";
+        }else if (dest == g->players[i]->game->library){
+          return "Put in Library";
+        }else if (dest == g->players[i]->game->graveyard && tc->targetsZone(g->players[i]->game->hand)){
+          return "Discard";
+        }else if (dest == g->players[i]->game->exile){
+          return "Exile";
+        }else if (tc->targetsZone(g->players[i]->game->library)){
+          return "Fetch";
+        }
+      }
+    }
+    
+    return ability->getMenuText();
+
+  }
+
+
 
    ~GenericTargetAbility(){
      SAFE_DELETE(ability);
@@ -775,56 +862,6 @@ public:
 
 };
 
-class AAMover:public ActivatedAbility{
-public:
-  string destination;
-  AAMover(int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest, ManaCost * _cost=NULL, int doTap=0):ActivatedAbility(_id,_source,_cost,0,doTap),destination(dest){
-    if (_target) target = _target; 
- }
-
-  MTGGameZone * destinationZone(){
-    MTGCardInstance * _target = (MTGCardInstance *) target;
-    return MTGGameZone::stringToZone(destination, source,_target);
-  }
-
-  int resolve(){
-    MTGCardInstance * _target = (MTGCardInstance *) target;
-    if(target){
-      Player* p = _target->controller();
-      if (p){
-        GameObserver * g = GameObserver::GetInstance();
-        MTGGameZone * fromZone = _target->getCurrentZone();
-        MTGGameZone * destZone = destinationZone();
-
-        //inplay is a special zone !
-        for (int i=0; i < 2; i++){
-          if (destZone == g->players[i]->game->inPlay && fromZone != g->players[i]->game->inPlay && fromZone != g->players[i]->opponent()->game->inPlay){
-              MTGCardInstance * copy = g->players[i]->game->putInZone(_target,  fromZone, g->players[i]->game->temp);
-              Spell * spell = NEW Spell(copy);
-              spell->resolve();
-              delete spell;
-              return 1;
-          }
-        }
-        p->game->putInZone(_target,fromZone,destZone);
-        return 1;
-      }
-    }
-    return 0;
-  }
-
-  const char * getMenuText(){
-    return "Move";
-  }
-
-
-  AAMover * clone() const{
-    AAMover * a =  NEW AAMover(*this);
-    a->isClone = 1;
-    return a;
-  }
-
-};
 
 class AADestroyer:public ActivatedAbility{
 public:

@@ -17,6 +17,28 @@ type=Mana-token
 id=-66775544
 [/card]
 [card]
+name=Diabolic Intent
+mana={1}{B}{s;target(creature|mybattlefield)}
+auto=moveTo(myhand) target(*|myLibrary)
+text=As an additional cost to cast Diabolic Intent, sacrifice a creature. Search your library for a card and put that card into your hand. Then shuffle your library.
+type=sorcery
+[/card]
+[card]
+name=Abjure
+target=*|stack
+auto=fizzle
+text=As an additional cost to cast Abjure, sacrifice a blue permanent. Counter target spell.
+mana={U}{s;target(*[blue]|mybattlefield)}
+type=Instant
+[/card]
+[card]
+name=Altar of Bone
+mana={G}{W}{s;target(creature|mybattlefield)}
+auto=moveTo(myhand) target(Creature|myLibrary)
+text=As an additional cost to cast Altar of Bone, sacrifice a creature. Search your library for a creature card, reveal that card, and put it into your hand. Then shuffle your library.
+type=sorcery
+[/card]
+[card]
 name=Disaster Radius
 target=creature|myhand
 auto=damage:manacost all(creature|opponentbattlefield)
@@ -34,12 +56,49 @@ type=instant
 subtype=arcane
 [/card]
 [card]
+name=Bone Splinters
+auto=destroy notatarget(creature)
+text=Sacrifice a creature. Destroy target creature.
+mana={B}{s;target(creature|mybattlefield)}
+type=Sorcery
+[/card]
+[card]
+name=crop Rotation
+auto=moveTo(mybattlefield) notatarget(land|myLibrary)
+text=As an additional cost to cast Crop Rotation, sacrifice a land. Search your library for a land card and put that card onto the battlefield. Then shuffle your library.
+mana={G}{s;target(land|mybattlefield)}
+type=instant
+[/card]
+[card]
+name=Natural Order
+auto=moveTo(myBattlefield) notatarget(creature[green]|myLibrary)
+text=Sacrifice a green creature: Search your library for a green creature card and put it into play as thourhg it were just played. Shuffle your library afterwards.
+mana={2}{G}{G}{s;target(creature[green]|mybattlefield)}
+type=Sorcery
+[/card]
+[card]
+name=Death Bomb
+auto=destroy notatarget(creature[-black])
+auto=life:-2 opponent
+text=As an additional cost to cast Death Bomb, sacrifice a creature. Destroy target nonblack creature. It can't be regenerated. Its controller loses 2 life.
+mana={B}{3}{s;target(creature|mybattlefield)}
+type=instant
+[/card]
+[card]
 name=Familiar's Ruse
 target=creature|mybattlefield
 auto=moveTo(ownerHand)
 auto=fizzle target(*|stack)
 text=As an additional cost to cast Familiar's Ruse, return a creature you control to its owner's hand. Counter target spell.
 mana={U}{U}
+type=Instant
+[/card]
+[card]
+name=Fiery Conclusion
+target=Creature
+auto=damage:5
+text=As an additional cost to cast Fiery Conclusion, sacrifice a creature. Fiery Conclusion deals 5 damage to target creature.
+mana={1}{R}{s;target(creature|mybattlefield)}
 type=Instant
 [/card]
 [card]
@@ -74,6 +133,15 @@ type=nothing
 id=-33445566
 [/card]
 [card]
+name=Fodder Launch
+auto=-5/-5 target(creature)
+auto=damage:5 targetcontroller
+text=As an additional cost to cast Fodder Launch, sacrifice a Goblin. Target creature gets -5/-5 until end of turn. Fodder Launch deals 5 damage to that creature's controller.
+mana={1}{R}{s;target(Goblin|mybattlefield)}
+type=sorcery
+subtype=tribal
+[/card]
+[card]
 name=Fling
 target=creature|mybattlefield
 auto=destroy
@@ -81,6 +149,13 @@ auto=damage:p notatarget(creature,player)
 text=As an additional cost to cast Fling, sacrifice a creature. Fling deals damage equal to the sacrificed creature's power to target creature or player.
 mana={1}{R}
 type=Instant
+[/card]
+[card]
+name=Tinker
+auto=moveto(mybattlefield) target(artifact|mylibrary)
+text=As an additional cost to cast Tinker, sacrifice an artifact.Search your library for an artifact card and put that card onto the battlefield. Then shuffle your library.
+mana={2}{U}{s;target(Artifact|mybattlefield)}
+type=Sorcery
 [/card]
 [card]
 name=Reiver Demon
@@ -1162,79 +1237,6 @@ type=nothing
 id=-1199678
 [/card]
 [card]
-name=Blistering Firecat
-autohand={3}:token(16655342) asSorcery && moveto(exile) target(Blistering Firecat|myhand)
-auto=@next endofturn: bury all(this)
-text=Trample, haste. At the beginning of the end step, sacrifice Blistering Firecat. Morph {R}{R} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
-power=7
-toughness=1
-type=Creature
-abilities=trample, haste
-subtype=Elemental Cat
-mana={1}{R}{R}{R}
-[/card]
-[card]
-name=Morphed Blistering Firecat
-auto={R}{R}: token(39737) && moveto(exile) all(this)
-power=2
-toughness=2
-type=creature
-[/card]
-
-[card]
-name=Bloodstoke Howler
-autohand={3}:token(16655343) asSorcery && moveto(exile) target(Bloodstoke Howler|myhand)
-text=Morph {6}{R} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) When Bloodstoke Howler is turned face up, Beast creatures you control get +3/+0 until end of turn.
-power=3
-toughness=4
-type=Creature
-subtype=beast
-mana={5}{R}
-[/card]
-[card]
-name=Morphed Bloodstoke Howler
-auto={6}{R}:token(44209) && all(creature[beast]|mybattlefield) +3/+0 ueot && moveto(exile) all(this)
-power=2
-toughness=2
-type=creature
-[/card]
-[card]
-name=Boneknitter
-autohand={3}:token(16655344) asSorcery && moveto(exile) target(Boneknitter|myhand)
-auto={1}{B}: Regenerate target(creature[Zombie])
-text={1}{B}: Regenerate target Zombie. Morph {2}{B} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
-power=1
-toughness=1
-type=Creature
-subtype=zombie Cleric
-mana={1}{B}
-[/card]
-[card]
-name=Morphed Boneknitter
-auto={2}{B}: token(39547) && moveto(exile) all(this)
-power=2
-toughness=2
-type=creature
-[/card]
-[card]
-name=Branchsnap Lorian
-autohand={3}:token(16655345) asSorcery && moveto(exile) target(Branchsnap Lorian|myhand)
-text=Trample. Morph {G} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
-power=4
-toughness=1
-type=Creature
-subtype=Beast
-abilities=trample
-mana={1}{G}{G}
-[/card]
-[card]
-name=Morphed Branchsnap Lorian
-auto={G}: token(37909) && moveto(exile) all(this)
-power=2
-toughness=2
-type=creature
-[/card]
-[card]
 name=Living End
 autohand={2}{B}{B}:token(16655459) asSorcery 
 text=Living End is black.--Suspend 3-{2}{B}{B} (Rather than cast this card from your hand, pay {2}{B}{B} and exile it with three  time counters on it. At the beginning of your upkeep, remove a time counter. When  the last is removed, cast it without paying  its mana cost.)--Each player exiles all creature cards from his or her graveyard, then sacrifices all creatures he or she controls, then puts all cards he or she exiled this way onto the battlefield.
@@ -1243,6 +1245,7 @@ mana={99}{B}
 [/card]
 [card]
 name=Suspended Living End
+id=16655459
 auto=moveto(exile) notatarget(Living end|myhand)
 auto=counter(0/0,3,Time)
 auto=@each myupkeep:counter(0/0.-1.Time)
@@ -1270,6 +1273,7 @@ mana={5}{B}
 [/card]
 [card]
 name=Suspended Corpulent Corpse
+id=16655438
 auto=moveto(exile) notatarget(Corpulent Corpse|myhand)
 auto=counter(0/0,3,Time)
 auto=@each myupkeep:counter(0/0.-1.Time)
@@ -1296,6 +1300,7 @@ mana={7}{U}{U}{U}
 [/card]
 [card]
 name=Suspended Deep-Sea Kraken
+id=16655440
 auto=moveto(exile) notatarget(Deep-Sea Kraken|myhand)
 auto=counter(0/0,9,Time)
 auto=@movedto(*|opponentstack): counter(0/0.-1.Time)
@@ -1320,6 +1325,7 @@ mana={3}{W}
 [/card]
 [card]
 name=Suspended Divine Congregation
+id=16655442
 auto=moveto(exile) notatarget(Divine Congregation|myhand) 
 auto=counter(0/0,5,Time)
 auto=@each myupkeep:counter(0/0.-1.Time)
@@ -1338,6 +1344,7 @@ mana={3}{G}{G}
 [/card]
 [card]
 name=Suspended Cyclical Evolution
+id=16655439
 auto=moveto(exile) notatarget(Cyclical Evolution|myhand) 
 auto=counter(0/0,3,Time)
 auto=@each myupkeep:counter(0/0.-1.Time)
@@ -1356,6 +1363,7 @@ mana={3}{R}{R}
 [/card]
 [card]
 name=Suspended Arc Blade
+id=16655434
 auto=moveto(exile) notatarget(Cyclical Evolution|myhand) 
 auto=counter(0/0,3,Time)
 auto=@each myupkeep:counter(0/0.-1.Time)
@@ -1375,6 +1383,7 @@ mana={4}{W}{W}
 [/card]
 [card]
 name=Suspended Chronomantic Escape
+id=16655436
 auto=moveto(exile) notatarget(Chronomantic Escape|myhand) 
 auto=counter(0/0,3,Time)
 auto=@each myupkeep:counter(0/0.-1.Time)
@@ -1395,6 +1404,7 @@ mana={4}{G}{G}
 [/card]
 [card]
 name=Suspended Durkwood Baloth
+id=16655443
 auto=moveto(exile) notatarget(Durkwood Baloth|myhand) 
 auto=counter(0/0,5,Time)
 auto=@each myupkeep:counter(0/0.-1.Time)
@@ -1421,6 +1431,7 @@ mana={5}{W}
 [/card]
 [card]
 name=Suspended Duskrider Peregrine
+id=16655444
 auto=moveto(exile) notatarget(Duskrider Peregrine|myhand) 
 auto=counter(0/0,3,Time)
 auto=@each myupkeep:counter(0/0.-1.Time)
@@ -1447,6 +1458,7 @@ mana={6}{U}
 [/card]
 [card]
 name=Suspended Errant Ephemeron
+id=16655447
 auto=moveto(exile) notatarget(Errant Ephemeron|myhand) 
 auto=counter(0/0,4,Time)
 auto=@each myupkeep:counter(0/0.-1.Time)
@@ -1471,6 +1483,7 @@ mana={3}{B}{B}
 [/card]
 [card]
 name=Suspended Festering March
+id=16655448
 auto=moveto(exile) notatarget(Festering March|myhand) 
 auto=counter(0/0,3,Time)
 auto=@each myupkeep:counter(0/0.-1.Time)
@@ -1478,7 +1491,6 @@ auto=@each mydraw: this(counter{0/0.1.Time}<1) bury all(this)
 autograveyard=@movedto(this|mygraveyard):token(126131)
 type=nothing
 [/card]
-
 [card]
 name=Giant Dustwasp
 autohand={1}{G}:token(16655451) asSorcery 
@@ -1492,6 +1504,7 @@ mana={3}{G}{G}
 [/card]
 [card]
 name=Suspended Giant Dustwasp
+id=16655451
 auto=moveto(exile) notatarget(Giant Dustwasp|myhand) 
 auto=counter(0/0,4,Time)
 auto=@each myupkeep:counter(0/0.-1.Time)
@@ -1505,7 +1518,6 @@ auto=all(Giant Dustwasp|mybattlefield) haste  && moveto(exile) all(this)
 id=-6661
 type=nothing
 [/card]
-
 [card]
 name=Greater Gargadon
 autohand={R}:token(16655452) asSorcery 
@@ -1518,6 +1530,7 @@ mana={9}{R}
 [/card]
 [card]
 name=Suspended Greater Gargadon
+id=16655452
 auto=moveto(exile) notatarget(Greater Gargadon|myhand) 
 auto=counter(0/0,10,Time)
 auto={0}:bury target(creature,artifact,land|mybattlefield) && counter(0/0.-1.Time) all(this) && this(counter{0/0.1.Time}<1) bury all(this)
@@ -1541,6 +1554,7 @@ mana={99}{W}
 [/card]
 [card]
 name=Suspended Heroes Remembered
+id=16655453
 auto=moveto(exile) notatarget(Heroes Remembered|myhand) 
 auto=counter(0/0,10,Time)
 auto=@each myupkeep:counter(0/0.-1.Time)
@@ -1548,7 +1562,6 @@ auto=@each mydraw: this(counter{0/0.1.Time}<1) bury all(this)
 autograveyard=@movedto(this|mygraveyard):Life:20 controller
 type=nothing
 [/card]
-
 [card]
 name=Infiltrator il-Kor
 autohand={1}{U}:token(16655454) asSorcery 
@@ -1562,6 +1575,7 @@ mana={4}{U}
 [/card]
 [card]
 name=Suspended Infiltrator il-Kor
+id=16655454
 auto=moveto(exile) notatarget(Infiltrator il-Kor|myhand) 
 auto=counter(0/0,2,Time)
 auto=@each myupkeep:counter(0/0.-1.Time)
@@ -1575,7 +1589,6 @@ auto=all(Infiltrator il-Kor|mybattlefield) haste  && moveto(exile) all(this)
 id=-6610
 type=nothing
 [/card]
-
 [card]
 name=Ivory Giant
 autohand={W}:token(16655456) asSorcery 
@@ -1589,6 +1602,7 @@ mana={5}{W}{W}
 [/card]
 [card]
 name=Suspended Ivory Giant
+id=16655456
 auto=moveto(exile) notatarget(Ivory Giant|myhand) 
 auto=counter(0/0,5,Time)
 auto=@each myupkeep:counter(0/0.-1.Time)
@@ -1616,6 +1630,7 @@ mana={4}{R}
 [/card]
 [card]
 name=Suspended Keldon Halberdier
+id=16655458
 auto=moveto(exile) notatarget(Keldon Halberdier|myhand) 
 auto=counter(0/0,4,Time)
 auto=@each myupkeep:counter(0/0.-1.Time)
@@ -1643,6 +1658,7 @@ mana={99}
 [/card]
 [card]
 name=Suspended Lotus Bloom
+id=16655460
 auto=moveto(exile) notatarget(Lotus Bloom|myhand) 
 auto=counter(0/0,3,Time)
 auto=@each myupkeep:counter(0/0.-1.Time)
@@ -1660,6 +1676,7 @@ mana={5}{B}
 [/card]
 [card]
 name=Suspended Mindstab
+id=16655461
 auto=moveto(exile) notatarget(Mindstab|myhand) 
 auto=counter(0/0,4,Time)
 auto=@each myupkeep:counter(0/0.-1.Time)
@@ -1680,6 +1697,7 @@ mana={2}{G}
 [/card]
 [card]
 name=Suspended Nantuko Shaman
+id=16655462
 auto=moveto(exile) notatarget(Nantuko Shaman|myhand) 
 auto=counter(0/0,1,Time)
 auto=@each myupkeep:counter(0/0.-1.Time)
@@ -1713,6 +1731,7 @@ mana={4}{B}{B}
 [/card]
 [card]
 name=Suspended Nihilith
+id=16655463
 auto=moveto(exile) notatarget(Nihilith|myhand) 
 auto=counter(0/0,7,Time)
 auto=@movedto(*|opponentgraveyard): counter(0/0.-1.Time)
@@ -1741,6 +1760,7 @@ mana={4}{R}{R}
 [/card]
 [card]
 name=Suspended Pardic Dragon
+id=16655464
 auto=moveto(exile) notatarget(Pardic Dragon|myhand)
 auto=@movedto(*|opponentstack):counter(0/0.1.Time)
 auto=counter(0/0,2,Time)
@@ -1765,6 +1785,7 @@ mana={4}{R}
 [/card]
 [card]
 name=Suspended Plunder
+id=16655466
 auto=moveto(exile) notatarget(Plunder|myhand) 
 auto=counter(0/0,4,Time)
 auto=@each myupkeep:counter(0/0.-1.Time)
@@ -1783,6 +1804,7 @@ mana={4}{u}{u}
 [/card]
 [card]
 name=Suspended Reality Strobe
+id=16655467
 auto=moveto(exile) notatarget(Reality Strobe|myhand) 
 auto=counter(0/0,3,Time)
 auto=@each myupkeep:counter(0/0.-1.Time)
@@ -1800,6 +1822,7 @@ mana={2}{R}
 [/card]
 [card]
 name=Suspended Rift Bolt
+id=16655468
 auto=moveto(exile) notatarget(Rift Bolt|myhand) 
 auto=counter(0/0,1,Time)
 auto=@each myupkeep:counter(0/0.-1.Time)
@@ -1821,6 +1844,7 @@ mana={3}{U}{U}
 [/card]
 [card]
 name=Suspended Riftwing Cloudskate
+id=16655470
 auto=moveto(exile) notatarget(Riftwing Cloudskate|myhand) 
 auto=counter(0/0,3,Time)
 auto=@each myupkeep:counter(0/0.-1.Time)
@@ -1844,6 +1868,7 @@ mana={2}{G}
 [/card]
 [card]
 name=Suspended Search for Tomorrow
+id=16655471
 auto=moveto(exile) notatarget(Search for Tomorrow|myhand) 
 auto=counter(0/0,2,Time)
 auto=@each myupkeep:counter(0/0.-1.Time)
@@ -1864,6 +1889,7 @@ mana={3}{W}
 [/card]
 [card]
 name=Suspended Shade of Trokair
+id=16655472
 auto=moveto(exile) notatarget(Shade of Trokair|myhand) 
 auto=counter(0/0,3,Time)
 auto=@each myupkeep:counter(0/0.-1.Time)
@@ -1887,6 +1913,7 @@ mana={3}{R}{R}
 [/card]
 [card]
 name=Suspended Shivan Meteor
+id=16655473
 auto=moveto(exile) notatarget(Shivan Meteor|myhand) 
 auto=counter(0/0,2,Time)
 auto=@each myupkeep:counter(0/0.-1.Time)
@@ -1909,6 +1936,7 @@ mana={2}{R}{R}
 [/card]
 [card]
 name=Suspended Shivan Sand-Mage
+id=16655474
 auto=moveto(exile) notatarget(Shivan Sand-Mage|myhand) 
 auto=counter(0/0,4,Time)
 auto=@each myupkeep:counter(0/0.-1.Time)
@@ -1949,6 +1977,7 @@ mana={3}{U}
 [/card]
 [card]
 name=Suspended Veiling Oddity
+id=16655476
 auto=moveto(exile) notatarget(Veiling Oddity|myhand) 
 auto=counter(0/0,4,Time)
 auto=@each myupkeep:counter(0/0.-1.Time)
@@ -1976,6 +2005,7 @@ mana={4}{U}
 [/card]
 [card]
 name=Suspended Viscerid Deepwalker
+id=16655478
 auto=moveto(exile) notatarget(Viscerid Deepwalker|myhand) 
 auto=counter(0/0,4,Time)
 auto=@each myupkeep:counter(0/0.-1.Time)
@@ -1999,6 +2029,7 @@ mana={99}{R}
 [/card]
 [card]
 name=Suspended Wheel of Fate
+id=16655479
 auto=moveto(exile) notatarget(Wheel of Fate|myhand) 
 auto=counter(0/0,4,Time)
 auto=@each myupkeep:counter(0/0.-1.Time)
@@ -2019,6 +2050,7 @@ mana={3}{U}{U}
 [/card]
 [card]
 name=Suspended Aeon Chronicler
+id=16655432
 auto=moveto(exile) notatarget(Aeon Chronicler|myhand) 
 auto=foreach(Aeon counter|mybattlefield) counter(0/0,1,Time) && moveto(exile) all(aeon counter|mybattlefield)
 auto=this(counter{0/0.-1.Time}) draw:1controller
@@ -2048,6 +2080,7 @@ mana={99}
 [/card]
 [card]
 name=Suspended Ancestral Vision
+id=16655433
 auto=moveto(exile) notatarget(Ancestral Vision|myhand) 
 auto=counter(0/0,2,Time)
 auto=@each myupkeep:counter(0/0.-1.Time)
@@ -2068,6 +2101,7 @@ mana={3}{W}
 [/card]
 [card]
 name=Suspended Benalish Commander
+id=16655435
 auto=moveto(exile) notatarget(Benalish Commander|myhand) 
 auto=foreach(Benalish counter|mybattlefield) counter(0/0,1,Time) && moveto(exile) all(Benalish counter|mybattlefield)
 auto=@each myupkeep:counter(0/0.-1.Time) && token(Soldier,creature,1/1,white)
@@ -2100,6 +2134,7 @@ mana={2}{R}{R}
 [/card]
 [card]
 name=Suspended Detritivore
+id=16655441
 auto=moveto(exile) notatarget(Detritivore|myhand) 
 auto=foreach(vore counter|mybattlefield) counter(0/0,1,Time) && moveto(exile) all(vore counter|mybattlefield)
 auto=@each myupkeep:counter(0/0.-1.Time) && token(-376383)
@@ -6699,4 +6734,346 @@ subtype=human warrior
 power=2
 toughness=4
 mana={4}{r}{g}{w}
+[/card]
+[card]
+name=Dimir Doppelganger
+auto={1}{B}{U}:moveto(exile) target(creature|mygraveyard) && copy
+text={B}{U}{1}: Exile target creature card from a graveyard. Dimir Doppelganger becomes a copy of that card and gains this ability.
+type=creature
+subtype=shapeshifter
+power=0
+toughness=0
+mana={B}{U}{1}
+[/card]
+[card]
+name=Cauldron of Souls
+auto={t}:token(-12303)
+auto=persist
+text= {t}:Choose any number of target creatures. Each of those creatures gains persist until end of turn. (When it's put into a graveyard from play, if it had no -1/-1 counters on it, return it to play under its owner's control with a -1/-1 counter on it.)
+type=Artifact
+mana={5}
+[/card]
+[card]
+name=Grant persistence
+id=-12303
+type=nothing
+auto=target(creature) persist ueot
+auto=@movedto(this|exile):may token(-12303)
+auto=moveto(exile) all(this)
+[/card]
+[card]
+name=Quicken
+auto=target(sorcery|myhand) flash ueot
+auto=draw:1 controller
+text=The next sorcery card you cast this turn can be cast as though it had flash.Draw a card. (select the sorcery you plan to play)
+type=instant
+mana={u}
+[/card]
+[card]
+name=Palinchron
+auto=token(-12305)*7
+auto={2}{U}{U}:moveto(myhand) all(this)
+text= Flying
+When Palinchron enters the battlefield, untap up to seven lands.{2}{U}{U}: Return Palinchron to its owner's hand.
+type=creature
+subtype=illusion
+abilities=flying
+power=4
+toughness=5
+mana={5}{u}{u}
+[/card]
+[card]
+name=Untap effect
+id=-12305
+type=nothing
+auto=@movedto(this|exile):token(-12306)
+auto=moveto(exile) all(this)
+[/card]
+[card]
+name=Untap Lands
+id=-12306
+type=nothing
+auto=may untap target(land)
+auto=moveto(exile) all(this)
+[/card]
+[card]
+name=Pyrrhic Revival
+auto=token(-12307)
+text=Each player returns each creature card from his or her graveyard to the battlefield with an additional -1/-1 counter on it.
+type=sorcery
+mana={3}{wb}{wb}{wb}
+[/card]
+[card]
+name=move creatures
+id=-12307
+type=nothing
+auto=counter(0/0,1,nocounter) all(creature|battlefield)
+auto=moveto(ownerbattlefield) all(creature|graveyard)
+auto=@movedto(this|exile):token(-12308)
+auto=moveto(exile) all(this)
+[/card]
+[card]
+name=counter(-1/-1)
+id=-12308
+type=nothing
+auto=counter(-1/-1,1) all(creature[-counter{0/0.1.nocounter})
+auto=counter(0/0,-1,nocounter) all(creature|battlefield)
+auto=moveto(exile) all(this)
+[/card]
+[card]
+name=Wrap in Vigor
+auto=Regenerate all(creature|mybattlefield)
+text= Regenerate each creature you control. Regenerate only works on lethel damage and "destroy" effects.
+type=instant
+mana={1}{g}
+[/card]
+[card]
+name=Barren Glory
+auto=@each myuntap: aslongas(*|myhand) counter(0/0.1.win) <1
+auto=@each myupkeep: aslongas(enchantment,creature,land,artifact|mybattlefield) counter(0/0.1.win) <2  && this(counter{0/0.2.win}) wingame
+auto=@each mydraw:counter(0/0,-2,win)
+text= At the beginning of your upkeep, if you control no permanents other than Barren Glory and have no cards in hand, you win the game.
+type=enchantment
+mana={4}{w}{w}
+[/card]
+[card]
+name=Emeria, the Sky Ruin
+auto=tap
+auto=@each myupkeep:aslongas(plains|mybattlefield) counter(0/0,1,fetch) >6 myupkeeponly
+auto={c(0/0.-1.fetch)}:moveto(mybattlefield) target(creature|mygraveyard) limit:1
+auto=@each mydraw:counter(0/0,-10,fetch)
+auto={t}:add{w}
+text=Emeria, the Sky Ruin enters the battlefield tapped.
+At the beginning of your upkeep, if you control seven or more Plains, you may return target creature card from your graveyard to the battlefield.
+type=land
+mana={0}
+[/card]
+[card]
+name=Shirei, Shizo's Caretaker
+auto=@movedto(creature[power=1]|mygraveyard) from(battlefield):all(trigger[to]) counter(0/0,1,Caretaker)
+auto=@movedto(creature[power=0]|mygraveyard) from(battlefield):all(trigger[to]) counter(0/0,1,Caretaker)
+auto=@each myendofturn:moveto(mybattlefield) all(creature[counter{0/0.1.Caretaker}]|graveyard)
+auto=@movedto(this|graveyard):counter(0/0,-10,Caretaker) all(creature[counter{0/0.1.Caretaker}]|graveyard)
+auto=@movedto(this|exile):counter(0/0,-10,Caretaker) all(creature[counter{0/0.1.Caretaker}]|graveyard)
+text=Whenever a creature with power 1 or less is put into your graveyard from the battlefield, you may return that card to the battlefield under your control at the beginning of the next end step if Shirei, Shizo's Caretaker is still on the battlefield.
+type=legendary creature
+subtype=spirit
+power=2
+toughness=2
+mana={4}{b}
+[/card]
+[card]
+name=Turnabout
+auto=may token(-12319)
+auto=may token(-12320)
+auto=may token(-12321)
+auto=may token(-12322)
+text=Choose artifact, creature, or land. Tap all untapped permanents of the chosen type target player controls, or untap all tapped permanents of that type that player controls.
+type=instant
+mana={2}{u}{u}
+[/card]
+[card]
+name=You Untap
+id=-12322
+type=nothing
+auto=may token(-12311)
+auto=may token(-12312)
+auto=may token(-12313)
+auto=moveto(exile) all(this)
+[/card]
+[card]
+name=Opponent Untap
+id=-12320
+type=nothing
+auto=may token(-12314)
+auto=may token(-12315)
+auto=may token(-12316)
+auto=moveto(exile) all(this)
+[/card]
+[card]
+name=You Tap
+id=-12321
+type=nothing
+auto=may token(-12323)
+auto=may token(-12324)
+auto=may token(-12325)
+auto=moveto(exile) all(this)
+[/card]
+[card]
+name=Opponent Tap
+id=-12319
+type=nothing
+auto=may token(-12326)
+auto=may token(-12327)
+auto=may token(-12328)
+auto=moveto(exile) all(this)
+[/card]
+[card]
+name=Artifacts
+id=-12311
+type=nothing
+auto=untap all(artifact|mybattlefield)
+auto=moveto(exile) all(this)
+[/card]
+[card]
+name=Creatures
+id=-12312
+type=nothing
+auto=untap all(creature|mybattlefield)
+auto=moveto(exile) all(this)
+[/card]
+[card]
+name=Lands
+id=-12313
+type=nothing
+auto=untap all(land|mybattlefield)
+auto=moveto(exile) all(this)
+[/card]
+[card]
+name=Artifacts
+id=-12314
+type=nothing
+auto=untap all(artifact|opponentbattlefield)
+auto=moveto(exile) all(this)
+[/card]
+[card]
+name=Creatures
+id=-12315
+type=nothing
+auto=untap all(creature|opponentbattlefield)
+auto=moveto(exile) all(this)
+[/card]
+[card]
+name=Lands
+id=-12316
+type=nothing
+auto=untap all(land|opponentbattlefield)
+auto=moveto(exile) all(this)
+[/card]
+[card]
+name=Artifacts
+id=-12323
+type=nothing
+auto=tap all(artifact|mybattlefield)
+auto=moveto(exile) all(this)
+[/card]
+[card]
+name=Creatures
+id=-12324
+type=nothing
+auto=tap all(creature|mybattlefield)
+auto=moveto(exile) all(this)
+[/card]
+[card]
+name=Lands
+id=-12325
+type=nothing
+auto=tap all(land|mybattlefield)
+auto=moveto(exile) all(this)
+[/card]
+[card]
+name=Artifacts
+id=-12326
+type=nothing
+auto=tap all(artifact|opponentbattlefield)
+auto=moveto(exile) all(this)
+[/card]
+[card]
+name=Creatures
+id=-12327
+type=nothing
+auto=tap all(creature|opponentbattlefield)
+auto=moveto(exile) all(this)
+[/card]
+[card]
+name=Lands
+id=-12328
+type=nothing
+auto=tap all(land|opponentbattlefield)
+auto=moveto(exile) all(this)
+[/card]
+[card]
+name=Verdeloth the Ancient
+auto=thisforeach(X) token(16655493)
+auto=lord(saproling|battlefield) 1/1
+auto=lord(other treefolk|battlefield) 1/1
+text=Kicker {x} (You may pay an additional {x} as you cast this spell.) Saproling creatures and other Treefolk creatures get +1/+1.When Verdeloth the Ancient enters the battlefield, if it was kicked, put X 1/1 green Saproling creature tokens onto the battlefield.
+type=legendary creature
+subtype=treefolk
+power=4
+toughness=7
+mana={4}{g}{g}{x}
+[/card]
+
+[card]
+name=Tooth and Nail
+auto=kicker may token(-12275)
+auto=may token(-12273)
+auto=may token(-12274)
+text=Choose one — Search your library for up to two creature cards, reveal them, put them into your hand, then shuffle your library; or put up to two creature cards from your hand onto the battlefield. Entwine {2} (Choose both if you pay the entwine cost.)
+type=Sorcery
+kicker={2}
+mana={5}{g}{g}
+[/card]
+[card]
+name=Move to my Hand
+auto=may moveto(myhand) target(creature|mylibrary)
+auto=@movedto(this|exile):may moveto(myhand) target(creature|mylibrary)
+auto=moveto(exile) all(this)
+id=-12273
+type=token
+[/card]
+[card]
+name=Move to my Battlefield
+auto=may moveto(mybattlefield) target(creature|myhand)
+auto=@movedto(this|exile):may moveto(mybattlefield) target(creature|myhand)
+auto=moveto(exile) all(this)
+id=-12274
+type=token
+[/card]
+[card]
+name=Entwine
+auto=moveto(myhand) target(creature|mylibrary)
+auto=@movedto(this|exile):token(-12276)
+auto=moveto(exile) all(this)
+id=-12275
+type=token
+[/card]
+[card]
+name=Tooth
+auto=may moveto(myhand) target(creature|mylibrary)
+auto=@movedto(this|exile):token(-12277)
+auto=moveto(exile) all(this)
+id=-12276
+type=token
+[/card]
+[card]
+name=And
+auto=may moveto(mybattlefield) target(creature|myhand) && token(-12278)
+auto=moveto(exile) all(this)
+id=-12277
+type=token
+[/card]
+[card]
+name=Nail
+auto=may moveto(mybattlefield) target(creature|myhand)
+auto=moveto(exile) all(this)
+id=-12278
+type=token
+[/card]
+[card]
+name=Rupture Spire
+auto=tap
+auto={T}:Add{G}
+auto={T}:Add{R}
+auto={T}:Add{U}
+auto={T}:Add{B}
+auto={T}:Add{W}
+auto=counter(0/0,1,Spire)
+auto={1}:counter(0/0,-1,Spire)
+auto=bury target(land[counter{0/0.1.spire}]|mybattlefield)
+text=Rupture Spire enters the battlefield tapped.
+When Rupture Spire enters the battlefield, sacrifice it unless you pay {1}.have the {1} mana ready in your mana pool as you play this card.{T}: Add one mana of any color to your mana pool.
+type=land
+mana={0}
 [/card]
