@@ -25008,8 +25008,8 @@ toughness=2
 [card]
 name=Knight Exemplar
 abilities=first strike
-auto=lord(knight|myBattlefield) 1/1
-auto=lord(knight|myBattlefield) indestructible
+auto=lord(other knight|myBattlefield) 1/1
+auto=lord(other knight|myBattlefield) indestructible
 text=First Strike -- Other Knight creatures you control get +1/+1 and are indestructible.
 mana={1}{W}{W}
 type=Creature
