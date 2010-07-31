@@ -17,7 +17,7 @@ OptionItem::OptionItem( int _id,  string _displayValue): WGuiItem(_displayValue)
 
 //OptionInteger
 void OptionInteger::Render(){
-  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
+  WFont * mFont = resources.GetWFont(Constants::OPTION_FONT);
   mFont->SetColor(getColor(WGuiColor::TEXT));
   JRenderer * renderer = JRenderer::GetInstance();
 
@@ -67,7 +67,7 @@ void OptionSelect::Entering(JButton key){
 }
 
 void OptionSelect::Render(){
-  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
+  WFont * mFont = resources.GetWFont(Constants::OPTION_FONT);
   mFont->SetColor(getColor(WGuiColor::TEXT));
 
   JRenderer * renderer = JRenderer::GetInstance();
@@ -164,7 +164,7 @@ void OptionProfile::populate(){
 
 void OptionProfile::Render(){
   JRenderer * renderer = JRenderer::GetInstance();
-  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
+  WFont * mFont = resources.GetWFont(Constants::OPTION_FONT);
   mFont->SetScale(1);
   int spacing = 2+(int)mFont->GetHeight();
 
@@ -403,7 +403,7 @@ void OptionTheme::Render(){
     renderer->RenderQuad(q,x, y,0,scale,scale);
   }
 
-  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
+  WFont * mFont = resources.GetWFont(Constants::OPTION_FONT);
   mFont->SetColor(getColor(WGuiColor::TEXT_HEADER));
   mFont->DrawString(buf, x + 2, y + 2);
   if(bChecked && author.size()){
@@ -438,7 +438,7 @@ OptionKey::OptionKey(GameStateOptions* g, LocalKeySym from, JButton to) : WGuiIt
 
 void OptionKey::Update(float dt) { if (btnMenu) btnMenu->Update(dt); }
 void OptionKey::Render() {
-  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
+  WFont * mFont = resources.GetWFont(Constants::OPTION_FONT);
   mFont->SetColor(getColor(WGuiColor::TEXT));
   JRenderer * renderer = JRenderer::GetInstance();
 
@@ -498,7 +498,7 @@ bool OptionKey::isModal() { return grabbed || btnMenu; }
 void OptionKey::Overlay()
 {
   JRenderer * renderer = JRenderer::GetInstance();
-  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
+  WFont * mFont = resources.GetWFont(Constants::OPTION_FONT);
   mFont->SetColor(ARGB(255, 0, 0, 0));
   if (grabbed) {
     static const int x = 30, y = 45;

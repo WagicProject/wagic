@@ -93,7 +93,7 @@ void GuiPhaseBar::Render()
     }
 
   //print phase name
-  JLBFont * font = resources.GetJLBFont(Constants::MAIN_FONT);
+  WFont * font = resources.GetWFont(Constants::MAIN_FONT);
   string currentP = _("your turn");
   string interrupt = "";
   if (g->currentPlayer == g->players[1]){
@@ -105,13 +105,13 @@ void GuiPhaseBar::Render()
   }
   if (g->currentlyActing() != g->currentPlayer){
     if (g->currentPlayer == g->players[0]) {
-      interrupt = " - "+_("opponent plays");
+      interrupt = _(" - ")+_("opponent plays");
     }else{
-      interrupt = " - "+_("you play");
+      interrupt = _(" - ")+_("you play");
     }
   }
 
-	char buf[64]; sprintf(buf, "(%s%s) %s", currentP.c_str(),interrupt.c_str(),_(PhaseRing::phaseName(phase->id)).c_str());
+	char buf[64]; sprintf(buf, _("(%s%s) %s").c_str(), currentP.c_str(),interrupt.c_str(),_(PhaseRing::phaseName(phase->id)).c_str());
 	font->DrawString(buf, SCREEN_WIDTH-5, 2,JGETEXT_RIGHT);
 }
 

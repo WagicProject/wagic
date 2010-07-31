@@ -77,7 +77,7 @@ int Damage::resolve(){
 }
 
 void Damage::Render(){
-  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
+  WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
   mFont->SetBase(0);
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   char buffer[200];

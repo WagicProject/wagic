@@ -427,7 +427,7 @@ void GameStateDeckViewer::Update(float dt)
 
 
 void GameStateDeckViewer::renderOnScreenBasicInfo(){
-  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
+  WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
   char buffer[256];
   int myD = (displayed_deck == myDeck);
 
@@ -450,7 +450,7 @@ void GameStateDeckViewer::renderOnScreenBasicInfo(){
 
 
 void GameStateDeckViewer::renderSlideBar(){
-  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
+  WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
 
   int total = displayed_deck->Size();
   float filler = 15;
@@ -522,7 +522,7 @@ void GameStateDeckViewer::renderDeckBackground(){
 
 void GameStateDeckViewer::renderOnScreenMenu(){
 
-  JLBFont * font = resources.GetJLBFont(Constants::MAIN_FONT);
+  WFont * font = resources.GetWFont(Constants::MAIN_FONT);
   font->SetColor(ARGB(255,255,255,255));
   JRenderer * r = JRenderer::GetInstance();
   float pspIconsSize = 0.5;
@@ -1184,7 +1184,7 @@ int GameStateDeckViewer::countCardsByType(const char * _type) {
 }
 
 void GameStateDeckViewer::renderCard(int id, float rotation){
-  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
+  WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
   MTGCard * card = cardIndex[id];
 
   float max_scale = 0.96f;
@@ -1255,7 +1255,7 @@ void GameStateDeckViewer::renderCard(int id, float rotation){
     float qtX = x + 40*scale;
     char buffer[4096];
     sprintf(buffer, "x%i", displayed_deck->count(card));
-    JLBFont * font = mFont;
+    WFont * font = mFont;
     font->SetColor(ARGB(fontAlpha/2,0,0,0));
     JRenderer::GetInstance()->FillRect(qtX, qtY,font->GetStringWidth(buffer) + 6,16,ARGB(fontAlpha/2,0,0,0));
     font->DrawString(buffer, qtX + 4, qtY + 4);
@@ -1272,7 +1272,7 @@ void GameStateDeckViewer::renderCard (int id){
 
 void GameStateDeckViewer::Render() {
 
-  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
+  WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
 
   JRenderer * r = JRenderer::GetInstance();
   r->ClearScreen(ARGB(0,0,0,0));

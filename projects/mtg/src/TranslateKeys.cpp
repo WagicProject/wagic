@@ -20,7 +20,7 @@ const KeyRep& translateKey(LocalKeySym key) {
  char* str = XKeysymToString(key);
   if (!str)
     {
-      str = new char[11];
+      str = NEW char[11];
       sprintf(str, "%lu", key);
     }
   const KeyRep k = make_pair(str, static_cast<JQuad*>(NULL));
@@ -64,7 +64,7 @@ const KeyRep& translateKey(LocalKeySym key) {
 
   KeyRep k;
   if (0 == s.length()) {
-    char*str = new char[11];
+    char*str = NEW char[11];
     sprintf(str, "%d", key);
     k = make_pair(str, static_cast<JQuad*>(NULL));
   }
@@ -98,7 +98,7 @@ const KeyRep& translateKey(LocalKeySym key) {
         }
       else
         {
-          char* str = new char[11];
+          char* str = NEW char[11];
           sprintf(str, "%d", key);
           fattable[key] = make_pair(str, static_cast<JQuad*>(static_cast<JQuad*>(NULL)));
         }
@@ -177,7 +177,7 @@ const KeyRep& translateKey(JButton key) {
         }
       else
         {
-          char* str = new char[11];
+          char* str = NEW char[11];
           sprintf(str, "%d", key);
           slimtable[key] = make_pair(str, static_cast<JQuad*>(static_cast<JQuad*>(NULL)));
         }

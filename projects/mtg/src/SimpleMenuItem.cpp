@@ -19,7 +19,7 @@ SimpleMenuItem::SimpleMenuItem(SimpleMenu* _parent, int id, int fontId, string t
 
 void SimpleMenuItem::RenderWithOffset(float yOffset)
 {
-  JLBFont * mFont = resources.GetJLBFont(fontId);
+  WFont * mFont = resources.GetWFont(fontId);
   //mFont->SetColor(ARGB(255,255,255,255));
   mFont->DrawString(mText.c_str(), mX, mY + yOffset, JGETEXT_CENTER);
 }
@@ -73,7 +73,7 @@ void SimpleMenuItem::Relocate(int x, int y)
 
 int SimpleMenuItem::GetWidth()
 {
-  JLBFont * mFont = resources.GetJLBFont(fontId);
+  WFont * mFont = resources.GetWFont(fontId);
   mFont->SetScale(1.0);
   return mFont->GetStringWidth(mText.c_str());
 }

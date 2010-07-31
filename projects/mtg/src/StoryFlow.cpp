@@ -7,7 +7,7 @@
 #include "../include/Credits.h"
 #include "../include/PlayerData.h"
 #include "../include/MTGDeck.h"
-#include <JLBFont.h>
+#include "../include/WFont.h"
 #include <JGE.h>
 #include <JFileSystem.h>
 
@@ -40,14 +40,14 @@ StoryText::StoryText(string text, float _mX, float _mY, string _align, int _font
   }
 }
 void StoryText::Render() {
-  JLBFont * mFont = resources.GetJLBFont(font);
+  WFont * mFont = resources.GetWFont(font);
   mFont->SetColor(ARGB(200,255,255,255));
   mFont->SetScale(1.0);
   mFont->DrawString(text.c_str(), mX, mY, align);
 }
 
 float StoryText::getHeight() {
-  JLBFont * mFont = resources.GetJLBFont(font);
+  WFont * mFont = resources.GetWFont(font);
   return mFont->GetHeight();
 }
 
@@ -196,7 +196,7 @@ StoryPage::StoryPage(StoryFlow * mParent):mParent(mParent){
 
 void  StoryChoice::Render()
 {
-  JLBFont * mFont = resources.GetJLBFont(font);
+  WFont * mFont = resources.GetWFont(font);
   mFont->SetColor(ARGB(200,255,255,255));
   if (mHasFocus) mFont->SetColor(ARGB(255,255,255,0));
   mFont->SetScale(mScale);
@@ -204,7 +204,7 @@ void  StoryChoice::Render()
 }
 
 float StoryChoice::getHeight() {
-  JLBFont * mFont = resources.GetJLBFont(font);
+  WFont * mFont = resources.GetWFont(font);
   return mFont->GetHeight() * mScale;
 }
 
@@ -521,7 +521,7 @@ bool StoryFlow::parse(string path)
 	if (!fileSystem->OpenFile(path.c_str())) return false;
 
 	int size = fileSystem->GetFileSize();
-	char *xmlBuffer = new char[size];
+	char *xmlBuffer = NEW char[size];
 	fileSystem->ReadFile(xmlBuffer, size);
 
 	TiXmlDocument doc;

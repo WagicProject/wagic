@@ -17,7 +17,7 @@
   }
 
 
-  void CreditBonus::Render(float x, float y, JLBFont * font){
+  void CreditBonus::Render(float x, float y, WFont * font){
     char buffer[512];
     sprintf(buffer, "%s: %i", text.c_str(), value);
     font->DrawString(buffer,x,y);
@@ -170,9 +170,9 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
 void Credits::Render(){
   GameObserver * g = GameObserver::GetInstance();
   JRenderer * r = JRenderer::GetInstance();
-  JLBFont * f = resources.GetJLBFont(Constants::MAIN_FONT);
-  JLBFont * f2 = resources.GetJLBFont(Constants::MENU_FONT);
-  JLBFont * f3 = resources.GetJLBFont(Constants::MAGIC_FONT);
+  WFont * f = resources.GetWFont(Constants::MAIN_FONT);
+  WFont * f2 = resources.GetWFont(Constants::MENU_FONT);
+  WFont * f3 = resources.GetWFont(Constants::MAGIC_FONT);
   f->SetScale(1);
   f->SetColor(ARGB(255,255,255,255));
   f2->SetScale(1);

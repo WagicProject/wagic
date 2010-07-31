@@ -162,7 +162,7 @@ private:
   list<HUDString *> events;
   float timestamp;
   float popdelay;
-  JLBFont * f;
+  WFont * f;
   float maxWidth;
   int addEvent(string s);
 public:

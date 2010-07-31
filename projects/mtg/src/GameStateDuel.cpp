@@ -392,7 +392,7 @@ void GameStateDuel::Update(float dt)
 
 void GameStateDuel::Render()
 {
-  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
+  WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
   JRenderer * r = JRenderer::GetInstance();
   r->ClearScreen(ARGB(0,0,0,0));
 

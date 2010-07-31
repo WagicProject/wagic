@@ -1,7 +1,7 @@
 #ifndef _MENU_ITEM_H
 #define _MENU_ITEM_H
 
-#include <JLBFont.h>
+#include "../include/WFont.h"
 #include <JGui.h>
 #include <hge/hgeparticle.h>
 #include <string>
@@ -16,7 +16,7 @@ class MenuItem: public JGuiObject
 {
  private:
   bool mHasFocus;
-  JLBFont *mFont;
+  WFont *mFont;
   string mText;
   int mX;
   int mY;
@@ -31,7 +31,7 @@ class MenuItem: public JGuiObject
 
 
  public:
-  MenuItem(int id, JLBFont *font, string text, int x, int y, JQuad * _off, JQuad * _on, const char * particle, JQuad * particleQuad, bool hasFocus = false);
+  MenuItem(int id, WFont *font, string text, int x, int y, JQuad * _off, JQuad * _on, const char * particle, JQuad * particleQuad, bool hasFocus = false);
   ~MenuItem();
   virtual void Render();
   virtual void Update(float dt);

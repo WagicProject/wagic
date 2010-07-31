@@ -20,6 +20,7 @@ class Translator{
 public:
   map<string,string> values;
   map<string,string> tempValues;
+  map<string,string> deckValues;
 #if defined DEBUG_TRANSLATE
   map<string,int> missingValues;
   map<string,int> dontCareValues;
@@ -30,6 +31,7 @@ public:
   ~Translator();
   int Add(string from, string to);
   void initCards();
+  void initDecks();
   void init();
   static Translator * GetInstance();
   static void EndInstance();
@@ -37,4 +39,5 @@ public:
 
 string _(string toTranslate);
 
+extern bool neofont;
 #endif

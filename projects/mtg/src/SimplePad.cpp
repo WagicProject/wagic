@@ -299,7 +299,7 @@ string SimplePad::Finish() {
 
 void SimplePad::Render(){
   //This could use some cleaning up to make margins more explicit
-  JLBFont * mFont = resources.GetJLBFont("f3");
+  WFont * mFont = resources.GetWFont("f3");
 
   int offX = 0, offY = 0;   
   int kH = mFont->GetHeight();

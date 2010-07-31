@@ -176,8 +176,9 @@ void GameStateOptions::Render()
       "Art: Ilya B, Julio, Jeck, J, Lakeesha",
       "Check themeinfo.txt for the full credits of each theme!",
       "",
-      "Dev Team: Abrasax, Daddy32, Dr.Solomat, J, Jeck",
-      "Leungclj, Salmelo, Superhiro, Psyringe, Wololo, Yeshua",
+      "Dev Team: Abrasax, almosthumane, Daddy32, Dr.Solomat"
+      "J, Jeck, Leungclj, linshier, Salmelo, Superhiro",
+      "Psyringe, Wololo, Yeshua",
       "",
       "Music by Celestial Aeon Project, http://www.jamendo.com",
       "",
@@ -202,7 +203,7 @@ void GameStateOptions::Render()
       "Please support this project with donations at http://wololo.net/wagic",
     };
 
-  JLBFont * mFont = resources.GetJLBFont(Constants::MAGIC_FONT);
+  WFont * mFont = resources.GetWFont(Constants::MAGIC_FONT);
   mFont->SetColor(ARGB(255,200,200,200));
   mFont->SetScale(1.0);
   float startpos = 272 - timer;

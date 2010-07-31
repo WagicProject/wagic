@@ -146,11 +146,16 @@ void GameApp::Create()
   jq->SetHotSpot(16,16);
 
   LOG("--Loading fonts");
-  resources.LoadJLBFont("simon",11);
-  resources.GetJLBFont("simon")->SetTracking(-1);
-  resources.LoadJLBFont("f3",16);
-  resources.LoadJLBFont("magic",16);
-  resources.LoadJLBFont("smallface", 7);
+  resources.LoadWFBFont("simon",12);
+  resources.LoadWFBFont("f3",16);
+  resources.LoadWFBFont("magic",16);
+  resources.LoadWFBFont("smallface",12);
+
+  resources.LoadWLBFont("simon",11);
+  resources.GetWFont("simon")->SetTracking(-1);
+  resources.LoadWLBFont("f3",16);
+  resources.LoadWLBFont("magic",16);
+  resources.LoadWLBFont("smallface", 7);
 
 
   LOG("--Loading various textures");
@@ -340,7 +345,7 @@ void GameApp::Render()
 {
   if (systemError.size()){
     fprintf(stderr, "%s", systemError.c_str());
-    JLBFont * mFont= resources.GetJLBFont("simon");
+    WFont * mFont= resources.GetWFont("simon");
     if (mFont) mFont->DrawString(systemError.c_str(),1,1);
     return;
   }
@@ -360,7 +365,7 @@ void GameApp::Render()
   float fps = mEngine->GetFPS();
   totalFPS += fps;
   nbUpdates+=1;
-  JLBFont * mFont= resources.GetJLBFont("simon");
+  WFont * mFont= resources.GetWFont("simon");
   char buf[512];
   sprintf(buf, "avg:%.02f - %.02f fps",totalFPS/nbUpdates, fps);
   if (mFont) {

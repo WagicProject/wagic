@@ -1,7 +1,7 @@
 #include "../include/TextScroller.h"
 #include "../include/WResourceManager.h"
 #include "../include/utils.h"
-#include <JLBFont.h>
+#include "../include/WFont.h"
 
 TextScroller::TextScroller(int fontId, float x, float y, float width, float speed):JGuiObject(0),fontId(fontId){
   mWidth = width;
@@ -35,7 +35,7 @@ void TextScroller::Update(float dt){
   if(!strings.size())
     return;
   start+=mSpeed*dt;
-  JLBFont * mFont = resources.GetJLBFont(fontId);
+  WFont * mFont = resources.GetWFont(fontId);
   if (start > mFont->GetStringWidth(mText.c_str())){
     start = -mWidth;
     if (mRandom){
@@ -50,7 +50,7 @@ void TextScroller::Update(float dt){
 }
 
 void TextScroller::Render(){
-  JLBFont * mFont = resources.GetJLBFont(fontId);
+  WFont * mFont = resources.GetWFont(fontId);
   mFont->DrawString(mText.c_str(),mX,mY,JGETEXT_LEFT,start,mWidth);
 }
 

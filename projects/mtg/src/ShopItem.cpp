@@ -21,7 +21,7 @@
   float ShopItems::_y4[] = {169,188,250,182,182,168,220,208,198,259,245};
 
 
-ShopItem::ShopItem(int id, JLBFont *font, char* text, JQuad * _quad,JQuad * _thumb,  float _xy[], bool hasFocus, int _price): JGuiObject(id), mFont(font), mText(text), quad(_quad), thumb(_thumb), price(_price)
+ShopItem::ShopItem(int id, WFont *font, char* text, JQuad * _quad,JQuad * _thumb,  float _xy[], bool hasFocus, int _price): JGuiObject(id), mFont(font), mText(text), quad(_quad), thumb(_thumb), price(_price)
 {
   for (int i = 0; i < 8; ++i){
     xy[i] = _xy[i];
@@ -52,7 +52,7 @@ ShopItem::ShopItem(int id, JLBFont *font, char* text, JQuad * _quad,JQuad * _thu
     Entering();
 }
 
-ShopItem::ShopItem(int id, JLBFont *font, int _cardid, float _xy[], bool hasFocus, MTGAllCards * collection, int _price, DeckDataWrapper * ddw): JGuiObject(id), mFont(font),  price(_price){
+ShopItem::ShopItem(int id, WFont *font, int _cardid, float _xy[], bool hasFocus, MTGAllCards * collection, int _price, DeckDataWrapper * ddw): JGuiObject(id), mFont(font),  price(_price){
   for (int i = 0; i < 8; ++i){
     xy[i] = _xy[i];
   }
@@ -227,7 +227,7 @@ bool ShopItem::ButtonPressed()
 }
 
 
-ShopItems::ShopItems(int id, JGuiListener* listener, JLBFont* font, int x, int y, MTGAllCards * _collection, int _setIds[]): JGuiController(id, listener), mX(x), mY(y), mFont(font), collection(_collection){
+ShopItems::ShopItems(int id, JGuiListener* listener, WFont* font, int x, int y, MTGAllCards * _collection, int _setIds[]): JGuiController(id, listener), mX(x), mY(y), mFont(font), collection(_collection){
   mHeight = 0;
   showPriceDialog = -1;
   dialog = NULL;

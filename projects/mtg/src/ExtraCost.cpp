@@ -73,7 +73,7 @@ int SacrificeCost::doPay(){
 
 void SacrificeCost::Render(){
   //TODO : real stuff
-  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
+  WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   mFont->SetColor(ARGB(255,255,255,255));
   char buffer[200];
@@ -163,7 +163,7 @@ int CounterCost::doPay(){
 }
 
 void CounterCost::Render(){
-  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
+  WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   mFont->SetColor(ARGB(255,255,255,255));
   char buffer[200];

@@ -18,7 +18,7 @@ JTexture* SimpleMenu::spadeRTex = NULL;
 JTexture* SimpleMenu::spadeLTex = NULL;
 JTexture* SimpleMenu::jewelTex = NULL;
 JTexture* SimpleMenu::sideTex = NULL;
-JLBFont* SimpleMenu::titleFont = NULL;
+WFont* SimpleMenu::titleFont = NULL;
 hgeParticleSystem* SimpleMenu::stars = NULL;
 unsigned int SimpleMenu::refCount = 0;
 // Here comes the magic of jewel graphics
@@ -86,8 +86,8 @@ void SimpleMenu::drawVertPole(int x, int y, int height) {
 }
 
 void SimpleMenu::Render() {
-  JLBFont * titleFont = resources.GetJLBFont("smallface");
-  JLBFont * mFont = resources.GetJLBFont(fontId);
+  WFont * titleFont = resources.GetWFont("smallface");
+  WFont * mFont = resources.GetWFont(fontId);
   if (0 == mWidth) {
     float sY = mY + VMARGIN;
     for (int i = startId; i < startId + mCount; ++i) {
@@ -129,7 +129,7 @@ void SimpleMenu::Render() {
     if (i > mCount-1) break;
     if ((static_cast<SimpleMenuItem*>(mObjects[i]))->mY - LINE_HEIGHT * startId < mY + height - LINE_HEIGHT + 7) {
       if (static_cast<SimpleMenuItem*>(mObjects[i])->hasFocus()){
-        resources.GetJLBFont(Constants::MAIN_FONT)->DrawString(static_cast<SimpleMenuItem*>(mObjects[i])->desc.c_str(),mX+mWidth+10,mY+15);
+        resources.GetWFont(Constants::MAIN_FONT)->DrawString(static_cast<SimpleMenuItem*>(mObjects[i])->desc.c_str(),mX+mWidth+10,mY+15);
         mFont->SetColor(ARGB(255,255,255,0));
       } else
         mFont->SetColor(ARGB(150,255,255,255));

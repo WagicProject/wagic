@@ -229,6 +229,7 @@ int MTGAllCards::load(const char * config_file, const char * set_name,int autolo
     if (!std::getline(setFile, s)) return total_cards;
     if (!s.size()) continue;
 
+    if (s[s.size()-1] == '\r') s.erase(s.size()-1); // Handle DOS files
     switch (conf_read_mode) {
     case MTGAllCards::READ_ANYTHING:
       if (s[0] == '['){
@@ -261,7 +262,6 @@ int MTGAllCards::load(const char * config_file, const char * set_name,int autolo
         tempCard = NULL;
         tempPrimitive = NULL;
       } else {
-        if (s[s.size()-1] == '\r') s.erase(s.size()-1); // Handle DOS files
         processConfLine(s, tempCard, tempPrimitive);
       }
       continue;
@@ -898,8 +898,8 @@ int MTGSetInfo::totalCards(){
 
 string MTGSetInfo::getName(){
   if(name.size())
-    return _(name); //Pretty name is translated.
-  return id;  //Ugly name is not.
+    return name; //Pretty name is translated when rendering.
+  return id;  //Ugly name as well.
 }
 string MTGSetInfo::getBlock(){
   if(block < 0 || block >= (int) setlist.blocks.size())

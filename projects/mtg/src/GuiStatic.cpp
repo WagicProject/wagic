@@ -22,7 +22,7 @@ void GuiAvatar::Render()
   GameObserver * game = GameObserver::GetInstance();
   JRenderer * r = JRenderer::GetInstance();
   int life = player->life;
-  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
+  WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   //Avatar
   int lifeDiff = life - currentLife;
@@ -128,7 +128,7 @@ void GuiGameZone::Render(){
     JRenderer::GetInstance()->FillRect(actX,actY,quad->mWidth * scale * actZ,quad->mHeight *scale * actZ, ARGB(abs(128 - wave),255,255,255));
 
   //Number of cards
-  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
+  WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   char buffer[11];
   int mAlpha = (int)(actA);

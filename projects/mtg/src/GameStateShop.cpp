@@ -171,7 +171,7 @@ string GameStateShop::descPurchase(int controlId, bool tiny){
    return buffer;
 }
 void GameStateShop::beginPurchase(int controlId){
-  JLBFont * mFont = resources.GetJLBFont(Constants::MENU_FONT);
+  WFont * mFont = resources.GetWFont(Constants::MENU_FONT);
   mFont->SetScale(DEFAULT_MENU_FONT_SCALE);
   SAFE_DELETE(menu);
   if(mInventory[controlId] <= 0){
@@ -556,7 +556,7 @@ void GameStateShop::deleteDisplay(){
 void GameStateShop::Render()
 {
   //Erase
-  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
+  WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
   JRenderer * r = JRenderer::GetInstance();
   r->ClearScreen(ARGB(0,0,0,0));
   if(mStage == STAGE_FADE_IN)

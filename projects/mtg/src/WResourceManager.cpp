@@ -13,6 +13,8 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #endif
+#include "../include/WFont.h"
+extern bool neofont;
 
 int idCounter = OTHERS_OFFSET;
 
@@ -35,7 +37,7 @@ bool WResourceManager::RemoveOldest(){
 //WResourceManager
 void WResourceManager::DebugRender(){
   JRenderer* renderer = JRenderer::GetInstance();
-  JLBFont * font = resources.GetJLBFont(Constants::MAIN_FONT);
+  WFont * font = resources.GetWFont(Constants::MAIN_FONT);
   font->SetColor(ARGB(255,255,255,255));
   
   if(!font || !renderer)
@@ -166,9 +168,13 @@ WResourceManager::WResourceManager(){
 	mQuadList.reserve(0);
 	mQuadMap.clear();
 
-	mFontList.clear();
-	mFontList.reserve(4);
-	mFontMap.clear();
+	mWFontList.clear();
+	mWFontList.reserve(4);
+	mWFontMap.clear();
+
+	mWLBFontList.clear();
+	mWLBFontList.reserve(4);
+	mWLBFontMap.clear();
 
   psiWCache.Resize(PSI_CACHE_SIZE,20);      
   sampleWCache.Resize(SAMPLES_CACHE_SIZE,MAX_CACHED_SAMPLES);
@@ -181,6 +187,8 @@ WResourceManager::WResourceManager(){
 WResourceManager::~WResourceManager(){
   LOG("==Destroying WResourceManager==");
   RemoveAll();
+  RemoveWFonts();
+  RemoveWLBFonts();
 
   for(vector<WManagedQuad*>::iterator it=managedQuads.begin();it!=managedQuads.end();it++){
     WManagedQuad* wm = *it;
@@ -782,40 +790,127 @@ int WResourceManager::fileOK(string filename, bool relative){
   return result;
 }
 
-int WResourceManager::reloadJLBFonts(){
+int WResourceManager::reloadWLBFonts(){
   vector<string> fontNames;
   vector<float> fontSizes;
-  fontNames.resize(mFontList.size());
-  fontSizes.resize(mFontList.size());
-  for ( map<string, int>::iterator itr = mFontMap.begin(); itr != mFontMap.end(); ++itr){
-    fontNames[itr->second] = itr->first;
-    fontSizes[itr->second] = mFontList[itr->second]->GetHeight();
-  }
-  
-  RemoveJLBFonts();
 
-  for(size_t i = 0; i < fontNames.size(); ++i){
-    LoadJLBFont(fontNames[i],fontSizes[i]);
+  fontNames.resize(mWLBFontList.size());
+  fontSizes.resize(mWLBFontList.size());
+  for ( map<string, int>::iterator itr = mWLBFontMap.begin(); itr != mWLBFontMap.end(); ++itr){
+    fontNames[itr->second] = itr->first;
+    fontSizes[itr->second] = mWLBFontList[itr->second]->GetHeight();
   }
+  RemoveWLBFonts();
+  for(size_t i = 0; i < fontNames.size(); ++i){
+    LoadWLBFont(fontNames[i],fontSizes[i]);
+  }
+
+  return 1;
+}
+
+int WResourceManager::reloadWFonts(){
+  //TODO: LoadWFont().
+#if 0
+  vector<string> fontNames;
+  vector<float> fontSizes;
+
+  fontNames.resize(mWFontList.size());
+  fontSizes.resize(mWFontList.size());
+  for ( map<string, int>::iterator itr = mWFontMap.begin(); itr != mWFontMap.end(); ++itr){
+    fontNames[itr->second] = itr->first;
+    fontSizes[itr->second] = mWFontList[itr->second]->GetHeight();
+  }
+  RemoveWFonts();
+  for(size_t i = 0; i < fontNames.size(); ++i){
+    LoadWFont(fontNames[i],fontSizes[i]);
+  }
+#endif
+
   return 1;
 }
 
 
-JLBFont * WResourceManager::LoadJLBFont(const string &fontName, int height){
-  map<string, int>::iterator itr = mFontMap.find(fontName);
+WFont * WResourceManager::LoadWLBFont(const string &fontName, int height) {
+  map<string, int>::iterator itr = mWLBFontMap.find(fontName);
 
-	if (itr != mFontMap.end()) return mFontList[itr->second];
+  if (itr != mWLBFontMap.end()) return mWLBFontList[itr->second];
 
   string mFontName = fontName + ".png";
-	string path = graphicsFile(mFontName);
-  if (path.size() > 4 ) path = path.substr(0, path.size() - 4); //some stupid manipulation because of the way JLBFont works in JGE
-	int id = mFontList.size();
-	mFontList.push_back(NEW JLBFont(path.c_str(), height, true));
-	mFontMap[fontName] = id;
+  string path = graphicsFile(mFontName);
+  if (path.size() > 4 ) path = path.substr(0, path.size() - 4); //some stupid manipulation because of the way Font works in JGE
+  int id = mWLBFontList.size();
+  mWLBFontList.push_back(NEW WLBFont(path.c_str(), height, true));
+  mWLBFontMap[fontName] = id;
+  mWLBFontList[id]->id = id;
 
-	return mFontList[id];
+  return mWLBFontList[id];
 }
 
+WFont * WResourceManager::LoadWFBFont(const string &fontName, int height) {
+  map<string, int>::iterator itr = mWFontMap.find(fontName);
+  if (itr != mWFontMap.end()) return mWFontList[itr->second];
+
+  string mFontName = fontName + ".gbk";
+  string path = graphicsFile(mFontName);
+  if (path.size() > 4 ) path = path.substr(0, path.size() - 4); //some stupid manipulation because of the way WFont works in JGE
+
+  int id = mWFontList.size();
+  mWFontList.push_back(NEW WFBFont(path.c_str(), height, true));
+  mWFontMap[fontName] = id;
+  mWFontList[id]->id = id;
+
+  return mWFontList[id];
+}
+
+WFont * WResourceManager::GetWFont(const string &fontName) {
+  map<string, int>::iterator itr;
+
+  if (neofont) {
+    itr = mWFontMap.find(fontName);
+    if (itr != mWFontMap.end())
+        return mWFontList[itr->second];
+    else
+      return NULL;
+  } else {
+    itr = mWLBFontMap.find(fontName);
+    if (itr != mWLBFontMap.end())
+      return mWLBFontList[itr->second];
+    else
+      return NULL;
+  }
+}
+
+WFont * WResourceManager::GetWFont(int id) {
+  if (neofont) {
+      return mWFontList[id];
+  } else {
+    if (id >=0 && id < (int)mWLBFontList.size())
+      return mWLBFontList[id];
+    else
+      return NULL;
+  }
+}
+
+WFont * WResourceManager::GetWLBFont(int id) {
+  if (id >=0 && id < (int)mWLBFontList.size())
+    return mWLBFontList[id];
+  else
+    return NULL;
+}
+
+void WResourceManager::RemoveWLBFonts() {
+  for (vector<WLBFont *>::iterator font = mWLBFontList.begin(); font != mWLBFontList.end(); ++font)
+    delete *font;
+  mWLBFontList.clear();
+  mWLBFontMap.clear();
+}
+
+void WResourceManager::RemoveWFonts() {
+  for (vector<WFont *>::iterator font = mWFontList.begin(); font != mWFontList.end(); ++font)
+    delete *font;
+  mWFontList.clear();
+  mWFontMap.clear();
+}
 
 void WResourceManager::autoResize(){
 #if defined WIN32 || defined LINUX
@@ -840,7 +935,8 @@ JMusic * WResourceManager::ssLoadMusic(const char *fileName){
 
 void WResourceManager::Refresh(){
   //Really easy cache relinking.
-  reloadJLBFonts();
+  reloadWFonts();
+  reloadWLBFonts();
   sampleWCache.Refresh();
   textureWCache.Refresh();
   psiWCache.Refresh();

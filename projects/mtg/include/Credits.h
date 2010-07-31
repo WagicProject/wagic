@@ -5,7 +5,7 @@
 #include <vector>
 #include <string>
 #include <JGE.h>
-#include <JLBFont.h>
+#include "../include/WFont.h"
 #include <time.h>
 #include "../include/Player.h"
 
@@ -19,7 +19,7 @@ public:
   int value;
   string text;
   CreditBonus(int _value, string _text);
-  void Render(float x, float y, JLBFont * font);
+  void Render(float x, float y, WFont * font);
 };
 
 class Credits{

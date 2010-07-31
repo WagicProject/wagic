@@ -6,6 +6,7 @@
 #include "MTGDeck.h"
 #include "MTGCard.h"
 #include "WCachedResource.h"
+#include "WFont.h"
 
 #define HUGE_CACHE_LIMIT 20000000  // Size of the cache for Windows and Linux
 #define SAMPLES_CACHE_SIZE 1500000  // Size in bytes of the cached samples
@@ -175,9 +176,16 @@ public:
  	JTexture* GetTexture(const string &textureName);
 	JTexture* GetTexture(int id);
 
-  int reloadJLBFonts();
+  int reloadWFonts();
+  int reloadWLBFonts();
   //Wrapped from JResourceManger. TODO: Privatize
-  JLBFont * LoadJLBFont(const string &fontName, int height);
+  WFont * LoadWLBFont(const string &fontName, int height);
+  WFont * LoadWFBFont(const string &fontName, int height);
+  WFont * GetWFont(const string &fontName);
+  WFont * GetWFont(int id);
+  WFont * GetWLBFont(int id);
+  void RemoveWFonts();
+  void RemoveWLBFonts();
  
   //Wrapped from JSoundSystem. TODO: Privatize.
   JMusic * ssLoadMusic(const char *fileName);
@@ -204,6 +212,10 @@ private:
   //Statistics of record.
   unsigned int lastTime;
   int lastError;
+  vector<WFont *> mWFontList;
+  map<string, int> mWFontMap;
+  vector<WLBFont *> mWLBFontList;
+  map<string, int> mWLBFontMap;
 };
 
 extern WResourceManager resources;

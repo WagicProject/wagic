@@ -53,6 +53,7 @@ Translator::~Translator(){
 }
 Translator::Translator(){
   initDone = false;
+  neofont = false;
   //init();
 }
 
@@ -68,6 +69,10 @@ void Translator::load(string filename, map<string,string> * dictionary) {
     while(std::getline(file,s)){
       if (!s.size()) continue;
       if (s[s.size()-1] == '\r') s.erase(s.size()-1); //Handle DOS files
+      //Translate '@' to '\n'
+      char * sp = (char *)s.c_str();
+      for (int i = 0; sp[i]; i++)
+        if (sp[i] == '@') sp[i] = '\n';
       size_t found = s.find('=');
       if (found == string::npos) continue;
       string s1 = s.substr(0,found);
@@ -103,6 +108,33 @@ void Translator::initCards(){
   load(cards_dict,&tempValues);
 }
 
+void Translator::initDecks(){
+  string lang = options[Options::LANG].str;
+  if (!lang.size()) return;
+  string decks_dict = "Res/lang/" + lang + "_decks.txt";
+
+  // Load file
+  std::ifstream file(decks_dict.c_str());
+  if(file){
+    string s;
+    initDone = true;
+    while(std::getline(file,s)){
+      if (!s.size()) continue;
+      if (s[s.size()-1] == '\r') s.erase(s.size()-1); //Handle DOS files
+      // Translate '@' to '\n'
+      char * sp = (char *)s.c_str();
+      for (int i = 0; sp[i]; i++)
+        if (sp[i] == '@') sp[i] = '\n';
+      size_t found = s.find('=');
+      if (found == string::npos) continue;
+      string s1 = s.substr(0,found);
+      string s2 = s.substr(found+1);
+      deckValues[s1] = s2;
+    }
+    file.close();
+  }
+}
+
 void  Translator::init() {
 #if defined DEBUG_TRANSLATE
   checkMisses = 0;
@@ -112,11 +144,17 @@ void  Translator::init() {
   string name = "Res/lang/" + lang + ".txt";
 
   if (fileExists(name.c_str())){
+    // fixup for Chinese language support.
+    if (lang.compare("cn") == 0)
+      neofont = true;
+    else
+      neofont = false;
     initDone = true;
     load(name,&values);
   }
 
   initCards();
+  initDecks();
  
 }
 
@@ -125,3 +163,4 @@ string _(string toTranslate){
   return t->translate(toTranslate);
 }
 
+bool neofont;

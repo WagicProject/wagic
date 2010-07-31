@@ -40,7 +40,13 @@ int GameState::fillDeckMenu(SimpleMenu * _menu, string path, string smallDeckPre
         sprintf(deckDesc, "%s",meta->name.c_str());
       }
       deckDesc[16] = 0;
-      _menu->Add(nbDecks,deckDesc,meta->desc);
+      //translate decks desc
+      Translator * t = Translator::GetInstance();
+      map<string,string>::iterator it = t->deckValues.find(meta->name);
+      if (it != t->deckValues.end())
+        _menu->Add(nbDecks,deckDesc,it->second);
+      else
+        _menu->Add(nbDecks,deckDesc,meta->desc);
     }
   }
   return nbDecks;

@@ -5,14 +5,14 @@
 #include "GameObserver.h"
 
 #include <JGui.h>
-#include <JLBFont.h>
+#include "../include/WFont.h"
 
 
 class MTGGamePhase: public ActionElement {
  protected:
   float animation;
   int currentState;
-  JLBFont * mFont;
+  WFont * mFont;
  public:
   MTGGamePhase(int id);
   virtual void Update(float dt);

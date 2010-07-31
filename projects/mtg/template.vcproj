@@ -833,6 +833,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\WFont.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\WGui.cpp"
 				>
 			</File>
@@ -1227,6 +1231,10 @@
 			</File>
 			<File
 				RelativePath=".\include\WFilter.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\WFont.h"
 				>
 			</File>
 			<File

@@ -286,7 +286,7 @@ void GuiCombat::Render()
 	{
 	  go->opponent()->mAvatar->SetHotSpot(18, 25);
 	  enemy_avatar.Render(go->opponent()->mAvatar);
-	  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
+	  WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
 	  mFont->SetColor(ARGB(255, 255, 64, 0));
 	  {
 	    char buf[10]; sprintf(buf, "%i", damage);
@@ -302,7 +302,7 @@ void GuiCombat::Render()
   renderer->DrawLine(0, SCREEN_HEIGHT / 2 + 10, SCREEN_WIDTH, SCREEN_HEIGHT / 2 + 10, ARGB(255, 255, 64, 0));
   if (FIRST_STRIKE == step)
     {
-      JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
+      WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
       mFont->SetColor(ARGB(255, 64, 255, 64));
       mFont->DrawString("First strike damage", 370, 2);
     }

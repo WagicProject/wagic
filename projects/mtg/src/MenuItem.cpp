@@ -3,7 +3,7 @@
 #include "../include/GameOptions.h"
 #include "../include/Translate.h"
 
-MenuItem::MenuItem(int id, JLBFont *font, string text, int x, int y, JQuad * _off, JQuad * _on, const char * particle, JQuad * particleTex, bool hasFocus): JGuiObject(id), mFont(font), mX(x), mY(y)
+MenuItem::MenuItem(int id, WFont *font, string text, int x, int y, JQuad * _off, JQuad * _on, const char * particle, JQuad * particleTex, bool hasFocus): JGuiObject(id), mFont(font), mX(x), mY(y)
 {
   mText = _(text);
   updatedSinceLastRender = 1;

@@ -44,7 +44,7 @@ void CardGui::Update(float dt)
 
 void CardGui::Render()
 {
-  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
+  WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
 
   JRenderer * renderer = JRenderer::GetInstance();
   GameObserver * game = GameObserver::GetInstance();
@@ -194,7 +194,7 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
     renderer->RenderQuad(q, x, pos.actY, pos.actT, scale, scale);
   }
   // Write the title
-  JLBFont * font = resources.GetJLBFont("magic");
+  WFont * font = resources.GetWFont("magic");
   float backup_scale = font->GetScale();
   font->SetColor(ARGB((int)pos.actA, 0, 0, 0));
   font->SetScale(0.8 * pos.actZ);
@@ -213,8 +213,9 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
     font->SetScale(0.8 * pos.actZ);
     const std::vector<string> txt = card->data->formattedText();
     unsigned i = 0;
+    unsigned h = neofont ? 14 : 11;
     for (std::vector<string>::const_iterator it = txt.begin(); it != txt.end(); ++it, ++i)
-      font->DrawString(it->c_str(), x + (22 - BigWidth / 2)*pos.actZ, pos.actY + (-BigHeight/2 + 80 + 11 * i)*pos.actZ);
+      font->DrawString(it->c_str(), x + (22 - BigWidth / 2)*pos.actZ, pos.actY + (-BigHeight/2 + 80 + h * i)*pos.actZ);
   }
 
   // Write the strength
@@ -285,7 +286,7 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
     for (int i = card->data->types.size() - 1; i > 0; --i)
       {
         s += _(Subtypes::subtypesList->find(card->data->types[i]));
-        s += " - ";
+        s += _(" - ");
       }
     if(card->data->types.size())
       s += _(Subtypes::subtypesList->find(card->data->types[0]));
@@ -382,7 +383,7 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos){
 void CardGui::renderCountersBig(const Pos& pos){
   // Write Named Counters
   if (card->counters) {
-    JLBFont * font = resources.GetJLBFont("magic");
+    WFont * font = resources.GetWFont("magic");
     font->SetColor(ARGB((int)pos.actA, 0, 0, 0));
     font->SetScale(0.8 * pos.actZ);
     std::vector<string> txt = card->formattedText();

@@ -2,7 +2,7 @@
 #define _SHOP_ITEM_H
 
 #include <JGui.h>
-#include <JLBFont.h>
+#include "../include/WFont.h"
 #include "SimpleMenu.h"
 #include "MTGDeck.h"
 #include "../include/PriceList.h"
@@ -22,7 +22,7 @@ class ShopItem:public JGuiObject{
   friend class ShopItems;
   bool mHasFocus;
   bool mRelease;
-  JLBFont *mFont;
+  WFont *mFont;
   string mText;
   float xy[8];
   JQuad * quad;
@@ -38,8 +38,8 @@ class ShopItem:public JGuiObject{
   int quantity;
   MTGCard * card;
   int price;
-  ShopItem(int id, JLBFont * font, int _cardid, float _xy[], bool hasFocus, MTGAllCards * collection, int _price, DeckDataWrapper * ddw);
-  ShopItem(int id, JLBFont * font, char* text, JQuad * _quad, JQuad * _thumb,float _xy[], bool hasFocus, int _price);
+  ShopItem(int id, WFont * font, int _cardid, float _xy[], bool hasFocus, MTGAllCards * collection, int _price, DeckDataWrapper * ddw);
+  ShopItem(int id, WFont * font, char* text, JQuad * _quad, JQuad * _thumb,float _xy[], bool hasFocus, int _price);
   ~ShopItem();
   int updateCount(DeckDataWrapper * ddw);
 
@@ -59,7 +59,7 @@ class ShopItems:public JGuiController,public JGuiListener{
   PlayerData * playerdata;
   PriceList * pricelist;
   int  mX, mY, mHeight;
-  JLBFont* mFont;
+  WFont* mFont;
   JTexture * mBgAATex;
   JQuad * mBgAA;
   MTGAllCards * collection;
@@ -76,7 +76,7 @@ class ShopItems:public JGuiController,public JGuiListener{
 
  public:
   bool showCardList;
-  ShopItems(int id, JGuiListener* listener, JLBFont* font, int x, int y, MTGAllCards * _collection, int _setIds[]);
+  ShopItems(int id, JGuiListener* listener, WFont* font, int x, int y, MTGAllCards * _collection, int _setIds[]);
   ~ShopItems();
   void Render();
   virtual void Update(float dt);

@@ -6,7 +6,7 @@
 
 #include <string>
 #include <JGui.h>
-#include <JLBFont.h>
+#include "../include/WFont.h"
 #include "hge/hgeparticle.h"
 
 class SimpleMenu:public JGuiController{
@@ -29,7 +29,7 @@ class SimpleMenu:public JGuiController{
 
   static JQuad *spadeR, *spadeL, *jewel, *side;
   static JTexture *spadeRTex, *spadeLTex, *jewelTex, *sideTex;
-  static JLBFont* titleFont;
+  static WFont* titleFont;
   static hgeParticleSystem* stars;
   // This works only because of no multithreading
   static PIXEL_TYPE jewelGraphics[9];

@@ -27,7 +27,7 @@ void NextGamePhase::Render(){
   GameObserver * g = GameObserver::GetInstance();
   int nextPhase = (g->getCurrentGamePhase() + 1) % Constants::MTG_PHASE_CLEANUP;
 
-  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
+  WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
   mFont->SetBase(0);
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   char buffer[200];
@@ -51,7 +51,7 @@ ostream& NextGamePhase::toString(ostream& out) const
 }
 
 void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string alt1, string alt2, string action, bool bigQuad){
-  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
+  WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
   mFont->SetColor(ARGB(255,255,255,255));
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   mFont->DrawString(_(action).c_str(), x + 30 , y, JGETEXT_LEFT);
@@ -273,7 +273,7 @@ int PutInGraveyard::resolve(){
 }
 
 void PutInGraveyard::Render(){
-  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
+  WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
   mFont->SetBase(0);
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   if (!removeFromGame){
@@ -310,7 +310,7 @@ int DrawAction::resolve(){
 }
 
 void DrawAction::Render(){
-  JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
+  WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
   mFont->SetBase(0);
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   char buffer[200];
@@ -736,7 +736,7 @@ void ActionStack::Render(){
       if (current->state==NOT_RESOLVED) height += current->mHeight;
     }
 
-    JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
+    WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
     mFont->SetBase(0);
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     mFont->SetColor(ARGB(255,255,255,255));
@@ -792,7 +792,7 @@ void ActionStack::Render(){
       if (current->display) height += current->mHeight;
     }
 
-    JLBFont * mFont = resources.GetJLBFont(Constants::MAIN_FONT);
+    WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     mFont->SetColor(ARGB(255,255,255,255));
 

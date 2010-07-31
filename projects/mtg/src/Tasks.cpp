@@ -202,31 +202,31 @@ Task* Task::createFromStr(string params, bool rand) {
 
   switch (exploded[0][0]) {
     case TASK_WIN_AGAINST:
-      result = new TaskWinAgainst();
+      result = NEW TaskWinAgainst();
       break;
     case TASK_SLAUGHTER:
-      result = new TaskSlaughter();
+      result = NEW TaskSlaughter();
       break;
     case TASK_DELAY:
-      result = new TaskDelay();
+      result = NEW TaskDelay();
       break;
     case TASK_IMMORTAL:
-      result = new TaskImmortal();
+      result = NEW TaskImmortal();
       break;
     case TASK_MASSIVE_BURIAL:
-      result = new TaskMassiveBurial();
+      result = NEW TaskMassiveBurial();
       break;
     case TASK_WISDOM:
-      result = new TaskWisdom();
+      result = NEW TaskWisdom();
       break;      
     case TASK_PACIFISM:
-      result = new TaskPacifism();
+      result = NEW TaskPacifism();
       break;      
     default:
       #if defined (WIN32) || defined (LINUX)
         OutputDebugString("\nTasks.cpp::createFromStr: Undefined class type\n");
       #endif
-      result = new TaskWinAgainst();
+      result = NEW TaskWinAgainst();
   }
 
   if (!result) {
@@ -430,9 +430,9 @@ void TaskList::Update(float dt) {
 void TaskList::Render() {
   JRenderer * r = JRenderer::GetInstance();  
   //Setup fonts.
-  JLBFont * f = resources.GetJLBFont(Constants::MAIN_FONT);
-  JLBFont * f2 = resources.GetJLBFont(Constants::MAGIC_FONT);
-  JLBFont * f3 = resources.GetJLBFont(Constants::MENU_FONT); //OPTION_FONT
+  WFont * f = resources.GetWFont(Constants::MAIN_FONT);
+  WFont * f2 = resources.GetWFont(Constants::MAGIC_FONT);
+  WFont * f3 = resources.GetWFont(Constants::MENU_FONT); //OPTION_FONT
   f2->SetColor(ARGB(255, 205, 237, 240));
   f3->SetColor(ARGB(255, 219, 206, 151));
 

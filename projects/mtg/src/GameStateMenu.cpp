@@ -9,6 +9,7 @@
 #include "../include/DeckStats.h"
 #include "../include/PlayerData.h"
 #include "../include/utils.h"
+#include "../include/WFont.h"
 
 static const char* GAME_VERSION = "WTH?! 0.12.1 - by wololo";
 
@@ -364,7 +365,7 @@ void GameStateMenu::ensureMGuiController(){
   if (!mGuiController) {
     mGuiController = NEW JGuiController(100, this);
     if (mGuiController) {
-      JLBFont * mFont = resources.GetJLBFont(Constants::MENU_FONT);
+      WFont * mFont = resources.GetWFont(Constants::MENU_FONT);
       mFont->SetColor(ARGB(255,255,255,255));
       mGuiController->Add(NEW MenuItem(MENUITEM_PLAY, mFont, "Play", 80,         50 + SCREEN_HEIGHT/2, mIcons[8], mIcons[9],"particle1.psi",resources.GetQuad("particles"),  true));
       mGuiController->Add(NEW MenuItem(MENUITEM_DECKEDITOR, mFont, "Deck Editor", 160, 50 + SCREEN_HEIGHT/2, mIcons[2], mIcons[3],"particle2.psi",resources.GetQuad("particles")));
@@ -542,7 +543,7 @@ void GameStateMenu::Render()
     return;  
 
   JRenderer * renderer = JRenderer::GetInstance();
-  JLBFont * mFont = resources.GetJLBFont(Constants::MENU_FONT);
+  WFont * mFont = resources.GetWFont(Constants::MENU_FONT);
   if ((currentState & MENU_STATE_MAJOR) == MENU_STATE_MAJOR_LANG){
   }else if ((currentState & MENU_STATE_MAJOR) == MENU_STATE_MAJOR_LOADING_CARDS){
     if(!splashTex){
@@ -575,7 +576,7 @@ void GameStateMenu::Render()
     mFont->SetColor(ARGB(255,255,255,255));
     mFont->DrawString(text,SCREEN_WIDTH/2,SCREEN_HEIGHT - 50,JGETEXT_CENTER);
   }else{
-    mFont = resources.GetJLBFont(Constants::MAIN_FONT);
+    mFont = resources.GetWFont(Constants::MAIN_FONT);
     PIXEL_TYPE colors[] =
     {
       
@@ -609,7 +610,7 @@ void GameStateMenu::Render()
       if(options.newAward())
         alp = (int)(sin(timeIndex) * 255);
       float olds = mFont->GetScale();
-      mFont = resources.GetJLBFont(Constants::OPTION_FONT);
+      mFont = resources.GetWFont(Constants::OPTION_FONT);
       jq->SetColor(ARGB(abs(alp),255,255,255));        
       mFont->SetColor(ARGB(abs(alp),0,0,0)); 
       string s = _("Trophy Room");;
@@ -617,7 +618,7 @@ void GameStateMenu::Render()
       mFont->SetScale(50.0f/mFont->GetStringWidth(s.c_str()));
       renderer->RenderQuad(jq, SCREEN_WIDTH-64, 2);
       mFont->DrawString(s,SCREEN_WIDTH-10,9,JGETEXT_RIGHT);
-      mFont = resources.GetJLBFont(Constants::MENU_FONT); 
+      mFont = resources.GetWFont(Constants::MENU_FONT); 
       mFont->SetScale(olds);
     }
   }
@@ -629,7 +630,7 @@ void GameStateMenu::Render()
 
 void GameStateMenu::ButtonPressed(int controllerId, int controlId)
 {
-JLBFont * mFont = resources.GetJLBFont(Constants::MENU_FONT);
+WFont * mFont = resources.GetWFont(Constants::MENU_FONT);
 #if defined (WIN32) || defined (LINUX)
   char buf[4096];
   sprintf(buf, "cnotrollerId: %i", controllerId);

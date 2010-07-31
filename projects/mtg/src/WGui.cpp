@@ -65,11 +65,11 @@ void WGuiItem::Entering(JButton key){
   mFocus = true;
 } 
 float WGuiItem::minWidth(){
-  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
+  WFont * mFont = resources.GetWFont(Constants::OPTION_FONT);
   return mFont->GetStringWidth(_(displayValue).c_str())+4;
 }
 float WGuiItem::minHeight(){
-  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
+  WFont * mFont = resources.GetWFont(Constants::OPTION_FONT);
   return mFont->GetHeight();
 }
 
@@ -80,7 +80,7 @@ bool WGuiItem::Leaving(JButton key){
 
 void WGuiItem::Render(){
   JRenderer * renderer = JRenderer::GetInstance();
-  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
+  WFont * mFont = resources.GetWFont(Constants::OPTION_FONT);
   DWORD oldcolor = mFont->GetColor();
   mFont->SetColor(getColor(WGuiColor::TEXT));
   float fH = (height-mFont->GetHeight())/2;
@@ -162,7 +162,7 @@ PIXEL_TYPE WDecoStyled::getColor(int type){
 
 //WGuiHeader
 void WGuiHeader::Render(){
-  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
+  WFont * mFont = resources.GetWFont(Constants::OPTION_FONT);
   mFont->SetColor(getColor(WGuiColor::TEXT));
  
   JRenderer * renderer = JRenderer::GetInstance();
@@ -263,7 +263,7 @@ void WGuiList::Render(){
 
   //List is empty.
   if (!items.size() && failMsg != ""){
-    JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
+    WFont * mFont = resources.GetWFont(Constants::OPTION_FONT);
     mFont->SetColor(getColor(WGuiColor::TEXT_FAIL));
     mFont->DrawString(_(failMsg).c_str(),x+width/2, y, JGETEXT_RIGHT);
     return;
@@ -401,7 +401,7 @@ string WDecoEnum::lookupVal(int value){
 
 void WDecoEnum::Render()
 {
-  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
+  WFont * mFont = resources.GetWFont(Constants::OPTION_FONT);
   mFont->SetColor(getColor(WGuiColor::TEXT));
   JRenderer * renderer = JRenderer::GetInstance();
   mFont->DrawString(_(getDisplay()).c_str(), getX() + 2, getY() + 3);
@@ -968,7 +968,7 @@ void WGuiTabMenu::Add(WGuiBase * it){
 }
 
 void WGuiTabMenu::Render(){
-  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
+  WFont * mFont = resources.GetWFont(Constants::OPTION_FONT);
   JRenderer * renderer = JRenderer::GetInstance();
 
   if (!items.size())
@@ -1000,7 +1000,7 @@ void WGuiTabMenu::save(){
 //WGuiAward
 void WGuiAward::Overlay(){
   JRenderer * r = JRenderer::GetInstance();
-  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
+  WFont * mFont = resources.GetWFont(Constants::OPTION_FONT);
   mFont->SetScale(.8);
   mFont->SetColor(getColor(WGuiColor::TEXT));
 
@@ -1051,7 +1051,7 @@ void WGuiAward::Render(){
     return;
 
   JRenderer * renderer = JRenderer::GetInstance();
-  JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
+  WFont * mFont = resources.GetWFont(Constants::OPTION_FONT);
   mFont->SetScale(1);
   mFont->SetColor(getColor(WGuiColor::TEXT));
 
@@ -1293,7 +1293,7 @@ void WGuiListRow::Render(){
 
   //List is empty.
   if (!items.size() && failMsg != ""){
-    JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
+    WFont * mFont = resources.GetWFont(Constants::OPTION_FONT);
     mFont->SetColor(getColor(WGuiColor::TEXT_FAIL));
     mFont->DrawString(_(failMsg).c_str(),x+width/2, y, JGETEXT_RIGHT);
     return;
@@ -1937,7 +1937,7 @@ void WGuiKeyBinder::Render() {
   WGuiList::Render();
   if (confirmMenu) {
     JRenderer * renderer = JRenderer::GetInstance();
-    JLBFont * mFont = resources.GetJLBFont(Constants::OPTION_FONT);
+    WFont * mFont = resources.GetWFont(Constants::OPTION_FONT);
     mFont->SetColor(ARGB(255, 255, 0, 0));
     renderer->FillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, ARGB(230, 255, 240, 240));
 
