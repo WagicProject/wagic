@@ -31,9 +31,8 @@ generic/kicker.txt
 generic/kicker2.txt
 generic/landwalk.txt
 generic/legendary.txt
-###Level up tests disabled until knight of cliffhaven has an id
-###generic/level_up.txt
-###generic/level_up2.txt
+generic/level_up.txt
+generic/level_up2.txt
 generic/lord_counter.txt
 generic/lord_counter_any.txt
 generic/lifelink.txt
