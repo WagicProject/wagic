@@ -56,7 +56,7 @@ private:
 };
 
 //Why do we need this ? could it move somewhere else ?
-#if defined (LINUX)
+#if !defined (WIN32)
 #define BYTE  u8
 #define DWORD u32
 #endif

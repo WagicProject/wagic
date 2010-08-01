@@ -559,6 +559,8 @@ public:
           return "Sacrifice";
         }else if (dest == g->players[i]->game->library && tc->targetsZone(g->players[i]->game->graveyard)){
           return "Recycle";
+	    }else if (dest == g->players[i]->game->battlefield && tc->targetsZone(g->players[i]->game->graveyard)){
+          return "Reanimate";
         }else if (dest == g->players[i]->game->library){
           return "Put in Library";
         }else if (dest == g->players[i]->game->graveyard && tc->targetsZone(g->players[i]->game->hand)){

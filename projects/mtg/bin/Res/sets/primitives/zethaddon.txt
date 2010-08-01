@@ -6687,8 +6687,7 @@ mana={u}
 name=Palinchron
 auto=token(-12305)*7
 auto={2}{U}{U}:moveto(myhand) all(this)
-text= Flying
-When Palinchron enters the battlefield, untap up to seven lands.{2}{U}{U}: Return Palinchron to its owner's hand.
+text=Flying. When Palinchron enters the battlefield, untap up to seven lands.{2}{U}{U}: Return Palinchron to its owner's hand.
 type=creature
 subtype=illusion
 abilities=flying
@@ -6757,8 +6756,7 @@ auto=@each myupkeep:aslongas(plains|mybattlefield) counter(0/0,1,fetch) >6 myupk
 auto={c(0/0.-1.fetch)}:moveto(mybattlefield) target(creature|mygraveyard) limit:1
 auto=@each mydraw:counter(0/0,-10,fetch)
 auto={t}:add{w}
-text=Emeria, the Sky Ruin enters the battlefield tapped.
-At the beginning of your upkeep, if you control seven or more Plains, you may return target creature card from your graveyard to the battlefield.
+text=Emeria, the Sky Ruin enters the battlefield tapped. At the beginning of your upkeep, if you control seven or more Plains, you may return target creature card from your graveyard to the battlefield.
 type=land
 mana={0}
 [/card]
@@ -6985,8 +6983,7 @@ auto={T}:Add{W}
 auto=counter(0/0,1,Spire)
 auto={1}:counter(0/0,-1,Spire)
 auto=bury target(land[counter{0/0.1.spire}]|mybattlefield)
-text=Rupture Spire enters the battlefield tapped.
-When Rupture Spire enters the battlefield, sacrifice it unless you pay {1}.have the {1} mana ready in your mana pool as you play this card.{T}: Add one mana of any color to your mana pool.
+text=Rupture Spire enters the battlefield tapped. When Rupture Spire enters the battlefield, sacrifice it unless you pay {1}.have the {1} mana ready in your mana pool as you play this card.{T}: Add one mana of any color to your mana pool.
 type=land
 mana={0}
 [/card]

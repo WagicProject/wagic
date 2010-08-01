@@ -55,6 +55,7 @@ generic/regenerate.txt
 generic/regenerate_wither_i146.txt
 generic/sacrifice.txt
 generic/summoning_sickness.txt
+generic/tap_other_card_as_cost.txt
 generic/targetController_life.txt
 generic/targetController_life2.txt
 generic/targetController_damage.txt

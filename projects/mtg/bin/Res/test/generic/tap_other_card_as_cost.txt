@@ -1,0 +1,28 @@
+# Test: {t(target)} as an extra cost
+# 78697 is Azami, Lady of Scrolls
+# Tap an untapped Wizard you control: Draw a card.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:78697,Cathartic Adept
+library:forest
+[PLAYER2]
+[DO]
+78697
+Cathartic Adept
+next
+#combat begins
+next
+#attackers
+#if he is tapped, Cathartic Adept houldn't be able to attack
+Cathartic Adept
+next
+#endofcombat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:78697,Cathartic Adept
+hand:forest
+[PLAYER2]
+life:20
+[END]

@@ -20,7 +20,68 @@ int ExtraCost::setSource(MTGCardInstance * _source){
   if (tc){ tc->source = _source; tc->targetter = _source;}
   return 1;
 }
+//Tap target cost
+TapTargetCost *  TapTargetCost::clone() const{
+  TapTargetCost * ec =  NEW TapTargetCost(*this);
+  if (tc) ec->tc = tc->clone();
+  return ec;
+}
 
+
+TapTargetCost::TapTargetCost(TargetChooser *_tc):ExtraCost(_tc){
+  if (tc) tc->targetter = NULL; //tapping targets is not targetting, protections do not apply
+  target = NULL;
+}
+
+int TapTargetCost::setSource(MTGCardInstance * card){
+  ExtraCost::setSource(card);
+  if (tc) tc->targetter = NULL; //Tapping targets is not targetting, protections do not apply
+  if (!tc) target = card;
+  return 1;
+}
+
+int TapTargetCost::setPayment(MTGCardInstance * card){
+  if (tc) {
+    int result = tc->addTarget(card);
+    if (result) {
+      target = card;
+      return result;
+    }
+  }
+  return 0;
+}
+
+int TapTargetCost::isPaymentSet(){
+  if (target) return 1;
+  return 0;
+}
+
+int TapTargetCost::canPay(){
+  //tap target does not have any additional restrictions.
+  return 1;
+}
+
+int TapTargetCost::doPay(){
+  MTGCardInstance * _target = (MTGCardInstance *) target;
+  if(target){
+      _target->tap();
+    target = NULL;
+    if (tc) tc->initTargets();
+    return 1;
+  }
+  return 0;
+}
+
+void TapTargetCost::Render(){
+  //TODO : real stuff
+  WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
+  mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
+  mFont->SetColor(ARGB(255,255,255,255));
+  char buffer[200];
+  sprintf(buffer, "%s", _("Tap Target").c_str());
+  mFont->DrawString(buffer, 20 ,20, JGETEXT_LEFT);
+}
+//endtaptargetcost
 SacrificeCost *  SacrificeCost::clone() const{
   SacrificeCost * ec =  NEW SacrificeCost(*this);
   if (tc) ec->tc = tc->clone();

@@ -178,7 +178,7 @@ void GameStateOptions::Render()
       "",
       "Dev Team: Abrasax, almosthumane, Daddy32, Dr.Solomat"
       "J, Jeck, Leungclj, linshier, Salmelo, Superhiro",
-      "Psyringe, Wololo, Yeshua",
+      "Psyringe, Wololo, Yeshua, Zethfox",
       "",
       "Music by Celestial Aeon Project, http://www.jamendo.com",
       "",
