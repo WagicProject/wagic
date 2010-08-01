@@ -1,0 +1,22 @@
+#Test double targeting w/o hellbent on creature toughness<2.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Twinstrike,Vampire Nighthawk
+manapool:{W}{B}{R}{G}{U}
+[PLAYER2]
+inplay:Runeclaw Bear,Glory Seeker
+[DO]
+Twinstrike
+Runeclaw Bear
+choice 0
+Glory Seeker
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Twinstrike
+hand:Vampire Nighthawk
+manapool:{0}
+[PLAYER2]
+graveyard:Runeclaw Bear,Glory Seeker
+[END]

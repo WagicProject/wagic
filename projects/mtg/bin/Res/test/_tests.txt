@@ -444,6 +444,9 @@ titanic_ultimatum.txt
 tolsimir_wolfblood.txt
 torture.txt
 tranquil_domain.txt
+twinstrike.txt
+twinstrike2.txt
+twinstrike3.txt
 twitch.txt
 underworld_dreams.txt
 unearth1.txt

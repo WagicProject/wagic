@@ -1,0 +1,21 @@
+#Test double targeting w/ hellben on creature toughness>2.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Twinstrike
+manapool:{W}{B}{R}{G}{U}
+[PLAYER2]
+inplay:Kraken Hatchling,Sky Ruin Drake
+[DO]
+Twinstrike
+Kraken Hatchling
+choice 0
+Sky Ruin Drake
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Twinstrike
+manapool:{0}
+[PLAYER2]
+graveyard:Kraken Hatchling,Sky Ruin Drake
+[END]
