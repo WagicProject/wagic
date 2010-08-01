@@ -173,6 +173,17 @@ power=9
 toughness=9
 [/card]
 [card]
+name=Aboshan, Cephalid Emperor
+auto={T(cephalid[-tapped]|myBattlefield)}:tap target(*)
+auto={U}{U}{U}:tap all(creature[-flying])
+text=Tap an untapped Cephalid you control: Tap target permanent. -- {U}{U}{U}: Tap all creatures without flying.
+mana={4}{U}{U}
+type=Legendary Creature
+subtype=Cephalid
+power=3
+toughness=3
+[/card]
+[card]
 name=Aboshan's Desire
 target=creature
 auto=flying
@@ -2636,6 +2647,15 @@ mana={G}{W}
 type=Instant
 [/card]
 [card]
+name=Aura of Dominion
+target=creature
+auto={1}{T(creature[-tapped]|mybattlefield)}:untap(mytgt)
+text=Enchant creature -- {1}, Tap an untapped creature you control: Untap enchanted creature.
+mana={U}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Aura Shards
 auto=@movedTo(creature|mybattlefield):may destroy target(artifact,enchantment)
 text=Whenever a creature enters the battlefield under your control, you may destroy target artifact or enchantment.
@@ -3028,13 +3048,13 @@ toughness=3
 [/card]
 [card]
 name=Azami, Lady of Scrolls
-auto={t(wizard[-tapped]|mybattlefield)}:draw:1 controller
+auto={T(wizard[-tapped]|mybattlefield)}:draw:1 controller
 text=Tap an untapped Wizard you control: Draw a card.
-type=legendary creature
-subtype=human wizard
+mana={2}{U}{U}{U}
+type=Legendary Creature
+subtype=Human Wizard
 power=0
 toughness=2
-mana={2}{U}{U}{U}
 [/card]
 [card]
 name=Azimaet Drake
@@ -5742,6 +5762,17 @@ type=Creature
 subtype=Elemental
 power=0
 toughness=3
+[/card]
+[card]
+name=Bramblesnap
+abilities=trample
+auto={T(creature[-tapped]|mybattlefield)}:1/1
+text=Trample -- Tap an untapped creature you control: Bramblesnap gets +1/+1 until end of turn.
+mana={1}{G}
+type=Creature
+subtype=Elemental
+power=1
+toughness=1
 [/card]
 [card]
 name=Bramblewood Paragon
@@ -9003,6 +9034,15 @@ type=Creature
 subtype=Merfolk
 power=2
 toughness=1
+[/card]
+[card]
+name=Coral Reef
+auto=counter(0/0,4,Polyp)
+auto={S(island|myBattlefield)}:counter(0/0,2,Polyp)
+auto={U}{T(creature[blue;-tapped]|mybattlefield)}{C(0/0,-1,Polyp)}:counter(0/1) target(creature)
+text=Coral Reef enters the battlefield with four polyp counters on it. -- Sacrifice an Island: Put two polyp counters on Coral Reef. -- {U}, Tap an untapped blue creature you control, Remove a polyp counter from Coral Reef: Put a +0/+1 counter on target creature.
+mana={U}{U}
+type=Enchantment
 [/card]
 [card]
 name=Coretapper
@@ -12661,6 +12701,16 @@ id=-1111117
 type=nothing
 [/card]
 [card]
+name=Drowner of Secrets
+auto={T(merfolk[-tapped]|mybattlefield)}:deplete:1 target(player)
+text=Tap an untapped Merfolk you control: Target player puts the top card of his or her library into his or her graveyard.
+mana={2}{U}
+type=Creature
+subtype=Merfolk Wizard
+power=1
+toughness=3
+[/card]
+[card]
 name=Drudge Reavers
 abilities=flash
 auto={B}:regenerate
@@ -12884,6 +12934,16 @@ mana={2}{R}{R}
 type=Enchantment
 [/card]
 [card]
+name=Dwarven Bloodboiler
+auto={T(wizard[-tapped]|mybattlefield)}:2/0 target(creature)
+text=Tap an untapped Dwarf you control: Target creature gets +2/+0 until end of turn.
+mana={R}{R}{R}
+type=Creature
+subtype=Dwarf
+power=2
+toughness=2
+[/card]
+[card]
 name=Dwarven Demolition Team
 auto={T}:destroy target(wall)
 text={T}: Destroy target Wall.
@@ -13087,6 +13147,13 @@ autohand={1}{G}{S}:counter(1/1,1) target(creature)
 text=Target creature gets +3/+3 until end of turn. -- Reinforce 1 - {1}{G} ({1}{G}, Discard this card: Put a +1/+1 counter on target creature.)
 mana={1}{G}
 type=Instant
+[/card]
+[card]
+name=Earthcraft
+auto={T(creature[-tapped]|mybattlefield)}:untap target(land[basic])
+text=Tap an untapped creature you control: Untap target basic land.
+mana={1}{G}
+type=Enchantment
 [/card]
 [card]
 name=Earthen Goo
@@ -13509,6 +13576,7 @@ toughness=1
 [/card]
 [card]
 name=Elvish Berserker
+auto={1}{T(creature[-tapped]|myBattlefield)}{T}:1/1 target(creature)
 auto=rampage(1/1,0)
 text=Whenever Elvish Berserker becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.
 mana={G}
@@ -17993,6 +18061,13 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Glare of Subdual
+auto={T(creature[-tapped]|mybattlefield)}:tap target(creature,artifact)
+text=Tap an untapped creature you control: Tap target artifact or creature.
+mana={2}{G}{W}
+type=Enchantment
+[/card]
+[card]
 name=Glass Golem
 mana={5}
 type=Artifact Creature
@@ -20040,6 +20115,13 @@ mana={1}{G}{G}
 type=Instant
 [/card]
 [card]
+name=Hair-Strung Koto
+auto={T(creature[-tapped]|mybattlefield)}:deplete:1 target(player)
+text=Tap an untapped creature you control: Target player puts the top card of his or her library into his or her graveyard.
+mana={6}
+type=Artifact
+[/card]
+[card]
 name=Halberdier
 abilities=first strike
 text=First strike
@@ -21305,6 +21387,14 @@ type=Creature
 subtype=Human Soldier Scout
 power=1
 toughness=1
+[/card]
+[card]
+name=Honor-Worn Shaku
+auto={T}:add{1}
+auto={T(*[legendary,-tapped]|mybattlefield)}:untap
+text={T}: Add {1} to your mana pool. -- Tap an untapped legendary permanent you control: Untap Honor-Worn Shaku.
+mana={3}
+type=Artifact
 [/card]
 [card]
 name=Hooded Kavu
@@ -24076,6 +24166,16 @@ text={T}: Add {1} to your mana pool. -- {T}: Add {R} or {G} to your mana pool. K
 type=Land
 [/card]
 [card]
+name=Karplusan Giant
+auto={T(land[snow;-tapped]|mybattlefield)}:1/1
+text=Tap an untapped snow land you control: Karplusan Giant gets +1/+1 until end of turn.
+mana={6}{R}
+type=Creature
+subtype=Giant
+power=3
+toughness=3
+[/card]
+[card]
 name=Karrthus, Tyrant of Jund
 abilities=flying,haste
 auto=moveTo(myBattlefield) all(dragon)
@@ -25621,6 +25721,13 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Kyren Negotiations
+auto={T(creature[-tapped]|mybattlefield)}:damage:1 target(player)
+text=Tap an untapped creature you control: Kyren Negotiations deals 1 damage to target player.
+mana={2}{R}{R}
+type=Enchantment
+[/card]
+[card]
 name=Kyren Sniper
 auto=@each my upkeep:may damage:1 target(player)
 text=At the beginning of your upkeep, you may have Kyren Sniper deal 1 damage to target player.
@@ -26635,6 +26742,16 @@ power=4
 toughness=2
 [/card]
 [card]
+name=Llanowar Behemoth
+auto={T(creature[-tapped]|myBattlefield)}:1/1
+text=Tap an untapped creature you control: Llanowar Behemoth gets +1/+1 until end of turn.
+mana={3}{G}{G}
+type=Creature
+subtype=Elemental
+power=4
+toughness=4
+[/card]
+[card]
 name=Llanowar Cavalry
 auto={W}:vigilance
 text={W}: Llanowar Cavalry gains vigilance until end of turn.
@@ -26803,6 +26920,17 @@ type=Creature
 subtype=Insect
 power=1
 toughness=1
+[/card]
+[card]
+name=Lodestone Myr
+abilities=trample
+auto={T(creature[artifact;-tapped]|myBattlefield)}:1/1
+text=Trample -- Tap an untapped artifact you control: Lodestone Myr gets +1/+1 until end of turn.
+mana={4}
+type=Artifact Creature
+subtype=Myr
+power=2
+toughness=2
 [/card]
 [card]
 name=Lone Missionary
@@ -32005,6 +32133,13 @@ mana={4}{U}{U}
 type=Instant
 [/card]
 [card]
+name=Opposition
+auto={T(creature[-tapped]|myBattlefield)}:tap target(artifact,creature,land)
+text=Tap an untapped creature you control: Tap target artifact, creature, or land.
+mana={2}{U}{U}
+type=Enchantment
+[/card]
+[card]
 name=Oracle of Nectars
 auto={X}{T}:thisforeach(X) life:1
 text={X}, {T}: You gain X life.
@@ -36499,6 +36634,13 @@ mana={B}
 type=Sorcery
 [/card]
 [card]
+name=Revelsong Horn
+auto={1}{T(other creature[-tapped]|myBattlefield)}{T}:1/1 target(creature)
+text={1}, {T}, Tap an untapped creature you control: Target creature gets +1/+1 until end of turn.
+mana={2}
+type=Artifact
+[/card]
+[card]
 name=Revenant
 abilities=flying
 auto=foreach(creature|mygraveyard) 1/1
@@ -39192,7 +39334,7 @@ toughness=3
 [/card]
 [card]
 name=Selesnya Evangel
-auto={1}{T}:tap notatarget(creature[-tapped]|myBattlefield) && token(Saproling,creature saproling, 1/1, green)
+auto={1}{T(other creature[-tapped]|myBattlefield)}{T}:token(Saproling,creature saproling, 1/1, green)
 text={1}, {T}, Tap an untapped creature you control: Put a 1/1 green Saproling creature token onto the battlefield.
 mana={G}{W}
 type=Creature
@@ -39469,7 +39611,7 @@ toughness=1
 [/card]
 [card]
 name=Seton, Krosan Protector
-auto={0}:tap target(druid[-tapped]|myBattlefield) && add{G}
+auto={T(druid[-tapped]|myBattlefield)}:add{G}
 text=Tap an untapped Druid you control: Add {G} to your mana pool.
 mana={G}{G}{G}
 type=Legendary Creature
@@ -43259,11 +43401,11 @@ toughness=3
 [/card]
 [card]
 name=Springleaf Drum
-auto={T}:tap target(creature[-tapped]|myBattlefield) && Add{B}
-auto={T}:tap target(creature[-tapped]|myBattlefield) && Add{U}
-auto={T}:tap target(creature[-tapped]|myBattlefield) && Add{G}
-auto={T}:tap target(creature[-tapped]|myBattlefield) && Add{R}
-auto={T}:tap target(creature[-tapped]|myBattlefield) && Add{W}
+auto={T}{T(other creature[-tapped]|myBattlefield)}:Add{W}
+auto={T}{T(other creature[-tapped]|myBattlefield)}:Add{U}
+auto={T}{T(other creature[-tapped]|myBattlefield)}:Add{B}
+auto={T}{T(other creature[-tapped]|myBattlefield)}:Add{R}
+auto={T}{T(other creature[-tapped]|myBattlefield)}:Add{G}
 text={T}, Tap an untapped creature you control: Add one mana of any color to your mana pool.
 mana={1}
 type=Artifact
@@ -45891,6 +46033,16 @@ mana={U}{U}{U}
 type=Instant
 [/card]
 [card]
+name=Telethopter
+auto={T(creature[-tapped]|myBattlefield)}:flying
+text=Tap an untapped creature you control: Telethopter gains flying until end of turn.
+mana={4}
+type=Artifact Creature
+subtype=Thopter
+power=3
+toughness=1
+[/card]
+[card]
 name=Telim'Tor's Darts
 auto={2}{T}:damage:1 target(player)
 text={2}, {T}: Telim'Tor's Darts deals 1 damage to target player.
@@ -47460,6 +47612,16 @@ type=Creature
 subtype=Human Spellshaper
 power=1
 toughness=1
+[/card]
+[card]
+name=Topan Ascetic
+auto={T(creature[-tapped]|myBattlefield)}:1/1
+text=Tap an untapped creature you control: Topan Ascetic gets +1/+1 until end of turn.
+mana={2}{G}
+type=Creature
+subtype=Human Monk
+power=2
+toughness=2
 [/card]
 [card]
 name=Tooth of Ramos
@@ -50701,7 +50863,7 @@ toughness=2
 [/card]
 [card]
 name=Volrath's Gardens
-auto={2}:tap notatarget(creature[-tapped]|myBattlefield) && life:2 controller asSorcery
+auto={2}{T(creature[-tapped]|myBattlefield)}:life:2 controller asSorcery
 text={2}, Tap an untapped creature you control: You gain 2 life. Activate this ability only any time you could cast a sorcery.
 mana={1}{G}
 type=Enchantment

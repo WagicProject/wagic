@@ -121,15 +121,6 @@ power=2
 toughness=6
 [/card]
 [card]
-name=Aboshan, Cephalid Emperor
-text=Tap an untapped Cephalid you control: Tap target permanent. -- {U}{U}{U}: Tap all creatures without flying.
-mana={4}{U}{U}
-type=Legendary Creature
-subtype=Cephalid
-power=3
-toughness=3
-[/card]
-[card]
 name=About Face
 text=Switch target creature's power and toughness until end of turn.
 mana={R}
@@ -1661,13 +1652,6 @@ auto=moveto(creature)
 text=Gain control of target Aura that's attached to a permanent. Attach it to another permanent it can enchant.
 mana={1}{U}
 type=Instant
-[/card]
-[card]
-name=Aura of Dominion
-text=Enchant creature -- {1}, Tap an untapped creature you control: Untap enchanted creature.
-mana={U}{U}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Aura of Silence
@@ -6395,12 +6379,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Coral Reef
-text=Coral Reef enters the battlefield with four polyp counters on it. -- Sacrifice an Island: Put two polyp counters on Coral Reef. -- {U}, Tap an untapped blue creature you control, Remove a polyp counter from Coral Reef: Put a +0/+1 counter on target creature.
-mana={U}{U}
-type=Enchantment
-[/card]
-[card]
 name=Coral Trickster
 text=Morph {U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Coral Trickster is turned face up, you may tap or untap target permanent.
 mana={1}{U}
@@ -9341,15 +9319,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Drowner of Secrets
-text=Tap an untapped Merfolk you control: Target player puts the top card of his or her library into his or her graveyard.
-mana={2}{U}
-type=Creature
-subtype=Merfolk Wizard
-power=1
-toughness=3
-[/card]
-[card]
 name=Drudge Spell
 text={B}, Exile two creature cards from your graveyard: Put a 1/1 black Skeleton creature token onto the battlefield. It has "{B}: Regenerate this creature." -- When Drudge Spell leaves the battlefield, destroy all Skeleton tokens. They can't be regenerated.
 mana={B}{B}
@@ -9524,15 +9493,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Dwarven Bloodboiler
-text=Tap an untapped Dwarf you control: Target creature gets +2/+0 until end of turn.
-mana={R}{R}{R}
-type=Creature
-subtype=Dwarf
-power=2
-toughness=2
-[/card]
-[card]
 name=Dwarven Catapult
 text=Dwarven Catapult deals X damage divided evenly, rounded down, among all creatures target opponent controls.
 mana={X}{R}
@@ -9666,12 +9626,6 @@ type=Creature
 subtype=Rat
 power=2
 toughness=1
-[/card]
-[card]
-name=Earthcraft
-text=Tap an untapped creature you control: Untap target basic land.
-mana={1}{G}
-type=Enchantment
 [/card]
 [card]
 name=Earthlink
@@ -13696,12 +13650,6 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
-name=Glare of Subdual
-text=Tap an untapped creature you control: Tap target artifact or creature.
-mana={2}{G}{W}
-type=Enchantment
-[/card]
-[card]
 name=Glarecaster
 text=Flying -- {5}{W}: The next time damage would be dealt to Glarecaster and/or you this turn, that damage is dealt to target creature or player instead.
 mana={4}{W}{W}
@@ -15296,12 +15244,6 @@ mana={X}{W}
 type=Instant
 [/card]
 [card]
-name=Hair-Strung Koto
-text=Tap an untapped creature you control: Target player puts the top card of his or her library into his or her graveyard.
-mana={6}
-type=Artifact
-[/card]
-[card]
 name=Hakim, Loreweaver
 text=Flying -- {U}{U}: Return target Aura card from your graveyard to the battlefield attached to Hakim, Loreweaver. Activate this ability only during your upkeep and only if Hakim isn't enchanted. -- {U}{U}, {T}: Destroy all Auras attached to Hakim.
 mana={3}{U}{U}
@@ -16277,12 +16219,6 @@ text=At the beginning of your upkeep, target opponent discards a card for each S
 mana={3}{B}
 type=Legendary Enchantment
 subtype=Shrine
-[/card]
-[card]
-name=Honor-Worn Shaku
-text={T}: Add {1} to your mana pool. -- Tap an untapped legendary permanent you control: Untap Honor-Worn Shaku.
-mana={3}
-type=Artifact
 [/card]
 [card]
 name=Honorable Passage
@@ -18198,15 +18134,6 @@ text=Karoo enters the battlefield tapped. -- When Karoo enters the battlefield, 
 type=Land
 [/card]
 [card]
-name=Karplusan Giant
-text=Tap an untapped snow land you control: Karplusan Giant gets +1/+1 until end of turn.
-mana={6}{R}
-type=Creature
-subtype=Giant
-power=3
-toughness=3
-[/card]
-[card]
 name=Karplusan Minotaur
 text=Cumulative upkeep - Flip a coin. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Whenever you win a coin flip, Karplusan Minotaur deals 1 damage to target creature or player. -- Whenever you lose a coin flip, Karplusan Minotaur deals 1 damage to target creature or player of an opponent's choice.
 mana={2}{R}{R}
@@ -19285,12 +19212,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Kyren Negotiations
-text=Tap an untapped creature you control: Kyren Negotiations deals 1 damage to target player.
-mana={2}{R}{R}
-type=Enchantment
-[/card]
-[card]
 name=Kyren Toy
 text={1}, {T}: Put a charge counter on Kyren Toy. -- {T}, Remove X charge counters from Kyren Toy: Add {X}{1} to your mana pool.
 mana={3}
@@ -20229,15 +20150,6 @@ power=0
 toughness=3
 [/card]
 [card]
-name=Llanowar Behemoth
-text=Tap an untapped creature you control: Llanowar Behemoth gets +1/+1 until end of turn.
-mana={3}{G}{G}
-type=Creature
-subtype=Elemental
-power=4
-toughness=4
-[/card]
-[card]
 name=Llanowar Empath
 text=When Llanowar Empath enters the battlefield, scry 2, then reveal the top card of your library. If it's a creature card, put it into your hand. (To scry 2, look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
 mana={3}{G}
@@ -20320,15 +20232,6 @@ type=Artifact Creature
 subtype=Golem
 power=5
 toughness=3
-[/card]
-[card]
-name=Lodestone Myr
-text=Trample -- Tap an untapped artifact you control: Lodestone Myr gets +1/+1 until end of turn.
-mana={4}
-type=Artifact Creature
-subtype=Myr
-power=2
-toughness=2
 [/card]
 [card]
 name=Logic Knot
@@ -24974,12 +24877,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Opposition
-text=Tap an untapped creature you control: Tap target artifact, creature, or land.
-mana={2}{U}{U}
-type=Enchantment
-[/card]
-[card]
 name=Oppression
 text=Whenever a player casts a spell, that player discards a card.
 mana={1}{B}{B}
@@ -29279,12 +29176,6 @@ name=Revelation
 text=All players play with their hands revealed.
 mana={G}
 type=World Enchantment
-[/card]
-[card]
-name=Revelsong Horn
-text={1}, {T}, Tap an untapped creature you control: Target creature gets +1/+1 until end of turn.
-mana={2}
-type=Artifact
 [/card]
 [card]
 name=Revenant Patriarch
@@ -36679,15 +36570,6 @@ mana={U}
 type=Enchantment
 [/card]
 [card]
-name=Telethopter
-text=Tap an untapped creature you control: Telethopter gains flying until end of turn.
-mana={4}
-type=Artifact Creature
-subtype=Thopter
-power=3
-toughness=1
-[/card]
-[card]
 name=Telim'Tor
 text=Flanking (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.) -- Whenever Telim'Tor attacks, all attacking creatures with flanking get +1/+1 until end of turn.
 mana={4}{R}
@@ -37834,15 +37716,6 @@ name=Tooth of Chiss-Goria
 text=Flash -- Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) -- {T}: Target creature gets +1/+0 until end of turn.
 mana={3}
 type=Artifact
-[/card]
-[card]
-name=Topan Ascetic
-text=Tap an untapped creature you control: Topan Ascetic gets +1/+1 until end of turn.
-mana={2}{G}
-type=Creature
-subtype=Human Monk
-power=2
-toughness=2
 [/card]
 [card]
 name=Topple
