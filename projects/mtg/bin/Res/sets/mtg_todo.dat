@@ -35971,13 +35971,6 @@ power=2
 toughness=6
 [/card]
 [card]
-name=Sword of Kaldra
-text=Equipped creature gets +5/+5. -- Whenever equipped creature deals damage to a creature, exile that creature. -- Equip {4} ({4}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
-mana={4}
-type=Legendary Artifact
-subtype=Equipment
-[/card]
-[card]
 name=Sword of the Ages
 text=Sword of the Ages enters the battlefield tapped. -- {T}, Exile Sword of the Ages and any number of creatures you control: Sword of the Ages deals X damage to target creature or player, where X is the total power of the creatures exiled this way.
 mana={6}

@@ -45243,6 +45243,16 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
+name=Sword of Kaldra
+auto={4}:equip
+auto=5/5
+auto=@damaged(creature|battlefield) from(mytgt):all(trigger) moveto(exile)
+text=Equipped creature gets +5/+5. -- Whenever equipped creature deals damage to a creature, exile that creature. -- Equip {4} ({4}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
+mana={4}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
 name=Sword of Light and Shadow
 auto={2}:equip
 auto=protection from white
