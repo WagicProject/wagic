@@ -51,6 +51,10 @@ public:
       intValue = computeX(spell,card);
     }else if (s == "manacost"){
       intValue = target->getManaCost()->getConvertedCost();
+	}else if (s == "lifetotal"){
+      intValue = target->controller()->life;
+	}else if (s == "opponentlifetotal"){
+      intValue = target->controller()->opponent()->life;
     }else if (s == "p"){
       intValue = target->power;
     }else if (s == "t"){
@@ -699,7 +703,7 @@ class AALifer:public ActivatedAbilityTP{
       if (_target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE){
         _target = ((MTGCardInstance *)_target)->controller();
       }
-      _target->life+=life->getValue();
+      _target->life +=life->getValue();
     }
     return 1;
   }
@@ -1165,7 +1169,6 @@ public:
   }
 
 };
-
 
 /*Gives life each time a spell matching CardDescriptor's criteria are match . Optionnal manacost*/
 class ASpellCastLife:public MTGAbility{
@@ -2087,7 +2090,43 @@ class AThisForEach:public MTGAbility, public NestedAbility{
     return a;
   }
 };
+//lifeset
+class AALifeSet:public ActivatedAbilityTP{
+public:
+  WParsedInt * life;
+AALifeSet(int _id, MTGCardInstance * _source, Targetable * _target, WParsedInt * life, ManaCost * _cost=NULL, int doTap = 0, int who = TargetChooser::UNSET):ActivatedAbilityTP(_id,_source,_target,_cost,doTap,who),life(life){
+ }
 
+  int resolve(){
+    Damageable * _target = (Damageable *) getTarget();
+    if(_target){
+      if (_target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE){
+        _target = ((MTGCardInstance *)_target)->controller();
+      }
+      _target->life =life->getValue();
+    }
+    return 0;
+  }
+
+  const char * getMenuText(){
+    return "Set Life";
+  }
+
+  AALifeSet * clone() const{
+    AALifeSet * a =  NEW AALifeSet(*this);
+    a->life = NEW WParsedInt(*(a->life));
+    a->isClone = 1;
+    return a;
+  }
+
+  ~AALifeSet(){
+    SAFE_DELETE(life);
+  }
+
+
+};
+
+//lifesetend
 class AADamager:public ActivatedAbilityTP{
 public:
   WParsedInt * damage;

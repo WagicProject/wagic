@@ -354,6 +354,17 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     else a1 =  NEW GenericActivatedAbility(id, card, a1,NULL);
     return NEW MayAbility(id,a1,card);
   }
+    //When...comes into play, choose one...
+  found = s.find("choice ");
+  if (found == 0){
+    string s1 = sWithoutTc.substr(found+4);
+    MTGAbility * a1 = parseMagicLine(s1,id,spell, card);
+    if (!a1) return NULL;
+
+    if (tc) a1 = NEW GenericTargetAbility(id, card, tc, a1);
+    else a1 =  NEW GenericActivatedAbility(id, card, a1,NULL);
+    return NEW MayAbility(id,a1,card,true);
+  }
   
 
   //Multiple abilities for ONE cost
@@ -498,10 +509,16 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 
       int mini = 0;
       int maxi = 0;
+
       found = s.find(" >");
       if (found !=string::npos) mini = atoi(s.substr(found+2,1).c_str());
+
       found = s.find(" <");
       if (found !=string::npos) maxi = atoi(s.substr(found+2,1).c_str());
+
+      found = s.find(" oneshot");
+      if (found !=string::npos) oneShot = 1;
+
       switch(i){
         case 0: result =  NEW ALord(id, card, lordTargets, lordIncludeSelf, a); break;
         case 1: result =  NEW AForeach(id, card, _target,lordTargets, lordIncludeSelf, a,mini,maxi); break;
@@ -742,6 +759,25 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     return a;
   }
 
+//set life total
+    found = s.find("lifeset");
+  if (found != string::npos){
+    size_t start = s.find(":",found);
+    if (start == string::npos) start = s.find(" ",found);
+    size_t end = s.find(" ",start);
+    string d;
+    if (end != string::npos){
+      d = s.substr(start+1,end-start-1);
+    }else{
+      d = s.substr(start+1);
+    }
+    WParsedInt * life = NEW WParsedInt(d,spell,card);
+    Damageable * t = NULL;
+    if (spell) t = spell->getNextDamageableTarget();
+    MTGAbility * a =  NEW AALifeSet(id,card,t, life, NULL, 0, who);
+    a->oneShot = 1;
+    return a;
+  }
 
   //gain/lose life
   found = s.find("life:");
@@ -1109,6 +1145,14 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
       }
       if (dest == zones->graveyard){
         magicText = card->magicTexts["graveyard"];
+        break;
+      }
+	  if (dest == zones->stack){
+        magicText = card->magicTexts["stack"];
+        break;
+      }
+	  if (dest == zones->exile){
+        magicText = card->magicTexts["exile"];
         break;
       }
       //Other zones needed ?

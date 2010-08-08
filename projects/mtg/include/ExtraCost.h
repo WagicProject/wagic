@@ -55,6 +55,20 @@ public:
   virtual SacrificeCost * clone() const;
 };
 
+//life cost 
+class LifeCost: public ExtraCost{
+public:
+  MTGCardInstance * target;
+  LifeCost(TargetChooser *_tc = NULL);
+  virtual int setPayment(MTGCardInstance * card);
+  virtual int isPaymentSet();
+  virtual int canPay();
+  virtual int doPay();
+  virtual void Render();
+  virtual int setSource(MTGCardInstance * _source);
+  virtual LifeCost * clone() const;
+};
+
 //tap other cost
 class TapTargetCost: public ExtraCost{
 public:

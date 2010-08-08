@@ -20,6 +20,64 @@ int ExtraCost::setSource(MTGCardInstance * _source){
   if (tc){ tc->source = _source; tc->targetter = _source;}
   return 1;
 }
+//life cost
+LifeCost *  LifeCost::clone() const{
+  LifeCost * ec =  NEW LifeCost(*this);
+  if (tc) ec->tc = tc->clone();
+  return ec;
+}
+LifeCost::LifeCost(TargetChooser *_tc):ExtraCost(_tc){
+  if (tc) tc->targetter = NULL; 
+  target = NULL;
+}
+
+int LifeCost::setSource(MTGCardInstance * card){
+  ExtraCost::setSource(card);
+  if (tc) tc->targetter = NULL;
+  if (!tc) target = card;
+  return 1;
+}
+int LifeCost::setPayment(MTGCardInstance * card){
+  if (tc) {
+    int result = tc->addTarget(card);
+    if (result) {
+      target = card;
+      return result;
+    }
+  }
+  return 0;
+}
+int LifeCost::isPaymentSet(){
+  if (target) return 1;
+  return 0;
+}
+
+int LifeCost::canPay(){
+  return 1;
+}
+int LifeCost::doPay(){
+  MTGCardInstance * _target = (MTGCardInstance *) target;
+  if(target){
+      _target->controller()->life -= 1;
+    target = NULL;
+    if (tc) tc->initTargets();
+    return 1;
+  }
+  return 0;
+}
+
+
+void LifeCost::Render(){
+  //TODO : real stuff
+  WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
+  mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
+  mFont->SetColor(ARGB(255,255,255,255));
+  char buffer[200];
+  sprintf(buffer, "%s", _("Life").c_str());
+  mFont->DrawString(buffer, 20 ,20, JGETEXT_LEFT);
+}
+//endlifecost
+
 //Tap target cost
 TapTargetCost *  TapTargetCost::clone() const{
   TapTargetCost * ec =  NEW TapTargetCost(*this);
