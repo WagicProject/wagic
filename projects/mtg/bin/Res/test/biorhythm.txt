@@ -1,0 +1,22 @@
+#NAME: Biorhythm
+#DESC: Each player's life total becomes the number of creatures he or she controls.
+[INIT]
+firstmain
+[PLAYER1]
+hand:Biorhythm
+manapool:{6}{G}{G}
+inplay:Llanowar Elves
+[PLAYER2]
+inplay:Scathe Zombies
+[DO]
+Biorhythm
+[ASSERT]
+firstmain
+[PLAYER1]
+graveyard:Biorhythm
+inplay:Llanowar Elves
+life:1
+[PLAYER2]
+inplay:Scathe Zombies
+life:1
+[END]

@@ -57,8 +57,8 @@ type=Sorcery
 [/card]
 [card]
 name=AEther Shockwave
-auto=may tap all(spirit)
-auto=may tap all(creature[-spirit])
+auto=choice tap all(spirit)
+auto=choice all(creature[-spirit])
 text=Choose one - Tap all Spirits; or tap all non-Spirit creatures.
 mana={3}{W}
 type=Instant
@@ -320,7 +320,7 @@ toughness=1
 [card]
 name=Acorn Harvest
 auto=token(Squirrel,creature squirrel, 1/1,green)*2
-autograveyard={1}{G}:copy(this) && moveTo(mystack) && life:-3 controller asSorcery
+autograveyard={L}{L}{L}{1}{G}:copy(this) && moveTo(mystack) asSorcery
 text=Put two 1/1 green Squirrel creature tokens onto the battlefield. -- Flashback {1}{G}, Pay 3 life. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={3}{G}
 type=Sorcery
@@ -355,8 +355,8 @@ type=Sorcery
 [/card]
 [card]
 name=Active Volcano
-auto=may destroy target(*[blue])
-auto=may moveTo(ownerhand) target(island)
+auto=aslongas(*[blue]|battlefield) choice destroy target(*[blue])
+auto=aslongas(island|battlefield) choice moveTo(ownerhand) target(island)
 text=Choose one - Destroy target blue permanent; or return target Island to its owner's hand.
 mana={R}
 type=Instant
@@ -2175,7 +2175,7 @@ toughness=3
 [/card]
 [card]
 name=Arid Mesa
-auto={T}{S}:moveTo(myBattlefield) target(mountain,plains|mylibrary) && life:-1 controller
+auto={L}{T}{S}:moveTo(myBattlefield) target(mountain,plains|mylibrary)
 text={T}, Pay 1 life, Sacrifice Arid Mesa: Search your library for a Mountain or Plains card and put it onto the battlefield. Then shuffle your library.
 type=Land
 [/card]
@@ -4245,6 +4245,14 @@ mana={4}{GU}{GU}{GU}
 type=Sorcery
 [/card]
 [card]
+name=Biorhythm
+auto=lifeset:0 controller && foreach(creature|mybattlefield) life:1 controller
+auto=lifeset:0 opponent && foreach(creature|opponentbattlefield) life:1 opponent
+text=Each player's life total becomes the number of creatures he or she controls.
+mana={6}{G}{G}
+type=Sorcery
+[/card]
+[card]
 name=Bird Maiden
 abilities=flying
 text=Flying
@@ -4516,6 +4524,14 @@ mana={1}{W}
 type=Instant
 [/card]
 [card]
+name=Blessed Wind
+target=player
+auto=lifeset:20
+text=Target player's life total becomes 20.
+mana={7}{W}{W}
+type=Sorcery
+[/card]
+[card]
 name=Blessed Wine
 auto=@next upkeep:draw:1
 auto=life:1
@@ -4575,7 +4591,7 @@ toughness=1
 [/card]
 [card]
 name=Blightsoil Druid
-auto={T}:Add {G} && life:-1 controller
+auto={L}{T}:Add{G}
 text={T}, Pay 1 life: Add {G} to your mana pool.
 mana={1}{B}
 type=Creature
@@ -4760,11 +4776,11 @@ type=Enchantment
 [/card]
 [card]
 name=Blood Celebrant
-auto={B}:Add {W} && life:-1 controller
-auto={B}:Add {U} && life:-1 controller
-auto={B}:Add {B} && life:-1 controller
-auto={B}:Add {R} && life:-1 controller
-auto={B}:Add {G} && life:-1 controller
+auto={L}{B}:Add{W}
+auto={L}{B}:Add{U}
+auto={L}{B}:Add{B}
+auto={L}{B}:Add{R}
+auto={L}{B}:Add{G}
 text={B}, Pay 1 life: Add one mana of any color to your mana pool.
 mana={B}
 type=Creature
@@ -4988,7 +5004,7 @@ toughness=3
 [/card]
 [card]
 name=Bloodstained Mire
-auto={T}{S}:moveTo(myBattlefield) target(swamp,mountain|mylibrary) && life:-1 controller
+auto={L}{T}{S}:moveTo(myBattlefield) target(swamp,mountain|mylibrary)
 text={T}, Pay 1 life, Sacrifice Bloodstained Mire: Search your library for a Swamp or Mountain card and put it onto the battlefield. Then shuffle your library.
 type=Land
 [/card]
@@ -5473,7 +5489,7 @@ toughness=2
 [/card]
 [card]
 name=Book of Rass
-auto={2}:draw:1 && life:-2
+auto={L}{L}{2}:draw:1
 text={2}, Pay 2 life: Draw a card.
 mana={6}
 type=Artifact
@@ -6808,7 +6824,6 @@ auto=moveTo(mygraveyard) target(*|myhand)
 auto=token(-1111116)
 text=Draw two cards, then discard two cards.
 mana={U}
-
 type=Sorcery
 [/card]
 [card]
@@ -6856,6 +6871,16 @@ power=4
 toughness=5
 [/card]
 [card]
+name=Carnophage
+auto=upcost[{L}] tap
+text=At the beginning of your upkeep, tap Carnophage unless you pay 1 life.
+mana={B}
+type=Creature
+subtype=Zombie
+power=2
+toughness=2
+[/card]
+[card]
 name=Carrier Pigeons
 abilities=flying
 auto=@next upkeep:draw:1
@@ -6889,7 +6914,7 @@ toughness=1
 [/card]
 [card]
 name=Carrion Howler
-auto={0}:2/-1 && life:-1 controller
+auto={L}:2/-1
 text=Pay 1 life: Carrion Howler gets +2/-1 until end of turn.
 mana={3}{B}
 type=Creature
@@ -7167,7 +7192,7 @@ toughness=3
 name=Cavern Harpy
 abilities=flying
 auto=moveTo(ownerhand) notatarget(creature[blue;black]|myBattlefield)
-auto={0}:moveTo(ownerhand) && life:-1 controller
+auto={L}:moveTo(ownerhand)
 text=Flying -- When Cavern Harpy enters the battlefield, return a blue or black creature you control to its owner's hand. -- Pay 1 life: Return Cavern Harpy to its owner's hand.
 mana={U}{B}
 type=Creature
@@ -7550,9 +7575,9 @@ type=Sorcery
 [/card]
 [card]
 name=Chaos Charm
-auto=may destroy target(wall)
-auto=may damage:1 target(creature)
-auto=may haste target(creature)
+auto=aslongas(wall|battlefield) choice destroy target(wall)
+auto=aslongas(creature|battlefield) choice damage:1 target(creature)
+auto=aslongas(creature|battlefield) choice haste target(creature)
 text=Choose one - Destroy target Wall; or Chaos Charm deals 1 damage to target creature; or target creature gains haste until end of turn.
 mana={R}
 type=Instant
@@ -8915,8 +8940,8 @@ type=Instant
 [/card]
 [card]
 name=Consuming Bonfire
-auto=may damage:4 target(creature[-elemental])
-auto=may damage:7 target(treefolk)
+auto=aslongas(creature[-elemental]|battlefield) choice damage:4 target(creature[-elemental])
+auto=aslongas(creature[treefolk]|battlefield) choice target(treefolk)
 text=Choose one - Consuming Bonfire deals 4 damage to target non-Elemental creature; or Consuming Bonfire deals 7 damage to target Treefolk creature.
 mana={3}{R}{R}
 type=Tribal Sorcery
@@ -9518,7 +9543,7 @@ toughness=2
 [card]
 name=Crippling Fatigue
 auto=-2/-2 target(creature)
-autograveyard={1}{B}:copy(this) && moveTo(mystack) && life:-3 controller asSorcery
+autograveyard={L}{L}{L}{1}{B}:copy(this) && moveTo(mystack) asSorcery
 text=Target creature gets -2/-2 until end of turn. -- Flashback {1}{B}, Pay 3 life (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={1}{B}{B}
 type=Sorcery
@@ -9542,7 +9567,7 @@ type=instant
 [/card]
 [card]
 name=Crosis's Attendant
-auto={1}{S}:Add {U}{B}{R}
+auto={1}{S}:Add{U}{B}{R}
 text={1}, Sacrifice Crosis's Attendant: Add {U}{B}{R} to your mana pool.
 mana={5}
 type=Artifact Creature
@@ -9552,9 +9577,9 @@ toughness=3
 [/card]
 [card]
 name=Crosis's Charm
-auto=may moveTo(ownerhand) target(*)
-auto=may bury target(creature[-black])
-auto=may destroy target(artifact)
+auto=aslongas(*|battlefield) choice moveTo(ownerhand) target(*)
+auto=aslongas(creature[-black]|battlefield) choice bury target(creature[-black])
+auto=aslongas(artifact|battlefield) choice destroy target(artifact)
 text=Choose one - Return target permanent to its owner's hand; or destroy target nonblack creature, and it can't be regenerated; or destroy target artifact.
 mana={U}{B}{R}
 type=Instant
@@ -9587,7 +9612,7 @@ type=Enchantment
 name=Crovax, Ascendant Hero
 auto=lord(creature[white]) 1/1 other
 auto=lord(creature[-white]) -1/-1
-auto={0}:moveTo(ownerhand) && life:-2 controller
+auto={L}{L}:moveTo(ownerhand)
 text=Other white creatures get +1/+1. -- Nonwhite creatures get -1/-1. -- Pay 2 life: Return Crovax, Ascendant Hero to its owner's hand.
 mana={4}{W}{W}
 type=Legendary Creature
@@ -10152,9 +10177,9 @@ toughness=3
 [/card]
 [card]
 name=Darigaaz's Charm
-auto=may moveTo(myhand) target(creature|mygraveyard)
-auto=may damage:3 target(creature,player)
-auto=may 3/3 target(creature)
+auto=aslongas(creature|mygraveyard) choice moveTo(myhand) target(creature|mygraveyard)
+auto=choice damage:3 target(creature,player)
+auto=aslongas(creature|battlefield) choice 3/3 target(creature)
 text=Choose one - Return target creature card from your graveyard to your hand; or Darigaaz's Charm deals 3 damage to target creature or player; or target creature gets +3/+3 until end of turn.
 mana={B}{R}{G}
 type=Instant
@@ -10908,7 +10933,7 @@ toughness=1
 [card]
 name=Deep Analysis
 auto=draw:2 target(player)
-autograveyard={1}{U}:copy(this) moveTo(mystack) && life:-3 controller asSorcery
+autograveyard={L}{L}{L}{1}{U}:copy(this) moveTo(mystack) asSorcery
 text=Target player draws two cards. -- Flashback {1}{U}, Pay 3 life. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={3}{U}
 type=Sorcery
@@ -10987,7 +11012,7 @@ toughness=1
 [/card]
 [card]
 name=Deepwood Ghoul
-auto={0}:regenerate && life:-2 controller
+auto={L}{L}:regenerate
 text=Pay 2 life: Regenerate Deepwood Ghoul.
 mana={2}{B}
 type=Creature
@@ -12582,9 +12607,9 @@ toughness=3
 [/card]
 [card]
 name=Dromar's Charm
-auto=may life:5 controller
-auto=may fizzle target(*|stack)
-auto=may -2/-2 target(creature)
+auto=choice life:5 controller
+auto=aslongas(*|stack) choice fizzle target(*|stack)
+auto=aslongas(creature|battlefield) choice -2/-2 target(creature)
 text=Choose one - You gain 5 life; or counter target spell; or target creature gets -2/-2 until end of turn.
 mana={W}{U}{B}
 type=Instant
@@ -13883,9 +13908,9 @@ subtype=Aura
 [/card]
 [card]
 name=Emerald Charm
-auto=may untap target(*)
-auto=may destroy target(enchantment[-aura])
-auto=may -flying target(creature)
+auto=aslongas(*|battlefield) choice untap target(*)
+auto=aslongas(enchantment[-aura]|battlefield) choice destroy target(enchantment[-aura])
+auto=aslongas(creature|battlefield) choice -flying target(creature)
 text=Choose one - Untap target permanent; or destroy target non-Aura enchantment; or target creature loses flying until end of turn.
 mana={G}
 type=Instant
@@ -14111,8 +14136,8 @@ toughness=2
 [/card]
 [card]
 name=Energy Bolt
-auto=may damage:X target(player)
-auto=may life:X target(player)
+auto=choice damage:X target(player)
+auto=choice life:X target(player)
 text=Choose one - Energy Bolt deals X damage to target player; or target player gains X life.
 mana={X}{R}{W}
 type=Sorcery
@@ -14486,6 +14511,14 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Eternity Vessel
+auto=counter(0/0,lifetotal,Charge)
+auto=@movedto(land|myBattlefield):may lifeset:0 controller && thisforeach(counter{0/0.1.Charge}) life:1
+auto=Eternity Vessel enters the battlefield with X charge counters on it, where X is your life total. -- Landfall — Whenever a land enters the battlefield under your control, you may have your life total become the number of charge counters on Eternity Vessel.
+mana={6}
+type=Artifact
+[/card]
+[card]
 name=Ethercaste Knight
 abilities=exalted
 text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
@@ -14606,8 +14639,8 @@ toughness=5
 [card]
 name=Evolution Charm
 auto=may moveTo(myhand) target(land[basic]|mylibrary)
-auto=may moveTo(myhand) target(creature|mygraveyard)
-auto=may flying target(creature)
+auto=aslongas(creature|mygraveyard) choice moveTo(myhand) target(creature|mygraveyard)
+auto=aslongas(creature|myBattlefield) flying target(creature)
 text=Choose one - Search your library for a basic land card, reveal it, put it into your hand, then shuffle your library; or return target creature card from your graveyard to your hand; or target creature gains flying until end of turn.
 mana={1}{G}
 type=Instant
@@ -15231,8 +15264,8 @@ subtype=Aura
 [/card]
 [card]
 name=Feast or Famine
-auto=may token(Zombie,Creature Zombie,2/2,black)
-auto=may bury target(creature[-black;-artifact])
+auto=choice token(Zombie,Creature Zombie,2/2,black)
+auto=aslongas(creature[-black;-artifact]|battlefield) choice bury target(creature[-black;-artifact])
 text=Choose one - Put a 2/2 black Zombie creature token onto the battlefield; or destroy target nonblack, nonartifact creature and it can't be regenerated.
 mana={3}{B}
 type=Instant
@@ -15474,9 +15507,9 @@ toughness=2
 [/card]
 [card]
 name=Fever Charm
-auto=may haste target(creature)
-auto=may 2/0 target(creature)
-auto=may damage:3 target(creature[wizard])
+auto=aslongas(creature|battlefield) choice haste target(creature)
+auto=aslongas(creature|battlefield) choice 2/0 target(creature)
+auto=aslongas(creature[wizard]|battlefield) choice damage:3 target(creature[wizard])
 text=Choose one - Target creature gains haste until end of turn; or target creature gets +2/+0 until end of turn; or Fever Charm deals 3 damage to target Wizard creature.
 mana={R}
 type=Instant
@@ -15621,8 +15654,8 @@ type=Sorcery
 [/card]
 [card]
 name=Final Revels
-auto=may lord(creature) 2/0
-auto=may lord(creature) 0/-2
+auto=choice lord(creature) 2/0
+auto=choice lord(creature) 0/-2
 text=Choose one - All creatures get +2/+0 until end of turn; or all creatures get -0/-2 until end of turn.
 mana={4}{B}
 type=Sorcery
@@ -16131,8 +16164,8 @@ type=Instant
 [/card]
 [card]
 name=Flash Flood
-auto=may destroy target(*[red])
-auto=may moveTo(ownerhand) target(mountain)
+auto=aslongas(*[red]|battlefield) choice destroy target(*[red])
+auto=aslongas(mountain|battlefield) choice moveTo(ownerhand) target(mountain)
 text=Choose one - Destroy target red permanent; or return target Mountain to its owner's hand.
 mana={U}
 type=Instant
@@ -16141,7 +16174,7 @@ type=Instant
 name=Flash of Defiance
 auto=lord(creature[green]) cantblock
 auto=lord(creature[white]) cantblock
-autograveyard={1}{R}:copy(this) && moveTo(mystack) && life:-3 controller asSorcery
+autograveyard={L}{L}{L}{1}{R}:copy(this) && moveTo(mystack) asSorcery
 text=Green creatures and white creatures can't block this turn. -- Flashback {1}{R}, Pay 3 life. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={1}{R}
 type=Sorcery
@@ -16320,7 +16353,7 @@ type=Land
 [/card]
 [card]
 name=Flooded Strand
-auto={T}{S}:moveTo(myBattlefield) target(plains,island|mylibrary) && life:-1 controller
+auto={L}{T}{S}:moveTo(myBattlefield) target(plains,island|mylibrary)
 text={T}, Pay 1 life, Sacrifice Flooded Strand: Search your library for a Plains or Island card and put it onto the battlefield. Then shuffle your library.
 type=Land
 [/card]
@@ -16731,6 +16764,15 @@ mana={R}
 type=Sorcery
 [/card]
 [card]
+name=Form of the Dragon
+auto=@each my upkeep:damage:5 target(creature,player)
+auto=@each end:lifeset:5
+auto=lord(creature[-flying]|opponentBattlefield) cantattack
+text=At the beginning of your upkeep, Form of the Dragon deals 5 damage to target creature or player. -- At the beginning of each end step, your life total becomes 5. -- Creatures without flying can't attack you.
+mana={4}{R}{R}{R}
+type=Enchantment
+[/card]
+[card]
 name=Forsaken City
 abilities=doesnotuntap
 auto={0}:untap all(this) && moveto(exile) target(*|myHand) limit:1 myUpkeepOnly
@@ -16744,8 +16786,8 @@ type=Land
 [/card]
 [card]
 name=Fortify
-auto=may lord(creature|myBattlefield) 2/0
-auto=may lord(creature|myBattlefield) 0/2
+auto=choice lord(creature|myBattlefield) 2/0
+auto=choice lord(creature|myBattlefield) 0/2
 text=Choose one - Creatures you control get +2/+0 until end of turn; or creatures you control get +0/+2 until end of turn.
 mana={2}{W}
 type=Instant
@@ -16763,7 +16805,7 @@ subtype=Aura
 [card]
 name=Foul Familiar
 abilities=cantblock
-auto={B}:moveto(ownerhand) && life:-1 controller
+auto={L}{B}:moveto(ownerhand)
 text=Foul Familiar can't block. -- {B}, Pay 1 life: Return Foul Familiar to its owner's hand.
 mana={2}{B}
 type=Creature
@@ -19568,7 +19610,7 @@ toughness=4
 [/card]
 [card]
 name=Greed
-auto={B}:draw:1 && life:-2
+auto={L}{L}{B}:draw:1
 text={B}, Pay 2 life: Draw a card.
 mana={3}{B}
 type=Enchantment
@@ -19681,7 +19723,7 @@ type=Sorcery
 [card]
 name=Grimclaw Bats
 abilities=flying
-auto={B}:1/1 && life:-1 controller
+auto={L}{B}:1/1
 text=Flying -- {B}, Pay 1 life: Grimclaw Bats gets +1/+1 until end of turn.
 mana={1}{B}
 type=Creature
@@ -19736,6 +19778,15 @@ auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Grixis Battlem
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111123
 type=Nothing
+[/card]
+[card]
+name=Grixis Charm
+auto=aslongas(*|battlefield) choice moveTo(ownerhand) target(*)
+auto=aslongas(creature|battlefield) choice -4/-4 target(creature)
+auto=choice lord(creature|battlefield) 2/0 ueot
+text=Choose one - Return target permanent to its owner's hand; or target creature gets -4/-4 until end of turn; or creatures you control get +2/+0 until end of turn.
+mana={U}{B}{R}
+type=Instant
 [/card]
 [card]
 name=Grixis Panorama
@@ -20638,9 +20689,9 @@ type=Land
 [/card]
 [card]
 name=Hearth Charm
-auto=may destroy target(creature[artifact])
-auto=may lord(creature[attacking]) 1/0
-auto=may unblockable target(creature[power<=2])
+auto=aslongas(creature[artifact]|battlefield) choice destroy target(creature[artifact])
+auto=choice lord(creature[attacking]) 1/0
+auto=aslongas(creature[power<=2]|battlefield) choice unblockable target(creature[power<=2])
 text=Choose one - Destroy target artifact creature; or attacking creatures get +1/+0 until end of turn; or target creature with power 2 or less is unblockable this turn.
 mana={R}
 type=Instant
@@ -21089,6 +21140,16 @@ mana={2}{U}
 type=Instant
 [/card]
 [card]
+name=Hibernation Sliver
+auto=lord(sliver) {L}{L}:moveTo(myhand)
+text=All Slivers have "Pay 2 life: Return this permanent to its owner's hand."
+mana={U}{B}
+type=Creature
+subtype=Sliver
+power=2
+toughness=2
+[/card]
+[card]
 name=Hickory Woodlot
 auto=counter(0/0,2,Depletion)
 auto={T}{C(0/0,-1,Depletion)}:Add{G}{G}
@@ -21425,9 +21486,9 @@ toughness=2
 [/card]
 [card]
 name=Hope Charm
-auto=may first strike target(creature)
-auto=may life:2 target(player)
-auto=may destroy target(aura)
+auto=aslongas(creature|battlefield) choice first strike target(creature)
+auto=choice life:2 target(player)
+auto=aslongas(aura|battlefield) choice destroy target(aura)
 text=Choose one - Target creature gains first strike until end of turn; or target player gains 2 life; or destroy target Aura.
 mana={W}
 type=Instant
@@ -21455,8 +21516,8 @@ toughness=5
 [/card]
 [card]
 name=Horizon Canopy
-auto={T}:Add {G} && life:-1
-auto={T}:Add {W} && life:-1
+auto={L}{T}:Add{G}
+auto={L}{T}:Add{W}
 auto={1}{T}{S}:Draw:1
 text={T}, Pay 1 life: Add {G} or {W} to your mana pool. -- {1}, {T}, Sacrifice Horizon Canopy: Draw a card.
 type=Land
@@ -21972,8 +22033,8 @@ toughness=3
 [/card]
 [card]
 name=Hurly-Burly
-auto=may damage:1 all(creature(-flying)
-auto=may damage:1 all(creature(flying)
+auto=choice damage:1 all(creature(-flying)
+auto=choice damage:1 all(creature(flying)
 text=Choose one - Hurly-Burly deals 1 damage to each creature without flying; or Hurly-Burly deals 1 damage to each creature with flying.
 mana={1}{R}
 type=Sorcery
@@ -22775,6 +22836,13 @@ mana={2}{G}{G}
 type=Sorcery
 [/card]
 [card]
+name=Invincible Hymn
+auto=lifeset:0 controller && foreach(*|mylibrary) life:1 controller
+text=Count the number of cards in your library. Your life total becomes that number.
+mana={6}{W}{W}
+type=Sorcery
+[/card]
+[card]
 name=Invisibility
 target=creature
 auto=cantBeBlockedBy(creature[-wall])
@@ -22785,8 +22853,8 @@ subtype=Aura
 [/card]
 [card]
 name=Invoke the Firemind
-auto=may draw:X
-auto=may damage:X target(creature,player)
+auto=choice draw:X
+auto=choice damage:X target(creature,player)
 text=Choose one - Draw X cards; or Invoke the Firemind deals X damage to target creature or player.
 mana={X}{U}{U}{R}
 type=Sorcery
@@ -23611,10 +23679,10 @@ toughness=2
 [/card]
 [card]
 name=Jund Charm
-auto=may moveTo(exile) all(*|opponentgraveyard)
-auto=may moveTo(exile) all(*|mygraveyard)
-auto=may damage:2 all(creature)
-auto=may counter(1/1,2) target(creature)
+auto=choice moveTo(exile) all(*|opponentgraveyard)
+auto=choice moveTo(exile) all(*|mygraveyard)
+auto=choice damage:2 all(creature)
+auto=aslongas(creature|battlefield) choice counter(1/1,2) target(creature)
 text=Choose one - Exile all cards from target player's graveyard; or Jund Charm deals 2 damage to each creature; or put two +1/+1 counters on target creature.
 mana={B}{R}{G}
 type=Instant
@@ -23648,6 +23716,15 @@ type=Creature
 subtype=Plant Wall
 power=2
 toughness=6
+[/card]
+[card]
+name=Jungle Basin
+auto=tap
+auto=aslongas(forest[-tapped]|mybattlefield) moveto(myhand) target(forest[-tapped]|mybattlefield) oneshot
+auto=moveto(mygraveyard) target(this|mybattlefield)
+auto={T}:Add{1}{G}
+text=Jungle Basin enters the battlefield tapped. -- When Jungle Basin enters the battlefield, sacrifice it unless you return an untapped Forest you control to its owner's hand. -- {T}: Add {1}{G}to your mana pool.
+type=Land
 [/card]
 [card]
 name=Jungle Lion
@@ -25696,6 +25773,17 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Kuro, Pitlord
+auto=upcost[{B}{B}{B}{B}] moveTo(mygraveyard)
+auto={L}:-1/-1 target(creature)
+text=At the beginning of your upkeep, sacrifice Kuro, Pitlord unless you pay {B}{B}{B}{B}. -- Pay 1 life: Target creature gets -1/-1 until end of turn.
+mana={6}{B}{B}{B}
+type=Legendary Creature
+subtype=Demon Spirit
+power=9
+toughness=9
+[/card]
+[card]
 name=Kuro's Taken
 auto=rampage(1/1,0)
 auto=rampage(-1/-1,1)
@@ -27528,6 +27616,17 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Magister Sphinx
+abilities=flying
+auto=lifeset:10 target(player)
+text=Flying -- When Magister Sphinx enters the battlefield, target player's life total becomes 10.
+mana={4}{W}{u}{B}
+type=Artifact Creature
+subtype=Sphinx
+power=5
+toughness=5
+[/card]
+[card]
 name=Magistrate's Veto
 auto=lord(creature[blue;white]) cantblock
 text=White creatures and blue creatures can't block.
@@ -28139,7 +28238,7 @@ type=Sorcery
 [/card]
 [card]
 name=Marsh Flats
-auto={T}{S}:moveTo(myBattlefield) target(plains,swamp|mylibrary) && life:-1 controller
+auto={L}{T}{S}:moveTo(myBattlefield) target(plains,swamp|mylibrary)
 text={T}, Pay 1 life, Sacrifice Marsh Flats: Search your library for a Plains or Swamp card and put it onto the battlefield. Then shuffle your library.
 type=Land
 [/card]
@@ -28757,9 +28856,9 @@ toughness=5
 [/card]
 [card]
 name=Midnight Charm
-auto=may damage:1 target(creature) && life:1 controller
-auto=may first strike target(creature)
-auto=may tap target(creature)
+auto=aslongas(creature|battlefield) choice damage:1 target(creature) && life:1 controller
+auto=aslongas(creature|battlefield) choice first strike target(creature)
+auto=aslongas(creature|battlefield) choice tap target(creature)
 text=Choose one - Midnight Charm deals 1 damage to target creature and you gain 1 life; or target creature gains first strike until end of turn; or tap target creature.
 mana={B}
 type=Instant
@@ -29165,7 +29264,7 @@ toughness=4
 [card]
 name=Mischievous Poltergeist
 abilities=flying
-auto={0}:regenerate && life:-1 controller
+auto={L}:regenerate
 text=Flying -- Pay 1 life: Regenerate Mischievous Poltergeist.
 mana={2}{B}
 type=Creature
@@ -29182,9 +29281,9 @@ type=Artifact
 [/card]
 [card]
 name=Misery Charm
-auto=may destroy target(cleric)
-auto=may moveTo(myHand) target(cleric|myGraveyard)
-auto=may life:-2 opponent
+auto=aslongas(cleric|battlefield) choice destroy target(cleric)
+auto=aslongas(cleric|battlefield) choice moveTo(myHand) target(cleric|myGraveyard)
+auto=choice life:-2 target(player)
 text=Choose one - Destroy target Cleric; or return target Cleric card from your graveyard to your hand; or target player loses 2 life.
 mana={B}
 type=Instant
@@ -29272,7 +29371,7 @@ toughness=1
 [/card]
 [card]
 name=Misty Rainforest
-auto={T}{S}:moveTo(myBattlefield) target(forest,island|mylibrary) && life:-1 controller
+auto={L}{T}{S}:moveTo(myBattlefield) target(forest,island|mylibrary)
 text={T}, Pay 1 life, Sacrifice Misty Rainforest: Search your library for a Forest or Island card and put it onto the battlefield. Then shuffle your library.
 type=Land
 [/card]
@@ -30760,9 +30859,9 @@ toughness=2
 [/card]
 [card]
 name=Naya Charm
-auto=may damage:3 target(creature)
-auto=may moveTo(ownerhand) target(*|graveyard)
-auto=may tap all(creature|opponentBattlefield)
+auto=aslongas(creature|battlefield) choice damage:3 target(creature)
+auto=aslongas(*|graveyard) choice moveTo(ownerhand) target(*|graveyard)
+auto=choice tap all(creature|opponentBattlefield)
 text=Choose one - Naya Charm deals 3 damage to target creature; or return target card in a graveyard to its owner's hand; or tap all creatures target player controls.
 mana={R}{G}{W}
 type=Instant
@@ -31143,6 +31242,15 @@ power=*
 toughness=*
 [/card]
 [card]
+name=Nightmare Lash
+auto={L}{L}{L}:equip
+auto=foreach(swamp|myBattlefield) 1/1
+text=Equipped creature gets +1/+1 for each Swamp you control. -- Equip - Pay 3 life. (Pay 3 life: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
+mana={4}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
 name=Nightscape Apprentice
 auto={U}{T}:moveTo(ownerLibrary) target(creature|myBattlefield)
 auto={R}{T}:first strike target(creature)
@@ -31214,6 +31322,14 @@ type=Creature
 subtype=Shade
 power=2
 toughness=2
+[/card]
+[card]
+name=Nihilistic Glee
+auto={2}{B}{S(*|myhand):life:-1 opponent && life:1 controller
+auto=aslongas(*|myhand) {L}{L}{1}:draw:1 <1
+text={2}{B}, Discard a card: Target opponent loses 1 life and you gain 1 life. -- Hellbent - {1}, Pay 2 life: Draw a card. Activate this ability only if you have no cards in hand.
+mana={2}{B}{B}
+type=Enchantment
 [/card]
 [card]
 name=Nikko-Onna
@@ -31618,7 +31734,7 @@ auto=rampage(1/1,0)
 auto=rampage(-1/-1,1)
 auto=lord(numai outcast[blocking]|mybattlefield) 1/1
 auto=lord(other numai outcast[blocking]|mybattlefield) -1/-1
-auto={B}:regenerate && life:-5 controller
+auto={L}{L}{L}{L}{L}{B}:regenerate
 text=Bushido 2 (When this blocks or becomes blocked, it gets +2/+2 until end of turn.) -- {B}, Pay 5 life: Regenerate Numai Outcast.
 mana={3}{B}
 type=Creature
@@ -32337,7 +32453,7 @@ toughness=3
 [/card]
 [card]
 name=Order of the Sacred Torch
-auto={T}:fizzle target(*[black]|stack) && life:-1 controller
+auto={L}{T}:fizzle target(*[black]|stack)
 text={T}, Pay 1 life: Counter target black spell.
 mana={1}{W}{W}
 type=Creature
@@ -32848,8 +32964,8 @@ toughness=2
 [/card]
 [card]
 name=Parch
-auto=may damage:2 target(creature,player)
-auto=may damage:4 target(creature[blue])
+auto=choice damage:2 target(creature,player)
+auto=aslongas(creature[blue]|battlefield) choice damage:4 target(creature[blue])
 text=Choose one - Parch deals 2 damage to target creature or player; or Parch deals 4 damage to target blue creature.
 mana={1}{R}
 type=Instant
@@ -33511,11 +33627,11 @@ toughness=2
 [/card]
 [card]
 name=Phyrexian Lens
-auto={T}:Add {B} && life:-1 controller
-auto={T}:Add {U} && life:-1 controller
-auto={T}:Add {G} && life:-1 controller
-auto={T}:Add {R} && life:-1 controller
-auto={T}:Add {W} && life:-1 controller
+auto={L}{T}:Add{W}
+auto={L}{T}:Add{U}
+auto={L}{T}:Add{B}
+auto={L}{T}:Add{R}
+auto={L}{T}:Add{G}
 text={T}, Pay 1 life: Add one mana of any color to your mana pool.
 mana={3}
 type=Artifact
@@ -33567,7 +33683,7 @@ toughness=2
 [/card]
 [card]
 name=Phyrexian Reclamation
-auto={1}{B}:moveTo(myhand) target(creature|mygraveyard) && life:-2 controller
+auto={L}{L}{1}{B}:moveTo(myhand) target(creature|mygraveyard)
 text={1}{B}, Pay 2 life: Return target creature card from your graveyard to your hand.
 mana={B}
 type=Enchantment
@@ -33638,9 +33754,9 @@ type=Instant
 [/card]
 [card]
 name=Piety Charm
-auto=may destroy target(aura)
-auto=may target(creature[soldier]) 2/2
-auto=may lord(creature|myBattlefield) vigilance ueot
+auto=aslongas(aura|battlefield) choicedestroy target(aura)
+auto=aslongas(creature[soldier]|battlefield) choice target(creature[soldier]) 2/2
+auto=choice lord(creature|myBattlefield) vigilance ueot
 text=Choose one - Destroy target Aura attached to a creature; or target Soldier creature gets +2/+2 until end of turn; or creatures you control gain vigilance until end of turn.
 mana={W}
 type=Instant
@@ -34115,7 +34231,7 @@ type=Enchantment
 [/card]
 [card]
 name=Polluted Delta
-auto={T}{S}:moveTo(myBattlefield) target(island,swamp|mylibrary) && life:-1 controller
+auto={L}{T}{S}:moveTo(myBattlefield) target(island,swamp|mylibrary)
 text={T}, Pay 1 life, Sacrifice Polluted Delta: Search your library for an Island or Swamp card and put it onto the battlefield. Then shuffle your library.
 type=Land
 [/card]
@@ -34796,7 +34912,7 @@ toughness=1
 [/card]
 [card]
 name=Putrid Leech
-auto={0}:2/2 && life:-2 limit:1
+auto={L}{L}:2/2 limit:1
 text=Pay 2 life: Putrid Leech gets +2/+2 until end of turn. Activate this ability only once each turn.
 mana={B}{G}
 type=Creature
@@ -35974,7 +36090,7 @@ type=Sorcery
 [/card]
 [card]
 name=Reckless Assault
-auto={1}:damage:1 target(creature,player) && life:-2 controller
+auto={L}{L}{1}:damage:1 target(creature,player)
 text={1}, Pay 2 life: Reckless Assault deals 1 damage to target creature or player.
 mana={2}{B}{R}
 type=Enchantment
@@ -38140,6 +38256,16 @@ mana={4}{R}{G}
 type=Sorcery
 [/card]
 [card]
+name=Sangrophage
+auto=upcost[{L}{L}] tap
+text=At the beginning of your upkeep, tap Sangrophage unless you pay 2 life.
+mana={B}{B}
+type=Creature
+subtype=Zombie
+power=3
+toughness=3
+[/card]
+[card]
 name=Sanguine Guard
 abilities=first strike
 auto={1}{B}:regenerate
@@ -38327,7 +38453,7 @@ type=Land
 [/card]
 [card]
 name=Scalding Tarn
-auto={T}{S}:moveTo(myBattlefield) target(island,mountain|mylibrary) && life:-1 controller
+auto={L}{T}{S}:moveTo(myBattlefield) target(island,mountain|mylibrary)
 text={T}, Pay 1 life, Sacrifice Scalding Tarn: Search your library for an Island or Mountain card and put it onto the battlefield. Then shuffle your library.
 type=Land
 [/card]
@@ -39156,6 +39282,15 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Seedling Charm
+auto=aslongas(aura|battlefield) choice moveTo(ownerhand) target(aura)
+auto=aslongas(creature|battlefield) choice regenerate target(creature)
+auto=aslongas(creature|battlefield) choice trample target(creature)
+text=Choose one - Return target Aura attached to a creature to its owner's hand; or regenerate target green creature; or target creature gains trample until end of turn.
+mana={G}
+type=Instant
+[/card]
+[card]
 name=Seeds of Innocence
 alias=3410
 text=Destroy all artifacts. They can't be regenerated. The controller of each artifact destroyed this way gains life equal to its converted mana cost.
@@ -39323,7 +39458,7 @@ toughness=3
 [card]
 name=Selenia, Dark Angel
 abilities=flying
-auto={0}:moveTo(ownerhand) && life:-2 controller
+auto={L}{L}:moveTo(ownerhand)
 text=Flying -- Pay 2 life: Return Selenia, Dark Angel to its owner's hand.
 mana={3}{W}{B}
 type=Legendary Creature
@@ -39639,7 +39774,7 @@ toughness=2
 [/card]
 [card]
 name=Sewer Rats
-auto={B}:1/0 && life:-1 controller limit:3
+auto={L}{B}:1/0 limit:3
 text={B}, Pay 1 life: Sewer Rats gets +1/+0 until end of turn. Activate this ability no more than three times each turn.
 mana={B}
 type=Creature
@@ -42359,6 +42494,15 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Soul Channeling
+target=creature
+auto={L}{L}:regenerate(mytgt)
+text=Enchant creature -- Pay 2 life: Regenerate enchanted creature.
+mana={2}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Soul Feast
 target=player
 auto=life:-4
@@ -42370,7 +42514,7 @@ type=Sorcery
 [card]
 name=Soul Kiss
 target=creature
-auto={B}:2/2 && life:-1 controller limit:3
+auto={L}{B}:2/2limit:3
 text=Enchant creature -- {B}, Pay 1 life: Enchanted creature gets +2/+2 until end of turn. Activate this ability no more than three times each turn.
 mana={2}{B}
 type=Enchantment
@@ -42498,7 +42642,7 @@ type=Enchantment
 [/card]
 [card]
 name=Souldrinker
-auto={0}:counter(1/1) && life:-3 controller
+auto={L}{L}{L}:counter(1/1)
 text=Pay 3 life: Put a +1/+1 counter on Souldrinker.
 mana={3}{B}
 type=Creature
@@ -43693,11 +43837,11 @@ toughness=4
 [/card]
 [card]
 name=Standing Stones
-auto={T}:Add {W} && life:-1 controller
-auto={T}:Add {U} && life:-1 controller
-auto={T}:Add {B} && life:-1 controller
-auto={T}:Add {R} && life:-1 controller
-auto={T}:Add {G} && life:-1 controller
+auto={L}{1}{T}:Add{W}
+auto={L}{1}{T}:Add{U}
+auto={L}{1}{T}:Add{B}
+auto={L}{1}{T}:Add{R}
+auto={L}{1}{T}:Add{G}
 text={1}, {T}, Pay 1 life: Add one mana of any color to your mana pool.
 mana={3}
 type=Artifact
@@ -44277,6 +44421,13 @@ mana={G}
 type=Enchantment
 [/card]
 [card]
+name=Storm Herd
+auto=token(Pegasus,Creature Pegasus,1/1,flying,white)*lifetotal
+text=Put X 1/1 white Pegasus creature tokens with flying onto the battlefield, where X is your life total.
+mana={8}{W}{W}
+type=Sorcery
+[/card]
+[card]
 name=Storm Seeker
 target=player
 alias=129750
@@ -44373,7 +44524,7 @@ type=Sorcery
 [/card]
 [card]
 name=Strands of Night
-auto={B}{B}{S(swamp|myBattlefield)}:moveTo(myBattlefield) target(creature|mygraveyard) && life:-2 controller
+auto={L}{L}{B}{B}{S(swamp|myBattlefield)}:moveTo(myBattlefield) target(creature|mygraveyard)
 text={B}{B}, Pay 2 life, Sacrifice a Swamp: Return target creature card from your graveyard to the battlefield.
 mana={2}{B}{B}
 type=Enchantment
@@ -44453,7 +44604,7 @@ subtype=Wizard
 [card]
 name=Street Wraith
 abilities=swampwalk
-autohand={S}:life:-2 && draw:1
+autohand={L}{L}{S}:draw:1
 text=Swampwalk -- Cycling - Pay 2 life. (Pay 2 life, Discard this card: Draw a card.)
 mana={3}{B}{B}
 type=Creature
@@ -44536,7 +44687,7 @@ type=Instant
 [/card]
 [card]
 name=Stromgald Cabal
-auto={T}:fizzle target(*[white]|stack) && life:-1 controller
+auto={L}{L}{T}:fizzle target(*[white]|stack)
 text={T}, Pay 1 life: Counter target white spell.
 mana={1}{B}{B}
 type=Creature
@@ -45195,6 +45346,18 @@ autohand={2}:cycling
 text=Destroy target creature with power 2 or less. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={1}{B}{B}
 type=Instant
+[/card]
+[card]
+name=Sway of the Stars
+auto=moveto(opponentlibrary) all(*|opponentgraveyard) && moveto(opponentlibrary) all(*|opponenthand) && moveto(opponentlibrary) all(*|opponentBattlefield) && shuffle
+auto=draw:7 opponent
+auto=lifeset:7 opponent
+auto=moveto(mylibrary) all(*|mygraveyard) && moveto(mylibrary) all(*|myhand) && moveto(mylibrary) all(*|myBattlefield) && shuffle
+auto=draw:7 controller
+auto=lifeset:7 controller
+text=Each player shuffles his or her hand, graveyard, and permanents he or she owns into his or her library, then draws seven cards. Each player's life total becomes 7.
+mana={8}{U}{U}
+type=Sorcery
 [/card]
 [card]
 name=Swell of Courage
@@ -47018,8 +47181,8 @@ toughness=2
 [/card]
 [card]
 name=Thunderbolt
-auto=may damage:3 target(player)
-auto=may damage:4 target(creature[flying])
+auto=choice damage:3 target(player)
+auto=aslongas(creature[flying]|battlefield) choice damage:4 target(creature[flying])
 text=Choose one - Thunderbolt deals 3 damage to target player; or Thunderbolt deals 4 damage to target creature with flying.
 mana={1}{R}
 type=Instant
@@ -48261,9 +48424,9 @@ toughness=3
 [/card]
 [card]
 name=Treva's Charm
-auto=may destroy target(enchantment)
-auto=may moveTo(exile) target(creature[attacking])
-auto=may token(-1111143) && draw:1
+auto=aslongas(enchantment|battlefield) choice destroy target(enchantment)
+auto=aslongas(creature[attacking]|battlefield) choice moveTo(exile) target(creature[attacking])
+auto=choice token(-1111143) && draw:1
 text=Choose one - Destroy target enchantment; or exile target attacking creature; or draw a card, then discard a card.
 mana={G}{W}{U}
 type=Instant
@@ -49022,7 +49185,7 @@ toughness=1
 [/card]
 [card]
 name=Unspeakable Symbol
-auto={0}:counter(1/1,1) target(creature) && life:-3 controller
+auto={L}{L}{L}:counter(1/1,1) target(creature)
 text=Pay 3 life: Put a +1/+1 counter on target creature.
 mana={1}{B}{B}
 type=Enchantment
@@ -49827,7 +49990,7 @@ toughness=4
 [/card]
 [card]
 name=Verdant Catacombs
-auto={T}{S}:moveTo(myBattlefield) target(swamp,forest|mylibrary) && life:-1 controller
+auto={L}{T}{S}:moveTo(myBattlefield) target(swamp,forest|mylibrary)
 text={T}, Pay 1 life, Sacrifice Verdant Catacombs: Search your library for a Swamp or Forest card and put it onto the battlefield. Then shuffle your library.
 type=Land
 [/card]
@@ -49901,11 +50064,11 @@ type=Instant
 [/card]
 [card]
 name=Vesper Ghoul
-auto={T}:Add{G} && life:-1 controller
-auto={T}:Add{W} && life:-1 controller
-auto={T}:Add{R} && life:-1 controller
-auto={T}:Add{B} && life:-1 controller
-auto={T}:Add{U} && life:-1 controller
+auto={L}{T}:Add{W}
+auto={L}{T}:Add{U}
+auto={L}{T}:Add{B}
+auto={L}{T}:Add{R}
+auto={L}{T}:Add{G}
 text={T}, Pay 1 life: Add one mana of any color to your mana pool.
 mana={2}{B}
 type=Creature
@@ -50528,9 +50691,9 @@ toughness=1
 [/card]
 [card]
 name=Vitality Charm
-auto=may token(Insect,creature insect, 1/1,green)
-auto=may 1/1 && trample target(creature)
-auto=may regenerate target(beast)
+auto=choice token(Insect,creature insect, 1/1,green)
+auto=aslongas(creature|battlefield) choice 1/1 && trample target(creature)
+auto=aslongas(beast|battlefield) choice regenerate target(beast)
 text=Choose one - Put a 1/1 green Insect creature token onto the battlefield; or target creature gets +1/+1 and gains trample until end of turn; or regenerate target Beast.
 mana={G}
 type=Instant
@@ -51133,6 +51296,17 @@ type=Creature
 subtype=Wall
 power=1
 toughness=5
+[/card]
+[card]
+name=Wall of Blood
+abilities=defender
+auto={L}:1/1
+text=Defender (This creature can't attack.) -- Pay 1 life: Wall of Blood gets +1/+1 until end of turn.
+mana={2}{B}
+type=Creature
+subtype=Wall
+power=0
+toughness=2
 [/card]
 [card]
 name=Wall of Blossoms
@@ -52652,7 +52826,7 @@ type=Instant
 [/card]
 [card]
 name=Windswept Heath
-auto={T}{S}:moveTo(myBattlefield) target(forest,plains|mylibrary) && life:-1 controller
+auto={L}{T}{S}:moveTo(myBattlefield) target(forest,plains|mylibrary)
 text={T}, Pay 1 life, Sacrifice Windswept Heath: Search your library for a Forest or Plains card and put it onto the battlefield. Then shuffle your library.
 type=Land
 [/card]
@@ -52899,9 +53073,8 @@ toughness=2
 name=Withering Boon
 target=creature|stack
 auto=fizzle
-auto=life:-3 controller
 text=As an additional cost to cast Withering Boon, pay 3 life. -- Counter target creature spell.
-mana={1}{B}
+mana={L}{L}{L}{1}{B}
 type=Instant
 [/card]
 [card]
@@ -52996,7 +53169,7 @@ type=Land
 [/card]
 [card]
 name=Wooded Foothills
-auto={T}{S}:moveTo(myBattlefield) target(mountain,forest|mylibrary) && life:-1 controller
+auto={L}{T}{S}:moveTo(myBattlefield) target(mountain,forest|mylibrary)
 text={T}, Pay 1 life, Sacrifice Wooded Foothills: Search your library for a Mountain or Forest card and put it onto the battlefield. Then shuffle your library.
 type=Land
 [/card]
@@ -53266,7 +53439,7 @@ toughness=3
 [/card]
 [card]
 name=Wurm's Tooth
-auto=@movedTo(*[green]|stack): may life:1 controller
+auto=@movedTo(*[green]|stack):may life:1 controller
 text=Whenever a player casts a green spell, you may gain 1 life.
 mana={2}
 type=Artifact
@@ -53284,7 +53457,7 @@ subtype=Aura
 [card]
 name=Wydwen, the Biting Gale
 abilities=flying,flash
-auto={U}{B}:moveTo(ownerhand) && life:-1 controller
+auto={L}{U}{B}:moveTo(ownerhand)
 text=Flash -- Flying -- {U}{B}, Pay 1 life: Return Wydwen, the Biting Gale to its owner's hand.
 mana={2}{U}{B}
 type=Legendary Creature

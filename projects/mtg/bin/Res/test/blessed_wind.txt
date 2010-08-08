@@ -1,0 +1,19 @@
+#NAME: Blessed Wind
+#DESC: Target player's life total becomes 20.
+[INIT]
+firstmain
+[PLAYER1]
+hand:Blessed Wind
+manapool:{7}{W}{W}
+life:10
+[PLAYER2]
+[DO]
+Blessed Wind
+p1
+[ASSERT]
+firstmain
+[PLAYER1]
+graveyard:Blessed Wind
+life:20
+[PLAYER2]
+[END]

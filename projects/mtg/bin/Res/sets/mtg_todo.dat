@@ -2835,12 +2835,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Biorhythm
-text=Each player's life total becomes the number of creatures he or she controls.
-mana={6}{G}{G}
-type=Sorcery
-[/card]
-[card]
 name=Birchlore Rangers
 text=Tap two untapped Elves you control: Add one mana of any color to your mana pool. -- Morph {G} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 mana={G}
@@ -2976,12 +2970,6 @@ text=Target creature you control gains protection from the color of your choice 
 mana={W}
 type=Instant
 subtype=Arcane
-[/card]
-[card]
-name=Blessed Wind
-text=Target player's life total becomes 20.
-mana={7}{W}{W}
-type=Sorcery
 [/card]
 [card]
 name=Blessing of the Nephilim
@@ -4617,15 +4605,6 @@ text=Enchant land you control -- Enchanted land has "{W}{W}, {T}: Put a 0/1 whit
 mana={2}{W}{W}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Carnophage
-text=At the beginning of your upkeep, tap Carnophage unless you pay 1 life.
-mana={B}
-type=Creature
-subtype=Zombie
-power=2
-toughness=2
 [/card]
 [card]
 name=Carom
@@ -12551,12 +12530,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Form of the Dragon
-text=At the beginning of your upkeep, Form of the Dragon deals 5 damage to target creature or player. -- At the beginning of each end step, your life total becomes 5. -- Creatures without flying can't attack you.
-mana={4}{R}{R}{R}
-type=Enchantment
-[/card]
-[card]
 name=Formation
 target=creature
 auto=banding
@@ -14855,12 +14828,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Grixis Charm
-text=Choose one - Return target permanent to its owner's hand; or target creature gets -4/-4 until end of turn; or creatures you control get +2/+0 until end of turn.
-mana={U}{B}{R}
-type=Instant
-[/card]
-[card]
 name=Grixis Grimblade
 text=As long as you control another multicolored permanent, Grixis Grimblade gets +1/+1 and has deathtouch. (Creatures dealt damage by this creature are destroyed. You can divide its combat damage among any of the creatures blocking or blocked by it.)
 mana={UR}{B}
@@ -15875,15 +15842,6 @@ name=Hex
 text=Destroy six target creatures.
 mana={4}{B}{B}
 type=Sorcery
-[/card]
-[card]
-name=Hibernation Sliver
-text=All Slivers have "Pay 2 life: Return this permanent to its owner's hand."
-mana={U}{B}
-type=Creature
-subtype=Sliver
-power=2
-toughness=2
 [/card]
 [card]
 name=Hibernation's End
@@ -17389,12 +17347,6 @@ name=Invigorating Boon
 text=Whenever a player cycles a card, you may put a +1/+1 counter on target creature.
 mana={1}{G}
 type=Enchantment
-[/card]
-[card]
-name=Invincible Hymn
-text=Count the number of cards in your library. Your life total becomes that number.
-mana={6}{W}{W}
-type=Sorcery
 [/card]
 [card]
 name=Inviolability
@@ -19170,15 +19122,6 @@ name=Kuon, Ogre Ascendant (Kuon's Essence)
 text=At the beginning of each player's upkeep, that player sacrifices a creature.
 mana={B}{B}{B}
 type=Legendary Enchantment
-[/card]
-[card]
-name=Kuro, Pitlord
-text=At the beginning of your upkeep, sacrifice Kuro, Pitlord unless you pay {B}{B}{B}{B}. -- Pay 1 life: Target creature gets -1/-1 until end of turn.
-mana={6}{B}{B}{B}
-type=Legendary Creature
-subtype=Demon Spirit
-power=9
-toughness=9
 [/card]
 [card]
 name=Kusari-Gama
@@ -23955,13 +23898,6 @@ mana={5}{B}
 type=Sorcery
 [/card]
 [card]
-name=Nightmare Lash
-text=Equipped creature gets +1/+1 for each Swamp you control. -- Equip - Pay 3 life. (Pay 3 life: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
-mana={4}
-type=Artifact
-subtype=Equipment
-[/card]
-[card]
 name=Nightmare Void
 text=Target player reveals his or her hand. You choose a card from it. That player discards that card. -- Dredge 2 (If you would draw a card, instead you may put exactly two cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
 mana={3}{B}
@@ -24020,12 +23956,6 @@ type=Creature
 subtype=Shapeshifter
 power=2
 toughness=1
-[/card]
-[card]
-name=Nihilistic Glee
-text={2}{B}, Discard a card: Target opponent loses 1 life and you gain 1 life. -- Hellbent - {1}, Pay 2 life: Draw a card. Activate this ability only if you have no cards in hand.
-mana={2}{B}{B}
-type=Enchantment
 [/card]
 [card]
 name=Nihilith
@@ -30773,15 +30703,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Sangrophage
-text=At the beginning of your upkeep, tap Sangrophage unless you pay 2 life.
-mana={B}{B}
-type=Creature
-subtype=Zombie
-power=3
-toughness=3
-[/card]
-[card]
 name=Sanguine Bond
 text=Whenever you gain life, target opponent loses that much life.
 mana={3}{B}{B}
@@ -31579,12 +31500,6 @@ type=Creature
 subtype=Treefolk Druid
 power=4
 toughness=4
-[/card]
-[card]
-name=Seedling Charm
-text=Choose one - Return target Aura attached to a creature to its owner's hand; or regenerate target green creature; or target creature gains trample until end of turn.
-mana={G}
-type=Instant
 [/card]
 [card]
 name=Seeds of Strength
@@ -33841,13 +33756,6 @@ mana={X}{2}{B}
 type=Sorcery
 [/card]
 [card]
-name=Soul Channeling
-text=Enchant creature -- Pay 2 life: Regenerate enchanted creature.
-mana={2}{B}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Soul Charmer
 text=Whenever Soul Charmer deals combat damage to a creature, you gain 2 life unless that creature's controller pays {2}.
 mana={2}{W}
@@ -35259,12 +35167,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Storm Herd
-text=Put X 1/1 white Pegasus creature tokens with flying onto the battlefield, where X is your life total.
-mana={8}{W}{W}
-type=Sorcery
-[/card]
-[card]
 name=Storm World
 text=At the beginning of each player's upkeep, Storm World deals X damage to that player, where X is 4 minus the number of cards in his or her hand.
 mana={R}
@@ -35921,12 +35823,6 @@ name=Sway of Illusion
 text=Any number of target creatures become the color of your choice until end of turn. -- Draw a card.
 mana={1}{U}
 type=Instant
-[/card]
-[card]
-name=Sway of the Stars
-text=Each player shuffles his or her hand, graveyard, and permanents he or she owns into his or her library, then draws seven cards. Each player's life total becomes 7.
-mana={8}{U}{U}
-type=Sorcery
 [/card]
 [card]
 name=Swelter
@@ -39823,18 +39719,6 @@ type=Creature
 subtype=Zombie
 power=1
 toughness=1
-[/card]
-[card]
-name=Wall of Blood
-abilities=defender
-auto=1/1 && life:-1
-###CANNOT WORK FOR NOW (WAGIC 0.8.1).
-text=Defender (This creature can't attack.) -- Pay 1 life: Wall of Blood gets +1/+1 until end of turn.
-mana={2}{B}
-type=Creature
-subtype=Wall
-power=0
-toughness=2
 [/card]
 [card]
 name=Wall of Caltrops

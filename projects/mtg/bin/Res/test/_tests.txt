@@ -127,8 +127,10 @@ behemoth_sledge4.txt
 behemoth_sledge5.txt
 belligerent_hatchling.txt
 benalish_knight.txt
+biorhythm.txt
 black_market.txt
 black_vise.txt
+blessed_wind.txt
 blessed_wine.txt
 blinking_spirit.txt
 blinkmoth_nexus.txt
