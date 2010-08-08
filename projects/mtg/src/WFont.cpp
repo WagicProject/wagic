@@ -78,14 +78,14 @@ WFBFont::WFBFont(const char *fontname, int lineheight, bool useVideoRAM)
   if (!fileSys->OpenFile(chnFileName))
     return;
   size = fileSys->GetFileSize();
-  mChnFont = NEW BYTE[size];
+  mChnFont = NEW u8[size];
   fileSys->ReadFile(mChnFont, size);
   fileSys->CloseFile();
 
   if (!fileSys->OpenFile(engFileName))
     return;
   size = fileSys->GetFileSize();
-  mEngFont = NEW BYTE[size];
+  mEngFont = NEW u8[size];
   fileSys->ReadFile(mEngFont, size);
   fileSys->CloseFile();
 
@@ -108,7 +108,7 @@ WFBFont::WFBFont(const char *fontname, int lineheight, bool useVideoRAM)
   mGBCode = NEW int[mCacheSize];
 
 #if defined (WIN32) || defined (LINUX)
-  mCharBuffer = NEW DWORD[mFontSize*mFontSize];
+  mCharBuffer = NEW u32[mFontSize*mFontSize];
 #endif
 
   mTexture = mRenderer->CreateTexture(mCacheImageWidth, mCacheImageHeight, true);
@@ -165,23 +165,23 @@ static void SwizzlePlot(u8* out, PIXEL_TYPE color, int i, int j, unsigned int wi
 }
 #endif
 
-int WFBFont::PreCacheChar(const BYTE *ch)
+int WFBFont::PreCacheChar(const u8 *ch)
 {
   int code;
   bool isChinese = true;
-  BYTE* src;
+  u8 * src;
   int size, offset;
   u8 gray;
 
   if (*ch > 0xA0 && *(ch + 1) > 0xA0)
     // get offset to the proper character bits (GB2312 encoding)
-    code = (((DWORD)(*ch - 0xA1)) * 0x5E + ((DWORD)(*(ch + 1) - 0xA1)));
+    code = (((u32)(*ch - 0xA1)) * 0x5E + ((u32)(*(ch + 1) - 0xA1)));
   else if (*ch > 0x80) {
     // get offset to the character space's bits (GBK encoding)
     code = 0;
   }
   else {
-    code = ((DWORD)*ch)|0x10000;
+    code = ((u32)*ch)|0x10000;
     isChinese = false;
   }
 
@@ -198,7 +198,7 @@ int WFBFont::PreCacheChar(const BYTE *ch)
 #if defined (WIN32) || defined (LINUX)
   int x = 0;
   int y = 0;
-  memset(mCharBuffer, 0, sizeof(DWORD) * mFontSize * mFontSize);
+  memset(mCharBuffer, 0, sizeof(u32) * mFontSize * mFontSize);
 #else
   u8* pTexture = (u8*) mTexture->mBits;
   int x;
@@ -281,7 +281,7 @@ void WFBFont::DrawString(const char *s, float x, float y, int align, float leftO
     return;
   }
 
-  BYTE* str = (BYTE*)s;
+  u8 * str = (u8 *)s;
 
   // (0, 0) refers to the center of the word, so fix it to the upper-left corner
   x += (mFontSize * mScale) / 2;
@@ -300,7 +300,7 @@ void WFBFont::DrawString(const char *s, float x, float y, int align, float leftO
 
   mRenderer->BindTexture(mTexture);
 
-  BYTE* src = str;
+  u8 * src = str;
   float xx = x;
   float yy = y;
   int index;
@@ -413,7 +413,7 @@ float WFBFont::GetStringWidth(const char *s) const
   unsigned char c = *(unsigned short *)s & 0xFF;
 
   if (ISGBK(c)) {
-    BYTE* src = (BYTE*)s;
+    u8 * src = (u8 *)s;
     float xx = 0;
     bool isChinese=true;
 

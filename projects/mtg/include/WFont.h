@@ -55,12 +55,6 @@ private:
   JLBFont * it;
 };
 
-//Why do we need this ? could it move somewhere else ?
-#if !defined (WIN32)
-#define BYTE  u8
-#define DWORD u32
-#endif
-
 class WFBFont : public WFont
 {
 public:
@@ -81,8 +75,8 @@ public:
 private:
   static JRenderer * mRenderer;
 
-  BYTE* mEngFont;
-  BYTE* mChnFont;
+  u8 * mEngFont;
+  u8 * mChnFont;
 
   PIXEL_TYPE mColor0;
   PIXEL_TYPE mColor;
@@ -101,9 +95,9 @@ private:
   int *mGBCode;
   int mCurr;
 
-  DWORD* mCharBuffer;
+  u32 * mCharBuffer;
 
-  int PreCacheChar(const BYTE *ch);
+  int PreCacheChar(const u8 *ch);
 };
 
 #endif
