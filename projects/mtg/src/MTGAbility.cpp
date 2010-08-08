@@ -434,6 +434,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
           }
           MTGAbility * result = NULL;
           int oneShot = 0;
+		 found = s.find(" oneshot");
+         if (found !=string::npos) oneShot = 1;
           if (activated) oneShot = 1;
           if (card->hasType("sorcery") || card->hasType("instant")) oneShot = 1;
           if (a->oneShot) oneShot = 1;
@@ -499,6 +501,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
       }
       MTGAbility * result = NULL;
       int oneShot = 0;
+	  found = s.find(" oneshot");
+      if (found !=string::npos) oneShot = 1;
       if (activated) oneShot = 1;
       if (card->hasType("sorcery") || card->hasType("instant")) oneShot = 1;
       if (i == 3) oneShot = 1;
@@ -515,9 +519,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 
       found = s.find(" <");
       if (found !=string::npos) maxi = atoi(s.substr(found+2,1).c_str());
-
-      found = s.find(" oneshot");
-      if (found !=string::npos) oneShot = 1;
 
       switch(i){
         case 0: result =  NEW ALord(id, card, lordTargets, lordIncludeSelf, a); break;
