@@ -1,0 +1,49 @@
+#NAME:Spore Frog
+#Test:Does Spore Frog prevent all combat damage (for only one turn)?
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:prodigal sorcerer,raging goblin,panther warriors,spore frog
+[PLAYER2]
+life:20
+[DO]
+spore frog
+prodigal sorcerer
+p2
+next
+#begin
+next
+#attackers
+raging goblin
+panther warriors
+next
+#blockers
+next
+#damage
+next
+#end combat
+eot
+eot
+next
+next
+next
+next
+#combatbegins
+next
+#attackers
+raging goblin
+panther warriors
+next
+#blockers
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:prodigal sorcerer,raging goblin,panther warriors
+graveyard:spore frog
+[PLAYER2]
+life:12
+[END]

@@ -7752,6 +7752,7 @@ toughness=6
 name=Child of Gaea
 abilities=trample
 auto=upcost[{G}{G}] moveTo(graveyard)
+auto={1}{G}:regenerate
 text=Trample -- At the beginning of your upkeep, sacrifice Child of Gaea unless you pay {G}{G}. -- {1}{G}: Regenerate Child of Gaea.
 mana={3}{G}{G}{G}
 type=Creature
@@ -9597,11 +9598,11 @@ toughness=3
 [/card]
 [card]
 name=Crosis's Catacombs
-auto=aslongas(land[-lair]|mybattlefield) moveto(myhand) target(land[-lair]|mybattlefield) oneshot
+auto=aslongas(land[-lair]|mybattlefield) moveto(myhand) target(land[-lair]|mybattlefield?) oneshot && counter(0/0,-1,payment)
 auto=moveto(mygraveyard) target(this|mybattlefield)
-auto={T}:Add{U}
-auto={T}:Add{B}
-auto={T}:Add{R}
+auto=this(counter{0/0.1.payment}<1) {T}:Add{U}
+auto=this(counter{0/0.1.payment}<1) {T}:Add{B}
+auto=this(counter{0/0.1.payment}<1) {T}:Add{R}
 text=When Crosis's Catacombs enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand. -- {T}: Add {U}, {B}, or {R} to your mana pool.
 type=Land
 subtype=Lair
@@ -10208,11 +10209,11 @@ toughness=3
 [/card]
 [card]
 name=Darigaaz's Caldera
-auto=aslongas(land[-lair]|mybattlefield) moveto(myhand) target(land[-lair]|mybattlefield) oneshot
+auto=aslongas(land[-lair]|mybattlefield) moveto(myhand) target(land[-lair]|mybattlefield?) oneshot && counter(0/0,-1,payment)
 auto=moveto(mygraveyard) target(this|mybattlefield)
-auto={T}:Add{B}
-auto={T}:Add{R}
-auto={T}:Add{G}
+auto=this(counter{0/0.1.payment}<1) {T}:Add{B}
+auto=this(counter{0/0.1.payment}<1) {T}:Add{R}
+auto=this(counter{0/0.1.payment}<1) {T}:Add{G}
 text=When Darigaaz's Caldera enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand. -- {T}: Add {B}, {R}, or {G} to your mana pool.
 type=Land
 subtype=Lair
@@ -10610,7 +10611,7 @@ toughness=1
 [/card]
 [card]
 name=Dawnstrider
-auto={G}{T}{S(*|myhand)}:preventAllCombatDamage ueot
+auto={G}{T}{S(*|myhand)}:fog oneshot
 text={G}, {T}, Discard a card: Prevent all combat damage that would be dealt this turn.
 mana={1}{G}
 type=Creature
@@ -11228,16 +11229,6 @@ auto=3/3
 auto=@each my upkeep:moveTo(mygraveyard) target(creature|myBattlefield)
 text=Enchant creature you control -- Enchanted creature gets +3/+3. -- At the beginning of your upkeep, sacrifice a creature.
 mana={B}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
-name=Demonic Torment
-target=creature
-auto=cantattack
-auto=preventAllCombatDamage from(mytgt)
-text=Enchant creature -- Enchanted creature can't attack. -- Prevent all combat damage that would be dealt by enchanted creature.
-mana={2}{B}
 type=Enchantment
 subtype=Aura
 [/card]
@@ -12028,6 +12019,13 @@ mana={3}{R}
 type=Instant
 [/card]
 [card]
+name=Dolmen Gate
+auto=preventAllCombatDamage to(creature[attacking]|myBattlefield)
+text=Prevent all combat damage that would be dealt to attacking creatures you control.
+mana={2}
+type=Artifact
+[/card]
+[card]
 name=Dominaria's Judgment
 auto=aslongas(plains|myBattlefield) lord(creature|myBattlefield) protection from white
 auto=aslongas(island|myBattlefield) lord(creature|myBattlefield) protection from blue
@@ -12669,11 +12667,11 @@ toughness=3
 [/card]
 [card]
 name=Dromar's Cavern
-auto=aslongas(land[-lair]|mybattlefield) moveto(myhand) target(land[-lair]|mybattlefield) oneshot
+auto=aslongas(land[-lair]|mybattlefield) moveto(myhand) target(land[-lair]|mybattlefield?) oneshot && counter(0/0,-1,payment)
 auto=moveto(mygraveyard) target(this|mybattlefield)
-auto={T}:Add{W}
-auto={T}:Add{U}
-auto={T}:Add{B}
+auto=this(counter{0/0.1.payment}<1) {T}:Add{W}
+auto=this(counter{0/0.1.payment}<1) {T}:Add{U}
+auto=this(counter{0/0.1.payment}<1) {T}:Add{B}
 text=When Dromar's Cavern enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand. -- {T}: Add {W}, {U}, or {B} to your mana pool.
 type=Land
 subtype=Lair
@@ -13315,7 +13313,7 @@ type=Land
 [/card]
 [card]
 name=Ebony Horse
-auto={2}{T}:untap target(creature[attacking]|myBattlefield) && preventAllCombatDamage to(mytgt) ueot && preventAllCombatDamage from(mytgt) ueot
+auto={2}{T}:untap target(creature[attacking]|myBattlefield) && fog to(mytgt) oneshot && fog from(mytgt) oneshot
 text={2}, {T}: Untap target attacking creature you control. Prevent all combat damage that would be dealt to and dealt by that creature this turn.
 mana={3}
 type=Artifact
@@ -13813,7 +13811,7 @@ toughness=1
 [/card]
 [card]
 name=Elvish Scout
-auto={G}{T}:untap target(creature[attacking]|myBattlefield) && preventAllCombatDamage to(mytgt) ueot && preventAllCombatDamage from(mytgt) ueot
+auto={G}{T}:untap target(creature[attacking]|myBattlefield) && fog to(mytgt) oneshot && fog from(mytgt) oneshot
 text={G}, {T}: Untap target attacking creature you control. Prevent all combat damage that would be dealt to and dealt by it this turn.
 mana={G}
 type=Creature
@@ -16161,7 +16159,7 @@ toughness=3
 name=Flamebreak
 auto=damage:3 all(creature[-flying])
 auto=damage:3 all(player)
-auto=lord(creature[-flying]) cantregenerate
+auto=lord(creature[-flying;-protection from red]) cantregen ueot
 text=Flamebreak deals 3 damage to each creature without flying and each player. Creatures dealt damage this way can't be regenerated this turn.
 mana={R}{R}{R}
 type=Sorcery
@@ -16938,9 +16936,7 @@ type=Artifact
 [card]
 name=Foxfire
 target=creature[attacking]
-auto=untap
-auto=preventAllCombatDamage to(mytgt) ueot
-auto=preventAllCombatDamage from(mytgt) ueot
+auto=untap && fog to(mytgt) oneshot && fog from(mytgt) oneshot
 auto=@next upkeep:draw:1 controller
 text=Untap target attacking creature. Prevent all combat damage that would be dealt to and dealt by that creature this turn. -- Draw a card at the beginning of the next turn's upkeep.
 mana={2}{G}
@@ -17213,7 +17209,7 @@ type=Enchantment
 [/card]
 [card]
 name=Furnace Brood
-auto={R}:cantregenerate target(creature)
+auto={R}:cantregen target(creature)
 text={R}: Target creature can't be regenerated this turn.
 mana={3}{R}
 type=Creature
@@ -17505,16 +17501,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Gaseous Form
-target=creature
-auto=preventAllCombatDamage from(mytgt)
-auto=preventAllCombatDamage to(mytgt)
-text=Enchant creature -- Prevent all combat damage that would be dealt to and dealt by enchanted creature.
-mana={2}{U}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Gate to Phyrexia
 auto={S(creature|myBattlefield)}:destroy target(artifact) limit:1 myUpkeepOnly
 text=Sacrifice a creature: Destroy target artifact. Activate this ability only during your upkeep and only once each turn.
@@ -17640,16 +17626,6 @@ auto={T}{C(0/0,-1,Mining)}:Add{G}
 auto=@tapped(this):bury all(gemstone mine[-counter{0/0.1.Mining}])
 text=Gemstone Mine enters the battlefield with three mining counters on it. -- {T}, Remove a mining counter from Gemstone Mine: Add one mana of any color to your mana pool. If there are no mining counters on Gemstone Mine, sacrifice it.
 type=Land
-[/card]
-[card]
-name=General's Kabuto
-auto={2}:equip
-auto=shroud
-auto=preventAllCombatDamage to(mytgt)
-text=Equipped creature has shroud. (It can't be the target of spells or abilities.) -- Prevent all combat damage that would be dealt to equipped creature. -- Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
-mana={4}
-type=Artifact
-subtype=Equipment
 [/card]
 [card]
 name=Genesis
@@ -17981,8 +17957,11 @@ toughness=3
 [/card]
 [card]
 name=Giant Growth
-target=creature
-auto=3/3
+##target=creature
+##auto=3/3
+target=creature,player
+auto=cantregen
+auto=damage:3
 text=Target creature gets +3/+3 until end of turn.
 mana={G}
 type=Instant
@@ -18149,7 +18128,7 @@ type=Land
 [/card]
 [card]
 name=Glacial Crevasses
-auto={S(mountain[snow]|myBattlefield)}:preventAllcombatDamage ueot
+auto={S(mountain[snow]|myBattlefield)}:fog oneshot
 text=Sacrifice a snow Mountain: Prevent all combat damage that would be dealt this turn.
 mana={2}{R}
 type=Enchantment
@@ -19511,7 +19490,7 @@ toughness=1
 [card]
 name=Gravebind
 target=creature
-auto=cantregenerate
+auto=cantregen
 auto=@next upkeep:draw:1 controller
 text=Target creature can't be regenerated this turn. -- Draw a card at the beginning of the next turn's upkeep.
 mana={B}
@@ -20054,6 +20033,17 @@ text=Enchant creature -- Enchanted creature has defender.
 mana={W}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Guard Gomazoa
+abilities=flying,defender
+auto=preventAllCombatDamage to(this)
+text=Defender, flying -- Prevent all combat damage that would be dealt to Guard Gomazoa.
+mana={2}{U}
+type=Creature
+subtype=Jellyfish
+power=1
+toughness=3
 [/card]
 [card]
 name=Guardian Idol
@@ -20668,6 +20658,17 @@ type=Creature
 subtype=Insect
 power=1
 toughness=2
+[/card]
+[card]
+name=Haze Frog
+abilities=flash
+auto=fog from(other creature) oneshot
+text=Flash (You may cast this spell any time you could cast an instant.) -- When Haze Frog enters the battlefield, prevent all combat damage that other creatures would deal this turn.
+mana={3}{G}{G}
+type=Creature
+subtype=Frog
+power=2
+toughness=1
 [/card]
 [card]
 name=Hazerider Drake
@@ -22123,7 +22124,7 @@ type=Sorcery
 [/card]
 [card]
 name=Hurr Jackal
-auto={T}:cantregenerate target(creature)
+auto={T}:cantregen target(creature)
 text={T}: Target creature can't be regenerated this turn.
 mana={R}
 type=Creature
@@ -22536,7 +22537,7 @@ subtype=Aura
 [card]
 name=Incinerate
 target=creature,player
-auto=cantregenerate
+auto=cantregen
 auto=damage:3
 text=Incinerate deals 3 damage to target creature or player. A creature dealt damage this way can't be regenerated this turn.
 mana={1}{R}
@@ -23391,7 +23392,7 @@ toughness=1
 [card]
 name=Jaya Ballard, Task Mage
 auto={R}{T}{S(*|myHand)}:destroy target(*[blue])
-auto={1}{R}{T}{S(*|myHand)}:damage:3 && cantregenerate target(creature,player)
+auto={1}{R}{T}{S(*|myHand)}:damage:3 && cantregen target(creature,player)
 auto={5}{R}{R}{S(*|myHand)}:damage:6 all(creature,player)
 text={R}, {T}, Discard a card: Destroy target blue permanent. -- {1}{R}, {T}, Discard a card: Jaya Ballard, Task Mage deals 3 damage to target creature or player. A creature dealt damage this way can't be regenerated this turn. -- {5}{R}{R}, {T}, Discard a card: Jaya Ballard deals 6 damage to each creature and each player.
 mana={1}{R}{R}
@@ -24129,7 +24130,7 @@ toughness=1
 [/card]
 [card]
 name=Kami of False Hope
-auto={S}:preventAllcombatDamage ueot
+auto={S}:fog oneshot
 text=Sacrifice Kami of False Hope: Prevent all combat damage that would be dealt this turn.
 mana={W}
 type=Creature
@@ -25369,7 +25370,7 @@ toughness=2
 [card]
 name=Knight-Captain of Eos
 auto=token(Soldier,creature soldier, 1/1,white)*2
-auto={W}{S(soldier|myBattlefield)}:preventAllcombatDamage ueot
+auto={W}{S(soldier|myBattlefield)}:fog oneshot
 text=When Knight-Captain of Eos enters the battlefield, put two 1/1 white Soldier creature tokens onto the battlefield. -- {W}, Sacrifice a Soldier: Prevent all combat damage that would be dealt this turn.
 mana={4}{W}
 type=Creature
@@ -28562,14 +28563,14 @@ type=Enchantment
 [/card]
 [card]
 name=Maze of Ith
-auto={T}:untap target(creature[attacking]) && preventAllCombatDamage to(mytgt) ueot && preventAllCombatDamage from(mytgt) ueot
+auto={T}:untap target(creature[attacking]) && fog to(mytgt) oneshot && fog from(mytgt) oneshot
 text={T}: Untap target attacking creature. Prevent all combat damage that would be dealt to and dealt by that creature this turn.
 type=Land
 [/card]
 [card]
 name=Maze of Shadows
 auto={T}:Add {1}
-auto={T}:untap target(creature[attacking;shadow]) && preventAllCombatDamage to(mytgt) ueot && preventAllCombatDamage from(mytgt) ueot
+auto={T}:untap target(creature[attacking;shadow]) && fog to(mytgt) oneshot && fog from(mytgt) oneshot
 text={T}: Add {1} to your mana pool. -- {T}: Untap target attacking creature with shadow. Prevent all combat damage that would be dealt to and dealt by that creature this turn.
 type=Land
 [/card]
@@ -32470,7 +32471,7 @@ toughness=3
 [/card]
 [card]
 name=Orcish Healer
-auto={R}{R}{T}:cantregenerate target(creature)
+auto={R}{R}{T}:cantregen target(creature)
 auto={B}{B}{R}{T}:regenerate target(creature[black;green])
 auto={R}{G}{G}{T}:regenerate target(creature[black;green])
 text={R}{R}, {T}: Target creature can't be regenerated this turn. -- {B}{B}{R}, {T}: Regenerate target black or green creature. -- {R}{G}{G}, {T}: Regenerate target black or green creature.
@@ -35365,6 +35366,16 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Radiant Kavu
+auto={R}{G}{W}:fog from(creature[blue]) oneshot && fog from(creature[black]) oneshot
+text={R}{G}{W}: Prevent all combat damage blue creatures and black creatures would deal this turn.
+mana={R}{G}{W}
+type=Creature
+subtype=Kavu
+power=3
+toughness=3
+[/card]
+[card]
 name=Radiant's Dragoons
 auto=life:5
 auto=upcost[{3}{W}{0};next upkeep] moveTo(graveyard)
@@ -37257,11 +37268,11 @@ toughness=3
 [/card]
 [card]
 name=Rith's Grove
-auto=aslongas(land[-lair]|mybattlefield) moveto(myhand) target(land[-lair]|mybattlefield) oneshot
+auto=aslongas(land[-lair]|mybattlefield) moveto(myhand) target(land[-lair]|mybattlefield?) oneshot && counter(0/0,-1,payment)
 auto=moveto(mygraveyard) target(this|mybattlefield)
-auto={T}:Add{R}
-auto={T}:Add{G}
-auto={T}:Add{W}
+auto=this(counter{0/0.1.payment}<1) {T}:Add{R}
+auto=this(counter{0/0.1.payment}<1) {T}:Add{G}
+auto=this(counter{0/0.1.payment}<1) {T}:Add{W}
 text=When Rith's Grove enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand. -- {T}: Add {R}, {G}, or {W} to your mana pool.
 type=Land
 subtype=Lair
@@ -38325,16 +38336,6 @@ type=Creature
 subtype=Serpent
 power=3
 toughness=4
-[/card]
-[card]
-name=Sandskin
-target=creature
-auto=preventAllCombatDamage from(mytgt)
-auto=preventAllCombatDamage to(mytgt)
-text=Enchant creature -- Prevent all combat damage that would be dealt to and dealt by enchanted creature.
-mana={2}{W}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Sandstone Needle
@@ -43245,6 +43246,18 @@ power=0
 toughness=0
 [/card]
 [card]
+name=Spike Weaver
+auto=counter(1/1,3)
+auto={2}{C(1/1,-1)}:counter(1/1,1) target(creature)
+auto={2}{C(1/1,-1)}:fog oneshot
+text=Spike Weaver enters the battlefield with three +1/+1 counters on it. -- {2}, Remove a +1/+1 counter from Spike Weaver: Put a +1/+1 counter on target creature. -- {1}, Remove a +1/+1 counter from Spike Weaver: Prevent all combat damage that would be dealt this turn.
+mana={2}{G}{G}
+type=Creature
+subtype=Spike
+power=0
+toughness=0
+[/card]
+[card]
 name=Spike Worker
 text=Spike Worker enters the battlefield with a +1/+1 counter on it. -- {2}, Remove a +1/+1 counter from Spike Worker: Put a +1/+1 counter on target creature.
 mana={2}{G}
@@ -43578,8 +43591,19 @@ mana={3}{G}
 type=Sorcery
 [/card]
 [card]
+name=Spore Flower
+auto=@each my upkeep:counter(0/0,1,Spore)
+auto={C(0/0,-3,Spore)}:fog oneshot
+text=At the beginning of your upkeep, put a spore counter on Spore Flower. -- Remove three spore counters from Spore Flower: Prevent all combat damage that would be dealt this turn.
+mana={G}{G}
+type=Creature
+subtype=Fungus
+power=0
+toughness=1
+[/card]
+[card]
 name=Spore Frog
-auto={S}:preventAllcombatDamage ueot
+auto={S}:fog oneshot
 text=Sacrifice Spore Frog: Prevent all combat damage that would be dealt this turn.
 mana={G}
 type=Creature
@@ -44056,6 +44080,14 @@ name=Stasis
 alias=1225
 text=Players skip their untap steps. -- At the beginning of your upkeep, sacrifice Stasis unless you pay {U}.
 mana={1}{U}
+type=Enchantment
+[/card]
+[card]
+name=Statecraft
+auto=preventAllCombatDamage to(creature|myBattlefield)
+auto=preventAllCombatDamage from(creature|myBattlefield)
+text=Prevent all combat damage that would be dealt to and dealt by creatures you control.
+mana={3}{U}
 type=Enchantment
 [/card]
 [card]
@@ -45256,7 +45288,7 @@ type=Enchantment
 [/card]
 [card]
 name=Sunstone
-auto={2}{S(land[snow])}:preventAllcombatDamage ueot
+auto={2}{S(land[snow]|myBattlefield)}:fog oneshot
 text={2}, Sacrifice a snow land: Prevent all combat damage that would be dealt this turn.
 mana={3}
 type=Artifact
@@ -48567,11 +48599,11 @@ type=nothing
 [/card]
 [card]
 name=Treva's Ruins
-auto=aslongas(land[-lair]|mybattlefield) moveto(myhand) target(land[-lair]|mybattlefield) oneshot
+auto=aslongas(land[-lair]|mybattlefield) moveto(myhand) target(land[-lair]|mybattlefield?) oneshot && counter(0/0,-1,payment)
 auto=moveto(mygraveyard) target(this|mybattlefield)
-auto={T}:Add{G}
-auto={T}:Add{W}
-auto={T}:Add{U}
+auto=this(counter{0/0.1.payment}<1) {T}:Add{G}
+auto=this(counter{0/0.1.payment}<1) {T}:Add{W}
+auto=this(counter{0/0.1.payment}<1) {T}:Add{U}
 text=When Treva's Ruins enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand. -- {T}: Add {G}, {W}, or {U} to your mana pool.
 type=Land
 subtype=Lair
@@ -49505,6 +49537,17 @@ type=Creature
 subtype=Horror
 power=2
 toughness=2
+[/card]
+[card]
+name=Urborg Phantom
+abilities=cantblock
+auto={U}:fog to(mytgt) oneshot && fog from(mytgt) oneshot
+text=Urborg Phantom can't block. -- {U}: Prevent all combat damage that would be dealt to and dealt by Urborg Phantom this turn.
+mana={2}{B}
+type=Creature
+subtype=Spirit Minion
+power=3
+toughness=1
 [/card]
 [card]
 name=Urborg Shambler

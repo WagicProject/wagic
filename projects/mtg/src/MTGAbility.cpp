@@ -226,7 +226,7 @@ MTGAbility * AbilityFactory::getCoreAbility(MTGAbility * a){
 //Parses a string and returns the corresponding MTGAbility object
 //Returns NULL if parsing failed
 //Beware, Spell CAN be null when the function is called by the AI trying to analyze the effects of a given card
-MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTGCardInstance *card, int activated, int forceUEOT, MTGGameZone * dest){
+MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTGCardInstance *card, int activated, int forceUEOT, int oneShot, MTGGameZone * dest){
   size_t found;
  
   string whitespaces (" \t\f\v\n\r");
@@ -709,6 +709,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 
   found = s.find("ueot");
   if (found!= string::npos) forceUEOT = 1;
+  found = s.find("oneshot");
+  if (found!= string::npos) oneShot = 1;
  
   //PreventCombat Damage
   found = s.find("preventallcombatdamage");
@@ -739,6 +741,25 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     return ab;
   }
 
+  //PreventCombat Damage
+  found = s.find("fog");
+  if (found != string::npos){
+    string to = "";
+    string from = "";
+    found = s.find("to(");
+    if (found != string::npos){
+      size_t end = s.find (")", found);
+      to = s.substr(found+3,end - found - 3);
+    }
+      found = s.find("from(");
+    if (found != string::npos){
+      size_t end = s.find (")", found);
+      from = s.substr(found+5,end - found - 5);
+    }
+    MTGAbility * a =  NEW APreventAllCombatDamageUEOT(id,card,to,from);
+    a->oneShot = 1;
+	return a;
+  }
 
   //Damage
   found = s.find("damage");
@@ -1106,7 +1127,7 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
   badAbilities[Constants::DEFENDER] = true;
   badAbilities[Constants::DOESNOTUNTAP] = true;
   badAbilities[Constants::MUSTATTACK] = true;
-  badAbilities[Constants::CANTREGENERATE] = true;
+  badAbilities[Constants::CANTREGEN] = true;
 
   if (AInstantBasicAbilityModifierUntilEOT * abi = dynamic_cast<AInstantBasicAbilityModifierUntilEOT *>(a)) {
       int result = badAbilities[abi->ability] ? BAKA_EFFECT_BAD : BAKA_EFFECT_GOOD;
@@ -1183,7 +1204,7 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
       magicText = "";
     }
 
-    MTGAbility * a = parseMagicLine(line, result, spell, card,0,0,dest); 
+    MTGAbility * a = parseMagicLine(line, result, spell, card,0,0,0,dest); 
     if (a){
       v->push_back(a);
       result++;

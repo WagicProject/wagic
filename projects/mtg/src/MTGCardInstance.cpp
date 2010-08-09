@@ -234,13 +234,13 @@ int MTGCardInstance::isTapped(){
 }
 
 int MTGCardInstance::regenerate(){
-  if (has(Constants::CANTREGENERATE)) return 0;
+  if (has(Constants::CANTREGEN)) return 0;
   return ++regenerateTokens;
 }
 
 int MTGCardInstance::triggerRegenerate(){
   if (! regenerateTokens) return 0;
-  if (has(Constants::CANTREGENERATE)) return 0;
+  if (has(Constants::CANTREGEN)) return 0;
   regenerateTokens--;
   tap();
   life = toughness;

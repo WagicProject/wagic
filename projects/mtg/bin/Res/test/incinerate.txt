@@ -1,0 +1,21 @@
+#Testing Does Incinerate really prevent its target from keeping its regeneration shield?
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Deathmark,Incinerate
+inplay:Child Of Gaea
+manapool:{2}{B}{R}{G}
+[PLAYER2]
+[DO]
+Incinerate
+Child of Gaea
+Child of Gaea
+Deathmark
+Child of Gaea
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Incinerate,Deathmark,Child of Gaea
+manapool:{0}
+[PLAYER2]
+[END]

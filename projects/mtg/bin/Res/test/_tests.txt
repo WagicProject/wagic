@@ -180,6 +180,8 @@ creature_bond.txt
 curiosity1_i217.txt
 curiosity2_i217.txt
 crimson_kobolds.txt
+crosis_s_catacombs_1.txt
+crosis_s_catacombs_2.txt
 crumble.txt
 crystal_rod_i172.txt
 dark_banishing.txt
@@ -284,6 +286,7 @@ hypnotic_specter.txt
 icatian_priest.txt
 imaginary_pet.txt
 immaculate_magistrate.txt
+incinerate.txt
 instill_energy_i166.txt
 iron_will_i270.txt
 ivy_elemental.txt
@@ -326,6 +329,7 @@ master_decoy.txt
 master_of_etherium.txt
 masticore.txt
 masticore2.txt
+maze_of_ith.txt
 meekstone.txt
 memory_erosion.txt
 millstone.txt
@@ -422,6 +426,7 @@ sphinx_summoner.txt
 spirit_link.txt
 spitting_earth.txt
 spoils_of_evil.txt
+spore_frog.txt
 stasis.txt
 steelclad_serpent1.txt
 steelclad_serpent2.txt

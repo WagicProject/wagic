@@ -1564,9 +1564,10 @@ class AStandardRegenerate:public ActivatedAbility{
   }
 
   int resolve(){
+    
     MTGCardInstance * _target = (MTGCardInstance *)target;
-    _target->regenerate();
-    return 1;
+	_target->regenerate();
+	return 1;
   }
 
   const char * getMenuText(){
@@ -2578,14 +2579,15 @@ public:
      ability = NEW APreventAllCombatDamage(id,source,to, from);
    }
  
+
   int resolve(){
     APreventAllCombatDamage * a = ability->clone();
-    a->target = this->target;
-    a->forceDestroy = -1; //Prevent the effect from getting destroyed because its source is not inplay
-    a->addToGame();
-    clones.push_back(a);
+    GenericInstantAbility * wrapper = NEW GenericInstantAbility(1,source,(Damageable *)(this->target),a);
+    wrapper->addToGame();
     return 1;
   }
+
+
 
   int destroy(){
     for (size_t i = 0; i < clones.size(); ++i){

@@ -1,0 +1,48 @@
+#NAME:Maze of Ith
+#Test:Does Maze of Ith prevent an attacking creature from dealing combat damage (for only one turn)?
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:prodigal sorcerer,raging goblin,maze of ith
+[PLAYER2]
+life:20
+[DO]
+fog
+prodigal sorcerer
+p2
+next
+#begin
+next
+#attackers
+raging goblin
+maze of ith
+raging goblin
+next
+#blockers
+next
+#damage
+next
+#end combat
+eot
+eot
+next
+next
+next
+next
+#combatbegins
+next
+#attackers
+raging goblin
+next
+#blockers
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:prodigal sorcerer,raging goblin,maze of ith
+[PLAYER2]
+life:18
+[END]

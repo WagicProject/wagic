@@ -1,0 +1,20 @@
+#NAME: Crosis's Catacombs
+#DESC: When Crosis's Catacombs enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand.
+#DESC: Catacombs enter the battlefield WITH a legal target to bounce.
+[INIT]
+firstmain
+[PLAYER1]
+inplay:Swamp
+hand:Crosis's Catacombs
+[PLAYER2]
+[DO]
+Crosis's Catacombs
+choice 0
+Swamp
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:Crosis's Catacombs
+hand:Swamp
+[PLAYER2]
+[END]

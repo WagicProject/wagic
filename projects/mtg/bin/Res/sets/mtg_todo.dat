@@ -8075,6 +8075,17 @@ power=5
 toughness=5
 [/card]
 [card]
+##Neither works with "preventallCombatDamage" nor "fog".
+name=Demonic Torment
+target=creature
+auto=cantattack
+auto=preventAllCombatDamage from(mytgt)
+text=Enchant creature -- Enchanted creature can't attack. -- Prevent all combat damage that would be dealt by enchanted creature.
+mana={2}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Demon of Death's Gate 
 text=Flying, trample -- You may pay 6 life and sacrifice three black creatures rather than pay Demon of Death's Gate's mana cost.
 mana={6}{B}{B}{B}
@@ -8710,12 +8721,6 @@ type=Creature
 subtype=Human Nomad
 power=1
 toughness=1
-[/card]
-[card]
-name=Dolmen Gate
-text=Prevent all combat damage that would be dealt to attacking creatures you control.
-mana={2}
-type=Artifact
 [/card]
 [card]
 name=Dominate
@@ -13014,6 +13019,17 @@ power=2
 toughness=2
 [/card]
 [card]
+##Neither works with "preventallCombatDamage" nor "fog".
+name=Gaseous Form
+target=creature
+auto=preventAllCombatDamage from(mytgt)
+auto=preventAllCombatDamage to(mytgt)
+text=Enchant creature -- Prevent all combat damage that would be dealt to and dealt by enchanted creature.
+mana={2}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Gate Hound
 text=Creatures you control have vigilance as long as Gate Hound is enchanted.
 mana={2}{W}
@@ -13127,6 +13143,17 @@ type=Legendary Creature
 subtype=Human Soldier
 power=1
 toughness=2
+[/card]
+[card]
+##Neither works with "preventallCombatDamage" nor "fog".
+name=General's Kabuto
+auto={2}:equip
+auto=shroud
+auto=preventAllCombatDamage to(mytgt)
+text=Equipped creature has shroud. (It can't be the target of spells or abilities.) -- Prevent all combat damage that would be dealt to equipped creature. -- Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
+mana={4}
+type=Artifact
+subtype=Equipment
 [/card]
 [card]
 name=General's Regalia
@@ -16136,7 +16163,6 @@ power=*
 toughness=*
 [/card]
 [card]
-#"prevent from target" does not work in Wagic 0.11
 name=Horn of Deafening
 auto={2}{T}:preventAllCombatDamage from target(creature)
 text={2}, {T}: Prevent all combat damage that would be dealt by target creature this turn.
@@ -27883,15 +27909,6 @@ mana={2}{R}
 type=Instant
 [/card]
 [card]
-name=Radiant Kavu
-text={R}{G}{W}: Prevent all combat damage blue creatures and black creatures would deal this turn.
-mana={R}{G}{W}
-type=Creature
-subtype=Kavu
-power=3
-toughness=3
-[/card]
-[card]
 name=Radiate
 text=Choose target instant or sorcery spell that targets only a single permanent or player. Copy that spell for each other permanent or player the spell could target. Each copy targets a different one of those permanents and players.
 mana={3}{R}{R}
@@ -30564,6 +30581,17 @@ name=Sands of Time
 text=Each player skips his or her untap step. -- At the beginning of each player's upkeep, that player simultaneously untaps each tapped artifact, creature, and land he or she controls and taps each untapped artifact, creature, and land he or she controls.
 mana={4}
 type=Artifact
+[/card]
+[card]
+##Neither works with "preventallCombatDamage" nor "fog".
+name=Sandskin
+target=creature
+auto=preventAllCombatDamage from(mytgt)
+auto=preventAllCombatDamage to(mytgt)
+text=Enchant creature -- Prevent all combat damage that would be dealt to and dealt by enchanted creature.
+mana={2}{W}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Sandsower
@@ -34131,15 +34159,6 @@ power=0
 toughness=0
 [/card]
 [card]
-name=Spike Weaver
-text=Spike Weaver enters the battlefield with three +1/+1 counters on it. -- {2}, Remove a +1/+1 counter from Spike Weaver: Put a +1/+1 counter on target creature. -- {1}, Remove a +1/+1 counter from Spike Weaver: Prevent all combat damage that would be dealt this turn.
-mana={2}{G}{G}
-type=Creature
-subtype=Spike
-power=0
-toughness=0
-[/card]
-[card]
 name=Spiketail Drake
 text=Flying -- Sacrifice Spiketail Drake: Counter target spell unless its controller pays {3}.
 mana={3}{U}{U}
@@ -34433,15 +34452,6 @@ name=Spore Cloud
 text=Tap all blocking creatures. Prevent all combat damage that would be dealt this turn. Each attacking creature and each blocking creature doesn't untap during its controller's next untap step.
 mana={1}{G}{G}
 type=Instant
-[/card]
-[card]
-name=Spore Flower
-text=At the beginning of your upkeep, put a spore counter on Spore Flower. -- Remove three spore counters from Spore Flower: Prevent all combat damage that would be dealt this turn.
-mana={G}{G}
-type=Creature
-subtype=Fungus
-power=0
-toughness=1
 [/card]
 [card]
 name=Sporeback Troll
@@ -34757,12 +34767,6 @@ text=Enchant artifact -- Enchanted artifact's activated abilities can't be activ
 mana={1}{W}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Statecraft
-text=Prevent all combat damage that would be dealt to and dealt by creatures you control.
-mana={3}{U}
-type=Enchantment
 [/card]
 [card]
 name=Static Orb
@@ -38434,15 +38438,6 @@ type=Creature
 subtype=Nightstalker Cat
 power=2
 toughness=2
-[/card]
-[card]
-name=Urborg Phantom
-text=Urborg Phantom can't block. -- {U}: Prevent all combat damage that would be dealt to and dealt by Urborg Phantom this turn.
-mana={2}{B}
-type=Creature
-subtype=Spirit Minion
-power=3
-toughness=1
 [/card]
 [card]
 name=Urborg, Tomb of Yawgmoth
