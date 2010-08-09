@@ -2126,20 +2126,6 @@ power=3
 toughness=5
 [/card]
 [card]
-name=Balduvian Horde
-auto=discard:1 controller
-#auto=aslongas(*|myHand) bury <1
-#Works due to a bug in WTH0.10
-#auto=@movedto(this|myBattlefield):aslongas(*|myHand) bury <1
-#Should work to be tested once the bug has been adressed
-text=When Balduvian Horde enters the battlefield, sacrifice it unless you discard a card at random.
-mana={2}{R}{R}
-type=Creature
-subtype=Human Barbarian
-power=5
-toughness=5
-[/card]
-[card]
 name=Balduvian Hydra
 text=Balduvian Hydra enters the battlefield with X +1/+0 counters on it. -- Remove a +1/+0 counter from Balduvian Hydra: Prevent the next 1 damage that would be dealt to Balduvian Hydra this turn. -- {R}{R}{R}: Put a +1/+0 counter on Balduvian Hydra. Activate this ability only during your upkeep.
 mana={X}{R}{R}
@@ -6324,16 +6310,6 @@ mana={2}{U}
 type=Enchantment
 [/card]
 [card]
-###this land cycle does not work! 0.12.1
-name=Coral Atoll
-auto=tap
-auto=moveTo(ownerhand) notatarget(island[-tapped]|myBattlefield)
-auto=moveTo(graveyard) notatarget(this|myBattlefield)
-auto=@movedTo(island[-tapped]|myhand) from(myBattlefield):lord(coral atoll) {T}:Add{1}{U}
-text=Coral Atoll enters the battlefield tapped. -- When Coral Atoll enters the battlefield, sacrifice it unless you return an untapped Island you control to its owner's hand. -- {T}: Add {1}{U} to your mana pool.
-type=Land
-[/card]
-[card]
 name=Coral Fighters
 text=Whenever Coral Fighters attacks and isn't blocked, look at the top card of defending player's library. You may put that card on the bottom of that player's library.
 mana={1}{U}
@@ -6748,12 +6724,6 @@ type=Legendary Creature
 subtype=Dragon
 power=6
 toughness=6
-[/card]
-[card]
-name=Crosis's Catacombs
-text=When Crosis's Catacombs enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand. -- {T}: Add {U}, {B}, or {R} to your mana pool.
-type=Land
-subtype=Lair
 [/card]
 [card]
 name=Crown of Ascension
@@ -7302,12 +7272,6 @@ type=Legendary Creature
 subtype=Dragon
 power=6
 toughness=6
-[/card]
-[card]
-name=Darigaaz's Caldera
-text=When Darigaaz's Caldera enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand. -- {T}: Add {B}, {R}, or {G} to your mana pool.
-type=Land
-subtype=Lair
 [/card]
 [card]
 name=Dark Confidant
@@ -8834,16 +8798,6 @@ power=0
 toughness=5
 [/card]
 [card]
-###This land cycle does not work!
-name=Dormant Volcano
-auto=tap
-auto=aslongas(mountain[-tapped]|myBattlefield) moveTo(ownerhand) notatarget(mountain[-tapped]|myBattlefield)
-auto=moveTo(graveyard) notatarget(this|myBattlefield)
-auto=@movedTo(mountain[-tapped]|myhand) from(myBattlefield):lord(dormant volcano) {T}:Add{1}{R}
-text=Dormant Volcano enters the battlefield tapped. -- When Dormant Volcano enters the battlefield, sacrifice it unless you return an untapped Mountain you control to its owner's hand. -- {T}: Add {1}{R} to your mana pool.
-type=Land
-[/card]
-[card]
 name=Dosan the Falling Leaf
 text=Players can cast spells only during their own turns.
 mana={1}{G}{G}
@@ -9190,15 +9144,6 @@ mana={X}{4}{B}
 type=Sorcery
 [/card]
 [card]
-name=Drekavac
-text=When Drekavac enters the battlefield, sacrifice it unless you discard a noncreature card.
-mana={1}{B}
-type=Creature
-subtype=Beast
-power=3
-toughness=3
-[/card]
-[card]
 name=Drelnoch
 text=Whenever Drelnoch becomes blocked, you may draw two cards.
 mana={4}{U}
@@ -9242,12 +9187,6 @@ type=Legendary Creature
 subtype=Dragon
 power=6
 toughness=6
-[/card]
-[card]
-name=Dromar's Cavern
-text=When Dromar's Cavern enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand. -- {T}: Add {W}, {U}, or {B} to your mana pool.
-type=Land
-subtype=Lair
 [/card]
 [card]
 name=Droning Bureaucrats
@@ -10745,16 +10684,6 @@ name=Everflowing Chalice
 text=Multikicker {2} (You may pay an additional {2} any number of times as you cast this spell.) -- Everflowing Chalice enters the battlefield with a charge counter on it for each time it was kicked. -- {T}: Add {1} to your mana pool for each charge counter on Everflowing Chalice.
 mana={0}
 type=Artifact
-[/card]
-[card]
-###This land cyclce does not work!
-name=Everglades
-auto=tap
-auto=aslongas(swamp[-tapped]|myBattlefield) moveTo(ownerhand) notatarget(swamp[-tapped]|myBattlefield)
-auto=moveTo(graveyard) notatarget(this|myBattlefield)
-auto=@movedTo(swamp[-tapped]|myhand) from(myBattlefield):lord(everglades) {T}:Add{1}{B}
-text=Everglades enters the battlefield tapped. -- When Everglades enters the battlefield, sacrifice it unless you return an untapped Swamp you control to its owner's hand. -- {T}: Add {1}{B} to your mana pool.
-type=Land
 [/card]
 [card]
 name=Everglove Courier
@@ -18076,16 +18005,6 @@ power=5
 toughness=5
 [/card]
 [card]
-###This land cycle does not work!
-name=Karoo
-auto=tap
-auto=aslongas(plains[-tapped]|myBattlefield) moveTo(ownerhand) notatarget(plains[-tapped]|myBattlefield)
-auto=moveTo(graveyard) notatarget(this|myBattlefield)
-auto=@movedTo(plains[-tapped]|myhand) from(myBattlefield):lord(karoo) {T}:Add{1}{W}
-text=Karoo enters the battlefield tapped. -- When Karoo enters the battlefield, sacrifice it unless you return an untapped Plains you control to its owner's hand. -- {T}: Add {1}{W} to your mana pool.
-type=Land
-[/card]
-[card]
 name=Karplusan Minotaur
 text=Cumulative upkeep - Flip a coin. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Whenever you win a coin flip, Karplusan Minotaur deals 1 damage to target creature or player. -- Whenever you lose a coin flip, Karplusan Minotaur deals 1 damage to target creature or player of an opponent's choice.
 mana={2}{R}{R}
@@ -22160,18 +22079,6 @@ type=Creature
 subtype=Human Advisor
 power=1
 toughness=1
-[/card]
-[card]
-name=Minotaur Explorer
-auto=@movedto(this|myBattlefield):aslongas(*|myHand) bury <1
-auto=discard:1 controller
-#Reomved does not work in WTH 0.10 see also Balduvian Horde (ALL)
-text=When Minotaur Explorer enters the battlefield, sacrifice it unless you discard a card at random.
-mana={1}{R}
-type=Creature
-subtype=Minotaur Scout
-power=3
-toughness=3
 [/card]
 [card]
 name=Miracle Worker
@@ -26332,17 +26239,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Pillaging Horde
-auto=discard:1
-###Cannot be coded right now! 0.10.1
-text=When Pillaging Horde enters the battlefield, sacrifice it unless you discard a card at random.
-mana={2}{R}{R}
-type=Creature
-subtype=Human Barbarian
-power=5
-toughness=5
-[/card]
-[card]
 name=Pillar Tombs of Aku
 text=At the beginning of each player's upkeep, that player may sacrifice a creature. If that player doesn't, he or she loses 5 life and you sacrifice Pillar Tombs of Aku.
 mana={2}{B}{B}
@@ -29646,18 +29542,9 @@ type=Sorcery
 [/card]
 [card]
 name=Rith's Charm
-auto=may destroy target(land[-basic])
-auto=may token(Saproling,creature saproling,1/1,green)*3
-####NOT 100% CODABLE YET!!
 text=Choose one - Destroy target nonbasic land; or put three 1/1 green Saproling creature tokens onto the battlefield; or prevent all damage a source of your choice would deal this turn.
 mana={R}{G}{W}
 type=Instant
-[/card]
-[card]
-name=Rith's Grove
-text=When Rith's Grove enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand. -- {T}: Add {R}, {G}, or {W} to your mana pool.
-type=Land
-subtype=Lair
 [/card]
 [card]
 name=Rith, the Awakener
@@ -38009,12 +37896,6 @@ type=Legendary Creature
 subtype=Dragon
 power=6
 toughness=6
-[/card]
-[card]
-name=Treva's Ruins
-text=When Treva's Ruins enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand. -- {T}: Add {G}, {W}, or {U} to your mana pool.
-type=Land
-subtype=Lair
 [/card]
 [card]
 name=Trial // Error (Error)

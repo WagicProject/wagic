@@ -3212,6 +3212,17 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Balduvian Horde
+auto=aslongas(*|myHand) choice discard:1 controller oneshot
+auto=aslongas(*|myHand) choice bury oneshot
+text=When Balduvian Horde enters the battlefield, sacrifice it unless you discard a card at random.
+mana={2}{R}{R}
+type=Creature
+subtype=Human Barbarian
+power=5
+toughness=5
+[/card]
+[card]
 name=Balduvian Rage
 target=creature[attacking]
 auto=X/0
@@ -9045,6 +9056,15 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Coral Atoll
+auto=tap
+auto=aslongas(island[-tapped]|mybattlefield) moveto(myhand) target(island[-tapped]|mybattlefield) oneshot
+auto=moveto(mygraveyard) target(this|mybattlefield)
+auto={T}:Add{1}{U}
+text=Coral Atoll enters the battlefield tapped. -- When Coral Atoll enters the battlefield, sacrifice it unless you return an untapped Island you control to its owner's hand. -- {T}: Add {1}{U} to your mana pool.
+type=Land
+[/card]
+[card]
 name=Coral Eel
 mana={1}{U}
 type=Creature
@@ -9574,6 +9594,17 @@ type=Artifact Creature
 subtype=Golem
 power=3
 toughness=3
+[/card]
+[card]
+name=Crosis's Catacombs
+auto=aslongas(land[-lair]|mybattlefield) moveto(myhand) target(land[-lair]|mybattlefield) oneshot
+auto=moveto(mygraveyard) target(this|mybattlefield)
+auto={T}:Add{U}
+auto={T}:Add{B}
+auto={T}:Add{R}
+text=When Crosis's Catacombs enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand. -- {T}: Add {U}, {B}, or {R} to your mana pool.
+type=Land
+subtype=Lair
 [/card]
 [card]
 name=Crosis's Charm
@@ -10174,6 +10205,17 @@ type=Artifact Creature
 subtype=Golem
 power=3
 toughness=3
+[/card]
+[card]
+name=Darigaaz's Caldera
+auto=aslongas(land[-lair]|mybattlefield) moveto(myhand) target(land[-lair]|mybattlefield) oneshot
+auto=moveto(mygraveyard) target(this|mybattlefield)
+auto={T}:Add{B}
+auto={T}:Add{R}
+auto={T}:Add{G}
+text=When Darigaaz's Caldera enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand. -- {T}: Add {B}, {R}, or {G} to your mana pool.
+type=Land
+subtype=Lair
 [/card]
 [card]
 name=Darigaaz's Charm
@@ -12051,6 +12093,15 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Dormant Volcano
+auto=tap
+auto=aslongas(mountain[-tapped]|mybattlefield) moveto(myhand) target(mountain[-tapped]|mybattlefield) oneshot
+auto=moveto(mygraveyard) target(this|mybattlefield)
+auto={T}:Add{1}{R}
+text=Dormant Volcano enters the battlefield tapped. -- When Dormant Volcano enters the battlefield, sacrifice it unless you return an untapped Mountain you control to its owner's hand. -- {T}: Add {1}{R} to your mana pool.
+type=Land
+[/card]
+[card]
 name=Dosan's Oldest Chant
 auto=life:6 controller
 auto=draw:1 controller
@@ -12297,8 +12348,8 @@ type=Sorcery
 [card]
 name=Drake Familiar
 abilities=flying
+auto=aslongas(enchantment|mybattlefield) moveTo(ownerhand) notatarget(enchantment|battlefield) oneshot
 auto=moveTo(graveyard) notatarget(this|myBattlefield)
-auto=moveTo(ownerhand) notatarget(enchantment|battlefield)
 text=Flying -- When Drake Familiar enters the battlefield, sacrifice it unless you return an enchantment to its owner's hand.
 mana={1}{U}
 type=Creature
@@ -12522,6 +12573,17 @@ toughness=1
 mana={1}{B}
 [/card]
 [card]
+name=Drekavac
+auto=aslongas(*[-creature]|myhand) (moveTo(graveyard) notatarget(*[-creature]|myhand) oneshot
+auto=moveTo(graveyard) notatarget(this|myBattlefield)
+text=When Drekavac enters the battlefield, sacrifice it unless you discard a noncreature card.
+mana={1}{B}
+type=Creature
+subtype=Beast
+power=3
+toughness=3
+[/card]
+[card]
 name=Drift of Phantasms
 abilities=defender,flying
 autohand={1}{U}{U}{S}:moveTo(myhand) target(*[manacost=3]|mylibrary) asSorcery
@@ -12604,6 +12666,17 @@ type=Artifact Creature
 subtype=Golem
 power=3
 toughness=3
+[/card]
+[card]
+name=Dromar's Cavern
+auto=aslongas(land[-lair]|mybattlefield) moveto(myhand) target(land[-lair]|mybattlefield) oneshot
+auto=moveto(mygraveyard) target(this|mybattlefield)
+auto={T}:Add{W}
+auto={T}:Add{U}
+auto={T}:Add{B}
+text=When Dromar's Cavern enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand. -- {T}: Add {W}, {U}, or {B} to your mana pool.
+type=Land
+subtype=Lair
 [/card]
 [card]
 name=Dromar's Charm
@@ -14606,6 +14679,15 @@ mana={2}{R}
 type=Sorcery
 [/card]
 [card]
+name=Everglades
+auto=tap
+auto=aslongas(swamp[-tapped]|mybattlefield) moveto(myhand) target(swamp[-tapped]|mybattlefield) oneshot
+auto=moveto(mygraveyard) target(this|mybattlefield)
+auto={T}:Add{1}{B}
+text=Everglades enters the battlefield tapped. -- When Everglades enters the battlefield, sacrifice it unless you return an untapped Swamp you control to its owner's hand. -- {T}: Add {1}{B} to your mana pool.
+type=Land
+[/card]
+[card]
 name=Evil Eye of Orms-by-Gore
 auto=lord(creature[-eye]|myBattlefield) cantattack
 auto=cantbeblockedby(creature[-wall])
@@ -15008,8 +15090,8 @@ type=Sorcery
 [/card]
 [card]
 name=Fallow Wurm
+auto=aslongas(land|myhand) moveTo(graveyard) notatarget(land|myhand) oneshot
 auto=moveTo(graveyard) notatarget(this|myBattlefield)
-auto=moveTo(graveyard) notatarget(land|myhand)
 text=When Fallow Wurm enters the battlefield, sacrifice it unless you discard a land card.
 mana={2}{G}
 type=Creature
@@ -20485,8 +20567,8 @@ toughness=4
 [/card]
 [card]
 name=Harvest Wurm
+auto=aslongas(land[basic]|mygraveyard) moveTo(myhand) notatarget(land[basic]|mygraveyard) oneshot
 auto=moveTo(graveyard) notatarget(this|myBattlefield)
-auto=moveTo(myhand) notatarget(land[basic]|mygraveyard)
 text=When Harvest Wurm enters the battlefield, sacrifice it unless you return a basic land card from your graveyard to your hand.
 mana={1}{G}
 type=Creature
@@ -21159,8 +21241,8 @@ type=Land
 [/card]
 [card]
 name=Hidden Horror
-auto=moveTo(graveyard) notatarget(this|myBattlefield)
-auto=moveTo(graveyard) notatarget(creature|myhand)
+auto=moveTo(graveyard) target(this|myBattlefield) oneshot
+auto=aslongas(creature|myhand) moveTo(graveyard) target(creature|myhand) oneshot
 text=When Hidden Horror enters the battlefield, sacrifice it unless you discard a creature card.
 mana={1}{B}{B}
 type=Creature
@@ -24222,6 +24304,15 @@ auto=becomes(Creature,manacost/manacost) ueot
 text=Target noncreature artifact becomes an artifact creature with power and toughness each equal to its converted mana cost until end of turn. (It retains its abilities.)
 mana={U}{U}
 type=Instant
+[/card]
+[card]
+name=Karoo
+auto=tap
+auto=aslongas(plains[-tapped]|mybattlefield) moveto(myhand) notatarget(plains[-tapped]|mybattlefield) oneshot
+auto=moveto(mygraveyard) notatarget(this|mybattlefield)
+auto={T}:Add{1}{W}
+text=Karoo enters the battlefield tapped. -- When Karoo enters the battlefield, sacrifice it unless you return an untapped Plains you control to its owner's hand. -- {T}: Add {1}{W} to your mana pool.
+type=Land
 [/card]
 [card]
 name=Karoo Meerkat
@@ -28611,8 +28702,8 @@ type=Instant
 [/card]
 [card]
 name=Mercenary Knight
-auto=moveTo(mygraveyard) notatarget(this|myBattlefield)
-auto=moveTo(mygraveyard) notatarget(creature|myhand)
+auto=aslongas(creature|myhand) moveTo(graveyard) notatarget(creature|myhand) oneshot
+auto=moveTo(graveyard) notatarget(this|myBattlefield)
 text=When Mercenary Knight enters the battlefield, sacrifice it unless you discard a creature card.
 mana={2}{B}
 type=Creature
@@ -29134,6 +29225,17 @@ auto=foreach(creature|myBattlefield) life:-1
 text=You draw X cards and you lose X life, where X is the number of creatures you control.
 mana={2}{B}{B}
 type=Sorcery
+[/card]
+[card]
+name=Minotaur Explorer
+auto=aslongas(*|myHand) choice discard:1 controller oneshot
+auto=aslongas(*|myHand) choice bury oneshot
+text=When Minotaur Explorer enters the battlefield, sacrifice it unless you discard a card at random.
+mana={1}{R}
+type=Creature
+subtype=Minotaur Scout
+power=3
+toughness=3
 [/card]
 [card]
 name=Minotaur Illusionist
@@ -30167,7 +30269,7 @@ toughness=1
 [/card]
 [card]
 name=Mox Diamond
-auto=moveTo(mygraveyard) notatarget(land|myhand)
+auto=aslongas(land|myhand) moveTo(mygraveyard) notatarget(land|myhand) oneshot
 auto=moveTo(mygraveyard) notatarget(this|myBattlefield)
 auto=@movedTo(land|mygraveyard) from(myhand):lord(mox diamond) {T}:Add{W} && lord(mox diamond) {T}:Add{U} && lord(mox diamond) {T}:Add{B} && lord(mox diamond) {T}:Add{R} && lord(mox diamond) {T}:Add{G}
 text=If Mox Diamond would enter the battlefield, you may discard a land card instead. If you do, put Mox Diamond onto the battlefield. If you don't, put it into its owner's graveyard. -- {T}: Add one mana of any color to your mana pool.
@@ -33781,6 +33883,17 @@ mana={1}{R}{R}
 type=Sorcery
 [/card]
 [card]
+name=Pillaging Horde
+auto=aslongas(*|myHand) choice discard:1 controller oneshot
+auto=aslongas(*|myHand) choice bury oneshot
+text=When Pillaging Horde enters the battlefield, sacrifice it unless you discard a card at random.
+mana={2}{R}{R}
+type=Creature
+subtype=Human Barbarian
+power=5
+toughness=5
+[/card]
+[card]
 name=Pillarfield Ox
 mana={3}{W}
 type=Creature
@@ -34031,8 +34144,8 @@ type=Enchantment
 [/card]
 [card]
 name=Plant Elemental
+auto=aslongas(forest|myBattlefield) (moveTo(graveyard) target(forest|myBattlefield) oneshot
 auto=moveTo(graveyard) notatarget(this|myBattlefield)
-auto=moveTo(graveyard) notatarget(forest|myBattlefield)
 text=When Plant Elemental enters the battlefield, sacrifice it unless you sacrifice a Forest.
 mana={1}{G}
 type=Creature
@@ -37143,6 +37256,17 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Rith's Grove
+auto=aslongas(land[-lair]|mybattlefield) moveto(myhand) target(land[-lair]|mybattlefield) oneshot
+auto=moveto(mygraveyard) target(this|mybattlefield)
+auto={T}:Add{R}
+auto={T}:Add{G}
+auto={T}:Add{W}
+text=When Rith's Grove enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand. -- {T}: Add {R}, {G}, or {W} to your mana pool.
+type=Land
+subtype=Lair
+[/card]
+[card]
 name=Ritual of Restoration
 target=artifact|myGraveyard
 auto=moveto(myHand)
@@ -37386,7 +37510,8 @@ toughness=1
 [/card]
 [card]
 name=Rogue Elephant
-auto=moveTo(mygraveyard) notatarget(this,forest|myBattlefield)
+auto=aslongas(forest|myBattlefield) (moveTo(graveyard) target(forest|myBattlefield) oneshot
+auto=moveTo(graveyard) notatarget(this|myBattlefield)
 text=When Rogue Elephant enters the battlefield, sacrifice it unless you sacrifice a Forest.
 mana={G}
 type=Creature
@@ -39003,7 +39128,8 @@ toughness=1
 [card]
 name=Scythe Tiger
 abilities=shroud
-auto=moveTo(mygraveyard) notatarget(this;land|myBattlefield)
+auto=aslongas(land|myBattlefield) (moveTo(graveyard) target(land|myBattlefield) oneshot
+auto=moveTo(graveyard) notatarget(this|myBattlefield)
 text=Shroud (This creature can't be the target of spells or abilities.) -- When Scythe Tiger enters the battlefield, sacrifice it unless you sacrifice a land.
 mana={G}
 type=Creature
@@ -39253,7 +39379,7 @@ toughness=2
 [/card]
 [card]
 name=Sedraxis Alchemist
-auto=aslongas(*[blue]|myBattlefield) moveTo(ownerhand) target(*[-land])
+auto=aslongas(*[blue]|myBattlefield) moveTo(ownerhand) target(*[-land]) oneshot
 text=When Sedraxis Alchemist enters the battlefield, if you control a blue permanent, return target nonland permanent to its owner's hand.
 mana={2}{B}
 type=Creature
@@ -47221,8 +47347,8 @@ toughness=3
 [/card]
 [card]
 name=Thundering Wurm
+auto=aslongas(land|myhand) moveTo(graveyard) notatarget(land|myhand) oneshot
 auto=moveTo(graveyard) notatarget(this|myBattlefield)
-auto=moveTo(graveyard) notatarget(land|myhand)
 text=When Thundering Wurm enters the battlefield, sacrifice it unless you discard a land card.
 mana={2}{G}
 type=Creature
@@ -48438,6 +48564,17 @@ auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Treva}>0) move
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111143
 type=nothing
+[/card]
+[card]
+name=Treva's Ruins
+auto=aslongas(land[-lair]|mybattlefield) moveto(myhand) target(land[-lair]|mybattlefield) oneshot
+auto=moveto(mygraveyard) target(this|mybattlefield)
+auto={T}:Add{G}
+auto={T}:Add{W}
+auto={T}:Add{U}
+text=When Treva's Ruins enters the battlefield, sacrifice it unless you return a non-Lair land you control to its owner's hand. -- {T}: Add {G}, {W}, or {U} to your mana pool.
+type=Land
+subtype=Lair
 [/card]
 [card]
 name=Triassic Egg
@@ -51178,7 +51315,8 @@ toughness=1
 [/card]
 [card]
 name=Vulshok War Boar
-auto=moveTo(ownergraveyard) target(artifact,vulshok war boar|myBattlefield)
+auto=aslongas(artifact|myBattlefield) moveTo(graveyard) notatarget(artifact|myBattlefield) oneshot
+auto=moveTo(graveyard) notatarget(this|myBattlefield)
 text=When Vulshok War Boar enters the battlefield, sacrifice it unless you sacrifice an artifact.
 mana={2}{R}{R}
 type=Creature
