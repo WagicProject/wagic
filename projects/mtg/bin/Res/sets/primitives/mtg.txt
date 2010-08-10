@@ -9598,7 +9598,7 @@ toughness=3
 [/card]
 [card]
 name=Crosis's Catacombs
-auto=aslongas(land[-lair]|mybattlefield) moveto(myhand) target(land[-lair]|mybattlefield?) oneshot && counter(0/0,-1,payment)
+auto=aslongas(land[-lair]|mybattlefield) moveto(myhand) target(land[-lair]|mybattlefield) oneshot && counter(0/0,-1,payment)
 auto=moveto(mygraveyard) target(this|mybattlefield)
 auto=this(counter{0/0.1.payment}<1) {T}:Add{U}
 auto=this(counter{0/0.1.payment}<1) {T}:Add{B}
@@ -10209,7 +10209,7 @@ toughness=3
 [/card]
 [card]
 name=Darigaaz's Caldera
-auto=aslongas(land[-lair]|mybattlefield) moveto(myhand) target(land[-lair]|mybattlefield?) oneshot && counter(0/0,-1,payment)
+auto=aslongas(land[-lair]|mybattlefield) moveto(myhand) target(land[-lair]|mybattlefield) oneshot && counter(0/0,-1,payment)
 auto=moveto(mygraveyard) target(this|mybattlefield)
 auto=this(counter{0/0.1.payment}<1) {T}:Add{B}
 auto=this(counter{0/0.1.payment}<1) {T}:Add{R}
@@ -12572,7 +12572,7 @@ mana={1}{B}
 [/card]
 [card]
 name=Drekavac
-auto=aslongas(*[-creature]|myhand) (moveTo(graveyard) notatarget(*[-creature]|myhand) oneshot
+auto=aslongas(*[-creature]|myhand) moveTo(graveyard) notatarget(*[-creature]|myhand) oneshot
 auto=moveTo(graveyard) notatarget(this|myBattlefield)
 text=When Drekavac enters the battlefield, sacrifice it unless you discard a noncreature card.
 mana={1}{B}
@@ -12667,7 +12667,7 @@ toughness=3
 [/card]
 [card]
 name=Dromar's Cavern
-auto=aslongas(land[-lair]|mybattlefield) moveto(myhand) target(land[-lair]|mybattlefield?) oneshot && counter(0/0,-1,payment)
+auto=aslongas(land[-lair]|mybattlefield) moveto(myhand) target(land[-lair]|mybattlefield) oneshot && counter(0/0,-1,payment)
 auto=moveto(mygraveyard) target(this|mybattlefield)
 auto=this(counter{0/0.1.payment}<1) {T}:Add{W}
 auto=this(counter{0/0.1.payment}<1) {T}:Add{U}
@@ -34145,7 +34145,7 @@ type=Enchantment
 [/card]
 [card]
 name=Plant Elemental
-auto=aslongas(forest|myBattlefield) (moveTo(graveyard) target(forest|myBattlefield) oneshot
+auto=aslongas(forest|myBattlefield) moveTo(graveyard) target(forest|myBattlefield) oneshot
 auto=moveTo(graveyard) notatarget(this|myBattlefield)
 text=When Plant Elemental enters the battlefield, sacrifice it unless you sacrifice a Forest.
 mana={1}{G}
@@ -37268,7 +37268,7 @@ toughness=3
 [/card]
 [card]
 name=Rith's Grove
-auto=aslongas(land[-lair]|mybattlefield) moveto(myhand) target(land[-lair]|mybattlefield?) oneshot && counter(0/0,-1,payment)
+auto=aslongas(land[-lair]|mybattlefield) moveto(myhand) target(land[-lair]|mybattlefield) oneshot && counter(0/0,-1,payment)
 auto=moveto(mygraveyard) target(this|mybattlefield)
 auto=this(counter{0/0.1.payment}<1) {T}:Add{R}
 auto=this(counter{0/0.1.payment}<1) {T}:Add{G}
@@ -37521,7 +37521,7 @@ toughness=1
 [/card]
 [card]
 name=Rogue Elephant
-auto=aslongas(forest|myBattlefield) (moveTo(graveyard) target(forest|myBattlefield) oneshot
+auto=aslongas(forest|myBattlefield) moveTo(graveyard) target(forest|myBattlefield) oneshot
 auto=moveTo(graveyard) notatarget(this|myBattlefield)
 text=When Rogue Elephant enters the battlefield, sacrifice it unless you sacrifice a Forest.
 mana={G}
@@ -39129,7 +39129,7 @@ toughness=1
 [card]
 name=Scythe Tiger
 abilities=shroud
-auto=aslongas(land|myBattlefield) (moveTo(graveyard) target(land|myBattlefield) oneshot
+auto=aslongas(land|myBattlefield) moveTo(graveyard) target(land|myBattlefield) oneshot
 auto=moveTo(graveyard) notatarget(this|myBattlefield)
 text=Shroud (This creature can't be the target of spells or abilities.) -- When Scythe Tiger enters the battlefield, sacrifice it unless you sacrifice a land.
 mana={G}
@@ -48599,7 +48599,7 @@ type=nothing
 [/card]
 [card]
 name=Treva's Ruins
-auto=aslongas(land[-lair]|mybattlefield) moveto(myhand) target(land[-lair]|mybattlefield?) oneshot && counter(0/0,-1,payment)
+auto=aslongas(land[-lair]|mybattlefield) moveto(myhand) target(land[-lair]|mybattlefield) oneshot && counter(0/0,-1,payment)
 auto=moveto(mygraveyard) target(this|mybattlefield)
 auto=this(counter{0/0.1.payment}<1) {T}:Add{G}
 auto=this(counter{0/0.1.payment}<1) {T}:Add{W}
