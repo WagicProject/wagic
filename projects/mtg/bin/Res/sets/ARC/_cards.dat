@@ -1,0 +1,980 @@
+[card]
+primitive=A Display of My Dark Power
+id=212578
+rarity=C
+[/card]
+[card]
+primitive=AEther Spellbomb
+id=220525
+rarity=C
+[/card]
+[card]
+primitive=Agony Warp
+id=220454
+rarity=C
+[/card]
+[card]
+primitive=All in Good Time
+id=212648
+rarity=C
+[/card]
+[card]
+primitive=All Shall Smolder in My Wake
+id=212617
+rarity=C
+[/card]
+[card]
+primitive=Approach My Molten Realm
+id=212591
+rarity=C
+[/card]
+[card]
+primitive=Architects of Will
+id=220517
+rarity=C
+[/card]
+[card]
+primitive=Armadillo Cloak
+id=220498
+rarity=C
+[/card]
+[card]
+primitive=Artisan of Kozilek
+id=220553
+rarity=U
+[/card]
+[card]
+primitive=Avatar of Discord
+id=220539
+rarity=R
+[/card]
+[card]
+primitive=Avatar of Woe
+id=220562
+rarity=R
+[/card]
+[card]
+primitive=Azorius Signet
+id=220540
+rarity=C
+[/card]
+[card]
+primitive=Barren Moor
+id=220487
+rarity=C
+[/card]
+[card]
+primitive=Battering Craghorn
+id=220488
+rarity=C
+[/card]
+[card]
+primitive=Batwing Brume
+id=220573
+rarity=U
+[/card]
+[card]
+primitive=Beacon of Unrest
+id=220482
+rarity=R
+[/card]
+[card]
+primitive=Behold the Power of Destruction
+id=212585
+rarity=C
+[/card]
+[card]
+primitive=Bituminous Blast
+id=220518
+rarity=U
+[/card]
+[card]
+primitive=Bog Witch
+id=220556
+rarity=C
+[/card]
+[card]
+primitive=Branching Bolt
+id=220455
+rarity=C
+[/card]
+[card]
+primitive=Breath of Darigaaz
+id=220499
+rarity=U
+[/card]
+[card]
+primitive=Cemetery Reaper
+id=220485
+rarity=R
+[/card]
+[card]
+primitive=Chameleon Colossus
+id=220451
+rarity=R
+[/card]
+[card]
+primitive=Chandra's Outrage
+id=220513
+rarity=C
+[/card]
+[card]
+primitive=Choose Your Champion
+id=212581
+rarity=C
+[/card]
+[card]
+primitive=Colossal Might
+id=220519
+rarity=C
+[/card]
+[card]
+primitive=Corpse Connoisseur
+id=220567
+rarity=U
+[/card]
+[card]
+primitive=Dance, Pathetic Marionette
+id=212610
+rarity=C
+[/card]
+[card]
+primitive=Dimir Signet
+id=220548
+rarity=C
+[/card]
+[card]
+primitive=Dragon Breath
+id=220473
+rarity=C
+[/card]
+[card]
+primitive=Dragon Fodder
+id=220456
+rarity=C
+[/card]
+[card]
+primitive=Dragon Whelp
+id=220477
+rarity=U
+[/card]
+[card]
+primitive=Dragonspeaker Shaman
+id=220474
+rarity=U
+[/card]
+[card]
+primitive=Dreamstone Hedron
+id=220554
+rarity=U
+[/card]
+[card]
+primitive=Dregscape Zombie
+id=220457
+rarity=C
+[/card]
+[card]
+primitive=Duplicant
+id=220526
+rarity=R
+[/card]
+[card]
+primitive=Embrace My Diabolical Vision
+id=212596
+rarity=C
+[/card]
+[card]
+primitive=Ethersworn Shieldmage
+id=220520
+rarity=C
+[/card]
+[card]
+primitive=Everflowing Chalice
+id=220534
+rarity=U
+[/card]
+[card]
+primitive=Every Hope Shall Vanish
+id=212593
+rarity=C
+[/card]
+[card]
+primitive=Every Last Vestige Shall Rot
+id=212655
+rarity=C
+[/card]
+[card]
+primitive=Evil Comes to Fruition
+id=212599
+rarity=C
+[/card]
+[card]
+primitive=Extractor Demon
+id=220507
+rarity=R
+[/card]
+[card]
+primitive=Feed the Machine
+id=212652
+rarity=C
+[/card]
+[card]
+primitive=Feral Hydra
+id=220532
+rarity=R
+[/card]
+[card]
+primitive=Fertilid
+id=220452
+rarity=C
+[/card]
+[card]
+primitive=Festering Goblin
+id=220489
+rarity=C
+[/card]
+[card]
+primitive=Fieldmist Borderpost
+id=220521
+rarity=C
+[/card]
+[card]
+primitive=Fierce Empath
+id=220475
+rarity=C
+[/card]
+[card]
+primitive=Fireball
+id=220478
+rarity=U
+[/card]
+[card]
+primitive=Fires of Yavimaya
+id=220500
+rarity=U
+[/card]
+[card]
+primitive=Flameblast Dragon
+id=220458
+rarity=R
+[/card]
+[card]
+primitive=Fog
+id=220479
+rarity=C
+[/card]
+[card]
+primitive=Forest
+id=221295
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=221296
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=221297
+rarity=L
+[/card]
+[card]
+primitive=Forgotten Ancient
+id=220476
+rarity=R
+[/card]
+[card]
+primitive=Furnace Whelp
+id=220483
+rarity=U
+[/card]
+[card]
+primitive=Gathan Raiders
+id=220495
+rarity=C
+[/card]
+[card]
+primitive=Gleeful Sabotage
+id=220585
+rarity=C
+[/card]
+[card]
+primitive=Graypelt Refuge
+id=220467
+rarity=U
+[/card]
+[card]
+primitive=Gruul Signet
+id=220504
+rarity=C
+[/card]
+[card]
+primitive=Harmonize
+id=220584
+rarity=U
+[/card]
+[card]
+primitive=Hellkite Charger
+id=220468
+rarity=R
+[/card]
+[card]
+primitive=Heroes' Reunion
+id=220501
+rarity=U
+[/card]
+[card]
+primitive=Hunting Moa
+id=220563
+rarity=U
+[/card]
+[card]
+primitive=I Bask in Your Silent Awe
+id=212614
+rarity=C
+[/card]
+[card]
+primitive=I Call on the Ancient Magics
+id=212619
+rarity=C
+[/card]
+[card]
+primitive=I Delight in Your Convulsions
+id=212580
+rarity=C
+[/card]
+[card]
+primitive=I Know All, I See All
+id=212597
+rarity=C
+[/card]
+[card]
+primitive=Ignite the Cloneforge!
+id=212587
+rarity=C
+[/card]
+[card]
+primitive=Imperial Hellkite
+id=220463
+rarity=R
+[/card]
+[card]
+primitive=Incremental Blight
+id=220546
+rarity=U
+[/card]
+[card]
+primitive=Infectious Horror
+id=220508
+rarity=C
+[/card]
+[card]
+primitive=Inferno Trap
+id=220469
+rarity=U
+[/card]
+[card]
+primitive=Infest
+id=220459
+rarity=U
+[/card]
+[card]
+primitive=Into the Earthen Maw
+id=212582
+rarity=C
+[/card]
+[card]
+primitive=Introductions Are in Order
+id=212603
+rarity=C
+[/card]
+[card]
+primitive=Island
+id=221300
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=221301
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=221302
+rarity=L
+[/card]
+[card]
+primitive=Juggernaut
+id=220484
+rarity=U
+[/card]
+[card]
+primitive=Kaervek the Merciless
+id=220557
+rarity=R
+[/card]
+[card]
+primitive=Kamahl, Fist of Krosa
+id=220490
+rarity=R
+[/card]
+[card]
+primitive=Kazandu Refuge
+id=220470
+rarity=U
+[/card]
+[card]
+primitive=Khalni Garden
+id=220535
+rarity=C
+[/card]
+[card]
+primitive=Kilnmouth Dragon
+id=220464
+rarity=R
+[/card]
+[card]
+primitive=Know Naught but Fire
+id=212600
+rarity=C
+[/card]
+[card]
+primitive=Krosan Tusker
+id=220491
+rarity=C
+[/card]
+[card]
+primitive=Krosan Verge
+id=220544
+rarity=U
+[/card]
+[card]
+primitive=Leaf Gilder
+id=220568
+rarity=C
+[/card]
+[card]
+primitive=Leonin Abunas
+id=220527
+rarity=R
+[/card]
+[card]
+primitive=Lightning Greaves
+id=220528
+rarity=U
+[/card]
+[card]
+primitive=Llanowar Reborn
+id=220496
+rarity=U
+[/card]
+[card]
+primitive=Lodestone Golem
+id=220536
+rarity=R
+[/card]
+[card]
+primitive=Look Skyward and Despair
+id=212579
+rarity=C
+[/card]
+[card]
+primitive=Magister Sphinx
+id=220509
+rarity=R
+[/card]
+[card]
+primitive=Makeshift Mannequin
+id=220569
+rarity=U
+[/card]
+[card]
+primitive=March of the Machines
+id=220529
+rarity=R
+[/card]
+[card]
+primitive=Master Transmuter
+id=220510
+rarity=R
+[/card]
+[card]
+primitive=May Civilization Collapse
+id=212606
+rarity=C
+[/card]
+[card]
+primitive=Memnarch
+id=220471
+rarity=R
+[/card]
+[card]
+primitive=Metallurgeon
+id=220460
+rarity=U
+[/card]
+[card]
+primitive=Mistvein Borderpost
+id=220522
+rarity=C
+[/card]
+[card]
+primitive=Molimo, Maro-Sorcerer
+id=220502
+rarity=R
+[/card]
+[card]
+primitive=Mortal Flesh Is Weak
+id=212608
+rarity=C
+[/card]
+[card]
+primitive=Mosswort Bridge
+id=220571
+rarity=R
+[/card]
+[card]
+primitive=Mountain
+id=221303
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=221304
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=221305
+rarity=L
+[/card]
+[card]
+primitive=My Crushing Masterstroke
+id=212611
+rarity=C
+[/card]
+[card]
+primitive=My Genius Knows No Bounds
+id=212661
+rarity=C
+[/card]
+[card]
+primitive=My Undead Horde Awakens
+id=212620
+rarity=C
+[/card]
+[card]
+primitive=My Wish Is Your Command
+id=212607
+rarity=C
+[/card]
+[card]
+primitive=Nantuko Monastery
+id=220545
+rarity=U
+[/card]
+[card]
+primitive=Nature Demands an Offering
+id=212601
+rarity=C
+[/card]
+[card]
+primitive=Nature Shields Its Own
+id=212577
+rarity=C
+[/card]
+[card]
+primitive=Nothing Can Stop Me Now
+id=212624
+rarity=C
+[/card]
+[card]
+primitive=Obelisk of Esper
+id=220461
+rarity=C
+[/card]
+[card]
+primitive=Oblivion Ring
+id=220586
+rarity=C
+[/card]
+[card]
+primitive=Only Blood Ends Your Nightmares
+id=212622
+rarity=C
+[/card]
+[card]
+primitive=Pale Recluse
+id=220523
+rarity=C
+[/card]
+[card]
+primitive=Path to Exile
+id=220511
+rarity=U
+[/card]
+[card]
+primitive=Plains
+id=221309
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=221310
+rarity=L
+[/card]
+[card]
+primitive=Plummet
+id=220514
+rarity=C
+[/card]
+[card]
+primitive=Primal Command
+id=220570
+rarity=R
+[/card]
+[card]
+primitive=Rakdos Carnarium
+id=220541
+rarity=C
+[/card]
+[card]
+primitive=Rakdos Guildmage
+id=220542
+rarity=U
+[/card]
+[card]
+primitive=Rakdos Signet
+id=220543
+rarity=C
+[/card]
+[card]
+primitive=Rancor
+id=220577
+rarity=C
+[/card]
+[card]
+primitive=Realms Befitting My Majesty
+id=212653
+rarity=C
+[/card]
+[card]
+primitive=Reanimate
+id=220576
+rarity=U
+[/card]
+[card]
+primitive=Reassembling Skeleton
+id=220515
+rarity=U
+[/card]
+[card]
+primitive=Roots of All Evil
+id=212602
+rarity=C
+[/card]
+[card]
+primitive=Rotted Ones, Lay Siege
+id=212583
+rarity=C
+[/card]
+[card]
+primitive=Ryusei, the Falling Star
+id=220583
+rarity=R
+[/card]
+[card]
+primitive=Sakura-Tribe Elder
+id=220582
+rarity=C
+[/card]
+[card]
+primitive=Sanctum Gargoyle
+id=220462
+rarity=C
+[/card]
+[card]
+primitive=Savage Twister
+id=220505
+rarity=U
+[/card]
+[card]
+primitive=Scion of Darkness
+id=220465
+rarity=R
+[/card]
+[card]
+primitive=Secluded Steppe
+id=220492
+rarity=C
+[/card]
+[card]
+primitive=Seething Song
+id=220561
+rarity=C
+[/card]
+[card]
+primitive=Selesnya Guildmage
+id=220549
+rarity=U
+[/card]
+[card]
+primitive=Shinen of Life's Roar
+id=220587
+rarity=C
+[/card]
+[card]
+primitive=Shriekmaw
+id=220572
+rarity=U
+[/card]
+[card]
+primitive=Sign in Blood
+id=220480
+rarity=C
+[/card]
+[card]
+primitive=Skirk Commando
+id=220493
+rarity=C
+[/card]
+[card]
+primitive=Skirk Marauder
+id=220466
+rarity=C
+[/card]
+[card]
+primitive=Skullcage
+id=220537
+rarity=U
+[/card]
+[card]
+primitive=Sorcerer's Strongbox
+id=222702
+rarity=U
+[/card]
+[card]
+primitive=Spider Umbra
+id=220555
+rarity=C
+[/card]
+[card]
+primitive=Spin into Myth
+id=220497
+rarity=U
+[/card]
+[card]
+primitive=Sun Droplet
+id=220530
+rarity=U
+[/card]
+[card]
+primitive=Sundering Titan
+id=220472
+rarity=R
+[/card]
+[card]
+primitive=Surrender Your Thoughts
+id=212598
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=221311
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=221312
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=221313
+rarity=L
+[/card]
+[card]
+primitive=Synod Centurion
+id=220538
+rarity=U
+[/card]
+[card]
+primitive=Synod Sanctum
+id=220531
+rarity=U
+[/card]
+[card]
+primitive=Taurean Mauler
+id=220453
+rarity=R
+[/card]
+[card]
+primitive=Terminate
+id=220524
+rarity=C
+[/card]
+[card]
+primitive=Terramorphic Expanse
+id=220481
+rarity=C
+[/card]
+[card]
+primitive=The Dead Shall Serve
+id=212613
+rarity=C
+[/card]
+[card]
+primitive=The Fate of the Flammable
+id=212576
+rarity=C
+[/card]
+[card]
+primitive=The Iron Guardian Stirs
+id=212594
+rarity=C
+[/card]
+[card]
+primitive=The Pieces Are Coming Together
+id=212604
+rarity=C
+[/card]
+[card]
+primitive=The Very Soil Shall Shake
+id=212615
+rarity=C
+[/card]
+[card]
+primitive=Thelonite Hermit
+id=220558
+rarity=R
+[/card]
+[card]
+primitive=Thran Dynamo
+id=220506
+rarity=U
+[/card]
+[card]
+primitive=Thunderstaff
+id=220581
+rarity=U
+[/card]
+[card]
+primitive=Tooth, Claw, and Tail
+id=212590
+rarity=C
+[/card]
+[card]
+primitive=Torrent of Souls
+id=220547
+rarity=U
+[/card]
+[card]
+primitive=Tranquil Thicket
+id=220494
+rarity=C
+[/card]
+[card]
+primitive=Twisted Abomination
+id=220564
+rarity=C
+[/card]
+[card]
+primitive=Two-Headed Dragon
+id=220486
+rarity=R
+[/card]
+[card]
+primitive=Unbender Tine
+id=220552
+rarity=U
+[/card]
+[card]
+primitive=Unmake
+id=220574
+rarity=C
+[/card]
+[card]
+primitive=Urborg Syphon-Mage
+id=220559
+rarity=C
+[/card]
+[card]
+primitive=Vampiric Dragon
+id=220578
+rarity=R
+[/card]
+[card]
+primitive=Verdeloth the Ancient
+id=220565
+rarity=R
+[/card]
+[card]
+primitive=Vitu-Ghazi, the City-Tree
+id=220550
+rarity=U
+[/card]
+[card]
+primitive=Volcanic Fallout
+id=220512
+rarity=U
+[/card]
+[card]
+primitive=Wall of Roots
+id=220566
+rarity=C
+[/card]
+[meta]
+author=Wagic Team
+name=Archenemy
+year=2010
+[/meta]
+[card]
+primitive=Watchwolf
+id=220551
+rarity=U
+[/card]
+[card]
+primitive=Wax (Wax/Wane)
+id=220503
+rarity=U
+[/card]
+[card]
+primitive=Which of You Burns Brightest?
+id=212605
+rarity=C
+[/card]
+[card]
+primitive=Wickerbough Elder
+id=220575
+rarity=C
+[/card]
+[card]
+primitive=Yavimaya Dryad
+id=220560
+rarity=U
+[/card]
+[card]
+primitive=Your Fate Is Thrice Sealed
+id=212618
+rarity=C
+[/card]
+[card]
+primitive=Your Puny Minds Cannot Fathom
+id=212588
+rarity=C
+[/card]
+[card]
+primitive=Your Will Is Not Your Own
+id=212609
+rarity=C
+[/card]
+[card]
+primitive=Zombie Infestation
+id=220579
+rarity=U
+[/card]
+[card]
+primitive=Zombify
+id=220580
+rarity=U
+[/card]

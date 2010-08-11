@@ -13,7 +13,7 @@ toughness=4
 [card]
 name=AEther Adept
 auto=moveTo(ownerhand) target(creature)
-text=When Æther Adept enters the battlefield, return target creature to its owner's hand.
+text=When AEther Adept enters the battlefield, return target creature to its owner's hand.
 mana={1}{U}{U}
 type=Creature
 subtype=Human Wizard
@@ -2769,18 +2769,6 @@ type=Creature
 subtype=Human Cleric
 power=2
 toughness=3
-[/card]
-[card]
-name=Autumn Willow
-abilities=opponentshroud,shroud
-auto={G}:-shroud
-#Slightly borderline assumption you will never activate this ability to let the opponent target Autumn Willow
-text=Shroud -- {G}: Until end of turn, Autumn Willow can be the target of spells and abilities controlled by target player as though it didn't have shroud.
-mana={4}{G}{G}
-type=Legendary Creature
-subtype=Avatar
-power=4
-toughness=4
 [/card]
 [card]
 name=Avalanche Riders
@@ -12326,15 +12314,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Drain Life
-grade=Borderline (can use non black mana)
-target=creature,player
-alias=1156
-text=Spend only black mana on X. -- Drain Life deals X damage to target creature or player. You gain life equal to the damage dealt, but not more life than the player's life total before Drain Life dealt damage or the creature's toughness.
-mana={X}{1}{B}
-type=Sorcery
-[/card]
-[card]
 name=Drain the Well
 target=land
 auto=destroy
@@ -15450,18 +15429,6 @@ power=3
 toughness=2
 [/card]
 [card]
-name=Feral Hydra
-type=Creature
-subtype=Hydra Beast
-mana={X}{G}
-power=0
-toughness=0
-text=Feral Hydra enters the battlefield with X +1/+1 counters on it. -- {3}: Put a +1/+1 counter on Feral Hydra. Any player may play this ability
-auto=counter(1/1,X)
-auto={3}:counter(1/1)
-grade=borderline
-[/card]
-[card]
 name=Feral Instinct
 target=creature
 auto=1/1
@@ -17506,16 +17473,6 @@ auto={S(creature|myBattlefield)}:destroy target(artifact) limit:1 myUpkeepOnly
 text=Sacrifice a creature: Destroy target artifact. Activate this ability only during your upkeep and only once each turn.
 mana={B}{B}
 type=Enchantment
-[/card]
-[card]
-name=Gauntlet of Might
-grade=2
-auto=lord(creature[red]) 1/1
-auto=lord(land[mountain]) {T}:add{R}{R}
-#Note: Only works because there are no other cards implemented which change the mountain's mana outout. Also, you get a choice of either {R} or {R}{R} (instead of just adding one {R})
-text=Red creatures get +1/+1. -- Whenever a Mountain is tapped for mana, its controller adds {R} to his or her mana pool (in addition to the mana the land produces).
-mana={4}
-type=Artifact
 [/card]
 [card]
 name=Gaze of Adamaro
@@ -46014,18 +45971,6 @@ type=Creature
 subtype=Human Knight Ally
 power=2
 toughness=3
-[/card]
-[card]
-name=Tangle Asp
-alias=1238
-# Note: The alias isn't entirely correct since the Cockatrice's
-# ability doesn't affect walls, but Tangle Asp's should.
-text=Whenever Tangle Asp blocks or becomes blocked by a creature, destroy that creature at end of combat.
-mana={1}{G}
-type=Creature
-subtype=Snake
-power=1
-toughness=2
 [/card]
 [card]
 name=Tangle Spider

@@ -1,0 +1,270 @@
+[card]
+name=A Display of My Dark Power
+type=Scheme 
+text=When you set this scheme in motion, until your next turn, whenever a player taps a land for mana, that player adds one mana to his or her mana pool of any type that land produced. 
+rarity=C
+[/card]
+[card]
+name=All in Good Time
+type=Scheme 
+text=When you set this scheme in motion, take an extra turn after this one. Schemes can't be set in motion that turn. 
+rarity=C
+[/card]
+[card]
+name=All Shall Smolder in My Wake
+type=Scheme 
+text=When you set this scheme in motion, destroy up to one target artifact, up to one target enchantment, and up to one target nonbasic land. 
+rarity=C
+[/card]
+[card]
+name=Approach My Molten Realm
+type=Scheme 
+text=When you set this scheme in motion, until your next turn, if a source would deal damage, it deals double that damage instead. 
+rarity=C
+[/card]
+[card]
+name=Behold the Power of Destruction
+type=Scheme 
+text=When you set this scheme in motion, destroy all nonland permanents target opponent controls. 
+rarity=C
+[/card]
+[card]
+name=Choose Your Champion
+type=Scheme 
+text=When you set this scheme in motion, target opponent chooses a player. Until your next turn, only you and the chosen player can cast spells and attack with creatures. 
+rarity=C
+[/card]
+[card]
+name=Dance, Pathetic Marionette
+type=Scheme 
+text=When you set this scheme in motion, each opponent reveals cards from the top of his or her library until he or she reveals a creature card. Choose one of the revealed creature cards and put it onto the battlefield under your control. Put all other cards revealed this way into their owners' graveyards. 
+rarity=C
+[/card]
+[card]
+name=Embrace My Diabolical Vision
+type=Scheme 
+text=When you set this scheme in motion, each player shuffles his or her hand and graveyard into his or her library. You draw seven cards, then each other player draws four cards. 
+rarity=C
+[/card]
+[card]
+name=Every Hope Shall Vanish
+type=Scheme 
+text=When you set this scheme in motion, each opponent reveals his or her hand. Choose a nonland card from each of those hands. Those players discard those cards. 
+rarity=C
+[/card]
+[card]
+name=Every Last Vestige Shall Rot
+type=Scheme 
+text=When you set this scheme in motion, you may pay {X}. If you do, put each nonland permanent target player controls with converted mana cost X or less on the bottom of its owner's library. 
+rarity=C
+[/card]
+[card]
+name=Evil Comes to Fruition
+type=Scheme 
+text=When you set this scheme in motion, put seven 0/1 green Plant creature tokens onto the battlefield. If you control ten or more lands, put seven 3/3 green Elemental creature tokens onto the battlefield instead. 
+rarity=C
+[/card]
+[card]
+name=Feed the Machine
+type=Scheme 
+text=When you set this scheme in motion, target opponent chooses self or others. If that player chooses self, he or she sacrifices two creatures. If the player chooses others, each of your other opponents sacrifices a creature. 
+rarity=C
+[/card]
+[card]
+name=I Bask in Your Silent Awe
+type=Ongoing Scheme 
+text=(An ongoing scheme remains face up until it's abandoned.) Each opponent can't cast more than one spell each turn. At the beginning of your upkeep, if no opponent cast a spell since your last turn ended, abandon this scheme. 
+rarity=C
+[/card]
+[card]
+name=I Call on the Ancient Magics
+type=Scheme 
+text=When you set this scheme in motion, each other player searches his or her library for a card, reveals it, and puts it into his or her hand. Then you search your library for two cards and put them into your hand. Each player shuffles his or her library. 
+rarity=C
+[/card]
+[card]
+name=I Delight in Your Convulsions
+type=Scheme 
+text=When you set this scheme in motion, each opponent loses 3 life. You gain life equal to the life lost this way. 
+rarity=C
+[/card]
+[card]
+name=I Know All, I See All
+type=Ongoing Scheme 
+text=(An ongoing scheme remains face up until it's abandoned.) Untap all permanents you control during each opponent's untap step. At the beginning of each end step, if three or more cards were put into your graveyard this turn from anywhere, abandon this scheme. 
+rarity=C
+[/card]
+[card]
+name=Ignite the Cloneforge!
+type=Scheme 
+text=When you set this scheme in motion, put a token onto the battlefield that's a copy of target permanent an opponent controls. 
+rarity=C
+[/card]
+[card]
+name=Into the Earthen Maw
+type=Scheme 
+text=When you set this scheme in motion, exile up to one target creature with flying, up to one target creature without flying, and all cards from up to one target opponent's graveyard. 
+rarity=C
+[/card]
+[card]
+name=Introductions Are in Order
+type=Scheme 
+text=When you set this scheme in motion, choose one — Search your library for a creature card, reveal it, put it into your hand, then shuffle your library; or you may put a creature card from your hand onto the battlefield. 
+rarity=C
+[/card]
+[card]
+name=Know Naught but Fire
+type=Scheme 
+text=When you set this scheme in motion, it deals damage to each opponent equal to the number of cards in that player's hand. 
+rarity=C
+[/card]
+[card]
+name=Look Skyward and Despair
+type=Scheme 
+text=When you set this scheme in motion, put a 5/5 red Dragon creature token with flying onto the battlefield. 
+rarity=C
+[/card]
+[card]
+name=May Civilization Collapse
+type=Scheme 
+text=When you set this scheme in motion, target opponent chooses self or others. If that player chooses self, he or she sacrifices two lands. If the player chooses others, each of your other opponents sacrifices a land. 
+rarity=C
+[/card]
+[card]
+name=Mortal Flesh Is Weak
+type=Scheme 
+text=When you set this scheme in motion, each opponent's life total becomes the lowest life total among your opponents. 
+rarity=C
+[/card]
+[card]
+name=My Crushing Masterstroke
+type=Scheme 
+text=When you set this scheme in motion, gain control of all nonland permanents your opponents control until end of turn. Untap those permanents. They gain haste until end of turn. Each of them attacks its owner this turn if able. 
+rarity=C
+[/card]
+[card]
+name=My Genius Knows No Bounds
+type=Scheme 
+text=When you set this scheme in motion, you may pay {X}. If you do, you gain X life and draw X cards. 
+rarity=C
+[/card]
+[card]
+name=My Undead Horde Awakens
+type=Ongoing Scheme 
+text=(An ongoing scheme remains face up until it's abandoned.) At the beginning of your end step, you may put target creature card from an opponent's graveyard onto the battlefield under your control. When a creature put onto the battlefield with this scheme is put into a graveyard, abandon this scheme. 
+rarity=C
+[/card]
+[card]
+name=My Wish Is Your Command
+type=Scheme 
+text=When you set this scheme in motion, each opponent reveals his or her hand. You may choose a noncreature, nonland card revealed this way and cast it without paying its mana cost. 
+rarity=C
+[/card]
+[card]
+name=Nature Demands an Offering
+type=Scheme 
+text=When you set this scheme in motion, target opponent chooses a creature you don't control and puts it on top of its owner's library, then repeats this process for an artifact, an enchantment, and a land. Then the owner of each permanent chosen this way shuffles his or her library. 
+rarity=C
+[/card]
+[card]
+name=Nature Shields Its Own
+type=Ongoing Scheme 
+text=(An ongoing scheme remains face up until it's abandoned.) Whenever a creature attacks and isn't blocked, if you're the defending player, put a 0/1 green Plant creature token onto the battlefield blocking that creature. When four or more creatures attack you, abandon this scheme at end of combat. 
+rarity=C
+[/card]
+[card]
+name=Nothing Can Stop Me Now
+type=Ongoing Scheme 
+text=(An ongoing scheme remains face up until it's abandoned.) If a source an opponent controls would deal damage to you, prevent 1 of that damage. At the beginning of each end step, if you've been dealt 5 or more damage this turn, abandon this scheme. 
+rarity=C
+[/card]
+[card]
+name=Only Blood Ends Your Nightmares
+type=Scheme 
+text=When you set this scheme in motion, each opponent sacrifices a creature. Then each opponent who didn't sacrifice a creature discards two cards. 
+rarity=C
+[/card]
+[card]
+name=Realms Befitting My Majesty
+type=Scheme 
+text=When you set this scheme in motion, search your library for up to two basic land cards, put them onto the battlefield tapped, then shuffle your library. 
+rarity=C
+[/card]
+[card]
+name=Roots of All Evil
+type=Scheme 
+text=When you set this scheme in motion, put five 1/1 green Saproling creature tokens onto the battlefield. 
+rarity=C
+[/card]
+[card]
+name=Rotted Ones, Lay Siege
+type=Scheme 
+text=When you set this scheme in motion, for each opponent, put a 2/2 black Zombie creature token onto the battlefield that attacks that player each combat if able. 
+rarity=C
+[/card]
+[card]
+name=Surrender Your Thoughts
+type=Scheme 
+text=When you set this scheme in motion, target opponent chooses self or others. If that player chooses self, he or she discards four cards. If the player chooses others, each of your other opponents discards two cards. 
+rarity=C
+[/card]
+[card]
+name=The Dead Shall Serve
+type=Scheme 
+text=When you set this scheme in motion, for each opponent, put up to one target creature card from that player's graveyard onto the battlefield under your control. Each of those creatures attacks its owner each combat if able. 
+rarity=C
+[/card]
+[card]
+name=The Fate of the Flammable
+type=Scheme 
+text=When you set this scheme in motion, target opponent chooses self or others. If that player chooses self, this scheme deals 6 damage to him or her. If the player chooses others, this scheme deals 3 damage to each of your other opponents. 
+rarity=C
+[/card]
+[card]
+name=The Iron Guardian Stirs
+type=Scheme 
+text=When you set this scheme in motion, put a 4/6 colorless Golem artifact creature token onto the battlefield. 
+rarity=C
+[/card]
+[card]
+name=The Pieces Are Coming Together
+type=Scheme 
+text=When you set this scheme in motion, draw two cards. Artifact spells you cast this turn cost {2} less to cast. 
+rarity=C
+[/card]
+[card]
+name=The Very Soil Shall Shake
+type=Ongoing Scheme 
+text=(An ongoing scheme remains face up until it's abandoned.) Creatures you control get +2/+2 and have trample. When a creature you control is put into a graveyard from the battlefield, abandon this scheme.
+rarity=C
+[/card]
+[card]
+name=Tooth, Claw, and Tail
+type=Scheme 
+text=When you set this scheme in motion, destroy up to three target nonland permanents. 
+rarity=C
+[/card]
+[card]
+name=Which of You Burns Brightest?
+type=Scheme 
+text=When you set this scheme in motion, you may pay {X}. If you do, this scheme deals X damage to target opponent and each creature he or she controls. 
+rarity=C
+[/card]
+[card]
+name=Your Fate Is Thrice Sealed
+type=Scheme 
+text=When you set this scheme in motion, reveal the top three cards of your library. Put all land cards revealed this way onto the battlefield and the rest into your hand. 
+rarity=C
+[/card]
+[card]
+name=Your Puny Minds Cannot Fathom
+type=Scheme 
+text=When you set this scheme in motion, draw four cards. You have no maximum hand size until your next turn. 
+rarity=C
+[/card]
+[card]
+name=Your Will Is Not Your Own
+type=Scheme 
+text=When you set this scheme in motion, gain control of target creature an opponent controls until end of turn. Untap that creature. It gets +3/+3 and gains haste and trample until end of turn. 
+rarity=C
+[/card]
