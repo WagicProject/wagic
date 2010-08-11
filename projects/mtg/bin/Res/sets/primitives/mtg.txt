@@ -21236,7 +21236,7 @@ toughness=2
 name=Hickory Woodlot
 auto=counter(0/0,2,Depletion)
 auto={T}{C(0/0,-1,Depletion)}:Add{G}{G}
-auto=@tapped(this):bury all(hickory woodlot[-counter{0/0.1.Depletion}]|)
+auto=@tapped(this):bury all(hickory woodlot[-counter{0/0.1.Depletion}])
 text=Hickory Woodlot enters the battlefield tapped with two depletion counters on it. -- {T}, Remove a depletion counter from Hickory Woodlot: Add {G}{G} to your mana pool. If there are no depletion counters on Hickory Woodlot, sacrifice it.
 type=Land
 [/card]
