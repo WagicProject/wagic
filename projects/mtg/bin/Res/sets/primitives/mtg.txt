@@ -13002,8 +13002,8 @@ toughness=2
 [/card]
 [card]
 name=Dwarven Armory
-auto={2}{S(land|myBattlefield):counter(2/2,1) target(creature) myUpkeepOnly
-auto={2}{S(land|myBattlefield):counter(2/2,1) target(creature) OpponentUpkeepOnly
+auto={2}{S(land|myBattlefield)}:counter(2/2,1) target(creature) myUpkeepOnly
+auto={2}{S(land|myBattlefield)}:counter(2/2,1) target(creature) OpponentUpkeepOnly
 text={2}, Sacrifice a land: Put a +2/+2 counter on target creature. Activate this ability only during any upkeep step.
 mana={2}{R}{R}
 type=Enchantment
@@ -19166,7 +19166,7 @@ colour=white
 [/card]
 [card]
 name=Goldmeadow Lookout
-auto={W}{T}{S(*|myhand):token(-130311)
+auto={W}{T}{S(*|myhand)}:token(-130311)
 text={W}, {T}, Discard a card: Put a 1/1 white Kithkin Soldier creature token named Goldmeadow Harrier onto the battlefield. It has "{W}, {T}: Tap target creature."
 mana={3}{W}
 type=Creature
@@ -25184,7 +25184,7 @@ toughness=3
 name=Kjeldoran Javelineer
 auto=@each my upkeep:counter(0/0,1,Age)
 auto=thisforeach(counter{0/0.1.Age}) upcost[{1}] moveTo(graveyard)
-auto={T}:thisforeach(counter{0/0.1.Age]}) damage:1 target(creature[attacking;blocking])
+auto={T}:thisforeach(counter{0/0.1.Age}) damage:1 target(creature[attacking;blocking])
 text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- {T}: Kjeldoran Javelineer deals damage to target attacking or blocking creature equal to the number of age counters on Kjeldoran Javelineer.
 mana={W}
 type=Creature
@@ -31382,7 +31382,7 @@ toughness=2
 [/card]
 [card]
 name=Nihilistic Glee
-auto={2}{B}{S(*|myhand):life:-1 opponent && life:1 controller
+auto={2}{B}{S(*|myhand)}:life:-1 opponent && life:1 controller
 auto=aslongas(*|myhand) {L}{L}{1}:draw:1 <1
 text={2}{B}, Discard a card: Target opponent loses 1 life and you gain 1 life. -- Hellbent - {1}, Pay 2 life: Draw a card. Activate this ability only if you have no cards in hand.
 mana={2}{B}{B}
@@ -42932,7 +42932,7 @@ type=Instant
 [/card]
 [card]
 name=Spawning Pit
-auto={S(creature|myBattlefield):counter(0/0,1,Charge)
+auto={S(creature|myBattlefield)}:counter(0/0,1,Charge)
 auto={1}{T}{C(0/0,-2,Charge)}:token(Spawn,artifact creature spawn, 2/2)
 text=Whenever Serum Tank or another artifact enters the battlefield, put a charge counter on Serum Tank. -- {3}, {T}, Remove a charge counter from Serum Tank: Draw a card.
 mana={2}
@@ -47478,7 +47478,7 @@ toughness=5
 [card]
 name=Tidewalker
 auto=foreach(island|myBattlefield) counter(0/0,1,Time)
-auto=thisforeach(counter{0/0.1.Time) 1/1
+auto=thisforeach(counter{0/0.1.Time}) 1/1
 auto=@each my upkeep:counter(0/0,-1,Time)
 auto=lord(tidewalker[-counter{0/0.1.Time}]|myBattlefield) -99/-99
 text=Tidewalker enters the battlefield with a time counter on it for each Island you control. -- Vanishing (At the beginning of your upkeep, remove a time counter from this permanent. When the last is removed, sacrifice it.) -- Tidewalker's power and toughness are each equal to the number of time counters on it.
