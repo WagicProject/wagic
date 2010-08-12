@@ -81,19 +81,19 @@ type=Enchantment
 [card]
 name=AEther Vial
 auto=@each my upkeep:may counter(0/0.1.Charge)
-auto=this(counter{0/0,1,Charge}<1) {T}:moveTo(myBattlefield) target(creature[manacost=0]|myhand)
-auto=this(counter{0/0,1,Charge}=) {T}:moveTo(myBattlefield) target(creature[manacost=1]|myhand)
-auto=this(counter{0/0,2,Charge}=) {T}:moveTo(myBattlefield) target(creature[manacost=2]|myhand)
-auto=this(counter{0/0,3,Charge}=) {T}:moveTo(myBattlefield) target(creature[manacost=3]|myhand)
-auto=this(counter{0/0,4,Charge}=) {T}:moveTo(myBattlefield) target(creature[manacost=4]|myhand)
-auto=this(counter{0/0,5,Charge}=) {T}:moveTo(myBattlefield) target(creature[manacost=5]|myhand)
-auto=this(counter{0/0,6,Charge}=) {T}:moveTo(myBattlefield) target(creature[manacost=6]|myhand)
-auto=this(counter{0/0,7,Charge}=) {T}:moveTo(myBattlefield) target(creature[manacost=7]|myhand)
-auto=this(counter{0/0,8,Charge}=) {T}:moveTo(myBattlefield) target(creature[manacost=8]|myhand)
-auto=this(counter{0/0,9,Charge}=) {T}:moveTo(myBattlefield) target(creature[manacost=9]|myhand)
-auto=this(counter{0/0,10,Charge}=) {T}:moveTo(myBattlefield) target(creature[manacost=10]|myhand)
-auto=this(counter{0/0,11,Charge}=) {T}:moveTo(myBattlefield) target(creature[manacost=11]|myhand)
-auto=this(counter{0/0,12,Charge}=) {T}:moveTo(myBattlefield) target(creature[manacost=12]|myhand)
+auto=this(counter{0/0.1.Charge}<1) {T}:moveTo(myBattlefield) target(creature[manacost=0]|myhand)
+auto=this(counter{0/0.1.Charge}=) {T}:moveTo(myBattlefield) target(creature[manacost=1]|myhand)
+auto=this(counter{0/0.2.Charge}=) {T}:moveTo(myBattlefield) target(creature[manacost=2]|myhand)
+auto=this(counter{0/0.3.Charge}=) {T}:moveTo(myBattlefield) target(creature[manacost=3]|myhand)
+auto=this(counter{0/0.4.Charge}=) {T}:moveTo(myBattlefield) target(creature[manacost=4]|myhand)
+auto=this(counter{0/0.5.Charge}=) {T}:moveTo(myBattlefield) target(creature[manacost=5]|myhand)
+auto=this(counter{0/0.6.Charge}=) {T}:moveTo(myBattlefield) target(creature[manacost=6]|myhand)
+auto=this(counter{0/0.7.Charge}=) {T}:moveTo(myBattlefield) target(creature[manacost=7]|myhand)
+auto=this(counter{0/0.8.Charge}=) {T}:moveTo(myBattlefield) target(creature[manacost=8]|myhand)
+auto=this(counter{0/0.9.Charge}=) {T}:moveTo(myBattlefield) target(creature[manacost=9]|myhand)
+auto=this(counter{0/0.10.Charge}=) {T}:moveTo(myBattlefield) target(creature[manacost=10]|myhand)
+auto=this(counter{0/0.11.Charge}=) {T}:moveTo(myBattlefield) target(creature[manacost=11]|myhand)
+auto=this(counter{0/0.12.Charge}=) {T}:moveTo(myBattlefield) target(creature[manacost=12]|myhand)
 text=At the beginning of your upkeep, you may put a charge counter on AEther Vial. -- {T}: You may put a creature card with converted mana cost equal to the number of charge counters on AEther Vial from your hand onto the battlefield.
 mana={1}
 type=Artifact
@@ -17914,11 +17914,8 @@ toughness=3
 [/card]
 [card]
 name=Giant Growth
-##target=creature
-##auto=3/3
-target=creature,player
-auto=cantregen
-auto=damage:3
+target=creature
+auto=3/3
 text=Target creature gets +3/+3 until end of turn.
 mana={G}
 type=Instant
