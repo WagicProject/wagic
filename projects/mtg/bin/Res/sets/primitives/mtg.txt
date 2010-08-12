@@ -7591,7 +7591,7 @@ type=Instant
 [card]
 name=Chaosphere
 auto=lord(creature[flying]) cloud
-auto=lord(creature[-flying] reach
+auto=lord(creature[-flying]) reach
 auto=@movedTo(enchantment[world]|battlefield):bury
 text=Creatures with flying can block only creatures with flying. -- Creatures without flying have reach. (They can block creatures with flying.)
 mana={2}{R}
@@ -18773,7 +18773,7 @@ toughness=1
 [card]
 name=Goblin Mutant
 abilities=trample
-auto=aslongas(creature[power>=3;-tapped|opponentBattlefield) cantattack
+auto=aslongas(creature[power>=3;-tapped]|opponentBattlefield) cantattack
 auto=lord(creature) cantbeblockedby(goblin mutant[trample])
 text=Trample -- Goblin Mutant can't attack if defending player controls an untapped creature with power 3 or greater. -- Goblin Mutant can't block creatures with power 3 or greater.
 mana={2}{R}{R}
@@ -23859,7 +23859,7 @@ toughness=1
 [card]
 name=Junk Golem
 auto=counter(1/1,3)
-auto=upcost[{C(1/1,-1}] moveTo(graveyard)
+auto=upcost[{C(1/1,-1)}] moveTo(graveyard)
 auto={S(*|myhand)}:counter(1/1)
 text=Junk Golem enters the battlefield with three +1/+1 counters on it. -- At the beginning of your upkeep, sacrifice Junk Golem unless you remove a +1/+1 counter from it. -- {1}, Discard a card: Put a +1/+1 counter on Junk Golem.
 mana={4}
@@ -28396,7 +28396,7 @@ subtype=Equipment
 [/card]
 [card]
 name=Masked Gorgon
-auto=lord(creature[green;white] protection from(gorgon)
+auto=lord(creature[green;white]) protection from(gorgon)
 auto=aslongas(*|mygraveyard) protection from white >6
 auto=aslongas(*|mygraveyard) protection from green >6
 text=Green creatures and white creatures have protection from Gorgons. -- Threshold - Masked Gorgon has protection from green and from white as long as seven or more cards are in your graveyard.
@@ -33982,7 +33982,7 @@ toughness=1
 [card]
 name=Plague Boiler
 auto={1}{B}{G}:counter(0/0,-1,Plague)
-auto={1}{B}{G}:counter(0/0,1,Plague) && aslongas(plague boiler[counter{0/0.3.Plague}]|myBattlefield) bury all(*[-land)
+auto={1}{B}{G}:counter(0/0,1,Plague) && aslongas(plague boiler[counter{0/0.3.Plague}]|myBattlefield) bury all(*[-land])
 auto=@each my upkeep:counter(0/0,1,Plague) && aslongas(plague boiler[counter{0/0.3.Plague}]|myBattlefield) bury all(*[-land])
 text=At the beginning of your upkeep, put a plague counter on Plague Boiler. -- {1}{B}{G}: Put a plague counter on Plague Boiler or remove a plague counter from it. -- When Plague Boiler has three or more plague counters on it, sacrifice it. If you do, destroy all nonland permanents.
 mana={3}
@@ -35865,7 +35865,8 @@ toughness=2
 name=Rathi Intimidator
 abilities=fear
 auto={2}{T}:moveTo(myBattlefield) target(mercenary[manacost<=2]|mylibrary)
-text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- {2}, {T}: Search your library for a Mercenary permanent card with converted mana cost 2 or less and put that card onto the battlefield. Then shuffle your library.
+text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- {2}, {T}: Search your library for a Mercenary permanent card with converted mana cost 2 or less and put that card onto the battlefield. Then 
+shuffle your library.
 mana={1}{B}{B}
 type=Creature
 subtype=Horror Mercenary
@@ -37881,7 +37882,7 @@ toughness=2
 name=Rupture
 target=creature|myBattlefield
 auto=moveTo(mygraveyard)
-auto=damage:p all(creature[-flying]
+auto=damage:p all(creature[-flying])
 auto=damage:p all(player)
 text=Sacrifice a creature. Rupture deals damage equal to that creature's power to each creature without flying and each player.
 mana={2}{R}
@@ -43304,7 +43305,7 @@ toughness=2
 [/card]
 [card]
 name=Spiraling Embers
-target=creature,player)
+target=(creature,player)
 auto=foreach(*|myhand) damage:1
 text=Spiraling Embers deals damage to target creature or player equal to the number of cards in your hand.
 mana={3}{R}
