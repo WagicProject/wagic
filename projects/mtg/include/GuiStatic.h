@@ -50,7 +50,16 @@ struct GuiGameZone : public GuiStatic{
   void toggleDisplay();
   virtual ostream& toString(ostream& out) const;
 };
-
+//opponenthand
+class GuiOpponentHand: public GuiGameZone{
+public:
+    Player * player;
+	GuiOpponentHand(float _x, float _y, bool hasFocus, Player * player, GuiAvatars* Parent);
+	int receiveEventPlus(WEvent*);
+	int receiveEventMinus(WEvent*);
+	virtual ostream& toString(ostream& out) const;
+};
+//end of my addition
 class GuiGraveyard: public GuiGameZone{
  public:
   Player * player;

@@ -390,6 +390,17 @@ text={T}: Add {1} to your mana pool. -- {T}: Add {W} or {U} to your mana pool. A
 type=Land
 [/card]
 [card]
+name=Addle
+auto=choice name(white) && moveTo(graveyard) target(*[white]|opponenthand)
+auto=choice name(blue) && moveTo(graveyard) target(*[blue]|opponenthand)
+auto=choice name(black) && moveTo(graveyard) target(*[black]|opponenthand)
+auto=choice name(red) && moveTo(graveyard) target(*[red]|opponenthand)
+auto=choice name(green) && moveTo(graveyard) target(*[green]|opponenthand)
+text=Choose a color. Target player reveals his or her hand and you choose a card of that color from it. That player discards that card.
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
 name=Adun Oakenshield
 auto={B}{R}{G}{T}:moveTo(myhand) target(creature|mygraveyard)
 text={B}{R}{G}, {T}: Return target creature card from your graveyard to your hand.
@@ -728,11 +739,11 @@ toughness=1
 [/card]
 [card]
 name=Akroma's Blessing
-auto=may lord(creature|myBattlefield) protection from white
-auto=may lord(creature|myBattlefield) protection from blue
-auto=may lord(creature|myBattlefield) protection from black
-auto=may lord(creature|myBattlefield) protection from red
-auto=may lord(creature|myBattlefield) protection from green
+auto=choice name(protection from white) && lord(creature|myBattlefield) protection from white
+auto=choice name(protection from blue) && lord(creature|myBattlefield) protection from blue
+auto=choice name(protection from black) && lord(creature|myBattlefield) protection from black
+auto=choice name(protection from red) && lord(creature|myBattlefield) protection from red
+auto=choice name(protection from green) && lord(creature|myBattlefield) protection from green
 autohand={W}:cycling
 text=Creatures you control gain protection from the color of your choice until end of turn. -- Cycling {W} ({W}, Discard this card: Draw a card.)
 mana={2}{W}
@@ -4308,6 +4319,23 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Black Mana Battery
+auto={2}{T}:counter(0/0,1,Storage)
+auto={T}{C(0/0,-1,Storage)}:name(Remove 1 Counters) && add{B}
+auto={T}{C(0/0,-2,Storage)}:name(Remove 2 Counters) && add{B}{B}
+auto={T}{C(0/0,-3,Storage)}:name(Remove 3 Counters) && add{B}{B}{B}
+auto={T}{C(0/0,-4,Storage)}:name(Remove 4 Counters) && add{B}{B}{B}{B}
+auto={T}{C(0/0,-5,Storage)}:name(Remove 5 Counters) && add{B}{B}{B}{B}{B}
+auto={T}{C(0/0,-6,Storage)}:name(Remove 6 Counters) && add{B}{B}{B}{B}{B}{B}
+auto={T}{C(0/0,-7,Storage)}:name(Remove 7 Counters) && add{B}{B}{B}{B}{B}{B}{B}
+auto={T}{C(0/0,-8,Storage)}:name(Remove 8 Counters) && add{B}{B}{B}{B}{B}{B}{B}{B}
+auto={T}{C(0/0,-9,Storage)}:name(Remove 9 Counters) && add{B}{B}{B}{B}{B}{B}{B}{B}{B}
+auto={T}{C(0/0,-10,Storage)}:name(Remove 10 Counters) && add{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}
+text={2}, {T}: Put a charge counter on Black Mana Battery. -- {T}, Remove any number of charge counters from Black Mana Battery: Add {B} to your mana pool, then add an additional {B} to your mana pool for each charge counter removed this way.
+mana={4}
+type=Artifact
+[/card]
+[card]
 name=Black Knight
 abilities=first strike,protection from white
 text=First strike (This creature deals combat damage before creatures without first strike.) -- Protection from white (This creature can't be blocked, targeted, dealt damage, or enchanted by anything white.)
@@ -4388,6 +4416,22 @@ mana={1}{W}
 type=Creature
 subtype=Cat Rebel
 power=3
+toughness=1
+[/card]
+[card]
+name=Blademane Baku
+auto=@movedTo(spirit,arcane|mystack):counter(0/0,1,Ki)
+auto={1}{C(0/0,-1,Ki)}:name(Remove 1 Counters) && 2/0
+auto={1}{C(0/0,-2,Ki)}:name(Remove 2 Counters) && 4/0
+auto={1}{C(0/0,-3,Ki)}:name(Remove 3 Counters) && 6/0
+auto={1}{C(0/0,-4,Ki)}:name(Remove 4 Counters) && 8/0
+auto={1}{C(0/0,-5,Ki)}:name(Remove 5 Counters) && 10/0
+auto={1}{C(0/0,-6,Ki)}:name(Remove 6 Counters) && 12/0
+text=Whenever you cast a Spirit or Arcane spell, you may put a ki counter on Blademane Baku. -- {1}, Remove X ki counters from Blademane Baku: For each counter removed, Blademane Baku gets +2/+0 until end of turn.
+mana={1}{R}
+type=Creature
+subtype=Spirit
+power=1
 toughness=1
 [/card]
 [card]
@@ -5060,6 +5104,23 @@ alias=1191
 text=Choose one - Counter target red spell; or destroy target red permanent.
 mana={U}
 type=Instant
+[/card]
+[card]
+name=Blue Mana Battery
+auto={2}{T}:counter(0/0,1,Storage)
+auto={T}{C(0/0,-1,Storage)}:name(Remove 1 Counters) && add{U}
+auto={T}{C(0/0,-2,Storage)}:name(Remove 2 Counters) && add{U}{U}
+auto={T}{C(0/0,-3,Storage)}:name(Remove 3 Counters) && add{U}{U}{U}
+auto={T}{C(0/0,-4,Storage)}:name(Remove 4 Counters) && add{U}{U}{U}{U}
+auto={T}{C(0/0,-5,Storage)}:name(Remove 5 Counters) && add{U}{U}{U}{U}{U}
+auto={T}{C(0/0,-6,Storage)}:name(Remove 6 Counters) && add{U}{U}{U}{U}{U}{U}
+auto={T}{C(0/0,-7,Storage)}:name(Remove 7 Counters) && add{U}{U}{U}{U}{U}{U}{U}
+auto={T}{C(0/0,-8,Storage)}:name(Remove 8 Counters) && add{U}{U}{U}{U}{U}{U}{U}{U}
+auto={T}{C(0/0,-9,Storage)}:name(Remove 9 Counters) && add{U}{U}{U}{U}{U}{U}{U}{U}{U}
+auto={T}{C(0/0,-10,Storage)}:name(Remove 10 Counters) && add{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}
+text={2}, {T}: Put a charge counter on Blue Mana Battery. -- {T}, Remove any number of charge counters from Blue Mana Battery: Add {U} to your mana pool, then add an additional {U} to your mana pool for each charge counter removed this way.
+mana={4}
+type=Artifact
 [/card]
 [card]
 name=Blue Scarab
@@ -5743,6 +5804,15 @@ mana={1}
 type=Artifact
 [/card]
 [card]
+name=Brainbite
+target=*|opponenthand
+auto=moveTo(graveyard)
+auto=draw:1 controller
+text=Target opponent reveals his or her hand. You choose a card from it. That player discards that card. -- Draw a card.
+mana={2}{U}{B}
+type=Sorcery
+[/card]
+[card]
 name=Braingeyser
 target=player
 auto=draw:X
@@ -5862,6 +5932,17 @@ text=Enchant creature -- Enchanted creature gets +1/+1 for each other creature y
 mana={1}{R}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Brave the Elements
+auto=choice name(protection from white) && lord(creature[white]|myBattlefield) protection from white
+auto=choice name(protection from blue) && lord(creature[white]|myBattlefield) protection from blue
+auto=choice name(protection from black) && lord(creature[white]|myBattlefield) protection from black
+auto=choice name(protection from red) && lord(creature[white]|myBattlefield) protection from red
+auto=choice name(protection from green) && lord(creature[white]|myBattlefield) protection from green
+text=Choose a color. White creatures you control gain protection from the chosen color until end of turn.
+mana={W}
+type=Instant
 [/card]
 [card]
 name=Breach
@@ -6963,6 +7044,14 @@ text={T}: Add {1} to your mana pool. -- {(u/r)}, {T}: Add {U}{U}, {U}{R}, or {R}
 type=Land
 [/card]
 [card]
+name=Castigate
+target=*|opponenthand
+auto=moveTo(exile)
+text=Target opponent reveals his or her hand. You choose a nonland card from it and exile that card.
+mana={W}{B}
+type=Sorcery
+[/card]
+[card]
 name=Castle
 auto=lord(creature[-tapped]|myBattlefield) 0/2
 text=Untapped creatures you control get +0/+2.
@@ -7010,8 +7099,8 @@ type=Instant
 [/card]
 [card]
 name=Catastrophe
-auto=may destroy all(land)
-auto=may bury all(creature)
+auto=choice destroy all(land)
+auto=choice bury all(creature)
 text=Destroy all lands or all creatures. Creatures destroyed this way can't be regenerated.
 mana={4}{W}{W}
 type=Sorcery
@@ -7516,6 +7605,25 @@ type=Creature
 subtype=Beast
 power=2
 toughness=2
+[/card]
+[card]
+name=Chameleon Spirit
+auto=choice name(White) && counter(0/0,1,White) all(this)
+auto=choice name(Blue) && counter(0/0,1,Blue) all(this)
+auto=choice name(Black) && counter(0/0,1,Black) all(this)
+auto=choice name(Red) && counter(0/0,1,Red) all(this)
+auto=choice name(Green) && counter(0/0,1,Green) all(this)
+auto=this(counter{0/0.1.White}) foreach(*[white]|opponentBattlefield) 1/1
+auto=this(counter{0/0.1.Blue}) foreach(*[blue]|opponentBattlefield) 1/1
+auto=this(counter{0/0.1.Black}) foreach(*[black]|opponentBattlefield) 1/1 
+auto=this(counter{0/0.1.Red}) foreach(*[red]|opponentBattlefield) 1/1
+auto=this(counter{0/0.1.Green}) foreach(*[green]|opponentBattlefield) 1/1
+text=As Chameleon Spirit enters the battlefield, choose a color. -- Chameleon Spirit's power and toughness are each equal to the number of permanents of the chosen color your opponents control.
+mana={3}{U}
+type=Creature
+subtype=Illusion Spirit
+power=*
+toughness=*
 [/card]
 [card]
 name=Champion Lancer
@@ -8656,6 +8764,14 @@ power=2
 toughness=4
 [/card]
 [card]
+name=Coercion
+target=*|opponenthand
+auto=moveTo(graveyard)
+text=Target opponent reveals his or her hand. You choose a card from it. That player discards that card.
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
 name=Coffin Purge
 auto=exile target(*|graveyard)
 autograveyard={B}:copy(this) && moveTo(mystack)
@@ -8714,6 +8830,24 @@ auto=thisforeach(counter{0/0.1.Age}) upcost[{2}] moveTo(graveyard)
 text=Cumulative upkeep {2} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- At the beginning of each player's upkeep, Cold Snap deals damage to that player equal to the number of snow lands he or she controls.
 mana={2}{W}
 type=Enchantment
+[/card]
+[card]
+name=Coldsteel Heart
+auto=choice name(White) && counter(0/0,1,White) all(this)
+auto=choice name(Blue) && counter(0/0,1,Blue) all(this)
+auto=choice name(Black) && counter(0/0,1,Black) all(this)
+auto=choice name(Red) && counter(0/0,1,Red) all(this)
+auto=choice name(Green) && counter(0/0,1,Green) all(this)
+auto=tap
+auto=this(counter{0/0.1.White}) {T}:add{W}
+auto=this(counter{0/0.1.Blue}) {T}:add{U}
+auto=this(counter{0/0.1.Black}) {T}:add{B}
+auto=this(counter{0/0.1.Red}) {T}:add{R}
+auto=this(counter{0/0.1.Green}) {T}:add{G}
+text=Coldsteel Heart enters the battlefield tapped. -- As Coldsteel Heart enters the battlefield, choose a color. -- {T}: Add one mana of the chosen color to your mana pool.
+mana={2}
+type=Artifact
+subtype=Snow
 [/card]
 [card]
 name=Collapsing Borders
@@ -11879,6 +12013,13 @@ mana={3}{U}{U}
 type=Enchantment
 [/card]
 [card]
+name=Distress
+auto=moveTo(graveyard) target(*[-land]|opponenthand)
+text=Target player reveals his or her hand. You choose a nonland card from it. That player discards that card.
+mana={B}{B}
+type=Sorcery
+[/card]
+[card]
 name=Dive Bomber
 abilities=flying
 auto={T}{S}:damage:2 target(creature[attacking;blocking])
@@ -12914,6 +13055,14 @@ type=Creature
 subtype=Shade Spirit
 power=1
 toughness=1
+[/card]
+[card]
+name=Duress
+target=*[-creature;-land]|opponenthand
+auto=moveTo(graveyard)
+text=Target opponent reveals his or her hand. You choose a noncreature, nonland card from it. That player discards that card.
+mana={B}
+type=Sorcery
 [/card]
 [card]
 name=Durkwood Boars
@@ -14142,6 +14291,14 @@ id=-194903111
 auto=draw:1 controller
 auto=@movedto(this|exile):moveto(mygraveyard) target(*|myhand)
 auto=moveto(exile) all(this)
+[/card]
+[card]
+name=Encroach
+target=land[-basic]|opponenthand
+auto=moveTo(graveyard)
+text=Target player reveals his or her hand. You choose a nonbasic land card from it. That player discards that card.
+mana={B}
+type=Sorcery
 [/card]
 [card]
 name=Endangered Armodon
@@ -16894,6 +17051,23 @@ power=2
 toughness=4
 [/card]
 [card]
+name=Fountain of Cho
+auto=tap
+auto={T}:counter(0/0,1,Storage)
+auto={T}{C(0/0,-1,Storage)}:name(Remove 1 Counters) && add{W}
+auto={T}{C(0/0,-2,Storage)}:name(Remove 2 Counters) && add{W}{W}
+auto={T}{C(0/0,-3,Storage)}:name(Remove 3 Counters) && add{W}{W}{W}
+auto={T}{C(0/0,-4,Storage)}:name(Remove 4 Counters) && add{W}{W}{W}{W}
+auto={T}{C(0/0,-5,Storage)}:name(Remove 5 Counters) && add{W}{W}{W}{W}{W}
+auto={T}{C(0/0,-6,Storage)}:name(Remove 6 Counters) && add{W}{W}{W}{W}{W}{W}
+auto={T}{C(0/0,-7,Storage)}:name(Remove 7 Counters) && add{W}{W}{W}{W}{W}{W}{w}
+auto={T}{C(0/0,-8,Storage)}:name(Remove 8 Counters) && add{W}{W}{W}{W}{W}{W}{w}{w}
+auto={T}{C(0/0,-9,Storage)}:name(Remove 9 Counters) && add{W}{W}{W}{W}{W}{W}{w}{w}{w}
+auto={T}{C(0/0,-10,Storage)}:name(Remove 10 Counters) && add{W}{W}{W}{W}{W}{w}{w}{w}{w}{w}
+text=Fountain of Cho enters the battlefield tapped. -- {T}: Put a storage counter on Fountain of Cho. -- {T}, Remove any number of storage counters from Fountain of Cho: Add {W} to your mana pool for each storage counter removed this way.
+type=Land
+[/card]
+[card]
 name=Fountain of Youth
 auto={2}{T}:life:1
 text={2}, {T}: You gain 1 life.
@@ -19641,6 +19815,23 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Green Mana Battery
+auto={2}{T}:counter(0/0,1,Storage)
+auto={T}{C(0/0,-1,Storage)}:name(Remove 1 Counters) && add{G}
+auto={T}{C(0/0,-2,Storage)}:name(Remove 2 Counters) && add{G}{G}
+auto={T}{C(0/0,-3,Storage)}:name(Remove 3 Counters) && add{G}{G}{G}
+auto={T}{C(0/0,-4,Storage)}:name(Remove 4 Counters) && add{G}{G}{G}{G}
+auto={T}{C(0/0,-5,Storage)}:name(Remove 5 Counters) && add{G}{G}{G}{G}{G}
+auto={T}{C(0/0,-6,Storage)}:name(Remove 6 Counters) && add{G}{G}{G}{G}{G}{G}
+auto={T}{C(0/0,-7,Storage)}:name(Remove 7 Counters) && add{G}{G}{G}{G}{G}{G}{G}
+auto={T}{C(0/0,-8,Storage)}:name(Remove 8 Counters) && add{G}{G}{G}{G}{G}{G}{G}{G}
+auto={T}{C(0/0,-9,Storage)}:name(Remove 9 Counters) && add{G}{G}{G}{G}{G}{G}{G}{G}{G}
+auto={T}{C(0/0,-10,Storage)}:name(Remove 10 Counters) && add{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}
+text={2}, {T}: Put a charge counter on Green Mana Battery. -- {T}, Remove any number of charge counters from Green Mana Battery: Add {G} to your mana pool, then add an additional {G} to your mana pool for each charge counter removed this way.
+mana={4}
+type=Artifact
+[/card]
+[card]
 name=Green Scarab
 target=creature
 auto=cantbeblockedby(creature[green])
@@ -20643,6 +20834,18 @@ type=Creature
 subtype=Homunculus Illusion
 power=1
 toughness=1
+[/card]
+[card]
+name=He Who Hungers
+abilities=flying
+auto={1}{S(creature[spirit]|mybattlefield)}:moveTo(graveyard) target(*|opponenthand)
+auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=4]|mygraveyard)
+text=Flying -- {1}, Sacrifice a Spirit: Target opponent reveals his or her hand. You choose a card from it. That player discards that card. Activate this ability only any time you could cast a sorcery. -- Soulshift 4 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 4 or less from your graveyard to your hand.)
+mana={4}{B}
+type=Legendary Creature
+subtype=Spirit
+power=3
+toughness=2
 [/card]
 [card]
 name=Headless Horseman
@@ -25871,6 +26074,23 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Kyren Toy
+auto={1}{T}:counter(0/0,1,Charge)
+auto={T}{C(0/0,-1,Charge)}:name(Remove 1 Counters) && add{2}
+auto={T}{C(0/0,-2,Charge)}:name(Remove 2 Counters) && add{3}
+auto={T}{C(0/0,-3,Charge)}:name(Remove 3 Counters) && add{4}
+auto={T}{C(0/0,-4,Charge)}:name(Remove 4 Counters) && add{5}
+auto={T}{C(0/0,-5,Charge)}:name(Remove 5 Counters) && add{6}
+auto={T}{C(0/0,-6,Charge)}:name(Remove 6 Counters) && add{7}
+auto={T}{C(0/0,-7,Charge)}:name(Remove 7 Counters) && add{8}
+auto={T}{C(0/0,-8,Charge)}:name(Remove 8 Counters) && add{9}
+auto={T}{C(0/0,-9,Charge)}:name(Remove 9 Counters) && add{10}
+auto={T}{C(0/0,-10,Charge)}:name(Remove 10 Counters) && add{11}
+text={1}, {T}: Put a charge counter on Kyren Toy. -- {T}, Remove X charge counters from Kyren Toy: Add {X}{1} to your mana pool.
+mana={3}
+type=Artifact
+[/card]
+[card]
 name=Kyscu Drake
 abilities=flying
 auto={G}:0/1 limit:1
@@ -27227,12 +27447,13 @@ toughness=1
 [card]
 name=Lotus Blossom
 auto=@each my upkeep:may counter(0/0,1,Petal)
-auto={T}{S}:thisforeach(counter{0/0.1.Petal}) add{W} controller
-auto={T}{S}:thisforeach(counter{0/0.1.Petal}) add{U} controller
-auto={T}{S}:thisforeach(counter{0/0.1.Petal}) add{B} controller
-auto={T}{S}:thisforeach(counter{0/0.1.Petal}) add{R} controller
-auto={T}{S}:thisforeach(counter{0/0.1.Petal}) add{G} controller
-text=At the beginning of your upkeep, you may put a petal counter on Lotus Blossom. -- {T}, Sacrifice Lotus Blossom: Add X mana of any one color to your mana pool, where X is the number of petal counters on Lotus Blossom.
+auto={T}{S}:name(Sacrifice And Add White Mana) && thisforeach(counter{0/0.1.Petal}) add{W} controller
+auto={T}{S}:name(Sacrifice And Add Blue Mana) && thisforeach(counter{0/0.1.Petal}) add{U} controller
+auto={T}{S}:name(Sacrifice And Add Black Mana) && thisforeach(counter{0/0.1.Petal}) add{B} controller
+auto={T}{S}:name(Sacrifice And Add Red Mana) && thisforeach(counter{0/0.1.Petal}) add{R} controller
+auto={T}{S}:name(Sacrifice And Add Green Mana) && thisforeach(counter{0/0.1.Petal}) add{G} controller
+text=At the beginning of your upkeep, you may put a petal counter on Lotus Blossom. -- {T}, Sacrifice Lotus Blossom:
+Add X mana of any one color to your mana pool, where X is the number of petal counters on Lotus Blossom.
 mana={2}
 type=Artifact
 [/card]
@@ -28648,6 +28869,40 @@ power=0
 toughness=5
 [/card]
 [card]
+name=Mercadian Bazaar
+auto=tap
+auto={T}:counter(0/0,1,Storage)
+auto={T}{C(0/0,-1,Storage)}:name(Remove 1 Counters) && add{R}
+auto={T}{C(0/0,-2,Storage)}:name(Remove 2 Counters) && add{R}{R}
+auto={T}{C(0/0,-3,Storage)}:name(Remove 3 Counters) && add{R}{R}{R}
+auto={T}{C(0/0,-4,Storage)}:name(Remove 4 Counters) && add{R}{R}{R}{R}
+auto={T}{C(0/0,-5,Storage)}:name(Remove 5 Counters) && add{R}{R}{R}{R}{R}
+auto={T}{C(0/0,-6,Storage)}:name(Remove 6 Counters) && add{R}{R}{R}{R}{R}{R}
+auto={T}{C(0/0,-7,Storage)}:name(Remove 7 Counters) && add{R}{R}{R}{R}{R}{R}{R}
+auto={T}{C(0/0,-8,Storage)}:name(Remove 8 Counters) && add{R}{R}{R}{R}{R}{R}{R}{R}
+auto={T}{C(0/0,-9,Storage)}:name(Remove 9 Counters) && add{R}{R}{R}{R}{R}{R}{R}{R}{R}
+auto={T}{C(0/0,-10,Storage)}:name(Remove 10 Counters) && add{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}
+text=Mercadian Bazaar enters the battlefield tapped. -- {T}: Put a storage counter on Mercadian Bazaar. -- {T}, Remove any number of storage counters from Mercadian Bazaar: Add {R} to your mana pool for each storage counter removed this way.
+type=Land
+[/card]
+[card]
+name=Mercadian Lift
+auto={T}:counter(0/0,1,Winch)
+auto={T}{C(0/0,-1,Winch)}:name(Remove 1 Counters) && moveTo(myBattlefield) notatarget(creature[manacost=1]|myhand)
+auto={T}{C(0/0,-2,Winch)}:name(Remove 2 Counters) && moveTo(myBattlefield) notatarget(creature[manacost=2]|myhand)
+auto={T}{C(0/0,-3,Winch)}:name(Remove 3 Counters) && moveTo(myBattlefield) notatarget(creature[manacost=3]|myhand)
+auto={T}{C(0/0,-4,Winch)}:name(Remove 4 Counters) && moveTo(myBattlefield) notatarget(creature[manacost=4]|myhand)
+auto={T}{C(0/0,-5,Winch)}:name(Remove 5 Counters) && moveTo(myBattlefield) notatarget(creature[manacost=5]|myhand)
+auto={T}{C(0/0,-6,Winch)}:name(Remove 6 Counters) && moveTo(myBattlefield) notatarget(creature[manacost=6]|myhand)
+auto={T}{C(0/0,-7,Winch)}:name(Remove 7 Counters) && moveTo(myBattlefield) notatarget(creature[manacost=7]|myhand)
+auto={T}{C(0/0,-8,Winch)}:name(Remove 8 Counters) && moveTo(myBattlefield) notatarget(creature[manacost=8]|myhand)
+auto={T}{C(0/0,-9,Winch)}:name(Remove 9 Counters) && moveTo(myBattlefield) notatarget(creature[manacost=9]|myhand)
+auto={T}{C(0/0,-10,Winch)}:name(Remove 10 Counters) && moveTo(myBattlefield) notatarget(creature[manacost=10]|myhand)
+text={1}, {T}: Put a winch counter on Mercadian Lift. -- {T}, Remove X winch counters from Mercadian Lift: You may put a creature card with converted mana cost X from your hand onto the battlefield.
+mana={1}
+type=Artifact
+[/card]
+[card]
 name=Mercadia's Downfall
 auto=lord(creature[attacking]|myBattlefield) foreach(land[-basic]|opponentBattlefield) 1/0
 auto=lord(creature[attacking]|opponentBattlefield) foreach(land[-basic]|myBattlefield) 1/0
@@ -29070,6 +29325,13 @@ alias=1167
 text=Target player discards X cards at random.
 mana={X}{B}{B}
 type=Sorcery
+[/card]
+[card]
+name=Mind Slash
+auto={B}{S(creature|mybattlefield)}:moveTo(graveyard) target(*|opponenthand) asSorcery
+text={B}, Sacrifice a creature: Target opponent reveals his or her hand. You choose a card from it. That player discards that card. Activate this ability only any time you could cast a sorcery.
+mana={1}{B}{B}
+type=Enchantment
 [/card]
 [card]
 name=Mind Spring
@@ -32519,6 +32781,26 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Order of the Stars
+abilities=defender
+auto=choice name(white) && counter(0/0,1,White) all(this)
+auto=choice name(blue) && counter(0/0,1,Blue) all(this)
+auto=choice name(black) && counter(0/0,1,Black) all(this)
+auto=choice name(red) && counter(0/0,1,Red) all(this)
+auto=choice name(green) && counter(0/0,1,Green) all(this)
+auto=this(counter{0/0.1.White}) protection from white
+auto=this(counter{0/0.1.Blue}) protection from blue
+auto=this(counter{0/0.1.Black}) protection from black
+auto=this(counter{0/0.1.Red}) protection from red
+auto=this(counter{0/0.1.Green}) protection from green
+text=Defender (This creature can't attack.) -- As Order of the Stars enters the battlefield, choose a color. -- Order of the Stars has protection from the chosen color.
+mana={W}
+type=Creature
+subtype=Human Cleric
+power=0
+toughness=1
+[/card]
+[card]
 name=Order of the White Shield
 abilities=protection from black
 auto={W}:first strike
@@ -32653,6 +32935,14 @@ type=Creature
 subtype=Thrull
 power=2
 toughness=2
+[/card]
+[card]
+name=Ostracize
+target=creature|opponenthand
+auto=moveTo(graveyard)
+text=Target opponent reveals his or her hand. You choose a creature card from it. That player discards that card.
+mana={B}
+type=Sorcery
 [/card]
 [card]
 name=Otarian Juggernaut
@@ -32816,6 +33106,14 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Painful Memories
+target=*|opponenthand
+auto=moveTo(ownerlibrary)
+text=Look at target opponent's hand and choose a card from it. Put that card on top of that player's library.
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
 name=Paladin en-Vec
 abilities=first strike,protection from black,protection from red
 text=First strike, protection from black and from red (This creature deals combat damage before creatures without first strike. It can't be blocked, targeted, dealt damage, or enchanted by anything black or red.)
@@ -32935,6 +33233,27 @@ type=Creature
 subtype=Cat Warrior
 power=6
 toughness=3
+[/card]
+[card]
+name=Paradise Plume
+auto=choice name(White) && counter(0/0,1,White) all(this)
+auto=choice name(Blue) && counter(0/0,1,Blue) all(this)
+auto=choice name(Black) && counter(0/0,1,Black) all(this)
+auto=choice name(Red) && counter(0/0,1,Red) all(this)
+auto=choice name(Green) && counter(0/0,1,Green) all(this)
+auto=this(counter{0/0.1.White}) {T}:add{W}
+auto=this(counter{0/0.1.Blue}) {T}:add{U}
+auto=this(counter{0/0.1.Black}) {T}:add{B}
+auto=this(counter{0/0.1.Red}) {T}:add{R}
+auto=this(counter{0/0.1.Green}) {T}:add{G}
+auto=@movedto(*[white]|stack):this(counter{0/0.1.White}) life:1 controller
+auto=@movedto(*[blue]|stack):this(counter{0/0.1.Blue}) life:1 controller
+auto=@movedto(*[black]|stack):this(counter{0/0.1.Black}) life:1 controller
+auto=@movedto(*[red]|stack):this(counter{0/0.1.Red}) life:1 controller
+auto=@movedto(*[green]|stack):this(counter{0/0.1.Green}) life:1 controller
+text=As Paradise Plume enters the battlefield, choose a color. -- Whenever a player casts a spell of the chosen color, you may gain 1 life. -- {T}: Add one mana of the chosen color to your mana pool.
+mana={1}
+type=Artifact
 [/card]
 [card]
 name=Paragon of the Amesha
@@ -33376,6 +33695,14 @@ type=Instant
 name=Perish
 auto=bury all(creature[green])
 text=Destroy all green creatures. They can't be regenerated.
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+name=Perish the Thought
+target=*|opponenthand
+auto=moveTo(ownerlibrary) && shuffle
+text=Target opponent reveals his or her hand. You choose a card from it. That player shuffles that card into his or her library.
 mana={2}{B}
 type=Sorcery
 [/card]
@@ -34790,6 +35117,14 @@ mana={X}{U}{B}
 type=Sorcery
 [/card]
 [card]
+name=Psychic Spear
+target=spirit,arcane|opponenthand
+auto=moveTo(graveyard)
+text=Target player reveals his or her hand. You choose a Spirit or Arcane card from it. That player discards that card.
+mana={B}
+type=Sorcery
+[/card]
+[card]
 name=Psychic Trance
 auto=lord(wizard|myBattlefield) {T}:fizzle target(*|stack)
 text=Until end of turn, Wizards you control gain "{T}: Counter target spell."
@@ -35226,6 +35561,22 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Quillmane Baku
+auto=@movedTo(spirit,arcane|mystack):counter(0/0,1,Ki)
+auto={1}{C(0/0,-1,Ki)}{T}:name(Remove 1 Counters) && moveTo(ownerhand) target(creature[manacost<=1])
+auto={1}{C(0/0,-2,Ki)}{T}:name(Remove 2 Counters) && moveTo(ownerhand) target(creature[manacost<=2])
+auto={1}{C(0/0,-3,Ki)}{T}:name(Remove 3 Counters) && moveTo(ownerhand) target(creature[manacost<=3])
+auto={1}{C(0/0,-4,Ki)}{T}:name(Remove 4 Counters) && moveTo(ownerhand) target(creature[manacost<=4])
+auto={1}{C(0/0,-5,Ki)}{T}:name(Remove 5 Counters) && moveTo(ownerhand) target(creature[manacost<=5])
+auto={1}{C(0/0,-6,Ki)}{T}:name(Remove 6 Counters) && moveTo(ownerhand) target(creature[manacost<=6])
+text=Whenever you cast a Spirit or Arcane spell, you may put a ki counter on Quillmane Baku. -- {1}, {T}, Remove X ki counters from Quillmane Baku: Return target creature with converted mana cost X or less to its owner's hand.
+mana={4}{U}
+type=Creature
+subtype=Spirit
+power=3
+toughness=3
+[/card]
+[card]
 name=Quirion Druid
 auto={G}{T}:target(land) becomes(Creature,2/2,green)
 text={G}, {T}: Target land becomes a 2/2 green creature that's still a land. (This effect lasts indefinitely.)
@@ -35242,6 +35593,25 @@ text=Whenever you cast a white, blue, black, or red spell, put a +1/+1 counter o
 mana={1}{G}
 type=Creature
 subtype=Dryad
+power=1
+toughness=1
+[/card]
+[card]
+name=Quirion Elves
+auto=choice name(white) && counter(0/0,1,White) all(this)
+auto=choice name(blue) && counter(0/0,1,Blue) all(this)
+auto=choice name(black) && counter(0/0,1,Black) all(this)
+auto=choice name(red) && counter(0/0,1,Red) all(this)
+auto=choice name(green) && counter(0/0,1,Green) all(this)
+auto=this(counter{0/0.1.White}) {T}:Add{W}
+auto=this(counter{0/0.1.Blue}) {T}:Add{U}
+auto=this(counter{0/0.1.Black}) {T}:Add{B}
+auto=this(counter{0/0.1.Red}) {T}:Add{R}
+auto=this(counter{0/0.1.Green}) {T}:Add{G}
+text=As Quirion Elves enters the battlefield, choose a color. -- {T}: Add {G} to your mana pool. -- {T}: Add one mana of the chosen color to your mana pool.
+mana={1}{G}
+type=Creature
+subtype=Elf Druid
 power=1
 toughness=1
 [/card]
@@ -36263,6 +36633,23 @@ alias=1312
 text=Choose one - Counter target blue spell; or destroy target blue permanent.
 mana={R}
 type=Instant
+[/card]
+[card]
+name=Red Mana Battery
+auto={2}{T}:counter(0/0,1,Charge)
+auto={T}{C(0/0,-1,Charge)}:name(Remove 1 Counters) && add{R}
+auto={T}{C(0/0,-2,Charge)}:name(Remove 2 Counters) && add{R}{R}
+auto={T}{C(0/0,-3,Charge)}:name(Remove 3 Counters) && add{R}{R}{R}
+auto={T}{C(0/0,-4,Charge)}:name(Remove 4 Counters) && add{R}{R}{R}{R}
+auto={T}{C(0/0,-5,Charge)}:name(Remove 5 Counters) && add{R}{R}{R}{R}{R}
+auto={T}{C(0/0,-6,Charge)}:name(Remove 6 Counters) && add{R}{R}{R}{R}{R}{R}
+auto={T}{C(0/0,-7,Charge)}:name(Remove 7 Counters) && add{R}{R}{R}{R}{R}{R}{R}
+auto={T}{C(0/0,-8,Charge)}:name(Remove 8 Counters) && add{R}{R}{R}{R}{R}{R}{R}{R}
+auto={T}{C(0/0,-9,Charge)}:name(Remove 9 Counters) && add{R}{R}{R}{R}{R}{R}{R}{R}{R}
+auto={T}{C(0/0,-10,Charge)}:name(Remove 10 Counters) && add{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}
+text={2}, {T}: Put a charge counter on Red Mana Battery. -- {T}, Remove any number of charge counters from Red Mana Battery: Add {R} to your mana pool, then add an additional {R} to your mana pool for each charge counter removed this way.
+mana={4}
+type=Artifact
 [/card]
 [card]
 name=Red Scarab
@@ -37910,6 +38297,23 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Rushwood Grove
+auto=tap
+auto={T}:counter(0/0,1,Storage)
+auto={T}{C(0/0,-1,Storage)}:name(Remove 1 Counters) && add{G}
+auto={T}{C(0/0,-2,Storage)}:name(Remove 2 Counters) && add{G}{G}
+auto={T}{C(0/0,-3,Storage)}:name(Remove 3 Counters) && add{G}{G}{G}
+auto={T}{C(0/0,-4,Storage)}:name(Remove 4 Counters) && add{G}{G}{G}{G}
+auto={T}{C(0/0,-5,Storage)}:name(Remove 5 Counters) && add{G}{G}{G}{G}{G}
+auto={T}{C(0/0,-6,Storage)}:name(Remove 6 Counters) && add{G}{G}{G}{G}{G}{G}
+auto={T}{C(0/0,-7,Storage)}:name(Remove 7 Counters) && add{G}{G}{G}{G}{G}{G}{G}
+auto={T}{C(0/0,-8,Storage)}:name(Remove 8 Counters) && add{G}{G}{G}{G}{G}{G}{G}{G}
+auto={T}{C(0/0,-9,Storage)}:name(Remove 9 Counters) && add{G}{G}{G}{G}{G}{G}{G}{G}{G}
+auto={T}{C(0/0,-10,Storage)}:name(Remove 10 Counters) && add{G}{G}{G}{G}{G}{G}{G}{G}{G}{G}
+text=Rushwood Grove enters the battlefield tapped. -- {T}: Put a storage counter on Rushwood Grove. -- {T}, Remove any number of storage counters from Rushwood Grove: Add {G} to your mana pool for each storage counter removed this way.
+type=Land
+[/card]
+[card]
 name=Rushwood Herbalist
 auto={G}{T}{S(*|myhand)}:regenerate target(creature)
 text={G}, {T}, Discard a card: Regenerate target creature.
@@ -38379,6 +38783,23 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Saprazzan Cove
+auto=tap
+auto={T}:counter(0/0,1,Storage)
+auto={T}{C(0/0,-1,Storage)}:name(Remove 1 Counters) && add{U}
+auto={T}{C(0/0,-2,Storage)}:name(Remove 2 Counters) && add{U}{U}
+auto={T}{C(0/0,-3,Storage)}:name(Remove 3 Counters) && add{U}{U}{U}
+auto={T}{C(0/0,-4,Storage)}:name(Remove 4 Counters) && add{U}{U}{U}{U}
+auto={T}{C(0/0,-5,Storage)}:name(Remove 5 Counters) && add{U}{U}{U}{U}{U}
+auto={T}{C(0/0,-6,Storage)}:name(Remove 6 Counters) && add{U}{U}{U}{U}{U}{U}
+auto={T}{C(0/0,-7,Storage)}:name(Remove 7 Counters) && add{U}{U}{U}{U}{U}{U}{U}
+auto={T}{C(0/0,-8,Storage)}:name(Remove 8 Counters) && add{U}{U}{U}{U}{U}{U}{U}{U}
+auto={T}{C(0/0,-9,Storage)}:name(Remove 9 Counters) && add{U}{U}{U}{U}{U}{U}{U}{U}{U}
+auto={T}{C(0/0,-10,Storage)}:name(Remove 10 Counters) && add{U}{U}{U}{U}{U}{U}{U}{U}{U}{U}
+text=Saprazzan Cove enters the battlefield tapped. -- {T}: Put a storage counter on Saprazzan Cove. -- {T}, Remove any number of storage counters from Saprazzan Cove: Add {U} to your mana pool for each storage counter removed this way.
+type=Land
+[/card]
+[card]
 name=Saprazzan Outrigger
 auto=@each combatends:moveTo(ownerlibrary) all(saprazzan outrigger[attacking;blocking]|myBattlefield)
 text=When Saprazzan Outrigger attacks or blocks, put it on top of its owner's library at end of combat.
@@ -38431,6 +38852,22 @@ type=Artifact Creature
 subtype=Myr
 power=2
 toughness=1
+[/card]
+[card]
+name=Sarpadian Empires, Vol. VII
+auto=choice name(white citizen) && counter(0/0,1,White Citizen) all(this)
+auto=choice name(blue camarid) && counter(0/0,1,Blue Camarid) all(this)
+auto=choice name(black thrull) && counter(0/0,1,Black Thrull) all(this)
+auto=choice name(red goblin) && counter(0/0,1,Red Goblin) all(this)
+auto=choice name(green saproling) && counter(0/0,1,Green Saproling) all(this)
+auto=this(counter{0/0.1.White Citizen}) {T}:token(Citizen,Creature Citizen,1/1,white)
+auto=this(counter{0/0.1.Blue Camarid}) {T}:token(Camarid,Creature Camarid,1/1,blue)
+auto=this(counter{0/0.1.Black Thrull}) {T}:token(Thrull,Creature Thrull,1/1,black)
+auto=this(counter{0/0.1.Red Goblin}) {T}:token(Goblin,Creature Goblin,1/1,red)
+auto=this(counter{0/0.1.Green Saproling}) {T}:token(Saproling,Creature Saproling,1/1,green)
+text=As Sarpadian Empires, Vol. VII enters the battlefield, choose white Citizen, blue Camarid, black Thrull, red Goblin, or green Saproling. -- {3}, {T}: Put a 1/1 creature token of the chosen color and type onto the battlefield.
+mana={3}
+type=Artifact
 [/card]
 [card]
 name=Savage Conception
@@ -39234,6 +39671,17 @@ name=Searing Flesh
 auto=damage:7 opponent
 text=Searing Flesh deals 7 damage to target opponent.
 mana={6}{R}
+type=Sorcery
+[/card]
+[card]
+name=Searing Rays
+auto=choice name(white) && foreach(creature[white]|myBattlefield) damage:1 controller && foreach(creature[white]|opponentBattlefield) damage:1 opponent
+auto=choice name(blue) && foreach(creature[blue]|myBattlefield) damage:1 controller && foreach(creature[blue]|opponentBattlefield) damage:1 opponent
+auto=choice name(black) && foreach(creature[black]|myBattlefield) damage:1 controller && foreach(creature[black]|opponentBattlefield) damage:1 opponent
+auto=choice name(red) && foreach(creature[red]|myBattlefield) damage:1 controller && foreach(creature[red]|opponentBattlefield) damage:1 opponent
+auto=choice name(green) && foreach(creature[green]|myBattlefield) damage:1 controller && foreach(creature[green]|opponentBattlefield) damage:1 opponent
+text=Choose a color. Searing Rays deals damage to each player equal to the number of creatures of that color that player controls.
+mana={2}{R}
 type=Sorcery
 [/card]
 [card]
@@ -40067,6 +40515,14 @@ mana={1}{R}
 type=Instant
 [/card]
 [card]
+name=Shattered Dreams
+target=artifact|opponenthand
+auto=moveTo(graveyard)
+text=Target opponent reveals his or her hand. You choose an artifact card from it. That player discards that card.
+mana={B}
+type=Sorcery
+[/card]
+[card]
 name=Shatterskull Giant
 mana={2}{R}{R}
 type=Creature
@@ -40826,6 +41282,26 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Silhana Starfletcher
+abilities=reach
+auto=choice name(white) && counter(0/0,1,White) all(this)
+auto=choice name(blue) && counter(0/0,1,Blue) all(this)
+auto=choice name(black) && counter(0/0,1,Black) all(this)
+auto=choice name(red) && counter(0/0,1,Red) all(this)
+auto=choice name(green) && counter(0/0,1,Green) all(this)
+auto=this(counter{0/0.1.White}) {T}:Add{W}
+auto=this(counter{0/0.1.Blue}) {T}:Add{U}
+auto=this(counter{0/0.1.Black}) {T}:Add{B}
+auto=this(counter{0/0.1.Red}) {T}:Add{R}
+auto=this(counter{0/0.1.Green}) {T}:Add{G}
+text=Reach (This creature can block creatures with flying.) -- As Silhana Starfletcher enters the battlefield, choose a color. -- {T}: Add one mana of the chosen color to your mana pool.
+mana={2}{G}
+type=Creature
+subtype=Elf Druid Archer
+power=1
+toughness=3
+[/card]
+[card]
 name=Silk Net
 target=creature
 auto=1/1
@@ -41387,6 +41863,22 @@ text=Equipped creature gets +1/-1. -- When equipped creature is put into a grave
 mana={1}
 type=Artifact
 subtype=Equipment
+[/card]
+[card]
+name=Skullmane Baku
+auto=@movedTo(spirit,arcane|mystack):counter(0/0,1,Ki)
+auto={1}{C(0/0,-1,Ki)}{T}:name(Remove 1 Counters) && -1/-1 target(creature)
+auto={1}{C(0/0,-2,Ki)}{T}:name(Remove 2 Counters) && -2/-2 target(creature)
+auto={1}{C(0/0,-3,Ki)}{T}:name(Remove 3 Counters) && -3/-3 target(creature)
+auto={1}{C(0/0,-4,Ki)}{T}:name(Remove 4 Counters) && -4/-4 target(creature)
+auto={1}{C(0/0,-5,Ki)}{T}:name(Remove 5 Counters) && -5/-5 target(creature)
+auto={1}{C(0/0,-6,Ki)}{T}:name(Remove 6 Counters) && -6/-6 target(creature)
+text=Whenever you cast a Spirit or Arcane spell, you may put a ki counter on Skullmane Baku. -- {1}, {T}, Remove X ki counters from Skullmane Baku: Target creature gets -X/-X until end of turn.
+mana={3}{B}{B}
+type=Creature
+subtype=Spirit
+power=2
+toughness=1
 [/card]
 [card]
 name=Skullmead Cauldron
@@ -42289,6 +42781,22 @@ type=Creature
 subtype=Ogre Samurai Shaman
 power=2
 toughness=3
+[/card]
+[card]
+name=Sol Grail
+auto=choice name(white) && counter(0/0,1,White) all(this)
+auto=choice name(blue) && counter(0/0,1,Blue) all(this)
+auto=choice name(black) && counter(0/0,1,Black) all(this)
+auto=choice name(red) && counter(0/0,1,Red) all(this)
+auto=choice name(green) && counter(0/0,1,Green) all(this)
+auto=this(counter{0/0.1.White}) {T}:Add{W}
+auto=this(counter{0/0.1.Blue}) {T}:Add{U}
+auto=this(counter{0/0.1.Black}) {T}:Add{B}
+auto=this(counter{0/0.1.Red}) {T}:Add{R}
+auto=this(counter{0/0.1.Green}) {T}:Add{G}
+text=As Sol Grail enters the battlefield, choose a color. -- {T}: Add one mana of the chosen color to your mana pool.
+mana={3}
+type=Artifact
 [/card]
 [card]
 name=Sol Ring
@@ -44956,6 +45464,23 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Subterranean Hangar
+auto=tap
+auto={2}{T}:counter(0/0,1,Storage)
+auto={T}{C(0/0,-1,Storage)}:name(Remove 1 Counters) && add{B}
+auto={T}{C(0/0,-2,Storage)}:name(Remove 2 Counters) && add{B}{B}
+auto={T}{C(0/0,-3,Storage)}:name(Remove 3 Counters) && add{B}{B}{B}
+auto={T}{C(0/0,-4,Storage)}:name(Remove 4 Counters) && add{B}{B}{B}{B}
+auto={T}{C(0/0,-5,Storage)}:name(Remove 5 Counters) && add{B}{B}{B}{B}{B}
+auto={T}{C(0/0,-6,Storage)}:name(Remove 6 Counters) && add{B}{B}{B}{B}{B}{B}
+auto={T}{C(0/0,-7,Storage)}:name(Remove 7 Counters) && add{B}{B}{B}{B}{B}{B}{B}
+auto={T}{C(0/0,-8,Storage)}:name(Remove 8 Counters) && add{B}{B}{B}{B}{B}{B}{B}{B}
+auto={T}{C(0/0,-9,Storage)}:name(Remove 9 Counters) && add{B}{B}{B}{B}{B}{B}{B}{B}{B}
+auto={T}{C(0/0,-10,Storage)}:name(Remove 10 Counters) && add{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}
+text=Subterranean Hangar enters the battlefield tapped. -- {T}: Put a storage counter on Subterranean Hangar. -- {T}, Remove any number of storage counters from Subterranean Hangar: Add {B} to your mana pool for each storage counter removed this way.
+type=Land
+[/card]
+[card]
 name=Subterranean Shambler
 auto=damage:1 all(creature[-flying]) && damage:1 all(player)
 auto=@movedTo(this|exile,graveyard,hand,library) from(battlefield):damage:1 all(creature[-flying]) && damage:1 all(player)
@@ -45071,18 +45596,6 @@ type=Legendary Creature
 subtype=Human Soldier
 power=4
 toughness=4
-[/card]
-[card]
-name=Sun Titan
-abilities=vigilance
-auto=may moveto(myBattlefield) target(*[manacost<=3]|mygraveyard)
-auto=lord(sun titan[attacking]|myBattlefield) {0}:moveto(myBattlefield) target(*[manacost<=3]|mygraveyard) limit:1
-text=Vigilance -- Whenever Sun Titan enters the battlefield or attacks, you may return target permanent card with converted mana cost 3 or less from your graveyard to the battlefield.
-mana={4}{W}
-type=Creature
-subtype=Giant
-power=6
-toughness=6
 [/card]
 [card]
 name=Sunastian Falconer
@@ -46223,6 +46736,22 @@ mana={2}{W}
 type=Enchantment
 [/card]
 [card]
+name=Teferi's Moat
+auto=choice name(white) && counter(0/0,1,White) all(this)
+auto=choice name(blue) && counter(0/0,1,Blue) all(this)
+auto=choice name(black) && counter(0/0,1,Black) all(this)
+auto=choice name(red) && counter(0/0,1,Red) all(this)
+auto=choice name(green) && counter(0/0,1,Green) all(this)
+auto=this(counter{0/0.1.White}) lord(creature[white;-flying]|opponentBattlefield) cantattack
+auto=this(counter{0/0.1.Blue}) lord(creature[blue;-flying]|opponentBattlefield) cantattack
+auto=this(counter{0/0.1.Black}) lord(creature[black;-flying]|opponentBattlefield) cantattack
+auto=this(counter{0/0.1.Red}) lord(creature[red;-flying]|opponentBattlefield) cantattack
+auto=this(counter{0/0.1.Green}) lord(creature[green;-flying]|opponentBattlefield) cantattack
+text=As Teferi's Moat enters the battlefield, choose a color. -- Creatures of the chosen color without flying can't attack you.
+mana={3}{W}{U}
+type=Enchantment
+[/card]
+[card]
 name=Tek
 auto=aslongas(forest|myBattlefield) trample
 auto=aslongas(island|myBattlefield) flying
@@ -47093,6 +47622,15 @@ auto=@tapped(island|opponentBattlefield):may life:1 controller
 text=Whenever an Island an opponent controls becomes tapped, you may gain 1 life.
 mana={G}{G}
 type=Enchantment
+[/card]
+[card]
+name=Thoughtseize
+target=*[-land]|opponenthand
+auto=moveTo(graveyard)
+auto=life:-2 controller
+text=Target player reveals his or her hand. You choose a nonland card from it. That player discards that card. You lose 2 life.
+mana={B}
+type=Sorcery
 [/card]
 [card]
 name=Thoughtweft Gambit
@@ -51019,6 +51557,26 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Voice of All
+abilities=flying
+auto=choice name(white) && counter(0/0,1,White) all(this)
+auto=choice name(blue) && counter(0/0,1,Blue) all(this)
+auto=choice name(black) && counter(0/0,1,Black) all(this)
+auto=choice name(red) && counter(0/0,1,Red) all(this)
+auto=choice name(green) && counter(0/0,1,Green) all(this)
+auto=this(counter{0/0.1.White}) protection from white
+auto=this(counter{0/0.1.Blue}) protection from blue
+auto=this(counter{0/0.1.Black}) protection from black
+auto=this(counter{0/0.1.Red}) protection from red
+auto=this(counter{0/0.1.Green}) protection from green
+text=Flying (This creature can't be blocked except by creatures with flying or reach.) -- As Voice of All enters the battlefield, choose a color. -- Voice of All has protection from the chosen color. (It can't be blocked, targeted, dealt damage, or enchanted by anything of the chosen color.)
+mana={2}{W}{W}
+type=Creature
+subtype=Angel
+power=2
+toughness=2
+[/card]
+[card]
 name=Voice of Duty
 abilities=flying,protection from green
 text=Flying, protection from green
@@ -51878,6 +52436,25 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Ward Sliver
+auto=choice name(white) && counter(0/0,1,White) all(this)
+auto=choice name(blue) && counter(0/0,1,Blue) all(this)
+auto=choice name(black) && counter(0/0,1,Black) all(this)
+auto=choice name(red) && counter(0/0,1,Red) all(this)
+auto=choice name(green) && counter(0/0,1,Green) all(this)
+auto=this(counter{0/0.1.White}) lord(sliver) protection from white
+auto=this(counter{0/0.1.Blue}) lord(sliver) protection from blue
+auto=this(counter{0/0.1.Black}) lord(sliver) protection from black
+auto=this(counter{0/0.1.Red}) lord(sliver) protection from red
+auto=this(counter{0/0.1.Green}) lord(sliver) protection from green
+text=As Ward Sliver enters the battlefield, choose a color. -- All Slivers have protection from the chosen color.
+mana={4}{W}
+type=Creature
+subtype=Sliver
+power=2
+toughness=2
+[/card]
+[card]
 name=Warlord's Axe
 auto={4}:equip
 auto=3/1
@@ -52529,6 +53106,23 @@ type=Creature
 subtype=Human Knight
 power=2
 toughness=2
+[/card]
+[card]
+name=White Mana Battery
+auto={2}{T}:counter(0/0,1,Storage)
+auto={T}{C(0/0,-1,Storage)}:name(Remove 1 Counters) && add{W}
+auto={T}{C(0/0,-2,Storage)}:name(Remove 2 Counters) && add{W}{W}
+auto={T}{C(0/0,-3,Storage)}:name(Remove 3 Counters) && add{W}{W}{W}
+auto={T}{C(0/0,-4,Storage)}:name(Remove 4 Counters) && add{W}{W}{W}{W}
+auto={T}{C(0/0,-5,Storage)}:name(Remove 5 Counters) && add{W}{W}{W}{W}{W}
+auto={T}{C(0/0,-6,Storage)}:name(Remove 6 Counters) && add{W}{W}{W}{W}{W}{W}
+auto={T}{C(0/0,-7,Storage)}:name(Remove 7 Counters) && add{W}{W}{W}{W}{W}{W}{w}
+auto={T}{C(0/0,-8,Storage)}:name(Remove 8 Counters) && add{W}{W}{W}{W}{W}{W}{w}{w}
+auto={T}{C(0/0,-9,Storage)}:name(Remove 9 Counters) && add{W}{W}{W}{W}{W}{W}{w}{w}{w}
+auto={T}{C(0/0,-10,Storage)}:name(Remove 10 Counters) && add{W}{W}{W}{W}{W}{w}{w}{w}{w}{w}
+text={2}, {T}: Put a charge counter on White Mana Battery. -- {T}, Remove any number of charge counters from White Mana Battery: Add {W} to your mana pool, then add an additional {W} to your mana pool for each charge counter removed this way.
+mana={4}
+type=Artifact
 [/card]
 [card]
 name=White Scarab

@@ -9,6 +9,7 @@
 #define GUI_CARD 2
 #define GUI_GRAVEYARD 3
 #define GUI_LIBRARY 4
+#define GUI_OPPONENTHAND 5
 
 #include <JGui.h>
 #include "Effects.h"

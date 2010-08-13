@@ -518,9 +518,7 @@ public:
   }
 
   const char * getMenuText(){
-    string result = "Move to ";
-    result.append(destination);
-    return (result.c_str());
+    return "Move";
   }
 
   AAMover * clone() const{
@@ -567,12 +565,18 @@ public:
           return "Reanimate";
         }else if (dest == g->players[i]->game->library){
           return "Put in Library";
+		}else if (dest == g->players[i]->game->inPlay){
+          return "Put in Play";
         }else if (dest == g->players[i]->game->graveyard && tc->targetsZone(g->players[i]->game->hand)){
           return "Discard";
         }else if (dest == g->players[i]->game->exile){
           return "Exile";
         }else if (tc->targetsZone(g->players[i]->game->library)){
           return "Fetch";
+		}else if (dest == g->players[i]->game->hand && tc->targetsZone(g->opponent()->game->hand)){
+          return "Steal";
+		}else if (dest == g->players[i]->game->graveyard && tc->targetsZone(g->opponent()->game->hand)){
+          return "Opponent Discards";
         }
       }
     }
@@ -863,11 +867,40 @@ public:
   ~ATokenCreator(){
     if (!isClone){
       delete(multiplier);
-    }
+	}
   }
 
 };
-
+//naming an ability line-------------------------------------------------------------------------
+class ANamer:public ActivatedAbility{
+public:
+  string name;
+  ANamer(int _id,MTGCardInstance * _source,ManaCost * _cost, string sname, int _doTap):ActivatedAbility(_id,_source,_cost,0,_doTap){
+    name = sname;
+  }
+   int resolve(){
+    return 0;
+  }
+   const char * getMenuText(){
+    sprintf(menuText, "%s",name.c_str());
+    return menuText;
+  }
+   virtual ostream& toString(ostream& out) const
+  {
+    out << "ANamer ::: name" << name
+	<< " (";
+    return ActivatedAbility::toString(out) << ")";
+  }
+    ANamer * clone() const{
+    ANamer * a =  NEW ANamer(*this);
+    a->isClone = 1;
+    return a;
+  }
+   ~ANamer(){
+    if (!isClone){}
+  }
+};
+//-----------------------------------------------------------------------------------------------
 
 class AADestroyer:public ActivatedAbility{
 public:

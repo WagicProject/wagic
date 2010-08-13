@@ -279,7 +279,7 @@ void GameObserver::Update(float dt){
   stateEffects();
   oldGamePhase = currentGamePhase;
 }
-
+ 
 //applies damage to creatures after updates
 //Players life test
 void GameObserver::stateEffects()
@@ -336,11 +336,22 @@ void GameObserver::ButtonPressed(PlayGuiObject * target){
       if (_tc && _tc->targetsZone(library->zone)){
         library->toggleDisplay();
         library->zone->needShuffle = true;
-      }
+	  }
     }
   }
   else if (GuiGraveyard* graveyard = dynamic_cast<GuiGraveyard*>(target))
     graveyard->toggleDisplay();
+//opponenthand
+  else if (GuiOpponentHand* opponentHand = dynamic_cast<GuiOpponentHand*>(target))
+      if (opponentHand->showCards){
+	  opponentHand->toggleDisplay();
+      } else {
+      TargetChooser * _tc = this->getCurrentTargetChooser();
+      if (_tc && _tc->targetsZone(opponentHand->zone)){
+        opponentHand->toggleDisplay();
+	  }
+	  }
+//end opponenthand
   else if (GuiAvatar* avatar = dynamic_cast<GuiAvatar*>(target)){
     cardClick(NULL, avatar->player);
   }

@@ -648,6 +648,17 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     return tok;
   }
 
+  //name an ability line
+  found = s.find("name(");
+  if (found != string::npos){
+    size_t end = s.find(")", found);
+    string sname = s.substr(found + 5,end - found - 5);
+	size_t previous = end+1;
+    ANamer * tok = NEW ANamer(id,card,NULL,sname,0);
+    return tok;
+  }
+
+
   //Equipment
   found = s.find("equip");
   if (found != string::npos){
