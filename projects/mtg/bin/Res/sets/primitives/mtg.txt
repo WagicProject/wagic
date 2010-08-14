@@ -8008,26 +8008,13 @@ abilities=flying
 auto=counter(0/0,3,Time)
 auto=@each my upkeep:counter(0/0,-1,Time)
 auto=this(counter{0/0.1.Time}=0) -99/-99
-auto=@movedTo(this|graveyard) from(myBattlefield):this(counter{0/0.1.Time}=0) token(-111066)*2
+auto=@movedTo(this|graveyard) from(myBattlefield):this(counter{0/0.1.Time}=0) token(111066)*2
 text=Vanishing 3 (This permanent enters the battlefield with three time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- When Chronozoa is put into a graveyard from the battlefield, if it had no time counters on it, put two tokens that are copies of it onto the battlefield.
 mana={3}{U}
 type=Creature
 subtype=Illusion
 power=3
 toughness=3
-[/card]
-[card]
-name=Chronozoa (Chronozoa)
-type=Creature
-subtype=Illusion
-abilities=flying
-auto=counter(0/0,3,Time)
-auto=@each my upkeep:counter(0/0,-1,Time)
-auto=this(counter{0/0.1.Time}=0) -99/-99
-auto=@movedTo(this|graveyard) from(myBattlefield):this(counter{0/0.1.Time}=0) token(-111066)*2
-power=3
-toughness=3
-manacost={3}{U}
 [/card]
 [card]
 name=Chub Toad
@@ -12202,6 +12189,7 @@ toughness=2
 [/card]
 [card]
 name=Door to Nothingness
+auto=tap
 auto={W}{W}{U}{U}{B}{B}{R}{R}{G}{G}{T}{S}:winGame
 text=Door to Nothingness enters the battlefield tapped. -- {W}{W}{U}{U}{B}{B}{R}{R}{G}{G}, {T}, Sacrifice Door to Nothingness: Target player loses the game.
 mana={5}
