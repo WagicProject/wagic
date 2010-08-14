@@ -83,24 +83,6 @@ mana={1}{R}
 type=Instant
 [/card]
 [card]
-name=Reiver Demon
-auto=kicker token(-99775533)*2 
-text=When Reiver Demon enters the battlefield, if you cast it from your hand, destroy all nonartifact, nonblack creatures. They can't be regenerated.
-mana={B}{B}{B}{B}{4}
-kicker={0}
-power=6
-toughness=6
-type=creature
-subtype=demon
-abilities=flying
-[/card]
-[card]
-name=Demoncasteffect
-auto=destroy all(creature[-artifact,-black]) && bury all(this)
-type=nothing
-id=-99775533
-[/card]
-[card]
 name=Iname as One
 auto=kicker token(-99775523)
 text=When Iname as One comes into play, if you played it from your hand, you may search your library for a  Spirit card, put it into play, then shuffle your library. When Iname is put into a graveyard from play, you may remove it from the game. If you do, return target  Spirit card from your graveyard to play. 
@@ -137,65 +119,6 @@ type=nothing
 id=-99775513
 [/card]
 [card]
-name=coal stoker
-auto=kicker token(-99775413)
-text=When Coal Stoker enters the battlefield, if you cast it from your hand, add {R}{R}{R} to your mana pool.
-mana={3}{R}
-kicker={0}
-power=3
-toughness=3
-type=creature
-subtype=elemental
-[/card]
-[card]
-name=casteffect
-auto=Add{R}{R}{R} && bury all(this)
-type=nothing
-id=-99775413
-[/card]
-[card]
-name=Myojin of Cleansing Fire
-auto=kicker token(-99775213)
-auto=counter(0/0,0,Divinity)
-auto=this(counter{0/0,1,Divinity}) indestructible
-auto={C(0/0,-1,Divinity)}:destroy all(other creature)
-auto={C(0/0,-1,Divinity)}:destroy all(other creature)
-text=Myojin of Cleansing Fire enters the battlefield with a divinity counter on it if you cast it from your hand. Myojin of Cleansing Fire is indestructible as long as it has a divinity counter on it. Remove a divinity counter from Myojin of Cleansing Fire: Destroy all other creatures.
-mana={5}{W}{W}{W}
-kicker={0}
-power=4
-toughness=6
-type=creature
-subtype=legendary spirit
-[/card]
-[card]
-name=myojincasteffect
-auto=counter(0/0,1,Divinity) all(Myojin of Cleansing Fire) && bury all(this)
-type=nothing
-id=-99775213
-[/card]
-[card]
-name=Myojin of Infinite Rage
-auto=kicker token(-99775214)
-auto=counter(0/0,0,Divinity)
-auto=this(counter{0/0,1,Divinity}) indestructible
-auto={C(0/0,-1,Divinity)}:destroy all(land)
-auto={C(0/0,-1,Divinity)}:destroy all(land)
-text=Myojin of Infinite Rage enters the battlefield with a divinity counter on it if you cast it from your hand. Myojin of Infinite Rage is indestructible as long as it has a divinity counter on it. Remove a divinity counter from Myojin of Infinite Rage: Destroy all lands.
-mana={7}{R}{R}{R}
-kicker={0}
-power=7
-toughness=4
-type=creature
-subtype=legendary spirit
-[/card]
-[card]
-name=myojincasteffect
-auto=counter(0/0,1,Divinity) all(Myojin of Infinite Rage) && bury all(this)
-type=nothing
-id=-99775214
-[/card]
-[card]
 name=Myojin of Life's Web
 auto=kicker token(-99774213)
 auto=counter(0/0,0,Divinity)
@@ -215,48 +138,6 @@ name=myojincasteffect
 auto=counter(0/0,1,Divinity) all(Myojin of Life's Web) && bury all(this)
 type=nothing
 id=-99774213
-[/card]
-[card]
-name=Myojin of Night's Reach
-auto=kicker token(-99764213)
-auto=counter(0/0,0,Divinity)
-auto=this(counter{0/0,1,Divinity}) indestructible
-auto={C(0/0,-1,Divinity)}: moveto(opponentgraveyard) all(*|opponenthand)
-auto={C(0/0,-1,Divinity)}: moveto(opponentgraveyard) all(*|opponenthand)
-text=Myojin of Night's Reach enters the battlefield with a divinity counter on it if you cast it from your hand. Myojin of Night's Reach is indestructible as long as it has a divinity counter on it. Remove a divinity counter from Myojin of Night's Reach: Each opponent discards his or her hand.
-mana={5}{B}{B}{B}
-kicker={0}
-power=5
-toughness=2
-type=creature
-subtype=legendary spirit
-[/card]
-[card]
-name=myojincasteffect
-auto=counter(0/0,1,Divinity) all(Myojin of Night's Reach) && bury all(this)
-type=nothing
-id=-99764213
-[/card]
-[card]
-name=Myojin of Seeing Winds
-auto=kicker token(-99464213)
-auto=counter(0/0,0,Divinity)
-auto=this(counter{0/0,1,Divinity}) indestructible
-auto={C(0/0,-1,Divinity)}: foreach(*|battlefield) draw:1
-auto={C(0/0,-1,Divinity)}: foreach(*|battlefield) draw:1
-text=Myojin of Seeing Winds enters the battlefield with a divinity counter on it if you cast it from your hand. Myojin of Seeing Winds is indestructible as long as it has a divinity counter on it. Remove a divinity counter from Myojin of Seeing Winds: Draw a card for each permanent you control.
-mana={7}{U}{U}{U}
-kicker={0}
-power=3
-toughness=3
-type=creature
-subtype=legendary spirit
-[/card]
-[card]
-name=myojincasteffect
-auto=counter(0/0,1,Divinity) all(Myojin of Seeing Winds) && bury all(this)
-type=nothing
-id=-99464213
 [/card]
 [card]
 name=Promise of Power

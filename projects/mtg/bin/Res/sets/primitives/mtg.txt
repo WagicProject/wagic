@@ -8667,6 +8667,17 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Coal Stoker
+auto=kicker add{R}{R}{R}
+text=When Coal Stoker enters the battlefield, if you cast it from your hand, add {R}{R}{R} to your mana pool.
+mana={3}{R}
+kicker={0}
+type=Creature
+subtype=Elemental
+power=3
+toughness=3
+[/card]
+[card]
 name=Coalition Victory
 auto=aslongas(plains|myBattlefield)aslongas(island|myBattlefield)aslongas(swamp|myBattlefield)aslongas(mountain|myBattlefield)aslongas(forest|myBattlefield)aslongas(creature[white]|myBattlefield)aslongas(creature[blue]|myBattlefield)aslongas(creature[black]|myBattlefield)aslongas(creature[red]|myBattlefield)aslongas(creature[green]|myBattlefield) winGame
 text=You win the game if you control a land of each basic land type and a creature of each color.
@@ -30717,6 +30728,58 @@ type=Creature
 subtype=Fungus
 power=5
 toughness=4
+[/card]
+[card]
+name=Myojin of Cleansing Fire
+auto=kicker counter(0/0,1,Divinity)
+auto=this(counter{0/0.1.Divinity}) indestructible
+auto={C(0/0,-1,Divinity)}:destroy all(other creature)
+text=Myojin of Cleansing Fire enters the battlefield with a divinity counter on it if you cast it from your hand. Myojin of Cleansing Fire is indestructible as long as it has a divinity counter on it. Remove a divinity counter from Myojin of Cleansing Fire: Destroy all other creatures.
+mana={5}{W}{W}{W}
+kicker={0}
+power=4
+toughness=6
+type=Creature
+subtype=Legendary Spirit
+[/card]
+[card]
+name=Myojin of Infinite Rage
+auto=kicker counter(0/0,1,Divinity)
+auto=this(counter{0/0.1.Divinity}) indestructible
+auto={C(0/0,-1,Divinity)}:destroy all(land)
+text=Myojin of Infinite Rage enters the battlefield with a divinity counter on it if you cast it from your hand. -- Myojin of Infinite Rage is indestructible as long as it has a divinity counter on it. -- Remove a divinity counter from Myojin of Infinite Rage: Destroy all lands.
+mana={7}{R}{R}{R}
+kicker={0}
+type=Legendary Creature
+subtype=Spirit
+power=7
+toughness=4
+[/card]
+[card]
+name=Myojin of Night's Reach
+auto=kicker counter(0/0,1,Divinity)
+auto=this(counter{0/0.1.Divinity}) indestructible
+auto={C(0/0,-1,Divinity)}:moveTo(graveyard) all(*|opponenthand)
+text=Myojin of Night's Reach enters the battlefield with a divinity counter on it if you cast it from your hand. -- Myojin of Night's Reach is indestructible as long as it has a divinity counter on it. -- Remove a divinity counter from Myojin of Night's Reach: Each opponent discards his or her hand.
+mana={5}{B}{B}{B}
+kicker={0}
+type=Legendary Creature
+subtype=Spirit
+power=5
+toughness=2
+[/card]
+[card]
+name=Myojin of Seeing Winds
+auto=kicker counter(0/0,1,Divinity)
+auto=this(counter{0/0.1.Divinity}) indestructible
+auto={C(0/0,-1,Divinity)}:foreach(*|myBattlefield) draw:1
+text=Myojin of Seeing Winds enters the battlefield with a divinity counter on it if you cast it from your hand. -- Myojin of Seeing Winds is indestructible as long as it has a divinity counter on it. -- Remove a divinity counter from Myojin of Seeing Winds: Draw a card for each permanent you control.
+mana={7}{U}{U}{U}
+kicker={0}
+type=Legendary Creature
+subtype=Spirit
+power=3
+toughness=3
 [/card]
 [card]
 name=Myr Matrix

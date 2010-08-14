@@ -5746,22 +5746,10 @@ type=Enchantment
 [/card]
 [card]
 name=Clutch of Undeath
-target=creature
-auto=aslongas(mytgt[black])3/3
-auto=aslongas(mytgt[-black])-3/-3
 text=Enchant creature -- Enchanted creature gets +3/+3 as long as it's a Zombie. Otherwise, it gets -3/-3.
 mana={3}{B}{B}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Coal Stoker
-text=When Coal Stoker enters the battlefield, if you cast it from your hand, add {R}{R}{R} to your mana pool.
-mana={3}{R}
-type=Creature
-subtype=Elemental
-power=3
-toughness=3
 [/card]
 [card]
 name=Coalhauler Swine
@@ -22923,24 +22911,6 @@ mana={6}
 type=Artifact
 [/card]
 [card]
-name=Myojin of Cleansing Fire
-text=Myojin of Cleansing Fire enters the battlefield with a divinity counter on it if you cast it from your hand. -- Myojin of Cleansing Fire is indestructible as long as it has a divinity counter on it. -- Remove a divinity counter from Myojin of Cleansing Fire: Destroy each other creature.
-mana={5}{W}{W}{W}
-type=Legendary Creature
-subtype=Spirit
-power=4
-toughness=6
-[/card]
-[card]
-name=Myojin of Infinite Rage
-text=Myojin of Infinite Rage enters the battlefield with a divinity counter on it if you cast it from your hand. -- Myojin of Infinite Rage is indestructible as long as it has a divinity counter on it. -- Remove a divinity counter from Myojin of Infinite Rage: Destroy all lands.
-mana={7}{R}{R}{R}
-type=Legendary Creature
-subtype=Spirit
-power=7
-toughness=4
-[/card]
-[card]
 name=Myojin of Life's Web
 text=Myojin of Life's Web enters the battlefield with a divinity counter on it if you cast it from your hand. -- Myojin of Life's Web is indestructible as long as it has a divinity counter on it. -- Remove a divinity counter from Myojin of Life's Web: Put any number of creature cards from your hand onto the battlefield.
 mana={6}{G}{G}{G}
@@ -22948,24 +22918,6 @@ type=Legendary Creature
 subtype=Spirit
 power=8
 toughness=8
-[/card]
-[card]
-name=Myojin of Night's Reach
-text=Myojin of Night's Reach enters the battlefield with a divinity counter on it if you cast it from your hand. -- Myojin of Night's Reach is indestructible as long as it has a divinity counter on it. -- Remove a divinity counter from Myojin of Night's Reach: Each opponent discards his or her hand.
-mana={5}{B}{B}{B}
-type=Legendary Creature
-subtype=Spirit
-power=5
-toughness=2
-[/card]
-[card]
-name=Myojin of Seeing Winds
-text=Myojin of Seeing Winds enters the battlefield with a divinity counter on it if you cast it from your hand. -- Myojin of Seeing Winds is indestructible as long as it has a divinity counter on it. -- Remove a divinity counter from Myojin of Seeing Winds: Draw a card for each permanent you control.
-mana={7}{U}{U}{U}
-type=Legendary Creature
-subtype=Spirit
-power=3
-toughness=3
 [/card]
 [card]
 name=Myr Adapter
@@ -28505,12 +28457,12 @@ mana={2}
 type=Artifact
 [/card]
 [card]
-#####Never worked! Needs some engine fixing....
 name=Reiver Demon
 abilities=flying
-auto=@movedTo(this|myBattlefield) from(mystack):destroy all(creature[-black;-artifact])
+auto=kicker bury all(creature[-artifact;-black])
 text=Flying -- When Reiver Demon enters the battlefield, if you cast it from your hand, destroy all nonartifact, nonblack creatures. They can't be regenerated.
 mana={4}{B}{B}{B}{B}
+kicker={0}
 type=Creature
 subtype=Demon
 power=6
