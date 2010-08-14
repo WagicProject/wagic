@@ -5861,7 +5861,7 @@ toughness=1
 [/card]
 [card]
 name=Bramblewood Paragon
-auto=@movedto(other warrior|myBattlefield):all(trigger) counter(1/1,1)
+auto=@movedto(other warrior|myBattlefield):all(trigger[to]) counter(1/1,1)
 auto=lord(creature[counter{1/1.1}]|myBattlefield) trample
 text=Each other Warrior creature you control enters the battlefield with an additional +1/+1 counter on it. -- Each creature you control with a +1/+1 counter on it has trample.
 mana={1}{G}
