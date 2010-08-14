@@ -1,3 +1,8 @@
+[meta]
+author=Wagic Team
+name=Archenemy
+year=2010
+[/meta]
 [card]
 primitive=A Display of My Dark Power
 id=212578
@@ -520,7 +525,7 @@ rarity=C
 [/card]
 [card]
 primitive=Molimo, Maro-Sorcerer
-id=220502
+id=220503
 rarity=R
 [/card]
 [card]
@@ -923,11 +928,6 @@ primitive=Wall of Roots
 id=220566
 rarity=C
 [/card]
-[meta]
-author=Wagic Team
-name=Archenemy
-year=2010
-[/meta]
 [card]
 primitive=Watchwolf
 id=220551
@@ -935,7 +935,7 @@ rarity=U
 [/card]
 [card]
 primitive=Wax (Wax/Wane)
-id=220503
+id=220502
 rarity=U
 [/card]
 [card]
