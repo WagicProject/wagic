@@ -1,0 +1,80 @@
+[meta]
+author=Wagic Team
+block=Vault
+year=2010
+[/meta]
+[card]
+primitive=Aether Vial
+id=212630
+rarity=M
+[/card]
+[card]
+primitive=Black Vise
+id=212636
+rarity=M
+[/card]
+[card]
+primitive=Isochron Scepter
+id=212626
+rarity=M
+[/card]
+[card]
+primitive=Ivory Tower
+id=212639
+rarity=M
+[/card]
+[card]
+primitive=Jester's Cap
+id=212627
+rarity=M
+[/card]
+[card]
+primitive=Karn, Silver Golem
+id=212632
+rarity=M
+[/card]
+[card]
+primitive=Masticore
+id=212629
+rarity=M
+[/card]
+[card]
+primitive=Memory Jar
+id=212633
+rarity=M
+[/card]
+[card]
+primitive=Mirari
+id=212635
+rarity=M
+[/card]
+[card]
+primitive=Mox Diamond
+id=212634
+rarity=M
+[/card]
+[card]
+primitive=Nevinyrral's Disk
+id=212637
+rarity=M
+[/card]
+[card]
+primitive=Sol Ring
+id=212638
+rarity=M
+[/card]
+[card]
+primitive=Sundering Titan
+id=212631
+rarity=M
+[/card]
+[card]
+primitive=Sword of Body and Mind
+id=212640
+rarity=M
+[/card]
+[card]
+primitive=Zuran Orb
+id=212628
+rarity=M
+[/card]

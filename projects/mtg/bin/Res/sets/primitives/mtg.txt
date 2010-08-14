@@ -46007,6 +46007,19 @@ power=1
 toughness=2
 [/card]
 [card]
+name=Sword of Body and Mind
+auto={2}:equip
+auto=protection from green
+auto=protection from blue
+auto=2/2
+auto=@damaged(player) from(mytgt):token(Wolf,Creature Wolf,2/2,green)
+auto=@damaged(player) from(mytgt):deplete:10 opponent
+text=Equipped creature gets +2/+2 and has protection from green and from blue. -- Whenever equipped creature deals combat damage to a player, you put a 2/2 green Wolf creature token onto the battlefield and that player puts the top ten cards of his or her library into his or her graveyard. -- Equip {2}
+mana={3}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
 name=Sword of Fire and Ice
 auto={2}:equip
 auto=protection from red
