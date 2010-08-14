@@ -45466,7 +45466,7 @@ toughness=4
 [card]
 name=Subterranean Hangar
 auto=tap
-auto={2}{T}:counter(0/0,1,Storage)
+auto={T}:counter(0/0,1,Storage)
 auto={T}{C(0/0,-1,Storage)}:name(Remove 1 Counters) && add{B}
 auto={T}{C(0/0,-2,Storage)}:name(Remove 2 Counters) && add{B}{B}
 auto={T}{C(0/0,-3,Storage)}:name(Remove 3 Counters) && add{B}{B}{B}
