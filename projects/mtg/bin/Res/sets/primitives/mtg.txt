@@ -5362,7 +5362,7 @@ toughness=1
 [/card]
 [card]
 name=Boggart Birth Rite
-target=goblin(mygraveyard)
+target=goblin|mygraveyard
 auto=moveTo(myHand)
 text=Return target Goblin card from your graveyard to your hand.
 mana={B}
