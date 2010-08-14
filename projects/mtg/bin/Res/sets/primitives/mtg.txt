@@ -20563,11 +20563,11 @@ toughness=2
 [/card]
 [card]
 name=Harabaz Druid
-auto={T}:foreach(ally|myBattlefield) add{W}
-auto={T}:foreach(ally|myBattlefield) add{U}
-auto={T}:foreach(ally|myBattlefield) add{B}
-auto={T}:foreach(ally|myBattlefield) add{R}
-auto={T}:foreach(ally|myBattlefield) add{G}
+auto={T}:name(RED) && foreach(ally|myBattlefield) add{R}
+auto={T}:name(WHITE) && foreach(ally|myBattlefield) add{W}
+auto={T}:name(GREEN) && foreach(ally|myBattlefield) add{G}
+auto={T}:name(BLACK) && foreach(ally|myBattlefield) add{B}
+auto={T}:name(BLUE) && foreach(ally|myBattlefield) add{U}
 text={T}: Add X mana of any one color to your mana pool, where X is the number of Allies you control.
 mana={1}{G}
 type=Creature
@@ -53657,11 +53657,11 @@ toughness=3
 [/card]
 [card]
 name=Wirewood Channeler
-auto={T}:foreach(elf|myBattlefield) add:{W}
-auto={T}:foreach(elf|myBattlefield) add:{U}
-auto={T}:foreach(elf|myBattlefield) add:{B}
-auto={T}:foreach(elf|myBattlefield) add:{R}
-auto={T}:foreach(elf|myBattlefield) add:{G}
+auto={T}:name(RED) && foreach(elf|myBattlefield) add{R}
+auto={T}:name(WHITE) && foreach(elf|myBattlefield) add{W}
+auto={T}:name(GREEN) && foreach(elf|myBattlefield) add{G}
+auto={T}:name(BLACK) && foreach(elf|myBattlefield) add{B}
+auto={T}:name(BLUE) && foreach(elf|myBattlefield) add{U}
 text={T}: Add X mana of any one color to your mana pool, where X is the number of Elves on the battlefield.
 mana={3}{G}
 type=Creature
