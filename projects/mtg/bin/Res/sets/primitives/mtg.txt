@@ -558,7 +558,7 @@ type=Instant
 [/card]
 [card]
 name=Agonizing Demise
-target=creature
+target=creature[-black]
 kicker={1}{R}
 auto=bury
 auto=kicker damage:p targetcontroller
@@ -4503,7 +4503,7 @@ name=Blastoderm
 abilities=shroud
 auto=counter(0/0,3,Fade)
 auto=@each my upkeep:counter(0/0,-1,Fade)
-auto=@each my untap:moveTo(mygraveyard) all(blastoderm[counter{0/0.0.Fade}]|myBattlefield)
+auto=@each my untap:moveTo(mygraveyard) all(blastoderm[-counter{0/0.1.Fade}]|myBattlefield)
 text=Shroud (This permanent can't be the target of spells or abilities.) -- Fading 3 (This creature enters the battlefield with three fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.)
 mana={2}{G}{G}
 type=Creature
@@ -5750,7 +5750,7 @@ type=Sorcery
 name=Bounty Hunter
 auto={T}:counter(0/0,1,Bounty) target(creature[-black])
 auto={T}:destroy target(creature[counter{0/0.1.Bounty}])
-text={T}: Put a bounty counter on target nonblack creature.
+text={T}: Put a bounty counter on target nonblack creature.-- {T}: Destroy target creature with a bounty counter on it.
 mana={2}{B}{B}
 type=Creature
 subtype=Human Archer Minion
@@ -8638,7 +8638,7 @@ name=Cloudskate
 abilities=flying
 auto=counter(0/0,3,Fade)
 auto=@each my upkeep:counter(0/0,-1,Fade)
-auto=@each my untap:moveTo(mygraveyard) all(cloudskate[counter{0/0.0.Fade}]|myBattlefield)
+auto=@each my untap:moveTo(mygraveyard) all(cloudskate[-counter{0/0.1.Fade}]|myBattlefield)
 text=Flying -- Fading 3 (This creature enters the battlefield with three fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.)
 mana={1}{U}
 type=Creature
@@ -9238,7 +9238,7 @@ name=Corpse Hatch
 target=creature[-black]
 auto=destroy
 auto=Token(-193507)*2
-text=Destroy target nonblack creature. -- Put two 0/1 colorless Eldrazi Spawn creature tokens onto the battlefield. They have “Sacrifice this creature: Add {1} to your mana pool.E
+text=Destroy target nonblack creature. -- Put two 0/1 colorless Eldrazi Spawn creature tokens onto the battlefield. They have “Sacrifice this creature: Add {1} to your mana pool."
 mana={3}{B}{B}
 type=Sorcery
 [/card]
@@ -10368,7 +10368,7 @@ type=Instant
 name=Dark Depths
 auto=counter(0/0,10,Ice)
 auto={3}:(counter(0/0,-1,Ice) all(this) && bury all(dark depths[-counter{0/0.1.Ice}])
-auto=@movedTo(dark depths[-counter{0/0.1.Ice}]|mygraveyard) from(myBattlefield):token(Marit Lage,creature avatar, 20/20,flying,indestructible,black)
+auto=@movedTo(dark depths[-counter{0/0.1.Ice}]|mygraveyard) from(myBattlefield):token(Marit Lage,legendary creature avatar, 20/20,flying,indestructible,black)
 text=Dark Depths enters the battlefield with ten ice counters on it. -- {3}: Remove an ice counter from Dark Depths. -- When Dark Depths has no ice counters on it, sacrifice it. If you do, put a legendary 20/20 black Avatar creature token with flying and "This creature is indestructible" named Marit Lage onto the battlefield.
 type=Legendary Snow Land
 [/card]
@@ -11004,7 +11004,7 @@ type=Sorcery
 [/card]
 [card]
 name=Deathmark Prelate
-auto={2}{B}{T}{S(zombie|myBattlefield)}:destroy target(creature[-zombie]) asSorcery
+auto={2}{B}{T}{S(zombie|myBattlefield)}:bury target(creature[-zombie]) asSorcery
 text={2}{B}, {T}, Sacrifice a Zombie: Destroy target non-Zombie creature. It can't be regenerated. Activate this ability only any time you could cast a sorcery.
 mana={3}{B}
 type=Creature
@@ -15653,7 +15653,7 @@ type=Enchantment
 [/card]
 [card]
 name=Festering Goblin
-auto=@movedTo(this|graveyard):-1/-1 target(creature) ueot
+auto=@movedTo(this|graveyard) from(battlefield):-1/-1 target(creature) ueot
 text=When Festering Goblin is put into a graveyard from the battlefield, target creature gets -1/-1 until end of turn.
 mana={B}
 type=Creature
@@ -15873,8 +15873,8 @@ toughness=1
 [card]
 name=Fire at Will
 target=creature[attacking;blocking]
-auto=damage:3
-auto=may damage:3 target(creature[attacking;blocking])
+auto=damage:1
+auto=may damage:1 target(creature[attacking;blocking])
 auto=token(-1111121)
 text=Fire at Will deals 3 damage divided as you choose among one, two, or three target attacking or blocking creatures.
 mana={RW}{RW}{RW}
@@ -15883,7 +15883,7 @@ type=Instant
 [card]
 name=Fire at Will's 3rd Damage
 auto=counter(0/0,1,Fire)
-auto=@damaged(creature,player):thisforeach(counter{0/0.1.Fire}>0) may damage:3 target(creature,player) && counter(0/0,-1,Fire) && counter(0/0,1,Bury)
+auto=@damaged(creature,player):thisforeach(counter{0/0.1.Fire}>0) may damage:1 target(creature,player) && counter(0/0,-1,Fire) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111121
 type=Nothing
@@ -17800,7 +17800,7 @@ subtype=Aura
 [card]
 name=Genju of the Realm
 target=land
-auto={2}:becomes(Spirit Creature,8/12,trample,legendary) ueot
+auto={2}:becomes(Legendary Spirit Creature,8/12,trample) ueot
 auto=@movedTo(mytgt|mygraveyard) from(battlefield):moveTo(myhand) all(this)
 text=Enchant land -- {2}: Enchanted land becomes a legendary 8/12 Spirit creature with trample until end of turn. It's still a land. -- When enchanted land is put into a graveyard, you may return Genju of the Realm from your graveyard to your hand.
 mana={W}{U}{B}{R}{G}
@@ -21258,7 +21258,7 @@ auto={2}:equip
 # targetting a token that's just being created might not work.
 # It currently doesn't matter though since the sword can't be
 # implemented anyway.
-# auto --- aslongas(Sword of Kaldra|mybattlefield) aslongas(Shield of Kaldra|mybattlefield) {1}:token(Kaldra,Creature Avatar,4/4,legendary) && attach target(Kaldra)
+# auto --- aslongas(Sword of Kaldra|mybattlefield) aslongas(Shield of Kaldra|mybattlefield) {1}:token(Kaldra,Legendary Creature Avatar,4/4) && attach target(Kaldra)
 text=Equipped creature has first strike, trample, and haste. -- {1}: If you control Equipment named Helm of Kaldra, Sword of Kaldra, and Shield of Kaldra, put a legendary 4/4 colorless Avatar creature token named Kaldra onto the battlefield and attach those Equipment to it. -- Equip {2}
 mana={3}
 type=Legendary Artifact
@@ -23769,7 +23769,7 @@ auto=counter(0/0,4,Fade)
 auto={1}{C(0/0,-1,Fade)}:tap target(creature)
 auto=@each my upkeep:counter(0/0,-1,Fade)
 auto=@each my untap:moveTo(mygraveyard) all(jolting merfolk[-counter{0/0.1.Fade}]|myBattlefield)
-text=Fading 4 (This creature enters the battlefield with five fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- {1}, Remove a fade counter from Ancient Hydra: Ancient Hydra deals 1 damage to target creature or player.
+text=Fading 4 (This creature enters the battlefield with five fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- {1}, Remove a fade counter from Jolting Merfolk: Tap target creature.
 mana={2}{U}{U}
 type=Creature
 subtype=Merfolk
@@ -24524,7 +24524,7 @@ toughness=3
 [card]
 name=Kathari Bomber
 abilities=flying
-auto=@damaged(player) from(this):token(Goblin,Creature Token Goblin,1/1,red) && moveTo(ownergraveyard) all(this)
+auto=@damaged(player) from(this):token(Goblin,Creature Token Goblin,1/1,red)*2 && moveTo(ownergraveyard) all(this)
 autograveyard={3}{B}{R}:moveto(exile) && token(17960211) asSorcery
 text=Flying -- When Kathari Bomber deals combat damage to a player, put two 1/1 red Goblin creature tokens onto the battlefield and sacrifice Kathari Bomber. -- Unearth {3}{B}{R} ({3}{B}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={1}{B}{R}
@@ -24539,7 +24539,7 @@ type=Creature
 subtype=Bird Shaman
 abilities=haste,flying
 auto=@next end:moveTo(exile)
-auto=@damaged(player) from(this):token(Goblin,Creature Token Goblin,1/1,red) && moveTo(exile) all(this)
+auto=@damaged(player) from(this):token(Goblin,Creature Token Goblin,1/1,red)*2 && moveTo(exile) all(this)
 text=Flying -- When Kathari Bomber deals combat damage to a player, put two 1/1 red Goblin creature tokens onto the battlefield and sacrifice Kathari Bomber. -- Unearth {3}{B}{R} ({3}{B}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 power=2
 toughness=2
@@ -25144,7 +25144,7 @@ subtype=Aura
 [/card]
 [card]
 name=Kirtar's Wrath
-auto=destroy all(creature)
+auto=bury all(creature)
 auto=aslongas(*|mygraveyard) token(Spirit,creature token spirit, 1/1,flying,white)*2 >6
 text=Destroy all creatures. They can't be regenerated. -- Threshold - If seven or more cards are in your graveyard, instead destroy all creatures, then put two 1/1 white Spirit creature tokens with flying onto the battlefield. Creatures destroyed this way can't be regenerated.
 mana={4}{W}{W}
@@ -28556,11 +28556,11 @@ toughness=3
 [/card]
 [card]
 name=Martial Coup
-mana={X}{W}{W}
-type=Sorcery
-text=Put X 1/1 soldier creature tokens into play. If X is 5 or more, destroy all other creatures.
 auto=this(X>=5) destroy all(creature)
 auto=token(Soldier,creature soldier,1/1,white) *X
+text=Put X 1/1 soldier creature tokens into play. If X is 5 or more, destroy all other creatures.
+mana={X}{W}{W}
+type=Sorcery
 [/card]
 [card]
 name=Marton Stromgald
@@ -29226,7 +29226,7 @@ type=Artifact
 [/card]
 [card]
 name=Mighty Emergence
-auto=@movedTo(creature|myBattlefield):all(trigger) counter(1/1,2)
+auto=@movedTo(creature[power>=5]|myBattlefield):all(trigger) counter(1/1,2)
 text=Whenever a creature with power 5 or greater enters the battlefield under your control, you may put two +1/+1 counters on it.
 mana={2}{G}
 type=Enchantment
@@ -31949,7 +31949,7 @@ toughness=2
 [/card]
 [card]
 name=Notorious Assassin
-auto={2}{B}{T}{S(*|myhand)}:destroy target(creature[-black])
+auto={2}{B}{T}{S(*|myhand)}:bury target(creature[-black])
 text={2}{B}, {T}, Discard a card: Destroy target nonblack creature. It can't be regenerated.
 mana={3}{B}
 type=Creature
@@ -32037,10 +32037,10 @@ toughness=6
 [/card]
 [card]
 name=Numai Outcast
-auto=rampage(1/1,0)
-auto=rampage(-1/-1,1)
-auto=lord(numai outcast[blocking]|mybattlefield) 1/1
-auto=lord(other numai outcast[blocking]|mybattlefield) -1/-1
+auto=rampage(2/2,0)
+auto=rampage(-2/-2,1)
+auto=lord(numai outcast[blocking]|mybattlefield) 2/2
+auto=lord(other numai outcast[blocking]|mybattlefield) -2/-2
 auto={L}{L}{L}{L}{L}{B}:regenerate
 text=Bushido 2 (When this blocks or becomes blocked, it gets +2/+2 until end of turn.) -- {B}, Pay 5 life: Regenerate Numai Outcast.
 mana={3}{B}
@@ -34297,8 +34297,8 @@ toughness=1
 [card]
 name=Plague Boiler
 auto={1}{B}{G}:counter(0/0,-1,Plague)
-auto={1}{B}{G}:counter(0/0,1,Plague) && aslongas(plague boiler[counter{0/0.3.Plague}]|myBattlefield) bury all(*[-land])
-auto=@each my upkeep:counter(0/0,1,Plague) && aslongas(plague boiler[counter{0/0.3.Plague}]|myBattlefield) bury all(*[-land])
+auto={1}{B}{G}:counter(0/0,1,Plague) && aslongas(plague boiler[counter{0/0.3.Plague}]|myBattlefield) destroy all(*[-land])
+auto=@each my upkeep:counter(0/0,1,Plague) && aslongas(plague boiler[counter{0/0.3.Plague}]|myBattlefield) destroy all(*[-land])
 text=At the beginning of your upkeep, put a plague counter on Plague Boiler. -- {1}{B}{G}: Put a plague counter on Plague Boiler or remove a plague counter from it. -- When Plague Boiler has three or more plague counters on it, sacrifice it. If you do, destroy all nonland permanents.
 mana={3}
 type=Artifact
@@ -39965,7 +39965,7 @@ type=Land
 [/card]
 [card]
 name=Sek'Kuar, Deathkeeper
-auto=@movedto(myGraveyard) from(other creature|myBattlefield):token(Graveborn, Creature Graveborn,3/1,haste red black)
+auto=@movedto(graveyard) from(other creature|myBattlefield):token(Graveborn, Creature Graveborn,3/1,haste red black)
 text=Whenever another nontoken creature you control is put into a graveyard from the battlefield, put a 3/1 black and red Graveborn creature token with haste onto the battlefield.
 mana={2}{B}{R}{G}
 type=Legendary Creature
@@ -53184,7 +53184,7 @@ name=Wickerbough Elder
 auto=counter(-1/-1,2)
 auto={G}{C(-1/-1,-1)}:destroy target(artifact,enchantment)
 text=Wickerbough Elder enters the battlefield with a -1/-1 counter on it. -- {G}, Remove a -1/-1 counter from Wickerbough Elder: Destroy target artifact or enchantment.
-mana={4}{G}
+mana={3}{G}
 type=Creature
 subtype=Treefolk Shaman
 power=4
@@ -54540,7 +54540,7 @@ toughness=2
 [/card]
 [card]
 name=Zektar Shrine Expedition
-auto=@movedTo(land|myBattlefield):counter(0/0,1,Quest)
+auto=@movedTo(land|myBattlefield):may counter(0/0,1,Quest)
 auto={C(0,0,-3,Quest)}{S}:token(-183403)
 text=Landfall - Whenever a land enters the battlefield under your control, you may put a quest counter on Zektar Shrine Expedition. -- Remove three quest counters from Zektar Shrine Expedition and sacrifice it: Put a 7/1 red Elemental creature token with trample and haste onto the battlefield. Exile it at the beginning of the next end step.
 mana={1}{R}
