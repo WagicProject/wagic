@@ -42,7 +42,7 @@ using std::map;
 
 class MTGAbility: public ActionElement{
  protected:
-  char menuText[25];
+  char menuText[50];
   
   GameObserver * game;
  public:
