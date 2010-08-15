@@ -10,3 +10,7 @@ neofont : neofont.o
 
 clean :
 	@rm -f neofont *.o *.asc *.gbk
+
+update : neofont fallback.ttf gkai00mp.ttf mono.ttf
+	@./neofont && mv *.asc *.gbk ../../Res/graphics/
+
