@@ -65,12 +65,29 @@ const vector<string>& CardPrimitive::formattedText()
 	  s[found] = '/';
 	  found = s.find_first_of("{}", found + 1);
 	}
-      std::string::size_type len = neofont ? 24 :30;
       while (s.length() > 0)
 	{
+          std::string::size_type len = neofont ? 24 :30;
 	  std::string::size_type cut = s.find_first_of("., \t)", 0);
 	  if (cut >= len || cut == string::npos)
 	    {
+              // Fix for single byte character in some complex language like Chinese
+              u8 * src = (u8 *)s.c_str();
+              if (neofont) {
+                len = 0;
+                std::string::size_type limit = 24; 
+                while (*src != 0) {
+                  if (*src > 0x80) { // Non-ASCII
+                    if (len + 2 > limit && !(((*src & 0xF0) == 0xA0) && ((*(src+1) & 0xF0) == 0xA0))) break;
+                    src += 2; len += 2;
+                  }
+                  else {             // ASCII
+                    if (*src == '/' && (*(src+1) & 0xF0) == 0xA0) limit += 3;
+                    if (len + 1 > limit && (*src == '+' || *src == '-' || *src == '/')) break;
+                    src += 1; len += 1;
+                  }
+                }
+              }
 	      ftdText.push_back(s.substr(0,len));
 	      if (s.length() > len)
 		s = s.substr(len, s.length() - len);
@@ -82,6 +99,9 @@ const vector<string>& CardPrimitive::formattedText()
 	      std::string::size_type newcut = cut;
 	      while (newcut < len && newcut != string::npos)
 		{
+                  // neofont use space to separate one line
+                  u8 * src = (u8 *)s.c_str();
+                  if (neofont && *src > 0x80) break;
 		  cut = newcut;
 		  newcut = s.find_first_of("., \t)", newcut + 1);
 		}

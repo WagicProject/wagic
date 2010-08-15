@@ -3,7 +3,7 @@
 #include "../include/WResourceManager.h"
 #include "JFileSystem.h"
 
-#define ISGBK(c) ((c) > 0x80 || (c) < 0x20 || (c) == '-')
+#define ISGBK(c) ((c) > 0x80 || (c) < 0x30 || (c) == '-' || (c) == '/')
 
 static PIXEL_TYPE gencolor(int id, PIXEL_TYPE color)
 {
@@ -54,6 +54,39 @@ static PIXEL_TYPE gencolor(int id, PIXEL_TYPE color)
   b = b * b0 / 255;
 
   return ARGB(a,r,g,b);
+}
+
+static int genmana(u8 c)
+{
+  int mana = -1;
+  switch (c) {
+  case 0xC7:
+    mana = Constants::MTG_COLOR_GREEN;
+    break;
+  case 0xD5:
+    mana = Constants::MTG_COLOR_BLUE;
+    break;
+  case 0xD2:
+    mana = Constants::MTG_COLOR_RED;
+    break;
+  case 0xC2:
+    mana = Constants::MTG_COLOR_BLACK;
+    break;
+  case 0xD7:
+    mana = Constants::MTG_COLOR_WHITE;
+    break;
+  case 0xD4: // T
+  case 0xD8: // X
+  case 0xD9: // Y
+    mana = Constants::MTG_UNCOLORED;
+    break;
+  default:
+    if (c >= 0xB0 && c <= 0xB9)
+      mana = Constants::MTG_UNCOLORED;
+    else
+      mana = -1;
+  }
+  return mana;
 }
 
 //
@@ -239,6 +272,7 @@ int WFBFont::PreCacheChar(const u8 *ch)
       // get out the proper data according to the even or odd quality of the counter
       gray = src[(i * size + j - offset) / 2];
       gray = ((j - offset) & 1) ? (gray & 0xF0) : ((gray & 0x0F) << 4);
+      if (gray) gray |= 0x0F;
 #if defined (WIN32) || defined (LINUX)
       mCharBuffer[y * mFontSize + x] = ARGB(gray, 255, 255, 255);
 #else
@@ -303,7 +337,7 @@ void WFBFont::DrawString(const char *s, float x, float y, int align, float leftO
   u8 * src = str;
   float xx = x;
   float yy = y;
-  int index;
+  int index = 0;
 
   bool isChinese=true;
 
@@ -341,7 +375,9 @@ void WFBFont::DrawString(const char *s, float x, float y, int align, float leftO
         src += 1;
       }
       else {
+        int mana = -1;
         if (*src > 0x80) {  // Chinese characters  (GBK encoding)
+          if (*src == 0xa3) mana = genmana(*(src+1));
           index = PreCacheChar(src);
           src += 2;
           isChinese = true;
@@ -359,7 +395,7 @@ void WFBFont::DrawString(const char *s, float x, float y, int align, float leftO
         float charWidth0 = charWidth;
         float delta = (isChinese) ? (charWidth * mScale) : (charWidth * mScale / 2);
         if (leftOffset) {
-          if (leftOffset < 0){ 
+          if (leftOffset < 0) { 
             xx -= leftOffset;
             leftOffset = 0;
           }
@@ -374,7 +410,7 @@ void WFBFont::DrawString(const char *s, float x, float y, int align, float leftO
             charWidth = delta / mScale;
           }   
         }
-        else if (width){
+        else if (width) {
           if (xx > x + width)
             return;
           if (xx + delta > x + width) {
@@ -382,12 +418,39 @@ void WFBFont::DrawString(const char *s, float x, float y, int align, float leftO
             charWidth = delta / mScale;
           }
         }
-        mSprites[index]->SetTextureRect(xPos, yPos, charWidth, charHeight);
-        mSprites[index]->SetColor(mColor);
-        mRenderer->RenderQuad(mSprites[index], xx, yy, 0, mScale, mScale);
-        mSprites[index]->SetTextureRect(xPos0, yPos, charWidth0, charHeight);
+
+        if (mana >= 0) {
+          if (*src == '/') { // hybrid mana cost
+            src += 1;
+            int mana2 = genmana(*(src+1));
+            src += 2;
+            unsigned char t = (JGE::GetInstance()->GetTime() / 3) & 0xFF;
+            unsigned char v = t + 127;
+            float scale = 0.05 * cosf(2*M_PI*((float)t)/256.0);
+            if (scale < 0) {
+              mRenderer->RenderQuad(manaIcons[mana], xx + 3 * sinf(2*M_PI*((float)t)/256.0), yy + 3 * cosf(2*M_PI*((float)(t-35))/256.0), 0, 0.5 * mScale, 0.5 * mScale);
+              mRenderer->RenderQuad(manaIcons[mana2], xx + 3 * sinf(2*M_PI*((float)v)/256.0), yy + 3 * cosf(2*M_PI*((float)(v-35))/256.0), 0, 0.5 * mScale, 0.5 * mScale);
+            }
+            else {
+              mRenderer->RenderQuad(manaIcons[mana2], xx + 3 * sinf(2*M_PI*((float)v)/256.0), yy + 3 * cosf(2*M_PI*((float)(v-35))/256.0), 0, 0.5 * mScale, 0.5 * mScale);
+              mRenderer->RenderQuad(manaIcons[mana], xx + 3 * sinf(2*M_PI*((float)t)/256.0), yy + 3 * cosf(2*M_PI*((float)(t-35))/256.0), 0, 0.5 * mScale, 0.5 * mScale);
+            }
+            mana = Constants::MTG_NB_COLORS + 1; // donot draw colorless cost in hybrid mana cost
+          }
+          else
+            mRenderer->RenderQuad(manaIcons[mana], xx, yy, 0, 0.5 * mScale, 0.5 * mScale);
+          mRenderer->BindTexture(mTexture); // manaIcons use different texture, so we need to rebind it.
+        }
+
+        if (mana <= 0) {
+          mSprites[index]->SetTextureRect(xPos, yPos, charWidth, charHeight);
+          mSprites[index]->SetColor(mColor);
+          mRenderer->RenderQuad(mSprites[index], xx, yy, 0, mScale, mScale);
+          mSprites[index]->SetTextureRect(xPos0, yPos, charWidth0, charHeight);
+        }
 
         xx += delta;
+
         if (xx >= 480) {
           xx = x;
           yy += (mFontSize * mScale);
