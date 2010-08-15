@@ -146,11 +146,14 @@ void GameApp::Create()
   jq->SetHotSpot(16,16);
 
   LOG("--Loading fonts");
-  resources.LoadWFBFont("simon",12);
-  resources.LoadWFBFont("f3",16);
-  resources.LoadWFBFont("magic",16);
-  resources.LoadWFBFont("smallface",12);
-
+  string lang = options[Options::LANG].str;
+  std::transform(lang.begin(), lang.end(), lang.begin(), ::tolower);
+  if (lang.compare("cn") == 0) {
+    resources.LoadWFBFont("simon",12);
+    resources.LoadWFBFont("f3",16);
+    resources.LoadWFBFont("magic",16);
+    resources.LoadWFBFont("smallface",12);
+  }
   resources.LoadWLBFont("simon",11);
   resources.GetWFont("simon")->SetTracking(-1);
   resources.LoadWLBFont("f3",16);

@@ -809,22 +809,17 @@ int WResourceManager::reloadWLBFonts(){
 }
 
 int WResourceManager::reloadWFonts(){
-  //TODO: LoadWFont().
-#if 0
-  vector<string> fontNames;
-  vector<float> fontSizes;
+  string lang = options[Options::LANG].str;
+  std::transform(lang.begin(), lang.end(), lang.begin(), ::tolower);
 
-  fontNames.resize(mWFontList.size());
-  fontSizes.resize(mWFontList.size());
-  for ( map<string, int>::iterator itr = mWFontMap.begin(); itr != mWFontMap.end(); ++itr){
-    fontNames[itr->second] = itr->first;
-    fontSizes[itr->second] = mWFontList[itr->second]->GetHeight();
+  if (lang.compare("cn") != 0) 
+    RemoveWFonts();
+  else if (mWFontList.size() == 0){
+    resources.LoadWFBFont("simon",12);
+    resources.LoadWFBFont("f3",16);
+    resources.LoadWFBFont("magic",16);
+    resources.LoadWFBFont("smallface",12);
   }
-  RemoveWFonts();
-  for(size_t i = 0; i < fontNames.size(); ++i){
-    LoadWFont(fontNames[i],fontSizes[i]);
-  }
-#endif
 
   return 1;
 }
