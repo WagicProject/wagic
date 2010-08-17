@@ -1,0 +1,18 @@
+#Enchanted Evening
+#All permanents are enchantments in addition to their other types.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Tranquility
+inplay:Forest,Mox Emerald,Grizzly Bears,Enchanted Evening
+manapool:{2}{G}
+[PLAYER2]
+[DO]
+Tranquility
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Forest,Mox Emerald,Grizzly Bears,Enchanted Evening,Tranquility
+manapool:{0}
+[PLAYER2]
+[END]

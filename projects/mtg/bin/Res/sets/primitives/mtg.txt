@@ -910,11 +910,11 @@ toughness=3
 [/card]
 [card]
 name=Alchor's Tomb
-auto={2}{T}:name(white) && target(*|myBattlefield) transforms(,white)
-auto={2}{T}:name(blue) && target(*|myBattlefield) transforms(,blue)
-auto={2}{T}:name(black) && target(*|myBattlefield) transforms(,black)
-auto={2}{T}:name(red) && target(*|myBattlefield) transforms(,red)
-auto={2}{T}:name(green) && target(*|myBattlefield) transforms(,green)
+auto={2}{T}:name(white) && target(*|myBattlefield) transforms(,white) forever
+auto={2}{T}:name(blue) && target(*|myBattlefield) transforms(,blue) forever
+auto={2}{T}:name(black) && target(*|myBattlefield) transforms(,black) forever
+auto={2}{T}:name(red) && target(*|myBattlefield) transforms(,red) forever
+auto={2}{T}:name(green) && target(*|myBattlefield) transforms(,green) forever
 text={2}, {T}: Target permanent you control becomes the color of your choice. (This effect lasts indefinitely.)
 mana={4}
 type=Artifact
@@ -1727,6 +1727,16 @@ type=Creature
 subtype=Zombie Bird
 power=3
 toughness=2
+[/card]
+[card]
+name=Aphotic Wisps
+target=creature
+auto=fear
+auto=transforms(,black) ueot
+auto=draw:1 comtroller
+text=Target creature becomes black and gains fear until end of turn. (It can't be blocked except by artifact creatures and/or black creatures.) -- Draw a card.
+mana={B}
+type=Instant
 [/card]
 [card]
 name=Apocalypse
@@ -2822,6 +2832,17 @@ type=Creature
 subtype=Aurochs
 power=4
 toughness=4
+[/card]
+[card]
+name=Aurora Griffin
+abilities=flying
+auto={W}:transforms(,white) target(*) ueot
+text=Flying -- {W}: Target permanent becomes white until end of turn.
+mana={3}{W}
+type=Creature
+subtype=Griffin
+power=2
+toughness=2
 [/card]
 [card]
 name=Auspicious Ancestor
@@ -5543,6 +5564,18 @@ mana={2}{W}
 type=Instant
 [/card]
 [card]
+name=Boldwyr Intimidator
+auto=lord(warrior) cantbeblockedby(coward)
+auto={R}:transforms(coward) target(creature) ueot
+auto={2}{R}:transforms(warrior) target(creature) ueot
+text=Cowards can't block Warriors. -- {R}: Target creature becomes a Coward until end of turn. -- {2}{R}: Target creature becomes a Warrior until end of turn.
+mana={5}{R}{R}
+type=Creature
+subtype=Giant Warrior
+power=5
+toughness=5
+[/card]
+[card]
 name=Bonded Fetch
 abilities=defender,haste
 auto={T}:token(-1111145) && draw:1
@@ -6706,6 +6739,21 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Caldera Kavu
+auto={1}{B}:1/1
+auto={G}:name(becomes white ueot) && transforms(,white) ueot
+auto={G}:name(becomes blue ueot) && transforms(,blue) ueot
+auto={G}:name(becomes black ueot) && transforms(,black) ueot
+auto={G}:name(becomes red ueot) && transforms(,red) ueot
+auto={G}:name(becomes green ueot) && transforms(,green) ueot
+text={1}{B}: Caldera Kavu gets +1/+1 until end of turn. -- {G}: Caldera Kavu becomes the color of your choice until end of turn.
+mana={2}{R}
+type=Creature
+subtype=Kavu
+power=2
+toughness=2
+[/card]
+[card]
 name=Caldera Lake
 auto=tap
 auto={T}:Add{1}
@@ -7640,6 +7688,16 @@ type=Creature
 subtype=Sphinx
 power=5
 toughness=5
+[/card]
+[card]
+name=Cerulean Wisps
+target=creature
+auto=transforms(,blue)
+auto=untap
+auto=draw:1 controller
+text=Target creature becomes blue until end of turn. Untap that creature. -- Draw a card.
+mana={U}
+type=Instant
 [/card]
 [card]
 name=Cerulean Wyvern
@@ -8712,6 +8770,18 @@ abilities=flying
 auto=destroy target(enchantment)
 text=Flying -- When Cloudchaser Eagle enters the battlefield, destroy target enchantment.
 mana={3}{W}
+type=Creature
+subtype=Bird
+power=2
+toughness=2
+[/card]
+[card]
+name=Cloudchaser Kestrel
+abilities=flying
+auto=destroy target(enchantment)
+auto={W}:transforms(,white) target(*) ueot
+text=Flying -- When Cloudchaser Kestrel enters the battlefield, destroy target enchantment. -- {W}: Target permanent becomes white until end of turn.
+mana={1}{W}{W}
 type=Creature
 subtype=Bird
 power=2
@@ -9815,6 +9885,16 @@ type=Creature
 subtype=Manticore
 power=2
 toughness=2
+[/card]
+[card]
+name=Crimson Wisps
+target=creature
+auto=transforms(,red) ueot
+auto=haste
+auto=draw:1 controller
+text=Target creature becomes red and gains haste until end of turn. -- Draw a card.
+mana={R}
+type=Instant
 [/card]
 [card]
 name=Crippling Fatigue
@@ -12020,6 +12100,16 @@ power=1
 toughness=2
 [/card]
 [card]
+name=Disciple of Kangee
+auto={T}:flying && transforms(,blue) target(creature) ueot
+text={U}, {T}: Target creature gains flying and becomes blue until end of turn.
+mana={2}{W}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
+[/card]
+[card]
 name=Disciple of Law
 auto=protection from red
 autohand={2}:cycling
@@ -12169,6 +12259,17 @@ auto={3}{U}{S(*|myBattlefield)}:moveTo(ownerhand) target(*)
 text={3}{U}, Sacrifice a permanent: Return target permanent to its owner's hand.
 mana={3}{U}{U}
 type=Enchantment
+[/card]
+[card]
+name=Distorting Lens
+auto={T}:name(target permanent becomes white) && transforms(,white) target(*) ueot
+auto={T}:name(target permanent becomes blue) && transforms(,blue) target(*) ueot
+auto={T}:name(target permanent becomes black) && transforms(,black) target(*) ueot
+auto={T}:name(target permanent becomes red) && transforms(,red) target(*) ueot
+auto={T}:name(target permanent becomes green) && transforms(,green) target(*) ueot
+text={T}: Target permanent becomes the color of your choice until end of turn.
+mana={2}
+type=Artifact
 [/card]
 [card]
 name=Distress
@@ -13688,6 +13789,17 @@ type=Creature
 subtype=Human Soldier
 power=3
 toughness=4
+[/card]
+[card]
+name=Eight-and-a-Half-Tails
+auto={1}{W}:protection from white target(creature)
+auto={1}:name(target permanent becomes white ueot) && transforms(,white) target(*) ueot
+text={1}{W}: Target permanent you control gains protection from white until end of turn. -- {1}: Target spell or permanent becomes white until end of turn.
+mana={W}{W}
+type=Legendary Creature
+subtype=Fox Cleric
+power=2
+toughness=2
 [/card]
 [card]
 name=Eightfold Maze
@@ -17673,6 +17785,18 @@ type=Creature
 subtype=Elemental
 power=8
 toughness=8
+[/card]
+[card]
+name=Fylamarid
+abilities=flying
+auto=cantbeblockedby(creature[blue])
+auto={U}:transforms(,blue) target(creature) ueot
+text=Flying -- Fylamarid can't be blocked by blue creatures. -- {U}: Target creature becomes blue until end of turn.
+mana={1}{U}{U}
+type=Creature
+subtype=Squid Beast
+power=1
+toughness=3
 [/card]
 [card]
 name=Fyndhorn Bow
@@ -23045,6 +23169,15 @@ mana={1}{R}
 type=Instant
 [/card]
 [card]
+name=Incite
+target=creature
+auto=transforms(,red) ueot
+auto=mustattack
+text=Target creature becomes red until end of turn and attacks this turn if able.
+mana={R}
+type=Instant
+[/card]
+[card]
 name=Incurable Ogre
 mana={3}{R}
 type=Creature
@@ -24974,6 +25107,21 @@ type=Creature
 subtype=Kavu
 power=3
 toughness=2
+[/card]
+[card]
+name=Kavu Chameleon
+abilities=nofizzle
+auto={G}:name(becomes white ueot) && transforms(,white) ueot
+auto={G}:name(becomes blue ueot) && transforms(,blue) ueot
+auto={G}:name(becomes black ueot) && transforms(,black) ueot
+auto={G}:name(becomes red ueot) && transforms(,red) ueot
+auto={G}:name(becomes green ueot) && transforms(,green) ueot
+text=Kavu Chameleon can't be countered. -- {G}: Kavu Chameleon becomes the color of your choice until end of turn.
+mana={3}{G}{G}
+type=Creature
+subtype=Kavu
+power=4
+toughness=4
 [/card]
 [card]
 name=Kavu Climber
@@ -29266,7 +29414,7 @@ toughness=4
 [/card]
 [card]
 name=Memnarch
-auto={1}{U}{U}:target(*) transforms(artifact)
+auto={1}{U}{U}:target(*) transforms(artifact) forever
 auto={3}{U}:moveTo(myBattlefield) target(arifact)
 text={1}{U}{U}: Target permanent becomes an artifact in addition to its other types. (This effect lasts indefinitely.) -- {3}{U}: Gain control of target artifact. (This effect lasts indefinitely.)
 mana={7}
@@ -29581,6 +29729,18 @@ type=Creature
 subtype=Metathran Soldier
 power=1
 toughness=1
+[/card]
+[card]
+name=Metathran Transport
+abilities=flying
+auto=cantbeblockedby(creature[blue])
+auto={U}:transforms(,blue) target(creature) ueot
+text=Flying -- Metathran Transport can't be blocked by blue creatures. -- {U}: Target creature becomes blue until end of turn.
+mana={1}{U}{U}
+type=Creature
+subtype=Metathran
+power=1
+toughness=3
 [/card]
 [card]
 name=Metathran Zombie
@@ -32041,6 +32201,15 @@ mana={1}{B}
 type=Sorcery
 [/card]
 [card]
+name=Nightcreep
+auto=lord(creature) transforms(,black) ueot
+auto=lord(land) transforms(swamp) ueot
+auto=lord(land) {T}:Add{B}
+text=Until end of turn, all creatures become black and all lands become Swamps.
+mana={B}{B}
+type=Instant
+[/card]
+[card]
 name=Nightguard Patrol
 abilities=first strike,vigilance
 text=First strike, vigilance
@@ -32301,6 +32470,16 @@ type=Creature
 subtype=Levelup Vampire Warrior
 power=3
 toughness=2
+[/card]
+[card]
+name=Niveous Wisps
+target=creature
+auto=transforms(,white) ueot
+auto=tap
+auto=draw:1 controller
+text=Target creature becomes white until end of turn. Tap that creature. -- Draw a card.
+mana={W}
+type=Instant
 [/card]
 [card]
 name=No-Dachi
@@ -35472,11 +35651,11 @@ toughness=4
 [/card]
 [card]
 name=Prismatic Lace
-auto=name(white) && target(*|myBattlefield) transforms(,white)
-auto=name(blue) && target(*|myBattlefield) transforms(,blue)
-auto=name(black) && target(*|myBattlefield) transforms(,black)
-auto=name(red) && target(*|myBattlefield) transforms(,red)
-auto=name(green) && target(*|myBattlefield) transforms(,green)
+auto=name(white) && target(*|myBattlefield) transforms(,white) forever
+auto=name(blue) && target(*|myBattlefield) transforms(,blue) forever
+auto=name(black) && target(*|myBattlefield) transforms(,black) forever
+auto=name(red) && target(*|myBattlefield) transforms(,red) forever
+auto=name(green) && target(*|myBattlefield) transforms(,green) forever
 text=Target permanent becomes the color or colors of your choice. (This effect lasts indefinitely.)
 mana={U}
 type=Instant
@@ -35492,6 +35671,21 @@ auto={1}{T}:Add {W}
 text={T}: Add {1} to your mana pool. -- {1}, {T}: Add one mana of any color to your mana pool.
 mana={2}
 type=Artifact
+[/card]
+[card]
+name=Prismwake Merrow
+abilities=flash
+auto=choice name(target permanent becomes white ueot) && transforms(,white) target(*) ueot
+auto=choice name(target permanent becomes blue ueot) && transforms(,blue) target(*) ueot
+auto=choice name(target permanent becomes black ueot) && transforms(,black) target(*) ueot
+auto=choice name(target permanent becomes red ueot) && transforms(,red) target(*) ueot
+auto=choice name(target permanent becomes green ueot) && transforms(,green) target(*) ueot
+text=Flash -- When Prismwake Merrow enters the battlefield, target permanent becomes the color or colors of your choice until end of turn.
+mana={2}{U}
+type=Creature
+subtype=Merfolk Wizard
+power=2
+toughness=1
 [/card]
 [card]
 name=Pristine Angel
@@ -36463,6 +36657,21 @@ auto=destroy
 text=Destroy target land.
 mana={1}{B}{B}
 type=Sorcery
+[/card]
+[card]
+name=Rainbow Crow
+abilities=flying
+auto={1}:name(becomes white ueot) && transforms(,white) ueot
+auto={1}:name(becomes blue ueot) && transforms(,blue) ueot
+auto={1}:name(becomes black ueot) && transforms(,black) ueot
+auto={1}:name(becomes red ueot) && transforms(,red) ueot
+auto={1}:name(becomes green ueot) && transforms(,green) ueot
+text=Flying -- {1}: Rainbow Crow becomes the color of your choice until end of turn.
+mana={3}{U}
+type=Creature
+subtype=Bird
+power=2
+toughness=2
 [/card]
 [card]
 name=Raise Dead
@@ -39971,6 +40180,16 @@ mana={2}{R}
 type=Instant
 [/card]
 [card]
+name=Scrapbasket
+auto={1}:transforms(,black,white,red,green,blue) ueot
+text={1}: Scrapbasket becomes all colors until end of turn.
+mana={4}
+type=Artifact Creature
+subtype=Scarecrow
+power=3
+toughness=2
+[/card]
+[card]
 name=Scrapheap
 auto=@movedTo(artifact,enchantment|mygraveyard) from(Battlefield):life:1
 text=Whenever an artifact or enchantment is put into your graveyard from the battlefield, you gain 1 life.
@@ -42185,6 +42404,15 @@ type=Creature
 subtype=Sliver
 power=1
 toughness=1
+[/card]
+[card]
+name=Singe
+target=creature
+auto=damage:1
+auto=transforms(,black) ueot
+text=Singe deals 1 damage to target creature. That creature becomes black until end of turn.
+mana={R}
+type=Instant
 [/card]
 [card]
 name=Sinkhole
@@ -48743,6 +48971,20 @@ id=-11111141
 type=Nothing
 [/card]
 [card]
+name=Tidal Visionary
+auto={T}:name(target creature becomes white ueot) && transforms(,white) target(creature) ueot
+auto={T}:name(target creature becomes becomes blue ueot) && transforms(,blue) target(creature) ueot
+auto={T}:name(target creature becomes becomes black ueot) && transforms(,black) target(creature) ueot
+auto={T}:name(target creature becomes becomes red ueot) && transforms(,red) target(creature) ueot
+auto={T}:name(target creature becomes becomes green ueot) && transforms(,green) target(creature) ueot
+text={T}: Target creature becomes the color of your choice until end of turn.
+mana={U}
+type=Creature
+subtype=Merfolk Wizard
+power=1
+toughness=1
+[/card]
+[card]
 name=Tidal Wave
 auto=token(-3371)
 text=Put a 5/5 blue Wall creature token with defender onto the battlefield. Sacrifice it at the beginning of the next end step.
@@ -51980,6 +52222,16 @@ type=Tribal Instant
 subtype=Faerie
 [/card]
 [card]
+name=Viridescent Wisps
+target=creature
+auto=1/0
+auto=transforms(,green) ueot
+auto=draw:1 controller
+text=Target creature becomes green and gets +1/+0 until end of turn. -- Draw a card.
+mana={G}
+type=Instant
+[/card]
+[card]
 name=Viridian Acolyte
 auto={1}{T}:add{G}
 auto={1}{T}:add{W}
@@ -54072,6 +54324,20 @@ type=Creature
 subtype=Cat
 power=5
 toughness=4
+[/card]
+[card]
+name=Wild Mongrel
+auto={S(*|myhand)}:name(becomes white ueot) && 1/1 && transforms(,white) ueot
+auto={S(*|myhand)}:name(becomes blue ueot) && 1/1 && transforms(,blue) ueot
+auto={S(*|myhand)}:name(becomes black ueot) && 1/1 && transforms(,black) ueot
+auto={S(*|myhand)}:name(becomes red ueot) && 1/1 && transforms(,red) ueot
+auto={S(*|myhand)}:name(becomes green ueot) && 1/1 && transforms(,green) ueot
+text=Discard a card: Wild Mongrel gets +1/+1 and becomes the color of your choice until end of turn.
+mana={1}{G}
+type=Creature
+subtype=Hound
+power=2
+toughness=2
 [/card]
 [card]
 name=Wild Nacatl

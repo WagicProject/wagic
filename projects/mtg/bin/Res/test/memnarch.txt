@@ -1,0 +1,25 @@
+#Memnarch
+#Does Memnarch's transformation effect last indefinetely?
+#Does the parameter "FOREVER" work?
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Shatter,Shatter
+inplay:Memnarch,Grizzly Bears
+manapool:{3}{U}{U}{R}{R}
+[PLAYER2]
+[DO]
+Memnarch
+choice 0
+Grizzly Bears
+Shatter
+Memnarch
+Shatter
+Grizzly Bears
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Memnarch,Grizzly Bears,Shatter,Shatter
+manapool:{0}
+[PLAYER2]
+[END]

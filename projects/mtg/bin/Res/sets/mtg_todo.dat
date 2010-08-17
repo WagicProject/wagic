@@ -1040,12 +1040,6 @@ power=2
 toughness=3
 [/card]
 [card]
-name=Aphotic Wisps
-text=Target creature becomes black and gains fear until end of turn. (It can't be blocked except by artifact creatures and/or black creatures.) -- Draw a card.
-mana={B}
-type=Instant
-[/card]
-[card]
 name=Apocalypse Chime
 text={2}, {T}, Sacrifice Apocalypse Chime: Destroy all nontoken permanents from the Homelands expansion. They can't be regenerated.
 mana={2}
@@ -1687,15 +1681,6 @@ text={W}, Sacrifice Aurora Eidolon: Prevent the next 3 damage that would be deal
 mana={3}{W}
 type=Creature
 subtype=Spirit
-power=2
-toughness=2
-[/card]
-[card]
-name=Aurora Griffin
-text=Flying -- {W}: Target permanent becomes white until end of turn.
-mana={3}{W}
-type=Creature
-subtype=Griffin
 power=2
 toughness=2
 [/card]
@@ -3279,15 +3264,6 @@ power=8
 toughness=8
 [/card]
 [card]
-name=Boldwyr Intimidator
-text=Cowards can't block Warriors. -- {R}: Target creature becomes a Coward until end of turn. -- {2}{R}: Target creature becomes a Warrior until end of turn.
-mana={5}{R}{R}
-type=Creature
-subtype=Giant Warrior
-power=5
-toughness=5
-[/card]
-[card]
 name=Bomb Squad
 text={T}: Put a fuse counter on target creature. -- At the beginning of your upkeep, put a fuse counter on each creature with a fuse counter on it. -- Whenever a creature has four or more fuse counters on it, remove all fuse counters from it and destroy it. That creature deals 4 damage to its controller.
 mana={3}{R}
@@ -4237,15 +4213,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Caldera Kavu
-text={1}{B}: Caldera Kavu gets +1/+1 until end of turn. -- {G}: Caldera Kavu becomes the color of your choice until end of turn.
-mana={2}{R}
-type=Creature
-subtype=Kavu
-power=2
-toughness=2
-[/card]
-[card]
 name=Call for Blood
 text=As an additional cost to cast Call for Blood, sacrifice a creature. -- Target creature gets -X/-X until end of turn, where X is the sacrificed creature's power.
 mana={4}{B}
@@ -4848,12 +4815,6 @@ type=Enchantment
 name=Cerebral Vortex
 text=Target player draws two cards, then Cerebral Vortex deals damage to that player equal to the number of cards he or she has drawn this turn.
 mana={1}{U}{R}
-type=Instant
-[/card]
-[card]
-name=Cerulean Wisps
-text=Target creature becomes blue until end of turn. Untap that creature. -- Draw a card.
-mana={U}
 type=Instant
 [/card]
 [card]
@@ -5612,16 +5573,6 @@ type=Creature
 subtype=Faerie
 power=1
 toughness=1
-[/card]
-[card]
-name=Cloudchaser Kestrel
-auto=destroy target(enchantment)
-text=Flying -- When Cloudchaser Kestrel enters the battlefield, destroy target enchantment. -- {W}: Target permanent becomes white until end of turn.
-mana={1}{W}{W}
-type=Creature
-subtype=Bird
-power=2
-toughness=2
 [/card]
 [card]
 name=Cloudcrest Lake
@@ -6523,18 +6474,6 @@ type=Creature
 subtype=Bird
 power=2
 toughness=2
-[/card]
-[card]
-name=Crimson Wisps
-text=Target creature becomes red and gains haste until end of turn. -- Draw a card.
-mana={R}
-type=Instant
-[/card]
-[card]
-name=Crippling Fatigue
-text=Target creature gets -2/-2 until end of turn. -- Flashback - {1}{B}, Pay 3 life. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={1}{B}{B}
-type=Sorcery
 [/card]
 [card]
 name=Cromat
@@ -8290,15 +8229,6 @@ mana={U}
 type=Instant
 [/card]
 [card]
-name=Disciple of Kangee
-text={U}, {T}: Target creature gains flying and becomes blue until end of turn.
-mana={2}{W}
-type=Creature
-subtype=Human Wizard
-power=2
-toughness=2
-[/card]
-[card]
 name=Discombobulate
 text=Counter target spell. Look at the top four cards of your library, then put them back in any order.
 mana={2}{U}{U}
@@ -8421,12 +8351,6 @@ name=Distant Melody
 text=Choose a creature type. Draw a card for each permanent you control of that type.
 mana={3}{U}
 type=Sorcery
-[/card]
-[card]
-name=Distorting Lens
-text={T}: Target permanent becomes the color of your choice until end of turn.
-mana={2}
-type=Artifact
 [/card]
 [card]
 name=Distorting Wake
@@ -9504,15 +9428,6 @@ subtype=Shapeshifter
 name=Eiganjo Castle
 text={T}: Add {W} to your mana pool. -- {W}, {T}: Prevent the next 2 damage that would be dealt to target legendary creature this turn.
 type=Legendary Land
-[/card]
-[card]
-name=Eight-and-a-Half-Tails
-text={1}{W}: Target permanent you control gains protection from white until end of turn. -- {1}: Target spell or permanent becomes white until end of turn.
-mana={W}{W}
-type=Legendary Creature
-subtype=Fox Cleric
-power=2
-toughness=2
 [/card]
 [card]
 name=Elder Land Wurm
@@ -12583,15 +12498,6 @@ name=Future Sight
 text=Play with the top card of your library revealed. -- You may play the top card of your library.
 mana={2}{U}{U}{U}
 type=Enchantment
-[/card]
-[card]
-name=Fylamarid
-text=Flying -- Fylamarid can't be blocked by blue creatures. -- {U}: Target creature becomes blue until end of turn.
-mana={1}{U}{U}
-type=Creature
-subtype=Squid Beast
-power=1
-toughness=3
 [/card]
 [card]
 name=Fylgja
@@ -16492,12 +16398,6 @@ mana={3}{R}{R}
 type=Sorcery
 [/card]
 [card]
-name=Incite
-text=Target creature becomes red until end of turn and attacks this turn if able.
-mana={R}
-type=Instant
-[/card]
-[card]
 name=Incite Hysteria
 text=Radiance - Until end of turn, target creature and each other creature that shares a color with it gain "This creature can't block."
 mana={2}{R}
@@ -17781,15 +17681,6 @@ type=Creature
 subtype=Bird Skeleton
 power=0
 toughness=1
-[/card]
-[card]
-name=Kavu Chameleon
-text=Kavu Chameleon can't be countered. -- {G}: Kavu Chameleon becomes the color of your choice until end of turn.
-mana={3}{G}{G}
-type=Creature
-subtype=Kavu
-power=4
-toughness=4
 [/card]
 [card]
 name=Kavu Howler
@@ -21343,15 +21234,6 @@ power=2
 toughness=3
 [/card]
 [card]
-name=Metathran Transport
-text=Flying -- Metathran Transport can't be blocked by blue creatures. -- {U}: Target creature becomes blue until end of turn.
-mana={1}{U}{U}
-type=Creature
-subtype=Metathran
-power=1
-toughness=3
-[/card]
-[card]
 name=Meteor Shower
 text=Meteor Shower deals X plus 1 damage divided as you choose among any number of target creatures and/or players.
 mana={X}{X}{R}
@@ -23376,12 +23258,6 @@ mana={G}{G}
 type=Enchantment
 [/card]
 [card]
-name=Nightcreep
-text=Until end of turn, all creatures become black and all lands become Swamps.
-mana={B}{B}
-type=Instant
-[/card]
-[card]
 name=Nightmare Incursion
 target=player
 text=Search target player's library for up to X cards, where X is the number of Swamps you control, and exile them. Then that player shuffles his or her library.
@@ -23513,12 +23389,6 @@ type=Legendary Creature
 subtype=Dragon Wizard
 power=4
 toughness=4
-[/card]
-[card]
-name=Niveous Wisps
-text=Target creature becomes white until end of turn. Tap that creature. -- Draw a card.
-mana={W}
-type=Instant
 [/card]
 [card]
 name=Nivix, Aerie of the Firemind
@@ -26537,15 +26407,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Prismwake Merrow
-text=Flash -- When Prismwake Merrow enters the battlefield, target permanent becomes the color or colors of your choice until end of turn.
-mana={2}{U}
-type=Creature
-subtype=Merfolk Wizard
-power=2
-toughness=1
-[/card]
-[card]
 name=Prison Barricade
 text=Defender (This creature can't attack.) -- Kicker {1}{W} (You may pay an additional {1}{W} as you cast this spell.) -- If Prison Barricade was kicked, it enters the battlefield with a +1/+1 counter on it and with "Prison Barricade can attack as though it didn't have defender."
 mana={1}{W}
@@ -27480,15 +27341,6 @@ name=Rain of Salt
 text=Destroy two target lands.
 mana={4}{R}{R}
 type=Sorcery
-[/card]
-[card]
-name=Rainbow Crow
-text=Flying -- {1}: Rainbow Crow becomes the color of your choice until end of turn.
-mana={3}{U}
-type=Creature
-subtype=Bird
-power=2
-toughness=2
 [/card]
 [card]
 name=Rainbow Efreet
@@ -30533,15 +30385,6 @@ mana={1}
 type=Artifact
 [/card]
 [card]
-name=Scrapbasket
-text={1}: Scrapbasket becomes all colors until end of turn.
-mana={4}
-type=Artifact Creature
-subtype=Scarecrow
-power=3
-toughness=2
-[/card]
-[card]
 name=Screams from Within
 text=Enchant creature -- Enchanted creature gets -1/-1. -- When enchanted creature is put into a graveyard, return Screams from Within from your graveyard to the battlefield.
 mana={1}{B}{B}
@@ -32021,12 +31864,6 @@ type=Creature
 subtype=Human
 power=1
 toughness=1
-[/card]
-[card]
-name=Singe
-text=Singe deals 1 damage to target creature. That creature becomes black until end of turn.
-mana={R}
-type=Instant
 [/card]
 [card]
 name=Singe-Mind Ogre
@@ -36500,15 +36337,6 @@ mana={2}{U}
 type=Enchantment
 [/card]
 [card]
-name=Tidal Visionary
-text={T}: Target creature becomes the color of your choice until end of turn.
-mana={U}
-type=Creature
-subtype=Merfolk Wizard
-power=1
-toughness=1
-[/card]
-[card]
 name=Tidal Warrior
 text={T}: Target land becomes an Island until end of turn.
 mana={U}
@@ -38495,12 +38323,6 @@ mana={B}{B}{R}{R}{R}{G}{G}
 type=Sorcery
 [/card]
 [card]
-name=Viridescent Wisps
-text=Target creature becomes green and gets +1/+0 until end of turn. -- Draw a card.
-mana={G}
-type=Instant
-[/card]
-[card]
 name=Viridian Longbow
 text=Equipped creature has "{T}: This creature deals 1 damage to target creature or player." -- Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
 mana={1}
@@ -39711,15 +39533,6 @@ name=Wild Might
 text=Target creature gets +1/+1 until end of turn. That creature gets an additional +4/+4 until end of turn unless any player pays {2}.
 mana={1}{G}
 type=Instant
-[/card]
-[card]
-name=Wild Mongrel
-text=Discard a card: Wild Mongrel gets +1/+1 and becomes the color of your choice until end of turn.
-mana={1}{G}
-type=Creature
-subtype=Hound
-power=2
-toughness=2
 [/card]
 [card]
 name=Wild Pair

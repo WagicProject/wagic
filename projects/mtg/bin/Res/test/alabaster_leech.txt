@@ -1,0 +1,18 @@
+#Testing Alabaster Leech
+#Whie spells you cast cost {W} more to cast.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Alabaster Leech
+hand:Savannah Lions
+manapool:{W}{W}
+[PLAYER2]
+[DO]
+Savannah Lions
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Alabaster Leech,Savannah Lions
+manapool{0}
+[PLAYER2]
+[END]

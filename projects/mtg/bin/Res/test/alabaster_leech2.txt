@@ -1,0 +1,22 @@
+#Testing Alabaster Leech
+#Does the costreduction effect vanish when Alabaster Leech leaves he battlefield?
+#Does "RESETCOST" work?
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Alabaster Leech
+hand:Savannah Lions,Lightning Bolt
+manapool:{W}{W}{R}
+[PLAYER2]
+[DO]
+Lightning Bolt
+Alabaster Leech
+Savannah Lions
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Savannah Lions
+graveyard:Alabaster Leech,Lightning Bolt
+manapool:{W}
+[PLAYER2]
+[END]

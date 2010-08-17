@@ -75,6 +75,8 @@ aether_mutation.txt
 aether_flash.txt
 afflict.txt
 akron_legionnaire.txt
+alabaster_leech.txt
+alabaster_leech2.txt
 alluring_siren.txt
 Amugaba.txt
 anarchy.txt
@@ -214,6 +216,7 @@ ekundu_cyclops2_i218.txt
 elvish_piper.txt
 elvish_promenade.txt
 emblem_of_the_warmind.txt
+enchanted evening.txt
 enervate.txt
 enchantress_s_presence.txt
 erg_raiders_i157.txt
@@ -331,6 +334,7 @@ masticore.txt
 masticore2.txt
 maze_of_ith.txt
 meekstone.txt
+memnarch.txt
 memory_erosion.txt
 millstone.txt
 misc01.txt
