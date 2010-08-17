@@ -175,7 +175,7 @@ int OtherAbilitiesEventReceiver::receiveEvent(WEvent *e){
       AbilityFactory af;
       af.magicText(g->mLayers->actionLayer()->getMaxId(), NULL, event->card, 1, 0,event->to);
       return 1;
-    }
+	}
   }
   return 0;
 }

@@ -516,15 +516,6 @@ mana={5}
 type=Artifact
 [/card]
 [card]
-name=Alabaster Leech
-text=White spells you cast cost {W} more to cast.
-mana={W}
-type=Creature
-subtype=Leech
-power=1
-toughness=3
-[/card]
-[card]
 name=Alabaster Potion
 text=Choose one - Target player gains X life; or prevent the next X damage that would be dealt to target creature or player this turn.
 mana={X}{W}{W}
@@ -565,12 +556,6 @@ type=Creature
 subtype=Human Rogue
 power=1
 toughness=1
-[/card]
-[card]
-name=Alchor's Tomb
-text={2}, {T}: Target permanent you control becomes the color of your choice. (This effect lasts indefinitely.)
-mana={4}
-type=Artifact
 [/card]
 [card]
 name=Aleatory
@@ -822,15 +807,6 @@ toughness=*
 name=Ancient Ziggurat
 text={T}: Add one mana of any color to your mana pool. Spend this mana only to cast creature spells.
 type=Land
-[/card]
-[card]
-name=Andradite Leech
-text=Black spells you cast cost {B} more to cast. -- {B}: Andradite Leech gets +1/+1 until end of turn.
-mana={2}{B}
-type=Creature
-subtype=Leech
-power=2
-toughness=2
 [/card]
 [card]
 name=Angel of Salvation
@@ -1648,12 +1624,6 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
-name=Aura of Silence
-text=Artifact and enchantment spells your opponents cast cost {2} more to cast. -- Sacrifice Aura of Silence: Destroy target artifact or enchantment.
-mana={1}{W}{W}
-type=Enchantment
-[/card]
-[card]
 name=Auramancer's Guise
 text=Enchant creature -- Enchanted creature gets +2/+2 for each Aura attached to it and has vigilance.
 mana={2}{U}{U}
@@ -2145,15 +2115,6 @@ type=Creature
 subtype=Human Barbarian
 power=3
 toughness=2
-[/card]
-[card]
-name=Ballyrush Banneret
-text=Kithkin spells and Soldier spells you cast cost {1} less to cast.
-mana={1}{W}
-type=Creature
-subtype=Kithkin Soldier
-power=2
-toughness=1
 [/card]
 [card]
 name=Balm of Restoration
@@ -3468,15 +3429,6 @@ power=6
 toughness=7
 [/card]
 [card]
-name=Bosk Banneret
-text=Treefolk spells and Shaman spells you cast cost {1} less to cast.
-mana={1}{G}
-type=Creature
-subtype=Treefolk Shaman
-power=1
-toughness=3
-[/card]
-[card]
 name=Bottle of Suleiman
 text={1}, Sacrifice Bottle of Suleiman: Flip a coin. If you lose the flip, Bottle of Suleiman deals 5 damage to you. If you win the flip, put a 5/5 colorless Djinn artifact creature token with flying onto the battlefield.
 mana={4}
@@ -3732,15 +3684,6 @@ name=Brightflame
 text=Radiance - Brightflame deals X damage to target creature and each other creature that shares a color with it. You gain life equal to the damage dealt this way.
 mana={X}{R}{R}{W}{W}
 type=Sorcery
-[/card]
-[card]
-name=Brighthearth Banneret
-text=Elemental spells and Warrior spells you cast cost {1} less to cast. -- Reinforce 1 - {1}{R} ({1}{R}, Discard this card: Put a +1/+1 counter on target creature.)
-mana={1}{R}
-type=Creature
-subtype=Elemental Warrior
-power=1
-toughness=1
 [/card]
 [card]
 name=Brilliant Ultimatum
@@ -5222,12 +5165,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Chill
-text=Red spells cost {2} more to cast.
-mana={1}{U}
-type=Enchantment
-[/card]
-[card]
 name=Chill Haunting
 text=As an additional cost to cast Chill Haunting, exile X creature cards from your graveyard. -- Target creature gets -X/-X until end of turn.
 mana={1}{B}
@@ -5666,12 +5603,6 @@ name=Cloud Cover
 text=Whenever another permanent you control becomes the target of a spell or ability an opponent controls, you may return that permanent to its owner's hand.
 mana={2}{W}{U}
 type=Enchantment
-[/card]
-[card]
-name=Cloud Key
-text=As Cloud Key enters the battlefield, choose artifact, creature, enchantment, instant, or sorcery. -- Spells you cast of the chosen type cost {1} less to cast.
-mana={3}
-type=Artifact
 [/card]
 [card]
 name=Cloud of Faeries
@@ -7344,15 +7275,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Daru Warchief
-text=Soldier spells you cast cost {1} less to cast. -- Soldier creatures you control get +1/+2.
-mana={2}{W}{W}
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=1
-[/card]
-[card]
 name=Dash Hopes
 text=When you cast Dash Hopes, any player may pay 5 life. If a player does, counter Dash Hopes. -- Counter target spell.
 mana={B}{B}
@@ -8046,15 +7968,6 @@ name=Denying Wind
 text=Search target player's library for up to seven cards and exile them. Then that player shuffles his or her library.
 mana={7}{U}{U}
 type=Sorcery
-[/card]
-[card]
-name=Derelor
-text=Black spells you cast cost {B} more to cast.
-mana={3}{B}
-type=Creature
-subtype=Thrull
-power=4
-toughness=4
 [/card]
 [card]
 name=Dermoplasm
@@ -8847,18 +8760,7 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Dragonspeaker Shaman
-text=Dragon spells you cast cost {2} less to cast.
-mana={1}{R}{R}
-type=Creature
-subtype=Human Barbarian Shaman
-power=2
-toughness=2
-[/card]
-[card]
 name=Dragonstorm
-target=dragon|myLibrabry
-auto=moveto(myBattlefield)
 text=Search your library for a Dragon permanent card and put it onto the battlefield. Then shuffle your library. -- Storm (When you cast this spell, copy it for each spell cast before it this turn.)
 mana={8}{R}
 type=Sorcery
@@ -8877,12 +8779,6 @@ type=Creature
 subtype=Illusion
 power=1
 toughness=1
-[/card]
-[card]
-name=Dralnu's Crusade
-text=Goblin creatures get +1/+1. -- All Goblins are black and are Zombies in addition to their other creature types.
-mana={1}{B}{R}
-type=Enchantment
 [/card]
 [card]
 name=Dralnu's Pet
@@ -9598,15 +9494,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Edgewalker
-text=Cleric spells you cast cost {W}{B} less to cast. This effect reduces only the amount of colored mana you pay. (For example, if you cast a Cleric spell with mana cost {1}{W}, it costs {1} to cast.)
-mana={1}{W}{B}
-type=Creature
-subtype=Human Cleric
-power=2
-toughness=2
-[/card]
-[card]
 name=Ego Erasure
 text=Changeling (This card is every creature type at all times.) -- Creatures target player controls get -2/-0 and lose all creature types until end of turn.
 mana={2}{U}
@@ -9916,12 +9803,6 @@ mana={2}{W}
 type=Instant
 [/card]
 [card]
-name=Emerald Medallion
-text=Green spells you cast cost {1} less to cast.
-mana={2}
-type=Artifact
-[/card]
-[card]
 name=Emeria, the Sky Ruin
 text=Emeria, the Sky Ruin enters the battlefield tapped. -- At the beginning of your upkeep, if you control seven or more Plains, you may return target creature card from your graveyard to the battlefield. -- {T}: Add {W} to your mana pool.
 type=Land
@@ -9955,12 +9836,6 @@ type=Creature
 subtype=Human
 power=2
 toughness=2
-[/card]
-[card]
-name=Enchanted Evening
-text=All permanents are enchantments in addition to their other types.
-mana={3}{WU}{WU}
-type=Enchantment
 [/card]
 [card]
 name=Enchantment Alteration
@@ -10515,15 +10390,6 @@ text=Prevent all damage that would be dealt by creatures this turn.
 mana={W}
 type=Instant
 subtype=Arcane
-[/card]
-[card]
-name=Etherium Sculptor
-text=Artifact spells you cast cost {1} less to cast.
-mana={1}{U}
-type=Artifact Creature
-subtype=Vedalken Artificer
-power=1
-toughness=2
 [/card]
 [card]
 name=Ethersworn Canonist
@@ -11350,12 +11216,6 @@ text=Enchant creature -- Whenever enchanted creature blocks or becomes blocked, 
 mana={1}{G}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Feroz's Ban
-text=Creature spells cost {2} more to cast.
-mana={6}
-type=Artifact
 [/card]
 [card]
 name=Ferropede
@@ -12543,15 +12403,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Frogtosser Banneret
-text=Haste -- Goblin spells and Rogue spells you cast cost {1} less to cast.
-mana={1}{B}
-type=Creature
-subtype=Goblin Rogue
-power=1
-toughness=1
-[/card]
-[card]
 name=Frontline Strategist
 text=Morph {W} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Frontline Strategist is turned face up, prevent all combat damage non-Soldier creatures would deal this turn.
 mana={W}
@@ -13634,15 +13485,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Glowrider
-text=Noncreature spells cost {1} more to cast.
-mana={2}{W}
-type=Creature
-subtype=Human Cleric
-power=2
-toughness=1
-[/card]
-[card]
 name=Gluttonous Slime
 text=Flash -- Devour 1 (As this enters the battlefield, you may sacrifice any number of creatures. This creature enters the battlefield with that many +1/+1 counters on it.)
 mana={2}{G}
@@ -14037,15 +13879,6 @@ mana={2}{R}
 type=Enchantment
 [/card]
 [card]
-name=Goblin Warchief
-text=Goblin spells you cast cost {1} less to cast. -- Goblin creatures you control have haste.
-mana={1}{R}{R}
-type=Creature
-subtype=Goblin
-power=2
-toughness=2
-[/card]
-[card]
 name=Goblin Warrens
 text={2}{R}, Sacrifice two Goblins: Put three 1/1 red Goblin creature tokens onto the battlefield.
 mana={2}{R}
@@ -14293,15 +14126,6 @@ text=Equipped creature gets +3/+2. -- Whenever Grafted Wargear becomes unattache
 mana={3}
 type=Artifact
 subtype=Equipment
-[/card]
-[card]
-name=Grand Arbiter Augustin IV
-text=White spells you cast cost {1} less to cast. -- Blue spells you cast cost {1} less to cast. -- Spells your opponents cast cost {1} more to cast.
-mana={2}{W}{U}
-type=Legendary Creature
-subtype=Human Advisor
-power=2
-toughness=3
 [/card]
 [card]
 name=Grand Melee
@@ -15581,14 +15405,7 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Helm of Awakening
-text=Spells cost {1} less to cast.
-mana={2}
-type=Artifact
-[/card]
-[card]
 name=Helm of Chatzuk
-auto={1}{T}:banding target(creature)
 text={1}, {T}: Target creature gains banding until end of turn. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding a player controls are blocking or being blocked by a creature, that player divides that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
 mana={1}
 type=Artifact
@@ -15769,12 +15586,6 @@ mana={W}
 type=Enchantment
 [/card]
 [card]
-name=High Seas
-text=Red creature spells and green creature spells cost {1} more to cast.
-mana={2}{U}
-type=Enchantment
-[/card]
-[card]
 name=High Tide
 text=Until end of turn, whenever a player taps an Island for mana, that player adds {U} to his or her mana pool (in addition to the mana the land produces).
 mana={U}
@@ -15884,12 +15695,6 @@ name=Hive Mind
 text=Whenever a player casts an instant or sorcery spell, each other player copies that spell. Each of those players may choose new targets for his or her copy.
 mana={5}{U}
 type=Enchantment
-[/card]
-[card]
-name=Hivestone
-text=Creatures you control are Slivers in addition to their other creature types.
-mana={2}
-type=Artifact
 [/card]
 [card]
 name=Hivis of the Scale
@@ -17225,15 +17030,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Irini Sengir
-text=White enchantment spells and green enchantment spells cost {2} more to cast.
-mana={2}{B}{B}
-type=Legendary Creature
-subtype=Vampire Dwarf
-power=2
-toughness=2
-[/card]
-[card]
 name=Iron Maiden
 text=At the beginning of each opponent's upkeep, Iron Maiden deals X damage to that player, where X is the number of cards in his or her hand minus 4.
 mana={3}
@@ -17421,15 +17217,6 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Jade Leech
-text=Green spells you cast cost {G} more to cast.
-mana={2}{G}{G}
-type=Creature
-subtype=Leech
-power=5
-toughness=5
-[/card]
-[card]
 name=Jade Monolith
 text={1}: The next time a source of your choice would deal damage to target creature this turn, that source deals that damage to you instead.
 mana={4}
@@ -17503,12 +17290,6 @@ type=Artifact
 name=Jester's Scepter
 text=When Jester's Scepter enters the battlefield, exile the top five cards of target player's library face down. You may look at those cards for as long as they remain exiled. -- {2}, {T}, Put a card exiled with Jester's Scepter into its owner's graveyard: Counter target spell if it has the same name as that card.
 mana={3}
-type=Artifact
-[/card]
-[card]
-name=Jet Medallion
-text=Black spells you cast cost {1} less to cast.
-mana={2}
 type=Artifact
 [/card]
 [card]
@@ -18816,15 +18597,6 @@ power=3
 toughness=2
 [/card]
 [card]
-name=Krosan Warchief
-text=Beast spells you cast cost {1} less to cast. -- {1}{G}: Regenerate target Beast.
-mana={2}{G}
-type=Creature
-subtype=Beast
-power=2
-toughness=2
-[/card]
-[card]
 name=Krovikan Elementalist
 text={2}{R}: Target creature gets +1/+0 until end of turn. -- {U}{U}: Target creature you control gains flying until end of turn. Sacrifice it at the beginning of the next end step.
 mana={B}{B}
@@ -19610,12 +19382,6 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-name=Life and Limb
-text=All Forests and all Saprolings are 1/1 green Saproling creatures and Forest lands in addition to their other types.
-mana={3}{G}
-type=Enchantment
-[/card]
-[card]
 name=Life from the Loam
 text=Return up to three target land cards from your graveyard to your hand. -- Dredge 3 (If you would draw a card, instead you may put exactly three cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
 mana={1}{G}
@@ -19991,15 +19757,6 @@ mana={0}
 type=Artifact
 [/card]
 [card]
-name=Lodestone Golem
-text=Nonartifact spells cost {1} more to cast.
-mana={4}
-type=Artifact Creature
-subtype=Golem
-power=5
-toughness=3
-[/card]
-[card]
 name=Logic Knot
 text=Delve (You may exile any number of cards from your graveyard as you cast this spell. It costs {1} less to cast for each card exiled this way.) -- Counter target spell unless its controller pays {X}.
 mana={X}{U}{U}
@@ -20013,12 +19770,6 @@ type=Creature
 subtype=Wolf
 power=2
 toughness=2
-[/card]
-[card]
-name=Long-Forgotten Gohei
-text=Arcane spells you cast cost {1} less to cast. -- Spirit creatures you control get +1/+1.
-mana={3}
-type=Artifact
 [/card]
 [card]
 name=Long-Term Plans
@@ -20733,12 +20484,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Mana Matrix
-text=Instant and enchantment spells you cast cost up to {2} less to cast.
-mana={6}
-type=Artifact
-[/card]
-[card]
 name=Mana Maze
 text=Players can't cast spells that share a color with the spell most recently cast this turn.
 mana={1}{U}
@@ -21300,15 +21045,6 @@ name=Melting
 text=All lands are no longer snow.
 mana={3}{R}
 type=Enchantment
-[/card]
-[card]
-name=Memnarch
-text={1}{U}{U}: Target permanent becomes an artifact in addition to its other types. (This effect lasts indefinitely.) -- {3}{U}: Gain control of target artifact. (This effect lasts indefinitely.)
-mana={7}
-type=Legendary Artifact Creature
-subtype=Wizard
-power=4
-toughness=5
 [/card]
 [card]
 name=Memory Crystal
@@ -23668,15 +23404,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Nightscape Familiar
-text=Blue spells and red spells you cast cost {1} less to cast. -- {1}{B}: Regenerate Nightscape Familiar.
-mana={1}{B}
-type=Creature
-subtype=Zombie
-power=1
-toughness=1
-[/card]
-[card]
 name=Nightshade Assassin
 text=First strike -- When Nightshade Assassin enters the battlefield, you may reveal X black cards in your hand. If you do, target creature gets -X/-X until end of turn. -- Madness {1}{B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
 mana={2}{B}{B}
@@ -25462,12 +25189,6 @@ mana={1}{W}
 type=Instant
 [/card]
 [card]
-name=Pearl Medallion
-text=White spells you cast cost {1} less to cast.
-mana={2}
-type=Artifact
-[/card]
-[card]
 name=Pearl Shard
 text={3}, {T} or {W}, {T}: Prevent the next 2 damage that would be dealt to target creature or player this turn.
 mana={3}
@@ -26215,12 +25936,6 @@ mana={1}{W}
 type=Enchantment
 [/card]
 [card]
-name=Planar Gate
-text=Creature spells you cast cost up to {2} less to cast.
-mana={6}
-type=Artifact
-[/card]
-[card]
 name=Planar Guide
 text={3}{W}, Exile Planar Guide: Exile all creatures. At the beginning of the next end step, return those cards to the battlefield under their owners' control.
 mana={W}
@@ -26801,12 +26516,6 @@ name=Prismatic Circle
 text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- As Prismatic Circle enters the battlefield, choose a color. -- {1}: The next time a source of your choice of the chosen color would deal damage to you this turn, prevent that damage.
 mana={2}{W}
 type=Enchantment
-[/card]
-[card]
-name=Prismatic Lace
-text=Target permanent becomes the color or colors of your choice. (This effect lasts indefinitely.)
-mana={U}
-type=Instant
 [/card]
 [card]
 name=Prismatic Omen
@@ -29691,21 +29400,6 @@ power=2
 toughness=3
 [/card]
 [card]
-name=Ruby Leech
-text=First strike -- Red spells you cast cost {R} more to cast.
-mana={1}{R}
-type=Creature
-subtype=Leech
-power=2
-toughness=2
-[/card]
-[card]
-name=Ruby Medallion
-text=Red spells you cast cost {1} less to cast.
-mana={2}
-type=Artifact
-[/card]
-[card]
 name=Rude Awakening
 text=Choose one - Untap all lands you control; or until end of turn, lands you control become 2/2 creatures that are still lands. -- Entwine {2}{G} (Choose both if you pay the entwine cost.)
 mana={4}{G}
@@ -30413,21 +30107,6 @@ name=Sapphire Charm
 text=Choose one - Target player draws a card at the beginning of the next turn's upkeep; or target creature gains flying until end of turn; or target creature an opponent controls phases out. (While it's phased out, it's treated as though it doesn't exist. It phases in before its controller untaps during his or her next untap step.)
 mana={U}
 type=Instant
-[/card]
-[card]
-name=Sapphire Leech
-text=Flying -- Blue spells you cast cost {U} more to cast.
-mana={1}{U}
-type=Creature
-subtype=Leech
-power=2
-toughness=2
-[/card]
-[card]
-name=Sapphire Medallion
-text=Blue spells you cast cost {1} less to cast.
-mana={2}
-type=Artifact
 [/card]
 [card]
 name=Saprazzan Breaker
@@ -33799,12 +33478,6 @@ mana={3}{W}
 type=Enchantment
 [/card]
 [card]
-name=Sphere of Resistance
-text=Spells cost {1} more to cast.
-mana={2}
-type=Artifact
-[/card]
-[card]
 name=Sphere of Truth
 text=If a white source would deal damage to you, prevent 2 of that damage.
 mana={3}{W}
@@ -34337,12 +34010,6 @@ mana={1}
 type=Artifact
 [/card]
 [card]
-name=Squeeze
-text=Sorcery spells cost {3} more to cast.
-mana={3}{U}
-type=Enchantment
-[/card]
-[card]
 name=Squelch
 text=Counter target activated ability. (Mana abilities can't be targeted.) -- Draw a card.
 mana={1}{U}
@@ -34593,15 +34260,6 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Stinkdrinker Daredevil
-text=Giant spells you cast cost {2} less to cast.
-mana={2}{R}
-type=Creature
-subtype=Goblin Rogue
-power=1
-toughness=3
-[/card]
-[card]
 name=Stinkweed Imp
 text=Flying -- Whenever Stinkweed Imp deals combat damage to a creature, destroy that creature. -- Dredge 5 (If you would draw a card, instead you may put exactly five cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
 mana={2}{B}
@@ -34667,12 +34325,6 @@ mana={2}{R}
 type=Sorcery
 [/card]
 [card]
-name=Stone Calendar
-text=Spells you cast cost up to {1} less to cast.
-mana={5}
-type=Artifact
-[/card]
-[card]
 name=Stone Giant
 text={T}: Target creature you control with toughness less than Stone Giant's power gains flying until end of turn. Destroy that creature at the beginning of the next end step.
 mana={2}{R}{R}
@@ -34729,15 +34381,6 @@ name=Stonewood Invocation
 text=Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- Target creature gets +5/+5 and gains shroud until end of turn. (It can't be the target of spells or abilities.)
 mana={3}{G}
 type=Instant
-[/card]
-[card]
-name=Stonybrook Banneret
-text=Islandwalk -- Merfolk spells and Wizard spells you cast cost {1} less to cast.
-mana={1}{U}
-type=Creature
-subtype=Merfolk Wizard
-power=1
-toughness=1
 [/card]
 [card]
 name=Storage Matrix
@@ -34818,15 +34461,6 @@ type=Creature
 subtype=Metathran Wizard
 power=2
 toughness=2
-[/card]
-[card]
-name=Stormscape Familiar
-text=Flying -- White spells and black spells you cast cost {1} less to cast.
-mana={1}{U}
-type=Creature
-subtype=Bird
-power=1
-toughness=1
 [/card]
 [card]
 name=Stormtide Leviathan
@@ -35211,15 +34845,6 @@ type=Creature
 subtype=Human Wizard
 power=2
 toughness=2
-[/card]
-[card]
-name=Sunscape Familiar
-text=Defender (This creature can't attack.) -- Green spells and blue spells you cast cost {1} less to cast.
-mana={1}{W}
-type=Creature
-subtype=Wall
-power=0
-toughness=3
 [/card]
 [card]
 name=Sunscour
@@ -36505,12 +36130,6 @@ power=7
 toughness=7
 [/card]
 [card]
-name=Thorn of Amethyst
-text=Noncreature spells cost {1} more to cast.
-mana={2}
-type=Artifact
-[/card]
-[card]
 name=Thorn-Thrash Viashino
 text=Devour 2 (As this enters the battlefield, you may sacrifice any number of creatures. This creature enters the battlefield with twice that many +1/+1 counters on it.) -- {G}: Thorn-Thrash Viashino gains trample until end of turn.
 mana={3}{R}
@@ -36534,15 +36153,6 @@ type=Creature
 subtype=Elf Wizard
 power=2
 toughness=2
-[/card]
-[card]
-name=Thornscape Familiar
-text=Red spells and white spells you cast cost {1} less to cast.
-mana={1}{G}
-type=Creature
-subtype=Insect
-power=2
-toughness=1
 [/card]
 [card]
 name=Thought Devourer
@@ -36843,15 +36453,6 @@ type=Creature
 subtype=Human Wizard
 power=2
 toughness=2
-[/card]
-[card]
-name=Thunderscape Familiar
-text=First strike -- Black spells and green spells you cast cost {1} less to cast.
-mana={1}{R}
-type=Creature
-subtype=Kavu
-power=1
-toughness=1
 [/card]
 [card]
 name=Thunderstaff
@@ -37942,15 +37543,6 @@ power=1
 toughness=3
 [/card]
 [card]
-name=Undead Warchief
-text=Zombie spells you cast cost {1} less to cast. -- Zombie creatures you control get +2/+1.
-mana={2}{B}{B}
-type=Creature
-subtype=Zombie
-power=1
-toughness=1
-[/card]
-[card]
 name=Undergrowth
 text=As an additional cost to cast Undergrowth, you may pay {2}{R}. -- Prevent all combat damage that would be dealt this turn. If its additional cost was paid, Undergrowth doesn't affect combat damage that would be dealt by red creatures.
 mana={G}
@@ -38134,11 +37726,6 @@ type=Creature
 subtype=Nightstalker Cat
 power=2
 toughness=2
-[/card]
-[card]
-name=Urborg, Tomb of Yawgmoth
-text=Each land is a Swamp in addition to its other land types.
-type=Legendary Land
 [/card]
 [card]
 name=Urge to Feed

@@ -274,7 +274,7 @@ id=136157
 rarity=R
 [/card]
 [card]
-primitive=Goldmeadow Harrier (Goldmeadow Lookout)
+primitive=Goldmeadow Harrier Token from Goldmeadow Lookout
 id=-130311
 rarity=T
 [/card]
@@ -404,7 +404,7 @@ id=132213
 rarity=C
 [/card]
 [card]
-primitive=Llanowar Elves (Llanowar Mentor)
+primitive=Llanowar Elves Token from Llanowar Mentor
 id=-126166
 rarity=T
 [/card]
@@ -749,7 +749,7 @@ id=126213
 rarity=U
 [/card]
 [card]
-primitive=Spark Elemental (Sparkspitter)
+primitive=Spark Elemental Token from Sparkspitter
 id=-130341
 rarity=T
 [/card]

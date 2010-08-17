@@ -90,12 +90,11 @@ public:
       size_t start = s.find_last_of(" ",found);
       if (start == string::npos) start = 0;
       else start++;
-
       power = WParsedInt(s.substr(start,found - start), spell, card);
-      toughness = WParsedInt(s.substr(found+1,end-found-1), spell, card);
+	  toughness = WParsedInt(s.substr(found+1,end-found-1), spell, card);
 
       ok = true;
-    }
+	}
   }
 };
 
@@ -2442,14 +2441,56 @@ class AOldSchoolDeathtouch:public MTGAbility{
   }
 };
 
-//Adds types/abilities/P/T to a card (aura)
-class ABecomes:public MTGAbility{
+//reset card cost-----------------------------------------
+class AResetCost:public MTGAbility{
+public:
+	AResetCost(int id, MTGCardInstance * source, MTGCardInstance * target):MTGAbility(id,source,target){
+   MTGCardInstance * _target = (MTGCardInstance *)target;
+    }
+   int addToGame(){
+   MTGCardInstance * _target = (MTGCardInstance *)target;
+    _target->controller()->game->putInZone(_target,_target->controller()->game->hand, _target->controller()->game->hand);
+    return MTGAbility::addToGame();
+   }
+    AResetCost * clone() const{
+    AResetCost * a =  NEW AResetCost(*this);
+    a->isClone = 1;
+    return a;
+  }
+   ~AResetCost(){
+  }
+};
+
+//reduce or increase manacost of target by color:amount------------------------------------------
+class AManaRedux:public MTGAbility{
+public:
+	int amount;
+	int type;
+	AManaRedux(int id, MTGCardInstance * source, MTGCardInstance * target,int amount,int type):MTGAbility(id,source,target),amount(amount),type(type){
+   MTGCardInstance * _target = (MTGCardInstance *)target;
+    }
+   int addToGame(){
+   MTGCardInstance * _target = (MTGCardInstance *)target;
+   amount;
+   type;
+   _target->getManaCost()->add(type,amount);
+    return MTGAbility::addToGame();
+   }
+    
+    AManaRedux * clone() const{
+    AManaRedux * a =  NEW AManaRedux(*this);
+    a->isClone = 1;
+    return a;
+  }
+   ~AManaRedux(){}
+};
+//------------------------------------
+class ATransformer:public MTGAbility{
 public:
   list<int>abilities;
   list<int>types;
   list<int>colors;
-  WParsedPT * wppt;
-  ABecomes(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, WParsedPT * wppt, string sabilities):MTGAbility(id,source,target),wppt(wppt){
+  ATransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities):MTGAbility(id,source,target){
     //TODO this is a copy/past of other code that's all around the place, everything should be in a dedicated parser class;
 
     for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++){
@@ -2457,14 +2498,13 @@ public:
       if (found != string::npos){
         abilities.push_back(j);
       }
-    }
-
-    for (int j = 0; j < Constants::MTG_NB_COLORS; j++){
+	}
+     for (int j = 0; j < Constants::MTG_NB_COLORS; j++){
       size_t found = sabilities.find(Constants::MTGColorStrings[j]);
       if (found != string::npos){
         colors.push_back(j);
       }
-    }
+	}
 
     string s = stypes;
     while (s.size()){
@@ -2481,6 +2521,83 @@ public:
     }
   }
 
+ int addToGame(){
+   MTGCardInstance * _target = (MTGCardInstance *)target;
+      list<int>::iterator it;
+    for ( it=types.begin() ; it != types.end(); it++ ){
+      _target->addType(*it);
+    }
+    for ( it=colors.begin() ; it != colors.end(); it++ ){
+      _target->setColor(*it);
+    }
+    for ( it=abilities.begin() ; it != abilities.end(); it++ ){
+      _target->basicAbilities[*it]++;
+    }
+	  return MTGAbility::addToGame();
+ }
+  int destroy(){
+   MTGCardInstance * _target = (MTGCardInstance *)target;
+      list<int>::iterator it;
+    for ( it=types.begin() ; it != types.end(); it++ ){
+      _target->removeType(*it);
+    }
+    for ( it=colors.begin() ; it != colors.end(); it++ ){
+      _target->removeColor(*it);
+    }
+    for ( it=abilities.begin() ; it != abilities.end(); it++ ){
+      _target->basicAbilities[*it]--;
+    }
+    return 1;
+  }
+
+  ATransformer * clone() const{
+    ATransformer * a =  NEW ATransformer(*this);
+    a->isClone = 1;
+    return a;
+  }
+
+  ~ATransformer(){
+  }
+
+};
+//Adds types/abilities/P/T to a card (aura)
+class ABecomes:public MTGAbility{
+public:
+  list<int>abilities;
+  list<int>types;
+  list<int>colors;
+  WParsedPT * wppt;
+  ABecomes(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, WParsedPT * wppt, string sabilities):MTGAbility(id,source,target),wppt(wppt){
+    //TODO this is a copy/past of other code that's all around the place, everything should be in a dedicated parser class;
+
+    for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++){
+      size_t found = sabilities.find(Constants::MTGBasicAbilities[j]);
+      if (found != string::npos){
+        abilities.push_back(j);
+      }
+	}
+
+    for (int j = 0; j < Constants::MTG_NB_COLORS; j++){
+      size_t found = sabilities.find(Constants::MTGColorStrings[j]);
+      if (found != string::npos){
+        colors.push_back(j);
+      }
+	}
+
+    string s = stypes;
+    while (s.size()){
+      size_t found = s.find(" ");
+      if (found != string::npos){
+        int id = Subtypes::subtypesList->find(s.substr(0,found));
+        types.push_back(id);
+        s = s.substr(found+1);
+      }else{
+        int id = Subtypes::subtypesList->find(s);
+        types.push_back(id);
+        s = "";
+      }
+    }
+  }
  int addToGame(){
    MTGCardInstance * _target = (MTGCardInstance *)target;
       list<int>::iterator it;

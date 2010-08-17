@@ -289,7 +289,7 @@ id=107542
 rarity=C
 [/card]
 [card]
-primitive=Goblin (Rakdos Guildmage)
+primitive=Goblin Token from Rakdos Guildmage
 id=-97108
 rarity=T
 [/card]
@@ -769,7 +769,7 @@ id=111220
 rarity=R
 [/card]
 [card]
-primitive=Sprouting Phytohydra (Sprouting Phytohydra)
+primitive=Sprouting Phytohydra Token from Sprouting Phytohydra
 id=-111220
 rarity=C
 [/card]

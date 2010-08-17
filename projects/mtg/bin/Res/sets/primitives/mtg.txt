@@ -58,7 +58,7 @@ type=Sorcery
 [card]
 name=AEther Shockwave
 auto=choice tap all(spirit)
-auto=choice all(creature[-spirit])
+auto=choice tap all(creature[-spirit])
 text=Choose one - Tap all Spirits; or tap all non-Spirit creatures.
 mana={3}{W}
 type=Instant
@@ -823,6 +823,20 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Alabaster Leech
+auto=lord(*[white]|myhand) white:+1
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=White spells you cast cost {W} more to cast.
+mana={W}
+type=Creature
+subtype=Leech
+power=1
+toughness=3
+[/card]
+[card]
 name=Alaborn Grenadier
 abilities=vigilance
 text=Vigilance
@@ -893,6 +907,17 @@ type=Creature
 subtype=Troll
 power=3
 toughness=3
+[/card]
+[card]
+name=Alchor's Tomb
+auto={2}{T}:name(white) && target(*|myBattlefield) transforms(,white)
+auto={2}{T}:name(blue) && target(*|myBattlefield) transforms(,blue)
+auto={2}{T}:name(black) && target(*|myBattlefield) transforms(,black)
+auto={2}{T}:name(red) && target(*|myBattlefield) transforms(,red)
+auto={2}{T}:name(green) && target(*|myBattlefield) transforms(,green)
+text={2}, {T}: Target permanent you control becomes the color of your choice. (This effect lasts indefinitely.)
+mana={4}
+type=Artifact
 [/card]
 [card]
 name=Alert Shu Infantry
@@ -1377,6 +1402,21 @@ name=Ancient Tomb
 auto={T}:Add {2} && Damage:2 controller
 text={T}: Add {2} to your mana pool. Ancient Tomb deals 2 damage to you.
 type=Land
+[/card]
+[card]
+name=Andradite Leech
+auto=lord(*[black]|myhand) black:+1
+auto={B}:1/1
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Black spells you cast cost {B} more to cast. -- {B}: Andradite Leech gets +1/+1 until end of turn.
+mana={2}{B}
+type=Creature
+subtype=Leech
+power=2
+toughness=2
 [/card]
 [card]
 name=Angel of Despair
@@ -2667,6 +2707,19 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Aura of Silence
+auto=lord(artifact|opponenthand) colorless:+2
+auto=lord(enchantment|opponenthand) colorless:+2
+auto={S}:destroy target(artifact,enchantment)
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Artifact and enchantment spells your opponents cast cost {2} more to cast. -- Sacrifice Aura of Silence: Destroy target artifact or enchantment.
+mana={1}{W}{W}
+type=Enchantment
+[/card]
+[card]
 name=Aura Shards
 auto=@movedTo(creature|mybattlefield):may destroy target(artifact,enchantment)
 text=Whenever a creature enters the battlefield under your control, you may destroy target artifact or enchantment.
@@ -3322,6 +3375,21 @@ type=Creature
 subtype=Kithkin Soldier
 power=2
 toughness=2
+[/card]
+[card]
+name=Ballyrush Banneret
+auto=lord(kithkin|myhand) colorless:-1
+auto=lord(soldier|myhand) colorless:-1
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Kithkin spells and Soldier spells you cast cost {1} less to cast.
+mana={1}{W}
+type=Creature
+subtype=Kithkin Soldier
+power=2
+toughness=1
 [/card]
 [card]
 name=Baloth Woodcrasher
@@ -5702,6 +5770,21 @@ mana={X}{G}{G}
 type=Sorcery
 [/card]
 [card]
+name=Bosk Banneret
+auto=lord(treefolk|myhand) colorless:-1
+auto=lord(shaman|myhand) colorless:-1
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Treefolk spells and Shaman spells you cast cost {1} less to cast.
+mana={1}{G}
+type=Creature
+subtype=Treefolk Shaman
+power=1
+toughness=3
+[/card]
+[card]
 name=Bottle Gnomes
 auto={S}:life:3
 text=Sacrifice Bottle Gnomes: You gain 3 life.
@@ -6063,6 +6146,22 @@ auto=moveTo(myBattlefield)
 text=Search target opponent's library for a creature card and put that card onto the battlefield under your control. Then that player shuffles his or her library.
 mana={3}{U}{U}
 type=Sorcery
+[/card]
+[card]
+name=Brighthearth Banneret
+auto=lord(elemental|myhand) colorless:-1
+auto=lord(warrior|myhand) colorless:-1
+autohand={1}{R}{S}:counter(1/1,1) target(creature)
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Elemental spells and Warrior spells you cast cost {1} less to cast. -- Reinforce 1 - {1}{R} ({1}{R}, Discard this card: Put a +1/+1 counter on target creature.)
+mana={1}{R}
+type=Creature
+subtype=Elemental Warrior
+power=1
+toughness=1
 [/card]
 [card]
 name=Brightstone Ritual
@@ -7889,6 +7988,18 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Chill
+auto=lord(*[red]|myhand) colorless:+2
+auto=lord(*[red]|opponenthand) colorless:+2
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Red spells cost {2} more to cast.
+mana={1}{U}
+type=Enchantment
+[/card]
+[card]
 name=Chill to the Bone
 target=creature[-snow]
 auto=destroy
@@ -8540,6 +8651,30 @@ type=Creature
 subtype=Elemental
 power=2
 toughness=3
+[/card]
+[card]
+name=Daru Warchief
+text=Soldier spells you cast cost {1} less to cast. -- Soldier creatures you control get +1/+2.
+mana={2}{W}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+[/card]
+[card]
+name=Cloud Key
+auto=choice name(artifact) && lord(artifact|myhand) colorless:-1
+auto=choice name(creature) && lord(creature|myhand) colorless:-1
+auto=choice name(enchantment) && lord(enchantment|myhand) colorless:-1
+auto=choice name(instant) && lord(instant|myhand) colorless:-1
+auto=choice name(sorcery) && lord(sorcery|myhand) colorless:-1
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=As Cloud Key enters the battlefield, choose artifact, creature, enchantment, instant, or sorcery. -- Spells you cast of the chosen type cost {1} less to cast.
+mana={3}
+type=Artifact
 [/card]
 [card]
 name=Cloud Pirates
@@ -10583,6 +10718,17 @@ text={T}: Add {1} to your mana pool. -- {W}, {T}: Target Soldier creature gets +
 type=Land
 [/card]
 [card]
+name=Daru Warchief
+auto=lord(soldier|myhand) colorless:-1
+auto=lord(soldier|myBattlefield) 1/2
+text=Soldier spells you cast cost {1} less to cast. -- Soldier creatures you control get +1/+2.
+mana={2}{W}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+[/card]
+[card]
 name=Dauntless Dourbark
 auto=foreach(forest|myBattlefield) 1/1
 auto=foreach(treefolk|myBattlefield) 1/1
@@ -11396,6 +11542,20 @@ type=Creature
 subtype=Elf
 power=1
 toughness=1
+[/card]
+[card]
+name=Derelor
+auto=lord(*[black]|myhand) black:+1
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Black spells you cast cost {B} more to cast.
+mana={3}{B}
+type=Creature
+subtype=Thrull
+power=4
+toughness=4
 [/card]
 [card]
 name=Descendant of Masumaro
@@ -12335,7 +12495,7 @@ toughness=4
 abilities=flying
 [/card]
 [card]
-name=Dragon (Dragon Broodmother)
+name=Dragon Token from Dragon Broodmother
 type=Creature
 subtype=Dragon
 abilities=flying
@@ -12443,6 +12603,20 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Dragonspeaker Shaman
+auto=lord(dragon|myhand) colorless:-2
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Dragon spells you cast cost {2} less to cast.
+mana={1}{R}{R}
+type=Creature
+subtype=Human Barbarian Shaman
+power=2
+toughness=2
+[/card]
+[card]
 name=Dragonstalker
 abilities=flying
 auto=protection from(dragon)
@@ -12492,6 +12666,14 @@ auto={T}:Add {B}
 text={T}: Add {U} or {B} to your mana pool.
 mana={3}
 type=Artifact
+[/card]
+[card]
+name=Dralnu's Crusade
+auto=lord(goblin) 1/1
+auto=lord(goblin) transforms(zombie,black)
+text=Goblin creatures get +1/+1. -- All Goblins are black and are Zombies in addition to their other creature types.
+mana={1}{B}{R}
+type=Enchantment
 [/card]
 [card]
 name=Dramatic Entrance
@@ -13473,6 +13655,21 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Edgewalker
+auto=lord(cleric|myhand) white:-1
+auto=lord(cleric|myhand) black:-1
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Cleric spells you cast cost {W}{B} less to cast. This effect reduces only the amount of colored mana you pay. (For example, if you cast a Cleric spell with mana cost {1}{W}, it costs {1} to cast.)
+mana={1}{W}{B}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=2
+[/card]
+[card]
 name=Eerie Procession
 target=arcane|mylibrary
 auto=moveto(myhand)
@@ -13598,7 +13795,7 @@ mana={1}{U}{R}
 type=Instant
 [/card]
 [card]
-name=Elemental (Feral Lightning)
+name=Elemental Token from Feral Lightning
 type=Creature
 subtype=Elemental
 auto=@next end:moveTo(exile)
@@ -13606,10 +13803,10 @@ abilities=haste
 text=Haste
 power=3
 toughness=1
-colour=red
+color=red
 [/card]
 [card]
-name=Elemental (Zendikar Shrine)
+name=Elemental Token from Zendikar Shrine
 type=Creature
 subtype=Elemental
 auto=@next end:moveTo(exile)
@@ -13617,7 +13814,7 @@ abilities=trample,haste
 text=Trample,haste
 power=7
 toughness=1
-colour=red
+color=red
 [/card]
 [card]
 name=Elephant Ambush
@@ -14108,7 +14305,7 @@ subtype=Aura
 name=Emerald Charm
 auto=aslongas(*|battlefield) choice untap target(*)
 auto=aslongas(enchantment[-aura]|battlefield) choice destroy target(enchantment[-aura])
-auto=aslongas(creature|battlefield) choice -flying target(creature)
+auto=may -flying target(creature[flying])
 text=Choose one - Untap target permanent; or destroy target non-Aura enchantment; or target creature loses flying until end of turn.
 mana={G}
 type=Instant
@@ -14123,6 +14320,17 @@ type=Creature
 subtype=Insect
 power=1
 toughness=1
+[/card]
+[card]
+name=Emerald Medallion
+auto=lord(*[green]|myhand) colorless:-1
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Green spells you cast cost {1} less to cast.
+mana={2}
+type=Artifact
 [/card]
 [card]
 name=Emerald Oryx
@@ -14262,6 +14470,13 @@ type=Artifact Creature
 subtype=Golem
 power=3
 toughness=5
+[/card]
+[card]
+name=Enchanted Evening
+auto=lord(*|battlefield) transforms(enchantment)
+text=All permanents are enchantments in addition to their other types.
+mana={3}{WU}{WU}
+type=Enchantment
 [/card]
 [card]
 name=Enchantress's Presence
@@ -14786,6 +15001,20 @@ mana={2}{U}
 type=Artifact
 [/card]
 [card]
+name=Etherium Sculptor
+auto=lord(artifact|myhand) colorless:-1
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Artifact spells you cast cost {1} less to cast.
+mana={1}{U}
+type=Artifact Creature
+subtype=Vedalken Artificer
+power=1
+toughness=2
+[/card]
+[card]
 name=Ethersworn Adjudicator
 abilities=flying
 auto={1}{W}{B}{T}:destroy target(creature,enchantment)
@@ -15093,6 +15322,17 @@ auto={S}:Add {U}
 text={T}: Add {U} to your mana pool. -- Sacrifice Eye of Ramos: Add {U} to your mana pool.
 mana={3}
 type=Artifact
+[/card]
+[card]
+name=Eye of Ugin
+auto=lord(eldrazi[-white;-blue;-black;-red;-green]|myhand) colorless:-2
+auto={7}{T}:moveTo(myhand) target(creature[-white;-blue;-black;-red;-green]|myLibrary)
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Everglades enters the battlefield tapped. -- When Everglades enters the battlefield, sacrifice it unless you return an untapped Swamp you control to its owner's hand. -- {T}: Add {1}{B} to your mana pool.
+type=Legendary Land
 [/card]
 [card]
 name=Eyeblight's Ending
@@ -15620,6 +15860,18 @@ type=Creature
 subtype=Nightstalker
 power=2
 toughness=1
+[/card]
+[card]
+name=Feroz's Ban
+auto=lord(creature|myhand) colorless:+2
+auto=lord(creature|opponenthand) colorless:+2
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Creature spells cost {2} more to cast.
+mana={6}
+type=Artifact
 [/card]
 [card]
 name=Fervent Charge
@@ -17186,6 +17438,22 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Frogtosser Banneret
+abilities=haste
+auto=lord(goblin|myhand) colorless:-1
+auto=lord(rogue|myhand) colorless:-1
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Haste -- Goblin spells and Rogue spells you cast cost {1} less to cast.
+mana={1}{B}
+type=Creature
+subtype=Goblin Rogue
+power=1
+toughness=1
+[/card]
+[card]
 name=Frontier Guide
 auto={3}{G}{T}:moveTo(myBattlefield) target(land[basic]|myLibrary) && tap
 text={3}{G}, {T}: Search your library for a basic land card and put it onto the battlefield tapped. Then shuffle your library.
@@ -18512,6 +18780,21 @@ power=1
 toughness=3
 [/card]
 [card]
+name=Glowrider
+auto=lord(*[-creature]|myhand) colorless:+1
+auto=lord(*[-creature]|opponenthand) colorless:+1
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Noncreature spells cost {1} more to cast.
+mana={2}{W}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=1
+[/card]
+[card]
 name=Gluttonous Slime
 abilities=flash
 auto=counter(0/0,-1,devour) all(other creature)
@@ -18560,7 +18843,7 @@ power=3
 toughness=1
 [/card]
 [card]
-name=Goblin (Rakdos Guildmage)
+name=Goblin Token from Rakdos Guildmage
 type=Creature
 subtype=Goblin
 auto=@next end:moveTo(exile)
@@ -18568,7 +18851,7 @@ abilities=haste
 text=Haste
 power=2
 toughness=1
-colour=red
+color=red
 [/card]
 [card]
 name=Goblin Arsonist
@@ -19179,6 +19462,21 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Goblin Warchief
+auto=lord(goblin|myhand) colorless:-1
+auto=lord(goblin|myBattlefield) haste
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Goblin spells you cast cost {1} less to cast. -- Goblin creatures you control have haste.
+mana={1}{R}{R}
+type=Creature
+subtype=Goblin
+power=2
+toughness=2
+[/card]
+[card]
 name=Goblin War Buggy
 abilities=haste
 auto=upcost[{1}{R}{0};next upkeep] moveTo(graveyard)
@@ -19328,14 +19626,14 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Goldmeadow Harrier (Goldmeadow Lookout)
+name=Goldmeadow Harrier Token from Goldmeadow Lookout
 type=Creature
 subtype=Kithkin Soldier
 auto={W}{T}:tap target(creature)
 text={W}, {T}: Tap target creature.
 power=1
 toughness=1
-colour=white
+color=white
 [/card]
 [card]
 name=Goldmeadow Lookout
@@ -19498,6 +19796,22 @@ auto=@each my end:moveTo(graveyard) all(*|myhand)
 text=At the beginning of your draw step, draw an additional card. -- At the beginning of your end step, discard your hand.
 mana={4}
 type=Artifact
+[/card]
+[card]
+name=Grand Arbiter Augustin IV
+auto=lord(*[white;blue]|myhand) colorless:-1
+auto=lord(*[blue]|myhand) colorless:-1
+auto=lord(*|opponenthand) colorless:+1
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=White spells you cast cost {1} less to cast. -- Blue spells you cast cost {1} less to cast. -- Spells your opponents cast cost {1} more to cast.
+mana={2}{W}{U}
+type=Legendary Creature
+subtype=Human Advisor
+power=2
+toughness=3
 [/card]
 [card]
 name=Grand Coliseum
@@ -21259,6 +21573,18 @@ toughness=1
 mana={1}{R}
 [/card]
 [card]
+name=Helm of Awakening
+auto=lord(*|myhand) colorless:-1
+auto=lord(*|opponenthand) colorless:-1
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Spells cost {1} less to cast.
+mana={2}
+type=Artifact
+[/card]
+[card]
 name=Helm of Kaldra
 auto=first strike
 auto=trample
@@ -21431,6 +21757,18 @@ text={T}: Add {1} to your mana pool. -- {T}, Sacrifice a creature: You gain 1 li
 type=Land
 [/card]
 [card]
+name=High Seas
+auto=lord(creature[red;green]|myhand) colorless:+1
+auto=lord(creature[red;green]|opponenthand) colorless:+1
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Red creature spells and green creature spells cost {1} more to cast.
+mana={2}{U}
+type=Enchantment
+[/card]
+[card]
 name=Highland Berserker
 auto=may lord(ally|myBattlefield) first strike ueot
 auto=@movedTo(other ally|myBattlefield):may lord(ally|myBattlefield) first strike ueot
@@ -21510,6 +21848,13 @@ auto=@each my blockers:foreach(creature[attacking]|opponentBattlefield) life:-1 
 text=Whenever a creature attacks you, its controller loses 1 life.
 mana={1}{B}{B}
 type=Enchantment
+[/card]
+[card]
+name=Hivestone
+auto=lord(creature|mybattlefield) transforms(sliver)
+text=Creatures you control are Slivers in addition to their other creature types.
+mana={2}
+type=Artifact
 [/card]
 [card]
 name=Hoar Shade
@@ -23142,6 +23487,21 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Irini Sengir
+auto=lord(enchantment[white;green]|myhand) colorless:+1
+auto=lord(enchantment[white;green]|opponenthand) colorless:+1
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=White enchantment spells and green enchantment spells cost {2} more to cast.
+mana={2}{B}{B}
+type=Legendary Creature
+subtype=Vampire Dwarf
+power=2
+toughness=2
+[/card]
+[card]
 name=Iron Lance
 auto={3}{T}:first strike target(creature)
 text={3}, {T}: Target creature gains first strike until end of turn.
@@ -23450,6 +23810,20 @@ mana={4}
 type=Artifact
 [/card]
 [card]
+name=Jade Leech
+auto=lord(*[green]|myhand) green:+1
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Green spells you cast cost {G} more to cast.
+mana={2}{G}{G}
+type=Creature
+subtype=Leech
+power=5
+toughness=5
+[/card]
+[card]
 name=Jagged-Scar Archers
 auto=foreach(elf|myBattlefield) 1/1
 auto={T}:thisforeach(power>=1) damage:1 target(creature[flying])
@@ -23625,6 +23999,17 @@ type=Legendary Creature
 subtype=Human Barbarian Warrior
 power=3
 toughness=1
+[/card]
+[card]
+name=Jet Medallion
+auto=lord(*[black]|myhand) colorless:-1
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Black spells you cast cost {1} less to cast.
+mana={2}
+type=Artifact
 [/card]
 [card]
 name=Jhessian Infiltrator
@@ -25422,14 +25807,14 @@ mana={1}{W}
 type=Instant
 [/card]
 [card]
-name=Knight (Waylay)
+name=Knight Token from Waylay
 type=Creature
 subtype=Knight
 auto=@next cleanup:moveTo(exile)
 text=
 power=2
 toughness=2
-colour=white
+color=white
 [/card]
 [card]
 name=Knight Errant
@@ -25947,6 +26332,21 @@ type=Creature
 subtype=Boar Beast
 power=6
 toughness=5
+[/card]
+[card]
+name=Krosan Warchief
+auto={1}{G}:regenerate target(beast)
+auto=lord(beast|myhand) colorless:-1
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Beast spells you cast cost {1} less to cast. -- {1}{G}: Regenerate target Beast.
+mana={2}{G}
+type=Creature
+subtype=Beast
+power=2
+toughness=2
 [/card]
 [card]
 name=Krosan Wayfarer
@@ -26715,6 +27115,15 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Life and Limb
+auto=lord(saproling|mybattlefield) transforms(forest)
+auto=lord(saproling|mybattlefield) {T}:Add{G}
+auto=lord(forest) becomes(Saproling,Creature Saproling,1/1,green)
+text=All Forests and all Saprolings are 1/1 green Saproling creatures and Forest lands in addition to their other types.
+mana={3}{G}
+type=Enchantment
+[/card]
+[card]
 name=Life Burst
 target=player
 auto=life:4
@@ -27156,14 +27565,14 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Llanowar Elves (Llanowar Mentor)
+name=Llanowar Elves Token from Llanowar Mentor
 type=Creature
 subtype=Elf Druid
 auto={T}:Add {G}
 text={T}: Add {G} to your mana pool.
 power=1
 toughness=1
-colour=green
+color=green
 [/card]
 [card]
 name=Llanowar Knight
@@ -27274,6 +27683,21 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Lodestone Golem
+auto=lord(*[-artifact]|myhand) colorless:+1
+auto=lord(*[-artifact]|opponenthand) colorless:+1
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Nonartifact spells cost {1} more to cast.
+mana={4}
+type=Artifact Creature
+subtype=Golem
+power=5
+toughness=3
+[/card]
+[card]
 name=Lodestone Myr
 abilities=trample
 auto={T(creature[artifact;-tapped]|myBattlefield)}:1/1
@@ -27311,6 +27735,18 @@ type=Creature
 subtype=Human Soldier Archer
 power=2
 toughness=2
+[/card]
+[card]
+name=Long-Forgotten Gohei
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+auto=lord(arcane|myhand) colorless:-1
+auto=lord(spirit|myBattlefield) 1/1
+text=Arcane spells you cast cost {1} less to cast. -- Spirit creatures you control get +1/+1.
+mana={3}
+type=Artifact
 [/card]
 [card]
 name=Looming Hoverguard
@@ -28173,6 +28609,18 @@ mana={3}{R}{R}
 type=Sorcery
 [/card]
 [card]
+name=Mana Matrix
+auto=lord(instant|myhand) colorless:-2
+auto=lord(enchantment|myhand) colorless:-2
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Instant and enchantment spells you cast cost up to {2} less to cast.
+mana={6}
+type=Artifact
+[/card]
+[card]
 name=Mana Prism
 auto={T}:Add {1}
 auto={1}{T}:Add {B}
@@ -28815,6 +29263,17 @@ type=Legendary Creature
 subtype=Moonfolk Wizard
 power=2
 toughness=4
+[/card]
+[card]
+name=Memnarch
+auto={1}{U}{U}:target(*) transforms(artifact)
+auto={3}{U}:moveTo(myBattlefield) target(arifact)
+text={1}{U}{U}: Target permanent becomes an artifact in addition to its other types. (This effect lasts indefinitely.) -- {3}{U}: Gain control of target artifact. (This effect lasts indefinitely.)
+mana={7}
+type=Legendary Artifact Creature
+subtype=Wizard
+power=4
+toughness=5
 [/card]
 [card]
 name=Memory Erosion
@@ -31632,6 +32091,21 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Nightscape Familiar
+auto=lord(*[blue;red]|myhand) colorless:-1
+auto={1}{B}:regenerate
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Blue spells and red spells you cast cost {1} less to cast. -- {1}{B}: Regenerate Nightscape Familiar.
+mana={1}{B}
+type=Creature
+subtype=Zombie
+power=1
+toughness=1
+[/card]
+[card]
 name=Nightscape Master
 auto={U}{U}{T}:moveTo(ownerhand) target(creature)
 auto={R}{R}{T}:Damage:2 target(creature)
@@ -32558,7 +33032,7 @@ mana={2}{U}
 type=Instant
 [/card]
 [card]
-name=Ooze (Mitotic Slime)
+name=Ooze Token from Mitotic Slime
 type=Creature
 subtype=Ooze
 auto=@movedTo(this|graveyard) from(battlefield):token(77777777)*2
@@ -32568,7 +33042,7 @@ toughness=2
 color=green
 [/card]
 [card]
-name=Ooze (Ooze)
+name=Ooze Token from Ooze Token
 type=Creature
 subtype=Ooze
 text=
@@ -33548,6 +34022,17 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Pearl Medallion
+auto=lord(*[white]|myhand) colorless:-1
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=White spells you cast cost {1} less to cast.
+mana={2}
+type=Artifact
+[/card]
+[card]
 name=Pearled Unicorn
 mana={2}{W}
 type=Creature
@@ -34462,6 +34947,17 @@ mana={3}{B}{B}
 type=Sorcery
 [/card]
 [card]
+name=Planar Gate
+auto=lord(creature|myhand) colorless:-2
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Creature spells you cast cost up to {2} less to cast.
+mana={6}
+type=Artifact
+[/card]
+[card]
 name=Planar Portal
 auto={6}{T}:moveTo(myHand) target(*|myLibrary)
 text={6}, {T}: Search your library for a card and put that card into your hand. Then shuffle your library.
@@ -34973,6 +35469,17 @@ type=Legendary Creature
 subtype=Human Wizard
 power=5
 toughness=4
+[/card]
+[card]
+name=Prismatic Lace
+auto=name(white) && target(*|myBattlefield) transforms(,white)
+auto=name(blue) && target(*|myBattlefield) transforms(,blue)
+auto=name(black) && target(*|myBattlefield) transforms(,black)
+auto=name(red) && target(*|myBattlefield) transforms(,red)
+auto=name(green) && target(*|myBattlefield) transforms(,green)
+text=Target permanent becomes the color or colors of your choice. (This effect lasts indefinitely.)
+mana={U}
+type=Instant
 [/card]
 [card]
 name=Prismatic Lens
@@ -38253,6 +38760,32 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Ruby Leech
+abilities=first strike
+auto=lord(*[red]|myhand) red:+1
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=First strike -- Red spells you cast cost {R} more to cast.
+mana={1}{R}
+type=Creature
+subtype=Leech
+power=2
+toughness=2
+[/card]
+[card]
+name=Ruby Medallion
+auto=lord(*[red]|myhand) colorless:-1
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Red spells you cast cost {1} less to cast.
+mana={2}
+type=Artifact
+[/card]
+[card]
 name=Rugged Prairie
 auto={T}:Add {1}
 auto={RW}{T}:Add {R}{R}
@@ -38821,6 +39354,32 @@ type=Creature
 subtype=Rat
 power=1
 toughness=1
+[/card]
+[card]
+name=Sapphire Leech
+abilities=flying
+auto=lord(*[blue]|myhand) blue:+1
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Flying -- Blue spells you cast cost {U} more to cast.
+mana={1}{U}
+type=Creature
+subtype=Leech
+power=2
+toughness=2
+[/card]
+[card]
+name=Sapphire Medallion
+auto=lord(*[blue]|myhand) colorless:-1
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Blue spells you cast cost {1} less to cast.
+mana={2}
+type=Artifact
 [/card]
 [card]
 name=Saprazzan Bailiff
@@ -43389,7 +43948,7 @@ power=3
 toughness=1
 [/card]
 [card]
-name=Spark Elemental (Sparkspitter)
+name=Spark Elemental Token from Sparkspitter
 type=Creature
 subtype=Elemental
 abilities=trample,haste
@@ -43399,7 +43958,7 @@ type=Creature
 subtype=Elemental
 power=3
 toughness=1
-colour=red
+color=red
 [/card]
 [card]
 name=Spark Mage
@@ -43597,6 +44156,18 @@ auto=@movedTo(*|opponentstack):damage:2 opponent
 text=Whenever a player casts a spell, Spellshock deals 2 damage to that player.
 mana={2}{R}
 type=Enchantment
+[/card]
+[card]
+name=Sphere of Resistance
+auto=lord(*|myhand) colorless:+1
+auto=lord(*|opponenthand) colorless:+1
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Spells cost {1} more to cast.
+mana={2}
+type=Artifact
 [/card]
 [card]
 name=Sphinx-Bone Wand
@@ -44053,7 +44624,7 @@ auto=thisforeach(counter{0/0.1.Age}) upcost[{G}] moveTo(graveyard)
 text=This creature gets +1/+1 for each card named Sound the Call in each graveyard.
 power=1
 toughness=1
-colour=green
+color=green
 [/card]
 [card]
 name=Splintering Wind
@@ -44248,7 +44819,7 @@ power=0
 toughness=2
 [/card]
 [card]
-name=Sprouting Phytohydra (Sprouting Phytohydra)
+name=Sprouting Phytohydra Token from Sprouting Phytohydra
 type=Creature
 subtype=Plant Hydra
 abilities=defender
@@ -44312,6 +44883,18 @@ type=Legendary Creature
 subtype=Goblin
 power=1
 toughness=1
+[/card]
+[card]
+name=Squeeze
+text=Sorcery spells cost {3} more to cast.
+auto=lord(sorcery|myhand) colorless:+3
+auto=lord(sorcery|opponenthand) colorless:+3
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+mana={3}{U}
+type=Enchantment
 [/card]
 [card]
 name=Squire
@@ -44888,6 +45471,20 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Stinkdrinker Daredevil
+auto=lord(giant|myhand) colorless:-2
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Giant spells you cast cost {2} less to cast.
+mana={2}{R}
+type=Creature
+subtype=Goblin Rogue
+power=1
+toughness=3
+[/card]
+[card]
 name=Stirring Wildwood
 auto=tap
 auto={T}:Add{G}
@@ -44934,6 +45531,17 @@ auto={T}:Add {G}
 text=({T}: Add {R} or {G} to your mana pool.) -- As Stomping Ground enters the battlefield, you may pay 2 life. If you don't, Stomping Ground enters the battlefield tapped.
 type=Land
 subtype=Mountain Forest
+[/card]
+[card]
+name=Stone Calendar
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+auto=lord(*|myhand) colorless:-1
+text=Spells you cast cost up to {1} less to cast.
+mana={5}
+type=Artifact
 [/card]
 [card]
 name=Stone Catapult
@@ -45066,6 +45674,22 @@ power=1
 toughness=2
 [/card]
 [card]
+name=Stonybrook Banneret
+abilities=islandwalk
+auto=lord(merfolk|myhand) colorless:-1
+auto=lord(island|myhand) colorless:-1
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Islandwalk -- Merfolk spells and Wizard spells you cast cost {1} less to cast.
+mana={1}{U}
+type=Creature
+subtype=Merfolk Wizard
+power=1
+toughness=1
+[/card]
+[card]
 name=Stonybrook Schoolmaster
 auto=@tapped(this):may token(Merfolk wizard,creature Merfolk Wizard,1/1,blue)
 text=Whenever Stonybrook Schoolmaster becomes tapped, you may put a 1/1 blue Merfolk Wizard creature token onto the battlefield.
@@ -45157,6 +45781,30 @@ text={W}, {T}: Tap target creature. -- {B}, {T}: Target player loses 1 life.
 mana={U}
 type=Creature
 subtype=Human Wizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Stormscape Familiar
+text=Flying -- White spells and black spells you cast cost {1} less to cast.
+mana={1}{U}
+type=Creature
+subtype=Bird
+power=1
+toughness=1
+[/card]
+[card]
+name=Stormscape Familiar
+abilities=flying
+auto=lord(*[white;black]|myhand) colorless:-1
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Flying -- White spells and black spells you cast cost {1} less to cast.
+mana={1}{U}
+type=Creature
+subtype=Bird
 power=1
 toughness=1
 [/card]
@@ -45774,6 +46422,21 @@ type=Creature
 subtype=Human Wizard
 power=1
 toughness=1
+[/card]
+[card]
+name=Sunscape Familiar
+abilities=flying
+auto=lord(*[green;blue]|myhand) colorless:-1
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Defender (This creature can't attack.) -- Green spells and blue spells you cast cost {1} less to cast.
+mana={1}{W}
+type=Creature
+subtype=Wall
+power=0
+toughness=3
 [/card]
 [card]
 name=Sunscape Master
@@ -47530,6 +48193,18 @@ power=0
 toughness=0
 [/card]
 [card]
+name=Thorn of Amethyst
+auto=lord(*[-creature]|myhand) colorless:+1
+auto=lord(*[-creature]|opponenthand) colorless:+1
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Noncreature spells cost {1} more to cast.
+mana={2}
+type=Artifact
+[/card]
+[card]
 name=Thorn Thallid
 text=At the beginning of your upkeep, put a spore counter on Thorn Thallid. -- Remove three spore counters from Thorn Thallid: Thorn Thallid deals 1 damage to target creature or player.
 mana={1}{G}{G}
@@ -47563,6 +48238,20 @@ mana={G}
 type=Creature
 subtype=Human Wizard
 power=1
+toughness=1
+[/card]
+[card]
+name=Thornscape Familiar
+auto=lord(*[red;white]|myhand) colorless:-1
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Red spells and white spells you cast cost {1} less to cast.
+mana={1}{G}
+type=Creature
+subtype=Insect
+power=2
 toughness=1
 [/card]
 [card]
@@ -47952,6 +48641,21 @@ text={B}, {T}: Target player loses 1 life. -- {G}, {T}: Target creature gets +1/
 mana={R}
 type=Creature
 subtype=Human Wizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Thunderscape Familiar
+abilities=first strike
+auto=lord(*[black;green]|myhand) colorless:-1
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=First strike -- Black spells and green spells you cast cost {1} less to cast.
+mana={1}{R}
+type=Creature
+subtype=Kavu
 power=1
 toughness=1
 [/card]
@@ -48776,7 +49480,7 @@ toughness=3
 [card]
 name=Trade Caravan
 auto=@each my upkeep:counter(0/0,1,Currency)
-auto={C(0/0,-2,Currency)}:untap target(land[basic]) opponentUpkeepOnly
+auto={C(0/0,-2,Currency)}:untap target(land[basic]) myUpkeepOnly
 text=At the beginning of your upkeep, put a currency counter on Trade Caravan. -- Remove two currency counters from Trade Caravan: Untap target basic land. Activate this ability only during an opponent's upkeep.
 mana={W}
 type=Creature
@@ -49748,6 +50452,21 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Undead Warchief
+auto=lord(zombie|myBatllefield) 2/1
+auto=lord(zombie|myhand) colorless:-1
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Zombie spells you cast cost {1} less to cast. -- Zombie creatures you control get +2/+1.
+mana={2}{B}{B}
+type=Creature
+subtype=Zombie
+power=1
+toughness=1
+[/card]
+[card]
 name=Undercity Shade
 abilities=fear
 auto={B}:1/1
@@ -50038,6 +50757,13 @@ auto={T}:Add {B}
 auto={T}:-swampwalk target(creature)
 auto={T}:-first strike target(creature)
 text={T}: Add {B} to your mana pool. -- {T}: Target creature loses first strike or swampwalk until end of turn.
+type=Legendary Land
+[/card]
+[card]
+name=Urborg, Tomb of Yawgmoth
+auto=lord(land) transforms(swamp)
+auto=lord(land) {T}:Add{B}
+text=Each land is a Swamp in addition to its other land types.
 type=Legendary Land
 [/card]
 [card]
@@ -52743,7 +53469,7 @@ auto=@next end:moveTo(mygraveyard)
 text=Defender
 type=Creature
 suntype=Wall
-colour=blue
+color=blue
 [/card]
 [card]
 name=Waveskimmer Aven
@@ -53910,14 +54636,14 @@ power=3
 toughness=5
 [/card]
 [card]
-name=Wolf (Sound the Call)
+name=Wolf Token from Sound the Call
 type=Creature
 subtype=Wolf
 auto=foreach(sound the call|graveyard) 1/1
 text=This creature gets +1/+1 for each card named Sound the Call in each graveyard.
 power=1
 toughness=1
-colour=green
+color=green
 [/card]
 [card]
 name=Wolverine Pack

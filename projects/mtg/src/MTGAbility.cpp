@@ -971,8 +971,118 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
       ab = NEW ABecomesUEOT(id,card,target,stypes,pt,sabilities);
     }else{
       ab = NEW ABecomes(id,card,target,stypes,pt,sabilities);
+	}return ab;
+  }
+
+//ManaRedux
+  found = s.find("colorless:");
+  if (found != string::npos){
+    size_t start = s.find(":",found);
+    size_t end = s.find(" ",start);
+    int amount;
+    if (end != string::npos){amount = atoi(s.substr(start+1,end-start-1).c_str());}
+	else{amount = atoi(s.substr(start+1).c_str());}
+    MTGAbility * a = NEW AManaRedux(id,card,target,amount,0);
+    return a;
+  }
+//ManaRedux
+  found = s.find("green:");
+  if (found != string::npos){
+    size_t start = s.find(":",found);
+    size_t end = s.find(" ",start);
+    int amount;
+    if (end != string::npos){amount = atoi(s.substr(start+1,end-start-1).c_str());}
+	else{amount = atoi(s.substr(start+1).c_str());}
+    MTGAbility * a = NEW AManaRedux(id,card,target,amount,1);
+    return a;
+  }
+  //ManaRedux
+  found = s.find("blue:");
+  if (found != string::npos){
+    size_t start = s.find(":",found);
+    size_t end = s.find(" ",start);
+    int amount;
+    if (end != string::npos){amount = atoi(s.substr(start+1,end-start-1).c_str());}
+	else{amount = atoi(s.substr(start+1).c_str());}
+    MTGAbility * a = NEW AManaRedux(id,card,target,amount,2);
+    return a;
+  }
+  //ManaRedux
+  found = s.find("red:");
+  if (found != string::npos){
+    size_t start = s.find(":",found);
+    size_t end = s.find(" ",start);
+    int amount;
+    if (end != string::npos){amount = atoi(s.substr(start+1,end-start-1).c_str());}
+	else{amount = atoi(s.substr(start+1).c_str());}
+    MTGAbility * a = NEW AManaRedux(id,card,target,amount,3);
+    return a;
+  }
+    //ManaRedux
+  found = s.find("black:");
+  if (found != string::npos){
+    size_t start = s.find(":",found);
+    size_t end = s.find(" ",start);
+    int amount;
+    if (end != string::npos){amount = atoi(s.substr(start+1,end-start-1).c_str());}
+	else{amount = atoi(s.substr(start+1).c_str());}
+    MTGAbility * a = NEW AManaRedux(id,card,target,amount,4);
+    return a;
+  }
+      //ManaRedux
+  found = s.find("white:");
+  if (found != string::npos){
+    size_t start = s.find(":",found);
+    size_t end = s.find(" ",start);
+    int amount;
+    if (end != string::npos){amount = atoi(s.substr(start+1,end-start-1).c_str());}
+	else{amount = atoi(s.substr(start+1).c_str());}
+    MTGAbility * a = NEW AManaRedux(id,card,target,amount,5);
+    return a;
+  }
+
+   //resetcost
+  found = s.find("resetcost");
+	  if (found != string::npos){
+	MTGAbility * a = NEW AResetCost(id,card,target);
+		return a;}
+ ////one less mana
+ // found = s.find("oneless");
+	//  if (found != string::npos){
+	//MTGAbility * a = NEW AOneless(id,card,target);
+	//	return a;}
+ ////more more mana
+ // found = s.find("onemore");
+	//  if (found != string::npos){
+	//MTGAbility * a = NEW AOnemore(id,card,target);
+	//	return a;}
+
+    //transform....(hivestone,living enchantment)
+  found = s.find("transforms(");
+  if (found != string::npos){
+    size_t real_end = s.find(")", found);
+    size_t end = s.find(",", found);
+    if (end == string::npos) end = real_end;
+    string stypes  = s.substr(found + 11,end - found - 11);
+    string sabilities;
+    if (end != real_end){
+      int previous = end+1;
+      end = s.find(",",previous);
+      if (end == string::npos) end = real_end;
+      string temp = s.substr(previous, end - previous);
+      if (end == real_end){
+        sabilities = temp;
+      }
     }
-    return ab;
+    if (end != real_end){
+      sabilities = s.substr(end+1, real_end - end);
+    }
+    MTGAbility * ab;
+    if (forceUEOT){
+      ab = NEW ATransformer(id,card,target,stypes,sabilities);
+    }else{
+      ab = NEW ATransformer(id,card,target,stypes,sabilities);
+	}return ab;
   }
 
   //Change Power/Toughness
@@ -1067,11 +1177,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     a->oneShot = 1;
     return a;
   }
-
-
-
-  return NULL;
-
+   return NULL;
 }
 
 //Tells the AI if the ability should target itself or an ennemy
@@ -1186,6 +1292,10 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
       }
 	  if (dest == zones->exile){
         magicText = card->magicTexts["exile"];
+        break;
+      }
+	  if (dest == zones->library){
+        magicText = card->magicTexts["library"];
         break;
       }
       //Other zones needed ?

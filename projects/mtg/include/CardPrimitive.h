@@ -13,13 +13,13 @@ using namespace std;
 class CardPrimitive {
  protected:
   vector<string> ftdText;
-  int init();
   string lcname;
   ManaCost manaCost;
 
  public:
   string text;
   string name;
+  int init();
 
   int colors[Constants::MTG_NB_COLORS];
   map<int,int> basicAbilities;
