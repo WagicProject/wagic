@@ -265,7 +265,7 @@ class AbilityFactory{
   Counter * parseCounter(string s, MTGCardInstance * target, Spell * spell = NULL);
   int parsePowerToughness(string s, int *power, int *toughness);
   int getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCardInstance * card = NULL, int id = 0,MTGGameZone * dest = NULL);
-  MTGAbility * parseMagicLine(string s, int id, Spell * spell, MTGCardInstance *card, int activated = 0, int forceUEOT = 0,int oneShot = 0, MTGGameZone * dest = NULL);
+  MTGAbility * parseMagicLine(string s, int id, Spell * spell, MTGCardInstance *card, int activated = 0, int forceUEOT = 0,int oneShot = 0,int forceForever = 0, MTGGameZone * dest = NULL);
   int abilityEfficiency(MTGAbility * a, Player * p, int mode = MODE_ABILITY, TargetChooser * tc = NULL);
   int magicText(int id, Spell * spell, MTGCardInstance * card = NULL, int mode = MODE_PUTINTOPLAY, TargetChooser * tc = NULL, MTGGameZone * dest = NULL);
   static int computeX(Spell * spell, MTGCardInstance * card);

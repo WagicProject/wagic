@@ -226,7 +226,7 @@ MTGAbility * AbilityFactory::getCoreAbility(MTGAbility * a){
 //Parses a string and returns the corresponding MTGAbility object
 //Returns NULL if parsing failed
 //Beware, Spell CAN be null when the function is called by the AI trying to analyze the effects of a given card
-MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTGCardInstance *card, int activated, int forceUEOT, int oneShot, MTGGameZone * dest){
+MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTGCardInstance *card, int activated, int forceUEOT, int oneShot,int forceFOREVER, MTGGameZone * dest){
   size_t found;
  
   string whitespaces (" \t\f\v\n\r");
@@ -722,6 +722,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   if (found!= string::npos) forceUEOT = 1;
   found = s.find("oneshot");
   if (found!= string::npos) oneShot = 1;
+  found = s.find("forever");
+  if (found!= string::npos) forceFOREVER = 1;
  
   //PreventCombat Damage
   found = s.find("preventallcombatdamage");
@@ -939,10 +941,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
     return NULL;
   }
-
-
-
-
   //Becomes... (animate artifact...: becomes(Creature, manacost/manacost)
   found = s.find("becomes(");
   if (found != string::npos){
@@ -983,9 +981,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (end != string::npos){amount = atoi(s.substr(start+1,end-start-1).c_str());}
 	else{amount = atoi(s.substr(start+1).c_str());}
     MTGAbility * a = NEW AManaRedux(id,card,target,amount,0);
-    return a;
-  }
-//ManaRedux
+    return a;}
   found = s.find("green:");
   if (found != string::npos){
     size_t start = s.find(":",found);
@@ -994,9 +990,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (end != string::npos){amount = atoi(s.substr(start+1,end-start-1).c_str());}
 	else{amount = atoi(s.substr(start+1).c_str());}
     MTGAbility * a = NEW AManaRedux(id,card,target,amount,1);
-    return a;
-  }
-  //ManaRedux
+    return a;}
   found = s.find("blue:");
   if (found != string::npos){
     size_t start = s.find(":",found);
@@ -1005,9 +999,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (end != string::npos){amount = atoi(s.substr(start+1,end-start-1).c_str());}
 	else{amount = atoi(s.substr(start+1).c_str());}
     MTGAbility * a = NEW AManaRedux(id,card,target,amount,2);
-    return a;
-  }
-  //ManaRedux
+    return a;}
   found = s.find("red:");
   if (found != string::npos){
     size_t start = s.find(":",found);
@@ -1016,9 +1008,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (end != string::npos){amount = atoi(s.substr(start+1,end-start-1).c_str());}
 	else{amount = atoi(s.substr(start+1).c_str());}
     MTGAbility * a = NEW AManaRedux(id,card,target,amount,3);
-    return a;
-  }
-    //ManaRedux
+    return a;}
   found = s.find("black:");
   if (found != string::npos){
     size_t start = s.find(":",found);
@@ -1027,9 +1017,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (end != string::npos){amount = atoi(s.substr(start+1,end-start-1).c_str());}
 	else{amount = atoi(s.substr(start+1).c_str());}
     MTGAbility * a = NEW AManaRedux(id,card,target,amount,4);
-    return a;
-  }
-      //ManaRedux
+    return a;}
   found = s.find("white:");
   if (found != string::npos){
     size_t start = s.find(":",found);
@@ -1040,23 +1028,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     MTGAbility * a = NEW AManaRedux(id,card,target,amount,5);
     return a;
   }
-
-   //resetcost
+  //resetcost dirty code
   found = s.find("resetcost");
 	  if (found != string::npos){
 	MTGAbility * a = NEW AResetCost(id,card,target);
-		return a;}
- ////one less mana
- // found = s.find("oneless");
-	//  if (found != string::npos){
-	//MTGAbility * a = NEW AOneless(id,card,target);
-	//	return a;}
- ////more more mana
- // found = s.find("onemore");
-	//  if (found != string::npos){
-	//MTGAbility * a = NEW AOnemore(id,card,target);
-	//	return a;}
-
+		return a;
+	  }
     //transform....(hivestone,living enchantment)
   found = s.find("transforms(");
   if (found != string::npos){
@@ -1079,10 +1056,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
     MTGAbility * ab;
     if (forceUEOT){
-      ab = NEW ATransformer(id,card,target,stypes,sabilities);
+      ab = NEW ATransformerUEOT(id,card,target,stypes,sabilities);
     }else{
       ab = NEW ATransformer(id,card,target,stypes,sabilities);
-	}return ab;
+	}if(forceFOREVER){ab = NEW ATransformerFOREVER(id,card,target,stypes,sabilities);
+	}
+	return ab;
   }
 
   //Change Power/Toughness
@@ -1325,7 +1304,7 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
       magicText = "";
     }
 
-    MTGAbility * a = parseMagicLine(line, result, spell, card,0,0,0,dest); 
+    MTGAbility * a = parseMagicLine(line, result, spell, card,0,0,0,0,dest); 
     if (a){
       v->push_back(a);
       result++;
