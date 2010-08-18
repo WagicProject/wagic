@@ -1044,26 +1044,21 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     string sabilities;
     if (end != real_end){
       int previous = end+1;
-      end = s.find(",",previous);
       if (end == string::npos) end = real_end;
       string temp = s.substr(previous, end - previous);
-      if (end == real_end){
-        sabilities = temp;
-      }
     }
     if (end != real_end){
       sabilities = s.substr(end+1, real_end - end);
-    }
-    MTGAbility * ab;
-    if (forceUEOT){
-      ab = NEW ATransformerUEOT(id,card,target,stypes,sabilities);
-    }else{
-      ab = NEW ATransformer(id,card,target,stypes,sabilities);
-	}if(forceFOREVER){ab = NEW ATransformerFOREVER(id,card,target,stypes,sabilities);
 	}
-	return ab;
+    MTGAbility * a;
+    if (forceUEOT){
+      a = NEW ATransformerUEOT(id,card,target,stypes,sabilities);
+    }else{
+      a = NEW ATransformer(id,card,target,stypes,sabilities);
+	}if(forceFOREVER){a = NEW ATransformerFOREVER(id,card,target,stypes,sabilities);
+	}
+	return a;
   }
-
   //Change Power/Toughness
   WParsedPT * wppt = NEW WParsedPT(s,spell,card);
   if (wppt->ok){

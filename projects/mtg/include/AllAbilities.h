@@ -220,10 +220,12 @@ class AACounter: public ActivatedAbility{
      MTGCardInstance * _target = (MTGCardInstance *)target;
      if (nb>0){
        for (int i=0; i < nb; i++){
+		   while (_target->next) _target=_target->next;
         _target->counters->addCounter(name.c_str(), power, toughness);
        }
      }else{
        for (int i=0; i < -nb; i++){
+		   while (_target->next) _target=_target->next;
         _target->counters->removeCounter(name.c_str(), power, toughness);
        }
      }
@@ -2476,7 +2478,6 @@ public:
    _target->getManaCost()->add(type,amount);
     return MTGAbility::addToGame();
    }
-    
     AManaRedux * clone() const{
     AManaRedux * a =  NEW AManaRedux(*this);
     a->isClone = 1;
@@ -2519,23 +2520,25 @@ public:
   }
  int addToGame(){
    MTGCardInstance * _target = (MTGCardInstance *)target;
+     while (_target->next) _target=_target->next;
    	 for (int j = 0; j < Constants::MTG_NB_COLORS; j++){
      if (_target->hasColor(j))
       oldcolors.push_back(j);
+	  _target->removeColor(j);
 	}
     list<int>::iterator it;
     for ( it=types.begin() ; it != types.end(); it++ ){_target->addType(*it);}
-    for ( it=colors.begin() ; it != colors.end(); it++ ){_target->setColor(*it,1);}
-	for ( it=oldcolors.begin() ; it != oldcolors.end(); it++ ){}
+    for ( it=colors.begin() ; it != colors.end(); it++ ){_target->setColor(*it);}
     for ( it=abilities.begin() ; it != abilities.end(); it++ ){_target->basicAbilities[*it]++;}
+	for ( it=oldcolors.begin() ; it != oldcolors.end(); it++ ){}
 	   return MTGAbility::addToGame();}
   int destroy(){
    MTGCardInstance * _target = (MTGCardInstance *)target;
     list<int>::iterator it;
     for ( it=types.begin() ; it != types.end(); it++ ){_target->removeType(*it);}
 	for ( it=colors.begin() ; it != colors.end(); it++ ){_target->removeColor(*it);}
-    for ( it=oldcolors.begin() ; it != oldcolors.end(); it++ ){_target->setColor(*it);}
     for ( it=abilities.begin() ; it != abilities.end(); it++ ){_target->basicAbilities[*it]--;}
+	for ( it=oldcolors.begin() ; it != oldcolors.end(); it++ ){_target->setColor(*it);}
 	return 1;}
     ATransformer * clone() const{
     ATransformer * a =  NEW ATransformer(*this);
@@ -2569,7 +2572,6 @@ public:
   list<int>types;
   list<int>colors;
   ATransformerFOREVER(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities):MTGAbility(id,source,target){
-    //TODO this is a copy/past of other code that's all around the place, everything should be in a dedicated parser class;
     for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++){
       size_t found = sabilities.find(Constants::MTGBasicAbilities[j]);
       if (found != string::npos){
@@ -2593,11 +2595,15 @@ public:
         s = "";}
 	}
   }
- int addToGame(){
+   int addToGame(){
    MTGCardInstance * _target = (MTGCardInstance *)target;
+    for (int j = 0; j < Constants::MTG_NB_COLORS; j++){
+     if (_target->hasColor(j))
+	  _target->removeColor(j);
+	}
     list<int>::iterator it;
     for ( it=types.begin() ; it != types.end(); it++ ){_target->addType(*it);}
-    for ( it=colors.begin() ; it != colors.end(); it++ ){_target->setColor(*it,1);}
+    for ( it=colors.begin() ; it != colors.end(); it++ ){_target->setColor(*it);}
     for ( it=abilities.begin() ; it != abilities.end(); it++ ){_target->basicAbilities[*it]++;}
 	   return MTGAbility::addToGame();}
     ATransformerFOREVER * clone() const{
