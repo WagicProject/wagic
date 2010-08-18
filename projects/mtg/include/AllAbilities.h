@@ -2520,15 +2520,14 @@ public:
   }
  int addToGame(){
    MTGCardInstance * _target = (MTGCardInstance *)target;
-     while (_target->next) _target=_target->next;
    	 for (int j = 0; j < Constants::MTG_NB_COLORS; j++){
      if (_target->hasColor(j))
       oldcolors.push_back(j);
-	  _target->removeColor(j);
-	}
+	 }
     list<int>::iterator it;
+	for( it=colors.begin(); it != colors.end();it++){ _target->setColor(0,1);}
     for ( it=types.begin() ; it != types.end(); it++ ){_target->addType(*it);}
-    for ( it=colors.begin() ; it != colors.end(); it++ ){_target->setColor(*it);}
+    for ( it=colors.begin(); it != colors.end(); it++){_target->setColor(*it);}
     for ( it=abilities.begin() ; it != abilities.end(); it++ ){_target->basicAbilities[*it]++;}
 	for ( it=oldcolors.begin() ; it != oldcolors.end(); it++ ){}
 	   return MTGAbility::addToGame();}
@@ -2597,11 +2596,8 @@ public:
   }
    int addToGame(){
    MTGCardInstance * _target = (MTGCardInstance *)target;
-    for (int j = 0; j < Constants::MTG_NB_COLORS; j++){
-     if (_target->hasColor(j))
-	  _target->removeColor(j);
-	}
     list<int>::iterator it;
+    for( it=colors.begin(); it != colors.end();it++){ _target->setColor(0,1);}
     for ( it=types.begin() ; it != types.end(); it++ ){_target->addType(*it);}
     for ( it=colors.begin() ; it != colors.end(); it++ ){_target->setColor(*it);}
     for ( it=abilities.begin() ; it != abilities.end(); it++ ){_target->basicAbilities[*it]++;}
