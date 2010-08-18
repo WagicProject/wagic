@@ -29415,7 +29415,7 @@ toughness=4
 [card]
 name=Memnarch
 auto={1}{U}{U}:target(*) transforms(artifact) forever
-auto={3}{U}:moveTo(myBattlefield) target(arifact)
+auto={3}{U}:moveTo(myBattlefield) target(artifact)
 text={1}{U}{U}: Target permanent becomes an artifact in addition to its other types. (This effect lasts indefinitely.) -- {3}{U}: Gain control of target artifact. (This effect lasts indefinitely.)
 mana={7}
 type=Legendary Artifact Creature
