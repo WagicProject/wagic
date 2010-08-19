@@ -2561,6 +2561,13 @@ mana={3}
 type=Artifact
 [/card]
 [card]
+name=Ashnod's Transmogrant
+auto={s}{t}:target(creature[-artifact]) transforms(artifact) forever && counter(1/1,1)
+text={t}; Sacrifice Ashnod's Transmogrant: Put a +1/+1 counter on target nonartifact creature. That creature becomes an artifact in addition to its other types.
+type=artifact
+mana={1}
+[/card]
+[card]
 name=Aspect of Mongoose
 target=creature
 auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(this|mygraveyard)
