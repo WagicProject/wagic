@@ -2553,6 +2553,56 @@ public:
        return a;}
    ~ATransformer(){}
 };
+//transforms forever class
+class AForeverTransformer:public MTGAbility{
+public:
+  list<int>abilities;
+  list<int>types;
+  list<int>colors;
+  AForeverTransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities):MTGAbility(id,source,target){
+    //TODO this is a copy/past of other code that's all around the place, everything should be in a dedicated parser class;
+       MTGCardInstance * _target = (MTGCardInstance *)target;
+	 for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++){
+      size_t found = sabilities.find(Constants::MTGBasicAbilities[j]);
+      if (found != string::npos){
+        abilities.push_back(j);}
+	}
+     for (int j = 0; j < Constants::MTG_NB_COLORS; j++){
+      size_t found = sabilities.find(Constants::MTGColorStrings[j]);
+      if (found != string::npos){
+        colors.push_back(j);}
+	}
+    string s = stypes;
+    while (s.size()){
+      size_t found = s.find(" ");
+      if (found != string::npos){
+        int id = Subtypes::subtypesList->find(s.substr(0,found));
+        types.push_back(id);
+        s = s.substr(found+1);
+      }else{
+        int id = Subtypes::subtypesList->find(s);
+        types.push_back(id);
+        s = "";}
+	}
+  }
+ int addToGame(){
+   MTGCardInstance * _target = (MTGCardInstance *)target;
+   if (_target){
+      while (_target->next) _target=_target->next;
+    list<int>::iterator it;
+	for( it=colors.begin(); it != colors.end();it++){ _target->setColor(0,1);}
+    for ( it=types.begin() ; it != types.end(); it++ ){_target->addType(*it);}
+    for ( it=colors.begin(); it != colors.end(); it++){_target->setColor(*it);}
+    for ( it=abilities.begin() ; it != abilities.end(); it++ ){_target->basicAbilities[*it]++;}
+   }
+	   return MTGAbility::addToGame();
+ }
+    AForeverTransformer * clone() const{
+    AForeverTransformer * a =  NEW AForeverTransformer(*this);
+    a->isClone = 1;
+       return a;}
+   ~AForeverTransformer(){}
+};
 //Adds types/abilities/changes color to a card (until end of turn)
 class  ATransformerUEOT: public InstantAbility{
 public:
@@ -2575,11 +2625,11 @@ public:
   //transforms forever
   class  ATransformerFOREVER: public InstantAbility{
 public:
-  ATransformer * ability;
+  AForeverTransformer * ability;
    ATransformerFOREVER(int id, MTGCardInstance * source, MTGCardInstance * target, string types, string abilities):InstantAbility(id,source,target){
-     ability = NEW ATransformer(id,source,target,types,abilities);}
+     ability = NEW AForeverTransformer(id,source,target,types,abilities);}
     int resolve(){
-    ATransformer * a = ability->clone();
+    AForeverTransformer * a = ability->clone();
     GenericInstantAbility * wrapper = NEW GenericInstantAbility(1,source,(Damageable *)(this->target),a);
     wrapper->addToGame();
     return 1;}
