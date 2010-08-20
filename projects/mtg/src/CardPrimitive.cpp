@@ -133,6 +133,7 @@ void CardPrimitive::setColor(string _color, int removeAllOthers){
   if(_color.compare("green")==0) return setColor(Constants::MTG_COLOR_GREEN,removeAllOthers);
   if(_color.compare("black")==0) return setColor(Constants::MTG_COLOR_BLACK,removeAllOthers);
   if(_color.compare("white")==0) return setColor(Constants::MTG_COLOR_WHITE,removeAllOthers);
+  if(_color.compare("artifact")==0) return setColor(Constants::MTG_COLOR_ARTIFACT,removeAllOthers);
 }
 
 void CardPrimitive::setColor(int _color, int removeAllOthers){
