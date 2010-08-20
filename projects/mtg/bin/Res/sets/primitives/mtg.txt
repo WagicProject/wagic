@@ -30271,6 +30271,7 @@ auto=counter(0/0,1,Misinformation)
 auto=@movedTo(*|opponentLibrary) from(opponentgraveyard):thisforeach(counter{0/0.1.Misinformation}>0) may moveTo(opponentLibrary) target(*|opponentgraveyard) && counter(0/0,-1,Misinformation) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111131
+type=nothing
 [/card]
 [card]
 name=Misshapen Fiend
