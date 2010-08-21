@@ -57,8 +57,8 @@ type=Sorcery
 [/card]
 [card]
 name=AEther Shockwave
-auto=choice tap all(spirit)
-auto=choice tap all(creature[-spirit])
+auto=choice name(spirits) && tap all(spirit)
+auto=choice name(nonspirit) && tap all(creature[-spirit])
 text=Choose one - Tap all Spirits; or tap all non-Spirit creatures.
 mana={3}{W}
 type=Instant
@@ -50933,6 +50933,24 @@ type=Creature
 subtype=Wurm
 power=6
 toughness=6
+[/card]
+[card]
+name=Turnabout
+auto=choice name(tap all opponents creatures) && tap all(creature|opponentbattlefield)
+auto=choice name(tap all opponents artifacts) && tap all(artifact|opponentbattlefield)
+auto=choice name(tap all opponents lands) && tap all(land|opponentbattlefield)
+auto=choice name(untap all opponents creatures) && untap all(creature|opponentbattlefield)
+auto=choice name(untap all opponents artifacts) && untap all(artifact|opponentbattlefield)
+auto=choice name(untap all opponents lands) && untap all(land|opponentbattlefield)
+auto=choice name(tap all your creatures) && tap all(creature|mybattlefield)
+auto=choice name(tap all your artifacts) && tap all(artifact|mybattlefield)
+auto=choice name(tap all your lands) && tap all(land|mybattlefield)
+auto=choice name(untap all your creatures) && untap all(creature|mybattlefield)
+auto=choice name(untap all your artifacts) && untap all(artifact|mybattlefield)
+auto=choice name(untap all your lands) && untap all(land|mybattlefield)
+text=Choose artifact, creature, or land. Tap all untapped permanents of the chosen type target player controls, or untap all tapped permanents of that type that player controls.
+type=instant
+mana={2}{U}{U}
 [/card]
 [card]
 name=Turn to Dust
