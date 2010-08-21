@@ -22881,8 +22881,8 @@ toughness=3
 [/card]
 [card]
 name=Hurly-Burly
-auto=choice damage:1 all(creature(-flying)
-auto=choice damage:1 all(creature(flying)
+auto=choice name(nonflying) && damage:1 all(creature(-flying)
+auto=choice name(flying) && damage:1 all(creature(flying)
 text=Choose one - Hurly-Burly deals 1 damage to each creature without flying; or Hurly-Burly deals 1 damage to each creature with flying.
 mana={1}{R}
 type=Sorcery
@@ -24169,11 +24169,11 @@ name=Jareth Leonine Titan
 #Reintroducing it requires an update to ONS/_cards.dat as well.
 #Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1)
 auto=lord(jareth leonine titan[blocking]|mybattlefield) 7/7
-auto={W}:protection from white
-auto={W}:protection from blue
-auto={W}:protection from black
-auto={W}:protection from red
-auto={W}:protection from green
+auto={W}:name(white) && protection from white
+auto={W}:name(blue) && protection from blue
+auto={W}:name(black) && protection from black
+auto={W}:name(red) && protection from red
+auto={W}:name(green) && protection from green
 text=Whenever Jareth, Leonine Titan blocks, it gets +7/+7 until end of turn. -- {W}: Jareth gains protection from the color of your choice until end of turn.
 mana={3}{W}{W}{W}
 type=Legendary Creature
@@ -26149,11 +26149,11 @@ toughness=2
 [card]
 name=Knight of Dawn
 abilities=first strike
-auto={W}{W}:protection from white
-auto={W}{W}:protection from blue
-auto={W}{W}:protection from black
-auto={W}{W}:protection from red
-auto={W}{W}:protection from green
+auto={W}{W}:name(white) && protection from white
+auto={W}{W}:name(blue) && protection from blue
+auto={W}{W}:name(black) && protection from black
+auto={W}{W}:name(red) && protection from red
+auto={W}{W}:name(green) && protection from green
 text=First strike -- {W}{W}: Knight of Dawn gains protection from the color of your choice until end of turn.
 mana={1}{W}{W}
 type=Creature
@@ -30918,11 +30918,11 @@ toughness=3
 [/card]
 [card]
 name=Moonlit Strider
-auto={S}:protection from white target(creature|myBattlefield)
-auto={S}:protection from blue target(creature|myBattlefield)
-auto={S}:protection from black target(creature|myBattlefield)
-auto={S}:protection from red target(creature|myBattlefield)
-auto={S}:protection from green target(creature|myBattlefield)
+auto={S}:name(white) && protection from white target(creature|myBattlefield)
+auto={S}:name(blue) && protection from blue target(creature|myBattlefield)
+auto={S}:name(black) && protection from black target(creature|myBattlefield)
+auto={S}:name(red) && protection from red target(creature|myBattlefield)
+auto={S}:name(green) && protection from green target(creature|myBattlefield)
 auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=3]|mygraveyard)
 text=Sacrifice Moonlit Strider: Target creature you control gains protection from the color of your choice until end of turn. -- Soulshift 3 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 3 or less from your graveyard to your hand.)
 mana={3}{W}
@@ -31221,11 +31221,11 @@ toughness=3
 [/card]
 [card]
 name=Mother of Runes
-auto={T}:protection from white target(creature|myBattlefield)
-auto={T}:protection from blue target(creature|myBattlefield)
-auto={T}:protection from black target(creature|myBattlefield)
-auto={T}:protection from red target(creature|myBattlefield)
-auto={T}:protection from green target(creature|myBattlefield)
+auto={T}:name(white) && protection from white target(creature|myBattlefield)
+auto={T}:name(blue) && protection from blue target(creature|myBattlefield)
+auto={T}:name(black) && protection from black target(creature|myBattlefield)
+auto={T}:name(red) && protection from red target(creature|myBattlefield)
+auto={T}:name(green) && protection from green target(creature|myBattlefield)
 text={T}: Target creature you control gains protection from the color of your choice until end of turn.
 mana={W}
 type=Creature
@@ -37305,11 +37305,11 @@ toughness=4
 [card]
 name=Rappelling Scouts
 abilities=flying
-auto={2}{W}:protection from white
-auto={2}{W}:protection from blue
-auto={2}{W}:protection from black
-auto={2}{W}:protection from red
-auto={2}{W}:protection from green
+auto={2}{W}:name(white) && protection from white
+auto={2}{W}:name(blue) && protection from blue
+auto={2}{W}:name(black) && protection from black
+auto={2}{W}:name(red) && protection from red
+auto={2}{W}:name(green) && protection from green
 text=Flying -- {2}{W}: Rappelling Scouts gains protection from the color of your choice until end of turn.
 mana={2}{W}{W}
 type=Creature
@@ -38190,11 +38190,11 @@ type=Instant
 [card]
 name=Resilient Wanderer
 abilities=first strike
-auto={S(*|myhand)}:protection from white
-auto={S(*|myhand)}:protection from blue
-auto={S(*|myhand)}:protection from black
-auto={S(*|myhand)}:protection from red
-auto={S(*|myhand)}:protection from green
+auto={S(*|myhand)}:name(white) && protection from white
+auto={S(*|myhand)}:name(blue) && protection from blue
+auto={S(*|myhand)}:name(black) && protection from black
+auto={S(*|myhand)}:name(red) && protection from red
+auto={S(*|myhand)}:name(green) && protection from green
 text=First strike -- Discard a card: Resilient Wanderer gains protection from the color of your choice until end of turn.
 mana={2}{W}{W}
 type=Creature
@@ -41171,11 +41171,11 @@ type=Land
 [card]
 name=Sejiri Steppe
 auto=tap
-auto=may protection from white target(creature) ueot
-auto=may protection from blue target(creature) ueot
-auto=may protection from black target(creature) ueot
-auto=may protection from red target(creature) ueot
-auto=may protection from green target(creature) ueot
+auto=choice name(white) && fog from white target(creature) ueot
+auto=choice name(blue) && fog from blue target(creature) ueot
+auto=choice name(black) && fog from black target(creature) ueot
+auto=choice name(red) && fog from red target(creature) ueot
+auto=choice name(green) && fog from green target(creature) ueot
 auto={T}:Add {W}
 text=Sejiri Steppe enters the battlefield tapped. -- When Sejiri Steppe enters the battlefield, target creature you control gains protection from the color of your choice until end of turn. -- {T}: Add {W} to your mana pool.
 type=Land
@@ -41788,11 +41788,11 @@ toughness=2
 [card]
 name=Shelter
 target=creature
-auto=choice protection from white
-auto=choice protection from blue
-auto=choice protection from black
-auto=choice protection from red
-auto=choice protection from green
+auto=choice name(white) && fog from white
+auto=choice name(blue) && fog from blue 
+auto=choice name(black) && fog from black
+auto=choice name(red) && fog from red
+auto=choice name(green) && fog from green 
 auto=draw:1 controller
 text=Target creature you control gains protection from the color of your choice until end of turn. -- Draw a card.
 mana={1}{W}
