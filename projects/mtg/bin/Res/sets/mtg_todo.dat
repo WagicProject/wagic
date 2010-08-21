@@ -618,15 +618,6 @@ power=1+*
 toughness=1+*
 [/card]
 [card]
-name=Alloy Golem
-text=As Alloy Golem enters the battlefield, choose a color. -- Alloy Golem is the chosen color. (It's still an artifact.)
-mana={6}
-type=Artifact Creature
-subtype=Golem
-power=4
-toughness=4
-[/card]
-[card]
 name=Alluring Scent
 text=All creatures able to block target creature this turn do so.
 mana={1}{G}{G}
@@ -1525,12 +1516,6 @@ type=Instant
 [/card]
 [card]
 name=Astrolabe
-auto={1}{T}{S}: add {G}{G}
-auto={1}{T}{S}: add {R}{R}
-auto={1}{T}{S}: add {W}{W}
-auto={1}{T}{S}: add {B}{B}
-auto={1}{T}{S}: add {U}{U}
-auto=@movedTo(this|graveyard) from(myBattlefield):draw:1 #Could be seen as borderline and added
 text={1}, {T}, Sacrifice Astrolabe: Add two mana of any one color to your mana pool. Draw a card at the beginning of the next turn's upkeep.
 mana={3}
 type=Artifact
@@ -5177,15 +5162,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Chlorophant
-text=At the beginning of your upkeep, you may put a +1/+1 counter on Chlorophant. -- Threshold - As long as seven or more cards are in your graveyard, Chlorophant has "At the beginning of your upkeep, you may put another +1/+1 counter on Chlorophant."
-mana={G}{G}{G}
-type=Creature
-subtype=Elemental
-power=1
-toughness=1
-[/card]
-[card]
 name=Cho-Arrim Alchemist
 text={1}{W}{W}, {T}, Discard a card: The next time a source of your choice would deal damage to you this turn, prevent that damage. You gain life equal to the damage prevented this way.
 mana={W}
@@ -7129,33 +7105,14 @@ mana={B}
 type=Instant
 [/card]
 [card]
-name=Darkest Hour
-text=All creatures are black.
-mana={B}
-type=Enchantment
-[/card]
-[card]
 name=Darkpact
 text=Remove Darkpact from your deck before playing if you're not playing for ante. -- You own target card in the ante. Exchange that card with the top card of your library.
 mana={B}{B}{B}
 type=Sorcery
 [/card]
 [card]
-name=Darksteel Garrison
-text=Fortified land is indestructible. -- Whenever fortified land becomes tapped, target creature gets +1/+1 until end of turn. -- Fortify {3} ({3}: Attach to target land you control. Fortify only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the land leaves.)
-mana={2}
-type=Artifact
-subtype=Fortification
-[/card]
-[card]
 name=Darksteel Pendant
 text=Darksteel Pendant is indestructible. ("Destroy" effects and lethal damage don't destroy it.) -- {1}, {T}: Look at the top card of your library. You may put that card on the bottom of your library.
-mana={2}
-type=Artifact
-[/card]
-[card]
-name=Darksteel Reactor
-text=Darksteel Reactor is indestructible. ("Destroy" effects and lethal damage don't destroy it.) -- At the beginning of your upkeep, you may put a charge counter on Darksteel Reactor. -- When Darksteel Reactor has twenty or more charge counters on it, you win the game.
 mana={2}
 type=Artifact
 [/card]
@@ -7796,18 +7753,6 @@ type=Creature
 subtype=Sliver
 power=3
 toughness=3
-[/card]
-[card]
-name=Demigod of Revenge
-abilities=flying,haste
-auto=moveTo(myinplay) all(Demigod of Revenge|mygraveyard)
-#This card has been reported to crash the game when played from a graveyard. Let's test it
-text=Flying, haste -- When you cast Demigod of Revenge, return all cards named Demigod of Revenge from your graveyard to the battlefield.
-mana={BR}{BR}{BR}{BR}{BR}
-type=Creature
-subtype=Spirit Avatar
-power=5
-toughness=4
 [/card]
 [card]
 name=Demon's Herald
@@ -9896,12 +9841,6 @@ mana={2}{B}
 type=Enchantment
 [/card]
 [card]
-name=Engulfing Flames
-text=Engulfing Flames deals 1 damage to target creature. It can't be regenerated this turn. -- Flashback {3}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={R}
-type=Instant
-[/card]
-[card]
 name=Enigma Eidolon
 text={U}, Sacrifice Enigma Eidolon: Target player puts the top three cards of his or her library into his or her graveyard. -- Whenever you cast a multicolored spell, you may return Enigma Eidolon from your graveyard to your hand.
 mana={3}{U}
@@ -11923,12 +11862,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Fool's Tome
-text={2}, {T}: Draw a card. Activate this ability only if you have no cards in hand.
-mana={4}
-type=Artifact
-[/card]
-[card]
 name=Footbottom Feast
 text=Put any number of target creature cards from your graveyard on top of your library. -- Draw a card.
 mana={2}{B}
@@ -12830,15 +12763,6 @@ mana={W}{B}
 type=Sorcery
 [/card]
 [card]
-name=Ghastlord of Fugue
-text=Ghastlord of Fugue is unblockable. -- Whenever Ghastlord of Fugue deals combat damage to a player, that player reveals his or her hand. You choose a card from it. That player exiles that card.
-mana={UB}{UB}{UB}{UB}{UB}
-type=Creature
-subtype=Spirit Avatar
-power=4
-toughness=4
-[/card]
-[card]
 name=Ghastly Demise
 text=Destroy target nonblack creature if its toughness is less than or equal to the number of cards in your graveyard.
 mana={B}
@@ -13260,12 +13184,6 @@ type=Creature
 subtype=Snake
 power=2
 toughness=1
-[/card]
-[card]
-name=Glasses of Urza
-text={T}: Look at target player's hand.
-mana={1}
-type=Artifact
 [/card]
 [card]
 name=Gleancrawler
@@ -13948,19 +13866,6 @@ type=Creature
 subtype=Ape Shaman
 power=1
 toughness=1
-[/card]
-[card]
-name=Gorilla Titan
-abilities=trample
-auto=aslongas(*|mygraveyard) 4/4 <1
-####
-####"<" doesn't work for now!
-text=Trample -- Gorilla Titan gets +4/+4 as long as there are no cards in your graveyard.
-mana={3}{G}{G}
-type=Creature
-subtype=Ape
-power=4
-toughness=4
 [/card]
 [card]
 name=Gorilla War Cry
@@ -16930,12 +16835,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Iron Maiden
-text=At the beginning of each opponent's upkeep, Iron Maiden deals X damage to that player, where X is the number of cards in his or her hand minus 4.
-mana={3}
-type=Artifact
-[/card]
-[card]
 name=Iron-Heart Chimera
 text=Vigilance -- Sacrifice Iron-Heart Chimera: Put a +2/+2 counter on target Chimera creature. It gains vigilance. (This effect lasts indefinitely.)
 mana={4}
@@ -18699,17 +18598,6 @@ power=1
 toughness=1
 [/card]
 [card]
-#"prevent from target" does not work in Wagic 0.11
-name=Lady Evangela
-auto={W}{B}{T}:preventAllCombatDamage from target(creature) ueot
-text={W}{B}, {T}: Prevent all combat damage that would be dealt by target creature this turn.
-mana={W}{U}{B}
-type=Legendary Creature
-subtype=Human Cleric
-power=1
-toughness=2
-[/card]
-[card]
 name=Lairwatch Giant
 text=Lairwatch Giant can block an additional creature. -- Whenever Lairwatch Giant blocks two or more creatures, it gains first strike until end of turn.
 mana={5}{W}
@@ -18839,12 +18727,6 @@ mana={R}{R}
 type=Sorcery
 [/card]
 [card]
-name=Last Laugh
-text=Whenever a permanent other than Last Laugh is put into a graveyard from the battlefield, Last Laugh deals 1 damage to each creature and each player. -- When no creatures are on the battlefield, sacrifice Last Laugh.
-mana={2}{B}{B}
-type=Enchantment
-[/card]
-[card]
 name=Last Rites
 text=Discard any number of cards. Target player reveals his or her hand, then you choose a nonland card from it for each card discarded this way. That player discards those cards.
 mana={2}{B}
@@ -18916,12 +18798,6 @@ subtype=Trap
 name=Lavaclaw Reaches
 text=Lavaclaw Reaches enters the battlefield tapped. -- {T}: Add {B} or {R} to your mana pool. -- {1}{B}{R}: Until end of turn, Lavaclaw Reaches becomes a 2/2 black and red Elemental creature with "{X}: This creature gets +X/+0 until end of turn." It's still a land.
 type=Land
-[/card]
-[card]
-name=Lavalanche
-text=Lavalanche deals X damage to target player and each creature he or she controls.
-mana={X}{B}{R}{G}
-type=Sorcery
 [/card]
 [card]
 name=Lavamancer's Skill
@@ -20121,15 +19997,6 @@ mana={1}{R}
 type=Instant
 [/card]
 [card]
-name=Magma Sliver
-text=All Slivers have "{T}: Target Sliver creature gets +X/+0 until end of turn, where X is the number of Slivers on the battlefield."
-mana={3}{R}
-type=Creature
-subtype=Sliver
-power=3
-toughness=3
-[/card]
-[card]
 name=Magma Spray
 text=Magma Spray deals 2 damage to target creature. If that creature would be put into a graveyard this turn, exile it instead.
 mana={R}
@@ -20451,13 +20318,6 @@ subtype=Elemental Shaman
 power=1
 toughness=1
 [/card]
-[card]
-name=Manamorphose
-text=Add two mana in any combination of colors to your mana pool. -- Draw a card.
-mana={1}{RG}
-type=Instant
-[/card]
-[card]
 name=Manaplasm
 text=Whenever you cast a spell, Manaplasm gets +X/+X until end of turn, where X is that spell's converted mana cost.
 mana={2}{G}
@@ -21535,15 +21395,6 @@ power=0
 toughness=0
 [/card]
 [card]
-name=Mindwhip Sliver
-text=All Slivers have "{2}, Sacrifice this permanent: Target player discards a card at random. Activate this ability only any time you could cast a sorcery."
-mana={2}{B}
-type=Creature
-subtype=Sliver
-power=2
-toughness=2
-[/card]
-[card]
 name=Mine Excavation
 text=Return target artifact or enchantment card in a graveyard to its owner's hand. -- Conspire (As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
 mana={1}{W}
@@ -22560,15 +22411,6 @@ name=Myr Incubator
 text={6}, {T}, Sacrifice Myr Incubator: Search your library for any number of artifact cards, exile them, then put that many 1/1 colorless Myr artifact creature tokens onto the battlefield. Then shuffle your library.
 mana={6}
 type=Artifact
-[/card]
-[card]
-name=Myr Landshaper
-text={T}: Target land becomes an artifact in addition to its other types until end of turn.
-mana={3}
-type=Artifact Creature
-subtype=Myr
-power=1
-toughness=1
 [/card]
 [card]
 name=Myr Mindservant
@@ -24585,12 +24427,6 @@ mana={5}{G}{G}
 type=Sorcery
 [/card]
 [card]
-name=Overwhelming Forces
-text=Destroy all creatures target opponent controls. Draw a card for each creature destroyed this way.
-mana={6}{B}{B}
-type=Sorcery
-[/card]
-[card]
 name=Overwhelming Instinct
 text=Whenever you attack with three or more creatures, draw a card.
 mana={2}{G}
@@ -24860,15 +24696,6 @@ name=Parapet
 text=You may cast Parapet as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- Creatures you control get +0/+1.
 mana={1}{W}
 type=Enchantment
-[/card]
-[card]
-name=Pardic Arsonist
-text=Threshold - As long as seven or more cards are in your graveyard, Pardic Arsonist has "When Pardic Arsonist enters the battlefield, it deals 3 damage to target creature or player."
-mana={2}{R}{R}
-type=Creature
-subtype=Human Barbarian
-power=3
-toughness=3
 [/card]
 [card]
 name=Pardic Dragon
@@ -25703,15 +25530,6 @@ mana={U}
 type=Instant
 [/card]
 [card]
-name=Pit Keeper
-text=When Pit Keeper enters the battlefield, if you have four or more creature cards in your graveyard, you may return target creature card from your graveyard to your hand.
-mana={1}{B}
-type=Creature
-subtype=Human Wizard
-power=2
-toughness=1
-[/card]
-[card]
 name=Pit Scorpion
 text=Whenever Pit Scorpion deals damage to a player, that player gets a poison counter. (A player with ten or more poison counters loses the game.)
 mana={2}{B}
@@ -25989,42 +25807,6 @@ name=Portent
 text=Look at the top three cards of target player's library, then put them back in any order. You may have that player shuffle his or her library. -- Draw a card at the beginning of the next turn's upkeep.
 mana={U}
 type=Sorcery
-[/card]
-[card]
-name=Possessed Aven
-text=Flying -- Threshold - As long as seven or more cards are in your graveyard, Possessed Aven gets +1/+1, is black, and has "{2}{B}, {T}: Destroy target blue creature."
-mana={2}{U}{U}
-type=Creature
-subtype=Bird Soldier Horror
-power=3
-toughness=3
-[/card]
-[card]
-name=Possessed Barbarian
-text=First strike -- Threshold - As long as seven or more cards are in your graveyard, Possessed Barbarian gets +1/+1, is black, and has "{2}{B}, {T}: Destroy target red creature."
-mana={2}{R}{R}
-type=Creature
-subtype=Human Barbarian Horror
-power=3
-toughness=3
-[/card]
-[card]
-name=Possessed Centaur
-text=Trample -- Threshold - As long as seven or more cards are in your graveyard, Possessed Centaur gets +1/+1, is black, and has "{2}{B}, {T}: Destroy target green creature."
-mana={2}{G}{G}
-type=Creature
-subtype=Centaur Horror
-power=3
-toughness=3
-[/card]
-[card]
-name=Possessed Nomad
-text=Vigilance -- Threshold - As long as seven or more cards are in your graveyard, Possessed Nomad gets +1/+1, is black, and has "{2}{B}, {T}: Destroy target white creature."
-mana={2}{W}{W}
-type=Creature
-subtype=Human Nomad Horror
-power=3
-toughness=3
 [/card]
 [card]
 name=Possessed Portal
@@ -26385,12 +26167,6 @@ type=Instant
 name=Prismatic Circle
 text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- As Prismatic Circle enters the battlefield, choose a color. -- {1}: The next time a source of your choice of the chosen color would deal damage to you this turn, prevent that damage.
 mana={2}{W}
-type=Enchantment
-[/card]
-[card]
-name=Prismatic Omen
-text=Lands you control are every basic land type in addition to their other types.
-mana={1}{G}
 type=Enchantment
 [/card]
 [card]
@@ -27046,12 +26822,6 @@ mana={R}
 type=Enchantment
 [/card]
 [card]
-name=Quest for Renewal
-text=Whenever a creature you control becomes tapped, you may put a quest counter on Quest for Renewal. -- As long as there are four or more quest counters on Quest for Renewal, untap all creatures you control during each other player's untap step.
-mana={1}{G}
-type=Enchantment
-[/card]
-[card]
 name=Quest for Ula's Temple
 text=At the beginning of your upkeep, you may look at the top card of your library. If it's a creature card, you may reveal it and put a quest counter on Quest for Ula's Temple. -- At the beginning of each end step, if there are three or more quest counters on Quest for Ula's Temple, you may put a Kraken, Leviathan, Octopus, or Serpent creature card from your hand onto the battlefield.
 mana={U}
@@ -27205,15 +26975,6 @@ mana={G}
 type=Creature
 subtype=Elf
 power=1
-toughness=1
-[/card]
-[card]
-name=Quirion Sentinel
-text=When Quirion Sentinel enters the battlefield, add one mana of any color to your mana pool.
-mana={1}{G}
-type=Creature
-subtype=Elf Druid
-power=2
 toughness=1
 [/card]
 [card]
@@ -29276,15 +29037,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Ruinous Minotaur
-text=Whenever Ruinous Minotaur deals damage to an opponent, sacrifice a land.
-mana={1}{R}{R}
-type=Creature
-subtype=Minotaur Warrior
-power=5
-toughness=2
-[/card]
-[card]
 name=Rukh Egg
 text=When Rukh Egg is put into a graveyard from the battlefield, put a 4/4 red Bird creature token with flying onto the battlefield at the beginning of the next end step.
 mana={3}{R}
@@ -29609,14 +29361,6 @@ name=Safe Passage
 text=Prevent all damage that would be dealt to you and creatures you control this turn.
 mana={2}{W}
 type=Instant
-[/card]
-[card]
-#"prevent from target" does not work in Wagic 0.11
-name=Safeguard
-auto={2}{W}:preventAllCombatDamage from target(creature) ueot
-text={2}{W}: Prevent all combat damage that would be dealt by target creature this turn.
-mana={3}{W}{W}
-type=Enchantment
 [/card]
 [card]
 name=Safehold Sentry
@@ -31009,15 +30753,6 @@ mana={2}{B}{B}
 type=Instant
 [/card]
 [card]
-name=Servant of Volrath
-text=When Servant of Volrath leaves the battlefield, sacrifice a creature.
-mana={2}{B}
-type=Creature
-subtype=Minion
-power=3
-toughness=3
-[/card]
-[card]
 name=Seton's Desire
 text=Enchant creature -- Enchanted creature gets +2/+2. -- Threshold - As long as seven or more cards are in your graveyard, all creatures able to block enchanted creature do so.
 mana={2}{G}
@@ -31261,18 +30996,6 @@ text=Hideaway (This land enters the battlefield tapped. When it does, look at th
 type=Land
 [/card]
 [card]
-name=Shelter
-text=Target creature you control gains protection from the color of your choice until end of turn. -- Draw a card.
-mana={1}{W}
-type=Instant
-[/card]
-[card]
-name=Sheltered Valley
-auto={T}: add {1}
-text=If Sheltered Valley would enter the battlefield, instead sacrifice each other permanent named Sheltered Valley you control, then put Sheltered Valley onto the battlefield. -- At the beginning of your upkeep, if you control three or fewer lands, you gain 1 life. -- {T}: Add {1} to your mana pool.
-type=Land
-[/card]
-[card]
 name=Shield Bearer
 abilities=banding
 text=Banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
@@ -31351,12 +31074,6 @@ text=Exchange control of two target lands. -- Splice onto Arcane {3}{U} (As you 
 mana={3}{U}
 type=Instant
 subtype=Arcane
-[/card]
-[card]
-name=Shifting Sky
-text=As Shifting Sky enters the battlefield, choose a color. -- All nonland permanents are the chosen color.
-mana={2}{U}
-type=Enchantment
 [/card]
 [card]
 name=Shifty Doppelganger
@@ -31713,13 +31430,6 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
-name=Sigil of Sleep
-text=Enchant creature -- Whenever enchanted creature deals damage to a player, return target creature that player controls to its owner's hand.
-mana={U}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Sigil of the New Dawn
 text=Whenever a creature is put into your graveyard from the battlefield, you may pay {1}{W}. If you do, return that card to your hand.
 mana={3}{W}
@@ -31882,13 +31592,6 @@ type=Creature
 subtype=Plant
 power=0
 toughness=3
-[/card]
-[card]
-name=Sinister Strength
-text=Enchant creature -- Enchanted creature gets +3/+1 and is black.
-mana={1}{B}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Sink into Takenuma
@@ -32398,16 +32101,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Sliver Legion
-auto=lord(sliver) foreach(sliver)1/1 other
-text=All Sliver creatures get +1/+1 for each other Sliver on the battlefield.
-mana={W}{U}{B}{R}{G}
-type=Legendary Creature
-subtype=Sliver
-power=7
-toughness=7
-[/card]
-[card]
 name=Slow Motion
 text=Enchant creature -- At the beginning of the upkeep of enchanted creature's controller, that player sacrifices that creature unless he or she pays {2}. -- When Slow Motion is put into a graveyard from the battlefield, return Slow Motion to its owner's hand.
 mana={2}{U}
@@ -32717,17 +32410,6 @@ auto=lord(creature[enchanted]) cantblock
 text=Creatures that are enchanted can't attack or block.
 mana={1}{G}
 type=Enchantment
-[/card]
-[card]
-#"prevent from target" does not work in Wagic 0.11
-name=Songstitcher
-auto={1}{W}:preventAllCombatDamage from target(creature[attacking;flying]) ueot
-text={1}{W}: Prevent all combat damage that would be dealt this turn by target attacking creature with flying.
-mana={W}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=1
 [/card]
 [card]
 name=Sonic Burst
@@ -33093,15 +32775,6 @@ type=Creature
 subtype=Human Wizard
 power=1
 toughness=1
-[/card]
-[card]
-name=Spawnwrithe
-text=Trample -- Whenever Spawnwrithe deals combat damage to a player, put a token that's a copy of Spawnwrithe onto the battlefield.
-mana={2}{G}
-type=Creature
-subtype=Elemental
-power=2
-toughness=2
 [/card]
 [card]
 name=Specter's Shroud
@@ -34039,12 +33712,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Steeling Stance
-text=Creatures you control get +1/+1 until end of turn. -- Forecast - {W}, Reveal Steeling Stance from your hand: Target creature gets +1/+1 until end of turn. (Activate this ability only during your upkeep and only once each turn.)
-mana={1}{W}{W}
-type=Instant
-[/card]
-[card]
 name=Steely Resolve
 text=As Steely Resolve enters the battlefield, choose a creature type. -- Creatures of the chosen type have shroud. (They can't be the targets of spells or abilities.)
 mana={1}{G}
@@ -34251,17 +33918,7 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Storm World
-text=At the beginning of each player's upkeep, Storm World deals X damage to that player, where X is 4 minus the number of cards in his or her hand.
-mana={R}
-type=World Enchantment
-[/card]
-[card]
 name=Stormbind
-auto=aslongas(*|myHand){2}:damage:2 target(creature,player) && discard:1 controller
-####
-####Aslongas-lines with activation costs don't work yet!! (0.9.1)
-####
 text={2}, Discard a card at random: Stormbind deals 2 damage to target creature or player.
 mana={1}{R}{G}
 type=Enchantment
@@ -35673,15 +35330,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Teroh's Vanguard
-text=Flash -- Threshold - As long as seven or more cards are in your graveyard, Teroh's Vanguard has "When Teroh's Vanguard enters the battlefield, creatures you control gain protection from black until end of turn."
-mana={3}{W}
-type=Creature
-subtype=Human Nomad
-power=2
-toughness=3
-[/card]
-[card]
 name=Terraformer
 text={1}: Choose a basic land type. Each land you control becomes that type until end of turn.
 mana={2}{U}
@@ -36249,22 +35897,6 @@ mana={5}
 type=Legendary Artifact
 [/card]
 [card]
-name=Thumbscrews
-auto=aslongas(*|myhand) damage:1 opponent >4
-text=At the beginning of your upkeep, if you have five or more cards in hand, Thumbscrews deals 1 damage to target opponent.
-mana={2}
-type=Artifact
-[/card]
-[card]
-name=Thunder-Thrash Elder
-text=Devour 3 (As this enters the battlefield, you may sacrifice any number of creatures. This creature enters the battlefield with three times that many +1/+1 counters on it.)
-mana={2}{R}
-type=Creature
-subtype=Viashino Warrior
-power=1
-toughness=1
-[/card]
-[card]
 name=Thunderblade Charge
 text=Thunderblade Charge deals 3 damage to target creature or player. -- Whenever one or more creatures you control deal combat damage to a player, if Thunderblade Charge is in your graveyard, you may pay {2}{R}{R}{R}. If you do, you may cast it without paying its mana cost.
 mana={1}{R}{R}
@@ -36588,12 +36220,6 @@ type=Creature
 subtype=Demon
 power=5
 toughness=5
-[/card]
-[card]
-name=Tombstone Stairwell
-text=Cumulative upkeep {1}{B} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- At the beginning of each upkeep, if Tombstone Stairwell is on the battlefield, each player puts a 2/2 black Zombie creature token with haste named Tombspawn onto the battlefield for each creature card in his or her graveyard. -- At the beginning of each end step or when Tombstone Stairwell leaves the battlefield, destroy all tokens put onto the battlefield with Tombstone Stairwell. They can't be regenerated.
-mana={2}{B}{B}
-type=World Enchantment
 [/card]
 [card]
 name=Tomorrow, Azami's Familiar
@@ -39202,15 +38828,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Wayward Angel
-text=Flying, vigilance -- Threshold - As long as seven or more cards are in your graveyard, Wayward Angel gets +3/+3, is black, has trample, and has "At the beginning of your upkeep, sacrifice a creature."
-mana={4}{W}{W}
-type=Creature
-subtype=Angel Horror
-power=4
-toughness=4
-[/card]
-[card]
 name=Wear Away
 text=Destroy target artifact or enchantment. -- Splice onto Arcane {3}{G} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 mana={G}{G}
@@ -39344,12 +38961,6 @@ text=Enchant player -- If a card would be put into enchanted player's graveyard 
 mana={GW}{GW}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Wheel of Torture
-text=At the beginning of each opponent's upkeep, Wheel of Torture deals X damage to that player, where X is 3 minus the number of cards in his or her hand.
-mana={3}
-type=Artifact
 [/card]
 [card]
 name=Whetwheel
@@ -40111,7 +39722,6 @@ type=Sorcery
 [/card]
 [card]
 name=Worldslayer
-text=Whenever equipped creature deals combat damage to a player, destroy all permanents other than Worldslayer. -- Equip {5} ({5}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
 mana={5}
 type=Artifact
 subtype=Equipment

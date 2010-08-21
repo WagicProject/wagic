@@ -101,24 +101,6 @@ type=nothing
 id=-99775523
 [/card]
 [card]
-name=Demigod of Revenge
-auto=kicker token(-99775513)*3
-text=When you cast Demigod of Revenge, return all cards named Demigod of Revenge from your graveyard to the battlefield.
-mana={BR}{BR}{BR}{BR}{BR}
-kicker={0}
-power=5
-toughness=4
-type=creature
-subtype=spirit avatar
-abilities=flying, haste
-[/card]
-[card]
-name=demigodcasteffect
-auto=moveto(battlefield) all(Demigod of Revenge|mygraveyard) && bury all(this)
-type=nothing
-id=-99775513
-[/card]
-[card]
 name=Myojin of Life's Web
 auto=kicker token(-99774213)
 auto=counter(0/0,0,Divinity)
@@ -212,16 +194,6 @@ auto={0}:notatarget(creature[manacost<=3]|myhand) moveto(mybattlefield)
 text=Any player may play creature cards with converted mana cost 3 or less without paying their mana cost and as though they had flash.
 type=Enchantment
 mana={2}{G}{G}
-[/card]
-[card]
-name=Sliver Legion
-auto=lord(sliver) foreach(other sliver|battlefield) 1/1
-text=All Sliver creatures get +1/+1 for each other Sliver on the battlefield.
-mana={W}{U}{B}{R}{G}
-type=Legendary Creature
-subtype=Sliver
-power=7
-toughness=7
 [/card]
 [card]
 name=Allosaurus Rider
@@ -781,16 +753,6 @@ auto=target(Shapeshifter|mybattlefield) -7/7
 auto=moveto(exile) all(this)
 id=-77006658
 type=nothing
-[/card]
-[card]
-name=Darksteel Garrison
-text=Fortified land is indestructible. Whenever fortified land becomes tapped, target creature gets +1/+1 until end of turn. Fortify  ({3}: Attach to target land you control. Fortify only as a sorcery. This card comes into play unattached and stays in play if the land leaves play.)
-auto={3}: equip target(land|mybattlefield)
-auto=indestructible
-auto=@tapped(mytgt): 1/1 target(creature|battlefield)
-mana={2}
-type=artifact
-subtype=equipment
 [/card]
 [card]
 name=Akroma, Angel of Fury
@@ -2592,30 +2554,11 @@ type=artifact
 mana={2}
 [/card]
 [card]
-name=Darksteel Reactor
-auto=@each myupkeep:counter(0/0,1,charge) all(this) && this(counter{0/0.20.charge})>=wingame
-text=Darksteel Reactor is indestructible. ("Destroy" effects and lethal damage don't destroy it.) At the beginning of your upkeep, you may put a charge counter on Darksteel Reactor. When Darksteel Reactor has twenty or more charge counters on it, you win the game.
-abilities=indestructible
-type=artifact
-mana={4}
-[/card]
-[card]
 name=Disrupting Scepter
 auto={3}{t}:target(player) discard:1 myturnonly
 text={3}{t} Target player discards a card. Activate this ability only during your turn.
 type=artifact
 mana={3}
-[/card]
-[card]
-name=Eldrazi Monument
-auto=lord(creature|myBattlefield) 1/1 
-auto=lord(creature|mybattlefield) flying
-auto=lord(creature|mybattlefield) indestructible
-auto=@each myupkeep:moveTo(mygraveyard) target(creature|mybattlefield)
-auto=@each myupkeep:aslongas(creature|mybattlefield) moveto(mygraveyard) <1
-text=Creatures you control get +1/+1, have flying, and are indestructible. -- At the beginning of your upkeep, sacrifice a creature. If you can't, sacrifice Eldrazi Monument.
-mana={5}
-type=Artifact
 [/card]
 [card]
 name=Energy Chamber
@@ -2878,13 +2821,6 @@ id=-13115
 type=nothing
 [/card]
 [card]
-name=Glasses of Urza
-auto={t}: counter(0/0,1,mycard) all(*|myhand) && moveto(myhand) all(*|opponenthand) && token(-40578)
-text=: {t}:Look at target player's hand.
-type=artifact
-mana={1}
-[/card]
-[card]
 name=choose one card
 auto=counter(0/0,1,closer inspection) target(*[-counter{0/0.1.mycard}]|myhand)
 auto=@movedto(this|exile):token(-40580)
@@ -2909,29 +2845,6 @@ text=Equipped creature gets +2/+0. Whenever equipped creature deals combat damag
 type=artifact
 subtype=equipment
 mana={2}
-[/card]
-[card]
-name=Hedron Matrix
-auto=manacost/manacost
-auto={4}:equip
-text=Equipped creature gets +X/+X, where X is its converted mana cost.
-type=artifact
-subtype=equipment
-mana={4}
-[/card]
-[card]
-name=Iron Maiden
-auto=@each opponentupkeep:foreach(*|opponenthand) damage:1 opponent >4
-text=At the beginning of each opponent's upkeep, Iron Maiden deals X damage to that player, where X is the number of cards in his or her hand minus 4.
-type=artifact
-mana={3}
-[/card]
-[card]
-name=Wheel of Torture
-auto=@each opponentupkeep:foreach(*|opponenthand) damage:1 opponent <3
-text=At the beginning of each opponent's upkeep, Wheel of Torture deals X damage to that player, where X is 3 minus the number of cards in his or her hand.
-type=artifact
-mana={3}
 [/card]
 [card]
 name=Jester's Cap
@@ -3034,17 +2947,6 @@ auto=moveto(ownerhand) target(land|mybattlefield)
 auto=moveto(exile) all(this)
 id=-98738
 type=nothing
-[/card]
-[card]
-name=Lodestone Myr
-auto={0}:tap target(artifact[-tapped]|mybattlefield) && 1/1 all(this)
-text=Trample. Tap an untapped artifact you control: Lodestone Myr gets +1/+1 until end of turn.
-type=artifact creature
-subtype=myr
-power=2
-toughness=2
-abilities=trample
-mana={4}
 [/card]
 [card]
 name=Mask of Memory
@@ -3214,13 +3116,6 @@ type=artifact
 mana={3}
 [/card]
 [card]
-name=Thumbscrews
-auto=@each Myupkeep:aslongas(*|myhand) damage:1 opponent >4
-text=At the beginning of your upkeep, if you have five or more cards in hand, Thumbscrews deals 1 damage to target opponent.
-type=artifact
-mana={2}
-[/card]
-[card]
 name=Vibrating Sphere
 auto=counter(0/0,1,myturn)
 auto=@each Myuntap: counter(0/0,1,myturn) all(this)
@@ -3230,15 +3125,6 @@ auto=lord(creatures|mybattlefield) -0/-2
 text=As long as it's your turn, creatures you control get +2/+0. As long as it's not your turn, creatures you control get -0/-2.
 type=artifact
 mana={4}
-[/card]
-[card]
-name=Worldslayer
-auto=@damaged(player) from(mytgt[attacking]):moveto(graveyard) all(other *[-worldslayer]|battlefield)
-auto={5}:equip
-text=At the beginning of your upkeep, if you have five or more cards in hand, Thumbscrews deals 1 damage to target opponent.
-type=artifact
-subtype=equipment
-mana={5}
 [/card]
 [card]
 name=Lightning Reaver
@@ -4674,15 +4560,6 @@ toughness=2
 mana={3){g}
 [/card]
 [card]
-name=Chlorophant
-auto=@each myupkeep:may counter(1/1,1) && aslongas(*|myhand) counter(1/1,1) >6
-type=creature
-subtype=elemental
-power=1
-toughness=1
-mana={G}{G}{G}
-[/card]
-[card]
 name=Crovax the Cursed
 auto=counter(1/1,4)
 auto=@each myupkeep: token(-12190)
@@ -4963,26 +4840,6 @@ type=nothing
 id=-12227
 [/card]
 [card]
-name=Magma Sliver
-auto=lord(sliver) {t}:foreach(sliver|battlefield) 1/0 target(creature[sliver]) ueot
-text=All Slivers have ": Target Sliver creature gets +X/+0 until end of turn, where X is the number of Slivers on the battlefield."
-type=creature
-subtype=sliver
-power=3
-toughness=3
-mana={3}{r}
-[/card]
-[card]
-name=Mindwhip Sliver
-auto=lord(sliver) {2}{s}:discard:1 target(player) asSorcery
-text=All Slivers have ", Sacrifice this permanent: Target player discards a card at random. Activate this ability only any time you could cast a sorcery."
-type=creature
-subtype=sliver
-power=2
-toughness=2
-mana={2}{B}
-[/card]
-[card]
 name=Mindlash Sliver
 auto=lord(sliver) {1}{s}:token(-12230)
 text=All Slivers have ", Sacrifice this permanent: Each player discards a card."
@@ -5159,14 +5016,6 @@ auto=moveto(graveyard) target(creature|mybattlefield)
 auto=moveto(exile) all(this)
 [/card]
 [card]
-name=Quest for Renewal
-auto=@tapped(creature|mybattlefield):counter(0/0,1,Quest) all(this)
-auto=@each opponent untap:this(counter{0/0.3.quest}>) untap all(creature|mybattlefield)
-text=Whenever a creature you control becomes tapped, you may put a quest counter on Quest for Renewal. As long as there are four or more quest counters on Quest for Renewal, untap all creatures you control during each other player's untap step.
-type=enchantment
-mana={1}{G}
-[/card]
-[card]
 name=Quest for the Nihil Stone
 auto=@movedto(*|graveyard) from(opponenthand):counter(0/0,1,Quest) all(this)
 auto=@each opponentupkeep:this(counter{0/0.1.quest}>) aslongas(*|opponenthand) <1 token(-12241)
@@ -5255,40 +5104,6 @@ auto=may moveto(mybattlefield) target(creature[manacost<=1]|mylibrary)
 auto=@movedto(creature): moveto(exile) all(this)
 [/card]
 [card]
-name=Tombstone Stairwell
-auto=@each my upkeep:counter(0/0,1,Age)
-auto=thisforeach(counter{0/0.1.Age}) upcost[{1}{B}] moveTo(graveyard)
-auto=@each upkeep:foreach(creature|mygraveyard) token(-12253) && foreach(creature|opponentgraveyard) token(-12254)
-auto=@movedto(this|graveyard,exile):bury all(Tombspawn)
-text=Cumulative upkeep {1}{b} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) At the beginning of each upkeep, if Tombstone Stairwell is on the battlefield, each player puts a 2/2 black Zombie creature token with haste named Tombspawn onto the battlefield for each creature card in his or her graveyard. At the beginning of each end step or when Tombstone Stairwell leaves the battlefield, destroy all tokens put onto the battlefield with Tombstone Stairwell. They can't be regenerated.
-auto=@movedTo(enchantment[world]|battlefield):bury
-type=World enchantment
-mana={2}{B}{B}
-[/card]
-[card]
-name=Tombspawn
-power=2
-toughness=2
-type=creature
-subtype=zombie tombspawn
-abilities=haste
-auto=@each endofturn:destroy all(this)
-color=black
-id=-12253
-[/card]
-[card]
-name=Tombspawn
-auto=moveto(opponentbattlefield)
-power=2
-toughness=2
-type=creature
-subtype=zombie tombspawn
-abilities=haste
-auto=@each endofturn:destroy all(this)
-color=black
-id=-12254
-[/card]
-[card]
 name=Yawgmoth Demon
 auto=upcost[{S(creature|mybattlefield)}] token(-12255)
 text=Flying (This creature can't be blocked except by creatures with flying or reach.) First strike (This creature deals combat damage before creatures without first strike.) At the beginning of your upkeep, you may sacrifice an artifact. If you don't, tap Yawgmoth Demon and it deals 2 damage to you.
@@ -5320,16 +5135,6 @@ mana={1}{b}{B}{B}
 [/card]
 #before you question this one, the rulings on this card state that all you get is a spawnwrithe no adjusted P/t or abilities, the only way it would be different is by the use of a single card that i dont think wagic would ever support "Mirrorweave" and the chances that the mirrorweave ability would be coded in before more obvious things like life checking skills or a conservator ability upgrade are VERY slim.
 [card]
-name=Spawnwrithe
-auto=@damaged(player) from(this):token(158687)
-type=creature
-subtype=elemental
-abilities=trample
-power=2
-toughness=2
-mana={G}{2}
-[/card]
-[card]
 name=Stronghold Rats
 auto=@damaged(player) from(this):token(-12230)
 type=creature
@@ -5338,24 +5143,6 @@ abilities=shadow
 power=2
 toughness=1
 mana={2}{b}
-[/card]
-[card]
-name=Storm World
-auto=@each opponentupkeep:foreach(*|opponenthand) damage:1 opponent <4
-auto=@each myupkeep:foreach(*|myhand) damage:1 opponent <4
-text=At the beginning of each player's upkeep, Storm World deals X damage to that player, where X is 4 minus the number of cards in his or her hand.
-auto=@movedTo(enchantment[world]|battlefield):bury
-type=world enchantment
-mana={R}
-[/card]
-[card]
-name=Sigil of Sleep
-target=creature
-auto=@damaged(player) from(mytgt):moveto(ownerhand) target(creature|opponentbattlefield)
-text=Whenever enchanted creature deals damage to a player, return target creature that player controls to its owner's hand.
-type=enchantment
-subtype=aura
-mana={u}
 [/card]
 [card]
 name=Simic Basilisk
