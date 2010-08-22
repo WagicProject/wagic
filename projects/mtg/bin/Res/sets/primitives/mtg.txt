@@ -23065,9 +23065,8 @@ type=Artifact
 [/card]
 [card]
 name=Identity Crisis
-target=player
-auto=moveTo(exile) all(*|hand)
-auto=moveTo(exile) all(*|graveyard)
+auto=choice name(opponent) && moveTo(exile) all(*|opponenthand,opponentgraveyard)
+auto=choice name(self) && moveTo(exile) all(*|myhand,mygraveyard)
 text=Exile all cards from target player's hand and graveyard.
 mana={2}{W}{W}{B}{B}
 type=Sorcery
@@ -24801,7 +24800,7 @@ toughness=3
 [/card]
 [card]
 name=Jwari Shapeshifter
-auto=may copy NotATarget(ally)
+auto=may copy notatarget(ally)
 text=You may have Jwari Shapeshifter enter the battlefield as a copy of any Ally creature on the battlefield.
 mana={1}{U}
 type=Creature
