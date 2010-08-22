@@ -9,9 +9,17 @@ MTGPutInPlayRule::MTGPutInPlayRule(int _id):MTGAbility(_id, NULL){
 }
 
 int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana){
+int cardsinhand = game->players[0]->game->hand->nb_cards;
   Player * player = game->currentlyActing();
   Player * currentPlayer = game->currentPlayer;
   if (!player->game->hand->hasCard(card)) return 0;
+  if ((game->turn < 1) && (cardsinhand != 0) && (card->hasType("leyline"))
+	    && game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN
+	    && game->players[0]->game->graveyard->nb_cards == 0
+		&& game->players[0]->game->exile->nb_cards == 0){
+	    Player * p = game->currentPlayer;
+		card->owner->game->putInZone(card,p->game->hand,p->game->battlefield);
+			return 1;}
   if (card->hasType("land")){
     if (player == currentPlayer && currentPlayer->canPutLandsIntoPlay && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN)){
       return 1;
@@ -28,7 +36,6 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
   }
   return 0;
 }
-
 int MTGPutInPlayRule::reactToClick(MTGCardInstance * card){
   if (!isReactingToClick(card)) return 0;
   Player * player = game->currentlyActing();
@@ -36,7 +43,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card){
   if (cost->isExtraPaymentSet()){
     if (!game->targetListIsSet(card)){
       return 0;
-    }
+	}
   }else{
     cost->setExtraCostsAction(this, card);
     game->waitForExtraPayment = cost->extraCosts;
@@ -84,7 +91,7 @@ ostream& MTGPutInPlayRule::toString(ostream& out) const
     a->isClone = 1;
     return a;
   }
-
+//cast from anywhere possible with this??
 
 
 bool MTGAttackRule::select(Target* t)
