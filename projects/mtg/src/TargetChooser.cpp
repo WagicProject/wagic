@@ -688,6 +688,9 @@ PlayerTargetChooser::PlayerTargetChooser(MTGCardInstance * card, int _maxtargets
 }
 
 bool PlayerTargetChooser::canTarget(Targetable * target){
+if (source && targetter && (targetter->controller() != targetter->controller()->opponent()) && (targetter->controller()->opponent()->game->inPlay->hasType("controllershroud")) && targetter->controller() != target) return false;
+if (source && targetter && (targetter->controller() == targetter->controller()) && (targetter->controller()->opponent()->game->inPlay->hasType("playershroud")) && targetter->controller()->opponent() == target) return false;
+if (source && targetter && (targetter->controller() == targetter->controller()) && (targetter->controller()->game->inPlay->hasType("playershroud")) && targetter->controller()== target) return false;
   return (target->typeAsTarget() == TARGET_PLAYER) && (!p || p == (Player*)target);
 }
 
