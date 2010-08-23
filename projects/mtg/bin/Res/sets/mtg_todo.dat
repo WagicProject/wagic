@@ -16196,12 +16196,6 @@ power=6
 toughness=6
 [/card]
 [card]
-name=Imperial Mask
-text=When Imperial Mask enters the battlefield, if it's not a token, each of your teammates puts a token that's a copy of Imperial Mask onto the battlefield. -- You can't be the target of spells or abilities your opponents control.
-mana={4}{W}
-type=Enchantment
-[/card]
-[card]
 name=Imperial Seal
 text=Search your library for a card, then shuffle your library and put that card on top of it. You lose 2 life.
 mana={B}
@@ -16920,12 +16914,6 @@ type=Creature
 subtype=Giant
 power=3
 toughness=4
-[/card]
-[card]
-name=Ivory Mask
-text=You have shroud. (You can't be the target of spells or abilities.)
-mana={2}{W}{W}
-type=Enchantment
 [/card]
 [card]
 name=Ivy Seer
@@ -19018,18 +19006,6 @@ mana={2}{R}{R}
 type=Enchantment
 [/card]
 [card]
-name=Leyline of Sanctity
-text=If Leyline of Sanctity is in your opening hand, you may begin the game with it on the battlefield. -- You can't be the target of spells or abilities your opponents control.
-mana={2}{W}{W}
-type=Enchantment
-[/card]
-[card]
-name=Leyline of Singularity
-text=If Leyline of Singularity is in your opening hand, you may begin the game with it on the battlefield. -- All nonland permanents are legendary.
-mana={2}{U}{U}
-type=Enchantment
-[/card]
-[card]
 name=Leyline of the Meek
 text=If Leyline of the Meek is in your opening hand, you may begin the game with it on the battlefield. -- Creature tokens get +1/+1.
 mana={2}{W}{W}
@@ -19039,12 +19015,6 @@ type=Enchantment
 name=Leyline of Vitality
 text=If Leyline of Sanctity is in your opening hand, you may begin the game with it on the battlefield. -- Creatures you control get +0/+1. -- Whenever a creature enters the battlefield under your control, you gain 1 life.
 mana={2}{G}{G}
-type=Enchantment
-[/card]
-[card]
-name=Leyline of the Void
-text=If Leyline of the Void is in your opening hand, you may begin the game with it on the battlefield. -- If a card would be put into an opponent's graveyard from anywhere, exile it instead.
-mana={2}{B}{B}
 type=Enchantment
 [/card]
 [card]
@@ -20524,12 +20494,6 @@ name=Martyr's Cause
 text=Sacrifice a creature: The next time a source of your choice would deal damage to target creature or player this turn, prevent that damage.
 mana={2}{W}
 type=Enchantment
-[/card]
-[card]
-name=Martyr's Cry
-text=Exile all white creatures. For each creature exiled this way, its controller draws a card.
-mana={W}{W}
-type=Sorcery
 [/card]
 [card]
 name=Martyrdom
@@ -22241,12 +22205,6 @@ type=Creature
 subtype=Elemental
 power=2
 toughness=2
-[/card]
-[card]
-name=Multani's Decree
-text=Destroy all enchantments. You gain 2 life for each enchantment destroyed this way.
-mana={3}{G}
-type=Sorcery
 [/card]
 [card]
 name=Multani's Harmony
@@ -27077,15 +27035,6 @@ mana={2}{R}
 type=Enchantment
 [/card]
 [card]
-name=Rain of Daggers
-auto=foreach(creature|opponentinplay) life:-2 controller
-auto=destroy all(creature|opponentinplay)
-####Does not work as it should (0.10.1)
-text=Destroy all creatures target opponent controls. You lose 2 life for each creature destroyed this way.
-mana={4}{B}{B}
-type=Sorcery
-[/card]
-[card]
 name=Rain of Gore
 text=If a spell or ability would cause its controller to gain life, that player loses that much life instead.
 mana={B}{R}
@@ -28368,15 +28317,6 @@ name=Righteous Aura
 text={W}, Pay 2 life: The next time a source of your choice would deal damage to you this turn, prevent that damage.
 mana={1}{W}
 type=Enchantment
-[/card]
-[card]
-name=Righteous Fury
-auto=foreach(creature[tapped]) life:2 controller
-auto=destroy all(creature[tapped])
-####Does not work as it should (0.10.1)
-text=Destroy all tapped creatures. You gain 2 life for each creature destroyed this way.
-mana={4}{W}{W}
-type=Sorcery
 [/card]
 [card]
 name=Righteous Indignation
@@ -33209,16 +33149,6 @@ mana={2}{W}
 type=Enchantment
 [/card]
 [card]
-name=Spirit of the Hearth
-abilities=flying
-text=Flying -- You can't be the target of spells or abilities your opponents control.
-mana={4}{W}{W}
-type=Creature
-subtype=Cat Spirit
-power=4
-toughness=5
-[/card]
-[card]
 name=Spiritmonger
 text=Whenever Spiritmonger deals damage to a creature, put a +1/+1 counter on Spiritmonger. -- {B}: Regenerate Spiritmonger. -- {G}: Spiritmonger becomes the color of your choice until end of turn.
 mana={3}{B}{G}
@@ -36726,15 +36656,6 @@ name=Truce
 text=Each player may draw up to two cards. For each card less than two a player draws this way, that player gains 2 life.
 mana={2}{W}
 type=Instant
-[/card]
-[card]
-name=True Believer
-text=You have shroud. (You can't be the target of spells or abilities.)
-mana={W}{W}
-type=Creature
-subtype=Human Cleric
-power=2
-toughness=2
 [/card]
 [card]
 name=Trumpeting Armodon

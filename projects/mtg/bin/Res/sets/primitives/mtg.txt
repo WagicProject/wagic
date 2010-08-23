@@ -17559,7 +17559,7 @@ toughness=6
 [/card]
 [card]
 name=Fracturing Gust
-auto=foreach(artifact,enchantment) life:2
+auto=@movedto(artifact,enchantment|graveyard):life:2
 auto=destroy all(artifact,enchantment)
 text=Destroy all artifacts and enchantments. You gain 2 life for each permanent destroyed this way.
 mana={2}{GW}{GW}{GW}
@@ -22279,7 +22279,7 @@ type=Enchantment
 [/card]
 [card]
 name=Honor the Fallen
-auto=foreach(creature|graveyard) life:1
+auto=@movedto(creature|exile) from(graveyard):life:1
 auto=moveTo(exile) all(creature|graveyard)
 text=Exile all creature cards from all graveyards. You gain 1 life for each card exiled this way.
 mana={1}{W}
@@ -23230,6 +23230,13 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Imperial Mask
+text=When Imperial Mask enters the battlefield, if it's not a token, each of your teammates puts a token that's a copy of Imperial Mask onto the battlefield. -- You can't be the target of spells or abilities your opponents control.
+mana={4}{W}
+type=Enchantment
+subtype=controllershroud
+[/card]
+[card]
 name=Imperial Recruiter
 auto=may moveTo(myhand) target(creature[power<=2]|mylibrary)
 text=When Imperial Recruiter enters the battlefield, search your library for a creature card with power 2 or less, reveal it, and put it into your hand. Then shuffle your library.
@@ -23982,6 +23989,13 @@ type=Creature
 subtype=Giant Cleric
 power=3
 toughness=3
+[/card]
+[card]
+name=Ivory Mask
+text=You have shroud. (You can't be the target of spells or abilities.)
+mana={2}{W}{W}
+type=Enchantment
+subtype=playershroud
 [/card]
 [card]
 name=Ivory Tower
@@ -27388,6 +27402,37 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Leyline of Vitality
+##auto=lord(creature|mybattlefield) 0/1 
+##auto=@movedTo(creature|mybattlefield):life:1
+text=If Leyline of Sanctity is in your opening hand, you may begin the game with it on the battlefield. -- Creatures you control get +0/+1. -- Whenever a creature enters the battlefield under your control, you gain 1 life.
+mana={2}{G}{G}
+type=Enchantment
+subtype=Leyline
+[/card]
+[card]
+name=Leyline of Sanctity
+text=If Leyline of Sanctity is in your opening hand, you may begin the game with it on the battlefield. -- You can't be the target of spells or abilities your opponents control.
+mana={2}{W}{W}
+type=Enchantment
+subtype=Leyline controllershroud
+[/card]
+[card]
+name=Leyline of Singularity
+auto=lord(*[-land]) transforms(Legendary)
+text=If Leyline of Singularity is in your opening hand, you may begin the game with it on the battlefield. -- All nonland permanents are legendary.
+mana={2}{U}{U}
+type=Enchantment
+subtype=Leyline
+[/card]
+[card]
+name=Leyline of the Void
+auto=@movedTo(*|graveyard):all(trigger) moveTo(exile)
+text=If Leyline of the Void is in your opening hand, you may begin the game with it on the battlefield. -- If a card would be put into an opponent's graveyard from anywhere, exile it instead.
+mana={2}{B}{B}
+type=Enchantment
+[/card]
+[card]
 name=Lhurgoyf
 auto=foreach(creature|graveyard) 1/1
 text=Lhurgoyf's power is equal to the number of creature cards in all graveyards and its toughness is equal to that number plus 1.
@@ -29397,6 +29442,15 @@ type=Creature
 subtype=Spirit
 power=1
 toughness=1
+[/card]
+[card]
+name=Martyr's Cry
+auto=@movedto(creature[white]|exile) from(mybattlefield):draw:1 controller
+auto=@movedto(creature[white]|exile) from(opponentbattlefield):draw:1 opponent
+auto=moveTo(exile) all(creature[white])
+text=Exile all white creatures. For each creature exiled this way, its controller draws a card.
+mana={W}{W}
+type=Sorcery
 [/card]
 [card]
 name=Mask of Law and Grace
@@ -31445,6 +31499,14 @@ type=Creature
 subtype=Elf
 power=2
 toughness=1
+[/card]
+[card]
+name=Multani's Decree
+auto=@movedTo(enchantment|graveyard):life:2
+auto=destroy all(enchantment)
+text=Destroy all enchantments. You gain 2 life for each enchantment destroyed this way.
+mana={3}{G}
+type=Sorcery
 [/card]
 [card]
 name=Mungha Wurm
@@ -36995,6 +37057,14 @@ mana={W}
 type=Instant
 [/card]
 [card]
+name=Rain of Daggers
+auto=@movedTo(creature|graveyard) from(opponentBattlefield):life:-2 controller
+auto=destroy all(creature|opponentbattlefield)
+text=Destroy all creatures target opponent controls. You lose 2 life for each creature destroyed this way.
+mana={4}{B}{B}
+type=Sorcery
+[/card]
+[card]
 name=Rain of Embers
 auto=damage:1 all(creature,player)
 text=Rain of Embers deals 1 damage to each creature and each player.
@@ -38573,6 +38643,14 @@ name=Righteous Charge
 auto=lord(creature|myBattlefield) 2/2
 text=Creatures you control get +2/+2 until end of turn.
 mana={1}{W}{W}
+type=Sorcery
+[/card]
+[card]
+name=Righteous Fury
+auto=@movedTo(creature[tapped]|graveyard):life:2 controller
+auto=destroy all(creature[tapped])
+text=Destroy all tapped creatures. You gain 2 life for each creature destroyed this way.
+mana={4}{W}{W}
 type=Sorcery
 [/card]
 [card]
@@ -45192,6 +45270,16 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Spirit of the Hearth
+abilities=flying
+text=Flying -- You can't be the target of spells or abilities your opponents control.
+mana={4}{W}{W}
+type=Creature
+subtype=Cat Spirit controllershroud
+power=4
+toughness=5
+[/card]
+[card]
 name=Spirit of the Night
 abilities=flying,trample,haste,protection from black
 auto=lord(spirit of the night[attacking]|myBattlefield) first strike
@@ -50807,6 +50895,15 @@ type=Creature
 subtype=Spirit
 power=3
 toughness=4
+[/card]
+[card]
+name=True Believer
+text=You have shroud. (You can't be the target of spells or abilities.)
+mana={W}{W}
+type=Creature
+subtype=Human Cleric playershroud
+power=2
+toughness=2
 [/card]
 [card]
 name=Trumpet Blast
