@@ -27402,9 +27402,29 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Leyline of Anticipation
+auto=@each beginofturn:all(*[-land]|myhand) flash
+auto=@movedto(*|myhand):all(*[-land]|myhand) flash
+auto=all(*[-land]|myhand) flash
+text=If Leyline of Anticipation is in your opening hand, you may begin the game with it on the battlefield.
+You may cast nonland cards as though they had flash. (You may cast them any time you could cast an instant.)
+mana={u}{u}{2}
+type=enchantment
+subtype=leyline
+[/card]
+[card]
+name=Leyline of the Meek
+auto=lord(*[token]) 1/1
+text=If Leyline of the Meek is in your opening hand, you may begin the game with it on the battlefield.
+Creature tokens get +1/+1.
+mana={w}{w}{2}
+type=enchantment
+subtype=leyline
+[/card]
+[card]
 name=Leyline of Vitality
-##auto=lord(creature|mybattlefield) 0/1 
-##auto=@movedTo(creature|mybattlefield):life:1
+auto=lord(creature|mybattlefield) 0/1 
+auto=@movedTo(creature|mybattlefield):life:1
 text=If Leyline of Sanctity is in your opening hand, you may begin the game with it on the battlefield. -- Creatures you control get +0/+1. -- Whenever a creature enters the battlefield under your control, you gain 1 life.
 mana={2}{G}{G}
 type=Enchantment
