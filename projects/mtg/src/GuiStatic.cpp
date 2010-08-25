@@ -13,7 +13,7 @@ bool GuiStatic::Leaving(JButton key)
   return false;
 }
 
-GuiAvatar::GuiAvatar(float x, float y, bool hasFocus, Player * player, Corner corner, GuiAvatars* parent) : GuiStatic(GuiAvatar::Height, x, y, hasFocus, parent), avatarRed(255), currentLife(player->life), corner(corner), player(player) {
+GuiAvatar::GuiAvatar(float x, float y, bool hasFocus, Player * player, Corner corner, GuiAvatars* parent) : GuiStatic(GuiAvatar::Height, x, y, hasFocus, parent), avatarRed(255), currentLife(player->life),currentpoisonCount(player->poisonCount), corner(corner), player(player) {
   type = GUI_AVATAR;
 }
 
@@ -22,6 +22,7 @@ void GuiAvatar::Render()
   GameObserver * game = GameObserver::GetInstance();
   JRenderer * r = JRenderer::GetInstance();
   int life = player->life;
+  int poisonCount = player->poisonCount;
   WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   //Avatar
@@ -30,6 +31,12 @@ void GuiAvatar::Render()
     avatarRed = 192 + (3* 255  * lifeDiff) / currentLife / 4;
     if (avatarRed < 0) avatarRed = 0;
   }
+  int poisonDiff = poisonCount - currentpoisonCount;
+  if (poisonDiff < 0 && currentpoisonCount > 0){
+    avatarRed = 192 + (3* 255  * poisonDiff) / currentpoisonCount / 4;
+    if (avatarRed < 0) avatarRed = 0;
+  }
+  currentpoisonCount = poisonCount;
   currentLife = life;
 
   r->FillRect(actX+2, actY+2, Width * actZ, Height *actZ, ARGB((int)(actA / 2), 0, 0, 0));
@@ -88,7 +95,21 @@ void GuiAvatar::Render()
       mFont->SetColor(ARGB((int)actA, 255, 255, 255));
       mFont->DrawString(buffer, actX, actY-10, JGETEXT_RIGHT);
       break;
-    }
+  } 
+  //poison
+  char poison[5];
+  sprintf(poison, "%i",poisonCount);
+  switch (corner)
+    {
+    case TOP_LEFT :
+      mFont->SetColor(ARGB((int)actA - 75, 0, 255, 0));
+      mFont->DrawString(poison, actX+2, actY+10);
+      break;
+    case BOTTOM_RIGHT :
+      mFont->SetColor(ARGB((int)actA - 75 ,0, 255, 0));
+      mFont->DrawString(poison, actX, actY-20, JGETEXT_RIGHT);
+      break;
+  }
   PlayGuiObject::Render();
 }
 
@@ -96,6 +117,7 @@ ostream& GuiAvatar::toString(ostream& out) const
 {
   return out << "GuiAvatar ::: avatarRed : " << avatarRed
 	     << " ; currentLife : " << currentLife
+		 << " ; currentpoisonCount : " << currentpoisonCount
 	     << " ; player : " << player;
 }
 

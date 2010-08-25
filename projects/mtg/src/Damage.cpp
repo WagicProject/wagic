@@ -65,17 +65,52 @@ int Damage::resolve(){
     for (int i = 0; i < damage; i++){
       _target->counters->addCounter(-1, -1);
     }
-  }else{ //Normal case
+  }else{//infect damage---------------------------------------
+	 while(target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE && source->has(Constants::INFECT)){
+    MTGCardInstance * _target = (MTGCardInstance *)target;
+    for (int i = 0; i < damage; i++){
+      _target->counters->addCounter(-1, -1);
+	}return a;
+     }while(target->type_as_damageable == DAMAGEABLE_PLAYER && source->has(Constants::INFECT)){
+    MTGCardInstance * _target = (MTGCardInstance *)target;
+    for (int i = 0; i < damage; i++){
+		_target->poisonCount += 1;//this will be changed to poison counters.
+	 }return a;
+	 }//infect end--------------------------------------------------
+	 //poison AND damage
+	 while(target->type_as_damageable == DAMAGEABLE_PLAYER && source->has(Constants::POISONDAMAGE)){
+    MTGCardInstance * _target = (MTGCardInstance *)target;
+    for (int i = 0; i < damage; i++){
+	  //this will be changed to poison counters.
+	 a = target->dealDamage(1);
+	 }
+     _target->poisonCount += 1;
+	 return a;
+     }
+	 	 while(target->type_as_damageable == DAMAGEABLE_PLAYER && source->has(Constants::POISONTWODAMAGE)){
+    MTGCardInstance * _target = (MTGCardInstance *)target;
+    for (int i = 0; i < damage; i++){
+	  //this will be changed to poison counters.
+	 a = target->dealDamage(1);
+	 }
+     _target->poisonCount += 2;
+	 return a;
+		 }
+		 	 while(target->type_as_damageable == DAMAGEABLE_PLAYER && source->has(Constants::POISONTHREEDAMAGE)){
+    MTGCardInstance * _target = (MTGCardInstance *)target;
+    for (int i = 0; i < damage; i++){
+	  //this will be changed to poison counters.
+	 a = target->dealDamage(1);
+	 }
+     _target->poisonCount += 3;
+	 return a;
+     }
      a = target->dealDamage(damage);
   }
-
   //Send (Damage/Replaced effect) event to listeners
-
   g->receiveEvent(e);
-
   return a;
 }
-
 void Damage::Render(){
   WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
   mFont->SetBase(0);

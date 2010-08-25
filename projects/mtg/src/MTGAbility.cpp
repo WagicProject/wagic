@@ -793,7 +793,24 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     a->oneShot = 1;
     return a;
   }
+ //remove poison
+  found = s.find("removepoison:");
+  if (found != string::npos){
+    size_t start = s.find(":",found);
+    size_t end = s.find(" ",start);
+    int poison;
+    if (end != string::npos){
+      poison = atoi(s.substr(start+1,end-start-1).c_str());
+    }else{
+      poison = atoi(s.substr(start+1).c_str());
+    }
 
+    Targetable * t = NULL;
+    if (spell) t = spell->getNextPlayerTarget();
+    MTGAbility * a = NEW AARemovePoison (id, card, t,poison,NULL,0,who);
+	  a->oneShot = 1;
+    return a;
+  }
 //set life total
     found = s.find("lifeset");
   if (found != string::npos){

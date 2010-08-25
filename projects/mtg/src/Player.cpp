@@ -12,6 +12,7 @@ Player::Player(MTGPlayerCards * deck, string file, string fileSmall) : Damageabl
   game->setOwner(this);
   manaPool = NEW ManaPool(this);
   canPutLandsIntoPlay = 1;
+  poisonCount = 0;
   mAvatar = NULL;
   mAvatarTex = NULL;
   type_as_damageable = DAMAGEABLE_PLAYER;
@@ -83,7 +84,9 @@ ManaPool * Player::getManaPool(){
 int Player::afterDamage(){
   return life;
 }
-
+int Player::poisoned(){
+  return poisonCount;
+}
 //Cleanup phase at the end of a turn
 void Player::cleanupPhase(){
   game->inPlay->cleanupPhase();

@@ -24,6 +24,7 @@ struct GuiAvatar : public GuiStatic{
  protected:
   int avatarRed;
   int currentLife;
+  int currentpoisonCount;
   Corner corner;
  public:
   Player * player;

@@ -19,14 +19,15 @@ class GameObserver;
 
 class Damageable:public Targetable {
  protected:
-
  public:
   int life;
+  int poisonCount;
   int type_as_damageable;
   Damageable(int _life){life=_life;};
   int getLife(){return life;};
   virtual int dealDamage(int damage){life-=damage;return life;};
   virtual int afterDamage(){return 0;}
+  virtual int poisoned(){return 0;}
   virtual JQuad * getIcon(){return NULL;};
 };
 

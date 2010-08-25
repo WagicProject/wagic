@@ -301,6 +301,8 @@ void GameObserver::stateEffects()
   }
   for (int i =0; i < 2; i++)
     if (players[i]->life <= 0) gameOver = players[i];
+  for (int i =0; i < 2; i++)
+    if (players[i]->poisonCount >= 10) gameOver = players[i];
 }
 
 
