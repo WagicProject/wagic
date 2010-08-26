@@ -82,7 +82,8 @@ int Damage::resolve(){
     MTGCardInstance * _target = (MTGCardInstance *)target;
     for (int i = 0; i < damage; i++){
 	  //this will be changed to poison counters.
-	 a = target->dealDamage(1);
+	 a = target->dealDamage(1);	 
+	target->damageCount += 1;
 	 }
      _target->poisonCount += 1;
 	 return a;
@@ -92,6 +93,7 @@ int Damage::resolve(){
     for (int i = 0; i < damage; i++){
 	  //this will be changed to poison counters.
 	 a = target->dealDamage(1);
+	 target->damageCount += 1;
 	 }
      _target->poisonCount += 2;
 	 return a;
@@ -101,11 +103,13 @@ int Damage::resolve(){
     for (int i = 0; i < damage; i++){
 	  //this will be changed to poison counters.
 	 a = target->dealDamage(1);
+	 target->damageCount += 1;
 	 }
      _target->poisonCount += 3;
 	 return a;
      }
      a = target->dealDamage(damage);
+	 target->damageCount += 1;
   }
   //Send (Damage/Replaced effect) event to listeners
   g->receiveEvent(e);

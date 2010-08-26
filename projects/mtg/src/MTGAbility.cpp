@@ -988,6 +988,16 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
       ab = NEW ABecomes(id,card,target,stypes,pt,sabilities);
 	}return ab;
   }
+  //bloodthirst
+  found = s.find("bloodthirst:");
+  if (found != string::npos){
+    size_t start = s.find(":",found);
+    size_t end = s.find(" ",start);
+    int amount;
+    if (end != string::npos){amount = atoi(s.substr(start+1,end-start-1).c_str());}
+	else{amount = atoi(s.substr(start+1).c_str());}
+    MTGAbility * a = NEW ABloodThirst(id,card,target,amount);
+    return a;}
 
 //ManaRedux
   found = s.find("colorless:");

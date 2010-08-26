@@ -53,12 +53,14 @@ public:
       intValue = target->getManaCost()->getConvertedCost();
 	}else if (s == "lifetotal"){
       intValue = target->controller()->life;
+	}else if (s == "odcount"){
+      intValue = target->controller()->opponent()->damageCount;
 	}else if (s == "opponentlifetotal"){
       intValue = target->controller()->opponent()->life;
-    }else if (s == "p"){
-      intValue = target->power;
-    }else if (s == "t"){
-      intValue = target->toughness;
+    }else if (s == "p" || s == "power"){
+		intValue = target->getPower();
+    }else if (s == "t" || s == "toughness"){
+      intValue = target->getToughness();
     }else{
       intValue = atoi(s.c_str());
     }
@@ -2491,7 +2493,27 @@ public:
    ~AResetCost(){
   }
 };
-
+//bloodthirst ability------------------------------------------
+class ABloodThirst:public MTGAbility{
+public:
+	int amount;
+	ABloodThirst(int id, MTGCardInstance * source, MTGCardInstance * target,int amount):MTGAbility(id,source,target),amount(amount){
+    MTGCardInstance * _target = (MTGCardInstance *)target;}
+   int addToGame(){
+   MTGCardInstance * _target = (MTGCardInstance *)target;
+   amount;
+   for(int i = 0;i < amount;i++){
+   if(_target->controller()->opponent()->damaged() > 0){
+	  _target->counters->addCounter(1,1);}
+   }
+   return 1;}
+    ABloodThirst * clone() const{
+    ABloodThirst * a =  NEW ABloodThirst(*this);
+    a->isClone = 1;
+    return a;
+  }
+   ~ABloodThirst(){}
+};
 //reduce or increase manacost of target by color:amount------------------------------------------
 class AManaRedux:public MTGAbility{
 public:

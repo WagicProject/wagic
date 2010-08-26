@@ -343,6 +343,7 @@ int MTGCardInstance::canBlock(MTGCardInstance * opponent){
   if (!opponent->isAttacker()) return 0;
   // Comprehensive rule 502.7f : If a creature with protection attacks, it can't be blocked by creatures that have the stated quality.
   if (opponent->protectedAgainst(this)) return 0;
+  if (opponent->power > !(defenser->power) && opponent->has(basicAbilities[Constants::POWERBLOCKER])) return 0;
   if (opponent->cantBeBlockedBy(this)) return 0;
   if (opponent->basicAbilities[Constants::UNBLOCKABLE]) return 0;
   if (opponent->basicAbilities[Constants::ONEBLOCKER] && opponent->blocked) return 0;

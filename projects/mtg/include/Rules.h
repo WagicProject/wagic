@@ -26,6 +26,7 @@ class RulesPlayerData{
   vector <string> extraRules;
   int life;
   int poisonCount;
+  int damageCount;
   string avatar;
   ManaCost * manapool;
   RulesPlayerZone zones[5];

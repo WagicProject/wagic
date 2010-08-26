@@ -22,6 +22,7 @@ class Damageable:public Targetable {
  public:
   int life;
   int poisonCount;
+  int damageCount;
   int type_as_damageable;
   Damageable(int _life){life=_life;};
   int getLife(){return life;};

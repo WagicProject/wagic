@@ -40,6 +40,7 @@ MTGCardInstance * Rules::getCardByMTGId(int mtgid){
 RulesPlayerData::RulesPlayerData(){
   life = 20;
   poisonCount = 0;
+    damageCount = 0;
   manapool = NEW ManaCost();
   avatar = "";
 }
@@ -80,6 +81,9 @@ void RulesState::parsePlayerState(int playerId, string s){
       return;
 	}else if(areaS.compare("poisonCount")  == 0){
       playerData[playerId].poisonCount = atoi((s.substr(limiter+1)).c_str());
+      return;
+	 }else if(areaS.compare("damageCount")  == 0){
+      playerData[playerId].damageCount = atoi((s.substr(limiter+1)).c_str());
       return;
     }else if(areaS.compare("avatar")  == 0){
       playerData[playerId].avatar = s.substr(limiter+1);
@@ -278,6 +282,7 @@ void Rules::initGame(){
     Player * p =  g->players[i];
     p->life = initState.playerData[i].life;
 	p->poisonCount = initState.playerData[i].poisonCount;
+	p->damageCount = initState.playerData[i].damageCount;
     p->getManaPool()->copy(initState.playerData[i].manapool);
     if (initState.playerData[i].avatar.size()) {
       p->loadAvatar(initState.playerData[i].avatar);
@@ -324,6 +329,7 @@ void RulesPlayerData::cleanup(){
   }
   life=20;
   poisonCount=0;
+  damageCount=0;
 }
 
 void RulesState::cleanup(){
