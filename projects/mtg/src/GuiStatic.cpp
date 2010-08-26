@@ -98,6 +98,7 @@ void GuiAvatar::Render()
   } 
   //poison
   char poison[5];
+  if(poisonCount > 0){
   sprintf(poison, "%i",poisonCount);
   switch (corner)
     {
@@ -111,6 +112,7 @@ void GuiAvatar::Render()
       break;
   }
   PlayGuiObject::Render();
+}
 }
 
 ostream& GuiAvatar::toString(ostream& out) const
