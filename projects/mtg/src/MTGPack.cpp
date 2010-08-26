@@ -44,13 +44,10 @@ int MTGPackSlot::add(WSrcCards * ocean, MTGDeck *to, int carryover){
   if(!myPool) myPool = ocean;
   for(int i=0;i<amt;i++){
     size_t pos = rand() % entries.size();
-#if defined WIN32 || defined LINUX //First try other entries in slot
     while(pos < entries.size() && entries[pos]->addCard(myPool,to)) 
       pos++; 
-    if(pos == entries.size()) fails++; 
-#else //Fall straight through to next slot
-  fails = entries[pos]->addCard(myPool,to); 
-#endif
+    if(pos == entries.size()) 
+        fails++; 
   }
   if(myPool != ocean)
     SAFE_DELETE(myPool);
@@ -98,6 +95,8 @@ int MTGPack::assemblePack(MTGDeck *to){
   
   for(size_t i=0;i<slots.size();i++){
     carryover = slots[i]->add(p,to,carryover);
+    if(carryover > 0)
+        carryover = carryover; //This means we're failing.
   }
   SAFE_DELETE(p);
   return carryover;
