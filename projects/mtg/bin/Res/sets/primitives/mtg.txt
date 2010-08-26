@@ -1990,7 +1990,7 @@ abilities=haste
 auto=counter(1/1,2)
 auto=@movedTo(this|mygraveyard) from(myBattlefield):may thisforeach(counter{1/1.1}) counter(1/1,1) target(creature[artifact])
 text=Haste -- Modular 2 (This enters the battlefield with two +1/+1 counters on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
-mana={4}
+mana={1}
 type=Artifact Creature
 subtype=Beast
 power=0
@@ -22246,7 +22246,7 @@ subtype=Shrine
 [/card]
 [card]
 name=Honden of Life's Web
-auto=@each my upkeep:foreach(shrine|myBattlefield) token(Spirit,Creature Spirit,1/1,artifact)
+auto=@each my upkeep:foreach(shrine|myBattlefield) token(Spirit,Creature Spirit,1/1)
 text=At the beginning of your upkeep, put a 1/1 colorless Spirit creature token onto the battlefield for each Shrine you control.
 mana={4}{G}
 type=Legendary Enchantment
@@ -23575,7 +23575,7 @@ type=Instant
 [/card]
 [card]
 name=Inspired Charge
-auto=lord(creature|myBattlefield) 1/2 ueot
+auto=lord(creature|myBattlefield) 2/1 ueot
 text=Creatures you control get +2/+1 until end of turn.
 mana={2}{W}{W}
 type=Instant
@@ -27406,8 +27406,7 @@ name=Leyline of Anticipation
 auto=@each beginofturn:all(*[-land]|myhand) flash
 auto=@movedto(*|myhand):all(*[-land]|myhand) flash
 auto=all(*[-land]|myhand) flash
-text=If Leyline of Anticipation is in your opening hand, you may begin the game with it on the battlefield.
-You may cast nonland cards as though they had flash. (You may cast them any time you could cast an instant.)
+text=If Leyline of Anticipation is in your opening hand, you may begin the game with it on the battlefield. -- You may cast nonland cards as though they had flash. (You may cast them any time you could cast an instant.)
 mana={u}{u}{2}
 type=enchantment
 subtype=leyline
@@ -27415,8 +27414,7 @@ subtype=leyline
 [card]
 name=Leyline of the Meek
 auto=lord(*[token]) 1/1
-text=If Leyline of the Meek is in your opening hand, you may begin the game with it on the battlefield.
-Creature tokens get +1/+1.
+text=If Leyline of the Meek is in your opening hand, you may begin the game with it on the battlefield. -- Creature tokens get +1/+1.
 mana={w}{w}{2}
 type=enchantment
 subtype=leyline
@@ -29413,6 +29411,16 @@ type=Creature
 subtype=Kor Scout
 power=2
 toughness=1
+[/card]
+[card]
+name=Marsh Viper
+abilities=poisontwodamage
+text=Whenever Marsh Viper deals damage to an opponent, that player gets two poison counters. (A player with ten or more poison counters loses the game.)
+mana={3}{G}
+type=Creature
+subtype=Snake
+power=1
+toughness=2
 [/card]
 [card]
 name=Marshaling Cry
@@ -35330,6 +35338,16 @@ type=Creature
 subtype=Bird Mercenary
 power=4
 toughness=3
+[/card]
+[card]
+name=Pit Scorpion
+abilities=poisondamage
+text=Whenever Pit Scorpion deals damage to a player, that player gets a poison counter. (A player with ten or more poison counters loses the game.)
+mana={2}{B}
+type=Creature
+subtype=Scorpion
+power=1
+toughness=1
 [/card]
 [card]
 name=Pit Trap
@@ -41279,7 +41297,7 @@ type=Land
 [/card]
 [card]
 name=Sek'Kuar, Deathkeeper
-auto=@movedto(graveyard) from(other creature|myBattlefield):token(Graveborn, Creature Graveborn,3/1,haste red black)
+auto=@movedto(graveyard) from(other creature[-token]|myBattlefield):token(Graveborn, Creature Graveborn,3/1,haste red black)
 text=Whenever another nontoken creature you control is put into a graveyard from the battlefield, put a 3/1 black and red Graveborn creature token with haste onto the battlefield.
 mana={2}{B}{R}{G}
 type=Legendary Creature
@@ -41407,6 +41425,13 @@ type=Creature
 subtype=Snake Assassin
 power=2
 toughness=2
+[/card]
+[card]
+name=Serpent Generator
+auto={4}{T}:token(Snake,Artifact Creature Snake,1/1,poisondamage,artifact)
+text={4}, {T}: Put a 1/1 colorless Snake artifact creature token onto the battlefield. This creature has "Whenever this creature deals damage to a player, that player gets a poison counter." (A player with ten or more poison counters loses the game.)
+mana={6}
+type=Artifact
 [/card]
 [card]
 name=Serpent Skin
@@ -43975,6 +44000,15 @@ auto={X}{S}:thisforeach(X):token(Snake,creature token snake,1/1,green) asSorcery
 text={X}, Sacrifice Snake Basket: Put X 1/1 green Snake creature tokens onto the battlefield. Activate this ability only any time you could cast a sorcery.
 mana={4}
 type=Artifact
+[/card]
+[card]
+name=Snake Cult Initiation
+target=creature
+auto=poisonthreedamage
+text=Enchant creature -- Enchanted creature has poisonous 3. (Whenever it deals combat damage to a player, that player gets three poison counters. A player with ten or more poison counters loses the game.)
+mana={3}{B}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Snake Pit
@@ -54918,7 +54952,7 @@ toughness=6
 [/card]
 [card]
 name=Wickerbough Elder
-auto=counter(-1/-1,2)
+auto=counter(-1/-1,1)
 auto={G}{C(-1/-1,-1)}:destroy target(artifact,enchantment)
 text=Wickerbough Elder enters the battlefield with a -1/-1 counter on it. -- {G}, Remove a -1/-1 counter from Wickerbough Elder: Destroy target artifact or enchantment.
 mana={3}{G}

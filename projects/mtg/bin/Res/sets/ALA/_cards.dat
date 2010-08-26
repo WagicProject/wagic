@@ -1249,9 +1249,19 @@ id=175144
 rarity=C
 [/card]
 [card]
+primitive=Viscera Dragger Unearthed
+id=175144111
+rarity=T
+[/card]
+[card]
 primitive=Vithian Stinger
 id=174922
 rarity=C
+[/card]
+[card]
+primitive=Vithian Stinger Unearthed
+id=174922111
+rarity=T
 [/card]
 [card]
 primitive=Volcanic Submersion

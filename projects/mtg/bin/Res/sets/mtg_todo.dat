@@ -20424,15 +20424,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Marsh Viper
-text=Whenever Marsh Viper deals damage to an opponent, that player gets two poison counters. (A player with ten or more poison counters loses the game.)
-mana={3}{G}
-type=Creature
-subtype=Snake
-power=1
-toughness=2
-[/card]
-[card]
 name=Marshal's Anthem
 text=Multikicker {1}{W} (You may pay an additional {1}{W} any number of times as you cast this spell.) -- Creatures you control get +1/+1. -- When Marshal's Anthem enters the battlefield, return up to X target creature cards from your graveyard to the battlefield, where X is the number of times Marshal's Anthem was kicked.
 mana={2}{W}{W}
@@ -25486,15 +25477,6 @@ name=Piracy Charm
 text=Choose one - Target creature gains islandwalk until end of turn; or target creature gets +2/-1 until end of turn; or target player discards a card.
 mana={U}
 type=Instant
-[/card]
-[card]
-name=Pit Scorpion
-text=Whenever Pit Scorpion deals damage to a player, that player gets a poison counter. (A player with ten or more poison counters loses the game.)
-mana={2}{B}
-type=Creature
-subtype=Scorpion
-power=1
-toughness=1
 [/card]
 [card]
 name=Pit Spawn
@@ -30587,12 +30569,6 @@ mana={X}{G}
 type=Instant
 [/card]
 [card]
-name=Serpent Generator
-text={4}, {T}: Put a 1/1 colorless Snake artifact creature token onto the battlefield. This creature has "Whenever this creature deals damage to a player, that player gets a poison counter." (A player with ten or more poison counters loses the game.)
-mana={6}
-type=Artifact
-[/card]
-[card]
 name=Serpentine Basilisk
 text=Whenever Serpentine Basilisk deals combat damage to a creature, destroy that creature at end of combat. -- Morph {1}{G}{G} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 mana={2}{G}{G}
@@ -32118,13 +32094,6 @@ name=Snag
 text=You may discard a Forest card rather than pay Snag's mana cost. -- Prevent all combat damage that would be dealt by unblocked creatures this turn.
 mana={3}{G}
 type=Instant
-[/card]
-[card]
-name=Snake Cult Initiation
-text=Enchant creature -- Enchanted creature has poisonous 3. (Whenever it deals combat damage to a player, that player gets three poison counters. A player with ten or more poison counters loses the game.)
-mana={3}{B}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Snakeform
