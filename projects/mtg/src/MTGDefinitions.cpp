@@ -60,7 +60,6 @@ const char* Constants::MTGBasicAbilities[] = {
 "poisondamage",
 "poisontwodamage",
 "poisonthreedamage",
-"powerblocker"
 
 };
 
