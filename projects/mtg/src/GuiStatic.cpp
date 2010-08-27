@@ -103,16 +103,16 @@ void GuiAvatar::Render()
   switch (corner)
     {
     case TOP_LEFT :
-      mFont->SetColor(ARGB((int)actA - 75, 0, 255, 0));
+      mFont->SetColor(ARGB((int)actA / 1, 0, 255, 0));
       mFont->DrawString(poison, actX+2, actY+10);
       break;
     case BOTTOM_RIGHT :
-      mFont->SetColor(ARGB((int)actA - 75 ,0, 255, 0));
+      mFont->SetColor(ARGB((int)actA / 1 ,0, 255, 0));
       mFont->DrawString(poison, actX, actY-20, JGETEXT_RIGHT);
       break;
   }
-  PlayGuiObject::Render();
 }
+    PlayGuiObject::Render();
 }
 
 ostream& GuiAvatar::toString(ostream& out) const
