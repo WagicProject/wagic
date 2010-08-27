@@ -93,7 +93,6 @@ int Player::damaged(){
 }
 //Cleanup phase at the end of a turn
 void Player::cleanupPhase(){
-	Player *p;
   game->inPlay->cleanupPhase();
   game->graveyard->cleanupPhase();
 
