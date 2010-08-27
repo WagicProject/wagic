@@ -3984,7 +3984,8 @@ id=-20122011
 [/card]
 [card]
 name=Bazaar Trader
-auto={T}:moveTo(opponentBattlefield) target(artifact,creature,land|myBattlefield)
+auto={T}:name(opponentbattlefield) && moveTo(opponentBattlefield) target(artifact,creature,land|myBattlefield)
+auto={T}:name(mybattlefield) && moveTo(myBattlefield) target(artifact,creature,land|myBattlefield)
 text={T}: Target player gains control of target artifact, creature, or land you control.
 mana={1}{R}
 type=Creature
