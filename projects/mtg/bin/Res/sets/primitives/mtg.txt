@@ -2549,7 +2549,7 @@ type=Sorcery
 [/card]
 [card]
 name=Ashenmoor Cohort
-auto=aslongas(other creature[black]|myBattlefield) 1/1
+auto=aslongas(other creature[black]|myBattlefield) 1/1 != 0
 text=Ashenmoor Cohort gets +1/+1 as long as you control another black creature.
 mana={5}{B}
 type=Creature
@@ -3399,7 +3399,7 @@ toughness=2
 [card]
 name=Ballynock Cohort
 abilities=first strike
-auto=aslongas(other creature[white]|myBattlefield) 1/1
+auto=aslongas(other creature[white]|myBattlefield) 1/1 != 0
 text=First strike -- Ballynock Cohort gets +1/+1 as long as you control another white creature.
 mana={2}{W}
 type=Creature
@@ -6175,7 +6175,7 @@ subtype=Aura
 [card]
 name=Briarberry Cohort
 abilities=flying
-auto=aslongas(other creature[blue]|myBattlefield) 1/1
+auto=aslongas(other creature[blue]|myBattlefield) 1/1 != 0
 text=Flying -- Briarberry Cohort gets +1/+1 as long as you control another blue creature.
 mana={1}{U}
 type=Creature
@@ -9642,7 +9642,7 @@ toughness=5
 [/card]
 [card]
 name=Crabapple Cohort
-auto=aslongas(other creature[green]|myBattlefield) 1/1
+auto=aslongas(other creature[green]|myBattlefield) 1/1 != 0
 text=Crabapple Cohort gets +1/+1 as long as you control another green creature.
 mana={4}{G}
 type=Creature
@@ -31468,7 +31468,7 @@ toughness=1
 [card]
 name=Mudbrawler Cohort
 abilities=haste
-auto=aslongas(other creature[red]|myBattlefield) 1/1
+auto=aslongas(other creature[red]|myBattlefield) 1/1 != 0
 text=Haste -- Mudbrawler Cohort gets +1/+1 as long as you control another red creature.
 mana={1}{R}
 type=Creature
