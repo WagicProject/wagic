@@ -47,6 +47,12 @@ class TestSuiteState{
   void cleanup();
 };
 
+
+class TestSuitePregame{
+ public:
+   virtual void performTest() = 0;
+};
+
 class TestSuite{
  public:
   MTGAllCards* collection;
@@ -67,13 +73,14 @@ class TestSuite{
   int load(const char * filename);
   TestSuite(const char * filename,MTGAllCards* _collection);
   void initGame();
+  void pregameTests();
   int assertGame();
   MTGPlayerCards * buildDeck(int playerId);
   string getNextAction();
   Interruptible * getActionByMTGId(int mtgid);
   int loadNext();
   void cleanup();
-  int Log(const char * text);
+  static int Log(const char * text);
 
 };
 
@@ -85,7 +92,6 @@ class TestSuiteAI:public AIPlayerBaka{
   TestSuiteAI(TestSuite * suite, int playerId);
   virtual int Act(float dt);
   virtual int displayStack();
-
 };
 
 

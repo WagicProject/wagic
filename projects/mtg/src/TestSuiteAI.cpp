@@ -6,6 +6,7 @@
 #include "../include/GuiCombat.h"
 #include "../include/Rules.h"
 #include "../include/GameObserver.h"
+#include "../include/GameStateShop.h"
 
 #include <string>
 using std::string;
@@ -297,7 +298,6 @@ void TestSuite::initGame(){
   }
   OutputDebugString("TESTUITE Init Game Done !\n");
 }
-
 int TestSuite::Log(const char * text){
   ofstream file (RESPATH"/test/results.html",ios_base::app);
   if (file){
@@ -582,3 +582,17 @@ int TestSuite::load(const char * _filename){
   return 1;
 }
 
+
+void TestSuite::pregameTests(){
+    //Test Booster Generation
+    srand(1024);
+    char result[1024];
+    ShopBooster sb;
+    for(int i=0;i<5;i++){
+        nbTests++;
+        sprintf(result, "<h3>pregame/BoosterTest#%i</h3>", i);
+        Log(result);
+        if(!sb.unitTest())
+            nbFailed++;
+    }
+}

@@ -1,0 +1,43 @@
+<activebg source="1">
+	<case rule="color:g;">Jade</case>
+	<case rule="color:r;">Jasper</case>
+	<case rule="color:u;">Lapis</case>
+	<case rule="color:b;">Jet</case>
+	<case rule="color:w;">Moonstone</case>
+</activebg>
+
+<style name="Jade">
+	<wood.png>wood_green.png</wood.png>
+	<backdrop.jpg>backdrop_green.jpg</backdrop.jpg>
+	<menutitle.png>menutitle_green.png</menutitle.png>
+	<phasebar.png>phasebar_green.png</phasebar.png>
+</style>
+
+<style name="Jasper">
+	<wood.png>wood_red.png</wood.png>
+	<backdrop.jpg>backdrop_red.jpg</backdrop.jpg>
+	<menutitle.png>menutitle_red.png</menutitle.png>
+	<phasebar.png>phasebar_red.png</phasebar.png>
+</style>
+
+<style name="Lapis">
+	<wood.png>wood_blue.png</wood.png>
+	<backdrop.jpg>backdrop_blue.jpg</backdrop.jpg>
+	<menutitle.png>menutitle_blue.png</menutitle.png>
+	<phasebar.png>phasebar_blue.png</phasebar.png>
+</style>
+
+<style name="Jet">
+	<wood.png>wood_black.png</wood.png>
+	<backdrop.jpg>backdrop_black.jpg</backdrop.jpg>
+	<menutitle.png>menutitle_black.png</menutitle.png>
+	<phasebar.png>phasebar_black.png</phasebar.png>
+</style>
+
+<style name="Moonstone">
+	<wood.png>wood_white.png</wood.png>
+	<backdrop.jpg>backdrop_white.jpg</backdrop.jpg>
+	<handback.png>handback_white.png</handback.png>
+	<phasebar.png>phasebar_white.png</phasebar.png>
+	<menutitle.png>menutitle_white.png</menutitle.png>
+</style>

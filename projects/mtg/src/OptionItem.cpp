@@ -5,6 +5,7 @@
 #include "../include/Translate.h"
 #include "../include/Subtypes.h"
 #include "../include/TranslateKeys.h"
+#include "../include/StyleManager.h"
 #include <dirent.h>
 #include <stdlib.h>
 #include <algorithm>
@@ -216,6 +217,27 @@ void OptionProfile::confirmChange(bool confirmed){
   }
   return;
 }
+//OptionThemeStyle
+OptionThemeStyle::OptionThemeStyle(string _displayValue) : OptionSelect(Options::GUI_STYLE,_displayValue)
+{
+  Reload();
+  initSelections();
+};
+bool OptionThemeStyle::Visible() {
+  return (selections.size() > 1);
+};
+void OptionThemeStyle::confirmChange(bool confirmed){
+    options.getStyleMan()->determineActive(NULL,NULL);
+}
+void OptionThemeStyle::Reload(){
+    selections.clear();
+    addSelection("Dynamic");
+    map<string,WStyle*>::iterator it;
+
+    StyleManager * sm = options.getStyleMan();
+    for(it=sm->styles.begin();it!=sm->styles.end();it++)
+        addSelection(it->first);
+}
 //OptionLanguage
 OptionLanguage::OptionLanguage(string _displayValue) : OptionSelect(Options::LANG,_displayValue)
 {
@@ -348,12 +370,13 @@ OptionDirectory::OptionDirectory(string root, int id, string displayValue, strin
 }
 
 const string OptionTheme::DIRTESTER = "preview.png";
-OptionTheme::OptionTheme() : OptionDirectory(RESPATH"/themes", Options::ACTIVE_THEME, "Current Theme", DIRTESTER){
+OptionTheme::OptionTheme(OptionThemeStyle * style) : OptionDirectory(RESPATH"/themes", Options::ACTIVE_THEME, "Current Theme", DIRTESTER){
   addSelection("Default");
   sort(selections.begin(),selections.end());
   initSelections();
   mFocus=false;
   bChecked = false;
+  ts = style;
 }
 JQuad * OptionTheme::getImage(){
   char buf[512];
@@ -429,6 +452,9 @@ void OptionTheme::confirmChange(bool confirmed){
     value = prior_value;
   else{
     setData();
+    options.getStyleMan()->loadRules();
+    if(ts) ts->Reload();
+    
     resources.Refresh(); //Update images
     prior_value = value;
   }

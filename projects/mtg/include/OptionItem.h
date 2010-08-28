@@ -84,7 +84,13 @@ protected:
   vector<string> actual_data;
 };
 
-
+class OptionThemeStyle: public OptionSelect{
+ public:
+  virtual bool Visible();
+  virtual void Reload();
+  virtual void confirmChange(bool confirmed);
+  OptionThemeStyle(string _displayValue);
+};
 class OptionDirectory:public OptionSelect{
  public:
   virtual void Reload();
@@ -98,7 +104,7 @@ class OptionTheme:public OptionDirectory{
  private:
   static const string DIRTESTER;
  public:
-  OptionTheme();
+  OptionTheme(OptionThemeStyle * style = NULL);
   JQuad * getImage();
   virtual void updateValue();
   virtual float getHeight();
@@ -107,6 +113,7 @@ class OptionTheme:public OptionDirectory{
   virtual bool Visible();
 
 protected:
+  OptionThemeStyle * ts;
   string author;
   bool bChecked;
 };

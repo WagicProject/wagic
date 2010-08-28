@@ -39,6 +39,9 @@ public:
   int maxInventory();
   void addToDeck(MTGDeck * d, WSrcCards * srcCards);
   string getSort();
+#ifdef TESTSUITE
+  bool unitTest();
+#endif
 private:
   void randomCustom(MTGPacks * packlist);
   void randomStandard();

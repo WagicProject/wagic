@@ -19,6 +19,10 @@ using std::string;
 
 #define INVALID_OPTION -1
 
+class WStyle;
+class StyleManager;
+class Player;
+
 class Options {
 public:
   friend class GameSettings;
@@ -44,6 +48,7 @@ public:
     MAX_GRADE,
     ECON_DIFFICULTY,
     TRANSITIONS,
+    GUI_STYLE,
     INTERRUPT_SECONDS,
     KEY_BINDINGS,
     //My interrupts    
@@ -144,6 +149,8 @@ private:
   OptionVolume();
   static OptionVolume mDef;
 };
+
+
 class OptionClosedHand: public EnumDefinition {
 public:
   enum { INVISIBLE = 0, VISIBLE = 1 };
@@ -183,7 +190,6 @@ private:
   OptionEconDifficulty();
   static OptionEconDifficulty mDef;
 };
-
 class OptionDifficulty: public EnumDefinition {
 public:
   enum { NORMAL = 0, HARD = 1, HARDER = 2, EVIL = 3};
@@ -243,9 +249,14 @@ public:
 
   static GameOption invalid_option;
 
+  WStyle * getStyle();
+  StyleManager * getStyleMan();
+  void automaticStyle(Player * p1, Player * p2);
+
 private:
   GameApp * theGame;  
   SimplePad * keypad;
+  StyleManager * styleMan;
 };
 
 extern GameSettings options;

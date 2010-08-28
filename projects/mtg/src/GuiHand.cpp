@@ -27,22 +27,13 @@ HandLimitor::HandLimitor(GuiHand* hand) : hand(hand) {}
 
 GuiHand::GuiHand(CardSelector* cs, MTGHand* hand) : GuiLayer(), hand(hand), cs(cs)
 {
-  JTexture* texture = resources.GetTexture("handback.png");
-  if (texture)
-    {
-      back = NEW JQuad(texture, 0, 0, 101, 250);
-      back->SetTextureRect(1, 0, 100, 250);
-    }
-  else
-    {
-      back = NULL;
-      GameApp::systemError = "Error loading hand texture : " __FILE__;
-    }
+  back = resources.RetrieveTempQuad("handback.png");
+  if(back) back->SetTextureRect(1, 0, 100, 250);
+  else GameApp::systemError = "Error loading hand texture : " __FILE__;
 }
 
 GuiHand::~GuiHand()
 {
-  delete(back);
   for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
     delete(*it);
 }

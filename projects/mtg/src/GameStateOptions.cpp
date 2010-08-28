@@ -51,12 +51,18 @@ void GameStateOptions::Start()
   optionsList->Add(NEW WGuiHeader("User Options"));
   WDecoConfirm * cPrf = NEW WDecoConfirm(this,NEW OptionProfile(mParent,this));
   cPrf->confirm = "Use this Profile";
-  OptionDirectory * od = NEW OptionTheme();
+  OptionThemeStyle * ots = NEW OptionThemeStyle("Theme Style");
+  OptionDirectory * od = NEW OptionTheme(ots);
   WDecoConfirm * cThm = NEW WDecoConfirm(this,od);
   cThm->confirm = "Use this Theme";
 
+  WDecoConfirm * cStyle = NEW WDecoConfirm(this,ots);
+  cStyle->confirm = "Use this Style";
+
   optionsList->Add(NEW WGuiSplit(cPrf,cThm));
+  optionsList->Add(cStyle);
   optionsList->Add(NEW WGuiButton(NEW WGuiHeader("New Profile"),-102,4,this));
+
   optionsList->Add(NEW WDecoCheat(NEW OptionInteger(Options::CHEATMODE, "Enable cheat mode")));
   optionsTabs->Add(optionsList);
 

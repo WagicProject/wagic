@@ -193,6 +193,8 @@ void GameObserver::startGame(Rules * rules){
   if (rules) 
     rules->initPlayers();
   
+  options.automaticStyle(players[0],players[1]);
+
   mLayers = NEW DuelLayers();
   mLayers->init();
 

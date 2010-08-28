@@ -4,6 +4,7 @@
 #include "../include/GameOptions.h"
 #include "../include/Translate.h"
 #include "../include/OptionItem.h"
+#include "../include/StyleManager.h"
 #include <iostream>
 #include <sstream>
 #include <fstream>
@@ -31,6 +32,7 @@ const string Options::optionNames[] = {
   "maxGrade",
   "economic_difficulty",
   "transitions",
+  "bgStyle",
   "interruptSeconds",
 #if defined(WIN32)
   "keybindings_win",
@@ -409,16 +411,46 @@ GameSettings options;
 
 GameSettings::GameSettings()
 {
+  styleMan = NULL;
   globalOptions = NULL;
   theGame = NULL;
   profileOptions = NULL;
   //reloadProfile should be before using options.
 }
 
+WStyle * GameSettings::getStyle() {
+  if(!styleMan) styleMan = new StyleManager();
+  return styleMan->get(); 
+}
+
+StyleManager * GameSettings::getStyleMan() {
+  if(!styleMan) styleMan = new StyleManager();
+  return styleMan;
+}
+
+void GameSettings::automaticStyle(Player * p1, Player * p2){
+  if(!styleMan) styleMan = new StyleManager();
+  MTGDeck * decks[2];
+  for(int i=0;i<2;i++){
+    decks[i] = new MTGDeck(GameApp::collection);
+    Player * p; if(i == 0) p = p1; else p = p2;
+    map<MTGCardInstance *,int>::iterator it;
+    for(it = p->game->library->cardsMap.begin();it != p->game->library->cardsMap.end();it++){
+      decks[i]->add(it->first);
+    }
+  }
+  styleMan->determineActive(decks[0],decks[1]);
+  for(int i=0;i<2;i++){
+    SAFE_DELETE(decks[i]);
+  }
+}
+
+
 GameSettings::~GameSettings(){
   SAFE_DELETE(globalOptions);
   SAFE_DELETE(profileOptions);
   SAFE_DELETE(keypad);
+  SAFE_DELETE(styleMan);
 }
 
 bool GameSettings::newAward(){
@@ -591,6 +623,7 @@ void GameSettings::checkProfile(){
 	  //Give the player their first deck
 	  createUsersFirstDeck(setId);
   }
+  getStyleMan()->determineActive(NULL,NULL);
 }
 
 void GameSettings::createUsersFirstDeck(int setId){
@@ -766,6 +799,7 @@ OptionEconDifficulty::OptionEconDifficulty(){
   mDef.values.push_back(EnumDefinition::assoc(Constants::ECON_LUCK, "Luck"));
   mDef.values.push_back(EnumDefinition::assoc(Constants::ECON_EASY, "Easy"));
 };
+
 //GameOptionAward
 GameOptionAward::GameOptionAward(){
 	achieved = time(NULL);

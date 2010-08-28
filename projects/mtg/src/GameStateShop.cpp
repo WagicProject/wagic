@@ -9,6 +9,8 @@
 #include "../include/MTGPack.h"
 #include "../include/Translate.h"
 #include "../include/GameOptions.h"
+#include "../include/TestSuiteAI.h"
+
 #include <hge/hgedistort.h>
 
 float GameStateShop::_x1[] = { 79, 19, 27,103,154,187,102,144,198,133,183};
@@ -787,3 +789,47 @@ void ShopBooster::addToDeck(MTGDeck * d, WSrcCards * srcCards){
   else
     pack->assemblePack(d);
 }
+
+
+#ifdef TESTSUITE
+bool ShopBooster::unitTest(){
+    //this tests the default random pack creation.
+    MTGDeck * d = NEW MTGDeck(GameApp::collection);
+    char result[1024];
+
+    randomStandard();
+    MTGPack * mP = MTGPacks::getDefault();
+    if(!altSet && mainSet->mPack) mP = mainSet->mPack;
+    char buf[512];
+    if(!altSet) sprintf(buf,"set:%s;",mainSet->id.c_str());
+    else sprintf(buf,"set:%s;|set:%s;",mainSet->id.c_str(),altSet->id.c_str());
+    mP->pool = buf;
+    mP->assemblePack(d); //Use the primary packfile. assemblePack deletes pool.
+    DeckDataWrapper* ddw = NEW DeckDataWrapper(d);
+
+    int u = 0, r = 0;
+    int card = 0;
+    for(int i=0;i<ddw->Size(true);i++){
+        MTGCard * c = ddw->getCard(i);
+        if(!c) break;
+        if(c->getRarity() == Constants::RARITY_R || c->getRarity() == Constants::RARITY_M)
+            r+=ddw->count(c);
+        else if(c->getRarity() == Constants::RARITY_U)
+            u+=ddw->count(c);
+        card++;
+    }
+    if(r != 1 || u != 3 ){
+        sprintf(result, "<span class=\"error\">==Unexpected rarity count==</span><br />");
+        TestSuite::Log(result);
+        return false;
+    }
+    if(ddw->getCount() < 14) {
+        sprintf(result, "<span class=\"error\">==Unexpected card count==</span><br />");
+        TestSuite::Log(result);
+        return false;
+    }
+    sprintf(result, "<span class=\"success\">==Test Succesful !==</span><br />");
+    TestSuite::Log(result);
+    return true;
+}
+ #endif

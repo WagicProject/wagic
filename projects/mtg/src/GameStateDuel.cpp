@@ -242,6 +242,7 @@ void GameStateDuel::Update(float dt)
           rules = NEW Rules("testsuite.txt");
 	        loadTestSuitePlayers();
 	        mGamePhase = DUEL_STATE_PLAY;
+          testSuite->pregameTests();
 	        testSuite->initGame();
 	      }else{
           if (!game){

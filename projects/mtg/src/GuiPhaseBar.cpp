@@ -24,15 +24,12 @@ static int colors[] =
 
 GuiPhaseBar::GuiPhaseBar() : phase(NULL), angle(0.0f)
 {
-  JQuad * quad;
+  JQuad * quad = NULL;
   if ((quad = resources.GetQuad("phasebar")) != NULL){
     quad->mHeight = Height;
     quad->mWidth = Width;
   }
-  else
-  {
-    GameApp::systemError = "Error loading phasebar texture : " __FILE__;
-  }
+  else GameApp::systemError = "Error loading phasebar texture : " __FILE__;
 }
 
 GuiPhaseBar::~GuiPhaseBar()

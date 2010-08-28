@@ -769,6 +769,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\StyleManager.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\Subtypes.cpp"
 				>
 			</File>
@@ -1163,6 +1167,10 @@
 			</File>
 			<File
 				RelativePath=".\include\StoryFlow.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\StyleManager.cpp"
 				>
 			</File>
 			<File

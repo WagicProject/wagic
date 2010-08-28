@@ -9,6 +9,7 @@
 #include <JFileSystem.h>
 #include <assert.h>
 #include "../include/WResourceManager.h"
+#include "../include/StyleManager.h"
 #if defined (WIN32)
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -514,6 +515,16 @@ string WResourceManager::graphicsFile(const string filename){
    
     //Check the theme folder.
     string theme = options[Options::ACTIVE_THEME].str;
+
+    //Check for a theme style renaming:
+    if(filename != "style.txt"){
+      WStyle * ws = options.getStyle();
+      if(ws){
+         sprintf(buf,"themes/%s/%s",theme.c_str(),ws->stylized(filename).c_str());
+         if(fileOK(buf,true))
+          return buf;
+      }
+    }
 
     if(theme != "" && theme != "Default"){
       sprintf(buf,"themes/%s/%s",theme.c_str(),filename.c_str());
