@@ -13,7 +13,8 @@ Player::Player(MTGPlayerCards * deck, string file, string fileSmall) : Damageabl
   manaPool = NEW ManaPool(this);
   canPutLandsIntoPlay = 1;
   poisonCount = 0;
-    damageCount = 0;
+  damageCount = 0;
+  preventable = 0;
   mAvatar = NULL;
   mAvatarTex = NULL;
   type_as_damageable = DAMAGEABLE_PLAYER;
@@ -90,6 +91,9 @@ int Player::poisoned(){
 }
 int Player::damaged(){
   return damageCount;
+}
+int Player::prevented(){
+  return preventable;
 }
 //Cleanup phase at the end of a turn
 void Player::cleanupPhase(){

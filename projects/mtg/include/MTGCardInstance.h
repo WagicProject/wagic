@@ -94,7 +94,6 @@ class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable {
   int nbOpponents();
   int stepPower(CombatStep step);
   int afterDamage();
-
   int has(int ability);
   int cleanup();
 

@@ -75,6 +75,7 @@ void DamagerDamaged::Render(CombatStep mode)
       }*/
     sprintf(buf, "%i", sumDamages());
     mFont->DrawString(buf, actX - 14 * actZ + 5, actY - 14 * actZ);
+
     /*
   }else{
     mFont->SetColor(ARGB(255,0,0,255));

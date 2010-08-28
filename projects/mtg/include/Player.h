@@ -26,6 +26,7 @@ class Player: public Damageable{
   int afterDamage();
   int poisoned();
   int damaged();
+  int prevented();
   Player(MTGPlayerCards * deck, string deckFile, string deckFileSmall);
   virtual ~Player();
   void unTapPhase();

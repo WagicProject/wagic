@@ -2167,6 +2167,7 @@ AALifeSet(int _id, MTGCardInstance * _source, Targetable * _target, WParsedInt *
 class AADamager:public ActivatedAbilityTP{
 public:
   WParsedInt * damage;
+
 AADamager(int _id, MTGCardInstance * _source, Targetable * _target, WParsedInt * damage, ManaCost * _cost=NULL, int doTap = 0, int who = TargetChooser::UNSET):ActivatedAbilityTP(_id,_source,_target,_cost,doTap,who),damage(damage){
     aType = MTGAbility::DAMAGER;
  }
@@ -2180,11 +2181,9 @@ AADamager(int _id, MTGCardInstance * _source, Targetable * _target, WParsedInt *
     }
     return 0;
   }
-
   const char * getMenuText(){
     return "Damage";
   }
-
   AADamager * clone() const{
     AADamager * a =  NEW AADamager(*this);
     a->damage = NEW WParsedInt(*(a->damage));
@@ -2194,6 +2193,36 @@ AADamager(int _id, MTGCardInstance * _source, Targetable * _target, WParsedInt *
 
   ~AADamager(){
     SAFE_DELETE(damage);
+  }
+
+
+};
+//prevent next damage
+class AADamagePrevent:public ActivatedAbilityTP{
+public:
+int preventing;
+AADamagePrevent(int _id, MTGCardInstance * _source, Targetable * _target,int preventing, ManaCost * _cost=NULL, int doTap = 0, int who = TargetChooser::UNSET):ActivatedAbilityTP(_id,_source,_target,_cost,doTap,who),preventing(preventing){
+}
+
+  int resolve(){
+    Damageable * _target = (Damageable *) getTarget();
+    if(_target){
+		_target->preventable += preventing;
+    }
+    return 0;
+  }
+
+  const char * getMenuText(){
+    return "Prevent Damage";
+  }
+
+  AADamagePrevent * clone() const{
+    AADamagePrevent * a =  NEW AADamagePrevent(*this);
+    a->isClone = 1;
+    return a;
+  }
+
+  ~AADamagePrevent(){
   }
 
 

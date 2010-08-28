@@ -34,6 +34,7 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
   defenser = NULL;
   banding = NULL;
   life = toughness;
+  preventable = 0;
 }
 
 void MTGCardInstance::copy(MTGCardInstance * card){
@@ -97,6 +98,7 @@ void MTGCardInstance::initMTGCI(){
   tapped = 0;
   untapping = 0;
   summoningSickness = 1;
+  preventable = 0;
   target = NULL;
   type_as_damageable = DAMAGEABLE_MTGCARDINSTANCE;
   banding = NULL;
@@ -269,6 +271,7 @@ int MTGCardInstance::cleanup(){
     SAFE_DELETE(previous);
   }
   regenerateTokens = 0;
+  preventable = 0;
   return 1;
 }
 

@@ -811,6 +811,24 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 	  a->oneShot = 1;
     return a;
   }
+   //prevent next damage
+  found = s.find("prevent:");
+  if (found != string::npos){
+    size_t start = s.find(":",found);
+    size_t end = s.find(" ",start);
+    int preventing;
+    if (end != string::npos){
+      preventing = atoi(s.substr(start+1,end-start-1).c_str());
+    }else{
+      preventing = atoi(s.substr(start+1).c_str());
+    }
+
+    Targetable * t = NULL;
+    if (spell) t = spell->getNextPlayerTarget();
+    MTGAbility * a = NEW AADamagePrevent (id, card, t,preventing,NULL,0,who);
+	  a->oneShot = 1;
+    return a;
+  }
 //set life total
     found = s.find("lifeset");
   if (found != string::npos){
@@ -998,6 +1016,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 	else{amount = atoi(s.substr(start+1).c_str());}
     MTGAbility * a = NEW ABloodThirst(id,card,target,amount);
     return a;}
+
+
 
 //ManaRedux
   found = s.find("colorless:");

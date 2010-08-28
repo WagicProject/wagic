@@ -27,6 +27,7 @@ class RulesPlayerData{
   int life;
   int poisonCount;
   int damageCount;
+  int preventable;
   string avatar;
   ManaCost * manapool;
   RulesPlayerZone zones[5];

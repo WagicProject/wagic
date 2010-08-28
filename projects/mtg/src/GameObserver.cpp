@@ -98,6 +98,7 @@ void GameObserver::nextGamePhase(){
     cleanupPhase();
     currentPlayer->canPutLandsIntoPlay = 1;
     currentPlayer->damageCount = 0;
+	currentPlayer->preventable = 0;
     mLayers->actionLayer()->cleanGarbage(); //clean abilities history for this turn;
     mLayers->stackLayer()->garbageCollect(); //clean stack history for this turn;
     mLayers->actionLayer()->Update(0);

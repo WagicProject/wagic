@@ -43,13 +43,28 @@ int Damage::resolve(){
   }
   damage = ev->damage->damage;
   target = ev->damage->target;
-
   if (!damage) return 0;
 
+//prevent next damage-----------------------------
+  if((target)->preventable >= 1) {
+	int preventing =(target)->preventable;
+	for(int k = preventing; k > 0;k--){
+//the following keeps preventable from ADDING toughness/life if damage was less then preventable amount.
+        for (int i = 0; i < damage; i++){
+	     damage -= 1;	 
+		 (target)->preventable -= 1;
+	   }
+	  }
+	}
+//set prevent next damage back to 0 if it is equal to less then 0
+	if((target)->preventable < 0){
+		(target)->preventable = 0;
+	}
+//-------------------------------------------------
   if (target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE){
     MTGCardInstance * _target = (MTGCardInstance *)target;
     if ((_target)->protectedAgainst(source)) damage = 0;
-
+  
     if (!damage){
       state = RESOLVED_NOK;
       delete (e);
@@ -65,7 +80,7 @@ int Damage::resolve(){
     for (int i = 0; i < damage; i++){
       _target->counters->addCounter(-1, -1);
     }
-  }else{//infect damage---------------------------------------
+  }else{//infect damage---------------------------------------------
 	 while(target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE && source->has(Constants::INFECT)){
     MTGCardInstance * _target = (MTGCardInstance *)target;
     for (int i = 0; i < damage; i++){
@@ -76,38 +91,36 @@ int Damage::resolve(){
     for (int i = 0; i < damage; i++){
 		_target->poisonCount += 1;//this will be changed to poison counters.
 	 }return a;
-	 }//infect end--------------------------------------------------
-	 //poison AND damage
+	 }//--------------------------------------------------
+	 //poison AND damage----------------------------------
 	 while(target->type_as_damageable == DAMAGEABLE_PLAYER && source->has(Constants::POISONDAMAGE)){
     MTGCardInstance * _target = (MTGCardInstance *)target;
     for (int i = 0; i < damage; i++){
-	  //this will be changed to poison counters.
 	 a = target->dealDamage(1);	 
 	target->damageCount += 1;
 	 }
      _target->poisonCount += 1;
 	 return a;
      }
-	 	 while(target->type_as_damageable == DAMAGEABLE_PLAYER && source->has(Constants::POISONTWODAMAGE)){
+	 	while(target->type_as_damageable == DAMAGEABLE_PLAYER && source->has(Constants::POISONTWODAMAGE)){
     MTGCardInstance * _target = (MTGCardInstance *)target;
     for (int i = 0; i < damage; i++){
-	  //this will be changed to poison counters.
 	 a = target->dealDamage(1);
 	 target->damageCount += 1;
 	 }
      _target->poisonCount += 2;
 	 return a;
 		 }
-		 	 while(target->type_as_damageable == DAMAGEABLE_PLAYER && source->has(Constants::POISONTHREEDAMAGE)){
+		 while(target->type_as_damageable == DAMAGEABLE_PLAYER && source->has(Constants::POISONTHREEDAMAGE)){
     MTGCardInstance * _target = (MTGCardInstance *)target;
     for (int i = 0; i < damage; i++){
-	  //this will be changed to poison counters.
 	 a = target->dealDamage(1);
 	 target->damageCount += 1;
 	 }
      _target->poisonCount += 3;
 	 return a;
-     }
+     }//----------------------------------------------------------
+ //return the left over amount after effects have been applied to them.
      a = target->dealDamage(damage);
 	 target->damageCount += 1;
   }

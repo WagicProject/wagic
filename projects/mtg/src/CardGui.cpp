@@ -101,11 +101,11 @@ void CardGui::Render()
     }
     
   }
-
+//draws the numbers power/toughness
   if (card->isCreature()){
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     char buffer[200];
-    sprintf(buffer, "%i/%i",card->power,card->life);
+	sprintf(buffer, "%i/%i",card->power,card->life);
     renderer->FillRect(actX - (12*actZ) , actY + 6* actZ, 25*actZ, 12*actZ, ARGB(((static_cast<unsigned char>(actA))/2),0,0,0));
     mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));
     mFont->SetScale(actZ);
