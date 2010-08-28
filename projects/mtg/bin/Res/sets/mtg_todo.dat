@@ -3116,15 +3116,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Bloodscale Prowler
-text=Bloodthirst 1 (If an opponent was dealt damage this turn, this creature enters the battlefield with a +1/+1 counter on it.)
-mana={2}{R}
-type=Creature
-subtype=Viashino Warrior
-power=3
-toughness=1
-[/card]
-[card]
 name=Bloodscent
 text=All creatures able to block target creature this turn do so.
 mana={3}{G}
@@ -12799,15 +12790,6 @@ mana={X}{R}
 type=Sorcery
 [/card]
 [card]
-name=Ghor-Clan Savage
-text=Bloodthirst 3 (If an opponent was dealt damage this turn, this creature enters the battlefield with three +1/+1 counters on it.)
-mana={3}{G}{G}
-type=Creature
-subtype=Centaur Berserker
-power=2
-toughness=3
-[/card]
-[card]
 name=Ghost Council of Orzhova
 text=When Ghost Council of Orzhova enters the battlefield, target opponent loses 1 life and you gain 1 life. -- {1}, Sacrifice a creature: Exile Ghost Council of Orzhova. Return it to the battlefield under its owner's control at the beginning of the next end step.
 mana={W}{W}{B}{B}
@@ -14301,15 +14283,6 @@ name=Grip of Chaos
 text=Whenever a spell or ability is put onto the stack, if it has a single target, reselect its target at random. (Select from among all legal targets.)
 mana={4}{R}{R}
 type=Enchantment
-[/card]
-[card]
-name=Gristleback
-text=Bloodthirst 1 (If an opponent was dealt damage this turn, this creature enters the battlefield with a +1/+1 counter on it.) -- Sacrifice Gristleback: You gain life equal to Gristleback's power.
-mana={2}{G}
-type=Creature
-subtype=Boar Beast
-power=2
-toughness=2
 [/card]
 [card]
 name=Grixis Grimblade
@@ -25051,15 +25024,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Petrified Wood-Kin
-text=Petrified Wood-Kin can't be countered. -- Bloodthirst X (This creature enters the battlefield with X +1/+1 counters on it, where X is the damage dealt to your opponents this turn.) -- Protection from instants
-mana={6}{G}
-type=Creature
-subtype=Elemental Warrior
-power=3
-toughness=3
-[/card]
-[card]
 name=Phage the Untouchable
 text=When Phage the Untouchable enters the battlefield, if you didn't cast it from your hand, you lose the game. -- Whenever Phage deals combat damage to a creature, destroy that creature. It can't be regenerated. -- Whenever Phage deals combat damage to a player, that player loses the game.
 mana={3}{B}{B}{B}{B}
@@ -26925,15 +26889,6 @@ type=Creature
 subtype=Beast
 power=5
 toughness=4
-[/card]
-[card]
-name=Rabble-Rouser
-text=Bloodthirst 1 (If an opponent was dealt damage this turn, this creature enters the battlefield with a +1/+1 counter on it.) -- {R}, {T}: Attacking creatures get +X/+0 until end of turn, where X is Rabble-Rouser's power.
-mana={3}{R}
-type=Creature
-subtype=Goblin Shaman
-power=1
-toughness=1
 [/card]
 [card]
 name=Rabid Wombat
@@ -29805,15 +29760,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Scab-Clan Mauler
-text=Bloodthirst 2 (If an opponent was dealt damage this turn, this creature enters the battlefield with two +1/+1 counters on it.) -- Trample
-mana={R}{G}
-type=Creature
-subtype=Human Berserker
-power=1
-toughness=1
-[/card]
-[card]
 name=Scald
 text=Whenever a player taps an Island for mana, Scald deals 1 damage to that player.
 mana={1}{R}
@@ -31596,15 +31542,6 @@ type=Creature
 subtype=Human Warrior
 power=1
 toughness=1
-[/card]
-[card]
-name=Skarrgan Skybreaker
-text=Bloodthirst 3 (If an opponent was dealt damage this turn, this creature enters the battlefield with three +1/+1 counters on it.) -- {1}, Sacrifice Skarrgan Skybreaker: Skarrgan Skybreaker deals damage equal to its power to target creature or player.
-mana={4}{R}{R}{G}
-type=Creature
-subtype=Giant Shaman
-power=3
-toughness=3
 [/card]
 [card]
 name=Skeletal Changeling

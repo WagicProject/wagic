@@ -1,0 +1,32 @@
+#Testing Bloodthirst keyword.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:lightning bolt,bloodscale prowler
+manapool:{2}{R}{R}
+inplay:fervor
+[PLAYER2]
+[DO]
+lightning bolt
+p2
+bloodscale prowler
+next
+#begin
+next
+#attackers
+bloodscale prowler
+next
+#blockers
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+life:20
+inplay:fervor,bloodscale prowler
+graveyard:lightning bolt
+[PLAYER2]
+life:13
+[END]

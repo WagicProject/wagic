@@ -140,6 +140,7 @@ bloated_toad1.txt
 bloated_toad2.txt
 bloodfire_colossus.txt
 bloodhall_ooze.txt
+bloodscale_prowler.txt
 body_double.txt
 boggart_arsonists.txt
 borderland_behemoth.txt

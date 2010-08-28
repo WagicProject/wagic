@@ -5138,6 +5138,16 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Bloodscale Prowler
+auto=bloodthirst:1
+text=Bloodthirst 1 (If an opponent was dealt damage this turn, this creature enters the battlefield with a +1/+1 counter on it.)
+mana={2}{R}
+type=Creature
+subtype=Viashino Warrior
+power=3
+toughness=1
+[/card]
+[card]
 name=Bloodshed Fever
 target=creature
 auto=mustattack
@@ -14167,7 +14177,7 @@ toughness=5
 [card]
 name=Elvish Archdruid
 auto=lord(elf|myBattlefield) 1/1 other
-auto={T}:foreach(elf|myBattlefield) add{G}
+auto={T}:foreach(elf|mybattlefield) add{G}
 text=Other Elf creatures you control get +1/+1. -- {T}: Add {G} to your mana pool for each Elf you control.
 mana={1}{G}{G}
 type=Creature
@@ -14183,6 +14193,17 @@ mana={1}{G}
 type=Creature
 subtype=Elf Archer
 power=2
+toughness=1
+[/card]
+[card]
+name=Rabble-Rouser
+auto=bloodthirst:1
+auto={R}{T}:thisforeach(power>=1) 1/0 all(creature[attacking]|mybattlefield)
+text=Bloodthirst 1 (If an opponent was dealt damage this turn, this creature enters the battlefield with a +1/+1 counter on it.) -- {R}, {T}: Attacking creatures get +X/+0 until end of turn, where X is Rabble-Rouser's power.
+mana={3}{R}
+type=Creature
+subtype=Goblin Shaman
+power=1
 toughness=1
 [/card]
 [card]
@@ -18462,6 +18483,16 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Ghor-Clan Savage
+auto=bloodthirst:3
+text=Bloodthirst 3 (If an opponent was dealt damage this turn, this creature enters the battlefield with three +1/+1 counters on it.)
+mana={3}{G}{G}
+type=Creature
+subtype=Centaur Berserker
+power=2
+toughness=3
+[/card]
+[card]
 name=Ghost Ship
 abilities=flying
 auto={U}{U}{U}:regenerate
@@ -20533,6 +20564,17 @@ type=Creature
 subtype=Zombie
 power=3
 toughness=3
+[/card]
+[card]
+name=Gristleback
+auto=bloodthirst:1
+auto={S}:thisforeach(power>=1) life:1 controller
+text=Bloodthirst 1 (If an opponent was dealt damage this turn, this creature enters the battlefield with a +1/+1 counter on it.) -- Sacrifice Gristleback: You gain life equal to Gristleback's power.
+mana={2}{G}
+type=Creature
+subtype=Boar Beast
+power=2
+toughness=2
 [/card]
 [card]
 name=Grixis Battlemage
@@ -34826,6 +34868,18 @@ text={T}: Add {1} to your mana pool. -- {T}, Sacrifice Petrified Field: Return t
 type=Land
 [/card]
 [card]
+name=Petrified Wood-Kin
+abilities=nofizzle
+auto=protection from(instant)
+auto=counter(1/1,odcount)
+text=Petrified Wood-Kin can't be countered. -- Bloodthirst X (This creature enters the battlefield with X +1/+1 counters on it, where X is the damage dealt to your opponents this turn.) -- Protection from instants
+mana={6}{G}
+type=Creature
+subtype=Elemental Warrior
+power=3
+toughness=3
+[/card]
+[card]
 name=Pewter Golem
 auto={1}{B}:regenerate
 text={1}{B}: Regenerate Pewter Golem.
@@ -40281,6 +40335,16 @@ text=Scabland enters the battlefield tapped. -- {T}: Add {1} to your mana pool. 
 type=Land
 [/card]
 [card]
+name=Scab-Clan Mauler
+auto=bloodthirst:2
+text=Bloodthirst 2 (If an opponent was dealt damage this turn, this creature enters the battlefield with two +1/+1 counters on it.) -- Trample
+mana={R}{G}
+type=Creature
+subtype=Human Berserker
+power=1
+toughness=1
+[/card]
+[card]
 name=Scalding Tarn
 auto={L}{T}{S}:moveTo(myBattlefield) target(island,mountain|mylibrary)
 text={T}, Pay 1 life, Sacrifice Scalding Tarn: Search your library for an Island or Mountain card and put it onto the battlefield. Then shuffle your library.
@@ -43039,6 +43103,17 @@ auto={T}:Add {1}
 auto={R}{G}{T}:1/1 && trample target(creature)
 text={T}: Add {1} to your mana pool. -- {R}{G}, {T}: Target creature gets +1/+1 and gains trample until end of turn.
 type=Land
+[/card]
+[card]
+name=Skarrgan Skybreaker
+auto=bloodthirst:3
+auto={1}{S}:thisforeach(power>=1) damage:1 target(creature,player)
+text=Bloodthirst 3 (If an opponent was dealt damage this turn, this creature enters the battlefield with three +1/+1 counters on it.) -- {1}, Sacrifice Skarrgan Skybreaker: Skarrgan Skybreaker deals damage equal to its power to target creature or player.
+mana={4}{R}{R}{G}
+type=Creature
+subtype=Giant Shaman
+power=3
+toughness=3
 [/card]
 [card]
 name=Skeletal Crocodile
