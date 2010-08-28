@@ -1,5 +1,0 @@
-Wagic Team
-
-Credit goes to Jeck for the Jade backdrop. Pretty nifty, huh?
-
-Check out themeinfo.txt in the graphics directory for more information on making themes!
