@@ -48,7 +48,7 @@ int Damage::resolve(){
 //prevent next damage-----------------------------
   if((target)->preventable >= 1) {
 	int preventing =(target)->preventable;
-	for(int k = preventing; k > 0;k--){
+	for(int k = preventing; k > 1;k--){
 //the following keeps preventable from ADDING toughness/life if damage was less then preventable amount.
         for (int i = 0; i < damage; i++){
 	     damage -= 1;	 
