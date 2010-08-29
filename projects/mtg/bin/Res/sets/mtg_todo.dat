@@ -522,15 +522,6 @@ mana={X}{W}{W}
 type=Instant
 [/card]
 [card]
-name=Alabaster Wall
-text=Defender (This creature can't attack.) -- {T}: Prevent the next 1 damage that would be dealt to target creature or player this turn.
-mana={2}{W}
-type=Creature
-subtype=Wall
-power=0
-toughness=4
-[/card]
-[card]
 name=Alaborn Cavalier
 text=Whenever Alaborn Cavalier attacks, you may tap target creature.
 mana={2}{W}{W}
@@ -701,12 +692,6 @@ type=Creature
 subtype=Kavu
 power=2
 toughness=2
-[/card]
-[card]
-name=Amulet of Kroog
-text={2}, {T}: Prevent the next 1 damage that would be dealt to target creature or player this turn.
-mana={2}
-type=Artifact
 [/card]
 [card]
 name=Amulet of Quoz
@@ -1075,15 +1060,6 @@ power=*
 toughness=*
 [/card]
 [card]
-name=Aquastrand Spider
-text=Graft 2 (This creature enters the battlefield with two +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {G}: Target creature with a +1/+1 counter on it gains reach until end of turn. (It can block creatures with flying.)
-mana={1}{G}
-type=Creature
-subtype=Spider Mutant
-power=0
-toughness=0
-[/card]
-[card]
 name=Aquitect's Will
 text=Put a flood counter on target land. That land is an Island in addition to its other types for as long as it has a flood counter on it. If you control a Merfolk, draw a card.
 mana={U}
@@ -1264,15 +1240,6 @@ type=Enchantment
 name=Arena
 text={3}, {T}: Tap target creature you control and target creature of an opponent's choice he or she controls. Each of those creatures deals damage equal to its power to the other.
 type=Land
-[/card]
-[card]
-name=Argivian Blacksmith
-text={T}: Prevent the next 2 damage that would be dealt to target artifact creature this turn.
-mana={1}{W}{W}
-type=Creature
-subtype=Human Artificer
-power=2
-toughness=2
 [/card]
 [card]
 name=Argothian Elder
@@ -1805,15 +1772,6 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Aven Redeemer
-text=Flying -- {T}: Prevent the next 2 damage that would be dealt to target creature or player this turn.
-mana={3}{W}
-type=Creature
-subtype=Bird Cleric
-power=2
-toughness=2
-[/card
-[card]
 name=Aven Shrine
 text=Whenever a player casts a spell, that player gains X life, where X is the number of cards in all graveyards with the same name as that spell.
 mana={1}{W}{W}
@@ -2040,9 +1998,6 @@ type=Sorcery
 [/card]
 [card]
 name=Balduvian Dead
-auto={2}{R}:moveto(exile) target(creature|graveyard) && token(Graveborn,Creature Graveborn grezurtzug,3/1,haste black red)
-auto=@next end:bury all(grezurtzug)
-#Not sure it would work
 text={2}{R}, Exile a creature card from your graveyard: Put a 3/1 black and red Graveborn creature token with haste onto the battlefield. Sacrifice it at the beginning of the next end step.
 mana={3}{B}
 type=Creature
@@ -2058,15 +2013,6 @@ type=Creature
 subtype=Zombie
 power=3
 toughness=5
-[/card]
-[card]
-name=Balduvian Hydra
-text=Balduvian Hydra enters the battlefield with X +1/+0 counters on it. -- Remove a +1/+0 counter from Balduvian Hydra: Prevent the next 1 damage that would be dealt to Balduvian Hydra this turn. -- {R}{R}{R}: Put a +1/+0 counter on Balduvian Hydra. Activate this ability only during your upkeep.
-mana={X}{R}{R}
-type=Creature
-subtype=Hydra
-power=0
-toughness=1
 [/card]
 [card]
 name=Balduvian Shaman
@@ -2085,12 +2031,6 @@ type=Creature
 subtype=Human Barbarian
 power=3
 toughness=2
-[/card]
-[card]
-name=Balm of Restoration
-text={1}, {T}, Sacrifice Balm of Restoration: Choose one - You gain 2 life; or prevent the next 2 damage that would be dealt to target creature or player this turn.
-mana={2}
-type=Artifact
 [/card]
 [card]
 name=Baloth Cage Trap
@@ -2113,14 +2053,6 @@ name=Bamboozle
 text=Target player reveals the top four cards of his or her library. You choose two of those cards and put them into his or her graveyard. Put the rest on top of his or her library in any order.
 mana={2}{U}
 type=Sorcery
-[/card]
-[card]
-name=Bandage
-target=creature,player
-auto=draw:1 controller
-text=Prevent the next 1 damage that would be dealt to target creature or player this turn. -- Draw a card.
-mana={W}
-type=Instant
 [/card]
 [card]
 name=Bane of the Living
@@ -2213,12 +2145,6 @@ type=Instant
 [/card]
 [card]
 name=Barbed Sextant
-auto={1}{T}{S}:add{G}
-auto={1}{T}{S}:add{B}
-auto={1}{T}{S}:add{R}
-auto={1}{T}{S}:add{W}
-auto={1}{T}{S}:add{U}
-auto=@movedto(this|graveyard) from(myinplay):draw:1 controller
 text={1}, {T}, Sacrifice Barbed Sextant: Add one mana of any color to your mana pool. Draw a card at the beginning of the next turn's upkeep.
 mana={1}
 type=Artifact
@@ -2234,6 +2160,7 @@ toughness=2
 [/card]
 [card]
 name=Barbed Wire
+auto={2}
 text=At the beginning of each player's upkeep, Barbed Wire deals 1 damage to that player. -- {2}: Prevent the next 1 damage that would be dealt by Barbed Wire this turn.
 mana={3}
 type=Artifact
@@ -2286,15 +2213,6 @@ name=Barren Glory
 text=At the beginning of your upkeep, if you control no permanents other than Barren Glory and have no cards in hand, you win the game.
 mana={4}{W}{W}
 type=Enchantment
-[/card]
-[card]
-name=Barrenton Medic
-text={T}: Prevent the next 1 damage that would be dealt to target creature or player this turn. -- Put a -1/-1 counter on Barrenton Medic: Untap Barrenton Medic.
-mana={4}{W}
-type=Creature
-subtype=Kithkin Cleric
-power=0
-toughness=4
 [/card]
 [card]
 name=Barrin's Spite
@@ -2421,15 +2339,6 @@ name=Battle Screech
 text=Put two 1/1 white Bird creature tokens with flying onto the battlefield. -- Flashback - Tap three untapped white creatures you control. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={2}{W}{W}
 type=Sorcery
-[/card]
-[card]
-name=Battlefield Medic
-text={T}: Prevent the next X damage that would be dealt to target creature this turn, where X is the number of Clerics on the battlefield.
-mana={1}{W}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=1
 [/card]
 [card]
 name=Battlefield Scrounger
@@ -2632,15 +2541,6 @@ name=Benediction of Moons
 text=You gain 1 life for each player. -- Haunt (When this spell card is put into a graveyard after resolving, exile it haunting target creature.) -- When the creature Benediction of Moons haunts is put into a graveyard, you gain 1 life for each player.
 mana={W}
 type=Sorcery
-[/card]
-[card]
-name=Benevolent Ancestor
-text=Defender (This creature can't attack.) -- {T}: Prevent the next 1 damage that would be dealt to target creature or player this turn.
-mana={2}{W}
-type=Creature
-subtype=Spirit
-power=0
-toughness=4
 [/card]
 [card]
 name=Benevolent Unicorn
@@ -4424,15 +4324,6 @@ mana={2}{U}{U}
 type=Instant
 [/card]
 [card]
-name=Caregiver
-text={W}, Sacrifice a creature: Prevent the next 1 damage that would be dealt to target creature or player this turn.
-mana={W}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=1
-[/card]
-[card]
 name=Caribou Range
 text=Enchant land you control -- Enchanted land has "{W}{W}, {T}: Put a 0/1 white Caribou creature token onto the battlefield." -- Sacrifice a Caribou token: You gain 1 life.
 mana={2}{W}{W}
@@ -4585,15 +4476,6 @@ text=Enchant land -- Enchanted land has "{T}: Target player loses 3 life."
 mana={4}{B}{B}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Cautery Sliver
-text=All Slivers have "{1}, Sacrifice this permanent: This permanent deals 1 damage to target creature or player." -- All Slivers have "{1}, Sacrifice this permanent: Prevent the next 1 damage that would be dealt to target Sliver creature or player this turn."
-mana={R}{W}
-type=Creature
-subtype=Sliver
-power=2
-toughness=2
 [/card]
 [card]
 name=Cavalry Master
@@ -5461,15 +5343,6 @@ mana={5}
 type=Artifact
 [/card]
 [card]
-name=Clergy en-Vec
-text={T}: Prevent the next 1 damage that would be dealt to target creature or player this turn.
-mana={1}{W}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=1
-[/card]
-[card]
 name=Clergy of the Holy Nimbus
 text=If Clergy of the Holy Nimbus would be destroyed, regenerate it. -- {1}: Clergy of the Holy Nimbus can't be regenerated this turn. Only any opponent may activate this ability.
 mana={W}
@@ -5716,15 +5589,6 @@ mana={3}{U}
 type=Enchantment
 [/card]
 [card]
-name=Combat Medic
-text={1}{W}: Prevent the next 1 damage that would be dealt to target creature or player this turn.
-mana={2}{W}
-type=Creature
-subtype=Human Cleric Soldier
-power=0
-toughness=2
-[/card]
-[card]
 name=Comet Storm
 text=Multikicker {1} (You may pay an additional {1} any number of times as you cast this spell.) -- Choose target creature or player, then choose another target creature or player for each time Comet Storm was kicked. Comet Storm deals X damage to each of them.
 mana={X}{R}{R}
@@ -5881,8 +5745,6 @@ type=Sorcery
 [/card]
 [card]
 name=Conjurer's Bauble
-auto={T}{S}:moveto(ownerlibrary) target(*|mygraveyard) && draw:1 controller
-# Following line does not work: Cards added to library are always added on top
 text={T}, Sacrifice Conjurer's Bauble: Put up to one target card from your graveyard on the bottom of your library. Draw a card.
 mana={1}
 type=Artifact
@@ -6946,37 +6808,10 @@ power=0
 toughness=0
 [/card]
 [card]
-name=Cytoplast Root-Kin
-text=Graft 4 (This creature enters the battlefield with four +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- When Cytoplast Root-Kin enters the battlefield, put a +1/+1 counter on each other creature you control that has a +1/+1 counter on it. -- {2}: Move a +1/+1 counter from target creature you control onto Cytoplast Root-Kin.
-mana={2}{G}{G}
-type=Creature
-subtype=Elemental Mutant
-power=0
-toughness=0
-[/card]
-[card]
 name=Cytoshape
 text=Choose a nonlegendary creature on the battlefield. Target creature becomes a copy of that creature until end of turn.
 mana={1}{G}{U}
 type=Instant
-[/card]
-[card]
-name=Cytospawn Shambler
-text=Graft 6 (This creature enters the battlefield with six +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {G}: Target creature with a +1/+1 counter on it gains trample until end of turn.
-mana={6}{G}
-type=Creature
-subtype=Elemental Mutant
-power=0
-toughness=0
-[/card]
-[card]
-name=D'Avenant Healer
-text={T}: D'Avenant Healer deals 1 damage to target attacking or blocking creature. -- {T}: Prevent the next 1 damage that would be dealt to target creature or player this turn.
-mana={1}{W}{W}
-type=Creature
-subtype=Human Cleric Archer
-power=1
-toughness=2
 [/card]
 [card]
 name=Dakmor Salvage
@@ -7576,15 +7411,6 @@ text=Whenever Deepwood Tantiv becomes blocked, you gain 2 life.
 mana={4}{G}
 type=Creature
 subtype=Beast
-power=2
-toughness=4
-[/card]
-[card]
-name=Defender en-Vec
-text=Fading 4 (This creature enters the battlefield with four fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- Remove a fade counter from Defender en-Vec: Prevent the next 2 damage that would be dealt to target creature or player this turn.
-mana={3}{W}
-type=Creature
-subtype=Human Cleric
 power=2
 toughness=4
 [/card]
@@ -8329,12 +8155,6 @@ name=Divine Intervention
 text=Divine Intervention enters the battlefield with two intervention counters on it. -- At the beginning of your upkeep, remove an intervention counter from Divine Intervention. -- When you remove the last intervention counter from Divine Intervention, the game is a draw.
 mana={6}{W}{W}
 type=Enchantment
-[/card]
-[card]
-name=Divine Light
-text=Prevent all damage that would be dealt this turn to creatures you control.
-mana={W}
-type=Sorcery
 [/card]
 [card]
 name=Divine Presence
@@ -9361,14 +9181,7 @@ type=Tribal Instant
 subtype=Shapeshifter
 [/card]
 [card]
-name=Eiganjo Castle
-text={T}: Add {W} to your mana pool. -- {W}, {T}: Prevent the next 2 damage that would be dealt to target legendary creature this turn.
-type=Legendary Land
-[/card]
-[card]
 name=Elder Land Wurm
-abilities=defender,trample
-auto=aslongas(this[blocking]):-defender
 text=Defender, trample -- When Elder Land Wurm blocks, it loses defender.
 mana={4}{W}{W}{W}
 type=Creature
@@ -9756,12 +9569,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Endure
-text=Prevent all damage that would be dealt to you and permanents you control this turn.
-mana={3}{W}{W}
-type=Instant
-[/card]
-[card]
 name=Enduring Ideal
 text=Search your library for an enchantment card and put it onto the battlefield. Then shuffle your library. -- Epic (For the rest of the game, you can't cast spells. At the beginning of each of your upkeeps, copy this spell except for its epic ability.)
 mana={5}{W}{W}
@@ -10130,15 +9937,6 @@ mana={U}
 type=Instant
 [/card]
 [card]
-name=Esper Battlemage
-text={W}, {T}: Prevent the next 2 damage that would be dealt to you this turn. -- {B}, {T}: Target creature gets -1/-1 until end of turn.
-mana={2}{U}
-type=Artifact Creature
-subtype=Human Wizard
-power=2
-toughness=2
-[/card]
-[card]
 name=Esper Charm
 text=Choose one - Destroy target enchantment; or draw two cards; or target player discards two cards.
 mana={W}{U}{B}
@@ -10221,15 +10019,6 @@ mana={3}{U}
 type=Instant
 [/card]
 [card]
-name=Ethereal Champion
-text=Pay 1 life: Prevent the next 1 damage that would be dealt to Ethereal Champion this turn.
-mana={2}{W}{W}{W}
-type=Creature
-subtype=Avatar
-power=3
-toughness=4
-[/card]
-[card]
 name=Ethereal Haze
 text=Prevent all damage that would be dealt by creatures this turn.
 mana={W}
@@ -10242,15 +10031,6 @@ text=Each player who has cast a nonartifact spell this turn can't cast additiona
 mana={1}{W}
 type=Artifact Creature
 subtype=Human Cleric
-power=2
-toughness=2
-[/card]
-[card]
-name=Ethersworn Shieldmage
-text=Flash -- When Ethersworn Shieldmage enters the battlefield, prevent all damage that would be dealt to artifact creatures this turn.
-mana={1}{W}{U}
-type=Artifact Creature
-subtype=Vedalken Wizard
 power=2
 toughness=2
 [/card]
@@ -10957,15 +10737,6 @@ mana={2}
 type=Artifact
 [/card]
 [card]
-name=Femeref Healer
-text={T}: Prevent the next 1 damage that would be dealt to target creature or player this turn.
-mana={1}{W}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=1
-[/card]
-[card]
 name=Femeref Knight
 abilities=flanking
 auto={W}:vigilance
@@ -11126,15 +10897,6 @@ type=Creature
 subtype=Efreet
 power=5
 toughness=2
-[/card]
-[card]
-name=Field Surgeon
-text=Tap an untapped creature you control: Prevent the next 1 damage that would be dealt to target creature this turn.
-mana={1}{W}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=1
 [/card]
 [card]
 name=Field of Dreams
@@ -11987,12 +11749,6 @@ name=Forethought Amulet
 text=At the beginning of your upkeep, sacrifice Forethought Amulet unless you pay {3}. -- If an instant or sorcery source would deal 3 or more damage to you, it deals 2 damage to you instead.
 mana={5}
 type=Artifact
-[/card]
-[card]
-name=Forfend
-text=Prevent all damage that would be dealt to creatures this turn.
-mana={1}{W}
-type=Instant
 [/card]
 [card]
 name=Forge Armor
@@ -13516,15 +13272,6 @@ mana={1}{R}
 type=Enchantment
 [/card]
 [card]
-name=Goblin Legionnaire
-text={R}, Sacrifice Goblin Legionnaire: Goblin Legionnaire deals 2 damage to target creature or player. -- {W}, Sacrifice Goblin Legionnaire: Prevent the next 2 damage that would be dealt to target creature or player this turn.
-mana={R}{W}
-type=Creature
-subtype=Goblin Soldier
-power=2
-toughness=2
-[/card]
-[card]
 name=Goblin Lyre
 text=Sacrifice Goblin Lyre: Flip a coin. If you win the flip, Goblin Lyre deals damage to target opponent equal to the number of creatures you control. If you lose the flip, Goblin Lyre deals damage to you equal to the number of creatures that opponent controls.
 mana={3}
@@ -14723,15 +14470,6 @@ mana={3}{W}{W}
 type=Sorcery
 [/card]
 [card]
-name=Hallowed Healer
-text={T}: Prevent the next 2 damage that would be dealt to target creature or player this turn. -- Threshold - {T}: Prevent the next 4 damage that would be dealt to target creature or player this turn. Activate this ability only if seven or more cards are in your graveyard.
-mana={2}{W}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=1
-[/card]
-[card]
 name=Halls of Mist
 text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Creatures that attacked during their controller's last turn can't attack.
 type=Land
@@ -14990,29 +14728,11 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Heal
-text=Prevent the next 1 damage that would be dealt to target creature or player this turn. -- Draw a card at the beginning of the next turn's upkeep.
-mana={W}
-type=Instant
-[/card]
-[card]
 name=Healer's Headdress
 text=Equipped creature gets +0/+2 and has "{T}: Prevent the next 1 damage that would be dealt to target creature or player this turn." -- {W}{W}: Attach Healer's Headdress to target creature you control. -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
 mana={2}
 type=Artifact
 subtype=Equipment
-[/card]
-[card]
-name=Healing Leaves
-text=Choose one - Target player gains 3 life; or prevent the next 3 damage that would be dealt to target creature or player this turn.
-mana={G}
-type=Instant
-[/card]
-[card]
-name=Healing Salve
-text=Choose one - Target player gains 3 life; or prevent the next 3 damage that would be dealt to target creature or player this turn.
-mana={W}
-type=Instant
 [/card]
 [card]
 name=Heart Wolf
@@ -15848,12 +15568,6 @@ power=8
 toughness=8
 [/card]
 [card]
-name=Hypochondria
-text={W}, Discard a card: Prevent the next 3 damage that would be dealt to target creature or player this turn. -- {W}, Sacrifice Hypochondria: Prevent the next 3 damage that would be dealt to target creature or player this turn.
-mana={1}{W}
-type=Enchantment
-[/card]
-[card]
 name=Hystrodon
 text=Trample -- Whenever Hystrodon deals combat damage to a player, you may draw a card. -- Morph {1}{G}{G} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 mana={4}{G}
@@ -16310,12 +16024,6 @@ type=Creature
 subtype=Ogre Warrior
 power=4
 toughness=3
-[/card]
-[card]
-name=Indestructible Aura
-text=Prevent all damage that would be dealt to target creature this turn.
-mana={W}
-type=Instant
 [/card]
 [card]
 name=Index
@@ -16865,12 +16573,6 @@ power=3
 toughness=5
 [/card]
 [card]
-name=Ivory Charm
-text=Choose one - All creatures get -2/-0 until end of turn; or tap target creature; or prevent the next 1 damage that would be dealt to target creature or player this turn.
-mana={W}
-type=Instant
-[/card]
-[card]
 name=Ivory Gargoyle
 text=Flying -- When Ivory Gargoyle is put into a graveyard from the battlefield, return it to the battlefield under its owner's control at the beginning of the next end step and you skip your next draw step. -- {4}{W}: Exile Ivory Gargoyle.
 mana={4}{W}
@@ -17087,15 +16789,6 @@ name=Jeweled Torque
 text=As Jeweled Torque enters the battlefield, choose a color. -- Whenever a player casts a spell of the chosen color, you may pay {2}. If you do, you gain 2 life.
 mana={2}
 type=Artifact
-[/card]
-[card]
-name=Jhessian Balmgiver
-text={T}: Prevent the next 1 damage that would be dealt to target creature or player this turn. -- {T}: Target creature is unblockable this turn.
-mana={1}{W}{U}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=1
 [/card]
 [card]
 name=Jhoira of the Ghitu
@@ -17669,15 +17362,6 @@ power=1
 toughness=2
 [/card]
 [card]
-name=Kei Takahashi
-text={T}: Prevent the next 2 damage that would be dealt to target creature this turn.
-mana={2}{G}{W}
-type=Legendary Creature
-subtype=Human Cleric
-power=2
-toughness=2
-[/card]
-[card]
 name=Keldon Arsonist
 text={1}, Sacrifice two lands: Destroy target land.
 mana={2}{R}
@@ -17882,15 +17566,6 @@ power=1
 toughness=3
 [/card]
 [card]
-name=Kithkin Healer
-text={T}: Prevent the next 1 damage that would be dealt to target creature or player this turn.
-mana={2}{W}
-type=Creature
-subtype=Kithkin Cleric
-power=2
-toughness=2
-[/card]
-[card]
 name=Kithkin Zephyrnaut
 text=Kinship - At the beginning of your upkeep, you may look at the top card of your library. If it shares a creature type with Kithkin Zephyrnaut, you may reveal it. If you do, Kithkin Zephyrnaut gets +2/+2 and gains flying and vigilance until end of turn.
 mana={2}{W}
@@ -17909,15 +17584,6 @@ power=0
 toughness=1
 [/card]
 [card]
-name=Kitsune Healer
-text={T}: Prevent the next 1 damage that would be dealt to target creature or player this turn. -- {T}: Prevent all damage that would be dealt to target legendary creature this turn.
-mana={3}{W}
-type=Creature
-subtype=Fox Cleric
-power=2
-toughness=2
-[/card]
-[card]
 name=Kitsune Mystic
 text=At the beginning of the end step, if Kitsune Mystic is enchanted by two or more Auras, flip it.
 mana={3}{W}
@@ -17934,15 +17600,6 @@ type=Legendary Creature
 subtype=Fox Wizard
 power=4
 toughness=5
-[/card]
-[card]
-name=Kitsune Palliator
-text={T}: Prevent the next 1 damage that would be dealt to each creature and each player this turn.
-mana={2}{W}
-type=Creature
-subtype=Fox Cleric
-power=0
-toughness=2
 [/card]
 [card]
 name=Kjeldoran Elite Guard
@@ -19590,15 +19247,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Loxodon Anchorite
-text={T}: Prevent the next 2 damage that would be dealt to target creature or player this turn.
-mana={2}{W}{W}
-type=Creature
-subtype=Elephant Cleric
-power=2
-toughness=3
-[/card]
-[card]
 name=Loxodon Peacekeeper
 text=At the beginning of your upkeep, the player with the lowest life total gains control of Loxodon Peacekeeper. If two or more players are tied for lowest life total, you choose one of them, and that player gains control of Loxodon Peacekeeper.
 mana={1}{W}
@@ -20475,12 +20123,6 @@ power=1
 toughness=6
 [/card]
 [card]
-name=Martyrs' Tomb
-text=Pay 2 life: Prevent the next 1 damage that would be dealt to target creature this turn.
-mana={2}{W}{B}
-type=Enchantment
-[/card]
-[card]
 name=Masako the Humorless
 text=Flash -- Tapped creatures you control can block as though they were untapped.
 mana={2}{W}
@@ -20528,24 +20170,6 @@ name=Mass Polymorph
 text=Exile all creatures you control, then reveal cards from the top of your library until you reveal that many creature cards. Put all creature cards revealed this way onto the battlefield and shuffle the rest into your library.
 mana={5}{U}
 type=Enchantment
-[/card]
-[card]
-name=Master Apothecary
-text=Tap an untapped Cleric you control: Prevent the next 2 damage that would be dealt to target creature or player this turn.
-mana={W}{W}{W}
-type=Creature
-subtype=Human Cleric
-power=2
-toughness=2
-[/card]
-[card]
-name=Master Healer
-text={T}: Prevent the next 4 damage that would be dealt to target creature or player this turn.
-mana={4}{W}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=4
 [/card]
 [card]
 name=Master Transmuter
@@ -20769,12 +20393,6 @@ type=Creature
 subtype=Ogre
 power=3
 toughness=3
-[/card]
-[card]
-name=Mending Hands
-text=Prevent the next 4 damage that would be dealt to target creature or player this turn.
-mana={W}
-type=Instant
 [/card]
 [card]
 name=Mephidross Vampire
@@ -21080,15 +20698,6 @@ type=Creature
 subtype=Djinn
 power=6
 toughness=3
-[/card]
-[card]
-name=Militant Monk
-text=Vigilance -- {T}: Prevent the next 1 damage that would be dealt to target creature or player this turn.
-mana={1}{W}{W}
-type=Creature
-subtype=Human Monk Cleric
-power=2
-toughness=1
 [/card]
 [card]
 name=Militia's Pride
@@ -22641,15 +22250,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Necra Disciple
-text={G}, {T}: Add one mana of any color to your mana pool. -- {W}, {T}: Prevent the next 1 damage that would be dealt to target creature or player this turn.
-mana={B}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
-[/card]
-[card]
 name=Necra Sanctuary
 text=At the beginning of your upkeep, if you control a green or white permanent, target player loses 1 life. If you control a green permanent and a white permanent, that player loses 3 life instead.
 mana={2}{B}
@@ -23216,15 +22816,6 @@ mana={4}{W}
 type=Enchantment
 [/card]
 [card]
-name=Noble Vestige
-text=Flying -- {T}: Prevent the next 1 damage that would be dealt to target player this turn.
-mana={2}{W}
-type=Creature
-subtype=Spirit
-power=1
-toughness=2
-[/card]
-[card]
 name=Noetic Scales
 text=At the beginning of each player's upkeep, return to its owner's hand each creature that player controls with power greater than the number of cards in his or her hand.
 mana={4}
@@ -23490,11 +23081,6 @@ type=Creature
 subtype=Treefolk Warrior
 power=2
 toughness=4
-[/card]
-[card]
-name=Oasis
-text={T}: Prevent the next 1 damage that would be dealt to target creature this turn.
-type=Land
 [/card]
 [card]
 name=Oath of Druids
@@ -24091,15 +23677,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Ordruun Commando
-text={W}: Prevent the next 1 damage that would be dealt to Ordruun Commando this turn.
-mana={3}{R}
-type=Creature
-subtype=Minotaur Soldier
-power=4
-toughness=1
-[/card]
-[card]
 name=Organ Grinder
 text={T}, Exile three cards from your graveyard: Target player loses 3 life.
 mana={2}{B}
@@ -24125,21 +23702,6 @@ name=Orim's Thunder
 text=Kicker {R} (You may pay an additional {R} as you cast this spell.) -- Destroy target artifact or enchantment. If Orim's Thunder was kicked, it deals damage equal to that permanent's converted mana cost to target creature.
 mana={2}{W}
 type=Instant
-[/card]
-[card]
-name=Orim's Touch
-text=Kicker {1} (You may pay an additional {1} as you cast this spell.) -- Prevent the next 2 damage that would be dealt to target creature or player this turn. If Orim's Touch was kicked, prevent the next 4 damage that would be dealt to that creature or player this turn instead.
-mana={W}
-type=Instant
-[/card]
-[card]
-name=Orim, Samite Healer
-text={T}: Prevent the next 3 damage that would be dealt to target creature or player this turn.
-mana={1}{W}{W}
-type=Legendary Creature
-subtype=Human Cleric
-power=1
-toughness=3
 [/card]
 [card]
 name=Oriss, Samite Guardian
@@ -24493,12 +24055,6 @@ power=4
 toughness=5
 [/card]
 [card]
-name=Palliation Accord
-text=Whenever a creature an opponent controls becomes tapped, put a shield counter on Palliation Accord. -- Remove a shield counter from Palliation Accord: Prevent the next 1 damage that would be dealt to you this turn.
-mana={3}{W}{U}
-type=Enchantment
-[/card]
-[card]
 name=Pallid Mycoderm
 text=At the beginning of your upkeep, put a spore counter on Pallid Mycoderm. -- Remove three spore counters from Pallid Mycoderm: Put a 1/1 green Saproling creature token onto the battlefield. -- Sacrifice a Saproling: Fungus and/or Saproling creatures you control get +1/+1 until end of turn.
 mana={3}{W}
@@ -24806,12 +24362,6 @@ name=Peace and Quiet
 text=Destroy two target enchantments.
 mana={1}{W}
 type=Instant
-[/card]
-[card]
-name=Pearl Shard
-text={3}, {T} or {W}, {T}: Prevent the next 2 damage that would be dealt to target creature or player this turn.
-mana={3}
-type=Artifact
 [/card]
 [card]
 name=Pearlspear Courier
@@ -25595,15 +25145,6 @@ type=Artifact Creature
 subtype=Angel
 power=4
 toughness=4
-[/card]
-[card]
-name=Plaxcaster Frogling
-text=Graft 3 (This creature enters the battlefield with three +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {2}: Target creature with a +1/+1 counter on it gains shroud until end of turn. (It can't be the target of spells or abilities.)
-mana={1}{G}{U}
-type=Creature
-subtype=Frog Mutant
-power=0
-toughness=0
 [/card]
 [card]
 name=Plaxmanta
@@ -27000,22 +26541,8 @@ toughness=1
 [/card]
 [card]
 name=Rainbow Vale
-auto={T}:add {G} && @end:moveto(opponentinplay)
-auto={T}:add {R} && @end:moveto(opponentinplay)
-auto={T}:add {W} && @end:moveto(opponentinplay)
-auto={T}:add {B} && @end:moveto(opponentinplay)
-auto={T}:add {U} && @end:moveto(opponentinplay)
 text={T}: Add one mana of any color to your mana pool. An opponent gains control of Rainbow Vale at the beginning of the next end step.
 type=Land
-[/card]
-[card]
-name=Raka Disciple
-text={W}, {T}: Prevent the next 1 damage that would be dealt to target creature or player this turn. -- {U}, {T}: Target creature gains flying until end of turn.
-mana={R}
-type=Creature
-subtype=Minotaur Wizard
-power=1
-toughness=1
 [/card]
 [card]
 name=Raka Sanctuary
@@ -27157,6 +26684,11 @@ toughness=3
 [/card]
 [card]
 name=Rasputin Dreamweaver
+auto=counter(0/0,7,Dream)
+auto={C(0/0,-1,Dream)}:Add:{1}
+auto={C(0/0,-1,Dream)}:prevent:1 all(this)
+auto=@each my beginofturn:aslongas(rasputin dreamweaver[-tapped]|mybattlefield) counter(0/0,1,Gaincounter)
+auto=@each my upkeep:aslongas(rasputin dreamweaver[counter{0/0.1.Gaincounter}]|mybattlefield) counter(0/0,1,Dream) && counter(0/0,-1,Gaincounter)
 text=Rasputin Dreamweaver enters the battlefield with seven dream counters on it. -- Remove a dream counter from Rasputin: Add {1} to your mana pool. -- Remove a dream counter from Rasputin: Prevent the next 1 damage that would be dealt to Rasputin this turn. -- At the beginning of your upkeep, if Rasputin started the turn untapped, put a dream counter on it. -- Rasputin can't have more than seven dream counters on it.
 mana={4}{W}{U}
 type=Legendary Creature
@@ -27548,12 +27080,6 @@ name=Recross the Paths
 text=Reveal cards from the top of your library until you reveal a land card. Put that card onto the battlefield and the rest on the bottom of your library in any order. Clash with an opponent. If you win, return Recross the Paths to its owner's hand. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
 mana={2}{G}
 type=Sorcery
-[/card]
-[card]
-name=Recuperate
-text=Choose one - You gain 6 life; or prevent the next 6 damage that would be dealt to target creature this turn.
-mana={3}{W}
-type=Instant
 [/card]
 [card]
 name=Recycle
@@ -28013,15 +27539,6 @@ name=Reverberation
 text=All damage that would be dealt this turn by target sorcery spell is dealt to that spell's controller instead.
 mana={2}{U}{U}
 type=Instant
-[/card]
-[card]
-name=Revered Elder
-text={1}: Prevent the next 1 damage that would be dealt to Revered Elder this turn.
-mana={2}{W}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=2
 [/card]
 [card]
 name=Reverent Mantra
@@ -29234,12 +28751,6 @@ text={2}, {T}: Exile target creature you control. -- At the beginning of your up
 type=Land
 [/card]
 [card]
-name=Safe Passage
-text=Prevent all damage that would be dealt to you and creatures you control this turn.
-mana={2}{W}
-type=Instant
-[/card]
-[card]
 name=Safehold Sentry
 text={2}{W}, {Q}: Safehold Sentry gets +0/+2 until end of turn. ({Q} is the untap symbol.)
 mana={1}{W}
@@ -29378,29 +28889,11 @@ power=0
 toughness=2
 [/card]
 [card]
-name=Samite Archer
-text={T}: Prevent the next 1 damage that would be dealt to target creature or player this turn. -- {T}: Samite Archer deals 1 damage to target creature or player.
-mana={1}{W}{U}
-type=Creature
-subtype=Human Cleric Archer
-power=1
-toughness=1
-[/card]
-[card]
 name=Samite Blessing
 text=Enchant creature -- Enchanted creature has "{T}: The next time a source of your choice would deal damage to target creature this turn, prevent that damage."
 mana={W}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Samite Censer-Bearer
-text={W}, Sacrifice Samite Censer-Bearer: Prevent the next 1 damage that would be dealt to each creature you control this turn.
-mana={W}
-type=Creature
-subtype=Human Rebel Cleric
-power=1
-toughness=1
 [/card]
 [card]
 name=Samite Elder
@@ -29410,15 +28903,6 @@ type=Creature
 subtype=Human Cleric
 power=1
 toughness=2
-[/card]
-[card]
-name=Samite Healer
-text={T}: Prevent the next 1 damage that would be dealt to target creature or player this turn.
-mana={1}{W}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=1
 [/card]
 [card]
 name=Samite Ministration
@@ -29446,15 +28930,6 @@ name=Sanctimony
 text=Whenever an opponent taps a Mountain for mana, you may gain 1 life.
 mana={1}{W}
 type=Enchantment
-[/card]
-[card]
-name=Sanctum Custodian
-text={T}: Prevent the next 2 damage that would be dealt to target creature or player this turn.
-mana={2}{W}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=2
 [/card]
 [card]
 name=Sanctum Guardian
@@ -30559,23 +30034,12 @@ subtype=Aura
 [/card]
 [card]
 name=Serra Inquisitors
-auto=@blocked(this) from(creature[black]):2/0
-auto=@blocked(creature[black]) from(this):2/0
 text=Whenever Serra Inquisitors blocks or becomes blocked by one or more black creatures, Serra Inquisitors gets +2/+0 until end of turn.
 mana={4}{W}
 type=Creature
 subtype=Human Cleric
 power=3
 toughness=3
-[/card]
-[card]
-name=Serra Paladin
-text={T}: Prevent the next 1 damage that would be dealt to target creature or player this turn. -- {1}{W}{W}, {T}: Target creature gains vigilance until end of turn.
-mana={2}{W}{W}
-type=Creature
-subtype=Human Knight
-power=2
-toughness=2
 [/card]
 [card]
 name=Serra's Boon
@@ -30877,16 +30341,7 @@ power=1
 toughness=3
 [/card]
 [card]
-name=Shield of the Ages
-text={2}: Prevent the next 1 damage that would be dealt to you this turn.
-mana={2}
-type=Artifact
-[/card]
-[card]
 name=Shield of the Oversoul
-target=creature
-auto=aslongas(this[green]) indestructible
-auto=aslongas(this[green]) 1/1
 text=Enchant creature -- As long as enchanted creature is green, it gets +1/+1 and is indestructible. (Lethal damage and effects that say "destroy" don't destroy it. If its toughness is 0 or less, it's still put into its owner's graveyard.) -- As long as enchanted creature is white, it gets +1/+1 and has flying.
 mana={2}{GW}
 type=Enchantment
@@ -30916,12 +30371,6 @@ type=Creature
 subtype=Human Cleric Wizard
 power=2
 toughness=3
-[/card]
-[card]
-name=Shieldmate's Blessing
-text=Prevent the next 3 damage that would be dealt to target creature or player this turn.
-mana={W}
-type=Instant
 [/card]
 [card]
 name=Shields of Velis Vel
@@ -31412,15 +30861,6 @@ type=Creature
 subtype=Elf Wizard
 power=2
 toughness=2
-[/card]
-[card]
-name=Simic Initiate
-text=Graft 1 (This creature enters the battlefield with a +1/+1 counter on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.)
-mana={G}
-type=Creature
-subtype=Human Mutant
-power=0
-toughness=0
 [/card]
 [card]
 name=Simplify
@@ -32145,15 +31585,6 @@ type=Artifact
 name=Soldevi Excavations
 text=If Soldevi Excavations would enter the battlefield, sacrifice an untapped Island instead. If you do, put Soldevi Excavations onto the battlefield. If you don't, put it into its owner's graveyard. -- {T}: Add {1}{U} to your mana pool. -- {1}, {T}: Look at the top card of your library. You may put that card on the bottom of your library.
 type=Land
-[/card]
-[card]
-name=Soldevi Heretic
-text={W}, {T}: Prevent the next 2 damage that would be dealt to target creature this turn. Target opponent may draw a card.
-mana={2}{U}
-type=Creature
-subtype=Human Cleric
-power=2
-toughness=2
 [/card]
 [card]
 name=Soldevi Machinist
@@ -33153,15 +32584,6 @@ mana={2}{G}{G}
 type=Sorcery
 [/card]
 [card]
-name=Split-Tail Miko
-text={W}, {T}: Prevent the next 2 damage that would be dealt to target creature or player this turn.
-mana={1}{W}
-type=Creature
-subtype=Fox Cleric
-power=1
-toughness=1
-[/card]
-[card]
 name=Splitting Headache
 text=Choose one - Target player discards two cards; or target player reveals his or her hand, you choose a card from it, then that player discards that card.
 mana={3}{B}
@@ -33184,15 +32606,6 @@ name=Spore Cloud
 text=Tap all blocking creatures. Prevent all combat damage that would be dealt this turn. Each attacking creature and each blocking creature doesn't untap during its controller's next untap step.
 mana={1}{G}{G}
 type=Instant
-[/card]
-[card]
-name=Sporeback Troll
-text=Graft 2 (This creature enters the battlefield with two +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {1}{G}: Regenerate target creature with a +1/+1 counter on it.
-mana={3}{G}
-type=Creature
-subtype=Troll Mutant
-power=0
-toughness=0
 [/card]
 [card]
 name=Sporogenesis
@@ -33348,12 +32761,6 @@ name=Squee's Revenge
 text=Choose a number. Flip a coin that many times or until you lose a flip, whichever comes first. If you win all the flips, draw two cards for each flip.
 mana={1}{U}{R}
 type=Sorcery
-[/card]
-[card]
-name=Squee's Toy
-text={T}: Prevent the next 1 damage that would be dealt to target creature this turn.
-mana={1}
-type=Artifact
 [/card]
 [card]
 name=Squelch
@@ -34133,12 +33540,6 @@ mana={2}{G}
 type=Instant
 [/card]
 [card]
-name=Sunfire Balm
-text=Prevent the next 4 damage that would be dealt to target creature or player this turn. -- Cycling {1}{W} ({1}{W}, Discard this card: Draw a card.) -- When you cycle Sunfire Balm, you may prevent the next 1 damage that would be dealt to target creature or player this turn.
-mana={2}{W}
-type=Instant
-[/card]
-[card]
 name=Sunforger
 text=Equipped creature gets +4/+0. -- {R}{W}, Unattach Sunforger: Search your library for a red or white instant card with converted mana cost 4 or less and cast that card without paying its mana cost. Then shuffle your library. -- Equip {3}
 mana={3}
@@ -34388,12 +33789,6 @@ type=Sorcery
 name=Swerve
 text=Change the target of target spell with a single target.
 mana={U}{R}
-type=Instant
-[/card]
-[card]
-name=Swift Maneuver
-text=Prevent the next 2 damage that would be dealt to target creature or player this turn. -- Draw a card at the beginning of the next turn's upkeep.
-mana={1}{W}
 type=Instant
 [/card]
 [card]
@@ -36273,15 +35668,6 @@ mana={1}{U}
 type=Sorcery
 [/card]
 [card]
-name=Trained Pronghorn
-text=Discard a card: Prevent all damage that would be dealt to Trained Pronghorn this turn.
-mana={1}{W}
-type=Creature
-subtype=Antelope
-power=1
-toughness=1
-[/card]
-[card]
 name=Traitor's Clutch
 text=Target creature gets +1/+0, becomes black, and gains shadow until end of turn. (It can block or be blocked by only creatures with shadow.) -- Flashback {1}{B} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={4}{B}
@@ -36426,15 +35812,6 @@ power=0
 toughness=3
 [/card]
 [card]
-name=Treefolk Healer
-text={2}{W}, {T}: Prevent the next 2 damage that would be dealt to target creature or player this turn.
-mana={4}{G}
-type=Creature
-subtype=Treefolk Cleric
-power=2
-toughness=3
-[/card]
-[card]
 name=Treefolk Mystic
 text=Whenever a creature blocks or becomes blocked by Treefolk Mystic, destroy all Auras attached to that creature.
 mana={3}{G}
@@ -36547,15 +35924,6 @@ type=Creature
 subtype=Human Archer
 power=2
 toughness=3
-[/card]
-[card]
-name=Troubled Healer
-text=Sacrifice a land: Prevent the next 2 damage that would be dealt to target creature or player this turn.
-mana={2}{W}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=2
 [/card]
 [card]
 name=Truce
@@ -37022,15 +36390,6 @@ type=Legendary Creature
 subtype=Beast
 power=5
 toughness=5
-[/card]
-[card]
-name=Ursine Fylgja
-text=Ursine Fylgja enters the battlefield with four healing counters on it. -- Remove a healing counter from Ursine Fylgja: Prevent the next 1 damage that would be dealt to Ursine Fylgja this turn. -- {2}{W}: Put a healing counter on Ursine Fylgja.
-mana={4}{W}
-type=Creature
-subtype=Spirit Bear
-power=3
-toughness=3
 [/card]
 [card]
 name=Urza's Armor
@@ -37663,24 +37022,6 @@ name=View from Above
 text=Target creature gains flying until end of turn. If you control a white permanent, return View from Above to its owner's hand.
 mana={1}{U}
 type=Instant
-[/card]
-[card]
-name=Vigean Graftmage
-text=Graft 2 (This creature enters the battlefield with two +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {1}{U}: Untap target creature with a +1/+1 counter on it.
-mana={2}{U}
-type=Creature
-subtype=Vedalken Wizard Mutant
-power=0
-toughness=0
-[/card]
-[card]
-name=Vigean Hydropon
-text=Graft 5 (This creature enters the battlefield with five +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- Vigean Hydropon can't attack or block.
-mana={1}{G}{U}
-type=Creature
-subtype=Plant Mutant
-power=0
-toughness=0
 [/card]
 [card]
 name=Vigean Intuition
@@ -38762,15 +38103,6 @@ mana={2}{U}
 type=Enchantment
 [/card]
 [card]
-name=Wellgabber Apothecary
-text={1}{W}: Prevent all damage that would be dealt to target tapped Merfolk or Kithkin creature this turn.
-mana={4}{W}
-type=Creature
-subtype=Merfolk Cleric
-power=2
-toughness=3
-[/card]
-[card]
 name=Wellspring
 text=Enchant land -- When Wellspring enters the battlefield, gain control of enchanted land until end of turn. -- At the beginning of your upkeep, untap enchanted land. You gain control of that land until end of turn.
 mana={1}{G}{W}
@@ -39285,12 +38617,6 @@ type=Creature
 subtype=Wurm
 power=9
 toughness=9
-[/card]
-[card]
-name=Withstand
-text=Prevent the next 3 damage that would be dealt to target creature or player this turn. -- Draw a card.
-mana={2}{W}
-type=Instant
 [/card]
 [card]
 name=Wizard Replica

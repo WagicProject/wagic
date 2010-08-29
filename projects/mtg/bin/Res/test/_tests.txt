@@ -168,6 +168,7 @@ cockatrice_i228.txt
 colossus_of_sardia1.txt
 colossus_of_sardia2.txt
 composite_golem.txt
+conservator.txt
 control_magic.txt
 control_magic2.txt
 control_magic3.txt
@@ -395,6 +396,8 @@ rootwalla.txt
 royal_assassin.txt
 sacred_foundry_i275.txt
 safehold_duo.txt
+safe_passage.txt
+samite_healer.txt
 scourge_of_kher_ridges.txt
 scourge_of_kher_ridges2.txt
 scourglass.txt
