@@ -1,0 +1,25 @@
+#Testing prevent:*number* keyword.
+#Prevent all damage that would be dealt to you and creatures you control this turn.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:lightning bolt,safe passage,pyroclasm
+manapool:{3}{R}{R}{W}
+inplay:grizzly bears,runeclaw bears,barbary apes
+[PLAYER2]
+inplay:headless horseman
+[DO]
+safe passage
+pyroclasm
+lightning bolt
+p1
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+life:20
+inplay:grizzly bears,runeclaw bears,barbary apes
+graveyard:lightning bolt,safe passage,pyroclasm
+[PLAYER2]
+graveyard:headless horseman
+life:20
+[END]

@@ -1,0 +1,33 @@
+#Testing prevent:*number* keyword.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Shock
+manapool:{R}
+inplay:grizzly bears,samite healer
+[PLAYER2]
+[DO]
+samite healer
+grizzly bears
+shock
+grizzly bears
+next
+#begin
+next
+#attackers
+grizzly bears
+next
+#blockers
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+life:20
+inplay:grizzly bears,samite healer
+graveyard:shock
+[PLAYER2]
+life:18
+[END]

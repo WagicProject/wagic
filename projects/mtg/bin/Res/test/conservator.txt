@@ -1,0 +1,23 @@
+#Testing prevent:*number* keyword.
+#Prevent the next 2 damage that would be dealt to you this turn.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Lightning Bolt
+manapool:{3}{R}
+inplay:conservator
+[PLAYER2]
+[DO]
+conservator
+p1
+lightning bolt
+p1
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+life:19
+inplay:conservator
+graveyard:Lightning Bolt
+[PLAYER2]
+life:20
+[END]
