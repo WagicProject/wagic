@@ -65,7 +65,28 @@ int Damage::resolve(){
   if (target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE){
     MTGCardInstance * _target = (MTGCardInstance *)target;
     if ((_target)->protectedAgainst(source)) damage = 0;
-  
+	//rulings = 10/4/2004	The damage prevention ability works even if it has no counters, as long as some effect keeps its toughness above zero.
+	//these creature are essentially immune to damage. however 0/-1 effects applied through lords or counters can kill them.
+	if ((_target)->has(Constants::PHANTOM)) {
+		damage = 0;
+		(_target)->counters->removeCounter(1,1);
+	}
+	if ((_target)->has(Constants::COUNTERASDAMAGE)) {
+		 for (int i = 0; i < damage; i++){
+			for (int i = damage; i > 0; i--){
+		(_target)->counters->addCounter(-1,-1); 
+	   }
+		damage = 0;
+	 }
+	}
+	if ((_target)->has(Constants::VIGOR)){
+		 for (int i = 0; i < damage; i++){
+			for (int i = damage; i > 0; i--){
+		(_target)->counters->addCounter(1,1); 
+	   }
+		damage = 0;
+	 }
+	}  
     if (!damage){
       state = RESOLVED_NOK;
       delete (e);

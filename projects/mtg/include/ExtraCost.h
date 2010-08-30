@@ -82,6 +82,32 @@ public:
   virtual int setSource(MTGCardInstance * _source);
   virtual TapTargetCost * clone() const;
 };
+//exile as cost
+class ExileTargetCost: public ExtraCost{
+public:
+  MTGCardInstance * target;
+  ExileTargetCost(TargetChooser *_tc = NULL);
+  virtual int setPayment(MTGCardInstance * card);
+  virtual int isPaymentSet();
+  virtual int canPay();
+  virtual int doPay();
+  virtual void Render();
+  virtual int setSource(MTGCardInstance * _source);
+  virtual ExileTargetCost * clone() const;
+};
+//bounce cost
+class BounceTargetCost: public ExtraCost{
+public:
+  MTGCardInstance * target;
+  BounceTargetCost(TargetChooser *_tc = NULL);
+  virtual int setPayment(MTGCardInstance * card);
+  virtual int isPaymentSet();
+  virtual int canPay();
+  virtual int doPay();
+  virtual void Render();
+  virtual int setSource(MTGCardInstance * _source);
+  virtual BounceTargetCost * clone() const;
+};
 
 class CounterCost: public ExtraCost{
 public:

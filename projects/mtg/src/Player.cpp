@@ -99,8 +99,6 @@ int Player::prevented(){
 void Player::cleanupPhase(){
   game->inPlay->cleanupPhase();
   game->graveyard->cleanupPhase();
-
-  
 }
 
 ostream& operator<<(ostream& out, const Player& p)

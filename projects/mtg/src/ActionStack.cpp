@@ -166,6 +166,10 @@ bool Spell::kickerWasPaid(){
   return (payResult == ManaCost::MANA_PAID_WITH_KICKER);
 }
 
+bool Spell::AlternativeWasPaid(){
+  return (payResult == ManaCost::MANA_PAID_WITH_ALTERNATIVE);
+}
+
 const string Spell::getDisplayName() const {
   return source->getName();
 }

@@ -53,6 +53,8 @@ public:
       intValue = target->getManaCost()->getConvertedCost();
 	}else if (s == "lifetotal"){
       intValue = target->controller()->life;
+	}else if (s == "sunburst"){
+		intValue = target->costAmount;
 	}else if (s == "odcount"){
       intValue = target->controller()->opponent()->damageCount;
 	}else if (s == "opponentlifetotal"){

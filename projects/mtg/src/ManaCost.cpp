@@ -79,7 +79,34 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
     }
     manaCost->addExtraCost(NEW TapTargetCost(tc));
 	//tapcost
-
+    //exile cost
+	}else if (value[0] == 'e'){
+    //tap
+    OutputDebugString("Exile\n");
+    TargetChooserFactory tcf;
+    TargetChooser * tc = NULL;
+    size_t target_start = value.find("(");
+    size_t target_end = value.find(")");
+    if (target_start!=string::npos && target_end!=string::npos){
+      string target = value.substr(target_start+1, target_end-1 - target_start);
+      tc = tcf.createTargetChooser(target,c);
+    }
+    manaCost->addExtraCost(NEW ExileTargetCost(tc));
+//---------------------------------    
+	//bounce cost
+	}else if (value[0] == 'h'){
+    //tap
+    OutputDebugString("Bounce\n");
+    TargetChooserFactory tcf;
+    TargetChooser * tc = NULL;
+    size_t target_start = value.find("(");
+    size_t target_end = value.find(")");
+    if (target_start!=string::npos && target_end!=string::npos){
+      string target = value.substr(target_start+1, target_end-1 - target_start);
+      tc = tcf.createTargetChooser(target,c);
+    }
+    manaCost->addExtraCost(NEW BounceTargetCost(tc));
+//---------------------------------
 
 	//life cost
 	}else if (value[0] == 'l'){
@@ -186,6 +213,8 @@ ManaCost::~ManaCost(){
   SAFE_DELETE(extraCosts);
 
   SAFE_DELETE(kicker);
+
+  SAFE_DELETE(alternative);
 }
 
 void ManaCost::x(){
@@ -205,6 +234,7 @@ void ManaCost::init(){
   extraCosts = NULL;
   extraCostsIsCopy = 0;
   kicker = NULL;
+  alternative = NULL;
 }
 
 
@@ -230,6 +260,11 @@ void ManaCost::copy(ManaCost * _manaCost){
   if (_manaCost->kicker){
     kicker = NEW ManaCost();
     kicker->copy(_manaCost->kicker);
+  }
+  SAFE_DELETE(alternative);
+  if (_manaCost->alternative){
+    alternative = NEW ManaCost();
+    alternative->copy(_manaCost->alternative);
   }
 }
 
@@ -334,15 +369,30 @@ int ManaCost::setExtraCostsAction(MTGAbility * action, MTGCardInstance * card){
 int ManaCost::pay(ManaCost * _cost){
   int result = MANA_PAID;
   ManaCost * toPay = NEW ManaCost();
-  toPay->copy(_cost);
+   toPay->copy(_cost);
+
+
+//---if you can pay the cards real cost, it is paided instead and alternative is not used.
+   if (toPay->alternative && canAfford(toPay->alternative) && !canAfford(_cost)){
+	   //const char * getMenuText(){return "Put into play";}
+    toPay = toPay->alternative;
+    if (!canAfford(toPay) || canAfford(_cost)){
+		toPay->copy(_cost);
+	}
+	result = MANA_PAID_WITH_ALTERNATIVE;
+   }
+
+
+
   if (toPay->kicker){
     toPay->add(toPay->kicker);
     if (!canAfford(toPay)){
       toPay->copy(_cost);
     }else{
       result = MANA_PAID_WITH_KICKER;
-    }
+	}
   }
+  
   ManaCost * diff = Diff(toPay);
   for (int i=0; i < Constants::MTG_NB_COLORS; i++){
     cost[i] = diff->getCost(i);
@@ -518,6 +568,7 @@ int ManaPool::pay (ManaCost * _cost){
   for (unsigned int i = 0; i < Constants::MTG_NB_COLORS; i++){
     current[i] = cost[i];
   }
+
   int result = ManaCost::pay(_cost);
   for (unsigned int i = 0; i < Constants::MTG_NB_COLORS; i++){
     int value = current[i] - cost[i];

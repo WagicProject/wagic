@@ -125,6 +125,38 @@ MTGCardInstance * MTGPlayerCards::putInGraveyard(MTGCardInstance * card){
 
 }
 
+MTGCardInstance * MTGPlayerCards::putInExile(MTGCardInstance * card){
+  MTGCardInstance * copy = NULL;
+  MTGRemovedFromGame * exile = card->owner->game->exile;
+  if (inPlay->hasCard(card)){
+    copy = putInZone(card,inPlay, exile);
+  }else if (stack->hasCard(card)){
+    copy = putInZone(card,stack, exile);
+  }
+  if(graveyard->hasCard(card)){
+	  copy = putInZone(card,graveyard, exile);
+  }else{
+    copy = putInZone(card,hand, exile);
+  }
+   return copy;
+}
+
+MTGCardInstance * MTGPlayerCards::putInHand(MTGCardInstance * card){
+  MTGCardInstance * copy = NULL;
+  MTGHand * hand = card->owner->game->hand;
+  if (inPlay->hasCard(card)){
+    copy = putInZone(card,inPlay, hand);
+  }else if (stack->hasCard(card)){
+    copy = putInZone(card,stack, hand);
+  }
+  if(graveyard->hasCard(card)){
+	  copy = putInZone(card,graveyard, hand);
+  }else{
+    copy = putInZone(card,hand, hand);
+  }
+   return copy;
+}
+
 MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone * from, MTGGameZone * to){
   MTGCardInstance * copy = NULL;
   GameObserver *g = GameObserver::GetInstance();

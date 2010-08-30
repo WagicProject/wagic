@@ -343,6 +343,16 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
     return NULL;
   }
+
+    //alternative cost
+  found = s.find("alternative ");
+  if (found == 0){
+    if (spell && spell->AlternativeWasPaid()){
+      string s1 = s.substr(found+7);
+      return parseMagicLine(s1,id,spell, card);
+    }
+    return NULL;
+  }
   //When...comes into play, you may...
   found = s.find("may ");
   if (found == 0){

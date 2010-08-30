@@ -109,6 +109,7 @@ void MTGCardInstance::initMTGCI(){
   next = NULL;
   lastController = NULL;
   regenerateTokens = 0;
+  costAmount = 0;
   blocked = false;
   currentZone = NULL;
   data = this; //an MTGCardInstance point to itself for data, allows to update it without killing the underlying database item
@@ -293,6 +294,10 @@ int MTGCardInstance::hasSummoningSickness(){
   if (!summoningSickness) return 0;
   if (basicAbilities[Constants::HASTE]) return 0;
   if (!isCreature()) return 0;
+  return 1;
+}
+
+int MTGCardInstance::getCostAmount(){
   return 1;
 }
 

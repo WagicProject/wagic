@@ -22,10 +22,12 @@ class ManaCost{
  public:
    enum{
      MANA_PAID = 1,
-     MANA_PAID_WITH_KICKER = 2
+     MANA_PAID_WITH_KICKER = 2,
+	 MANA_PAID_WITH_ALTERNATIVE = 3
    };
   ExtraCosts * extraCosts;
   ManaCost * kicker;
+  ManaCost * alternative;
   static ManaCost * parseManaCost(string value, ManaCost * _manacost = NULL, MTGCardInstance * c = NULL);
   virtual void init();
   void x();

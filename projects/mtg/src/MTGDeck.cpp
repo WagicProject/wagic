@@ -108,6 +108,15 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
           cost->kicker = ManaCost::parseManaCost(value);
         }
       break;
+	case 'o': //othercost
+      if (!primitive) primitive = NEW CardPrimitive();
+      if (ManaCost * cost = primitive->getManaCost())
+        {
+          string value = val;
+          std::transform(value.begin(), value.end(), value.begin(), ::tolower);
+          cost->alternative = ManaCost::parseManaCost(value);
+        }
+      break;
 
     case 'i': //id
       if (!card) card = NEW MTGCard();

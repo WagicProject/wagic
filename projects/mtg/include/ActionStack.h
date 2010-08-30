@@ -88,6 +88,7 @@ class Spell: public Interruptible {
   int resolve();
   void Render();
   bool kickerWasPaid();
+  bool AlternativeWasPaid();
   const string getDisplayName() const;
   virtual ostream& toString(ostream& out) const;
   MTGCardInstance * getNextCardTarget(MTGCardInstance * previous = 0);

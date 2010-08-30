@@ -31,12 +31,18 @@ int cardsinhand = game->players[0]->game->hand->nb_cards;
   }else if ((card->hasType("instant")) || card->has(Constants::FLASH) || (player == currentPlayer && !game->isInterrupting && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN))){
     ManaCost * playerMana = player->getManaPool();
     ManaCost * cost = card->getManaCost();
+	ManaCost * alternative = card->getManaCost()->alternative;
 #ifdef WIN32
   cost->Dump();
 #endif
-    if (playerMana->canAfford(cost)){
+
+  if(alternative && playerMana->canAfford(alternative)){
       return 1;
-    }
+	  }
+  if (playerMana->canAfford(cost)){
+  return 1;
+  }
+
   }
   return 0;
 }
@@ -44,6 +50,9 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card){
   if (!isReactingToClick(card)) return 0;
   Player * player = game->currentlyActing();
   ManaCost * cost = card->getManaCost();
+  ManaCost * alternative = card->getManaCost()->alternative;
+  ManaCost * playerMana = player->getManaPool();
+//this handles extra cost payments at the moment a card is played.
   if (cost->isExtraPaymentSet()){
     if (!game->targetListIsSet(card)){
       return 0;
@@ -53,10 +62,34 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card){
     game->waitForExtraPayment = cost->extraCosts;
     return 0;
   }
+
+//as long as you dont have enough mana to pay the real cost, and the alternative contains extra cost, add extras
+  if(!playerMana->canAfford(cost) && playerMana->canAfford(alternative)){
+	  if (cost->alternative->isExtraPaymentSet()){
+    if (!game->targetListIsSet(card)){
+      return 0;
+	}
+  }else{
+	  cost->alternative->setExtraCostsAction(this, card);
+	  game->waitForExtraPayment = cost->alternative->extraCosts;
+    return 0;
+	  }
+  }
+//------------------------------------------------------------------------
+
   ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
   int payResult = player->getManaPool()->pay(card->getManaCost());
   card->getManaCost()->doPayExtra();
+   
+
+//if alternative has a extra payment thats set, this code pays it.the if statement is 100% needed as it would cause a crash on cards that dont have the alternative cost.
+  if(alternative){
+	  card->getManaCost()->alternative->doPayExtra();}
+//---------------------------------------------------------------------------
+
+
   ManaCost * spellCost = previousManaPool->Diff(player->getManaPool());
+    
   delete previousManaPool;
   if (card->hasType("land")){
     MTGCardInstance * copy = player->game->putInZone(card,  player->game->hand, player->game->temp);
@@ -131,7 +164,7 @@ int MTGAttackRule::receiveEvent(WEvent *e){
       for (int i= 0; i < z->nb_cards; i++){
         MTGCardInstance * card = z->cards[i];
         if (!card->isAttacker() && card->has(Constants::MUSTATTACK)) reactToClick(card);
-      }
+	  }
       return 1;
     }
   }
@@ -216,7 +249,6 @@ int MTGBlockRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana){
 int MTGBlockRule::reactToClick(MTGCardInstance * card){
   if (!isReactingToClick(card)) return 0;
   MTGCardInstance * currentOpponent = card->isDefenser();
-
   bool result = false;
   int candefend = 0;
   while (!result){

@@ -49,6 +49,8 @@ class MTGAbility: public ActionElement{
    int oneShot;
    int forceDestroy;
   ManaCost * cost;
+  ManaCost * alternative;
+
   Targetable * target;
   int aType;
   MTGCardInstance * source;
