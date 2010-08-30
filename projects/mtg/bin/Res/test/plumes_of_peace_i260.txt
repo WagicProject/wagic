@@ -8,6 +8,7 @@ manapool:{W}{U}{W}{U}
 [PLAYER2]
 [DO]
 plumes of peace
+choice 1
 grizzly bears
 plumes of peace
 raging goblin
