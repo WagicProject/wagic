@@ -57,9 +57,9 @@ const char* Constants::MTGBasicAbilities[] = {
 "cantregen",
 "oneblocker",
 "infect",
-"poisondamage",
-"poisontwodamage",
-"poisonthreedamage",
+"poisontoxic",
+"poisontwotoxic",
+"poisonthreetoxic",
 "phantom",//prevents damage and remove 1 +1/+1 counter
 "counterasdamage",//source takes damage in the form of -1/-1 counters.
 "vigor",//instead of taking damage the source gains +1/+1 counters

@@ -115,7 +115,7 @@ int Damage::resolve(){
 	 }return a;
 	 }//--------------------------------------------------
 	 //poison AND damage----------------------------------
-	 while(target->type_as_damageable == DAMAGEABLE_PLAYER && source->has(Constants::POISONDAMAGE)){
+	 while(target->type_as_damageable == DAMAGEABLE_PLAYER && source->has(Constants::POISONTOXIC)){
     MTGCardInstance * _target = (MTGCardInstance *)target;
     for (int i = 0; i < damage; i++){
 	 a = target->dealDamage(1);	 
@@ -124,7 +124,7 @@ int Damage::resolve(){
      _target->poisonCount += 1;
 	 return a;
      }
-	 	while(target->type_as_damageable == DAMAGEABLE_PLAYER && source->has(Constants::POISONTWODAMAGE)){
+	 	while(target->type_as_damageable == DAMAGEABLE_PLAYER && source->has(Constants::POISONTWOTOXIC)){
     MTGCardInstance * _target = (MTGCardInstance *)target;
     for (int i = 0; i < damage; i++){
 	 a = target->dealDamage(1);
@@ -133,7 +133,7 @@ int Damage::resolve(){
      _target->poisonCount += 2;
 	 return a;
 		 }
-		 while(target->type_as_damageable == DAMAGEABLE_PLAYER && source->has(Constants::POISONTHREEDAMAGE)){
+		 while(target->type_as_damageable == DAMAGEABLE_PLAYER && source->has(Constants::POISONTHREETOXIC)){
     MTGCardInstance * _target = (MTGCardInstance *)target;
     for (int i = 0; i < damage; i++){
 	 a = target->dealDamage(1);
