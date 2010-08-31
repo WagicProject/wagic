@@ -7906,6 +7906,19 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Chainer, Dementia Master
+auto=lord(Nightmare) 1/1
+auto={B}{B}{B}{L}{L}{L}:moveto(mybattlefield) target(creature|graveyard) && transforms(Nightmare,black) forever
+auto=@movedto(this|nonbattlezone):moveto(exile) all(Nightmare)
+text={B}{B}{B}, Pay 3 life: Put target creature card from a graveyard onto the battlefield under your control. That creature is black and is a Nightmare in addition to its other creature types.
+When Chainer, Dementia Master leaves the battlefield, exile all Nightmares.
+mana={3}{B}{B}
+power=3
+toughness=3
+type=Legendary Creature
+subtype=Human Minion
+[/card]
+[card]
 name=Chainflinger
 auto={1}{R}{T}:damage:1 target(creature,player)
 auto=aslongas(*|mygraveyard) {2}{R}{T}:damage:2 target(creature,player) >6
