@@ -71,7 +71,7 @@ int Damage::resolve(){
 		damage = 0;
 		(_target)->counters->removeCounter(1,1);
 	}
-	if ((_target)->has(Constants::COUNTERASDAMAGE)) {
+	if ((_target)->has(Constants::WILTING)) {
 		 for (int i = 0; i < damage; i++){
 			for (int i = damage; i > 0; i--){
 		(_target)->counters->addCounter(-1,-1); 

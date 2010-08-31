@@ -61,7 +61,7 @@ const char* Constants::MTGBasicAbilities[] = {
 "poisontwotoxic",
 "poisonthreetoxic",
 "phantom",//prevents damage and remove 1 +1/+1 counter
-"counterasdamage",//source takes damage in the form of -1/-1 counters.
+"wilting",//source takes damage in the form of -1/-1 counters.
 "vigor",//instead of taking damage the source gains +1/+1 counters
 "changeling",//this card is every creature type at all times
 };
