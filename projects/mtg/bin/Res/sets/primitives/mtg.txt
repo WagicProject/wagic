@@ -29850,7 +29850,7 @@ toughness=1
 [/card]
 [card]
 name=Marsh Viper
-abilities=poisontwodamage
+abilities=poisontwotoxic
 text=Whenever Marsh Viper deals damage to an opponent, that player gets two poison counters. (A player with ten or more poison counters loses the game.)
 mana={3}{G}
 type=Creature
@@ -35912,7 +35912,7 @@ toughness=3
 [/card]
 [card]
 name=Pit Scorpion
-abilities=poisondamage
+abilities=poisontoxic
 text=Whenever Pit Scorpion deals damage to a player, that player gets a poison counter. (A player with ten or more poison counters loses the game.)
 mana={2}{B}
 type=Creature
@@ -42098,7 +42098,7 @@ toughness=2
 [/card]
 [card]
 name=Serpent Generator
-auto={4}{T}:token(Snake,Artifact Creature Snake,1/1,poisondamage,artifact)
+auto={4}{T}:token(Snake,Artifact Creature Snake,1/1,poisontoxic,artifact)
 text={4}, {T}: Put a 1/1 colorless Snake artifact creature token onto the battlefield. This creature has "Whenever this creature deals damage to a player, that player gets a poison counter." (A player with ten or more poison counters loses the game.)
 mana={6}
 type=Artifact
@@ -44711,7 +44711,7 @@ type=Artifact
 [card]
 name=Snake Cult Initiation
 target=creature
-auto=poisonthreedamage
+auto=poisonthreetoxic
 text=Enchant creature -- Enchanted creature has poisonous 3. (Whenever it deals combat damage to a player, that player gets three poison counters. A player with ten or more poison counters loses the game.)
 mana={3}{B}
 type=Enchantment
@@ -53800,6 +53800,16 @@ auto=lord(creature|myBattlefield) 1/1
 text=Creatures you control get +1/+1 until end of turn.
 mana={2}{W}
 type=Sorcery
+[/card]
+[card]
+name=Virulent Sliver
+auto=lord(sliver) poisontoxic
+text=All Sliver creatures have poisonous 1. (Whenever a Sliver deals combat damage to a player, that player gets a poison counter. A player with ten or more poison counters loses the game.)
+mana={G}
+type=Creature
+subtype=Sliver
+power=1
+toughness=1
 [/card]
 [card]
 name=Visara the Dreadful
