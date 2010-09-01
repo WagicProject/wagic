@@ -72,15 +72,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=AEthersnipe
-text=When AEthersnipe enters the battlefield, return target nonland permanent to its owner's hand. -- Evoke {1}{U}{U} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
-mana={5}{U}
-type=Creature
-subtype=Elemental
-power=4
-toughness=4
-[/card]
-[card]
 name=AEthertow
 text=Put target attacking or blocking creature on top of its owner's library. -- Conspire (As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
 mana={3}{WU}
@@ -103,12 +94,6 @@ subtype=Aura
 name=Abeyance
 text=Until end of turn, target player can't cast instant or sorcery spells, and that player can't activate abilities that aren't mana abilities. -- Draw a card.
 mana={1}{W}
-type=Instant
-[/card]
-[card]
-name=Abolish
-text=You may discard a Plains card rather than pay Abolish's mana cost. -- Destroy target artifact or enchantment.
-mana={1}{W}{W}
 type=Instant
 [/card]
 [card]
@@ -1997,15 +1982,6 @@ mana={2}{W}{W}
 type=Sorcery
 [/card]
 [card]
-name=Balduvian Dead
-text={2}{R}, Exile a creature card from your graveyard: Put a 3/1 black and red Graveborn creature token with haste onto the battlefield. Sacrifice it at the beginning of the next end step.
-mana={3}{B}
-type=Creature
-subtype=Zombie
-power=2
-toughness=3
-[/card]
-[card]
 name=Balduvian Fallen
 text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Whenever Balduvian Fallen's cumulative upkeep is paid, it gets +1/+0 until end of turn for each {B} or {R} spent this way.
 mana={3}{B}
@@ -3517,15 +3493,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Briarhorn
-text=Flash -- When Briarhorn enters the battlefield, target creature gets +3/+3 until end of turn. -- Evoke {1}{G} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
-mana={3}{G}
-type=Creature
-subtype=Elemental
-power=3
-toughness=3
-[/card]
-[card]
 name=Bridge from Below
 text=Whenever a nontoken creature is put into your graveyard from the battlefield, if Bridge from Below is in your graveyard, put a 2/2 black Zombie creature token onto the battlefield. -- When a creature is put into an opponent's graveyard from the battlefield, if Bridge from Below is in your graveyard, exile Bridge from Below.
 mana={B}{B}{B}
@@ -3580,36 +3547,9 @@ power=5
 toughness=5
 [/card]
 [card]
-name=Bringer of the Blue Dawn
-text=You may pay {W}{U}{B}{R}{G} rather than pay Bringer of the Blue Dawn's mana cost. -- Trample -- At the beginning of your upkeep, you may draw two cards.
-mana={7}{U}{U}
-type=Creature
-subtype=Bringer
-power=5
-toughness=5
-[/card]
-[card]
-name=Bringer of the Green Dawn
-text=You may pay {W}{U}{B}{R}{G} rather than pay Bringer of the Green Dawn's mana cost. -- Trample -- At the beginning of your upkeep, you may put a 3/3 green Beast creature token onto the battlefield.
-mana={7}{G}{G}
-type=Creature
-subtype=Bringer
-power=5
-toughness=5
-[/card]
-[card]
 name=Bringer of the Red Dawn
 text=You may pay {W}{U}{B}{R}{G} rather than pay Bringer of the Red Dawn's mana cost. -- Trample -- At the beginning of your upkeep, you may untap target creature and gain control of it until end of turn. That creature gains haste until end of turn.
 mana={7}{R}{R}
-type=Creature
-subtype=Bringer
-power=5
-toughness=5
-[/card]
-[card]
-name=Bringer of the White Dawn
-text=You may pay {W}{U}{B}{R}{G} rather than pay Bringer of the White Dawn's mana cost. -- Trample -- At the beginning of your upkeep, you may return target artifact card from your graveyard to the battlefield.
-mana={7}{W}{W}
 type=Creature
 subtype=Bringer
 power=5
@@ -3749,6 +3689,15 @@ mana={2}{R}
 type=Creature
 subtype=Spirit
 power=2
+toughness=2
+[/card]
+[card]
+name=Brutal Nightstalker
+text=When Brutal Nightstalker enters the battlefield, you may have target opponent discard a card.
+mana={3}{B}{B}
+type=Creature
+subtype=Nightstalker
+power=3
 toughness=2
 [/card]
 [card]
@@ -3995,16 +3944,6 @@ type=Creature
 subtype=Zombie Wizard
 power=1
 toughness=1
-[/card]
-[card]
-name=Cabal Patriarch
-auto={2}{B}{S(creature|myinplay):-2/-2 target(creature)
-text={2}{B}, Sacrifice a creature: Target creature gets -2/-2 until end of turn. -- {2}{B}, Exile a creature card from your graveyard: Target creature gets -2/-2 until end of turn.
-mana={3}{B}{B}{B}
-type=Legendary Creature
-subtype=Human Wizard
-power=5
-toughness=5
 [/card]
 [card]
 name=Cabal Shrine
@@ -4485,14 +4424,6 @@ type=Creature
 subtype=Human Knight
 power=3
 toughness=3
-[/card]
-[card]
-name=Cave-In
-autohand={S}:moveTo(exile) target(*[red]|myhand) && damage:2 all(creature,player)
-###Din't add the card because it can't be countered when when using the autohand-line...
-text=You may exile a red card from your hand rather than pay Cave-In's mana cost. -- Cave-In deals 2 damage to each creature and each player.
-mana={3}{R}{R}
-type=Sorcery
 [/card]
 [card]
 name=Caverns of Despair
@@ -5445,15 +5376,6 @@ mana={3}
 type=Artifact
 [/card]
 [card]
-name=Cloudthresher
-text=Flash -- Reach (This can block creatures with flying.) -- When Cloudthresher enters the battlefield, it deals 2 damage to each creature with flying and each player. -- Evoke {2}{G}{G} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
-mana={2}{G}{G}{G}{G}
-type=Creature
-subtype=Elemental
-power=7
-toughness=7
-[/card]
-[card]
 name=Clout of the Dominus
 text=Enchant creature -- As long as enchanted creature is blue, it gets +1/+1 and has shroud. (It can't be the target of spells or abilities.) -- As long as enchanted creature is red, it gets +1/+1 and has haste.
 mana={UR}
@@ -6205,12 +6127,6 @@ text=Name a nonland card. Search target player's graveyard, hand, and library fo
 mana={3}{B}
 type=Sorcery
 subtype=Arcane
-[/card]
-[card]
-name=Crash
-text=You may sacrifice a Mountain rather than pay Crash's mana cost. -- Destroy target artifact.
-mana={2}{R}
-type=Instant
 [/card]
 [card]
 name=Crashing Boars
@@ -7056,15 +6972,6 @@ text=Enchant land -- Whenever enchanted land is tapped for mana, its controller 
 mana={3}{G}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Dawnfluke
-text=Flash -- When Dawnfluke enters the battlefield, prevent the next 3 damage that would be dealt to target creature or player this turn. -- Evoke {W} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
-mana={3}{W}
-type=Creature
-subtype=Elemental
-power=0
-toughness=3
 [/card]
 [card]
 name=Dawnglow Infusion
@@ -8288,15 +8195,6 @@ mana={B}{B}{B}
 type=Sorcery
 [/card]
 [card]
-name=Doomsday Specter
-text=Flying -- When Doomsday Specter enters the battlefield, return a blue or black creature you control to its owner's hand. -- Whenever Doomsday Specter deals combat damage to a player, look at that player's hand and choose a card from it. The player discards that card.
-mana={2}{U}{B}
-type=Creature
-subtype=Specter
-power=2
-toughness=3
-[/card]
-[card]
 name=Door of Destinies
 text=As Door of Destinies enters the battlefield, choose a creature type. -- Whenever you cast a spell of the chosen type, put a charge counter on Door of Destinies. -- Creatures you control of the chosen type get +1/+1 for each charge counter on Door of Destinies.
 mana={4}
@@ -8337,12 +8235,6 @@ name=Dovescape
 text=({(w/u)} can be paid with either {W} or {U}.) -- Whenever a player casts a noncreature spell, counter that spell. That player puts X 1/1 white and blue Bird creature tokens with flying onto the battlefield, where X is the spell's converted mana cost.
 mana={3}{WU}{WU}{WU}
 type=Enchantment
-[/card]
-[card]
-name=Downhill Charge
-text=You may sacrifice a Mountain rather than pay Downhill Charge's mana cost. -- Target creature gets +X/+0 until end of turn, where X is the number of Mountains you control.
-mana={2}{R}
-type=Instant
 [/card]
 [card]
 name=Draco
@@ -10672,15 +10564,6 @@ mana={1}{U}
 type=Sorcery
 [/card]
 [card]
-name=Faultgrinder
-text=Trample -- When Faultgrinder enters the battlefield, destroy target land. -- Evoke {4}{R} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
-mana={6}{R}
-type=Creature
-subtype=Elemental
-power=4
-toughness=4
-[/card]
-[card]
 name=Favor of the Mighty
 text=Each creature with the highest converted mana cost has protection from all colors.
 mana={1}{W}
@@ -10905,12 +10788,6 @@ mana={U}
 type=World Enchantment
 [/card]
 [card]
-name=Fieldmist Borderpost
-text=You may pay {1} and return a basic land you control to its owner's hand rather than pay Fieldmist Borderpost's mana cost. -- Fieldmist Borderpost enters the battlefield tapped. -- {T}: Add {W} or {U} to your mana pool.
-mana={1}{W}{U}
-type=Artifact
-[/card]
-[card]
 name=Fiery Bombardment
 text=Chroma - {2}, Sacrifice a creature: Fiery Bombardment deals damage to target creature or player equal to the number of red mana symbols in the sacrificed creature's mana cost.
 mana={1}{R}
@@ -11124,12 +11001,6 @@ type=Creature
 subtype=Phoenix
 power=3
 toughness=2
-[/card]
-[card]
-name=Firewild Borderpost
-text=You may pay {1} and return a basic land you control to its owner's hand rather than pay Firewild Borderpost's mana cost. -- Firewild Borderpost enters the battlefield tapped. -- {T}: Add {R} or {G} to your mana pool.
-mana={1}{R}{G}
-type=Artifact
 [/card]
 [card]
 name=Fist of Suns
@@ -11455,15 +11326,6 @@ power=1
 toughness=2
 [/card]
 [card]
-name=Floodbringer
-text=Flying -- {2}, Return a land you control to its owner's hand: Tap target land.
-mana={1}{U}
-type=Creature
-subtype=Moonfolk Wizard
-power=1
-toughness=2
-[/card]
-[card]
 name=Floodchaser
 text=Floodchaser enters the battlefield with six +1/+1 counters on it. -- Floodchaser can't attack unless defending player controls an Island. -- {U}, Remove a +1/+1 counter from Floodchaser: Target land becomes an Island until end of turn.
 mana={5}{U}
@@ -11694,15 +11556,6 @@ type=Instant
 name=Force Void
 text=Counter target spell unless its controller pays {1}. -- Draw a card at the beginning of the next turn's upkeep.
 mana={2}{U}
-type=Instant
-[/card]
-[card]
-name=Force of Will
-target=*|stack
-auto=fizzle
-auto={0}:fizzle target(*|stack) && moveto(graveyard) && life:-1
-text=You may pay 1 life and exile a blue card from your hand rather than pay Force of Will's mana cost. -- Counter target spell.
-mana={3}{U}{U}
 type=Instant
 [/card]
 [card]
@@ -16207,24 +16060,6 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-name=Ingenious Thief
-text=Flying -- When Ingenious Thief enters the battlefield, look at target player's hand.
-mana={1}{U}
-type=Creature
-subtype=Human Rogue
-power=1
-toughness=1
-[/card]
-[card]
-name=Ingot Chewer
-text=When Ingot Chewer enters the battlefield, destroy target artifact. -- Evoke {R} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
-mana={4}{R}
-type=Creature
-subtype=Elemental
-power=3
-toughness=3
-[/card]
-[card]
 name=Inheritance
 auto=@movedto(creature|graveyard) from(Battlefield):may {3}:draw:1 controller #hardcodable similar to RV cards (when put in play you may pay {1} type)
 text=Whenever a creature is put into a graveyard from the battlefield, you may pay {3}. If you do, draw a card.
@@ -16308,15 +16143,6 @@ name=Inner Sanctum
 text=Cumulative upkeep - Pay 2 life. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Prevent all damage that would be dealt to creatures you control.
 mana={1}{W}{W}
 type=Enchantment
-[/card]
-[card]
-name=Inner-Flame Acolyte
-text=When Inner-Flame Acolyte enters the battlefield, target creature gets +2/+0 and gains haste until end of turn. -- Evoke {R} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
-mana={1}{R}{R}
-type=Creature
-subtype=Elemental Shaman
-power=2
-toughness=2
 [/card]
 [card]
 name=Inner-Flame Igniter
@@ -18695,15 +18521,6 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-name=Lichenthrope
-text=If damage would be dealt to Lichenthrope, put that many -1/-1 counters on it instead. -- At the beginning of your upkeep, remove a -1/-1 counter from Lichenthrope.
-mana={3}{G}{G}
-type=Creature
-subtype=Plant Fungus
-power=5
-toughness=5
-[/card]
-[card]
 name=Liege of the Axe
 text=Vigilance -- Morph {1}{W} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Liege of the Axe is turned face up, untap it.
 mana={3}{W}
@@ -20172,15 +19989,6 @@ mana={5}{U}
 type=Enchantment
 [/card]
 [card]
-name=Master Transmuter
-text={U}, {T}, Return an artifact you control to its owner's hand: You may put an artifact card from your hand onto the battlefield.
-mana={3}{U}
-type=Artifact Creature
-subtype=Human Artificer
-power=1
-toughness=2
-[/card]
-[card]
 name=Master Warcraft
 text=({(r/w)} can be paid with either {R} or {W}.) -- Cast Master Warcraft only before attackers are declared. -- You choose which creatures attack this turn. You choose how each creature blocks this turn.
 mana={2}{RW}{RW}
@@ -21340,12 +21148,6 @@ type=Land
 subtype=Plains
 [/card]
 [card]
-name=Mistvein Borderpost
-text=You may pay {1} and return a basic land you control to its owner's hand rather than pay Mistvein Borderpost's mana cost. -- Mistvein Borderpost enters the battlefield tapped. -- {T}: Add {U} or {B} to your mana pool.
-mana={1}{U}{B}
-type=Artifact
-[/card]
-[card]
 name=Mizzium Transreliquat
 text={3}: Mizzium Transreliquat becomes a copy of target artifact until end of turn. -- {1}{U}{R}: Mizzium Transreliquat becomes a copy of target artifact and gains this ability.
 mana={3}
@@ -21769,15 +21571,6 @@ name=Mulch
 text=Reveal the top four cards of your library. Put all land cards revealed this way into your hand and the rest into your graveyard.
 mana={1}{G}
 type=Sorcery
-[/card]
-[card]
-name=Mulldrifter
-text=Flying -- When Mulldrifter enters the battlefield, draw two cards. -- Evoke {2}{U} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
-mana={4}{U}
-type=Creature
-subtype=Elemental
-power=2
-toughness=2
 [/card]
 [card]
 name=Multani's Harmony
@@ -22526,6 +22319,10 @@ type=Sorcery
 [/card]
 [card]
 name=Nevermaker
+abilities=flying
+other={3}{U}
+auto=@movedTo(this|nonbattlezone) from(battlefield):moveTo(ownerlibrary) target(*[-land])
+auto=alternative moveto(mygraveyard)
 text=Flying -- When Nevermaker leaves the battlefield, put target nonland permanent on top of its owner's library. -- Evoke {3}{U} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
 mana={3}{U}
 type=Creature
@@ -23132,24 +22929,6 @@ mana={2}{W}
 type=Enchantment
 [/card]
 [card]
-name=Oboro Breezecaller
-text=Flying -- {2}, Return a land you control to its owner's hand: Untap target land.
-mana={1}{U}
-type=Creature
-subtype=Moonfolk Wizard
-power=1
-toughness=1
-[/card]
-[card]
-name=Oboro Envoy
-text=Flying -- {2}, Return a land you control to its owner's hand: Target creature gets -X/-0 until end of turn, where X is the number of cards in your hand.
-mana={3}{U}
-type=Creature
-subtype=Moonfolk Wizard
-power=1
-toughness=3
-[/card]
-[card]
 name=Obsessive Search
 text=Draw a card. -- Madness {U} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
 mana={U}
@@ -23215,15 +22994,6 @@ text=Swampwalk -- Whenever Odylic Wraith deals damage to a player, that player d
 mana={3}{B}
 type=Creature
 subtype=Wraith
-power=2
-toughness=2
-[/card]
-[card]
-name=Offalsnout
-text=Flash -- When Offalsnout leaves the battlefield, exile target card from a graveyard. -- Evoke {B} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
-mana={2}{B}
-type=Creature
-subtype=Elemental
 power=2
 toughness=2
 [/card]
@@ -24379,12 +24149,6 @@ mana={U}{U}
 type=Enchantment
 [/card]
 [card]
-name=Peek
-text=Look at target player's hand. -- Draw a card.
-mana={U}
-type=Instant
-[/card]
-[card]
 name=Peel from Reality
 text=Return target creature you control and target creature you don't control to their owners' hands.
 mana={1}{U}
@@ -24635,69 +24399,6 @@ power=4
 toughness=5
 [/card]
 [card]
-name=Phantom Centaur
-text=Protection from black -- Phantom Centaur enters the battlefield with three +1/+1 counters on it. -- If damage would be dealt to Phantom Centaur, prevent that damage. Remove a +1/+1 counter from Phantom Centaur.
-mana={2}{G}{G}
-type=Creature
-subtype=Centaur Spirit
-power=2
-toughness=0
-[/card]
-[card]
-name=Phantom Flock
-text=Flying -- Phantom Flock enters the battlefield with three +1/+1 counters on it. -- If damage would be dealt to Phantom Flock, prevent that damage. Remove a +1/+1 counter from Phantom Flock.
-mana={3}{W}{W}
-type=Creature
-subtype=Bird Soldier Spirit
-power=0
-toughness=0
-[/card]
-[card]
-name=Phantom Nantuko
-text=Trample -- Phantom Nantuko enters the battlefield with two +1/+1 counters on it. -- If damage would be dealt to Phantom Nantuko, prevent that damage. Remove a +1/+1 counter from Phantom Nantuko. -- {T}: Put a +1/+1 counter on Phantom Nantuko.
-mana={2}{G}
-type=Creature
-subtype=Insect Spirit
-power=0
-toughness=0
-[/card]
-[card]
-name=Phantom Nishoba
-text=Trample -- Phantom Nishoba enters the battlefield with seven +1/+1 counters on it. -- Whenever Phantom Nishoba deals damage, you gain that much life. -- If damage would be dealt to Phantom Nishoba, prevent that damage. Remove a +1/+1 counter from Phantom Nishoba.
-mana={5}{G}{W}
-type=Creature
-subtype=Cat Beast Spirit
-power=0
-toughness=0
-[/card]
-[card]
-name=Phantom Nomad
-text=Phantom Nomad enters the battlefield with two +1/+1 counters on it. -- If damage would be dealt to Phantom Nomad, prevent that damage. Remove a +1/+1 counter from Phantom Nomad.
-mana={1}{W}
-type=Creature
-subtype=Spirit Nomad
-power=0
-toughness=0
-[/card]
-[card]
-name=Phantom Tiger
-text=Phantom Tiger enters the battlefield with two +1/+1 counters on it. -- If damage would be dealt to Phantom Tiger, prevent that damage. Remove a +1/+1 counter from Phantom Tiger.
-mana={2}{G}
-type=Creature
-subtype=Cat Spirit
-power=1
-toughness=0
-[/card]
-[card]
-name=Phantom Wurm
-text=Phantom Wurm enters the battlefield with four +1/+1 counters on it. -- If damage would be dealt to Phantom Wurm, prevent that damage. Remove a +1/+1 counter from Phantom Wurm.
-mana={4}{G}{G}
-type=Creature
-subtype=Wurm Spirit
-power=2
-toughness=0
-[/card]
-[card]
 name=Phosphorescent Feast
 text=Chroma - Reveal any number of cards in your hand. You gain 2 life for each green mana symbol in those cards' mana costs.
 mana={2}{G}{G}{G}
@@ -24888,15 +24589,6 @@ name=Phyrexian Tyranny
 text=Whenever a player draws a card, that player loses 2 life unless he or she pays {2}.
 mana={U}{B}{R}
 type=Enchantment
-[/card]
-[card]
-name=Phytohydra
-text=If damage would be dealt to Phytohydra, put that many +1/+1 counters on it instead.
-mana={2}{G}{W}{W}
-type=Creature
-subtype=Plant Hydra
-power=1
-toughness=1
 [/card]
 [card]
 name=Pikemen
@@ -26414,15 +26106,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Quirion Ranger
-text=Return a Forest you control to its owner's hand: Untap target creature. Activate this ability only once each turn.
-mana={G}
-type=Creature
-subtype=Elf
-power=1
-toughness=1
-[/card]
-[card]
 name=Qumulox
 text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) -- Flying
 mana={6}{U}{U}
@@ -27486,15 +27169,6 @@ mana={2}{W}{W}
 type=Instant
 [/card]
 [card]
-name=Reveillark
-text=Flying -- When Reveillark leaves the battlefield, return up to two target creature cards with power 2 or less from your graveyard to the battlefield. -- Evoke {5}{W} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
-mana={4}{W}
-type=Creature
-subtype=Elemental
-power=4
-toughness=3
-[/card]
-[card]
 name=Reveille Squad
 text=Whenever one or more creatures attack you, if Reveille Squad is untapped, you may untap all creatures you control.
 mana={2}{W}{W}
@@ -27538,12 +27212,6 @@ type=Instant
 name=Reverberation
 text=All damage that would be dealt this turn by target sorcery spell is dealt to that spell's controller instead.
 mana={2}{U}{U}
-type=Instant
-[/card]
-[card]
-name=Reverent Mantra
-text=You may exile a white card from your hand rather than pay Reverent Mantra's mana cost. -- All creatures gain protection from the color of your choice until end of turn.
-mana={3}{W}
 type=Instant
 [/card]
 [card]
@@ -29292,15 +28960,6 @@ mana={2}
 type=Artifact
 [/card]
 [card]
-name=Scarblade Elite
-text={T}, Exile an Assassin card from your graveyard: Destroy target creature.
-mana={B}{B}
-type=Creature
-subtype=Elf Assassin
-power=2
-toughness=2
-[/card]
-[card]
 name=Scarecrow
 text={6}, {T}: Prevent all damage that would be dealt to you this turn by creatures with flying.
 mana={5}
@@ -29516,15 +29175,6 @@ name=Scrounge
 text=Target opponent chooses an artifact card in his or her graveyard. Put that card onto the battlefield under your control.
 mana={2}{B}
 type=Sorcery
-[/card]
-[card]
-name=Scryb Ranger
-text=Flash (You may cast this spell any time you could cast an instant.) -- Flying, protection from blue -- Return a Forest you control to its owner's hand: Untap target creature. Activate this ability only once each turn.
-mana={1}{G}
-type=Creature
-subtype=Faerie
-power=1
-toughness=1
 [/card]
 [card]
 name=Scrying Glass
@@ -30589,12 +30239,12 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Shriekmaw
-text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- When Shriekmaw enters the battlefield, destroy target nonartifact, nonblack creature. -- Evoke {1}{B} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
-mana={4}{B}
+name=Shrieking Specter
+text=Flying -- Whenever Shrieking Specter attacks, defending player discards a card.
+mana={5}{B}
 type=Creature
-subtype=Elemental
-power=3
+subtype=Specter
+power=2
 toughness=2
 [/card]
 [card]
@@ -31480,12 +31130,6 @@ mana={2}{GU}
 type=Instant
 [/card]
 [card]
-name=Snapback
-text=You may exile a blue card from your hand rather than pay Snapback's mana cost. -- Return target creature to its owner's hand.
-mana={1}{U}
-type=Instant
-[/card]
-[card]
 name=Snapping Thragg
 text=Whenever Snapping Thragg deals combat damage to a player, you may have it deal 3 damage to target creature that player controls. -- Morph {4}{R}{R} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 mana={4}{R}
@@ -31742,36 +31386,9 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Soratami Mindsweeper
-text=Flying -- {2}, Return a land you control to its owner's hand: Target player puts the top two cards of his or her library into his or her graveyard.
-mana={3}{U}
-type=Creature
-subtype=Moonfolk Wizard
-power=1
-toughness=4
-[/card]
-[card]
-name=Soratami Mirror-Guard
-text=Flying -- {2}, Return a land you control to its owner's hand: Target creature with power 2 or less is unblockable this turn.
-mana={3}{U}
-type=Creature
-subtype=Moonfolk Wizard
-power=3
-toughness=1
-[/card]
-[card]
 name=Soratami Mirror-Mage
 text=Flying -- {3}, Return three lands you control to their owner's hand: Return target creature to its owner's hand.
 mana={3}{U}
-type=Creature
-subtype=Moonfolk Wizard
-power=2
-toughness=1
-[/card]
-[card]
-name=Soratami Rainshaper
-text=Flying -- {3}, Return a land you control to its owner's hand: Target creature you control gains shroud until end of turn. (It can't be the target of spells or abilities.)
-mana={2}{U}
 type=Creature
 subtype=Moonfolk Wizard
 power=2
@@ -31820,12 +31437,6 @@ type=Creature
 subtype=Human Wizard
 power=1
 toughness=1
-[/card]
-[card]
-name=Sorcerous Sight
-text=Look at target opponent's hand. -- Draw a card.
-mana={U}
-type=Sorcery
 [/card]
 [card]
 name=Sorin Markov
@@ -32524,15 +32135,6 @@ name=Spite // Malice (Spite)
 text=Counter target noncreature spell.
 mana={3}{U}
 type=Instant
-[/card]
-[card]
-name=Spitebellows
-text=When Spitebellows leaves the battlefield, it deals 6 damage to target creature. -- Evoke {1}{R}{R} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
-mana={5}{R}
-type=Creature
-subtype=Elemental
-power=6
-toughness=1
 [/card]
 [card]
 name=Spitemare
@@ -34070,15 +33672,6 @@ power=4
 toughness=3
 [/card]
 [card]
-name=Talas Explorer
-text=Flying -- When Talas Explorer enters the battlefield, look at target opponent's hand.
-mana={1}{U}
-type=Creature
-subtype=Human Pirate Scout
-power=1
-toughness=1
-[/card]
-[card]
 name=Talon of Pain
 text=Whenever a source you control other than Talon of Pain deals damage to an opponent, put a charge counter on Talon of Pain. -- {X}, {T}, Remove X charge counters from Talon of Pain: Talon of Pain deals X damage to target creature or player.
 mana={4}
@@ -34385,15 +33978,6 @@ name=Telemin Performance
 text=Target opponent reveals cards from the top of his or her library until he or she reveals a creature card. That player puts all noncreature cards revealed this way into his or her graveyard, then you put the creature card onto the battlefield under your control.
 mana={3}{U}{U}
 type=Sorcery
-[/card]
-[card]
-name=Telepathic Spies
-text=When Telepathic Spies enters the battlefield, look at target opponent's hand.
-mana={2}{U}
-type=Creature
-subtype=Human Wizard
-power=2
-toughness=2
 [/card]
 [card]
 name=Telepathy
@@ -35104,15 +34688,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Thrull Surgeon
-text={1}{B}, Sacrifice Thrull Surgeon: Look at target player's hand and choose a card from it. That player discards that card. Activate this ability only any time you could cast a sorcery.
-mana={1}{B}
-type=Creature
-subtype=Thrull
-power=1
-toughness=1
-[/card]
-[card]
 name=Thrull Wizard
 text={1}{B}: Counter target black spell unless that spell's controller pays {B} or {3}.
 mana={2}{B}
@@ -35132,12 +34707,6 @@ name=Thunderblade Charge
 text=Thunderblade Charge deals 3 damage to target creature or player. -- Whenever one or more creatures you control deal combat damage to a player, if Thunderblade Charge is in your graveyard, you may pay {2}{R}{R}{R}. If you do, you may cast it without paying its mana cost.
 mana={1}{R}{R}
 type=Sorcery
-[/card]
-[card]
-name=Thunderclap
-text=You may sacrifice a Mountain rather than pay Thunderclap's mana cost. -- Thunderclap deals 3 damage to target creature.
-mana={2}{R}
-type=Instant
 [/card]
 [card]
 name=Thunderheads
@@ -35164,12 +34733,6 @@ type=Artifact
 name=Thwart
 text=You may return three Islands you control to their owner's hand rather than pay Thwart's mana cost. -- Counter target spell.
 mana={2}{U}{U}
-type=Instant
-[/card]
-[card]
-name=Tidal Bore
-text=You may return an Island you control to its owner's hand rather than pay Tidal Bore's mana cost. -- You may tap or untap target creature.
-mana={1}{U}
 type=Instant
 [/card]
 [card]
@@ -36272,12 +35835,6 @@ power=0
 toughness=4
 [/card]
 [card]
-name=Unmask
-text=You may exile a black card from your hand rather than pay Unmask's mana cost. -- Target player reveals his or her hand. You choose a nonland card from it. That player discards that card.
-mana={3}{B}
-type=Sorcery
-[/card]
-[card]
 name=Unnatural Hunger
 text=Enchant creature -- At the beginning of the upkeep of enchanted creature's controller, Unnatural Hunger deals damage to that player equal to that creature's power unless he or she sacrifices another creature.
 mana={3}{B}{B}
@@ -36738,12 +36295,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Veinfire Borderpost
-text=You may pay {1} and return a basic land you control to its owner's hand rather than pay Veinfire Borderpost's mana cost. -- Veinfire Borderpost enters the battlefield tapped. -- {T}: Add {B} or {R} to your mana pool.
-mana={1}{B}{R}
-type=Artifact
-[/card]
-[card]
 name=Venarian Glimmer
 text=Target player reveals his or her hand. You choose a nonland card with converted mana cost X or less from it. That player discards that card.
 mana={X}{U}
@@ -37030,15 +36581,6 @@ mana={3}{G}{U}
 type=Instant
 [/card]
 [card]
-name=Vigor
-text=Trample -- If damage would be dealt to a creature you control other than Vigor, prevent that damage. Put a +1/+1 counter on that creature for each 1 damage prevented this way. -- When Vigor is put into a graveyard from anywhere, shuffle it into its owner's library.
-mana={3}{G}{G}{G}
-type=Creature
-subtype=Elemental Incarnation
-power=6
-toughness=6
-[/card]
-[card]
 name=Vigor Mortis
 text=Return target creature card from your graveyard to the battlefield. If {G} was spent to cast Vigor Mortis, that creature enters the battlefield with an additional +1/+1 counter on it.
 mana={2}{B}{B}
@@ -37070,15 +36612,6 @@ name=Vile Requiem
 text=At the beginning of your upkeep, you may put a verse counter on Vile Requiem. -- {1}{B}, Sacrifice Vile Requiem: Destroy up to X target nonblack creatures, where X is the number of verse counters on Vile Requiem. They can't be regenerated.
 mana={2}{B}{B}
 type=Enchantment
-[/card]
-[card]
-name=Vine Dryad
-text=Flash -- Forestwalk -- You may exile a green card from your hand rather than pay Vine Dryad's mana cost.
-mana={3}{G}
-type=Creature
-subtype=Dryad
-power=1
-toughness=3
 [/card]
 [card]
 name=Vine Kami
@@ -37460,24 +36993,6 @@ power=1
 toughness=2
 [/card]
 [card]
-name=Walker of the Grove
-text=When Walker of the Grove leaves the battlefield, put a 4/4 green Elemental creature token onto the battlefield. -- Evoke {4}{G} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
-mana={6}{G}{G}
-type=Creature
-subtype=Elemental
-power=7
-toughness=7
-[/card]
-[card]
-name=Walking Archive
-text=Defender (This creature can't attack.) -- Walking Archive enters the battlefield with a +1/+1 counter on it. -- At the beginning of each player's upkeep, that player draws a card for each +1/+1 counter on Walking Archive. -- {2}{W}{U}: Put a +1/+1 counter on Walking Archive.
-mana={3}
-type=Artifact Creature
-subtype=Golem
-power=1
-toughness=1
-[/card]
-[card]
 name=Walking Desecration
 text={B}, {T}: Creatures of the creature type of your choice attack this turn if able.
 mana={2}{B}
@@ -37679,15 +37194,6 @@ name=Wand of Ith
 text={3}, {T}: Target player reveals a card at random from his or her hand. If it's a land card, that player discards it unless he or she pays 1 life. If it isn't a land card, the player discards it unless he or she pays life equal to its converted mana cost. Activate this ability only during your turn.
 mana={4}
 type=Artifact
-[/card]
-[card]
-name=Wanderguard Sentry
-text=When Wanderguard Sentry enters the battlefield, look at target opponent's hand.
-mana={4}{U}
-type=Creature
-subtype=Drone
-power=3
-toughness=3
 [/card]
 [card]
 name=Wandering Eye
@@ -38332,12 +37838,6 @@ power=5
 toughness=4
 [/card]
 [card]
-name=Wildfield Borderpost
-text=You may pay {1} and return a basic land you control to its owner's hand rather than pay Wildfield Borderpost's mana cost. -- Wildfield Borderpost enters the battlefield tapped. -- {T}: Add {G} or {W} to your mana pool.
-mana={1}{G}{W}
-type=Artifact
-[/card]
-[card]
 name=Wildfire
 text=Each player sacrifices four lands. Wildfire deals 4 damage to each creature.
 mana={4}{R}{R}
@@ -38558,15 +38058,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Wispmare
-text=Flying -- When Wispmare enters the battlefield, destroy target enchantment. -- Evoke {W} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
-mana={2}{W}
-type=Creature
-subtype=Elemental
-power=1
-toughness=3
-[/card]
-[card]
 name=Wistful Thinking
 text=Target player draws two cards, then discards four cards.
 mana={2}{U}
@@ -38755,15 +38246,6 @@ type=Creature
 subtype=Shapeshifter
 power=2
 toughness=1
-[/card]
-[card]
-name=Woodwraith Strangler
-text=Exile a creature card from your graveyard: Regenerate Woodwraith Strangler.
-mana={2}{B}{G}
-type=Creature
-subtype=Plant Zombie
-power=2
-toughness=2
 [/card]
 [card]
 name=Woolly Razorback

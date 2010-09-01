@@ -150,6 +150,7 @@ brainstorm.txt
 bramblewood_paragon.txt
 brass_man.txt
 brass_man_i161.txt
+briarhorn.txt
 cage_of_hands.txt
 Call_to_Heel_1.txt
 Call_to_Heel_2.txt
@@ -229,6 +230,7 @@ fastbond.txt
 fastbond2.txt
 fault_line.txt
 feral_hydra.txt
+fieldmist_borderpost.txt
 fire_tempest.txt
 firebreathing.txt
 fists_of_ironwood.txt
@@ -360,6 +362,7 @@ overrun.txt
 paralysis.txt
 paralysis2.txt
 persuasion.txt
+phytohydra.txt
 plague_rats.txt
 plumes_of_peace_i260.txt
 pouncing_jaguar_i425.txt
@@ -474,6 +477,7 @@ urzas_lands2.txt
 urzas_mine_i287.txt
 vampire_bats.txt
 vampiric_link.txt
+vine_dryad.txt
 volcanic_eruption.txt
 walking_wall.txt
 wall_of_diffusion.txt

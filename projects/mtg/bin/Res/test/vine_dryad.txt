@@ -1,0 +1,20 @@
+#Testing alternative casting cost (Example: Vine Dryad)
+[init]
+firstmain
+[player1]
+hand:Vine Dryad,Grizzly Bears
+manapool:{0}
+[player2]
+[do]
+Vine Dryad
+choice 0
+Grizzly Bears
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:Vine Dryad
+exile:Grizzly Bears
+manapool:{0}
+[PLAYER2]
+life:20
+[END]

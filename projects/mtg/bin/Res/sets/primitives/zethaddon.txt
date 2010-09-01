@@ -300,184 +300,6 @@ type=nothing
 id=-33663377
 [/card]
 [card]
-name=Reveillark
-abilities=flying
-kicker={1}
-auto=@movedTo(this|mygraveyard):may moveto(mybattlefield) target(creature[power<=2]|mygraveyard) && token(-10101097)
-auto=@movedTo(this|myhand):may moveto(mybattlefield) target(creature[power<=2]|mygraveyard) && token(-10101097)
-auto=@movedTo(this|exile):may moveto(mybattlefield) target(creature[power<=2]|mygraveyard) && token(-10101097)
-auto=@movedTo(this|mylibrary):may moveto(mybattlefield) target(creature[power<=2]|mygraveyard) && token(-10101097)
-auto=kicker bury all(this)
-mana={4}{W}
-type=Creature
-subtype=Elemental
-power=4
-toughness=3
-[/card]
-[card]
-name=wispmare
-auto=bury target(creature[-artifact,-black]|battlefield) 
-autohand={W}{s}:token(-14655443) asSorcery && bury target(enchantment|battlefield) 
-mana={2}{w}
-text=When Wispmare enters the battlefield, destroy target enchantment. Evoke {W} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
-type=creature
-abilities=flying
-subtype=Elemental
-power=1
-toughness=3
-[/card]
-[card]
-name=Evocation of Shrieks
-auto=moveto(exile) all(this)
-power=1
-toughness=3
-id=-14655443
-type=nothing
-subtype=creature Elemental
-[/card]
-[card]
-name=walker of the grove
-auto=@movedTo(this|mygraveyard):token(-16455443)
-auto=@movedTo(this|myhand):token(-16455443)
-auto=@movedTo(this|exile):token(-16455443)
-auto=@movedTo(this|mylibrary):token(-16455443)
-autohand={4}{G}{s}:token(-16455443) asSorcery 
-mana={6}{G}{G}
-text=When Walker of the Grove leaves the battlefield, put a 4/4 green Elemental creature token onto the battlefield. Evoke {4}{G} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
-type=creature
-subtype=Elemental
-power=7
-toughness=7
-[/card]
-[card]
-name=Evocation of Spite
-power=4
-toughness=4
-id=-16455443
-type=creature
-subtype=green Elemental
-[/card]
-[card]
-name=Spitebellows
-auto=@movedTo(this|mygraveyard):Damage:6 target(creature)
-auto=@movedTo(this|myhand):Damage:6 target(creature)
-auto=@movedTo(this|exile):Damage:6 target(creature)
-auto=@movedTo(this|mylibrary):Damage:6 target(creature)
-autohand={1}{R}{R}{s}:token(-16555443) asSorcery 
-mana={5}{R}
-text=When Spitebellows leaves the battlefield, it deals 6 damage to target creature. Evoke {1}{R}{R} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
-type=creature
-subtype=Elemental
-power=6
-toughness=1
-[/card]
-[card]
-name=Evocation of Spite
-auto=@movedTo(this|mygraveyard):Damage:6 target(creature)
-auto=@movedTo(this|exile):Damage:6 target(creature)
-auto=moveto(exile) all(this)
-power=6
-toughness=1
-id=-16555443
-type=nothing
-subtype=creature Elemental
-[/card]
-[card]
-name=Shriekmaw
-auto=bury target(creature[-artifact,-black]|battlefield) 
-autohand={1}{B}{s}:token(-16655443) asSorcery && bury target(creature[-artifact;-black]|battlefield) 
-mana={4}{B}
-text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) When Shriekmaw enters the battlefield, destroy target nonartifact, nonblack creature. Evoke {1}{B} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
-type=creature
-abilities=fear
-subtype=Elemental
-power=3
-toughness=2
-[/card]
-[card]
-name=Evocation of Shrieks
-auto=moveto(exile) all(this)
-power=3
-toughness=2
-id=-16655443
-type=nothing
-subtype=creature Elemental
-[/card]
-[card]
-name=Offalsnout
-auto=@movedTo(this|mygraveyard):moveTo(exile) target(*|graveyard)
-auto=@movedTo(this|myhand):moveTo(exile) target(*|graveyard)
-auto=@movedTo(this|exile): moveTo(exile) target(*|graveyard)
-auto=@movedTo(this|mylibrary): moveTo(exile) target(*|graveyard)
-autohand={B}{s}:token(-16755443) asSorcery 
-mana={2}{B}
-text=Flash. When Offalsnout leaves the battlefield, exile target card from a graveyard. Evoke {B} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
-type=creature
-abilities=flash
-subtype=Elemental
-power=2
-toughness=2
-[/card]
-[card]
-name=Evocation of Offalsnout
-auto=@movedTo(this|mygraveyard):moveTo(exile) target(*|graveyard)
-auto=@movedTo(this|exile): moveTo(exile) target(*|graveyard)
-auto=moveto(exile) all(this)
-power=2
-toughness=2
-id=-16755443
-type=nothing
-subtype=creature Elemental
-[/card]
-[card]
-name=Nevermaker
-auto=@movedTo(this|mygraveyard):moveTo(ownerLibrary) target(*[-land]|battlefield)
-auto=@movedTo(this|myhand):moveTo(ownerLibrary) target(*[-land]|battlefield)
-auto=@movedTo(this|exile): moveTo(ownerLibrary) target(*[-land]|battlefield)
-auto=@movedTo(this|mylibrary): moveTo(ownerLibrary) target(*[-land]|battlefield)
-autohand={2}{u}{s}:token(-16855443) asSorcery 
-mana={3}{U}
-text=Flying. When Nevermaker leaves the battlefield, put target nonland permanent on top of its owner's library. Evoke {3}{U} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
-type=creature
-abilities=flying
-subtype=Elemental
-power=2
-toughness=3
-[/card]
-[card]
-name=Evocation of Neverland
-auto=@movedTo(this|mygraveyard):moveTo(ownerLibrary) target(*[-land]|battlefield)
-auto=@movedTo(this|exile): moveTo(ownerLibrary) target(*[-land]|battlefield)
-auto=moveto(exile) all(this)
-power=2
-toughness=3
-id=-16855443
-type=nothing
-subtype=creature Elemental
-[/card]
-[card]
-name=Mulldrifter
-auto=draw:2
-autohand={2}{u}{s}:token(-16955443) asSorcery && discard:2 target(player)
-mana={4}{U}
-text=Flying. When Mulldrifter enters the battlefield, draw two cards. Evoke {2}{U} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
-type=creature
-abilities=flying
-subtype=Elemental
-power=2
-toughness=2
-[/card]
-[card]
-name=Evocation of Drifting
-auto=may draw:2
-auto=moveto(exile) all(this)
-power=2
-toughness=2
-id=-16955443
-type=nothing
-subtype=creature Elemental 
-[/card]
-[card]
 name=Mournwhelk
 auto=discard:2 target(player)
 autohand={3}{w}{s}:token(-17055443) asSorcery
@@ -522,47 +344,6 @@ id=-17155443
 type=nothing
 subtype=creature Elemental 
 [/card]
-[card]
-name=Inner-Flame Acolyte
-auto=bury target(Artifact|battlefield)
-autohand={R}{s}:token(-17255443) asSorcery && target(creature) 2/0 ueot
-mana={1}{R}{R}
-text=When Inner-Flame Acolyte enters the battlefield, target creature gets +2/+0 and gains haste until end of turn. Evoke {R} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
-type=creature
-subtype=Elemental Shaman
-power=2
-toughness=2
-[/card]
-[card]
-name=Evocation of Flame
-auto=moveto(exile) all(this)
-power=2
-toughness=2
-id=-17255443
-type=nothing
-subtype=creature Elemental Shaman
-[/card]
-[card]
-name=Ingot Chewer
-auto=bury target(Artifact|battlefield)
-autohand={R}{s}:token(-17355443) asSorcery 
-mana={4}{R}
-text=When Ingot Chewer enters the battlefield, destroy target artifact. Evoke {R} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
-type=creature
-subtype=Elemental
-power=3
-toughness=3
-[/card]
-[card]
-name=Evocation of ingot
-auto=may bury target(Artifact|battlefield) 
-auto=moveto(exile) all(this)
-power=3
-toughness=3
-id=-17355443
-type=nothing
-subtype=creature Elemental
-[/card]
 [card]needs more testing
 name=Glarewielder
 auto=token(-17455443) && cantblock target(creature|battlefield) 
@@ -585,95 +366,6 @@ id=-17455443
 type=nothing
 subtype=creature Elemental
 [/card]needs more testing
-[card]
-name=Faultgrinder
-auto=bury target(Land|battlefield)
-autohand={4}{R}{s}:token(-17555443) asSorcery 
-mana={6}{R}
-text=Trample. When Faultgrinder enters the battlefield, destroy target land. Evoke {4}{R} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
-type=creature
-subtype=Elemental
-power=4
-toughness=4
-abilities=trample
-[/card]
-[card]
-name=Evocation of Fault
-auto=may bury target(Land|battlefield) 
-auto=moveto(exile) all(this)
-power=4
-toughness=4
-abilities=trample
-id=-17555443
-type=nothing
-subtype=creature Elemental
-[/card]
-[card]
-name=Cloudthresher
-auto=damage:2 all(creature[flying],players)
-autohand={2}{G}{G}{s}:token(-17655443) asSorcery 
-mana={2}{G}{G}{G}{G}
-text=Flash. Reach (This can block creatures with flying.) When Cloudthresher enters the battlefield, it deals 2 damage to each creature with flying and each player. Evoke {2}{G}{G} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
-type=creature
-subtype=Elemental
-power=7
-toughness=7
-abilities=flash, reach
-[/card]
-[card]
-name=Evocation of Clouds
-auto=damage:2 all(creature[flying],players)
-auto=moveto(exile) all(this)
-power=7
-toughness=7
-abilities=flash
-id=-17655443
-type=nothing
-subtype=creature Elemental
-[/card]
-[card]
-name=Briarhorn
-auto=target(creature) 3/3 ueot
-autohand={1}{G}{s}:token(-17755443) asSorcery && target(creature) 3/3 ueot
-mana={3}{G}
-text=When Briarhorn enters the battlefield, target creature gets +3/+3 until end of turn.
-type=creature
-subtype=Elemental
-power=3
-toughness=3
-abilities=flash
-[/card]
-[card]
-name=Evocation of Briarhorn
-auto=moveto(exile) all(this)
-power=3
-toughness=3
-abilities=flash
-id=-17755443
-type=nothing
-subtype=creature Elemental
-[/card]
-[card]
-name=aethersnipe
-auto=moveTo(ownerHand) target(*[-land]|battlefield) 
-autohand={1}{U}{U}{s}:token(-17855443) asSorcery 
-mana={5}{U}
-text=When Æthersnipe enters the battlefield, return target nonland permanent to its owner's hand. Evoke  (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
-type=creature
-subtype=Elemental
-power=4
-toughness=4
-[/card]
-[card]
-name=Evocation of aether
-auto=may moveTo(ownerHand) target(*[-land]|battlefield) 
-auto=moveto(exile) all(this)
-power=4
-toughness=4
-id=-17855443
-type=nothing
-subtype=creature Elemental
-[/card]
 [card]
 name=Shapeshifter
 auto=@each myupkeep: token(-77006650)
@@ -848,7 +540,6 @@ power=2
 toughness=2
 type=creature
 [/card]
-
 [card]
 name=Ascending Aven
 autohand={3}:token(16655337) asSorcery && moveto(exile) target(Ascending Aven|myhand)
@@ -1380,7 +1071,6 @@ auto=all(Ivory Giant|mybattlefield) haste  && moveto(exile) all(this)
 id=-6612
 type=nothing
 [/card]
-
 [card]
 name=Keldon Halberdier
 autohand={R}:token(16655458) asSorcery 
@@ -1726,7 +1416,6 @@ auto=moveto(exile) all(this)
 id=-29863
 type=nothing
 [/card]
-
 [card]
 name=Veiling Oddity
 autohand={1}{U}:token(16655476) asSorcery 
@@ -2205,14 +1894,6 @@ id=-2873012
 auto=moveTo(myhand) target(creature[manacost<=12]|mylibrary)
 type=nothing
 auto=moveto(exile) all(this)
-[/card]
-[card]
-name=Legacy Weapon
-auto={w}{R}{G}{B}{U}:moveto(exile) target(*|battlefield)
-autograveyard=moveTo(ownerlibrary) && shuffle
-text={w}{R}{G}{B}{U}:Exile target permanent. If Legacy Weapon would be put into a graveyard from anywhere, reveal Legacy Weapon and shuffle it into its owner's library instead.
-type=Legendary Artifact
-mana={7}
 [/card]
 [card]
 name=Amulet of Vigor
@@ -2963,16 +2644,6 @@ auto=moveto(graveyard) target(*|myhand)
 auto=moveto(exile) all(this)
 id=-91111
 type=nothing
-[/card]
-[card]
-name=Master Transmuter
-auto={U}{t}:moveto(ownerhand) target(artifact|mybattlefield) && token(-91112)
-text={t}{U}:Return an artifact you control to its owner's hand: You may put an artifact card from your hand onto the battlefield.
-type=artifact creature
-power=1
-toughness=2
-subtype=Human Artificer
-mana={3}{u}
 [/card]
 [card]
 name=swapeffect

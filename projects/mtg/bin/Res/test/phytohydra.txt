@@ -1,0 +1,31 @@
+#Testing prevent:*number* keyword.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Lightning Bolt
+manapool:{R}
+inplay:phytohydra
+[PLAYER2]
+[DO]
+Lightning Bolt
+phytohydra
+next
+#begin
+next
+#attackers
+phytohydra
+next
+#blockers
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+life:20
+inplay:phytohydra
+graveyard:Lightning Bolt
+[PLAYER2]
+life:16
+[END]

@@ -1,0 +1,21 @@
+#Testing alternative casting cost (Example: Vine Dryad)
+[init]
+firstmain
+[player1]
+hand:Fieldmist Borderpost
+inplay:Plains
+manapool:{1}
+[player2]
+[do]
+Fieldmist Borderpost
+choice 0
+Plains
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:Fieldmist Borderpost
+hand:Plains
+manapool:{0}
+[PLAYER2]
+life:20
+[END]

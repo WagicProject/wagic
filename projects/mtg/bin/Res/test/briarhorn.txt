@@ -1,0 +1,30 @@
+#Testing Evoke (Briarhorn)
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+hand:Briarhorn
+inplay:Grizzly Bears
+manapool:{G}{G}
+[PLAYER2]
+life:20
+[DO]
+Briarhorn
+choice 0
+Grizzly Bears
+Grizzly Bears
+next
+#blockers 
+next
+#combatdamage 2
+next
+#endofcombat 2
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Grizzly Bears
+graveyard:Briarhorn
+manapool:{0}
+life:20
+[PLAYER2]
+life:15
+[END]
