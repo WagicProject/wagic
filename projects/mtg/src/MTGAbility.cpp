@@ -1193,6 +1193,14 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
   }
 
+ //frozen, next untap this does not untap.
+  found = s.find("frozen");
+  if (found != string::npos){
+    MTGAbility * a = NEW AAFrozen(id,card,target);
+    a->oneShot = 1;
+    return a;
+  }
+
   //Untapper (Ley Druid...)
   found = s.find("untap");
   if (found != string::npos){

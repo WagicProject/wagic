@@ -64,6 +64,9 @@ const char* Constants::MTGBasicAbilities[] = {
 "wilting",//source takes damage in the form of -1/-1 counters.
 "vigor",//instead of taking damage the source gains +1/+1 counters
 "changeling",//this card is every creature type at all times
+"absorb",//timeshifted sliver ability. if damage would be dealt to card, prevent 1 of that damage.
+"treason",
+"unearth",
 };
 
 

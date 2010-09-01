@@ -40,9 +40,8 @@ int cardsinhand = game->players[0]->game->hand->nb_cards;
       return 1;
 	  }
   if (playerMana->canAfford(cost)){
-  return 1;
-  }
-
+      return 1;
+      }
   }
   return 0;
 }
@@ -53,19 +52,10 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card){
   ManaCost * alternative = card->getManaCost()->alternative;
   ManaCost * playerMana = player->getManaPool();
 //this handles extra cost payments at the moment a card is played.
-  if (cost->isExtraPaymentSet()){
-    if (!game->targetListIsSet(card)){
-      return 0;
-	}
-  }else{
-    cost->setExtraCostsAction(this, card);
-    game->waitForExtraPayment = cost->extraCosts;
-    return 0;
-  }
-
+ 
 //as long as you dont have enough mana to pay the real cost, and the alternative contains extra cost, add extras
   if(!playerMana->canAfford(cost) && playerMana->canAfford(alternative)){
-	  if (cost->alternative->isExtraPaymentSet()){
+	if (cost->alternative->isExtraPaymentSet()){
     if (!game->targetListIsSet(card)){
       return 0;
 	}
@@ -76,6 +66,15 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card){
 	  }
   }
 //------------------------------------------------------------------------
+  if (cost->isExtraPaymentSet()){
+    if (!game->targetListIsSet(card)){
+      return 0;
+	}
+  }else{
+    cost->setExtraCostsAction(this, card);
+    game->waitForExtraPayment = cost->extraCosts;
+    return 0;
+  }
 
   ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
   int payResult = player->getManaPool()->pay(card->getManaCost());
@@ -550,8 +549,80 @@ HUDDisplay::~HUDDisplay(){
     a->isClone = 1;
     return a;
   }
+//unearth rule----------------------------------
+//if the card leaves play, exile it instead.
+  MTGUnearthRule::MTGUnearthRule(int _id):MTGAbility(_id,NULL){};
 
+  int MTGUnearthRule::receiveEvent(WEvent * event){
+    if (event->type == WEvent::CHANGE_ZONE){
+      WEventZoneChange * e = (WEventZoneChange *) event;
+      MTGCardInstance * card = e->card->previous;
+      if (card && card->basicAbilities[Constants::UNEARTH]){
+        int ok = 0;
+        for (int i = 0; i < 2 ; i++){
+          Player * p = game->players[i];
+          if (e->from == p->game->inPlay) ok = 1;
+        }
+        if (!ok) return 0;
+        for (int i = 0; i < 2 ; i++){
+          Player * p = game->players[i];
+		  if (e->to == p->game->graveyard || e->to == p->game->hand || e->to == p->game->library){
+			  p->game->putInExile(e->card);
+            return 1;
+          }
+        }
+      }
+    }
+    return 0;
+  }
 
+  ostream& MTGUnearthRule::toString(ostream& out) const
+  {
+    out << "MTGUnearthRule ::: (";
+    return MTGAbility::toString(out) << ")";
+  }
+  int MTGUnearthRule::testDestroy(){return 0;}
+  MTGUnearthRule * MTGUnearthRule::clone() const{
+    MTGUnearthRule * a =  NEW MTGUnearthRule(*this);
+    a->isClone = 1;
+    return a;
+  }
+//----------------------------------------------------------------------
+//sneakattack rule------------------------------------------------------
+//this rule also handles the exile of unearth cards at end of turn.
+
+  MTGSneakAttackRule::MTGSneakAttackRule(int _id):MTGAbility(_id,NULL){};
+
+  int MTGSneakAttackRule::receiveEvent(WEvent *e){
+  if (WEventPhaseChange* event = dynamic_cast<WEventPhaseChange*>(e)) {
+    if (Constants::MTG_PHASE_ENDOFTURN == event->from->id) {
+       for (int j = 0; j < 2 ; j++){
+      Player * p = game->players[j];
+      MTGGameZone * z = p->game->inPlay;
+      for (int i= 0; i < z->nb_cards; i++){
+        MTGCardInstance * card = z->cards[i];
+		if (card->has(Constants::TREASON)) {p->game->putInGraveyard(card);i--;}
+		if (card->has(Constants::UNEARTH)) {p->game->putInExile(card);i--;}
+	  }
+	 }
+	}
+  return 1;
+  }
+  return 1;
+  }
+
+  ostream& MTGSneakAttackRule::toString(ostream& out) const
+  {
+    out << "MTGSneakAttackRule ::: (";
+    return MTGAbility::toString(out) << ")";
+  }
+  int MTGSneakAttackRule::testDestroy(){return 0;}
+  MTGSneakAttackRule * MTGSneakAttackRule::clone() const{
+    MTGSneakAttackRule * a =  NEW MTGSneakAttackRule(*this);
+    a->isClone = 1;
+    return a;
+  }
+  //-------------------------------------------------------------------
   MTGTokensCleanup::MTGTokensCleanup(int _id):MTGAbility(_id, NULL){}
 
   int MTGTokensCleanup::receiveEvent(WEvent * e){
@@ -684,4 +755,3 @@ HUDDisplay::~HUDDisplay(){
     a->isClone = 1;
     return a;
   }
-

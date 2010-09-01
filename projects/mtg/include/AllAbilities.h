@@ -53,8 +53,6 @@ public:
       intValue = target->getManaCost()->getConvertedCost();
 	}else if (s == "lifetotal"){
       intValue = target->controller()->life;
-	}else if (s == "sunburst"){
-		intValue = target->costAmount;
 	}else if (s == "odcount"){
       intValue = target->controller()->opponent()->damageCount;
 	}else if (s == "opponentlifetotal"){
@@ -2330,6 +2328,32 @@ class AAUntapper:public ActivatedAbility{
   }
 };
 
+/* Can prevent a card from untapping next untap */
+class AAFrozen:public ActivatedAbility{
+ public:
+ AAFrozen(int id, MTGCardInstance * card, MTGCardInstance * _target,ManaCost * _cost = NULL, int doTap = 0):ActivatedAbility(id,card, _cost,0,doTap){
+   target = _target;
+  }
+
+  int resolve(){
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    if (_target){
+      while (_target->next) _target=_target->next; //This is for cards such as rampant growth
+      _target->frozen += 1;
+    }
+    return 1;
+  }
+
+  const char * getMenuText(){
+    return "Freeze";
+  }
+
+  AAFrozen * clone() const{
+    AAFrozen * a =  NEW AAFrozen(*this);
+    a->isClone = 1;
+    return a;
+  }
+};
 
 // Add life of gives damage if a given zone has more or less than [condition] cards at the beginning of [phase]
 //Ex : the rack, ivory tower...

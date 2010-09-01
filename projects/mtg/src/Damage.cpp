@@ -45,6 +45,10 @@ int Damage::resolve(){
   target = ev->damage->target;
   if (!damage) return 0;
 
+//asorbing effects for cards controller-----------
+
+//reserved for culmulitive absorb ability coding
+
 //prevent next damage-----------------------------
   if((target)->preventable >= 1) {
 	int preventing =(target)->preventable;
@@ -70,6 +74,9 @@ int Damage::resolve(){
 	if ((_target)->has(Constants::PHANTOM)) {
 		damage = 0;
 		(_target)->counters->removeCounter(1,1);
+	}
+	if ((_target)->has(Constants::ABSORB)) {
+		damage -= 1;
 	}
 	if ((_target)->has(Constants::WILTING)) {
 		 for (int i = 0; i < damage; i++){

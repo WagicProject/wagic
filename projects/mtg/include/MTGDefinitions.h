@@ -111,8 +111,11 @@ class Constants
 	WILTING = 53,
 	VIGOR = 54,
 	CHANGELING = 55,
+	ABSORB = 56,//this need to be coded for players too "If a source would deal damage"
+	TREASON = 57,
+	UNEARTH = 58,
 
-    NB_BASIC_ABILITIES = 56,
+    NB_BASIC_ABILITIES = 59,
 
 
     RARITY_S = 'S',   //Special Rarity

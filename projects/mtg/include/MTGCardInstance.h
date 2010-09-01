@@ -44,11 +44,10 @@ class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable {
   MTGGameZone * currentZone;
   Pos* view;
   int X;
-  int costAmount;
+  int frozen;
   int regenerateTokens;
   int isToken;
   int stillInUse();
-  int getCostAmount();
   Player * lastController;
   MTGGameZone * getCurrentZone();
   MTGGameZone * previousZone;
@@ -75,7 +74,7 @@ class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable {
   int removeType(int value, int removeAll = 0);
 
   //Combat
-    bool blocked; //Blocked this turn or not?
+  bool blocked; //Blocked this turn or not?
   MTGCardInstance * defenser;
   list<MTGCardInstance *>blockers;
   int attacker;

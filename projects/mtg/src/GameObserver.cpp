@@ -114,7 +114,21 @@ void GameObserver::nextGamePhase(){
   for (int i = 0; i < 2; ++i)
     players[i]->getManaPool()->init();
 
-  //After End of turn
+  //  //End of turn--unearth clean up---leaving this as comment for code refference. origanal method i had for unearth now handled by sneakattackrule.
+  //if (currentGamePhase == Constants::MTG_PHASE_ENDOFTURN) {
+	 // GameObserver *game = game->GetInstance();
+  //    Player * p = game->currentPlayer;
+  //    MTGGameZone * z = p->game->inPlay;
+  //    for (int i= 0; i < z->nb_cards; i++){
+  //      MTGCardInstance * card = z->cards[i];
+		//if (card->has(Constants::UNEARTH)) {
+		//	for(i = z->nb_cards; i > -1; i--){
+		//		card->controller()->game->putInExile(card);
+		//}
+	 // }
+  //  }
+  //}
+
   if (currentGamePhase == Constants::MTG_PHASE_AFTER_EOT){
     //Auto Hand cleaning, in case the player didn't do it himself
     while(currentPlayer->game->hand->nb_cards > 7)
@@ -465,11 +479,10 @@ int GameObserver::untap(MTGCardInstance * card) {
     return 0;
   }
   if (card->has(Constants::DOESNOTUNTAP)) return 0;
-
+  if (card->frozen > 0) return 0;
   card->attemptUntap();
   return 1;
 }
-
 
 TargetChooser * GameObserver::getCurrentTargetChooser(){
   TargetChooser * _tc = mLayers->actionLayer()->getCurrentTargetChooser();

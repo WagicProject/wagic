@@ -11,6 +11,7 @@ library:Forest,Plains,Mountain,Swamp,Island
 [PLAYER2]
 [DO]
 Windswept Heath
+choice 1
 Plains
 [ASSERT]
 firstmain

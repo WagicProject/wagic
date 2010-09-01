@@ -64,6 +64,23 @@ class MTGPersistRule:public MTGAbility{
   virtual MTGPersistRule * clone() const;
 };
 
+class MTGUnearthRule:public MTGAbility{
+ public:
+  MTGUnearthRule(int _id);
+  int receiveEvent(WEvent * event);
+  virtual ostream& toString(ostream& out) const;
+  int testDestroy();
+  virtual MTGUnearthRule * clone() const;
+};
+
+class MTGSneakAttackRule:public MTGAbility{
+ public:
+  MTGSneakAttackRule(int _id);
+  int receiveEvent(WEvent * event);
+  virtual ostream& toString(ostream& out) const;
+  int testDestroy();
+  virtual MTGSneakAttackRule * clone() const;
+};
 
 class MTGTokensCleanup:public MTGAbility{
  public:
@@ -145,7 +162,6 @@ class MTGDeathtouchRule:public MTGAbility{
 
   virtual MTGDeathtouchRule * clone() const;
 };
-
 
 /* HUD Display */
 
