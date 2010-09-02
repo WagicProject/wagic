@@ -27804,7 +27804,6 @@ toughness=2
 name=Lay Bare
 target=*|stack
 auto=fizzle
-auto=draw:1 controller
 auto=name(look at opponents hand) target(*|opponenthand)
 text=Counter target spell. Look at its controller's hand.
 mana={2}{U}{U}
