@@ -69,10 +69,6 @@ void Translator::load(string filename, map<string,string> * dictionary) {
     while(std::getline(file,s)){
       if (!s.size()) continue;
       if (s[s.size()-1] == '\r') s.erase(s.size()-1); //Handle DOS files
-      //Translate '@' to '\n'
-      char * sp = (char *)s.c_str();
-      for (int i = 0; sp[i]; i++)
-        if (sp[i] == '@') sp[i] = '\n';
       size_t found = s.find('=');
       if (found == string::npos) continue;
       string s1 = s.substr(0,found);
@@ -122,6 +118,7 @@ void Translator::initDecks(){
       if (!s.size()) continue;
       if (s[s.size()-1] == '\r') s.erase(s.size()-1); //Handle DOS files
       // Translate '@' to '\n'
+      // Note: general language files don't include any line-break infomation
       char * sp = (char *)s.c_str();
       for (int i = 0; sp[i]; i++)
         if (sp[i] == '@') sp[i] = '\n';

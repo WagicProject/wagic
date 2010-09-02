@@ -97,7 +97,13 @@ void GameStateDuel::Start()
 
   if(deckmenu){
   if (decksneeded){
-    deckmenu->Add(-1,_("Create your Deck!").c_str(),"Highly recommended to get\nthe full Wagic experience!");
+    //translate deck creating desc
+    Translator * t = Translator::GetInstance();
+    map<string,string>::iterator it = t->deckValues.find("Create your Deck!");
+    if (it != t->deckValues.end())
+      deckmenu->Add(-1,_("Create your Deck!").c_str(), it->second);
+    else
+      deckmenu->Add(-1,_("Create your Deck!").c_str(),"Highly recommended to get\nthe full Wagic experience!");
     premadeDeck = true;
     fillDeckMenu(deckmenu,RESPATH"/player/premade");
   }
