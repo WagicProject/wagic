@@ -12840,6 +12840,7 @@ toughness=2
 [card]
 name=Doomsday Specter
 abilities=flying
+auto=@damaged(player) from(this|mybattlefield): moveto(graveyard) target(*|opponenthand)
 auto=moveTo(ownerhand) notatarget(creature[blue;blue]|myBattlefield)
 text=Flying -- When Doomsday Specter enters the battlefield, return a blue or black creature you control to its owner's hand. -- Whenever Doomsday Specter deals combat damage to a player, look at that player's hand and choose a card from it. The player discards that card.
 mana={2}{U}{B}
