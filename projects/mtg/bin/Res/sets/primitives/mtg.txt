@@ -28159,7 +28159,7 @@ toughness=2
 [/card]
 [card]
 name=Lichenthrope
-abilities=counterasdamage
+abilities=wilting
 auto=@each my upkeep:counter(-1/-1,-1)
 text=If damage would be dealt to Lichenthrope, put that many -1/-1 counters on it instead. -- At the beginning of your upkeep, remove a -1/-1 counter from Lichenthrope.
 mana={3}{G}{G}
