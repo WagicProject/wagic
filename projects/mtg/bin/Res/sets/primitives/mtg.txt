@@ -48104,8 +48104,8 @@ subtype=Arcane
 [card]
 name=Strength of Night
 kicker={B}
-auto=kicker lord(creature|myBattlefield) 1/1
-auto=lord(creature[zombie]|myBattlefield) 2/2
+auto=all(creature|myBattlefield) 1/1 ueot
+auto=kicker all(creature[zombie]|myBattlefield) 2/2 ueot
 text=Kicker {B} (You may pay an additional {B} as you cast this spell.) -- Creatures you control get +1/+1 until end of turn. If Strength of Night was kicked, Zombie creatures you control get an additional +2/+2 until end of turn.
 mana={2}{G}
 type=Instant
