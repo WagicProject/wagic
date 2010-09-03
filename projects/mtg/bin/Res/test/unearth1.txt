@@ -22,7 +22,7 @@ Dregscape Zombie
 [ASSERT]
 SECONDMAIN
 [PLAYER1]
-inplay:Dregscape Zombie Unearthed,129754
+inplay:Dregscape Zombie,129754
 [PLAYER2]
 graveyard:Grizzly Bears
 life:20

@@ -1,0 +1,33 @@
+#Testing Fatal Frenzy & the keyword "Frenzy".
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+hand:Fatal frenzy
+inplay:Grizzly Bears
+manapool:{2}{R}
+[PLAYER2]
+life:20
+[DO]
+Fatal Frenzy
+Grizzly Bears
+Grizzly Bears
+next
+#blockers 
+next
+#combatdamage 2
+next
+#endofcombat 2
+next
+#secondmain
+next
+#endofturn
+next
+[ASSERT]
+CLEANUP
+[PLAYER1]
+graveyard:fatal frenzy,grizzly bears
+manapool:{0}
+life:20
+[PLAYER2]
+life:16
+[END]

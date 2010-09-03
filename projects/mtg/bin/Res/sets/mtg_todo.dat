@@ -941,15 +941,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Apes of Rath
-text=Whenever Apes of Rath attacks, it doesn't untap during its controller's next untap step.
-mana={2}{G}{G}
-type=Creature
-subtype=Ape
-power=5
-toughness=4
-[/card]
-[card]
 name=Apex Hawks
 text=Multikicker {1}{W} (You may pay an additional {1}{W} any number of times as you cast this spell.) -- Flying -- Apex Hawks enters the battlefield with a +1/+1 counter on it for each time it was kicked.
 mana={2}{W}
@@ -1007,25 +998,7 @@ mana={2}
 type=Artifact
 [/card]
 [card]
-name=Apocalypse Hydra
-text=Apocalypse Hydra enters the battlefield with X +1/+1 counters on it. If X is 5 or more, it enters the battlefield with an additional X +1/+1 counters on it. -- {1}{R}, Remove a +1/+1 counter from Apocalypse Hydra: Apocalypse Hydra deals 1 damage to target creature or player.
-mana={X}{R}{G}
-type=Creature
-subtype=Hydra
-power=0
-toughness=0
-[/card]
-[card]
-name=Apprentice Necromancer
-text={B}, {T}, Sacrifice Apprentice Necromancer: Return target creature card from your graveyard to the battlefield. That creature gains haste. At the beginning of the next end step, sacrifice it.
-mana={1}{B}
-type=Creature
-subtype=Zombie Wizard
-power=1
-toughness=1
-[/card]
-[card]
-####Behaviour is not stabile.
+####Behavior is not stabile.
 name=Aquamoeba
 auto={S(*|myhand)}:thisforeach(power>=1) -1/1 && thisforeach(toughness>=1) 1/-1
 text=Discard a card: Switch Aquamoeba's power and toughness until end of turn.
@@ -2161,12 +2134,6 @@ name=Barkshell Blessing
 text=Target creature gets +2/+2 until end of turn. -- Conspire (As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
 mana={GW}
 type=Instant
-[/card]
-[card]
-name=Barl's Cage
-text={3}: Target creature doesn't untap during its controller's next untap step.
-mana={4}
-type=Artifact
 [/card]
 [card]
 name=Baron Sengir
@@ -5131,11 +5098,6 @@ power=1
 toughness=2
 [/card]
 [card]
-name=Cinder Marsh
-text={T}: Add {1} to your mana pool. -- {T}: Add {B} or {R} to your mana pool. Cinder Marsh doesn't untap during your next untap step.
-type=Land
-[/card]
-[card]
 name=Cinder Seer
 text={2}{R}, {T}: Reveal any number of red cards in your hand. Cinder Seer deals X damage to target creature or player, where X is the number of cards revealed this way.
 mana={3}{R}
@@ -5344,11 +5306,6 @@ type=Creature
 subtype=Faerie
 power=1
 toughness=1
-[/card]
-[card]
-name=Cloudcrest Lake
-text={T}: Add {1} to your mana pool. -- {T}: Add {W} or {U} to your mana pool. Cloudcrest Lake doesn't untap during your next untap step.
-type=Land
 [/card]
 [card]
 name=Cloudgoat Ranger
@@ -7168,15 +7125,6 @@ type=Creature
 subtype=Lizard
 power=2
 toughness=2
-[/card]
-[card]
-name=Deathknell Kami
-text=Flying -- {2}: Deathknell Kami gets +1/+1 until end of turn. Sacrifice it at the beginning of the next end step. -- Soulshift 1 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 1 or less from your graveyard to your hand.)
-mana={1}{B}
-type=Creature
-subtype=Spirit
-power=0
-toughness=1
 [/card]
 [card]
 name=Deathrender
@@ -9288,16 +9236,6 @@ power=1
 toughness=2
 [/card]
 [card]
-name=Elvish Hunter
-auto={1}{G}:doesnotuntap target(creature)
-text={1}{G}, {T}: Target creature doesn't untap during its controller's next untap step.
-mana={1}{G}
-type=Creature
-subtype=Elf Archer
-power=1
-toughness=1
-[/card]
-[card]
 name=Elvish Soultiller
 text=When Elvish Soultiller is put into a graveyard from the battlefield, choose a creature type. Shuffle all creature cards of that type from your graveyard into your library.
 mana={3}{G}{G}
@@ -10070,12 +10008,6 @@ power=7
 toughness=7
 [/card]
 [card]
-name=Exhaustion
-text=Creatures and lands target opponent controls don't untap during his or her next untap step.
-mana={2}{U}
-type=Sorcery
-[/card]
-[card]
 name=Exhume
 text=Each player puts a creature card from his or her graveyard onto the battlefield.
 mana={1}{B}
@@ -10490,8 +10422,6 @@ toughness=3
 [/card]
 [card]
 name=Farsight Mask
-auto=@damaged(player) from(*|opponentBattlefield):aslongas(this[untapped]) may draw:1 controller
-auto=@damaged(player) from(*|opponentstack):aslongas(this[untapped]) may draw:1 controller
 text=Whenever a source an opponent controls deals damage to you, if Farsight Mask is untapped, you may draw a card.
 mana={5}
 type=Artifact
@@ -10506,12 +10436,6 @@ type=Enchantment
 name=Fatal Blow
 text=Destroy target creature that was dealt damage this turn. It can't be regenerated.
 mana={B}
-type=Instant
-[/card]
-[card]
-name=Fatal Frenzy
-text=Until end of turn, target creature you control gains trample and gets +X/+0, where X is its power. Sacrifice it at the beginning of the next end step.
-mana={2}{R}
 type=Instant
 [/card]
 [card]
@@ -11490,16 +11414,6 @@ type=Creature
 subtype=Human Cleric
 power=1
 toughness=1
-[/card]
-[card]
-name=Footsteps of the Goryo
-target=creature|myGraveyard
-auto=moveto(myBattlefield)
-auto=@next endofturn:bury
-text=Return target creature card from your graveyard to the battlefield. Sacrifice that creature at the beginning of the next end step.
-mana={2}{B}
-type=Sorcery
-subtype=Arcane
 [/card]
 [card]
 name=Forbid
@@ -13208,15 +13122,6 @@ text=Enchant land -- If enchanted land is a Mountain, Goblin creatures get +1/+0
 mana={1}{R}{R}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Goblin Ski Patrol
-text={1}{R}: Goblin Ski Patrol gets +2/+0 and gains flying. Its controller sacrifices it at the beginning of the next end step. Activate this ability only once and only if you control a snow Mountain.
-mana={1}{R}
-type=Creature
-subtype=Goblin
-power=1
-toughness=1
 [/card]
 [card]
 name=Goblin Snowman
@@ -15139,15 +15044,6 @@ mana={U}{U}
 type=Enchantment
 [/card]
 [card]
-name=Homarid Warrior
-text={U}: Homarid Warrior gains shroud until end of turn and doesn't untap during your next untap step. Tap Homarid Warrior. (A permanent with shroud can't be the target of spells or abilities.)
-mana={4}{U}
-type=Creature
-subtype=Homarid Warrior
-power=3
-toughness=3
-[/card]
-[card]
 name=Homing Sliver
 text=Each Sliver card in each player's hand has slivercycling {3}. -- Slivercycling {3} ({3}, Discard this card: Search your library for a Sliver card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={2}{R}
@@ -15820,15 +15716,6 @@ type=Legendary Creature
 subtype=Spirit
 power=4
 toughness=4
-[/card]
-[card]
-name=Incandescent Soulstoke
-text=Other Elemental creatures you control get +1/+1. -- {1}{R}, {T}: You may put an Elemental creature card from your hand onto the battlefield. That creature gains haste until end of turn. Sacrifice it at the beginning of the next end step.
-mana={2}{R}
-type=Creature
-subtype=Elemental Shaman
-power=2
-toughness=2
 [/card]
 [card]
 name=Incendiary Command
@@ -16764,16 +16651,6 @@ power=2
 toughness=1
 [/card]
 [card]
-###This land cycle does not work!
-name=Jungle Basin
-auto=tap
-auto=aslongas(forest[-tapped]|myBattlefield) moveTo(ownerhand) notatarget(forest[-tapped]|myBattlefield)
-auto=moveTo(graveyard) notatarget(this|myBattlefield)
-auto=@movedTo(forest[-tapped]|myhand) from(myBattlefield):lord(jungle basin) {T}:Add{1}{G}
-text=Jungle Basin enters the battlefield tapped. -- When Jungle Basin enters the battlefield, sacrifice it unless you return an untapped Forest you control to its owner's hand. -- {T}: Add {1}{G} to your mana pool.
-type=Land
-[/card]
-[card]
 name=Juniper Order Advocate
 text=Green creatures you control get +1/+1 as long as Juniper Order Advocate is untapped.
 mana={2}{W}
@@ -17009,33 +16886,6 @@ type=Creature
 subtype=Yeti
 power=3
 toughness=3
-[/card]
-[card]
-name=Kashi-Tribe Elite
-text=Legendary Snakes you control have shroud. (They can't be the targets of spells or abilities.) -- Whenever Kashi-Tribe Elite deals combat damage to a creature, tap that creature and it doesn't untap during its controller's next untap step.
-mana={1}{G}{G}
-type=Creature
-subtype=Snake Warrior
-power=2
-toughness=3
-[/card]
-[card]
-name=Kashi-Tribe Reaver
-text=Whenever Kashi-Tribe Reaver deals combat damage to a creature, tap that creature and it doesn't untap during its controller's next untap step. -- {1}{G}: Regenerate Kashi-Tribe Reaver.
-mana={3}{G}
-type=Creature
-subtype=Snake Warrior
-power=3
-toughness=2
-[/card]
-[card]
-name=Kashi-Tribe Warriors
-text=Whenever Kashi-Tribe Warriors deals combat damage to a creature, tap that creature and it doesn't untap during its controller's next untap step.
-mana={3}{G}{G}
-type=Creature
-subtype=Snake Warrior
-power=2
-toughness=4
 [/card]
 [card]
 name=Katabatic Winds
@@ -17709,15 +17559,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Kor Hookmaster
-text=When Kor Hookmaster enters the battlefield, tap target creature an opponent controls. That creature doesn't untap during its controller's next untap step.
-mana={2}{W}
-type=Creature
-subtype=Kor Soldier
-power=2
-toughness=2
-[/card]
-[card]
 name=Kor Outfitter
 text=When Kor Outfitter enters the battlefield, you may attach target Equipment you control to target creature you control.
 mana={W}{W}
@@ -17829,15 +17670,6 @@ type=Creature
 subtype=Cat Beast
 power=3
 toughness=2
-[/card]
-[card]
-name=Krovikan Elementalist
-text={2}{R}: Target creature gets +1/+0 until end of turn. -- {U}{U}: Target creature you control gains flying until end of turn. Sacrifice it at the beginning of the next end step.
-mana={B}{B}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
 [/card]
 [card]
 name=Krovikan Fetish
@@ -18102,11 +17934,6 @@ mana={1}
 type=Artifact
 [/card]
 [card]
-name=Lantern-Lit Graveyard
-text={T}: Add {1} to your mana pool. -- {T}: Add {B} or {R} to your mana pool. Lantern-Lit Graveyard doesn't untap during your next untap step.
-type=Land
-[/card]
-[card]
 name=Lapis Lazuli Talisman
 text=Whenever a player casts a blue spell, you may pay {3}. If you do, untap target permanent.
 mana={2}
@@ -18249,15 +18076,6 @@ text=Enchant creature -- Enchanted creature has "{T}: This creature deals 1 dama
 mana={1}{R}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Lead Golem
-text=Whenever Lead Golem attacks, it doesn't untap during its controller's next untap step.
-mana={5}
-type=Artifact Creature
-subtype=Golem
-power=3
-toughness=5
 [/card]
 [card]
 name=Lead-Belly Chimera
@@ -19689,12 +19507,6 @@ mana={W}
 type=Instant
 [/card]
 [card]
-name=Mana Vapors
-text=Lands target player controls don't untap during his or her next untap step.
-mana={1}{U}
-type=Sorcery
-[/card]
-[card]
 name=Mana Vortex
 text=When you cast Mana Vortex, you may sacrifice a land. If you don't, counter Mana Vortex. -- At the beginning of each player's upkeep, that player sacrifices a land. -- When there are no lands on the battlefield, sacrifice Mana Vortex.
 mana={1}{U}{U}
@@ -20029,15 +19841,6 @@ type=Creature
 subtype=Human Shaman
 power=3
 toughness=3
-[/card]
-[card]
-name=Matsu-Tribe Birdstalker
-text=Whenever Matsu-Tribe Birdstalker deals combat damage to a creature, tap that creature and it doesn't untap during its controller's next untap step. -- {G}: Matsu-Tribe Birdstalker gains reach until end of turn. (It can block creatures with flying.)
-mana={2}{G}{G}
-type=Creature
-subtype=Snake Warrior Archer
-power=2
-toughness=2
 [/card]
 [card]
 name=Matsu-Tribe Decoy
@@ -20970,12 +20773,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Misstep
-text=Creatures target player controls don't untap during that player's next untap step.
-mana={1}{U}
-type=Sorcery
-[/card]
-[card]
 name=Mist Dragon
 text={0}: Mist Dragon gains flying. (This effect lasts indefinitely.) -- {0}: Mist Dragon loses flying. (This effect lasts indefinitely.) -- {3}{U}{U}: Mist Dragon phases out. (While it's phased out, it's treated as though it doesn't exist. It phases in before you untap during your next untap step.)
 mana={4}{U}{U}
@@ -21180,11 +20977,6 @@ name=Mogg Cannon
 text={T}: Target creature you control gets +1/+0 and gains flying until end of turn. Destroy that creature at the beginning of the next end step.
 mana={2}
 type=Artifact
-[/card]
-[card]
-name=Mogg Hollows
-text={T}: Add {1} to your mana pool. -- {T}: Add {R} or {G} to your mana pool. Mogg Hollows doesn't untap during your next untap step.
-type=Land
 [/card]
 [card]
 name=Mogg Infestation
@@ -23513,20 +23305,6 @@ mana={X}{X}
 type=Artifact
 [/card]
 [card]
-name=Orochi Ranger
-text=Whenever Orochi Ranger deals combat damage to a creature, tap that creature and it doesn't untap during its controller's next untap step.
-mana={1}{G}
-type=Creature
-subtype=Snake Warrior
-power=2
-toughness=1
-[/card]
-[card]
-name=Orzhov Basilica
-text=Orzhov Basilica enters the battlefield tapped. -- When Orzhov Basilica enters the battlefield, return a land you control to its owner's hand. -- {T}: Add {W}{B} to your mana pool.
-type=Land
-[/card]
-[card]
 name=Orzhov Euthanist
 text=Haunt (When this card is put into a graveyard from the battlefield, exile it haunting target creature.) -- When Orzhov Euthanist enters the battlefield or the creature it haunts is put into a graveyard, destroy target creature that was dealt damage this turn.
 mana={2}{B}
@@ -24619,12 +24397,6 @@ toughness=3
 [/card]
 [card]
 name=Pili-Pala
-abilities=flying
-auto={2}{Q}:Add{R}
-auto={2}{Q}:Add{G}
-auto={2}{Q}:Add{B}
-auto={2}{Q}:Add{U}
-auto={2}{Q}:Add{W}
 text=Flying -- {2}, {Q}: Add one mana of any color to your mana pool. ({Q} is the untap symbol.)
 mana={2}
 type=Artifact Creature
@@ -24644,14 +24416,7 @@ text={T}: Add one mana of any color to your mana pool. Spend this mana only to c
 type=Land
 [/card]
 [card]
-name=Pinecrest Ridge
-text={T}: Add {1} to your mana pool. -- {T}: Add {R} or {G} to your mana pool. Pinecrest Ridge doesn't untap during your next untap step.
-type=Land
-[/card]
-[card]
 name=Pinpoint Avalanche
-target=creature
-auto=damage:4
 text=Pinpoint Avalanche deals 4 damage to target creature. The damage can't be prevented.
 mana={3}{R}{R}
 type=Instant
@@ -25822,15 +25587,6 @@ name=Pyramids
 text={2}: Choose one - Destroy target Aura attached to a land; or the next time target land would be destroyed this turn, remove all damage from it instead.
 mana={6}
 type=Artifact
-[/card]
-[card]
-name=Pyric Salamander
-text={R}: Pyric Salamander gets +1/+0 until end of turn. Sacrifice Pyric Salamander at the beginning of the next end step.
-mana={1}{R}
-type=Creature
-subtype=Salamander
-power=1
-toughness=1
 [/card]
 [card]
 name=Pyroclast Consul
@@ -27178,16 +26934,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Reveka, Wizard Savant
-auto={T}:damage:2 target(creature,player) && doesnotuntap
-text={T}: Reveka, Wizard Savant deals 2 damage to target creature or player and doesn't untap during your next untap step.
-mana={2}{U}{U}
-type=Legendary Creature
-subtype=Dwarf Wizard
-power=0
-toughness=1
-[/card]
-[card]
 name=Revelation
 text=All players play with their hands revealed.
 mana={G}
@@ -27959,11 +27705,6 @@ mana={1}{G}{G}
 type=Enchantment
 [/card]
 [card]
-name=Rootwater Depths
-text={T}: Add {1} to your mana pool. -- {T}: Add {U} or {B} to your mana pool. Rootwater Depths doesn't untap during your next untap step.
-type=Land
-[/card]
-[card]
 name=Rootwater Matriarch
 text={T}: Gain control of target creature for as long as that creature is enchanted.
 mana={2}{U}{U}
@@ -28546,15 +28287,6 @@ type=Artifact Creature
 subtype=Golem
 power=6
 toughness=4
-[/card]
-[card]
-name=Samite Alchemist
-text={W}{W}, {T}: Prevent the next 4 damage that would be dealt this turn to target creature you control. Tap that creature. It doesn't untap during your next untap step.
-mana={3}{W}
-type=Creature
-subtype=Human Cleric
-power=0
-toughness=2
 [/card]
 [card]
 name=Samite Blessing
@@ -30763,15 +30495,6 @@ power=5
 toughness=5
 [/card]
 [card]
-name=Skizzik
-text=Kicker {R} (You may pay an additional {R} as you cast this spell.) -- Trample, haste -- At the beginning of the end step, sacrifice Skizzik unless it was kicked.
-mana={3}{R}
-type=Creature
-subtype=Elemental
-power=5
-toughness=3
-[/card]
-[card]
 name=Skizzik Surger
 text=Haste -- Echo - Sacrifice two lands. (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
 mana={4}{R}{R}
@@ -30967,12 +30690,6 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Sleep
-text=Tap all creatures target player controls. Those creatures don't untap during that player's next untap step.
-mana={2}{U}{U}
-type=Sorcery
-[/card]
-[card]
 name=Sleeping Potion
 text=Enchant creature -- When Sleeping Potion enters the battlefield, tap enchanted creature. -- Enchanted creature doesn't untap during its controller's untap step. -- When enchanted creature becomes the target of a spell or ability, sacrifice Sleeping Potion.
 mana={1}{U}
@@ -31146,12 +30863,6 @@ type=Creature
 subtype=Beast
 power=3
 toughness=3
-[/card]
-[card]
-name=Sneak Attack
-text={R}: You may put a creature card from your hand onto the battlefield. That creature gains haste. Sacrifice the creature at the beginning of the next end step.
-mana={3}{R}
-type=Enchantment
 [/card]
 [card]
 name=Snow Devil
@@ -31620,12 +31331,6 @@ power=0
 toughness=4
 [/card]
 [card]
-name=Soulshriek
-text=Target creature you control gets +X/+0 until end of turn, where X is the number of creature cards in your graveyard. Sacrifice that creature at the beginning of the next end step.
-mana={B}
-type=Instant
-[/card]
-[card]
 name=Sovereigns of Lost Alara
 text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.) -- Whenever a creature you control attacks alone, you may search your library for an Aura card that could enchant that creature, put it onto the battlefield attached to that creature, then shuffle your library.
 mana={4}{W}{U}
@@ -31672,29 +31377,11 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
-name=Spectral Bears
-text=Whenever Spectral Bears attacks, if defending player controls no black nontoken permanents, it doesn't untap during your next untap step.
-mana={1}{G}
-type=Creature
-subtype=Bear Spirit
-power=3
-toughness=3
-[/card]
-[card]
 name=Spectral Cloak
 text=Enchant creature -- Enchanted creature has shroud as long as it's untapped. (It can't be the target of spells or abilities.)
 mana={U}{U}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Spectral Force
-text=Trample -- Whenever Spectral Force attacks, if defending player controls no black permanents, it doesn't untap during your next untap step.
-mana={3}{G}{G}
-type=Creature
-subtype=Elemental Spirit
-power=8
-toughness=8
 [/card]
 [card]
 name=Spectral Searchlight
@@ -31704,12 +31391,6 @@ type=Artifact
 [/card]
 [card]
 name=Spectral Shield
-target=creature
-auto=0/2
-auto=shroud
-####
-####The target does not get shroud (Read its wording!)
-####
 text=Enchant creature -- Enchanted creature gets +0/+2 and can't be the target of spells.
 mana={1}{W}{U}
 type=Enchantment
@@ -32201,12 +31882,6 @@ type=Sorcery
 name=Spoils of the Vault
 text=Name a card. Reveal cards from the top of your library until you reveal the named card, then put that card into your hand. Exile all other cards revealed this way, and you lose 1 life for each of the exiled cards.
 mana={B}
-type=Instant
-[/card]
-[card]
-name=Spore Cloud
-text=Tap all blocking creatures. Prevent all combat damage that would be dealt this turn. Each attacking creature and each blocking creature doesn't untap during its controller's next untap step.
-mana={1}{G}{G}
 type=Instant
 [/card]
 [card]
@@ -33705,12 +33380,6 @@ power=2
 toughness=4
 [/card]
 [card]
-name=Tangle
-text=Prevent all combat damage that would be dealt this turn. -- Each attacking creature doesn't untap during its controller's next untap step.
-mana={1}{G}
-type=Instant
-[/card]
-[card]
 name=Tangle Golem
 text=Affinity for Forests (This spell costs {1} less to cast for each Forest you control.)
 mana={7}
@@ -34247,19 +33916,7 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Thalakos Lowlands
-auto={T}: Add {1}
-auto={T}: Add {W}
-auto={T}: Add {U}
-text={T}: Add {1} to your mana pool. -- {T}: Add {W} or {U} to your mana pool. Thalakos Lowlands doesn't untap during your next untap step.
-type=Land
-[/card]
-[card]
 name=Thawing Glaciers
-auto=tap
-auto={1}{T}:moveto(myBattlefield) target(land[basic]|myLibrary) && tap && token(grrrt)
-auto=@next cleanup:aslongas(grrt|myBattlefield) moveto(myHand)
-auto=@next cleanup:aslongas(grrt|myBattlefield) destroy all(grrrt)
 text=Thawing Glaciers enters the battlefield tapped. -- {1}, {T}: Search your library for a basic land card, put that card onto the battlefield tapped, then shuffle your library. Return Thawing Glaciers to its owner's hand at the beginning of the next cleanup step.
 type=Land
 [/card]
@@ -35243,11 +34900,6 @@ mana={4}{BR}
 type=Sorcery
 [/card]
 [card]
-name=Tranquil Garden
-text={T}: Add {1} to your mana pool. -- {T}: Add {G} or {W} to your mana pool. Tranquil Garden doesn't untap during your next untap step.
-type=Land
-[/card]
-[card]
 name=Transcendence
 text=You don't lose the game for having 0 or less life. -- When you have 20 or more life, you lose the game. -- Whenever you lose life, you gain 2 life for each 1 life you lost. (Damage dealt to you causes you to lose life.)
 mana={3}{W}{W}{W}
@@ -36154,15 +35806,6 @@ power=3
 toughness=4
 [/card]
 [card]
-name=Varchild's Crusader
-text={0}: Varchild's Crusader can't be blocked this turn except by Walls. Sacrifice Varchild's Crusader at the beginning of the next end step.
-mana={3}{R}
-type=Creature
-subtype=Human Knight
-power=3
-toughness=2
-[/card]
-[card]
 name=Vassal's Duty
 text={1}: The next 1 damage that would be dealt to target legendary creature you control this turn is dealt to you instead.
 mana={3}{W}
@@ -36183,11 +35826,6 @@ text=Enchant land -- Enchanted land is a 6/4 green Elemental creature. It's stil
 mana={4}{G}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Vec Townships
-text={T}: Add {1} to your mana pool. -- {T}: Add {G} or {W} to your mana pool. Vec Townships doesn't untap during your next untap step.
-type=Land
 [/card]
 [card]
 name=Vectis Dominator
@@ -37442,11 +37080,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Waterveil Cavern
-text={T}: Add {1} to your mana pool. -- {T}: Add {U} or {B} to your mana pool. Waterveil Cavern doesn't untap during your next untap step.
-type=Land
-[/card]
-[card]
 name=Wave Elemental
 text={U}, {T}, Sacrifice Wave Elemental: Tap up to three target creatures without flying.
 mana={2}{U}{U}
@@ -37947,12 +37580,6 @@ name=Winds of Rath
 text=Destroy all creatures that aren't enchanted. They can't be regenerated.
 mana={3}{W}{W}
 type=Sorcery
-[/card]
-[card]
-name=Wine of Blood and Iron
-text={4}: Target creature gets +X/+0 until end of turn, where X is its power. Sacrifice Wine of Blood and Iron at the beginning of the next end step.
-mana={3}
-type=Artifact
 [/card]
 [card]
 name=Wing Shards

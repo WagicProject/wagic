@@ -12,7 +12,7 @@ next
 #begin
 next
 #attackers
-dregscape zombie unearthed
+dregscape zombie
 next
 #blockers
 next
@@ -20,7 +20,7 @@ next
 [ASSERT]
 COMBATDAMAGE
 [PLAYER1]
-inplay:dregscape zombie unearthed
+inplay:dregscape zombie
 graveyard:swamp
 manapool:{0}
 [PLAYER2]

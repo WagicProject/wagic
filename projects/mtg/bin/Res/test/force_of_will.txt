@@ -1,0 +1,28 @@
+#Testing counterspell on bad moon
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Grizzly Bears
+manapool:{1}{G}
+[PLAYER2]
+hand:Force of Will,Giant Octopus
+[DO]
+Grizzly Bears
+no
+yes
+Force of Will
+Giant Octopus
+Grizzly Bears
+endinterruption
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Grizzly Bears
+manapool:{0}
+life:20
+[PLAYER2]
+graveyard:Force of Will
+exile:Giant Octopus
+manapool:{0}
+life:19
+[END]

@@ -1303,25 +1303,13 @@ type=Sorcery
 [card]
 name=Anathemancer
 auto=foreach(land[-basic]|opponentBattlefield) damage:1 opponent
-autograveyard={5}{B}{R}:moveto(exile) && token(17953811) asSorcery
+autograveyard={5}{B}{R}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
 text=When Anathemancer enters the battlefield, it deals damage to target player equal to the number of nonbasic lands that player controls. -- Unearth {5}{B}{R} ({5}{B}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={1}{B}{R}
 type=Creature
 subtype=Zombie Wizard
 power=2
 toughness=2
-[/card]
-[card]
-name=Anathemancer Unearthed
-type=Creature
-subtype=Zombie Wizard
-abilities=haste
-auto=foreach(land[-basic]|opponentBattlefield) damage:1 opponent
-auto=@next end:moveTo(exile)
-text=When Anathemancer enters the battlefield, it deals damage to target player equal to the number of nonbasic lands that player controls. -- Unearth {5}{B}{R} ({5}{B}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
-power=2
-toughness=2
-mana={1}{B}{R}
 [/card]
 [card]
 name=Ancestor's Chosen
@@ -1771,6 +1759,16 @@ power=4
 toughness=3
 [/card]
 [card]
+name=Apes of Rath
+auto=@each mycombatdamage:all(Apes of Rath[attacking]|mybattlefield) frozen
+text=Whenever Apes of Rath attacks, it doesn't untap during its controller's next untap step.
+mana={2}{G}{G}
+type=Creature
+subtype=Ape
+power=5
+toughness=4
+[/card]
+[card]
 name=Aphetto Vulture
 abilities=flying
 autograveyard=@movedTo(this|graveyard) from(battlefield):may moveto(mylibrary) target(zombie other|mygraveyard)
@@ -1818,6 +1816,16 @@ text=Whenever a player casts a white spell, you may pay {1}. If you do, you gain
 mana={W}
 type=Creature
 subtype=Kithkin Cleric
+power=1
+toughness=1
+[/card]
+[card]
+name=Apprentice Necromancer
+auto={B}{T}{S}:moveto(mybattlefield) target(creature|mygraveyard) && transforms(,treason,haste) forever
+text={B}, {T}, Sacrifice Apprentice Necromancer: Return target creature card from your graveyard to the battlefield. That creature gains haste. At the beginning of the next end step, sacrifice it.
+mana={1}{B}
+type=Creature
+subtype=Zombie Wizard
 power=1
 toughness=1
 [/card]
@@ -1936,8 +1944,7 @@ type=Nothing
 [/card]
 [card]
 name=Arc Runner
-abilities=haste
-auto=@next end:bury
+abilities=haste,treason
 text=Haste -- At the beginning of the end step, sacrifice Arc Runner.
 mana={2}{R}
 type=Creature
@@ -3439,8 +3446,7 @@ type=Sorcery
 [/card]
 [card]
 name=Ball Lightning
-abilities=trample,haste
-auto=@next end:bury
+abilities=trample,haste,treason
 text=Trample (If this creature would deal enough damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player or planeswalker.) -- Haste (This creature can attack and {T} as soon as it comes under your control.) -- At the beginning of the end step, sacrifice Ball Lightning.
 mana={R}{R}{R}
 type=Creature
@@ -3745,6 +3751,13 @@ type=Legendary Creature
 subtype=Human Warrior
 power=6
 toughness=5
+[/card]
+[card]
+name=Barl's Cage
+auto={3}:frozen target(creature)
+text={3}: Target creature doesn't untap during its controller's next untap step.
+mana={4}
+type=Artifact
 [/card]
 [card]
 name=Barony Vampire
@@ -6029,25 +6042,13 @@ toughness=2
 [card]
 name=Brackwater Elemental
 auto=@each combatends:moveTo(ownerGraveyard) all(brackwater elemental[attacking;blocking]|myBattlefield)
-autograveyard={2}{U}:moveto(exile) && token(18014711) asSorcery
+autograveyard={2}{U}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
 text=When Brackwater Elemental attacks or blocks, sacrifice it at the beginning of the next end step. -- Unearth {2}{U} ({2}{U}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={2}{U}
 type=Creature
 subtype=Elemental
 power=4
 toughness=4
-[/card]
-[card]
-name=Brackwater Elemental Unearthed
-type=Creature
-subtype=Elemental
-abilities=haste
-auto=@each combatends:moveTo(ownerGraveyard) all(brackwater elemental[attacking;blocking]|myBattlefield)
-auto=@next end:moveTo(exile)
-text=When Brackwater Elemental attacks or blocks, sacrifice it at the beginning of the next end step. -- Unearth {2}{U} ({2}{U}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
-power=4
-toughness=4
-mana={2}{U}
 [/card]
 [card]
 name=Braid of Fire
@@ -8496,6 +8497,14 @@ power=5
 toughness=3
 [/card]
 [card]
+name=Cinder Marsh
+auto={T}:Add{1}
+auto={T}:Add{B} && frozen
+auto={T}:Add{R} && frozen
+text={T}: Add {1} to your mana pool. -- {T}: Add {B} or {R} to your mana pool. Cinder Marsh doesn't untap during your next untap step.
+type=Land
+[/card]
+[card]
 name=Cinder Pyromancer
 auto={T}:damage:1 target(player)
 auto=@movedTo(*[red]|mystack):may untap
@@ -8976,15 +8985,6 @@ power=2
 toughness=3
 [/card]
 [card]
-name=Daru Warchief
-text=Soldier spells you cast cost {1} less to cast. -- Soldier creatures you control get +1/+2.
-mana={2}{W}{W}
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=1
-[/card]
-[card]
 name=Cloud Key
 auto=choice name(artifact) && lord(artifact|myhand) colorless:-1
 auto=choice name(creature) && lord(creature|myhand) colorless:-1
@@ -9051,6 +9051,14 @@ type=Creature
 subtype=Bird
 power=2
 toughness=2
+[/card]
+[card]
+name=Cloudcrest Lake
+auto={T}:Add{1}
+auto={T}:Add{W} && frozen
+auto={T}:Add{U} && frozen
+text={T}: Add {1} to your mana pool. -- {T}: Add {W} or {U} to your mana pool. Cloudcrest Lake doesn't untap during your next untap step.
+type=Land
 [/card]
 [card]
 name=Cloudcrown Oak
@@ -9718,25 +9726,13 @@ toughness=1
 [card]
 name=Corpse Connoisseur
 auto=may moveTo(mygraveyard) target(creature|myLibrary)
-autograveyard={4}{B}:moveto(exile) && token(17644811) asSorcery
+autograveyard={4}{B}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
 text=When Corpse Connoisseur enters the battlefield, you may search your library for a creature card and put that card into your graveyard. If you do, shuffle your library. -- Unearth {3}{B} ({3}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={4}{B}
 type=Creature
 subtype=Zombie Wizard
 power=3
 toughness=3
-[/card]
-[card]
-name=Corpse Connoisseur Unearthed
-type=Creature
-subtype=Zombie Wizard
-abilities=haste
-auto=may moveTo(mygraveyard) target(creature|myLibrary)
-auto=@next end:moveTo(exile)
-text=When Corpse Connoisseur enters the battlefield, you may search your library for a creature card and put that card into your graveyard. If you do, shuffle your library. -- Unearth {3}{B} ({3}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
-power=3
-toughness=3
-mana={4}{B}
 [/card]
 [card]
 name=Corpse Hatch
@@ -11399,6 +11395,17 @@ power=3
 toughness=6
 [/card]
 [card]
+name=Deathknell Kami
+abilities=flying
+auto={2}:1/1 && treason
+text=Flying -- {2}: Deathknell Kami gets +1/+1 until end of turn. Sacrifice it at the beginning of the next end step. -- Soulshift 1 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 1 or less from your graveyard to your hand.)
+mana={1}{B}
+type=Creature
+subtype=Spirit
+power=0
+toughness=1
+[/card]
+[card]
 name=Deathless Angel
 abilities=flying
 auto={W}{W}:indestructible target(creature)
@@ -12453,7 +12460,6 @@ toughness=3
 name=Disappear
 target=creature
 auto={U}:moveTo(ownerhand) all(this) && moveTo(ownerhand)
-###Tested and working!!! Don't ask me why! :)
 text=Enchant creature -- {U}: Return enchanted creature and Disappear to their owners' hands.
 mana={2}{U}{U}
 type=Enchantment
@@ -13353,23 +13359,13 @@ toughness=3
 [/card]
 [card]
 name=Dregscape Zombie
-autograveyard={B}:moveto(exile) && token(17483511) asSorcery
+autograveyard={B}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
 text=Unearth {B} ({B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={1}{B}
 type=Creature
 subtype=Zombie
 power=2
 toughness=1
-[/card]
-[card]
-name=Dregscape Zombie Unearthed
-type=Creature
-subtype=Zombie
-abilities=haste
-auto=@next end:moveTo(exile)
-power=2
-toughness=1
-mana={1}{B}
 [/card]
 [card]
 name=Drekavac
@@ -14526,7 +14522,6 @@ toughness=1
 [card]
 name=Elvish Berserker
 auto=rampage(1/1,0)
-auto=name(look at opponents hand) target(*|opponenthand)
 text=Whenever Elvish Berserker becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.
 mana={G}
 type=Creature
@@ -14594,6 +14589,16 @@ text={(g/w)}, {T}, Sacrifice Elvish Hexhunter: Destroy target enchantment.
 mana={GW}
 type=Creature
 subtype=Elf Shaman
+power=1
+toughness=1
+[/card]
+[card]
+name=Elvish Hunter
+auto={1}{G}{T}:frozen target(creature)
+text={1}{G}, {T}: Target creature doesn't untap during its controller's next untap step.
+mana={1}{G}
+type=Creature
+subtype=Elf Archer
 power=1
 toughness=1
 [/card]
@@ -15540,24 +15545,13 @@ toughness=3
 [/card]
 [card]
 name=Etherium Abomination
-autograveyard={1}{U}{B}:moveto(exile) && token(17957311) asSorcery
+autograveyard={1}{U}{B}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
 text=Unearth {1}{U}{B} ({1}{U}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={3}{U}{B}
 type=Artifact Creature
 subtype=Horror
 power=4
 toughness=3
-[/card]
-[card]
-name=Etherium Abomination Unearthed
-type=Creature
-subtype=Horror
-abilities=haste
-auto=@next end:moveTo(exile)
-text=Unearth {1}{U}{B} ({1}{U}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
-power=4
-toughness=3
-mana={3}{U}{B}
 [/card]
 [card]
 name=Etherium Astrolabe
@@ -15718,6 +15712,14 @@ mana={B}
 type=Artifact
 [/card]
 [card]
+name=Exhaustion
+auto=frozen all(creature|opponentbattlefield) frozen
+auto=frozen all(land|opponentbattlefield) frozen
+text=Creatures and lands target opponent controls don't untap during his or her next untap step.
+mana={2}{U}
+type=Sorcery
+[/card]
+[card]
 name=Exile
 target=creature[-white;attacking]
 auto=moveto(exile)
@@ -15834,26 +15836,14 @@ type=Sorcery
 [card]
 name=Extractor Demon
 abilities=flying
-autograveyard={B}:moveto(exile) && token(18908211) asSorcery
-auto=@movedTo(other creature|exile,graveyard,hand,library) from(battlefield):may deplete:2 target(player)
+autograveyard={B}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
+auto=@movedTo(other creature|nonbattlezone) from(battlefield):may deplete:2 target(player)
 text=Flying -- Whenever another creature leaves the battlefield, you may have target player put the top two cards of his or her library into his or her graveyard. -- Unearth {2}{B} ({2}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={4}{B}{B}
 type=Creature
 subtype=Demon
 power=5
 toughness=5
-[/card]
-[card]
-name=Extractor Demon Unearthed
-type=Creature
-subtype=Demon
-abilities=haste,flying
-auto=@next end:moveTo(exile)
-auto=@movedTo(other creature|exile,graveyard,hand,library) from(battlefield):may deplete:2 target(player)
-text=Flying -- Whenever another creature leaves the battlefield, you may have target player put the top two cards of his or her library into his or her graveyard. -- Unearth {2}{B} ({2}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
-power=5
-toughness=5
-mana={4}{B}{B}
 [/card]
 [card]
 name=Extruder
@@ -16212,29 +16202,26 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Fatal Frenzy
+target=creature
+auto=trample
+auto=treason
+auto=power/0
+text=Until end of turn, target creature you control gains trample and gets +X/+0, where X is its power. Sacrifice it at the beginning of the next end step.
+mana={2}{R}
+type=Instant
+[/card]
+[card]
 name=Fatestitcher
 auto={T}:Tap target(other *)
 auto={T}:Untap target(other *)
-autograveyard={U}:moveto(exile) && token(17645611) asSorcery
+autograveyard={U}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
 text={T}: You may tap or untap another target permanent. -- Unearth {U} ({U}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={3}{U}
 type=Creature
 subtype=Zombie Wizard
 power=1
 toughness=2
-[/card]
-[card]
-name=Fatestitcher Unearthed
-type=Creature
-subtype=Zombie Wizard
-abilities=haste
-auto={T}:Tap target(other *)
-auto={T}:Untap target(other *)
-auto=@next end:moveTo(exile)
-text={T}: You may tap or untap another target permanent. -- Unearth {U} ({U}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
-power=1
-toughness=2
-mana={3}{U}
 [/card]
 [card]
 name=Fault Line
@@ -16877,24 +16864,13 @@ type=Sorcery
 [card]
 name=Fire-Field Ogre
 abilities=first strike
-autograveyard={U}{B}{R}:moveto(exile) && token(17644711) asSorcery
+autograveyard={U}{B}{R}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
 text=First strike -- Unearth {U}{B}{R} ({U}{B}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={1}{U}{B}{R}
 type=Creature
 subtype=Ogre Mutant
 power=4
 toughness=2
-[/card]
-[card]
-name=Fire-Field Ogre Unearthed
-type=Creature
-subtype=Ogre Mutant
-abilities=haste,first strike
-auto=@next end:moveTo(exile)
-text=First strike -- Unearth {U}{B}{R} ({U}{B}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
-power=4
-toughness=2
-mana={1}{U}{B}{R}
 [/card]
 [card]
 name=Fire-Lit Thicket
@@ -17777,6 +17753,16 @@ type=Creature
 subtype=Human Soldier
 power=2
 toughness=4
+[/card]
+[card]
+name=Footsteps of the Goryo
+target=creature|myGraveyard
+auto=moveto(myBattlefield)
+auto=treason
+text=Return target creature card from your graveyard to the battlefield. Sacrifice that creature at the beginning of the next end step.
+mana={2}{B}
+type=Sorcery
+subtype=Arcane
 [/card]
 [card]
 name=Foratog
@@ -20099,6 +20085,16 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Goblin Ski Patrol
+auto=aslongas(mountain[snow]|mybattlefield) {1}{R}:2/0 && flying && treason
+text={1}{R}: Goblin Ski Patrol gets +2/+0 and gains flying. Its controller sacrifices it at the beginning of the next end step. Activate this ability only once and only if you control a snow Mountain.
+mana={1}{R}
+type=Creature
+subtype=Goblin
+power=1
+toughness=1
+[/card]
+[card]
 name=Goblin Sky Raider
 abilities=flying
 text=Flying (This creature can't be blocked except by creatures with flying or reach.)
@@ -21074,23 +21070,11 @@ type=Land
 [card]
 name=Grixis Slavedriver
 auto=token(Zombie,Creature Token Zombie,2/2,black)
-autograveyard={3}{B}:moveto(exile) && token(17980411) asSorcery
+autograveyard={3}{B}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
 text=When Grixis Slavedriver leaves the battlefield, put a 2/2 black Zombie creature token onto the battlefield. -- Unearth {3}{B} ({3}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={5}{B}
 type=Creature
 subtype=Zombie Giant
-power=4
-toughness=4
-[/card]
-[card]
-name=Grixis Slavedriver Unearthed
-type=Creature
-subtype=Zombie Giant
-abilities=haste
-auto=token(Zombie,Creature Token Zombie,2/2,black)
-auto=@next end:moveTo(exile)
-text=When Grixis Slavedriver leaves the battlefield, put a 2/2 black Zombie creature token onto the battlefield. -- Unearth {3}{B} ({3}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
-mana={5}{B}
 power=4
 toughness=4
 [/card]
@@ -21151,8 +21135,7 @@ type=Enchantment
 [/card]
 [card]
 name=Groundbreaker
-abilities=trample,haste
-auto=@next endofturn:bury
+abilities=trample,haste,treason
 text=Trample, haste -- At the beginning of the end step, sacrifice Groundbreaker.
 mana={G}{G}{G}
 type=Creature
@@ -22298,22 +22281,11 @@ toughness=1
 name=Hell's Thunder
 abilities=flying,haste
 auto=@each endofturn:moveTo(ownergraveyard)
-autograveyard={4}{R}:moveto(exile) && token(17645511) asSorcery
+autograveyard={4}{R}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
 text=Flying, haste -- At the beginning of the end step, sacrifice Hell's Thunder. -- Unearth {4}{R} ({4}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={1}{R}{R}
 type=Creature
 subtype=Elemental
-power=4
-toughness=4
-[/card]
-[card]
-name=Hell's Thunder Unearthed
-type=Creature
-subtype=Elemental
-abilities=flying,haste
-auto=@next end:moveTo(exile)
-text=Flying, haste -- At the beginning of the end step, sacrifice Hell's Thunder. -- Unearth {4}{R} ({4}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
-mana={1}{R}{R}
 power=4
 toughness=4
 [/card]
@@ -22356,24 +22328,13 @@ toughness=8
 name=Hellspark Elemental
 abilities=trample,haste
 auto=@each endofturn:moveTo(ownergraveyard)
-autograveyard={1}{R}:moveto(exile) && token(17479911) asSorcery
+autograveyard={1}{R}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
 text=Trample, haste -- At the beginning of the end step, sacrifice Hellspark Elemental. -- Unearth {1}{R} ({1}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={1}{R}
 type=Creature
 subtype=Elemental
 power=3
 toughness=1
-[/card]
-[card]
-name=Hellspark Elemental Unearthed
-type=Creature
-subtype=Elemental
-abilities=trample,haste
-auto=@next endofturn:moveTo(exile)
-text=Trample, haste -- At the beginning of the end step, sacrifice Hellspark Elemental. -- Unearth {1}{R} ({1}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
-power=3
-toughness=1
-mana={1}{R}
 [/card]
 [card]
 name=Helm of Awakening
@@ -22766,6 +22727,16 @@ type=Creature
 subtype=Homarid Shaman
 power=2
 toughness=1
+[/card]
+[card]
+name=Homarid Warrior
+auto={U}:shroud && tap && frozen
+text={U}: Homarid Warrior gains shroud until end of turn and doesn't untap during your next untap step. Tap Homarid Warrior. (A permanent with shroud can't be the target of spells or abilities.)
+mana={4}{U}
+type=Creature
+subtype=Homarid Warrior
+power=3
+toughness=3
 [/card]
 [card]
 name=Honden of Cleansing Fire
@@ -23841,6 +23812,17 @@ auto=@movedto(creature|myBattlefield):all(trigger) haste ueot
 text=Whenever a creature enters the battlefield under your control, it gets +2/+0 and gains haste until end of turn.
 mana={3}{R}{R}
 type=Enchantment
+[/card]
+[card]
+name=Incandescent Soulstoke
+auto=lord(other creature[elemental]|myBattlefield) 1/1
+auto={1}{R}{T}:moveto(mybattlefield) target(creature[elemental]|myhand) && transforms(,treason,haste) forever
+text=Other Elemental creatures you control get +1/+1. -- {1}{R}, {T}: You may put an Elemental creature card from your hand onto the battlefield. That creature gains haste until end of turn. Sacrifice it at the beginning of the next end step.
+mana={2}{R}
+type=Creature
+subtype=Elemental Shaman
+power=2
+toughness=2
 [/card]
 [card]
 name=Incendiary
@@ -25813,6 +25795,38 @@ power=0
 toughness=0
 [/card]
 [card]
+name=Kashi-Tribe Elite
+auto=lord(snake[legendary]|mybattlefield) shroud
+auto=@damaged(creature[attacking;blocking]) from(kashi-tribe elite[attacking;blocking]):all(trigger[to]) tap && frozen
+text=Legendary Snakes you control have shroud. (They can't be the targets of spells or abilities.) -- Whenever Kashi-Tribe Elite deals combat damage to a creature, tap that creature and it doesn't untap during its controller's next untap step.
+mana={1}{G}{G}
+type=Creature
+subtype=Snake Warrior
+power=2
+toughness=3
+[/card]
+[card]
+name=Kashi-Tribe Reaver
+auto=@damaged(creature[attacking;blocking]) from(kashi-tribe reaver[attacking;blocking]):all(trigger[to]) tap && frozen
+auto={1}{G}:regenerate
+text=Whenever Kashi-Tribe Reaver deals combat damage to a creature, tap that creature and it doesn't untap during its controller's next untap step. -- {1}{G}: Regenerate Kashi-Tribe Reaver.
+mana={3}{G}
+type=Creature
+subtype=Snake Warrior
+power=3
+toughness=2
+[/card]
+[card]
+name=Kashi-Tribe Warriors
+auto=@damaged(creature[attacking;blocking]) from(kashi-tribe warriors[attacking;blocking]):all(trigger[to]) tap && frozen
+text=Whenever Kashi-Tribe Warriors deals combat damage to a creature, tap that creature and it doesn't untap during its controller's next untap step.
+mana={3}{G}{G}
+type=Creature
+subtype=Snake Warrior
+power=2
+toughness=4
+[/card]
+[card]
 name=Kasimir the Lone Wolf
 mana={4}{W}{U}
 type=Legendary Creature
@@ -25824,47 +25838,24 @@ toughness=3
 name=Kathari Bomber
 abilities=flying
 auto=@damaged(player) from(this):token(Goblin,Creature Token Goblin,1/1,red)*2 && moveTo(ownergraveyard) all(this)
-autograveyard={3}{B}{R}:moveto(exile) && token(17960211) asSorcery
+autograveyard={3}{B}{R}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
 text=Flying -- When Kathari Bomber deals combat damage to a player, put two 1/1 red Goblin creature tokens onto the battlefield and sacrifice Kathari Bomber. -- Unearth {3}{B}{R} ({3}{B}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={1}{B}{R}
 type=Creature
 subtype=Bird Shaman
 power=2
 toughness=2
-[/card]
-[card]
-name=Kathari Bomber Unearthed
-type=Creature
-subtype=Bird Shaman
-abilities=haste,flying
-auto=@next end:moveTo(exile)
-auto=@damaged(player) from(this):token(Goblin,Creature Token Goblin,1/1,red)*2 && moveTo(exile) all(this)
-text=Flying -- When Kathari Bomber deals combat damage to a player, put two 1/1 red Goblin creature tokens onto the battlefield and sacrifice Kathari Bomber. -- Unearth {3}{B}{R} ({3}{B}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
-power=2
-toughness=2
-mana={1}{B}{R}
 [/card]
 [card]
 name=Kathari Screecher
 abilities=flying
-autograveyard={2}{U}:moveto(exile) && token(17483711) asSorcery
+autograveyard={2}{U}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
 text=Flying -- Unearth {2}{U} ({2}{U}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={2}{U}
 type=Creature
 subtype=Bird Soldier
 power=2
 toughness=2
-[/card]
-[card]
-name=Kathari Screecher Unearthed
-type=Creature
-subtype=Bird Soldier
-abilities=haste,flying
-auto=@next end:moveTo(exile)
-text=Flying -- Unearth {2}{U} ({2}{U}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
-power=2
-toughness=2
-mana={2}{U}
 [/card]
 [card]
 name=Kavu Aggressor
@@ -26042,25 +26033,13 @@ toughness=3
 [card]
 name=Kederekt Leviathan
 auto=moveTo(ownerhand) all(other *[-land])
-autograveyard={6}{U}:moveto(exile) && token(17488211) asSorcery
+autograveyard={6}{U}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
 text=When Kederekt Leviathan enters the battlefield, return all other nonland permanents to their owners' hands. -- Unearth {6}{U} ({6}{U}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={6}{U}{U}
 type=Creature
 subtype=Leviathan
 power=5
 toughness=5
-[/card]
-[card]
-name=Kederekt Leviathan Unearthed
-type=Creature
-subtype=Leviathan
-abilities=haste
-auto=moveTo(ownerhand) all(other *[-land])
-auto=@next end:moveTo(exile)
-text=When Kederekt Leviathan enters the battlefield, return all other nonland permanents to their owners' hands. -- Unearth {6}{U} ({6}{U}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
-power=5
-toughness=5
-mana={6}{U}{U}
 [/card]
 [card]
 name=Kederekt Parasite
@@ -26299,8 +26278,7 @@ toughness=2
 [/card]
 [card]
 name=Kiki's Cloning Object
-auto=haste
-auto=@next endofturn:bury
+abilities=haste,treason
 auto=copy notatarget(creature[-legendary]|myBattlefield)
 text=Haste -- Copy target nonlegendary creature. -- Sacrifice it at end of turn.
 type=Creature
@@ -27079,6 +27057,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Kor Hookmaster
+auto=tap && frozen target(creature)
+text=When Kor Hookmaster enters the battlefield, tap target creature an opponent controls. That creature doesn't untap during its controller's next untap step.
+mana={2}{W}
+type=Creature
+subtype=Kor Soldier
+power=2
+toughness=2
+[/card]
+[card]
 name=Kor Sanctifiers
 kicker={W}
 auto=kicker destroy target(artifact,enchantment)
@@ -27315,6 +27303,17 @@ text=Sacrifice Krosan Wayfarer: You may put a land card from your hand onto the 
 mana={G}
 type=Creature
 subtype=Human Druid
+power=1
+toughness=1
+[/card]
+[card]
+name=Krovikan Elementalist
+auto={2}{R}:1/0 target(creature)
+auto={U}{U}:flying target(creature) && treason
+text={2}{R}: Target creature gets +1/+0 until end of turn. -- {U}{U}: Target creature you control gains flying until end of turn. Sacrifice it at the beginning of the next end step.
+mana={B}{B}
+type=Creature
+subtype=Human Wizard
 power=1
 toughness=1
 [/card]
@@ -27592,6 +27591,14 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Lantern-Lit Graveyard
+auto={T}:Add{1}
+auto={T}:Add{B} && frozen
+auto={T}:Add{R} && frozen
+text={T}: Add {1} to your mana pool. -- {T}: Add {B} or {R} to your mana pool. Lantern-Lit Graveyard doesn't untap during your next untap step.
+type=Land
+[/card]
+[card]
 name=Last Breath
 target=creature[power<=2]
 auto=moveTo(exile)
@@ -27834,6 +27841,16 @@ auto=tap target(creature)
 text=Tap up to two target creatures.
 mana={1}{W}
 type=Instant
+[/card]
+[card]
+name=Lead Golem
+auto=@each mycombatdamage:all(lead golem[attacking]|mybattlefield) frozen
+text=Whenever Lead Golem attacks, it doesn't untap during its controller's next untap step.
+mana={5}
+type=Artifact Creature
+subtype=Golem
+power=3
+toughness=5
 [/card]
 [card]
 name=Leaden Fists
@@ -28370,9 +28387,8 @@ toughness=2
 [/card]
 [card]
 name=Lightning Serpent
-abilities=trample,haste
+abilities=trample,haste,treason
 auto=counter(1/0,X)
-auto=@next end:bury
 text=Trample, haste -- Lightning Serpent enters the battlefield with X +1/+0 counters on it. -- At the beginning of the end step, sacrifice Lightning Serpent.
 mana={X}{R}
 type=Creature
@@ -29726,6 +29742,14 @@ mana={2}{U}
 type=Instant
 [/card]
 [card]
+name=Mana Vapors
+auto=choice name(your opponent's lands don't untap during his next upkeep) && frozen all(land|opponentBattlefield)
+auto=choice name(your lands don't untap during your next upkeep) && frozen all(land|myBattlefield)
+text=Lands target player controls don't untap during his or her next untap step.
+mana={1}{U}
+type=Sorcery
+[/card]
+[card]
 name=Mana Vault
 auto=doesnotuntap
 auto={4}:untap myUpkeepOnly
@@ -30303,6 +30327,7 @@ subtype=Spirit
 power=*
 toughness=*
 [/card]
+
 [card]
 name=Matca Rioters
 auto=aslongas(forest|myBattlefield) 1/1
@@ -30326,6 +30351,17 @@ type=Artifact Creature
 subtype=Golem
 power=3
 toughness=3
+[/card]
+[card]
+name=Matsu-Tribe Birdstalker
+auto=@damaged(creature[attacking;blocking]) from(matsu-tribe birdstalker[attacking;blocking]):all(trigger[to]) tap && frozen
+auto={G}:reach
+text=Whenever Matsu-Tribe Birdstalker deals combat damage to a creature, tap that creature and it doesn't untap during its controller's next untap step. -- {G}: Matsu-Tribe Birdstalker gains reach until end of turn. (It can block creatures with flying.)
+mana={2}{G}{G}
+type=Creature
+subtype=Snake Warrior Archer
+power=2
+toughness=2
 [/card]
 [card]
 name=Mawcor
@@ -31320,6 +31356,14 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Misstep
+text=Creatures target player controls don't untap during that player's next untap step.
+auto=choice name(your opponent's creatures don't untap during his next upkeep) && frozen all(creature|opponentBattlefield)
+auto=choice name(your creatures don't untap during your next upkeep) && frozen all(creature|myBattlefield)
+mana={1}{U}
+type=Sorcery
+[/card]
+[card]
 name=Mist Leopard
 abilities=shroud
 text=Shroud (This creature can't be the target of spells or abilities.)
@@ -31498,6 +31542,14 @@ type=Creature
 subtype=Goblin
 power=3
 toughness=3
+[/card]
+[card]
+name=Mogg Hollows
+auto={T}:Add{1}
+auto={T}:Add{R} && frozen
+auto={T}:Add{G} && frozen
+text={T}: Add {1} to your mana pool. -- {T}: Add {R} or {G} to your mana pool. Mogg Hollows doesn't untap during your next untap step.
+type=Land
 [/card]
 [card]
 name=Mogg Jailer
@@ -34761,6 +34813,16 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Orochi Ranger
+auto=@damaged(creature[attacking;blocking]) from(orochi ranger[attacking;blocking]):all(trigger[to]) tap && frozen
+text=Whenever Orochi Ranger deals combat damage to a creature, tap that creature and it doesn't untap during its controller's next untap step.
+mana={1}{G}
+type=Creature
+subtype=Snake Warrior
+power=2
+toughness=1
+[/card]
+[card]
 name=Orochi Sustainer
 auto={T}:Add {G}
 text={T}: Add {G} to your mana pool.
@@ -36264,6 +36326,14 @@ text=Pine Barrens enters the battlefield tapped. -- {T}: Add {1} to your mana po
 type=Land
 [/card]
 [card]
+name=Pinecrest Ridge
+auto={T}:Add{1}
+auto={T}:Add{R} && frozen
+auto={T}:Add{G} && frozen
+text={T}: Add {1} to your mana pool. -- {T}: Add {R} or {G} to your mana pool. Pinecrest Ridge doesn't untap during your next untap step.
+type=Land
+[/card]
+[card]
 name=Pious Kitsune
 auto=@each my upkeep:aslongas(eight-and-a-half-tails|myBattlefield) thisforeach(counter{0/0.1.Devotion}) life:1 controller
 auto=@each my upkeep:counter(0/0,1,Devotion)
@@ -37576,6 +37646,16 @@ auto={R}{R}{R}
 text=Add {R}{R}{R} to your mana pool.
 mana={1}{R}
 type=Instant
+[/card]
+[card]
+name=Pyric Salamander
+auto={R}:1/0 && treason
+text={R}: Pyric Salamander gets +1/+0 until end of turn. Sacrifice Pyric Salamander at the beginning of the next end step.
+mana={1}{R}
+type=Creature
+subtype=Salamander
+power=1
+toughness=1
 [/card]
 [card]
 name=Pyrite Spellbomb
@@ -39507,6 +39587,16 @@ id=-152716111
 type=Nothing
 [/card]
 [card]
+name=Reveka, Wizard Savant
+auto={T}:damage:2 target(creature,player) && frozen all(this)
+text={T}: Reveka, Wizard Savant deals 2 damage to target creature or player and doesn't untap during your next untap step.
+mana={2}{U}{U}
+type=Legendary Creature
+subtype=Dwarf Wizard
+power=0
+toughness=1
+[/card]
+[card]
 name=Revelsong Horn
 auto={1}{T(other creature[-tapped]|myBattlefield)}{T}:1/1 target(creature)
 text={1}, {T}, Tap an untapped creature you control: Target creature gets +1/+1 until end of turn.
@@ -40401,6 +40491,14 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Rootwater Depths
+auto={T}:Add{1}
+auto={T}:Add{U} && frozen
+auto={T}:Add{B} && frozen
+text={T}: Add {1} to your mana pool. -- {T}: Add {U} or {B} to your mana pool. Rootwater Depths doesn't untap during your next untap step.
+type=Land
+[/card]
+[card]
 name=Rootwater Diver
 auto={T}{S}:moveTo(myhand) target(artifact|mygraveyard)
 text={T}, Sacrifice Rootwater Diver: Return target artifact card from your graveyard to your hand.
@@ -40999,6 +41097,16 @@ auto=@movedTo(creature|graveyard):may untap
 text={T}: Return target noncreature artifact card with converted mana cost 1 or less from your graveyard to the battlefield. -- Whenever a creature is put into a graveyard from the battlefield, you may untap Salvaging Station.
 mana={6}
 type=Artifact
+[/card]
+[card]
+name=Samite Alchemist
+auto={W}{W}{T}:prevent:4 target(creature) && tap && frozen
+text={W}{W}, {T}: Prevent the next 4 damage that would be dealt this turn to target creature you control. Tap that creature. It doesn't untap during your next untap step.
+mana={3}{W}
+type=Creature
+subtype=Human Cleric
+power=0
+toughness=2
 [/card]
 [card]
 name=Samite Archer
@@ -41743,25 +41851,13 @@ toughness=4
 [card]
 name=Scourge Devil
 auto=1/0 all(creature|myBattlefield)
-autograveyard={2}{R}:moveto(exile) && token(17484511) asSorcery
+autograveyard={2}{R}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
 text=When Scourge Devil enters the battlefield, creatures you control get +1/+0 until end of turn. -- Unearth {2}{R} ({2}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={4}{R}
 type=Creature
 subtype=Devil
 power=3
 toughness=3
-[/card]
-[card]
-name=Scourge Devil Unearthed
-type=Creature
-subtype=Devil
-abilities=haste
-auto=1/0 all(creature|myBattlefield)
-auto=@next end:moveTo(exile)
-text=When Scourge Devil enters the battlefield, creatures you control get +1/+0 until end of turn. -- Unearth {2}{R} ({2}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
-power=3
-toughness=3
-mana={4}{R}
 [/card]
 [card]
 name=Scourge of Kher Ridges
@@ -42935,24 +43031,13 @@ type=Sorcery
 [card]
 name=Shambling Remains
 abilities=cantblock
-autograveyard={B}{R}:moveto(exile) && token(18499111) asSorcery
+autograveyard={B}{R}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
 text=Shambling Remains can't block. -- Unearth {B}{R} ({B}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={1}{B}{R}
 type=Creature
 subtype=Zombie Horror
 power=4
 toughness=3
-[/card]
-[card]
-name=Shambling Remains Unearthed
-type=Creature
-subtype=Zombie Horror
-abilities=haste,cantblock
-auto=@next end:moveTo(exile)
-text=Shambling Remains can't block. -- Unearth {B}{R} ({B}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
-power=4
-toughness=3
-mana={1}{B}{R}
 [/card]
 [card]
 name=Shambling Strider
@@ -44403,6 +44488,18 @@ toughness=2
 # P/T modified to make auto rule possible
 [/card]
 [card]
+name=Skizzik
+abilities=trample,haste,treason
+kicker={R}
+auto=kicker -treason
+text=Kicker {R} (You may pay an additional {R} as you cast this spell.) -- Trample, haste -- At the beginning of the end step, sacrifice Skizzik unless it was kicked.
+mana={3}{R}
+type=Creature
+subtype=Elemental
+power=5
+toughness=3
+[/card]
+[card]
 name=Skred
 target=creature
 auto=foreach(snow|myBattlefield) damage:1
@@ -44866,7 +44963,7 @@ type=Instant
 name=Slave of Bolas
 target=creature
 auto=moveTo(myBattlefield)
-auto=@next end:bury
+auto=treason
 auto=untap
 auto=haste
 text=Gain control of target creature. Untap that creature. It gains haste until end of turn. Sacrifice it at the beginning of the next end step.
@@ -44881,6 +44978,14 @@ auto=draw:1 controller
 text=Destroy target green creature. It can't be regenerated. -- Draw a card.
 mana={2}{B}
 type=Instant
+[/card]
+[card]
+name=Sleep
+auto=choice name(your opponent's creatures don't untap during his next upkeep) && frozen all(creature|opponentBattlefield) && tap all(creature|opponentBattlefield)
+auto=choice name(your creatures don't untap during your next upkeep) && frozen all(creature|myBattlefield) && tap all(creature||myBattlefield)
+text=Tap all creatures target player controls. Those creatures don't untap during that player's next untap step.
+mana={2}{U}{U}
+type=Sorcery
 [/card]
 [card]
 name=Sleeper Agent
@@ -45274,6 +45379,13 @@ type=Creature
 subtype=Elemental
 power=1
 toughness=1
+[/card]
+[card]
+name=Sneak Attack
+auto={R}:moveto(mybattlefield) target(creature) && transforms(,treason,haste) forever
+text={R}: You may put a creature card from your hand onto the battlefield. That creature gains haste. Sacrifice the creature at the beginning of the next end step.
+mana={3}{R}
+type=Enchantment
 [/card]
 [card]
 name=Sneaky Homunculus
@@ -45953,6 +46065,15 @@ mana={7}{W}{W}{W}
 type=Sorcery
 [/card]
 [card]
+name=Soulshriek
+target=creature
+auto=foreach(creature|mygraveyard) 1/0
+auto=treason
+text=Target creature you control gets +X/+0 until end of turn, where X is the number of creature cards in your graveyard. Sacrifice that creature at the beginning of the next end step.
+mana={B}
+type=Instant
+[/card]
+[card]
 name=Soulsurge Elemental
 abilities=first strike
 auto=foreach(creature|myBattlefield) 1/0
@@ -46171,6 +46292,27 @@ auto=discard:1
 text=Target player discards a card at random.
 mana={1}{B}
 type=Sorcery
+[/card]
+[card]
+name=Spectral Bears
+auto=@each mycombatdamage:aslongas(*[black]|opponentbattlefield) all(spectral bears[attacking]|mybattlefield) frozen <1
+text=Whenever Spectral Bears attacks, if defending player controls no black nontoken permanents, it doesn't untap during your next untap step.
+mana={1}{G}
+type=Creature
+subtype=Bear Spirit
+power=3
+toughness=3
+[/card]
+[card]
+name=Spectral Force
+abilities=trample
+auto=@each mycombatdamage:aslongas(*[black]|opponentbattlefield) all(spectral force[attacking]|mybattlefield) frozen <1
+text=Trample -- Whenever Spectral Force attacks, if defending player controls no black permanents, it doesn't untap during your next untap step.
+mana={3}{G}{G}
+type=Creature
+subtype=Elemental Spirit
+power=8
+toughness=8
 [/card]
 [card]
 name=Spectral Guardian
@@ -46793,6 +46935,15 @@ auto=aslongas(island|myBattlefield) token(Saproling,Creature Saproling,1/1,green
 text=Domain - Put a 1/1 green Saproling creature token onto the battlefield for each basic land type among lands you control.
 mana={3}{G}
 type=Sorcery
+[/card]
+[card]
+name=Spore Cloud
+auto=tap all(creature[blocking])
+auto=preventAllcombatDamage ueot
+auto=frozen all(creature[attacking;blocking])
+text=Tap all blocking creatures. Prevent all combat damage that would be dealt this turn. Each attacking creature and each blocking creature doesn't untap during its controller's next untap step.
+mana={1}{G}{G}
+type=Instant
 [/card]
 [card]
 name=Spore Flower
@@ -49385,6 +49536,14 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Tangle
+auto=preventAllcombatDamage ueot
+auto=frozen all(creature[attacking])
+text=Prevent all combat damage that would be dealt this turn. -- Each attacking creature doesn't untap during its controller's next untap step.
+mana={1}{G}
+type=Instant
+[/card]
+[card]
 name=Tangle Spider
 abilities=flash,reach
 text=Flash (You may cast this spell any time you could cast an instant.) -- Reach (This creature can block creatures with flying.)
@@ -50099,6 +50258,14 @@ type=Creature
 subtype=Thalakos
 power=3
 toughness=3
+[/card]
+[card]
+name=Thalakos Lowlands
+auto={T}:Add{1}
+auto={T}:Add{W} && frozen
+auto={T}:Add{U} && frozen
+text={T}: Add {1} to your mana pool. -- {T}: Add {W} or {U} to your mana pool. Thalakos Lowlands doesn't untap during your next untap step.
+type=Land
 [/card]
 [card]
 name=Thalakos Mistfolk
@@ -51856,6 +52023,14 @@ mana={1}{G}
 type=Instant
 [/card]
 [card]
+name=Tranquil Garden
+auto={T}:Add{1}
+auto={T}:Add{G} && frozen
+auto={T}:Add{W} && frozen
+text={T}: Add {1} to your mana pool. -- {T}: Add {G} or {W} to your mana pool. Tranquil Garden doesn't untap during your next untap step.
+type=Land
+[/card]
+[card]
 name=Tranquil Grove
 auto={1}{G}{G}:Destroy all(other enchantment)
 text={1}{G}{G}: Destroy all other enchantments.
@@ -52736,25 +52911,13 @@ subtype=Aura
 [card]
 name=Undead Leotau
 auto={R}:1/-1
-autograveyard={2}{B}:moveto(exile) && token(17645211) asSorcery
+autograveyard={2}{B}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
 text={R}: Undead Leotau gets +1/-1 until end of turn. -- Unearth {2}{B} ({2}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={5}{B}
 type=Creature
 subtype=Zombie Cat
 power=3
 toughness=4
-[/card]
-[card]
-name=Undead Leotau Unearthed
-type=Creature
-subtype=Zombie Cat
-abilities=haste
-auto={R}:1/-1
-auto=@next end:moveTo(exile)
-text={R}: Undead Leotau gets +1/-1 until end of turn. -- Unearth {2}{B} ({2}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
-power=3
-toughness=4
-mana={5}{B}
 [/card]
 [card]
 name=Undead Gladiator
@@ -53503,6 +53666,16 @@ mana={2}{W}
 type=Instant
 [/card]
 [card]
+name=Varchild's Crusader
+auto={0}:cantbeblockedby(creature[-wall]) && treason
+text={0}: Varchild's Crusader can't be blocked this turn except by Walls. Sacrifice Varchild's Crusader at the beginning of the next end step.
+mana={3}{R}
+type=Creature
+subtype=Human Knight
+power=3
+toughness=2
+[/card]
+[card]
 name=Varchild's War-Riders
 abilities=trample
 auto=rampage(1/1,1)
@@ -53541,6 +53714,14 @@ type=Creature
 subtype=Horror
 power=0
 toughness=0
+[/card]
+[card]
+name=Vec Townships
+auto={T}:Add{1}
+auto={T}:Add{G} && frozen
+auto={T}:Add{W} && frozen
+text={T}: Add {1} to your mana pool. -- {T}: Add {G} or {W} to your mana pool. Vec Townships doesn't untap during your next untap step.
+type=Land
 [/card]
 [card]
 name=Vectis Agents
@@ -54471,24 +54652,13 @@ toughness=5
 [card]
 name=Viscera Dragger
 autohand={2}:cycling
-autograveyard={1}{B}:moveto(exile) && token(17514411) asSorcery
+autograveyard={1}{B}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
 text=Cycling {2} ({2}, Discard this card: Draw a card.) -- Unearth {1}{B} ({1}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={3}{B}
 type=Creature
 subtype=Zombie Ogre Warrior
 power=3
 toughness=3
-[/card]
-[card]
-name=Viscera Dragger Unearthed
-type=Creature
-subtype=Zombie Ogre Warrior
-abilities=haste
-auto=@next end:moveTo(exile)
-text=Cycling {2} ({2}, Discard this card: Draw a card.) -- Unearth {1}{B} ({1}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
-power=3
-toughness=3
-mana={3}{B}
 [/card]
 [card]
 name=Viscerid Armor
@@ -54584,25 +54754,13 @@ toughness=2
 [card]
 name=Vithian Stinger
 auto={T}:damage:1 target(creature,player)
-autograveyard={B}:moveto(exile) && token(17492211) asSorcery
+autograveyard={1}{R}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
 text={T}: Vithian Stinger deals 1 damage to target creature or player. -- Unearth {1}{R} ({1}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={2}{R}
 type=Creature
 subtype=Human Shaman
 power=0
 toughness=1
-[/card]
-[card]
-name=Vithian Stinger Unearthed
-type=Creature
-subtype=Human Shaman
-abilities=haste
-auto={T}:damage:1 target(creature,player)
-auto=@next end:moveTo(exile)
-text={T}: Vithian Stinger deals 1 damage to target creature or player. -- Unearth {1}{R} ({1}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
-power=0
-toughness=1
-mana={2}{R}
 [/card]
 [card]
 name=Vitu-Ghazi, the City-Tree
@@ -55873,6 +56031,14 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Waterveil Cavern
+auto={T}:Add{1}
+auto={T}:Add{U} && frozen
+auto={T}:Add{B} && frozen
+text={T}: Add {1} to your mana pool. -- {T}: Add {U} or {B} to your mana pool. Waterveil Cavern doesn't untap during your next untap step.
+type=Land
+[/card]
+[card]
 name=Watery Grave
 auto=tap
 auto=may untap && life:-2 controller
@@ -56826,6 +56992,13 @@ type=Artifact Creature
 subtype=Human Wizard
 power=2
 toughness=2
+[/card]
+[card]
+name=Wine of Blood and Iron
+auto={4}:power/0 target(creature) && treason all(this)
+text={4}: Target creature gets +X/+0 until end of turn, where X is its power. Sacrifice Wine of Blood and Iron at the beginning of the next end step.
+mana={3}
+type=Artifact
 [/card]
 [card]
 name=Wing Snare
