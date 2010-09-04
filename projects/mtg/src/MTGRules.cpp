@@ -36,68 +36,13 @@ int cardsinhand = game->players[0]->game->hand->nb_cards;
 #ifdef WIN32
   cost->Dump();
 #endif
-//cantcast restrictions---------
-         int cantcreaturecasters = 0;
-		MTGGameZone * z = card->controller()->game->inPlay;
-        int nbcards = z->nb_cards;
-        for (int j = 0; j < nbcards; ++j){
-          MTGCardInstance * c = z->cards[j];
-		  if (c->has(Constants::CANTCASTCREATURE)){
-			player->cantcastcreature = 1;
-            cantcreaturecasters++;
-          }
-		}
-		 int cantcasters = 0;
-        for (int j = 0; j < nbcards; ++j){
-          MTGCardInstance * c = z->cards[j];
-		  if (c->has(Constants::CANTCAST)){
-			player->cantcastspell = 1;
-            cantcasters++;
-          }
-		}
-		 int cantinsocasters = 0;
-        for (int j = 0; j < nbcards; ++j){
-          MTGCardInstance * c = z->cards[j];
-		  if (c->has(Constants::CANTCASTINSTANTSORCERY)){
-		    player->cantcastinso = 1;
-            cantinsocasters++;
-		  }
-		}
-//restrict both players-------
-
-        for (int j = 0; j < nbcards; ++j){
-          MTGCardInstance * c = z->cards[j];
-		  if (c->has(Constants::BOTHCANTCAST)){
-		    player->cantcastspell = 1;
-			player->opponent()->cantcastspell = 1;
-		  }
-		}
-
-        for (int j = 0; j < nbcards; ++j){
-          MTGCardInstance * c = z->cards[j];
-		  if (c->has(Constants::BOTHNOCREATURE)){
-		    player->cantcastcreature = 1;
-			player->opponent()->cantcastcreature = 1;
-		  }
-		}
-
-        for (int j = 0; j < nbcards; ++j){
-          MTGCardInstance * c = z->cards[j];
-		  if (c->has(Constants::BOTHONESPELL)){
-			  player->onlyonecast = 1;
-			  player->opponent()->onlyonecast = 1;
-
-		  }
-		}
-           
-  if(player->castedspellsthisturn > 0 && player->onlyonecast > 0){return 0;}
-  if(player->castrestrictedspell > 0){return 0;}
+  if(player->castrestrictedspell > 0 && !card->hasType("land")){ return 0;}
+  if(player->onlyonecast > 0 && player->castcount >= 1){return 0;}
+  if(player->nospellinstant > 0){return 0;}
+  if(player->onlyoneinstant > 0){ if(player->castcount >= 1){return 0;}}
+  if(player->nocreatureinstant > 0 && card->hasType("creature")){return 0;}
   if(player->castrestrictedcreature > 0 && card->hasType("creature")){return 0;}
-  if(cantcasters > 0 && !card->hasType("land")){ return 0;}
-  if(cantinsocasters > 0 && card->hasType("sorcery")){ return 0;}
-  if(cantinsocasters > 0 && card->hasType("instant")){ return 0;}
-  if(cantcreaturecasters > 0 && card->hasType("creature")){ return 0;}//---this ends the cant cast restriction.
-          
+
   //cost of card.
   if(alternative && playerMana->canAfford(alternative)){
       return 1;
@@ -167,9 +112,11 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card){
       spell = game->mLayers->stackLayer()->addSpell(copy,game->targetChooser, spellCost,payResult,0);
       game->targetChooser = NULL;
 	  player->castedspellsthisturn += 1;
+	  if(player->onlyonecast > 0 || player->onlyoneinstant > 0){player->castcount += 1;}
     }else{
       spell = game->mLayers->stackLayer()->addSpell(copy,NULL, spellCost, payResult,0);
 	  player->castedspellsthisturn += 1;
+	  if(player->onlyonecast > 0 || player->onlyoneinstant > 0){player->castcount += 1;}
 	}
   if(card->has(Constants::STORM)){
 	  int storm = player->castedspellsthisturn;
@@ -625,6 +572,296 @@ HUDDisplay::~HUDDisplay(){
     a->isClone = 1;
     return a;
   }
+
+//putting cards with restricting effects inplay
+   MTGCantCasterstart::MTGCantCasterstart(int _id):MTGAbility(_id,NULL){};
+
+  int MTGCantCasterstart::receiveEvent(WEvent * event){
+    if (event->type == WEvent::CHANGE_ZONE){
+      WEventZoneChange * e = (WEventZoneChange *) event;
+      MTGCardInstance * card = e->card->previous;
+	  if(card){
+		  if (card->basicAbilities[Constants::BOTHCANTCAST] || card->basicAbilities[Constants::BOTHNOCREATURE] || card->basicAbilities[Constants::CANTCAST] || card->basicAbilities[Constants::CANTCASTCREATURE] || card->basicAbilities[Constants::CANTCASTTWO] || card->basicAbilities[Constants::ONLYONEBOTH]){
+        int ok = 0;
+
+
+
+        for (int i = 0; i < 2 ; i++){
+          Player * p = game->players[i];
+		  if (e->from == p->game->graveyard || e->from == p->game->hand || e->from == p->game->library || e->from == p->game->exile){ ok = 1;
+		  }
+       
+        for (int i = 0; i < 2 ; i++){
+          Player * p = game->players[i];
+		  if (e->to == p->game->inPlay){//this will trigger a check if opponent or player cast the card.
+			  			
+		MTGGameZone * z = card->controller()->game->inPlay;
+		MTGGameZone * y = card->controller()->opponent()->game->inPlay;
+		int nbcards = z->nb_cards;
+		int onbcards = y->nb_cards;
+               //check my battlefield and opponents
+        for (int j = 0; j < nbcards; ++j){
+          MTGCardInstance * c = z->cards[j];
+		  if (c->has(Constants::BOTHCANTCAST)){
+		    card->controller()->castrestrictedspell = 1;
+			card->controller()->opponent()->castrestrictedspell = 1;
+		  }
+		}      //any on other side?
+		  for (int j = 0; j < onbcards; ++j){
+          MTGCardInstance * c = y->cards[j];
+		  if (c->has(Constants::BOTHCANTCAST)){
+		    card->controller()->castrestrictedspell = 1;
+			card->controller()->opponent()->castrestrictedspell = 1;
+		  }
+		}
+	      //maybe one of us is still restricted, lets check...
+        for (int j = 0; j < nbcards; ++j){
+          MTGCardInstance * c = z->cards[j];
+		  if (c->has(Constants::CANTCAST)){
+		    card->controller()->castrestrictedspell = 1;
+		  }
+		} //any on other side?
+		  for (int j = 0; j < onbcards; ++j){
+          MTGCardInstance * c = y->cards[j];
+		  if (c->has(Constants::CANTCAST)){
+			card->controller()->opponent()->castrestrictedspell = 1;
+		  }
+		}
+
+//---how about if we cant cast creatures---
+
+        for (int j = 0; j < nbcards; ++j){
+          MTGCardInstance * c = z->cards[j];
+		  if (c->has(Constants::BOTHNOCREATURE)){			  
+		    card->controller()->castrestrictedcreature += 1;
+			card->controller()->opponent()->castrestrictedcreature += 1;
+		  }
+		}
+		//maybe opponent has one....
+		for (int j = 0; j < onbcards; ++j){
+          MTGCardInstance * c = y->cards[j];
+		  if (c->has(Constants::BOTHNOCREATURE)){
+
+		    card->controller()->castrestrictedcreature = 1;
+			card->controller()->opponent()->castrestrictedcreature = 1;
+		  }
+		}
+//---
+		for (int j = 0; j < nbcards; ++j){
+          MTGCardInstance * c = z->cards[j];
+		  if (c->has(Constants::CANTCASTCREATURE)){
+		    card->controller()->castrestrictedcreature = 1;
+		  }
+		}
+		//maybe opponent has one....
+		for (int j = 0; j < onbcards; ++j){
+          MTGCardInstance * c = y->cards[j];
+		  if (c->has(Constants::CANTCASTCREATURE)){
+			card->controller()->opponent()->castrestrictedcreature = 1;
+		  }
+		}
+//---what if i can only cast 1?
+       for (int j = 0; j < nbcards; ++j){
+		   			  card->controller()->life += 100;
+          MTGCardInstance * c = z->cards[j];
+		  if (c->has(Constants::ONLYONEBOTH)){
+			  card->controller()->onlyonecast = 1;
+			  card->controller()->opponent()->onlyonecast = 1;
+		  }
+	   }
+		//maybe opponent has one....
+		for (int j = 0; j < onbcards; ++j){
+          MTGCardInstance * c = y->cards[j];
+		  if (c->has(Constants::ONLYONEBOTH)){
+			  card->controller()->onlyonecast = 1;
+			  card->controller()->opponent()->onlyonecast = 1;
+		  }
+		}
+//---
+		for (int j = 0; j < nbcards; ++j){
+          MTGCardInstance * c = z->cards[j];
+		  if (c->has(Constants::CANTCASTTWO)){
+			  card->controller()->onlyonecast = 1;
+		  }
+		}
+		//maybe opponent has one....
+		for (int j = 0; j < onbcards; ++j){
+          MTGCardInstance * c = y->cards[j];
+		  if (c->has(Constants::CANTCASTTWO)){
+			  card->controller()->opponent()->onlyonecast = 1;
+		  }
+		}
+//-----if a card with both*restrict* was found then the players are still restricted, if one player is still restricted he stays restricted.
+                  return 1;
+                 }
+		        return 1;
+               }
+	    	return 1;
+          }
+	     return 1;
+	    }
+	   return 1;
+	 }
+	 return 1;
+   }
+   return 1;
+  }
+  ostream& MTGCantCasterstart::toString(ostream& out) const
+  {
+    out << "MTGCantCasterstart ::: (";
+    return MTGAbility::toString(out) << ")";
+  }
+  int MTGCantCasterstart::testDestroy(){return 0;}
+  MTGCantCasterstart * MTGCantCasterstart::clone() const{
+    MTGCantCasterstart * a =  NEW MTGCantCasterstart(*this);
+    a->isClone = 1;
+    return a;
+  }
+
+//check if cast resristrictions are lifted when a card leaves play
+   MTGCantCastercheck::MTGCantCastercheck(int _id):MTGAbility(_id,NULL){};
+
+  int MTGCantCastercheck::receiveEvent(WEvent * event){
+    if (event->type == WEvent::CHANGE_ZONE){
+      WEventZoneChange * e = (WEventZoneChange *) event;
+      MTGCardInstance * card = e->card->previous;
+	  if (card && (card->basicAbilities[Constants::BOTHCANTCAST] || card->basicAbilities[Constants::BOTHNOCREATURE] || card->basicAbilities[Constants::CANTCAST] || card->basicAbilities[Constants::CANTCASTCREATURE] || card->basicAbilities[Constants::CANTCASTTWO] || card->basicAbilities[Constants::ONLYONEBOTH])){
+        int ok = 0;
+        for (int i = 0; i < 2 ; i++){
+          Player * p = game->players[i];
+          if (e->from == p->game->inPlay) ok = 1;
+		}
+        if (!ok) return 0;
+        for (int i = 0; i < 2 ; i++){
+          Player * p = game->players[i];
+		  if (e->to == p->game->graveyard || e->to == p->game->hand || e->to == p->game->library || e->to == p->game->exile){//if it goes ANYWHERE but inplay.
+//check happens----------
+	    //reset restrictions
+	    p->onlyonecast = 0;
+		p->opponent()->onlyonecast = 0;
+	    p->castrestrictedspell = 0;//0 means no restrictions apply.
+		p->castrestrictedcreature = 0;
+		p->opponent()->castrestrictedspell = 0;
+		p->opponent()->castrestrictedcreature = 0;
+     /*--------------------------------------------------------------*/
+		MTGGameZone * z = card->controller()->game->inPlay;
+		MTGGameZone * y = card->controller()->opponent()->game->inPlay;
+		int nbcards = z->nb_cards;
+		int onbcards = y->nb_cards;
+               //check my battlefield and opponents
+        for (int j = 0; j < nbcards; ++j){
+          MTGCardInstance * c = z->cards[j];
+		  if (c->has(Constants::BOTHCANTCAST)){
+		    p->castrestrictedspell = 1;
+			p->opponent()->castrestrictedspell = 1;
+		  }
+		}      //any on other side?
+		  for (int j = 0; j < onbcards; ++j){
+          MTGCardInstance * c = y->cards[j];
+		  if (c->has(Constants::BOTHCANTCAST)){
+		    p->castrestrictedspell = 1;
+			p->opponent()->castrestrictedspell = 1;
+		  }
+		}
+	      //maybe one of us is still restricted, lets check...
+        for (int j = 0; j < nbcards; ++j){
+          MTGCardInstance * c = z->cards[j];
+		  if (c->has(Constants::CANTCAST)){
+		    p->castrestrictedspell = 1;
+		  }
+		} //any on other side?
+		  for (int j = 0; j < onbcards; ++j){
+          MTGCardInstance * c = y->cards[j];
+		  if (c->has(Constants::CANTCAST)){
+			p->opponent()->castrestrictedspell = 1;
+		  }
+		}
+
+//---how about if we cant cast creatures---
+
+        for (int j = 0; j < nbcards; ++j){
+          MTGCardInstance * c = z->cards[j];
+		  if (c->has(Constants::BOTHNOCREATURE)){
+		    p->castrestrictedcreature = 1;
+			p->opponent()->castrestrictedcreature = 1;
+		  }
+		}
+		//maybe opponent has one....
+		for (int j = 0; j < onbcards; ++j){
+          MTGCardInstance * c = y->cards[j];
+		  if (c->has(Constants::BOTHNOCREATURE)){
+		    p->castrestrictedcreature = 1;
+			p->opponent()->castrestrictedcreature = 1;
+		  }
+		}
+//---
+		for (int j = 0; j < nbcards; ++j){
+          MTGCardInstance * c = z->cards[j];
+		  if (c->has(Constants::CANTCASTCREATURE)){
+		    p->castrestrictedcreature = 1;
+		  }
+		}
+		//maybe opponent has one....
+		for (int j = 0; j < onbcards; ++j){
+          MTGCardInstance * c = y->cards[j];
+		  if (c->has(Constants::CANTCASTCREATURE)){
+			p->opponent()->castrestrictedcreature = 1;
+		  }
+		}
+//---what if i can only cast 1?
+       for (int j = 0; j < nbcards; ++j){
+          MTGCardInstance * c = z->cards[j];
+		  if (c->has(Constants::ONLYONEBOTH)){
+			  p->onlyonecast = 1;
+			  p->opponent()->onlyonecast = 1;
+		  }
+		}
+		//maybe opponent has one....
+		for (int j = 0; j < onbcards; ++j){
+          MTGCardInstance * c = y->cards[j];
+		  if (c->has(Constants::ONLYONEBOTH)){
+			  p->onlyonecast = 1;
+			  p->opponent()->onlyonecast = 1;
+		  }
+		}
+//---
+		for (int j = 0; j < nbcards; ++j){
+          MTGCardInstance * c = z->cards[j];
+		  if (c->has(Constants::CANTCASTTWO)){
+			  p->onlyonecast = 1;
+		  }
+		}
+		//maybe opponent has one....
+		for (int j = 0; j < onbcards; ++j){
+          MTGCardInstance * c = y->cards[j];
+		  if (c->has(Constants::CANTCASTTWO)){
+			  p->opponent()->onlyonecast = 1;
+		  }
+		}
+//-----if a card with both*restrict* was found then the players are still restricted, if one player is still restricted he stays restricted.
+            return 1;
+          }
+        }
+      }
+    }
+    return 0;
+  }
+
+  ostream& MTGCantCastercheck::toString(ostream& out) const
+  {
+    out << "MTGCantCastercheck ::: (";
+    return MTGAbility::toString(out) << ")";
+  }
+  int MTGCantCastercheck::testDestroy(){return 0;}
+  MTGCantCastercheck * MTGCantCastercheck::clone() const{
+    MTGCantCastercheck * a =  NEW MTGCantCastercheck(*this);
+    a->isClone = 1;
+    return a;
+  }
+//the end of this very complex code line.
+ 
+
+
 //unearth rule----------------------------------
 //if the card leaves play, exile it instead.
   MTGUnearthRule::MTGUnearthRule(int _id):MTGAbility(_id,NULL){};

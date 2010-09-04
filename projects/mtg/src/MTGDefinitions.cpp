@@ -70,13 +70,13 @@ const char* Constants::MTGBasicAbilities[] = {
 "cantlose",
 "cantlifelose",
 "cantmilllose",
-"cantcastcreature",
+"cantcreaturecast",
 "cantspellcast",
-"cantcastinstantsorcery",
+"onlyonecast",
 "storm",
 "bothcantcast",
 "bothnocreature",
-"bothonecast",
+"oneboth",
 };
 
 

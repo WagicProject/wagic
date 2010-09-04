@@ -98,12 +98,10 @@ void GameObserver::nextGamePhase(){
     cleanupPhase();
     currentPlayer->canPutLandsIntoPlay = 1;
 	currentPlayer->castedspellsthisturn = 0;
-	currentPlayer->castrestrictedcreature = 0;
-	currentPlayer->castrestrictedspell = 0;
-	currentPlayer->cantcastcreature = 0;
-    currentPlayer->cantcastspell = 0;
-    currentPlayer->cantcastinso = 0;
-	currentPlayer->onlyonecast = 0;
+	currentPlayer->castcount = 0;
+		currentPlayer->nocreatureinstant = 0;
+			currentPlayer->nospellinstant = 0;
+			 currentPlayer->onlyoneinstant = 0;
     currentPlayer->damageCount = 0;
 	currentPlayer->preventable = 0;
     mLayers->actionLayer()->cleanGarbage(); //clean abilities history for this turn;

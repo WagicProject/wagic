@@ -15,10 +15,11 @@ Player::Player(MTGPlayerCards * deck, string file, string fileSmall) : Damageabl
   castedspellsthisturn = 0;
   castrestrictedspell = 0;
   castrestrictedcreature = 0;
-  cantcastcreature = 0;
-  cantcastspell = 0;
-  cantcastinso = 0;
   onlyonecast = 0;
+        castcount = 0;
+		nocreatureinstant = 0;
+		nospellinstant = 0;
+		onlyoneinstant = 0;
   poisonCount = 0;
   damageCount = 0;
   preventable = 0;

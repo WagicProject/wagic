@@ -4323,7 +4323,7 @@ class AAOnlyOne:public ActivatedAbilityTP{
       }else{
         player = (Player *) _target;
       }
-	  player->onlyonecast = 1;
+	  player->onlyoneinstant = 1;
     }
     return 1;
   }
@@ -4352,7 +4352,7 @@ class AANoSpells:public ActivatedAbilityTP{
       }else{
         player = (Player *) _target;
       }
-     player->castrestrictedspell = 1;
+     player->nospellinstant = 1;
     }
     return 1;
   }
@@ -4381,7 +4381,7 @@ class AANoCreatures:public ActivatedAbilityTP{
       }else{
         player = (Player *) _target;
       }
-     player->castrestrictedcreature = 1;
+     player->nocreatureinstant = 1;
     }
     return 1;
   }

@@ -64,6 +64,23 @@ class MTGPersistRule:public MTGAbility{
   virtual MTGPersistRule * clone() const;
 };
 
+class MTGCantCasterstart:public MTGAbility{
+ public:
+  MTGCantCasterstart(int _id);
+  int receiveEvent(WEvent * event);
+  virtual ostream& toString(ostream& out) const;
+  int testDestroy();
+  virtual MTGCantCasterstart * clone() const;
+};
+class MTGCantCastercheck:public MTGAbility{
+ public:
+  MTGCantCastercheck(int _id);
+  int receiveEvent(WEvent * event);
+  virtual ostream& toString(ostream& out) const;
+  int testDestroy();
+  virtual MTGCantCastercheck * clone() const;
+};
+
 class MTGUnearthRule:public MTGAbility{
  public:
   MTGUnearthRule(int _id);

@@ -24,11 +24,12 @@ class Player: public Damageable{
   int canPutLandsIntoPlay;
   int castedspellsthisturn;
   int onlyonecast;
+  int castcount;
+  int nocreatureinstant;
+  int nospellinstant;
+  int onlyoneinstant;
   int castrestrictedcreature;
   int castrestrictedspell;
-  int cantcastspell;
-  int cantcastcreature;
-  int cantcastinso;
   MTGPlayerCards * game;
   int afterDamage();
   int poisoned();

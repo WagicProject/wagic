@@ -714,19 +714,20 @@ int AIPlayerBaka::computeActions(){
 
       nextCardToPlay = FindCardToPlay(currentMana, "land");
       //look for the most expensive creature we can afford
-	  if(castrestrictedspell == 0 && cantcastspell == 0){ 
-		if(onlyonecast == 0 || castedspellsthisturn < onlyonecast){
-	     if(castrestrictedcreature == 0 && cantcastcreature == 0){
-	       if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(currentMana, "creature");
+	  if(castrestrictedspell == 0 && nospellinstant == 0){ 
+		if(onlyonecast == 0  || castcount < 2){
+		  if(onlyoneinstant == 0  || castcount < 2){
+	  if(castrestrictedcreature == 0 && nocreatureinstant == 0){
+	    if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(currentMana, "creature");
 		 }
       //Let's Try an enchantment maybe ?
 	  if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(currentMana, "enchantment");
 	  if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(currentMana, "artifact");
-	  if (cantcastinso == 0){
-		  if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(currentMana, "sorcery");
-	         if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(currentMana, "instant");
-	      }
+      if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(currentMana, "sorcery");
+	  if (!nextCardToPlay) nextCardToPlay = FindCardToPlay(currentMana, "instant");
+	      
 		}
+	   }
 	  }
       if (potential) delete(currentMana);
       if (nextCardToPlay){
