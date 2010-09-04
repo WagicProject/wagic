@@ -97,6 +97,13 @@ void GameObserver::nextGamePhase(){
   if (currentGamePhase == Constants::MTG_PHASE_BEFORE_BEGIN){
     cleanupPhase();
     currentPlayer->canPutLandsIntoPlay = 1;
+	currentPlayer->castedspellsthisturn = 0;
+	currentPlayer->castrestrictedcreature = 0;
+	currentPlayer->castrestrictedspell = 0;
+	currentPlayer->cantcastcreature = 0;
+    currentPlayer->cantcastspell = 0;
+    currentPlayer->cantcastinso = 0;
+	currentPlayer->onlyonecast = 0;
     currentPlayer->damageCount = 0;
 	currentPlayer->preventable = 0;
     mLayers->actionLayer()->cleanGarbage(); //clean abilities history for this turn;
@@ -318,7 +325,21 @@ void GameObserver::stateEffects()
     }
   }
   for (int i =0; i < 2; i++)
-    if (players[i]->life <= 0) gameOver = players[i];
+	  if (players[i]->life <= 0){
+		int cantlosers = 0;
+		MTGGameZone * z = players[i]->game->inPlay;
+        int nbcards = z->nb_cards;
+        for (int j = 0; j < nbcards; ++j){
+          MTGCardInstance * c = z->cards[j];
+		  if (c->has(Constants::CANTLOSE) || c->has(Constants::CANTLIFELOSE)){
+            cantlosers++;
+          }
+		}
+		if(cantlosers < 1){
+		  gameOver = players[i];
+		}
+	  }
+
   for (int i =0; i < 2; i++)
     if (players[i]->poisonCount >= 10) gameOver = players[i];
 }

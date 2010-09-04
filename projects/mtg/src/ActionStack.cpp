@@ -389,12 +389,13 @@ int ActionStack::addAction(Interruptible * action){
   return 1;
 }
 
-Spell * ActionStack::addSpell(MTGCardInstance * _source, TargetChooser * tc, ManaCost * mana, int payResult){
+Spell * ActionStack::addSpell(MTGCardInstance * _source, TargetChooser * tc, ManaCost * mana, int payResult,int storm){
 #if defined (WIN32) || defined (LINUX)
   char    buf[4096], *p = buf;
   sprintf(buf, "ACTIONSTACK Add spell\n");
   OutputDebugString(buf);
 #endif
+  if(storm > 0){ mana = NULL;}
   Spell * spell = NEW Spell(mCount,_source,tc, mana,payResult);
   addAction(spell);
   if (!game->players[0]->isAI() &&

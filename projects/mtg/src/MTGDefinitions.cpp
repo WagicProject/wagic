@@ -67,6 +67,16 @@ const char* Constants::MTGBasicAbilities[] = {
 "absorb",//timeshifted sliver ability. if damage would be dealt to card, prevent 1 of that damage.
 "treason",
 "unearth",
+"cantlose",
+"cantlifelose",
+"cantmilllose",
+"cantcastcreature",
+"cantspellcast",
+"cantcastinstantsorcery",
+"storm",
+"bothcantcast",
+"bothnocreature",
+"bothonecast",
 };
 
 

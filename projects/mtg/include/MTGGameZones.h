@@ -158,7 +158,7 @@ class MTGPlayerCards {
   void drawFromLibrary();
   void showHand();
   void resetLibrary();
-  void initDeck(MTGDeck * deck); 
+  void initDeck(MTGDeck * deck);
   MTGCardInstance * putInGraveyard(MTGCardInstance * card);
   MTGCardInstance * putInExile(MTGCardInstance * card);
   MTGCardInstance * putInHand(MTGCardInstance * card);

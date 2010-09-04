@@ -114,8 +114,18 @@ class Constants
 	ABSORB = 56,//this need to be coded for players too "If a source would deal damage"
 	TREASON = 57,
 	UNEARTH = 58,
+	CANTLOSE = 59,
+		 CANTLIFELOSE = 60,
+		 CANTMILLLOSE = 61,
+    CANTCASTCREATURE = 62,
+	    CANTCAST = 63,
+		CANTCASTINSTANTSORCERY = 64,
+	STORM = 65,
+	BOTHCANTCAST = 66,
+	BOTHNOCREATURE = 67,
+	BOTHONESPELL = 68,
 
-    NB_BASIC_ABILITIES = 59,
+    NB_BASIC_ABILITIES = 69,
 
 
     RARITY_S = 'S',   //Special Rarity

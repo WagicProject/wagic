@@ -163,7 +163,7 @@ class ActionStack :public GuiLayer{
   Player * askIfWishesToInterrupt;
   int garbageCollect();
   int addAction(Interruptible * interruptible);
-  Spell * addSpell(MTGCardInstance* card, TargetChooser * tc, ManaCost * mana, int payResult);
+  Spell * addSpell(MTGCardInstance* card, TargetChooser * tc, ManaCost * mana, int payResult, int storm);
   int AddNextGamePhase();
   int addPutInGraveyard(MTGCardInstance * card);
   int addDraw(Player * player, int nbcards = 1);

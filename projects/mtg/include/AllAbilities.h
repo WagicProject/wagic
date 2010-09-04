@@ -697,6 +697,45 @@ class AADrawer:public ActivatedAbilityTP{
 
 };
 
+//lands, allows to play more land during a turn:
+
+class AAMoreLandPlz:public ActivatedAbilityTP{
+ public:
+  WParsedInt *additional;
+  AAMoreLandPlz(int _id, MTGCardInstance * card,Targetable * _target,ManaCost * _cost, WParsedInt * _additional, int _tap = 0, int who=TargetChooser::UNSET):ActivatedAbilityTP(_id, card,_target,_cost,_tap,who),additional(_additional){
+  }
+
+  int resolve(){
+    Targetable * _target = getTarget();
+    Player * player;
+    if (_target){
+      if (_target->typeAsTarget() == TARGET_CARD){
+        player = ((MTGCardInstance *)_target)->controller();
+      }else{
+        player = (Player *) _target;
+      }
+	  player->canPutLandsIntoPlay += additional->getValue();
+    }
+    return 1;
+  }
+
+  const char * getMenuText(){
+    return "Additional Lands";
+  }
+
+  AAMoreLandPlz * clone() const{
+    AAMoreLandPlz * a =  NEW AAMoreLandPlz(*this);
+    a->additional = NEW WParsedInt(*(a->additional));
+    a->isClone = 1;
+    return a;
+  }
+
+  ~AAMoreLandPlz(){
+    SAFE_DELETE(additional);
+  }
+
+};
+
 /*Gives life to target controller*/
 class AALifer:public ActivatedAbilityTP{
  public:
@@ -744,7 +783,18 @@ class AAWinGame:public ActivatedAbilityTP{
       if (_target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE){
         _target = ((MTGCardInstance *)_target)->controller();
       }
+	  	int cantlosers = 0;
+		MTGGameZone * z = ((Player *)_target)->opponent()->game->inPlay;
+        int nbcards = z->nb_cards;
+        for (int i = 0; i < nbcards; ++i){
+          MTGCardInstance * c = z->cards[i];
+		  if (c->has(Constants::CANTLOSE)){
+            cantlosers++;
+          }
+		}
+		if(cantlosers < 1){
       game->gameOver = ((Player *)_target)->opponent();
+	 }
     }
     return 1;
   }
@@ -4259,6 +4309,93 @@ class AAShuffle:public ActivatedAbilityTP{
   }
 };
 
+//only 1 spell
+class AAOnlyOne:public ActivatedAbilityTP{
+ public:
+   AAOnlyOne(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost=NULL, int _tap = 0, int who = TargetChooser::UNSET):ActivatedAbilityTP(_id,card, _target,_cost,_tap,who){
+	  }
+  int resolve(){
+    Targetable * _target = getTarget();
+    Player * player;
+    if (_target){
+      if (_target->typeAsTarget() == TARGET_CARD){
+        player = ((MTGCardInstance *)_target)->controller();
+      }else{
+        player = (Player *) _target;
+      }
+	  player->onlyonecast = 1;
+    }
+    return 1;
+  }
+
+  const char * getMenuText(){
+  return "Only One Spell!";
+  }
+
+  AAOnlyOne * clone() const{
+    AAOnlyOne * a =  NEW AAOnlyOne(*this);
+    a->isClone = 1;
+    return a;
+  }
+};
+//nospells
+class AANoSpells:public ActivatedAbilityTP{
+ public:
+   AANoSpells(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost=NULL, int _tap = 0, int who = TargetChooser::UNSET):ActivatedAbilityTP(_id,card, _target,_cost,_tap,who){
+	  }
+  int resolve(){
+    Targetable * _target = getTarget();
+    Player * player;
+    if (_target){
+      if (_target->typeAsTarget() == TARGET_CARD){
+        player = ((MTGCardInstance *)_target)->controller();
+      }else{
+        player = (Player *) _target;
+      }
+     player->castrestrictedspell = 1;
+    }
+    return 1;
+  }
+
+  const char * getMenuText(){
+  return "No Spells!";
+  }
+
+  AANoSpells * clone() const{
+    AANoSpells * a =  NEW AANoSpells(*this);
+    a->isClone = 1;
+    return a;
+  }
+};
+//NoCreature
+class AANoCreatures:public ActivatedAbilityTP{
+ public:
+   AANoCreatures(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost=NULL, int _tap = 0, int who = TargetChooser::UNSET):ActivatedAbilityTP(_id,card, _target,_cost,_tap,who){
+	  }
+  int resolve(){
+    Targetable * _target = getTarget();
+    Player * player;
+    if (_target){
+      if (_target->typeAsTarget() == TARGET_CARD){
+        player = ((MTGCardInstance *)_target)->controller();
+      }else{
+        player = (Player *) _target;
+      }
+     player->castrestrictedcreature = 1;
+    }
+    return 1;
+  }
+
+  const char * getMenuText(){
+  return "No Creatures!";
+  }
+
+  AANoCreatures * clone() const{
+    AANoCreatures * a =  NEW AANoCreatures(*this);
+    a->isClone = 1;
+    return a;
+  }
+};
 //Random Discard
 class AARandomDiscarder:public ActivatedAbilityTP{
  public:

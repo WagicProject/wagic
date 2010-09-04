@@ -22,6 +22,13 @@ class Player: public Damageable{
   JTexture * mAvatarTex;
   JQuad * mAvatar;
   int canPutLandsIntoPlay;
+  int castedspellsthisturn;
+  int onlyonecast;
+  int castrestrictedcreature;
+  int castrestrictedspell;
+  int cantcastspell;
+  int cantcastcreature;
+  int cantcastinso;
   MTGPlayerCards * game;
   int afterDamage();
   int poisoned();

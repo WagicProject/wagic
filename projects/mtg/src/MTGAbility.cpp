@@ -906,6 +906,24 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     a->oneShot = 1;
     return a;
   }
+    //additional lands per turn
+  found = s.find("land:");
+  if (found != string::npos){
+    size_t start = s.find(":",found);
+    size_t end = s.find(" ",start);
+    string additionalStr;
+    if (end != string::npos){
+      additionalStr = s.substr(start+1,end-start-1);
+    }else{
+      additionalStr = s.substr(start+1);
+    }
+    WParsedInt * additional = NEW WParsedInt(additionalStr,spell,card);
+    Targetable * t = NULL;
+    if (spell) t = spell->getNextTarget();
+    MTGAbility * a = NEW AAMoreLandPlz(id,card,t,NULL,additional,0,who);
+    a->oneShot = 1;
+    return a;
+  }
 
   //Deplete
   found = s.find("deplete:");
@@ -932,6 +950,35 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     Targetable * t = NULL;
     if (spell) t = spell->getNextTarget();
 	MTGAbility * a = NEW AAShuffle(id,card,t,NULL,0,who);
+    a->oneShot = 1;
+    return a;
+    }
+        
+  
+     //cantcastspells
+  found = s.find("onlyonespell");
+  if (found != string::npos){
+    Targetable * t = NULL;
+    if (spell) t = spell->getNextTarget();
+	MTGAbility * a = NEW AAOnlyOne(id,card,t,NULL,0,who);
+    a->oneShot = 1;
+    return a;
+    }
+      //cantcastspells
+  found = s.find("nospells");
+  if (found != string::npos){
+    Targetable * t = NULL;
+    if (spell) t = spell->getNextTarget();
+	MTGAbility * a = NEW AANoSpells(id,card,t,NULL,0,who);
+    a->oneShot = 1;
+    return a;
+    }
+      //cantcastcreature
+  found = s.find("nocreatures");
+  if (found != string::npos){
+    Targetable * t = NULL;
+    if (spell) t = spell->getNextTarget();
+	MTGAbility * a = NEW AANoCreatures(id,card,t,NULL,0,who);
     a->oneShot = 1;
     return a;
     }

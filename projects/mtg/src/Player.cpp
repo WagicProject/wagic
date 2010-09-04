@@ -12,6 +12,13 @@ Player::Player(MTGPlayerCards * deck, string file, string fileSmall) : Damageabl
   game->setOwner(this);
   manaPool = NEW ManaPool(this);
   canPutLandsIntoPlay = 1;
+  castedspellsthisturn = 0;
+  castrestrictedspell = 0;
+  castrestrictedcreature = 0;
+  cantcastcreature = 0;
+  cantcastspell = 0;
+  cantcastinso = 0;
+  onlyonecast = 0;
   poisonCount = 0;
   damageCount = 0;
   preventable = 0;

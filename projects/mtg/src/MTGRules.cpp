@@ -32,18 +32,81 @@ int cardsinhand = game->players[0]->game->hand->nb_cards;
     ManaCost * playerMana = player->getManaPool();
     ManaCost * cost = card->getManaCost();
 	ManaCost * alternative = card->getManaCost()->alternative;
+
 #ifdef WIN32
   cost->Dump();
 #endif
+//cantcast restrictions---------
+         int cantcreaturecasters = 0;
+		MTGGameZone * z = card->controller()->game->inPlay;
+        int nbcards = z->nb_cards;
+        for (int j = 0; j < nbcards; ++j){
+          MTGCardInstance * c = z->cards[j];
+		  if (c->has(Constants::CANTCASTCREATURE)){
+			player->cantcastcreature = 1;
+            cantcreaturecasters++;
+          }
+		}
+		 int cantcasters = 0;
+        for (int j = 0; j < nbcards; ++j){
+          MTGCardInstance * c = z->cards[j];
+		  if (c->has(Constants::CANTCAST)){
+			player->cantcastspell = 1;
+            cantcasters++;
+          }
+		}
+		 int cantinsocasters = 0;
+        for (int j = 0; j < nbcards; ++j){
+          MTGCardInstance * c = z->cards[j];
+		  if (c->has(Constants::CANTCASTINSTANTSORCERY)){
+		    player->cantcastinso = 1;
+            cantinsocasters++;
+		  }
+		}
+//restrict both players-------
 
+        for (int j = 0; j < nbcards; ++j){
+          MTGCardInstance * c = z->cards[j];
+		  if (c->has(Constants::BOTHCANTCAST)){
+		    player->cantcastspell = 1;
+			player->opponent()->cantcastspell = 1;
+		  }
+		}
+
+        for (int j = 0; j < nbcards; ++j){
+          MTGCardInstance * c = z->cards[j];
+		  if (c->has(Constants::BOTHNOCREATURE)){
+		    player->cantcastcreature = 1;
+			player->opponent()->cantcastcreature = 1;
+		  }
+		}
+
+        for (int j = 0; j < nbcards; ++j){
+          MTGCardInstance * c = z->cards[j];
+		  if (c->has(Constants::BOTHONESPELL)){
+			  player->onlyonecast = 1;
+			  player->opponent()->onlyonecast = 1;
+
+		  }
+		}
+           
+  if(player->castedspellsthisturn > 0 && player->onlyonecast > 0){return 0;}
+  if(player->castrestrictedspell > 0){return 0;}
+  if(player->castrestrictedcreature > 0 && card->hasType("creature")){return 0;}
+  if(cantcasters > 0 && !card->hasType("land")){ return 0;}
+  if(cantinsocasters > 0 && card->hasType("sorcery")){ return 0;}
+  if(cantinsocasters > 0 && card->hasType("instant")){ return 0;}
+  if(cantcreaturecasters > 0 && card->hasType("creature")){ return 0;}//---this ends the cant cast restriction.
+          
+  //cost of card.
   if(alternative && playerMana->canAfford(alternative)){
       return 1;
 	  }
   if (playerMana->canAfford(cost)){
-      return 1;
+      return 1;//play if you can afford too.
       }
   }
-  return 0;
+  return 0;//dont play if you cant afford it.
 }
 int MTGPutInPlayRule::reactToClick(MTGCardInstance * card){
   if (!isReactingToClick(card)) return 0;
@@ -101,13 +164,26 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card){
     Spell * spell = NULL;
     MTGCardInstance * copy = player->game->putInZone(card,  player->game->hand, player->game->stack);
     if (game->targetChooser){    
-      spell = game->mLayers->stackLayer()->addSpell(copy,game->targetChooser, spellCost,payResult);
+      spell = game->mLayers->stackLayer()->addSpell(copy,game->targetChooser, spellCost,payResult,0);
       game->targetChooser = NULL;
+	  player->castedspellsthisturn += 1;
     }else{
-      spell = game->mLayers->stackLayer()->addSpell(copy,NULL, spellCost, payResult);
-    }
-     copy->X = spell->computeX(copy); 
+      spell = game->mLayers->stackLayer()->addSpell(copy,NULL, spellCost, payResult,0);
+	  player->castedspellsthisturn += 1;
+	}
+  if(card->has(Constants::STORM)){
+	  int storm = player->castedspellsthisturn;
+      ManaCost * spellCost = player->getManaPool();
+	  for(int i = storm; i > 1; i--){
+      spell = game->mLayers->stackLayer()->addSpell(copy,NULL, spellCost, payResult,1);
+
+	  }
+  }//end of storm
+  if(!card->has(Constants::STORM)){
+	  copy->X = spell->computeX(copy); 
   }
+  }
+
   return 1;
 }
 

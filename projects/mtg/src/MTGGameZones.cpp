@@ -79,7 +79,17 @@ void MTGPlayerCards::initGame(int shuffle, int draw){
 
 void MTGPlayerCards::drawFromLibrary(){
   if (!library->nb_cards) {
-     GameObserver::GetInstance()->gameOver = library->owner;
+	    int cantlosers = 0;
+        MTGGameZone * z = library->owner->game->inPlay;
+        int nbcards = z->nb_cards;
+        for (int i = 0; i < nbcards; ++i){
+          MTGCardInstance * c = z->cards[i];
+		  if (c->has(Constants::CANTLOSE) || c->has(Constants::CANTMILLLOSE)){
+            cantlosers++;
+          }
+         }
+	  if(cantlosers < 1){
+		  GameObserver::GetInstance()->gameOver = library->owner;}
      return;
   }
   MTGCardInstance * toMove = library->cards[library->nb_cards-1];
