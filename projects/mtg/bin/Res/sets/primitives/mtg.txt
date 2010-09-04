@@ -13100,7 +13100,7 @@ type=Land
 [card]
 name=Dragonsoul Knight
 abilities=first strike
-auto={W}{U}{B}{R}{G}:5/3 && becomes(Dragon Creature,p/t,flying,trample) ueot
+auto={W}{U}{B}{R}{G}:+5/+3 && transforms(dragon,flying,trample) ueot
 text=First strike -- {W}{U}{B}{R}{G}: Until end of turn, Dragonsoul Knight becomes a Dragon, gets +5/+3, and gains flying and trample.
 mana={2}{R}
 type=Creature
@@ -34350,7 +34350,7 @@ type=Instant
 name=Oni Possession
 target=creature
 auto=@each my upkeep:moveTo(graveyard) notatarget(creature|myBattlefield)
-auto=becomes(Creature Demon Spirit,p/t)
+auto=transforms(Creature Demon Spirit)
 auto=3/3
 auto=trample
 text=Enchant creature -- At the beginning of your upkeep, sacrifice a creature. -- Enchanted creature gets +3/+3 and has trample. -- Enchanted creature is a Demon Spirit.
@@ -35220,7 +35220,7 @@ type=Artifact
 [card]
 name=Paragon of the Amesha
 abilities=first strike
-auto={W}{U}{B}{R}{G}:3/3 && becomes(Angel Creature,p/t,flying,lifelink) ueot
+auto={W}{U}{B}{R}{G}:3/3 && transforms(Angel Creature,flying,lifelink) ueot
 text=First strike -- {W}{U}{B}{R}{G}: Until end of turn, Paragon of the Amesha becomes an Angel, gets +3/+3, and gains flying and lifelink.
 mana={2}{W}
 type=Creature
