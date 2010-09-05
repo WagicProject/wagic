@@ -662,7 +662,7 @@ HUDDisplay::~HUDDisplay(){
 		}
 //---what if i can only cast 1?
        for (int j = 0; j < nbcards; ++j){
-		   			  card->controller()->life += 100;
+
           MTGCardInstance * c = z->cards[j];
 		  if (c->has(Constants::ONLYONEBOTH)){
 			  card->controller()->onlyonecast = 1;
