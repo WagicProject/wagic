@@ -74,7 +74,7 @@ class MTGPersistRule:public MTGAbility{
   int testDestroy();
   virtual MTGPersistRule * clone() const;
 };
-
+//cantcast rules
 class MTGCantCasterstart:public MTGAbility{
  public:
   MTGCantCasterstart(int _id);
@@ -91,7 +91,16 @@ class MTGCantCastercheck:public MTGAbility{
   int testDestroy();
   virtual MTGCantCastercheck * clone() const;
 };
-
+//affinity rules
+class MTGAffinityRule:public MTGAbility{
+ public:
+  MTGAffinityRule(int _id);
+  int receiveEvent(WEvent * event);
+  virtual ostream& toString(ostream& out) const;
+  int testDestroy();
+  virtual MTGAffinityRule * clone() const;
+};
+//unearths destruction if leaves play effect
 class MTGUnearthRule:public MTGAbility{
  public:
   MTGUnearthRule(int _id);
@@ -100,7 +109,7 @@ class MTGUnearthRule:public MTGAbility{
   int testDestroy();
   virtual MTGUnearthRule * clone() const;
 };
-
+//bury at end of turn effect.
 class MTGSneakAttackRule:public MTGAbility{
  public:
   MTGSneakAttackRule(int _id);

@@ -26,6 +26,7 @@ void DuelLayers::init(){
   action->Add(NEW MTGBlockRule(-1));
   action->Add(NEW MTGLegendRule(-1));
   action->Add(NEW MTGPersistRule(-1));
+  action->Add(NEW MTGAffinityRule(-1));
   action->Add(NEW MTGUnearthRule(-1));
   action->Add(NEW MTGCantCasterstart(-1));
   action->Add(NEW MTGCantCastercheck(-1));

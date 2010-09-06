@@ -77,6 +77,13 @@ const char* Constants::MTGBasicAbilities[] = {
 "bothcantcast",
 "bothnocreature",
 "oneboth",
+"affinityartifacts",
+"affinityplains",
+"affinityforests",
+"affinityislands",
+"affinitymountains",
+"affinityswamps",
+"affinitygreencreatures",
 };
 
 
