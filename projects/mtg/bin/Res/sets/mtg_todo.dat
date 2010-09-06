@@ -188,8 +188,6 @@ toughness=6
 [/card]
 [card]
 name=Abyssal Specter
-abilities=flying
-alias=1165
 text=Flying -- Whenever Abyssal Specter deals damage to a player, that player discards a card.
 mana={2}{B}{B}
 type=Creature
@@ -1065,16 +1063,7 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
-name=Arcane Laboratory
-text=Each player can't cast more than one spell each turn.
-mana={2}{U}
-type=Enchantment
-[/card]
-[card]
 name=Arcane Teachings
-target=creature
-auto=2/2
-auto={T}:damage:1 target(creature,player)
 text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.) -- Enchanted creature gets +2/+2 and has "{T}: This creature deals 1 damage to target creature or player."
 mana={2}{R}
 type=Enchantment
@@ -1432,12 +1421,6 @@ name=Astral Slide
 text=Whenever a player cycles a card, you may exile target creature. If you do, return the exiled card to the battlefield under its owner's control at the beginning of the next end step.
 mana={2}{W}
 type=Enchantment
-[/card]
-[card]
-name=Astral Steel
-text=Target creature gets +1/+2 until end of turn. -- Storm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)
-mana={2}{W}
-type=Instant
 [/card]
 [card]
 name=Astrolabe
@@ -1892,15 +1875,6 @@ name=Azorius Ploy
 text=Prevent all combat damage target creature would deal this turn. -- Prevent all combat damage that would be dealt to target creature this turn.
 mana={1}{W}{W}{U}
 type=Instant
-[/card]
-[card]
-name=Azusa, Lost but Seeking
-text=You may play two additional lands on each of your turns.
-mana={2}{G}
-type=Legendary Creature
-subtype=Human Monk
-power=1
-toughness=2
 [/card]
 [card]
 name=Backdraft
@@ -3293,14 +3267,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Brain Freeze
-target=player
-auto=deplete:3
-text=Target player puts the top three cards of his or her library into his or her graveyard. -- Storm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)
-mana={1}{U}
-type=Instant
-[/card]
-[card]
 name=Brain Gorgers
 text=When you cast Brain Gorgers, any player may sacrifice a creature. If a player does, counter Brain Gorgers. -- Madness {1}{B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
 mana={3}{B}
@@ -4397,12 +4363,6 @@ name=Caverns of Despair
 text=No more than two creatures can attack each combat. -- No more than two creatures can block each combat.
 mana={2}{R}{R}
 type=World Enchantment
-[/card]
-[card]
-name=Cease-Fire
-text=Target player can't cast creature spells this turn. -- Draw a card.
-mana={2}{W}
-type=Instant
 [/card]
 [card]
 name=Ceaseless Searblades
@@ -8280,12 +8240,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Dragonstorm
-text=Search your library for a Dragon permanent card and put it onto the battlefield. Then shuffle your library. -- Storm (When you cast this spell, copy it for each spell cast before it this turn.)
-mana={8}{R}
-type=Sorcery
-[/card]
-[card]
 name=Drain Power
 text=Target player activates a mana ability of each land he or she controls, then empties his or her mana pool. Add mana to your mana pool equal to the type and amount emptied from that player's mana pool this way.
 mana={U}{U}
@@ -9308,12 +9262,6 @@ mana={W}
 type=Sorcery
 [/card]
 [card]
-name=Empty the Warrens
-text=Put two 1/1 red Goblin creature tokens onto the battlefield. -- Storm (When you cast this spell, copy it for each spell cast before it this turn.)
-mana={3}{R}
-type=Sorcery
-[/card]
-[card]
 name=Empyrial Archangel
 text=Flying, shroud -- All damage that would be dealt to you is dealt to Empyrial Archangel instead.
 mana={4}{G}{W}{W}{U}
@@ -10053,26 +10001,8 @@ toughness=6
 [/card]
 [card]
 name=Exploding Borders
-auto=moveTo(myinplay) target(basic|mylibrary) && tap
-auto=aslongas(forest|myinplay) damage:1 target(player)
-auto=aslongas(plains|myinplay) damage:1 target(player)
-auto=aslongas(mountain|myinplay) damage:1 target(player)
-auto=aslongas(swamp|myinplay) damage:1 target(player)
-auto=aslongas(island|myinplay) damage:1 target(player)
 text=Domain - Search your library for a basic land card, put that card onto the battlefield tapped, then shuffle your library. Exploding Borders deals X damage to target player, where X is the number of basic land types among lands you control.
 mana={2}{R}{G}
-type=Sorcery
-[/card]
-[card]
-name=Exploration
-text=You may play an additional land on each of your turns.
-mana={G}
-type=Enchantment
-[/card]
-[card]
-name=Explore
-text=You may play an additional land this turn. -- Draw a card.
-mana={1}{G}
 type=Sorcery
 [/card]
 [card]
@@ -13427,17 +13357,9 @@ subtype=Equipment
 [/card]
 [card]
 name=Grand Melee
-auto=lord(creature) mustattack
-auto=lord(creature) mustblock
 text=All creatures attack each turn if able. -- All creatures block each turn if able.
 mana={3}{R}
 type=Enchantment
-[/card]
-[card]
-name=Grapeshot
-text=Grapeshot deals 1 damage to target creature or player. -- Storm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)
-mana={1}{R}
-type=Sorcery
 [/card]
 [card]
 name=Grappling Hook
@@ -13681,15 +13603,6 @@ mana={2}{G}
 type=Enchantment
 [/card]
 [card]
-name=Grid Monitor
-text=You can't cast creature spells.
-mana={4}
-type=Artifact Creature
-subtype=Construct
-power=4
-toughness=6
-[/card]
-[card]
 name=Grief Tyrant
 text=Grief Tyrant enters the battlefield with four -1/-1 counters on it. -- When Grief Tyrant is put into a graveyard from the battlefield, put a -1/-1 counter on target creature for each -1/-1 counter on Grief Tyrant.
 mana={5}{BR}
@@ -13851,12 +13764,6 @@ type=Creature
 subtype=Zombie
 power=3
 toughness=3
-[/card]
-[card]
-name=Ground Rift
-text=Target creature without flying can't block this turn. -- Storm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)
-mana={R}
-type=Sorcery
 [/card]
 [card]
 name=Groundling Pouncer
@@ -15246,13 +15153,6 @@ name=Hunting Grounds
 text=Threshold - As long as seven or more cards are in your graveyard, Hunting Grounds has "Whenever an opponent casts a spell, you may put a creature card from your hand onto the battlefield."
 mana={G}{W}
 type=Enchantment
-[/card]
-[card]
-name=Hunting Pack
-auto=token(Beast,Creature Beast,4/4,green)
-text=Put a 4/4 green Beast creature token onto the battlefield. -- Storm (When you cast this spell, copy it for each spell cast before it this turn.)
-mana={5}{G}{G}
-type=Instant
 [/card]
 [card]
 name=Hunting Wilds
@@ -23248,12 +23148,6 @@ power=3
 toughness=1
 [/card]
 [card]
-name=Orim's Chant
-text=Kicker {W} (You may pay an additional {W} as you cast this spell.) -- Target player can't cast spells this turn. -- If Orim's Chant was kicked, creatures can't attack this turn.
-mana={W}
-type=Instant
-[/card]
-[card]
 name=Orim's Cure
 text=If you control a Plains, you may tap an untapped creature you control rather than pay the mana cost of Orim's Cure. -- Prevent the next 4 damage that would be dealt to target creature or player this turn.
 mana={1}{W}
@@ -23264,15 +23158,6 @@ name=Orim's Thunder
 text=Kicker {R} (You may pay an additional {R} as you cast this spell.) -- Destroy target artifact or enchantment. If Orim's Thunder was kicked, it deals damage equal to that permanent's converted mana cost to target creature.
 mana={2}{W}
 type=Instant
-[/card]
-[card]
-name=Oriss, Samite Guardian
-text={T}: Prevent all damage that would be dealt to target creature this turn. -- Grandeur - Discard another card named Oriss, Samite Guardian: Target player can't cast spells this turn, and creatures that player controls can't attack this turn.
-mana={1}{W}{W}
-type=Legendary Creature
-subtype=Human Cleric
-power=1
-toughness=3
 [/card]
 [card]
 name=Ornate Kanzashi
@@ -24593,15 +24478,6 @@ type=Creature
 subtype=Pegasus
 power=1
 toughness=2
-[/card]
-[card]
-name=Platinum Angel
-text=Flying -- You can't lose the game and your opponents can't win the game.
-mana={7}
-type=Artifact Creature
-subtype=Angel
-power=4
-toughness=4
 [/card]
 [card]
 name=Plaxmanta
@@ -26351,14 +26227,6 @@ mana={3}{G}
 type=Sorcery
 [/card]
 [card]
-name=Reaping the Graves
-target=creature|myGraveyard
-auto=moveto(myHand)
-text=Return target creature card from your graveyard to your hand. -- Storm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)
-mana={2}{B}
-type=Instant
-[/card]
-[card]
 name=Reaping the Rewards
 text=Buyback - Sacrifice a land. (You may sacrifice a land in addition to any other costs as you cast this spell. If you do, put this card into your hand as it resolves.) -- You gain 2 life.
 mana={W}
@@ -27036,6 +26904,15 @@ type=Creature
 subtype=Rhino Beast
 power=5
 toughness=5
+[/card]
+[card]
+name=Rhox Meditant
+text=When Rhox Meditant enters the battlefield, if you control a green permanent, draw a card.
+mana={3}{W}
+type=Creature
+subtype=Rhino Monk
+power=2
+toughness=4
 [/card]
 [card]
 name=Rhys the Redeemed
@@ -27847,12 +27724,6 @@ type=Creature
 subtype=Egg
 power=0
 toughness=3
-[/card]
-[card]
-name=Rule of Law
-text=Each player can't cast more than one spell each turn.
-mana={2}{W}
-type=Enchantment
 [/card]
 [card]
 name=Rumbling Aftershocks
@@ -28725,14 +28596,6 @@ type=Instant
 name=Scattering Stroke
 text=Counter target spell. Clash with an opponent. If you win, at the beginning of your next main phase, you may add {X} to your mana pool, where X is that spell's converted mana cost. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
 mana={2}{U}{U}
-type=Instant
-[/card]
-[card]
-name=Scattershot
-target=creature
-auto=damage:1
-text=Scattershot deals 1 damage to target creature. -- Storm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)
-mana={2}{R}
 type=Instant
 [/card]
 [card]
@@ -30127,12 +29990,6 @@ name=Sigil of the New Dawn
 text=Whenever a creature is put into your graveyard from the battlefield, you may pay {1}{W}. If you do, return that card to your hand.
 mana={3}{W}
 type=Enchantment
-[/card]
-[card]
-name=Silence
-text=Your opponents can't cast spells this turn. (Spells cast before this resolves are unaffected.)
-mana={W}
-type=Instant
 [/card]
 [card]
 ####This card does not work. Opponent can always attack or block with more then one creature although Silent Arbiter is in play.
@@ -31940,14 +31797,6 @@ mana={1}{G}
 type=Instant
 [/card]
 [card]
-name=Sprouting Vines
-target=land[basic]|myLibrary
-auto=moveto(myHand)
-text=Search your library for a basic land card, reveal that card, and put it into your hand. Then shuffle your library. -- Storm (When you cast this spell, copy it for each spell cast before it this turn.)
-mana={2}{G}
-type=Instant
-[/card]
-[card]
 name=Spurnmage Advocate
 text={T}: Return two target cards in an opponent's graveyard to his or her hand. Destroy target attacking creature.
 mana={W}
@@ -32214,15 +32063,6 @@ type=Creature
 subtype=Goblin Rigger
 power=3
 toughness=3
-[/card]
-[card]
-name=Steel Golem
-text=You can't cast creature spells.
-mana={3}
-type=Artifact Creature
-subtype=Golem
-power=3
-toughness=4
 [/card]
 [card]
 name=Steel of the Godhead
@@ -32728,12 +32568,6 @@ name=Sulfurous Blast
 text=Sulfurous Blast deals 2 damage to each creature and each player. If you cast this spell during your main phase, Sulfurous Blast deals 3 damage to each creature and each player instead.
 mana={2}{R}{R}
 type=Instant
-[/card]
-[card]
-name=Summer Bloom
-text=You may play up to three additional lands this turn.
-mana={1}{G}
-type=Sorcery
 [/card]
 [card]
 name=Summit Apes
@@ -33712,14 +33546,6 @@ mana={B}{B}{B}{B}
 type=Sorcery
 [/card]
 [card]
-name=Temporal Fissure
-target=*
-auto=moveto(ownerHand)
-text=Return target permanent to its owner's hand. -- Storm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)
-mana={4}{U}
-type=Sorcery
-[/card]
-[card]
 name=Temporal Isolation
 text=Flash (You may cast this spell any time you could cast an instant.) -- Enchant creature -- Enchanted creature has shadow. (It can block or be blocked by only creatures with shadow.) -- Prevent all damage that would be dealt by enchanted creature.
 mana={1}{W}
@@ -33761,15 +33587,6 @@ type=Creature
 subtype=Wurm
 power=5
 toughness=5
-[/card]
-[card]
-name=Tendrils of Agony
-target=player
-auto=damage:2
-auto=life:2 controller
-text=Target player loses 2 life and you gain 2 life. -- Storm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)
-mana={2}{B}{B}
-type=Sorcery
 [/card]
 [card]
 name=Tendrils of Despair
@@ -36468,12 +36285,6 @@ type=Creature
 subtype=Gargoyle
 power=3
 toughness=3
-[/card]
-[card]
-name=Volcanic Awakening
-text=Destroy target land. -- Storm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)
-mana={4}{R}{R}
-type=Sorcery
 [/card]
 [card]
 name=Volcanic Wind

@@ -1966,6 +1966,13 @@ power=7
 toughness=7
 [/card]
 [card]
+name=Arcane Laboratory
+abilities=oneboth
+text=Each player can't cast more than one spell each turn.
+mana={2}{U}
+type=Enchantment
+[/card]
+[card]
 name=Arcane Sanctum
 auto=tap
 auto={T}:Add {W}
@@ -2703,6 +2710,14 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Astral Steel
+abilities=storm
+auto=1/2 target(creature)
+text=Target creature gets +1/+2 until end of turn. -- Storm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)
+mana={2}{W}
+type=Instant
+[/card]
+[card]
 name=Atog
 auto={S(artifact|myBattlefield)}:2/2
 text=Sacrifice an artifact: Atog gets +2/+2 until end of turn.
@@ -3263,6 +3278,17 @@ type=Creature
 subtype=Drake
 power=2
 toughness=4
+[/card]
+[card]
+name=Azusa, Lost but Seeking
+auto=land:2
+auto=@each my upkeep:land:2 controller
+text=You may play two additional lands on each of your turns.
+mana={2}{G}
+type=Legendary Creature
+subtype=Human Monk
+power=1
+toughness=2
 [/card]
 [card]
 name=Back to Basics
@@ -6074,6 +6100,14 @@ mana={1}
 type=Artifact
 [/card]
 [card]
+name=Brain Freeze
+abilities=storm
+auto=deplete:3 target(player)
+text=Target player puts the top three cards of his or her library into his or her graveyard. -- Storm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)
+mana={1}{U}
+type=Instant
+[/card]
+[card]
 name=Brainbite
 target=*|opponenthand
 auto=moveTo(graveyard)
@@ -7685,6 +7719,15 @@ auto=damage:2 all(creature,player)
 text=You may exile a red card from your hand rather than pay Cave-In's mana cost. -- Cave-In deals 2 damage to each creature and each player.
 mana={3}{R}{R}
 type=Sorcery
+[/card]
+[card]
+name=Cease-Fire
+target=player
+auto=nocreatures
+auto=draw:1 controller
+text=Target player can't cast creature spells this turn. -- Draw a card.
+mana={2}{W}
+type=Instant
 [/card]
 [card]
 name=Celestial Ancient
@@ -13134,6 +13177,14 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Dragonstorm
+abilities=storm
+auto=moveTo(myBattlefield) target(dragon|mylibrary)
+text=Search your library for a Dragon permanent card and put it onto the battlefield. Then shuffle your library. -- Storm (When you cast this spell, copy it for each spell cast before it this turn.)
+mana={8}{R}
+type=Sorcery
+[/card]
+[card]
 name=Drain the Well
 target=land
 auto=destroy
@@ -14965,6 +15016,14 @@ mana={3}{B}
 type=Sorcery
 [/card]
 [card]
+name=Empty the Warrens
+abilities=storm
+auto=token(Goblin,Creature Goblin,1/1,red)*2
+text=Put two 1/1 red Goblin creature tokens onto the battlefield. -- Storm (When you cast this spell, copy it for each spell cast before it this turn.)
+mana={3}{R}
+type=Sorcery
+[/card]
+[card]
 name=Empty-Shrine Kannushi
 auto=aslongas(*[red]|myBattlefield) protection from red
 auto=aslongas(*[blue]|myBattlefield) protection from blue
@@ -15797,6 +15856,22 @@ type=Creature
 subtype=Human Soldier
 power=2
 toughness=1
+[/card]
+[card]
+name=Exploration
+auto=land:1
+auto=@each my upkeep:land:1 controller
+text=You may play an additional land on each of your turns.
+mana={G}
+type=Enchantment
+[/card]
+[card]
+name=Explore
+auto=land:1
+auto=draw:1
+text=You may play an additional land this turn. -- Draw a card.
+mana={1}{G}
+type=Sorcery
 [/card]
 [card]
 name=Explosive Growth
@@ -20613,6 +20688,14 @@ mana={2}{R}{R}
 type=Sorcery
 [/card]
 [card]
+name=Grapeshot
+abilities=storm
+auto=damage:1 target(creature,player)
+text=Grapeshot deals 1 damage to target creature or player. -- Storm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)
+mana={1}{R}
+type=Sorcery
+[/card]
+[card]
 name=Grapeshot Catapult
 auto={T}:Damage:1 target(creature[flying])
 text={T}: Grapeshot Catapult deals 1 damage to target creature with flying.
@@ -20926,6 +21009,16 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Grid Monitor
+abilities=cantcastcreature
+text=You can't cast creature spells.
+mana={4}
+type=Artifact Creature
+subtype=Construct
+power=4
+toughness=6
+[/card]
+[card]
 name=Griffin Canyon
 auto={T}:Add {1}
 auto={T}:1/1 target(griffin) && untap
@@ -21124,6 +21217,14 @@ type=Creature
 subtype=Goblin Rogue
 power=2
 toughness=1
+[/card]
+[card]
+name=Ground Rift
+abilities=storm
+auto=cantblock target(creature[-flying])
+text=Target creature without flying can't block this turn. -- Storm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)
+mana={R}
+type=Sorcery
 [/card]
 [card]
 name=Ground Seal
@@ -23363,6 +23464,14 @@ type=Creature
 subtype=Bird Beast
 power=3
 toughness=2
+[/card]
+[card]
+name=Hunting Pack
+abilities=storm
+auto=token(Beast,Creature Beast,4/4,green)
+text=Put a 4/4 green Beast creature token onto the battlefield. -- Storm (When you cast this spell, copy it for each spell cast before it this turn.)
+mana={5}{G}{G}
+type=Instant
 [/card]
 [card]
 name=Hunting Triad
@@ -34762,6 +34871,16 @@ power=6
 toughness=6
 [/card]
 [card]
+name=Orim's Chant
+target=player
+auto=nospells
+kicker={W}
+auto=kicker canattack all(creature)
+text=Kicker {W} (You may pay an additional {W} as you cast this spell.) -- Target player can't cast spells this turn. -- If Orim's Chant was kicked, creatures can't attack this turn.
+mana={W}
+type=Instant
+[/card]
+[card]
 name=Orim's Prayer
 auto=@each blockers:foreach(creature[attacking]|opponentbattlefield) life:1
 text=Whenever one or more creatures attack you, you gain 1 life for each attacking creature.
@@ -34782,6 +34901,18 @@ type=Instant
 name=Orim, Samite Healer
 auto={T}:prevent:3 target(creature,player)
 text={T}: Prevent the next 3 damage that would be dealt to target creature or player this turn.
+mana={1}{W}{W}
+type=Legendary Creature
+subtype=Human Cleric
+power=1
+toughness=3
+[/card]
+[card]
+name=Oriss Samite Guardian
+auto={T}:prevent:999 target(creature)
+auto={S(oriss samite guardian|myhand)}:name(opponent can't cast spells and his creatures cannot attack ueot) && nospell opponent && cantattack all(creature|opponentBattlefield)
+auto={S(oriss samite guardian|myhand)}:name(you can't cast spells and your creatures cannot attack ueot) && nospell control && cantattack all(creature|myBattlefield)
+text={T}: Prevent all damage that would be dealt to target creature this turn. -- Grandeur - Discard another card named Oriss, Samite Guardian: Target player can't cast spells this turn, and creatures that player controls can't attack this turn.
 mana={1}{W}{W}
 type=Legendary Creature
 subtype=Human Cleric
@@ -36649,6 +36780,16 @@ type=Creature
 subtype=Wurm
 power=4
 toughness=5
+[/card]
+[card]
+name=Platinum Angel
+abilities=fyling,cantlose
+text=Flying -- You can't lose the game and your opponents can't win the game.
+mana={7}
+type=Artifact Creature
+subtype=Angel
+power=4
+toughness=4
 [/card]
 [card]
 name=Plaxcaster Frogling
@@ -38845,6 +38986,14 @@ power=6
 toughness=6
 [/card]
 [card]
+name=Reaping the Graves
+abilities=storm
+auto=moveto(myHand) target(creature|myGraveyard)
+text=Return target creature card from your graveyard to your hand. -- Storm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)
+mana={2}{B}
+type=Instant
+[/card]
+[card]
 name=Reassembling Skeleton
 autograveyard={1}{B}:moveTo(myBattlefield) && tap
 text={1}{B}: Return Reassembling Skeleton from your graveyard to the battlefield tapped.
@@ -39720,16 +39869,6 @@ type=Creature
 subtype=Rhino Soldier
 power=3
 toughness=3
-[/card]
-[card]
-name=Rhox Meditant
-auto=aslongas(*[green]|myBattlefield) draw:1
-text=When Rhox Meditant enters the battlefield, if you control a green permanent, draw a card.
-mana={3}{W}
-type=Creature
-subtype=Rhino Monk
-power=2
-toughness=4
 [/card]
 [card]
 name=Rhox Pikemaster
@@ -40680,6 +40819,13 @@ auto={T}:Add {W}
 auto={T}{S}:Add {W}{W}
 text=Ruins of Trokair enters the battlefield tapped. -- {T}: Add {W} to your mana pool. -- {T}, Sacrifice Ruins of Trokair: Add {W}{W} to your mana pool.
 type=Land
+[/card]
+[card]
+name=Rule of Law
+abilities=oneboth
+text=Each player can't cast more than one spell each turn.
+mana={2}{W}
+type=Enchantment
 [/card]
 [card]
 name=Rumbling Slum
@@ -41681,6 +41827,14 @@ type=Creature
 subtype=Zombie
 power=2
 toughness=2
+[/card]
+[card]
+name=Scattershot
+abilities=storm
+auto=damage:1 target(creature)
+text=Scattershot deals 1 damage to target creature. -- Storm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)
+mana={2}{R}
+type=Instant
 [/card]
 [card]
 name=Scattershot Archer
@@ -43913,6 +44067,13 @@ mana={B}{B}
 type=Sorcery
 [/card]
 [card]
+name=Silence
+auto=nospell opponent
+text=Your opponents can't cast spells this turn. (Spells cast before this resolves are unaffected.)
+mana={W}
+type=Instant
+[/card]
+[card]
 name=Silent Attendant
 auto={T}:life:1
 text={T}: You gain 1 life.
@@ -45382,7 +45543,7 @@ toughness=1
 [/card]
 [card]
 name=Sneak Attack
-auto={R}:moveto(mybattlefield) target(creature) && transforms(,treason,haste) forever
+auto={R}:moveto(mybattlefield) target(creature|myhand) && transforms(,treason,haste) forever
 text={R}: You may put a creature card from your hand onto the battlefield. That creature gains haste. Sacrifice the creature at the beginning of the next end step.
 mana={3}{R}
 type=Enchantment
@@ -47109,6 +47270,14 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Sprouting Vines
+abilities=storm
+auto=moveto(myHand) target(land[basic]|myLibrary)
+text=Search your library for a basic land card, reveal that card, and put it into your hand. Then shuffle your library. -- Storm (When you cast this spell, copy it for each spell cast before it this turn.)
+mana={2}{G}
+type=Instant
+[/card]
+[card]
 name=Spur Grappler
 auto=aslongas(land[-tapped]|myBattlefield) 2/1 <1
 text=Spur Grappler gets +2/+1 as long as you control no untapped lands.
@@ -47565,6 +47734,16 @@ auto={1}{S}:moveTo(exile) target(*|graveyard)
 text={3}, {T}: Exile target card from a graveyard. -- {1}, Sacrifice Steamclaw: Exile target card from a graveyard.
 mana={2}
 type=Artifact
+[/card]
+[card]
+name=Steel Golem
+abilities=cantcastcreature
+text=You can't cast creature spells.
+mana={3}
+type=Artifact Creature
+subtype=Golem
+power=3
+toughness=4
 [/card]
 [card]
 name=Steel Leaf Paladin
@@ -48551,6 +48730,13 @@ auto={T}:Add {B} && Damage:1 controller
 auto={T}:Add {R} && Damage:1 controller
 text={T}: Add {1} to your mana pool. -- {T}: Add {B} or {R} to your mana pool. Sulfurous Springs deals 1 damage to you.
 type=Land
+[/card]
+[card]
+name=Summer Bloom
+auto=land:3
+text=You may play up to three additional lands this turn.
+mana={1}{G}
+type=Sorcery
 [/card]
 [card]
 name=Summoner's Bane
@@ -50032,6 +50218,14 @@ mana={2}{U}{U}
 type=Sorcery
 [/card]
 [card]
+name=Temporal Fissure
+abilities=storm
+auto=moveto(ownerHand) target(*)
+text=Return target permanent to its owner's hand. -- Storm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)
+mana={4}{U}
+type=Sorcery
+[/card]
+[card]
 name=Temporal Spring
 target=*
 auto=moveTo(ownerLibrary)
@@ -50050,6 +50244,14 @@ auto={T}{C(0/0,-1,Charge)}:add{R}
 auto={T}{C(0/0,-1,Charge)}:add{G}
 text={T}: Add {1} to your mana pool. -- {T}, Remove a charge counter from Tendo Ice Bridge: Add one mana of any color to your mana pool.
 type=Land
+[/card]
+[card]
+name=Tendrils of Agony
+abilities=storm
+auto=life:-2 target(player) && life:2 controller
+text=Target player loses 2 life and you gain 2 life. -- Storm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)
+mana={2}{B}{B}
+type=Sorcery
 [/card]
 [card]
 name=Tendrils of Corruption
@@ -51774,7 +51976,7 @@ toughness=5
 [/card]
 [card]
 name=Totem Speaker
-auto=@movedTo(beast|battlefield):may life:3 controller
+auto=@movedTo(beast|battlefield):life:3 controller
 text=Whenever a Beast enters the battlefield, you may gain 3 life.
 mana={4}{G}
 type=Creature
@@ -54973,6 +55175,14 @@ type=Creature
 subtype=Angel
 power=2
 toughness=2
+[/card]
+[card]
+name=Volcanic Awakening
+abilities=storm
+auto=destroy target(land)
+text=Destroy target land. -- Storm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)
+mana={4}{R}{R}
+type=Sorcery
 [/card]
 [card]
 name=Volcanic Dragon

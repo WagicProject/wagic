@@ -1,0 +1,20 @@
+#Testing Explore (keyword LAND:number)
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Explore,Forest,Forest
+library:Grizzly Bears
+manapool:{1}{G}
+[PLAYER2]
+[DO]
+Explore
+Forest
+Forest
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Forest,Forest
+graveyard:Explore
+hand:Grizzly Bears
+[PLAYER2]
+[END]

@@ -223,6 +223,7 @@ enchanted evening.txt
 enervate.txt
 enchantress_s_presence.txt
 erg_raiders_i157.txt
+explore.txt
 fangren_pathcutter.txt
 farhaven_elf.txt
 farmstead.txt
@@ -286,6 +287,7 @@ hopping_automaton_i232.txt
 horned_helm.txt
 howl_from_beyond.txt
 howl_of_the_night_pack.txt
+hunting_pack.txt
 hurricane.txt
 hyalopterous_lemure.txt
 hymn_of_rebirth.txt
@@ -391,8 +393,6 @@ regal_force.txt
 resounding_roar.txt
 resurrection.txt
 resuscitate_i210.txt
-rhox_meditant.txt
-rhox_meditant2.txt
 righteous_cause.txt
 rockslide_elemental.txt
 rootwalla.txt
@@ -431,6 +431,7 @@ simic_initiate.txt
 slate_of_ancestry.txt
 sleeper_agent.txt
 slith_bloodletter.txt
+sneak_attack.txt
 soulblast.txt
 spark_elemental.txt
 sphinx_summoner.txt

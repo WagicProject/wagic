@@ -1,0 +1,21 @@
+#Testing Hunting Pack (keyword STORM)
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Hunting Pack,Mox Emerald,Ornithopter
+inplay:Fervor,Totem Speaker
+manapool:{5}{G}{G}
+life:20
+[PLAYER2]
+[DO]
+Mox Emerald
+Ornithopter
+Hunting Pack
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Fervor,*,*,*,Mox Emerald,Ornithopter,Totem Speaker
+graveyard:Hunting Pack
+life:29
+[PLAYER2]
+[END]

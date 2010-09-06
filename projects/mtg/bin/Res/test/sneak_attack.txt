@@ -1,0 +1,37 @@
+## Testing Sneak Attack (keyword: TREASON). 
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Sneak Attack
+hand:Serra Angel
+manapool:{R}
+[PLAYER2]
+life:20
+[DO]
+Sneak Attack
+Serra Angel
+next
+#combatbegins
+next
+#attackers
+Serra Angel
+next
+#blockers 
+next
+#combatdamage 2
+next
+#endofcombat 2
+next
+#secondmain
+next
+#endofturn
+next
+[ASSERT]
+CLEANUP
+[PLAYER1]
+inplay:Sneak Attack
+graveyard:Serra Angel
+manapool:{0}
+[PLAYER2]
+life:16
+[END]
