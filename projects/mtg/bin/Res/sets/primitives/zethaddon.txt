@@ -222,34 +222,6 @@ id=-39888378
 type=nothing
 [/card]
 [card]
-name=Phage the Untouchable
-auto=kicker token(-98414292)
-auto=token(-98414293)
-auto=@damaged(player) from(this): wingame controller
-text=When Phage the Untouchable enters the battlefield, if you didn't cast it from your hand, you lose the game. Whenever Phage deals combat damage to a creature, destroy that creature. It can't be regenerated. Whenever Phage deals combat damage to a player, that player loses the game.
-mana={3}{B}{B}{B}{B}
-kicker={0}
-power=4
-toughness=4
-abilities=deathtouch
-# Unfortunately you can regenerate a creature damaged by a creature with deathtouch, but since the AI barely use the regeneration, this might only be a problem if we want to add this card to an AI deck.
-type=legendary creature
-subtype=spirit
-[/card]
-[card]
-name=phagesafe
-auto=@movedto(this|exile) aslongas(phagesafe|mybattlefield): bury all(phagelose)
-auto=moveto(exile) all(this)
-type=nothing
-id=-98414292
-[/card]
-[card]
-name=Phagelose
-auto=@movedto(*|mystack,mybattlefield,myhand,mygraveyard,mylibrary): wingame opponent
-type=nothing
-id=-98414293
-[/card]
-[card]
 name=sun titan
 auto=counter(0/0,0,Fetch)
 auto=may moveTo(mybattlefield) target(*[-sorcery;-instant;manacost<=3]|mygraveyard)

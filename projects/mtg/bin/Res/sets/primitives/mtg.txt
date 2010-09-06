@@ -35925,6 +35925,23 @@ subtype=Golem
 power=4
 toughness=2
 [/card]
+##the cantlose on phage only last until the ability checks if she was played from hand enjoy :)
+[card]
+name=Phage the Untouchable
+auto=kicker lord(this) cantlose ueot
+auto=@damaged(player) from(this|mybattlefield): wingame controller
+auto=choice name(Phage enters the Battlefield!!) && wingame opponent && all(this) -cantlose ueot
+Text=When Phage the Untouchable enters the battlefield, if you didn't cast it from your hand, you lose the game. Whenever Phage deals combat damage
+(I remove this space)
+to a creature, destroy that creature. It can't be regenerated. Whenever Phage deals combat damage to a player, that player loses the game.
+mana={3}{B}{B}{B}{B}
+kicker={0}
+power=4
+toughness=4
+abilities=deathtouch
+type=legendary creature
+subtype=spirit
+[/card]
 [card]
 name=Phantasmal Forces
 abilities=flying
