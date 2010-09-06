@@ -39871,6 +39871,16 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Rhox Meditant
+auto=aslongas(*[green]|myBattlefield) draw:1 controller oneshot
+text=When Rhox Meditant enters the battlefield, if you control a green permanent, draw a card.
+mana={3}{W}
+type=Creature
+subtype=Rhino Monk
+power=2
+toughness=4
+[/card]
+[card]
 name=Rhox Pikemaster
 abilities=first strike
 auto=lord(soldiers|mybattlefield) first strike other
