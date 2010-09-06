@@ -371,19 +371,6 @@ int ManaCost::pay(ManaCost * _cost){
   ManaCost * toPay = NEW ManaCost();
    toPay->copy(_cost);
 
-
-//---if you can pay the cards real cost, it is paided instead and alternative is not used.
-   if (toPay->alternative && canAfford(toPay->alternative) && !canAfford(_cost)){
-	   //const char * getMenuText(){return "Put into play";}
-    toPay = toPay->alternative;
-    if (!canAfford(toPay) || canAfford(_cost)){
-		toPay->copy(_cost);
-	}
-	result = MANA_PAID_WITH_ALTERNATIVE;
-   }
-
-
-
   if (toPay->kicker){
     toPay->add(toPay->kicker);
     if (!canAfford(toPay)){

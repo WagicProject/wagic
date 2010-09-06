@@ -82,6 +82,7 @@ class MTGAbility: public ActionElement{
     PUT_INTO_PLAY = 5,
     MOMIR = 6,
     MTG_BLOCK_RULE = 7,
+	ALTERNATIVE_COST = 8,
   };
 };
 

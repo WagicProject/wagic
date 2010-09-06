@@ -21,6 +21,7 @@ void DuelLayers::init(){
   action->Add(NEW MTGGamePhase(action->getMaxId()));
   //Add Magic Specific Rules
   action->Add(NEW MTGPutInPlayRule(-1));
+  action->Add(NEW MTGAlternativeCostRule(-1));
   action->Add(NEW MTGAttackRule(-1));
   action->Add(NEW MTGBlockRule(-1));
   action->Add(NEW MTGLegendRule(-1));

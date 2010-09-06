@@ -24,8 +24,19 @@ class MTGPutInPlayRule:public MTGAbility{
   int testDestroy();
   virtual ostream& toString(ostream& out) const;
   MTGPutInPlayRule(int _id);
-  const char * getMenuText(){return "Put into play";}
+  const char * getMenuText(){return "Play Card Normally";}
   virtual MTGPutInPlayRule * clone() const;
+};
+
+class MTGAlternativeCostRule:public MTGAbility{
+ public:
+  int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
+  int reactToClick(MTGCardInstance * card);
+  int testDestroy();
+  virtual ostream& toString(ostream& out) const;
+  MTGAlternativeCostRule(int _id);
+  const char * getMenuText(){return "Pay Alternative Cost";}
+  virtual MTGAlternativeCostRule * clone() const;
 };
 
 class MTGAttackRule:public MTGAbility, public Limitor{
