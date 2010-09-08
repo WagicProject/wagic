@@ -6,6 +6,9 @@
 #include "../include/AIMomirPlayer.h"
 #include "../include/PlayerData.h"
 #include "../include/DeckStats.h"
+#include "../include/DeckManager.h"
+
+#include "../include/DeckMetaData.h"
 #include "../include/MTGRules.h"
 #include "../include/Credits.h"
 #include "../include/Translate.h"
@@ -89,7 +92,8 @@ void GameStateDuel::Start()
     if (mParent->players[i] ==  PLAYER_TYPE_HUMAN){
       decksneeded = 1;
       deckmenu = NEW SimpleMenu(DUEL_MENU_CHOOSE_DECK, this, Constants::MENU_FONT, 35, 25, "Choose a Deck");
-      int nbDecks = fillDeckMenu(deckmenu,options.profileFile());
+      DeckManager *deckManager = DeckManager::GetInstance();
+      int nbDecks = fillDeckMenu( deckManager->getPlayerDeckOrderList(), deckmenu, options.profileFile());
       if (nbDecks) decksneeded = 0;
       break;
     }
@@ -219,7 +223,9 @@ void GameStateDuel::ensureOpponentMenu(){
     opponentMenu->Add(0,"Random");
     if (options[Options::EVILTWIN_MODE_UNLOCKED].number)
       opponentMenu->Add(-1,"Evil Twin", "Can you play against yourself?");
-    fillDeckMenu(opponentMenu,RESPATH"/ai/baka", "ai_baka", mPlayers[0]);
+    DeckManager * deckManager = DeckManager::GetInstance();
+    fillDeckMenu( deckManager->getAIDeckOrderList(), opponentMenu, RESPATH"/ai/baka", "ai_baka", mPlayers[0]);
+    opponentMenu->Add(-2,"Cancel", "Back to Main Menu");
   }
 }
 
@@ -477,6 +483,8 @@ void GameStateDuel::Render()
 }
 
 void GameStateDuel::ButtonPressed(int controllerId, int controlId) {
+  int deckNumber = controlId;
+  DeckManager * deckManager = DeckManager::GetInstance();
   switch (controllerId){
     case DUEL_MENU_CHOOSE_OPPONENT:
       {
@@ -487,8 +495,20 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId) {
 	          mGamePhase = DUEL_STATE_CHOOSE_DECK2_TO_PLAY;
             break;
           default:
-            loadPlayer(1,controlId,1);
-			      OpponentsDeckid=controlId;
+            // cancel option.  return to main menu
+
+            if (controlId == -2) 
+            {
+                opponentMenu->Close();
+                mParent->SetNextState( DUEL_STATE_BACK_TO_MAIN_MENU );
+                mGamePhase = DUEL_MENU_GAME_MENU;
+                break;
+            }
+            else if ( controlId != -1 && deckManager->getAIDeckOrderList()->size() > 0) // evil twin
+                deckNumber = deckManager->getAIDeckOrderList()->at( controlId - 1 );
+
+            loadPlayer(1,deckNumber,1);
+			      OpponentsDeckid=deckNumber;
 	          opponentMenu->Close();
 	          mGamePhase = DUEL_STATE_CHOOSE_DECK2_TO_PLAY;
             break;
@@ -502,7 +522,10 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId) {
           return;
         }
         if (mGamePhase == DUEL_STATE_CHOOSE_DECK1){
-          loadPlayer(0,controlId);
+          vector<int> * playerDeck = deckManager->getPlayerDeckOrderList();
+          if ( !premadeDeck && controlId > 0 )
+            deckNumber = playerDeck->at( controlId - 1 );
+          loadPlayer(0,deckNumber);
           deckmenu->Close();
           mGamePhase = DUEL_STATE_CHOOSE_DECK1_TO_2;
         }else{

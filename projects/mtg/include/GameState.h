@@ -7,6 +7,8 @@ class JGE;
 
 #include <JSoundSystem.h>
 #include <string>
+#include <vector>
+#include <iostream>
 using namespace std;
 
 enum ENUM_GAME_STATE
@@ -53,7 +55,13 @@ class GameState
   virtual void Update(float dt) = 0;
   virtual void Render() = 0;
   static int fillDeckMenu(SimpleMenu * _menu, string path, string smallDeckPrefix = "", Player * statsPlayer = NULL);
-};
+  static int fillDeckMenu( vector<int> * deckIdList, SimpleMenu * _menu, string path, string smallDeckPrefix = "", Player * statsPlayer = NULL);
+
+    string& trim(string &str);
+    string& ltrim(string &str);
+    string& rtrim(string &str);
+
+    };
 
 
 #endif

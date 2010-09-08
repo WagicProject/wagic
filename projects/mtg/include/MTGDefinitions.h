@@ -175,6 +175,10 @@ class Constants
     GRADE_CRAPPY = 3,
     GRADE_UNSUPPORTED = 4,
     GRADE_DANGEROUS = 5,
+
+	ASKIP_NONE=0,
+	ASKIP_SAFE=1,
+	ASKIP_FULL=2,
   };
 
   static char MTGColorChars[];

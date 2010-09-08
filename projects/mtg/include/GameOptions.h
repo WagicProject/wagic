@@ -46,6 +46,7 @@ public:
     REVERSETRIGGERS,
     DISABLECARDS,
     MAX_GRADE,
+	ASPHASES,
     ECON_DIFFICULTY,
     TRANSITIONS,
     GUI_STYLE,
@@ -182,7 +183,13 @@ private:
   OptionMaxGrade();
   static OptionMaxGrade mDef;
 };
-
+class OptionASkipPhase: public EnumDefinition {
+public:
+  static EnumDefinition * getInstance() {return &mDef;};
+private:
+  OptionASkipPhase();
+  static OptionASkipPhase mDef;
+};
 class OptionEconDifficulty: public EnumDefinition {
 public:
   static EnumDefinition * getInstance() {return &mDef;};

@@ -30,6 +30,7 @@ const string Options::optionNames[] = {
   "reverse_triggers",
   "disable_cards",
   "maxGrade",
+  "ASPhases",
   "economic_difficulty",
   "transitions",
   "bgStyle",
@@ -377,6 +378,11 @@ GameOption * GameOptions::get(int optionID) {
     case Options::MAX_GRADE:
       goEnum = NEW GameOptionEnum();
       goEnum->def = OptionMaxGrade::getInstance();
+      go = goEnum;
+      break;
+	case Options::ASPHASES:
+      goEnum = NEW GameOptionEnum();
+      goEnum->def = OptionASkipPhase::getInstance();
       go = goEnum;
       break;
     case Options::KEY_BINDINGS:
@@ -762,6 +768,12 @@ OptionMaxGrade::OptionMaxGrade(){
   mDef.values.push_back(EnumDefinition::assoc(Constants::GRADE_UNSUPPORTED, "-3: Unsupported"));
   mDef.values.push_back(EnumDefinition::assoc(Constants::GRADE_DANGEROUS, "-4: Dangerous (risk of crash)"));
 
+};
+OptionASkipPhase OptionASkipPhase::mDef;
+OptionASkipPhase::OptionASkipPhase(){  
+  mDef.values.push_back(EnumDefinition::assoc(Constants::ASKIP_NONE, "Off"));
+  mDef.values.push_back(EnumDefinition::assoc(Constants::ASKIP_SAFE, "Safe"));
+  mDef.values.push_back(EnumDefinition::assoc(Constants::ASKIP_FULL, "Full"));
 };
 OptionClosedHand OptionClosedHand::mDef;
 OptionClosedHand::OptionClosedHand(){

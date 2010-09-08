@@ -78,7 +78,7 @@ void CardDisplay::Update(float dt){
 }
 
 bool CardDisplay::CheckUserInput(JButton key){
-  if (JGE_BTN_SEC == key)
+  if (JGE_BTN_SEC == key || JGE_BTN_PRI == key)
     {
       if (listener){
 	      listener->ButtonPressed(mId, 0);

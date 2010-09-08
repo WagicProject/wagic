@@ -301,6 +301,32 @@ void GameObserver::Update(float dt){
   }
   stateEffects();
   oldGamePhase = currentGamePhase;
+
+    //Auto skip Phases
+  int skipLevel = options[Options::ASPHASES].number;
+  int nrCreatures = currentPlayer->game->inPlay->countByType("Creature");
+
+  if (skipLevel == Constants::ASKIP_SAFE || skipLevel == Constants::ASKIP_FULL) {
+    if ((opponent()->isAI() && !(isInterrupting)) &&
+	  (
+	     currentGamePhase == Constants::MTG_PHASE_UNTAP
+	  || currentGamePhase == Constants::MTG_PHASE_DRAW
+	  || currentGamePhase == Constants::MTG_PHASE_COMBATBEGIN
+	  || ((currentGamePhase == Constants::MTG_PHASE_COMBATATTACKERS) && (nrCreatures == 0))
+	  || currentGamePhase == Constants::MTG_PHASE_COMBATEND
+	  || currentGamePhase == Constants::MTG_PHASE_ENDOFTURN
+	  || ((currentGamePhase == Constants::MTG_PHASE_CLEANUP) && (currentPlayer->game->hand->nb_cards < 8))
+	  ))
+	  userRequestNextGamePhase();
+  }
+  if (skipLevel == Constants::ASKIP_FULL) {
+    if ((opponent()->isAI() && !(isInterrupting)) &&
+         (currentGamePhase == Constants::MTG_PHASE_UPKEEP
+	  || currentGamePhase == Constants::MTG_PHASE_COMBATDAMAGE
+	  ))
+	  userRequestNextGamePhase();
+
+  }	
 }
  
 //applies damage to creatures after updates

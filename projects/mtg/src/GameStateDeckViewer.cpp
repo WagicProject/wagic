@@ -3,6 +3,7 @@
 
 #include <JGE.h>
 #include "../include/config.h"
+#include "../include/DeckManager.h"
 #include "../include/GameStateDeckViewer.h"
 #include "../include/Translate.h"
 #include "../include/ManaCostHybrid.h"
@@ -1087,7 +1088,6 @@ void GameStateDeckViewer::updateStats() {
     } 
     
     // Lets look for mana producing abilities
-    int found;
 
     vector<string> abilityStrings;
     string thisstring = current->data->magicText;
@@ -1430,6 +1430,9 @@ int GameStateDeckViewer::loadDeck(int deckid){
 
 void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
 {
+  int deckIdNumber = controlId;
+  DeckManager *deckManager = DeckManager::GetInstance();
+  vector<int> * deckList;
   switch(controllerId){
       case 10:  //Deck menu
         if (controlId == -1){
@@ -1458,7 +1461,16 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
           mStage = STAGE_WELCOME;
           break;
         }
-        loadDeck(controlId);
+		loadDeck(deckIdNumber);
+        mStage = STAGE_WAITING;
+        deckNum = controlId;
+        deckList = deckManager->getPlayerDeckOrderList();
+        //if (deckList->size() > 0 && controlId < deckList->size())  removed this hopefully with no side effects due to not being able to compile for psp because of sighed and unsigned int comparison.
+        //    deckIdNumber = deckList->at(controlId);
+        /*else*/
+
+        deckIdNumber = controlId;
+        loadDeck(deckIdNumber);
         mStage = STAGE_WAITING;
         deckNum = controlId;
         break;

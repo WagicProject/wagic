@@ -76,6 +76,8 @@ void GameStateOptions::Start()
   optionsList->Add(cLang);
   WDecoEnum * oGra = NEW WDecoEnum(NEW OptionInteger(Options::MAX_GRADE,"Minimum Card Grade",Constants::GRADE_DANGEROUS,1,Constants::GRADE_BORDERLINE,"",Constants::GRADE_SUPPORTED));
   optionsList->Add(oGra);
+  WDecoEnum * oASPhases = NEW WDecoEnum(NEW OptionInteger(Options::ASPHASES,"Phase Skip Automation",Constants::ASKIP_FULL,1,Constants::ASKIP_NONE,"",Constants::ASKIP_NONE));
+  optionsList->Add(oASPhases);
   optionsTabs->Add(optionsList);
 
   optionsList = NEW WGuiKeyBinder("Key Bindings", this);
