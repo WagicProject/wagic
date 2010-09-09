@@ -104,8 +104,8 @@ void GameStateDeckViewer::switchDisplay(){
 void GameStateDeckViewer::updateDecks(){
   SAFE_DELETE(welcome_menu);
   welcome_menu = NEW SimpleMenu(10,this,Constants::MENU_FONT,20,20);
-
-  nbDecks = fillDeckMenu(welcome_menu,options.profileFile());
+  DeckManager * deckManager = DeckManager::GetInstance();
+  nbDecks = fillDeckMenu( deckManager->getPlayerDeckOrderList(), welcome_menu,options.profileFile());
   deckNum = 0;
   newDeckname = "";
   welcome_menu->Add(nbDecks+1, _("--NEW--").c_str());
@@ -1431,6 +1431,7 @@ int GameStateDeckViewer::loadDeck(int deckid){
 void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
 {
   int deckIdNumber = controlId;
+  int deckListSize = 0;
   DeckManager *deckManager = DeckManager::GetInstance();
   vector<int> * deckList;
   switch(controllerId){
@@ -1461,15 +1462,15 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
           mStage = STAGE_WELCOME;
           break;
         }
-		loadDeck(deckIdNumber);
         mStage = STAGE_WAITING;
-        deckNum = controlId;
         deckList = deckManager->getPlayerDeckOrderList();
-        //if (deckList->size() > 0 && controlId < deckList->size())  removed this hopefully with no side effects due to not being able to compile for psp because of sighed and unsigned int comparison.
-        //    deckIdNumber = deckList->at(controlId);
-        /*else*/
-
-        deckIdNumber = controlId;
+        deckListSize = deckList->size();
+        
+        if (deckListSize > 0 && controlId < deckListSize)
+            deckIdNumber = deckList->at(controlId - 1);
+        else
+            deckIdNumber = controlId;
+        
         loadDeck(deckIdNumber);
         mStage = STAGE_WAITING;
         deckNum = controlId;

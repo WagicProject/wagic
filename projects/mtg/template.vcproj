@@ -4,6 +4,7 @@
 	Version="9.00"
 	Name="mtg"
 	ProjectGUID="{53024371-2293-4D40-8ECF-FCB470B50DA1}"
+	RootNamespace="mtg"
 	TargetFrameworkVersion="131072"
 	>
 	<Platforms>
@@ -477,6 +478,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\DeckManager.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\DeckMetaData.cpp"
 				>
 			</File>
@@ -870,10 +875,6 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath=".\include\ActionElement.h"
-				>
-			</File>
-			<File
 				RelativePath=".\include\ActionLayer.h"
 				>
 			</File>
@@ -943,6 +944,10 @@
 			</File>
 			<File
 				RelativePath=".\include\DeckDataWrapper.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\DeckManager.h"
 				>
 			</File>
 			<File
@@ -1258,7 +1263,27 @@
 			Name="Resource Files"
 			Filter="ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
 			>
+			<File
+				RelativePath=".\bin\Res\sets\primitives\mtg.txt"
+				>
+			</File>
+			<File
+				RelativePath=".\bin\Res\sets\primitives\unofficial.txt"
+				>
+			</File>
+			<File
+				RelativePath=".\bin\Res\sets\primitives\zethaddon.txt"
+				>
+			</File>
 		</Filter>
+		<File
+			RelativePath=".\include\ActionElement.h"
+			>
+		</File>
+		<File
+			RelativePath=".\ClassDiagram1.cd"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

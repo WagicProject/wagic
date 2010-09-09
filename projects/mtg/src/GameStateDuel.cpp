@@ -100,18 +100,19 @@ void GameStateDuel::Start()
   }
 
   if(deckmenu){
-  if (decksneeded){
-    //translate deck creating desc
-    Translator * t = Translator::GetInstance();
-    map<string,string>::iterator it = t->deckValues.find("Create your Deck!");
-    if (it != t->deckValues.end())
-      deckmenu->Add(-1,_("Create your Deck!").c_str(), it->second);
-    else
-      deckmenu->Add(-1,_("Create your Deck!").c_str(),"Highly recommended to get\nthe full Wagic experience!");
-    premadeDeck = true;
-    fillDeckMenu(deckmenu,RESPATH"/player/premade");
-  }
+    if (decksneeded){
+        //translate deck creating desc
+        Translator * t = Translator::GetInstance();
+        map<string,string>::iterator it = t->deckValues.find("Create your Deck!");
+        if (it != t->deckValues.end())
+          deckmenu->Add(-1,_("Create your Deck!").c_str(), it->second);
+        else
+          deckmenu->Add(-1,_("Create your Deck!").c_str(),"Highly recommended to get\nthe full Wagic experience!");
+        premadeDeck = true;
+        fillDeckMenu(deckmenu,RESPATH"/player/premade");
+    }
     deckmenu->Add(-1,_("New Deck...").c_str());
+    deckmenu->Add(-2, "Main Menu", "Return to Main Menu" );
   }
   
   for (int i = 0; i < 2; ++i){
@@ -225,7 +226,7 @@ void GameStateDuel::ensureOpponentMenu(){
       opponentMenu->Add(-1,"Evil Twin", "Can you play against yourself?");
     DeckManager * deckManager = DeckManager::GetInstance();
     fillDeckMenu( deckManager->getAIDeckOrderList(), opponentMenu, RESPATH"/ai/baka", "ai_baka", mPlayers[0]);
-    opponentMenu->Add(-2,"Cancel", "Back to Main Menu");
+    opponentMenu->Add(-2,"Cancel", "Choose a different player deck");
   }
 }
 
@@ -392,9 +393,10 @@ void GameStateDuel::Update(float dt)
           playerdata->taskList->save();
           SAFE_DELETE(playerdata);
           SAFE_DELETE(menu);
-          mParent->DoTransition(TRANSITION_FADE,GAME_STATE_MENU);
         }
       }
+      mParent->DoTransition(TRANSITION_FADE,GAME_STATE_MENU);
+      
       break;
     default:
       if (JGE_BTN_OK == mEngine->ReadButton())
@@ -485,6 +487,7 @@ void GameStateDuel::Render()
 void GameStateDuel::ButtonPressed(int controllerId, int controlId) {
   int deckNumber = controlId;
   DeckManager * deckManager = DeckManager::GetInstance();
+  int aiDeckSize =  deckManager->getAIDeckOrderList()->size();
   switch (controllerId){
     case DUEL_MENU_CHOOSE_OPPONENT:
       {
@@ -495,16 +498,17 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId) {
 	          mGamePhase = DUEL_STATE_CHOOSE_DECK2_TO_PLAY;
             break;
           default:
-            // cancel option.  return to main menu
+            // cancel option.  return to player deck selection
 
             if (controlId == -2) 
             {
                 opponentMenu->Close();
-                mParent->SetNextState( DUEL_STATE_BACK_TO_MAIN_MENU );
+                deckmenu->Close();
+                mParent->SetNextState( DUEL_STATE_CHOOSE_DECK1 );
                 mGamePhase = DUEL_MENU_GAME_MENU;
                 break;
             }
-            else if ( controlId != -1 && deckManager->getAIDeckOrderList()->size() > 0) // evil twin
+            else if ( controlId != -1 && aiDeckSize > 0) // evil twin
                 deckNumber = deckManager->getAIDeckOrderList()->at( controlId - 1 );
 
             loadPlayer(1,deckNumber,1);
@@ -517,6 +521,13 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId) {
       }
     case DUEL_MENU_CHOOSE_DECK:
       {
+        if (controlId == -2 ) // user clicked on "Cancel"
+        {            
+            if ( deckmenu) 
+                deckmenu->Close();
+            mGamePhase = DUEL_STATE_BACK_TO_MAIN_MENU;
+            break;
+        }
         if (controlId < 0){
           mParent->SetNextState(GAME_STATE_DECK_VIEWER);
           return;

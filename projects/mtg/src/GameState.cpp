@@ -5,7 +5,7 @@
 #include "../include/SimpleMenu.h"
 #include "../include/DeckStats.h"
 #include "../include/DeckMetaData.h"
-
+#include <vector>
 
 int GameState::fillDeckMenu(SimpleMenu * _menu, string path, string smallDeckPrefix, Player * statsPlayer){
   DeckMetaDataList * metas = DeckMetaDataList::decksMetaData;
@@ -102,6 +102,8 @@ int GameState::fillDeckMenu(vector<int> * deckIdList, SimpleMenu * _menu, string
   
     deckNameVector.sort();
     int deckNumber = 1;
+    deckIdList->clear();
+    
     for (list<string>::iterator i = deckNameVector.begin(); i != deckNameVector.end(); i++)
     {
         string deckName = *i;
