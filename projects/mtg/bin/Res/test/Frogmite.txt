@@ -1,0 +1,18 @@
+#Testing Frogmite (keyword:AFFINITY)
+#Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.)
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Mox Pearl,Seat of the Synod,Sol Ring
+hand:Frogmite
+manapool:{1}
+[PLAYER2]
+[DO]
+Frogmite
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Mox Pearl,Seat of the Synod,Sol Ring,Frogmite
+manapool:{0}
+[PLAYER2]
+[END]

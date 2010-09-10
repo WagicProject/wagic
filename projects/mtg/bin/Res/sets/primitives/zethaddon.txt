@@ -1987,15 +1987,6 @@ subtype=construct
 mana={2}{BW}{U}
 [/card]
 [card]
-name=Barl's Cage
-auto={3}:foreach(Barl's Cage|mybattlefield) counter(0/0,2,dontuntap) target(creature)
-auto=@each untap:counter(0/0,-1,dontuntap) all(creature[counter{0/0.1.dontuntap}])
-auto=@each endofturn: lord(creature[counter{0/0.1.dontuntap}]) doesnotuntap >
-text={3}: Target creature doesn't untap during its controller's next untap step.
-type=artifact
-mana={4}
-[/card]
-[card]
 name=Clock of Omens
 auto={0}:token(-2300933)
 text=Tap two untapped artifacts you control: Untap target artifact.
@@ -2320,40 +2311,6 @@ type=nothing
 auto=moveto(exile) all(this)
 [/card]
 [card]
-name=Fieldmist Borderpost
-autohand={1}:moveto(ownerhand) target(land|mybattlefield) asSorcery && token(-78710)
-auto=tap
-auto={t}:add{w}
-auto={t}:add{U}
-text=You may pay {1} and return a basic land you control to its owner's hand rather than pay Fieldmist Borderpost's mana cost. Fieldmist Borderpost enters the battlefield tapped. {t}: Add  or  to your mana pool.
-type=artifact
-mana={1}{w}{U}
-[/card]
-[card]
-name=alternate cost
-auto=moveto(mybattlefield) target(fieldmist borderpost|myhand)
-auto=moveto(exile) all(this)
-id=-78710
-type=nothing
-[/card]
-[card]
-name=Firewild Borderpost
-autohand={1}:moveto(ownerhand) target(land|mybattlefield) asSorcery && token(-78710)
-auto=tap
-auto={t}:add{R}
-auto={t}:add{G}
-text=You may pay {1} and return a basic land you control to its owner's hand rather than pay Firewild Borderpost's mana cost. Firewild Borderpost enters the battlefield tapped. {t}: Add  or  to your mana pool.
-type=artifact
-mana={1}{R}{G}
-[/card]
-[card]
-name=alternate cost
-auto=moveto(mybattlefield) target(Firewild Borderpost|myhand)
-auto=moveto(exile) all(this)
-id=-78711
-type=nothing
-[/card]
-[card]
 name=Flowstone Sculpture
 auto={2}{s(*|myhand)}:token(-987000) && counter(1/1,1) all(this)
 auto={2}{s(*|myhand)}:token(-987001) && counter(0/0,1,First Strike) all(this)
@@ -2391,48 +2348,6 @@ type=nothing
 name=Trample
 auto=moveto(exile) all(this)
 id=-987003
-type=nothing
-[/card]
-[card]
-name=Fool's Tome
-auto={2}{t}:aslongas(*|myhand) draw:1 <1
-text={2},{t} : Draw a card. Activate this ability only if you have no cards in hand.
-type=artifact
-mana={4}
-[/card]
-#reveal discard series
-[card]
-name=Ghastlord of Fugue
-auto=@damaged(player) from(this):counter(0/0,1,mycard) all(*|myhand) && moveto(myhand) all(*|opponenthand) && token(-58112) assorcery
-text=Ghastlord of Fugue is unblockable. Whenever Ghastlord of Fugue deals combat damage to a player, that player reveals his or her hand. You choose a card from it. That player exiles that card.
-type=creature
-subtype=spirit avatar
-abilities=unblockable
-power=4
-toughness=4
-mana={UB}{UB}{UB}{UB}{UB}
-[/card]
-[card]
-name=choose one card
-auto=counter(0/0,1,choice) target(*[-counter{0/0.1.mycard}]|myhand)
-auto=@movedto(this|exile):token(-58113)
-auto=moveto(exile) all(this)
-id=-58112
-type=nothing
-[/card]
-[card]
-name=destroy my choice
-auto=moveto(exile) all(*[counter{0/0.1.choice}]|myhand)
-auto=@movedto(this|exile):token(-58114)
-auto=moveto(exile) all(this)
-id=-58113
-type=nothing
-[/card]
-[card]
-name=return thier cards
-auto=moveto(opponenthand) all(*[-counter{0/0.1.mycard}]|myhand) && counter(0/0,-1,mycard) all(*|myhand)
-auto=@moveto(exile) all(this)
-id=-58114
 type=nothing
 [/card]
 [card]
@@ -4246,61 +4161,6 @@ name=My Poison Counter
 type=nothing
 [/card]
 [card]
-name=Marsh Viper
-auto=@damaged(player) from(this):token(16655488)*2 && aslongas(poison counter|opponentbattlefield) wingame >9
-type=creature
-text=Whenever Marsh Viper deals damage to an opponent, that player gets two poison counters. (A player with ten or more poison counters loses the game.)
-subtype=Snake
-power=1
-toughness=2
-mana={G){3}
-[/card]
-[card]
-name=Pit Scorpion
-auto=@damaged(player) from(this):token(16655488) && aslongas(poison counter|opponentbattlefield) wingame >9
-type=creature
-text=Whenever Pit Scorpion deals damage to a player, that player gets a poison counter. (A player with ten or more poison counters loses the game.)
-subtype=scorpion
-power=1
-toughness=1
-mana={B){2}
-[/card]
-[card]
-name=Virulent Sliver
-auto=@damaged(player) from(Sliver):token(16655488) && aslongas(poison counter|opponentbattlefield) wingame >9
-auto=@damaged(player) from(Sliver|opponentbattlefield):token(16655489) && aslongas(my poison counter|mybattlefield) losegame >9
-type=creature
-text=All Sliver creatures have poisonous 1. (Whenever a Sliver deals combat damage to a player, that player gets a poison counter. A player with ten or more poison counters loses the game.)
-subtype=sliver
-power=1
-toughness=1
-mana={G}
-[/card]
-[card]
-name=Snake Cult Initiation
-target=creature
-text=Enchanted creature has poisonous 3. (Whenever it deals combat damage to a player, that player gets three poison counters. A player with ten or more poison counters loses the game.)
-auto=@damaged(player) from(Mytgt):token(16655488)*3 && aslongas(poison counter|opponentbattlefield) wingame >9
-type=enchantment
-subtype=aura
-mana={3}{B}
-[/card]
-[card]
-name=Serpent Generator
-auto={4}{T}:token(16655490)
-text={4}{T}: Put a 1/1 colorless Snake artifact creature token onto the battlefield. This creature has "Whenever this creature deals damage to a player, that player gets a poison counter." (A player with ten or more poison counters loses the game.)
-type=Artifact
-mana={6)
-[/card]
-[card]
-name=Poison Snake
-auto=@damaged(player) from(this):token(16655488) && aslongas(poison counter|opponentbattlefield) wingame >9
-type=creature
-subtype=Token Snake
-power=1
-toughness=1
-[/card]
-[card]
 name=Greater Good
 auto=aslongas(creature[Power=0]|mybattlefield) lord(this) {0}:token(-122000)
 auto=aslongas(creature[Power=1]|mybattlefield) lord(this) {0}:token(-122001)
@@ -4562,14 +4422,6 @@ subtype=aura
 mana={4}{g}{w}
 [/card]
 [card]
-name=Overwhelming Force
-auto=@movedto(creature|graveyard):draw:1
-auto=destroy all(creature|opponentbattlefield)
-text=Destroy all creatures target opponent controls. Draw a card for each creature destroyed this way.
-type=Sorcery
-mana={6}{B}{B}
-[/card]
-[card]
 name=Organ Harvest
 auto=token(-12234)
 text=You and your teammates may sacrifice any number of creatures. For each creature sacrificed in this way, add oBoB to your mana pool.
@@ -4797,15 +4649,6 @@ subtype=Basilisk mutant
 power=0
 toughness=0
 mana={4}{g}{G}
-[/card]
-[card]
-name=Last Laugh
-auto=@movedto(other enchantment,creature,land,artifact|graveyard) from(battlefield):Damage:1 all(creature,player)
-auto=aslongas(creature|battlefield) lord(this) bury <1
-auto=@movedto(other enchantment,creature,land,artifact|graveyard) from(battlefield):aslongas(creature|battlefield) lord(this) bury <1
-text=Whenever a permanent other than Last Laugh is put into a graveyard from the battlefield, Last Laugh deals 1 damage to each creature and each player. When no creatures are on the battlefield, sacrifice Last Laugh.
-type=enchantment
-mana={2}{B}{B}
 [/card]
 [card]
 name=Teysa, Orzhov Scion

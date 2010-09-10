@@ -1403,6 +1403,16 @@ power=5
 toughness=1
 [/card]
 [card]
+name=Ancient Kavu
+auto={2}:transforms(,arifact) ueot
+text={2}: Ancient Kavu becomes colorless until end of turn.
+mana={3}{R}
+type=Creature
+subtype=Kavu
+power=3
+toughness=3
+[/card]
+[card]
 name=Ancient Runes
 auto=@each my upkeep:foreach(artifact|myBattlefield) damage:1 controller
 auto=@each opponent upkeep:foreach(artifact|opponentBattlefield) damage:1 opponent
@@ -4993,6 +5003,14 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Blinkmoth Infusion
+abilities=affinityartifacts
+auto=untap all(artifact)
+text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) -- Untap all artifacts.
+mana={12}{U}{U}
+type=Instant
+[/card]
+[card]
 name=Blinkmoth Nexus
 auto={T}:Add{1}
 auto={1}:becomes(Blinkmoth Artifact Creature,1/1,flying) ueot
@@ -6577,6 +6595,17 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Broodstar
+abilities=affinityartifact,flying
+auto=foreach(artifact|mybattlefield) 1/1
+text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) -- Flying -- Broodstar's power and toughness are each equal to the number of artifacts you control.
+mana={8}{U}{U}
+type=Creature
+subtype=Beast
+power=*
+toughness=*
+[/card]
+[card]
 name=Broodwarden
 auto=lord(eldrazi spawn|myBattlefield) 2/1
 text=Eldrazi Spawn creatures you control get +2/+1.
@@ -7311,7 +7340,7 @@ toughness=1
 [/card]
 [card]
 name=Carnage Altar
-auto={S(creature|myBattlefield)}:Draw:1
+auto={3}{S(creature|myBattlefield)}:draw:1
 text={3}, Sacrifice a creature: Draw a card.
 mana={2}
 type=Artifact
@@ -8368,7 +8397,7 @@ name=Chimeric Coils
 auto={X}{1}:becomes(artifact creature construct,*/*) ueot && thisforeach(X) all(this) 1/1
 auto=@each endofturn:bury all(creature[chimeric coils])
 text={X}{1}: Chimeric Coils becomes an X/X Construct artifact creature. Sacrifice it at the beginning of the next end step.
-mana={1}
+mana={X}
 type=Artifact
 [/card]
 [card]
@@ -13565,6 +13594,16 @@ power=5
 toughness=1
 [/card]
 [card]
+name=Dross Golem
+abilities=affinityswamps,fear
+text=Affinity for Swamps (This spell costs {1} less to cast for each Swamp you control.) -- Fear (This creature can't be blocked except by artifact creatures and/or black creatures.)
+mana={5}
+type=Artifact Creature
+subtype=Golem
+power=3
+toughness=2
+[/card]
+[card]
 name=Dross Harvester
 abilities=protection from white
 auto=@movedTo(graveyard) from(creature|battlefield):life:2
@@ -18170,6 +18209,16 @@ text=Enchant creature -- When Frog Tongue enters the battlefield, draw a card. -
 mana={G}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Frogmite
+abilities=affinityartifacts
+text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.)
+mana={4}
+type=Artifact Creature
+subtype=Frog
+power=2
+toughness=2
 [/card]
 [card]
 name=Frogtosser Banneret
@@ -24346,6 +24395,15 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
+name=Into Thin Air
+ability=affinityartifacts
+target=artifact
+auto=moveTo(ownerhand)
+text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) -- Return target artifact to its owner's hand.
+mana={5}{U}
+type=Instant
+[/card]
+[card]
 name=Intrepid Hero
 auto={T}:destroy target(creature[power>=4])
 text={T}: Destroy target creature with power 4 or greater.
@@ -30506,6 +30564,18 @@ text={T}: Add {1} to your mana pool. -- {T}: Untap target attacking creature wit
 type=Land
 [/card]
 [card]
+name=Meadowboon
+other={3}{W}
+auto=@movedTo(this|graveyard) from(mybattlefield):counter(1/1,1) all(creature|myBattlefield)
+auto=alternative moveto(mygraveyard)
+text=When Meadowboon leaves the battlefield, put a +1/+1 counter on each creature target player controls. -- Evoke {3}{W} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
+mana={2}{W}{W}
+type=Creature
+subtype=Elemental
+power=3
+toughness=3
+[/card]
+[card]
 name=Measure of Wickedness
 auto=@next my endofturn:bury
 auto=@next my endofturn:life:-8 controller
@@ -32637,6 +32707,16 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Myr Enforcer
+auto=affinityartifacts
+text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.)
+mana={7}
+type=Artifact Creature
+subtype=Myr
+power=4
+toughness=4
+[/card]
+[card]
 name=Myr Landshaper
 auto={T}:transforms(artifact) target(land) ueot
 text={T}: Target land becomes an artifact in addition to its other types until end of turn.
@@ -33381,6 +33461,19 @@ text=Equipped creature has shroud. (It can't be the target of spells or abilitie
 mana={2}
 type=Artifact
 subtype=Equipment
+[/card]
+[card]
+name=Nevermaker
+abilities=flying
+other={3}{U}
+auto=@movedTo(this|nonbattlezone) from(battlefield):moveTo(ownerlibrary) target(*[-land])
+auto=alternative moveto(mygraveyard)
+text=Flying -- When Nevermaker leaves the battlefield, put target nonland permanent on top of its owner's library. -- Evoke {3}{U} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
+mana={3}{U}
+type=Creature
+subtype=Elemental
+power=2
+toughness=3
 [/card]
 [card]
 name=Nevinyrral's Disk
@@ -35152,6 +35245,16 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Oxidda Golem
+abilities=affinitymountains,haste
+text=Affinity for Mountains (This spell costs {1} less to cast for each Mountain you control.) -- Haste
+mana={6}
+type=Artifact Creature
+subtype=Golem
+power=3
+toughness=2
+[/card]
+[card]
 name=Oxidize
 target=artifact
 auto=bury
@@ -35837,6 +35940,25 @@ mana={2}{B}
 type=Sorcery
 [/card]
 [card]
+name=Pernicious Deed
+auto={0}{S}:name(X = 0) && destroy all(*[-land;manacost=0])
+auto={1}{S}:name(X = 1) && destroy all(*[-land;manacost<=1])
+auto={2}{S}:name(X = 2) && destroy all(*[-land;manacost<=2])
+auto={3}{S}:name(X = 3) && destroy all(*[-land;manacost<=3])
+auto={4}{S}:name(X = 4) && destroy all(*[-land;manacost<=4])
+auto={5}{S}:name(X = 5) && destroy all(*[-land;manacost<=5])
+auto={6}{S}:name(X = 6) && destroy all(*[-land;manacost<=6])
+auto={7}{S}:name(X = 7) && destroy all(*[-land;manacost<=7])
+auto={8}{S}:name(X = 8) && destroy all(*[-land;manacost<=8])
+auto={9}{S}:name(X = 9) && destroy all(*[-land;manacost<=9])
+auto={10}{S}:name(X = 10) && destroy all(*[-land;manacost<=10])
+auto={11}{S}:name(X = 11) && destroy all(*[-land;manacost<=11])
+auto={12}{S}:name(X = 12) && destroy all(*[-land;manacost<=12])
+text={X}, Sacrifice Pernicious Deed: Destroy each artifact, creature, and enchantment with converted mana cost X or less.
+mana={1}{B}{G}
+type=Enchantment
+[/card]
+[card]
 name=Persuasion
 target=creature
 alias=1194
@@ -35928,19 +36050,17 @@ toughness=2
 ##the cantlose on phage only last until the ability checks if she was played from hand enjoy :)
 [card]
 name=Phage the Untouchable
+abilities=deathtouch
 auto=kicker lord(this) cantlose ueot
-auto=@damaged(player) from(this|mybattlefield): wingame controller
+auto=@damaged(player) from(this|mybattlefield):wingame controller
 auto=choice name(Phage enters the Battlefield!!) && wingame opponent && all(this) -cantlose ueot
-Text=When Phage the Untouchable enters the battlefield, if you didn't cast it from your hand, you lose the game. Whenever Phage deals combat damage
-(I remove this space)
-to a creature, destroy that creature. It can't be regenerated. Whenever Phage deals combat damage to a player, that player loses the game.
+Text=When Phage the Untouchable enters the battlefield, if you didn't cast it from your hand, you lose the game. Whenever Phage deals combat damage to a creature, destroy that creature. It can't be regenerated. Whenever Phage deals combat damage to a player, that player loses the game.
 mana={3}{B}{B}{B}{B}
 kicker={0}
+type=Legendary Creature
+subtype=Spirit
 power=4
 toughness=4
-abilities=deathtouch
-type=legendary creature
-subtype=spirit
 [/card]
 [card]
 name=Phantasmal Forces
@@ -37940,6 +38060,17 @@ mana={4}
 type=Artifact
 [/card]
 [card]
+name=Quicksilver Behemoth
+abilities=affinityartifacts
+auto=@each combatends:moveTo(ownerhand) all(quicksilver behemoth[attacking;blocking]|myBattlefield)
+text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) -- When Quicksilver Behemoth attacks or blocks, return it to its owner's hand at end of combat. (Return it only if it's on the battlefield.)
+mana={6}{U}
+type=Creature
+subtype=Beast
+power=4
+toughness=5
+[/card]
+[card]
 name=Quiet Purity
 target=enchantment
 auto=destroy
@@ -38057,6 +38188,16 @@ type=Creature
 subtype=Elf Scout
 power=1
 toughness=2
+[/card]
+[card]
+name=Qumulox
+abilities=affinityartifact,flying
+text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) -- Flying
+mana={6}{U}{U}
+type=Creature
+subtype=Beast
+power=5
+toughness=4
 [/card]
 [card]
 name=Rabble-Rouser
@@ -38303,6 +38444,16 @@ auto={2}{R}{G}:name(becomes a 3/3 Elemental Creature) && transforms(Elemental Cr
 auto=@each my blockers:counter(1/1,1) all(Raging Ravine[attacking]|mybattlefield) && counter(1/1,-1) all(other Raging Ravine[attacking]|mybattlefield)
 text=Raging Ravine enters the battlefield tapped. -- {T}: Add {R} or {G} to your mana pool. -- {2}{R}{G}: Until end of turn, Raging Ravine becomes a 3/3 red and green Elemental creature with "Whenever this creature attacks, put a +1/+1 counter on it." It's still a land.
 type=Land
+power=3
+toughness=3
+[/card]
+[card]
+name=Raging Spirit
+auto={2}:transforms(,artifact) ueot
+text={2}: Raging Spirit becomes colorless until end of turn.
+mana={3}{R}
+type=Creature
+subtype=Spirit
 power=3
 toughness=3
 [/card]
@@ -38891,6 +39042,16 @@ auto=destroy target(land)
 text=As an additional cost to cast Raze, sacrifice a land. -- Destroy target land.
 mana={R}{s;notatarget(land|mybattlefield)}
 type=Sorcery
+[/card]
+[card]
+name=Razor Golem
+abilities=affinityplains,vigilance
+text=Affinity for Plains (This spell costs {1} less to cast for each Plains you control.) -- Vigilance
+mana={6}
+type=Artifact Creature
+subtype=Golem
+power=3
+toughness=4
 [/card]
 [card]
 name=Razormane Masticore
@@ -39734,8 +39895,8 @@ type=Sorcery
 [card]
 name=Reveillark
 abilities=flying
-kicker={1}
-auto=kicker moveto(mygraveyard)
+other={5}{W}
+auto=alternative moveto(mygraveyard)
 auto=@movedTo(this|nonbattlezone) from(battlefield):may token(-152716111) && moveTo(myBattlefield) target(creature[power<=2]|mygraveyard)
 text=Flying -- When Reveillark leaves the battlefield, return up to two target creature cards with power 2 or less from your graveyard to the battlefield. -- Evoke {5}{W} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
 mana={4}{W}
@@ -41740,6 +41901,13 @@ type=Creature
 subtype=Wurm
 power=7
 toughness=6
+[/card]
+[card]
+name=Scale of Chiss-Goria
+abilities=affinityartifacts,flash
+text=Flash -- Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) -- {T}: Target creature gets +0/+1 until end of turn.
+mana={3}
+type=Artifact
 [/card]
 [card]
 name=Scar
@@ -45919,6 +46087,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Somber Hoverguard
+abilities=affinityartifacts
+text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) -- Flying
+mana={5}{U}
+type=Creature
+subtype=Drone
+power=3
+toughness=2
+[/card]
+[card]
 name=Somnomancer
 auto=may tap target(creature)
 text=When Somnomancer enters the battlefield, you may tap target creature.
@@ -46866,6 +47044,16 @@ auto=foreach(mountain|myBattlefield) damage:1
 text=Spire Barrage deals damage to target creature or player equal to the number of Mountains you control.
 mana={4}{R}
 type=Sorcery
+[/card]
+[card]
+name=Spire Golem
+abilities=affinityislands,flying
+text=Affinity for Islands (This spell costs {1} less to cast for each Island you control.) -- Flying
+mana={6}
+type=Artifact Creature
+subtype=Golem
+power=2
+toughness=4
 [/card]
 [card]
 name=Spirit Link
@@ -49757,6 +49945,16 @@ mana={1}{G}
 type=Instant
 [/card]
 [card]
+name=Tangle Golem
+abilities=affinityforests
+text=Affinity for Forests (This spell costs {1} less to cast for each Forest you control.)
+mana={7}
+type=Artifact Creature
+subtype=Golem
+power=5
+toughness=4
+[/card]
+[card]
 name=Tangle Spider
 abilities=flash,reach
 text=Flash (You may cast this spell any time you could cast an instant.) -- Reach (This creature can block creatures with flying.)
@@ -50954,6 +51152,14 @@ mana={2}{U}
 type=Instant
 [/card]
 [card]
+name=Thoughtcast
+abilities=affinityartifacts
+auto=draw:2
+text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) -- Draw two cards.
+mana={4}{U}
+type=Sorcery
+[/card]
+[card]
 name=Thoughtlace
 alias=1227
 text=Target spell or permanent becomes blue. (Mana symbols on that permanent remain unchanged.)
@@ -51866,6 +52072,14 @@ type=Creature
 subtype=Human Monk
 power=2
 toughness=2
+[/card]
+[card]
+name=Tooth of Chiss-Goria
+abilities=affinityartifacts,flash
+auto={T}:1/0 target(creature)
+text=Flash -- Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) -- {T}: Target creature gets +1/+0 until end of turn.
+mana={3}
+type=Artifact
 [/card]
 [card]
 name=Tooth of Ramos

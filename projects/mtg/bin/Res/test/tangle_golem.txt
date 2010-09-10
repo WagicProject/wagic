@@ -1,0 +1,18 @@
+#Testing Tangle Golem (keyword:AFFINITYFORESTS)
+#Affinity for Forests (This spell costs {1} less to cast for each Forest you control.)
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Forest,Forest,Forest,Forest
+hand:Tangle Golem
+manapool:{3}
+[PLAYER2]
+[DO]
+Tangle Golem
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Tangle Golem,Forest,Forest,Forest,Forest
+manapool:{0}
+[PLAYER2]
+[END]

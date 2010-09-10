@@ -18,12 +18,6 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
-name=AEther Flash
-text=Whenever a creature enters the battlefield, AEther Flash deals 2 damage to it.
-mana={2}{R}{R}
-type=Enchantment
-[/card]
-[card]
 name=AEther Membrane
 text=Defender; reach (This creature can block creatures with flying.) -- Whenever AEther Membrane blocks a creature, return that creature to its owner's hand at end of combat.
 mana={1}{R}{R}
@@ -252,7 +246,6 @@ toughness=2
 [/card]
 [card]
 name=Adarkar Valkyrie
-abilities=Flying,Vigilance
 text=Flying, vigilance -- {T}: When target creature other than Adarkar Valkyrie is put into a graveyard this turn, return that card to the battlefield under your control.
 mana={4}{W}{W}
 type=Snow Creature
@@ -330,10 +323,6 @@ type=Enchantment
 [/card]
 [card]
 name=Afterlife
-target=creature
-auto=bury
-auto=token(Spirit,creature spirit,1/1,flying white) targetcontroller
-## token doesn't work with "targetcontroller"
 text=Destroy target creature. It can't be regenerated. Its controller puts a 1/1 white Spirit creature token with flying onto the battlefield.
 mana={2}{W}
 type=Instant
@@ -381,9 +370,6 @@ subtype=Aura
 [/card]
 [card]
 name=Agility
-target=creature
-auto=flanking
-auto=:1/1
 text=Enchant creature -- Enchanted creature gets +1/+1 and has flanking. (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.)
 mana={1}{R}
 type=Enchantment
@@ -612,7 +598,6 @@ subtype=Aura
 [/card]
 [card]
 name=Altar Golem
-abilities=doesnotuntap
 text=Trample -- Altar Golem's power and toughness are each equal to the number of creatures on the battlefield. -- Altar Golem doesn't untap during your untap step. -- Tap five untapped creatures you control: Untap Altar Golem.
 mana={7}
 type=Artifact Creature
@@ -743,15 +728,6 @@ type=Sorcery
 name=Ancestral Vision
 text=Ancestral Vision is blue. -- Suspend 4 - {U} (Rather than cast this card from your hand, pay {U} and exile it with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.) -- Target player draws three cards.
 type=Sorcery
-[/card]
-[card]
-name=Ancient Kavu
-text={2}: Ancient Kavu becomes colorless until end of turn.
-mana={3}{R}
-type=Creature
-subtype=Kavu
-power=3
-toughness=3
 [/card]
 [card]
 name=Ancient Ooze
@@ -2748,12 +2724,6 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
-name=Blinkmoth Infusion
-text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) -- Untap all artifacts.
-mana={12}{U}{U}
-type=Instant
-[/card]
-[card]
 name=Blinkmoth Urn
 text=At the beginning of each player's precombat main phase, if Blinkmoth Urn is untapped, that player adds {1} to his or her mana pool for each artifact he or she controls.
 mana={5}
@@ -3575,15 +3545,6 @@ type=Creature
 subtype=Insect Druid
 power=1
 toughness=1
-[/card]
-[card]
-name=Broodstar
-text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) -- Flying -- Broodstar's power and toughness are each equal to the number of artifacts you control.
-mana={8}{U}{U}
-type=Creature
-subtype=Beast
-power=*
-toughness=*
 [/card]
 [card]
 name=Brothers Yamazaki
@@ -8504,15 +8465,6 @@ mana={G}
 type=Enchantment
 [/card]
 [card]
-name=Dross Golem
-text=Affinity for Swamps (This spell costs {1} less to cast for each Swamp you control.) -- Fear (This creature can't be blocked except by artifact creatures and/or black creatures.)
-mana={5}
-type=Artifact Creature
-subtype=Golem
-power=3
-toughness=2
-[/card]
-[card]
 name=Drought
 text=At the beginning of your upkeep, sacrifice Drought unless you pay {W}{W}. -- Spells cost an additional "Sacrifice a Swamp" to cast for each black mana symbol in their mana costs. -- Activated abilities cost an additional "Sacrifice a Swamp" to activate for each black mana symbol in their activation costs.
 mana={2}{W}{W}
@@ -10071,11 +10023,6 @@ mana={3}{W}
 type=World Enchantment
 [/card]
 [card]
-name=Eye of Ugin
-text=Colorless Eldrazi spells you cast cost {2} less to cast. -- {7}, {T}: Search your library for a colorless creature card, reveal it, and put it into your hand. Then shuffle your library.
-type=Legendary Land
-[/card]
-[card]
 name=Eye of Yawgmoth
 text={3}, {T}, Sacrifice a creature: Reveal cards from the top of your library equal to the sacrificed creature's power. Put one into your hand and exile the rest.
 mana={3}
@@ -11359,9 +11306,6 @@ type=Enchantment
 [/card]
 [card]
 name=Forbidden Lore
-target=land
-auto={T}:2/1 target(creature)
-#does not work as expected the land does not tap the aura does.
 text=Enchant land -- Enchanted land has "{T}: Target creature gets +2/+1 until end of turn."
 mana={2}{G}
 type=Enchantment
@@ -11369,12 +11313,6 @@ subtype=Aura
 [/card]
 [card]
 name=Forbidden Orchard
-auto={T}:add {G} && token(Spirit,Creature Spirit,1/1) opponent
-auto={T}:add {W} && token(Spirit,Creature Spirit,1/1) opponent
-auto={T}:add {U} && token(Spirit,Creature Spirit,1/1) opponent
-auto={T}:add {B} && token(Spirit,Creature Spirit,1/1) opponent
-auto={T}:add {R} && token(Spirit,Creature Spirit,1/1) opponent
-#Not yet implemented
 text={T}: Add one mana of any color to your mana pool. -- Whenever you tap Forbidden Orchard for mana, put a 1/1 colorless Spirit creature token onto the battlefield under target opponent's control.
 type=Land
 [/card]
@@ -11684,15 +11622,6 @@ type=Creature
 subtype=Zombie
 power=2
 toughness=1
-[/card]
-[card]
-name=Frogmite
-text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.)
-mana={4}
-type=Artifact Creature
-subtype=Frog
-power=2
-toughness=2
 [/card]
 [card]
 name=Frontline Strategist
@@ -16043,12 +15972,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Into Thin Air
-text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) -- Return target artifact to its owner's hand.
-mana={5}{U}
-type=Instant
-[/card]
-[card]
 name=Into the Fray
 text=Target creature attacks this turn if able. -- Splice onto Arcane {R} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 mana={R}
@@ -19779,15 +19702,6 @@ power=2
 toughness=3
 [/card]
 [card]
-name=Meadowboon
-text=When Meadowboon leaves the battlefield, put a +1/+1 counter on each creature target player controls. -- Evoke {3}{W} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
-mana={2}{W}{W}
-type=Creature
-subtype=Elemental
-power=3
-toughness=3
-[/card]
-[card]
 name=Meddle
 text=If target spell has only one target and that target is a creature, change that spell's target to another creature.
 mana={1}{U}
@@ -21414,15 +21328,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Myr Enforcer
-text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.)
-mana={7}
-type=Artifact Creature
-subtype=Myr
-power=4
-toughness=4
-[/card]
-[card]
 name=Myr Incubator
 text={6}, {T}, Sacrifice Myr Incubator: Search your library for any number of artifact cards, exile them, then put that many 1/1 colorless Myr artifact creature tokens onto the battlefield. Then shuffle your library.
 mana={6}
@@ -22008,19 +21913,6 @@ name=Neverending Torment
 text=Search target player's library for X cards, where X is the number of cards in your hand, and exile them. Then that player shuffles his or her library. -- Epic (For the rest of the game, you can't cast spells. At the beginning of each of your upkeeps, copy this spell except for its epic ability. You may choose a new target for the copy.)
 mana={4}{B}{B}
 type=Sorcery
-[/card]
-[card]
-name=Nevermaker
-abilities=flying
-other={3}{U}
-auto=@movedTo(this|nonbattlezone) from(battlefield):moveTo(ownerlibrary) target(*[-land])
-auto=alternative moveto(mygraveyard)
-text=Flying -- When Nevermaker leaves the battlefield, put target nonland permanent on top of its owner's library. -- Evoke {3}{U} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
-mana={3}{U}
-type=Creature
-subtype=Elemental
-power=2
-toughness=3
 [/card]
 [card]
 name=New Benalia
@@ -23371,15 +23263,6 @@ power=0
 toughness=1
 [/card]
 [card]
-name=Oxidda Golem
-text=Affinity for Mountains (This spell costs {1} less to cast for each Mountain you control.) -- Haste
-mana={6}
-type=Artifact Creature
-subtype=Golem
-power=3
-toughness=2
-[/card]
-[card]
 name=Pack Hunt
 text=Search your library for up to three cards with the same name as target creature, reveal them, and put them into your hand. Then shuffle your library.
 mana={3}{G}
@@ -23909,12 +23792,6 @@ type=Instant
 subtype=Trap
 [/card]
 [card]
-name=Pernicious Deed
-text={X}, Sacrifice Pernicious Deed: Destroy each artifact, creature, and enchantment with converted mana cost X or less.
-mana={1}{B}{G}
-type=Enchantment
-[/card]
-[card]
 name=Perplex
 text=Counter target spell unless its controller discards his or her hand. -- Transmute {1}{U}{B} ({1}{U}{B}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Transmute only as a sorcery.)
 mana={1}{U}{B}
@@ -23999,15 +23876,6 @@ text=Enchant creature -- Enchanted creature gets +2/+2. -- Suspend 2 - {G} (Rath
 mana={2}{G}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Phage the Untouchable
-text=When Phage the Untouchable enters the battlefield, if you didn't cast it from your hand, you lose the game. -- Whenever Phage deals combat damage to a creature, destroy that creature. It can't be regenerated. -- Whenever Phage deals combat damage to a player, that player loses the game.
-mana={3}{B}{B}{B}{B}
-type=Legendary Creature
-subtype=Zombie Minion
-power=4
-toughness=4
 [/card]
 [card]
 name=Phantasmagorian
@@ -25651,15 +25519,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Quicksilver Behemoth
-text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) -- When Quicksilver Behemoth attacks or blocks, return it to its owner's hand at end of combat. (Return it only if it's on the battlefield.)
-mana={6}{U}
-type=Creature
-subtype=Beast
-power=4
-toughness=5
-[/card]
-[card]
 name=Quicksilver Dagger
 text=Enchant creature -- Enchanted creature has "{T}: This creature deals 1 damage to target player. You draw a card."
 mana={1}{U}{R}
@@ -25738,15 +25597,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Qumulox
-text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) -- Flying
-mana={6}{U}{U}
-type=Creature
-subtype=Beast
-power=5
-toughness=4
-[/card]
-[card]
 name=Rabid Wombat
 text=Vigilance -- Rabid Wombat gets +2/+2 for each Aura attached to it.
 mana={2}{G}{G}
@@ -25811,15 +25661,6 @@ name=Raging River
 text=Whenever one or more creatures you control attack, each defending player divides all creatures without flying he or she controls into a "left" pile and a "right" pile. Then, for each attacking creature you control, choose "left" or "right." That creature can't be blocked this combat except by creatures with flying and creatures in a pile with the chosen label.
 mana={R}{R}
 type=Enchantment
-[/card]
-[card]
-name=Raging Spirit
-text={2}: Raging Spirit becomes colorless until end of turn.
-mana={3}{R}
-type=Creature
-subtype=Spirit
-power=3
-toughness=3
 [/card]
 [card]
 name=Raiding Party
@@ -26142,15 +25983,6 @@ text=Equipped creature has "{T}, Unattach Razor Boomerang: Razor Boomerang deals
 mana={3}
 type=Artifact
 subtype=Equipment
-[/card]
-[card]
-name=Razor Golem
-text=Affinity for Plains (This spell costs {1} less to cast for each Plains you control.) -- Vigilance
-mana={6}
-type=Artifact Creature
-subtype=Golem
-power=3
-toughness=4
 [/card]
 [card]
 name=Razor Pendulum
@@ -28521,12 +28353,6 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Scale of Chiss-Goria
-text=Flash -- Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) -- {T}: Target creature gets +0/+1 until end of turn.
-mana={3}
-type=Artifact
-[/card]
-[card]
 name=Scalpelexis
 text=Flying (This creature can't be blocked except by creatures with flying or reach.) -- Whenever Scalpelexis deals combat damage to a player, that player exiles the top four cards of his or her library. If two or more of those cards have the same name, repeat this process.
 mana={4}{U}
@@ -30869,15 +30695,6 @@ power=3
 toughness=2
 [/card]
 [card]
-name=Somber Hoverguard
-text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) -- Flying
-mana={5}{U}
-type=Creature
-subtype=Drone
-power=3
-toughness=2
-[/card]
-[card]
 name=Somnophore
 text=Flying -- Whenever Somnophore deals damage to a player, tap target creature that player controls. That creature doesn't untap during its controller's untap step for as long as Somnophore remains on the battlefield.
 mana={2}{U}{U}
@@ -31573,15 +31390,6 @@ type=Creature
 subtype=Starfish
 power=0
 toughness=1
-[/card]
-[card]
-name=Spire Golem
-text=Affinity for Islands (This spell costs {1} less to cast for each Island you control.) -- Flying
-mana={6}
-type=Artifact Creature
-subtype=Golem
-power=2
-toughness=4
 [/card]
 [card]
 name=Spire Owl
@@ -33214,15 +33022,6 @@ power=2
 toughness=4
 [/card]
 [card]
-name=Tangle Golem
-text=Affinity for Forests (This spell costs {1} less to cast for each Forest you control.)
-mana={7}
-type=Artifact Creature
-subtype=Golem
-power=5
-toughness=4
-[/card]
-[card]
 name=Tangle Kelp
 text=Enchant creature -- When Tangle Kelp enters the battlefield, tap enchanted creature. -- Enchanted creature doesn't untap during its controller's untap step if it attacked during its controller's last turn.
 mana={U}
@@ -33995,12 +33794,6 @@ power=2
 toughness=3
 [/card]
 [card]
-name=Thoughtcast
-text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) -- Draw two cards.
-mana={4}{U}
-type=Sorcery
-[/card]
-[card]
 name=Thoughtcutter Agent
 text={U}{B}, {T}: Target player loses 1 life and reveals his or her hand.
 mana={U}{B}
@@ -34509,12 +34302,6 @@ name=Tooth and Nail
 text=Choose one - Search your library for up to two creature cards, reveal them, put them into your hand, then shuffle your library; or put up to two creature cards from your hand onto the battlefield. -- Entwine {2} (Choose both if you pay the entwine cost.)
 mana={5}{G}{G}
 type=Sorcery
-[/card]
-[card]
-name=Tooth of Chiss-Goria
-text=Flash -- Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) -- {T}: Target creature gets +1/+0 until end of turn.
-mana={3}
-type=Artifact
 [/card]
 [card]
 name=Topple
