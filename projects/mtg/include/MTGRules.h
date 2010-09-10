@@ -39,6 +39,28 @@ class MTGAlternativeCostRule:public MTGAbility{
   virtual MTGAlternativeCostRule * clone() const;
 };
 
+class MTGBuyBackRule:public MTGAbility{
+ public:
+  int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
+  int reactToClick(MTGCardInstance * card);
+  int testDestroy();
+  virtual ostream& toString(ostream& out) const;
+  MTGBuyBackRule(int _id);
+  const char * getMenuText(){return "Cast And Buy Back";}
+  virtual MTGBuyBackRule * clone() const;
+};
+
+class MTGFlashBackRule:public MTGAbility{
+ public:
+  int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
+  int reactToClick(MTGCardInstance * card);
+  int testDestroy();
+  virtual ostream& toString(ostream& out) const;
+  MTGFlashBackRule(int _id);
+  const char * getMenuText(){return "Flash Back";}
+  virtual MTGFlashBackRule * clone() const;
+};
+
 class MTGAttackRule:public MTGAbility, public Limitor{
  public:
   virtual bool select(Target*);

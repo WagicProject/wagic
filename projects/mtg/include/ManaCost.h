@@ -23,11 +23,16 @@ class ManaCost{
    enum{
      MANA_PAID = 1,
      MANA_PAID_WITH_KICKER = 2,
-	 MANA_PAID_WITH_ALTERNATIVE = 3
+	 MANA_PAID_WITH_ALTERNATIVE = 3,
+	 MANA_PAID_WITH_BUYBACK = 4,
+	 MANA_PAID_WITH_FLASHBACK = 5
+
    };
   ExtraCosts * extraCosts;
   ManaCost * kicker;
   ManaCost * alternative;
+  ManaCost * BuyBack;
+  ManaCost * FlashBack;
   static ManaCost * parseManaCost(string value, ManaCost * _manacost = NULL, MTGCardInstance * c = NULL);
   virtual void init();
   void x();

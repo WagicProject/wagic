@@ -22,6 +22,8 @@ void DuelLayers::init(){
   //Add Magic Specific Rules
   action->Add(NEW MTGPutInPlayRule(-1));
   action->Add(NEW MTGAlternativeCostRule(-1));
+  action->Add(NEW MTGBuyBackRule(-1));
+  action->Add(NEW MTGFlashBackRule(-1));
   action->Add(NEW MTGAttackRule(-1));
   action->Add(NEW MTGBlockRule(-1));
   action->Add(NEW MTGLegendRule(-1));

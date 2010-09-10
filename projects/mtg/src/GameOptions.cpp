@@ -280,7 +280,7 @@ bool GameOption::write(std::ofstream * file, string name){
 
 GameOptions::GameOptions(string filename){
   mFilename = filename;
-  load();
+  GameOptions::load();
 }
 
 int GameOptions::load(){

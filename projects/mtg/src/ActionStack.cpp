@@ -170,6 +170,14 @@ bool Spell::AlternativeWasPaid(){
   return (payResult == ManaCost::MANA_PAID_WITH_ALTERNATIVE);
 }
 
+bool Spell::BuyBackWasPaid(){
+  return (payResult == ManaCost::MANA_PAID_WITH_BUYBACK);
+}
+
+bool Spell::FlashBackWasPaid(){
+  return (payResult == ManaCost::MANA_PAID_WITH_FLASHBACK);
+}
+
 const string Spell::getDisplayName() const {
   return source->getName();
 }
@@ -181,7 +189,6 @@ Spell::~Spell(){
 
 int Spell::resolve(){
   GameObserver * game = GameObserver::GetInstance();
-
   if (!source->hasType("instant") &&  !source->hasType("sorcery")){
       Player * p = source->controller();
       source = p->game->putInZone(source,from,p->game->battlefield);

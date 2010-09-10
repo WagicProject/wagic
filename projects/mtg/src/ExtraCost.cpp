@@ -292,7 +292,7 @@ int SacrificeCost::setPayment(MTGCardInstance * card){
     if (result) {
       target = card;
       return result;
-    }
+	}
   }
   return 0;
 }

@@ -2634,6 +2634,8 @@ public:
    _target->getManaCost()->add(type,amount);
    if(_target->getManaCost()->alternative > 0){
 	   _target->getManaCost()->alternative->add(type,amount);}
+   if(_target->getManaCost()->BuyBack > 0){
+	   _target->getManaCost()->BuyBack->add(type,amount);}
     return MTGAbility::addToGame();
    }
     AManaRedux * clone() const{

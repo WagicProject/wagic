@@ -215,6 +215,10 @@ ManaCost::~ManaCost(){
   SAFE_DELETE(kicker);
 
   SAFE_DELETE(alternative);
+
+    SAFE_DELETE(BuyBack);
+
+	  SAFE_DELETE(FlashBack);
 }
 
 void ManaCost::x(){
@@ -235,6 +239,8 @@ void ManaCost::init(){
   extraCostsIsCopy = 0;
   kicker = NULL;
   alternative = NULL;
+  BuyBack = NULL;
+  FlashBack = NULL;
 }
 
 
@@ -265,6 +271,16 @@ void ManaCost::copy(ManaCost * _manaCost){
   if (_manaCost->alternative){
     alternative = NEW ManaCost();
     alternative->copy(_manaCost->alternative);
+  }
+  SAFE_DELETE(BuyBack);
+  if (_manaCost->BuyBack){
+    BuyBack = NEW ManaCost();
+    BuyBack->copy(_manaCost->BuyBack);
+  }
+    SAFE_DELETE(FlashBack);
+  if (_manaCost->FlashBack){
+    FlashBack = NEW ManaCost();
+    FlashBack->copy(_manaCost->FlashBack);
   }
 }
 

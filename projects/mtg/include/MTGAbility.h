@@ -50,6 +50,8 @@ class MTGAbility: public ActionElement{
    int forceDestroy;
   ManaCost * cost;
   ManaCost * alternative;
+  ManaCost * BuyBack;
+  ManaCost * FlashBack;
 
   Targetable * target;
   int aType;
@@ -83,6 +85,9 @@ class MTGAbility: public ActionElement{
     MOMIR = 6,
     MTG_BLOCK_RULE = 7,
 	ALTERNATIVE_COST = 8,
+    BUYBACK_COST = 9,
+	FLASHBACK_COST = 10,
+
   };
 };
 

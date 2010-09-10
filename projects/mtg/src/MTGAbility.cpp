@@ -353,6 +353,27 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
     return NULL;
   }
+
+      //buyback cost
+  found = s.find("buyback ");
+  if (found == 0){
+    if (spell && spell->BuyBackWasPaid()){
+      string s1 = s.substr(found+7);
+      return parseMagicLine(s1,id,spell, card);
+    }
+    return NULL;
+  }
+
+        //buyback cost
+  found = s.find("flashback ");
+  if (found == 0){
+    if (spell && spell->FlashBackWasPaid()){
+      string s1 = s.substr(found+7);
+      return parseMagicLine(s1,id,spell, card);
+    }
+    return NULL;
+  }
+
   //When...comes into play, you may...
   found = s.find("may ");
   if (found == 0){
@@ -2048,7 +2069,14 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 
   if (card->hasType("instant") || card->hasType("sorcery")){    
     MTGPlayerCards * zones = card->controller()->game;
-    zones->putInZone(card,zones->stack,zones->graveyard);
+	if(card->boughtback > 0){
+		zones->putInZone(card,zones->stack,zones->hand);
+	}
+	else if(card->flashedback > 0){
+		zones->putInZone(card,zones->stack,zones->exile);
+	}
+	else{
+		zones->putInZone(card,zones->stack,zones->graveyard);}
   }
 
 

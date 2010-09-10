@@ -4,6 +4,8 @@
 #include "../include/Subtypes.h"
 #include "../include/GameOptions.h"
 
+
+
 MTGPutInPlayRule::MTGPutInPlayRule(int _id):MTGAbility(_id, NULL){
   aType=MTGAbility::PUT_INTO_PLAY;
 }
@@ -32,6 +34,7 @@ int cardsinhand = game->players[0]->game->hand->nb_cards;
     ManaCost * playerMana = player->getManaPool();
     ManaCost * cost = card->getManaCost();
 	ManaCost * alternative = card->getManaCost()->alternative;
+	ManaCost * BuyBack = card->getManaCost()->BuyBack;
 
 #ifdef WIN32
   cost->Dump();
@@ -72,7 +75,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card){
   card->getManaCost()->doPayExtra();
    
   ManaCost * spellCost = previousManaPool->Diff(player->getManaPool());
-    
+
   delete previousManaPool;
   if (card->hasType("land")){
     MTGCardInstance * copy = player->game->putInZone(card,  player->game->hand, player->game->temp);
@@ -94,6 +97,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card){
 	  player->castedspellsthisturn += 1;
 	  if(player->onlyonecast > 0 || player->onlyoneinstant > 0){player->castcount += 1;}
 	}
+
   if(card->has(Constants::STORM)){
 	  int storm = player->castedspellsthisturn;
       ManaCost * spellCost = player->getManaPool();
@@ -127,7 +131,6 @@ ostream& MTGPutInPlayRule::toString(ostream& out) const
     return a;
   }
 //cast from anywhere possible with this??
-
 
 //Alternative cost rules
   //-------------------------------------------------------------------------
@@ -179,19 +182,21 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card){
 //this handles extra cost payments at the moment a card is played.
   if(playerMana->canAfford(alternative)){
 	if (cost->alternative->isExtraPaymentSet()){
+		card->paymenttype = 1;
     if (!game->targetListIsSet(card)){
       return 0;
 	}
   }else{
 	  cost->alternative->setExtraCostsAction(this, card);
 	  game->waitForExtraPayment = cost->alternative->extraCosts;
+	  card->paymenttype = 1;
     return 0;
 	  }
   }
 //------------------------------------------------------------------------
   ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
   int payResult = player->getManaPool()->pay(card->getManaCost()->alternative);
-  card->getManaCost()->doPayExtra();
+  card->getManaCost()->alternative->doPayExtra();
   payResult = ManaCost::MANA_PAID_WITH_ALTERNATIVE;
 //if alternative has a extra payment thats set, this code pays it.the if statement is 100% needed as it would cause a crash on cards that dont have the alternative cost.
   if(alternative){
@@ -259,11 +264,264 @@ ostream& MTGAlternativeCostRule::toString(ostream& out) const
   //-------------------------------------------------------------------------
   //-------------------------------------------------------------------------
 
+//buyback follows its own resolving rules
+MTGBuyBackRule::MTGBuyBackRule(int _id):MTGAbility(_id, NULL){
+  aType=MTGAbility::BUYBACK_COST;
+}
+int MTGBuyBackRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana){
+int cardsinhand = game->players[0]->game->hand->nb_cards;
+  Player * player = game->currentlyActing();
+  Player * currentPlayer = game->currentPlayer;
+  if (!player->game->hand->hasCard(card)) return 0;
+  if (!card->getManaCost()->BuyBack) return 0;
+  if (card->hasType("land")){
+    if (player == currentPlayer && currentPlayer->canPutLandsIntoPlay && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN)){
+      return 1;
+    }
+  }else if ((card->hasType("instant")) || card->has(Constants::FLASH) || (player == currentPlayer && !game->isInterrupting && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN))){
+    ManaCost * playerMana = player->getManaPool();
+    ManaCost * cost = card->getManaCost();
+	ManaCost * BuyBack = card->getManaCost()->BuyBack;
+
+#ifdef WIN32
+  cost->Dump();
+#endif
+  if(player->castrestrictedspell > 0 && !card->hasType("land")){ return 0;}
+  if(player->onlyonecast > 0 && player->castcount >= 1){return 0;}
+  if(player->nospellinstant > 0){return 0;}
+  if(player->onlyoneinstant > 0){ if(player->castcount >= 1){return 0;}}
+  if(player->nocreatureinstant > 0 && card->hasType("creature")){return 0;}
+  if(player->castrestrictedcreature > 0 && card->hasType("creature")){return 0;}
+  //cost of card.
+  if(BuyBack && playerMana->canAfford(BuyBack)){
+      return 1;
+	  }
+  }
+  return 0;//dont play if you cant afford it.
+}
+int MTGBuyBackRule::reactToClick(MTGCardInstance * card){
+  if (!isReactingToClick(card)) return 0;
+  Player * player = game->currentlyActing();
+  ManaCost * cost = card->getManaCost();
+  ManaCost * BuyBack = card->getManaCost()->BuyBack;
+  ManaCost * playerMana = player->getManaPool();
+//this handles extra cost payments at the moment a card is played.
+  if(playerMana->canAfford(BuyBack)){
+	if (cost->BuyBack->isExtraPaymentSet()){
+		card->paymenttype = 2;
+    if (!game->targetListIsSet(card)){
+      return 0;
+	}
+  }else{
+	  cost->BuyBack->setExtraCostsAction(this, card);
+	  game->waitForExtraPayment = cost->BuyBack->extraCosts;
+	  card->paymenttype = 2;
+    return 0;
+	  }
+  }
+//------------------------------------------------------------------------
+  ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
+  int payResult = player->getManaPool()->pay(card->getManaCost()->BuyBack);
+  card->getManaCost()->doPayExtra();
+  payResult = ManaCost::MANA_PAID_WITH_BUYBACK;
+//if BuyBack has a extra payment thats set, this code pays it.the if statement is 100% needed as it would cause a crash on cards that dont have the BuyBack cost.
+  if(BuyBack){
+	  card->getManaCost()->BuyBack->doPayExtra();
+  }
+//---------------------------------------------------------------------------
+  ManaCost * spellCost = previousManaPool->Diff(player->getManaPool());
+  card->boughtback = 1;
+  delete previousManaPool;
+  if (card->hasType("land")){
+    MTGCardInstance * copy = player->game->putInZone(card,  player->game->hand, player->game->temp);
+    Spell * spell = NEW Spell(copy);
+	copy->boughtback = 1;
+    spell->resolve();
+    delete spellCost;
+    delete spell;
+    player->canPutLandsIntoPlay--;
+	payResult = ManaCost::MANA_PAID_WITH_BUYBACK;
+	spell = game->mLayers->stackLayer()->addSpell(copy,NULL, spellCost, payResult,1);
+  }else{
+    Spell * spell = NULL;
+	card->boughtback = 1;
+    MTGCardInstance * copy = player->game->putInZone(card,  player->game->hand, player->game->stack);
+    copy->boughtback = 1;
+    if (game->targetChooser){
+      spell = game->mLayers->stackLayer()->addSpell(copy,game->targetChooser, spellCost,payResult,0);
+      game->targetChooser = NULL;
+	  player->castedspellsthisturn += 1;
+	  if(player->onlyonecast > 0 || player->onlyoneinstant > 0){player->castcount += 1;}
+    }else{
+      spell = game->mLayers->stackLayer()->addSpell(copy,NULL, spellCost, payResult,0);
+	  player->castedspellsthisturn += 1;
+	  if(player->onlyonecast > 0 || player->onlyoneinstant > 0){player->castcount += 1;
+
+	  }
+	}
+  if(card->has(Constants::STORM)){
+	  int storm = player->castedspellsthisturn;
+      ManaCost * spellCost = player->getManaPool();
+	  for(int i = storm; i > 1; i--){
+      spell = game->mLayers->stackLayer()->addSpell(copy,NULL, spellCost, payResult,1);
+	  }
+  }//end of storm
+  if(!card->has(Constants::STORM)){
+	  copy->X = spell->computeX(copy);
+  }
+  }
+
+  return 1;
+}
+
+//The Put into play rule is never destroyed
+int MTGBuyBackRule::testDestroy(){
+  return 0;
+}
+
+ostream& MTGBuyBackRule::toString(ostream& out) const
+{
+  out << "MTGBuyBackRule ::: (";
+  return MTGAbility::toString(out) << ")";
+}
+ MTGBuyBackRule * MTGBuyBackRule::clone() const{
+    MTGBuyBackRule * a =  NEW MTGBuyBackRule(*this);
+    a->isClone = 1;
+    return a;
+  }
 
 
+ //-------------------------------------------------------------------------
+  //-------------------------------------------------------------------------
+  //-------------------------------------------------------------------------
+  //-------------------------------------------------------------------------
+//flashback follows its own resolving rules
+MTGFlashBackRule::MTGFlashBackRule(int _id):MTGAbility(_id, NULL){
+  aType=MTGAbility::FLASHBACK_COST;
+}
+int MTGFlashBackRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana){
+int cardsingraveyard = game->players[0]->game->graveyard->nb_cards;
+  Player * player = game->currentlyActing();
+  Player * currentPlayer = game->currentPlayer;
+  if (!player->game->graveyard->hasCard(card)) return 0;
+  if (!card->getManaCost()->FlashBack) return 0;
+  if ((card->hasType("instant")) || card->has(Constants::FLASH) || (player == currentPlayer && !game->isInterrupting && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN))){
+    ManaCost * playerMana = player->getManaPool();
+    ManaCost * cost = card->getManaCost();
+    ManaCost * FlashBack = card->getManaCost()->FlashBack;
+
+#ifdef WIN32
+  cost->Dump();
+#endif
+  if(player->castrestrictedspell > 0 && !card->hasType("land")){ return 0;}
+  if(player->onlyonecast > 0 && player->castcount >= 1){return 0;}
+  if(player->nospellinstant > 0){return 0;}
+  if(player->onlyoneinstant > 0){ if(player->castcount >= 1){return 0;}}
+  if(player->nocreatureinstant > 0 && card->hasType("creature")){return 0;}
+  if(player->castrestrictedcreature > 0 && card->hasType("creature")){return 0;}
+  //cost of card.
+  if(FlashBack && playerMana->canAfford(FlashBack)){
+      return 1;
+	  }
+  }
+  return 0;//dont play if you cant afford it.
+}
+int MTGFlashBackRule::reactToClick(MTGCardInstance * card){
+  if (!isReactingToClick(card)) return 0;
+  Player * player = game->currentlyActing();
+  ManaCost * cost = card->getManaCost();
+  ManaCost * FlashBack = card->getManaCost()->FlashBack;
+  ManaCost * playerMana = player->getManaPool();
+//this handles extra cost payments at the moment a card is played.
+  if(playerMana->canAfford(FlashBack)){
+	if (cost->FlashBack->isExtraPaymentSet()){
+		card->paymenttype = 3;
+    if (!game->targetListIsSet(card)){
+      return 0;
+	}
+  }else{
+	  cost->FlashBack->setExtraCostsAction(this, card);
+	  game->waitForExtraPayment = cost->FlashBack->extraCosts;
+	  card->paymenttype = 3;
+    return 0;
+	  }
+  }
+//------------------------------------------------------------------------
+  ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
+  int payResult = player->getManaPool()->pay(card->getManaCost()->FlashBack);
+  card->getManaCost()->doPayExtra();
+  payResult = ManaCost::MANA_PAID_WITH_FLASHBACK;
+//if flashBack has a extra payment thats set, this code pays it.the if statement is 100% needed as it would cause a crash on cards that dont have the flashBack cost.
+  if(FlashBack){
+	  card->getManaCost()->FlashBack->doPayExtra();
+  }
+//---------------------------------------------------------------------------
+  ManaCost * spellCost = previousManaPool->Diff(player->getManaPool());
+  card->flashedback = 1;
+  delete previousManaPool;
+  if (card->hasType("land")){
+    MTGCardInstance * copy = player->game->putInZone(card,  player->game->graveyard, player->game->temp);
+    Spell * spell = NEW Spell(copy);
+	copy->flashedback = 1;
+    spell->resolve();
+    delete spellCost;
+    delete spell;
+    player->canPutLandsIntoPlay--;
+	payResult = ManaCost::MANA_PAID_WITH_FLASHBACK;
+	spell = game->mLayers->stackLayer()->addSpell(copy,NULL, spellCost, payResult,1);
+  }else{
+    Spell * spell = NULL;
+	card->flashedback = 1;
+    MTGCardInstance * copy = player->game->putInZone(card,  player->game->graveyard, player->game->stack);
+    copy->flashedback = 1;
+    if (game->targetChooser){
+      spell = game->mLayers->stackLayer()->addSpell(copy,game->targetChooser, spellCost,payResult,0);
+      game->targetChooser = NULL;
+	  player->castedspellsthisturn += 1;
+	  if(player->onlyonecast > 0 || player->onlyoneinstant > 0){player->castcount += 1;}
+    }else{
+      spell = game->mLayers->stackLayer()->addSpell(copy,NULL, spellCost, payResult,0);
+	  player->castedspellsthisturn += 1;
+	  if(player->onlyonecast > 0 || player->onlyoneinstant > 0){player->castcount += 1;
+
+	  }
+	}
+  if(card->has(Constants::STORM)){
+	  int storm = player->castedspellsthisturn;
+      ManaCost * spellCost = player->getManaPool();
+	  for(int i = storm; i > 1; i--){
+      spell = game->mLayers->stackLayer()->addSpell(copy,NULL, spellCost, payResult,1);
+	  }
+  }//end of storm
+  if(!card->has(Constants::STORM)){
+	  copy->X = spell->computeX(copy);
+  }
+  }
+
+  return 1;
+}
+
+//The Put into play rule is never destroyed
+int MTGFlashBackRule::testDestroy(){
+  return 0;
+}
+
+ostream& MTGFlashBackRule::toString(ostream& out) const
+{
+  out << "MTGFlashBackRule ::: (";
+  return MTGAbility::toString(out) << ")";
+}
+ MTGFlashBackRule * MTGFlashBackRule::clone() const{
+    MTGFlashBackRule * a =  NEW MTGFlashBackRule(*this);
+    a->isClone = 1;
+    return a;
+  }
 
 
-
+ //-------------------------------------------------------------------------
+  //-------------------------------------------------------------------------
+  //-------------------------------------------------------------------------
+  //-------------------------------------------------------------------------
 
 
 bool MTGAttackRule::select(Target* t)

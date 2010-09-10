@@ -98,6 +98,9 @@ void MTGCardInstance::initMTGCI(){
   tapped = 0;
   untapping = 0;
   frozen = 0;
+  boughtback = 0;
+  flashedback = 0;
+  paymenttype = 0;
   summoningSickness = 1;
   preventable = 0;
   target = NULL;

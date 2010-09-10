@@ -117,6 +117,24 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
           cost->alternative = ManaCost::parseManaCost(value);
         }
       break;
+	  	case 'b': //buyback
+      if (!primitive) primitive = NEW CardPrimitive();
+      if (ManaCost * cost = primitive->getManaCost())
+        {
+          string value = val;
+          std::transform(value.begin(), value.end(), value.begin(), ::tolower);
+		  cost->BuyBack = ManaCost::parseManaCost(value);
+        }
+      break;
+	  	  	case 'f': //flashback
+      if (!primitive) primitive = NEW CardPrimitive();
+      if (ManaCost * cost = primitive->getManaCost())
+        {
+          string value = val;
+          std::transform(value.begin(), value.end(), value.begin(), ::tolower);
+		  cost->FlashBack = ManaCost::parseManaCost(value);
+        }
+      break;
 
     case 'i': //id
       if (!card) card = NEW MTGCard();

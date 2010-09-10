@@ -478,7 +478,7 @@ void GameObserver::cardClick (MTGCardInstance * card, Targetable * object){
       return;
     }
 
-  if (card){
+  if (card && card->paymenttype <= 0){//card played as normal.
 
     /* Fix for Issue http://code.google.com/p/wagic/issues/detail?id=270
     put into play is hopefully the only ability causing that kind of trouble
@@ -492,7 +492,42 @@ void GameObserver::cardClick (MTGCardInstance * card, Targetable * object){
 
     reaction = mLayers->actionLayer()->isReactingToClick(card);
     if (reaction == -1) mLayers->actionLayer()->reactToClick(card);
-  }else{
+  }
+ /* added same fix for buyback and alternative cost, the varible "paymenttype = int" only serves one purpose, to tell this bug fix what menu item you clicked on...all alternative cost or play methods suffered from the fix because if the card contained "target=" it would automatically force the play method to putinplayrule...even charge you the original mana cost.*/
+    else if (card && card->paymenttype == 1){//this is alternitive cost
+    if (targetChooser) {
+		MTGAbility * a = mLayers->actionLayer()->getAbility(MTGAbility::ALTERNATIVE_COST);
+      a->reactToClick(card);
+      return;
+    }
+
+    reaction = mLayers->actionLayer()->isReactingToClick(card);
+    if (reaction == -1) mLayers->actionLayer()->reactToClick(card);
+  }
+//--------------
+	  else if (card && card->paymenttype == 2){//this is buyback
+    if (targetChooser) {
+		MTGAbility * a = mLayers->actionLayer()->getAbility(MTGAbility::BUYBACK_COST);
+      a->reactToClick(card);
+      return;
+    }
+
+    reaction = mLayers->actionLayer()->isReactingToClick(card);
+    if (reaction == -1) mLayers->actionLayer()->reactToClick(card);
+  }
+	  //=====================
+	  else if (card && card->paymenttype == 3){//this is Flashback
+    if (targetChooser) {
+		MTGAbility * a = mLayers->actionLayer()->getAbility(MTGAbility::FLASHBACK_COST);
+      a->reactToClick(card);
+      return;
+    }
+
+    reaction = mLayers->actionLayer()->isReactingToClick(card);
+    if (reaction == -1) mLayers->actionLayer()->reactToClick(card);
+  }
+	  //=====================
+  else{//this handles abilities on a menu...not just when card is being played
     reaction = mLayers->actionLayer()->isReactingToTargetClick(object);
     if (reaction == -1) mLayers->actionLayer()->reactToTargetClick(object);
   }
