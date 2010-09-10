@@ -178,17 +178,6 @@ type=nothing
 id=-998877332
 [/card]
 [card]
-name=Sneak Attack
-auto=counter(0/0,0,breach)
-auto={R}: target(creature|myhand) moveto(mybattlefield) && counter(0/0,+1,breach) all(this)
-auto=@movedto(creature[-token]|battlefield): this(counter{0/0,1,breach}) all(trigger) counter(0/0,1,breach) &&  this(counter{0/0,1,breach}) counter(0/0,-1,breach) &&all(creature[counter{0/0.1.breach}]|myBattlefield) haste ueot
-auto=lord(creature[counter{0/0.1.breach}]|myBattlefield) haste
-auto=@next endofturn:moveto(mygraveyard) all(creature[counter{0/0.1.breach}]|myBattlefield)
-text={R}: You may put a creature card from your hand onto the battlefield. That creature gains haste. Sacrifice the creature at the beginning of the next end step.
-mana={3}{R}
-type=enchantment
-[/card]
-[card]
 name=Aluren
 auto={0}:notatarget(creature[manacost<=3]|myhand) moveto(mybattlefield)
 text=Any player may play creature cards with converted mana cost 3 or less without paying their mana cost and as though they had flash.
@@ -1754,116 +1743,6 @@ mana={w}
 name=life from white
 id=-2873876
 auto=foreach(*[white]|myhand) life:1 controller
-type=nothing
-auto=moveto(exile) all(this)
-[/card]
-[card]
-name=Citanul Flute
-auto=aslongas(creature[manacost=0]|mylibrary) lord(this) {0}{t}:token(-2873000)
-auto=aslongas(creature[manacost=1]|mylibrary) lord(this) {1}{t}:token(-2873001)
-auto=aslongas(creature[manacost=2]|mylibrary) lord(this) {2}{t}:token(-2873002)
-auto=aslongas(creature[manacost=3]|mylibrary) lord(this) {3}{t}:token(-2873003)
-auto=aslongas(creature[manacost=4]|mylibrary) lord(this) {4}{t}:token(-2873004)
-auto=aslongas(creature[manacost=5]|mylibrary) lord(this) {5}{t}:token(-2873005)
-auto=aslongas(creature[manacost=6]|mylibrary) lord(this) {6}{t}:token(-2873006)
-auto=aslongas(creature[manacost=7]|mylibrary) lord(this) {7}{t}:token(-2873007)
-auto=aslongas(creature[manacost=8]|mylibrary) lord(this) {8}{t}:token(-2873008)
-auto=aslongas(creature[manacost=9]|mylibrary) lord(this) {9}{t}:token(-2873009)
-auto=aslongas(creature[manacost=10]|mylibrary) lord(this) {10}{t}:token(-2873010)
-auto=aslongas(creature[manacost=11]|mylibrary) lord(this) {11}{t}:token(-2873011)
-auto=aslongas(creature[manacost=12]|mylibrary) lord(this) {12}{t}:token(-2873012)
-text={X}{T}: Search your library for a creature card with converted mana cost X or less, reveal it, and put it into your hand. Then shuffle your library.
-type=Artifact
-mana={5}
-[/card]
-[card]
-name=Manacost 0
-id=-2873000
-auto=moveTo(myhand) target(creature[manacost=0]|mylibrary)
-type=nothing
-auto=moveto(exile) all(this)
-[/card]
-[card]
-name=Manacost 1 or less
-id=-2873001
-auto=moveTo(myhand) target(creature[manacost<=1]|mylibrary)
-type=nothing
-auto=moveto(exile) all(this)
-[/card]
-[card]
-name=Manacost 2 or less
-id=-2873002
-auto=moveTo(myhand) target(creature[manacost<=2]|mylibrary)
-type=nothing
-auto=moveto(exile) all(this)
-[/card]
-[card]
-name=Manacost 3 or less
-id=-2873003
-auto=moveTo(myhand) target(creature[manacost<=3]|mylibrary)
-type=nothing
-auto=moveto(exile) all(this)
-[/card]
-[card]
-name=Manacost 4 or less
-id=-2873004
-auto=moveTo(myhand) target(creature[manacost<=4]|mylibrary)
-type=nothing
-auto=moveto(exile) all(this)
-[/card]
-[card]
-name=Manacost 5 or less
-id=-2873005
-auto=moveTo(myhand) target(creature[manacost<=5]|mylibrary)
-type=nothing
-auto=moveto(exile) all(this)
-[/card]
-[card]
-name=Manacost 6 or less
-id=-2873006
-auto=moveTo(myhand) target(creature[manacost<=6]|mylibrary)
-type=nothing
-auto=moveto(exile) all(this)
-[/card]
-[card]
-name=Manacost 7 or less
-id=-2873007
-auto=moveTo(myhand) target(creature[manacost<=7]|mylibrary)
-type=nothing
-auto=moveto(exile) all(this)
-[/card]
-[card]
-name=Manacost 8 or less
-id=-2873008
-auto=moveTo(myhand) target(creature[manacost<=8]|mylibrary)
-type=nothing
-auto=moveto(exile) all(this)
-[/card]
-[card]
-name=Manacost 9 or less
-id=-2873009
-auto=moveTo(myhand) target(creature[manacost<=9]|mylibrary)
-type=nothing
-auto=moveto(exile) all(this)
-[/card]
-[card]
-name=Manacost 10 or less
-id=-2873010
-auto=moveTo(myhand) target(creature[manacost<=10]|mylibrary)
-type=nothing
-auto=moveto(exile) all(this)
-[/card]
-[card]
-name=Manacost 11 or less
-id=-2873011
-auto=moveTo(myhand) target(creature[manacost<=11]|mylibrary)
-type=nothing
-auto=moveto(exile) all(this)
-[/card]
-[card]
-name=Manacost 12 or less
-id=-2873012
-auto=moveTo(myhand) target(creature[manacost<=12]|mylibrary)
 type=nothing
 auto=moveto(exile) all(this)
 [/card]

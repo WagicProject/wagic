@@ -341,7 +341,7 @@ toughness=1
 [card]
 name=Acorn Harvest
 auto=token(Squirrel,creature squirrel, 1/1,green)*2
-autograveyard={L}{L}{L}{1}{G}:copy(this) && moveTo(mystack) asSorcery
+flashback={L}{L}{L}{1}{G}
 text=Put two 1/1 green Squirrel creature tokens onto the battlefield. -- Flashback {1}{G}, Pay 3 life. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={3}{G}
 type=Sorcery
@@ -1001,6 +1001,15 @@ mana={1}{R}
 type=Instant
 [/card]
 [card]
+name=Allay
+target=artifact,enchantment
+auto=destroy
+buyback={1}{W}{3}
+text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Destroy target enchantment.
+mana={1}{W}
+type=Instant
+[/card]
+[card]
 name=Allied Strategies
 auto=aslongas(plains|myBattlefield) draw:1
 auto=aslongas(island|myBattlefield) draw:1
@@ -1342,7 +1351,7 @@ type=Instant
 [card]
 name=Ancestral Tribute
 auto=foreach(*|mygraveyard) life:2
-autograveyard={9}{W}{W}{W}:copy(this) && moveTo(mystack) asSorcery
+flashback={9}{W}{W}{W}
 text=You gain 2 life for each card in your graveyard. -- Flashback {9}{W}{W}{W} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={5}{W}{W}
 type=Sorcery
@@ -1372,8 +1381,9 @@ type=Artifact Land
 [/card]
 [card]
 name=Ancient Grudge
-auto=destroy target(artifact)
-autograveyard={G}:copy(this) && moveTo(mystack)
+target=artifact
+auto=destroy
+flashback={G}
 text=Destroy target artifact. -- Flashback {G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={1}{R}
 type=Instant
@@ -1716,6 +1726,15 @@ type=Artifact Creature
 subtype=Construct
 power=3
 toughness=3
+[/card]
+[card]
+name=Anoint
+target=creature
+auto=prevent:3
+buyback={W}{3}
+text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Prevent the next 3 damage that would be dealt to target creature this turn.
+mana={W}
+type=Instant
 [/card]
 [card]
 name=Ant Queen
@@ -3903,8 +3922,9 @@ type=Artifact
 [/card]
 [card]
 name=Bash to Bits
-auto=destroy target(artifact)
-autograveyard={4}{R}{R}:copy(this) && moveTo(mystack)
+target=artifact
+auto=destroy
+falshback={4}{R}{R}
 text=Destroy target artifact. -- Flashback {4}{R}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={3}{R}
 type=Instant
@@ -4251,7 +4271,7 @@ type=Enchantment
 [card]
 name=Beast Attack
 auto=token(Beast,creature beast, 4/4,green)
-autograveyard={2}{G}{G}{G}:copy(this) && moveTo(mystack)
+falshback={2}{G}{G}{G}
 text=Put a 4/4 green Beast creature token onto the battlefield. -- Flashback {2}{G}{G}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={2}{G}{G}{G}
 type=Instant
@@ -6627,12 +6647,11 @@ toughness=2
 [/card]
 [card]
 name=Brush with Death
-target=player
-auto=damage:2 && life:2 controller
-auto=kicker moveto(myhand)
+auto=life:-2
+auto=life:2 controller
+buyback={2}{B}{2}{B}{B}
 text=Buyback {2}{B}{B} (You may pay an additional {2}{B}{B} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Target opponent loses 2 life. You gain 2 life.
 mana={2}{B}
-kicker={2}{B}{B}
 type=Sorcery
 [/card]
 [card]
@@ -7032,7 +7051,7 @@ type=Land
 [card]
 name=Call of the Herd
 auto=token(Elephant,creature elephant, 3/3,green)
-autograveyard={3}{G}:copy(this) && moveTo(mystack) asSorcery
+flashback={3}{G}
 text=Put a 3/3 green Elephant creature token onto the battlefield. -- Flashback {3}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={2}{G}
 type=Sorcery
@@ -7098,8 +7117,9 @@ type=Instant
 [/card]
 [card]
 name=Canopy Claws
-auto=-flying target(creature)
-autograveyard={G}:copy(this) && moveTo(mystack)
+target=creature
+auto=-flying
+flashback={G}
 text=Target creature loses flying until end of turn. -- Flashback {G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={G}
 type=Instant
@@ -7277,6 +7297,15 @@ auto={R}:1/0 target(creature)
 text={R}: Target creature gets +1/+0 until end of turn.
 mana={2}{R}
 type=Enchantment
+[/card]
+[card]
+name=Capsize
+target=*
+auto=moveTo(ownerhand)
+buyback={1}{U}{U}{3}
+text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Return target permanent to its owner's hand.
+mana={1}{U}{U}
+type=Instant
 [/card]
 [card]
 name=Carapace
@@ -8149,6 +8178,15 @@ mana={2}{R}{R}
 type=Instant
 [/card]
 [card]
+name=Change of Heart
+target=creature
+auto=cantattack
+buyback={W}{3}
+text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Target creature can't attack this turn.
+mana={W}
+type=Instant
+[/card]
+[card]
 name=Channel the Suns
 auto=Add{W}{U}{B}{R}{G}
 text=Add {W}{U}{B}{R}{G} to your mana pool.
@@ -8293,7 +8331,7 @@ type=Instant
 [card]
 name=Chatter of the Squirrel
 auto=token(Squirrel,creature squirrel, 1/1,green)
-autograveyard={1}{G}:copy(this) && moveTo(mystack) asSorcery
+flashback={1}{G}
 text=Put a 1/1 green Squirrel creature token onto the battlefield. -- Flashback {1}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={G}
 type=Sorcery
@@ -8691,6 +8729,25 @@ type=Creature
 subtype=Human Druid
 power=1
 toughness=1
+[/card]
+[card]
+name=Citanul Flute
+auto={0}{T}:name(X = 0) && moveTo(myhand) target(creature[manacost=0]|mylibrary)
+auto={1}{T}:name(X = 0) && moveTo(myhand) target(creature[manacost<=1]|mylibrary)
+auto={2}{T}:name(X = 0) && moveTo(myhand) target(creature[manacost<=2]|mylibrary)
+auto={3}{T}:name(X = 0) && moveTo(myhand) target(creature[manacost<=3]|mylibrary)
+auto={4}{T}:name(X = 0) && moveTo(myhand) target(creature[manacost<=4]|mylibrary)
+auto={5}{T}:name(X = 0) && moveTo(myhand) target(creature[manacost<=5]|mylibrary)
+auto={6}{T}:name(X = 0) && moveTo(myhand) target(creature[manacost<=6]|mylibrary)
+auto={7}{T}:name(X = 0) && moveTo(myhand) target(creature[manacost<=7]|mylibrary)
+auto={8}{T}:name(X = 0) && moveTo(myhand) target(creature[manacost<=8]|mylibrary)
+auto={9}{T}:name(X = 0) && moveTo(myhand) target(creature[manacost<=9]|mylibrary)
+auto={10}{T}:name(X = 0) && moveTo(myhand) target(creature[manacost<=10]|mylibrary)
+auto={11}{T}:name(X = 0) && moveTo(myhand) target(creature[manacost<=11]|mylibrary)
+auto={12}{T}:name(X = 0) && moveTo(myhand) target(creature[manacost<=12]|mylibrary)
+text={X}{T}: Search your library for a creature card with converted mana cost X or less, reveal it, and put it into your hand. Then shuffle your library.
+type=Artifact
+mana={5}
 [/card]
 [card]
 name=Citanul Hierophants
@@ -9335,8 +9392,9 @@ type=Sorcery
 [/card]
 [card]
 name=Coffin Purge
-auto=exile target(*|graveyard)
-autograveyard={B}:copy(this) && moveTo(mystack)
+target=*|graveyard
+auto=moveTo(exile)
+flashback={B}
 text=Exile target card in a graveyard. -- Flashback {B} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={B}
 type=Instant
@@ -9619,6 +9677,14 @@ auto={3}{T}:prevent:2 controller
 text={3}, {T}: Prevent the next 2 damage that would be dealt to you this turn.
 mana={4}
 type=Artifact
+[/card]
+[card]
+name=Constant Mists
+auto=preventallcombatdamage ueot
+buyback={1}{G}{S(land|mybattlefield)}
+text=Buyback - Sacrifice a land. (You may sacrifice a land in addition to any other costs as you cast this spell. If you do, put this card into your hand as it resolves.) -- Prevent all combat damage that would be dealt this turn.
+mana={1}{G}
+type=Instant
 [/card]
 [card]
 name=Constricting Tendrils
@@ -10264,8 +10330,9 @@ type=Instant
 [/card]
 [card]
 name=Crippling Fatigue
-auto=-2/-2 target(creature)
-autograveyard={L}{L}{L}{1}{B}:copy(this) && moveTo(mystack) asSorcery
+target=creature
+auto=-2/-2
+flashback={L}{L}{L}{1}{B}
 text=Target creature gets -2/-2 until end of turn. -- Flashback {1}{B}, Pay 3 life (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={1}{B}{B}
 type=Sorcery
@@ -10447,7 +10514,7 @@ toughness=2
 [card]
 name=Crush of Wurms
 auto=token(Wurm,creature wurm, 6/6,green)*3
-autograveyard={9}{G}{G}{G}:copy(this) && moveTo(mystack) asSorcery
+flashback={9}{G}{G}{G}
 text=Put three 6/6 green Wurm creature tokens onto the battlefield. -- Flashback {9}{G}{G}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={6}{G}{G}{G}
 type=Sorcery
@@ -11747,16 +11814,18 @@ toughness=1
 [/card]
 [card]
 name=Deep Analysis
-auto=draw:2 target(player)
-autograveyard={L}{L}{L}{1}{U}:copy(this) moveTo(mystack) asSorcery
+target=player
+auto=draw:2
+flashback={L}{L}{L}{1}{U}
 text=Target player draws two cards. -- Flashback {1}{U}, Pay 3 life. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={3}{U}
 type=Sorcery
 [/card]
 [card]
 name=Deep Reconnaissance
-auto=moveTo(myBattlefield) target(land[basic]|mylibrary) && tap
-autograveyard={4}{G}:copy(this) && moveTo(mystack) asSorcery
+target=land[basic]|mylibrary
+auto=moveTo(myBattlefield) && tap
+flashback={4}{G}
 text=Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library. -- Flashback {4}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={2}{G}
 type=Sorcery
@@ -11912,8 +11981,9 @@ toughness=1
 [/card]
 [card]
 name=Defy Gravity
-auto=flying target(creature)
-autograveyard={U}:copy(this) && moveTo(mystack)
+target=creature
+auto=flying
+flashback={U}
 text=Target creature gains flying until end of turn. -- Flashback {U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={U}
 type=Instant
@@ -11975,8 +12045,9 @@ type=Enchantment
 [/card]
 [card]
 name=Dematerialize
-auto=moveTo(ownerhand) target(*)
-autograveyard={5}{U}{U}:copy(this) && moveTo(mystack) asSorcery
+target=*
+auto=moveTo(ownerhand)
+flashback={5}{U}{U}
 text=Return target permanent to its owner's hand. -- Flashback {4}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={3}{U}
 type=Sorcery
@@ -12725,6 +12796,15 @@ name=Distress
 auto=moveTo(graveyard) target(*[-land]|opponenthand)
 text=Target player reveals his or her hand. You choose a nonland card from it. That player discards that card.
 mana={B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Disturbed Burial
+target=creature|mygraveyard
+auto=moveTo(mygraveyard)
+buyback={1}{B}{3}
+text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Return target creature card from your graveyard to your hand.
+mana={1}{B}
 type=Sorcery
 [/card]
 [card]
@@ -14088,8 +14168,9 @@ toughness=5
 [/card]
 [card]
 name=Earth Rift
-auto=destroy target(land)
-autograveyard={5}{R}{R}:copy(this) && moveTo(mystack) asSorcery
+target=land
+auto=destroy
+flashback={5}{R}{R}
 text=Destroy target land. -- Flashback {5}{R}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={3}{R}
 type=Sorcery
@@ -14434,7 +14515,7 @@ color=red
 [card]
 name=Elephant Ambush
 auto=token(Elephant,creature elephant, 3/3,green)
-autograveyard={6}{G}{G}:copy(this) && moveTo(mystack)
+flashback={6}{G}{G}
 text=Put a 3/3 green Elephant creature token onto the battlefield. -- Flashback {2}{G}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={2}{G}{G}
 type=Instant
@@ -14642,15 +14723,24 @@ toughness=1
 [/card]
 [card]
 name=Elvish Farmer
+auto=@each my upkeep:counter(0/0,1,Spore)
+auto={C(0/0,-3,Spore)}:Token(-1924)
+auto={S(saproling|myBattlefield)}:life:2
 text=At the beginning of your upkeep, put a spore counter on Elvish Farmer. -- Remove three spore counters from Elvish Farmer: Put a 1/1 green Saproling creature token onto the battlefield. -- Sacrifice a Saproling: You gain 2 life.
 mana={1}{G}
 type=Creature
 subtype=Elf
-auto=@each my upkeep:counter(0/0,1,Spore)
-auto={C(0/0,-3,Spore)}:Token(-1924)
-auto={S(saproling|myBattlefield)}:life:2
 power=0
 toughness=2
+[/card]
+[card]
+name=Elvish Fury
+target=creature
+auto=2/2
+buyback={G}{4}
+text=Buyback {4} (You may pay an additional {4} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Target creature gets +2/+2 until end of turn.
+mana={G}
+type=Instant
 [/card]
 [card]
 name=Elvish Handservant
@@ -15232,8 +15322,10 @@ subtype=Aura
 [/card]
 [card]
 name=Engulfing Flames
-auto=damage:1 target(creature) && cantregenerate
-autograveyard={3}{R}:copy(this) && moveTo(mystack)
+target=creature
+auto=damage:1
+auto=cantregenerate
+flashback={3}{R}
 text=Engulfing Flames deals 1 damage to target creature. It can't be regenerated this turn. -- Flashback {3}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={R}
 type=Instant
@@ -15733,10 +15825,9 @@ toughness=6
 [card]
 name=Evincar's Justice
 auto=damage:2 all(creature,player)
-auto=kicker moveto(myhand)
+buyback={2}{B}{B}{3}
 text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Evincar's Justice deals 2 damage to each creature and each player.
 mana={2}{B}{B}
-kicker={3}
 type=Sorcery
 [/card]
 [card]
@@ -16592,8 +16683,9 @@ type=Enchantment
 [/card]
 [card]
 name=Fervent Denial
-auto=fizzle target(*|stack)
-autograveyard={5}{U}{U}:copy(this) && moveTo(mystack)
+target=*|stack
+auto=fizzle
+flashback={5}{U}{U}
 text=Counter target spell. -- Flashback {5}{U}{U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={3}{U}{U}
 type=Instant
@@ -16883,8 +16975,9 @@ type=Nothing
 [/card]
 [card]
 name=Fire Bolt
-auto=damage:2 target(creature)
-autograveyard={4}{R}:copy(this) && moveTo(mystack) asSorcery
+target=creature,player
+auto=damage:2
+flashback={4}{R}
 text=Firebolt deals 2 damage to target creature or player. -- Flashback {4}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={R}
 type=Sorcery
@@ -17358,7 +17451,7 @@ type=Instant
 name=Flash of Defiance
 auto=lord(creature[green]) cantblock
 auto=lord(creature[white]) cantblock
-autograveyard={L}{L}{L}{1}{R}:copy(this) && moveTo(mystack) asSorcery
+flashback={L}{L}{L}{1}{R}
 text=Green creatures and white creatures can't block this turn. -- Flashback {1}{R}, Pay 3 life. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={1}{R}
 type=Sorcery
@@ -17811,7 +17904,7 @@ toughness=1
 [card]
 name=Folk Medicine
 auto=foreach(creature|mybattlefield) life:1
-autograveyard={1}{W}:copy(this) && moveTo(mystack)
+flashback={1}{W}
 text=You gain 1 life for each creature you control. -- Flashback {2}{G}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={2}{G}
 type=Instant
@@ -21252,7 +21345,7 @@ toughness=2
 name=Grizzly Fate
 auto=token(Bear,creature bear, 2/2,green)*2
 auto=aslongas(*|mygraveyard) token(Bear,creature bear, 2/2,green)*2 >6
-autograveyard={5}{G}{G}:copy(this) && moveTo(mystack) asSorcery
+flashback={5}{G}{G}
 text=Put two 2/2 green Bear creature tokens onto the battlefield. -- Threshold -- Put four 2/2 green Bear creature tokens onto the battlefield instead if seven or more cards are in your graveyard. -- Flashback {2}{G}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={3}{G}{G}
 type=Sorcery
@@ -23267,7 +23360,7 @@ type=Sorcery
 name=Howling Gale
 auto=damage:1 all(creature[flying])
 auto=damage:1 all(player)
-autograveyard={1}{G}:copy(this) && moveTo(mystack)
+flashback={1}{G}
 text=Howling Gale deals 1 damage to each creature with flying and each player. -- Flashback {1}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={1}{G}
 type=Instant
@@ -23962,6 +24055,15 @@ text=Enchant creature -- Enchanted creature gets +2/+5. -- Cycling {3} ({3}, Dis
 mana={3}{W}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Imp's Mischief
+target=creature
+auto=mustattack
+buyback={1}{B}{3}
+text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Target creature attacks this turn if able.
+mana={1}{B}
+type=Instant
 [/card]
 [card]
 name=In the Web of War
@@ -27630,10 +27732,9 @@ toughness=2
 [card]
 name=Lab Rats
 auto=token(Rat,creature token rat,1/1,black)
-auto=kicker moveTo(myhand)
+buyback={B}{4}
 text=Buyback {4} (You may pay an additional {4} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Put a 1/1 black Rat creature token onto the battlefield.
 mana={B}
-kicker={4}
 type=Sorcery
 [/card]
 [card]
@@ -27860,8 +27961,9 @@ type=Sorcery
 [/card]
 [card]
 name=Lava Dart
-auto=damage:1 target(creature,player)
-autograveyard={S(mountain|mybattlefield)}:copy(this) && moveTo(mystack)
+target=creature,player
+auto=damage:1
+flashback={S(mountain|mybattlefield)}
 text=Lava Dart deals 1 damage to target creature. -- Flashback - Sacrifice a Mountain. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={R}
 type=Instant
@@ -30307,7 +30409,7 @@ name=Marshaling Cry
 auto=lord(creature|myBattlefield) 1/1
 auto=lord(creature|myBattlefield) vigilance
 autohand={2}:cycling
-autograveyard={3}{W}:copy(this) && moveTo(mystack) asSorcery
+flashback={3}{W}
 text=Creatures you control get +1/+1 and gain vigilance until end of turn. -- Cycling {2} ({2}, Discard this card: Draw a card.) -- Flashback {3}{W} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={1}{W}{W}
 type=Sorcery
@@ -31161,6 +31263,15 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Mind Games
+target=artifact,creature,land
+auto=tap
+buyback={U}{2}{U}
+text=Buyback {2}{U} (You may pay an additional {2}{U} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Tap target artifact, creature, or land.
+mana={U}
+type=Instant
+[/card]
+[card]
 name=Mind Harness
 target=creature(red;green)
 auto=@each my upkeep:counter(0/0,1,Age)
@@ -31884,7 +31995,7 @@ subtype=Aura
 [card]
 name=Moment's Peace
 auto=preventAllcombatDamage ueot
-autograveyard={2}{G}:copy(this) && moveTo(mystack)
+flashback={2}{G}
 text=Prevent all combat damage that would be dealt this turn. -- Flashback {2}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={1}{G}
 type=Instant
@@ -32060,9 +32171,10 @@ type=Sorcery
 [/card]
 [card]
 name=Morbid Hunger
-auto=damage:3 target(creature,player)
+target=creature,player
+auto=damage:3
 auto=life:3 controller
-autograveyard={7}{B}{B}:copy(this) && moveTo(mystack) asSorcery
+flashback={7}{B}{B}
 text=Morbid Hunger deals 3 damage to target creature or player. You gain 3 life. -- Flashback {7}{B}{B} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={4}{B}{B}
 type=Sorcery
@@ -35763,6 +35875,14 @@ mana={3}{W}
 type=Enchantment
 [/card]
 [card]
+name=Pegasus Stampede
+auto=token(Pegasus,Creature Pegasus,1/1,flying,white)
+buyback={1}{W}{S(land|myBattlefield)
+text=Buyback - Sacrifice a land. (You may sacrifice a land in addition to any other costs as you cast this spell. If you do, put this card into your hand as it resolves.) -- Put a 1/1 white Pegasus creature token with flying onto the battlefield.
+mana={1}{W}
+type=Sorcery
+[/card]
+[card]
 name=Pelakka Wurm
 abilities=trample
 auto=life:7
@@ -39013,8 +39133,9 @@ type=Instant
 [/card]
 [card]
 name=Ray of Distortion
-auto=destroy target(artifact,enchantment)
-autograveyard={4}{W}{W}:copy(this) && moveTo(mystack)
+target=artifact,enchantment
+auto=destroy
+flashback={4}{W}{W}
 text=Destroy target artifact or enchantment. -- Flashback {4}{W}{W} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={3}{W}
 type=Instant
@@ -39172,6 +39293,14 @@ mana={2}{B}
 type=Instant
 [/card]
 [card]
+name=Reaping the Rewards
+auto=life:2
+buyback={W}{S(land|myBattlefield)}
+text=Buyback - Sacrifice a land. (You may sacrifice a land in addition to any other costs as you cast this spell. If you do, put this card into your hand as it resolves.) -- You gain 2 life.
+mana={W}
+type=Instant
+[/card]
+[card]
 name=Reassembling Skeleton
 autograveyard={1}{B}:moveTo(myBattlefield) && tap
 text={1}{B}: Return Reassembling Skeleton from your graveyard to the battlefield tapped.
@@ -39202,6 +39331,16 @@ auto={L}{L}{1}:damage:1 target(creature,player)
 text={1}, Pay 2 life: Reckless Assault deals 1 damage to target creature or player.
 mana={2}{B}{R}
 type=Enchantment
+[/card]
+[card]
+name=Reckless Charge
+target=creature
+auto=3/0
+auto=haste
+flashback={2}{R}
+text=Target creature gets +3/+0 and gains haste until end of turn. -- Flashback {2}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={R}
+type=Sorcery
 [/card]
 [card]
 name=Reckless One
@@ -40465,7 +40604,7 @@ type=Sorcery
 [card]
 name=Roar of the Wurm
 auto=token(Wurm,creature wurm, 6/6,green)
-autograveyard={3}{G}:copy(this) && moveTo(mystack) asSorcery
+flashback={3}{G}
 text=Put a 6/6 green Wurm creature token onto the battlefield. -- Flashback {3}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={6}{G}
 type=Sorcery
@@ -42163,8 +42302,9 @@ toughness=1
 [/card]
 [card]
 name=Scorching Missile
-auto=damage:4 target(player)
-autograveyard={9}{R}:copy(this) && moveTo(mystack) asSorcery
+target=player
+auto=damage:4
+flashback={9}{R}
 text=Scorching Missile deals 4 damage to target player. -- Flashback {9}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={3}{R}
 type=Sorcery
@@ -42611,6 +42751,15 @@ mana={2}{R}
 type=Sorcery
 [/card]
 [card]
+name=Searing Touch
+target=creature,player
+auto=damage:1
+buyback={R}{4}
+text=Buyback {4} (You may pay an additional {4} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Searing Touch deals 1 damage to target creature or player.
+mana={R}
+type=Instant
+[/card]
+[card]
 name=Searing Wind
 target=creature,player
 auto=damage:10
@@ -42789,6 +42938,15 @@ auto=@movedTo(land[basic]|myHand) from(myLibrary):thisforeach(counter{0/0.1.Hori
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111136
 type=Nothing
+[/card]
+[card]
+name=Seething Anger
+target=creature
+auto=3/0
+buyback={R}{3}
+text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Target creature gets +3/+0 until end of turn.
+mana={R}
+type=Sorcery
 [/card]
 [card]
 name=Seething Pathblazer
@@ -43464,6 +43622,15 @@ auto=moveTo(graveyard)
 text=Target opponent reveals his or her hand. You choose an artifact card from it. That player discards that card.
 mana={B}
 type=Sorcery
+[/card]
+[card]
+name=Shattering Pulse
+target=artifact
+auto=destroy
+buyback={1}{R}{3}
+text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Destroy target artifact.
+mana={1}{R}
+type=Instant
 [/card]
 [card]
 name=Shatterskull Giant
@@ -45305,6 +45472,15 @@ auto={4}{T}:moveTo(mygraveyard) all(*|myhand) && foreach(creature|myBattlefield)
 text={4}, {T}, Discard your hand: Draw a card for each creature you control.
 mana={4}
 type=Artifact
+[/card]
+[card]
+name=Slaughter
+target=creature[-black]
+auto=bury
+buyback={2}{B}{B}{L}{L}{L}{L}
+text=Buyback - Pay 4 life. (You may pay 4 life in addition to any other costs as you cast this spell. If you do, put this card into your hand as it resolves.) -- Destroy target nonblack creature. It can't be regenerated.
+mana={2}{B}{B}
+type=Instant
 [/card]
 [card]
 name=Slaughter Cry
@@ -48539,8 +48715,9 @@ type=Enchantment
 [/card]
 [card]
 name=Strangling Soot
-auto=destroy target(creature[toughness<=3])
-autograveyard={5}{R}:copy(this) && moveTo(mystack) asSorcery
+target=creature[toughness<=3]
+auto=destroy
+flashback={5}{R}
 text=Destroy target creature with toughness 3 or less. -- Flashback {5}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={2}{B}
 type=Instant
@@ -49569,6 +49746,15 @@ type=Creature
 subtype=Human Cleric
 power=1
 toughness=2
+[/card]
+[card]
+name=Sylvan Might
+target=creature
+auto=2/2
+flashback={2}{G}{G}
+text=Target creature gets +2/+2 and gains trample until end of turn. -- Flashback {2}{G}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={1}{G}
+type=Instant
 [/card]
 [card]
 name=Sylvan Ranger
@@ -50940,7 +51126,7 @@ toughness=3
 [card]
 name=Think Twice
 auto=draw:1
-autograveyard={2}{U}:copy(this) && moveTo(mystack)
+flashback={2}{U}
 text=Draw a card. -- Flashback {2}{U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={1}{U}
 type=Instant
@@ -51268,8 +51454,9 @@ type=Sorcery
 [/card]
 [card]
 name=Thrill of the Hunt
-auto=1/2 target(creature)
-autograveyard={W}:copy(this) && moveTo(mystack)
+target=creature
+auto=1/2
+flashback={W}
 text=Target creature gets +1/+2 until end of turn. -- Flashback {W} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={G}
 type=Instant
@@ -52457,6 +52644,17 @@ alias=129767
 text=Gain control of target creature until end of turn. Untap that creature. Until end of turn it gets +2/+0 and gains haste.
 mana={3}{R}
 type=Sorcery
+[/card]
+[card]
+name=Traitor's Clutch
+target=creature
+auto=1/0
+auto=transforms(,black) ueot
+auto=shadow
+flashback={1}{B}
+text=Target creature gets +1/+0, becomes black, and gains shadow until end of turn. (It can block or be blocked by only creatures with shadow.) -- Flashback {1}{B} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={4}{B}
+type=Instant
 [/card]
 [card]
 name=Tranquil Domain
@@ -54447,6 +54645,15 @@ power=7
 toughness=7
 [/card]
 [card]
+name=Verdant Touch
+target=land
+auto=becomes(Creature,2/2)
+buyback={1}{G}{3}
+text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Target land becomes a 2/2 creature that's still a land. (This effect lasts indefinitely.)
+mana={1}{G}
+type=Sorcery
+[/card]
+[card]
 name=Verdigris
 target=artifact
 auto=destroy
@@ -55478,7 +55685,7 @@ subtype=Island Mountain
 name=Volcanic Spray
 auto=damage:1 all(creature[-flying])
 auto=damage:1 all(player)
-autograveyard={1}{R}:copy(this) && moveTo(mystack) asSorcery
+flahback={1}{R}
 text=Volcanic Spray deals 1 damage to each creature without flying and each player. -- Flashback {1}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={1}{R}
 type=Sorcery
@@ -56942,10 +57149,9 @@ toughness=1
 [card]
 name=Whispers of the Muse
 auto=draw:1
-auto=kicker moveTo(myhand)
+buyback={U}{5}
 text=Buyback {5} (You may pay an additional {5} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Draw a card.
 mana={U}
-kicker={5}
 type=Instant
 [/card]
 [card]

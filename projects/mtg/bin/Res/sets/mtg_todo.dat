@@ -554,12 +554,6 @@ mana={4}{G}
 type=Sorcery
 [/card]
 [card]
-name=Allay
-text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Destroy target enchantment.
-mana={1}{W}
-type=Instant
-[/card]
-[card]
 name=Alley Grifters
 text=Whenever Alley Grifters becomes blocked, defending player discards a card.
 mana={1}{B}{B}
@@ -839,12 +833,6 @@ name=Animal Magnetism
 text=Reveal the top five cards of your library. An opponent chooses a creature card from among them. Put that card onto the battlefield and the rest into your graveyard.
 mana={4}{G}
 type=Sorcery
-[/card]
-[card]
-name=Anoint
-text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Prevent the next 3 damage that would be dealt to target creature this turn.
-mana={W}
-type=Instant
 [/card]
 [card]
 name=Anowon, the Ruin Sage
@@ -4105,12 +4093,6 @@ power=6
 toughness=4
 [/card]
 [card]
-name=Capsize
-text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Return target permanent to its owner's hand.
-mana={1}{U}{U}
-type=Instant
-[/card]
-[card]
 name=Captain's Maneuver
 text=The next X damage that would be dealt to target creature or player this turn is dealt to another target creature or player instead.
 mana={X}{R}{W}
@@ -4633,19 +4615,12 @@ loyalty=6
 [/card]
 [card]
 name=Chandra's Spitfire
-abilities=flying
 text=Flying -- Whenever an opponent is dealt noncombat damage, Chandra's Spitfire gets +3/+0 until end of turn.
 mana={2}{R}
 type=Creature
 subtype=Elemental
 power=1
 toughness=3
-[/card]
-[card]
-name=Change of Heart
-text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Target creature can't attack this turn.
-mana={W}
-type=Instant
 [/card]
 [card]
 name=Changeling Berserker
@@ -5567,12 +5542,6 @@ name=Conspiracy
 text=As Conspiracy enters the battlefield, choose a creature type. -- Creature cards you own that aren't on the battlefield, creature spells you control, and creatures you control are the chosen type.
 mana={3}{B}{B}
 type=Enchantment
-[/card]
-[card]
-name=Constant Mists
-text=Buyback - Sacrifice a land. (You may sacrifice a land in addition to any other costs as you cast this spell. If you do, put this card into your hand as it resolves.) -- Prevent all combat damage that would be dealt this turn.
-mana={1}{G}
-type=Instant
 [/card]
 [card]
 name=Consult the Necrosages
@@ -7897,12 +7866,6 @@ mana={X}{U}{U}{U}
 type=Sorcery
 [/card]
 [card]
-name=Disturbed Burial
-text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Return target creature card from your graveyard to your hand.
-mana={1}{B}
-type=Sorcery
-[/card]
-[card]
 name=Disturbing Plot
 text=Return target creature card in a graveyard to its owner's hand. -- Conspire (As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
 mana={1}{B}
@@ -9103,12 +9066,6 @@ type=Creature
 subtype=Elf
 power=0
 toughness=2
-[/card]
-[card]
-name=Elvish Fury
-text=Buyback {4} (You may pay an additional {4} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Target creature gets +2/+2 until end of turn.
-mana={G}
-type=Instant
 [/card]
 [card]
 name=Elvish Guidance
@@ -20192,12 +20149,6 @@ mana={1}{U}{B}
 type=Sorcery
 [/card]
 [card]
-name=Mind Games
-text=Buyback {2}{U} (You may pay an additional {2}{U} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Tap target artifact, creature, or land.
-mana={U}
-type=Instant
-[/card]
-[card]
 name=Mind Maggots
 text=When Mind Maggots enters the battlefield, discard any number of creature cards. For each card discarded this way, put two +1/+1 counters on Mind Maggots.
 mana={3}{B}
@@ -23714,12 +23665,6 @@ type=Instant
 subtype=Arcane
 [/card]
 [card]
-name=Pegasus Stampede
-text=Buyback - Sacrifice a land. (You may sacrifice a land in addition to any other costs as you cast this spell. If you do, put this card into your hand as it resolves.) -- Put a 1/1 white Pegasus creature token with flying onto the battlefield.
-mana={1}{W}
-type=Sorcery
-[/card]
-[card]
 name=Penance
 text=Put a card from your hand on top of your library: The next time a black or red source of your choice would deal damage this turn, prevent that damage.
 mana={2}{W}
@@ -26059,12 +26004,6 @@ mana={3}{G}
 type=Sorcery
 [/card]
 [card]
-name=Reaping the Rewards
-text=Buyback - Sacrifice a land. (You may sacrifice a land in addition to any other costs as you cast this spell. If you do, put this card into your hand as it resolves.) -- You gain 2 life.
-mana={W}
-type=Instant
-[/card]
-[card]
 name=Rebel Informer
 text=Rebel Informer can't be the target of white spells or abilities from white sources. -- {3}: Put target Rebel on the bottom of its owner's library.
 mana={2}{B}
@@ -26136,12 +26075,6 @@ name=Reciprocate
 text=Exile target creature that dealt damage to you this turn.
 mana={W}
 type=Instant
-[/card]
-[card]
-name=Reckless Charge
-text=Target creature gets +3/+0 and gains haste until end of turn. -- Flashback {2}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={R}
-type=Sorcery
 [/card]
 [card]
 name=Reckless Embermage
@@ -28720,12 +28653,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Searing Touch
-text=Buyback {4} (You may pay an additional {4} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Searing Touch deals 1 damage to target creature or player.
-mana={R}
-type=Instant
-[/card]
-[card]
 name=Seasinger
 text=When you control no Islands, sacrifice Seasinger. -- You may choose not to untap Seasinger during your untap step. -- {T}: Gain control of target creature whose controller controls an Island for as long as you control Seasinger and Seasinger remains tapped.
 mana={1}{U}{U}
@@ -28862,12 +28789,6 @@ name=Seer's Vision
 text=Your opponents play with their hands revealed. -- Sacrifice Seer's Vision: Look at target player's hand and choose a card from it. That player discards that card. Activate this ability only any time you could cast a sorcery.
 mana={2}{U}{B}
 type=Enchantment
-[/card]
-[card]
-name=Seething Anger
-text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Target creature gets +3/+0 until end of turn.
-mana={R}
-type=Sorcery
 [/card]
 [card]
 name=Segmented Wurm
@@ -29358,12 +29279,6 @@ name=Shattered Crypt
 text=Return X target creature cards from your graveyard to your hand. You lose X life.
 mana={X}{B}{B}
 type=Sorcery
-[/card]
-[card]
-name=Shattering Pulse
-text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Destroy target artifact.
-mana={1}{R}
-type=Instant
 [/card]
 [card]
 name=Shattering Spree
@@ -30341,12 +30256,6 @@ type=Creature
 subtype=Human Wizard
 power=3
 toughness=3
-[/card]
-[card]
-name=Slaughter
-text=Buyback - Pay 4 life. (You may pay 4 life in addition to any other costs as you cast this spell. If you do, put this card into your hand as it resolves.) -- Destroy target nonblack creature. It can't be regenerated.
-mana={2}{B}{B}
-type=Instant
 [/card]
 [card]
 name=Slaughter Pact
@@ -32801,12 +32710,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Sylvan Might
-text=Target creature gets +2/+2 and gains trample until end of turn. -- Flashback {2}{G}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={1}{G}
-type=Instant
-[/card]
-[card]
 name=Sylvan Paradise
 text=Any number of target creatures become green until end of turn.
 mana={G}
@@ -34492,12 +34395,6 @@ mana={1}{U}
 type=Sorcery
 [/card]
 [card]
-name=Traitor's Clutch
-text=Target creature gets +1/+0, becomes black, and gains shadow until end of turn. (It can block or be blocked by only creatures with shadow.) -- Flashback {1}{B} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={4}{B}
-type=Instant
-[/card]
-[card]
 name=Traitor's Roar
 text=Tap target untapped creature. It deals damage equal to its power to its controller. -- Conspire (As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
 mana={4}{BR}
@@ -35637,12 +35534,6 @@ name=Verdant Succession
 text=Whenever a green nontoken creature is put into a graveyard from the battlefield, that creature's controller may search his or her library for a card with the same name as that creature and put it onto the battlefield. If that player does, he or she then shuffles his or her library.
 mana={4}{G}
 type=Enchantment
-[/card]
-[card]
-name=Verdant Touch
-text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Target land becomes a 2/2 creature that's still a land. (This effect lasts indefinitely.)
-mana={1}{G}
-type=Sorcery
 [/card]
 [card]
 name=Verdeloth the Ancient
