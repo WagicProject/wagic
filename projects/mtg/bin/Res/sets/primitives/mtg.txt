@@ -8091,8 +8091,7 @@ name=Chainer, Dementia Master
 auto=lord(Nightmare) 1/1
 auto={B}{B}{B}{L}{L}{L}:moveto(mybattlefield) target(creature|graveyard) && transforms(Nightmare,black) forever
 auto=@movedto(this|nonbattlezone):moveto(exile) all(Nightmare)
-text={B}{B}{B}, Pay 3 life: Put target creature card from a graveyard onto the battlefield under your control. That creature is black and is a Nightmare in addition to its other creature types.
-When Chainer, Dementia Master leaves the battlefield, exile all Nightmares.
+text={B}{B}{B}, Pay 3 life: Put target creature card from a graveyard onto the battlefield under your control. That creature is black and is a Nightmare in addition to its other creature types. -- When Chainer, Dementia Master leaves the battlefield, exile all Nightmares.
 mana={3}{B}{B}
 power=3
 toughness=3
@@ -29237,8 +29236,7 @@ auto={T}{S}:name(Sacrifice And Add Blue Mana) && thisforeach(counter{0/0.1.Petal
 auto={T}{S}:name(Sacrifice And Add Black Mana) && thisforeach(counter{0/0.1.Petal}) add{B} controller
 auto={T}{S}:name(Sacrifice And Add Red Mana) && thisforeach(counter{0/0.1.Petal}) add{R} controller
 auto={T}{S}:name(Sacrifice And Add Green Mana) && thisforeach(counter{0/0.1.Petal}) add{G} controller
-text=At the beginning of your upkeep, you may put a petal counter on Lotus Blossom. -- {T}, Sacrifice Lotus Blossom:
-Add X mana of any one color to your mana pool, where X is the number of petal counters on Lotus Blossom.
+text=At the beginning of your upkeep, you may put a petal counter on Lotus Blossom. -- {T}, Sacrifice Lotus Blossom: Add X mana of any one color to your mana pool, where X is the number of petal counters on Lotus Blossom.
 mana={2}
 type=Artifact
 [/card]
@@ -38996,8 +38994,7 @@ toughness=2
 name=Rathi Intimidator
 abilities=fear
 auto={2}{T}:moveTo(myBattlefield) target(mercenary[manacost<=2]|mylibrary)
-text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- {2}, {T}: Search your library for a Mercenary permanent card with converted mana cost 2 or less and put that card onto the battlefield. Then 
-shuffle your library.
+text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- {2}, {T}: Search your library for a Mercenary permanent card with converted mana cost 2 or less and put that card onto the battlefield. Then shuffle your library.
 mana={1}{B}{B}
 type=Creature
 subtype=Horror Mercenary
@@ -48645,15 +48642,6 @@ text={W}, {T}: Tap target creature. -- {B}, {T}: Target player loses 1 life.
 mana={U}
 type=Creature
 subtype=Human Wizard
-power=1
-toughness=1
-[/card]
-[card]
-name=Stormscape Familiar
-text=Flying -- White spells and black spells you cast cost {1} less to cast.
-mana={1}{U}
-type=Creature
-subtype=Bird
 power=1
 toughness=1
 [/card]
