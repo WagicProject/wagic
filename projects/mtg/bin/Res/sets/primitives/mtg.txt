@@ -1393,7 +1393,7 @@ name=Ancient Hellkite
 abilities=flying
 auto=lord(ancient hellkite[attacking]) {R}:damage:1 target(creature|opponentBattlefield)
 text=Flying -- {R}: Ancient Helkite deals 1 damage to target creature defending player controls. Activate this ability only if Ancient Hellkite is attacking.
-mana={2}{U}{U}
+mana={4}{R}{R}{R}
 type=Creature
 subtype=Dragon
 power=6
@@ -26547,7 +26547,7 @@ type=Legendary Land
 [card]
 name=Kiki-Jiki, Mirror Breaker
 abilities=haste
-auto=aslongas(creature[-legendary]|myBattlefield) {T}:token(-5032111)
+auto=aslongas(creature[-legendary]|myBattlefield) {T}:token(5032111)
 text=Tap: Put a token that's a copy of target nonlegendary creature you control onto the battlefield. That token has haste. Sacrifice it at the beginning of the next end step.
 mana={2}{R}{R}{R}
 type=Legendary Creature
@@ -37659,7 +37659,7 @@ type=Sorcery
 [/card]
 [card]
 name=Promise of Bunrei
-auto=@movedto(graveyard) from(creature|myBattlefield):token(Spirit,Creature Spirit,1/1,)*4
+auto=@movedto(graveyard) from(creature|myBattlefield):token(Spirit,Creature Spirit,1/1)*4
 auto=@movedto(graveyard) from(creature|myBattlefield):bury
 text=When a creature you control is put into a graveyard from the battlefield, sacrifice Promise of Bunrei. If you do, put four 1/1 colorless Spirit creature tokens onto the battlefield.
 mana={2}{W}
@@ -37714,7 +37714,7 @@ type=Artifact
 [/card]
 [card]
 name=Prowess of the Fair
-auto=@movedTo(graveyard) from(other elf|battlefield):may token(Elf Warrior,creature elf warrior,1/1,green)
+auto=@movedTo(graveyard) from(other elf[-token]|battlefield):may token(Elf Warrior,creature elf warrior,1/1,green)
 text=Whenever another nontoken Elf is put into your graveyard from the battlefield, you may put a 1/1 green Elf Warrior creature token onto the battlefield.
 mana={1}{B}
 type=Tribal Enchantment
@@ -38267,6 +38267,7 @@ toughness=1
 [/card]
 [card]
 name=Quirion Elves
+auto={T}:Add{G}
 auto=choice name(white) && counter(0/0,1,White) all(this)
 auto=choice name(blue) && counter(0/0,1,Blue) all(this)
 auto=choice name(black) && counter(0/0,1,Black) all(this)
@@ -42066,7 +42067,7 @@ type=Instant
 [/card]
 [card]
 name=Scarblade Elite
-auto={T}{E(assassin|mygraveyard):destroy target(creature)
+auto={T}{E(assassin|mygraveyard)}:destroy target(creature)
 text={T}, Exile an Assassin card from your graveyard: Destroy target creature.
 mana={B}{B}
 type=Creature
@@ -43335,9 +43336,8 @@ type=Legendary Land
 [card]
 name=Serrated Arrows
 auto=counter(0/0,3,Arrowhead)
-auto=@each my upkeep:lord(serrated arrows[-counter{0/0.1.Arrowhead}])
+auto=@each my upkeep:moveTo(mygraveyard) all(serrated arrows[-counter{0/0.1.Arrowhead}])
 auto={C(0/0,-1,Arrowhead)}{T}:counter(-1/-1,1) target(creature)
-auto=@tapped(this):bury all(serrated arrows[-counter{0/0.1.Arrowhead}])
 text=Serrated Arrows enters the battlefield with three arrowhead counters on it. -- At the beginning of your upkeep, if there are no arrowhead counters on Serrated Arrows, sacrifice it. -- {T}, Remove an arrowhead counter from Serrated Arrows: Put a -1/-1 counter on target creature.
 mana={4}
 type=Artifact
@@ -51531,7 +51531,7 @@ target=creature
 auto=2/0
 auto=first strike
 text=Target creature gets +2/+0 and gains first strike until end of turn. (It can't be blocked except by creatures with flying or reach.)
-mana={1}{W}
+mana={1}{R}
 type=Instant
 [/card]
 [card]
@@ -58691,7 +58691,7 @@ toughness=2
 [card]
 name=Zektar Shrine Expedition
 auto=@movedTo(land|myBattlefield):may counter(0/0,1,Quest)
-auto={C(0,0,-3,Quest)}{S}:token(-183403)
+auto={C(0/0,-3,Quest)}{S}:token(-183403)
 text=Landfall - Whenever a land enters the battlefield under your control, you may put a quest counter on Zektar Shrine Expedition. -- Remove three quest counters from Zektar Shrine Expedition and sacrifice it: Put a 7/1 red Elemental creature token with trample and haste onto the battlefield. Exile it at the beginning of the next end step.
 mana={1}{R}
 type=Enchantment
