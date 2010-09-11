@@ -1,0 +1,400 @@
+[meta]
+author=Wagic Team
+block=Duel
+year=2010
+[/meta]
+[card]
+primitive=Abolish
+id=222765
+rarity=U
+[/card]
+[card]
+primitive=AEther Spellbomb
+id=222720
+rarity=C
+[/card]
+[card]
+primitive=Angel of Salvation
+id=222774
+rarity=
+[/card]
+[card]
+primitive=Arcbound Worker
+id=222733
+rarity=C
+[/card]
+[card]
+primitive=Argivian Restoration
+id=222857
+rarity=U
+[/card]
+[card]
+primitive=Assembly-Worker
+id=226984
+rarity=U
+[/card]
+[card]
+primitive=Blinding Beam
+id=222721
+rarity=C
+[/card]
+[card]
+primitive=Burrenton Bombardier
+id=222770
+rarity=C
+[/card]
+[card]
+primitive=Catapult Master
+id=222772
+rarity=R
+[/card]
+[card]
+primitive=Celestial Crusader
+id=222748
+rarity=U
+[/card]
+[card]
+primitive=Clockwork Condor
+id=222723
+rarity=C
+[/card]
+[card]
+primitive=Clockwork Hydra
+id=222749
+rarity=U
+[/card]
+[card]
+primitive=Conclave Equenaut
+id=222767
+rarity=C
+[/card]
+[card]
+primitive=Conclave Phalanx
+id=222768
+rarity=U
+[/card]
+[card]
+primitive=Contagion Clasp
+id=227149
+rarity=U
+[/card]
+[card]
+primitive=Crusade
+id=218582
+rarity=R
+[/card]
+[card]
+primitive=Darksteel Citadel
+id=222734
+rarity=C
+[/card]
+[card]
+primitive=Daru Encampment
+id=222773
+rarity=U
+[/card]
+[card]
+primitive=Echoing Truth
+id=222735
+rarity=C
+[/card]
+[card]
+primitive=Elite Vanguard
+id=222710
+rarity=U
+[/card]
+[card]
+primitive=Elixir of Immortality
+id=222711
+rarity=U
+[/card]
+[card]
+primitive=Elspeth, Knight-Errant
+id=217825
+rarity=M
+[/card]
+[card]
+primitive=Energy Chamber
+id=226711
+rarity=U
+[/card]
+[card]
+primitive=Esperzoa
+id=226715
+rarity=U
+[/card]
+[card]
+primitive=Everflowing Chalice
+id=222750
+rarity=U
+[/card]
+[card]
+primitive=Faerie Mechanist
+id=222747
+rarity=C
+[/card]
+[card]
+primitive=Foil
+id=222766
+rarity=U
+[/card]
+[card]
+primitive=Frogmite
+id=222856
+rarity=C
+[/card]
+[card]
+primitive=Glory Seeker
+id=222736
+rarity=C
+[/card]
+[card]
+primitive=Goldmeadow Harrier
+id=222708
+rarity=C
+[/card]
+[card]
+primitive=Infantry Veteran
+id=222712
+rarity=C
+[/card]
+[card]
+primitive=Island
+id=222727
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=222725
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=222726
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=222724
+rarity=L
+[/card]
+[card]
+primitive=Journey to Nowhere
+id=222761
+rarity=C
+[/card]
+[card]
+primitive=Juggernaut
+id=222713
+rarity=U
+[/card]
+[card]
+primitive=Kabira Crossroads
+id=222762
+rarity=C
+[/card]
+[card]
+primitive=Kemba's Skyguard
+id=227150
+rarity=C
+[/card]
+[card]
+primitive=Kor Aeronaut
+id=226714
+rarity=U
+[/card]
+[card]
+primitive=Kor Hookmaster
+id=222763
+rarity=C
+[/card]
+[card]
+primitive=Kor Skyfisher
+id=222764
+rarity=C
+[/card]
+[card]
+primitive=Loyal Sentry
+id=222706
+rarity=R
+[/card]
+[card]
+primitive=Master of Etherium
+id=222744
+rarity=R
+[/card]
+[card]
+primitive=Mighty Leap
+id=226713
+rarity=C
+[/card]
+[card]
+primitive=Mishra's Factory
+id=218340
+rarity=U
+[/card]
+[card]
+primitive=Moonglove Extract
+id=222709
+rarity=C
+[/card]
+[card]
+primitive=Mosquito Guard
+id=222716
+rarity=C
+[/card]
+[card]
+primitive=Pentavus
+id=227151
+rarity=R
+[/card]
+[card]
+primitive=Plains
+id=222752
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=222754
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=222753
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=222751
+rarity=L
+[/card]
+[card]
+primitive=Qumulox
+id=222739
+rarity=U
+[/card]
+[card]
+primitive=Raise the Alarm
+id=222728
+rarity=C
+[/card]
+[card]
+primitive=Razor Barrier
+id=222729
+rarity=C
+[/card]
+[card]
+primitive=Razormane Masticore
+id=222707
+rarity=R
+[/card]
+[card]
+primitive=Runed Servitor
+id=222737
+rarity=U
+[/card]
+[card]
+primitive=Rustic Clachan
+id=222717
+rarity=R
+[/card]
+[card]
+primitive=Saltblast
+id=222775
+rarity=U
+[/card]
+[card]
+primitive=Seasoned Marshal
+id=222771
+rarity=U
+[/card]
+[card]
+primitive=Seat of the Synod
+id=222740
+rarity=C
+[/card]
+[card]
+primitive=Serrated Biskelion
+id=222743
+rarity=U
+[/card]
+[card]
+primitive=Silver Myr
+id=222741
+rarity=C
+[/card]
+[card]
+primitive=Stalking Stones
+id=222730
+rarity=U
+[/card]
+[card]
+primitive=Steel Overseer
+id=222714
+rarity=R
+[/card]
+[card]
+primitive=Steel Wall
+id=222731
+rarity=C
+[/card]
+[card]
+primitive=Stormfront Riders
+id=226716
+rarity=U
+[/card]
+[card]
+primitive=Sunlance
+id=222776
+rarity=C
+[/card]
+[card]
+primitive=Swell of Courage
+id=222718
+rarity=U
+[/card]
+[card]
+primitive=Swords to Plowshares
+id=218581
+rarity=U
+[/card]
+[card]
+primitive=Synod Centurion
+id=226712
+rarity=U
+[/card]
+[card]
+primitive=Temple Acolyte
+id=222760
+rarity=C
+[/card]
+[card]
+primitive=Tezzeret the Seeker
+id=217826
+rarity=M
+[/card]
+[card]
+primitive=Thirst for Knowledge
+id=218580
+rarity=U
+[/card]
+[card]
+primitive=Thoughtcast
+id=222732
+rarity=C
+[/card]
+[card]
+primitive=Trinket Mage
+id=222746
+rarity=C
+[/card]
+[card]
+primitive=Trip Noose
+id=222759
+rarity=U
+[/card]
+[card]
+primitive=Triskelion
+id=222715
+rarity=R
+[/card]

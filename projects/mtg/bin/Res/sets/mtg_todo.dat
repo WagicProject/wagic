@@ -5576,6 +5576,12 @@ mana={3}{B}{B}
 type=Instant
 [/card]
 [card]
+name=Contagion Clasp
+text=When Contagion Clasp enters the battlefield, put a -1/-1 counter on target creature. -- {4}, Tap: Proliferate. (You choose any number of permanents and/or players with counters on them, then give each another counter of a kind already there.)
+mana={2}
+type=Artifact
+[/card]
+[card]
 name=Contaminated Bond
 target=creature
 auto=aslongas(mytgt[attacking])life:-3 targetController

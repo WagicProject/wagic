@@ -26508,6 +26508,17 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Kemba's Skyguard
+abilities=flying
+auto=life:2
+text=Flying (This creature can't be blocked except by creatures with flying or reach.) -- When Kemba's Skyguard enters the battlefield, you gain 2 life.
+mana={1}{W}{W}
+type=Creature
+subtype=Cat Knight
+power=2
+toughness=2
+[/card]
+[card]
 name=Kezzerdrix
 abilities=first strike
 auto=@each my upkeep:aslongas(creature|opponentBattlefield) damage:4 controller <1
