@@ -196,6 +196,7 @@ death_grasp.txt
 death_ward.txt
 deja_vu.txt
 delusions_of_mediocrity.txt
+dematerialize_flashback.txt
 dingus_egg.txt
 dingus_staff_i153.txt
 divergent_growth.txt

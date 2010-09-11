@@ -1,0 +1,20 @@
+#Testing Dematerialize cast via flashback from the graveyard.
+#Flashback {5}{U}{U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:grizzly bears
+graveyard:dematerialize
+manapool:{5}{U}{U}
+[PLAYER2]
+[DO]
+dematerialize
+grizzly bears
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+hand:grizzly bears
+exile:dematerialize
+manapool:{0}
+[PLAYER2]
+[END]
