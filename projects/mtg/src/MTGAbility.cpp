@@ -1176,11 +1176,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
       sabilities = s.substr(end+1, real_end - end);
 	}
     MTGAbility * a;
-    if (forceUEOT){
+	if(forceFOREVER){a = NEW ATransformerFOREVER(id,card,target,stypes,sabilities);
+	}
+    else if (forceUEOT){
       a = NEW ATransformerUEOT(id,card,target,stypes,sabilities);
     }else{
       a = NEW ATransformer(id,card,target,stypes,sabilities);
-	}if(forceFOREVER){a = NEW ATransformerFOREVER(id,card,target,stypes,sabilities);
 	}
 	return a;
   }

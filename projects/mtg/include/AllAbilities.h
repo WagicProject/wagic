@@ -2617,7 +2617,7 @@ public:
     a->isClone = 1;
     return a;
   }
-   ~ABloodThirst(){}
+	~ABloodThirst(){}
 };
 //reduce or increase manacost of target by color:amount------------------------------------------
 class AManaRedux:public MTGAbility{
@@ -2798,7 +2798,7 @@ public:
     a->ability = this->ability->clone();
     a->isClone = 1;
     return a;}
-  ~ATransformerFOREVER(){
+  ~ATransformerFOREVER(){delete ability;
   }};
 //becomes ability
 //Adds types/abilities/P/T to a card (aura)
