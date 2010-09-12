@@ -1,0 +1,22 @@
+Testing Gelatinous Genesis (--> {X}{X} in combination with X/X as cost)
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Gelatinous Genesis,Pyroclasm
+inplay:Mox Ruby,Mox Emerald
+manapool:{6}{G}
+[PLAYER2]
+[DO]
+Gelatinous Genesis
+Mox Ruby
+Mox Emerald
+Pyroclasm
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+manapool:{0}
+inplay:*,*,*,Mox Ruby,Mox Emerald
+graveyard:Gelatinous Genesis,Pyroclasm
+[PLAYER2]
+life:20
+[END]

@@ -194,6 +194,7 @@ dauntless_escort.txt
 dauthi_embrace.txt
 death_grasp.txt
 death_ward.txt
+decree_of_justice.txt
 deja_vu.txt
 delusions_of_mediocrity.txt
 dematerialize_flashback.txt
@@ -254,6 +255,7 @@ fountain_of_youth.txt
 frogmite.txt
 fungus_sliver.txt
 gamble.txt
+gelatinous_generation.txt
 gempalm_avenger.txt
 ghost_warden.txt
 glen_elendra_archmage_i222.txt

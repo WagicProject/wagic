@@ -275,6 +275,14 @@ mana={1}{R}
 type=Instant
 [/card]
 [card]
+name=Acceptable Losses
+target=creature
+auto=damage:5
+text=As an additional cost to cast Acceptable Losses, discard a card at random. -- Acceptable Losses deals 5 damage to target creature.
+mana={3}{R}{D}
+type=Sorcery
+[/card]
+[card]
 name=Accumulated Knowledge
 auto=draw:1
 auto=foreach(Accumulated Knowledge|graveyard) draw:1
@@ -1148,6 +1156,13 @@ type=Creature
 subtype=Human Rogue
 power=3
 toughness=1
+[/card]
+[card]
+name=Amok
+auto={D}{1}:counter(1/1,1) target(creature)
+text={1}, Discard a card at random: Put a +1/+1 counter on target creature.
+mana={1}{R}
+type=Enchantment
 [/card]
 [card]
 name=Amrou Kithkin
@@ -6616,7 +6631,7 @@ toughness=4
 [/card]
 [card]
 name=Broodstar
-abilities=affinityartifact,flying
+abilities=affinityartifacts,flying
 auto=foreach(artifact|mybattlefield) 1/1
 text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) -- Flying -- Broodstar's power and toughness are each equal to the number of artifacts you control.
 mana={8}{U}{U}
@@ -7180,7 +7195,7 @@ toughness=*
 [card]
 name=Canyon Drake
 abilities=flying
-auto={1}:2/0 && discard:1
+auto={D}{1}:2/0
 text=Flying -- {1}, Discard a card at random: Canyon Drake gets +2/+0 until end of turn.
 mana={2}{R}{R}
 type=Creature
@@ -9802,20 +9817,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Coralhelm Commander
-auto={1}:counter(0/0,1,Level Up) asSorcery
-auto=this(counter{0/0.2.Level Up}) flying
-auto=this(counter{0/0.2.Level Up}) 1/1
-auto=this(counter{0/0.4.Level Up}) lord(other merfolk|myBattlefield) 1/1
-auto=this(counter{0/0.4.Level Up}) 1/1
-text=Level up {1} -- [Level 2-3] : Flying (3/3) -- [Level 4+] : Flying, other Merfolk you control get +1/+1. (4/4)
-mana={U}{U}
-type=Creature
-subtype=Levelup Merfolk Soldier
-power=2
-toughness=2
-[/card]
-[card]
 name=Coral Atoll
 auto=tap
 auto=aslongas(island[-tapped]|mybattlefield) moveto(myhand) target(island[-tapped]|mybattlefield) oneshot
@@ -9833,6 +9834,13 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Coral Helm
+auto={D}{3}:2/2 target(creature)
+text={3}, Discard a card at random: Target creature gets +2/+2 until end of turn.
+mana={3}
+type=Artifact
+[/card]
+[card]
 name=Coral Merfolk
 mana={1}{U}
 type=Creature
@@ -9848,6 +9856,20 @@ auto={U}{T(creature[blue;-tapped]|mybattlefield)}{C(0/0,-1,Polyp)}:counter(0/1) 
 text=Coral Reef enters the battlefield with four polyp counters on it. -- Sacrifice an Island: Put two polyp counters on Coral Reef. -- {U}, Tap an untapped blue creature you control, Remove a polyp counter from Coral Reef: Put a +0/+1 counter on target creature.
 mana={U}{U}
 type=Enchantment
+[/card]
+[card]
+name=Coralhelm Commander
+auto={1}:counter(0/0,1,Level Up) asSorcery
+auto=this(counter{0/0.2.Level Up}) flying
+auto=this(counter{0/0.2.Level Up}) 1/1
+auto=this(counter{0/0.4.Level Up}) lord(other merfolk|myBattlefield) 1/1
+auto=this(counter{0/0.4.Level Up}) 1/1
+text=Level up {1} -- [Level 2-3] : Flying (3/3) -- [Level 4+] : Flying, other Merfolk you control get +1/+1. (4/4)
+mana={U}{U}
+type=Creature
+subtype=Levelup Merfolk Soldier
+power=2
+toughness=2
 [/card]
 [card]
 name=Coretapper
@@ -11793,10 +11815,19 @@ mana={8}{R}{R}
 type=Sorcery
 [/card]
 [card]
+name=Decree of Justice
+auto=token(Angel,Creature Angel,4/4,flying,white)*XX
+autohand={2}{W}:cycling
+autohand={X}{W}:name(cycle and soldier tokens) && cycling && thisforeach(X) token(Soldier,Creature Soldier,1/1,white)*X
+text=Put X 4/4 white Angel creature tokens with flying onto the battlefield. -- Cycling {2}{W} ({2}{W}, Discard this card: Draw a card.) -- When you cycle Decree of Justice, you may pay {X}. If you do, put X 1/1 white Soldier creature tokens onto the battlefield.
+mana={X}{X}{2}{W}{W}
+type=Sorcery
+[/card]
+[card]
 name=Decree of Savagery
 auto=lord(creature|myBattlefield) counter(1/1,4)
 autohand={4}{G}{G}:cycling
-autohand={4}{G}{G}:counter(1/1,4) target(creature) && cycling
+autohand={4}{G}{G}:(cycle and 4 counters) && counter(1/1,4) target(creature) && cycling
 text=Put four +1/+1 counters on each creature you control. -- Cycling {4}{G}{G} ({4}{G}{G}, Discard this card: Draw a card.) -- When you cycle Decree of Savagery, you may put four +1/+1 counters on target creature.
 mana={7}{G}{G}
 type=Instant
@@ -11872,6 +11903,32 @@ type=Creature
 subtype=Merfolk Rogue
 power=2
 toughness=2
+[/card]
+[card]
+name=Deepfire Elemental
+auto={1}:name(X = 0) && destroy target(*[artifact;creature;manacost=0])
+auto={3}:name(X = 1) && destroy target(*[artifact;creature;manacost=1])
+auto={5}:name(X = 2) && destroy target(*[artifact;creature;manacost=2])
+auto={7}:name(X = 3) && destroy target(*[artifact;creature;manacost=3])
+auto={9}:name(X = 4) && destroy target(*[artifact;creature;manacost=4])
+auto={11}:name(X = 5) && destroy target(*[artifact;creature;manacost=5])
+auto={13}:name(X = 6) && destroy target(*[artifact;creature;manacost=6])
+auto={15}:name(X = 7) && destroy target(*[artifact;creature;manacost=7])
+auto={17}:name(X = 8) && destroy target(*[artifact;creature;manacost=8])
+auto={19}:name(X = 9) && destroy target(*[artifact;creature;manacost=9])
+auto={21}:name(X = 10) && destroy target(*[artifact;creature;manacost=10])
+auto={23}:name(X = 11) && destroy target(*[artifact;creature;manacost=11])
+auto={25}:name(X = 12) && destroy target(*[artifact;creature;manacost=12])
+auto={27}:name(X = 13) && destroy target(*[artifact;creature;manacost=13])
+auto={29}:name(X = 14) && destroy target(*[artifact;creature;manacost=14])
+auto={31}:name(X = 15) && destroy target(*[artifact;creature;manacost=15])
+auto={33}:name(X = 16) && destroy target(*[artifact;creature;manacost=16])
+text={X}{X}{1}: Destroy target artifact or creature with converted mana cost X.
+mana={4}{B}{R}
+type=Creature
+subtype=Elemental
+power=4
+toughness=4
 [/card]
 [card]
 name=Deeptread Merrow
@@ -13116,7 +13173,7 @@ toughness=4
 [/card]
 [card]
 name=Draconian Cylix
-auto={2}{T}:regenerate target(creature) && discard:1
+auto={D}{2}{T}:regenerate target(creature)
 text={2}, {T}, Discard a card at random: Regenerate target creature.
 mana={3}
 type=Artifact
@@ -13655,6 +13712,32 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Droning Bureaucrats
+auto={0}{T}:name(X = 0) && lord(creature[manacost=0]) cantattack && lord(creature[manacost=0]) cantblock
+auto={1}{T}:name(X = 1) && lord(creature[manacost=1]) cantattack && lord(creature[manacost=1]) cantblock
+auto={2}{T}:name(X = 2) && lord(creature[manacost=2]) cantattack && lord(creature[manacost=2]) cantblock
+auto={3}{T}:name(X = 3) && lord(creature[manacost=3]) cantattack && lord(creature[manacost=3]) cantblock
+auto={4}{T}:name(X = 4) && lord(creature[manacost=4]) cantattack && lord(creature[manacost=4]) cantblock
+auto={5}{T}:name(X = 5) && lord(creature[manacost=5]) cantattack && lord(creature[manacost=5]) cantblock
+auto={6}{T}:name(X = 6) && lord(creature[manacost=6]) cantattack && lord(creature[manacost=6]) cantblock
+auto={7}{T}:name(X = 7) && lord(creature[manacost=7]) cantattack && lord(creature[manacost=7]) cantblock
+auto={8}{T}:name(X = 8) && lord(creature[manacost=8]) cantattack && lord(creature[manacost=8]) cantblock
+auto={9}{T}:name(X = 9) && lord(creature[manacost=9]) cantattack && lord(creature[manacost=9]) cantblock
+auto={10}{T}:name(X = 10) && lord(creature[manacost=10]) cantattack && lord(creature[manacost=10]) cantblock
+auto={11}{T}:name(X = 11) && lord(creature[manacost=11]) cantattack && lord(creature[manacost=11]) cantblock
+auto={12}{T}:name(X = 12) && lord(creature[manacost=12]) cantattack && lord(creature[manacost=12]) cantblock
+auto={13}{T}:name(X = 13) && lord(creature[manacost=13]) cantattack && lord(creature[manacost=13]) cantblock
+auto={14}{T}:name(X = 14) && lord(creature[manacost=14]) cantattack && lord(creature[manacost=14]) cantblock
+auto={15}{T}:name(X = 15) && lord(creature[manacost=15]) cantattack && lord(creature[manacost=15]) cantblock
+auto={16}{T}:name(X = 16) && lord(creature[manacost=16]) cantattack && lord(creature[manacost=16]) cantblock
+text={X}, {T}: Each creature with converted mana cost X can't attack or block this turn.
+mana={3}{W}
+type=Creature
+subtype=Human Advisor
+power=1
+toughness=4
+[/card]
+[card]
 name=Drooling Ogre
 auto=@movedto(*[artifact]|opponentstack):moveto(opponentBattlefield)
 text=Whenever a player casts an artifact spell, that player gains control of Drooling Ogre. (This effect lasts indefinitely.)
@@ -14091,6 +14174,16 @@ auto={T}:Add {R}
 auto={T}{S}:Add {R}{R}
 text=Dwarven Ruins enters the battlefield tapped. -- {T}: Add {R} to your mana pool. -- {T}, Sacrifice Dwarven Ruins: Add {R}{R} to your mana pool.
 type=Land
+[/card]
+[card]
+name=Dwarven Strike Force
+auto={D}:first strike && haste
+text=Discard a card at random: Dwarven Strike Force gains first strike and haste until end of turn.
+mana={4}{R}
+type=Creature
+subtype=Dwarf Berserker
+power=4
+toughness=3
 [/card]
 [card]
 name=Dwarven Trader
@@ -15255,6 +15348,15 @@ type=Creature
 subtype=Insect
 power=1
 toughness=1
+[/card]
+[card]
+name=Endless Whispers
+auto=@movedto(creature|mygraveyard) from(battlefield):all(trigger[to]) counter(0/0,1,endless)
+auto=@movedto(creature|opponentgraveyard) from(battlefield):all(trigger[to]) counter(0/0,1,endless)
+auto=@each endofturn:moveto(opponentbattlefield) all(*[counter{0/0.1.endless}|mygraveyard) && moveto(mybattlefield)
+text=Each creature has "When this creature is put into a graveyard, choose target opponent. That player returns this card from that graveyard to the battlefield under his or her control at the beginning of the next end step."
+mana={2}{B}{B}
+type=Enchantment
 [/card]
 [card]
 name=Endless Wurm
@@ -17713,6 +17815,15 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Flowstone Flood
+target=land
+auto=destroy
+buyback={D}{L}{L}{L}{3}{R}
+text=Buyback - Pay 3 life, Discard a card at random. (You may pay 3 life and discard a card at random in addition to any other costs as you cast this spell. If you do, put this card into your hand as it resolves.) -- Destroy target land.
+mana={3}{R}
+type=Sorcery
+[/card]
+[card]
 name=Flowstone Giant
 auto={R}:2/-2
 text={R}: Flowstone Giant gets +2/-2 until end of turn.
@@ -18246,6 +18357,16 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Frenetic Ogre
+auto={D}{R}:3/0
+text={R}, Discard a card at random: Frenetic Ogre gets +3/+0 until end of turn.
+mana={4}{R}
+type=Creature
+subtype=Ogre
+power=2
+toughness=3
+[/card]
+[card]
 name=Frenetic Raptor
 auto=lord(beast) cantblock
 text=Beasts can't block.
@@ -18499,6 +18620,18 @@ type=Creature
 subtype=Elemental
 power=3
 toughness=3
+[/card]
+[card]
+name=Furnace Dragon
+abilities=affinityartifacts,flying
+auto=kicker moveTo(exile) all(artifact|battlefield)
+text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) -- Flying -- When Furnace Dragon enters the battlefield, if you cast it from your hand, exile all artifacts.
+mana={6}{R}{R}{R}
+kicker={0}
+type=Creature
+subtype=Dragon
+power=5
+toughness=5
 [/card]
 [card]
 name=Furnace Spirit
@@ -18812,6 +18945,13 @@ type=Instant
 subtype=Arcane
 [/card]
 [card]
+name=Gelatinous Genesis
+auto=token(Ooze,Creature Ooze,XX/XX,green)*XX
+text=Target creature gets +3/+3 until end of turn.
+mana={X}{X}{G}
+type=Sorcery
+[/card]
+[card]
 name=Gelectrode
 auto={T}:damage:1 target(creature,player)
 auto=@movedTo(instant,sorcery|mystack):may untap
@@ -18849,7 +18989,7 @@ toughness=5
 [card]
 name=Gempalm Incinerator
 autohand={1}{R}:cycling
-autohand={1}{R}:foreach(goblin|battlefield) damage:1 target(creature) && cycling
+autohand={1}{R}:damage:1 target(creature,player) && cycling
 text=Cycling {1}{R} ({1}{R}, Discard this card: Draw a card.) -- When you cycle Gempalm Incinerator, you may have it deal X damage to target creature, where X is the number of Goblins on the battlefield.
 mana={2}{R}
 type=Creature
@@ -20707,6 +20847,32 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Gorilla Shaman
+auto={1}:name(X = 0) && destroy target(*[artifact[-creature];manacost=0])
+auto={3}:name(X = 1) && destroy target(*[artifact[-creature];manacost=1])
+auto={5}:name(X = 2) && destroy target(*[artifact[-creature];manacost=2])
+auto={7}:name(X = 3) && destroy target(*[artifact[-creature];manacost=3])
+auto={9}:name(X = 4) && destroy target(*[artifact[-creature];manacost=4])
+auto={11}:name(X = 5) && destroy target(*[artifact[-creature];manacost=5])
+auto={13}:name(X = 6) && destroy target(*[artifact[-creature];manacost=6])
+auto={15}:name(X = 7) && destroy target(*[artifact[-creature];manacost=7])
+auto={17}:name(X = 8) && destroy target(*[artifact[-creature];manacost=8])
+auto={19}:name(X = 9) && destroy target(*[artifact[-creature];manacost=9])
+auto={21}:name(X = 10) && destroy target(*[artifact[-creature];manacost=10])
+auto={23}:name(X = 11) && destroy target(*[artifact[-creature];manacost=11])
+auto={25}:name(X = 12) && destroy target(*[artifact[-creature];manacost=12])
+auto={27}:name(X = 13) && destroy target(*[artifact[-creature];manacost=13])
+auto={29}:name(X = 14) && destroy target(*[artifact[-creature];manacost=14])
+auto={31}:name(X = 15) && destroy target(*[artifact[-creature];manacost=15])
+auto={33}:name(X = 16) && destroy target(*[artifact[-creature];manacost=16])
+text={X}{X}{1}: Destroy target noncreature artifact with converted mana cost X.
+mana={R}
+type=Creature
+subtype=Ape Shaman
+power=1
+toughness=1
+[/card]
+[card]
 name=Gorilla Titan
 abilities=trample
 auto=aslongas(*|mygraveyard) 4/4 <1
@@ -22269,6 +22435,32 @@ mana={R}
 type=Instant
 [/card]
 [card]
+name=Hearth Kami
+auto={0}{S}:name(X = 0) && destroy target(artifact[manacost=0])
+auto={1}{S}:name(X = 1) && destroy target(artifact[manacost=1])
+auto={2}{S}:name(X = 2) && destroy target(artifact[manacost=2])
+auto={3}{S}:name(X = 3) && destroy target(artifact[manacost=3])
+auto={4}{S}:name(X = 4) && destroy target(artifact[manacost=4])
+auto={5}{S}:name(X = 5) && destroy target(artifact[manacost=5])
+auto={6}{S}:name(X = 6) && destroy target(artifact[manacost=6])
+auto={7}{S}:name(X = 7) && destroy target(artifact[manacost=7])
+auto={8}{S}:name(X = 8) && destroy target(artifact[manacost=8])
+auto={9}{S}:name(X = 9) && destroy target(artifact[manacost=9])
+auto={10}{S}:name(X = 10) && destroy target(artifact[manacost=10])
+auto={11}{S}:name(X = 11) && destroy target(artifact[manacost=11])
+auto={12}{S}:name(X = 12) && destroy target(artifact[manacost=12])
+auto={13}{S}:name(X = 13) && destroy target(artifact[manacost=13])
+auto={14}{S}:name(X = 14) && destroy target(artifact[manacost=14])
+auto={15}{S}:name(X = 15) && destroy target(artifact[manacost=15])
+auto={16}{S}:name(X = 16) && destroy target(artifact[manacost=16])
+text={X}, Sacrifice Hearth Kami: Destroy target artifact with converted mana cost X.
+mana={1}{R}
+type=Creature
+subtype=Spirit
+power=2
+toughness=1
+[/card]
+[card]
 name=Hearthcage Giant
 auto=token(Elemental Shaman,creature Elemental Shaman,3/1,red)*2
 auto={S(elemental|myBattlefield)}:3/1 target(creature[giant])
@@ -22530,6 +22722,17 @@ type=Creature
 subtype=Elemental
 power=4
 toughness=4
+[/card]
+[card]
+name=Hell-Bent Raider
+auto=first strike,haste
+auto={D}:protection from white
+text=First strike, haste -- Discard a card at random: Hell-Bent Raider gains protection from white until end of turn.
+mana={1}{R}{R}
+type=Creature
+subtype=Human Barbarian
+power=2
+toughness=2
 [/card]
 [card]
 name=Hellfire
@@ -24497,7 +24700,7 @@ type=Instant
 [/card]
 [card]
 name=Into Thin Air
-ability=affinityartifacts
+abilities=affinityartifacts
 target=artifact
 auto=moveTo(ownerhand)
 text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) -- Return target artifact to its owner's hand.
@@ -26536,6 +26739,16 @@ auto=token(Plant,creature plant, 0/1,green)
 auto={T}:Add {G}
 text=Khalni Garden enters the battlefield tapped. -- When Khalni Garden enters the battlefield, put a 0/1 green Plant creature token onto the battlefield. -- {T}: Add {G} to your mana pool.
 type=Land
+[/card]
+[card]
+name=Khalni Hydra
+abilities=affinitygreencreatures,trample
+text=Khalni Hydra costs Green less to cast for each green creature you control. -- Trample
+mana={G}{G}{G}{G}{G}{G}{G}{G}
+type=Creature
+subtype=Hydra
+power=8
+toughness=8
 [/card]
 [card]
 name=Kher Keep
@@ -29628,7 +29841,7 @@ toughness=0
 [/card]
 [card]
 name=Mage il-Vec
-auto={T}:damage:1 target(creature,player) && discard:1 controller
+auto={D}{T}:damage:1 target(creature,player)
 text={T}, Discard a card at random: Mage il-Vec deals 1 damage to target creature or player.
 mana={2}{R}
 type=Creature
@@ -31113,6 +31326,13 @@ text={T}: Choose a color of a permanent you control. Add one mana of that color 
 type=Land
 [/card]
 [card]
+name=Meteor Storm
+auto={2}{R}{G}{D}{D}:damage:4 target(creature,player)
+text={2}{R}{G}, Discard two cards at random: Meteor Storm deals 4 damage to target creature or player.
+mana={R}{G}
+type=Enchantment
+[/card]
+[card]
 name=Midnight Banshee
 abilities=wither
 auto=@each my upkeep:all(creature[-black]) counter(-1/-1,1)
@@ -31254,6 +31474,32 @@ auto={2}{T}:deplete:2 target(player)
 text={2}, {T}: Target player puts the top two cards of his or her library into his or her graveyard.
 mana={2}
 type=Artifact
+[/card]
+[card]
+name=Minamo Sightbender
+auto={0}{T}:name(X = 0) && unblockable target(creature[manacost=0])
+auto={1}{T}:name(X = 1) && unblockable target(creature[manacost=1])
+auto={2}{T}:name(X = 2) && unblockable target(creature[manacost=2])
+auto={3}{T}:name(X = 3) && unblockable target(creature[manacost=3])
+auto={4}{T}:name(X = 4) && unblockable target(creature[manacost=4])
+auto={5}{T}:name(X = 5) && unblockable target(creature[manacost=5])
+auto={6}{T}:name(X = 6) && unblockable target(creature[manacost=6])
+auto={7}{T}:name(X = 7) && unblockable target(creature[manacost=7])
+auto={8}{T}:name(X = 8) && unblockable target(creature[manacost=8])
+auto={9}{T}:name(X = 9) && unblockable target(creature[manacost=9])
+auto={10}{T}:name(X = 10) && unblockable target(creature[manacost=10])
+auto={11}{T}:name(X = 11) && unblockable target(creature[manacost=11])
+auto={12}{T}:name(X = 12) && unblockable target(creature[manacost=12])
+auto={13}{T}:name(X = 13) && unblockable target(creature[manacost=13])
+auto={14}{T}:name(X = 14) && unblockable target(creature[manacost=14])
+auto={15}{T}:name(X = 15) && unblockable target(creature[manacost=15])
+auto={16}{T}:name(X = 16) && unblockable target(creature[manacost=16])
+text={X}, {T}: Target creature with power X or less is unblockable this turn.
+mana={1}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=2
 [/card]
 [card]
 name=Minamo, School at Water's Edge
@@ -32510,9 +32756,13 @@ toughness=1
 [/card]
 [card]
 name=Mox Diamond
-auto=aslongas(land|myhand) moveTo(mygraveyard) notatarget(land|myhand) oneshot
-auto=moveTo(mygraveyard) notatarget(this|myBattlefield)
-auto=@movedTo(land|mygraveyard) from(myhand):lord(mox diamond) {T}:Add{W} && lord(mox diamond) {T}:Add{U} && lord(mox diamond) {T}:Add{B} && lord(mox diamond) {T}:Add{R} && lord(mox diamond) {T}:Add{G}
+auto=aslongas(land|myhand) moveto(mygraveyard) target(land|myhand) oneshot && counter(0/0,-1,payment)
+auto=moveto(mygraveyard) target(this|mybattlefield)
+auto=this(counter{0/0.1.payment}<1) {T}:Add{W}
+auto=this(counter{0/0.1.payment}<1) {T}:Add{U}
+auto=this(counter{0/0.1.payment}<1) {T}:Add{B}
+auto=this(counter{0/0.1.payment}<1) {T}:Add{R}
+auto=this(counter{0/0.1.payment}<1) {T}:Add{G}
 text=If Mox Diamond would enter the battlefield, you may discard a land card instead. If you do, put Mox Diamond onto the battlefield. If you don't, put it into its owner's graveyard. -- {T}: Add one mana of any color to your mana pool.
 mana={0}
 type=Artifact
@@ -32829,7 +33079,7 @@ toughness=3
 [/card]
 [card]
 name=Myr Enforcer
-auto=affinityartifacts
+abilities=affinityartifacts
 text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.)
 mana={7}
 type=Artifact Creature
@@ -32865,6 +33115,31 @@ type=Artifact Creature
 subtype=Myr
 power=1
 toughness=1
+[/card]
+[card]
+name=Myr Prototype
+auto=@each my upkeep:counter(1/1)
+auto=this(counter{1/1.1}=) {1}:-cantattack myAttackersOnly
+auto=this(counter{1/1.2}=) {2}:-cantattack myAttackersOnly
+auto=this(counter{1/1.3}=) {3}:-cantattack myAttackersOnly
+auto=this(counter{1/1.4}=) {4}:-cantattack myAttackersOnly
+auto=this(counter{1/1.5}=) {5}:-cantattack myAttackersOnly
+auto=this(counter{1/1.6}=) {6}:-cantattack myAttackersOnly
+auto=this(counter{1/1.7}=) {7}:-cantattack myAttackersOnly
+auto=this(counter{1/1.8}=) {8}:-cantattack myAttackersOnly
+auto=this(counter{1/1.9}=) {9}:-cantattack myAttackersOnly
+auto=this(counter{1/1.10}=) {10}:-cantattack myAttackersOnly
+auto=this(counter{1/1.11}=) {11}:-cantattack myAttackersOnly
+auto=this(counter{1/1.12}=) {12}:-cantattack myAttackersOnly
+auto=this(counter{1/1.13}=) {13}:-cantattack myAttackersOnly
+auto=this(counter{1/1.14}=) {14}:-cantattack myAttackersOnly
+auto=this(counter{1/1.15}=) {15}:-cantattack myAttackersOnly
+text=At the beginning of your upkeep, put a +1/+1 counter on Myr Prototype. -- Myr Prototype can't attack or block unless you pay {1} for each +1/+1 counter on it.
+mana={5}
+type=Artifact Creature
+subtype=Myr
+power=2
+toughness=2
 [/card]
 [card]
 name=Myr Retriever
@@ -34573,7 +34848,7 @@ toughness=3
 [/card]
 [card]
 name=Ogre Shaman
-auto={2}:damage:2 target(creature,player) && discard:1 controller
+auto={2}{D}:damage:2 target(creature,player)
 text={2}, Discard a card at random: Ogre Shaman deals 2 damage to target creature or player.
 mana={3}{R}{R}
 type=Creature
@@ -35144,6 +35419,14 @@ power=0
 toughness=2
 [/card]
 [card]
+name=Orochi Hatchery
+auto=counter(0/0,xx,Charge)
+auto={5}{T}:thisforeach(counter{0/0,1,Charge}) token(Snake,Creature Snake,1/1,green)
+text=Orochi Hatchery enters the battlefield with X charge counters on it. -- {5}, {T}: Put a 1/1 green Snake creature token onto the battlefield for each charge counter on Orochi Hatchery.
+mana={X}{X}
+type=Artifact
+[/card]
+[card]
 name=Orochi Leafcaller
 auto={G}:Add {W}
 auto={G}:Add {U}
@@ -35515,6 +35798,30 @@ power=*
 toughness=3
 [/card]
 [card]
+name=Panacea
+auto={1}{T}:name(X = 1) && prevent:1 target(creature,player)
+auto={2}{T}:name(X = 2) && prevent:2 target(creature,player)
+auto={3}{T}:name(X = 3) && prevent:3 target(creature,player)
+auto={4}{T}:name(X = 4) && prevent:4 target(creature,player)
+auto={5}{T}:name(X = 5) && prevent:5 target(creature,player)
+auto={6}{T}:name(X = 6) && prevent:6 target(creature,player)
+auto={7}{T}:name(X = 7) && prevent:7 target(creature,player)
+auto={8}{T}:name(X = 8) && prevent:8 target(creature,player)
+auto={9}{T}:name(X = 9) && prevent:9 target(creature,player)
+auto={10}{T}:name(X = 10) && prevent:10 target(creature,player)
+auto={11}{T}:name(X = 11) && prevent:11 target(creature,player)
+auto={12}{T}:name(X = 12) && prevent:12 target(creature,player)
+auto={13}{T}:name(X = 13) && prevent:13 target(creature,player)
+auto={14}{T}:name(X = 14) && prevent:14 target(creature,player)
+auto={15}{T}:name(X = 15) && prevent:15 target(creature,player)
+auto={16}{T}:name(X = 16) && prevent:16 target(creature,player)
+auto={17}{T}:name(X = 17) && prevent:17 target(creature,player)
+auto={18}{T}:name(X = 18) && prevent:18 target(creature,player)
+text={X}{X}, {T}: Prevent the next X damage that would be dealt to target creature or player this turn.
+mana={4}
+type=Artifact
+[/card]
+[card]
 name=Pang Tong, "Young Phoenix"
 auto={T}:0/2 target(creature) myTurnOnly
 text={T}: Target creature gets +0/+2 until end of turn. Activate this ability only during your turn, before attackers are declared.
@@ -35693,6 +36000,26 @@ type=Creature
 subtype=Elemental Cat
 power=2
 toughness=3
+[/card]
+[card]
+name=Pardic Lancer
+auto={D}:1/0 && first strike
+text=Discard a card at random: Pardic Lancer gets +1/+0 and gains first strike until end of turn.
+mana={4}{R}
+type=Creature
+subtype=Human Barbarian
+power=3
+toughness=2
+[/card]
+[card]
+name=Pardic Swordsmith
+auto={R}{D}:2/0
+text={R}, Discard a card at random: Pardic Swordsmith gets +2/+0 until end of turn.
+mana={2}{R}
+type=Creature
+subtype=Dwarf
+power=1
+toughness=1
 [/card]
 [card]
 name=Part the Veil
@@ -36083,6 +36410,10 @@ auto={9}{S}:name(X = 9) && destroy all(*[-land;manacost<=9])
 auto={10}{S}:name(X = 10) && destroy all(*[-land;manacost<=10])
 auto={11}{S}:name(X = 11) && destroy all(*[-land;manacost<=11])
 auto={12}{S}:name(X = 12) && destroy all(*[-land;manacost<=12])
+auto={13}{S}:name(X = 13) && destroy all(*[-land;manacost<=13])
+auto={14}{S}:name(X = 14) && destroy all(*[-land;manacost<=14])
+auto={15}{S}:name(X = 15) && destroy all(*[-land;manacost<=15])
+auto={16}{S}:name(X = 16) && destroy all(*[-land;manacost<=16])
 text={X}, Sacrifice Pernicious Deed: Destroy each artifact, creature, and enchantment with converted mana cost X or less.
 mana={1}{B}{G}
 type=Enchantment
@@ -36507,6 +36838,32 @@ mana={3}
 type=Artifact
 [/card]
 [card]
+name=Phyrexian Marauder
+abilities=cantblock,cantattack
+auto=counter(1/1,X)
+auto=this(counter{1/1.1}=) {1}:-cantattack myAttackersOnly
+auto=this(counter{1/1.2}=) {2}:-cantattack myAttackersOnly
+auto=this(counter{1/1.3}=) {3}:-cantattack myAttackersOnly
+auto=this(counter{1/1.4}=) {4}:-cantattack myAttackersOnly
+auto=this(counter{1/1.5}=) {5}:-cantattack myAttackersOnly
+auto=this(counter{1/1.6}=) {6}:-cantattack myAttackersOnly
+auto=this(counter{1/1.7}=) {7}:-cantattack myAttackersOnly
+auto=this(counter{1/1.8}=) {8}:-cantattack myAttackersOnly
+auto=this(counter{1/1.9}=) {9}:-cantattack myAttackersOnly
+auto=this(counter{1/1.10}=) {10}:-cantattack myAttackersOnly
+auto=this(counter{1/1.11}=) {11}:-cantattack myAttackersOnly
+auto=this(counter{1/1.12}=) {12}:-cantattack myAttackersOnly
+auto=this(counter{1/1.13}=) {13}:-cantattack myAttackersOnly
+auto=this(counter{1/1.14}=) {14}:-cantattack myAttackersOnly
+auto=this(counter{1/1.15}=) {15}:-cantattack myAttackersOnly
+text=Phyrexian Marauder enters the battlefield with X +1/+1 counters on it. -- Phyrexian Marauder can't block. -- Phyrexian Marauder can't attack unless you pay {1} for each +1/+1 counter on it.
+mana={X}
+type=Artifact Creature
+subtype=Construct
+power=0
+toughness=0
+[/card]
+[card]
 name=Phyrexian Monitor
 auto={B}:regenerate
 text={B}: Regenerate Phyrexian Monitor.
@@ -36911,6 +37268,32 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Plaguebearer
+auto={B}:name(X = 0) && destroy target(creature[-black;manacost=0])
+auto={2}{B}:name(X = 1) && destroy target(creature[-black;manacost=1])
+auto={4}{B}:name(X = 2) && destroy target(creature[-black;manacost=2])
+auto={6}{B}:name(X = 3) && destroy target(creature[-black;manacost=3])
+auto={8}{B}:name(X = 4) && destroy target(creature[-black;manacost=4])
+auto={10}{B}:name(X = 5) && destroy target(creature[-black;manacost=5])
+auto={12}{B}:name(X = 6) && destroy target(creature[-black;manacost=6])
+auto={14}{B}:name(X = 7) && destroy target(creature[-black;manacost=7])
+auto={16}{B}:name(X = 8) && destroy target(creature[-black;manacost=8])
+auto={18}{B}:name(X = 9) && destroy target(creature[-black;manacost=9])
+auto={20}{B}:name(X = 10) && destroy target(creature[-black;manacost=10])
+auto={22}{B}:name(X = 11) && destroy target(creature[-black;manacost=11])
+auto={24}{B}:name(X = 12) && destroy target(creature[-black;manacost=12])
+auto={26}{B}:name(X = 13) && destroy target(creature[-black;manacost=13])
+auto={28}{B}:name(X = 14) && destroy target(creature[-black;manacost=14])
+auto={30}{B}:name(X = 15) && destroy target(creature[-black;manacost=15])
+auto={32}{B}:name(X = 16) && destroy target(creature[-black;manacost=16])
+text={X}{X}{B}: Destroy target nonblack creature with converted mana cost X.
+mana={1}{B}
+type=Creature
+subtype=Zombie
+power=1
+toughness=1
+[/card]
+[card]
 name=Plains
 auto={T}: Add {W}
 text=W
@@ -37290,6 +37673,30 @@ type=Creature
 subtype=Wurm
 power=3
 toughness=3
+[/card]
+[card]
+name=Powder Keg
+auto=@each my upkeep:may counter(0/0,1,Fuse)
+auto=this(counter{0/0.1.Fuse}<1) {T}:destroy all(*[artifact;creature;manacost=0])
+auto=this(counter{0/0.1.Fuse}=1) {T}:destroy all(*[artifact;creature;manacost=1])
+auto=this(counter{0/0.1.Fuse}=2) {T}:destroy all(*[artifact;creature;manacost=2])
+auto=this(counter{0/0.1.Fuse}=3) {T}:destroy all(*[artifact;creature;manacost=3])
+auto=this(counter{0/0.1.Fuse}=4) {T}:destroy all(*[artifact;creature;manacost=4])
+auto=this(counter{0/0.1.Fuse}=5) {T}:destroy all(*[artifact;creature;manacost=5])
+auto=this(counter{0/0.1.Fuse}=6) {T}:destroy all(*[artifact;creature;manacost=6])
+auto=this(counter{0/0.1.Fuse}=7) {T}:destroy all(*[artifact;creature;manacost=7])
+auto=this(counter{0/0.1.Fuse}=8) {T}:destroy all(*[artifact;creature;manacost=8])
+auto=this(counter{0/0.1.Fuse}=9) {T}:destroy all(*[artifact;creature;manacost=9])
+auto=this(counter{0/0.1.Fuse}=10) {T}:destroy all(*[artifact;creature;manacost=10])
+auto=this(counter{0/0.1.Fuse}=11) {T}:destroy all(*[artifact;creature;manacost=11])
+auto=this(counter{0/0.1.Fuse}=12) {T}:destroy all(*[artifact;creature;manacost=12])
+auto=this(counter{0/0.1.Fuse}=13) {T}:destroy all(*[artifact;creature;manacost=13])
+auto=this(counter{0/0.1.Fuse}=14) {T}:destroy all(*[artifact;creature;manacost=14])
+auto=this(counter{0/0.1.Fuse}=15) {T}:destroy all(*[artifact;creature;manacost=15])
+auto=this(counter{0/0.1.Fuse}=16) {T}:destroy all(*[artifact;creature;manacost=16])
+text=At the beginning of your upkeep, you may put a fuse counter on Powder Keg. -- {T}, Sacrifice Powder Keg: Destroy each artifact and creature with converted mana cost equal to the number of fuse counters on Powder Keg.
+mana={2}
+type=Artifact
 [/card]
 [card]
 name=Power Leak
@@ -38091,6 +38498,14 @@ name=Pyrohemia
 auto={R}:damage:1 all(creature,player)
 auto=@next endofturn:aslongas(creature|battlefield) moveto(mygraveyard) <1
 mana={2}{R}{R}
+type=Enchantment
+[/card]
+[card]
+name=Pyromania
+auto={1}{R}{D}:damage:1 target(creature,player)
+auto={1}{R}{S}:damage:1 target(creature,player)
+text={1}{R}, Discard a card at random: Pyromania deals 1 damage to target creature or player. -- {1}{R}, Sacrifice Pyromania: Pyromania deals 1 damage to target creature or player.
+mana={2}{R}
 type=Enchantment
 [/card]
 [card]
@@ -42053,6 +42468,7 @@ toughness=6
 [card]
 name=Scale of Chiss-Goria
 abilities=affinityartifacts,flash
+auto={T}:0/1 target(creature)
 text=Flash -- Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) -- {T}: Target creature gets +0/+1 until end of turn.
 mana={3}
 type=Artifact
@@ -46308,6 +46724,22 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Sonic Burst
+target=creature,player
+auto=damage:4
+text=As an additional cost to cast Sonic Burst, discard a card at random. -- Sonic Burst deals 4 damage to target creature or player.
+mana={1}{R}{D}
+type=Instant
+[/card]
+[card]
+name=Sonic Seizure
+target=creature,player
+auto=damage:3
+text=As an additional cost to cast Sonic Seizure, discard a card at random. -- Sonic Seizure deals 3 damage to target creature or player.
+mana={R}{D}
+type=Instant
+[/card]
+[card]
 name=Soot Imp
 abilities=flying
 auto=@movedTo(*[-black]|mystack):life:-1 controller
@@ -48625,6 +49057,13 @@ mana={R}
 type=World Enchantment
 [/card]
 [card]
+name=Stormbind
+auto={2}{D}:damage:2 target(creature,player)
+text={2}, Discard a card at random: Stormbind deals 2 damage to target creature or player.
+mana={1}{R}{G}
+type=Enchantment
+[/card]
+[card]
 name=Stormcloud Djinn
 abilities=flying,cloud
 auto={R}{R}:2/0 && damage:1 controller
@@ -50068,6 +50507,34 @@ type=Creature
 subtype=Spirit
 power=1
 toughness=3
+[/card]
+[card]
+name=Talon of Pain
+auto=@damaged(player) from(other *|mybattlefield,mystack):counter(0/0,1,charge)
+auto=@damaged(player) from(other *|mystack):counter(0/0,1,charge)
+auto={C(0/0,-1,charge)}{T}:name(remove 1 counter) && damage:1 target(creature,player)
+auto={C(0/0,-2,charge)}{T}:name(remove 2 counters) && damage:2 target(creature,player)
+auto={C(0/0,-3,charge)}{T}:name(remove 3 counters) && damage:3 target(creature,player)
+auto={C(0/0,-4,charge)}{T}:name(remove 4 counters) && damage:4 target(creature,player)
+auto={C(0/0,-5,charge)}{T}:name(remove 5 counters) && damage:5 target(creature,player)
+auto={C(0/0,-6,charge)}{T}:name(remove 6 counters) && damage:6 target(creature,player)
+auto={C(0/0,-7,charge)}{T}:name(remove 7 counters) && damage:7 target(creature,player)
+auto={C(0/0,-8,charge)}{T}:name(remove 8 counters) && damage:8 target(creature,player)
+auto={C(0/0,-9,charge)}{T}:name(remove 9 counters) && damage:9 target(creature,player)
+auto={C(0/0,-10,charge)}{T}:name(remove 10 counter) && damage:10 target(creature,player)
+auto={C(0/0,-11,charge)}{T}:name(remove 11 counters) && damage:11 target(creature,player)
+auto={C(0/0,-12,charge)}{T}:name(remove 12 counters) && damage:12 target(creature,player)
+auto={C(0/0,-13,charge)}{T}:name(remove 13 counters) && damage:13 target(creature,player)
+auto={C(0/0,-14,charge)}{T}:name(remove 14 counter) && damage:14 target(creature,player)
+auto={C(0/0,-15,charge)}{T}:name(remove 9 counters) && damage:15 target(creature,player)
+auto={C(0/0,-16,charge)}{T}:name(remove 10 counter) && damage:16 target(creature,player)
+auto={C(0/0,-17,charge)}{T}:name(remove 11 counters) && damage:17 target(creature,player)
+auto={C(0/0,-18,charge)}{T}:name(remove 12 counters) && damage:18 target(creature,player)
+auto={C(0/0,-19,charge)}{T}:name(remove 13 counters) && damage:19 target(creature,player)
+auto={C(0/0,-20,charge)}{T}:name(remove 14 counter) && damage:20 target(creature,player)
+text=Whenever a source you control other than Talon of Pain deals damage to an opponent, put a charge counter on Talon of Pain. -- {X}, {T}, Remove X charge counters from Talon of Pain: Talon of Pain deals X damage to target creature or player.
+mana={4}
+type=Artifact
 [/card]
 [card]
 name=Talon Sliver
@@ -58299,6 +58766,14 @@ auto=@movedTo(*[green]|stack):may life:1 controller
 text=Whenever a player casts a green spell, you may gain 1 life.
 mana={2}
 type=Artifact
+[/card]
+[card]
+name=Wurmcalling
+auto=token(Wurm,Creature Wurm,X/X,green)
+buyback={X}{G}{2}{G}
+text=Buyback {2}{G} (You may pay an additional {2}{G} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Put an X/X green Wurm creature token onto the battlefield.
+mana={X}{G}
+type=Sorcery
 [/card]
 [card]
 name=Wurmweaver Coil

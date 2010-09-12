@@ -214,16 +214,6 @@ mana={3}{G}{G}
 type=Instant
 [/card]
 [card]
-name=Acceptable Losses
-target=creature
-auto=damage:5
-auto=discard:1 controller
-#Removed: can be played from an empty hand without discarding a card
-text=As an additional cost to cast Acceptable Losses, discard a card at random. -- Acceptable Losses deals 5 damage to target creature.
-mana={3}{R}
-type=Sorcery
-[/card]
-[card]
 name=Acidic Dagger
 text={4}, {T}: Whenever target creature deals combat damage to a non-Wall creature this turn, destroy that non-Wall creature. When the targeted creature leaves the battlefield this turn, sacrifice Acidic Dagger. Activate this ability only during combat before blockers are declared.
 mana={4}
@@ -637,14 +627,6 @@ type=Creature
 subtype=Shapeshifter
 power=1
 toughness=1
-[/card]
-[card]
-name=Amok
-auto=aslongas(*|myHand) {1}:counter(1/1,1) target(creature) && discard:1 controller
-#Does not work in WTH 0.10
-text={1}, Discard a card at random: Put a +1/+1 counter on target creature.
-mana={1}{R}
-type=Enchantment
 [/card]
 [card]
 name=Amphibious Kavu
@@ -5727,14 +5709,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Coral Helm
-auto={3}:2/2 target(creature) && discard:1 controller
-#Need either aslongas(*|myhand)>0 or discard random as a cost.
-text={3}, Discard a card at random: Target creature gets +2/+2 until end of turn.
-mana={3}
-type=Artifact
-[/card]
-[card]
 name=Coral Net
 text=Enchant green or white creature -- Enchanted creature has "At the beginning of your upkeep, sacrifice this creature unless you discard a card."
 mana={U}
@@ -7082,12 +7056,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Decree of Justice
-text=Put X 4/4 white Angel creature tokens with flying onto the battlefield. -- Cycling {2}{W} ({2}{W}, Discard this card: Draw a card.) -- When you cycle Decree of Justice, you may pay {X}. If you do, put X 1/1 white Soldier creature tokens onto the battlefield.
-mana={X}{X}{2}{W}{W}
-type=Sorcery
-[/card]
-[card]
 name=Decree of Pain
 text=Destroy all creatures. They can't be regenerated. Draw a card for each creature destroyed this way. -- Cycling {3}{B}{B} ({3}{B}{B}, Discard this card: Draw a card.) -- When you cycle Decree of Pain, all creatures get -2/-2 until end of turn.
 mana={6}{B}{B}
@@ -7128,15 +7096,6 @@ type=Creature
 subtype=Kraken
 power=6
 toughness=6
-[/card]
-[card]
-name=Deepfire Elemental
-text={X}{X}{1}: Destroy target artifact or creature with converted mana cost X.
-mana={4}{B}{R}
-type=Creature
-subtype=Elemental
-power=4
-toughness=4
 [/card]
 [card]
 name=Deepwood Elder
@@ -7200,10 +7159,6 @@ type=Instant
 [/card]
 [card]
 name=Defiant Stand
-target=creature
-auto=untap
-auto=1/3
-####Cannot be coded right now! (0.10.1)
 text=Cast Defiant Stand only during the declare attackers step and only if you've been attacked this step. -- Target creature gets +1/+3 until end of turn. If that creature is tapped, untap it.
 mana={1}{W}
 type=Instant
@@ -8410,15 +8365,6 @@ power=6
 toughness=6
 [/card]
 [card]
-name=Droning Bureaucrats
-text={X}, {T}: Each creature with converted mana cost X can't attack or block this turn.
-mana={3}{W}
-type=Creature
-subtype=Human Advisor
-power=1
-toughness=4
-[/card]
-[card]
 name=Drooling Groodion
 text={2}{B}{G}, Sacrifice a creature: Target creature gets +2/+2 until end of turn. Another target creature gets -2/-2 until end of turn.
 mana={3}{B}{B}{G}
@@ -8689,15 +8635,6 @@ name=Dwarven Song
 text=Any number of target creatures become red until end of turn.
 mana={R}
 type=Instant
-[/card]
-[card]
-name=Dwarven Strike Force
-text=Discard a card at random: Dwarven Strike Force gains first strike and haste until end of turn.
-mana={4}{R}
-type=Creature
-subtype=Dwarf Berserker
-power=4
-toughness=3
 [/card]
 [card]
 name=Dwarven Thaumaturgist
@@ -9239,12 +9176,6 @@ name=Endless Swarm
 text=Put a 1/1 green Snake creature token onto the battlefield for each card in your hand. -- Epic (For the rest of the game, you can't cast spells. At the beginning of each of your upkeeps, copy this spell except for its epic ability.)
 mana={5}{G}{G}{G}
 type=Sorcery
-[/card]
-[card]
-name=Endless Whispers
-text=Each creature has "When this creature is put into a graveyard, choose target opponent. That player returns this card from that graveyard to the battlefield under his or her control at the beginning of the next end step."
-mana={2}{B}{B}
-type=Enchantment
 [/card]
 [card]
 name=Endoskeleton
@@ -11160,12 +11091,6 @@ mana={3}
 type=Artifact
 [/card]
 [card]
-name=Flowstone Flood
-text=Buyback - Pay 3 life, Discard a card at random. (You may pay 3 life and discard a card at random in addition to any other costs as you cast this spell. If you do, put this card into your hand as it resolves.) -- Destroy target land.
-mana={3}{R}
-type=Sorcery
-[/card]
-[card]
 name=Flowstone Salamander
 text={R}: Flowstone Salamander deals 1 damage to target creature blocking it.
 mana={3}{R}{R}
@@ -11518,16 +11443,6 @@ type=Creature
 subtype=Efreet
 power=2
 toughness=1
-[/card]
-[card]
-name=Frenetic Ogre
-auto={R}:3/0 && discard:1 controller
-text={R}, Discard a card at random: Frenetic Ogre gets +3/+0 until end of turn.
-mana={4}{R}
-type=Creature
-subtype=Ogre
-power=2
-toughness=3
 [/card]
 [card]
 name=Frenetic Sliver
@@ -13158,23 +13073,12 @@ toughness=4
 [/card]
 [card]
 name=Gorilla Berserkers
-abilities=trample
-auto=rampage(2/2,1)
 text=Trample; rampage 2 (Whenever this creature becomes blocked, it gets +2/+2 until end of turn for each creature blocking it beyond the first.) -- Gorilla Berserkers can't be blocked except by three or more creatures.
 mana={3}{G}{G}
 type=Creature
 subtype=Ape Berserker
 power=2
 toughness=3
-[/card]
-[card]
-name=Gorilla Shaman
-text={X}{X}{1}: Destroy target noncreature artifact with converted mana cost X.
-mana={R}
-type=Creature
-subtype=Ape Shaman
-power=1
-toughness=1
 [/card]
 [card]
 name=Gorilla War Cry
@@ -14320,15 +14224,6 @@ mana={2}{G}
 type=Enchantment
 [/card]
 [card]
-name=Hearth Kami
-text={X}, Sacrifice Hearth Kami: Destroy target artifact with converted mana cost X.
-mana={1}{R}
-type=Creature
-subtype=Spirit
-power=2
-toughness=1
-[/card]
-[card]
 name=Heartlash Cinder
 abilities=haste
 text=Haste -- Chroma - When Heartlash Cinder enters the battlefield, it gets +X/+0 until end of turn, where X is the number of red mana symbols in the mana costs of permanents you control.
@@ -14408,17 +14303,6 @@ name=Heliophial
 text=Sunburst (This enters the battlefield with a charge counter on it for each color of mana spent to cast it.) -- {2}, Sacrifice Heliophial: Heliophial deals damage to target creature or player equal to the number of charge counters on Heliophial.
 mana={5}
 type=Artifact
-[/card]
-[card]
-name=Hell-Bent Raider
-auto=first strike,haste
-auto={S(*|myHand)}:protection from white ####this is not what the wording says!
-text=First strike, haste -- Discard a card at random: Hell-Bent Raider gains protection from white until end of turn.
-mana={1}{R}{R}
-type=Creature
-subtype=Human Barbarian
-power=2
-toughness=2
 [/card]
 [card]
 name=Helldozer
@@ -20034,12 +19918,6 @@ mana={X}{X}{R}
 type=Sorcery
 [/card]
 [card]
-name=Meteor Storm
-text={2}{R}{G}, Discard two cards at random: Meteor Storm deals 4 damage to target creature or player.
-mana={R}{G}
-type=Enchantment
-[/card]
-[card]
 name=Metrognome
 text=When a spell or ability an opponent controls causes you to discard Metrognome, put four 1/1 colorless Gnome artifact creature tokens onto the battlefield. -- {4}, {T}: Put a 1/1 colorless Gnome artifact creature token onto the battlefield.
 mana={4}
@@ -20108,15 +19986,6 @@ type=Creature
 subtype=Human Wizard
 power=2
 toughness=3
-[/card]
-[card]
-name=Minamo Sightbender
-text={X}, {T}: Target creature with power X or less is unblockable this turn.
-mana={1}{U}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=2
 [/card]
 [card]
 name=Minamo's Meddling
@@ -21298,15 +21167,6 @@ type=Artifact Creature
 subtype=Myr
 power=1
 toughness=1
-[/card]
-[card]
-name=Myr Prototype
-text=At the beginning of your upkeep, put a +1/+1 counter on Myr Prototype. -- Myr Prototype can't attack or block unless you pay {1} for each +1/+1 counter on it.
-mana={5}
-type=Artifact Creature
-subtype=Myr
-power=2
-toughness=2
 [/card]
 [card]
 ###Instabile behaviour!!
@@ -23033,12 +22893,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Orochi Hatchery
-text=Orochi Hatchery enters the battlefield with X charge counters on it. -- {5}, {T}: Put a 1/1 green Snake creature token onto the battlefield for each charge counter on Orochi Hatchery.
-mana={X}{X}
-type=Artifact
-[/card]
-[card]
 name=Orzhov Euthanist
 text=Haunt (When this card is put into a graveyard from the battlefield, exile it haunting target creature.) -- When Orzhov Euthanist enters the battlefield or the creature it haunts is put into a graveyard, destroy target creature that was dealt damage this turn.
 mana={2}{B}
@@ -23138,8 +22992,6 @@ type=Enchantment
 [/card]
 [card]
 name=Overgrowth
-target=land
-auto=@tapped(this):add{G}{G}
 text=Enchant land (Target a land as you cast this. This card enters the battlefield attached to that land.) -- Whenever enchanted land is tapped for mana, its controller adds {G}{G} to his or her mana pool (in addition to the mana the land produces).
 mana={2}{G}
 type=Enchantment
@@ -23337,12 +23189,6 @@ power=2
 toughness=4
 [/card]
 [card]
-name=Panacea
-text={X}{X}, {T}: Prevent the next X damage that would be dealt to target creature or player this turn.
-mana={4}
-type=Artifact
-[/card]
-[card]
 name=Pandemonium
 text=Whenever a creature enters the battlefield, that creature's controller may have it deal damage equal to its power to target creature or player of his or her choice.
 mana={3}{R}
@@ -23458,28 +23304,9 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Pardic Lancer
-text=Discard a card at random: Pardic Lancer gets +1/+0 and gains first strike until end of turn.
-mana={4}{R}
-type=Creature
-subtype=Human Barbarian
-power=3
-toughness=2
-[/card]
-[card]
 name=Pardic Miner
 text=Sacrifice Pardic Miner: Target player can't play lands this turn.
 mana={1}{R}
-type=Creature
-subtype=Dwarf
-power=1
-toughness=1
-[/card]
-[card]
-name=Pardic Swordsmith
-auto={R}:2/0 && discard:1 controller
-text={R}, Discard a card at random: Pardic Swordsmith gets +2/+0 until end of turn.
-mana={2}{R}
 type=Creature
 subtype=Dwarf
 power=1
@@ -23976,15 +23803,6 @@ power=3
 toughness=4
 [/card]
 [card]
-name=Phyrexian Marauder
-text=Phyrexian Marauder enters the battlefield with X +1/+1 counters on it. -- Phyrexian Marauder can't block. -- Phyrexian Marauder can't attack unless you pay {1} for each +1/+1 counter on it.
-mana={X}
-type=Artifact Creature
-subtype=Construct
-power=0
-toughness=0
-[/card]
-[card]
 name=Phyrexian Negator
 text=Trample -- Whenever Phyrexian Negator is dealt damage, sacrifice that many permanents.
 mana={2}{B}
@@ -24212,15 +24030,6 @@ mana={6}{B}
 type=Sorcery
 [/card]
 [card]
-name=Plaguebearer
-text={X}{X}{B}: Destroy target nonblack creature with converted mana cost X.
-mana={1}{B}
-type=Creature
-subtype=Zombie
-power=1
-toughness=1
-[/card]
-[card]
 name=Planar Birth
 text=Return all basic land cards from all graveyards to the battlefield tapped under their owners' control.
 mana={1}{W}
@@ -24412,12 +24221,6 @@ mana={8}
 type=Artifact
 [/card]
 [card]
-name=Powder Keg
-text=At the beginning of your upkeep, you may put a fuse counter on Powder Keg. -- {T}, Sacrifice Powder Keg: Destroy each artifact and creature with converted mana cost equal to the number of fuse counters on Powder Keg.
-mana={2}
-type=Artifact
-[/card]
-[card]
 name=Power Armor
 text=Domain - {3}, {T}: Target creature gets +1/+1 until end of turn for each basic land type among lands you control.
 mana={4}
@@ -24444,9 +24247,6 @@ type=Instant
 [/card]
 [card]
 name=Power Surge
-auto=@each my upkeep:foreach(land[-tapped]|myinplay) damage:1 controller
-auto=@each opponent upkeep:foreach(land[-tapped]|opponentinplay) damage:1 opponent
-####CANNOT WORK FOR NOW (0.9.1)!!!
 text=At the beginning of each player's upkeep, Power Surge deals X damage to that player, where X is the number of untapped lands he or she controlled at the beginning of this turn.
 mana={R}{R}
 type=Enchantment
@@ -25314,12 +25114,6 @@ type=Enchantment
 name=Pyromancy
 text={3}, Discard a card at random: Pyromancy deals damage to target creature or player equal to the converted mana cost of the discarded card.
 mana={2}{R}{R}
-type=Enchantment
-[/card]
-[card]
-name=Pyromania
-text={1}{R}, Discard a card at random: Pyromania deals 1 damage to target creature or player. -- {1}{R}, Sacrifice Pyromania: Pyromania deals 1 damage to target creature or player.
-mana={2}{R}
 type=Enchantment
 [/card]
 [card]
@@ -30626,31 +30420,9 @@ type=Sorcery
 [/card]
 [card]
 name=Song of Serenity
-auto=lord(creature[enchanted]) cantattack
-auto=lord(creature[enchanted]) cantblock
 text=Creatures that are enchanted can't attack or block.
 mana={1}{G}
 type=Enchantment
-[/card]
-[card]
-name=Sonic Burst
-target=creature,player
-auto=damage:4
-auto=discard:1 controller
-#Removed: can be played from an empty hand without discarding a card
-text=As an additional cost to cast Sonic Burst, discard a card at random. -- Sonic Burst deals 4 damage to target creature or player.
-mana={1}{R}
-type=Instant
-[/card]
-[card]
-name=Sonic Seizure
-target=creature,player
-auto=discard:1 controller
-auto=damage:3
-####This card can be played without having a card in hand when coded this way!!!
-text=As an additional cost to cast Sonic Seizure, discard a card at random. -- Sonic Seizure deals 3 damage to target creature or player.
-mana={R}
-type=Instant
 [/card]
 [card]
 name=Sootfeather Flock
@@ -32001,12 +31773,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Stormbind
-text={2}, Discard a card at random: Stormbind deals 2 damage to target creature or player.
-mana={1}{R}{G}
-type=Enchantment
-[/card]
-[card]
 name=Stormcaller's Boon
 text=Sacrifice Stormcaller's Boon: Creatures you control gain flying until end of turn. -- Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.)
 mana={2}{W}{U}
@@ -32896,12 +32662,6 @@ type=Creature
 subtype=Elf Warrior
 power=4
 toughness=3
-[/card]
-[card]
-name=Talon of Pain
-text=Whenever a source you control other than Talon of Pain deals damage to an opponent, put a charge counter on Talon of Pain. -- {X}, {T}, Remove X charge counters from Talon of Pain: Talon of Pain deals X damage to target creature or player.
-mana={4}
-type=Artifact
 [/card]
 [card]
 name=Talruum Champion
@@ -37639,12 +37399,6 @@ type=Creature
 subtype=Human Soldier Rogue
 power=1
 toughness=1
-[/card]
-[card]
-name=Wurmcalling
-text=Buyback {2}{G} (You may pay an additional {2}{G} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Put an X/X green Wurm creature token onto the battlefield.
-mana={X}{G}
-type=Sorcery
 [/card]
 [card]
 name=Wurmskin Forger

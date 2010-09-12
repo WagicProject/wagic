@@ -1,0 +1,18 @@
+Testing Decree of Justice (--> {X}{X} as cost)
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Decree of Justice
+manapool:{8}{W}{W}
+[PLAYER2]
+[DO]
+Decree of Justice
+choice 0
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+manapool:{0}
+inplay:*,*,*
+graveyard:Decree of Justice
+[PLAYER2]
+[END]

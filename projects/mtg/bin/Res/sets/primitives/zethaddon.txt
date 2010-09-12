@@ -281,20 +281,6 @@ type=nothing
 subtype=creature Elemental
 [/card]
 [card]
-name=Meadowboon
-auto=@movedTo(this|mygraveyard): Counter(1/1,1) all(creature|mybattlefield)
-auto=@movedTo(this|myhand): Counter(1/1,1) all(creature|mybattlefield)
-auto=@movedTo(this|exile): Counter(1/1,1) all(creature|mybattlefield)
-auto=@movedTo(this|mylibrary): Counter(1/1,1) all(creature|mybattlefield)
-autohand={3}{w}{s}:token(-17155443) asSorcery 
-mana={2}{w}{w}
-text=When Meadowboon leaves the battlefield, put a +1/+1 counter on each creature target player controls. Evoke {3}{W} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
-type=creature
-subtype=Elemental
-power=3
-toughness=3
-[/card]
-[card]
 name=Evocation of Meadows
 auto=@movedTo(this|mygraveyard): Counter(1/1,1) all(creature|mybattlefield)
 auto=@movedTo(this|exile): Counter(1/1,1) all(creature|mybattlefield)
