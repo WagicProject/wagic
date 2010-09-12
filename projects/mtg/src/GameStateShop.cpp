@@ -806,6 +806,7 @@ bool ShopBooster::unitTest(){
     mP->pool = buf;
     mP->assemblePack(d); //Use the primary packfile. assemblePack deletes pool.
     DeckDataWrapper* ddw = NEW DeckDataWrapper(d);
+    bool res = true;
 
     int u = 0, r = 0;
     int card = 0;
@@ -821,15 +822,17 @@ bool ShopBooster::unitTest(){
     if(r != 1 || u != 3 ){
         sprintf(result, "<span class=\"error\">==Unexpected rarity count==</span><br />");
         TestSuite::Log(result);
-        return false;
+        res = false;
     }
     if(ddw->getCount() < 14) {
         sprintf(result, "<span class=\"error\">==Unexpected card count==</span><br />");
         TestSuite::Log(result);
-        return false;
+        res = false;
     }
     sprintf(result, "<span class=\"success\">==Test Succesful !==</span><br />");
     TestSuite::Log(result);
-    return true;
+    SAFE_DELETE(ddw);
+    SAFE_DELETE(d);
+    return res;
 }
  #endif
