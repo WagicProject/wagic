@@ -122,6 +122,20 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
     }
 	  manaCost->addExtraCost(NEW LifeCost(tc));
 	//end life cost
+	//DiscardRandom cost
+	}else if (value[0] == 'd'){
+    //tap
+    OutputDebugString("DiscardRandom\n");
+    TargetChooserFactory tcf;
+    TargetChooser * tc = NULL;
+    size_t target_start = value.find("(");
+    size_t target_end = value.find(")");
+    if (target_start!=string::npos && target_end!=string::npos){
+      string target = value.substr(target_start+1, target_end-1 - target_start);
+      tc = tcf.createTargetChooser(target,c);
+    }
+	  manaCost->addExtraCost(NEW DiscardRandomCost(tc));
+	//DiscardRandom cost
 
     }else if (value[0] == 'c'){
     //Counters

@@ -44,6 +44,7 @@ class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable {
   MTGGameZone * currentZone;
   Pos* view;
   int X;
+  int XX;
   int boughtback;
   int flashedback;
   int paymenttype;

@@ -68,7 +68,19 @@ public:
   virtual int setSource(MTGCardInstance * _source);
   virtual LifeCost * clone() const;
 };
-
+//Discard a random card cost 
+class DiscardRandomCost: public ExtraCost{
+public:
+  MTGCardInstance * target;
+  DiscardRandomCost(TargetChooser *_tc = NULL);
+  virtual int setPayment(MTGCardInstance * card);
+  virtual int isPaymentSet();
+  virtual int canPay();
+  virtual int doPay();
+  virtual void Render();
+  virtual int setSource(MTGCardInstance * _source);
+  virtual DiscardRandomCost * clone() const;
+};
 //tap other cost
 class TapTargetCost: public ExtraCost{
 public:

@@ -35,6 +35,10 @@ public:
   if (spell) return spell->computeX(card);
   return 1; //this should only hapen when the ai calls the ability. This is to give it an idea of the "direction" of X (positive/negative)
  }
+ int computeXX(Spell * spell, MTGCardInstance * card){
+  if (spell) return spell->computeXX(card);
+  return 1; //this should only hapen when the ai calls the ability. This is to give it an idea of the "direction" of X (positive/negative)
+ }
  WParsedInt(int value = 0){
    intValue = value;
  }
@@ -49,6 +53,8 @@ public:
     }
     if (s == "x" || s == "X"){
       intValue = computeX(spell,card);
+    }else if (s == "xx" || s == "XX"){
+      intValue = computeXX(spell,card);
     }else if (s == "manacost"){
       intValue = target->getManaCost()->getConvertedCost();
 	}else if (s == "lifetotal"){
@@ -834,7 +840,6 @@ public:
     name = sname;
     tokenId = 0;
     if(!multiplier) this->multiplier = NEW WParsedInt(1);
-
 //TODO this is a copy/past of other code that's all around the place, everything should be in a dedicated parser class;
 
     for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++){

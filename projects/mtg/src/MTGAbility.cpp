@@ -653,7 +653,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     WParsedInt * multiplier = NULL; 
     size_t star = s.find("*");
     if (star != string::npos) multiplier = NEW WParsedInt(s.substr(star+1),spell,card);
-
     size_t end = s.find(")", found);
     int tokenId = atoi(s.substr(found + 6,end - found - 6).c_str());
     if (tokenId){
@@ -670,11 +669,14 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     previous = end+1;
     end = s.find(",",previous);
     string spt = s.substr(previous,end - previous);
+	int value = 0;
     int power, toughness;
-    parsePowerToughness(spt,&power, &toughness);
+	if(!spt.find("X/X") || !spt.find("x/x")){value = spell->computeX(card);}
+	if(!spt.find("XX/XX") || !spt.find("xx/xx")){value = spell->computeXX(card);}
+	parsePowerToughness(spt,&power, &toughness);
     string sabilities = s.substr(end+1);
 
-    ATokenCreator * tok = NEW ATokenCreator(id,card,NULL,sname,stypes,power,toughness,sabilities,0, multiplier);
+    ATokenCreator * tok = NEW ATokenCreator(id,card,NULL,sname,stypes,power + value,toughness + value,sabilities,0, multiplier);
     tok->oneShot = 1;
     return tok;
   }
@@ -1371,6 +1373,12 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
 //Returns the "X" cost that was paid for a spell
 int AbilityFactory::computeX(Spell * spell, MTGCardInstance * card){
   if (spell) return spell->computeX(card);
+  return 0;
+}
+
+//Returns the "XX" cost that was paid for a spell
+int AbilityFactory::computeXX(Spell * spell, MTGCardInstance * card){
+  if (spell) return spell->computeXX(card);
   return 0;
 }
 

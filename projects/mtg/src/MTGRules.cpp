@@ -107,7 +107,8 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card){
 	  }
   }//end of storm
   if(!card->has(Constants::STORM)){
-	  copy->X = spell->computeX(copy); 
+	  copy->X = spell->computeX(copy);
+	  copy->XX = spell->computeXX(copy);
   }
   }
 
@@ -236,7 +237,8 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card){
 	  }
   }//end of storm
   if(!card->has(Constants::STORM)){
-	  copy->X = spell->computeX(copy); 
+	  copy->X = spell->computeX(copy);
+	  copy->XX = spell->computeXX(copy);
   }
   }
 
@@ -368,6 +370,7 @@ int MTGBuyBackRule::reactToClick(MTGCardInstance * card){
   }//end of storm
   if(!card->has(Constants::STORM)){
 	  copy->X = spell->computeX(copy);
+	  copy->XX = spell->computeXX(copy);
   }
   }
 
@@ -495,6 +498,7 @@ int MTGFlashBackRule::reactToClick(MTGCardInstance * card){
   }//end of storm
   if(!card->has(Constants::STORM)){
 	  copy->X = spell->computeX(copy);
+	  copy->XX = spell->computeXX(copy);
   }
   }
 

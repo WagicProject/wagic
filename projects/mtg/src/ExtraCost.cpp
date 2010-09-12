@@ -77,7 +77,67 @@ void LifeCost::Render(){
   mFont->DrawString(buffer, 20 ,20, JGETEXT_LEFT);
 }
 //endlifecost
+//discard a card at random as a cost
+//DiscardRandom cost
+DiscardRandomCost *  DiscardRandomCost::clone() const{
+  DiscardRandomCost * ec =  NEW DiscardRandomCost(*this);
+  if (tc) ec->tc = tc->clone();
+  return ec;
+}
+DiscardRandomCost::DiscardRandomCost(TargetChooser *_tc):ExtraCost(_tc){
+  if (tc) tc->targetter = NULL; 
+  target = NULL;
+}
 
+int DiscardRandomCost::setSource(MTGCardInstance * card){
+  ExtraCost::setSource(card);
+  if (tc) tc->targetter = NULL;
+  if (!tc) target = card;
+  return 1;
+}
+int DiscardRandomCost::setPayment(MTGCardInstance * card){
+  if (tc) {
+    int result = tc->addTarget(card);
+    if (result) {
+      target = card;
+      return result;
+    }
+  }
+  return 0;
+}
+int DiscardRandomCost::isPaymentSet(){
+  if (target) return 1;
+  return 0;
+}
+
+int DiscardRandomCost::canPay(){
+  MTGGameZone * z = target->controller()->game->hand;
+  int nbcards = z->nb_cards;
+  if(nbcards < 1) return 0;
+  return 1;
+}
+int DiscardRandomCost::doPay(){
+  MTGCardInstance * _target = (MTGCardInstance *) target;
+  if(target){
+	  _target->controller()->game->discardRandom(_target->controller()->game->hand);
+    target = NULL;
+    if (tc) tc->initTargets();
+    return 1;
+  }
+  return 0;
+}
+
+
+void DiscardRandomCost::Render(){
+  //TODO : real stuff
+  WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
+  mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
+  mFont->SetColor(ARGB(255,255,255,255));
+  char buffer[200];
+  sprintf(buffer, "%s", _("Discard Random").c_str());
+  mFont->DrawString(buffer, 20 ,20, JGETEXT_LEFT);
+}
+//discardrandomcost
 //Tap target cost
 TapTargetCost *  TapTargetCost::clone() const{
   TapTargetCost * ec =  NEW TapTargetCost(*this);

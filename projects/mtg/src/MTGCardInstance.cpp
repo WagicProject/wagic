@@ -85,6 +85,7 @@ int MTGCardInstance::init(){
   CardPrimitive::init();
   data = this;
   X = 0;
+  XX = 0;
   return 1;
 }
 
