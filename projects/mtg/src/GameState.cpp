@@ -87,16 +87,8 @@ int GameState::fillDeckMenu(vector<int> * deckIdList, SimpleMenu * _menu, string
         sprintf(deckDesc, "%s",meta->name.c_str());
       }
       deckDesc[16] = 0;
-      //translate decks desc
-      Translator * t = Translator::GetInstance();
-      map<string,string>::iterator it = t->deckValues.find(meta->name);
-      if (it != t->deckValues.end())
-        _menu->Add(nbDecks,deckDesc, it->second);
-      else
-      {
-        menu[deckDesc] = *meta;
-        deckNameVector.push_back( deckDesc );        
-      }
+      menu[deckDesc] = *meta;
+      deckNameVector.push_back( deckDesc );        
     }
   }
   
@@ -104,12 +96,19 @@ int GameState::fillDeckMenu(vector<int> * deckIdList, SimpleMenu * _menu, string
     int deckNumber = 1;
     deckIdList->clear();
     
+    Translator * t = Translator::GetInstance();
+    map<string,string>::iterator it;
     for (list<string>::iterator i = deckNameVector.begin(); i != deckNameVector.end(); i++)
     {
         string deckName = *i;
         DeckMetaData meta = menu[ deckName ];
         string deckDescription = meta.desc;
         deckIdList->push_back( meta.deckid );
+      //translate decks desc
+      it = t->deckValues.find(meta.name);
+      if (it != t->deckValues.end())
+        _menu->Add(deckNumber++, deckName.c_str(), it->second);
+      else
         _menu->Add( deckNumber++ ,deckName.c_str(), deckDescription.c_str());
     }
   return nbDecks;
