@@ -2616,7 +2616,7 @@ public:
    if(_target->controller()->opponent()->damaged() > 0){
 	  _target->counters->addCounter(1,1);}
    }
-   return 1;}
+   return MTGAbility::addToGame();}
     ABloodThirst * clone() const{
     ABloodThirst * a =  NEW ABloodThirst(*this);
     a->isClone = 1;
