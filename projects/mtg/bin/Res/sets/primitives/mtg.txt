@@ -51125,7 +51125,8 @@ type=Land
 [card]
 name=Tendrils of Agony
 abilities=storm
-auto=life:-2 target(player) && life:2 controller
+auto=life:-2 opponent
+auto=life:2 controller
 text=Target player loses 2 life and you gain 2 life. -- Storm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)
 mana={2}{B}{B}
 type=Sorcery
