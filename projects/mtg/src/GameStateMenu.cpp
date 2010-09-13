@@ -639,6 +639,7 @@ WFont * mFont = resources.GetWFont(Constants::MENU_FONT);
   switch (controllerId){
   case 103:
     setLang(controlId);
+    resources.reloadWFonts(); // Fix for choosing Chinese language at first time.
     subMenuController->Close();
     currentState = MENU_STATE_MAJOR_LOADING_CARDS | MENU_STATE_MINOR_SUBMENU_CLOSING;
     break;
