@@ -1951,6 +1951,16 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Arc-Slogger
+auto={R}{z}{z}{z}{z}{z}{z}{z}{z}{z}{z}:damage:2 target(creature,player)
+text={R}, Exile the top ten cards of your library: Arc-Slogger deals 2 damage to target creature or player.
+mana={3}{R}{R}
+type=Creature
+subtype=Beast
+power=4
+toughness=5
+[/card]
+[card]
 name=Arc Lightning
 target=creature,player
 auto=damage:1
@@ -2236,16 +2246,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Ardent Militia
-abilities=vigilance
-text=Vigilance
-mana={4}{W}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=5
-[/card]
-[card]
 name=Arctic Nishoba
 abilities=trample
 auto=@each my upkeep:counter(0/0,1,Age)
@@ -2268,6 +2268,16 @@ mana={3}{G}{G}
 type=Creature
 subtype=Wolf
 power=4
+toughness=5
+[/card]
+[card]
+name=Ardent Militia
+abilities=vigilance
+text=Vigilance
+mana={4}{W}
+type=Creature
+subtype=Human Soldier
+power=2
 toughness=5
 [/card]
 [card]
@@ -4093,11 +4103,10 @@ power=2
 toughness=2
 [/card]
 [card]
-text=Flying -- Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.) -- Whenever a creature you control attacks alone, it gains lifelink until end of turn.
+name=Battlegrace Angel
 abilities=exalted,flying
 auto=@each my combatblockers:aslongas(creature[attacking]|myBattlefield) all(creature[attacking]|myBattlefield) lifelink <2
-name=Battlegrace Angel
-rarity=R
+text=Flying -- Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.) -- Whenever a creature you control attacks alone, it gains lifelink until end of turn.
 mana={3}{W}{W}
 type=Creature
 subtype=Angel
@@ -7073,8 +7082,8 @@ type=Sorcery
 [/card]
 [card]
 name=Call the Skybreaker
-auto=token(Elemental,creature elemental, 5/5,flying, redblue)
-autograveyard={5}{UR}{UR}{S(land|myhand)}:token(Elemental,creature elemental, 5/5,flying, redblue) asSorcery
+auto=token(Elemental,creature elemental,5/5,flying,redblue)
+retrace={5}{UR}{UR}{S(land|myhand)}
 text=Put a 5/5 blue and red Elemental creature token with flying onto the battlefield. -- Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
 mana={5}{UR}{UR}
 type=Sorcery
@@ -7864,8 +7873,8 @@ toughness=2
 [/card]
 [card]
 name=Cenn's Enlistment
-auto=token(Kithkin Soldier,creature kithkin soldier, 1/1, white)*2
-autograveyard={3}{W}{S(land|myhand)}:token(Kithkin Soldier,creature kithkin soldier, 1/1, white)*2 asSorcery
+auto=token(Kithkin Soldier,creature kithkin soldier,1/1,white)*2
+retrace={3}{W}{S(land|myhand)}
 text=Put two 1/1 white Kithkin Soldier creature tokens onto the battlefield. -- Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
 mana={3}{W}
 type=Sorcery
@@ -11859,6 +11868,18 @@ flashback={4}{G}
 text=Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library. -- Flashback {4}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={2}{G}
 type=Sorcery
+[/card]
+[card]
+name=Deep Spawn
+abilities=trample
+auto=upcost[{M}{M}] moveTo(mygraveyard)
+auto={U}:shroud && tap && frozen
+text=Trample -- At the beginning of your upkeep, sacrifice Deep Spawn unless you put the top two cards of your library into your graveyard. -- {U}: Deep Spawn gains shroud until end of turn and doesn't untap during your next untap step. Tap Deep Spawn. (A permanent with shroud can't be the target of spells or abilities.)
+mana={5}{U}{U}{U}
+type=Creature
+subtype=Homarid
+power=6
+toughness=6
 [/card]
 [card]
 name=Deep-Sea Serpent
@@ -17408,6 +17429,15 @@ name=Flame Fusillade
 auto=lord(creature,enchantment,land,artifact|myBattlefield) {T}:damage:1 target(creature,player)
 text=Until end of turn, permanents you control gain "{T}: This permanent deals 1 damage to target creature or player."
 mana={3}{R}
+type=Sorcery
+[/card]
+[card]
+name=Flame Jab
+target=player,creature
+auto=damage:1
+retrace={R}{S(land|myhand)}
+text=Flame Jab deals 1 damage to target creature or player. -- Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
+mana={R}
 type=Sorcery
 [/card]
 [card]
@@ -28413,6 +28443,16 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Leashling
+auto={q(*|myhand)}:moveTo(myhand)
+text=Put a card in your hand on top of your library: Return Leashling to its owner's hand.
+mana={6}
+type=Artifact Creature
+subtype=Hound
+power=3
+toughness=3
+[/card]
+[card]
 name=Leatherback Baloth
 mana={G}{G}{G}
 type=Creature
@@ -31460,7 +31500,7 @@ toughness=1
 [/card]
 [card]
 name=Millikin
-auto={T}:Add:{1} && deplete:1 controller
+auto={M}{T}:Add:{1}
 text={T}, Put the top card of your library into your graveyard: Add {1} to your mana pool.
 mana={2}
 type=Artifact Creature
@@ -32297,7 +32337,7 @@ type=Enchantment
 name=Monstrify
 target=creature
 auto=4/4
-autograveyard={3}{G}{S(land|myhand)}:4/4 target(creature) asSorcery
+retrace={3}{G}{S(land|myhand)}
 text=Target creature gets +4/+4 until end of turn. -- Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
 mana={3}{G}
 type=Sorcery
@@ -35005,7 +35045,7 @@ toughness=1
 name=Oona's Grace
 target=player
 auto=draw:1
-autograveyard={2}{U}{S(land|myhand)}:draw:1 target(player)
+retrace={2}{U}{S(land|myhand)}
 text=Target player draws a card. -- Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
 mana={2}{U}
 type=Instant
@@ -37432,7 +37472,7 @@ toughness=5
 [/card]
 [card]
 name=Platinum Angel
-abilities=fyling,cantlose
+abilities=flying,cantlose
 text=Flying -- You can't lose the game and your opponents can't win the game.
 mana={7}
 type=Artifact Creature
@@ -37678,22 +37718,22 @@ toughness=3
 name=Powder Keg
 auto=@each my upkeep:may counter(0/0,1,Fuse)
 auto=this(counter{0/0.1.Fuse}<1) {T}:destroy all(*[artifact;creature;manacost=0])
-auto=this(counter{0/0.1.Fuse}=1) {T}:destroy all(*[artifact;creature;manacost=1])
-auto=this(counter{0/0.1.Fuse}=2) {T}:destroy all(*[artifact;creature;manacost=2])
-auto=this(counter{0/0.1.Fuse}=3) {T}:destroy all(*[artifact;creature;manacost=3])
-auto=this(counter{0/0.1.Fuse}=4) {T}:destroy all(*[artifact;creature;manacost=4])
-auto=this(counter{0/0.1.Fuse}=5) {T}:destroy all(*[artifact;creature;manacost=5])
-auto=this(counter{0/0.1.Fuse}=6) {T}:destroy all(*[artifact;creature;manacost=6])
-auto=this(counter{0/0.1.Fuse}=7) {T}:destroy all(*[artifact;creature;manacost=7])
-auto=this(counter{0/0.1.Fuse}=8) {T}:destroy all(*[artifact;creature;manacost=8])
-auto=this(counter{0/0.1.Fuse}=9) {T}:destroy all(*[artifact;creature;manacost=9])
-auto=this(counter{0/0.1.Fuse}=10) {T}:destroy all(*[artifact;creature;manacost=10])
-auto=this(counter{0/0.1.Fuse}=11) {T}:destroy all(*[artifact;creature;manacost=11])
-auto=this(counter{0/0.1.Fuse}=12) {T}:destroy all(*[artifact;creature;manacost=12])
-auto=this(counter{0/0.1.Fuse}=13) {T}:destroy all(*[artifact;creature;manacost=13])
-auto=this(counter{0/0.1.Fuse}=14) {T}:destroy all(*[artifact;creature;manacost=14])
-auto=this(counter{0/0.1.Fuse}=15) {T}:destroy all(*[artifact;creature;manacost=15])
-auto=this(counter{0/0.1.Fuse}=16) {T}:destroy all(*[artifact;creature;manacost=16])
+auto=this(counter{0/0.1.Fuse}=) {T}:destroy all(*[artifact;creature;manacost=1])
+auto=this(counter{0/0.2.Fuse}=) {T}:destroy all(*[artifact;creature;manacost=2])
+auto=this(counter{0/0.3.Fuse}=) {T}:destroy all(*[artifact;creature;manacost=3])
+auto=this(counter{0/0.4.Fuse}=) {T}:destroy all(*[artifact;creature;manacost=4])
+auto=this(counter{0/0.5.Fuse}=) {T}:destroy all(*[artifact;creature;manacost=5])
+auto=this(counter{0/0.6.Fuse}=) {T}:destroy all(*[artifact;creature;manacost=6])
+auto=this(counter{0/0.7.Fuse}=) {T}:destroy all(*[artifact;creature;manacost=7])
+auto=this(counter{0/0.8.Fuse}=) {T}:destroy all(*[artifact;creature;manacost=8])
+auto=this(counter{0/0.9.Fuse}=) {T}:destroy all(*[artifact;creature;manacost=9])
+auto=this(counter{0/0.10.Fuse}=) {T}:destroy all(*[artifact;creature;manacost=10])
+auto=this(counter{0/0.11.Fuse}=) {T}:destroy all(*[artifact;creature;manacost=11])
+auto=this(counter{0/0.12.Fuse}=) {T}:destroy all(*[artifact;creature;manacost=12])
+auto=this(counter{0/0.13.Fuse}=) {T}:destroy all(*[artifact;creature;manacost=13])
+auto=this(counter{0/0.14.Fuse}=) {T}:destroy all(*[artifact;creature;manacost=14])
+auto=this(counter{0/0.15.Fuse}=) {T}:destroy all(*[artifact;creature;manacost=15])
+auto=this(counter{0/0.16.Fuse}=) {T}:destroy all(*[artifact;creature;manacost=16])
 text=At the beginning of your upkeep, you may put a fuse counter on Powder Keg. -- {T}, Sacrifice Powder Keg: Destroy each artifact and creature with converted mana cost equal to the number of fuse counters on Powder Keg.
 mana={2}
 type=Artifact
@@ -41501,6 +41541,16 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Royal Herbalist
+auto={2}{Z}:life:1
+text={2}, Exile the top card of your library: You gain 1 life.
+mana={W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
+[/card]
+[card]
 name=Royal Trooper
 auto=lord(royal trooper[blocking]) 2/2
 auto=lord(other royal trooper[blocking]) -2/-2
@@ -42317,7 +42367,7 @@ type=Artifact
 [card]
 name=Savage Conception
 auto=token(Beast,creature beast, 3/3,green)
-autograveyard={3}{G}{G}{S(land|myhand)}:token(Beast,creature beast, 3/3,green) asSorcery
+retrace={3}{G}{G}{S(land|myhand)}
 text=Put a 3/3 green Beast creature token onto the battlefield. -- Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
 mana={3}{G}{G}
 type=Sorcery
@@ -43635,7 +43685,7 @@ subtype=Aura
 [/card]
 [card]
 name=Serpent Warrior
-auto=life:-controller
+auto=life:-3 controller
 text=When Serpent Warrior enters the battlefield, you lose 3 life.
 mana={2}{B}
 type=Creature
@@ -44569,7 +44619,8 @@ type=Instant
 [/card]
 [card]
 name=Shrapnel Blast
-auto=damage:5 target(creature,player)
+target=creature,player
+auto=damage:5
 text=As an additional cost to cast Shrapnel Blast, sacrifice an artifact. -- Shrapnel Blast deals 5 damage to target creature or player.
 mana={1}{R}{s;notatarget(artifact|mybattlefield)}
 type=Instant
@@ -50306,8 +50357,9 @@ toughness=4
 [card]
 name=Syphon Life
 target=player
-auto=life:-2 && life:2 controller
-autograveyard={1}{B}{B}{S(land|myhand)}:life:-2 && life:2 controller asSorcery
+auto=life:-2
+auto=life:2 controller
+retrace={1}{B}{B}{S(land|myhand)}
 text=Target player loses 2 life and you gain 2 life. -- Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
 mana={1}{B}{B}
 type=Sorcery
@@ -51442,7 +51494,7 @@ name=That Which Was Taken
 auto={4}{T}:counter(0/0,1,Divinity) target(*)
 auto=lord(*[counter{0/0.1.Divinity}]) indestructible
 text={4}, {T}: Put a divinity counter on target permanent other than That Which Was Taken. -- Each permanent with a divinity counter on it is indestructible.
-mana={4}
+mana={5}
 type=Legendary Artifact
 [/card]
 [card]
@@ -57596,6 +57648,13 @@ power=1
 toughness=3
 [/card]
 [card]
+name=Whirling Catapult
+auto={2}{Z}{Z}:damage:1 all(creature[flying]) && damage:1 all(player)
+text={2}, Exile the top two cards of your library: Whirling Catapult deals 1 damage to each creature with flying and each player.
+mana={4}
+type=Artifact
+[/card]
+[card]
 name=Whirlwind
 auto=destroy all(creature[flying])
 text=Destroy all creatures with flying.
@@ -58605,8 +58664,8 @@ subtype=Equipment
 [/card]
 [card]
 name=Worm Harvest
-auto=foreach(land|mygraveyard) token(Worm,creature worm, 1/1, black,green)
-autograveyard={2}{BG}{BG}{BG}{S(land|myhand)}:foreach(land|mygraveyard) token(Worm,creature worm, 1/1, black,green) asSorcery
+auto=foreach(land|mygraveyard) token(Worm,creature worm,1/1,blackgreen)
+retrace={2}{BG}{BG}{BG}{S(land|myhand)}
 text=Put a 1/1 black and green Worm creature token onto the battlefield for each land card in your graveyard. -- Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
 mana={2}{BG}{BG}{BG}
 type=Sorcery

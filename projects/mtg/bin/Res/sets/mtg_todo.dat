@@ -990,15 +990,6 @@ mana={3}{R}{R}
 type=Sorcery
 [/card]
 [card]
-name=Arc-Slogger
-text={R}, Exile the top ten cards of your library: Arc-Slogger deals 2 damage to target creature or player.
-mana={3}{R}{R}
-type=Creature
-subtype=Beast
-power=4
-toughness=5
-[/card]
-[card]
 name=Arcane Denial
 target=*|stack
 auto=fizzle
@@ -1037,15 +1028,6 @@ text=Modular - Sunburst (This enters the battlefield with a +1/+1 counter on it 
 mana={6}
 type=Artifact Creature
 subtype=Golem
-power=0
-toughness=0
-[/card]
-[card]
-name=Arcbound Worker
-text=Modular 1 (This enters the battlefield with a +1/+1 counter on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
-mana={1}
-type=Artifact Creature
-subtype=Construct
 power=0
 toughness=0
 [/card]
@@ -1266,8 +1248,6 @@ toughness=2
 [/card]
 [card]
 name=Ashenmoor Liege
-auto=lord(creature[black]|myinplay) 1/1 other
-auto=lord(creature[red]|myinplay) 1/1 other
 text=Other black creatures you control get +1/+1. -- Other red creatures you control get +1/+1. -- Whenever Ashenmoor Liege becomes the target of a spell or ability an opponent controls, that player loses 4 life.
 mana={1}{BR}{BR}{BR}
 type=Creature
@@ -2190,9 +2170,6 @@ toughness=3
 [/card]
 [card]
 name=Battle Cry
-auto=untap all(creature[white]|myinplay)
-auto=lord(creature[blocking])0/1
-#Tested. Does not work because when you play it in yout main phase the engine won't remember what the card should do in the blockers step. (0.10.1)
 text=Untap all white creatures you control. -- Whenever a creature blocks this turn, it gets +0/+1 until end of turn.
 mana={2}{W}
 type=Instant
@@ -7068,15 +7045,6 @@ mana={6}{U}{U}
 type=Enchantment
 [/card]
 [card]
-name=Deep Spawn
-text=Trample -- At the beginning of your upkeep, sacrifice Deep Spawn unless you put the top two cards of your library into your graveyard. -- {U}: Deep Spawn gains shroud until end of turn and doesn't untap during your next untap step. Tap Deep Spawn. (A permanent with shroud can't be the target of spells or abilities.)
-mana={5}{U}{U}{U}
-type=Creature
-subtype=Homarid
-power=6
-toughness=6
-[/card]
-[card]
 name=Deep Water
 text={U}: Until end of turn, if you tap a land you control for mana, it produces {U} instead of any other type.
 mana={U}{U}
@@ -10751,16 +10719,6 @@ type=Creature
 subtype=Human Soldier
 power=2
 toughness=2
-[/card]
-[card]
-name=Flame Jab
-target=player,creature
-auto=damage:1
-autograveyard={R}{S(land|myhand)}:damage:1 target(creature,player) asSorcery
-#this ONLY works on target player, also, when you play it from the graveyard, you pay the mana cost, select target player to deal damage, choose a land to sacrifice, and choose your target player to deal damage AGAIN?! althought the damage is only assign once.
-text=Flame Jab deals 1 damage to target creature or player. -- Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
-mana={R}
-type=Sorcery
 [/card]
 [card]
 name=Flame Wave
@@ -17778,15 +17736,6 @@ name=Leap of Flame
 text=Replicate {U}{R} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.) -- Target creature gets +1/+0 and gains flying and first strike until end of turn.
 mana={U}{R}
 type=Instant
-[/card]
-[card]
-name=Leashling
-text=Put a card in your hand on top of your library: Return Leashling to its owner's hand.
-mana={6}
-type=Artifact Creature
-subtype=Hound
-power=3
-toughness=3
 [/card]
 [card]
 name=Leave No Trace
@@ -27240,15 +27189,6 @@ mana={2}{G}{G}
 type=Enchantment
 [/card]
 [card]
-name=Royal Herbalist
-text={2}, Exile the top card of your library: You gain 1 life.
-mana={W}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=1
-[/card]
-[card]
 name=Rubinia Soulsinger
 text=You may choose not to untap Rubinia Soulsinger during your untap step. -- {T}: Gain control of target creature for as long as you control Rubinia and Rubinia remains tapped.
 mana={2}{G}{W}{U}
@@ -36587,12 +36527,6 @@ type=Creature
 subtype=Bird
 power=1
 toughness=1
-[/card]
-[card]
-name=Whirling Catapult
-text={2}, Exile the top two cards of your library: Whirling Catapult deals 1 damage to each creature with flying and each player.
-mana={4}
-type=Artifact
 [/card]
 [card]
 name=Whirling Dervish
