@@ -61,6 +61,17 @@ class MTGFlashBackRule:public MTGAbility{
   virtual MTGFlashBackRule * clone() const;
 };
 
+class MTGRetraceRule:public MTGAbility{
+ public:
+  int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
+  int reactToClick(MTGCardInstance * card);
+  int testDestroy();
+  virtual ostream& toString(ostream& out) const;
+  MTGRetraceRule(int _id);
+  const char * getMenuText(){return "Retrace";}
+  virtual MTGRetraceRule * clone() const;
+};
+
 class MTGAttackRule:public MTGAbility, public Limitor{
  public:
   virtual bool select(Target*);

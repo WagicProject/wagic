@@ -138,6 +138,200 @@ void DiscardRandomCost::Render(){
   mFont->DrawString(buffer, 20 ,20, JGETEXT_LEFT);
 }
 //discardrandomcost
+
+//put a card ontop of your library cost
+
+//ToLibrarycost
+ToLibraryCost *  ToLibraryCost::clone() const{
+  ToLibraryCost * ec =  NEW ToLibraryCost(*this);
+  if (tc) ec->tc = tc->clone();
+  return ec;
+}
+
+ToLibraryCost::ToLibraryCost(TargetChooser *_tc):ExtraCost(_tc){
+  if (tc) tc->targetter = NULL; //tapping targets is not targetting, protections do not apply
+  target = NULL;
+}
+
+int ToLibraryCost::setSource(MTGCardInstance * card){
+  ExtraCost::setSource(card);
+  if (tc) tc->targetter = NULL; //Tapping targets is not targetting, protections do not apply
+  if (!tc) target = card;
+  return 1;
+}
+
+int ToLibraryCost::setPayment(MTGCardInstance * card){
+  if (tc) {
+    int result = tc->addTarget(card);
+    if (result) {
+      target = card;
+      return result;
+    }
+  }
+  return 0;
+}
+
+int ToLibraryCost::isPaymentSet(){
+  if (target) return 1;
+  return 0;
+}
+
+int ToLibraryCost::canPay(){
+  //tap target does not have any additional restrictions.
+  return 1;
+}
+
+int ToLibraryCost::doPay(){
+  MTGCardInstance * _target = (MTGCardInstance *) target;
+  if(target){
+      _target->controller()->game->putInLibrary(target);
+    target = NULL;
+    if (tc) tc->initTargets();
+    return 1;
+  }
+  return 0;
+}
+void ToLibraryCost::Render(){
+  //TODO : real stuff
+  WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
+  mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
+  mFont->SetColor(ARGB(255,255,255,255));
+  char buffer[200];
+  sprintf(buffer, "%s", _("Put a card on top of Library").c_str());
+  mFont->DrawString(buffer, 20 ,20, JGETEXT_LEFT);
+}
+//ToLibrarycost
+
+//put a card from top of library into graveyard
+
+//Mill yourself as a cost
+MillCost *  MillCost::clone() const{
+  MillCost * ec =  NEW MillCost(*this);
+  if (tc) ec->tc = tc->clone();
+  return ec;
+}
+
+MillCost::MillCost(TargetChooser *_tc):ExtraCost(_tc){
+  if (tc) tc->targetter = NULL; //tapping targets is not targetting, protections do not apply
+  target = NULL;
+}
+
+int MillCost::setSource(MTGCardInstance * card){
+  ExtraCost::setSource(card);
+  if (tc) tc->targetter = NULL; //Tapping targets is not targetting, protections do not apply
+  if (!tc) target = card;
+  return 1;
+}
+
+int MillCost::setPayment(MTGCardInstance * card){
+  if (tc) {
+    int result = tc->addTarget(card);
+    if (result) {
+      target = card;
+      return result;
+    }
+  }
+  return 0;
+}
+
+int MillCost::isPaymentSet(){
+  if (target) return 1;
+  return 0;
+}
+
+int MillCost::canPay(){
+  MTGGameZone * z = target->controller()->game->library;
+  int nbcards = z->nb_cards;
+  if(nbcards < 1) return 0;
+  return 1;
+}
+
+int MillCost::doPay(){
+  MTGCardInstance * _target = (MTGCardInstance *) target;
+  if(target){
+	    _target->controller()->game->putInZone(_target->controller()->game->library->cards[_target->controller()->game->library->nb_cards-1],_target->controller()->game->library, _target->controller()->game->graveyard);
+    target = NULL;
+    if (tc) tc->initTargets();
+    return 1;
+  }
+  return 0;
+}
+void MillCost::Render(){
+  //TODO : real stuff
+  WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
+  mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
+  mFont->SetColor(ARGB(255,255,255,255));
+  char buffer[200];
+  sprintf(buffer, "%s", _("Deplete").c_str());
+  mFont->DrawString(buffer, 20 ,20, JGETEXT_LEFT);
+}
+//millyourselfcost
+
+//put a card from top of library into exile
+
+//Mill ot exile yourself as a cost
+MillExileCost *  MillExileCost::clone() const{
+  MillExileCost * ec =  NEW MillExileCost(*this);
+  if (tc) ec->tc = tc->clone();
+  return ec;
+}
+
+MillExileCost::MillExileCost(TargetChooser *_tc):ExtraCost(_tc){
+  if (tc) tc->targetter = NULL; //tapping targets is not targetting, protections do not apply
+  target = NULL;
+}
+
+int MillExileCost::setSource(MTGCardInstance * card){
+  ExtraCost::setSource(card);
+  if (tc) tc->targetter = NULL; //Tapping targets is not targetting, protections do not apply
+  if (!tc) target = card;
+  return 1;
+}
+
+int MillExileCost::setPayment(MTGCardInstance * card){
+  if (tc) {
+    int result = tc->addTarget(card);
+    if (result) {
+      target = card;
+      return result;
+    }
+  }
+  return 0;
+}
+
+int MillExileCost::isPaymentSet(){
+  if (target) return 1;
+  return 0;
+}
+
+int MillExileCost::canPay(){
+ MTGGameZone * z = target->controller()->game->library;
+  int nbcards = z->nb_cards;
+  if(nbcards < 1) return 0;
+  return 1;
+}
+
+int MillExileCost::doPay(){
+  MTGCardInstance * _target = (MTGCardInstance *) target;
+  if(target){
+	    _target->controller()->game->putInZone(_target->controller()->game->library->cards[_target->controller()->game->library->nb_cards-1],_target->controller()->game->library, _target->controller()->game->exile);
+    target = NULL;
+    if (tc) tc->initTargets();
+    return 1;
+  }
+  return 0;
+}
+void MillExileCost::Render(){
+  //TODO : real stuff
+  WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
+  mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
+  mFont->SetColor(ARGB(255,255,255,255));
+  char buffer[200];
+  sprintf(buffer, "%s", _("Deplete To Exile").c_str());
+  mFont->DrawString(buffer, 20 ,20, JGETEXT_LEFT);
+}
+//milltoExileyourselfcost
+
 //Tap target cost
 TapTargetCost *  TapTargetCost::clone() const{
   TapTargetCost * ec =  NEW TapTargetCost(*this);

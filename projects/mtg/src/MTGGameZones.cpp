@@ -142,11 +142,25 @@ MTGCardInstance * MTGPlayerCards::putInExile(MTGCardInstance * card){
     copy = putInZone(card,inPlay, exile);
   }else if (stack->hasCard(card)){
     copy = putInZone(card,stack, exile);
-  }
-  if(graveyard->hasCard(card)){
+  }else if(graveyard->hasCard(card)){
 	  copy = putInZone(card,graveyard, exile);
   }else{
     copy = putInZone(card,hand, exile);
+  }
+   return copy;
+}
+MTGCardInstance * MTGPlayerCards::putInLibrary(MTGCardInstance * card){
+  MTGCardInstance * copy = NULL;
+  MTGLibrary * library = card->owner->game->library;
+  MTGHand * hand = card->owner->game->hand;
+   if (inPlay->hasCard(card)){
+       copy = putInZone(card,inPlay, library);
+  }else if (stack->hasCard(card)){
+    copy = putInZone(card,stack, library);
+  }else if(graveyard->hasCard(card)){
+	  copy = putInZone(card,graveyard, library);
+  }else{
+    copy = putInZone(card,hand, library);
   }
    return copy;
 }
@@ -158,8 +172,7 @@ MTGCardInstance * MTGPlayerCards::putInHand(MTGCardInstance * card){
     copy = putInZone(card,inPlay, hand);
   }else if (stack->hasCard(card)){
     copy = putInZone(card,stack, hand);
-  }
-  if(graveyard->hasCard(card)){
+  }else if(graveyard->hasCard(card)){
 	  copy = putInZone(card,graveyard, hand);
   }else{
     copy = putInZone(card,hand, hand);

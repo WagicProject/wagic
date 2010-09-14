@@ -49,6 +49,7 @@ class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable {
   int flashedback;
   int paymenttype;
   int frozen;
+  int reduxamount;
   int regenerateTokens;
   int isToken;
   int stillInUse();

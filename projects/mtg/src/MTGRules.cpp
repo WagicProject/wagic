@@ -73,7 +73,6 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card){
   ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
   int payResult = player->getManaPool()->pay(card->getManaCost());
   card->getManaCost()->doPayExtra();
-   
   ManaCost * spellCost = previousManaPool->Diff(player->getManaPool());
 
   delete previousManaPool;
@@ -91,10 +90,12 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card){
       spell = game->mLayers->stackLayer()->addSpell(copy,game->targetChooser, spellCost,payResult,0);
       game->targetChooser = NULL;
 	  player->castedspellsthisturn += 1;
+	  player->opponent()->castedspellsthisturn += 1;
 	  if(player->onlyonecast > 0 || player->onlyoneinstant > 0){player->castcount += 1;}
     }else{
       spell = game->mLayers->stackLayer()->addSpell(copy,NULL, spellCost, payResult,0);
 	  player->castedspellsthisturn += 1;
+	  player->opponent()->castedspellsthisturn += 1;
 	  if(player->onlyonecast > 0 || player->onlyoneinstant > 0){player->castcount += 1;}
 	}
 
@@ -222,10 +223,12 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card){
       spell = game->mLayers->stackLayer()->addSpell(copy,game->targetChooser, spellCost,payResult,0);
       game->targetChooser = NULL;
 	  player->castedspellsthisturn += 1;
+  	  player->opponent()->castedspellsthisturn += 1;
 	  if(player->onlyonecast > 0 || player->onlyoneinstant > 0){player->castcount += 1;}
     }else{
       spell = game->mLayers->stackLayer()->addSpell(copy,NULL, spellCost, payResult,0);
 	  player->castedspellsthisturn += 1;
+  	  player->opponent()->castedspellsthisturn += 1;
 	  if(player->onlyonecast > 0 || player->onlyoneinstant > 0){player->castcount += 1;
 	  }
 	}
@@ -353,10 +356,12 @@ int MTGBuyBackRule::reactToClick(MTGCardInstance * card){
       spell = game->mLayers->stackLayer()->addSpell(copy,game->targetChooser, spellCost,payResult,0);
       game->targetChooser = NULL;
 	  player->castedspellsthisturn += 1;
+	  player->opponent()->castedspellsthisturn += 1;
 	  if(player->onlyonecast > 0 || player->onlyoneinstant > 0){player->castcount += 1;}
     }else{
       spell = game->mLayers->stackLayer()->addSpell(copy,NULL, spellCost, payResult,0);
 	  player->castedspellsthisturn += 1;
+  	  player->opponent()->castedspellsthisturn += 1;
 	  if(player->onlyonecast > 0 || player->onlyoneinstant > 0){player->castcount += 1;
 
 	  }
@@ -481,10 +486,12 @@ int MTGFlashBackRule::reactToClick(MTGCardInstance * card){
       spell = game->mLayers->stackLayer()->addSpell(copy,game->targetChooser, spellCost,payResult,0);
       game->targetChooser = NULL;
 	  player->castedspellsthisturn += 1;
+  	  player->opponent()->castedspellsthisturn += 1;
 	  if(player->onlyonecast > 0 || player->onlyoneinstant > 0){player->castcount += 1;}
     }else{
       spell = game->mLayers->stackLayer()->addSpell(copy,NULL, spellCost, payResult,0);
 	  player->castedspellsthisturn += 1;
+  	  player->opponent()->castedspellsthisturn += 1;
 	  if(player->onlyonecast > 0 || player->onlyoneinstant > 0){player->castcount += 1;
 
 	  }
@@ -527,7 +534,132 @@ ostream& MTGFlashBackRule::toString(ostream& out) const
   //-------------------------------------------------------------------------
   //-------------------------------------------------------------------------
 
+ //retrace
+MTGRetraceRule::MTGRetraceRule(int _id):MTGAbility(_id, NULL){
+  aType=MTGAbility::RETRACE_COST;
+}
+int MTGRetraceRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana){
+int cardsingraveyard = game->players[0]->game->graveyard->nb_cards;
+  Player * player = game->currentlyActing();
+  Player * currentPlayer = game->currentPlayer;
+  if (!player->game->graveyard->hasCard(card)) return 0;
+  if (!card->getManaCost()->Retrace) return 0;
+  if ((card->hasType("instant")) || card->has(Constants::FLASH) || (player == currentPlayer && !game->isInterrupting && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN))){
+    ManaCost * playerMana = player->getManaPool();
+    ManaCost * cost = card->getManaCost();
+    ManaCost * Retrace = card->getManaCost()->Retrace;
 
+#ifdef WIN32
+  cost->Dump();
+#endif
+  if(player->castrestrictedspell > 0 && !card->hasType("land")){ return 0;}
+  if(player->onlyonecast > 0 && player->castcount >= 1){return 0;}
+  if(player->nospellinstant > 0){return 0;}
+  if(player->onlyoneinstant > 0){ if(player->castcount >= 1){return 0;}}
+  if(player->nocreatureinstant > 0 && card->hasType("creature")){return 0;}
+  if(player->castrestrictedcreature > 0 && card->hasType("creature")){return 0;}
+  //cost of card.
+  if(Retrace && playerMana->canAfford(Retrace)){
+      return 1;
+	  }
+  }
+  return 0;//dont play if you cant afford it.
+}
+int MTGRetraceRule::reactToClick(MTGCardInstance * card){
+  if (!isReactingToClick(card)) return 0;
+  Player * player = game->currentlyActing();
+  ManaCost * cost = card->getManaCost();
+  ManaCost * Retrace = card->getManaCost()->Retrace;
+  ManaCost * playerMana = player->getManaPool();
+//this handles extra cost payments at the moment a card is played.
+  if(playerMana->canAfford(Retrace)){
+	if (cost->Retrace->isExtraPaymentSet()){
+		card->paymenttype = 4;
+    if (!game->targetListIsSet(card)){
+      return 0;
+	}
+  }else{
+	  cost->Retrace->setExtraCostsAction(this, card);
+	  game->waitForExtraPayment = cost->Retrace->extraCosts;
+	  card->paymenttype = 4;
+    return 0;
+	  }
+  }
+//------------------------------------------------------------------------
+  ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
+  int payResult = player->getManaPool()->pay(card->getManaCost()->Retrace);
+  card->getManaCost()->doPayExtra();
+  payResult = ManaCost::MANA_PAID_WITH_RETRACE;
+//if Retrace has a extra payment thats set, this code pays it.the if statement is 100% needed as it would cause a crash on cards that dont have the Retrace cost.
+  if(Retrace){
+	  card->getManaCost()->Retrace->doPayExtra();
+  }
+//---------------------------------------------------------------------------
+  ManaCost * spellCost = previousManaPool->Diff(player->getManaPool());
+  delete previousManaPool;
+  if (card->hasType("land")){
+    MTGCardInstance * copy = player->game->putInZone(card,  player->game->graveyard, player->game->temp);
+    Spell * spell = NEW Spell(copy);
+    spell->resolve();
+    delete spellCost;
+    delete spell;
+    player->canPutLandsIntoPlay--;
+	payResult = ManaCost::MANA_PAID_WITH_RETRACE;
+	spell = game->mLayers->stackLayer()->addSpell(copy,NULL, spellCost, payResult,1);
+  }else{
+    Spell * spell = NULL;
+    MTGCardInstance * copy = player->game->putInZone(card,  player->game->graveyard, player->game->stack);
+    if (game->targetChooser){
+      spell = game->mLayers->stackLayer()->addSpell(copy,game->targetChooser, spellCost,payResult,0);
+      game->targetChooser = NULL;
+	  player->castedspellsthisturn += 1;
+  	  player->opponent()->castedspellsthisturn += 1;
+	  if(player->onlyonecast > 0 || player->onlyoneinstant > 0){player->castcount += 1;}
+    }else{
+      spell = game->mLayers->stackLayer()->addSpell(copy,NULL, spellCost, payResult,0);
+	  player->castedspellsthisturn += 1;
+  	  player->opponent()->castedspellsthisturn += 1;
+	  if(player->onlyonecast > 0 || player->onlyoneinstant > 0){player->castcount += 1;
+
+	  }
+	}
+  if(card->has(Constants::STORM)){
+	  int storm = player->castedspellsthisturn;
+      ManaCost * spellCost = player->getManaPool();
+	  for(int i = storm; i > 1; i--){
+      spell = game->mLayers->stackLayer()->addSpell(copy,NULL, spellCost, payResult,1);
+	  }
+  }//end of storm
+  if(!card->has(Constants::STORM)){
+	  copy->X = spell->computeX(copy);
+	  copy->XX = spell->computeXX(copy);
+  }
+  }
+
+  return 1;
+}
+
+//The Put into play rule is never destroyed
+int MTGRetraceRule::testDestroy(){
+  return 0;
+}
+
+ostream& MTGRetraceRule::toString(ostream& out) const
+{
+  out << "MTGRetraceRule ::: (";
+  return MTGAbility::toString(out) << ")";
+}
+ MTGRetraceRule * MTGRetraceRule::clone() const{
+    MTGRetraceRule * a =  NEW MTGRetraceRule(*this);
+    a->isClone = 1;
+    return a;
+  }
+
+
+ //-------------------------------------------------------------------------
+  //-------------------------------------------------------------------------
+  //-------------------------------------------------------------------------
+  //-----------------------------
 bool MTGAttackRule::select(Target* t)
 {
   if (CardView* c = dynamic_cast<CardView*>(t)) {
@@ -1334,8 +1466,11 @@ HUDDisplay::~HUDDisplay(){
 		int nbcards = z->nb_cards;
         for (int j = 0; j < nbcards; ++j){
           MTGCardInstance * c = z->cards[j];
+		  int check = e->card->getManaCost()->getConvertedCost();
 		  if (c->hasSubtype("artifact")){
+			  if( check > 0){
 			  e->card->getManaCost()->remove(0,1);//one less colorless to cast
+		  }
 		  }
 		}//--end of redux bracket
 		  }
@@ -1503,7 +1638,9 @@ HUDDisplay::~HUDDisplay(){
         for (int j = 0; j < nbcards; ++j){
           MTGCardInstance * c = z->cards[j];
 		  if (c->has(Constants::AFFINITYARTIFACTS)){
+			  if(c->getManaCost()->getConvertedCost() > 0){
 			  c->getManaCost()->remove(0,1);//one less colorless to cast
+			  }else{c->reduxamount += 1;}
 		  }
 		}//--end of redux bracket
 		  }
@@ -1518,7 +1655,10 @@ HUDDisplay::~HUDDisplay(){
         for (int j = 0; j < nbcards; ++j){
           MTGCardInstance * c = z->cards[j];
 		  if (c->has(Constants::AFFINITYARTIFACTS)){
+			  if(c->reduxamount > 0){
+				  c->reduxamount -= 1;}else{
 			  c->getManaCost()->add(0,1);
+				  }
 		  }
 		}  
 		//--
@@ -1545,7 +1685,9 @@ HUDDisplay::~HUDDisplay(){
         for (int j = 0; j < nbcards; ++j){
           MTGCardInstance * c = z->cards[j];
 		  if (c->has(Constants::AFFINITYSWAMP)){
+			  if(c->getManaCost()->getConvertedCost() > 0){
 			  c->getManaCost()->remove(0,1);//one less colorless to cast
+			  }else{c->reduxamount += 1;}
 		  }
 		}//--end of redux bracket
 		  }
@@ -1560,7 +1702,10 @@ HUDDisplay::~HUDDisplay(){
         for (int j = 0; j < nbcards; ++j){
           MTGCardInstance * c = z->cards[j];
 		  if (c->has(Constants::AFFINITYSWAMP)){
+			  if(c->reduxamount > 0){ c->reduxamount -+ 1;}
+			  else{
 			  c->getManaCost()->add(0,1);
+			  }
 		  }
 		}  
 		//--
@@ -1586,7 +1731,9 @@ HUDDisplay::~HUDDisplay(){
         for (int j = 0; j < nbcards; ++j){
           MTGCardInstance * c = z->cards[j];
 		  if (c->has(Constants::AFFINITYMOUNTAIN)){
+			  if(c->getManaCost()->getConvertedCost() > 0){
 			  c->getManaCost()->remove(0,1);//one less colorless to cast
+			  }else{c->reduxamount += 1;}
 		  }
 		}//--end of redux bracket
 		  }
@@ -1601,7 +1748,10 @@ HUDDisplay::~HUDDisplay(){
         for (int j = 0; j < nbcards; ++j){
           MTGCardInstance * c = z->cards[j];
 		  if (c->has(Constants::AFFINITYMOUNTAIN)){
+			  if(c->reduxamount > 0){c->reduxamount -= 1;}
+			  else{
 			  c->getManaCost()->add(0,1);
+			  }
 		  }
 		}  
 		//--
@@ -1627,7 +1777,9 @@ HUDDisplay::~HUDDisplay(){
         for (int j = 0; j < nbcards; ++j){
           MTGCardInstance * c = z->cards[j];
 		  if (c->has(Constants::AFFINITYPLAINS)){
+			 if(c->getManaCost()->getConvertedCost() > 0){
 			  c->getManaCost()->remove(0,1);//one less colorless to cast
+			 }else{c->reduxamount += 1;}
 		  }
 		}//--end of redux bracket
 		  }
@@ -1642,7 +1794,10 @@ HUDDisplay::~HUDDisplay(){
         for (int j = 0; j < nbcards; ++j){
           MTGCardInstance * c = z->cards[j];
 		  if (c->has(Constants::AFFINITYPLAINS)){
+			  if(c->reduxamount > 0){c->reduxamount -= 1;}
+			  else{
 			  c->getManaCost()->add(0,1);
+			  }
 		  }
 		}  
 		//--
@@ -1669,7 +1824,9 @@ HUDDisplay::~HUDDisplay(){
         for (int j = 0; j < nbcards; ++j){
           MTGCardInstance * c = z->cards[j];
 		  if (c->has(Constants::AFFINITYISLAND)){
+			  if(c->getManaCost()->getConvertedCost() > 0){
 			  c->getManaCost()->remove(0,1);//one less colorless to cast
+			  }else{c->reduxamount += 1;}
 		  }
 		}//--end of redux bracket
 		  }
@@ -1684,7 +1841,10 @@ HUDDisplay::~HUDDisplay(){
         for (int j = 0; j < nbcards; ++j){
           MTGCardInstance * c = z->cards[j];
 		  if (c->has(Constants::AFFINITYISLAND)){
+			  if(c->reduxamount > 0){c->reduxamount  -= 1;}
+			  else{
 			  c->getManaCost()->add(0,1);
+			  }
 		  }
 		}  
 		//--
@@ -1711,7 +1871,9 @@ HUDDisplay::~HUDDisplay(){
         for (int j = 0; j < nbcards; ++j){
           MTGCardInstance * c = z->cards[j];
 		  if (c->has(Constants::AFFINITYFOREST)){
+			  if(c->getManaCost()->getConvertedCost() > 0){
 			  c->getManaCost()->remove(0,1);//one less colorless to cast
+			  }else{c->reduxamount += 1;}
 		  }
 		}//--end of redux bracket
 		  }
@@ -1726,7 +1888,10 @@ HUDDisplay::~HUDDisplay(){
         for (int j = 0; j < nbcards; ++j){
           MTGCardInstance * c = z->cards[j];
 		  if (c->has(Constants::AFFINITYFOREST)){
+			  if(c->reduxamount > 0){c->reduxamount -= 1;}
+			  else{
 			  c->getManaCost()->add(0,1);
+			  }
 		  }
 		}  
 		//--
@@ -1753,7 +1918,9 @@ HUDDisplay::~HUDDisplay(){
         for (int j = 0; j < nbcards; ++j){
           MTGCardInstance * c = z->cards[j];
 		  if (c->has(Constants::AFFINITYGREENCREATURES)){
+			  if(c->getManaCost()->getConvertedCost() > 0){
 			  c->getManaCost()->remove(1,1);//one less colorless to cast
+			  }else{c->reduxamount += 1;}
 		  }
 		}//--end of redux bracket
 		  }
@@ -1768,7 +1935,10 @@ HUDDisplay::~HUDDisplay(){
         for (int j = 0; j < nbcards; ++j){
           MTGCardInstance * c = z->cards[j];
 		  if (c->has(Constants::AFFINITYGREENCREATURES)){
-			  c->getManaCost()->add(1,1);
+			  if(c->reduxamount > 0){c->reduxamount -= 1;}
+			  else{
+				  c->getManaCost()->add(1,1);
+			  }
 		  }
 		}  
 		//--

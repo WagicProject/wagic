@@ -25,7 +25,8 @@ class ManaCost{
      MANA_PAID_WITH_KICKER = 2,
 	 MANA_PAID_WITH_ALTERNATIVE = 3,
 	 MANA_PAID_WITH_BUYBACK = 4,
-	 MANA_PAID_WITH_FLASHBACK = 5
+	 MANA_PAID_WITH_FLASHBACK = 5,
+	 MANA_PAID_WITH_RETRACE = 6
 
    };
   ExtraCosts * extraCosts;
@@ -33,6 +34,7 @@ class ManaCost{
   ManaCost * alternative;
   ManaCost * BuyBack;
   ManaCost * FlashBack;
+  ManaCost * Retrace;
   static ManaCost * parseManaCost(string value, ManaCost * _manacost = NULL, MTGCardInstance * c = NULL);
   virtual void init();
   void x();

@@ -161,6 +161,7 @@ class MTGPlayerCards {
   void initDeck(MTGDeck * deck);
   MTGCardInstance * putInGraveyard(MTGCardInstance * card);
   MTGCardInstance * putInExile(MTGCardInstance * card);
+  MTGCardInstance * putInLibrary(MTGCardInstance * card);
   MTGCardInstance * putInHand(MTGCardInstance * card);
   MTGCardInstance * putInZone(MTGCardInstance * card, MTGGameZone * from, MTGGameZone * to);
   int isInPlay(MTGCardInstance * card);

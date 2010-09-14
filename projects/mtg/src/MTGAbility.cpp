@@ -364,7 +364,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     return NULL;
   }
 
-        //buyback cost
+        //flashback cost
   found = s.find("flashback ");
   if (found == 0){
     if (spell && spell->FlashBackWasPaid()){
@@ -374,6 +374,15 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     return NULL;
   }
 
+          //retrace cost
+  found = s.find("retrace ");
+  if (found == 0){
+    if (spell && spell->RetraceWasPaid()){
+      string s1 = s.substr(found+7);
+      return parseMagicLine(s1,id,spell, card);
+    }
+    return NULL;
+  }
   //When...comes into play, you may...
   found = s.find("may ");
   if (found == 0){

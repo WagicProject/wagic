@@ -98,6 +98,7 @@ void GameObserver::nextGamePhase(){
     cleanupPhase();
     currentPlayer->canPutLandsIntoPlay = 1;
 	currentPlayer->castedspellsthisturn = 0;
+	currentPlayer->opponent()->castedspellsthisturn = 0;
 	currentPlayer->castcount = 0;
 		currentPlayer->nocreatureinstant = 0;
 			currentPlayer->nospellinstant = 0;
@@ -519,6 +520,17 @@ void GameObserver::cardClick (MTGCardInstance * card, Targetable * object){
 	  else if (card && card->paymenttype == 3){//this is Flashback
     if (targetChooser) {
 		MTGAbility * a = mLayers->actionLayer()->getAbility(MTGAbility::FLASHBACK_COST);
+      a->reactToClick(card);
+      return;
+    }
+
+    reaction = mLayers->actionLayer()->isReactingToClick(card);
+    if (reaction == -1) mLayers->actionLayer()->reactToClick(card);
+  }
+	  //=====================
+	  else if (card && card->paymenttype == 4){//this is retrace
+    if (targetChooser) {
+		MTGAbility * a = mLayers->actionLayer()->getAbility(MTGAbility::RETRACE_COST);
       a->reactToClick(card);
       return;
     }

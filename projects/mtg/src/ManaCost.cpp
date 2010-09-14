@@ -92,10 +92,9 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
       tc = tcf.createTargetChooser(target,c);
     }
     manaCost->addExtraCost(NEW ExileTargetCost(tc));
-//---------------------------------    
+/*---------------------------------  */  
 	//bounce cost
 	}else if (value[0] == 'h'){
-    //tap
     OutputDebugString("Bounce\n");
     TargetChooserFactory tcf;
     TargetChooser * tc = NULL;
@@ -111,6 +110,7 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
 	//life cost
 	}else if (value[0] == 'l'){
     //tap
+	
     OutputDebugString("Life\n");
     TargetChooserFactory tcf;
     TargetChooser * tc = NULL;
@@ -122,6 +122,7 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
     }
 	  manaCost->addExtraCost(NEW LifeCost(tc));
 	//end life cost
+	  //-----------------------------------
 	//DiscardRandom cost
 	}else if (value[0] == 'd'){
     //tap
@@ -135,7 +136,46 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
       tc = tcf.createTargetChooser(target,c);
     }
 	  manaCost->addExtraCost(NEW DiscardRandomCost(tc));
-	//DiscardRandom cost
+//-------------------------------------
+
+	  	//hand to library cost
+	}else if (value[0] == 'q'){
+    OutputDebugString("ToLibrary\n");
+    TargetChooserFactory tcf;
+    TargetChooser * tc = NULL;
+    size_t target_start = value.find("(");
+    size_t target_end = value.find(")");
+    if (target_start!=string::npos && target_end!=string::npos){
+      string target = value.substr(target_start+1, target_end-1 - target_start);
+      tc = tcf.createTargetChooser(target,c);
+    }
+	  manaCost->addExtraCost(NEW ToLibraryCost(tc));
+
+	  	//Millyourself as a cost
+	}else if (value[0] == 'm'){
+    OutputDebugString("Mill\n");
+    TargetChooserFactory tcf;
+    TargetChooser * tc = NULL;
+    size_t target_start = value.find("(");
+    size_t target_end = value.find(")");
+    if (target_start!=string::npos && target_end!=string::npos){
+      string target = value.substr(target_start+1, target_end-1 - target_start);
+      tc = tcf.createTargetChooser(target,c);
+    }
+	  manaCost->addExtraCost(NEW MillCost(tc));
+
+	  	  	//Mill to exile yourself as a cost
+	}else if (value[0] == 'z'){
+    OutputDebugString("MillExile\n");
+    TargetChooserFactory tcf;
+    TargetChooser * tc = NULL;
+    size_t target_start = value.find("(");
+    size_t target_end = value.find(")");
+    if (target_start!=string::npos && target_end!=string::npos){
+      string target = value.substr(target_start+1, target_end-1 - target_start);
+      tc = tcf.createTargetChooser(target,c);
+    }
+	  manaCost->addExtraCost(NEW MillExileCost(tc));
 
     }else if (value[0] == 'c'){
     //Counters
@@ -233,6 +273,8 @@ ManaCost::~ManaCost(){
     SAFE_DELETE(BuyBack);
 
 	  SAFE_DELETE(FlashBack);
+
+	  	  SAFE_DELETE(Retrace);
 }
 
 void ManaCost::x(){
@@ -255,6 +297,7 @@ void ManaCost::init(){
   alternative = NULL;
   BuyBack = NULL;
   FlashBack = NULL;
+  Retrace = NULL;
 }
 
 
@@ -296,6 +339,11 @@ void ManaCost::copy(ManaCost * _manaCost){
     FlashBack = NEW ManaCost();
     FlashBack->copy(_manaCost->FlashBack);
   }
+    SAFE_DELETE(Retrace);
+  if (_manaCost->Retrace){
+    Retrace = NEW ManaCost();
+    Retrace->copy(_manaCost->Retrace);
+  }
 }
 
 int ManaCost::getCost(int color){
@@ -334,10 +382,12 @@ int ManaCost::getConvertedCost(){
 
 int ManaCost::remove(int color, int value){
   cost[color] -= value;
+  if(cost[color] < 0){cost[color] = 0;}
   return 1;
 }
 
 int ManaCost::add(int color, int value){
+	if(value < 0) value = 0;
   cost[color] += value;
   return 1;
 }
@@ -592,6 +642,7 @@ int ManaPool::pay (ManaCost * _cost){
     for (int j = 0; j <value; j++){
       WEvent * e = NEW WEventConsumeMana(i, this);
       GameObserver::GetInstance()->receiveEvent(e);
+
     }
   }
   return result;

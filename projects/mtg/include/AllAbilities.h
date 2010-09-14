@@ -2409,7 +2409,6 @@ class AAFrozen:public ActivatedAbility{
     return a;
   }
 };
-
 // Add life of gives damage if a given zone has more or less than [condition] cards at the beginning of [phase]
 //Ex : the rack, ivory tower...
 class ALifeZoneLink:public MTGAbility{
@@ -2636,11 +2635,25 @@ public:
    MTGCardInstance * _target = (MTGCardInstance *)target;
    amount;
    type;
-   _target->getManaCost()->add(type,amount);
+   if(amount < 0){
+	   //amount = amount * -1;
+	   amount = abs(amount);
+   if(_target->getManaCost()->hasColor(type)){
+	   if(_target->getManaCost()->getConvertedCost() >= 1){
+		_target->getManaCost()->remove(type,amount);
+   if(_target->getManaCost()->alternative > 0){
+	   _target->getManaCost()->alternative->remove(type,amount);}
+   if(_target->getManaCost()->BuyBack > 0){
+	   _target->getManaCost()->BuyBack->remove(type,amount);}
+	   }
+   }
+   }else{
+		_target->getManaCost()->add(type,amount);
    if(_target->getManaCost()->alternative > 0){
 	   _target->getManaCost()->alternative->add(type,amount);}
    if(_target->getManaCost()->BuyBack > 0){
 	   _target->getManaCost()->BuyBack->add(type,amount);}
+   }
     return MTGAbility::addToGame();
    }
     AManaRedux * clone() const{

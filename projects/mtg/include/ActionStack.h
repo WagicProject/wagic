@@ -92,6 +92,7 @@ class Spell: public Interruptible {
   bool AlternativeWasPaid();
   bool BuyBackWasPaid();
   bool FlashBackWasPaid();
+  bool RetraceWasPaid();
   const string getDisplayName() const;
   virtual ostream& toString(ostream& out) const;
   MTGCardInstance * getNextCardTarget(MTGCardInstance * previous = 0);

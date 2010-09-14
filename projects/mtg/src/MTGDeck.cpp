@@ -168,9 +168,19 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
       }
       break;
 
-    case 'r': //rarity
-      if (!card) card = NEW MTGCard();
+    case 'r': //retrace/rarity
+		  if ('e' == key[1]) { //retrace
+      if (!primitive) primitive = NEW CardPrimitive();
+      if (ManaCost * cost = primitive->getManaCost())
+        {
+          string value = val;
+          std::transform(value.begin(), value.end(), value.begin(), ::tolower);
+		  cost->Retrace = ManaCost::parseManaCost(value);
+	  }
+		  } else {//rarity
+			  if(!card) card = NEW MTGCard();
       card->setRarity(val[0]);
+		  }
       break;
 
     case 's': //subtype

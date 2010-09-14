@@ -81,6 +81,45 @@ public:
   virtual int setSource(MTGCardInstance * _source);
   virtual DiscardRandomCost * clone() const;
 };
+//tolibrary cost 
+class ToLibraryCost: public ExtraCost{
+public:
+  MTGCardInstance * target;
+  ToLibraryCost(TargetChooser *_tc = NULL);
+  virtual int setPayment(MTGCardInstance * card);
+  virtual int isPaymentSet();
+  virtual int canPay();
+  virtual int doPay();
+  virtual void Render();
+  virtual int setSource(MTGCardInstance * _source);
+  virtual ToLibraryCost * clone() const;
+};
+//Millyourself cost 
+class MillCost: public ExtraCost{
+public:
+  MTGCardInstance * target;
+  MillCost(TargetChooser *_tc = NULL);
+  virtual int setPayment(MTGCardInstance * card);
+  virtual int isPaymentSet();
+  virtual int canPay();
+  virtual int doPay();
+  virtual void Render();
+  virtual int setSource(MTGCardInstance * _source);
+  virtual MillCost * clone() const;
+};
+//Mill to exile yourself cost 
+class MillExileCost: public ExtraCost{
+public:
+  MTGCardInstance * target;
+  MillExileCost(TargetChooser *_tc = NULL);
+  virtual int setPayment(MTGCardInstance * card);
+  virtual int isPaymentSet();
+  virtual int canPay();
+  virtual int doPay();
+  virtual void Render();
+  virtual int setSource(MTGCardInstance * _source);
+  virtual MillExileCost * clone() const;
+};
 //tap other cost
 class TapTargetCost: public ExtraCost{
 public:

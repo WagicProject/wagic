@@ -102,6 +102,7 @@ void MTGCardInstance::initMTGCI(){
   boughtback = 0;
   flashedback = 0;
   paymenttype = 0;
+  reduxamount = 0;
   summoningSickness = 1;
   preventable = 0;
   target = NULL;

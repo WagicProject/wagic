@@ -185,6 +185,10 @@ bool Spell::FlashBackWasPaid(){
   return (payResult == ManaCost::MANA_PAID_WITH_FLASHBACK);
 }
 
+bool Spell::RetraceWasPaid(){
+  return (payResult == ManaCost::MANA_PAID_WITH_RETRACE);
+}
+
 const string Spell::getDisplayName() const {
   return source->getName();
 }
@@ -410,6 +414,7 @@ Spell * ActionStack::addSpell(MTGCardInstance * _source, TargetChooser * tc, Man
   OutputDebugString(buf);
 #endif
   if(storm > 0){ mana = NULL;}
+  if(mana < 0) {mana = 0;}
   Spell * spell = NEW Spell(mCount,_source,tc, mana,payResult);
   addAction(spell);
   if (!game->players[0]->isAI() &&

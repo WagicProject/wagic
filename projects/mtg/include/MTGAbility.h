@@ -52,6 +52,7 @@ class MTGAbility: public ActionElement{
   ManaCost * alternative;
   ManaCost * BuyBack;
   ManaCost * FlashBack;
+  ManaCost * Retrace;
 
   Targetable * target;
   int aType;
@@ -87,6 +88,7 @@ class MTGAbility: public ActionElement{
 	ALTERNATIVE_COST = 8,
     BUYBACK_COST = 9,
 	FLASHBACK_COST = 10,
+    RETRACE_COST = 11,
 
   };
 };
