@@ -112,7 +112,7 @@ int SetupCallbacks(void)
 
 #ifdef DEVHOOK
 //code by sakya, crazyc, samuraiX
-//http://forums.ps2dev.org/viewtopic.php?t=9591&sid=2056889f6b9531194cab9b2d487df844
+//http://forums.ps2dev.org/viewtopic.php?t=9591
 PspDebugRegBlock exception_regs;
 
 extern int _ftext;

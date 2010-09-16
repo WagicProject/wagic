@@ -53,6 +53,12 @@
 	#define COSF(x)		cosf(x*DEG2RAD)
 #endif
 
+#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0) || (defined WIN32)
+typedef struct
+{
+    GLfloat   m[4][4];
+} ESMatrix;
+#endif // (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
 
 //////////////////////////////////////////////////////////////////////////
 /// A collection of core rendering functions.
@@ -541,8 +547,32 @@ private:
 #if defined (WIN32) || defined (LINUX)
 
 	GLuint mCurrentTex;
+#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0) || (defined WIN32)
+  // MVP matrix
+  ESMatrix  theMvpMatrix;
 
+  // Handle to a program object
+  GLuint    prog1;
+  // Attribute locations
+  GLint     prog1_positionLoc;
+  GLint     prog1_colorLoc;
+  // Uniform locations
+  GLint     prog1_mvpLoc;
 
+  // Handle to a program object
+  GLuint    prog2;
+  // Sampler location
+  GLint     prog2_samplerLoc;
+  // Attribute locations
+  GLint     prog2_positionLoc;
+  GLint     prog2_texCoordLoc;
+  GLint     prog2_colorLoc;
+  // MVP matrix
+  ESMatrix  prog2_mvpMatrix;
+  // Uniform locations
+  GLint     prog2_mvpLoc;
+
+#endif // (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
 #else
   void *fbp0, *fbp1, *zbp;
 	PIXEL_TYPE* mVRAM;

@@ -19,6 +19,10 @@
 #include "JTypes.h"
 
 
+#ifdef USE_PHONON
+#include <phonon/AudioOutput>
+#include <phonon/MediaObject>
+#else
 #ifdef WIN32
 
 	#include <windows.h>
@@ -43,15 +47,30 @@
 #ifdef WITH_FMOD
         #include "../Dependencies/include/fmod.h"
 #endif
+#endif
 
 //------------------------------------------------------------------------------------------------
+#ifdef USE_PHONON
+class JMusic : public QObject
+{
+  Q_OBJECT
+#else
 class JMusic
 {
+#endif
 public:
 	JMusic();
-	~JMusic();
+        ~JMusic();
   void Update();
   int getPlayTime();
+
+#ifdef USE_PHONON
+  Phonon::AudioOutput* mOutput;
+  Phonon::MediaObject* mMediaObject;
+  public slots:
+  void seekAtTheBegining();
+
+#else
 
 #if defined (WIN32) || defined (LINUX)
   #ifdef WITH_FMOD
@@ -61,6 +80,7 @@ public:
   #endif
 #else
   JMP3* mTrack;
+#endif
 #endif
 
 };
@@ -80,6 +100,10 @@ class JSample
   #ifdef WITH_FMOD
   FSOUND_SAMPLE *mSample;
   #else
+#ifdef USE_PHONON
+  Phonon::AudioOutput* mOutput;
+  Phonon::MediaObject* mMediaObject;
+#endif
   void* mSample;
   #endif
 #else

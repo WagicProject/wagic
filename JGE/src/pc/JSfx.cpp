@@ -8,7 +8,6 @@
 //
 //-------------------------------------------------------------------------------------
 
-
 #ifdef WITH_FMOD
 #include "../../Dependencies/include/fmod.h"
 #else
@@ -21,6 +20,9 @@
 
 //////////////////////////////////////////////////////////////////////////
 JMusic::JMusic()
+#ifdef USE_PHONON
+  : mOutput(0), mMediaObject(0)
+#endif
 {
 }
 
@@ -38,23 +40,46 @@ int JMusic::getPlayTime(){
 
 JMusic::~JMusic()
 {
+#ifdef USE_PHONON
+  if(mOutput)
+    delete mOutput;
+  if(mMediaObject)
+    delete mMediaObject;
+#else
 #ifdef WITH_FMOD
   JSoundSystem::GetInstance()->StopMusic(this);
   if (mTrack) FSOUND_Sample_Free(mTrack);
 #endif
+#endif
 }
 
+#ifdef USE_PHONON
+void JMusic::seekAtTheBegining()
+{
+  mMediaObject->seek(0);
+}
+#endif
 
 //////////////////////////////////////////////////////////////////////////
 JSample::JSample()
+#ifdef USE_PHONON
+  : mOutput(0), mMediaObject(0)
+#endif
 {
 
 }
 
 JSample::~JSample()
 {
+#ifdef USE_PHONON
+  if(mOutput)
+    delete mOutput;
+  if(mMediaObject)
+    delete mMediaObject;
+#else
 #ifdef WITH_FMOD
   if (mSample) FSOUND_Sample_Free(mSample);
+#endif
 #endif
 }
 
@@ -96,7 +121,9 @@ JSoundSystem::JSoundSystem()
 {
   mVolume = 0;
   mSampleVolume = 0;
+#ifdef WITH_FMOD
   mChannel = FSOUND_FREE;
+#endif
 }
 
 JSoundSystem::~JSoundSystem()
@@ -121,6 +148,18 @@ void JSoundSystem::DestroySoundSystem()
 
 JMusic *JSoundSystem::LoadMusic(const char *fileName)
 {
+#ifdef USE_PHONON
+  JMusic* music = new JMusic();
+  if (music)
+  {
+    music->mOutput = new Phonon::AudioOutput(Phonon::GameCategory, 0);
+    music->mMediaObject = new Phonon::MediaObject(0);
+    music->mMediaObject->setCurrentSource("Res/" + QString(fileName));
+    Phonon::Path path = Phonon::createPath(music->mMediaObject, music->mOutput);
+    Q_ASSERT(path.isValid());
+  }
+  return music;
+#else
 #ifndef WITH_FMOD
   return NULL;
 #else
@@ -141,11 +180,24 @@ JMusic *JSoundSystem::LoadMusic(const char *fileName)
     }
   return music;
 #endif
+#endif
 }
 
 
 void JSoundSystem::PlayMusic(JMusic *music, bool looping)
 {
+#ifdef USE_PHONON
+  if (music && music->mMediaObject && music->mOutput)
+  {
+    if(looping)
+    {
+      music->mMediaObject->connect(music->mMediaObject, SIGNAL(aboutToFinish()), music, SLOT(seekAtTheBegining()));
+    }
+    music->mOutput->setVolume((qreal)mVolume*0.01);
+    music->mMediaObject->play();
+
+  }
+#else
 #ifdef WITH_FMOD
   if (music && music->mTrack)
     {
@@ -158,13 +210,21 @@ void JSoundSystem::PlayMusic(JMusic *music, bool looping)
 	FSOUND_SetLoopMode(mChannel, FSOUND_LOOP_OFF);
     }
 #endif
+#endif
 }
 
 
 void JSoundSystem::StopMusic(JMusic *music)
 {
+#ifdef USE_PHONON
+  if (music && music->mMediaObject && music->mOutput)
+  {
+    music->mMediaObject->stop();
+  }
+#else
 #ifdef WITH_FMOD
   FSOUND_StopSound(mChannel);
+#endif
 #endif
 }
 
@@ -195,6 +255,18 @@ void JSoundSystem::SetSfxVolume(int volume){
 
 JSample *JSoundSystem::LoadSample(const char *fileName)
 {
+#ifdef USE_PHONON
+  JSample* sample = new JSample();
+  if (sample)
+  {
+    sample->mOutput = new Phonon::AudioOutput(Phonon::GameCategory, 0);
+    sample->mMediaObject = new Phonon::MediaObject(0);
+    sample->mMediaObject->setCurrentSource("Res/" + QString(fileName));
+    Phonon::Path path = Phonon::createPath(sample->mMediaObject, sample->mOutput);
+    Q_ASSERT(path.isValid());
+  }
+  return sample;
+#else
 #ifndef WITH_FMOD
   return NULL;
 #else
@@ -217,16 +289,25 @@ JSample *JSoundSystem::LoadSample(const char *fileName)
     }
   return sample;
 #endif
+#endif
 }
 
 
 void JSoundSystem::PlaySample(JSample *sample)
 {
+#ifdef USE_PHONON
+  if (sample && sample->mMediaObject && sample->mOutput)
+  {
+    sample->mOutput->setVolume((qreal)mSampleVolume*0.01);
+    sample->mMediaObject->play();
+  }
+#else
 #ifdef WITH_FMOD
   if (sample && sample->mSample){
     int channel = FSOUND_PlaySound(FSOUND_FREE, sample->mSample);
     FSOUND_SetVolumeAbsolute(channel,mSampleVolume * 2.55);
   }
+#endif
 #endif
 }
 

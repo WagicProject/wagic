@@ -7,6 +7,7 @@
 // Copyright (c) 2007 James Hui (a.k.a. Dr.Watson) <jhkhui@gmail.com>
 //
 //-------------------------------------------------------------------------------------
+#define GL_GLEXT_PROTOTYPES
 
 #ifdef WIN32
   #pragma warning(disable : 4786)
@@ -15,8 +16,7 @@
   #pragma comment( lib, "giflib.lib" )
 #endif
 
-
-#include "../../Dependencies/include/png.h"
+#include <png.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -40,6 +40,237 @@ extern "C" {
 #ifndef __attribute__
 #define __attribute__((a))
 #endif
+#endif
+
+#ifdef FORCE_GL2
+// This code is to force the windows code to use GL_VERSION_2_0 even if it's not defined in the header files
+// It's mostly to try to debug the shaders on Windows.
+typedef GLuint (APIENTRY *_glCreateShader) (GLenum);
+typedef void (APIENTRY *_glShaderSource) (GLuint, GLsizei, const char **, const GLint *);
+typedef void (APIENTRY *_glShaderBinary) (GLint, const GLuint*, GLenum, const void*, GLint);
+typedef void (APIENTRY *_glCompileShader) (GLuint);
+typedef void (APIENTRY *_glDeleteShader) (GLuint);
+typedef GLboolean (APIENTRY *_glIsShader) (GLuint);
+
+typedef GLuint (APIENTRY *_glCreateProgram) ();
+typedef void (APIENTRY *_glAttachShader) (GLuint, GLuint);
+typedef void (APIENTRY *_glDetachShader) (GLuint, GLuint);
+typedef void (APIENTRY *_glLinkProgram) (GLuint);
+typedef void (APIENTRY *_glUseProgram) (GLuint);
+typedef void (APIENTRY *_glDeleteProgram) (GLuint);
+typedef GLboolean (APIENTRY *_glIsProgram) (GLuint);
+
+typedef void (APIENTRY *_glGetShaderInfoLog) (GLuint, GLsizei, GLsizei *, char *);
+typedef void (APIENTRY *_glGetShaderiv) (GLuint, GLenum, GLint *);
+typedef void (APIENTRY *_glGetShaderSource) (GLuint, GLsizei, GLsizei *, char *);
+typedef void (APIENTRY *_glGetProgramiv) (GLuint, GLenum, GLint *);
+typedef void (APIENTRY *_glGetProgramInfoLog) (GLuint, GLsizei, GLsizei *, char *);
+
+typedef GLuint (APIENTRY *_glGetUniformLocation) (GLuint, const char*);
+typedef void (APIENTRY *_glUniform4fv) (GLint, GLsizei, const GLfloat *);
+typedef void (APIENTRY *_glUniform3fv) (GLint, GLsizei, const GLfloat *);
+typedef void (APIENTRY *_glUniform2fv) (GLint, GLsizei, const GLfloat *);
+typedef void (APIENTRY *_glUniform1fv) (GLint, GLsizei, const GLfloat *);
+typedef void (APIENTRY *_glUniform1i) (GLint, GLint);
+typedef void (APIENTRY *_glUniform1iv) (GLint, GLsizei, const GLint *);
+typedef void (APIENTRY *_glUniformMatrix2fv) (GLint, GLsizei, GLboolean, const GLfloat *);
+typedef void (APIENTRY *_glUniformMatrix3fv) (GLint, GLsizei, GLboolean, const GLfloat *);
+typedef void (APIENTRY *_glUniformMatrix4fv) (GLint, GLsizei, GLboolean, const GLfloat *);
+typedef void (APIENTRY *_glUniformMatrix2x3fv) (GLint, GLsizei, GLboolean, const GLfloat *);
+typedef void (APIENTRY *_glUniformMatrix2x4fv) (GLint, GLsizei, GLboolean, const GLfloat *);
+typedef void (APIENTRY *_glUniformMatrix3x2fv) (GLint, GLsizei, GLboolean, const GLfloat *);
+typedef void (APIENTRY *_glUniformMatrix3x4fv) (GLint, GLsizei, GLboolean, const GLfloat *);
+typedef void (APIENTRY *_glUniformMatrix4x2fv) (GLint, GLsizei, GLboolean, const GLfloat *);
+typedef void (APIENTRY *_glUniformMatrix4x3fv) (GLint, GLsizei, GLboolean, const GLfloat *);
+
+typedef void (APIENTRY *_glBindAttribLocation) (GLuint, GLuint, const char *);
+typedef GLint (APIENTRY *_glGetAttribLocation) (GLuint, const char *);
+typedef void (APIENTRY *_glVertexAttrib1fv) (GLuint, const GLfloat *);
+typedef void (APIENTRY *_glVertexAttrib2fv) (GLuint, const GLfloat *);
+typedef void (APIENTRY *_glVertexAttrib3fv) (GLuint, const GLfloat *);
+typedef void (APIENTRY *_glVertexAttrib4fv) (GLuint, const GLfloat *);
+typedef void (APIENTRY *_glVertexAttribPointer) (GLuint, GLint, GLenum, GLboolean, GLsizei, const GLvoid *);
+typedef void (APIENTRY *_glDisableVertexAttribArray) (GLuint);
+typedef void (APIENTRY *_glEnableVertexAttribArray) (GLuint);
+
+typedef void (APIENTRY *_glGetProgramBinaryOES) (GLuint, GLsizei, GLsizei *, GLenum *, void *);
+typedef void (APIENTRY *_glProgramBinaryOES) (GLuint, GLenum, const void *, GLint);
+
+
+typedef void (APIENTRY *_glMultiTexCoord4f) (GLenum, GLfloat, GLfloat, GLfloat, GLfloat);
+typedef void (APIENTRY *_glActiveStencilFaceEXT) (GLenum );
+
+typedef void (APIENTRY *_glStencilOpSeparate) (GLenum face, GLenum sfail, GLenum dpfail, GLenum dppass);
+typedef void (APIENTRY *_glActiveTexture) (GLenum);
+typedef void (APIENTRY *_glBlendColor) (GLclampf, GLclampf, GLclampf, GLclampf);
+
+#define GLSLGETPROC(func)     a ## func = (_ ## func)wglGetProcAddress(#func);
+
+struct glslFunctions
+{
+  void load(){
+    GLSLGETPROC(glCreateShader);
+    GLSLGETPROC(glShaderSource);
+    GLSLGETPROC(glShaderBinary);
+    GLSLGETPROC(glCompileShader);
+    GLSLGETPROC(glDeleteShader);
+    GLSLGETPROC(glIsShader);
+    GLSLGETPROC(glCreateProgram);
+    GLSLGETPROC(glAttachShader);
+    GLSLGETPROC(glDetachShader);
+    GLSLGETPROC(glLinkProgram);
+    GLSLGETPROC(glUseProgram);
+    GLSLGETPROC(glDeleteProgram);
+    GLSLGETPROC(glIsProgram);
+    GLSLGETPROC(glGetShaderInfoLog);
+    GLSLGETPROC(glGetShaderiv);
+    GLSLGETPROC(glGetShaderSource);
+    GLSLGETPROC(glGetProgramiv);
+    GLSLGETPROC(glGetProgramInfoLog);
+    GLSLGETPROC(glGetUniformLocation);
+    GLSLGETPROC(glUniform4fv);
+    GLSLGETPROC(glUniform3fv);
+    GLSLGETPROC(glUniform2fv);
+    GLSLGETPROC(glUniform1fv);
+    GLSLGETPROC(glUniform1i);
+    GLSLGETPROC(glUniform1iv);
+    GLSLGETPROC(glUniformMatrix2fv);
+    GLSLGETPROC(glUniformMatrix3fv);
+    GLSLGETPROC(glUniformMatrix4fv);
+    GLSLGETPROC(glUniformMatrix2x3fv);
+    GLSLGETPROC(glUniformMatrix2x4fv);
+    GLSLGETPROC(glUniformMatrix3x2fv);
+    GLSLGETPROC(glUniformMatrix3x4fv);
+    GLSLGETPROC(glUniformMatrix4x2fv);
+    GLSLGETPROC(glUniformMatrix4x3fv);
+    GLSLGETPROC(glBindAttribLocation);
+    GLSLGETPROC(glGetAttribLocation);
+    GLSLGETPROC(glVertexAttrib1fv);
+    GLSLGETPROC(glVertexAttrib2fv);
+    GLSLGETPROC(glVertexAttrib3fv);
+    GLSLGETPROC(glVertexAttrib4fv);
+    GLSLGETPROC(glVertexAttribPointer);
+    GLSLGETPROC(glDisableVertexAttribArray);
+    GLSLGETPROC(glEnableVertexAttribArray);
+    GLSLGETPROC(glGetProgramBinaryOES);
+    GLSLGETPROC(glProgramBinaryOES);
+    GLSLGETPROC(glMultiTexCoord4f);
+    GLSLGETPROC(glActiveStencilFaceEXT);
+    GLSLGETPROC(glStencilOpSeparate);
+    GLSLGETPROC(glActiveTexture);
+    GLSLGETPROC(glBlendColor);
+  };
+
+  _glCreateShader aglCreateShader;
+  _glShaderSource aglShaderSource;
+  _glShaderBinary aglShaderBinary;
+  _glCompileShader aglCompileShader;
+  _glDeleteShader aglDeleteShader;
+  _glIsShader aglIsShader;
+  _glCreateProgram aglCreateProgram;
+  _glAttachShader aglAttachShader;
+  _glDetachShader aglDetachShader;
+  _glLinkProgram aglLinkProgram;
+  _glUseProgram aglUseProgram;
+  _glDeleteProgram aglDeleteProgram;
+  _glIsProgram aglIsProgram;
+  _glGetShaderInfoLog aglGetShaderInfoLog;
+  _glGetShaderiv aglGetShaderiv;
+  _glGetShaderSource aglGetShaderSource;
+  _glGetProgramiv aglGetProgramiv;
+  _glGetProgramInfoLog aglGetProgramInfoLog;
+
+  _glGetUniformLocation aglGetUniformLocation;
+  _glUniform4fv aglUniform4fv;
+  _glUniform3fv aglUniform3fv;
+  _glUniform2fv aglUniform2fv;
+  _glUniform1fv aglUniform1fv;
+  _glUniform1i aglUniform1i;
+  _glUniform1iv aglUniform1iv;
+  _glUniformMatrix2fv aglUniformMatrix2fv;
+  _glUniformMatrix3fv aglUniformMatrix3fv;
+  _glUniformMatrix4fv aglUniformMatrix4fv;
+  _glUniformMatrix2x3fv aglUniformMatrix2x3fv;
+  _glUniformMatrix2x4fv aglUniformMatrix2x4fv;
+  _glUniformMatrix3x2fv aglUniformMatrix3x2fv;
+  _glUniformMatrix3x4fv aglUniformMatrix3x4fv;
+  _glUniformMatrix4x2fv aglUniformMatrix4x2fv;
+  _glUniformMatrix4x3fv aglUniformMatrix4x3fv;
+
+  _glBindAttribLocation aglBindAttribLocation;
+  _glGetAttribLocation aglGetAttribLocation;
+  _glVertexAttrib1fv aglVertexAttrib1fv;
+  _glVertexAttrib2fv aglVertexAttrib2fv;
+  _glVertexAttrib3fv aglVertexAttrib3fv;
+  _glVertexAttrib4fv aglVertexAttrib4fv;
+  _glVertexAttribPointer aglVertexAttribPointer;
+  _glDisableVertexAttribArray aglDisableVertexAttribArray;
+  _glEnableVertexAttribArray aglEnableVertexAttribArray;
+
+  _glGetProgramBinaryOES aglGetProgramBinaryOES;
+  _glProgramBinaryOES aglProgramBinaryOES;
+  _glMultiTexCoord4f aglMultiTexCoord4f;
+  _glActiveStencilFaceEXT aglActiveStencilFaceEXT;
+  _glStencilOpSeparate aglStencilOpSeparate;
+  _glActiveTexture aglActiveTexture;
+  _glBlendColor aglBlendColor;
+};
+
+static glslFunctions g_glslfuncts;
+
+#define glCreateShader            g_glslfuncts.aglCreateShader
+#define glCompileShader           g_glslfuncts.aglCompileShader
+#define glGetShaderiv             g_glslfuncts.aglGetShaderiv
+#define glGetShaderInfoLog        g_glslfuncts.aglGetShaderInfoLog
+#define glDeleteShader            g_glslfuncts.aglDeleteShader
+#define glCreateProgram           g_glslfuncts.aglCreateProgram
+#define glDeleteProgram           g_glslfuncts.aglDeleteProgram
+#define glShaderSource            g_glslfuncts.aglShaderSource
+#define glAttachShader            g_glslfuncts.aglAttachShader
+#define glLinkProgram             g_glslfuncts.aglLinkProgram
+#define glGetProgramiv            g_glslfuncts.aglGetProgramiv
+#define glGetProgramInfoLog       g_glslfuncts.aglGetProgramInfoLog
+#define glGetAttribLocation       g_glslfuncts.aglGetAttribLocation
+#define glGetUniformLocation      g_glslfuncts.aglGetUniformLocation
+#define glGetProgramiv            g_glslfuncts.aglGetProgramiv
+#define glVertexAttribPointer     g_glslfuncts.aglVertexAttribPointer
+#define glEnableVertexAttribArray g_glslfuncts.aglEnableVertexAttribArray
+#define glUniform4fv              g_glslfuncts.aglUniform4fv
+#define glActiveTexture           g_glslfuncts.aglActiveTexture
+#define glUniform1i               g_glslfuncts.aglUniform1i
+#define glUseProgram              g_glslfuncts.aglUseProgram
+#define glUniformMatrix4fv        g_glslfuncts.aglUniformMatrix4fv
+
+#define GL_FRAGMENT_SHADER 0x8B30
+#define GL_VERTEX_SHADER 0x8B31
+#define GL_FLOAT_VEC2 0x8B50
+#define GL_FLOAT_VEC3 0x8B51
+#define GL_FLOAT_VEC4 0x8B52
+#define GL_INT_VEC2 0x8B53
+#define GL_INT_VEC3 0x8B54
+#define GL_INT_VEC4 0x8B55
+#define GL_BOOL 0x8B56
+#define GL_BOOL_VEC2 0x8B57
+#define GL_BOOL_VEC3 0x8B58
+#define GL_BOOL_VEC4 0x8B59
+#define GL_FLOAT_MAT2 0x8B5A
+#define GL_FLOAT_MAT3 0x8B5B
+#define GL_FLOAT_MAT4 0x8B5C
+#define GL_SAMPLER_1D 0x8B5D
+#define GL_SAMPLER_2D 0x8B5E
+#define GL_SAMPLER_3D 0x8B5F
+#define GL_SAMPLER_CUBE 0x8B60
+#define GL_COMPILE_STATUS 0x8B81
+#define GL_LINK_STATUS 0x8B82
+#define GL_INFO_LOG_LENGTH 0x8B84
+#define GL_ACTIVE_UNIFORMS 0x8B86
+#define GL_ACTIVE_UNIFORM_MAX_LENGTH 0x8B87
+#define GL_ACTIVE_ATTRIBUTES 0x8B89
+#define GL_ACTIVE_ATTRIBUTE_MAX_LENGTH 0x8B8A
+#define GL_TEXTURE0 0x84C0
+#define GL_TEXTURE1 0x84C1
+
+#define GL_VERSION_2_0
 #endif
 
 JQuad::JQuad(JTexture *tex, float x, float y, float width, float height)
@@ -160,6 +391,265 @@ JRenderer::~JRenderer()
 
 }
 
+#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
+void esMatrixLoadIdentity(ESMatrix *result)
+{
+    memset(result, 0x0, sizeof(ESMatrix));
+    result->m[0][0] = 1.0f;
+    result->m[1][1] = 1.0f;
+    result->m[2][2] = 1.0f;
+    result->m[3][3] = 1.0f;
+}
+
+#define PI 3.1415926535897932384626433832795f
+
+void esScale(ESMatrix *result, GLfloat sx, GLfloat sy, GLfloat sz)
+{
+    result->m[0][0] *= sx;
+    result->m[0][1] *= sx;
+    result->m[0][2] *= sx;
+    result->m[0][3] *= sx;
+
+    result->m[1][0] *= sy;
+    result->m[1][1] *= sy;
+    result->m[1][2] *= sy;
+    result->m[1][3] *= sy;
+
+    result->m[2][0] *= sz;
+    result->m[2][1] *= sz;
+    result->m[2][2] *= sz;
+    result->m[2][3] *= sz;
+}
+
+void esTranslate(ESMatrix *result, GLfloat tx, GLfloat ty, GLfloat tz)
+{
+    result->m[3][0] += (result->m[0][0] * tx + result->m[1][0] * ty + result->m[2][0] * tz);
+    result->m[3][1] += (result->m[0][1] * tx + result->m[1][1] * ty + result->m[2][1] * tz);
+    result->m[3][2] += (result->m[0][2] * tx + result->m[1][2] * ty + result->m[2][2] * tz);
+    result->m[3][3] += (result->m[0][3] * tx + result->m[1][3] * ty + result->m[2][3] * tz);
+}
+
+void esMatrixMultiply(ESMatrix *result, ESMatrix *srcA, ESMatrix *srcB)
+{
+    ESMatrix    tmp;
+    int         i;
+
+        for (i=0; i<4; i++)
+        {
+                tmp.m[i][0] =   (srcA->m[i][0] * srcB->m[0][0]) +
+                                                (srcA->m[i][1] * srcB->m[1][0]) +
+                                                (srcA->m[i][2] * srcB->m[2][0]) +
+                                                (srcA->m[i][3] * srcB->m[3][0]) ;
+
+                tmp.m[i][1] =   (srcA->m[i][0] * srcB->m[0][1]) +
+                                                (srcA->m[i][1] * srcB->m[1][1]) +
+                                                (srcA->m[i][2] * srcB->m[2][1]) +
+                                                (srcA->m[i][3] * srcB->m[3][1]) ;
+
+                tmp.m[i][2] =   (srcA->m[i][0] * srcB->m[0][2]) +
+                                                (srcA->m[i][1] * srcB->m[1][2]) +
+                                                (srcA->m[i][2] * srcB->m[2][2]) +
+                                                (srcA->m[i][3] * srcB->m[3][2]) ;
+
+                tmp.m[i][3] =   (srcA->m[i][0] * srcB->m[0][3]) +
+                                                (srcA->m[i][1] * srcB->m[1][3]) +
+                                                (srcA->m[i][2] * srcB->m[2][3]) +
+                                                (srcA->m[i][3] * srcB->m[3][3]) ;
+        }
+    memcpy(result, &tmp, sizeof(ESMatrix));
+}
+
+void esRotate(ESMatrix *result, GLfloat angle, GLfloat x, GLfloat y, GLfloat z)
+{
+   GLfloat sinAngle, cosAngle;
+   GLfloat mag = sqrtf(x * x + y * y + z * z);
+
+   sinAngle = sinf ( angle * PI / 180.0f );
+   cosAngle = cosf ( angle * PI / 180.0f );
+   if ( mag > 0.0f )
+   {
+      GLfloat xx, yy, zz, xy, yz, zx, xs, ys, zs;
+      GLfloat oneMinusCos;
+      ESMatrix rotMat;
+
+      x /= mag;
+      y /= mag;
+      z /= mag;
+
+      xx = x * x;
+      yy = y * y;
+      zz = z * z;
+      xy = x * y;
+      yz = y * z;
+      zx = z * x;
+      xs = x * sinAngle;
+      ys = y * sinAngle;
+      zs = z * sinAngle;
+      oneMinusCos = 1.0f - cosAngle;
+
+      rotMat.m[0][0] = (oneMinusCos * xx) + cosAngle;
+      rotMat.m[0][1] = (oneMinusCos * xy) - zs;
+      rotMat.m[0][2] = (oneMinusCos * zx) + ys;
+      rotMat.m[0][3] = 0.0F;
+
+      rotMat.m[1][0] = (oneMinusCos * xy) + zs;
+      rotMat.m[1][1] = (oneMinusCos * yy) + cosAngle;
+      rotMat.m[1][2] = (oneMinusCos * yz) - xs;
+      rotMat.m[1][3] = 0.0F;
+
+      rotMat.m[2][0] = (oneMinusCos * zx) - ys;
+      rotMat.m[2][1] = (oneMinusCos * yz) + xs;
+      rotMat.m[2][2] = (oneMinusCos * zz) + cosAngle;
+      rotMat.m[2][3] = 0.0F;
+
+      rotMat.m[3][0] = 0.0F;
+      rotMat.m[3][1] = 0.0F;
+      rotMat.m[3][2] = 0.0F;
+      rotMat.m[3][3] = 1.0F;
+
+      esMatrixMultiply( result, &rotMat, result );
+   }
+}
+
+void esOrtho(ESMatrix *result, float left, float right, float bottom, float top, float nearZ, float farZ)
+{
+    float       deltaX = right - left;
+    float       deltaY = top - bottom;
+    float       deltaZ = farZ - nearZ;
+    ESMatrix    ortho;
+
+    if ( (deltaX == 0.0f) || (deltaY == 0.0f) || (deltaZ == 0.0f) )
+        return;
+
+    esMatrixLoadIdentity(&ortho);
+    ortho.m[0][0] = 2.0f / deltaX;
+    ortho.m[3][0] = -(right + left) / deltaX;
+    ortho.m[1][1] = 2.0f / deltaY;
+    ortho.m[3][1] = -(top + bottom) / deltaY;
+    ortho.m[2][2] = -2.0f / deltaZ;
+    ortho.m[3][2] = -(nearZ + farZ) / deltaZ;
+
+    esMatrixMultiply(result, &ortho, result);
+}
+
+/// \brief Load a shader, check for compile errors, print error messages to output log
+/// \param type Type of shader (GL_VERTEX_SHADER or GL_FRAGMENT_SHADER)
+/// \param shaderSrc Shader source string
+/// \return A new shader object on success, 0 on failure
+//
+GLuint esLoadShader ( GLenum type, const char *shaderSrc )
+{
+   GLuint shader;
+   GLint compiled;
+
+   // Create the shader object
+   shader = glCreateShader ( type );
+
+   if ( shader == 0 )
+        return 0;
+
+   // Load the shader source
+   glShaderSource ( shader, 1, &shaderSrc, NULL );
+
+   // Compile the shader
+   glCompileShader ( shader );
+
+   // Check the compile status
+   glGetShaderiv ( shader, GL_COMPILE_STATUS, &compiled );
+
+   if ( !compiled )
+   {
+      GLint infoLen = 0;
+
+      glGetShaderiv ( shader, GL_INFO_LOG_LENGTH, &infoLen );
+
+      if ( infoLen > 1 )
+      {
+         char* infoLog = (char*)malloc (sizeof(char) * infoLen );
+
+         glGetShaderInfoLog ( shader, infoLen, NULL, infoLog );
+         printf ( "Error compiling shader:\n%s\n", infoLog );
+
+         free ( infoLog );
+      }
+
+      glDeleteShader ( shader );
+      return 0;
+   }
+
+   return shader;
+
+}
+
+
+/// \brief Load a vertex and fragment shader, create a program object, link program.
+//         Errors output to log.
+/// \param vertShaderSrc Vertex shader source code
+/// \param fragShaderSrc Fragment shader source code
+/// \return A new program object linked with the vertex/fragment shader pair, 0 on failure
+//
+GLuint esLoadProgram ( const char *vertShaderSrc, const char *fragShaderSrc )
+{
+   GLuint vertexShader;
+   GLuint fragmentShader;
+   GLuint programObject;
+   GLint linked;
+
+   // Load the vertex/fragment shaders
+   vertexShader = esLoadShader ( GL_VERTEX_SHADER, vertShaderSrc );
+   if ( vertexShader == 0 )
+      return 0;
+
+   fragmentShader = esLoadShader ( GL_FRAGMENT_SHADER, fragShaderSrc );
+   if ( fragmentShader == 0 )
+   {
+      glDeleteShader( vertexShader );
+      return 0;
+   }
+
+   // Create the program object
+   programObject = glCreateProgram ( );
+
+   if ( programObject == 0 )
+      return 0;
+
+   glAttachShader ( programObject, vertexShader );
+   glAttachShader ( programObject, fragmentShader );
+
+   // Link the program
+   glLinkProgram ( programObject );
+
+   // Check the link status
+   glGetProgramiv ( programObject, GL_LINK_STATUS, &linked );
+
+   if ( !linked )
+   {
+      GLint infoLen = 0;
+
+      glGetProgramiv ( programObject, GL_INFO_LOG_LENGTH, &infoLen );
+
+      if ( infoLen > 1 )
+      {
+         char* infoLog = (char*)malloc (sizeof(char) * infoLen );
+
+         glGetProgramInfoLog ( programObject, infoLen, NULL, infoLog );
+         printf( "Error linking program:\n%s\n", infoLog );
+
+         free ( infoLog );
+      }
+
+      glDeleteProgram ( programObject );
+      return 0;
+   }
+
+   // Free up no longer needed shader resources
+   glDeleteShader ( vertexShader );
+   glDeleteShader ( fragmentShader );
+
+   return programObject;
+}
+
+#endif /* GL_ES_VERSION_2_0 || GL_VERSION_2_0*/
 
 void JRenderer::InitRenderer()
 {
@@ -182,17 +672,98 @@ void JRenderer::InitRenderer()
 #endif
 
 	mCurrentRenderMode = MODE_UNKNOWN;
+
+
+#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
+#ifdef FORCE_GL2
+  g_glslfuncts.load();
+#endif //FORCE_GL2
+
+  char vShader[] =
+      "uniform mat4 u_mvp_matrix;                         \n"
+      "attribute vec4 a_position;                         \n"
+      "attribute vec4 a_color;                            \n"
+      "varying vec4 v_color;                              \n"
+      "void main()                                        \n"
+      "{                                                  \n"
+      "   gl_Position = u_mvp_matrix*a_position;          \n"
+      "   v_color = a_color;                              \n"
+      "}                                                  \n";
+  char fShader[] =
+#ifdef GL_ES_VERSION_2_0 // This line works fine on Windows, but not on Linux and it's required for GL_ES_2... hoh well
+      "precision mediump float;                           \n"
+#endif //GL_ES_VERSION_2_0
+      "varying vec4 v_color;                              \n"
+      "void main()                                        \n"
+      "{                                                  \n"
+      " gl_FragColor = v_color;                           \n"
+      "}                                                  \n";
+  char vShaderWithTexture[] =
+      "uniform mat4 u_mvp_matrix;                         \n"
+      "attribute vec4 a_position;                         \n"
+      "attribute vec2 a_texCoord;                         \n"
+      "attribute vec4 a_color;                            \n"
+      "varying vec2 v_texCoord;                           \n"
+      "varying vec4 v_color;                              \n"
+      "void main()                                        \n"
+      "{                                                  \n"
+      "   gl_Position = u_mvp_matrix*a_position;          \n"
+      "   v_texCoord = a_texCoord;                        \n"
+      "   v_color = a_color;                              \n"
+      "}                                                  \n";
+  char fShaderWithTexture[] =
+#ifdef GL_ES_VERSION_2_0 // This line works fine on Windows, but not on Linux and it's required for GL_ES_2... hoh well
+      "precision mediump float;                           \n"
+#endif //GL_ES_VERSION_2_0
+      "varying vec2 v_texCoord;                           \n"
+      "varying vec4 v_color;                              \n"
+      "uniform sampler2D s_texture;                       \n"
+      "void main()                                        \n"
+      "{                                                  \n"
+      " vec4 texColor;                                    \n"
+      " texColor = texture2D(s_texture, v_texCoord);      \n"
+      " gl_FragColor = v_color*texColor;                  \n"
+      "}                                                  \n";
+
+  // Load the vertex/fragment shaders
+  prog1 = esLoadProgram(vShader, fShader);
+  // Get the attribute locations
+  prog1_positionLoc = glGetAttribLocation ( prog1, "a_position" );
+  prog1_colorLoc = glGetAttribLocation ( prog1, "a_color" );
+  // Get the uniform locations
+  prog1_mvpLoc = glGetUniformLocation( prog1, "u_mvp_matrix" );
+
+  // Load the vertex/fragment shaders
+  prog2 = esLoadProgram(vShaderWithTexture, fShaderWithTexture);
+  // Get the attribute locations
+  prog2_positionLoc = glGetAttribLocation ( prog2, "a_position" );
+  prog2_texCoordLoc = glGetAttribLocation ( prog2, "a_texCoord" );
+  prog2_colorLoc = glGetAttribLocation ( prog2, "a_color" );
+  // Get the uniform locations
+  prog2_mvpLoc = glGetUniformLocation( prog2, "u_mvp_matrix" );
+  // Get the sampler location
+  prog2_samplerLoc = glGetUniformLocation ( prog2, "s_texture" );
+#endif //(defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
 }
 
 void JRenderer::DestroyRenderer()
 {
-
+#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
+    // Delete program object
+    glDeleteProgram ( prog1 );
+    glDeleteProgram ( prog2 );
+#endif //(defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
 }
 
 void JRenderer::BeginScene()
 {
 	glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);		// Clear Screen And Depth Buffer
-	glLoadIdentity ();											// Reset The Modelview Matrix
+#if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
+  glLoadIdentity ();											// Reset The Modelview Matrix
+#else
+  esMatrixLoadIdentity(&theMvpMatrix);
+  esOrtho(&theMvpMatrix, 0.0f, SCREEN_WIDTH_F, 0.0f, SCREEN_HEIGHT_F-1.0f,-1.0f, 1.0f);
+#endif //(!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
 #ifdef WIN32
   float scaleH = (float)actualHeight/SCREEN_HEIGHT_F;
   float scaleW = (float)actualWidth/SCREEN_WIDTH_F;
@@ -212,6 +783,7 @@ void JRenderer::BindTexture(JTexture *tex)
 	if (mCurrentTex != tex->mTexId)
 	{
 		mCurrentTex = tex->mTexId;
+
 		glBindTexture(GL_TEXTURE_2D, tex->mTexId);
 
 		//if (mCurrentTextureFilter != tex->mFilter)
@@ -249,7 +821,6 @@ void Swap(float *a, float *b)
 	*b = n;
 }
 
-
 void JRenderer::RenderQuad(JQuad* quad, float xo, float yo, float angle, float xScale, float yScale)
 {
 	//yo = SCREEN_HEIGHT-yo-1;//-(quad->mHeight);
@@ -283,10 +854,6 @@ void JRenderer::RenderQuad(JQuad* quad, float xo, float yo, float angle, float x
 		Swap(&uv[1].y, &uv[3].y);
 	}
 
-
-	//glEnable(GL_BLEND);
-	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
 	BindTexture(quad->mTex);
 
 
@@ -295,35 +862,133 @@ void JRenderer::RenderQuad(JQuad* quad, float xo, float yo, float angle, float x
 
 	yo = SCREEN_HEIGHT_F - yo;
 
-	glPushMatrix();
-	glTranslatef(xo, yo, 0.0f);
-	glRotatef(-angle*RAD2DEG, 0.0f, 0.0f, 1.0f);
-	glScalef(xScale, yScale, 1.0f);
 
-	glBegin(GL_QUADS);
-		// bottom left corner
-		glColor4ub(quad->mColor[0].r, quad->mColor[0].g, quad->mColor[0].b, quad->mColor[0].a);
-		glTexCoord2f(uv[0].x, uv[0].y); glVertex2f(pt[0].x, pt[0].y);
+#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
+        ESMatrix  mvpMatrix;
+        memcpy(&mvpMatrix, &theMvpMatrix, sizeof(ESMatrix));
 
-		// bottom right corner
-		glColor4ub(quad->mColor[1].r, quad->mColor[1].g, quad->mColor[1].b, quad->mColor[1].a);
-		glTexCoord2f(uv[1].x, uv[1].y); glVertex2f(pt[1].x, pt[1].y);
+        esTranslate(&mvpMatrix, xo, yo, 0.0f);
+        esRotate(&mvpMatrix, -angle*RAD2DEG, 0.0f, 0.0f, 1.0f);
+        esScale(&mvpMatrix, xScale, yScale, 1.0f);
 
-		// top right corner
-		glColor4ub(quad->mColor[2].r, quad->mColor[2].g, quad->mColor[2].b, quad->mColor[2].a);
-		glTexCoord2f(uv[2].x, uv[2].y); glVertex2f(pt[2].x, pt[2].y);
+        GLfloat vVertices[] = {
+            pt[0].x, pt[0].y, 0.0f,
+            uv[0].x, uv[0].y,
+            pt[1].x, pt[1].y, 0.0f,
+            uv[1].x, uv[1].y,
+            pt[3].x, pt[3].y, 0.0f,
+            uv[3].x, uv[3].y,
+            pt[2].x, pt[2].y, 0.0f,
+            uv[2].x, uv[2].y,
+        };
 
-		// top left corner
-		glColor4ub(quad->mColor[3].r, quad->mColor[3].g, quad->mColor[3].b, quad->mColor[3].a);
-		glTexCoord2f(uv[3].x, uv[3].y); glVertex2f(pt[3].x, pt[3].y);
-	glEnd();
+        GLubyte colorCoords[] = {
+            quad->mColor[0].r, quad->mColor[0].g, quad->mColor[0].b, quad->mColor[0].a,
+            quad->mColor[1].r, quad->mColor[1].g, quad->mColor[1].b, quad->mColor[1].a,
+            quad->mColor[3].r, quad->mColor[3].g, quad->mColor[3].b, quad->mColor[3].a,
+            quad->mColor[2].r, quad->mColor[2].g, quad->mColor[2].b, quad->mColor[2].a,
+        };
 
-	glPopMatrix();
+        // Use the program object
+        glUseProgram ( prog2 );
 
-	//glDisable(GL_BLEND);
+        // Load the vertex position
+        glVertexAttribPointer ( prog2_positionLoc, 3, GL_FLOAT,
+                                GL_FALSE, 5 * sizeof(GLfloat), vVertices );
+        // Load the texture coordinate
+        glVertexAttribPointer ( prog2_texCoordLoc, 2, GL_FLOAT,
+                                GL_FALSE, 5 * sizeof(GLfloat), &vVertices[3] );
+        // Load the colors
+        glVertexAttribPointer ( prog2_colorLoc, 4, GL_UNSIGNED_BYTE,
+                                GL_TRUE, 4 * sizeof(GLubyte), colorCoords );
 
-	// default color
-	glColor4ub(255, 255, 255, 255);
+        glEnableVertexAttribArray ( prog2_positionLoc );
+        glEnableVertexAttribArray ( prog2_texCoordLoc );
+        glEnableVertexAttribArray ( prog2_colorLoc );
+
+        // Load the MVP matrix
+        glUniformMatrix4fv( prog2_mvpLoc, 1, GL_FALSE, (GLfloat*) &mvpMatrix.m[0][0] );
+
+        // Bind the texture
+        glActiveTexture ( GL_TEXTURE0 );
+        glBindTexture ( GL_TEXTURE_2D, mCurrentTex );
+
+        // Set the sampler texture unit to 0
+        glUniform1i ( prog2_samplerLoc, 0 );
+
+        //glDrawElements ( GL_TRIANGLE_STRIP, 6, GL_UNSIGNED_SHORT, indices );
+        glDrawArrays(GL_TRIANGLE_STRIP,0,4);
+
+#else
+        glPushMatrix();
+        glTranslatef(xo, yo, 0.0f);
+        glRotatef(-angle*RAD2DEG, 0.0f, 0.0f, 1.0f);
+        glScalef(xScale, yScale, 1.0f);
+
+#if (defined GL_ES_VERSION_1_1) || (defined GL_VERSION_1_1)
+        glEnableClientState(GL_VERTEX_ARRAY);
+        glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+        glEnableClientState(GL_COLOR_ARRAY);
+
+        GLfloat vertCoords[] = {
+            pt[0].x, pt[0].y,
+            pt[1].x, pt[1].y,
+            pt[3].x, pt[3].y,
+            pt[2].x, pt[2].y,
+        };
+
+        GLfloat texCoords[] = {
+            uv[0].x, uv[0].y,
+            uv[1].x, uv[1].y,
+            uv[3].x, uv[3].y,
+            uv[2].x, uv[2].y,
+        };
+
+        GLubyte colorCoords[] = {
+            quad->mColor[0].r, quad->mColor[0].g, quad->mColor[0].b, quad->mColor[0].a,
+            quad->mColor[1].r, quad->mColor[1].g, quad->mColor[1].b, quad->mColor[1].a,
+            quad->mColor[3].r, quad->mColor[3].g, quad->mColor[3].b, quad->mColor[3].a,
+            quad->mColor[2].r, quad->mColor[2].g, quad->mColor[2].b, quad->mColor[2].a,
+        };
+
+        glVertexPointer(2,GL_FLOAT,0,vertCoords);
+        glTexCoordPointer(2,GL_FLOAT,0, texCoords);
+        glColorPointer(4, GL_UNSIGNED_BYTE, 0, colorCoords );
+        glDrawArrays(GL_TRIANGLE_STRIP,0,4);
+
+        glDisableClientState(GL_COLOR_ARRAY);
+        glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+        glDisableClientState(GL_VERTEX_ARRAY);
+#else
+        glBegin(GL_QUADS);
+
+        glColor4ub(quad->mColor[0].r, quad->mColor[0].g, quad->mColor[0].b, quad->mColor[0].a);
+        glTexCoord2f(uv[0].x, uv[0].y); glVertex2f(pt[0].x, pt[0].y);
+
+        // bottom right corner
+        glColor4ub(quad->mColor[1].r, quad->mColor[1].g, quad->mColor[1].b, quad->mColor[1].a);
+        glTexCoord2f(uv[1].x, uv[1].y); glVertex2f(pt[1].x, pt[1].y);
+
+        // top right corner
+        glColor4ub(quad->mColor[2].r, quad->mColor[2].g, quad->mColor[2].b, quad->mColor[2].a);
+        glTexCoord2f(uv[2].x, uv[2].y); glVertex2f(pt[2].x, pt[2].y);
+
+        // top left corner
+        glColor4ub(quad->mColor[3].r, quad->mColor[3].g, quad->mColor[3].b, quad->mColor[3].a);
+        glTexCoord2f(uv[3].x, uv[3].y); glVertex2f(pt[3].x, pt[3].y);
+
+        glEnd();
+#endif //(defined GL_ES_VERSION_1_1) || (defined GL_VERSION_1_1)
+
+        glPopMatrix();
+
+        //glDisable(GL_BLEND);
+
+        // default color
+        glColor4ub(255, 255, 255, 255);
+#endif //(defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
+
+
 }
 
 
@@ -344,6 +1009,55 @@ void JRenderer::RenderQuad(JQuad* quad, VertexColor* pt)
 
 	BindTexture(quad->mTex);
 
+#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
+  GLfloat vVertices[] = {
+      pt[0].x, pt[0].y, 0.0f,
+      uv[0].x, uv[0].y,
+      pt[1].x, pt[1].y, 0.0f,
+      uv[1].x, uv[1].y,
+      pt[3].x, pt[3].y, 0.0f,
+      uv[3].x, uv[3].y,
+      pt[2].x, pt[2].y, 0.0f,
+      uv[2].x, uv[2].y,
+  };
+
+  GLubyte colorCoords[] = {
+      quad->mColor[0].r, quad->mColor[0].g, quad->mColor[0].b, quad->mColor[0].a,
+      quad->mColor[1].r, quad->mColor[1].g, quad->mColor[1].b, quad->mColor[1].a,
+      quad->mColor[3].r, quad->mColor[3].g, quad->mColor[3].b, quad->mColor[3].a,
+      quad->mColor[2].r, quad->mColor[2].g, quad->mColor[2].b, quad->mColor[2].a,
+  };
+
+  // Use the program object
+  glUseProgram ( prog2 );
+
+  // Load the vertex position
+  glVertexAttribPointer ( prog2_positionLoc, 3, GL_FLOAT,
+                          GL_FALSE, 5 * sizeof(GLfloat), vVertices );
+  // Load the texture coordinate
+  glVertexAttribPointer ( prog2_texCoordLoc, 2, GL_FLOAT,
+                          GL_FALSE, 5 * sizeof(GLfloat), &vVertices[3] );
+  // Load the colors
+  glVertexAttribPointer ( prog2_colorLoc, 4, GL_UNSIGNED_BYTE,
+                          GL_TRUE, 4 * sizeof(GLubyte), colorCoords );
+
+  glEnableVertexAttribArray ( prog2_positionLoc );
+  glEnableVertexAttribArray ( prog2_texCoordLoc );
+  glEnableVertexAttribArray ( prog2_colorLoc );
+
+  // Load the MVP matrix
+  glUniformMatrix4fv( prog2_mvpLoc, 1, GL_FALSE, (GLfloat*) &theMvpMatrix.m[0][0] );
+
+  // Bind the texture
+  glActiveTexture ( GL_TEXTURE0 );
+  glBindTexture ( GL_TEXTURE_2D, mCurrentTex );
+
+  // Set the sampler texture unit to 0
+  glUniform1i ( prog2_samplerLoc, 0 );
+
+  //glDrawElements ( GL_TRIANGLE_STRIP, 6, GL_UNSIGNED_SHORT, indices );
+  glDrawArrays(GL_TRIANGLE_STRIP,0,4);
+#else
 	glRasterPos2f(pt[0].x, pt[0].y);
 
 	//float w = quad->mWidth;
@@ -366,11 +1080,12 @@ void JRenderer::RenderQuad(JQuad* quad, VertexColor* pt)
 		glColor4ub(quad->mColor[3].r, quad->mColor[3].g, quad->mColor[3].b, quad->mColor[3].a);
 		glTexCoord2f(uv[3].x, uv[3].y); glVertex2f(pt[3].x, pt[3].y);
 	glEnd();
+  // default color
+  glColor4ub(255, 255, 255, 255);
+#endif //(defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
 
 	//glDisable(GL_BLEND);
 
-	// default color
-	glColor4ub(255, 255, 255, 255);
 }
 
 
@@ -382,7 +1097,41 @@ void JRenderer::FillRect(float x, float y, float width, float height, PIXEL_TYPE
 	col.color = color;
 
 	glDisable(GL_TEXTURE_2D);
-	glColor4ub(col.r, col.g, col.b, col.a);
+#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
+  GLfloat vVertices[] = {
+      x,        y+height, 0.0f,
+      x,        y,        0.0f,
+      x+width,  y+height, 0.0f,
+      x+width,  y,        0.0f,
+  };
+
+  GLubyte colors[] = {
+      col.r, col.g, col.b, col.a,
+      col.r, col.g, col.b, col.a,
+      col.r, col.g, col.b, col.a,
+      col.r, col.g, col.b, col.a,
+  };
+
+  // Use the program object without texture
+  glUseProgram ( prog1 );
+
+  // Load the vertex position
+  glVertexAttribPointer ( prog1_positionLoc, 3, GL_FLOAT,
+                          GL_FALSE, 3 * sizeof(GLfloat), vVertices );
+  // Load the color
+  glVertexAttribPointer(prog1_colorLoc, 4, GL_UNSIGNED_BYTE,
+                        GL_TRUE, 4 * sizeof(GLubyte), colors);
+
+  glEnableVertexAttribArray ( prog1_positionLoc );
+  glEnableVertexAttribArray ( prog1_colorLoc );
+
+  // Load the MVP matrix
+  glUniformMatrix4fv( prog1_mvpLoc, 1, GL_FALSE, (GLfloat*) &theMvpMatrix.m[0][0] );
+
+  glDrawArrays(GL_TRIANGLE_STRIP,0,4);
+#else
+  glColor4ub(col.r, col.g, col.b, col.a);
+
 	glBegin(GL_QUADS);
 		// top left corner
 		glVertex2f(x, y+height);
@@ -397,11 +1146,12 @@ void JRenderer::FillRect(float x, float y, float width, float height, PIXEL_TYPE
 		glVertex2f(x+width, y+height);
 
 	glEnd();
+  // default color
+  glColor4ub(255, 255, 255, 255);
+#endif //(defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
 
 	glEnable(GL_TEXTURE_2D);
 
-	// default color
-	glColor4ub(255, 255, 255, 255);
 }
 
 
@@ -413,8 +1163,41 @@ void JRenderer::DrawRect(float x, float y, float width, float height, PIXEL_TYPE
 	col.color = color;
 
 	glDisable(GL_TEXTURE_2D);
-	glColor4ub(col.r, col.g, col.b, col.a);
-	glBegin(GL_LINES);
+#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
+  GLfloat vVertices[] = {
+      x,        y,        0.0f,
+      x,        y+height, 0.0f,
+      x+width,  y+height, 0.0f,
+      x+width,  y,        0.0f,
+  };
+
+  GLubyte colors[] = {
+      col.r, col.g, col.b, col.a,
+      col.r, col.g, col.b, col.a,
+      col.r, col.g, col.b, col.a,
+      col.r, col.g, col.b, col.a,
+  };
+
+  // Use the program object without texture
+  glUseProgram ( prog1 );
+
+  // Load the vertex position
+  glVertexAttribPointer ( prog1_positionLoc, 3, GL_FLOAT,
+                          GL_FALSE, 3 * sizeof(GLfloat), vVertices );
+  // Load the color
+  glVertexAttribPointer(prog1_colorLoc, 4, GL_UNSIGNED_BYTE,
+                        GL_TRUE, 4 * sizeof(GLubyte), colors);
+
+  glEnableVertexAttribArray ( prog1_positionLoc );
+  glEnableVertexAttribArray ( prog1_colorLoc );
+
+  // Load the MVP matrix
+  glUniformMatrix4fv( prog1_mvpLoc, 1, GL_FALSE, (GLfloat*) &theMvpMatrix.m[0][0] );
+
+  glDrawArrays(GL_LINE_LOOP,0,4);
+#else
+  glColor4ub(col.r, col.g, col.b, col.a);
+  glBegin(GL_LINES);
 
 		glVertex2f(x, y);
 		glVertex2f(x, y+height);
@@ -430,10 +1213,11 @@ void JRenderer::DrawRect(float x, float y, float width, float height, PIXEL_TYPE
 
 	glEnd();
 
-	glEnable(GL_TEXTURE_2D);
+  // default color
+  glColor4ub(255, 255, 255, 255);
+#endif //#if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
 
-	// default color
-	glColor4ub(255, 255, 255, 255);
+	glEnable(GL_TEXTURE_2D);
 }
 
 
@@ -452,7 +1236,41 @@ void JRenderer::FillRect(float x, float y, float width, float height, JColor* co
 	y = SCREEN_HEIGHT_F - y - height;
 
 	glDisable(GL_TEXTURE_2D);
-	glBegin(GL_QUADS);
+
+#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
+  GLfloat vVertices[] = {
+      x,        y+height, 0.0f,
+      x,        y,        0.0f,
+      x+width,  y+height, 0.0f,
+      x+width,  y,        0.0f,
+  };
+
+  GLubyte cols[] = {
+      colors[0].r, colors[0].g, colors[0].b, colors[0].a,
+      colors[2].r, colors[2].g, colors[2].b, colors[2].a,
+      colors[1].r, colors[1].g, colors[1].b, colors[1].a,
+      colors[3].r, colors[3].g, colors[3].b, colors[3].a,
+  };
+
+  // Use the program object without texture
+  glUseProgram ( prog1 );
+
+  // Load the vertex position
+  glVertexAttribPointer ( prog1_positionLoc, 3, GL_FLOAT,
+                          GL_FALSE, 3 * sizeof(GLfloat), vVertices );
+  // Load the color
+  glVertexAttribPointer(prog1_colorLoc, 4, GL_UNSIGNED_BYTE,
+                        GL_TRUE, 4 * sizeof(GLubyte), cols);
+
+  glEnableVertexAttribArray ( prog1_positionLoc );
+  glEnableVertexAttribArray ( prog1_colorLoc );
+
+  // Load the MVP matrix
+  glUniformMatrix4fv( prog1_mvpLoc, 1, GL_FALSE, (GLfloat*) &theMvpMatrix.m[0][0] );
+
+  glDrawArrays(GL_TRIANGLE_STRIP,0,4);
+#else
+  glBegin(GL_QUADS);
 		// top left corner
 		glColor4ub(colors[0].r, colors[0].g, colors[0].b, colors[0].a);
 		glVertex2f(x, y+height);
@@ -471,12 +1289,12 @@ void JRenderer::FillRect(float x, float y, float width, float height, JColor* co
 
 	glEnd();
 
+  // default color
+  glColor4ub(255, 255, 255, 255);
+#endif //#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
+
 	glEnable(GL_TEXTURE_2D);
-
 	//glDisable(GL_BLEND);
-
-	// default color
-	glColor4ub(255, 255, 255, 255);
 }
 
 
@@ -486,13 +1304,43 @@ void JRenderer::DrawLine(float x1, float y1, float x2, float y2, PIXEL_TYPE colo
 	glDisable(GL_TEXTURE_2D);
 	JColor col;
 	col.color = color;
-	glColor4ub(col.r, col.g, col.b, col.a);
-	glBegin(GL_LINES);
+#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
+  GLfloat vVertices[] = {
+      x1, SCREEN_HEIGHT_F-y1, 0.0f,
+      x2, SCREEN_HEIGHT_F-y2, 0.0f,
+  };
+
+  GLubyte cols[] = {
+      col.r, col.g, col.b, col.a,
+      col.r, col.g, col.b, col.a,
+  };
+
+  // Use the program object without texture
+  glUseProgram ( prog1 );
+
+  // Load the vertex position
+  glVertexAttribPointer ( prog1_positionLoc, 3, GL_FLOAT,
+                          GL_FALSE, 3 * sizeof(GLfloat), vVertices );
+  // Load the color
+  glVertexAttribPointer(prog1_colorLoc, 4, GL_UNSIGNED_BYTE,
+                        GL_TRUE, 4 * sizeof(GLubyte), cols);
+
+  glEnableVertexAttribArray ( prog1_positionLoc );
+  glEnableVertexAttribArray ( prog1_colorLoc );
+
+  // Load the MVP matrix
+  glUniformMatrix4fv( prog1_mvpLoc, 1, GL_FALSE, (GLfloat*) &theMvpMatrix.m[0][0] );
+
+  glDrawArrays(GL_LINES,0,2);
+#else
+  glColor4ub(col.r, col.g, col.b, col.a);
+  glBegin(GL_LINES);
 		glVertex2f(x1, SCREEN_HEIGHT_F-y1);
 		glVertex2f(x2, SCREEN_HEIGHT_F-y2);
 	glEnd();
-	glEnable(GL_TEXTURE_2D);
-	glColor4ub(255, 255, 255, 255);
+  glColor4ub(255, 255, 255, 255);
+#endif //#if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
+  glEnable(GL_TEXTURE_2D);
 }
 
 
@@ -501,27 +1349,35 @@ void JRenderer::Plot(float x, float y, PIXEL_TYPE color)
 	glDisable(GL_TEXTURE_2D);
 	JColor col;
 	col.color = color;
-	glColor4ub(col.r, col.g, col.b, col.a);
-	glBegin(GL_POINTS);
+#if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
+  glColor4ub(col.r, col.g, col.b, col.a);
+  glBegin(GL_POINTS);
 		glVertex2f(x, SCREEN_HEIGHT_F-y);
 	glEnd();
-	glEnable(GL_TEXTURE_2D);
-	glColor4ub(255, 255, 255, 255);
+  glColor4ub(255, 255, 255, 255);
+#else
+  // FIXME, not used
+#endif //#if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
+  glEnable(GL_TEXTURE_2D);
 }
 
 
 void JRenderer::PlotArray(float *x, float *y, int count, PIXEL_TYPE color)
 {
 	glDisable(GL_TEXTURE_2D);
-	JColor col;
+	JColor col;  
 	col.color = color;
-	glColor4ub(col.r, col.g, col.b, col.a);
-	glBegin(GL_POINTS);
+#if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
+  glColor4ub(col.r, col.g, col.b, col.a);
+  glBegin(GL_POINTS);
 		for (int i=0;i<count;i++)
 			glVertex2f(x[i], SCREEN_HEIGHT_F-y[i]);
 	glEnd();
-	glEnable(GL_TEXTURE_2D);
-	glColor4ub(255, 255, 255, 255);
+  glColor4ub(255, 255, 255, 255);
+#else
+  // FIXME, not used
+#endif //#if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
+  glEnable(GL_TEXTURE_2D);
 }
 
 
@@ -737,8 +1593,10 @@ JTexture* JRenderer::LoadTexture(const char* filename, int mode, int TextureForm
 	else if(strstr(filename, ".png")!=NULL || strstr(filename, ".PNG")!=NULL)
 		LoadPNG(textureInfo, filename);
 
-	if (textureInfo.mBits == NULL)
-		return NULL;
+        if (textureInfo.mBits == NULL) {
+            printf("Texture %s failed to load\n", filename);
+            return NULL;
+        }
 
 	bool ret = false;
 
@@ -758,44 +1616,49 @@ JTexture* JRenderer::LoadTexture(const char* filename, int mode, int TextureForm
 		GLuint texid;
 		glGenTextures(1, &texid);
 		tex->mTexId = texid;
+                GLenum glError = glGetError();
 
-		if (texid != 0)
+                if (/*texid*/ glError == 0)
 		{
 
 			// OpenGL texture has (0,0) at lower-left
 			// Pay attention when doing texture mapping!!!
 
-			glBindTexture(GL_TEXTURE_2D, texid);								// Bind To The Texture ID
+                            glBindTexture(GL_TEXTURE_2D, texid);    // Bind To The Texture ID
 
-
+/* NOT USED
 			if (mode == TEX_TYPE_MIPMAP)			// generate mipmaps
 			{
 				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 				glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_NEAREST);
 				glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR_MIPMAP_LINEAR);
-				gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, textureInfo.mTexWidth, textureInfo.mTexHeight, GL_RGBA, GL_UNSIGNED_BYTE, textureInfo.mBits);
-			}
+                                gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, textureInfo.mTexWidth, textureInfo.mTexHeight, GL_RGBA, GL_UNSIGNED_BYTE, textureInfo.mBits);
+                        }
 			else if (mode == TEX_TYPE_SKYBOX)		// for skybox
 			{
 #define GL_CLAMP_TO_EDGE	0x812F
 
 				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-				gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, textureInfo.mTexWidth, textureInfo.mTexHeight, GL_RGBA, GL_UNSIGNED_BYTE, textureInfo.mBits);
-			}
+                                gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, textureInfo.mTexWidth, textureInfo.mTexHeight, GL_RGBA, GL_UNSIGNED_BYTE, textureInfo.mBits);
+                        }
 			else									// single texture
-			{
+*/			{
 				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 				glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
 				glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
-				glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureInfo.mTexWidth, textureInfo.mTexHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureInfo.mBits);
-			}
+                                glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureInfo.mTexWidth, textureInfo.mTexHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureInfo.mBits);
+                        }
 
 			ret = TRUE;
 
 		}
+                else
+                {
+                    printf("TextureId is 0, GLerror is %u\n", glError);
+                }
 
 
 	}
@@ -1154,7 +2017,13 @@ void JRenderer::EnableVSync(bool flag __attribute__((unused)))
 
 void JRenderer::ClearScreen(PIXEL_TYPE color)
 {
-	FillRect(0.0f, 0.0f, SCREEN_WIDTH_F, SCREEN_HEIGHT_F, color);
+    JColor col;
+    col.color = color;
+
+    glClearColor(col.r, col.g, col.b, col.a);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+//	FillRect(0.0f, 0.0f, SCREEN_WIDTH_F, SCREEN_HEIGHT_F, color);
 }
 
 
@@ -1198,20 +2067,24 @@ void JRenderer::Enable2D()
 	mCurrentRenderMode = MODE_2D;
 
 	glViewport (0, 0, (GLsizei)SCREEN_WIDTH, (GLsizei)SCREEN_HEIGHT);	// Reset The Current Viewport
-	glMatrixMode (GL_PROJECTION);										// Select The Projection Matrix
+#if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
+        glMatrixMode (GL_PROJECTION);										// Select The Projection Matrix
 	glLoadIdentity ();													// Reset The Projection Matrix
 
 	gluOrtho2D(0.0f, SCREEN_WIDTH_F, 0.0f, SCREEN_HEIGHT_F-1.0f);
 
 	glMatrixMode (GL_MODELVIEW);										// Select The Modelview Matrix
 	glLoadIdentity ();													// Reset The Modelview Matrix
+#else
+        // all the matrix code is in shaders calls
+#endif //(!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
 
 	glDisable (GL_DEPTH_TEST);
 }
 
 
 void JRenderer::Enable3D()
-{
+{ /* NOT USED
 	if (!m3DEnabled)
 		return;
 
@@ -1228,65 +2101,99 @@ void JRenderer::Enable3D()
 	glMatrixMode (GL_MODELVIEW);										// Select The Modelview Matrix
 	glLoadIdentity ();													// Reset The Modelview Matrix
 
-	glEnable (GL_DEPTH_TEST);
+        glEnable (GL_DEPTH_TEST); */
 }
 
 
 void JRenderer::SetClip(int x, int y, int width, int height)
-{
-	glScissor(x, y, width, height);
+{// NOT USED
+        //glScissor(x, y, width, height);
 }
 
 
 void JRenderer::LoadIdentity()
-{
-	glLoadIdentity();
+{// NOT USED
+        //glLoadIdentity();
 }
 
 
 void JRenderer::Translate(float x, float y, float z)
-{
-	glTranslatef(x, y, z);
+{// NOT USED
+        //glTranslatef(x, y, z);
 }
 
 
 void JRenderer::RotateX(float angle)
-{
-	glRotatef(angle*RAD2DEG, 1.0f, 0.0f, 0.0f);
+{// NOT USED
+        //glRotatef(angle*RAD2DEG, 1.0f, 0.0f, 0.0f);
 }
 
 
 void JRenderer::RotateY(float angle)
-{
-	glRotatef(angle*RAD2DEG, 0.0f, 1.0f, 0.0f);
+{// NOT USED
+        //glRotatef(angle*RAD2DEG, 0.0f, 1.0f, 0.0f);
 }
 
 
 void JRenderer::RotateZ(float angle)
-{
-	glRotatef(angle*RAD2DEG, 0.0f, 0.0f, 1.0f);
+{// NOT USED
+        //glRotatef(angle*RAD2DEG, 0.0f, 0.0f, 1.0f);
 }
 
 
 void JRenderer::PushMatrix()
-{
-	glPushMatrix();
+{// NOT USED
+        //glPushMatrix();
 }
 
 
 void JRenderer::PopMatrix()
-{
-	glPopMatrix();
+{// NOT USED
+        //glPopMatrix();
 }
-
 
 void JRenderer::RenderTriangles(JTexture* texture, Vertex3D *vertices, int start, int count)
 {
 	if (texture)
 		BindTexture(texture);
 
-	glBegin(GL_TRIANGLES);
-		int index = start*3;
+  int index = start*3;
+#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
+  GLubyte* colorCoords = new GLubyte[count*3*4];
+  memset(colorCoords, 255, count*3*4);
+
+  // Use the program object
+  glUseProgram ( prog2 );
+
+  // Load the vertex position
+  glVertexAttribPointer ( prog2_positionLoc, 3, GL_FLOAT,
+                          GL_FALSE, 5 * sizeof(GLfloat), &vertices[index].x );
+  // Load the texture coordinate
+  glVertexAttribPointer ( prog2_texCoordLoc, 2, GL_FLOAT,
+                          GL_FALSE, 5 * sizeof(GLfloat), &vertices[index].u );
+  // Load the colors
+  glVertexAttribPointer ( prog2_colorLoc, 4, GL_UNSIGNED_BYTE,
+                          GL_TRUE, 4 * sizeof(GLubyte), colorCoords );
+
+  glEnableVertexAttribArray ( prog2_positionLoc );
+  glEnableVertexAttribArray ( prog2_texCoordLoc );
+  glEnableVertexAttribArray ( prog2_colorLoc );
+
+  // Load the MVP matrix
+  glUniformMatrix4fv( prog2_mvpLoc, 1, GL_FALSE, (GLfloat*) &theMvpMatrix.m[0][0] );
+
+  // Bind the texture
+  glActiveTexture ( GL_TEXTURE0 );
+  glBindTexture ( GL_TEXTURE_2D, mCurrentTex );
+
+  // Set the sampler texture unit to 0
+  glUniform1i ( prog2_samplerLoc, 0 );
+
+  glDrawArrays(GL_TRIANGLES,0,count*3);
+
+  delete[] colorCoords;
+#else
+  glBegin(GL_TRIANGLES);
 		for (int i = 0; i < count; i++)
 		{
 			glTexCoord2f(vertices[index].u, vertices[index].v);
@@ -1306,10 +2213,9 @@ void JRenderer::RenderTriangles(JTexture* texture, Vertex3D *vertices, int start
 			glVertex3f(vertices[index].x, vertices[index].y, vertices[index].z);
 
 			index++;
-
 		}
 	glEnd();
-
+#endif //#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
 }
 
 
@@ -1325,20 +2231,62 @@ void JRenderer::FillPolygon(float* x, float* y, int count, PIXEL_TYPE color)
 	col.color = color;
 
 	glDisable(GL_TEXTURE_2D);
-	glColor4ub(col.r, col.g, col.b, col.a);
-	glBegin(GL_TRIANGLE_FAN);
+#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
+  int i;
+  GLubyte* colors = new GLubyte[count*4];
+  GLfloat* vVertices = new GLfloat[count*3];
+
+  for(i = 0; i < count; i++)
+  {
+    colors[4*i+0]= col.r;
+    colors[4*i+1]= col.g;
+    colors[4*i+2]= col.b;
+    colors[4*i+3]= col.a;
+  }
+
+  for(i=0; i < count;i++)
+  {
+    vVertices[3*i+0] = x[i];
+    vVertices[3*i+1] = SCREEN_HEIGHT_F-y[i];
+    vVertices[3*i+2] = 0.0f;
+  }
+
+  // Use the program object without texture
+  glUseProgram ( prog1 );
+
+  // Load the vertex position
+  glVertexAttribPointer ( prog1_positionLoc, 3, GL_FLOAT,
+                          GL_FALSE, 3 * sizeof(GLfloat), vVertices );
+  // Load the color
+  glVertexAttribPointer(prog1_colorLoc, 4, GL_UNSIGNED_BYTE,
+                        GL_TRUE, 4 * sizeof(GLubyte), colors);
+
+  glEnableVertexAttribArray ( prog1_positionLoc );
+  glEnableVertexAttribArray ( prog1_colorLoc );
+
+  // Load the MVP matrix
+  glUniformMatrix4fv( prog1_mvpLoc, 1, GL_FALSE, (GLfloat*) &theMvpMatrix.m[0][0] );
+
+  glDrawArrays(GL_TRIANGLE_FAN,0,count);
+
+  delete[] vVertices;
+  delete[] colors;
+
+#else
+  glColor4ub(col.r, col.g, col.b, col.a);
+  glBegin(GL_TRIANGLE_FAN);
 
 	for(int i=0; i<count;i++)
 	{
 		glVertex2f(x[i],SCREEN_HEIGHT_F-y[i]);
 	}
 
-	glEnd();
+	glEnd();  
+  // default color
+  glColor4ub(255, 255, 255, 255);
+#endif //#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
 
 	glEnable(GL_TEXTURE_2D);
-
-	// default color
-	glColor4ub(255, 255, 255, 255);
 }
 
 
@@ -1348,8 +2296,54 @@ void JRenderer::DrawPolygon(float* x, float* y, int count, PIXEL_TYPE color)
 	col.color = color;
 
 	glDisable(GL_TEXTURE_2D);
-	glColor4ub(col.r, col.g, col.b, col.a);
-	glBegin(GL_LINE_STRIP);
+#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
+  int i;
+  int number = count+1;
+  GLfloat* vVertices = new GLfloat[3*number];
+  GLubyte* colors = new GLubyte[4*number];
+
+  for(i = 0; i < number; i++)
+  {
+    colors[4*i+0]= col.r;
+    colors[4*i+1]= col.g;
+    colors[4*i+2]= col.b;
+    colors[4*i+3]= col.a;
+  }
+
+  for(i=0; i < count;i++)
+  {
+    vVertices[3*i+0] = x[i];
+    vVertices[3*i+1] = SCREEN_HEIGHT_F-y[i];
+    vVertices[3*i+2] = 0.0f;
+  }
+
+  vVertices[3*(number-1)+0] = x[0];
+  vVertices[3*(number-1)+1] = SCREEN_HEIGHT_F-y[0];
+  vVertices[3*(number-1)+2] = 0.0f;
+
+  // Use the program object without texture
+  glUseProgram ( prog1 );
+
+  // Load the vertex position
+  glVertexAttribPointer ( prog1_positionLoc, 3, GL_FLOAT,
+                          GL_FALSE, 3 * sizeof(GLfloat), vVertices );
+  // Load the color
+  glVertexAttribPointer(prog1_colorLoc, 4, GL_UNSIGNED_BYTE,
+                        GL_TRUE, 4 * sizeof(GLubyte), colors);
+
+  glEnableVertexAttribArray ( prog1_positionLoc );
+  glEnableVertexAttribArray ( prog1_colorLoc );
+
+  // Load the MVP matrix
+  glUniformMatrix4fv( prog1_mvpLoc, 1, GL_FALSE, (GLfloat*) &theMvpMatrix.m[0][0] );
+
+  glDrawArrays(GL_LINE_STRIP,0,number);
+
+  delete[] vVertices;
+  delete[] colors;
+#else
+  glColor4ub(col.r, col.g, col.b, col.a);
+  glBegin(GL_LINE_STRIP);
 
 	for(int i=0; i<count;i++)
 	{
@@ -1360,10 +2354,11 @@ void JRenderer::DrawPolygon(float* x, float* y, int count, PIXEL_TYPE color)
 
 	glEnd();
 
-	glEnable(GL_TEXTURE_2D);
+  // default color
+  glColor4ub(255, 255, 255, 255);
+#endif //#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
 
-	// default color
-	glColor4ub(255, 255, 255, 255);
+	glEnable(GL_TEXTURE_2D);
 }
 
 
@@ -1401,8 +2396,52 @@ void JRenderer::DrawCircle(float x, float y, float radius, PIXEL_TYPE color)
 	col.color = color;
 
 	glDisable(GL_TEXTURE_2D);
-	glColor4ub(col.r, col.g, col.b, col.a);
-	glBegin(GL_LINE_STRIP);
+#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
+  int i, index;
+  const int number = 181;
+  GLfloat vVertices[number][3];
+  GLubyte colors[number][4];
+
+  for(i = 0; i < number; i++)
+  {
+    colors[i][0]= col.r;
+    colors[i][1]= col.g;
+    colors[i][2]= col.b;
+    colors[i][3]= col.a;
+  }
+
+  index = 0;
+  for(i=0; i < 360;i+=2, index++)
+  {
+    vVertices[index][0] = x+radius*COSF(i);
+    vVertices[index][1] = SCREEN_HEIGHT_F-y+radius*SINF(i);
+    vVertices[index][2] = 0.0f;
+  }
+
+  vVertices[number-1][0] = x+radius*COSF(0);
+  vVertices[number-1][1] = SCREEN_HEIGHT_F-y+radius*SINF(0);
+  vVertices[number-1][2] = 0.0f;
+
+  // Use the program object without texture
+  glUseProgram ( prog1 );
+
+  // Load the vertex position
+  glVertexAttribPointer ( prog1_positionLoc, 3, GL_FLOAT,
+                          GL_FALSE, 3 * sizeof(GLfloat), vVertices );
+  // Load the color
+  glVertexAttribPointer(prog1_colorLoc, 4, GL_UNSIGNED_BYTE,
+                        GL_TRUE, 4 * sizeof(GLubyte), colors);
+
+  glEnableVertexAttribArray ( prog1_positionLoc );
+  glEnableVertexAttribArray ( prog1_colorLoc );
+
+  // Load the MVP matrix
+  glUniformMatrix4fv( prog1_mvpLoc, 1, GL_FALSE, (GLfloat*) &theMvpMatrix.m[0][0] );
+
+  glDrawArrays(GL_LINE_STRIP,0,number);
+#else
+  glColor4ub(col.r, col.g, col.b, col.a);
+  glBegin(GL_LINE_STRIP);
 
 		for(int i=0; i<360;i+=2)
 		{
@@ -1412,11 +2451,11 @@ void JRenderer::DrawCircle(float x, float y, float radius, PIXEL_TYPE color)
 		glVertex2f(x+radius*COSF(0), SCREEN_HEIGHT_F-y+radius*SINF(0));
 
 	glEnd();
+  // default color
+  glColor4ub(255, 255, 255, 255);
+#endif //#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
 
 	glEnable(GL_TEXTURE_2D);
-
-	// default color
-	glColor4ub(255, 255, 255, 255);
 }
 
 void JRenderer::FillCircle(float x, float y, float radius, PIXEL_TYPE color)
@@ -1425,8 +2464,56 @@ void JRenderer::FillCircle(float x, float y, float radius, PIXEL_TYPE color)
 	col.color = color;
 
 	glDisable(GL_TEXTURE_2D);
-	glColor4ub(col.r, col.g, col.b, col.a);
-	glBegin(GL_TRIANGLE_FAN);
+#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
+  int i, index;
+  const int number = 182;
+  GLfloat vVertices[number][3];
+  GLubyte colors[number][4];
+
+  for(i = 0; i < number; i++)
+  {
+    colors[i][0]= col.r;
+    colors[i][1]= col.g;
+    colors[i][2]= col.b;
+    colors[i][3]= col.a;
+  }
+
+  vVertices[0][0] = x;
+  vVertices[0][1] = SCREEN_HEIGHT_F-y;
+  vVertices[0][2] = 0.0f;
+
+  index = 1;
+  for(i=0; i < 360;i+=2, index++)
+  {
+    vVertices[index][0] = x+radius*COSF(i);
+    vVertices[index][1] = SCREEN_HEIGHT_F-y+radius*SINF(i);
+    vVertices[index][2] = 0.0f;
+  }
+
+  vVertices[number-1][0] = x+radius*COSF(0);
+  vVertices[number-1][1] = SCREEN_HEIGHT_F-y+radius*SINF(0);
+  vVertices[number-1][2] = 0.0f;
+
+  // Use the program object without texture
+  glUseProgram ( prog1 );
+
+  // Load the vertex position
+  glVertexAttribPointer ( prog1_positionLoc, 3, GL_FLOAT,
+                          GL_FALSE, 3 * sizeof(GLfloat), vVertices );
+  // Load the color
+  glVertexAttribPointer(prog1_colorLoc, 4, GL_UNSIGNED_BYTE,
+                        GL_TRUE, 4 * sizeof(GLubyte), colors);
+
+  glEnableVertexAttribArray ( prog1_positionLoc );
+  glEnableVertexAttribArray ( prog1_colorLoc );
+
+  // Load the MVP matrix
+  glUniformMatrix4fv( prog1_mvpLoc, 1, GL_FALSE, (GLfloat*) &theMvpMatrix.m[0][0] );
+
+  glDrawArrays(GL_TRIANGLE_FAN,0,number);
+#else
+  glColor4ub(col.r, col.g, col.b, col.a);
+  glBegin(GL_TRIANGLE_FAN);
 
 		glVertex2f(x, SCREEN_HEIGHT_F-y);
 
@@ -1439,10 +2526,11 @@ void JRenderer::FillCircle(float x, float y, float radius, PIXEL_TYPE color)
 
 	glEnd();
 
-	glEnable(GL_TEXTURE_2D);
+  // default color
+  glColor4ub(255, 255, 255, 255);
+#endif //#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
 
-	// default color
-	glColor4ub(255, 255, 255, 255);
+	glEnable(GL_TEXTURE_2D);
 }
 
 
@@ -1456,8 +2544,52 @@ void JRenderer::DrawPolygon(float x, float y, float size, int count, float start
 	size /= 2;
 
 	glDisable(GL_TEXTURE_2D);
-	glColor4ub(col.r, col.g, col.b, col.a);
-	glBegin(GL_LINE_LOOP);
+#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
+  int i;
+  GLfloat* vVertices = new GLfloat[3*count];
+  GLubyte* colors = new GLubyte[4*count];
+
+  for(i = 0; i < count; i++)
+  {
+    colors[4*i+0]= col.r;
+    colors[4*i+1]= col.g;
+    colors[4*i+2]= col.b;
+    colors[4*i+3]= col.a;
+  }
+
+  for(i=0; i<count;i++)
+  {
+    vVertices[3*i+0] = x+size*COSF((int)angle);
+    vVertices[3*i+1] = SCREEN_HEIGHT_F-(y+size*SINF((int)angle));
+    vVertices[3*i+2] = 0.0f;
+    angle += steps;
+    if (angle >= 360.0f)
+      angle -= 360.0f;
+  }
+
+  // Use the program object without texture
+  glUseProgram ( prog1 );
+
+  // Load the vertex position
+  glVertexAttribPointer ( prog1_positionLoc, 3, GL_FLOAT,
+                          GL_FALSE, 3 * sizeof(GLfloat), vVertices );
+  // Load the color
+  glVertexAttribPointer(prog1_colorLoc, 4, GL_UNSIGNED_BYTE,
+                        GL_TRUE, 4 * sizeof(GLubyte), colors);
+
+  glEnableVertexAttribArray ( prog1_positionLoc );
+  glEnableVertexAttribArray ( prog1_colorLoc );
+
+  // Load the MVP matrix
+  glUniformMatrix4fv( prog1_mvpLoc, 1, GL_FALSE, (GLfloat*) &theMvpMatrix.m[0][0] );
+
+  glDrawArrays(GL_LINE_LOOP,0,count);
+
+  delete[] vVertices;
+  delete[] colors;
+#else
+  glColor4ub(col.r, col.g, col.b, col.a);
+  glBegin(GL_LINE_LOOP);
 
 		for(int i=0; i<count;i++)
 		{
@@ -1469,11 +2601,11 @@ void JRenderer::DrawPolygon(float x, float y, float size, int count, float start
 		}
 
 	glEnd();
+  // default color
+  glColor4ub(255, 255, 255, 255);
+#endif //#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
 
 	glEnable(GL_TEXTURE_2D);
-
-	// default color
-	glColor4ub(255, 255, 255, 255);
 }
 
 
@@ -1488,8 +2620,60 @@ void JRenderer::FillPolygon(float x, float y, float size, int count, float start
 	size /= 2;
 
 	glDisable(GL_TEXTURE_2D);
-	glColor4ub(col.r, col.g, col.b, col.a);
-	glBegin(GL_TRIANGLE_FAN);
+#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
+  int i;
+  GLfloat* vVertices = new GLfloat[3*(count+2)];
+  GLubyte* colors = new GLubyte[4*(count+2)];
+
+  for(i = 0; i < count+2; i++)
+  {
+    colors[4*i+0]= col.r;
+    colors[4*i+1]= col.g;
+    colors[4*i+2]= col.b;
+    colors[4*i+3]= col.a;
+  }
+
+  vVertices[0] = x;
+  vVertices[1] = SCREEN_HEIGHT_F-y;
+  vVertices[2] = 0.0f;
+
+  for(i=1; i<count+1;i++)
+  {
+    vVertices[3*i+0] = x+size*COSF((int)angle);
+    vVertices[3*i+1] = SCREEN_HEIGHT_F-y+size*SINF((int)angle);
+    vVertices[3*i+2] = 0.0f;
+    angle += steps;
+    if (angle >= 360.0f)
+      angle -= 360.0f;
+  }
+
+  vVertices[3*(1+count)+0] = x+size*COSF((int)firstAngle);
+  vVertices[3*(1+count)+1] = SCREEN_HEIGHT_F-y+size*SINF((int)firstAngle);
+  vVertices[3*(1+count)+2] = 0.0f;
+
+  // Use the program object without texture
+  glUseProgram ( prog1 );
+
+  // Load the vertex position
+  glVertexAttribPointer ( prog1_positionLoc, 3, GL_FLOAT,
+                          GL_FALSE, 3 * sizeof(GLfloat), vVertices );
+  // Load the color
+  glVertexAttribPointer(prog1_colorLoc, 4, GL_UNSIGNED_BYTE,
+                        GL_TRUE, 4 * sizeof(GLubyte), colors);
+
+  glEnableVertexAttribArray ( prog1_positionLoc );
+  glEnableVertexAttribArray ( prog1_colorLoc );
+
+  // Load the MVP matrix
+  glUniformMatrix4fv( prog1_mvpLoc, 1, GL_FALSE, (GLfloat*) &theMvpMatrix.m[0][0] );
+
+  glDrawArrays(GL_TRIANGLE_FAN,0,count+2);
+
+  delete[] vVertices;
+  delete[] colors;
+#else
+  glColor4ub(col.r, col.g, col.b, col.a);
+  glBegin(GL_TRIANGLE_FAN);
 
 		glVertex2f(x, SCREEN_HEIGHT_F-y);
 
@@ -1503,13 +2687,13 @@ void JRenderer::FillPolygon(float x, float y, float size, int count, float start
 
 		glVertex2f(x+size*COSF((int)firstAngle), SCREEN_HEIGHT_F-y+size*SINF((int)firstAngle));
 
-
 	glEnd();
 
-	glEnable(GL_TEXTURE_2D);
+  // default color
+  glColor4ub(255, 255, 255, 255);
+#endif //#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
 
-	// default color
-	glColor4ub(255, 255, 255, 255);
+	glEnable(GL_TEXTURE_2D);
 }
 
 
@@ -1528,8 +2712,100 @@ void JRenderer::DrawRoundRect(float x, float y, float w, float h, float radius, 
 	col.color = color;
 
 	glDisable(GL_TEXTURE_2D);
-	glColor4ub(col.r, col.g, col.b, col.a);
-	glBegin(GL_LINE_LOOP);
+#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
+  int i, index = 1;
+  int number = 360+2*h+2*w;
+  GLfloat* vVertices = new GLfloat[3*number];
+  GLubyte* colors = new GLubyte[4*number];
+
+  for(i = 0; i < number; i++)
+  {
+    colors[4*i+0]= col.r;
+    colors[4*i+1]= col.g;
+    colors[4*i+2]= col.b;
+    colors[4*i+3]= col.a;
+  }
+
+  index = 0;
+  for(i=0; i<90;i++) {
+    vVertices[3*(index+i)+0] = x+radius*COSF(i);
+    vVertices[3*(index+i)+1] = SCREEN_HEIGHT_F-y+radius*SINF(i);
+    vVertices[3*(index+i)+2] = 0.0f;
+  }
+  index += 90;
+  for(i=0; i<w; i++)
+  {
+    vVertices[3*(index+i)+0] = x+radius*COSF(90)-i;
+    vVertices[3*(index+i)+1] = SCREEN_HEIGHT_F-y+radius*SINF(90);
+    vVertices[3*(index+i)+2] = 0.0f;
+  }
+  index += w;
+  for(i=90; i<180;i++)
+  {
+    vVertices[3*(index+i-90)+0] = x+radius*COSF(i)-w;
+    vVertices[3*(index+i-90)+1] = SCREEN_HEIGHT_F-y+radius*SINF(i);
+    vVertices[3*(index+i-90)+2] = 0.0f;
+  }
+  index += 90;
+  for(i=0; i<h; i++)
+  {
+    vVertices[3*(index+i)+0] = x+radius*COSF(180)-w;
+    vVertices[3*(index+i)+1] = SCREEN_HEIGHT_F-y+radius*SINF(180)-i;
+    vVertices[3*(index+i)+2] = 0.0f;
+  }
+  index += h;
+  for(i=180; i<270;i++)
+  {
+    vVertices[3*(index+i-180)+0] = x+radius*COSF(i)-w;
+    vVertices[3*(index+i-180)+1] = SCREEN_HEIGHT_F-y+radius*SINF(i)-h;
+    vVertices[3*(index+i-180)+2] = 0.0f;
+  }
+  index += 90;
+  for(i=0; i<w; i++)
+  {
+    vVertices[3*(index+i)+0] = x+radius*COSF(270)-w+i;
+    vVertices[3*(index+i)+1] = SCREEN_HEIGHT_F-y+radius*SINF(270)-h;
+    vVertices[3*(index+i)+2] = 0.0f;
+  }
+  index += w;
+  for(i=270; i<360;i++)
+  {
+    vVertices[3*(index+i-270)+0] = x+radius*COSF(i);
+    vVertices[3*(index+i-270)+1] = SCREEN_HEIGHT_F-y+radius*SINF(i)-h;
+    vVertices[3*(index+i-270)+2] = 0.0f;
+  }
+  index += 90;
+  for(i=0; i<h; i++)
+  {
+    vVertices[3*(index+i)+0] = x+radius*COSF(0);
+    vVertices[3*(index+i)+1] = SCREEN_HEIGHT_F-y+radius*SINF(0)-h+i;
+    vVertices[3*(index+i)+2] = 0.0f;
+  }
+  index += h;
+
+  // Use the program object without texture
+  glUseProgram ( prog1 );
+
+  // Load the vertex position
+  glVertexAttribPointer ( prog1_positionLoc, 3, GL_FLOAT,
+                          GL_FALSE, 3 * sizeof(GLfloat), vVertices );
+  // Load the color
+  glVertexAttribPointer(prog1_colorLoc, 4, GL_UNSIGNED_BYTE,
+                        GL_TRUE, 4 * sizeof(GLubyte), colors);
+
+  glEnableVertexAttribArray ( prog1_positionLoc );
+  glEnableVertexAttribArray ( prog1_colorLoc );
+
+  // Load the MVP matrix
+  glUniformMatrix4fv( prog1_mvpLoc, 1, GL_FALSE, (GLfloat*) &theMvpMatrix.m[0][0] );
+
+  glDrawArrays(GL_LINE_LOOP,0,number);
+
+  delete[] vVertices;
+  delete[] colors;
+#else
+  glColor4ub(col.r, col.g, col.b, col.a);
+  glBegin(GL_LINE_LOOP);
 	int i;
 	for(i=0; i<90;i++)
 	{
@@ -1565,10 +2841,11 @@ void JRenderer::DrawRoundRect(float x, float y, float w, float h, float radius, 
 	}
 	glEnd();
 
-	glEnable(GL_TEXTURE_2D);
+  // default color
+  glColor4ub(255, 255, 255, 255);
+#endif //#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
 
-	// default color
-	glColor4ub(255, 255, 255, 255);
+	glEnable(GL_TEXTURE_2D);
 }
 
 
@@ -1582,8 +2859,105 @@ void JRenderer::FillRoundRect(float x, float y, float w, float h, float radius, 
 	col.color = color;
 
 	glDisable(GL_TEXTURE_2D);
-	glColor4ub(col.r, col.g, col.b, col.a);
-	glBegin(GL_TRIANGLE_FAN);
+#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
+  int i, index = 1;
+  int number = 2+360+2*h+2*w;
+  GLfloat* vVertices = new GLfloat[3*number];
+  GLubyte* colors = new GLubyte[4*number];
+
+  for(i = 0; i < number; i++)
+  {
+    colors[4*i+0]= col.r;
+    colors[4*i+1]= col.g;
+    colors[4*i+2]= col.b;
+    colors[4*i+3]= col.a;
+  }
+
+  vVertices[0] = x-5; vVertices[1] = SCREEN_HEIGHT_F-y; vVertices[2] = 0.0f;
+  index = 1;
+  for(i=0; i<90;i++) {
+    vVertices[3*(index+i)+0] = x+radius*COSF(i);
+    vVertices[3*(index+i)+1] = SCREEN_HEIGHT_F-y+radius*SINF(i);
+    vVertices[3*(index+i)+2] = 0.0f;
+  }
+  index += 90;
+  for(i=0; i<w; i++)
+  {
+    vVertices[3*(index+i)+0] = x+radius*COSF(90)-i;
+    vVertices[3*(index+i)+1] = SCREEN_HEIGHT_F-y+radius*SINF(90);
+    vVertices[3*(index+i)+2] = 0.0f;
+  }
+  index += w;
+  for(i=90; i<180;i++)
+  {
+    vVertices[3*(index+i-90)+0] = x+radius*COSF(i)-w;
+    vVertices[3*(index+i-90)+1] = SCREEN_HEIGHT_F-y+radius*SINF(i);
+    vVertices[3*(index+i-90)+2] = 0.0f;
+  }
+  index += 90;
+  for(i=0; i<h; i++)
+  {
+    vVertices[3*(index+i)+0] = x+radius*COSF(180)-w;
+    vVertices[3*(index+i)+1] = SCREEN_HEIGHT_F-y+radius*SINF(180)-i;
+    vVertices[3*(index+i)+2] = 0.0f;
+  }
+  index += h;
+  for(i=180; i<270;i++)
+  {
+    vVertices[3*(index+i-180)+0] = x+radius*COSF(i)-w;
+    vVertices[3*(index+i-180)+1] = SCREEN_HEIGHT_F-y+radius*SINF(i)-h;
+    vVertices[3*(index+i-180)+2] = 0.0f;
+  }
+  index += 90;
+  for(i=0; i<w; i++)
+  {
+    vVertices[3*(index+i)+0] = x+radius*COSF(270)-w+i;
+    vVertices[3*(index+i)+1] = SCREEN_HEIGHT_F-y+radius*SINF(270)-h;
+    vVertices[3*(index+i)+2] = 0.0f;
+  }
+  index += w;
+  for(i=270; i<360;i++)
+  {
+    vVertices[3*(index+i-270)+0] = x+radius*COSF(i);
+    vVertices[3*(index+i-270)+1] = SCREEN_HEIGHT_F-y+radius*SINF(i)-h;
+    vVertices[3*(index+i-270)+2] = 0.0f;
+  }
+  index += 90;
+  for(i=0; i<h; i++)
+  {
+    vVertices[3*(index+i)+0] = x+radius*COSF(0);
+    vVertices[3*(index+i)+1] = SCREEN_HEIGHT_F-y+radius*SINF(0)-h+i;
+    vVertices[3*(index+i)+2] = 0.0f;
+  }
+  index += h;
+
+  vVertices[3*index+0] = x+radius*COSF(0);
+  vVertices[3*index+1] = SCREEN_HEIGHT_F-y+radius*SINF(0);
+  vVertices[3*index+2] = 0.0f;
+
+  // Use the program object without texture
+  glUseProgram ( prog1 );
+
+  // Load the vertex position
+  glVertexAttribPointer ( prog1_positionLoc, 3, GL_FLOAT,
+                          GL_FALSE, 3 * sizeof(GLfloat), vVertices );
+  // Load the color
+  glVertexAttribPointer(prog1_colorLoc, 4, GL_UNSIGNED_BYTE,
+                        GL_TRUE, 4 * sizeof(GLubyte), colors);
+
+  glEnableVertexAttribArray ( prog1_positionLoc );
+  glEnableVertexAttribArray ( prog1_colorLoc );
+
+  // Load the MVP matrix
+  glUniformMatrix4fv( prog1_mvpLoc, 1, GL_FALSE, (GLfloat*) &theMvpMatrix.m[0][0] );
+
+  glDrawArrays(GL_TRIANGLE_FAN,0,number);
+
+  delete[] vVertices;
+  delete[] colors;
+#else
+  glColor4ub(col.r, col.g, col.b, col.a);
+  glBegin(GL_TRIANGLE_FAN);
 
 	glVertex2f(x-5, SCREEN_HEIGHT_F-y);
 
@@ -1626,9 +3000,11 @@ void JRenderer::FillRoundRect(float x, float y, float w, float h, float radius, 
 
 	glEnd();
 
+  // default color
+  glColor4ub(255, 255, 255, 255);
+#endif //#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
+
 	glEnable(GL_TEXTURE_2D);
 
-	// default color
-	glColor4ub(255, 255, 255, 255);
 }
 

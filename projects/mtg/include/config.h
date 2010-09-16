@@ -23,6 +23,10 @@
 #define NEW new
 #endif
 
+#ifdef QT_CONFIG
+#include <QtGlobal>
+#define OutputDebugString(val) qDebug(val)
+#else
 #ifdef LINUX
 #ifdef _DEBUG
 #define OutputDebugString(val) (std::cerr << val);
@@ -30,6 +34,8 @@
 #define OutputDebugString(val) {}
 #endif
 #endif
+#endif
+
 
 #ifndef RESPATH
 #define RESPATH "Res"

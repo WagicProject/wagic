@@ -245,7 +245,11 @@ void JMD2Model::CalculateNormal(ScePspFVector3 *normal, float *p1, float *p2, fl
 
 #if defined (WIN32) || defined (LINUX)
    // normalize and specify the normal
+#if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
    glNormal3f(result[0]/length, result[1]/length, result[2]/length);
+#else
+   // FIXME
+#endif //(!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
 
 #else
    if (length == 0.0f)
@@ -275,15 +279,45 @@ void JMD2Model::Render(int frameNum)
 
 #if defined (WIN32) || defined (LINUX)
 
-
 	// display the textured model with proper lighting normals
-	glBegin(GL_TRIANGLES);
+#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
+
+#elif (defined GL_ES_VERSION_1_1) || (defined GL_VERSION_1_1)
+        glEnableClientState(GL_VERTEX_ARRAY);
+        glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+#else
+        glBegin(GL_TRIANGLES);
+#endif //(defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
+
 	for(i = 0; i < mModel->numTriangles; i++)
 	{
 		CalculateNormal(pointList[mModel->triIndex[i].meshIndex[0]].v,
 			pointList[mModel->triIndex[i].meshIndex[2]].v,
 			pointList[mModel->triIndex[i].meshIndex[1]].v);
-		glTexCoord2f(mModel->st[mModel->triIndex[i].stIndex[0]].s,
+
+#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
+
+#elif (defined GL_ES_VERSION_1_1) || (defined GL_VERSION_1_1)
+                float vertex_data[]={
+                pointList[mModel->triIndex[i].meshIndex[0]].x, pointList[mModel->triIndex[i].meshIndex[0]].y, pointList[mModel->triIndex[i].meshIndex[0]].z,
+                pointList[mModel->triIndex[i].meshIndex[2]].x, pointList[mModel->triIndex[i].meshIndex[2]].y, pointList[mModel->triIndex[i].meshIndex[2]].z,
+                pointList[mModel->triIndex[i].meshIndex[1]].x, pointList[mModel->triIndex[i].meshIndex[1]].y, pointList[mModel->triIndex[i].meshIndex[1]].z,
+                };
+                float texcoord_data[] = {
+                    mModel->st[mModel->triIndex[i].stIndex[0]].s,
+                    mModel->st[mModel->triIndex[i].stIndex[0]].t,
+                    mModel->st[mModel->triIndex[i].stIndex[2]].s,
+                    mModel->st[mModel->triIndex[i].stIndex[2]].t,
+                    mModel->st[mModel->triIndex[i].stIndex[1]].s,
+                    mModel->st[mModel->triIndex[i].stIndex[1]].t,
+                };
+
+                glVertexPointer(3,GL_FLOAT,0,vertex_data);
+                glTexCoordPointer(2,GL_FLOAT,0,texcoord_data);
+
+#else
+                glTexCoord2f(mModel->st[mModel->triIndex[i].stIndex[0]].s,
 			mModel->st[mModel->triIndex[i].stIndex[0]].t);
 		glVertex3fv(pointList[mModel->triIndex[i].meshIndex[0]].v);
 
@@ -294,8 +328,15 @@ void JMD2Model::Render(int frameNum)
 		glTexCoord2f(mModel->st[mModel->triIndex[i].stIndex[1]].s,
 			mModel->st[mModel->triIndex[i].stIndex[1]].t);
 		glVertex3fv(pointList[mModel->triIndex[i].meshIndex[1]].v);
-	}
-	glEnd();
+#endif //#if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
+        }
+#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
+
+#elif (defined GL_ES_VERSION_1_1) || (defined GL_VERSION_1_1)
+        glDrawArrays(GL_TRIANGLES,0,3); // seems suspicious to put that here, should probably be in the loop
+#else
+        glEnd();
+#endif //(defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
 
 
 #else
@@ -442,9 +483,16 @@ void JMD2Model::Render()
 
 #if defined (WIN32) || defined (LINUX)
 
+#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
+        // FIXME
+#elif (defined GL_ES_VERSION_1_1) || (defined GL_VERSION_1_1)
+        glEnableClientState(GL_VERTEX_ARRAY);
+        glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+#else
+        glBegin(GL_TRIANGLES);
+#endif //(defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
 
-	glBegin(GL_TRIANGLES);
-	for (i = 0; i < mModel->numTriangles; i++)
+        for (i = 0; i < mModel->numTriangles; i++)
 	{
 		// get first points of each frame
 		x1 = pointList[mModel->triIndex[i].meshIndex[0]].x;
@@ -489,19 +537,48 @@ void JMD2Model::Render()
 		//CalculateNormal(vertex[0].v, vertex[2].v, vertex[1].v);
 
 		// render properly textured triangle
-		glTexCoord2f(mModel->st[mModel->triIndex[i].stIndex[0]].s,
-			mModel->st[mModel->triIndex[i].stIndex[0]].t);
-		glVertex3fv(vertex[0].v);
 
-		glTexCoord2f(mModel->st[mModel->triIndex[i].stIndex[2]].s ,
-			mModel->st[mModel->triIndex[i].stIndex[2]].t);
-		glVertex3fv(vertex[2].v);
+#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
+        // FIXME
+#elif (defined GL_ES_VERSION_1_1) || (defined GL_VERSION_1_1)
+                float vertex_data[]={
+                vertex[0].x, vertex[0].y, vertex[0].z,
+                vertex[2].x, vertex[2].y, vertex[2].z,
+                vertex[1].x, vertex[1].y, vertex[1].z,
+                };
+                float texcoord_data[] = {
+                    mModel->st[mModel->triIndex[i].stIndex[0]].s,
+                    mModel->st[mModel->triIndex[i].stIndex[0]].t,
+                    mModel->st[mModel->triIndex[i].stIndex[2]].s,
+                    mModel->st[mModel->triIndex[i].stIndex[2]].t,
+                    mModel->st[mModel->triIndex[i].stIndex[1]].s,
+                    mModel->st[mModel->triIndex[i].stIndex[1]].t,
+                };
 
-		glTexCoord2f(mModel->st[mModel->triIndex[i].stIndex[1]].s,
-			mModel->st[mModel->triIndex[i].stIndex[1]].t);
-		glVertex3fv(vertex[1].v);
-	}
-	glEnd();
+                glVertexPointer(3,GL_FLOAT,0,vertex_data);
+                glTexCoordPointer(2,GL_FLOAT,0,texcoord_data);
+#else
+                glTexCoord2f(mModel->st[mModel->triIndex[i].stIndex[0]].s,
+                        mModel->st[mModel->triIndex[i].stIndex[0]].t);
+                glVertex3fv(vertex[0].v);
+
+                glTexCoord2f(mModel->st[mModel->triIndex[i].stIndex[2]].s ,
+                        mModel->st[mModel->triIndex[i].stIndex[2]].t);
+                glVertex3fv(vertex[2].v);
+
+                glTexCoord2f(mModel->st[mModel->triIndex[i].stIndex[1]].s,
+                        mModel->st[mModel->triIndex[i].stIndex[1]].t);
+                glVertex3fv(vertex[1].v);
+#endif //(defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
+
+        }
+#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
+        // FIXME
+#elif (defined GL_ES_VERSION_1_1) || (defined GL_VERSION_1_1)
+        glDrawArrays(GL_TRIANGLES,0,3); // seems suspicious to put that here, should probably be in the loop
+#else
+        glEnd();
+#endif //(defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
 
 #else
 

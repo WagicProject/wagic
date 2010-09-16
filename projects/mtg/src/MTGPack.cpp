@@ -93,8 +93,8 @@ int MTGPack::assemblePack(MTGDeck *to){
   if(!p) return -1;
   p->Shuffle();
   
-  for(size_t i=0;i<slots.size();i++){
-    carryover = slots[i]->add(p,to,carryover);
+  for(size_t i=0;i<slotss.size();i++){
+    carryover = slotss[i]->add(p,to,carryover);
     if(carryover > 0)
         carryover = carryover; //This means we're failing.
   }
@@ -104,8 +104,8 @@ int MTGPack::assemblePack(MTGDeck *to){
 void MTGPack::countCards(){
   minCards = 0;
   maxCards = 0;
-  for(size_t i=0;i<slots.size();i++){
-    MTGPackSlot * ps = slots[i];
+  for(size_t i=0;i<slotss.size();i++){
+    MTGPackSlot * ps = slotss[i];
     int top = 0;
     int bot = 999999999;
     for(size_t y=0;y<ps->entries.size();y++){
@@ -160,7 +160,7 @@ void MTGPack::load(string filename){
     std::transform(tag.begin(),tag.end(),tag.begin(),::tolower);
     if(tag != "slot") continue;
     MTGPackSlot * s = NEW MTGPackSlot(); 
-    slots.push_back(s); 
+    slotss.push_back(s);
     holder = pSlot->Attribute("copies");
     if(holder) s->copies = atoi(holder);
     else       s->copies = 1;
@@ -202,10 +202,10 @@ MTGPackSlot::~MTGPackSlot(){
   entries.clear();
 }
 MTGPack::~MTGPack(){
-  for(size_t t=0;t<slots.size();t++){
-    SAFE_DELETE(slots[t]);
+  for(size_t t=0;t<slotss.size();t++){
+    SAFE_DELETE(slotss[t]);
   }
-  slots.clear();
+  slotss.clear();
 }
 MTGPacks::~MTGPacks(){
   for(size_t t=0;t<packs.size();t++){
@@ -283,16 +283,16 @@ MTGPack * MTGPacks::getDefault(){
       ps->addEntry(NEW MTGPackEntryRandom("rarity:mythic;"));
       for(int i=0;i<7;i++)
         ps->addEntry(NEW MTGPackEntryRandom("rarity:rare;"));
-      defaultBooster.slots.push_back(ps);
+      defaultBooster.slotss.push_back(ps);
       ps = NEW MTGPackSlot(); ps->copies = 3;
       ps->addEntry(NEW MTGPackEntryRandom("rarity:uncommon;"));
-      defaultBooster.slots.push_back(ps);
+      defaultBooster.slotss.push_back(ps);
       ps = NEW MTGPackSlot(); ps->copies = 1;
       ps->addEntry(NEW MTGPackEntryRandom("rarity:land;&type:basic;"));
-      defaultBooster.slots.push_back(ps);
+      defaultBooster.slotss.push_back(ps);
       ps = NEW MTGPackSlot(); ps->copies = 10;
       ps->addEntry(NEW MTGPackEntryRandom("rarity:common;"));
-      defaultBooster.slots.push_back(ps);    
+      defaultBooster.slotss.push_back(ps);
       defaultBooster.bValid = true;
       defaultBooster.unlockStatus = 1;
     }

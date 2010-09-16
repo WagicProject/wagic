@@ -819,12 +819,15 @@ bool ShopBooster::unitTest(){
             u+=ddw->count(c);
         card++;
     }
+    int count = ddw->getCount();
+    SAFE_DELETE(ddw);
+    SAFE_DELETE(d);
     if(r != 1 || u != 3 ){
         sprintf(result, "<span class=\"error\">==Unexpected rarity count==</span><br />");
         TestSuite::Log(result);
         res = false;
     }
-    if(ddw->getCount() < 14) {
+    if(count < 14) {
         sprintf(result, "<span class=\"error\">==Unexpected card count==</span><br />");
         TestSuite::Log(result);
         res = false;

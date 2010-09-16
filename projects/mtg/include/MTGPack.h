@@ -69,7 +69,7 @@ protected:
 
   int price;     //Base price.
   int minCards, maxCards;
-  vector<MTGPackSlot*> slots;
+  vector<MTGPackSlot*> slotss;
 };
 
 class MTGPacks{

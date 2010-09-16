@@ -88,9 +88,13 @@ enum {
         typedef bool BOOL;
 #endif
 
+#ifndef QT_CONFIG
 #if defined (WIN32) || defined (LINUX)
 	#include <GL/gl.h>
 	#include <GL/glu.h>
+#endif
+#else
+# include <QtOpenGL>
 #endif
 
 #if defined (WIN32) || defined (LINUX)
