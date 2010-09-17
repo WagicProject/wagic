@@ -33,9 +33,10 @@
 
 using std::string;
 
-
-
-
+//string manipulation methods
+string& trim(string &str);
+string& ltrim(string &str);
+string& rtrim(string &str);
 
 int loadRandValues(string s);
 int filesize(const char * filename);

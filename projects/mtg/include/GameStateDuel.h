@@ -52,6 +52,16 @@ class GameStateDuel: public GameState, public JGuiListener
   virtual void Update(float dt);
   virtual void Render();
   void initRand (unsigned seed = 0);
+  
+  enum ENUM_DUEL_STATE_MENU_ITEM
+  {
+    MENUITEM_NEW_DECK = -1,
+    MENUITEM_CANCEL = -10,
+    MENUITEM_RANDOM_PLAYER = -11,
+    MENUITEM_RANDOM_AI = -12,
+    MENUITEM_MAIN_MENU = -13,
+    MENUITEM_EVIL_TWIN = -14
+  };
 
 };
 

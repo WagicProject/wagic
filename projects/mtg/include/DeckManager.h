@@ -1,5 +1,6 @@
 #include <string>
 #include <vector>
+#include "DeckMetaData.h"
 
 using namespace std;
 
@@ -12,12 +13,12 @@ protected:
 public:
     
 
-    vector<int> playerDeckOrderList;
-    vector<int> aiDeckOrderList;
+    vector<DeckMetaData *> playerDeckOrderList;
+    vector<DeckMetaData *> aiDeckOrderList;
 
-
-    vector<int> * getPlayerDeckOrderList();
-    vector<int> * getAIDeckOrderList();
+    void updateMetaDataList(vector<DeckMetaData *>* refList, bool isAI );
+    vector<DeckMetaData *> * getPlayerDeckOrderList();
+    vector<DeckMetaData *> * getAIDeckOrderList();
         
     static DeckManager * GetInstance();
     static void EndInstance();

@@ -4,6 +4,7 @@
 #include <JGE.h>
 #include "../include/config.h"
 #include "../include/DeckManager.h"
+#include "../include/GameStateDuel.h"
 #include "../include/GameStateDeckViewer.h"
 #include "../include/Translate.h"
 #include "../include/ManaCostHybrid.h"
@@ -15,16 +16,16 @@
 //!! helper function; this is probably handled somewhere in the code already.
 // If not, should be placed in general library
 void StringExplode(string str, string separator, vector<string>* results){
-    size_t found;
+  size_t found;
+  found = str.find_first_of(separator);
+  while (found != string::npos){
+    if (found > 0)
+      results->push_back(str.substr(0,found));
+    str = str.substr(found+1);
     found = str.find_first_of(separator);
-    while (found != string::npos){
-        if (found > 0)
-            results->push_back(str.substr(0,found));
-        str = str.substr(found+1);
-        found = str.find_first_of(separator);
-    }
-    if (str.length() > 0)
-        results->push_back(str);
+  }
+  if (str.length() > 0)
+    results->push_back(str);
 }
 
 GameStateDeckViewer::GameStateDeckViewer(GameApp* parent): GameState(parent) {
@@ -86,7 +87,7 @@ void GameStateDeckViewer::updateFilters(){
 void GameStateDeckViewer::loadIndexes(){
   int x=0;
   for (int i = 0; i < 7; i++){
-     cardIndex[i] = displayed_deck->getCard(i);
+    cardIndex[i] = displayed_deck->getCard(i);
   }
 }
 
@@ -103,15 +104,22 @@ void GameStateDeckViewer::switchDisplay(){
 
 void GameStateDeckViewer::updateDecks(){
   SAFE_DELETE(welcome_menu);
-  welcome_menu = NEW SimpleMenu(10,this,Constants::MENU_FONT,20,20);
+  welcome_menu = NEW SimpleMenu( MENU_DECK_SELECTION, this, Constants::MENU_FONT,20,20);
   DeckManager * deckManager = DeckManager::GetInstance();
-  nbDecks = fillDeckMenu( deckManager->getPlayerDeckOrderList(), welcome_menu,options.profileFile());
+  vector<DeckMetaData *> playerDeckList = fillDeckMenu( welcome_menu,options.profileFile());
+
   deckNum = 0;
   newDeckname = "";
-  welcome_menu->Add(nbDecks+1, _("--NEW--").c_str());
+  nbDecks = playerDeckList.size() + 1;
+  welcome_menu->Add( MENU_ITEM_NEW_DECK, _("--NEW--").c_str() );
   if(options[Options::CHEATMODE].number && (!myCollection || myCollection->getCount(WSrcDeck::UNFILTERED_MIN_COPIES) < 4))
-      welcome_menu->Add(-12,"--UNLOCK CARDS--");
-  welcome_menu->Add(-1, _("Cancel").c_str());
+    welcome_menu->Add( MENU_ITEM_CHEAT_MODE, "--UNLOCK CARDS--" );
+  welcome_menu->Add( MENU_ITEM_CANCEL, _("Cancel").c_str() );
+
+  // update the deckmanager with the latest information
+  deckManager->updateMetaDataList( &playerDeckList, false);
+  // is this necessary to ensure no memory leaks?
+  playerDeckList.clear();
 }
 
 void GameStateDeckViewer::Start()
@@ -134,13 +142,13 @@ void GameStateDeckViewer::Start()
   myCollection->Sort(WSrcCards::SORT_ALPHA);
   displayed_deck =  myCollection;
   //Build menu.
-  menu = NEW SimpleMenu(11,this,Constants::MENU_FONT,SCREEN_WIDTH/2-150,20);
-  menu->Add(22,"Filter by...");
-  menu->Add(2,"Switch decks without saving");
-  menu->Add(1,"Save & Rename");
-  menu->Add(0,"Save & Back to Main Menu");
-  menu->Add(3,"Back to Main Menu");
-  menu->Add(4,"Cancel");
+  menu = NEW SimpleMenu( MENU_DECK_BUILDER, this, Constants::MENU_FONT,SCREEN_WIDTH/2-150,20);
+  menu->Add( MENU_ITEM_FILTER_BY, "Filter by...");
+  menu->Add( MENU_ITEM_SWITCH_DECKS_NO_SAVE, "Switch decks without saving");
+  menu->Add( MENU_ITEM_SAVE_RENAME, "Save & Rename");
+  menu->Add( MENU_ITEM_SAVE_RETURN_MAIN_MENU, "Save & Back to Main Menu");
+  menu->Add( MENU_ITEM_MAIN_MENU, "Back to Main Menu");
+  menu->Add( MENU_ITEM_EDITOR_CANCEL, "Cancel");
 
   //Icons
   mIcons[Constants::MTG_COLOR_ARTIFACT] = resources.GetQuad("c_artifact");
@@ -224,7 +232,7 @@ void GameStateDeckViewer::saveDeck(){
 
 void GameStateDeckViewer::Update(float dt)
 {
-  
+
   int myD = (displayed_deck == myDeck);
 
   if(options.keypadActive()){
@@ -302,9 +310,9 @@ void GameStateDeckViewer::Update(float dt)
         if (card && displayed_deck->count(card)){
           price = pricelist->getSellPrice(card->getMTGId());
           sprintf(buffer,"%s : %i %s",_(card->data->getName()).c_str(),price,_("credits").c_str());
-          subMenu = NEW SimpleMenu(2,this,Constants::MAIN_FONT,SCREEN_WIDTH-300,SCREEN_HEIGHT/2,buffer);
-          subMenu->Add(20,"Yes");
-          subMenu->Add(21,"No","",true);
+          subMenu = NEW SimpleMenu( MENU_CARD_PURCHASE, this, Constants::MAIN_FONT,SCREEN_WIDTH-300,SCREEN_HEIGHT/2,buffer);
+          subMenu->Add( MENU_ITEM_YES,"Yes");
+          subMenu->Add( MENU_ITEM_NO,"No","",true);
         }
       }
       stw.needUpdate = true;
@@ -536,7 +544,7 @@ void GameStateDeckViewer::renderOnScreenMenu(){
   float rightPspX = SCREEN_WIDTH-100 + rightTransition;
   float rightPspY = SCREEN_HEIGHT/2 - 20 ;
 
-  
+
   if (stw.currentPage == 0) {
     //FillRects
     r->FillRect(0-(onScreenTransition*84),0,84,SCREEN_HEIGHT,ARGB(128,0,0,0));
@@ -606,7 +614,7 @@ void GameStateDeckViewer::renderOnScreenMenu(){
     }
     font->DrawString(_("Press L/R to cycle through"),  SCREEN_WIDTH-200+rightTransition, 5+fH);
     font->DrawString(_("deck statistics."),  SCREEN_WIDTH-200+rightTransition, 5+fH*2);
-    
+
   } else {
     if (stw.needUpdate) {
       updateStats();
@@ -623,11 +631,11 @@ void GameStateDeckViewer::renderOnScreenMenu(){
     r->FillRect(SCREEN_WIDTH/2+rightTransition,10,SCREEN_WIDTH/2-10,SCREEN_HEIGHT-20,ARGB(128,0,0,0));
     font->DrawString(_("menu"), SCREEN_WIDTH-35 +rightTransition, SCREEN_HEIGHT-15);
     font->DrawString(_("filter"), SCREEN_WIDTH-95 +rightTransition, SCREEN_HEIGHT-15);
-    
+
     int nb_letters = 0;
     float posX, posY;
     DWORD graphColor;
-    
+
     graphColor = ARGB(200, 155, 155, 155);
     string STATS_TITLE_FORMAT = _("%i: %s");
 
@@ -636,7 +644,7 @@ void GameStateDeckViewer::renderOnScreenMenu(){
         // Title
         sprintf(buffer, STATS_TITLE_FORMAT.c_str(), stw.currentPage, _("Statistics Summary").c_str());
         font->DrawString(buffer, 10+leftTransition, 10);
-        
+
         posY = 30;
         posX = 180;
         sprintf(buffer, _("Your Deck: %i cards").c_str(),  stw.cardCount);
@@ -654,23 +662,23 @@ void GameStateDeckViewer::renderOnScreenMenu(){
           }
         }            
         posY += 25;
-        
+
         r->DrawLine(posX - 4 + leftTransition, posY - 1, posX - 4 + leftTransition, posY + 177, ARGB(128, 255, 255, 255));
         r->DrawLine(19 + leftTransition, posY - 1, 19 + leftTransition, posY + 177, ARGB(128, 255, 255, 255));
         r->DrawLine(posX + 40 + leftTransition, posY - 1, posX + 40 + leftTransition, posY + 177, ARGB(128, 255, 255, 255));
-        
+
         r->DrawLine(20 + leftTransition, posY - 1, posX + 40 + leftTransition, posY - 1, ARGB(128, 255, 255, 255));
 
         font->DrawString(_("Lands"), 20 + leftTransition, posY);
         sprintf(buffer, _("%i").c_str(), stw.countLands);
         font->DrawString(buffer, posX + leftTransition, posY);
-        
+
         posY += 14;
         r->DrawLine(20 + leftTransition, posY - 1, posX + 40 + leftTransition, posY - 1, ARGB(128, 255, 255, 255));
         font->DrawString( _("Creatures"), 20 + leftTransition, posY);
         sprintf(buffer, _("%i").c_str(), stw.countCreatures);
         font->DrawString(buffer, posX + leftTransition, posY);
-        
+
         posY += 14;
         r->DrawLine(20 + leftTransition, posY - 1, posX + 40 + leftTransition, posY - 1, ARGB(128, 255, 255, 255));
         font->DrawString(_("Spells"), 20 + leftTransition, posY);
@@ -693,7 +701,7 @@ void GameStateDeckViewer::renderOnScreenMenu(){
         font->DrawString(buffer, posX + leftTransition, posY);
         //sprintf(buffer, "Artifacts: %i", stw.countArtifacts);
         //mFont->DrawString(buffer, 20, 123);            
-        
+
         posY += 14;
         r->DrawLine(20 + leftTransition, posY - 1, posX + 40 + leftTransition, posY - 1, ARGB(128, 255, 255, 255));
 
@@ -704,7 +712,7 @@ void GameStateDeckViewer::renderOnScreenMenu(){
         posY += 14;
         r->DrawLine(20 + leftTransition, posY - 1, posX + 40 + leftTransition, posY - 1, ARGB(128, 255, 255, 255));
         font->DrawString(_("Probabilities"), 20 + leftTransition, posY);
-        
+
         posY += 10;
         font->DrawString(_("No land in 1st hand"), 30 + leftTransition, posY);
         sprintf(buffer, _("%2.2f%%").c_str(), stw.noLandsProbInTurn[0]);
@@ -714,7 +722,7 @@ void GameStateDeckViewer::renderOnScreenMenu(){
         font->DrawString(_("No land in 9 cards"), 30 + leftTransition, posY);
         sprintf(buffer, _("%2.2f%%").c_str(), stw.noLandsProbInTurn[2]);
         font->DrawString(buffer, posX + leftTransition, posY);
-                    
+
         posY += 10;
         font->DrawString(_("No creatures in 1st hand"), 30 + leftTransition, posY);
         sprintf(buffer, _("%2.2f%%").c_str(), stw.noCreaturesProbInTurn[0]);
@@ -734,7 +742,7 @@ void GameStateDeckViewer::renderOnScreenMenu(){
         font->DrawString(_("Victory ratio"), 30 + leftTransition, posY);
         sprintf(buffer, _("%i%%").c_str(), stw.percentVictories);
         font->DrawString(buffer, posX + leftTransition, posY);
-        
+
         posY += 15;
         r->DrawLine(20 + leftTransition, posY - 1, posX + 40 + leftTransition, posY - 1, ARGB(128, 255, 255, 255));
         font->DrawString(_("Total price (credits)"), 20 + leftTransition, posY);
@@ -751,12 +759,12 @@ void GameStateDeckViewer::renderOnScreenMenu(){
         font->DrawString(_("Counts of manasources per type and color:"), 20 + leftTransition, 30);
 
         posY = 70;
-        
+
         // Column titles
         for (int j=0; j<Constants::MTG_NB_COLORS-1;j++){
           r->RenderQuad(mIcons[j], 52 + j*15 + leftTransition, posY - 10,0,0.5,0.5);
         }
-        
+
         //font->DrawString(_("C"), 30 + leftTransition, posY-16);              
         //font->DrawString(_("Ty"), 27 + leftTransition, posY-16);              
 
@@ -765,7 +773,7 @@ void GameStateDeckViewer::renderOnScreenMenu(){
         r->DrawLine(27 + leftTransition, posY - 1, 60 + (Constants::MTG_NB_COLORS-2)*15 + leftTransition, posY - 1, ARGB(128, 255, 255, 255));
         r->DrawLine(27 + leftTransition, 2*10 + posY + 12, 60 + (Constants::MTG_NB_COLORS-2)*15 + leftTransition, 2*10 + posY + 12, ARGB(128, 255, 255, 255));
         r->DrawLine(27 + leftTransition, 3*10 + posY + 14, 60 + (Constants::MTG_NB_COLORS-2)*15 + leftTransition, 3*10 + posY + 14, ARGB(128, 255, 255, 255));
-        
+
         // Vertical table lines
         r->DrawLine(26 + leftTransition, posY - 20, 26 + leftTransition, 3*10 + posY + 14, ARGB(128, 255, 255, 255));
         r->DrawLine(43 + leftTransition, posY - 20, 43 + leftTransition, 3*10 + posY + 14, ARGB(128, 255, 255, 255));
@@ -775,22 +783,22 @@ void GameStateDeckViewer::renderOnScreenMenu(){
         font->DrawString(_("NB"), 27 + leftTransition, posY+10);
         font->DrawString(_("O"), 30 + leftTransition, posY+20);
         font->DrawString(_("T"), 30 + leftTransition, posY+33);
-        
+
         int curCount;
 
         for (int j=0; j<Constants::MTG_NB_COLORS-1;j++){
           curCount = stw.countBasicLandsPerColor[j];
           sprintf(buffer, (curCount==0?".":"%i"), curCount); 
           font->DrawString(buffer, 49 + leftTransition + j*15, posY);
-          
+
           curCount = stw.countLandsPerColor[j];
           sprintf(buffer, (curCount==0?".":"%i"), curCount); 
           font->DrawString(buffer, 49 + leftTransition + j*15, posY+10);
-          
+
           curCount = stw.countNonLandProducersPerColor[j];
           sprintf(buffer, (curCount==0?".":"%i"), curCount); 
           font->DrawString(buffer, 49 + leftTransition + j*15, posY+20);
-          
+
           curCount = stw.countLandsPerColor[j] + stw.countBasicLandsPerColor[j] + stw.countNonLandProducersPerColor[j];
           sprintf(buffer, (curCount==0?".":"%i"), curCount); 
           font->DrawString(buffer, 49 + leftTransition + j*15, posY+33);          
@@ -848,47 +856,47 @@ void GameStateDeckViewer::renderOnScreenMenu(){
         float avgCost;
 
         switch (stw.currentPage) { // Nested switch on the same variable. Oh yes.
-          case 2: // Total counts
-            // Title
-            sprintf(buffer, STATS_TITLE_FORMAT.c_str(), stw.currentPage, _("Mana cost detail").c_str());
-            font->DrawString(buffer, 10+leftTransition, 10);
-            font->DrawString(_("Card counts per mana cost:"), 20 + leftTransition, 30);
-            avgCost = stw.avgManaCost;
-            countPerCost = &stw.countCardsPerCost;
-            countPerCostAndColor = &stw.countCardsPerCostAndColor;
-            break;
-          case 3: // Creature counts
-            // Title
-            sprintf(buffer, STATS_TITLE_FORMAT.c_str(), stw.currentPage, _("Mana cost detail - Creatures").c_str());
-            font->DrawString(buffer, 10+leftTransition, 10);
-            font->DrawString(_("Creature counts per mana cost:"), 20 + leftTransition, 30);
-            avgCost = stw.avgCreatureCost;
-            countPerCost = &stw.countCreaturesPerCost;
-            countPerCostAndColor = &stw.countCreaturesPerCostAndColor;
-            break;
-          case 4: // Spell counts
-            // Title
-            sprintf(buffer, STATS_TITLE_FORMAT.c_str(), stw.currentPage, _("Mana cost detail - Spells").c_str());
-            font->DrawString(buffer, 10+leftTransition, 10);
-            font->DrawString(_("Non-creature spell counts per mana cost:"), 20 + leftTransition, 30);
-            avgCost = stw.avgSpellCost;
-            countPerCost = &stw.countSpellsPerCost;
-            countPerCostAndColor = &stw.countSpellsPerCostAndColor;
-            break;
-          default:
-            countPerCost = NULL;
-            countPerCostAndColor = NULL;
-            avgCost = 0;
-            break;
+      case 2: // Total counts
+        // Title
+        sprintf(buffer, STATS_TITLE_FORMAT.c_str(), stw.currentPage, _("Mana cost detail").c_str());
+        font->DrawString(buffer, 10+leftTransition, 10);
+        font->DrawString(_("Card counts per mana cost:"), 20 + leftTransition, 30);
+        avgCost = stw.avgManaCost;
+        countPerCost = &stw.countCardsPerCost;
+        countPerCostAndColor = &stw.countCardsPerCostAndColor;
+        break;
+      case 3: // Creature counts
+        // Title
+        sprintf(buffer, STATS_TITLE_FORMAT.c_str(), stw.currentPage, _("Mana cost detail - Creatures").c_str());
+        font->DrawString(buffer, 10+leftTransition, 10);
+        font->DrawString(_("Creature counts per mana cost:"), 20 + leftTransition, 30);
+        avgCost = stw.avgCreatureCost;
+        countPerCost = &stw.countCreaturesPerCost;
+        countPerCostAndColor = &stw.countCreaturesPerCostAndColor;
+        break;
+      case 4: // Spell counts
+        // Title
+        sprintf(buffer, STATS_TITLE_FORMAT.c_str(), stw.currentPage, _("Mana cost detail - Spells").c_str());
+        font->DrawString(buffer, 10+leftTransition, 10);
+        font->DrawString(_("Non-creature spell counts per mana cost:"), 20 + leftTransition, 30);
+        avgCost = stw.avgSpellCost;
+        countPerCost = &stw.countSpellsPerCost;
+        countPerCostAndColor = &stw.countSpellsPerCostAndColor;
+        break;
+      default:
+        countPerCost = NULL;
+        countPerCostAndColor = NULL;
+        avgCost = 0;
+        break;
         }
 
         posY = 70;
-        
+
         // Column titles
         for (int j=0; j<Constants::MTG_NB_COLORS-1;j++){
           r->RenderQuad(mIcons[j], 67 + j*15 + leftTransition, posY - 10,0,0.5,0.5);
         }
-        
+
         font->DrawString(_("C"), 30 + leftTransition, posY-16);              
         font->DrawString(_("#"), 45 + leftTransition, posY-16);              
 
@@ -896,7 +904,7 @@ void GameStateDeckViewer::renderOnScreenMenu(){
         r->DrawLine(27 + leftTransition, posY - 20, 75 + (Constants::MTG_NB_COLORS-2)*15 + leftTransition, posY - 20, ARGB(128, 255, 255, 255));
         r->DrawLine(27 + leftTransition, posY - 1, 75 + (Constants::MTG_NB_COLORS-2)*15 + leftTransition, posY - 1, ARGB(128, 255, 255, 255));
         r->DrawLine(27 + leftTransition, STATS_MAX_MANA_COST*10 + posY + 12, 75 + (Constants::MTG_NB_COLORS-2)*15 + leftTransition, STATS_MAX_MANA_COST*10 + posY + 12, ARGB(128, 255, 255, 255));
-        
+
         // Vertical table lines
         r->DrawLine(26 + leftTransition, posY - 20, 26 + leftTransition, STATS_MAX_MANA_COST*10 + posY + 12, ARGB(128, 255, 255, 255));
         r->DrawLine(41 + leftTransition, posY - 20, 41 + leftTransition, STATS_MAX_MANA_COST*10 + posY + 12, ARGB(128, 255, 255, 255));
@@ -915,7 +923,7 @@ void GameStateDeckViewer::renderOnScreenMenu(){
           r->FillRect((float)77 + leftTransition + (Constants::MTG_NB_COLORS-2)*15, posY + 2, (*countPerCost)[i]*5, 8, graphColor);
           posY += 10;
         }
-        
+
         posY += 10;
         sprintf(buffer, _("Average converted mana cost: %2.2f").c_str(), avgCost);
         font->DrawString(buffer, 20 + leftTransition, posY);
@@ -924,7 +932,7 @@ void GameStateDeckViewer::renderOnScreenMenu(){
         font->DrawString(buffer, 20 + leftTransition, posY);
         posY += 10;
         font->DrawString(_("# - Total number of cards with given cost"), 20 + leftTransition, posY);
-        
+
         break;
 
       case 8: 
@@ -947,13 +955,13 @@ void GameStateDeckViewer::renderOnScreenMenu(){
           r->FillRect(84 + leftTransition, posY + 2, graphScale*stw.noLandsProbInTurn[i], 8, graphColor);
           posY += 10;
         }
-        
+
         // No creatures probability detail
         posY += 10;
         font->DrawString( _("No creatures in first n cards:"), 20 + leftTransition, posY);
         posY += 20;
         graphScale = (stw.noCreaturesProbInTurn[0]==0) ? 0:(graphWidth/stw.noCreaturesProbInTurn[0]);
-        
+
         for (int i=0; i<STATS_FOR_TURNS; i++) {              
           sprintf(buffer, _("%i:").c_str(), i+7);
           font->DrawString(buffer, 30 + leftTransition, posY);              
@@ -971,7 +979,7 @@ void GameStateDeckViewer::renderOnScreenMenu(){
         font->DrawString(buffer, 10+leftTransition, 10);
 
         font->DrawString(_("Total colored manasymbols in cards' casting costs:"), 20 + leftTransition, 30);
-        
+
         posY = 50;
         for (int i=1; i<Constants::MTG_NB_COLORS-1; i++) {
           if (stw.totalCostPerColor[i]>0) {
@@ -992,14 +1000,14 @@ void GameStateDeckViewer::renderOnScreenMenu(){
           }
         }
         break;
-      
+
       case 9: // Victory statistics
         // Title
         sprintf(buffer, STATS_TITLE_FORMAT.c_str(), stw.currentPage, _("Victory statistics").c_str());
         font->DrawString(buffer, 10+leftTransition, 10);
 
         font->DrawString(_("Victories against AI:"), 20 + leftTransition, 30);            
-        
+
         sprintf(buffer, _("Games played: %i").c_str(), stw.gamesPlayed);
         font->DrawString(buffer, 20 + leftTransition, 45);
         sprintf(buffer, _("Victory ratio: %i%%").c_str(), stw.percentVictories);
@@ -1072,7 +1080,7 @@ void GameStateDeckViewer::updateStats() {
     currentCost = current->data->getManaCost();
     convertedCost = currentCost->getConvertedCost();
     currentCount = myDeck->count(current);
-    
+
     // Add to the cards per cost counters
     stw.totalManaCost += convertedCost * currentCount;
     if (convertedCost > STATS_MAX_MANA_COST) {
@@ -1086,7 +1094,7 @@ void GameStateDeckViewer::updateStats() {
       stw.countSpellsPerCost[convertedCost] += currentCount;
       stw.totalSpellCost += convertedCost * currentCount;
     } 
-    
+
     // Lets look for mana producing abilities
 
     vector<string> abilityStrings;
@@ -1130,7 +1138,7 @@ void GameStateDeckViewer::updateStats() {
         }
       }
     }
-    
+
     //  b. Hybrid costs
     ManaCostHybrid * hybridCost;
     int i;
@@ -1320,13 +1328,13 @@ void GameStateDeckViewer::Render() {
 
   if(options.keypadActive())
     options.keypadRender();
-  
+
 
 }
 
 
 int GameStateDeckViewer::loadDeck(int deckid){
- 
+
   stw.currentPage = 0;
   stw.pageCount = 9;
   stw.needUpdate = true;
@@ -1349,7 +1357,7 @@ int GameStateDeckViewer::loadDeck(int deckid){
     SAFE_DELETE(myDeck);
   }
   myDeck = NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(deckname,"",false,false).c_str(), mParent->collection));
-  
+
   // Check whether the cards in the deck are actually available in the player's collection:
   int cheatmode = options[Options::CHEATMODE].number;
   bool bPure = true;
@@ -1357,7 +1365,7 @@ int GameStateDeckViewer::loadDeck(int deckid){
     MTGCard * current = myDeck->getCard(i,true);
     int howmanyinDeck = myDeck->count(current);
     for (int i = myCollection->count(current); i < howmanyinDeck; i++){
-	  bPure = false;
+      bPure = false;
       if(cheatmode){                           //Are we cheating?
         playerdata->collection->add(current); //Yup, add it to collection permanently.
         myCollection->Add(current);
@@ -1367,60 +1375,60 @@ int GameStateDeckViewer::loadDeck(int deckid){
         break;
       }
     }
-    
+
     myCollection->Remove(current,myDeck->count(current));
   }
   if(!bPure){
-	myDeck->validate();
-	myCollection->validate();
+    myDeck->validate();
+    myCollection->validate();
   }
 
-    // Load deck statistics
-    // TODO: Code cleanup (Copypasted with slight changes from GameStateMenu.cpp)
-    char buffer[512];
-    DeckStats * stats = DeckStats::GetInstance();
-    stw.aiDeckNames.clear();
-    stw.aiDeckStats.clear();
+  // Load deck statistics
+  // TODO: Code cleanup (Copypasted with slight changes from GameStateMenu.cpp)
+  char buffer[512];
+  DeckStats * stats = DeckStats::GetInstance();
+  stw.aiDeckNames.clear();
+  stw.aiDeckStats.clear();
 
-    sprintf(buffer, "stats/player_deck%i.txt", deckid);
-    string deckstats = options.profileFile(buffer);
-    
-    if(fileExists(deckstats.c_str())){
-      stats->load(deckstats.c_str());
-      stw.percentVictories = stats->percentVictories();
-      stw.gamesPlayed = stats->nbGames();
-      
-      // Detailed deck statistics against AI
-      int found = 1;
-      int nbDecks = 0;
-      while (found){
-        found = 0;
-        char buffer[512];
-        char smallDeckName[512];
-        //char deckDesc[512];
-        sprintf(buffer, "%s/deck%i.txt",RESPATH"/ai/baka",nbDecks+1);
-        if(fileExists(buffer)){
-          MTGDeck * mtgd = NEW MTGDeck(buffer,NULL,1);
-          found = 1;
-          nbDecks++;
+  sprintf(buffer, "stats/player_deck%i.txt", deckid);
+  string deckstats = options.profileFile(buffer);
 
-          sprintf(smallDeckName, "%s_deck%i","ai_baka",nbDecks);
-          DeckStat* deckStat = stats->getDeckStat(string(smallDeckName));
-          
-          if ((deckStat != NULL) && (deckStat->nbgames>0)) {
-            int percentVictories = stats->percentVictories(string(smallDeckName));
-            stw.aiDeckNames.push_back(string(mtgd->meta_name));
-            stw.aiDeckStats.push_back(deckStat);
-          }
+  if(fileExists(deckstats.c_str())){
+    stats->load(deckstats.c_str());
+    stw.percentVictories = stats->percentVictories();
+    stw.gamesPlayed = stats->nbGames();
 
-          delete mtgd;
+    // Detailed deck statistics against AI
+    int found = 1;
+    int nbDecks = 0;
+    while (found){
+      found = 0;
+      char buffer[512];
+      char smallDeckName[512];
+      //char deckDesc[512];
+      sprintf(buffer, "%s/deck%i.txt",RESPATH"/ai/baka",nbDecks+1);
+      if(fileExists(buffer)){
+        MTGDeck * mtgd = NEW MTGDeck(buffer,NULL,1);
+        found = 1;
+        nbDecks++;
+
+        sprintf(smallDeckName, "%s_deck%i","ai_baka",nbDecks);
+        DeckStat* deckStat = stats->getDeckStat(string(smallDeckName));
+
+        if ((deckStat != NULL) && (deckStat->nbgames>0)) {
+          int percentVictories = stats->percentVictories(string(smallDeckName));
+          stw.aiDeckNames.push_back(string(mtgd->meta_name));
+          stw.aiDeckStats.push_back(deckStat);
         }
+
+        delete mtgd;
       }
-    } else {
-      stw.gamesPlayed = 0;
-      stw.percentVictories = 0;
-    }    
-    
+    }
+  } else {
+    stw.gamesPlayed = 0;
+    stw.percentVictories = 0;
+  }    
+
   myDeck->Sort(WSrcCards::SORT_ALPHA);
   SAFE_DELETE(filterMenu);
   rebuildFilters();
@@ -1433,10 +1441,10 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
   int deckIdNumber = controlId;
   int deckListSize = 0;
   DeckManager *deckManager = DeckManager::GetInstance();
-  vector<int> * deckList;
+  vector<DeckMetaData *> * deckList;
   switch(controllerId){
-      case 10:  //Deck menu
-        if (controlId == -1){
+      case MENU_DECK_SELECTION:  //Deck menu
+        if (controlId == MENU_ITEM_CANCEL){
           if(!mSwitching)
             mParent->DoTransition(TRANSITION_FADE,GAME_STATE_MENU);
           else
@@ -1444,7 +1452,7 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
 
           mSwitching = false;
           break;
-        } else if(controlId == -12){           // (PSY) Cheatmode: Complete the collection
+        } else if(controlId == MENU_ITEM_CHEAT_MODE){           // (PSY) Cheatmode: Complete the collection
           playerdata->collection->complete();  // Add the cards
           playerdata->collection->save();      // Save the new collection
           for(int i=0;i<setlist.size();i++){   // Update unlocked sets
@@ -1465,51 +1473,55 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
         mStage = STAGE_WAITING;
         deckList = deckManager->getPlayerDeckOrderList();
         deckListSize = deckList->size();
-        
-        if (deckListSize > 0 && controlId < deckListSize)
-            deckIdNumber = deckList->at(controlId - 1);
+
+        if (controlId == MENU_ITEM_NEW_DECK) // new deck option selected
+          deckIdNumber = deckList->size() + 1;
+        else if (deckListSize > 0 && controlId <= deckListSize)
+          deckIdNumber = deckList->at(controlId - 1)->deckid;
         else
-            deckIdNumber = controlId;
-        
+          deckIdNumber = controlId;
+
         loadDeck(deckIdNumber);
         mStage = STAGE_WAITING;
         deckNum = controlId;
         break;
-      case 11: //Save / exit menu
+
+      case MENU_DECK_BUILDER: //Save / exit menu
         switch (controlId)
         {
-      
-        case 0:
+
+        case MENU_ITEM_SAVE_RETURN_MAIN_MENU:
           saveDeck();
           mParent->DoTransition(TRANSITION_FADE,GAME_STATE_MENU);
           break;
-        case 1:
+        case MENU_ITEM_SAVE_RENAME:
           if(myDeck && myDeck->parent){
-          options.keypadStart(myDeck->parent->meta_name,&newDeckname);
-          options.keypadTitle("Rename deck");
+            options.keypadStart(myDeck->parent->meta_name,&newDeckname);
+            options.keypadTitle("Rename deck");
           }
           break;
-        case 2:
+        case MENU_ITEM_SWITCH_DECKS_NO_SAVE:
           updateDecks();
           mStage =  STAGE_WELCOME;
           mSwitching = true;
           break;
-        case 3:
+        case MENU_ITEM_MAIN_MENU:
           mParent->DoTransition(TRANSITION_FADE,GAME_STATE_MENU);
           break;
-        case 4:
+        case MENU_ITEM_EDITOR_CANCEL:
           mStage =  STAGE_WAITING;
           break;
-        case 22:
+        case MENU_ITEM_FILTER_BY:
           mStage = STAGE_FILTERS;         
           if(!filterMenu) rebuildFilters();
           filterMenu->Entering(JGE_BTN_NONE);       
           break;
         }
-      break;
-    case 2:
-    switch (controlId){
-      case 20:
+        break;
+
+      case MENU_CARD_PURCHASE: // Yes/ No sub menu.
+        switch (controlId){
+      case MENU_ITEM_YES:
         {
           MTGCard * card  = cardIndex[2];
           if (card){
@@ -1519,15 +1531,15 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
             pricelist->setPrice(card->getMTGId(),price);
             playerdata->collection->remove(card->getMTGId());
             displayed_deck->Remove(card,1);
-			      displayed_deck->validate();
+            displayed_deck->validate();
             stw.needUpdate = true;
             loadIndexes();
           }
         }
-      case 21:
+      case MENU_ITEM_NO:
         subMenu->Close();
         break;
-    }
+        }
   }
 }
 

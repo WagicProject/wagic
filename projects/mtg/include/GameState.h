@@ -9,6 +9,8 @@ class JGE;
 #include <string>
 #include <vector>
 #include <iostream>
+#include "../include/DeckMetaData.h"
+
 using namespace std;
 
 enum ENUM_GAME_STATE
@@ -54,15 +56,25 @@ class GameState
 
   virtual void Update(float dt) = 0;
   virtual void Render() = 0;
-  static int fillDeckMenu(SimpleMenu * _menu, string path, string smallDeckPrefix = "", Player * statsPlayer = NULL);
-  static int fillDeckMenu( vector<int> * deckIdList, SimpleMenu * _menu, string path, string smallDeckPrefix = "", Player * statsPlayer = NULL);
 
-    string& trim(string &str);
-    string& ltrim(string &str);
-    string& rtrim(string &str);
-
-    };
-
+  // deck manipulation methods
+  // 2010/09/15:
+  // this was originally one method to do everything.  That has been split up into two distinct
+  // methods since the original was building a menu and returning a value.  The first 
+  // creates the vector containing the deck information.  The second will render that information
+  // it makes it easier to manipulate the deck information menus.
+  
+  // generate the Deck Meta Data and build the menu items of the menu given
+  static vector<DeckMetaData *> fillDeckMenu(SimpleMenu * _menu, string path, string smallDeckPrefix = "", Player * statsPlayer = NULL);
+  
+  // build a vector of decks with the information passsed in. 
+  static vector<DeckMetaData *> getValidDeckMetaData(string path, string smallDeckPrefix = "", Player * statsPlayer = NULL);
+  
+  // build menu items based on the vector<DeckMetaData *>
+  static void renderDeckMenu(SimpleMenu * _menu, vector<DeckMetaData *> deckMetaDataList);
+  
+  };
+  bool sortByName( DeckMetaData * d1, DeckMetaData * d2 );
 
 #endif
 

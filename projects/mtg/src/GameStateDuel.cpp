@@ -21,7 +21,7 @@
 #if defined (WIN32) || defined (LINUX)
 #include <time.h>
 #endif
-
+  
 enum ENUM_DUEL_STATE
   {
     DUEL_STATE_START,
@@ -86,15 +86,28 @@ void GameStateDuel::Start()
   menu = NULL;
 
   int decksneeded = 0;
-
-
+  
   for (int i = 0; i<2; i ++){
     if (mParent->players[i] ==  PLAYER_TYPE_HUMAN){
       decksneeded = 1;
       deckmenu = NEW SimpleMenu(DUEL_MENU_CHOOSE_DECK, this, Constants::MENU_FONT, 35, 25, "Choose a Deck");
+
       DeckManager *deckManager = DeckManager::GetInstance();
-      int nbDecks = fillDeckMenu( deckManager->getPlayerDeckOrderList(), deckmenu, options.profileFile());
-      if (nbDecks) decksneeded = 0;
+      vector<DeckMetaData *> playerDeckList = getValidDeckMetaData( options.profileFile() );
+      int nbDecks = playerDeckList.size();
+
+      if (nbDecks) 
+      {
+        decksneeded = 0;
+				if (nbDecks > 1 )
+					deckmenu->Add( MENUITEM_RANDOM_PLAYER, "Random", "Play with a random deck." );
+      }
+
+      renderDeckMenu( deckmenu, playerDeckList );
+      // save the changes to the player deck list maintained in DeckManager
+      deckManager->updateMetaDataList( &playerDeckList, false);
+      playerDeckList.clear();
+
       break;
     }
   }
@@ -105,14 +118,14 @@ void GameStateDuel::Start()
         Translator * t = Translator::GetInstance();
         map<string,string>::iterator it = t->deckValues.find("Create your Deck!");
         if (it != t->deckValues.end())
-          deckmenu->Add(-1,_("Create your Deck!").c_str(), it->second);
+          deckmenu->Add( MENUITEM_NEW_DECK, _("Create your Deck!").c_str(), it->second);
         else
-          deckmenu->Add(-1,_("Create your Deck!").c_str(),"Highly recommended to get\nthe full Wagic experience!");
+          deckmenu->Add( MENUITEM_NEW_DECK, _("Create your Deck!").c_str(),"Highly recommended to get\nthe full Wagic experience!");
         premadeDeck = true;
         fillDeckMenu(deckmenu,RESPATH"/player/premade");
     }
-    deckmenu->Add(-1,_("New Deck...").c_str());
-    deckmenu->Add(-2, "Main Menu", "Return to Main Menu" );
+    deckmenu->Add( MENUITEM_NEW_DECK, _("New Deck...").c_str());
+    deckmenu->Add( MENUITEM_MAIN_MENU, "Main Menu", "Return to Main Menu" );
   }
   
   for (int i = 0; i < 2; ++i){
@@ -122,8 +135,8 @@ void GameStateDuel::Start()
 }
 
 void GameStateDuel::loadPlayer(int playerId, int decknb, int isAI){
-  if (decknb){
-    if (!isAI){ //Human Player
+  if (decknb) {
+    if (!isAI) { //Human Player
       char deckFile[255];
       if(premadeDeck)
         sprintf(deckFile, RESPATH"/player/premade/deck%i.txt",decknb);
@@ -135,14 +148,16 @@ void GameStateDuel::loadPlayer(int playerId, int decknb, int isAI){
       deck[playerId] = NEW MTGPlayerCards(tempDeck);
       delete tempDeck;
       mPlayers[playerId] = NEW HumanPlayer(deck[playerId],deckFile, deckFileSmall);
-    }else{ //AI Player, chose deck
+    } 
+    else { //AI Player, chose deck
           AIPlayerFactory playerCreator;
           Player * opponent = NULL;
           if (playerId == 1) opponent = mPlayers[0];
           mPlayers[playerId] = playerCreator.createAIPlayer(mParent->collection,opponent,decknb);
           deck[playerId] = mPlayers[playerId]->game;
     }
-  }else{ //Random AI deck
+  }
+  else { //Random AI deck
     AIPlayerFactory playerCreator;
     Player * opponent = NULL;
     if (playerId == 1) opponent = mPlayers[0];
@@ -221,12 +236,13 @@ bool GameStateDuel::MusicExist(string FileName){
 void GameStateDuel::ensureOpponentMenu(){
   if (!opponentMenu){
     opponentMenu = NEW SimpleMenu(DUEL_MENU_CHOOSE_OPPONENT, this, Constants::MENU_FONT, 35, 25, "Choose Opponent");
-    opponentMenu->Add(0,"Random");
+    opponentMenu->Add( MENUITEM_RANDOM_AI, "Random");
     if (options[Options::EVILTWIN_MODE_UNLOCKED].number)
-      opponentMenu->Add(-1,"Evil Twin", "Can you play against yourself?");
+      opponentMenu->Add( MENUITEM_EVIL_TWIN, "Evil Twin", "Can you play against yourself?");
     DeckManager * deckManager = DeckManager::GetInstance();
-    fillDeckMenu( deckManager->getAIDeckOrderList(), opponentMenu, RESPATH"/ai/baka", "ai_baka", mPlayers[0]);
-    opponentMenu->Add(-2,"Cancel", "Choose a different player deck");
+    vector<DeckMetaData* > opponentDeckList = fillDeckMenu( opponentMenu, RESPATH"/ai/baka", "ai_baka", mPlayers[0]);
+    deckManager->updateMetaDataList(&opponentDeckList, true);
+    opponentMenu->Add( MENUITEM_CANCEL, "Cancel", "Choose a different player deck");
   }
 }
 
@@ -368,7 +384,7 @@ void GameStateDuel::Update(float dt)
             menu->Add(14,"Mulligan");
           }
           //END almosthumane - mulligan
-          menu->Add(12,"Back to main menu");
+          menu->Add(12, "Back to main menu");
           menu->Add(13, "Cancel");
         }
         mGamePhase = DUEL_STATE_MENU;
@@ -492,15 +508,15 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId) {
     case DUEL_MENU_CHOOSE_OPPONENT:
       {
         switch(controlId){
-          case 0:
-            loadPlayer(1);
+          case MENUITEM_RANDOM_AI:
+              loadPlayer(1);
 	          opponentMenu->Close();
 	          mGamePhase = DUEL_STATE_CHOOSE_DECK2_TO_PLAY;
             break;
           default:
             // cancel option.  return to player deck selection
 
-            if (controlId == -2) 
+            if (controlId == MENUITEM_CANCEL) 
             {
                 opponentMenu->Close();
                 deckmenu->Close();
@@ -508,8 +524,8 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId) {
                 mGamePhase = DUEL_MENU_GAME_MENU;
                 break;
             }
-            else if ( controlId != -1 && aiDeckSize > 0) // evil twin
-                deckNumber = deckManager->getAIDeckOrderList()->at( controlId - 1 );
+            else if ( controlId != MENUITEM_EVIL_TWIN && aiDeckSize > 0) // evil twin
+                deckNumber = deckManager->getAIDeckOrderList()->at( controlId - 1 )->deckid;
 
             loadPlayer(1,deckNumber,1);
 			      OpponentsDeckid=deckNumber;
@@ -521,9 +537,18 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId) {
       }
     case DUEL_MENU_CHOOSE_DECK:
       {
-        if (controlId == -2 ) // user clicked on "Cancel"
+        if ( controlId == MENUITEM_RANDOM_PLAYER ) // Random Player Deck Selection
+        {
+          vector<DeckMetaData *> * playerDeckList = deckManager->getPlayerDeckOrderList();
+          deckNumber = playerDeckList->at(WRand() * 1001 % (playerDeckList->size()) )->deckid;
+          loadPlayer( 0, deckNumber );
+          deckmenu->Close();
+          mGamePhase = DUEL_STATE_CHOOSE_DECK2_TO_PLAY;
+          break;
+        }
+        else if (controlId == MENUITEM_MAIN_MENU ) // user clicked on "Cancel"
         {            
-            if ( deckmenu) 
+            if (deckmenu) 
                 deckmenu->Close();
             mGamePhase = DUEL_STATE_BACK_TO_MAIN_MENU;
             break;
@@ -533,9 +558,9 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId) {
           return;
         }
         if (mGamePhase == DUEL_STATE_CHOOSE_DECK1){
-          vector<int> * playerDeck = deckManager->getPlayerDeckOrderList();
+          vector<DeckMetaData *> * playerDeck = deckManager->getPlayerDeckOrderList();
           if ( !premadeDeck && controlId > 0 )
-            deckNumber = playerDeck->at( controlId - 1 );
+            deckNumber = playerDeck->at( controlId - 1 )->deckid;
           loadPlayer(0,deckNumber);
           deckmenu->Close();
           mGamePhase = DUEL_STATE_CHOOSE_DECK1_TO_2;

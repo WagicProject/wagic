@@ -35,6 +35,36 @@ enum
   };
 
 
+// TODO: need a better name for MENU_FIRST_MENU, this is reused for the 1st submenu of
+// available options in the duel menu
+enum
+{
+    MENU_CARD_PURCHASE = 2,
+    MENU_DECK_SELECTION = 10,
+    MENU_DECK_BUILDER = 11,
+    MENU_FIRST_DUEL_SUBMENU = 102,
+    MENU_LANGUAGE_SELECTION = 103,
+};
+
+  // enums for menu options
+  // TODO: make these enums a little more descriptive. (ie should reflect what menu they are attached to )
+enum DECK_VIEWER_MENU_ITEMS
+  {
+    MENU_ITEM_NEW_DECK = -30,
+    MENU_ITEM_CHEAT_MODE = -12,
+    MENU_ITEM_CANCEL = -1,
+    MENU_ITEM_SAVE_RETURN_MAIN_MENU = 0,
+    MENU_ITEM_SAVE_RENAME = 1,
+    MENU_ITEM_SWITCH_DECKS_NO_SAVE = 2,
+    MENU_ITEM_MAIN_MENU = 3,
+    MENU_ITEM_EDITOR_CANCEL = 4,
+    MENU_ITEM_YES = 20,
+    MENU_ITEM_NO = 21,
+    MENU_ITEM_FILTER_BY = 22
+
+
+  };
+
 #define ALL_COLORS -1
 
 #define ROTATE_LEFT 1;

@@ -5,6 +5,7 @@
 #include "../include/AllAbilities.h"
 #include "../include/ExtraCost.h"
 #include "../include/GuiCombat.h"
+#include "../include/GameStateDuel.h"
 
 const char * const MTG_LAND_TEXTS[] = {"artifact","forest","island","mountain","swamp","plains","other lands"};
 
@@ -575,7 +576,7 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, Player * op
   char avatarFile[512];
   char deckFileSmall[512];
 
-  if (deckid == -1){ //Evil twin
+  if (deckid == GameStateDuel::MENUITEM_EVIL_TWIN){ //Evil twin
     sprintf(deckFile, "%s", opponent->deckFile.c_str());
     OutputDebugString(opponent->deckFile.c_str());  
     sprintf(avatarFile, "%s", "baka.jpg");

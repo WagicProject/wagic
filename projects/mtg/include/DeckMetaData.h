@@ -4,29 +4,39 @@
 #include <string>
 #include <vector>
 #include <map>
+#include "../include/DeckStats.h"
+
 
 using namespace std;
-
+enum DECK_DIFFICULTY
+{
+    HARD = -1,
+    NORMAL = 0,
+    EASY = 1
+};
+    
 class DeckMetaData {
 public:
   DeckMetaData();
-  DeckMetaData(string filename);
+  DeckMetaData(string filename, Player * statsPlayer);
   void load(string filename);
-  bool operator<(DeckMetaData b);
+  void loadStatsForPlayer( Player * statsPlayer, string opponentDeckName = "" );
+  
+  string getDescription();
   
   string desc;
   string name;
   int deckid;
+
+  // statistical information
   
-      string& trim(string &str);
-    string& ltrim(string &str);
-    string& rtrim(string &str);
+  int nbGamesPlayed, victories, percentVictories, difficulty;
 };
 
 class DeckMetaDataList {
 public:
   void invalidate(string filename);
-  DeckMetaData * get(string filename);
+  DeckMetaData * get(string filename, Player * statsPlayer = NULL);
   ~DeckMetaDataList();
   static DeckMetaDataList * decksMetaData;
 

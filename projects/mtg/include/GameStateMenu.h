@@ -67,6 +67,15 @@ class GameStateMenu: public GameState, public JGuiListener
   void resetDirectory();
   void createUsersFirstDeck(int setId);
   virtual ostream& toString(ostream& out) const;
+
+  enum
+{
+    MENU_CARD_PURCHASE = 2,
+    MENU_DECK_SELECTION = 10,
+    MENU_DECK_BUILDER = 11,
+    MENU_FIRST_DUEL_SUBMENU = 102,
+    MENU_LANGUAGE_SELECTION = 103,
+};
 };
 
 #endif

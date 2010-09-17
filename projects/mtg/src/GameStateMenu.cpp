@@ -311,7 +311,7 @@ void GameStateMenu::setLang(int id){
 
 void GameStateMenu::loadLangMenu(){
   LOG("GameStateMenu::loadLangMenu");
-  subMenuController = NEW SimpleMenu(103, this, Constants::MENU_FONT, 150,60);
+  subMenuController = NEW SimpleMenu( MENU_LANGUAGE_SELECTION, this, Constants::MENU_FONT, 150,60);
   if (!subMenuController) return;
   resetDirectory();
   if (!mDip){
@@ -465,7 +465,7 @@ void GameStateMenu::Update(float dt)
       if (MENU_STATE_MINOR_NONE == (currentState & MENU_STATE_MINOR)) {
         if (!hasChosenGameType){
 	        currentState = MENU_STATE_MAJOR_SUBMENU;
-	        subMenuController = NEW SimpleMenu(102, this, Constants::MENU_FONT, 150,60);
+	        subMenuController = NEW SimpleMenu( MENU_FIRST_DUEL_SUBMENU, this, Constants::MENU_FONT, 150,60);
 	        if (subMenuController){
 	          subMenuController->Add(SUBMENUITEM_CLASSIC,"Classic");
 	          if (options[Options::MOMIR_MODE_UNLOCKED].number)
@@ -637,7 +637,7 @@ WFont * mFont = resources.GetWFont(Constants::MENU_FONT);
   OutputDebugString(buf);
 #endif
   switch (controllerId){
-  case 103:
+  case MENU_LANGUAGE_SELECTION:
     setLang(controlId);
     resources.reloadWFonts(); // Fix for choosing Chinese language at first time.
     subMenuController->Close();
@@ -651,7 +651,7 @@ WFont * mFont = resources.GetWFont(Constants::MENU_FONT);
     switch (controlId)
       {
       case MENUITEM_PLAY:
-	    subMenuController = NEW SimpleMenu(102, this, Constants::MENU_FONT, 150,60);
+	    subMenuController = NEW SimpleMenu( MENU_FIRST_DUEL_SUBMENU, this, Constants::MENU_FONT, 150,60);
 	    if (subMenuController){
 	      subMenuController->Add(SUBMENUITEM_1PLAYER,"1 Player");
         // TODO Put 2 players mode back

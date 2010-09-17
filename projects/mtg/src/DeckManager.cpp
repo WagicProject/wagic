@@ -9,13 +9,23 @@ DeckManager::~DeckManager()
 {
 }
 
+void DeckManager::updateMetaDataList( vector<DeckMetaData *> * refList, bool isAI )
+{
+  if (refList)
+  {
+    vector<DeckMetaData *> * inputList = isAI? &aiDeckOrderList : &playerDeckOrderList;
+    inputList->clear();
+    inputList->assign( refList->begin(), refList->end());
+  }
+}
 
-vector<int> * DeckManager::getPlayerDeckOrderList()
+
+vector<DeckMetaData *> * DeckManager::getPlayerDeckOrderList()
 {
     return &playerDeckOrderList;
 }
     
-vector<int> * DeckManager::getAIDeckOrderList()
+vector<DeckMetaData *> * DeckManager::getAIDeckOrderList()
 {
     return &aiDeckOrderList;
 }
@@ -33,6 +43,5 @@ DeckManager* DeckManager::GetInstance()
 
 void DeckManager::EndInstance()
 {
-
   SAFE_DELETE(mInstance);
 }
