@@ -610,8 +610,9 @@ int MTGDeck::addRandomCards(int howmany, int * setIds, int nbSets, int rarity, c
   for (int i = 0; i < collectionTotal; i++){
     MTGCard * card = database->_(i);
     int r = card->getRarity();
-    if (r != Constants::RARITY_T && (rarity == -1 || r==rarity) &&
-	(!_subtype || card->data->hasSubtype(subtype))
+    if (r != Constants::RARITY_T && (rarity == -1 || r==rarity) && // remove tokens
+      card->setId != -1 && //remove cards that are defined in primitives. Those are workarounds (usually tokens) and should only be used internally 
+	    (!_subtype || card->data->hasSubtype(subtype))
 	){
       int ok = 0;
 

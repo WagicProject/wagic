@@ -774,7 +774,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\include\StyleManager.h"
+				RelativePath=".\src\StyleManager.cpp"
 				>
 			</File>
 			<File
@@ -1175,7 +1175,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\StyleManager.cpp"
+				RelativePath=".\include\StyleManager.h"
 				>
 			</File>
 			<File
