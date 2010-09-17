@@ -1,21 +1,13 @@
 #include "../include/DeckManager.h"
 #include <JRenderer.h>
 
-DeckManager::DeckManager()
-{
-}
-
-DeckManager::~DeckManager()
-{
-}
-
 void DeckManager::updateMetaDataList( vector<DeckMetaData *> * refList, bool isAI )
 {
   if (refList)
   {
     vector<DeckMetaData *> * inputList = isAI? &aiDeckOrderList : &playerDeckOrderList;
     inputList->clear();
-    inputList->assign( refList->begin(), refList->end());
+    inputList->assign( refList->begin(), refList -> end() );
   }
 }
 
@@ -32,16 +24,26 @@ vector<DeckMetaData *> * DeckManager::getAIDeckOrderList()
 
 
 DeckManager * DeckManager::mInstance = NULL;
+bool DeckManager::instanceFlag = false;
+
+void DeckManager::EndInstance()
+{
+  if (mInstance)
+  {
+    mInstance->aiDeckOrderList.clear();
+    mInstance->playerDeckOrderList.clear();
+    SAFE_DELETE( mInstance );
+  }
+}
 
 
 DeckManager* DeckManager::GetInstance()
 {
-  if ( mInstance == NULL )
+  if ( !instanceFlag )
+  {
     mInstance = new DeckManager();
-  return mInstance;
-}
+    instanceFlag = true;
+  }
 
-void DeckManager::EndInstance()
-{
-  SAFE_DELETE(mInstance);
+  return mInstance;
 }

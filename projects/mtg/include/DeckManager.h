@@ -7,8 +7,13 @@ using namespace std;
 
 class DeckManager
 {
-protected: 
-    static DeckManager * mInstance;
+private:
+    static bool instanceFlag;
+    static DeckManager *mInstance;
+    DeckManager()
+    {
+        //private constructor
+    }
 
 public:
     
@@ -23,6 +28,10 @@ public:
     static DeckManager * GetInstance();
     static void EndInstance();
 
-    DeckManager();
-    ~DeckManager();
+   
+    ~DeckManager()
+    {
+        instanceFlag = false;
+    }
+
 };

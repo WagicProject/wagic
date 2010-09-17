@@ -201,6 +201,7 @@ void GameStateDuel::End()
   JRenderer::GetInstance()->EnableVSync(false);
   if (mPlayers[0] && mPlayers[1]) mPlayers[0]->End();
   GameObserver::EndInstance();
+  DeckManager::EndInstance();
   game = NULL;
   premadeDeck = false;
 
@@ -243,6 +244,7 @@ void GameStateDuel::ensureOpponentMenu(){
     vector<DeckMetaData* > opponentDeckList = fillDeckMenu( opponentMenu, RESPATH"/ai/baka", "ai_baka", mPlayers[0]);
     deckManager->updateMetaDataList(&opponentDeckList, true);
     opponentMenu->Add( MENUITEM_CANCEL, "Cancel", "Choose a different player deck");
+    opponentDeckList.clear();
   }
 }
 
