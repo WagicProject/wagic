@@ -87,7 +87,15 @@ void MTGPlayerCards::drawFromLibrary(){
 		  if (c->has(Constants::CANTLOSE) || c->has(Constants::CANTMILLLOSE)){
             cantlosers++;
           }
-         }
+		}
+		MTGGameZone * k = library->owner->opponent()->game->inPlay;
+        int onbcards = k->nb_cards;
+        for (int m = 0; m < onbcards; ++m){
+          MTGCardInstance * e = k->cards[m];
+		  if (e->has(Constants::CANTWIN)){
+            cantlosers++;
+          }
+		}
 	  if(cantlosers < 1){
 		  GameObserver::GetInstance()->gameOver = library->owner;}
      return;

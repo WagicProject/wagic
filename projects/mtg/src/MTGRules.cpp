@@ -1091,7 +1091,7 @@ HUDDisplay::~HUDDisplay(){
       WEventZoneChange * e = (WEventZoneChange *) event;
       MTGCardInstance * card = e->card->previous;
 	  if(card){
-		  if (card->basicAbilities[Constants::BOTHCANTCAST] || card->basicAbilities[Constants::BOTHNOCREATURE] || card->basicAbilities[Constants::CANTCAST] || card->basicAbilities[Constants::CANTCASTCREATURE] || card->basicAbilities[Constants::CANTCASTTWO] || card->basicAbilities[Constants::ONLYONEBOTH]){
+		  if (card->basicAbilities[Constants::BOTHCANTCAST] || card->basicAbilities[Constants::BOTHNOCREATURE] || card->basicAbilities[Constants::CANTCAST] || card->basicAbilities[Constants::CANTCASTCREATURE] || card->basicAbilities[Constants::CANTCASTTWO] || card->basicAbilities[Constants::ONLYONEBOTH] || card->basicAbilities[Constants::NOMAXHAND] ){
         int ok = 0;
 
 
@@ -1109,6 +1109,21 @@ HUDDisplay::~HUDDisplay(){
 		MTGGameZone * y = card->controller()->opponent()->game->inPlay;
 		int nbcards = z->nb_cards;
 		int onbcards = y->nb_cards;
+		//handsize modifier
+		              //check my battlefield and opponents
+        for (int j = 0; j < nbcards; ++j){
+          MTGCardInstance * c = z->cards[j];
+		  if (c->has(Constants::NOMAXHAND)){
+			  card->controller()->nomaxhandsize = 1;
+		  }
+		}      //any on other side?
+		  for (int j = 0; j < onbcards; ++j){
+          MTGCardInstance * c = y->cards[j];
+		  if (c->has(Constants::NOMAXHAND)){
+			  card->controller()->opponent()->nomaxhandsize = 1;
+		  }
+		}
+//--------------both cant cast-----------------
                //check my battlefield and opponents
         for (int j = 0; j < nbcards; ++j){
           MTGCardInstance * c = z->cards[j];
@@ -1235,7 +1250,7 @@ HUDDisplay::~HUDDisplay(){
     if (event->type == WEvent::CHANGE_ZONE){
       WEventZoneChange * e = (WEventZoneChange *) event;
       MTGCardInstance * card = e->card->previous;
-	  if (card && (card->basicAbilities[Constants::BOTHCANTCAST] || card->basicAbilities[Constants::BOTHNOCREATURE] || card->basicAbilities[Constants::CANTCAST] || card->basicAbilities[Constants::CANTCASTCREATURE] || card->basicAbilities[Constants::CANTCASTTWO] || card->basicAbilities[Constants::ONLYONEBOTH])){
+	  if (card && (card->basicAbilities[Constants::BOTHCANTCAST] || card->basicAbilities[Constants::BOTHNOCREATURE] || card->basicAbilities[Constants::CANTCAST] || card->basicAbilities[Constants::CANTCASTCREATURE] || card->basicAbilities[Constants::CANTCASTTWO] || card->basicAbilities[Constants::ONLYONEBOTH]|| card->basicAbilities[Constants::NOMAXHAND])){
         int ok = 0;
         for (int i = 0; i < 2 ; i++){
           Player * p = game->players[i];
@@ -1247,6 +1262,8 @@ HUDDisplay::~HUDDisplay(){
 		  if (e->to == p->game->graveyard || e->to == p->game->hand || e->to == p->game->library || e->to == p->game->exile){//if it goes ANYWHERE but inplay.
 //check happens----------
 	    //reset restrictions
+	    p->nomaxhandsize = 0;
+		p->opponent()->nomaxhandsize = 0;
 	    p->onlyonecast = 0;
 		p->opponent()->onlyonecast = 0;
 	    p->castrestrictedspell = 0;//0 means no restrictions apply.
@@ -1258,6 +1275,21 @@ HUDDisplay::~HUDDisplay(){
 		MTGGameZone * y = card->controller()->opponent()->game->inPlay;
 		int nbcards = z->nb_cards;
 		int onbcards = y->nb_cards;
+
+		//no max hand size
+		        for (int j = 0; j < nbcards; ++j){
+          MTGCardInstance * c = z->cards[j];
+		  if (c->has(Constants::NOMAXHAND)){
+			  p->nomaxhandsize = 1;
+		  }
+		}      //any on other side?
+		  for (int j = 0; j < onbcards; ++j){
+          MTGCardInstance * c = y->cards[j];
+		  if (c->has(Constants::NOMAXHAND)){
+			p->opponent()->nomaxhandsize = 1;
+		  }
+		}
+
                //check my battlefield and opponents
         for (int j = 0; j < nbcards; ++j){
           MTGCardInstance * c = z->cards[j];
@@ -1705,7 +1737,7 @@ HUDDisplay::~HUDDisplay(){
         for (int j = 0; j < nbcards; ++j){
           MTGCardInstance * c = z->cards[j];
 		  if (c->has(Constants::AFFINITYSWAMP)){
-			  if(c->reduxamount > 0){ c->reduxamount -+ 1;}
+			  if(c->reduxamount > 0){ c->reduxamount -= 1;}
 			  else{
 			  c->getManaCost()->add(0,1);
 			  }

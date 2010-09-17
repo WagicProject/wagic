@@ -41,6 +41,27 @@ class ThisCounterAny:public ThisDescriptor{
   ThisCounterAny(int nb);
 };
 
+class ThisControllerlife:public ThisDescriptor{
+ public:
+    virtual int match(MTGCardInstance * card);
+  
+    ThisControllerlife(int life);
+};
+
+class ThisOpponentlife:public ThisDescriptor{
+ public:
+    virtual int match(MTGCardInstance * card);
+  
+    ThisOpponentlife(int olife);
+};
+
+class ThisEquip:public ThisDescriptor{
+ public:
+    virtual int match(MTGCardInstance * card);
+  
+    ThisEquip(int equipment);
+};
+
 class ThisPower:public ThisDescriptor{
  public:
     virtual int match(MTGCardInstance * card);

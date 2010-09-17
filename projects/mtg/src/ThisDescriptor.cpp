@@ -126,7 +126,40 @@ ThisDescriptor * ThisDescriptorFactory::createThisDescriptor(string s){
     return NULL;
   }
 
-  //power
+  //equips
+  found = s.find("equip");
+  if (found != string::npos) {
+    ThisEquip * td = NEW ThisEquip(criterion);
+    if (td) {
+      td->comparisonMode = mode;
+      return td;
+    }
+    return NULL;
+  }
+
+     //controller life
+  found = s.find("opponentlife");
+  if (found != string::npos) {
+    ThisOpponentlife * td = NEW ThisOpponentlife(criterion);
+    if (td) {
+      td->comparisonMode = mode;
+      return td;
+    }
+    return NULL;
+  }
+
+   //controller life
+  found = s.find("controllerlife");
+  if (found != string::npos) {
+    ThisControllerlife * td = NEW ThisControllerlife(criterion);
+    if (td) {
+      td->comparisonMode = mode;
+      return td;
+    }
+    return NULL;
+  }
+
+     //power
   found = s.find("power");
   if (found != string::npos) {
     ThisPower * td = NEW ThisPower(criterion);
@@ -198,6 +231,22 @@ ThisCounter::~ThisCounter() {
   SAFE_DELETE(counter);
 }
 
+ThisOpponentlife::ThisOpponentlife(int olife){
+  comparisonCriterion = olife;
+}
+
+int ThisOpponentlife::match(MTGCardInstance * card){
+	return matchValue(card->controller()->opponent()->life);
+}
+
+ThisControllerlife::ThisControllerlife(int life){
+  comparisonCriterion = life;
+}
+
+int ThisControllerlife::match(MTGCardInstance * card){
+	return matchValue(card->controller()->life);
+}
+
 ThisPower::ThisPower(int power){
   comparisonCriterion = power;
 }
@@ -205,6 +254,14 @@ ThisPower::ThisPower(int power){
 int ThisPower::match(MTGCardInstance * card){
   return matchValue(card->power);
 }
+
+ThisEquip::ThisEquip(int equipment){
+  comparisonCriterion = equipment;
+}
+int ThisEquip::match(MTGCardInstance * card){
+  return matchValue(card->equipment);
+}
+
 
 ThisToughness::ThisToughness(int toughness){
   comparisonCriterion = toughness;

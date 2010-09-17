@@ -22,6 +22,7 @@ class Player: public Damageable{
   JTexture * mAvatarTex;
   JQuad * mAvatar;
   int canPutLandsIntoPlay;
+  int nomaxhandsize;
   int castedspellsthisturn;
   int onlyonecast;
   int castcount;

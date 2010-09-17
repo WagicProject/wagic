@@ -84,6 +84,8 @@ const char* Constants::MTGBasicAbilities[] = {
 "affinitymountains",
 "affinityswamps",
 "affinitygreencreatures",
+"cantwin",
+"nomaxhand",
 };
 
 

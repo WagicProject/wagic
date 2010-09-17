@@ -55,6 +55,8 @@ public:
       intValue = computeX(spell,card);
     }else if (s == "xx" || s == "XX"){
       intValue = computeXX(spell,card);
+	}else if (s == "equips"){
+		intValue = target->equipment;
     }else if (s == "manacost"){
       intValue = target->getManaCost()->getConvertedCost();
 	}else if (s == "lifetotal"){
@@ -792,9 +794,18 @@ class AAWinGame:public ActivatedAbilityTP{
 	  	int cantlosers = 0;
 		MTGGameZone * z = ((Player *)_target)->opponent()->game->inPlay;
         int nbcards = z->nb_cards;
-        for (int i = 0; i < nbcards; ++i){
+
+        for (int i = 0; i < nbcards; i++){
           MTGCardInstance * c = z->cards[i];
 		  if (c->has(Constants::CANTLOSE)){
+            cantlosers++;
+          }
+		}
+		MTGGameZone * k = ((Player *)_target)->game->inPlay;
+        int onbcards = k->nb_cards;
+        for (int m = 0; m < onbcards; ++m){
+          MTGCardInstance * e = k->cards[m];
+		  if (e->has(Constants::CANTWIN)){
             cantlosers++;
           }
 		}
@@ -1190,7 +1201,7 @@ class ABasicAbilityAuraModifierUntilEOT: public ActivatedAbility{
   }
 };
 
-
+//equipment
 class AEquip:public TargetAbility{
 public:
   vector<MTGAbility *> currentAbilities; 
@@ -1199,6 +1210,7 @@ public:
  }
 
   int unequip(){
+	  if(source->target){source->target->equipment -= 1;}
     source->target = NULL;
     for (size_t i = 0; i < currentAbilities.size(); ++i){
       MTGAbility * a = currentAbilities[i];
@@ -1215,6 +1227,7 @@ public:
 
   int equip(MTGCardInstance * equipped){
     source->target = equipped;
+	source->target->equipment += 1;
     AbilityFactory af;
     af.getAbilities(&currentAbilities,NULL,source);
     for (size_t i = 0; i < currentAbilities.size(); ++i){
@@ -1233,7 +1246,6 @@ public:
     if (mTarget == source) return 0;
     unequip();
     equip(mTarget);
- 
     return 1;
   }
 

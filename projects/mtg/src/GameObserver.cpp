@@ -137,7 +137,7 @@ void GameObserver::nextGamePhase(){
 
   if (currentGamePhase == Constants::MTG_PHASE_AFTER_EOT){
     //Auto Hand cleaning, in case the player didn't do it himself
-    while(currentPlayer->game->hand->nb_cards > 7)
+	  while(currentPlayer->game->hand->nb_cards > 7 && currentPlayer->nomaxhandsize < 1)
       currentPlayer->game->putInGraveyard(currentPlayer->game->hand->cards[0]);
     mLayers->actionLayer()->Update(0);
     return nextGamePhase();
@@ -360,6 +360,14 @@ void GameObserver::stateEffects()
             cantlosers++;
           }
 		}
+		MTGGameZone * k = players[i]->opponent()->game->inPlay;
+        int onbcards = k->nb_cards;
+        for (int m = 0; m < onbcards; ++m){
+          MTGCardInstance * e = k->cards[m];
+		  if (e->has(Constants::CANTWIN)){
+            cantlosers++;
+          }
+		}
 		if(cantlosers < 1){
 		  gameOver = players[i];
 		}
@@ -549,7 +557,7 @@ void GameObserver::cardClick (MTGCardInstance * card, Targetable * object){
   if (!card) return;
 
 	//Current player's hand
-  if (currentPlayer->game->hand->hasCard(card) && currentGamePhase == Constants::MTG_PHASE_CLEANUP && currentPlayer->game->hand->nb_cards > 7){
+  if (currentPlayer->game->hand->hasCard(card) && currentGamePhase == Constants::MTG_PHASE_CLEANUP && currentPlayer->game->hand->nb_cards > 7 && currentPlayer->nomaxhandsize < 1){
     currentPlayer->game->putInGraveyard(card);
   }else if (reaction){
     if (reaction == 1){

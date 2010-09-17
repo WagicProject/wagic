@@ -99,6 +99,7 @@ void MTGCardInstance::initMTGCI(){
   tapped = 0;
   untapping = 0;
   frozen = 0;
+  equipment = NULL;
   boughtback = 0;
   flashedback = 0;
   paymenttype = 0;
