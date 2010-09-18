@@ -1,7 +1,9 @@
 wallpapers/final_saga1.jpg
 wallpapers/final_saga2.jpg
 wallpapers/final_saga3.jpg
-wallpapers/wagic1.png
+wallpapers/wagic1.jpg
+wallpapers/kaioshin_garruk.jpg
+wallpapers/kaioshin_jace.jpg
 graphics/shop.jpg
 themes/Classic/backdrop.jpg
 themes/Jade/backdrop.jpg
