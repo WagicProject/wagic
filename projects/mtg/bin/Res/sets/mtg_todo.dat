@@ -172,15 +172,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Abyssal Persecutor
-text=Flying, trample -- You can't win the game and your opponents can't lose the game.
-mana={2}{B]{B}
-type=Creature
-subtype=Demon
-power=6
-toughness=6
-[/card]
-[card]
 name=Abyssal Specter
 text=Flying -- Whenever Abyssal Specter deals damage to a player, that player discards a card.
 mana={2}{B}{B}
@@ -1151,15 +1142,6 @@ type=Creature
 subtype=Wurm
 power=6
 toughness=6
-[/card]
-[card]
-name=Armament Master
-text=Other Kor creatures you control get +2/+2 for each Equipment attached to Armament Master.
-mana={W}{W}
-type=Creature
-subtype=Kor Soldier
-power=2
-toughness=2
 [/card]
 [card]
 name=Armillary Sphere
@@ -5588,25 +5570,12 @@ type=Instant
 [/card]
 [card]
 name=Conundrum Sphinx
-abilities=flying
 text=Flying -- Whenever Conundrum Sphinx attacks, each player names a card. Then each player reveals the top card of his or her library. If the card a player revealed is the card he or she named, that player puts that card into his or her hand. If it's not, that player puts it on the bottom of his or her library.
 mana={2}{U}{U}
 type=Creature
 subtype=Sphinx
 power=4
 toughness=4
-[/card]
-[card]
-name=Convalescence
-text=At the beginning of your upkeep, if you have 10 or less life, you gain 1 life.
-mana={1}{W}
-type=Enchantment
-[/card]
-[card]
-name=Convalescent Care
-text=At the beginning of your upkeep, if you have 5 or less life, you gain 3 life and draw a card.
-mana={1}{W}{W}
-type=Enchantment
 [/card]
 [card]
 name=Conversion
@@ -6929,15 +6898,6 @@ mana={2}{B}
 type=Sorcery
 [/card]
 [card]
-name=Death's Shadow
-text=Death's Shadow gets -X/-X, where X is your life total.
-mana={B}
-type=Creature
-subtype=Avatar
-power=13
-toughness=13
-[/card]
-[card]
 name=Death-Mask Duplicant
 text=Imprint - {1}: Exile target creature card from your graveyard. -- As long as a card exiled with Death-Mask Duplicant has flying, Death-Mask Duplicant has flying. The same is true for fear, first strike, double strike, haste, landwalk, protection, and trample.
 mana={7}
@@ -7845,16 +7805,6 @@ type=Creature
 subtype=Human Spellshaper
 power=1
 toughness=1
-[/card]
-[card]
-name=Divinity of Pride
-abilities=flying,lifelink
-text=Flying, lifelink -- Divinity of Pride gets +4/+4 as long as you have 25 or more life.
-mana={WB}{WB}{WB}{WB}{WB}
-type=Creature
-subtype=Spirit Avatar
-power=4
-toughness=4
 [/card]
 [card]
 name=Djinn Illuminatus
@@ -10268,15 +10218,6 @@ mana={R}
 type=Instant
 [/card]
 [card]
-name=Felidar Sovereign
-text=Vigilance, lifelink -- At the beginning of your upkeep, if you have 40 or more life, you win the game.
-mana={4}{W}{W}
-type=Creature
-subtype=Cat Beast
-power=4
-toughness=6
-[/card]
-[card]
 name=Fellwar Stone
 text={T}: Add to your mana pool one mana of any color that a land an opponent controls could produce.
 mana={2}
@@ -10284,8 +10225,6 @@ type=Artifact
 [/card]
 [card]
 name=Femeref Knight
-abilities=flanking
-auto={W}:vigilance
 text=Flanking (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.) -- {W}: Femeref Knight gains vigilance until end of turn.
 mana={2}{W}
 type=Creature
@@ -12960,13 +12899,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Golem-Skin Gauntlets
-text=Equipped creature gets +1/+0 for each Equipment attached to it. -- Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
-mana={1}
-type=Artifact
-subtype=Equipment
-[/card]
-[card]
 name=Golgari Brownscale
 text=When Golgari Brownscale is put into your hand from your graveyard, you gain 2 life. -- Dredge 2 (If you would draw a card, instead you may put exactly two cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
 mana={1}{G}{G}
@@ -13077,15 +13009,6 @@ name=Grab the Reins
 text=Choose one - Until end of turn, you gain control of target creature and it gains haste; or sacrifice a creature, then Grab the Reins deals damage equal to that creature's power to target creature or player. -- Entwine {2}{R} (Choose both if you pay the entwine cost.)
 mana={3}{R}
 type=Instant
-[/card]
-[card]
-name=Graceful Adept
-text=You have no maximum hand size.
-mana={2}{U}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=3
 [/card]
 [card]
 name=Graceful Antelope
@@ -13772,24 +13695,12 @@ toughness=4
 [/card]
 [card]
 name=Guul Draz Specter
-auto=aslongas(*|opponenthand):-3/-3
-# above rule would need P/T to be modified to 5/5 to work
-alias=1165
 text=Flying -- Guul Draz Specter gets +3/+3 as long as an opponent has no cards in hand. -- Whenever Guul Draz Specter deals combat damage to a player, that player discards a card.
 mana={2}{B}{B}
 type=Creature
 subtype=Specter
 power=2
 toughness=2
-[/card]
-[card]
-name=Guul Draz Vampire
-text=As long as an opponent has 10 or less life, Guul Draz Vampire gets +2/+1 and has intimidate. (It can't be blocked except by artifact creatures and/or creatures that share a color with it.)
-mana={B}
-type=Creature
-subtype=Vampire Rogue
-power=1
-toughness=1
 [/card]
 [card]
 name=Gwyllion Hedge-Mage
@@ -14475,12 +14386,6 @@ text=All creatures get -2/-2 until end of turn. -- Splice onto Arcane {3}{B}{B} 
 mana={2}{B}{B}
 type=Instant
 subtype=Arcane
-[/card]
-[card]
-name=Hidetsugu's Second Rite
-text=If target player has exactly 10 life, Hidetsugu's Second Rite deals 10 damage to that player.
-mana={3}{R}
-type=Instant
 [/card]
 [card]
 name=High Ground
@@ -18510,15 +18415,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Loxodon Punisher
-text=Loxodon Punisher gets +2/+2 for each Equipment attached to it.
-mana={3}{W}
-type=Creature
-subtype=Elephant Soldier
-power=2
-toughness=2
-[/card]
-[card]
 name=Loyal Sentry
 text=When Loyal Sentry blocks a creature, destroy that creature and Loyal Sentry.
 mana={W}
@@ -21094,15 +20990,6 @@ power=8
 toughness=8
 [/card]
 [card]
-name=Myr Adapter
-text=Myr Adapter gets +1/+1 for each Equipment attached to it.
-mana={3}
-type=Artifact Creature
-subtype=Myr
-power=1
-toughness=1
-[/card]
-[card]
 name=Myr Incubator
 text={6}, {T}, Sacrifice Myr Incubator: Search your library for any number of artifact cards, exile them, then put that many 1/1 colorless Myr artifact creature tokens onto the battlefield. Then shuffle your library.
 mana={6}
@@ -21359,16 +21246,12 @@ type=Instant
 [/card]
 [card]
 name=Nature's Blessing
-auto={G}{W}{S(*|myHand)}:counter(1/1,1) target(creature)
 text={G}{W}, Discard a card: Put a +1/+1 counter on target creature or that creature gains banding, first strike, or trample. (This effect lasts indefinitely. Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding a player controls are blocking or being blocked by a creature, that player divides that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
 mana={2}{G}{W}
 type=Enchantment
 [/card]
 [card]
 name=Nature's Chosen
-target=creature|myBattlefield
-auto=lord(mytgt) {0}:untap limit:1 myturnonly
-auto=aslongas(mytgt[white])lord(mytgt){T}:untap target(artifact,creature,land) limit:1
 text=Enchant creature you control -- Enchanted creature has "{0}: Untap this creature. Activate this ability only during your turn and only once each turn." -- As long as enchanted creature is white, it has "{T}: Untap target artifact, creature, or land. Activate this ability only once each turn."
 mana={G}
 type=Enchantment
@@ -25679,12 +25562,6 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
-name=Razor Pendulum
-text=At the beginning of each player's end step, if that player has 5 or less life, Razor Pendulum deals 2 damage to him or her.
-mana={4}
-type=Artifact
-[/card]
-[card]
 name=Razorgrass Screen
 text=Defender (This creature can't attack.) -- Razorgrass Screen blocks each turn if able.
 mana={1}
@@ -26061,11 +25938,6 @@ name=Relic of Progenitus
 text={T}: Target player exiles a card from his or her graveyard. -- {1}, Exile Relic of Progenitus: Exile all cards from all graveyards. Draw a card.
 mana={1}
 type=Artifact
-[/card]
-[card]
-name=Reliquary Tower
-text=You have no maximum hand size. -- {T}: Add {1} to your mana pool.
-type=Land
 [/card]
 [card]
 name=Remand
@@ -27417,15 +27289,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Ruthless Cullblade
-text=Ruthless Cullblade gets +2/+1 as long as an opponent has 10 or less life.
-mana={1}{B}
-type=Creature
-subtype=Vampire Warrior
-power=2
-toughness=1
-[/card]
-[card]
 name=Rysorian Badger
 text=Whenever Rysorian Badger attacks and isn't blocked, you may exile up to two target creature cards from defending player's graveyard. If you do, you gain 1 life for each card exiled this way and Rysorian Badger assigns no combat damage this turn.
 mana={2}{G}
@@ -28729,24 +28592,6 @@ type=Creature
 subtype=Basilisk
 power=2
 toughness=3
-[/card]
-[card]
-name=Serra Ascendant
-text=Lifelink -- As long as you have 30 or more life, Serra Ascendant gets +5/+5 and has flying.
-mana={W}
-type=Creature
-subtype=Human Monk
-power=1
-toughness=1
-[/card]
-[card]
-name=Serra Avatar
-text=Serra Avatar's power and toughness are each equal to your life total. -- When Serra Avatar is put into a graveyard from anywhere, shuffle it into its owner's library.
-mana={4}{W}{W}{W}
-type=Creature
-subtype=Avatar
-power=*
-toughness=*
 [/card]
 [card]
 name=Serra Avenger
@@ -30748,12 +30593,6 @@ text=Imprint - When Spellbinder enters the battlefield, you may exile an instant
 mana={3}
 type=Artifact
 subtype=Equipment
-[/card]
-[card]
-name=Spellbook
-text=You have no maximum hand size.
-mana={0}
-type=Artifact
 [/card]
 [card]
 name=Spellbound Dragon
@@ -33054,12 +32893,6 @@ mana={4}{R}{R}
 type=Enchantment
 [/card]
 [card]
-name=Test of Endurance
-text=At the beginning of your upkeep, if you have 50 or more life, you win the game.
-mana={2}{W}{W}
-type=Enchantment
-[/card]
-[card]
 name=Test of Faith
 text=Prevent the next 3 damage that would be dealt to target creature this turn, and put a +1/+1 counter on that creature for each 1 damage prevented this way.
 mana={1}{W}
@@ -34932,15 +34765,6 @@ type=Creature
 subtype=Vampire Shaman
 power=2
 toughness=1
-[/card]
-[card]
-name=Vampire Lacerator
-text=At the beginning of your upkeep, you lose 1 life unless an opponent has 10 or less life.
-mana={B}
-type=Creature
-subtype=Vampire Warrior
-power=2
-toughness=2
 [/card]
 [card]
 name=Vampire Nocturnus
