@@ -10645,17 +10645,6 @@ power=2
 toughness=4
 [/card]
 [card]
-name=Flame-Kin Zealot
-auto=1/1 all(creature|myBattlefield)
-auto=haste all(creature|myBattlefield)
-text=When Flame-Kin Zealot enters the battlefield, creatures you control get +1/+1 and gain haste until end of turn.
-mana={1}{R}{R}{W}
-type=Creature
-subtype=Elemental Berserker
-power=2
-toughness=2
-[/card]
-[card]
 name=Flameblast Dragon
 text=Flying -- Whenever Flameblast Dragon attacks, you may pay {X}{R}. If you do, Flameblast Dragon deals X damage to target creature or player.
 mana={4}{R}{R}
@@ -33581,15 +33570,6 @@ name=Topple
 text=Exile target creature with the greatest power. (If two or more creatures are tied for greatest power, target any one of them.)
 mana={2}{W}
 type=Sorcery
-[/card]
-[card]
-name=Torch Slinger
-text=Kicker {1}{R} (You may pay an additional {1}{R} as you cast this spell.) -- When Torch Slinger enters the battlefield, if it was kicked, it deals 2 damage to target creature.
-mana={2}{R}
-type=Creature
-subtype=Goblin Shaman
-power=2
-toughness=2
 [/card]
 [card]
 name=Torchling

@@ -17508,6 +17508,17 @@ text={T}: Add {W} to your mana pool. -- When Flagstones of Trokair is put into a
 type=Legendary Land
 [/card]
 [card]
+name=Flame-Kin Zealot
+auto=lord(creature|myBattlefield) 1/1 ueot
+auto=lord(creature|myBattlefield) haste ueot
+text=When Flame-Kin Zealot enters the battlefield, creatures you control get +1/+1 and gain haste until end of turn.
+mana={1}{R}{R}{W}
+type=Creature
+subtype=Elemental Berserker
+power=2
+toughness=2
+[/card]
+[card]
 name=Flame Burst
 target=creature,player
 auto=Damage:2
@@ -27756,6 +27767,16 @@ type=Creature
 subtype=Kor Soldier
 power=2
 toughness=2
+[/card]
+[card]
+name=Kor Line-Slinger
+auto={T}:tap target(creature[power<=3])
+text={T}:Tap target creature with power 3 or less.
+mana={1}{W}
+type=Creature
+subtype=Kor Scout
+power=0
+toughness=1
 [/card]
 [card]
 name=Kor Sanctifiers
@@ -42634,6 +42655,7 @@ subtype=Saproling
 power=1
 toughness=1
 color=green
+id=-1924
 [/card]
 [card]
 name=Sapseep Forest
@@ -53217,6 +53239,17 @@ text=Flying -- {1}{R}: Torch Drake gets +1/+0 until end of turn.
 mana={3}{U}
 type=Creature
 subtype=Drake
+power=2
+toughness=2
+[/card]
+[card]
+name=Torch Slinger
+kicker={1}{R}
+auto=kicker damage:2 target(creature)
+text=Kicker {1}{R} (You may pay an additional {1}{R} as you cast this spell.) -- When Torch Slinger enters the battlefield, if it was kicked, it deals 2 damage to target creature.
+mana={2}{R}
+type=Creature
+subtype=Goblin Shaman
 power=2
 toughness=2
 [/card]
