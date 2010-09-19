@@ -1441,15 +1441,6 @@ mana={2}{W}{W}
 type=Enchantment
 [/card]
 [card]
-name=Auriok Glaivemaster
-text=As long as Auriok Glaivemaster is equipped, it gets +1/+1 and has first strike.
-mana={W}
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=1
-[/card]
-[card]
 name=Auriok Siege Sled
 text={1}: Target artifact creature blocks Auriok Siege Sled this turn if able. -- {1}: Target artifact creature can't block Auriok Siege Sled this turn.
 mana={6}
@@ -1768,15 +1759,6 @@ type=Creature
 subtype=Vedalken Wizard
 power=2
 toughness=2
-[/card]
-[card]
-name=Azorius Herald
-text=Azorius Herald is unblockable. -- When Azorius Herald enters the battlefield, you gain 4 life. -- When Azorius Herald enters the battlefield, sacrifice it unless {U} was spent to cast it.
-mana={2}{W}
-type=Creature
-subtype=Spirit
-power=2
-toughness=1
 [/card]
 [card]
 name=Azorius Ploy
@@ -3075,12 +3057,6 @@ type=Snow Creature
 subtype=Griffin
 power=3
 toughness=2
-[/card]
-[card]
-name=Boros Fury-Shield
-text=Prevent all combat damage that would be dealt by target attacking or blocking creature this turn. If {R} was spent to cast Boros Fury-Shield, it deals damage to that creature's controller equal to the creature's power.
-mana={2}{W}
-type=Instant
 [/card]
 [card]
 name=Boseiju, Who Shelters All
@@ -8334,12 +8310,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Dryad's Caress
-text=You gain 1 life for each creature on the battlefield. If {W} was spent to cast Dryad's Caress, untap all creatures you control.
-mana={4}{G}{G}
-type=Instant
-[/card]
-[card]
 name=Dual Nature
 text=Whenever a nontoken creature enters the battlefield, its controller puts a token that's a copy of that creature onto the battlefield. -- Whenever a nontoken creature leaves the battlefield, exile all tokens with the same name as that creature. -- When Dual Nature leaves the battlefield, exile all tokens put onto the battlefield with Dual Nature.
 mana={4}{G}{G}
@@ -13476,15 +13446,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Gruul Scrapper
-text=When Gruul Scrapper enters the battlefield, if {R} was spent to cast Gruul Scrapper, it gains haste until end of turn.
-mana={3}{G}
-type=Creature
-subtype=Human Berserker
-power=3
-toughness=2
-[/card]
-[card]
 name=Guard Dogs
 text={2}{W}, {T}: Choose a permanent you control. Prevent all combat damage target creature would deal this turn if it shares a color with that permanent.
 mana={3}{W}
@@ -16742,23 +16703,6 @@ power=2
 toughness=2
 [/card]
 [card]
-#"prevent from target" does not work
-name=Kor Haven
-auto={T}:Add {1}
-auto={1}{W}{T}:preventAllCombatDamage from target(creature[attacking]) ueot
-text={T}: Add {1} to your mana pool. -- {1}{W}, {T}: Prevent all combat damage that would be dealt by target attacking creature this turn.
-type=Legendary Land
-[/card]
-[card]
-name=Kitesail Apprentice
-text=As long as Kitesail Apprentice is equipped, it gets +1/+1 and has flying.
-mana={W}
-type=Creature
-subtype=Kor Soldier
-power=1
-toughness=1
-[/card]
-[card]
 name=Kithkin Armor
 text=Enchant creature -- Enchanted creature can't be blocked by creatures with power 3 or greater. -- Sacrifice Kithkin Armor: The next time a source of your choice would deal damage to enchanted creature this turn, prevent that damage.
 mana={W}
@@ -17081,15 +17025,6 @@ name=Kor Dirge
 text=All damage that would be dealt this turn to target creature you control by a source of your choice is dealt to another target creature instead.
 mana={2}{B}
 type=Instant
-[/card]
-[card]
-name=Kor Duelist
-text=As long as Kor Duelist is equipped, it has double strike. (It deals both first-strike and regular combat damage.)
-mana={W}
-type=Creature
-subtype=Kor Soldier
-power=1
-toughness=1
 [/card]
 [card]
 name=Kor Outfitter
@@ -17699,15 +17634,6 @@ text=Equipped creature has "{T}, Unattach Leonin Bola: Tap target creature." -- 
 mana={1}
 type=Artifact
 subtype=Equipment
-[/card]
-[card]
-name=Leonin Den-Guard
-text=As long as Leonin Den-Guard is equipped, it gets +1/+1 and has vigilance.
-mana={1}{W}
-type=Creature
-subtype=Cat Soldier
-power=1
-toughness=3
 [/card]
 [card]
 name=Leonin Shikari
@@ -18385,15 +18311,6 @@ mana={2}{G}
 type=Creature
 subtype=Basilisk
 power=1
-toughness=3
-[/card]
-[card]
-name=Lowland Oaf
-text={T}: Target Goblin creature you control gets +1/+0 and gains flying until end of turn. Sacrifice that creature at the beginning of the next end step.
-mana={3}{R}
-type=Creature
-subtype=Giant Warrior
-power=3
 toughness=3
 [/card]
 [card]
@@ -22264,15 +22181,6 @@ power=3
 toughness=1
 [/card]
 [card]
-name=Ogre Savant
-text=When Ogre Savant enters the battlefield, if {U} was spent to cast Ogre Savant, return target creature to its owner's hand.
-mana={4}{R}
-type=Creature
-subtype=Ogre Wizard
-power=3
-toughness=2
-[/card]
-[card]
 name=Ohran Viper
 text=Whenever Ohran Viper deals combat damage to a creature, destroy that creature at end of combat. -- Whenever Ohran Viper deals combat damage to a player, you may draw a card.
 mana={1}{G}{G}
@@ -23172,15 +23080,6 @@ mana={X}{X}{U}
 type=Sorcery
 [/card]
 [card]
-name=Patagia Viper
-text=Flying -- When Patagia Viper enters the battlefield, put two 1/1 green and blue Snake creature tokens onto the battlefield. -- When Patagia Viper enters the battlefield, sacrifice it unless {U} was spent to cast it.
-mana={3}{G}
-type=Creature
-subtype=Snake
-power=2
-toughness=1
-[/card]
-[card]
 name=Path to Exile
 text=Exile target creature. Its controller may search his or her library for a basic land card, put that card onto the battlefield tapped, then shuffle his or her library.
 mana={W}
@@ -23937,15 +23836,6 @@ mana={2}{W}
 type=Creature
 subtype=Pegasus
 power=1
-toughness=2
-[/card]
-[card]
-name=Plaxmanta
-text=Flash -- When Plaxmanta enters the battlefield, creatures you control gain shroud until end of turn. (They can't be the targets of spells or abilities.) -- When Plaxmanta enters the battlefield, sacrifice it unless {G} was spent to cast it.
-mana={1}{U}
-type=Creature
-subtype=Beast
-power=2
 toughness=2
 [/card]
 [card]
@@ -25324,18 +25214,6 @@ power=7
 toughness=6
 [/card]
 [card]
-name=Raksha Golden Cub
-auto=aslongas(this[equip]) lord(creature[cat]|myBattlefield) 2/2
-auto=aslongas(this[equip]) lord(creature[cat]|myBattlefield) double strike
-#the above is a concept
-text=Vigilance -- As long as Raksha Golden Cub is equipped, Cat creatures you control get +2/+2 and have double strike.
-mana={5}{W}{W}
-type=Legendary Creature
-subtype=Cat Soldier
-power=3
-toughness=4
-[/card]
-[card]
 name=Rally the Horde
 text=Exile the top three cards of your library. If the last card exiled isn't a land, repeat this process until the last card exiled is a land. Put a 1/1 red Warrior creature token onto the battlefield for each nonland card exiled this way.
 mana={5}{R}
@@ -26372,12 +26250,6 @@ power=2
 toughness=3
 [/card]
 [card]
-name=Ribbons of Night
-text=Ribbons of Night deals 4 damage to target creature and you gain 4 life. If {U} was spent to cast Ribbons of Night, draw a card.
-mana={4}{B}
-type=Sorcery
-[/card]
-[card]
 name=Ricochet Trap
 text=If an opponent cast a blue spell this turn, you may pay {R} rather than pay Ricochet Trap's mana cost. -- Change the target of target spell with a single target.
 mana={3}{R}
@@ -26895,12 +26767,6 @@ toughness=*
 name=Roiling Terrain
 text=Destroy target land, then Roiling Terrain deals damage to that land's controller equal to the number of land cards in that player's graveyard.
 mana={2}{R}{R}
-type=Sorcery
-[/card]
-[card]
-name=Rolling Spoil
-text=Destroy target land. If {B} was spent to cast Rolling Spoil, all creatures get -1/-1 until end of turn.
-mana={2}{G}{G}
 type=Sorcery
 [/card]
 [card]
@@ -28347,14 +28213,7 @@ power=5
 toughness=5
 [/card]
 [card]
-name=Seed Spark
-text=Destroy target artifact or enchantment. If {G} was spent to cast Seed Spark, put two 1/1 green Saproling creature tokens onto the battlefield.
-mana={3}{W}
-type=Instant
-[/card]
-[card]
 name=Seed the Land
-#will be codable with opponenttoken()
 text=Whenever a land enters the battlefield, its controller puts a 1/1 green Snake creature token onto the battlefield.
 mana={2}{G}{G}
 type=Enchantment
@@ -29765,22 +29624,12 @@ toughness=4
 [/card]
 [card]
 name=Skyfire Kirin
-auto=@movedto(arcane,spirit|mystack):
 text=Flying -- Whenever you cast a Spirit or Arcane spell, you may gain control of target creature with that spell's converted mana cost until end of turn.
 mana={2}{R}{R}
 type=Legendary Creature
 subtype=Kirin Spirit
 power=3
 toughness=3
-[/card]
-[card]
-name=Skyhunter Cub
-text=As long as Skyhunter Cub is equipped, it gets +1/+1 and has flying.
-mana={2}{W}
-type=Creature
-subtype=Cat Knight
-power=2
-toughness=2
 [/card]
 [card]
 name=Skyreach Manta
@@ -31319,15 +31168,6 @@ text=Enchant land -- When enchanted land becomes tapped, destroy it and Steam Vi
 mana={1}{R}{R}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Steamcore Weird
-text=When Steamcore Weird enters the battlefield, if {R} was spent to cast Steamcore Weird, it deals 2 damage to target creature or player.
-mana={3}{U}
-type=Creature
-subtype=Weird
-power=1
-toughness=3
 [/card]
 [card]
 name=Steamflogger Boss
@@ -33611,15 +33451,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Tin Street Hooligan
-text=When Tin Street Hooligan enters the battlefield, if {G} was spent to cast Tin Street Hooligan, destroy target artifact.
-mana={1}{R}
-type=Creature
-subtype=Goblin Rogue
-power=2
-toughness=1
-[/card]
-[card]
 name=Tin-Wing Chimera
 text=Flying -- Sacrifice Tin-Wing Chimera: Put a +2/+2 counter on target Chimera creature. It gains flying. (This effect lasts indefinitely.)
 mana={4}
@@ -35242,12 +35073,6 @@ name=Vigean Intuition
 text=Choose a card type, then reveal the top four cards of your library. Put all cards of the chosen type revealed this way into your hand and the rest into your graveyard. (The card types are artifact, creature, enchantment, instant, land, planeswalker, sorcery, and tribal.)
 mana={3}{G}{U}
 type=Instant
-[/card]
-[card]
-name=Vigor Mortis
-text=Return target creature card from your graveyard to the battlefield. If {G} was spent to cast Vigor Mortis, that creature enters the battlefield with an additional +1/+1 counter on it.
-mana={2}{B}{B}
-type=Sorcery
 [/card]
 [card]
 name=Vigorous Charge

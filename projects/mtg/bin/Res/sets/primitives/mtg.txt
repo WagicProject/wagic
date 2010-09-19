@@ -652,7 +652,7 @@ name=Air Servant
 abilities=flying
 auto={2}{U}:tap target(creature[flying])
 text={2}{U}:Tap target creature with flying.
-mana={}{U}
+mana={4}{U}
 type=Creature
 subtype=Elemental
 power=4
@@ -2955,6 +2955,17 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Auriok Glaivemaster
+auto=this(equip > 0) 1/1
+auto=this(equip > 0) first strike
+text=As long as Auriok Glaivemaster is equipped, it gets +1/+1 and has first strike.
+mana={W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+[/card]
+[card]
 name=Auriok Salvagers
 auto={1}{W}:moveTo(myhand) target(artifact[manacost<=1]|mygraveyard)
 text={1}{W}: Return target artifact card with converted mana cost 1 or less from your graveyard to your hand.
@@ -3335,6 +3346,20 @@ type=Creature
 subtype=Griffin
 power=2
 toughness=2
+[/card]
+[card]
+name=Azorius Herald
+abilities=unblockable
+other={1}{W}{U}
+auto=alternative 99/99
+auto=draw:1
+auto=-99/-99
+text=Azorius Herald is unblockable. -- When Azorius Herald enters the battlefield, you gain 4 life. -- When Azorius Herald enters the battlefield, sacrifice it unless {U} was spent to cast it.
+mana={2}{W}
+type=Creature
+subtype=Spirit
+power=2
+toughness=1
 [/card]
 [card]
 name=Azorius Signet
@@ -6014,6 +6039,16 @@ type=Legendary Creature
 subtype=Zombie Wizard
 power=2
 toughness=2
+[/card]
+[card]
+name=Boros Fury-Shield
+target=creature[attacking;blocking]
+other={1}{W}{R}
+auto=0/0 && fog(mytgt) oneshot
+auto=alternative damage:p targetcontroller
+text=Prevent all combat damage that would be dealt by target attacking or blocking creature this turn. If {R} was spent to cast Boros Fury-Shield, it deals damage to that creature's controller equal to the creature's power.
+mana={2}{W}
+type=Instant
 [/card]
 [card]
 name=Boros Garrison
@@ -13994,6 +14029,15 @@ mana={1}{B}
 type=Sorcery
 [/card]
 [card]
+name=Dryad's Caress
+other={3}{G}{W}
+auto=alternative untap all(creature|mybattlefield)
+auto=foreach(creature|battlefield) life:1 controller
+text=You gain 1 life for each creature on the battlefield. If {W} was spent to cast Dryad's Caress, untap all creatures you control.
+mana={4}{G}{G}
+type=Instant
+[/card]
+[card]
 name=Dryad's Favor
 target=creature
 auto=forestwalk
@@ -21688,6 +21732,17 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Gruul Scrapper
+other={2}{R}{G}
+auto=alternative haste ueot
+text=When Gruul Scrapper enters the battlefield, if {R} was spent to cast Gruul Scrapper, it gains haste until end of turn.
+mana={3}{G}
+type=Creature
+subtype=Human Berserker
+power=3
+toughness=2
+[/card]
+[card]
 name=Gruul Signet
 auto={1}{T}:Add {R}{G}
 text={1}, {T}: Add {R}{G} to your mana pool.
@@ -27106,6 +27161,17 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
+name=Kitesail Apprentice
+auto=this(equip > 0) flying
+auto=this(equip > 0) 1/1
+text=As long as Kitesail Apprentice is equipped, it gets +1/+1 and has flying.
+mana={W}
+type=Creature
+subtype=Kor Soldier
+power=1
+toughness=1
+[/card]
+[card]
 name=Kithkin Daggerdare
 auto={G}{T}:2/2 target(creature[attacking])
 text={G}, {T}: Target attacking creature gets +2/+2 until end of turn.
@@ -27654,6 +27720,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Kor Duelist
+auto=this(equip > 0) double strike
+text=As long as Kor Duelist is equipped, it has double strike. (It deals both first-strike and regular combat damage.)
+mana={W}
+type=Creature
+subtype=Kor Soldier
+power=1
+toughness=1
+[/card]
+[card]
 name=Kor Firewalker
 abilities=protection from red
 auto=@movedTo(*[red]|stack):may life:1 controller
@@ -27663,6 +27739,13 @@ type=Creature
 subtype=Kor Soldier
 power=2
 toughness=2
+[/card]
+[card]
+name=Kor Haven
+auto={T}:Add {1}
+auto={1}{W}{T}:0/0 target(creature[attacking]) && fog from(mytgt) oneshot
+text={T}: Add {1} to your mana pool. -- {1}{W}, {T}: Prevent all combat damage that would be dealt by target attacking creature this turn.
+type=Legendary Land
 [/card]
 [card]
 name=Kor Hookmaster
@@ -28631,6 +28714,17 @@ auto={S}:damage:2 all(creature[attacking;-flying])
 text=Flash -- {2}, Sacrifice Leonin Bladetrap: Leonin Bladetrap deals 2 damage to each attacking creature without flying.
 mana={3}
 type=Artifact
+[/card]
+[card]
+name=Leonin Den-Guard
+auto=this(equip > 0) 1/1
+auto=this(equip > 0) vigilance
+text=As long as Leonin Den-Guard is equipped, it gets +1/+1 and has vigilance.
+mana={1}{W}
+type=Creature
+subtype=Cat Soldier
+power=1
+toughness=3
 [/card]
 [card]
 name=Leonin Elder
@@ -29656,6 +29750,16 @@ mana={2}{R}{R}
 type=Creature
 subtype=Giant
 power=4
+toughness=3
+[/card]
+[card]
+name=Lowland Oaf
+auto={T}:target(creature[goblin]|mybattlefield) transforms(,treason,flying) && 1/0
+text={T}: Target Goblin creature you control gets +1/+0 and gains flying until end of turn. Sacrifice that creature at the beginning of the next end step.
+mana={3}{R}
+type=Creature
+subtype=Giant Warrior
+power=3
 toughness=3
 [/card]
 [card]
@@ -34991,6 +35095,17 @@ power=5
 toughness=4
 [/card]
 [card]
+name=Ogre Savant
+other={3}{U}{R}
+auto=alternative moveTo(ownerhand) target(creature)
+text=When Ogre Savant enters the battlefield, if {U} was spent to cast Ogre Savant, return target creature to its owner's hand.
+mana={4}{R}
+type=Creature
+subtype=Ogre Wizard
+power=3
+toughness=2
+[/card]
+[card]
 name=Ogre Sentry
 abilities=defender
 text=Defender
@@ -36192,6 +36307,20 @@ type=Artifact Creature
 subtype=Golem
 power=2
 toughness=3
+[/card]
+[card]
+name=Patagia Viper
+abilities=flying
+other={2}{U}{G}
+auto=alternative 99/99
+auto=-99/-99
+auto=token(Snake,Creature Snake,1/1,greenblue)*2
+text=Flying -- When Patagia Viper enters the battlefield, put two 1/1 green and blue Snake creature tokens onto the battlefield. -- When Patagia Viper enters the battlefield, sacrifice it unless {U} was spent to cast it.
+mana={3}{G}
+type=Creature
+subtype=Snake
+power=2
+toughness=1
 [/card]
 [card]
 name=Patchwork Gnomes
@@ -37605,6 +37734,20 @@ type=Creature
 subtype=Frog Mutant
 power=0
 toughness=0
+[/card]
+[card]
+name=Plaxmanta
+abilities=flash
+other={U}{G}
+auto=lord(creature|myBattlefield) shroud ueot
+auto=-99/-99
+auto=alternative 99/99
+text=Flash -- When Plaxmanta enters the battlefield, creatures you control gain shroud until end of turn. (They can't be the targets of spells or abilities.) -- When Plaxmanta enters the battlefield, sacrifice it unless {G} was spent to cast it.
+mana={1}{U}
+type=Creature
+subtype=Beast
+power=2
+toughness=2
 [/card]
 [card]
 name=Pledge of Loyalty
@@ -39338,6 +39481,18 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Raksha Golden Cub
+abilities=vigilance
+auto=this(equip > 0) lord(creature[cat]|myBattlefield) 2/2
+auto=this(equip > 0) lord(creature[cat]|myBattlefield) double strike
+text=Vigilance -- As long as Raksha Golden Cub is equipped, Cat creatures you control get +2/+2 and have double strike.
+mana={5}{W}{W}
+type=Legendary Creature
+subtype=Cat Soldier
+power=3
+toughness=4
+[/card]
+[card]
 name=Rally
 auto=lord(creature[blocking]) 1/1
 text=Blocking creatures get +1/+1 until end of turn.
@@ -40566,7 +40721,7 @@ toughness=1
 [card]
 name=Restrain
 target=creature[attacking]
-auto=preventAllCombatDamage from(mytgt) ueot
+auto=0/0 && fog from(mytgt) oneshot
 auto=draw:1 controller
 text=Prevent all combat damage that would be dealt by target attacking creature this turn. -- Draw a card.
 mana={2}{W}
@@ -40831,6 +40986,17 @@ type=Creature
 subtype=Spider
 power=1
 toughness=4
+[/card]
+[card]
+name=Ribbons of Night
+target=creature
+other={3}{U}{B}
+auto=damage:4
+auto=life:4 controller
+auto=alternative draw:1 controller
+text=Ribbons of Night deals 4 damage to target creature and you gain 4 life. If {U} was spent to cast Ribbons of Night, draw a card.
+mana={4}{B}
+type=Sorcery
 [/card]
 [card]
 name=Ribbons of the Reikai
@@ -41349,6 +41515,16 @@ auto=damage:X all(player)
 auto=damage:X all(creature[-horsemanship])
 text=Rolling Earthquake deals X damage to each creature without horsemanship and each player.
 mana={X}{R}
+type=Sorcery
+[/card]
+[card]
+name=Rolling Spoil
+target=land
+other={1}{B}{G}{G}
+auto=destroy
+auto=alternative -1/-1 all(creature)
+text=Destroy target land. If {B} was spent to cast Rolling Spoil, all creatures get -1/-1 until end of turn.
+mana={2}{G}{G}
 type=Sorcery
 [/card]
 [card]
@@ -43480,6 +43656,16 @@ type=Creature
 subtype=Zombie Wizard
 power=2
 toughness=2
+[/card]
+[card]
+name=Seed Spark
+target=artifact,enchantment
+other={2}{G}{W}
+auto=destroy
+auto=alternative token(Saproling,Creature Saproling,1/1,green)*2
+text=Destroy target artifact or enchantment. If {G} was spent to cast Seed Spark, put two 1/1 green Saproling creature tokens onto the battlefield.
+mana={3}{W}
+type=Instant
 [/card]
 [card]
 name=Seedborn Muse
@@ -45837,6 +46023,17 @@ name=Skycloud Expanse
 auto={1}{T}:Add {W}{U}
 text={1}, {T}: Add {W}{U} to your mana pool.
 type=Land
+[/card]
+[card]
+name=Skyhunter Cub
+auto=this(equip > 0) 1/1
+auto=this(equip > 0) flying
+text=As long as Skyhunter Cub is equipped, it gets +1/+1 and has flying.
+mana={2}{W}
+type=Creature
+subtype=Cat Knight
+power=2
+toughness=2
 [/card]
 [card]
 name=Skyhunter Patrol
@@ -48786,6 +48983,17 @@ auto={1}{S}:moveTo(exile) target(*|graveyard)
 text={3}, {T}: Exile target card from a graveyard. -- {1}, Sacrifice Steamclaw: Exile target card from a graveyard.
 mana={2}
 type=Artifact
+[/card]
+[card]
+name=Steamcore Weird
+other={2}{U}{R}
+auto=alternative damage:2 target(creature,player)
+text=When Steamcore Weird enters the battlefield, if {R} was spent to cast Steamcore Weird, it deals 2 damage to target creature or player.
+mana={3}{U}
+type=Creature
+subtype=Weird
+power=1
+toughness=3
 [/card]
 [card]
 name=Steel Golem
@@ -52703,6 +52911,17 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Tin Street Hooligan
+other={R}{G}
+auto=alternative destroy target(artifact)
+text=When Tin Street Hooligan enters the battlefield, if {G} was spent to cast Tin Street Hooligan, destroy target artifact.
+mana={1}{R}
+type=Creature
+subtype=Goblin Rogue
+power=2
+toughness=1
+[/card]
+[card]
 name=Tinder Farm
 auto=tap
 auto={T}:Add {G}
@@ -55795,6 +56014,16 @@ power=6
 toughness=6
 [/card]
 [card]
+name=Vigor Mortis
+target=creature|mygraveyard
+other={1}{B}{B}{G}
+auto=moveTo(myBattlefield)
+auto=alternative counter(1/1)
+text=Return target creature card from your graveyard to the battlefield. If {G} was spent to cast Vigor Mortis, that creature enters the battlefield with an additional +1/+1 counter on it.
+mana={2}{B}{B}
+type=Sorcery
+[/card]
+[card]
 name=Village Elder
 auto={G}{T}{S(forest|myBattlefield)}:regenerate target(creature)
 text={G}, {T}, Sacrifice a Forest: Regenerate target creature.
@@ -57217,7 +57446,7 @@ type=Enchantment
 [card]
 name=Warning
 target=creature[attacking]
-auto=preventAllCombatDamage from(mytgt) ueot
+auto=0/0 && fog from(mytgt) oneshot
 text=Prevent all combat damage that would be dealt by target attacking creature this turn.
 mana={W}
 type=Instant
