@@ -798,11 +798,6 @@ id=1924
 rarity=C
 [/card]
 [card]
-primitive=Saproling
-id=-1924
-rarity=T
-[/card]
-[card]
 primitive=Thallid Devourer
 id=1928
 rarity=U
