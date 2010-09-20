@@ -85,9 +85,9 @@ public:
 //Filter terminals:
 class WCFilterSet: public WCardFilter{
 public:
-  WCFilterSet(int _setid=-1) {setid=_setid;};
+  WCFilterSet(int _setid=MTGSets::ALL_SETS) {setid=_setid;};
   WCFilterSet(string arg);
-  bool isMatch(MTGCard *c) {return (setid==-1 || c->setId == setid);};
+  bool isMatch(MTGCard *c) {return (setid==MTGSets::ALL_SETS || c->setId == setid);};
   string getCode();
   float filterFee() {return 0.2f;};
 protected:

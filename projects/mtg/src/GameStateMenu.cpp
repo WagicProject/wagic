@@ -1,3 +1,8 @@
+/*
+ * GameStateMenu.cpp
+ * Main Menu and Loading screen
+ */
+
 #include <math.h>
 #include "../include/config.h"
 #include "../include/GameStateMenu.h"
@@ -11,7 +16,7 @@
 #include "../include/utils.h"
 #include "../include/WFont.h"
 
-static const char* GAME_VERSION = "WTH?! 0.12.1 - by wololo";
+static const char* GAME_VERSION = "WTH?! 0.13.0 - by wololo";
 
 #define DEFAULT_ANGLE_MULTIPLIER 0.4f
 #define MAX_ANGLE_MULTIPLIER (3*M_PI)

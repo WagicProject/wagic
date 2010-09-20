@@ -67,7 +67,7 @@ const vector<string>& CardPrimitive::formattedText()
 	}
       while (s.length() > 0)
 	{
-          std::string::size_type len = neofont ? 24 :30;
+          std::string::size_type len = neofont ? 24 :33;
 	  std::string::size_type cut = s.find_first_of("., \t)", 0);
 	  if (cut >= len || cut == string::npos)
 	    {

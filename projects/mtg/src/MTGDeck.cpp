@@ -255,7 +255,7 @@ void MTGAllCards::init(){
 
 int MTGAllCards::load(const char * config_file, const char * set_name,int autoload){
   conf_read_mode = 0;
-  const int set_id = set_name ? setlist.Add(set_name) : -1;
+  const int set_id = set_name ? setlist.Add(set_name) : MTGSets::INTERNAL_SET;
   MTGSetInfo *si = setlist.getInfo(set_id);
 
   std::ifstream setFile(config_file);
@@ -611,7 +611,7 @@ int MTGDeck::addRandomCards(int howmany, int * setIds, int nbSets, int rarity, c
     MTGCard * card = database->_(i);
     int r = card->getRarity();
     if (r != Constants::RARITY_T && (rarity == -1 || r==rarity) && // remove tokens
-      card->setId != -1 && //remove cards that are defined in primitives. Those are workarounds (usually tokens) and should only be used internally 
+      card->setId != MTGSets::INTERNAL_SET && //remove cards that are defined in primitives. Those are workarounds (usually tokens) and should only be used internally 
 	    (!_subtype || card->data->hasSubtype(subtype))
 	){
       int ok = 0;

@@ -1,3 +1,8 @@
+/*
+ * GameStateDeckViewer.cpp
+ * Class handling the Deck Editor
+ */
+
 #include <math.h>
 #include <iostream>
 
@@ -1210,7 +1215,6 @@ void GameStateDeckViewer::renderCard(int id, float rotation){
   if (!card) return;
   JQuad * quad = NULL;
 
-  int showName = 0;
   int cacheError = CACHE_ERROR_NONE;
 
   if(!options[Options::DISABLECARDS].number){
@@ -1221,7 +1225,6 @@ void GameStateDeckViewer::renderCard(int id, float rotation){
         quad = resources.RetrieveCard(card);
       else{
         quad = backQuad;
-        showName = 1;
       }
     }
   }
@@ -1229,17 +1232,13 @@ void GameStateDeckViewer::renderCard(int id, float rotation){
   int quadAlpha = alpha;
   if ( !displayed_deck->count(card)) quadAlpha /=2;
   if (quad){
-    showName = 0;
-    quad->SetColor(ARGB(mAlpha,quadAlpha,quadAlpha,quadAlpha));
-    float _scale = scale *(285 / quad->mHeight);
-    JRenderer::GetInstance()->RenderQuad(quad, x   , y , 0.0f,_scale,_scale);
-    if (showName){
-      char buffer[4096];
-      sprintf(buffer, "%s", _(card->data->getName()).c_str());
-      float scaleBackup = mFont->GetScale();
-      mFont->SetScale(scale);
-      mFont->DrawString(buffer,x - 100*scale ,y - 145*scale);
-      mFont->SetScale(scaleBackup);
+    if (quad == backQuad) {
+      quad->SetColor(ARGB(255,255,255,255));
+      float _scale = scale *(285 / quad->mHeight);
+      JRenderer::GetInstance()->RenderQuad(quad, x   , y , 0.0f,_scale,_scale);
+    } else {
+      Pos pos = Pos(x, y, scale* 285/250, 0.0, 255);
+      CardGui::RenderBig(card, pos);
     }
   }else{
     Pos pos = Pos(x, y, scale* 285/250, 0.0, 255);
@@ -1251,11 +1250,10 @@ void GameStateDeckViewer::renderCard(int id, float rotation){
       quad->SetColor(ARGB(40,255,255,255));
       JRenderer::GetInstance()->RenderQuad(quad,x,y,0,_scale,_scale);
     }
-    quadAlpha = 255 - quadAlpha;
-    if (quadAlpha > 0){
-      JRenderer::GetInstance()->FillRect(x - scale* 100 ,y - scale * 142.5,scale* 200,scale*285,ARGB(quadAlpha,0,0,0));
-    }
-
+  }
+  quadAlpha = 255 - quadAlpha;
+  if (quadAlpha > 0){
+    JRenderer::GetInstance()->FillRect(x - scale* 100 ,y - scale * 142.5,scale* 200,scale*285,ARGB(quadAlpha,0,0,0));
   }
   if (last_user_activity < 3){
     int fontAlpha = alpha;

@@ -829,7 +829,7 @@ MTGMomirRule::MTGMomirRule(int _id, MTGAllCards * _collection):MTGAbility(_id, N
       MTGCard * card = collection->collection[collection->ids[i]];
       if (card->data->isCreature() && 
         (card->getRarity() != Constants::RARITY_T) && //remove tokens
-         card->setId != -1 //remove cards that are defined in primitives. Those are workarounds (usually tokens) and should only be used internally 
+         card->setId != MTGSets::INTERNAL_SET //remove cards that are defined in primitives. Those are workarounds (usually tokens) and should only be used internally 
         ){
          int convertedCost = card->data->getManaCost()->getConvertedCost();
          if (convertedCost>20) continue;

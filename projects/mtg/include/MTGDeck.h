@@ -53,6 +53,15 @@ public:
 
 class MTGSets{
 public:
+
+  //These values have to be < 0
+  // A setID with a value >=0 will be looked into the sets table,
+  // Negative values will be compared to these enums throughout the code (shop, filters...)
+  enum {
+    INTERNAL_SET = -1,
+    ALL_SETS = -2,
+  };
+
   friend class MTGSetInfo;
   MTGSets();
   ~MTGSets();

@@ -178,6 +178,7 @@ string WCFilterLetter::getCode(){
 WCFilterSet::WCFilterSet(string arg){
   setid = setlist.findSet(arg);
 }
+
 string WCFilterSet::getCode(){
   char buf[256]; 
   sprintf(buf,"set:%s;",setlist[setid].c_str());

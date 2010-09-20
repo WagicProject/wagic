@@ -32,6 +32,7 @@ struct CardGui : public PlayGuiObject {
   void renderCountersBig(const Pos& pos);
   virtual void Update(float dt);
   static void alternateRender(MTGCard * card, const Pos& pos);
+  static void tinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad);
   static JQuad * alternateThumbQuad(MTGCard * card);
   virtual ostream& toString(ostream&) const;
 };

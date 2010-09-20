@@ -208,9 +208,45 @@ JQuad * WResourceManager::RetrieveCard(MTGCard * card, int style, int submode){
 
   string filename = setlist[card->setId];
   filename += "/";
-  filename += card->getImageName();
+  string filename1 = filename + card->getImageName();
   int id = card->getMTGId();
-  JQuad * jq = RetrieveQuad(filename,0,0,0,0, "",style,submode|TEXTURE_SUB_5551,id);
+
+  //Aliases.
+  if(style == RETRIEVE_THUMB){
+    submode = submode | TEXTURE_SUB_THUMB;
+    style = RETRIEVE_NORMAL;
+  }
+
+  //Hack to allow either ID or card name as a filename for a given card.
+  // When missing the first attempt (for example [id].jpg), the cache assigns a "404" to the card's image cache,
+  // Preventing us to try a second time with [name].jpg.
+  //To bypass this, we first check if the card was ever marked as "null". If not, it means it's the first time we're looking for it
+  // In that case, we "unmiss" it after trying the [id].jpg, in order to give a chance to the [name.jpg]
+  bool canUnmiss = false;
+  {
+    JQuad * tempQuad = RetrieveQuad(filename1,0,0,0,0, "",RETRIEVE_EXISTING,submode|TEXTURE_SUB_5551,id);
+    lastError = textureWCache.mError;
+    if (!tempQuad && lastError != CACHE_ERROR_404){
+      canUnmiss = true;
+    }
+  }
+  JQuad * jq = RetrieveQuad(filename1,0,0,0,0, "",style,submode|TEXTURE_SUB_5551,id);
+  if (!jq) {
+    if (canUnmiss) {
+      int mId = id;
+      //To differentiate between cached thumbnails and the real thing.
+      if(submode & TEXTURE_SUB_THUMB){
+        if (mId < 0)
+          mId-=THUMBNAILS_OFFSET;
+        else
+          mId+=THUMBNAILS_OFFSET;
+      }
+      textureWCache.RemoveMiss(mId);
+    }
+    filename1 = filename + card->data->getName() + ".jpg";
+    jq = RetrieveQuad(filename1,0,0,0,0, "",style,submode|TEXTURE_SUB_5551,id);
+    int i = 0; //TODO remove debug test;
+  }
   lastError = textureWCache.mError;
   if(jq){
     jq->SetHotSpot(jq->mTex->mWidth / 2, jq->mTex->mHeight / 2);  

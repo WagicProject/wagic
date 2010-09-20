@@ -73,6 +73,7 @@ void GameStateShop::Start(){
   srcCards = NEW WSrcUnlockedCards(0);
   srcCards->setElapsed(15);
   srcCards->addFilter(NEW WCFilterNOT(NEW WCFilterRarity("T")));
+  srcCards->addFilter(NEW WCFilterNOT(NEW WCFilterSet(MTGSets::INTERNAL_SET)));
 
   bigSync = 0;
   shopMenu = NEW WGuiMenu(JGE_BTN_DOWN, JGE_BTN_UP, true, &bigSync);
@@ -481,9 +482,11 @@ void GameStateShop::Update(float dt)
         if (filterMenu->isFinished()){
           if (needLoad){
             srcCards->addFilter(NEW WCFilterNOT(NEW WCFilterRarity("T")));
+            srcCards->addFilter(NEW WCFilterNOT(NEW WCFilterSet(MTGSets::INTERNAL_SET)));
             if(!srcCards->Size()){
               srcCards->clearFilters(); //Repetition of check at end of filterMenu->Finish(), for the token removal
               srcCards->addFilter(NEW WCFilterNOT(NEW WCFilterRarity("T")));
+              srcCards->addFilter(NEW WCFilterNOT(NEW WCFilterSet(MTGSets::INTERNAL_SET)));
             }
             load();
           }
