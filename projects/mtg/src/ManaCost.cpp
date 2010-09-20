@@ -36,205 +36,130 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
     case 1:
       end = s.find_first_of("}");
       if (end == string::npos){
-	state = -1;
+	      state = -1;
       }else{
-	string value = s.substr(start+1,  end - 1 - start);
-	if (value == "u"){
-	  manaCost->add(Constants::MTG_COLOR_BLUE, 1);
-	}else if (value == "b"){
-	  manaCost->add(Constants::MTG_COLOR_BLACK, 1);
-	}else if (value == "w"){
-	  manaCost->add(Constants::MTG_COLOR_WHITE, 1);
-	}else if (value == "g"){
-	  manaCost->add(Constants::MTG_COLOR_GREEN, 1);
-	}else if (value == "r"){
-	  manaCost->add(Constants::MTG_COLOR_RED, 1);
-	}else if (value == "x"){
-	  manaCost->x();
-	}else if (value == "t"){
-    //Tap is handled outside of Manacost
-	}else if (value[0] == 's'){
-    //sacrifice
-    OutputDebugString("Sacrifice\n");
-    TargetChooserFactory tcf;
-    TargetChooser * tc = NULL;
-    size_t target_start = value.find("(");
-    size_t target_end = value.find(")");
-    if (target_start!=string::npos && target_end!=string::npos){
-      string target = value.substr(target_start+1, target_end-1 - target_start);
-      tc = tcf.createTargetChooser(target,c);
-    }
-    manaCost->addExtraCost(NEW SacrificeCost(tc));
-	//tap cost
-	}else if (value[0] == 't'){
-    //tap
-    OutputDebugString("Tap\n");
-    TargetChooserFactory tcf;
-    TargetChooser * tc = NULL;
-    size_t target_start = value.find("(");
-    size_t target_end = value.find(")");
-    if (target_start!=string::npos && target_end!=string::npos){
-      string target = value.substr(target_start+1, target_end-1 - target_start);
-      tc = tcf.createTargetChooser(target,c);
-    }
-    manaCost->addExtraCost(NEW TapTargetCost(tc));
-	//tapcost
-    //exile cost
-	}else if (value[0] == 'e'){
-    //tap
-    OutputDebugString("Exile\n");
-    TargetChooserFactory tcf;
-    TargetChooser * tc = NULL;
-    size_t target_start = value.find("(");
-    size_t target_end = value.find(")");
-    if (target_start!=string::npos && target_end!=string::npos){
-      string target = value.substr(target_start+1, target_end-1 - target_start);
-      tc = tcf.createTargetChooser(target,c);
-    }
-    manaCost->addExtraCost(NEW ExileTargetCost(tc));
-/*---------------------------------  */  
-	//bounce cost
-	}else if (value[0] == 'h'){
-    OutputDebugString("Bounce\n");
-    TargetChooserFactory tcf;
-    TargetChooser * tc = NULL;
-    size_t target_start = value.find("(");
-    size_t target_end = value.find(")");
-    if (target_start!=string::npos && target_end!=string::npos){
-      string target = value.substr(target_start+1, target_end-1 - target_start);
-      tc = tcf.createTargetChooser(target,c);
-    }
-    manaCost->addExtraCost(NEW BounceTargetCost(tc));
-//---------------------------------
+	      string value = s.substr(start+1,  end - 1 - start);
 
-	//life cost
-	}else if (value[0] == 'l'){
-    //tap
-	
-    OutputDebugString("Life\n");
-    TargetChooserFactory tcf;
-    TargetChooser * tc = NULL;
-    size_t target_start = value.find("(");
-    size_t target_end = value.find(")");
-    if (target_start!=string::npos && target_end!=string::npos){
-      string target = value.substr(target_start+1, target_end-1 - target_start);
-      tc = tcf.createTargetChooser(target,c);
-    }
-	  manaCost->addExtraCost(NEW LifeCost(tc));
-	//end life cost
-	  //-----------------------------------
-	//DiscardRandom cost
-	}else if (value[0] == 'd'){
-    //tap
-    OutputDebugString("DiscardRandom\n");
-    TargetChooserFactory tcf;
-    TargetChooser * tc = NULL;
-    size_t target_start = value.find("(");
-    size_t target_end = value.find(")");
-    if (target_start!=string::npos && target_end!=string::npos){
-      string target = value.substr(target_start+1, target_end-1 - target_start);
-      tc = tcf.createTargetChooser(target,c);
-    }
-	  manaCost->addExtraCost(NEW DiscardRandomCost(tc));
-//-------------------------------------
+        if (value == "u") {
+	        manaCost->add(Constants::MTG_COLOR_BLUE, 1);
+        } else if (value == "b") { 
+	        manaCost->add(Constants::MTG_COLOR_BLACK, 1);
+        } else if (value == "w") { 
+	        manaCost->add(Constants::MTG_COLOR_WHITE, 1);
+        } else if (value == "g") {
+	        manaCost->add(Constants::MTG_COLOR_GREEN, 1);
+        } else if (value == "r") { 
+	        manaCost->add(Constants::MTG_COLOR_RED, 1);
 
-	  	//hand to library cost
-	}else if (value[0] == 'q'){
-    OutputDebugString("ToLibrary\n");
-    TargetChooserFactory tcf;
-    TargetChooser * tc = NULL;
-    size_t target_start = value.find("(");
-    size_t target_end = value.find(")");
-    if (target_start!=string::npos && target_end!=string::npos){
-      string target = value.substr(target_start+1, target_end-1 - target_start);
-      tc = tcf.createTargetChooser(target,c);
-    }
-	  manaCost->addExtraCost(NEW ToLibraryCost(tc));
+        } else { 
 
-	  	//Millyourself as a cost
-	}else if (value[0] == 'm'){
-    OutputDebugString("Mill\n");
-    TargetChooserFactory tcf;
-    TargetChooser * tc = NULL;
-    size_t target_start = value.find("(");
-    size_t target_end = value.find(")");
-    if (target_start!=string::npos && target_end!=string::npos){
-      string target = value.substr(target_start+1, target_end-1 - target_start);
-      tc = tcf.createTargetChooser(target,c);
-    }
-	  manaCost->addExtraCost(NEW MillCost(tc));
+          //Parse target for extraCosts
+          TargetChooserFactory tcf;
+          TargetChooser * tc = NULL;
+          size_t target_start = value.find("(");
+          size_t target_end = value.find(")");
+          if (target_start!=string::npos && target_end!=string::npos){
+              string target = value.substr(target_start+1, target_end-1 - target_start);
+              tc = tcf.createTargetChooser(target,c);
+          }
 
-	  	  	//Mill to exile yourself as a cost
-	}else if (value[0] == 'z'){
-    OutputDebugString("MillExile\n");
-    TargetChooserFactory tcf;
-    TargetChooser * tc = NULL;
-    size_t target_start = value.find("(");
-    size_t target_end = value.find(")");
-    if (target_start!=string::npos && target_end!=string::npos){
-      string target = value.substr(target_start+1, target_end-1 - target_start);
-      tc = tcf.createTargetChooser(target,c);
-    }
-	  manaCost->addExtraCost(NEW MillExileCost(tc));
-
-    }else if (value[0] == 'c'){
-    //Counters
-    OutputDebugString("Counter\n");
-    size_t counter_start = value.find("(");
-    size_t counter_end = value.find(")", counter_start);
-    AbilityFactory abf;
-    string counterString = value.substr(counter_start+1,counter_end-counter_start-1);
-    Counter * counter = abf.parseCounter(counterString,c);
-    size_t separator = value.find(",",counter_start);
-    size_t separator2 = string::npos;
-    if (separator != string::npos) {
-      separator2 = value.find(",",separator + 1);
-    }
-    TargetChooserFactory tcf;
-    TargetChooser * tc = NULL;
-    size_t target_start = string::npos;
-    if (separator2 != string::npos) {
-      target_start = value.find(",",separator2+1);
-    }
-    size_t target_end = counter_end;
-    if (target_start!=string::npos && target_end!=string::npos){
-      string target = value.substr(target_start+1, target_end-1 - target_start);
-      tc = tcf.createTargetChooser(target,c);
-    }
-    manaCost->addExtraCost(NEW CounterCost(counter,tc));
-	}else{
-	  int intvalue = atoi(value.c_str());
-	  int colors[2];
-	  int values[2];
-	  if (intvalue < 10 && value.size() > 1){
-	    for (int i = 0; i < 2; i++){
-	      char c = value[i];
-	      if (c >='0' && c <='9'){
-		      colors[i] = Constants::MTG_COLOR_ARTIFACT;
-		      values[i] = c - '0';
-	      }else{
-		      for (int j = 0; j < Constants::MTG_NB_COLORS; j++){
-		        if (c == Constants::MTGColorChars[j]){
-		          colors[i] = j;
-		          values[i] = 1;
-		        }
-		      }
-	      }
-	    }
-	    manaCost->addHybrid(colors[0], values[0], colors[1], values[1]);
-	  }else{
-	    manaCost->add(Constants::MTG_COLOR_ARTIFACT, intvalue);
-	  }
-	}
-	s = s.substr(end + 1);
-	state = 0;
+          //switch on the first letter. If two costs share their first letter, add an "if" within the switch
+          switch(value[0]) {
+          case 'x': 
+	          manaCost->x();
+            break;
+          case 't': //Tap
+	          if (value == "t"){
+              //default Tap is handled outside of Manacost
+            } else {
+              manaCost->addExtraCost(NEW TapTargetCost(tc));
+            }
+            break;
+          case 's': //Sacrifice
+            manaCost->addExtraCost(NEW SacrificeCost(tc));
+            break;
+          case 'e': //Exile
+            manaCost->addExtraCost(NEW ExileTargetCost(tc));
+            break;
+          case 'h': //bounce
+            manaCost->addExtraCost(NEW BounceTargetCost(tc));
+            break;
+          case 'l': //Life cost
+            manaCost->addExtraCost(NEW LifeCost(tc));
+            break;
+          case 'd': //DiscardRandom cost
+            manaCost->addExtraCost(NEW DiscardRandomCost(tc));
+            break;
+          case 'q': //Hand To Library Cost
+            manaCost->addExtraCost(NEW ToLibraryCost(tc));
+            break;
+          case 'm': //Mill yourself as a cost
+            manaCost->addExtraCost(NEW MillCost(tc));
+            break;
+          case 'z': //Mill to exile yourself as a cost
+            manaCost->addExtraCost(NEW MillExileCost(tc));
+            break;
+          case 'c': //Counters
+            {
+              size_t counter_start = value.find("(");
+              size_t counter_end = value.find(")", counter_start);
+              AbilityFactory abf;
+              string counterString = value.substr(counter_start+1,counter_end-counter_start-1);
+              Counter * counter = abf.parseCounter(counterString,c);
+              size_t separator = value.find(",",counter_start);
+              size_t separator2 = string::npos;
+              if (separator != string::npos) {
+                separator2 = value.find(",",separator + 1);
+              }
+              SAFE_DELETE(tc);
+              size_t target_start = string::npos;
+              if (separator2 != string::npos) {
+                target_start = value.find(",",separator2+1);
+              }
+              size_t target_end = counter_end;
+              if (target_start!=string::npos && target_end!=string::npos){
+                string target = value.substr(target_start+1, target_end-1 - target_start);
+                tc = tcf.createTargetChooser(target,c);
+              }
+              manaCost->addExtraCost(NEW CounterCost(counter,tc));
+              break;
+            }
+          default: //uncolored cost and hybrid costs
+            {       
+	            int intvalue = atoi(value.c_str());
+	            int colors[2];
+	            int values[2];
+	            if (intvalue < 10 && value.size() > 1){
+	              for (int i = 0; i < 2; i++){
+	                char c = value[i];
+	                if (c >='0' && c <='9'){
+		                colors[i] = Constants::MTG_COLOR_ARTIFACT;
+		                values[i] = c - '0';
+	                }else{
+		                for (int j = 0; j < Constants::MTG_NB_COLORS; j++){
+		                  if (c == Constants::MTGColorChars[j]){
+		                    colors[i] = j;
+		                    values[i] = 1;
+		                  }
+		                }
+	                }
+	              }
+	              manaCost->addHybrid(colors[0], values[0], colors[1], values[1]);
+              }else{
+	              manaCost->add(Constants::MTG_COLOR_ARTIFACT, intvalue);
+	            }
+              break;
+            }
+          }
+        }
+	      s = s.substr(end + 1);
+	      state = 0;
       }
       break;
     default:
       break;
     }
   }
-
   return manaCost;
 }
 
@@ -419,20 +344,17 @@ int ManaCost::addHybrid(int c1, int v1, int c2, int v2){
 int ManaCost::addExtraCost(ExtraCost * _cost){
   if (!extraCosts) extraCosts = NEW ExtraCosts();
   extraCosts->costs.push_back(_cost);
-  OutputDebugString("Adding Extra cost\n");
   return 1;
 }
 
 
 int ManaCost::isExtraPaymentSet(){
   if (!extraCosts) return 1;
-  OutputDebugString("Checking costs\n");
   return extraCosts->isPaymentSet();
 }
 
 int ManaCost::canPayExtra(){
   if (!extraCosts) return 1;
-  OutputDebugString("Checking costs for payability\n");
   return extraCosts->canPay();
 }
 
