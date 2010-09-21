@@ -81,7 +81,8 @@ class MTGGameZone {
    void cleanupPhase();
    int countByType(const char * value);
    MTGCardInstance * findByName(string name);
-   int hasType(const char * value);
+   int hasAbility(int ability); //returns 1 if one of the cards in the  zone has the ability, 0 otherwise
+   int hasType(const char * value); //returns 1 if one of the cards in the zone has the type, 0 otherwise
    void setOwner(Player * player);
    MTGCardInstance * lastCardDrawn;
    static MTGGameZone * stringToZone(string zoneName, MTGCardInstance * source, MTGCardInstance * target);

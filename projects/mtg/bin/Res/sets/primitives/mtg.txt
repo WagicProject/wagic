@@ -1962,7 +1962,7 @@ toughness=1
 [/card]
 [card]
 name=Arc-Slogger
-auto={R}{z}{z}{z}{z}{z}{z}{z}{z}{z}{z}:damage:2 target(creature,player)
+auto={R}{l2e}{l2e}{l2e}{l2e}{l2e}{l2e}{l2e}{l2e}{l2e}{l2e}:damage:2 target(creature,player)
 text={R}, Exile the top ten cards of your library: Arc-Slogger deals 2 damage to target creature or player.
 mana={3}{R}{R}
 type=Creature
@@ -24387,7 +24387,7 @@ name=Imperial Mask
 text=When Imperial Mask enters the battlefield, if it's not a token, each of your teammates puts a token that's a copy of Imperial Mask onto the battlefield. -- You can't be the target of spells or abilities your opponents control.
 mana={4}{W}
 type=Enchantment
-subtype=controllershroud
+abilities=controllershroud
 [/card]
 [card]
 name=Imperial Recruiter
@@ -25229,7 +25229,7 @@ name=Ivory Mask
 text=You have shroud. (You can't be the target of spells or abilities.)
 mana={2}{W}{W}
 type=Enchantment
-subtype=playershroud
+abilities=playershroud
 [/card]
 [card]
 name=Ivory Tower
@@ -28634,7 +28634,7 @@ toughness=3
 [/card]
 [card]
 name=Leashling
-auto={q(*|myhand)}:moveTo(myhand)
+auto={4 l(*|myhand)}:moveTo(myhand)
 text=Put a card in your hand on top of your library: Return Leashling to its owner's hand.
 mana={6}
 type=Artifact Creature
@@ -28827,7 +28827,7 @@ auto=all(*[-land]|myhand) flash
 text=If Leyline of Anticipation is in your opening hand, you may begin the game with it on the battlefield. -- You may cast nonland cards as though they had flash. (You may cast them any time you could cast an instant.)
 mana={u}{u}{2}
 type=enchantment
-subtype=leyline
+abilities=leyline
 [/card]
 [card]
 name=Leyline of the Meek
@@ -28835,7 +28835,7 @@ auto=lord(*[token]) 1/1
 text=If Leyline of the Meek is in your opening hand, you may begin the game with it on the battlefield. -- Creature tokens get +1/+1.
 mana={w}{w}{2}
 type=enchantment
-subtype=leyline
+abilities=leyline
 [/card]
 [card]
 name=Leyline of Vitality
@@ -28844,14 +28844,14 @@ auto=@movedTo(creature|mybattlefield):life:1
 text=If Leyline of Vitality is in your opening hand, you may begin the game with it on the battlefield. -- Creatures you control get +0/+1. -- Whenever a creature enters the battlefield under your control, you gain 1 life.
 mana={2}{G}{G}
 type=Enchantment
-subtype=Leyline
+abilities=leyline
 [/card]
 [card]
 name=Leyline of Sanctity
 text=If Leyline of Sanctity is in your opening hand, you may begin the game with it on the battlefield. -- You can't be the target of spells or abilities your opponents control.
 mana={2}{W}{W}
 type=Enchantment
-subtype=Leyline controllershroud
+abilities=leyline,controllershroud
 [/card]
 [card]
 name=Leyline of Singularity
@@ -28859,7 +28859,7 @@ auto=lord(*[-land]) transforms(Legendary)
 text=If Leyline of Singularity is in your opening hand, you may begin the game with it on the battlefield. -- All nonland permanents are legendary.
 mana={2}{U}{U}
 type=Enchantment
-subtype=Leyline
+abilities=leyline
 [/card]
 [card]
 name=Leyline of the Void
@@ -28867,7 +28867,7 @@ auto=@movedTo(*|graveyard):all(trigger) moveTo(exile)
 text=If Leyline of the Void is in your opening hand, you may begin the game with it on the battlefield. -- If a card would be put into an opponent's graveyard from anywhere, exile it instead.
 mana={2}{B}{B}
 type=Enchantment
-subtype=Leyline
+abilities=leyline
 [/card]
 [card]
 name=Lhurgoyf
@@ -41867,7 +41867,7 @@ toughness=1
 [/card]
 [card]
 name=Royal Herbalist
-auto={2}{Z}:life:1
+auto={2}{l2e}:life:1
 text={2}, Exile the top card of your library: You gain 1 life.
 mana={W}
 type=Creature
@@ -48158,11 +48158,11 @@ toughness=1
 [/card]
 [card]
 name=Spirit of the Hearth
-abilities=flying
+abilities=flying,controllershroud
 text=Flying -- You can't be the target of spells or abilities your opponents control.
 mana={4}{W}{W}
 type=Creature
-subtype=Cat Spirit controllershroud
+subtype=Cat Spirit
 power=4
 toughness=5
 [/card]
@@ -54106,7 +54106,8 @@ name=True Believer
 text=You have shroud. (You can't be the target of spells or abilities.)
 mana={W}{W}
 type=Creature
-subtype=Human Cleric playershroud
+subtype=Human Cleric
+abilities=playershroud
 power=2
 toughness=2
 [/card]
@@ -58097,7 +58098,7 @@ toughness=3
 [/card]
 [card]
 name=Whirling Catapult
-auto={2}{Z}{Z}:damage:1 all(creature[flying]) && damage:1 all(player)
+auto={2}{l2e}{l2e}:damage:1 all(creature[flying]) && damage:1 all(player)
 text={2}, Exile the top two cards of your library: Whirling Catapult deals 1 damage to each creature with flying and each player.
 mana={4}
 type=Artifact

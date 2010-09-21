@@ -15,12 +15,12 @@ int cardsinhand = game->players[0]->game->hand->nb_cards;
   Player * player = game->currentlyActing();
   Player * currentPlayer = game->currentPlayer;
   if (!player->game->hand->hasCard(card)) return 0;
-  if ((game->turn < 1) && (cardsinhand != 0) && (card->hasType("leyline"))
+  if ((game->turn < 1) && (cardsinhand != 0) && (card->basicAbilities[Constants::LEYLINE])
 	 && game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN
 	 && game->players[0]->game->graveyard->nb_cards == 0
 	 && game->players[0]->game->exile->nb_cards == 0){
 	 Player * p = game->currentPlayer;  
-    if (card->hasType("leyline")){
+    if (card->basicAbilities[Constants::LEYLINE]){
     MTGCardInstance * copy = player->game->putInZone(card,  player->game->hand, player->game->temp);
     Spell * spell = NEW Spell(copy);
     spell->resolve();

@@ -75,29 +75,31 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
               manaCost->addExtraCost(NEW TapTargetCost(tc));
             }
             break;
-          case 's': //Sacrifice
-            manaCost->addExtraCost(NEW SacrificeCost(tc));
+          case 's': 
+            if (value == "s2l") { //Send To Library Cost (move from anywhere to Library)
+              manaCost->addExtraCost(NEW ToLibraryCost(tc));
+            } else { //Sacrifice
+              manaCost->addExtraCost(NEW SacrificeCost(tc));
+            }
             break;
           case 'e': //Exile
             manaCost->addExtraCost(NEW ExileTargetCost(tc));
             break;
-          case 'h': //bounce
+          case 'h': //bounce (move to Hand)
             manaCost->addExtraCost(NEW BounceTargetCost(tc));
             break;
-          case 'l': //Life cost
-            manaCost->addExtraCost(NEW LifeCost(tc));
+          case 'l': 
+            if (value == "l2e") { //Mill to exile yourself as a cost (Library 2 Exile)
+              manaCost->addExtraCost(NEW MillExileCost(tc));
+            } else { //Life cost
+              manaCost->addExtraCost(NEW LifeCost(tc));
+            }
             break;
           case 'd': //DiscardRandom cost
             manaCost->addExtraCost(NEW DiscardRandomCost(tc));
             break;
-          case 'q': //Hand To Library Cost
-            manaCost->addExtraCost(NEW ToLibraryCost(tc));
-            break;
           case 'm': //Mill yourself as a cost
             manaCost->addExtraCost(NEW MillCost(tc));
-            break;
-          case 'z': //Mill to exile yourself as a cost
-            manaCost->addExtraCost(NEW MillExileCost(tc));
             break;
           case 'c': //Counters
             {

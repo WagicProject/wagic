@@ -689,9 +689,9 @@ PlayerTargetChooser::PlayerTargetChooser(MTGCardInstance * card, int _maxtargets
 }
 
 bool PlayerTargetChooser::canTarget(Targetable * target){
-if (source && targetter && (targetter->controller() != targetter->controller()->opponent()) && (targetter->controller()->opponent()->game->inPlay->hasType("controllershroud")) && targetter->controller() != target) return false;
-if (source && targetter && (targetter->controller() == targetter->controller()) && (targetter->controller()->opponent()->game->inPlay->hasType("playershroud")) && targetter->controller()->opponent() == target) return false;
-if (source && targetter && (targetter->controller() == targetter->controller()) && (targetter->controller()->game->inPlay->hasType("playershroud")) && targetter->controller()== target) return false;
+if (source && targetter && (targetter->controller() != targetter->controller()->opponent()) && (targetter->controller()->opponent()->game->inPlay->hasAbility(Constants::CONTROLLERSHROUD)) && targetter->controller() != target) return false;
+if (source && targetter && (targetter->controller() == targetter->controller()) && (targetter->controller()->opponent()->game->inPlay->hasAbility(Constants::PLAYERSHROUD)) && targetter->controller()->opponent() == target) return false;
+if (source && targetter && (targetter->controller() == targetter->controller()) && (targetter->controller()->game->inPlay->hasAbility(Constants::PLAYERSHROUD)) && targetter->controller()== target) return false;
   return (target->typeAsTarget() == TARGET_PLAYER) && (!p || p == (Player*)target);
 }
 
@@ -703,9 +703,9 @@ if (source && targetter && (targetter->controller() == targetter->controller()) 
 
 /*Damageable Target */
 bool DamageableTargetChooser::canTarget(Targetable * target){
-if (source && targetter && (targetter->controller() != targetter->controller()->opponent()) && (targetter->controller()->opponent()->game->inPlay->hasType("controllershroud")) && targetter->controller() != target) return false;
-if (source && targetter && (targetter->controller() == targetter->controller()) && (targetter->controller()->opponent()->game->inPlay->hasType("playershroud")) && targetter->controller()->opponent() == target) return false;
-if (source && targetter && (targetter->controller() == targetter->controller()) && (targetter->controller()->game->inPlay->hasType("playershroud")) && targetter->controller()== target) return false;
+if (source && targetter && (targetter->controller() != targetter->controller()->opponent()) && (targetter->controller()->opponent()->game->inPlay->hasAbility(Constants::CONTROLLERSHROUD)) && targetter->controller() != target) return false;
+if (source && targetter && (targetter->controller() == targetter->controller()) && (targetter->controller()->opponent()->game->inPlay->hasAbility(Constants::PLAYERSHROUD)) && targetter->controller()->opponent() == target) return false;
+if (source && targetter && (targetter->controller() == targetter->controller()) && (targetter->controller()->game->inPlay->hasAbility(Constants::PLAYERSHROUD)) && targetter->controller()== target) return false;
   if (target->typeAsTarget() == TARGET_PLAYER){
     return true;
   }

@@ -328,6 +328,15 @@ int MTGGameZone::hasType(const char * value){
   return 0;
 }
 
+int MTGGameZone::hasAbility(int ability){
+  for (int i=0; i<(nb_cards); i++) {
+    if (cards[i]->basicAbilities[ability]){
+      return 1;
+    }
+  }
+  return 0;
+}
+
 
 void MTGGameZone::cleanupPhase(){
   for (int i=0; i<(nb_cards); i++)
