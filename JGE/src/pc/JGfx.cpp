@@ -7,7 +7,9 @@
 // Copyright (c) 2007 James Hui (a.k.a. Dr.Watson) <jhkhui@gmail.com>
 //
 //-------------------------------------------------------------------------------------
+#ifdef QT_CONFIG
 #define GL_GLEXT_PROTOTYPES
+#endif //QT_CONFIG
 
 #ifdef WIN32
   #pragma warning(disable : 4786)
@@ -273,6 +275,8 @@ static glslFunctions g_glslfuncts;
 #define GL_VERSION_2_0
 #endif
 
+//#undef GL_VERSION_2_0
+
 JQuad::JQuad(JTexture *tex, float x, float y, float width, float height)
 		:mTex(tex), mX(x), mY(y), mWidth(width), mHeight(height)
 {
@@ -401,8 +405,6 @@ void esMatrixLoadIdentity(ESMatrix *result)
     result->m[3][3] = 1.0f;
 }
 
-#define PI 3.1415926535897932384626433832795f
-
 void esScale(ESMatrix *result, GLfloat sx, GLfloat sy, GLfloat sz)
 {
     result->m[0][0] *= sx;
@@ -464,8 +466,8 @@ void esRotate(ESMatrix *result, GLfloat angle, GLfloat x, GLfloat y, GLfloat z)
    GLfloat sinAngle, cosAngle;
    GLfloat mag = sqrtf(x * x + y * y + z * z);
 
-   sinAngle = sinf ( angle * PI / 180.0f );
-   cosAngle = cosf ( angle * PI / 180.0f );
+   sinAngle = sinf ( angle * M_PI / 180.0f );
+   cosAngle = cosf ( angle * M_PI / 180.0f );
    if ( mag > 0.0f )
    {
       GLfloat xx, yy, zz, xy, yz, zx, xs, ys, zs;
@@ -854,22 +856,31 @@ void JRenderer::RenderQuad(JQuad* quad, float xo, float yo, float angle, float x
 		Swap(&uv[1].y, &uv[3].y);
 	}
 
-	BindTexture(quad->mTex);
+        BindTexture(quad->mTex);
 
 
 	////glRasterPos2f(x, y);
 
 
-	yo = SCREEN_HEIGHT_F - yo;
+        yo = SCREEN_HEIGHT_F - yo;
 
 
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
         ESMatrix  mvpMatrix;
         memcpy(&mvpMatrix, &theMvpMatrix, sizeof(ESMatrix));
 
+        /* this fix the menu but breaks the game by reversing a couple of cards :(
+        if(angle < 0 )
+        {
+          if(xScale >= 0 && yScale >= 0)
+          xScale *= -1;
+          yScale *= -1;
+        }*/
+
         esTranslate(&mvpMatrix, xo, yo, 0.0f);
         esRotate(&mvpMatrix, -angle*RAD2DEG, 0.0f, 0.0f, 1.0f);
         esScale(&mvpMatrix, xScale, yScale, 1.0f);
+
 
         GLfloat vVertices[] = {
             pt[0].x, pt[0].y, 0.0f,
@@ -916,7 +927,6 @@ void JRenderer::RenderQuad(JQuad* quad, float xo, float yo, float angle, float x
         // Set the sampler texture unit to 0
         glUniform1i ( prog2_samplerLoc, 0 );
 
-        //glDrawElements ( GL_TRIANGLE_STRIP, 6, GL_UNSIGNED_SHORT, indices );
         glDrawArrays(GL_TRIANGLE_STRIP,0,4);
 
 #else
@@ -2714,7 +2724,7 @@ void JRenderer::DrawRoundRect(float x, float y, float w, float h, float radius, 
 	glDisable(GL_TEXTURE_2D);
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
   int i, index = 1;
-  int number = 360+2*h+2*w;
+  int number = 360+2*ceil(h)+2*ceil(w);
   GLfloat* vVertices = new GLfloat[3*number];
   GLubyte* colors = new GLubyte[4*number];
 
@@ -2861,7 +2871,7 @@ void JRenderer::FillRoundRect(float x, float y, float w, float h, float radius, 
 	glDisable(GL_TEXTURE_2D);
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
   int i, index = 1;
-  int number = 2+360+2*h+2*w;
+  int number = 2+360+2*ceil(h)+2*ceil(w);
   GLfloat* vVertices = new GLfloat[3*number];
   GLubyte* colors = new GLubyte[4*number];
 
