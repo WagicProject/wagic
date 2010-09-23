@@ -398,6 +398,7 @@ resounding_roar.txt
 resurrection.txt
 resuscitate_i210.txt
 righteous_cause.txt
+river_kelpie2_i335.txt
 rockslide_elemental.txt
 rootwalla.txt
 royal_assassin.txt

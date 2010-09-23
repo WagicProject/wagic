@@ -212,7 +212,34 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
 
     MTGCardInstance * ret = copy;
 
+  
     to->addCard(copy);
+
+    
+    //The "Temp" zone are purely for code purposes, and we don't want the abilities engine to
+    //Trigger when cards move in this zone
+    // Additionally, when they mve "from" this zone, 
+    // we trick the engine into believing that they moved from the zone the card was previously in
+    // See http://code.google.com/p/wagic/issues/detail?id=335
+    {
+      if (to == g->players[0]->game->temp || to == g->players[1]->game->temp){
+        //don't send event when moving to temp
+        return ret;
+      }
+
+      if (from == g->players[0]->game->temp || from == g->players[1]->game->temp){
+        //remove temporary stuff
+        MTGCardInstance * previous = copy->previous;
+        MTGCardInstance * previous2 = previous->previous;
+        from = previous->previousZone;
+        copy->previous = previous2;
+        if (previous2) previous2->next = copy;
+        previous->previous = NULL;
+        previous->next = NULL;
+        SAFE_DELETE(previous);
+      }
+    }
+
     GameObserver *g = GameObserver::GetInstance();
     WEvent * e = NEW WEventZoneChange(copy, from, to);
     g->receiveEvent(e);

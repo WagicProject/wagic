@@ -1,0 +1,24 @@
+#Bug: moved from Graveyard triggers don't work
+# see http://code.google.com/p/wagic/issues/detail?id=335
+# Argivian Restoration: Return target artifact card from your graveyard to the battlefield.
+# Whenever River Kelpie or another permanent is put onto the battlefield from a graveyard, draw a card.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+manapool:{2}{U}{U}
+inplay:River Kelpie
+graveyard:Brass man
+hand:Argivian Restoration
+library:forest
+[PLAYER2]
+[DO]
+Argivian Restoration
+Brass man
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:River Kelpie,Brass man
+hand:Forest
+graveyard:Argivian Restoration
+[PLAYER2]
+[END]
