@@ -7,9 +7,7 @@
 // Copyright (c) 2007 James Hui (a.k.a. Dr.Watson) <jhkhui@gmail.com>
 //
 //-------------------------------------------------------------------------------------
-#ifdef QT_CONFIG
 #define GL_GLEXT_PROTOTYPES
-#endif //QT_CONFIG
 
 #ifdef WIN32
   #pragma warning(disable : 4786)
@@ -44,6 +42,7 @@ extern "C" {
 #endif
 #endif
 
+//#define FORCE_GL2
 #ifdef FORCE_GL2
 // This code is to force the windows code to use GL_VERSION_2_0 even if it's not defined in the header files
 // It's mostly to try to debug the shaders on Windows.
@@ -274,8 +273,6 @@ static glslFunctions g_glslfuncts;
 
 #define GL_VERSION_2_0
 #endif
-
-//#undef GL_VERSION_2_0
 
 JQuad::JQuad(JTexture *tex, float x, float y, float width, float height)
 		:mTex(tex), mX(x), mY(y), mWidth(width), mHeight(height)
@@ -869,16 +866,11 @@ void JRenderer::RenderQuad(JQuad* quad, float xo, float yo, float angle, float x
         ESMatrix  mvpMatrix;
         memcpy(&mvpMatrix, &theMvpMatrix, sizeof(ESMatrix));
 
-        /* this fix the menu but breaks the game by reversing a couple of cards :(
-        if(angle < 0 )
-        {
-          if(xScale >= 0 && yScale >= 0)
-          xScale *= -1;
-          yScale *= -1;
-        }*/
-
         esTranslate(&mvpMatrix, xo, yo, 0.0f);
-        esRotate(&mvpMatrix, -angle*RAD2DEG, 0.0f, 0.0f, 1.0f);
+
+        // see http://code.google.com/p/wagic/issues/detail?id=460
+        // in openGL1, we rotate with -angle, but here we use +angle. Why ?
+        esRotate(&mvpMatrix, angle*RAD2DEG, 0.0f, 0.0f, 1.0f);
         esScale(&mvpMatrix, xScale, yScale, 1.0f);
 
 
@@ -2723,8 +2715,8 @@ void JRenderer::DrawRoundRect(float x, float y, float w, float h, float radius, 
 
 	glDisable(GL_TEXTURE_2D);
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
-  int i, index = 1;
-  int number = 360+2*ceil(h)+2*ceil(w);
+  int i;
+  int number = 360;
   GLfloat* vVertices = new GLfloat[3*number];
   GLubyte* colors = new GLubyte[4*number];
 
@@ -2736,62 +2728,35 @@ void JRenderer::DrawRoundRect(float x, float y, float w, float h, float radius, 
     colors[4*i+3]= col.a;
   }
 
-  index = 0;
+
   for(i=0; i<90;i++) {
-    vVertices[3*(index+i)+0] = x+radius*COSF(i);
-    vVertices[3*(index+i)+1] = SCREEN_HEIGHT_F-y+radius*SINF(i);
-    vVertices[3*(index+i)+2] = 0.0f;
+    vVertices[3 * i + 0] = x+radius*COSF(i);
+    vVertices[3 * i + 1] = SCREEN_HEIGHT_F-(y+radius*SINF(i));
+    vVertices[3 * i + 2] = 0.0f;
   }
-  index += 90;
-  for(i=0; i<w; i++)
-  {
-    vVertices[3*(index+i)+0] = x+radius*COSF(90)-i;
-    vVertices[3*(index+i)+1] = SCREEN_HEIGHT_F-y+radius*SINF(90);
-    vVertices[3*(index+i)+2] = 0.0f;
-  }
-  index += w;
+
+
   for(i=90; i<180;i++)
   {
-    vVertices[3*(index+i-90)+0] = x+radius*COSF(i)-w;
-    vVertices[3*(index+i-90)+1] = SCREEN_HEIGHT_F-y+radius*SINF(i);
-    vVertices[3*(index+i-90)+2] = 0.0f;
+    vVertices[3 * i + 0] = x+radius*COSF(i)-w;
+    vVertices[3 * i + 1] = SCREEN_HEIGHT_F-(y+radius*SINF(i));
+    vVertices[3 * i + 2] = 0.0f;
   }
-  index += 90;
-  for(i=0; i<h; i++)
-  {
-    vVertices[3*(index+i)+0] = x+radius*COSF(180)-w;
-    vVertices[3*(index+i)+1] = SCREEN_HEIGHT_F-y+radius*SINF(180)-i;
-    vVertices[3*(index+i)+2] = 0.0f;
-  }
-  index += h;
+
+
   for(i=180; i<270;i++)
   {
-    vVertices[3*(index+i-180)+0] = x+radius*COSF(i)-w;
-    vVertices[3*(index+i-180)+1] = SCREEN_HEIGHT_F-y+radius*SINF(i)-h;
-    vVertices[3*(index+i-180)+2] = 0.0f;
+    vVertices[3 * i + 0] = x+radius*COSF(i)-w;
+    vVertices[3 * i + 1] = SCREEN_HEIGHT_F-(y+radius*SINF(i)-h);
+    vVertices[3 * i + 2] = 0.0f;
   }
-  index += 90;
-  for(i=0; i<w; i++)
-  {
-    vVertices[3*(index+i)+0] = x+radius*COSF(270)-w+i;
-    vVertices[3*(index+i)+1] = SCREEN_HEIGHT_F-y+radius*SINF(270)-h;
-    vVertices[3*(index+i)+2] = 0.0f;
-  }
-  index += w;
+
   for(i=270; i<360;i++)
   {
-    vVertices[3*(index+i-270)+0] = x+radius*COSF(i);
-    vVertices[3*(index+i-270)+1] = SCREEN_HEIGHT_F-y+radius*SINF(i)-h;
-    vVertices[3*(index+i-270)+2] = 0.0f;
+    vVertices[3 * i + 0] = x+radius*COSF(i);
+    vVertices[3 * i + 1] = SCREEN_HEIGHT_F-(y+radius*SINF(i)-h);
+    vVertices[3 * i + 2] = 0.0f;
   }
-  index += 90;
-  for(i=0; i<h; i++)
-  {
-    vVertices[3*(index+i)+0] = x+radius*COSF(0);
-    vVertices[3*(index+i)+1] = SCREEN_HEIGHT_F-y+radius*SINF(0)-h+i;
-    vVertices[3*(index+i)+2] = 0.0f;
-  }
-  index += h;
 
   // Use the program object without texture
   glUseProgram ( prog1 );
@@ -2870,8 +2835,8 @@ void JRenderer::FillRoundRect(float x, float y, float w, float h, float radius, 
 
 	glDisable(GL_TEXTURE_2D);
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
-  int i, index = 1;
-  int number = 2+360+2*ceil(h)+2*ceil(w);
+  int i, offset;
+  int number = 2+360;
   GLfloat* vVertices = new GLfloat[3*number];
   GLubyte* colors = new GLubyte[4*number];
 
@@ -2884,66 +2849,39 @@ void JRenderer::FillRoundRect(float x, float y, float w, float h, float radius, 
   }
 
   vVertices[0] = x-5; vVertices[1] = SCREEN_HEIGHT_F-y; vVertices[2] = 0.0f;
-  index = 1;
+  offset = 1;
   for(i=0; i<90;i++) {
-    vVertices[3*(index+i)+0] = x+radius*COSF(i);
-    vVertices[3*(index+i)+1] = SCREEN_HEIGHT_F-y+radius*SINF(i);
-    vVertices[3*(index+i)+2] = 0.0f;
+    vVertices[3*(offset+i)+0] = x+radius*COSF(i);
+    vVertices[3*(offset+i)+1] = SCREEN_HEIGHT_F-y+radius*SINF(i);
+    vVertices[3*(offset+i)+2] = 0.0f;
   }
-  index += 90;
-  for(i=0; i<w; i++)
-  {
-    vVertices[3*(index+i)+0] = x+radius*COSF(90)-i;
-    vVertices[3*(index+i)+1] = SCREEN_HEIGHT_F-y+radius*SINF(90);
-    vVertices[3*(index+i)+2] = 0.0f;
-  }
-  index += w;
+
+
   for(i=90; i<180;i++)
   {
-    vVertices[3*(index+i-90)+0] = x+radius*COSF(i)-w;
-    vVertices[3*(index+i-90)+1] = SCREEN_HEIGHT_F-y+radius*SINF(i);
-    vVertices[3*(index+i-90)+2] = 0.0f;
+    vVertices[3*(offset+i)+0] = x+radius*COSF(i)-w;
+    vVertices[3*(offset+i)+1] = SCREEN_HEIGHT_F-y+radius*SINF(i);
+    vVertices[3*(offset+i)+2] = 0.0f;
   }
-  index += 90;
-  for(i=0; i<h; i++)
-  {
-    vVertices[3*(index+i)+0] = x+radius*COSF(180)-w;
-    vVertices[3*(index+i)+1] = SCREEN_HEIGHT_F-y+radius*SINF(180)-i;
-    vVertices[3*(index+i)+2] = 0.0f;
-  }
-  index += h;
+
   for(i=180; i<270;i++)
   {
-    vVertices[3*(index+i-180)+0] = x+radius*COSF(i)-w;
-    vVertices[3*(index+i-180)+1] = SCREEN_HEIGHT_F-y+radius*SINF(i)-h;
-    vVertices[3*(index+i-180)+2] = 0.0f;
+    vVertices[3*(offset+i)+0] = x+radius*COSF(i)-w;
+    vVertices[3*(offset+i)+1] = SCREEN_HEIGHT_F-y+radius*SINF(i)-h;
+    vVertices[3*(offset+i)+2] = 0.0f;
   }
-  index += 90;
-  for(i=0; i<w; i++)
-  {
-    vVertices[3*(index+i)+0] = x+radius*COSF(270)-w+i;
-    vVertices[3*(index+i)+1] = SCREEN_HEIGHT_F-y+radius*SINF(270)-h;
-    vVertices[3*(index+i)+2] = 0.0f;
-  }
-  index += w;
+
+
   for(i=270; i<360;i++)
   {
-    vVertices[3*(index+i-270)+0] = x+radius*COSF(i);
-    vVertices[3*(index+i-270)+1] = SCREEN_HEIGHT_F-y+radius*SINF(i)-h;
-    vVertices[3*(index+i-270)+2] = 0.0f;
+    vVertices[3*(offset+i)+0] = x+radius*COSF(i);
+    vVertices[3*(offset+i)+1] = SCREEN_HEIGHT_F-y+radius*SINF(i)-h;
+    vVertices[3*(offset+i)+2] = 0.0f;
   }
-  index += 90;
-  for(i=0; i<h; i++)
-  {
-    vVertices[3*(index+i)+0] = x+radius*COSF(0);
-    vVertices[3*(index+i)+1] = SCREEN_HEIGHT_F-y+radius*SINF(0)-h+i;
-    vVertices[3*(index+i)+2] = 0.0f;
-  }
-  index += h;
 
-  vVertices[3*index+0] = x+radius*COSF(0);
-  vVertices[3*index+1] = SCREEN_HEIGHT_F-y+radius*SINF(0);
-  vVertices[3*index+2] = 0.0f;
+  vVertices[3*(361)+0] = x+radius*COSF(0);
+  vVertices[3*(361)+1] = SCREEN_HEIGHT_F-y+radius*SINF(0);
+  vVertices[3*(361)+2] = 0.0f;
 
   // Use the program object without texture
   glUseProgram ( prog1 );
