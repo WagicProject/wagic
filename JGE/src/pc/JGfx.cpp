@@ -455,6 +455,34 @@ void esMatrixMultiply(ESMatrix *result, ESMatrix *srcA, ESMatrix *srcB)
                                                 (srcA->m[i][2] * srcB->m[2][3]) +
                                                 (srcA->m[i][3] * srcB->m[3][3]) ;
         }
+/*
+ * Actually, srcA and srcB are column-major order matrixes, while they
+ * use row-major multiplication. Then above result equals to (B * A) likes these:
+
+  for (i=0; i<4; i++){
+    tmp.m[0][i] = (srcB->m[0][i] * srcA->m[0][0]) +
+                  (srcB->m[1][i] * srcA->m[0][1]) +
+                  (srcB->m[2][i] * srcA->m[0][2]) +
+                  (srcB->m[3][i] * srcA->m[0][3]) ;
+    
+    tmp.m[1][i] = (srcB->m[0][i] * srcA->m[1][0]) +
+                  (srcB->m[1][i] * srcA->m[1][1]) +
+                  (srcB->m[2][i] * srcA->m[1][2]) +
+                  (srcB->m[3][i] * srcA->m[1][3]) ;
+    
+    tmp.m[2][i] = (srcB->m[0][i] * srcA->m[2][0]) +
+                  (srcB->m[1][i] * srcA->m[2][1]) +
+                  (srcB->m[2][i] * srcA->m[2][2]) +
+                  (srcB->m[3][i] * srcA->m[2][3]) ;
+    
+    tmp.m[3][i] = (srcB->m[0][i] * srcA->m[3][0]) +
+                  (srcB->m[1][i] * srcA->m[3][1]) +
+                  (srcB->m[2][i] * srcA->m[3][2]) +
+                  (srcB->m[3][i] * srcA->m[3][3]) ;
+  }
+
+ * So, it works. (Refer to math method of Homogeneous Coordinate)
+ */
     memcpy(result, &tmp, sizeof(ESMatrix));
 }
 
@@ -486,24 +514,26 @@ void esRotate(ESMatrix *result, GLfloat angle, GLfloat x, GLfloat y, GLfloat z)
       zs = z * sinAngle;
       oneMinusCos = 1.0f - cosAngle;
 
+      // Note: matrixes in OpenGL ES are stored in column-major order!
+
       rotMat.m[0][0] = (oneMinusCos * xx) + cosAngle;
-      rotMat.m[0][1] = (oneMinusCos * xy) - zs;
-      rotMat.m[0][2] = (oneMinusCos * zx) + ys;
-      rotMat.m[0][3] = 0.0F;
-
-      rotMat.m[1][0] = (oneMinusCos * xy) + zs;
-      rotMat.m[1][1] = (oneMinusCos * yy) + cosAngle;
-      rotMat.m[1][2] = (oneMinusCos * yz) - xs;
-      rotMat.m[1][3] = 0.0F;
-
-      rotMat.m[2][0] = (oneMinusCos * zx) - ys;
-      rotMat.m[2][1] = (oneMinusCos * yz) + xs;
-      rotMat.m[2][2] = (oneMinusCos * zz) + cosAngle;
-      rotMat.m[2][3] = 0.0F;
-
+      rotMat.m[1][0] = (oneMinusCos * xy) - zs;
+      rotMat.m[2][0] = (oneMinusCos * zx) + ys;
       rotMat.m[3][0] = 0.0F;
+
+      rotMat.m[0][1] = (oneMinusCos * xy) + zs;
+      rotMat.m[1][1] = (oneMinusCos * yy) + cosAngle;
+      rotMat.m[2][1] = (oneMinusCos * yz) - xs;
       rotMat.m[3][1] = 0.0F;
+
+      rotMat.m[0][2] = (oneMinusCos * zx) - ys;
+      rotMat.m[1][2] = (oneMinusCos * yz) + xs;
+      rotMat.m[2][2] = (oneMinusCos * zz) + cosAngle;
       rotMat.m[3][2] = 0.0F;
+
+      rotMat.m[0][3] = 0.0F;
+      rotMat.m[1][3] = 0.0F;
+      rotMat.m[2][3] = 0.0F;
       rotMat.m[3][3] = 1.0F;
 
       esMatrixMultiply( result, &rotMat, result );
@@ -869,8 +899,7 @@ void JRenderer::RenderQuad(JQuad* quad, float xo, float yo, float angle, float x
         esTranslate(&mvpMatrix, xo, yo, 0.0f);
 
         // see http://code.google.com/p/wagic/issues/detail?id=460
-        // in openGL1, we rotate with -angle, but here we use +angle. Why ?
-        esRotate(&mvpMatrix, angle*RAD2DEG, 0.0f, 0.0f, 1.0f);
+        esRotate(&mvpMatrix, -angle*RAD2DEG, 0.0f, 0.0f, 1.0f);
         esScale(&mvpMatrix, xScale, yScale, 1.0f);
 
 
