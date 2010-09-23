@@ -875,6 +875,10 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
+				RelativePath=".\include\ActionElement.h"
+				>
+			</File>
+			<File
 				RelativePath=".\include\ActionLayer.h"
 				>
 			</File>
@@ -1263,27 +1267,7 @@
 			Name="Resource Files"
 			Filter="ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
 			>
-			<File
-				RelativePath=".\bin\Res\sets\primitives\mtg.txt"
-				>
-			</File>
-			<File
-				RelativePath=".\bin\Res\sets\primitives\unofficial.txt"
-				>
-			</File>
-			<File
-				RelativePath=".\bin\Res\sets\primitives\zethaddon.txt"
-				>
-			</File>
 		</Filter>
-		<File
-			RelativePath=".\include\ActionElement.h"
-			>
-		</File>
-		<File
-			RelativePath=".\ClassDiagram1.cd"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>

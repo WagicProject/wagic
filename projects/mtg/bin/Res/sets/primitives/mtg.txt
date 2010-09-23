@@ -45919,7 +45919,7 @@ type=Artifact
 [card]
 name=Skullclamp
 auto=1/-1
-auto=@movedto(mytgt|graveyard):draw:2 controller
+auto=@movedto(graveyard) from(mytgt|battlefield):draw:2 controller
 auto={1}:equip
 text=Equipped creature gets +1/-1. -- When equipped creature is put into a graveyard, draw two cards. -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
 mana={1}
