@@ -10336,7 +10336,7 @@ toughness=2
 [card]
 name=Creature Bond
 target=creature
-auto=@movedto(mytgt|graveyard) from(Battlefield):damage:t targetController
+auto=@movedto(graveyard) from(mytgt|Battlefield):damage:t targetController
 text=Enchant creature -- When enchanted creature is put into a graveyard, Creature Bond deals damage equal to that creature's toughness to the creature's controller.
 mana={1}{U}
 type=Enchantment
