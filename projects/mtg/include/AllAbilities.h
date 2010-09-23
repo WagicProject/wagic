@@ -112,6 +112,8 @@ public:
 //Triggers
 //
 
+
+// Triggers When a card gets added to a zone (@movedTo)
 class TrCardAddedToZone:public TriggeredAbility{
 public:
   TargetChooser * toTc;

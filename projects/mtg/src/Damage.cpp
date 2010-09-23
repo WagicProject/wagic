@@ -49,51 +49,49 @@ int Damage::resolve(){
 
 //reserved for culmulitive absorb ability coding
 
-//prevent next damage-----------------------------
+  //prevent next damage-----------------------------
   if((target)->preventable >= 1) {
-	int preventing =(target)->preventable;
-	for(int k = preventing; k > 0;k--){
-//the following keeps preventable from ADDING toughness/life if damage was less then preventable amount.
-        for (int i = damage; i >= 1; i--){
+	  int preventing =(target)->preventable;
+	  for(int k = preventing; k > 0;k--){
+    //the following keeps preventable from ADDING toughness/life if damage was less then preventable amount.
+      for (int i = damage; i >= 1; i--){
         (target)->preventable -= 1;
-			damage -= 1;	 
+			  damage -= 1;	 
         break;//does the redux of damage 1 time, breaks the loop to deincrement preventing and start the loop over.
-	   }
+	    }
 	  }
 	}
-//set prevent next damage back to 0 if it is equal to less then 0
+
+  //set prevent next damage back to 0 if it is equal to less then 0
 	if((target)->preventable < 0){
 		(target)->preventable = 0;
 	}
-//-------------------------------------------------
+
+  //-------------------------------------------------
   if (target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE){
     MTGCardInstance * _target = (MTGCardInstance *)target;
     if ((_target)->protectedAgainst(source)) damage = 0;
-	//rulings = 10/4/2004	The damage prevention ability works even if it has no counters, as long as some effect keeps its toughness above zero.
-	//these creature are essentially immune to damage. however 0/-1 effects applied through lords or counters can kill them.
-	if ((_target)->has(Constants::PHANTOM)) {
-		damage = 0;
-		(_target)->counters->removeCounter(1,1);
-	}
-	if ((_target)->has(Constants::ABSORB)) {
-		damage -= 1;
-	}
-	if ((_target)->has(Constants::WILTING)) {
-		 for (int i = 0; i < damage; i++){
-			for (int i = damage; i > 0; i--){
-		(_target)->counters->addCounter(-1,-1); 
-	   }
-		damage = 0;
-	 }
-	}
-	if ((_target)->has(Constants::VIGOR)){
-		 for (int i = 0; i < damage; i++){
-			for (int i = damage; i > 0; i--){
-		(_target)->counters->addCounter(1,1); 
-	   }
-		damage = 0;
-	 }
-	}  
+    //rulings = 10/4/2004	The damage prevention ability works even if it has no counters, as long as some effect keeps its toughness above zero.
+    //these creature are essentially immune to damage. however 0/-1 effects applied through lords or counters can kill them.
+    if ((_target)->has(Constants::PHANTOM)) {
+	    damage = 0;
+	    (_target)->counters->removeCounter(1,1);
+    }
+    if ((_target)->has(Constants::ABSORB)) {
+	    damage -= 1;
+    }
+    if ((_target)->has(Constants::WILTING)) {
+	    for (int j = damage; j > 0; j--){
+        (_target)->counters->addCounter(-1,-1); 
+      }
+      damage = 0;
+    }
+    if ((_target)->has(Constants::VIGOR)){
+	    for (int j = damage; j > 0; j--){
+        (_target)->counters->addCounter(1,1); 
+      }
+      damage = 0;
+    }  
     if (!damage){
       state = RESOLVED_NOK;
       delete (e);
@@ -103,56 +101,41 @@ int Damage::resolve(){
   }
   
   int a = damage;
-  // Damage for WITHER on creatures. This should probably go in replacement effects
-  if (target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE && source->has(Constants::WITHER)){
+
+  if (target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE && 
+    (source->has(Constants::WITHER) || source->has(Constants::INFECT))){
+    // Damage for WITHER or poison on creatures. This should probably go in replacement effects
     MTGCardInstance * _target = (MTGCardInstance *)target;
     for (int i = 0; i < damage; i++){
       _target->counters->addCounter(-1, -1);
     }
-  }else{//infect damage---------------------------------------------
-	 while(target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE && source->has(Constants::INFECT)){
-    MTGCardInstance * _target = (MTGCardInstance *)target;
-    for (int i = 0; i < damage; i++){
-      _target->counters->addCounter(-1, -1);
-	}return a;
-     }while(target->type_as_damageable == DAMAGEABLE_PLAYER && source->has(Constants::INFECT)){
-    MTGCardInstance * _target = (MTGCardInstance *)target;
-    for (int i = 0; i < damage; i++){
-		_target->poisonCount += 1;//this will be changed to poison counters.
-	 }return a;
-	 }//--------------------------------------------------
-	 //poison AND damage----------------------------------
-	 while(target->type_as_damageable == DAMAGEABLE_PLAYER && source->has(Constants::POISONTOXIC)){
-    MTGCardInstance * _target = (MTGCardInstance *)target;
-    for (int i = 0; i < damage; i++){
-	 a = target->dealDamage(1);	 
-	target->damageCount += 1;
-	 }
-     _target->poisonCount += 1;
-	 return a;
-     }
-	 	while(target->type_as_damageable == DAMAGEABLE_PLAYER && source->has(Constants::POISONTWOTOXIC)){
-    MTGCardInstance * _target = (MTGCardInstance *)target;
-    for (int i = 0; i < damage; i++){
-	 a = target->dealDamage(1);
-	 target->damageCount += 1;
-	 }
-     _target->poisonCount += 2;
-	 return a;
-		 }
-		 while(target->type_as_damageable == DAMAGEABLE_PLAYER && source->has(Constants::POISONTHREETOXIC)){
-    MTGCardInstance * _target = (MTGCardInstance *)target;
-    for (int i = 0; i < damage; i++){
-	 a = target->dealDamage(1);
-	 target->damageCount += 1;
-	 }
-     _target->poisonCount += 3;
-	 return a;
-     }//----------------------------------------------------------
- //return the left over amount after effects have been applied to them.
+
+  } else if (target->type_as_damageable == DAMAGEABLE_PLAYER && source->has(Constants::INFECT)) {
+    // Poison on player
+    Player * _target = (Player *)target;
+	  _target->poisonCount += damage;//this will be changed to poison counters.
+
+  } else if (target->type_as_damageable == DAMAGEABLE_PLAYER && 
+   ( source->has(Constants::POISONTOXIC) || source->has(Constants::POISONTWOTOXIC) || source->has(Constants::POISONTHREETOXIC) )) {
+     //Damage + 1, 2, or 3 poison counters on player
+    Player * _target = (Player *)target;
+    a = target->dealDamage(damage);	 
+    target->damageCount += damage;
+    if (source->has(Constants::POISONTOXIC)) {
+      _target->poisonCount += 1;
+    }else if (source->has(Constants::POISONTWOTOXIC)) {
+      _target->poisonCount += 2;
+    } else {
+      _target->poisonCount += 3;
+    }
+
+  } else {
+    // "Normal" case, 
+    //return the left over amount after effects have been applied to them.
      a = target->dealDamage(damage);
-	 target->damageCount += 1;
+	   target->damageCount += 1;
   }
+
   //Send (Damage/Replaced effect) event to listeners
   g->receiveEvent(e);
   return a;
@@ -211,7 +194,7 @@ int DamageStack::resolve(){
 }
 
 void DamageStack::Render(){
-  int currenty = y;
+  float currenty = y;
   for (int i= 0; i < mCount; i++){
     Damage * damage = (Damage*)mObjects[i];
     if (damage->state == NOT_RESOLVED){

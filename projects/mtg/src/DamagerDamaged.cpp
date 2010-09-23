@@ -69,21 +69,9 @@ void DamagerDamaged::Render(CombatStep mode)
     }
 
   char buf[6];
-  //  if (currentPlayer != damageSelecter){
-    /*    if (hasLethalDamage()){
-      mFont->DrawString("X",x,y);
-      }*/
     sprintf(buf, "%i", sumDamages());
     mFont->DrawString(buf, actX - 14 * actZ + 5, actY - 14 * actZ);
 
-    /*
-  }else{
-    mFont->SetColor(ARGB(255,0,0,255));
-    sprintf(buf, "%i", damageToDeal);
-    mFont->DrawString(buf,x+5, y+5);
-  }
-  mFont->SetColor(ARGB(255,255,255,255));
-  */
 }
 
 
