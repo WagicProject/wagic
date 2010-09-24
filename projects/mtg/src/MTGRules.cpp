@@ -1477,513 +1477,114 @@ HUDDisplay::~HUDDisplay(){
     a->isClone = 1;
     return a;
   }
-  //-------------------------------------------------------------------
-  //Affinity rule------------------------------------------------------
+ //Affinity rule------------------------------------------------------
 //this rule is for Affinity cards.
 
   MTGAffinityRule::MTGAffinityRule(int _id):MTGAbility(_id,NULL){};
   int MTGAffinityRule::receiveEvent(WEvent * event){
-    if (event->type == WEvent::CHANGE_ZONE){
+  if (event->type == WEvent::CHANGE_ZONE){
       WEventZoneChange * e = (WEventZoneChange *) event;
       MTGCardInstance * card = e->card->previous;
-
-//when cards with affinity enter you hand from anywhere a redux is applied to them for the artifacts in play.
-	  if(card && card->has(Constants::AFFINITYARTIFACTS)){
-        int ok = 0;
-        for (int i = 0; i < 2 ; i++){
+  if(e && card){
+	  int color = -1;
+	  string type = "";
+	  int ok = 0;
+	  for (int i = 0; i < 2 ; i++){
           Player * p = game->players[i];
-		  if (e->to == p->game->hand) ok = 3;//affinity card enters hand	 
+		  if (e->to == p->game->hand) ok = 1;//affinity card enters hand	 
+		  if (e->to == p->game->battlefield) ok = 2;//card enters play
+		  if (e->to == p->game->graveyard || e->to == p->game->hand || e->to == p->game->library || e->to == p->game->exile || e->to == p->game->stack || e->to == p->opponent()->game->battlefield) ok = 3;//card leaves play
 //---------
-		  if(ok == 3){//enters play from anywhere
-			  if (e->from == p->game->graveyard || e->from == p->game->hand || e->from == p->game->library || e->from == p->game->exile || e->from == p->game->stack || e->from == p->opponent()->game->battlefield || e->from == p->game->temp){
+//when cards with affinity enter you hand from anywhere a redux is applied to them for the artifacts in play.
+  if(ok == 1){//enters play from anywhere
+  if (e->from == p->game->graveyard || e->from == p->game->hand || e->from == p->game->library || e->from == p->game->exile || e->from == p->game->stack || e->from == p->opponent()->game->battlefield || e->from == p->game->temp){
+  MTGCardInstance * card = e->card->previous;
+  if(card && card->has(Constants::AFFINITYARTIFACTS)) {color = 0 ; type = "artifact";}
+  if(card && card->has(Constants::AFFINITYSWAMP)) {color = 0 ; type = "swamp";}
+  if(card && card->has(Constants::AFFINITYMOUNTAIN)) {color = 0 ; type = "mountain";}
+  if(card && card->has(Constants::AFFINITYPLAINS)) {color = 0 ; type = "plains";}
+  if(card && card->has(Constants::AFFINITYISLAND)) {color = 0 ; type = "island";}
+  if(card && card->has(Constants::AFFINITYFOREST)) {color = 0 ; type = "forest";}
+  if(card && card->has(Constants::AFFINITYGREENCREATURES)) {color = 1 ; type = "creature";}
         //--redux effect
 		MTGGameZone * z = card->controller()->game->battlefield;
 		int nbcards = z->nb_cards;
         for (int j = 0; j < nbcards; ++j){
           MTGCardInstance * c = z->cards[j];
 		  int check = e->card->getManaCost()->getConvertedCost();
-		  if (c->hasSubtype("artifact")){
+		  if (c->hasSubtype(type)){
 			  if( check > 0){
-			  e->card->getManaCost()->remove(0,1);//one less colorless to cast
+				  if(color > 0 && !c->hasColor(color)){//do nothing if its colored redux and the cards dont have the color
+				  }else{//do normal redux
+			      c->getManaCost()->remove(color,1);
+				  }//one less colorless to cast
 		  }
 		  }
 		}//--end of redux bracket
 		  }
-		  }
-//-------------
-		}
-	  }//this bracket end first redux artifacts
-	  //----------------------------------------
-	  //the following handles redux of land affinities.
-	    if(card && card->has(Constants::AFFINITYSWAMP)){
-        int ok = 0;
-        for (int i = 0; i < 2 ; i++){
-          Player * p = game->players[i];
-		  if (e->to == p->game->hand) ok = 4;//affinity card enters hand 
-//---------
-		  if(ok == 4){//enters play from anywhere
-			  if (e->from == p->game->graveyard || e->from == p->game->hand || e->from == p->game->library || e->from == p->game->exile || e->from == p->game->stack || e->from == p->opponent()->game->battlefield || e->from == p->game->temp){
+  }//if ok == 1
+//-------------maintaining cost----------------------------------------------------------------
+  if(ok == 2){//enters play from anywhere
+  if (e->from == p->game->graveyard || e->from == p->game->hand || e->from == p->game->library || e->from == p->game->exile || e->from == p->game->stack || e->from == p->opponent()->game->battlefield || e->from == p->game->temp){
         //--redux effect
-		MTGGameZone * z = card->controller()->game->battlefield;
-		int nbcards = z->nb_cards;
-        for (int j = 0; j < nbcards; ++j){
-          MTGCardInstance * c = z->cards[j];
-		  if (c->hasSubtype("swamp")){
-			  e->card->getManaCost()->remove(0,1);//one less colorless to cast
-		  }
-		}//--end of redux bracket
-		  }
-		  }
-//-------------
-		}
-	  }//this bracket end first redux swamp
-	  //----------------------------------------
-		  if(card && card->has(Constants::AFFINITYMOUNTAIN)){
-        int ok = 0;
-        for (int i = 0; i < 2 ; i++){
-          Player * p = game->players[i];
-		  if (e->to == p->game->hand) ok = 5;//affinity card enters hand	 
-//---------
-		  if(ok == 5){//enters play from anywhere
-			  if (e->from == p->game->graveyard || e->from == p->game->hand || e->from == p->game->library || e->from == p->game->exile || e->from == p->game->stack || e->from == p->opponent()->game->battlefield || e->from == p->game->temp){
-        //--redux effect
-		MTGGameZone * z = card->controller()->game->battlefield;
-		int nbcards = z->nb_cards;
-        for (int j = 0; j < nbcards; ++j){
-          MTGCardInstance * c = z->cards[j];
-		  if (c->hasSubtype("mountain")){
-			  e->card->getManaCost()->remove(0,1);//one less colorless to cast
-		  }
-		}//--end of redux bracket
-		  }
-		  }
-//-------------
-		}
-	  }//this bracket end first redux mountains
-	  //----------------------------------------
-		if(card && card->has(Constants::AFFINITYPLAINS)){
-        int ok = 0;
-        for (int i = 0; i < 2 ; i++){
-          Player * p = game->players[i];
-		  if (e->to == p->game->hand) ok = 6;//affinity card enters hand	 
-//---------
-		  if(ok == 6){//enters play from anywhere
-			  if (e->from == p->game->graveyard || e->from == p->game->hand || e->from == p->game->library || e->from == p->game->exile || e->from == p->game->stack || e->from == p->opponent()->game->battlefield || e->from == p->game->temp){
-        //--redux effect
-		MTGGameZone * z = card->controller()->game->battlefield;
-		int nbcards = z->nb_cards;
-        for (int j = 0; j < nbcards; ++j){
-          MTGCardInstance * c = z->cards[j];
-		  if (c->hasSubtype("plains")){
-			  e->card->getManaCost()->remove(0,1);//one less colorless to cast
-		  }
-		}//--end of redux bracket
-		  }
-		  }
-//-------------
-		}
-	  }//this bracket end first redux plains
-	  //----------------------------------------
-		  if(card && card->has(Constants::AFFINITYISLAND)){
-        int ok = 0;
-        for (int i = 0; i < 2 ; i++){
-          Player * p = game->players[i];
-		  if (e->to == p->game->hand) ok = 7;//affinity card enters hand
-//---------
-		  if(ok == 7){//enters play from anywhere
-			  if (e->from == p->game->graveyard || e->from == p->game->hand || e->from == p->game->library || e->from == p->game->exile || e->from == p->game->stack || e->from == p->opponent()->game->battlefield || e->from == p->game->temp){
-        //--redux effect
-		MTGGameZone * z = card->controller()->game->battlefield;
-		int nbcards = z->nb_cards;
-        for (int j = 0; j < nbcards; ++j){
-          MTGCardInstance * c = z->cards[j];
-		  if (c->hasSubtype("island")){
-			  e->card->getManaCost()->remove(0,1);//one less colorless to cast
-		  }
-		}//--end of redux bracket
-		  }
-		  }
-//-------------
-		}
-	  }//this bracket end first redux island
-	  //----------------------------------------
-	    if(card && card->has(Constants::AFFINITYFOREST)){
-        int ok = 0;
-        for (int i = 0; i < 2 ; i++){
-          Player * p = game->players[i];
-		  if (e->to == p->game->hand) ok = 8;//affinity card enters hand 
-//---------
-		  if(ok == 8){//enters play from anywhere
-			  if (e->from == p->game->graveyard || e->from == p->game->hand || e->from == p->game->library || e->from == p->game->exile || e->from == p->game->stack || e->from == p->opponent()->game->battlefield || e->from == p->game->temp){
-        //--redux effect
-		MTGGameZone * z = card->controller()->game->battlefield;
-		int nbcards = z->nb_cards;
-        for (int j = 0; j < nbcards; ++j){
-          MTGCardInstance * c = z->cards[j];
-		  if (c->hasSubtype("forest")){
-			  e->card->getManaCost()->remove(0,1);//one less colorless to cast
-		  }
-		}//--end of redux bracket
-		  }
-		  }
-//-------------
-		}
-	  }//this bracket end first redux forest
-	  //----------------------------------------
-	    if(card && card->has(Constants::AFFINITYGREENCREATURES)){
-        int ok = 0;
-        for (int i = 0; i < 2 ; i++){
-          Player * p = game->players[i];
-		  if (e->to == p->game->hand) ok = 21;//affinity card enters hand 
-//---------
-		  if(ok == 21){//enters play from anywhere
-			  if (e->from == p->game->graveyard || e->from == p->game->hand || e->from == p->game->library || e->from == p->game->exile || e->from == p->game->stack || e->from == p->opponent()->game->battlefield || e->from == p->game->temp){
-        //--redux effect
-		MTGGameZone * z = card->controller()->game->battlefield;
-		int nbcards = z->nb_cards;
-        for (int j = 0; j < nbcards; ++j){
-          MTGCardInstance * c = z->cards[j];
-		  if (c->hasSubtype("creature") && c->hasColor(1)){
-			  e->card->getManaCost()->remove(1,1);//one less colorless to cast
-		  }
-		}//--end of redux bracket
-		  }
-		  }
-//-------------
-		}
-	  }//this bracket end first redux greencreatures
-	  //----------------------------------------
-			
-
-
-		//section 2, maintaining proper manacost
-//---------this section takes care of increasing and reducing cost when artifacts enter or leave play
-	  if (card && card->hasSubtype("artifact")){
-        int ok = 0;
-        for (int i = 0; i < 2 ; i++){
-          Player * p = game->players[i];
-		  if (e->to == p->game->battlefield) ok = 1;//artifact enters play in your battlefield		  
-		  if (e->to == p->game->graveyard || e->to == p->game->hand || e->to == p->game->library || e->to == p->game->exile || e->to == p->game->stack || e->to == p->opponent()->game->battlefield) ok = 2;//artifact leaves play
-//---------above are the triggers "to" markers...
-		  if(ok == 1){//enters play from anywhere
-		  if (e->from == p->game->graveyard || e->from == p->game->hand || e->from == p->game->library || e->from == p->game->exile || e->from == p->game->stack || e->from == p->opponent()->game->battlefield || e->from == p->game->temp){
-        //--redux effect
-		MTGGameZone * z = card->controller()->game->hand;
-		int nbcards = z->nb_cards;
-        for (int j = 0; j < nbcards; ++j){
-          MTGCardInstance * c = z->cards[j];
-		  if (c->has(Constants::AFFINITYARTIFACTS)){
+  MTGGameZone * z = card->controller()->game->hand;
+  int nbcards = z->nb_cards;
+  int colored = 0;
+  string etype = "";
+  MTGCardInstance * card = e->card->previous;
+  if (card && card->hasSubtype("artifact")){etype = "art";}
+  if (card && card->hasSubtype("swamp")){etype = "swa";}
+  if (card && card->hasSubtype("mountain")){etype = "mou";}
+  if (card && card->hasSubtype("plains")){etype = "pla";}
+  if (card && card->hasSubtype("island")){etype = "isl";}
+  if (card && card->hasSubtype("forest")){etype = "for";}
+  if (card && card->hasSubtype("creature") && card->hasColor(1)){etype = "cre"; colored = 1;}
+  	  for (int j = 0; j < nbcards; ++j){
+		MTGCardInstance * c = z->cards[j]; 
+		if ((c->has(Constants::AFFINITYARTIFACTS) && etype == "art") || ( c->has(Constants::AFFINITYSWAMP) && etype == "swa") || ( c->has(Constants::AFFINITYMOUNTAIN) && etype == "mou") ||( c->has(Constants::AFFINITYPLAINS) && etype == "pla") || ( c->has(Constants::AFFINITYISLAND) && etype == "isl") || ( c->has(Constants::AFFINITYFOREST) && etype == "for") || ( c->has(Constants::AFFINITYGREENCREATURES) && etype == "cre")){ 
 			  if(c->getManaCost()->getConvertedCost() > 0){
-			  c->getManaCost()->remove(0,1);//one less colorless to cast
-			  }else{c->reduxamount += 1;}
-		  }
-		}//--end of redux bracket
-		  }
-		  }
-//---------
-		  if(ok == 2){//leave play from your battlefield
-          if (e->from == p->game->battlefield){
-	        //--
-		MTGGameZone * z = card->controller()->game->hand;
-		int nbcards = z->nb_cards;
-               //check my battlefield and opponents
-        for (int j = 0; j < nbcards; ++j){
-          MTGCardInstance * c = z->cards[j];
-		  if (c->has(Constants::AFFINITYARTIFACTS)){
-			  if(c->reduxamount > 0){
-				  c->reduxamount -= 1;}else{
-			  c->getManaCost()->add(0,1);
-				  }
-		  }
-		}  
-		//--
-		  }
-		  }
-//---------
-		}
-	  }//this bracket ends check for artifacts
-	  //----------------------------------------
-//the following maintains cost other then artifacts
-//----swamps
-	  if (card && card->hasSubtype("swamp")){
-        int ok = 0;
-        for (int i = 0; i < 2 ; i++){
-          Player * p = game->players[i];
-		  if (e->to == p->game->battlefield) ok = 9;//swamp enters play in your battlefield		  
-		  if (e->to == p->game->graveyard || e->to == p->game->hand || e->to == p->game->library || e->to == p->game->exile || e->to == p->game->stack || e->to == p->opponent()->game->battlefield) ok = 10;//artifact leaves play
-//---------above are the triggers "to" markers...
-		  if(ok == 9){//enters play from anywhere
-		  if (e->from == p->game->graveyard || e->from == p->game->hand || e->from == p->game->library || e->from == p->game->exile || e->from == p->game->stack || e->from == p->opponent()->game->battlefield || e->from == p->game->temp){
-        //--redux effect
-		MTGGameZone * z = card->controller()->game->hand;
-		int nbcards = z->nb_cards;
-        for (int j = 0; j < nbcards; ++j){
-          MTGCardInstance * c = z->cards[j];
-		  if (c->has(Constants::AFFINITYSWAMP)){
-			  if(c->getManaCost()->getConvertedCost() > 0){
-			  c->getManaCost()->remove(0,1);//one less colorless to cast
-			  }else{c->reduxamount += 1;}
-		  }
-		}//--end of redux bracket
-		  }
-		  }
-//---------
-		  if(ok == 10){//leave play from your battlefield
-          if (e->from == p->game->battlefield){
-	        //--
-		MTGGameZone * z = card->controller()->game->hand;
-		int nbcards = z->nb_cards;
-               //check my battlefield and opponents
-        for (int j = 0; j < nbcards; ++j){
-          MTGCardInstance * c = z->cards[j];
-		  if (c->has(Constants::AFFINITYSWAMP)){
-			  if(c->reduxamount > 0){ c->reduxamount -= 1;}
-			  else{
-			  c->getManaCost()->add(0,1);
+			  c->getManaCost()->remove(colored,1);//one less colorless to cast
+			  }else{
+				  c->reduxamount += 1;
 			  }
 		  }
-		}  
-		//--
-		  }
-		  }
-//---------
 		}
-	  }//this bracket ends check for swamps
-	  //----------------------------------------
-//----mountain
-	  if (card && card->hasSubtype("mountain")){
-        int ok = 0;
-        for (int i = 0; i < 2 ; i++){
-          Player * p = game->players[i];
-		  if (e->to == p->game->battlefield) ok = 11;//moutain enters play in your battlefield
-		  if (e->to == p->game->graveyard || e->to == p->game->hand || e->to == p->game->library || e->to == p->game->exile || e->to == p->game->stack || e->to == p->opponent()->game->battlefield) ok = 12;//artifact leaves play
-//---------above are the triggers "to" markers...
-		  if(ok == 11){//enters play from anywhere
-		  if (e->from == p->game->graveyard || e->from == p->game->hand || e->from == p->game->library || e->from == p->game->exile || e->from == p->game->stack || e->from == p->opponent()->game->battlefield || e->from == p->game->temp){
-        //--redux effect
-		MTGGameZone * z = card->controller()->game->hand;
-		int nbcards = z->nb_cards;
-        for (int j = 0; j < nbcards; ++j){
-          MTGCardInstance * c = z->cards[j];
-		  if (c->has(Constants::AFFINITYMOUNTAIN)){
-			  if(c->getManaCost()->getConvertedCost() > 0){
-			  c->getManaCost()->remove(0,1);//one less colorless to cast
-			  }else{c->reduxamount += 1;}
-		  }
-		}//--end of redux bracket
-		  }
-		  }
+	 }
+  }//--end of redux bracket ok == 2
 //---------
-		  if(ok == 12){//leave play from your battlefield
-          if (e->from == p->game->battlefield){
-	        //--
-		MTGGameZone * z = card->controller()->game->hand;
-		int nbcards = z->nb_cards;
-               //check my battlefield and opponents
-        for (int j = 0; j < nbcards; ++j){
-          MTGCardInstance * c = z->cards[j];
-		  if (c->has(Constants::AFFINITYMOUNTAIN)){
-			  if(c->reduxamount > 0){c->reduxamount -= 1;}
-			  else{
-			  c->getManaCost()->add(0,1);
-			  }
-		  }
-		}  
-		//--
-		  }
-		  }
-//---------
+if(ok == 3){//leave play from your battlefield
+if (e->from == p->game->battlefield){
+  int colored = 0;
+  MTGGameZone * z = card->controller()->game->hand;
+  int nbcards = z->nb_cards;
+  string etype = "";
+  MTGCardInstance * card = e->card->previous;
+  if (card && card->hasSubtype("artifact")){etype = "art";}
+  if (card && card->hasSubtype("swamp")){etype = "swa";}
+  if (card && card->hasSubtype("mountain")){etype = "mou";}
+  if (card && card->hasSubtype("plains")){etype = "pla";}
+  if (card && card->hasSubtype("island")){etype = "isl";}
+  if (card && card->hasSubtype("forest")){etype = "for";}
+  if (card && card->hasSubtype("creature") && card->hasColor(1)){etype = "cre"; colored = 1;}
+	  for (int j = 0; j < nbcards; ++j){
+		MTGCardInstance * c = z->cards[j]; 
+		if (c && ((c->has(Constants::AFFINITYARTIFACTS) && etype == "art") || ( c->has(Constants::AFFINITYSWAMP) && etype == "swa") || ( c->has(Constants::AFFINITYMOUNTAIN) && etype == "mou") ||( c->has(Constants::AFFINITYPLAINS) && etype == "pla") || ( c->has(Constants::AFFINITYISLAND) && etype == "isl") || ( c->has(Constants::AFFINITYFOREST) && etype == "for") || ( c->has(Constants::AFFINITYGREENCREATURES) && etype == "cre"))){ 
+			if(c->reduxamount > 0){ 
+				c->reduxamount -= 1;
+		}else{
+			c->getManaCost()->add(colored,1);
 		}
-	  }//this bracket ends check for mountains
-	  //----------------------------------------
-//----plains
-	  if (card && card->hasSubtype("plains")){
-        int ok = 0;
-        for (int i = 0; i < 2 ; i++){
-          Player * p = game->players[i];
-		  if (e->to == p->game->battlefield) ok = 13;//plains enters play in your battlefield
-		  if (e->to == p->game->graveyard || e->to == p->game->hand || e->to == p->game->library || e->to == p->game->exile || e->to == p->game->stack || e->to == p->opponent()->game->battlefield) ok = 14;//artifact leaves play
-//---------above are the triggers "to" markers...
-		  if(ok == 13){//enters play from anywhere
-		  if (e->from == p->game->graveyard || e->from == p->game->hand || e->from == p->game->library || e->from == p->game->exile || e->from == p->game->stack || e->from == p->opponent()->game->battlefield || e->from == p->game->temp){
-        //--redux effect
-		MTGGameZone * z = card->controller()->game->hand;
-		int nbcards = z->nb_cards;
-        for (int j = 0; j < nbcards; ++j){
-          MTGCardInstance * c = z->cards[j];
-		  if (c->has(Constants::AFFINITYPLAINS)){
-			 if(c->getManaCost()->getConvertedCost() > 0){
-			  c->getManaCost()->remove(0,1);//one less colorless to cast
-			 }else{c->reduxamount += 1;}
-		  }
-		}//--end of redux bracket
-		  }
-		  }
-//---------
-		  if(ok == 14){//leave play from your battlefield
-          if (e->from == p->game->battlefield){
-	        //--
-		MTGGameZone * z = card->controller()->game->hand;
-		int nbcards = z->nb_cards;
-               //check my battlefield and opponents
-        for (int j = 0; j < nbcards; ++j){
-          MTGCardInstance * c = z->cards[j];
-		  if (c->has(Constants::AFFINITYPLAINS)){
-			  if(c->reduxamount > 0){c->reduxamount -= 1;}
-			  else{
-			  c->getManaCost()->add(0,1);
-			  }
-		  }
-		}  
-		//--
-		  }
-		  }
-//---------
-		}
-	  }//this bracket ends check for plains
-	  //----------------------------------------
-//----island
-	  if (card && card->hasSubtype("island")){
-        int ok = 0;
-        for (int i = 0; i < 2 ; i++){
-          Player * p = game->players[i];
-		  if (e->to == p->game->battlefield) ok = 15;//island enters play in your battlefield
-		  
-		  if (e->to == p->game->graveyard || e->to == p->game->hand || e->to == p->game->library || e->to == p->game->exile || e->to == p->game->stack || e->to == p->opponent()->game->battlefield) ok = 16;//artifact leaves play
-//---------above are the triggers "to" markers...
-		  if(ok == 15){//enters play from anywhere
-		  if (e->from == p->game->graveyard || e->from == p->game->hand || e->from == p->game->library || e->from == p->game->exile || e->from == p->game->stack || e->from == p->opponent()->game->battlefield || e->from == p->game->temp){
-        //--redux effect
-		MTGGameZone * z = card->controller()->game->hand;
-		int nbcards = z->nb_cards;
-        for (int j = 0; j < nbcards; ++j){
-          MTGCardInstance * c = z->cards[j];
-		  if (c->has(Constants::AFFINITYISLAND)){
-			  if(c->getManaCost()->getConvertedCost() > 0){
-			  c->getManaCost()->remove(0,1);//one less colorless to cast
-			  }else{c->reduxamount += 1;}
-		  }
-		}//--end of redux bracket
-		  }
-		  }
-//---------
-		  if(ok == 16){//leave play from your battlefield
-          if (e->from == p->game->battlefield){
-	        //--
-		MTGGameZone * z = card->controller()->game->hand;
-		int nbcards = z->nb_cards;
-               //check my battlefield and opponents
-        for (int j = 0; j < nbcards; ++j){
-          MTGCardInstance * c = z->cards[j];
-		  if (c->has(Constants::AFFINITYISLAND)){
-			  if(c->reduxamount > 0){c->reduxamount  -= 1;}
-			  else{
-			  c->getManaCost()->add(0,1);
-			  }
-		  }
-		}  
-		//--
-		  }
-		  }
-//---------
-		}
-	  }//this bracket ends check for islands
-	  //----------------------------------------
-//----forest
-	  if (card && card->hasSubtype("forest")){
-        int ok = 0;
-        for (int i = 0; i < 2 ; i++){
-          Player * p = game->players[i];
-		  if (e->to == p->game->battlefield) ok = 17;//island enters play in your battlefield
-		  
-		  if (e->to == p->game->graveyard || e->to == p->game->hand || e->to == p->game->library || e->to == p->game->exile || e->to == p->game->stack || e->to == p->opponent()->game->battlefield) ok = 18;//artifact leaves play
-//---------above are the triggers "to" markers...
-		  if(ok == 17){//enters play from anywhere
-			  if (e->from == p->game->graveyard || e->from == p->game->hand || e->from == p->game->library || e->from == p->game->exile || e->from == p->game->stack || e->from == p->opponent()->game->battlefield || e->from == p->game->temp){
-        //--redux effect
-		MTGGameZone * z = card->controller()->game->hand;
-		int nbcards = z->nb_cards;
-        for (int j = 0; j < nbcards; ++j){
-          MTGCardInstance * c = z->cards[j];
-		  if (c->has(Constants::AFFINITYFOREST)){
-			  if(c->getManaCost()->getConvertedCost() > 0){
-			  c->getManaCost()->remove(0,1);//one less colorless to cast
-			  }else{c->reduxamount += 1;}
-		  }
-		}//--end of redux bracket
-		  }
-		  }
-//---------
-		  if(ok == 18){//leave play from your battlefield
-          if (e->from == p->game->battlefield){
-	        //--
-		MTGGameZone * z = card->controller()->game->hand;
-		int nbcards = z->nb_cards;
-               //check my battlefield and opponents
-        for (int j = 0; j < nbcards; ++j){
-          MTGCardInstance * c = z->cards[j];
-		  if (c->has(Constants::AFFINITYFOREST)){
-			  if(c->reduxamount > 0){c->reduxamount -= 1;}
-			  else{
-			  c->getManaCost()->add(0,1);
-			  }
-		  }
-		}  
-		//--
-		  }
-		  }
-//---------
-		}
-	  }//this bracket ends check for forest
-	  //----------------------------------------
-	  //----greencreatureaffinity
-	  if (card && card->hasSubtype("creature") && card->hasColor(1)){
-        int ok = 0;
-        for (int i = 0; i < 2 ; i++){
-          Player * p = game->players[i];
-		  if (e->to == p->game->battlefield) ok = 19;//island enters play in your battlefield
-		  
-		  if (e->to == p->game->graveyard || e->to == p->game->hand || e->to == p->game->library || e->to == p->game->exile || e->to == p->game->stack || e->to == p->opponent()->game->battlefield) ok = 20;//artifact leaves play
-//---------above are the triggers "to" markers...
-		  if(ok == 19){//enters play from anywhere
-			  if (e->from == p->game->graveyard || e->from == p->game->hand || e->from == p->game->library || e->from == p->game->exile || e->from == p->game->stack || e->from == p->opponent()->game->battlefield || e->from == p->game->temp){
-        //--redux effect
-		MTGGameZone * z = card->controller()->game->hand;
-		int nbcards = z->nb_cards;
-        for (int j = 0; j < nbcards; ++j){
-          MTGCardInstance * c = z->cards[j];
-		  if (c->has(Constants::AFFINITYGREENCREATURES)){
-			  if(c->getManaCost()->getConvertedCost() > 0){
-			  c->getManaCost()->remove(1,1);//one less colorless to cast
-			  }else{c->reduxamount += 1;}
-		  }
-		}//--end of redux bracket
-		  }
-		  }
-//---------
-		  if(ok == 20){//leave play from your battlefield
-          if (e->from == p->game->battlefield){
-	        //--
-		MTGGameZone * z = card->controller()->game->hand;
-		int nbcards = z->nb_cards;
-               //check my battlefield and opponents
-        for (int j = 0; j < nbcards; ++j){
-          MTGCardInstance * c = z->cards[j];
-		  if (c->has(Constants::AFFINITYGREENCREATURES)){
-			  if(c->reduxamount > 0){c->reduxamount -= 1;}
-			  else{
-				  c->getManaCost()->add(1,1);
-			  }
-		  }
-		}  
-		//--
-		  }
-		  }
-//---------
-		}
-	  }//this bracket ends check for greencreatures
-	  //----------------------------------------
-	}
+		   }
+		     }
+//-------------------------------
+   }
+}//---ok == 3
+//----------------------------------------
+		
+  }
+  }
+  return 0;
+  }
     return 0;
   }
   ostream& MTGAffinityRule::toString(ostream& out) const
@@ -1998,6 +1599,9 @@ HUDDisplay::~HUDDisplay(){
     return a;
   }
   //-------------------------------------------------------------------
+
+
+
   MTGTokensCleanup::MTGTokensCleanup(int _id):MTGAbility(_id, NULL){}
 
   int MTGTokensCleanup::receiveEvent(WEvent * e){
