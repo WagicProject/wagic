@@ -120,21 +120,6 @@ void GameObserver::nextGamePhase(){
   for (int i = 0; i < 2; ++i)
     players[i]->getManaPool()->init();
 
-  //  //End of turn--unearth clean up---leaving this as comment for code refference. origanal method i had for unearth now handled by sneakattackrule.
-  //if (currentGamePhase == Constants::MTG_PHASE_ENDOFTURN) {
-	 // GameObserver *game = game->GetInstance();
-  //    Player * p = game->currentPlayer;
-  //    MTGGameZone * z = p->game->inPlay;
-  //    for (int i= 0; i < z->nb_cards; i++){
-  //      MTGCardInstance * card = z->cards[i];
-		//if (card->has(Constants::UNEARTH)) {
-		//	for(i = z->nb_cards; i > -1; i--){
-		//		card->controller()->game->putInExile(card);
-		//}
-	 // }
-  //  }
-  //}
-
   if (currentGamePhase == Constants::MTG_PHASE_AFTER_EOT){
     //Auto Hand cleaning, in case the player didn't do it himself
 	  while(currentPlayer->game->hand->nb_cards > 7 && currentPlayer->nomaxhandsize < 1)

@@ -32,7 +32,6 @@ void DuelLayers::init(){
   action->Add(NEW MTGAffinityRule(-1));
   action->Add(NEW MTGUnearthRule(-1));
   action->Add(NEW MTGCantCasterstart(-1));
-  action->Add(NEW MTGCantCastercheck(-1));
   action->Add(NEW MTGSneakAttackRule(-1));
   action->Add(NEW MTGLifelinkRule(-1));
   action->Add(NEW MTGDeathtouchRule(-1));

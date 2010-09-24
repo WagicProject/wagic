@@ -116,14 +116,6 @@ class MTGCantCasterstart:public MTGAbility{
   int testDestroy();
   virtual MTGCantCasterstart * clone() const;
 };
-class MTGCantCastercheck:public MTGAbility{
- public:
-  MTGCantCastercheck(int _id);
-  int receiveEvent(WEvent * event);
-  virtual ostream& toString(ostream& out) const;
-  int testDestroy();
-  virtual MTGCantCastercheck * clone() const;
-};
 //affinity rules
 class MTGAffinityRule:public MTGAbility{
  public:
