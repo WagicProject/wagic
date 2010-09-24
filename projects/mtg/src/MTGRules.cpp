@@ -1514,7 +1514,7 @@ HUDDisplay::~HUDDisplay(){
 		  int check = e->card->getManaCost()->getConvertedCost();
 		  if (c->hasSubtype(type)){
 			  if( check > 0){
-				  if(color > 0 && !c->hasColor(color)){//do nothing if its colored redux and the cards dont have the color
+				  if(color > 0 && !c->getManaCost()->hasColor(color)){//do nothing if its colored redux and the cards dont have the color
 				  }else{//do normal redux
 			      c->getManaCost()->remove(color,1);
 				  }//one less colorless to cast
