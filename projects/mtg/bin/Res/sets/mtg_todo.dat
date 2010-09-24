@@ -1016,7 +1016,7 @@ toughness=0
 [card]
 name=Arcbound Wanderer
 text=Modular - Sunburst (This enters the battlefield with a +1/+1 counter on it for each color of mana spent to cast it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
-mana={6}
+mana={3}
 type=Artifact Creature
 subtype=Golem
 power=0
@@ -2098,8 +2098,6 @@ type=Artifact
 [/card]
 [card]
 name=Baton of Morale
-auto={2}:banding target(creature)
-#banding not supported in Wagic 0.9
 text={2}: Target creature gains banding until end of turn. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding a player controls are blocking or being blocked by a creature, that player divides that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
 mana={2}
 type=Artifact
@@ -15431,13 +15429,17 @@ toughness=1
 [/card]
 [card]
 name=Infused Arrows
+abilities=sunburst
+auto=counter(0/0,sunburst,charge)
+auto=this(counter{0/0.1.Charge}) {C(0/0,-1,Charge)}{T}:-1/-1 target(creature)
+auto=this(counter{0/0.2.Charge}) {C(0/0,-2,Charge)}{T}:-2/-2 target(creature)
+auto=this(counter{0/0.3.Charge}) {C(0/0,-3,Charge)}{T}:-3/-3 target(creature)
 text=Sunburst (This enters the battlefield with a charge counter on it for each color of mana spent to cast it.) -- {T}, Remove X charge counters from Infused Arrows: Target creature gets -X/-X until end of turn.
 mana={4}
 type=Artifact
 [/card]
 [card]
 name=Inheritance
-auto=@movedto(creature|graveyard) from(Battlefield):may {3}:draw:1 controller #hardcodable similar to RV cards (when put in play you may pay {1} type)
 text=Whenever a creature is put into a graveyard from the battlefield, you may pay {3}. If you do, draw a card.
 mana={W}
 type=Enchantment

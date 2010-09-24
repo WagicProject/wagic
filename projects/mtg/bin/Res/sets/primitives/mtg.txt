@@ -248,6 +248,17 @@ mana={6}{B}
 type=Sorcery
 [/card]
 [card]
+name=Abuna Acolyte
+auto={T}:prevent:1 target(creature,player)
+auto={T}:prevent:2 target(creature[artifact])
+text={T}: Prevent the next 1 damage that would be dealt to target creature or player this turn. -- {T}: Prevent the next 2 damage that would be dealt to target artifact creature this turn.
+mana={1}{W}
+type=Creature
+subtype=Cat Cleric
+power=1
+toughness=1
+[/card]
+[card]
 name=Abyssal Nocturnus
 auto=@movedTo(*|opponentgraveyard) from(opponenthand):2/2 ueot
 auto=@movedTo(*|opponentgraveyard) from(opponenthand):fear ueot
@@ -262,7 +273,7 @@ toughness=2
 name=Abyssal Persecutor
 abilities=flying,trample,cantwin
 text=Flying, trample -- You can't win the game and your opponents can't lose the game.
-mana={2}{B]{B}
+mana={2}{B}{B}
 type=Creature
 subtype=Demon
 power=6
@@ -293,6 +304,16 @@ mana={3}{R}{D}
 type=Sorcery
 [/card]
 [card]
+name=Accorder's Shield
+auto={3}:equip
+auto=0/3
+auto=vigilance
+text=Equipped creature gets +0/+3 and vigilance. -- Equip {3}
+mana={0}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
 name=Accumulated Knowledge
 auto=draw:1
 auto=foreach(Accumulated Knowledge|graveyard) draw:1
@@ -316,6 +337,17 @@ auto=destroy all(forest)
 text=Destroy all Forests.
 mana={3}{U}
 type=Sorcery
+[/card]
+[card]
+name=Acid Web Spider
+abilities=reach
+auto=destroy target(equipment)
+text=Reach -- When Acid Web Spider enters the battlefield, you may destroy target Equipment.
+mana={3}{G}{G}
+type=Creature
+subtype=Spider
+power=3
+toughness=5
 [/card]
 [card]
 name=Acidic Slime
@@ -1089,6 +1121,15 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Alpha Tyrranax
+text=
+mana={4}{G}{G}
+type=Creature
+subtype=Beast
+power=6
+toughness=5
+[/card]
+[card]
 name=Altar of Bone
 auto=moveTo(myhand) target(Creature|myLibrary)
 text=As an additional cost to cast Altar of Bone, sacrifice a creature. -- Search your library for a creature card, reveal that card, and put it into your hand. Then shuffle your library.
@@ -1439,7 +1480,7 @@ toughness=1
 [/card]
 [card]
 name=Ancient Kavu
-auto={2}:transforms(,arifact) ueot
+auto={2}:transforms(,artifact) ueot
 text={2}: Ancient Kavu becomes colorless until end of turn.
 mana={3}{R}
 type=Creature
@@ -2015,6 +2056,15 @@ type=Creature
 subtype=Elemental Ox
 power=5
 toughness=1
+[/card]
+[card]
+name=Arc Trail
+target=creature,player
+auto=damage:2
+auto=damage:1 target(creature,player)
+text=Arc Trail deals 2 damage to target creature or player and 1 damage to another target creature or player.
+mana={1}{R}
+type=Sorcery
 [/card]
 [card]
 name=Arcades Sabboth
@@ -2636,6 +2686,14 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Asceticism
+auto=lord(creature|mybattlefield) opponentshroud
+auto={1}{G}:regenerate target(creature)
+text=Creatures you control can't be the target of spells or abilities your opponents control. -- {1}{G}: Regenerate target creature.
+mana={3}{G}{G}
+type=Enchantment
+[/card]
+[card]
 name=Asha's Favor
 target=creature
 auto=flying
@@ -2762,6 +2820,14 @@ type=Creature
 subtype=Griffin
 power=3
 toughness=2
+[/card]
+[card]
+name=Assault Strobe
+target=creature
+auto=double strike
+text=Target creature gains double strike until end of turn. (It deals both first strike and regular combat damage.) 
+mana={R}
+type=Sorcery
 [/card]
 [card]
 name=Assault Zeppelid
@@ -2955,6 +3021,16 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Auriok Edgewright
+auto=aslongas(artifact|mybattlefield) double strike >2
+text=Metalcraft - Auriok Edgewright has double strike as long as you control three or more artifacts.
+mana={W}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+[/card]
+[card]
 name=Auriok Glaivemaster
 auto=this(equip > 0) 1/1
 auto=this(equip > 0) first strike
@@ -2974,6 +3050,17 @@ type=Creature
 subtype=Human Soldier
 power=2
 toughness=4
+[/card]
+[card]
+name=Auriok Sunchaser
+auto=aslongas(artifact|mybattlefield) 2/2 >2
+auto=aslongas(artifact|mybattlefield) flying >2
+text=Metalcraft -  As long as you control three or more artifacts, Auriok Edgewright gets +2/+2 and has flying.
+mana={1}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
 [/card]
 [card]
 name=Auriok Transfixer
@@ -3823,6 +3910,15 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Barbed Battlegear
+auto={2}:equip
+auto=4/-1
+text=Equipped creature gets +4/-1. -- Equip {2}
+mana={3}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
 name=Barbed Sliver
 auto=lord(sliver) {2}:1/0
 text=All Sliver creatures have "{2}: This creature gets +1/+0 until end of turn."
@@ -3892,6 +3988,16 @@ type=Creature
 subtype=Vampire
 power=3
 toughness=2
+[/card]
+[card]
+name=Barrage Ogre
+auto={T}{S(artifact|myBattlefield)}:damage:2 target(creature,player)
+text={T}, Sacrifice an artifact: Barrage Ogre deals 2 damage to target creature or player.
+mana={3}{R}{R}
+type=Creature
+subtype=Ogre Warrior
+power=3
+toughness=3
 [/card]
 [card]
 name=Barreling Attack
@@ -4422,6 +4528,17 @@ power=6
 toughness=6
 [/card]
 [card]
+name=Bellowing Tanglewurm
+abilities=intimidate
+auto=lord(other creature[green]|myBattlefield) intimidate
+text=Intimidate (This creature can't be blocked except by artifact creatures and/or creatures that share a color with it.) -- Other green creatures you control have initimidate.
+mana={3}{G}{G}
+type=Creature
+subtype=Wurm
+power=4
+toughness=4
+[/card]
+[card]
 name=Beloved Chaplain
 auto=protection from(creature)
 text=Protection from creatures
@@ -4771,6 +4888,23 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Blackcleave Cliffs
+auto=aslongas(other land|myBattlefield) tap >2 oneshot 
+auto={T}:Add {B}
+auto={T}:Add {R}
+type=Land
+[/card]
+[card]
+name=Blackcleave Goblin
+abilities=haste,infect
+text=Haste --  Infect (This creature deals damage to creatures in form of -1/-1 counters and to players in form of poison counters.)
+mana={3}{B}
+type=Creature
+subtype=Goblin Zombie
+power=2
+toughness=1
+[/card]
+[card]
 name=Blade Sliver
 auto=lord(sliver) 1/0
 text=All Sliver creatures get +1/+0.
@@ -4787,6 +4921,16 @@ type=Creature
 subtype=Cat Rebel
 power=3
 toughness=1
+[/card]
+[card]
+name=Bladed Pinions
+auto={2}:equip
+auto=flying
+auto=first strike
+text=Equipped creature has flying and first strike. -- Equip {2}
+mana={2}
+type=Artifact
+subtype=Equipment
 [/card]
 [card]
 name=Blademane Baku
@@ -4825,6 +4969,17 @@ type=Legendary Creature
 subtype=Zombie Dragon
 power=4
 toughness=4
+[/card]
+[card]
+name=Blade-Tribe Berserkers
+auto=aslongas(artifact|myBattlefield) 3/3 >2 ueot oneshot
+auto=aslongas(artifact|myBattlefield) haste >2 ueot oneshot
+text=Metalcraft - When enters Blade-Tribe Berserkers the battlefield, if you control three or more artifacts, Blade-Tribe Berserkers gets +3/+3 und gains haste until end of turn.
+mana={3}{R}
+type=Creature
+subtype=Human Berserker
+power=3
+toughness=3
 [/card]
 [card]
 name=Blanchwood Armor
@@ -4920,6 +5075,16 @@ power=5
 toughness=6
 [/card]
 [card]
+name=Bleak Coven Vampires
+auto=aslongas(artifact|myBattlefield) life:4 opponent && life:4 controller >2 oneshot
+text=Metalcraft - When Bleak Coven Vampires enters the battlefield, if you control three or more artifacts, target player loses 4 life and you gain 4 life.
+mana={3}{B}{B}
+type=Creature
+subtype=Vampire Warrior
+power=4
+toughness=3
+[/card]
+[card]
 name=Blessed Orator
 auto=lord(creature|myBattlefield) 0/1 other
 text=Other creatures you control get +0/+1.
@@ -4980,6 +5145,17 @@ text=Enchant land -- When enchanted land becomes tapped, destroy it.
 mana={B}{B}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Blight Mamba
+abilities=infect
+auto={1}{G}:regenerate
+text=Infect -- {1}{G}: Regenerate Blight Mamba.
+mana={1}{G}
+type=Creature
+subtype=Snake
+power=1
+toughness=1
 [/card]
 [card]
 name=Blight Sickle
@@ -5123,6 +5299,17 @@ type=Creature
 subtype=Insect
 power=1
 toughness=1
+[/card]
+[card]
+name=Blistergrub
+abilities=swampwalk
+auto=@movedTo(this|graveyard) from(battlefield):life-2 opponent
+text=Metalcraft - When Bleak Coven Vampires enters the battlefield, if you control three or more artifacts, target player loses 4 life and you gain 4 life.
+mana={2}{B}
+type=Creature
+subtype=Horror
+power=2
+toughness=2
 [/card]
 [card]
 name=Blistering Barrier
@@ -5530,6 +5717,14 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Blunt the Assault
+auto=preventAllCombatDamage ueot
+auto=foreach(creature|battlefield) life:1
+text=You gain 1 life for each creature on the battlefield. Prevent all combat damage that would be dealt this turn.
+mana={3}{G}
+type=Instant
+[/card]
+[card]
 name=Blurred Mongoose
 abilities=shroud,nofizzle
 text=Blurred Mongoose can't be countered. -- Shroud (This permanent can't be the target of spells or abilities.)
@@ -5892,6 +6087,16 @@ auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Bonded Fetch}>
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111145
 type=nothing
+[/card]
+[card]
+name=Bonds of Quicksilver
+abilities=flash
+target=creature
+auto=doesnotuntap
+text=Flash -- Enchant creature -- Enchanted creature doesn't untap during its controller's untap step.
+mana={3}{U}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Bone Flute
@@ -7397,6 +7602,16 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Carapace Forger
+auto=aslongas(artifact|mybattlefield) 2/2 >2
+text=Metalcraft - Carapace Forger gets +2/+2 as long as you control three or more artifacts.
+mana={1}{G}
+type=Creature
+subtype=Elf Artificer
+power=2
+toughness=2
+[/card]
+[card]
 name=Caravan Escort
 auto={2}:counter(0/0,1,Level Up) asSorcery 
 auto=this(counter{0/0.1.Level Up}) 1/1
@@ -7465,6 +7680,18 @@ power=5
 toughness=4
 [/card]
 [card]
+name=Carnifex Demon
+abilities=flying
+auto=counter(-1/-1,2)
+auto={B}{C(-1/-1,-1)}:counter(-1/-1) all(other creature)
+text=Flying -- Carnifex Demon enters the battlefield with two -1/-1 counters on it. -- {B}, Remove a -1/-1 counter from Carnifex Demon: Put a -1/-1 counter on each other creature.
+mana={4}{B}{B}
+type=Creature
+subtype=Demon
+power=6
+toughness=6
+[/card]
+[card]
 name=Carnival of Souls
 auto=@movedTo(creature|battlefield):life:-1 controller
 auto=@movedTo(creature|battlefield):add{B} controller
@@ -7512,6 +7739,13 @@ type=Creature
 subtype=Insect
 power=0
 toughness=1
+[/card]
+[card]
+name=Carrion Call
+auto=token(Insect,Crature Insect,1/1,infect,green)*2
+text=Put two 1/1 green Insect creature tokens with infect onto the battlefield. (They deal damage to creatures in form of -1/-1 counters and to players in form of poison counters.)
+mana={3}{G}
+type=Instant
 [/card]
 [card]
 name=Carrion Feeder
@@ -8218,7 +8452,7 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Champion'S Drake
+name=Champion's Drake
 abilities=flying
 auto=aslongas(creature[counter{0/0.3.Level Up}]|myBattlefield) 3/3
 text=Flying -- Champion's Drake gets +3/+3 as long as you control a creature with three or more level counters on it.
@@ -8532,6 +8766,17 @@ mana={3}
 type=Artifact
 [/card]
 [card]
+name=Chimeric Mass
+auto=counter(0/0,X,Charge)
+auto=thisforeach(counter{0/0.1.Charge}) 1/1
+auto={1}:transforms(Artifact Creature Construct,Artifact) ueot
+text=Chimeric Mass enters the battlefield with X charge counters. -- {1}: Until end of turn, Chimeric Mass becomes a Construct artifact creature with "This creature's power and toughness are each equal to the number of charge counters on it."
+mana={X}
+type=Artifact
+power=0
+toughness=0
+[/card]
+[card]
 name=Chimeric Sphere
 auto={2}:becomes(Construct Artifact Creature,2/1,flying) ueot
 auto={2}:becomes(Construct Artifact Creature,3/2) ueot
@@ -8602,6 +8847,16 @@ auto=@movedTo(this|graveyard) from(myBattlefield):draw:1 controller
 text={1}, {T}, Sacrifice Chromatic Star: Add one mana of any color to your mana pool. -- When Chromatic Star is put into a graveyard from the battlefield, draw a card.
 mana={1}
 type=Artifact
+[/card]
+[card]
+name=Chrome Steed
+auto=aslongas(artifact|mybattlefield) 2/2 >2
+text=Metalcraft - Chrome Steed gets +2/+2 as long as you control three or more artifacts.
+mana={4}
+type=Artifact Creature
+subtype=Horse
+power=2
+toughness=2
 [/card]
 [card]
 name=Chromium
@@ -9808,6 +10063,16 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Contagious Nim
+abilities=Infect
+text=Infect (This creature deals damage to creatures in form of -1/-1 counters and to players in form of poison counters.)
+mana={2}{B}
+type=Creature
+subtype=Zombie
+power=2
+toughness=2
+[/card]
+[card]
 name=Contemplation
 auto=@movedTo(*|mystack):life:1
 text=Whenever you cast a spell, you gain 1 life.
@@ -9896,6 +10161,13 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Copperline Gorge
+auto=aslongas(other land|myBattlefield) tap <3 oneshot 
+auto={T}:Add {R}
+auto={T}:Add {G}
+type=Land
+[/card]
+[card]
 name=Coral Atoll
 auto=tap
 auto=aslongas(island[-tapped]|mybattlefield) moveto(myhand) target(island[-tapped]|mybattlefield) oneshot
@@ -9973,6 +10245,17 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Corpse Cur
+abilities=infect
+auto=@movedTo(this|myBattlefield):moveTo(ownerhand) target(creature[infect]|mygraveyard)
+text=Infect (This creature deals damage to creatures in form of -1/-1 counters and to players in form of poison counters.) -- When Corpse Cur enters the battlefield, you may return target creature card with infect from your graveyard to you hand.
+mana={4}
+type=Artifact Creature
+subtype=Hound
+power=2
+toughness=2
+[/card]
+[card]
 name=Corpsehatch
 target=creature[-black]
 auto=destroy
@@ -10009,6 +10292,16 @@ type=Creature
 subtype=Human Advisor
 power=2
 toughness=2
+[/card]
+[card]
+name=Corrupted Harvester
+auto={B}{S(creature|myBattlefield)}:regenerate
+text={B}, Sacrifice a creature: Regenerate Corrupted Harvester.
+mana={4}{B}{B}
+type=Creature
+subtype=Horror
+power=6
+toughness=3
 [/card]
 [card]
 name=Corrupted Roots
@@ -10727,6 +11020,14 @@ power=4
 toughness=3
 [/card]
 [card]
+name=Culling Dais
+auto={T}{S(creature|mybattlefield)}:counter(0/0,1,Charge)
+auto={1}{S}:thisforeach(counter{0/0.1.Charge}) draw:1
+text={T}, Sacrifice a creature: Put a charge counter on Culling Dais. -- {1}, Sacrifice Culling Dais: Draw a card for each charge counter on Culling Dais.
+mana={2}
+type=Artifact
+[/card]
+[card]
 name=Culling Sun
 auto=destroy all(creature[manacost<=3])
 text=Destroy each creature with converted mana cost 3 or less.
@@ -10864,6 +11165,16 @@ type=Creature
 subtype=Elf Shaman
 power=2
 toughness=2
+[/card]
+[card]
+name=Cystbearer
+abilities=infect
+text=Infect (This creature deals damage to creatures in form of -1/-1 counters and to players in form of poison counters.)
+mana={2}{G}
+type=Creature
+subtype=Beast
+power=2
+toughness=3
 [/card]
 [card]
 name=Cytoplast Root-Kin
@@ -11242,6 +11553,34 @@ mana={B}
 type=Instant
 [/card]
 [card]
+name=Darkslick Drake
+abilities=flying
+auto=@movedTo(this|graveyard) from(mybattlefield):draw:1
+text=Flying (This creature can't be blocked except by creatures with flying or reach.) -- When Darkslick Drake is put into a graveyard from the battlefield, draw a card.
+mana={2}{U}{U}
+type=Creature
+subtype=Drake
+power=2
+toughness=4
+[/card]
+[card]
+name=Darkslick Shores
+auto=aslongas(other land|myBattlefield) tap >2 oneshot 
+auto={T}:Add {U}
+auto={T}:Add {B}
+type=Land
+[/card]
+[card]
+name=Darksteel Axe
+abilities=indestructible
+auto={2}:equip
+auto=2/0
+text=Darksteel Axe is indestructible. -- Equipped creature gets +2/+0. -- Equip {2} ({1}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
+mana={1}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
 name=Darksteel Brute
 abilities=indestructible
 auto={3}:becomes(Beast Artifact Creature,2/2) ueot
@@ -11307,12 +11646,43 @@ mana={3}
 type=Artifact
 [/card]
 [card]
+name=Darksteel Juggernaut
+abilities=mustattack,indestructible
+auto=foreach(artifact|mybattlefield) 1/1
+text=Darksteel Juggernaut's power and toughness are equal to the number of artifacts you control. -- Darksteel Juggernaut is indestructible and attacks each turn if able.
+mana={5}
+type=Artifact Creature
+subtype=Juggernaut
+power=*
+toughness=*
+[/card]
+[card]
+name=Darksteel Myr
+abilities=indestructible
+text=Darksteel Myr is indestructible. ("Destroy" effects and lethal damage don't destroy it.)
+mana={3}
+type=Artifact Creature
+subtype=Myr
+power=0
+toughness=1
+[/card]
+[card]
 name=Darksteel Reactor
 abilities=indestructible
 auto=@each myupkeep:counter(0/0,1,charge) all(this) && this(counter{0/0.20.charge})>=wingame
 text=Darksteel Reactor is indestructible. ("Destroy" effects and lethal damage don't destroy it.) At the beginning of your upkeep, you may put a charge counter on Darksteel Reactor. When Darksteel Reactor has twenty or more charge counters on it, you win the game.
 mana={4}
 type=Artifact
+[/card]
+[card]
+name=Darksteel Sentinel
+abilities=flash,vigilance,indestructible
+text=Flash (You may cast this spell any time you could cast an instant.) -- Vigilance -- Darksteel Sentinel is indestructible. ("Destroy" effects and lethal damage don't destroy it.)
+mana={6}
+type=Artifact Creature
+subtype=Golem
+power=3
+toughness=3
 [/card]
 [card]
 name=Darkwatch Elves
@@ -13910,6 +14280,16 @@ power=3
 toughness=1
 [/card]
 [card]
+name=Dross Hopper
+auto={S(creature|myBattlefield)}:flying
+text=Sacrifice a creature: Dross Hopper gains flying until end of turn. 
+mana={1}{B}
+type=Creature
+subtype=Insect Horror
+power=2
+toughness=1
+[/card]
+[card]
 name=Drove of Elves
 abilities=opponentshroud
 auto=foreach(*[green]|myBattlefield) 1/1
@@ -15865,6 +16245,20 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Etched Champion
+auto=aslongas(artifact|mybattlefield) protection from white >2
+auto=aslongas(artifact|mybattlefield) protection from blue >2
+auto=aslongas(artifact|mybattlefield) protection from black >2
+auto=aslongas(artifact|mybattlefield) protection from red >2
+auto=aslongas(artifact|mybattlefield) protection from green >2
+text=Metalcraft - Etched Champion has protection from all colors as long as you control three or more artifacts.
+mana={3}
+type=Artifact Creature
+subtype=Soldier
+power=2
+toughness=2
+[/card]
+[card]
 name=Eternal Dragon
 abilities=flying
 autohand={2}{S}:moveTo(myhand) target(plains|mylibrary)
@@ -16245,6 +16639,14 @@ mana={2}{B}
 type=Instant
 [/card]
 [card]
+name=Exsanguinate
+auto=life:-X opponent
+auto=life:X controller
+text=Each opponent loses X life. you gain life equal to the amount lost this way.
+mana={X}{B}{B}
+type=Sorcery
+[/card]
+[card]
 name=Extinguish
 target=sorcery|stack
 auto=fizzle
@@ -16337,6 +16739,28 @@ text=Destroy target non-Elf creature.
 mana={2}{B}
 type=Tribal Instant
 subtype=Elf
+[/card]
+[card]
+name=Ezuri's Brigade
+auto=aslongas(artifact|mybattlefield) 4/4 >2
+auto=aslongas(artifact|mybattlefield) trample >2
+text=Metalcraft - As long as you control three or more artifacts, Ezuri's Brigade gets +4/+4 and has trample.
+mana={2}{G}{G}
+type=Creature
+subtype=Elf Warrior
+power=4
+toughness=4
+[/card]
+[card]
+name=Ezuri, Renegade Leader
+auto={G}:regenerate target(other elf)
+auto={2}{G}{G}{G}:lord(elf|mybattlefield) 3/3 && lord(elf|mybattlefield) trample ueot
+text={G}: Regenerate another target Elf. -- {2}{G}{G}{G}: Elf creatures you control get +3/+3 and gain trample until end of turn.
+mana={1}{G}{G}
+type=Legendary Creature
+subtype=Elf Warrior
+power=2
+toughness=2
 [/card]
 [card]
 name=Fable of Wolf and Owl
@@ -16898,6 +17322,16 @@ autolibrary=all(*|myhand) resetcost
 text=Creature spells cost {2} more to cast.
 mana={6}
 type=Artifact
+[/card]
+[card]
+name=Ferrovore
+auto={R}{S(artifact|myBattlefield)}:3/0
+text={R}, sacrifice an artifact: Ferrovore gets +3/+3 until end of turn.
+mana={2}{R}
+type=Creature
+subtype=Beast
+power=2
+toughness=2
 [/card]
 [card]
 name=Fervent Charge
@@ -17596,6 +18030,16 @@ type=Creature
 subtype=Elemental Spirit
 power=2
 toughness=3
+[/card]
+[card]
+name=Flameborn Hellion
+abilities=haste,mustattack
+text=Haste -- Flameborn Hellion attacks each turn if able.
+mana={5}{R}
+type=Creature
+subtype=Hellion
+power=5
+toughness=4
 [/card]
 [card]
 name=Flamebreak
@@ -18722,6 +19166,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Fume Spitter
+auto={S}:counter(-1/-1,1) target(creature)
+text=Sacrifice Fume Spitter: Put a -1/-1 counter on target creature.
+mana={B}
+type=Creature
+subtype=Horror
+power=1
+toughness=1
+[/card]
+[card]
 name=Fungal Bloom
 text={G}{G}: Put a spore counter on target Fungus.
 mana={G}{G}
@@ -18996,6 +19450,15 @@ type=Legendary Creature
 subtype=Horror
 power=5
 toughness=5
+[/card]
+[card]
+name=Galvanic Blast
+target=creature,player
+auto=damage:2
+auto=aslongas(artifact|myBattlefield) damage:2 >2
+text=Galvanic Blast deals 2 damage to target creature or player. -- Metalcraft - Galvanic Blast deals 4 damage to that creature or player instead if you control three or more artifacts.
+mana={R}
+type=Instant
 [/card]
 [card]
 name=Galvanic Key
@@ -19328,6 +19791,28 @@ mana={4}
 type=Artifact
 [/card]
 [card]
+name=Geth, Lord of the Vault 
+abilities=intimidate
+auto={0}{B}:name(X = 0) && moveTo(myBattlefield) target(*[artifact;creature;manacost=0]|opponentgraveyard) && tap && deplete:0 opponent
+auto={1}{B}:name(X = 1) && moveTo(myBattlefield) target(*[artifact;creature;manacost=1]|opponentgraveyard) && tap && deplete:1 opponent
+auto={2}{B}:name(X = 2) && moveTo(myBattlefield) target(*[artifact;creature;manacost=2]|opponentgraveyard) && tap && deplete:2 opponent
+auto={3}{B}:name(X = 3) && moveTo(myBattlefield) target(*[artifact;creature;manacost=3]|opponentgraveyard) && tap && deplete:3 opponent
+auto={4}{B}:name(X = 4) && moveTo(myBattlefield) target(*[artifact;creature;manacost=4]|opponentgraveyard) && tap && deplete:4 opponent
+auto={5}{B}:name(X = 5) && moveTo(myBattlefield) target(*[artifact;creature;manacost=5]|opponentgraveyard) && tap && deplete:5 opponent
+auto={6}{B}:name(X = 6) && moveTo(myBattlefield) target(*[artifact;creature;manacost=6]|opponentgraveyard) && tap && deplete:6 opponent
+auto={7}{B}:name(X = 7) && moveTo(myBattlefield) target(*[artifact;creature;manacost=7]|opponentgraveyard) && tap && deplete:7 opponent
+auto={8}{B}:name(X = 8) && moveTo(myBattlefield) target(*[artifact;creature;manacost=8]|opponentgraveyard) && tap && deplete:8 opponent
+auto={9}{B}:name(X = 9) && moveTo(myBattlefield) target(*[artifact;creature;manacost=9]|opponentgraveyard) && tap && deplete:9 opponent
+auto={10}{B}:name(X = 10) && moveTo(myBattlefield) target(*[artifact;creature;manacost=10]|opponentgraveyard) && tap && deplete:10 opponent
+auto={11}{B}:name(X = 11) && moveTo(myBattlefield) target(*[artifact;creature;manacost=11]|opponentgraveyard) && tap && deplete:11 opponent
+text=Intimidate -- {X}{B}: Put target artifact or creature card with converted mana cost X from an opponent's graveyard onto the battlefield under your control tapped. Then that player puts the top X cards of his or her library into his or her graveyard.
+mana={4}{B}{B}
+type=Legendary Creature
+subtype=Zombie
+power=5
+toughness=5
+[/card]
+[card]
 name=Geyser Glider
 auto=@movedTo(land|myBattlefield):flying ueot
 text=Landfall - Whenever a land enters the battlefield under your control, Geyser Glider gains flying until end of turn.
@@ -19335,6 +19820,16 @@ mana={3}{R}{R}
 type=Creature
 subtype=Elemental Beast
 power=4
+toughness=4
+[/card]
+[card]
+name=Ghalma's Warden
+auto=aslongas(artifact|mybattlefield) 2/2 >2
+text=Metalcraft - Metalcraft - Ghalma's Warden gets +2/+2 as long as you control three or more artifacts. 
+mana={3}{W}
+type=Creature
+subtype=Elephant Soldier
+power=2
 toughness=4
 [/card]
 [card]
@@ -19847,6 +20342,12 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Glimmerpost
+auto=foreach(locus|myBattlefield) life:1 controller
+auto={T}:Add{1}
+type=Land
+[/card]
+[card]
 name=Glimmervoid
 auto={T}:add{W}
 auto={T}:add{U}
@@ -19889,6 +20390,26 @@ type=Creature
 subtype=Nephilim
 power=2
 toughness=2
+[/card]
+[card]
+name=Glint Hawk
+abilities=flying
+auto=aslongas(artifact|myBattlefield) moveTo(graveyard) notatarget(artifact|myBattlefield) oneshot
+auto=moveTo(graveyard) notatarget(this|myBattlefield)
+text=Flying (This creature can't be blocked except by creatures with flying or reach.) -- When Glint Hawk enters the battlefield, sacrifice it unless you return an artifact you control to its owner's hand.
+mana={W}
+type=Creature
+subtype=Bird
+power=2
+toughness=2
+[/card]
+[card]
+name=Glint Hawk Idol
+auto=@movedTo(other artifact|myBattlefield):may becomes(Artifact Creature,2/2,flying) ueot
+auto={W}:becomes(Artifact Creature,2/2,flying) ueot
+text=Whenever another artifact enters the battlefield under your control, you may have Glint Hawk Idol become a 2/2 artifact creature with flying until end of turn. -- {W}:Glint Hawk Idol becomes a 2/2 artifact creature with flying until end of turn.
+mana={2}
+type=Artifact
 [/card]
 [card]
 name=Glintwing Invoker
@@ -20297,6 +20818,17 @@ mana={3}{R}
 type=Creature
 subtype=Goblin
 power=2
+toughness=1
+[/card]
+[card]
+name=Goblin Gaveleer
+abilities=trample
+auto=thisforeach(equip) 2/0
+text=Trample -- Goblin Gaveleer gets +2/+0 for each Equipment attached to it.
+mana={R}
+type=Creature
+subtype=Goblin Warrior
+power=1
 toughness=1
 [/card]
 [card]
@@ -20826,6 +21358,14 @@ power=4
 toughness=3
 [/card]
 [card]
+name=Golden Urn
+auto=@each my upkeep:may counter(0/0,1,Charge)
+auto={T}{S}:thisforeach(counter{0/0.1.Charge}) life:1 controller
+text=At the beginning of your upkeep, you may put a charge counter on Golden Urn. -- {T}, Sacrifice Golden Urn: You gain life equal to the number of charge counters on Golden Urn.
+mana={1}
+type=Artifact
+[/card]
+[card]
 name=Goldmeadow Dodger
 auto=cantbeblockedby(creature[power>=4])
 text=Goldmeadow Dodger can't be blocked by creatures with power 4 or greater.
@@ -20864,6 +21404,34 @@ type=Creature
 subtype=Kithkin Spellshaper
 power=2
 toughness=2
+[/card]
+[card]
+name=Golem Artisan
+auto={2}:1/1 target(creature[artifact])
+auto={2}:flying target(creature[artifact])
+auto={2}:trample target(creature[artifact])
+auto={2}:haste target(creature[artifact])
+text={2}: Target atifact creature gets +1/+1 until end of turn. -- {2}: Target artifact creature gains your choice of flying, trample, or haste until end of turn.
+mana={6}
+type=Artifact Creature
+subtype=Golem
+power=3
+toughness=3
+[/card]
+[card]
+name=Golem Foundry
+auto=@movedTo(artifact|stack):may counter(0/0,1,Charge)
+auto={C(0/0,-3,Charge)}:token(Golem,Artifact Creature Golem,3/3)
+text=Whenever you cast an artifact spell, you may put a charge counter on Golem Foundry. -- Remove three charge counters from Golem Foundry: Put a 3/3 colorless Golem artifact creature token onto the battlefield.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Golem's Heart
+auto=@movedTo(artifact|stack):may life:1 controller
+text=Whenever a player casts an artifact spell, you may gain 1 life.
+mana={2}
+type=Artifact
 [/card]
 [card]
 name=Golem-Skin Gauntlets
@@ -21545,6 +22113,14 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Grindclock
+auto={T}:counter(0/0,1,Charge)
+auto={T}:thisforeach(counter{0/0.1.Charge}) deplete:1 target(player)
+text={T}: Put a charge counter on Grindclock. -- {T}: Target player puts the top X card of his or her library into his or her graveyard, where X is the number of charge counters on Grindclock.
+mana={2}
+type=Artifact
+[/card]
+[card]
 name=Grinding Station
 auto=@movedTo(artifact|battlefield):may untap
 auto={T}{S(artifact|myBattlefield)}:deplete:3 target(player)
@@ -21561,6 +22137,14 @@ type=Creature
 subtype=Elemental
 power=2
 toughness=2
+[/card]
+[card]
+name=Grip of Darkness
+target=creature
+auto=-4/-4
+text=Target creature gets -4/-4 until end of turn.
+mana={B}{B}
+type=Instant
 [/card]
 [card]
 name=Gristle Grinner
@@ -22104,6 +22688,15 @@ power=6
 toughness=3
 [/card]
 [card]
+name=Halt Order
+target=artifact|stack
+auto=fizzle
+auto=draw:1 controller
+text=Counter target artifact spell -- Draw a card.
+mana={2}{U}
+type=Instant
+[/card]
+[card]
 name=Hammer of Bogardan
 target=creature,player
 auto=damage:3
@@ -22188,6 +22781,18 @@ mana={W}{W}
 type=Creature
 subtype=Human Samurai
 power=2
+toughness=2
+[/card]
+[card]
+name=Hand of the Praetors
+abilities=infect
+auto=lord(other creature[infect]|myBattlefield) 1/1
+auto=@movedTo(*[infect]|mystack):damage:1 target(player)
+text=Infect -- Other creatures you control with infect get +1/+1. -- Whenever you cast a creature spell with infect, target player gets a poison counter.
+mana={3}{B}
+type=Creature
+subtype=Zombie
+power=3
 toughness=2
 [/card]
 [card]
@@ -24210,6 +24815,29 @@ mana={2}{G}
 type=Sorcery
 [/card]
 [card]
+name=Ichor Rats
+abilities=infect
+auto=damage:1 all(player)
+text=Infect -- When Ichor Rats enters the battlefield, each player gets a poison counter.
+mana={1}{B}{B}
+type=Creature
+subtype=Rat
+power=2
+toughness=1
+[/card]
+[card]
+name=Ichorclaw Myr
+abilities=infect
+auto=rampage(2/2,0)
+auto=rampage(-2/-2,1)
+text=Infect -- Whenever Ichorclaw Myr becomes blocked, it gets +2/+2 until end of turn.
+mana={2}
+type=Artifact Creature
+subtype=Myr
+power=1
+toughness=1
+[/card]
+[card]
 name=Icy Manipulator
 auto={1}{T}:tap target(artifact,creature,land)
 text={1}, {T}: Tap target artifact, creature, or land.
@@ -24552,6 +25180,17 @@ power=2
 toughness=10
 [/card]
 [card]
+name=Indomitable Archangel
+abilities=flying
+auto=aslongas(artifact|myBattlefield) lord(artifact|myBattlefield) shroud >2
+text=Flying (This creature can't be blocked except by creatures with flying or reach.) -- Metalcraft - Artifacts you control have shroud as long as you control three or more artifacts.
+mana={2}{W}{W}
+type=Creature
+subtype=Angel
+power=4
+toughness=4
+[/card]
+[card]
 name=Indomitable Will
 abilities=flash
 target=creature
@@ -24664,7 +25303,8 @@ type=Instant
 [/card]
 [card]
 name=Infuse
-auto=untap target(artifact,creature,land)
+target=artifact,creature,land
+auto=untap
 auto=@next upkeep:draw:1 controller
 text=Untap target artifact, creature, or land. -- Draw a card at the beginning of the next turn's upkeep.
 mana={2}{U}
@@ -24844,6 +25484,15 @@ text=Enchant creature -- Enchanted creature has haste. -- {0}: Untap enchanted c
 mana={G}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Instill Infection
+target=creature
+auto=counter(-1/-1,1)
+auto=draw:1 controller
+text=Put a -1/-1 counter on target creature. -- Draw a card.
+mana={3}{B}
+type=Instant
 [/card]
 [card]
 name=Intimidation
@@ -26904,6 +27553,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Kemba, Kha Regent
+auto=@each my upkeep:thisforeach(equip) token(Cat,Creature Cat,2/2,white)
+text=At the beginning of your upkeep, put a 2/2 white Cat creature token onto the battlefield for each equipment attached to Kemba, Kha Regent.
+mana={1}{W}{W}
+type=Legendary Creature
+subtype=Cat Cleric
+power=2
+toughness=4
+[/card]
+[card]
 name=Kezzerdrix
 abilities=first strike
 auto=@each my upkeep:aslongas(creature|opponentBattlefield) damage:4 controller <1
@@ -28070,6 +28729,13 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Kuldotha Rebirth
+auto=token(Goblin,Crature Goblin,1/1,red)*3
+text=As an additional cost to cast Kuldotha Rebirth, sacrifice an artifact. -- Put three 1/1 red Goblin creature tokens onto the battlefield.
+mana={R}{S(artifact|myBattlefield)
+type=Sorcery
+[/card]
+[card]
 name=Kulrath Knight
 mana={3}{BR}{BR}
 power=3
@@ -28634,7 +29300,7 @@ toughness=3
 [/card]
 [card]
 name=Leashling
-auto={4 l(*|myhand)}:moveTo(myhand)
+auto={s2l(*|myhand)}:moveTo(myhand)
 text=Put a card in your hand on top of your library: Return Leashling to its owner's hand.
 mana={6}
 type=Artifact Creature
@@ -29208,6 +29874,13 @@ type=Creature
 subtype=Human Knight
 power=1
 toughness=1
+[/card]
+[card]
+name=Liquimetal Coating
+auto={T}:target(*) transforms(artifact) ueot
+text={T}: Target permanent becomes an artifact in addition to its other types until end of turn.
+mana={2}
+type=Artifact
 [/card]
 [card]
 name=Lithatog
@@ -29867,6 +30540,15 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
+name=Loxodon Wayfarer
+text=
+mana={2}{W}
+type=Creature
+subtype=Elephant Monk
+power=1
+toughness=5
+[/card]
+[card]
 name=Loyal Gyrfalcon
 abilities=defender,flying
 auto=@movedTo(*[white]|mystack):-defender ueot
@@ -29957,6 +30639,17 @@ power=5
 toughness=4
 [/card]
 [card]
+name=Lumengrid Drake
+abilities=flying
+auto=aslongas(artifact|myBattlefield) moveTo(ownerhand) target(creature) >2 oneshot 
+text=Flying -- Metalcraft - When Lumengrid Drake enters the battlefield, if you control three or more artifacts, return target creature to its owner's hand.
+mana={3}{U}
+type=Creature
+subtype=Drake
+power=2
+toughness=2
+[/card]
+[card]
 name=Lumengrid Sentinel
 abilities=flying
 auto=@movedTo(artifact|myBattlefield):may tap target(*)
@@ -30006,6 +30699,14 @@ text=Enchant creature -- Whenever enchanted creature becomes tapped, Lust of War
 mana={2}{R}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Lux Cannon
+auto={T}:counter(0/0,1,Charge)
+auto={T}{C(0/0,-3)}:destroy target(*)
+text={T}: Put a charge counter on Lux Cannon. -- {T}, Remove three charge counters from Lux Cannon: Destroy target permanent.
+mana={4}
+type=Artifact
 [/card]
 [card]
 name=Lynx
@@ -31079,7 +31780,6 @@ subtype=Spirit
 power=*
 toughness=*
 [/card]
-
 [card]
 name=Matca Rioters
 auto=aslongas(forest|myBattlefield) 1/1
@@ -31229,6 +31929,15 @@ power=2
 toughness=4
 [/card]
 [card]
+name=Melt Terrain
+target=land
+auto=destroy
+auto=damage:2 targetcontroller
+text=Destroy target land. Melt Terrain deals 2 damage to that land's controller.
+mana={1}{R}{R}
+type=Sorcery
+[/card]
+[card]
 name=Memnarch
 auto={1}{U}{U}:target(*) transforms(artifact) forever
 auto={3}{U}:moveTo(myBattlefield) target(artifact)
@@ -31238,6 +31947,14 @@ type=Legendary Artifact Creature
 subtype=Wizard
 power=4
 toughness=5
+[/card]
+[card]
+name=Memnite
+mana={0}
+type=Artifact Creature
+subtype=Construct
+power=1
+toughness=1
 [/card]
 [card]
 name=Memory Erosion
@@ -32430,6 +33147,17 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Molder Beast
+abilities=trample
+auto=@movedTo(artifact|graveyard) from(battlefield):2/0 ueot
+text=Trample -- Whenever an artifact is put into a graveyard from the battlefield, Molder Beast gest +2/+0 until end of turn.
+mana={4}{G}
+type=Creature
+subtype=Beast
+power=5
+toughness=3
+[/card]
+[card]
 name=Mold Shambler
 kicker={1}{G}
 auto=kicker destroy target(*[-creature])
@@ -32468,6 +33196,18 @@ mana={2}{R}
 type=Creature
 subtype=Elemental
 power=0
+toughness=4
+[/card]
+[card]
+name=Molten-Tail Masticore
+auto=upcost[{S(*|myhand)}] moveTo(mygraveyard)
+auto={4}{E(creature|mygraveyard)}:damage:4 target(creature,player)
+auto={2}:regenerate
+text=At the beginning of your upkeep, sacrifice Molten-Tail Masticore unless you discard a card. -- {4}, Exile a creature card from your graveyard: Molten-Tail Masticore deals 4 damage to target creature or player. -- {2}: Regenerate Molten-Tail Masticore.
+mana={4}
+type=Artifact Creature
+subtype=Masticore
+power=4
 toughness=4
 [/card]
 [card]
@@ -32735,6 +33475,25 @@ type=Legendary Creature
 subtype=Horror
 power=5
 toughness=4
+[/card]
+[card]
+name=Moriok Reaver
+text=
+mana={2}{B}
+type=Creature
+subtype=Human Warrior
+power=3
+toughness=2
+[/card]
+[card]
+name=Moriok Replica
+auto={1}{B}{S}:draw:2 && life:-2
+text={1}{B}, Sacrifice Moriok Replica: You draw 2 cards and you lose 2 life.
+mana={3}
+type=Artifact Creature
+subtype=Warrior
+power=2
+toughness=2
 [/card]
 [card]
 name=Moriok Rigger
@@ -33041,6 +33800,16 @@ auto={T}:add{B}
 text={T}: Add {B} to your mana pool.
 mana={0}
 type=Artifact
+[/card]
+[card]
+name=Mox Opal
+auto=aslongas(artifact|mybattlefield) {T}:Add{W} >2
+auto=aslongas(artifact|mybattlefield) {T}:Add{U} >2
+auto=aslongas(artifact|mybattlefield) {T}:Add{B} >2
+auto=aslongas(artifact|mybattlefield) {T}:Add{R} >2
+auto=aslongas(artifact|mybattlefield) {T}:Add{G} >2
+mana={0}
+type=Legendary Artifact
 [/card]
 [card]
 name=Mox Pearl
@@ -33359,6 +34128,17 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Myr Galvanizer
+auto=lord(other myr|mybattlefield) 1/1
+auto={1}{T}:untap all(other myr|mybattlefield)
+text=Other Myr creatures you control get +1/+1. -- {1}, {T}: Untap each other Myr you control.
+mana={3}
+type=Artifact Creature
+subtype=Myr
+power=2
+toughness=2
+[/card]
+[card]
 name=Myr Landshaper
 auto={T}:transforms(artifact) target(land) ueot
 text={T}: Target land becomes an artifact in addition to its other types until end of turn.
@@ -33382,6 +34162,16 @@ name=Myr Moonvessel
 auto=@movedto(this|graveyard):add{1}
 text=When Myr Moonvessel is put into a graveyard from the battlefield, add {1} to your mana pool.
 mana={1}
+type=Artifact Creature
+subtype=Myr
+power=1
+toughness=1
+[/card]
+[card]
+name=Myr Propagator
+auto={3}{T}:token(PUT NUMBER YOUR NUMBER OF MYR GALVANIZER IN HERE!!)
+text={3}, {T}: Put a token that's a copy of Myr Propagator onto the battlefield.
+mana={3}
 type=Artifact Creature
 subtype=Myr
 power=1
@@ -33897,6 +34687,25 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Necrogen Censer
+auto=counter(0/0,2,Charge)
+auto={C(0/0,-1,Charge)}{T}:life:-2 target(player)
+text=Necrogen Censer enters the battlefield with two charge counters on it. -- {T}, Remove a charge counter from Necrogen Censer: Target player loses 2 life.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Necrogen Scudder
+abilities=flying
+auto=life:-3
+text=Flying -- When Necrogen Scudder enters the battlefield, you lose 3 life.
+mana={2}{B}
+type=Creature
+subtype=Horror
+power=3
+toughness=3
+[/card]
+[card]
 name=Necrogenesis
 auto={2}:moveTo(exile) target(creature|graveyard) && token(Saproling,creature saproling, 1/1,green)
 text={2}: Exile target creature card from a graveyard. Put a 1/1 green Saproling creature token onto the battlefield.
@@ -33911,6 +34720,17 @@ text=Enchant creature -- Whenever enchanted creature deals combat damage to a pl
 mana={2}{B}{B}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Necropede
+abilities=infect
+auto=@movedTo(this|graveyard) from(battlefield):may counter(-1/-1) target(creature)
+text=Infect (This creature deals damage to creatures in form of -1/-1 counters and to players in form of poison counters.) -- When Necropede is put into a graveyard from the battlefield, you may put a -1/-1 counter on target creature.
+mana={2}
+type=Artifact Creature
+subtype=Insect
+power=1
+toughness=1
 [/card]
 [card]
 name=Necrosavant
@@ -34106,6 +34926,17 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
+name=Neurok Invisimancer
+abilities=unblockable
+auto=unblockable target(creature)
+text=Neurok Invisimancer is unblockable. -- When Neurok Invisimancer enters the battlefield, target creature is unblockable until end of turn.
+mana={1}{U}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=1
+[/card]
+[card]
 name=Neurok Prodigy
 abilities=flying
 auto={S(artifact|myhand)}:moveto(ownerhand)
@@ -34115,6 +34946,16 @@ type=Creature
 subtype=Human Wizard
 power=2
 toughness=1
+[/card]
+[card]
+name=Neurok Replica
+auto={1}{U}{S}:moveTo(ownerhand) target(creature)
+text={1}{U}, Sacrifice Sacrifice Neurok Replica: Return target creature to its owner's hand.
+mana={3}
+type=Artifact Creature
+subtype=Wizard
+power=1
+toughness=4
 [/card]
 [card]
 name=Neurok Spy
@@ -35938,6 +36779,16 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Oxidda Daredevil
+auto={S(artifact|myBattlefield)}:haste
+text=Sacrifice an artifact: Oxidda Daredevil gains haste until end of turn.
+mana={1}{R}
+type=Creature
+subtype=Goblin Artificer
+power=2
+toughness=1
+[/card]
+[card]
 name=Oxidda Golem
 abilities=affinitymountains,haste
 text=Affinity for Mountains (This spell costs {1} less to cast for each Mountain you control.) -- Haste
@@ -35946,6 +36797,16 @@ type=Artifact Creature
 subtype=Golem
 power=3
 toughness=2
+[/card]
+[card]
+name=Oxidda Scrapmelter
+auto=destroy target(artifact)
+text=When Oxidda Scrapmelter enters the battlefield, destroy target artifact.
+mana={3}{R}
+type=Creature
+subtype=Beast
+power=3
+toughness=3
 [/card]
 [card]
 name=Oxidize
@@ -35993,6 +36854,16 @@ auto=moveTo(ownerlibrary)
 text=Look at target opponent's hand and choose a card from it. Put that card on top of that player's library.
 mana={1}{B}
 type=Sorcery
+[/card]
+[card]
+name=Painsmith
+auto=@movedTo(artifact|mystack):may 2/0 target(creature) && deathtouch ueot
+text=Whenever you cast an artifact spell, you may have target creature get +2/+0 and gain deathtouch until end of turn.
+mana={1}{B}
+type=Creature
+subtype=Human Artificer
+power=2
+toughness=1
 [/card]
 [card]
 name=Paladin en-Vec
@@ -36055,6 +36926,16 @@ type=Legendary Creature
 subtype=Elder Dragon
 power=7
 toughness=7
+[/card]
+[card]
+name=Palladium Myr
+auto={T}:Add {2}
+text={T}: Add {W} to your mana pool.
+mana={3}
+type=Artifact Creature
+subtype=Myr
+power=2
+toughness=2
 [/card]
 [card]
 name=Palliation Accord
@@ -36674,6 +37555,16 @@ auto={1}{S(creature|mybattlefield)}:moveTo(myBattlefield) target(basic|mylibrary
 text={1}, Sacrifice a creature: Search your library for a land card with a basic land type and put it onto the battlefield tapped. Then shuffle your library.
 mana={3}{G}{G}
 type=Enchantment
+[/card]
+[card]
+name=Perilous Myr
+auto=@movedTo(this|graveyard) from(battlefield):damage:2 target(creature,player)
+text=When Perilous Myr is put into a graveyard from the battlefield, it deals 2 damage to target creature or player.
+mana={2}
+type=Artifact Creature
+subtype=Myr
+power=1
+toughness=1
 [/card]
 [card]
 name=Perilous Research
@@ -37544,6 +38435,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Plague Stinger
+abilities=flying,infect
+text=Flying (This creature can't be blocked except by creatures with flying or reach.) -- Infect
+mana={1}{B}
+type=Creature
+subtype=Insect Horror
+power=1
+toughness=1
+[/card]
+[card]
 name=Plague Wind
 auto=bury all(creature|opponentBattlefield)
 text=Destroy all creatures you don't control. They can't be regenerated.
@@ -37694,6 +38595,15 @@ type=Creature
 subtype=Lizard
 power=3
 toughness=3
+[/card]
+[card]
+name=Plated Seastrider
+text=
+mana={U}{U}
+type=Creature
+subtype=Beast
+power=1
+toughness=5
 [/card]
 [card]
 name=Plated Slagwurm
@@ -38655,6 +39565,16 @@ mana={5}{B}{B}
 type=Creature
 subtype=Spirit
 power=3
+toughness=3
+[/card]
+[card]
+name=Putrefax
+abilities=trample,haste,infect,treason
+text=Trample, Haste, Infect -- At the beginning of the end step, sacrifice Putrefax.
+mana={3}{G}{G}
+type=Creature
+subtype=Horror
+power=5
 toughness=3
 [/card]
 [card]
@@ -39718,6 +40638,30 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Ratchet Bomb
+auto={T}:counter(0/0,1,Charge)
+auto=this(counter{0/0.1.Charge}<1) {T}:destroy all(*[artifact;creature;enchantment;manacost=0])
+auto=this(counter{0/0.1.Charge}=) {T}:destroy all(*[artifact;creature;enchantment;manacost=1])
+auto=this(counter{0/0.2.Charge}=) {T}:destroy all(*[artifact;creature;enchantment;manacost=2])
+auto=this(counter{0/0.3.Charge}=) {T}:destroy all(*[artifact;creature;enchantment;manacost=3])
+auto=this(counter{0/0.4.Charge}=) {T}:destroy all(*[artifact;creature;enchantment;manacost=4])
+auto=this(counter{0/0.5.Charge}=) {T}:destroy all(*[artifact;creature;enchantment;manacost=5])
+auto=this(counter{0/0.6.Charge}=) {T}:destroy all(*[artifact;creature;enchantment;manacost=6])
+auto=this(counter{0/0.7.Charge}=) {T}:destroy all(*[artifact;creature;enchantment;manacost=7])
+auto=this(counter{0/0.8.Charge}=) {T}:destroy all(*[artifact;creature;enchantment;manacost=8])
+auto=this(counter{0/0.9.Charge}=) {T}:destroy all(*[artifact;creature;enchantment;manacost=9])
+auto=this(counter{0/0.10.Charge}=) {T}:destroy all(*[artifact;creature;enchantment;manacost=10])
+auto=this(counter{0/0.11.Charge}=) {T}:destroy all(*[artifact;creature;enchantment;manacost=11])
+auto=this(counter{0/0.12.Charge}=) {T}:destroy all(*[artifact;creature;enchantment;manacost=12])
+auto=this(counter{0/0.13.Charge}=) {T}:destroy all(*[artifact;creature;enchantment;manacost=13])
+auto=this(counter{0/0.14.Charge}=) {T}:destroy all(*[artifact;creature;enchantment;manacost=14])
+auto=this(counter{0/0.15.Charge}=) {T}:destroy all(*[artifact;creature;;enchantmentmanacost=15])
+auto=this(counter{0/0.16.Charge}=) {T}:destroy all(*[artifact;creature;;enchantmentmanacost=16])
+text={T}: Put a charge counter on Grindclock. -- {T}: Sacrifice Ratchet Bomb: Destroy each nonland permanent with converted mana cost equal to the number of charge counters on Ratchet Bomb.
+mana={2}
+type=Artifact
+[/card]
+[card]
 name=Rath's Edge
 auto={T}:Add {1}
 auto={4}{T}{S(land|myBattlefield)}:damage:1 target(creature,player)
@@ -39936,18 +40880,6 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-name=Razormane Masticore
-auto=first strike
-auto=upcost[{S(*|myhand)}] moveTo(graveyard)
-auto=@each my draw:may damage:3 target(creature)
-text=First strike (This creature deals combat damage before creatures without first strike.) -- At the beginning of your upkeep, sacrifice Razormane Masticore unless you discard a card. -- At the beginning of your draw step, you may have Razormane Masticore deal 3 damage to target creature.
-mana={5}
-type=Artifact Creature
-subtype=Masticore
-power=5
-toughness=5
-[/card]
-[card]
 name=Razorclaw Bear
 auto=rampage(2/2,0)
 auto=rampage(-2/-2,1)
@@ -39957,6 +40889,15 @@ type=Creature
 subtype=Bear
 power=3
 toughness=3
+[/card]
+[card]
+name=Razorfield Thresher
+text=
+mana={7}
+type=Artifact Creature
+subtype=Construct
+power=6
+toughness=4
 [/card]
 [card]
 name=Razorfin Abolisher
@@ -39999,6 +40940,18 @@ power=4
 toughness=5
 [/card]
 [card]
+name=Razormane Masticore
+auto=first strike
+auto=upcost[{S(*|myhand)}] moveTo(graveyard)
+auto=@each my draw:may damage:3 target(creature)
+text=First strike (This creature deals combat damage before creatures without first strike.) -- At the beginning of your upkeep, sacrifice Razormane Masticore unless you discard a card. -- At the beginning of your draw step, you may have Razormane Masticore deal 3 damage to target creature.
+mana={5}
+type=Artifact Creature
+subtype=Masticore
+power=5
+toughness=5
+[/card]
+[card]
 name=Razortooth Rats
 abilities=fear
 text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.)
@@ -40007,6 +40960,13 @@ type=Creature
 subtype=Rat
 power=2
 toughness=1
+[/card]
+[card]
+name=Razorverge Thicket
+auto=aslongas(other land|myBattlefield) tap >2 oneshot 
+auto={T}:Add {G}
+auto={T}:Add {W}
+type=Land
 [/card]
 [card]
 name=Reach Through Mists
@@ -40448,6 +41408,16 @@ auto=may destroy target(artifact,enchantment)
 text=Destroy target artifact or enchantment and up to one other target artifact or enchantment.
 mana={4}{G}
 type=Instant
+[/card]
+[card]
+name=Relic Putrescence
+abilities=infect
+target=artifact
+auto=@tapped(mytgt):damage:1 targetcontroller
+text=Enchant artifact -- Whenever enchanted artifact becomes tapped, its controller gets a poison counter.
+mana={2}{B}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Reliquary Monk
@@ -40915,6 +41885,15 @@ text=You gain 3 life. -- Draw a card.
 mana={2}{W}
 type=Instant
 [/card]
+
+[card]
+name=Revoke Existence
+target=artifact,enchantment
+auto=moveTo(exile)
+text=Exile target artifact or enchantment.
+mana={1}{W}
+type=Instant
+[/card]
 [card]
 name=Reya Dawnbringer
 abilities=flying
@@ -41025,6 +42004,24 @@ text=Draw a card for each Spirit you control.
 mana={4}{U}
 type=Sorcery
 subtype=Arcane
+[/card]
+[card]
+name=Riddlesmith
+auto=@movedTo(artifact|mystack):may token(-5555556) && draw:1
+text=Whenever you cast an artifact spell, you may have target creature get +2/+0 and gain deathtouch until end of turn.
+mana={1}{B}
+type=Creature
+subtype=Human Artificer
+power=2
+toughness=1
+[/card]
+[card]
+name=Riddlesmith's Discard
+auto=counter(0/0,1,Riddlesmith)
+auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Riddlesmith}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Riddlesmith) && counter(0/0,1,Bury)
+auto=thisforeach(counter{0/0.1.Bury}>0) bury
+id=-5555556
+type=nothing
 [/card]
 [card]
 name=Ridge Rannet
@@ -42061,6 +43058,13 @@ text=As Rustic Clachan enters the battlefield, you may reveal a Kithkin card fro
 type=Land
 [/card]
 [card]
+name=Rusted Relic
+auto=aslongas(artifact|mybattlefield) becomes(Artifact Creature Golem,5/5) >2
+text=Metalcraft - Rusted Relic is a 5/5 artifact creature as long as you control three or more artifacts.
+mana={4}
+type=Artifact
+[/card]
+[card]
 name=Rusting Golem
 auto=counter(0/0,5,Fade)
 auto=@each my upkeep:counter(0/0,-1,Fade)
@@ -42123,6 +43127,16 @@ type=Legendary Creature
 subtype=Dragon Spirit
 power=5
 toughness=5
+[/card]
+[card]
+name=Saberclaw Golem
+auto={R}:first strike
+text={R} Saberclaw Golem gains first strike until end of turn.
+mana={5}
+type=Artifact Creature
+subtype=GOlem
+power=4
+toughness=2
 [/card]
 [card]
 name=Sabertooth Nishoba
@@ -42361,6 +43375,16 @@ auto=moveTo(myLibrary)
 text=Put target card from your graveyard on top of your library.
 mana={G}
 type=Sorcery
+[/card]
+[card]
+name=Salvage Scout
+auto={W}{S}:moveTo(ownerhand) target(artifact|mygraveyard)
+text={W}, Sacrifice Salvage Scout: Return target artifact card from your graveyard to your hand.
+mana={W}
+type=Creature
+subtype=Human Scout
+power=1
+toughness=1
 [/card]
 [card]
 name=Salvage Slasher
@@ -43139,6 +44163,15 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Scoria Elemental
+text=
+mana={4}{R}
+type=Creature
+subtype=Elemental
+power=6
+toughness=1
+[/card]
+[card]
 name=Scornful AEther-Lich
 auto={W}{B}:fear && vigilance
 text={W}{B}: Scornful AEther-Lich gains fear and vigilance until end of turn. (Attacking doesn't cause it to tap, and it can't be blocked except by artifact creatures and/or black creatures.)
@@ -43225,6 +44258,16 @@ type=Artifact Creature
 subtype=Scarecrow
 power=3
 toughness=2
+[/card]
+[card]
+name=Scrapdiver Serpent
+auto=aslongas(artifact|opponentBattlefield) unblockable
+text=Scrapdiver Serpent is unblockable as long as defending player controls an artifact.
+mana={5}{U}{U}
+type=Creature
+subtype=Serpent
+power=5
+toughness=5
 [/card]
 [card]
 name=Scrapheap
@@ -43479,6 +44522,13 @@ type=Creature
 subtype=Faerie
 power=1
 toughness=1
+[/card]
+[card]
+name=Seachrome Coast
+auto=aslongas(other land|myBattlefield) tap >2 oneshot 
+auto={T}:Add {W}
+auto={T}:Add {U}
+type=Land
 [/card]
 [card]
 name=Seafloor Debris
@@ -43850,6 +44900,15 @@ power=6
 toughness=5
 [/card]
 [card]
+name=Seize the Initiative
+target=creature
+auto=1/1
+auto=first strike
+text=Target creature gets +1/+1 and gains first strike until end of turn.
+mana={W}
+type=Instant
+[/card]
+[card]
 name=Sejiri Merfolk
 auto=aslongas(plains|myBattlefield) first strike
 auto=aslongas(plains|myBattlefield) lifelink
@@ -43947,6 +45006,36 @@ type=Creature
 subtype=Human Mercenary
 power=2
 toughness=2
+[/card]
+[card]
+name=Semblance Anvil
+auto=choice name(Artifact) && moveTo(myexile) notatarget(artifact|myhand) && counter(0/0,1,Artifact) all(this)
+auto=choice name(Artifact Creature) && moveTo(myexile) notatarget(creature[artifact]|myhand) && counter(0/0,1,Artifact Creature) all(this)
+auto=choice name(Creature) && moveTo(myexile) notatarget(creature|myhand) && counter(0/0,1,Creature) all(this)
+auto=choice name(Enchantment) && moveTo(myexile) notatarget(enchantment|myhand) && counter(0/0,1,Enchantment) all(this)
+auto=choice name(Instant) && moveTo(myexile) notatarget(instant|myhand) && counter(0/0,1,Instant) all(this)
+auto=choice name(Sorcery) && moveTo(myexile) notatarget(sorcery|myhand) && counter(0/0,1,Sorcery) all(this)
+auto=choice name(Tribal Instant) && moveTo(myexile) notatarget(instant[tribal]|myhand) && counter(0/0,1,Tribal Instant) all(this)
+auto=choice name(Tribal Sorcery) && moveTo(myexile) notatarget(sorcery[tribal]|myhand) && counter(0/0,1,Tribal Sorcery) all(this)
+auto=choice name(cancel) && 0/0
+auto=this(counter{0/0.1.Artifact}) lord(artifact|myhand) colorless:-2
+auto=this(counter{0/0.1.Artifact Creature}) lord(artifact|myhand) colorless:-2
+auto=this(counter{0/0.1.Artifact Creature}) lord(creature|myhand) colorless:-2
+auto=this(counter{0/0.1.Creature}) lord(creature|myhand) colorless:-2
+auto=this(counter{0/0.1.Enchantment}) lord(enchtantment|myhand) colorless:-2
+auto=this(counter{0/0.1.Instant}) lord(instant|myhand) colorless:-2
+auto=this(counter{0/0.1.Sorcery}) lord(sorcery|myhand) colorless:-2
+auto=this(counter{0/0.1.Tribal Instant}) lord(tribal|myhand) colorless:-2
+auto=this(counter{0/0.1.Tribal Instant}) lord(instant|myhand) colorless:-2
+auto=this(counter{0/0.1.Tribal Sorcery}) lord(tribal|myhand) colorless:-2
+auto=this(counter{0/0.1.Tribal Sorcery}) lord(sorcery|myhand) colorless:-2
+autoexile=all(*|myhand) resetcost
+autograveyard=all(*|myhand) resetcost
+autohand=all(*|myhand) resetcost
+autolibrary=all(*|myhand) resetcost
+text=Imprint - When Semblance Anvil enters the battlefield, you may exile a nonland card from your hand. -- Spells you cast that share a card type with the exiled card cost {2} less to cast.
+mana={3}
+type=Artifact
 [/card]
 [card]
 name=Sengir Autocrat
@@ -45764,6 +46853,16 @@ power=0
 toughness=3
 [/card]
 [card]
+name=Skinrender
+auto=counter(-1/-1,3) target(creature)
+text=When Skinrender enters the battlefield, put three -1/-1 counters on target creature
+mana={3}{B}{B}
+type=Creature
+subtype=Zombie
+power=3
+toughness=3
+[/card]
+[card]
 name=Skirge Familiar
 abilities=flying
 auto={S(*|myhand)}:Add{B}
@@ -45804,6 +46903,18 @@ type=Creature
 subtype=Goblin Shaman
 power=2
 toughness=2
+[/card]
+[card]
+name=Skithiryx, the Blight Dragon
+abilities=flying,infect
+auto={B}:haste
+auto={B}{B}:regenerate
+text=Flying (This creature can't be blocked except by creatures with flying or reach.) -- Infect -- {B}: Skithiryx, the Blight Dragon gains haste until end of turn. -- {B}{B}: Regenerate Skithiryx.
+mana={3}{B}{B}
+type=Legendary Creature
+subtype=Dragon Skeleton
+power=4
+toughness=4
 [/card]
 [card]
 name=Skittering Horror
@@ -46303,6 +47414,18 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Sky-Eel School
+abilities=flying
+auto=draw:1
+auto=moveTo(ownergraveyard) target(*|myhand)
+text=Flying -- When Sky-Eel School enters the battlefield, draw a card, then discard a card.
+mana={3}{U}{U}
+type=Creature
+subtype=Fish
+power=3
+toughness=3
+[/card]
+[card]
 name=Slagwurm Armor
 auto={3}:equip
 auto=0/6
@@ -46414,6 +47537,15 @@ autohand={2}{R}:damage:1 all(creature) && cycling
 text=Slice and Dice deals 4 damage to each creature. -- Cycling {2}{R} ({2}{R}, Discard this card: Draw a card.) -- When you cycle Slice and Dice, you may have it deal 1 damage to each creature.
 mana={4}{R}{R}
 type=Sorcery
+[/card]
+[card]
+name=Slice in Twain
+target=artifact,enchantment
+auto=destroy
+auto=draw:1 controller
+text=Destroy target artifact or enchantment. -- Draw a card.
+mana={2}{G}{G}
+type=Instant
 [/card]
 [card]
 name=Slingshot Goblin
@@ -46769,6 +47901,16 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Snapsail Glider
+auto=aslongas(artifact|mybattlefield) flying >2
+text=Metalcraft - Snapsail Glider has flying as long as you control three or more artifacts.
+mana={3}
+type=Creature
+subtype=Construct
+power=2
+toughness=2
+[/card]
+[card]
 name=Sneak Attack
 auto={R}:moveto(mybattlefield) target(creature|myhand) && transforms(,treason,haste) forever
 text={R}: You may put a creature card from your hand onto the battlefield. That creature gains haste. Sacrifice the creature at the beginning of the next end step.
@@ -47031,6 +48173,16 @@ auto=lord(creature|myBattlefield) 0/5
 text=Creatures you control get +0/+5 until end of turn.
 mana={3}{W}
 type=Instant
+[/card]
+[card]
+name=Soliton
+auto={U}:untap
+text={U}: Untap Soliton.
+mana={5}
+type=Creature
+subtype=Construct
+power=3
+toughness=4
 [/card]
 [card]
 name=Soltari Crusader
@@ -48002,6 +49154,16 @@ auto=counter(1/1,2)
 auto={2}{C(1/1,-1)}:counter(1/1,1) target(creature)
 power=0
 toughness=0
+[/card]
+[card]
+name=Spikeshot Elder
+auto={1}{R}{R}:thisforeach(power>=1) damage:1 target(creature,player)
+text={1}{R}{R}: Spikeshot Elder deals damage equal to its power to target creature or player.
+mana={R}
+type=Creature
+subtype=Goblin Shaman
+power=1
+toughness=1
 [/card]
 [card]
 name=Spikeshot Goblin
@@ -49734,6 +50896,16 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Strider Harness 
+auto={1}:equip
+auto=1/1
+auto=haste
+text=Equipped creature gets +1/+1 and has haste. -- Equip {1}
+mana={3}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
 name=Strip Mine
 auto={T}:Add {1}
 auto={T}{S}:destroy target(land)
@@ -50075,6 +51247,17 @@ mana={1}
 type=Artifact
 [/card]
 [card]
+name=Sunblast Angel
+abilities=flying
+auto=destroy all(creature[tapped])
+text=Flying (This creature can't be blocked except by creatures with flying or reach.) -- When Sunblast Angel enters the battlefield, destroy all tapped creatures.
+mana={4}{W}{W}
+type=Creature
+subtype=Angel
+power=4
+toughness=5
+[/card]
+[card]
 name=Sunder
 auto=moveTo(ownerhand) all(land)
 text=Return all lands to their owners' hands.
@@ -50230,6 +51413,17 @@ type=Creature
 subtype=Human Druid Wizard
 power=1
 toughness=1
+[/card]
+[card]
+name=Sunspear Shikari
+auto=this(equip !=0) first strike
+auto=this(equip !=0) lifelink
+text=As long as Sunspear Shikari is equipped, it has first strike and lifelink.
+mana={1}{W}
+type=Creature
+subtype=Cat Soldier
+power=2
+toughness=2
 [/card]
 [card]
 name=Sunspring Expedition
@@ -50683,6 +51877,16 @@ power=*
 toughness=4
 [/card]
 [card]
+name=Sylvok Replica
+auto={G}{S}:destroy target(artifact,enchantment)
+text={G}, Sacrifice Sylvok Replica: Destroy target artifact or enchantment.
+mana={3}
+type=Artifact Creature
+subtype=Shaman
+power=1
+toughness=3
+[/card]
+[card]
 name=Symbiotic Beast
 auto=@movedTo(this|graveyard) from(battlefield):token(Insect,creature insect, 1/1,green)*4
 text=When Symbiotic Beast is put into a graveyard from the battlefield, put four 1/1 green Insect creature tokens onto the battlefield.
@@ -50812,6 +52016,15 @@ auto=aslongas(swamp|myBattlefield) {T}:add{B}
 auto=aslongas(swamp|myBattlefield) {T}:add{R}
 text={T}: Add {1} to your mana pool. -- {T}: Add {B} or {R} to your mana pool. Activate this ability only if you control a Swamp.
 type=Land
+[/card]
+[card]
+name=Tainted Strike
+target=creature
+auto=1/0
+auto=infect
+text=Target creature gets +1/+0 and gains infect until end of turn. (This creature deals damage to creatures in form of -1/-1 counters and to players in form of poison counters.)
+mana={3}{B}
+type=Instant
 [/card]
 [card]
 name=Tainted Wood
@@ -51361,6 +52574,15 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Tel-Jilad Defiance
+target=creature
+auto=protection from(artifact)
+auto=draw:1 controller
+text=Target creature gains protectio from artifacts until end of turn. -- draw a card.
+mana={1}{G}
+type=Instant
+[/card]
+[card]
 name=Tel-Jilad Exile
 auto={1}{G}:regenerate
 text={1}{G}: Regenerate Tel-Jilad Exile.
@@ -51369,6 +52591,17 @@ type=Creature
 subtype=Troll Warrior
 power=2
 toughness=3
+[/card]
+[card]
+name=Tel-Jilad Fallen
+abilities=infect
+auto=protection from(artifact)
+text=Infect (This creature deals damage to creatures in form of -1/-1 counters and to players in form of poison counters.) -- Protection from artifacts
+mana={2}{G}{G}
+type=Creature
+subtype=Elf Warrior
+power=3
+toughness=1
 [/card]
 [card]
 name=Tel-Jilad Lifebreather
@@ -51455,6 +52688,13 @@ type=Creature
 subtype=Spirit
 power=3
 toughness=3
+[/card]
+[card]
+name=Tempered Steel
+auto=lord(creature[artifact]|mybattlefield) 2/2
+text=Artifact creatures you control get +2/+2.
+mana={1}{W}{W}
+type=Enchantment
 [/card]
 [card]
 name=Tempest Drake
@@ -53423,6 +54663,13 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Tower of Calamities
+auto={8}{T}:damage:12 target(creature)
+text={8}, {T}:Tower of Calamities deals 12 damage to target creature.
+mana={4}
+type=Artifact
+[/card]
+[card]
 name=Tower of Champions
 auto={8}{T}:6/6 target(creature)
 text={8}, {T}: Target creature gets +6/+6 until end of turn.
@@ -53967,6 +55214,51 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Trigon of Corruption
+auto=counter(0/0,3,Charge)
+auto={B}{B}{T}:counter(0/0,1,Charge)
+auto={C(0/0,-1,Charge)}{2}{T}:counter(-1/-1,1) target(creature)
+text=Trigon of Corruption enters the battlefield with 3 charge counters on it. -- {B}{B}, {T}: Put a charge counter on Trigon of Corruption. -- {2}, {T}, Remove a charge counter from Trigon of Corruption: Put a -1/-1 counter on target creature.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Trigon of Infestation
+auto=counter(0/0,3,Charge)
+auto={G}{G}{T}:counter(0/0,1,Charge)
+auto={C(0/0,-1,Charge)}{2}{T}:token(Insect,Creature Insect,1/1,infect,green)
+text=Trigon of Infestation enters the battlefield with 3 charge counters on it. -- {G}{G}, {T}: Put a charge counter on Trigon of Infestation. -- {2}, {T}, Remove a charge counter from Trigon of Infestation: Put a 1/1 green Insect creature token with infect onto the battlefield.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Trigon of Mending
+auto=counter(0/0,3,Charge)
+auto={W}{W}{T}:counter(0/0,1,Charge)
+auto={C(0/0,-1,Charge)}{2}{T}:3/0 target(creature)
+text=Trigon of Mending enters the battlefield with three charge counters on it. -- {W}{W}, {T}: Put a charge counter on Trigon of Mending. -- {2}, {T}, Remove a charge counter from Trigon of Mending: Target player gains 3 life.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Trigon of Rage
+auto=counter(0/0,3,Charge)
+auto={R}{R}{T}:counter(0/0,1,Charge)
+auto={C(0/0,-1,Charge)}{2}{T}:3/0 target(creature)
+text=Trigon of Rage enters the battlefield with three charge counters on it. -- {R}{R}, {T}: Put a charge counter on Trigon of Rage. -- {2}, {T}, Remove a charge counter from Trigon of Rage: Target creature gets +3/+0 until end of turn.
+mana={2}
+type=Artifact
+[/card]
+[card]
+name=Trigon of Thought
+auto=counter(0/0,3,Charge)
+auto={U}{U}{T}:counter(0/0,1,Charge)
+auto={C(0/0,-1,Charge)}{2}{T}:draw:1
+text=Trigon of Thought enters the battlefield with 3 charge counters on it. -- {U}{U}, {T}: Put a charge counter on Trigon of Thought. -- {2}, {T}, Remove a charge counter from Trigon of Thought: Draw a card.
+mana={5}
+type=Artifact
+[/card]
+[card]
 name=Trinket Mage
 auto=may moveTo(myhand) target(artifact[manacost<=1]|mylibrary)
 text=When Trinket Mage enters the battlefield, you may search your library for an artifact card with converted mana cost 1 or less, reveal that card, and put it into your hand. If you do, shuffle your library.
@@ -54112,6 +55404,14 @@ power=2
 toughness=2
 [/card]
 [card]
+name=True Conviction
+auto=lord(creature|myBattlefield) double strike
+auto=lord(creature|myBattlefield) lifelink
+text=Creatures you control have doublestrike and lifelink.
+mana={3}{W}{W}{W}
+type=Enchantment
+[/card]
+[card]
 name=Trumpet Blast
 auto=lord(creature[attacking]) 2/0
 text=Attacking creatures get +2/+0 until end of turn.
@@ -54194,12 +55494,20 @@ toughness=2
 name=Tuktuk the Explorer
 abilities=haste
 auto=@movedTo(this|graveyard) from(battlefield):token(Tuktuk the Returned,Legendary Artifact Creature Goblin Golem,5/5)
-text=Haste -- When Tuttuk the Explorer is put into a graveyard from the battlefield, put a legendary 5/5 colorless Goblin Golem artifact creature token named Tuktuk the Returned onto the battlefield.
+text=Haste -- When Tuktuk the Explorer is put into a graveyard from the battlefield, put a legendary 5/5 colorless Goblin Golem artifact creature token named Tuktuk the Returned onto the battlefield.
 mana={2}{R}
 type=Legendary Creature
 subtype=Goblin
 power=1
 toughness=1
+[/card]
+[card]
+name=Tumble Magnet
+auto=counter(0/0,3,Charge)
+auto={T}{C(0/0,-1,Charge)}:tap target(artifact,creature)
+text=Whenever an opponent casts a nonartifact spell, put a charge counter on Chimeric Egg. -- Remove three charge counters from Chimeric Egg: Chimeric Egg becomes a 6/6 Construct artifact creature with trample until end of turn.
+mana={3}
+type=Artifact
 [/card]
 [card]
 name=Tundra
@@ -54726,6 +56034,14 @@ target=creature
 auto=moveTo(ownerHand)
 text=Return target creature to its owner's hand.
 mana={U}
+type=Instant
+[/card]
+[card]
+name=Untamed Might
+target=creature
+auto=X/X
+text=Target creature gets +X/+X until end of turn.
+mana={X}{G}
 type=Instant
 [/card]
 [card]
@@ -55303,6 +56619,15 @@ text=(Vault of Whispers isn't a spell.) -- {T}: Add {B} to your mana pool.
 type=Artifact Land
 [/card]
 [card]
+name=Vault Skyward
+target=creature
+auto=flying
+auto=untap
+text=Target creature gains flying until end of turn. Untap it.
+mana={U}
+type=Instant
+[/card]
+[card]
 name=Vebulid
 auto=counter(1/1)
 auto=@each my upkeep:may counter(1/1)
@@ -55343,6 +56668,16 @@ power=1
 toughness=2
 [/card]
 [card]
+name=Vector Asp
+auto={B}:infect
+text={B}: Vector Asp gains infect until end of turn. (It deals damage to creatures in form of -1/-1 counters and to players in form of poison counters.)
+mana={1}
+type=Artifact Creature
+subtype=Snake
+power=1
+toughness=1
+[/card]
+[card]
 name=Vedalken AEthermage
 abilities=flash
 auto=moveto(ownerhand) target(sliver)
@@ -55363,6 +56698,16 @@ type=Creature
 subtype=Vedalken Wizard
 power=0
 toughness=2
+[/card]
+[card]
+name=Vedalken Certarch
+auto=aslongas(artifact|myBattlefield) {T}:tap target(artifact,crature,land) >2
+text=Metalcraft - {T}: Tap target artifact, creature, or land. Activate this ability only if you control three or more artifacts.
+mana={U}
+type=Creature
+subtype=Vedalken Wizard
+power=1
+toughness=1
 [/card]
 [card]
 name=Vedalken Dismisser
@@ -55548,6 +56893,17 @@ auto=moveTo(ownerhand)
 text=Return target nonland permanent or suspended card to its owner's hand.
 mana={2}{U}
 type=Instant
+[/card]
+[card]
+name=Venser's Journal
+abilities=nomaxhand
+auto=@each my upkeep:foreach(*|myhand) life:1
+text=Other Myr creatures you control get +1/+1. -- {1}, {T}: Untap each other Myr you control.
+mana={3}
+type=Artifact Creature
+subtype=Myr
+power=2
+toughness=2
 [/card]
 [card]
 name=Venser's Sliver
@@ -56203,6 +57559,13 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Viridian Revel
+auto=@movedTo(artifact|fraveyard) from(opponentBattlefield):may draw:1 controller
+text=Whenever an artifact is put into an opponent's graveyard from the battlefield, you may draw a card.
+mana={1}{G}{G}
+type=Enchantment
+[/card]
+[card]
 name=Viridian Scout
 auto={2}{G}{S}:damage:2 target(creature[flying])
 text={2}{G}, Sacrifice Viridian Scout: Viridian Scout deals 2 damage to target creature with flying.
@@ -56689,6 +58052,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Volition Reigns
+target=*
+auto=untap
+alias=1194
+text=Enchant Permanent -- When Volition Reigns enters the battlefield, if enchanted permanent is tapped, untap it. -- You control enchanted permanent.
+mana={3}{U}{U}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Volrath's Gardens
 auto={2}{T(creature[-tapped]|myBattlefield)}:life:2 controller asSorcery
 text={2}, Tap an untapped creature you control: You gain 2 life. Activate this ability only any time you could cast a sorcery.
@@ -56812,6 +58185,16 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
+name=Vulshok Heartstoker
+auto=2/0 target(creature)
+text=When Vulshok Heartstoker enters the battlefield, target creature gets +2/+0 until end of turn..
+mana={2}{R}
+type=Creature
+subtype=Human Shaman
+power=2
+toughness=2
+[/card]
+[card]
 name=Vulshok Morningstar
 auto={2}:equip
 auto=2/2
@@ -56819,6 +58202,16 @@ text=Equipped creature gets +2/+2. -- Equip {2} ({2}: Attach to target creature 
 mana={2}
 type=Artifact
 subtype=Equipment
+[/card]
+[card]
+name=Vulshok Replica
+auto={1}{R}{S}:damage:3 target(player)
+text={1}{R}, Sacrifice Vulshok Replica: Vulshok Replica deals 3 damage to target player.
+mana={3}
+type=Artifact Creature
+subtype=Berserker
+power=3
+toughness=1
 [/card]
 [card]
 name=Vulshok Sorcerer
@@ -57241,6 +58634,17 @@ type=Creature
 subtype=Wall
 power=3
 toughness=5
+[/card]
+[card]
+name=Wall of Tangelcord
+abilities=defender
+auto={G}:reach
+text=Defender -- {G}: Wall of Tanglecord gains reach until end of turn.
+mana={2}
+type=Artifact Creature
+subtype=Wall
+power=0
+toughness=6
 [/card]
 [card]
 name=Wall of Vines
@@ -58217,6 +59621,13 @@ mana={1}{G}
 type=Instant
 [/card]
 [card]
+name=Whitesun's Passage
+auto=life:5
+text=You gain 5 life.
+mana={1}{W}
+type=Instant
+[/card]
+[card]
 name=Wicked Reward
 auto=4/2 target(creature)
 text=As an additional cost to cast Wicked Reward, sacrifice a creature. -- Target creature gets +4/+2 until end of turn.
@@ -58891,6 +60302,14 @@ mana={2}{W}
 type=Instant
 [/card]
 [card]
+name=Withstand Death
+target=creature
+auto=indestructible
+text=Target creature is indestructible this turn.
+mana={G}
+type=Instant
+[/card]
+[card]
 name=Wizard Mentor
 auto={T}:moveTo(ownerhand) all(this) && moveTo(ownerhand) target(creature|myBattlefield)
 text={T}: Return Wizard Mentor and target creature you control to their owner's hand.
@@ -59283,6 +60702,17 @@ buyback={X}{G}{2}{G}
 text=Buyback {2}{G} (You may pay an additional {2}{G} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Put an X/X green Wurm creature token onto the battlefield.
 mana={X}{G}
 type=Sorcery
+[/card]
+[card]
+name=Wurmcoil Engine
+abilities=lifelink,deathtouch
+auto=@movedTo(this|graveyard) from(battlefield):token(Wurm,Artifact Creature Wurm,3/3,deathtouch) && token(Wurm,Artifact Creature Wurm,3/3,lifelink)
+text=Deathtouch, Lifelink -- When Wurmcoil Engine is put into a graveyard from the battlefield, put a 3/3 colorless Wurm artifact creature token with deathtouch and a 3/3 colorless Wurm artifact creature token with lifelink onto the battlefield.
+mana={6}
+type=Artifact Creature
+subtype=Wurm
+power=6
+toughness=6
 [/card]
 [card]
 name=Wurmweaver Coil
