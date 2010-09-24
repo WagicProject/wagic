@@ -665,10 +665,17 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     size_t end = s.find(")", found);
     int tokenId = atoi(s.substr(found + 6,end - found - 6).c_str());
     if (tokenId){
+	MTGCard * safetycard = GameApp::collection->getCardById(tokenId);
+	if (safetycard){//contenue
       ATokenCreator * tok = NEW ATokenCreator(id,card,NULL,tokenId,0, multiplier);
       tok->oneShot = 1;
       return tok;
-    }
+	}else{
+	  tokenId = 0;
+      ATokenCreator * tok = NEW ATokenCreator(id,card,NULL,"ID NOT FOUND","ERROR ID",NULL,NULL,"",0,NULL);
+	return tok;
+	}
+	}
 
     end = s.find(",", found);
     string sname = s.substr(found + 6,end - found - 6);
