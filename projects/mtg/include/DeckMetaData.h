@@ -16,21 +16,33 @@ enum DECK_DIFFICULTY
 };
     
 class DeckMetaData {
+private:
+  string _filename;
+
+  string _desc;
+  string _name;
+  int _deckid;
+
+  // statistical information
+  
+  int _nbGamesPlayed, _victories, _percentVictories, _difficulty;
+
 public:
   DeckMetaData();
   DeckMetaData(string filename, Player * statsPlayer);
   void load(string filename);
   void loadStatsForPlayer( Player * statsPlayer, string opponentDeckName = "" );
   
+  // Accessors
+  string getFilename();
   string getDescription();
-  
-  string desc;
-  string name;
-  int deckid;
+  string getName();
+  int getDeckId();
+  int getGamesPlayed();
+  int getVictories();
+  int getVictoryPercentage();
+  int getDifficulty();
 
-  // statistical information
-  
-  int nbGamesPlayed, victories, percentVictories, difficulty;
 };
 
 class DeckMetaDataList {

@@ -22,64 +22,50 @@ DeckMetaData::DeckMetaData(string filename, Player * statsPlayer){
 
 void DeckMetaData::loadStatsForPlayer( Player * statsPlayer, string deckStatsFileName )
 {
-    DeckStats * stats = DeckStats::GetInstance();
-    if ( statsPlayer )
+  DeckStats * stats = DeckStats::GetInstance();
+  if ( statsPlayer )
+  {
+    stats->load(statsPlayer);
+    DeckStat * opponentDeckStats = stats->getDeckStat(deckStatsFileName);
+    if ( opponentDeckStats )
     {
-      stats->load(statsPlayer);
-      DeckStat * opponentDeckStats = stats->getDeckStat(deckStatsFileName);
-      if ( opponentDeckStats )
+      _percentVictories = stats->percentVictories(deckStatsFileName);
+      _victories = opponentDeckStats->victories;
+      _nbGamesPlayed = opponentDeckStats->nbgames;
+      if (_percentVictories < 34)
       {
-        percentVictories = stats->percentVictories(deckStatsFileName);
-        victories = opponentDeckStats->victories;
-        nbGamesPlayed = opponentDeckStats->nbgames;
-        if (percentVictories < 34){
-          difficulty = HARD;
-        }else if (percentVictories < 67){
-          difficulty = NORMAL;
-        }else{
-          difficulty = EASY;
-        }
+        _difficulty = HARD;
+      }
+      else if (_percentVictories < 67)
+      {
+        _difficulty = NORMAL;
+      }
+      else
+      {
+        _difficulty = EASY;
       }
     }
-    else
-    {
-      if(fileExists(deckStatsFileName.c_str())){
-        stats->load(deckStatsFileName.c_str());
-        nbGamesPlayed = stats->nbGames();
-        percentVictories = stats->percentVictories();
-      }
+  }
+  else
+  {
+    if(fileExists(deckStatsFileName.c_str())){
+      stats->load(deckStatsFileName.c_str());
+      _nbGamesPlayed = stats->nbGames();
+      _percentVictories = stats->percentVictories();
     }
+  }
+  stats = NULL;
 }
-      
-
-string DeckMetaData::getDescription()
-{
-    char deckDesc[512];
-    string difficultyString = "";
-    switch( difficulty )
-    {
-        case HARD: 
-            difficultyString = "Hard";
-            break;
-        case EASY:
-            difficultyString = "Easy";
-            break;
-    }
-    if ( nbGamesPlayed > 0 && difficultyString != "")    
-        sprintf(deckDesc, "Difficulty: %s\nVictory %%: %i\nGames Played: %i\n\n%s", difficultyString.c_str(), percentVictories, nbGamesPlayed, desc.c_str() );
-    else if ( nbGamesPlayed > 0 )
-        sprintf(deckDesc, "Victory %%: %i\nGames Played: %i\n\n%s", percentVictories, nbGamesPlayed, desc.c_str() );
-    else
-        return desc.c_str();
-    return deckDesc;
-}
-      
+   
 void DeckMetaData::load(string filename){
   MTGDeck * mtgd = NEW MTGDeck(filename.c_str(),NULL,1);
-  name = trim( mtgd->meta_name );
-  desc =  trim( mtgd->meta_desc );
-  deckid = atoi( (filename.substr( filename.find("deck") + 4, filename.find(".txt") )).c_str() );
-  
+  _name = trim( mtgd->meta_name );
+  _desc =  trim( mtgd->meta_desc );
+  _deckid = atoi( (filename.substr( filename.find("deck") + 4, filename.find(".txt") )).c_str() );
+  _percentVictories = 0;
+  _nbGamesPlayed = 0;
+  _filename = filename;
+  _victories = 0;
   delete(mtgd);
 }
 
@@ -99,7 +85,6 @@ void DeckMetaDataList::invalidate(string filename){
    }
 }
 
-
 DeckMetaData * DeckMetaDataList::get(string filename, Player * statsPlayer){
   map<string,DeckMetaData *>::iterator it = values.find(filename);
   if (it ==values.end()){
@@ -111,4 +96,64 @@ DeckMetaData * DeckMetaDataList::get(string filename, Player * statsPlayer){
    return values[filename]; //this creates a NULL entry if the file does not exist
 }
 
+//Accessors
 
+string DeckMetaData::getFilename()
+{
+  return _filename;
+}
+
+string DeckMetaData::getName()
+{
+  return _name;
+}
+
+int DeckMetaData::getDeckId()
+{
+  return _deckid;
+}
+
+
+int DeckMetaData::getGamesPlayed()
+{
+  return _nbGamesPlayed;
+}
+
+
+int DeckMetaData::getVictories()
+{
+  return _victories;
+}
+
+int DeckMetaData::getVictoryPercentage()
+{
+  return _percentVictories;
+}
+
+int DeckMetaData::getDifficulty()
+{
+  return _difficulty;
+}
+
+string DeckMetaData::getDescription()
+{
+    char deckDesc[512];
+    string difficultyString = "";
+    switch( _difficulty )
+    {
+        case HARD: 
+            difficultyString = "Hard";
+            break;
+        case EASY:
+            difficultyString = "Easy";
+            break;
+    }
+    if ( _nbGamesPlayed > 0 && difficultyString != "")    
+      sprintf(deckDesc, "Deck: %s\nDifficulty: %s\nVictory %%: %i\nGames Played: %i\n\n%s", _name.c_str(), difficultyString.c_str(), _percentVictories, _nbGamesPlayed, _desc.c_str() );
+    else if ( _nbGamesPlayed > 0 )
+      sprintf(deckDesc, "Deck: %s\nVictory %%: %i\nGames Played: %i\n\n%s", _name.c_str(), _percentVictories, _nbGamesPlayed, _desc.c_str() );
+    else
+      sprintf(deckDesc, "Deck: %s\n\n%s", _name.c_str(), _desc.c_str() );
+
+    return deckDesc;
+}

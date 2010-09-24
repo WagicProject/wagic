@@ -35,11 +35,12 @@ vector<DeckMetaData *> GameState::getValidDeckMetaData( string path, string smal
     char smallDeckName[512];
     char deckDesc[512];
     sprintf(buffer, "%s/deck%i.txt",path.c_str(),nbDecks);
-    if(DeckMetaData * meta = metas->get(buffer, statsPlayer)){
+
+    DeckMetaData * meta = metas->get(buffer, statsPlayer);
+    if (meta)
+    {
       found = 1;
       sprintf(smallDeckName, "%s_deck%i",smallDeckPrefix.c_str(),nbDecks);
-      sprintf(deckDesc, "%s",meta->name.c_str());
-
       if (statsPlayer){
         string smallDeckNameStr = string(smallDeckName);
         meta->loadStatsForPlayer( statsPlayer, smallDeckNameStr );
@@ -47,16 +48,17 @@ vector<DeckMetaData *> GameState::getValidDeckMetaData( string path, string smal
       else
       {
         char playerStatsDeckName[512];
-        
+
         sprintf(playerStatsDeckName, "stats/player_deck%i.txt", nbDecks);
         string deckstats = options.profileFile(playerStatsDeckName);
         meta->loadStatsForPlayer( NULL, deckstats );
       }
-      
+
       deckDesc[16] = 0;
       retList.push_back( meta );
       nbDecks++;
     }
+    meta = NULL;
   }
 
   std::sort( retList.begin(), retList.end(), sortByName);
@@ -75,7 +77,7 @@ void GameState::renderDeckMenu ( SimpleMenu * _menu, vector<DeckMetaData *> deck
   for (vector<DeckMetaData *>::iterator i = deckMetaDataList.begin(); i != deckMetaDataList.end(); i++)
   {
     DeckMetaData * deckMetaData = *i;
-    string deckName = deckMetaData -> name;
+    string deckName = deckMetaData -> getName();
     string deckDescription = deckMetaData -> getDescription();
     //translate decks desc
     it = t->deckValues.find(deckName);
@@ -90,7 +92,7 @@ void GameState::renderDeckMenu ( SimpleMenu * _menu, vector<DeckMetaData *> deck
 // deck sorting routines
 bool sortByName( DeckMetaData * d1, DeckMetaData * d2 )
 {
-  return strcmp( d1->name.c_str(), d2->name.c_str()) < 0;
+  return strcmp( d1->getName().c_str(), d2->getName().c_str()) < 0;
 
 }
 

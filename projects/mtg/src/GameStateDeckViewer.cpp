@@ -1475,7 +1475,7 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
         if (controlId == MENU_ITEM_NEW_DECK) // new deck option selected
           deckIdNumber = deckList->size() + 1;
         else if (deckListSize > 0 && controlId <= deckListSize)
-          deckIdNumber = deckList->at(controlId - 1)->deckid;
+          deckIdNumber = deckList->at(controlId - 1)-> getDeckId();
         else
           deckIdNumber = controlId;
 

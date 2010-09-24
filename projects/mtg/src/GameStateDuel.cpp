@@ -527,7 +527,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId) {
                 break;
             }
             else if ( controlId != MENUITEM_EVIL_TWIN && aiDeckSize > 0) // evil twin
-                deckNumber = deckManager->getAIDeckOrderList()->at( controlId - 1 )->deckid;
+              deckNumber = deckManager->getAIDeckOrderList()->at( controlId - 1 )->getDeckId();
 
             loadPlayer(1,deckNumber,1);
 			      OpponentsDeckid=deckNumber;
@@ -542,7 +542,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId) {
         if ( controlId == MENUITEM_RANDOM_PLAYER ) // Random Player Deck Selection
         {
           vector<DeckMetaData *> * playerDeckList = deckManager->getPlayerDeckOrderList();
-          deckNumber = playerDeckList->at(WRand() * 1001 % (playerDeckList->size()) )->deckid;
+          deckNumber = playerDeckList->at(WRand() * 1001 % (playerDeckList->size()) )->getDeckId();
           loadPlayer( 0, deckNumber );
           deckmenu->Close();
           mGamePhase = DUEL_STATE_CHOOSE_DECK2_TO_PLAY;
@@ -562,7 +562,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId) {
         if (mGamePhase == DUEL_STATE_CHOOSE_DECK1){
           vector<DeckMetaData *> * playerDeck = deckManager->getPlayerDeckOrderList();
           if ( !premadeDeck && controlId > 0 )
-            deckNumber = playerDeck->at( controlId - 1 )->deckid;
+            deckNumber = playerDeck->at( controlId - 1 )->getDeckId();
           loadPlayer(0,deckNumber);
           deckmenu->Close();
           mGamePhase = DUEL_STATE_CHOOSE_DECK1_TO_2;
