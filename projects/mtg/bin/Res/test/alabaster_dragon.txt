@@ -1,0 +1,17 @@
+[init]
+firstmain
+[player1]
+inplay:Alabaster Dragon
+hand:Terror
+manapool:{1}{B}
+[player2]
+[do]
+Terror
+Alabaster Dragon
+[assert]
+firstmain
+[player1]
+graveyard:Terror
+library:Alabaster Dragon
+[player2]
+[end]

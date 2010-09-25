@@ -885,7 +885,7 @@ toughness=6
 [card]
 name=Alabaster Dragon
 auto=flying
-autograveyard=@movedTo(this|mygraveyard) from(myBattlefield):moveTo(ownerlibrary) && shuffle
+auto=@movedTo(graveyard) from(this|battlefield):moveto(mylibrary) all(trigger[from]) && shuffle controller
 text=Flying -- When Alabaster Dragon is put into a graveyard from the battlefield, shuffle Alabaster Dragon into its owner's library.
 mana={4}{W}{W}
 type=Creature
@@ -1559,7 +1559,7 @@ toughness=5
 [card]
 name=Angel of Fury
 abilities=flying
-autograveyard=@movedTo(this|mygraveyard) from(myBattlefield):moveTo(ownerlibrary) && shuffle
+auto=@movedTo(graveyard) from(this|battlefield):moveto(mylibrary) all(trigger[from]) && shuffle controller
 text=Flying -- When Angel of Fury is put into your graveyard from the battlefield, you may shuffle it into your library.
 mana={4}{W}{W}
 type=Creature
@@ -1866,7 +1866,7 @@ toughness=4
 [card]
 name=Aphetto Vulture
 abilities=flying
-autograveyard=@movedTo(this|graveyard) from(battlefield):may moveto(mylibrary) target(zombie other|mygraveyard)
+auto=@movedTo(graveyard) from(this|battlefield):may moveto(mylibrary) target(zombie other|mygraveyard)
 text=Flying -- When Aphetto Vulture is put into a graveyard from the battlefield, you may put target Zombie card from your graveyard on top of your library.
 mana={4}{B}{B}
 type=Creature
@@ -2779,7 +2779,7 @@ mana={1}
 [card]
 name=Aspect of Mongoose
 target=creature
-auto=@movedTo(this|graveyard) from(battlefield):moveTo(myhand) notatarget(this|mygraveyard)
+auto=@movedTo(graveyard) from(this|battlefield):moveTo(myhand) notatarget(this|mygraveyard)
 auto=shroud
 text=Enchant creature -- Enchanted creature has shroud. (It can't be the target of spells or abilities.) -- When Aspect of Mongoose is put into a graveyard from the battlefield, return Aspect of Mongoose to its owner's hand.
 mana={1}{G}
@@ -3146,10 +3146,6 @@ toughness=3
 [card]
 name=Avarice Totem
 auto={5}:moveto(mybattlefield) target(*[-land]|opponentbattlefield) && moveto(opponentbattlefield) all(this)
-# Note: The term all(this) is a workaround for a current parser
-# limitation. We cannot chain effects on a target card to effects
-# on "this" - if we do it, the the parser confuses and ignores
-# targets. But we CAN chain "target"ed effects to "all()" effects.
 text={5}: Exchange control of Avarice Totem and target nonland permanent.
 mana={1}
 type=Artifact
@@ -3157,7 +3153,7 @@ type=Artifact
 [card]
 name=Avenging Angel
 auto=flying
-auto=@movedTo(this|mygraveyard) from(myBattlefield):moveTo(mylibrary) notatarget(avenging angel|mygraveyard) && shuffle
+auto=@movedTo(graveyard) from(this|battlefield):moveto(mylibrary) all(trigger[from])
 text=Flying -- When Avenging Angel is put into a graveyard from the battlefield, shuffle Avenging Angel into its owner's library.
 mana={3}{W}{W}
 type=Creature
@@ -6741,7 +6737,7 @@ toughness=3
 [card]
 name=Brilliant Halo
 target=creature
-autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
+auto=@movedTo(graveyard) from(this|battlefield):moveTo(myhand) notatarget(this|mygraveyard)
 auto=1/2
 text=Enchant creature -- Enchanted creature gets +1/+2. -- When Brilliant Halo is put into a graveyard from the battlefield, return Brilliant Halo to its owner's hand.
 mana={1}{W}
@@ -8359,7 +8355,7 @@ toughness=3
 [card]
 name=Cessation
 target=creature
-autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
+auto=@movedTo(graveyard) from(this|battlefield):moveTo(myhand) notatarget(this|mygraveyard)
 auto=cantattack
 text=Enchant creature -- Enchanted creature can't attack. -- When Cessation is put into a graveyard from the battlefield, return Cessation to its owner's hand.
 mana={2}{W}
@@ -12801,7 +12797,7 @@ type=Sorcery
 [card]
 name=Despondency
 target=creature
-autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
+auto=@movedTo(graveyard) from(this|battlefield):moveTo(myhand) notatarget(this|mygraveyard)
 auto=-2/0
 text=Enchant creature -- Enchanted creature gets -2/-0. -- When Despondency is put into a graveyard from the battlefield, return Despondency to its owner's hand.
 mana={1}{B}
@@ -15842,7 +15838,7 @@ toughness=5
 [/card]
 [card]
 name=Endless Cockroaches
-autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
+auto=@movedTo(graveyard) from(this|battlefield):moveTo(myhand) notatarget(this|mygraveyard)
 text=When Endless Cockroaches is put into a graveyard from the battlefield, return Endless Cockroaches to its owner's hand.
 mana={1}{B}{B}
 type=Creature
@@ -16864,7 +16860,7 @@ toughness=3
 [card]
 name=Fallen Ideal
 target=creature
-autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
+auto=@movedTo(graveyard) from(this|battlefield):moveTo(myhand) notatarget(this|mygraveyard)
 auto=flying
 auto={S(creature|myBattlefield)}:2/1
 text=Enchant creature -- Enchanted creature has flying and "Sacrifice a creature: This creature gets +2/+1 until end of turn." -- When Fallen Ideal is put into a graveyard from the battlefield, return Fallen Ideal to its owner's hand.
@@ -17543,7 +17539,7 @@ toughness=2
 [card]
 name=Fiery Mantle
 target=creature
-autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
+auto=@movedTo(graveyard) from(this|battlefield):moveTo(myhand) notatarget(this|mygraveyard)
 auto={R}:1/0
 text=Enchant creature -- {R}: Enchanted creature gets +1/+0 until end of turn. -- When Fiery Mantle is put into a graveyard from the battlefield, return Fiery Mantle to its owner's hand.
 mana={1}{R}
@@ -18814,7 +18810,7 @@ type=Instant
 [card]
 name=Fortitude
 target=creature
-autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
+auto=@movedTo(graveyard) from(this|battlefield):moveTo(myhand) notatarget(this|mygraveyard)
 auto={S(forest|myBattlefield)}:regenerate
 text=Enchant creature -- Sacrifice a Forest: Regenerate enchanted creature. -- When Fortitude is put into a graveyard from the battlefield, return Fortitude to its owner's hand.
 mana={1}{G}
@@ -20346,6 +20342,7 @@ name=Glimmerpost
 auto=foreach(locus|myBattlefield) life:1 controller
 auto={T}:Add{1}
 type=Land
+subtype=Locus
 [/card]
 [card]
 name=Glimmervoid
@@ -20394,7 +20391,7 @@ toughness=2
 [card]
 name=Glint Hawk
 abilities=flying
-auto=aslongas(artifact|myBattlefield) moveTo(graveyard) notatarget(artifact|myBattlefield) oneshot
+auto=aslongas(artifact|myBattlefield) moveTo(ownerhand) notatarget(artifact|myBattlefield) oneshot
 auto=moveTo(graveyard) notatarget(this|myBattlefield)
 text=Flying (This creature can't be blocked except by creatures with flying or reach.) -- When Glint Hawk enters the battlefield, sacrifice it unless you return an artifact you control to its owner's hand.
 mana={W}
@@ -21754,6 +21751,14 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Grasp of Darkness
+target=creature
+auto=-4/-4
+text=Target creature gets -4/-4 until end of turn.
+mana={B}{B}
+type=Instant
+[/card]
+[card]
 name=Grassland Crusader
 auto={T}:2/2 target(elf,soldier)
 text={T}: Target Elf or Soldier creature gets +2/+2 until end of turn.
@@ -22137,14 +22142,6 @@ type=Creature
 subtype=Elemental
 power=2
 toughness=2
-[/card]
-[card]
-name=Grip of Darkness
-target=creature
-auto=-4/-4
-text=Target creature gets -4/-4 until end of turn.
-mana={B}{B}
-type=Instant
 [/card]
 [card]
 name=Gristle Grinner
@@ -29053,7 +29050,7 @@ type=Instant
 [card]
 name=Launch
 target=creature
-autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
+auto=@movedTo(graveyard) from(this|battlefield):moveTo(myhand) notatarget(this|mygraveyard)
 auto=flying
 text=Enchant creature -- Enchanted creature has flying. -- When Launch is put into a graveyard from the battlefield, return Launch to its owner's hand.
 mana={1}{U}
@@ -40553,7 +40550,7 @@ type=Sorcery
 [card]
 name=Rancor
 target=creature
-autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
+auto=@movedTo(graveyard) from(this|battlefield):moveTo(myhand) notatarget(this|mygraveyard)
 auto=2/0
 auto=trample
 text=Enchant creature -- Enchanted creature gets +2/+0 and has trample. -- When Rancor is put into a graveyard from the battlefield, return Rancor to its owner's hand.
@@ -42008,8 +42005,8 @@ subtype=Arcane
 [card]
 name=Riddlesmith
 auto=@movedTo(artifact|mystack):may token(-5555556) && draw:1
-text=Whenever you cast an artifact spell, you may have target creature get +2/+0 and gain deathtouch until end of turn.
-mana={1}{B}
+text=Whenever you cast an artifact spell, you may draw a card. If you do, discard a card.
+mana={1}{U}
 type=Creature
 subtype=Human Artificer
 power=2
@@ -45944,7 +45941,7 @@ type=Land
 [card]
 name=Shivan Phoenix
 abilities=flying
-autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
+auto=@movedTo(graveyard) from(this|battlefield):moveTo(myhand) notatarget(this|mygraveyard)
 text=Flying -- When Shivan Phoenix is put into a graveyard from the battlefield, return Shivan Phoenix to its owner's hand.
 mana={4}{R}{R}
 type=Creature
@@ -46856,7 +46853,7 @@ toughness=3
 name=Skinrender
 auto=counter(-1/-1,3) target(creature)
 text=When Skinrender enters the battlefield, put three -1/-1 counters on target creature
-mana={3}{B}{B}
+mana={2}{B}{B}
 type=Creature
 subtype=Zombie
 power=3
@@ -47512,7 +47509,7 @@ toughness=3
 [card]
 name=Sleeper's Guile
 target=creature
-autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
+auto=@movedTo(graveyard) from(this|battlefield):moveTo(myhand) notatarget(this|mygraveyard)
 auto=fear
 text=Enchant creature -- Enchanted creature has fear. (It can't be blocked except by artifact creatures and/or black creatures.) -- When Sleeper's Guile is put into a graveyard from the battlefield, return Sleeper's Guile to its owner's hand.
 mana={2}{B}
@@ -47742,7 +47739,7 @@ toughness=2
 [card]
 name=Sluggishness
 target=creature
-autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
+auto=@movedTo(graveyard) from(this|battlefield):moveTo(myhand) notatarget(this|mygraveyard)
 auto=cantblock
 text=Enchant creature -- Enchanted creature can't block. -- When Sluggishness is put into a graveyard from the battlefield, return Sluggishness to its owner's hand.
 mana={1}{R}
@@ -49617,7 +49614,7 @@ toughness=3
 name=Spreading Algae
 target=swamp
 auto=@tapped(mytgt):destroy
-autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
+auto=@movedTo(graveyard) from(this|battlefield):moveTo(myhand) notatarget(this|mygraveyard)
 text=Enchant Swamp -- When enchanted land becomes tapped, destroy it. -- When Spreading Algae is put into a graveyard from the battlefield, return Spreading Algae to its owner's hand.
 mana={G}
 type=Enchantment
@@ -52023,7 +52020,7 @@ target=creature
 auto=1/0
 auto=infect
 text=Target creature gets +1/+0 and gains infect until end of turn. (This creature deals damage to creatures in form of -1/-1 counters and to players in form of poison counters.)
-mana={3}{B}
+mana={B}
 type=Instant
 [/card]
 [card]
@@ -55913,7 +55910,7 @@ type=Enchantment
 [/card]
 [card]
 name=Undying Beast
-autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(mylibrary)
+auto=@movedTo(graveyard) from(this|battlefield):moveto(mylibrary) all(trigger[from])
 text=When Undying Beast is put into a graveyard from the battlefield, put Undying Beast on top of its owner's library.
 mana={3}{B}
 type=Creature
@@ -55924,7 +55921,7 @@ toughness=2
 [card]
 name=Undying Rage
 target=creature
-autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
+auto=@movedTo(graveyard) from(this|battlefield):moveTo(myhand) notatarget(this|mygraveyard)
 auto=2/2
 auto=cantblock
 text=Enchant creature -- Enchanted creature gets +2/+2 and can't block. -- When Undying Rage is put into a graveyard from the battlefield, return Undying Rage to its owner's hand.
@@ -58052,7 +58049,7 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Volition Reigns
+name=Volition Reins
 target=*
 auto=untap
 alias=1194
@@ -59191,7 +59188,7 @@ toughness=1
 [card]
 name=Weatherseed Treefolk
 abilities=trample
-autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
+auto=@movedTo(graveyard) from(this|battlefield):moveTo(myhand) notatarget(this|mygraveyard)
 text=Trample -- When Weatherseed Treefolk is put into a graveyard from the battlefield, return Weatherseed Treefolk to its owner's hand.
 mana={2}{G}{G}{G}
 type=Creature
@@ -61253,7 +61250,7 @@ toughness=2
 [/card]
 [card]
 name=Zodiac Dragon
-autograveyard=@movedTo(this|graveyard) from(battlefield):may moveTo(myhand)
+auto=@movedTo(graveyard) from(this|battlefield):moveTo(myhand) notatarget(this|mygraveyard)
 text=When Zodiac Dragon is put into your graveyard from the battlefield, you may return it to your hand.
 mana={7}{R}{R}
 type=Creature
