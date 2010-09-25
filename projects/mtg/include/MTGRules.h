@@ -150,7 +150,6 @@ class MTGTokensCleanup:public MTGAbility{
   MTGTokensCleanup(int _id);
   int receiveEvent(WEvent * event);
   int testDestroy();
-  void Update(float dt);
   virtual MTGTokensCleanup * clone() const;
 };
 
