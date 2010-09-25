@@ -38,9 +38,9 @@ void CardSelector::Add(CardSelector::Target* target)
     if (NULL == limitor || limitor->select(active))
       active = target;
   CardView* c = dynamic_cast<CardView*>(target);
-  if (c) c->zoom = 1.0;
+  if (c) c->zoom = 1.0f;
   c = dynamic_cast<CardView*>(active);
-  if (c) c->zoom = 1.4;
+  if (c) c->zoom = 1.4f;
   cards.push_back(target);
 }
 template<>
@@ -51,9 +51,9 @@ void CardSelector::Remove(CardSelector::Target* card)
       {
         if (active == *it)
           {
-            CardView* c = dynamic_cast<CardView*>(active); if (c) c->zoom = 1.0;
+            CardView* c = dynamic_cast<CardView*>(active); if (c) c->zoom = 1.0f;
             active = closest<Diff>(cards, limitor, active);
-            c = dynamic_cast<CardView*>(active); if (c) c->zoom = 1.4;
+            c = dynamic_cast<CardView*>(active); if (c) c->zoom = 1.4f;
           }
         if (active == *it) active = NULL;
         cards.erase(it);
@@ -89,8 +89,8 @@ void CardSelector::Pop() {
     if (nullZone != oldowner) lasts[oldowner] = SelectorMemory(oldactive);
   }
   if (active != oldactive) {
-    { CardView* c = dynamic_cast<CardView*>(oldactive); if (c) c->zoom = 1.0; } //Is this needed, I think it is one in Leaving(0) ?
-    { CardView* c = dynamic_cast<CardView*>(active); if (c) c->zoom = 1.4; } //Is this needed, I think it is one in Entering() ?
+    { CardView* c = dynamic_cast<CardView*>(oldactive); if (c) c->zoom = 1.0f; } //Is this needed, I think it is one in Leaving(0) ?
+    { CardView* c = dynamic_cast<CardView*>(active); if (c) c->zoom = 1.4f; } //Is this needed, I think it is one in Entering() ?
     if (oldactive) oldactive->Leaving(JGE_BTN_NONE);
     if (active) active->Entering();
   }
@@ -159,8 +159,8 @@ bool CardSelector::CheckUserInput(JButton key)
     }
   }
   if (active != oldactive) {
-    { CardView* c = dynamic_cast<CardView*>(oldactive); if (c) c->zoom = 1.0; }
-    { CardView* c = dynamic_cast<CardView*>(active); if (c) c->zoom = 1.4; }
+    { CardView* c = dynamic_cast<CardView*>(oldactive); if (c) c->zoom = 1.0f; }
+    { CardView* c = dynamic_cast<CardView*>(active); if (c) c->zoom = 1.4f; }
     if (oldactive) oldactive->Leaving(JGE_BTN_NONE);
     if (active) active->Entering();
   }
@@ -223,8 +223,8 @@ void CardSelector::Limit(LimitorFunctor<Target>* limitor, SelectorZone destzone)
     }
 
     if (active != oldactive) {
-      { CardView* c = dynamic_cast<CardView*>(oldactive); if (c) c->zoom = 1.0; }
-      { CardView* c = dynamic_cast<CardView*>(active); if (c) c->zoom = 1.4; }
+      { CardView* c = dynamic_cast<CardView*>(oldactive); if (c) c->zoom = 1.0f; }
+      { CardView* c = dynamic_cast<CardView*>(active); if (c) c->zoom = 1.4f; }
       if (oldactive) oldactive->Leaving(JGE_BTN_NONE);
       if (active) active->Entering();
     }

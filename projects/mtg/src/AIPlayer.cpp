@@ -305,9 +305,8 @@ int AIPlayer::interruptIfICan(){
 
 int AIPlayer::effectBadOrGood(MTGCardInstance * card, int mode, TargetChooser * tc){
   int id = card->getMTGId();
-  AbilityFactory * af = NEW AbilityFactory();
-  int autoGuess = af->magicText(id,NULL,card, mode, tc);
-  delete af;
+  AbilityFactory af;
+  int autoGuess = af.magicText(id,NULL,card, mode, tc);
   if (autoGuess) return autoGuess;
   return BAKA_EFFECT_DONTKNOW;
 }
@@ -632,9 +631,8 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
     int currentCost = card->getManaCost()->getConvertedCost();
     int hasX = card->getManaCost()->hasX();
     if ((currentCost > maxCost || hasX) && pMana->canAfford(card->getManaCost())){
-      TargetChooserFactory * tcf = NEW TargetChooserFactory();
-      TargetChooser * tc = tcf->createTargetChooser(card);
-      delete tcf;
+      TargetChooserFactory tcf;
+      TargetChooser * tc = tcf.createTargetChooser(card);
       int shouldPlayPercentage = 10;
       if (tc){
 	      int hasTarget = (chooseTarget(tc));
@@ -653,7 +651,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
       if (hasX){
         int xDiff = pMana->getConvertedCost() - currentCost;
         if (xDiff < 0) xDiff = 0;
-        shouldPlayPercentage = shouldPlayPercentage - ((shouldPlayPercentage * 1.9) / (1 + xDiff));
+        shouldPlayPercentage = shouldPlayPercentage - ((shouldPlayPercentage * 1.9f) / (1 + xDiff));
       }
 
       if (WRand() % 100 > shouldPlayPercentage) continue;
@@ -682,7 +680,7 @@ AIPlayerBaka::AIPlayerBaka(MTGPlayerCards * deck, string file, string fileSmall,
 }
 
 void AIPlayerBaka::initTimer(){
-  timer = 0.1;
+  timer = 0.1f;
 }
 
 int AIPlayerBaka::computeActions(){

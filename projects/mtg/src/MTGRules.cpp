@@ -1398,7 +1398,8 @@ int MTGTokensCleanup::receiveEvent(WEvent * e){
 		if (!event->card->isToken) return 0;
 		if (event->to == game->players[0]->game->inPlay || event->to == game->players[1]->game->inPlay) return 0;
 		if (event->to == game->players[0]->game->garbage || event->to == game->players[1]->game->garbage) return 0;
-		list.push_back(event->card);
+    MTGCardInstance * c = event->card;
+		c->controller()->game->putInZone(c,c->currentZone, c->controller()->game->garbage);
 		return 1;
 	}
 	return 0;
@@ -1406,14 +1407,6 @@ int MTGTokensCleanup::receiveEvent(WEvent * e){
 
 int MTGTokensCleanup::testDestroy(){return 0;}
 
-void MTGTokensCleanup::Update(float dt){
-	MTGAbility::Update(dt);
-	for(size_t i= 0; i < list.size(); ++i){
-		MTGCardInstance * c = list[i];
-		c->controller()->game->putInZone(c,c->currentZone, c->controller()->game->garbage);
-	}
-	list.clear();
-}
 
 MTGTokensCleanup *  MTGTokensCleanup::clone() const{
 	MTGTokensCleanup * a =  NEW MTGTokensCleanup(*this);

@@ -116,10 +116,10 @@ public:
 // Triggers When a card gets added to a zone (@movedTo)
 class TrCardAddedToZone:public TriggeredAbility{
 public:
-  TargetChooser * toTc;
-  TargetZoneChooser * fromTcZone;
-  TargetChooser * fromTcCard;
-  TrCardAddedToZone(int id, MTGCardInstance * source, TargetChooser * toTc, TargetZoneChooser * fromTcZone = NULL,TargetChooser * fromTcCard = NULL):TriggeredAbility(id,source), toTc(toTc), fromTcZone(fromTcZone), fromTcCard(fromTcCard){}
+  TargetZoneChooser * toTcZone, * fromTcZone;
+  TargetChooser * toTcCard, * fromTcCard;
+  TrCardAddedToZone(int id, MTGCardInstance * source, TargetZoneChooser * toTcZone, TargetChooser * toTcCard , TargetZoneChooser * fromTcZone = NULL,TargetChooser * fromTcCard = NULL)
+    :TriggeredAbility(id,source), toTcZone(toTcZone), fromTcZone(fromTcZone), toTcCard(toTcCard), fromTcCard(fromTcCard){};
 
   int resolve(){
     return 0; //This is a trigger, this function should not be called
@@ -129,7 +129,8 @@ public:
     WEventZoneChange * e = dynamic_cast<WEventZoneChange*>(event);
     if (!e) return 0;
 
-    if (!toTc->canTarget(e->card)) return 0;
+    if (!toTcZone->targetsZone(e->to)) return 0;
+    if (!toTcCard->canTarget(e->card)) return 0;
     if (fromTcZone && !fromTcZone->targetsZone(e->from)) return 0;
     if (fromTcCard && !fromTcCard->canTarget(e->card->previous)) return 0;
     
@@ -143,7 +144,8 @@ public:
   }
 
   ~TrCardAddedToZone(){
-    SAFE_DELETE(toTc);
+    SAFE_DELETE(toTcZone);
+    SAFE_DELETE(toTcCard);
     SAFE_DELETE(fromTcZone);
     SAFE_DELETE(fromTcCard);
   }

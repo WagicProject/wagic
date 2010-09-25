@@ -504,9 +504,10 @@ Zombie_Infestation.txt
 zombie_master.txt
 zombify.txt
 ########################
-#Momir Basic Tests
+#Momir Tests
 ########################
 momir/keldon_warlord.txt
+momir/persist_i304.txt
 momir/overcost.txt
 ########################
 #AI Tests

@@ -1,0 +1,37 @@
+#Creatures with persist shouldn't go back from the graveyard if they are tokens
+MOMIR
+[INIT]
+SECONDMAIN
+[PLAYER1]
+hand:plains
+manapool:{3}
+[PLAYER2]
+inplay:Rock Badger
+[DO]
+plains -momir- Rendclaw Trow
+eot
+next
+#upkeep
+next
+#draw
+next
+#main
+next
+#combat begins
+next
+#attackers
+Rock Badger
+next
+#blockers
+Rendclaw Trow
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+graveyard:plains
+[PLAYER2]
+inplay:rock badger
+[END]
