@@ -52,6 +52,10 @@ struct WEventDamage : public WEvent {
   virtual Targetable * getTarget(int target);
 };
 
+struct WEventDamageStackResolved : public WEvent {
+  WEventDamageStackResolved();
+};
+
 struct WEventPhaseChange : public WEvent {
   Phase * from;
   Phase * to;

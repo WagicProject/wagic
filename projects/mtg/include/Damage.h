@@ -55,6 +55,7 @@ class DamageStack : public GuiLayer, public Interruptible{
   GameObserver* game;
 
  public:
+  int receiveEvent(WEvent * event);
   int resolve();
   void Render();
   virtual ostream& toString(ostream& out) const;

@@ -601,7 +601,7 @@ void GameObserver::untapPhase(){
 int GameObserver::receiveEvent(WEvent * e){
   if (!e) return 0;
   eventsQueue.push(e);
-  if (eventsQueue.size() > 1) return -1;
+  if (eventsQueue.size() > 1) return -1; //resolving events can generate more events
   int result = 0;
   while(eventsQueue.size()){
     WEvent * ev = eventsQueue.front();

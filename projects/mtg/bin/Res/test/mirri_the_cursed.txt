@@ -1,0 +1,31 @@
+#Test @dmaaged on Mirri the Cursed
+# Whenever Mirri the Cursed deals combat damage to a creature, put a +1/+1 counter on Mirri the Cursed.
+# 3/2
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:Mirri the Cursed,mountain
+hand:shock
+[PLAYER2]
+inplay:Angelic Wall
+[DO]
+Mirri the Cursed
+next
+Angelic Wall
+next
+#damages first strike
+next
+#combat end
+next
+#main 2
+mountain
+shock
+Mirri the Cursed
+[ASSERT]
+SECONDMAIN
+[PLAYER1]
+inplay:Mirri the Cursed,mountain
+graveyard:shock
+[PLAYER2]
+inplay:Angelic Wall
+[END]

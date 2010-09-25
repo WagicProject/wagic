@@ -1,0 +1,29 @@
+#Bug: @damaged doesn't trigger if creature goes to graveyard
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:Mirri the Cursed,mountain
+hand:shock
+[PLAYER2]
+inplay:vampire bats
+[DO]
+Mirri the Cursed
+next
+vampire bats
+next
+#damages fir strike
+next
+#combat end
+next
+#main 2
+mountain
+shock
+Mirri the Cursed
+[ASSERT]
+SECONDMAIN
+[PLAYER1]
+inplay:Mirri the Cursed,mountain
+graveyard:shock
+[PLAYER2]
+graveyard:vampire bats
+[END]

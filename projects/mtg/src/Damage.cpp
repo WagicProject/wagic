@@ -178,18 +178,30 @@ DamageStack::DamageStack() {
 }
 
 
+/* Damage Stack resolve process:
+1 - apply damages to targets. For each of them, send an event to the GameObserver (for Damage triggers)
+2 - Once this is done, send a "Damage Stakc Resolved" event to the GameObserver
+3 - Once that message is received on the DamageStack's side, do the "afterDamage" effects (send to graveyard, etc...)
+Using events in 2 and 3 guarantees that the "send to graveyard" effect will only apply AFTER Damaged triggers are applied
+*/
 int DamageStack::resolve(){
   for (int i = mCount-1; i>= 0; i--){
     Damage * damage = (Damage*)mObjects[i];
     if (damage->state == NOT_RESOLVED) damage->resolve();
-    //damage->resolve();
   }
+
+  GameObserver::GetInstance()->receiveEvent(NEW WEventDamageStackResolved());
+  return 1;
+}
+
+int DamageStack::receiveEvent(WEvent * e) {
+  WEventDamageStackResolved *event = dynamic_cast<WEventDamageStackResolved*>(e);
+  if (!event) return 0;
+
   for (int i = mCount-1; i>= 0; i--){
     Damage * damage = (Damage*)mObjects[i];
     if (damage->state == RESOLVED_OK) damage->target->afterDamage();
-    //damage->target->afterDamage();
   }
-
   return 1;
 }
 

@@ -547,6 +547,15 @@ Interruptible * ActionStack::getLatest(int state){
   return NULL;
 }
 
+int ActionStack::receiveEventPlus(WEvent * event) {
+  int result = 0;
+  for (int i = 0; i < mCount ; ++i){
+    Interruptible * current = (Interruptible *)mObjects[i];
+    result += current->receiveEvent(event);
+  }
+  return result;
+}
+
 void ActionStack::Update(float dt){
   askIfWishesToInterrupt = NULL;
   //modal = 0;

@@ -10,6 +10,8 @@ WEventZoneChange::WEventZoneChange(MTGCardInstance * card, MTGGameZone * from, M
 
 WEventDamage::WEventDamage(Damage *damage) : WEvent(DAMAGE), damage(damage){}
 
+WEventDamageStackResolved::WEventDamageStackResolved() : WEvent(){}
+
 WEventCardUpdate::WEventCardUpdate(MTGCardInstance * card) : WEvent(), card(card) {};
 
 WEventPhaseChange::WEventPhaseChange(Phase * from, Phase * to) : WEvent(CHANGE_PHASE), from(from), to(to){}
