@@ -3566,7 +3566,7 @@ toughness=2
 [/card]
 [card]
 name=Balduvian Dead
-auto={2}{R}{E(creature|mygraveyard):token(graveborn,creature zombie,3/1,blackred,treason,unearth,haste)
+auto={2}{R}{E(creature|mygraveyard)}:token(graveborn,creature zombie,3/1,blackred,treason,unearth,haste)
 text={2}{R}, Exile a creature card from your graveyard: Put a 3/1 black and red Graveborn creature token with haste onto the battlefield. Sacrifice it at the beginning of the next end step.
 mana={3}{B}
 type=Creature
@@ -13629,7 +13629,7 @@ type=Instant
 [card]
 name=Downhill Charge
 target=creature
-other={S(mountain|mybattlefield)
+other={S(mountain|mybattlefield)}
 auto=foreach(mountain|mybattlefield) 1/0
 text=You may sacrifice a Mountain rather than pay Downhill Charge's mana cost. -- Target creature gets +X/+0 until end of turn, where X is the number of Mountains you control.
 mana={2}{R}
@@ -37397,7 +37397,7 @@ type=Enchantment
 [card]
 name=Pegasus Stampede
 auto=token(Pegasus,Creature Pegasus,1/1,flying,white)
-buyback={1}{W}{S(land|myBattlefield)
+buyback={1}{W}{S(land|myBattlefield)}
 text=Buyback - Sacrifice a land. (You may sacrifice a land in addition to any other costs as you cast this spell. If you do, put this card into your hand as it resolves.) -- Put a 1/1 white Pegasus creature token with flying onto the battlefield.
 mana={1}{W}
 type=Sorcery
