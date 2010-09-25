@@ -3,9 +3,9 @@
 #DESC:the day after a triumph 
 #DESC:is as hollow as the
 #DESC:day after a tragedy.
-Seal of Fire (DIS)           * 2 #
+Seal of Fire (DIS)           * 4 #
 Megrim (10E)                 * 4 #
-Blightning (ALA)             * 3 #
+Wheel of Fortune (RV)    * 1 #
 Terminate (ARB)              * 3 #
 Kederekt Parasite (CFX)      * 4 #
 Hypnotic Specter (M10)       * 4 #
