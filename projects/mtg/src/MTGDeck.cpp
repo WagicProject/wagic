@@ -395,7 +395,7 @@ bool MTGAllCards::addCardToCollection(MTGCard * card, int setId){
   if (collection.find(newId) != collection.end()){
 #if defined (_DEBUG)
     char outBuf[4096];
-    sprintf(outBuf,"warning, card id collision! : %i\n", newId);
+    sprintf(outBuf,"warning, card id collision! : %i -> %s (%s) \n", newId, card->data->name.c_str(), setlist.getInfo( setId )->getName().c_str());
     OutputDebugString(outBuf);
 #endif
     SAFE_DELETE(card);
