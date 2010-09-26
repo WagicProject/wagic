@@ -28729,7 +28729,7 @@ subtype=Aura
 name=Kuldotha Rebirth
 auto=token(Goblin,Crature Goblin,1/1,red)*3
 text=As an additional cost to cast Kuldotha Rebirth, sacrifice an artifact. -- Put three 1/1 red Goblin creature tokens onto the battlefield.
-mana={R}{S(artifact|myBattlefield)
+mana={R}{S(artifact|myBattlefield)}
 type=Sorcery
 [/card]
 [card]
@@ -37709,7 +37709,7 @@ text=When Phage the Untouchable enters the battlefield, if you didn't cast it fr
 mana={3}{B}{B}{B}{B}
 kicker={0}
 type=Legendary Creature
-subtype=Spirit
+subtype=Minion
 power=4
 toughness=4
 [/card]
@@ -56895,12 +56895,9 @@ type=Instant
 name=Venser's Journal
 abilities=nomaxhand
 auto=@each my upkeep:foreach(*|myhand) life:1
-text=Other Myr creatures you control get +1/+1. -- {1}, {T}: Untap each other Myr you control.
-mana={3}
-type=Artifact Creature
-subtype=Myr
-power=2
-toughness=2
+text=You have no maximum hand size. -- At the beginning of your upkeep, you gain 1 life for each card in your hand.
+mana={5}
+type=Artifact
 [/card]
 [card]
 name=Venser's Sliver
@@ -58633,7 +58630,7 @@ power=3
 toughness=5
 [/card]
 [card]
-name=Wall of Tangelcord
+name=Wall of Tanglecord
 abilities=defender
 auto={G}:reach
 text=Defender -- {G}: Wall of Tanglecord gains reach until end of turn.
