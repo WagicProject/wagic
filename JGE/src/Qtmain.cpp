@@ -14,7 +14,6 @@
 
 class JGEQtRenderer : public QGLWidget
 {
-//    Q_OBJECT        // must include this if you use Qt signals/slots
 
 public:
   JGEQtRenderer(QWidget *parent);
@@ -31,6 +30,16 @@ protected:
   void keyPressEvent(QKeyEvent *event);
 
   void keyReleaseEvent(QKeyEvent *event);
+
+  void mouseDoubleClickEvent(QMouseEvent *event);
+
+  void mousePressEvent(QMouseEvent *event);
+
+  void mouseReleaseEvent(QMouseEvent *event);
+
+protected:
+  QPoint lastPos;
+
 };
 
 uint64_t	lastTickCount;
@@ -114,7 +123,7 @@ void DestroyGame(void)
 
 
 JGEQtRenderer::JGEQtRenderer(QWidget *parent)
-  : QGLWidget(parent)
+  : QGLWidget(parent) /* Seems to go faster without double buffering */
 {
   startTimer( 5 );
   setWindowTitle(g_launcher->GetName());
@@ -122,6 +131,10 @@ JGEQtRenderer::JGEQtRenderer(QWidget *parent)
   setAttribute(Qt::WA_Maemo5AutoOrientation);
   setAttribute(Qt::WA_Maemo5NonComposited);
 #endif
+  setAttribute(Qt::WA_AcceptTouchEvents);
+  grabGesture(Qt::PanGesture);
+  grabGesture(Qt::PinchGesture);
+  grabGesture(Qt::SwipeGesture);
 }
 
 
@@ -206,6 +219,46 @@ void JGEQtRenderer::timerEvent( QTimerEvent* )
   g_engine->Update((float)dt / 1000.0f);
 
   updateGL();
+}
+
+void JGEQtRenderer::mousePressEvent(QMouseEvent *event)
+{
+  lastPos = event->pos();
+  QGLWidget::mousePressEvent(event);
+}
+
+void JGEQtRenderer::mouseReleaseEvent(QMouseEvent *event)
+{
+  QPoint currentPos = event->pos();
+  int dx = currentPos.x() - lastPos.x();
+  int dy = currentPos.y() - lastPos.y();
+
+  if(abs(dx) > abs(dy) && dx > 5)
+  {
+    g_engine->HoldKey_NoRepeat(JGE_BTN_RIGHT);
+  }
+  else if(abs(dx) > abs(dy) && dx < -5)
+  {
+    g_engine->HoldKey_NoRepeat(JGE_BTN_LEFT);
+  }
+  else if(abs(dx) < abs(dy) && dy < -5)
+  {
+    g_engine->HoldKey_NoRepeat(JGE_BTN_UP);
+  }
+  else if(abs(dx) < abs(dy) && dy > 5)
+  {
+    g_engine->HoldKey_NoRepeat(JGE_BTN_DOWN);
+  }
+
+  QGLWidget::mouseReleaseEvent(event);
+}
+
+
+void JGEQtRenderer::mouseDoubleClickEvent(QMouseEvent *event)
+{
+
+  g_engine->HoldKey_NoRepeat(JGE_BTN_OK);
+  event->accept();
 }
 
 
