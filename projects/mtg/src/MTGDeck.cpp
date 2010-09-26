@@ -102,38 +102,38 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
     case 'k': //kicker
       if (!primitive) primitive = NEW CardPrimitive();
       if (ManaCost * cost = primitive->getManaCost())
-        {
-          string value = val;
-          std::transform(value.begin(), value.end(), value.begin(), ::tolower);
-          cost->kicker = ManaCost::parseManaCost(value);
-        }
+      {
+        string value = val;
+        std::transform(value.begin(), value.end(), value.begin(), ::tolower);
+        cost->kicker = ManaCost::parseManaCost(value);
+      }
       break;
-	case 'o': //othercost
+    case 'o': //othercost
       if (!primitive) primitive = NEW CardPrimitive();
       if (ManaCost * cost = primitive->getManaCost())
-        {
-          string value = val;
-          std::transform(value.begin(), value.end(), value.begin(), ::tolower);
-          cost->alternative = ManaCost::parseManaCost(value);
-        }
+      {
+        string value = val;
+        std::transform(value.begin(), value.end(), value.begin(), ::tolower);
+        cost->alternative = ManaCost::parseManaCost(value);
+      }
       break;
-	  	case 'b': //buyback
+    case 'b': //buyback
       if (!primitive) primitive = NEW CardPrimitive();
       if (ManaCost * cost = primitive->getManaCost())
-        {
-          string value = val;
-          std::transform(value.begin(), value.end(), value.begin(), ::tolower);
-		  cost->BuyBack = ManaCost::parseManaCost(value);
-        }
+      {
+        string value = val;
+        std::transform(value.begin(), value.end(), value.begin(), ::tolower);
+        cost->BuyBack = ManaCost::parseManaCost(value);
+      }
       break;
-	  	  	case 'f': //flashback
+    case 'f': //flashback
       if (!primitive) primitive = NEW CardPrimitive();
       if (ManaCost * cost = primitive->getManaCost())
-        {
-          string value = val;
-          std::transform(value.begin(), value.end(), value.begin(), ::tolower);
-		  cost->FlashBack = ManaCost::parseManaCost(value);
-        }
+      {
+        string value = val;
+        std::transform(value.begin(), value.end(), value.begin(), ::tolower);
+        cost->FlashBack = ManaCost::parseManaCost(value);
+      }
       break;
 
     case 'i': //id
@@ -169,18 +169,18 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
       break;
 
     case 'r': //retrace/rarity
-		  if ('e' == key[1]) { //retrace
-      if (!primitive) primitive = NEW CardPrimitive();
-      if (ManaCost * cost = primitive->getManaCost())
+      if ('e' == key[1]) { //retrace
+        if (!primitive) primitive = NEW CardPrimitive();
+        if (ManaCost * cost = primitive->getManaCost())
         {
           string value = val;
           std::transform(value.begin(), value.end(), value.begin(), ::tolower);
-		  cost->Retrace = ManaCost::parseManaCost(value);
-	  }
-		  } else {//rarity
-			  if(!card) card = NEW MTGCard();
-      card->setRarity(val[0]);
-		  }
+          cost->Retrace = ManaCost::parseManaCost(value);
+        }
+      } else {//rarity
+        if(!card) card = NEW MTGCard();
+        card->setRarity(val[0]);
+      }
       break;
 
     case 's': //subtype
@@ -395,7 +395,9 @@ bool MTGAllCards::addCardToCollection(MTGCard * card, int setId){
   if (collection.find(newId) != collection.end()){
 #if defined (_DEBUG)
     char outBuf[4096];
-    sprintf(outBuf,"warning, card id collision! : %i -> %s (%s) \n", newId, card->data->name.c_str(), setlist.getInfo( setId )->getName().c_str());
+    string cardName = card->data ? card->data->name : card->getImageName();
+    string setName = setId != -1 ? setlist.getInfo( setId ) -> getName() : "";
+    sprintf(outBuf,"warning, card id collision! : %i -> %s (%s) \n", newId, cardName.c_str(), setName.c_str());
     OutputDebugString(outBuf);
 #endif
     SAFE_DELETE(card);
@@ -459,8 +461,8 @@ CardPrimitive * MTGAllCards::addPrimitive(CardPrimitive * primitive, MTGCard * c
 
 
 MTGCard * MTGAllCards::getCardById(int id){
-	map<int, MTGCard *>::iterator it = collection.find(id);
-	if ( it != collection.end()){
+  map<int, MTGCard *>::iterator it = collection.find(id);
+  if ( it != collection.end()){
     return (it->second);
   }
   return 0;
@@ -513,8 +515,8 @@ int MTGDeck::totalPrice(){
   PriceList * pricelist = NEW PriceList(RESPATH"/settings/prices.dat",GameApp::collection);
   map<int,int>::iterator it;
   for ( it=cards.begin() ; it != cards.end(); it++ ){
-      int nb =  it->second;
-      if (nb) total += pricelist->getPrice(it->first);
+    int nb =  it->second;
+    if (nb) total += pricelist->getPrice(it->first);
   }
   SAFE_DELETE(pricelist);
   return total;
@@ -615,31 +617,31 @@ int MTGDeck::addRandomCards(int howmany, int * setIds, int nbSets, int rarity, c
     int r = card->getRarity();
     if (r != Constants::RARITY_T && (rarity == -1 || r==rarity) && // remove tokens
       card->setId != MTGSets::INTERNAL_SET && //remove cards that are defined in primitives. Those are workarounds (usually tokens) and should only be used internally 
-	    (!_subtype || card->data->hasSubtype(subtype))
-	){
-      int ok = 0;
+      (!_subtype || card->data->hasSubtype(subtype))
+      ){
+        int ok = 0;
 
-      if (!nbSets) ok = 1;
-      for (int j=0; j < nbSets; ++j){
-        if (card->setId == setIds[j]){
-          ok = 1;
-          break;
-        }
-      }
-
-      if (ok){
-        for (int j=0; j < Constants::MTG_NB_COLORS; ++j){
-          if (unallowedColors[j] && card->data->hasColor(j)){
-            ok = 0;
+        if (!nbSets) ok = 1;
+        for (int j=0; j < nbSets; ++j){
+          if (card->setId == setIds[j]){
+            ok = 1;
             break;
           }
         }
-      }
 
-      if (ok){
-        subcollection.push_back(card->getId());
-        subtotal++;
-      }
+        if (ok){
+          for (int j=0; j < Constants::MTG_NB_COLORS; ++j){
+            if (unallowedColors[j] && card->data->hasColor(j)){
+              ok = 0;
+              break;
+            }
+          }
+        }
+
+        if (ok){
+          subcollection.push_back(card->getId());
+          subtotal++;
+        }
     }
   }
   if (subtotal == 0){
@@ -682,8 +684,8 @@ int MTGDeck::add(MTGCard * card){
 
 int MTGDeck::complete() {
   /* (PSY) adds cards to the deck/collection. Makes sure that the deck
-     or collection has at least 4 of every implemented card. Does not
-     change the number of cards of which already 4 or more are present. */
+  or collection has at least 4 of every implemented card. Does not
+  change the number of cards of which already 4 or more are present. */
   int id, n;
   size_t databaseSize = database->ids.size();
   for (size_t it = 0 ; it < databaseSize ; it++) {
@@ -796,16 +798,16 @@ MTGSetInfo* MTGSets::randomSet(int blockId, int atleast){
       if(unlocked[i]
       && (blockId == -1 || setinfo[i]->block == blockId)
         && (atleast == -1 || setinfo[i]->totalCards() >= atleast)){
-        free(unlocked);
-        return setinfo[i];
+          free(unlocked);
+          return setinfo[i];
       }
     }
     for(int i=0;i<a;i++){
       if(unlocked[i]
       && (blockId == -1 || setinfo[i]->block == blockId)
         && (atleast == -1 || setinfo[i]->totalCards() >= atleast)){
-        free(unlocked);
-        return setinfo[i];
+          free(unlocked);
+          return setinfo[i];
       }
     }
     blockId = -1;
@@ -816,7 +818,7 @@ MTGSetInfo* MTGSets::randomSet(int blockId, int atleast){
   free(unlocked);
   return NULL;
 }
-  int blockSize(int blockId);
+int blockSize(int blockId);
 
 int MTGSets::Add(const char * name){
   int setid = findSet(name);
@@ -965,4 +967,4 @@ void MTGSetInfo::processConfLine(string line){
     block = setlist.findBlock(value.c_str());
   else if(key.compare("year") == 0)
     year = atoi(value.c_str());
- }
+}
