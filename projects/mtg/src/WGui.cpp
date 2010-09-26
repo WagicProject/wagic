@@ -1458,7 +1458,6 @@ string WGuiFilters::getCode(){
   return res;
 }
 void WGuiFilters::setSrc(WSrcCards * wsc){
-  SAFE_DELETE(source);
   source = wsc;
 }
 void WGuiFilters::Update(float dt){
