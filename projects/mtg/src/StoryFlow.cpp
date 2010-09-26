@@ -162,7 +162,7 @@ void StoryReward::Update(float dt){
 
 }
 void StoryImage::Render() {
-  JQuad * quad = resources.RetrieveQuad(img);
+  JQuad * quad = resources.RetrieveTempQuad(img);
   if (quad) {
     float x = mX;
     if (mX == -1) {

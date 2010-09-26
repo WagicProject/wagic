@@ -13,6 +13,8 @@
 #endif
 
 
+
+
 #include "limits.h"
 
 
@@ -49,6 +51,7 @@
 #endif
 
 // Debug options - comment/uncomment as needed
+//#define DEBUG_CACHE
 #ifdef _DEBUG
 //#define RENDER_AI_STATS
 #endif

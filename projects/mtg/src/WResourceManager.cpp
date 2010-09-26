@@ -45,7 +45,7 @@ void WResourceManager::DebugRender(){
     return;
   
   font->SetScale(DEFAULT_MAIN_FONT_SCALE);
-  renderer->FillRect(0,0,SCREEN_WIDTH,20,ARGB(128,155,0,0));
+  renderer->FillRect(0,0,SCREEN_WIDTH,40,ARGB(128,155,0,0));
 
   renderer->FillRect(0,SCREEN_HEIGHT-20,SCREEN_WIDTH,40,ARGB(128,155,0,0));
   char buf[512];
@@ -65,6 +65,14 @@ void WResourceManager::DebugRender(){
     misses,textureWCache.cacheSize,textureWCache.maxCacheSize,man);
   font->DrawString(buf, 10,5);
 
+
+#if defined (WIN32) || defined (LINUX)
+#else
+  int maxLinear = ramAvailableLineareMax();
+  int ram = ramAvailable();
+  sprintf(buf, "Ram : linear max: %i - total : %i\n",maxLinear, ram);
+  font->DrawString(buf,10, 20);
+#endif
 
 
   sprintf(buf,"Time: %u. Total Size: %lu (%lu cached, %lu managed). ",lastTime,Size(),SizeCached(),SizeManaged());
@@ -1341,8 +1349,9 @@ bool WCache<cacheItem, cacheActual>::Cleanup(){
   || ramAvailableLineareMax() < MIN_LINEAR_RAM   
 #endif
     ){
-    if (!RemoveOldest()) 
-      return false;
+      if (!RemoveOldest()) {
+        return false;
+      }
   } 
   return true;
 }

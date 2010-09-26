@@ -556,14 +556,17 @@ MTGDeck::MTGDeck(const char * config_file, MTGAllCards * _allcards, int meta_onl
         size_t found = s.find(" *");
         if (found != string::npos){
           nb = atoi(s.substr(found+2).c_str());
-          s=s.substr(0,found);
-          OutputDebugString(s.c_str());
+          s = s.substr(0,found);
         }
         MTGCard * card = database->getCardByName(s);
         if (card){
           for (int i = 0; i < nb; i++){
             add(card);
           }
+        } else {
+          OutputDebugString("could not find Card matching name:");
+          OutputDebugString(s.c_str());
+          OutputDebugString("\n");
         }
       }
     }

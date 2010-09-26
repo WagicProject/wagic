@@ -31,7 +31,6 @@ void GameStateAwards::End()
   SAFE_DELETE(listview);
   SAFE_DELETE(setSrc);
 
-  resources.Release(mBgTex);
   if(saveMe)
 	  options.save();
 }
@@ -41,7 +40,6 @@ void GameStateAwards::Start()
   char buf[256];
   mState = STATE_LISTVIEW;
   options.checkProfile();
-  //resources.ClearUnlocked(); //Last resort.
 
   menu = NULL;
   saveMe = options.newAward();
@@ -114,9 +112,6 @@ void GameStateAwards::Start()
   detailview = NULL;
   setSrc = NULL;
   showMenu = false;
-  resources.Unmiss("awardback.jpg"); //Last resort, same as shop.
-  mBgTex = resources.RetrieveTexture("awardback.jpg",TEXTURE_SUB_5551);
-  mBg = resources.RetrieveQuad("awardback.jpg");
 }
 
 void GameStateAwards::Create()
@@ -131,6 +126,8 @@ void GameStateAwards::Render()
 {
     JRenderer * r = JRenderer::GetInstance();
     r->ClearScreen(ARGB(0,0,0,0));
+
+    JQuad * mBg = resources.RetrieveTempQuad("awardback.jpg",TEXTURE_SUB_5551); 
     if(mBg)
       r->RenderQuad(mBg, 0, 0);
  

@@ -14,8 +14,6 @@ class GameStateAwards: public GameState, public JGuiListener
  private:
   WGuiList * listview;
   WGuiMenu * detailview;
-  JQuad * mBg;
-  JTexture * mBgTex;
   WSrcCards * setSrc;
   SimpleMenu * menu;
   bool showMenu;
