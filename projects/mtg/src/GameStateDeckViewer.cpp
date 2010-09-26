@@ -72,6 +72,13 @@ void GameStateDeckViewer::rotateCards(int direction){
   else
     displayed_deck->prev();
   loadIndexes();
+
+  int total = displayed_deck->Size();
+  if (total) {
+    lastPos = getCurrentPos();
+    lastTotal = total;
+  }
+  int i = 0;
 }
 void GameStateDeckViewer::rebuildFilters(){
   if(!filterMenu) filterMenu = NEW WGuiFilters("Filter by...",NULL);
@@ -84,13 +91,29 @@ void GameStateDeckViewer::rebuildFilters(){
 }
 void GameStateDeckViewer::updateFilters(){
   if(!displayed_deck) return;
+
   filterMenu->recolorFilter(useFilter-1);
   filterMenu->Finish(true);
+  int totalAfter = displayed_deck->Size();
+  if (totalAfter && lastTotal) {
+
+    //This part is a hack. I don't understand why in some cases "displayed_deck's" currentPos is not 0 at this stage
+    {
+      while (int currentPos = displayed_deck->getOffset()) {
+        if (currentPos > 0) displayed_deck->prev();
+        else displayed_deck->next();
+      }
+    }
+
+    int pos = (totalAfter * lastPos) / lastTotal ;
+    for (int i = 0; i < pos - 3 ; ++i){ // "-3" because card "0" is displayed at position 3 initially
+      displayed_deck->next();
+    }
+  }
   updateStats();
   return;
 }
 void GameStateDeckViewer::loadIndexes(){
-  int x=0;
   for (int i = 0; i < 7; i++){
     cardIndex[i] = displayed_deck->getCard(i);
   }
@@ -140,6 +163,8 @@ void GameStateDeckViewer::Start()
   last_user_activity = NO_USER_ACTIVITY_HELP_DELAY + 1;
   onScreenTransition = 0;
   useFilter = 0;
+  lastPos = 0;
+  lastTotal = 0;
 
   pricelist = NEW PriceList(RESPATH"/settings/prices.dat",mParent->collection);
   playerdata = NEW PlayerData(mParent->collection);
@@ -462,30 +487,37 @@ void GameStateDeckViewer::renderOnScreenBasicInfo(){
     JRenderer::GetInstance()->RenderQuad(mIcons[useFilter-1], SCREEN_WIDTH-10  , y + 10 , 0.0f,0.5,0.5);
 }
 
+//returns position of the current card (cusor) in the currently viewed color/filter
+int GameStateDeckViewer::getCurrentPos() {
+  int total = displayed_deck->Size();
+ 
+  int currentPos = displayed_deck->getOffset();
+  currentPos+= 2; //we start by displaying card number 3
+  currentPos =  currentPos % total + 1;
+  if (currentPos <0) currentPos = (total + currentPos);
+  if (!currentPos) currentPos = total;
+  return currentPos;
+}
 
 void GameStateDeckViewer::renderSlideBar(){
   WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
 
   int total = displayed_deck->Size();
+  if(total == 0)
+    return;
+
   float filler = 15;
   float y = SCREEN_HEIGHT_F-25;
   float bar_size  = SCREEN_WIDTH_F - 2*filler;
   JRenderer * r = JRenderer::GetInstance();
-  int currentPos = displayed_deck->getOffset();
-  if(total == 0)
-    return;
+  int currentPos = getCurrentPos();
 
-  currentPos+= 2; //we start by displaying card number 3
-  currentPos =  currentPos % total + 1;
-  if (currentPos <0) currentPos = (total + currentPos);
-  if (!currentPos) currentPos = total;
   float cursor_pos = bar_size * currentPos / total;
 
   r->FillRoundRect(filler + 5,y+5,bar_size,0,3,ARGB(hudAlpha/2,0,0,0));
   r->DrawLine(filler+cursor_pos + 5 ,y+5,filler+cursor_pos + 5,y+10,ARGB(hudAlpha/2,0,0,0));
 
   r->FillRoundRect(filler,y,bar_size,0,3,ARGB(hudAlpha/2,128,128,128));
-  //r->FillCircle(filler+cursor_pos + 3 ,SCREEN_HEIGHT - 15 + 3,6,ARGB(255,128,128,128));
   r->DrawLine(filler+cursor_pos,y,filler+cursor_pos,y+5,ARGB(hudAlpha,255,255,255));
   char buffer[256];
   string deckname = _("Collection");
@@ -1337,7 +1369,6 @@ int GameStateDeckViewer::loadDeck(int deckid){
   stw.pageCount = 9;
   stw.needUpdate = true;
 
-  //string profile = options[Options::ACTIVE_PROFILE].str;
   if(!playerdata) 
     playerdata = NEW PlayerData(mParent->collection);
   SAFE_DELETE(myCollection);
@@ -1345,8 +1376,6 @@ int GameStateDeckViewer::loadDeck(int deckid){
   myCollection->Sort(WSrcCards::SORT_ALPHA);
   displayed_deck = myCollection;
 
-  //SAFE_DELETE(myCollection);
-  //myCollection =    NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(PLAYER_COLLECTION).c_str(), mParent->collection));
   displayed_deck = myCollection;
   char deckname[256];
   sprintf(deckname,"deck%i.txt",deckid);

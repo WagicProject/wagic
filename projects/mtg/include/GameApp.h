@@ -87,6 +87,7 @@ class GameApp:	public JApp
   static int HasMusic;
   static string systemError;
   static JMusic* music;
+  static string currentMusicFile;
   static void playMusic(string filename, bool loop = true);
   static MTGAllCards * collection;
   static int players[2];

@@ -30,6 +30,7 @@ MTGAllCards * GameApp::collection = NULL;
 int GameApp::players[] = {0,0};
 int GameApp::HasMusic = 1;
 JMusic * GameApp::music = NULL;
+string GameApp::currentMusicFile = "";
 string GameApp::systemError = "";
 
 JQuad* manaIcons[7] = {NULL, NULL, NULL, NULL, NULL, NULL, NULL};
@@ -437,6 +438,9 @@ void GameApp::DoAnimation(int trans, float dur){
 }
 
 void GameApp::playMusic(string filename, bool loop) {
+  if (filename.compare(currentMusicFile) == 0)
+      return;
+
   if (music) {
     JSoundSystem::GetInstance()->StopMusic(music);
     SAFE_DELETE(music);
@@ -445,5 +449,6 @@ void GameApp::playMusic(string filename, bool loop) {
   if (HasMusic && options[Options::MUSICVOLUME].number > 0){
     music = resources.ssLoadMusic(filename.c_str());
     if (music) JSoundSystem::GetInstance()->PlayMusic(music, loop);
+    currentMusicFile = filename;
   }
 }

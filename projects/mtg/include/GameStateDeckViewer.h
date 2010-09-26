@@ -138,6 +138,8 @@ private:
   int useFilter;
   JMusic * bgMusic;
   JQuad * backQuad;
+  int lastPos;
+  int lastTotal;
   
   WGuiFilters * filterMenu;
   WSrcDeckViewer * source;
@@ -157,6 +159,7 @@ private:
   StatsWrapper stw;
   bool mSwitching;
   void saveDeck(); //Saves the deck and additional necessary information
+  int getCurrentPos();
 
 public:
   GameStateDeckViewer(GameApp* parent);
