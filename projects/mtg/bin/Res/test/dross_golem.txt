@@ -1,0 +1,18 @@
+#Testing Dross Golem (keyword:AFFINITYSWAMP)
+#Affinity for swamps (This spell costs {1} less to cast for each swamp you control.)
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Swamp,Swamp,Swamp,Swamp
+hand:Dross Golem
+manapool:{1}
+[PLAYER2]
+[DO]
+Dross Golem
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Swamp,Swamp,Swamp,Swamp,Dross Golem
+manapool:{0}
+[PLAYER2]
+[END]

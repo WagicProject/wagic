@@ -1,0 +1,44 @@
+#Testing Mephidross Vampire.
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:Mephidross Vampire,Hill Giant
+[PLAYER2]
+inplay:Grizzly Bears
+life:20
+[DO]
+Hill Giant
+next
+Grizzly Bears
+next
+next
+#combat end
+next
+#main 2
+eot
+eot
+#untap
+next
+#upkeep
+next
+#draw
+next
+#main
+next
+#combat
+next
+#attackers
+Hill Giant
+next
+#blockers
+next
+#damage
+next
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Mephidross Vampire,Hill Giant
+[PLAYER2]
+graveyard:Grizzly Bears
+life:16
+[END]

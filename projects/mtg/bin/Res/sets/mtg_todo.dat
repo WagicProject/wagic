@@ -19417,8 +19417,6 @@ type=Instant
 [/card]
 [card]
 name=Memory Sluice
-target=player
-auto=deplete:4
 text=Target player puts the top four cards of his or her library into his or her graveyard. -- Conspire (As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
 mana={UB}
 type=Sorcery
@@ -19431,15 +19429,6 @@ type=Creature
 subtype=Ogre
 power=3
 toughness=3
-[/card]
-[card]
-name=Mephidross Vampire
-text=Flying -- Each creature you control is a Vampire in addition to its other creature types and has "Whenever this creature deals damage to a creature, put a +1/+1 counter on this creature."
-mana={4}{B}{B}
-type=Creature
-subtype=Vampire
-power=3
-toughness=4
 [/card]
 [card]
 name=Mercadian Atlas

@@ -31989,6 +31989,18 @@ mana={U}
 type=Instant
 [/card]
 [card]
+name=Mephidross Vampire
+abilities=flying
+auto=@damaged(creature) from(creature|mybattlefield):all(trigger[from]) counter(1/1,1)
+auto=lord(creature) transforms(vampire)
+text=Flying -- Each creature you control is a Vampire in addition to its other creature types and has "Whenever this creature deals damage to a creature, put a +1/+1 counter on this creature."
+mana={4}{B}{B}
+type=Creature
+subtype=Vampire
+power=3
+toughness=4
+[/card]
+[card]
 name=Mephitic Ooze
 abilities=deathtouch
 auto=foreach(artifact|myBattlefield)1/0
@@ -40538,7 +40550,6 @@ type=Sorcery
 name=Rancor
 target=creature
 autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
-#auto=@movedTo(graveyard) from(this|battlefield):moveTo(myhand) notatarget(this|mygraveyard)
 auto=2/0
 auto=trample
 text=Enchant creature -- Enchanted creature gets +2/+0 and has trample. -- When Rancor is put into a graveyard from the battlefield, return Rancor to its owner's hand.

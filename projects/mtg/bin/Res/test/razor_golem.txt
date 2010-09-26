@@ -1,0 +1,18 @@
+#Testing Razor Golem (keyword:AFFINITYPLAINS)
+#Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.)
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Plains,Plains,Plains,Plains,Plains
+hand:Razor Golem
+manapool:{1}
+[PLAYER2]
+[DO]
+Razor Golem
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Plains,Plains,Plains,Plains,Plains,Razor Golem
+manapool:{0}
+[PLAYER2]
+[END]

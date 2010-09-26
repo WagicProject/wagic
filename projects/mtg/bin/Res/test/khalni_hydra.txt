@@ -1,0 +1,18 @@
+#Testing Khalni Hydra (keyword:AFFINITYGREENCREATURES)
+#Affinity for swamps (This spell costs {G} less to cast for each green creature you control.)
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Grizzly Bears,Grizzly Bears,Grizzly Bears,Grizzly Bears
+hand:Khalni Hydra
+manapool:{G}{G}{G}{G}
+[PLAYER2]
+[DO]
+Khalni Hydra
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Grizzly Bears,Grizzly Bears,Grizzly Bears,Grizzly Bears,Khalni Hydra
+manapool:{0}
+[PLAYER2]
+[END]
