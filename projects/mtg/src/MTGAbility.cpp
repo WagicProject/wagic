@@ -677,17 +677,17 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     size_t end = s.find(")", found);
     int tokenId = atoi(s.substr(found + 6,end - found - 6).c_str());
     if (tokenId){
-	MTGCard * safetycard = GameApp::collection->getCardById(tokenId);
-	if (safetycard){//contenue
-      ATokenCreator * tok = NEW ATokenCreator(id,card,NULL,tokenId,0, multiplier);
-      tok->oneShot = 1;
-      return tok;
-	}else{
-	  tokenId = 0;
-      ATokenCreator * tok = NEW ATokenCreator(id,card,NULL,"ID NOT FOUND","ERROR ID",NULL,NULL,"",0,NULL);
-	return tok;
-	}
-	}
+	    MTGCard * safetycard = GameApp::collection->getCardById(tokenId);
+	    if (safetycard){//contenue
+        ATokenCreator * tok = NEW ATokenCreator(id,card,NULL,tokenId,0, multiplier);
+        tok->oneShot = 1;
+        return tok;
+	    }else{
+	      tokenId = 0;
+        ATokenCreator * tok = NEW ATokenCreator(id,card,NULL,"ID NOT FOUND","ERROR ID",NULL,NULL,"",0,NULL);
+	      return tok;
+	    }
+	  }
 
     end = s.find(",", found);
     string sname = s.substr(found + 6,end - found - 6);
@@ -697,11 +697,11 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     previous = end+1;
     end = s.find(",",previous);
     string spt = s.substr(previous,end - previous);
-	int value = 0;
+	  int value = 0;
     int power, toughness;
-	if(!spt.find("X/X") || !spt.find("x/x")){value = spell->computeX(card);}
-	if(!spt.find("XX/XX") || !spt.find("xx/xx")){value = spell->computeXX(card);}
-	parsePowerToughness(spt,&power, &toughness);
+	  if(!spt.find("X/X") || !spt.find("x/x")){value = spell->computeX(card);}
+	  if(!spt.find("XX/XX") || !spt.find("xx/xx")){value = spell->computeXX(card);}
+	  parsePowerToughness(spt,&power, &toughness);
     string sabilities = s.substr(end+1);
 
     ATokenCreator * tok = NEW ATokenCreator(id,card,NULL,sname,stypes,power + value,toughness + value,sabilities,0, multiplier);
@@ -848,8 +848,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
       d = s.substr(start+1);
     }
     WParsedInt * damage = NEW WParsedInt(d,spell,card);
-    Damageable * t = NULL;
-    if (spell) t = spell->getNextDamageableTarget();
+    Targetable * t = NULL;
+    if (spell) t = spell->getNextTarget();
     MTGAbility * a =  NEW AADamager(id,card,t, damage, NULL, 0, who);
     a->oneShot = 1;
     return a;
@@ -922,9 +922,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
       life_s = s.substr(start+1);
     }
     WParsedInt * life = NEW WParsedInt(life_s,spell,card);
-    Damageable * d = NULL;
-    if (spell) d = spell->getNextDamageableTarget();
-    MTGAbility * a =  NEW AALifer(id,card,d,life,NULL,0,who);
+    Targetable * t = NULL;
+    if (spell) t = spell->getNextTarget();
+    MTGAbility * a =  NEW AALifer(id,card,t,life,NULL,0,who);
     a->oneShot = 1;
     return a;
   }

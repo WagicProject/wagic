@@ -1,0 +1,24 @@
+#Testing undermine on bad moon
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Bad Moon
+manapool:{1}{B}
+[PLAYER2]
+hand:Undermine
+manapool:{U}{U}{B}
+[DO]
+Bad Moon
+no
+yes
+Undermine
+Bad Moon
+endinterruption
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Bad Moon
+life:17
+[PLAYER2]
+graveyard:Undermine
+[END]
