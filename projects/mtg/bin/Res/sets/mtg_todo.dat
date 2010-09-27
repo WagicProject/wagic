@@ -8243,15 +8243,6 @@ power=5
 toughness=3
 [/card]
 [card]
-name=Dripping Dead
-text=Dripping Dead can't block. -- Whenever Dripping Dead deals combat damage to a creature, destroy that creature. It can't be regenerated.
-mana={4}{B}{B}
-type=Creature
-subtype=Zombie
-power=4
-toughness=1
-[/card]
-[card]
 name=Dripping-Tongue Zubera
 text=When Dripping-Tongue Zubera is put into a graveyard from the battlefield, put a 1/1 colorless Spirit creature token onto the battlefield for each Zubera put into a graveyard from the battlefield this turn.
 mana={1}{G}
@@ -13400,15 +13391,6 @@ text=Whenever Grotag Thrasher attacks, target creature can't block this turn.
 mana={4}{R}
 type=Creature
 subtype=Lizard
-power=3
-toughness=3
-[/card]
-[card]
-name=Grotesque Hybrid
-text=Whenever Grotesque Hybrid deals combat damage to a creature, destroy that creature. It can't be regenerated. -- Discard a card: Grotesque Hybrid gains flying and protection from green and from white until end of turn.
-mana={4}{B}
-type=Creature
-subtype=Zombie
 power=3
 toughness=3
 [/card]
@@ -22174,15 +22156,6 @@ power=3
 toughness=1
 [/card]
 [card]
-name=Ohran Viper
-text=Whenever Ohran Viper deals combat damage to a creature, destroy that creature at end of combat. -- Whenever Ohran Viper deals combat damage to a player, you may draw a card.
-mana={1}{G}{G}
-type=Snow Creature
-subtype=Snake
-power=1
-toughness=3
-[/card]
-[card]
 name=Ohran Yeti
 text={2}{S}i}: Target snow creature gains first strike until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
 mana={3}{R}
@@ -23696,15 +23669,6 @@ mana={U}
 type=Instant
 [/card]
 [card]
-name=Pit Spawn
-text=First strike -- At the beginning of your upkeep, sacrifice Pit Spawn unless you pay {B}{B}. -- Whenever Pit Spawn deals damage to a creature, exile that creature.
-mana={4}{B}{B}{B}
-type=Creature
-subtype=Demon
-power=6
-toughness=4
-[/card]
-[card]
 name=Pitchstone Wall
 text=Defender (This creature can't attack.) -- Whenever you discard a card, you may sacrifice Pitchstone Wall. If you do, return the discarded card from your graveyard to your hand.
 mana={2}{R}
@@ -24922,12 +24886,6 @@ type=Enchantment
 name=Quest for Ula's Temple
 text=At the beginning of your upkeep, you may look at the top card of your library. If it's a creature card, you may reveal it and put a quest counter on Quest for Ula's Temple. -- At the beginning of each end step, if there are three or more quest counters on Quest for Ula's Temple, you may put a Kraken, Leviathan, Octopus, or Serpent creature card from your hand onto the battlefield.
 mana={U}
-type=Enchantment
-[/card]
-[card]
-name=Quest for the Gemblades
-text=Whenever a creature you control deals combat damage to a creature, you may put a quest counter on Quest for the Gemblades. -- Remove a quest counter from Quest for the Gemblades and sacrifice it: Put four +1/+1 counters on target creature.
-mana={1}{G}
 type=Enchantment
 [/card]
 [card]
@@ -30749,15 +30707,6 @@ name=Spirit of Resistance
 text=If you control a permanent of each color, prevent all damage that would be dealt to you.
 mana={2}{W}
 type=Enchantment
-[/card]
-[card]
-name=Spiritmonger
-text=Whenever Spiritmonger deals damage to a creature, put a +1/+1 counter on Spiritmonger. -- {B}: Regenerate Spiritmonger. -- {G}: Spiritmonger becomes the color of your choice until end of turn.
-mana={3}{B}{G}
-type=Creature
-subtype=Beast
-power=6
-toughness=6
 [/card]
 [card]
 name=Spiritual Asylum

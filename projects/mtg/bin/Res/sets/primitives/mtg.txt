@@ -2779,7 +2779,7 @@ mana={1}
 [card]
 name=Aspect of Mongoose
 target=creature
-auto=@movedTo(graveyard) from(this|battlefield):moveTo(myhand) notatarget(this|mygraveyard)
+autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
 auto=shroud
 text=Enchant creature -- Enchanted creature has shroud. (It can't be the target of spells or abilities.) -- When Aspect of Mongoose is put into a graveyard from the battlefield, return Aspect of Mongoose to its owner's hand.
 mana={1}{G}
@@ -4524,6 +4524,18 @@ power=6
 toughness=6
 [/card]
 [card]
+name=Bellowing Fiend
+abilities=flying
+auto=@damaged(creature|opponentbattlefield) from(this):damage:3 opponent && damage:3 controller
+auto=@damaged(creature|mybattlefield) from(this):damage:6 controller
+text=Flying -- Whenever Bellowing Fiend deals damage to a creature, Bellowing Fiend deals 3 damage to that creature's controller and 3 damage to you.
+mana={4}{B}
+type=Creature
+subtype=Spirit
+power=3
+toughness=3
+[/card]
+[card]
 name=Bellowing Tanglewurm
 abilities=intimidate
 auto=lord(other creature[green]|myBattlefield) intimidate
@@ -4843,7 +4855,8 @@ type=Artifact
 name=Black Market
 auto=@movedTo(creature|graveyard) from(battlefield):counter(0/0,1,Charge)
 auto=@each my firstmain:thisforeach(counter{0/0.1.Charge}) add{B} controller
-text=Whenever a creature is put into a graveyard from the battlefield, put a charge counter on Black Market. -- At the beginning of your precombat main phase, add Black to your mana pool for each charge counter on Black Market.
+text=Whenever a creature 
+, put a charge counter on Black Market. -- At the beginning of your precombat main phase, add Black to your mana pool for each charge counter on Black Market.
 mana={3}{B}{B}
 type=Enchantment
 [/card]
@@ -6737,7 +6750,7 @@ toughness=3
 [card]
 name=Brilliant Halo
 target=creature
-auto=@movedTo(graveyard) from(this|battlefield):moveTo(myhand) notatarget(this|mygraveyard)
+autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
 auto=1/2
 text=Enchant creature -- Enchanted creature gets +1/+2. -- When Brilliant Halo is put into a graveyard from the battlefield, return Brilliant Halo to its owner's hand.
 mana={1}{W}
@@ -8355,7 +8368,7 @@ toughness=3
 [card]
 name=Cessation
 target=creature
-auto=@movedTo(graveyard) from(this|battlefield):moveTo(myhand) notatarget(this|mygraveyard)
+autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
 auto=cantattack
 text=Enchant creature -- Enchanted creature can't attack. -- When Cessation is put into a graveyard from the battlefield, return Cessation to its owner's hand.
 mana={2}{W}
@@ -12784,7 +12797,7 @@ type=Sorcery
 [card]
 name=Despondency
 target=creature
-auto=@movedTo(graveyard) from(this|battlefield):moveTo(myhand) notatarget(this|mygraveyard)
+autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
 auto=-2/0
 text=Enchant creature -- Enchanted creature gets -2/-0. -- When Despondency is put into a graveyard from the battlefield, return Despondency to its owner's hand.
 mana={1}{B}
@@ -14058,6 +14071,17 @@ type=Creature
 subtype=Beast
 power=3
 toughness=3
+[/card]
+[card]
+name=Dripping Dead
+abilities=cantblock
+auto=@damaged(creature[attacking;blocking]) from(this):all(trigger[to]) bury
+text=Dripping Dead can't block. -- Whenever Dripping Dead deals combat damage to a creature, destroy that creature. It can't be regenerated.
+mana={4}{B}{B}
+type=Creature
+subtype=Zombie
+power=4
+toughness=1
 [/card]
 [card]
 name=Drift of Phantasms
@@ -15825,7 +15849,7 @@ toughness=5
 [/card]
 [card]
 name=Endless Cockroaches
-auto=@movedTo(graveyard) from(this|battlefield):moveTo(myhand) notatarget(this|mygraveyard)
+autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
 text=When Endless Cockroaches is put into a graveyard from the battlefield, return Endless Cockroaches to its owner's hand.
 mana={1}{B}{B}
 type=Creature
@@ -16847,7 +16871,7 @@ toughness=3
 [card]
 name=Fallen Ideal
 target=creature
-auto=@movedTo(graveyard) from(this|battlefield):moveTo(myhand) notatarget(this|mygraveyard)
+autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
 auto=flying
 auto={S(creature|myBattlefield)}:2/1
 text=Enchant creature -- Enchanted creature has flying and "Sacrifice a creature: This creature gets +2/+1 until end of turn." -- When Fallen Ideal is put into a graveyard from the battlefield, return Fallen Ideal to its owner's hand.
@@ -17526,7 +17550,7 @@ toughness=2
 [card]
 name=Fiery Mantle
 target=creature
-auto=@movedTo(graveyard) from(this|battlefield):moveTo(myhand) notatarget(this|mygraveyard)
+autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
 auto={R}:1/0
 text=Enchant creature -- {R}: Enchanted creature gets +1/+0 until end of turn. -- When Fiery Mantle is put into a graveyard from the battlefield, return Fiery Mantle to its owner's hand.
 mana={1}{R}
@@ -18797,7 +18821,7 @@ type=Instant
 [card]
 name=Fortitude
 target=creature
-auto=@movedTo(graveyard) from(this|battlefield):moveTo(myhand) notatarget(this|mygraveyard)
+autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
 auto={S(forest|myBattlefield)}:regenerate
 text=Enchant creature -- Sacrifice a Forest: Regenerate enchanted creature. -- When Fortitude is put into a graveyard from the battlefield, return Fortitude to its owner's hand.
 mana={1}{G}
@@ -22244,6 +22268,17 @@ type=Creature
 subtype=Goblin Rogue
 power=2
 toughness=1
+[/card]
+[card]
+name=Grotesque Hybrid
+auto={S(*|myhand)}:flying & protection from white && protection from green
+auto=@damaged(creature[attacking;blocking]) from(this):all(trigger[to]) bury
+text=Whenever Grotesque Hybrid deals combat damage to a creature, destroy that creature. It can't be regenerated. -- Discard a card: Grotesque Hybrid gains flying and protection from green and from white until end of turn.
+mana={4}{B}
+type=Creature
+subtype=Zombie
+power=3
+toughness=3
 [/card]
 [card]
 name=Ground Rift
@@ -29037,7 +29072,7 @@ type=Instant
 [card]
 name=Launch
 target=creature
-auto=@movedTo(graveyard) from(this|battlefield):moveTo(myhand) notatarget(this|mygraveyard)
+autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
 auto=flying
 text=Enchant creature -- Enchanted creature has flying. -- When Launch is put into a graveyard from the battlefield, return Launch to its owner's hand.
 mana={1}{U}
@@ -32002,8 +32037,8 @@ toughness=4
 [/card]
 [card]
 name=Mephitic Ooze
-abilities=deathtouch
-auto=foreach(artifact|myBattlefield)1/0
+auto=foreach(artifact|myBattlefield) 1/0
+auto=@damaged(creature[attacking;blocking]) from(mephitic ooze[attacking;blocking]):all(trigger[to]) bury
 text=Mephitic Ooze gets +1/+0 for each artifact you control. -- Whenever Mephitic Ooze deals combat damage to a creature, destroy that creature. The creature can't be regenerated.
 mana={4}{B}
 type=Creature
@@ -36001,6 +36036,17 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Ohran Viper
+auto=@damaged(creature[attacking;blocking]) from(ohran viper[attacking;blocking]):all(trigger[to]) destroy
+auto=@damaged(player) from(ohran viper):draw:1 controller
+text=Whenever Ohran Viper deals combat damage to a creature, destroy that creature at end of combat. -- Whenever Ohran Viper deals combat damage to a player, you may draw a card.
+mana={1}{G}{G}
+type=Snow Creature
+subtype=Snake
+power=1
+toughness=3
+[/card]
+[card]
 name=Okina, Temple to the Grandfathers
 auto={T}:Add {G}
 auto={G}{T}:1/1 target(creature[legendary])
@@ -38351,6 +38397,18 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Pit Spawn
+abilities=first strike
+auto=upcost[{B}{B}] moveTo(mygraveyard)
+auto=@damaged(creature) from(this):all(trigger[to]) moveTo(exile)
+text=First strike -- At the beginning of your upkeep, sacrifice Pit Spawn unless you pay {B}{B}. -- Whenever Pit Spawn deals damage to a creature, exile that creature.
+mana={4}{B}{B}{B}
+type=Creature
+subtype=Demon
+power=6
+toughness=4
+[/card]
+[card]
 name=Pit Trap
 auto={2}{T}{S}:bury target(creature[-flying;attacking])
 text={2}, {T}, Sacrifice Pit Trap: Destroy target attacking creature without flying. It can't be regenerated.
@@ -39793,6 +39851,14 @@ type=Creature
 subtype=Zombie Druid
 power=2
 toughness=2
+[/card]
+[card]
+name=Quest for the Gemblades
+auto=@damaged(creature[attacking;blocking]) from(creature[attacking;blocking]|myBattlefield):may counter(0/0,1,Quest) all(this)
+auto={C(0/0,-1,Quest)}{S}:counter(1/1,4) target(creature)
+text=Whenever a creature you control deals combat damage to a creature, you may put a quest counter on Quest for the Gemblades. -- Remove a quest counter from Quest for the Gemblades and sacrifice it: Put four +1/+1 counters on target creature.
+mana={1}{G}
+type=Enchantment
 [/card]
 [card]
 name=Quest for the Gravelord
@@ -45940,7 +46006,7 @@ type=Land
 [card]
 name=Shivan Phoenix
 abilities=flying
-auto=@movedTo(graveyard) from(this|battlefield):moveTo(myhand) notatarget(this|mygraveyard)
+autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
 text=Flying -- When Shivan Phoenix is put into a graveyard from the battlefield, return Shivan Phoenix to its owner's hand.
 mana={4}{R}{R}
 type=Creature
@@ -47508,7 +47574,7 @@ toughness=3
 [card]
 name=Sleeper's Guile
 target=creature
-auto=@movedTo(graveyard) from(this|battlefield):moveTo(myhand) notatarget(this|mygraveyard)
+autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
 auto=fear
 text=Enchant creature -- Enchanted creature has fear. (It can't be blocked except by artifact creatures and/or black creatures.) -- When Sleeper's Guile is put into a graveyard from the battlefield, return Sleeper's Guile to its owner's hand.
 mana={2}{B}
@@ -47738,7 +47804,7 @@ toughness=2
 [card]
 name=Sluggishness
 target=creature
-auto=@movedTo(graveyard) from(this|battlefield):moveTo(myhand) notatarget(this|mygraveyard)
+autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
 auto=cantblock
 text=Enchant creature -- Enchanted creature can't block. -- When Sluggishness is put into a graveyard from the battlefield, return Sluggishness to its owner's hand.
 mana={1}{R}
@@ -49336,6 +49402,22 @@ power=6
 toughness=5
 [/card]
 [card]
+name=Spiritmonger
+auto=@damaged(creature) from(this):counter(1/1,1)
+auto={B}:regenerate
+auto={G}:name(becomes white ueot) && transforms(,white) ueot
+auto={G}:name(becomes blue ueot) && transforms(,blue) ueot
+auto={G}:name(becomes black ueot) && transforms(,black) ueot
+auto={G}:name(becomes red ueot) && transforms(,red) ueot
+auto={G}:name(becomes green ueot) && transforms(,green) ueot
+text=Whenever Spiritmonger deals damage to a creature, put a +1/+1 counter on Spiritmonger. -- {B}: Regenerate Spiritmonger. -- {G}: Spiritmonger becomes the color of your choice until end of turn.
+mana={3}{B}{G}
+type=Creature
+subtype=Beast
+power=6
+toughness=6
+[/card]
+[card]
 name=Spiritual Guardian
 auto=life:4
 text=When Spiritual Guardian enters the battlefield, you gain 4 life.
@@ -49613,7 +49695,7 @@ toughness=3
 name=Spreading Algae
 target=swamp
 auto=@tapped(mytgt):destroy
-auto=@movedTo(graveyard) from(this|battlefield):moveTo(myhand) notatarget(this|mygraveyard)
+autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
 text=Enchant Swamp -- When enchanted land becomes tapped, destroy it. -- When Spreading Algae is put into a graveyard from the battlefield, return Spreading Algae to its owner's hand.
 mana={G}
 type=Enchantment
@@ -51732,7 +51814,7 @@ subtype=Equipment
 name=Sword of Kaldra
 auto={4}:equip
 auto=5/5
-auto=@damaged(creature|battlefield) from(mytgt):all(trigger) moveto(exile)
+auto=@damaged(creature) from(mytgt):all(trigger[to]) moveto(exile)
 text=Equipped creature gets +5/+5. -- Whenever equipped creature deals damage to a creature, exile that creature. -- Equip {4} ({4}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
 mana={4}
 type=Artifact
@@ -54725,7 +54807,7 @@ type=Instant
 [/card]
 [card]
 name=Toxin Sliver
-auto=lord(sliver[attacking;blocking]) deathtouch
+auto=@damaged(creature[attacking;blocking]) from(sliver[attacking;blocking]):all(trigger[to]) bury
 text=Whenever a Sliver deals combat damage to a creature, destroy that creature. It can't be regenerated.
 mana={3}{B}
 type=Creature
@@ -55909,7 +55991,7 @@ type=Enchantment
 [/card]
 [card]
 name=Undying Beast
-auto=@movedTo(graveyard) from(this|battlefield):moveto(mylibrary) all(trigger[from])
+autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
 text=When Undying Beast is put into a graveyard from the battlefield, put Undying Beast on top of its owner's library.
 mana={3}{B}
 type=Creature
@@ -55920,7 +56002,7 @@ toughness=2
 [card]
 name=Undying Rage
 target=creature
-auto=@movedTo(graveyard) from(this|battlefield):moveTo(myhand) notatarget(this|mygraveyard)
+autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
 auto=2/2
 auto=cantblock
 text=Enchant creature -- Enchanted creature gets +2/+2 and can't block. -- When Undying Rage is put into a graveyard from the battlefield, return Undying Rage to its owner's hand.
@@ -58095,8 +58177,8 @@ toughness=2
 [/card]
 [card]
 name=Voracious Cobra
-auto=lord(voracious cobra[attacking;blocking]) deathtouch
 auto=first strike
+auto=@damaged(creature[attacking;blocking]) from(voracious cobra[attacking;blocking]):all(trigger[to]) destroy
 text=First strike -- Whenever Voracious Cobra deals combat damage to a creature, destroy that creature.
 mana={2}{R}{G}
 type=Creature
@@ -59184,7 +59266,7 @@ toughness=1
 [card]
 name=Weatherseed Treefolk
 abilities=trample
-auto=@movedTo(graveyard) from(this|battlefield):moveTo(myhand) notatarget(this|mygraveyard)
+autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
 text=Trample -- When Weatherseed Treefolk is put into a graveyard from the battlefield, return Weatherseed Treefolk to its owner's hand.
 mana={2}{G}{G}{G}
 type=Creature
