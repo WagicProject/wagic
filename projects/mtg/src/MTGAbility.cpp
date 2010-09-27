@@ -885,7 +885,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
 
     Targetable * t = NULL;
-    if (spell) t = spell->getNextPlayerTarget();
+		if (spell) t = spell->getNextDamageableTarget();
     MTGAbility * a = NEW AADamagePrevent (id, card, t,preventing,NULL,0,who);
 	  a->oneShot = 1;
     return a;
