@@ -7751,7 +7751,7 @@ toughness=1
 [/card]
 [card]
 name=Carrion Call
-auto=token(Insect,Crature Insect,1/1,infect,green)*2
+auto=token(Insect,Creature Insect,1/1,infect,green)*2
 text=Put two 1/1 green Insect creature tokens with infect onto the battlefield. (They deal damage to creatures in form of -1/-1 counters and to players in form of poison counters.)
 mana={3}{G}
 type=Instant
@@ -28749,7 +28749,7 @@ subtype=Aura
 [/card]
 [card]
 name=Kuldotha Rebirth
-auto=token(Goblin,Crature Goblin,1/1,red)*3
+auto=token(Goblin,Creature Goblin,1/1,red)*3
 text=As an additional cost to cast Kuldotha Rebirth, sacrifice an artifact. -- Put three 1/1 red Goblin creature tokens onto the battlefield.
 mana={R}{S(artifact|myBattlefield)}
 type=Sorcery
@@ -56779,7 +56779,7 @@ toughness=2
 [/card]
 [card]
 name=Vedalken Certarch
-auto=aslongas(artifact|myBattlefield) {T}:tap target(artifact,crature,land) >2
+auto=aslongas(artifact|myBattlefield) {T}:tap target(artifact,creature,land) >2
 text=Metalcraft - {T}: Tap target artifact, creature, or land. Activate this ability only if you control three or more artifacts.
 mana={U}
 type=Creature
