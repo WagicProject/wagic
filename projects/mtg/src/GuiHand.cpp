@@ -201,19 +201,25 @@ float GuiHandSelf::LeftBoundary()
 
 int GuiHandSelf::receiveEventPlus(WEvent* e)
 {
-  if (WEventZoneChange* event = dynamic_cast<WEventZoneChange*>(e))
-    if (hand == event->to)
+  if (WEventZoneChange* ev = dynamic_cast<WEventZoneChange*>(e))
+    if (hand == ev->to)
       {
-	CardView* card;
-	if (event->card->view)
-	  card = NEW CardView(CardSelector::handZone, event->card, *(event->card->view));
-	else
-	  card = NEW CardView(CardSelector::handZone, event->card, ClosedRowX, 0);
-	card->t = 6*M_PI;
-	cards.push_back(card);
-	cs->Add(card);
-        Repos();
-	return 1;
+	      CardView* card;
+        if (ev->card->view) {
+
+          //fix for http://code.google.com/p/wagic/issues/detail?id=462. 
+          // We don't want a card in the hand to have an alpha of 0
+          ev->card->view->alpha = 255; 
+
+	        card = NEW CardView(CardSelector::handZone, ev->card, *(ev->card->view));
+        }
+	      else
+	        card = NEW CardView(CardSelector::handZone, ev->card, ClosedRowX, 0);
+	      card->t = 6*M_PI;
+	      cards.push_back(card);
+	      cs->Add(card);
+              Repos();
+	      return 1;
       }
   return 0;
 }

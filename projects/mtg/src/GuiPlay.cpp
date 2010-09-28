@@ -226,8 +226,13 @@ int GuiPlay::receiveEventPlus(WEvent * e)
 	  (game->players[1]->inPlay() == event->to))
 	{
 	  CardView * card;
-	  if (event->card->view)
+    if (event->card->view){
+      //fix for http://code.google.com/p/wagic/issues/detail?id=462. 
+      // We don't want a card in the hand to have an alpha of 0
+      event->card->view->alpha = 255; 
+
 	    card = NEW CardView(CardSelector::playZone, event->card, *(event->card->view));
+    }
 	  else
 	    card = NEW CardView(CardSelector::playZone, event->card, 0, 0);
 	  cards.push_back(card);

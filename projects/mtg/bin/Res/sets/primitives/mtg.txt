@@ -4855,8 +4855,7 @@ type=Artifact
 name=Black Market
 auto=@movedTo(creature|graveyard) from(battlefield):counter(0/0,1,Charge)
 auto=@each my firstmain:thisforeach(counter{0/0.1.Charge}) add{B} controller
-text=Whenever a creature 
-, put a charge counter on Black Market. -- At the beginning of your precombat main phase, add Black to your mana pool for each charge counter on Black Market.
+text=Whenever a creature is put into a graveyard from the battlefield, put a charge counter on Black Market. -- At the beginning of your precombat main phase, add Black to your mana pool for each charge counter on Black Market.
 mana={3}{B}{B}
 type=Enchantment
 [/card]

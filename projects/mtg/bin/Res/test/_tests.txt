@@ -212,7 +212,6 @@ drain_life.txt
 dream_fracture_i142.txt
 drift_of_the_dead.txt
 dromad_purebred.txt
-dross_golem.txt
 dross_harvester.txt
 duskwalker.txt
 dust_corona.txt
@@ -312,7 +311,6 @@ juniper_order_ranger.txt
 karns_touch_i233.txt
 keldon_warlord.txt
 keldon_warlord2.txt
-khalni_hydra.txt
 kird_ape.txt
 kjeldoran_frostbeast1.txt
 kjeldoran_frostbeast2_i167.txt
@@ -349,7 +347,6 @@ maze_of_ith.txt
 meekstone.txt
 memnarch.txt
 memory_erosion.txt
-mephidross_vampire.txt
 millstone.txt
 mirri_the_cursed.txt
 mirri_the_cursed2_i284.txt
@@ -396,7 +393,6 @@ rampant_growth.txt
 rancor.txt
 ray_of_command.txt
 ray_of_command_i176.txt
-razor_golem.txt
 reclusive_wight.txt
 reclusive_wight2.txt
 recover.txt
