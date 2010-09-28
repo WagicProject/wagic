@@ -37,6 +37,8 @@ protected:
 
   void mouseReleaseEvent(QMouseEvent *event);
 
+  void wheelEvent(QWheelEvent *event);
+
 protected:
   QPoint lastPos;
 
@@ -223,41 +225,95 @@ void JGEQtRenderer::timerEvent( QTimerEvent* )
 
 void JGEQtRenderer::mousePressEvent(QMouseEvent *event)
 {
-  lastPos = event->pos();
-  QGLWidget::mousePressEvent(event);
+  if(event->button() == Qt::LeftButton)
+  {
+    lastPos = event->pos();
+    event->accept();
+  }
+  else
+  {
+    QGLWidget::mousePressEvent(event);
+  }
 }
 
 void JGEQtRenderer::mouseReleaseEvent(QMouseEvent *event)
 {
-  QPoint currentPos = event->pos();
-  int dx = currentPos.x() - lastPos.x();
-  int dy = currentPos.y() - lastPos.y();
+  if(event->button() == Qt::LeftButton)
+  {
+    QPoint currentPos = event->pos();
+    int dx = currentPos.x() - lastPos.x();
+    int dy = currentPos.y() - lastPos.y();
 
-  if(abs(dx) > abs(dy) && dx > 5)
-  {
-    g_engine->HoldKey_NoRepeat(JGE_BTN_RIGHT);
+    if(abs(dx) > abs(dy) && dx > 5)
+    {
+      g_engine->HoldKey_NoRepeat(JGE_BTN_RIGHT);
+    }
+    else if(abs(dx) > abs(dy) && dx < -5)
+    {
+      g_engine->HoldKey_NoRepeat(JGE_BTN_LEFT);
+    }
+    else if(abs(dx) < abs(dy) && dy < -5)
+    {
+      g_engine->HoldKey_NoRepeat(JGE_BTN_UP);
+    }
+    else if(abs(dx) < abs(dy) && dy > 5)
+    {
+      g_engine->HoldKey_NoRepeat(JGE_BTN_DOWN);
+    }
+    event->accept();
   }
-  else if(abs(dx) > abs(dy) && dx < -5)
+  else if(event->button() == Qt::RightButton)
   {
-    g_engine->HoldKey_NoRepeat(JGE_BTN_LEFT);
+    g_engine->HoldKey_NoRepeat(JGE_BTN_PREV);
+    event->accept();
   }
-  else if(abs(dx) < abs(dy) && dy < -5)
+  else if(event->button() == Qt::MidButton)
   {
-    g_engine->HoldKey_NoRepeat(JGE_BTN_UP);
+    g_engine->HoldKey_NoRepeat(JGE_BTN_SEC);
+    event->accept();
   }
-  else if(abs(dx) < abs(dy) && dy > 5)
+  else
   {
-    g_engine->HoldKey_NoRepeat(JGE_BTN_DOWN);
+    QGLWidget::mouseReleaseEvent(event);
   }
-
-  QGLWidget::mouseReleaseEvent(event);
 }
 
 
 void JGEQtRenderer::mouseDoubleClickEvent(QMouseEvent *event)
 {
+  if(event->button() == Qt::LeftButton)
+  {
+    g_engine->HoldKey_NoRepeat(JGE_BTN_OK);
+    event->accept();
+  }
+  else
+  {
+    QGLWidget::mouseDoubleClickEvent(event);
+  }
+}
 
-  g_engine->HoldKey_NoRepeat(JGE_BTN_OK);
+
+void JGEQtRenderer::wheelEvent(QWheelEvent *event)
+{
+  if(event->orientation() == Qt::Vertical)
+  {
+    if(event->delta() > 0)
+    {
+      g_engine->HoldKey_NoRepeat(JGE_BTN_UP);
+    }
+    else
+    {
+      g_engine->HoldKey_NoRepeat(JGE_BTN_DOWN);
+    }
+  }
+  else if(event->orientation() == Qt::Horizontal)
+  {
+    g_engine->HoldKey_NoRepeat(JGE_BTN_LEFT);
+  }
+  else
+  {
+    g_engine->HoldKey_NoRepeat(JGE_BTN_RIGHT);
+  }
   event->accept();
 }
 
