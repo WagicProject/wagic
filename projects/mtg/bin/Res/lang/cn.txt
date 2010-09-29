@@ -110,8 +110,10 @@ Random 2 Colors=随机双色
 # Player deck menu:
 Choose a Deck=选择一个套牌
 Create your Deck!=创建属于自己的套牌
-Premade G/R=预置的红绿套牌
+##Premade G/R预置的红绿套牌
 New Deck...=新建套牌……
+Main Menu=游戏主菜单
+Return to Main Menu=返回游戏主菜单
 NO DECK AVAILABLE,=没有可用的套牌，
 PRESS CIRCLE TO GO TO THE DECK EDITOR!=按○键返回套牌编辑界面！
 
@@ -120,8 +122,10 @@ Choose Opponent=选择对手
 ##(easy)=（简单）
 ##(hard)=（困难）
 Random=随机
-Evil Twin=恶魔双子
+##Evil Twin恶魔双子
 LOADING DECKS=加载套牌
+Can you play against yourself?=你能击败你自己吗？
+Choose a different player deck=重新选择一个套牌进行游戏
 
 
 ##########################

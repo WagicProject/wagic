@@ -118,14 +118,14 @@ void GameStateDuel::Start()
         Translator * t = Translator::GetInstance();
         map<string,string>::iterator it = t->deckValues.find("Create your Deck!");
         if (it != t->deckValues.end())
-          deckmenu->Add( MENUITEM_NEW_DECK, _("Create your Deck!").c_str(), it->second);
+          deckmenu->Add( MENUITEM_NEW_DECK, "Create your Deck!", it->second);
         else
-          deckmenu->Add( MENUITEM_NEW_DECK, _("Create your Deck!").c_str(),"Highly recommended to get\nthe full Wagic experience!");
+          deckmenu->Add( MENUITEM_NEW_DECK, "Create your Deck!", "Highly recommended to get\nthe full Wagic experience!");
         premadeDeck = true;
         fillDeckMenu(deckmenu,RESPATH"/player/premade");
     }
-    deckmenu->Add( MENUITEM_NEW_DECK, _("New Deck...").c_str());
-    deckmenu->Add( MENUITEM_MAIN_MENU, "Main Menu", "Return to Main Menu" );
+    deckmenu->Add( MENUITEM_NEW_DECK, "New Deck...");
+    deckmenu->Add( MENUITEM_MAIN_MENU, "Main Menu", _("Return to Main Menu").c_str());
   }
   
   for (int i = 0; i < 2; ++i){
@@ -239,11 +239,11 @@ void GameStateDuel::ensureOpponentMenu(){
     opponentMenu = NEW SimpleMenu(DUEL_MENU_CHOOSE_OPPONENT, this, Constants::MENU_FONT, 35, 25, "Choose Opponent");
     opponentMenu->Add( MENUITEM_RANDOM_AI, "Random");
     if (options[Options::EVILTWIN_MODE_UNLOCKED].number)
-      opponentMenu->Add( MENUITEM_EVIL_TWIN, "Evil Twin", "Can you play against yourself?");
+      opponentMenu->Add( MENUITEM_EVIL_TWIN, "Evil Twin", _("Can you play against yourself?").c_str());
     DeckManager * deckManager = DeckManager::GetInstance();
     vector<DeckMetaData* > opponentDeckList = fillDeckMenu( opponentMenu, RESPATH"/ai/baka", "ai_baka", mPlayers[0]);
     deckManager->updateMetaDataList(&opponentDeckList, true);
-    opponentMenu->Add( MENUITEM_CANCEL, "Cancel", "Choose a different player deck");
+    opponentMenu->Add( MENUITEM_CANCEL, "Cancel", _("Choose a different player deck").c_str());
     opponentDeckList.clear();
   }
 }

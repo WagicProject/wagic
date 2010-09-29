@@ -139,10 +139,10 @@ void GameStateDeckViewer::updateDecks(){
   deckNum = 0;
   newDeckname = "";
   nbDecks = playerDeckList.size() + 1;
-  welcome_menu->Add( MENU_ITEM_NEW_DECK, _("--NEW--").c_str() );
+  welcome_menu->Add( MENU_ITEM_NEW_DECK, "--NEW--");
   if(options[Options::CHEATMODE].number && (!myCollection || myCollection->getCount(WSrcDeck::UNFILTERED_MIN_COPIES) < 4))
     welcome_menu->Add( MENU_ITEM_CHEAT_MODE, "--UNLOCK CARDS--" );
-  welcome_menu->Add( MENU_ITEM_CANCEL, _("Cancel").c_str() );
+  welcome_menu->Add( MENU_ITEM_CANCEL, "Cancel");
 
   // update the deckmanager with the latest information
   deckManager->updateMetaDataList( &playerDeckList, false);

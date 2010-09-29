@@ -14,9 +14,11 @@
 //    sortByName to do the sorting.  This was done since the menu item display is done in insertion order.
 
 vector<DeckMetaData *> GameState::fillDeckMenu( SimpleMenu * _menu, string path, string smallDeckPrefix, Player * statsPlayer){
+  bool translate = _menu->autoTranslate;
   _menu->autoTranslate = false;
   vector<DeckMetaData *> deckMetaDataVector = getValidDeckMetaData( path, smallDeckPrefix, statsPlayer );
   renderDeckMenu( _menu, deckMetaDataVector);
+  _menu->autoTranslate = translate;
   
   return deckMetaDataVector;
 }
