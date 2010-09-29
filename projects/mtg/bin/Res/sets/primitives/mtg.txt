@@ -10255,7 +10255,7 @@ toughness=3
 [card]
 name=Corpse Cur
 abilities=infect
-auto=@movedTo(this|myBattlefield):moveTo(ownerhand) target(creature[infect]|mygraveyard)
+auto=may moveTo(ownerhand) target(creature[infect]|mygraveyard)
 text=Infect (This creature deals damage to creatures in form of -1/-1 counters and to players in form of poison counters.) -- When Corpse Cur enters the battlefield, you may return target creature card with infect from your graveyard to you hand.
 mana={4}
 type=Artifact Creature
