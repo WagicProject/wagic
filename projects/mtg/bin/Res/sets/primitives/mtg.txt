@@ -7267,7 +7267,7 @@ toughness=2
 name=Cadaver Imp
 abilities=flying
 auto=moveTo(myhand) target(creature|myGraveyard)
-text=Flying -- When Kadaver Imp enters the battlefield, return target creature card from your graveyard to your hand.
+text=Flying -- When Cadaver Imp enters the battlefield, return target creature card from your graveyard to your hand.
 mana={1}{B}{B}
 type=Creature
 subtype=Imp
@@ -58260,7 +58260,7 @@ subtype=Equipment
 [/card]
 [card]
 name=Vulshok Heartstoker
-auto=2/0 target(creature)
+auto=target(creature) +2/+0 ueot
 text=When Vulshok Heartstoker enters the battlefield, target creature gets +2/+0 until end of turn..
 mana={2}{R}
 type=Creature
