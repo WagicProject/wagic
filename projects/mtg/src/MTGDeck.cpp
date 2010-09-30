@@ -258,12 +258,22 @@ int MTGAllCards::load(const char * config_file, const char * set_name,int autolo
   const int set_id = set_name ? setlist.Add(set_name) : MTGSets::INTERNAL_SET;
   MTGSetInfo *si = setlist.getInfo(set_id);
 
-  std::ifstream setFile(config_file);
+  std::ifstream setFile(config_file, ios::in | ios::ate);
   if (!setFile) return total_cards;
+
+  streampos fileSize = setFile.tellg();
+  setFile.seekg(0, ios::beg);
+
+  std::vector<char> textVector;
+  textVector.resize((std::vector<char>::size_type) fileSize);
+  setFile.read(&textVector[0], fileSize);
+
+  std::stringstream stream(std::string(textVector.begin(), textVector.end()));
+
   string s;
 
   while (true) {
-    if (!std::getline(setFile, s)) return total_cards;
+    if (!std::getline(stream, s)) return total_cards;
     if (!s.size()) continue;
 
     if (s[s.size()-1] == '\r') s.erase(s.size()-1); // Handle DOS files
