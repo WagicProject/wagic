@@ -71,7 +71,7 @@ enum DECK_VIEWER_MENU_ITEMS
 #define ROTATE_RIGHT 0;
 
 #define HIGH_SPEED 15.0
-#define MED_SPEED 5.0
+#define MED_SPEED 5.0f
 #define LOW_SPEED 1.5
 
 #define MAX_SAVED_FILTERS 8

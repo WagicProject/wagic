@@ -2626,27 +2626,44 @@ int GenericTriggeredAbility::trigger(){
 
 int GenericTriggeredAbility::triggerOnEvent(WEvent * e){
   if (t->triggerOnEvent(e)) {
-
-    setTriggerTargets(e,ability);
+    targets.push(getTriggerTarget(e,ability));
     return 1;
   }
   return 0;
 }
 
-void GenericTriggeredAbility::setTriggerTargets(WEvent * e,MTGAbility * a){
+Targetable * GenericTriggeredAbility::getTriggerTarget(WEvent * e,MTGAbility * a){
   TriggerTargetChooser * ttc = dynamic_cast<TriggerTargetChooser *>(a->tc);
-  if (ttc) {
-    a->target = e->getTarget(ttc->triggerTarget);
-    ttc->target = e->getTarget(ttc->triggerTarget);
-  }
+  if (ttc)
+    return e->getTarget(ttc->triggerTarget);
   
   NestedAbility * na = dynamic_cast<NestedAbility *>(a);
-  if (na) setTriggerTargets(e,na->ability);
+  if (na) return getTriggerTarget(e,na->ability);
 
   MultiAbility * ma = dynamic_cast<MultiAbility *>(a);
   if (ma) {
     for (size_t i = 0; i < ma->abilities.size(); i++) {
-      setTriggerTargets(e,ma->abilities[i]);
+      return getTriggerTarget(e,ma->abilities[i]);
+    }
+  }
+
+  return NULL;
+}
+
+void GenericTriggeredAbility::setTriggerTargets(Targetable * ta ,MTGAbility * a){
+  TriggerTargetChooser * ttc = dynamic_cast<TriggerTargetChooser *>(a->tc);
+  if (ttc) {
+    a->target = ta;
+    ttc->target = ta;
+  }
+  
+  NestedAbility * na = dynamic_cast<NestedAbility *>(a);
+  if (na) setTriggerTargets(ta,na->ability);
+
+  MultiAbility * ma = dynamic_cast<MultiAbility *>(a);
+  if (ma) {
+    for (size_t i = 0; i < ma->abilities.size(); i++) {
+      setTriggerTargets(ta,ma->abilities[i]);
     }
   }
 }
@@ -2660,6 +2677,10 @@ void GenericTriggeredAbility::Update(float dt){
 }
 
 int GenericTriggeredAbility::resolve(){
+  if (targets.size()) {
+    setTriggerTargets(targets.front() ,ability);
+    targets.pop();
+  }
   if (ability->oneShot) return ability->resolve();
   MTGAbility * clone = ability->clone();
   clone->addToGame();

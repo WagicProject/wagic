@@ -482,7 +482,7 @@ void TaskList::Render() {
     sprintf(buffer, "%s", (*it)->getShortDesc().c_str());
     f2->DrawString(buffer, posX, posY);
 	if(mBgTex){
-      f->SetScale(.8);
+      f->SetScale(.8f);
 	}
     sprintf(buffer, _("Days left: %i").c_str(), (*it)->getExpiration());
     f->DrawString(buffer, SCREEN_WIDTH - 190, posY);    

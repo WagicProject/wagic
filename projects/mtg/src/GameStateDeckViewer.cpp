@@ -957,7 +957,7 @@ void GameStateDeckViewer::renderOnScreenMenu(){
             sprintf(buffer, ((*countPerCostAndColor)[i][j]>0)?_("%i").c_str():".", (*countPerCostAndColor)[i][j]);
             font->DrawString(buffer, 64 + leftTransition + j*15, posY);
           }
-          r->FillRect((float)77 + leftTransition + (Constants::MTG_NB_COLORS-2)*15, posY + 2, (*countPerCost)[i]*5, 8, graphColor);
+          r->FillRect(77.f + leftTransition + (Constants::MTG_NB_COLORS-2)*15, posY + 2, (*countPerCost)[i]*5, 8, graphColor);
           posY += 10;
         }
 

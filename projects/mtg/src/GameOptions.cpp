@@ -843,19 +843,23 @@ bool GameOptionAward::read(string input){
     tvals[i] = 0;
 
   string buf;
-  for(size_t t=0,i=0;;t++){
-    if(!isdigit(input[t])){
-      if(!isspace(input[t]) && buf.size()){
+  for (size_t t=0,i=0; t < input.size();t++)
+  {
+    if(!isdigit(input[t]))
+	{
+      if(!isspace(input[t]) && buf.size())
+	  {
         tvals[i] = atoi(buf.c_str());
         if(tvals[i] < 0)
           tvals[i] = 0;
         buf.clear();
         i++; //Advance through input.
       }
-    }else
+    }
+	else
       buf+= input[t];
 
-    if(t >= input.size() || i >= 5)
+    if (i >= 5)
       break;
   }
 

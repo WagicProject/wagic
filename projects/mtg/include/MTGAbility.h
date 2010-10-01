@@ -252,13 +252,17 @@ class TriggerNextPhase:public TriggerAtPhase{
 class GenericTriggeredAbility:public TriggeredAbility, public NestedAbility{
  public:
   TriggeredAbility * t;
+  queue<Targetable *> targets;
   MTGAbility * destroyCondition;
   GenericTriggeredAbility(int id, MTGCardInstance * _source,  TriggeredAbility * _t, MTGAbility * a,MTGAbility * dc = NULL, Targetable * _target = NULL);
   virtual int trigger();
   virtual int triggerOnEvent(WEvent * e);
   virtual int resolve();
   virtual int testDestroy();
-  void setTriggerTargets(WEvent * e, MTGAbility * a);
+
+  Targetable * getTriggerTarget(WEvent * e, MTGAbility * a);
+  void setTriggerTargets(Targetable * ta, MTGAbility * a);
+
   void Update(float dt);
   virtual GenericTriggeredAbility* clone() const;
   const char * getMenuText();
