@@ -1,0 +1,20 @@
+#Simultaneous Trigger Problem
+# See http://code.google.com/p/wagic/issues/detail?id=467
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Sigil Captain,mountain
+hand:Join the Ranks,pyroclasm
+manapool:{4}{W}
+[PLAYER2]
+[DO]
+Join the ranks
+mountain
+pyroclasm
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Sigil Captain,mountain,*,*
+graveyard:Join The Ranks,Pyroclasm
+[PLAYER2]
+[END]
