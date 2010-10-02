@@ -1281,8 +1281,6 @@ int MTGAffinityRule::receiveEvent(WEvent * event){
 			for (int i = 0; i < 2 ; i++){
 				Player * p = game->players[i];
 				if (e->to == p->game->hand) ok = 1;//affinity card enters hand	 
-				if (e->to == p->game->battlefield) ok = 2;//card enters play
-				if (e->to == p->game->graveyard || e->to == p->game->hand || e->to == p->game->library || e->to == p->game->exile || e->to == p->game->stack || e->to == p->opponent()->game->battlefield) ok = 3;//card leaves play
 				//---------
 				//when cards with affinity enter you hand from anywhere a redux is applied to them for the artifacts in play.
 				if(ok == 1){//enters play from anywhere
@@ -1301,18 +1299,23 @@ int MTGAffinityRule::receiveEvent(WEvent * event){
 						for (int j = 0; j < nbcards; ++j){
 							MTGCardInstance * c = z->cards[j];
 							int check = e->card->getManaCost()->getConvertedCost();
-							if (c->hasSubtype(type)){
+							if ((e->card->has(Constants::AFFINITYARTIFACTS) && c->hasSubtype("artifact") )|| ( e->card->has(Constants::AFFINITYSWAMP) && c->hasSubtype("swamp") )|| ( e->card->has(Constants::AFFINITYMOUNTAIN) && c->hasSubtype("moutain") )||( e->card->has(Constants::AFFINITYPLAINS) && c->hasSubtype("plains") )|| ( e->card->has(Constants::AFFINITYISLAND) && c->hasSubtype("island")) || ( e->card->has(Constants::AFFINITYFOREST) && c->hasSubtype("forest") )|| ( e->card->has(Constants::AFFINITYGREENCREATURES) && c->hasColor(1) && c->isCreature())){
 								if( check > 0){
-									if(color > 0 && !c->getManaCost()->hasColor(color)){//do nothing if its colored redux and the cards dont have the color
-									}else{//do normal redux
-										c->getManaCost()->remove(color,1);
+									if(color > 0 && !e->card->getManaCost()->hasColor(color)){//do nothing if its colored redux and the cards dont have the color
+									}else{
+										//do normal redux
+										e->card->getManaCost()->remove(color,1);
 									}//one less colorless to cast
+								}else{ 
+									e->card->reduxamount += 1;
 								}
 							}
 						}//--end of redux bracket
 					}
 				}//if ok == 1
 				//-------------maintaining cost----------------------------------------------------------------
+				ok = 0;
+				if (e->to == p->game->battlefield) ok = 2;//card enters play
 				if(ok == 2){//enters play from anywhere
 					if (e->from == p->game->graveyard || e->from == p->game->hand || e->from == p->game->library || e->from == p->game->exile || e->from == p->game->stack || e->from == p->opponent()->game->battlefield || e->from == p->game->temp){
 						//--redux effect
@@ -1341,6 +1344,8 @@ int MTGAffinityRule::receiveEvent(WEvent * event){
 					}
 				}//--end of redux bracket ok == 2
 				//---------
+				ok = 0;
+				if (e->to == p->game->graveyard || e->to == p->game->hand || e->to == p->game->library || e->to == p->game->exile || e->to == p->game->stack || e->to == p->opponent()->game->battlefield) ok = 3;//card leaves play
 				if(ok == 3){//leave play from your battlefield
 					if (e->from == p->game->battlefield){
 						int colored = 0;
@@ -1369,7 +1374,6 @@ int MTGAffinityRule::receiveEvent(WEvent * event){
 					}
 				}//---ok == 3
 				//----------------------------------------
-
 			}
 		}
 		return 0;
@@ -1388,8 +1392,6 @@ MTGAffinityRule * MTGAffinityRule::clone() const{
 	return a;
 }
 //-------------------------------------------------------------------
-
-
 
 MTGTokensCleanup::MTGTokensCleanup(int _id):MTGAbility(_id, NULL){}
 
