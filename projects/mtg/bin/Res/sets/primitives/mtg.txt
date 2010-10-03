@@ -54817,7 +54817,7 @@ toughness=3
 [card]
 name=Trade Caravan
 auto=@each my upkeep:counter(0/0,1,Currency)
-auto={C(0/0,-2,Currency)}:untap target(land[basic]) myUpkeepOnly
+auto={C(0/0,-2,Currency)}:untap target(land[basic]) UpkeepOnly
 text=At the beginning of your upkeep, put a currency counter on Trade Caravan. -- Remove two currency counters from Trade Caravan: Untap target basic land. Activate this ability only during an opponent's upkeep.
 mana={W}
 type=Creature
