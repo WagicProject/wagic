@@ -16671,7 +16671,7 @@ type=Sorcery
 [card]
 name=Extractor Demon
 abilities=flying
-autograveyard={B}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
+autograveyard={2}{B}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
 auto=@movedTo(other creature|nonbattlezone) from(battlefield):may deplete:2 target(player)
 text=Flying -- Whenever another creature leaves the battlefield, you may have target player put the top two cards of his or her library into his or her graveyard. -- Unearth {2}{B} ({2}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={4}{B}{B}
