@@ -56,8 +56,6 @@ class GameStateShop: public GameState, public JGuiListener
   WSrcCards * srcCards;
   JTexture * altThumb[8];
   JQuad * mBack;
-  JQuad * mBg;
-  JTexture * mBgTex;
   TaskList * taskList;
   float mElapsed;
   WGuiMenu * shopMenu;

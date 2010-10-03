@@ -359,7 +359,7 @@ void TaskList::Start(){
   mElapsed = 0;
   mState = TASKS_IN;
   if(!mBgTex){
-    mBgTex = resources.RetrieveTexture("taskboard.png");
+    mBgTex = resources.RetrieveTexture("taskboard.png", RETRIEVE_LOCK);
     float unitH = mBgTex->mHeight / 4;
     float unitW = mBgTex->mWidth / 4;
     if(unitH == 0 || unitW == 0) return;

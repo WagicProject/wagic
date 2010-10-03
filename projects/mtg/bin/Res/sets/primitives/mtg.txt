@@ -40034,7 +40034,7 @@ toughness=2
 [/card]
 [card]
 name=Qumulox
-abilities=affinityartifact,flying
+abilities=affinityartifacts,flying
 text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) -- Flying
 mana={6}{U}{U}
 type=Creature

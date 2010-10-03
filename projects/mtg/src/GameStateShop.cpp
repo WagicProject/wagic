@@ -31,8 +31,6 @@ GameStateShop::GameStateShop(GameApp* parent): GameState(parent) {
     altThumb[i] = NULL;
   mBack = NULL;
   boosterDisplay = NULL;
-  mBg = NULL;
-  mBgTex = NULL;
   taskList = NULL;
   srcCards = NULL;
   shopMenu = NULL;
@@ -114,12 +112,6 @@ void GameStateShop::Start(){
   
 
   mBack = resources.GetQuad("back");
-  resources.Unmiss("shop.jpg"); //Last resort.
-  mBgTex = resources.RetrieveTexture("shop.jpg", RETRIEVE_LOCK, TEXTURE_SUB_5551);
-  if(mBgTex)
-    mBg = resources.RetrieveQuad("shop.jpg");  
-  else
-    mBg = NULL;
 
   JRenderer::GetInstance()->EnableVSync(true);
 
@@ -359,9 +351,6 @@ void GameStateShop::End()
 {
   save();
   JRenderer::GetInstance()->EnableVSync(false);
-  resources.Release(mBgTex);
-  mBgTex = NULL;
-  mBg = NULL;
   mElapsed = 0; 
   SAFE_DELETE(shopMenu);
   SAFE_DELETE(bigDisplay);
@@ -567,6 +556,7 @@ void GameStateShop::Render()
   if(mStage == STAGE_FADE_IN)
     return;
 
+  JQuad * mBg = resources.RetrieveTempQuad("shop.jpg",TEXTURE_SUB_5551); 
   if (mBg)
     r->RenderQuad(mBg,0,0);
 
