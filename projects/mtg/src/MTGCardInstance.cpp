@@ -416,11 +416,11 @@ int MTGCardInstance::setAttacker(int value){
 
 int MTGCardInstance::toggleAttacker(){
   if (!attacker){
-    if (!basicAbilities[Constants::VIGILANCE]) tap();
+    //if (!basicAbilities[Constants::VIGILANCE]) tap();
     setAttacker(1);
     return 1;
   }else{
-      untap();
+      //untap();
       setAttacker(0);
       return 1;
   }
