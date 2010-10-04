@@ -34,6 +34,7 @@ AIPlayer::AIPlayer(MTGPlayerCards * deck, string file, string fileSmall) : Playe
   stats = NULL;
   agressivity = 50;
   forceBestAbilityUse = false;
+  playMode = Player::MODE_AI;
 }
 
 AIPlayer::~AIPlayer(){

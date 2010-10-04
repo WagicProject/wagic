@@ -17,16 +17,17 @@ Player::Player(MTGPlayerCards * deck, string file, string fileSmall) : Damageabl
   castrestrictedspell = 0;
   castrestrictedcreature = 0;
   onlyonecast = 0;
-        castcount = 0;
-		nocreatureinstant = 0;
-		nospellinstant = 0;
-		onlyoneinstant = 0;
+  castcount = 0;
+  nocreatureinstant = 0;
+  nospellinstant = 0;
+  onlyoneinstant = 0;
   poisonCount = 0;
   damageCount = 0;
   preventable = 0;
   mAvatar = NULL;
   mAvatarTex = NULL;
   type_as_damageable = DAMAGEABLE_PLAYER;
+  playMode = MODE_HUMAN;
 }
 
 /*Method to call at the end of a game, before all objects involved in the game are destroyed */
@@ -84,6 +85,7 @@ Player * Player::opponent(){
 
 HumanPlayer::HumanPlayer(MTGPlayerCards * deck, string file, string fileSmall) : Player(deck, file, fileSmall) {
   loadAvatar("avatar.jpg");
+  playMode = MODE_HUMAN;
 }
 
 

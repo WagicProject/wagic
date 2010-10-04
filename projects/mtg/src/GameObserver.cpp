@@ -289,7 +289,8 @@ void GameObserver::Update(float dt){
   oldGamePhase = currentGamePhase;
 
     //Auto skip Phases
-  int skipLevel = options[Options::ASPHASES].number;
+  int skipLevel = (player->playMode == Player::MODE_TEST_SUITE) ? Constants::ASKIP_NONE :
+                      options[Options::ASPHASES].number;
   int nrCreatures = currentPlayer->game->inPlay->countByType("Creature");
 
   if (skipLevel == Constants::ASKIP_SAFE || skipLevel == Constants::ASKIP_FULL) {

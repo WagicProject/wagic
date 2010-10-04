@@ -12,18 +12,10 @@
 using std::string;
 
 
-enum ENUM_PLAY_MODE
-  {
-    MODE_TEST_SUITE,
-    MODE_HUMAN,
-    MODE_AI,
-  };
-
 TestSuiteAI::TestSuiteAI(TestSuite * _suite, int playerId):AIPlayerBaka(_suite->buildDeck(playerId),"testsuite", "testsuite","baka.jpg"){
   suite = _suite;
   timer = 0;
   playMode = MODE_TEST_SUITE;
-
 }
 
 
@@ -329,7 +321,7 @@ int TestSuite::assertGame(){
   }
   for (int i = 0; i < 2; i++){
     TestSuiteAI * p = (TestSuiteAI *)(g->players[i]);
-    if (p->playMode == MODE_AI) wasAI = true;
+    if (p->playMode == Player::MODE_AI) wasAI = true;
 
     if (p->life != endState.playerData[i].life){
       sprintf(result, "<span class=\"error\">==life problem for player %i. Expected %i, got %i==</span><br />",i,endState.playerData[i].life, p->life);
