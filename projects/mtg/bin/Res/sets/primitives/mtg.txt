@@ -9456,11 +9456,16 @@ toughness=3
 [/card]
 [card]
 name=Cloud Key
-auto=choice name(artifact) && lord(artifact|myhand) colorless:-1
-auto=choice name(creature) && lord(creature|myhand) colorless:-1
-auto=choice name(enchantment) && lord(enchantment|myhand) colorless:-1
-auto=choice name(instant) && lord(instant|myhand) colorless:-1
-auto=choice name(sorcery) && lord(sorcery|myhand) colorless:-1
+auto=choice name(Artifact) && counter(0/0,1,CloudKeyA) all(this)
+auto=choice name(Creature) && counter(0/0,1,CloudKeyC) all(this)
+auto=choice name(Enchantment) && counter(0/0,1,CloudKeyE) all(this)
+auto=choice name(Instant) && counter(0/0,1,CloudKeyI) all(this)
+auto=choice name(Sorcery) && counter(0/0,1,CloudKeyS) all(this)
+auto=this(counter{0/0.1.CloudKeyA}) lord(Artifact|myhand) colorless:-1
+auto=this(counter{0/0.1.CloudKeyC}) lord(Creature|myhand) colorless:-1
+auto=this(counter{0/0.1.CloudKeyE}) lord(Enchantment|myhand) colorless:-1
+auto=this(counter{0/0.1.CloudKeyI}) lord(Instant|myhand) colorless:-1
+auto=this(counter{0/0.1.CloudKeyS}) lord(Sorcery|myhand) colorless:-1
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -10170,7 +10175,7 @@ toughness=2
 [/card]
 [card]
 name=Copperline Gorge
-auto=aslongas(other land|myBattlefield) tap <3 oneshot 
+auto=aslongas(other land|myBattlefield) tap <2 oneshot 
 auto={T}:Add {R}
 auto={T}:Add {G}
 type=Land
@@ -15868,7 +15873,7 @@ type=Enchantment
 [card]
 name=Endless Wurm
 abilities=trample
-auto=@each my upkeep:moveTo(graveyard) notatarget(this,enchantment|myBattlefield)
+auto=[upcost {s(enchantment|mybattlefield)}] moveto(mygraveyard) all(this)
 text=Trample -- At the beginning of your upkeep, sacrifice Endless Wurm unless you sacrifice an enchantment.
 mana={3}{G}{G}
 type=Creature
@@ -21427,7 +21432,7 @@ toughness=3
 [/card]
 [card]
 name=Golem Foundry
-auto=@movedTo(artifact|stack):may counter(0/0,1,Charge)
+auto=@movedTo(artifact|mystack):may counter(0/0,1,Charge)
 auto={C(0/0,-3,Charge)}:token(Golem,Artifact Creature Golem,3/3)
 text=Whenever you cast an artifact spell, you may put a charge counter on Golem Foundry. -- Remove three charge counters from Golem Foundry: Put a 3/3 colorless Golem artifact creature token onto the battlefield.
 mana={3}
@@ -39265,11 +39270,11 @@ toughness=1
 [card]
 name=Pristine Angel
 abilities=flying
-auto=lord(pristine angel[-tapped]) protection from(white)
-auto=lord(pristine angel[-tapped]) protection from(blue)
-auto=lord(pristine angel[-tapped]) protection from(black)
-auto=lord(pristine angel[-tapped]) protection from(red)
-auto=lord(pristine angel[-tapped]) protection from(green)
+auto=lord(pristine angel[-tapped]) protection from white
+auto=lord(pristine angel[-tapped]) protection from blue
+auto=lord(pristine angel[-tapped]) protection from black
+auto=lord(pristine angel[-tapped]) protection from red
+auto=lord(pristine angel[-tapped]) protection from green
 auto=lord(pristine angel[-tapped]) protection from(artifact)
 auto=@movedTo(*|mystack):may untap
 text=Flying -- As long as Pristine Angel is untapped, it has protection from artifacts and from all colors. -- Whenever you cast a spell, you may untap Pristine Angel.
@@ -40701,23 +40706,23 @@ toughness=4
 [card]
 name=Ratchet Bomb
 auto={T}:counter(0/0,1,Charge)
-auto=this(counter{0/0.1.Charge}<1) {T}:destroy all(*[artifact;creature;enchantment;manacost=0])
-auto=this(counter{0/0.1.Charge}=) {T}:destroy all(*[artifact;creature;enchantment;manacost=1])
-auto=this(counter{0/0.2.Charge}=) {T}:destroy all(*[artifact;creature;enchantment;manacost=2])
-auto=this(counter{0/0.3.Charge}=) {T}:destroy all(*[artifact;creature;enchantment;manacost=3])
-auto=this(counter{0/0.4.Charge}=) {T}:destroy all(*[artifact;creature;enchantment;manacost=4])
-auto=this(counter{0/0.5.Charge}=) {T}:destroy all(*[artifact;creature;enchantment;manacost=5])
-auto=this(counter{0/0.6.Charge}=) {T}:destroy all(*[artifact;creature;enchantment;manacost=6])
-auto=this(counter{0/0.7.Charge}=) {T}:destroy all(*[artifact;creature;enchantment;manacost=7])
-auto=this(counter{0/0.8.Charge}=) {T}:destroy all(*[artifact;creature;enchantment;manacost=8])
-auto=this(counter{0/0.9.Charge}=) {T}:destroy all(*[artifact;creature;enchantment;manacost=9])
-auto=this(counter{0/0.10.Charge}=) {T}:destroy all(*[artifact;creature;enchantment;manacost=10])
-auto=this(counter{0/0.11.Charge}=) {T}:destroy all(*[artifact;creature;enchantment;manacost=11])
-auto=this(counter{0/0.12.Charge}=) {T}:destroy all(*[artifact;creature;enchantment;manacost=12])
-auto=this(counter{0/0.13.Charge}=) {T}:destroy all(*[artifact;creature;enchantment;manacost=13])
-auto=this(counter{0/0.14.Charge}=) {T}:destroy all(*[artifact;creature;enchantment;manacost=14])
-auto=this(counter{0/0.15.Charge}=) {T}:destroy all(*[artifact;creature;;enchantmentmanacost=15])
-auto=this(counter{0/0.16.Charge}=) {T}:destroy all(*[artifact;creature;;enchantmentmanacost=16])
+auto=this(counter{0/0.1.Charge}<1) {T}{S}:destroy all(*[artifact;creature;enchantment;manacost=0])
+auto=this(counter{0/0.1.Charge}=) {T}{S}:destroy all(*[artifact;creature;enchantment;manacost=1])
+auto=this(counter{0/0.2.Charge}=) {T}{S}:destroy all(*[artifact;creature;enchantment;manacost=2])
+auto=this(counter{0/0.3.Charge}=) {T}{S}:destroy all(*[artifact;creature;enchantment;manacost=3])
+auto=this(counter{0/0.4.Charge}=) {T}{S}:destroy all(*[artifact;creature;enchantment;manacost=4])
+auto=this(counter{0/0.5.Charge}=) {T}{S}:destroy all(*[artifact;creature;enchantment;manacost=5])
+auto=this(counter{0/0.6.Charge}=) {T}{S}:destroy all(*[artifact;creature;enchantment;manacost=6])
+auto=this(counter{0/0.7.Charge}=) {T}{S}:destroy all(*[artifact;creature;enchantment;manacost=7])
+auto=this(counter{0/0.8.Charge}=) {T}{S}:destroy all(*[artifact;creature;enchantment;manacost=8])
+auto=this(counter{0/0.9.Charge}=) {T}{S}:destroy all(*[artifact;creature;enchantment;manacost=9])
+auto=this(counter{0/0.10.Charge}=) {T}{S}:destroy all(*[artifact;creature;enchantment;manacost=10])
+auto=this(counter{0/0.11.Charge}=) {T}{S}:destroy all(*[artifact;creature;enchantment;manacost=11])
+auto=this(counter{0/0.12.Charge}=) {T}{S}:destroy all(*[artifact;creature;enchantment;manacost=12])
+auto=this(counter{0/0.13.Charge}=) {T}{S}:destroy all(*[artifact;creature;enchantment;manacost=13])
+auto=this(counter{0/0.14.Charge}=) {T}{S}:destroy all(*[artifact;creature;enchantment;manacost=14])
+auto=this(counter{0/0.15.Charge}=) {T}{S}:destroy all(*[artifact;creature;;enchantmentmanacost=15])
+auto=this(counter{0/0.16.Charge}=) {T}{S}:destroy all(*[artifact;creature;;enchantmentmanacost=16])
 text={T}: Put a charge counter on Grindclock. -- {T}: Sacrifice Ratchet Bomb: Destroy each nonland permanent with converted mana cost equal to the number of charge counters on Ratchet Bomb.
 mana={2}
 type=Artifact
@@ -45083,7 +45088,7 @@ auto=this(counter{0/0.1.Artifact}) lord(artifact|myhand) colorless:-2
 auto=this(counter{0/0.1.Artifact Creature}) lord(artifact|myhand) colorless:-2
 auto=this(counter{0/0.1.Artifact Creature}) lord(creature|myhand) colorless:-2
 auto=this(counter{0/0.1.Creature}) lord(creature|myhand) colorless:-2
-auto=this(counter{0/0.1.Enchantment}) lord(enchtantment|myhand) colorless:-2
+auto=this(counter{0/0.1.Enchantment}) lord(enchantment|myhand) colorless:-2
 auto=this(counter{0/0.1.Instant}) lord(instant|myhand) colorless:-2
 auto=this(counter{0/0.1.Sorcery}) lord(sorcery|myhand) colorless:-2
 auto=this(counter{0/0.1.Tribal Instant}) lord(tribal|myhand) colorless:-2
@@ -54817,7 +54822,7 @@ toughness=3
 [card]
 name=Trade Caravan
 auto=@each my upkeep:counter(0/0,1,Currency)
-auto={C(0/0,-2,Currency)}:untap target(land[basic]) UpkeepOnly
+auto={C(0/0,-2,Currency)}:untap target(land[basic]) myUpkeepOnly
 text=At the beginning of your upkeep, put a currency counter on Trade Caravan. -- Remove two currency counters from Trade Caravan: Untap target basic land. Activate this ability only during an opponent's upkeep.
 mana={W}
 type=Creature
@@ -55312,7 +55317,7 @@ type=Artifact
 name=Trigon of Mending
 auto=counter(0/0,3,Charge)
 auto={W}{W}{T}:counter(0/0,1,Charge)
-auto={C(0/0,-1,Charge)}{2}{T}:life:3 target(player)
+auto={C(0/0,-1,Charge)}{2}{T}:3/0 target(creature)
 text=Trigon of Mending enters the battlefield with three charge counters on it. -- {W}{W}, {T}: Put a charge counter on Trigon of Mending. -- {2}, {T}, Remove a charge counter from Trigon of Mending: Target player gains 3 life.
 mana={2}
 type=Artifact
