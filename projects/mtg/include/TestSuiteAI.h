@@ -88,7 +88,7 @@ class TestSuiteAI:public AIPlayerBaka{
  public:
   TestSuite * suite;
   float timer;
-  int playMode;
+  
   TestSuiteAI(TestSuite * suite, int playerId);
   virtual int Act(float dt);
   virtual int displayStack();

@@ -15,12 +15,21 @@ class Player: public Damageable{
   ManaPool * manaPool;
 
  public:
+  enum ENUM_PLAY_MODE
+  {
+    MODE_TEST_SUITE,
+    MODE_HUMAN,
+    MODE_AI,
+  };
+
+
   virtual void End();
   int typeAsTarget(){return TARGET_PLAYER;}
   const string getDisplayName() const;
   virtual int displayStack(){return 1;}
   JTexture * mAvatarTex;
   JQuad * mAvatar;
+  int playMode;
   int canPutLandsIntoPlay;
   int nomaxhandsize;
   int castedspellsthisturn;
