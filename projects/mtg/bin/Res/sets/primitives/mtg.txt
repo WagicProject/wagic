@@ -2157,7 +2157,7 @@ abilities=haste
 auto=counter(1/1,2)
 auto=@movedTo(this|mygraveyard) from(myBattlefield):may thisforeach(counter{1/1.1}) counter(1/1,1) target(creature[artifact])
 text=Haste -- Modular 2 (This enters the battlefield with two +1/+1 counters on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
-mana={1}
+mana={4}
 type=Artifact Creature
 subtype=Beast
 power=0
@@ -25179,7 +25179,7 @@ toughness=1
 [/card]
 [card]
 name=Indestructibility
-target=creature
+target=*
 auto=indestructible
 text=Enchant permanent -- Enchanted permanent is indestructible. (Effects that say "destroy" don't destroy that permanent. An indestructible creature can't be destroyed by damage.)
 mana={3}{W}
@@ -55687,7 +55687,7 @@ type=Instant
 [card]
 name=Twilight Drover
 auto=@movedTo(creature[token]|exile,hand,library,graveyard) from(battlefield):counter(1/1,1)
-auto={2}{W}{C(1/1,-2)}:token(Spirit,Creature Spirit,1/1,white,flying)*2
+auto={2}{W}{C(1/1,-1)}:token(Spirit,Creature Spirit,1/1,white,flying)*2
 text=Whenever a creature token leaves the battlefield, put a +1/+1 counter on Twilight Drover. -- {2}{W}, Remove a +1/+1 counter from Twilight Drover: Put two 1/1 white Spirit creature tokens with flying onto the battlefield.
 mana={2}{W}
 type=Creature
@@ -60920,7 +60920,7 @@ toughness=1
 [/card]
 [card]
 name=Yavimaya Elder
-auto={S}:draw:1
+auto={2}{S}:draw:1
 auto=@movedto(this|graveyard) from(battlefield):may token(-1111144) && moveTo(myHand) target(land[basic]|myLibrary)
 text=When Yavimaya Elder is put into a graveyard from the battlefield, you may search your library for up to two basic land cards, reveal them, and put them into your hand. If you do, shuffle your library. -- {2}, Sacrifice Yavimaya Elder: Draw a card.
 mana={1}{G}{G}
