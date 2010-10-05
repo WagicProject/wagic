@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui opengl
-VERSION = 1.2.3
+VERSION = 0.13.0
 TARGET = wagic
 TEMPLATE = app
 windows:DEFINES += WIN32
@@ -22,6 +22,9 @@ unix:INCLUDEPATH += /usr/include/GL
 unix:INCLUDEPATH += /usr/include/freetype2
 INCLUDEPATH += ../../JGE/include
 INCLUDEPATH += include
+OBJECTS_DIR = objs
+MOC_DIR = objs
+DESTDIR = bin
 
 unix:LIBS += -ljpeg -lgif -lpng12
 windows:LIBS += -LD:\Projects\Wagic\JGE\Dependencies\lib -llibjpeg-static-mt-debug -lgiflib -llibpng -lfmodvc
@@ -304,18 +307,27 @@ HEADERS += \
         ../../JGE/src/tinyxml\tinyxml.h\
         ../../JGE/include/vram.h
 
-FORMS    +=
+maemo5: {
+    # Variables
+    BINDIR = /opt/wagic
+    RESDIR = /opt/wagic/Res
+    ICONDIR = /usr/share
+    DEFINES += RESDIR=\\\"$$RESDIR\\\"
 
-CONFIG += mobility
-MOBILITY = 
+    INSTALLS += target \
+        desktop \
+        icon \
+        res \
 
-symbian {
-    TARGET.UID3 = 0xe3fa5a9c
-    # TARGET.CAPABILITY += 
-    TARGET.EPOCSTACKSIZE = 0x14000
-    TARGET.EPOCHEAPSIZE = 0x020000 0x800000
+    target.path = $$BINDIR
+
+    desktop.path = $$ICONDIR/applications/hildon
+    desktop.files += wagic.desktop
+
+    icon.path = $$ICONDIR/icons/hicolor/64x64/apps
+    icon.files += wagic-64x64.png
+
+    res.path = $$RESDIR
+    res.files += bin/Res/*
+    # res.extra = tar -C ../../../../src/projects/mtg/bin -czf Res.tgz Res
 }
-
-OTHER_FILES +=
-
-RESOURCES +=
