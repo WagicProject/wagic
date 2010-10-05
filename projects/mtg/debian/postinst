@@ -1,0 +1,10 @@
+#!/bin/sh -e
+
+chmod +x /opt/wagic/wagic
+mkdir /home/user/MyDocs/wagic
+cp -rf /opt/wagic/Res /home/user/MyDocs/wagic
+rm -rf /opt/wagic/Res
+ln -s  /home/user/MyDocs/wagic/Res /opt/wagic/Res
+gtk-update-icon-cache -f /usr/share/icons/hicolor
+
+exit 0
