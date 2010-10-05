@@ -30405,7 +30405,7 @@ type=Artifact
 [card]
 name=Lotus Cobra
 auto=@movedTo(land|myBattlefield):may token(-1111129)
-text=Landfall ÅE- Whenever a land enters the battlefield under your control, you may add one mana of any color to your mana pool.
+text=Landfall - Whenever a land enters the battlefield under your control, you may add one mana of any color to your mana pool.
 mana={1}{G}
 type=Creature
 subtype=Snake
@@ -30451,9 +30451,12 @@ type=Artifact
 [/card]
 [card]
 name=Lovisa Coldeyes
-auto=lord(warrior) 2/2 other
-auto=lord(berserker) 2/2 other
-auto=lord(barbarian) 2/2 other
+auto=lord(warrior) 2/2 
+auto=lord(berserker) 2/2 
+auto=lord(other barbarian) 2/2 
+auto=lord(warrior) haste 
+auto=lord(berserker) haste
+auto=lord(other barbarian) haste
 text=Warrior, Berserker, and/or other Barbarian creatures get +2/+2 and have haste.
 mana={3}{R}{R}
 type=Legendary Creature
