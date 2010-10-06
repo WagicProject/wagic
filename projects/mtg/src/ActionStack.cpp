@@ -2,6 +2,7 @@
   The Action Stack contains all information for Game Events that can be interrupted (Interruptible)
 */
 #include "../include/config.h"
+#include "../include/DebugRoutines.h"
 #include "../include/ActionStack.h"
 #include "../include/MTGAbility.h"
 #include "../include/GameObserver.h"
@@ -12,6 +13,9 @@
 #include "../include/TargetChooser.h"
 #include "../include/CardGui.h"
 #include "../include/Translate.h"
+
+#include <typeinfo>
+
 /*
   NextGamePhase requested by user
 */
@@ -48,6 +52,11 @@ ostream& NextGamePhase::toString(ostream& out) const
 {
   out << "NextGamePhase ::: ";
   return out;
+}
+
+const string Interruptible::getDisplayName() const
+{
+  return typeid(*this).name();
 }
 
 void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string alt1, string alt2, string action, bool bigQuad){
@@ -404,15 +413,13 @@ int ActionStack::addAction(Interruptible * action){
     interruptDecision[i] = 0;
   }
   Add(action);
+	DebugTrace("Action added to stack: " << action->getDisplayName());
+
   return 1;
 }
 
 Spell * ActionStack::addSpell(MTGCardInstance * _source, TargetChooser * tc, ManaCost * mana, int payResult,int storm){
-#if defined (WIN32) || defined (LINUX)
-  char    buf[4096], *p = buf;
-  sprintf(buf, "ACTIONSTACK Add spell\n");
-  OutputDebugString(buf);
-#endif
+	DebugTrace("ACTIONSTACK Add spell");
   if(storm > 0){ mana = NULL;}
   if(mana < 0) {mana = 0;}
   Spell * spell = NEW Spell(mCount,_source,tc, mana,payResult);
@@ -465,7 +472,7 @@ int ActionStack::resolve(){
   if (!action)
     return 0;
 
-
+	DebugTrace("Resolving Action on stack: " << action->getDisplayName());
   if (action->resolve()){
     action->state = RESOLVED_OK;
   }else{
@@ -597,19 +604,19 @@ void ActionStack::Update(float dt){
 	    currentPlayerId = 1;
 	    otherPlayerId = 0;
      }
-    if (interruptDecision[currentPlayerId] == 0){
+    if (interruptDecision[currentPlayerId] == NOT_DECIDED){
       askIfWishesToInterrupt = game->players[currentPlayerId];
       game->isInterrupting = game->players[currentPlayerId];
       modal = 1;
-    }else if (interruptDecision[currentPlayerId] == -1){
+    }else if (interruptDecision[currentPlayerId] == INTERRUPT){
       game->isInterrupting = game->players[currentPlayerId];
 
     }else{
-      if (interruptDecision[otherPlayerId] == 0){
+      if (interruptDecision[otherPlayerId] == NOT_DECIDED){
       askIfWishesToInterrupt = game->players[otherPlayerId];
       game->isInterrupting = game->players[otherPlayerId];
       modal = 1;
-    }else if (interruptDecision[otherPlayerId] == -1){
+    }else if (interruptDecision[otherPlayerId] == INTERRUPT){
       game->isInterrupting = game->players[otherPlayerId];
     }else{
       resolve();
@@ -682,11 +689,7 @@ bool ActionStack::CheckUserInput(JButton key){
 	        if (n != -1 && n != mCurr && mObjects[mCurr]->Leaving(JGE_BTN_UP)){
 	          mCurr = n;
 	          mObjects[mCurr]->Entering();
-#if defined (WIN32) || defined (LINUX)
-	          char buf[4096];
-	          sprintf(buf, "ACTIONSTACK UP TO mCurr = %i\n", mCurr);
-	          OutputDebugString(buf);
-#endif
+						DebugTrace("ACTIONSTACK UP TO mCurr = " << mCurr);
 	        }
 	      }
 	      return true;
@@ -696,20 +699,13 @@ bool ActionStack::CheckUserInput(JButton key){
 	        if (n!= -1 && n != mCurr && mObjects[mCurr]->Leaving(JGE_BTN_DOWN)){
 	          mCurr = n;
 	          mObjects[mCurr]->Entering();
-#if defined (WIN32) || defined (LINUX)
-	          char buf[4096];
-	          sprintf(buf, "ACTIONSTACK DOWN TO mCurr = %i\n", mCurr);
-	          OutputDebugString(buf);
-#endif
+						DebugTrace("ACTIONSTACK DOWN TO mCurr " << mCurr);
 	        }
 	      }
 	      return true;
       }else if (JGE_BTN_OK == key){
-#if defined (WIN32) || defined (LINUX)
-	      char buf[4096];
-	      sprintf(buf, "ACTIONSTACK CLIKED mCurr = %i\n", mCurr);
-	      OutputDebugString(buf);
-#endif
+				DebugTrace("ACTIONSTACK CLICKED mCurr = " << mCurr);
+
 	      game->stackObjectClicked(((Interruptible *) mObjects[mCurr]));
 	      return true;
       }
@@ -743,7 +739,7 @@ while( iter != mObjects.end() ){
 
 void ActionStack::Fizzle(Interruptible * action){
   if (!action){
-    OutputDebugString("ACTIONSTACK ==ERROR==: action is NULL in ActionStack::Fizzle\n");
+   DebugTrace("ACTIONSTACK ==ERROR==: action is NULL in ActionStack::Fizzle");
     return;
   }
   if (action->type == ACTION_SPELL){
@@ -896,14 +892,11 @@ void Interruptible::Dump(){
       sstate = "unknown";
       break;
   }
-
-  char buf[4096];
-  sprintf(buf, "    type %s(%i) - state %s(%i) - display %i\n", stype.c_str(), type,  sstate.c_str(),state, display);
-    OutputDebugString(buf);
+	DebugTrace("type: " << stype << " " << type << " - state: " << sstate << " " << state << " - display: " << display);
 }
 
 void ActionStack::Dump(){
-   OutputDebugString("=====\nDumping Action Stack=====\n");
+  DebugTrace("=====\nDumping Action Stack=====");
   for (int i=0;i<mCount ;i++){
     Interruptible * current = (Interruptible *)mObjects[i];
     current->Dump();

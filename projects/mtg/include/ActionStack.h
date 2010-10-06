@@ -57,7 +57,7 @@ class Interruptible: public PlayGuiObject, public Targetable{
   virtual void Render(){};
   int typeAsTarget(){return TARGET_STACKACTION;};
  Interruptible(bool hasFocus = false):PlayGuiObject(40,x,y,hasFocus){state=NOT_RESOLVED;display=0;source=NULL;};
-  virtual const string getDisplayName() const {return "stack object";};
+  virtual const string getDisplayName() const;
   void Render(MTGCardInstance * source, JQuad * targetQuad, string alt1, string alt2, string action, bool bigQuad = false);
   virtual int receiveEvent(WEvent * event) {return 0;};
 #if defined (WIN32) || defined (LINUX)
