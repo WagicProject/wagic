@@ -264,11 +264,10 @@ int MTGAllCards::load(const char * config_file, const char * set_name,int autolo
   streampos fileSize = setFile.tellg();
   setFile.seekg(0, ios::beg);
 
-  std::vector<char> textVector;
-  textVector.resize((std::vector<char>::size_type) fileSize);
-  setFile.read(&textVector[0], fileSize);
-
-  std::stringstream stream(std::string(textVector.begin(), textVector.end()));
+	std::string contents;
+	contents.resize((std::string::size_type)fileSize);
+	setFile.read(&contents[0], fileSize);
+	std::stringstream stream(contents);
 
   string s;
 
