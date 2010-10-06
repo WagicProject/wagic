@@ -137,15 +137,16 @@ typedef uint32_t u32;
 
 
 	#if defined (ABGR8888)
+		#define PIXEL_TYPE				u32
 		#ifndef ARGB
-		#define ARGB(a, r, g, b)		((a << 24) | (b << 16) | (g << 8) | r)	// macro to assemble pixels in correct format
+		#define ARGB(a, r, g, b)		(PIXEL_TYPE)((a << 24) | (b << 16) | (g << 8) | r)	// macro to assemble pixels in correct format
 		#endif
 		#define MAKE_COLOR(a, c)		(a << 24 | c)
 		#define MASK_ALPHA				0xFF000000							// masks for accessing individual pixels
 		#define MASK_BLUE				0x00FF0000
 		#define MASK_GREEN				0x0000FF00
 		#define MASK_RED				0x000000FF
-		#define PIXEL_TYPE				u32
+
 		#define PIXEL_SIZE				4
 		#define PIXEL_FORMAT			PSP_DISPLAY_PIXEL_FORMAT_8888
 

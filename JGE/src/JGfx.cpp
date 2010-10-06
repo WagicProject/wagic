@@ -1482,7 +1482,7 @@ int JRenderer::image_readgif(void * handle, TextureInfo &textureInfo, DWORD * bg
 
 					if (buffer)
 					{
-						p32 = (u32*) buffer;
+						p32 = (DWORD*) buffer;
 					}
 
 					//if((*image_data = (pixel *)malloc(sizeof(pixel) * GifFileIn->Image.Width * GifFileIn->Image.Height)) == NULL)

@@ -99,7 +99,7 @@ const KeyRep& translateKey(LocalKeySym key) {
       else
         {
           char* str = NEW char[11];
-          sprintf(str, "%d", key);
+          sprintf(str, "%d", (int) key);
           fattable[key] = make_pair(str, static_cast<JQuad*>(static_cast<JQuad*>(NULL)));
         }
       res = fattable.find(key);
