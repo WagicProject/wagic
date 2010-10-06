@@ -1,0 +1,524 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="HQ Debug|Win32">
+      <Configuration>HQ Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Profile|Win32">
+      <Configuration>Profile</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>mtg</ProjectName>
+    <ProjectGuid>{53024371-2293-4D40-8ECF-FCB470B50DA1}</ProjectGuid>
+    <RootNamespace>mtg</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='HQ Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='HQ Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="mtg.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="mtg.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="mtg.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">obj\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">obj\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">obj\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='HQ Debug|Win32'">bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='HQ Debug|Win32'">obj\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='HQ Debug|Win32'">true</LinkIncremental>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='HQ Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='HQ Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='HQ Debug|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Wagic</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='HQ Debug|Win32'">Wagic</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Wagic</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Wagic</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Release/template.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>$(MTGEXTRAS);../../JGE/include;../../JGE/Dependencies/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeaderOutputFile>.\Release/template.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
+      <ObjectFileName>.\Release/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0c09</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;libpng.lib;fmodvc.lib;zdll.lib;libjpeg-static-mt.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>..\..\JGE\Dependencies\lib;..\..\JGE\lib\win;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>LIBCD;LIBCMT;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ProgramDatabaseFile>.\Release/template.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release/template.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Debug/template.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(MTGEXTRAS);../../JGE/include;../../JGE/Dependencies/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeaderOutputFile>.\Debug/template.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0c09</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;libpngd.lib;fmodvc.lib;libjpeg-static-mt-debug.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>..\..\JGE\Dependencies\lib;..\..\JGE\lib\win;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>LIBCD;LIBC;MSVCRT;LIBCMTD;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\Debug/template.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug/template.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Release/template.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>$(MTGEXTRAS);../../JGE/include;../../JGE/Dependencies/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_SECURE_SCL=0;_HAS_ITERATOR_DEBBUGING=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeaderOutputFile>.\Release/template.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
+      <ObjectFileName>.\Release/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0c09</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;libpng.lib;fmodvc.lib;zdll.lib;libjpeg-static-mt.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>..\..\JGE\Dependencies\lib;..\..\JGE\lib\win;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>LIBCD;LIBCMT;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\Release/template.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+      <Profile>true</Profile>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release/template.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='HQ Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Debug/template.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(MTGEXTRAS);../../JGE/include;../../JGE/Dependencies/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeaderOutputFile>.\Debug/template.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0c09</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;libpngd.lib;fmodvc.lib;jge_debug.lib;libjpeg-static-mt-debug.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>..\..\JGE\Dependencies\lib;..\..\JGE\lib\win;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>LIBCD;LIBC;MSVCRT;LIBCMTD;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\Debug/template.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug/template.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\ActionElement.cpp" />
+    <ClCompile Include="src\ActionLayer.cpp" />
+    <ClCompile Include="src\ActionStack.cpp" />
+    <ClCompile Include="src\AIMomirPlayer.cpp" />
+    <ClCompile Include="src\AIPlayer.cpp" />
+    <ClCompile Include="src\AIStats.cpp" />
+    <ClCompile Include="src\CardDescriptor.cpp" />
+    <ClCompile Include="src\CardDisplay.cpp" />
+    <ClCompile Include="src\CardGui.cpp" />
+    <ClCompile Include="src\CardPrimitive.cpp" />
+    <ClCompile Include="src\CardSelector.cpp" />
+    <ClCompile Include="src\Counters.cpp" />
+    <ClCompile Include="src\Credits.cpp" />
+    <ClCompile Include="src\Damage.cpp" />
+    <ClCompile Include="src\DamagerDamaged.cpp" />
+    <ClCompile Include="src\DeckDataWrapper.cpp" />
+    <ClCompile Include="src\DeckManager.cpp" />
+    <ClCompile Include="src\DeckMetaData.cpp" />
+    <ClCompile Include="src\DeckStats.cpp" />
+    <ClCompile Include="src\DuelLayers.cpp" />
+    <ClCompile Include="src\ExtraCost.cpp" />
+    <ClCompile Include="src\GameApp.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='HQ Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='HQ Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="src\GameLauncher.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='HQ Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='HQ Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="src\GameObserver.cpp" />
+    <ClCompile Include="src\GameOptions.cpp" />
+    <ClCompile Include="src\GameState.cpp" />
+    <ClCompile Include="src\GameStateAwards.cpp" />
+    <ClCompile Include="src\GameStateDeckViewer.cpp" />
+    <ClCompile Include="src\GameStateDuel.cpp" />
+    <ClCompile Include="src\GameStateMenu.cpp" />
+    <ClCompile Include="src\GameStateOptions.cpp" />
+    <ClCompile Include="src\GameStateShop.cpp" />
+    <ClCompile Include="src\GameStateStory.cpp" />
+    <ClCompile Include="src\GameStateTransitions.cpp" />
+    <ClCompile Include="src\GuiAvatars.cpp" />
+    <ClCompile Include="src\GuiBackground.cpp" />
+    <ClCompile Include="src\GuiCardsController.cpp" />
+    <ClCompile Include="src\GuiCombat.cpp" />
+    <ClCompile Include="src\GuiFrame.cpp" />
+    <ClCompile Include="src\GuiHand.cpp" />
+    <ClCompile Include="src\GuiLayers.cpp" />
+    <ClCompile Include="src\GuiMana.cpp" />
+    <ClCompile Include="src\GuiPhaseBar.cpp" />
+    <ClCompile Include="src\GuiPlay.cpp" />
+    <ClCompile Include="src\GuiStatic.cpp" />
+    <ClCompile Include="src\Logger.cpp" />
+    <ClCompile Include="src\ManaCost.cpp" />
+    <ClCompile Include="src\ManaCostHybrid.cpp" />
+    <ClCompile Include="src\MenuItem.cpp" />
+    <ClCompile Include="src\MTGAbility.cpp" />
+    <ClCompile Include="src\MTGCard.cpp" />
+    <ClCompile Include="src\MTGCardInstance.cpp" />
+    <ClCompile Include="src\MTGDeck.cpp" />
+    <ClCompile Include="src\MTGDefinitions.cpp" />
+    <ClCompile Include="src\MTGGamePhase.cpp" />
+    <ClCompile Include="src\MTGGameZones.cpp" />
+    <ClCompile Include="src\MTGPack.cpp" />
+    <ClCompile Include="src\MTGRules.cpp" />
+    <ClCompile Include="src\OptionItem.cpp" />
+    <ClCompile Include="src\PhaseRing.cpp" />
+    <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\PlayerData.cpp" />
+    <ClCompile Include="src\PlayGuiObject.cpp" />
+    <ClCompile Include="src\PlayGuiObjectController.cpp" />
+    <ClCompile Include="src\Pos.cpp" />
+    <ClCompile Include="src\PriceList.cpp" />
+    <ClCompile Include="src\ReplacementEffects.cpp" />
+    <ClCompile Include="src\Rules.cpp" />
+    <ClCompile Include="src\SimpleMenu.cpp" />
+    <ClCompile Include="src\SimpleMenuItem.cpp" />
+    <ClCompile Include="src\SimplePad.cpp" />
+    <ClCompile Include="src\StoryFlow.cpp" />
+    <ClCompile Include="src\StyleManager.cpp" />
+    <ClCompile Include="src\Subtypes.cpp" />
+    <ClCompile Include="src\TargetChooser.cpp" />
+    <ClCompile Include="src\TargetsList.cpp" />
+    <ClCompile Include="src\Tasks.cpp" />
+    <ClCompile Include="src\TestSuiteAI.cpp" />
+    <ClCompile Include="src\TextScroller.cpp" />
+    <ClCompile Include="src\ThisDescriptor.cpp" />
+    <ClCompile Include="src\Token.cpp" />
+    <ClCompile Include="src\Translate.cpp" />
+    <ClCompile Include="src\TranslateKeys.cpp" />
+    <ClCompile Include="src\Trash.cpp" />
+    <ClCompile Include="src\utils.cpp" />
+    <ClCompile Include="src\WCachedResource.cpp" />
+    <ClCompile Include="src\WDataSrc.cpp" />
+    <ClCompile Include="src\WEvent.cpp" />
+    <ClCompile Include="src\WFilter.cpp" />
+    <ClCompile Include="src\WFont.cpp" />
+    <ClCompile Include="src\WGui.cpp" />
+    <ClCompile Include="src\WResourceManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Makefile" />
+    <None Include="Makefile.1xx" />
+    <None Include="Makefile.3xx" />
+    <None Include="My Amplifier Results\r000hs\r000hs.ampl" />
+    <None Include="My Amplifier Results\r001lw\r001lw.ampl" />
+    <None Include="My Amplifier Results\r002hs\r002hs.ampl" />
+    <None Include="My Amplifier Results\r003hs\r003hs.ampl" />
+    <None Include="My Amplifier Results\r004hs\r004hs.ampl" />
+    <None Include="My Amplifier Results\r005hs\r005hs.ampl" />
+    <None Include="My Amplifier Results\r006hs\r006hs.ampl" />
+    <None Include="My Inspector Results\r000mi1\r000mi1.insp" />
+    <None Include="My Inspector Results\r001mi4\r001mi4.insp" />
+    <None Include="My Inspector Results\r002mi3\r002mi3.insp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\ActionElement.h" />
+    <ClInclude Include="include\ActionLayer.h" />
+    <ClInclude Include="include\ActionStack.h" />
+    <ClInclude Include="include\AIMomirPlayer.h" />
+    <ClInclude Include="include\AIPlayer.h" />
+    <ClInclude Include="include\AIStats.h" />
+    <ClInclude Include="include\AllAbilities.h" />
+    <ClInclude Include="include\CardDescriptor.h" />
+    <ClInclude Include="include\CardDisplay.h" />
+    <ClInclude Include="include\CardEffect.h" />
+    <ClInclude Include="include\CardGui.h" />
+    <ClInclude Include="include\CardPrimitive.h" />
+    <ClInclude Include="include\CardSelector.h" />
+    <ClInclude Include="include\config.h" />
+    <ClInclude Include="include\Counters.h" />
+    <ClInclude Include="include\Credits.h" />
+    <ClInclude Include="include\Damage.h" />
+    <ClInclude Include="include\DamagerDamaged.h" />
+    <ClInclude Include="include\DebugRoutines.h" />
+    <ClInclude Include="include\DeckDataWrapper.h" />
+    <ClInclude Include="include\DeckManager.h" />
+    <ClInclude Include="include\DeckMetaData.h" />
+    <ClInclude Include="include\DeckStats.h" />
+    <ClInclude Include="include\DuelLayers.h" />
+    <ClInclude Include="include\Effects.h" />
+    <ClInclude Include="include\ExtraCost.h" />
+    <ClInclude Include="include\GameApp.h" />
+    <ClInclude Include="include\GameObserver.h" />
+    <ClInclude Include="include\GameOptions.h" />
+    <ClInclude Include="include\GameState.h" />
+    <ClInclude Include="include\GameStateAwards.h" />
+    <ClInclude Include="include\GameStateDeckViewer.h" />
+    <ClInclude Include="include\GameStateDuel.h" />
+    <ClInclude Include="include\GameStateMenu.h" />
+    <ClInclude Include="include\GameStateOptions.h" />
+    <ClInclude Include="include\GameStateShop.h" />
+    <ClInclude Include="include\GameStateStory.h" />
+    <ClInclude Include="include\GameStateTransitions.h" />
+    <ClInclude Include="include\GuiAvatars.h" />
+    <ClInclude Include="include\GuiBackground.h" />
+    <ClInclude Include="include\GuiCardsController.h" />
+    <ClInclude Include="include\GuiCombat.h" />
+    <ClInclude Include="include\GuiFrame.h" />
+    <ClInclude Include="include\GuiHand.h" />
+    <ClInclude Include="include\GuiLayers.h" />
+    <ClInclude Include="include\GuiMana.h" />
+    <ClInclude Include="include\GuiPhaseBar.h" />
+    <ClInclude Include="include\GuiPlay.h" />
+    <ClInclude Include="include\GuiStatic.h" />
+    <ClInclude Include="include\Logger.h" />
+    <ClInclude Include="include\Manacost.h" />
+    <ClInclude Include="include\ManaCostHybrid.h" />
+    <ClInclude Include="include\MenuItem.h" />
+    <ClInclude Include="include\MTGAbility.h" />
+    <ClInclude Include="include\MTGCard.h" />
+    <ClInclude Include="include\MTGCardInstance.h" />
+    <ClInclude Include="include\MTGDeck.h" />
+    <ClInclude Include="include\MTGDefinitions.h" />
+    <ClInclude Include="include\MTGGamePhase.h" />
+    <ClInclude Include="include\MTGGameZones.h" />
+    <ClInclude Include="include\MTGPack.h" />
+    <ClInclude Include="include\MTGRules.h" />
+    <ClInclude Include="include\OptionItem.h" />
+    <ClInclude Include="include\OSD.h" />
+    <ClInclude Include="include\PhaseRing.h" />
+    <ClInclude Include="include\Player.h" />
+    <ClInclude Include="include\PlayerData.h" />
+    <ClInclude Include="include\PlayGuiObject.h" />
+    <ClInclude Include="include\PlayGuiObjectController.h" />
+    <ClInclude Include="include\Pos.h" />
+    <ClInclude Include="include\PriceList.h" />
+    <ClInclude Include="include\ReplacementEffects.h" />
+    <ClInclude Include="include\Rules.h" />
+    <ClInclude Include="include\SimpleMenu.h" />
+    <ClInclude Include="include\SimpleMenuItem.h" />
+    <ClInclude Include="include\SimplePad.h" />
+    <ClInclude Include="include\StoryFlow.h" />
+    <ClInclude Include="include\StyleManager.h" />
+    <ClInclude Include="include\Subtypes.h" />
+    <ClInclude Include="include\Targetable.h" />
+    <ClInclude Include="include\TargetChooser.h" />
+    <ClInclude Include="include\TargetsList.h" />
+    <ClInclude Include="include\Tasks.h" />
+    <ClInclude Include="include\TestSuiteAI.h" />
+    <ClInclude Include="include\TextScroller.h" />
+    <ClInclude Include="include\ThisDescriptor.h" />
+    <ClInclude Include="include\Token.h" />
+    <ClInclude Include="include\Translate.h" />
+    <ClInclude Include="include\TranslateKeys.h" />
+    <ClInclude Include="include\Trash.h" />
+    <ClInclude Include="include\utils.h" />
+    <ClInclude Include="include\WCachedResource.h" />
+    <ClInclude Include="include\WDataSrc.h" />
+    <ClInclude Include="include\WEvent.h" />
+    <ClInclude Include="include\WFilter.h" />
+    <ClInclude Include="include\WFont.h" />
+    <ClInclude Include="include\WGui.h" />
+    <ClInclude Include="include\WResourceManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\JGE\JGE.vcxproj">
+      <Project>{89159c26-2282-404a-a194-103b0a49df7b}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
