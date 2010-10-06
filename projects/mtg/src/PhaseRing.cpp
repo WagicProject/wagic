@@ -1,3 +1,4 @@
+#include "../include/DebugRoutines.h"
 #include "../include/PhaseRing.h"
 #include "../include/MTGDefinitions.h"
 #include "../include/Player.h"
@@ -19,9 +20,8 @@ int PhaseRing::phaseStrToInt(string s){
   if (s.compare("secondmain") == 0)return Constants::MTG_PHASE_SECONDMAIN;
   if (s.compare("endofturn") == 0)return Constants::MTG_PHASE_ENDOFTURN;
   if (s.compare("cleanup") == 0)return Constants::MTG_PHASE_CLEANUP;
-  OutputDebugString("PHASERING: Unknown Phase name:");
-  OutputDebugString(s.c_str());
-  OutputDebugString("\n");
+  DebugTrace("PHASERING: Unknown Phase name: " << s);
+
   return Constants::MTG_PHASE_FIRSTMAIN;
 }
 
@@ -90,9 +90,9 @@ Phase * PhaseRing::forward(bool sendEvents){
 Phase * PhaseRing::goToPhase(int id, Player * player, bool sendEvents){
   Phase * currentPhase = *current;
   while(currentPhase->id !=id || currentPhase->player != player){ //Dangerous, risk for inifinte loop !
-#ifdef WIN32
-    OutputDebugString("goto");
-#endif
+
+    DebugTrace("PhasingRing: goToPhase called, current phase is " << phaseName(currentPhase->id));
+
     currentPhase = forward(sendEvents);
   }
   return currentPhase;

@@ -1,4 +1,5 @@
 #include "../include/config.h"
+#include "../include/DebugRoutines.h"
 #include "../include/ManaCost.h"
 #include "../include/ManaCostHybrid.h"
 #include "../include/ExtraCost.h"
@@ -490,22 +491,18 @@ ManaCost * ManaCost::Diff(ManaCost * _cost){
 
 #ifdef WIN32
 void ManaCost::Dump(){
-  char buf[4096];
-  OutputDebugString("\n===ManaCost===\n");
+  DebugTrace("\n===ManaCost===\n");
   for (int i=0; i<= Constants::MTG_NB_COLORS; i++){
     if (cost[i]) {
-      sprintf(buf, "%c:%i - ", Constants::MTGColorChars[i],cost[i]);
-      OutputDebugString(buf);
+      DebugTrace(Constants::MTGColorChars[i] << ":" << cost[i] << " - ");
     }
   }
 
   for (unsigned int i=0; i< nbhybrids; i++){
       ManaCostHybrid * h = hybrids[i];
-
-      sprintf(buf, "H:{%c:%i}/{%c:%i}", Constants::MTGColorChars[h->color1], h->value1, Constants::MTGColorChars[h->color2], h->value2);
-      OutputDebugString(buf);
+      DebugTrace("H:{" << Constants::MTGColorChars[h->color1] << ":" <<  h->value1 << "}/{" << Constants::MTGColorChars[h->color2] << ":" << h->value2 << "}");
   }
-  OutputDebugString("\n=============\n");
+  DebugTrace("\n=============\n");
 }
 
 #endif

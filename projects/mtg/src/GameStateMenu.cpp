@@ -5,6 +5,7 @@
 
 #include <math.h>
 #include "../include/config.h"
+#include "../include/DebugRoutines.h"
 #include "../include/GameStateMenu.h"
 #include "../include/MenuItem.h"
 #include "../include/GameOptions.h"
@@ -415,12 +416,10 @@ void GameStateMenu::Update(float dt)
       if (!nextDirectory(RESPATH"/sets/","_cards.dat")){
         //Remove temporary translations
         Translator::GetInstance()->tempValues.clear();
-        //Debug
-#ifdef _DEBUG
-        char buf[4096];
-        sprintf(buf, "\n==\nTotal MTGCard: %lu\nTotal CardPrimitives: %lu\n==\n", (long unsigned)mParent->collection->collection.size(), (long unsigned)mParent->collection->primitives.size());
-        OutputDebugString(buf);
-#endif
+
+        DebugTrace(std::endl << "==" << std::endl << 
+                    "Total MTGCards: " << mParent->collection->collection.size() << std::endl <<
+                    "Total CardPrimitives: " << mParent->collection->primitives.size() << std::endl << "==");
 
         //Force default, if necessary.
         if(options[Options::ACTIVE_PROFILE].str == "") 
@@ -635,12 +634,9 @@ void GameStateMenu::Render()
 
 void GameStateMenu::ButtonPressed(int controllerId, int controlId)
 {
-WFont * mFont = resources.GetWFont(Constants::MENU_FONT);
-#if defined (WIN32) || defined (LINUX)
-  char buf[4096];
-  sprintf(buf, "cnotrollerId: %i", controllerId);
-  OutputDebugString(buf);
-#endif
+  WFont * mFont = resources.GetWFont(Constants::MENU_FONT);
+
+  DebugTrace("GameStateMenu: controllerId " << controllerId << " selected");
   switch (controllerId){
   case MENU_LANGUAGE_SELECTION:
     setLang(controlId);
