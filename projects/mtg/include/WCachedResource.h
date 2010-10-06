@@ -38,7 +38,7 @@ public:
   friend class WResourceManager;
   template<class cacheItem,class cacheActual> friend class WCache;
 
-  virtual ~WCachedResource() {};
+  virtual ~WCachedResource();
 
   string mFilename;
   virtual void Refresh()=0; //Basically calls Attempt(filename) and remaps in situ.

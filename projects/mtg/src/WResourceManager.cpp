@@ -1,4 +1,5 @@
 #include "../include/config.h"
+#include "../include/DebugRoutines.h"
 #include "../include/utils.h"
 #include "../include/GameOptions.h"
 #include <iostream>
@@ -160,12 +161,7 @@ void WResourceManager::FlattenTimes(){
 }
 
 WResourceManager::WResourceManager(){	
-
-  #ifdef WIN32
-  char buf [4096];
-  sprintf(buf, " Init WResourceManager : %p\n", this);
-  OutputDebugString(buf);
-  #endif
+  DebugTrace("Init WResourceManager : " << addressof(this));
 #ifdef DEBUG_CACHE
   menuCached = 0;
 #endif
@@ -1459,7 +1455,7 @@ bool WCache<cacheItem, cacheActual>::Delete(cacheItem * item){
   cacheSize -= isize;
 #ifdef DEBUG_CACHE
   if(cacheItems == 0)
-    OutputDebugString("cacheItems out of sync.\n");
+    DebugTrace("cacheItems out of sync.");
 #endif
 
   cacheItems--;

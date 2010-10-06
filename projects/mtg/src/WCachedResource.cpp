@@ -1,4 +1,5 @@
 #include "../include/config.h"
+#include "../include/DebugRoutines.h"
 #include "../include/utils.h"
 #include <iostream>
 #include <fstream>
@@ -14,8 +15,6 @@
 
 //WResource
 WResource::~WResource(){
-  OutputDebugString("~WResource()\n");
-  return;
 }
 WResource::WResource(){
   locks = WRES_UNLOCKED;
@@ -60,6 +59,12 @@ void WResource::unlock(bool force){
 void WResource::hit(){
   lastTime = resources.nowTime();
 }
+
+WCachedResource::~WCachedResource()
+{
+  DebugTrace("Destroying WCachedResource: " << mFilename);
+}
+
 //WCachedTexture
 WCachedTexture::WCachedTexture(){
   texture = NULL;
