@@ -25,8 +25,11 @@
 
 #define DEBUG_PRINT
 
-
-#if defined(WIN32)
+#if defined(QT_CONFIG)
+#include <Qt>
+typedef u32 LocalKeySym;
+#define LOCAL_KEY_NONE Qt::Key_unknown
+#elif defined(WIN32)
 #include <windows.h>
 typedef WPARAM LocalKeySym;
 #define LOCAL_KEY_NONE ((WPARAM)-1)
