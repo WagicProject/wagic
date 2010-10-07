@@ -947,6 +947,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\DebugRoutines.h"
+				>
+			</File>
+			<File
 				RelativePath=".\include\DeckDataWrapper.h"
 				>
 			</File>
@@ -1267,6 +1271,10 @@
 			Name="Resource Files"
 			Filter="ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
 			>
+			<File
+				RelativePath=".\bin\Res\sets\primitives\mtg.txt"
+				>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>

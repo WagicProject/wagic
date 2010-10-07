@@ -164,6 +164,7 @@
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <EnablePREfast>true</EnablePREfast>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -230,7 +231,6 @@
       <DataExecutionPrevention>
       </DataExecutionPrevention>
       <TargetMachine>MachineX86</TargetMachine>
-      <Profile>true</Profile>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -401,16 +401,6 @@
     <None Include="Makefile" />
     <None Include="Makefile.1xx" />
     <None Include="Makefile.3xx" />
-    <None Include="My Amplifier Results\r000hs\r000hs.ampl" />
-    <None Include="My Amplifier Results\r001lw\r001lw.ampl" />
-    <None Include="My Amplifier Results\r002hs\r002hs.ampl" />
-    <None Include="My Amplifier Results\r003hs\r003hs.ampl" />
-    <None Include="My Amplifier Results\r004hs\r004hs.ampl" />
-    <None Include="My Amplifier Results\r005hs\r005hs.ampl" />
-    <None Include="My Amplifier Results\r006hs\r006hs.ampl" />
-    <None Include="My Inspector Results\r000mi1\r000mi1.insp" />
-    <None Include="My Inspector Results\r001mi4\r001mi4.insp" />
-    <None Include="My Inspector Results\r002mi3\r002mi3.insp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ActionElement.h" />
