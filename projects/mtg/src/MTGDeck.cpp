@@ -496,8 +496,10 @@ MTGCard * MTGAllCards::getCardByName(string name){
   size_t found = name.find(" (");
   if (found != string::npos){
     size_t end = name.find(")");
-    string setName = trim(name.substr(found+2,end-found-2));
-    name = trim(name.substr(0,found));
+    string setName = name.substr(found+2,end-found-2);
+    trim(setName);
+    name = name.substr(0,found);
+    trim(name);
     setId = setlist[setName];
   }
   map<int,MTGCard *>::iterator it;
