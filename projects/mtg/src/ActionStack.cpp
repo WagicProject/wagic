@@ -25,7 +25,13 @@ int NextGamePhase::resolve(){
   return 1;
 }
 
+const string NextGamePhase::getDisplayName() const
+{
+  std::ostringstream stream;
+  stream << "NextGamePhase.  (Current phase is: " << PhaseRing::phaseName(GameObserver::GetInstance()->getCurrentGamePhase()) << ")";
 
+  return stream.str();
+}
 
 void NextGamePhase::Render(){
   GameObserver * g = GameObserver::GetInstance();
@@ -143,6 +149,14 @@ ostream& StackAbility::toString(ostream& out) const
 {
   out << "StackAbility ::: ability : " << ability;
   return out;
+}
+
+const string StackAbility::getDisplayName() const
+{
+  std::ostringstream stream;
+  stream << "StackAbility.  (Source: " << ability->source->getDisplayName() << ")";
+
+  return stream.str();
 }
 
 /* Spell Cast */

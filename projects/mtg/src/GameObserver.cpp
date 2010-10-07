@@ -1,4 +1,5 @@
 #include "../include/config.h"
+#include "../include/DebugRoutines.h"
 #include "../include/GameObserver.h"
 #include "../include/GameOptions.h"
 #include "../include/CardGui.h"
@@ -380,9 +381,7 @@ void GameObserver::Render()
 
 
 void GameObserver::ButtonPressed(PlayGuiObject * target){
-#if defined (WIN32) || defined (LINUX)
-  OutputDebugString("GAMEOBSERVER Click\n");
-#endif
+  DebugTrace("GAMEOBSERVER Click");
   if (CardView* cardview = dynamic_cast<CardView*>(target)){
     MTGCardInstance * card = cardview->getCard();
     cardClick(card, card);

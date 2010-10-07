@@ -71,6 +71,7 @@ class NextGamePhase: public Interruptible {
   bool extraDamagePhase();
   void Render();
   virtual ostream& toString(ostream& out) const;
+  virtual const string getDisplayName() const;
   NextGamePhase(int id);
 };
 
@@ -112,6 +113,7 @@ class StackAbility: public Interruptible {
   int resolve();
   void Render();
   virtual ostream& toString(ostream& out) const;
+  virtual const string getDisplayName() const;
   StackAbility(int id, MTGAbility * _ability);
 };
 
