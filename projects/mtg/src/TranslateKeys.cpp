@@ -17,7 +17,10 @@ const KeyRep& translateKey(LocalKeySym key) {
       return res->second;
   }
 
- char* str = XKeysymToString(key);
+ char* str = NULL;
+#ifndef QT_CONFIG
+ str = XKeysymToString(key);
+#endif // QT_CONFIG
   if (!str)
     {
       str = NEW char[11];
