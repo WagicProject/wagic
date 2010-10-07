@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<VisualStudioPropertySheet 
+	ProjectType="Visual C++" 
+	Version="8.00" 
+	Name="mtg"
+	>
+
+  <UserMacro Name="JGEEXTRAS" Value="..\projects\mtg\extra\" />
+  <UserMacro Name="MTGEXTRAS" Value=".\extra\" />
+</VisualStudioPropertySheet>

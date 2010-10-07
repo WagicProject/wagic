@@ -161,7 +161,7 @@ void WResourceManager::FlattenTimes(){
 }
 
 WResourceManager::WResourceManager(){	
-  //DebugTrace("Init WResourceManager : " << addressof(this) );
+  DebugTrace("Init WResourceManager : " << this);
 #ifdef DEBUG_CACHE
   menuCached = 0;
 #endif
