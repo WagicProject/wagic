@@ -1,4 +1,7 @@
 #include <string.h>
+#include <algorithm>
+#include <string>
+#include <sstream>
 #include "../include/config.h"
 #include "../include/MTGDeck.h"
 #include "../include/utils.h"
@@ -8,10 +11,7 @@
 #include "../include/PriceList.h"
 #include "../include/WDataSrc.h"
 #include "../include/MTGPack.h"
-#include <algorithm>
-#include <string>
-#include <sstream>
-using std::string;
+#include "../include/utils.h"
 
 #include <JGE.h>
 
@@ -496,8 +496,8 @@ MTGCard * MTGAllCards::getCardByName(string name){
   size_t found = name.find(" (");
   if (found != string::npos){
     size_t end = name.find(")");
-    string setName = name.substr(found+2,end-found-2);
-    name = name.substr(0,found);
+    string setName = trim(name.substr(found+2,end-found-2));
+    name = trim(name.substr(0,found));
     setId = setlist[setName];
   }
   map<int,MTGCard *>::iterator it;
