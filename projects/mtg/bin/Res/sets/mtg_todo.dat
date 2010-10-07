@@ -1144,6 +1144,15 @@ power=6
 toughness=6
 [/card]
 [card]
+name=Armament Master
+text=Other Kor creatures you control get +2/+2 for each Equipment attached to Armament Master.
+mana={W}{W}
+type=Creature
+subtype=Kor Soldier
+power=2
+toughness=2
+[/card]
+[card]
 name=Armillary Sphere
 text={2}, {T}, Sacrifice Armillary Sphere: Search your library for up to two basic land cards, reveal them, and put them into your hand. Then shuffle your library.
 mana={2}

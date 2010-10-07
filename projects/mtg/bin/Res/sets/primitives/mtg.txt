@@ -2464,16 +2464,6 @@ mana={6}
 type=Artifact
 [/card]
 [card]
-name=Armament Master
-auto=thisforeach(equip) lord(other kor|myBattlefield) 2/2
-text=Other Kor creatures you control get +2/+2 for each Equipment attached to Armament Master.
-mana={W}{W}
-type=Creature
-subtype=Kor Soldier
-power=2
-toughness=2
-[/card]
-[card]
 name=Armed Response
 target=creature[attacking]
 auto=foreach(equipment|mybattlefield) damage:1
@@ -15059,7 +15049,7 @@ name=Eldrazi Monument
 auto=lord(creature|myBattlefield) 1/1 
 auto=lord(creature|mybattlefield) flying
 auto=lord(creature|mybattlefield) indestructible
-auto=@each myupkeep:moveTo(mygraveyard) target(creature|mybattlefield)
+auto=@each myupkeep:moveTo(mygraveyard) notatarget(creature|mybattlefield)
 auto=@each myupkeep:aslongas(creature|mybattlefield) moveto(mygraveyard) <1
 text=Creatures you control get +1/+1, have flying, and are indestructible. -- At the beginning of your upkeep, sacrifice a creature. If you can't, sacrifice Eldrazi Monument.
 mana={5}
@@ -19596,7 +19586,7 @@ toughness=1
 [/card]
 [card]
 name=Gempalm Avenger
-autohand={2}{W}:lord(soldier|myinplay) 1/1 && lord(soldier|myinplay) first strike && cycling
+autohand={2}{W}:lord(soldier|mybattlefield) 1/1 && lord(soldier|myBattlefield) first strike && cycling
 text=Cycling {2}{W} ({2}{W}, Discard this card: Draw a card.) -- When you cycle Gempalm Avenger, Soldier creatures get +1/+1 and gain first strike until end of turn.
 mana={5}{W}
 type=Creature
@@ -19607,7 +19597,7 @@ toughness=5
 [card]
 name=Gempalm Incinerator
 autohand={1}{R}:cycling
-autohand={1}{R}:damage:1 target(creature,player) && cycling
+autohand={1}{R}:thisforeach(goblin|battlefield) damage:1 target(creature,player) && cycling
 text=Cycling {1}{R} ({1}{R}, Discard this card: Draw a card.) -- When you cycle Gempalm Incinerator, you may have it deal X damage to target creature, where X is the number of Goblins on the battlefield.
 mana={2}{R}
 type=Creature
