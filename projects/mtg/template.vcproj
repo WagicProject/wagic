@@ -50,7 +50,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="../../JGE/include;../../JGE/Dependencies/include"
+				AdditionalIncludeDirectories="&quot;$(MTGEXTRAS)&quot;;../../JGE/include;../../JGE/Dependencies/include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -116,7 +116,7 @@
 			OutputDirectory=".\Debug"
 			IntermediateDirectory=".\Debug"
 			ConfigurationType="1"
-			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
+			InheritedPropertySheets=".\mtg.vsprops"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="2"
@@ -145,7 +145,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../JGE/include;../../JGE/Dependencies/include"
+				AdditionalIncludeDirectories="&quot;$(MTGEXTRAS)&quot;;../../JGE/include;../../JGE/Dependencies/include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -244,7 +244,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="3"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="../../JGE/include;../../JGE/Dependencies/include"
+				AdditionalIncludeDirectories="&quot;$(MTGEXTRAS)&quot;;../../JGE/include;../../JGE/Dependencies/include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_SECURE_SCL=0;_HAS_ITERATOR_DEBBUGING=0"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -341,7 +341,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../JGE/include;../../JGE/Dependencies/include"
+				AdditionalIncludeDirectories="&quot;$(MTGEXTRAS)&quot;;../../JGE/include;../../JGE/Dependencies/include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -1276,6 +1276,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\mtg.vsprops"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
