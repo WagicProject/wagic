@@ -47913,9 +47913,8 @@ type=Instant
 [/card]
 [card]
 name=Snap's 2nd Untap
-auto=counter(0/0,1,Snap)
-auto=@movedTo(creature|ownerhand) from(battlefield):thisforeach(counter{0/0.1.Snap}>0) may untap target(land) && counter(0/0,-1,Snap) && counter(0/0,1,Bury)
-auto=thisforeach(counter{0/0.1.Bury}>0) bury
+auto=@movedTo(this|exile) from(Battlefield):may untap target(land)
+auto=moveto(exile)
 id=-1111137
 type=Nothing
 [/card]
