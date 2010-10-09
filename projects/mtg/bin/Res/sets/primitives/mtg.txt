@@ -2940,7 +2940,7 @@ subtype=Aura
 [/card]
 [card]
 name=Aura of Silence
-auto=lord(artifact|opponenthand) colorless:+2
+auto=lord(artifact[-land]|opponenthand) colorless:+2
 auto=lord(enchantment|opponenthand) colorless:+2
 auto={S}:destroy target(artifact,enchantment)
 autoexile=all(*|myhand) resetcost
@@ -20503,8 +20503,8 @@ toughness=3
 [/card]
 [card]
 name=Glowrider
-auto=lord(*[-creature]|myhand) colorless:+1
-auto=lord(*[-creature]|opponenthand) colorless:+1
+auto=lord(*[-creature;-land]|myhand) colorless:+1
+auto=lord(*[-creature;-land]|opponenthand) colorless:+1
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -21647,7 +21647,7 @@ type=Artifact
 name=Grand Arbiter Augustin IV
 auto=lord(*[white;blue]|myhand) colorless:-1
 auto=lord(*[blue]|myhand) colorless:-1
-auto=lord(*|opponenthand) colorless:+1
+auto=lord(*[-land]|opponenthand) colorless:+1
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -30185,8 +30185,8 @@ toughness=1
 [/card]
 [card]
 name=Lodestone Golem
-auto=lord(*[-artifact]|myhand) colorless:+1
-auto=lord(*[-artifact]|opponenthand) colorless:+1
+auto=lord(*[-artifact;-land]|myhand) colorless:+1
+auto=lord(*[-artifact;-land]|opponenthand) colorless:+1
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -34197,7 +34197,7 @@ toughness=1
 [/card]
 [card]
 name=Myr Propagator
-auto={3}{T}:token(PUT NUMBER YOUR NUMBER OF MYR GALVANIZER IN HERE!!)
+auto={3}{T}:token(215069)
 text={3}, {T}: Put a token that's a copy of Myr Propagator onto the battlefield.
 mana={3}
 type=Artifact Creature
@@ -43885,6 +43885,7 @@ type=Land
 [/card]
 [card]
 name=Scab-Clan Mauler
+abilities=trample
 auto=bloodthirst:2
 text=Bloodthirst 2 (If an opponent was dealt damage this turn, this creature enters the battlefield with two +1/+1 counters on it.) -- Trample
 mana={R}{G}
@@ -49019,8 +49020,8 @@ type=Enchantment
 [/card]
 [card]
 name=Sphere of Resistance
-auto=lord(*|myhand) colorless:+1
-auto=lord(*|opponenthand) colorless:+1
+auto=lord(*[-land]|myhand) colorless:+1
+auto=lord(*[-land]|opponenthand) colorless:+1
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -53408,8 +53409,8 @@ toughness=0
 [/card]
 [card]
 name=Thorn of Amethyst
-auto=lord(*[-creature]|myhand) colorless:+1
-auto=lord(*[-creature]|opponenthand) colorless:+1
+auto=lord(*[-creature;-land]|myhand) colorless:+1
+auto=lord(*[-creature;-land]|opponenthand) colorless:+1
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
