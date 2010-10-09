@@ -64,8 +64,14 @@ hgeParticleSystem::hgeParticleSystem(const char *filename, JQuad *sprite)
 	//memcpy(&info, psi, sizeof(hgeParticleSystemInfo));
 	//hge->Resource_Free(psi);
 
-	fileSys->ReadFile(&info, sizeof(hgeParticleSystemInfo));
-	fileSys->CloseFile();
+  // Skip reading the pointer as it may be larger than 4 bytes in the structure
+  void *dummyPointer;
+  fileSys->ReadFile(&dummyPointer, 4);
+  // we're actually trying to read more than the file size now, but it's no problem.
+  // Note that this fix is only to avoid the largest problems, filling a structure
+  // by directly reading a file, is really a bad idea ...
+  fileSys->ReadFile(&(info.nEmission), sizeof(hgeParticleSystemInfo));
+  fileSys->CloseFile();
 
 	info.sprite=sprite;
 //  	info.fGravityMin *= 100;
