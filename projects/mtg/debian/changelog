@@ -1,4 +1,5 @@
-wagic (0.13.1maemo0) unstable; urgency=low
+wagic (0.13.1maemo1) unstable; urgency=low
 
-  * Initial Maemo Release.
- -- Xawotihs <xawotihs@gmail.com>  Sun, 03 Oct 2010 14:11:42 +0200
+  * Fixed bitmaps downscaling problems during game
+  * Fixed bitmaps not appearing in deckbuilder and shop
+ -- Xawotihs <xawotihs@gmail.com>  Sun, 09 Oct 2010 14:11:42 +0200
