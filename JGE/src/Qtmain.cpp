@@ -163,12 +163,11 @@ void JGEQtRenderer::initializeGL()
 
   glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);		// Set Line Antialiasing
   glEnable(GL_LINE_SMOOTH);				// Enable it!
+  glEnable(GL_TEXTURE_2D);
 #endif
 
   glEnable(GL_CULL_FACE);				// do not calculate inside of poly's
   glFrontFace(GL_CCW);					// counter clock-wise polygons are out
-
-  glEnable(GL_TEXTURE_2D);
 
   glEnable(GL_BLEND);
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -324,7 +323,7 @@ void JGEQtRenderer::keyPressEvent(QKeyEvent *event)
   {
     JGEToggleFullscreen();
   }
-  g_engine->HoldKey_NoRepeat(event->key());
+  g_engine->HoldKey_NoRepeat((LocalKeySym)event->key());
   event->accept();
   QWidget::keyPressEvent(event);
   return;
@@ -332,7 +331,7 @@ void JGEQtRenderer::keyPressEvent(QKeyEvent *event)
 
 void JGEQtRenderer::keyReleaseEvent(QKeyEvent *event)
 {
-  g_engine->ReleaseKey(event->key());
+  g_engine->ReleaseKey((LocalKeySym)event->key());
   event->accept();
   QWidget::keyReleaseEvent(event);
   return;
