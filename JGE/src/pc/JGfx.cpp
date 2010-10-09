@@ -42,6 +42,14 @@ extern "C" {
 #endif
 #endif
 
+#define checkGlError()            \
+{                                 \
+  GLenum glError = glGetError();  \
+  if(glError != 0)                \
+    printf("%s : %u : GLerror is %u\n", __FUNCTION__, __LINE__, glError); \
+}
+
+
 //#define FORCE_GL2
 #ifdef FORCE_GL2
 // This code is to force the windows code to use GL_VERSION_2_0 even if it's not defined in the header files
@@ -338,16 +346,19 @@ JTexture::JTexture()
 
 JTexture::~JTexture()
 {
+  checkGlError();
         if (mTexId != (GLuint)-1)
 		glDeleteTextures(1, &mTexId);
+  checkGlError();
 }
 
 
 void JTexture::UpdateBits(int x, int y, int width, int height, PIXEL_TYPE* bits)
 {
-	JRenderer::GetInstance()->BindTexture(this);
+  checkGlError();
+  JRenderer::GetInstance()->BindTexture(this);
 	glTexSubImage2D(GL_TEXTURE_2D, 0, x, y, width, height, GL_RGBA, GL_UNSIGNED_BYTE, bits);
-
+  checkGlError();
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -568,6 +579,7 @@ void esOrtho(ESMatrix *result, float left, float right, float bottom, float top,
 //
 GLuint esLoadShader ( GLenum type, const char *shaderSrc )
 {
+  checkGlError();
    GLuint shader;
    GLint compiled;
 
@@ -606,6 +618,7 @@ GLuint esLoadShader ( GLenum type, const char *shaderSrc )
       return 0;
    }
 
+   checkGlError();
    return shader;
 
 }
@@ -619,6 +632,8 @@ GLuint esLoadShader ( GLenum type, const char *shaderSrc )
 //
 GLuint esLoadProgram ( const char *vertShaderSrc, const char *fragShaderSrc )
 {
+  checkGlError();
+
    GLuint vertexShader;
    GLuint fragmentShader;
    GLuint programObject;
@@ -675,6 +690,8 @@ GLuint esLoadProgram ( const char *vertShaderSrc, const char *fragShaderSrc )
    glDeleteShader ( vertexShader );
    glDeleteShader ( fragmentShader );
 
+   checkGlError();
+
    return programObject;
 }
 
@@ -682,7 +699,8 @@ GLuint esLoadProgram ( const char *vertShaderSrc, const char *fragShaderSrc )
 
 void JRenderer::InitRenderer()
 {
-	mCurrentTextureFilter = TEX_FILTER_NONE;
+  checkGlError();
+  mCurrentTextureFilter = TEX_FILTER_NONE;
 	mImageFilter = NULL;
 
 	mCurrTexBlendSrc = BLEND_SRC_ALPHA;
@@ -773,10 +791,12 @@ void JRenderer::InitRenderer()
   // Get the sampler location
   prog2_samplerLoc = glGetUniformLocation ( prog2, "s_texture" );
 #endif //(defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
+  checkGlError();
 }
 
 void JRenderer::DestroyRenderer()
 {
+  checkGlError();
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
     // Delete program object
     glDeleteProgram ( prog1 );
@@ -798,18 +818,21 @@ void JRenderer::BeginScene()
   float scaleW = (float)actualWidth/SCREEN_WIDTH_F;
   glScalef(scaleW,scaleW,1.f);
 #endif
+  checkGlError();
 }
 
 
 void JRenderer::EndScene()
 {
-	glFlush ();
+  checkGlError();
+  glFlush ();
+  checkGlError();
 }
 
 void JRenderer::BindTexture(JTexture *tex)
 {
-
-	if (mCurrentTex != tex->mTexId)
+  checkGlError();
+  if (mCurrentTex != tex->mTexId)
 	{
 		mCurrentTex = tex->mTexId;
 
@@ -830,6 +853,7 @@ void JRenderer::BindTexture(JTexture *tex)
 			}
 		}
 	}
+  checkGlError();
 }
 
 
@@ -852,7 +876,9 @@ void Swap(float *a, float *b)
 
 void JRenderer::RenderQuad(JQuad* quad, float xo, float yo, float angle, float xScale, float yScale)
 {
-	//yo = SCREEN_HEIGHT-yo-1;//-(quad->mHeight);
+  checkGlError();
+
+  //yo = SCREEN_HEIGHT-yo-1;//-(quad->mHeight);
 	float width = quad->mWidth;
 	float height = quad->mHeight;
 	float x = -quad->mHotSpotX;
@@ -1019,12 +1045,13 @@ void JRenderer::RenderQuad(JQuad* quad, float xo, float yo, float angle, float x
         glColor4ub(255, 255, 255, 255);
 #endif //(defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
 
-
+  checkGlError();
 }
 
 
 void JRenderer::RenderQuad(JQuad* quad, VertexColor* pt)
 {
+  checkGlError();
 
 	for (int i=0;i<4;i++)
 	{
@@ -1117,17 +1144,19 @@ void JRenderer::RenderQuad(JQuad* quad, VertexColor* pt)
 
 	//glDisable(GL_BLEND);
 
+  checkGlError();
 }
 
 
 void JRenderer::FillRect(float x, float y, float width, float height, PIXEL_TYPE color)
 {
-	y = SCREEN_HEIGHT_F - y - height;
+  checkGlError();
+
+  y = SCREEN_HEIGHT_F - y - height;
 
 	JColor col;
 	col.color = color;
 
-	glDisable(GL_TEXTURE_2D);
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
   GLfloat vVertices[] = {
       x,        y+height, 0.0f,
@@ -1161,6 +1190,7 @@ void JRenderer::FillRect(float x, float y, float width, float height, PIXEL_TYPE
 
   glDrawArrays(GL_TRIANGLE_STRIP,0,4);
 #else
+  glDisable(GL_TEXTURE_2D);
   glColor4ub(col.r, col.g, col.b, col.a);
 
 	glBegin(GL_QUADS);
@@ -1179,21 +1209,23 @@ void JRenderer::FillRect(float x, float y, float width, float height, PIXEL_TYPE
 	glEnd();
   // default color
   glColor4ub(255, 255, 255, 255);
+  glEnable(GL_TEXTURE_2D);
 #endif //(defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
 
-	glEnable(GL_TEXTURE_2D);
 
+  checkGlError();
 }
 
 
 void JRenderer::DrawRect(float x, float y, float width, float height, PIXEL_TYPE color)
 {
-	y = SCREEN_HEIGHT_F - y - height;
+  checkGlError();
+
+  y = SCREEN_HEIGHT_F - y - height;
 
 	JColor col;
 	col.color = color;
 
-	glDisable(GL_TEXTURE_2D);
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
   GLfloat vVertices[] = {
       x,        y,        0.0f,
@@ -1227,6 +1259,7 @@ void JRenderer::DrawRect(float x, float y, float width, float height, PIXEL_TYPE
 
   glDrawArrays(GL_LINE_LOOP,0,4);
 #else
+  glDisable(GL_TEXTURE_2D);
   glColor4ub(col.r, col.g, col.b, col.a);
   glBegin(GL_LINES);
 
@@ -1246,9 +1279,10 @@ void JRenderer::DrawRect(float x, float y, float width, float height, PIXEL_TYPE
 
   // default color
   glColor4ub(255, 255, 255, 255);
+  glEnable(GL_TEXTURE_2D);
 #endif //#if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
 
-	glEnable(GL_TEXTURE_2D);
+  checkGlError();
 }
 
 
@@ -1264,9 +1298,8 @@ void JRenderer::FillRect(float x, float y, float width, float height, PIXEL_TYPE
 
 void JRenderer::FillRect(float x, float y, float width, float height, JColor* colors)
 {
-	y = SCREEN_HEIGHT_F - y - height;
-
-	glDisable(GL_TEXTURE_2D);
+  checkGlError();
+  y = SCREEN_HEIGHT_F - y - height;
 
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
   GLfloat vVertices[] = {
@@ -1301,6 +1334,7 @@ void JRenderer::FillRect(float x, float y, float width, float height, JColor* co
 
   glDrawArrays(GL_TRIANGLE_STRIP,0,4);
 #else
+  glDisable(GL_TEXTURE_2D);
   glBegin(GL_QUADS);
 		// top left corner
 		glColor4ub(colors[0].r, colors[0].g, colors[0].b, colors[0].a);
@@ -1322,17 +1356,18 @@ void JRenderer::FillRect(float x, float y, float width, float height, JColor* co
 
   // default color
   glColor4ub(255, 255, 255, 255);
+  glEnable(GL_TEXTURE_2D);
 #endif //#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
 
-	glEnable(GL_TEXTURE_2D);
 	//glDisable(GL_BLEND);
+  checkGlError();
 }
 
 
 void JRenderer::DrawLine(float x1, float y1, float x2, float y2, PIXEL_TYPE color)
 {
+  checkGlError();
 //	glLineWidth (mLineWidth);
-	glDisable(GL_TEXTURE_2D);
 	JColor col;
 	col.color = color;
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
@@ -1364,20 +1399,23 @@ void JRenderer::DrawLine(float x1, float y1, float x2, float y2, PIXEL_TYPE colo
 
   glDrawArrays(GL_LINES,0,2);
 #else
+  glDisable(GL_TEXTURE_2D);
   glColor4ub(col.r, col.g, col.b, col.a);
   glBegin(GL_LINES);
 		glVertex2f(x1, SCREEN_HEIGHT_F-y1);
 		glVertex2f(x2, SCREEN_HEIGHT_F-y2);
 	glEnd();
   glColor4ub(255, 255, 255, 255);
-#endif //#if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
   glEnable(GL_TEXTURE_2D);
+#endif //#if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
+  checkGlError();
 }
 
 
 void JRenderer::Plot(float x, float y, PIXEL_TYPE color)
 {
-	glDisable(GL_TEXTURE_2D);
+  checkGlError();
+  glDisable(GL_TEXTURE_2D);
 	JColor col;
 	col.color = color;
 #if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
@@ -1390,12 +1428,14 @@ void JRenderer::Plot(float x, float y, PIXEL_TYPE color)
   // FIXME, not used
 #endif //#if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
   glEnable(GL_TEXTURE_2D);
+  checkGlError();
 }
 
 
 void JRenderer::PlotArray(float *x, float *y, int count, PIXEL_TYPE color)
 {
-	glDisable(GL_TEXTURE_2D);
+  checkGlError();
+  glDisable(GL_TEXTURE_2D);
 	JColor col;  
 	col.color = color;
 #if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
@@ -1409,6 +1449,7 @@ void JRenderer::PlotArray(float *x, float *y, int count, PIXEL_TYPE color)
   // FIXME, not used
 #endif //#if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
   glEnable(GL_TEXTURE_2D);
+  checkGlError();
 }
 
 
@@ -1645,11 +1686,12 @@ JTexture* JRenderer::LoadTexture(const char* filename, int mode, int TextureForm
 		tex->mTexHeight = textureInfo.mTexHeight;
 
 		GLuint texid;
-		glGenTextures(1, &texid);
+    checkGlError();
+    glGenTextures(1, &texid);
 		tex->mTexId = texid;
-                GLenum glError = glGetError();
+//    glError = glGetError();
 
-                if (/*texid*/ glError == 0)
+    if (1)///*texid*/ glError == 0)
 		{
 
 			// OpenGL texture has (0,0) at lower-left
@@ -1686,12 +1728,10 @@ JTexture* JRenderer::LoadTexture(const char* filename, int mode, int TextureForm
 			ret = TRUE;
 
 		}
-                else
-                {
-                    printf("TextureId is 0, GLerror is %u\n", glError);
-                }
-
-
+    else
+    {
+//        printf("LoadTexture> TextureId is 0, GLerror is %u\n", glError);
+    }
 	}
 
 	delete [] textureInfo.mBits;
@@ -1704,6 +1744,8 @@ JTexture* JRenderer::LoadTexture(const char* filename, int mode, int TextureForm
 		tex = NULL;
 	}
 
+
+  checkGlError();
 	return tex;
 }
 
@@ -2002,7 +2044,8 @@ void JRenderer::LoadGIF(TextureInfo &textureInfo, const char *filename, int mode
 
 JTexture* JRenderer::CreateTexture(int width, int height, int mode __attribute__((unused)))
 {
-	int size = width * height * sizeof(PIXEL_TYPE);			// RGBA
+  checkGlError();
+  int size = width * height * sizeof(PIXEL_TYPE);			// RGBA
 
 	BYTE* buffer = new BYTE[size];
 
@@ -2030,7 +2073,8 @@ JTexture* JRenderer::CreateTexture(int width, int height, int mode __attribute__
 
 		delete[] buffer;
 
-		return tex;
+    checkGlError();
+    return tex;
 	}
 	else
 		return NULL;
@@ -2048,6 +2092,7 @@ void JRenderer::EnableVSync(bool flag __attribute__((unused)))
 
 void JRenderer::ClearScreen(PIXEL_TYPE color)
 {
+  checkGlError();
     JColor col;
     col.color = color;
 
@@ -2055,44 +2100,52 @@ void JRenderer::ClearScreen(PIXEL_TYPE color)
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 //	FillRect(0.0f, 0.0f, SCREEN_WIDTH_F, SCREEN_HEIGHT_F, color);
+  checkGlError();
 }
 
 
 void JRenderer::SetTexBlend(int src, int dest)
 {
-	if (src != mCurrTexBlendSrc || dest != mCurrTexBlendDest)
+  checkGlError();
+  if (src != mCurrTexBlendSrc || dest != mCurrTexBlendDest)
 	{
 		mCurrTexBlendSrc = src;
 		mCurrTexBlendDest = dest;
 
 		glBlendFunc(src, dest);
 	}
+  checkGlError();
 }
 
 
 void JRenderer::SetTexBlendSrc(int src)
 {
-	if (src != mCurrTexBlendSrc)
+  checkGlError();
+  if (src != mCurrTexBlendSrc)
 	{
 		mCurrTexBlendSrc = src;
 		glBlendFunc(mCurrTexBlendSrc, mCurrTexBlendDest);
 	}
+  checkGlError();
 }
 
 
 void JRenderer::SetTexBlendDest(int dest)
 {
-	if (dest != mCurrTexBlendDest)
+  checkGlError();
+  if (dest != mCurrTexBlendDest)
 	{
 		mCurrTexBlendDest = dest;
 		glBlendFunc(mCurrTexBlendSrc, mCurrTexBlendDest);
 	}
+  checkGlError();
 }
 
 
 void JRenderer::Enable2D()
 {
-	if (mCurrentRenderMode == MODE_2D)
+  checkGlError();
+  if (mCurrentRenderMode == MODE_2D)
 		return;
 
 	mCurrentRenderMode = MODE_2D;
@@ -2111,6 +2164,7 @@ void JRenderer::Enable2D()
 #endif //(!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
 
 	glDisable (GL_DEPTH_TEST);
+  checkGlError();
 }
 
 
@@ -2185,7 +2239,8 @@ void JRenderer::PopMatrix()
 
 void JRenderer::RenderTriangles(JTexture* texture, Vertex3D *vertices, int start, int count)
 {
-	if (texture)
+  checkGlError();
+  if (texture)
 		BindTexture(texture);
 
   int index = start*3;
@@ -2247,6 +2302,7 @@ void JRenderer::RenderTriangles(JTexture* texture, Vertex3D *vertices, int start
 		}
 	glEnd();
 #endif //#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
+  checkGlError();
 }
 
 
@@ -2258,10 +2314,10 @@ void JRenderer::SetFOV(float fov)
 
 void JRenderer::FillPolygon(float* x, float* y, int count, PIXEL_TYPE color)
 {
-	JColor col;
+  checkGlError();
+  JColor col;
 	col.color = color;
 
-	glDisable(GL_TEXTURE_2D);
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
   int i;
   GLubyte* colors = new GLubyte[count*4];
@@ -2304,6 +2360,7 @@ void JRenderer::FillPolygon(float* x, float* y, int count, PIXEL_TYPE color)
   delete[] colors;
 
 #else
+  glDisable(GL_TEXTURE_2D);
   glColor4ub(col.r, col.g, col.b, col.a);
   glBegin(GL_TRIANGLE_FAN);
 
@@ -2315,18 +2372,19 @@ void JRenderer::FillPolygon(float* x, float* y, int count, PIXEL_TYPE color)
 	glEnd();  
   // default color
   glColor4ub(255, 255, 255, 255);
+  glEnable(GL_TEXTURE_2D);
 #endif //#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
 
-	glEnable(GL_TEXTURE_2D);
+  checkGlError();
 }
 
 
 void JRenderer::DrawPolygon(float* x, float* y, int count, PIXEL_TYPE color)
 {
-	JColor col;
+  checkGlError();
+  JColor col;
 	col.color = color;
 
-	glDisable(GL_TEXTURE_2D);
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
   int i;
   int number = count+1;
@@ -2373,6 +2431,7 @@ void JRenderer::DrawPolygon(float* x, float* y, int count, PIXEL_TYPE color)
   delete[] vVertices;
   delete[] colors;
 #else
+  glDisable(GL_TEXTURE_2D);
   glColor4ub(col.r, col.g, col.b, col.a);
   glBegin(GL_LINE_STRIP);
 
@@ -2387,9 +2446,10 @@ void JRenderer::DrawPolygon(float* x, float* y, int count, PIXEL_TYPE color)
 
   // default color
   glColor4ub(255, 255, 255, 255);
+  glEnable(GL_TEXTURE_2D);
 #endif //#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
 
-	glEnable(GL_TEXTURE_2D);
+  checkGlError();
 }
 
 
@@ -2423,10 +2483,10 @@ void JRenderer::DrawLine(float x1, float y1, float x2, float y2, float lineWidth
 
 void JRenderer::DrawCircle(float x, float y, float radius, PIXEL_TYPE color)
 {
-	JColor col;
+  checkGlError();
+  JColor col;
 	col.color = color;
 
-	glDisable(GL_TEXTURE_2D);
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
   int i, index;
   const int number = 181;
@@ -2471,6 +2531,7 @@ void JRenderer::DrawCircle(float x, float y, float radius, PIXEL_TYPE color)
 
   glDrawArrays(GL_LINE_STRIP,0,number);
 #else
+  glDisable(GL_TEXTURE_2D);
   glColor4ub(col.r, col.g, col.b, col.a);
   glBegin(GL_LINE_STRIP);
 
@@ -2484,17 +2545,18 @@ void JRenderer::DrawCircle(float x, float y, float radius, PIXEL_TYPE color)
 	glEnd();
   // default color
   glColor4ub(255, 255, 255, 255);
+  glEnable(GL_TEXTURE_2D);
 #endif //#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
 
-	glEnable(GL_TEXTURE_2D);
+  checkGlError();
 }
 
 void JRenderer::FillCircle(float x, float y, float radius, PIXEL_TYPE color)
 {
-	JColor col;
+  checkGlError();
+  JColor col;
 	col.color = color;
 
-	glDisable(GL_TEXTURE_2D);
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
   int i, index;
   const int number = 182;
@@ -2543,6 +2605,7 @@ void JRenderer::FillCircle(float x, float y, float radius, PIXEL_TYPE color)
 
   glDrawArrays(GL_TRIANGLE_FAN,0,number);
 #else
+  glDisable(GL_TEXTURE_2D);
   glColor4ub(col.r, col.g, col.b, col.a);
   glBegin(GL_TRIANGLE_FAN);
 
@@ -2559,22 +2622,23 @@ void JRenderer::FillCircle(float x, float y, float radius, PIXEL_TYPE color)
 
   // default color
   glColor4ub(255, 255, 255, 255);
+  glEnable(GL_TEXTURE_2D);
 #endif //#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
 
-	glEnable(GL_TEXTURE_2D);
+  checkGlError();
 }
 
 
 void JRenderer::DrawPolygon(float x, float y, float size, int count, float startingAngle, PIXEL_TYPE color)
 {
-	JColor col;
+  checkGlError();
+  JColor col;
 	col.color = color;
 
 	float angle = startingAngle*RAD2DEG;
 	float steps = 360.0f/count;
 	size /= 2;
 
-	glDisable(GL_TEXTURE_2D);
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
   int i;
   GLfloat* vVertices = new GLfloat[3*count];
@@ -2619,6 +2683,7 @@ void JRenderer::DrawPolygon(float x, float y, float size, int count, float start
   delete[] vVertices;
   delete[] colors;
 #else
+  glDisable(GL_TEXTURE_2D);
   glColor4ub(col.r, col.g, col.b, col.a);
   glBegin(GL_LINE_LOOP);
 
@@ -2634,15 +2699,17 @@ void JRenderer::DrawPolygon(float x, float y, float size, int count, float start
 	glEnd();
   // default color
   glColor4ub(255, 255, 255, 255);
+  glEnable(GL_TEXTURE_2D);
 #endif //#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
 
-	glEnable(GL_TEXTURE_2D);
+  checkGlError();
 }
 
 
 void JRenderer::FillPolygon(float x, float y, float size, int count, float startingAngle, PIXEL_TYPE color)
 {
-	JColor col;
+  checkGlError();
+  JColor col;
 	col.color = color;
 
 	float angle = startingAngle*RAD2DEG;
@@ -2650,7 +2717,6 @@ void JRenderer::FillPolygon(float x, float y, float size, int count, float start
 	float steps = 360.0f/count;
 	size /= 2;
 
-	glDisable(GL_TEXTURE_2D);
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
   int i;
   GLfloat* vVertices = new GLfloat[3*(count+2)];
@@ -2703,6 +2769,7 @@ void JRenderer::FillPolygon(float x, float y, float size, int count, float start
   delete[] vVertices;
   delete[] colors;
 #else
+  glDisable(GL_TEXTURE_2D);
   glColor4ub(col.r, col.g, col.b, col.a);
   glBegin(GL_TRIANGLE_FAN);
 
@@ -2722,9 +2789,10 @@ void JRenderer::FillPolygon(float x, float y, float size, int count, float start
 
   // default color
   glColor4ub(255, 255, 255, 255);
+  glEnable(GL_TEXTURE_2D);
 #endif //#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
 
-	glEnable(GL_TEXTURE_2D);
+  checkGlError();
 }
 
 
@@ -2737,12 +2805,12 @@ void JRenderer::SetImageFilter(JImageFilter* imageFilter)
 
 void JRenderer::DrawRoundRect(float x, float y, float w, float h, float radius, PIXEL_TYPE color)
 {
-	x+=w+radius;
+  checkGlError();
+  x+=w+radius;
 	y+=h+radius;
 	JColor col;
 	col.color = color;
 
-	glDisable(GL_TEXTURE_2D);
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
   int i;
   int number = 360;
@@ -2808,6 +2876,7 @@ void JRenderer::DrawRoundRect(float x, float y, float w, float h, float radius, 
   delete[] vVertices;
   delete[] colors;
 #else
+  glDisable(GL_TEXTURE_2D);
   glColor4ub(col.r, col.g, col.b, col.a);
   glBegin(GL_LINE_LOOP);
 	int i;
@@ -2847,22 +2916,23 @@ void JRenderer::DrawRoundRect(float x, float y, float w, float h, float radius, 
 
   // default color
   glColor4ub(255, 255, 255, 255);
+  glEnable(GL_TEXTURE_2D);
 #endif //#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
 
-	glEnable(GL_TEXTURE_2D);
+  checkGlError();
 }
 
 
 
 void JRenderer::FillRoundRect(float x, float y, float w, float h, float radius, PIXEL_TYPE color)
 {
-	x+=w+radius;
+  checkGlError();
+  x+=w+radius;
 	y+=radius;
 
 	JColor col;
 	col.color = color;
 
-	glDisable(GL_TEXTURE_2D);
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
   int i, offset;
   int number = 2+360;
@@ -2918,11 +2988,13 @@ void JRenderer::FillRoundRect(float x, float y, float w, float h, float radius, 
   // Load the vertex position
   glVertexAttribPointer ( prog1_positionLoc, 3, GL_FLOAT,
                           GL_FALSE, 3 * sizeof(GLfloat), vVertices );
+
   // Load the color
   glVertexAttribPointer(prog1_colorLoc, 4, GL_UNSIGNED_BYTE,
                         GL_TRUE, 4 * sizeof(GLubyte), colors);
 
   glEnableVertexAttribArray ( prog1_positionLoc );
+
   glEnableVertexAttribArray ( prog1_colorLoc );
 
   // Load the MVP matrix
@@ -2933,6 +3005,8 @@ void JRenderer::FillRoundRect(float x, float y, float w, float h, float radius, 
   delete[] vVertices;
   delete[] colors;
 #else
+  glDisable(GL_TEXTURE_2D);
+
   glColor4ub(col.r, col.g, col.b, col.a);
   glBegin(GL_TRIANGLE_FAN);
 
@@ -2979,9 +3053,9 @@ void JRenderer::FillRoundRect(float x, float y, float w, float h, float radius, 
 
   // default color
   glColor4ub(255, 255, 255, 255);
+
+  glEnable(GL_TEXTURE_2D);
 #endif //#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
-
-	glEnable(GL_TEXTURE_2D);
-
+  checkGlError();
 }
 
