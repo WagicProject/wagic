@@ -38,9 +38,9 @@ class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable {
   int setDefenser(MTGCardInstance * c);
   int addBlocker(MTGCardInstance * c);
   int removeBlocker(MTGCardInstance * c);
-  int setAttacker(int value);
   int init();
  public:
+	int setAttacker(int value);
   MTGGameZone * currentZone;
   Pos* view;
   int X;

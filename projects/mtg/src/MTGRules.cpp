@@ -694,6 +694,7 @@ int MTGAttackRule::receiveEvent(WEvent *e){
 			for (int i= 0; i < z->nb_cards; i++){
 				MTGCardInstance * card = z->cards[i];
 				if (!card->isAttacker() && card->has(Constants::MUSTATTACK)) reactToClick(card);
+				if (card->isAttacker() && card->isTapped()) card->setAttacker(0);
 				if (card->isAttacker() && !card->has(Constants::VIGILANCE)) card->tap();
 			}
 			return 1;
