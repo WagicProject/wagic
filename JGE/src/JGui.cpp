@@ -148,6 +148,37 @@ bool JGuiController::CheckUserInput(JButton key){
     }
     return true;
   }
+  else
+  { // a dude may have clicked somewhere, we're gonna select the closest object from where he clicked
+    int x, y;
+    unsigned int distance2;
+    unsigned int minDistance2 = -1;
+    int n = mCurr;
+    if(mEngine->GetLeftClickCoordinates(x, y))
+    {
+      for(int i = 0; i < mCount; i++)
+      {
+        int top, left;
+        if(mObjects[i]->getTopLeft(top, left))
+        {
+          distance2 = (top-y)*(top-y) + (left-x)*(left-x);
+          if(distance2 < minDistance2)
+          {
+            minDistance2 = distance2;
+            n = i;
+          }
+        }
+      }
+
+      if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(JGE_BTN_DOWN))
+      {
+        mCurr = n;
+        mObjects[mCurr]->Entering();
+      }
+      mEngine->LeftClickedProcessed();
+      return true;
+    }
+  }
   return false;
 }
 void JGuiController::Update(float dt)

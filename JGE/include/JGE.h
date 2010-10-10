@@ -110,6 +110,10 @@ class JGE
   static std::multimap<LocalKeySym, JButton> keyBinds;
   typedef std::multimap<LocalKeySym, JButton>::iterator keycodes_it;
 
+  // Mouse attributes
+  int mLastLeftClickX;
+  int mlastLeftClickY;
+
   friend void Run();
 
  public:
@@ -272,7 +276,17 @@ class JGE
   void ReleaseKey(const LocalKeySym);
   void ReleaseKey(const JButton);
 
+  //////////////////////////////////////////////////////////////////////////
+  /// Mouse events
+  ///  x and y are int coordinates relative to SCREEN_WIDTH and SCREEN_HEIGHT
+  //////////////////////////////////////////////////////////////////////////
+  void LeftClicked(int x, int y);
 
+  void LeftClickedProcessed();
+
+  // Getter, may have to move that in the JGuiListener
+  // Returns false if nothing has been clicked, true otherwise
+  bool GetLeftClickCoordinates(int& x, int& y);
 
   //////////////////////////////////////////////////////////////////////////
   /// Get if the system is ended/paused or not.

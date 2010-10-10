@@ -262,8 +262,32 @@ void JGE::ResetInput()
 {
   while (!keyBuffer.empty()) keyBuffer.pop();
   holds.clear();
+  LeftClickedProcessed();
 }
 
+
+void JGE::LeftClicked(int x, int y)
+{
+  mLastLeftClickX = x;
+  mlastLeftClickY = y;
+}
+
+void JGE::LeftClickedProcessed()
+{
+  mLastLeftClickX = -1;
+  mlastLeftClickY = -1;
+}
+
+bool JGE::GetLeftClickCoordinates(int& x, int& y)
+{
+  if(mLastLeftClickX != -1 || mlastLeftClickY != -1)
+  {
+    x = mLastLeftClickX;
+    y = mlastLeftClickY;
+    return true;
+  }
+  return false;
+}
 
 JGE::JGE()
 {
@@ -295,6 +319,7 @@ void JGE::Init()
   JRenderer::GetInstance();
   JFileSystem::GetInstance();
   JSoundSystem::GetInstance();
+  LeftClickedProcessed();
 }
 
 void JGE::SetDelta(float delta)
