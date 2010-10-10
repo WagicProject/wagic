@@ -1,4 +1,5 @@
 #include "../include/config.h"
+#include "../include/DebugRoutines.h"
 #include "../include/ActionLayer.h"
 #include "../include/GameObserver.h"
 #include "../include/Targetable.h"
@@ -218,7 +219,7 @@ int ActionLayer::reactToClick(MTGCardInstance * card){
 
 void ActionLayer::setMenuObject(Targetable * object, bool must){
   if (!object){
-    OutputDebugString("FATAL: ActionLayer::setMenuObject\n");
+    DebugTrace("FATAL: ActionLayer::setMenuObject");
     return;
   }
   menuObject = object;
@@ -242,9 +243,7 @@ void ActionLayer::doReactTo(int menuIndex){
 
   if (menuObject){
     int controlid = abilitiesMenu->mObjects[menuIndex]->GetId();
-    char buf[4096];
-    sprintf(buf, "ACTIONLAYER doReact To %i\n",controlid);
-    OutputDebugString(buf);
+    DebugTrace("ActionLayer::doReactTo " << controlid);
     ButtonPressed(0,controlid);
   }
 }

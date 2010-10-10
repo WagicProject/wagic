@@ -1,4 +1,5 @@
 #include "../include/config.h"
+#include "../include/DebugRoutines.h"
 #include "../include/Logger.h"
 #ifdef DOLOG
 
@@ -17,11 +18,8 @@ void Logger::Log(const char * text){
     file << "\n";
     file.close();
   }
-#if defined (WIN32) || defined (LINUX)
-  OutputDebugString(text);
-  OutputDebugString("\n");
-#endif
 
+  DebugTrace(text);
 }
 
 #endif

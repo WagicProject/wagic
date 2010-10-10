@@ -1,4 +1,5 @@
 #include "../include/config.h"
+#include "../include/DebugRoutines.h"
 #include "../include/AIPlayer.h"
 #include "../include/CardDescriptor.h"
 #include "../include/AIStats.h"
@@ -67,10 +68,9 @@ int AIPlayer::Act(float dt){
 
 
 void AIPlayer::tapLandsForMana(ManaCost * cost,MTGCardInstance * target){
-#if defined (WIN32) || defined (LINUX)
-  OutputDebugString("tapping land for mana\n");
-#endif
   if (!cost) return;
+  DebugTrace(" AI tapping land for mana");
+
   ManaCost * pMana = getPotentialMana(target);
   ManaCost * diff = pMana->Diff(cost);
   delete(pMana);
@@ -158,7 +158,7 @@ int AIAction::getEfficiency(){
   MTGAbility * a = AbilityFactory::getCoreAbility(ability);
 
   if (!a){
-    OutputDebugString("FATAL: Ability is NULL in AIAction::getEfficiency()");
+    DebugTrace("FATAL: Ability is NULL in AIAction::getEfficiency()");
     return 0;
   }
 
@@ -279,7 +279,7 @@ int AIPlayer::selectAbility(){
     if (getEfficiency(a) < chance){
       a = NULL;
     }else{
-      OutputDebugString("AIPlayer:Using Activated ability\n");
+      DebugTrace("AIPlayer:Using Activated ability");
       tapLandsForMana(a->ability->cost,a->click);
       clickstream.push(a);
     }
@@ -531,7 +531,7 @@ int AIPlayer::orderBlockers(){
   GameObserver * g = GameObserver::GetInstance();
   if (ORDER == g->combatStep && g->currentPlayer==this)
     {
-      OutputDebugString("AIPLAYER: order blockers\n");
+      DebugTrace("AIPLAYER: order blockers");
       g->userRequestNextGamePhase(); //TODO clever rank of blockers
       return 1;
     }
@@ -578,7 +578,7 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, Player * op
 
   if (deckid == GameStateDuel::MENUITEM_EVIL_TWIN){ //Evil twin
     sprintf(deckFile, "%s", opponent->deckFile.c_str());
-    OutputDebugString(opponent->deckFile.c_str());  
+    DebugTrace(opponent->deckFile);  
     sprintf(avatarFile, "%s", "baka.jpg");
     sprintf(deckFileSmall, "%s", "ai_baka_eviltwin");
   }else{
@@ -795,7 +795,7 @@ int AIPlayerBaka::Act(float dt){
   }
   interruptIfICan();
   if (!(g->currentlyActing() == this)){
-    OutputDebugString("Cannot interrupt\n");
+    DebugTrace("Cannot interrupt");
     return 0;
   }
   if (clickstream.empty()) computeActions();

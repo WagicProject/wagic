@@ -1,6 +1,7 @@
 #ifndef _CARDS_H_
 #define _CARDS_H_
 
+#include "../include/DebugRoutines.h" 
 #include "MTGAbility.h"
 #include "ManaCost.h"
 #include "CardDescriptor.h"
@@ -314,7 +315,6 @@ public:
       }
       game->mLayers->actionLayer()->setMenuObject(source,must);
       game->mLayers->stackLayer()->setIsInterrupting(source->controller());
-      OutputDebugString("ALLABILITIES SetMenuObject!\n");
     }
   }
 
@@ -2968,7 +2968,7 @@ class APreventAllCombatDamage:public MTGAbility{
 
   int addToGame(){  
     if (re) {
-      OutputDebugString("FATAL:re shouldn't be already set in APreventAllCombatDAMAGE\n");
+      DebugTrace("FATAL:re shouldn't be already set in APreventAllCombatDAMAGE\n");
       return 0;
     }
     TargetChooserFactory tcf;
@@ -3730,9 +3730,7 @@ class AKudzu: public TargetAbility{
   int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL){
     MTGCardInstance * _target = (MTGCardInstance *)target;
     if (card == source && (!_target || !_target->isInPlay())){
-#if defined (WIN32) || defined (LINUX)
-      OutputDebugString("Kudzu Reacts to click !\n");
-#endif
+      DebugTrace("Kudzu Reacts to click !");
       return 1;
     }
     return 0;

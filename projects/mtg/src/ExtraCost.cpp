@@ -1,3 +1,4 @@
+#include "../include/DebugRoutines.h"
 #include "../include/ExtraCost.h"
 #include "../include/TargetChooser.h"
 #include "../include/MTGCardInstance.h"
@@ -751,10 +752,6 @@ ExtraCosts::~ExtraCosts(){
 }
 
 void ExtraCosts::Dump(){
-#ifdef WIN32
-  char buf[4096];
-  OutputDebugString("=====\nDumping ExtraCosts=====\n");
-  sprintf(buf, "NbElements : %i\n", costs.size());
-  OutputDebugString(buf);
-#endif
+  DebugTrace("=====\nDumping ExtraCosts=====\n");
+  DebugTrace("NbElements: " << costs.size());
 }

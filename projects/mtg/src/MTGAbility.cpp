@@ -1,4 +1,5 @@
 #include "../include/config.h"
+#include "../include/DebugRoutines.h"
 #include "../include/MTGAbility.h"
 #include "../include/ManaCost.h"
 #include "../include/MTGGameZones.h"
@@ -11,27 +12,32 @@
 #include "../include/ThisDescriptor.h"
 
 
-int AbilityFactory::countCards(TargetChooser * tc, Player * player, int option){
+int AbilityFactory::countCards(TargetChooser * tc, Player * player, int option)
+{
   int result = 0;
   GameObserver * game = GameObserver::GetInstance();
-  for (int i = 0; i < 2 ; i++){
+  for (int i = 0; i < 2 ; i++)
+  {
     if (player && player!= game->players[i]) continue;
-        MTGGameZone * zones[] = {game->players[i]->game->inPlay,game->players[i]->game->graveyard,game->players[i]->game->hand};
-                        for (int k = 0; k < 3; k++){
-                                for (int j = zones[k]->nb_cards-1; j >=0 ; j--){
-                                MTGCardInstance * current =  zones[k]->cards[j];
-                                if (tc->canTarget(current)){
-                                        switch (option){
-        case COUNT_POWER:
-          result+= current->power;
-          break;
-        default:
-          result++;
-          break;
-                                        }
-                                }
-                                }
-                        }
+    MTGGameZone * zones[] = {game->players[i]->game->inPlay,game->players[i]->game->graveyard,game->players[i]->game->hand};
+    for (int k = 0; k < 3; k++)
+    {
+      for (int j = zones[k]->nb_cards-1; j >=0 ; j--)
+      {
+        MTGCardInstance * current =  zones[k]->cards[j];
+        if (tc->canTarget(current))
+        {
+          switch (option){
+          case COUNT_POWER:
+            result+= current->power;
+            break;
+          default:
+            result++;
+            break;
+          }
+        }
+      }
+    }
   }
   return result;
 }
@@ -241,17 +247,7 @@ MTGAbility * AbilityFactory::getCoreAbility(MTGAbility * a){
 MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTGCardInstance *card, int activated, int forceUEOT, int oneShot,int forceFOREVER, MTGGameZone * dest){
   size_t found;
  
-  string whitespaces (" \t\f\v\n\r");
-
-  found=s.find_last_not_of(whitespaces);
-  if (found!=string::npos)
-    s.erase(found+1);
-  else return NULL;
-
-  found=s.find_first_not_of(whitespaces);
-  if (found!=string::npos)
-    s.erase(0,found);
-  else return NULL;
+  trim(s);
 
   //TODO This block redundant with calling function
   if (!card && spell) card = spell->source;
@@ -305,9 +301,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
       
       MTGAbility * a = parseMagicLine(s1, id, spell, card, 1);
       if (!a){
-        OutputDebugString("ABILITYFACTORY Error parsing:");
-        OutputDebugString(sWithoutTc.c_str());
-        OutputDebugString("\n");
+        DebugTrace("ABILITYFACTORY Error parsing: " << sWithoutTc);
         return NULL;
       }
 
@@ -473,9 +467,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
          ThisDescriptor * td = tdf.createThisDescriptor(thisDescriptorString);
          
          if (!td){
-           OutputDebugString("MTGABILITY: Parsing Error:");
-           OutputDebugString(s.c_str());
-           OutputDebugString("\n");
+           DebugTrace("MTGABILITY: Parsing Error:" << s);
            return NULL;
          }
 
@@ -540,9 +532,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
       TargetChooser * lordTargets = tcf.createTargetChooser(lordTargetsString, card);
       
       if (!lordTargets){
-        OutputDebugString("MTGABILITY: Parsing Error:");
-        OutputDebugString(s.c_str());
-        OutputDebugString("\n");
+        DebugTrace("MTGABILITY: Parsing Error: " << s);
         return NULL;
       }
 
@@ -589,9 +579,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
       
       MTGAbility * a = parseMagicLine(sWithoutTc, id, spell, card);
       if (!a){
-        OutputDebugString("ABILITYFACTORY Error parsing:");
-        OutputDebugString(s.c_str());
-        OutputDebugString("\n");
+        DebugTrace("ABILITYFACTORY Error parsing: " << s);
         return NULL;
       }
       a = NEW GenericTargetAbility(id,card,tc,a);
@@ -621,9 +609,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     ManaCost * cost = ManaCost::parseManaCost(s1);
 
     if (!cost){
-      OutputDebugString("MTGABILITY: Parsing Error:");
-      OutputDebugString(s.c_str());
-      OutputDebugString("\n");
+      DebugTrace("MTGABILITY: Parsing Error: " << s);
       return NULL;
     }
     
@@ -631,9 +617,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     MTGAbility * a = parseMagicLine(sAbility,id,spell,card);
 
     if (!a){
-      OutputDebugString("MTGABILITY: Parsing Error:");
-      OutputDebugString(s.c_str());
-      OutputDebugString("\n");
+      DebugTrace("MTGABILITY: Parsing Error: " << s);
       delete(cost);
       return NULL;
     }
@@ -1479,7 +1463,7 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
       v->push_back(a);
       result++;
     }else{
-      OutputDebugString("ABILITYFACTORY ERROR: Parser returned NULL\n");
+      DebugTrace("ABILITYFACTORY ERROR: Parser returned NULL");
     }
   }
   return result;
@@ -1518,7 +1502,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card, int
         a->addToGame();
       }
     }else{
-      OutputDebugString("ABILITYFACTORY ERROR: Parser returned NULL\n");
+      DebugTrace("ABILITYFACTORY ERROR: Parser returned NULL");
     }
   }
   return result;

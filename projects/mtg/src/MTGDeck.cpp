@@ -3,6 +3,7 @@
 #include <string>
 #include <sstream>
 #include "../include/config.h"
+#include "../include/DebugRoutines.h"
 #include "../include/MTGDeck.h"
 #include "../include/utils.h"
 #include "../include/Subtypes.h"
@@ -38,11 +39,7 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
   if ('#' == s[0]) return 0;
   size_t i = s.find_first_of('=');
   if (i == string::npos || 0 == i){
-#if defined (_DEBUG)
-    char buffer[4096];
-    sprintf(buffer, "MTGDECK: Bad Line:\n    %s\n", s.c_str());
-    OutputDebugString(buffer);
-#endif
+    DebugTrace("MTGDECK: Bad Line:\n\t" << s);
     return 0;
   }
 
@@ -226,8 +223,7 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
       break;
 
     default:
-      string error = "MTGDECK Parsing Error:" + s + "\n";
-      OutputDebugString(error.c_str());
+      DebugTrace("MTGDECK Parsing Error: " << s);
       break;
   }
 
@@ -403,11 +399,9 @@ bool MTGAllCards::addCardToCollection(MTGCard * card, int setId){
   int newId = card->getId();
   if (collection.find(newId) != collection.end()){
 #if defined (_DEBUG)
-    char outBuf[4096];
     string cardName = card->data ? card->data->name : card->getImageName();
-    string setName = setId != -1 ? setlist.getInfo( setId ) -> getName() : "";
-    sprintf(outBuf,"warning, card id collision! : %i -> %s (%s) \n", newId, cardName.c_str(), setName.c_str());
-    OutputDebugString(outBuf);
+    string setName = setId != -1 ? setlist.getInfo(setId)->getName() : "";
+    DebugTrace("warning, card id collision! : " << newId << " -> " << cardName << "(" << setName << ")");
 #endif
     SAFE_DELETE(card);
     return false;
@@ -444,11 +438,7 @@ CardPrimitive * MTGAllCards::addPrimitive(CardPrimitive * primitive, MTGCard * c
   if (primitives.find(key) != primitives.end()){
     //ERROR
     //Todo move the deletion somewhere else ?
-#ifdef _DEBUG
-    OutputDebugString("MTGDECK: primitives conflict:");
-    OutputDebugString(key.c_str());
-    OutputDebugString("\n");
-#endif
+    DebugTrace("MTGDECK: primitives conflict: "<< key);
     SAFE_DELETE(primitive);
     return NULL;
   }
@@ -577,9 +567,7 @@ MTGDeck::MTGDeck(const char * config_file, MTGAllCards * _allcards, int meta_onl
             add(card);
           }
         } else {
-          OutputDebugString("could not find Card matching name:");
-          OutputDebugString(s.c_str());
-          OutputDebugString("\n");
+          DebugTrace("could not find Card matching name: " << s);
         }
       }
     }
@@ -742,9 +730,7 @@ int MTGDeck::save(){
   std::ofstream file(tmp.c_str());
   char writer[512];
   if (file){
-#if defined (WIN32) || defined (LINUX)
-    OutputDebugString("saving");
-#endif
+    DebugTrace("Saving Deck");
     if (meta_name.size()){
       file << "#NAME:" << meta_name << '\n';
     }

@@ -1,4 +1,5 @@
 #include "../include/config.h"
+#include "../include/DebugRoutines.h"
 #include "../include/GameStateDuel.h"
 #include "../include/GameOptions.h"
 #include "../include/utils.h"
@@ -193,9 +194,7 @@ void GameStateDuel::loadTestSuitePlayers(){
 
 void GameStateDuel::End()
 {
-#if defined (WIN32) || defined (LINUX)
-  OutputDebugString("Ending GamestateDuel\n");
-#endif
+  DebugTrace("Ending GameStateDuel");
   SAFE_DELETE(deckmenu);
 
   JRenderer::GetInstance()->EnableVSync(false);

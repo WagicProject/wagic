@@ -1,4 +1,5 @@
 #include "../include/config.h"
+#include "../include/DebugRoutines.h"
 #include "../include/MTGRules.h"
 #include "../include/Translate.h"
 #include "../include/Subtypes.h"
@@ -783,11 +784,7 @@ int MTGBlockRule::reactToClick(MTGCardInstance * card){
 	int candefend = 0;
 	while (!result){
 		currentOpponent = game->currentPlayer->game->inPlay->getNextAttacker(currentOpponent);
-#if defined (WIN32) || defined (LINUX)
-		char buf[4096];
-		sprintf(buf,"Defenser Toggle %s \n", card->getName().c_str());
-		OutputDebugString(buf);
-#endif
+		DebugTrace("Defenser Toggle: " << card->getName());
 		candefend = card->toggleDefenser(currentOpponent);
 		result = (candefend || currentOpponent == NULL);
 	}
@@ -894,11 +891,7 @@ int MTGMomirRule::genRandomCreatureId(int convertedCost){
 	int total_cards = 0;
 	int i = convertedCost;
 	while (!total_cards && i >=0){
-#ifdef WIN32
-		char buf[4096];
-		sprintf(buf,"Converted Cost in momir: %i\n", i);
-		OutputDebugString(buf);
-#endif
+		DebugTrace("Converted Cost in momir: " << i);
 		total_cards = pool[i].size();
 		convertedCost = i;
 		i--;
