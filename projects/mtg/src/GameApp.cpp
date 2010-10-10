@@ -82,7 +82,7 @@ void GameApp::Create()
 #if defined (WIN32)
   _CrtSetDbgFlag ( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
 #elif not defined (LINUX)
-  pspFpuSetEnable(0); //disable FPU Exceptions until we find where the FPU errors come from
+  pspfpu_set_enable(0); //disable FPU Exceptions until we find where the FPU errors come from
 #endif
   //_CrtSetBreakAlloc(368);
   LOG("starting Game");
