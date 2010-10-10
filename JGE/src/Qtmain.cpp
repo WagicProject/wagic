@@ -1,6 +1,13 @@
 #define GL_GLEXT_PROTOTYPES
 #include <QtOpenGL>
 #include <QTime>
+
+#ifdef Q_WS_MAEMO_5
+#include <QtGui/QX11Info>
+#include <X11/Xlib.h>
+#include <X11/Xatom.h>
+#endif //Q_WS_MAEMO_5
+
 #include "../include/JGE.h"
 #include "../include/JTypes.h"
 #include "../include/JApp.h"
@@ -38,6 +45,34 @@ protected:
   void mouseReleaseEvent(QMouseEvent *event);
 
   void wheelEvent(QWheelEvent *event);
+
+#ifdef Q_WS_MAEMO_5
+  void grabZoomKeys(bool grab)
+  {
+      if (!winId()) {
+          qWarning("Can't grab keys unless we have a window id");
+          return;
+      }
+
+      unsigned long val = (grab) ? 1 : 0;
+      Atom atom = XInternAtom(QX11Info::display(), "_HILDON_ZOOM_KEY_ATOM", False);
+      if (!atom) {
+          qWarning("Unable to obtain _HILDON_ZOOM_KEY_ATOM. This example will only work "
+                   "on a Maemo 5 device!");
+          return;
+      }
+
+      XChangeProperty (QX11Info::display(),
+              winId(),
+              atom,
+              XA_INTEGER,
+              32,
+              PropModeReplace,
+              reinterpret_cast<unsigned char *>(&val),
+              1);
+  }
+#endif //Q_WS_MAEMO_5
+
 
 protected:
   QPoint lastPos;
@@ -132,6 +167,7 @@ JGEQtRenderer::JGEQtRenderer(QWidget *parent)
 #ifdef Q_WS_MAEMO_5
   setAttribute(Qt::WA_Maemo5AutoOrientation);
   setAttribute(Qt::WA_Maemo5NonComposited);
+  grabZoomKeys(true);
 #endif
   setAttribute(Qt::WA_AcceptTouchEvents);
   grabGesture(Qt::PanGesture);
@@ -227,6 +263,46 @@ void JGEQtRenderer::mousePressEvent(QMouseEvent *event)
   if(event->button() == Qt::LeftButton)
   {
     lastPos = event->pos();
+    // this is intended to convert window coordinate into game coordinate.
+    // this is correct only if the game and window have the same aspect ratio, otherwise, it's just wrong
+    g_engine->LeftClicked((lastPos.x()*SCREEN_WIDTH)/actualWidth, (lastPos.y()*SCREEN_HEIGHT)/actualHeight);
+    event->accept();
+  }
+  else
+  {
+    QGLWidget::mousePressEvent(event);
+  }
+}
+
+void JGEQtRenderer::mouseReleaseEvent(QMouseEvent *event)
+{
+  if(event->button() == Qt::LeftButton)
+  {
+    QGLWidget::mouseReleaseEvent(event);
+  }
+  else if(event->button() == Qt::RightButton)
+  { /* next phase please */
+    g_engine->HoldKey_NoRepeat(JGE_BTN_PREV);
+    event->accept();
+  }
+  else if(event->button() == Qt::MidButton)
+  { /* interrupt please */
+    g_engine->HoldKey_NoRepeat(JGE_BTN_SEC);
+    event->accept();
+  }
+  else
+  {
+    QGLWidget::mouseReleaseEvent(event);
+  }
+}
+
+
+/*
+void JGEQtRenderer::mousePressEvent(QMouseEvent *event)
+{
+  if(event->button() == Qt::LeftButton)
+  {
+    lastPos = event->pos();
     event->accept();
   }
   else
@@ -276,7 +352,7 @@ void JGEQtRenderer::mouseReleaseEvent(QMouseEvent *event)
     QGLWidget::mouseReleaseEvent(event);
   }
 }
-
+*/
 
 void JGEQtRenderer::mouseDoubleClickEvent(QMouseEvent *event)
 {
@@ -319,11 +395,24 @@ void JGEQtRenderer::wheelEvent(QWheelEvent *event)
 
 void JGEQtRenderer::keyPressEvent(QKeyEvent *event)
 {
-  if(event->key() == Qt::Key_F)
+  switch(event->key())
   {
+#ifdef Q_WS_MAEMO_5
+  case Qt::Key_F7:
+    /* interrupt please */
+    g_engine->HoldKey_NoRepeat(JGE_BTN_SEC);
+    break;
+  case Qt::Key_F8:
+    /* next phase please */
+    g_engine->HoldKey_NoRepeat(JGE_BTN_PREV);
+    break;
+#endif // Q_WS_MAEMO_5
+  case Qt::Key_F:
     JGEToggleFullscreen();
+    break;
+  default:
+    g_engine->HoldKey_NoRepeat((LocalKeySym)event->key());
   }
-  g_engine->HoldKey_NoRepeat((LocalKeySym)event->key());
   event->accept();
   QWidget::keyPressEvent(event);
   return;
@@ -374,5 +463,6 @@ int main(int argc, char* argv[])
 
   // Shutdown
   DestroyGame();
+
   return 0;
 }
