@@ -59,6 +59,7 @@ class ObjectSelector : public GuiLayer
  void Add(T*);
  void Remove(T*);
  bool CheckUserInput(JButton key);
+ bool CheckUserInput(int x, int y);
  void Update(float dt);
  void Render();
  void Push();

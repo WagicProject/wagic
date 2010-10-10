@@ -167,6 +167,43 @@ bool CardSelector::CheckUserInput(JButton key)
   return true;
 }
 
+
+template<>
+bool CardSelector::CheckUserInput(int x, int y)
+{
+  if (!active) {
+    for (vector<Target*>::iterator it = cards.begin(); it != cards.end(); ++it)
+      if ((NULL == limitor) || (limitor->select(*it))) {
+        active = *it;
+        active->Entering();
+        return true;
+      }
+    return true;
+  }
+  Target* oldactive = active;
+  active = closest<True>(cards, limitor, x, y);
+
+  if (active != oldactive) {
+    SelectorZone oldowner, owner;
+    if (CardView *q = dynamic_cast<CardView*>(oldactive)) oldowner = q->owner; else oldowner = nullZone;
+    if (CardView *q = dynamic_cast<CardView*>(active))       owner = q->owner; else    owner = nullZone;
+    if (oldowner != owner) {
+      if (nullZone != owner) {
+        if (PlayGuiObject* old = fetchMemory(lasts[owner]))
+          if (old) active = old;
+      }
+      lasts[oldowner] = SelectorMemory(oldactive);
+    }
+  }
+  if (active != oldactive) {
+    { CardView* c = dynamic_cast<CardView*>(oldactive); if (c) c->zoom = 1.0f; }
+    { CardView* c = dynamic_cast<CardView*>(active); if (c) c->zoom = 1.4f; }
+    if (oldactive) oldactive->Leaving(JGE_BTN_NONE);
+    if (active) active->Entering();
+  }
+  return true;
+}
+
 template<>
 void CardSelector::Update(float dt) {
   float boundary = duel->RightBoundary();

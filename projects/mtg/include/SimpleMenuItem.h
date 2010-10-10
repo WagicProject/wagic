@@ -42,6 +42,7 @@ class SimpleMenuItem: public JGuiObject
   virtual bool Leaving(JButton key);
   virtual bool ButtonPressed();
   virtual ostream& toString(ostream& out) const;
+  virtual bool getTopLeft(int& top, int& left) {top = mY; left = mX; return true;};
 };
 
 #endif

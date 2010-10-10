@@ -58,16 +58,26 @@ void DuelLayers::init(){
 
 void DuelLayers::CheckUserInput(int isAI){
   JButton key;
-  while ((key = JGE::GetInstance()->ReadButton())){
+  int x, y;
+  while ((key = JGE::GetInstance()->ReadButton()) || JGE::GetInstance()->GetLeftClickCoordinates(x, y))
+  {
     if ((!isAI) && (0 != key))
+    {
+      if (stack->CheckUserInput(key)) break;
+      if (combat->CheckUserInput(key)) break;
+      if (avatars->CheckUserInput(key)) break; //avatars need to check their input before action (CTRL_CROSS)
+      if (action->CheckUserInput(key)) break;
+      if (hand->CheckUserInput(key)) break;
+      if (cs->CheckUserInput(key)) break;
+    }
+    else if((!isAI) && (x != -1 && y != -1))
+    {
+      if (cs->CheckUserInput(x, y))
       {
-	if (stack->CheckUserInput(key)) break;
-  if (combat->CheckUserInput(key)) break;
-  if (avatars->CheckUserInput(key)) break; //avatars need to check their input before action (CTRL_CROSS)
-	if (action->CheckUserInput(key)) break;
-	if (hand->CheckUserInput(key)) break;
-	if (cs->CheckUserInput(key)) break;
+        JGE::GetInstance()->LeftClickedProcessed();
+        break;
       }
+    }
   }
 }
 
