@@ -3244,7 +3244,7 @@ name=Aven Riftwatcher
 abilities=flying
 auto=counter(0/0,3,Time)
 auto=life:2
-auto=@movedTo(this|exile,graveyard,hand,library) from(myBattlefield):life:2
+auto=@movedTo(this|nonbattlezone) from(myBattlefield):life:2
 auto=@each my upkeep:counter(0/0,-1,Time)
 auto=lord(aven riftwatcher[-counter{0/0.1.Time}]|myBattlefield) -99/-99
 text=Flying -- Vanishing 3 (This permanent enters the battlefield with three time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- When Aven Riftwatcher enters the battlefield or leaves the battlefield, you gain 2 life.
@@ -11984,7 +11984,7 @@ name=Deadwood Treefolk
 auto=counter(0/0,3,Time)
 auto=@each my upkeep:counter(0/0,-1,Time)
 auto=moveTo(myhand) target(other creature|myGraveyard)
-auto=@movedTo(this|exile,graveyard,hand.library) from(myBattlefield):moveTo(myhand) target(other creature|myGraveyard)
+auto=@movedTo(this|nonbattlezone) from(myBattlefield):moveTo(myhand) target(other creature|myGraveyard)
 auto=lord(deadwood treefolk[-counter{0/0.1.Time}]|myBattlefield) -99/-99
 text=Vanishing 3 (This permanent enters the battlefield with three time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- When Deadwood Treefolk enters the battlefield or leaves the battlefield, return another target creature card from your graveyard to your hand.
 mana={5}{G}
@@ -12555,7 +12555,7 @@ type=Instant
 [card]
 name=Delusions of Mediocrity
 auto=life:10
-auto=@movedTo(this|graveyard,library,hand,exile) from(battlefield):life:-10 controller
+auto=@movedTo(this|nonbattlezone) from(battlefield):life:-10 controller
 text=When Delusions of Mediocrity enters the battlefield, you gain 10 life. -- When Delusions of Mediocrity leaves the battlefield, you lose 10 life.
 mana={3}{U}
 type=Enchantment
@@ -17802,7 +17802,7 @@ toughness=3
 [card]
 name=Firemaw Kavu
 auto=damage:2 target(creature)
-auto=@movedTo(this|exile,graveyard,hand,library) from(battlefield):damage:4 target(creature)
+auto=@movedTo(this|nonbattlezone) from(battlefield):damage:4 target(creature)
 auto=upcost[{5}{R}{0};next upkeep] moveTo(graveyard)
 text=Echo {5}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Firemaw Kavu enters the battlefield, it deals 2 damage to target creature. -- When Firemaw Kavu leaves the battlefield, it deals 4 damage to target creature.
 mana={5}{R}
@@ -20794,7 +20794,7 @@ toughness=2
 [/card]
 [card]
 name=Goblin Firebug
-auto=@movedTo(this|exile,graveyard,hand,library) from(battlefield):moveTo(mygraveyard) notatarget(land|myBattlefield)
+auto=@movedTo(this|nonbattlezone) from(battlefield):moveTo(mygraveyard) notatarget(land|myBattlefield)
 text=When Goblin Firebug leaves the battlefield, sacrifice a land.
 mana={1}{R}
 type=Creature
@@ -22207,7 +22207,7 @@ type=Land
 [/card]
 [card]
 name=Grixis Slavedriver
-auto=token(Zombie,Creature Token Zombie,2/2,black)
+auto=@movedTo(this|nonbattlezone) from(battlefield):token(Zombie,Creature Token Zombie,2/2,black)
 autograveyard={3}{B}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
 text=When Grixis Slavedriver leaves the battlefield, put a 2/2 black Zombie creature token onto the battlefield. -- Unearth {3}{B} ({3}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={5}{B}
@@ -24976,7 +24976,7 @@ toughness=4
 [card]
 name=Illusions of Grandeur
 auto=life:20
-auto=@movedTo(this|exile,hand,graveyard,library) from(battlefield):life:-20
+auto=@movedTo(this|nonbattlezone) from(battlefield):life:-20
 auto=@each my upkeep:counter(0/0,1,Age)
 auto=thisforeach(counter{0/0.1.Age}) upcost[{2}] moveTo(graveyard)
 text=Cumulative upkeep {2} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- When Illusions of Grandeur enters the battlefield, you gain 20 life. -- When Illusions of Grandeur leaves the battlefield, you lose 20 life.
@@ -27489,7 +27489,7 @@ name=Keldon Marauders
 auto=counter(0/0,2,Time)
 auto=@each my upkeep:counter(0/0,-1,Time)
 auto=damage:1 target(player)
-auto=@movedTo(this|exile,graveyard,hand.library) from(myBattlefield):damage:1 target(player)
+auto=@movedTo(this|nonbattlezone) from(myBattlefield):damage:1 target(player)
 auto=lord(keldon marauders[-counter{0/0.1.Time}]|myBattlefield) -99/-99
 text=Vanishing 2 (This permanent enters the battlefield with two time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- When Keldon Marauders enters the battlefield or leaves the battlefield, it deals 1 damage to target player.
 mana={1}{R}
@@ -31867,7 +31867,7 @@ type=Land
 [card]
 name=Meadowboon
 other={3}{W}
-auto=@movedTo(this|graveyard) from(mybattlefield):counter(1/1,1) all(creature|myBattlefield)
+auto=@movedTo(this|nonbattlezone) from(mybattlefield):counter(1/1,1) all(creature|myBattlefield)
 auto=alternative moveto(mygraveyard)
 text=When Meadowboon leaves the battlefield, put a +1/+1 counter on each creature target player controls. -- Evoke {3}{W} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
 mana={2}{W}{W}
@@ -37106,7 +37106,7 @@ auto=3/2
 auto=counter(0/0,1,Fade)
 auto=@each my upkeep:counter(0/0,-1,Fade)
 auto=@each my upkeep:moveTo(mygraveyard) all(parallax dementia[-counter{0/0.1.Fade}]|myBattlefield)
-auto=@movedTo(this|exile,graveyard,hand,library) from(battlefield):bury(mytgt)
+auto=@movedTo(this|nonbattlezone) from(battlefield):bury(mytgt)
 text=Enchant creature -- Fading 1 (This enchantment enters the battlefield with one fade counter on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- Enchanted creature gets +3/+2. -- When Parallax Dementia leaves the battlefield, destroy enchanted creature. That creature can't be regenerated.
 mana={1}{B}
 type=Enchantment
@@ -37951,7 +37951,7 @@ toughness=1
 [/card]
 [card]
 name=Phyrexian Bloodstock
-auto=@movedTo(this|exile,graveyard,hand,library) from(battlefield):bury target(creature[white])
+auto=@movedTo(this|nonbattlezone) from(battlefield):bury target(creature[white])
 text=When Phyrexian Bloodstock leaves the battlefield, destroy target white creature. It can't be regenerated.
 mana={4}{B}
 type=Creature
@@ -41901,7 +41901,7 @@ toughness=2
 name=Revered Unicorn
 auto=@each my upkeep:counter(0/0,1,Age)
 auto=thisforeach(counter{0/0.1.Age}) upcost[{1}] moveTo(graveyard)
-auto=@movedTo(this|exile,graveyard,hand,library) from(battlefield):thisforeach(counter{0/0.1.Age}) life:1 controller
+auto=@movedTo(this|nonbattlezone) from(battlefield):thisforeach(counter{0/0.1.Age}) life:1 controller
 text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- When Revered Unicorn leaves the battlefield, you gain life equal to the number of age counters on it.
 mana={1}{W}
 type=Creature
@@ -43687,7 +43687,7 @@ type=Artifact
 [card]
 name=Saprazzan Bailiff
 auto=moveTo(exile) all(enchantment,artifact|graveyard)
-auto=@movedTo(this|graveyard,exile,hand) from(myBattlefield):moveTo(myhand) all(artifact,enchantment|mygraveyard) && moveTo(opponenthand) all(artifact,enchantment|opponentgraveyard)
+auto=@movedTo(this|nonbattlezone) from(myBattlefield):moveTo(myhand) all(artifact,enchantment|mygraveyard) && moveTo(opponenthand) all(artifact,enchantment|opponentgraveyard)
 text=When Saprazzan Bailiff enters the battlefield, exile all artifact and enchantment cards from all graveyards. -- When Saprazzan Bailiff leaves the battlefield, return all artifact and enchantment cards from all graveyards to their owners' hands.
 mana={3}{U}{U}
 type=Creature
@@ -45100,7 +45100,7 @@ type=Artifact
 [card]
 name=Sengir Autocrat
 auto=token(Serf,creature serf,0/1,black)*3
-auto=@movedTo(this|graveyard,exile,library,hand):moveTo(exile) all(serf)
+auto=@movedTo(this|nonbattlezone):moveTo(exile) all(serf)
 text=When Sengir Autocrat enters the battlefield, put three 0/1 black Serf creature tokens onto the battlefield. -- When Sengir Autocrat leaves the battlefield, exile all Serf tokens.
 mana={3}{B}
 type=Creature
@@ -48885,8 +48885,8 @@ type=Instant
 [card]
 name=Spawning Pit
 auto={S(creature|myBattlefield)}:counter(0/0,1,Charge)
-auto={1}{T}{C(0/0,-2,Charge)}:token(Spawn,artifact creature spawn, 2/2)
-text=Whenever Serum Tank or another artifact enters the battlefield, put a charge counter on Serum Tank. -- {3}, {T}, Remove a charge counter from Serum Tank: Draw a card.
+auto={1}{C(0/0,-2,Charge)}:token(Spawn,artifact creature spawn, 2/2)
+text=Sacrifice a creature: Put a charge counter on Spawning Pit. -- {1}, Remove two charge counters from Spawning Pit: Put a 2/2 colorless Spawn artifact creature token onto the battlefield.
 mana={2}
 type=Artifact
 [/card]
@@ -49002,7 +49002,7 @@ type=Artifact
 [card]
 name=Spellgorger Barbarian
 auto=discard:1 controller
-auto=@movedTo(this|graveyard,exile,library,hand) from(battlefield):draw:1 controller
+auto=@movedTo(this|nonbattlezone) from(battlefield):draw:1 controller
 text=When Spellgorger Barbarian enters the battlefield, discard a card at random. -- When Spellgorger Barbarian leaves the battlefield, draw a card.
 mana={3}{R}
 type=Creature
@@ -49540,7 +49540,7 @@ subtype=Splinter
 abilities=flying
 auto=@each my upkeep:counter(0/0,1,Age)
 auto=thisforeach(counter{0/0.1.Age}) upcost[{G}] moveTo(graveyard)
-text=This creature gets +1/+1 for each card named Sound the Call in each graveyard.
+text=Flying -- Cumulative upkeep {G}
 power=1
 toughness=1
 color=green
@@ -49548,7 +49548,7 @@ color=green
 [card]
 name=Splintering Wind
 auto={2}{G}:damage:1 target(creature) && token(-3148)
-auto=@movedTo(splinter token|exile,graveyard,hand,library) from(mybattlefield):damage:1 all(creature) && damage:1 controller
+auto=@movedTo(splinter token|nonbattlezone) from(mybattlefield):damage:1 all(creature) && damage:1 controller
 text={2}{G}: Splintering Wind deals 1 damage to target creature. Put a 1/1 green Splinter creature token onto the battlefield. It has flying and "Cumulative upkeep {G}." (At the beginning of its controller's upkeep, that player puts an age counter on it, then sacrifices it unless he or she pays its upkeep cost for each age counter on it.) -- Whenever a Splinter token leaves the battlefield, it deals 1 damage to you and each creature you control.
 mana={2}{G}{G}
 type=Enchantment
@@ -50059,8 +50059,8 @@ toughness=4
 [card]
 name=Stangg
 auto=token(Stangg Twin,legendary creature human warrior, 3/4,red green)
-auto=@movedTo(this|exile,graveyard,library,hand) from(battlefield):moveTo(exile) all(stangg twin)
-auto=@movedTo(stangg twin|exile,graveyard,library,hand) from(battlefield):bury all(this)
+auto=@movedTo(this|nonbattlezone) from(battlefield):moveTo(exile) all(stangg twin)
+auto=@movedTo(stangg twin|nonbattlezone) from(battlefield):bury all(this)
 text=When Stangg enters the battlefield, put a legendary 3/4 red and green Human Warrior creature token named Stangg Twin onto the battlefield. When Stangg leaves the battlefield, exile that token. When that token leaves the battlefield, sacrifice Stangg.
 mana={4}{R}{G}
 type=Legendary Creature
@@ -51182,7 +51182,7 @@ type=Land
 [card]
 name=Subterranean Shambler
 auto=damage:1 all(creature[-flying]) && damage:1 all(player)
-auto=@movedTo(this|exile,graveyard,hand,library) from(battlefield):damage:1 all(creature[-flying]) && damage:1 all(player)
+auto=@movedTo(this|nonbattlezone) from(battlefield):damage:1 all(creature[-flying]) && damage:1 all(player)
 auto=upcost[{3}{R}{0};next upkeep] moveTo(graveyard)
 text=Echo {3}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Subterranean Shambler enters the battlefield or leaves the battlefield, it deals 1 damage to each creature without flying.
 mana={3}{R}
@@ -53145,7 +53145,7 @@ toughness=1
 [card]
 name=Thalakos Seer
 abilities=shadow
-auto=@movedTo(this|graveyard,exile,library,hand):draw:1
+auto=@movedTo(this|nonbattlezone):draw:1
 text=Shadow (This creature can block or be blocked by only creatures with shadow.) -- When Thalakos Seer leaves the battlefield, draw a card.
 mana={U}{U}
 type=Creature
@@ -53561,8 +53561,8 @@ type=nothing
 name=Thought Gorger
 abilities=trample
 auto=foreach(*|myhand) counter(1/1,1) && moveTo(mygraveyard) all(*|myhand)
-auto=@movedTo(this|exile,graveyard,hand,library) from(myBattlefield):thisforeach(counter{1/1,1}) draw:1 controller
-text=Trample -- When Thought Gorger enters the battlefield, put a +1/+1 counter on it for each card in your hand. -- When Thought Gorger leaves the battlefield, draw a card for each +1/+1 counter on it.
+auto=@movedTo(this|nonbattlezone) from(myBattlefield):thisforeach(counter{1/1,1}) draw:1 controller
+text=Trample -- When Thought Gorger enters the battlefield, put a +1/+1 counter on it for each card in your hand. -- When Thought Gorger leaves the battlefield, draw a card for each +1/+1 counter on it. If you do, discard your hand.
 mana={2}{B}{B}
 type=Creature
 subtype=Horror
@@ -54454,7 +54454,7 @@ name=Tombstone Stairwell
 auto=@each my upkeep:counter(0/0,1,Age)
 auto=thisforeach(counter{0/0.1.Age}) upcost[{1}{B}] moveTo(graveyard)
 auto=@each upkeep:foreach(creature|mygraveyard) token(-12253) && foreach(creature|opponentgraveyard) token(-12254)
-auto=@movedto(this|graveyard,exile):bury all(Tombspawn)
+auto=@movedto(this|nonbattlezone):bury all(Tombspawn)
 auto=@movedTo(enchantment[world]|battlefield):bury
 text=Cumulative upkeep {1}{B} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- At the beginning of each upkeep, if Tombstone Stairwell is on the battlefield, each player puts a 2/2 black Zombie creature token with haste named Tombspawn onto the battlefield for each creature card in his or her graveyard. -- At the beginning of each end step or when Tombstone Stairwell leaves the battlefield, destroy all tokens put onto the battlefield with Tombstone Stairwell. They can't be regenerated.
 mana={2}{B}{B}
@@ -54467,7 +54467,7 @@ toughness=2
 type=Creature
 subtype=Zombie Tombspawn
 abilities=haste
-auto=@each endofturn:destroy all(this)
+auto=@each endofturn:bury all(this)
 color=black
 id=-12253
 [/card]
@@ -54479,7 +54479,7 @@ toughness=2
 type=Creature
 subtype=Zombie Tombspawn
 abilities=haste
-auto=@each endofturn:destroy all(this)
+auto=@each endofturn:bury all(this)
 color=black
 id=-12254
 [/card]
@@ -55676,7 +55676,7 @@ type=Instant
 [/card]
 [card]
 name=Twilight Drover
-auto=@movedTo(creature[token]|exile,hand,library,graveyard) from(battlefield):counter(1/1,1)
+auto=@movedTo(creature[token]|nonbattlezone) from(battlefield):counter(1/1,1)
 auto={2}{W}{C(1/1,-1)}:token(Spirit,Creature Spirit,1/1,white,flying)*2
 text=Whenever a creature token leaves the battlefield, put a +1/+1 counter on Twilight Drover. -- {2}{W}, Remove a +1/+1 counter from Twilight Drover: Put two 1/1 white Spirit creature tokens with flying onto the battlefield.
 mana={2}{W}
@@ -60595,7 +60595,7 @@ toughness=2
 [/card]
 [card]
 name=Worldslayer
-auto=@damaged(player) from(mytgt[attacking]):moveto(graveyard) all(other *[-worldslayer]|battlefield)
+auto=@damaged(player) from(mytgt[attacking]):destroy all(other *[-worldslayer]|battlefield)
 auto={5}:equip
 mana={5}
 text=Whenever equipped creature deals combat damage to a player, destroy all permanents other than Worldslayer. -- Equip {5} ({5}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
@@ -61129,7 +61129,7 @@ toughness=1
 [/card]
 [card]
 name=Yukora, the Prisoner
-auto=@movedto(this|mygraveyard):moveTo(mygraveyard) all(creature[-ogre]|myBattlefield)
+auto=@movedto(this|nonbattlezone):moveTo(mygraveyard) all(creature[-ogre]|myBattlefield)
 text=When Yukora, the Prisoner leaves the battlefield, sacrifice all non-Ogre creatures you control.
 mana={2}{B}{B}
 type=Legendary Creature
