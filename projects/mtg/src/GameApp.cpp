@@ -25,7 +25,6 @@
 
 #define DEFAULT_DURATION .25
 
-hgeParticleSystem* GameApp::Particles[] = {NULL,NULL,NULL,NULL,NULL,NULL};
 MTGAllCards * GameApp::collection = NULL;
 int GameApp::players[] = {0,0};
 int GameApp::HasMusic = 1;
@@ -67,9 +66,6 @@ GameApp::GameApp(): JApp()
   mNextState = NULL;
   collection = NULL;
   
-  for(int i=0;i<6;i++)
-    Particles[i] = NULL;
- 
   music = NULL;
 }
 
@@ -184,14 +180,6 @@ void GameApp::Create()
   LOG("Init Collection");
   collection = NEW MTGAllCards();
 
-  LOG("Loading Particles");
-  Particles[0] = NEW hgeParticleSystem("graphics/particle1.psi", resources.GetQuad("particles"));
-  Particles[1] = NEW hgeParticleSystem("graphics/particle2.psi", resources.GetQuad("particles"));
-  Particles[2] = NEW hgeParticleSystem("graphics/particle3.psi", resources.GetQuad("particles"));
-  Particles[3] = NEW hgeParticleSystem("graphics/particle4.psi", resources.GetQuad("particles"));
-  Particles[4] = NEW hgeParticleSystem("graphics/particle5.psi", resources.GetQuad("particles"));
-  Particles[5] = NEW hgeParticleSystem("graphics/particle7.psi", resources.GetQuad("particles"));
-
   LOG("Creating Game States");
   mGameStates[GAME_STATE_DECK_VIEWER] = NEW GameStateDeckViewer(this);
   mGameStates[GAME_STATE_DECK_VIEWER]->Create();
@@ -249,10 +237,6 @@ void GameApp::Destroy()
 	SAFE_DELETE(mGameStates[i]);
       }
     }
-
-  for (int i= 0; i < 6; i++){
-    SAFE_DELETE(Particles[i]);
-  }
 
   if (collection){
     collection->destroyAllCards();
