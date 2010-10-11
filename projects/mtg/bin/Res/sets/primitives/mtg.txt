@@ -2141,7 +2141,8 @@ toughness=0
 [card]
 name=Arcbound Fiend
 abilities=fear
-auto=@each my upkeep:counter(1/1,-1) target(creature) && counter(1/1,1) all(this)
+auto=@each my upkeep:counter(1/1,-1) target(creature)
+auto=@each my upkeep:counter(1/1,1) all(this)
 auto=counter(1/1,3)
 auto=@movedTo(this|mygraveyard) from(myBattlefield):may thisforeach(counter{1/1.1}) counter(1/1,1) target(creature[artifact])
 text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- At the beginning of your upkeep, you may move a +1/+1 counter from target creature onto Arcbound Fiend. -- Modular 3 (This enters the battlefield with three +1/+1 counters on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
@@ -2258,7 +2259,8 @@ toughness=5
 [card]
 name=Archdemon of Unx
 abilities=flying,trample
-auto=@each my upkeep:bury notatarget(creature[-zombie]|myBattlefield) && token(Zombie,creature zombie, 2/2,black)
+auto=@each my upkeep:bury notatarget(creature[-zombie]|myBattlefield)
+auto=@each my upkeep:token(Zombie,creature zombie, 2/2,black)
 text=Flying, trample -- At the beginning of your upkeep, sacrifice a non-Zombie creature, then put a 2/2 black Zombie creature token onto the battlefield.
 mana={5}{B}{B}
 type=Creature
@@ -35599,8 +35601,8 @@ toughness=2
 [/card]
 [card]
 name=Noxious Ghoul
-auto=lord(creature[-zombie]) -1/-1 ueot
-auto=@movedTo(other creature[zombie]|battlefield):lord(creature[-zombie]) -1/-1 ueot
+auto=all(creature[-zombie]) -1/-1 ueot
+auto=@movedTo(other creature[zombie]|battlefield):all(creature[-zombie]) -1/-1 ueot
 text=Whenever Noxious Ghoul or another Zombie enters the battlefield, all non-Zombie creatures get -1/-1 until end of turn.
 mana={3}{B}{B}
 type=Creature
@@ -45070,25 +45072,28 @@ toughness=2
 [card]
 name=Semblance Anvil
 auto=choice name(Artifact) && moveTo(myexile) notatarget(artifact|myhand) && counter(0/0,1,Artifact) all(this)
-auto=choice name(Artifact Creature) && moveTo(myexile) notatarget(creature[artifact]|myhand) && counter(0/0,1,Artifact Creature) all(this)
+auto=choice name(Artifact Creature) && moveTo(myexile) notatarget(creature[artifact]|myhand) && counter(0/0,1,ArtifactCreature) all(this)
 auto=choice name(Creature) && moveTo(myexile) notatarget(creature|myhand) && counter(0/0,1,Creature) all(this)
 auto=choice name(Enchantment) && moveTo(myexile) notatarget(enchantment|myhand) && counter(0/0,1,Enchantment) all(this)
 auto=choice name(Instant) && moveTo(myexile) notatarget(instant|myhand) && counter(0/0,1,Instant) all(this)
 auto=choice name(Sorcery) && moveTo(myexile) notatarget(sorcery|myhand) && counter(0/0,1,Sorcery) all(this)
-auto=choice name(Tribal Instant) && moveTo(myexile) notatarget(instant[tribal]|myhand) && counter(0/0,1,Tribal Instant) all(this)
-auto=choice name(Tribal Sorcery) && moveTo(myexile) notatarget(sorcery[tribal]|myhand) && counter(0/0,1,Tribal Sorcery) all(this)
+auto=choice name(Tribal Instant) && moveTo(myexile) notatarget(instant[tribal]|myhand) && counter(0/0,1,TribalInstant) all(this)
+auto=choice name(Tribal Sorcery) && moveTo(myexile) notatarget(sorcery[tribal]|myhand) && counter(0/0,1,TribalSorcery) all(this)
 auto=choice name(cancel) && 0/0
-auto=this(counter{0/0.1.Artifact}) lord(artifact|myhand) colorless:-2
-auto=this(counter{0/0.1.Artifact Creature}) lord(artifact|myhand) colorless:-2
-auto=this(counter{0/0.1.Artifact Creature}) lord(creature|myhand) colorless:-2
+auto=this(counter{0/0.1.Artifact}) lord(artifact[-land]|myhand) colorless:-2
+auto=this(counter{0/0.1.ArtifactCreature}) lord(artifact[-creature;-land]|myhand) colorless:-2
+auto=this(counter{0/0.1.ArtifactCreature}) lord(creature[-artifact]|myhand) colorless:-2
+auto=this(counter{0/0.1.ArtifactCreature}) lord(creature[artifact]|myhand) colorless:-2
 auto=this(counter{0/0.1.Creature}) lord(creature|myhand) colorless:-2
 auto=this(counter{0/0.1.Enchantment}) lord(enchantment|myhand) colorless:-2
 auto=this(counter{0/0.1.Instant}) lord(instant|myhand) colorless:-2
 auto=this(counter{0/0.1.Sorcery}) lord(sorcery|myhand) colorless:-2
-auto=this(counter{0/0.1.Tribal Instant}) lord(tribal|myhand) colorless:-2
-auto=this(counter{0/0.1.Tribal Instant}) lord(instant|myhand) colorless:-2
-auto=this(counter{0/0.1.Tribal Sorcery}) lord(tribal|myhand) colorless:-2
-auto=this(counter{0/0.1.Tribal Sorcery}) lord(sorcery|myhand) colorless:-2
+auto=this(counter{0/0.1.TribalInstant}) lord(tribal[-instant]|myhand) colorless:-2
+auto=this(counter{0/0.1.TribalInstant}) lord(instant[-tribal]|myhand) colorless:-2
+auto=this(counter{0/0.1.TribalInstant}) lord(instant[tribal]|myhand) colorless:-2
+auto=this(counter{0/0.1.TribalSorcery}) lord(tribal[-sorcery]|myhand) colorless:-2
+auto=this(counter{0/0.1.TribalSorcery}) lord(sorcery[-tribal]|myhand) colorless:-2
+auto=this(counter{0/0.1.TribalSorcery}) lord(sorcery[tribal]|myhand) colorless:-2
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -45100,7 +45105,7 @@ type=Artifact
 [card]
 name=Sengir Autocrat
 auto=token(Serf,creature serf,0/1,black)*3
-auto=@movedTo(this|nonbattlezone):moveTo(exile) all(serf)
+auto=@movedTo(this|nonbattlezone) from(battlefield):moveTo(exile) all(serf)
 text=When Sengir Autocrat enters the battlefield, put three 0/1 black Serf creature tokens onto the battlefield. -- When Sengir Autocrat leaves the battlefield, exile all Serf tokens.
 mana={3}{B}
 type=Creature
@@ -49226,7 +49231,7 @@ toughness=1
 [/card]
 [card]
 name=Spikeshot Goblin
-auto={R}{T}:thisforeach(power>=1) damage:1 target(creature)
+auto={R}{T}:thisforeach(power>=1) damage:1 target(creature,player)
 text={R}, {T}: Spikeshot Goblin deals damage equal to its power to target creature or player.
 mana={2}{R}
 type=Creature
@@ -53145,7 +53150,7 @@ toughness=1
 [card]
 name=Thalakos Seer
 abilities=shadow
-auto=@movedTo(this|nonbattlezone):draw:1
+auto=@movedTo(this|nonbattlezone) from(battlefield):draw:1
 text=Shadow (This creature can block or be blocked by only creatures with shadow.) -- When Thalakos Seer leaves the battlefield, draw a card.
 mana={U}{U}
 type=Creature
@@ -53562,7 +53567,7 @@ name=Thought Gorger
 abilities=trample
 auto=foreach(*|myhand) counter(1/1,1) && moveTo(mygraveyard) all(*|myhand)
 auto=@movedTo(this|nonbattlezone) from(myBattlefield):thisforeach(counter{1/1,1}) draw:1 controller
-text=Trample -- When Thought Gorger enters the battlefield, put a +1/+1 counter on it for each card in your hand. -- When Thought Gorger leaves the battlefield, draw a card for each +1/+1 counter on it. If you do, discard your hand.
+text=Trample -- When Thought Gorger enters the battlefield, put a +1/+1 counter on it for each card in your hand. If you do, discard your hand. -- When Thought Gorger leaves the battlefield, draw a card for each +1/+1 counter on it.
 mana={2}{B}{B}
 type=Creature
 subtype=Horror
@@ -54454,7 +54459,7 @@ name=Tombstone Stairwell
 auto=@each my upkeep:counter(0/0,1,Age)
 auto=thisforeach(counter{0/0.1.Age}) upcost[{1}{B}] moveTo(graveyard)
 auto=@each upkeep:foreach(creature|mygraveyard) token(-12253) && foreach(creature|opponentgraveyard) token(-12254)
-auto=@movedto(this|nonbattlezone):bury all(Tombspawn)
+auto=@movedto(this|nonbattlezone) from(battlefield):bury all(Tombspawn)
 auto=@movedTo(enchantment[world]|battlefield):bury
 text=Cumulative upkeep {1}{B} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- At the beginning of each upkeep, if Tombstone Stairwell is on the battlefield, each player puts a 2/2 black Zombie creature token with haste named Tombspawn onto the battlefield for each creature card in his or her graveyard. -- At the beginning of each end step or when Tombstone Stairwell leaves the battlefield, destroy all tokens put onto the battlefield with Tombstone Stairwell. They can't be regenerated.
 mana={2}{B}{B}
@@ -61129,7 +61134,7 @@ toughness=1
 [/card]
 [card]
 name=Yukora, the Prisoner
-auto=@movedto(this|nonbattlezone):moveTo(mygraveyard) all(creature[-ogre]|myBattlefield)
+auto=@movedto(this|nonbattlezone) from(battlefield):moveTo(mygraveyard) all(creature[-ogre]|myBattlefield)
 text=When Yukora, the Prisoner leaves the battlefield, sacrifice all non-Ogre creatures you control.
 mana={2}{B}{B}
 type=Legendary Creature
