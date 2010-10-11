@@ -4409,15 +4409,15 @@ toughness=*
 [/card]
 [card]
 name=Beastbreaker of Bala Ged
-auto={2}{G}:counter(0/0,1,Level Up) asSorcery
-auto=this(counter{0/0.1.Level Up}) 2/2
-auto=this(counter{0/0.4.Level Up}) trample
-auto=this(counter{0/0.4.Level Up}) 2/2
-auto=lord(other beastbreaker of bala ged[counter{0/0.4.Level Up}]) -2/-2
+auto={2}{G}:counter(0/0,1,Level) asSorcery
+auto=this(counter{0/0.1.Level}) 2/2
+auto=this(counter{0/0.4.Level}) trample
+auto=this(counter{0/0.4.Level}) 2/2
+auto=lord(other beastbreaker of bala ged[counter{0/0.4.Level}]) -2/-2
 text=Level up {2}{G}  ({2}{G}: Put a Level counter on this. Level up only as a sorcery.) -- [Level 1-3] (4/4) -- [Level 4+] Trample (6/6)
 mana={1}{G}
 type=Creature
-subtype=Levelup Human Warrior
+subtype=Level Human Warrior
 power=2
 toughness=2
 [/card]
@@ -6765,16 +6765,16 @@ toughness=6
 [/card]
 [card]
 name=Brimstone Mage
-auto={3}{R}:counter(0/0,1,Level Up) asSorcery
-auto=this(counter{0/0.1.Level Up}) 0/1
-auto=this(counter{0/0.1.Level Up}=) {T}:damage:1 target(creature,player)
-auto=this(counter{0/0.2.Level Up}=) {T}:damage:1 target(creature,player)
-auto=this(counter{0/0.3.Level Up}) 0/1
-auto=this(counter{0/0.3.Level Up}) {T}:damage:3 target(creature,player)
+auto={3}{R}:counter(0/0,1,Level) asSorcery
+auto=this(counter{0/0.1.Level}) 0/1
+auto=this(counter{0/0.1.Level}=) {T}:damage:1 target(creature,player)
+auto=this(counter{0/0.2.Level}=) {T}:damage:1 target(creature,player)
+auto=this(counter{0/0.3.Level}) 0/1
+auto=this(counter{0/0.3.Level}) {T}:damage:3 target(creature,player)
 text=Level up {3}{R} -- [Level 1-2] {T}: Brimstone Mage deals 1 damage to target creature or player. [2/3] -- [Level 3+] {T}: Brimstone Mage deals 3 damage to target creature or player. [2/4]
 mana={2}{R}
 type=Creature
-subtype=Levelup Human Shaman
+subtype=Level Human Shaman
 power=2
 toughness=2
 [/card]
@@ -7611,14 +7611,14 @@ toughness=2
 [/card]
 [card]
 name=Caravan Escort
-auto={2}:counter(0/0,1,Level Up) asSorcery 
-auto=this(counter{0/0.1.Level Up}) 1/1
-auto=this(counter{0/0.5.Level Up}) first strike
-auto=this(counter{0/0.5.Level Up}) 3/3
+auto={2}:counter(0/0,1,Level) asSorcery 
+auto=this(counter{0/0.1.Level}) 1/1
+auto=this(counter{0/0.5.Level}) first strike
+auto=this(counter{0/0.5.Level}) 3/3
 text=Level up {2} -- [Level 1-4] (2/2) -- [Level 5+] First strike (5/5)
 mana={W}
 type=Creature
-subtype=Levelup Human Knight
+subtype=Level Human Knight
 power=1
 toughness=1
 [/card]
@@ -8452,7 +8452,7 @@ toughness=3
 [card]
 name=Champion's Drake
 abilities=flying
-auto=aslongas(creature[counter{0/0.3.Level Up}]|myBattlefield) 3/3
+auto=aslongas(creature[counter{0/0.3.Level}]|myBattlefield) 3/3
 text=Flying -- Champion's Drake gets +3/+3 as long as you control a creature with three or more level counters on it.
 mana={1}{U}
 type=Creature
@@ -10213,15 +10213,15 @@ type=Enchantment
 [/card]
 [card]
 name=Coralhelm Commander
-auto={1}:counter(0/0,1,Level Up) asSorcery
-auto=this(counter{0/0.2.Level Up}) flying
-auto=this(counter{0/0.2.Level Up}) 1/1
-auto=this(counter{0/0.4.Level Up}) lord(other merfolk|myBattlefield) 1/1
-auto=this(counter{0/0.4.Level Up}) 1/1
+auto={1}:counter(0/0,1,Level) asSorcery
+auto=this(counter{0/0.2.Level}) flying
+auto=this(counter{0/0.2.Level}) 1/1
+auto=this(counter{0/0.4.Level}) lord(other merfolk|myBattlefield) 1/1
+auto=this(counter{0/0.4.Level}) 1/1
 text=Level up {1} -- [Level 2-3] : Flying (3/3) -- [Level 4+] : Flying, other Merfolk you control get +1/+1. (4/4)
 mana={U}{U}
 type=Creature
-subtype=Levelup Merfolk Soldier
+subtype=Level Merfolk Soldier
 power=2
 toughness=2
 [/card]
@@ -15804,14 +15804,14 @@ type=Enchantment
 [/card]
 [card]
 name=Enclave Cryptologist
-auto={1}{U}:counter(0/0,1,Level Up) asSorcery
-auto=this(counter{0/0.1.Level Up}=1) {T}:token(-194903111)
-auto=this(counter{0/0.1.Level Up}=2) {T}:token(-194903111)
-auto=this(counter{0/0.1.Level Up}>2) {T}:draw:1 controller
+auto={1}{U}:counter(0/0,1,Level) asSorcery
+auto=this(counter{0/0.1.Level}=1) {T}:token(-194903111)
+auto=this(counter{0/0.1.Level}=2) {T}:token(-194903111)
+auto=this(counter{0/0.1.Level}>2) {T}:draw:1 controller
 text=Level up {1}{U} -- [Level 1-2] {T}:Draw a card, then discard a card. -- [Level 3+] Draw a card.
 mana={U}
 type=Creature
-subtype=Melfolk Wizard
+subtype=Level Melfolk Wizard
 power=0
 toughness=1
 [/card]
@@ -22512,16 +22512,16 @@ type=Instant
 [/card]
 [card]
 name=Guul Draz Assassin
-auto={1}{B}:counter(0/0,1,Level Up) asSorcery
-auto=this(counter{0/0.2.Level Up}=) {B}{T}:-2/-2 target(creature)
-auto=this(counter{0/0.2.Level Up}) 1/1
-auto=this(counter{0/0.3.Level Up}=) {B}{T}:-2/-2 target(creature)
-auto=this(counter{0/0.4.Level Up}) {B}{T}:-4/-4 target(creature)
-auto=this(counter{0/0.4.Level Up}) 2/2
+auto={1}{B}:counter(0/0,1,Level) asSorcery
+auto=this(counter{0/0.2.Level}=) {B}{T}:-2/-2 target(creature)
+auto=this(counter{0/0.2.Level}) 1/1
+auto=this(counter{0/0.3.Level}=) {B}{T}:-2/-2 target(creature)
+auto=this(counter{0/0.4.Level}) {B}{T}:-4/-4 target(creature)
+auto=this(counter{0/0.4.Level}) 2/2
 text=Level up {1}{B}  ({1}{B}: Put a Level counter on this. Level up only as a sorcery.) -- [Level 2-3] {B}, {T}: Target creature gets -2/-2 until end of turn. (2/2) -- [Level 4+] {B}, {T}: Target creature gets -4/-4 until end of turn. (4/4)
 mana={B}
 type=Creature
-subtype=Levelup Vampire Assassin
+subtype=Level Vampire Assassin
 power=1
 toughness=1
 [/card]
@@ -22570,15 +22570,15 @@ toughness=1
 [/card]
 [card]
 name=Hada Spy Patrol
-auto={2}{U}:counter(0/0,1,Level Up) asSorcery
-auto=this(counter{0/0.1.Level Up}) unblockable
-auto=this(counter{0/0.1.Level Up}) 1/1
-auto=this(counter{0/0.3.Level Up}) shroud
-auto=this(counter{0/0.3.Level Up}) 1/1
+auto={2}{U}:counter(0/0,1,Level) asSorcery
+auto=this(counter{0/0.1.Level}) unblockable
+auto=this(counter{0/0.1.Level}) 1/1
+auto=this(counter{0/0.3.Level}) shroud
+auto=this(counter{0/0.3.Level}) 1/1
 text=Level up {2}{U} -- [Level 1-2]: Hada Spy Patrol is unblockable. (2/2) -- [Level 3+]: Hada Spy Patrol is unblockable, Shroud (3/3)
 mana={1}{U}
 type=Creature
-subtype=Levelup Human Rogue
+subtype=Level Human Rogue
 power=1
 toughness=1
 [/card]
@@ -22650,14 +22650,14 @@ toughness=3
 [/card]
 [card]
 name=Halimar Wavewatch
-auto={2}:counter(0/0,1,Level Up) asSorcery
-auto=this(counter{0/0.1.Level Up}) 0/3
-auto=this(counter{0/0.5.Level Up}) islandwalk
-auto=this(counter{0/0.5.Level Up}) 6/0
+auto={2}:counter(0/0,1,Level) asSorcery
+auto=this(counter{0/0.1.Level}) 0/3
+auto=this(counter{0/0.5.Level}) islandwalk
+auto=this(counter{0/0.5.Level}) 6/0
 text=Level up {2} -- [Level 1-4]: (0/6) -- [Level 5+]: Islandwalk (6/6)
 mana={1}{U}
 type=Creature
-subtype=Levelup Merfolk Soldier
+subtype=Level Merfolk Soldier
 power=0
 toughness=3
 [/card]
@@ -24919,14 +24919,14 @@ toughness=3
 [/card]
 [card]
 name=Ikiral Outrider
-auto={4}:counter(0/0,1,Level Up) asSorcery 
-auto=this(counter{0/0.1.Level Up}) vigilance
-auto=this(counter{0/0.1.Level Up}) 1/4
-auto=this(counter{0/0.4.Level Up}) 1/4
+auto={4}:counter(0/0,1,Level) asSorcery 
+auto=this(counter{0/0.1.Level}) vigilance
+auto=this(counter{0/0.1.Level}) 1/4
+auto=this(counter{0/0.4.Level}) 1/4
 text=Level up {4} -- [Level 1-3] Vigilance (2/6) -- [Level 4+] Vigilance (3/10)
 mana={1}{W}
 type=Creature
-subtype=Levelup Human Soldier
+subtype=Level Human Soldier
 power=1
 toughness=2
 [/card]
@@ -26385,15 +26385,15 @@ toughness=4
 [/card]
 [card]
 name=Joraga Treespeaker
-auto={1}{G}:counter(0/0,1,Level Up) asSorcery
-auto=this(counter{0/0.1.Level Up}) {T}:Add{G}{G}
-auto=this(counter{0/0.1.Level Up}) 0/1
-auto=this(counter{0/0.5.Level Up}) lord(other elf|myBattlefield) {T}:Add{G}{G}
-auto=this(counter{0/0.5.Level Up}) 0/2
+auto={1}{G}:counter(0/0,1,Level) asSorcery
+auto=this(counter{0/0.1.Level}) {T}:Add{G}{G}
+auto=this(counter{0/0.1.Level}) 0/1
+auto=this(counter{0/0.5.Level}) lord(other elf|myBattlefield) {T}:Add{G}{G}
+auto=this(counter{0/0.5.Level}) 0/2
 text=Level up {1}{G}  ({1}{G}: Put a Level counter on this. Level up only as a sorcery.) -- [Level 1-4] {T}: Add {G}{G} to your mana pool. (1/2) -- [Level 5+] Elves you control have "{T}: Add {G}{G} to your mana pool." (1/4)
 mana={G}
 type=Creature
-subtype=Levelup Elf Druid
+subtype=Level Elf Druid
 power=1
 toughness=1
 [/card]
@@ -26739,15 +26739,15 @@ type=Land
 [/card]
 [card]
 name=Kabira Vindicator
-auto={2}{W}:counter(0/0,1,Level Up) asSorcery 
-auto=this(counter{0/0.2.Level Up}) lord(creature|myBattlefield) 1/1 other
-auto=this(counter{0/0.2.Level Up}) 1/2
-auto=this(counter{0/0.5.Level Up}) lord(creature|myBattlefield) 1/1 other
-auto=this(counter{0/0.5.Level Up}) 1/2
+auto={2}{W}:counter(0/0,1,Level) asSorcery 
+auto=this(counter{0/0.2.Level}) lord(creature|myBattlefield) 1/1 other
+auto=this(counter{0/0.2.Level}) 1/2
+auto=this(counter{0/0.5.Level}) lord(creature|myBattlefield) 1/1 other
+auto=this(counter{0/0.5.Level}) 1/2
 text=Level up {2}{W} -- [Level 2-4] Other creatures you control get +1/+1. (3/6) -- [Level 5+] Other creatures you control get +1/+1. (4/8)
 mana={3}{W}
 type=Creature
-subtype=Levelup Human Knight
+subtype=Level Human Knight
 power=2
 toughness=4
 [/card]
@@ -27005,13 +27005,13 @@ type=Legendary Land
 [/card]
 [card]
 name=Kargan Dragonlord
-auto={R}:counter(0/0,1,Level Up) asSorcery
-auto=this(counter{0/0.4.Level Up}) 2/2
-auto=this(counter{0/0.4.Level Up}) flying
-auto=this(counter{0/0.8.Level Up}) 4/4
-auto=this(counter{0/0.8.Level Up}) flying
-auto=this(counter{0/0.8.Level Up}) trample
-auto=this(counter{0/0.8.Level Up}) {R}:1/0
+auto={R}:counter(0/0,1,Level) asSorcery
+auto=this(counter{0/0.4.Level}) 2/2
+auto=this(counter{0/0.4.Level}) flying
+auto=this(counter{0/0.8.Level}) 4/4
+auto=this(counter{0/0.8.Level}) flying
+auto=this(counter{0/0.8.Level}) trample
+auto=this(counter{0/0.8.Level}) {R}:1/0
 text=Level up {R} -- [Level 4-7] Flying (4/4) -- [Level 8+] Flying, trample  {R}: Kargan Dragonlord gets +1/+0 until end of turn. (8/8)
 mana={R}{R}
 type=Creature
@@ -27321,16 +27321,16 @@ type=Land
 [/card]
 [card]
 name=Kazandu Tuskcaller
-auto={1}{G}:counter(0/0,1,Level Up) asSorcery
-auto=this(counter{0/0.2.Level Up}=) {T}:token(Elephant,Creature Elephant,3/3,green)
-auto=this(counter{0/0.3.Level Up}=) {T}:token(Elephant,Creature Elephant,3/3,green)
-auto=this(counter{0/0.4.Level Up}=) {T}:token(Elephant,Creature Elephant,3/3,green)
-auto=this(counter{0/0.5.Level Up}=) {T}:token(Elephant,Creature Elephant,3/3,green)
-auto=this(counter{0/0.6.Level Up}) {T}:token(Elephant,Creature Elephant,3/3,green)*2
+auto={1}{G}:counter(0/0,1,Level) asSorcery
+auto=this(counter{0/0.2.Level}=) {T}:token(Elephant,Creature Elephant,3/3,green)
+auto=this(counter{0/0.3.Level}=) {T}:token(Elephant,Creature Elephant,3/3,green)
+auto=this(counter{0/0.4.Level}=) {T}:token(Elephant,Creature Elephant,3/3,green)
+auto=this(counter{0/0.5.Level}=) {T}:token(Elephant,Creature Elephant,3/3,green)
+auto=this(counter{0/0.6.Level}) {T}:token(Elephant,Creature Elephant,3/3,green)*2
 text=Level up {1}{G} -- [Level 2-5] {T}: Put a 3/3 green Elephant creature token onto the battlefield. (1/1) -- [Level 6+] {T}: Put two 3/3 green Elephant creature tokens onto the battlefield. (1/1)
 mana={1}{G}
 type=Creature
-subtype=Levelup Human Shaman
+subtype=Level Human Shaman
 power=1
 toughness=1
 [/card]
@@ -28133,15 +28133,15 @@ toughness=2
 [/card]
 [card]
 name=Knight of Cliffhaven
-auto={3}:counter(0/0,1,Level Up) asSorcery
-auto=this(counter{0/0,1,Level Up}) flying 
-auto=this(counter{0/0,1,Level Up}) 0/1
-auto=this(counter{0/0,4,Level Up}) vigilance
-auto=this(counter{0/0,4,Level Up}) 2/1
+auto={3}:counter(0/0,1,Level) asSorcery
+auto=this(counter{0/0,1,Level}) flying 
+auto=this(counter{0/0,1,Level}) 0/1
+auto=this(counter{0/0,4,Level}) vigilance
+auto=this(counter{0/0,4,Level}) 2/1
 text=Level up 3 -- [Level 1-3] Flying (2/3) -- [Level 4+] Flying, vigilance (4/4)
 mana={1}{W}
 type=Creature
-subtype=Levelup Kor Knight
+subtype=Level Kor Knight
 power=2
 toughness=2
 [/card]
@@ -30317,13 +30317,13 @@ toughness=*
 [/card]
 [card]
 name=Lord of Shatterskull Pass
-auto={1}{R}:counter(0/0,1,Level Up) asSorcery
-auto=this(counter{0/0,1,Level Up}) 3/3
-auto=@each my blockers:aslongas(lord of shatterskull pass[attacking;counter{0/0.6.Level Up}]|myBattlefield) damage:6 all(creature|opponentBattlefield)
+auto={1}{R}:counter(0/0,1,Level) asSorcery
+auto=this(counter{0/0,1,Level}) 3/3
+auto=@each my blockers:aslongas(lord of shatterskull pass[attacking;counter{0/0.6.Level}]|myBattlefield) damage:6 all(creature|opponentBattlefield)
 text=Level up {1}{R} -- [Level 1-5] (6/6) -- [Level 6+] Whenever Lord of Shatterskull Pass attacks, it deals 6 damage to each creature defending player controls. (6/6)
 mana={3}{R}
 type=Creature
-subtype=Levelup Minotaur Shaman
+subtype=Level Minotaur Shaman
 power=3
 toughness=3
 [/card]
@@ -35355,15 +35355,15 @@ toughness=1
 [/card]
 [card]
 name=Nirkana Cutthroat
-auto={2}{B}:counter(0/0,1,Level Up) asSorcery
-auto=this(counter{0/0.1.Level Up}) 1/1
-auto=this(counter{0/0.1.Level Up}) deathtouch
-auto=this(counter{0/0.3.Level Up}) first strike
-auto=this(counter{0/0.3.Level Up}) 1/1
+auto={2}{B}:counter(0/0,1,Level) asSorcery
+auto=this(counter{0/0.1.Level}) 1/1
+auto=this(counter{0/0.1.Level}) deathtouch
+auto=this(counter{0/0.3.Level}) first strike
+auto=this(counter{0/0.3.Level}) 1/1
 text=Level up {2}{B}  ({2}{B}: Put a Level counter on this. Level up only as a sorcery.) -- [Level 1-2]: Deathtouch (4/3) -- [Level 3+]: First strike, deathtouch (5/4)
 mana={2}{B}
 type=Creature
-subtype=Levelup Vampire Warrior
+subtype=Level Vampire Warrior
 power=3
 toughness=2
 [/card]
@@ -35637,14 +35637,14 @@ type=Artifact
 [/card]
 [card]
 name=Null Champion
-auto={3}:counter(0/0,1,Level Up) asSorcery
-auto=this(counter{0/0.1.Level Up}) 3/1
-auto=this(counter{0/0.4.Level Up}) {B}:regenerate
-auto=this(counter{0/0.4.Level Up}) 3/1
+auto={3}:counter(0/0,1,Level) asSorcery
+auto=this(counter{0/0.1.Level}) 3/1
+auto=this(counter{0/0.4.Level}) {B}:regenerate
+auto=this(counter{0/0.4.Level}) 3/1
 text=Level up {3}  ({3}: Put a Level counter on this. Level up only as a sorcery.) -- [Level 1-3]: (4/2) -- [Level 4+]: {B}: Regnerate Null Champion (7/3)
 mana={1}{B}
 type=Creature
-subtype=Levelup Zombie Warrior
+subtype=Level Zombie Warrior
 power=1
 toughness=1
 [/card]
@@ -47451,14 +47451,14 @@ toughness=*
 [/card]
 [card]
 name=Skywatcher Adept
-auto={3}:counter(0/0,1,Level Up) asSorcery
-auto=this(counter{0/0.1.Level Up}) flying
-auto=this(counter{0/0.1.Level Up}) 1/1
-auto=this(counter{0/0.3.Level Up}) 2/0
+auto={3}:counter(0/0,1,Level) asSorcery
+auto=this(counter{0/0.1.Level}) flying
+auto=this(counter{0/0.1.Level}) 1/1
+auto=this(counter{0/0.3.Level}) 2/0
 text=Level up {3} -- [Level 1-2] : Flying (2/2) -- [Level 3+] : Flying (4/2)
 mana={U}
 type=Creature
-subtype=Levelup Merfolk Soldier
+subtype=Level Merfolk Soldier
 power=1
 toughness=1
 [/card]
@@ -51108,15 +51108,15 @@ toughness=3
 [/card]
 [card]
 name=Student of Warfare
-auto={W}:counter(0/0,1,Level Up) asSorcery
-auto=this(counter{0/0,2,Level Up}) first strike 
-auto=this(counter{0/0,2,Level Up}) 2/2
-auto=this(counter{0/0,7,Level Up}) double strike
-auto=this(counter{0/0,7,Level Up}) 1/1
+auto={W}:counter(0/0,1,Level) asSorcery
+auto=this(counter{0/0,2,Level}) first strike 
+auto=this(counter{0/0,2,Level}) 2/2
+auto=this(counter{0/0,7,Level}) double strike
+auto=this(counter{0/0,7,Level}) 1/1
 text=Level up {W} -- [Level 2-6] First strike (3/3) -- [Level 7+] Double strike (4/4)
 mana={W}
 type=Creature
-subtype=Levelup Human Knight
+subtype=Level Human Knight
 power=1
 toughness=1
 [/card]
@@ -54197,7 +54197,7 @@ type=Sorcery
 [/card]
 [card]
 name=Time of Heroes
-auto=lord(creature[counter{0/0.1.Level Up}]|myBattlefield) 2/2
+auto=lord(creature[counter{0/0.1.Level}]|myBattlefield) 2/2
 text=Each creature you control with a level counter on it gets +2/+2.
 mana={1}{W}
 type=Enchantment
@@ -54972,15 +54972,15 @@ type=Sorcery
 [/card]
 [card]
 name=Transcendent Master
-auto={1}:counter(0/0,1,Level Up) asSorcery
-auto=this(counter{0/0,6,Level Up}) lifelink 
-auto=this(counter{0/0,6,Level Up}) 3/3
-auto=this(counter{0/0,12,Level Up}) indestructible
-auto=this(counter{0/0,12,Level Up}) 3/3
+auto={1}:counter(0/0,1,Level) asSorcery
+auto=this(counter{0/0,6,Level}) lifelink 
+auto=this(counter{0/0,6,Level}) 3/3
+auto=this(counter{0/0,12,Level}) indestructible
+auto=this(counter{0/0,12,Level}) 3/3
 text=Level up {1} -- [Level 6-11] Lifelink (6/6) -- [Level 12+] Lifelink  Transcendent Master is indestructible. (9/9)
 mana={1}{W}{W}
 type=Creature
-subtype=Levelup Human Cleric Avatar
+subtype=Level Human Cleric Avatar
 power=3
 toughness=3
 [/card]
@@ -56903,7 +56903,7 @@ toughness=2
 [/card]
 [card]
 name=Venerated Teacher
-auto=counter(0/0,2,Level Up) all(creature[levelup]|myBattlefield) 
+auto=counter(0/0,2,Level) all(creature[level]|myBattlefield) 
 text=When Venerated Teacher enters the battlefield, put two level counters on each creature you control with level up.
 mana={2}{U}
 type=Creature
@@ -61526,14 +61526,14 @@ toughness=3
 [/card]
 [card]
 name=Zulaport Enforcer
-auto={4}:counter(0/0,1,Level Up) asSorcery
-auto=this(counter{0/0.1.Level Up}) 2/2
-auto=this(counter{0/0.3.Level Up}) cantbeblockedby(creature[-black])
-auto=this(counter{0/0.3.Level Up}) 2/2
+auto={4}:counter(0/0,1,Level) asSorcery
+auto=this(counter{0/0.1.Level}) 2/2
+auto=this(counter{0/0.3.Level}) cantbeblockedby(creature[-black])
+auto=this(counter{0/0.3.Level}) 2/2
 text=Level up {4}  ({4}: Put a Level counter on this. Level up only as a sorcery.) -- [Level 1-2]: (3/3) -- [Level 3+]: Zulaport Enforcer can't be blocked except by black creatures. (5/5)
 mana={B}
 type=Creature
-subtype=Levelup Human Warrior
+subtype=Level Human Warrior
 power=1
 toughness=1
 [/card]
