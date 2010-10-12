@@ -30721,7 +30721,7 @@ subtype=Aura
 [card]
 name=Lux Cannon
 auto={T}:counter(0/0,1,Charge)
-auto={T}{C(0/0,-3)}:destroy target(*)
+auto={T}{C(0/0,-3,Charge)}:destroy target(*)
 text={T}: Put a charge counter on Lux Cannon. -- {T}, Remove three charge counters from Lux Cannon: Destroy target permanent.
 mana={4}
 type=Artifact
