@@ -59,7 +59,7 @@ void DuelLayers::init(){
 void DuelLayers::CheckUserInput(int isAI){
   JButton key;
   int x, y;
-  while ((key = JGE::GetInstance()->ReadButton()) || JGE::GetInstance()->GetLeftClickCoordinates(x, y))
+  while ((key = JGE::GetInstance()->ReadButton()))
   {
     if ((!isAI) && (0 != key))
     {
@@ -70,13 +70,12 @@ void DuelLayers::CheckUserInput(int isAI){
       if (hand->CheckUserInput(key)) break;
       if (cs->CheckUserInput(key)) break;
     }
-    else if((!isAI) && (x != -1 && y != -1))
+  }
+  if(JGE::GetInstance()->GetLeftClickCoordinates(x, y))
+  {
+    if (cs->CheckUserInput(x, y))
     {
-      if (cs->CheckUserInput(x, y))
-      {
-        JGE::GetInstance()->LeftClickedProcessed();
-        break;
-      }
+      JGE::GetInstance()->LeftClickedProcessed();
     }
   }
 }
