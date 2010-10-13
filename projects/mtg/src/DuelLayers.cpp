@@ -73,7 +73,11 @@ void DuelLayers::CheckUserInput(int isAI){
   }
   if(JGE::GetInstance()->GetLeftClickCoordinates(x, y))
   {
-    if (cs->CheckUserInput(x, y))
+    if (avatars->CheckUserInput(x, y))
+    {
+      JGE::GetInstance()->LeftClickedProcessed();
+    }
+    else if (cs->CheckUserInput(x, y))
     {
       JGE::GetInstance()->LeftClickedProcessed();
     }

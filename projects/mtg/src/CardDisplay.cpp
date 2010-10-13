@@ -77,68 +77,121 @@ void CardDisplay::Update(float dt){
   if (update) init(zone);
 }
 
-bool CardDisplay::CheckUserInput(JButton key){
-  if (JGE_BTN_SEC == key || JGE_BTN_PRI == key)
+bool CardDisplay::CheckUserInput(int x, int y) {
+  unsigned int distance2;
+  unsigned int minDistance2 = -1;
+  int n = mCurr;
+  JButton key;
+  if(JGE::GetInstance()->GetLeftClickCoordinates(x, y))
+  {
+    for(int i = 0; i < mCount; i++)
     {
-      if (listener){
-	      listener->ButtonPressed(mId, 0);
-	      return true;
+      int top, left;
+      if(mObjects[i]->getTopLeft(top, left))
+      {
+        distance2 = (top-y)*(top-y) + (left-x)*(left-x);
+        if(distance2 < minDistance2)
+        {
+          minDistance2 = distance2;
+          n = i;
+        }
       }
     }
+
+    if(n < mCurr)
+      key = JGE_BTN_LEFT;
+    else
+      key = JGE_BTN_RIGHT;
+
+    if (n<start_item) {
+      rotateLeft();
+    } else if (n>= mCount) {
+      n = mCount-1;
+    }
+    if (n>= start_item + nb_displayed_items) {
+      rotateRight();
+    }
+
+    if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(key))
+    {
+      mCurr = n;
+      mObjects[mCurr]->Entering();
+    }
+    JGE::GetInstance()->LeftClickedProcessed();
+    return true;
+  }
+
+  return false;
+}
+
+
+bool CardDisplay::CheckUserInput(JButton key){
+  if (JGE_BTN_SEC == key || JGE_BTN_PRI == key)
+  {
+    if (listener){
+      listener->ButtonPressed(mId, 0);
+      return true;
+    }
+  }
 
   if (!mCount)
     return false;
 
   if (mActionButton == key)
-    {
-      if (mObjects[mCurr] && mObjects[mCurr]->ButtonPressed()){
-	CardGui * cardg = (CardGui *)mObjects[mCurr];
-	if (tc)
-	  {
-	    tc->toggleTarget(cardg->card);
-	    return true;
-	  }else{
-	  if (game) game->ButtonPressed(cardg);
-	  return true;
-	}
+  {
+    if (mObjects[mCurr] && mObjects[mCurr]->ButtonPressed()){
+      CardGui * cardg = (CardGui *)mObjects[mCurr];
+      if (tc) {
+        tc->toggleTarget(cardg->card);
+        return true;
+      } else {
+        if (game) game->ButtonPressed(cardg);
+        return true;
       }
-      return true;
     }
+    return true;
+  }
 
 
   switch(key)
-    {
-    case JGE_BTN_LEFT :
-      {
-	int n = mCurr;
-	n--;
-	if (n<start_item){
-	  if (n< 0){n = 0;}
-	  else{ rotateLeft();}
-	}
-	if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(JGE_BTN_LEFT)){
-	  mCurr = n;
-	  mObjects[mCurr]->Entering();
-	}
-	return true;
+  {
+  case JGE_BTN_LEFT :
+  {
+    int n = mCurr;
+    n--;
+    if (n<start_item) {
+      if (n< 0) {
+        n = 0;
+      } else {
+        rotateLeft();
       }
-    case JGE_BTN_RIGHT :
-      {
-	int n = mCurr;
-	n++;
-	if (n>= mCount){n = mCount-1;}
-	if (n>= start_item + nb_displayed_items){
-	  rotateRight();
-	}
-	if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(JGE_BTN_RIGHT)){
-	  mCurr = n;
-	  mObjects[mCurr]->Entering();
-	}
-      }
-      return true;
-    default:
-      ;
     }
+    if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(JGE_BTN_LEFT)){
+      mCurr = n;
+      mObjects[mCurr]->Entering();
+    }
+    return true;
+  }
+  case JGE_BTN_RIGHT :
+  {
+    int n = mCurr;
+    n++;
+    if (n>= mCount) {
+      n = mCount-1;
+    }
+    if (n>= start_item + nb_displayed_items) {
+      rotateRight();
+    }
+    if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(JGE_BTN_RIGHT)){
+      mCurr = n;
+      mObjects[mCurr]->Entering();
+    }
+  }
+  return true;
+  default:
+    ;
+  }
+
   return false;
 }
 

@@ -180,6 +180,11 @@ bool GuiGameZone::CheckUserInput(JButton key){
   return false;
 }
 
+bool GuiGameZone::CheckUserInput(int x, int y){
+  if (showCards) return cd->CheckUserInput(x, y);
+  return false;
+}
+
 void GuiGameZone::Update(float dt){
   if (showCards) cd->Update(dt);
   PlayGuiObject::Update(dt);

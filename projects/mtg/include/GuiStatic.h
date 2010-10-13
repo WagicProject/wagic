@@ -44,6 +44,7 @@ struct GuiGameZone : public GuiStatic{
   int showCards;
   virtual void Render();
   virtual bool CheckUserInput(JButton key);
+  virtual bool CheckUserInput(int x, int y);
   virtual void Update(float dt);
   GuiGameZone(float x, float y, bool hasFocus, MTGGameZone * zone, GuiAvatars* parent);
   ~GuiGameZone();

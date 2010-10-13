@@ -21,6 +21,7 @@ class CardDisplay:public PlayGuiObjectController{
   void rotateLeft();
   void rotateRight();
   bool CheckUserInput(JButton key);
+  bool CheckUserInput(int x, int y);
   virtual void Update(float dt);
   void Render();
   void init(MTGGameZone * zone);
