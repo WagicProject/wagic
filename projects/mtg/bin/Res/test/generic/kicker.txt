@@ -17,7 +17,7 @@ grizzly bears
 [ASSERT]
 FIRSTMAIN
 [PLAYER1]
-graveyard:shock,grizzly bears,Vines of Vastwood
-inplay:mountain
+graveyard:shock,Vines of Vastwood
+inplay:mountain,grizzly bears
 [PLAYER2]
 [END]
