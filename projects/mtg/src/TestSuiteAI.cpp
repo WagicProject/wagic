@@ -11,11 +11,15 @@
 #include <string>
 using std::string;
 
-
-TestSuiteAI::TestSuiteAI(TestSuite * _suite, int playerId):AIPlayerBaka(_suite->buildDeck(playerId),"testsuite", "testsuite","baka.jpg"){
+// NULL is sent in place of a MTGDeck since there is no way to create a MTGDeck without a proper deck file.
+// TestSuiteAI will be responsible for managing its own deck state.
+TestSuiteAI::TestSuiteAI(TestSuite * _suite, int playerId):AIPlayerBaka(NULL, "testsuite", "testsuite", "baka.jpg") {
+  this->game = _suite->buildDeck(playerId);
+  game->setOwner( this );
   suite = _suite;
   timer = 0;
   playMode = MODE_TEST_SUITE;
+  this->deckName = "Test Suite AI";
 }
 
 

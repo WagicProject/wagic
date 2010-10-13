@@ -60,7 +60,8 @@ class GameStateDuel: public GameState, public JGuiListener
     MENUITEM_RANDOM_PLAYER = -11,
     MENUITEM_RANDOM_AI = -12,
     MENUITEM_MAIN_MENU = -13,
-    MENUITEM_EVIL_TWIN = -14
+    MENUITEM_EVIL_TWIN = -14,
+    MENUITEM_MULLIGAN  = -15
   };
 
 };

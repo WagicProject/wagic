@@ -146,11 +146,12 @@ void GameStateDuel::loadPlayer(int playerId, int decknb, int isAI){
       char deckFileSmall[255];
       sprintf(deckFileSmall, "player_deck%i",decknb);
       MTGDeck * tempDeck = NEW MTGDeck(deckFile, mParent->collection);
-      deck[playerId] = NEW MTGPlayerCards(tempDeck);
+      mPlayers[playerId] = NEW HumanPlayer(tempDeck, deckFile, deckFileSmall);
+
+      deck[playerId] = mPlayers[playerId]->game;
       delete tempDeck;
-      mPlayers[playerId] = NEW HumanPlayer(deck[playerId],deckFile, deckFileSmall);
     } 
-    else { //AI Player, chose deck
+    else { //AI Player, chooses deck
           AIPlayerFactory playerCreator;
           Player * opponent = NULL;
           if (playerId == 1) opponent = mPlayers[0];
@@ -371,7 +372,7 @@ void GameStateDuel::Update(float dt)
       }
       if (mEngine->GetButtonClick(JGE_BTN_MENU)) {
         if (!menu) {
-          menu = NEW SimpleMenu(DUEL_MENU_GAME_MENU, this, Constants::MENU_FONT, SCREEN_WIDTH/2-100, 25);
+          menu = NEW SimpleMenu(DUEL_MENU_GAME_MENU, this, Constants::MENU_FONT, SCREEN_WIDTH/2-100, 25, game->players[1]->deckName.c_str());
           int cardsinhand = game->players[0]->game->hand->nb_cards;
     		  
           //almosthumane - mulligan
@@ -382,11 +383,11 @@ void GameStateDuel::Update(float dt)
 	          && game->players[0]->game->exile->nb_cards == 0) //1st Play Check 
 	          //IF there was no play at the moment automatically mulligan
           {
-            menu->Add(14,"Mulligan");
+            menu->Add( MENUITEM_MULLIGAN, "Mulligan");
           }
           //END almosthumane - mulligan
-          menu->Add(12, "Back to main menu");
-          menu->Add(13, "Cancel");
+          menu->Add(MENUITEM_MAIN_MENU, "Back to main menu");
+          menu->Add(MENUITEM_CANCEL, "Cancel");
         }
         mGamePhase = DUEL_STATE_MENU;
       }
@@ -577,15 +578,15 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId) {
       switch (controlId)
         {
 
-          case 12:
+          case MENUITEM_MAIN_MENU:
 	          menu->Close();
 	          mGamePhase = DUEL_STATE_BACK_TO_MAIN_MENU;
             break;
-          case 13:
+          case MENUITEM_CANCEL:
 	          menu->Close();
             mGamePhase = DUEL_STATE_CANCEL;
             break;
-          case 14:
+          case MENUITEM_MULLIGAN:
           //almosthumane - mulligan
           {
 

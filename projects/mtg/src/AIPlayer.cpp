@@ -30,7 +30,7 @@ int AIAction::Act(){
   return 0;
 }
 
-AIPlayer::AIPlayer(MTGPlayerCards * deck, string file, string fileSmall) : Player(deck, file, fileSmall) {
+AIPlayer::AIPlayer(MTGDeck * deck, string file, string fileSmall) : Player(deck, file, fileSmall) {
   nextCardToPlay = NULL;
   stats = NULL;
   agressivity = 50;
@@ -605,10 +605,11 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, Player * op
   }
   
   MTGDeck * tempDeck = NEW MTGDeck(deckFile, collection);
-  MTGPlayerCards * deck = NEW MTGPlayerCards(tempDeck);
+  //MTGPlayerCards * deck = NEW MTGPlayerCards(tempDeck);
+  AIPlayerBaka * baka = NEW AIPlayerBaka(tempDeck,deckFile, deckFileSmall, avatarFile);
+  baka->deckId = deckid; 
+
   delete tempDeck;
-  AIPlayerBaka * baka = NEW AIPlayerBaka(deck,deckFile, deckFileSmall, avatarFile);
-  baka->deckId = deckid;
   return baka;
 }
 
@@ -664,7 +665,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
   return nextCardToPlay;
 }
 
-AIPlayerBaka::AIPlayerBaka(MTGPlayerCards * deck, string file, string fileSmall, string avatarFile) : AIPlayer(deck, file, fileSmall) {
+AIPlayerBaka::AIPlayerBaka(MTGDeck * deck, string file, string fileSmall, string avatarFile) : AIPlayer(deck, file, fileSmall) {
   mAvatarTex = resources.RetrieveTexture(avatarFile,RETRIEVE_LOCK,TEXTURE_SUB_AVATAR);
   
   if(!mAvatarTex){
@@ -679,6 +680,7 @@ AIPlayerBaka::AIPlayerBaka(MTGPlayerCards * deck, string file, string fileSmall,
 
   initTimer();
 }
+
 
 void AIPlayerBaka::initTimer(){
   timer = 0.1f;

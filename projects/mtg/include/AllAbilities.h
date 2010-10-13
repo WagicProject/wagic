@@ -374,6 +374,8 @@ public:
   int resolve(){
     vector<int>::size_type sz = abilities.size();
     for (unsigned int i = 0; i < sz; i++){
+      if (abilities[i] == NULL) 
+        continue;
       Targetable * backup =  abilities[i]->target;
       if (target && target!= source && abilities[i]->target == abilities[i]->source) abilities[i]->target = target;
       abilities[i]->resolve();

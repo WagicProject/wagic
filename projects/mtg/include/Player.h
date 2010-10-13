@@ -6,6 +6,7 @@
 #include "Damage.h"
 #include "Targetable.h"
 
+class MTGDeck;
 class MTGPlayerCards;
 class MTGInPlay;
 class ManaPool;
@@ -45,7 +46,7 @@ class Player: public Damageable{
   int poisoned();
   int damaged();
   int prevented();
-  Player(MTGPlayerCards * deck, string deckFile, string deckFileSmall);
+  Player(MTGDeck * deck, string deckFile, string deckFileSmall);
   virtual ~Player();
   void unTapPhase();
   MTGInPlay * inPlay();
@@ -58,6 +59,7 @@ class Player: public Damageable{
   JQuad * getIcon();
   string deckFile;
   string deckFileSmall;
+  string deckName;
 
   virtual int receiveEvent(WEvent * event){return 0;};
   virtual void Render(){};
@@ -66,7 +68,7 @@ class Player: public Damageable{
 
 class HumanPlayer: public Player{
  public:
-  HumanPlayer(MTGPlayerCards * deck, string deckFile, string deckFileSmall);
+  HumanPlayer(MTGDeck * deck, string deckFile, string deckFileSmall);
   HumanPlayer(string deckFile);
 
 };

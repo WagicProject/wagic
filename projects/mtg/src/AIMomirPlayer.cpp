@@ -8,7 +8,7 @@
 
 MTGAbility * AIMomirPlayer::momirAbility = NULL;
 
-AIMomirPlayer::AIMomirPlayer(MTGPlayerCards * deck, string file, string fileSmall, string avatarFile) : AIPlayerBaka(deck, file, fileSmall, avatarFile) {
+AIMomirPlayer::AIMomirPlayer(MTGDeck * deck, string file, string fileSmall, string avatarFile) : AIPlayerBaka(deck, file, fileSmall, avatarFile) {
   momirAbility = NULL;
   agressivity = 100;
 }

@@ -274,13 +274,13 @@ void StoryDuel::init(){
   sprintf(deckFile, "%s/deck.txt", folder);
   MTGDeck * tempDeck = NEW MTGDeck(deckFile, GameApp::collection);
   sprintf(deckFileSmall, "campaign_%s",  mParent->folder.c_str());
-  players[0] = NEW HumanPlayer(NEW MTGPlayerCards(tempDeck),deckFile,deckFileSmall);
+  players[0] = NEW HumanPlayer(tempDeck, deckFile, deckFileSmall);
   SAFE_DELETE(tempDeck);
 
   sprintf(deckFile,"%s/opponent_deck.txt", folder);
   tempDeck = NEW MTGDeck(deckFile, GameApp::collection);
   sprintf(deckFileSmall, "campaign_ennemy_%s_%s",  mParent->folder.c_str(), pageId.c_str());
-  players[1] = NEW AIPlayerBaka(NEW MTGPlayerCards(tempDeck),deckFile,deckFileSmall,"baka.jpg");
+  players[1] = NEW AIPlayerBaka(tempDeck, deckFile, deckFileSmall, "baka.jpg");
   SAFE_DELETE(tempDeck);
 
   string rulesFile = folder;

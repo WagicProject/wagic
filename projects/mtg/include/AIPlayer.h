@@ -71,7 +71,7 @@ class AIPlayer: public Player{
   void Render();
   AIStats * stats;
   ManaCost * getPotentialMana(MTGCardInstance * card = NULL);
-  AIPlayer(MTGPlayerCards * deck, string deckFile, string deckFileSmall);
+  AIPlayer(MTGDeck * deck, string deckFile, string deckFileSmall);
   virtual ~AIPlayer();
   virtual MTGCardInstance * chooseCard(TargetChooser * tc, MTGCardInstance * source, int random = 0);
   virtual int chooseTarget(TargetChooser * tc = NULL, Player * forceTarget =NULL);
@@ -94,7 +94,7 @@ class AIPlayerBaka: public AIPlayer{
   MTGCardInstance * FindCardToPlay(ManaCost * potentialMana, const char * type);
  public:
   int deckId;
-  AIPlayerBaka(MTGPlayerCards * deck, string deckFile, string deckfileSmall, string avatarFile);
+  AIPlayerBaka(MTGDeck * deck, string deckFile, string deckfileSmall, string avatarFile);
   virtual int Act(float dt);
   void initTimer();
   virtual int computeActions();

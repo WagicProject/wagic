@@ -5,11 +5,11 @@
 #include "../include/ManaCost.h"
 
 
-Player::Player(MTGPlayerCards * deck, string file, string fileSmall) : Damageable(20){
+
+
+Player::Player(MTGDeck * deck, string file, string fileSmall) : Damageable(20){
   deckFile = file;
   deckFileSmall = fileSmall;
-  game = deck;
-  game->setOwner(this);
   manaPool = NEW ManaPool(this);
   canPutLandsIntoPlay = 1;
   nomaxhandsize = 0;
@@ -28,6 +28,12 @@ Player::Player(MTGPlayerCards * deck, string file, string fileSmall) : Damageabl
   mAvatarTex = NULL;
   type_as_damageable = DAMAGEABLE_PLAYER;
   playMode = MODE_HUMAN;
+  if ( deck != NULL ) 
+  {
+    game = NEW MTGPlayerCards( deck );
+    game->setOwner(this);
+    deckName = deck->meta_name;
+  }
 }
 
 /*Method to call at the end of a game, before all objects involved in the game are destroyed */
@@ -37,6 +43,7 @@ void Player::End(){
 
 Player::~Player(){
   SAFE_DELETE(manaPool);
+  SAFE_DELETE(game);
   resources.Release(mAvatarTex);
   mAvatar = NULL;
   mAvatarTex = NULL;
@@ -83,11 +90,11 @@ Player * Player::opponent(){
   return this == game->players[0] ? game->players[1] : game->players[0];
 }
 
-HumanPlayer::HumanPlayer(MTGPlayerCards * deck, string file, string fileSmall) : Player(deck, file, fileSmall) {
+
+HumanPlayer::HumanPlayer(MTGDeck * deck, string file, string fileSmall) : Player(deck, file, fileSmall) {
   loadAvatar("avatar.jpg");
   playMode = MODE_HUMAN;
 }
-
 
 
 ManaPool * Player::getManaPool(){

@@ -164,7 +164,7 @@ void Rules::addExtraRules(){
 Player * Rules::loadPlayerMomir(int isAI){
   string deckFileSmall = "momir";
   char empty[] = "";
-
+ 
   MTGDeck * tempDeck = NEW MTGDeck(GameApp::collection); //Autogenerate a momir deck. Leave the "momir.txt" bits below for stats.
   tempDeck->addRandomCards(12, 0,0,Constants::RARITY_L,"Forest");
   tempDeck->addRandomCards(12, 0,0,Constants::RARITY_L,"Plains");
@@ -172,13 +172,14 @@ Player * Rules::loadPlayerMomir(int isAI){
   tempDeck->addRandomCards(12, 0,0,Constants::RARITY_L,"Mountain");
   tempDeck->addRandomCards(12, 0,0,Constants::RARITY_L,"Island");
 
-  MTGPlayerCards * deck = NEW MTGPlayerCards( tempDeck);
-  delete tempDeck;
+  Player *player = NULL;
   if (!isAI) // Human Player
-    return  NEW HumanPlayer(deck, options.profileFile("momir.txt","",true).c_str(), deckFileSmall);
+    player = NEW HumanPlayer(tempDeck, options.profileFile("momir.txt","",true).c_str(), deckFileSmall);
   else
-    return NEW AIMomirPlayer(deck, options.profileFile("momir.txt","",true).c_str(), deckFileSmall, empty);
+    player = NEW AIMomirPlayer(tempDeck, options.profileFile("momir.txt","",true).c_str(), deckFileSmall, empty);
 
+  delete tempDeck;  
+  return player;
 }
 
 Player * Rules::loadPlayerRandom(int isAI, int mode){
@@ -206,13 +207,13 @@ Player * Rules::loadPlayerRandom(int isAI, int mode){
   string deckFile = "random";
   string deckFileSmall = "random";
 
-  MTGPlayerCards * deck =  NEW MTGPlayerCards(tempDeck);
-  delete tempDeck;
-
+  Player *player = NULL;  
   if (!isAI) // Human Player
-    return NEW HumanPlayer(deck, deckFile, deckFileSmall);
+    player =  NEW HumanPlayer(tempDeck, deckFile, deckFileSmall);
   else
-    return NEW AIPlayerBaka(deck,deckFile, deckFileSmall, "");
+    player = NEW AIPlayerBaka(tempDeck, deckFile, deckFileSmall, "");
+  
+  return player;
 }
 
 
