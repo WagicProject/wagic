@@ -10,6 +10,11 @@
 static const float MARGIN = 70;
 static const float TOP_LINE = 80;
 
+const float kZoom_none = 1.0f;
+const float kZoom_level1 = 1.4f;
+const float kZoom_level2 = 2.2f;
+const float kZoom_level3 = 2.7f;
+
 struct Left : public Exp { static inline bool test(DamagerDamaged* ref, DamagerDamaged* test)
   { return ref->y == test->y && ref->x > test->x && test->show; } };
 struct Right : public Exp { static inline bool test(DamagerDamaged* ref, DamagerDamaged* test)
@@ -72,7 +77,7 @@ void GuiCombat::remaskBlkViews(AttackerDamaged* before, AttackerDamaged* after)
       for (vector<DefenserDamaged*>::iterator q = after->blockers.begin(); q != after->blockers.end(); ++q)
         {
           (*q)->actX = MARGIN; (*q)->y = TOP_LINE;
-          (*q)->zoom = 2.2; (*q)->t = 0;
+          (*q)->zoom = kZoom_level2; (*q)->t = 0;
         }
       repos<DefenserDamaged>(after->blockers.begin(), after->blockers.end(), after->card->has(Constants::TRAMPLE) ? 0 : -1);
       enemy_avatar.actX = MARGIN; enemy_avatar.x = SCREEN_WIDTH - MARGIN;
@@ -166,7 +171,7 @@ bool GuiCombat::CheckUserInput(JButton key)
       else if (ATK == cursor_pos)
         {
           active = activeAtk->blockers.front();
-          active->zoom = 2.7;
+          active->zoom = kZoom_level3;
           cursor_pos = BLK;
         }
       else if (OK == cursor_pos)
@@ -177,7 +182,7 @@ bool GuiCombat::CheckUserInput(JButton key)
     case JGE_BTN_CANCEL:
       if (BLK == cursor_pos)
         {
-          oldActive->zoom = 2.2;
+          oldActive->zoom = kZoom_level2;
           active = activeAtk;
           cursor_pos = ATK;
         }
@@ -195,14 +200,14 @@ bool GuiCombat::CheckUserInput(JButton key)
           {
             DamagerDamaged* old = active;
             active = closest<Left>(attackers, NULL, static_cast<AttackerDamaged*>(active)); activeAtk = static_cast<AttackerDamaged*>(active);
-            if (old != active) { if (old) old->zoom = 1.0; if (active) active->zoom = 1.4; }
+            if (old != active) { if (old) old->zoom = kZoom_none; if (active) active->zoom = kZoom_level1; }
           }
           break;
 	case BLK  :
           {
             DamagerDamaged* old = active;
             active = closest<Left>(activeAtk->blockers, NULL, static_cast<DefenserDamaged*>(active));
-            if (old != active) { if (old) old->zoom = 1.0; if (active) active->zoom = 1.4; }
+            if (old != active) { if (old) old->zoom = kZoom_none; if (active) active->zoom = kZoom_level1; }
           }
       break;
 	}
@@ -216,7 +221,7 @@ bool GuiCombat::CheckUserInput(JButton key)
           {
             DamagerDamaged* old = active;
             active = closest<Right>(activeAtk->blockers, NULL, static_cast<DefenserDamaged*>(active));
-            if (old != active) { if (old) old->zoom = 1.0; if (active) active->zoom = 1.4; }
+            if (old != active) { if (old) old->zoom = kZoom_none; if (active) active->zoom = kZoom_level1; }
           }
           break;
 	case ATK  :
@@ -226,7 +231,7 @@ bool GuiCombat::CheckUserInput(JButton key)
             if (active == oldActive) { active = activeAtk = NULL; cursor_pos = OK; }
             else
               {
-                if (old != active) { if (old) old->zoom = 1.0; if (active) active->zoom = 1.4; }
+                if (old != active) { if (old) old->zoom = kZoom_none; if (active) active->zoom = kZoom_level1; }
                 activeAtk = static_cast<AttackerDamaged*>(active);
               }
           }
@@ -257,11 +262,11 @@ bool GuiCombat::CheckUserInput(JButton key)
     }
   if (oldActive != active)
     {
-      if (oldActive && oldActive != activeAtk) oldActive->zoom = 2.2;
-      if (active) active->zoom = 2.7;
+      if (oldActive && oldActive != activeAtk) oldActive->zoom = kZoom_level2;
+      if (active) active->zoom = kZoom_level3;
       if (ATK == cursor_pos) remaskBlkViews(dynamic_cast<AttackerDamaged*>(oldActive), static_cast<AttackerDamaged*>(active));
     }
-  if (OK == cursor_pos) ok.zoom = 1.5; else ok.zoom = 1.0;
+  if (OK == cursor_pos) ok.zoom = 1.5; else ok.zoom = kZoom_none;
   return true;
 }
 
@@ -350,7 +355,7 @@ int GuiCombat::receiveEventPlus(WEvent* e)
         if ((*it)->card == event->after)
           {
             DefenserDamaged* t = NEW DefenserDamaged(event->card, *(event->card->view), true, NULL);
-            t->y = t->actY = TOP_LINE; t->actT = t->t = 0; t->actZ = t->zoom = 2.2;
+            t->y = t->actY = TOP_LINE; t->actT = t->t = 0; t->actZ = t->zoom = kZoom_level2;
             (*it)->blockers.push_back(t);
             return 1;
           }
@@ -452,13 +457,13 @@ int GuiCombat::receiveEventMinus(WEvent* e)
             if ((*it)->show)
               {
                 (*it)->y = 210;
-                (*it)->zoom = 2.2; (*it)->t = 0;
+                (*it)->zoom = kZoom_level2; (*it)->t = 0;
                 if (!active) active = *it;
               }
           repos<AttackerDamaged>(attackers.begin(), attackers.end(), 0);
           if (active)
             {
-              active->zoom = 2.7;
+              active->zoom = kZoom_level3;
               activeAtk = static_cast<AttackerDamaged*>(active);
               remaskBlkViews(NULL, static_cast<AttackerDamaged*>(active));
               cursor_pos = ATK;
@@ -500,7 +505,7 @@ int GuiCombat::receiveEventMinus(WEvent* e)
         for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it) if ((*it)->show) { active = *it; break; }
         if (active)
           {
-            active->zoom = 2.7;
+            active->zoom = kZoom_level3;
             activeAtk = static_cast<AttackerDamaged*>(active);
             remaskBlkViews(NULL, static_cast<AttackerDamaged*>(active));
             cursor_pos = ATK;

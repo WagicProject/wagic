@@ -301,12 +301,12 @@ void SimplePad::Render(){
   //This could use some cleaning up to make margins more explicit
   WFont * mFont = resources.GetWFont("f3");
 
-  int offX = 0, offY = 0;   
-  int kH = mFont->GetHeight();
-  int hSpacing = mFont->GetStringWidth("W");
-  int rowLen = mFont->GetStringWidth("JKLMNOPQR") + 14*7; 
-  int vSpacing = 0;
-  int kW = hSpacing;
+  float offX = 0, offY = 0;   
+  float kH = mFont->GetHeight();
+  float hSpacing = mFont->GetStringWidth("W");
+  float rowLen = mFont->GetStringWidth("JKLMNOPQR") + 14*7; 
+  float vSpacing = 0;
+  float kW = hSpacing;
   
   JRenderer * renderer = JRenderer::GetInstance();
 

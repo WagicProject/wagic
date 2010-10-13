@@ -43,7 +43,7 @@ public:
   SimplePad();
   ~SimplePad();
 
-  int mX; int mY; 
+  float mX, mY; 
 
 private:  
   void linkKeys(int from, int to, int dir);
