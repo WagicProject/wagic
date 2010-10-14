@@ -12277,8 +12277,7 @@ type=Sorcery
 [card]
 name=Decree of Savagery
 auto=lord(creature|myBattlefield) counter(1/1,4)
-autohand={4}{G}{G}:cycling
-autohand={4}{G}{G}:(cycle and 4 counters) && counter(1/1,4) target(creature) && cycling
+autohand={4}{G}{G}:name(cycle and 4 counters) && counter(1/1,4) target(creature) && cycling
 text=Put four +1/+1 counters on each creature you control. -- Cycling {4}{G}{G} ({4}{G}{G}, Discard this card: Draw a card.) -- When you cycle Decree of Savagery, you may put four +1/+1 counters on target creature.
 mana={7}{G}{G}
 type=Instant
@@ -38656,7 +38655,7 @@ mana={U}{U}
 type=Creature
 subtype=Beast
 power=1
-toughness=5
+toughness=4
 [/card]
 [card]
 name=Plated Slagwurm
@@ -39300,9 +39299,9 @@ type=Enchantment
 name=Proclamation of Rebirth
 target=creature[manacost<=1]|mygraveyard
 auto=moveTo(myhand)
-auto=may moveTo(myhand) target(creature[manacost<=1]|mygraveyard) 
+auto=may moveTo(myBattlefield) target(creature[manacost<=1]|mygraveyard) 
 auto=token(-1111133)
-autohand={5}{W}:moveTo(myhand) target(creature[manacost<=1]|mygraveyard) limit:1 myUpkeepOnly
+autohand={5}{W}:moveTo(myBattlefield) target(creature[manacost<=1]|mygraveyard) limit:1 myUpkeepOnly
 text=Return up to three target creature cards with converted mana cost 1 or less from your graveyard to the battlefield. -- Forecast - {5}{W}, Reveal Proclamation of Rebirth from your hand: Return target creature card with converted mana cost 1 or less from your graveyard to the battlefield. (Activate this ability only during your upkeep and only once each turn.)
 mana={2}{W}
 type=Sorcery
@@ -39310,7 +39309,7 @@ type=Sorcery
 [card]
 name=Proclamation's 3rd Return
 auto=counter(0/0,1,Proclamation)
-auto=@movedTo(creature|myhand) from(mygraveyard):thisforeach(counter{0/0.1.Proclamation}>0) may moveTo(myhand) target(creature[manacost<=1]|mygraveyard) && counter(0/0,-1,Proclamation) && counter(0/0,1,Bury)
+auto=@movedTo(creature|myBattlefield) from(mygraveyard):thisforeach(counter{0/0.1.Proclamation}>0) may moveTo(myhand) target(creature[manacost<=1]|mygraveyard) && counter(0/0,-1,Proclamation) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111133
 type=nothing
