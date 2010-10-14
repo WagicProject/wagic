@@ -353,22 +353,25 @@ void GameStateDuel::Update(float dt)
       }
       game->Update(dt);
       if (game->gameOver){
-        credits->compute(game->players[0],game->players[1], mParent);
-	      mGamePhase = DUEL_STATE_END;
+        if (game->players[1]->playMode != Player::MODE_TEST_SUITE)
+          credits->compute(game->players[0],game->players[1], mParent);
+        mGamePhase = DUEL_STATE_END;
 #ifdef TESTSUITE
-	if (mParent->players[1] == PLAYER_TYPE_TESTSUITE){
-	  if (testSuite->loadNext()){
-	    loadTestSuitePlayers();
-	    mGamePhase = DUEL_STATE_PLAY;
-	    testSuite->initGame();
-	  }else
-	    mGamePhase = DUEL_STATE_END;
-	}else
+        if (mParent->players[1] == PLAYER_TYPE_TESTSUITE){
+          if (testSuite->loadNext()){
+            loadTestSuitePlayers();
+            mGamePhase = DUEL_STATE_PLAY;
+            testSuite->initGame();
+          }
+          else
+            mGamePhase = DUEL_STATE_END;
+        }
+        else
 #endif
-	  if (mParent->players[0] == PLAYER_TYPE_CPU && mParent->players[1] == PLAYER_TYPE_CPU){
-	    End();
-	    Start();
-	  }
+          if (mParent->players[0] == PLAYER_TYPE_CPU && mParent->players[1] == PLAYER_TYPE_CPU){
+            End();
+            Start();
+          }
       }
       if (mEngine->GetButtonClick(JGE_BTN_MENU)) {
         if (!menu) {
