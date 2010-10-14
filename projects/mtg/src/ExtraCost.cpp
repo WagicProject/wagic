@@ -55,7 +55,6 @@ int ExtraCost::setPayment(MTGCardInstance * card){
   return result;
 }
 
-
 //life cost
 LifeCost *  LifeCost::clone() const{
   LifeCost * ec =  NEW LifeCost(*this);
@@ -96,6 +95,7 @@ int DiscardRandomCost::canPay(){
   if(nbcards < 1) return 0;
   return 1;
 }
+
 int DiscardRandomCost::doPay(){
   MTGCardInstance * _target = (MTGCardInstance *) target;
   if(target){
