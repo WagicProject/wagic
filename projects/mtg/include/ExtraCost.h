@@ -13,13 +13,16 @@ class ExtraCost{
 public:
   TargetChooser * tc;
   MTGCardInstance * source;
-  ExtraCost(TargetChooser *_tc = NULL);
+  MTGCardInstance * target;
+  std::string mCostRenderString;
+
+  ExtraCost(const std::string& inCostRenderString, TargetChooser *_tc = NULL);
   virtual ~ExtraCost();
-  virtual int setPayment(MTGCardInstance * card) = 0;
-  virtual int isPaymentSet() = 0;
-  virtual int canPay() = 0;
+  virtual int setPayment(MTGCardInstance * card);
+  virtual int isPaymentSet() { return (target != NULL); }
+  virtual int canPay() { return 1; }
   virtual int doPay() = 0;
-  virtual void Render(){};
+  virtual void Render();
   virtual int setSource(MTGCardInstance * _source);
   virtual ExtraCost* clone() const = 0;
 };
@@ -44,126 +47,79 @@ public:
 
 class SacrificeCost: public ExtraCost{
 public:
-  MTGCardInstance * target;
   SacrificeCost(TargetChooser *_tc = NULL);
-  virtual int setPayment(MTGCardInstance * card);
-  virtual int isPaymentSet();
-  virtual int canPay();
   virtual int doPay();
-  virtual void Render();
-  virtual int setSource(MTGCardInstance * _source);
   virtual SacrificeCost * clone() const;
 };
 
 //life cost 
 class LifeCost: public ExtraCost{
 public:
-  MTGCardInstance * target;
   LifeCost(TargetChooser *_tc = NULL);
-  virtual int setPayment(MTGCardInstance * card);
-  virtual int isPaymentSet();
-  virtual int canPay();
+
   virtual int doPay();
-  virtual void Render();
-  virtual int setSource(MTGCardInstance * _source);
   virtual LifeCost * clone() const;
 };
+
 //Discard a random card cost 
 class DiscardRandomCost: public ExtraCost{
 public:
-  MTGCardInstance * target;
   DiscardRandomCost(TargetChooser *_tc = NULL);
-  virtual int setPayment(MTGCardInstance * card);
-  virtual int isPaymentSet();
   virtual int canPay();
   virtual int doPay();
-  virtual void Render();
-  virtual int setSource(MTGCardInstance * _source);
   virtual DiscardRandomCost * clone() const;
 };
+
 //tolibrary cost 
 class ToLibraryCost: public ExtraCost{
 public:
-  MTGCardInstance * target;
   ToLibraryCost(TargetChooser *_tc = NULL);
-  virtual int setPayment(MTGCardInstance * card);
-  virtual int isPaymentSet();
-  virtual int canPay();
   virtual int doPay();
-  virtual void Render();
-  virtual int setSource(MTGCardInstance * _source);
   virtual ToLibraryCost * clone() const;
 };
+
 //Millyourself cost 
 class MillCost: public ExtraCost{
 public:
-  MTGCardInstance * target;
   MillCost(TargetChooser *_tc = NULL);
-  virtual int setPayment(MTGCardInstance * card);
-  virtual int isPaymentSet();
   virtual int canPay();
   virtual int doPay();
-  virtual void Render();
-  virtual int setSource(MTGCardInstance * _source);
   virtual MillCost * clone() const;
 };
+
 //Mill to exile yourself cost 
-class MillExileCost: public ExtraCost{
+class MillExileCost: public MillCost{
 public:
-  MTGCardInstance * target;
-  MillExileCost(TargetChooser *_tc = NULL);
-  virtual int setPayment(MTGCardInstance * card);
-  virtual int isPaymentSet();
-  virtual int canPay();
-  virtual int doPay();
-  virtual void Render();
-  virtual int setSource(MTGCardInstance * _source);
-  virtual MillExileCost * clone() const;
+	MillExileCost(TargetChooser *_tc = NULL);
 };
+
 //tap other cost
 class TapTargetCost: public ExtraCost{
 public:
-  MTGCardInstance * target;
   TapTargetCost(TargetChooser *_tc = NULL);
-  virtual int setPayment(MTGCardInstance * card);
-  virtual int isPaymentSet();
-  virtual int canPay();
   virtual int doPay();
-  virtual void Render();
-  virtual int setSource(MTGCardInstance * _source);
   virtual TapTargetCost * clone() const;
 };
+
 //exile as cost
 class ExileTargetCost: public ExtraCost{
 public:
-  MTGCardInstance * target;
   ExileTargetCost(TargetChooser *_tc = NULL);
-  virtual int setPayment(MTGCardInstance * card);
-  virtual int isPaymentSet();
-  virtual int canPay();
   virtual int doPay();
-  virtual void Render();
-  virtual int setSource(MTGCardInstance * _source);
   virtual ExileTargetCost * clone() const;
 };
+
 //bounce cost
 class BounceTargetCost: public ExtraCost{
 public:
-  MTGCardInstance * target;
   BounceTargetCost(TargetChooser *_tc = NULL);
-  virtual int setPayment(MTGCardInstance * card);
-  virtual int isPaymentSet();
-  virtual int canPay();
   virtual int doPay();
-  virtual void Render();
-  virtual int setSource(MTGCardInstance * _source);
   virtual BounceTargetCost * clone() const;
 };
 
 class CounterCost: public ExtraCost{
 public:
   Counter * counter;
-  MTGCardInstance * target;
   int hasCounters;
   CounterCost(Counter * _counter,TargetChooser *_tc = NULL);
   ~CounterCost();
@@ -171,8 +127,6 @@ public:
   virtual int isPaymentSet();
   virtual int canPay();
   virtual int doPay();
-  virtual void Render();
-  virtual int setSource(MTGCardInstance * _source);
   virtual CounterCost * clone() const;
 };
 
