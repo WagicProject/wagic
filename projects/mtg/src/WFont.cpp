@@ -128,8 +128,8 @@ WFBFont::WFBFont(const char *fontname, int lineheight, bool useVideoRAM)
   mScale = 1.0f;
 
   // using 4-bit(half-byte) to store 1 pixel
-  mBytesPerRow = mFontSize / 2;
-  mBytesPerChar = mBytesPerRow*mFontSize;
+  mBytesPerRow = static_cast<unsigned int>(mFontSize / 2);
+  mBytesPerChar =  static_cast<unsigned int>(mBytesPerRow*mFontSize);
 
   mCacheImageWidth = 256;
   mCacheImageHeight = 256;
@@ -150,8 +150,12 @@ WFBFont::WFBFont(const char *fontname, int lineheight, bool useVideoRAM)
   for (int y = 0; y < mRow; y++) {
     for (int x = 0; x<mCol; x++) {
       mGBCode[index] = -1;
-      mSprites[index] = NEW JQuad(mTexture, x*mFontSize, y*mFontSize, mFontSize, mFontSize);
-      mSprites[index]->SetHotSpot(mFontSize / 2, mFontSize / 2);
+      mSprites[index] = NEW JQuad(mTexture, 
+                                  static_cast<float>(x*mFontSize), 
+                                  static_cast<float>(y*mFontSize),
+                                  static_cast<float>(mFontSize),
+                                  static_cast<float>(mFontSize));
+      mSprites[index]->SetHotSpot(static_cast<float>(mFontSize / 2), static_cast<float>(mFontSize / 2));
       index++;
     }
   }
@@ -203,7 +207,7 @@ int WFBFont::PreCacheChar(const u8 *ch)
   int code;
   bool isChinese = true;
   u8 * src;
-  int size, offset;
+  unsigned int size, offset;
   u8 gray;
 
   if (*ch > 0xA0 && *(ch + 1) > 0xA0)
@@ -250,13 +254,13 @@ int WFBFont::PreCacheChar(const u8 *ch)
   }
 
   // set up the font texture buffer
-  for (int i = 0; i < mFontSize; i++) {
+  for (unsigned int i = 0; i < mFontSize; i++) {
 #if defined (WIN32) || defined (LINUX)
     x = 0;
 #else
     x = (int)mSprites[index]->mX;
 #endif
-    int j = 0;
+    unsigned int j = 0;
 #if 1
     for (; j < offset; j++) {
 #if defined (WIN32) || defined (LINUX)
@@ -426,19 +430,19 @@ void WFBFont::DrawString(const char *s, float x, float y, int align, float leftO
             src += 2;
             unsigned char t = (JGE::GetInstance()->GetTime() / 3) & 0xFF;
             unsigned char v = t + 127;
-            float scale = 0.05 * cosf(2*M_PI*((float)t)/256.0);
+            float scale = 0.05f * cosf(2*M_PI*((float)t)/256.0f);
             if (scale < 0) {
-              mRenderer->RenderQuad(manaIcons[mana], xx + 3 * sinf(2*M_PI*((float)t)/256.0), yy + 3 * cosf(2*M_PI*((float)(t-35))/256.0), 0, 0.5 * mScale, 0.5 * mScale);
-              mRenderer->RenderQuad(manaIcons[mana2], xx + 3 * sinf(2*M_PI*((float)v)/256.0), yy + 3 * cosf(2*M_PI*((float)(v-35))/256.0), 0, 0.5 * mScale, 0.5 * mScale);
+              mRenderer->RenderQuad(manaIcons[mana], xx + 3 * sinf(2*M_PI*((float)t)/256.0f), yy + 3 * cosf(2*M_PI*((float)(t-35))/256.0f), 0, 0.5f * mScale, 0.5f * mScale);
+              mRenderer->RenderQuad(manaIcons[mana2], xx + 3 * sinf(2*M_PI*((float)v)/256.0f), yy + 3 * cosf(2*M_PI*((float)(v-35))/256.0f), 0, 0.5f * mScale, 0.5f * mScale);
             }
             else {
-              mRenderer->RenderQuad(manaIcons[mana2], xx + 3 * sinf(2*M_PI*((float)v)/256.0), yy + 3 * cosf(2*M_PI*((float)(v-35))/256.0), 0, 0.5 * mScale, 0.5 * mScale);
-              mRenderer->RenderQuad(manaIcons[mana], xx + 3 * sinf(2*M_PI*((float)t)/256.0), yy + 3 * cosf(2*M_PI*((float)(t-35))/256.0), 0, 0.5 * mScale, 0.5 * mScale);
+              mRenderer->RenderQuad(manaIcons[mana2], xx + 3 * sinf(2*M_PI*((float)v)/256.0f), yy + 3 * cosf(2*M_PI*((float)(v-35))/256.0f), 0, 0.5f * mScale, 0.5f * mScale);
+              mRenderer->RenderQuad(manaIcons[mana], xx + 3 * sinf(2*M_PI*((float)t)/256.0f), yy + 3 * cosf(2*M_PI*((float)(t-35))/256.0f), 0, 0.5f * mScale, 0.5f * mScale);
             }
             mana = Constants::MTG_NB_COLORS + 1; // donot draw colorless cost in hybrid mana cost
           }
           else
-            mRenderer->RenderQuad(manaIcons[mana], xx, yy, 0, 0.5 * mScale, 0.5 * mScale);
+            mRenderer->RenderQuad(manaIcons[mana], xx, yy, 0, 0.5f * mScale, 0.5f * mScale);
           mRenderer->BindTexture(mTexture); // manaIcons use different texture, so we need to rebind it.
         }
 

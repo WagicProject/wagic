@@ -80,10 +80,10 @@ private:
 
   PIXEL_TYPE mColor0;
   PIXEL_TYPE mColor;
-  int mFontSize;
+  unsigned int mFontSize;
   float mScale;
-  int mBytesPerChar;
-  int mBytesPerRow;
+  unsigned int mBytesPerChar;
+  unsigned int mBytesPerRow;
 
   int mCacheImageWidth;
   int mCacheImageHeight;
