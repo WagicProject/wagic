@@ -1,9 +1,9 @@
 #ifndef _MTGDEFINITION_H_
 #define _MTGDEFINITION_H_
 
-#define DEFAULT_MENU_FONT_SCALE 1.0
-#define DEFAULT_MAIN_FONT_SCALE 1.0
-#define DEFAULT_TEXT_FONT_SCALE 1.0
+const float DEFAULT_MENU_FONT_SCALE = 1.0f;
+const float DEFAULT_MAIN_FONT_SCALE = 1.0f;
+const float DEFAULT_TEXT_FONT_SCALE = 1.0f;
 
 class Constants
 {

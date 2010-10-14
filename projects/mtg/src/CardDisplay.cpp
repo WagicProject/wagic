@@ -25,12 +25,10 @@ CardDisplay::CardDisplay(int id, GameObserver* game, int _x, int _y, JGuiListene
   zone = NULL;
 }
 
-
 void CardDisplay::AddCard(MTGCardInstance * _card){
-  CardGui * card = NEW CardView(CardSelector::nullZone, _card, x + 20 + (mCount - start_item) * 30, y + 25);
+  CardGui * card = NEW CardView(CardSelector::nullZone, _card, static_cast<float>(x + 20 + (mCount - start_item) * 30), static_cast<float>(y + 25));
   Add(card);
 }
-
 
 void CardDisplay::init(MTGGameZone * zone){
   resetObjects();
@@ -59,8 +57,6 @@ void CardDisplay::rotateRight(){
   }
   start_item ++;
 }
-
-
 
 void CardDisplay::Update(float dt){
   bool update = false;
@@ -195,22 +191,21 @@ bool CardDisplay::CheckUserInput(JButton key){
   return false;
 }
 
-
 void CardDisplay::Render(){
 
   JRenderer * r = JRenderer::GetInstance();
-  r->DrawRect(x,y,nb_displayed_items * 30 + 20, 50, ARGB(255,255,255,255));
+  r->DrawRect(static_cast<float>(x), static_cast<float>(y), static_cast<float>(nb_displayed_items * 30 + 20), 50, ARGB(255,255,255,255));
   if (!mCount) return;
   for (int i = start_item; i< start_item + nb_displayed_items && i < mCount; i++){
     if (mObjects[i]){
       mObjects[i]->Render();
       if (tc){
-	CardGui * cardg = (CardGui *)mObjects[i];
-	if( tc->alreadyHasTarget(cardg->card)){
-	  r->DrawCircle(cardg->x + 5, cardg->y+5,5, ARGB(255,255,0,0));
-	}else if (!tc->canTarget(cardg->card)){
-	  r->FillRect(cardg->x,cardg->y,30,40,ARGB(200,0,0,0));
-	}
+        CardGui * cardg = (CardGui *)mObjects[i];
+        if( tc->alreadyHasTarget(cardg->card)){
+          r->DrawCircle(cardg->x + 5, cardg->y+5,5, ARGB(255,255,0,0));
+        }else if (!tc->canTarget(cardg->card)){
+          r->FillRect(cardg->x,cardg->y,30,40,ARGB(200,0,0,0));
+        }
       }
     }
   }

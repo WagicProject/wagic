@@ -282,7 +282,7 @@ void WGuiList::Render(){
   }
   //Find out how large our list is, with all items and margin.
   for (int pos=0;pos < nbitems; pos++){
-    listHeight+=items[pos]->getHeight()+1; //What does the +1 do exactly ?
+    listHeight+=static_cast<int>(items[pos]->getHeight()+1); //What does the +1 do exactly ?
     if(items[pos]->Selectable()){
       listSelectable++;
       if(pos < currentItem) adjustedCurrent++;
@@ -296,7 +296,7 @@ void WGuiList::Render(){
       if(!items[start]->Visible())
         continue;
 
-      vHeight += items[start]->getHeight()+5;
+      vHeight += static_cast<int>(items[start]->getHeight()+5);
       if(vHeight >= (SCREEN_HEIGHT-60)/2)
         break;
     }
@@ -305,7 +305,7 @@ void WGuiList::Render(){
     for (nowPos=nbitems;nowPos > 1; nowPos--){
        if(!items[start]->Visible())
         continue;
-      vHeight += items[nowPos-1]->getHeight()+5;
+      vHeight += static_cast<int>(items[nowPos-1]->getHeight()+5);
     }
 
     if(vHeight <= SCREEN_HEIGHT-40 && nowPos < start)
@@ -327,7 +327,7 @@ void WGuiList::Render(){
         continue;
 
       if(pos < start){
-        vHeight += items[pos]->getHeight() + 5;
+        vHeight += static_cast<int>(items[pos]->getHeight() + 5);
         continue;
       }
 
@@ -337,7 +337,7 @@ void WGuiList::Render(){
         items[pos]->setWidth(width-10);
       else
         items[pos]->setWidth(width);
-      nowPos += items[pos]->getHeight() + 5;
+      nowPos += static_cast<int>(items[pos]->getHeight() + 5);
       renderBack(items[pos]);
       items[pos]->Render();
       if(nowPos > SCREEN_HEIGHT) //Stop displaying things once we reach the bottom of the screen.
@@ -346,8 +346,8 @@ void WGuiList::Render(){
 
     //Draw scrollbar
     if(listHeight > SCREEN_HEIGHT && listSelectable > 1){
-      int barPosition = y-5+((float)adjustedCurrent/listSelectable)*(SCREEN_HEIGHT-y);
-      int barLength = (SCREEN_HEIGHT-y) / listSelectable;
+      float barPosition = static_cast<float>(y-5+((float)adjustedCurrent/listSelectable)*(SCREEN_HEIGHT-y));
+      float barLength = static_cast<float>((SCREEN_HEIGHT-y) / listSelectable);
       if(barLength < 4) barLength = 4;
       renderer->FillRect(x+width-2,y-1,2,SCREEN_HEIGHT-y,
         getColor(WGuiColor::SCROLLBAR));
@@ -802,7 +802,7 @@ bool WGuiMenu::CheckUserInput(JButton key){
        return true;
     } 
     else if(held == buttonPrev && duration > 1){
-     duration = .92;
+     duration = .92f;
      if(prevItem())
        return true;
     } 
@@ -813,7 +813,7 @@ bool WGuiMenu::CheckUserInput(JButton key){
        return true;
     }
     else if(held == buttonNext && duration > 1){
-      duration = .92;      
+      duration = .92f;      
      if(nextItem())
        return true;
     }
@@ -974,10 +974,10 @@ void WGuiTabMenu::Render(){
   if (!items.size())
     return;
 
-  int offset = x;
-  mFont->SetScale(0.8);  
+  float offset = x;
+  mFont->SetScale(0.8f);  
   for(vector<WGuiBase*>::iterator it = items.begin();it!=items.end();it++){
-    int w = mFont->GetStringWidth(_((*it)->getDisplay()).c_str());
+    float w = mFont->GetStringWidth(_((*it)->getDisplay()).c_str());
     mFont->SetColor((*it)->getColor(WGuiColor::TEXT_TAB));
     renderer->FillRoundRect(offset+5,5,w + 5,25,2,(*it)->getColor(WGuiColor::BACK_TAB));
     mFont->DrawString(_((*it)->getDisplay()).c_str(),offset+10,10);
@@ -1001,7 +1001,7 @@ void WGuiTabMenu::save(){
 void WGuiAward::Overlay(){
   JRenderer * r = JRenderer::GetInstance();
   WFont * mFont = resources.GetWFont(Constants::OPTION_FONT);
-  mFont->SetScale(.8);
+  mFont->SetScale(0.8f);
   mFont->SetColor(getColor(WGuiColor::TEXT));
 
   string s = details;
@@ -1338,7 +1338,7 @@ void WGuiListRow::Render(){
         tallestRow = temp;
       if(temp > cTallest)
         cTallest = temp;
-      nowPos += items[pos]->getWidth() + 5;
+      nowPos += static_cast<int>(items[pos]->getWidth() + 5);
       renderBack(items[pos]);
       if(x+nowPos+items[pos]->getWidth()+10 > SCREEN_WIDTH){
         nowPos = 0 + 20; //Indent newlines.
@@ -1941,7 +1941,7 @@ void WGuiKeyBinder::Render() {
     renderer->FillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, ARGB(230, 255, 240, 240));
 
     size_t pos = 0;
-    u32 y = 20;
+    float y = 20;
     do {
       size_t t = confirmationString.find_first_of("\n", pos);
       string s = confirmationString.substr(pos, t - pos);
