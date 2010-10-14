@@ -91,6 +91,7 @@ public:
 class MillExileCost: public MillCost{
 public:
 	MillExileCost(TargetChooser *_tc = NULL);
+  virtual int doPay();
 };
 
 //tap other cost

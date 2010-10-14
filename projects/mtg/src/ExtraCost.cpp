@@ -163,6 +163,19 @@ MillExileCost::MillExileCost(TargetChooser *_tc)
     mCostRenderString = "Deplete To Exile";
 }
 
+int MillExileCost::doPay(){
+  MTGCardInstance * _target = (MTGCardInstance *) target;
+  if(target){
+    _target->controller()->game->putInZone(_target->controller()->game->library->cards[_target->controller()->game->library->nb_cards-1],
+                                            _target->controller()->game->library,
+                                            _target->controller()->game->exile);
+    target = NULL;
+    if (tc) tc->initTargets();
+    return 1;
+  }
+  return 0;
+}
+
 //Tap target cost
 TapTargetCost *  TapTargetCost::clone() const{
   TapTargetCost * ec =  NEW TapTargetCost(*this);
