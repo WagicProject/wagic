@@ -2141,7 +2141,7 @@ toughness=0
 [card]
 name=Arcbound Fiend
 abilities=fear
-auto=@each my upkeep:counter(1/1,-1) target(creature)
+auto=@each my upkeep:counter(1/1,-1) target(creature[counter{1/1.1}])
 auto=@each my upkeep:counter(1/1,1) all(this)
 auto=counter(1/1,3)
 auto=@movedTo(this|mygraveyard) from(myBattlefield):may thisforeach(counter{1/1.1}) counter(1/1,1) target(creature[artifact])
@@ -29709,7 +29709,7 @@ toughness=2
 [card]
 name=Lightmine Field
 auto=@each blockers:foreach(creature[attacking]|Battlefield) damage:1 all(creature[attacking]|Battlefield)
-text=Whenever one ore more creatures attack, Lightmine Field deals damage to each of those creatures equal to the number of attacking creatures.
+text=Whenever one or more creatures attack, Lightmine Field deals damage to each of those creatures equal to the number of attacking creatures.
 mana={2}{W}{W}
 type=Enchantment
 [/card]
@@ -39298,7 +39298,7 @@ type=Enchantment
 [card]
 name=Proclamation of Rebirth
 target=creature[manacost<=1]|mygraveyard
-auto=moveTo(myhand)
+auto=moveTo(myBattlefield)
 auto=may moveTo(myBattlefield) target(creature[manacost<=1]|mygraveyard) 
 auto=token(-1111133)
 autohand={5}{W}:moveTo(myBattlefield) target(creature[manacost<=1]|mygraveyard) limit:1 myUpkeepOnly
@@ -39309,7 +39309,7 @@ type=Sorcery
 [card]
 name=Proclamation's 3rd Return
 auto=counter(0/0,1,Proclamation)
-auto=@movedTo(creature|myBattlefield) from(mygraveyard):thisforeach(counter{0/0.1.Proclamation}>0) may moveTo(myhand) target(creature[manacost<=1]|mygraveyard) && counter(0/0,-1,Proclamation) && counter(0/0,1,Bury)
+auto=@movedTo(creature|myBattlefield) from(mygraveyard):thisforeach(counter{0/0.1.Proclamation}>0) may moveTo(myBattlefield) target(creature[manacost<=1]|mygraveyard) && counter(0/0,-1,Proclamation) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111133
 type=nothing
@@ -48335,7 +48335,7 @@ toughness=2
 [/card]
 [card]
 name=Somber Hoverguard
-abilities=affinityartifacts
+abilities=flying,affinityartifacts
 text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) -- Flying
 mana={5}{U}
 type=Creature
