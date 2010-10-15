@@ -111,7 +111,8 @@ ascendant_evincar3.txt
 ashen_firebeast.txt
 ashen_firebeast2.txt
 aura_mutation.txt
-auriok_sunchaser_aslongas_bug.txt
+Auriok_Sunchaser_ASLONGAS_1.txt
+Auriok_Sunchaser_ASLONGAS_2.txt
 avarice_totem.txt
 aven_riftwatcher.txt
 aven_riftwatcher2.txt
@@ -182,6 +183,8 @@ counterspell.txt
 counterspell2.txt
 counterspell3.txt
 counterspell4.txt
+Covetous_Dragon_ASLONGAS_3.txt
+Covetous_Dragon_ASLONGAS_4.txt
 cranial_plating.txt
 creature_bond.txt
 curiosity1_i217.txt
@@ -264,7 +267,7 @@ ghost_warden.txt
 glen_elendra_archmage_i222.txt
 giant_growth.txt
 giant_growth2.txt
-Glimmervoid.txt
+Glimmervoid_ASLONGAS&TRIGGER.txt
 glimpse_the_unthinkable.txt
 gnarled_effigy.txt
 gnat_alley_creeper1.txt

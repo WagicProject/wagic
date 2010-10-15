@@ -1,0 +1,21 @@
+#Test to confirm that "aslongas" in combination with "<" works.
+#You control 1 arifact and Covetous Dragon. The artifact gets destroyed by Shatter.
+#Covetous Dragon should go to the graveyard.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Covetous Dragon,Mox Pearl
+hand:Shatter
+manapool:{1}{R}
+[PLAYER2]
+[DO]
+Shatter
+Mox Pearl
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Shatter,Mox Pearl,Covetous Dragon
+manapool:{0}
+life:20
+[PLAYER2]
+[END]

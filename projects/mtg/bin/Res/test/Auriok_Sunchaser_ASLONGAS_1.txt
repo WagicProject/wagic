@@ -1,0 +1,26 @@
+#test originally coded to prove aslongas was broken, it is corrected now. this test now shows that he remains a 3/3 and survives.
+
+#Test to confirm that "aslongas" in combination with ">" works.
+#You control 4 arifacts and Auriok Sunchaser. It is 3/3 due to its Metalcraft bonus (+2/+2).
+#1 of the 4 artifacts gets destroyed by Shatter. Auriok Sunchaser should stay 3/3 because there are still enough artifacts on your side. 
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Auriok Sunchaser,Bottle Gnomes,Mox Pearl,Bonesplitter,Mox Emerald
+hand:Shatter,Shock
+manapool:{1}{R}{R}
+[PLAYER2]
+[DO]
+Shatter
+Mox Pearl
+Shock
+Auriok Sunchaser
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Bottle Gnomes,Bonesplitter,Mox Emerald,Auriok Sunchaser
+graveyard:Shatter,Mox Pearl,Shock
+manapool:{0}
+life:20
+[PLAYER2]
+[END]

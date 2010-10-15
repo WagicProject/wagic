@@ -10420,15 +10420,13 @@ toughness=2
 [card]
 name=Covetous Dragon
 abilities=flying
-auto=aslongas(artifact|myBattlefield) moveTo(mygraveyard) <1
-auto=@movedTo(artifact|graveyard,exile,library,hand) from(myBattlefield):aslongas(artifact|myBattlefield) moveTo(mygraveyard) <1
+auto=aslongas(artifact|myBattlefield) -99/-99 <1
 text=Flying -- When you control no artifacts, sacrifice Covetous Dragon.
 mana={4}{R}
 type=Creature
 subtype=Dragon
 power=6
 toughness=5
-# P/T modified to make auto rule possible
 [/card]
 [card]
 name=Crabapple Cohort
@@ -15288,6 +15286,7 @@ toughness=1
 [card]
 name=Elvish Berserker
 auto=rampage(1/1,0)
+auto=aslongas(artifact|myBattlefield) -99/-99 <1
 text=Whenever Elvish Berserker becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.
 mana={G}
 type=Creature
