@@ -1840,6 +1840,12 @@ class AAsLongAs:public ListMaintainerAbility, public NestedAbility{
  }
 
  int canBeInList(MTGCardInstance * card){
+	 int size = 0;
+	 size = (int)cards.size();
+	 if(includeSelf && maxi && card == source && size < maxi)
+	 { 
+	  removed(card);
+	 }
    if ((includeSelf || card!=source) && tc->canTarget(card)) return 1;
    return 0;
  }
@@ -1875,7 +1881,8 @@ class AAsLongAs:public ListMaintainerAbility, public NestedAbility{
   }
 
   int _added(Damageable * d){
-    int size = (int) cards.size();
+    int size =(int)cards.size();
+		if (maxi && size < maxi) return 0;
     if (maxi && size >= maxi) return removeAbilityFromGame();
     if (maxi) return 0;
     if (size <= mini) return 0;
@@ -1892,9 +1899,10 @@ class AAsLongAs:public ListMaintainerAbility, public NestedAbility{
 
 
  int removed(MTGCardInstance * card){
-   size_t size = cards.size();
+  size_t size = cards.size();
+	if (maxi && (int)size < maxi) return addAbilityToGame();
+  if (mini && (int)size > mini) return 0;
   if (mini && (int)size <= mini) return removeAbilityFromGame();
-  if (maxi && (int)size == maxi-1) return addAbilityToGame();
   if (!mini && !maxi && size !=0) return 0;
   return removeAbilityFromGame();
  }
