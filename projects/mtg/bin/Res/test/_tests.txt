@@ -111,7 +111,7 @@ ascendant_evincar3.txt
 ashen_firebeast.txt
 ashen_firebeast2.txt
 aura_mutation.txt
-Auriok_Sunchaser_ASLONGAS_BUG
+auriok_sunchaser_aslongas_bug.txt
 avarice_totem.txt
 aven_riftwatcher.txt
 aven_riftwatcher2.txt
