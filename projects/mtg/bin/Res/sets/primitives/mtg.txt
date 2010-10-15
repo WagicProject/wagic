@@ -10417,6 +10417,7 @@ subtype=Human Wizard
 power=3
 toughness=2
 [/card]
+#@Covetous Dragon: Don't change the "-99/-99" phrase here, "bury" or "moveTo(mygraveyard)" did not work here!
 [card]
 name=Covetous Dragon
 abilities=flying
@@ -15286,7 +15287,6 @@ toughness=1
 [card]
 name=Elvish Berserker
 auto=rampage(1/1,0)
-auto=aslongas(artifact|myBattlefield) -99/-99 <1
 text=Whenever Elvish Berserker becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.
 mana={G}
 type=Creature
@@ -15699,10 +15699,10 @@ subtype=Spirit
 power=2
 toughness=1
 [/card]
+#@Emperor Crocodile: Don't change the "-99/-99" phrase here, "bury" or "moveTo(mygraveyard)" did not work here!
 [card]
 name=Emperor Crocodile
-auto=aslongas(other creature|myBattlefield) moveTo(mygraveyard) <1
-auto=@movedTo(creature|graveyard,exile,library,hand) from(myBattlefield):aslongas(other creature|myBattlefield) moveTo(mygraveyard) <1
+auto=aslongas(other creature|myBattlefield) -99/-99 <1
 text=When you control no other creatures, sacrifice Emperor Crocodile.
 mana={3}{G}
 type=Creature
@@ -53093,11 +53093,11 @@ text={X}: Testament of Faith becomes an X/X Wall creature with defender until en
 mana={W}
 type=Enchantment
 [/card]
+#@Tethered Griffin: Don't change the "-99/-99" phrase here, "bury" or "moveTo(mygraveyard)" did not work here!
 [card]
 name=Tethered Griffin
 abilities=flying
-auto=aslongas(enchantment|myBattlefield) moveTo(mygraveyard) <1
-auto=@movedTo(enchantment|graveyard,exile,library,hand) from(myBattlefield):aslongas(enchantment|myBattlefield) moveTo(mygraveyard) <1
+auto=aslongas(enchantment|myBattlefield) -99/-99 <1
 text=Flying -- When you control no enchantments, sacrifice Tethered Griffin.
 mana={W}
 type=Creature
