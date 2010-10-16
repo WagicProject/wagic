@@ -1,4 +1,5 @@
 #include "../include/config.h"
+#include "../include/DebugRoutines.h"
 #include "../include/TargetChooser.h"
 #include "../include/CardDescriptor.h"
 #include "../include/MTGGameZones.h"
@@ -333,7 +334,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(MTGCardInstance * card
   case 1224: //Spell blast
     {
 #if defined (WIN32) || defined (LINUX)
-      OutputDebugString ("Counter Spell !\n");
+      DebugTrace("Counter Spell !\n");
 #endif
       return NEW SpellTargetChooser(card);
     }
@@ -660,7 +661,7 @@ bool TargetZoneChooser::canTarget(Targetable * target){
       if (MTGGameZone::intToZone(zones[i],source,card)->hasCard(card)) return true;
     }
   }else if (target->typeAsTarget() == TARGET_STACKACTION){
-OutputDebugString ("CHECKING INTERRUPTIBLE\n");
+    DebugTrace("CHECKING INTERRUPTIBLE\n");
     Interruptible * action = (Interruptible *) target;
     if (action->type == ACTION_SPELL && action->state==NOT_RESOLVED){
       Spell * spell = (Spell *) action;

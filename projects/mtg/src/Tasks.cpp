@@ -1,4 +1,5 @@
 #include "../include/config.h"
+#include "../include/DebugRoutines.h"
 #include "../include/GameApp.h"
 #include "../include/Player.h"
 #include "../include/Tasks.h"
@@ -94,7 +95,7 @@ void Task::storeCommonAttribs() {
 int Task::restoreCommonAttribs() {
   if (persistentAttribs.size() < COMMON_ATTRIBS_COUNT) {
     #if defined (WIN32) || defined (LINUX)
-      OutputDebugString("\nTasks.cpp::restoreCommonAttribs: Not enough attributes loaded\n");
+      DebugTrace("\nTasks.cpp::restoreCommonAttribs: Not enough attributes loaded\n");
     #endif
     
     return -1;
@@ -224,14 +225,14 @@ Task* Task::createFromStr(string params, bool rand) {
       break;      
     default:
       #if defined (WIN32) || defined (LINUX)
-        OutputDebugString("\nTasks.cpp::createFromStr: Undefined class type\n");
+        DebugTrace("\nTasks.cpp::createFromStr: Undefined class type\n");
       #endif
       result = NEW TaskWinAgainst();
   }
 
   if (!result) {
     #if defined (WIN32) || defined (LINUX)
-      OutputDebugString("\nTask::createFromStr: Failed to create task\n");
+      DebugTrace("\nTask::createFromStr: Failed to create task\n");
     #endif
     return NULL;
   }
@@ -269,7 +270,7 @@ int TaskList::save(string _fileName) {
   }
   if (fileName == "") {
     #if defined (WIN32) || defined (LINUX)
-      OutputDebugString("\nTaskList::save: No filename specified\n");
+      DebugTrace("\nTaskList::save: No filename specified\n");
     #endif
     return -1;
   }
@@ -277,7 +278,7 @@ int TaskList::save(string _fileName) {
   std::ofstream file(fileName.c_str());
   if (file){
     #if defined (WIN32) || defined (LINUX)
-        OutputDebugString("\nsaving tasks\n");
+        DebugTrace("\nsaving tasks\n");
     #endif
     
     file << "# Format: <Type>|<Expiration>|<Accepted>|<Opponent>|<Reward>|<Description>[|Additional attributes]\n";
@@ -298,7 +299,7 @@ int TaskList::load(string _fileName) {
   }
   if (fileName == "") {
     #if defined (WIN32) || defined (LINUX)
-      OutputDebugString("\nTaskList::load: No filename specified\n");
+      DebugTrace("\nTaskList::load: No filename specified\n");
     #endif
     return -1;
   }
@@ -319,14 +320,14 @@ int TaskList::load(string _fileName) {
         this->addTask(task);
       } else {
         #if defined (WIN32) || defined (LINUX)
-          OutputDebugString("\nTaskList::load: error creating task\n");
+          DebugTrace("\nTaskList::load: error creating task\n");
         #endif
       }
     }
     file.close();
   } else {
     #if defined (WIN32) || defined (LINUX)
-      OutputDebugString("\nTaskList::load: Failed to open file\n");
+      DebugTrace("\nTaskList::load: Failed to open file\n");
     #endif
     return -1;
   }

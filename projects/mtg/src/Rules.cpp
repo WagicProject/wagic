@@ -1,3 +1,5 @@
+#include "../include/config.h"
+#include "../include/DebugRoutines.h"
 #include "../include/Rules.h"
 #include "../include/MTGDefinitions.h"
 #include "../include/config.h"
@@ -14,9 +16,7 @@ int Rules::getMTGId(string cardName){
   if (cardName.compare("*") == 0) return -1; //Any card
   MTGCard * card = GameApp::collection->getCardByName(cardName);
   if (card) return card->getMTGId();
-  OutputDebugString("RULES: Can't find card:");
-  OutputDebugString(cardName.c_str());
-  OutputDebugString("\n");
+  DebugTrace("RULES: Can't find card:" << cardName.c_str());
   return 0;
 }
 
@@ -272,7 +272,7 @@ void Rules::initPlayers(){
 void Rules::initGame(){
   //Put the GameObserver in the initial state
   GameObserver * g = GameObserver::GetInstance();
-  OutputDebugString("RULES Init Game\n");
+  DebugTrace("RULES Init Game\n");
 
   //Set the current player/phase
   g->currentPlayer = g->players[initState.player];
@@ -317,7 +317,7 @@ void Rules::initGame(){
     }
   }
   addExtraRules();
-  OutputDebugString("RULES Init Game Done !\n");
+  DebugTrace("RULES Init Game Done !\n");
 }
 
 
