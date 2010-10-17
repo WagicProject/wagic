@@ -1,8 +1,8 @@
+grade=Borderline
 [card]
 name=Autumn Willow
 abilities=opponentshroud,shroud
 auto={G}:-shroud
-grade=Borderline
 #Slightly borderline assumption you will never activate this ability to let the opponent target Autumn Willow
 text=Shroud -- {G}: Until end of turn, Autumn Willow can be the target of spells and abilities controlled by target player as though it didn't have shroud.
 mana={4}{G}{G}
@@ -13,7 +13,6 @@ toughness=4
 [/card]
 [card]
 name=Drain Life
-grade=Borderline
 #can use non black mana
 target=creature,player
 alias=1156
@@ -31,12 +30,10 @@ toughness=0
 text=Feral Hydra enters the battlefield with X +1/+1 counters on it. -- {3}: Put a +1/+1 counter on Feral Hydra. Any player may play this ability
 auto=counter(1/1,X)
 auto={3}:counter(1/1)
-grade=borderline
 #Not all player can use ability
 [/card]
 [card]
 name=Gauntlet of Might
-grade=borderline
 auto=lord(creature[red]) 1/1
 auto=lord(land[mountain]) {T}:add{R}{R}
 #Note: Only works because there are no other cards implemented which change the mountain's mana outout. Also, you get a choice of either {R} or {R}{R} (instead of just adding one {R})
@@ -47,7 +44,6 @@ type=Artifact
 [card]
 name=Tangle Asp
 alias=1238
-grade=borderline
 # Note: The alias isn't entirely correct since the Cockatrice's
 # ability doesn't affect walls, but Tangle Asp's should.
 text=Whenever Tangle Asp blocks or becomes blocked by a creature, destroy that creature at end of combat.
