@@ -195,11 +195,6 @@ WResourceManager::~WResourceManager(){
   RemoveWFonts();
   RemoveWLBFonts();
 
-  for(vector<WManagedQuad*>::iterator it=managedQuads.begin();it!=managedQuads.end();it++){
-    WManagedQuad* wm = *it;
-    SAFE_DELETE(wm);
-  }
-  managedQuads.clear();
   LOG("==Successfully Destroyed WResourceManager==");
 }
 
@@ -260,65 +255,78 @@ JQuad * WResourceManager::RetrieveCard(MTGCard * card, int style, int submode){
   return NULL;
 }
 
+int WResourceManager::AddQuadToManaged(const WManagedQuad& inQuad)
+{
+  int id = mIDLookupMap.size();
+  mIDLookupMap.insert(make_pair(id, inQuad.resname));
+  mManagedQuads.insert(make_pair(inQuad.resname, inQuad));
+
+  return id;
+}
 
 int WResourceManager::CreateQuad(const string &quadName, const string &textureName, float x, float y, float width, float height){
   if(!quadName.size() || !textureName.size())
     return INVALID_ID;
-  
-  string resname = quadName;
 
-  vector<WManagedQuad*>::iterator it;
-  int pos = 0;
-  for(it = managedQuads.begin();it!=managedQuads.end();it++,pos++){
-    if((*it)->resname == resname)
-      return pos;
+  if (GetQuad(quadName) != NULL)
+  {
+    assert(false);
+    return ALREADY_EXISTS;
   }
 
   WCachedTexture * jtex = textureWCache.Retrieve(0,textureName,RETRIEVE_MANAGE);
   lastError = textureWCache.mError;
-  
+  int id = INVALID_ID;
   //Somehow, jtex wasn't promoted.
   if(RETRIEVE_MANAGE && jtex && !jtex->isPermanent())
-    return INVALID_ID; 
+    return id;
 
   if(jtex){
-     WTrackedQuad * tq = jtex->GetTrackedQuad(x,y,width,height,quadName);  
-     
+    WTrackedQuad * tq = jtex->GetTrackedQuad(x,y,width,height,quadName);  
+
     if(tq){
       tq->deadbolt();
-      WManagedQuad * mq;
-      mq = NEW WManagedQuad();
-      mq->resname = resname;
-      mq->texture = jtex;
-      managedQuads.push_back(mq);
-    }
 
-    return (int) (managedQuads.size() - 1);
+      WManagedQuad mq;
+      mq.resname = quadName;
+      mq.texture = jtex;
+      id = AddQuadToManaged(mq);
+    }
   }
 
-  return INVALID_ID;
+  assert(id != INVALID_ID);
+  return id;
 }
 
-JQuad * WResourceManager::GetQuad(const string &quadName){
-  string lookup = quadName;
-  
-  for(vector<WManagedQuad*>::iterator it=managedQuads.begin();it!=managedQuads.end();it++){
-    if((*it)->resname == lookup)
-      return (*it)->texture->GetQuad(lookup);
+JQuad* WResourceManager::GetQuad(const string &quadName){
+
+  JQuad* result = NULL;
+  ManagedQuadMap::const_iterator found = mManagedQuads.find(quadName);
+  if (found != mManagedQuads.end())
+  {
+    result = found->second.texture->GetQuad(quadName);
   }
 
-  return NULL;
+  return result;
 }
 
 JQuad * WResourceManager::GetQuad(int id){
-  if(id < 0 || id >= (int) managedQuads.size())
-    return NULL;
 
-  WCachedTexture * jtex = managedQuads[id]->texture;
-  if(!jtex)
-    return NULL;
+  JQuad* result = NULL;
+  if(id < 0 || id >= (int) mManagedQuads.size())
+    return result;
 
-  return jtex->GetQuad(managedQuads[id]->resname);
+  IDLookupMap::const_iterator key = mIDLookupMap.find(id);
+  if (key != mIDLookupMap.end())
+  {
+    WCachedTexture * jtex = mManagedQuads[key->second].texture;
+    if(jtex)
+    {
+      result = jtex->GetQuad(key->second);
+    }
+  }
+
+  return result;
 }
 
 JQuad * WResourceManager::RetrieveTempQuad(string filename,int submode){
@@ -365,10 +373,10 @@ JQuad * WResourceManager::RetrieveQuad(string filename, float offX, float offY, 
     if(!tq) return NULL;
 
     if(style == RETRIEVE_MANAGE && resname != ""){
-      WManagedQuad * mq = NEW WManagedQuad();
-      mq->resname = resname;
-      mq->texture = jtex;
-      managedQuads.push_back(mq);
+      WManagedQuad mq;
+      mq.resname = resname;
+      mq.texture = jtex;
+      AddQuadToManaged(mq);
     }
 
     if(style == RETRIEVE_LOCK)

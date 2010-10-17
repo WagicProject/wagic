@@ -24,6 +24,7 @@ using namespace std;
 
 
 #define INVALID_ID				-1
+#define ALREADY_EXISTS    -2
 
 class JRenderer;
 class JSample;

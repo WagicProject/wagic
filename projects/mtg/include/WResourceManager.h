@@ -162,6 +162,8 @@ public:
 	JQuad* GetQuad(const string &quadName);
 	JQuad* GetQuad(int id);
 
+  int AddQuadToManaged(const WManagedQuad& inManagedQuad);
+
   //Our file redirect system.
   string graphicsFile(const string filename);
   string avatarFile(const string filename);
@@ -207,7 +209,12 @@ private:
   WCache<WCachedTexture,JTexture> textureWCache;
   WCache<WCachedSample,JSample> sampleWCache;
   WCache<WCachedParticles,hgeParticleSystemInfo> psiWCache;
-  vector<WManagedQuad*> managedQuads;
+
+  typedef  std::map<std::string, WManagedQuad> ManagedQuadMap;
+  ManagedQuadMap mManagedQuads;
+
+  typedef std::map<int, std::string> IDLookupMap;
+  IDLookupMap mIDLookupMap;
   
   //Statistics of record.
   unsigned int lastTime;
