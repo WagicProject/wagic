@@ -88,9 +88,28 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
       if (!primitive) primitive = NEW CardPrimitive();
       {
         string value = val;
-        std::transform(value.begin(), value.end(), value.begin(), ::tolower);
-        primitive->setColor(value, 1);
+				std::transform(value.begin(), value.end(), value.begin(), ::tolower);
+				int found = value.find("green");
+				if (found != string::npos){
+        primitive->setColor(1,0);
       }
+				found = value.find("blue");
+				if (found != string::npos){
+        primitive->setColor(2,0);
+      }
+				found = value.find("red");
+			  if(found != string::npos){
+        primitive->setColor(3,0);
+      }
+			  found = value.find("black");
+				if (found != string::npos){
+        primitive->setColor(4,0);
+      }
+				found = value.find("white");
+				if (found != string::npos){
+        primitive->setColor(5,0);
+      }
+			}
       break;
 
     case 'g': //grade
