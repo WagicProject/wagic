@@ -27,6 +27,8 @@
     unlockedTex = NULL;
     unlockedQuad = NULL;
     unlocked = -1;
+    p1 = NULL;
+    p2 = NULL;
   }
 
   Credits::~Credits(){
@@ -168,6 +170,7 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app){
 }
 
 void Credits::Render(){
+  if (!p1) return;
   GameObserver * g = GameObserver::GetInstance();
   JRenderer * r = JRenderer::GetInstance();
   WFont * f = resources.GetWFont(Constants::MAIN_FONT);

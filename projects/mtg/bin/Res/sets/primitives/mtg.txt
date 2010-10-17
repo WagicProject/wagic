@@ -13681,7 +13681,7 @@ toughness=4
 abilities=flying
 [/card]
 [card]
-name=Dragon Token from Dragon Broodmother
+name=Dragon
 type=Creature
 subtype=Dragon
 abilities=flying

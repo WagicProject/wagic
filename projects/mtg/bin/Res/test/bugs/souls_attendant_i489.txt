@@ -1,0 +1,18 @@
+#Bug: Triggers are "targetting", making Black Knight immune to soul's attendant ability
+# http://code.google.com/p/wagic/issues/detail?id=489
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:soul's attendant
+hand:black knight
+manapool:{B}{B}
+[PLAYER2]
+[DO]
+black knight
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:soul's attendant,black knight
+life:21
+[PLAYER2]
+[END]

@@ -1,5 +1,6 @@
 #include "../include/TestSuiteAI.h"
 #include "../include/config.h"
+#include "../include/DebugRoutines.h"
 #include "../include/MTGAbility.h"
 #include "../include/MTGRules.h"
 #include "../include/ActionLayer.h"
@@ -20,6 +21,31 @@ TestSuiteAI::TestSuiteAI(TestSuite * _suite, int playerId):AIPlayerBaka(NULL, "t
   timer = 0;
   playMode = MODE_TEST_SUITE;
   this->deckName = "Test Suite AI";
+}
+
+
+MTGCardInstance * TestSuiteAI::getCard(string action){
+  int mtgid = Rules::getMTGId(action);
+  if (mtgid) return Rules::getCardByMTGId(mtgid);
+
+  //This mostly handles tokens
+  GameObserver * g = GameObserver::GetInstance();
+  std::transform(action.begin(), action.end(), action.begin(),::tolower );
+  for (int i = 0; i < 2; i++){
+    Player * p = g->players[i];
+    MTGGameZone * zones[] = {p->game->library,p->game->hand,  p->game->inPlay, p->game->graveyard};
+    for (int j = 0; j < 4; j++){
+      MTGGameZone * zone = zones[j];
+      for (int k = 0; k < zone->nb_cards; k++){
+	      MTGCardInstance * card = zone->cards[k];
+	      if (!card) return NULL;
+        string name = card->getLCName();
+        if (name.compare(action) == 0) return card;
+      }
+    }
+  }
+  DebugTrace("TESTUISTEAI: Can't find card:" << action.c_str());
+  return NULL;
 }
 
 
@@ -125,29 +151,31 @@ int TestSuiteAI::Act(float dt){
     g->cardClick(NULL, p);
   }else{
     int mtgid = Rules::getMTGId(action);
+    Interruptible * toInterrupt = NULL;
     if (mtgid){
       char buffe[512];
       sprintf(buffe, "TESTSUITE CARD ID : %i\n", mtgid);
       OutputDebugString(buffe);
-      Interruptible * toInterrupt = suite->getActionByMTGId(mtgid);
-      if (toInterrupt)
-        g->stackObjectClicked(toInterrupt);
-      else{
-        MTGCardInstance * card = Rules::getCardByMTGId(mtgid);
-        if (card) {
-          OutputDebugString("TESTSUITE Clicking ON: ");
-          OutputDebugString(card->name.c_str());
-          OutputDebugString("\n");
-          card->currentZone->needShuffle = true; //mimic library shuffle
-          g->cardClick(card,card);
-          g->forceShuffleLibraries(); //mimic library shuffle
-        }
-      }
-    }else{
-      return 0;
+      toInterrupt = suite->getActionByMTGId(mtgid);
+    }
+
+    if (toInterrupt) {
+      g->stackObjectClicked(toInterrupt);
+      return 1;
+    }
+
+    MTGCardInstance * card = getCard(action);
+    if (card) {
+      OutputDebugString("TESTSUITE Clicking ON: ");
+      OutputDebugString(card->name.c_str());
+      OutputDebugString("\n");
+      card->currentZone->needShuffle = true; //mimic library shuffle
+      g->cardClick(card,card);
+      g->forceShuffleLibraries(); //mimic library shuffle
+      return 1;
     }
   }
-  return 1;
+  return 0;
 }
 
 

@@ -91,6 +91,7 @@ class TestSuiteAI:public AIPlayerBaka{
   
   TestSuiteAI(TestSuite * suite, int playerId);
   virtual int Act(float dt);
+  MTGCardInstance * getCard(string action);
   virtual int displayStack();
 };
 
