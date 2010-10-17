@@ -11,13 +11,6 @@
 
 class SimpleMenu:public JGuiController{
  private:
-  // See SimpleMenu.cpp for values
-  static const unsigned SIDE_SIZE;
-  static const unsigned VMARGIN;
-  static const unsigned HMARGIN;
-  static const signed LINE_HEIGHT;
-
- private:
   int mHeight, mWidth, mX, mY;
   int fontId;
   std::string title;
