@@ -84,33 +84,24 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
       }
       break;
 
-    case 'c': //color
-      if (!primitive) primitive = NEW CardPrimitive();
-      {
-        string value = val;
+      case 'c': //color
+			if (!primitive) primitive = NEW CardPrimitive();
+			{
+				string value = val;
 				std::transform(value.begin(), value.end(), value.begin(), ::tolower);
-				int found = value.find("green");
-				if (found != string::npos){
-        primitive->setColor(1,0);
-      }
-				found = value.find("blue");
-				if (found != string::npos){
-        primitive->setColor(2,0);
-      }
-				found = value.find("red");
-			  if(found != string::npos){
-        primitive->setColor(3,0);
-      }
-			  found = value.find("black");
-				if (found != string::npos){
-        primitive->setColor(4,0);
-      }
-				found = value.find("white");
-				if (found != string::npos){
-        primitive->setColor(5,0);
-      }
+				list<int>colors;
+				for (int j = 0; j < Constants::MTG_NB_COLORS; j++){
+					size_t found = value.find(Constants::MTGColorStrings[j]);
+					if (found != string::npos){
+						colors.push_back(j);
+					}
+				}
+				list<int>::iterator it;
+				for ( it=colors.begin() ; it != colors.end(); it++ ){
+					primitive->setColor(*it);
+				}
 			}
-      break;
+			break;
 
     case 'g': //grade
       if (s.size() - i - 1 > 2) currentGrade = getGrade(val[2]);
