@@ -89,22 +89,12 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
 			{
 				string value = val;
 				std::transform(value.begin(), value.end(), value.begin(), ::tolower);
-				list<int>colors;
-				for (int j = 0; j < Constants::MTG_NB_COLORS; j++){
-					size_t found = value.find(Constants::MTGColorStrings[j]);
-					if (found != string::npos){
-						colors.push_back(j);
-					}
-				}
-				if(colors.size())
-				{
-					primitive->setColor(0,1);
-					primitive->removeColor(0);
-				}
-				list<int>::iterator it;
-				for ( it=colors.begin() ; it != colors.end(); it++ ){
-					primitive->setColor(*it);
-				}
+        vector<string> values = split(value, ',');
+        int removeAllOthers = 1;
+        for (size_t values_i = 0; values_i < values.size(); ++values_i) {
+          primitive->setColor(values[values_i], removeAllOthers);
+          removeAllOthers = 0;
+        }
 			}
 			break;
 
