@@ -104,6 +104,11 @@ ActionLayer * DuelLayers::actionLayer(){
   return action;
 }
 
+GuiAvatars * DuelLayers::GetAvatars()
+{
+	return avatars;
+}
+
 DuelLayers::DuelLayers() : nbitems(0) {}
 
 DuelLayers::~DuelLayers(){

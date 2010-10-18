@@ -158,6 +158,23 @@ bool CardSelector::CheckUserInput(JButton key)
       lasts[oldowner] = SelectorMemory(oldactive);
     }
   }
+  else
+  {
+		// active card hasn't changed - that means we're probably at an edge of the battlefield.
+		// check if we're not already a selected avatar - if not, select one depending whether we're going up/down.
+		GuiAvatar* avatar = dynamic_cast<GuiAvatar*>(active);
+		if (!avatar)
+		{
+			if (key == JGE_BTN_DOWN)
+			{
+				active = duel->GetAvatars()->GetSelf();
+			}
+			else if (key == JGE_BTN_UP)
+			{
+				active = duel->GetAvatars()->GetOpponent();
+			}
+		}
+  }
   if (active != oldactive) {
     { CardView* c = dynamic_cast<CardView*>(oldactive); if (c) c->zoom = 1.0f; }
     { CardView* c = dynamic_cast<CardView*>(active); if (c) c->zoom = 1.4f; }

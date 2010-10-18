@@ -115,3 +115,13 @@ void GuiAvatars::Render()
   GuiLayer::Render();
 
 }
+
+GuiAvatar* GuiAvatars::GetSelf()
+{
+	return self;
+}
+
+GuiAvatar* GuiAvatars::GetOpponent()
+{
+	return opponent;
+}

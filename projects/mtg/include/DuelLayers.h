@@ -33,6 +33,7 @@ public:
   ActionLayer * actionLayer();
   ActionStack * stackLayer();
   GuiCombat * combatLayer();
+  GuiAvatars * GetAvatars();
   void init();
   virtual void Update(float dt, Player * player);
   void CheckUserInput(int isAI);

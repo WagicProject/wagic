@@ -20,9 +20,11 @@ class GuiAvatars : public GuiLayer
   
 
  public:
-  GuiAvatars(CardSelector*);
+	GuiAvatars(CardSelector*);
   ~GuiAvatars();
-  //  virtual void Render();
+
+	GuiAvatar* GetSelf();
+  GuiAvatar* GetOpponent();
   void Update(float dt);
   void Render();
   void Activate(PlayGuiObject* c);
