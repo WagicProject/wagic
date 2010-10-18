@@ -310,7 +310,7 @@ HEADERS += \
 maemo5: {
     # Variables
     BINDIR = /opt/wagic
-    RESDIR = /opt/wagic/Res
+    RESDIR = /opt/wagic/ResInst
     ICONDIR = /usr/share
     DEFINES += RESDIR=\\\"$$RESDIR\\\"
 
