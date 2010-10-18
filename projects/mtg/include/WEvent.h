@@ -108,6 +108,12 @@ struct WEventCardAttacked : public WEventCardUpdate {
 	virtual Targetable * getTarget(int target);
 };
 
+//event when card attacks alone.
+struct WEventCardAttackedAlone : public WEventCardUpdate {
+  WEventCardAttackedAlone(MTGCardInstance * card);
+	virtual Targetable * getTarget(int target);
+};
+
 //event when card attacks but is not blocked.
 struct WEventCardAttackedNotBlocked : public WEventCardUpdate {
   WEventCardAttackedNotBlocked(MTGCardInstance * card);
@@ -145,6 +151,11 @@ struct WEventCreatureBlocker : public WEventCardUpdate {
   MTGCardInstance * before;
   MTGCardInstance * after;
   WEventCreatureBlocker(MTGCardInstance * card,MTGCardInstance * from,MTGCardInstance * to);
+};
+
+//Event sent when attackers have been chosen and they
+//cannot be changed any more.
+struct WEventAttackersChosen : public WEvent {
 };
 
 //Event sent when blockers have been chosen and they

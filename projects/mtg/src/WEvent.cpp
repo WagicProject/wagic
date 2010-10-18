@@ -22,6 +22,8 @@ WEventCardTappedForMana::WEventCardTappedForMana(MTGCardInstance * card, bool be
 
 WEventCardAttacked::WEventCardAttacked(MTGCardInstance * card) : WEventCardUpdate(card){}
 
+WEventCardAttackedAlone::WEventCardAttackedAlone(MTGCardInstance * card) : WEventCardUpdate(card){}
+
 WEventCardAttackedNotBlocked::WEventCardAttackedNotBlocked(MTGCardInstance * card) : WEventCardUpdate(card){}
 
 WEventCardAttackedBlocked::WEventCardAttackedBlocked(MTGCardInstance * card) : WEventCardUpdate(card){}
@@ -68,6 +70,11 @@ Targetable * WEventZoneChange::getTarget(int target) {
 }
 
 Targetable * WEventCardAttacked::getTarget(int target) {
+  if (target) return card;
+  return NULL;
+}
+
+Targetable * WEventCardAttackedAlone::getTarget(int target) {
   if (target) return card;
   return NULL;
 }

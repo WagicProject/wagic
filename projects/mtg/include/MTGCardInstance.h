@@ -145,6 +145,7 @@ class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable {
   void attemptUntap();
 
 	void eventattacked();
+	void eventattackedAlone();
 	void eventattackednotblocked();
 	void eventattackedblocked();
 	void eventblocked();

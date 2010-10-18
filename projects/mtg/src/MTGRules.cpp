@@ -784,6 +784,26 @@ int MTGCombatTriggersRule::receiveEvent(WEvent *e){
 		}
 //---------------
 	}
+	if (WEventAttackersChosen * event = dynamic_cast<WEventAttackersChosen*>(e))
+	{     
+		    MTGCardInstance * lonelyAttacker;
+        int nbattackers = 0;
+			  Player * p = game->currentPlayer;
+			  MTGGameZone * z = p->game->inPlay;
+        int nbcards = z->nb_cards;
+        for (int i = 0; i < nbcards; ++i){
+          MTGCardInstance * c = z->cards[i];
+          if (c->attacker){
+            nbattackers++;
+            lonelyAttacker = c;
+          }
+        }
+				if (nbattackers == 1)
+				{
+					lonelyAttacker->eventattackedAlone();
+				}
+				else lonelyAttacker = NULL;
+	}
 	if (WEventBlockersChosen * event = dynamic_cast<WEventBlockersChosen*>(e))
 	{
 		Player * p = game->currentPlayer;

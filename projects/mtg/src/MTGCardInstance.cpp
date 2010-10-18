@@ -223,6 +223,13 @@ void MTGCardInstance::eventattacked(){
   game->receiveEvent(e);
 }
 
+//sets card as attacked alone and sends events
+void MTGCardInstance::eventattackedAlone(){
+  WEvent * e = NEW WEventCardAttackedAlone(this);
+  GameObserver * game = GameObserver::GetInstance();
+  game->receiveEvent(e);
+}
+
 //sets card as attacked and sends events
 void MTGCardInstance::eventattackednotblocked(){
   didattacked = 1;

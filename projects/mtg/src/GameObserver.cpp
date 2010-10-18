@@ -138,6 +138,9 @@ void GameObserver::nextGamePhase(){
   case Constants::MTG_PHASE_DRAW:
     //mLayers->stackLayer()->addDraw(currentPlayer,1);
     break;
+	case Constants::MTG_PHASE_COMBATBLOCKERS:
+		receiveEvent(NEW WEventAttackersChosen());
+		break;
   default:
     break;
   }

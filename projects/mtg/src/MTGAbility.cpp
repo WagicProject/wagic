@@ -144,6 +144,18 @@ TriggeredAbility * AbilityFactory::parseTrigger(string magicText, int id, Spell 
     return NEW TrCardAddedToZone(id,card,(TargetZoneChooser *)toTc, toTcCard,(TargetZoneChooser *)fromTc,fromTcCard);
   }
 
+		  //Card unTapped
+  found = s.find("untapped(");
+  if (found != string::npos){
+    size_t end = s.find (")");
+    string starget = s.substr(found+9,end - found - 9);
+    TargetChooserFactory tcf;
+    TargetChooser *tc = tcf.createTargetChooser(starget,card);
+    tc->targetter = NULL;
+
+    return NEW TrCardTapped(id,card,tc,false);
+  }
+
   //Card Tapped
   found = s.find("tapped(");
   if (found != string::npos){
@@ -154,18 +166,6 @@ TriggeredAbility * AbilityFactory::parseTrigger(string magicText, int id, Spell 
     tc->targetter = NULL;
 
     return NEW TrCardTapped(id,card,tc,true);
-  }
-
-	  //Card unTapped
-  found = s.find("untapping(");
-  if (found != string::npos){
-    size_t end = s.find (")");
-    string starget = s.substr(found+10,end - found - 10);
-    TargetChooserFactory tcf;
-    TargetChooser *tc = tcf.createTargetChooser(starget,card);
-    tc->targetter = NULL;
-
-    return NEW TrCardTapped(id,card,tc,false);
   }
 
 	  //Card Tapped for mana
@@ -190,6 +190,17 @@ TriggeredAbility * AbilityFactory::parseTrigger(string magicText, int id, Spell 
     tc->targetter = NULL;
 
     return NEW TrCardAttacked(id,card,tc);
+  }
+		 //Card is attacking alone
+  found = s.find("attackedalone(");
+  if (found != string::npos){
+    size_t end = s.find (")");
+    string starget = s.substr(found+14,end - found - 14);
+    TargetChooserFactory tcf;
+    TargetChooser *tc = tcf.createTargetChooser(starget,card);
+    tc->targetter = NULL;
+
+    return NEW TrCardAttackedAlone(id,card,tc);
   }
 
 	//Card card attacked and is not blocked
@@ -282,6 +293,47 @@ TriggeredAbility * AbilityFactory::parseTrigger(string magicText, int id, Spell 
     return NEW TrCardDiscarded(id,card,tc);
   }
 
+
+		    //Card Damaging non combat
+  found = s.find("noncombatdamaged(");
+  if (found != string::npos){
+    size_t end = s.find (")");
+    string starget = s.substr(found+17,end - found - 17);
+    TargetChooserFactory tcf;
+    TargetChooser *tc = tcf.createTargetChooser(starget,card);
+    tc->targetter = NULL;
+    found = s.find("from(");
+	
+	  TargetChooser *fromTc = NULL;
+	  if (found != string::npos){
+        end = s.find (")", found);
+        starget = s.substr(found+5,end - found - 5);
+        fromTc = tcf.createTargetChooser(starget,card);
+        fromTc->targetter = NULL;
+	  }
+		return NEW TrDamaged(id,card,tc,fromTc, 2);
+  }
+
+			    //Card Damaging combat
+  found = s.find("combatdamaged(");
+  if (found != string::npos){
+    size_t end = s.find (")");
+    string starget = s.substr(found+14,end - found - 14);
+    TargetChooserFactory tcf;
+    TargetChooser *tc = tcf.createTargetChooser(starget,card);
+    tc->targetter = NULL;
+    found = s.find("from(");
+	
+	  TargetChooser *fromTc = NULL;
+	  if (found != string::npos){
+        end = s.find (")", found);
+        starget = s.substr(found+5,end - found - 5);
+        fromTc = tcf.createTargetChooser(starget,card);
+        fromTc->targetter = NULL;
+	  }
+		return NEW TrDamaged(id,card,tc,fromTc, 1);
+  }
+
     //Card Damaging
   found = s.find("damaged(");
   if (found != string::npos){
@@ -300,46 +352,6 @@ TriggeredAbility * AbilityFactory::parseTrigger(string magicText, int id, Spell 
         fromTc->targetter = NULL;
 	  }
 		return NEW TrDamaged(id,card,tc,fromTc, 0);
-  }
-
-	    //Card Damaging combat
-  found = s.find("combatdamage(");
-  if (found != string::npos){
-    size_t end = s.find (")");
-    string starget = s.substr(found+13,end - found - 13);
-    TargetChooserFactory tcf;
-    TargetChooser *tc = tcf.createTargetChooser(starget,card);
-    tc->targetter = NULL;
-    found = s.find("from(");
-	
-	  TargetChooser *fromTc = NULL;
-	  if (found != string::npos){
-        end = s.find (")", found);
-        starget = s.substr(found+5,end - found - 5);
-        fromTc = tcf.createTargetChooser(starget,card);
-        fromTc->targetter = NULL;
-	  }
-		return NEW TrDamaged(id,card,tc,fromTc, 1);
-  }
-
-		    //Card Damaging non combat
-  found = s.find("damagenoncombat(");
-  if (found != string::npos){
-    size_t end = s.find (")");
-    string starget = s.substr(found+16,end - found - 16);
-    TargetChooserFactory tcf;
-    TargetChooser *tc = tcf.createTargetChooser(starget,card);
-    tc->targetter = NULL;
-    found = s.find("from(");
-	
-	  TargetChooser *fromTc = NULL;
-	  if (found != string::npos){
-        end = s.find (")", found);
-        starget = s.substr(found+5,end - found - 5);
-        fromTc = tcf.createTargetChooser(starget,card);
-        fromTc->targetter = NULL;
-	  }
-		return NEW TrDamaged(id,card,tc,fromTc, 2);
   }
 
   int who = 0;
@@ -804,6 +816,14 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     return a;
   }
 
+	   //combat removel
+  found = s.find("removefromcombat");
+  if (found != string::npos){
+    MTGAbility * a =  NEW ACombatRemovel(id,card,target);
+    a->oneShot = 1;
+    return a;
+  }
+
   //Fizzle (counterspell...)
   found = s.find("fizzle");
   if (found != string::npos){
@@ -1010,13 +1030,36 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     
     MTGAbility * ab;
     if (forceUEOT){
-      ab = NEW APreventAllCombatDamageUEOT(id,card,to,from);
+      ab = NEW APreventDamageTypesUEOT(id,card,to,from);
     }else{
-      ab = NEW APreventAllCombatDamage(id,card,to,from);
+      ab = NEW APreventDamageTypes(id,card,to,from);
     }
     return ab;
   }
-	  //PreventCombat Damage
+		//Prevent all non combat damage Damage
+  found = s.find("preventallnoncombatdamage");
+  if (found != string::npos){
+    string to = "";
+    string from = "";
+    found = s.find("to(");
+    if (found != string::npos){
+      size_t end = s.find (")", found);
+      to = s.substr(found+3,end - found - 3);
+		}
+    found = s.find("from(");
+    if (found != string::npos){
+      size_t end = s.find (")", found);
+      from = s.substr(found+5,end - found - 5);
+    }
+    MTGAbility * ab;
+    if (forceUEOT){
+      ab = NEW APreventDamageTypesUEOT(id,card,to,from,2);
+    }else{
+      ab = NEW APreventDamageTypes(id,card,to,from,2);
+    }
+    return ab;
+  }
+	  //Prevent all damage
   found = s.find("preventalldamage");
   if (found != string::npos){
     string to = "";
@@ -1033,33 +1076,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
     MTGAbility * ab;
     if (forceUEOT){
-      ab = NEW APreventAllCombatDamageUEOT(id,card,to,from,1);
+      ab = NEW APreventDamageTypesUEOT(id,card,to,from,1);
     }else{
-      ab = NEW APreventAllCombatDamage(id,card,to,from,1);
-    }
-    return ab;
-  }
-
-	//PreventCombat Damage
-  found = s.find("preventallnoncombat");
-  if (found != string::npos){
-    string to = "";
-    string from = "";
-    found = s.find("to(");
-    if (found != string::npos){
-      size_t end = s.find (")", found);
-      to = s.substr(found+3,end - found - 3);
-		}
-    found = s.find("from(");
-    if (found != string::npos){
-      size_t end = s.find (")", found);
-      from = s.substr(found+5,end - found - 5);
-    }
-    MTGAbility * ab;
-    if (forceUEOT){
-      ab = NEW APreventAllCombatDamageUEOT(id,card,to,from,2);
-    }else{
-      ab = NEW APreventAllCombatDamage(id,card,to,from,2);
+      ab = NEW APreventDamageTypes(id,card,to,from,1);
     }
     return ab;
   }
@@ -1079,7 +1098,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
       size_t end = s.find (")", found);
       from = s.substr(found+5,end - found - 5);
     }
-    MTGAbility * a =  NEW APreventAllCombatDamageUEOT(id,card,to,from);
+    MTGAbility * a =  NEW APreventDamageTypesUEOT(id,card,to,from);
     a->oneShot = 1;
 	return a;
   }
