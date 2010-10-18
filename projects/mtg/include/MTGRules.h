@@ -86,6 +86,17 @@ class MTGAttackRule:public MTGAbility, public Limitor{
   virtual MTGAttackRule * clone() const;
 };
 
+
+/* handles combat trigger send recieve events*/
+class MTGCombatTriggersRule:public MTGAbility{
+ public:
+  MTGCombatTriggersRule(int _id);
+  int receiveEvent(WEvent * event);
+  virtual ostream& toString(ostream& out) const;
+  int testDestroy();
+  virtual MTGCombatTriggersRule * clone() const;
+};
+
 class MTGBlockRule:public MTGAbility{
  public:
   int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);

@@ -97,10 +97,19 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
             }
             break;
           case 'd': //DiscardRandom cost
+	          if (value == "d"){
             manaCost->addExtraCost(NEW DiscardRandomCost(tc));
+					}else{
+            manaCost->addExtraCost(NEW DiscardCost(tc));
+              }
             break;
           case 'm': //Mill yourself as a cost
             manaCost->addExtraCost(NEW MillCost(tc));
+            break;
+					case 'n': //return unblocked attacker cost
+				    TargetChooserFactory tcf;
+            tc = tcf.createTargetChooser("creature|myBattlefield", c);
+            manaCost->addExtraCost(NEW Ninja(tc));
             break;
           case 'c': //Counters
             {

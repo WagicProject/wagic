@@ -96,6 +96,11 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
 						colors.push_back(j);
 					}
 				}
+				if(colors.size())
+				{
+					primitive->setColor(0,1);
+					primitive->removeColor(0);
+				}
 				list<int>::iterator it;
 				for ( it=colors.begin() ; it != colors.end(); it++ ){
 					primitive->setColor(*it);

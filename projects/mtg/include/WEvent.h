@@ -85,6 +85,14 @@ struct WEventCardTap : public WEventCardUpdate {
   virtual Targetable * getTarget(int target);
 };
 
+struct WEventCardTappedForMana : public WEventCardUpdate {
+  bool before;
+  bool after;
+  WEventCardTappedForMana(MTGCardInstance * card, bool before, bool after);
+  virtual Targetable * getTarget(int target);
+};
+
+
 //Event when a card's "attacker" status changes
 //before:Player/Planeswalker that card was attacking previously
 //after: Player/Planeswalker that card is attacking now
@@ -92,6 +100,42 @@ struct WEventCreatureAttacker : public WEventCardUpdate {
   Targetable * before;
   Targetable * after;
   WEventCreatureAttacker(MTGCardInstance * card, Targetable * from, Targetable * to);
+};
+
+//event when card attacks.
+struct WEventCardAttacked : public WEventCardUpdate {
+  WEventCardAttacked(MTGCardInstance * card);
+	virtual Targetable * getTarget(int target);
+};
+
+//event when card attacks but is not blocked.
+struct WEventCardAttackedNotBlocked : public WEventCardUpdate {
+  WEventCardAttackedNotBlocked(MTGCardInstance * card);
+	virtual Targetable * getTarget(int target);
+};
+
+//event when card attacks but is blocked.
+struct WEventCardAttackedBlocked : public WEventCardUpdate {
+  WEventCardAttackedBlocked(MTGCardInstance * card);
+	virtual Targetable * getTarget(int target);
+};
+
+//event when card blocked.
+struct WEventCardBlocked : public WEventCardUpdate {
+  WEventCardBlocked(MTGCardInstance * card);
+	virtual Targetable * getTarget(int target);
+};
+
+//event when card is sacrificed.
+struct WEventCardSacrifice : public WEventCardUpdate {
+  WEventCardSacrifice(MTGCardInstance * card);
+	virtual Targetable * getTarget(int target);
+};
+
+//event when card is discarded.
+struct WEventCardDiscard : public WEventCardUpdate {
+  WEventCardDiscard(MTGCardInstance * card);
+	virtual Targetable * getTarget(int target);
 };
 
 //Event when a card's "defenser" status changes
@@ -106,6 +150,13 @@ struct WEventCreatureBlocker : public WEventCardUpdate {
 //Event sent when blockers have been chosen and they
 //cannot be changed any more.
 struct WEventBlockersChosen : public WEvent {
+};
+
+struct WEventcardDraw : public WEvent {
+	WEventcardDraw(Player * player,int nb_cards);
+	Player * player;
+	int nb_cards;
+	virtual Targetable * getTarget(Player * player);
 };
 
 //Event when a blocker is reordered

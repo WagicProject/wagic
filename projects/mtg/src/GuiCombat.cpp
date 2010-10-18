@@ -133,7 +133,10 @@ bool GuiCombat::clickOK(){
   cursor_pos = NONE;
   switch (step)
     {
-    case BLOCKERS         : assert(false); return false; // that should not happen
+    case BLOCKERS :
+		case TRIGGERS :
+			assert(false); return false; // that should not happen
+
     case ORDER            : go->nextGamePhase(); return true;
     case FIRST_STRIKE     : return false;
     case DAMAGE           : validateDamage(); return true;
@@ -441,9 +444,14 @@ int GuiCombat::receiveEventMinus(WEvent* e)
   else if (WEventCombatStepChange* event = dynamic_cast<WEventCombatStepChange*>(e))
     switch (event->step)
       {
-      case BLOCKERS:
-        break;
-      case ORDER:
+			case BLOCKERS:
+			break;
+
+      case TRIGGERS:
+				step = TRIGGERS;
+				return 1;
+
+			case ORDER:
         {
           if (ORDER == step) return 0; // Why do I take this twice ? >.>
           if (!go->currentPlayer->displayStack()) { go->nextCombatStep(); return 1; }

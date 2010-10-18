@@ -32,7 +32,6 @@ int Damage::resolve(){
   state = RESOLVED_OK;
   GameObserver * g = GameObserver::GetInstance();
   WEvent * e = NEW WEventDamage(this);
-
   //Replacement Effects
   e = g->replacementEffects->replace(e);
   if (!e) return 0;
@@ -114,7 +113,6 @@ int Damage::resolve(){
     // Poison on player
     Player * _target = (Player *)target;
 	  _target->poisonCount += damage;//this will be changed to poison counters.
-
   } else if (target->type_as_damageable == DAMAGEABLE_PLAYER && 
    ( source->has(Constants::POISONTOXIC) || source->has(Constants::POISONTWOTOXIC) || source->has(Constants::POISONTHREETOXIC) )) {
      //Damage + 1, 2, or 3 poison counters on player
@@ -188,11 +186,10 @@ int DamageStack::resolve(){
   for (int i = mCount-1; i>= 0; i--){
     Damage * damage = (Damage*)mObjects[i];
     if (damage->state == NOT_RESOLVED) damage->resolve();
-  }
-
+	}
   GameObserver::GetInstance()->receiveEvent(NEW WEventDamageStackResolved());
   return 1;
-}
+	}
 
 int DamageStack::receiveEvent(WEvent * e) {
   WEventDamageStackResolved *event = dynamic_cast<WEventDamageStackResolved*>(e);

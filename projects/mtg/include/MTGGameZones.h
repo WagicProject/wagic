@@ -155,7 +155,7 @@ class MTGPlayerCards {
   ~MTGPlayerCards();
   void initGame(int shuffle = 1, int draw = 1);
   void setOwner(Player * player);
-  void discardRandom(MTGGameZone * from);
+  void discardRandom(MTGGameZone * from,MTGCardInstance * source);
   void drawFromLibrary();
   void showHand();
   void resetLibrary();

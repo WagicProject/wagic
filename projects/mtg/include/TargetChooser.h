@@ -31,7 +31,8 @@ class TargetChooser: public TargetsList {
     UNSET = 0,
     OPPONENT = -1,
     CONTROLLER = 1,
-    TARGET_CONTROLLER = 2
+    TARGET_CONTROLLER = 2,
+		OWNER = 3
  };
     bool other;
 

@@ -49,6 +49,23 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 
 		//cost of card.
 		if (playerMana->canAfford(cost)){
+//-------
+			if(card->has(Constants::SUNBURST)){ 
+				for(int i = 1; i != 6;i++)
+				{
+					if(player->getManaPool()->hasColor(i)){ 
+						if(card->getManaCost()->hasColor(i) > 0){//do nothing if the card already has this color.
+						}else{
+							if(card->sunburst < card->getManaCost()->getConvertedCost()){
+								card->getManaCost()->add(i,1);
+								card->getManaCost()->remove(0,1);
+								card->sunburst += 1;
+							}
+						}
+					}
+//-------
+		}
+		}
 			return 1;//play if you can afford too.
 		}
 	}
@@ -736,6 +753,83 @@ MTGAttackRule * MTGAttackRule::clone() const{
 	return a;
 }
 
+//this rules handles returning cards to combat triggers for activations.
+MTGCombatTriggersRule::MTGCombatTriggersRule(int _id):MTGAbility(_id,NULL){
+	aType=MTGAbility::MTG_COMBATTRIGGERS_RULE;
+}
+
+int MTGCombatTriggersRule::receiveEvent(WEvent *e){
+	if (WEventPhaseChange* event = dynamic_cast<WEventPhaseChange*>(e)) {
+		if (Constants::MTG_PHASE_COMBATATTACKERS == event->from->id) {
+			Player * p = game->currentPlayer;
+			MTGGameZone * z = p->game->inPlay;
+			for (int i= 0; i < z->nb_cards; i++){
+				MTGCardInstance * card = z->cards[i];
+				if (card && card->isAttacker()){
+					card->eventattacked();
+				}
+			}
+		}
+		if (Constants::MTG_PHASE_COMBATEND == event->from->id) {
+			Player * p = game->currentPlayer->opponent();
+			MTGGameZone * z = p->game->inPlay;
+			for (int i= 0; i < z->nb_cards; i++){
+				MTGCardInstance * card = z->cards[i];
+				if (card){
+					card->didattacked = 0;
+					card->didblocked = 0;
+					card->notblocked = 0;
+				}
+			}
+		}
+//---------------
+	}
+	if (WEventBlockersChosen * event = dynamic_cast<WEventBlockersChosen*>(e))
+	{
+		Player * p = game->currentPlayer;
+		MTGGameZone * z = p->game->inPlay;
+		for (int i= 0; i < z->nb_cards; i++){
+			MTGCardInstance * card = z->cards[i];
+			if (card && card->isAttacker() && !card->blocked)
+			{
+				card->eventattackednotblocked();
+				card->notblocked += 1;
+			}
+			if (card && card->isAttacker() && card->blocked)
+			{
+				card->eventattackedblocked();
+			}
+		}
+
+		MTGGameZone* opponentZone = game->currentPlayer->opponent()->game->inPlay;
+		for (int i = 0; i < opponentZone->nb_cards; i++)
+		{
+			MTGCardInstance* card = opponentZone->cards[i];
+			if (card && card->didblocked > 0){
+				card->eventblocked();
+			}
+		}
+	}
+	return 0;
+}
+
+//trigger rules are never distroyed
+int MTGCombatTriggersRule::testDestroy(){
+	return 0;
+}
+
+ostream& MTGCombatTriggersRule::toString(ostream& out) const
+{
+	out << "MTGCombatTriggersRule ::: (";
+	return MTGAbility::toString(out) << ")";
+}
+
+MTGCombatTriggersRule * MTGCombatTriggersRule::clone() const{
+	MTGCombatTriggersRule * a =  NEW MTGCombatTriggersRule(*this);
+	a->isClone = 1;
+	return a;
+}
+///------------
 
 OtherAbilitiesEventReceiver::OtherAbilitiesEventReceiver(int _id):MTGAbility(_id,NULL){
 }
@@ -773,7 +867,7 @@ MTGBlockRule::MTGBlockRule(int _id):MTGAbility(_id,NULL){
 
 int MTGBlockRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana){
 	if (currentPhase == Constants::MTG_PHASE_COMBATBLOCKERS && !game->isInterrupting && card->controller() == game->currentlyActing()){
-		if (card->canBlock()) return 1;
+		if (card->canBlock())return 1;
 	}
 	return 0;
 }
@@ -1085,6 +1179,12 @@ int MTGCantCasterstart::receiveEvent(WEvent * event){
 		WEventZoneChange * e = (WEventZoneChange *) event;
 		MTGCardInstance * card = e->card->previous;
 		if(card){
+			if(e->from == e->card->controller()->game->battlefield && e->to == e->card->controller()->game->graveyard){
+				 e->card->fresh = 1;
+			}
+			if(e->to == e->card->controller()->game->battlefield){
+				 e->card->fresh = 1;
+			}
 			if (card->basicAbilities[Constants::BOTHCANTCAST] || card->basicAbilities[Constants::BOTHNOCREATURE] || card->basicAbilities[Constants::CANTCAST] || card->basicAbilities[Constants::CANTCASTCREATURE] || card->basicAbilities[Constants::CANTCASTTWO] || card->basicAbilities[Constants::ONLYONEBOTH] || card->basicAbilities[Constants::NOMAXHAND] ){
 				int ok = 0;
 				for (int i = 0; i < 2 ; i++){
@@ -1240,8 +1340,30 @@ int MTGSneakAttackRule::receiveEvent(WEvent *e){
 				MTGGameZone * z = p->game->inPlay;
 				for (int i= 0; i < z->nb_cards; i++){
 					MTGCardInstance * card = z->cards[i];
-					if (card->has(Constants::TREASON)) {p->game->putInGraveyard(card);i--;}
+						while(card->flanked){//undoes the flanking on a card
+            card->power += 1;
+	          card->addToToughness(1);
+	          card->flanked -= 1;
+	           }
+					if (card->has(Constants::TREASON)) 
+					{
+					WEvent * e = NEW WEventCardSacrifice(card);
+          GameObserver * game = GameObserver::GetInstance();
+          game->receiveEvent(e);
+						p->game->putInGraveyard(card);i--;
+					}
 					if (card->has(Constants::UNEARTH)) {p->game->putInExile(card);i--;}
+					if (card->fresh) card->fresh = 0;
+					if (card->has(Constants::ONLYONEBOTH)) 
+					{
+						card->controller()->castcount = 0;
+						card->controller()->opponent()->castcount = 0;
+					}
+				}
+				MTGGameZone * f = p->game->graveyard;
+				for (int k= 0; k < f->nb_cards; k++){
+					MTGCardInstance * card = f->cards[k];
+          card->fresh = 0;
 				}
 			}
 		}

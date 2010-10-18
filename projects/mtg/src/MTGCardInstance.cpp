@@ -35,6 +35,7 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
   banding = NULL;
   life = toughness;
   preventable = 0;
+	flanked = 0;
 }
 
 void MTGCardInstance::copy(MTGCardInstance * card){
@@ -99,6 +100,11 @@ void MTGCardInstance::initMTGCI(){
   tapped = 0;
   untapping = 0;
   frozen = 0;
+	fresh = 0;
+	didattacked = 0;
+	didblocked = 0;
+	notblocked = 0;
+  sunburst = NULL;
   equipment = NULL;
   boughtback = 0;
   flashedback = 0;
@@ -106,6 +112,7 @@ void MTGCardInstance::initMTGCI(){
   reduxamount = 0;
   summoningSickness = 1;
   preventable = 0;
+	flanked = 0;
   target = NULL;
   type_as_damageable = DAMAGEABLE_MTGCARDINSTANCE;
   banding = NULL;
@@ -184,6 +191,10 @@ int MTGCardInstance::afterDamage(){
 
 int MTGCardInstance::bury(){
     Player * p = controller();
+	if (basicAbilities[Constants::EXILEBURY]){
+    p->game->putInZone(this,p->game->inPlay,owner->game->exile);
+    return 1;
+	}
 	if (!basicAbilities[Constants::INDESTRUCTIBLE]){
     p->game->putInZone(this,p->game->inPlay,owner->game->graveyard);
     return 1;
@@ -202,6 +213,40 @@ MTGGameZone * MTGCardInstance::getCurrentZone(){
 int MTGCardInstance::has(int basicAbility){
   return basicAbilities[basicAbility];
 }
+
+
+//sets card as attacked and sends events
+void MTGCardInstance::eventattacked(){
+  didattacked = 1;
+  WEvent * e = NEW WEventCardAttacked(this);
+  GameObserver * game = GameObserver::GetInstance();
+  game->receiveEvent(e);
+}
+
+//sets card as attacked and sends events
+void MTGCardInstance::eventattackednotblocked(){
+  didattacked = 1;
+  WEvent * e = NEW WEventCardAttackedNotBlocked(this);
+  GameObserver * game = GameObserver::GetInstance();
+  game->receiveEvent(e);
+}
+
+//sets card as attacked and sends events
+void MTGCardInstance::eventattackedblocked(){
+  didattacked = 1;
+  WEvent * e = NEW WEventCardAttackedBlocked(this);
+  GameObserver * game = GameObserver::GetInstance();
+  game->receiveEvent(e);
+}
+
+//sets card as blocking and sends events
+void MTGCardInstance::eventblocked(){
+	didblocked = 1;
+  WEvent * e = NEW WEventCardBlocked(this);
+  GameObserver * game = GameObserver::GetInstance();
+  game->receiveEvent(e);
+}
+
 
 //Taps the card
 void MTGCardInstance::tap(){
@@ -265,6 +310,8 @@ int MTGCardInstance::initAttackersDefensers(){
   banding = NULL;
   blockers.clear();
   blocked = false;
+	didattacked = 0;
+	didblocked = 0;
   return 1;
 }
 
@@ -273,7 +320,10 @@ int MTGCardInstance::cleanup(){
   initAttackersDefensers();
   life=toughness;
   GameObserver * game = GameObserver::GetInstance();
-  if (!game || game->currentPlayer == controller()) summoningSickness = 0;
+  if (!game || game->currentPlayer == controller())
+	{
+		summoningSickness = 0;
+	}
   if (previous && !previous->stillInUse()){
     SAFE_DELETE(previous);
   }
@@ -471,7 +521,9 @@ int MTGCardInstance::getDefenserRank(MTGCardInstance * blocker){
 
 int MTGCardInstance::removeBlocker(MTGCardInstance * blocker){
   blockers.remove(blocker);
-  if (!blockers.size()) blocked = false;
+	if (!blockers.size()){
+		blocked = false;
+	}
   return 1;
 }
 
@@ -537,12 +589,17 @@ int MTGCardInstance::toggleDefenser(MTGCardInstance * opponent){
   if (canBlock()){
     if (canBlock(opponent)){
       setDefenser(opponent);
+			didblocked = 1;
+			if(opponent && opponent->controller()->isAI()){
+				opponent->view->actZ += .8; 
+				opponent->view->actT -= .2;
+         }
+			if(!opponent) didblocked = 0;
       return 1;
-    }
-  }
+		}
+	}
   return 0;
 }
-
 
 int MTGCardInstance::addProtection(TargetChooser * tc){
   tc->targetter = NULL;

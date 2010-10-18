@@ -29,7 +29,7 @@ class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable {
   int untapping;
   int nb_damages;
   string sample;
-  int tapped;
+	int tapped;
 
   int lifeOrig;
   MTGPlayerCards * belongs_to;
@@ -49,11 +49,17 @@ class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable {
   int flashedback;
   int paymenttype;
   int frozen;
+  int sunburst;
   int equipment;
   int reduxamount;
+	int flanked;
   int regenerateTokens;
   int isToken;
   int stillInUse();
+	int didattacked;
+	int didblocked;
+	int notblocked;
+	int fresh;
   Player * lastController;
   MTGGameZone * getCurrentZone();
   MTGGameZone * previousZone;
@@ -137,6 +143,11 @@ class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable {
   void untap();
   void tap();
   void attemptUntap();
+
+	void eventattacked();
+	void eventattackednotblocked();
+	void eventattackedblocked();
+	void eventblocked();
 
   int isInPlay();
   JSample * getSample();

@@ -57,6 +57,7 @@ void DamagerDamaged::Render(CombatStep mode)
   switch (mode)
     {
     case BLOCKERS :
+		case TRIGGERS :
     case ORDER :
       mFont->SetColor(ARGB(92,255,255,255));
       break;

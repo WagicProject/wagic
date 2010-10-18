@@ -114,6 +114,7 @@ void CardGui::Render()
     else if (card->hasSubtype("island"))
       icon = resources.GetQuad("c_blue");
 
+
     if (icon){
       icon->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255)); 
       renderer->RenderQuad(icon, actX, actY, 0); 
@@ -125,7 +126,7 @@ void CardGui::Render()
   if (card->isCreature()){
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     char buffer[200];
-	sprintf(buffer, "%i/%i",card->power,card->life);
+		sprintf(buffer, "%i/%i",card->power,card->life);
     renderer->FillRect(actX - (12*actZ) , actY + 6* actZ, 25*actZ, 12*actZ, ARGB(((static_cast<unsigned char>(actA))/2),0,0,0));
     mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));
     mFont->SetScale(actZ);
@@ -588,7 +589,7 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos){
     if (quad->mHeight < quad->mWidth) {
       return tinyCropRender(card, pos, quad);
     }
-    quad->SetColor(ARGB((int)pos.actA,255,255,255));
+    quad->SetColor(ARGB(255,255,255,255));
     float scale = pos.actZ * 257.f / quad->mHeight;
     renderer->RenderQuad(quad, x, pos.actY, pos.actT, scale, scale);
     return;
@@ -599,7 +600,7 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos){
   if ((q = resources.RetrieveCard(card,CACHE_THUMB)))
     {
       float scale = pos.actZ * 250 / q->mHeight;
-      q->SetColor(ARGB((int)pos.actA,255,255,255));
+      q->SetColor(ARGB(255,255,255,255));
       renderer->RenderQuad(q, x, pos.actY, pos.actT, scale, scale);
       return;
     }

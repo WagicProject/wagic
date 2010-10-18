@@ -101,8 +101,7 @@ void ActionLayer::Update(float dt){
       cantCancel = 0;
       cancelCurrentAction();
     }
-  }
-
+	}
 }
 
 void ActionLayer::Render (){
@@ -120,7 +119,7 @@ void ActionLayer::Render (){
 
 
 void ActionLayer::setCurrentWaitingAction(ActionElement * ae){
-  assert(!ae || !currentWaitingAction);
+  assert(!ae || !currentWaitingAction);//this assert causes crashes when may abilities overlap each other on ai. this conidiation is preexsiting.
   currentWaitingAction = ae;
   if (!ae) cantCancel = 0;
 }

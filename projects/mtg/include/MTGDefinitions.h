@@ -136,8 +136,11 @@ class Constants
     LEYLINE = 78,
     PLAYERSHROUD = 79,
     CONTROLLERSHROUD = 80,
+	SUNBURST = 81,
+	FLANKING = 82,
+	EXILEBURY = 83,
 
-    NB_BASIC_ABILITIES = 81,
+    NB_BASIC_ABILITIES = 84,
 
 
     RARITY_S = 'S',   //Special Rarity

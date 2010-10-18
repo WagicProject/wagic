@@ -23,8 +23,7 @@ int ExtraCost::setSource(MTGCardInstance * _source){
   if (tc)
   { 
     tc->source = _source;
-    // Cryptic comment from cloned/refactored code:
-    // "Tapping targets is not targetting, protections do not apply"
+    // "extra cost is not targetting, protections do not apply" this is not cryptic at all :) make an ability you will understand it then. this keeps the target chooser from being unable to select a creature with shroud/protections.
     tc->targetter = NULL;
   }
   else
@@ -93,19 +92,46 @@ int DiscardRandomCost::canPay(){
   MTGGameZone * z = target->controller()->game->hand;
   int nbcards = z->nb_cards;
   if(nbcards < 1) return 0;
+	if(nbcards == 1 && z->hasCard(source)) return 0;
   return 1;
 }
 
 int DiscardRandomCost::doPay(){
   MTGCardInstance * _target = (MTGCardInstance *) target;
   if(target){
-	  _target->controller()->game->discardRandom(_target->controller()->game->hand);
+	  _target->controller()->game->discardRandom(_target->controller()->game->hand,source);
     target = NULL;
     if (tc) tc->initTargets();
     return 1;
   }
   return 0;
 }
+//a choosen discard
+
+DiscardCost *  DiscardCost::clone() const{
+  DiscardCost * ec =  NEW DiscardCost(*this);
+  if (tc) ec->tc = tc->clone();
+  return ec;
+}
+
+DiscardCost::DiscardCost(TargetChooser *_tc)
+  : ExtraCost("Choose card to Discard", _tc){
+}
+
+int DiscardCost::doPay(){
+  MTGCardInstance * _target = (MTGCardInstance *) target;
+  if(target){
+					WEvent * e = NEW WEventCardDiscard(target);
+          GameObserver * game = GameObserver::GetInstance();
+          game->receiveEvent(e);
+      _target->controller()->game->putInGraveyard(_target);
+    target = NULL;
+    if (tc) tc->initTargets();
+    return 1;
+  }
+  return 0;
+}
+//to library cost
 
 ToLibraryCost *  ToLibraryCost::clone() const{
   ToLibraryCost * ec =  NEW ToLibraryCost(*this);
@@ -242,6 +268,39 @@ int BounceTargetCost::doPay(){
   return 0;
 }
 
+//Bounce as cost for ninja
+Ninja *  Ninja::clone() const{
+  Ninja * ec =  NEW Ninja(*this);
+  if (tc) ec->tc = tc->clone();
+  return ec;
+}
+
+Ninja::Ninja(TargetChooser *_tc)
+  : ExtraCost("Select unblocked attacker", _tc){
+}
+
+int Ninja::isPaymentSet(){
+	GameObserver * g = GameObserver::GetInstance();
+  int currentPhase = g->getCurrentGamePhase();
+	if (target && ((target->isAttacker() && target->blocked == true) || target->isAttacker() < 1 || currentPhase != Constants::MTG_PHASE_COMBATBLOCKERS)){ tc->removeTarget(target);target = NULL; return 0;}
+	if(target) return 1;
+	return 0;
+}
+
+int Ninja::doPay(){
+  MTGCardInstance * _target = (MTGCardInstance *) target;
+  if(target){
+    target->controller()->game->putInHand(target);
+    target = NULL;
+    if (tc) tc->initTargets();
+    return 1;
+  }
+  return 0;
+}
+
+//endbouncetargetcostforninja
+//------------------------------------------------------------
+
 SacrificeCost *  SacrificeCost::clone() const{
   SacrificeCost * ec =  NEW SacrificeCost(*this);
   if (tc) ec->tc = tc->clone();
@@ -254,6 +313,9 @@ SacrificeCost::SacrificeCost(TargetChooser *_tc)
 
 int SacrificeCost::doPay(){
   if(target){
+					WEvent * e = NEW WEventCardSacrifice(target);
+          GameObserver * game = GameObserver::GetInstance();
+          game->receiveEvent(e);
 	  target->controller()->game->putInGraveyard(target);
     target = NULL;
     if (tc) tc->initTargets();

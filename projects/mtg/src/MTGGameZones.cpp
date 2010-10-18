@@ -249,10 +249,13 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
   return card; //Error
 }
 
-void MTGPlayerCards::discardRandom(MTGGameZone * from){
+void MTGPlayerCards::discardRandom(MTGGameZone * from,MTGCardInstance * source){
   if (!from->nb_cards)
     return;
   int r = WRand() % (from->nb_cards);
+					WEvent * e = NEW WEventCardDiscard(from->cards[r]);
+          GameObserver * game = GameObserver::GetInstance();
+          game->receiveEvent(e);
   putInZone(from->cards[r],from, graveyard);
 }
 

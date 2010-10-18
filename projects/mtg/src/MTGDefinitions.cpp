@@ -89,6 +89,9 @@ const char* Constants::MTGBasicAbilities[] = {
 "leyline",
 "playershroud",
 "controllershroud",
+"sunburst",
+"flanking",
+"exiledeath",
 };
 
 

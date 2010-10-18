@@ -153,7 +153,133 @@ TriggeredAbility * AbilityFactory::parseTrigger(string magicText, int id, Spell 
     TargetChooser *tc = tcf.createTargetChooser(starget,card);
     tc->targetter = NULL;
 
-    return NEW TrCardTapped(id,card,tc);
+    return NEW TrCardTapped(id,card,tc,true);
+  }
+
+	  //Card unTapped
+  found = s.find("untapping(");
+  if (found != string::npos){
+    size_t end = s.find (")");
+    string starget = s.substr(found+10,end - found - 10);
+    TargetChooserFactory tcf;
+    TargetChooser *tc = tcf.createTargetChooser(starget,card);
+    tc->targetter = NULL;
+
+    return NEW TrCardTapped(id,card,tc,false);
+  }
+
+	  //Card Tapped for mana
+  found = s.find("tappedformana(");
+  if (found != string::npos){
+    size_t end = s.find (")");
+    string starget = s.substr(found+14,end - found - 14);
+    TargetChooserFactory tcf;
+    TargetChooser *tc = tcf.createTargetChooser(starget,card);
+    tc->targetter = NULL;
+
+    return NEW TrCardTappedformana(id,card,tc,true);
+  }
+
+	 //Card is attacking
+  found = s.find("attacking(");
+  if (found != string::npos){
+    size_t end = s.find (")");
+    string starget = s.substr(found+10,end - found - 10);
+    TargetChooserFactory tcf;
+    TargetChooser *tc = tcf.createTargetChooser(starget,card);
+    tc->targetter = NULL;
+
+    return NEW TrCardAttacked(id,card,tc);
+  }
+
+	//Card card attacked and is not blocked
+  found = s.find("notblocked(");
+  if (found != string::npos){
+    size_t end = s.find (")");
+    string starget = s.substr(found+11,end - found - 11);
+    TargetChooserFactory tcf;
+    TargetChooser *tc = tcf.createTargetChooser(starget,card);
+    tc->targetter = NULL;
+
+    return NEW TrCardAttackedNotBlocked(id,card,tc);
+  }
+
+		//Card card attacked and is blocked
+  found = s.find("blocked(");
+  if (found != string::npos){
+    size_t end = s.find (")");
+    string starget = s.substr(found+8,end - found - 8);
+    TargetChooserFactory tcf;
+    TargetChooser *tc = tcf.createTargetChooser(starget,card);
+    tc->targetter = NULL;
+		 found = s.find("from(");
+	
+	  TargetChooser *fromTc = NULL;
+	  if (found != string::npos){
+        end = s.find (")", found);
+        starget = s.substr(found+5,end - found - 5);
+        fromTc = tcf.createTargetChooser(starget,card);
+        fromTc->targetter = NULL;
+	  }
+
+    return NEW TrCardAttackedBlocked(id,card,tc,fromTc);
+  }
+
+		 //Card card is a blocker
+  found = s.find("blocking(");
+  if (found != string::npos){
+    size_t end = s.find (")");
+    string starget = s.substr(found+9,end - found - 9);
+    TargetChooserFactory tcf;
+    TargetChooser *tc = tcf.createTargetChooser(starget,card);
+    tc->targetter = NULL;
+		 found = s.find("from(");
+	
+	  TargetChooser *fromTc = NULL;
+	  if (found != string::npos){
+        end = s.find (")", found);
+        starget = s.substr(found+5,end - found - 5);
+        fromTc = tcf.createTargetChooser(starget,card);
+        fromTc->targetter = NULL;
+	  }
+
+    return NEW TrCardBlocked(id,card,tc,fromTc);
+  }
+
+			 //Card card is drawn
+  found = s.find("drawn(");
+  if (found != string::npos){
+    size_t end = s.find (")");
+    string starget = s.substr(found+6,end - found - 6);
+    TargetChooserFactory tcf;
+    TargetChooser *tc = tcf.createTargetChooser(starget,card);
+    tc->targetter = NULL;
+
+    return NEW TrcardDrawn(id,card,tc);
+  }
+
+		 //Card is sacrificed
+  found = s.find("sacrificed(");
+  if (found != string::npos){
+    size_t end = s.find (")");
+    string starget = s.substr(found+11,end - found - 11);
+    TargetChooserFactory tcf;
+    TargetChooser *tc = tcf.createTargetChooser(starget,card);
+    tc->targetter = NULL;
+
+    return NEW TrCardSacrificed(id,card,tc);
+  }
+
+			 //Card is sacrificed
+  found = s.find("discarded(");
+  if (found != string::npos){
+    size_t end = s.find (")");
+    string starget = s.substr(found+10,end - found - 10);
+    TargetChooserFactory tcf;
+    TargetChooser *tc = tcf.createTargetChooser(starget,card);
+    tc->targetter = NULL;
+
+    return NEW TrCardDiscarded(id,card,tc);
   }
 
     //Card Damaging
@@ -173,7 +299,47 @@ TriggeredAbility * AbilityFactory::parseTrigger(string magicText, int id, Spell 
         fromTc = tcf.createTargetChooser(starget,card);
         fromTc->targetter = NULL;
 	  }
-		return NEW TrDamaged(id,card,tc,fromTc);
+		return NEW TrDamaged(id,card,tc,fromTc, 0);
+  }
+
+	    //Card Damaging combat
+  found = s.find("combatdamage(");
+  if (found != string::npos){
+    size_t end = s.find (")");
+    string starget = s.substr(found+13,end - found - 13);
+    TargetChooserFactory tcf;
+    TargetChooser *tc = tcf.createTargetChooser(starget,card);
+    tc->targetter = NULL;
+    found = s.find("from(");
+	
+	  TargetChooser *fromTc = NULL;
+	  if (found != string::npos){
+        end = s.find (")", found);
+        starget = s.substr(found+5,end - found - 5);
+        fromTc = tcf.createTargetChooser(starget,card);
+        fromTc->targetter = NULL;
+	  }
+		return NEW TrDamaged(id,card,tc,fromTc, 1);
+  }
+
+		    //Card Damaging non combat
+  found = s.find("damagenoncombat(");
+  if (found != string::npos){
+    size_t end = s.find (")");
+    string starget = s.substr(found+16,end - found - 16);
+    TargetChooserFactory tcf;
+    TargetChooser *tc = tcf.createTargetChooser(starget,card);
+    tc->targetter = NULL;
+    found = s.find("from(");
+	
+	  TargetChooser *fromTc = NULL;
+	  if (found != string::npos){
+        end = s.find (")", found);
+        starget = s.substr(found+5,end - found - 5);
+        fromTc = tcf.createTargetChooser(starget,card);
+        fromTc->targetter = NULL;
+	  }
+		return NEW TrDamaged(id,card,tc,fromTc, 2);
   }
 
   int who = 0;
@@ -320,8 +486,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         limit = atoi(sWithoutTc.substr(limit_str+6).c_str());
       }
 
-
-
       AEquip *ae = dynamic_cast<AEquip*>(a);
       if (ae){
         ae->cost = cost;
@@ -331,14 +495,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         }
         ae->tc = tc;
         return ae;
-      }
+			}
 
       if (tc) return NEW GenericTargetAbility(id, card, tc, a,cost, doTap,limit,restrictions,dest);
       return NEW GenericActivatedAbility(id, card, a,cost,doTap,limit,restrictions,dest);
     }
     SAFE_DELETE(cost);
   }
-  
   
   //kicker cost
   found = s.find("kicker ");
@@ -492,7 +655,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             case 1: result =  NEW AThisForEach(id, card, _target, td, a); break;
             default: result =  NULL;
           }
-          if (result) result->oneShot = oneShot;
+					if (result){ result->oneShot = oneShot;}
           return result;
         }
       return NULL;
@@ -633,6 +796,14 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     return a;
   }
 
+	   //ninjutsu
+  found = s.find("ninjutsu");
+  if (found != string::npos){
+    MTGAbility * a =  NEW ANinja(id,card,target);
+    a->oneShot = 1;
+    return a;
+  }
+
   //Fizzle (counterspell...)
   found = s.find("fizzle");
   if (found != string::npos){
@@ -660,10 +831,17 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (star != string::npos) multiplier = NEW WParsedInt(s.substr(star+1),spell,card);
     size_t end = s.find(")", found);
     int tokenId = atoi(s.substr(found + 6,end - found - 6).c_str());
+		int who;
+	  size_t opponent = s.find("opponent");
+		if (opponent != string::npos){ 
+			who = 1;
+		}else{
+			who = 0;
+		}
     if (tokenId){
 	    MTGCard * safetycard = GameApp::collection->getCardById(tokenId);
 	    if (safetycard){//contenue
-        ATokenCreator * tok = NEW ATokenCreator(id,card,NULL,tokenId,0, multiplier);
+        ATokenCreator * tok = NEW ATokenCreator(id,card,NULL,tokenId,0, multiplier,who);
         tok->oneShot = 1;
         return tok;
 	    }else{
@@ -687,8 +865,14 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 	  if(!spt.find("XX/XX") || !spt.find("xx/xx")){value = spell->computeXX(card);}
 	  parsePowerToughness(spt,&power, &toughness);
     string sabilities = s.substr(end+1);
-
-    ATokenCreator * tok = NEW ATokenCreator(id,card,NULL,sname,stypes,power + value,toughness + value,sabilities,0, multiplier);
+		if(s.find("opponent")){
+			if (opponent != string::npos){ 
+			who = 1;
+		}else{
+			who = 0;
+			}
+		}
+    ATokenCreator * tok = NEW ATokenCreator(id,card,NULL,sname,stypes,power + value,toughness + value,sabilities,0, multiplier,who);
     tok->oneShot = 1;
     return tok;
   }
@@ -743,6 +927,25 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     return a;
   }
 
+	  //clone
+  found = s.find("clone");
+  if (found != string::npos){
+		int who;
+		who = 0;
+	 found = s.find("opponent");
+		if (found != string::npos){ 
+			who = 1;
+		}
+    string with;
+    found = s.find("with(");
+    if (found != string::npos){
+      size_t end = s.find (")", found);
+      with = s.substr(found+5,end - found - 5);
+    }
+     MTGAbility * a = NEW AACloner(id,card,target,0,who,with);
+    a->oneShot = 1;
+    return a;
+	}
 
   //Bury, destroy
   string destroys[] = {"bury","destroy"};
@@ -757,11 +960,26 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
   }
 
+	  //sacrifices and discards
+  string sacdis[] = {"sacrifice","reject"};
+  int sacdisTypes[]= {1, 0};
+  for (int i = 0; i < 2; ++i){
+    found = s.find(sacdis[i]);
+    if (found != string::npos){
+      int sacrifice = sacdisTypes[i];
+      MTGAbility * a = NEW AASacDis(id,card,target,sacrifice);
+      a->oneShot = 1;
+      return a;
+    }
+  }
+
+
 
   int who = TargetChooser::UNSET;
   if (s.find(" controller") != string::npos) who=TargetChooser::CONTROLLER;
   if (s.find(" opponent") != string::npos) who=TargetChooser::OPPONENT;
   if (s.find(" targetcontroller") != string::npos) who=TargetChooser::TARGET_CONTROLLER;
+	if (s.find(" owner") != string::npos) who=TargetChooser::OWNER;
 
   found = s.find("ueot");
   if (found!= string::npos) forceUEOT = 1;
@@ -795,6 +1013,53 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
       ab = NEW APreventAllCombatDamageUEOT(id,card,to,from);
     }else{
       ab = NEW APreventAllCombatDamage(id,card,to,from);
+    }
+    return ab;
+  }
+	  //PreventCombat Damage
+  found = s.find("preventalldamage");
+  if (found != string::npos){
+    string to = "";
+    string from = "";
+    found = s.find("to(");
+    if (found != string::npos){
+      size_t end = s.find (")", found);
+      to = s.substr(found+3,end - found - 3);
+		}
+    found = s.find("from(");
+    if (found != string::npos){
+      size_t end = s.find (")", found);
+      from = s.substr(found+5,end - found - 5);
+    }
+    MTGAbility * ab;
+    if (forceUEOT){
+      ab = NEW APreventAllCombatDamageUEOT(id,card,to,from,1);
+    }else{
+      ab = NEW APreventAllCombatDamage(id,card,to,from,1);
+    }
+    return ab;
+  }
+
+	//PreventCombat Damage
+  found = s.find("preventallnoncombat");
+  if (found != string::npos){
+    string to = "";
+    string from = "";
+    found = s.find("to(");
+    if (found != string::npos){
+      size_t end = s.find (")", found);
+      to = s.substr(found+3,end - found - 3);
+		}
+    found = s.find("from(");
+    if (found != string::npos){
+      size_t end = s.find (")", found);
+      from = s.substr(found+5,end - found - 5);
+    }
+    MTGAbility * ab;
+    if (forceUEOT){
+      ab = NEW APreventAllCombatDamageUEOT(id,card,to,from,2);
+    }else{
+      ab = NEW APreventAllCombatDamage(id,card,to,from,2);
     }
     return ab;
   }
@@ -838,6 +1103,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     a->oneShot = 1;
     return a;
   }
+
  //remove poison
   found = s.find("removepoison:");
   if (found != string::npos){
@@ -1048,10 +1314,28 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (parsePowerToughness(spt,&power, &toughness)){
       int MaxOpponent = atoi(s.substr(end+1,end+2).c_str());
 	    return NEW  ARampageAbility(id,card,power,toughness,MaxOpponent);
+		}
+    return NULL;
+  }
+// the following is NOT dead code. this is for stacking flanking. except auras do not yet support 
+	//giving creatures activated/MTGAbility keywords. soon as i add this support this will be uncommented for stacking flanking.
+	//  //flanking
+ // found = s.find("flanking");
+ // if (found != string::npos){
+	//  return NEW  AFlankerAbility(id,card);
+	//}
+
+	  //bushido
+  found = s.find("bushido(");
+  if (found != string::npos){
+	  int end = s.find(")", found);
+    string spt = s.substr(8,end - 1);
+    int power, toughness;
+    if (parsePowerToughness(spt,&power, &toughness)){
+	    return NEW  ABushidoAbility(id,card,power,toughness);
     }
     return NULL;
   }
-
 
   //counter
   found = s.find("counter(");
@@ -1289,6 +1573,14 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     return a;
   }
 
+	 //switch targest power with toughness
+  found = s.find("twist");
+  if (found != string::npos){
+    MTGAbility * a = NEW ATwistUEOT(id,card,target);
+    a->oneShot = 1;
+    return a;
+  }
+
   //Untapper (Ley Druid...)
   found = s.find("untap");
   if (found != string::npos){
@@ -1331,7 +1623,10 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
   if (AAsLongAs * abi = dynamic_cast<AAsLongAs *>(a)) return abilityEfficiency(abi->ability,p, mode,tc);
   if (AForeach * abi = dynamic_cast<AForeach *>(a)) return abilityEfficiency(abi->ability,p, mode,tc);
   if (dynamic_cast<AAFizzler *>(a)) return BAKA_EFFECT_BAD;
-  if (dynamic_cast<AAUntapper *>(a)) return BAKA_EFFECT_GOOD;
+  if (dynamic_cast<AADamagePrevent *>(a)) return BAKA_EFFECT_GOOD;
+	if (dynamic_cast<AACloner *>(a)) return BAKA_EFFECT_GOOD;
+  if (dynamic_cast<ATwistUEOT *>(a)) return BAKA_EFFECT_BAD;
+	if (dynamic_cast<AAUntapper *>(a)) return BAKA_EFFECT_GOOD;
   if (dynamic_cast<AATapper *>(a)) return BAKA_EFFECT_BAD;
   if (AACounter * ac = dynamic_cast<AACounter *>(a)) {
     bool negative_effect = ac->power < 0 || ac->toughness < 0;
@@ -1805,7 +2100,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
     {
       int xCost = computeX(spell,card);
       for (int i = 0; i < xCost; i++){
-	game->opponent()->game->discardRandom(game->opponent()->game->hand);
+	game->opponent()->game->discardRandom(game->opponent()->game->hand,card);
       }
       break;
     }
@@ -2074,6 +2369,10 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 
   if (card->basicAbilities[Constants::EXALTED]){
     game->addObserver(NEW AExalted(_id, card));
+  }
+
+	if (card->basicAbilities[Constants::FLANKING]){
+    game->addObserver(NEW AFlankerAbility(_id, card));
   }
 
   // Tested works the first r10 did not function because of the mistake in the array of the definition
@@ -2715,7 +3014,10 @@ AManaProducer::AManaProducer(int id, MTGCardInstance * card, Targetable * t, Man
     int result = 0;
     if (!mana) mana = game->currentlyActing()->getManaPool();
     if (_card == source && (!tap || !source->isTapped())  && game->currentlyActing()->game->inPlay->hasCard(source) && (source->hasType(Subtypes::TYPE_LAND) || !tap || !source->hasSummoningSickness()) ){
-      if (!cost || mana->canAfford(cost)) result =  1;
+		if (!cost || mana->canAfford(cost))
+			{
+	result =  1;
+			}
     }
     return result;
   }
@@ -2746,7 +3048,12 @@ AManaProducer::AManaProducer(int id, MTGCardInstance * card, Targetable * t, Man
       GameObserver::GetInstance()->currentlyActing()->getManaPool()->pay(cost);
       cost->doPayExtra();
     }
-    if (tap) source->tap();
+		if (tap){
+	  GameObserver *g = GameObserver::GetInstance();
+    WEvent * e = NEW WEventCardTappedForMana(source, 0, 1);
+    g->receiveEvent(e);
+		source->tap();
+		}
 
     if (options[Options::SFXVOLUME].number > 0){
       JSample * sample = resources.RetrieveSample("mana.wav");
@@ -2833,6 +3140,8 @@ AManaProducer::AManaProducer(int id, MTGCardInstance * card, Targetable * t, Man
         return source->controller();
       case TargetChooser::OPPONENT:
         return source->controller()->opponent();
+			case TargetChooser::OWNER:
+				return source->owner;
       default:
         return target;
     }

@@ -11,7 +11,7 @@ using namespace std;
 
 class Player;
 
-typedef enum { BLOCKERS, ORDER, FIRST_STRIKE, END_FIRST_STRIKE, DAMAGE, END_DAMAGE } CombatStep;
+typedef enum { BLOCKERS, TRIGGERS, ORDER, FIRST_STRIKE, END_FIRST_STRIKE, DAMAGE, END_DAMAGE } CombatStep;
 class Phase{
  public:
   int id;

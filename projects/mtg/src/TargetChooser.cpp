@@ -24,6 +24,20 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
     return NEW CardTargetChooser(target,card);
   };
 
+	 found = s.find("opponent");
+  if (found == 0){
+		int maxtargets = 1;
+		Player * opponent = card->controller()->opponent();
+    return NEW PlayerTargetChooser(card,maxtargets,opponent);
+  };
+   
+	 found = s.find("controller");
+  if (found == 0){
+		int maxtargets = 1;
+		Player * controller = card->controller();
+    return NEW PlayerTargetChooser(card,maxtargets,controller);
+  };
+
   found = s.find("other ");
   if (found == 0){
     other = true;
@@ -191,26 +205,35 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
           }else{
 	          cd->attacker = 1;
           }
+				}
           //Blocker
-        }else if (attribute.find("blocking") != string::npos){
+         else if (attribute.find("blocking") != string::npos){
           if (minus){
             cd->defenser = & MTGCardInstance::NoCard;
           }else{
 	          cd->defenser = & MTGCardInstance::AnyCard;
           }
+				 }
         //Tapped, untapped
-        }else if (attribute.find("tapped") != string::npos){
+				else if (attribute.find("tapped") != string::npos){
           if (minus){
 	          cd->unsecureSetTapped(-1);
           }else{
 	          cd->unsecureSetTapped(1);
           }
         //Token
-        }else if (attribute.find("token") != string::npos){
+				}else if (attribute.find("token") != string::npos){
           if (minus){
             cd->isToken = -1;
           }else{
 	          cd->isToken = 1;
+					}
+        //put in its zone this turn
+				}else if (attribute.find("fresh") != string::npos){
+          if (minus){
+            cd->unsecuresetfresh(-1);
+          }else{
+	          cd->unsecuresetfresh(1);
           }
         //Power restrictions
         }else if (attribute.find("power") != string::npos){
@@ -520,7 +543,6 @@ bool TypeTargetChooser::canTarget(Targetable * target){
     MTGCardInstance * card = (MTGCardInstance *) target;
     for (int i= 0; i < nbtypes; i++){
       if (card->hasSubtype(types[i])) return true;
-	  if (card->has(Constants::CHANGELING)) return true;
       if (Subtypes::subtypesList->find(card->getLCName()) == types[i]) return true;
     }
     return false;

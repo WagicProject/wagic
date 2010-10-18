@@ -62,6 +62,21 @@ class ThisEquip:public ThisDescriptor{
     ThisEquip(int equipment);
 };
 
+
+class ThisAttacked:public ThisDescriptor{
+ public:
+    virtual int match(MTGCardInstance * card);
+
+	ThisAttacked(int attack);
+};
+
+class ThisNotBlocked:public ThisDescriptor{
+ public:
+    virtual int match(MTGCardInstance * card);
+
+	ThisNotBlocked(int unblocked);
+};
+
 class ThisPower:public ThisDescriptor{
  public:
     virtual int match(MTGCardInstance * card);

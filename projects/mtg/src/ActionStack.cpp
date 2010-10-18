@@ -215,7 +215,6 @@ bool Spell::RetraceWasPaid(){
 const string Spell::getDisplayName() const {
   return source->getName();
 }
-
 Spell::~Spell(){
   SAFE_DELETE(cost);
   SAFE_DELETE(tc);
@@ -390,7 +389,10 @@ int ActionStack::addAbility(MTGAbility * ability){
 
 int ActionStack::addDraw(Player * player, int nb_cards){
   DrawAction * draw = NEW DrawAction(mCount,player, nb_cards);
-  addAction(draw);
+	addAction(draw);
+	GameObserver *g = GameObserver::GetInstance();
+	WEvent * e = NEW WEventcardDraw(player,nb_cards);
+  g->receiveEvent(e);
   return 1;
 }
 
@@ -405,8 +407,16 @@ int ActionStack::AddNextGamePhase(){
   NextGamePhase * next = NEW NextGamePhase(mCount);
   addAction(next);
   int playerId = 0;
-  if (game->currentActionPlayer == game->players[1]) playerId = 1;
+	game->currentActionPlayer = game->GetInstance()->currentActionPlayer;
+	if (game->currentActionPlayer == game->players[1]){ playerId = 1;}
   interruptDecision[playerId] = 1;
+  return 1;
+}
+
+int ActionStack::AddNextCombatStep(){
+  if (getNext(NULL,NOT_RESOLVED)) return 0;
+  NextGamePhase * next = NEW NextGamePhase(mCount);
+  addAction(next);
   return 1;
 }
 

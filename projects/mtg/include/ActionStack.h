@@ -172,6 +172,7 @@ class ActionStack :public GuiLayer{
   int addAction(Interruptible * interruptible);
   Spell * addSpell(MTGCardInstance* card, TargetChooser * tc, ManaCost * mana, int payResult, int storm);
   int AddNextGamePhase();
+	int AddNextCombatStep();
   int addPutInGraveyard(MTGCardInstance * card);
   int addDraw(Player * player, int nbcards = 1);
   int addDamage(MTGCardInstance * _source, Damageable * target, int _damage);

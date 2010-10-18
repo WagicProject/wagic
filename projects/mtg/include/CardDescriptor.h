@@ -39,6 +39,7 @@ class CardDescriptor: public MTGCardInstance{
   int init();
   CardDescriptor();
   void unsecureSetTapped(int i);
+	void unsecuresetfresh(int k);
   void setNegativeSubtype( string value);
   int counterPower;
   int counterToughness;

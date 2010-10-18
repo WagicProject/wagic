@@ -70,6 +70,14 @@ public:
   virtual DiscardRandomCost * clone() const;
 };
 
+//a choosen discard
+class DiscardCost: public ExtraCost{
+public:
+  DiscardCost(TargetChooser *_tc = NULL);
+  virtual int doPay();
+  virtual DiscardCost * clone() const;
+};
+
 //tolibrary cost 
 class ToLibraryCost: public ExtraCost{
 public:
@@ -116,6 +124,15 @@ public:
   BounceTargetCost(TargetChooser *_tc = NULL);
   virtual int doPay();
   virtual BounceTargetCost * clone() const;
+};
+
+//bounce cost
+class Ninja: public ExtraCost{
+public:
+  Ninja(TargetChooser *_tc = NULL);
+  virtual int isPaymentSet();
+  virtual int doPay();
+  virtual Ninja * clone() const;
 };
 
 class CounterCost: public ExtraCost{

@@ -34,6 +34,10 @@ void CardDescriptor::unsecureSetTapped(int i){
   tapped = i;
 }
 
+void CardDescriptor::unsecuresetfresh(int k){
+  fresh = k;
+}
+
 void CardDescriptor::setNegativeSubtype( string value){
   int id = Subtypes::subtypesList->find(value);
   addType(-id);
@@ -150,15 +154,17 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card){
     }
   }
 
-
   if ((tapped == -1 && card->isTapped()) || (tapped == 1 && !card->isTapped())){
+    match = NULL;
+  }
+
+  if ((fresh == -1 && card->fresh) || (fresh == 1 && !card->fresh)){
     match = NULL;
   }
 
   if ((isToken== -1 && card->isToken) || (isToken == 1 && !card->isToken)){
     match = NULL;
   }
-
   if (attacker == 1){
     if (defenser == &AnyCard){
       if (!card->attacker && !card->defenser) match = NULL;
