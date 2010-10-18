@@ -44,6 +44,8 @@ protected:
 
   void mouseReleaseEvent(QMouseEvent *event);
 
+  void mouseMoveEvent(QMouseEvent *event);
+
   void wheelEvent(QWheelEvent *event);
 
 #ifdef Q_WS_MAEMO_5
@@ -170,6 +172,7 @@ JGEQtRenderer::JGEQtRenderer(QWidget *parent)
   grabZoomKeys(true);
 #endif
   setAttribute(Qt::WA_AcceptTouchEvents);
+  setMouseTracking(true);
   grabGesture(Qt::PanGesture);
   grabGesture(Qt::PinchGesture);
   grabGesture(Qt::SwipeGesture);
@@ -296,6 +299,14 @@ void JGEQtRenderer::mouseReleaseEvent(QMouseEvent *event)
   }
 }
 
+
+void JGEQtRenderer::mouseMoveEvent(QMouseEvent *event)
+{
+  // this is intended to convert window coordinate into game coordinate.
+  // this is correct only if the game and window have the same aspect ratio, otherwise, it's just wrong
+  g_engine->LeftClicked((event->pos().x()*SCREEN_WIDTH)/actualWidth, (event->pos().y()*SCREEN_HEIGHT)/actualHeight);
+  event->accept();
+}
 
 /*
 void JGEQtRenderer::mousePressEvent(QMouseEvent *event)
