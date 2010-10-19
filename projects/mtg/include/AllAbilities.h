@@ -2392,6 +2392,9 @@ public:
 		if (!isClone) SAFE_DELETE(ability);
 	}
 
+	const char * getMenuText(){
+		return ability->getMenuText();
+	}
 
 	AAsLongAs * clone() const{
 		AAsLongAs * a =  NEW AAsLongAs(*this);
@@ -2471,6 +2474,10 @@ public:
 		if (!isClone) SAFE_DELETE(ability);
 	}
 
+	const char * getMenuText(){
+		return ability->getMenuText();
+	}
+
 	ALord * clone() const{
 		ALord * a =  NEW ALord(*this);
 		a->isClone = 1;
@@ -2521,6 +2528,10 @@ public:
 			return 1;
 		}
 		return 0;
+	}
+
+	const char * getMenuText(){
+		return ability->getMenuText();
 	}
 
 	AForeach * clone() const{
@@ -2684,6 +2695,9 @@ public:
 		}
 	}
 
+	const char * getMenuText(){
+		return ability->getMenuText();
+	}
 
 	AThisForEach * clone() const{
 		AThisForEach * a =  NEW AThisForEach(*this);
