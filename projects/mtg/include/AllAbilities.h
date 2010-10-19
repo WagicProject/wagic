@@ -1515,6 +1515,12 @@ public:
 		}
 	}
 
+	
+	const char * getMenuText(){
+		return Constants::MTGBasicAbilities[ability];
+	}
+
+
 	virtual ostream& toString(ostream& out) const
 	{
 		out << "ABasicAbilityModifier ::: modifier : " << modifier

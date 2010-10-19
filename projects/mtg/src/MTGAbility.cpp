@@ -529,7 +529,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   found = s.find("alternative ");
   if (found == 0){
     if (spell && spell->AlternativeWasPaid()){
-      string s1 = s.substr(found+7);
+      string s1 = s.substr(found+12);
       return parseMagicLine(s1,id,spell, card);
     }
     return NULL;
@@ -539,7 +539,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   found = s.find("buyback ");
   if (found == 0){
     if (spell && spell->BuyBackWasPaid()){
-      string s1 = s.substr(found+7);
+      string s1 = s.substr(found+8);
       return parseMagicLine(s1,id,spell, card);
     }
     return NULL;
@@ -549,7 +549,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   found = s.find("flashback ");
   if (found == 0){
     if (spell && spell->FlashBackWasPaid()){
-      string s1 = s.substr(found+7);
+      string s1 = s.substr(found+9);
       return parseMagicLine(s1,id,spell, card);
     }
     return NULL;
@@ -559,7 +559,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   found = s.find("retrace ");
   if (found == 0){
     if (spell && spell->RetraceWasPaid()){
-      string s1 = s.substr(found+7);
+      string s1 = s.substr(found+8);
       return parseMagicLine(s1,id,spell, card);
     }
     return NULL;
@@ -578,7 +578,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     //When...comes into play, choose one...
   found = s.find("choice ");
   if (found == 0){
-    string s1 = sWithoutTc.substr(found+4);
+    string s1 = sWithoutTc.substr(found+7);
     MTGAbility * a1 = parseMagicLine(s1,id,spell, card);
     if (!a1) return NULL;
 
