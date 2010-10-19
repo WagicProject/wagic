@@ -173,9 +173,9 @@ void Credits::Render(){
   if (!p1) return;
   GameObserver * g = GameObserver::GetInstance();
   JRenderer * r = JRenderer::GetInstance();
-  WFont * f = resources.GetWFont(Constants::MAIN_FONT);
-  WFont * f2 = resources.GetWFont(Constants::MENU_FONT);
-  WFont * f3 = resources.GetWFont(Constants::MAGIC_FONT);
+  WFont * f = resources.GetWFont(Fonts::MAIN_FONT);
+  WFont * f2 = resources.GetWFont(Fonts::MENU_FONT);
+  WFont * f3 = resources.GetWFont(Fonts::MAGIC_FONT);
   f->SetScale(1);
   f->SetColor(ARGB(255,255,255,255));
   f2->SetScale(1);

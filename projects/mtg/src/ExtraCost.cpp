@@ -36,7 +36,7 @@ int ExtraCost::setSource(MTGCardInstance * _source){
 void ExtraCost::Render(){
   if (!mCostRenderString.empty())
   {
-    WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
+    WFont * mFont = resources.GetWFont(Fonts::MAIN_FONT);
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     mFont->SetColor(ARGB(255,255,255,255));
     mFont->DrawString(mCostRenderString, 20 ,20, JGETEXT_LEFT);

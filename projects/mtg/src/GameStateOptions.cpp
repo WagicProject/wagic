@@ -87,7 +87,7 @@ void GameStateOptions::Start()
   optionsList->failMsg = "";
   optionsTabs->Add(optionsList);
 
-  optionsMenu = NEW SimpleMenu(-102, this,Constants::MENU_FONT, 50,170);
+  optionsMenu = NEW SimpleMenu(-102, this,Fonts::MENU_FONT, 50,170);
   optionsMenu->Add(2, "Back to Main Menu");
   optionsMenu->Add(1, "Save & Back to Main Menu");
   optionsMenu->Add(3, "Cancel");
@@ -212,7 +212,7 @@ void GameStateOptions::Render()
       "Please support this project with donations at http://wololo.net/wagic",
     };
 
-  WFont * mFont = resources.GetWFont(Constants::MAGIC_FONT);
+  WFont * mFont = resources.GetWFont(Fonts::MAGIC_FONT);
   mFont->SetColor(ARGB(255,200,200,200));
   mFont->SetScale(1.0);
   float startpos = 272 - timer;

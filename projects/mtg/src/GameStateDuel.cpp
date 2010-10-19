@@ -91,7 +91,7 @@ void GameStateDuel::Start()
   for (int i = 0; i<2; i ++){
     if (mParent->players[i] ==  PLAYER_TYPE_HUMAN){
       decksneeded = 1;
-      deckmenu = NEW SimpleMenu(DUEL_MENU_CHOOSE_DECK, this, Constants::MENU_FONT, 35, 25, "Choose a Deck");
+      deckmenu = NEW SimpleMenu(DUEL_MENU_CHOOSE_DECK, this, Fonts::MENU_FONT, 35, 25, "Choose a Deck");
 
       DeckManager *deckManager = DeckManager::GetInstance();
       vector<DeckMetaData *> playerDeckList = getValidDeckMetaData( options.profileFile() );
@@ -236,7 +236,7 @@ bool GameStateDuel::MusicExist(string FileName){
 
 void GameStateDuel::ensureOpponentMenu(){
   if (!opponentMenu){
-    opponentMenu = NEW SimpleMenu(DUEL_MENU_CHOOSE_OPPONENT, this, Constants::MENU_FONT, 35, 25, "Choose Opponent");
+    opponentMenu = NEW SimpleMenu(DUEL_MENU_CHOOSE_OPPONENT, this, Fonts::MENU_FONT, 35, 25, "Choose Opponent");
     opponentMenu->Add( MENUITEM_RANDOM_AI, "Random");
     if (options[Options::EVILTWIN_MODE_UNLOCKED].number)
       opponentMenu->Add( MENUITEM_EVIL_TWIN, "Evil Twin", _("Can you play against yourself?").c_str());
@@ -375,7 +375,7 @@ void GameStateDuel::Update(float dt)
       }
       if (mEngine->GetButtonClick(JGE_BTN_MENU)) {
         if (!menu) {
-          menu = NEW SimpleMenu(DUEL_MENU_GAME_MENU, this, Constants::MENU_FONT, SCREEN_WIDTH/2-100, 25, game->players[1]->deckName.c_str());
+          menu = NEW SimpleMenu(DUEL_MENU_GAME_MENU, this, Fonts::MENU_FONT, SCREEN_WIDTH/2-100, 25, game->players[1]->deckName.c_str());
           int cardsinhand = game->players[0]->game->hand->nb_cards;
     		  
           //almosthumane - mulligan
@@ -428,7 +428,7 @@ void GameStateDuel::Update(float dt)
 
 void GameStateDuel::Render()
 {
-  WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
+  WFont * mFont = resources.GetWFont(Fonts::MAIN_FONT);
   JRenderer * r = JRenderer::GetInstance();
   r->ClearScreen(ARGB(0,0,0,0));
 

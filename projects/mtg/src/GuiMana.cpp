@@ -213,7 +213,7 @@ GuiMana::~GuiMana(){
 void GuiMana::RenderStatic(){
   int values[Constants::MTG_NB_COLORS];
   int totalColors = 0;
-  WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
+  WFont * mFont = resources.GetWFont(Fonts::MAIN_FONT);
   JRenderer * r = JRenderer::GetInstance();
   for (int i = 0; i < Constants::MTG_NB_COLORS; ++i)
     values[i] = 0;

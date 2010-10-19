@@ -386,7 +386,7 @@ StoryDialog::StoryDialog(TiXmlElement* root, StoryFlow * mParent):StoryPage(mPar
           graphics.push_back(NEW StoryText(text,x,y,align, font));
 			  }
         else if (strcmp(element->Value(), "title")==0) {
-          graphics.push_back(NEW StoryText(text,x,y,"center", Constants::MENU_FONT));
+          graphics.push_back(NEW StoryText(text,x,y,"center", Fonts::MENU_FONT));
 			  }
         else if (strcmp(element->Value(), "img")==0) {
           //special case to force center

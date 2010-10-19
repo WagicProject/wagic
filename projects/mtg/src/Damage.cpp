@@ -139,7 +139,7 @@ int Damage::resolve(){
   return a;
 }
 void Damage::Render(){
-  WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
+  WFont * mFont = resources.GetWFont(Fonts::MAIN_FONT);
   mFont->SetBase(0);
   mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
   char buffer[200];

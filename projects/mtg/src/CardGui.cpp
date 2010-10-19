@@ -64,7 +64,7 @@ void CardGui::Update(float dt)
 
 void CardGui::Render()
 {
-  WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
+  WFont * mFont = resources.GetWFont(Fonts::MAIN_FONT);
 
   JRenderer * renderer = JRenderer::GetInstance();
   GameObserver * game = GameObserver::GetInstance();
@@ -215,7 +215,7 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
     renderer->RenderQuad(q, x, pos.actY, pos.actT, scale, scale);
   }
   // Write the title
-  WFont * font = resources.GetWFont("magic");
+  WFont * font = resources.GetWFont(Fonts::MAGIC_FONT);
   float backup_scale = font->GetScale();
   font->SetColor(ARGB((int)pos.actA, 0, 0, 0));
   font->SetScale(kWidthScaleFactor * pos.actZ);
@@ -418,7 +418,7 @@ void CardGui::tinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad) {
   renderer->RenderQuad(quad, x, imgY , pos.actT, imgScale, imgScale);
 
   // Write the title
-  WFont * font = resources.GetWFont("magic");
+  WFont * font = resources.GetWFont(Fonts::MAGIC_FONT);
   float backup_scale = font->GetScale();
   font->SetColor(ARGB((int)pos.actA, 0, 0, 0));
   font->SetScale(kWidthScaleFactor * pos.actZ);
@@ -612,7 +612,7 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos){
 void CardGui::renderCountersBig(const Pos& pos){
   // Write Named Counters
   if (card->counters) {
-    WFont * font = resources.GetWFont("magic");
+    WFont * font = resources.GetWFont(Fonts::MAGIC_FONT);
     font->SetColor(ARGB((int)pos.actA, 0, 0, 0));
     font->SetScale(kWidthScaleFactor * pos.actZ);
     std::vector<string> txt = card->formattedText();

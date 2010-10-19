@@ -132,7 +132,7 @@ void GameStateDeckViewer::switchDisplay(){
 
 void GameStateDeckViewer::updateDecks(){
   SAFE_DELETE(welcome_menu);
-  welcome_menu = NEW SimpleMenu( MENU_DECK_SELECTION, this, Constants::MENU_FONT,20,20);
+  welcome_menu = NEW SimpleMenu( MENU_DECK_SELECTION, this, Fonts::MENU_FONT,20,20);
   DeckManager * deckManager = DeckManager::GetInstance();
   vector<DeckMetaData *> playerDeckList = fillDeckMenu( welcome_menu,options.profileFile());
 
@@ -172,7 +172,7 @@ void GameStateDeckViewer::Start()
   myCollection->Sort(WSrcCards::SORT_ALPHA);
   displayed_deck =  myCollection;
   //Build menu.
-  menu = NEW SimpleMenu( MENU_DECK_BUILDER, this, Constants::MENU_FONT,SCREEN_WIDTH/2-150,20);
+  menu = NEW SimpleMenu( MENU_DECK_BUILDER, this, Fonts::MENU_FONT,SCREEN_WIDTH/2-150,20);
   menu->Add( MENU_ITEM_FILTER_BY, "Filter by...");
   menu->Add( MENU_ITEM_SWITCH_DECKS_NO_SAVE, "Switch decks without saving");
   menu->Add( MENU_ITEM_SAVE_RENAME, "Save & Rename");
@@ -340,7 +340,7 @@ void GameStateDeckViewer::Update(float dt)
         if (card && displayed_deck->count(card)){
           price = pricelist->getSellPrice(card->getMTGId());
           sprintf(buffer,"%s : %i %s",_(card->data->getName()).c_str(),price,_("credits").c_str());
-          subMenu = NEW SimpleMenu( MENU_CARD_PURCHASE, this, Constants::MAIN_FONT,SCREEN_WIDTH-300,SCREEN_HEIGHT/2,buffer);
+          subMenu = NEW SimpleMenu( MENU_CARD_PURCHASE, this, Fonts::MAIN_FONT,SCREEN_WIDTH-300,SCREEN_HEIGHT/2,buffer);
           subMenu->Add( MENU_ITEM_YES,"Yes");
           subMenu->Add( MENU_ITEM_NO,"No","",true);
         }
@@ -466,7 +466,7 @@ void GameStateDeckViewer::Update(float dt)
 
 
 void GameStateDeckViewer::renderOnScreenBasicInfo(){
-  WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
+  WFont * mFont = resources.GetWFont(Fonts::MAIN_FONT);
   char buffer[256];
   int myD = (displayed_deck == myDeck);
 
@@ -500,7 +500,7 @@ int GameStateDeckViewer::getCurrentPos() {
 }
 
 void GameStateDeckViewer::renderSlideBar(){
-  WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
+  WFont * mFont = resources.GetWFont(Fonts::MAIN_FONT);
 
   int total = displayed_deck->Size();
   if(total == 0)
@@ -568,7 +568,7 @@ void GameStateDeckViewer::renderDeckBackground(){
 
 void GameStateDeckViewer::renderOnScreenMenu(){
 
-  WFont * font = resources.GetWFont(Constants::MAIN_FONT);
+  WFont * font = resources.GetWFont(Fonts::MAIN_FONT);
   font->SetColor(ARGB(255,255,255,255));
   JRenderer * r = JRenderer::GetInstance();
   float pspIconsSize = 0.5;
@@ -1229,7 +1229,7 @@ int GameStateDeckViewer::countCardsByType(const char * _type) {
 }
 
 void GameStateDeckViewer::renderCard(int id, float rotation){
-  WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
+  WFont * mFont = resources.GetWFont(Fonts::MAIN_FONT);
   MTGCard * card = cardIndex[id];
 
   float max_scale = 0.96f;
@@ -1310,7 +1310,7 @@ void GameStateDeckViewer::renderCard (int id){
 
 void GameStateDeckViewer::Render() {
 
-  WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
+  WFont * mFont = resources.GetWFont(Fonts::MAIN_FONT);
 
   JRenderer * r = JRenderer::GetInstance();
   r->ClearScreen(ARGB(0,0,0,0));

@@ -161,7 +161,7 @@ void GameStateAwards::Update(float dt)
       case JGE_BTN_MENU:
           showMenu = true;
           SAFE_DELETE(menu);
-          menu = NEW SimpleMenu(-102, this,Constants::MENU_FONT, 50,170);
+          menu = NEW SimpleMenu(-102, this,Fonts::MENU_FONT, 50,170);
           if(mState == STATE_DETAILS)
             menu->Add(2, "Back to Trophies");
           menu->Add(1, "Back to Main Menu");

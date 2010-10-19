@@ -44,7 +44,7 @@ void GameStateStory::loadStoriesMenu(const char * root){
       flow = NEW StoryFlow(stories[0]);
       break;
     default:
-      menu = NEW SimpleMenu(103, this, Constants::MENU_FONT, 150,60);
+      menu = NEW SimpleMenu(103, this, Fonts::MENU_FONT, 150,60);
         for (size_t i = 0; i < stories.size(); ++i){
           menu->Add(i, stories[i].c_str());
         }
@@ -60,7 +60,7 @@ void GameStateStory::Start() {
 
 void GameStateStory::Update(float dt) {
   if (!menu && mEngine->GetButtonClick(JGE_BTN_MENU)){
-      menu = NEW SimpleMenu(100, this, Constants::MENU_FONT, SCREEN_WIDTH/2-100, 25);
+      menu = NEW SimpleMenu(100, this, Fonts::MENU_FONT, SCREEN_WIDTH/2-100, 25);
       menu->Add(0,"Back to main menu");
       menu->Add(-1, "Cancel");
   }

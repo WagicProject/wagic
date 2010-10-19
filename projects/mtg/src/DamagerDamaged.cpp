@@ -51,7 +51,7 @@ void DamagerDamaged::clearDamage()
 void DamagerDamaged::Render(CombatStep mode)
 {
   TransientCardView::Render();
-  WFont * mFont = resources.GetWFont(Constants::MAIN_FONT);
+  WFont * mFont = resources.GetWFont(Fonts::MAIN_FONT);
   mFont->SetBase(0);
 
   switch (mode)

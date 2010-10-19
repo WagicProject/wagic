@@ -225,7 +225,7 @@ void ActionLayer::setMenuObject(Targetable * object, bool must){
 
   SAFE_DELETE(abilitiesMenu);
 
-  abilitiesMenu = NEW SimpleMenu(10, this, Constants::MAIN_FONT, 100, 100,object->getDisplayName().c_str());
+  abilitiesMenu = NEW SimpleMenu(10, this, Fonts::MAIN_FONT, 100, 100,object->getDisplayName().c_str());
 
   for (int i=0;i<mCount;i++){
     ActionElement * currentAction = (ActionElement *)mObjects[i];

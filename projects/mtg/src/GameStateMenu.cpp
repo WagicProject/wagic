@@ -117,7 +117,7 @@ void GameStateMenu::Create()
   if (!langChosen){
     currentState = MENU_STATE_MAJOR_LANG | MENU_STATE_MINOR_NONE;
   }
-  scroller = NEW TextScroller(Constants::MAIN_FONT, SCREEN_WIDTH/2 - 90 , SCREEN_HEIGHT-17,180);
+  scroller = NEW TextScroller(Fonts::MAIN_FONT, SCREEN_WIDTH/2 - 90 , SCREEN_HEIGHT-17,180);
   scrollerSet = 0;
 
   splashTex = NULL;
@@ -317,7 +317,7 @@ void GameStateMenu::setLang(int id){
 
 void GameStateMenu::loadLangMenu(){
   LOG("GameStateMenu::loadLangMenu");
-  subMenuController = NEW SimpleMenu( MENU_LANGUAGE_SELECTION, this, Constants::MENU_FONT, 150,60);
+  subMenuController = NEW SimpleMenu( MENU_LANGUAGE_SELECTION, this, Fonts::MENU_FONT, 150,60);
   if (!subMenuController) return;
   resetDirectory();
   if (!mDip){
@@ -371,7 +371,7 @@ void GameStateMenu::ensureMGuiController(){
   if (!mGuiController) {
     mGuiController = NEW JGuiController(100, this);
     if (mGuiController) {
-      WFont * mFont = resources.GetWFont(Constants::MENU_FONT);
+      WFont * mFont = resources.GetWFont(Fonts::MENU_FONT);
       mFont->SetColor(ARGB(255,255,255,255));
       mGuiController->Add(NEW MenuItem(MENUITEM_PLAY, mFont, "Play", 80,         50 + SCREEN_HEIGHT/2, mIcons[8], mIcons[9],"particle1.psi",resources.GetQuad("particles"),  true));
       mGuiController->Add(NEW MenuItem(MENUITEM_DECKEDITOR, mFont, "Deck Editor", 160, 50 + SCREEN_HEIGHT/2, mIcons[2], mIcons[3],"particle2.psi",resources.GetQuad("particles")));
@@ -469,7 +469,7 @@ void GameStateMenu::Update(float dt)
       if (MENU_STATE_MINOR_NONE == (currentState & MENU_STATE_MINOR)) {
         if (!hasChosenGameType){
 	        currentState = MENU_STATE_MAJOR_SUBMENU;
-	        subMenuController = NEW SimpleMenu( MENU_FIRST_DUEL_SUBMENU, this, Constants::MENU_FONT, 150,60);
+	        subMenuController = NEW SimpleMenu( MENU_FIRST_DUEL_SUBMENU, this, Fonts::MENU_FONT, 150,60);
 	        if (subMenuController){
 	          subMenuController->Add(SUBMENUITEM_CLASSIC,"Classic");
 	          if (options[Options::MOMIR_MODE_UNLOCKED].number)
@@ -547,7 +547,7 @@ void GameStateMenu::Render()
     return;  
 
   JRenderer * renderer = JRenderer::GetInstance();
-  WFont * mFont = resources.GetWFont(Constants::MENU_FONT);
+  WFont * mFont = resources.GetWFont(Fonts::MENU_FONT);
   if ((currentState & MENU_STATE_MAJOR) == MENU_STATE_MAJOR_LANG){
   }else if ((currentState & MENU_STATE_MAJOR) == MENU_STATE_MAJOR_LOADING_CARDS){
     if(!splashTex){
@@ -580,7 +580,7 @@ void GameStateMenu::Render()
     mFont->SetColor(ARGB(255,255,255,255));
     mFont->DrawString(text,SCREEN_WIDTH/2,SCREEN_HEIGHT - 50,JGETEXT_CENTER);
   }else{
-    mFont = resources.GetWFont(Constants::MAIN_FONT);
+    mFont = resources.GetWFont(Fonts::MAIN_FONT);
     PIXEL_TYPE colors[] =
     {
       
@@ -614,7 +614,7 @@ void GameStateMenu::Render()
       if(options.newAward())
         alp = (int)(sin(timeIndex) * 255);
       float olds = mFont->GetScale();
-      mFont = resources.GetWFont(Constants::OPTION_FONT);
+      mFont = resources.GetWFont(Fonts::OPTION_FONT);
       jq->SetColor(ARGB(abs(alp),255,255,255));        
       mFont->SetColor(ARGB(abs(alp),0,0,0)); 
       string s = _("Trophy Room");;
@@ -622,7 +622,7 @@ void GameStateMenu::Render()
       mFont->SetScale(50.0f/mFont->GetStringWidth(s.c_str()));
       renderer->RenderQuad(jq, SCREEN_WIDTH-64, 2);
       mFont->DrawString(s,SCREEN_WIDTH-10,9,JGETEXT_RIGHT);
-      mFont = resources.GetWFont(Constants::MENU_FONT); 
+      mFont = resources.GetWFont(Fonts::MENU_FONT); 
       mFont->SetScale(olds);
     }
   }
@@ -634,13 +634,13 @@ void GameStateMenu::Render()
 
 void GameStateMenu::ButtonPressed(int controllerId, int controlId)
 {
-  WFont * mFont = resources.GetWFont(Constants::MENU_FONT);
+  WFont * mFont = resources.GetWFont(Fonts::MENU_FONT);
 
   DebugTrace("GameStateMenu: controllerId " << controllerId << " selected");
   switch (controllerId){
   case MENU_LANGUAGE_SELECTION:
     setLang(controlId);
-    resources.reloadWFonts(); // Fix for choosing Chinese language at first time.
+    resources.ReloadWFonts(); // Fix for choosing Chinese language at first time.
     subMenuController->Close();
     currentState = MENU_STATE_MAJOR_LOADING_CARDS | MENU_STATE_MINOR_SUBMENU_CLOSING;
     break;
@@ -652,7 +652,7 @@ void GameStateMenu::ButtonPressed(int controllerId, int controlId)
     switch (controlId)
       {
       case MENUITEM_PLAY:
-	    subMenuController = NEW SimpleMenu( MENU_FIRST_DUEL_SUBMENU, this, Constants::MENU_FONT, 150,60);
+	    subMenuController = NEW SimpleMenu( MENU_FIRST_DUEL_SUBMENU, this, Fonts::MENU_FONT, 150,60);
 	    if (subMenuController){
 	      subMenuController->Add(SUBMENUITEM_1PLAYER,"1 Player");
         // TODO Put 2 players mode back

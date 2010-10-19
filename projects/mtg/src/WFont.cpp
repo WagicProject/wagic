@@ -34,16 +34,16 @@ static PIXEL_TYPE gencolor(int id, PIXEL_TYPE color)
   r0 = g0 = b0 = 255;
 
   switch (id) {
-  case 0: // simon 245, 228, 156
+  case Fonts::MAIN_FONT: // simon 245, 228, 156
     r0 = 245; g0 = 228; b0 = 156;
     break;
-  case 1: // f3 255, 252, 175
+  case Fonts::MENU_FONT: // f3 255, 252, 175
     r0 = 255; g0 = 252; b0 = 175;
     break;
-  case 2: // magic 219, 255, 151
+  case Fonts::MAGIC_FONT: // magic 219, 255, 151
     r0 = 219; g0 = 255; b0 = 151;
     break;
-  case 3: // smallface 255, 255, 255
+  case Fonts::SMALLFACE_FONT: // smallface 255, 255, 255
     r0 = 255; g0 = 255; b0 = 255;
     break;
   default:
@@ -93,7 +93,8 @@ static int genmana(u8 c)
 
 JRenderer * WFBFont::mRenderer = NULL;
 
-WFBFont::WFBFont(const char *fontname, int lineheight, bool useVideoRAM)
+WFBFont::WFBFont(int inFontID, const char *fontname, int lineheight, bool useVideoRAM)
+  : WFont(inFontID)
 {
   mRenderer = JRenderer::GetInstance();
 
@@ -312,7 +313,9 @@ void WFBFont::DrawString(const char *s, float x, float y, int align, float leftO
   unsigned char c = *(unsigned short *)s & 0xFF;
   if (ISGBK(c) || (s[1] == ':' && s[2] == ' ')) {}
   else {
-    WFont * mFont = resources.GetWLBFont(id);
+    // tricky:  the single byte font is always mFontID + kSingleByteFontOffset!
+    // See WResourceManager::InitFonts()
+    WFont * mFont = resources.GetWFont(mFontID + Fonts::kSingleByteFontOffset);
     mFont->SetScale(GetScale());
     mFont->SetColor(GetColor());
     mFont->DrawString(s, x, y, align, leftOffset, width);
@@ -472,7 +475,7 @@ void WFBFont::DrawString(std::string s, float x, float y, int align, float leftO
 void WFBFont::SetColor(PIXEL_TYPE color)
 {
   mColor0 = color;
-  mColor = gencolor(id, color);
+  mColor = gencolor(mFontID, color);
 }
 
 float WFBFont::GetStringWidth(const char *s) const
@@ -501,7 +504,7 @@ float WFBFont::GetStringWidth(const char *s) const
     return xx;
   }
   else {
-    WFont * mFont = resources.GetWLBFont(id);
+    WFont * mFont = resources.GetWFont(mFontID + Fonts::kSingleByteFontOffset);
     mFont->SetScale(GetScale());
     return mFont->GetStringWidth(s);
   }

@@ -90,7 +90,7 @@ void GuiPhaseBar::Render()
     }
 
   //print phase name
-  WFont * font = resources.GetWFont(Constants::MAIN_FONT);
+  WFont * font = resources.GetWFont(Fonts::MAIN_FONT);
   string currentP = _("your turn");
   string interrupt = "";
   if (g->currentPlayer == g->players[1]){

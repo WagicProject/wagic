@@ -93,7 +93,7 @@ void SimpleMenu::drawVertPole(int x, int y, int height)
 }
 
 void SimpleMenu::Render() {
-  WFont * titleFont = resources.GetWFont("smallface");
+  WFont * titleFont = resources.GetWFont(Fonts::SMALLFACE_FONT);
   WFont * mFont = resources.GetWFont(fontId);
   if (0 == mWidth) {
     float sY = mY + kVerticalMargin;
@@ -138,7 +138,7 @@ void SimpleMenu::Render() {
     if (i > mCount-1) break;
     if ((static_cast<SimpleMenuItem*>(mObjects[i]))->mY - kLineHeight * startId < mY + height - kLineHeight + 7) {
       if (static_cast<SimpleMenuItem*>(mObjects[i])->hasFocus()){
-        resources.GetWFont(Constants::MAIN_FONT)->DrawString(static_cast<SimpleMenuItem*>(mObjects[i])->desc.c_str(),mX+mWidth+10,mY+15);
+        resources.GetWFont(Fonts::MAIN_FONT)->DrawString(static_cast<SimpleMenuItem*>(mObjects[i])->desc.c_str(),mX+mWidth+10,mY+15);
         mFont->SetColor(ARGB(255,255,255,0));
       } else
         mFont->SetColor(ARGB(150,255,255,255));

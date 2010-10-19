@@ -431,9 +431,9 @@ void TaskList::Update(float dt) {
 void TaskList::Render() {
   JRenderer * r = JRenderer::GetInstance();  
   //Setup fonts.
-  WFont * f = resources.GetWFont(Constants::MAIN_FONT);
-  WFont * f2 = resources.GetWFont(Constants::MAGIC_FONT);
-  WFont * f3 = resources.GetWFont(Constants::MENU_FONT); //OPTION_FONT
+  WFont * f = resources.GetWFont(Fonts::MAIN_FONT);
+  WFont * f2 = resources.GetWFont(Fonts::MAGIC_FONT);
+  WFont * f3 = resources.GetWFont(Fonts::MENU_FONT); //OPTION_FONT
   f2->SetColor(ARGB(255, 205, 237, 240));
   f3->SetColor(ARGB(255, 219, 206, 151));
 

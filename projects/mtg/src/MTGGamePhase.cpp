@@ -5,7 +5,7 @@
 MTGGamePhase::MTGGamePhase(int id):ActionElement(id){
   animation = 0;
   currentState = -1;
-  mFont= resources.GetWFont("simon");
+  mFont= resources.GetWFont(Fonts::MAIN_FONT);
   mFont->SetBase(0);	// using 2nd font
 }
 

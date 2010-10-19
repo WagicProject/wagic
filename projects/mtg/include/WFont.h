@@ -6,10 +6,27 @@
 #include <JSprite.h>
 #include "config.h"
 
+namespace Fonts
+{
+  enum Font_Type
+  {
+    MAIN_FONT = 0,
+    MENU_FONT = 1,
+    OPTION_FONT = 1,
+    MAGIC_FONT = 2,
+    SMALLFACE_FONT = 3
+  };
+
+  // when using gbk languages and we need to keep around single byte font variants,
+  // the single byte fonts will be offset by this value 
+  const unsigned int kSingleByteFontOffset = 100;
+}
+
+
 class WFont
 {
 public:
-  unsigned char id;
+  int mFontID;
   // Rendering text to screen.
   virtual void DrawString(const char *s, float x, float y, int align=JGETEXT_LEFT, float leftOffset = 0, float width = 0) = 0;
   virtual void DrawString(std::string s, float x, float y, int align=JGETEXT_LEFT, float leftOffset = 0, float width = 0) = 0;
@@ -29,13 +46,16 @@ public:
   virtual void SetTracking(float tracking) = 0;
   // Set Base for the character set to use.
   virtual void SetBase(int base) = 0;
+  WFont(int inID) : mFontID(inID) {};
   virtual  ~WFont() {};
 };
 
 class WLBFont : public WFont
 {
 public:
-  WLBFont(const char *fontname, int lineheight, bool useVideoRAM=false) {
+  WLBFont(int inFontID, const char *fontname, int lineheight, bool useVideoRAM=false)
+    : WFont(inFontID)
+  {
     it = NEW JLBFont(fontname,lineheight,useVideoRAM);
   };
   ~WLBFont() {SAFE_DELETE(it);};
@@ -58,7 +78,7 @@ private:
 class WFBFont : public WFont
 {
 public:
-  WFBFont(const char *fontname, int lineheight, bool useVideoRAM=false);
+  WFBFont(int inFontID, const char *fontname, int lineheight, bool useVideoRAM=false);
   ~WFBFont();
 
   void DrawString(const char *s, float x, float y, int align=JGETEXT_LEFT, float leftOffset = 0, float width = 0);

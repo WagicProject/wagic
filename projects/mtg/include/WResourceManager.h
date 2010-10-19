@@ -178,16 +178,12 @@ public:
  	JTexture* GetTexture(const string &textureName);
 	JTexture* GetTexture(int id);
 
-  int reloadWFonts();
-  int reloadWLBFonts();
-  //Wrapped from JResourceManger. TODO: Privatize
-  WFont * LoadWLBFont(const string &fontName, int height);
-  WFont * LoadWFBFont(const string &fontName, int height);
-  WFont * GetWFont(const string &fontName);
-  WFont * GetWFont(int id);
-  WFont * GetWLBFont(int id);
+  // Font management functions
+  void InitFonts(const std::string& inLang);
+  int ReloadWFonts();
+  WFont* LoadWFont(const string& inFontname, int inFontHeight, int inFontID);
+  WFont* GetWFont(int id);
   void RemoveWFonts();
-  void RemoveWLBFonts();
  
   //Wrapped from JSoundSystem. TODO: Privatize.
   JMusic * ssLoadMusic(const char *fileName);
@@ -210,7 +206,7 @@ private:
   WCache<WCachedSample,JSample> sampleWCache;
   WCache<WCachedParticles,hgeParticleSystemInfo> psiWCache;
 
-  typedef  std::map<std::string, WManagedQuad> ManagedQuadMap;
+  typedef std::map<std::string, WManagedQuad> ManagedQuadMap;
   ManagedQuadMap mManagedQuads;
 
   typedef std::map<int, std::string> IDLookupMap;
@@ -219,10 +215,10 @@ private:
   //Statistics of record.
   unsigned int lastTime;
   int lastError;
-  vector<WFont *> mWFontList;
-  map<string, int> mWFontMap;
-  vector<WLBFont *> mWLBFontList;
-  map<string, int> mWLBFontMap;
+
+  typedef  std::map<int, WFont*> FontMap;
+  FontMap mWFontMap;
+  std::string mFontFileExtension;
 };
 
 extern WResourceManager resources;

@@ -65,11 +65,11 @@ void WGuiItem::Entering(JButton key){
   mFocus = true;
 } 
 float WGuiItem::minWidth(){
-  WFont * mFont = resources.GetWFont(Constants::OPTION_FONT);
+  WFont * mFont = resources.GetWFont(Fonts::OPTION_FONT);
   return mFont->GetStringWidth(_(displayValue).c_str())+4;
 }
 float WGuiItem::minHeight(){
-  WFont * mFont = resources.GetWFont(Constants::OPTION_FONT);
+  WFont * mFont = resources.GetWFont(Fonts::OPTION_FONT);
   return mFont->GetHeight();
 }
 
@@ -80,7 +80,7 @@ bool WGuiItem::Leaving(JButton key){
 
 void WGuiItem::Render(){
   JRenderer * renderer = JRenderer::GetInstance();
-  WFont * mFont = resources.GetWFont(Constants::OPTION_FONT);
+  WFont * mFont = resources.GetWFont(Fonts::OPTION_FONT);
   DWORD oldcolor = mFont->GetColor();
   mFont->SetColor(getColor(WGuiColor::TEXT));
   float fH = (height-mFont->GetHeight())/2;
@@ -162,7 +162,7 @@ PIXEL_TYPE WDecoStyled::getColor(int type){
 
 //WGuiHeader
 void WGuiHeader::Render(){
-  WFont * mFont = resources.GetWFont(Constants::OPTION_FONT);
+  WFont * mFont = resources.GetWFont(Fonts::OPTION_FONT);
   mFont->SetColor(getColor(WGuiColor::TEXT));
  
   JRenderer * renderer = JRenderer::GetInstance();
@@ -263,7 +263,7 @@ void WGuiList::Render(){
 
   //List is empty.
   if (!items.size() && failMsg != ""){
-    WFont * mFont = resources.GetWFont(Constants::OPTION_FONT);
+    WFont * mFont = resources.GetWFont(Fonts::OPTION_FONT);
     mFont->SetColor(getColor(WGuiColor::TEXT_FAIL));
     mFont->DrawString(_(failMsg).c_str(),x+width/2, y, JGETEXT_RIGHT);
     return;
@@ -401,7 +401,7 @@ string WDecoEnum::lookupVal(int value){
 
 void WDecoEnum::Render()
 {
-  WFont * mFont = resources.GetWFont(Constants::OPTION_FONT);
+  WFont * mFont = resources.GetWFont(Fonts::OPTION_FONT);
   mFont->SetColor(getColor(WGuiColor::TEXT));
   JRenderer * renderer = JRenderer::GetInstance();
   mFont->DrawString(_(getDisplay()).c_str(), getX() + 2, getY() + 3);
@@ -451,7 +451,7 @@ void WDecoConfirm::Entering(JButton key){
 
   SAFE_DELETE(confirmMenu);
   mState = OP_CONFIRMED; 
-  confirmMenu = NEW SimpleMenu(444, listener,Constants::MENU_FONT, 50,170);
+  confirmMenu = NEW SimpleMenu(444, listener,Fonts::MENU_FONT, 50,170);
   confirmMenu->Add(1,confirm.c_str());
   confirmMenu->Add(2,cancel.c_str());
 }
@@ -968,7 +968,7 @@ void WGuiTabMenu::Add(WGuiBase * it){
 }
 
 void WGuiTabMenu::Render(){
-  WFont * mFont = resources.GetWFont(Constants::OPTION_FONT);
+  WFont * mFont = resources.GetWFont(Fonts::OPTION_FONT);
   JRenderer * renderer = JRenderer::GetInstance();
 
   if (!items.size())
@@ -1000,7 +1000,7 @@ void WGuiTabMenu::save(){
 //WGuiAward
 void WGuiAward::Overlay(){
   JRenderer * r = JRenderer::GetInstance();
-  WFont * mFont = resources.GetWFont(Constants::OPTION_FONT);
+  WFont * mFont = resources.GetWFont(Fonts::OPTION_FONT);
   mFont->SetScale(0.8f);
   mFont->SetColor(getColor(WGuiColor::TEXT));
 
@@ -1051,7 +1051,7 @@ void WGuiAward::Render(){
     return;
 
   JRenderer * renderer = JRenderer::GetInstance();
-  WFont * mFont = resources.GetWFont(Constants::OPTION_FONT);
+  WFont * mFont = resources.GetWFont(Fonts::OPTION_FONT);
   mFont->SetScale(1);
   mFont->SetColor(getColor(WGuiColor::TEXT));
 
@@ -1293,7 +1293,7 @@ void WGuiListRow::Render(){
 
   //List is empty.
   if (!items.size() && failMsg != ""){
-    WFont * mFont = resources.GetWFont(Constants::OPTION_FONT);
+    WFont * mFont = resources.GetWFont(Fonts::OPTION_FONT);
     mFont->SetColor(getColor(WGuiColor::TEXT_FAIL));
     mFont->DrawString(_(failMsg).c_str(),x+width/2, y, JGETEXT_RIGHT);
     return;
@@ -1603,7 +1603,7 @@ void WGuiFilterItem::updateValue(){
       SAFE_DELETE(mParent->subMenu);
       mState = STATE_CHOOSE_TYPE;
       SAFE_DELETE(mParent->subMenu);
-      mParent->subMenu = NEW SimpleMenu(-1234,this,Constants::MENU_FONT,20,20,"Filter By...",10);
+      mParent->subMenu = NEW SimpleMenu(-1234,this,Fonts::MENU_FONT,20,20,"Filter By...",10);
       if(mParent->isAvailable(FILTER_SET)){
         mParent->subMenu->Add(FILTER_SET,"Set");
         delMenu = false;
@@ -1660,7 +1660,7 @@ void WGuiFilterItem::updateValue(){
       SAFE_DELETE(mParent->subMenu);
       mParent->clearArgs();
       mState = STATE_CHOOSE_VAL;
-      mParent->subMenu = NEW SimpleMenu(-1234,this,Constants::MENU_FONT,20,20,"Filter:");
+      mParent->subMenu = NEW SimpleMenu(-1234,this,Fonts::MENU_FONT,20,20,"Filter:");
       if(filterType == FILTER_TYPE){
         mParent->addArg("Artifact","t:Artifact;");
         mParent->addArg("Artifact Creature","t:Artifact;&t:Creature;");
@@ -1892,7 +1892,7 @@ WGuiBase::CONFIRM_TYPE WGuiKeyBinder::needsConfirm() {
         confirmationString = ss.str();
 
         // Then create the menu.
-        confirmMenu = NEW SimpleMenu(0, this, Constants::MENU_FONT, 40, 130, "Conflict");
+        confirmMenu = NEW SimpleMenu(0, this, Fonts::MENU_FONT, 40, 130, "Conflict");
         confirmMenu->Add(1, _("Cancel and return to the options menu").c_str());
         confirmMenu->Add(2, _("This is okay, validate and save").c_str());
         return CONFIRM_NEED;
@@ -1913,7 +1913,7 @@ WGuiBase::CONFIRM_TYPE WGuiKeyBinder::needsConfirm() {
     confirmationString = s;
 
     confirmingButton = btnToCheck[i];
-    confirmMenu = NEW SimpleMenu(1, this, Constants::MENU_FONT, 40, 130, "Binding missing");
+    confirmMenu = NEW SimpleMenu(1, this, Fonts::MENU_FONT, 40, 130, "Binding missing");
     confirmMenu->Add(1, _("Cancel and return to the options menu").c_str());
     confirmMenu->Add(2, _("This is okay, validate and save").c_str());
     return CONFIRM_NEED;
@@ -1936,7 +1936,7 @@ void WGuiKeyBinder::Render() {
   WGuiList::Render();
   if (confirmMenu) {
     JRenderer * renderer = JRenderer::GetInstance();
-    WFont * mFont = resources.GetWFont(Constants::OPTION_FONT);
+    WFont * mFont = resources.GetWFont(Fonts::OPTION_FONT);
     mFont->SetColor(ARGB(255, 255, 0, 0));
     renderer->FillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, ARGB(230, 255, 240, 240));
 

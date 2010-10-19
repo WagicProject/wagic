@@ -16,30 +16,36 @@
 #include <sys/stat.h>
 #endif
 #include "../include/WFont.h"
+
 extern bool neofont;
-
 int idCounter = OTHERS_OFFSET;
-
 WResourceManager resources;
-unsigned int vTime = 0;
+
+namespace
+{
+  const std::string kExtension_png(".png");
+  const std::string kExtension_gbk(".gbk");
+}
+
 int WResourceManager::RetrieveError(){
   return lastError;
 }
-bool WResourceManager::RemoveOldest(){
- if(sampleWCache.RemoveOldest())
-   return true;
- if(textureWCache.RemoveOldest())
-   return true;
- if(psiWCache.RemoveOldest())
-   return true;
 
- return false;
+bool WResourceManager::RemoveOldest(){
+  if(sampleWCache.RemoveOldest())
+    return true;
+  if(textureWCache.RemoveOldest())
+    return true;
+  if(psiWCache.RemoveOldest())
+    return true;
+
+  return false;
 }
 
 //WResourceManager
 void WResourceManager::DebugRender(){
   JRenderer* renderer = JRenderer::GetInstance();
-  WFont * font = resources.GetWFont(Constants::MAIN_FONT);
+  WFont * font = resources.GetWFont(Fonts::MAIN_FONT);
   font->SetColor(ARGB(255,255,255,255));
   
   if(!font || !renderer)
@@ -173,14 +179,6 @@ WResourceManager::WResourceManager(){
 	mQuadList.reserve(0);
 	mQuadMap.clear();
 
-	mWFontList.clear();
-	mWFontList.reserve(4);
-	mWFontMap.clear();
-
-	mWLBFontList.clear();
-	mWLBFontList.reserve(4);
-	mWLBFontMap.clear();
-
   psiWCache.Resize(PSI_CACHE_SIZE,20);      
   sampleWCache.Resize(SAMPLES_CACHE_SIZE,MAX_CACHED_SAMPLES);
   textureWCache.Resize(TEXTURES_CACHE_MINSIZE,MAX_CACHE_OBJECTS);
@@ -193,7 +191,6 @@ WResourceManager::~WResourceManager(){
   LOG("==Destroying WResourceManager==");
   RemoveAll();
   RemoveWFonts();
-  RemoveWLBFonts();
 
   LOG("==Successfully Destroyed WResourceManager==");
 }
@@ -248,7 +245,7 @@ JQuad * WResourceManager::RetrieveCard(MTGCard * card, int style, int submode){
   }
   lastError = textureWCache.mError;
   if(jq){
-    jq->SetHotSpot(jq->mTex->mWidth / 2, jq->mTex->mHeight / 2);  
+    jq->SetHotSpot(static_cast<float>(jq->mTex->mWidth / 2), static_cast<float>(jq->mTex->mHeight / 2));
     return jq;
   }
  
@@ -849,120 +846,81 @@ int WResourceManager::fileOK(string filename, bool relative){
   return result;
 }
 
-int WResourceManager::reloadWLBFonts(){
-  vector<string> fontNames;
-  vector<float> fontSizes;
+void WResourceManager::InitFonts(const std::string& inLang)
+{
+  unsigned int idOffset = 0;
 
-  fontNames.resize(mWLBFontList.size());
-  fontSizes.resize(mWLBFontList.size());
-  for ( map<string, int>::iterator itr = mWLBFontMap.begin(); itr != mWLBFontMap.end(); ++itr){
-    fontNames[itr->second] = itr->first;
-    fontSizes[itr->second] = mWLBFontList[itr->second]->GetHeight();
-  }
-  RemoveWLBFonts();
-  for(size_t i = 0; i < fontNames.size(); ++i){
-    LoadWLBFont(fontNames[i],fontSizes[i]);
+  if (inLang.compare("cn") == 0)
+  {
+    mFontFileExtension = kExtension_gbk;
+    LoadWFont("simon", 12, Fonts::MAIN_FONT);
+    LoadWFont("f3", 16, Fonts::MENU_FONT);
+    LoadWFont("magic", 16, Fonts::MAGIC_FONT);
+    LoadWFont("smallface", 12, Fonts::SMALLFACE_FONT);
+
+    idOffset = Fonts::kSingleByteFontOffset;
   }
 
-  return 1;
+  mFontFileExtension = kExtension_png;
+  LoadWFont("simon", 11, Fonts::MAIN_FONT + idOffset);
+  GetWFont(Fonts::MAIN_FONT)->SetTracking(-1);
+  LoadWFont("f3", 16, Fonts::MENU_FONT + idOffset);
+  LoadWFont("magic", 16, Fonts::MAGIC_FONT + idOffset);
+  LoadWFont("smallface", 7, Fonts::SMALLFACE_FONT + idOffset);
 }
 
-int WResourceManager::reloadWFonts(){
+int WResourceManager::ReloadWFonts(){
+  RemoveWFonts();
+
   string lang = options[Options::LANG].str;
   std::transform(lang.begin(), lang.end(), lang.begin(), ::tolower);
 
-  if (lang.compare("cn") != 0) 
-    RemoveWFonts();
-  else if (mWFontList.size() == 0){
-    resources.LoadWFBFont("simon",12);
-    resources.LoadWFBFont("f3",16);
-    resources.LoadWFBFont("magic",16);
-    resources.LoadWFBFont("smallface",12);
-  }
+  InitFonts(lang);
 
   return 1;
 }
 
+WFont* WResourceManager::LoadWFont(const string& inFontname, int inFontHeight, int inFontID)
+{
+  WFont* font = GetWFont(inFontID);
+  if (font)
+  {
+    return font;
+  }
 
-WFont * WResourceManager::LoadWLBFont(const string &fontName, int height) {
-  map<string, int>::iterator itr = mWLBFontMap.find(fontName);
-
-  if (itr != mWLBFontMap.end()) return mWLBFontList[itr->second];
-
-  string mFontName = fontName + ".png";
+  string mFontName = inFontname + mFontFileExtension;
   string path = graphicsFile(mFontName);
   if (path.size() > 4 ) path = path.substr(0, path.size() - 4); //some stupid manipulation because of the way Font works in JGE
-  int id = mWLBFontList.size();
-  mWLBFontList.push_back(NEW WLBFont(path.c_str(), height, true));
-  mWLBFontMap[fontName] = id;
-  mWLBFontList[id]->id = id;
-
-  return mWLBFontList[id];
-}
-
-WFont * WResourceManager::LoadWFBFont(const string &fontName, int height) {
-  map<string, int>::iterator itr = mWFontMap.find(fontName);
-  if (itr != mWFontMap.end()) return mWFontList[itr->second];
-
-  string mFontName = fontName + ".gbk";
-  string path = graphicsFile(mFontName);
-  if (path.size() > 4 ) path = path.substr(0, path.size() - 4); //some stupid manipulation because of the way WFont works in JGE
-
-  int id = mWFontList.size();
-  mWFontList.push_back(NEW WFBFont(path.c_str(), height, true));
-  mWFontMap[fontName] = id;
-  mWFontList[id]->id = id;
-
-  return mWFontList[id];
-}
-
-WFont * WResourceManager::GetWFont(const string &fontName) {
-  map<string, int>::iterator itr;
-
-  if (neofont) {
-    itr = mWFontMap.find(fontName);
-    if (itr != mWFontMap.end())
-        return mWFontList[itr->second];
-    else
-      return NULL;
-  } else {
-    itr = mWLBFontMap.find(fontName);
-    if (itr != mWLBFontMap.end())
-      return mWLBFontList[itr->second];
-    else
-      return NULL;
-  }
-}
-
-WFont * WResourceManager::GetWFont(int id) {
-  if (neofont) {
-      return mWFontList[id];
-  } else {
-    if (id >=0 && id < (int)mWLBFontList.size())
-      return mWLBFontList[id];
-    else
-      return NULL;
-  }
-}
-
-WFont * WResourceManager::GetWLBFont(int id) {
-  if (id >=0 && id < (int)mWLBFontList.size())
-    return mWLBFontList[id];
+ 
+	if (mFontFileExtension == kExtension_gbk)
+	{
+    font = NEW WFBFont(inFontID, path.c_str(), inFontHeight, true);
+	}
   else
-    return NULL;
+  {
+    font = NEW WLBFont(inFontID, path.c_str(), inFontHeight, true);
+  }
+  mWFontMap[inFontID] = font;
+  
+  return font;
 }
 
-void WResourceManager::RemoveWLBFonts() {
-  for (vector<WLBFont *>::iterator font = mWLBFontList.begin(); font != mWLBFontList.end(); ++font)
-    delete *font;
-  mWLBFontList.clear();
-  mWLBFontMap.clear();
+WFont* WResourceManager::GetWFont(int id)
+{
+  WFont* font = NULL;
+  FontMap::iterator iter = mWFontMap.find(id);
+  if (iter != mWFontMap.end())
+  {
+    font = iter->second;
+  }
+  return font;
 }
 
 void WResourceManager::RemoveWFonts() {
-  for (vector<WFont *>::iterator font = mWFontList.begin(); font != mWFontList.end(); ++font)
-    delete *font;
-  mWFontList.clear();
+  for (FontMap::iterator font = mWFontMap.begin(); font != mWFontMap.end(); ++font)
+  {
+    delete font->second;
+  }
   mWFontMap.clear();
 }
 
@@ -989,8 +947,7 @@ JMusic * WResourceManager::ssLoadMusic(const char *fileName){
 
 void WResourceManager::Refresh(){
   //Really easy cache relinking.
-  reloadWFonts();
-  reloadWLBFonts();
+  ReloadWFonts();
   sampleWCache.Refresh();
   textureWCache.Refresh();
   psiWCache.Refresh();
@@ -1337,7 +1294,6 @@ WCache<cacheItem, cacheActual>::~WCache(){
   for(it=managed.begin();it!=managed.end();it++){
     SAFE_DELETE(it->second);
   }
-
 }
 
 

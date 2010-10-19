@@ -171,7 +171,7 @@ void GuiHandSelf::Render()
 {
   //Empty hand
   if (state == Open && cards.size() == 0){
-    WFont * mFont  = resources.GetWFont(Constants::MAIN_FONT);
+    WFont * mFont  = resources.GetWFont(Fonts::MAIN_FONT);
     mFont->SetColor(ARGB(255,255,0,0));
     if (OptionHandDirection::HORIZONTAL == options[Options::HANDDIRECTION].number){
       back->SetColor(ARGB(255,255,0,0));
