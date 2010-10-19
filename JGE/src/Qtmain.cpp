@@ -3,9 +3,18 @@
 #include <QTime>
 
 #ifdef Q_WS_MAEMO_5
+// For volume buttons support
 #include <QtGui/QX11Info>
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
+
+// For screen on/off events support
+#include <mce/dbus-names.h>
+#include <mce/mode-names.h>
+#include <QDBusConnection>
+#include <QDBusMessage>
+#include <QDBusInterface>
+
 #endif //Q_WS_MAEMO_5
 
 #include "../include/JGE.h"
@@ -24,6 +33,17 @@ class JGEQtRenderer : public QGLWidget
 
 public:
   JGEQtRenderer(QWidget *parent);
+  virtual ~JGEQtRenderer(){
+#ifdef Q_WS_MAEMO_5
+    delete dBusInterface;
+#endif //Q_WS_MAEMO_5
+  };
+
+#ifdef Q_WS_MAEMO_5
+public slots:
+  void displayStateChanged(const QDBusMessage &message);
+#endif //Q_WS_MAEMO_5
+
 
 protected:
   void initializeGL();
@@ -47,6 +67,10 @@ protected:
   void mouseMoveEvent(QMouseEvent *event);
 
   void wheelEvent(QWheelEvent *event);
+
+  void showEvent ( QShowEvent * event );
+
+  void hideEvent ( QHideEvent * event );
 
 #ifdef Q_WS_MAEMO_5
   void grabZoomKeys(bool grab)
@@ -75,10 +99,15 @@ protected:
   }
 #endif //Q_WS_MAEMO_5
 
-
 protected:
   QPoint lastPos;
+  int timerId;
+  bool timerStarted;
 
+#ifdef Q_WS_MAEMO_5
+  QDBusConnection dBusConnection;
+  QDBusInterface* dBusInterface;
+#endif //Q_WS_MAEMO_5
 };
 
 uint64_t	lastTickCount;
@@ -163,8 +192,12 @@ void DestroyGame(void)
 
 JGEQtRenderer::JGEQtRenderer(QWidget *parent)
   : QGLWidget(parent) /* Seems to go faster without double buffering */
+  , timerStarted(false)
+#ifdef Q_WS_MAEMO_5
+  , dBusConnection(QDBusConnection::systemBus())
+#endif //Q_WS_MAEMO_5
 {
-  startTimer( 5 );
+//  startTimer( 33 ); // 30 fps should be more than enough
   setWindowTitle(g_launcher->GetName());
 #ifdef Q_WS_MAEMO_5
   setAttribute(Qt::WA_Maemo5AutoOrientation);
@@ -176,8 +209,30 @@ JGEQtRenderer::JGEQtRenderer(QWidget *parent)
   grabGesture(Qt::PanGesture);
   grabGesture(Qt::PinchGesture);
   grabGesture(Qt::SwipeGesture);
+
+#ifdef Q_WS_MAEMO_5
+  dBusInterface = new QDBusInterface(MCE_SERVICE, MCE_REQUEST_PATH,
+                                      MCE_REQUEST_IF, dBusConnection);
+
+  // Handle screen state on / off
+  dBusConnection.connect(MCE_SERVICE, MCE_SIGNAL_PATH, MCE_SIGNAL_IF, MCE_DISPLAY_SIG, this, SLOT(displayStateChanged(const QDBusMessage &)));
+#endif
 }
 
+#ifdef Q_WS_MAEMO_5
+void JGEQtRenderer::displayStateChanged(const QDBusMessage &message)
+{
+  QString state = message.arguments().at(0).toString();
+  if (!state.isEmpty()) {
+    if (state == MCE_DISPLAY_ON_STRING) {
+       showEvent(0);
+    }
+    else if (state == MCE_DISPLAY_OFF_STRING) {
+      hideEvent(0);
+    }
+  }
+}
+#endif
 
 void JGEQtRenderer::initializeGL()
 {
@@ -427,6 +482,24 @@ void JGEQtRenderer::keyPressEvent(QKeyEvent *event)
   event->accept();
   QWidget::keyPressEvent(event);
   return;
+}
+
+void JGEQtRenderer::showEvent ( QShowEvent * event )
+{
+  if(!timerStarted)
+  {
+    timerId = startTimer(33);
+    timerStarted = true;
+  }
+}
+
+void JGEQtRenderer::hideEvent ( QHideEvent * event )
+{
+  if(timerStarted)
+  {
+    killTimer(timerId);
+    timerStarted = false;
+  }
 }
 
 void JGEQtRenderer::keyReleaseEvent(QKeyEvent *event)
