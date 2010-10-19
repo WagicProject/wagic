@@ -15,7 +15,7 @@ unix:DEFINES += LINUX
 DEFINES += QT_CONFIG
 maemo5 {
 DEFINES += USE_PHONON
-QT += phonon
+QT += phonon dbus
 }
 windows:INCLUDEPATH += ../../JGE/Dependencies/include
 unix:INCLUDEPATH += /usr/include/GL
