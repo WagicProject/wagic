@@ -32,24 +32,3 @@ auto=counter(1/1,X)
 auto={3}:counter(1/1)
 #Not all player can use ability
 [/card]
-[card]
-name=Gauntlet of Might
-auto=lord(creature[red]) 1/1
-auto=lord(land[mountain]) {T}:add{R}{R}
-#Note: Only works because there are no other cards implemented which change the mountain's mana outout. Also, you get a choice of either {R} or {R}{R} (instead of just adding one {R})
-text=Red creatures get +1/+1. -- Whenever a Mountain is tapped for mana, its controller adds {R} to his or her mana pool (in addition to the mana the land produces).
-mana={4}
-type=Artifact
-[/card]
-[card]
-name=Tangle Asp
-alias=1238
-# Note: The alias isn't entirely correct since the Cockatrice's
-# ability doesn't affect walls, but Tangle Asp's should.
-text=Whenever Tangle Asp blocks or becomes blocked by a creature, destroy that creature at end of combat.
-mana={1}{G}
-type=Creature
-subtype=Snake
-power=1
-toughness=2
-[/card]
