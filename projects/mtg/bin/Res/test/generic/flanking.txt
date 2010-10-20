@@ -1,0 +1,28 @@
+#Testing ability "flanking" with Mtenda Herder.
+#"Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn."
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Mtenda Herder
+[PLAYER2]
+inplay:Raging Goblin
+[DO]
+next
+#begin
+next
+#attackers
+Mtenda Herder
+next
+#blockers
+Raging Goblin
+next
+#damage
+next
+#end combat
+[ASSERT]
+SECONDMAIN
+[PLAYER1]
+inplay:Mtenda Herder
+[PLAYER2]
+graveyard:Raging Goblin
+[END]

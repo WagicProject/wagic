@@ -1,0 +1,28 @@
+#Testing "@blocking" trigger with Brushwagg.
+#"Whenever Brushwagg blocks or becomes blocked, it gets -2/+2 until end of turn."
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Hill Giant
+[PLAYER2]
+inplay:Brushwagg
+[DO]
+next
+#begin
+next
+#attackers
+Hill Giant
+next
+Brushwagg
+#blockers
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+graveyard:Hill Giant
+[PLAYER2]
+inplay:Brushwagg
+[END]

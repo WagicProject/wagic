@@ -1154,7 +1154,7 @@ id=31814
 rarity=C
 [/card]
 [card]
-primitive=Pianna Nomad Captain
+primitive=Pianna, Nomad Captain
 #The comma needed to be stripped from the name to make the card work.
 #Reintroducing it requires an update to mtg.txt as well.
 id=31790

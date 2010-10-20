@@ -1,0 +1,19 @@
+#Testing Magma Spray.
+#"Magma Spray deals 2 damage to target creature. If that creature would be put into a graveyard this turn, exile it instead."
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Magma Spray
+inplay:Grizzly Bears
+manapool:{R}
+[PLAYER2]
+[DO]
+Magma Spray
+Grizzly Bears
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Magma Spray
+exile:grizzly bears
+[PLAYER2]
+[END]

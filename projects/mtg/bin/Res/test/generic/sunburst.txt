@@ -1,0 +1,29 @@
+#Testing ability "sunburst" with Arcbound Wanderer.
+#"This enters the battlefield with a +1/+1 counter on it for each color of mana spent to cast it."
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Arcbound Wanderer
+inplay:Fervor
+manapool:{1}{W}{U}{B}{R}{G}
+[PLAYER2]
+[DO]
+Arcbound Wanderer
+next
+#begin
+next
+#attackers
+Arcbound Wanderer
+next
+#blockers
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Arcbound Wanderer,Fervor
+[PLAYER2]
+life:15
+[END]

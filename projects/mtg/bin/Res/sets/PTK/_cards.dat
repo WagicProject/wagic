@@ -814,7 +814,7 @@ id=10604
 rarity=R
 [/card]
 [card]
-primitive=Zhang He Wei General
+primitive=Zhang He, Wei General
 #The comma needed to be stripped from the name to make the card work.
 #Reintroducing it requires an update to mtg.txt as well.
 id=10520
@@ -826,7 +826,7 @@ id=10727
 rarity=R
 [/card]
 [card]
-primitive=Zhao Zilong Tiger General
+primitive=Zhao Zilong, Tiger General
 #The comma needed to be stripped from the name to make the card work.
 #Reintroducing it requires an update to mtg.txt as well.
 id=10686

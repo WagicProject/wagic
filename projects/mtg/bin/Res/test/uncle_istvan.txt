@@ -1,0 +1,28 @@
+#Testing Uncle Istvan.
+#"Prevent all damage that would be dealt to Uncle Istvan by creatures."
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Uncle Istvan
+[PLAYER2]
+inplay:Trained Orgg
+[DO]
+next
+#begin
+next
+#attackers
+Uncle Istvan
+next
+Trained Orgg
+#blockers
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Uncle Istvan
+[PLAYER2]
+inplay:Trained Orgg
+[END]

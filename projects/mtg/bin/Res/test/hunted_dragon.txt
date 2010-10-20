@@ -1,0 +1,17 @@
+#Testing "token(x,x,x) opponent" with Hunted Dragon.
+When Hunted Dragon enters the battlefield, put three 2/2 white Knight creature tokens with first strike onto the battlefield under target opponent's control.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Hunted Dragon
+manapool:{3}{R}{R}
+[PLAYER2]
+[DO]
+Hunted Dragon
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Hunted Dragon
+[PLAYER2]
+inplay:*,*,*
+[END]

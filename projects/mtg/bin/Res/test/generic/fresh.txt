@@ -1,0 +1,20 @@
+#Testing "fresh" with Caller of the Claw.
+When Caller of the Claw enters the battlefield, put a 2/2 green Bear creature token onto the battlefield for each nontoken creature put into your graveyard from the battlefield this turn.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Wrath of God,Caller of the Claw
+inplay:Grizzly Bears,Llanowar Elves
+graveyard:Serra Angel,Runeclaw Bear
+manapool:{4}{W}{W}{G}
+[PLAYER2]
+[DO]
+Wrath of God
+Caller of the Claw
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Caller of the Claw,*,*
+graveyard:Wrath of God,Grizzly Bears,Llanowar Elves,Serra Angel,Runeclaw Bear
+[PLAYER2]
+[END]

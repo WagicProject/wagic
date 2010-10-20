@@ -1,0 +1,37 @@
+#Testing "preventalldamage" with Bubble Matrix.
+Prevent all damage that would be dealt to creatures.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Pyroclasm,Lightning Bolt
+inplay:Bubble Matrix,Grizzly Bears,Llanowar Elves
+manapool:{1}{R}{R}
+[PLAYER2]
+life:20
+inplay:Runeclaw Bear
+[DO]
+pyroclasm
+lightning bolt
+p2
+next
+#begin
+next
+#attackers
+Grizzly Bears
+next
+Runeclaw Bear
+#blockers
+next
+#damage
+next
+#end combat
+next
+[ASSERT]
+SECONDMAIN
+[PLAYER1]
+inplay:Bubble Matrix,Grizzly Bears,Llanowar Elves
+graveyard:Pyroclasm,Lightning Bolt
+[PLAYER2]
+life:17
+inplay:Runeclaw Bear
+[END]

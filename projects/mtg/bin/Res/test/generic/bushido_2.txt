@@ -1,0 +1,28 @@
+#Testing the "blocks"-part of the ability "bushido" with Devoted Retainer.
+#"When this blocks or becomes blocked, it gets +1/+1 until end of turn."
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Raging Goblin
+[PLAYER2]
+inplay:Devoted Retainer
+[DO]
+next
+#begin
+next
+#attackers
+Raging Goblin
+next
+Devoted Retainer
+#blockers
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+graveyard:Raging Goblin
+[PLAYER2]
+inplay:Devoted Retainer
+[END]

@@ -1,7 +1,16 @@
 ########################
 #Generic engine features
 ########################
+generic/@attacking.txt
+generic/@blocking.txt
+generic/@combatdamaged_1.txt
+generic/@combatdamaged_2.txt
+generic/@drawn.txt
+generic/@noncombatdamaged.txt
+generic/@untapped.txt
 generic/attacks_each_turn.txt
+generic/bushido_1.txt
+generic/bushido_2.txt
 generic/cycling.txt
 generic/cycling2.txt
 generic/deathtouch.txt
@@ -24,6 +33,8 @@ generic/first_and_double_strike2_i187.txt
 generic/first_strike.txt
 generic/first_strike2.txt
 generic/first_strike3.txt
+generic/flanking.txt
+generic/fresh.txt
 generic/hybrid_mana.txt
 generic/hybrid_mana_2.txt
 generic/hybrid_mana_3.txt
@@ -46,6 +57,7 @@ generic/persist.txt
 generic/persist2.txt
 generic/persist3.txt
 generic/phases.txt
+generic/preventalldamage.txt
 generic/rampage.txt
 generic/rampage2.txt
 generic/rampage3.txt
@@ -54,6 +66,7 @@ generic/regenerate.txt
 generic/regenerate_wither_i146.txt
 generic/sacrifice.txt
 generic/summoning_sickness.txt
+generic/sunburst.txt
 generic/tap_other_card_as_cost.txt
 generic/targetController_life.txt
 generic/targetController_life2.txt
@@ -298,6 +311,7 @@ hopping_automaton_i232.txt
 horned_helm.txt
 howl_from_beyond.txt
 howl_of_the_night_pack.txt
+hunted_dragon.txt
 hunting_pack.txt
 hurricane.txt
 hyalopterous_lemure.txt
@@ -344,6 +358,7 @@ living_artifact_i169.txt
 living_lands.txt
 lord_of_the_pit.txt
 lord_of_the_pit2.txt
+magma_spray.txt
 martial_coup.txt
 martial_coup2.txt
 master_decoy.txt
@@ -486,6 +501,7 @@ twinstrike.txt
 twinstrike2.txt
 twinstrike3.txt
 twitch.txt
+uncle_istvan.txt
 undermine_i408.txt
 underworld_dreams.txt
 unearth1.txt

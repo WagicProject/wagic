@@ -556,7 +556,7 @@ id=122436
 rarity=U
 [/card]
 [card]
-primitive=Radha Heir to Keld
+primitive=Radha, Heir to Keld
 #The comma needed to be stripped from the name to make the card work.
 #Reintroducing it requires an update to mtg.txt as well.
 id=128949

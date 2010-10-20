@@ -299,7 +299,7 @@ id=74609
 rarity=C
 [/card]
 [card]
-primitive=Isao Enlightened Bushi
+primitive=Isao, Enlightened Bushi
 #The comma needed to be stripped from the name to make the card work.
 #Reintroducing it requires an update to mtg.txt as well.
 id=74039
