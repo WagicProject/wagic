@@ -1336,15 +1336,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 		}
     return NULL;
   }
-// the following is NOT dead code. this is for stacking flanking. except auras do not yet support 
-	//giving creatures activated/MTGAbility keywords. soon as i add this support this will be uncommented for stacking flanking.
-	//  //flanking
- // found = s.find("flanking");
- // if (found != string::npos){
-	//  return NEW  AFlankerAbility(id,card);
-	//}
 
-	  //bushido
+		  //bushido
   found = s.find("bushido(");
   if (found != string::npos){
 	  int end = s.find(")", found);
@@ -1593,9 +1586,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   }
 
 	 //switch targest power with toughness
-  found = s.find("twist");
+  found = s.find("swap");
   if (found != string::npos){
-    MTGAbility * a = NEW ATwistUEOT(id,card,target);
+    MTGAbility * a = NEW ASwapPTUEOT(id,card,target);
     a->oneShot = 1;
     return a;
   }
@@ -1644,7 +1637,7 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
   if (dynamic_cast<AAFizzler *>(a)) return BAKA_EFFECT_BAD;
   if (dynamic_cast<AADamagePrevent *>(a)) return BAKA_EFFECT_GOOD;
 	if (dynamic_cast<AACloner *>(a)) return BAKA_EFFECT_GOOD;
-  if (dynamic_cast<ATwistUEOT *>(a)) return BAKA_EFFECT_BAD;
+  if (dynamic_cast<ASwapPTUEOT *>(a)) return BAKA_EFFECT_BAD;
 	if (dynamic_cast<AAUntapper *>(a)) return BAKA_EFFECT_GOOD;
   if (dynamic_cast<AATapper *>(a)) return BAKA_EFFECT_BAD;
   if (AACounter * ac = dynamic_cast<AACounter *>(a)) {

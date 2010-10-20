@@ -2255,6 +2255,9 @@ public:
 		return 1;
 	}
 
+	const char * getMenuText(){
+					return "Exalted";
+				}
 
 	AExalted * clone() const{
 		AExalted * a =  NEW AExalted(*this);
@@ -2935,11 +2938,11 @@ public:
 };
 
 /* switch power and toughness of target */
-class ATwist:public InstantAbility{
+class ASwapPT:public InstantAbility{
 public:
 	int oldpower;
 	int oldtoughness;
-	ATwist(int _id, MTGCardInstance * _source, MTGCardInstance * _target): InstantAbility(_id, _source, _target){
+	ASwapPT(int _id, MTGCardInstance * _source, MTGCardInstance * _target): InstantAbility(_id, _source, _target){
 		target = _target;
 	}
 
@@ -2974,10 +2977,10 @@ public:
 	}
 
 	const char * getMenuText(){
-		return "Switch";
+		return "Swap power and toughness";
 	}
-	ATwist * clone() const{
-		ATwist * a =  NEW ATwist(*this);
+	ASwapPT * clone() const{
+		ASwapPT * a =  NEW ASwapPT(*this);
 		a->isClone = 1;
 		return a;
 	}
@@ -3299,6 +3302,11 @@ public:
 		}
 		return 1;
 	}
+
+	const char * getMenuText(){
+					return "Transform";
+				}
+
 	ATransformer * clone() const{
 		ATransformer * a =  NEW ATransformer(*this);
 		a->isClone = 1;
@@ -3349,6 +3357,11 @@ public:
 		}
 		return MTGAbility::addToGame();
 	}
+
+		const char * getMenuText(){
+					return "Transform";
+				}
+
 	AForeverTransformer * clone() const{
 		AForeverTransformer * a =  NEW AForeverTransformer(*this);
 		a->isClone = 1;
@@ -3366,6 +3379,9 @@ public:
 		GenericInstantAbility * wrapper = NEW GenericInstantAbility(1,source,(Damageable *)(this->target),a);
 		wrapper->addToGame();
 		return 1;}
+		const char * getMenuText(){
+					return "Transform";
+				}
 	ATransformerUEOT * clone() const{
 		ATransformerUEOT * a =  NEW ATransformerUEOT(*this);
 		a->ability = this->ability->clone();
@@ -3379,38 +3395,47 @@ public:
 	public:
 		AForeverTransformer * ability;
 		ATransformerFOREVER(int id, MTGCardInstance * source, MTGCardInstance * target, string types, string abilities):InstantAbility(id,source,target){
-			ability = NEW AForeverTransformer(id,source,target,types,abilities);}
+			ability = NEW AForeverTransformer(id,source,target,types,abilities);
+		}
 		int resolve(){
 			AForeverTransformer * a = ability->clone();
 			GenericInstantAbility * wrapper = NEW GenericInstantAbility(1,source,(Damageable *)(this->target),a);
 			wrapper->addToGame();
-			return 1;}
+			return 1;
+		}
+	  const char * getMenuText(){
+					return "Transform";
+				}
 		ATransformerFOREVER * clone() const{
 			ATransformerFOREVER * a =  NEW ATransformerFOREVER(*this);
 			a->ability = this->ability->clone();
 			a->isClone = 1;
-			return a;}
+			return a;
+		}
 		~ATransformerFOREVER(){delete ability;
 		}};
 		//switch p/t ueot
-		class  ATwistUEOT: public InstantAbility{
+		class  ASwapPTUEOT: public InstantAbility{
 		public:
-			ATwist * ability;
-			ATwistUEOT(int id, MTGCardInstance * source, MTGCardInstance * target):InstantAbility(id,source,target){
-				ability = NEW ATwist(id,source,target);}
+			ASwapPT * ability;
+			ASwapPTUEOT(int id, MTGCardInstance * source, MTGCardInstance * target):InstantAbility(id,source,target){
+				ability = NEW ASwapPT(id,source,target);
+			}
 			int resolve(){
-				ATwist * a = ability->clone();
+				ASwapPT * a = ability->clone();
 				GenericInstantAbility * wrapper = NEW GenericInstantAbility(1,source,(Damageable *)(this->target),a);
 				wrapper->addToGame();
-				return 1;}
-			ATwistUEOT * clone() const{
-				ATwistUEOT * a =  NEW ATwistUEOT(*this);
+				return 1;
+			}
+			ASwapPTUEOT * clone() const{
+				ASwapPTUEOT * a =  NEW ASwapPTUEOT(*this);
 				a->ability = this->ability->clone();
 				a->isClone = 1;
 				return a;}
-			~ATwistUEOT(){
+			~ASwapPTUEOT(){
 				delete ability;
-			}};
+			}
+		};
 
 			//becomes ability
 			//Adds types/abilities/P/T to a card (aura)

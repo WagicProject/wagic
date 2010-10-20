@@ -191,7 +191,7 @@ int MTGCardInstance::afterDamage(){
 
 int MTGCardInstance::bury(){
     Player * p = controller();
-	if (basicAbilities[Constants::EXILEBURY]){
+	if (basicAbilities[Constants::EXILEDEATH]){
     p->game->putInZone(this,p->game->inPlay,owner->game->exile);
     return 1;
 	}
