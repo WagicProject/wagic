@@ -86,10 +86,7 @@ int TestSuiteAI::Act(float dt){
   string action = suite->getNextAction();
   g->mLayers->stackLayer()->Dump();
   //  DamageResolverLayer * drl = g->mLayers->combatLayer();
-  OutputDebugString("TESTSUITE command:"); 
-  OutputDebugString(action.c_str());
-  OutputDebugString("\n");
-
+  DebugTrace("TESTSUITE command: " << action); 
 
   if (g->mLayers->stackLayer()->askIfWishesToInterrupt == this){
     if(action.compare("no") != 0 && action.compare("yes") != 0){
@@ -111,12 +108,12 @@ int TestSuiteAI::Act(float dt){
     g->userRequestNextGamePhase();
   }
   else if (action.compare("human")==0){
-    OutputDebugString("TESTSUITE You have control");
+    DebugTrace("TESTSUITE You have control");
     playMode = MODE_HUMAN;
     return 1;
   }
   else if (action.compare("ai")==0){
-    OutputDebugString("TESTSUITE Switching to AI");
+    DebugTrace("TESTSUITE Switching to AI");
     playMode = MODE_AI;
     return 1;
   }
@@ -134,7 +131,7 @@ int TestSuiteAI::Act(float dt){
     if (g->mLayers->stackLayer()->askIfWishesToInterrupt == this)
       g->mLayers->stackLayer()->cancelInterruptOffer();
   }else if(action.find("choice ")!=string::npos){
-    OutputDebugString("TESTSUITE choice !!!\n");
+    DebugTrace("TESTSUITE choice !!!");
     int choice = atoi(action.substr(action.find("choice ") + 7).c_str());
     g->mLayers->actionLayer()->doReactTo(choice);
   }else if(action.find(" -momir- ")!=string::npos){
@@ -153,9 +150,7 @@ int TestSuiteAI::Act(float dt){
     int mtgid = Rules::getMTGId(action);
     Interruptible * toInterrupt = NULL;
     if (mtgid){
-      char buffe[512];
-      sprintf(buffe, "TESTSUITE CARD ID : %i\n", mtgid);
-      OutputDebugString(buffe);
+      DebugTrace("TESTSUITE CARD ID:" << mtgid);
       toInterrupt = suite->getActionByMTGId(mtgid);
     }
 
@@ -166,9 +161,7 @@ int TestSuiteAI::Act(float dt){
 
     MTGCardInstance * card = getCard(action);
     if (card) {
-      OutputDebugString("TESTSUITE Clicking ON: ");
-      OutputDebugString(card->name.c_str());
-      OutputDebugString("\n");
+      DebugTrace("TESTSUITE Clicking ON: " << card->name); 
       card->currentZone->needShuffle = true; //mimic library shuffle
       g->cardClick(card,card);
       g->forceShuffleLibraries(); //mimic library shuffle
@@ -288,7 +281,7 @@ void TestSuite::initGame(){
   }
   //Put the GameObserver in the initial state
   GameObserver * g = GameObserver::GetInstance();
-  OutputDebugString("TESTSUITE Init Game\n");
+  DebugTrace("TESTSUITE Init Game");
   g->phaseRing->goToPhase(initState.phase, g->players[0]);
   g->currentGamePhase = initState.phase;
   for (int i = 0; i < 2; i++){
@@ -320,7 +313,7 @@ void TestSuite::initGame(){
       }
     }
   }
-  OutputDebugString("TESTUITE Init Game Done !\n");
+  DebugTrace("TESTUITE Init Game Done !");
 }
 int TestSuite::Log(const char * text){
   ofstream file (RESPATH"/test/results.html",ios_base::app);
@@ -329,10 +322,8 @@ int TestSuite::Log(const char * text){
     file << "\n";
     file.close();
   }
-#if defined (WIN32) || defined (LINUX)
-  OutputDebugString(text);
-  OutputDebugString("\n");
-#endif
+
+  DebugTrace(text);
   return 1;
 
 }

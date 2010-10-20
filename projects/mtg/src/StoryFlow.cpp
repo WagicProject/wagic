@@ -1,6 +1,7 @@
 #include "../include/StoryFlow.h"
 #include "../include/MTGDefinitions.h"
 #include "../include/config.h"
+#include "../include/DebugRoutines.h"
 #include "../include/WResourceManager.h"
 #include "../include/AIPlayer.h"
 #include "../include/Rules.h"
@@ -536,14 +537,11 @@ bool StoryFlow::parse(string path)
 			if (strcmp(element->Value(), "page")==0) {
         string id = element->Attribute("id");
 
-        OutputDebugString("\nparsing ");
-        OutputDebugString(id.c_str());
-        OutputDebugString("...\n");
+        DebugTrace("parsing " << id << "...");
 
 				StoryPage * sp = loadPage(element);
         pages[id] = sp;
         if (!currentPageId.size()) gotoPage(id);
-        OutputDebugString("OK\n");
 			}
       else {
         //Error

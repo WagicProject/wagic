@@ -5,6 +5,7 @@
 
 #include "JGE.h"
 #include "../include/config.h"
+#include "../include/DebugRoutines.h"
 #include "../include/CardGui.h"
 #include "../include/ManaCostHybrid.h"
 #include "../include/Subtypes.h"
@@ -311,13 +312,10 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
       }
     if(card->data->types.size())
       s += _(Subtypes::subtypesList->find(card->data->types[0]));
-#ifdef _DEBUG    
-    else{
-      char buf[2048];
-      sprintf(buf, "Typeless card: %s %s (%i)\n", setlist[card->setId].c_str(), card->data->getName().c_str(), card->getId());
-      OutputDebugString(buf);
-      }
-#endif
+    else
+    {
+      DebugTrace("Typeless card: " << setlist[card->setId].c_str() << card->data->getName() << card->getId());
+    }
     
     font->DrawString(s.c_str(), x + (22 - BigWidth / 2)*pos.actZ, pos.actY + (49 - BigHeight / 2)*pos.actZ);
   }
@@ -514,13 +512,10 @@ void CardGui::tinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad) {
       }
     if(card->data->types.size())
       s += _(Subtypes::subtypesList->find(card->data->types[0]));
-#ifdef _DEBUG    
-    else{
-      char buf[2048];
-      sprintf(buf, "Typeless card: %s %s (%i)\n", setlist[card->setId].c_str(), card->data->getName().c_str(), card->getId());
-      OutputDebugString(buf);
-      }
-#endif
+    else
+    {
+      DebugTrace("Typeless card: " << setlist[card->setId].c_str() << card->data->getName() << card->getId());
+    }
     
     font->DrawString(s.c_str(), x + (22 - BigWidth / 2)*pos.actZ, pos.actY + (49 - BigHeight / 2)*pos.actZ);
   }
