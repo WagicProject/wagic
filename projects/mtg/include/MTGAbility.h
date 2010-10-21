@@ -89,7 +89,8 @@ class MTGAbility: public ActionElement{
     BUYBACK_COST = 9,
 	FLASHBACK_COST = 10,
     RETRACE_COST = 11,
-		MTG_COMBATTRIGGERS_RULE = 13,
+		MTG_COMBATTRIGGERS_RULE = 12,
+		STANDARD_PREVENT = 13,
 
 
   };

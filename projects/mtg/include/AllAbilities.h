@@ -2784,6 +2784,7 @@ class AADamagePrevent:public ActivatedAbilityTP{
 public:
 	int preventing;
 	AADamagePrevent(int _id, MTGCardInstance * _source, Targetable * _target,int preventing, ManaCost * _cost=NULL, int doTap = 0, int who = TargetChooser::UNSET):ActivatedAbilityTP(_id,_source,_target,_cost,doTap,who),preventing(preventing){
+		aType = MTGAbility::STANDARD_PREVENT;
 	}
 
 	int resolve(){
@@ -2810,31 +2811,31 @@ public:
 
 };
 //poison removel
-class AARemovePoison:public ActivatedAbilityTP{
+class AAAlterPoison:public ActivatedAbilityTP{
 public:
 	int poison;
-	AARemovePoison(int _id, MTGCardInstance * _source, Targetable * _target,int poison, ManaCost * _cost=NULL, int doTap = 0, int who = TargetChooser::UNSET):ActivatedAbilityTP(_id,_source,_target,_cost,doTap,who),poison(poison){
+	AAAlterPoison(int _id, MTGCardInstance * _source, Targetable * _target,int poison, ManaCost * _cost=NULL, int doTap = 0, int who = TargetChooser::UNSET):ActivatedAbilityTP(_id,_source,_target,_cost,doTap,who),poison(poison){
 	}
 
 	int resolve(){
 		Damageable * _target = (Damageable *) getTarget();
 		if(_target){
-			_target->poisonCount -= poison;
+			_target->poisonCount += poison;
 		}
 		return 0;
 	}
 
 	const char * getMenuText(){
-		return "Remove Poison";
+		return "Poison";
 	}
 
-	AARemovePoison * clone() const{
-		AARemovePoison * a =  NEW AARemovePoison(*this);
+	AAAlterPoison * clone() const{
+		AAAlterPoison * a =  NEW AAAlterPoison(*this);
 		a->isClone = 1;
 		return a;
 	}
 
-	~AARemovePoison(){
+	~AAAlterPoison(){
 	}
 
 

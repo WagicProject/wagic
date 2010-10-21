@@ -1124,7 +1124,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   }
 
  //remove poison
-  found = s.find("removepoison:");
+  found = s.find("alterpoison:");
   if (found != string::npos){
     size_t start = s.find(":",found);
     size_t end = s.find(" ",start);
@@ -1137,7 +1137,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 
     Targetable * t = NULL;
     if (spell) t = spell->getNextPlayerTarget();
-    MTGAbility * a = NEW AARemovePoison (id, card, t,poison,NULL,0,who);
+    MTGAbility * a = NEW AAAlterPoison (id, card, t,poison,NULL,0,who);
 	  a->oneShot = 1;
     return a;
   }
@@ -1658,7 +1658,6 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
   if (dynamic_cast<AACopier *>(a)) return BAKA_EFFECT_GOOD;
   if (dynamic_cast<AADestroyer *>(a)) return BAKA_EFFECT_BAD;
   if (dynamic_cast<AStandardRegenerate *>(a)) return BAKA_EFFECT_GOOD;
-  if (dynamic_cast<AStandardRegenerate *>(a)) return BAKA_EFFECT_BAD;
   if (AALifer * abi = dynamic_cast<AALifer *>(a)) return abi->life > 0 ? BAKA_EFFECT_GOOD : BAKA_EFFECT_BAD;
   if (dynamic_cast<AADepleter *>(a)) return BAKA_EFFECT_BAD;
   if (dynamic_cast<AADrawer *>(a)) return BAKA_EFFECT_GOOD;

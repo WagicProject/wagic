@@ -189,9 +189,24 @@ int AIAction::getEfficiency(){
       {
         MTGCardInstance * _target = (MTGCardInstance *)(a->target);
         efficiency = 0;
-        if (!_target->regenerateTokens && g->getCurrentGamePhase()< Constants::MTG_PHASE_COMBATDAMAGE && (_target->defenser || _target->blockers.size())){
+				if (!_target->regenerateTokens && g->getCurrentGamePhase() == Constants::MTG_PHASE_COMBATBLOCKERS && (_target->defenser || _target->blockers.size())){
           efficiency = 95;
         }
+
+        //TODO If the card is the target of a damage spell
+        break;
+      }
+		case MTGAbility::STANDARD_PREVENT:
+      {
+        MTGCardInstance * _target = (MTGCardInstance *)(a->target);
+        efficiency = 10;//starts out low to avoid spamming it when its not needed.
+				if (!_target->regenerateTokens && g->getCurrentGamePhase() == Constants::MTG_PHASE_COMBATBLOCKERS && (_target->defenser || _target->blockers.size()) && _target->preventable < 2 || (_target->canBlock()||_target->canAttack()) && _target->preventable < 2){
+          efficiency = 95;//increase this chance to be used in combat.
+        }
+			  if (_target->preventable > 2){
+        efficiency -= 10; //lower the chance to be used if the creature already has over 3 prevent points.
+				}
+        //basically a rip off of regen, if it is not regenerating, its combat blockers, it is being blocked or blocking, and has less then 3 prevents, the effeincy is increased.
         //TODO If the card is the target of a damage spell
         break;
       }
@@ -454,6 +469,7 @@ int AIPlayer::canFirstStrikeKill(MTGCardInstance * card, MTGCardInstance *ennemy
   if (ennemy->has(Constants::FIRSTSTRIKE) || ennemy->has(Constants::DOUBLESTRIKE)) return 0;
   if (!(card->has(Constants::FIRSTSTRIKE) || card->has(Constants::DOUBLESTRIKE))) return 0;
   if (!(card->power >= ennemy->toughness)) return 0;
+	if (!(card->power >= ennemy->toughness + 1) && ennemy->has(Constants::FLANKING)) return 0;
   return 1;
 }
 
@@ -514,7 +530,7 @@ int AIPlayer::chooseBlockers(){
 	  MTGCardInstance * attacker = card->defenser;
 	  if (opponentsToughness[attacker] <= 0 ||
     (card->toughness <= attacker->power && opponentForce*2 <life  && !canFirstStrikeKill(card,attacker))  ||
-    attacker->nbOpponents()>1){
+		attacker->nbOpponents()>1){
       g->mLayers->actionLayer()->reactToClick(a,card);
 	  }else{
 	    set = 1;
