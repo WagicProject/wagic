@@ -200,7 +200,7 @@ int AIAction::getEfficiency(){
       {
         MTGCardInstance * _target = (MTGCardInstance *)(a->target);
         efficiency = 10;//starts out low to avoid spamming it when its not needed.
-				if (!_target->regenerateTokens && g->getCurrentGamePhase() == Constants::MTG_PHASE_COMBATBLOCKERS && (_target->defenser || _target->blockers.size()) && _target->preventable < 2 || (_target->canBlock()||_target->canAttack()) && _target->preventable < 2){
+				if ((!_target->regenerateTokens && g->getCurrentGamePhase() == Constants::MTG_PHASE_COMBATBLOCKERS && (_target->defenser || _target->blockers.size())) || ((_target->canBlock()||_target->canAttack()) && _target->preventable < 2)){
           efficiency = 95;//increase this chance to be used in combat.
         }
 			  if (_target->preventable > 2){
