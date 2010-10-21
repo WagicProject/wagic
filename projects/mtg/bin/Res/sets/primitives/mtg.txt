@@ -5460,8 +5460,8 @@ toughness=1
 [card]
 name=Blistergrub
 abilities=swampwalk
-auto=@movedTo(this|graveyard) from(battlefield):life-2 opponent
-text=Metalcraft - When Bleak Coven Vampires enters the battlefield, if you control three or more artifacts, target player loses 4 life and you gain 4 life.
+auto=@movedTo(this|graveyard) from(battlefield):life:-2 opponent
+text=Swampwalk - When Blistergrub is put into a graveyard from the battlefield, each opponent loses 2 life.
 mana={2}{B}
 type=Creature
 subtype=Horror
@@ -9009,7 +9009,7 @@ name=Chimeric Coils
 auto={X}{1}:becomes(artifact creature construct,*/*) ueot && thisforeach(X) all(this) 1/1
 auto=@each endofturn:bury all(creature[chimeric coils])
 text={X}{1}: Chimeric Coils becomes an X/X Construct artifact creature. Sacrifice it at the beginning of the next end step.
-mana={X}
+mana={1}
 type=Artifact
 [/card]
 [card]
@@ -10596,7 +10596,7 @@ name=Corpsehatch
 target=creature[-black]
 auto=destroy
 auto=Token(-193507)*2
-text=Destroy target nonblack creature. -- Put two 0/1 colorless Eldrazi Spawn creature tokens onto the battlefield. They have ìSacrifice this creature: Add {1} to your mana pool.ÅE
+text=Destroy target nonblack creature. -- Put two 0/1 colorless Eldrazi Spawn creature tokens onto the battlefield. They have ìSacrifice this creature: Add {1} to your mana pool.Å"
 mana={3}{B}{B}
 type=Sorcery
 [/card]
@@ -20604,7 +20604,7 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-name=Geth, Lord of the Vault 
+name=Geth, Lord of the Vault
 abilities=intimidate
 auto={0}{B}:name(X = 0) && moveTo(myBattlefield) target(*[artifact;creature;manacost=0]|opponentgraveyard) && tap && deplete:0 opponent
 auto={1}{B}:name(X = 1) && moveTo(myBattlefield) target(*[artifact;creature;manacost=1]|opponentgraveyard) && tap && deplete:1 opponent
@@ -22321,7 +22321,7 @@ type=Artifact
 [card]
 name=Golem-Skin Gauntlets
 auto={2}:equip
-auto=thisforeach(equip) 1/0
+auto=equip/0
 text=Equipped creature gets +1/+0 for each Equipment attached to it. -- Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
 mana={1}
 type=Artifact
@@ -24812,7 +24812,7 @@ toughness=1
 [/card]
 [card]
 name=Hissing Miasma
-auto=@each my blockers:foreach(creature[attacking]|opponentBattlefield) life:-1 opponent
+auto=@each blockers:foreach(creature[attacking]|opponentBattlefield) life:-1 opponent
 text=Whenever a creature attacks you, its controller loses 1 life.
 mana={1}{B}{B}
 type=Enchantment
@@ -29162,7 +29162,7 @@ toughness=2
 [/card]
 [card]
 name=Kjeldoran Outpost
-auto=aslongas(plains|mybattlefield) moveto(myhand) notatarget(plains|mybattlefield) oneshot && counter(0/0,-1,payment)
+auto=aslongas(plains|mybattlefield) moveto(mygraveyard) notatarget(plains|mybattlefield) oneshot && counter(0/0,-1,payment)
 auto=moveto(mygraveyard) target(this|mybattlefield)
 auto=this(counter{0/0.1.payment}<1) {T}:Add{W}
 auto=this(counter{0/0.1.payment}<1) {1}{W}{T}:token(Soldier,creature soldier, 1/1,white)
@@ -37686,7 +37686,6 @@ color=green
 name=Ooze Token from Ooze Token
 type=Creature
 subtype=Ooze
-text=
 power=1
 toughness=1
 color=green
@@ -44959,7 +44958,7 @@ auto={R}:first strike
 text={R} Saberclaw Golem gains first strike until end of turn.
 mana={5}
 type=Artifact Creature
-subtype=GOlem
+subtype=Golem
 power=4
 toughness=2
 [/card]
@@ -52008,9 +52007,11 @@ toughness=4
 [card]
 name=Stalking Stones
 auto={T}:Add{1}
-auto={6}:becomes(Artifact Creature Elemental,3/3)
+auto={6}:name(becomes a 3/3 Elemental artifact creature) && transforms(Artifact Creature Elemental) forever
 text={T}: Add {1} to your mana pool. -- {6}: Stalking Stones becomes a 3/3 Elemental artifact creature that's still a land. (This effect lasts indefinitely.)
 type=Land
+power=3
+toughness=3
 [/card]
 [card]
 name=Stalking Tiger
@@ -52707,7 +52708,7 @@ toughness=2
 name=Stonybrook Banneret
 abilities=islandwalk
 auto=lord(merfolk|myhand) colorless:-1
-auto=lord(island|myhand) colorless:-1
+auto=lord(wizard|myhand) colorless:-1
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -53019,7 +53020,7 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Strider Harness 
+name=Strider Harness
 auto={1}:equip
 auto=1/1
 auto=haste
@@ -55787,7 +55788,7 @@ text=At the end of each turn, if you control no creatures, sacrifice Thran Quarr
 type=Land
 [/card]
 [card]
-name=Thran war Machine
+name=Thran War Machine
 abilities=mustattack
 auto=upcost[{4}{0};next upkeep] moveTo(graveyard)
 text=Echo {4} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- Thran War Machine attacks each turn if able.

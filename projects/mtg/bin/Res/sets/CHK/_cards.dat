@@ -765,8 +765,6 @@ rarity=R
 [/card]
 [card]
 primitive=Konda, Lord of Eiganjo
-#The comma needed to be stripped from the name to make the card work.
-#Reintroducing it requires an update to mtg.txt as well.
 id=78594
 rarity=R
 [/card]
@@ -937,8 +935,6 @@ rarity=C
 [/card]
 [card]
 primitive=Nagao, Bound by Honor
-#The comma needed to be stripped from the name to make the card work.
-#Reintroducing it requires an update to mtg.txt as well.
 id=79136
 rarity=U
 [/card]
