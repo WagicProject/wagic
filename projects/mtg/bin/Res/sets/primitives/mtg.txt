@@ -11309,7 +11309,7 @@ toughness=3
 [/card]
 [card]
 name=Crypt Cobra
-auto=@notblocked(this):removepoison:-1 opponent
+auto=@notblocked(this):alterpoison:1 opponent
 text=Whenever Crypt Cobra attacks and isn't blocked, defending player gets a poison counter. (A player with ten or more poison counters loses the game.)
 mana={3}{B}
 type=Creature
@@ -23720,7 +23720,7 @@ toughness=2
 name=Hand of the Praetors
 abilities=infect
 auto=lord(other creature[infect]|myBattlefield) 1/1
-auto=@movedTo(*[infect]|mystack):damage:1 target(player)
+auto=@movedTo(*[infect]|mystack):alterpoison:1 target(player)
 text=Infect -- Other creatures you control with infect get +1/+1. -- Whenever you cast a creature spell with infect, target player gets a poison counter.
 mana={3}{B}
 type=Creature
@@ -25791,7 +25791,7 @@ type=Sorcery
 [card]
 name=Ichor Rats
 abilities=infect
-auto=damage:1 all(player)
+auto=alterpoison:1 all(player)
 text=Infect -- When Ichor Rats enters the battlefield, each player gets a poison counter.
 mana={1}{B}{B}
 type=Creature
@@ -53611,7 +53611,7 @@ toughness=6
 [card]
 name=Suq'Ata Assassin
 abilities=fear
-auto=@notblocked(this):removepoison:-1 opponent
+auto=@notblocked(this):alterpoison:1 opponent
 text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- Whenever Suq'Ata Assassin attacks and isn't blocked, defending player gets a poison counter. (A player with ten or more poison counters loses the game.)
 mana={1}{B}{B}
 type=Creature
@@ -53781,7 +53781,7 @@ subtype=Swamp
 [card]
 name=Swamp Mosquito
 abilities=flying
-auto=@notblocked(this):removepoison:-1 opponent
+auto=@notblocked(this):alterpoison:1 opponent
 text=Flying -- Whenever Swamp Mosquito attacks and isn't blocked, defending player gets a poison counter. (A player with ten or more poison counters loses the game.)
 mana={1}{B}
 type=Creature
