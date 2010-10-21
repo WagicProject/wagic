@@ -3138,8 +3138,8 @@ toughness=2
 [/card]
 [card]
 name=Auriok Glaivemaster
-auto=this(equip > 0) 1/1
-auto=this(equip > 0) first strike
+auto=this(gear > 0) 1/1
+auto=this(gear > 0) first strike
 text=As long as Auriok Glaivemaster is equipped, it gets +1/+1 and has first strike.
 mana={W}
 type=Creature
@@ -21676,7 +21676,7 @@ toughness=1
 [card]
 name=Goblin Gaveleer
 abilities=trample
-auto=thisforeach(equip) 2/0
+auto=thisforeach(gear) 2/0
 text=Trample -- Goblin Gaveleer gets +2/+0 for each Equipment attached to it.
 mana={R}
 type=Creature
@@ -28637,7 +28637,7 @@ toughness=2
 [/card]
 [card]
 name=Kemba, Kha Regent
-auto=@each my upkeep:thisforeach(equip) token(Cat,Creature Cat,2/2,white)
+auto=@each my upkeep:thisforeach(gear) token(Cat,Creature Cat,2/2,white)
 text=At the beginning of your upkeep, put a 2/2 white Cat creature token onto the battlefield for each equipment attached to Kemba, Kha Regent.
 mana={1}{W}{W}
 type=Legendary Creature
@@ -28938,8 +28938,8 @@ subtype=Equipment
 [/card]
 [card]
 name=Kitesail Apprentice
-auto=this(equip > 0) flying
-auto=this(equip > 0) 1/1
+auto=this(gear > 0) flying
+auto=this(gear > 0) 1/1
 text=As long as Kitesail Apprentice is equipped, it gets +1/+1 and has flying.
 mana={W}
 type=Creature
@@ -29493,7 +29493,7 @@ toughness=2
 [/card]
 [card]
 name=Kor Duelist
-auto=this(equip > 0) double strike
+auto=this(gear > 0) double strike
 text=As long as Kor Duelist is equipped, it has double strike. (It deals both first-strike and regular combat damage.)
 mana={W}
 type=Creature
@@ -30593,8 +30593,8 @@ type=Artifact
 [/card]
 [card]
 name=Leonin Den-Guard
-auto=this(equip > 0) 1/1
-auto=this(equip > 0) vigilance
+auto=this(gear > 0) 1/1
+auto=this(gear > 0) vigilance
 text=As long as Leonin Den-Guard is equipped, it gets +1/+1 and has vigilance.
 mana={1}{W}
 type=Creature
@@ -31763,7 +31763,7 @@ toughness=3
 [/card]
 [card]
 name=Loxodon Punisher
-auto=thisforeach(equip) 2/2
+auto=thisforeach(gear) 2/2
 text=Loxodon Punisher gets +2/+2 for each Equipment attached to it.
 mana={3}{W}
 type=Creature
@@ -35519,7 +35519,7 @@ toughness=3
 [/card]
 [card]
 name=Myr Adapter
-auto=thisforeach(equip) 1/1
+auto=thisforeach(gear) 1/1
 text=Myr Adapter gets +1/+1 for each Equipment attached to it.
 mana={3}
 type=Artifact Creature
@@ -42188,8 +42188,8 @@ toughness=2
 [card]
 name=Raksha Golden Cub
 abilities=vigilance
-auto=this(equip > 0) lord(creature[cat]|myBattlefield) 2/2
-auto=this(equip > 0) lord(creature[cat]|myBattlefield) double strike
+auto=this(gear > 0) lord(creature[cat]|myBattlefield) 2/2
+auto=this(gear > 0) lord(creature[cat]|myBattlefield) double strike
 text=Vigilance -- As long as Raksha Golden Cub is equipped, Cat creatures you control get +2/+2 and have double strike.
 mana={5}{W}{W}
 type=Legendary Creature
@@ -49202,8 +49202,8 @@ type=Land
 [/card]
 [card]
 name=Skyhunter Cub
-auto=this(equip > 0) 1/1
-auto=this(equip > 0) flying
+auto=this(gear > 0) 1/1
+auto=this(gear > 0) flying
 text=As long as Skyhunter Cub is equipped, it gets +1/+1 and has flying.
 mana={2}{W}
 type=Creature
@@ -53552,8 +53552,8 @@ toughness=1
 [/card]
 [card]
 name=Sunspear Shikari
-auto=this(equip !=0) first strike
-auto=this(equip !=0) lifelink
+auto=this(gear !=0) first strike
+auto=this(gear !=0) lifelink
 text=As long as Sunspear Shikari is equipped, it has first strike and lifelink.
 mana={1}{W}
 type=Creature
