@@ -15067,7 +15067,7 @@ type=Enchantment
 [/card]
 [card]
 name=Dwarven Berserker
-auto=@blocked(this):3/0 && trample ueot
+auto=@blocked(this):all(this) 3/0 ueot && all(this) trample ueot
 text=Whenever Dwarven Berserker becomes blocked, it gets +3/+0 and gains trample until end of turn.
 mana={1}{R}
 type=Creature
@@ -15194,7 +15194,7 @@ toughness=1
 [/card]
 [card]
 name=Dwarven Vigilantes
-auto=@notblocked(this):may damage:p target(creature,player) && fog from(this) ueot
+auto=@notblocked(this):may damage:p target(creature) && fog from(this) ueot
 text=Whenever Dwarven Vigilantes attacks and isn't blocked, you may have it deal damage equal to its power to target creature. If you do, Dwarven Vigilantes assigns no combat damage this turn.
 mana={2}{R}
 type=Creature
@@ -20410,7 +20410,7 @@ toughness=5
 [card]
 name=Gempalm Incinerator
 autohand={1}{R}:cycling
-autohand={1}{R}:thisforeach(goblin|battlefield) damage:1 target(creature,player) && cycling
+autohand={1}{R}:foreach(goblin|battlefield) damage:1 target(creature,player) && cycling
 text=Cycling {1}{R} ({1}{R}, Discard this card: Draw a card.) -- When you cycle Gempalm Incinerator, you may have it deal X damage to target creature, where X is the number of Goblins on the battlefield.
 mana={2}{R}
 type=Creature
@@ -21871,7 +21871,7 @@ toughness=1
 [card]
 name=Goblin Piledriver
 abilities=protecion from blue
-auto=@attacking(this):all(this) foreach(other goblin[attacking]) 2/0 ueot
+auto=@attacking(this):foreach(other goblin[attacking]|battlefield) 2/0 ueot
 text=Protection from blue -- Whenever Goblin Piledriver attacks, it gets +2/+0 until end of turn for each other attacking Goblin.
 mana={1}{R}
 type=Creature
@@ -26429,7 +26429,7 @@ toughness=2
 [card]
 name=Inner-Flame Acolyte
 other={R}
-auto=1/0 && haste target(creature)
+auto=choice target(creature) 2/0 ueot && haste ueot
 auto=alternative moveto(mygraveyard)
 text=When Inner-Flame Acolyte enters the battlefield, target creature gets +2/+0 and gains haste until end of turn. -- Evoke {R} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
 mana={1}{R}{R}
@@ -31558,7 +31558,7 @@ name=Lord of Shatterskull Pass
 auto={1}{R}:counter(0/0,1,Level) asSorcery
 auto=this(counter{0/0.1.Level}) 3/3
 auto=@attacking(this):this(counter{0/0.6.Level}) damage:6 all(creature|opponentBattlefield)
-text=Level up {3}{R} -- [Level 1-2] {T}: Brimstone Mage deals 1 damage to target creature or player. [2/3] -- [Level 3+] {T}: Brimstone Mage deals 3 damage to target creature or player. [2/4]
+text=Level up {1}{r} (: Put a level counter on this. Level up only as a sorcery.)--LEVEL 1-5 6/6--LEVEL 6+ --6/6 Whenever Lord of Shatterskull Pass attacks, it deals 6 damage to each creature defending player controls.
 mana={2}{R}
 type=Creature
 subtype=Levelup Human Shaman
