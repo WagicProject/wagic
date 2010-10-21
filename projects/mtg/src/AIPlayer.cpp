@@ -196,20 +196,20 @@ int AIAction::getEfficiency(){
         //TODO If the card is the target of a damage spell
         break;
       }
-		case MTGAbility::STANDARD_PREVENT:
-      {
-        MTGCardInstance * _target = (MTGCardInstance *)(a->target);
-        efficiency = 10;//starts out low to avoid spamming it when its not needed.
-				if ((!_target->regenerateTokens && g->getCurrentGamePhase() == Constants::MTG_PHASE_COMBATBLOCKERS && (_target->defenser || _target->blockers.size())) || ((_target->canBlock()||_target->canAttack()) && _target->preventable < 2)){
-          efficiency = 95;//increase this chance to be used in combat.
-        }
-			  if (_target->preventable > 2){
-        efficiency -= 10; //lower the chance to be used if the creature already has over 3 prevent points.
-				}
-        //basically a rip off of regen, if it is not regenerating, its combat blockers, it is being blocked or blocking, and has less then 3 prevents, the effeincy is increased.
-        //TODO If the card is the target of a damage spell
-        break;
-      }
+		//case MTGAbility::STANDARD_PREVENT:
+  //    {
+  //      MTGCardInstance * _target = (MTGCardInstance *)(a->target);
+  //      efficiency = 10;//starts out low to avoid spamming it when its not needed.
+		//		if ((!_target->regenerateTokens && g->getCurrentGamePhase() == Constants::MTG_PHASE_COMBATBLOCKERS && (_target->defenser || _target->blockers.size())) || ((_target->canBlock()||_target->canAttack()) && _target->preventable < 2)){
+  //        efficiency = 95;//increase this chance to be used in combat.
+  //      }
+		//	  if (_target->preventable > 2){
+  //      efficiency -= 10; //lower the chance to be used if the creature already has over 3 prevent points.
+		//		}
+  //      //basically a rip off of regen, if it is not regenerating, its combat blockers, it is being blocked or blocking, and has less then 3 prevents, the effeincy is increased.
+  //      //TODO If the card is the target of a damage spell
+  //      break;
+  //    }
     case MTGAbility::MANA_PRODUCER: //can't use mana producers right now :/
       efficiency = 0;
       break;

@@ -2784,7 +2784,7 @@ class AADamagePrevent:public ActivatedAbilityTP{
 public:
 	int preventing;
 	AADamagePrevent(int _id, MTGCardInstance * _source, Targetable * _target,int preventing, ManaCost * _cost=NULL, int doTap = 0, int who = TargetChooser::UNSET):ActivatedAbilityTP(_id,_source,_target,_cost,doTap,who),preventing(preventing){
-		aType = MTGAbility::STANDARD_PREVENT;
+		//aType = MTGAbility::STANDARD_PREVENT;
 	}
 
 	int resolve(){
