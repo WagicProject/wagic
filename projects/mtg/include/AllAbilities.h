@@ -56,7 +56,7 @@ public:
 			intValue = computeX(spell,card);
 		}else if (s == "xx" || s == "XX"){
 			intValue = computeXX(spell,card);
-		}else if (s == "equips"){
+		}else if (s == "gear"){
 			intValue = target->equipment;
 		}else if (s == "manacost"){
 			intValue = target->getManaCost()->getConvertedCost();

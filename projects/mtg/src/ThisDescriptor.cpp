@@ -127,7 +127,7 @@ ThisDescriptor * ThisDescriptorFactory::createThisDescriptor(string s){
   }
 
   //equips
-  found = s.find("equip");
+  found = s.find("gear");//still same meaning, better wording to word conflict with MTGAbility equip.
   if (found != string::npos) {
     ThisEquip * td = NEW ThisEquip(criterion);
     if (td) {
