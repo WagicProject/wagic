@@ -1,0 +1,26 @@
+#Testing "@attacking" trigger with Bramble Creeper.
+#"Whenever Bramble Creeper attacks, it gets +5/+0 until end of turn."
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Bramble Creeper
+[PLAYER2]
+[DO]
+next
+#begin
+next
+#attackers
+Bramble Creeper
+next
+#blockers
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Bramble Creeper
+[PLAYER2]
+life:15
+[END]

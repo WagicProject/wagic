@@ -1001,6 +1001,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Alaborn Zealot
+auto=@blocking(this) from(creature):all(trigger[from]) destroy && destroy all(this)
+text=When Alaborn Zealot blocks a creature, destroy that creature and Alaborn Zealot.
+mana={W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+[/card]
+[card]
 name=Aladdin's Lamp
 alias=1092
 text={X}, {T}: The next time you would draw a card this turn, instead look at the top X cards of your library, put all but one of them on the bottom of your library in a random order, then draw a card. X can't be 0.
@@ -1250,6 +1260,18 @@ mana={4}{R}
 type=Creature
 subtype=Human Rogue
 power=3
+toughness=1
+[/card]
+[card]
+name=Amoeboid Changeling
+abilities=changeling
+auto={T}:transforms(allsubtypes) target(creature) ueot
+auto={T}:transforms(removesubtypes) target(creature) ueot
+text=Changeling (This card is every creature type at all times.) -- {T}: Target creature gains all creature types until end of turn. -- {T}: Target creature loses all creature types until end of turn.
+mana={1}{U}
+type=Creature
+subtype=Shapeshifter
+power=1
 toughness=1
 [/card]
 [card]
@@ -1665,6 +1687,26 @@ type=Creature
 subtype=Human Soldier Knight
 power=2
 toughness=3
+[/card]
+[card]
+name=Angelic Arbiter
+abilities=flying
+auto=@movedTo(*|opponentstack):all(creature|opponentBattlefield) cantattack
+auto=@attacking(creature|opponentBattlefield):nospell opponent
+text=Flying -- Each opponent who cast a spell this turn can't attack with creatures. -- Each opponent who attacked with creatures this turn can't cast spells.
+mana={5}{W}{W}
+type=Creature
+subtype=Angel
+power=5
+toughness=6
+[/card]
+[card]
+name=Angelic Benediction
+abilities=exalted
+auto=@attackedalone(creature|myBattlefield):may tap target(creature)
+text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.) -- Whenever a creature you control attacks alone, you may tap target creature.
+mana={3}{W}
+type=Enchantment
 [/card]
 [card]
 name=Angelic Blessing
@@ -3426,6 +3468,16 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Avian Changeling
+abilities=flying,changeling
+text=Changeling (This card is every creature type at all times.) -- Flying
+mana={2}{W}
+type=Creature
+subtype=Shapeshifter
+power=2
+toughness=2
+[/card]
+[card]
 name=Awakening
 auto=@each upkeep:untap all(creature,land)
 text=At the beginning of each upkeep, untap all creatures and lands.
@@ -4370,7 +4422,7 @@ toughness=2
 [card]
 name=Battlegrace Angel
 abilities=exalted,flying
-auto=@each my combatblockers:aslongas(creature[attacking]|myBattlefield) all(creature[attacking]|myBattlefield) lifelink <2
+auto=@attackedalone(creature|myBattlefield):all(trigger[to]) lifelink ueot
 text=Flying -- Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.) -- Whenever a creature you control attacks alone, it gains lifelink until end of turn.
 mana={3}{W}{W}
 type=Creature
@@ -5093,6 +5145,18 @@ type=Creature
 subtype=Spirit
 power=1
 toughness=1
+[/card]
+[card]
+name=Blades of Velis Vel
+abilities=changeling
+target=creature
+auto=2/0
+auto=transforms(allsubtypes) ueot
+auto=may 2/0 target(creature) && transforms(allsubtypes) ueot
+text=Changeling (This card is every creature type at all times.) -- Up to two target creatures each get +2/+0 and gain all creature types until end of turn.
+mana={1}{R}
+type=Tribal Instant
+subtype=Shapeshifter
 [/card]
 [card]
 name=Bladetusk Boar
@@ -7500,6 +7564,37 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Cairn Wanderer
+abilities=changeling
+auto=aslongas(creature[flying]|graveyard) flying
+auto=aslongas(creature[fear]|graveyard) fear
+auto=aslongas(creature[first strike]|graveyard) first strike
+auto=aslongas(creature[double strike]|graveyard) double strike
+auto=aslongas(creature[deathtouch]|graveyard) deathtouch
+auto=aslongas(creature[haste]|graveyard) haste
+auto=aslongas(creature[plainswalk]|graveyard) plainswalk
+auto=aslongas(creature[islandwalk]|graveyard) islandwalk
+auto=aslongas(creature[swampwalk]|graveyard) swampwalk
+auto=aslongas(creature[mountainwalk]|graveyard) mountainwalk
+auto=aslongas(creature[forestwalk]|graveyard) forestwalk
+auto=aslongas(creature[lifelink]|graveyard) lifelink
+auto=aslongas(creature[protection from white]|graveyard) protection from white
+auto=aslongas(creature[protection from blue]|graveyard) protection from blue
+auto=aslongas(creature[protection from black]|graveyard) protection from black
+auto=aslongas(creature[protection from red]|graveyard) protection from red
+auto=aslongas(creature[protection from green]|graveyard) protection from green
+auto=aslongas(creature[reach]|graveyard) reach
+auto=aslongas(creature[trample]|graveyard) trample
+auto=aslongas(creature[shroud]|graveyard) shroud
+auto=aslongas(creature[vigilance]|graveyard) vigilance
+text=Changeling (This card is every creature type at all times.) -- As long as a creature card with flying is in a graveyard, Cairn Wanderer has flying. The same is true for fear, first strike, double strike, deathtouch, haste, landwalk, lifelink, protection, reach, trample, shroud, and vigilance.
+mana={4}{B}
+type=Creature
+subtype=Shapeshifter
+power=4
+toughness=4
+[/card]
+[card]
 name=Calciderm
 abilities=shroud
 auto=counter(0/0,4,Time)
@@ -8676,6 +8771,17 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Chameleon Colossus
+abilities=protection from black,changeling
+auto={G}:p/p
+text=Changeling (This card is every creature type at all times.) -- Protection from black -- {2}{G}{G}: Chameleon Colossus gets +X/+X until end of turn, where X is its power.
+mana={2}{G}{G}
+type=Creature
+subtype=Shapeshifter
+power=4
+toughness=4
+[/card]
+[card]
 name=Chameleon Spirit
 auto=choice name(White) && counter(0/0,1,White) all(this)
 auto=choice name(Blue) && counter(0/0,1,Blue) all(this)
@@ -8761,6 +8867,16 @@ buyback={W}{3}
 text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Target creature can't attack this turn.
 mana={W}
 type=Instant
+[/card]
+[card]
+name=Changeling Sentinel
+abilities=changeling,vigilance
+text=Changeling (This card is every creature type at all times.) -- Vigilance
+mana={3}{W}
+type=Creature
+subtype=Shapeshifter
+power=3
+toughness=2
 [/card]
 [card]
 name=Channel the Suns
@@ -11072,6 +11188,17 @@ text=Flying -- {R}, {T}: Crimson Manticore deals 1 damage to target attacking or
 mana={2}{R}{R}
 type=Creature
 subtype=Manticore
+power=2
+toughness=2
+[/card]
+[card]
+name=Crimson Roc
+abilities=flying
+auto=@blocking(this) from(creature[-flying]):all(this) 1/0 ueot && all(this) first strike ueot
+text=Flying -- Whenever Crimson Roc blocks a creature without flying, Crimson Roc gets +1/+0 and gains first strike until end of turn.
+mana={4}{R}
+type=Creature
+subtype=Bird
 power=2
 toughness=2
 [/card]
@@ -14301,6 +14428,18 @@ mana={2}{U}{B}{R}
 type=Sorcery
 [/card]
 [card]
+name=Dread
+abilities=fear
+auto=@damaged(controller) from(creature):all(trigger[from]) destroy
+autograveyard=moveTo(ownerlibrary) && shuffle
+text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- Whenever a creature deals damage to you, destroy it. -- When Dread is put into a graveyard from anywhere, shuffle it into its owner's library.
+mana={3}{B}{B}{B}
+type=Creature
+subtype=Elemental Incarnation
+power=6
+toughness=6
+[/card]
+[card]
 name=Dread Charge
 auto=lord(creature|myBattlefield) cantbeblockedby(creature[-black])
 text=Until end of turn, black creatures you control can be blocked only by black creatures.
@@ -14488,17 +14627,6 @@ type=Creature
 subtype=Yeti Mutant
 power=3
 toughness=3
-[/card]
-[card]
-name=Dripping Dead
-abilities=cantblock
-auto=@damaged(creature[attacking;blocking]) from(this):all(trigger[to]) bury
-text=Dripping Dead can't block. -- Whenever Dripping Dead deals combat damage to a creature, destroy that creature. It can't be regenerated.
-mana={4}{B}{B}
-type=Creature
-subtype=Zombie
-power=4
-toughness=1
 [/card]
 [card]
 name=Drift of Phantasms
@@ -15825,6 +15953,7 @@ toughness=1
 [card]
 name=Elvish Berserker
 auto=rampage(1/1,0)
+auto={T}:clone with(treason haste) target(creature[-legendary]|mybattlefield)
 text=Whenever Elvish Berserker becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.
 mana={G}
 type=Creature
@@ -17369,6 +17498,17 @@ type=Tribal Instant
 subtype=Elf
 [/card]
 [card]
+name=Ezuri's Archers
+abilities=reach
+auto=@blocking(this) from(creature[flying]):all(this) 3/0 ueot
+text=Reach (This creature can block creatures with flying.) -- Whenever Ezuri's Archers blocks a creature with flying, Ezuri's Archers gets +3/+0 until end of turn.
+mana={G}
+type=Creature
+subtype=Elf Archer
+power=1
+toughness=2
+[/card]
+[card]
 name=Ezuri's Brigade
 auto=aslongas(artifact|mybattlefield) 4/4 >2
 auto=aslongas(artifact|mybattlefield) trample >2
@@ -18418,6 +18558,17 @@ auto=damage:6 all(creature,player)
 text=Fire Tempest deals 6 damage to each creature and each player.
 mana={5}{R}{R}
 type=Sorcery
+[/card]
+[card]
+name=Fire-Belly Changeling
+abilities=changeling
+auto={R}:1/0 limit:2
+text=Changeling (This card is every creature type at all times.) -- {R}: Fire-Belly Changeling gets +1/+0 until end of turn. Activate this ability no more than twice each turn.
+mana={1}{R}
+type=Creature
+subtype=Shapeshifter
+power=1
+toughness=1
 [/card]
 [card]
 name=Fire-Field Ogre
@@ -20283,6 +20434,16 @@ mana={R}
 type=Sorcery
 [/card]
 [card]
+name=Game-Trail Changeling
+abilities=changeling,trample
+text=Changeling (This card is every creature type at all times.) -- Trample
+mana={3}{G}{G}
+type=Creature
+subtype=Shapeshifter
+power=4
+toughness=4
+[/card]
+[card]
 name=Gang of Elk
 auto=rampage(2/2,0)
 text=Whenever Gang of Elk becomes blocked, it gets +2/+2 until end of turn for each creature blocking it.
@@ -20801,6 +20962,16 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Ghostly Changeling
+auto={1}{B}:1/1
+text=Changeling (This card is every creature type at all times.) -- {1}{B}: Ghostly Changeling gets +1/+1 until end of turn.
+mana={2}{B}
+type=Creature
+subtype=Shapeshifter
+power=2
+toughness=2
+[/card]
+[card]
 name=Ghostly Visit
 target=creature[-black]
 auto=destroy
@@ -20866,6 +21037,7 @@ toughness=3
 [/card]
 [card]
 name=Giant Growth
+target=creature
 auto=3/3
 text=Target creature gets +3/+3 until end of turn.
 mana={G}
@@ -23407,6 +23579,71 @@ type=Creature
 subtype=Cat
 power=2
 toughness=2
+[/card]
+[card]
+name=Gustcloak Cavalier
+abilities=flanking
+auto=@attacking(this):may tap target(creature)
+auto=@blocked(this):may name(untap it and remove it from combat) && untap && removefromcombat
+text=Flanking (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.) -- Whenever Gustcloak Cavalier attacks, you may tap target creature. -- Whenever Gustcloak Cavalier becomes blocked, you may untap Gustcloak Cavalier and remove it from combat.
+mana={3}{W}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=2
+[/card]
+[card]
+name=Gustcloak Harrier
+abilities=flying
+auto=@blocked(this):may name(untap it and remove it from combat) && untap && removefromcombat
+text=Flying -- Whenever Gustcloak Harrier becomes blocked, you may untap it and remove it from combat.
+mana={1}{W}{W}
+type=Creature
+subtype=Bird Soldier
+power=2
+toughness=2
+[/card]
+[card]
+name=Gustcloak Runner
+auto=@blocked(this):may name(untap it and remove it from combat) && untap && removefromcombat
+text=Whenever Gustcloak Runner becomes blocked, you may untap it and remove it from combat.
+mana={W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+[/card]
+[card]
+name=Gustcloak Savior
+abilities=flying
+auto=@blocked(creature|myBattlefield):may all(trigger[to]) name(untap it and remove it from combat) && all(trigger[to]) untap && all(trigger[to]) removefromcombat
+text=Flying -- Whenever a creature you control becomes blocked, you may untap that creature and remove it from combat.
+mana={4}{W}
+type=Creature
+subtype=Bird Soldier
+power=3
+toughness=4
+[/card]
+[card]
+name=Gustcloak Sentinel
+auto=@blocked(this):may name(untap it and remove it from combat) && untap && removefromcombat
+text=Whenever Gustcloak Sentinel becomes blocked, you may untap it and remove it from combat.
+mana={2}{W}{W}
+type=Creature
+subtype=Human Soldier
+power=3
+toughness=3
+[/card]
+[card]
+name=Gustcloak Skirmisher
+abilities=flying
+auto=@blocked(this):may name(untap it and remove it from combat) && untap && removefromcombat
+text=Flying -- Whenever Gustcloak Skirmisher becomes blocked, you may untap it and remove it from combat.
+mana={3}{W}
+type=Creature
+subtype=Bird Soldier
+power=2
+toughness=3
 [/card]
 [card]
 name=Gustrider Exuberant
@@ -29976,6 +30213,16 @@ mana={B}
 type=Sorcery
 [/card]
 [card]
+name=Labyrinth Minotaur
+auto=@blocking(this) from(creature):all(trigger[from]) frozen
+text=Whenever Labyrinth Minotaur blocks a creature, that creature doesn't untap during its controller's next untap step.
+mana={3}{U}
+type=Creature
+subtype=Minotaur
+power=1
+toughness=4
+[/card]
+[card]
 name=Laccolith Grunt
 auto=@blocked(this):name(assign combat damage to a creature) && may thisforeach(power>=1) target(creature) && fog from(this)
 text=Whenever Laccolith Grunt becomes blocked, you may have it deal damage equal to its power to target creature. If you do, Laccolith Grunt assigns no combat damage this turn.
@@ -31824,6 +32071,16 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Loyal Sentry
+auto=@blocking(this) from(creature):all(trigger[from]) destroy && destroy all(this)
+text=When Loyal Sentry blocks a creature, destroy that creature and Loyal Sentry.
+mana={W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
+[/card]
+[card]
 name=Lu Bu, Master-at-Arms
 abilities=horsemanship,haste
 text=Haste; horsemanship (This creature can't be blocked except by creatures with horsemanship.)
@@ -31955,6 +32212,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Lunk Errant
+auto=@attackedalone(this):all(this) 1/1 ueot && all(this) trample ueot
+text=Whenever Lunk Errant attacks alone, it gets +1/+1 and gains trample until end of turn.
+mana={5}{R}
+type=Creature
+subtype=Giant Warrior
+power=4
+toughness=4
+[/card]
+[card]
 name=Lurking Nightstalker
 auto=@attacking(this):2/0 ueot
 text=Whenever Lurking Nightstalker attacks, it gets +2/+0 until end of turn.
@@ -32026,7 +32293,7 @@ toughness=1
 [card]
 name=Ma Chao, Western Warrior
 abilities=horsemanship
-auto=@attacking(this):aslongas(creature[attacking]|mybattlefield) all(this) unblockable ueot oneShot <2
+auto=@attackedalone(this):all(this) unblockable ueot
 text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.) -- Whenever Ma Chao, Western Warrior attacks alone, it's unblockable this combat.
 mana={3}{R}{R}
 type=Legendary Creature
@@ -33449,6 +33716,17 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Mercurial Kite
+abilities=flying
+auto=@combatdamaged(creature) from(this):all(trigger[to]) tap && all(trigger[to]) frozen
+text=Flying -- Whenever Mercurial Kite deals combat damage to a creature, tap that creature. That creature doesn't untap during its controller's next untap step.
+mana={3}{U}
+type=Creature
+subtype=Bird
+power=2
+toughness=2
+[/card]
+[card]
 name=Merfolk Assassin
 auto={T}:destroy target(creature[islandwalk])
 text={T}: Destroy target creature with islandwalk.
@@ -34736,6 +35014,17 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Moonglove Changeling
+abilities=changeling
+auto={B}:deathtouch
+text=Changeling (This card is every creature type at all times.) -- {B}: Moonglove Changeling gains deathtouch until end of turn. (Creatures dealt damage by this creature are destroyed. You can divide its combat damage among any of the creatures blocking or blocked by it.)
+mana={2}{B}
+type=Creature
+subtype=Shapeshifter
+power=2
+toughness=2
+[/card]
+[card]
 name=Moonglove Extract
 auto={S}:damage:2 target(creature,player)
 text=Sacrifice Moonglove Extract: Moonglove Extract deals 2 damage to target creature or player.
@@ -35086,6 +35375,17 @@ text={T}: Target creature you control gains protection from the color of your ch
 mana={W}
 type=Creature
 subtype=Human Cleric
+power=1
+toughness=1
+[/card]
+[card]
+name=Mothdust Changeling
+abilities=changeling
+auto={T(creature[-tapped]|myBattlefield)}:flying
+text=Changeling (This card is every creature type at all times.) -- Tap an untapped creature you control: Mothdust Changeling gains flying until end of turn.
+mana={U}
+type=Creature
+subtype=Shapeshifter
 power=1
 toughness=1
 [/card]
@@ -35788,6 +36088,17 @@ type=Legendary Creature
 subtype=Human Samurai
 power=3
 toughness=3
+[/card]
+[card]
+name=Nameless Inversion
+abilities=changeling
+target=creature
+auto=3/-3
+auto=transforms(removesubtypes) ueot
+text=Changeling (This card is every creature type at all times.) -- Target creature gets +3/-3 and loses all creature types until end of turn.
+mana={1}{B}
+type=Tribal Instant
+subtype=Shapeshifter
 [/card]
 [card]
 name=Nantuko Blightcutter
@@ -41873,7 +42184,7 @@ toughness=2
 [card]
 name=Rafiq of the Many
 abilities=exalted
-auto=@each my combatblockers:aslongas(creature[attacking]|myBattlefield) all(creature[attacking]|myBattlefield) double strike <2
+auto=@attackedalone(creature|myBattlefield):all(trigger[to]) double strike ueot
 text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.) -- Whenever a creature you control attacks alone, it gains double strike until end of turn.
 mana={1}{G}{W}{U}
 type=Legendary Creature
@@ -42835,7 +43146,7 @@ type=Sorcery
 [/card]
 [card]
 name=Reckless Ogre
-auto=@attacking(this):aslongas(creature[attacking]|mybattlefield) all(this) 3/0 ueot oneShot <2
+auto=@attackedalone(this):3/0 ueot
 text=Whenever Reckless Ogre attacks alone, it gets +3/+0 until end of turn.
 mana={3}{R}
 type=Creature
@@ -42879,6 +43190,13 @@ auto=moveTo(myHand)
 text=Return target card from your graveyard to your hand.
 mana={2}{G}
 type=Sorcery
+[/card]
+[card]
+name=Reconnaissance
+auto={0}:removefromcombat target(creature[attacking]|mybattlefield) && untap
+text={0}: Remove target attacking creature you control from combat and untap it.
+mana={W}
+type=Enchantment
 [/card]
 [card]
 name=Reconstruction
@@ -43916,6 +44234,13 @@ mana={4}{W}{W}
 type=Sorcery
 [/card]
 [card]
+name=Righteous Indignation
+auto=@blocking(creature) from(creature[black;red]):all(trigger[to]) counter(1/1,1)
+text=Whenever a creature blocks a black or red creature, the blocking creature gets +1/+1 until end of turn.
+mana={2}{W}
+type=Enchantment
+[/card]
+[card]
 name=Righteous War
 auto=lord(creature[white]|myBattlefield) protection from black
 auto=lord(creature[black]|myBattlefield) protection from white
@@ -44058,7 +44383,7 @@ type=Sorcery
 [/card]
 [card]
 name=Rite of Passage
-auto=@damaged(creature|myBattlefield):all(trigger[to]) counter(1/1)
+auto=@damaged(creature|mybattlefield):all(trigger[to]) counter(1/1)
 text=Whenever a creature you control is dealt damage, put a +1/+1 counter on it. (The damage is dealt before the counter is put on.)
 mana={2}{G}
 type=Enchantment
@@ -44346,7 +44671,7 @@ toughness=3
 [/card]
 [card]
 name=Rogue Kavu
-auto=@attacking(this):aslongas(creature[attacking]|mybattlefield) all(this) 2/0 ueot oneShot <2
+auto=@attackedalone(this):2/0 ueot
 text=Whenever Rogue Kavu attacks alone, it gets +2/+0 until end of turn.
 mana={1}{R}
 type=Creature
@@ -48833,6 +49158,17 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Skeletal Changeling
+abilities=changeling
+auto={1}{B}:regenerate
+text=Changeling (This card is every creature type at all times.) -- {1}{B}: Regenerate Skeletal Changeling.
+mana={1}{B}
+type=Creature
+subtype=Shapeshifter
+power=1
+toughness=1
+[/card]
+[card]
 name=Skeletal Crocodile
 mana={3}{B}
 type=Creature
@@ -51400,13 +51736,6 @@ mana={2}{W}{W}
 type=Enchantment
 [/card]
 [card]
-name=Spirit of Resistance
-auto=aslongas(*[white]|myBattlefield)aslongas(*[blue]|myBattlefield)aslongas(*[black]|myBattlefield)aslongas(*[red]|myBattlefield)aslongas(*[green]|myBattlefield)aslongas(creature[white]|myBattlefield)aslongas(creature[blue]|myBattlefield)aslongas(creature[black]|myBattlefield)aslongas(creature[red]|myBattlefield)aslongas(creature[green]|myBattlefield) preventalldamage to(controller)
-text=If you control a permanent of each color, prevent all damage that would be dealt to you.
-mana={2}{W}
-type=Enchantment
-[/card]
-[card]
 name=Spirit Shackle
 target=creature
 auto=@tapped(mytgt):counter(0/-2)
@@ -51427,7 +51756,7 @@ toughness=1
 [/card]
 [card]
 name=Spirit of Resistance
-auto=aslongas(*[white]|myBattlefield)aslongas(*[blue]|myBattlefield)aslongas(*[black]|myBattlefield)aslongas(*[red]|myBattlefield)aslongas(*[green]|myBattlefield)aslongas(creature[white]|myBattlefield)aslongas(creature[blue]|myBattlefield)aslongas(creature[black]|myBattlefield)aslongas(creature[red]|myBattlefield)aslongas(creature[green]|myBattlefield) preventalldamage to(controller)
+auto=aslongas(*[white]|myBattlefield)aslongas(*[blue]|myBattlefield)aslongas(*[black]|myBattlefield)aslongas(*[red]|myBattlefield)aslongas(*[green]|myBattlefield) preventalldamage to(controller)
 text=If you control a permanent of each color, prevent all damage that would be dealt to you.
 mana={2}{W}
 type=Enchantment
@@ -53364,8 +53693,8 @@ name=Sun Titan
 abilities=vigilance
 auto=may moveTo(myBattlefield) target(*[manacost<=3]|mygraveyard)
 auto=@attacking(this):may moveTo(myBattlefield) target(*[manacost<=3]|mygraveyard)
-text=Deathtouch -- Whenever Grave Titan enters the battlefield or attacks, put two 2/2 black Zombie creature tokens onto the battlefield.
-mana={4}{G}{G}
+text=Vigilance -- Whenever Sun Titan enters the battlefield or attacks, you may return target permanent card with converted mana cost 3 or less from your graveyard to the battlefield.
+mana={4}{W}{W}
 type=Creature
 subtype=Giant
 power=6
@@ -54634,6 +54963,17 @@ text=Enchant creature -- Enchanted creature gets +1/+1 and has protection from e
 mana={2}{W}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Taurean Mauler
+abilities=changeling
+auto=@movedTo(*|opponentstack):may counter(1/1,1)
+text=Changeling (This card is every creature type at all times.) -- Whenever an opponent casts a spell, you may put a +1/+1 counter on Taurean Mauler.
+mana={2}{R}
+type=Creature
+subtype=Shapeshifter
+power=2
+toughness=2
 [/card]
 [card]
 name=Tawnos's Wand
@@ -57875,6 +58215,17 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Turtleshell Changeling
+abilities=changeling
+auto={1}{U}:twist
+text=Changeling (This card is every creature type at all times.) -- {1}{U}: Switch Turtleshell Changeling's power and toughness until end of turn.
+mana={3}{U}
+type=Creature
+subtype=Shapeshifter
+power=1
+toughness=4
+[/card]
+[card]
 name=Twiddle
 auto=may tap target(artifact,creature,land)
 auto=may untap target(artifact,creature,land)
@@ -59344,6 +59695,17 @@ auto=-flying
 text=Vertigo deals 2 damage to target creature with flying. That creature loses flying until end of turn.
 mana={R}
 type=Instant
+[/card]
+[card]
+name=Vertigo Spawn
+abilities=defender
+auto=@blocking(this) from(creature):all(trigger[from]) tap && all(trigger[from]) frozen
+text=Defender (This creature can't attack.) -- Whenever Vertigo Spawn blocks a creature, tap that creature. That creature doesn't untap during its controller's next untap step.
+mana={1}{U}
+type=Creature
+subtype=Illusion
+power=0
+toughness=3
 [/card]
 [card]
 name=Vesper Ghoul
@@ -60817,6 +61179,17 @@ power=0
 toughness=5
 [/card]
 [card]
+name=Wall of Frost
+abilities=defender
+auto=@blocking(this) from(creature):all(trigger[from]) frozen
+text=Defender (This creature can't attack.) -- Whenever Wall of Frost blocks a creature, that creature doesn't untap during its controller's next untap step.
+mana={1}{U}{U}
+type=Creature
+subtype=Wall
+power=0
+toughness=7
+[/card]
+[card]
 name=Wall of Granite
 abilities=defender
 text=Defender (This creature can't attack.)
@@ -61186,6 +61559,17 @@ type=Creature
 subtype=Human Cleric
 power=2
 toughness=2
+[/card]
+[card]
+name=War-Spike Changeling
+abilities=changeling
+auto={R}:first strike
+text=Changeling (This card is every creature type at all times.) -- {R}: War-Spike Changeling gains first strike until end of turn.
+mana={3}{R}
+type=Creature
+subtype=Shapeshifter
+power=3
+toughness=3
 [/card]
 [card]
 name=War-Torch Goblin
@@ -62821,6 +63205,16 @@ power=6
 toughness=6
 [/card]
 [card]
+name=Woodland Changeling
+abilities=changeling
+text=Changeling (This card is every creature type at all times.)
+mana={1}{G}
+type=Creature
+subtype=Shapeshifter
+power=2
+toughness=2
+[/card]
+[card]
 name=Woodland Druid
 mana={G}
 type=Creature
@@ -62870,6 +63264,17 @@ type=Creature
 subtype=Elephant
 power=3
 toughness=2
+[/card]
+[card]
+name=Woolly Spider
+abilities=reach
+auto=@blocking(this) from(creature[flying]):all(this) 0/2 ueot
+text=Reach (This creature can block creatures with flying.) -- Whenever Woolly Spider blocks a creature with flying, Woolly Spider gets +0/+2 until end of turn.
+mana={1}{G}{G}
+type=Creature
+subtype=Spider
+power=2
+toughness=3
 [/card]
 [card]
 name=Woolly Thoctar
@@ -63449,7 +63854,7 @@ toughness=3
 [/card]
 [card]
 name=Yuan Shao's Infantry
-auto=@attacking(this):aslongas(creature[attacking]|mybattlefield) all(this) unblockable ueot oneShot <2
+auto=@attackedalone(this):unblockable ueot
 text=Whenever Yuan Shao's Infantry attacks alone, Yuan Shao's Infantry is unblockable this combat.
 mana={3}{R}
 type=Creature

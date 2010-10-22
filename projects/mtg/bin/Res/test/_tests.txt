@@ -1,13 +1,6 @@
 ########################
 #Generic engine features
 ########################
-generic/@attacking.txt
-generic/@blocking.txt
-generic/@combatdamaged_1.txt
-generic/@combatdamaged_2.txt
-generic/@drawn.txt
-generic/@noncombatdamaged.txt
-generic/@untapped.txt
 generic/attacks_each_turn.txt
 generic/bushido_1.txt
 generic/bushido_2.txt
@@ -78,6 +71,13 @@ generic/trample.txt
 generic/trample_vs_indestructible.txt
 generic/trample_vs_multiblock.txt
 generic/triggers_at_movedto_i179.txt
+generic/triggers_attacking.txt
+generic/triggers_blocking.txt
+generic/triggers_combatdamaged_1.txt
+generic/triggers_combatdamaged_2.txt
+generic/triggers_drawn.txt
+generic/triggers_noncombatdamaged.txt
+generic/triggers_untapped.txt
 generic/wither.txt
 ########################
 #Specific Cards

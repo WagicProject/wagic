@@ -1,0 +1,31 @@
+#Testing "@combatdamage" trigger.
+#Prodigal Sorcerer's damage should not let Coastal Piracy trigger, even if activated during combat. 
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+library:counterspell
+hand:lightning bolt
+inplay:coastal piracy,prodigal sorcerer
+[PLAYER2]
+[DO]
+next
+#begin
+next
+#attackers
+next
+#blockers
+prodigal sorcerer
+p2
+next
+#damage
+next
+#end combat
+[ASSERT]
+ENDOFTURN
+[PLAYER1]
+library:counterspell
+hand:lightning bolt
+inplay:coastal piracy,prodigal sorcerer
+[PLAYER2]
+life:19
+[END]
