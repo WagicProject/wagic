@@ -307,7 +307,7 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
     string s = "";
     for (int i = card->data->types.size() - 1; i > 0; --i)
       {
-				if(card->data->basicAbilities[55]){
+				if(card->data->basicAbilities[55]){// this avoids drawing the list of subtypes on changeling cards.
 				 s += _("Shapeshifter - ");
          break;
 				}else{

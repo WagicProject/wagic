@@ -187,7 +187,7 @@ void CardPrimitive::setSubtype(const string& value){
   int id = Subtypes::subtypesList->find(value);
   addType(id);
 
-			if(basicAbilities[55]){
+			if(basicAbilities[55]){//if the card is a changeling.
         for(int i=Subtypes::LAST_TYPE+1;;i++){
           string s = Subtypes::subtypesList->find(i);
 					if(!hasSubtype(i))
