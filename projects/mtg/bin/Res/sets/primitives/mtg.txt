@@ -40839,14 +40839,14 @@ toughness=6
 [/card]
 [card]
 name=Primeval Titan's Fetch
-auto=@movedto(this|mygraveyard):may moveto(mybattlefield) target(land|mylibrary) && token(-20502712)
+auto=@movedto(this|mygraveyard):may moveto(mybattlefield) target(land|mylibrary)&& tap && token(-20502712)
 auto=moveto(mygraveyard) all(this)
 id=-20502711
 type=Nothing
 [/card]
 [card]
 name=Primeval Titan's 2nd Fetch
-auto=@movedto(this|mygraveyard):may moveto(mybattlefield) target(land|mylibrary)
+auto=@movedto(this|mygraveyard):may moveto(mybattlefield) target(land|mylibrary) && tap
 auto=moveto(mygraveyard) all(this)
 id=-20502712
 type=Nothing
