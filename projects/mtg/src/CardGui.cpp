@@ -307,8 +307,13 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
     string s = "";
     for (int i = card->data->types.size() - 1; i > 0; --i)
       {
+				if(card->data->basicAbilities[55]){
+				 s += _("Shapeshifter - ");
+         break;
+				}else{
         s += _(Subtypes::subtypesList->find(card->data->types[i]));
         s += _(" - ");
+				}
       }
     if(card->data->types.size())
       s += _(Subtypes::subtypesList->find(card->data->types[0]));
