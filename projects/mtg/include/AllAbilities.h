@@ -3248,6 +3248,8 @@ public:
 	list<int>types;
 	list<int>colors;
 	list<int>oldcolors;
+	bool remove;
+	list<int>oldtypes;
 	ATransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities):MTGAbility(id,source,target){
 		//TODO this is a copy/past of other code that's all around the place, everything should be in a dedicated parser class;
 		MTGCardInstance * _target = (MTGCardInstance *)target;
@@ -3261,6 +3263,23 @@ public:
 			if (found != string::npos){
 				colors.push_back(j);}
 		}
+		remove = false;
+    if(stypes == "removesubtypes") remove = true;
+		if(stypes == "allsubtypes" || stypes == "removesubtypes")
+		{
+        for(int i=Subtypes::LAST_TYPE+1;;i++){
+          string s = Subtypes::subtypesList->find(i);
+					{
+          if(s == "") break;
+          if(s.find(" ") != string::npos) continue;
+          if(s == "Nothing" || s == "Swamp" || s == "Plains" || s == "Mountain" || s == "Forest" || s == "Island")
+					{//dont add "nothing" or land type to this card.
+					}else{
+				  types.push_back(i);
+					}
+				}
+				}
+		}else{
 		string s = stypes;
 		while (s.size()){
 			size_t found = s.find(" ");
@@ -3274,6 +3293,8 @@ public:
 				s = "";}
 		}
 	}
+	}
+
 	int addToGame(){
 		MTGCardInstance * _target = (MTGCardInstance *)target;
 		if (_target){
@@ -3282,9 +3303,27 @@ public:
 				if (_target->hasColor(j))
 					oldcolors.push_back(j);
 			}
+				for(int j=Subtypes::LAST_TYPE+1;;j++){
+					string otypes = Subtypes::subtypesList->find(j);
+					if(otypes == "") break;
+          if(otypes.find(" ") != string::npos) continue;
+					if(_target->hasSubtype(j))
+					{
+           oldtypes.push_back(j);
+					}
+					}
 			list<int>::iterator it;
 			for( it=colors.begin(); it != colors.end();it++){ _target->setColor(0,1);}
-			for ( it=types.begin() ; it != types.end(); it++ ){_target->addType(*it);}
+
+			for ( it=types.begin() ; it != types.end(); it++ )
+			{
+				if(remove == true){
+					_target->removeType(*it);
+				}
+				else{
+					_target->addType(*it);
+				}
+			}
 			for ( it=colors.begin(); it != colors.end(); it++){_target->setColor(*it);}
 			for ( it=abilities.begin() ; it != abilities.end(); it++ ){_target->basicAbilities[*it]++;}
 			for ( it=oldcolors.begin() ; it != oldcolors.end(); it++ ){}
@@ -3296,10 +3335,17 @@ public:
 		if (_target){
 			while (_target->next) _target=_target->next;
 			list<int>::iterator it;
-			for ( it=types.begin() ; it != types.end(); it++ ){_target->removeType(*it);}
+			for ( it=types.begin() ; it != types.end(); it++ ){
+      if(remove == false)_target->removeType(*it);
+			}
 			for ( it=colors.begin() ; it != colors.end(); it++ ){_target->removeColor(*it);}
 			for ( it=abilities.begin() ; it != abilities.end(); it++ ){_target->basicAbilities[*it]--;}
 			for ( it=oldcolors.begin() ; it != oldcolors.end(); it++ ){_target->setColor(*it);}
+			if(remove == true){
+			for ( it=oldtypes.begin() ; it != oldtypes.end(); it++ ){
+				if(!_target->hasSubtype(*it))_target->addType(*it);
+			}
+		}
 		}
 		return 1;
 	}

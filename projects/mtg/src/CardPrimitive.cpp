@@ -201,7 +201,7 @@ void CardPrimitive::setSubtype(const string& value){
 					}
 					}
 				}
-	}
+			}
 
 }
 
