@@ -40828,7 +40828,8 @@ toughness=3
 [card]
 name=Primeval Titan
 abilities=trample
-auto=may moveTo(myBattlefield) target(land|myLibrary) && tap && token(20502711)
+auto=may token(-20502711)
+auto=@attacking(this):may token(-20502711)
 text=Trample -- Whenever Primeval Titan enters the battlefield or attacks, you may search your library for up to two land cards, put them onto the battlefield tapped, then shuffle your library.
 mana={4}{G}{G}
 type=Creature
@@ -40837,11 +40838,17 @@ power=6
 toughness=6
 [/card]
 [card]
-name=Primeval Titan's 2nd Fetch
-auto=counter(0/0,1,Primeval)
-auto=@movedTo(land|myBattlefield) from(mylibrary):thisforeach(counter{0/0.1.Primeval}>0) moveTo(myBattlefield) target(land|mylibrary) && counter(0/0,-1,Primeval) && counter(0/0,1,Bury)
-auto=thisforeach(counter{0/0.1.Bury}>0) bury
+name=Primeval Titan's Fetch
+auto=@movedto(this|mygraveyard):may moveto(mybattlefield) target(land|mylibrary) && token(-20502712)
+auto=moveto(mygraveyard) all(this)
 id=-20502711
+type=Nothing
+[/card]
+[card]
+name=Primeval Titan's 2nd Fetch
+auto=@movedto(this|mygraveyard):may moveto(mybattlefield) target(land|mylibrary)
+auto=moveto(mygraveyard) all(this)
+id=-20502712
 type=Nothing
 [/card]
 [card]
