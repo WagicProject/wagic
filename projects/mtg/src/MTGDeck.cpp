@@ -729,20 +729,24 @@ int MTGDeck::remove(MTGCard * card){
   return (remove(card->getId()));
 }
 
-int MTGDeck::save(){
-  string tmp = filename;
+int MTGDeck::save() {
+  return save( filename, false, meta_name, meta_desc );
+}
+
+int MTGDeck::save(string destFileName, bool useExpandedDescriptions, string deckTitle, string deckDesc){
+  string tmp = destFileName;
   tmp.append(".tmp"); //not thread safe
   std::ofstream file(tmp.c_str());
   char writer[512];
   if (file){
     DebugTrace("Saving Deck");
-    if (meta_name.size()){
-      file << "#NAME:" << meta_name << '\n';
+    if (deckTitle.size()){
+      file << "#NAME:" << deckTitle << '\n';
     }
 
-    if (meta_desc.size()){
+    if (deckDesc.size()){
       size_t found = 0;
-      string desc= meta_desc;
+      string desc= deckDesc;
       found = desc.find_first_of("\n");
       while(found != string::npos){
         file << "#DESC:" << desc.substr(0,found+1);
@@ -751,18 +755,39 @@ int MTGDeck::save(){
       }
       file << "#DESC:" << desc << "\n";
     }
-    map<int,int>::iterator it;
-    for (it = cards.begin(); it!=cards.end(); it++){
-      sprintf(writer,"%i\n", it->first);
-      for (int j = 0; j<it->second; j++){
-        file<<writer;
+
+    if ( useExpandedDescriptions )
+    {
+      map<int,int>::iterator it;
+      for (it = cards.begin(); it!=cards.end(); it++)
+      {
+        int nbCards = it->second;
+        MTGCard *card = this->getCardById( it->first );
+        if ( card == NULL )
+        {
+          continue;
+        }
+        MTGSetInfo *setInfo = setlist.getInfo( card->setId );
+        string setName = setInfo->getName();
+        string cardName = card->data->getName();
+        file<< cardName << "\t " << "(" << setName << ") *" << nbCards << endl;
+      }
+    }
+    else
+    {
+      map<int,int>::iterator it;
+      for (it = cards.begin(); it!=cards.end(); it++){
+        sprintf(writer,"%i\n", it->first);
+        for (int j = 0; j<it->second; j++){
+          file<<writer;
+        }
       }
     }
     file.close();
-    std::remove(filename.c_str());
-    rename(tmp.c_str(),filename.c_str());
+    std::remove(destFileName.c_str());
+    rename(tmp.c_str(),destFileName.c_str());
   }
-  DeckMetaDataList::decksMetaData->invalidate(filename);
+  DeckMetaDataList::decksMetaData->invalidate(destFileName);
   return 1;
 }
 

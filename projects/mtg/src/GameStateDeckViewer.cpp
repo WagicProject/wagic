@@ -5,10 +5,11 @@
 
 #include <math.h>
 #include <iostream>
-
+#include <sstream>
 #include <JGE.h>
 #include "../include/config.h"
 #include "../include/DeckManager.h"
+#include "../include/DebugRoutines.h"
 #include "../include/GameStateDuel.h"
 #include "../include/GameStateDeckViewer.h"
 #include "../include/Translate.h"
@@ -177,6 +178,7 @@ void GameStateDeckViewer::Start()
   menu->Add( MENU_ITEM_SWITCH_DECKS_NO_SAVE, "Switch decks without saving");
   menu->Add( MENU_ITEM_SAVE_RENAME, "Save & Rename");
   menu->Add( MENU_ITEM_SAVE_RETURN_MAIN_MENU, "Save & Back to Main Menu");
+  menu->Add( MENU_ITEM_SAVE_AS_AI_DECK, "Save as AI deck", "WARNING: \nMake sure you are ready to save.  All changes are final.");
   menu->Add( MENU_ITEM_MAIN_MENU, "Back to Main Menu");
   menu->Add( MENU_ITEM_EDITOR_CANCEL, "Cancel");
 
@@ -260,6 +262,31 @@ void GameStateDeckViewer::saveDeck(){
   pricelist->save();
 }
 
+/**
+  save the deck in a readable format to allow people to edit the file offline
+*/
+void GameStateDeckViewer::saveAsAIDeck( string deckName ) 
+{
+  DeckManager * deckManager = DeckManager::GetInstance();
+  vector<DeckMetaData *> aiDecks = GameState::getValidDeckMetaData( RESPATH"/ai/baka", "ai_baka", NULL);
+  int nbAiDecks = aiDecks.size()  + 1;
+  aiDecks.clear();
+
+  string defaultAiDeckName = "deck";
+  std::ostringstream oss;
+  oss << "deck" << nbAiDecks;
+  defaultAiDeckName = oss.str();
+  oss.str("");
+  oss << endl << "Can you beat your own creations?" << endl << "User created AI Deck # " << nbAiDecks;
+  string deckDesc = oss.str();
+  string filepath = RESPATH;
+  filepath.append("/ai/baka/").append( defaultAiDeckName ).append( ".txt" );
+  DebugTrace("saving AI deck " << filepath << endl );
+  myDeck->parent->save( filepath, true, deckName, deckDesc );
+  oss.clear();
+  delete deckManager;
+}
+
 void GameStateDeckViewer::Update(float dt)
 {
 
@@ -271,8 +298,13 @@ void GameStateDeckViewer::Update(float dt)
     if(newDeckname != ""){
       newDeckname = options.keypadFinish();
 
-      if(newDeckname != ""){    
-        if(myDeck && myDeck->parent){
+      if(newDeckname != ""){
+        if (isAIDeckSave)
+        {
+          saveAsAIDeck( newDeckname );
+          isAIDeckSave = false;
+        }
+        else if(myDeck && myDeck->parent){
           myDeck->parent->meta_name = newDeckname;
           saveDeck();
         }
@@ -1432,7 +1464,6 @@ int GameStateDeckViewer::loadDeck(int deckid){
       found = 0;
       char buffer[512];
       char smallDeckName[512];
-      //char deckDesc[512];
       sprintf(buffer, "%s/deck%i.txt",RESPATH"/ai/baka",nbDecks+1);
       if(fileExists(buffer)){
         MTGDeck * mtgd = NEW MTGDeck(buffer,NULL,1);
@@ -1467,6 +1498,7 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
 {
   int deckIdNumber = controlId;
   int deckListSize = 0;
+  string defaultAiName;
   DeckManager *deckManager = DeckManager::GetInstance();
   vector<DeckMetaData *> * deckList;
   switch(controllerId){
@@ -1521,12 +1553,28 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
           saveDeck();
           mParent->DoTransition(TRANSITION_FADE,GAME_STATE_MENU);
           break;
+
         case MENU_ITEM_SAVE_RENAME:
           if(myDeck && myDeck->parent){
             options.keypadStart(myDeck->parent->meta_name,&newDeckname);
             options.keypadTitle("Rename deck");
           }
           break;
+
+        case MENU_ITEM_SAVE_AS_AI_DECK:
+          // find the next unused ai deck number
+          // warn user that once saved, no edits can be made
+          // save entire collection to ai as spelled out card with count
+          // bring user to main deck editor menu.
+          isAIDeckSave = true;
+          defaultAiName = myDeck && myDeck->parent ? myDeck->parent->meta_name : "Custom AI Deck";
+          options.keypadStart( defaultAiName, &newDeckname);
+          options.keypadTitle("Name Custom AI Deck");
+          updateDecks();
+          mStage = STAGE_WELCOME;
+          mSwitching = true;
+          break;
+
         case MENU_ITEM_SWITCH_DECKS_NO_SAVE:
           updateDecks();
           mStage =  STAGE_WELCOME;

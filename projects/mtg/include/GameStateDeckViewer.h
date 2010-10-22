@@ -58,6 +58,7 @@ enum DECK_VIEWER_MENU_ITEMS
     MENU_ITEM_SWITCH_DECKS_NO_SAVE = 2,
     MENU_ITEM_MAIN_MENU = 3,
     MENU_ITEM_EDITOR_CANCEL = 4,
+    MENU_ITEM_SAVE_AS_AI_DECK = 5,
     MENU_ITEM_YES = 20,
     MENU_ITEM_NO = 21,
     MENU_ITEM_FILTER_BY = 22
@@ -156,9 +157,11 @@ private:
   MTGCard *  cardIndex[7];
   int hudAlpha;
   string newDeckname;
+  bool isAIDeckSave;
   StatsWrapper stw;
   bool mSwitching;
   void saveDeck(); //Saves the deck and additional necessary information
+  void saveAsAIDeck(string deckName); // saves deck as an AI Deck
   int getCurrentPos();
 
 public:
