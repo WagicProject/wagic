@@ -282,7 +282,10 @@ void GameStateDeckViewer::saveAsAIDeck( string deckName )
   string filepath = RESPATH;
   filepath.append("/ai/baka/").append( defaultAiDeckName ).append( ".txt" );
   DebugTrace("saving AI deck " << filepath << endl );
-  myDeck->parent->save( filepath, true, deckName, deckDesc );
+  myDeck->parent->meta_desc = deckDesc;
+  myDeck->parent->meta_name = deckName;
+  myDeck->save( filepath, true);
+
   oss.clear();
   delete deckManager;
 }

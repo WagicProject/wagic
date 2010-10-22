@@ -15,3 +15,10 @@ void DeckDataWrapper::save(){
     parent->save();
   }
 }
+
+void DeckDataWrapper::save(string filepath, bool useExpandedCardNames){
+  if(parent){
+    Rebuild(parent);
+    parent->save(filepath, useExpandedCardNames);
+  }
+}

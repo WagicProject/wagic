@@ -19,6 +19,7 @@ class DeckDataWrapper: public WSrcDeck {
   bool next() {currentPos++; return true;};
   bool prev() {currentPos--; return true;};
   void save();
+  void save(string filepath, bool useExpandedCardNames);
 };
 
 #endif
