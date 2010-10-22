@@ -194,7 +194,8 @@ void CardPrimitive::setSubtype(const string& value){
 					{
           if(s == "") break;
           if(s.find(" ") != string::npos) continue;
-          if(s == "Nothing" || s == "Swamp" || s == "Plains" || s == "Mountain" || s == "Forest" || s == "Island")
+          if(s == "Nothing" || s == "Swamp" || s == "Plains" || s == "Mountain" || s == "Forest" || s == "Island" || s == "Shrine" || s == "Basic" || s == "Colony" || s == "Desert"  || s == "Dismiss"  || s == "Equipment"
+						 || s == "Everglades"  || s == "Grasslands" || s == "Lair" || s == "Level" || s == "Levelup" || s == "Mine" || s == "Oasis" || s == "World" || s == "Aura")
 					{//dont add "nothing" or land type to this card.
 					}else{
           addType(i);
