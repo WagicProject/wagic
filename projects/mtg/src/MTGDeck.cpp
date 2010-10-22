@@ -691,9 +691,17 @@ int MTGDeck::complete() {
   or collection has at least 4 of every implemented card. Does not
   change the number of cards of which already 4 or more are present. */
   int id, n;
+	bool StypeIsNothing;
   size_t databaseSize = database->ids.size();
   for (size_t it = 0 ; it < databaseSize ; it++) {
     id = database->ids[it];
+		StypeIsNothing = false;
+		if(database->getCardById(id)->data->hasType("nothing"))
+		{
+			StypeIsNothing = true;
+		}
+		if(!StypeIsNothing == true)
+		{
     if(cards.find(id) == cards.end()){
       cards[id] = 4;
       total_cards += 4;
@@ -705,6 +713,7 @@ int MTGDeck::complete() {
       }
     }
   }
+	}
   return 1;
 }
 

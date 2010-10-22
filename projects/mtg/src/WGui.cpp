@@ -1676,7 +1676,11 @@ void WGuiFilterItem::updateValue(){
           string s = Subtypes::subtypesList->find(i);
           if(s == "") break;
           if(s.find(" ") != string::npos) continue;
+          if(s == "Nothing")
+					{//dont add "nothing" to the search filters.
+					}else{
           stlist.push_back(s);
+					}
         }
         std::sort(stlist.begin(),stlist.end());
         for(size_t t=0;t<stlist.size();t++){
