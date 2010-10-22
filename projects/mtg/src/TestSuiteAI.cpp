@@ -100,6 +100,7 @@ int TestSuiteAI::Act(float dt){
     //end of game
     suite->assertGame();
     g->gameOver = g->players[0];
+    DebugTrace("================================    END OF TEST   =======================\n"); 
     return 1;
   }
 
