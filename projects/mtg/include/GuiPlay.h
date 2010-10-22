@@ -71,13 +71,12 @@ class GuiPlay : public GuiLayer
   BattleField battleField;
   Lands selfLands, opponentLands;
   Spells selfSpells, opponentSpells;
-  CardSelector* cs;
   iterator end_spells;
 
   vector<CardView*> cards;
 
  public:
-  GuiPlay(GameObserver*, CardSelector*);
+  GuiPlay(GameObserver*);
   ~GuiPlay();
   virtual void Render();
   void Replace();

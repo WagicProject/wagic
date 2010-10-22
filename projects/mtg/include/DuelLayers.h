@@ -43,7 +43,7 @@ public:
   int receiveEvent(WEvent * e);
   float RightBoundary();
 
-  CardSelector* cs;
+  CardSelector* mCardSelector;
 };
 
 #include "ActionLayer.h"

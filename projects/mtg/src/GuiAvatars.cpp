@@ -5,7 +5,7 @@
 
 #define LIB_GRAVE_OFFSET 230
 
-GuiAvatars::GuiAvatars(CardSelector* cs) : cs(cs), active(NULL)
+GuiAvatars::GuiAvatars() : active(NULL)
 {
   Add(self           = NEW GuiAvatar   (SCREEN_WIDTH, SCREEN_HEIGHT, false,
 					GameObserver::GetInstance()->players[0], GuiAvatar::BOTTOM_RIGHT, this));
@@ -22,8 +22,13 @@ GuiAvatars::GuiAvatars(CardSelector* cs) : cs(cs), active(NULL)
   Add(opponentGraveyard = NEW GuiGraveyard(5 + GuiAvatar::Width * 1.2 - GuiGameZone::Width / 2, 5,  false, GameObserver::GetInstance()->players[1], this));
   Add(opponentLibrary   = NEW GuiLibrary  (5 + GuiAvatar::Width *1.2 - GuiGameZone::Width / 2, 5 + GuiGameZone::Height + 5, false, GameObserver::GetInstance()->players[1], this));
 
-  cs->Add(self); cs->Add(selfGraveyard); cs->Add(selfLibrary);
-  cs->Add(opponent); cs->Add(opponentGraveyard); cs->Add(opponentLibrary); cs->Add(opponentHand);
+  CardSelectorSingleton::Instance()->Add(self);
+  CardSelectorSingleton::Instance()->Add(selfGraveyard);
+  CardSelectorSingleton::Instance()->Add(selfLibrary);
+  CardSelectorSingleton::Instance()->Add(opponent);
+  CardSelectorSingleton::Instance()->Add(opponentGraveyard);
+  CardSelectorSingleton::Instance()->Add(opponentLibrary);
+  CardSelectorSingleton::Instance()->Add(opponentHand);
   selfGraveyard->alpha = selfLibrary->alpha = opponentGraveyard->alpha = opponentLibrary->alpha  = opponentHand->alpha = 0;
 }
 

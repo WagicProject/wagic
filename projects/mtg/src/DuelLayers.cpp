@@ -15,7 +15,7 @@ void DuelLayers::init(){
 
   GameObserver* go = GameObserver::GetInstance();
 
-  cs = NEW CardSelector(this);
+  mCardSelector = CardSelectorSingleton::Create(this);
   //1 Action Layer
   action = NEW ActionLayer();
   action->Add(NEW MTGGamePhase(action->getMaxId()));
@@ -47,11 +47,11 @@ void DuelLayers::init(){
   Add(stack = NEW ActionStack(go));
   Add(combat = NEW GuiCombat(go));
   Add(action);
-  Add(cs);
-  Add(hand = NEW GuiHandSelf(cs, go->players[0]->game->hand));
-  Add(avatars = NEW GuiAvatars(cs));
-  Add(NEW GuiHandOpponent(cs, go->players[1]->game->hand));
-  Add(NEW GuiPlay(go, cs));
+  Add(mCardSelector);
+  Add(hand = NEW GuiHandSelf(go->players[0]->game->hand));
+  Add(avatars = NEW GuiAvatars());
+  Add(NEW GuiHandOpponent(go->players[1]->game->hand));
+  Add(NEW GuiPlay(go));
   Add(NEW GuiPhaseBar());
   Add(NEW GuiFrame());
   Add(NEW GuiBackground());
@@ -69,7 +69,7 @@ void DuelLayers::CheckUserInput(int isAI){
       if (avatars->CheckUserInput(key)) break; //avatars need to check their input before action (CTRL_CROSS)
       if (action->CheckUserInput(key)) break;
       if (hand->CheckUserInput(key)) break;
-      if (cs->CheckUserInput(key)) break;
+      if (CardSelectorSingleton::Instance()->CheckUserInput(key)) break;
     }
   }
   if(JGE::GetInstance()->GetLeftClickCoordinates(x, y))
@@ -78,7 +78,7 @@ void DuelLayers::CheckUserInput(int isAI){
     {
       JGE::GetInstance()->LeftClickedProcessed();
     }
-    else if (cs->CheckUserInput(x, y))
+    else if (CardSelectorSingleton::Instance()->CheckUserInput(x, y))
     {
       JGE::GetInstance()->LeftClickedProcessed();
     }
@@ -115,14 +115,21 @@ DuelLayers::DuelLayers() : nbitems(0) {}
 DuelLayers::~DuelLayers(){
   int _nbitems = nbitems;
   nbitems = 0;
-  for (int i = 0; i < _nbitems; ++i){
-    delete objects[i];
-    objects[i] = NULL;
+  for (int i = 0; i < _nbitems; ++i)
+  {
+    if (objects[i] != mCardSelector)
+    {
+      delete objects[i];
+      objects[i] = NULL;
+    }
   }
 
   for (size_t i = 0; i < waiters.size(); ++i)
     delete(waiters[i]);
   Trash::cleanup();
+
+  CardSelectorSingleton::Terminate();
+  mCardSelector = NULL;
 }
 
 void DuelLayers::Add(GuiLayer * layer){

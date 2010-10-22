@@ -35,10 +35,9 @@ class GuiHand : public GuiLayer
   const MTGHand* hand;
   JQuad *back;
   vector<CardView*> cards;
-  CardSelector* cs;
 
  public:
-  GuiHand(CardSelector* cs, MTGHand* hand);
+  GuiHand(MTGHand* hand);
   ~GuiHand();
   void Update(float dt);
   bool isInHand(CardView*);
@@ -49,7 +48,7 @@ class GuiHand : public GuiLayer
 class GuiHandOpponent : public GuiHand
 {
  public:
-  GuiHandOpponent(CardSelector* cs, MTGHand* hand);
+  GuiHandOpponent(MTGHand* hand);
   virtual void Render();
   virtual int receiveEventPlus(WEvent* e);
   virtual int receiveEventMinus(WEvent* e);
@@ -66,7 +65,7 @@ class GuiHandSelf : public GuiHand
   Pos backpos;
 
  public:
-  GuiHandSelf(CardSelector* cs, MTGHand* hand);
+  GuiHandSelf(MTGHand* hand);
   ~GuiHandSelf();
   virtual int receiveEventPlus(WEvent* e);
   virtual int receiveEventMinus(WEvent* e);

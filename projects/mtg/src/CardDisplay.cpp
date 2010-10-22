@@ -217,7 +217,7 @@ void CardDisplay::Render(){
     Pos pos = Pos(CardGui::BigWidth / 2, CardGui::BigHeight / 2 - 10, 1.0, 0.0, 220);
     int showMode = BIG_MODE_SHOW;
     if (game){
-      showMode = game->mLayers->cs->bigMode;
+      showMode = CardSelectorSingleton::Instance()->bigMode;
       pos.actY = 150;
       if (x < (CardGui::BigWidth / 2)) pos.actX = SCREEN_WIDTH - 10 - CardGui::BigWidth / 2;
     }

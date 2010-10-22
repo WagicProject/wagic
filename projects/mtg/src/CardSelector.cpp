@@ -1,4 +1,6 @@
 #include <iostream>
+#include <assert.h>
+
 #include "../include/PlayGuiObject.h"
 #include "../include/CardGui.h"
 #include "../include/CardSelector.h"
@@ -298,4 +300,30 @@ void CardSelector::PopLimitor() {
   if (limitorStack.empty()) return;
   Limit(limitorStack.top().first, limitorStack.top().second);
   limitorStack.pop();
+}
+
+
+namespace CardSelectorSingleton
+{
+  static CardSelector* sCardSelectorInstance = NULL;
+
+  CardSelector* Create(DuelLayers* inDuelLayers)
+  {
+    if (sCardSelectorInstance == NULL)
+      sCardSelectorInstance = NEW CardSelector(inDuelLayers);
+
+    return sCardSelectorInstance;
+  }
+
+  CardSelector* Instance()
+  {
+    assert(sCardSelectorInstance);
+    return sCardSelectorInstance;
+  }
+
+  void Terminate()
+  {
+    SAFE_DELETE(sCardSelectorInstance);
+    sCardSelectorInstance = NULL;
+  }
 }

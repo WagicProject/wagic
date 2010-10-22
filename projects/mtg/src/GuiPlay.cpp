@@ -112,7 +112,7 @@ void GuiPlay::BattleField::Render()
     JRenderer::GetInstance()->FillRect(22, SCREEN_HEIGHT / 2 + 10 - height / 2, 250, height, ARGB(127, red, 0, 0));
 }
 
-GuiPlay::GuiPlay(GameObserver* game, CardSelector* cs) : game(game), cs(cs)
+GuiPlay::GuiPlay(GameObserver* game) : game(game)
 {
   end_spells = cards.end();
 }
@@ -221,56 +221,57 @@ void GuiPlay::Update(float dt)
 int GuiPlay::receiveEventPlus(WEvent * e)
 {
   if (WEventZoneChange *event = dynamic_cast<WEventZoneChange*>(e))
+  {
+    if ((game->players[0]->inPlay() == event->to) ||
+      (game->players[1]->inPlay() == event->to))
     {
-      if ((game->players[0]->inPlay() == event->to) ||
-	  (game->players[1]->inPlay() == event->to))
-	{
-	  CardView * card;
-    if (event->card->view){
-      //fix for http://code.google.com/p/wagic/issues/detail?id=462. 
-      // We don't want a card in the hand to have an alpha of 0
-      event->card->view->alpha = 255; 
+      CardView * card;
+      if (event->card->view){
+        //fix for http://code.google.com/p/wagic/issues/detail?id=462. 
+        // We don't want a card in the hand to have an alpha of 0
+        event->card->view->alpha = 255; 
 
-	    card = NEW CardView(CardSelector::playZone, event->card, *(event->card->view));
-    }
-	  else
-	    card = NEW CardView(CardSelector::playZone, event->card, 0, 0);
-	  cards.push_back(card);
-	  card->t = event->card->isTapped() ? M_PI / 2 : 0;
-    card->alpha = 255;
-	  cs->Add(card);
-	  Replace();
-	  return 1;
-	}
-    }
-  else if (WEventCreatureAttacker* event = dynamic_cast<WEventCreatureAttacker*>(e))
-    {
-      if (NULL != event->after)
-	battleField.addAttacker(event->card);
-      else if (NULL != event->before)
-	battleField.removeAttacker(event->card);
-      Replace();
-    }
-  else if (dynamic_cast<WEventCreatureBlocker*>(e))
-    {
-      Replace();
-    }
-  else if (WEventCardTap* event = dynamic_cast<WEventCardTap*>(e))
-    {
-      if (CardView* cv = dynamic_cast<CardView*>(event->card->view))
-	cv->t = event->after ? M_PI / 2 : 0;
+        card = NEW CardView(CardSelector::playZone, event->card, *(event->card->view));
+      }
       else
-	event->card->view->actT = event->after ? M_PI / 2 : 0;
+        card = NEW CardView(CardSelector::playZone, event->card, 0, 0);
+      cards.push_back(card);
+      card->t = event->card->isTapped() ? M_PI / 2 : 0;
+      card->alpha = 255;
+      CardSelectorSingleton::Instance()->Add(card);
+      Replace();
       return 1;
     }
+  }
+  else if (WEventCreatureAttacker* event = dynamic_cast<WEventCreatureAttacker*>(e))
+  {
+    if (NULL != event->after)
+      battleField.addAttacker(event->card);
+    else if (NULL != event->before)
+      battleField.removeAttacker(event->card);
+    Replace();
+  }
+  else if (dynamic_cast<WEventCreatureBlocker*>(e))
+  {
+    Replace();
+  }
+  else if (WEventCardTap* event = dynamic_cast<WEventCardTap*>(e))
+  {
+    if (CardView* cv = dynamic_cast<CardView*>(event->card->view))
+      cv->t = event->after ? M_PI / 2 : 0;
+    else
+      event->card->view->actT = event->after ? M_PI / 2 : 0;
+    return 1;
+  }
   else if (WEventPhaseChange *event = dynamic_cast<WEventPhaseChange*>(e))
-    {
-      if (Constants::MTG_PHASE_COMBATEND == event->to->id) battleField.colorFlow = -1;
-    }
+  {
+    if (Constants::MTG_PHASE_COMBATEND == event->to->id) battleField.colorFlow = -1;
+  }
   else if (dynamic_cast<WEventCardChangeType*>(e))
     Replace();
   return 0;
 }
+
 int GuiPlay::receiveEventMinus(WEvent * e)
 {
   if (WEventZoneChange *event = dynamic_cast<WEventZoneChange*>(e))
@@ -283,7 +284,7 @@ int GuiPlay::receiveEventMinus(WEvent * e)
               if (event->card->previous && event->card->previous->attacker) battleField.removeAttacker(event->card->previous);
               else if (event->card->attacker) battleField.removeAttacker(event->card);
               CardView* cv = *it;
-              cs->Remove(cv);
+              CardSelectorSingleton::Instance()->Remove(cv);
               cards.erase(it);
               trash(cv);
               Replace();

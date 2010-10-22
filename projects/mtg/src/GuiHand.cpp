@@ -25,7 +25,7 @@ bool HandLimitor::greyout(Target* t)
 }
 HandLimitor::HandLimitor(GuiHand* hand) : hand(hand) {}
 
-GuiHand::GuiHand(CardSelector* cs, MTGHand* hand) : GuiLayer(), hand(hand), cs(cs)
+GuiHand::GuiHand(MTGHand* hand) : GuiLayer(), hand(hand)
 {
   back = resources.RetrieveTempQuad("handback.png");
   if(back) back->SetTextureRect(1, 0, 100, 250);
@@ -51,7 +51,7 @@ bool GuiHand::isInHand(CardView* card)
   return (it != cards.end());
 }
 
-GuiHandOpponent::GuiHandOpponent(CardSelector* cs, MTGHand* hand) : GuiHand(cs, hand) {}
+GuiHandOpponent::GuiHandOpponent(MTGHand* hand) : GuiHand(hand) {}
 
 void GuiHandOpponent::Render()
 {
@@ -68,7 +68,7 @@ void GuiHandOpponent::Render()
     }
 }
 
-GuiHandSelf::GuiHandSelf(CardSelector* cs, MTGHand* hand) : GuiHand(cs, hand), state(Closed), backpos(ClosedX, SCREEN_HEIGHT - 250, 1.0, 0, 255)
+GuiHandSelf::GuiHandSelf(MTGHand* hand) : GuiHand(hand), state(Closed), backpos(ClosedX, SCREEN_HEIGHT - 250, 1.0, 0, 255)
 {
   limitor = NEW HandLimitor(this);
   if (OptionHandDirection::HORIZONTAL == options[Options::HANDDIRECTION].number)
@@ -134,9 +134,9 @@ bool GuiHandSelf::CheckUserInput(JButton key)
   if (trigger == key)
     {
       state = (Open == state ? Closed : Open);
-      if (Open == state) cs->Push();
-      cs->Limit(Open == state ? limitor : NULL, CardSelector::handZone);
-      if (Closed == state) cs->Pop();
+      if (Open == state) CardSelectorSingleton::Instance()->Push();
+      CardSelectorSingleton::Instance()->Limit(Open == state ? limitor : NULL, CardSelector::handZone);
+      if (Closed == state) CardSelectorSingleton::Instance()->Pop();
       if (OptionHandDirection::HORIZONTAL == options[Options::HANDDIRECTION].number)
         backpos.y = Open == state ? OpenY : ClosedY;
       else
@@ -217,7 +217,7 @@ int GuiHandSelf::receiveEventPlus(WEvent* e)
 	        card = NEW CardView(CardSelector::handZone, ev->card, ClosedRowX, 0);
 	      card->t = 6*M_PI;
 	      cards.push_back(card);
-	      cs->Add(card);
+	      CardSelectorSingleton::Instance()->Add(card);
               Repos();
 	      return 1;
       }
@@ -232,7 +232,7 @@ int GuiHandSelf::receiveEventMinus(WEvent* e)
 	  if (event->card->previous == (*it)->card)
 	    {
 	      CardView* cv = *it;
-	      cs->Remove(cv);
+	      CardSelectorSingleton::Instance()->Remove(cv);
 	      cards.erase(it);
               Repos();
               trash(cv);

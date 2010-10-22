@@ -725,12 +725,11 @@ int MTGAttackRule::reactToClick(MTGCardInstance * card){
 
 	//Graphically select the next card that can attack
 	if(!card->isAttacker()){
-		CardSelector * cs = game->mLayers->cs;
-		cs->PushLimitor();
-		cs->Limit(this,CardSelector::playZone);
-		cs->CheckUserInput(JGE_BTN_RIGHT);
-		cs->Limit(NULL,CardSelector::playZone);
-		cs->PopLimitor();
+		CardSelectorSingleton::Instance()->PushLimitor();
+		CardSelectorSingleton::Instance()->Limit(this,CardSelector::playZone);
+		CardSelectorSingleton::Instance()->CheckUserInput(JGE_BTN_RIGHT);
+		CardSelectorSingleton::Instance()->Limit(NULL,CardSelector::playZone);
+		CardSelectorSingleton::Instance()->PopLimitor();
 	}
 	card->toggleAttacker();
 	return 1;

@@ -83,8 +83,7 @@ void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string 
   }
 
   if (bigQuad){
-    GameObserver * game = GameObserver::GetInstance();
-    int showMode = game->mLayers->cs->bigMode;
+    int showMode = CardSelectorSingleton::Instance()->bigMode;
     Pos pos = Pos(CardGui::BigWidth / 2, CardGui::BigHeight / 2 - 10, 1.0, 0.0, 220);
     switch(showMode){
         case BIG_MODE_SHOW:

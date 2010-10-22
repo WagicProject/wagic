@@ -15,12 +15,11 @@ class GuiAvatars : public GuiLayer
   GuiGraveyard* selfGraveyard, *opponentGraveyard;
   GuiLibrary* selfLibrary, *opponentLibrary;
   GuiOpponentHand *opponentHand;
-  CardSelector* cs;
   GuiAvatar* active;
   
 
  public:
-	GuiAvatars(CardSelector*);
+	GuiAvatars();
   ~GuiAvatars();
 
 	GuiAvatar* GetSelf();
