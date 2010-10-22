@@ -730,23 +730,23 @@ int MTGDeck::remove(MTGCard * card){
 }
 
 int MTGDeck::save() {
-  return save( filename, false, meta_name, meta_desc );
+  return save( filename, false );
 }
 
-int MTGDeck::save(string destFileName, bool useExpandedDescriptions, string deckTitle, string deckDesc){
+int MTGDeck::save(string destFileName, bool useExpandedDescriptions){
   string tmp = destFileName;
   tmp.append(".tmp"); //not thread safe
   std::ofstream file(tmp.c_str());
   char writer[512];
   if (file){
-    DebugTrace("Saving Deck");
-    if (deckTitle.size()){
-      file << "#NAME:" << deckTitle << '\n';
+    DebugTrace("Saving Deck: " << meta_name << " to " << destFileName );
+    if (meta_name.size()){
+      file << "#NAME:" << meta_name << '\n';
     }
 
-    if (deckDesc.size()){
+    if (meta_desc.size()){
       size_t found = 0;
-      string desc= deckDesc;
+      string desc= meta_desc;
       found = desc.find_first_of("\n");
       while(found != string::npos){
         file << "#DESC:" << desc.substr(0,found+1);
