@@ -31,6 +31,7 @@ CardPrimitive::CardPrimitive(CardPrimitive * source){
 
   power = source->power;
   toughness = source->toughness;
+	level = source->level;
 
   magicText = source->magicText;
   for(map<string,string>::const_iterator it = source->magicTexts.begin(); it != source->magicTexts.end(); ++it)
@@ -329,4 +330,12 @@ void CardPrimitive::setToughness(int _toughness){
 
 int CardPrimitive::getToughness(){
   return toughness;
+}
+
+void CardPrimitive::setMaxLevel(int _levelcap){
+  level = _levelcap;
+}
+
+int CardPrimitive::getMaxLevel(){
+  return level;
 }

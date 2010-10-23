@@ -26,7 +26,6 @@ MTGCard::MTGCard(int set_id){
 MTGCard::MTGCard(MTGCard * source){
 
   strcpy(image_name, source->image_name);
-	LevelUp = source->LevelUp;
   rarity = source->rarity;
   mtgid = source->mtgid;
   setId = source->setId;
@@ -38,7 +37,6 @@ int MTGCard::init(){
   mtgid = 0;
   data = NULL;
   rarity = Constants::RARITY_C;
-	LevelUp = 0;
   return 1;
 }
 
@@ -64,14 +62,6 @@ char MTGCard::getRarity() const {
 
 void MTGCard::setRarity(char _rarity){
   rarity = _rarity;
-}
-
-int MTGCard::getLevelcap() const{
-  return LevelUp;
-}
-
-void MTGCard::setLevelcap(int levelupcap){
-  LevelUp = levelupcap;
 }
 
 char * MTGCard::getImageName() {

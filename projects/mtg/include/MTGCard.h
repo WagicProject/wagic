@@ -26,7 +26,6 @@ class MTGCard {
   int  init();
 
  public:
-	int LevelUp;
   int setId;
   CardPrimitive * data;
  
@@ -36,13 +35,11 @@ class MTGCard {
 
   void setMTGId(int id);
   void setRarity(char _rarity);
-	void setLevelcap(int _levelupcap);
   //void setImageName( char * value);
   void setPrimitive(CardPrimitive * cp);
 
   int getMTGId() const;
   int getId() const;
-	int getLevelcap() const;
   char getRarity() const;
   char * getImageName();
 };

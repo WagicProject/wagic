@@ -247,8 +247,8 @@ int AIAction::getEfficiency(){
 			 	 currentlevel = targetCounter->nb;
 				 }
 				}
-				if (currentlevel < _target->LevelUp){
-          efficiency = 65;
+				if (currentlevel < _target->level){
+          efficiency = 85;
 					efficiency += currentlevel;//increase the efficeincy of leveling up by a small amount equal to current level.
 				}
         break;
