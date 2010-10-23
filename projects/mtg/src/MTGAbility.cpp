@@ -1705,7 +1705,6 @@ int AbilityFactory::computeXX(Spell * spell, MTGCardInstance * card){
   return 0;
 }
 
-
 int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCardInstance * card, int id, MTGGameZone * dest){
  
   if (!card && spell) card = spell->source;

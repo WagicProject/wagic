@@ -457,6 +457,28 @@ MTGCardInstance * MTGCardInstance::getNextPartner(){
   return NULL;
 }
 
+int MTGCardInstance::DangerRanking(){
+  int danger;
+	int result;
+danger = 0;
+result = 0;
+result += power;
+result += toughness;
+result += getManaCost()->getConvertedCost();
+		for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++){
+       if(basicAbilities[j])
+			 {
+				result += 1;
+			 }
+		}
+		if(result > 1) danger += 1;
+		if(result > 2) danger += 1;
+		if(result > 4) danger += 1;
+		if(result > 6) danger += 1;
+		if(result > 10) danger += 1;
+  return danger;
+}
+
 int MTGCardInstance::setAttacker(int value){
   Targetable * previousTarget = NULL;
   Targetable * target = NULL;

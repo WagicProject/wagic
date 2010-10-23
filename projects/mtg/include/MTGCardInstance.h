@@ -85,6 +85,8 @@ class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable {
   int removeType(string value, int removeAll = 0);
   int removeType(int value, int removeAll = 0);
 
+	//dangerranking is a hint to Ai which creatures are the ones it should be targetting for effects.
+  int DangerRanking();
   //Combat
   bool blocked; //Blocked this turn or not?
   MTGCardInstance * defenser;

@@ -491,6 +491,7 @@ public:
 	string name;
 	AACounter(int id, MTGCardInstance * source, MTGCardInstance * target, const char * _name, int power, int toughness, int nb, ManaCost * cost = NULL, int doTap = 0) : ActivatedAbility(id, source, cost, 0, doTap), nb(nb), power(power), toughness(toughness), name(_name) {
 		this->target = target;
+   if(name.find("Level")) aType = MTGAbility::STANDARD_LEVELUP;
 	}
 
 
@@ -1693,7 +1694,7 @@ class AEquip:public TargetAbility{
 public:
 	vector<MTGAbility *> currentAbilities; 
 	AEquip(int _id, MTGCardInstance * _source, ManaCost * _cost=NULL, int doTap=0, int restrictions = ActivatedAbility::AS_SORCERY):TargetAbility(_id,_source,NULL,_cost,restrictions,doTap){
-
+	aType = MTGAbility::STANDARD_EQUIP;
 	}
 
 	int unequip(){
@@ -2784,7 +2785,7 @@ class AADamagePrevent:public ActivatedAbilityTP{
 public:
 	int preventing;
 	AADamagePrevent(int _id, MTGCardInstance * _source, Targetable * _target,int preventing, ManaCost * _cost=NULL, int doTap = 0, int who = TargetChooser::UNSET):ActivatedAbilityTP(_id,_source,_target,_cost,doTap,who),preventing(preventing){
-		//aType = MTGAbility::STANDARD_PREVENT;
+		aType = MTGAbility::STANDARD_PREVENT;
 	}
 
 	int resolve(){

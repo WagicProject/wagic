@@ -196,20 +196,64 @@ int AIAction::getEfficiency(){
         //TODO If the card is the target of a damage spell
         break;
       }
-		//case MTGAbility::STANDARD_PREVENT:
-  //    {
-  //      MTGCardInstance * _target = (MTGCardInstance *)(a->target);
-  //      efficiency = 10;//starts out low to avoid spamming it when its not needed.
-		//		if ((!_target->regenerateTokens && g->getCurrentGamePhase() == Constants::MTG_PHASE_COMBATBLOCKERS && (_target->defenser || _target->blockers.size())) || ((_target->canBlock()||_target->canAttack()) && _target->preventable < 2)){
-  //        efficiency = 95;//increase this chance to be used in combat.
-  //      }
-		//	  if (_target->preventable > 2){
-  //      efficiency -= 10; //lower the chance to be used if the creature already has over 3 prevent points.
-		//		}
-  //      //basically a rip off of regen, if it is not regenerating, its combat blockers, it is being blocked or blocking, and has less then 3 prevents, the effeincy is increased.
-  //      //TODO If the card is the target of a damage spell
-  //      break;
-  //    }
+		case MTGAbility::STANDARD_PREVENT:
+      {
+        MTGCardInstance * _target = (MTGCardInstance *)(a->target);
+        efficiency = 0;//starts out low to avoid spamming it when its not needed.
+				bool NeedPreventing;
+				NeedPreventing = false;
+				if(g->getCurrentGamePhase() == Constants::MTG_PHASE_COMBATBLOCKERS)
+				{
+					if((target->defenser || target->blockers.size()) && target->preventable < target->getNextOpponent()->power) NeedPreventing = true;
+				}
+				if (p == target->controller() && NeedPreventing == true && !(target->getNextOpponent()->has(Constants::DEATHTOUCH) || target->getNextOpponent()->has(Constants::WITHER))){
+					efficiency = 20 * (target->DangerRanking());//increase this chance to be used in combat if the creature blocking/blocked could kill the creature this chance is taking into consideration how good the creature is, best creature will always be the first "saved"..
+					if(target->toughness == 1 && target->getNextOpponent()->power == 1) efficiency += 15;
+					//small bonus added for the poor 1/1s, if we can save them, we will unless something else took precidence.
+				}
+				//note is the target is being blocked or blocking a creature with wither or deathtouch, it is not even considered for preventing as it is a waste.
+        //if its combat blockers, it is being blocked or blocking, and has less prevents the the amount of damage it will be taking, the effeincy is increased slightly and totalled by the danger rank multiplier for final result.
+        //TODO If the card is the target of a damage spell
+        break;
+      }
+		case MTGAbility::STANDARD_EQUIP:
+			{
+			MTGCardInstance * _target = (MTGCardInstance *)(a->target);
+			efficiency = 0;
+			if (p == target->controller() && target->equipment <= 1 && !a->source->target)
+			{
+				efficiency = 20 * (target->DangerRanking());
+				if(target->hasColor(5)) efficiency += 20;//this is to encourage Ai to equip white creatures in a weenie deck. ultimately it will depend on what had the higher dangerranking.
+				if(target->power == 1 && target->toughness == 1 && target->isToken == 0) efficiency += 10; //small bonus to encourage equipping nontoken 1/1 creatures.
+			}
+			if (p == target->controller() && target->equipment > 2 && !a->source->target)
+			{
+				efficiency = 15 * (target->DangerRanking());
+			}
+      break;
+			}
+
+		case MTGAbility::STANDARD_LEVELUP:
+      {
+        MTGCardInstance * _target = (MTGCardInstance *)(a->target);
+        efficiency = 0;
+        Counter * targetCounter = NULL;
+				int currentlevel = 0;
+				if(_target)
+				{
+         if(_target->counters && _target->counters->hasCounter("level",0,0))
+				 {
+				 targetCounter = _target->counters->hasCounter("level",0,0);
+			 	 currentlevel = targetCounter->nb;
+				 }
+				}
+				if (currentlevel < _target->LevelUp){
+          efficiency = 65;
+					efficiency += currentlevel;//increase the efficeincy of leveling up by a small amount equal to current level.
+				}
+        break;
+      }
+
     case MTGAbility::MANA_PRODUCER: //can't use mana producers right now :/
       efficiency = 0;
       break;
@@ -232,7 +276,7 @@ int AIAction::getEfficiency(){
     ExtraCosts * ec = ability->cost->extraCosts;
     if (ec) efficiency = efficiency / 3;  //Decrease chance of using ability if there is an extra cost to use the ability
   }
-  return efficiency;
+	return efficiency;
 }
 
 
