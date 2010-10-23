@@ -53515,6 +53515,7 @@ auto=this(counter{0/0,2,Level}) 2/2
 auto=this(counter{0/0,7,Level}) double strike
 auto=this(counter{0/0,7,Level}) 1/1
 text=Level up {W} -- [Level 2-6] First strike (3/3) -- [Level 7+] Double strike (4/4)
+level=7
 mana={W}
 type=Creature
 subtype=Level Human Knight
@@ -57526,6 +57527,7 @@ text=Level up {1} -- [Level 6-11] Lifelink (6/6) -- [Level 12+] Lifelink  Transc
 mana={1}{W}{W}
 type=Creature
 subtype=Level Human Cleric Avatar
+level=12
 power=3
 toughness=3
 [/card]
