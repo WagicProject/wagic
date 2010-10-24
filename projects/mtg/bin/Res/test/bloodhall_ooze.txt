@@ -8,6 +8,7 @@ inplay:bloodhall ooze,grizzly bears
 eot
 next
 choice 0
+choice 1
 next
 #draw
 next
