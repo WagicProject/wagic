@@ -53,11 +53,7 @@ public:
 class WLBFont : public WFont
 {
 public:
-  WLBFont(int inFontID, const char *fontname, int lineheight, bool useVideoRAM=false)
-    : WFont(inFontID)
-  {
-    it = NEW JLBFont(fontname,lineheight,useVideoRAM);
-  };
+  WLBFont(int inFontID, const char *fontname, int lineheight, bool useVideoRAM=false);
   ~WLBFont() {SAFE_DELETE(it);};
 
   void DrawString(const char *s, float x, float y, int align=JGETEXT_LEFT, float leftOffset = 0, float width = 0) {it->DrawString(s,x,y,align,leftOffset,width);};
@@ -92,6 +88,9 @@ public:
   void SetTracking(float tracking) {};
   void SetBase(int base) {};
 
+  virtual int GetCode(const u8 *ch, bool *dualByteFont) const = 0;
+  virtual int GetMana(const u8 *ch) const = 0;
+
 private:
   static JRenderer * mRenderer;
 
@@ -118,6 +117,26 @@ private:
   u32 * mCharBuffer;
 
   int PreCacheChar(const u8 *ch);
+};
+
+class WGBKFont : public WFBFont
+{
+public:
+  WGBKFont(int inFontID, const char *fontname, int lineheight, bool useVideoRAM=false)
+	: WFBFont(inFontID, fontname, lineheight, useVideoRAM) {};
+
+  int GetCode(const u8 *ch, bool *dualByteFont) const;
+  int GetMana(const u8 *ch) const;
+};
+
+class WSJISFont : public WFBFont
+{
+public:
+  WSJISFont(int inFontID, const char *fontname, int lineheight, bool useVideoRAM=false)
+    : WFBFont(inFontID, fontname, lineheight, useVideoRAM) {};
+
+  int GetCode(const u8 *ch, bool *dualByteFont) const;
+  int GetMana(const u8 *ch) const;
 };
 
 #endif

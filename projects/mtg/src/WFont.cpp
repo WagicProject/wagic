@@ -57,42 +57,17 @@ static PIXEL_TYPE gencolor(int id, PIXEL_TYPE color)
   return ARGB(a,r,g,b);
 }
 
-static int genmana(u8 c)
-{
-  int mana = -1;
-  switch (c) {
-  case 0xC7:
-    mana = Constants::MTG_COLOR_GREEN;
-    break;
-  case 0xD5:
-    mana = Constants::MTG_COLOR_BLUE;
-    break;
-  case 0xD2:
-    mana = Constants::MTG_COLOR_RED;
-    break;
-  case 0xC2:
-    mana = Constants::MTG_COLOR_BLACK;
-    break;
-  case 0xD7:
-    mana = Constants::MTG_COLOR_WHITE;
-    break;
-  case 0xD4: // T
-  case 0xD8: // X
-  case 0xD9: // Y
-    mana = Constants::MTG_UNCOLORED;
-    break;
-  default:
-    if (c >= 0xB0 && c <= 0xB9)
-      mana = Constants::MTG_UNCOLORED;
-    else
-      mana = -1;
-  }
-  return mana;
-}
-
 //
 
 JRenderer * WFBFont::mRenderer = NULL;
+
+WLBFont::WLBFont(int inFontID, const char *fontname, int lineheight, bool useVideoRAM)
+  : WFont(inFontID)
+{
+  string path(fontname);
+  if (path.size() > 4 ) path = path.substr(0, path.size() - 4); //some stupid manipulation because of the way Font works in JGE
+  it = NEW JLBFont(path.c_str(), lineheight, useVideoRAM);
+}
 
 WFBFont::WFBFont(int inFontID, const char *fontname, int lineheight, bool useVideoRAM)
   : WFont(inFontID)
@@ -104,13 +79,15 @@ WFBFont::WFBFont(int inFontID, const char *fontname, int lineheight, bool useVid
   mGBCode = NULL;
   mCurr = 0;
 
-  char chnFileName[32], engFileName[32];
-  sprintf(chnFileName, "%s.gbk", fontname);
-  sprintf(engFileName, "%s.asc", fontname);
+  char tmpFileName[32], engFileName[32];
+  strcpy(tmpFileName, fontname);
+  char * ep = strrchr(tmpFileName, '.');
+  *ep = '\0';
+  sprintf(engFileName, "%s.asc", tmpFileName);
   JFileSystem *fileSys = JFileSystem::GetInstance();
   int size = 0;
 
-  if (!fileSys->OpenFile(chnFileName))
+  if (!fileSys->OpenFile(fontname))
     return;
   size = fileSys->GetFileSize();
   mChnFont = NEW u8[size];
@@ -207,11 +184,12 @@ static void SwizzlePlot(u8* out, PIXEL_TYPE color, int i, int j, unsigned int wi
 int WFBFont::PreCacheChar(const u8 *ch)
 {
   int code;
-  bool isChinese = true;
+  bool dualByteFont = true;
   u8 * src;
   unsigned int size, offset;
   u8 gray;
 
+#if 0
   if (*ch > 0xA0 && *(ch + 1) > 0xA0)
     // get offset to the proper character bits (GB2312 encoding)
     code = (((u32)(*ch - 0xA1)) * 0x5E + ((u32)(*(ch + 1) - 0xA1)));
@@ -221,8 +199,11 @@ int WFBFont::PreCacheChar(const u8 *ch)
   }
   else {
     code = ((u32)*ch)|0x10000;
-    isChinese = false;
+    dualByteFont = false;
   }
+#else
+  code = this->GetCode(ch, &dualByteFont);
+#endif
 
   if (mGBCode[mCurr] != -1) {
     for (int i = 0; i < mCacheSize; i++) {
@@ -244,7 +225,7 @@ int WFBFont::PreCacheChar(const u8 *ch)
   int y = (int)mSprites[index]->mY;
 #endif
 
-  if (isChinese) {
+  if (dualByteFont) {
     size = mFontSize;
     src = mChnFont + code * mBytesPerChar;
     offset = 0;
@@ -347,13 +328,13 @@ void WFBFont::DrawString(const char *s, float x, float y, int align, float leftO
   float yy = y;
   int index = 0;
 
-  bool isChinese=true;
+  bool dualByteFont=true;
 
   while (*src != 0) {
     if (yy > SCREEN_HEIGHT_F)         // don't render or count outside the buttom of viewport
       return;
     else if (yy + mFontSize < 0.0f) { // don't render when outside the top of viewport, but counted
-      if (*src < ' ') {     // control characters
+      if (*src < 0x20) {    // control characters
         if (*src == 0x0a) { // NEWLINE
           xx = x;
           yy += (mFontSize*mScale);
@@ -361,7 +342,7 @@ void WFBFont::DrawString(const char *s, float x, float y, int align, float leftO
         src += 1;
       }
       else {
-        if (*src > 0x80)    // Chinese characters (GBK encoding)
+        if (*src > 0x80)    // Chinese (GBK) and Japanese (SJIS) characters 
           src += 2;
         else
           src += 1;
@@ -375,7 +356,7 @@ void WFBFont::DrawString(const char *s, float x, float y, int align, float leftO
       }
     }
     else {
-      if (*src < ' ') {     // control characters
+      if (*src < 0x20) {    // control characters
         if (*src == 0x0a) { // NEWLINE
           xx = x;
           yy += (mFontSize * mScale);
@@ -384,16 +365,16 @@ void WFBFont::DrawString(const char *s, float x, float y, int align, float leftO
       }
       else {
         int mana = -1;
-        if (*src > 0x80) {  // Chinese characters  (GBK encoding)
-          if (*src == 0xa3) mana = genmana(*(src+1));
+        if (*src > 0x80) {  // Chinese (GBK) and Japanese (SJIS) characters
+          mana = this->GetMana(src);
           index = PreCacheChar(src);
           src += 2;
-          isChinese = true;
+          dualByteFont = true;
         }
         else {
           index = PreCacheChar(src);
           src += 1;
-          isChinese = false;
+          dualByteFont = false;
         }
 
         // fix for leftoffset and witdth's setting
@@ -401,7 +382,7 @@ void WFBFont::DrawString(const char *s, float x, float y, int align, float leftO
         mSprites[index]->GetTextureRect(&xPos, &yPos, &charWidth, &charHeight);
         float xPos0 = xPos;
         float charWidth0 = charWidth;
-        float delta = (isChinese) ? (charWidth * mScale) : (charWidth * mScale / 2);
+        float delta = (dualByteFont) ? (charWidth * mScale) : (charWidth * mScale / 2);
         if (leftOffset) {
           if (leftOffset < 0) { 
             xx -= leftOffset;
@@ -428,10 +409,9 @@ void WFBFont::DrawString(const char *s, float x, float y, int align, float leftO
         }
 
         if (mana >= 0) {
-          if (*src == '/') { // hybrid mana cost
-            src += 1;
-            int mana2 = genmana(*(src+1));
-            src += 2;
+          int mana2 = -1;
+          if (*src == '/' && (mana2 = this->GetMana(src+1)) >= 0) { // hybrid mana cost
+            src += 3;
             unsigned char t = (JGE::GetInstance()->GetTime() / 3) & 0xFF;
             unsigned char v = t + 127;
             float scale = 0.05f * cosf(2*M_PI*((float)t)/256.0f);
@@ -486,18 +466,18 @@ float WFBFont::GetStringWidth(const char *s) const
   if (ISGBK(c)) {
     u8 * src = (u8 *)s;
     float xx = 0;
-    bool isChinese=true;
+    bool dualByteFont = true;
 
     while (*src != 0) {
-      if (*src > 0x80) { // Chinese
+      if (*src > 0x80) { // Chinese and Japanese
         src += 2;
-        isChinese = true;
+        dualByteFont = true;
       }
-      else {             // Non-Chinese
+      else {             // Latin 1
         src += 1;
-        isChinese = false;
+        dualByteFont = false;
       }
-      if (isChinese)
+      if (dualByteFont)
         xx += (mFontSize * mScale);
       else
         xx += (mFontSize * mScale) / 2;
@@ -518,4 +498,114 @@ void WFBFont::SetScale(float scale)
 
 float WFBFont::GetScale() const {return mScale;}
 float WFBFont::GetHeight() const {return (mFontSize * mScale);}
+
+int WGBKFont::GetCode(const u8 *ch, bool *dualByteFont) const
+{
+  int code = 0;
+  *dualByteFont = true;
+
+  if (*ch > 0xA0 && *(ch + 1) > 0xA0) {
+    // get offset to the proper character bits (GB2312 encoding)
+    code = (((u32)(*ch - 0xA1)) * 0x5E + ((u32)(*(ch + 1) - 0xA1)));
+  }
+  else if (*ch > 0x80) {
+    // get offset to the character space's bits (GBK encoding)
+    code = 0;
+  }
+  else {
+    code = ((u32)*ch)|0x10000;
+    *dualByteFont = false;
+  }
+  return code;
+}
+
+int WGBKFont::GetMana(const u8 *ch) const
+{
+  int mana = -1;
+
+  if (*ch != 0xa3) return mana;
+  switch (*(ch+1)) {
+  case 0xC7:
+    mana = Constants::MTG_COLOR_GREEN;
+    break;
+  case 0xD5:
+    mana = Constants::MTG_COLOR_BLUE;
+    break;
+  case 0xD2:
+    mana = Constants::MTG_COLOR_RED;
+    break;
+  case 0xC2:
+    mana = Constants::MTG_COLOR_BLACK;
+    break;
+  case 0xD7:
+    mana = Constants::MTG_COLOR_WHITE;
+    break;
+  case 0xD4: // T
+  case 0xD8: // X
+  case 0xD9: // Y
+    mana = Constants::MTG_UNCOLORED;
+    break;
+  default:
+    if (*(ch+1) >= 0xB0 && *(ch+1) <= 0xB9)
+      mana = Constants::MTG_UNCOLORED;
+  }
+  return mana;
+}
+
+int WSJISFont::GetCode(const u8 *ch, bool *dualByteFont) const
+{
+  int code = 0;
+  *dualByteFont = true;
+
+  if (*ch > 0xDF && *(ch + 1) > 0x3F) {
+    // get offset to the proper character bits (ShiftJIS encoding 2nd part)
+    code = (((u32)(*ch - 0xE0 + 0x1F)) * 0xBD + ((u32)(*(ch + 1) - 0x40)));
+  }
+  else if (*ch > 0x80 && *(ch + 1) > 0x3F) {
+    // get offset to the proper character bits (ShiftJIS encoding 1st part)
+    code = (((u32)(*ch - 0x81)) * 0xBD + ((u32)(*(ch + 1) - 0x40)));
+  }
+  else if (*ch > 0x80) {
+    // get offset to the character space's bits (ShiftJIS encoding)
+    code = 0;
+  }
+  else {
+    code = ((u32)*ch)|0x10000;
+    *dualByteFont = false;
+  }
+  return code;
+}
+
+int WSJISFont::GetMana(const u8 *ch) const
+{
+  int mana = -1;
+
+  if (*ch != 0x82) return mana;
+  switch (*(ch+1)) {
+  case 0x66:
+    mana = Constants::MTG_COLOR_GREEN;
+    break;
+  case 0x74:
+    mana = Constants::MTG_COLOR_BLUE;
+    break;
+  case 0x71:
+    mana = Constants::MTG_COLOR_RED;
+    break;
+  case 0x61:
+    mana = Constants::MTG_COLOR_BLACK;
+    break;
+  case 0x76:
+    mana = Constants::MTG_COLOR_WHITE;
+    break;
+  case 0x73: // T
+  case 0x77: // X
+  case 0x78: // Y
+    mana = Constants::MTG_UNCOLORED;
+    break;
+  default:
+    if (*(ch+1) >= 0x4F && *(ch+1) <= 0x58)
+      mana = Constants::MTG_UNCOLORED;
+  }
+  return mana;
+}
 

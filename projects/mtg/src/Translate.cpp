@@ -141,7 +141,7 @@ void  Translator::init() {
   if (fileExists(name.c_str())){
     // fixup for Chinese language support.
     std::transform(lang.begin(), lang.end(), lang.begin(), ::tolower);
-    if (lang.compare("cn") == 0)
+    if (lang.compare("cn") == 0 || lang.compare("jp") == 0)
       neofont = true;
     else
       neofont = false;

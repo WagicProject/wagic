@@ -21,6 +21,7 @@ namespace
 {
   const std::string kExtension_png(".png");
   const std::string kExtension_gbk(".gbk");
+  const std::string kExtension_sjis(".sjis");
 }
 
 int WResourceManager::RetrieveError(){
@@ -857,6 +858,17 @@ void WResourceManager::InitFonts(const std::string& inLang)
     idOffset = Fonts::kSingleByteFontOffset;
   }
 
+  if (inLang.compare("jp") == 0)
+  {
+    mFontFileExtension = kExtension_sjis;
+    LoadWFont("simon", 12, Fonts::MAIN_FONT);
+    LoadWFont("f3", 16, Fonts::MENU_FONT);
+    LoadWFont("magic", 16, Fonts::MAGIC_FONT);
+    LoadWFont("smallface", 12, Fonts::SMALLFACE_FONT);
+
+    idOffset = Fonts::kSingleByteFontOffset;
+  }
+
   mFontFileExtension = kExtension_png;
   LoadWFont("simon", 11, Fonts::MAIN_FONT + idOffset);
   GetWFont(Fonts::MAIN_FONT)->SetTracking(-1);
@@ -886,12 +898,15 @@ WFont* WResourceManager::LoadWFont(const string& inFontname, int inFontHeight, i
 
   string mFontName = inFontname + mFontFileExtension;
   string path = graphicsFile(mFontName);
-  if (path.size() > 4 ) path = path.substr(0, path.size() - 4); //some stupid manipulation because of the way Font works in JGE
  
-	if (mFontFileExtension == kExtension_gbk)
-	{
-    font = NEW WFBFont(inFontID, path.c_str(), inFontHeight, true);
-	}
+  if (mFontFileExtension == kExtension_gbk)
+  {
+    font = NEW WGBKFont(inFontID, path.c_str(), inFontHeight, true);
+  }
+  else if (mFontFileExtension == kExtension_sjis)
+  {
+    font = NEW WSJISFont(inFontID, path.c_str(), inFontHeight, true);
+  }
   else
   {
     font = NEW WLBFont(inFontID, path.c_str(), inFontHeight, true);

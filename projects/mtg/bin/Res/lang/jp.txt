@@ -1,0 +1,343 @@
+#LANG:Japanese
+#Wagic 0.13.1 日本語
+
+#Note:
+# - Limitation: Special characters that are not in the limited Shift-JIS
+#     set can not be used, the game won't display them.
+
+
+##########################
+# MAIN MENU              #
+##########################
+
+# Main menu:
+Play=スタート
+Deck Editor=デッキ
+Shop=ショップ
+Options=オプション
+Exit=やめる
+
+##########################
+# DECK EDITOR            #
+##########################
+
+# Filter:
+5DN=フィフス・ドーン
+#Archenemy
+ALA=アラーラの断片
+#ALL
+#APC
+ARB=アラーラ再誕
+#ARN
+#ATQ
+BOK=神河謀叛
+#BRB
+#BTD
+CHK=神河物語
+#CHR
+CSP=コールドスナップ
+DIS=ディセンション
+#DRK
+DST=ダークスティール
+#Duel Decks: Phyrexia vs. the Coalition
+#DVD
+EVE=イーブンタイド
+#EVG
+#EVT
+#EXO
+#FEM
+#FUT
+#FVD
+#FVE
+#FVR
+GPT=ギルドパクト
+#GVL
+#HML
+#HOP
+#ICE
+#INV
+#JUD
+#JVC
+#LEA
+#LEB
+#LEG
+#LGN
+LRW=ローウィン
+#MED
+#ME2
+#ME3
+#MIR
+MOR=モーニングタイド
+#MRD
+#MRQ
+#NMS
+#ODY
+#ONS
+#P02
+#PCY
+#PDS
+PLC=次元の混乱
+#PLS
+#POR
+#PPR
+#PTK
+RAV=ラブニカ：ギルドの都
+ROE=エルドラージ覚醒
+#SCG
+SHM=シャドウムーア
+SOK=神河救済
+SOM=ミラディンの傷跡
+#STH
+Starter '00=Starter '00
+Starter '99=Starter '99
+#TMP
+#TOR
+TSB=時のらせんのタイムシフト
+TSP=時のらせん
+#UDS
+#UGL
+#ULG
+#UNH
+#USG
+#VIS
+#WTH
+WWK=ワールドウェイク
+Wagic 2010=M2010
+Wagic 2011=M2011
+ZEN=ゼンディカー
+
+
+##########################
+# CARD DATA: NAMES       #
+##########################
+
+# please keep this alphabetized
+Abuna Acolyte=高僧の見習い
+Accorder's Shield=調和者隊の盾
+Acid Web Spider=酸の巣の蜘蛛
+Alpha Tyrranax=最上位のティラナックス
+Arc Trail=電弧の痕跡
+Argent Sphinx=銀白のスフィンクス
+Argentum Armor=アージェンタムの鎧
+Arrest=拘引
+Asceticism=苦行主義
+Assault Strobe=突撃のストロボ
+Auriok Edgewright=オーリオックの刃工
+Auriok Replica=オーリオックの模造品
+Auriok Sunchaser=オーリオックの太陽追い
+Barbed Battlegear=逆刺の戦具
+Barrage Ogre=連射のオーガ
+Bellowing Tanglewurm=吠える絡みワーム
+Blackcleave Cliffs=黒割れの崖
+Blackcleave Goblin=黒割れのゴブリン
+Bladed Pinions=刃の翼
+Blade-Tribe Berserkers=刃族の狂戦士
+Bleak Coven Vampires=冷たき集いの吸血鬼
+Blight Mamba=荒廃のマンバ
+Blistergrub=水膨れ地掘り
+Bloodshot Trainee=血まなこの練習生
+Blunt the Assault=突撃の鈍化
+Bonds of Quicksilver=水銀の縛め
+Carapace Forger=甲殻の鍛冶工
+Carnifex Demon=執行の悪魔
+Carrion Call=屍肉の呼び声
+Cerebral Eruption=知性の爆発
+Chimeric Mass=キマイラ的大群
+Chrome Steed=金属の駿馬
+Clone Shell=クローンの殻
+Contagion Clasp=伝染病の留め金
+Contagion Engine=伝染病エンジン
+Contagious Nim=伝染病の屍賊
+Copperhorn Scout=銅角笛の斥候
+Copperline Gorge=銅線の地溝
+Copper Myr=銅のマイア
+Corpse Cur=死体の野犬
+Corrupted Harvester=堕落した収穫者
+Culling Dais=選別の高座
+Cystbearer=嚢胞抱え
+Darkslick Drake=闇滑りのドレイク
+Darkslick Shores=闇滑りの岸
+Darksteel Axe=ダークスティールの斧
+Darksteel Juggernaut=ダークスティールの巨大戦車
+Darksteel Myr=ダークスティールのマイア
+Darksteel Sentinel=ダークスティールの歩哨
+Dispense Justice=正義の施行
+Disperse=分散
+Dissipation Field=霧消の場
+Dross Hopper=ドロスバッタ
+Echo Circlet=こだまの飾り輪
+Elspeth Tirel=エルズペス・ティレル
+Embersmith=燃えさし鍛冶
+Engulfing Slagwurm=飲み込む金屑ワーム
+Etched Champion=刻まれた勇者
+Exsanguinate=瀉血
+Ezuri, Renegade Leader=背教の主導者、エズーリ
+Ezuri's Archers=エズーリの射手
+Ezuri's Brigade=エズーリの大部隊
+Ferrovore=鉄を食うもの
+Flameborn Hellion=炎生まれのヘリオン
+Flesh Allergy=肉体アレルギー
+Flight Spellbomb=飛行の呪文爆弾
+Fulgent Distraction=燦爛たる放心
+Fume Spitter=煙霧吐き
+Furnace Celebration=炉の式典
+Galvanic Blast=感電破
+Genesis Wave=起源の波
+Geth, Lord of the Vault=大霊堂の王、ゲス
+Ghalma's Warden=ガルマの保護者
+Glimmerpoint Stag=微光角の鹿
+Glimmerpost=微光地
+Glint Hawk=きらめく鷹
+Glint Hawk Idol=きらめく鷹の偶像
+Goblin Gaveleer=ゴブリンの小槌打ち
+Golden Urn=黄金の甕
+Gold Myr=金のマイア
+Golem Artisan=ゴーレムの職工
+Golem Foundry=ゴーレムの鋳造所
+Golem's Heart=ゴーレムの心臓
+Grafted Exoskeleton=生体融合外骨格
+Grand Architect=大建築家
+Grasp of Darkness=闇の掌握
+Grindclock=研磨時計
+Halt Order=停止命令
+Hand of the Praetors=法務官の手
+Heavy Arbalest=大石弓
+Hoard-Smelter Dragon=蔵製錬のドラゴン
+Horizon Spellbomb=地平線の呪文爆弾
+Ichorclaw Myr=胆液爪のマイア
+Ichor Rats=胆液の鼠
+Indomitable Archangel=不退転の大天使
+Inexorable Tide=容赦無い潮流
+Infiltration Lens=浸透のレンズ
+Instill Infection=感染の賦活
+Iron Myr=鉄のマイア
+Kemba, Kha Regent=王の摂政、ケンバ
+Kemba's Skyguard=ケンバの空護衛
+Koth of the Hammer=槌のコス
+Kuldotha Forgemaster=カルドーサの鍛冶場主
+Kuldotha Phoenix=カルドーサのフェニックス
+Kuldotha Rebirth=カルドーサの再誕
+Leaden Myr=鉛のマイア
+Leonin Arbiter=レオニンの裁き人
+Liege of the Tangle=絡み森の主
+Lifesmith=生命鍛冶
+Liquimetal Coating=液鋼の塗膜
+Livewire Lash=活線の鞭
+Loxodon Wayfarer=ロクソドンの旅人
+Lumengrid Drake=ルーメングリッドのドレイク
+Lux Cannon=光明の大砲
+Melt Terrain=地形の融解
+Memnite=メムナイト
+Memoricide=記憶殺し
+Mimic Vat=ミミックの大桶
+Mindslaver=精神隷属器
+Molder Beast=腐食獣
+Molten Psyche=溶鉄の精神
+Molten-Tail Masticore=溶鉄の尾のマスティコア
+Moriok Reaver=モリオックの肉裂き
+Moriok Replica=モリオックの模造品
+Mox Opal=オパールのモックス
+Myr Battlesphere=マイアの戦闘球
+Myr Galvanizer=マイアの感電者
+Myr Propagator=マイアの繁殖者
+Myr Reservoir=マイアの貯蔵庫
+Myrsmith=マイア鍛冶
+Necrogen Censer=屍気の香炉
+Necrogen Scudder=屍気を飛ばすもの
+Necropede=屍百足
+Necrotic Ooze=壊死のウーズ
+Neurok Invisimancer=ニューロックの透術士
+Neurok Replica=ニューロックの模造品
+Nihil Spellbomb=虚無の呪文爆弾
+Nim Deathmantle=屍賊の死のマント
+Ogre Geargrabber=オーガの装具奪い
+Origin Spellbomb=起源の呪文爆弾
+Oxidda Daredevil=オキシダの向こう見ず
+Oxidda Scrapmelter=オキシダの屑鉄溶かし
+Painful Quandary=痛ましい苦境
+Painsmith=苦痛鍛冶
+Palladium Myr=パラジウムのマイア
+Panic Spellbomb=恐慌の呪文爆弾
+Perilous Myr=危険なマイア
+Plague Stinger=疫病のとげ刺し
+Plated Seastrider=板金鎧の海うろつき
+Platinum Emperion=白金の帝像
+Precursor Golem=先駆のゴーレム
+Prototype Portal=試作品の扉
+Psychic Miasma=精神の瘴気
+Putrefax=化膿獣
+Quicksilver Gargantuan=水銀のガルガンチュアン
+Ratchet Bomb=漸増爆弾
+Razorfield Thresher=剃刀ヶ原の打つもの
+Razor Hippogriff=剃刀のヒポグリフ
+Razorverge Thicket=剃刀境の茂み
+Relic Putrescence=秘宝の腐敗
+Revoke Existence=存在の破棄
+Riddlesmith=謎鍛冶
+Rusted Relic=錆びた秘宝
+Rust Tick=錆ダニ
+Saberclaw Golem=剣爪のゴーレム
+Salvage Scout=回収の斥候
+Scoria Elemental=岩滓の精霊
+Scrapdiver Serpent=屑鉄潜りの海蛇
+Screeching Silcaw=金切り声のシルカウ
+Seachrome Coast=金属海の沿岸
+Seize the Initiative=主導権の奪取
+Semblance Anvil=類似の金床
+Shape Anew=新たな造形
+Shatter=粉砕
+Silver Myr=銀のマイア
+Skinrender=皮裂き
+Skithiryx, the Blight Dragon=荒廃のドラゴン、スキジリクス
+Sky-Eel School=空長魚の群れ
+Slice in Twain=真っ二つ
+Snapsail Glider=嵌め乗りの滑空者
+Soliton=ソリトン
+Soul Parry=魂の受け流し
+Spikeshot Elder=トゲ撃ちの古老
+Steady Progress=着実な進歩
+Steel Hellkite=鋼のヘルカイト
+Stoic Rebuttal=冷静な反論
+Strata Scythe=地層の鎌
+Strider Harness=闊歩するものの装具
+Sunblast Angel=太陽破の天使
+Sunspear Shikari=太陽の槍のシカール
+Sword of Body and Mind=肉体と精神の剣
+Sylvok Lifestaff=シルヴォクの生命杖
+Sylvok Replica=シルヴォクの模造品
+Tainted Strike=汚れた一撃
+Tangle Angler=絡み森の鮟鱇
+Tel-Jilad Defiance=テル＝ジラードの抵抗
+Tel-Jilad Fallen=テル＝ジラードの堕ちたる者
+Tempered Steel=鍛えられた鋼
+Throne of Geth=ゲスの玉座
+Thrummingbird=かき鳴らし鳥
+Tower of Calamities=災難の塔
+Trigon of Corruption=堕落の三角護符
+Trigon of Infestation=感染の三角護符
+Trigon of Mending=回復の三角護符
+Trigon of Rage=憤怒の三角護符
+Trigon of Thought=思考の三角護符
+Trinket Mage=粗石の魔道士
+True Conviction=真実の確信
+Tumble Magnet=転倒の磁石
+Tunnel Ignus=トンネルのイグナス
+Turn Aside=取り繕い
+Turn to Slag=金屑化
+Twisted Image=よじれた映像
+Untamed Might=荒々しき力
+Vault Skyward=空への跳躍
+Vector Asp=媒介のアスプ
+Vedalken Certarch=ヴィダルケンのセルターチ
+Venser's Journal=ヴェンセールの日誌
+Venser, the Sojourner=滞留者ヴェンセール
+Vigil for the Lost=失われし者への祈り
+Viridian Revel=ヴィリジアンのお祭り騒ぎ
+Volition Reins=決断の手綱
+Vulshok Heartstoker=ヴァルショクの心臓焚き
+Vulshok Replica=ヴァルショクの模造品
+Wall of Tanglecord=絡み線の壁
+Whitesun's Passage=白の太陽の通過
+Wing Puncture=風の突き刺し
+Withstand Death=死への抵抗
+Wurmcoil Engine=ワームとぐろエンジン
