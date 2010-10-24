@@ -1,8 +1,6 @@
 #include "PrecompiledHeader.h"
 
 #include "Subtypes.h"
-#include <JGE.h>
-#include <algorithm>
 
 Subtypes * Subtypes::subtypesList = NEW Subtypes();
 

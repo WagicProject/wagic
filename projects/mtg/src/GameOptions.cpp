@@ -7,11 +7,6 @@
 #include "OptionItem.h"
 #include "StyleManager.h"
 
-#include <fstream>
-
-#include <stdlib.h>
-#include <JGE.h>
-
 const string Options::optionNames[] = {
 //Global options
   "Profile",

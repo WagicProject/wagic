@@ -3,7 +3,6 @@
 #include "Logger.h"
 #ifdef DOLOG
 
-#include <fstream>
 using namespace std;
 
 #if defined (WIN32)

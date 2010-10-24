@@ -2,8 +2,6 @@
 
 #include "Translate.h"
 #include "GameOptions.h"
-#include <JGE.h>
-#include <fstream>
 
 Translator *  Translator::mInstance = NULL;
 

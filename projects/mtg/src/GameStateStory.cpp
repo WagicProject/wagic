@@ -5,7 +5,6 @@
 #include "SimpleMenu.h"
 #include "GameApp.h"
 #include <dirent.h>
-#include <fstream>
 
 GameStateStory::GameStateStory(GameApp* parent): GameState(parent) {
 	flow = NULL;

@@ -1,8 +1,5 @@
 #include "PrecompiledHeader.h"
 
-#include <algorithm>
-#include <sstream>
-
 #include "MTGDeck.h"
 #include "utils.h"
 #include "Subtypes.h"
@@ -13,7 +10,6 @@
 #include "MTGPack.h"
 #include "utils.h"
 
-#include <JGE.h>
 
 #if defined (WIN32) || defined (LINUX)
 #include <time.h>

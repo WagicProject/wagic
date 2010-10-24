@@ -6,7 +6,6 @@
 #include "PrecompiledHeader.h"
 
 #include <math.h>
-#include <JGE.h>
 
 #include "DeckManager.h"
 #include "GameStateDuel.h"

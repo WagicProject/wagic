@@ -6,7 +6,6 @@
 #include "Translate.h"
 #include "Player.h"
 #include "Counters.h"
-#include <JGE.h>
 
 ExtraCost::ExtraCost(const std::string& inCostRenderString, TargetChooser *_tc)
   : tc(_tc), source(NULL), target(NULL), mCostRenderString(inCostRenderString)

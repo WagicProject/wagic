@@ -1,6 +1,8 @@
 #ifndef PRECOMPILEDHEADER_H
 #define PRECOMPILEDHEADER_H
 
+#include <algorithm>
+#include <fstream>
 #include <iostream>
 #include <list>
 #include <map>
@@ -12,5 +14,7 @@
 #include "DebugRoutines.h"
 
 #include <assert.h>
+
+#include "JGE.h"
 
 #endif //PRECOMPILEDHEADER_H

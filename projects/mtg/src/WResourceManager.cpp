@@ -1,8 +1,5 @@
 #include "PrecompiledHeader.h"
 
-#include <fstream>
-#include <stdlib.h>
-#include <JGE.h>
 #include <JFileSystem.h>
 
 #include "utils.h"

@@ -9,7 +9,6 @@
 #include "PlayerData.h"
 #include "MTGDeck.h"
 #include "WFont.h"
-#include <JGE.h>
 #include <JFileSystem.h>
 
 

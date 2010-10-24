@@ -11,7 +11,7 @@
 #include "CardDescriptor.h"
 #include "Counters.h"
 #include "Subtypes.h"
-#include <algorithm>
+
 using namespace std;
 
 MTGCardInstance MTGCardInstance::AnyCard = MTGCardInstance();

@@ -1,9 +1,6 @@
 #include "PrecompiledHeader.h"
 
 #include "utils.h"
-#include <fstream>
-#include <stdlib.h>
-#include <JGE.h>
 #include <JFileSystem.h>
 #include "GameOptions.h"
 #include "WResourceManager.h"

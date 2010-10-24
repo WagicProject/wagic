@@ -2,8 +2,6 @@
 
 #include "CardPrimitive.h"
 
-#include <stdlib.h>
-
 #include "MTGDeck.h"
 #include "Subtypes.h"
 #include "Translate.h"

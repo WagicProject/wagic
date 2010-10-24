@@ -5,9 +5,6 @@
 
 #include "PrecompiledHeader.h"
 
-#include <string>
-#include <stdlib.h>
-
 #include "MTGDeck.h"
 #include "MTGCard.h"
 #include "CardPrimitive.h"

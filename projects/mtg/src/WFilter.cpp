@@ -3,8 +3,6 @@
 #include "OptionItem.h"
 #include "PlayerData.h"
 #include "Translate.h"
-#include <algorithm>
-
 
 //WCFilterFactory
 WCFilterFactory* WCFilterFactory::me = NULL;

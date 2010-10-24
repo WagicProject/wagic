@@ -5,7 +5,6 @@
 #include "Translate.h"
 #include "PriceList.h"
 #include "Subtypes.h"
-#include <algorithm>
 
 //WSyncable
 bool WSyncable::Hook(WSyncable* s){

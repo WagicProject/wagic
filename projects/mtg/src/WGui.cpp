@@ -5,8 +5,6 @@
 #include "Translate.h"
 #include "Subtypes.h"
 #include "TranslateKeys.h"
-#include <sstream>
-#include <algorithm>
 #include <hge/hgedistort.h>
 
 //WGuiBase

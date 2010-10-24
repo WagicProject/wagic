@@ -1,15 +1,12 @@
 #include "PrecompiledHeader.h"
 
 #include "OptionItem.h"
-#include <JGE.h>
 #include "PlayerData.h"
 #include "Translate.h"
 #include "Subtypes.h"
 #include "TranslateKeys.h"
 #include "StyleManager.h"
 #include <dirent.h>
-#include <stdlib.h>
-#include <algorithm>
 
 //OptionItem
 OptionItem::OptionItem( int _id,  string _displayValue): WGuiItem(_displayValue) {
