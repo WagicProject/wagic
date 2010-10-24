@@ -1,4 +1,4 @@
-#Bug:bloodhal ooze gets 2 counters each upkeep no matter what
+#this is testing that bloodhall gets only 1 counter for the green grizzly inplay making it a 2/2.
 [INIT]
 SECONDMAIN
 [PLAYER1]
@@ -7,7 +7,6 @@ inplay:bloodhall ooze,grizzly bears
 [DO]
 eot
 next
-choice 0
 choice 0
 next
 #draw
@@ -27,7 +26,7 @@ next
 [ASSERT]
 COMBATEND
 [PLAYER1]
-life:17
+life:18
 [PLAYER2]
 inplay:bloodhall ooze,grizzly bears
 [END]
