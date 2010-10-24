@@ -785,7 +785,7 @@ int MTGCombatTriggersRule::receiveEvent(WEvent *e){
 	}
 	if (WEventAttackersChosen * event = dynamic_cast<WEventAttackersChosen*>(e))
 	{     
-		    MTGCardInstance * lonelyAttacker;
+		    MTGCardInstance * lonelyAttacker = NULL;
         int nbattackers = 0;
 			  Player * p = game->currentPlayer;
 			  MTGGameZone * z = p->game->inPlay;
