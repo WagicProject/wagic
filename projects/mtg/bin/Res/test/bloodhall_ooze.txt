@@ -8,6 +8,7 @@ inplay:bloodhall ooze,grizzly bears
 eot
 next
 choice 0
+choice 0
 next
 #draw
 next
@@ -26,7 +27,7 @@ next
 [ASSERT]
 COMBATEND
 [PLAYER1]
-life:18
+life:17
 [PLAYER2]
 inplay:bloodhall ooze,grizzly bears
 [END]
