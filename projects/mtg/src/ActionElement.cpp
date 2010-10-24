@@ -1,7 +1,9 @@
-#include "../include/ActionElement.h"
-#include "../include/MTGCardInstance.h"
-#include "../include/Targetable.h"
-#include "../include/TargetChooser.h"
+#include "PrecompiledHeader.h"
+
+#include "ActionElement.h"
+#include "MTGCardInstance.h"
+#include "Targetable.h"
+#include "TargetChooser.h"
 
 ActionElement::ActionElement(int id):JGuiObject(id){
   activeState = INACTIVE;

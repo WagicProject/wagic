@@ -1,10 +1,11 @@
-#include "../include/config.h"
-#include "../include/AIStats.h"
-#include "../include/GameObserver.h"
-#include "../include/Player.h"
-#include "../include/MTGCardInstance.h"
-#include "../include/WEvent.h"
-#include "../include/AllAbilities.h"
+#include "PrecompiledHeader.h"
+
+#include "AIStats.h"
+#include "GameObserver.h"
+#include "Player.h"
+#include "MTGCardInstance.h"
+#include "WEvent.h"
+#include "AllAbilities.h"
 //TODO:better comments this is too cryptic to work on by anyone but original coder.
 bool compare_aistats(AIStat * first, AIStat * second){
   float damage1 = first->value / first->occurences;

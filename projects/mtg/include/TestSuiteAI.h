@@ -4,7 +4,7 @@
 #define MAX_TESTSUITE_ACTIONS 100
 #define MAX_TESTUITE_CARDS 100
 
-#include "../include/AIPlayer.h"
+#include "AIPlayer.h"
 
 class TestSuiteActions{
  public:

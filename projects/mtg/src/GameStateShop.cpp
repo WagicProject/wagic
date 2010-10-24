@@ -1,15 +1,16 @@
 /*
   The shop is where the player can buy cards, decks...
 */
-#include "../include/config.h"
+#include "PrecompiledHeader.h"
+
 #include <JRenderer.h>
-#include "../include/GameStateShop.h"
-#include "../include/GameApp.h"
-#include "../include/MTGDeck.h"
-#include "../include/MTGPack.h"
-#include "../include/Translate.h"
-#include "../include/GameOptions.h"
-#include "../include/TestSuiteAI.h"
+#include "GameStateShop.h"
+#include "GameApp.h"
+#include "MTGDeck.h"
+#include "MTGPack.h"
+#include "Translate.h"
+#include "GameOptions.h"
+#include "TestSuiteAI.h"
 
 #include <hge/hgedistort.h>
 

@@ -1,5 +1,7 @@
+#include "PrecompiledHeader.h"
+
 #include "JRenderer.h"
-#include "../include/Pos.h"
+#include "Pos.h"
 
 Pos::Pos(float x, float y, float z, float t, float a) : actX(x), actY(y), actZ(z), actT(t), actA(a), x(x), y(y), zoom(z), t(t), alpha(a) {}
 void Pos::Update(float dt)

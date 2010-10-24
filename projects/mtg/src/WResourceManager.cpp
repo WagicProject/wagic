@@ -1,21 +1,20 @@
-#include "../include/config.h"
-#include "../include/DebugRoutines.h"
-#include "../include/utils.h"
-#include "../include/GameOptions.h"
-#include <iostream>
+#include "PrecompiledHeader.h"
+
 #include <fstream>
-#include <string>
 #include <stdlib.h>
 #include <JGE.h>
 #include <JFileSystem.h>
-#include <assert.h>
-#include "../include/WResourceManager.h"
-#include "../include/StyleManager.h"
+
+#include "utils.h"
+#include "GameOptions.h"
+#include "WResourceManager.h"
+#include "StyleManager.h"
+
 #if defined (WIN32)
 #include <sys/types.h>
 #include <sys/stat.h>
 #endif
-#include "../include/WFont.h"
+#include "WFont.h"
 
 extern bool neofont;
 int idCounter = OTHERS_OFFSET;

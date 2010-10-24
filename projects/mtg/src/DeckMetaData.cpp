@@ -1,8 +1,9 @@
-#include "../include/DeckMetaData.h"
-#include "../include/DeckStats.h"
-#include "../include/MTGDeck.h"
-#include "../include/config.h"
-#include "../include/utils.h"
+#include "PrecompiledHeader.h"
+
+#include "DeckMetaData.h"
+#include "DeckStats.h"
+#include "MTGDeck.h"
+#include "utils.h"
 
 //Possible improvements:
 //Merge this with DeckStats

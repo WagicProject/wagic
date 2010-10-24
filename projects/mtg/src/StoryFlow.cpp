@@ -1,14 +1,14 @@
-#include "../include/StoryFlow.h"
-#include "../include/MTGDefinitions.h"
-#include "../include/config.h"
-#include "../include/DebugRoutines.h"
-#include "../include/WResourceManager.h"
-#include "../include/AIPlayer.h"
-#include "../include/Rules.h"
-#include "../include/Credits.h"
-#include "../include/PlayerData.h"
-#include "../include/MTGDeck.h"
-#include "../include/WFont.h"
+#include "PrecompiledHeader.h"
+
+#include "StoryFlow.h"
+#include "MTGDefinitions.h"
+#include "WResourceManager.h"
+#include "AIPlayer.h"
+#include "Rules.h"
+#include "Credits.h"
+#include "PlayerData.h"
+#include "MTGDeck.h"
+#include "WFont.h"
 #include <JGE.h>
 #include <JFileSystem.h>
 

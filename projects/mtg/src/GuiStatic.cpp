@@ -1,6 +1,7 @@
-#include "../include/config.h"
-#include "../include/Trash.h"
-#include "../include/GuiStatic.h"
+#include "PrecompiledHeader.h"
+
+#include "Trash.h"
+#include "GuiStatic.h"
 
 GuiStatic::GuiStatic(float desiredHeight, float x, float y, bool hasFocus, GuiAvatars* parent) : PlayGuiObject(desiredHeight, x, y, hasFocus), parent(parent) {}
 void GuiStatic::Entering()

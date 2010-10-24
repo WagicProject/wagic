@@ -1,5 +1,6 @@
-#include "../include/config.h"
-#include "../include/MTGGamePhase.h"
+#include "PrecompiledHeader.h"
+
+#include "MTGGamePhase.h"
 
 
 MTGGamePhase::MTGGamePhase(int id):ActionElement(id){

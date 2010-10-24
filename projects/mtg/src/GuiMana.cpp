@@ -1,8 +1,8 @@
-#include <iostream>
-#include "../include/GuiMana.h"
-#include "../include/OptionItem.h"
-#include "../include/Player.h"
+#include "PrecompiledHeader.h"
 
+#include "GuiMana.h"
+#include "OptionItem.h"
+#include "Player.h"
 
 using std::cout;
 using std::endl;

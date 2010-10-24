@@ -1,12 +1,11 @@
-#include <iostream>
-#include <assert.h>
+#include "PrecompiledHeader.h"
 
-#include "../include/PlayGuiObject.h"
-#include "../include/CardGui.h"
-#include "../include/CardSelector.h"
-#include "../include/GuiHand.h"
+#include "PlayGuiObject.h"
+#include "CardGui.h"
+#include "CardSelector.h"
+#include "GuiHand.h"
 #include "Closest.cpp"
-#include "../include/GameObserver.h"
+#include "GameObserver.h"
 
 using std::cout;
 

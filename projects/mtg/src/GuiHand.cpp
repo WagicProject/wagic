@@ -1,8 +1,9 @@
-#include "../include/config.h"
-#include "../include/GameApp.h"
-#include "../include/Trash.h"
-#include "../include/GuiHand.h"
-#include "../include/OptionItem.h"
+#include "PrecompiledHeader.h"
+
+#include "GameApp.h"
+#include "Trash.h"
+#include "GuiHand.h"
+#include "OptionItem.h"
 
 const float GuiHand::ClosedRowX = 459;
 const float GuiHand::LeftRowX = 420;

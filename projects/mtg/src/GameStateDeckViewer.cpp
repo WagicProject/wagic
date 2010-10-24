@@ -3,20 +3,19 @@
  * Class handling the Deck Editor
  */
 
+#include "PrecompiledHeader.h"
+
 #include <math.h>
-#include <iostream>
-#include <sstream>
 #include <JGE.h>
-#include "../include/config.h"
-#include "../include/DeckManager.h"
-#include "../include/DebugRoutines.h"
-#include "../include/GameStateDuel.h"
-#include "../include/GameStateDeckViewer.h"
-#include "../include/Translate.h"
-#include "../include/ManaCostHybrid.h"
-#include "../include/MTGCardInstance.h"
-#include "../include/WFilter.h"
-#include <vector>
+
+#include "DeckManager.h"
+#include "GameStateDuel.h"
+#include "GameStateDeckViewer.h"
+#include "Translate.h"
+#include "ManaCostHybrid.h"
+#include "MTGCardInstance.h"
+#include "WFilter.h"
+
 
 
 //!! helper function; this is probably handled somewhere in the code already.

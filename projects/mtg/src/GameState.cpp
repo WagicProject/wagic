@@ -1,12 +1,12 @@
-#include "../include/config.h"
-#include "../include/Translate.h"
-#include "../include/GameState.h"
-#include "../include/Player.h"
-#include "../include/SimpleMenu.h"
-#include "../include/DeckStats.h"
-#include "../include/DeckMetaData.h"
-#include "../include/Player.h"
-#include <vector>
+#include "PrecompiledHeader.h"
+
+#include "Translate.h"
+#include "GameState.h"
+#include "Player.h"
+#include "SimpleMenu.h"
+#include "DeckStats.h"
+#include "DeckMetaData.h"
+#include "Player.h"
 
 // The purpose of this method is to create a listing of decks to be used for the input menu
 // by default, the list will be sorted by name

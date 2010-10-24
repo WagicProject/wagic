@@ -1,7 +1,8 @@
-#include "../include/config.h"
-#include "../include/SimpleMenuItem.h"
-#include "../include/Translate.h"
-#include "../include/WResourceManager.h"
+#include "PrecompiledHeader.h"
+
+#include "SimpleMenuItem.h"
+#include "Translate.h"
+#include "WResourceManager.h"
 
 SimpleMenuItem::SimpleMenuItem(SimpleMenu* _parent, int id, int fontId, string text, int x, int y, bool hasFocus, bool autoTranslate): JGuiObject(id), parent(_parent), fontId(fontId), mX(x), mY(y)
 {

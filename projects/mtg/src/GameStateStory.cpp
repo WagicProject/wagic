@@ -1,8 +1,9 @@
-#include "../include/GameStateStory.h"
-#include "../include/config.h"
-#include "../include/StoryFlow.h"
-#include "../include/SimpleMenu.h"
-#include "../include/GameApp.h"
+#include "PrecompiledHeader.h"
+
+#include "GameStateStory.h"
+#include "StoryFlow.h"
+#include "SimpleMenu.h"
+#include "GameApp.h"
 #include <dirent.h>
 #include <fstream>
 

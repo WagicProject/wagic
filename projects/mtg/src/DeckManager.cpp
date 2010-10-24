@@ -1,4 +1,6 @@
-#include "../include/DeckManager.h"
+#include "PrecompiledHeader.h"
+
+#include "DeckManager.h"
 #include <JRenderer.h>
 
 void DeckManager::updateMetaDataList( vector<DeckMetaData *> * refList, bool isAI )

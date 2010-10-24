@@ -1,9 +1,10 @@
-#include <iostream>
-#include "../include/MTGDefinitions.h"
-#include "../include/Pos.h"
-#include "../include/CardGui.h"
-#include "../include/DamagerDamaged.h"
-#include "../include/Trash.h"
+#include "PrecompiledHeader.h"
+
+#include "MTGDefinitions.h"
+#include "Pos.h"
+#include "CardGui.h"
+#include "DamagerDamaged.h"
+#include "Trash.h"
 
 template <class T>
 void TrashBin<T>::put_out()

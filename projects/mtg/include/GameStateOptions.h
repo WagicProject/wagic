@@ -3,7 +3,7 @@
 
 #include <JGE.h>
 #include <JGui.h>
-#include "../include/GameState.h"
+#include "GameState.h"
 
 class GameApp;
 class WGuiTabMenu;

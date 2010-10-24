@@ -5,9 +5,9 @@
 #include <vector>
 #include <string>
 #include <JGE.h>
-#include "../include/WFont.h"
+#include "WFont.h"
 #include <time.h>
-#include "../include/Player.h"
+#include "Player.h"
 
 class GameApp;
 

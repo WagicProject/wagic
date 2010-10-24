@@ -1,11 +1,12 @@
-#include "../include/config.h"
-#include "../include/GameApp.h"
-#include "../include/GuiBackground.h"
-#include "../include/GameObserver.h"
-#include "../include/Rules.h"
-#include "../include/DeckDataWrapper.h"
-#include "../include/WFilter.h"
-#include "../include/StyleManager.h"
+#include "PrecompiledHeader.h"
+
+#include "GameApp.h"
+#include "GuiBackground.h"
+#include "GameObserver.h"
+#include "Rules.h"
+#include "DeckDataWrapper.h"
+#include "WFilter.h"
+#include "StyleManager.h"
 #include "../../../JGE/src/tinyxml/tinyxml.h"
 
 void StyleManager::killRules(){

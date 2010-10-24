@@ -1,11 +1,11 @@
-#include "../include/DebugRoutines.h"
-#include "../include/ExtraCost.h"
-#include "../include/TargetChooser.h"
-#include "../include/MTGCardInstance.h"
-#include "../include/Translate.h"
-#include "../include/config.h"
-#include "../include/Player.h"
-#include "../include/Counters.h"
+#include "PrecompiledHeader.h"
+
+#include "ExtraCost.h"
+#include "TargetChooser.h"
+#include "MTGCardInstance.h"
+#include "Translate.h"
+#include "Player.h"
+#include "Counters.h"
 #include <JGE.h>
 
 ExtraCost::ExtraCost(const std::string& inCostRenderString, TargetChooser *_tc)

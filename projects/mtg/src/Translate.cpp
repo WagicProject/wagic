@@ -1,9 +1,9 @@
-#include "../include/Translate.h"
-#include "../include/config.h"
-#include "../include/GameOptions.h"
+#include "PrecompiledHeader.h"
+
+#include "Translate.h"
+#include "GameOptions.h"
 #include <JGE.h>
 #include <fstream>
-#include <iostream>
 
 Translator *  Translator::mInstance = NULL;
 

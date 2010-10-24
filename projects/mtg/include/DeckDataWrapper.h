@@ -1,10 +1,10 @@
 #ifndef _DECKDATAWRAPPER_H_
 #define _DECKDATAWRAPPER_H_
 
-#include "../include/MTGDefinitions.h"
-#include "../include/MTGCard.h"
-#include "../include/CardPrimitive.h"
-#include "../include/WDataSrc.h"
+#include "MTGDefinitions.h"
+#include "MTGCard.h"
+#include "CardPrimitive.h"
+#include "WDataSrc.h"
 #include <map>
 #include <string>
 using std::map;

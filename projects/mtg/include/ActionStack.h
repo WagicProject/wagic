@@ -22,10 +22,10 @@
 #define RESOLVED_OK 1
 #define RESOLVED_NOK -1
 
-#include "../include/PlayGuiObject.h"
+#include "PlayGuiObject.h"
 #include "GuiLayers.h"
-#include "../include/TargetsList.h"
-#include "../include/Targetable.h"
+#include "TargetsList.h"
+#include "Targetable.h"
 
 class GuiLayer;
 class PlayGuiObject;

@@ -1,10 +1,9 @@
-#include "../include/config.h"
-#include "../include/DebugRoutines.h"
-#include "../include/ActionLayer.h"
-#include "../include/GameObserver.h"
-#include "../include/Targetable.h"
-#include "../include/WEvent.h"
-#include <assert.h>
+#include "PrecompiledHeader.h"
+
+#include "ActionLayer.h"
+#include "GameObserver.h"
+#include "Targetable.h"
+#include "WEvent.h"
 
 MTGAbility* ActionLayer::getAbility(int type){
   for (int i = 1; i < mCount; i++){

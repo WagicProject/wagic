@@ -1,16 +1,14 @@
-#include "../include/config.h"
-#include "../include/DebugRoutines.h"
-#include "../include/utils.h"
-#include <iostream>
+#include "PrecompiledHeader.h"
+
+#include "utils.h"
 #include <fstream>
-#include <string>
 #include <stdlib.h>
 #include <JGE.h>
 #include <JFileSystem.h>
-#include "../include/GameOptions.h"
-#include "../include/WResourceManager.h"
+#include "GameOptions.h"
+#include "WResourceManager.h"
 #include <hge/hgeparticle.h>
-#include <assert.h>
+
 #ifdef WITH_FMOD
 #endif
 

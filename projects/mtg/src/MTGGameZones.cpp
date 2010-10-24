@@ -1,10 +1,10 @@
-#include "../include/config.h"
-#include "../include/MTGGameZones.h"
-#include "../include/Player.h"
-#include "../include/GameOptions.h"
-#include "../include/WEvent.h"
-#include "../include/MTGDeck.h"
-#include <assert.h>
+#include "PrecompiledHeader.h"
+
+#include "MTGGameZones.h"
+#include "Player.h"
+#include "GameOptions.h"
+#include "WEvent.h"
+#include "MTGDeck.h"
 
 #if defined (WIN32) || defined (LINUX)
 #include <time.h>

@@ -1,11 +1,11 @@
-#include "../include/config.h"
-#include "../include/DebugRoutines.h"
-#include "../include/GameApp.h"
-#include "../include/Player.h"
-#include "../include/Tasks.h"
-#include "../include/AIPlayer.h"
-#include "../include/Translate.h"
-#include "../include/MTGDefinitions.h"
+#include "PrecompiledHeader.h"
+
+#include "GameApp.h"
+#include "Player.h"
+#include "Tasks.h"
+#include "AIPlayer.h"
+#include "Translate.h"
+#include "MTGDefinitions.h"
 #include <JRenderer.h>
 #include <math.h>
 

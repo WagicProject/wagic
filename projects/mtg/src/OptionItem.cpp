@@ -1,11 +1,12 @@
-#include "../include/config.h"
-#include "../include/OptionItem.h"
+#include "PrecompiledHeader.h"
+
+#include "OptionItem.h"
 #include <JGE.h>
-#include "../include/PlayerData.h"
-#include "../include/Translate.h"
-#include "../include/Subtypes.h"
-#include "../include/TranslateKeys.h"
-#include "../include/StyleManager.h"
+#include "PlayerData.h"
+#include "Translate.h"
+#include "Subtypes.h"
+#include "TranslateKeys.h"
+#include "StyleManager.h"
 #include <dirent.h>
 #include <stdlib.h>
 #include <algorithm>

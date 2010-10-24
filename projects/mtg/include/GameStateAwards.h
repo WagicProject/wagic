@@ -2,8 +2,8 @@
 #define _GAME_STATE_AWARDS_H_
 
 #include <JGE.h>
-#include "../include/GameState.h"
-#include "../include/SimpleMenu.h"
+#include "GameState.h"
+#include "SimpleMenu.h"
 
 class WGuiList;
 class WGuiMenu;

@@ -1,8 +1,10 @@
-#include "../include/WEvent.h"
-#include "../include/MTGCardInstance.h"
-#include "../include/MTGGameZones.h"
-#include "../include/Damage.h"
-#include "../include/PhaseRing.h"
+#include "PrecompiledHeader.h"
+
+#include "WEvent.h"
+#include "MTGCardInstance.h"
+#include "MTGGameZones.h"
+#include "Damage.h"
+#include "PhaseRing.h"
 
 WEvent::WEvent(int type) : type(type){}
 

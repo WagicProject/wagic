@@ -50,11 +50,13 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="&quot;$(MTGEXTRAS)&quot;;../../JGE/include;../../JGE/Dependencies/include"
+				AdditionalIncludeDirectories="&quot;$(MTGEXTRAS)&quot;;./include;../../JGE/include;../../JGE/Dependencies/include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="2"
+				PrecompiledHeaderThrough="PrecompiledHeader.h"
 				PrecompiledHeaderFile=".\Release/template.pch"
 				AssemblerListingLocation=".\Release/"
 				ObjectFile=".\Release/"
@@ -145,11 +147,13 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(MTGEXTRAS)&quot;;../../JGE/include;../../JGE/Dependencies/include"
+				AdditionalIncludeDirectories="&quot;$(MTGEXTRAS)&quot;;./include;../../JGE/include;../../JGE/Dependencies/include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
+				UsePrecompiledHeader="2"
+				PrecompiledHeaderThrough="PrecompiledHeader.h"
 				PrecompiledHeaderFile=".\Debug/template.pch"
 				AssemblerListingLocation=".\Debug/"
 				ObjectFile=".\Debug/"
@@ -244,11 +248,13 @@
 				Name="VCCLCompilerTool"
 				Optimization="3"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="&quot;$(MTGEXTRAS)&quot;;../../JGE/include;../../JGE/Dependencies/include"
+				AdditionalIncludeDirectories="&quot;$(MTGEXTRAS)&quot;;./include;../../JGE/include;../../JGE/Dependencies/include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_SECURE_SCL=0;_HAS_ITERATOR_DEBBUGING=0"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="2"
+				PrecompiledHeaderThrough="PrecompiledHeader.h"
 				PrecompiledHeaderFile=".\Release/template.pch"
 				AssemblerListingLocation=".\Release/"
 				ObjectFile=".\Release/"
@@ -341,11 +347,13 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(MTGEXTRAS)&quot;;../../JGE/include;../../JGE/Dependencies/include"
+				AdditionalIncludeDirectories="&quot;$(MTGEXTRAS)&quot;;./include;../../JGE/include;../../JGE/Dependencies/include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
+				UsePrecompiledHeader="2"
+				PrecompiledHeaderThrough="PrecompiledHeader.h"
 				PrecompiledHeaderFile=".\Debug/template.pch"
 				AssemblerListingLocation=".\Debug/"
 				ObjectFile=".\Debug/"
@@ -744,6 +752,46 @@
 			<File
 				RelativePath=".\src\Pos.cpp"
 				>
+			</File>
+			<File
+				RelativePath=".\src\PrecompiledHeader.cpp"
+				>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="1"
+						PrecompiledHeaderThrough="PrecompiledHeader.h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="1"
+						PrecompiledHeaderThrough="PrecompiledHeader.h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Profile|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="1"
+						PrecompiledHeaderThrough="PrecompiledHeader.h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="HQ Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="1"
+						PrecompiledHeaderThrough="PrecompiledHeader.h"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\src\PriceList.cpp"
@@ -1152,6 +1200,10 @@
 			</File>
 			<File
 				RelativePath=".\include\Pos.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\PrecompiledHeader.h"
 				>
 			</File>
 			<File

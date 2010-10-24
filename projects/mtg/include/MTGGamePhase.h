@@ -5,7 +5,7 @@
 #include "GameObserver.h"
 
 #include <JGui.h>
-#include "../include/WFont.h"
+#include "WFont.h"
 
 
 class MTGGamePhase: public ActionElement {

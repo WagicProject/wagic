@@ -1,7 +1,7 @@
 #ifndef _CARDS_H_
 #define _CARDS_H_
 
-#include "../include/DebugRoutines.h" 
+#include "DebugRoutines.h" 
 #include "MTGAbility.h"
 #include "ManaCost.h"
 #include "CardDescriptor.h"

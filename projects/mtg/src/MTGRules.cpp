@@ -1,9 +1,9 @@
-#include "../include/config.h"
-#include "../include/DebugRoutines.h"
-#include "../include/MTGRules.h"
-#include "../include/Translate.h"
-#include "../include/Subtypes.h"
-#include "../include/GameOptions.h"
+#include "PrecompiledHeader.h"
+
+#include "MTGRules.h"
+#include "Translate.h"
+#include "Subtypes.h"
+#include "GameOptions.h"
 
 
 

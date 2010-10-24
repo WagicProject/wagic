@@ -1,13 +1,12 @@
-#include "../include/CardPrimitive.h"
+#include "PrecompiledHeader.h"
 
+#include "CardPrimitive.h"
 
-#include <string>
 #include <stdlib.h>
 
-#include "../include/MTGDeck.h"
-#include "../include/config.h"
-#include "../include/Subtypes.h"
-#include "../include/Translate.h"
+#include "MTGDeck.h"
+#include "Subtypes.h"
+#include "Translate.h"
 
 using std::string;
 

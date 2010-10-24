@@ -1,6 +1,7 @@
-#include "../include/config.h"
-#include "../include/WFont.h"
-#include "../include/WResourceManager.h"
+#include "PrecompiledHeader.h"
+
+#include "WFont.h"
+#include "WResourceManager.h"
 #include "JFileSystem.h"
 
 #define ISGBK(c) ((c) > 0x80 || (c) < 0x30 || (c) == '-' || (c) == '/')

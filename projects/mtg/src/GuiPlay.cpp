@@ -1,7 +1,8 @@
-#include "../include/config.h"
-#include "../include/GameApp.h"
-#include "../include/GuiPlay.h"
-#include "../include/Trash.h"
+#include "PrecompiledHeader.h"
+
+#include "GameApp.h"
+#include "GuiPlay.h"
+#include "Trash.h"
 
 #define CARD_WIDTH (31)
 

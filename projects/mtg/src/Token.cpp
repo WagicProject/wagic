@@ -1,4 +1,6 @@
-#include "../include/Token.h"
+#include "PrecompiledHeader.h"
+
+#include "Token.h"
 
 Token::Token(string _name, MTGCardInstance * source, int _power, int _toughness):MTGCardInstance(){
   isToken = true;

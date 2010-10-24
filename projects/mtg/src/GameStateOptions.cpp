@@ -1,11 +1,12 @@
-#include "../include/config.h"
-#include "../include/GameStateOptions.h"
-#include "../include/GameApp.h"
-#include "../include/OptionItem.h"
-#include "../include/SimpleMenu.h"
-#include "../include/SimplePad.h"
-#include "../include/GameOptions.h"
-#include "../include/Translate.h"
+#include "PrecompiledHeader.h"
+
+#include "GameStateOptions.h"
+#include "GameApp.h"
+#include "OptionItem.h"
+#include "SimpleMenu.h"
+#include "SimplePad.h"
+#include "GameOptions.h"
+#include "Translate.h"
 
 GameStateOptions::GameStateOptions(GameApp* parent): GameState(parent), mReload(false), grabber(NULL), optionsMenu(NULL), optionsTabs(NULL) {}
 GameStateOptions::~GameStateOptions() {}

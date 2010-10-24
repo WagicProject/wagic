@@ -1,6 +1,7 @@
-#include "../include/config.h"
-#include "../include/GameApp.h"
-#include "../include/GuiFrame.h"
+#include "PrecompiledHeader.h"
+
+#include "GameApp.h"
+#include "GuiFrame.h"
 
 GuiFrame::GuiFrame()
 {

@@ -1,8 +1,8 @@
-#include "../include/config.h"
-#include "../include/GameOptions.h"
-#include "../include/PlayerData.h"
+#include "PrecompiledHeader.h"
 
-#include <string.h>
+#include "GameOptions.h"
+#include "PlayerData.h"
+
 #include <stdio.h>
 
 PlayerData::PlayerData(){

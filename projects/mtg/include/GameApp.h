@@ -12,7 +12,7 @@
 #define _GAMEAPP_H_
 
 
-#include "../include/Logger.h"
+#include "Logger.h"
 
 
 #include <JApp.h>
@@ -20,16 +20,16 @@
 #include <JSprite.h>
 #include <JLBFont.h>
 #include <hge/hgeparticle.h>
-#include "../include/WResourceManager.h"
+#include "WResourceManager.h"
 
-#include "../include/GameState.h"
-#include "../include/GameOptions.h"
+#include "GameState.h"
+#include "GameOptions.h"
 
-#include "../include/MTGDeck.h"
-#include "../include/MTGCard.h"
-#include "../include/MTGGameZones.h"
+#include "MTGDeck.h"
+#include "MTGCard.h"
+#include "MTGGameZones.h"
 
-#include "../include/CardEffect.h"
+#include "CardEffect.h"
 
 #define PLAYER_TYPE_CPU 0
 #define PLAYER_TYPE_HUMAN 1

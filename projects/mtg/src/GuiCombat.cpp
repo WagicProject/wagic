@@ -1,10 +1,10 @@
-#include <assert.h>
-#include "../include/config.h"
-#include "../include/GameApp.h"
-#include "../include/GuiCombat.h"
-#include "../include/AIPlayer.h"
-#include "../include/GameObserver.h"
-#include "../include/Trash.h"
+#include "PrecompiledHeader.h"
+
+#include "GameApp.h"
+#include "GuiCombat.h"
+#include "AIPlayer.h"
+#include "GameObserver.h"
+#include "Trash.h"
 #include "Closest.cpp"
 
 static const float MARGIN = 70;

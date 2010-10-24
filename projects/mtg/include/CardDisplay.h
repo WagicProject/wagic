@@ -1,7 +1,7 @@
 #ifndef _CARD_DISPLAY_H_
 #define _CARD_DISPLAY_H_
 
-#include "../include/PlayGuiObjectController.h"
+#include "PlayGuiObjectController.h"
 
 class TargetChooser;
 class MTGGameZone;

@@ -1,8 +1,9 @@
-#include "../include/config.h"
-#include "../include/DeckDataWrapper.h"
-#include "../include/MTGDeck.h"
-#include "../include/PriceList.h"
-#include "../include/WDataSrc.h"
+#include "PrecompiledHeader.h"
+
+#include "DeckDataWrapper.h"
+#include "MTGDeck.h"
+#include "PriceList.h"
+#include "WDataSrc.h"
 
 DeckDataWrapper::DeckDataWrapper(MTGDeck * deck){
   parent = deck;  

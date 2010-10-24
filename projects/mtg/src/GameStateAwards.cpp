@@ -1,15 +1,16 @@
 /*
   This is where the player views their awards, etc.
 */
-#include "../include/config.h"
+#include "PrecompiledHeader.h"
+
 #include <JRenderer.h>
-#include "../include/GameStateAwards.h"
-#include "../include/GameApp.h"
-#include "../include/MTGDeck.h"
-#include "../include/Translate.h"
-#include "../include/OptionItem.h"
-#include "../include/GameOptions.h"
-#include "../include/DeckDataWrapper.h"
+#include "GameStateAwards.h"
+#include "GameApp.h"
+#include "MTGDeck.h"
+#include "Translate.h"
+#include "OptionItem.h"
+#include "GameOptions.h"
+#include "DeckDataWrapper.h"
 
 enum ENUM_AWARDS_STATE{
     STATE_LISTVIEW,

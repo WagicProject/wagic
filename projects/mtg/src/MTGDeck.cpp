@@ -1,18 +1,17 @@
-#include <string.h>
+#include "PrecompiledHeader.h"
+
 #include <algorithm>
-#include <string>
 #include <sstream>
-#include "../include/config.h"
-#include "../include/DebugRoutines.h"
-#include "../include/MTGDeck.h"
-#include "../include/utils.h"
-#include "../include/Subtypes.h"
-#include "../include/Translate.h"
-#include "../include/DeckMetaData.h"
-#include "../include/PriceList.h"
-#include "../include/WDataSrc.h"
-#include "../include/MTGPack.h"
-#include "../include/utils.h"
+
+#include "MTGDeck.h"
+#include "utils.h"
+#include "Subtypes.h"
+#include "Translate.h"
+#include "DeckMetaData.h"
+#include "PriceList.h"
+#include "WDataSrc.h"
+#include "MTGPack.h"
+#include "utils.h"
 
 #include <JGE.h>
 

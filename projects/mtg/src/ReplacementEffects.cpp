@@ -1,7 +1,8 @@
-#include "../include/config.h"
-#include "../include/ReplacementEffects.h"
-#include "../include/MTGCardInstance.h"
-#include "../include/TargetChooser.h"
+#include "PrecompiledHeader.h"
+
+#include "ReplacementEffects.h"
+#include "MTGCardInstance.h"
+#include "TargetChooser.h"
 
 
 

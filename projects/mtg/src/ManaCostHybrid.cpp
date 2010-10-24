@@ -1,4 +1,6 @@
-#include "../include/ManaCostHybrid.h"
+#include "PrecompiledHeader.h"
+
+#include "ManaCostHybrid.h"
 
 ManaCostHybrid::ManaCostHybrid(){
   init(0,0,0,0);

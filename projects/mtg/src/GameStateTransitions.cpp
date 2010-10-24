@@ -1,12 +1,13 @@
-#include "../include/config.h"
+#include "PrecompiledHeader.h"
+
 #include <JRenderer.h>
 #include <JGui.h>
-#include "../include/GameApp.h"
-#include "../include/GameStateTransitions.h"
-#include "../include/MTGDeck.h"
-#include "../include/Translate.h"
-#include "../include/OptionItem.h"
-#include "../include/GameOptions.h"
+#include "GameApp.h"
+#include "GameStateTransitions.h"
+#include "MTGDeck.h"
+#include "Translate.h"
+#include "OptionItem.h"
+#include "GameOptions.h"
 
 TransitionBase::TransitionBase(GameApp* parent, GameState* _from, GameState* _to, float duration): GameState(parent){
   from = _from;

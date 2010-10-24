@@ -3,9 +3,9 @@
 
 #include <JGui.h>
 #include <dirent.h>
-#include "../include/GameState.h"
-#include "../include/SimpleMenu.h"
-#include "../include/TextScroller.h"
+#include "GameState.h"
+#include "SimpleMenu.h"
+#include "TextScroller.h"
 
 class GameStateMenu: public GameState, public JGuiListener
 {

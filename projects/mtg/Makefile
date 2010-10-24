@@ -1,4 +1,4 @@
-OBJS = objs/ActionElement.o objs/ActionLayer.o objs/ActionStack.o objs/AIMomirPlayer.o objs/AIPlayer.o objs/AIStats.o objs/CardGui.o objs/CardDescriptor.o objs/CardDisplay.o objs/CardEffect.o objs/CardPrimitive.o objs/CardSelector.o objs/Counters.o objs/Credits.o objs/Damage.o objs/DamagerDamaged.o objs/DeckDataWrapper.o objs/DeckMetaData.o objs/DeckStats.o objs/DuelLayers.o objs/Effects.o objs/ExtraCost.o objs/GameApp.o objs/GameLauncher.o objs/GameObserver.o objs/GameOptions.o objs/GameState.o objs/GameStateAwards.o objs/GameStateDeckViewer.o objs/GameStateDuel.o  objs/DeckManager.o objs/GameStateMenu.o objs/GameStateOptions.o objs/GameStateShop.o objs/GameStateStory.o objs/GameStateTransitions.o objs/GuiAvatars.o objs/GuiBackground.o objs/GuiCardsController.o objs/GuiCombat.o objs/GuiFrame.o objs/GuiHand.o objs/GuiLayers.o objs/GuiMana.o objs/GuiPhaseBar.o objs/GuiPlay.o objs/GuiStatic.o objs/Logger.o objs/ManaCost.o objs/ManaCostHybrid.o  objs/MenuItem.o objs/MTGAbility.o objs/MTGCardInstance.o objs/MTGCard.o objs/MTGDeck.o objs/MTGDefinitions.o objs/MTGGamePhase.o objs/MTGGameZones.o objs/MTGPack.o objs/MTGRules.o objs/OptionItem.o objs/PhaseRing.o objs/Player.o objs/PlayerData.o  objs/PlayGuiObjectController.o objs/PlayGuiObject.o objs/Pos.o objs/PriceList.o objs/ReplacementEffects.o objs/Rules.o objs/SimpleMenu.o objs/SimpleMenuItem.o objs/SimplePad.o objs/StoryFlow.o objs/StyleManager.o objs/Subtypes.o objs/TargetChooser.o objs/TargetsList.o objs/TextScroller.o objs/ThisDescriptor.o objs/Token.o objs/Translate.o objs/TranslateKeys.o objs/Trash.o objs/utils.o objs/WEvent.o objs/WResourceManager.o objs/WCachedResource.o objs/WDataSrc.o objs/WGui.o objs/WFilter.o objs/Tasks.o objs/WFont.o
+OBJS = objs/ActionElement.o objs/ActionLayer.o objs/ActionStack.o objs/AIMomirPlayer.o objs/AIPlayer.o objs/AIStats.o objs/CardGui.o objs/CardDescriptor.o objs/CardDisplay.o objs/CardEffect.o objs/CardPrimitive.o objs/CardSelector.o objs/Counters.o objs/Credits.o objs/Damage.o objs/DamagerDamaged.o objs/DeckDataWrapper.o objs/DeckMetaData.o objs/DeckStats.o objs/DuelLayers.o objs/Effects.o objs/ExtraCost.o objs/GameApp.o objs/GameLauncher.o objs/GameObserver.o objs/GameOptions.o objs/GameState.o objs/GameStateAwards.o objs/GameStateDeckViewer.o objs/GameStateDuel.o  objs/DeckManager.o objs/GameStateMenu.o objs/GameStateOptions.o objs/GameStateShop.o objs/GameStateStory.o objs/GameStateTransitions.o objs/GuiAvatars.o objs/GuiBackground.o objs/GuiCardsController.o objs/GuiCombat.o objs/GuiFrame.o objs/GuiHand.o objs/GuiLayers.o objs/GuiMana.o objs/GuiPhaseBar.o objs/GuiPlay.o objs/GuiStatic.o objs/Logger.o objs/ManaCost.o objs/ManaCostHybrid.o  objs/MenuItem.o objs/MTGAbility.o objs/MTGCardInstance.o objs/MTGCard.o objs/MTGDeck.o objs/MTGDefinitions.o objs/MTGGamePhase.o objs/MTGGameZones.o objs/MTGPack.o objs/MTGRules.o objs/OptionItem.o objs/PhaseRing.o objs/Player.o objs/PlayerData.o  objs/PlayGuiObjectController.o objs/PlayGuiObject.o objs/Pos.o objs/PrecompiledHeader.o objs/PriceList.o objs/ReplacementEffects.o objs/Rules.o objs/SimpleMenu.o objs/SimpleMenuItem.o objs/SimplePad.o objs/StoryFlow.o objs/StyleManager.o objs/Subtypes.o objs/TargetChooser.o objs/TargetsList.o objs/TextScroller.o objs/ThisDescriptor.o objs/Token.o objs/Translate.o objs/TranslateKeys.o objs/Trash.o objs/utils.o objs/WEvent.o objs/WResourceManager.o objs/WCachedResource.o objs/WDataSrc.o objs/WGui.o objs/WFilter.o objs/Tasks.o objs/WFont.o
 DEPS = $(patsubst objs/%.o, deps/%.d, $(OBJS))
 
 RESULT = $(shell psp-config --psp-prefix 2> Makefile.cache)
@@ -34,18 +34,17 @@ PSP_EBOOT_ICON = icon.png
 #PSP_EBOOT_ICON1 = icon1.pmf
 PSP_EBOOT_UNKPNG = pic0.png
 PSP_EBOOT_PIC1 = pic1.png
-CFLAGS = -O2 -G0 -DPSPFW3XX -DDEVHOOK
-INCDIR = ../../JGE/include ../../JGE/include/psp ../../JGE/include/psp/freetype2 ../../JGE/src
+INCDIR = ../../JGE/include ../../JGE/include/psp ../../JGE/include/psp/freetype2 ../../JGE/src ../../projects/mtg/include
 LIBDIR = ../../JGE/lib/psp
+CFLAGS = -O2 -G0 -DPSPFW3XX -DDEVHOOK -DUSE_PRECOMPILED_HEADERS=1
 else
 OBJS += objs/TestSuiteAI.o
-INCDIR = -I../../JGE/include -I../../JGE/src -I/usr/X11/include
+INCDIR = -I../../JGE/include -I../../JGE/src -I/usr/X11/include ../../projects/mtg/include
 LIBDIR = -L../../JGE/lib/linux -L../../JGE -L/usr/X11/lib
 LIBS = -ljge -lfreetype -ljpeg -lgif -lpng -lz -lm -lstdc++ -lhgetools -lGL -lGLU -lX11 $(FMOD)
-CFLAGS = $(INCDIR) -DLINUX
+CFLAGS = -O2 -DLINUX -DUSE_PRECOMPILED_HEADERS=1
 ASFLAGS = $(CXXFLAGS)
 
-all: CFLAGS += -O2
 all: $(DEFAULT_RULE)
 
 endif
@@ -90,8 +89,11 @@ clean:
 
 endif
 
-$(OBJS): objs/%.o: src/%.cpp
-	$(CXX) -c -o $@ $(CXXFLAGS) $<
+PrecompiledHeader.h.gch: ../../projects/mtg/include/PrecompiledHeader.h
+	$(CXX) -c $(CXXFLAGS) $<
+
+$(OBJS): objs/%.o: src/%.cpp PrecompiledHeader.h.gch
+	$(CXX) -c $(CXXFLAGS) $< -o $@  
 
 $(DEPS): deps/%.d: src/%.cpp
 	@$(CXX) -MM $(CXXFLAGS) -MQ $(patsubst deps/%.d, objs/%.o, $(@)) -MQ $@ $< > $@

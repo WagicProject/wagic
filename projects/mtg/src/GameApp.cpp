@@ -1,5 +1,5 @@
-#include "../include/config.h"
-#include "../include/DebugRoutines.h"
+#include "PrecompiledHeader.h"
+
 #include <JGE.h>
 #include <JRenderer.h>
 #if defined (WIN32) || defined (LINUX)
@@ -8,21 +8,21 @@
 #include <pspfpu.h>
 #endif
 
-#include "../include/WResourceManager.h"
-#include "../include/GameApp.h"
-#include "../include/Subtypes.h"
-#include "../include/GameStateTransitions.h"
-#include "../include/GameStateDeckViewer.h"
-#include "../include/GameStateMenu.h"
-#include "../include/GameStateDuel.h"
-#include "../include/GameStateOptions.h"
-#include "../include/GameStateShop.h"
-#include "../include/GameStateAwards.h"
-#include "../include/GameStateStory.h"
-#include "../include/DeckStats.h"
-#include "../include/DeckMetaData.h"
-#include "../include/Translate.h"
-#include "../include/WFilter.h"
+#include "WResourceManager.h"
+#include "GameApp.h"
+#include "Subtypes.h"
+#include "GameStateTransitions.h"
+#include "GameStateDeckViewer.h"
+#include "GameStateMenu.h"
+#include "GameStateDuel.h"
+#include "GameStateOptions.h"
+#include "GameStateShop.h"
+#include "GameStateAwards.h"
+#include "GameStateStory.h"
+#include "DeckStats.h"
+#include "DeckMetaData.h"
+#include "Translate.h"
+#include "WFilter.h"
 
 #define DEFAULT_DURATION .25
 

@@ -1,9 +1,9 @@
-#include "../include/DebugRoutines.h"
-#include "../include/PhaseRing.h"
-#include "../include/MTGDefinitions.h"
-#include "../include/Player.h"
-#include "../include/config.h"
-#include "../include/WEvent.h"
+#include "PrecompiledHeader.h"
+
+#include "PhaseRing.h"
+#include "MTGDefinitions.h"
+#include "Player.h"
+#include "WEvent.h"
 
 
 //Parses a string and gives phase numer

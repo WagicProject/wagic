@@ -1,11 +1,12 @@
-#include "../include/config.h"
-#include "../include/Damage.h"
-#include "../include/MTGCardInstance.h"
-#include "../include/Counters.h"
-#include "../include/WEvent.h"
-#include "../include/Translate.h"
-#include "../include/WResourceManager.h"
-#include "../include/GameObserver.h"
+#include "PrecompiledHeader.h"
+
+#include "Damage.h"
+#include "MTGCardInstance.h"
+#include "Counters.h"
+#include "WEvent.h"
+#include "Translate.h"
+#include "WResourceManager.h"
+#include "GameObserver.h"
 
 Damage::Damage(MTGCardInstance * source, Damageable * target) {
   init(source, target, source->getPower(), DAMAGE_OTHER);

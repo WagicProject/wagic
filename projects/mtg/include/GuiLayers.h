@@ -7,7 +7,7 @@
 #define DIR_RIGHT 4
 
 #include <JGui.h>
-#include "../include/WEvent.h"
+#include "WEvent.h"
 
 class GameObserver;
 class Player;

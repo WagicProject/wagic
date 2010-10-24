@@ -1,7 +1,9 @@
-#include "../include/TextScroller.h"
-#include "../include/WResourceManager.h"
-#include "../include/utils.h"
-#include "../include/WFont.h"
+#include "PrecompiledHeader.h"
+
+#include "TextScroller.h"
+#include "WResourceManager.h"
+#include "utils.h"
+#include "WFont.h"
 
 TextScroller::TextScroller(int fontId, float x, float y, float width, float speed):JGuiObject(0),fontId(fontId){
   mWidth = width;

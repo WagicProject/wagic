@@ -1,7 +1,8 @@
-#include "../include/config.h"
-#include "../include/MenuItem.h"
-#include "../include/GameOptions.h"
-#include "../include/Translate.h"
+#include "PrecompiledHeader.h"
+
+#include "MenuItem.h"
+#include "GameOptions.h"
+#include "Translate.h"
 
 MenuItem::MenuItem(int id, WFont *font, string text, int x, int y, JQuad * _off, JQuad * _on, const char * particle, JQuad * particleTex, bool hasFocus): JGuiObject(id), mFont(font), mX(x), mY(y)
 {

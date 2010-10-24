@@ -1,9 +1,10 @@
-#include "../include/config.h"
-#include "../include/TargetsList.h"
-#include "../include/Player.h"
-#include "../include/MTGCardInstance.h"
-#include "../include/Damage.h"
-#include "../include/ActionStack.h"
+#include "PrecompiledHeader.h"
+
+#include "TargetsList.h"
+#include "Player.h"
+#include "MTGCardInstance.h"
+#include "Damage.h"
+#include "ActionStack.h"
 
 TargetsList::TargetsList(){
   cursor = 0;

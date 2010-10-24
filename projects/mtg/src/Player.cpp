@@ -1,8 +1,9 @@
-#include "../include/config.h"
-#include "../include/Player.h"
-#include "../include/GameObserver.h"
-#include "../include/DeckStats.h"
-#include "../include/ManaCost.h"
+#include "PrecompiledHeader.h"
+
+#include "Player.h"
+#include "GameObserver.h"
+#include "DeckStats.h"
+#include "ManaCost.h"
 
 
 

@@ -1,9 +1,8 @@
-#include "../include/config.h"
-#include "../include/DebugRoutines.h"
-#include "../include/Logger.h"
+#include "PrecompiledHeader.h"
+
+#include "Logger.h"
 #ifdef DOLOG
 
-#include <iostream>
 #include <fstream>
 using namespace std;
 

@@ -1,6 +1,6 @@
-#include <iostream>
-#include "../include/config.h"
-#include "../include/PlayGuiObject.h"
+#include "PrecompiledHeader.h"
+
+#include "PlayGuiObject.h"
 
 using namespace std;
 

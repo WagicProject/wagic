@@ -1,9 +1,10 @@
-#include "../include/config.h"
-#include "../include/SimpleMenu.h"
-#include "../include/SimpleMenuItem.h"
+#include "PrecompiledHeader.h"
+
+#include "SimpleMenu.h"
+#include "SimpleMenuItem.h"
 #include "JTypes.h"
-#include "../include/GameApp.h"
-#include "../include/Translate.h"
+#include "GameApp.h"
+#include "Translate.h"
 
 namespace
 {

@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 #include <map>
-#include "../include/DeckStats.h"
+#include "DeckStats.h"
 
 
 using namespace std;

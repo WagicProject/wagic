@@ -1,8 +1,9 @@
-#include "../include/config.h"
-#include "../include/PlayGuiObjectController.h"
+#include "PrecompiledHeader.h"
 
-#include "../include/PlayGuiObject.h"
-#include "../include/GameObserver.h"
+#include "PlayGuiObjectController.h"
+
+#include "PlayGuiObject.h"
+#include "GameObserver.h"
 
 int PlayGuiObjectController::showBigCards = 1;
 

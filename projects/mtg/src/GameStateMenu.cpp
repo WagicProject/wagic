@@ -3,19 +3,20 @@
  * Main Menu and Loading screen
  */
 
+#include "PrecompiledHeader.h"
+
 #include <math.h>
-#include "../include/config.h"
-#include "../include/DebugRoutines.h"
-#include "../include/GameStateMenu.h"
-#include "../include/MenuItem.h"
-#include "../include/GameOptions.h"
-#include "../include/GameApp.h"
-#include "../include/MTGCard.h"
-#include "../include/Translate.h"
-#include "../include/DeckStats.h"
-#include "../include/PlayerData.h"
-#include "../include/utils.h"
-#include "../include/WFont.h"
+
+#include "GameStateMenu.h"
+#include "MenuItem.h"
+#include "GameOptions.h"
+#include "GameApp.h"
+#include "MTGCard.h"
+#include "Translate.h"
+#include "DeckStats.h"
+#include "PlayerData.h"
+#include "utils.h"
+#include "WFont.h"
 
 static const char* GAME_VERSION = "WTH?! 0.13.1 - by wololo";
 

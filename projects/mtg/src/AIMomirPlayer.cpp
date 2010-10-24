@@ -1,9 +1,10 @@
-#include "../include/config.h"
-#include "../include/AIMomirPlayer.h"
-#include "../include/CardDescriptor.h"
-#include "../include/DamagerDamaged.h"
-#include "../include/AIStats.h"
-#include "../include/AllAbilities.h"
+#include "PrecompiledHeader.h"
+
+#include "AIMomirPlayer.h"
+#include "CardDescriptor.h"
+#include "DamagerDamaged.h"
+#include "AIStats.h"
+#include "AllAbilities.h"
 
 
 MTGAbility * AIMomirPlayer::momirAbility = NULL;

@@ -1,7 +1,6 @@
 #include "string.h"
 #include <vector>
 #include <hge/hgeparticle.h>
-#include "config.h"
 #include "JGE.h"
 #include "MTGDefinitions.h"
 #include "GameApp.h"

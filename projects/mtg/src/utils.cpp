@@ -1,8 +1,6 @@
-#include "../include/config.h"
-#include "../include/utils.h"
-#include <vector>
-#include <sstream>
-#include <string>
+#include "PrecompiledHeader.h"
+
+#include "utils.h"
 
 using std::vector;
 

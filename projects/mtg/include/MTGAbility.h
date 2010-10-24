@@ -14,13 +14,13 @@ class AManaProducer;
 class WEvent;
 class Counter;
 
-#include "../include/GameObserver.h"
+#include "GameObserver.h"
 #include "ActionElement.h"
 #include <string>
 #include <map>
 #include <hge/hgeparticle.h>
-#include "../include/Damage.h"
-#include "../include/TargetChooser.h"
+#include "Damage.h"
+#include "TargetChooser.h"
 using std::string;
 using std::map;
 

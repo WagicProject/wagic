@@ -1,14 +1,14 @@
-#include "../include/config.h"
-#include "../include/utils.h"
-#include "../include/MTGDeck.h"
-#include "../include/GameOptions.h"
-#include "../include/Translate.h"
-#include "../include/OptionItem.h"
-#include "../include/StyleManager.h"
-#include <iostream>
-#include <sstream>
+#include "PrecompiledHeader.h"
+
+#include "utils.h"
+#include "MTGDeck.h"
+#include "GameOptions.h"
+#include "Translate.h"
+#include "OptionItem.h"
+#include "StyleManager.h"
+
 #include <fstream>
-#include <string>
+
 #include <stdlib.h>
 #include <JGE.h>
 

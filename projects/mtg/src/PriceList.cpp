@@ -1,5 +1,6 @@
-#include "../include/config.h"
-#include "../include/PriceList.h"
+#include "PrecompiledHeader.h"
+
+#include "PriceList.h"
 
 int PriceList::randomKey = 0;
 

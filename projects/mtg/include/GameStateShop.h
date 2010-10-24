@@ -2,14 +2,14 @@
 #define _GAME_STATE_SHOP_H_
 
 #include <JGE.h>
-#include "../include/GameState.h"
-#include "../include/SimpleMenu.h"
-#include "../include/OptionItem.h"
-#include "../include/PriceList.h"
-#include "../include/PlayerData.h"
-#include "../include/CardDisplay.h"
-#include "../include/DeckDataWrapper.h"
-#include "../include/Tasks.h"
+#include "GameState.h"
+#include "SimpleMenu.h"
+#include "OptionItem.h"
+#include "PriceList.h"
+#include "PlayerData.h"
+#include "CardDisplay.h"
+#include "DeckDataWrapper.h"
+#include "Tasks.h"
 
 
 #define STATE_BUY 1

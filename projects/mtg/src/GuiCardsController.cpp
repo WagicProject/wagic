@@ -1,4 +1,5 @@
-#include "../include/config.h"
-#include "../include/GuiCardsController.h"
+#include "PrecompiledHeader.h"
+
+#include "GuiCardsController.h"
 
 

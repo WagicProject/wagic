@@ -4,7 +4,7 @@
 // dirty, but I get OS header includes this way
 #include "JGE.h"
 
-#include "../include/config.h"
+#include "config.h"
 
 #include <iostream>
 #include <stdio.h>

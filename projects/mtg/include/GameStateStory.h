@@ -2,7 +2,7 @@
 #define _GAME_STATE_STORY_H_
 
 
-#include "../include/GameState.h"
+#include "GameState.h"
 #include <JGui.h>
 
 class StoryFlow;

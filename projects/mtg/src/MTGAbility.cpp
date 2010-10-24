@@ -1,15 +1,15 @@
-#include "../include/config.h"
-#include "../include/DebugRoutines.h"
-#include "../include/MTGAbility.h"
-#include "../include/ManaCost.h"
-#include "../include/MTGGameZones.h"
-#include "../include/AllAbilities.h"
-#include "../include/Damage.h"
-#include "../include/TargetChooser.h"
-#include "../include/CardGui.h"
-#include "../include/MTGDeck.h"
-#include "../include/Translate.h"
-#include "../include/ThisDescriptor.h"
+#include "PrecompiledHeader.h"
+
+#include "MTGAbility.h"
+#include "ManaCost.h"
+#include "MTGGameZones.h"
+#include "AllAbilities.h"
+#include "Damage.h"
+#include "TargetChooser.h"
+#include "CardGui.h"
+#include "MTGDeck.h"
+#include "Translate.h"
+#include "ThisDescriptor.h"
 
 
 int AbilityFactory::countCards(TargetChooser * tc, Player * player, int option)

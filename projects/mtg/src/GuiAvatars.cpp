@@ -1,7 +1,8 @@
-#include "../include/config.h"
-#include "../include/GameApp.h"
-#include "../include/GuiAvatars.h"
-#include "../include/GameObserver.h"
+#include "PrecompiledHeader.h"
+
+#include "GameApp.h"
+#include "GuiAvatars.h"
+#include "GameObserver.h"
 
 #define LIB_GRAVE_OFFSET 230
 

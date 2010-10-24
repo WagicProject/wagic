@@ -4,7 +4,6 @@
 #include <string>
 #include <JLBFont.h>
 #include <JGui.h>
-#include <string>
 #include "SimpleMenu.h"
 
 using std::string;

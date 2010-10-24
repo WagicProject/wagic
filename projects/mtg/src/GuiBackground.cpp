@@ -1,8 +1,9 @@
-#include "../include/config.h"
-#include "../include/GameApp.h"
-#include "../include/GuiBackground.h"
-#include "../include/GameObserver.h"
-#include "../include/Rules.h"
+#include "PrecompiledHeader.h"
+
+#include "GameApp.h"
+#include "GuiBackground.h"
+#include "GameObserver.h"
+#include "Rules.h"
 
 GuiBackground::GuiBackground()
 {

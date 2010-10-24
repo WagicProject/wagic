@@ -4,11 +4,13 @@
   Although there is only one MTGCard of each type, there can be as much Instances of it as needed in the game
   --------------------------------------------
 */
-#include "../include/config.h"
-#include "../include/MTGCardInstance.h"
-#include "../include/CardDescriptor.h"
-#include "../include/Counters.h"
-#include "../include/Subtypes.h"
+
+#include "PrecompiledHeader.h"
+
+#include "MTGCardInstance.h"
+#include "CardDescriptor.h"
+#include "Counters.h"
+#include "Subtypes.h"
 #include <algorithm>
 using namespace std;
 

@@ -3,7 +3,7 @@
 
 #include <JGE.h>
 #include <JGui.h>
-#include "../include/GameState.h"
+#include "GameState.h"
 
 class TransitionBase: public GameState, public JGuiListener{
 public:

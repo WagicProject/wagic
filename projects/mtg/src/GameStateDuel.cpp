@@ -1,22 +1,22 @@
-#include "../include/config.h"
-#include "../include/DebugRoutines.h"
-#include "../include/GameStateDuel.h"
-#include "../include/GameOptions.h"
-#include "../include/utils.h"
-#include "../include/AIPlayer.h"
-#include "../include/AIMomirPlayer.h"
-#include "../include/PlayerData.h"
-#include "../include/DeckStats.h"
-#include "../include/DeckManager.h"
+#include "PrecompiledHeader.h"
 
-#include "../include/DeckMetaData.h"
-#include "../include/MTGRules.h"
-#include "../include/Credits.h"
-#include "../include/Translate.h"
-#include "../include/Rules.h"
+#include "GameStateDuel.h"
+#include "GameOptions.h"
+#include "utils.h"
+#include "AIPlayer.h"
+#include "AIMomirPlayer.h"
+#include "PlayerData.h"
+#include "DeckStats.h"
+#include "DeckManager.h"
+
+#include "DeckMetaData.h"
+#include "MTGRules.h"
+#include "Credits.h"
+#include "Translate.h"
+#include "Rules.h"
 
 #ifdef TESTSUITE
-#include "../include/TestSuiteAI.h"
+#include "TestSuiteAI.h"
 #endif
 
 #if defined (WIN32) || defined (LINUX)

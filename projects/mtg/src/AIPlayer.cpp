@@ -1,12 +1,12 @@
-#include "../include/config.h"
-#include "../include/DebugRoutines.h"
-#include "../include/AIPlayer.h"
-#include "../include/CardDescriptor.h"
-#include "../include/AIStats.h"
-#include "../include/AllAbilities.h"
-#include "../include/ExtraCost.h"
-#include "../include/GuiCombat.h"
-#include "../include/GameStateDuel.h"
+#include "PrecompiledHeader.h"
+
+#include "AIPlayer.h"
+#include "CardDescriptor.h"
+#include "AIStats.h"
+#include "AllAbilities.h"
+#include "ExtraCost.h"
+#include "GuiCombat.h"
+#include "GameStateDuel.h"
 
 const char * const MTG_LAND_TEXTS[] = {"artifact","forest","island","mountain","swamp","plains","other lands"};
 

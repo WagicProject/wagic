@@ -1,15 +1,14 @@
-#include "../include/TestSuiteAI.h"
-#include "../include/config.h"
-#include "../include/DebugRoutines.h"
-#include "../include/MTGAbility.h"
-#include "../include/MTGRules.h"
-#include "../include/ActionLayer.h"
-#include "../include/GuiCombat.h"
-#include "../include/Rules.h"
-#include "../include/GameObserver.h"
-#include "../include/GameStateShop.h"
+#include "PrecompiledHeader.h"
 
-#include <string>
+#include "TestSuiteAI.h"
+#include "MTGAbility.h"
+#include "MTGRules.h"
+#include "ActionLayer.h"
+#include "GuiCombat.h"
+#include "Rules.h"
+#include "GameObserver.h"
+#include "GameStateShop.h"
+
 using std::string;
 
 // NULL is sent in place of a MTGDeck since there is no way to create a MTGDeck without a proper deck file.

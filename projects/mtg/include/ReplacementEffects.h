@@ -3,7 +3,7 @@
 
 #include <list>
 using namespace std;
-#include "../include/Damage.h"
+#include "Damage.h"
 #include "WEvent.h"
 
 class TargetChooser;

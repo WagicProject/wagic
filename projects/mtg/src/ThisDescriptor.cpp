@@ -1,8 +1,9 @@
-#include "../include/config.h"
-#include "../include/ThisDescriptor.h"
-#include "../include/Counters.h"
-#include "../include/MTGCardInstance.h"
-#include "../include/CardDescriptor.h"
+#include "PrecompiledHeader.h"
+
+#include "ThisDescriptor.h"
+#include "Counters.h"
+#include "MTGCardInstance.h"
+#include "CardDescriptor.h"
 
 
 ThisDescriptor::~ThisDescriptor(){

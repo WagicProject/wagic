@@ -1,6 +1,7 @@
-#include "../include/config.h"
-#include "../include/GuiLayers.h"
-#include "../include/Player.h"
+#include "PrecompiledHeader.h"
+
+#include "GuiLayers.h"
+#include "Player.h"
 
 GuiLayer::GuiLayer(){
   modal = 0;

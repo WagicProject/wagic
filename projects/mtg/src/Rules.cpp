@@ -1,14 +1,13 @@
-#include "../include/config.h"
-#include "../include/DebugRoutines.h"
-#include "../include/Rules.h"
-#include "../include/MTGDefinitions.h"
-#include "../include/config.h"
-#include "../include/ManaCost.h"
-#include "../include/Player.h"
-#include "../include/AIMomirPlayer.h"
+#include "PrecompiledHeader.h"
 
-#include "../include/MTGGameZones.h"
-#include "../include/MTGAbility.h"
+#include "Rules.h"
+#include "MTGDefinitions.h"
+#include "ManaCost.h"
+#include "Player.h"
+#include "AIMomirPlayer.h"
+
+#include "MTGGameZones.h"
+#include "MTGAbility.h"
 
 int Rules::getMTGId(string cardName){
   int cardnb = atoi(cardName.c_str());

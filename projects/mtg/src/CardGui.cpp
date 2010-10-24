@@ -3,18 +3,17 @@
  * This class is in charge of rendering Cards on the screen
  */
 
+#include "PrecompiledHeader.h"
+
 #include "JGE.h"
-#include "../include/config.h"
-#include "../include/DebugRoutines.h"
-#include "../include/CardGui.h"
-#include "../include/ManaCostHybrid.h"
-#include "../include/Subtypes.h"
-#include "../include/Translate.h"
-#include "../include/MTGDefinitions.h"
-#include "../include/GameObserver.h"
+#include "CardGui.h"
+#include "ManaCostHybrid.h"
+#include "Subtypes.h"
+#include "Translate.h"
+#include "MTGDefinitions.h"
+#include "GameObserver.h"
 #include <Vector2D.h>
-#include <assert.h>
-#include "../include/Counters.h"
+#include "Counters.h"
 
 const float CardGui::Width = 28.0;
 const float CardGui::Height = 40.0;

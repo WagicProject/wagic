@@ -7,8 +7,8 @@ using std::map;
 using std::string;
 #include <JGE.h>
 #include <time.h>
-#include "../include/SimplePad.h"
-#include "../include/GameApp.h"
+#include "SimplePad.h"
+#include "GameApp.h"
 
 #define GLOBAL_SETTINGS RESPATH"/settings/options.txt"
 #define PLAYER_SAVEFILE "data.dat"

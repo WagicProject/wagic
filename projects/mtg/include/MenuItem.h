@@ -1,7 +1,7 @@
 #ifndef _MENU_ITEM_H
 #define _MENU_ITEM_H
 
-#include "../include/WFont.h"
+#include "WFont.h"
 #include <JGui.h>
 #include <hge/hgeparticle.h>
 #include <string>

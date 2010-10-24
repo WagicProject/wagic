@@ -1,7 +1,8 @@
-#include "../include/config.h"
-#include "../include/OptionItem.h"
-#include "../include/PlayerData.h"
-#include "../include/Translate.h"
+#include "PrecompiledHeader.h"
+
+#include "OptionItem.h"
+#include "PlayerData.h"
+#include "Translate.h"
 #include <algorithm>
 
 

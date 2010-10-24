@@ -1,14 +1,14 @@
+#include "PrecompiledHeader.h"
+
 #include <JGui.h>
-#include <vector>
-#include <string>
 #include <dirent.h>
-#include "../include/config.h"
-#include "../include/GameApp.h"
-#include "../include/Translate.h"
-#include "../include/WDataSrc.h"
-#include "../include/WFilter.h"
-#include "../include/DeckDataWrapper.h"
-#include "../include/MTGPack.h"
+
+#include "GameApp.h"
+#include "Translate.h"
+#include "WDataSrc.h"
+#include "WFilter.h"
+#include "DeckDataWrapper.h"
+#include "MTGPack.h"
 #include "../../../JGE/src/tinyxml/tinyxml.h"
 
 MTGPack MTGPacks::defaultBooster;

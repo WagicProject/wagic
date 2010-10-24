@@ -1,8 +1,8 @@
 #ifndef _PLAYER_DATA_H_
 #define _PLAYER_DATA_H_
 
-#include "../include/MTGDeck.h"
-#include "../include/Tasks.h"
+#include "MTGDeck.h"
+#include "Tasks.h"
 
 class PlayerData{
  protected:

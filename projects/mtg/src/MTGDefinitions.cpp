@@ -1,4 +1,6 @@
-#include "../include/MTGDefinitions.h"
+#include "PrecompiledHeader.h"
+
+#include "MTGDefinitions.h"
 
 char Constants::MTGColorChars[] = {'x','g','u','r','b','w','l'};
 const char* Constants::MTGColorStrings[] = {"artifact", "green", "blue", "red", "black", "white", "land"};

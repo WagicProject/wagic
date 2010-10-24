@@ -1,8 +1,9 @@
-#include "../include/config.h"
-#include "../include/GameApp.h"
-#include "../include/GuiPhaseBar.h"
-#include "../include/GameObserver.h"
-#include "../include/Translate.h"
+#include "PrecompiledHeader.h"
+
+#include "GameApp.h"
+#include "GuiPhaseBar.h"
+#include "GameObserver.h"
+#include "Translate.h"
 
 /*
 static int colors[] =

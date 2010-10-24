@@ -6,7 +6,7 @@
 
 #include <string>
 #include <JGui.h>
-#include "../include/WFont.h"
+#include "WFont.h"
 #include "hge/hgeparticle.h"
 
 class SimpleMenu:public JGuiController{

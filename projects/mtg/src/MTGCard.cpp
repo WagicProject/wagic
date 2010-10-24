@@ -3,15 +3,16 @@
 //-------------------------------------------------
 //TODO Fill BasicAbilities
 
+#include "PrecompiledHeader.h"
+
 #include <string>
 #include <stdlib.h>
 
-#include "../include/MTGDeck.h"
-#include "../include/config.h"
-#include "../include/MTGCard.h"
-#include "../include/CardPrimitive.h"
-#include "../include/Subtypes.h"
-#include "../include/Translate.h"
+#include "MTGDeck.h"
+#include "MTGCard.h"
+#include "CardPrimitive.h"
+#include "Subtypes.h"
+#include "Translate.h"
 
 using std::string;
 

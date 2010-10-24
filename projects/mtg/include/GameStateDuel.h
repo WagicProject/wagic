@@ -2,10 +2,10 @@
 #define _GAME_STATE_DUEL_H_
 
 
-#include "../include/GameState.h"
-#include "../include/SimpleMenu.h"
-#include "../include/MTGDeck.h"
-#include "../include/GameObserver.h"
+#include "GameState.h"
+#include "SimpleMenu.h"
+#include "MTGDeck.h"
+#include "GameObserver.h"
 
 #define CHOOSE_OPPONENT 7
 

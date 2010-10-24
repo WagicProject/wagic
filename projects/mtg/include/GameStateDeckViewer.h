@@ -6,17 +6,17 @@
 
 #include <JGE.h>
 
-#include "../include/GameState.h"
-#include "../include/SimpleMenu.h"
-#include "../include/WResourceManager.h"
-#include "../include/CardGui.h"
-#include "../include/GameOptions.h"
-#include "../include/PriceList.h"
-#include "../include/PlayerData.h"
-#include "../include/DeckDataWrapper.h"
-#include "../include/DeckStats.h"
-#include "../include/WDataSrc.h"
-#include "../include/WGui.h"
+#include "GameState.h"
+#include "SimpleMenu.h"
+#include "WResourceManager.h"
+#include "CardGui.h"
+#include "GameOptions.h"
+#include "PriceList.h"
+#include "PlayerData.h"
+#include "DeckDataWrapper.h"
+#include "DeckStats.h"
+#include "WDataSrc.h"
+#include "WGui.h"
 
 #define NO_USER_ACTIVITY_HELP_DELAY 10
 #define NO_USER_ACTIVITY_SHOWCARD_DELAY 0.1

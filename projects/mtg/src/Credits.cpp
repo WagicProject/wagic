@@ -1,14 +1,15 @@
-#include "../include/Credits.h"
-#include "../include/GameApp.h"
-#include "../include/GameOptions.h"
-#include "../include/config.h"
-#include "../include/PlayerData.h"
-#include "../include/DeckStats.h"
-#include "../include/Translate.h"
-#include "../include/MTGDeck.h"
-#include "../include/GameObserver.h"
-#include "../include/GameStateShop.h"
-#include "../include/PlayerData.h"
+#include "PrecompiledHeader.h"
+
+#include "Credits.h"
+#include "GameApp.h"
+#include "GameOptions.h"
+#include "PlayerData.h"
+#include "DeckStats.h"
+#include "Translate.h"
+#include "MTGDeck.h"
+#include "GameObserver.h"
+#include "GameStateShop.h"
+#include "PlayerData.h"
 
   CreditBonus::CreditBonus(int _value, string _text){
     value = _value;

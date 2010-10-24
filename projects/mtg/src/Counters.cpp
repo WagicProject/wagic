@@ -1,6 +1,7 @@
-#include "../include/Counters.h"
-#include "../include/config.h"
-#include "../include/MTGCardInstance.h"
+#include "PrecompiledHeader.h"
+
+#include "Counters.h"
+#include "MTGCardInstance.h"
 
 Counter::Counter(MTGCardInstance * _target, int _power, int _toughness){
   init(_target,"",_power, _toughness);

@@ -7,11 +7,11 @@
 // Copyright (c) 2007 James Hui (a.k.a. Dr.Watson) <jhkhui@gmail.com>
 //
 //-------------------------------------------------------------------------------------
-#include "../include/config.h"
-#include <string.h>
+#include "PrecompiledHeader.h"
+
 #include <JGameLauncher.h>
 
-#include "../include/GameApp.h"
+#include "GameApp.h"
 
 static char GameName[] = "Wagic";
 

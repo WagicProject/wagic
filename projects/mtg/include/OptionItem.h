@@ -4,12 +4,12 @@
 #include <JGui.h>
 #include <vector>
 #include <string>
-#include "../include/GameApp.h"
-#include "../include/GameStateOptions.h"
-#include "../include/GameOptions.h"
-#include "../include/WFilter.h"
-#include "../include/WDataSrc.h"
-#include "../include/WGui.h"
+#include "GameApp.h"
+#include "GameStateOptions.h"
+#include "GameOptions.h"
+#include "WFilter.h"
+#include "WDataSrc.h"
+#include "WGui.h"
 
 using std::string;
 

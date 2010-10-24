@@ -1,7 +1,8 @@
-#include <map>
-#include "../include/Translate.h"
-#include "../include/WResourceManager.h"
-#include "../include/TranslateKeys.h"
+#include "PrecompiledHeader.h"
+
+#include "Translate.h"
+#include "WResourceManager.h"
+#include "TranslateKeys.h"
 
 using std::string;
 using std::map;

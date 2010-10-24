@@ -1,11 +1,11 @@
-#include "../include/config.h"
-#include "../include/DebugRoutines.h"
-#include "../include/GameObserver.h"
-#include "../include/GameOptions.h"
-#include "../include/CardGui.h"
-#include "../include/Damage.h"
-#include "../include/Rules.h"
-#include "../include/ExtraCost.h"
+#include "PrecompiledHeader.h"
+
+#include "GameObserver.h"
+#include "GameOptions.h"
+#include "CardGui.h"
+#include "Damage.h"
+#include "Rules.h"
+#include "ExtraCost.h"
 
 #include <JRenderer.h>
 

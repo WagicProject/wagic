@@ -1,18 +1,18 @@
 /*
   The Action Stack contains all information for Game Events that can be interrupted (Interruptible)
 */
-#include "../include/config.h"
-#include "../include/DebugRoutines.h"
-#include "../include/ActionStack.h"
-#include "../include/MTGAbility.h"
-#include "../include/GameObserver.h"
-#include "../include/Damage.h"
-#include "../include/ManaCost.h"
-#include "../include/GameOptions.h"
-#include "../include/WResourceManager.h"
-#include "../include/TargetChooser.h"
-#include "../include/CardGui.h"
-#include "../include/Translate.h"
+#include "PrecompiledHeader.h"
+
+#include "ActionStack.h"
+#include "MTGAbility.h"
+#include "GameObserver.h"
+#include "Damage.h"
+#include "ManaCost.h"
+#include "GameOptions.h"
+#include "WResourceManager.h"
+#include "TargetChooser.h"
+#include "CardGui.h"
+#include "Translate.h"
 
 #include <typeinfo>
 

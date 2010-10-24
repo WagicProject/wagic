@@ -1,9 +1,10 @@
-#include "../include/config.h"
-#include "../include/OptionItem.h"
-#include "../include/PlayerData.h"
-#include "../include/Translate.h"
-#include "../include/PriceList.h"
-#include "../include/Subtypes.h"
+#include "PrecompiledHeader.h"
+
+#include "OptionItem.h"
+#include "PlayerData.h"
+#include "Translate.h"
+#include "PriceList.h"
+#include "Subtypes.h"
 #include <algorithm>
 
 //WSyncable

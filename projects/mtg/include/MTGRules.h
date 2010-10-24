@@ -4,10 +4,10 @@
 #ifndef _MTGRULES_H_
 #define _MTGRULES_H_
 
-#include "../include/MTGAbility.h"
-#include "../include/Counters.h"
-#include "../include/WEvent.h"
-#include "../include/CardSelector.h"
+#include "MTGAbility.h"
+#include "Counters.h"
+#include "WEvent.h"
+#include "CardSelector.h"
 
 class OtherAbilitiesEventReceiver:public MTGAbility{
 public:

@@ -1,13 +1,13 @@
-#include "../include/config.h"
-#include "../include/DebugRoutines.h"
-#include "../include/ManaCost.h"
-#include "../include/ManaCostHybrid.h"
-#include "../include/ExtraCost.h"
-#include "../include/TargetChooser.h"
-#include "../include/Targetable.h"
-#include "../include/Player.h"
-#include "../include/WEvent.h"
-#include "../include/MTGAbility.h"
+#include "PrecompiledHeader.h"
+
+#include "ManaCost.h"
+#include "ManaCostHybrid.h"
+#include "ExtraCost.h"
+#include "TargetChooser.h"
+#include "Targetable.h"
+#include "Player.h"
+#include "WEvent.h"
+#include "MTGAbility.h"
 
 #if defined (WIN32)
 

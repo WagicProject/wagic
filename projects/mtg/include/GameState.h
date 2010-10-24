@@ -9,7 +9,7 @@ class JGE;
 #include <string>
 #include <vector>
 #include <iostream>
-#include "../include/DeckMetaData.h"
+#include "DeckMetaData.h"
 
 using namespace std;
 

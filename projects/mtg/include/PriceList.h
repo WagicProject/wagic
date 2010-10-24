@@ -2,8 +2,8 @@
 #define _PRICELIST_H_
 
 #include<string>
-#include "../include/MTGDefinitions.h"
-#include "../include/MTGDeck.h"
+#include "MTGDefinitions.h"
+#include "MTGDeck.h"
 #include <stdio.h>
 
 class MTGAllCards;

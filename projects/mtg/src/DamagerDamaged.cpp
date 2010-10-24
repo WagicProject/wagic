@@ -1,5 +1,6 @@
-#include "../include/config.h"
-#include "../include/DamagerDamaged.h"
+#include "PrecompiledHeader.h"
+
+#include "DamagerDamaged.h"
 
 /*
 Temporary objects that store the damages dealt to/from creatures during the combat phase

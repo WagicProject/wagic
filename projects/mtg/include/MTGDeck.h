@@ -3,9 +3,9 @@
 
 #define MTG_ERROR -1
 
-#include "../include/MTGDefinitions.h"
-#include "../include/GameApp.h"
-#include "../include/WResourceManager.h"
+#include "MTGDefinitions.h"
+#include "GameApp.h"
+#include "WResourceManager.h"
 
 
 #include <string>

@@ -1,15 +1,16 @@
-#include "../include/config.h"
-#include "../include/MTGRules.h"
-#include "../include/GuiCombat.h"
-#include "../include/GuiBackground.h"
-#include "../include/GuiFrame.h"
-#include "../include/GuiPhaseBar.h"
-#include "../include/GuiAvatars.h"
-#include "../include/GuiHand.h"
-#include "../include/GuiPlay.h"
-#include "../include/GuiMana.h"
-#include "../include/Trash.h"
-#include "../include/DuelLayers.h"
+#include "PrecompiledHeader.h"
+
+#include "MTGRules.h"
+#include "GuiCombat.h"
+#include "GuiBackground.h"
+#include "GuiFrame.h"
+#include "GuiPhaseBar.h"
+#include "GuiAvatars.h"
+#include "GuiHand.h"
+#include "GuiPlay.h"
+#include "GuiMana.h"
+#include "Trash.h"
+#include "DuelLayers.h"
 
 void DuelLayers::init(){
 

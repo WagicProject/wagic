@@ -1,12 +1,12 @@
-#include "../include/config.h"
-#include "../include/DebugRoutines.h"
-#include "../include/TargetChooser.h"
-#include "../include/CardDescriptor.h"
-#include "../include/MTGGameZones.h"
-#include "../include/GameObserver.h"
-#include "../include/Subtypes.h"
-#include "../include/Counters.h"
-#include "../include/WEvent.h"
+#include "PrecompiledHeader.h"
+
+#include "TargetChooser.h"
+#include "CardDescriptor.h"
+#include "MTGGameZones.h"
+#include "GameObserver.h"
+#include "Subtypes.h"
+#include "Counters.h"
+#include "WEvent.h"
 
 
 TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInstance * card, MTGAbility * ability){

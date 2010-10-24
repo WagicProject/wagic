@@ -1,8 +1,9 @@
-#include "../include/config.h"
-#include "../include/SimplePad.h"
+#include "PrecompiledHeader.h"
+
+#include "SimplePad.h"
 #include "JTypes.h"
-#include "../include/GameApp.h"
-#include "../include/Translate.h"
+#include "GameApp.h"
+#include "Translate.h"
 
 
 #define ALPHA_COLUMNS 8

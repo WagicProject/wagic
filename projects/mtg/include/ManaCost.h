@@ -1,8 +1,8 @@
 #ifndef _MANACOST_H_
 #define _MANACOST_H_
 
-#include "../include/utils.h"
-#include "../include/MTGDefinitions.h"
+#include "utils.h"
+#include "MTGDefinitions.h"
 
 
 class ManaCostHybrid;

@@ -7,8 +7,8 @@
 #define TARGET_OK_NOT_READY 3
 
 #include <JGE.h>
-#include "../include/TargetsList.h"
-#include "../include/ActionStack.h"
+#include "TargetsList.h"
+#include "ActionStack.h"
 
 #include <string>
 using std::string;
