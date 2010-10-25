@@ -24,6 +24,7 @@ protected:
   static int currentId;
 public:
   MTGAbility * ability;
+	NestedAbility * nability;
   Player * player;
   int id;
   MTGCardInstance * click;

@@ -2327,7 +2327,7 @@ public:
 	int canBeInList(MTGCardInstance * card){
 		int size = 0;
 		size = (int)cards.size();
-		if(includeSelf && maxi && card == source && size < maxi)
+		if(includeSelf && maxi && card == source && size > maxi)
 		{ 
 			removed(card);
 		}
@@ -2368,7 +2368,7 @@ public:
 	int _added(Damageable * d){
 		int size =(int)cards.size();
 		if (maxi && size < maxi) return 0;
-		if (maxi && size >= maxi) return removeAbilityFromGame();
+		if (maxi && size > maxi) return removeAbilityFromGame();
 		if (maxi) return 0;
 		if (size <= mini) return 0;
 		return addAbilityToGame();
@@ -2385,7 +2385,7 @@ public:
 
 	int removed(MTGCardInstance * card){
 		size_t size = cards.size();
-		if (maxi && (int)size < maxi) return addAbilityToGame();
+		if (maxi && (int)size <= maxi) return addAbilityToGame();
 		if (mini && (int)size > mini) return 0;
 		if (mini && (int)size <= mini) return removeAbilityFromGame();
 		if (!mini && !maxi && size !=0) return 0;
@@ -2502,7 +2502,9 @@ public:
 		tc->targetter = NULL;
 		includeSelf = _includeSelf;
 		ability->target = _target;
-	}
+		aType = MTGAbility::FOREACH;
+		naType = ability->aType;
+	  }
 
 	int canBeInList(MTGCardInstance * card){
 		if ( (includeSelf || card!=source) && tc->canTarget(card)) return 1;
@@ -2638,6 +2640,7 @@ public:
 		ability->source = source;
 		ability->target = target;
 		SAFE_DELETE(tc);
+    aType = FOREACH;
 	}
 
 	int removeFromGame(){
@@ -3494,6 +3497,7 @@ public:
 				list<int>types;
 				list<int>colors;
 				WParsedPT * wppt;
+				string menu;
 				ABecomes(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, WParsedPT * wppt, string sabilities):MTGAbility(id,source,target),wppt(wppt){
 					//TODO this is a copy/past of other code that's all around the place, everything should be in a dedicated parser class;
 
@@ -3512,6 +3516,7 @@ public:
 					}
 
 					string s = stypes;
+					menu = stypes;
 					while (s.size()){
 						size_t found = s.find(" ");
 						if (found != string::npos){
@@ -3559,6 +3564,12 @@ public:
 						_target->basicAbilities[*it]--;
 					}
 					return 1;
+				}
+
+				const char * getMenuText(){
+			  string s = menu;
+				sprintf(menuText, "Becomes %s",s.c_str());
+					return menuText;
 				}
 
 				ABecomes * clone() const{

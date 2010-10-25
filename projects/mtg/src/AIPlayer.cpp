@@ -121,7 +121,7 @@ ManaCost * AIPlayer::getPotentialMana(MTGCardInstance * target){
         used[card] = true;
       }
     }
-  }
+	}
 
   return result;
 }
@@ -163,8 +163,7 @@ int AIAction::getEfficiency(){
   }
 
   if (!((AIPlayer *)p)->canHandleCost(ability)) return 0;
-
-  switch (a->aType){
+	switch (a->aType){
     case MTGAbility::DAMAGER:
       {
         AADamager * aad = (AADamager *) a;
@@ -258,7 +257,7 @@ int AIAction::getEfficiency(){
       efficiency = 0;
       break;
     default:
-      if (target){
+			if (target){
         AbilityFactory af;
         int suggestion = af.abilityEfficiency(a, p, MODE_ABILITY);
         if ((suggestion == BAKA_EFFECT_BAD && p==target->controller()) ||(suggestion == BAKA_EFFECT_GOOD && p!=target->controller())){
@@ -317,7 +316,6 @@ int AIPlayer::selectAbility(){
     MTGAbility * a = ((MTGAbility *)g->mLayers->actionLayer()->mObjects[i]);
     //Skip mana abilities for performance
     if (dynamic_cast<AManaProducer*>(a)) continue;
-
     //Make sure we can use the ability
     for (int j=0; j < game->inPlay->nb_cards; j++){
       MTGCardInstance * card =  game->inPlay->cards[j];       

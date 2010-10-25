@@ -1663,6 +1663,7 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
   if (dynamic_cast<AADrawer *>(a)) return BAKA_EFFECT_GOOD;
   if (dynamic_cast<AARandomDiscarder *>(a)) return BAKA_EFFECT_BAD;
   if (dynamic_cast<ARampageAbility *>(a)) return BAKA_EFFECT_GOOD;
+	if (dynamic_cast<ABushidoAbility *>(a)) return BAKA_EFFECT_GOOD;
   if (AInstantPowerToughnessModifierUntilEOT * abi = dynamic_cast<AInstantPowerToughnessModifierUntilEOT *>(a)) return (abi->wppt->power.getValue()>=0 && abi->wppt->toughness.getValue()>=0) ? BAKA_EFFECT_GOOD : BAKA_EFFECT_BAD;
   if (APowerToughnessModifier * abi = dynamic_cast<APowerToughnessModifier *>(a)) return (abi->wppt->power.getValue()>=0 && abi->wppt->toughness.getValue()>=0) ? BAKA_EFFECT_GOOD : BAKA_EFFECT_BAD;
   if (APowerToughnessModifierUntilEndOfTurn * abi = dynamic_cast<APowerToughnessModifierUntilEndOfTurn *>(a)) return abilityEfficiency(abi->ability, p, mode,tc);
