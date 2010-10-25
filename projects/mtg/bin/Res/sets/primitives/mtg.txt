@@ -1126,11 +1126,11 @@ type=Sorcery
 [/card]
 [card]
 name=Alloy Golem
-auto=choice name(white) && transforms(,white)
-auto=choice name(blue) && transforms(,blue)
-auto=choice name(black) && transforms(,black)
-auto=choice name(red) && transforms(,red)
-auto=choice name(green) && transforms(,green)
+auto=choice name(white) && transforms(,white) forever
+auto=choice name(blue) && transforms(,blue) forever
+auto=choice name(black) && transforms(,black) forever
+auto=choice name(red) && transforms(,red) forever
+auto=choice name(green) && transforms(,green) forever
 text=As Alloy Golem enters the battlefield, choose a color. -- Alloy Golem is the chosen color. (It's still an artifact.)
 mana={6}
 type=Artifact Creature
@@ -4593,7 +4593,6 @@ auto={2}{G}:counter(0/0,1,Level) asSorcery
 auto=this(counter{0/0.1.Level}) 2/2
 auto=this(counter{0/0.4.Level}) trample
 auto=this(counter{0/0.4.Level}) 2/2
-auto=lord(other beastbreaker of bala ged[counter{0/0.4.Level}]) -2/-2
 text=Level up {2}{G}  ({2}{G}: Put a Level counter on this. Level up only as a sorcery.) -- [Level 1-3] (4/4) -- [Level 4+] Trample (6/6)
 mana={1}{G}
 level=4
@@ -5298,7 +5297,8 @@ toughness=2
 [/card]
 [card]
 name=Bleak Coven Vampires
-auto=aslongas(artifact|myBattlefield) life:4 opponent && life:4 controller >2 oneshot
+auto=aslongas(artifact|myBattlefield) life:-4 opponent >2 oneshot 
+auto=aslongas(artifact|myBattlefield) life:4 controller >2 oneshot 
 text=Metalcraft - When Bleak Coven Vampires enters the battlefield, if you control three or more artifacts, target player loses 4 life and you gain 4 life.
 mana={3}{B}{B}
 type=Creature
@@ -7488,7 +7488,7 @@ toughness=4
 name=Cackling Flames
 target=creature,player
 auto=damage:3
-auto=aslongas(creature|myhand) damage:2 <1
+auto=aslongas(*|myhand) damage:2 <1
 text=Cackling Flames deals 3 damage to target creature or player. -- Hellbent - Cackling Flames deals 5 damage to that creature or player instead if you have no cards in hand.
 mana={3}{R}
 type=Instant
@@ -8153,7 +8153,7 @@ type=Land
 [/card]
 [card]
 name=Castigate
-target=*|opponenthand
+target=*[-land]|opponenthand
 auto=moveTo(exile)
 text=Target opponent reveals his or her hand. You choose a nonland card from it and exile that card.
 mana={W}{B}
@@ -9294,7 +9294,7 @@ text=Hellbent -- As long as you have no cards in hand, Gobhobbler Rats gets +1/+
 type=creature
 subtype=Rat
 auto=aslongas(*|myhand) 1/0 <1
-auto=aslongas{*|myhand} {B}:regenerate <1
+auto=aslongas(*|myhand) {B}:regenerate <1
 power=2
 toughness=2
 [/card]
@@ -10617,7 +10617,7 @@ toughness=1
 [/card]
 [card]
 name=Copperline Gorge
-auto=aslongas(other land|myBattlefield) tap <2 oneshot 
+auto=aslongas(other land|myBattlefield) tap >2 oneshot 
 auto={T}:Add {R}
 auto={T}:Add {G}
 type=Land
@@ -13818,7 +13818,7 @@ type=Artifact
 [/card]
 [card]
 name=Disperse
-target=creature,artifact,enchantment
+target=*[-land]
 auto=moveTo(ownerHand)
 text=Return target nonland permanent to its owner's hand.
 mana={1}{U}
@@ -16632,23 +16632,23 @@ subtype=Aura
 name=Engineered Explosives
 abilities=sunburst
 auto=counter(0/0,sunburst,charge)
-auto=this(counter{0/0.1.Charge}<1) {2}{S}:destroy all(*[artifact;creature;enchantment;manacost=0])
-auto=this(counter{0/0.1.Charge}=) {2}{S}:destroy all(*[artifact;creature;enchantment;manacost=1])
-auto=this(counter{0/0.2.Charge}=) {2}{S}:destroy all(*[artifact;creature;enchantment;manacost=2])
-auto=this(counter{0/0.3.Charge}=) {2}{S}:destroy all(*[artifact;creature;enchantment;manacost=3])
-auto=this(counter{0/0.4.Charge}=) {2}{S}:destroy all(*[artifact;creature;enchantment;manacost=4])
-auto=this(counter{0/0.5.Charge}=) {2}{S}:destroy all(*[artifact;creature;enchantment;manacost=5])
-auto=this(counter{0/0.6.Charge}=) {2}{S}:destroy all(*[artifact;creature;enchantment;manacost=6])
-auto=this(counter{0/0.7.Charge}=) {2}{S}:destroy all(*[artifact;creature;enchantment;manacost=7])
-auto=this(counter{0/0.8.Charge}=) {2}{S}:destroy all(*[artifact;creature;enchantment;manacost=8])
-auto=this(counter{0/0.9.Charge}=) {2}{S}:destroy all(*[artifact;creature;enchantment;manacost=9])
-auto=this(counter{0/0.10.Charge}=) {2}{S}:destroy all(*[artifact;creature;enchantment;manacost=10])
-auto=this(counter{0/0.11.Charge}=) {2}{S}:destroy all(*[artifact;creature;enchantment;manacost=11])
-auto=this(counter{0/0.12.Charge}=) {2}{S}:destroy all(*[artifact;creature;enchantment;manacost=12])
-auto=this(counter{0/0.13.Charge}=) {2}{S}:destroy all(*[artifact;creature;enchantment;manacost=13])
-auto=this(counter{0/0.14.Charge}=) {2}{S}:destroy all(*[artifact;creature;enchantment;manacost=14])
-auto=this(counter{0/0.15.Charge}=) {2}{S}:destroy all(*[artifact;creature;;enchantmentmanacost=15])
-auto=this(counter{0/0.16.Charge}=) {2}{S}:destroy all(*[artifact;creature;;enchantmentmanacost=16])
+auto=this(counter{0/0.1.Charge}<1) {2}{S}:destroy all(*[-land;manacost=0])
+auto=this(counter{0/0.1.Charge}=) {2}{S}:destroy all(*[-land;manacost=1])
+auto=this(counter{0/0.2.Charge}=) {2}{S}:destroy all(*[-land;manacost=2])
+auto=this(counter{0/0.3.Charge}=) {2}{S}:destroy all(*[-land;manacost=3])
+auto=this(counter{0/0.4.Charge}=) {2}{S}:destroy all(*[-land;manacost=4])
+auto=this(counter{0/0.5.Charge}=) {2}{S}:destroy all(*[-land;manacost=5])
+auto=this(counter{0/0.6.Charge}=) {2}{S}:destroy all(*[-land;manacost=6])
+auto=this(counter{0/0.7.Charge}=) {2}{S}:destroy all(*[-land;manacost=7])
+auto=this(counter{0/0.8.Charge}=) {2}{S}:destroy all(*[-land;manacost=8])
+auto=this(counter{0/0.9.Charge}=) {2}{S}:destroy all(*[-land;manacost=9])
+auto=this(counter{0/0.10.Charge}=) {2}{S}:destroy all(*[-land;manacost=10])
+auto=this(counter{0/0.11.Charge}=) {2}{S}:destroy all(*[-land;manacost=11])
+auto=this(counter{0/0.12.Charge}=) {2}{S}:destroy all(*[-land;manacost=12])
+auto=this(counter{0/0.13.Charge}=) {2}{S}:destroy all(*[-land;manacost=13])
+auto=this(counter{0/0.14.Charge}=) {2}{S}:destroy all(*[-land;manacost=14])
+auto=this(counter{0/0.15.Charge}=) {2}{S}:destroy all(*[-land;manacost=15])
+auto=this(counter{0/0.16.Charge}=) {2}{S}:destroy all(*[-land;manacost=16])
 text=Sunburst (This enters the battlefield with a charge counter on it for each color of mana spent to cast it.) -- {2}, Sacrifice Engineered Explosives: Destroy each nonland permanent with converted mana cost equal to the number of charge counters on Engineered Explosives.
 mana={X}
 type=Artifact
@@ -19922,8 +19922,8 @@ type=Enchantment
 name=Freyalise's Winds
 auto=@tapped(*):all(trigger) counter(0/0,1,Wind)
 auto=lord(*[counter{0/0.1.Wind}]) doesnotuntap
-auto=@each my upkeep:counter(0/0,-1,Wind) all(*[counter{0/0.1.Wind}]|myBattlefield)
-auto=@each opponent upkeep:counter(0/0,-1,Wind) all(*[counter{0/0.1.Wind}]|opponentBattlefield)
+auto=@each my upkeep:counter(0/0,-99,Wind) all(*[counter{0/0.1.Wind}]|myBattlefield)
+auto=@each opponent upkeep:counter(0/0,-99,Wind) all(*[counter{0/0.1.Wind}]|opponentBattlefield)
 text=Whenever a permanent becomes tapped, put a wind counter on it. -- If a permanent with a wind counter on it would untap during its controller's untap step, remove all wind counters from it instead.
 mana={2}{G}{G}
 type=Enchantment
@@ -20803,7 +20803,7 @@ toughness=4
 [card]
 name=Ghalma's Warden
 auto=aslongas(artifact|mybattlefield) 2/2 >2
-text=Metalcraft - Metalcraft - Ghalma's Warden gets +2/+2 as long as you control three or more artifacts. 
+text=Metalcraft - Ghalma's Warden gets +2/+2 as long as you control three or more artifacts. 
 mana={3}{W}
 type=Creature
 subtype=Elephant Soldier
@@ -28821,7 +28821,7 @@ toughness=3
 name=Keldon Megaliths
 auto=tap
 auto={T}:Add{R}
-auto=aslongas(creature|myhand) {1}{R}{T}:damage:1 target(creature,player) <1
+auto=aslongas(*|myhand) {1}{R}{T}:damage:1 target(creature,player) <1
 text=Keldon Megaliths enters the battlefield tapped. -- {T}: Add {R} to your mana pool. -- Hellbent - {1}{R}, {T}: Keldon Megaliths deals 1 damage to target creature or player. Activate this ability only if you have no cards in hand.
 type=Land
 [/card]
@@ -37551,7 +37551,7 @@ type=Instant
 [card]
 name=Oblivion Stone
 auto={4}{T}:counter(0/0,1,Fate) target(*)
-auto={5}{T}{S}:bury all(artifact[-counter{0/0.1.Fate}]) && bury all(creature[-counter{0/0.1.Fate}]) && bury all(enchantment[-counter{0/0.1.Fate}]) && counter(0/0,-1,Fate) all(*[counter{0/0.1.Fate}])
+auto={5}{T}{S}:bury all(*[-land;-counter{0/0.1.Fate}]) && counter(0/0,-99,Fate) all(*[counter{0/0.1.Fate}])
 text={4}, {T}: Put a fate counter on target permanent. -- {5}, {T}, Sacrifice Oblivion Stone: Destroy each nonland permanent without a fate counter on it, then remove all fate counters from all permanents.
 mana={3}
 type=Artifact
@@ -42738,23 +42738,23 @@ toughness=4
 [card]
 name=Ratchet Bomb
 auto={T}:counter(0/0,1,Charge)
-auto=this(counter{0/0.1.Charge}<1) {T}{S}:destroy all(*[artifact;creature;enchantment;manacost=0])
-auto=this(counter{0/0.1.Charge}=) {T}{S}:destroy all(*[artifact;creature;enchantment;manacost=1])
-auto=this(counter{0/0.2.Charge}=) {T}{S}:destroy all(*[artifact;creature;enchantment;manacost=2])
-auto=this(counter{0/0.3.Charge}=) {T}{S}:destroy all(*[artifact;creature;enchantment;manacost=3])
-auto=this(counter{0/0.4.Charge}=) {T}{S}:destroy all(*[artifact;creature;enchantment;manacost=4])
-auto=this(counter{0/0.5.Charge}=) {T}{S}:destroy all(*[artifact;creature;enchantment;manacost=5])
-auto=this(counter{0/0.6.Charge}=) {T}{S}:destroy all(*[artifact;creature;enchantment;manacost=6])
-auto=this(counter{0/0.7.Charge}=) {T}{S}:destroy all(*[artifact;creature;enchantment;manacost=7])
-auto=this(counter{0/0.8.Charge}=) {T}{S}:destroy all(*[artifact;creature;enchantment;manacost=8])
-auto=this(counter{0/0.9.Charge}=) {T}{S}:destroy all(*[artifact;creature;enchantment;manacost=9])
-auto=this(counter{0/0.10.Charge}=) {T}{S}:destroy all(*[artifact;creature;enchantment;manacost=10])
-auto=this(counter{0/0.11.Charge}=) {T}{S}:destroy all(*[artifact;creature;enchantment;manacost=11])
-auto=this(counter{0/0.12.Charge}=) {T}{S}:destroy all(*[artifact;creature;enchantment;manacost=12])
-auto=this(counter{0/0.13.Charge}=) {T}{S}:destroy all(*[artifact;creature;enchantment;manacost=13])
-auto=this(counter{0/0.14.Charge}=) {T}{S}:destroy all(*[artifact;creature;enchantment;manacost=14])
-auto=this(counter{0/0.15.Charge}=) {T}{S}:destroy all(*[artifact;creature;;enchantmentmanacost=15])
-auto=this(counter{0/0.16.Charge}=) {T}{S}:destroy all(*[artifact;creature;;enchantmentmanacost=16])
+auto=this(counter{0/0.1.Charge}<1) {T}{S}:destroy all(*[-land;manacost=0])
+auto=this(counter{0/0.1.Charge}=) {T}{S}:destroy all(*[-land;manacost=1])
+auto=this(counter{0/0.2.Charge}=) {T}{S}:destroy all(*[-land;manacost=2])
+auto=this(counter{0/0.3.Charge}=) {T}{S}:destroy all(*[-land;manacost=3])
+auto=this(counter{0/0.4.Charge}=) {T}{S}:destroy all(*[-land;manacost=4])
+auto=this(counter{0/0.5.Charge}=) {T}{S}:destroy all(*[-land;manacost=5])
+auto=this(counter{0/0.6.Charge}=) {T}{S}:destroy all(*[-land;manacost=6])
+auto=this(counter{0/0.7.Charge}=) {T}{S}:destroy all(*[-land;manacost=7])
+auto=this(counter{0/0.8.Charge}=) {T}{S}:destroy all(*[-land;manacost=8])
+auto=this(counter{0/0.9.Charge}=) {T}{S}:destroy all(*[-land;manacost=9])
+auto=this(counter{0/0.10.Charge}=) {T}{S}:destroy all(*[-land;manacost=10])
+auto=this(counter{0/0.11.Charge}=) {T}{S}:destroy all(*[-land;manacost=11])
+auto=this(counter{0/0.12.Charge}=) {T}{S}:destroy all(*[-land;manacost=12])
+auto=this(counter{0/0.13.Charge}=) {T}{S}:destroy all(*[-land;manacost=13])
+auto=this(counter{0/0.14.Charge}=) {T}{S}:destroy all(*[-land;manacost=14])
+auto=this(counter{0/0.15.Charge}=) {T}{S}:destroy all(*[-land;manacost=15])
+auto=this(counter{0/0.16.Charge}=) {T}{S}:destroy all(*[-land;manacost=16])
 text={T}: Put a charge counter on Grindclock. -- {T}: Sacrifice Ratchet Bomb: Destroy each nonland permanent with converted mana cost equal to the number of charge counters on Ratchet Bomb.
 mana={2}
 type=Artifact
@@ -48103,11 +48103,16 @@ toughness=2
 [/card]
 [card]
 name=Shifting Sky
-auto=choice name(all nonland become white) && transforms(,white) all(*[-land]) 
-auto=choice name(all nonland become blue) && transforms(,blue) all(*[-land])
-auto=choice name(all nonland become black) && transforms(,black) all(*[-land])
-auto=choice name(all nonland become red) && transforms(,red) ueot
-auto=choice name(all nonland become green) && transforms(,green) all(*[-land])
+auto=choice name(all nonland become white) && counter(0/0,1,ShiftingSkyW) all(this)
+auto=choice name(all nonland become blue) && counter(0/0,1,ShiftingSkyU) all(this)
+auto=choice name(all nonland become black) && counter(0/0,1,ShiftingSkyB) all(this)
+auto=choice name(all nonland become red) && counter(0/0,1,ShiftingSkyR) all(this)
+auto=choice name(all nonland become green) && counter(0/0,1,ShiftingSkyG) all(this)
+auto=this(counter{0/0.1.ShiftingSkyW}) lord(*[-land]) transforms(,white)
+auto=this(counter{0/0.1.ShiftingSkyU}) lord(*[-land]) transforms(,blue)
+auto=this(counter{0/0.1.ShiftingSkyB}) lord(*[-land]) transforms(,black)
+auto=this(counter{0/0.1.ShiftingSkyR}) lord(*[-land]) transforms(,red)
+auto=this(counter{0/0.1.ShiftingSkyG}) lord(*[-land]) transforms(,green)
 text=As Shifting Sky enters the battlefield, choose a color. -- All nonland permanents are the chosen color.
 mana={2}{U}
 type=Enchantment
@@ -55333,8 +55338,8 @@ name=Temporal Distortion
 auto=@tapped(creature,land):all(trigger) counter(0/0,1,Hourglass)
 auto=lord(creature[counter{0/0.1.Hourglass}]) doesnotuntap
 auto=lord(land[counter{0/0.1.Hourglass}]) doesnotuntap
-auto=@each my upkeep:counter(0/0,-1,Hourglass) all(*[counter{0/0.1.Hourglass}]|myBattlefield)
-auto=@each opponent upkeep:counter(0/0,-1,Hourglass) all(*[counter{0/0.1.Hourglass}]|opponentBattlefield)
+auto=@each my upkeep:counter(0/0,-99,Hourglass) all(*[counter{0/0.1.Hourglass}]|myBattlefield)
+auto=@each opponent upkeep:counter(0/0,-99,Hourglass) all(*[counter{0/0.1.Hourglass}]|opponentBattlefield)
 text=Whenever a creature or land becomes tapped, put an hourglass counter on it. -- Permanents with hourglass counters on them don't untap during their controllers' untap steps. -- At the beginning of each player's upkeep, remove all hourglass counters from permanents that player controls.
 mana={3}{U}{U}
 type=Enchantment
