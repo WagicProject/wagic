@@ -1,0 +1,19 @@
+#Testing Glimmervoid
+[INIT]
+SECONDMAIN
+[PLAYER1]
+inplay:Swamp,Glimmervoid,Bottle Gnomes
+[PLAYER2]
+life:20
+[DO]
+Swamp
+next
+next
+[ASSERT]
+CLEANUP
+[PLAYER1]
+inplay:Swamp,Glimmervoid,Bottle Gnomes
+life:20
+[PLAYER2]
+life:20
+[END]
