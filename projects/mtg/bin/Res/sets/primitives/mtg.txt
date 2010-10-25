@@ -34465,7 +34465,7 @@ type=Land
 [card]
 name=Mirror-Sigil Sergeant
 abilities=trample
-auto=@each my upkeep:aslongas(*[blue]|myBattlefield) may clone
+auto=@each my upkeep:aslongas(*[blue]|myBattlefield) may token(158598)
 text=Trample -- At the beginning of your upkeep, if you control a blue permanent, you may put a token that's a copy of Mirror-Sigil Sergeant onto the battlefield.
 mana={5}{W}
 type=Creature
@@ -35892,7 +35892,7 @@ toughness=1
 [/card]
 [card]
 name=Myr Propagator
-auto={3}{T}:clone
+auto={3}{T}:token(215069)
 text={3}, {T}: Put a token that's a copy of Myr Propagator onto the battlefield.
 mana={3}
 type=Artifact Creature
@@ -51247,7 +51247,7 @@ toughness=2
 [card]
 name=Spawnwrithe
 abilities=trample
-auto=@damaged(player) from(this):clone
+auto=@damaged(player) from(this):token(158687)
 text=Trample -- Whenever Spawnwrithe deals combat damage to a player, put a token that's a copy of Spawnwrithe onto the battlefield.
 mana={2}{G}
 type=Creature
@@ -52157,7 +52157,7 @@ type=Instant
 [card]
 name=Sprouting Phytohydra
 abilities=defender
-auto=@damaged(this):may clone
+auto=@damaged(this):may token(111220)
 text=Defender (This creature can't attack.) -- Whenever Sprouting Phytohydra is dealt damage, you may put a token that's a copy of Sprouting Phytohydra onto the battlefield.
 mana={4}{G}
 type=Creature
