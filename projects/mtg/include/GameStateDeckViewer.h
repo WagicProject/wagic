@@ -185,6 +185,7 @@ public:
   virtual void renderCard (int id);
   virtual void Render();
   int loadDeck(int deckid);
+  void buildEditorMenu();
   virtual void ButtonPressed(int controllerId, int controlId);
   void updateStats();
   int countCardsByType(const char * _type);

@@ -14,6 +14,7 @@
 #include "ManaCostHybrid.h"
 #include "MTGCardInstance.h"
 #include "WFilter.h"
+#include "WDataSrc.h"
 
 
 
@@ -48,6 +49,7 @@ GameStateDeckViewer::GameStateDeckViewer(GameApp* parent): GameState(parent) {
   mRotation = 0;
   mSlide = 0;
   mAlpha = 255;
+  menu = NULL;
 }
 
 GameStateDeckViewer::~GameStateDeckViewer() {
@@ -149,6 +151,43 @@ void GameStateDeckViewer::updateDecks(){
   playerDeckList.clear();
 }
 
+
+void GameStateDeckViewer::buildEditorMenu()
+{
+  char aiDeckMsg[512];
+  
+  if ( myDeck ) {
+    sprintf_s( aiDeckMsg, "%s\n\t--- Deck Summary ---\nNum Cards: %i\nLands: %i\nAvg Creature Cost: %2.2f\nAvg Mana Cost: %2.2f\nAvg Spell Cost: %2.2f\n--- Card color count ---\nA: %i G: %i U: %i \nR: %i B: %i W: %i\n",
+                "****WARNING*****\nAll changes are final.\n",
+                myDeck->getCount(),
+                myDeck->getCount(Constants::MTG_COLOR_LAND ),
+                stw.avgCreatureCost,
+                stw.avgManaCost,
+                stw.avgSpellCost,
+                myDeck->getCount(Constants::MTG_COLOR_ARTIFACT),
+                myDeck->getCount(Constants::MTG_COLOR_GREEN),
+                myDeck->getCount(Constants::MTG_COLOR_BLUE),
+                myDeck->getCount(Constants::MTG_COLOR_RED),
+                myDeck->getCount(Constants::MTG_COLOR_BLACK),
+                myDeck->getCount(Constants::MTG_COLOR_WHITE)
+                );               
+  }
+  else  
+    sprintf_s( aiDeckMsg, "%s", "****WARNING*****\nAll changes are final.\n");
+ 
+  if ( menu )
+    SAFE_DELETE( menu );
+  //Build menu.
+  menu = NEW SimpleMenu( MENU_DECK_BUILDER, this, Fonts::MENU_FONT, SCREEN_WIDTH/2-150, 20);
+  menu->Add( MENU_ITEM_FILTER_BY, "Filter by...");
+  menu->Add( MENU_ITEM_SWITCH_DECKS_NO_SAVE, "Switch decks"); 
+  menu->Add( MENU_ITEM_SAVE_RENAME, "Rename deck");
+  menu->Add( MENU_ITEM_SAVE_RETURN_MAIN_MENU, "Save & Quit Editor");
+  menu->Add( MENU_ITEM_SAVE_AS_AI_DECK, "Save as AI deck", _(aiDeckMsg) );
+  menu->Add( MENU_ITEM_MAIN_MENU, "Main Menu");
+  menu->Add( MENU_ITEM_EDITOR_CANCEL, "Cancel");
+}
+
 void GameStateDeckViewer::Start()
 {
   hudAlpha = 0;
@@ -170,15 +209,8 @@ void GameStateDeckViewer::Start()
   myCollection =    NEW DeckDataWrapper(playerdata->collection);
   myCollection->Sort(WSrcCards::SORT_ALPHA);
   displayed_deck =  myCollection;
-  //Build menu.
-  menu = NEW SimpleMenu( MENU_DECK_BUILDER, this, Fonts::MENU_FONT,SCREEN_WIDTH/2-150,20);
-  menu->Add( MENU_ITEM_FILTER_BY, "Filter by...");
-  menu->Add( MENU_ITEM_SWITCH_DECKS_NO_SAVE, "Switch decks without saving");
-  menu->Add( MENU_ITEM_SAVE_RENAME, "Save & Rename");
-  menu->Add( MENU_ITEM_SAVE_RETURN_MAIN_MENU, "Save & Back to Main Menu");
-  menu->Add( MENU_ITEM_SAVE_AS_AI_DECK, "Save as AI deck", "WARNING: \nMake sure you are ready to save.  All changes are final.");
-  menu->Add( MENU_ITEM_MAIN_MENU, "Back to Main Menu");
-  menu->Add( MENU_ITEM_EDITOR_CANCEL, "Cancel");
+
+  buildEditorMenu();
 
   //Icons
   mIcons[Constants::MTG_COLOR_ARTIFACT] = resources.GetQuad("c_artifact");
@@ -384,6 +416,7 @@ void GameStateDeckViewer::Update(float dt)
 
     case JGE_BTN_MENU :
       mStage = STAGE_MENU;
+      buildEditorMenu();
       break;
     case JGE_BTN_CTRL :
       mStage = STAGE_FILTERS;
@@ -1410,7 +1443,6 @@ int GameStateDeckViewer::loadDeck(int deckid){
   myCollection->Sort(WSrcCards::SORT_ALPHA);
   displayed_deck = myCollection;
 
-  displayed_deck = myCollection;
   char deckname[256];
   sprintf(deckname,"deck%i.txt",deckid);
   if(myDeck){
