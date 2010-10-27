@@ -150,7 +150,7 @@ class MTGDeck{
   int add(MTGCard * card);
   int remove(MTGCard * card);
   int save();
-  int save(string destFileName, bool useExpandedDescriptions);
+  int save(string destFileName, bool useExpandedDescriptions, string &deckTitle, string &deckDesc);
   MTGCard * getCardById(int id);
  
 };

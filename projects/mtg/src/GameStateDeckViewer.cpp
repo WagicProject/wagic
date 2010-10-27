@@ -275,14 +275,15 @@ void GameStateDeckViewer::saveAsAIDeck( string deckName )
   oss << "deck" << nbAiDecks;
   defaultAiDeckName = oss.str();
   oss.str("");
-  oss << endl << "Can you beat your own creations?" << endl << "User created AI Deck # " << nbAiDecks;
+  if ( myDeck->parent->meta_desc == "" )
+    oss << endl << "Can you beat your own creations?" << endl << "User created AI Deck # " << nbAiDecks;
+  else
+    oss << myDeck->parent->meta_desc;
   string deckDesc = oss.str();
   string filepath = RESPATH;
   filepath.append("/ai/baka/").append( defaultAiDeckName ).append( ".txt" );
-  DebugTrace("saving AI deck " << filepath << endl );
-  myDeck->parent->meta_desc = deckDesc;
-  myDeck->parent->meta_name = deckName;
-  myDeck->save( filepath, true);
+  DebugTrace("saving AI deck " << filepath);
+  myDeck->save( filepath, true, deckName, deckDesc);
 
   oss.clear();
   delete deckManager;
