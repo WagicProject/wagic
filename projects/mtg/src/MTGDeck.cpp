@@ -778,7 +778,7 @@ int MTGDeck::save(string destFileName, bool useExpandedDescriptions, string &dec
           continue;
         }
         MTGSetInfo *setInfo = setlist.getInfo( card->setId );
-        string setName = setInfo->getName();
+        string setName = setInfo->id;
         string cardName = card->data->getName();
         file<< cardName << "\t " << "(" << setName << ") *" << nbCards << endl;
         setInfo = NULL;

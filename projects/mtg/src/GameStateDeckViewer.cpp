@@ -6,6 +6,7 @@
 #include "PrecompiledHeader.h"
 
 #include <math.h>
+#include <iomanip>
 
 #include "DeckManager.h"
 #include "GameStateDuel.h"
@@ -154,38 +155,42 @@ void GameStateDeckViewer::updateDecks(){
 
 void GameStateDeckViewer::buildEditorMenu()
 {
-  char aiDeckMsg[512];
+  ostringstream aiDeckMsg;
   
   if ( myDeck ) {
-    sprintf_s( aiDeckMsg, "%s\n\t--- Deck Summary ---\nNum Cards: %i\nLands: %i\nAvg Creature Cost: %2.2f\nAvg Mana Cost: %2.2f\nAvg Spell Cost: %2.2f\n--- Card color count ---\nA: %i G: %i U: %i \nR: %i B: %i W: %i\n",
-                "****WARNING*****\nAll changes are final.\n",
-                myDeck->getCount(),
-                myDeck->getCount(Constants::MTG_COLOR_LAND ),
-                stw.avgCreatureCost,
-                stw.avgManaCost,
-                stw.avgSpellCost,
-                myDeck->getCount(Constants::MTG_COLOR_ARTIFACT),
-                myDeck->getCount(Constants::MTG_COLOR_GREEN),
-                myDeck->getCount(Constants::MTG_COLOR_BLUE),
-                myDeck->getCount(Constants::MTG_COLOR_RED),
-                myDeck->getCount(Constants::MTG_COLOR_BLACK),
-                myDeck->getCount(Constants::MTG_COLOR_WHITE)
-                );               
+    aiDeckMsg
+          << "****WARNING*****"<< endl
+          << "All changes are final." << endl << endl
+          << "------- Deck Summary -----" << endl
+          << "# Cards: "<< myDeck->getCount() << endl
+          << "# Lands: "<< myDeck->getCount(Constants::MTG_COLOR_LAND ) << endl
+          << "Avg. Creature Cost: " << setprecision(2) << stw.avgCreatureCost << endl
+          << "Avg. Mana Cost: " << setprecision(2) << stw.avgManaCost << endl
+          << "Avg. Spell Cost: " << setprecision(2) << stw.avgSpellCost << endl
+          << "  --- Card color count ---  " << endl
+          << "A: " << myDeck->getCount(Constants::MTG_COLOR_ARTIFACT)
+          << " G: " << myDeck->getCount(Constants::MTG_COLOR_GREEN)
+          << " U: " << myDeck->getCount(Constants::MTG_COLOR_BLUE) << endl
+          << "R: " << myDeck->getCount(Constants::MTG_COLOR_RED) 
+          << " B: " << myDeck->getCount(Constants::MTG_COLOR_BLACK)
+          << " W: " << myDeck->getCount(Constants::MTG_COLOR_WHITE) << endl;
   }
   else  
-    sprintf_s( aiDeckMsg, "%s", "****WARNING*****\nAll changes are final.\n");
+    aiDeckMsg << "****WARNING*****" << endl << "All changes are final." << endl;
  
   if ( menu )
     SAFE_DELETE( menu );
   //Build menu.
   menu = NEW SimpleMenu( MENU_DECK_BUILDER, this, Fonts::MENU_FONT, SCREEN_WIDTH/2-150, 20);
-  menu->Add( MENU_ITEM_FILTER_BY, "Filter by...");
-  menu->Add( MENU_ITEM_SWITCH_DECKS_NO_SAVE, "Switch decks"); 
-  menu->Add( MENU_ITEM_SAVE_RENAME, "Rename deck");
+  menu->Add( MENU_ITEM_FILTER_BY, "Filter By...");
+  menu->Add( MENU_ITEM_SWITCH_DECKS_NO_SAVE, "Switch Decks"); 
+  menu->Add( MENU_ITEM_SAVE_RENAME, "Rename Deck");
   menu->Add( MENU_ITEM_SAVE_RETURN_MAIN_MENU, "Save & Quit Editor");
-  menu->Add( MENU_ITEM_SAVE_AS_AI_DECK, "Save as AI deck", _(aiDeckMsg) );
+  menu->Add( MENU_ITEM_SAVE_AS_AI_DECK, "Save As AI Deck", aiDeckMsg.str() );
   menu->Add( MENU_ITEM_MAIN_MENU, "Main Menu");
   menu->Add( MENU_ITEM_EDITOR_CANCEL, "Cancel");
+
+  aiDeckMsg.str(""); // clear the stream
 }
 
 void GameStateDeckViewer::Start()
