@@ -26627,7 +26627,7 @@ toughness=11
 [card]
 name=Ink-Eyes, Servant of Oni
 autohand={3}{B}{B}{N}:ninjutsu
-auto=@combatdamaged(player) from(this):may moveTo(myBattlefield) target(creature|opponentBattlefield)
+auto=@combatdamaged(player) from(this):may moveTo(myBattlefield) target(creature|opponentgraveyard)
 auto={1}{B}:regenerate
 text=Ninjutsu {3}{B}{B} ({3}{B}{B}, Return an unblocked attacker you control to hand: Put this card onto the battlefield from your hand tapped and attacking.) -- Whenever Ink-Eyes, Servant of Oni deals combat damage to a player, you may put target creature card from that player's graveyard onto the battlefield under your control. -- {1}{B}: Regenerate Ink-Eyes.
 mana={4}{B}{B}
