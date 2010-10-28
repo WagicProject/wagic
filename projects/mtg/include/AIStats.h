@@ -5,8 +5,8 @@
 #define STATS_CREATURE_MULTIPLIER 10
 
 //floats
-#define STATS_AURA_MULTIPLIER 0.9
-#define STATS_LORD_MULTIPLIER 0.5
+#define STATS_AURA_MULTIPLIER 0.9f
+#define STATS_LORD_MULTIPLIER 0.5f
 
 #include <list>
 #include <string>

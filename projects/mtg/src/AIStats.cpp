@@ -8,8 +8,8 @@
 #include "AllAbilities.h"
 //TODO:better comments this is too cryptic to work on by anyone but original coder.
 bool compare_aistats(AIStat * first, AIStat * second){
-  float damage1 = first->value / first->occurences;
-  float damage2 = second->value/ second->occurences;
+  float damage1 = static_cast<float>(first->value / first->occurences);
+  float damage2 = static_cast<float>(second->value / second->occurences);
   return (damage1 > damage2);
 }
 

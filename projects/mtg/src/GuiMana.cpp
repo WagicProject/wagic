@@ -54,14 +54,14 @@ ManaIcon::ManaIcon(int color, float x, float y, float destx, float desty) : Pos(
       //Really, we should just be loading that and then changing colors...
       psi->nEmission = 114;
       psi->fLifetime = -1;
-      psi->fParticleLifeMin = 1.1507937;
-      psi->fParticleLifeMax = 1.4682540;
-      psi->fSpeedMin = 0.0099999998;
-      psi->fSizeStart = 0.5;
-      psi->fSizeEnd = 0.69999999;
-      psi->fSizeVar = 0.25396827;
-      psi->fSpinStart = -5.5555553;
-      psi->fAlphaVar = 0.77777779;
+      psi->fParticleLifeMin = 1.1507937f;
+      psi->fParticleLifeMax = 1.4682540f;
+      psi->fSpeedMin = 0.0099999998f;
+      psi->fSizeStart = 0.5f;
+      psi->fSizeEnd = 0.69999999f;
+      psi->fSizeVar = 0.25396827f;
+      psi->fSpinStart = -5.5555553f;
+      psi->fAlphaVar = 0.77777779f;
       psi->sprite = mq;
     }
 
@@ -103,19 +103,19 @@ ManaIcon::ManaIcon(int color, float x, float y, float destx, float desty) : Pos(
 
   particleSys->FireAt(x, y);
 
-  zoomP1 = 0.2 + 0.1 * ((float)rand() / (float)RAND_MAX);
-  zoomP2 = 0.2 + 0.1 * ((float)rand() / (float)RAND_MAX);
+  zoomP1 = 0.2f + 0.1f * ((float)rand() / (float)RAND_MAX);
+  zoomP2 = 0.2f + 0.1f * ((float)rand() / (float)RAND_MAX);
   zoomP3 = 2 * M_PI * ((float)rand() / (float)RAND_MAX);
   zoomP4 = 2 * M_PI * ((float)rand() / (float)RAND_MAX);
-  zoomP5 = 0.5 + ((float)rand() / (float)RAND_MAX);
-  zoomP6 = 0.5 + ((float)rand() / (float)RAND_MAX);
+  zoomP5 = 0.5f + ((float)rand() / (float)RAND_MAX);
+  zoomP6 = 0.5f + ((float)rand() / (float)RAND_MAX);
 
   xP1 = 2 * M_PI * ((float)rand() / (float)RAND_MAX);
   xP2 = 5 + 30 * ((float)rand() / (float)RAND_MAX);
-  xP3 = 0.5 + ((float)rand() / (float)RAND_MAX);
+  xP3 = 0.5f + ((float)rand() / (float)RAND_MAX);
   yP1 = 2 * M_PI * ((float)rand() / (float)RAND_MAX);
   yP2 = 5 + 10 * ((float)rand() / (float)RAND_MAX);
-  yP3 = 0.5 + ((float)rand() / (float)RAND_MAX);
+  yP3 = 0.5f + ((float)rand() / (float)RAND_MAX);
 
   actT = 0;
   tP1 = 0;
@@ -228,16 +228,16 @@ void GuiMana::RenderStatic(){
   float x0 = x - 20*totalColors;
   if (x0 < 10) x0 = 10;
   float xEnd = x0 + 20*totalColors;
-  r->FillRoundRect(x0,y - 5 ,20*totalColors + 5,20,2,ARGB(128,0,0,0));
+  r->FillRoundRect(x0, y - 5, static_cast<float>(20 * totalColors + 5), 20, 2, ARGB(128,0,0,0));
 
   int offset = 0;
   for (int i = 0; i < Constants::MTG_NB_COLORS; ++i){
     if (values[i]){
       offset-=20;
-      r->RenderQuad(manaIcons[i],xEnd + 15 + offset, y + 5,0,0.7,0.7);
+      r->RenderQuad(manaIcons[i],xEnd + 15 + offset, y + 5, 0, 0.7f, 0.7f);
     }
   }
-  r->FillRoundRect(x0,y ,20*totalColors + 5,8,2,ARGB(100,0,0,0));
+  r->FillRoundRect(x0, y, static_cast<float>(20 * totalColors + 5), 8, 2, ARGB(100,0,0,0));
   offset = 0;
   for (int i = 0; i < Constants::MTG_NB_COLORS; ++i){
     if (values[i]){

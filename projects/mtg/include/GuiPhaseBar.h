@@ -7,10 +7,6 @@
 
 class GuiPhaseBar : public GuiLayer
 {
-  static const unsigned Width = 28;
-  static const unsigned Height = Width;
-  static const unsigned Phases = 12;
-
  protected:
   Phase* phase;
   float angle;

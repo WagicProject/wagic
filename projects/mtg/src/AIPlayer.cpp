@@ -711,7 +711,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
       if (hasX){
         int xDiff = pMana->getConvertedCost() - currentCost;
         if (xDiff < 0) xDiff = 0;
-        shouldPlayPercentage = shouldPlayPercentage - ((shouldPlayPercentage * 1.9f) / (1 + xDiff));
+        shouldPlayPercentage = shouldPlayPercentage - static_cast<int>((shouldPlayPercentage * 1.9f) / (1 + xDiff));
       }
 
       if (WRand() % 100 > shouldPlayPercentage) continue;
