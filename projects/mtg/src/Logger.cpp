@@ -5,10 +5,6 @@
 
 using namespace std;
 
-#if defined (WIN32)
-#include <windows.h>
-#endif
-
 void Logger::Log(const char * text){
   ofstream file (LOG_FILE,ios_base::app);
   if (file){

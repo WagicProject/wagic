@@ -9,10 +9,6 @@
 #include "WEvent.h"
 #include "MTGAbility.h"
 
-#if defined (WIN32)
-
-#include <windows.h>
-#endif
 
 ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstance * c){
   ManaCost * manaCost;
