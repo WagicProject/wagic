@@ -134,7 +134,7 @@ void GameStateDeckViewer::switchDisplay(){
 
 void GameStateDeckViewer::updateDecks(){
   SAFE_DELETE(welcome_menu);
-  welcome_menu = NEW SimpleMenu( MENU_DECK_SELECTION, this, Fonts::MENU_FONT,20,20);
+  welcome_menu = NEW SimpleMenu( MENU_DECK_SELECTION, this, Fonts::MENU_FONT, 20, 20);
   DeckManager * deckManager = DeckManager::GetInstance();
   vector<DeckMetaData *> playerDeckList = fillDeckMenu( welcome_menu,options.profileFile());
 
@@ -159,21 +159,24 @@ void GameStateDeckViewer::buildEditorMenu()
   
   if ( myDeck ) {
     aiDeckMsg
-          << "****WARNING*****"<< endl
-          << "All changes are final." << endl << endl
+          << "**** All changes are final ****" << endl << endl
           << "------- Deck Summary -----" << endl
           << "# Cards: "<< myDeck->getCount() << endl
           << "# Lands: "<< myDeck->getCount(Constants::MTG_COLOR_LAND ) << endl
+          << "# Creatures: "<< stw.countCreatures << endl
+          << "# Spells: " << stw.countSpells << endl 
           << "Avg. Creature Cost: " << setprecision(2) << stw.avgCreatureCost << endl
           << "Avg. Mana Cost: " << setprecision(2) << stw.avgManaCost << endl
           << "Avg. Spell Cost: " << setprecision(2) << stw.avgSpellCost << endl
           << "  --- Card color count ---  " << endl
           << "A: " << myDeck->getCount(Constants::MTG_COLOR_ARTIFACT)
           << " G: " << myDeck->getCount(Constants::MTG_COLOR_GREEN)
-          << " U: " << myDeck->getCount(Constants::MTG_COLOR_BLUE) << endl
+          << " U: " << myDeck->getCount(Constants::MTG_COLOR_BLUE)
+          << endl
           << "R: " << myDeck->getCount(Constants::MTG_COLOR_RED) 
           << " B: " << myDeck->getCount(Constants::MTG_COLOR_BLACK)
-          << " W: " << myDeck->getCount(Constants::MTG_COLOR_WHITE) << endl;
+          << " W: " << myDeck->getCount(Constants::MTG_COLOR_WHITE) 
+          << endl;
   }
   else  
     aiDeckMsg << "****WARNING*****" << endl << "All changes are final." << endl;
@@ -181,16 +184,17 @@ void GameStateDeckViewer::buildEditorMenu()
   if ( menu )
     SAFE_DELETE( menu );
   //Build menu.
-  menu = NEW SimpleMenu( MENU_DECK_BUILDER, this, Fonts::MENU_FONT, SCREEN_WIDTH/2-150, 20);
-  menu->Add( MENU_ITEM_FILTER_BY, "Filter By...");
-  menu->Add( MENU_ITEM_SWITCH_DECKS_NO_SAVE, "Switch Decks"); 
-  menu->Add( MENU_ITEM_SAVE_RENAME, "Rename Deck");
-  menu->Add( MENU_ITEM_SAVE_RETURN_MAIN_MENU, "Save & Quit Editor");
+
+  menu = NEW SimpleMenu( MENU_DECK_BUILDER, this, Fonts::MENU_FONT, 20, 40, "Deck Editor");
+
+  menu->Add( MENU_ITEM_FILTER_BY, "Filter By...", "Narrow down the list of cards. ");
+  menu->Add( MENU_ITEM_SWITCH_DECKS_NO_SAVE, "Switch Decks", "Do not make any changes\nView another deck."); 
+  menu->Add( MENU_ITEM_SAVE_RENAME, "Rename Deck", "Change the name of the deck");
+  menu->Add( MENU_ITEM_SAVE_RETURN_MAIN_MENU, "Save & Quit Editor", "Save the changes and return to the main menu");
   menu->Add( MENU_ITEM_SAVE_AS_AI_DECK, "Save As AI Deck", aiDeckMsg.str() );
-  menu->Add( MENU_ITEM_MAIN_MENU, "Main Menu");
+  menu->Add( MENU_ITEM_MAIN_MENU, "Main Menu", "Go back to the main menu.\nDo not make any changes to deck");
   menu->Add( MENU_ITEM_EDITOR_CANCEL, "Cancel");
 
-  aiDeckMsg.str(""); // clear the stream
 }
 
 void GameStateDeckViewer::Start()
@@ -321,9 +325,6 @@ void GameStateDeckViewer::saveAsAIDeck( string deckName )
   filepath.append("/ai/baka/").append( defaultAiDeckName ).append( ".txt" );
   DebugTrace("saving AI deck " << filepath);
   myDeck->save( filepath, true, deckName, deckDesc);
-
-  oss.clear();
-  delete deckManager;
 }
 
 void GameStateDeckViewer::Update(float dt)

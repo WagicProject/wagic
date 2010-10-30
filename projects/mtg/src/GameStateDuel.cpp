@@ -125,9 +125,9 @@ void GameStateDuel::Start()
         premadeDeck = true;
         fillDeckMenu(deckmenu,RESPATH"/player/premade");
     }
-    deckmenu->Add( MENUITEM_NEW_DECK, "New Deck...");
-    deckmenu->Add( MENUITEM_MAIN_MENU, "Main Menu", _("Return to Main Menu").c_str());
-  }
+    deckmenu->Add( MENUITEM_NEW_DECK, "New Deck...", "Create a new deck to play with.");
+    deckmenu->Add( MENUITEM_MAIN_MENU, "Main Menu", "Return to Main Menu");
+  } 
   
   for (int i = 0; i < 2; ++i){
     mPlayers[i] = NULL;
