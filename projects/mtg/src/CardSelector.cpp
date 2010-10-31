@@ -29,10 +29,13 @@ struct Diff : public Exp { static inline bool test(CardSelector::Target* ref, Ca
 struct True : public Exp { static inline bool test(CardSelector::Target* ref, CardSelector::Target* test)
   { return true; } };
 
-template<>
-CardSelector::ObjectSelector(DuelLayers* duel) : active(NULL), duel(duel), limitor(NULL), bigpos(300, 150, 1.0, 0.0, 220), bigMode(BIG_MODE_SHOW) {}
 
-template<>
+CardSelector::SelectorMemory::SelectorMemory(PlayGuiObject* object) : object(object) { if (object) { x = object->x; y = object->y; } }
+CardSelector::SelectorMemory::SelectorMemory() { object = NULL; x = y = 0; }
+
+
+CardSelector::CardSelector(DuelLayers* duel) : CardSelectorBase(BIG_MODE_SHOW), active(NULL), duel(duel), limitor(NULL), bigpos(300, 150, 1.0, 0.0, 220) {}
+
 void CardSelector::Add(CardSelector::Target* target)
 {
   if (NULL == active)
@@ -44,25 +47,24 @@ void CardSelector::Add(CardSelector::Target* target)
   if (c) c->zoom = 1.4f;
   cards.push_back(target);
 }
-template<>
+
 void CardSelector::Remove(CardSelector::Target* card)
 {
   for (vector<Target*>::iterator it = cards.begin(); it != cards.end(); ++it)
     if (card == *it)
+    {
+      if (active == *it)
       {
-        if (active == *it)
-          {
-            CardView* c = dynamic_cast<CardView*>(active); if (c) c->zoom = 1.0f;
-            active = closest<Diff>(cards, limitor, active);
-            c = dynamic_cast<CardView*>(active); if (c) c->zoom = 1.4f;
-          }
-        if (active == *it) active = NULL;
-        cards.erase(it);
-        return;
+        CardView* c = dynamic_cast<CardView*>(active); if (c) c->zoom = 1.0f;
+        active = closest<Diff>(cards, limitor, active);
+        c = dynamic_cast<CardView*>(active); if (c) c->zoom = 1.4f;
       }
+      if (active == *it) active = NULL;
+      cards.erase(it);
+      return;
+    }
 }
 
-template<>
 CardSelector::Target* CardSelector::fetchMemory(SelectorMemory& memory) {
   if (NULL == memory.object) return NULL;
   for (vector<Target*>::iterator it = cards.begin(); it != cards.end(); ++it)
@@ -75,19 +77,19 @@ CardSelector::Target* CardSelector::fetchMemory(SelectorMemory& memory) {
   // it is there but it is now refused by the limitor.
   return closest<True>(cards, limitor, memory.x, memory.y);
 }
-template<>
+
 void CardSelector::Push() {
   memoryStack.push(SelectorMemory(active));
 }
-template<>
+
 void CardSelector::Pop() {
   Target* oldactive = active;
   if (!memoryStack.empty()) {
     active = fetchMemory(memoryStack.top());
     memoryStack.pop();
-    SelectorZone oldowner;
-    if (CardView *q = dynamic_cast<CardView*>(oldactive)) oldowner = q->owner; else oldowner = nullZone;
-    if (nullZone != oldowner) lasts[oldowner] = SelectorMemory(oldactive);
+    CardView::SelectorZone oldowner;
+    if (CardView *q = dynamic_cast<CardView*>(oldactive)) oldowner = q->owner; else oldowner = CardView::nullZone;
+    if (CardView::nullZone != oldowner) lasts[oldowner] = SelectorMemory(oldactive);
   }
   if (active != oldactive) {
     { CardView* c = dynamic_cast<CardView*>(oldactive); if (c) c->zoom = 1.0f; } //Is this needed, I think it is one in Leaving(0) ?
@@ -97,7 +99,6 @@ void CardSelector::Pop() {
   }
 }
 
-template<>
 bool CardSelector::CheckUserInput(JButton key)
 {
   if (!active) {
@@ -131,8 +132,8 @@ bool CardSelector::CheckUserInput(JButton key)
     active = closest<Down>(cards, limitor, active);
     break;
   case JGE_BTN_CANCEL:
-    bigMode = (bigMode+1) % NB_BIG_MODES;
-    if(bigMode == BIG_MODE_TEXT)
+    mDrawMode = (mDrawMode+1) % NB_BIG_MODES;
+    if(mDrawMode == BIG_MODE_TEXT)
       options[Options::DISABLECARDS].number = 1;
     else
       options[Options::DISABLECARDS].number = 0;
@@ -141,11 +142,11 @@ bool CardSelector::CheckUserInput(JButton key)
     return false;
   }
   if (active != oldactive) {
-    SelectorZone oldowner, owner;
-    if (CardView *q = dynamic_cast<CardView*>(oldactive)) oldowner = q->owner; else oldowner = nullZone;
-    if (CardView *q = dynamic_cast<CardView*>(active))       owner = q->owner; else    owner = nullZone;
+    CardView::SelectorZone oldowner, owner;
+    if (CardView *q = dynamic_cast<CardView*>(oldactive)) oldowner = q->owner; else oldowner = CardView::nullZone;
+    if (CardView *q = dynamic_cast<CardView*>(active))       owner = q->owner; else    owner = CardView::nullZone;
     if (oldowner != owner) {
-      if (nullZone != owner) {
+      if (CardView::nullZone != owner) {
         if (PlayGuiObject* old = fetchMemory(lasts[owner]))
           switch (key)
             {
@@ -185,8 +186,6 @@ bool CardSelector::CheckUserInput(JButton key)
   return true;
 }
 
-
-template<>
 bool CardSelector::CheckUserInput(int x, int y)
 {
   if (!active) {
@@ -202,11 +201,11 @@ bool CardSelector::CheckUserInput(int x, int y)
   active = closest<True>(cards, limitor, x, y);
 
   if (active != oldactive) {
-    SelectorZone oldowner, owner;
-    if (CardView *q = dynamic_cast<CardView*>(oldactive)) oldowner = q->owner; else oldowner = nullZone;
-    if (CardView *q = dynamic_cast<CardView*>(active))       owner = q->owner; else    owner = nullZone;
+    CardView::SelectorZone oldowner, owner;
+    if (CardView *q = dynamic_cast<CardView*>(oldactive)) oldowner = q->owner; else oldowner = CardView::nullZone;
+    if (CardView *q = dynamic_cast<CardView*>(active))       owner = q->owner; else    owner = CardView::nullZone;
     if (oldowner != owner) {
-      if (nullZone != owner) {
+      if (CardView::nullZone != owner) {
         if (PlayGuiObject* old = fetchMemory(lasts[owner]))
           if (old) active = old;
       }
@@ -222,25 +221,23 @@ bool CardSelector::CheckUserInput(int x, int y)
   return true;
 }
 
-template<>
 void CardSelector::Update(float dt) {
   float boundary = duel->RightBoundary();
   float position = boundary - CardGui::BigWidth / 2;
   if (CardView* c = dynamic_cast<CardView*>(active))
     if ((c->x + CardGui::Width / 2 > position - CardGui::BigWidth / 2) &&
-	(c->x - CardGui::Width / 2 < position + CardGui::BigWidth / 2))
+      (c->x - CardGui::Width / 2 < position + CardGui::BigWidth / 2))
       position = CardGui::BigWidth / 2 - 10;
   if (position < CardGui::BigWidth / 2) position = CardGui::BigWidth / 2;
   bigpos.x = position;
   bigpos.Update(dt);
 }
 
-template<>
 void CardSelector::Render() {
   if (active) {
     active->Render();
     if (CardView* c = dynamic_cast<CardView*>(active)) {
-      switch(bigMode) {
+      switch(mDrawMode) {
       case BIG_MODE_SHOW:
         c->RenderBig(bigpos);
         break;
@@ -254,15 +251,14 @@ void CardSelector::Render() {
   }
 }
 
-template<>
-void CardSelector::Limit(LimitorFunctor<Target>* limitor, SelectorZone destzone) {
+void CardSelector::Limit(LimitorFunctor<PlayGuiObject>* limitor, CardView::SelectorZone destzone) {
   this->limitor = limitor;
   if (limitor && !limitor->select(active)) {
-    Target* oldactive = active;
-    SelectorZone oldowner;
-    if (CardView *q = dynamic_cast<CardView*>(oldactive)) oldowner = q->owner; else oldowner = nullZone;
+    PlayGuiObject* oldactive = active;
+    CardView::SelectorZone oldowner;
+    if (CardView *q = dynamic_cast<CardView*>(oldactive)) oldowner = q->owner; else oldowner = CardView::nullZone;
     if (oldowner != destzone) {
-      if (nullZone != destzone)
+      if (CardView::nullZone != destzone)
         if (PlayGuiObject* old = fetchMemory(lasts[destzone]))
           active = old;
       lasts[oldowner] = SelectorMemory(oldactive);
@@ -270,7 +266,7 @@ void CardSelector::Limit(LimitorFunctor<Target>* limitor, SelectorZone destzone)
 
     if (limitor && !limitor->select(active)) {
       active = NULL;
-      for (vector<Target*>::iterator it = cards.begin(); it != cards.end(); ++it)
+      for (vector<PlayGuiObject*>::iterator it = cards.begin(); it != cards.end(); ++it)
         if (limitor->select(*it)) {
           active = *it;
           break;
@@ -286,43 +282,15 @@ void CardSelector::Limit(LimitorFunctor<Target>* limitor, SelectorZone destzone)
   }
 }
 
-template<>
 void CardSelector::PushLimitor() {
   if (NULL == limitor) return;
-  SelectorZone owner;
-  if (CardView *q = dynamic_cast<CardView*>(active)) owner = q->owner; else owner = nullZone;
+  CardView::SelectorZone owner;
+  if (CardView *q = dynamic_cast<CardView*>(active)) owner = q->owner; else owner = CardView::nullZone;
   limitorStack.push(make_pair(limitor, owner));
 }
 
-template<>
 void CardSelector::PopLimitor() {
   if (limitorStack.empty()) return;
   Limit(limitorStack.top().first, limitorStack.top().second);
   limitorStack.pop();
-}
-
-
-namespace CardSelectorSingleton
-{
-  static CardSelector* sCardSelectorInstance = NULL;
-
-  CardSelector* Create(DuelLayers* inDuelLayers)
-  {
-    if (sCardSelectorInstance == NULL)
-      sCardSelectorInstance = NEW CardSelector(inDuelLayers);
-
-    return sCardSelectorInstance;
-  }
-
-  CardSelector* Instance()
-  {
-    assert(sCardSelectorInstance);
-    return sCardSelectorInstance;
-  }
-
-  void Terminate()
-  {
-    SAFE_DELETE(sCardSelectorInstance);
-    sCardSelectorInstance = NULL;
-  }
 }

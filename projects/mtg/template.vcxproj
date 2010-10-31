@@ -120,6 +120,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>PrecompiledHeader.h</PrecompiledHeaderFile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -169,6 +170,7 @@
       <EnablePREfast>false</EnablePREfast>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>PrecompiledHeader.h</PrecompiledHeaderFile>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -220,6 +222,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>PrecompiledHeader.h</PrecompiledHeaderFile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -270,6 +273,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>PrecompiledHeader.h</PrecompiledHeaderFile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -306,6 +310,7 @@
     <ClCompile Include="src\CardGui.cpp" />
     <ClCompile Include="src\CardPrimitive.cpp" />
     <ClCompile Include="src\CardSelector.cpp" />
+    <ClCompile Include="src\CardSelectorSingleton.cpp" />
     <ClCompile Include="src\Counters.cpp" />
     <ClCompile Include="src\Credits.cpp" />
     <ClCompile Include="src\Damage.cpp" />
@@ -371,6 +376,7 @@
     <ClCompile Include="src\MTGGameZones.cpp" />
     <ClCompile Include="src\MTGPack.cpp" />
     <ClCompile Include="src\MTGRules.cpp" />
+    <ClCompile Include="src\Navigator.cpp" />
     <ClCompile Include="src\OptionItem.cpp" />
     <ClCompile Include="src\PhaseRing.cpp" />
     <ClCompile Include="src\Player.cpp" />
@@ -431,6 +437,7 @@
     <ClInclude Include="include\CardGui.h" />
     <ClInclude Include="include\CardPrimitive.h" />
     <ClInclude Include="include\CardSelector.h" />
+    <ClInclude Include="include\CardSelectorSingleton.h" />
     <ClInclude Include="include\config.h" />
     <ClInclude Include="include\Counters.h" />
     <ClInclude Include="include\Credits.h" />
@@ -480,6 +487,7 @@
     <ClInclude Include="include\MTGGameZones.h" />
     <ClInclude Include="include\MTGPack.h" />
     <ClInclude Include="include\MTGRules.h" />
+    <ClInclude Include="include\Navigator.h" />
     <ClInclude Include="include\OptionItem.h" />
     <ClInclude Include="include\OSD.h" />
     <ClInclude Include="include\PhaseRing.h" />

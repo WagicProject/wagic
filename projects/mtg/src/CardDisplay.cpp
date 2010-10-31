@@ -2,6 +2,7 @@
 
 #include "CardDisplay.h"
 #include "CardGui.h"
+#include "CardSelectorSingleton.h"
 #include "TargetChooser.h"
 #include "MTGGameZones.h"
 #include "GameObserver.h"
@@ -27,7 +28,7 @@ CardDisplay::CardDisplay(int id, GameObserver* game, int _x, int _y, JGuiListene
 }
 
 void CardDisplay::AddCard(MTGCardInstance * _card){
-  CardGui * card = NEW CardView(CardSelector::nullZone, _card, static_cast<float>(x + 20 + (mCount - start_item) * 30), static_cast<float>(y + 25));
+  CardGui * card = NEW CardView(CardView::nullZone, _card, static_cast<float>(x + 20 + (mCount - start_item) * 30), static_cast<float>(y + 25));
   Add(card);
 }
 
@@ -218,7 +219,7 @@ void CardDisplay::Render(){
     Pos pos = Pos(CardGui::BigWidth / 2, CardGui::BigHeight / 2 - 10, 1.0, 0.0, 220);
     int showMode = BIG_MODE_SHOW;
     if (game){
-      showMode = CardSelectorSingleton::Instance()->bigMode;
+      showMode = CardSelectorSingleton::Instance()->GetDrawMode();
       pos.actY = 150;
       if (x < (CardGui::BigWidth / 2)) pos.actX = SCREEN_WIDTH - 10 - CardGui::BigWidth / 2;
     }

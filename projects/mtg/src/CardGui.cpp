@@ -38,7 +38,7 @@ namespace
 CardGui::CardGui(MTGCardInstance* card, float x, float y) : PlayGuiObject(Height, x, y, false), card(card) {}
 CardGui::CardGui(MTGCardInstance* card, const Pos& ref) : PlayGuiObject(Height, ref, false), card(card) {}
 
-CardView::CardView(const CardSelector::SelectorZone owner, MTGCardInstance* card, float x, float y) : CardGui(card, x, y), owner(owner) {
+CardView::CardView(const SelectorZone owner, MTGCardInstance* card, float x, float y) : CardGui(card, x, y), owner(owner) {
   const Pos* ref = card->view;
   while (card)
     {
@@ -47,7 +47,7 @@ CardView::CardView(const CardSelector::SelectorZone owner, MTGCardInstance* card
     }
 }
 
-CardView::CardView(const CardSelector::SelectorZone owner, MTGCardInstance* card, const Pos& ref) : CardGui(card, ref), owner(owner) {
+CardView::CardView(const SelectorZone owner, MTGCardInstance* card, const Pos& ref) : CardGui(card, ref), owner(owner) {
   const Pos* r = card->view;
   while (card)
     {

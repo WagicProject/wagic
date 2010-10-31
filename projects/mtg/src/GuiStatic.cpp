@@ -233,9 +233,9 @@ int GuiGraveyard::receiveEventPlus(WEvent* e)
       {
 	CardView* t;
 	if (event->card->view)
-	  t = NEW CardView(CardSelector::nullZone, event->card, *(event->card->view));
+	  t = NEW CardView(CardView::nullZone, event->card, *(event->card->view));
 	else
-	  t = NEW CardView(CardSelector::nullZone, event->card, x, y);
+	  t = NEW CardView(CardView::nullZone, event->card, x, y);
 	t->x = x + Width / 2; t->y = y + Height / 2; t->zoom = 0.6; t->alpha = 0;
 	cards.push_back(t);
 	return 1;
@@ -276,9 +276,9 @@ int GuiOpponentHand::receiveEventPlus(WEvent* e)
       {
 	CardView* t;
 	if (event->card->view)
-	  t = NEW CardView(CardSelector::nullZone, event->card, *(event->card->view));
+	  t = NEW CardView(CardView::nullZone, event->card, *(event->card->view));
 	else
-	  t = NEW CardView(CardSelector::nullZone, event->card, x, y);
+	  t = NEW CardView(CardView::nullZone, event->card, x, y);
 	t->x = x + Width / 2; t->y = y + Height / 2; t->zoom = 0.6; t->alpha = 0;
 	cards.push_back(t);
 	return 1;

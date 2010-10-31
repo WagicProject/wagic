@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <stack>
+#include "CardGui.h"
 #include "GuiLayers.h"
 #include "Pos.h"
 
@@ -10,6 +11,7 @@ using std::vector;
 
 class PlayGuiObject;
 class DuelLayers;
+
 
 enum {
   BIG_MODE_SHOW = 0,
@@ -26,38 +28,57 @@ struct LimitorFunctor
   typedef T Target;
 };
 
-template <typename T=PlayGuiObject>
-class ObjectSelector : public GuiLayer
+class CardSelectorBase : public GuiLayer
 {
 public:
-  typedef enum {
-    nullZone, handZone, playZone
-  } SelectorZone;
+
+  CardSelectorBase(int inDrawMode) : mDrawMode(inDrawMode) {};
+  virtual void Add(PlayGuiObject*) = 0;
+  virtual void Remove(PlayGuiObject*) = 0;
+  virtual bool CheckUserInput(JButton key) = 0;
+  virtual bool CheckUserInput(int x, int y) = 0;
+  virtual void PushLimitor() = 0;
+  virtual void PopLimitor() = 0;
+  virtual void Limit(LimitorFunctor<PlayGuiObject>* inLimitor, CardView::SelectorZone inZone) = 0;
+  virtual void Push() = 0;
+  virtual void Pop() = 0;
+  virtual int GetDrawMode()
+  {
+    return mDrawMode;
+  }
+
+protected:
+  int mDrawMode;
+};
+
+
+class CardSelector : public CardSelectorBase
+{
+public:
   struct SelectorMemory
   {
-    T* object;
+    PlayGuiObject* object;
     float x, y;
-    SelectorMemory(T* object) : object(object) { if (object) { x = object->x; y = object->y; } };
-    SelectorMemory() { object = NULL; x = y = 0; };
+    SelectorMemory(PlayGuiObject* object);
+    SelectorMemory();
   };
 
 protected:
-  vector<T*> cards;
-  T* active;
+  vector<PlayGuiObject*> cards;
+  PlayGuiObject* active;
   DuelLayers* duel;
-  LimitorFunctor<T>* limitor;
+  LimitorFunctor<PlayGuiObject>* limitor;
   Pos bigpos;
-  map<const SelectorZone, SelectorMemory> lasts;
-  stack< pair<LimitorFunctor<T>*, SelectorZone> > limitorStack;
+  map<const CardView::SelectorZone, SelectorMemory> lasts;
+  stack< pair<LimitorFunctor<PlayGuiObject>*, CardView::SelectorZone> > limitorStack;
   stack<SelectorMemory> memoryStack;
 
-  T* fetchMemory(SelectorMemory&);
+  PlayGuiObject* fetchMemory(SelectorMemory&);
 
 public:
-  ObjectSelector(DuelLayers*);
-  int bigMode;
-  void Add(T*);
-  void Remove(T*);
+  CardSelector(DuelLayers*);
+  void Add(PlayGuiObject*);
+  void Remove(PlayGuiObject*);
   bool CheckUserInput(JButton key);
   bool CheckUserInput(int x, int y);
   void Update(float dt);
@@ -65,38 +86,14 @@ public:
   void Push();
   void Pop();
 
-  void Limit(LimitorFunctor<T>* limitor, SelectorZone);
+  void Limit(LimitorFunctor<PlayGuiObject>* limitor, CardView::SelectorZone);
   void PushLimitor();
   void PopLimitor();
 
-  typedef T Target;
+  typedef PlayGuiObject Target;
 };
 
-typedef ObjectSelector<> CardSelector;
 typedef LimitorFunctor<CardSelector::Target> Limitor;
-
-
-namespace CardSelectorSingleton
-{
-  /*
-  ** CardSelector is essentially a singleton in its usage
-  ** It's not enforced, but it needs to eventually migrate to the real thing
-  ** For now, this function will fake it out - it's up to the client caller to make sure
-  ** that this gets destroyed via a Terminate call (this is currently handled in DualLayers's destructor)
-  */
-  CardSelector* Instance();
-
-  /*
-  ** Create the singleton pointer. Instance() isn't valid until this is called.
-  */
-  CardSelector* Create(DuelLayers* inDuelLayers);
-
-  /*
-  ** Teardown the singleton pointer instance.
-  */
-  void Terminate();
-}
-
 
 struct Exp
 {

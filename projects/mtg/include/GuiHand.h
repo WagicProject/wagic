@@ -6,7 +6,6 @@
 #include "MTGGameZones.h"
 #include "CardGui.h"
 #include "GuiHand.h"
-#include "CardSelector.h"
 
 class GuiHand;
 

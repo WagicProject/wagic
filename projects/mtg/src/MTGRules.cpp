@@ -1,5 +1,6 @@
 #include "PrecompiledHeader.h"
 
+#include "CardSelectorSingleton.h"
 #include "MTGRules.h"
 #include "Translate.h"
 #include "Subtypes.h"
@@ -726,9 +727,9 @@ int MTGAttackRule::reactToClick(MTGCardInstance * card){
 	//Graphically select the next card that can attack
 	if(!card->isAttacker()){
 		CardSelectorSingleton::Instance()->PushLimitor();
-		CardSelectorSingleton::Instance()->Limit(this,CardSelector::playZone);
+		CardSelectorSingleton::Instance()->Limit(this, CardView::playZone);
 		CardSelectorSingleton::Instance()->CheckUserInput(JGE_BTN_RIGHT);
-		CardSelectorSingleton::Instance()->Limit(NULL,CardSelector::playZone);
+		CardSelectorSingleton::Instance()->Limit(NULL, CardView::playZone);
 		CardSelectorSingleton::Instance()->PopLimitor();
 	}
 	card->toggleAttacker();

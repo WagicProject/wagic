@@ -2,7 +2,6 @@
 #define _DUELLAYERS_H_
 
 #include "GuiLayers.h"
-#include "CardSelector.h"
 
 class MTGGuiHand;
 class MTGGuiPlay;
@@ -13,6 +12,7 @@ class GuiHandSelf;
 class GuiHandOpponent;
 class GuiCombat;
 class GuiAvatars;
+class CardSelectorBase;
 struct Pos;
 
 class DuelLayers {
@@ -43,7 +43,7 @@ public:
   int receiveEvent(WEvent * e);
   float RightBoundary();
 
-  CardSelector* mCardSelector;
+  CardSelectorBase* mCardSelector;
 };
 
 #include "ActionLayer.h"

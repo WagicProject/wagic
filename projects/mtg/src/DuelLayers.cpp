@@ -1,6 +1,7 @@
 #include "PrecompiledHeader.h"
 
 #include "MTGRules.h"
+#include "CardSelectorSingleton.h"
 #include "GuiCombat.h"
 #include "GuiBackground.h"
 #include "GuiFrame.h"

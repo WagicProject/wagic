@@ -1,5 +1,6 @@
 #include "PrecompiledHeader.h"
 
+#include "CardSelectorSingleton.h"
 #include "GameApp.h"
 #include "GuiPlay.h"
 #include "Trash.h"
@@ -232,15 +233,18 @@ int GuiPlay::receiveEventPlus(WEvent * e)
         // We don't want a card in the hand to have an alpha of 0
         event->card->view->alpha = 255; 
 
-        card = NEW CardView(CardSelector::playZone, event->card, *(event->card->view));
+        card = NEW CardView(CardView::playZone, event->card, *(event->card->view));
       }
       else
-        card = NEW CardView(CardSelector::playZone, event->card, 0, 0);
+        card = NEW CardView(CardView::playZone, event->card, 0, 0);
       cards.push_back(card);
       card->t = event->card->isTapped() ? M_PI / 2 : 0;
       card->alpha = 255;
-      CardSelectorSingleton::Instance()->Add(card);
+      
+      // Make sure that the card is repositioned before adding it to the CardSelector, as 
+      // the card's position is a cue for certain CardSelector variants as to what zone the card is placed in
       Replace();
+      CardSelectorSingleton::Instance()->Add(card);
       return 1;
     }
   }

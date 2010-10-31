@@ -8,7 +8,6 @@
 #include "Pos.h"
 #include "PlayGuiObject.h"
 #include "MTGCardInstance.h"
-#include "CardSelector.h"
 
 class MTGCardInstance;
 class PlayGuiObject;
@@ -37,13 +36,19 @@ struct CardGui : public PlayGuiObject {
   virtual ostream& toString(ostream&) const;
 };
 
+
 class CardView : public CardGui {
  public:
-  const CardSelector::SelectorZone owner;
+
+   typedef enum {
+     nullZone, handZone, playZone
+   } SelectorZone;
+
+  const SelectorZone owner;
 
   MTGCardInstance* getCard(); // remove this when possible
-  CardView(const CardSelector::SelectorZone, MTGCardInstance* card, float x, float y);
-  CardView(const CardSelector::SelectorZone, MTGCardInstance* card, const Pos& ref);
+  CardView(const SelectorZone, MTGCardInstance* card, float x, float y);
+  CardView(const SelectorZone, MTGCardInstance* card, const Pos& ref);
   void Render(){CardGui::Render();};
   void Render(JQuad* q){Pos::Render(q);};
   virtual ostream& toString(ostream&) const;

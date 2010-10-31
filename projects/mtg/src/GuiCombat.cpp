@@ -5,6 +5,7 @@
 #include "AIPlayer.h"
 #include "GameObserver.h"
 #include "Trash.h"
+#include "CardSelector.h"
 #include "Closest.cpp"
 
 static const float MARGIN = 70;

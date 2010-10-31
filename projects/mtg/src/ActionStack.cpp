@@ -4,15 +4,16 @@
 #include "PrecompiledHeader.h"
 
 #include "ActionStack.h"
-#include "MTGAbility.h"
-#include "GameObserver.h"
-#include "Damage.h"
-#include "ManaCost.h"
-#include "GameOptions.h"
-#include "WResourceManager.h"
-#include "TargetChooser.h"
 #include "CardGui.h"
+#include "CardSelectorSingleton.h"
+#include "Damage.h"
+#include "GameObserver.h"
+#include "GameOptions.h"
+#include "ManaCost.h"
+#include "MTGAbility.h"
+#include "TargetChooser.h"
 #include "Translate.h"
+#include "WResourceManager.h"
 
 #include <typeinfo>
 
@@ -83,7 +84,7 @@ void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string 
   }
 
   if (bigQuad){
-    int showMode = CardSelectorSingleton::Instance()->bigMode;
+    int showMode = CardSelectorSingleton::Instance()->GetDrawMode();
     Pos pos = Pos(CardGui::BigWidth / 2, CardGui::BigHeight / 2 - 10, 1.0, 0.0, 220);
     switch(showMode){
         case BIG_MODE_SHOW:
@@ -601,7 +602,7 @@ void ActionStack::Update(float dt){
     for (int i = 0; i < mCount ; i++){
       Interruptible * current = (Interruptible *)mObjects[i];
       if (tc->canTarget(current)){
-	      if (mObjects[mCurr]) mObjects[mCurr]->Leaving(JGE_BTN_UP);
+	      if (mCurr < (int)mObjects.size() && mObjects[mCurr]) mObjects[mCurr]->Leaving(JGE_BTN_UP);
 	      current->display = 1;
 	      mCurr = i;
 	      mObjects[mCurr]->Entering();

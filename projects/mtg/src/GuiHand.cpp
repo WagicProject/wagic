@@ -1,5 +1,7 @@
 #include "PrecompiledHeader.h"
 
+#include "CardSelectorSingleton.h"
+#include "CardSelector.h"
 #include "GameApp.h"
 #include "Trash.h"
 #include "GuiHand.h"
@@ -136,7 +138,7 @@ bool GuiHandSelf::CheckUserInput(JButton key)
     {
       state = (Open == state ? Closed : Open);
       if (Open == state) CardSelectorSingleton::Instance()->Push();
-      CardSelectorSingleton::Instance()->Limit(Open == state ? limitor : NULL, CardSelector::handZone);
+      CardSelectorSingleton::Instance()->Limit(Open == state ? limitor : NULL, CardView::handZone);
       if (Closed == state) CardSelectorSingleton::Instance()->Pop();
       if (OptionHandDirection::HORIZONTAL == options[Options::HANDDIRECTION].number)
         backpos.y = Open == state ? OpenY : ClosedY;
@@ -212,10 +214,10 @@ int GuiHandSelf::receiveEventPlus(WEvent* e)
           // We don't want a card in the hand to have an alpha of 0
           ev->card->view->alpha = 255; 
 
-	        card = NEW CardView(CardSelector::handZone, ev->card, *(ev->card->view));
+	        card = NEW CardView(CardView::handZone, ev->card, *(ev->card->view));
         }
 	      else
-	        card = NEW CardView(CardSelector::handZone, ev->card, ClosedRowX, 0);
+	        card = NEW CardView(CardView::handZone, ev->card, ClosedRowX, 0);
 	      card->t = 6*M_PI;
 	      cards.push_back(card);
 	      CardSelectorSingleton::Instance()->Add(card);
@@ -251,9 +253,9 @@ int GuiHandOpponent::receiveEventPlus(WEvent* e)
       {
 	CardView* card;
 	if (event->card->view)
-	  card = NEW CardView(CardSelector::handZone, event->card, *(event->card->view));
+	  card = NEW CardView(CardView::handZone, event->card, *(event->card->view));
 	else
-	  card = NEW CardView(CardSelector::handZone, event->card, ClosedRowX, 0);
+	  card = NEW CardView(CardView::handZone, event->card, ClosedRowX, 0);
         card->alpha = 255; card->t = -4*M_PI;
 	cards.push_back(card);
 	return 1;

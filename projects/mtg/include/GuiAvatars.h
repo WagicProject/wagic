@@ -2,7 +2,6 @@
 #define _GUIAVATARS_H_
 
 #include "GuiLayers.h"
-#include "CardSelector.h"
 
 struct GuiAvatar;
 class GuiGraveyard;
