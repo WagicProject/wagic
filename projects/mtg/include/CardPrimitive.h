@@ -29,7 +29,6 @@ class CardPrimitive {
   string spellTargetType;
   int power;
   int toughness;
-	int level;
   vector<int>types;
   CardPrimitive();
   CardPrimitive(CardPrimitive * source);
@@ -75,9 +74,6 @@ class CardPrimitive {
   int getPower();
   void setToughness(int _toughness);
   int getToughness();
-	void setMaxLevel(int _level);
-  int getMaxLevel();
-
   const vector<string>& formattedText();
 };
 

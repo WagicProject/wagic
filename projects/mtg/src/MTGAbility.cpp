@@ -1585,6 +1585,23 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     return a;
   }
 
+	 //frozen, next untap this does not untap.
+	found = s.find("maxlevel:");
+  if (found != string::npos){
+    size_t start = s.find(":",found);
+    size_t end = s.find(" ",start);
+    int value;
+    if (end != string::npos){
+			value = atoi(s.substr(start+1,end-start-1).c_str());
+		}
+	else{
+		value = atoi(s.substr(start+1).c_str());
+	}
+    MTGAbility * a = NEW AAWhatsMax(id,card,card,NULL,0,value);
+    a->oneShot = 1;
+    return a;
+  }
+
 	 //switch targest power with toughness
   found = s.find("swap");
   if (found != string::npos){

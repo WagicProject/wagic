@@ -2915,6 +2915,26 @@ public:
 	}
 };
 
+/* set max level up on a levelup creature this is an Ai hint ability, no effect for players.*/
+class AAWhatsMax:public ActivatedAbility{
+public:
+	int value;
+	AAWhatsMax(int id, MTGCardInstance * card, MTGCardInstance * source,ManaCost * _cost = NULL, int doTap = 0,int value = 0):ActivatedAbility(id,card, _cost,0,doTap),value(value){
+	}
+	int resolve(){
+		MTGCardInstance * _target = (MTGCardInstance *) target;
+		if (source){
+			source->MaxLevelUp = value;
+		}
+		return 1;
+	}
+	AAWhatsMax * clone() const{
+		AAWhatsMax * a =  NEW AAWhatsMax(*this);
+		a->isClone = 1;
+		return a;
+	}
+};
+
 /* Can prevent a card from untapping next untap */
 class AAFrozen:public ActivatedAbility{
 public:

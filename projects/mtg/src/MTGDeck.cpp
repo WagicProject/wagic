@@ -105,12 +105,6 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
         cost->kicker = ManaCost::parseManaCost(value);
       }
       break;
-
-		case 'l': //Levelup, this is just to give Ai an idea when to stop leveling a creature.
-      if (!primitive) primitive = NEW CardPrimitive();
-			primitive->setMaxLevel(atoi(val));
-      break;
-
     case 'o': //othercost
       if (!primitive) primitive = NEW CardPrimitive();
       if (ManaCost * cost = primitive->getManaCost())

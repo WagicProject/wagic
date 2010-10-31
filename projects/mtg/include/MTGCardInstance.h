@@ -60,6 +60,7 @@ class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable {
 	int didblocked;
 	int notblocked;
 	int fresh;
+	int MaxLevelUp;
   Player * lastController;
   MTGGameZone * getCurrentZone();
   MTGGameZone * previousZone;
