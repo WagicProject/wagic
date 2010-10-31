@@ -466,6 +466,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\CardSelectorSingleton.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\Counters.cpp"
 				>
 			</File>
@@ -972,6 +976,10 @@
 			</File>
 			<File
 				RelativePath=".\include\CardSelector.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\CardSelectorSingleton.h"
 				>
 			</File>
 			<File
