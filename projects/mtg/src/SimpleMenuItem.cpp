@@ -21,7 +21,6 @@ SimpleMenuItem::SimpleMenuItem(SimpleMenu* _parent, int id, int fontId, string t
 void SimpleMenuItem::RenderWithOffset(float yOffset)
 {
   WFont * mFont = resources.GetWFont(fontId);
-  //mFont->SetColor(ARGB(255,255,255,255));
   mFont->DrawString(mText.c_str(), mX, mY + yOffset, JGETEXT_CENTER);
 }
 
