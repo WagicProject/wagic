@@ -343,7 +343,7 @@ void GameApp::Render()
   float fps = mEngine->GetFPS();
   totalFPS += fps;
   nbUpdates+=1;
-  WFont * mFont= resources.GetWFont("simon");
+  WFont * mFont= resources.GetWFont(Fonts::MAIN_FONT);
   char buf[512];
   sprintf(buf, "avg:%.02f - %.02f fps",totalFPS/nbUpdates, fps);
   if (mFont) {
