@@ -128,6 +128,21 @@ void MTGCardInstance::initMTGCI(){
   blocked = false;
   currentZone = NULL;
   data = this; //an MTGCardInstance point to itself for data, allows to update it without killing the underlying database item
+
+	if(basicAbilities[Constants::CHANGELING]){//if the card is a changeling.
+        for(int i=Subtypes::LAST_TYPE+1;;i++){
+          string s = Subtypes::subtypesList->find(i);
+					if(!hasSubtype(i))
+					{
+          if(s == "") break;
+          if(s.find(" ") != string::npos) continue;
+          if(s == "Nothing" || s == "Swamp" || s == "Plains" || s == "Mountain" || s == "Forest" || s == "Island" || s == "Shrine" || s == "Basic" || s == "Colony" || s == "Desert"  || s == "Dismiss"  || s == "Equipment"
+						 || s == "Everglades"  || s == "Grasslands" || s == "Lair" || s == "Level" || s == "Levelup" || s == "Mine" || s == "Oasis" || s == "World" || s == "Aura") continue;
+          addType(i);
+					}
+				}
+			}
+
 }
 
 

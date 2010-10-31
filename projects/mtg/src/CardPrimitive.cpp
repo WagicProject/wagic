@@ -186,24 +186,6 @@ void CardPrimitive::addType(char * _type_text){
 void CardPrimitive::setSubtype(const string& value){
   int id = Subtypes::subtypesList->find(value);
   addType(id);
-
-			if(basicAbilities[55]){//if the card is a changeling.
-        for(int i=Subtypes::LAST_TYPE+1;;i++){
-          string s = Subtypes::subtypesList->find(i);
-					if(!hasSubtype(i))
-					{
-          if(s == "") break;
-          if(s.find(" ") != string::npos) continue;
-          if(s == "Nothing" || s == "Swamp" || s == "Plains" || s == "Mountain" || s == "Forest" || s == "Island" || s == "Shrine" || s == "Basic" || s == "Colony" || s == "Desert"  || s == "Dismiss"  || s == "Equipment"
-						 || s == "Everglades"  || s == "Grasslands" || s == "Lair" || s == "Level" || s == "Levelup" || s == "Mine" || s == "Oasis" || s == "World" || s == "Aura")
-					{//dont add "nothing" or land type to this card.
-					}else{
-          addType(i);
-					}
-					}
-				}
-			}
-
 }
 
 void CardPrimitive::addType(int id){
