@@ -1,0 +1,20 @@
+#Bug: Changeling doesn't work
+# Amoeboid changeling should be a kithkin, and get the Wizened Cenn bonus
+# see: http://code.google.com/p/wagic/issues/detail?id=501
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Wizened Cenn,Amoeboid Changeling
+hand:Scar
+manapool:{R}
+[PLAYER2]
+[DO]
+scar
+Amoeboid Changeling
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Wizened Cenn,Amoeboid Changeling
+graveyard:Scar
+[PLAYER2]
+[END]
