@@ -1421,7 +1421,7 @@ int MTGAffinityRule::receiveEvent(WEvent * event){
 				//---------
 				//when cards with affinity enter you hand from anywhere a redux is applied to them for the artifacts in play.
 				if(ok == 1){//enters play from anywhere
-					if (e->from == p->game->graveyard || e->from == p->game->hand || e->from == p->game->library || e->from == p->game->exile || e->from == p->game->stack || e->from == p->opponent()->game->battlefield || e->from == p->game->temp){
+					if (e->from == p->game->graveyard || e->from == p->game->hand || e->from == p->game->library || e->from == p->game->exile || e->from == p->game->stack || e->from == p->opponent()->game->battlefield || e->from == p->game->temp || e->from == p->game->battlefield){
 						MTGCardInstance * card = e->card->previous;
 						if(card && card->has(Constants::AFFINITYARTIFACTS)) {color = 0 ; type = "artifact";}
 						if(card && card->has(Constants::AFFINITYSWAMP)) {color = 0 ; type = "swamp";}
