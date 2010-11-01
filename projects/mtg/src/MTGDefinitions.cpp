@@ -1,13 +1,30 @@
 #include "PrecompiledHeader.h"
+#include <string.h>
+using std::string;
 
 #include "MTGDefinitions.h"
 
 char Constants::MTGColorChars[] = {'x','g','u','r','b','w','l'};
 const char* Constants::MTGColorStrings[] = {"artifact", "green", "blue", "red", "black", "white", "land"};
 
+const string Constants::kManaColorless      = "colorless";
+const string Constants::kManaGreen          = "green";
+const string Constants::kManaBlue           = "blue";
+const string Constants::kManaRed            = "red";
+const string Constants::kManaBlack          = "black";
+const string Constants::kManaWhite          = "white";
+
 int Constants::_r[7] = {75,	20,		20,	200,50,255,128};
 int Constants::_g[7] = {30,	140,	30,	15,	50,255,128};
 int Constants::_b[7] = {20,	0,		140,15,	50,255,128};
+
+
+const string Constants::kAlternativeKeyword = "alternative";
+const string Constants::kBuyBackKeyword = "buyback";
+const string Constants::kFlashBackKeyword = "flashback";
+const string Constants::kRetraceKeyword = "retrace";
+const string Constants::kKickerKeyword = "kicker";
+
 
 const char* Constants::MTGBasicAbilities[] = {
 "trample",

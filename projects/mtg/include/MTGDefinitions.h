@@ -5,10 +5,36 @@ const float DEFAULT_MENU_FONT_SCALE = 1.0f;
 const float DEFAULT_MAIN_FONT_SCALE = 1.0f;
 const float DEFAULT_TEXT_FONT_SCALE = 1.0f;
 
+#include <string>
+using std::string;
 class Constants
 {
  public:
-  enum
+  // Exception Codes
+
+/* Exception codes */
+ const static int PARSER_FAILED_INSTANTIATION = 1000;
+ const static int PARSER_KEYWORD_NOT_MATCHED  = 2000;
+ const static int PARSER_INVALID_KEYWORD      = 3000;
+
+
+  // color constants
+  static const string kManaColorless;
+  static const string kManaGreen;   
+  static const string kManaBlue;    
+  static const string kManaRed;     
+  static const string kManaBlack;   
+  static const string kManaWhite;
+
+  // alternative costs constants
+
+  static const string kAlternativeKeyword;
+  static const string kBuyBackKeyword;
+  static const string kFlashBackKeyword;
+  static const string kRetraceKeyword;
+  static const string kKickerKeyword;
+
+   enum
   {
     MTG_COLOR_ARTIFACT = 0,
     MTG_COLOR_GREEN = 1,
@@ -186,6 +212,8 @@ class Constants
   static char MTGColorChars[];
   static const char* MTGColorStrings[];
   static int _r[], _g[], _b[];
+
+  
   static const char* MTGBasicAbilities[];
   static const char* MTGPhaseNames[];
   static const char* MTGPhaseCodeNames[];

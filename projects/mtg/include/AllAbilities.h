@@ -565,7 +565,7 @@ public:
 	int triggered;
 	bool must;
 	MTGAbility * mClone;
-	MayAbility(int _id, MTGAbility * _ability,  MTGCardInstance * _source, bool must = false):MTGAbility(_id,_source),NestedAbility(_ability),must(must){
+	MayAbility(int _id, MTGAbility * _ability,  MTGCardInstance * _source, bool must = false):MTGAbility(_id, _source),NestedAbility(_ability),must(must){
 		triggered = 0;
 		mClone = NULL;
 	}
@@ -736,7 +736,7 @@ public:
 //Copier. ActivatedAbility
 class AACopier:public ActivatedAbility{
 public:
-	AACopier(int _id, MTGCardInstance * _source, MTGCardInstance * _target = NULL, ManaCost * _cost=NULL):ActivatedAbility(_id,_source,_cost,0,0){
+	AACopier(int _id, MTGCardInstance * _source, MTGCardInstance * _target = NULL, ManaCost * _cost=NULL):ActivatedAbility(_id, _source,_cost,0,0){
 		target = _target;
 	}
 
@@ -768,7 +768,7 @@ public:
 	string with;
 	list<int>awith;
 	list<int>colors;
-	AACloner(int _id, MTGCardInstance * _source, MTGCardInstance * _target = NULL, ManaCost * _cost=NULL, int who = 0,string with =""):ActivatedAbility(_id,_source,_cost,0,0), who(who){
+	AACloner(int _id, MTGCardInstance * _source, MTGCardInstance * _target = NULL, ManaCost * _cost=NULL, int who = 0,string with =""):ActivatedAbility(_id, _source,_cost,0,0), who(who){
 		target = _target;
 		source = _source;
 
@@ -860,7 +860,7 @@ public:
 class AAMover:public ActivatedAbility{
 public:
 	string destination;
-	AAMover(int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest, ManaCost * _cost=NULL, int doTap=0):ActivatedAbility(_id,_source,_cost,0,doTap),destination(dest){
+	AAMover(int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest, ManaCost * _cost=NULL, int doTap=0):ActivatedAbility(_id, _source,_cost,0,doTap),destination(dest){
 		if (_target) target = _target; 
 	}
 
@@ -916,7 +916,7 @@ public:
 	int limitPerTurn;
 	int counters;
 	MTGGameZone * activeZone;
-	GenericTargetAbility(int _id, MTGCardInstance * _source, TargetChooser * _tc,MTGAbility * a, ManaCost * _cost = NULL, int _tap=0, int limit = 0, int restrictions = 0, MTGGameZone * dest = NULL):TargetAbility(_id,_source, _tc,_cost,restrictions,_tap),limitPerTurn(limit), activeZone(dest){
+	GenericTargetAbility(int _id, MTGCardInstance * _source, TargetChooser * _tc,MTGAbility * a, ManaCost * _cost = NULL, int _tap=0, int limit = 0, int restrictions = 0, MTGGameZone * dest = NULL):TargetAbility(_id, _source, _tc,_cost,restrictions,_tap),limitPerTurn(limit), activeZone(dest){
 		ability = a;
 		MTGAbility * core = AbilityFactory::getCoreAbility(a);
 		if (dynamic_cast<AACopier *>(core)) tc->other = true; //http://code.google.com/p/wagic/issues/detail?id=209 (avoid inifinite loop)
@@ -1268,13 +1268,13 @@ public:
 	string name;
 	WParsedInt * multiplier;
 	int who;
-	ATokenCreator(int _id,MTGCardInstance * _source,ManaCost * _cost, int tokenId, int _doTap, WParsedInt * multiplier = NULL,int who = 0):ActivatedAbility(_id,_source,_cost,0,_doTap), tokenId(tokenId), multiplier(multiplier), who(who){
+	ATokenCreator(int _id,MTGCardInstance * _source,ManaCost * _cost, int tokenId, int _doTap, WParsedInt * multiplier = NULL,int who = 0):ActivatedAbility(_id, _source,_cost,0,_doTap), tokenId(tokenId), multiplier(multiplier), who(who){
 		if(!multiplier) this->multiplier = NEW WParsedInt(1);
 		MTGCard * card = GameApp::collection->getCardById(tokenId);
 		if (card) name = card->data->getName();      
 	}
 
-	ATokenCreator(int _id,MTGCardInstance * _source,ManaCost * _cost, string sname, string stypes,int _power,int _toughness, string sabilities, int _doTap, WParsedInt * multiplier = NULL,int who = 0):ActivatedAbility(_id,_source,_cost,0,_doTap), multiplier(multiplier),who(who){
+	ATokenCreator(int _id,MTGCardInstance * _source,ManaCost * _cost, string sname, string stypes,int _power,int _toughness, string sabilities, int _doTap, WParsedInt * multiplier = NULL,int who = 0):ActivatedAbility(_id, _source,_cost,0,_doTap), multiplier(multiplier),who(who){
 		power = _power;
 		toughness = _toughness;
 		name = sname;
@@ -1386,7 +1386,7 @@ public:
 class ANamer:public ActivatedAbility{
 public:
 	string name;
-	ANamer(int _id,MTGCardInstance * _source,ManaCost * _cost, string sname, int _doTap):ActivatedAbility(_id,_source,_cost,0,_doTap){
+	ANamer(int _id,MTGCardInstance * _source,ManaCost * _cost, string sname, int _doTap):ActivatedAbility(_id, _source,_cost,0,_doTap){
 		name = sname;
 	}
 	int resolve(){
@@ -1412,78 +1412,57 @@ public:
 	}
 };
 //-----------------------------------------------------------------------------------------------
+class AABanishCard: public ActivatedAbility {
 
-class AADestroyer:public ActivatedAbility{
+protected:
+
 public:
-	int bury;
-	AADestroyer(int _id, MTGCardInstance * _source, MTGCardInstance * _target, int _bury = 0, ManaCost * _cost=NULL):ActivatedAbility(_id,_source,_cost),bury(_bury){
-		if (_target) target = _target; 
-	}
+  int banishmentType;
+  const static int BANISHED = -1;
+  const static int BURY = 0;
+  const static int DESTROY = 1;
+  const static int SACRIFICE = 2;
+  const static int DISCARD = 3;
 
-	int resolve(){
-		MTGCardInstance * _target = (MTGCardInstance *) target;
-		if(_target){
-			if (bury) return _target->bury();
-			else return _target->destroy();
-		}
-		return 0;
-	}
-
-	const char * getMenuText(){
-		return "Destroy";
-	}
-
-
-	AADestroyer * clone() const{
-		AADestroyer * a =  NEW AADestroyer(*this);
-		a->isClone = 1;
-		return a;
-	}
-
-
+  AABanishCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost, int _banishmentType);
+  int resolve();
+  virtual const char * getMenuText();
+  AABanishCard * clone() const;
 };
 
-class AASacDis:public ActivatedAbility{
+class AABuryCard:public AABanishCard{
 public:
-	int sacrifice;
-	AASacDis(int _id, MTGCardInstance * _source, MTGCardInstance * _target, int _sacrifice = 0, ManaCost * _cost=NULL):ActivatedAbility(_id,_source,_cost),sacrifice(_sacrifice){
-		if (_target) target = _target; 
-	}
-	int resolve(){
-		MTGCardInstance * _target = (MTGCardInstance *) target;
-
-		if(_target){
-			Player * p = _target->controller();
-			Player * owner = _target->owner;
-			if (sacrifice)
-			{
-				WEvent * e = NEW WEventCardSacrifice(_target);
-				GameObserver * game = GameObserver::GetInstance();
-				game->receiveEvent(e);
-				p->game->putInGraveyard(_target);
-				return 1;
-			}
-			else
-			{ 
-				WEvent * e = NEW WEventCardDiscard(_target);
-				GameObserver * game = GameObserver::GetInstance();
-				game->receiveEvent(e);
-				p->game->putInGraveyard(_target);
-				return 1;
-			}
-		}
-		return 0;
-	}
-	const char * getMenuText(){
-		if(sacrifice) return "Sacrifice";
-		else return "Discard";
-	}
-	AASacDis * clone() const{
-		AASacDis * a =  NEW AASacDis(*this);
-		a->isClone = 1;
-		return a;
-	}
+  AABuryCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost, int _banishmentType);
+  int resolve();
+  const char * getMenuText();
+  AABuryCard * clone() const;
 };
+
+
+class AADestroyCard:public AABanishCard{
+public:
+  AADestroyCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost, int _banishmentType);
+  int resolve();
+  const char * getMenuText();
+  AADestroyCard * clone() const;
+};
+
+class AASacrificeCard:public AABanishCard{
+public:
+  AASacrificeCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost, int _banishmentType);
+  int resolve();
+  const char * getMenuText();
+  AASacrificeCard * clone() const;
+};
+
+class AADiscardCard:public AABanishCard{
+public:
+  AADiscardCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost, int _banishmentType);
+  int resolve();
+  const char * getMenuText();
+  AADiscardCard * clone() const;
+};
+
 
 /*Changes one of the basic abilities of target
 source : spell
@@ -1496,7 +1475,7 @@ public:
 	int modifier;
 	int ability;
 	int value_before_modification;
-	ABasicAbilityModifier(int _id, MTGCardInstance * _source, MTGCardInstance * _target, int _ability, int _modifier = 1): MTGAbility(_id,_source,_target),modifier(_modifier),ability(_ability){
+	ABasicAbilityModifier(int _id, MTGCardInstance * _source, MTGCardInstance * _target, int _ability, int _modifier = 1): MTGAbility(_id, _source,_target),modifier(_modifier),ability(_ability){
 
 	}
 
@@ -1547,7 +1526,7 @@ public:
 	int modifier;
 	int stateBeforeActivation[50];
 	int ability;
-	ABasicAbilityModifierUntilEOT(int _id, MTGCardInstance * _source, int _ability, ManaCost * _cost, TargetChooser * _tc = NULL, int _modifier = 1,int _tap=1): TargetAbility(_id,_source,_cost,0,_tap),modifier(_modifier), ability(_ability){
+	ABasicAbilityModifierUntilEOT(int _id, MTGCardInstance * _source, int _ability, ManaCost * _cost, TargetChooser * _tc = NULL, int _modifier = 1,int _tap=1): TargetAbility(_id, _source,_cost,0,_tap),modifier(_modifier), ability(_ability){
 		nbTargets = 0;
 		tc = _tc;
 		if (!tc) tc = NEW CreatureTargetChooser(_source);
@@ -1652,9 +1631,9 @@ public:
 class ABasicAbilityAuraModifierUntilEOT: public ActivatedAbility{
 public:
 	AInstantBasicAbilityModifierUntilEOT * ability;
-	ABasicAbilityAuraModifierUntilEOT(int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost, int _ability, int _value = 1):ActivatedAbility(_id,_source, _cost, 0,0){
+	ABasicAbilityAuraModifierUntilEOT(int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost, int _ability, int _value = 1):ActivatedAbility(_id, _source, _cost, 0,0){
 		target = _target;
-		ability = NEW AInstantBasicAbilityModifierUntilEOT(_id,_source,_target,_ability, _value);
+		ability = NEW AInstantBasicAbilityModifierUntilEOT(_id, _source,_target,_ability, _value);
 	}
 
 	int isReactingToClick(MTGCardInstance * card, ManaCost * cost = NULL){
@@ -1693,7 +1672,7 @@ public:
 class AEquip:public TargetAbility{
 public:
 	vector<MTGAbility *> currentAbilities; 
-	AEquip(int _id, MTGCardInstance * _source, ManaCost * _cost=NULL, int doTap=0, int restrictions = ActivatedAbility::AS_SORCERY):TargetAbility(_id,_source,NULL,_cost,restrictions,doTap){
+	AEquip(int _id, MTGCardInstance * _source, ManaCost * _cost=NULL, int doTap=0, int restrictions = ActivatedAbility::AS_SORCERY):TargetAbility(_id, _source,NULL,_cost,restrictions,doTap){
 	aType = MTGAbility::STANDARD_EQUIP;
 	}
 
@@ -2149,7 +2128,7 @@ public:
 //Basic regeneration mechanism for a Mana cost
 class AStandardRegenerate:public ActivatedAbility{
 public:
-	AStandardRegenerate(int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost = NULL):ActivatedAbility(_id,_source,_cost,0,0){
+	AStandardRegenerate(int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost = NULL):ActivatedAbility(_id, _source,_cost,0,0){
 		target = _target;
 		aType = MTGAbility::STANDARD_REGENERATE;
 	}
@@ -2716,7 +2695,7 @@ public:
 class AALifeSet:public ActivatedAbilityTP{
 public:
 	WParsedInt * life;
-	AALifeSet(int _id, MTGCardInstance * _source, Targetable * _target, WParsedInt * life, ManaCost * _cost=NULL, int doTap = 0, int who = TargetChooser::UNSET):ActivatedAbilityTP(_id,_source,_target,_cost,doTap,who),life(life){
+	AALifeSet(int _id, MTGCardInstance * _source, Targetable * _target, WParsedInt * life, ManaCost * _cost=NULL, int doTap = 0, int who = TargetChooser::UNSET):ActivatedAbilityTP(_id, _source,_target,_cost,doTap,who),life(life){
 	}
 
 	int resolve(){
@@ -2753,7 +2732,7 @@ class AADamager:public ActivatedAbilityTP{
 public:
 	WParsedInt * damage;
 
-	AADamager(int _id, MTGCardInstance * _source, Targetable * _target, WParsedInt * damage, ManaCost * _cost=NULL, int doTap = 0, int who = TargetChooser::UNSET):ActivatedAbilityTP(_id,_source,_target,_cost,doTap,who),damage(damage){
+	AADamager(int _id, MTGCardInstance * _source, Targetable * _target, WParsedInt * damage, ManaCost * _cost=NULL, int doTap = 0, int who = TargetChooser::UNSET):ActivatedAbilityTP(_id, _source,_target,_cost,doTap,who),damage(damage){
 		aType = MTGAbility::DAMAGER;
 	}
 
@@ -2787,7 +2766,7 @@ public:
 class AADamagePrevent:public ActivatedAbilityTP{
 public:
 	int preventing;
-	AADamagePrevent(int _id, MTGCardInstance * _source, Targetable * _target,int preventing, ManaCost * _cost=NULL, int doTap = 0, int who = TargetChooser::UNSET):ActivatedAbilityTP(_id,_source,_target,_cost,doTap,who),preventing(preventing){
+	AADamagePrevent(int _id, MTGCardInstance * _source, Targetable * _target,int preventing, ManaCost * _cost=NULL, int doTap = 0, int who = TargetChooser::UNSET):ActivatedAbilityTP(_id, _source,_target,_cost,doTap,who),preventing(preventing){
 		aType = MTGAbility::STANDARD_PREVENT;
 	}
 
@@ -2818,7 +2797,7 @@ public:
 class AAAlterPoison:public ActivatedAbilityTP{
 public:
 	int poison;
-	AAAlterPoison(int _id, MTGCardInstance * _source, Targetable * _target,int poison, ManaCost * _cost=NULL, int doTap = 0, int who = TargetChooser::UNSET):ActivatedAbilityTP(_id,_source,_target,_cost,doTap,who),poison(poison){
+	AAAlterPoison(int _id, MTGCardInstance * _source, Targetable * _target,int poison, ManaCost * _cost=NULL, int doTap = 0, int who = TargetChooser::UNSET):ActivatedAbilityTP(_id, _source,_target,_cost,doTap,who),poison(poison){
 	}
 
 	int resolve(){
@@ -3225,46 +3204,19 @@ public:
 	}
 	~ABloodThirst(){}
 };
+
 //reduce or increase manacost of target by color:amount------------------------------------------
 class AManaRedux:public MTGAbility{
 public:
 	int amount;
 	int type;
-	AManaRedux(int id, MTGCardInstance * source, MTGCardInstance * target,int amount,int type):MTGAbility(id,source,target),amount(amount),type(type){
-		MTGCardInstance * _target = (MTGCardInstance *)target;
-	}
-	int addToGame(){
-		MTGCardInstance * _target = (MTGCardInstance *)target;
-		amount;
-		type;
-		if(amount < 0){
-			//amount = amount * -1;
-			amount = abs(amount);
-			if(_target->getManaCost()->hasColor(type)){
-				if(_target->getManaCost()->getConvertedCost() >= 1){
-					_target->getManaCost()->remove(type,amount);
-					if(_target->getManaCost()->alternative > 0){
-						_target->getManaCost()->alternative->remove(type,amount);}
-					if(_target->getManaCost()->BuyBack > 0){
-						_target->getManaCost()->BuyBack->remove(type,amount);}
-				}
-			}
-		}else{
-			_target->getManaCost()->add(type,amount);
-			if(_target->getManaCost()->alternative > 0){
-				_target->getManaCost()->alternative->add(type,amount);}
-			if(_target->getManaCost()->BuyBack > 0){
-				_target->getManaCost()->BuyBack->add(type,amount);}
-		}
-		return MTGAbility::addToGame();
-	}
-	AManaRedux * clone() const{
-		AManaRedux * a =  NEW AManaRedux(*this);
-		a->isClone = 1;
-		return a;
-	}
-	~AManaRedux(){}
+  AManaRedux(int id, MTGCardInstance * source, MTGCardInstance * target, int amount, int type);
+  int addToGame();
+  AManaRedux * clone() const;
+  ~AManaRedux();
 };
+
+
 //------------------------------------
 class ATransformer:public MTGAbility{
 public:
@@ -4170,7 +4122,7 @@ public:
 				int usedThisTurn;
 				int counters;
 				Damage * latest;
-				ALivingArtifact(int _id, MTGCardInstance * _source, MTGCardInstance * _target):MTGAbility(_id,_source,_target){
+				ALivingArtifact(int _id, MTGCardInstance * _source, MTGCardInstance * _target):MTGAbility(_id, _source,_target){
 					usedThisTurn = 0;
 					counters = 0;
 					latest = NULL;
@@ -4367,7 +4319,7 @@ public:
 			//1117 Jandor's Ring
 			class AJandorsRing:public ActivatedAbility{
 			public:
-				AJandorsRing(int _id, MTGCardInstance * _source):ActivatedAbility(_id,_source, NEW ManaCost()){
+				AJandorsRing(int _id, MTGCardInstance * _source):ActivatedAbility(_id, _source, NEW ManaCost()){
 					cost->add(Constants::MTG_COLOR_ARTIFACT, 2);
 				}
 
@@ -4709,7 +4661,7 @@ public:
 			//1288 EarthBind
 			class AEarthbind:public ABasicAbilityModifier{
 			public:
-				AEarthbind(int _id, MTGCardInstance * _source, MTGCardInstance * _target):ABasicAbilityModifier(_id,_source,_target,Constants::FLYING,0){
+				AEarthbind(int _id, MTGCardInstance * _source, MTGCardInstance * _target):ABasicAbilityModifier(_id, _source,_target,Constants::FLYING,0){
 					if (value_before_modification){
 						Damageable * _target = (Damageable *)target;
 						game->mLayers->stackLayer()->addDamage(source,_target,2);

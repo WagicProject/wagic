@@ -446,6 +446,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\AllAbilities.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\CardDescriptor.cpp"
 				>
 			</File>
@@ -1347,10 +1351,6 @@
 			Name="Resource Files"
 			Filter="ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
 			>
-			<File
-				RelativePath=".\bin\Res\sets\primitives\mtg.txt"
-				>
-			</File>
 		</Filter>
 		<File
 			RelativePath=".\mtg.vsprops"

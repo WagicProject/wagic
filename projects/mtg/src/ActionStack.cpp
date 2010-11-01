@@ -192,24 +192,31 @@ int Spell::computeXX(MTGCardInstance * card){
   return xx;
 }
 
-bool Spell::kickerWasPaid(){
-  return (payResult == ManaCost::MANA_PAID_WITH_KICKER);
-}
 
-bool Spell::AlternativeWasPaid(){
-  return (payResult == ManaCost::MANA_PAID_WITH_ALTERNATIVE);
-}
+bool Spell::FullfilledAlternateCost(const int &costType)
+{
+  bool hasFullfilledAlternateCost = false;
 
-bool Spell::BuyBackWasPaid(){
-  return (payResult == ManaCost::MANA_PAID_WITH_BUYBACK);
-}
-
-bool Spell::FlashBackWasPaid(){
-  return (payResult == ManaCost::MANA_PAID_WITH_FLASHBACK);
-}
-
-bool Spell::RetraceWasPaid(){
-  return (payResult == ManaCost::MANA_PAID_WITH_RETRACE);
+  switch(costType)
+  {
+  case ManaCost::MANA_PAID_WITH_KICKER:
+    hasFullfilledAlternateCost = (payResult == ManaCost::MANA_PAID_WITH_KICKER);
+    break;
+  case ManaCost::MANA_PAID_WITH_ALTERNATIVE:
+    hasFullfilledAlternateCost = (payResult == ManaCost::MANA_PAID_WITH_ALTERNATIVE);
+    break;
+  case ManaCost::MANA_PAID_WITH_BUYBACK:
+    hasFullfilledAlternateCost = (payResult == ManaCost::MANA_PAID_WITH_BUYBACK);
+    break;
+  case ManaCost::MANA_PAID_WITH_FLASHBACK:
+    hasFullfilledAlternateCost = (payResult == ManaCost::MANA_PAID_WITH_FLASHBACK);
+    break;
+  case ManaCost::MANA_PAID_WITH_RETRACE:
+    hasFullfilledAlternateCost = (payResult == ManaCost::MANA_PAID_WITH_RETRACE);
+    break;
+  }
+  
+  return hasFullfilledAlternateCost;
 }
 
 const string Spell::getDisplayName() const {

@@ -93,13 +93,11 @@ int AbilityFactory::parsePowerToughness(string s, int *power, int *toughness){
     return 0;
 }
 
-TriggeredAbility * AbilityFactory::parseTrigger(string magicText, int id, Spell * spell, MTGCardInstance *card, Targetable * target){
-  size_t found = magicText.find("@");
-  if (found == string::npos) return NULL;
-
-  found = magicText.find(":");
-  if (found == string::npos) return NULL;
-  string s = magicText.substr(0,found);
+// evaluate trigger ability
+// ie auto=@attacking(mytgt):destroy target(*)
+// eval only the text between the @ and the first :
+TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int id, Spell * spell, MTGCardInstance *card, Targetable * target){
+  size_t found = string::npos;
 
   //Card Changed Zone
   found = s.find("movedto(");
@@ -424,7 +422,6 @@ MTGAbility * AbilityFactory::getCoreAbility(MTGAbility * a){
 //Beware, Spell CAN be null when the function is called by the AI trying to analyze the effects of a given card
 MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTGCardInstance *card, int activated, int forceUEOT, int oneShot,int forceFOREVER, MTGGameZone * dest){
   size_t found;
- 
   trim(s);
 
   //TODO This block redundant with calling function
@@ -433,20 +430,30 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   MTGCardInstance * target = card->target;
   if (!target) target = card; 
 
-  TriggeredAbility * trigger = NULL;
-  trigger = parseTrigger(s,id,spell,card,target);
-  //Dirty way to remove the trigger text (could get in the way)
-  if (trigger){
-    found = s.find(":");
-    string s1 = s.substr(found+1);
-    MTGAbility * a = parseMagicLine(s1, id, spell, card,activated);
-    if (!a){
-      delete trigger;
-      return NULL;
-    }
-    return NEW GenericTriggeredAbility(id,card,trigger,a,NULL,target);
-  }
+  found = s.find("@");
+  if ( found != string::npos )
+  {
+    found = s.find(":", found);
+    if (found != string::npos)
+    {
 
+      TriggeredAbility * trigger = NULL;
+      string triggerText = s.substr(0, found );
+      trigger = parseTrigger(triggerText, s,id,spell,card,target);
+      //Dirty way to remove the trigger text (could get in the way)
+      if (trigger)
+      {
+        //found = s.find(":", found);
+        string s1 = s.substr(found+1);
+        MTGAbility * a = parseMagicLine(s1, id, spell, card,activated);
+        if (!a){
+          delete trigger;
+          return NULL;
+        }
+        return NEW GenericTriggeredAbility(id,card,trigger,a,NULL,target);
+      }
+    }
+  }
   int doTap = 0; //Tap in the cost ?
   if (s.find("{t}") != string::npos) doTap = 1;
 
@@ -515,55 +522,47 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     SAFE_DELETE(cost);
   }
   
-  //kicker cost
-  found = s.find("kicker ");
-  if (found == 0){
-    if (spell && spell->kickerWasPaid()){
-      string s1 = s.substr(found+7);
-      return parseMagicLine(s1,id,spell, card);
+  // figure out alternative cost effects 
+  string keyword;
+  int costType = -1;
+  if (s.find( Constants::kKickerKeyword ) == 0 )
+  {
+    costType = ManaCost::MANA_PAID_WITH_KICKER;
+    keyword = Constants::kKickerKeyword;
+  }
+  if (s.find( Constants::kRetraceKeyword ) == 0 )
+  {
+    costType = ManaCost::MANA_PAID_WITH_RETRACE;
+    keyword = Constants::kRetraceKeyword;
+  }
+  if (s.find( Constants::kAlternativeKeyword ) == 0 )
+  {
+    costType = ManaCost::MANA_PAID_WITH_ALTERNATIVE;
+    keyword = Constants::kAlternativeKeyword ;
+  }
+  if (s.find( Constants::kBuyBackKeyword ) == 0 )
+  {
+    costType = ManaCost::MANA_PAID_WITH_BUYBACK;
+    keyword = Constants::kBuyBackKeyword;
+  }
+  if (s.find( Constants::kFlashBackKeyword ) == 0 )
+  {
+    costType = ManaCost::MANA_PAID_WITH_FLASHBACK;
+    keyword = Constants::kFlashBackKeyword;
+  }
+
+  if ( (costType > -1) && (!keyword.empty()) )
+  {
+    if ( spell && spell->FullfilledAlternateCost( costType )) 
+    {
+      string s1 = s.substr(keyword.length());
+      return parseMagicLine(s1, id, spell, card);
     }
+    DebugTrace("INFO parseMagicLine: Alternative Cost was not fulfilled for " << s);
     return NULL;
   }
 
-    //alternative cost
-  found = s.find("alternative ");
-  if (found == 0){
-    if (spell && spell->AlternativeWasPaid()){
-      string s1 = s.substr(found+12);
-      return parseMagicLine(s1,id,spell, card);
-    }
-    return NULL;
-  }
 
-      //buyback cost
-  found = s.find("buyback ");
-  if (found == 0){
-    if (spell && spell->BuyBackWasPaid()){
-      string s1 = s.substr(found+8);
-      return parseMagicLine(s1,id,spell, card);
-    }
-    return NULL;
-  }
-
-        //flashback cost
-  found = s.find("flashback ");
-  if (found == 0){
-    if (spell && spell->FlashBackWasPaid()){
-      string s1 = s.substr(found+9);
-      return parseMagicLine(s1,id,spell, card);
-    }
-    return NULL;
-  }
-
-          //retrace cost
-  found = s.find("retrace ");
-  if (found == 0){
-    if (spell && spell->RetraceWasPaid()){
-      string s1 = s.substr(found+8);
-      return parseMagicLine(s1,id,spell, card);
-    }
-    return NULL;
-  }
   //When...comes into play, you may...
   found = s.find("may ");
   if (found == 0){
@@ -587,7 +586,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     return NEW MayAbility(id,a1,card,true);
   }
   
-
   //Multiple abilities for ONE cost
   found = s.find("&&");
   if (found != string::npos){
@@ -602,6 +600,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     multi->oneShot=1;
     return multi;
   }
+
   
   //rather dirty way to stop thises and lords from conflicting with each other.
   string prelords[] = {"foreach(","lord(","aslongas(", "all("};
@@ -628,49 +627,49 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     //why does tc even exist here? This shouldn't happen...
     SAFE_DELETE(tc); //http://code.google.com/p/wagic/issues/detail?id=424
 
-     size_t header = thises[i].size();
-     size_t end = s.find(")", found+header);
-     string s1;
-     if (found == 0 || end != s.size()-1){
-       s1 = s.substr(end+1);
-     }else{
-       s1 = s.substr(0, found);
-     }
-     if (end != string::npos){
-         string thisDescriptorString = s.substr(found+header,end-found-header);
-         ThisDescriptorFactory tdf;
-         ThisDescriptor * td = tdf.createThisDescriptor(thisDescriptorString);
-         
-         if (!td){
-           DebugTrace("MTGABILITY: Parsing Error:" << s);
-           return NULL;
-         }
+    size_t header = thises[i].size();
+    size_t end = s.find(")", found+header);
+    string s1;
+    if (found == 0 || end != s.size()-1){
+      s1 = s.substr(end+1);
+    }else{
+      s1 = s.substr(0, found);
+    }
+    if (end != string::npos){
+      string thisDescriptorString = s.substr(found+header,end-found-header);
+      ThisDescriptorFactory tdf;
+      ThisDescriptor * td = tdf.createThisDescriptor(thisDescriptorString);
 
-          MTGAbility * a = parseMagicLine(s1,id,spell, card,0,activated); 
-          if (!a){
-            SAFE_DELETE(td);
-            return NULL;
-          }
-          MTGAbility * result = NULL;
-          int oneShot = 0;
-		 found = s.find(" oneshot");
-         if (found !=string::npos) oneShot = 1;
-          if (activated) oneShot = 1;
-          if (card->hasType("sorcery") || card->hasType("instant")) oneShot = 1;
-          if (a->oneShot) oneShot = 1;
-          Damageable * _target = NULL;
-	        if (spell) _target = spell->getNextDamageableTarget();
-          if (!_target) _target = target;
+      if (!td){
+        DebugTrace("MTGABILITY: Parsing Error:" << s);
+        return NULL;
+      }
 
-          switch(i){
+      MTGAbility * a = parseMagicLine(s1,id,spell, card,0,activated); 
+      if (!a){
+        SAFE_DELETE(td);
+        return NULL;
+      }
+      MTGAbility * result = NULL;
+      int oneShot = 0;
+      found = s.find(" oneshot");
+      if (found !=string::npos) oneShot = 1;
+      if (activated) oneShot = 1;
+      if (card->hasType("sorcery") || card->hasType("instant")) oneShot = 1;
+      if (a->oneShot) oneShot = 1;
+      Damageable * _target = NULL;
+      if (spell) _target = spell->getNextDamageableTarget();
+      if (!_target) _target = target;
+
+      switch(i){
             case 0: result =  NEW AThis(id, card, _target, td, a); break;
             case 1: result =  NEW AThisForEach(id, card, _target, td, a); break;
             default: result =  NULL;
-          }
-					if (result){ result->oneShot = oneShot;}
-          return result;
-        }
-      return NULL;
+      }
+      if (result){ result->oneShot = oneShot;}
+      return result;
+    }
+    return NULL;
   }
 
 
@@ -967,33 +966,31 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     return a;
 	}
 
-  //Bury, destroy
-  string destroys[] = {"bury","destroy"};
-  int destroyTypes[]= {1, 0};
-  for (int i = 0; i < 2; ++i){
-    found = s.find(destroys[i]);
-    if (found != string::npos){
-      int bury = destroyTypes[i];
-      MTGAbility * a = NEW AADestroyer(id,card,target,bury);
-      a->oneShot = 1;
-      return a;
-    }
+  //Bury, destroy, sacrifice, reject(discard)
+  if ( s.find("bury") != string::npos )
+  {
+    MTGAbility *a = NEW AABuryCard(id, card, target, NULL, AABanishCard::BURY);
+    a->oneShot = 1;
+    return a;
   }
-
-	  //sacrifices and discards
-  string sacdis[] = {"sacrifice","reject"};
-  int sacdisTypes[]= {1, 0};
-  for (int i = 0; i < 2; ++i){
-    found = s.find(sacdis[i]);
-    if (found != string::npos){
-      int sacrifice = sacdisTypes[i];
-      MTGAbility * a = NEW AASacDis(id,card,target,sacrifice);
-      a->oneShot = 1;
-      return a;
-    }
+  else if ( s.find("destroy") != string::npos ) 
+  {
+    MTGAbility * a = NEW AADestroyCard(id, card, target, NULL, AABanishCard::DESTROY);
+    a->oneShot = 1;
+    return a;
   }
-
-
+  else if ( s.find("sacrifice") != string::npos )
+  {
+    MTGAbility *a = NEW AASacrificeCard(id, card, target, NULL, AABanishCard::SACRIFICE);
+    a->oneShot = 1;
+    return a;
+  }
+  else if ( s.find("reject") != string::npos )
+  {
+    MTGAbility *a = NEW AADiscardCard(id, card, target, NULL, AABanishCard::DISCARD);
+    a->oneShot = 1;
+    return a;
+  }
 
   int who = TargetChooser::UNSET;
   if (s.find(" controller") != string::npos) who=TargetChooser::CONTROLLER;
@@ -1332,7 +1329,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     int power, toughness;
     if (parsePowerToughness(spt,&power, &toughness)){
       int MaxOpponent = atoi(s.substr(end+1,end+2).c_str());
-	    return NEW  ARampageAbility(id,card,power,toughness,MaxOpponent);
+	    return NEW ARampageAbility(id,card,power,toughness,MaxOpponent);
 		}
     return NULL;
   }
@@ -1410,71 +1407,16 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     return a;
   }
 
+   if ( s.find("manaredux(") != string::npos )
+    return getManaReduxAbility( s.substr( s.find("manaredux(") + 10), id, spell, card, target );
 
-
-//ManaRedux
-  found = s.find("colorless:");
-  if (found != string::npos){
-    size_t start = s.find(":",found);
-    size_t end = s.find(" ",start);
-    int amount;
-    if (end != string::npos){amount = atoi(s.substr(start+1,end-start-1).c_str());}
-	else{amount = atoi(s.substr(start+1).c_str());}
-    MTGAbility * a = NEW AManaRedux(id,card,target,amount,0);
-    return a;}
-  found = s.find("green:");
-  if (found != string::npos){
-    size_t start = s.find(":",found);
-    size_t end = s.find(" ",start);
-    int amount;
-    if (end != string::npos){amount = atoi(s.substr(start+1,end-start-1).c_str());}
-	else{amount = atoi(s.substr(start+1).c_str());}
-    MTGAbility * a = NEW AManaRedux(id,card,target,amount,1);
-    return a;}
-  found = s.find("blue:");
-  if (found != string::npos){
-    size_t start = s.find(":",found);
-    size_t end = s.find(" ",start);
-    int amount;
-    if (end != string::npos){amount = atoi(s.substr(start+1,end-start-1).c_str());}
-	else{amount = atoi(s.substr(start+1).c_str());}
-    MTGAbility * a = NEW AManaRedux(id,card,target,amount,2);
-    return a;}
-  found = s.find("red:");
-  if (found != string::npos){
-    size_t start = s.find(":",found);
-    size_t end = s.find(" ",start);
-    int amount;
-    if (end != string::npos){amount = atoi(s.substr(start+1,end-start-1).c_str());}
-	else{amount = atoi(s.substr(start+1).c_str());}
-    MTGAbility * a = NEW AManaRedux(id,card,target,amount,3);
-    return a;}
-  found = s.find("black:");
-  if (found != string::npos){
-    size_t start = s.find(":",found);
-    size_t end = s.find(" ",start);
-    int amount;
-    if (end != string::npos){amount = atoi(s.substr(start+1,end-start-1).c_str());}
-	else{amount = atoi(s.substr(start+1).c_str());}
-    MTGAbility * a = NEW AManaRedux(id,card,target,amount,4);
-    return a;}
-  found = s.find("white:");
-  if (found != string::npos){
-    size_t start = s.find(":",found);
-    size_t end = s.find(" ",start);
-    int amount;
-    if (end != string::npos){amount = atoi(s.substr(start+1,end-start-1).c_str());}
-	else{amount = atoi(s.substr(start+1).c_str());}
-    MTGAbility * a = NEW AManaRedux(id,card,target,amount,5);
-    return a;
-  }
   //resetcost dirty code
   found = s.find("resetcost");
-	  if (found != string::npos){
-	MTGAbility * a = NEW AResetCost(id,card,target);
-		return a;
-	  }
-    //transform....(hivestone,living enchantment)
+  if (found != string::npos){
+    MTGAbility * a = NEW AResetCost(id,card,target);
+    return a;
+  }
+  //transform....(hivestone,living enchantment)
   found = s.find("transforms(");
   if (found != string::npos){
     size_t real_end = s.find(")", found);
@@ -1489,16 +1431,18 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
     if (end != real_end){
       sabilities = s.substr(end+1, real_end - end);
-	}
+    }
     MTGAbility * a;
-	if(forceFOREVER){a = NEW ATransformerFOREVER(id,card,target,stypes,sabilities);
-	}
+    if(forceFOREVER){
+      a = NEW ATransformerFOREVER(id,card,target,stypes,sabilities);
+    }
     else if (forceUEOT){
       a = NEW ATransformerUEOT(id,card,target,stypes,sabilities);
-    }else{
+    }
+    else{
       a = NEW ATransformer(id,card,target,stypes,sabilities);
-	}
-	return a;
+    }
+    return a;
   }
   //Change Power/Toughness
   WParsedPT * wppt = NEW WParsedPT(s,spell,card);
@@ -1510,7 +1454,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
       return NEW APowerToughnessModifier(id, card, target,wppt);
     }
     return NEW APowerToughnessModifierUntilEndOfTurn(id,card,target,wppt);
-  }else{
+  }
+  else{
     delete wppt;
   }
 
@@ -1561,22 +1506,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     return NULL; //TODO
   }
 
-  //Gain/loose simple Ability
-  for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++){
-    found = s.find(Constants::MTGBasicAbilities[j]);
-    if (found == 0 || found == 1){
-      int modifier = 1;
-      if (found > 0 && s[found-1] == '-') modifier = 0;
-      if (!activated){
-        if(card->hasType("instant") || card->hasType("sorcery")  || forceUEOT){ 
-           return NEW AInstantBasicAbilityModifierUntilEOT(id, card,target, j,modifier);
-        }
-        return NEW ABasicAbilityModifier(id, card,target, j,modifier);
-      }
-      return NEW ABasicAbilityAuraModifierUntilEOT(id, card,target, NULL,j,modifier);
-    }
-  }
-
  //frozen, next untap this does not untap.
   found = s.find("frozen");
   if (found != string::npos){
@@ -1610,6 +1539,25 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     return a;
   }
 
+  //Gain/loose simple Ability
+  DebugTrace(" start gain/lose simple ability " );
+  for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++){
+    found = s.find(Constants::MTGBasicAbilities[j]);
+    DebugTrace( "basic ability search at index " << Constants::MTGBasicAbilities[j] );
+    if (found == 0 || found == 1){
+      int modifier = 1;
+      if (found > 0 && s[found-1] == '-') modifier = 0;
+      if (!activated){
+        if(card->hasType("instant") || card->hasType("sorcery")  || forceUEOT){ 
+           return NEW AInstantBasicAbilityModifierUntilEOT(id, card,target, j,modifier);
+        }
+        return NEW ABasicAbilityModifier(id, card,target, j,modifier);
+      }
+      return NEW ABasicAbilityAuraModifierUntilEOT(id, card,target, NULL,j,modifier);
+    }
+  }
+  
+  DebugTrace(" end gain/lose simple ability " );
   //Untapper (Ley Druid...)
   found = s.find("untap");
   if (found != string::npos){
@@ -1625,7 +1573,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     a->oneShot = 1;
     return a;
   }
-   return NULL;
+
+  DebugTrace(" no matching ability found. " << s);
+  return NULL;
 }
 
 //Tells the AI if the ability should target itself or an ennemy
@@ -1673,7 +1623,8 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
   }
 
   if (dynamic_cast<AACopier *>(a)) return BAKA_EFFECT_GOOD;
-  if (dynamic_cast<AADestroyer *>(a)) return BAKA_EFFECT_BAD;
+  if (dynamic_cast<AABuryCard *>(a)) return BAKA_EFFECT_BAD;
+  if (dynamic_cast<AADestroyCard *>(a)) return BAKA_EFFECT_BAD;
   if (dynamic_cast<AStandardRegenerate *>(a)) return BAKA_EFFECT_GOOD;
   if (AALifer * abi = dynamic_cast<AALifer *>(a)) return abi->life > 0 ? BAKA_EFFECT_GOOD : BAKA_EFFECT_BAD;
   if (dynamic_cast<AADepleter *>(a)) return BAKA_EFFECT_BAD;
@@ -2434,6 +2385,53 @@ void AbilityFactory::addAbilities(int _id, Spell * spell){
 
 
 }
+
+
+//mehods used in parseMagicLine()
+
+//ManaRedux -> manaredux(colorless,+2)
+//          -> manaredux(green,-2)
+MTGAbility * AbilityFactory::getManaReduxAbility(string s, int id, Spell *spell, MTGCardInstance *card, MTGCardInstance *target)
+{
+  int color = -1;
+  string manaCost;
+  size_t endIndex = manaCost.find(")");
+  if ( s.find( Constants::kManaColorless ) != string::npos) {
+    manaCost = s.substr( s.find(",")+ 1, endIndex );
+    color = Constants::MTG_COLOR_ARTIFACT;
+  }
+  else if (s.find( Constants::kManaGreen ) != string::npos){
+    manaCost = s.substr( s.find(",")+ 1, endIndex );
+    color = Constants::MTG_COLOR_GREEN;
+  }
+  else if ( s.find( Constants::kManaBlue ) != string::npos){
+    manaCost = s.substr( s.find(",")+ 1, endIndex );
+    color = Constants::MTG_COLOR_BLUE;
+  }
+  else if ( s.find( Constants::kManaRed ) != string::npos){
+    manaCost = s.substr( s.find(",") + 1, endIndex );
+    color = Constants::MTG_COLOR_RED;
+  }
+  else if ( s.find( Constants::kManaBlack ) != string::npos){
+    manaCost = s.substr( s.find(",")+ 1, endIndex );
+    color = Constants::MTG_COLOR_BLACK;
+  }
+  else if ( s.find( Constants::kManaWhite ) != string::npos){
+    manaCost = s.substr( s.find(",")+ 1, endIndex );
+    color = Constants::MTG_COLOR_WHITE;
+  }
+  else
+  {
+    DebugTrace("An error has happened in creating a Mana Redux Ability! " << s );
+    return NULL;
+  }
+  // figure out the mana cost
+  int amount = atoi(manaCost.c_str());
+  return NEW AManaRedux(id, card, target, amount, color);
+}
+
+
+
 
 MTGAbility::MTGAbility(int id, MTGCardInstance * card):ActionElement(id){
   game = GameObserver::GetInstance();
