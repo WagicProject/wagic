@@ -22,6 +22,7 @@ private:
   string _desc;
   string _name;
   int _deckid;
+  string _avatarFilename;
 
   // statistical information
   
@@ -37,11 +38,15 @@ public:
   string getFilename();
   string getDescription();
   string getName();
+  string getAvatarFilename();
+  string getStatsSummary();
+
   int getDeckId();
   int getGamesPlayed();
   int getVictories();
   int getVictoryPercentage();
   int getDifficulty();
+  string getDifficultyString();
 
 };
 

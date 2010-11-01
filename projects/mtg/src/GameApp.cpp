@@ -242,6 +242,7 @@ void GameApp::Destroy()
   Translator::EndInstance();
   WCFilterFactory::Destroy();
   SimpleMenu::destroy();
+  DeckMenu::destroy();
 
   options.theGame = NULL;
   LOG("==Destroying GameApp Successful==");

@@ -8,6 +8,7 @@
 
 #include "GameState.h"
 #include "SimpleMenu.h"
+#include "DeckMenu.h"
 #include "WResourceManager.h"
 #include "CardGui.h"
 #include "GameOptions.h"

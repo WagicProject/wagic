@@ -10,6 +10,7 @@ class JGE;
 #include <vector>
 #include <iostream>
 #include "DeckMetaData.h"
+#include "DeckMenu.h"
 
 using namespace std;
 
@@ -66,13 +67,19 @@ class GameState
   
   // generate the Deck Meta Data and build the menu items of the menu given
   static vector<DeckMetaData *> fillDeckMenu(SimpleMenu * _menu, string path, string smallDeckPrefix = "", Player * statsPlayer = NULL);
+
+  // generate the Deck Meta Data and build the menu items of the menu given
+  static vector<DeckMetaData *> fillDeckMenu(DeckMenu * _menu, string path, string smallDeckPrefix = "", Player * statsPlayer = NULL);
   
   // build a vector of decks with the information passsed in. 
   static vector<DeckMetaData *> getValidDeckMetaData(string path, string smallDeckPrefix = "", Player * statsPlayer = NULL);
   
   // build menu items based on the vector<DeckMetaData *>
   static void renderDeckMenu(SimpleMenu * _menu, vector<DeckMetaData *> deckMetaDataList);
-  
+
+    // build menu items based on the vector<DeckMetaData *>
+  static void renderDeckMenu(DeckMenu * _menu, vector<DeckMetaData *> deckMetaDataList);
+
   };
   bool sortByName( DeckMetaData * d1, DeckMetaData * d2 );
 

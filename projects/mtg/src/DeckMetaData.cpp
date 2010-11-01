@@ -33,6 +33,9 @@ void DeckMetaData::loadStatsForPlayer( Player * statsPlayer, string deckStatsFil
       _percentVictories = stats->percentVictories(deckStatsFileName);
       _victories = opponentDeckStats->victories;
       _nbGamesPlayed = opponentDeckStats->nbgames;
+      ostringstream oss;
+      oss << "avatar" << deckStatsFileName.substr( deckStatsFileName.find("deck") + 4, deckStatsFileName.find_last_of(".") -1 ) << ".jpg";
+      _avatarFilename = oss.str();
       if (_percentVictories < 34)
       {
         _difficulty = HARD;
@@ -45,6 +48,12 @@ void DeckMetaData::loadStatsForPlayer( Player * statsPlayer, string deckStatsFil
       {
         _difficulty = EASY;
       }
+    }
+    else
+    {
+      ostringstream oss;
+      oss << "avatar" << this->getDeckId() << ".jpg";
+      _avatarFilename = oss.str();
     }
   }
   else
@@ -114,6 +123,10 @@ int DeckMetaData::getDeckId()
   return _deckid;
 }
 
+string DeckMetaData::getAvatarFilename()
+{
+  return _avatarFilename;
+}
 
 int DeckMetaData::getGamesPlayed()
 {
@@ -136,10 +149,9 @@ int DeckMetaData::getDifficulty()
   return _difficulty;
 }
 
-string DeckMetaData::getDescription()
+string DeckMetaData::getDifficultyString()
 {
-    char deckDesc[512];
-    string difficultyString = "";
+    string difficultyString = "Normal";
     switch( _difficulty )
     {
         case HARD: 
@@ -149,12 +161,22 @@ string DeckMetaData::getDescription()
             difficultyString = "Easy";
             break;
     }
-    if ( _nbGamesPlayed > 0 && difficultyString != "")    
-      sprintf(deckDesc, "Deck: %s\nDifficulty: %s\nVictory %%: %i\nGames Played: %i\n\n%s", _name.c_str(), difficultyString.c_str(), _percentVictories, _nbGamesPlayed, _desc.c_str() );
-    else if ( _nbGamesPlayed > 0 )
-      sprintf(deckDesc, "Deck: %s\nVictory %%: %i\nGames Played: %i\n\n%s", _name.c_str(), _percentVictories, _nbGamesPlayed, _desc.c_str() );
-    else
-      sprintf(deckDesc, "Deck: %s\n\n%s", _name.c_str(), _desc.c_str() );
 
-    return deckDesc;
+    return difficultyString;
+}
+
+string DeckMetaData::getDescription()
+{
+    return _desc;
+}
+
+string DeckMetaData::getStatsSummary()
+{
+  ostringstream statsSummary;
+  statsSummary << "Difficulty: " << getDifficultyString() << endl
+    << "Victory %: " << getVictoryPercentage() << endl
+    << "Games Played: " << getGamesPlayed() << endl;
+
+  return statsSummary.str();
+    
 }

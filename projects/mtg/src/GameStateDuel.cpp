@@ -1,5 +1,6 @@
 #include "PrecompiledHeader.h"
 
+#include "DeckMenu.h"
 #include "GameStateDuel.h"
 #include "GameOptions.h"
 #include "utils.h"
@@ -87,11 +88,11 @@ void GameStateDuel::Start()
   menu = NULL;
 
   int decksneeded = 0;
-  
   for (int i = 0; i<2; i ++){
     if (mParent->players[i] ==  PLAYER_TYPE_HUMAN){
       decksneeded = 1;
-      deckmenu = NEW SimpleMenu(DUEL_MENU_CHOOSE_DECK, this, Fonts::MENU_FONT, 35, 25, "Choose a Deck");
+      
+      deckmenu = NEW DeckMenu(DUEL_MENU_CHOOSE_DECK, this, Fonts::MENU_FONT, "Choose a Deck");
 
       DeckManager *deckManager = DeckManager::GetInstance();
       vector<DeckMetaData *> playerDeckList = getValidDeckMetaData( options.profileFile() );
@@ -196,7 +197,6 @@ void GameStateDuel::loadTestSuitePlayers(){
 void GameStateDuel::End()
 {
   DebugTrace("Ending GameStateDuel");
-  SAFE_DELETE(deckmenu);
 
   JRenderer::GetInstance()->EnableVSync(false);
   if (mPlayers[0] && mPlayers[1]) mPlayers[0]->End();
@@ -215,6 +215,7 @@ void GameStateDuel::End()
 
   SAFE_DELETE(menu);
   SAFE_DELETE(opponentMenu);
+  SAFE_DELETE(deckmenu);
 #ifdef TESTSUITE
   SAFE_DELETE(testSuite);
 #endif
@@ -236,7 +237,7 @@ bool GameStateDuel::MusicExist(string FileName){
 
 void GameStateDuel::ensureOpponentMenu(){
   if (!opponentMenu){
-    opponentMenu = NEW SimpleMenu(DUEL_MENU_CHOOSE_OPPONENT, this, Fonts::MENU_FONT, 35, 25, "Choose Opponent");
+    opponentMenu = NEW DeckMenu(DUEL_MENU_CHOOSE_OPPONENT, this, Fonts::MENU_FONT, "Choose Your Opponent");
     opponentMenu->Add( MENUITEM_RANDOM_AI, "Random");
     if (options[Options::EVILTWIN_MODE_UNLOCKED].number)
       opponentMenu->Add( MENUITEM_EVIL_TWIN, "Evil Twin", _("Can you play against yourself?").c_str());

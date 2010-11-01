@@ -4,6 +4,7 @@
 
 #include "GameState.h"
 #include "SimpleMenu.h"
+#include "DeckMenu.h"
 #include "MTGDeck.h"
 #include "GameObserver.h"
 
@@ -28,8 +29,8 @@ class GameStateDuel: public GameState, public JGuiListener
   Player * mPlayers[2];
   MTGPlayerCards * deck[2];
   GameObserver * game;
-  SimpleMenu * deckmenu;
-  SimpleMenu * opponentMenu;
+  DeckMenu * deckmenu;
+  DeckMenu * opponentMenu;
   SimpleMenu * menu;
   bool premadeDeck;
   int OpponentsDeckid;
