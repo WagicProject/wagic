@@ -37,20 +37,24 @@ SOURCES += \
         src/AIMomirPlayer.cpp\
         src/AIPlayer.cpp\
         src/AIStats.cpp\
+        src/AllAbilities.cpp\
         src/CardDescriptor.cpp\
         src/CardDisplay.cpp\
         src/CardEffect.cpp\
         src/CardGui.cpp\
         src/CardPrimitive.cpp\
         src/CardSelector.cpp\
+        src/CardSelectorSingleton.cpp\
         src/Closest.cpp\
         src/Counters.cpp\
         src/Credits.cpp\
         src/Damage.cpp\
         src/DamagerDamaged.cpp\
         src/DeckDataWrapper.cpp\
-        src/DeckMetaData.cpp\
         src/DeckManager.cpp\
+        src/DeckMenu.cpp\
+        src/DeckMenuItem.cpp\
+        src/DeckMetaData.cpp\
         src/DeckStats.cpp\
         src/DuelLayers.cpp\
         src/Effects.cpp\
@@ -128,6 +132,9 @@ SOURCES += \
         src/WResourceManager.cpp
 
 HEADERS  += \
+        include/AllAbilities.h\
+        include/DeckMenu.h\
+        include/DeckMenuItem.h\
         include/ExtraCost.h\
         include/ManaCost.h\
         include/SimpleMenuItem.h\
@@ -182,6 +189,7 @@ HEADERS  += \
         include/OSD.h\
         include/Translate.h\
         include/CardSelector.h\
+        include/CardSelectorSingleton.h\
         include/GuiBackground.h\
         include/PhaseRing.h\
         include/TranslateKeys.h\
