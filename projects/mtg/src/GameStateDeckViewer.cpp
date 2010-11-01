@@ -39,6 +39,7 @@ GameStateDeckViewer::GameStateDeckViewer(GameApp* parent): GameState(parent) {
   nbDecks = 0;
   deckNum = 0;
   useFilter = 0;
+  isAIDeckSave = false;
   mSwitching = false;
   welcome_menu = NULL;
   myCollection = NULL;
@@ -1596,7 +1597,7 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
 
         case MENU_ITEM_SAVE_RENAME:
           if(myDeck && myDeck->parent){
-            options.keypadStart(myDeck->parent->meta_name,&newDeckname);
+            options.keypadStart(myDeck->parent->meta_name, &newDeckname);
             options.keypadTitle("Rename deck");
           }
           break;
