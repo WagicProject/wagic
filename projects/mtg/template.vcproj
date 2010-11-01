@@ -494,6 +494,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\DeckMenu.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\DeckMenuItem.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\DeckMetaData.cpp"
 				>
 			</File>
@@ -1012,6 +1020,14 @@
 			</File>
 			<File
 				RelativePath=".\include\DeckManager.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\DeckMenu.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\DeckMenuItem.h"
 				>
 			</File>
 			<File
