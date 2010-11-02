@@ -15,6 +15,7 @@
 #include "Credits.h"
 #include "Translate.h"
 #include "Rules.h"
+#include "TextScroller.h"
 
 #ifdef TESTSUITE
 #include "TestSuiteAI.h"
@@ -64,10 +65,14 @@ GameStateDuel::GameStateDuel(GameApp* parent): GameState(parent) {
 
   credits = NULL;
   rules = NULL;
+
+  initScroller();
 }
 
 GameStateDuel::~GameStateDuel() {
   End();
+  SAFE_DELETE(scroller);
+
 }
 
 void GameStateDuel::Start()
@@ -249,6 +254,21 @@ void GameStateDuel::ensureOpponentMenu(){
   }
 }
 
+void GameStateDuel::initScroller()
+{
+  scroller = NEW TextScroller(Fonts::MAIN_FONT, 40 , 230, 400, 100, 1);
+  // add all the items from the Tasks db.
+  TaskList *taskList = NEW TaskList();
+  scroller->Reset();
+  for (vector<Task*>::iterator it = taskList->tasks.begin(); it!=taskList->tasks.end(); it++)
+  {
+    ostringstream taskDescription;
+    taskDescription << (*it)->getDesc() <<endl;
+    scroller->Add( taskDescription.str() );
+  }
+  SAFE_DELETE(taskList);
+}
+
 void GameStateDuel::Update(float dt)
 {
   switch (mGamePhase)
@@ -301,15 +321,15 @@ void GameStateDuel::Update(float dt)
       break;
     case DUEL_STATE_CHOOSE_DECK2:
       if (mParent->players[1] ==  PLAYER_TYPE_HUMAN)
-	deckmenu->Update(dt);
+        deckmenu->Update(dt);
       else{
-	if (mParent->players[0] ==  PLAYER_TYPE_HUMAN){
-	  ensureOpponentMenu();
-	  opponentMenu->Update(dt);
-	}else{
-	  loadPlayer(1);
-	  mGamePhase = DUEL_STATE_PLAY;
-	}
+        if (mParent->players[0] ==  PLAYER_TYPE_HUMAN){
+          ensureOpponentMenu();
+          opponentMenu->Update(dt);
+        }else{
+          loadPlayer(1);
+          mGamePhase = DUEL_STATE_PLAY;
+        }
       }
       break;
     case DUEL_STATE_CHOOSE_DECK2_TO_PLAY:
@@ -413,6 +433,7 @@ void GameStateDuel::Update(float dt)
           PlayerData * playerdata = NEW PlayerData(mParent->collection);
           playerdata->taskList->passOneDay();
           playerdata->taskList->save();
+          initScroller();
           SAFE_DELETE(playerdata);
           SAFE_DELETE(menu);
         }
@@ -424,6 +445,9 @@ void GameStateDuel::Update(float dt)
       if (JGE_BTN_OK == mEngine->ReadButton())
 	mParent->SetNextState(GAME_STATE_MENU);
     }
+// Update the scroller
+
+    scroller->Update(dt);
 }
 
 
@@ -435,6 +459,7 @@ void GameStateDuel::Render()
 
   if (game)
     game->Render();
+    
   switch (mGamePhase)
     {
     case DUEL_STATE_END:
@@ -485,6 +510,8 @@ void GameStateDuel::Render()
 	        opponentMenu->Render();
         else if (deckmenu)
 	        deckmenu->Render();
+
+        scroller->Render();
       }
       break;
     case DUEL_STATE_ERROR_NO_DECK:

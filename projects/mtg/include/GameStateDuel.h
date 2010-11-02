@@ -7,6 +7,7 @@
 #include "DeckMenu.h"
 #include "MTGDeck.h"
 #include "GameObserver.h"
+#include "TextScroller.h"
 
 #define CHOOSE_OPPONENT 7
 
@@ -32,6 +33,7 @@ class GameStateDuel: public GameState, public JGuiListener
   DeckMenu * deckmenu;
   DeckMenu * opponentMenu;
   SimpleMenu * menu;
+  TextScroller * scroller;
   bool premadeDeck;
   int OpponentsDeckid;
   string musictrack;
@@ -40,7 +42,8 @@ class GameStateDuel: public GameState, public JGuiListener
   bool MusicExist(string FileName);
   void loadPlayer(int playerId, int decknb = 0, int isAI = 0);
   void ensureOpponentMenu(); //loads the opponentMenu if it doesn't exist
-  
+  void initScroller();
+
  public:
   GameStateDuel(GameApp* parent);
   virtual ~GameStateDuel();

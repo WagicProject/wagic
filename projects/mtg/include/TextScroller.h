@@ -21,11 +21,13 @@ protected:
   vector<string> strings;
   unsigned int currentId;
   int mRandom;
+  int scrollDirection;
+
 public:
   void Add(string text);
   void Reset();
   void setRandom(int mode = 1);
-  TextScroller(int fontId, float x, float y, float width, float speed = 30);
+  TextScroller(int fontId, float x, float y, float width, float speed = 30, int scrollerType = 0);
   void Render();
   void Update(float dt);
   virtual ostream& toString(ostream& out) const;

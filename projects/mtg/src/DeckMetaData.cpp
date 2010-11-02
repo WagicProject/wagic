@@ -34,7 +34,9 @@ void DeckMetaData::loadStatsForPlayer( Player * statsPlayer, string deckStatsFil
       _victories = opponentDeckStats->victories;
       _nbGamesPlayed = opponentDeckStats->nbgames;
       ostringstream oss;
-      oss << "avatar" << deckStatsFileName.substr( deckStatsFileName.find("deck") + 4, deckStatsFileName.find_last_of(".") -1 ) << ".jpg";
+      int oppDeckId = atoi ( deckStatsFileName.substr( deckStatsFileName.find("deck") + 4, deckStatsFileName.find_last_of(".") ).c_str() );
+      int avatarId = getAvatarId( oppDeckId );
+      oss << "avatar" << avatarId << ".jpg";
       _avatarFilename = oss.str();
       if (_percentVictories < 34)
       {
@@ -52,7 +54,7 @@ void DeckMetaData::loadStatsForPlayer( Player * statsPlayer, string deckStatsFil
     else
     {
       ostringstream oss;
-      oss << "avatar" << this->getDeckId() << ".jpg";
+      oss << "avatar" << getAvatarId( _deckid ) << ".jpg";
       _avatarFilename = oss.str();
     }
   }
@@ -65,6 +67,16 @@ void DeckMetaData::loadStatsForPlayer( Player * statsPlayer, string deckStatsFil
     }
   }
   stats = NULL;
+}
+
+// since we only have 100 stock avatar images, we need to recylce the images for deck numbers > 99
+int DeckMetaData::getAvatarId( int deckId )
+{
+  int avatarId = deckId % 100;
+  if ( deckId >= 100 && avatarId == 0) 
+    return 100;
+
+  return avatarId;
 }
    
 void DeckMetaData::load(string filename){

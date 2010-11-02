@@ -39,6 +39,7 @@ public:
   string getDescription();
   string getName();
   string getAvatarFilename();
+  int getAvatarId(int deckId);
   string getStatsSummary();
 
   int getDeckId();

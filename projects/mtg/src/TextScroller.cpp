@@ -5,7 +5,13 @@
 #include "utils.h"
 #include "WFont.h"
 
-TextScroller::TextScroller(int fontId, float x, float y, float width, float speed):JGuiObject(0),fontId(fontId){
+enum {
+  HORIZONTAL_SCROLLER = 0,
+  VERTICAL_SCROLLER = 1
+};
+
+
+TextScroller::TextScroller(int fontId, float x, float y, float width, float speed, int scrollerType ): JGuiObject(0), fontId(fontId){
   mWidth = width;
   mSpeed = speed;
   mX = x;
@@ -14,6 +20,7 @@ TextScroller::TextScroller(int fontId, float x, float y, float width, float spee
   timer = 0;
   currentId = 0;
   mRandom = 0;
+  scrollDirection = scrollerType;
 }
 
 void TextScroller::setRandom(int mode){
@@ -36,24 +43,46 @@ void TextScroller::Reset(){
 void TextScroller::Update(float dt){
   if(!strings.size())
     return;
-  start+=mSpeed*dt;
-  WFont * mFont = resources.GetWFont(fontId);
-  if (start > mFont->GetStringWidth(mText.c_str())){
-    start = -mWidth;
-    if (mRandom){
-      currentId = (rand() % strings.size());
-    }else{
-      currentId++;
-      if (currentId > strings.size()-1)currentId = 0;
+  if ( scrollDirection == HORIZONTAL_SCROLLER )
+  {
+    start+=mSpeed*dt;
+    WFont * mFont = resources.GetWFont(fontId);
+    if (start > mFont->GetStringWidth(mText.c_str())){
+      start = -mWidth;
+      if (mRandom){
+        currentId = (rand() % strings.size());
+      }else{
+        currentId++;
+        if (currentId > strings.size()-1)currentId = 0;
+      }
+      mText = strings[currentId];
     }
-    mText = strings[currentId];
   }
-
+  else
+  {
+    // we want to display 3 at a time
+    ostringstream scrollerText;
+    if ( timer == 0 )
+    {
+    for ( int idx = 0; idx < 2; idx ++ )
+    {
+      scrollerText << strings[currentId + idx];
+    }
+    currentId++;
+    if ( currentId >= (strings.size()-1) )
+      currentId = 0;
+    mText = scrollerText.str();
+    }
+    timer = ++timer % ((int) mSpeed);
+  }
 }
 
 void TextScroller::Render(){
   WFont * mFont = resources.GetWFont(fontId);
-  mFont->DrawString(mText.c_str(),mX,mY,JGETEXT_LEFT,start,mWidth);
+  if ( scrollDirection == HORIZONTAL_SCROLLER )
+    mFont->DrawString(mText.c_str(),mX,mY,JGETEXT_LEFT,start,mWidth);
+  else
+    mFont->DrawString(mText.c_str(), mX, mY );
 }
 
 ostream& TextScroller::toString(ostream& out) const
