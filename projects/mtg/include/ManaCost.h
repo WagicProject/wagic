@@ -3,7 +3,7 @@
 
 #include "utils.h"
 #include "MTGDefinitions.h"
-//#include <boost/shared_ptr.hpp>
+
 
 class ManaCostHybrid;
 class ExtraCosts;
@@ -13,8 +13,6 @@ class MTGCardInstance;
 class Player;
 
 class ManaCost{
-  //typedef boost::shared_ptr<ManaCost> ManaCostPtr;
-
  protected:
   int cost[Constants::MTG_NB_COLORS+1];
   ManaCostHybrid * hybrids[10];
