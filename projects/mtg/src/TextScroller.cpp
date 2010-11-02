@@ -64,7 +64,7 @@ void TextScroller::Update(float dt){
     ostringstream scrollerText;
     if ( timer == 0 )
     {
-      for ( int idx = 0; idx < (MIN(2, strings.size())); idx ++ )
+      for ( size_t idx = 0; idx < (MIN(2, strings.size())); idx ++ )
       {
         scrollerText << strings[currentId + idx];
       }
