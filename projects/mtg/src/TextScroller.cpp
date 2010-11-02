@@ -64,14 +64,14 @@ void TextScroller::Update(float dt){
     ostringstream scrollerText;
     if ( timer == 0 )
     {
-    for ( int idx = 0; idx < 2; idx ++ )
-    {
-      scrollerText << strings[currentId + idx];
-    }
-    currentId++;
-    if ( currentId >= (strings.size()-1) )
-      currentId = 0;
-    mText = scrollerText.str();
+      for ( int idx = 0; idx < (MIN(2, strings.size())); idx ++ )
+      {
+        scrollerText << strings[currentId + idx];
+      }
+      currentId++;
+      if ( currentId >= (strings.size()-1) )
+        currentId = 0;
+      mText = scrollerText.str();
     }
     timer = ++timer % ((int) mSpeed);
   }
