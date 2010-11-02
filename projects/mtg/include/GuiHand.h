@@ -56,11 +56,12 @@ class GuiHandOpponent : public GuiHand
 class GuiHandSelf : public GuiHand
 {
  protected:
-  enum
+  typedef enum
   {
     Open,
     Closed
-  } state;
+  } HandState;
+  HandState state;
   Pos backpos;
 
  public:
@@ -74,6 +75,11 @@ class GuiHandSelf : public GuiHand
   virtual void Render();
   void Update(float dt);
   float LeftBoundary();
+
+  HandState GetState()
+  {
+    return state;
+  };
 
   HandLimitor* limitor;
 };

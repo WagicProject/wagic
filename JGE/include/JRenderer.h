@@ -73,7 +73,8 @@ protected:
 	void InitRenderer();
 	void DestroyRenderer();
 
-
+  float mActualWidth;
+  float mActualHeight;
 
 public:
 
@@ -523,6 +524,29 @@ public:
 	///
 	//////////////////////////////////////////////////////////////////////////
 	void SetImageFilter(JImageFilter* imageFilter);
+
+  /**
+  ** Set/Get methods for the actual display screen size.
+  */
+  inline void SetActualWidth(float inWidth)
+  {
+    mActualWidth = inWidth;
+  }
+
+  inline void SetActualHeight(float inHeight)
+  {
+    mActualHeight = inHeight;
+  }
+
+  inline float GetActualWidth()
+  {
+    return mActualWidth;
+  }
+
+  inline float GetActualHeight()
+  {
+    return mActualHeight;
+  }
 
 private:
 

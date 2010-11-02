@@ -11,8 +11,6 @@
 
 #ifdef WIN32
   #pragma warning(disable : 4786)
-  extern int actualWidth;
-  extern int actualHeight;
   #pragma comment( lib, "giflib.lib" )
 #endif
 
@@ -393,7 +391,7 @@ void JRenderer::Destroy()
 	}
 }
 
-JRenderer::JRenderer()
+JRenderer::JRenderer() : mActualWidth(SCREEN_WIDTH_F), mActualHeight(SCREEN_HEIGHT_F)
 {
 }
 
@@ -814,8 +812,8 @@ void JRenderer::BeginScene()
   esOrtho(&theMvpMatrix, 0.0f, SCREEN_WIDTH_F, 0.0f, SCREEN_HEIGHT_F-1.0f,-1.0f, 1.0f);
 #endif //(!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
 #ifdef WIN32
-  float scaleH = (float)actualHeight/SCREEN_HEIGHT_F;
-  float scaleW = (float)actualWidth/SCREEN_WIDTH_F;
+  float scaleH = mActualHeight/SCREEN_HEIGHT_F;
+  float scaleW = mActualWidth/SCREEN_WIDTH_F;
   glScalef(scaleW,scaleW,1.f);
 #endif
   checkGlError();

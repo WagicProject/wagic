@@ -10,9 +10,6 @@
  *		Visit My Site At nehe.gamedev.net
  */
 
-int actualWidth;
-int actualHeight;
-
 #ifdef WIN32
 #include <windows.h>		// Header File For Windows
 #else
@@ -199,8 +196,8 @@ GLvoid ReSizeGLScene(GLsizei width, GLsizei height)		// Resize And Initialize Th
   if (height==0)										// Prevent A Divide By Zero By
       height=1;										// Making Height Equal One
 
-  actualWidth = width;
-  actualHeight = height;
+  JRenderer::GetInstance()->SetActualWidth(static_cast<float>(width));
+  JRenderer::GetInstance()->SetActualHeight(static_cast<float>(height));
 
   glScissor(0, 0, width, height);
   glViewport (0, 0, width, height);	// Reset The Current Viewport
@@ -353,8 +350,8 @@ void KillGLWindow(void)								// Properly Kill The Window
 BOOL CreateGLWindow(char* title, int width, int height, int bits, bool fullscreenflag)
 {
 
-  actualWidth = width;
-  actualHeight = height;
+  JRenderer::GetInstance()->SetActualWidth(static_cast<float>(width));
+  JRenderer::GetInstance()->SetActualWidth(static_cast<float>(height));
 
 
   GLuint		pixelFormat;			// Holds The Results After Searching For A Match

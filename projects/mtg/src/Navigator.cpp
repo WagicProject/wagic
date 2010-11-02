@@ -718,7 +718,7 @@ int Navigator::CardToCardZone(PlayGuiObject* inCard)
           //  isAI = card->getCard()->target->owner->isAI();
           // nasty hack:  the lines above don't always work, as when an enchantment comes into play, its ability hasn't been activated yet,
           // so it doesn't yet have a target.  Instead, we now look at the card's position, if it's in the top half of the screen, it goes into an AI zone
-          isAI = card->y < SCREEN_HEIGHT / 2;
+          isAI = card->y < JRenderer::GetInstance()->GetActualHeight() / 2;
 
           // enchantments that target creatures are treated as part of the creature zone
           if (card->getCard()->spellTargetType.find("creature") != string::npos)

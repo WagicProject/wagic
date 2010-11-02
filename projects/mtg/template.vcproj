@@ -742,6 +742,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\Navigator.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\OptionItem.cpp"
 				>
 			</File>
@@ -1196,6 +1200,10 @@
 			</File>
 			<File
 				RelativePath=".\include\MTGRules.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\Navigator.h"
 				>
 			</File>
 			<File
