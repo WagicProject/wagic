@@ -269,13 +269,10 @@ void JGEQtRenderer::initializeGL()
   glEnable(GL_SCISSOR_TEST);				// Enable Clipping
 }
 
-int actualWidth;
-int actualHeight;
-
 GLvoid ReSizeGLScene(GLsizei width, GLsizei height)	// Resize The GL Window
 {
-  actualWidth = width;
-  actualHeight = height;
+  JRenderer::GetInstance()->SetActualWidth(width);
+  JRenderer::GetInstance()->SetActualHeight(height);
 
   if ((GLfloat)width / (GLfloat)height < ACTUAL_RATIO)
   {
@@ -323,6 +320,8 @@ void JGEQtRenderer::mousePressEvent(QMouseEvent *event)
     lastPos = event->pos();
     // this is intended to convert window coordinate into game coordinate.
     // this is correct only if the game and window have the same aspect ratio, otherwise, it's just wrong
+    int actualWidth = (int) JRenderer::GetInstance()->GetActualWidth();
+    int actualHeight = (int) JRenderer::GetInstance()->GetActualHeight();
     g_engine->LeftClicked((lastPos.x()*SCREEN_WIDTH)/actualWidth, (lastPos.y()*SCREEN_HEIGHT)/actualHeight);
     event->accept();
   }
