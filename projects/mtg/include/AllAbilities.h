@@ -787,54 +787,33 @@ public:
 
 	}
 
-	int resolve(){
-		MTGCardInstance * _target = (MTGCardInstance *) target;
-		if(_target && !_target->isToken){
-			MTGCardInstance * myClone;
-			MTGCard * clone = GameApp::collection->getCardById(_target->getId());
-			myClone = NULL;
-			if(who != 1) myClone = NEW MTGCardInstance(clone,source->controller()->game);
-			if(who == 1) myClone = NEW MTGCardInstance(clone,source->controller()->opponent()->game);
-			if(who != 1) source->controller()->game->temp->addCard(myClone);
-			else source->controller()->opponent()->game->temp->addCard(myClone);
-			Spell * spell = NEW Spell(myClone);
-			spell->resolve();
-			spell->source->isToken = 1;
-			spell->source->fresh = 1;
-			list<int>::iterator it;
-			for ( it=awith.begin() ; it != awith.end(); it++ ){
-				spell->source->basicAbilities[*it] = 1;
-			}
-			for ( it=colors.begin() ; it != colors.end(); it++ ){
-				spell->source->setColor(*it);
-			}
-			delete spell;
-			return 1;
-		}
-		if(_target && _target->isToken){
-			MTGCardInstance * myClone;
-			MTGCardInstance * clone = _target;
-			myClone = NULL;
-			if(who != 1) myClone = NEW MTGCardInstance(clone,source->controller()->game);
-			if(who == 1) myClone = NEW MTGCardInstance(clone,source->controller()->opponent()->game);
-			if(who != 1) source->controller()->game->temp->addCard(myClone);
-			else source->controller()->opponent()->game->temp->addCard(myClone);
-			Spell * spell = NEW Spell(myClone);
-			spell->resolve();
-			spell->source->isToken = 1;
-			spell->source->fresh = 1;
-			list<int>::iterator it;
-			for ( it=awith.begin() ; it != awith.end(); it++ ){
-				spell->source->basicAbilities[*it] = 1;
-			}
-			for ( it=colors.begin() ; it != colors.end(); it++ ){
-				spell->source->setColor(*it);
-			}
-			delete spell;
-			return 1;
-		}
-		return 0;
-	}
+  int resolve(){
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    if(_target)
+    {
+      MTGCardInstance * myClone = NULL;
+      MTGCard* clone = (_target->isToken ? _target : GameApp::collection->getCardById(_target->getId()));
+
+      if(who != 1) myClone = NEW MTGCardInstance(clone,source->controller()->game);
+      if(who == 1) myClone = NEW MTGCardInstance(clone,source->controller()->opponent()->game);
+      if(who != 1) source->controller()->game->temp->addCard(myClone);
+      else source->controller()->opponent()->game->temp->addCard(myClone);
+      Spell * spell = NEW Spell(myClone);
+      spell->resolve();
+      spell->source->isToken = 1;
+      spell->source->fresh = 1;
+      list<int>::iterator it;
+      for ( it=awith.begin() ; it != awith.end(); it++ ){
+        spell->source->basicAbilities[*it] = 1;
+      }
+      for ( it=colors.begin() ; it != colors.end(); it++ ){
+        spell->source->setColor(*it);
+      }
+      delete spell;
+      return 1;
+    }
+    return 0;
+  }
 
 	const char * getMenuText(){
 		if(who == 1) return "Clone For Opponent";

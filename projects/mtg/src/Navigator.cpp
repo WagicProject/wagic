@@ -6,6 +6,8 @@
 namespace
 {
   const Pos kDefaultCardPosition(300, 150, 1.0, 0.0, 220);
+  // the diagonal length of a card, doubled
+  const float kOverrideDistance = sqrtf(powf(CardGui::Width, 2) + powf(CardGui::Height, 2)) * 2;
 
   enum
   {
@@ -246,7 +248,11 @@ public:
       float yDiff = fabs(mCards[mCurrentCard]->y - mCards[index]->y);
       float xDiff = fabs(mCards[mCurrentCard]->x - mCards[index]->x);
       float distance = sqrtf(yDiff * yDiff + xDiff * xDiff);
-      if (distance < minDistance)
+      
+      // CardSelector does this thing where if the distance in the axis you're moving is less than the distance od the card on the opposite axis,
+      // it would ignore the move - this made for some weird behavior where the UI wouldn't let you move in certain directions when a card looked reachable.
+      // instead, I'm using a different logic - if there's a card in the direction that you're stepping, and it's within a defined radius, go for it.
+      if (distance < minDistance && distance < kOverrideDistance)
       {
         minDistance = distance;
         selectedCardIndex = index;
@@ -714,11 +720,12 @@ int Navigator::CardToCardZone(PlayGuiObject* inCard)
         else if (card->getCard()->isSpell())
         {
 
-          //if (card->getCard()->target != NULL)
-          //  isAI = card->getCard()->target->owner->isAI();
+         if (card->getCard()->target != NULL)
+            isAI = card->getCard()->target->owner->isAI();
+
           // nasty hack:  the lines above don't always work, as when an enchantment comes into play, its ability hasn't been activated yet,
           // so it doesn't yet have a target.  Instead, we now look at the card's position, if it's in the top half of the screen, it goes into an AI zone
-          isAI = card->y < JRenderer::GetInstance()->GetActualHeight() / 2;
+          //isAI = card->y < JRenderer::GetInstance()->GetActualHeight() / 2;
 
           // enchantments that target creatures are treated as part of the creature zone
           if (card->getCard()->spellTargetType.find("creature") != string::npos)
