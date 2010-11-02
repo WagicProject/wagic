@@ -305,6 +305,7 @@
     <ClCompile Include="src\AIMomirPlayer.cpp" />
     <ClCompile Include="src\AIPlayer.cpp" />
     <ClCompile Include="src\AIStats.cpp" />
+    <ClCompile Include="src\AllAbilities.cpp" />
     <ClCompile Include="src\CardDescriptor.cpp" />
     <ClCompile Include="src\CardDisplay.cpp" />
     <ClCompile Include="src\CardGui.cpp" />
@@ -317,6 +318,8 @@
     <ClCompile Include="src\DamagerDamaged.cpp" />
     <ClCompile Include="src\DeckDataWrapper.cpp" />
     <ClCompile Include="src\DeckManager.cpp" />
+    <ClCompile Include="src\DeckMenu.cpp" />
+    <ClCompile Include="src\DeckMenuItem.cpp" />
     <ClCompile Include="src\DeckMetaData.cpp" />
     <ClCompile Include="src\DeckStats.cpp" />
     <ClCompile Include="src\DuelLayers.cpp" />
