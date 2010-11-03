@@ -65,7 +65,8 @@ void TextScroller::Update(float dt){
     ostringstream scrollerText;
     if ( timer == 0 )
     {
-      for ( size_t idx = 0; idx < (MIN(minimumItems, strings.size())); idx ++ )
+      size_t nbItemsToDisplay = ( static_cast <unsigned> (minimumItems) < strings.size() ? minimumItems : strings.size()); //MIN(minimumItems, strings.size())
+      for ( size_t idx = 0; idx < nbItemsToDisplay; idx ++ )
       {
         scrollerText << strings[currentId + idx];
       }
