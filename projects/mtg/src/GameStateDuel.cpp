@@ -15,7 +15,6 @@
 #include "Credits.h"
 #include "Translate.h"
 #include "Rules.h"
-#include "TextScroller.h"
 
 #ifdef TESTSUITE
 #include "TestSuiteAI.h"
@@ -66,12 +65,10 @@ GameStateDuel::GameStateDuel(GameApp* parent): GameState(parent) {
   credits = NULL;
   rules = NULL;
 
-  initScroller();
 }
 
 GameStateDuel::~GameStateDuel() {
   End();
-  SAFE_DELETE(scroller);
 
 }
 
@@ -97,7 +94,7 @@ void GameStateDuel::Start()
     if (mParent->players[i] ==  PLAYER_TYPE_HUMAN){
       decksneeded = 1;
       
-      deckmenu = NEW DeckMenu(DUEL_MENU_CHOOSE_DECK, this, Fonts::MENU_FONT, "Choose a Deck");
+      deckmenu = NEW DeckMenu(DUEL_MENU_CHOOSE_DECK, this, Fonts::MAGIC_FONT, "Choose a Deck");
 
       DeckManager *deckManager = DeckManager::GetInstance();
       vector<DeckMetaData *> playerDeckList = getValidDeckMetaData( options.profileFile() );
@@ -242,7 +239,7 @@ bool GameStateDuel::MusicExist(string FileName){
 
 void GameStateDuel::ensureOpponentMenu(){
   if (!opponentMenu){
-    opponentMenu = NEW DeckMenu(DUEL_MENU_CHOOSE_OPPONENT, this, Fonts::MENU_FONT, "Choose Your Opponent");
+    opponentMenu = NEW DeckMenu(DUEL_MENU_CHOOSE_OPPONENT, this, Fonts::MAGIC_FONT, "Choose Your Opponent");
     opponentMenu->Add( MENUITEM_RANDOM_AI, "Random");
     if (options[Options::EVILTWIN_MODE_UNLOCKED].number)
       opponentMenu->Add( MENUITEM_EVIL_TWIN, "Evil Twin", _("Can you play against yourself?").c_str());
@@ -252,21 +249,6 @@ void GameStateDuel::ensureOpponentMenu(){
     opponentMenu->Add( MENUITEM_CANCEL, "Cancel", _("Choose a different player deck").c_str());
     opponentDeckList.clear();
   }
-}
-
-void GameStateDuel::initScroller()
-{
-  scroller = NEW TextScroller(Fonts::MAIN_FONT, 40 , 230, 400, 100, 1);
-  // add all the items from the Tasks db.
-  TaskList *taskList = NEW TaskList();
-  scroller->Reset();
-  for (vector<Task*>::iterator it = taskList->tasks.begin(); it!=taskList->tasks.end(); it++)
-  {
-    ostringstream taskDescription;
-    taskDescription << (*it)->getDesc() <<endl;
-    scroller->Add( taskDescription.str() );
-  }
-  SAFE_DELETE(taskList);
 }
 
 void GameStateDuel::Update(float dt)
@@ -433,7 +415,6 @@ void GameStateDuel::Update(float dt)
           PlayerData * playerdata = NEW PlayerData(mParent->collection);
           playerdata->taskList->passOneDay();
           playerdata->taskList->save();
-          initScroller();
           SAFE_DELETE(playerdata);
           SAFE_DELETE(menu);
         }
@@ -445,9 +426,6 @@ void GameStateDuel::Update(float dt)
       if (JGE_BTN_OK == mEngine->ReadButton())
 	mParent->SetNextState(GAME_STATE_MENU);
     }
-// Update the scroller
-
-    scroller->Update(dt);
 }
 
 
@@ -511,7 +489,6 @@ void GameStateDuel::Render()
         else if (deckmenu)
 	        deckmenu->Render();
 
-        scroller->Render();
       }
       break;
     case DUEL_STATE_ERROR_NO_DECK:

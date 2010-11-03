@@ -18,6 +18,8 @@ protected:
   float mY;
   float start;
   int timer;
+  int minimumItems;
+
   vector<string> strings;
   unsigned int currentId;
   int mRandom;
@@ -27,7 +29,7 @@ public:
   void Add(string text);
   void Reset();
   void setRandom(int mode = 1);
-  TextScroller(int fontId, float x, float y, float width, float speed = 30, int scrollerType = 0);
+  TextScroller(int fontId, float x, float y, float width, float speed = 30, int scrollerType = 0, int _minimumItems = 2);
   void Render();
   void Update(float dt);
   virtual ostream& toString(ostream& out) const;

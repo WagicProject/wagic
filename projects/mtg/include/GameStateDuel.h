@@ -7,7 +7,6 @@
 #include "DeckMenu.h"
 #include "MTGDeck.h"
 #include "GameObserver.h"
-#include "TextScroller.h"
 
 #define CHOOSE_OPPONENT 7
 
@@ -33,7 +32,6 @@ class GameStateDuel: public GameState, public JGuiListener
   DeckMenu * deckmenu;
   DeckMenu * opponentMenu;
   SimpleMenu * menu;
-  TextScroller * scroller;
   bool premadeDeck;
   int OpponentsDeckid;
   string musictrack;

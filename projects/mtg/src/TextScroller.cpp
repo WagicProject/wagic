@@ -11,9 +11,10 @@ enum {
 };
 
 
-TextScroller::TextScroller(int fontId, float x, float y, float width, float speed, int scrollerType ): JGuiObject(0), fontId(fontId){
+TextScroller::TextScroller(int fontId, float x, float y, float width, float speed, int scrollerType, int numItems ): JGuiObject(0), fontId(fontId){
   mWidth = width;
   mSpeed = speed;
+  minimumItems = numItems;
   mX = x;
   mY = y;
   start = -width;
@@ -60,18 +61,18 @@ void TextScroller::Update(float dt){
   }
   else
   {
-    // we want to display 3 at a time
+    // we want to display 2 at a time
     ostringstream scrollerText;
     if ( timer == 0 )
     {
-      for ( size_t idx = 0; idx < (MIN(2, strings.size())); idx ++ )
+      for ( size_t idx = 0; idx < (MIN(minimumItems, strings.size())); idx ++ )
       {
         scrollerText << strings[currentId + idx];
       }
       currentId++;
       if ( currentId >= (strings.size()-1) )
         currentId = 0;
-      mText = scrollerText.str();
+      mText = wordWrap( scrollerText.str(), mWidth );
     }
     timer = ++timer % ((int) mSpeed);
   }

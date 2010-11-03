@@ -217,3 +217,42 @@ std::vector<std::string> split(const std::string &s, char delim) {
     std::vector<std::string> elems;
     return split(s, delim, elems);
 }
+
+
+std::string wordWrap(std::string sentence, int width)
+{    
+    std::string::iterator it = sentence.begin();
+
+    //remember how long next word is
+    int nextWordLength = 0;
+    int distanceFromWidth = width;
+
+    while (it != sentence.end())
+    {
+        while (*it != ' ')
+        {
+                nextWordLength++;
+                distanceFromWidth--;
+
+                ++it;
+
+                // check if done
+                if (it == sentence.end())
+                {
+                        return sentence;
+                }
+        }
+
+        if (nextWordLength > distanceFromWidth)
+        {
+                *it = '\n';
+                distanceFromWidth = width;
+                nextWordLength = 0;
+        }
+
+        //skip the space
+        ++it;
+    }
+
+    return sentence;    
+}

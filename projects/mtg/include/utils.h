@@ -41,6 +41,7 @@ string& rtrim(string &str);
 
 std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems);
 std::vector<std::string> split(const std::string &s, char delim); //splits a string with "delim" and returns a vector of strings.
+std::string wordWrap(std::string s, int width);
 
 
 int loadRandValues(string s);
