@@ -7,8 +7,8 @@
 #include <JGE.h>
 
 #include "GameState.h"
+#include "DeckEditorMenu.h"
 #include "SimpleMenu.h"
-#include "DeckMenu.h"
 #include "WResourceManager.h"
 #include "CardGui.h"
 #include "GameOptions.h"
@@ -146,9 +146,9 @@ private:
   WGuiFilters * filterMenu;
   WSrcDeckViewer * source;
 
-  SimpleMenu * welcome_menu;
+  DeckEditorMenu * welcome_menu;
   SimpleMenu * subMenu;
-  SimpleMenu * menu;
+  DeckEditorMenu * menu;
   PriceList* pricelist;
   PlayerData * playerdata;
   int price;

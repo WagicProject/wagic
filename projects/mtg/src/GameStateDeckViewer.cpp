@@ -16,7 +16,8 @@
 #include "MTGCardInstance.h"
 #include "WFilter.h"
 #include "WDataSrc.h"
-
+#include "DeckEditorMenu.h"
+#include "SimpleMenu.h"
 
 
 //!! helper function; this is probably handled somewhere in the code already.
@@ -135,7 +136,7 @@ void GameStateDeckViewer::switchDisplay(){
 
 void GameStateDeckViewer::updateDecks(){
   SAFE_DELETE(welcome_menu);
-  welcome_menu = NEW SimpleMenu( MENU_DECK_SELECTION, this, Fonts::MENU_FONT, 20, 20);
+  welcome_menu = NEW DeckEditorMenu( MENU_DECK_SELECTION, this, Fonts::MAGIC_FONT, "Choose Deck To Edit");
   DeckManager * deckManager = DeckManager::GetInstance();
   vector<DeckMetaData *> playerDeckList = fillDeckMenu( welcome_menu,options.profileFile());
 
@@ -160,7 +161,6 @@ void GameStateDeckViewer::buildEditorMenu()
   
   if ( myDeck ) {
     aiDeckMsg
-          << "**** All changes are final ****" << endl << endl
           << "------- Deck Summary -----" << endl
           << "# Cards: "<< myDeck->getCount() << endl
           << "# Lands: "<< myDeck->getCount(Constants::MTG_COLOR_LAND ) << endl
@@ -185,17 +185,17 @@ void GameStateDeckViewer::buildEditorMenu()
   if ( menu )
     SAFE_DELETE( menu );
   //Build menu.
-
-  menu = NEW SimpleMenu( MENU_DECK_BUILDER, this, Fonts::MENU_FONT, 20, 40, "Deck Editor");
+  JRenderer::GetInstance()->FillRoundRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, 100, ARGB(0, 0, 0, 0) );
+  menu = NEW DeckEditorMenu( MENU_DECK_BUILDER, this, Fonts::MAGIC_FONT, "Deck Editor");
 
   menu->Add( MENU_ITEM_FILTER_BY, "Filter By...", "Narrow down the list of cards. ");
-  menu->Add( MENU_ITEM_SWITCH_DECKS_NO_SAVE, "Switch Decks", "Do not make any changes\nView another deck."); 
+  menu->Add( MENU_ITEM_SWITCH_DECKS_NO_SAVE, "Switch Decks", "Do not make any changes.\nView another deck."); 
   menu->Add( MENU_ITEM_SAVE_RENAME, "Rename Deck", "Change the name of the deck");
-  menu->Add( MENU_ITEM_SAVE_RETURN_MAIN_MENU, "Save & Quit Editor", "Save the changes and return to the main menu");
+  menu->Add( MENU_ITEM_SAVE_RETURN_MAIN_MENU, "Save & Quit Editor", "Save changes.\nReturn to the main menu");
   menu->Add( MENU_ITEM_SAVE_AS_AI_DECK, "Save As AI Deck", aiDeckMsg.str() );
-  menu->Add( MENU_ITEM_MAIN_MENU, "Main Menu", "Go back to the main menu.\nDo not make any changes to deck");
-  menu->Add( MENU_ITEM_EDITOR_CANCEL, "Cancel");
-
+  menu->Add( MENU_ITEM_MAIN_MENU, "Quit Editor", "Do not make any changes to deck.\nReturn to the main menu.");
+  menu->Add( MENU_ITEM_EDITOR_CANCEL, "Cancel", "Close menu.");
+  
 }
 
 void GameStateDeckViewer::Start()
@@ -220,9 +220,7 @@ void GameStateDeckViewer::Start()
   myCollection->Sort(WSrcCards::SORT_ALPHA);
   displayed_deck =  myCollection;
 
-  buildEditorMenu();
-
-  //Icons
+    //Icons
   mIcons[Constants::MTG_COLOR_ARTIFACT] = resources.GetQuad("c_artifact");
   mIcons[Constants::MTG_COLOR_LAND] = resources.GetQuad("c_land");
   mIcons[Constants::MTG_COLOR_WHITE] = resources.GetQuad("c_white");
@@ -254,7 +252,7 @@ void GameStateDeckViewer::Start()
   loadIndexes();
   mEngine->ResetInput();
   JRenderer::GetInstance()->EnableVSync(true);
-}
+  }
 
 
 void GameStateDeckViewer::End()
@@ -413,7 +411,7 @@ void GameStateDeckViewer::Update(float dt)
         if (card && displayed_deck->count(card)){
           price = pricelist->getSellPrice(card->getMTGId());
           sprintf(buffer,"%s : %i %s",_(card->data->getName()).c_str(),price,_("credits").c_str());
-          subMenu = NEW SimpleMenu( MENU_CARD_PURCHASE, this, Fonts::MAIN_FONT,SCREEN_WIDTH-300,SCREEN_HEIGHT/2,buffer);
+          subMenu = NEW SimpleMenu( MENU_CARD_PURCHASE, this, Fonts::MAIN_FONT, SCREEN_WIDTH-300, SCREEN_HEIGHT/2, buffer);
           subMenu->Add( MENU_ITEM_YES,"Yes");
           subMenu->Add( MENU_ITEM_NO,"No","",true);
         }
@@ -534,12 +532,11 @@ void GameStateDeckViewer::Update(float dt)
       }
     }
   }
-
-
 }
 
 
 void GameStateDeckViewer::renderOnScreenBasicInfo(){
+  JRenderer *renderer = JRenderer::GetInstance();
   WFont * mFont = resources.GetWFont(Fonts::MAIN_FONT);
   char buffer[256];
   int myD = (displayed_deck == myDeck);
@@ -555,10 +552,11 @@ void GameStateDeckViewer::renderOnScreenBasicInfo(){
   else
     sprintf(buffer, "%s%i cards (%i unique)", (displayed_deck == myDeck) ? "DECK: " : " " , allCopies, displayed_deck->getCount(WSrcDeck::UNFILTERED_UNIQUE));
   float w = mFont->GetStringWidth(buffer);
-  JRenderer::GetInstance()->FillRoundRect(SCREEN_WIDTH-(w+27),y-5,w+10,15,5,ARGB(128,0,0,0));
-  mFont->DrawString(buffer, SCREEN_WIDTH-22, y+5,JGETEXT_RIGHT);
+  renderer->FillRoundRect(SCREEN_WIDTH-(w+27),y+5,w+10,15,5,ARGB(128,0,0,0));
+  
+  mFont->DrawString(buffer, SCREEN_WIDTH-22, y+15, JGETEXT_RIGHT);
   if (useFilter != 0)
-    JRenderer::GetInstance()->RenderQuad(mIcons[useFilter-1], SCREEN_WIDTH-10  , y + 10 , 0.0f,0.5,0.5);
+    renderer->RenderQuad(mIcons[useFilter-1], SCREEN_WIDTH-10  , y + 15, 0.0f,0.5,0.5);
 }
 
 //returns position of the current card (cusor) in the currently viewed color/filter
@@ -600,7 +598,7 @@ void GameStateDeckViewer::renderSlideBar(){
   }
   sprintf(buffer,"%s - %i/%i", deckname.c_str(),currentPos, total);
   mFont->SetColor(ARGB(hudAlpha,255,255,255));
-  mFont->DrawString(buffer,SCREEN_WIDTH/2, y+5,JGETEXT_CENTER);
+  mFont->DrawString(buffer, SCREEN_WIDTH/2, y, JGETEXT_CENTER);
 
 
   mFont->SetColor(ARGB(255,255,255,255));
@@ -1388,7 +1386,7 @@ void GameStateDeckViewer::Render() {
 
   JRenderer * r = JRenderer::GetInstance();
   r->ClearScreen(ARGB(0,0,0,0));
-  if(displayed_deck == myDeck)
+  if(displayed_deck == myDeck && mStage != STAGE_MENU)
     renderDeckBackground();
   int order[3] = {1,2,3};
   if (mRotation < 0.5 && mRotation > -0.5){
@@ -1416,7 +1414,6 @@ void GameStateDeckViewer::Render() {
   if (mStage == STAGE_ONSCREEN_MENU){
     renderOnScreenMenu();
   }else if (mStage == STAGE_WELCOME){
-    r->FillRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT,ARGB(200,0,0,0));
     welcome_menu->Render();
   }else{
     renderOnScreenBasicInfo();

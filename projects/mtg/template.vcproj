@@ -494,6 +494,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\DeckEditorMenu.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\DeckManager.cpp"
 				>
 			</File>
@@ -1024,6 +1028,10 @@
 			</File>
 			<File
 				RelativePath=".\include\DeckDataWrapper.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\DeckEditorMenu.h"
 				>
 			</File>
 			<File

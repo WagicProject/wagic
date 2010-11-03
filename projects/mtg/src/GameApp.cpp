@@ -243,6 +243,7 @@ void GameApp::Destroy()
   WCFilterFactory::Destroy();
   SimpleMenu::destroy();
   DeckMenu::destroy();
+  DeckEditorMenu::destroy();
 
   options.theGame = NULL;
   LOG("==Destroying GameApp Successful==");
@@ -314,9 +315,6 @@ void GameApp::Update()
       mCurrentState->Start();
       mNextState = NULL;
     }
-
-
-
 }
 
 

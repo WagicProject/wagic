@@ -18,9 +18,7 @@ namespace
   const signed int kDescriptionHorizontalBoxPadding = 5;
 }
 
-WFont* DeckMenu::titleFont = NULL;
-hgeParticleSystem* DeckMenu::stars = NULL;
-unsigned int DeckMenu::refCount = 0;
+hgeParticleSystem* DeckMenu::stars = NULL; 
 // Here comes the magic of jewel graphics
 PIXEL_TYPE DeckMenu::jewelGraphics[9] = {0x3FFFFFFF,0x63645AEA,0x610D0D98,
 					   0x63645AEA,0xFF635AD5,0xFF110F67,
@@ -39,8 +37,9 @@ DeckMenu::DeckMenu(int id, JGuiListener* listener, int fontId, const string _tit
 : JGuiController(id, listener), 
 fontId(fontId) {
 
-  
-  mX = 120;
+ backgroundName = "DeckMenuBackdrop";
+
+  mX = 125;
   mY = 55;
   
   titleX = 125; // center point in title box
@@ -74,11 +73,11 @@ fontId(fontId) {
   // we want to cap the deck titles to 15 characters to avoid overflowing deck names
   title = _(_title);
 
+  titleFont = resources.GetWFont(Fonts::MAGIC_FONT);
   startId = 0;
   selectionT = 0;
   timeOpen = 0;
   closed = false;
-  ++refCount;
 
   selectionTargetY = selectionY = kVerticalMargin;
       
@@ -90,48 +89,51 @@ fontId(fontId) {
 }
 
 // TODO: Make this configurable, perhaps by user as part of the theme options.
-JQuad* getBackground()
+JQuad* DeckMenu::getBackground()
 {
-  resources.RetrieveTexture("DeckMenuBackdrop.png", RETRIEVE_MANAGE );
-  return resources.RetrieveQuad("DeckMenuBackdrop.png", 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, "DualPaneBG" );
+  ostringstream bgFilename;
+  bgFilename << backgroundName << ".png";
+  resources.RetrieveTexture( bgFilename.str(), RETRIEVE_MANAGE );
+  return resources.RetrieveQuad(bgFilename.str(), 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, backgroundName );
 
 }
 
+void DeckMenu::initMenuItems()
+{
+  float sY = mY + kVerticalMargin;
+  for (int i = startId; i < startId + mCount; ++i) {
+    DeckMenuItem *menuItem = static_cast<DeckMenuItem *> (mObjects[i]);
+    int width = menuItem->GetWidth();
+    if (mWidth < width) mWidth = width;
+  }
+  titleWidth = titleFont->GetStringWidth(title.c_str());
+  if ((!title.empty()) && (mWidth < titleWidth)) 
+    mWidth = titleWidth;
+
+  mWidth += 2*kHorizontalMargin;
+  for (int i = startId; i < startId + mCount; ++i) {
+    float y = mY + kVerticalMargin + i * kLineHeight;
+    DeckMenuItem * currentMenuItem = static_cast<DeckMenuItem*>(mObjects[i]);
+    currentMenuItem->Relocate( mX, y);
+    if (currentMenuItem->hasFocus()) 
+      sY = y;
+  }
+  selectionTargetY = selectionY = sY;
+}
 
 void DeckMenu::Render() 
 {
   JRenderer * renderer = JRenderer::GetInstance();
-
-  WFont * titleFont = resources.GetWFont(Fonts::MAGIC_FONT);
   WFont * mFont = resources.GetWFont(fontId);
+  float height = mHeight;
 
   // figure out where to place the stars initially
   if (0 == mWidth) {
-    float sY = mY + kVerticalMargin;
-    for (int i = startId; i < startId + mCount; ++i) {
-      DeckMenuItem *menuItem = static_cast<DeckMenuItem *> (mObjects[i]);
-      int width = menuItem->GetWidth();
-      if (mWidth < width) mWidth = width;
-    }
-    if ((!title.empty()) && (mWidth < titleFont->GetStringWidth(title.c_str()))) 
-      mWidth = titleFont->GetStringWidth(title.c_str());
-    mWidth += 2*kHorizontalMargin;
-    for (int i = startId; i < startId + mCount; ++i) {
-      float y = mY + kVerticalMargin + i * kLineHeight;
-      DeckMenuItem * currentMenuItem = static_cast<DeckMenuItem*>(mObjects[i]);
-      currentMenuItem->Relocate( mX, y);
-
-      if (currentMenuItem->hasFocus()) sY = y;
-    }
+    initMenuItems();
     stars->Fire();
-    selectionTargetY = selectionY = sY;
     timeOpen = 0;
   }
 
-
-  renderer->RenderQuad(getBackground(), 0, 0 );
-
-  float height = mHeight;
   if (timeOpen < 1) height *= timeOpen > 0 ? timeOpen : -timeOpen;
 
   renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE);
@@ -149,9 +151,8 @@ void DeckMenu::Render()
         if ( currentMenuItem->imageFilename.size() > 0 )
         {
           JQuad * quad = resources.RetrieveTempQuad( currentMenuItem->imageFilename, TEXTURE_SUB_AVATAR ); 
-          if (quad) {
+          if (quad) 
             renderer->RenderQuad(quad, avatarX, avatarY);
-          }      
         }
         // fill in the description part of the screen
         string text = currentMenuItem->desc;
@@ -174,13 +175,13 @@ void DeckMenu::Render()
       }
       currentMenuItem->RenderWithOffset(-kLineHeight*startId);
     }
+
+    renderer->RenderQuad(getBackground(), 0, 0 );
+
     if (!title.empty())
       titleFont->DrawString(title.c_str(), titleX, titleY, JGETEXT_CENTER);
     
     scroller->Render();
-    renderer->RenderQuad(getBackground(), 0, 0 );
-
-
   }
 }
 
@@ -243,9 +244,10 @@ void DeckMenu::Close()
 
 void DeckMenu::destroy(){
   SAFE_DELETE(DeckMenu::stars);
-}
+ }
 
 DeckMenu::~DeckMenu()
 {
   SAFE_DELETE(scroller);
+
 }

@@ -18,6 +18,7 @@ class DeckMenu:public JGuiController{
   int descX, descY, descHeight, descWidth;
   int statsX, statsY, statsHeight, statsWidth;
   int avatarX, avatarY;
+  string backgroundName;
 
   int fontId;
   std::string title;
@@ -25,18 +26,21 @@ class DeckMenu:public JGuiController{
   int maxItems, startId;
   float selectionT, selectionY;
   float timeOpen;
-  static unsigned int refCount;
 
-  static WFont* titleFont;
+  WFont* titleFont;
   static hgeParticleSystem* stars;
   // This works only because of no multithreading
   static PIXEL_TYPE jewelGraphics[9];
 
+  void initMenuItems();
+  string getDescription();
+  string getMetaInformation();
+
  public:
    TextScroller * scroller;
-  bool autoTranslate;
-
-  DeckMenu(int id, JGuiListener* listener, int fontId, const string _title = "");
+   bool autoTranslate;
+   JQuad * getBackground();
+   DeckMenu(int id, JGuiListener* listener, int fontId, const string _title = "");
   ~DeckMenu();
   
   void Render();
