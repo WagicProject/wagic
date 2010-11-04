@@ -11,11 +11,11 @@
 #include <iomanip>
 namespace
 {
-  const unsigned int kVerticalMargin = 16;
-  const unsigned int kHorizontalMargin = 30;
-  const signed int kLineHeight = 20;
-  const signed int kDescriptionVerticalBoxPadding = 5;
-  const signed int kDescriptionHorizontalBoxPadding = 5;
+  const float kVerticalMargin = 16;
+  const float kHorizontalMargin = 30;
+  const float kLineHeight = 20;
+  const float kDescriptionVerticalBoxPadding = 5;
+  const float kDescriptionHorizontalBoxPadding = 5;
 }
 
 hgeParticleSystem* DeckMenu::stars = NULL; 
@@ -60,7 +60,7 @@ fontId(fontId) {
   avatarX = 230;
   avatarY = 8;
 
-  int scrollerWidth = 80;
+  float scrollerWidth = 80;
 
   scroller = NEW TextScroller(Fonts::MAIN_FONT, 40 , 230, scrollerWidth, 100, 1, 1);
 
@@ -103,7 +103,7 @@ void DeckMenu::initMenuItems()
   float sY = mY + kVerticalMargin;
   for (int i = startId; i < startId + mCount; ++i) {
     DeckMenuItem *menuItem = static_cast<DeckMenuItem *> (mObjects[i]);
-    int width = menuItem->GetWidth();
+    float width = menuItem->GetWidth();
     if (mWidth < width) mWidth = width;
   }
   titleWidth = titleFont->GetStringWidth(title.c_str());
@@ -194,7 +194,7 @@ void DeckMenu::Update(float dt){
   stars->Update(dt);
   selectionT += 3*dt;
   selectionY += (selectionTargetY - selectionY) * 8 * dt;
-  stars->MoveTo( 40 + ((mWidth-2*kHorizontalMargin)*(1+cos(selectionT))/2), selectionY + 5 * cos(selectionT*2.35) + kLineHeight / 2 - kLineHeight * startId);
+  stars->MoveTo( 40 + ((mWidth-2*kHorizontalMargin)*(1+cos(selectionT))/2), selectionY + 5 * cos(selectionT*2.35f) + kLineHeight / 2 - kLineHeight * startId);
   if (timeOpen < 0) {
     timeOpen += dt * 10;
     if (timeOpen >= 0) { timeOpen = 0; closed = true; stars->FireAt(mX, mY); }

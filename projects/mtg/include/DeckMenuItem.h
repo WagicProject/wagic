@@ -27,13 +27,13 @@ class DeckMenuItem: public JGuiObject
   string desc;
   DeckMetaData *meta;
 
-  DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, int x, int y, bool hasFocus = false, bool autoTranslate = false, DeckMetaData *meta = NULL);
+  DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, float x, float y, bool hasFocus = false, bool autoTranslate = false, DeckMetaData *meta = NULL);
   ~DeckMenuItem();
-  int mX;
-  int mY;
+  float mX;
+  float mY;
 
-  void Relocate(int x, int y);
-  int GetWidth();
+  void Relocate(float x, float y);
+  float GetWidth();
   bool hasFocus();
 
   void RenderWithOffset(float yOffset);
@@ -44,7 +44,7 @@ class DeckMenuItem: public JGuiObject
   virtual bool Leaving(JButton key);
   virtual bool ButtonPressed();
   virtual ostream& toString(ostream& out) const;
-  virtual bool getTopLeft(int& top, int& left) {top = mY; left = mX; return true;};
+  virtual bool getTopLeft(float& top, float& left) {top = mY; left = mX; return true;};
 };
 
 #endif

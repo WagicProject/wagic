@@ -4,7 +4,7 @@
 #include "Translate.h"
 #include "WResourceManager.h"
 
-DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, int x, int y, bool hasFocus, bool autoTranslate, DeckMetaData *deckMetaData): JGuiObject(id), parent(_parent), fontId(fontId), mX(x), mY(y)
+DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, float x, float y, bool hasFocus, bool autoTranslate, DeckMetaData *deckMetaData): JGuiObject(id), parent(_parent), fontId(fontId), mX(x), mY(y)
 {
   if (autoTranslate) 
     mText = _(text);
@@ -74,13 +74,13 @@ bool DeckMenuItem::ButtonPressed()
   return true;
 }
 
-void DeckMenuItem::Relocate(int x, int y)
+void DeckMenuItem::Relocate(float x, float y)
 {
   mX = x;
   mY = y;
 }
 
-int DeckMenuItem::GetWidth()
+float DeckMenuItem::GetWidth()
 {
   WFont * mFont = resources.GetWFont(fontId);
   mFont->SetScale(1.0);

@@ -317,6 +317,7 @@
     <ClCompile Include="src\Damage.cpp" />
     <ClCompile Include="src\DamagerDamaged.cpp" />
     <ClCompile Include="src\DeckDataWrapper.cpp" />
+    <ClCompile Include="src\DeckEditorMenu.cpp" />
     <ClCompile Include="src\DeckManager.cpp" />
     <ClCompile Include="src\DeckMenu.cpp" />
     <ClCompile Include="src\DeckMenuItem.cpp" />
@@ -448,7 +449,9 @@
     <ClInclude Include="include\DamagerDamaged.h" />
     <ClInclude Include="include\DebugRoutines.h" />
     <ClInclude Include="include\DeckDataWrapper.h" />
+    <ClInclude Include="include\DeckEditorMenu.h" />
     <ClInclude Include="include\DeckManager.h" />
+    <ClInclude Include="include\DeckMenuItem.h" />
     <ClInclude Include="include\DeckMetaData.h" />
     <ClInclude Include="include\DeckStats.h" />
     <ClInclude Include="include\DuelLayers.h" />

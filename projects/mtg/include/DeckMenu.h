@@ -13,11 +13,11 @@
 class DeckMenu:public JGuiController{
  protected:
 
-  int mHeight, mWidth, mX, mY;
-  int titleX, titleY, titleWidth;
-  int descX, descY, descHeight, descWidth;
-  int statsX, statsY, statsHeight, statsWidth;
-  int avatarX, avatarY;
+  float mHeight, mWidth, mX, mY;
+  float titleX, titleY, titleWidth;
+  float descX, descY, descHeight, descWidth;
+  float statsX, statsY, statsHeight, statsWidth;
+  float avatarX, avatarY;
   string backgroundName;
 
   int fontId;
