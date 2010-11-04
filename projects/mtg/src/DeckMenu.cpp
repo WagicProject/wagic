@@ -228,7 +228,7 @@ void DeckMenu::updateScroller()
   for (vector<Task*>::iterator it = taskList->tasks.begin(); it!=taskList->tasks.end(); it++)
   {
     ostringstream taskDescription;
-    taskDescription << "[ " << setw(4) << (*it)->getReward() << " / " << (*it)->getExpiration() << " ]   " << (*it)->getDesc() << ". "  << endl;
+    taskDescription << "[ " << setw(4) << (*it)->getReward() << " / " << (*it)->getExpiration() << " ]   " << (*it)->getDesc() << endl;
     scroller->Add( taskDescription.str() );
   }
   SAFE_DELETE(taskList);

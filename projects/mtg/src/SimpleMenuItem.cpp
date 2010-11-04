@@ -4,7 +4,7 @@
 #include "Translate.h"
 #include "WResourceManager.h"
 
-SimpleMenuItem::SimpleMenuItem(SimpleMenu* _parent, int id, int fontId, string text, int x, int y, bool hasFocus, bool autoTranslate): JGuiObject(id), parent(_parent), fontId(fontId), mX(x), mY(y)
+SimpleMenuItem::SimpleMenuItem(SimpleMenu* _parent, int id, int fontId, string text, float x, float y, bool hasFocus, bool autoTranslate): JGuiObject(id), parent(_parent), fontId(fontId), mX(x), mY(y)
 {
   if (autoTranslate) mText = _(text);
   else mText = text;
@@ -65,13 +65,13 @@ bool SimpleMenuItem::ButtonPressed()
   return true;
 }
 
-void SimpleMenuItem::Relocate(int x, int y)
+void SimpleMenuItem::Relocate(float x, float y)
 {
   mX = x;
   mY = y;
 }
 
-int SimpleMenuItem::GetWidth()
+float SimpleMenuItem::GetWidth()
 {
   WFont * mFont = resources.GetWFont(fontId);
   mFont->SetScale(1.0);

@@ -8,10 +8,10 @@
 
 namespace
 {
-  const unsigned int kPoleWidth = 7;
-  const unsigned int kVerticalMargin = 16;
-  const unsigned int kHorizontalMargin = 30;
-  const signed int kLineHeight = 20;
+  const float kPoleWidth = 7;
+  const float kVerticalMargin = 16;
+  const float kHorizontalMargin = 30;
+  const float kLineHeight = 20;
 }
 
 JQuad* SimpleMenu::spadeR = NULL;
@@ -31,7 +31,7 @@ PIXEL_TYPE SimpleMenu::jewelGraphics[9] = {0x3FFFFFFF,0x63645AEA,0x610D0D98,
 					   0x610D0D98,0xFF110F67,0xFD030330};
 
 
-SimpleMenu::SimpleMenu(int id, JGuiListener* listener, int fontId, int x, int y, const char * _title, int _maxItems): JGuiController(id, listener), fontId(fontId){
+SimpleMenu::SimpleMenu(int id, JGuiListener* listener, int fontId, float x, float y, const char * _title, int _maxItems): JGuiController(id, listener), fontId(fontId){
   autoTranslate = true;
   mHeight = 2 * kVerticalMargin;
   mWidth = 0;
@@ -63,7 +63,7 @@ SimpleMenu::SimpleMenu(int id, JGuiListener* listener, int fontId, int x, int y,
   stars->FireAt(mX, mY);
 }
 
-void SimpleMenu::drawHorzPole(int x, int y, int width)
+void SimpleMenu::drawHorzPole(float x, float y, float width)
 {
   JRenderer* renderer = JRenderer::GetInstance();
 
@@ -78,7 +78,7 @@ void SimpleMenu::drawHorzPole(int x, int y, int width)
   renderer->RenderQuad(jewel, x + width - 1, y - 1);
 }
 
-void SimpleMenu::drawVertPole(int x, int y, int height)
+void SimpleMenu::drawVertPole(float x, float y, float height)
 {
   JRenderer* renderer = JRenderer::GetInstance();
 
@@ -99,7 +99,7 @@ void SimpleMenu::Render() {
   if (0 == mWidth) {
     float sY = mY + kVerticalMargin;
     for (int i = startId; i < startId + mCount; ++i) {
-      int width = (static_cast<SimpleMenuItem*>(mObjects[i]))->GetWidth();
+      float width = (static_cast<SimpleMenuItem*>(mObjects[i]))->GetWidth();
       if (mWidth < width) mWidth = width;
     }
     if ((!title.empty()) && (mWidth < titleFont->GetStringWidth(title.c_str()))) mWidth = titleFont->GetStringWidth(title.c_str());

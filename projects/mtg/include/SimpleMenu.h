@@ -11,7 +11,7 @@
 
 class SimpleMenu:public JGuiController{
  private:
-  int mHeight, mWidth, mX, mY;
+  float mHeight, mWidth, mX, mY;
   int fontId;
   std::string title;
   int displaytitle;
@@ -28,12 +28,12 @@ class SimpleMenu:public JGuiController{
   static PIXEL_TYPE jewelGraphics[9];
 
   inline void MogrifyJewel();
-  void drawHorzPole(int x, int y, int width);
-  void drawVertPole(int x, int y, int height);
+  void drawHorzPole(float x, float y, float width);
+  void drawVertPole(float x, float y, float height);
 
  public:
   bool autoTranslate;
-  SimpleMenu(int id, JGuiListener* listener, int fontId, int x, int y, const char * _title = "", int _maxItems = 7);
+  SimpleMenu(int id, JGuiListener* listener, int fontId, float x, float y, const char * _title = "", int _maxItems = 7);
   void Render();
   void Update(float dt);
   void Add(int id, const char * Text,string desc = "", bool forceFocus = false);

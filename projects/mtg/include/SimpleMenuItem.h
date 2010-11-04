@@ -24,13 +24,13 @@ class SimpleMenuItem: public JGuiObject
 
  public:
   string desc;
-  SimpleMenuItem(SimpleMenu* _parent, int id, int fontId, string text, int x, int y, bool hasFocus = false, bool autoTranslate = false);
+  SimpleMenuItem(SimpleMenu* _parent, int id, int fontId, string text, float x, float y, bool hasFocus = false, bool autoTranslate = false);
 
-  int mX;
-  int mY;
+  float mX;
+  float mY;
 
-  void Relocate(int x, int y);
-  int GetWidth();
+  void Relocate(float x, float y);
+  float GetWidth();
   bool hasFocus();
 
   void RenderWithOffset(float yOffset);

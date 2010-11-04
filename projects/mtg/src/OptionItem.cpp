@@ -167,7 +167,7 @@ void OptionProfile::Render(){
   mFont->SetScale(1);
   int spacing = 2+(int)mFont->GetHeight();
 
-  int pX, pY;
+  float pX, pY;
   pX = x;
   pY = y;
   char buf[512];
@@ -185,10 +185,10 @@ void OptionProfile::Render(){
 
   mFont->SetColor(getColor(WGuiColor::TEXT_HEADER));
   mFont->DrawString(selections[value].c_str(), pX, pY + 2, JGETEXT_LEFT);
-  mFont->SetScale(.8);
+  mFont->SetScale(0.8f);
   mFont->SetColor(getColor(WGuiColor::TEXT_BODY));
   mFont->DrawString(preview.c_str(), pX, pY + spacing + 2, JGETEXT_LEFT);
-  mFont->SetScale(1);
+  mFont->SetScale(1.0f);
 
 }
 void OptionProfile::Entering(JButton key){
@@ -429,7 +429,7 @@ void OptionTheme::Render(){
   mFont->DrawString(buf, x + 2, y + 2);
   if(bChecked && author.size()){
     mFont->SetColor(getColor(WGuiColor::TEXT_BODY));
-     mFont->SetScale(.8);
+     mFont->SetScale(0.8f);
     float hi = mFont->GetHeight();
     sprintf(buf,_("Artist: %s").c_str(),author.c_str());
     mFont->DrawString(buf, x + 2, y + getHeight() - hi);
@@ -475,13 +475,13 @@ void OptionKey::Render() {
     {
       const KeyRep& rep = translateKey(from);
       if (rep.second)
-        renderer->RenderQuad(rep.second, x + 4, y + 3, 0, 16.0 / rep.second->mHeight, 16.0 / rep.second->mHeight);
+        renderer->RenderQuad(rep.second, x + 4, y + 3, 0, 16.0f / rep.second->mHeight, 16.0f / rep.second->mHeight);
       else
         mFont->DrawString(rep.first, x + 4, y + 3, JGETEXT_LEFT);
       const KeyRep& rep2 = translateKey(to);
       if (rep2.second)
         {
-          float ratio = 16.0 / rep2.second->mHeight;
+          float ratio = 16.0f / rep2.second->mHeight;
           renderer->RenderQuad(rep2.second, x + width - (ratio * rep2.second->mWidth) - 2, y + 3, 0, ratio, ratio);
         }
       else
@@ -525,7 +525,7 @@ void OptionKey::Overlay()
   WFont * mFont = resources.GetWFont(Fonts::OPTION_FONT);
   mFont->SetColor(ARGB(255, 0, 0, 0));
   if (grabbed) {
-    static const int x = 30, y = 45;
+    static const float x = 30, y = 45;
     renderer->FillRoundRect(x, y, SCREEN_WIDTH - 2*x, 50, 2, ARGB(200, 200, 200, 255));
     string msg = _("Press a key to associate.");
     mFont->DrawString(msg, (SCREEN_WIDTH - mFont->GetStringWidth(msg.c_str())) / 2, y + 20);
