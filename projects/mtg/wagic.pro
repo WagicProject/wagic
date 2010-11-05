@@ -51,6 +51,7 @@ SOURCES += \
         src/Damage.cpp\
         src/DamagerDamaged.cpp\
         src/DeckDataWrapper.cpp\
+        src/DeckEditorMenu.cpp\
         src/DeckManager.cpp\
         src/DeckMenu.cpp\
         src/DeckMenuItem.cpp\
