@@ -358,6 +358,9 @@ void JGEQtRenderer::mouseMoveEvent(QMouseEvent *event)
 {
   // this is intended to convert window coordinate into game coordinate.
   // this is correct only if the game and window have the same aspect ratio, otherwise, it's just wrong
+  int actualWidth = (int) JRenderer::GetInstance()->GetActualWidth();
+  int actualHeight = (int) JRenderer::GetInstance()->GetActualHeight();
+
   g_engine->LeftClicked((event->pos().x()*SCREEN_WIDTH)/actualWidth, (event->pos().y()*SCREEN_HEIGHT)/actualHeight);
   event->accept();
 }
