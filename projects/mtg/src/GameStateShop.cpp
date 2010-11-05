@@ -282,7 +282,7 @@ int GameStateShop::purchasePrice(int offset){
   if(!pricelist || !srcCards || (c = srcCards->getCard(offset)) == NULL)
     return 0;
   float price = (float) pricelist->getPurchasePrice(c->getMTGId());
-  float filteradd = srcCards->Size(true); 
+  int filteradd = srcCards->Size(true); 
   filteradd = ((filteradd - srcCards->Size())/filteradd);
 
   switch(options[Options::ECON_DIFFICULTY].number){
@@ -290,7 +290,7 @@ int GameStateShop::purchasePrice(int offset){
     case Constants::ECON_HARD:    filteradd *= 2; break;
     default:                      break;    
   }
-  return (int) price + price * (filteradd*srcCards->filterFee());
+  return (int) (price + price * (filteradd * srcCards->filterFee() ));
 }
 void GameStateShop::updateCounts(){
   for(int i=BOOSTER_SLOTS;i<SHOP_ITEMS;i++){
@@ -390,7 +390,7 @@ void GameStateShop::Update(float dt)
   if (menu && menu->closed)
     SAFE_DELETE(menu);
   srcCards->Update(dt);
-  alphaChange = (500 - (rand() % 1000)) * dt;
+  alphaChange = (500 - (int)((rand() % 1000)) * dt);
   lightAlpha+= alphaChange;
   if (lightAlpha < 0) lightAlpha = 0;
   if (lightAlpha > 50) lightAlpha = 50;
@@ -587,13 +587,13 @@ void GameStateShop::Render()
       float elp = srcCards->getElapsed();
       //Render the card list overlay.
       if( bListCards || elp > LIST_FADEIN){
-        char alpha = 200;
+        int alpha = 200;
         if(!bListCards && elp < LIST_FADEIN+.25){
           alpha = 800 *(elp-LIST_FADEIN);
         }
         r->FillRoundRect(300,10, 160, SHOP_SLOTS * 20 + 15,5,ARGB(alpha,0,0,0));
-        alpha+=55;
-        for(int i=0;i<SHOP_SLOTS;i++){
+        alpha += 55;
+        for(int i = 0; i < SHOP_SLOTS; i++){
           if (i == shopMenu->getSelected())
             mFont->SetColor(ARGB(alpha,255,255,0));
           else  

@@ -637,8 +637,8 @@ int MTGCardInstance::toggleDefenser(MTGCardInstance * opponent){
       setDefenser(opponent);
 			didblocked = 1;
 			if(opponent && opponent->controller()->isAI()){
-				opponent->view->actZ += .8; 
-				opponent->view->actT -= .2;
+				opponent->view->actZ += .8f; 
+				opponent->view->actT -= .2f;
          }
 			if(!opponent) didblocked = 0;
       return 1;

@@ -368,12 +368,12 @@ StoryDialog::StoryDialog(TiXmlElement* root, StoryFlow * mParent):StoryPage(mPar
 		  if (element) {
         string sX = safeAttribute(element, "x");
         float x = atof(sX.c_str());
-        if (x>0 && x < 1){
+        if (x > 0 && x < 1){
           x = SCREEN_WIDTH_F * x;
         }
         string sY = safeAttribute(element,"y");
         float y = atof(sY.c_str());
-        if (y>0 && y < 1){
+        if (y > 0 && y < 1){
           y = SCREEN_HEIGHT_F * y;
         }
         string align = safeAttribute(element,"align");

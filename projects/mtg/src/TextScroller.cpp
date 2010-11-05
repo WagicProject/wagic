@@ -11,7 +11,7 @@ enum {
 };
 
 
-TextScroller::TextScroller(int fontId, float x, float y, float width, float speed, int scrollerType, int numItems ): JGuiObject(0), fontId(fontId){
+TextScroller::TextScroller(int fontId, float x, float y, float width, float speed, int scrollerType, size_t numItems ): JGuiObject(0), fontId(fontId){
   mWidth = width;
   mSpeed = speed;
   minimumItems = numItems;
@@ -65,7 +65,7 @@ void TextScroller::Update(float dt){
     ostringstream scrollerText;
     if ( timer == 0 )
     {
-      size_t nbItemsToDisplay = ( static_cast <unsigned> (minimumItems) < strings.size() ? minimumItems : strings.size()); //MIN(minimumItems, strings.size())
+      size_t nbItemsToDisplay = ( minimumItems < strings.size() ? minimumItems : strings.size());
       for ( size_t idx = 0; idx < nbItemsToDisplay; idx ++ )
       {
         scrollerText << strings[currentId + idx];
@@ -73,7 +73,7 @@ void TextScroller::Update(float dt){
       currentId++;
       if ( currentId >= (strings.size()-1) )
         currentId = 0;
-      mText = wordWrap( scrollerText.str(), mWidth );
+      mText = wordWrap( scrollerText.str(), (int) mWidth );
     }
     timer = ++timer % ((int) mSpeed);
   }

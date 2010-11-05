@@ -150,7 +150,7 @@ void Task::setExpiration(int _expiresIn) {
 
 void Task::passOneDay() {
   expiresIn--;
-  reward = (int) getReward() * 0.9; // Todo: degradation and minreward constants
+  reward = (int) (getReward() * 0.9); // Todo: degradation and minreward constants
   if (reward < 33) {
     reward = 33;
   }
@@ -417,13 +417,13 @@ void TaskList::Update(float dt) {
   mElapsed += dt;
   
   if(mState == TASKS_IN && vPos < 0){
-    vPos = -SCREEN_HEIGHT+(SCREEN_HEIGHT*mElapsed/.75); //Todo: more physical drop-in.
+    vPos = -SCREEN_HEIGHT+(SCREEN_HEIGHT*mElapsed/0.75f); //Todo: more physical drop-in.
     if(vPos >= 0){
       vPos = 0;
       mState = TaskList::TASKS_ACTIVE;
     }
   }else if(mState == TASKS_OUT && vPos > -SCREEN_HEIGHT){
-    vPos = -(SCREEN_HEIGHT*mElapsed/.75);
+    vPos = -(SCREEN_HEIGHT*mElapsed/0.75f);
     if(vPos <= -SCREEN_HEIGHT)
       mState = TASKS_INACTIVE;
   }
@@ -639,7 +639,7 @@ int TaskDelay::computeReward() {
 }
 
 void TaskDelay::randomize() {
-  afterTurn = rand()%2;
+  afterTurn = rand()%2 == 1;
   turn = afterTurn ? rand()%15 + 20 : 15 - rand()%9;
   Task::randomize();
 }

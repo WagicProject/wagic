@@ -22,19 +22,19 @@ PlayGuiObject::PlayGuiObject(float desiredHeight, const Pos& ref, bool hasFocus)
 
 void PlayGuiObject::Update(float dt){
   if (mHasFocus && mHeight < defaultHeight * 1.2)
-    {
-      mHeight += defaultHeight*0.8f*dt;
-      //      fprintf(stderr, "increasing size to %f - %d", mHeight, GetId() );
+  {
+    mHeight += defaultHeight * 0.8f * dt;
+    //      fprintf(stderr, "increasing size to %f - %d", mHeight, GetId() );
 
-      if (mHeight > defaultHeight * 1.2)
-	mHeight = defaultHeight * 1.2;
-    }
+    if (mHeight > defaultHeight * 1.2f)
+      mHeight = defaultHeight * 1.2f;
+  }
   else if (!mHasFocus && mHeight > defaultHeight)
-    {
-      mHeight -= defaultHeight*0.8f*dt;
-      if (mHeight < defaultHeight)
-	mHeight = defaultHeight;
-    }
+  {
+    mHeight -= defaultHeight * 0.8f * dt;
+    if (mHeight < defaultHeight)
+      mHeight = defaultHeight;
+  }
   wave = (wave +2 * (int) (100 * dt) ) % 255;
   for (vector<Effect*>::iterator it = effects.begin(); it != effects.end(); ++it)
     (*it)->Update(dt);

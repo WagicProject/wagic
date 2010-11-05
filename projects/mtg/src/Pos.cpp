@@ -6,7 +6,8 @@
 Pos::Pos(float x, float y, float z, float t, float a) : actX(x), actY(y), actZ(z), actT(t), actA(a), x(x), y(y), zoom(z), t(t), alpha(a) {}
 void Pos::Update(float dt)
 {
-  if (dt > 0.05) dt = 0.05;
+  if (dt > 0.05f) 
+    dt = 0.05;
   actX += 10 * dt * (x - actX);
   actY += 10 * dt * (y - actY);
   actT += 10 * dt * (t - actT);

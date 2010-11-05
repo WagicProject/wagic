@@ -354,7 +354,7 @@ void GameStateDeckViewer::Update(float dt)
     //Prevent screen from updating.
     return;    
   }
-  hudAlpha = (float) 255-(last_user_activity * 500);
+  hudAlpha = 255 - ((int) last_user_activity * 500);
   if (hudAlpha < 0) hudAlpha = 0;
   if (subMenu){
     subMenu->Update(dt);
@@ -1029,7 +1029,7 @@ void GameStateDeckViewer::renderOnScreenMenu(){
             sprintf(buffer, ((*countPerCostAndColor)[i][j]>0)?_("%i").c_str():".", (*countPerCostAndColor)[i][j]);
             font->DrawString(buffer, 64 + leftTransition + j*15, posY);
           }
-          r->FillRect(77.f + leftTransition + (Constants::MTG_NB_COLORS-2)*15, posY + 2, (*countPerCost)[i]*5, 8, graphColor);
+          r->FillRect(77.f + leftTransition + (Constants::MTG_NB_COLORS-2)*15.0f, posY + 2.0f, (*countPerCost)[i]*5.0f, 8.0f, graphColor);
           posY += 10;
         }
 
@@ -1309,10 +1309,10 @@ void GameStateDeckViewer::renderCard(int id, float rotation){
   float right_border = SCREEN_WIDTH - 20 ;
 
   float x_center = x_center_0 + cos((rotation + 8 - id)*M_PI/12)*(right_border-x_center_0);
-  float scale = max_scale/ 1.12 * cos((x_center-x_center_0)*1.5/(right_border - x_center_0) ) + 0.2 * max_scale * cos (cos((x_center-x_center_0)*0.15/(right_border - x_center_0) ));
+  float scale = max_scale/ 1.12f * cos((x_center-x_center_0)*1.5f/(right_border - x_center_0) ) + 0.2f * max_scale * cos (cos((x_center-x_center_0)*0.15f/(right_border - x_center_0) ));
   float x =  x_center; // ;
 
-  float y = (SCREEN_HEIGHT)/2 + SCREEN_HEIGHT*mSlide*(scale+0.2);
+  float y = (SCREEN_HEIGHT_F)/2.0f + SCREEN_HEIGHT_F * mSlide * (scale + 0.2f);
 
   int alpha = (int) (255 * (scale + 1.0 - max_scale));
 
@@ -1357,7 +1357,7 @@ void GameStateDeckViewer::renderCard(int id, float rotation){
   }
   quadAlpha = 255 - quadAlpha;
   if (quadAlpha > 0){
-    JRenderer::GetInstance()->FillRect(x - scale* 100 ,y - scale * 142.5,scale* 200,scale*285,ARGB(quadAlpha,0,0,0));
+    JRenderer::GetInstance()->FillRect(x - scale * 100.0f ,y - scale * 142.5f , scale * 200.0f, scale * 285.0f, ARGB(quadAlpha,0,0,0));
   }
   if (last_user_activity < 3){
     int fontAlpha = alpha;

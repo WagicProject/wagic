@@ -157,7 +157,8 @@ void SimpleMenu::Update(float dt){
   stars->Update(dt);
   selectionT += 3*dt;
   selectionY += (selectionTargetY - selectionY) * 8 * dt;
-  stars->MoveTo(mX + kHorizontalMargin + ((mWidth-2*kHorizontalMargin)*(1+cos(selectionT))/2), selectionY + 5 * cos(selectionT*2.35) + kLineHeight / 2 - kLineHeight * startId);
+  stars->MoveTo(mX + kHorizontalMargin + ((mWidth-2 * kHorizontalMargin) * (1+cos(selectionT))/2), 
+                selectionY + 5 * cos( selectionT * 2.35f ) + kLineHeight / 2 - kLineHeight * startId);
   if (timeOpen < 0) {
     timeOpen += dt * 10;
     if (timeOpen >= 0) { timeOpen = 0; closed = true; stars->FireAt(mX, mY); }

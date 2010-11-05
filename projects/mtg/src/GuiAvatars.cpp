@@ -17,7 +17,7 @@ GuiAvatars::GuiAvatars() : active(NULL)
 					GameObserver::GetInstance()->players[0], this));
 
   Add(opponent          = NEW GuiAvatar   (0,  0,  false, GameObserver::GetInstance()->players[1], GuiAvatar::TOP_LEFT, this));
-  opponent->zoom = 0.9;
+  opponent->zoom = 0.9f;
  //opponenthandveiw button
   Add(opponentHand  = NEW GuiOpponentHand(-30 + GuiAvatar::Width * 1.2 - GuiGameZone::Width / 2, 35 + GuiGameZone::Height - 10, false, GameObserver::GetInstance()->players[1], this));
  //opponenthandveiwends
@@ -44,23 +44,37 @@ GuiAvatars::~GuiAvatars()
 
 void GuiAvatars::Activate(PlayGuiObject* c)
 {
-  c->zoom = 1.2;
+  c->zoom = 1.2f;
   c->mHasFocus = true;
   
   if ((opponentGraveyard == c) || (opponentLibrary == c) || (opponent == c)|| (opponentHand == c) )
-    { opponentGraveyard->alpha = opponentLibrary->alpha = opponentHand->alpha = 128; active = opponent; opponent->zoom = 1.2;}
+  { 
+      opponentGraveyard->alpha = opponentLibrary->alpha = opponentHand->alpha = 128.0f; 
+      active = opponent; 
+      opponent->zoom = 1.2f;
+  }
   else if ((selfGraveyard == c) || (selfLibrary == c) || (self == c))
-    { selfGraveyard->alpha = selfLibrary->alpha = 128; self->zoom = 1.0; active = self; }
-  if (opponent != c && self != c) c->alpha = 255;
+  { 
+    selfGraveyard->alpha = selfLibrary->alpha = 128.0f; 
+    self->zoom = 1.0f; 
+    active = self; 
+  }
+  if (opponent != c && self != c) c->alpha = 255.0f;
 }
 void GuiAvatars::Deactivate(PlayGuiObject* c)
 {
   c->zoom = 1.0;
   c->mHasFocus = false;
   if ((opponentGraveyard == c) || (opponentLibrary == c) || (opponentHand == c) || (opponent == c))
-    { opponentGraveyard->alpha = opponentLibrary->alpha = opponentHand->alpha = 0; opponent->zoom = 0.9; active = NULL;}
+    { 
+      opponentGraveyard->alpha = opponentLibrary->alpha = opponentHand->alpha = 0; 
+      opponent->zoom = 0.9f;
+      active = NULL;}
   else if ((selfGraveyard == c) || (selfLibrary == c) ||(self == c))
-  { selfGraveyard->alpha = selfLibrary->alpha = 0; self->zoom = 0.3; active = NULL;}
+  { selfGraveyard->alpha = selfLibrary->alpha = 0; 
+    self->zoom = 0.3f;
+    active = NULL;
+  }
 }
 
 int GuiAvatars::receiveEventPlus(WEvent* e)

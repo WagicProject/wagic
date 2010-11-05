@@ -23,7 +23,7 @@ static const char* GAME_VERSION = "WTH?! 0.13.1 - by wololo";
 #define DEFAULT_ANGLE_MULTIPLIER 0.4f
 #define MAX_ANGLE_MULTIPLIER (3*M_PI)
 #define MIN_ANGLE_MULTIPLIER 0.4f
-static const double STEP_ANGLE_MULTIPLIER = 0.0002;
+static const double STEP_ANGLE_MULTIPLIER = 0.0002f;
 
 
 enum ENUM_MENU_STATE_MAJOR
@@ -102,7 +102,7 @@ void GameStateMenu::Create()
   for (int i=0;i<5;i++){
     for (int j=0;j<2;j++){
       sprintf(buf,"menuicons%d%d",i,j);
-	    mIcons[n] = resources.RetrieveQuad("menuicons.png", 2 + i*36, 2 + j*36, 32, 32,buf);
+	    mIcons[n] = resources.RetrieveQuad("menuicons.png", 2 + i * 36.0f, 2.0f + j * 36.0f, 32.0f, 32.0f, buf);
 	    mIcons[n]->SetHotSpot(16,16);
 	    n++;
 	  }
@@ -517,17 +517,17 @@ void GameStateMenu::Update(float dt)
   if (yW <= 55)
     {
       if (mEngine->GetButtonState(JGE_BTN_PRI)) angleMultiplier += STEP_ANGLE_MULTIPLIER;
-      else angleMultiplier *= 0.9999;
+      else angleMultiplier *= 0.9999f;
       if (angleMultiplier > MAX_ANGLE_MULTIPLIER) angleMultiplier = MAX_ANGLE_MULTIPLIER;
       else if (angleMultiplier < MIN_ANGLE_MULTIPLIER) angleMultiplier = MIN_ANGLE_MULTIPLIER;
 
       if (mEngine->GetButtonState(JGE_BTN_CANCEL) && (dt != 0))
 	{
-	  angleMultiplier = (cos(timeIndex)*angleMultiplier - M_PI/3 - 0.1 - angleW) / dt;
+	  angleMultiplier = (cos(timeIndex)*angleMultiplier - M_PI/3.0f - 0.1 - angleW) / dt;
 	  yW = yW + 5*dt + (yW - 45) *5*  dt;
 	}
       else
-	angleW = cos(timeIndex)*angleMultiplier - M_PI/3 - 0.1;
+	angleW = cos(timeIndex)*angleMultiplier - M_PI/3.0f - 0.1f;
     }
   else
     {
@@ -538,7 +538,7 @@ void GameStateMenu::Update(float dt)
   scroller->Update(dt);
   if((currentState & MENU_STATE_MINOR) == MENU_STATE_MINOR_FADEIN){
     currentState = currentState ^ MENU_STATE_MINOR_FADEIN;    
-    mParent->DoAnimation(TRANSITION_FADE_IN,.15);  
+    mParent->DoAnimation( TRANSITION_FADE_IN, 0.15f );  
   }
 }
 
