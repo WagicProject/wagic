@@ -49072,6 +49072,8 @@ type=Instant
 [card]
 name=Simulacrum
 target=creature|myBattlefield
+auto=damage:pdcount
+auto=life:pdcount controller
 text=You gain life equal to the damage dealt to you this turn. Simulacrum deals damage to target creature you control equal to the damage dealt to you this turn.
 mana={1}{B}
 type=Instant
