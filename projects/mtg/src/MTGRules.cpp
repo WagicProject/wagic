@@ -1470,7 +1470,7 @@ int MTGAffinityRule::receiveEvent(WEvent * event){
 						if (card && card->hasSubtype("creature") && card->hasColor(1)){etype.append("cre"); colored = 1;}
 						for (int j = 0; j < nbcards; ++j){
 							MTGCardInstance * c = z->cards[j]; 
-							if ((c->has(Constants::AFFINITYARTIFACTS) && etype.find("art")) || ( c->has(Constants::AFFINITYSWAMP) && etype.find("swa")) || ( c->has(Constants::AFFINITYMOUNTAIN) && etype.find("mou")) ||( c->has(Constants::AFFINITYPLAINS) && etype.find("pla")) || ( c->has(Constants::AFFINITYISLAND) && etype.find("isl")) || ( c->has(Constants::AFFINITYFOREST) && etype.find("for")) || ( c->has(Constants::AFFINITYGREENCREATURES) && etype.find("cre"))){ 
+							if ((c->has(Constants::AFFINITYARTIFACTS) && !etype.find("art")) || ( c->has(Constants::AFFINITYSWAMP) && !etype.find("swa")) || ( c->has(Constants::AFFINITYMOUNTAIN) && !etype.find("mou")) ||( c->has(Constants::AFFINITYPLAINS) && !etype.find("pla")) || ( c->has(Constants::AFFINITYISLAND) && !etype.find("isl")) || ( c->has(Constants::AFFINITYFOREST) && !etype.find("for")) || ( c->has(Constants::AFFINITYGREENCREATURES) && !etype.find("cre"))){ 
 								if(c->getManaCost()->getConvertedCost() > 0){
 									c->getManaCost()->remove(colored,1);//one less colorless to cast
 								}else{
@@ -1499,7 +1499,7 @@ int MTGAffinityRule::receiveEvent(WEvent * event){
 						if (card && card->hasSubtype("creature") && card->hasColor(1)){etype.append("cre"); colored = 1;}
 						for (int j = 0; j < nbcards; ++j){
 							MTGCardInstance * c = z->cards[j]; 
-							if (c && ((c->has(Constants::AFFINITYARTIFACTS) && etype.find("art")) || ( c->has(Constants::AFFINITYSWAMP) && etype.find("swa")) || ( c->has(Constants::AFFINITYMOUNTAIN) && etype.find("mou")) ||( c->has(Constants::AFFINITYPLAINS) && etype.find("pla")) || ( c->has(Constants::AFFINITYISLAND) && etype.find("isl")) || ( c->has(Constants::AFFINITYFOREST) && etype.find("for")) || ( c->has(Constants::AFFINITYGREENCREATURES) && etype.find("cre")))){ 
+							if (c && ((c->has(Constants::AFFINITYARTIFACTS) && !etype.find("art")) || ( c->has(Constants::AFFINITYSWAMP) && !etype.find("swa")) || ( c->has(Constants::AFFINITYMOUNTAIN) && !etype.find("mou")) ||( c->has(Constants::AFFINITYPLAINS) && !etype.find("pla")) || ( c->has(Constants::AFFINITYISLAND) && !etype.find("isl")) || ( c->has(Constants::AFFINITYFOREST) && !etype.find("for")) || ( c->has(Constants::AFFINITYGREENCREATURES) && !etype.find("cre")))){ 
 								if(c->reduxamount > 0){ 
 									c->reduxamount -= 1;
 								}else{
