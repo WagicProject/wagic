@@ -9,7 +9,7 @@ DeckEditorMenu::DeckEditorMenu(int id, JGuiListener* listener, int fontId, const
 
   mX = 120;
   mY = 70;
-  
+  starsOffsetX = 50;
   titleX = 110; // center point in title box
   titleY = 34;
   titleWidth = 180; // width of inner box of title
@@ -19,8 +19,8 @@ DeckEditorMenu::DeckEditorMenu(int id, JGuiListener* listener, int fontId, const
   descHeight = 154;
   descWidth = 175;
    
-  statsX = 282;
-  statsY = 12;
+  statsX = 290;
+  statsY = 15;
   statsHeight = 40;
   statsWidth = 180;
 

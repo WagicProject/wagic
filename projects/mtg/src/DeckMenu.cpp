@@ -12,17 +12,13 @@
 namespace
 {
   const float kVerticalMargin = 16;
-  const float kHorizontalMargin = 30;
+  const float kHorizontalMargin = 20;
   const float kLineHeight = 20;
   const float kDescriptionVerticalBoxPadding = 5;
   const float kDescriptionHorizontalBoxPadding = 5;
 }
 
 hgeParticleSystem* DeckMenu::stars = NULL; 
-// Here comes the magic of jewel graphics
-PIXEL_TYPE DeckMenu::jewelGraphics[9] = {0x3FFFFFFF,0x63645AEA,0x610D0D98,
-					   0x63645AEA,0xFF635AD5,0xFF110F67,
-					   0x610D0D98,0xFF110F67,0xFD030330};
 
 //
 //  For the additional info window, maximum characters per line is roughly 30 characters across.
@@ -39,9 +35,10 @@ fontId(fontId) {
 
  backgroundName = "DeckMenuBackdrop";
 
-  mX = 125;
   mY = 55;
-  
+  mWidth = 176;
+  mX = 122;
+
   titleX = 125; // center point in title box
   titleY = 28;
   titleWidth = 180; // width of inner box of title
@@ -50,12 +47,15 @@ fontId(fontId) {
   descY = 65 + kDescriptionHorizontalBoxPadding;
   descHeight = 145;
   descWidth = 220;
-   
+
+  starsOffsetX = 50;
+
   statsX = 280;
   statsY = 8;
   statsHeight = 50;
   statsWidth = 227;
-
+  
+  menuInitialized = false;
 
   avatarX = 230;
   avatarY = 8;
@@ -68,7 +68,6 @@ fontId(fontId) {
   maxItems = 7;
   
   mHeight = 2 * kVerticalMargin + ( maxItems * kLineHeight );
-  mWidth = 0;
 
   // we want to cap the deck titles to 15 characters to avoid overflowing deck names
   title = _(_title);
@@ -93,28 +92,17 @@ JQuad* DeckMenu::getBackground()
 {
   ostringstream bgFilename;
   bgFilename << backgroundName << ".png";
-  resources.RetrieveTexture( bgFilename.str(), RETRIEVE_MANAGE );
-  return resources.RetrieveQuad(bgFilename.str(), 0, 0, SCREEN_WIDTH_F, SCREEN_HEIGHT_F, backgroundName, RETRIEVE_MANAGE );
-
+  JQuad *background = resources.RetrieveTempQuad(bgFilename.str(), TEXTURE_SUB_5551);
+  return background;
 }
 
 void DeckMenu::initMenuItems()
 {
   float sY = mY + kVerticalMargin;
   for (int i = startId; i < startId + mCount; ++i) {
-    DeckMenuItem *menuItem = static_cast<DeckMenuItem *> (mObjects[i]);
-    float width = menuItem->GetWidth();
-    if (mWidth < width) mWidth = width;
-  }
-  titleWidth = titleFont->GetStringWidth(title.c_str());
-  if ((!title.empty()) && (mWidth < titleWidth)) 
-    mWidth = titleWidth;
-
-  mWidth += 2*kHorizontalMargin;
-  for (int i = startId; i < startId + mCount; ++i) {
     float y = mY + kVerticalMargin + i * kLineHeight;
     DeckMenuItem * currentMenuItem = static_cast<DeckMenuItem*>(mObjects[i]);
-    currentMenuItem->Relocate( mX, y);
+    currentMenuItem->Relocate( mX, y );
     if (currentMenuItem->hasFocus()) 
       sY = y;
   }
@@ -126,14 +114,14 @@ void DeckMenu::Render()
   JRenderer * renderer = JRenderer::GetInstance();
   WFont * mFont = resources.GetWFont(fontId);
   float height = mHeight;
-
-  // figure out where to place the stars initially
-  if (0 == mWidth) {
+  
+  if (!menuInitialized)
+  {
     initMenuItems();
     stars->Fire();
     timeOpen = 0;
+    menuInitialized = true;
   }
-
   if (timeOpen < 1) height *= timeOpen > 0 ? timeOpen : -timeOpen;
 
   renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE);
@@ -176,7 +164,8 @@ void DeckMenu::Render()
       currentMenuItem->RenderWithOffset(-kLineHeight*startId);
     }
 
-    renderer->RenderQuad(getBackground(), 0, 0 );
+    JQuad * background = getBackground();
+    renderer->RenderQuad( background, 0, 0 );
 
     if (!title.empty())
       titleFont->DrawString(title.c_str(), titleX, titleY, JGETEXT_CENTER);
@@ -194,7 +183,10 @@ void DeckMenu::Update(float dt){
   stars->Update(dt);
   selectionT += 3*dt;
   selectionY += (selectionTargetY - selectionY) * 8 * dt;
-  stars->MoveTo( 40 + ((mWidth-2*kHorizontalMargin)*(1+cos(selectionT))/2), selectionY + 5 * cos(selectionT*2.35f) + kLineHeight / 2 - kLineHeight * startId);
+
+  float starsX = starsOffsetX + ((mWidth - 2 * kHorizontalMargin)*(1+cos(selectionT))/2);
+  float starsY = selectionY + 5 * cos(selectionT*2.35f) + kLineHeight / 2 - kLineHeight * startId;
+  stars->MoveTo( starsX, starsY);
   if (timeOpen < 0) {
     timeOpen += dt * 10;
     if (timeOpen >= 0) { timeOpen = 0; closed = true; stars->FireAt(mX, mY); }

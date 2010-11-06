@@ -18,6 +18,9 @@ class DeckMenu:public JGuiController{
   float descX, descY, descHeight, descWidth;
   float statsX, statsY, statsHeight, statsWidth;
   float avatarX, avatarY;
+  float starsOffsetX;
+
+  bool menuInitialized;
   string backgroundName;
 
   int fontId;
@@ -28,8 +31,6 @@ class DeckMenu:public JGuiController{
 
   WFont* titleFont;
   static hgeParticleSystem* stars;
-  // This works only because of no multithreading
-  static PIXEL_TYPE jewelGraphics[9];
 
   void initMenuItems();
   string getDescription();

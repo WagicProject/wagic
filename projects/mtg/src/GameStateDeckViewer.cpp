@@ -1422,7 +1422,8 @@ void GameStateDeckViewer::Render() {
   if (mStage == STAGE_MENU){
     menu->Render();
   }
-  if (subMenu) subMenu->Render();
+  if (subMenu) 
+    subMenu->Render();
 
   if(filterMenu && !filterMenu->isFinished())
     filterMenu->Render();
