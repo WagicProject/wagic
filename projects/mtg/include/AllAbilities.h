@@ -66,6 +66,8 @@ public:
 			}
 		}else if (s == "lifetotal"){
 			intValue = target->controller()->life;
+		}else if (s == "pdcount"){
+			intValue = target->controller()->damageCount;
 		}else if (s == "odcount"){
 			intValue = target->controller()->opponent()->damageCount;
 		}else if (s == "opponentlifetotal"){
