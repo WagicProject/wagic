@@ -22,7 +22,6 @@ class DeckMenu:public JGuiController{
 
   int fontId;
   std::string title;
-  int displaytitle;
   int maxItems, startId;
   float selectionT, selectionY;
   float timeOpen;

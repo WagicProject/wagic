@@ -1540,10 +1540,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
   }
 
   //Gain/loose simple Ability
-  DebugTrace(" start gain/lose simple ability " );
   for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++){
     found = s.find(Constants::MTGBasicAbilities[j]);
-    DebugTrace( "basic ability search at index " << Constants::MTGBasicAbilities[j] );
     if (found == 0 || found == 1){
       int modifier = 1;
       if (found > 0 && s[found-1] == '-') modifier = 0;
@@ -1557,7 +1555,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
   }
   
-  DebugTrace(" end gain/lose simple ability " );
   //Untapper (Ley Druid...)
   found = s.find("untap");
   if (found != string::npos){

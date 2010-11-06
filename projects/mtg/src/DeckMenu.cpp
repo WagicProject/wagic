@@ -94,7 +94,7 @@ JQuad* DeckMenu::getBackground()
   ostringstream bgFilename;
   bgFilename << backgroundName << ".png";
   resources.RetrieveTexture( bgFilename.str(), RETRIEVE_MANAGE );
-  return resources.RetrieveQuad(bgFilename.str(), 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, backgroundName );
+  return resources.RetrieveQuad(bgFilename.str(), 0, 0, SCREEN_WIDTH_F, SCREEN_HEIGHT_F, backgroundName, RETRIEVE_MANAGE );
 
 }
 

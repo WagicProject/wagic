@@ -203,7 +203,8 @@ bool GuiCombat::CheckUserInput(JButton key)
 	case ATK  :
           {
             DamagerDamaged* old = active;
-            active = closest<Left>(attackers, NULL, static_cast<AttackerDamaged*>(active)); activeAtk = static_cast<AttackerDamaged*>(active);
+            active = closest<Left>(attackers, NULL, static_cast<AttackerDamaged*>(active)); 
+            activeAtk = static_cast<AttackerDamaged*>(active);
             if (old != active) { if (old) old->zoom = kZoom_none; if (active) active->zoom = kZoom_level1; }
           }
           break;
@@ -235,7 +236,10 @@ bool GuiCombat::CheckUserInput(JButton key)
             if (active == oldActive) { active = activeAtk = NULL; cursor_pos = OK; }
             else
               {
-                if (old != active) { if (old) old->zoom = kZoom_none; if (active) active->zoom = kZoom_level1; }
+                if (old != active) { 
+                  if (old) old->zoom = kZoom_none; 
+                  if (active) active->zoom = kZoom_level1; 
+                }
                 activeAtk = static_cast<AttackerDamaged*>(active);
               }
           }

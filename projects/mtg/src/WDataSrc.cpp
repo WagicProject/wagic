@@ -499,7 +499,7 @@ int WSrcDeck::totalPrice(){
   return total;
 }
 //WSrcDeckViewer
-WSrcDeckViewer::WSrcDeckViewer(WSrcCards * _active, WSrcCards * _inactive): WSrcCards(0.2) {
+WSrcDeckViewer::WSrcDeckViewer(WSrcCards * _active, WSrcCards * _inactive): WSrcCards(0.2f) {
   active = _active;
   inactive = _inactive;
 }
