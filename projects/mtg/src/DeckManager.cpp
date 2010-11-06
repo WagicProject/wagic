@@ -1,6 +1,7 @@
 #include "PrecompiledHeader.h"
 
 #include "DeckManager.h"
+#include "Player.h"
 #include <JRenderer.h>
 
 void DeckManager::updateMetaDataList( vector<DeckMetaData *> * refList, bool isAI )
@@ -48,4 +49,16 @@ DeckManager* DeckManager::GetInstance()
   }
 
   return mInstance;
+}
+
+
+//  p1 is assumed to be the player you want stats for
+//  p2 is the opponent
+int DeckManager::getDifficultyRating( Player *statsPlayer, Player *player )
+{
+  DeckMetaDataList * metas = DeckMetaDataList::decksMetaData;
+
+  DeckMetaData *meta = metas->get( player->deckFile, statsPlayer );
+
+  return meta->getDifficulty();
 }

@@ -14,6 +14,9 @@ using std::queue;
 
 #define INFO_NBCREATURES 0
 #define INFO_CREATURESPOWER 1
+#define INFO_CREATURESRANK 2
+#define INFO_CREATURESTOUGHNESS 3
+#define INFO_CREATURESATTACKINGPOWER 4
 
 
 class AIStats;
@@ -27,6 +30,7 @@ public:
 	NestedAbility * nability;
   Player * player;
   int id;
+	bool checked;
   MTGCardInstance * click;
   MTGCardInstance * target; // TODO Improve
   AIAction(MTGAbility * a, MTGCardInstance * c, MTGCardInstance * t = NULL):ability(a),click(c),target(t){player = NULL; efficiency = -1; id = currentId++;};
@@ -51,7 +55,6 @@ class CmpAbilities { // compares Abilities efficiency
 class AIPlayer: public Player{
  protected:
   MTGCardInstance * nextCardToPlay;
-  int agressivity;
   queue<AIAction *> clickstream;
   void tapLandsForMana(ManaCost * cost, MTGCardInstance * card = NULL);
   int orderBlockers();
@@ -65,6 +68,8 @@ class AIPlayer: public Player{
   AIStats * getStats();
   //Variables used by Test suite
  public:
+	int agressivity;
+  bool Checked;
   bool forceBestAbilityUse;
   void End(){};
   virtual int displayStack() {return 0;};

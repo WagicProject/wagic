@@ -8,6 +8,8 @@
 
 #include "MTGGameZones.h"
 #include "MTGAbility.h"
+#include "DeckManager.h"
+#include "AIPlayer.h"
 
 int Rules::getMTGId(string cardName){
   int cardnb = atoi(cardName.c_str());
@@ -133,17 +135,39 @@ void Rules::addExtraRules(){
     MTGCardInstance::ExtraRules[i].lastController =  p;
     for (size_t j = 0; j< initState.playerData[i].extraRules.size(); ++j){
       AbilityFactory af;
+			MTGPlayerCards * hand = NULL;
+			int handsize = 7;
+			int difficultyRating = 0;
       MTGAbility * a = af.parseMagicLine(initState.playerData[i].extraRules[j], id++, NULL,&MTGCardInstance::ExtraRules[i]);
-      if (a){
+			if(p->playMode != Player::MODE_TEST_SUITE && g->mRules->gamemode != GAME_TYPE_MOMIR && g->mRules->gamemode != GAME_TYPE_RANDOM1 && g->mRules->gamemode != GAME_TYPE_RANDOM2 && g->mRules->gamemode != GAME_TYPE_STORY)//keep this out of mimor and other game modes.
+			{
+      difficultyRating = DeckManager::getDifficultyRating( g->players[0], g->players[1] );
+			}
+
+		if (a){
         if (a->oneShot){
+					if(p->isAI() && a->aType == MTGAbility::STANDARD_DRAW && difficultyRating == EASY && p->playMode != Player::MODE_TEST_SUITE && g->mRules->gamemode != GAME_TYPE_MOMIR && g->mRules->gamemode != GAME_TYPE_RANDOM1 && g->mRules->gamemode != GAME_TYPE_RANDOM2 && g->mRules->gamemode != GAME_TYPE_STORY)//stupid protections to keep this out of mimor and other game modes.
+					{
+					handsize = a->nbcardAmount;
+					((AIPlayer *)p)->forceBestAbilityUse = true;
+					((AIPlayer *)p)->agressivity += 100;
+					hand->OptimizedHand(handsize,3,1,3);//easy decks get a major boost, open hand is 2lands,1 creature under 3 mana,3spells under 3 mana.
+					}
+					else if(p->isAI() && a->aType == MTGAbility::STANDARD_DRAW && difficultyRating == NORMAL && p->playMode != Player::MODE_TEST_SUITE && g->mRules->gamemode != GAME_TYPE_MOMIR && g->mRules->gamemode != GAME_TYPE_RANDOM1 && g->mRules->gamemode != GAME_TYPE_RANDOM2 && g->mRules->gamemode != GAME_TYPE_STORY)//stupid protections to keep this out of mimor and other game modes.
+					{
+					handsize = a->nbcardAmount;
+					hand->OptimizedHand(handsize,1,0,2);//give the Ai deck a tiny boost by giving it 1 land and 2 spells under 3 manacost.
+					}else{//resolve normally if the deck is listed as hard.
           a->resolve();
+					}
           delete(a); 
         }else{
           a->addToGame();
         }
+
       }
-    }
-  }
+		}
+	}
 
   for (size_t j = 0; j< extraRules.size(); ++j){
     AbilityFactory af;

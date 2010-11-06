@@ -154,6 +154,7 @@ class MTGPlayerCards {
   MTGPlayerCards(MTGDeck * deck);
   ~MTGPlayerCards();
   void initGame(int shuffle = 1, int draw = 1);
+	void OptimizedHand(int amount = 7,int lands = 3,int creatures = 0,int othercards = 4);
   void setOwner(Player * player);
   void discardRandom(MTGGameZone * from,MTGCardInstance * source);
   void drawFromLibrary();

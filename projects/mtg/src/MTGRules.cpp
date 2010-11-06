@@ -1454,23 +1454,23 @@ int MTGAffinityRule::receiveEvent(WEvent * event){
 				ok = 0;
 				if (e->to == p->game->battlefield) ok = 2;//card enters play
 				if(ok == 2){//enters play from anywhere
-					if (e->from == p->game->graveyard || e->from == p->game->hand || e->from == p->game->library || e->from == p->game->exile || e->from == p->game->stack || e->from == p->opponent()->game->battlefield || e->from == p->game->temp){
+					if (e->from == p->game->graveyard || e->from == p->game->hand || e->from == p->game->library || e->from == p->game->exile || e->from == p->game->stack || e->from == p->game->temp){
 						//--redux effect
 						MTGGameZone * z = card->controller()->game->hand;
 						int nbcards = z->nb_cards;
 						int colored = 0;
 						string etype = "";
 						MTGCardInstance * card = e->card->previous;
-						if (card && card->hasSubtype("artifact")){etype = "art";}
-						if (card && card->hasSubtype("swamp")){etype = "swa";}
-						if (card && card->hasSubtype("mountain")){etype = "mou";}
-						if (card && card->hasSubtype("plains")){etype = "pla";}
-						if (card && card->hasSubtype("island")){etype = "isl";}
-						if (card && card->hasSubtype("forest")){etype = "for";}
-						if (card && card->hasSubtype("creature") && card->hasColor(1)){etype = "cre"; colored = 1;}
+						if (card && card->hasSubtype("artifact")){etype.append("art");}
+						if (card && card->hasSubtype("swamp")){etype.append("swa");}
+						if (card && card->hasSubtype("mountain")){etype.append("mou");}
+						if (card && card->hasSubtype("plains")){etype.append("pla");}
+						if (card && card->hasSubtype("island")){etype.append("isl");}
+						if (card && card->hasSubtype("forest")){etype.append("for");}
+						if (card && card->hasSubtype("creature") && card->hasColor(1)){etype.append("cre"); colored = 1;}
 						for (int j = 0; j < nbcards; ++j){
 							MTGCardInstance * c = z->cards[j]; 
-							if ((c->has(Constants::AFFINITYARTIFACTS) && etype == "art") || ( c->has(Constants::AFFINITYSWAMP) && etype == "swa") || ( c->has(Constants::AFFINITYMOUNTAIN) && etype == "mou") ||( c->has(Constants::AFFINITYPLAINS) && etype == "pla") || ( c->has(Constants::AFFINITYISLAND) && etype == "isl") || ( c->has(Constants::AFFINITYFOREST) && etype == "for") || ( c->has(Constants::AFFINITYGREENCREATURES) && etype == "cre")){ 
+							if ((c->has(Constants::AFFINITYARTIFACTS) && etype.find("art")) || ( c->has(Constants::AFFINITYSWAMP) && etype.find("swa")) || ( c->has(Constants::AFFINITYMOUNTAIN) && etype.find("mou")) ||( c->has(Constants::AFFINITYPLAINS) && etype.find("pla")) || ( c->has(Constants::AFFINITYISLAND) && etype.find("isl")) || ( c->has(Constants::AFFINITYFOREST) && etype.find("for")) || ( c->has(Constants::AFFINITYGREENCREATURES) && etype.find("cre"))){ 
 								if(c->getManaCost()->getConvertedCost() > 0){
 									c->getManaCost()->remove(colored,1);//one less colorless to cast
 								}else{
@@ -1490,16 +1490,16 @@ int MTGAffinityRule::receiveEvent(WEvent * event){
 						int nbcards = z->nb_cards;
 						string etype = "";
 						MTGCardInstance * card = e->card->previous;
-						if (card && card->hasSubtype("artifact")){etype = "art";}
-						if (card && card->hasSubtype("swamp")){etype = "swa";}
-						if (card && card->hasSubtype("mountain")){etype = "mou";}
-						if (card && card->hasSubtype("plains")){etype = "pla";}
-						if (card && card->hasSubtype("island")){etype = "isl";}
-						if (card && card->hasSubtype("forest")){etype = "for";}
-						if (card && card->hasSubtype("creature") && card->hasColor(1)){etype = "cre"; colored = 1;}
+						if (card && card->hasSubtype("artifact")){etype.append("art");}
+						if (card && card->hasSubtype("swamp")){etype.append("swa");}
+						if (card && card->hasSubtype("mountain")){etype.append("mou");}
+						if (card && card->hasSubtype("plains")){etype.append("pla");}
+						if (card && card->hasSubtype("island")){etype.append("isl");}
+						if (card && card->hasSubtype("forest")){etype.append("for");}
+						if (card && card->hasSubtype("creature") && card->hasColor(1)){etype.append("cre"); colored = 1;}
 						for (int j = 0; j < nbcards; ++j){
 							MTGCardInstance * c = z->cards[j]; 
-							if (c && ((c->has(Constants::AFFINITYARTIFACTS) && etype == "art") || ( c->has(Constants::AFFINITYSWAMP) && etype == "swa") || ( c->has(Constants::AFFINITYMOUNTAIN) && etype == "mou") ||( c->has(Constants::AFFINITYPLAINS) && etype == "pla") || ( c->has(Constants::AFFINITYISLAND) && etype == "isl") || ( c->has(Constants::AFFINITYFOREST) && etype == "for") || ( c->has(Constants::AFFINITYGREENCREATURES) && etype == "cre"))){ 
+							if (c && ((c->has(Constants::AFFINITYARTIFACTS) && etype.find("art")) || ( c->has(Constants::AFFINITYSWAMP) && etype.find("swa")) || ( c->has(Constants::AFFINITYMOUNTAIN) && etype.find("mou")) ||( c->has(Constants::AFFINITYPLAINS) && etype.find("pla")) || ( c->has(Constants::AFFINITYISLAND) && etype.find("isl")) || ( c->has(Constants::AFFINITYFOREST) && etype.find("for")) || ( c->has(Constants::AFFINITYGREENCREATURES) && etype.find("cre")))){ 
 								if(c->reduxamount > 0){ 
 									c->reduxamount -= 1;
 								}else{

@@ -77,6 +77,84 @@ void MTGPlayerCards::initGame(int shuffle, int draw){
   }
 }
 
+void MTGPlayerCards::OptimizedHand(int amount,int lands,int creatures,int othercards){
+//give the Ai hand adventage to insure a challanging match.
+	GameObserver * game = game->GetInstance();
+	game->currentPlayerId = game->currentPlayerId;
+  game->currentPlayer = game->currentPlayer;
+
+	if (!game->players[0]->isAI() && game->players[1]->isAI()){
+		Player * p = game->players[1];
+		 MTGCardInstance * card = NULL;
+     MTGGameZone * z = p->game->library;
+		 MTGGameZone * e = p->game->temp;
+		 int optimizedland = 0;
+		 int optimizedothercards = 0;
+		 int optimizedcreatures = 0;
+		  for (int j = 0; j<z->nb_cards; j++){
+          MTGCardInstance * _card = z->cards[j];
+//-------------
+          if (_card->hasType("Land") && optimizedland < lands){
+             card = _card;
+          if (card){
+						p->game->putInZone(card,  p->game->library, p->game->hand);
+					optimizedland += 1;
+					}
+					}
+//----------------first try to optimize a few cards that cost 2 or less.
+					if (_card->getManaCost()->getConvertedCost() <= 2 && optimizedothercards < othercards && !_card->hasType("Land") && !_card->hasType("Creature")){
+            card = _card;
+				  if (card){
+						p->game->putInZone(card,  p->game->library, p->game->hand);
+					optimizedothercards += 1;
+					}
+					}
+					if(_card->getManaCost()->getConvertedCost() <= 2 && optimizedcreatures < creatures && _card->hasType("Creature")){
+            card = _card;
+				  if (card){
+						p->game->putInZone(card,  p->game->library, p->game->hand);
+					optimizedcreatures += 1;
+					}
+					}
+			}
+//--------------incase none of them cost 2 or less(which makes for a really poorly crafted Ai deck), try for 3 or less at this point we're accepting anything but lands under 3 mana---
+  for (int k = 0; k < z->nb_cards; k++){
+          MTGCardInstance * _card = z->cards[k];
+
+					if (_card->getManaCost()->getConvertedCost() <= 3 && optimizedothercards < othercards && (!_card->hasType("Land") || _card->hasType("Creature")))
+					{
+            card = _card;
+				  if (card)
+					{
+						p->game->putInZone(card,  p->game->library, p->game->hand);
+					optimizedothercards += 1;
+					}
+					}
+					if(_card->getManaCost()->getConvertedCost() <= 3 && optimizedcreatures < creatures && (_card->hasType("Creature") || !_card->hasType("Land")))
+					{
+            card = _card;
+				  if (card)
+					{
+						p->game->putInZone(card,  p->game->library, p->game->hand);
+					optimizedcreatures += 1;
+					}
+					}
+	}
+//--------------add up remaining. only 7 cards are optimized, the remaining cards (if rules change amount) are just drawn.
+			 int leftover = 0;
+			 leftover = amount;
+			 leftover -= optimizedland;
+			 leftover -= optimizedcreatures;
+			 leftover -= optimizedothercards;
+			 for(int i = leftover; i > 0;i--)
+			 {
+			 p->game->drawFromLibrary();
+			 }
+
+	}
+//----------------------------
+}
+
 void MTGPlayerCards::drawFromLibrary(){
   if (!library->nb_cards) {
 	    int cantlosers = 0;

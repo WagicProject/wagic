@@ -42,7 +42,7 @@ void DeckMetaData::loadStatsForPlayer( Player * statsPlayer, string deckStatsFil
       {
         _difficulty = HARD;
       }
-      else if (_percentVictories < 67)
+      else if (_percentVictories < 55)
       {
         _difficulty = NORMAL;
       }

@@ -1,5 +1,6 @@
 #include <string>
 #include <vector>
+
 #include "DeckMetaData.h"
 
 using namespace std;
@@ -27,6 +28,11 @@ public:
         
     static DeckManager * GetInstance();
     static void EndInstance();
+
+    //convenience method to get the difficulty rating between two decks.  This should be refined a little more
+    //since the eventual move of all deck meta data should be managed by this class
+
+    static int getDifficultyRating( Player *statsPlayer, Player *player );
 
    
     ~DeckManager()

@@ -35,6 +35,7 @@ AIPlayer::AIPlayer(MTGDeck * deck, string file, string fileSmall) : Player(deck,
   stats = NULL;
   agressivity = 50;
   forceBestAbilityUse = false;
+	Checked = false;
   playMode = Player::MODE_AI;
 }
 
@@ -122,7 +123,6 @@ ManaCost * AIPlayer::getPotentialMana(MTGCardInstance * target){
       }
     }
 	}
-
   return result;
 }
 
@@ -248,11 +248,42 @@ int AIAction::getEfficiency(){
 				}
 				if (currentlevel < _target->MaxLevelUp){
           efficiency = 85;
-					efficiency += currentlevel;//increase the efficeincy of leveling up by a small amount equal to current level.
+//increase the efficeincy of leveling up by a small amount equal to current level.
+					efficiency += currentlevel;
 				}
         break;
       }
-
+		case MTGAbility::STANDARD_PUMP:{
+			 MTGCardInstance * _target = (MTGCardInstance *)(a->target);
+//i do not set a starting eff. on this ability, this allows Ai to sometimes randomly do it as it normally does.
+     if(g->getCurrentGamePhase() == Constants::MTG_PHASE_COMBATBLOCKERS)
+				{
+					if(_target && BAKA_EFFECT_GOOD)
+					{
+						if((_target->defenser || _target->blockers.size())
+							&& ((_target->power < _target->getNextOpponent()->toughness || _target->toughness < _target->getNextOpponent()->power)
+							|| (_target->has(Constants::TRAMPLE)))){
+//this pump is based on a start eff. of 20 multiplied by how good the creature is.
+						efficiency = 20*_target->DangerRanking();
+						}
+						if(_target->isAttacker() && !_target->blockers.size()){
+//this means im heading directly for the player, pump this creature as much as possible.
+            efficiency = 100;
+						}
+					}
+		 }
+      break;
+			}
+		case MTGAbility::STANDARD_BECOMES:
+			{
+       MTGCardInstance * _target = (MTGCardInstance *)(a->target);
+//nothing huge here, just ensuring that Ai makes his noncreature becomers into creatures during first main, so it can actually use them in combat.
+			 if(_target && !_target->hasType("Creature") && g->getCurrentGamePhase() == Constants::MTG_PHASE_FIRSTMAIN)
+			 {
+       efficiency = 100;
+			 }
+			break;
+			}
     case MTGAbility::MANA_PRODUCER: //can't use mana producers right now :/
       efficiency = 0;
       break;
@@ -684,7 +715,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
     if (card->hasType(Subtypes::TYPE_CREATURE) && this->castrestrictedcreature < 0 && this->castrestrictedspell < 0) continue;
 	if (card->hasType(Subtypes::TYPE_ENCHANTMENT) && this->castrestrictedspell < 0) continue;
     if (card->hasType(Subtypes::TYPE_ARTIFACT) && this->castrestrictedspell < 0) continue;
-	if (card->hasType(Subtypes::TYPE_SORCERY) && this->castrestrictedspell < 0) continue;
+		if (card->hasType(Subtypes::TYPE_SORCERY) && this->castrestrictedspell < 0) continue;
 	if (card->hasType(Subtypes::TYPE_INSTANT) && this->castrestrictedspell < 0) continue;
     if (card->hasType(Subtypes::TYPE_LAND) && !this->canPutLandsIntoPlay) continue;
     if (card->hasType(Subtypes::TYPE_LEGENDARY) && game->inPlay->findByName(card->name)) continue;
@@ -792,18 +823,50 @@ int AIPlayerBaka::computeActions(){
       if (potential) delete(currentMana);
       if (nextCardToPlay){
         if (potential){
-          tapLandsForMana(nextCardToPlay->getManaCost());  
-        }
+     /////////////////////////
+	  //had to force this on Ai other wise it would pay nothing but 1 color for a sunburst card.
+		//this does not teach it to use manaproducer more effectively, it simply allow it to use the manaproducers it does understand better on sunburst by force.
+	if(nextCardToPlay->has(Constants::SUNBURST)){
+	ManaCost * SunCheck = manaPool;
+  SunCheck = getPotentialMana();
+	for(int i = Constants::MTG_NB_COLORS - 1; i > 0 ;i--){
+		//sunburst for Ai
+		if(SunCheck->hasColor(i)){ 
+			if(nextCardToPlay->getManaCost()->hasColor(i) > 0){//do nothing if the card already has this color.
+			}else{
+				if(nextCardToPlay->sunburst < nextCardToPlay->getManaCost()->getConvertedCost()){
+					nextCardToPlay->getManaCost()->add(i,1);
+						nextCardToPlay->getManaCost()->remove(0,1);
+					nextCardToPlay->sunburst += 1;
+					}
+				}
+			}
+		}
+		delete(SunCheck);
+	}
+/////////////////////////
+         tapLandsForMana(nextCardToPlay->getManaCost());  
+	}
         AIAction * a = NEW AIAction(nextCardToPlay);
         clickstream.push(a);
         return 1;
-      }else{
+      }
+			else
+			{
         selectAbility();
       }
+			if(p->getManaPool()->getConvertedCost() > 0 && Checked == false)//not the best thing ever, but allows the Ai a chance to double check if its mana pool has something before moving on, atleast one time.
+			{
+			Checked = true;
+			computeActions();
+			}
       break;
     }
     case Constants::MTG_PHASE_COMBATATTACKERS:
       chooseAttackers();
+      break;
+	  case Constants::MTG_PHASE_ENDOFTURN:
+      Checked = false;
       break;
     default:
       selectAbility();

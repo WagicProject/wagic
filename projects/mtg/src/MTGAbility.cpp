@@ -603,9 +603,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 
   
   //rather dirty way to stop thises and lords from conflicting with each other.
-  string prelords[] = {"foreach(","lord(","aslongas(", "all("};
+  string prelords[] = {"foreach(","lord(","aslongas(","teach(", "all("};
   size_t lord = string::npos;
-  for (int j = 0; j < 4; ++j){
+  for (int j = 0; j < 5; ++j){
     size_t found2 = s.find(prelords[j]);
     if (found2!=string::npos && ((found == string::npos) || found2 < found)){
       lord = found2;
@@ -674,10 +674,10 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 
 
   //Lord, foreach, aslongas
-  string lords[] = {"lord(","foreach(","aslongas(", "all("};
+  string lords[] = {"lord(","foreach(","aslongas(","teach(", "all("};
   found = string::npos;
   i = -1;
-  for (int j = 0; j < 4; ++j){
+  for (int j = 0; j < 5; ++j){
     size_t found2 = s.find(lords[j]);
     if (found2!=string::npos && ((found == string::npos) || found2 < found)){
       found = found2;
@@ -721,7 +721,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
       if (found !=string::npos) oneShot = 1;
       if (activated) oneShot = 1;
       if (card->hasType("sorcery") || card->hasType("instant")) oneShot = 1;
-      if (i == 3) oneShot = 1;
+      if (i == 4) oneShot = 1;
       if (a->oneShot) oneShot = 1;
       Damageable * _target = NULL;
 	    if (spell) _target = spell->getNextDamageableTarget();
@@ -740,7 +740,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         case 0: result =  NEW ALord(id, card, lordTargets, lordIncludeSelf, a); break;
         case 1: result =  NEW AForeach(id, card, _target,lordTargets, lordIncludeSelf, a,mini,maxi); break;
         case 2: result =  NEW AAsLongAs(id, card, _target,lordTargets, lordIncludeSelf, a,mini,maxi); break;
-        case 3: result =  NEW ALord(id, card, lordTargets,  lordIncludeSelf, a); break;
+				case 3: result =  NEW ATeach(id, card, lordTargets,lordIncludeSelf, a); break;
+			  case 4: result =  NEW ALord(id, card, lordTargets,  lordIncludeSelf, a); break;
         default: result =  NULL;
       }
       if (result) result->oneShot = oneShot;

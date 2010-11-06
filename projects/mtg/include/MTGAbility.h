@@ -57,6 +57,7 @@ class MTGAbility: public ActionElement{
   Targetable * target;
   int aType;
 	int naType;
+	int nbcardAmount;
   MTGCardInstance * source;
   MTGAbility(int id, MTGCardInstance * card);
   MTGAbility(int id, MTGCardInstance * _source, Targetable * _target);
@@ -95,6 +96,9 @@ class MTGAbility: public ActionElement{
 		STANDARD_EQUIP = 14,
 		STANDARD_LEVELUP = 15,
 		FOREACH = 16,
+		STANDARD_DRAW = 17,
+		STANDARD_PUMP = 18,
+		STANDARD_BECOMES = 19,
 
 
   };

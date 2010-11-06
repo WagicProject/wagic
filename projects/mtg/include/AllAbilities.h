@@ -20,7 +20,6 @@
 #include <JGui.h>
 #include <hge/hgeparticle.h>
 
-
 #include <map>
 using std::map;
 
@@ -1078,6 +1077,8 @@ class AADrawer:public ActivatedAbilityTP{
 public:
 	WParsedInt *nbcards;
 	AADrawer(int _id, MTGCardInstance * card,Targetable * _target,ManaCost * _cost, WParsedInt * _nbcards, int _tap = 0, int who=TargetChooser::UNSET):ActivatedAbilityTP(_id, card,_target,_cost,_tap,who),nbcards(_nbcards){
+		aType = MTGAbility::STANDARD_DRAW;
+		nbcardAmount = nbcards->getValue();
 	}
 
 	int resolve(){
@@ -1647,78 +1648,6 @@ public:
 	}
 };
 
-//equipment
-class AEquip:public TargetAbility{
-public:
-	vector<MTGAbility *> currentAbilities; 
-	AEquip(int _id, MTGCardInstance * _source, ManaCost * _cost=NULL, int doTap=0, int restrictions = ActivatedAbility::AS_SORCERY):TargetAbility(_id, _source,NULL,_cost,restrictions,doTap){
-	aType = MTGAbility::STANDARD_EQUIP;
-	}
-
-	int unequip(){
-		if(source->target){source->target->equipment -= 1;}
-		source->target = NULL;
-		for (size_t i = 0; i < currentAbilities.size(); ++i){
-			MTGAbility * a = currentAbilities[i];
-			if(dynamic_cast<AEquip *>(a)){
-				SAFE_DELETE(a);
-				continue;
-			}
-			GameObserver::GetInstance()->removeObserver(currentAbilities[i]);
-		}
-		currentAbilities.clear();
-		return 1;
-	}
-
-
-	int equip(MTGCardInstance * equipped){
-		source->target = equipped;
-		source->target->equipment += 1;
-		AbilityFactory af;
-		af.getAbilities(&currentAbilities,NULL,source);
-		for (size_t i = 0; i < currentAbilities.size(); ++i){
-			MTGAbility * a = currentAbilities[i];
-			if(dynamic_cast<AEquip *>(a)) continue;
-			a->addToGame();
-		}
-		return 1;
-
-	}
-
-
-	int resolve(){
-		MTGCardInstance * mTarget = tc->getNextCardTarget();
-		if (!mTarget) return 0;
-		if (mTarget == source) return 0;
-		unequip();
-		equip(mTarget);
-		return 1;
-	}
-
-	const char * getMenuText(){
-		return "Equip";
-	}
-
-
-	int testDestroy(){
-		if (source->target && !game->isInPlay(source->target)) 
-			unequip();
-		return TargetAbility::testDestroy();
-	}
-
-	int destroy(){
-		unequip();
-		return TargetAbility::destroy();
-	}
-
-	AEquip * clone() const{
-		AEquip * a =  NEW AEquip(*this);
-		a->isClone = 1;
-		return a;
-	}
-
-};
-
 /*Gives life each time a spell matching CardDescriptor's criteria are match . Optionnal manacost*/
 class ASpellCastLife:public MTGAbility{
 public:
@@ -1890,7 +1819,7 @@ class APowerToughnessModifier: public MTGAbility{
 public:
 	WParsedPT * wppt;
 	APowerToughnessModifier(int id, MTGCardInstance * _source, MTGCardInstance * _target, WParsedPT * wppt):MTGAbility(id,_source,_target),wppt(wppt){
-
+	aType = MTGAbility::STANDARD_PUMP;
 	}
 
 	int addToGame(){
@@ -1925,6 +1854,7 @@ class  AInstantPowerToughnessModifierUntilEOT: public InstantAbility{
 public:
 	WParsedPT * wppt;
 	AInstantPowerToughnessModifierUntilEOT(int _id, MTGCardInstance * _source, MTGCardInstance * _target, WParsedPT * wppt): InstantAbility(_id, _source, _target), wppt(wppt){
+	aType = MTGAbility::STANDARD_PUMP;
 	}
 
 	int resolve(){
@@ -1969,6 +1899,7 @@ public:
 		counters = 0;
 		target=_target;
 		ability = NEW AInstantPowerToughnessModifierUntilEOT(id,_source,_target,wppt);
+	  aType = MTGAbility::STANDARD_PUMP;
 	}
 
 	int isReactingToClick(MTGCardInstance * card, ManaCost * cost = NULL){
@@ -2446,8 +2377,155 @@ public:
 		return a;
 	}
 };
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//a different lord for auras and enchantments. http://code.google.com/p/wagic/issues/detail?id=244
+class ATeach:public ListMaintainerAbility, public NestedAbility{
+public:
+	int includeSelf;
+	map<Damageable *, MTGAbility *> skills;
+
+ 	ATeach(int _id, MTGCardInstance * card, TargetChooser * _tc, int _includeSelf, MTGAbility * a):ListMaintainerAbility(_id,card), NestedAbility(a){
+		tc = _tc;
+		tc->targetter = NULL;
+		includeSelf = NULL;
+	}
+
+	int canBeInList(MTGCardInstance * card){
+		if ((tc->source->hasSubtype("aura") || tc->source->hasSubtype("equipment") || tc->source->hasSubtype("instant") || tc->source->hasSubtype("sorcery"))&& tc->canTarget(card) && card == tc->source->target && card != tc->source) return 1;
+		return 0;
+	}
+
+	int resolve(){
+		updateTargets();
+		cards.clear();
+		players.clear();
+		return 1;
+	}
+
+	int added(MTGCardInstance * card){
+		return  _added(card);
+	}
+
+	int removed(MTGCardInstance * card){
+		if(skills.find(card) != skills.end()){
+			game->removeObserver(skills[card]);
+			skills.erase(card);
+		}
+		return 1;
+	}
+
+	int _added(Damageable * d){
+		MTGAbility * a = ability->clone();
+
+		if(a->source->hasSubtype("aura") || a->source->hasSubtype("equipment") || a->source->hasSubtype("instant") || a->source->hasSubtype("sorcery"))
+		{
+			a->target = a->source->target;
+		}else{
+			return 0;
+		}
+
+		if (a->oneShot){
+			a->resolve();
+			delete(a);
+		}else{
+			if (d->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE){
+				a->source = (MTGCardInstance *)d;
+			}
+			if (oneShot){
+				MTGAbility * wrapper = NEW GenericInstantAbility(1,source,d,a);
+				wrapper->addToGame();
+			}else{
+			  skills[d] = a;
+        a->addToGame();
+			}
+		}
+		return 1;
+	}
+		~ATeach(){
+		if (!isClone) SAFE_DELETE(ability);
+	}
+
+	ATeach * clone() const{
+		ATeach * a =  NEW ATeach(*this);
+		a->isClone = 1;
+		return a;
+	}
+
+};
+//
+
+//equipment
+class AEquip:public TargetAbility{
+public:
+	vector<MTGAbility *> currentAbilities; 
+	AEquip(int _id, MTGCardInstance * _source, ManaCost * _cost=NULL, int doTap=0, int restrictions = ActivatedAbility::AS_SORCERY):TargetAbility(_id,_source,NULL,_cost,restrictions,doTap){
+	aType = MTGAbility::STANDARD_EQUIP;
+	}
+
+	int unequip(){
+		if(source->target){source->target->equipment -= 1;}
+		source->target = NULL;
+		for (size_t i = 0; i < currentAbilities.size(); ++i){
+			MTGAbility * a = currentAbilities[i];
+			if(dynamic_cast<AEquip *>(a)){
+				SAFE_DELETE(a);
+				continue;
+			}
+			GameObserver::GetInstance()->removeObserver(currentAbilities[i]);
+		}
+		currentAbilities.clear();
+		return 1;
+	}
 
 
+	int equip(MTGCardInstance * equipped){
+		source->target = equipped;
+		source->target->equipment += 1;
+		AbilityFactory af;
+		af.getAbilities(&currentAbilities,NULL,source);
+		for (size_t i = 0; i < currentAbilities.size(); ++i){
+			MTGAbility * a = currentAbilities[i];
+			if(dynamic_cast<AEquip *>(a)) continue;
+			if(dynamic_cast<ATeach *>(a)) continue;
+			a->addToGame();
+		}
+		return 1;
+
+	}
+
+
+	int resolve(){
+		MTGCardInstance * mTarget = tc->getNextCardTarget();
+		if (!mTarget) return 0;
+		if (mTarget == source) return 0;
+		unequip();
+		equip(mTarget);
+		return 1;
+	}
+
+	const char * getMenuText(){
+		return "Equip";
+	}
+
+
+	int testDestroy(){
+		if (source->target && !game->isInPlay(source->target)) 
+			unequip();
+		return TargetAbility::testDestroy();
+	}
+
+	int destroy(){
+		unequip();
+		return TargetAbility::destroy();
+	}
+
+	AEquip * clone() const{
+		AEquip * a =  NEW AEquip(*this);
+		a->isClone = 1;
+		return a;
+	}
+
+};
 //Foreach (plague rats...)
 class AForeach:public ListMaintainerAbility, public NestedAbility{
 public:
@@ -3323,6 +3401,7 @@ public:
 	list<int>types;
 	list<int>colors;
 	AForeverTransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities):MTGAbility(id,source,target){
+	aType = MTGAbility::STANDARD_BECOMES;
 		//TODO this is a copy/past of other code that's all around the place, everything should be in a dedicated parser class;
 		MTGCardInstance * _target = (MTGCardInstance *)target;
 		for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++){
@@ -3376,7 +3455,9 @@ class  ATransformerUEOT: public InstantAbility{
 public:
 	ATransformer * ability;
 	ATransformerUEOT(int id, MTGCardInstance * source, MTGCardInstance * target, string types, string abilities):InstantAbility(id,source,target){
-		ability = NEW ATransformer(id,source,target,types,abilities);}
+		ability = NEW ATransformer(id,source,target,types,abilities);
+		aType = MTGAbility::STANDARD_BECOMES;
+	}
 	int resolve(){
 		ATransformer * a = ability->clone();
 		GenericInstantAbility * wrapper = NEW GenericInstantAbility(1,source,(Damageable *)(this->target),a);
@@ -3399,6 +3480,7 @@ public:
 		AForeverTransformer * ability;
 		ATransformerFOREVER(int id, MTGCardInstance * source, MTGCardInstance * target, string types, string abilities):InstantAbility(id,source,target){
 			ability = NEW AForeverTransformer(id,source,target,types,abilities);
+		  aType = MTGAbility::STANDARD_BECOMES;
 		}
 		int resolve(){
 			AForeverTransformer * a = ability->clone();
@@ -3450,6 +3532,7 @@ public:
 				WParsedPT * wppt;
 				string menu;
 				ABecomes(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, WParsedPT * wppt, string sabilities):MTGAbility(id,source,target),wppt(wppt){
+					aType = MTGAbility::STANDARD_BECOMES;
 					//TODO this is a copy/past of other code that's all around the place, everything should be in a dedicated parser class;
 
 					for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++){
@@ -3543,6 +3626,7 @@ public:
 				ABecomes * ability;
 				ABecomesUEOT(int id, MTGCardInstance * source, MTGCardInstance * target, string types, WParsedPT * wpt, string abilities):InstantAbility(id,source,target){
 					ability = NEW ABecomes(id,source,target,types,wpt,abilities);
+			  aType = MTGAbility::STANDARD_BECOMES;
 				}
 
 				int resolve(){
