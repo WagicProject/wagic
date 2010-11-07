@@ -23,7 +23,7 @@ static const char* GAME_VERSION = "WTH?! 0.13.1 - by wololo";
 #define DEFAULT_ANGLE_MULTIPLIER 0.4f
 #define MAX_ANGLE_MULTIPLIER (3*M_PI)
 #define MIN_ANGLE_MULTIPLIER 0.4f
-static const double STEP_ANGLE_MULTIPLIER = 0.0002f;
+static const float STEP_ANGLE_MULTIPLIER = 0.0002f;
 
 
 enum ENUM_MENU_STATE_MAJOR
@@ -523,7 +523,7 @@ void GameStateMenu::Update(float dt)
 
       if (mEngine->GetButtonState(JGE_BTN_CANCEL) && (dt != 0))
 	{
-	  angleMultiplier = (cos(timeIndex)*angleMultiplier - M_PI/3.0f - 0.1 - angleW) / dt;
+	  angleMultiplier = (cos(timeIndex)*angleMultiplier - M_PI/3.0f - 0.1f - angleW) / dt;
 	  yW = yW + 5*dt + (yW - 45) *5*  dt;
 	}
       else
