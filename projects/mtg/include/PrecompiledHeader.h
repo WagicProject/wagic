@@ -16,5 +16,6 @@
 #include <assert.h>
 
 #include "JGE.h"
+#include "JFileSystem.h"
 
 #endif //PRECOMPILEDHEADER_H

@@ -55,7 +55,7 @@ void GameStateStory::loadStoriesMenu(const char * root){
 void GameStateStory::Start() {
 	flow = NULL;
   menu = NULL;
-  loadStoriesMenu( RESPATH"/campaigns/");
+  loadStoriesMenu(JGE_GET_RES("campaigns/").c_str());
 }
 
 void GameStateStory::Update(float dt) {

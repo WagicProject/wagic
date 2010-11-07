@@ -81,7 +81,7 @@ void GameStateDuel::Start()
 
 #ifdef TESTSUITE
   SAFE_DELETE(testSuite);
-  testSuite = NEW TestSuite(RESPATH"/test/_tests.txt",mParent->collection);
+  testSuite = NEW TestSuite(JGE_GET_RES("test/_tests.txt").c_str(),mParent->collection);
 #endif
 
   mGamePhase = DUEL_STATE_CHOOSE_DECK1;
@@ -126,7 +126,7 @@ void GameStateDuel::Start()
         else
           deckmenu->Add( MENUITEM_NEW_DECK, "Create your Deck!", "Highly recommended to get\nthe full Wagic experience!");
         premadeDeck = true;
-        fillDeckMenu(deckmenu,RESPATH"/player/premade");
+        fillDeckMenu(deckmenu,JGE_GET_RES("player/premade"));
     }
     deckmenu->Add( MENUITEM_NEW_DECK, "New Deck...", "Create a new deck to play with.");
     deckmenu->Add( MENUITEM_CANCEL, "Main Menu", "Return to Main Menu");
@@ -143,7 +143,7 @@ void GameStateDuel::loadPlayer(int playerId, int decknb, int isAI){
     if (!isAI) { //Human Player
       char deckFile[255];
       if(premadeDeck)
-        sprintf(deckFile, RESPATH"/player/premade/deck%i.txt",decknb);
+        sprintf(deckFile, JGE_GET_RES("player/premade/deck%i.txt").c_str(),decknb);
       else
         sprintf(deckFile, "%s/deck%i.txt",options.profileFile().c_str(), decknb);
       char deckFileSmall[255];
@@ -226,8 +226,7 @@ void GameStateDuel::End()
 
 //TODO Move This to utils or ResourceManager. Don't we have more generic functions that can do that?
 bool GameStateDuel::MusicExist(string FileName){
-  string filepath = RESPATH;
-  filepath = filepath + "/" + resources.musicFile(FileName);
+  string filepath = JGE_GET_RES(resources.musicFile(FileName));
   std::ifstream file(filepath.c_str());
   if (file) {
     file.close();
@@ -244,7 +243,7 @@ void GameStateDuel::ensureOpponentMenu(){
     if (options[Options::EVILTWIN_MODE_UNLOCKED].number)
       opponentMenu->Add( MENUITEM_EVIL_TWIN, "Evil Twin", _("Can you play against yourself?").c_str());
     DeckManager * deckManager = DeckManager::GetInstance();
-    vector<DeckMetaData* > opponentDeckList = fillDeckMenu( opponentMenu, RESPATH"/ai/baka", "ai_baka", mPlayers[0]);
+    vector<DeckMetaData* > opponentDeckList = fillDeckMenu( opponentMenu, JGE_GET_RES("ai/baka"), "ai_baka", mPlayers[0]);
     deckManager->updateMetaDataList(&opponentDeckList, true);
     opponentMenu->Add( MENUITEM_CANCEL, "Cancel", _("Choose a different player deck").c_str());
     opponentDeckList.clear();

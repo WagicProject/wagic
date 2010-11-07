@@ -10,7 +10,7 @@ using std::string;
 #include "SimplePad.h"
 #include "GameApp.h"
 
-#define GLOBAL_SETTINGS RESPATH"/settings/options.txt"
+#define GLOBAL_SETTINGS "settings/options.txt"
 #define PLAYER_SAVEFILE "data.dat"
 #define PLAYER_SETTINGS "options.txt"
 #define PLAYER_COLLECTION "collection.dat"

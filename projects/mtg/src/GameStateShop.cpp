@@ -79,7 +79,7 @@ void GameStateShop::Start(){
   MTGAllCards * ac = GameApp::collection;
   playerdata = NEW PlayerData(ac);
   myCollection = 	 NEW DeckDataWrapper(playerdata->collection);
-  pricelist = NEW PriceList(RESPATH"/settings/prices.dat",ac);
+  pricelist = NEW PriceList(JGE_GET_RES("settings/prices.dat").c_str(),ac);
   for(int i=0;i<SHOP_SLOTS;i++){
     WGuiCardDistort * dist;
     if(i < BOOSTER_SLOTS)

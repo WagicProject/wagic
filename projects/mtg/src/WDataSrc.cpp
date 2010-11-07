@@ -489,7 +489,7 @@ int WSrcDeck::getCount(int count){
 }
 int WSrcDeck::totalPrice(){
   int total = 0;
-  PriceList * pricelist = NEW PriceList(RESPATH"/settings/prices.dat",GameApp::collection);
+  PriceList * pricelist = NEW PriceList(JGE_GET_RES("settings/prices.dat").c_str(),GameApp::collection);
   map<int,int>::iterator it;
   for ( it=copies.begin() ; it != copies.end(); it++ ){
       int nb =  it->second;

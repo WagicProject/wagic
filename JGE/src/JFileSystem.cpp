@@ -257,3 +257,14 @@ void JFileSystem::SetResourceRoot(const string& resourceRoot)
 {
 	mResourceRoot = resourceRoot;
 }
+
+string JFileSystem::GetResourceRoot() 
+{
+  return mResourceRoot;
+}
+
+string JFileSystem::GetResourceFile(string filename) 
+{
+  string result = mResourceRoot;
+  return result.append(filename);
+}

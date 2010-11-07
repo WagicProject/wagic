@@ -683,7 +683,7 @@ string WResourceManager::cardFile(const string filename){
 
             if(set.size()){
               char zipname[512];
-              sprintf(zipname, "Res/themes/%s/sets/%s/%s.zip", theme.c_str(), set.c_str(),set.c_str());
+              sprintf(zipname, JGE_GET_RES("themes/%s/sets/%s/%s.zip").c_str(), theme.c_str(), set.c_str(),set.c_str());
               if (fs->AttachZipFile(zipname))
                 return filename.substr(i+1);
             }
@@ -718,7 +718,7 @@ string WResourceManager::cardFile(const string filename){
 
      if(set.size()){
         char zipname[512];
-        sprintf(zipname, "Res/sets/%s/%s.zip", set.c_str(),set.c_str());
+        sprintf(zipname, JGE_GET_RES("sets/%s/%s.zip").c_str(), set.c_str(),set.c_str());
         if (fs->AttachZipFile(zipname))
             return filename.substr(i+1);
      }
@@ -808,13 +808,13 @@ int WResourceManager::dirOK(string dirname){
 char fname[512];
 
 #if defined (WIN32)
-  sprintf(fname,RESPATH"/%s",dirname.c_str());
+  sprintf(fname,JGE_GET_RES(dirname).c_str());
 
   struct _stat statBuffer;
   return (_stat(fname, &statBuffer) >= 0 && // make sure it exists
   statBuffer.st_mode & S_IFDIR); // and it's not a file
 #else
-  sprintf(fname,RESPATH"/%s",dirname.c_str());
+  sprintf(fname,JGE_GET_RES(dirname).c_str());
   struct stat st;
   if(stat(fname,&st) == 0)
     return 1;
@@ -824,11 +824,9 @@ char fname[512];
 
 
 int WResourceManager::fileOK(string filename, bool relative){
-  char fname[512];
   std::ifstream * fp = NULL;
   if(relative){
-    sprintf(fname,RESPATH"/%s",filename.c_str());
-    fp = NEW std::ifstream(fname);
+    fp = NEW std::ifstream(JGE_GET_RES(filename).c_str());
   }
   else
     fp = NEW std::ifstream(filename.c_str());

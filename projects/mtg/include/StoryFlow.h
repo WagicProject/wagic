@@ -9,7 +9,7 @@ using namespace std;
 #include <JGui.h>
 class GameObserver;
 class MTGDeck;
-#define CAMPAIGNS_FOLDER "Res/campaigns/"
+#define CAMPAIGNS_FOLDER "campaigns/"
 
 
 class StoryDialogElement:public JGuiObject {

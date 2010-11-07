@@ -498,7 +498,7 @@ int GameSettings::save(){
 
   if(profileOptions){
     //Force our directories to exist.
-    MAKEDIR(RESPATH"/profiles");
+    MAKEDIR(JGE_GET_RES("profiles").c_str());
     string temp = profileFile("","",false,false);
     MAKEDIR(temp.c_str());
     temp+="/stats";
@@ -521,11 +521,11 @@ string GameSettings::profileFile(string filename, string fallback,bool sanity, b
   if(!(*this)[Options::ACTIVE_PROFILE].isDefault())  {
      //No file, return root of profile directory
      if(filename == ""){
-       sprintf(buf,"%sprofiles/%s",( relative ? "" : RESPATH"/" ),profile.c_str());
+       sprintf(buf,"%sprofiles/%s",( relative ? "" : JGE_GET_RES("").c_str() ),profile.c_str());
        return buf;
      }
      //Return file
-     sprintf(buf,RESPATH"/profiles/%s/%s",profile.c_str(),filename.c_str());
+     sprintf(buf,JGE_GET_RES("profiles/%s/%s").c_str(),profile.c_str(),filename.c_str());
      if(fileExists(buf)){
         if(relative)
           sprintf(buf,"profiles/%s/%s",profile.c_str(),filename.c_str());
@@ -534,13 +534,13 @@ string GameSettings::profileFile(string filename, string fallback,bool sanity, b
   }
   else{
     //Use the default directory.
-    sprintf(buf,"%splayer%s%s",(relative ? "" : RESPATH"/"),(filename == "" ? "" : "/"), filename.c_str());
+    sprintf(buf,"%splayer%s%s",(relative ? "" :JGE_GET_RES("").c_str()),(filename == "" ? "" : "/"), filename.c_str());
     return buf;
   }
 
   //Don't fallback if sanity checking is disabled..
   if(!sanity){
-    sprintf(buf,"%sprofiles/%s%s%s",(relative ? "" : RESPATH"/"),profile.c_str(),(filename == "" ? "" : "/"), filename.c_str());
+    sprintf(buf,"%sprofiles/%s%s%s",(relative ? "" : JGE_GET_RES("").c_str()),profile.c_str(),(filename == "" ? "" : "/"), filename.c_str());
     return buf;
   }
 
@@ -548,7 +548,7 @@ string GameSettings::profileFile(string filename, string fallback,bool sanity, b
   if(fallback == "")
       return "";
 
-  sprintf(buf,"%s%s%s%s",(relative ? "" : RESPATH"/"),fallback.c_str(),(filename == "" ? "" : "/"), filename.c_str());
+  sprintf(buf,"%s%s%s%s",(relative ? "" : JGE_GET_RES("").c_str()),fallback.c_str(),(filename == "" ? "" : "/"), filename.c_str());
   return buf;
 }
 
@@ -561,7 +561,7 @@ void GameSettings::reloadProfile(bool images){
 
 void GameSettings::checkProfile(){
     if(!globalOptions)
-      globalOptions = NEW GameOptions(GLOBAL_SETTINGS);
+      globalOptions = NEW GameOptions(JGE_GET_RES(GLOBAL_SETTINGS));
 
     //If it doesn't exist, load current profile.
     if(!profileOptions){
@@ -589,7 +589,7 @@ void GameSettings::checkProfile(){
 	  //Make the proper directories
       if(profileOptions){
         //Force our directories to exist.
-        MAKEDIR(RESPATH"/profiles");
+        MAKEDIR(JGE_GET_RES("profiles").c_str());
         string temp = profileFile("","",false,false);
         MAKEDIR(temp.c_str());
         temp+="/stats";

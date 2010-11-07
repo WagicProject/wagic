@@ -654,7 +654,7 @@ int AIPlayer::combatDamages(){
 AIStats * AIPlayer::getStats(){
   if (!stats){
     char statFile[512];
-    sprintf(statFile, RESPATH"/ai/baka/stats/%s.stats", opponent()->deckFileSmall.c_str());
+    sprintf(statFile,JGE_GET_RES("ai/baka/stats/%s.stats").c_str(), opponent()->deckFileSmall.c_str());
     stats = NEW AIStats(this, statFile);
   }
   return stats;
@@ -677,7 +677,7 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, Player * op
       while (found){
         found = 0;
         char buffer[512];
-        sprintf(buffer, RESPATH"/ai/baka/deck%i.txt",nbdecks+1);
+        sprintf(buffer, JGE_GET_RES("ai/baka/deck%i.txt").c_str(),nbdecks+1);
         std::ifstream file(buffer);
         if(file){
           found = 1;
@@ -688,7 +688,7 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, Player * op
       if (!nbdecks) return NULL;
       deckid = 1 + WRand() % (nbdecks);
     }
-    sprintf(deckFile, RESPATH"/ai/baka/deck%i.txt",deckid);
+    sprintf(deckFile, JGE_GET_RES("ai/baka/deck%i.txt").c_str(),deckid);
     sprintf(avatarFile, "avatar%i.jpg",deckid);
     sprintf(deckFileSmall, "ai_baka_deck%i",deckid);
   }

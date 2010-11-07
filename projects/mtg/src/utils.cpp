@@ -64,9 +64,7 @@ if(fichier){
   return 1;
 }
 
-char alternateFilename[512];
-sprintf(alternateFilename, RESPATH"/%s",filename);
- std::ifstream fichier2(alternateFilename);
+std::ifstream fichier2(JGE_GET_RES(filename).c_str());
 if(fichier2){
   fichier2.close();
   return 1;

@@ -94,7 +94,7 @@ void OptionSelect::addSelection(string s){
 
 //OptionProfile
 const string OptionProfile::DIRTESTER = "collection.dat";
-OptionProfile::OptionProfile(GameApp * _app, JGuiListener * jgl) : OptionDirectory(RESPATH"/profiles", Options::ACTIVE_PROFILE, "Profile", DIRTESTER){
+OptionProfile::OptionProfile(GameApp * _app, JGuiListener * jgl) : OptionDirectory(JGE_GET_RES("profiles"), Options::ACTIVE_PROFILE, "Profile", DIRTESTER){
   app = _app;
   listener = jgl;
   height=60;
@@ -271,10 +271,10 @@ void OptionLanguage::Reload(){
   struct dirent *mDit;
   DIR *mDip;
 
-  mDip = opendir("Res/lang");
+  mDip = opendir(JGE_GET_RES("lang").c_str());
 
   while ((mDit = readdir(mDip))){
-    string filename = "Res/lang/";
+    string filename = JGE_GET_RES("lang/");
     filename += mDit->d_name;
     std::ifstream file(filename.c_str());
     string s;
@@ -368,7 +368,7 @@ OptionDirectory::OptionDirectory(string root, int id, string displayValue, strin
 }
 
 const string OptionTheme::DIRTESTER = "preview.png";
-OptionTheme::OptionTheme(OptionThemeStyle * style) : OptionDirectory(RESPATH"/themes", Options::ACTIVE_THEME, "Current Theme", DIRTESTER){
+OptionTheme::OptionTheme(OptionThemeStyle * style) : OptionDirectory(JGE_GET_RES("themes"), Options::ACTIVE_THEME, "Current Theme", DIRTESTER){
   addSelection("Default");
   sort(selections.begin(),selections.end());
   initSelections();
@@ -402,9 +402,9 @@ void OptionTheme::Render(){
     author = "";
     bChecked = true;
     if(selections[value] == "Default")
-      sprintf(buf,RESPATH"/graphics/themeinfo.txt");
+      sprintf(buf,JGE_GET_RES("graphics/themeinfo.txt").c_str());
     else
-      sprintf(buf,RESPATH"/themes/%s/themeinfo.txt",selections[value].c_str());
+      sprintf(buf,JGE_GET_RES("themes/%s/themeinfo.txt").c_str(),selections[value].c_str());
     std::ifstream file(buf);
     if(file){
       string temp;

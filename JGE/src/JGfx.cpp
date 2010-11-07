@@ -965,11 +965,7 @@ void JRenderer::LoadJPG(TextureInfo &textureInfo, const char *filename, int mode
   JLOG("JRenderer::LoadJPG");
 	textureInfo.mBits = NULL;
 	char filenamenew[4096];
-#ifdef RESPATH
-	sprintf(filenamenew, RESPATH"/%s", filename);
-#else
-	sprintf(filenamenew, "Res/%s", filename);
-#endif
+	sprintf(filenamenew, JGE_GET_RES(filename).c_str());
 
 	bool useVideoRAM = (mode == TEX_TYPE_USE_VRAM);
 

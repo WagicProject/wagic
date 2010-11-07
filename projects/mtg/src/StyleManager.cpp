@@ -40,7 +40,7 @@ string WStyle::stylized(string filename){
 void StyleManager::loadRules(){
   killRules();
   //TODO Placeholder until XML format available.
-  string filename = RESPATH"/" + resources.graphicsFile("style.txt");
+  string filename = JGE_GET_RES(resources.graphicsFile("style.txt"));
   TiXmlDocument xmlfile(filename.c_str());
   if(!xmlfile.LoadFile())
     return;

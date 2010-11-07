@@ -37,7 +37,7 @@ string Translator::translate(string value){
 Translator::~Translator(){
 #if defined DEBUG_TRANSLATE
   if (!checkMisses) return;
-  std::ofstream file("Res/lang/missing.txt");
+  std::ofstream file(JGE_GET_RES("lang/missing.txt").c_str());
   char writer[4096];
   if (file){
     map<string,int>::iterator it;
@@ -78,7 +78,7 @@ void Translator::load(string filename, map<string,string> * dictionary) {
 
 #if defined DEBUG_TRANSLATE
   if (!checkMisses) return;
-  std::ifstream file2("Res/lang/dontcare.txt");
+  std::ifstream file2(JGE_GET_RES("lang/dontcare.txt").c_str());
 
   if(file2){
     string s;
@@ -98,14 +98,14 @@ void Translator::load(string filename, map<string,string> * dictionary) {
 void Translator::initCards(){
   string lang = options[Options::LANG].str;
   if (!lang.size()) return;
-  string cards_dict = "Res/lang/" + lang + "_cards.txt";
+  string cards_dict = JGE_GET_RES("lang/") + lang + "_cards.txt";
   load(cards_dict,&tempValues);
 }
 
 void Translator::initDecks(){
   string lang = options[Options::LANG].str;
   if (!lang.size()) return;
-  string decks_dict = "Res/lang/" + lang + "_decks.txt";
+  string decks_dict = JGE_GET_RES("lang/") + lang + "_decks.txt";
 
   // Load file
   std::ifstream file(decks_dict.c_str());
@@ -136,7 +136,7 @@ void  Translator::init() {
 #endif
    string lang = options[Options::LANG].str;
   if (!lang.size()) return;
-  string name = "Res/lang/" + lang + ".txt";
+  string name = JGE_GET_RES("lang/") + lang + ".txt";
 
   if (fileExists(name.c_str())){
     // fixup for Chinese language support.

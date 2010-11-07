@@ -214,7 +214,7 @@ void GameStateDeckViewer::Start()
   lastPos = 0;
   lastTotal = 0;
 
-  pricelist = NEW PriceList(RESPATH"/settings/prices.dat",mParent->collection);
+  pricelist = NEW PriceList(JGE_GET_RES("settings/prices.dat").c_str(),mParent->collection);
   playerdata = NEW PlayerData(mParent->collection);
   myCollection =    NEW DeckDataWrapper(playerdata->collection);
   myCollection->Sort(WSrcCards::SORT_ALPHA);
@@ -306,7 +306,7 @@ void GameStateDeckViewer::saveDeck(){
 void GameStateDeckViewer::saveAsAIDeck( string deckName ) 
 {
   DeckManager * deckManager = DeckManager::GetInstance();
-  vector<DeckMetaData *> aiDecks = GameState::getValidDeckMetaData( RESPATH"/ai/baka", "ai_baka", NULL);
+  vector<DeckMetaData *> aiDecks = GameState::getValidDeckMetaData( JGE_GET_RES("ai/baka"), "ai_baka", NULL);
   int nbAiDecks = aiDecks.size()  + 1;
   aiDecks.clear();
 
@@ -320,8 +320,8 @@ void GameStateDeckViewer::saveAsAIDeck( string deckName )
   else
     oss << myDeck->parent->meta_desc;
   string deckDesc = oss.str();
-  string filepath = RESPATH;
-  filepath.append("/ai/baka/").append( defaultAiDeckName ).append( ".txt" );
+  string filepath = JGE_GET_RES("ai/baka/");
+  filepath.append( defaultAiDeckName ).append( ".txt" );
   DebugTrace("saving AI deck " << filepath);
   myDeck->save( filepath, true, deckName, deckDesc);
 }
@@ -1503,7 +1503,7 @@ int GameStateDeckViewer::loadDeck(int deckid){
       found = 0;
       char buffer[512];
       char smallDeckName[512];
-      sprintf(buffer, "%s/deck%i.txt",RESPATH"/ai/baka",nbDecks+1);
+      sprintf(buffer, "%s/deck%i.txt",JGE_GET_RES("ai/baka").c_str(),nbDecks+1);
       if(fileExists(buffer)){
         MTGDeck * mtgd = NEW MTGDeck(buffer,NULL,1);
         found = 1;

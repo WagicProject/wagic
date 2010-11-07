@@ -165,7 +165,7 @@ void Task::loadAIDeckNames() {
   while (found){
     found = 0;
     char buffer[512];
-    sprintf(buffer, "%s/deck%i.txt",RESPATH"/ai/baka",nbDecks + 1);
+    sprintf(buffer, "%s/deck%i.txt",JGE_GET_RES("ai/baka").c_str(),nbDecks + 1);
 
     if(fileExists(buffer)){
       found = 1;

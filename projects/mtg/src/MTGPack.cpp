@@ -220,13 +220,13 @@ MTGPack * MTGPacks::randomPack(int key){
   return packs[key%s];
 }
 void MTGPacks::loadAll(){
-  DIR *mDip = opendir(RESPATH"/packs/");  
+  DIR *mDip = opendir(JGE_GET_RES("packs/").c_str());  
   struct dirent *mDit;
   if(!mDip) return;
 
   while ((mDit = readdir(mDip))){
     char myFilename[4096];
-    sprintf(myFilename, RESPATH"/packs/%s", mDit->d_name);
+    sprintf(myFilename, JGE_GET_RES("packs/%s").c_str(), mDit->d_name);
     if(mDit->d_name[0] == '.') continue;
     if(!strcmp(mDit->d_name,"default_booster.txt")) continue;
     MTGPack * p = NEW MTGPack(myFilename);
@@ -276,7 +276,7 @@ bool MTGPack::isUnlocked(){
 
 MTGPack * MTGPacks::getDefault(){
   if(!defaultBooster.isValid()){
-    defaultBooster.load(RESPATH"/packs/default_booster.txt");
+    defaultBooster.load(JGE_GET_RES("packs/default_booster.txt"));
     defaultBooster.unlockStatus = 1;
     if(!defaultBooster.isValid()){
       MTGPackSlot * ps = NEW MTGPackSlot(); ps->copies = 1;

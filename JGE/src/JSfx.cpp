@@ -9,6 +9,7 @@
 //-------------------------------------------------------------------------------------
 
 #include "../include/JSoundSystem.h"
+#include "../include/JFileSystem.h"
 #include "../include/JAudio.h"
 #include "../include/JMP3.h"
 #include <string>
@@ -108,12 +109,9 @@ void JSoundSystem::DestroySoundSystem()
 
 JMusic *JSoundSystem::LoadMusic(const char *fileName)
 {
-#ifdef RESPATH
-  string s = RESPATH"/";
-#else
-  string s = "Res/";
-#endif
-  s.append(fileName);
+
+  string s = JGE_GET_RES(fileName);
+
   JMusic *music = new JMusic();
   if (music)
     {

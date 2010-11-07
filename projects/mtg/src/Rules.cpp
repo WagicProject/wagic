@@ -383,7 +383,7 @@ int Rules::load(string _filename){
   if (fileExists(_filename.c_str())){
     sprintf(filename, "%s", _filename.c_str());
   }else{
-    sprintf(filename, RESPATH"/rules/%s", _filename.c_str());
+    sprintf(filename, JGE_GET_RES("rules/%s").c_str(), _filename.c_str());
   }
   std::ifstream file(filename);
   std::string s;

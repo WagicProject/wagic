@@ -513,7 +513,7 @@ MTGDeck::MTGDeck(MTGAllCards * _allcards){
 }
 int MTGDeck::totalPrice(){
   int total = 0;
-  PriceList * pricelist = NEW PriceList(RESPATH"/settings/prices.dat",GameApp::collection);
+  PriceList * pricelist = NEW PriceList(JGE_GET_RES("settings/prices.dat").c_str(),GameApp::collection);
   map<int,int>::iterator it;
   for ( it=cards.begin() ; it != cards.end(); it++ ){
     int nb =  it->second;
@@ -932,7 +932,7 @@ MTGSetInfo::MTGSetInfo(string _id) {
     counts[i] = 0;
 
   char myFilename[4096];
-  sprintf(myFilename, RESPATH"/sets/%s/booster.txt", id.c_str());
+  sprintf(myFilename, JGE_GET_RES("sets/%s/booster.txt").c_str(), id.c_str());
   mPack = NEW MTGPack(myFilename);
   if(!mPack->isValid()){
     SAFE_DELETE(mPack);

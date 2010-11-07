@@ -255,7 +255,7 @@ int Credits::isDifficultyUnlocked(){
     found = 0;
     char buffer[512];
     char aiSmallDeckName[512];
-    sprintf(buffer, RESPATH"/ai/baka/deck%i.txt",nbAIDecks+1);
+    sprintf(buffer, JGE_GET_RES("ai/baka/deck%i.txt").c_str(),nbAIDecks+1);
     if(fileExists(buffer)){
       found = 1;
       nbAIDecks++;

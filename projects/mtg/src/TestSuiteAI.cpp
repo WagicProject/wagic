@@ -316,7 +316,7 @@ void TestSuite::initGame(){
   DebugTrace("TESTUITE Init Game Done !");
 }
 int TestSuite::Log(const char * text){
-  ofstream file (RESPATH"/test/results.html",ios_base::app);
+  ofstream file (JGE_GET_RES("test/results.html").c_str(),ios_base::app);
   if (file){
     file << text;
     file << "\n";
@@ -429,7 +429,7 @@ TestSuite::TestSuite(const char * filename,MTGAllCards* _collection){
     file.close();
   }
 
-  ofstream file2 (RESPATH"/test/results.html");
+  ofstream file2 (JGE_GET_RES("/test/results.html").c_str());
   if (file2){
     file2 << "<html><head>";
 #ifdef WIN32
@@ -496,7 +496,7 @@ int TestSuite::load(const char * _filename){
   forceAbility = false;
   gameType = GAME_TYPE_CLASSIC;
   char filename[4096];
-  sprintf(filename, RESPATH"/test/%s", _filename);
+  sprintf(filename, JGE_GET_RES("/test/%s").c_str(), _filename);
   std::ifstream file(filename);
   std::string s;
   loadRandValues("");

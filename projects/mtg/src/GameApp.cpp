@@ -90,6 +90,21 @@ void GameApp::Create()
   //_CrtSetBreakAlloc(368);
   LOG("starting Game");
 
+  //Find the Res folder
+  std::ifstream mfile("Res.txt");
+  string resPath;
+  if(mfile){
+    if (std::getline(mfile, resPath)) {
+      if (resPath[resPath.size()-1] == '\r') resPath.erase(resPath.size()-1); //Handle DOS files
+      //TODO ERROR Handling if file does not exist
+      JFileSystem::GetInstance()->SetResourceRoot(trim(resPath));
+    }
+    mfile.close();
+  }
+    LOG("Res Root:");
+    LOG(JFileSystem::GetInstance()->GetResourceRoot().c_str());
+
+
   //Link this to our settings manager.
   options.theGame = this;
 
@@ -99,16 +114,14 @@ void GameApp::Create()
 
   LOG("Checking for music files");
   //Test for Music files presence
-  string filepath = RESPATH;
-  filepath = filepath + "/" + resources.musicFile("Track0.mp3");
+  string filepath = JGE_GET_RES(resources.musicFile("Track0.mp3"));
   std::ifstream file(filepath.c_str());
   if (file)
     file.close();
   else
     HasMusic = 0;
 
-  filepath = RESPATH;
-  filepath = filepath + "/" + resources.musicFile("Track1.mp3");
+  filepath = JGE_GET_RES(resources.musicFile("Track1.mp3"));
   std::ifstream file2(filepath.c_str());
   if (file2)
     file2.close();
@@ -129,7 +142,8 @@ void GameApp::Create()
   manaIcons[Constants::MTG_COLOR_ARTIFACT] = resources.RetrieveQuad("menuicons.png", 2 + 6*36, 38, 32, 32, "c_artifact",RETRIEVE_MANAGE);
 
 
-  for (int i = sizeof(manaIcons)/sizeof(manaIcons[0]) - 1; i >= 0; --i) manaIcons[i]->SetHotSpot(16,16);
+  for (int i = sizeof(manaIcons)/sizeof(manaIcons[0]) - 1; i >= 0; --i) 
+    if (manaIcons[i]) manaIcons[i]->SetHotSpot(16,16);
 
   LOG("--Loading back.jpg");
   resources.RetrieveTexture("back.jpg",RETRIEVE_MANAGE);
@@ -142,9 +156,9 @@ void GameApp::Create()
   LOG("--Loading particles.png");
   resources.RetrieveTexture("particles.png",RETRIEVE_MANAGE);
   jq = resources.RetrieveQuad("particles.png", 0, 0, 32, 32, "particles",RETRIEVE_MANAGE);
-  jq->SetHotSpot(16,16);
+  if (jq) jq->SetHotSpot(16,16);
   jq = resources.RetrieveQuad("particles.png", 64, 0, 32, 32, "stars",RETRIEVE_MANAGE);
-  jq->SetHotSpot(16,16);
+  if (jq) jq->SetHotSpot(16,16);
 
   LOG("--Loading fonts");
   string lang = options[Options::LANG].str;
@@ -163,11 +177,11 @@ void GameApp::Create()
   resources.RetrieveTexture("shadow.png",RETRIEVE_MANAGE);
 
   jq = resources.RetrieveQuad("BattleIcon.png", 0, 0, 25, 25,"BattleIcon",RETRIEVE_MANAGE);
-  jq->SetHotSpot(12, 12);
+  if (jq) jq->SetHotSpot(12, 12);
   jq = resources.RetrieveQuad("DefenderIcon.png", 0, 0, 24, 23,"DefenderIcon",RETRIEVE_MANAGE);
-  jq->SetHotSpot(12, 12);
+  if (jq) jq->SetHotSpot(12, 12);
   jq = resources.RetrieveQuad("shadow.png", 0, 0, 16, 16,"shadow",RETRIEVE_MANAGE);
-  jq->SetHotSpot(8, 8);
+  if (jq) jq->SetHotSpot(8, 8);
   jq = resources.RetrieveQuad("phasebar.png",0,0,0,0,"phasebar",RETRIEVE_MANAGE);
 
   LOG("Init Collection");

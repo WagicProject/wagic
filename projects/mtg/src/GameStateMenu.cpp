@@ -103,7 +103,7 @@ void GameStateMenu::Create()
     for (int j=0;j<2;j++){
       sprintf(buf,"menuicons%d%d",i,j);
 	    mIcons[n] = resources.RetrieveQuad("menuicons.png", 2 + i * 36.0f, 2.0f + j * 36.0f, 32.0f, 32.0f, buf);
-	    mIcons[n]->SetHotSpot(16,16);
+	    if(mIcons[n]) mIcons[n]->SetHotSpot(16,16);
 	    n++;
 	  }
   }
@@ -112,7 +112,7 @@ void GameStateMenu::Create()
   bool langChosen = false;
   string lang = options[Options::LANG].str;
   if (lang.size()){
-    lang = "Res/lang/" + lang +  ".txt";
+    lang = JGE_GET_RES("lang/") + lang +  ".txt";
     if (fileExists(lang.c_str())) langChosen = true;
   }
   if (!langChosen){
@@ -155,7 +155,7 @@ void GameStateMenu::Start(){
   bgTexture = resources.RetrieveTexture("menutitle.png", RETRIEVE_LOCK);
   mBg = resources.RetrieveQuad("menutitle.png", 0, 0, 256, 166);		// Create background quad for rendering.
 
-  mBg->SetHotSpot(128,50);
+  if (mBg) mBg->SetHotSpot(128,50);
 
   if (MENU_STATE_MAJOR_MAINMENU == currentState)
     currentState = currentState | MENU_STATE_MINOR_FADEIN;
@@ -286,7 +286,7 @@ string GameStateMenu::loadRandomWallpaper() {
     return wallpaper;
 
   vector<string> wallpapers;
-  std::ifstream file("Res/graphics/wallpapers.txt");
+  std::ifstream file(JGE_GET_RES("graphics/wallpapers.txt").c_str());
 
   if (!file) return wallpaper;
 
@@ -322,11 +322,11 @@ void GameStateMenu::loadLangMenu(){
   if (!subMenuController) return;
   resetDirectory();
   if (!mDip){
-    mDip = opendir("Res/lang");
+    mDip = opendir(JGE_GET_RES("lang").c_str());
   }
 
   while ((mDit = readdir(mDip))){
-    string filename = "Res/lang/";
+    string filename = JGE_GET_RES("lang/");
     filename += mDit->d_name;
     std::ifstream file(filename.c_str());
     string s;
@@ -352,11 +352,11 @@ void GameStateMenu::listPrimitives(){
   LOG("GameStateMenu::listPrimitives");
   resetDirectory();
   if (!mDip){
-    mDip = opendir("Res/sets/primitives/");
+    mDip = opendir(JGE_GET_RES("sets/primitives/").c_str());
   }
 
   while ((mDit = readdir(mDip))){
-    string filename = "Res/sets/primitives/";
+    string filename = JGE_GET_RES("sets/primitives/");
     filename += mDit->d_name;
     std::ifstream file(filename.c_str());
     if(!file) continue;
@@ -414,7 +414,7 @@ void GameStateMenu::Update(float dt)
       }else{
 	      mReadConf = 1;
       }
-      if (!nextDirectory(RESPATH"/sets/","_cards.dat")){
+      if (!nextDirectory(JGE_GET_RES("sets/").c_str(),"_cards.dat")){
         //Remove temporary translations
         Translator::GetInstance()->tempValues.clear();
 

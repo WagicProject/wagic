@@ -11,6 +11,9 @@
 #ifndef _FILE_SYSTEM_H_
 #define _FILE_SYSTEM_H_
 
+#define JGE_GET_RES(filename) JFileSystem::GetInstance()->GetResourceFile(filename)
+#define JGE_GET_RESPATH() JFileSystem::GetInstance()->GetResourceRoot()
+
 #include <stdio.h>
 #include <vector>
 #include <map>
@@ -109,6 +112,10 @@ public:
 	///
 	//////////////////////////////////////////////////////////////////////////
 	void SetResourceRoot(const string& resourceRoot);
+  string GetResourceRoot();
+
+  // Returns a string prefixed with the resource path
+  string GetResourceFile(string filename);
 
 protected:
 	JFileSystem();
