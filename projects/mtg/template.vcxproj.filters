@@ -1,0 +1,626 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\ActionElement.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ActionLayer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ActionStack.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AIMomirPlayer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AIPlayer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AIStats.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AllAbilities.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CardDescriptor.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CardDisplay.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CardGui.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CardPrimitive.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CardSelector.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CardSelectorSingleton.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Counters.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Credits.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Damage.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DamagerDamaged.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DeckDataWrapper.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DeckEditorMenu.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DeckManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DeckMenu.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DeckMenuItem.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DeckMetaData.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DeckStats.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DuelLayers.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ExtraCost.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameApp.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameLauncher.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObserver.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameOptions.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameState.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameStateAwards.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameStateDeckViewer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameStateDuel.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameStateMenu.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameStateOptions.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameStateShop.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameStateStory.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameStateTransitions.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GuiAvatars.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GuiBackground.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GuiCardsController.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GuiCombat.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GuiFrame.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GuiHand.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GuiLayers.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GuiMana.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GuiPhaseBar.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GuiPlay.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GuiStatic.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Logger.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManaCostHybrid.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManaCost.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MenuItem.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MTGAbility.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MTGCard.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MTGCardInstance.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MTGDeck.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MTGDefinitions.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MTGGamePhase.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MTGGameZones.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MTGPack.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MTGRules.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Navigator.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OptionItem.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PhaseRing.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Player.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PlayerData.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PlayGuiObject.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PlayGuiObjectController.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PrecompiledHeader.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ReplacementEffects.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SimpleMenu.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Rules.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SimpleMenuItem.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SimplePad.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StoryFlow.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StyleManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TargetsList.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TargetChooser.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Subtypes.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Tasks.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TestSuiteAI.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TextScroller.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ThisDescriptor.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Token.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Translate.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TranslateKeys.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WCachedResource.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Trash.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WDataSrc.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WEvent.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WFilter.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WFont.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WGui.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WResourceManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pos.cpp">
+      <Filter>inc</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PriceList.cpp">
+      <Filter>inc</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\ActionElement.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\WResourceManager.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ActionLayer.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ActionStack.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AIMomirPlayer.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AIPlayer.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AIStats.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AllAbilities.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CardDescriptor.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CardDisplay.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CardEffect.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CardGui.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CardPrimitive.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CardSelector.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CardSelectorSingleton.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\config.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Counters.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Credits.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Damage.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DamagerDamaged.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DebugRoutines.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DeckDataWrapper.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DeckEditorMenu.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DeckManager.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DeckMetaData.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DeckStats.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DuelLayers.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Effects.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ExtraCost.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameApp.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameObserver.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameOptions.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameState.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameStateAwards.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameStateDeckViewer.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameStateDuel.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameStateMenu.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameStateOptions.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameStateShop.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameStateStory.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameStateTransitions.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GuiAvatars.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GuiBackground.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GuiCardsController.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GuiCombat.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GuiFrame.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GuiHand.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GuiLayers.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GuiMana.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GuiPhaseBar.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GuiPlay.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GuiStatic.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Logger.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Manacost.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ManaCostHybrid.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MenuItem.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MTGAbility.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MTGCard.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MTGCardInstance.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MTGDeck.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MTGDefinitions.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MTGGamePhase.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MTGGameZones.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MTGPack.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MTGRules.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Navigator.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\OptionItem.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\OSD.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PhaseRing.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Player.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PlayerData.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PlayGuiObject.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PlayGuiObjectController.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Pos.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PrecompiledHeader.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PriceList.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ReplacementEffects.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rules.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SimpleMenu.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SimpleMenuItem.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SimplePad.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\StoryFlow.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\StyleManager.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Subtypes.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Targetable.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TargetChooser.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TargetsList.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Tasks.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TestSuiteAI.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TextScroller.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ThisDescriptor.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Token.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Translate.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TranslateKeys.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Trash.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\utils.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\WCachedResource.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\WDataSrc.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\WEvent.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\WFilter.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\WFont.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\WGui.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DeckMenuItem.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Makefile" />
+    <None Include="Makefile.1xx" />
+    <None Include="Makefile.3xx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{c9d39274-ca8e-41da-825a-b1ea455e52b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc">
+      <UniqueIdentifier>{92d0309c-53b0-48a4-8b4d-07af74f87f0c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

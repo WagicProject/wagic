@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="UserMacros">
+    <JGEEXTRAS>..\projects\mtg\extra\</JGEEXTRAS>
+    <MTGEXTRAS>.\extra\</MTGEXTRAS>
+    <BOOSTDIR>.\include\boost</BOOSTDIR>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <PreprocessorDefinitions>_MBCS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="JGEEXTRAS">
+      <Value>$(JGEEXTRAS)</Value>
+    </BuildMacro>
+    <BuildMacro Include="MTGEXTRAS">
+      <Value>$(MTGEXTRAS)</Value>
+    </BuildMacro>
+    <BuildMacro Include="BOOSTDIR">
+      <Value>$(BOOSTDIR)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>
