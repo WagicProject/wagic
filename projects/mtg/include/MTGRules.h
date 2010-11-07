@@ -240,9 +240,9 @@ class MTGDeathtouchRule:public MTGAbility{
 class HUDString {
 public:
   string value;
-  int timestamp;
+  float timestamp;
   int quantity;
-  HUDString(string s, int ts):value(s),timestamp(ts){quantity = 1;};
+  HUDString(string s, float ts):value(s),timestamp(ts){quantity = 1;};
 };
 
 class HUDDisplay:public MTGAbility{

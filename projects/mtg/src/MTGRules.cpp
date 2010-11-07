@@ -1026,7 +1026,7 @@ void MTGMomirRule::Update(float dt){
 		alreadyplayed = 0;
 	}
 	if (textAlpha){
-		textAlpha -= (200*dt);
+		textAlpha -= static_cast<int>(200*dt);
 		if (textAlpha <0) textAlpha = 0;
 	}
 	MTGAbility::Update(dt);
@@ -1116,7 +1116,7 @@ void HUDDisplay::Render(){
 
 	float x0 = SCREEN_WIDTH-10-maxWidth-10;
 	float y0 = 20;
-	float size = events.size() * 16;
+	float size = static_cast<float>(events.size() * 16);
 	JRenderer * r = JRenderer::GetInstance();
 	r->FillRoundRect(x0,y0,maxWidth + 10,size,5,ARGB(50,0,0,0));
 

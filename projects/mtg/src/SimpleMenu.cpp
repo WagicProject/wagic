@@ -67,7 +67,7 @@ void SimpleMenu::drawHorzPole(float x, float y, float width)
 {
   JRenderer* renderer = JRenderer::GetInstance();
 
-  static int offset = (spadeR->mWidth - kPoleWidth) / 2;
+  float offset = (spadeR->mWidth - kPoleWidth) / 2;
   renderer->RenderQuad(side, x, y, 0, width);
   spadeR->SetHFlip(true);
   spadeL->SetHFlip(false);
@@ -82,7 +82,7 @@ void SimpleMenu::drawVertPole(float x, float y, float height)
 {
   JRenderer* renderer = JRenderer::GetInstance();
 
-  static int offset = (spadeR->mHeight - kPoleWidth) / 2;
+  float offset = (spadeR->mHeight - kPoleWidth) / 2;
   renderer->RenderQuad(side, x + kPoleWidth, y, M_PI/2, height);
   spadeR->SetHFlip(false);
   spadeL->SetHFlip(true);
