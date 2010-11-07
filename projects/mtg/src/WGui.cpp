@@ -1649,7 +1649,7 @@ void WGuiFilterItem::updateValue(){
       }
       if(!mNew)
         mParent->subMenu->Add(-2,"Remove");
-      mParent->subMenu->Add(-1,"Cancel");
+      mParent->subMenu->Add(kCancelMenuID,"Cancel");
       if(delMenu){
         SAFE_DELETE(mParent->subMenu);
         mState = STATE_FINISHED;
@@ -1754,7 +1754,7 @@ void WGuiFilterItem::updateValue(){
         }
         mParent->addArg("Digit","alpha:#;");
       }
-      mParent->subMenu->Add(-1,"Cancel");
+      mParent->subMenu->Add(kCancelMenuID,"Cancel");
     break;
     case STATE_CHOOSE_VAL:
       mState = STATE_FINISHED;

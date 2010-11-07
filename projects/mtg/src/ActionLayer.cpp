@@ -232,7 +232,7 @@ void ActionLayer::setMenuObject(Targetable * object, bool must){
       abilitiesMenu->Add(i,currentAction->getMenuText());
     }
   }
-  if (!must) abilitiesMenu->Add(-1, "Cancel");
+  if (!must) abilitiesMenu->Add(kCancelMenuID, "Cancel");
   else cantCancel = 1;
   modal = 1;
 }

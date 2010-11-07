@@ -8,6 +8,15 @@
 #include "GameOptions.h"
 #include "Translate.h"
 
+namespace
+{
+  const int kSaveAndBackToMainMenuID = 1;
+  const int kBackToMainMenuID = 2;
+  const int kNewProfileID = 4;
+  const int kReloadID = 5;
+
+}
+
 GameStateOptions::GameStateOptions(GameApp* parent): GameState(parent), mReload(false), grabber(NULL), optionsMenu(NULL), optionsTabs(NULL) {}
 GameStateOptions::~GameStateOptions() {}
 
@@ -62,7 +71,7 @@ void GameStateOptions::Start()
 
   optionsList->Add(NEW WGuiSplit(cPrf,cThm));
   optionsList->Add(cStyle);
-  optionsList->Add(NEW WGuiButton(NEW WGuiHeader("New Profile"),-102,4,this));
+  optionsList->Add(NEW WGuiButton(NEW WGuiHeader("New Profile"),-102, kNewProfileID, this));
 
   optionsList->Add(NEW WDecoCheat(NEW OptionInteger(Options::CHEATMODE, "Enable cheat mode")));
   optionsTabs->Add(optionsList);
@@ -89,9 +98,9 @@ void GameStateOptions::Start()
   optionsTabs->Add(optionsList);
 
   optionsMenu = NEW SimpleMenu(-102, this,Fonts::MENU_FONT, 50,170);
-  optionsMenu->Add(2, "Back to Main Menu");
-  optionsMenu->Add(1, "Save & Back to Main Menu");
-  optionsMenu->Add(3, "Cancel");
+  optionsMenu->Add(kBackToMainMenuID, "Back to Main Menu");
+  optionsMenu->Add(kSaveAndBackToMainMenuID, "Save & Back to Main Menu");
+  optionsMenu->Add(kCancelMenuID, "Cancel");
 
   optionsTabs->Entering(JGE_BTN_NONE);
 }
@@ -245,21 +254,21 @@ void GameStateOptions::ButtonPressed(int controllerId, int controlId)
   //Exit menu?
   if(controllerId == -102)
   switch (controlId){
-  case 1:
+  case kSaveAndBackToMainMenuID:
     mState = SAVE;
     break;
     //Set Audio volume
-  case 2:
+  case kBackToMainMenuID:
     mParent->DoTransition(TRANSITION_FADE,GAME_STATE_MENU);
     break;
-  case 3:
+  case kCancelMenuID:
     mState = SHOW_OPTIONS;
     break;
-  case 4:
+  case kNewProfileID:
     options.keypadStart("",&newProfile);
     options.keypadTitle("New Profile");
     break;
-  case 5:
+  case kReloadID:
     mReload = true;
     break;
   }

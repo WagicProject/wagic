@@ -48,7 +48,7 @@ void GameStateStory::loadStoriesMenu(const char * root){
         for (size_t i = 0; i < stories.size(); ++i){
           menu->Add(i, stories[i].c_str());
         }
-        menu->Add(-1,"Cancel");
+        menu->Add(kCancelMenuID, "Cancel");
   }
 }
 
@@ -62,7 +62,7 @@ void GameStateStory::Update(float dt) {
   if (!menu && mEngine->GetButtonClick(JGE_BTN_MENU)){
       menu = NEW SimpleMenu(100, this, Fonts::MENU_FONT, SCREEN_WIDTH/2-100, 25);
       menu->Add(0,"Back to main menu");
-      menu->Add(-1, "Cancel");
+      menu->Add(kCancelMenuID, "Cancel");
   }
   if (menu) {
     menu->Update(dt);

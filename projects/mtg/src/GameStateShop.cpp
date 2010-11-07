@@ -417,7 +417,7 @@ void GameStateShop::Update(float dt)
       if (options[Options::CHEATMODE].number)
         menu->Add(-2,"Steal 1,000 credits");
       menu->Add(12,"Save & Back to Main Menu");
-      menu->Add(13, "Cancel");
+      menu->Add(kCancelMenuID, "Cancel");
     }
     break;
     case STAGE_SHOP_TASKS:
@@ -437,7 +437,7 @@ void GameStateShop::Update(float dt)
               menu = NEW SimpleMenu(11,this,Fonts::MENU_FONT,SCREEN_WIDTH/2-100,20);
               menu->Add(15,"Return to shop");
               menu->Add(12,"Save & Back to Main Menu");
-              menu->Add(13, "Cancel");
+              menu->Add(kCancelMenuID, "Cancel");
             }
           }
         }

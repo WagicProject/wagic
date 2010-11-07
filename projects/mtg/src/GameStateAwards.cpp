@@ -17,6 +17,12 @@ enum ENUM_AWARDS_STATE{
     STATE_DETAILS,
 };
 
+namespace
+{
+  const int kBackToTrophiesID = 2;
+  const int kBackToMainMenuID = 1;
+}
+
 GameStateAwards::GameStateAwards(GameApp* parent): GameState(parent){
 
 }
@@ -164,9 +170,9 @@ void GameStateAwards::Update(float dt)
           SAFE_DELETE(menu);
           menu = NEW SimpleMenu(-102, this,Fonts::MENU_FONT, 50,170);
           if(mState == STATE_DETAILS)
-            menu->Add(2, "Back to Trophies");
-          menu->Add(1, "Back to Main Menu");
-          menu->Add(3, "Cancel");
+            menu->Add(kBackToTrophiesID, "Back to Trophies");
+          menu->Add(kBackToMainMenuID, "Back to Main Menu");
+          menu->Add(kCancelMenuID, "Cancel");
           break;
       case JGE_BTN_PREV:
           mParent->DoTransition(TRANSITION_FADE,GAME_STATE_MENU);
@@ -321,11 +327,11 @@ void GameStateAwards::ButtonPressed(int controllerId, int controlId)
 {
    if(controllerId == -102)
   switch (controlId){
-    case 1:
+    case kBackToMainMenuID:
       mParent->DoTransition(TRANSITION_FADE,GAME_STATE_MENU);
       showMenu = false;
       break;
-    case 2:
+    case kBackToTrophiesID:
       mState = STATE_LISTVIEW;
       SAFE_DELETE(detailview);
       showMenu = false;

@@ -25,6 +25,8 @@
 #define JGUI_INITIAL_DELAY		0.4
 #define JGUI_REPEAT_DELAY		0.2
 
+const int kCancelMenuID = -1;
+
 class JGuiListener
 {
  public:
@@ -71,6 +73,7 @@ class JGuiController
 
 
   JButton mActionButton;
+  JButton mCancelButton;
   int mCurr;
   int mStyle;
 

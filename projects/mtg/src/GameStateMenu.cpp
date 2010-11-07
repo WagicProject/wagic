@@ -50,6 +50,7 @@ enum ENUM_MENU_STATE_MINOR
 
 enum
 {
+  SUBMENUITEM_CANCEL = kCancelMenuID,
   MENUITEM_PLAY,
   MENUITEM_DECKEDITOR,
   MENUITEM_SHOP,
@@ -58,7 +59,6 @@ enum
   SUBMENUITEM_1PLAYER,
   SUBMENUITEM_2PLAYER,
   SUBMENUITEM_DEMO,
-  SUBMENUITEM_CANCEL,
   SUBMENUITEM_TESTSUITE,
   SUBMENUITEM_MOMIR,
   SUBMENUITEM_CLASSIC,
@@ -651,101 +651,104 @@ void GameStateMenu::ButtonPressed(int controllerId, int controlId)
     break;
   default:
     switch (controlId)
-      {
-      case MENUITEM_PLAY:
-	    subMenuController = NEW SimpleMenu( MENU_FIRST_DUEL_SUBMENU, this, Fonts::MENU_FONT, 150,60);
-	    if (subMenuController){
-	      subMenuController->Add(SUBMENUITEM_1PLAYER,"1 Player");
+    {
+    case MENUITEM_PLAY:
+      subMenuController = NEW SimpleMenu( MENU_FIRST_DUEL_SUBMENU, this, Fonts::MENU_FONT, 150,60);
+      if (subMenuController){
+        subMenuController->Add(SUBMENUITEM_1PLAYER,"1 Player");
         // TODO Put 2 players mode back
         // This requires to fix the hand (to accept 2 players) OR to implement network game
-	      //subMenuController->Add(SUBMENUITEM_2PLAYER, "2 Players"); 
-	      subMenuController->Add(SUBMENUITEM_DEMO,"Demo");
-	      subMenuController->Add(SUBMENUITEM_CANCEL, "Cancel");
+        //subMenuController->Add(SUBMENUITEM_2PLAYER, "2 Players"); 
+        subMenuController->Add(SUBMENUITEM_DEMO,"Demo");
+        subMenuController->Add(SUBMENUITEM_CANCEL, "Cancel");
 #ifdef TESTSUITE
-	      subMenuController->Add(SUBMENUITEM_TESTSUITE, "Test Suite");
+        subMenuController->Add(SUBMENUITEM_TESTSUITE, "Test Suite");
 #endif
-	  currentState = MENU_STATE_MAJOR_SUBMENU | MENU_STATE_MINOR_NONE;
+        currentState = MENU_STATE_MAJOR_SUBMENU | MENU_STATE_MINOR_NONE;
       }
-	    break;
-      case MENUITEM_DECKEDITOR:
-	mParent->DoTransition(TRANSITION_FADE,GAME_STATE_DECK_VIEWER);
-	break;
-      case MENUITEM_SHOP:
-	mParent->DoTransition(TRANSITION_FADE,GAME_STATE_SHOP);
-	break;
-      case MENUITEM_OPTIONS:
-	mParent->DoTransition(TRANSITION_FADE,GAME_STATE_OPTIONS);
-	break;
-      case MENUITEM_EXIT:
-	mEngine->End();
-	break;
-      case SUBMENUITEM_1PLAYER:
-  mParent->players[0] = PLAYER_TYPE_HUMAN;
-	mParent->players[1] = PLAYER_TYPE_CPU;
-	subMenuController->Close();
-	currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
-	break;
-      case SUBMENUITEM_2PLAYER:
-  mParent->players[0] = PLAYER_TYPE_HUMAN;
-	mParent->players[1] = PLAYER_TYPE_HUMAN;
-	subMenuController->Close();
-	currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
-	break;
-      case SUBMENUITEM_DEMO:
-	mParent->players[0] = PLAYER_TYPE_CPU;
-	mParent->players[1] = PLAYER_TYPE_CPU;
-	subMenuController->Close();
-	currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
-	break;
-      case SUBMENUITEM_CANCEL:
-	subMenuController->Close();
-	currentState = MENU_STATE_MAJOR_MAINMENU | MENU_STATE_MINOR_SUBMENU_CLOSING;
-	break;
+      break;
+    case MENUITEM_DECKEDITOR:
+      mParent->DoTransition(TRANSITION_FADE,GAME_STATE_DECK_VIEWER);
+      break;
+    case MENUITEM_SHOP:
+      mParent->DoTransition(TRANSITION_FADE,GAME_STATE_SHOP);
+      break;
+    case MENUITEM_OPTIONS:
+      mParent->DoTransition(TRANSITION_FADE,GAME_STATE_OPTIONS);
+      break;
+    case MENUITEM_EXIT:
+      mEngine->End();
+      break;
+    case SUBMENUITEM_1PLAYER:
+      mParent->players[0] = PLAYER_TYPE_HUMAN;
+      mParent->players[1] = PLAYER_TYPE_CPU;
+      subMenuController->Close();
+      currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
+      break;
+    case SUBMENUITEM_2PLAYER:
+      mParent->players[0] = PLAYER_TYPE_HUMAN;
+      mParent->players[1] = PLAYER_TYPE_HUMAN;
+      subMenuController->Close();
+      currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
+      break;
+    case SUBMENUITEM_DEMO:
+      mParent->players[0] = PLAYER_TYPE_CPU;
+      mParent->players[1] = PLAYER_TYPE_CPU;
+      subMenuController->Close();
+      currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
+      break;
+    case SUBMENUITEM_CANCEL:
+      if (subMenuController != NULL)
+      {
+        subMenuController->Close();
+      }
+      currentState = MENU_STATE_MAJOR_MAINMENU | MENU_STATE_MINOR_SUBMENU_CLOSING;
+      break;
 
-  case SUBMENUITEM_CLASSIC:
-    this->hasChosenGameType = 1;
-    mParent->gameType = GAME_TYPE_CLASSIC;
-    subMenuController->Close();
-    currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
-    break;
+    case SUBMENUITEM_CLASSIC:
+      this->hasChosenGameType = 1;
+      mParent->gameType = GAME_TYPE_CLASSIC;
+      subMenuController->Close();
+      currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
+      break;
 
-  case SUBMENUITEM_MOMIR:
-    this->hasChosenGameType = 1;
-    mParent->gameType = GAME_TYPE_MOMIR;
-    subMenuController->Close();
-    currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
-    break;
+    case SUBMENUITEM_MOMIR:
+      this->hasChosenGameType = 1;
+      mParent->gameType = GAME_TYPE_MOMIR;
+      subMenuController->Close();
+      currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
+      break;
 
-  case SUBMENUITEM_RANDOM1:
-    this->hasChosenGameType = 1;
-    mParent->gameType = GAME_TYPE_RANDOM1;
-    subMenuController->Close();
-    currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
-    break;
+    case SUBMENUITEM_RANDOM1:
+      this->hasChosenGameType = 1;
+      mParent->gameType = GAME_TYPE_RANDOM1;
+      subMenuController->Close();
+      currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
+      break;
 
-  case SUBMENUITEM_RANDOM2:
-    this->hasChosenGameType = 1;
-    mParent->gameType = GAME_TYPE_RANDOM2;
-    subMenuController->Close();
-    currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
-    break;
+    case SUBMENUITEM_RANDOM2:
+      this->hasChosenGameType = 1;
+      mParent->gameType = GAME_TYPE_RANDOM2;
+      subMenuController->Close();
+      currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
+      break;
 
-  case SUBMENUITEM_STORY:
-    this->hasChosenGameType = 1;
-    mParent->gameType = GAME_TYPE_STORY;
-    subMenuController->Close();
-    currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
-    break;
+    case SUBMENUITEM_STORY:
+      this->hasChosenGameType = 1;
+      mParent->gameType = GAME_TYPE_STORY;
+      subMenuController->Close();
+      currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
+      break;
 
 #ifdef TESTSUITE
-      case SUBMENUITEM_TESTSUITE:
-	mParent->players[0] = PLAYER_TYPE_TESTSUITE;
-	mParent->players[1] = PLAYER_TYPE_TESTSUITE;
-	subMenuController->Close();
-	currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
-	break;
+    case SUBMENUITEM_TESTSUITE:
+      mParent->players[0] = PLAYER_TYPE_TESTSUITE;
+      mParent->players[1] = PLAYER_TYPE_TESTSUITE;
+      subMenuController->Close();
+      currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
+      break;
 #endif
-      }
+    }
     break;
   }
 }

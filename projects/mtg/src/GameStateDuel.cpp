@@ -129,7 +129,7 @@ void GameStateDuel::Start()
         fillDeckMenu(deckmenu,RESPATH"/player/premade");
     }
     deckmenu->Add( MENUITEM_NEW_DECK, "New Deck...", "Create a new deck to play with.");
-    deckmenu->Add( MENUITEM_MAIN_MENU, "Main Menu", "Return to Main Menu");
+    deckmenu->Add( MENUITEM_CANCEL, "Main Menu", "Return to Main Menu");
   } 
   
   for (int i = 0; i < 2; ++i){
@@ -556,7 +556,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId) {
           mGamePhase = DUEL_STATE_CHOOSE_DECK2_TO_PLAY;
           break;
         }
-        else if (controlId == MENUITEM_MAIN_MENU ) // user clicked on "Cancel"
+        else if (controlId == MENUITEM_MAIN_MENU || controlId == MENUITEM_CANCEL ) // user clicked on "Cancel"
         {            
             if (deckmenu) 
                 deckmenu->Close();

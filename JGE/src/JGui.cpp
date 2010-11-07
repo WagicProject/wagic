@@ -76,6 +76,7 @@ JGuiController::JGuiController(int id, JGuiListener* listener) : mId(id), mListe
   mShowCursor = false;
 
   mActionButton = JGE_BTN_OK;
+  mCancelButton = JGE_BTN_MENU;
 
   mStyle = JGUI_STYLE_WRAPPING;
 
@@ -108,6 +109,13 @@ bool JGuiController::CheckUserInput(JButton key){
       if (mListener != NULL)
         mListener->ButtonPressed(mId, mObjects[mCurr]->GetId());
       return true;
+    }
+  }
+  else if (key == mCancelButton)
+  {
+    if (mListener != NULL)
+    {
+      mListener->ButtonPressed(mId, kCancelMenuID);
     }
   }
   else if ((JGE_BTN_LEFT == key) || (JGE_BTN_UP == key)) // || mEngine->GetAnalogY() < 64 || mEngine->GetAnalogX() < 64)
