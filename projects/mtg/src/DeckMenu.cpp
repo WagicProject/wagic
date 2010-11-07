@@ -72,7 +72,7 @@ fontId(fontId) {
   // we want to cap the deck titles to 15 characters to avoid overflowing deck names
   title = _(_title);
 
-  titleFont = resources.GetWFont(Fonts::MAGIC_FONT);
+  titleFont = resources.GetWFont(Fonts::OPTION_FONT);
   startId = 0;
   selectionT = 0;
   timeOpen = 0;
@@ -146,7 +146,7 @@ void DeckMenu::Render()
         string text = currentMenuItem->desc;
         WFont *mainFont = resources.GetWFont(Fonts::MAIN_FONT);
         mainFont->DrawString(text.c_str(), descX, descY);
-        mFont->SetColor(ARGB(255,255,255,0));
+        mFont->SetColor(ARGB(255,255,255,255));
 
         // fill in the statistical portion
         if ( currentMenuItem->meta )
@@ -168,7 +168,12 @@ void DeckMenu::Render()
     renderer->RenderQuad( background, 0, 0 );
 
     if (!title.empty())
+    {
+      titleFont->SetColor(ARGB(100,255,255,255));
+      titleFont->SetScale(.8f);
       titleFont->DrawString(title.c_str(), titleX, titleY, JGETEXT_CENTER);
+      titleFont->SetScale(1.0f);
+    }
     
     scroller->Render();
   }

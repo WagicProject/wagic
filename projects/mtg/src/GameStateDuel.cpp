@@ -94,7 +94,7 @@ void GameStateDuel::Start()
     if (mParent->players[i] ==  PLAYER_TYPE_HUMAN){
       decksneeded = 1;
       
-      deckmenu = NEW DeckMenu(DUEL_MENU_CHOOSE_DECK, this, Fonts::MAGIC_FONT, "Choose a Deck");
+      deckmenu = NEW DeckMenu(DUEL_MENU_CHOOSE_DECK, this, Fonts::OPTION_FONT, "Choose a Deck");
 
       DeckManager *deckManager = DeckManager::GetInstance();
       vector<DeckMetaData *> playerDeckList = getValidDeckMetaData( options.profileFile() );
@@ -238,7 +238,7 @@ bool GameStateDuel::MusicExist(string FileName){
 
 void GameStateDuel::ensureOpponentMenu(){
   if (!opponentMenu){
-    opponentMenu = NEW DeckMenu(DUEL_MENU_CHOOSE_OPPONENT, this, Fonts::MAGIC_FONT, "Choose Your Opponent");
+    opponentMenu = NEW DeckMenu(DUEL_MENU_CHOOSE_OPPONENT, this, Fonts::OPTION_FONT, "Choose Your Opponent");
     opponentMenu->Add( MENUITEM_RANDOM_AI, "Random");
     if (options[Options::EVILTWIN_MODE_UNLOCKED].number)
       opponentMenu->Add( MENUITEM_EVIL_TWIN, "Evil Twin", _("Can you play against yourself?").c_str());
