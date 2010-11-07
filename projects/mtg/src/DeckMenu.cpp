@@ -17,6 +17,7 @@ namespace
   const float kDescriptionVerticalBoxPadding = 5;
   const float kDescriptionHorizontalBoxPadding = 5;
 }
+	#define ARGB(a, r, g, b)		(((a) << 24) | ((r) << 16) | ((g) << 8) | (b))
 
 hgeParticleSystem* DeckMenu::stars = NULL; 
 

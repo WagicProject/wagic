@@ -34,7 +34,11 @@ class Constants
   static const string kRetraceKeyword;
   static const string kKickerKeyword;
 
-   enum
+  // used for deck statistics
+  static const int STATS_FOR_TURNS = 8;
+  static const int STATS_MAX_MANA_COST = 9; 
+  
+  enum
   {
     MTG_COLOR_ARTIFACT = 0,
     MTG_COLOR_GREEN = 1,

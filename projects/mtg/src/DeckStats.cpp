@@ -144,3 +144,58 @@ void DeckStats::saveStats(Player *player, Player *opponent, GameObserver * game)
   }
   save(player);
 }
+
+
+StatsWrapper::StatsWrapper( int deckId )
+{
+    // Load deck statistics
+  char buffer[512];
+  DeckStats * stats = DeckStats::GetInstance();
+  aiDeckNames.clear();
+  aiDeckStats.clear();
+
+  sprintf(buffer, "stats/player_deck%i.txt", deckId);
+  string deckstats = options.profileFile(buffer);
+
+  if(fileExists(deckstats.c_str())){
+    stats->load(deckstats.c_str());
+    percentVictories = stats->percentVictories();
+    gamesPlayed = stats->nbGames();
+
+    // Detailed deck statistics against AI
+    int found = 1;
+    int nbDecks = 0;
+    while (found){
+      found = 0;
+      char buffer[512];
+      char smallDeckName[512];
+      sprintf(buffer, "%s/deck%i.txt",RESPATH"/ai/baka",nbDecks+1);
+      if(fileExists(buffer)){
+        MTGDeck * mtgd = NEW MTGDeck(buffer,NULL,1);
+        found = 1;
+        nbDecks++;
+
+        sprintf(smallDeckName, "%s_deck%i","ai_baka",nbDecks);
+        DeckStat* deckStat = stats->getDeckStat(string(smallDeckName));
+
+        if ((deckStat != NULL) && (deckStat->nbgames>0)) {
+          int percentVictories = stats->percentVictories(string(smallDeckName));
+          aiDeckNames.push_back(string(mtgd->meta_name));
+          aiDeckStats.push_back(deckStat);
+        }
+
+        delete mtgd;
+      }
+    }
+  } 
+  else {
+    gamesPlayed = 0;
+    percentVictories = 0;
+  }
+}
+
+StatsWrapper::~StatsWrapper()
+{
+  aiDeckNames.clear();
+  aiDeckStats.clear();
+}
