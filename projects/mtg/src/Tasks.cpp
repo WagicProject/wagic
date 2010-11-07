@@ -361,8 +361,8 @@ void TaskList::Start(){
   mState = TASKS_IN;
   if(!mBgTex){
     mBgTex = resources.RetrieveTexture("taskboard.png", RETRIEVE_LOCK);
-    float unitH = mBgTex->mHeight / 4;
-    float unitW = mBgTex->mWidth / 4;
+    float unitH = static_cast<float>(mBgTex->mHeight / 4);
+    float unitW = static_cast<float>(mBgTex->mWidth / 4);
     if(unitH == 0 || unitW == 0) return;
 
     for(int i=0;i<9;i++)
@@ -470,7 +470,7 @@ void TaskList::Render() {
   char buffer[300];
   string title = _("Task Board");
 
-  f3->DrawString(title.c_str(), (SCREEN_WIDTH-20)/2 - title.length()*4, posY);
+  f3->DrawString(title.c_str(), static_cast<float>((SCREEN_WIDTH-20)/2 - title.length()*4), posY);
   posY += 30;
 
   if (0 == tasks.size()) {
@@ -696,7 +696,7 @@ void TaskDelay::storeCustomAttribs() {
 void TaskDelay::restoreCustomAttribs() {
   turn = atoi(persistentAttribs[COMMON_ATTRIBS_COUNT].c_str());
   if (persistentAttribs.size() > COMMON_ATTRIBS_COUNT + 1) {
-    afterTurn = atoi(persistentAttribs[COMMON_ATTRIBS_COUNT+1].c_str());    
+    afterTurn = static_cast<bool>(atoi(persistentAttribs[COMMON_ATTRIBS_COUNT+1].c_str()));
   }
 }
 

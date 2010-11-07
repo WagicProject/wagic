@@ -390,7 +390,7 @@ void GameStateShop::Update(float dt)
   if (menu && menu->closed)
     SAFE_DELETE(menu);
   srcCards->Update(dt);
-  alphaChange = (500 - (int)((rand() % 1000)) * dt);
+  alphaChange = static_cast<int>(500 - (int)((rand() % 1000)) * dt);
   lightAlpha+= alphaChange;
   if (lightAlpha < 0) lightAlpha = 0;
   if (lightAlpha > 50) lightAlpha = 50;
@@ -589,7 +589,7 @@ void GameStateShop::Render()
       if( bListCards || elp > LIST_FADEIN){
         int alpha = 200;
         if(!bListCards && elp < LIST_FADEIN+.25){
-          alpha = 800 *(elp-LIST_FADEIN);
+          alpha = static_cast<int>(800 *(elp-LIST_FADEIN));
         }
         r->FillRoundRect(300,10, 160, SHOP_SLOTS * 20 + 15,5,ARGB(alpha,0,0,0));
         alpha += 55;
@@ -602,7 +602,7 @@ void GameStateShop::Render()
           string s = descPurchase(i,true);
           sprintf(buffer, "%s", s.c_str());
           float x = 310;
-          float y = 25 + 20*i;
+          float y = static_cast<float>(25 + 20*i);
           mFont->DrawString(buffer,x,y);
         }
       }
@@ -616,7 +616,7 @@ void GameStateShop::Render()
   mFont->SetColor(ARGB(255,255,255,255));
   mFont->DrawString(c, 5, SCREEN_HEIGHT - 12);
   sprintf(c, "%s", _("[]:other cards").c_str());
-  unsigned int len = 4 + mFont->GetStringWidth(c);
+  float len = 4 + mFont->GetStringWidth(c);
   mFont->DrawString(c,SCREEN_WIDTH-len,SCREEN_HEIGHT-14);
 
   mFont->SetColor(ARGB(255,255,255,0));

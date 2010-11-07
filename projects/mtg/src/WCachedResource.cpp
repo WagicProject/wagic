@@ -131,10 +131,10 @@ WTrackedQuad * WCachedTexture::GetTrackedQuad(float offX, float offY, float widt
 
   vector<WTrackedQuad*>::iterator it;
 
-  if(width == 0.0f || width > texture->mWidth)
-      width = texture->mWidth;
-  if(height == 0.0f || height > texture->mHeight)
-      height = texture->mHeight;
+  if(width == 0.0f || width > static_cast<float>(texture->mWidth))
+      width = static_cast<float>(texture->mWidth);
+  if(height == 0.0f || height > static_cast<float>(texture->mHeight))
+      height = static_cast<float>(texture->mHeight);
 
   for(it = trackedQuads.begin();it!=trackedQuads.end();it++){
     if((*it) && (*it)->resname == resname){
@@ -203,7 +203,7 @@ JQuad * WCachedTexture::GetQuad(string resname){
 JQuad * WCachedTexture::GetCard(float offX, float offY, float width, float height, string resname){
   JQuad * jq = GetQuad(offX,offY,width,height,resname);
   if(jq)
-    jq->SetHotSpot(jq->mTex->mWidth / 2, jq->mTex->mHeight / 2);
+    jq->SetHotSpot(static_cast<float>(jq->mTex->mWidth / 2), static_cast<float>(jq->mTex->mHeight / 2));
   
   return jq;
 }

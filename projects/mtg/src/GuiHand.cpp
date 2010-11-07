@@ -109,19 +109,19 @@ void GuiHandSelf::Repos()
       if (OptionHandDirection::HORIZONTAL == options[Options::HANDDIRECTION].number)
       {
         y = SCREEN_WIDTH - 30;
-        float dist = 240.0 / cards.size(); if (dist > 30) dist = 30; else y = SCREEN_WIDTH - 15;
+        float dist = 240.0f / cards.size(); if (dist > 30) dist = 30; else y = SCREEN_WIDTH - 15;
         for (vector<CardView*>::reverse_iterator it = cards.rbegin(); it != cards.rend(); ++it)
         {
           (*it)->x = y;
           (*it)->y = SCREEN_HEIGHT - 30;
           y -= dist;
-          (*it)->alpha = (q ? 0 : 255);
+          (*it)->alpha = static_cast<float>(q ? 0 : 255);
         }
         backpos.x = y + SCREEN_HEIGHT - 14;
       }
       else
       {
-        float dist = 224.0 / ((cards.size() + 1) / 2); if (dist > 65) dist = 65;
+        float dist = 224.0f / ((cards.size() + 1) / 2); if (dist > 65) dist = 65;
         bool flip = false;
         for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
         {
@@ -129,7 +129,7 @@ void GuiHandSelf::Repos()
           (*it)->y = y;
           if (flip) y += dist;
           flip = !flip;
-          (*it)->alpha = (q ? 0 : 255);
+          (*it)->alpha = static_cast<float>(q ? 0 : 255);
         }
       }
     }

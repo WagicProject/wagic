@@ -14,7 +14,7 @@ bool GuiStatic::Leaving(JButton key)
   return false;
 }
 
-GuiAvatar::GuiAvatar(float x, float y, bool hasFocus, Player * player, Corner corner, GuiAvatars* parent) : GuiStatic(GuiAvatar::Height, x, y, hasFocus, parent), avatarRed(255), currentLife(player->life),currentpoisonCount(player->poisonCount), corner(corner), player(player) {
+GuiAvatar::GuiAvatar(float x, float y, bool hasFocus, Player * player, Corner corner, GuiAvatars* parent) : GuiStatic(static_cast<float>(GuiAvatar::Height), x, y, hasFocus, parent), avatarRed(255), currentLife(player->life),currentpoisonCount(player->poisonCount), corner(corner), player(player) {
   type = GUI_AVATAR;
 }
 
@@ -203,8 +203,8 @@ void GuiGameZone::Update(float dt){
   }
 }
 
-GuiGameZone::GuiGameZone(float x, float y, bool hasFocus, MTGGameZone* zone, GuiAvatars* parent): GuiStatic(GuiGameZone::Height, x, y, hasFocus, parent), zone(zone){
-  cd = NEW CardDisplay(0, GameObserver::GetInstance(), x, y, this);
+GuiGameZone::GuiGameZone(float x, float y, bool hasFocus, MTGGameZone* zone, GuiAvatars* parent): GuiStatic(static_cast<float>(GuiGameZone::Height), x, y, hasFocus, parent), zone(zone){
+  cd = NEW CardDisplay(0, GameObserver::GetInstance(), static_cast<int>(x), static_cast<int>(y), this);
   cd->zone = zone;
   showCards = 0;
 }
@@ -236,7 +236,7 @@ int GuiGraveyard::receiveEventPlus(WEvent* e)
 	  t = NEW CardView(CardView::nullZone, event->card, *(event->card->view));
 	else
 	  t = NEW CardView(CardView::nullZone, event->card, x, y);
-	t->x = x + Width / 2; t->y = y + Height / 2; t->zoom = 0.6; t->alpha = 0;
+	t->x = x + Width / 2; t->y = y + Height / 2; t->zoom = 0.6f; t->alpha = 0;
 	cards.push_back(t);
 	return 1;
       }
@@ -279,7 +279,7 @@ int GuiOpponentHand::receiveEventPlus(WEvent* e)
 	  t = NEW CardView(CardView::nullZone, event->card, *(event->card->view));
 	else
 	  t = NEW CardView(CardView::nullZone, event->card, x, y);
-	t->x = x + Width / 2; t->y = y + Height / 2; t->zoom = 0.6; t->alpha = 0;
+	t->x = x + Width / 2; t->y = y + Height / 2; t->zoom = 0.6f; t->alpha = 0;
 	cards.push_back(t);
 	return 1;
       }

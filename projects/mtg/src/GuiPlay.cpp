@@ -103,7 +103,7 @@ void GuiPlay::BattleField::Update(float dt)
     height += 10 * dt * (HEIGHT - height);
 
   if (colorFlow){
-    red+= colorFlow * 300 *  dt;
+    red+= static_cast<int>(colorFlow * 300 *  dt);
     if (red < 0) red = 0;
     if (red > 70) red = 70;
   }

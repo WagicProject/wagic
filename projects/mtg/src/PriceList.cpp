@@ -95,12 +95,12 @@ float PriceList::difficultyScalar(float price, int cardid){
   return (price + price * badluck);
 }
 int PriceList::getPurchasePrice(int cardid){
-  float p = difficultyScalar(getPrice(cardid),cardid);
+  float p = difficultyScalar((float)getPrice(cardid),cardid);
   if(p < 2) p = 2; //Prevents "Sell for 0 credits"
   return (int)p;    
 }
 int PriceList::getOtherPrice(int amt){
-  float p = difficultyScalar(amt,0);
+  float p = difficultyScalar((float)amt,0);
   if(p < 2) p = 2;
   return (int)p;    
 }

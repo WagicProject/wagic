@@ -39,7 +39,7 @@ class MenuItem: public JGuiObject
   virtual void Entering();
   virtual bool Leaving(JButton key);
   virtual bool ButtonPressed();
-  virtual bool getTopLeft(int& top, int& left) {top = mY; left = mX; return true;};
+  virtual bool getTopLeft(float& top, float& left) {top = mY; left = mX; return true;};
 
   virtual ostream& toString(ostream& out) const;
 };

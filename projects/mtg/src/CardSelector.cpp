@@ -198,7 +198,7 @@ bool CardSelector::CheckUserInput(int x, int y)
     return true;
   }
   Target* oldactive = active;
-  active = closest<True>(cards, limitor, x, y);
+  active = closest<True>(cards, limitor, static_cast<float>(x), static_cast<float>(y));
 
   if (active != oldactive) {
     CardView::SelectorZone oldowner, owner;
