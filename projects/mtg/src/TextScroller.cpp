@@ -66,12 +66,12 @@ void TextScroller::Update(float dt){
     if ( timer == 0 )
     {
       size_t nbItemsToDisplay = ( minimumItems < strings.size() ? minimumItems : strings.size());
-      for ( size_t idx = 0; idx < nbItemsToDisplay; idx ++ )
+      for ( size_t idx = 0; idx < nbItemsToDisplay; ++idx)
       {
         scrollerText << strings[currentId + idx];
       }
       currentId++;
-      if ( currentId >= (strings.size()-1) )
+      if ( currentId >= strings.size())
         currentId = 0;
       mText = wordWrap( scrollerText.str(), (int) mWidth );
     }
