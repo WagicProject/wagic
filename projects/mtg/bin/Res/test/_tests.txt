@@ -391,6 +391,7 @@ OneDozenEyes.txt
 orcish_artillery.txt
 orcish_lumberjack.txt
 overrun.txt
+paradise_mantle.txt
 paralysis.txt
 paralysis2.txt
 persuasion.txt

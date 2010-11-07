@@ -38929,6 +38929,18 @@ power=6
 toughness=3
 [/card]
 [card]
+name=Paradise Mantle
+auto=teach(creature) {t}:add{r}
+auto=teach(creature) {t}:add{w}
+auto=teach(creature) {t}:add{b}
+auto=teach(creature) {t}:add{u}
+auto=teach(creature) {t}:add{g}
+auto={1}:equip
+type=artifact
+subtype=equipment
+mana={0}
+[/card]
+[card]
 name=Paradise Plume
 auto=choice name(White) && counter(0/0,1,White) all(this)
 auto=choice name(Blue) && counter(0/0,1,Blue) all(this)

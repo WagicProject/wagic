@@ -6,5 +6,4 @@ wallpapers/kaioshin_garruk.jpg
 wallpapers/kaioshin_jace.jpg
 graphics/shop.jpg
 themes/Classic/backdrop.jpg
-themes/Jade/backdrop.jpg
 wallpapers/kaioshin_ravager.jpg

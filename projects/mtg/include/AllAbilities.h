@@ -2469,7 +2469,7 @@ public:
 		source->target = NULL;
 		for (size_t i = 0; i < currentAbilities.size(); ++i){
 			MTGAbility * a = currentAbilities[i];
-			if(dynamic_cast<AEquip *>(a)){
+			if(dynamic_cast<AEquip *>(a) || dynamic_cast<ATeach *>(a)){
 				SAFE_DELETE(a);
 				continue;
 			}

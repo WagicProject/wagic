@@ -232,10 +232,10 @@ void TestSuiteState::parsePlayerState(int playerId, string s){
       unsigned int value;
       limiter = s.find(",");
       if (limiter != string::npos){
-        value = Rules::getMTGId(s.substr(0,limiter));
+        value = Rules::getMTGId(trim(s.substr(0,limiter)));
 	      s = s.substr(limiter+1);
       }else{
-	      value = Rules::getMTGId(s);
+	      value = Rules::getMTGId(trim(s));
 	      s = "";
       }
       if (value) playerData[playerId].zones[area].add(value);

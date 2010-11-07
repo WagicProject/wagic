@@ -1,0 +1,20 @@
+#Bug: "Teach" functionality has a memory leak whenever it equips a creature
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:grizzly bears,raging goblin
+hand:paradise mantle
+manapool:{2}
+[PLAYER2]
+[DO]
+paradise mantle
+paradise mantle
+grizzly bears
+paradise mantle
+raging goblin
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:grizzly bears,raging goblin, paradise mantle
+[PLAYER2]
+[END]
