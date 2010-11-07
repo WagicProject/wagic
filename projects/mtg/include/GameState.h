@@ -66,19 +66,19 @@ class GameState
   // it makes it easier to manipulate the deck information menus.
   
   // generate the Deck Meta Data and build the menu items of the menu given
-  static vector<DeckMetaData *> fillDeckMenu(SimpleMenu * _menu, string path, string smallDeckPrefix = "", Player * statsPlayer = NULL);
+  static vector<DeckMetaData *> fillDeckMenu(SimpleMenu * _menu, const string& path, const string& smallDeckPrefix = "", Player * statsPlayer = NULL);
 
   // generate the Deck Meta Data and build the menu items of the menu given
-  static vector<DeckMetaData *> fillDeckMenu(DeckMenu * _menu, string path, string smallDeckPrefix = "", Player * statsPlayer = NULL);
+  static vector<DeckMetaData *> fillDeckMenu(DeckMenu * _menu, const string& path, const string& smallDeckPrefix = "", Player * statsPlayer = NULL);
   
   // build a vector of decks with the information passsed in. 
-  static vector<DeckMetaData *> getValidDeckMetaData(string path, string smallDeckPrefix = "", Player * statsPlayer = NULL);
+  static vector<DeckMetaData *> getValidDeckMetaData(const string& path, const string& smallDeckPrefix = "", Player * statsPlayer = NULL);
   
   // build menu items based on the vector<DeckMetaData *>
-  static void renderDeckMenu(SimpleMenu * _menu, vector<DeckMetaData *> deckMetaDataList);
+  static void renderDeckMenu(SimpleMenu * _menu, const vector<DeckMetaData *>& deckMetaDataList);
 
     // build menu items based on the vector<DeckMetaData *>
-  static void renderDeckMenu(DeckMenu * _menu, vector<DeckMetaData *> deckMetaDataList);
+  static void renderDeckMenu(DeckMenu * _menu, const vector<DeckMetaData *>& deckMetaDataList);
 
   };
   bool sortByName( DeckMetaData * d1, DeckMetaData * d2 );

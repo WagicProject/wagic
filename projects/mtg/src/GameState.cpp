@@ -13,7 +13,7 @@
 // TODO: revise sorting strategy to allow other types of sorting.  Currently, it is hardwired to use
 //    sortByName to do the sorting.  This was done since the menu item display is done in insertion order.
 
-vector<DeckMetaData *> GameState::fillDeckMenu( SimpleMenu * _menu, string path, string smallDeckPrefix, Player * statsPlayer){
+vector<DeckMetaData *> GameState::fillDeckMenu( SimpleMenu * _menu, const string& path, const string& smallDeckPrefix, Player * statsPlayer){
   bool translate = _menu->autoTranslate;
   _menu->autoTranslate = false;
   vector<DeckMetaData *> deckMetaDataVector = getValidDeckMetaData( path, smallDeckPrefix, statsPlayer );
@@ -23,7 +23,7 @@ vector<DeckMetaData *> GameState::fillDeckMenu( SimpleMenu * _menu, string path,
   return deckMetaDataVector;
 }
 
-vector<DeckMetaData *> GameState::fillDeckMenu( DeckMenu * _menu, string path, string smallDeckPrefix, Player * statsPlayer){
+vector<DeckMetaData *> GameState::fillDeckMenu( DeckMenu * _menu, const string& path, const string& smallDeckPrefix, Player * statsPlayer){
   bool translate = _menu->autoTranslate;
   _menu->autoTranslate = false;
   vector<DeckMetaData *> deckMetaDataVector = getValidDeckMetaData( path, smallDeckPrefix, statsPlayer );
@@ -34,7 +34,7 @@ vector<DeckMetaData *> GameState::fillDeckMenu( DeckMenu * _menu, string path, s
 }
 
 
-vector<DeckMetaData *> GameState::getValidDeckMetaData( string path, string smallDeckPrefix, Player * statsPlayer)
+vector<DeckMetaData *> GameState::getValidDeckMetaData( const string& path, const string& smallDeckPrefix, Player * statsPlayer)
 {
   vector<DeckMetaData*> retList;
   
@@ -43,30 +43,25 @@ vector<DeckMetaData *> GameState::getValidDeckMetaData( string path, string smal
   int nbDecks = 1;
   while (found){
     found = 0;
-    char buffer[512];
-    char smallDeckName[512];
-    char deckDesc[512];
-    sprintf(buffer, "%s/deck%i.txt",path.c_str(),nbDecks);
-
-    DeckMetaData * meta = metas->get(buffer, statsPlayer);
+    std::ostringstream filename;
+    filename << path << "/deck" << nbDecks << ".txt";
+    DeckMetaData * meta = metas->get(filename.str(), statsPlayer);
     if (meta)
     {
       found = 1;
-      sprintf(smallDeckName, "%s_deck%i",smallDeckPrefix.c_str(),nbDecks);
       if (statsPlayer){
-        string smallDeckNameStr = string(smallDeckName);
-        meta->loadStatsForPlayer( statsPlayer, smallDeckNameStr );
+        std::ostringstream smallDeckName;
+        smallDeckName << smallDeckPrefix << "_deck" << nbDecks;
+        meta->loadStatsForPlayer( statsPlayer, smallDeckName.str());
       }
       else
       {
-        char playerStatsDeckName[512];
-
-        sprintf(playerStatsDeckName, "stats/player_deck%i.txt", nbDecks);
-        string deckstats = options.profileFile(playerStatsDeckName);
+        std::ostringstream playerStatsDeckName;
+        playerStatsDeckName << "stats/player_deck" << nbDecks << ".txt";
+        string deckstats = options.profileFile(playerStatsDeckName.str());
         meta->loadStatsForPlayer( NULL, deckstats );
       }
 
-      deckDesc[16] = 0;
       retList.push_back( meta );
       nbDecks++;
     }
@@ -81,12 +76,12 @@ vector<DeckMetaData *> GameState::getValidDeckMetaData( string path, string smal
 
 
 // build a menu with the given deck list and return a vector of the deck ids created.
-void GameState::renderDeckMenu ( SimpleMenu * _menu, vector<DeckMetaData *> deckMetaDataList )
+void GameState::renderDeckMenu ( SimpleMenu * _menu, const vector<DeckMetaData *>& deckMetaDataList )
 {
   int deckNumber = 1;
   Translator * t = Translator::GetInstance();
   map<string,string>::iterator it;
-  for (vector<DeckMetaData *>::iterator i = deckMetaDataList.begin(); i != deckMetaDataList.end(); i++)
+  for (vector<DeckMetaData *>::const_iterator i = deckMetaDataList.begin(); i != deckMetaDataList.end(); i++)
   {
     DeckMetaData * deckMetaData = *i;
     string deckName = deckMetaData -> getName();
@@ -102,12 +97,12 @@ void GameState::renderDeckMenu ( SimpleMenu * _menu, vector<DeckMetaData *> deck
 
 
 // build a menu with the given deck list and return a vector of the deck ids created.
-void GameState::renderDeckMenu ( DeckMenu * _menu, vector<DeckMetaData *> deckMetaDataList )
+void GameState::renderDeckMenu ( DeckMenu * _menu, const vector<DeckMetaData *>& deckMetaDataList )
 {
   int deckNumber = 1;
   Translator * t = Translator::GetInstance();
   map<string,string>::iterator it;
-  for (vector<DeckMetaData *>::iterator i = deckMetaDataList.begin(); i != deckMetaDataList.end(); i++)
+  for (vector<DeckMetaData *>::const_iterator i = deckMetaDataList.begin(); i != deckMetaDataList.end(); i++)
   {
     DeckMetaData * deckMetaData = *i;
     string deckName = deckMetaData -> getName();

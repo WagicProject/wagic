@@ -211,19 +211,17 @@ void DeckMenu::Add(int id, const char * text,string desc, bool forceFocus, DeckM
   }
 }
 
-
 void DeckMenu::updateScroller()
 {
   // add all the items from the Tasks db.
-  TaskList *taskList = NEW TaskList();
+  TaskList taskList;
   scroller->Reset();
-  for (vector<Task*>::iterator it = taskList->tasks.begin(); it!=taskList->tasks.end(); it++)
+  for (vector<Task*>::iterator it = taskList.tasks.begin(); it!=taskList.tasks.end(); it++)
   {
     ostringstream taskDescription;
     taskDescription << "[ " << setw(4) << (*it)->getReward() << " / " << (*it)->getExpiration() << " ]   " << (*it)->getDesc() << endl;
     scroller->Add( taskDescription.str() );
   }
-  SAFE_DELETE(taskList);
 }
 
 
@@ -241,5 +239,4 @@ void DeckMenu::destroy(){
 DeckMenu::~DeckMenu()
 {
   SAFE_DELETE(scroller);
-
 }
