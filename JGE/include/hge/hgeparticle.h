@@ -17,6 +17,8 @@
 #include "hgecolor.h"
 #include "hgerect.h"
 
+#include <list>
+
 class JQuad;
 
 #define MAX_PARTICLES	500
@@ -109,27 +111,28 @@ public:
 	float				GetAge() const { return fAge; }
 	void				GetPosition(float *x, float *y) const { *x=vecLocation.x; *y=vecLocation.y; }
 	void				GetTransposition(float *x, float *y) const { *x=fTx; *y=fTy; }
-	hgeRect*			GetBoundingBox(hgeRect *rect) const { memcpy(rect, &rectBoundingBox, sizeof(hgeRect)); return rect; }
+	hgeRect*		GetBoundingBox(hgeRect *rect) const { memcpy(rect, &rectBoundingBox, sizeof(hgeRect)); return rect; }
 
 private:
 	hgeParticleSystem();
 
 	//static HGE			*hge;
 
-	float				fAge;
-	float				fEmissionResidue;
+  float     fAge;
+  float     fEmissionResidue;
 
-	hgeVector			vecPrevLocation;
-	hgeVector			vecLocation;
-	float				fTx, fTy;
+  hgeVector vecPrevLocation;
+  hgeVector vecLocation;
+  float     fTx, fTy;
 
-	int					nParticlesAlive;
-	hgeRect				rectBoundingBox;
-	bool				bUpdateBoundingBox;
+  int       nParticlesAlive;
+  hgeRect   rectBoundingBox;
+  bool      bUpdateBoundingBox;
 
-	hgeParticle			particles[MAX_PARTICLES];
+  typedef std::list<hgeParticle> ParticleBuffer;
+  ParticleBuffer mParticleBuffer;
 
-	float				mTimer;
+  float mTimer;
 };
 
 class hgeParticleManager

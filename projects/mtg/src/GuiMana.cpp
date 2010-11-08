@@ -98,7 +98,9 @@ ManaIcon::ManaIcon(int color, float x, float y, float destx, float desty) : Pos(
   else
     particleSys = NEW hgeParticleSystem(psi); //Cache will clean psi up later.
 
-
+  // if we want to throttle the amount of particles for mana,
+  // here's where to do it - this is hardcoded to something like 114 in the psi file
+  particleSys->info.nEmission = 60;
   icon = manaIcons[color];
 
   particleSys->FireAt(x, y);
@@ -252,15 +254,15 @@ void GuiMana::RenderStatic(){
 
 void GuiMana::Render()
 {
-  
   for (vector<ManaIcon*>::iterator it = manas.begin(); it != manas.end(); ++it)
     (*it)->Render();
 
   if (OptionManaDisplay::DYNAMIC != options[Options::MANADISPLAY].number)
     RenderStatic();
-
 }
+
 bool remove_dead(ManaIcon* m) { return ManaIcon::DEAD != m->mode; }
+
 void GuiMana::Update(float dt)
 {
   {

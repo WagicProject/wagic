@@ -29,20 +29,20 @@ unsigned int g_seed=0;
 
 void Random_Seed(int seed)
 {
-	if(!seed) g_seed=JGE::GetInstance()->GetTime();
-	else g_seed=seed;
+  if(!seed) g_seed=JGE::GetInstance()->GetTime();
+  else g_seed=seed;
 }
 
 int Random_Int(int min, int max)
 {
-	g_seed=214013*g_seed+2531011;
-	return min+(g_seed ^ g_seed>>15)%(max-min+1);
+  g_seed=214013*g_seed+2531011;
+  return min+(g_seed ^ g_seed>>15)%(max-min+1);
 }
 
 float Random_Float(float min, float max)
 {
-	g_seed=214013*g_seed+2531011;
-	return min+(g_seed>>16)*(1.0f/65535.0f)*(max-min);
+  g_seed=214013*g_seed+2531011;
+  return min+(g_seed>>16)*(1.0f/65535.0f)*(max-min);
 }
 
 
@@ -50,19 +50,19 @@ float Random_Float(float min, float max)
 
 hgeParticleSystem::hgeParticleSystem(const char *filename, JQuad *sprite)
 {
-	//void *psi;
-	//hgeParticleSystemInfo psi;
+  //void *psi;
+  //hgeParticleSystemInfo psi;
 
-	JFileSystem* fileSys = JFileSystem::GetInstance();
-	//hge=hgeCreate(HGE_VERSION);
+  JFileSystem* fileSys = JFileSystem::GetInstance();
+  //hge=hgeCreate(HGE_VERSION);
 
-	//psi=hge->Resource_Load(filename);
-	if (!fileSys->OpenFile(filename)) return;
+  //psi=hge->Resource_Load(filename);
+  if (!fileSys->OpenFile(filename)) return;
 
-	//if(!psi) return;
+  //if(!psi) return;
 
-	//memcpy(&info, psi, sizeof(hgeParticleSystemInfo));
-	//hge->Resource_Free(psi);
+  //memcpy(&info, psi, sizeof(hgeParticleSystemInfo));
+  //hge->Resource_Free(psi);
 
   // Skip reading the pointer as it may be larger than 4 bytes in the structure
   void *dummyPointer;
@@ -73,240 +73,234 @@ hgeParticleSystem::hgeParticleSystem(const char *filename, JQuad *sprite)
   fileSys->ReadFile(&(info.nEmission), sizeof(hgeParticleSystemInfo));
   fileSys->CloseFile();
 
-	info.sprite=sprite;
-//  	info.fGravityMin *= 100;
-//  	info.fGravityMax *= 100;
-// 	info.fSpeedMin *= 100;
-// 	info.fSpeedMax *= 100;
+  info.sprite=sprite;
+  //  	info.fGravityMin *= 100;
+  //  	info.fGravityMax *= 100;
+  // 	info.fSpeedMin *= 100;
+  // 	info.fSpeedMax *= 100;
 
-	vecLocation.x=vecPrevLocation.x=0.0f;
-	vecLocation.y=vecPrevLocation.y=0.0f;
-	fTx=fTy=0;
+  vecLocation.x=vecPrevLocation.x=0.0f;
+  vecLocation.y=vecPrevLocation.y=0.0f;
+  fTx=fTy=0;
 
-	fEmissionResidue=0.0f;
-	nParticlesAlive=0;
-	fAge=-2.0;
-	mTimer = 0.0f;
+  fEmissionResidue=0.0f;
+  nParticlesAlive=0;
+  fAge=-2.0;
+  mTimer = 0.0f;
 
-	rectBoundingBox.Clear();
-	bUpdateBoundingBox=false;
+  rectBoundingBox.Clear();
+  bUpdateBoundingBox=false;
 }
 
 hgeParticleSystem::hgeParticleSystem(hgeParticleSystemInfo *psi)
 {
-	//hge=hgeCreate(HGE_VERSION);
+  //hge=hgeCreate(HGE_VERSION);
 
-	memcpy(&info, psi, sizeof(hgeParticleSystemInfo));
+  memcpy(&info, psi, sizeof(hgeParticleSystemInfo));
 
-	vecLocation.x=vecPrevLocation.x=0.0f;
-	vecLocation.y=vecPrevLocation.y=0.0f;
-	fTx=fTy=0;
+  vecLocation.x=vecPrevLocation.x=0.0f;
+  vecLocation.y=vecPrevLocation.y=0.0f;
+  fTx=fTy=0;
 
-	fEmissionResidue=0.0f;
-	nParticlesAlive=0;
-	fAge=-2.0;
-	mTimer = 0.0f;
+  fEmissionResidue=0.0f;
+  nParticlesAlive=0;
+  fAge=-2.0;
+  mTimer = 0.0f;
 
-	rectBoundingBox.Clear();
-	bUpdateBoundingBox=false;
+  rectBoundingBox.Clear();
+  bUpdateBoundingBox=false;
 }
 
 hgeParticleSystem::hgeParticleSystem(const hgeParticleSystem &ps)
 {
-	memcpy(this, &ps, sizeof(hgeParticleSystem));
-	//hge=hgeCreate(HGE_VERSION);
+  memcpy(this, &ps, sizeof(hgeParticleSystem));
+  //hge=hgeCreate(HGE_VERSION);
 }
 
 void hgeParticleSystem::Update(float fDeltaTime)
 {
-	int i;
-	float ang;
-	hgeParticle *par;
-	hgeVector vecAccel, vecAccel2;
+  int i;
+  float ang;
+  hgeVector vecAccel, vecAccel2;
 
-	if(fAge >= 0)
-	{
-		fAge += fDeltaTime;
-		if(fAge >= info.fLifetime) fAge = -2.0f;
-	}
+  if(fAge >= 0)
+  {
+    fAge += fDeltaTime;
+    if(fAge >= info.fLifetime) fAge = -2.0f;
+  }
 
-	mTimer += fDeltaTime;
-	if (mTimer < 0.01f)
-		return;
+  mTimer += fDeltaTime;
+  if (mTimer < 0.01f)
+    return;
 
-	fDeltaTime = mTimer;
-	mTimer = 0.0f;
+  fDeltaTime = mTimer;
+  mTimer = 0.0f;
 
 
-	// update all alive particles
+  // update all alive particles
 
-	if(bUpdateBoundingBox) rectBoundingBox.Clear();
-	par=particles;
+  if(bUpdateBoundingBox) rectBoundingBox.Clear();
 
-	for(i=0; i<nParticlesAlive; i++)
-	{
-		par->fAge += fDeltaTime;
-		if(par->fAge >= par->fTerminalAge)
-		{
-			nParticlesAlive--;
-			if (par != &particles[nParticlesAlive])
-			  memcpy(par, &particles[nParticlesAlive], sizeof(hgeParticle));
-			i--;
-			continue;
-		}
+  ParticleBuffer::iterator particle = mParticleBuffer.begin();
+  while(particle != mParticleBuffer.end())
+  {
+    particle->fAge += fDeltaTime;
+    if(particle->fAge >= particle->fTerminalAge)
+    {
+      nParticlesAlive--;
+      ++particle;
+      mParticleBuffer.pop_front();
+      continue;
+    }
 
-		vecAccel = par->vecLocation-vecLocation;
-		vecAccel.Normalize();
-		vecAccel2 = vecAccel;
-		vecAccel *= par->fRadialAccel;
+    vecAccel = particle->vecLocation-vecLocation;
+    vecAccel.Normalize();
+    vecAccel2 = vecAccel;
+    vecAccel *= particle->fRadialAccel;
 
-		// vecAccel2.Rotate(M_PI_2);
-		// the following is faster
-		ang = vecAccel2.x;
-		vecAccel2.x = -vecAccel2.y;
-		vecAccel2.y = ang;
+    // vecAccel2.Rotate(M_PI_2);
+    // the following is faster
+    ang = vecAccel2.x;
+    vecAccel2.x = -vecAccel2.y;
+    vecAccel2.y = ang;
 
-		vecAccel2 *= par->fTangentialAccel;
-		par->vecVelocity += (vecAccel+vecAccel2)*fDeltaTime;
-		par->vecVelocity.y += par->fGravity*fDeltaTime;
+    vecAccel2 *= particle->fTangentialAccel;
+    particle->vecVelocity += (vecAccel+vecAccel2)*fDeltaTime;
+    particle->vecVelocity.y += particle->fGravity*fDeltaTime;
 
-		//par->vecVelocity.y = 0.1f;
-		par->vecLocation += par->vecVelocity;
+    //par->vecVelocity.y = 0.1f;
+    particle->vecLocation += particle->vecVelocity;
 
-		par->fSpin += par->fSpinDelta*fDeltaTime;
-		par->fSize += par->fSizeDelta*fDeltaTime;
-		par->colColor += par->colColorDelta*fDeltaTime;
+    particle->fSpin += particle->fSpinDelta*fDeltaTime;
+    particle->fSize += particle->fSizeDelta*fDeltaTime;
+    particle->colColor += particle->colColorDelta*fDeltaTime;
 
-		if(bUpdateBoundingBox) rectBoundingBox.Encapsulate(par->vecLocation.x, par->vecLocation.y);
+    if(bUpdateBoundingBox) rectBoundingBox.Encapsulate(particle->vecLocation.x, particle->vecLocation.y);
 
-		par++;
-	}
+    ++particle;
+  }
 
-	// generate new particles
+  // generate new particles
 
-	if(fAge != -2.0f)
-	{
-		float fParticlesNeeded = info.nEmission*fDeltaTime + fEmissionResidue;
-		int nParticlesCreated = (unsigned int)fParticlesNeeded;
-		fEmissionResidue=fParticlesNeeded-nParticlesCreated;
+  if(fAge != -2.0f)
+  {
+    float fParticlesNeeded = info.nEmission*fDeltaTime + fEmissionResidue;
+    int nParticlesCreated = (unsigned int)fParticlesNeeded;
+    fEmissionResidue=fParticlesNeeded-nParticlesCreated;
 
-		par=&particles[nParticlesAlive];
+    for(i=0; i<nParticlesCreated; i++)
+    {
+      if(nParticlesAlive>=MAX_PARTICLES) break;
 
-		for(i=0; i<nParticlesCreated; i++)
-		{
-			if(nParticlesAlive>=MAX_PARTICLES) break;
+      hgeParticle newParticle;
+      newParticle.fAge = 0.0f;
+      newParticle.fTerminalAge = Random_Float(info.fParticleLifeMin, info.fParticleLifeMax);
 
-			par->fAge = 0.0f;
-			par->fTerminalAge = Random_Float(info.fParticleLifeMin, info.fParticleLifeMax);
+      newParticle.vecLocation = vecPrevLocation+(vecLocation-vecPrevLocation)*Random_Float(0.0f, 1.0f);
+      newParticle.vecLocation.x += Random_Float(-2.0f, 2.0f);
+      newParticle.vecLocation.y += Random_Float(-2.0f, 2.0f);
 
-			par->vecLocation = vecPrevLocation+(vecLocation-vecPrevLocation)*Random_Float(0.0f, 1.0f);
-			par->vecLocation.x += Random_Float(-2.0f, 2.0f);
-			par->vecLocation.y += Random_Float(-2.0f, 2.0f);
+      ang=info.fDirection-M_PI_2+Random_Float(0,info.fSpread)-info.fSpread/2.0f;
+      if(info.bRelative) ang += (vecPrevLocation-vecLocation).Angle()+M_PI_2;
+      newParticle.vecVelocity.x = cosf(ang);
+      newParticle.vecVelocity.y = sinf(ang);
+      newParticle.vecVelocity *= Random_Float(info.fSpeedMin, info.fSpeedMax);
 
-			ang=info.fDirection-M_PI_2+Random_Float(0,info.fSpread)-info.fSpread/2.0f;
-			if(info.bRelative) ang += (vecPrevLocation-vecLocation).Angle()+M_PI_2;
-			par->vecVelocity.x = cosf(ang);
-			par->vecVelocity.y = sinf(ang);
-			par->vecVelocity *= Random_Float(info.fSpeedMin, info.fSpeedMax);
+      newParticle.fGravity = Random_Float(info.fGravityMin, info.fGravityMax);
+      newParticle.fRadialAccel = Random_Float(info.fRadialAccelMin, info.fRadialAccelMax);
+      newParticle.fTangentialAccel = Random_Float(info.fTangentialAccelMin, info.fTangentialAccelMax);
 
-			par->fGravity = Random_Float(info.fGravityMin, info.fGravityMax);
-			par->fRadialAccel = Random_Float(info.fRadialAccelMin, info.fRadialAccelMax);
-			par->fTangentialAccel = Random_Float(info.fTangentialAccelMin, info.fTangentialAccelMax);
+      newParticle.fSize = Random_Float(info.fSizeStart, info.fSizeStart+(info.fSizeEnd-info.fSizeStart)*info.fSizeVar);
+      newParticle.fSizeDelta = (info.fSizeEnd-newParticle.fSize) / newParticle.fTerminalAge;
 
-			par->fSize = Random_Float(info.fSizeStart, info.fSizeStart+(info.fSizeEnd-info.fSizeStart)*info.fSizeVar);
-			par->fSizeDelta = (info.fSizeEnd-par->fSize) / par->fTerminalAge;
+      newParticle.fSpin = Random_Float(info.fSpinStart, info.fSpinStart+(info.fSpinEnd-info.fSpinStart)*info.fSpinVar);
+      newParticle.fSpinDelta = (info.fSpinEnd-newParticle.fSpin) / newParticle.fTerminalAge;
 
-			par->fSpin = Random_Float(info.fSpinStart, info.fSpinStart+(info.fSpinEnd-info.fSpinStart)*info.fSpinVar);
-			par->fSpinDelta = (info.fSpinEnd-par->fSpin) / par->fTerminalAge;
+      newParticle.colColor.r = Random_Float(info.colColorStart.r, info.colColorStart.r+(info.colColorEnd.r-info.colColorStart.r)*info.fColorVar);
+      newParticle.colColor.g = Random_Float(info.colColorStart.g, info.colColorStart.g+(info.colColorEnd.g-info.colColorStart.g)*info.fColorVar);
+      newParticle.colColor.b = Random_Float(info.colColorStart.b, info.colColorStart.b+(info.colColorEnd.b-info.colColorStart.b)*info.fColorVar);
+      newParticle.colColor.a = Random_Float(info.colColorStart.a, info.colColorStart.a+(info.colColorEnd.a-info.colColorStart.a)*info.fAlphaVar);
 
-			par->colColor.r = Random_Float(info.colColorStart.r, info.colColorStart.r+(info.colColorEnd.r-info.colColorStart.r)*info.fColorVar);
-			par->colColor.g = Random_Float(info.colColorStart.g, info.colColorStart.g+(info.colColorEnd.g-info.colColorStart.g)*info.fColorVar);
-			par->colColor.b = Random_Float(info.colColorStart.b, info.colColorStart.b+(info.colColorEnd.b-info.colColorStart.b)*info.fColorVar);
-			par->colColor.a = Random_Float(info.colColorStart.a, info.colColorStart.a+(info.colColorEnd.a-info.colColorStart.a)*info.fAlphaVar);
+      newParticle.colColorDelta.r = (info.colColorEnd.r-newParticle.colColor.r) / newParticle.fTerminalAge;
+      newParticle.colColorDelta.g = (info.colColorEnd.g-newParticle.colColor.g) / newParticle.fTerminalAge;
+      newParticle.colColorDelta.b = (info.colColorEnd.b-newParticle.colColor.b) / newParticle.fTerminalAge;
+      newParticle.colColorDelta.a = (info.colColorEnd.a-newParticle.colColor.a) / newParticle.fTerminalAge;
 
-			par->colColorDelta.r = (info.colColorEnd.r-par->colColor.r) / par->fTerminalAge;
-			par->colColorDelta.g = (info.colColorEnd.g-par->colColor.g) / par->fTerminalAge;
-			par->colColorDelta.b = (info.colColorEnd.b-par->colColor.b) / par->fTerminalAge;
-			par->colColorDelta.a = (info.colColorEnd.a-par->colColor.a) / par->fTerminalAge;
+      if(bUpdateBoundingBox) rectBoundingBox.Encapsulate(newParticle.vecLocation.x, newParticle.vecLocation.y);
 
-			if(bUpdateBoundingBox) rectBoundingBox.Encapsulate(par->vecLocation.x, par->vecLocation.y);
+      mParticleBuffer.push_back(newParticle);
+      ++nParticlesAlive;
+    }
+  }
 
-			nParticlesAlive++;
-			par++;
-		}
-	}
-
-	vecPrevLocation=vecLocation;
+  vecPrevLocation=vecLocation;
 }
 
 void hgeParticleSystem::MoveTo(float x, float y, bool bMoveParticles)
 {
-	int i;
-	float dx,dy;
-	
-	if(bMoveParticles)
-	{
-		dx=x-vecLocation.x;
-		dy=y-vecLocation.y;
+  float dx,dy;
 
-		for(i=0;i<nParticlesAlive;i++)
-		{
-			particles[i].vecLocation.x += dx;
-			particles[i].vecLocation.y += dy;
-		}
+  if(bMoveParticles)
+  {
+    dx=x-vecLocation.x;
+    dy=y-vecLocation.y;
 
-		vecPrevLocation.x=vecPrevLocation.x + dx;
-		vecPrevLocation.y=vecPrevLocation.y + dy;
-	}
-	else
-	{
-		if(fAge==-2.0) { vecPrevLocation.x=x; vecPrevLocation.y=y; }
-		else { vecPrevLocation.x=vecLocation.x;	vecPrevLocation.y=vecLocation.y; }
-	}
+    ParticleBuffer::iterator particle = mParticleBuffer.begin();
+    for (; particle != mParticleBuffer.end(); ++particle)
+    {
+      particle->vecLocation.x += dx;
+      particle->vecLocation.y += dy;
+    }
 
-	vecLocation.x=x;
-	vecLocation.y=y;
+    vecPrevLocation.x=vecPrevLocation.x + dx;
+    vecPrevLocation.y=vecPrevLocation.y + dy;
+  }
+  else
+  {
+    if(fAge==-2.0) { vecPrevLocation.x=x; vecPrevLocation.y=y; }
+    else { vecPrevLocation.x=vecLocation.x;	vecPrevLocation.y=vecLocation.y; }
+  }
+
+  vecLocation.x=x;
+  vecLocation.y=y;
 }
 
 void hgeParticleSystem::FireAt(float x, float y)
 {
-	Stop();
-	MoveTo(x,y);
-	Fire();
+  Stop();
+  MoveTo(x,y);
+  Fire();
 }
 
 void hgeParticleSystem::Fire()
 {
-	mTimer = 0.0f;
+  mTimer = 0.0f;
 
-	if(info.fLifetime==-1.0f) fAge=-1.0f;
-	else fAge=0.0f;
+  if(info.fLifetime==-1.0f) fAge=-1.0f;
+  else fAge=0.0f;
 }
 
 void hgeParticleSystem::Stop(bool bKillParticles)
 {
-	fAge=-2.0f;
-	if(bKillParticles) 
-	{
-		nParticlesAlive=0;
-		rectBoundingBox.Clear();
-	}
+  fAge=-2.0f;
+  if(bKillParticles) 
+  {
+    nParticlesAlive=0;
+    mParticleBuffer.clear();
+    rectBoundingBox.Clear();
+  }
 }
 
 void hgeParticleSystem::Render()
 {
-	int i;
-//	DWORD col;
-	hgeParticle *par=particles;
-
-	//col=info.sprite->GetColor();
-
-	for(i=0; i<nParticlesAlive; i++)
-	{
-		info.sprite->SetColor(par->colColor.GetHWColor());
-		JRenderer::GetInstance()->RenderQuad(info.sprite, par->vecLocation.x+fTx, par->vecLocation.y+fTy, par->fSpin*par->fAge, par->fSize, par->fSize);
-		par++;
-	}
-
-	//info.sprite->SetColor(col);
+  ParticleBuffer::iterator particle = mParticleBuffer.begin();
+  for (;particle != mParticleBuffer.end(); ++particle)
+  {
+    info.sprite->SetColor(particle->colColor.GetHWColor());
+    JRenderer::GetInstance()->RenderQuad(
+      info.sprite,
+      particle->vecLocation.x+fTx, particle->vecLocation.y+fTy, 
+      particle->fSpin * particle->fAge, 
+      particle->fSize, particle->fSize);
+  }
 }
