@@ -2,7 +2,7 @@
 #define _LOGGER_H_
 
 //TODO Remove this and use the jge logging facility (same system)
-#define DOLOG
+//#define DOLOG
 
 #ifdef DOLOG
 #define LOG_FILE "debug.txt"
