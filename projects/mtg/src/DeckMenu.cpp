@@ -96,12 +96,14 @@ fontId(fontId) {
 }
 
 
-JQuad* DeckMenu::getBackground()
+void DeckMenu::RenderBackground()
 {
   ostringstream bgFilename;
   bgFilename << backgroundName << ".png";
   JQuad *background = resources.RetrieveTempQuad(bgFilename.str(), TEXTURE_SUB_5551);
-  return background;
+  if ( background )
+    JRenderer::GetInstance()->RenderQuad( background, 0, 0 );
+
 }
 
 void DeckMenu::initMenuItems()
@@ -171,8 +173,7 @@ void DeckMenu::Render()
       currentMenuItem->RenderWithOffset(-kLineHeight*startId);
     }
 
-    JQuad * background = getBackground();
-    renderer->RenderQuad( background, 0, 0 );
+    RenderBackground();
 
     if (!title.empty())
     {

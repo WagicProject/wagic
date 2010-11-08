@@ -51,7 +51,7 @@ class DeckMenu:public JGuiController{
   void Add(int id, const char * Text, string desc = "", bool forceFocus = false, DeckMetaData *deckMetaData = NULL);
   void Close();
   void updateScroller();
-  JQuad * getBackground();
+  void RenderBackground();
 
   float selectionTargetY;
   bool closed;
