@@ -39,6 +39,7 @@ void TextScroller::Add(string text){
 
 void TextScroller::Reset(){
   strings.clear();
+  currentId = 0;
 }
 
 void TextScroller::Update(float dt){
@@ -54,7 +55,7 @@ void TextScroller::Update(float dt){
         currentId = (rand() % strings.size());
       }else{
         currentId++;
-        if (currentId > strings.size()-1)currentId = 0;
+        if (currentId >= strings.size())currentId = 0;
       }
       mText = strings[currentId];
     }
@@ -68,7 +69,8 @@ void TextScroller::Update(float dt){
       size_t nbItemsToDisplay = ( minimumItems < strings.size() ? minimumItems : strings.size());
       for ( size_t idx = 0; idx < nbItemsToDisplay; ++idx)
       {
-        scrollerText << strings[currentId + idx];
+        size_t index = (currentId + idx) % strings.size();
+        scrollerText << strings[index];
       }
       currentId++;
       if ( currentId >= strings.size())
