@@ -218,7 +218,7 @@ void DeckMenu::Update(float dt){
 }
 
 void DeckMenu::Add(int id, const char * text,string desc, bool forceFocus, DeckMetaData * deckMetaData) {
-  DeckMenuItem * menuItem = NEW DeckMenuItem(this, id, fontId, text, 0, mY + kVerticalMargin + mCount*kLineHeight, (mCount == 0), autoTranslate, deckMetaData, 0.8f);
+  DeckMenuItem * menuItem = NEW DeckMenuItem(this, id, fontId, text, 0, mY + kVerticalMargin + mCount*kLineHeight, (mCount == 0), autoTranslate, deckMetaData);
   menuItem->desc = deckMetaData ? deckMetaData->getDescription() : desc;
 
   JGuiController::Add(menuItem);

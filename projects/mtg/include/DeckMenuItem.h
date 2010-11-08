@@ -19,16 +19,12 @@ class DeckMenuItem: public JGuiObject
   DeckMenu* parent;
   int fontId;
   string mText;
-  float mScale;
-  float mTargetScale;
 
  public:
   string imageFilename;
   string desc;
   DeckMetaData *meta;
 
-  DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, float x, float y, bool hasFocus = false, bool autoTranslate = false, DeckMetaData *meta = NULL, const float &scaleFactor = 1.0f);
-  ~DeckMenuItem();
   float mX;
   float mY;
 
@@ -36,9 +32,11 @@ class DeckMenuItem: public JGuiObject
   float GetWidth();
   bool hasFocus();
 
+  DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, float x, float y, bool hasFocus = false, bool autoTranslate = false, DeckMetaData *meta = NULL);
+  ~DeckMenuItem();
+
   void RenderWithOffset(float yOffset);
   virtual void Render();
-  virtual void Update(float dt);
 
   virtual void Entering();
   virtual bool Leaving(JButton key);

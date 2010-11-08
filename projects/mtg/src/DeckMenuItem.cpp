@@ -9,8 +9,8 @@ namespace
   const float kMaxDeckNameWidth = 180; // pixel width
 }
 
-DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, float x, float y, bool hasFocus, bool autoTranslate, DeckMetaData *deckMetaData, const float &scaleFactor)
-: JGuiObject(id), parent(_parent), fontId(fontId), mX(x), mY(y), mScale(scaleFactor)
+DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, float x, float y, bool hasFocus, bool autoTranslate, DeckMetaData *deckMetaData)
+: JGuiObject(id), parent(_parent), fontId(fontId), mX(x), mY(y)
 {
   if (autoTranslate) 
     mText = _(text);
@@ -18,8 +18,6 @@ DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, f
     mText = text;
   mHasFocus = hasFocus;
 
-  mScale = 1.0f;
-  mTargetScale = 1.0f;
   if (hasFocus)
     Entering();
 
@@ -45,23 +43,6 @@ void DeckMenuItem::Render()
 {
   RenderWithOffset(0);
 }
-
-void DeckMenuItem::Update(float dt)
-{
-    if (mScale < mTargetScale)
-    {
-      mScale += 8.0f*dt;
-      if (mScale > mTargetScale)
-	mScale = mTargetScale;
-    }
-  else if (mScale > mTargetScale)
-    {
-      mScale -= 8.0f*dt;
-      if (mScale < mTargetScale)
-	mScale = mTargetScale;
-	}
-}
-
 
 void DeckMenuItem::Entering()
 {
@@ -104,8 +85,6 @@ ostream& DeckMenuItem::toString(ostream& out) const
   return out << "DeckMenuItem ::: mHasFocus : " << mHasFocus
 	     << " ; parent : " << parent
 	     << " ; mText : " << mText
-	     << " ; mScale : " << mScale
-	     << " ; mTargetScale : " << mTargetScale
 	     << " ; mX,mY : " << mX << "," << mY;
 }
 
