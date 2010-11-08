@@ -1,4 +1,3 @@
-<<<<<<< .mine
 #include "PrecompiledHeader.h"
 #include <iomanip>
 #include "DeckEditorMenu.h"
