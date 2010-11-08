@@ -1,12 +1,10 @@
 #include "PrecompiledHeader.h"
-#include <iomanip>
-#include "DeckEditorMenu.h"
-#include "PrecompiledHeader.h"
 #include "DeckEditorMenu.h"
 #include "DeckDataWrapper.h"
 #include "DeckStats.h"
 #include "JTypes.h"
 #include "GameApp.h"
+#include <iomanip>
 
 DeckEditorMenu::DeckEditorMenu(int id, JGuiListener* listener, int fontId, const char * _title, DeckDataWrapper *_selectedDeck, StatsWrapper *stats)
 : DeckMenu( id, listener, fontId, _title ), selectedDeck(_selectedDeck), stw( stats )
