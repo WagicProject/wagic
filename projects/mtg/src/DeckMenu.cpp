@@ -9,6 +9,7 @@
 #include "TextScroller.h"
 #include "Tasks.h"
 #include <iomanip>
+
 namespace
 {
   const float kVerticalMargin = 16;
@@ -17,7 +18,6 @@ namespace
   const float kDescriptionVerticalBoxPadding = 5;
   const float kDescriptionHorizontalBoxPadding = 5;
 }
-	#define ARGB(a, r, g, b)		(((a) << 24) | ((r) << 16) | ((g) << 8) | (b))
 
 hgeParticleSystem* DeckMenu::stars = NULL; 
 
@@ -38,9 +38,9 @@ fontId(fontId) {
 
   mY = 55;
   mWidth = 176;
-  mX = 122;
+  mX = 125;
 
-  titleX = 125; // center point in title box
+  titleX = 130; // center point in title box
   titleY = 28;
   titleWidth = 180; // width of inner box of title
 
@@ -56,24 +56,31 @@ fontId(fontId) {
   statsHeight = 50;
   statsWidth = 227;
   
-  menuInitialized = false;
-
   avatarX = 230;
   avatarY = 8;
 
-  float scrollerWidth = 80;
 
+  menuInitialized = false;
+
+  float scrollerWidth = 80;
   scroller = NEW TextScroller(Fonts::MAIN_FONT, 40 , 230, scrollerWidth, 100, 1, 1);
 
   autoTranslate = true;
   maxItems = 7;
-  
   mHeight = 2 * kVerticalMargin + ( maxItems * kLineHeight );
 
   // we want to cap the deck titles to 15 characters to avoid overflowing deck names
   title = _(_title);
-
-  titleFont = resources.GetWFont(Fonts::OPTION_FONT);
+  displayTitle = title;
+  mFont = resources.GetWFont(fontId);
+  mTitleFontScale = 1.0f;
+  // determine if scaling is needed to fit the menu title.
+  while ( mFont->GetStringWidth( displayTitle.c_str() ) > titleWidth )
+  {
+    mTitleFontScale -= 0.05f;
+    mFont->SetScale( mTitleFontScale );
+  }
+  
   startId = 0;
   selectionT = 0;
   timeOpen = 0;
@@ -88,7 +95,7 @@ fontId(fontId) {
   updateScroller();
 }
 
-// TODO: Make this configurable, perhaps by user as part of the theme options.
+
 JQuad* DeckMenu::getBackground()
 {
   ostringstream bgFilename;
@@ -113,7 +120,6 @@ void DeckMenu::initMenuItems()
 void DeckMenu::Render() 
 {
   JRenderer * renderer = JRenderer::GetInstance();
-  WFont * mFont = resources.GetWFont(fontId);
   float height = mHeight;
   
   if (!menuInitialized)
@@ -170,12 +176,11 @@ void DeckMenu::Render()
 
     if (!title.empty())
     {
-      titleFont->SetColor(ARGB(100,255,255,255));
-      titleFont->SetScale(.8f);
-      titleFont->DrawString(title.c_str(), titleX, titleY, JGETEXT_CENTER);
-      titleFont->SetScale(1.0f);
+      float currentFontScale = mFont->GetScale();
+      mFont->SetScale( mTitleFontScale );
+      mFont->DrawString(title.c_str(), titleX, titleY, JGETEXT_CENTER);
+      mFont->SetScale( currentFontScale );
     }
-    
     scroller->Render();
   }
 }
@@ -193,10 +198,18 @@ void DeckMenu::Update(float dt){
   float starsX = starsOffsetX + ((mWidth - 2 * kHorizontalMargin)*(1+cos(selectionT))/2);
   float starsY = selectionY + 5 * cos(selectionT*2.35f) + kLineHeight / 2 - kLineHeight * startId;
   stars->MoveTo( starsX, starsY);
-  if (timeOpen < 0) {
+  if (timeOpen < 0) 
+  {
     timeOpen += dt * 10;
-    if (timeOpen >= 0) { timeOpen = 0; closed = true; stars->FireAt(mX, mY); }
-  } else {
+    if (timeOpen >= 0) 
+    { 
+      timeOpen = 0; 
+      closed = true; 
+      stars->FireAt(mX, mY); 
+    }
+  } 
+  else 
+  {
     closed = false;
     timeOpen += dt * 10;
   }
@@ -205,11 +218,12 @@ void DeckMenu::Update(float dt){
 }
 
 void DeckMenu::Add(int id, const char * text,string desc, bool forceFocus, DeckMetaData * deckMetaData) {
-  DeckMenuItem * menuItem = NEW DeckMenuItem(this, id, fontId, text, 0, mY + kVerticalMargin + mCount*kLineHeight, (mCount == 0), autoTranslate, deckMetaData);
+  DeckMenuItem * menuItem = NEW DeckMenuItem(this, id, fontId, text, 0, mY + kVerticalMargin + mCount*kLineHeight, (mCount == 0), autoTranslate, deckMetaData, 0.8f);
   menuItem->desc = deckMetaData ? deckMetaData->getDescription() : desc;
 
   JGuiController::Add(menuItem);
-  if (mCount <= maxItems) mHeight += kLineHeight;
+  if (mCount <= maxItems) 
+    mHeight += kLineHeight;
   if (forceFocus){
     mObjects[mCurr]->Leaving(JGE_BTN_DOWN);
     mCurr = mCount-1;

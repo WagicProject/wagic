@@ -138,7 +138,7 @@ void GameStateDeckViewer::switchDisplay(){
 
 void GameStateDeckViewer::updateDecks(){
   SAFE_DELETE(welcome_menu);
-  welcome_menu = NEW DeckEditorMenu( MENU_DECK_SELECTION, this, Fonts::MAGIC_FONT, "Choose Deck To Edit");
+  welcome_menu = NEW DeckEditorMenu( MENU_DECK_SELECTION, this, Fonts::OPTION_FONT, "Choose Deck To Edit");
   DeckManager * deckManager = DeckManager::GetInstance();
   vector<DeckMetaData *> playerDeckList = fillDeckMenu( welcome_menu,options.profileFile());
 
@@ -166,7 +166,7 @@ void GameStateDeckViewer::buildEditorMenu()
     SAFE_DELETE( menu );
   //Build menu.
   JRenderer::GetInstance()->FillRoundRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, 100, ARGB(0, 0, 0, 0) );
-  menu = NEW DeckEditorMenu( MENU_DECK_BUILDER, this, Fonts::MAGIC_FONT, "Deck Editor", myDeck, stw );
+  menu = NEW DeckEditorMenu( MENU_DECK_BUILDER, this, Fonts::OPTION_FONT, "Deck Editor", myDeck, stw );
 
   menu->Add( MENU_ITEM_FILTER_BY, "Filter By...", "Narrow down the list of cards. ");
   menu->Add( MENU_ITEM_SWITCH_DECKS_NO_SAVE, "Switch Decks", "Do not make any changes.\nView another deck."); 

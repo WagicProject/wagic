@@ -27,7 +27,7 @@ class DeckMenuItem: public JGuiObject
   string desc;
   DeckMetaData *meta;
 
-  DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, float x, float y, bool hasFocus = false, bool autoTranslate = false, DeckMetaData *meta = NULL);
+  DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, float x, float y, bool hasFocus = false, bool autoTranslate = false, DeckMetaData *meta = NULL, const float &scaleFactor = 1.0f);
   ~DeckMenuItem();
   float mX;
   float mY;

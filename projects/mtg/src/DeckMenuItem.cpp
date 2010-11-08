@@ -4,7 +4,13 @@
 #include "Translate.h"
 #include "WResourceManager.h"
 
-DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, float x, float y, bool hasFocus, bool autoTranslate, DeckMetaData *deckMetaData): JGuiObject(id), parent(_parent), fontId(fontId), mX(x), mY(y)
+namespace
+{
+  const float kMaxDeckNameWidth = 180; // pixel width
+}
+
+DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, float x, float y, bool hasFocus, bool autoTranslate, DeckMetaData *deckMetaData, const float &scaleFactor)
+: JGuiObject(id), parent(_parent), fontId(fontId), mX(x), mY(y), mScale(scaleFactor)
 {
   if (autoTranslate) 
     mText = _(text);
@@ -14,7 +20,6 @@ DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, f
 
   mScale = 1.0f;
   mTargetScale = 1.0f;
-
   if (hasFocus)
     Entering();
 
@@ -30,7 +35,10 @@ DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, f
 void DeckMenuItem::RenderWithOffset(float yOffset)
 {
   WFont * mFont = resources.GetWFont(fontId);
-  mFont->DrawString(mText.c_str(), mX, mY + yOffset, JGETEXT_CENTER);
+  string displayName = mText;
+  while ( mFont->GetStringWidth( displayName.c_str() ) > kMaxDeckNameWidth )
+    displayName = displayName.substr(0, displayName.size() - 1 );
+  mFont->DrawString(displayName.c_str(), mX, mY + yOffset, JGETEXT_CENTER);
 }
 
 void DeckMenuItem::Render()
@@ -83,7 +91,6 @@ void DeckMenuItem::Relocate(float x, float y)
 float DeckMenuItem::GetWidth()
 {
   WFont * mFont = resources.GetWFont(fontId);
-  mFont->SetScale(1.0);
   return mFont->GetStringWidth(mText.c_str());
 }
 

@@ -16,11 +16,12 @@ DeckEditorMenu::DeckEditorMenu(int id, JGuiListener* listener, int fontId, const
   
   deckTitle = selectedDeck ? selectedDeck->parent->meta_name : "";
 
-  mX = 120;
+  mX = 123;
   mY = 70;
   starsOffsetX = 50;
+
   titleX = 110; // center point in title box
-  titleY = 34;
+  titleY = 25;
   titleWidth = 180; // width of inner box of title
 
   descX = 275;
@@ -28,11 +29,11 @@ DeckEditorMenu::DeckEditorMenu(int id, JGuiListener* listener, int fontId, const
   descHeight = 154;
   descWidth = 175;
    
-  statsX = 290;
-  statsY = 15;
-  statsHeight = 40;
-  statsWidth = 180;
-
+  statsHeight = 50;
+  statsWidth = 185;
+  statsX = 280;
+  statsY = 12;
+  
   avatarX = 222;
   avatarY = 8;
 
@@ -48,8 +49,14 @@ void DeckEditorMenu::Render()
   r->FillRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT,ARGB(200,0,0,0));
 
   DeckMenu::Render();
-  WFont *mainFont = resources.GetWFont( Fonts::MAIN_FONT );
-  mainFont->DrawString( deckTitle.c_str(), statsX, statsY );
+  if ( deckTitle.size() > 0 )
+  {
+    WFont *mainFont = resources.GetWFont( Fonts::OPTION_FONT );
+    DWORD currentColor = mainFont->GetColor();
+    mainFont->SetColor( ARGB(255,255,255,255) );
+    mainFont->DrawString( deckTitle.c_str(), statsX + (statsWidth / 2), statsHeight / 2 , JGETEXT_CENTER);
+    mainFont->SetColor( currentColor );
+  }
 
   if ( stw && selectedDeck )
     drawDeckStatistics();

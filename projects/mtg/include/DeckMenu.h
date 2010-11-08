@@ -24,12 +24,16 @@ class DeckMenu:public JGuiController{
   string backgroundName;
 
   int fontId;
-  std::string title;
+  string title;
+  string displayTitle;
+  WFont * mFont;
+  float mTitleFontScale;
+
   int maxItems, startId;
+
   float selectionT, selectionY;
   float timeOpen;
 
-  WFont* titleFont;
   static hgeParticleSystem* stars;
 
   void initMenuItems();
@@ -39,7 +43,6 @@ class DeckMenu:public JGuiController{
  public:
    TextScroller * scroller;
    bool autoTranslate;
-   JQuad * getBackground();
    DeckMenu(int id, JGuiListener* listener, int fontId, const string _title = "");
   ~DeckMenu();
   
@@ -48,6 +51,7 @@ class DeckMenu:public JGuiController{
   void Add(int id, const char * Text, string desc = "", bool forceFocus = false, DeckMetaData *deckMetaData = NULL);
   void Close();
   void updateScroller();
+  JQuad * getBackground();
 
   float selectionTargetY;
   bool closed;
