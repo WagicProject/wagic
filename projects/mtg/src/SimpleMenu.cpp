@@ -24,12 +24,6 @@ JTexture* SimpleMenu::jewelTex = NULL;
 JTexture* SimpleMenu::sideTex = NULL;
 WFont* SimpleMenu::titleFont = NULL;
 hgeParticleSystem* SimpleMenu::stars = NULL;
-unsigned int SimpleMenu::refCount = 0;
-// Here comes the magic of jewel graphics
-PIXEL_TYPE SimpleMenu::jewelGraphics[9] = {0x3FFFFFFF,0x63645AEA,0x610D0D98,
-					   0x63645AEA,0xFF635AD5,0xFF110F67,
-					   0x610D0D98,0xFF110F67,0xFD030330};
-
 
 SimpleMenu::SimpleMenu(int id, JGuiListener* listener, int fontId, float x, float y, const char * _title, int _maxItems): JGuiController(id, listener), fontId(fontId){
   autoTranslate = true;
@@ -43,7 +37,6 @@ SimpleMenu::SimpleMenu(int id, JGuiListener* listener, int fontId, float x, floa
   selectionT = 0;
   timeOpen = 0;
   closed = false;
-  ++refCount;
   selectionTargetY = selectionY = y + kVerticalMargin;
 
   JRenderer* renderer = JRenderer::GetInstance();

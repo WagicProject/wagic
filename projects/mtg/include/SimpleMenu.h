@@ -18,14 +18,11 @@ class SimpleMenu:public JGuiController{
   int maxItems,startId;
   float selectionT, selectionY;
   float timeOpen;
-  static unsigned int refCount;
 
   static JQuad *spadeR, *spadeL, *jewel, *side;
   static JTexture *spadeRTex, *spadeLTex, *jewelTex, *sideTex;
   static WFont* titleFont;
   static hgeParticleSystem* stars;
-  // This works only because of no multithreading
-  static PIXEL_TYPE jewelGraphics[9];
 
   inline void MogrifyJewel();
   void drawHorzPole(float x, float y, float width);
