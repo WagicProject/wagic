@@ -232,7 +232,8 @@ void TestSuiteState::parsePlayerState(int playerId, string s){
       unsigned int value;
       limiter = s.find(",");
       if (limiter != string::npos){
-        value = Rules::getMTGId(trim(s.substr(0,limiter)));
+        string ss = s.substr(0,limiter);   // ss is needed because trim requires a non-const reference,
+        value = Rules::getMTGId(trim(ss)); // while in g++ functions cannot take non-const references from temporary values
 	      s = s.substr(limiter+1);
       }else{
 	      value = Rules::getMTGId(trim(s));
