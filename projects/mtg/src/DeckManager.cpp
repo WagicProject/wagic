@@ -44,7 +44,7 @@ DeckManager* DeckManager::GetInstance()
 {
   if ( !instanceFlag )
   {
-    mInstance = new DeckManager();
+    mInstance = NEW DeckManager();
     instanceFlag = true;
   }
 
