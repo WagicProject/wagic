@@ -213,7 +213,12 @@ void DeckMenu::Update(float dt){
 
 void DeckMenu::Add(int id, const char * text,string desc, bool forceFocus, DeckMetaData * deckMetaData) {
   DeckMenuItem * menuItem = NEW DeckMenuItem(this, id, fontId, text, 0, mY + kVerticalMargin + mCount*kLineHeight, (mCount == 0), autoTranslate, deckMetaData);
-  menuItem->desc = deckMetaData ? deckMetaData->getDescription() : desc;
+  Translator * t = Translator::GetInstance();
+  map<string,string>::iterator it = t->deckValues.find(text);
+  if (it != t->deckValues.end()) //translate decks desc
+    menuItem->desc = it->second;
+  else
+    menuItem->desc = deckMetaData ? deckMetaData->getDescription() : desc;
 
   JGuiController::Add(menuItem);
   if (mCount <= maxItems) 

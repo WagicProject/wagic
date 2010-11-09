@@ -118,7 +118,7 @@ NO DECK AVAILABLE,=没有可用的套牌，
 PRESS CIRCLE TO GO TO THE DECK EDITOR!=按○键返回套牌编辑界面！
 
 # Opponent deck menu:
-Choose Opponent=选择对手
+Choose Your Opponent=选择对手
 ##(easy)=（简单）
 ##(hard)=（困难）
 Random=随机
@@ -311,12 +311,15 @@ AN ERROR OCCURRED, CHECK FILE NAMES=出错了，请检查文件名称
 ##########################
 
 # Deck editor menu:
+Choose Deck To Edit=选择要编辑的套牌
 --NEW--=－新建套牌－
 Save=保存套牌
 Save & Rename=套牌另存为
-Switch decks without saving=放弃保存转到其他套牌
-##*Complete collection & reset*=
-Rename deck=重命名套牌
+Switch Decks=放弃保存转到其他套牌
+Rename Deck=重命名套牌
+Save & Quit Editor=保存套牌并退出编辑器
+Save As AI Deck=保存为AI套牌
+Quit Editor=退出编辑器
 
 # Info layer - directional keys:
 Prev. edition=上种颜色

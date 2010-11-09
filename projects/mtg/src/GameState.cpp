@@ -79,19 +79,12 @@ vector<DeckMetaData *> GameState::getValidDeckMetaData( const string& path, cons
 void GameState::renderDeckMenu ( SimpleMenu * _menu, const vector<DeckMetaData *>& deckMetaDataList )
 {
   int deckNumber = 1;
-  Translator * t = Translator::GetInstance();
-  map<string,string>::iterator it;
   for (vector<DeckMetaData *>::const_iterator i = deckMetaDataList.begin(); i != deckMetaDataList.end(); i++)
   {
     DeckMetaData * deckMetaData = *i;
     string deckName = deckMetaData -> getName();
     string deckDescription = deckMetaData -> getDescription();
-    //translate decks desc
-    it = t->deckValues.find(deckName);
-    if (it != t->deckValues.end())
-      _menu->Add(deckNumber++, deckName.c_str(), it->second);
-    else
-      _menu->Add( deckNumber++ ,deckName.c_str(), deckDescription.c_str());
+    _menu->Add( deckNumber++ ,deckName.c_str(), deckDescription.c_str());
   }
 }
 
@@ -100,20 +93,13 @@ void GameState::renderDeckMenu ( SimpleMenu * _menu, const vector<DeckMetaData *
 void GameState::renderDeckMenu ( DeckMenu * _menu, const vector<DeckMetaData *>& deckMetaDataList )
 {
   int deckNumber = 1;
-  Translator * t = Translator::GetInstance();
-  map<string,string>::iterator it;
   for (vector<DeckMetaData *>::const_iterator i = deckMetaDataList.begin(); i != deckMetaDataList.end(); i++)
   {
     DeckMetaData * deckMetaData = *i;
     string deckName = deckMetaData -> getName();
     string deckDescription = deckMetaData -> getDescription();
-    int deckId = deckMetaData -> getDeckId();
-    //translate decks desc
-    it = t->deckValues.find(deckName);
-    if (it != t->deckValues.end())
-      _menu->Add(deckNumber++, deckName.c_str(), it->second, false, deckMetaData);
-    else
-      _menu->Add( deckNumber++ ,deckName.c_str(), deckDescription.c_str(), false, deckMetaData);
+    //int deckId = deckMetaData -> getDeckId(); //do we need this?
+    _menu->Add( deckNumber++ ,deckName.c_str(), deckDescription.c_str(), false, deckMetaData);
   }
 }
 
