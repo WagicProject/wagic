@@ -445,7 +445,7 @@ void GameStateMenu::Update(float dt)
         genNbCardsStr();
         resetDirectory();
         //All major things have been loaded, resize the cache to use it as efficiently as possible
-        resources.autoResize();
+        resources.ResetCacheLimits();
       }
       break;    
     case MENU_STATE_MAJOR_FIRST_TIME :

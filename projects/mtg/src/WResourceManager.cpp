@@ -13,6 +13,9 @@
 #endif
 #include "WFont.h"
 
+//#define FORCE_LOW_CACHE_MEMORY
+const unsigned int kConstrainedCacheLimit = 8 * 1024 * 1024;
+
 extern bool neofont;
 int idCounter = OTHERS_OFFSET;
 WResourceManager resources;
@@ -933,9 +936,13 @@ void WResourceManager::RemoveWFonts() {
   mWFontMap.clear();
 }
 
-void WResourceManager::autoResize(){
+void WResourceManager::ResetCacheLimits(){
 #if defined WIN32 || defined LINUX
+  #ifdef FORCE_LOW_CACHE_MEMORY
+    textureWCache.Resize(kConstrainedCacheLimit, MAX_CACHE_OBJECTS);  
+  #else
     textureWCache.Resize(HUGE_CACHE_LIMIT,MAX_CACHE_OBJECTS);
+  #endif
 #else
     unsigned int ram = ramAvailable();
     unsigned int myNewSize = ram - OPERATIONAL_SIZE + textureWCache.totalSize;

@@ -188,7 +188,8 @@ public:
   //Wrapped from JSoundSystem. TODO: Privatize.
   JMusic * ssLoadMusic(const char *fileName);
 
-  void autoResize(); //Recreates the cache size.
+  //Resets the cache limits on when it starts to purge data.
+  void ResetCacheLimits(); 
 
   void DebugRender();
 

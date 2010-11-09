@@ -322,25 +322,8 @@ void JGE::Init()
   LeftClickedProcessed();
 }
 
-void JGE::SetDelta(float delta)
-{
-  mDeltaTime = delta;
-}
-
-float JGE::GetDelta()
-{
-  return mDeltaTime;
-}
-
-float JGE::GetFPS()
-{
-  return 0.0f;
-}
-
-
 //////////////////////////////////////////////////////////////////////////
 #else		///// PSP specific code
-
 
 void JGE::Init()
 {
@@ -365,17 +348,6 @@ void JGE::Init()
   mDone = false;
   mPaused = false;
   mCriticalAssert = false;
-}
-
-float JGE::GetDelta()
-{
-  return mDelta;
-}
-
-
-float JGE::GetFPS()
-{
-  return 1.0f / mDelta;
 }
 
 u8 JGE::GetAnalogX()
@@ -423,7 +395,7 @@ void JGE::Run()
        {
          sceRtcGetCurrentTick(&curr);
           float dt = (curr - lastTime) / (float)gTickFrequency;
-         mDelta = dt;
+         mDeltaTime = dt;
          sceCtrlPeekBufferPositive(&gCtrlPad, 1);
          for (signed int i = sizeof(keyCodeList)/sizeof(keyCodeList[0]) - 1; i >= 0; --i)
            {
@@ -467,6 +439,23 @@ int JGE::GetTime()
   return JGEGetTime();
 }
 
+
+void JGE::SetDelta(float delta)
+{
+  mDeltaTime = delta;
+}
+
+
+float JGE::GetDelta()
+{
+  return mDeltaTime;
+}
+
+
+float JGE::GetFPS()
+{
+  return mDeltaTime > 0 ? 1.0f / mDeltaTime : 0;
+}
 
 JGE* JGE::GetInstance()
 {

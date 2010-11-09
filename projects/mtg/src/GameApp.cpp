@@ -235,12 +235,12 @@ void GameApp::Destroy()
 {
   LOG("==Destroying GameApp==");
   for (int i=GAME_STATE_MENU;i<=GAME_STATE_MAX-1;i++)
-    {
-      if (mGameStates[i]){
-	mGameStates[i]->Destroy();
-	SAFE_DELETE(mGameStates[i]);
-      }
+  {
+    if (mGameStates[i]){
+      mGameStates[i]->Destroy();
+      SAFE_DELETE(mGameStates[i]);
     }
+  }
 
   if (collection){
     collection->destroyAllCards();
@@ -361,7 +361,7 @@ void GameApp::Render()
   sprintf(buf, "avg:%.02f - %.02f fps",totalFPS/nbUpdates, fps);
   if (mFont) {
     mFont->SetColor(ARGB(255,255,255,255));
-    mFont->DrawString(buf,1,10);
+    mFont->DrawString(buf, 10, SCREEN_HEIGHT-15);
   }
 #endif
 

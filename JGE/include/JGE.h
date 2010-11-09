@@ -84,7 +84,6 @@ class JGE
   JApp *mApp;
 
 #if defined (WIN32) || defined (LINUX)
-  float mDeltaTime;
   JMusic *mCurrentMusic;
 #else
  public:
@@ -93,7 +92,7 @@ class JGE
 #endif
 
   bool mDone;
-  float mDelta;
+  float mDeltaTime;
   bool mDebug;
   bool mPaused;
   char mDebuggingMsg[256];
@@ -154,6 +153,9 @@ class JGE
   /// @return Elapsed time in seconds.
   //////////////////////////////////////////////////////////////////////////
   float GetDelta();
+
+  // override the current delta time.
+  void SetDelta(float delta);
 
   //////////////////////////////////////////////////////////////////////////
   /// Return frame rate.
@@ -319,10 +321,6 @@ class JGE
 
 
   void Assert(const char *filename, long lineNumber);
-
-#if defined (WIN32) || defined (LINUX)
-  void SetDelta(float delta);
-#endif
 
  protected:
   JGE();
