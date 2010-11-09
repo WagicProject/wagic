@@ -326,7 +326,7 @@ void Run()
     {
       sceRtcGetCurrentTick(&curr);
       float dt = (curr - lastTime) / (float)gTickFrequency;
-      g_engine->mDelta = dt;
+      g_engine->mDeltaTime = dt;
       if (!g_engine->mPaused)
 	{
 	  sceCtrlPeekBufferPositive(&gCtrlPad, 1);
