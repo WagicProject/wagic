@@ -24,6 +24,8 @@
 #include <time.h>
 #endif
   
+const float MENU_FONT_SCALE = 0.650f;
+
 enum ENUM_DUEL_STATE
   {
     DUEL_STATE_START,
@@ -94,7 +96,7 @@ void GameStateDuel::Start()
     if (mParent->players[i] ==  PLAYER_TYPE_HUMAN){
       decksneeded = 1;
       
-      deckmenu = NEW DeckMenu(DUEL_MENU_CHOOSE_DECK, this, Fonts::OPTION_FONT, "Choose a Deck");
+      deckmenu = NEW DeckMenu(DUEL_MENU_CHOOSE_DECK, this, Fonts::OPTION_FONT, "Choose a Deck", MENU_FONT_SCALE);
 
       DeckManager *deckManager = DeckManager::GetInstance();
       vector<DeckMetaData *> playerDeckList = getValidDeckMetaData( options.profileFile() );
@@ -238,7 +240,7 @@ bool GameStateDuel::MusicExist(string FileName){
 
 void GameStateDuel::ensureOpponentMenu(){
   if (!opponentMenu){
-    opponentMenu = NEW DeckMenu(DUEL_MENU_CHOOSE_OPPONENT, this, Fonts::OPTION_FONT, "Choose Your Opponent");
+    opponentMenu = NEW DeckMenu(DUEL_MENU_CHOOSE_OPPONENT, this, Fonts::OPTION_FONT, "Choose Your Opponent", MENU_FONT_SCALE);
     opponentMenu->Add( MENUITEM_RANDOM_AI, "Random");
     if (options[Options::EVILTWIN_MODE_UNLOCKED].number)
       opponentMenu->Add( MENUITEM_EVIL_TWIN, "Evil Twin", _("Can you play against yourself?").c_str());
@@ -573,6 +575,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId) {
           loadPlayer(0,deckNumber);
           deckmenu->Close();
           mGamePhase = DUEL_STATE_CHOOSE_DECK1_TO_2;
+          playerDeck = NULL;
         }else{
           loadPlayer(1,controlId);
           deckmenu->Close();

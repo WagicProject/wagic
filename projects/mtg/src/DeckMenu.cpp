@@ -30,9 +30,7 @@ hgeParticleSystem* DeckMenu::stars = NULL;
 //    * descriptive information 125
 //    *** Need to make this configurable in a file somewhere to allow for class reuse
 
-DeckMenu::DeckMenu(int id, JGuiListener* listener, int fontId, const string _title)
-: JGuiController(id, listener), 
-fontId(fontId) {
+DeckMenu::DeckMenu(int id, JGuiListener* listener, int fontId, const string _title, const float& mFontScale): JGuiController(id, listener), fontId(fontId), menuFontScale( mFontScale ) {
 
  backgroundName = "DeckMenuBackdrop";
 
@@ -59,7 +57,6 @@ fontId(fontId) {
   avatarX = 230;
   avatarY = 8;
 
-
   menuInitialized = false;
 
   float scrollerWidth = 80;
@@ -73,18 +70,16 @@ fontId(fontId) {
   title = _(_title);
   displayTitle = title;
   mFont = resources.GetWFont(fontId);
-  mTitleFontScale = 1.0f;
-  // determine if scaling is needed to fit the menu title.
-  while ( mFont->GetStringWidth( displayTitle.c_str() ) > titleWidth )
-  {
-    mTitleFontScale -= 0.05f;
-    mFont->SetScale( mTitleFontScale );
-  }
   
   startId = 0;
   selectionT = 0;
   timeOpen = 0;
   closed = false;
+
+  if ( mFont->GetStringWidth( title.c_str() ) > titleWidth )
+    titleFontScale = 0.75f;
+  else
+    titleFontScale = 1.0f;
 
   selectionTargetY = selectionY = kVerticalMargin;
       
@@ -137,8 +132,6 @@ void DeckMenu::Render()
   stars->Render();
   renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
 
-  mFont->SetScale(1.0f);
-
   for (int i = startId; i < startId + maxItems ; i++){
     if (i > mCount-1) break;
     DeckMenuItem *currentMenuItem = static_cast<DeckMenuItem*>(mObjects[i]);
@@ -170,6 +163,7 @@ void DeckMenu::Render()
       else {
         mFont->SetColor(ARGB(150,255,255,255));
       }
+      mFont->SetScale( menuFontScale );
       currentMenuItem->RenderWithOffset(-kLineHeight*startId);
     }
 
@@ -177,11 +171,10 @@ void DeckMenu::Render()
 
     if (!title.empty())
     {
-      float currentFontScale = mFont->GetScale();
-      mFont->SetScale( mTitleFontScale );
+      mFont->SetScale( titleFontScale );
       mFont->DrawString(title.c_str(), titleX, titleY, JGETEXT_CENTER);
-      mFont->SetScale( currentFontScale );
     }
+    mFont->SetScale( 1.0f );
     scroller->Render();
   }
 }

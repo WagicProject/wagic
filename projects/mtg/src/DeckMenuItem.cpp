@@ -4,10 +4,6 @@
 #include "Translate.h"
 #include "WResourceManager.h"
 
-namespace
-{
-  const float kMaxDeckNameWidth = 180; // pixel width
-}
 
 DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, float x, float y, bool hasFocus, bool autoTranslate, DeckMetaData *deckMetaData)
 : JGuiObject(id), parent(_parent), fontId(fontId), mX(x), mY(y)
@@ -34,8 +30,6 @@ void DeckMenuItem::RenderWithOffset(float yOffset)
 {
   WFont * mFont = resources.GetWFont(fontId);
   string displayName = mText;
-  while ( mFont->GetStringWidth( displayName.c_str() ) > kMaxDeckNameWidth )
-    displayName = displayName.substr(0, displayName.size() - 1 );
   mFont->DrawString(displayName.c_str(), mX, mY + yOffset, JGETEXT_CENTER);
 }
 

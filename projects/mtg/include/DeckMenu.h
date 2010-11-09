@@ -27,7 +27,8 @@ class DeckMenu:public JGuiController{
   string title;
   string displayTitle;
   WFont * mFont;
-  float mTitleFontScale;
+  float menuFontScale;
+  float titleFontScale;
 
   int maxItems, startId;
 
@@ -43,7 +44,7 @@ class DeckMenu:public JGuiController{
  public:
    TextScroller * scroller;
    bool autoTranslate;
-   DeckMenu(int id, JGuiListener* listener, int fontId, const string _title = "");
+   DeckMenu(int id, JGuiListener* listener, int fontId, const string _title = "", const float& mFontScale = 1.0f );
   ~DeckMenu();
   
   void Render();
