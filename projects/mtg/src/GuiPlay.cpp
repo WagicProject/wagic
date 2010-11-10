@@ -166,12 +166,16 @@ void GuiPlay::Replace()
 	else opponentSpells.Enstack(*it);
       }
 
-  float x = 24 + MAX(opponentSpells.nextX(), selfSpells.nextX());
+  float x = 24 + opponentSpells.nextX();
+//seperated the varible X into 2 different varibles. There are 2 players here!! 
+//we should not be using a single varible to determine the positioning of cards!!
+	float myx = 24 + selfSpells.nextX();
   opponentLands.reset(opponentLandsN, x, 50);
   opponentCreatures.reset(opponentCreaturesN, x, 95);
-  battleField.reset(x, 145);
-  selfCreatures.reset(selfCreaturesN, x, 195);
-  selfLands.reset(selfLandsN, x, 240);
+  battleField.reset(x, 145);//what does this varible do? i can comment it out with no reprocussions...is this being double handled?
+  selfCreatures.reset(selfCreaturesN, myx, 195);
+  selfLands.reset(selfLandsN, myx, 240);
+
 
   for (iterator it = end_spells; it != cards.end(); ++it)
     {
