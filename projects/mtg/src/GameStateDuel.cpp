@@ -164,7 +164,7 @@ void GameStateDuel::loadPlayer(int playerId, int decknb, int isAI){
           deck[playerId] = mPlayers[playerId]->game;
     }
   }
-  else { //Random AI deck
+  else { //Random deck
     AIPlayerFactory playerCreator;
     Player * opponent = NULL;
     if (playerId == 1) opponent = mPlayers[0];
@@ -203,9 +203,14 @@ void GameStateDuel::End()
   DebugTrace("Ending GameStateDuel");
 
   JRenderer::GetInstance()->EnableVSync(false);
-  if (mPlayers[0] && mPlayers[1]) mPlayers[0]->End();
-  GameObserver::EndInstance();
   DeckManager::EndInstance();
+
+  if (mPlayers[0] && mPlayers[1]) // save the stats for the game
+    mPlayers[0]->End();
+  else // clean up player object
+    SAFE_DELETE( mPlayers[0] );
+
+  GameObserver::EndInstance();
   game = NULL;
   premadeDeck = false;
 
@@ -258,7 +263,7 @@ void GameStateDuel::Update(float dt)
     {
     case DUEL_STATE_ERROR_NO_DECK:
       if (JGE_BTN_OK == mEngine->ReadButton())
-	mParent->SetNextState(GAME_STATE_DECK_VIEWER);
+        mParent->SetNextState(GAME_STATE_DECK_VIEWER);
       break;
     case DUEL_STATE_CHOOSE_DECK1:
       if (mParent->gameType == GAME_TYPE_MOMIR){
@@ -309,7 +314,8 @@ void GameStateDuel::Update(float dt)
         if (mParent->players[0] ==  PLAYER_TYPE_HUMAN){
           ensureOpponentMenu();
           opponentMenu->Update(dt);
-        }else{
+        }
+        else{
           loadPlayer(1);
           mGamePhase = DUEL_STATE_PLAY;
         }
@@ -425,7 +431,7 @@ void GameStateDuel::Update(float dt)
       break;
     default:
       if (JGE_BTN_OK == mEngine->ReadButton())
-	mParent->SetNextState(GAME_STATE_MENU);
+      	mParent->SetNextState(GAME_STATE_MENU);
     }
 }
 

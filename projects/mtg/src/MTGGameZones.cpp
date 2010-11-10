@@ -353,8 +353,11 @@ MTGGameZone::MTGGameZone() : nb_cards(0), lastCardDrawn(NULL), needShuffle(false
 
 MTGGameZone::~MTGGameZone(){
   for (int i=0; i<nb_cards; i++) {
-    delete cards[i];
+    SAFE_DELETE( cards[i] );
   }
+  cards.clear();
+  cardsMap.clear();
+  owner = NULL;
 }
 
 void MTGGameZone::setOwner(Player * player){
