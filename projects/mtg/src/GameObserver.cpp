@@ -288,7 +288,6 @@ GameObserver::~GameObserver(){
   SAFE_DELETE(phaseRing);
   SAFE_DELETE(replacementEffects);
   for (int i = 0; i < nbPlayers; ++i){
-    SAFE_DELETE(players[i]->game);
     SAFE_DELETE(players[i]);
   }
   LOG("==GameObserver Destroyed==");
