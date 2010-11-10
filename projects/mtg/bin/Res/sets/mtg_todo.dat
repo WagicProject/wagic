@@ -1037,15 +1037,6 @@ power=6
 toughness=6
 [/card]
 [card]
-name=Armament Master
-text=Other Kor creatures you control get +2/+2 for each Equipment attached to Armament Master.
-mana={W}{W}
-type=Creature
-subtype=Kor Soldier
-power=2
-toughness=2
-[/card]
-[card]
 name=Armillary Sphere
 text={2}, {T}, Sacrifice Armillary Sphere: Search your library for up to two basic land cards, reveal them, and put them into your hand. Then shuffle your library.
 mana={2}
@@ -1759,12 +1750,6 @@ name=Banefire
 text=Banefire deals X damage to target creature or player. -- If X is 5 or more, Banefire can't be countered by spells or abilities and the damage can't be prevented.
 mana={X}{R}
 type=Sorcery
-[/card]
-[card]
-name=Banishing Knack
-text=Until end of turn, target creature gains "{T}: Return target nonland permanent to its owner's hand."
-mana={U}
-type=Instant
 [/card]
 [card]
 name=Banshee
@@ -2662,12 +2647,6 @@ type=Creature
 subtype=Beast
 power=3
 toughness=4
-[/card]
-[card]
-name=Blowfly Infestation
-text=Whenever a creature is put into a graveyard from the battlefield, if it had a -1/-1 counter on it, put a -1/-1 counter on target creature.
-mana={2}{B}
-type=Enchantment
 [/card]
 [card]
 name=Body Snatcher
@@ -5742,13 +5721,6 @@ mana={5}
 type=Artifact
 [/card]
 [card]
-name=Crush Underfoot
-text=Choose a Giant creature you control. It deals damage equal to its power to target creature.
-mana={1}{R}
-type=Tribal Instant
-subtype=Giant
-[/card]
-[card]
 name=Crusher Zendikon
 text=Enchant land -- Enchanted land is a 4/2 red Beast creature with trample. It's still a land. -- When enchanted land is put into a graveyard, return that card to its owner's hand.
 mana={2}{R}
@@ -5761,6 +5733,13 @@ text=Crushing Pain deals 6 damage to target creature that was dealt damage this 
 mana={1}{R}
 type=Instant
 subtype=Arcane
+[/card]
+[card]
+name=Crush Underfoot
+text=Choose a Giant creature you control. It deals damage equal to its power to target creature.
+mana={1}{R}
+type=Tribal Instant
+subtype=Giant
 [/card]
 [card]
 name=Cry of Contrition
@@ -6814,17 +6793,6 @@ type=Creature
 subtype=Demon
 power=5
 toughness=5
-[/card]
-[card]
-##Neither works with "preventallCombatDamage" nor "fog".
-name=Demonic Torment
-target=creature
-auto=cantattack
-auto=preventAllCombatDamage from(mytgt)
-text=Enchant creature -- Enchanted creature can't attack. -- Prevent all combat damage that would be dealt by enchanted creature.
-mana={2}{B}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Demon of Death's Gate 
@@ -9388,12 +9356,6 @@ mana={W}
 type=Sorcery
 [/card]
 [card]
-name=Familiar's Ruse
-text=As an additional cost to cast Familiar's Ruse, return a creature you control to its owner's hand. -- Counter target spell.
-mana={U}{U}
-type=Instant
-[/card]
-[card]
 name=Famished Ghoul
 text={1}{B}, Sacrifice Famished Ghoul: Exile up to two target cards from a single graveyard.
 mana={3}{B}
@@ -9631,15 +9593,6 @@ name=Fertile Imagination
 text=Choose a card type. Target opponent reveals his or her hand. Put two 1/1 green Saproling creature tokens onto the battlefield for each card of the chosen type revealed this way. (The card types are artifact, creature, enchantment, instant, land, planeswalker, sorcery, and tribal.)
 mana={2}{G}{G}
 type=Sorcery
-[/card]
-[card]
-name=Fertilid
-text=Fertilid enters the battlefield with two +1/+1 counters on it. -- {1}{G}, Remove a +1/+1 counter from Fertilid: Target player searches his or her library for a basic land card and puts it onto the battlefield tapped. Then that player shuffles his or her library.
-mana={2}{G}
-type=Creature
-subtype=Elemental
-power=0
-toughness=0
 [/card]
 [card]
 name=Festering March
@@ -10572,15 +10525,6 @@ mana={3}{R}{G}
 type=Sorcery
 [/card]
 [card]
-name=Frenzy Sliver
-text=All Sliver creatures have frenzy 1. (Whenever a Sliver attacks and isn't blocked, it gets +1/+0 until end of turn.)
-mana={1}{B}
-type=Creature
-subtype=Sliver
-power=1
-toughness=1
-[/card]
-[card]
 name=Freyalise Supplicant
 text={T}, Sacrifice a red or white creature: Freyalise Supplicant deals damage to target creature or player equal to half the sacrificed creature's power, rounded down.
 mana={1}{G}
@@ -10739,17 +10683,6 @@ name=Fury of the Horde
 text=You may exile two red cards from your hand rather than pay Fury of the Horde's mana cost. -- Untap all creatures that attacked this turn. After this main phase, there is an additional combat phase followed by an additional main phase.
 mana={5}{R}{R}
 type=Sorcery
-[/card]
-[card]
-name=Furystoke Giant
-abilities=persist
-auto=lord(creature|myinplay) {T}:damage:2 target(creature,player)
-text=When Furystoke Giant enters the battlefield, other creatures you control gain "{T}: This creature deals 2 damage to target creature or player" until end of turn. -- Persist (When this creature is put into a graveyard from the battlefield, if it had no -1/-1 counters on it, return it to the battlefield under its owner's control with a -1/-1 counter on it.)
-mana={3}{R}{R}
-type=Creature
-subtype=Giant Warrior
-power=3
-toughness=3
 [/card]
 [card]
 name=Future Sight
@@ -10924,17 +10857,6 @@ power=2
 toughness=2
 [/card]
 [card]
-##Neither works with "preventallCombatDamage" nor "fog".
-name=Gaseous Form
-target=creature
-auto=preventAllCombatDamage from(mytgt)
-auto=preventAllCombatDamage to(mytgt)
-text=Enchant creature -- Prevent all combat damage that would be dealt to and dealt by enchanted creature.
-mana={2}{U}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Gate Hound
 text=Creatures you control have vigilance as long as Gate Hound is enchanted.
 mana={2}{W}
@@ -11050,17 +10972,6 @@ power=1
 toughness=2
 [/card]
 [card]
-##Neither works with "preventallCombatDamage" nor "fog".
-name=General's Kabuto
-auto={2}:equip
-auto=shroud
-auto=preventAllCombatDamage to(mytgt)
-text=Equipped creature has shroud. (It can't be the target of spells or abilities.) -- Prevent all combat damage that would be dealt to equipped creature. -- Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
-mana={4}
-type=Artifact
-subtype=Equipment
-[/card]
-[card]
 name=General's Regalia
 text={3}: The next time a source of your choice would deal damage to you this turn, that damage is dealt to target creature you control instead.
 mana={3}
@@ -11156,15 +11067,6 @@ name=Ghostfire
 text=Ghostfire is colorless. -- Ghostfire deals 3 damage to target creature or player.
 mana={2}{R}
 type=Instant
-[/card]
-[card]
-name=Ghostflame Sliver
-text=All Slivers are colorless.
-mana={B}{R}
-type=Creature
-subtype=Sliver
-power=2
-toughness=2
 [/card]
 [card]
 name=Ghosthelm Courier
@@ -12170,12 +12072,6 @@ toughness=1
 name=Grave Pact
 text=Whenever a creature you control is put into a graveyard from the battlefield, each other player sacrifices a creature.
 mana={1}{B}{B}{B}
-type=Enchantment
-[/card]
-[card]
-name=Grave Peril
-text=When a nonblack creature enters the battlefield, sacrifice Grave Peril. If you do, destroy that creature.
-mana={1}{B}
 type=Enchantment
 [/card]
 [card]
@@ -13606,13 +13502,6 @@ power=*
 toughness=*
 [/card]
 [card]
-name=Horn of Deafening
-auto={2}{T}:preventAllCombatDamage from target(creature)
-text={2}, {T}: Prevent all combat damage that would be dealt by target creature this turn.
-mana={4}
-type=Artifact
-[/card]
-[card]
 name=Horn of Plenty
 text=Whenever a player casts a spell, he or she may pay {1}. If that player does, he or she draws a card at the beginning of the next end step.
 mana={6}
@@ -13893,17 +13782,6 @@ type=Land
 name=Icefall
 text=Destroy target artifact or land. -- Recover {R}{R} (When a creature is put into your graveyard from the battlefield, you may pay {R}{R}. If you do, return this card from your graveyard to your hand. Otherwise, exile this card.)
 mana={2}{R}{R}
-type=Sorcery
-[/card]
-[card]
-name=Icequake
-target=land
-auto=destroy
-auto=@movedto(land[snow]|opponentgraveyard) from(battlefield):damage:1 opponent
-auto=@movedto(land[snow]|mygraveyard) from(battlefield):damage:1 controller
-#wonder if it will work - to test
-text=Destroy target land. If that land was a snow land, Icequake deals 1 damage to that land's controller.
-mana={1}{B}{B}
 type=Sorcery
 [/card]
 [card]
@@ -15153,15 +15031,6 @@ mana={4}{R}
 type=Sorcery
 [/card]
 [card]
-name=Kaervek the Merciless
-text=Whenever an opponent casts a spell, Kaervek the Merciless deals damage to target creature or player equal to that spell's converted mana cost.
-mana={5}{B}{R}
-type=Legendary Creature
-subtype=Human Shaman
-power=5
-toughness=4
-[/card]
-[card]
 name=Kaervek's Purge
 text=Destroy target creature with converted mana cost X. If that creature is put into a graveyard this way, Kaervek's Purge deals damage equal to the creature's power to the creature's controller.
 mana={X}{B}{R}
@@ -15567,15 +15436,6 @@ mana={1}{R}{R}
 type=Sorcery
 [/card]
 [card]
-name=Kinsbaile Borderguard
-text=Kinsbaile Borderguard enters the battlefield with a +1/+1 counter on it for each other Kithkin you control. -- When Kinsbaile Borderguard is put into a graveyard from the battlefield, put a 1/1 white Kithkin Soldier creature token onto the battlefield for each counter on it.
-mana={1}{W}{W}
-type=Creature
-subtype=Kithkin Soldier
-power=1
-toughness=1
-[/card]
-[card]
 name=Kira, Great Glass-Spinner
 text=Flying -- Creatures you control have "Whenever this creature becomes the target of a spell or ability for the first time in a turn, counter that spell or ability."
 mana={1}{U}{U}
@@ -15907,15 +15767,6 @@ type=Creature
 subtype=Kor Soldier
 power=2
 toughness=2
-[/card]
-[card]
-name=Korlash, Heir to Blackblade
-text=Korlash, Heir to Blackblade's power and toughness are each equal to the number of Swamps you control. -- {1}{B}: Regenerate Korlash. -- Grandeur - Discard another card named Korlash, Heir to Blackblade: Search your library for up to two Swamp cards, put them onto the battlefield tapped, then shuffle your library.
-mana={2}{B}{B}
-type=Legendary Creature
-subtype=Zombie Warrior
-power=*
-toughness=*
 [/card]
 [card]
 name=Koskun Falls
@@ -21059,15 +20910,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Osai Vultures
-text=Flying -- At the beginning of each end step, if a creature was put into a graveyard from the battlefield this turn, put a carrion counter on Osai Vultures. -- Remove two carrion counters from Osai Vultures: Osai Vultures gets +1/+1 until end of turn.
-mana={1}{W}
-type=Creature
-subtype=Bird
-power=1
-toughness=1
-[/card]
-[card]
 name=Otherworldly Journey
 text=Exile target creature. At the beginning of the next end step, return that card to the battlefield under its owner's control with a +1/+1 counter on it.
 mana={1}{W}
@@ -25629,17 +25471,6 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-##Neither works with "preventallCombatDamage" nor "fog".
-name=Sandskin
-target=creature
-auto=preventAllCombatDamage from(mytgt)
-auto=preventAllCombatDamage to(mytgt)
-text=Enchant creature -- Prevent all combat damage that would be dealt to and dealt by enchanted creature.
-mana={2}{W}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Sandsower
 text=Tap three untapped creatures you control: Tap target creature.
 mana={3}{W}
@@ -27448,15 +27279,6 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Skirk Ridge Exhumer
-text={B}, {T}, Discard a card: Put a 1/1 black Zombie Goblin creature token named Festering Goblin onto the battlefield. It has "When Festering Goblin is put into a graveyard from the battlefield, target creature gets -1/-1 until end of turn."
-mana={1}{B}
-type=Creature
-subtype=Zombie Spellshaper
-power=1
-toughness=1
-[/card]
-[card]
 name=Skirk Volcanist
 text=Morph - Sacrifice two Mountains. (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Skirk Volcanist is turned face up, it deals 3 damage divided as you choose among one, two, or three target creatures.
 mana={3}{R}
@@ -28623,15 +28445,6 @@ name=Spirit Shield
 text=You may choose not to untap Spirit Shield during your untap step. -- {2}, {T}: Target creature gets +0/+2 for as long as Spirit Shield remains tapped.
 mana={3}
 type=Artifact
-[/card]
-[card]
-name=Spirit en-Dal
-text=Shadow (This creature can block or be blocked by only creatures with shadow.) -- Forecast - {1}{W}, Reveal Spirit en-Dal from your hand: Target creature gains shadow until end of turn. (Activate this ability only during your upkeep and only once each turn.)
-mana={2}{W}
-type=Creature
-subtype=Spirit
-power=2
-toughness=1
 [/card]
 [card]
 name=Spirit en-Kor
@@ -30413,13 +30226,6 @@ mana={B}{B}{B}{B}
 type=Sorcery
 [/card]
 [card]
-name=Temporal Isolation
-text=Flash (You may cast this spell any time you could cast an instant.) -- Enchant creature -- Enchanted creature has shadow. (It can block or be blocked by only creatures with shadow.) -- Prevent all damage that would be dealt by enchanted creature.
-mana={1}{W}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Temporal Manipulation
 text=Take an extra turn after this one.
 mana={3}{U}{U}
@@ -30821,12 +30627,6 @@ name=Thought Prison
 text=Imprint - When Thought Prison enters the battlefield, you may have target player reveal his or her hand. If you do, choose a nonland card from it and exile that card. -- Whenever a player casts a spell that shares a color or converted mana cost with the exiled card, Thought Prison deals 2 damage to that player.
 mana={5}
 type=Artifact
-[/card]
-[card]
-name=Thought Reflection
-text=If you would draw a card, draw two cards instead.
-mana={4}{U}{U}{U}
-type=Enchantment
 [/card]
 [card]
 name=Thoughtbound Primoc
