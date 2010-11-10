@@ -706,6 +706,10 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
+				RelativePath=".\include\DebugRoutines.h"
+				>
+			</File>
+			<File
 				RelativePath=".\include\decoder_prx.h"
 				>
 			</File>

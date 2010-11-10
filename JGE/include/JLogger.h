@@ -1,19 +1,27 @@
 #ifndef _JLOGGER_H_
 #define _JLOGGER_H_
 //logging facility
-//#define DOJLOG
+//#define DOLOG
 
-#ifdef DOJLOG
-#define JLOG(x) JLogger::Log(x);
+#ifdef DOLOG
+#define LOG(x) JLogger::Log(x);
 #else
-#define JLOG(x) {};
+#define LOG(x) {};
 #endif
 
-#define JGE_LOG_FILE "jge_debug.txt"
+// saving myself the pain of search/replace
+#define JLOG(x) LOG(x)
+
+#define LOG_FILE "debug.txt"
 
 class JLogger{
  public:
   static void Log(const char * text);
+
+  JLogger(const char* text);
+  ~JLogger();
+
+  const char* mText;
 };
 
 #endif

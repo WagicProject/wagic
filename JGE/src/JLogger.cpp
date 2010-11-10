@@ -1,25 +1,34 @@
 #include "../include/JLogger.h"
-#include <iostream>
-#include <fstream>
-using namespace std;
+#include "../include/DebugRoutines.h"
 
-#if defined (WIN32)
-#include <windows.h>
-#endif
+#include <fstream>
 
 void JLogger::Log(const char * text){
-  ofstream file (JGE_LOG_FILE,ios_base::app);
+  std::ofstream file(LOG_FILE, std::ios_base::app);
   if (file){
     file << text;
     file << "\n";
     file.close();
   }
-#if defined (WIN32) && !defined(QT_CONFIG)
-  OutputDebugString(text);
-  OutputDebugString("\n");
-#else
-  printf("%s", text);
-  printf("\n");
-#endif
 
+  DebugTrace(text);
 }
+
+JLogger::JLogger(const char* text) : mText(text)
+{
+#ifdef DOLOG
+  std::ostringstream stream;
+  stream << mText << ": Start";
+  JLogger::Log(stream.str().c_str());
+#endif
+}
+
+JLogger::~JLogger()
+{
+#ifdef DOLOG
+  std::ostringstream stream;
+  stream << mText << ": End";
+  JLogger::Log(stream.str().c_str());
+#endif
+}
+

@@ -11,10 +11,6 @@
 #ifndef _GAMEAPP_H_
 #define _GAMEAPP_H_
 
-
-#include "Logger.h"
-
-
 #include <JApp.h>
 #include <JGE.h>
 #include <JSprite.h>

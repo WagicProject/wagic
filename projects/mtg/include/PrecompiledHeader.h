@@ -17,5 +17,6 @@
 
 #include "JGE.h"
 #include "JFileSystem.h"
+#include "JLogger.h"
 
 #endif //PRECOMPILEDHEADER_H

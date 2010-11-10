@@ -694,10 +694,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\Logger.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\src\ManaCost.cpp"
 				>
 			</File>
@@ -1156,10 +1152,6 @@
 			</File>
 			<File
 				RelativePath=".\include\GuiStatic.h"
-				>
-			</File>
-			<File
-				RelativePath=".\include\Logger.h"
 				>
 			</File>
 			<File
