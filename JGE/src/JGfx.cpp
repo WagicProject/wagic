@@ -885,12 +885,52 @@ static int getNextPower2(int width)
 	return b;
 }
 
+/*
+** Alternate swizzle function that can handle any number of lines (as opposed to swizzle_fast, which is
+** hardcoded to do 8 at a time)
+*/
+static void swizzle_lines(const u8* inSrc, u8* inDst, unsigned int inWidth, unsigned int inLines)
+{
+	unsigned int rowblocks = (inWidth * sizeof(u32) / 16);
+	for (unsigned int j = 0; j < inLines; ++j)
+	{
+		for (unsigned int i = 0; i < inWidth * sizeof(u32); ++i)
+		{
+			unsigned int blockx = i / 16;
+			unsigned int blocky = j / 8;
+	 
+			unsigned int x = (i - blockx * 16);
+			unsigned int y = (j - blocky * 8);
+			unsigned int block_index = blockx + ((blocky) * rowblocks);
+			unsigned int block_address = block_index * 16 * 8;
+	 
+			inDst[block_address + x + y * 16] = inSrc[i + j * inWidth * sizeof(u32)];
+		}
+	}
+}
+
+
+typedef u32* u32_ptr;
+static void swizzle_row(const u8* inSrc, u32_ptr& inDst, unsigned int inBlockWidth, unsigned int inPitch)
+{
+  for (unsigned int blockx = 0; blockx < inBlockWidth; ++blockx)
+  {
+		const u32* src = (u32*)inSrc;
+    for (unsigned int j = 0; j < 8; ++j)
+    {
+      *(inDst++) = *(src++);
+      *(inDst++) = *(src++);
+      *(inDst++) = *(src++);
+      *(inDst++) = *(src++);
+      src += inPitch;
+    }
+    inSrc += 16;
+  }
+}
+
 
 static void swizzle_fast(u8* out, const u8* in, unsigned int width, unsigned int height)
 {
-   unsigned int blockx, blocky;
-   unsigned int j;
-
    unsigned int width_blocks = (width / 16);
    unsigned int height_blocks = (height / 8);
 
@@ -900,23 +940,11 @@ static void swizzle_fast(u8* out, const u8* in, unsigned int width, unsigned int
    const u8* ysrc = in;
    u32* dst = (u32*)out;
 
-   for (blocky = 0; blocky < height_blocks; ++blocky)
+   for (unsigned int blocky = 0; blocky < height_blocks; ++blocky)
    {
       const u8* xsrc = ysrc;
-      for (blockx = 0; blockx < width_blocks; ++blockx)
-      {
-         const u32* src = (u32*)xsrc;
-         for (j = 0; j < 8; ++j)
-         {
-            *(dst++) = *(src++);
-            *(dst++) = *(src++);
-            *(dst++) = *(src++);
-            *(dst++) = *(src++);
-            src += src_pitch;
-         }
-         xsrc += 16;
-     }
-     ysrc += src_row;
+			swizzle_row(xsrc, dst, width_blocks, src_pitch);
+     	ysrc += src_row;
    }
 }
 
@@ -1228,6 +1256,42 @@ JTexture* JRenderer::LoadTexture(const char* filename, int mode, int textureMode
 
 }
 
+/*
+** Helper function for LoadPNG
+*/
+void ReadPngLine( png_structp& png_ptr, u32_ptr& line, png_uint_32 width, int pixelformat, u16* p16, u32* p32 ) 
+{
+  png_read_row(png_ptr, (u8*) line, png_bytep_NULL);
+  for (int x = 0; x < (int)width; ++x)
+  {
+    u32 color32 = line[x];
+    u16 color16;
+    int a = (color32 >> 24) & 0xff;
+    int r = color32 & 0xff;
+    int g = (color32 >> 8) & 0xff;
+    int b = (color32 >> 16) & 0xff;
+    switch (pixelformat) {
+    case PSP_DISPLAY_PIXEL_FORMAT_565:
+      color16 = (r >> 3) | ((g >> 2) << 5) | ((b >> 3) << 11);
+      *(p16+x) = color16;
+      break;
+    case PSP_DISPLAY_PIXEL_FORMAT_5551:
+      color16 = (r >> 3) | ((g >> 3) << 5) | ((b >> 3) << 10) | ((a >> 7) << 15);
+      *(p16+x) = color16;
+      break;
+    case PSP_DISPLAY_PIXEL_FORMAT_4444:
+      color16 = (r >> 4) | ((g >> 4) << 4) | ((b >> 4) << 8) | ((a >> 4) << 12);
+      *(p16+x) = color16;
+      break;
+    case PSP_DISPLAY_PIXEL_FORMAT_8888:
+      color32 = r | (g << 8) | (b << 16) | (a << 24);
+      *(p32+x) = color32;
+      break;
+    }
+  }	
+}
+
+
 
 //------------------------------------------------------------------------------------------------
 // Based on:
@@ -1236,7 +1300,8 @@ JTexture* JRenderer::LoadTexture(const char* filename, int mode, int textureMode
 //------------------------------------------------------------------------------------------------
 int JRenderer::LoadPNG(TextureInfo &textureInfo, const char* filename, int mode, int textureMode)
 {
-  JLOG("JRenderer::LoadPNG");
+  JLOG("JRenderer::LoadPNG: ");
+  JLOG(filename);
   textureInfo.mBits = NULL;
 
   bool useVideoRAM = (mode == TEX_TYPE_USE_VRAM);
@@ -1248,7 +1313,7 @@ int JRenderer::LoadPNG(TextureInfo &textureInfo, const char* filename, int mode,
   png_infop info_ptr;
   unsigned int sig_read = 0;
   png_uint_32 width, height;
-  int bit_depth, color_type, interlace_type, x, y;
+  int bit_depth, color_type, interlace_type;
   u32* line;
 
   JFileSystem* fileSystem = JFileSystem::GetInstance();
@@ -1309,16 +1374,16 @@ int JRenderer::LoadPNG(TextureInfo &textureInfo, const char* filename, int mode,
     }
 
     PIXEL_TYPE* buffer = bits;
-
+    const unsigned int kVerticalBlockSize = 8;
     if (mSwizzle)
     {
       JLOG("allocating swizzle buffer");
-      buffer = (PIXEL_TYPE*) memalign(16, texWidth * texHeight * sizeof(PIXEL_TYPE));
+      buffer = (PIXEL_TYPE*) memalign(16, texWidth * kVerticalBlockSize * sizeof(PIXEL_TYPE));
       if (!buffer)
       {
         JLOG("failed to allocate destination swizzle buffer!");
         std::ostringstream stream;
-        stream << "Alloc failed for: Tex Width: " << texWidth << " Tex Height: " << texHeight << ", total bytes: " << texWidth * texHeight * sizeof(PIXEL_TYPE);
+        stream << "Alloc failed for: Tex Width: " << texWidth << " Tex Height: " << kVerticalBlockSize << ", total bytes: " << texWidth * kVerticalBlockSize * sizeof(PIXEL_TYPE);
         JLOG(stream.str().c_str());
         fileSystem->CloseFile();
         png_destroy_read_struct(&png_ptr, png_infopp_NULL, png_infopp_NULL);
@@ -1328,51 +1393,61 @@ int JRenderer::LoadPNG(TextureInfo &textureInfo, const char* filename, int mode,
 
     if (buffer)
     {
-      JLOG("buffer allocated");
+  		unsigned int src_row = texWidth * 8;
+      u32* dst = (u32*)bits;
+      u32* ysrc = (u32*) buffer;
+      unsigned int totalVerticalBlocksToProcess = height / kVerticalBlockSize;
+
       p32 = (u32*) buffer;
       p16 = (u16*) p32;
-
-      for (y = 0; y < (int)height; y++)
+      for (unsigned int block = 0; block < totalVerticalBlocksToProcess; ++block)
       {
-        png_read_row(png_ptr, (u8*) line, png_bytep_NULL);
-        for (x = 0; x < (int)width; x++)
+        for (unsigned int y = 0; y < kVerticalBlockSize; ++y)
         {
-          u32 color32 = line[x];
-          u16 color16;
-          int a = (color32 >> 24) & 0xff;
-          int r = color32 & 0xff;
-          int g = (color32 >> 8) & 0xff;
-          int b = (color32 >> 16) & 0xff;
-          switch (pixelformat) {
-          case PSP_DISPLAY_PIXEL_FORMAT_565:
-            color16 = (r >> 3) | ((g >> 2) << 5) | ((b >> 3) << 11);
-            *(p16+x) = color16;
-            break;
-          case PSP_DISPLAY_PIXEL_FORMAT_5551:
-            color16 = (r >> 3) | ((g >> 3) << 5) | ((b >> 3) << 10) | ((a >> 7) << 15);
-            *(p16+x) = color16;
-            break;
-          case PSP_DISPLAY_PIXEL_FORMAT_4444:
-            color16 = (r >> 4) | ((g >> 4) << 4) | ((b >> 4) << 8) | ((a >> 4) << 12);
-            *(p16+x) = color16;
-            break;
-          case PSP_DISPLAY_PIXEL_FORMAT_8888:
-            color32 = r | (g << 8) | (b << 16) | (a << 24);
-            *(p32+x) = color32;
-            break;
-          }
+          ReadPngLine(png_ptr, line, width, pixelformat, p16, p32);
+
+          p32 += texWidth;
+          p16 += texWidth;
         }
-        p32 += texWidth;
-        p16 += texWidth;
+
+				if (mSwizzle)
+				{
+					swizzle_fast((u8*) dst, (const u8*) buffer, texWidth * sizeof(PIXEL_TYPE), kVerticalBlockSize);
+					dst += src_row;
+
+          // if we're swizzling, reset the read pointers to the top of the buffer, as we re-read into an 8 line
+          // block of memory (if we're not swizzling, we're reading directly into the destination, so we
+          // want to continue iterating through)
+          p32 = (u32*) buffer;
+          p16 = (u16*) p32;
+				}
       }
 
-      if (mSwizzle)
+      //now the last remaining lines (ie if the height wasn't evenly divisible by 8)
       {
-        JLOG("performing swizzle");
-        swizzle_fast((u8*)bits, (const u8*)buffer, texWidth*sizeof(PIXEL_TYPE), texHeight);
-        free (buffer);
+        if (mSwizzle)
+        {
+          //clear the conversion buffer so that leftover scan lines are transparent
+          memset(buffer, 255, texWidth * kVerticalBlockSize * sizeof(PIXEL_TYPE));
+        }
+        unsigned int remainingLines = height % kVerticalBlockSize;
+        for (unsigned int y = 0; y < remainingLines; ++y)
+        {
+          ReadPngLine(png_ptr, line, width, pixelformat, p16, p32);
+
+          p32 += texWidth;
+          p16 += texWidth;
+        }
+
+        if (mSwizzle)
+        {
+          // swizzle_fast only can handle eight lines at a time, and will overrun memory in our destination,
+					// which only has remainingLines to fill - use the swizzle_lines function instead
+					swizzle_lines((const u8*) buffer, (u8*) dst, texWidth, remainingLines);
+        }
       }
 
+      free(buffer);
       done = true;
     }
   }
