@@ -95,10 +95,16 @@ void DeckMenu::RenderBackground()
 {
   ostringstream bgFilename;
   bgFilename << backgroundName << ".png";
-  JQuad *background = resources.RetrieveTempQuad(bgFilename.str(), TEXTURE_SUB_5551);
-  if ( background )
-    JRenderer::GetInstance()->RenderQuad( background, 0, 0 );
 
+  static bool loadBackground = true;
+  if (loadBackground)
+  {
+    JQuad *background = resources.RetrieveTempQuad(bgFilename.str(), TEXTURE_SUB_5551);
+    if ( background )
+      JRenderer::GetInstance()->RenderQuad( background, 0, 0 );
+    else
+      loadBackground = false;
+  }
 }
 
 void DeckMenu::initMenuItems()
