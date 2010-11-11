@@ -929,7 +929,7 @@ toughness=4
 [/card]
 [card]
 name=Alabaster Leech
-auto=lord(*[white]|myhand) white:+1
+auto=lord(*[white]|myhand) manaredux( white, +1 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -1598,7 +1598,7 @@ type=Land
 [/card]
 [card]
 name=Andradite Leech
-auto=lord(*[black]|myhand) black:+1
+auto=lord(*[black]|myhand) manaredux( black, +1 )
 auto={B}:1/1
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
@@ -3118,8 +3118,8 @@ subtype=Aura
 [/card]
 [card]
 name=Aura of Silence
-auto=lord(artifact[-land]|opponenthand) colorless:+2
-auto=lord(enchantment|opponenthand) colorless:+2
+auto=lord(artifact[-land]|opponenthand) manaredux( colorless, +2 )
+auto=lord(enchantment|opponenthand) manaredux( colorless, +2 )
 auto={S}:destroy target(artifact,enchantment)
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
@@ -3891,8 +3891,8 @@ toughness=2
 [/card]
 [card]
 name=Ballyrush Banneret
-auto=lord(kithkin|myhand) colorless:-1
-auto=lord(soldier|myhand) colorless:-1
+auto=lord(kithkin|myhand) manaredux( colorless, -1 )
+auto=lord(soldier|myhand) manaredux( colorless, -1 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -6615,8 +6615,8 @@ type=Sorcery
 [/card]
 [card]
 name=Bosk Banneret
-auto=lord(treefolk|myhand) colorless:-1
-auto=lord(shaman|myhand) colorless:-1
+auto=lord(treefolk|myhand) manaredux( colorless, -1 )
+auto=lord(shaman|myhand) manaredux( colorless, -1 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -7002,8 +7002,8 @@ type=Sorcery
 [/card]
 [card]
 name=Brighthearth Banneret
-auto=lord(elemental|myhand) colorless:-1
-auto=lord(warrior|myhand) colorless:-1
+auto=lord(elemental|myhand) manaredux( colorless, -1 )
+auto=lord(warrior|myhand) manaredux( colorless, -1 )
 autohand={1}{R}{S}:counter(1/1,1) target(creature)
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
@@ -9195,8 +9195,8 @@ toughness=2
 [/card]
 [card]
 name=Chill
-auto=lord(*[red]|myhand) colorless:+2
-auto=lord(*[red]|opponenthand) colorless:+2
+auto=lord(*[red]|myhand) manaredux( colorless, +2 )
+auto=lord(*[red]|opponenthand) manaredux( colorless, +2 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -10019,11 +10019,11 @@ auto=choice name(Creature) && counter(0/0,1,CloudKeyC) all(this)
 auto=choice name(Enchantment) && counter(0/0,1,CloudKeyE) all(this)
 auto=choice name(Instant) && counter(0/0,1,CloudKeyI) all(this)
 auto=choice name(Sorcery) && counter(0/0,1,CloudKeyS) all(this)
-auto=this(counter{0/0.1.CloudKeyA}) lord(Artifact|myhand) colorless:-1
-auto=this(counter{0/0.1.CloudKeyC}) lord(Creature|myhand) colorless:-1
-auto=this(counter{0/0.1.CloudKeyE}) lord(Enchantment|myhand) colorless:-1
-auto=this(counter{0/0.1.CloudKeyI}) lord(Instant|myhand) colorless:-1
-auto=this(counter{0/0.1.CloudKeyS}) lord(Sorcery|myhand) colorless:-1
+auto=this(counter{0/0.1.CloudKeyA}) lord(Artifact|myhand) manaredux( colorless, -1 )
+auto=this(counter{0/0.1.CloudKeyC}) lord(Creature|myhand) manaredux( colorless, -1 )
+auto=this(counter{0/0.1.CloudKeyE}) lord(Enchantment|myhand) manaredux( colorless, -1 )
+auto=this(counter{0/0.1.CloudKeyI}) lord(Instant|myhand) manaredux( colorless, -1 )
+auto=this(counter{0/0.1.CloudKeyS}) lord(Sorcery|myhand) manaredux( colorless, -1 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -12415,7 +12415,7 @@ type=Land
 [/card]
 [card]
 name=Daru Warchief
-auto=lord(soldier|myhand) colorless:-1
+auto=lord(soldier|myhand) manaredux( colorless, -1 )
 auto=lord(soldier|myBattlefield) 1/2
 text=Soldier spells you cast cost {1} less to cast. -- Soldier creatures you control get +1/+2.
 mana={2}{W}{W}
@@ -13388,7 +13388,7 @@ toughness=1
 [/card]
 [card]
 name=Derelor
-auto=lord(*[black]|myhand) black:+1
+auto=lord(*[black]|myhand) manaredux( black, +1 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -14521,7 +14521,7 @@ toughness=2
 [/card]
 [card]
 name=Dragonspeaker Shaman
-auto=lord(dragon|myhand) colorless:-2
+auto=lord(dragon|myhand) manaredux( colorless, -2 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -15762,8 +15762,8 @@ toughness=3
 [/card]
 [card]
 name=Edgewalker
-auto=lord(cleric|myhand) white:-1
-auto=lord(cleric|myhand) black:-1
+auto=lord(cleric|myhand) manaredux( white, -1 )
+auto=lord(cleric|myhand) manaredux( black, -1 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -16575,7 +16575,7 @@ toughness=1
 [/card]
 [card]
 name=Emerald Medallion
-auto=lord(*[green]|myhand) colorless:-1
+auto=lord(*[green]|myhand) manaredux( colorless, -1 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -17364,7 +17364,7 @@ type=Artifact
 [/card]
 [card]
 name=Etherium Sculptor
-auto=lord(artifact|myhand) colorless:-1
+auto=lord(artifact|myhand) manaredux( colorless, -1 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -17737,7 +17737,7 @@ type=Artifact
 [/card]
 [card]
 name=Eye of Ugin
-auto=lord(eldrazi[-white;-blue;-black;-red;-green]|myhand) colorless:-2
+auto=lord(eldrazi[-white;-blue;-black;-red;-green]|myhand) manaredux( colorless, -2 )
 auto={7}{T}:moveTo(myhand) target(creature[-white;-blue;-black;-red;-green]|myLibrary)
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
@@ -18424,8 +18424,8 @@ subtype=Aura
 [/card]
 [card]
 name=Feroz's Ban
-auto=lord(creature|myhand) colorless:+2
-auto=lord(creature|opponenthand) colorless:+2
+auto=lord(creature|myhand) manaredux( colorless, +2 )
+auto=lord(creature|opponenthand) manaredux( colorless, +2 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -20369,8 +20369,8 @@ toughness=2
 [card]
 name=Frogtosser Banneret
 abilities=haste
-auto=lord(goblin|myhand) colorless:-1
-auto=lord(rogue|myhand) colorless:-1
+auto=lord(goblin|myhand) manaredux( colorless, -1 )
+auto=lord(rogue|myhand) manaredux( colorless, -1 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -21999,8 +21999,8 @@ toughness=3
 [/card]
 [card]
 name=Glowrider
-auto=lord(*[-creature;-land]|myhand) colorless:+1
-auto=lord(*[-creature;-land]|opponenthand) colorless:+1
+auto=lord(*[-creature;-land]|myhand) manaredux( colorless, +1 )
+auto=lord(*[-creature;-land]|opponenthand) manaredux( colorless, +1 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -22742,7 +22742,7 @@ toughness=1
 [/card]
 [card]
 name=Goblin Warchief
-auto=lord(goblin|myhand) colorless:-1
+auto=lord(goblin|myhand) manaredux( colorless, -1 )
 auto=lord(goblin|myBattlefield) haste
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
@@ -23171,9 +23171,9 @@ type=Artifact
 [/card]
 [card]
 name=Grand Arbiter Augustin IV
-auto=lord(*[white;blue]|myhand) colorless:-1
-auto=lord(*[blue]|myhand) colorless:-1
-auto=lord(*[-land]|opponenthand) colorless:+1
+auto=lord(*[white;blue]|myhand) manaredux( colorless, -1 )
+auto=lord(*[blue]|myhand) manaredux( colorless, -1 )
+auto=lord(*[-land]|opponenthand) manaredux( colorless, +1 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -25282,8 +25282,8 @@ toughness=1
 [/card]
 [card]
 name=Helm of Awakening
-auto=lord(*|myhand) colorless:-1
-auto=lord(*|opponenthand) colorless:-1
+auto=lord(*|myhand) manaredux( colorless, -1 )
+auto=lord(*|opponenthand) manaredux( colorless, -1 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -25490,8 +25490,8 @@ type=Land
 [/card]
 [card]
 name=High Seas
-auto=lord(creature[red;green]|myhand) colorless:+1
-auto=lord(creature[red;green]|opponenthand) colorless:+1
+auto=lord(creature[red;green]|myhand) manaredux( colorless, +1 )
+auto=lord(creature[red;green]|opponenthand) manaredux( colorless, +1 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -27554,8 +27554,8 @@ toughness=4
 [/card]
 [card]
 name=Irini Sengir
-auto=lord(enchantment[white;green]|myhand) colorless:+1
-auto=lord(enchantment[white;green]|opponenthand) colorless:+1
+auto=lord(enchantment[white;green]|myhand) manaredux( colorless, +1 )
+auto=lord(enchantment[white;green]|opponenthand) manaredux( colorless, +1 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -27905,7 +27905,7 @@ type=Artifact
 [/card]
 [card]
 name=Jade Leech
-auto=lord(*[green]|myhand) green:+1
+auto=lord(*[green]|myhand) manaredux( green, +1 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -28102,7 +28102,7 @@ toughness=1
 [/card]
 [card]
 name=Jet Medallion
-auto=lord(*[black]|myhand) colorless:-1
+auto=lord(*[black]|myhand) manaredux( colorless, -1 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -30692,7 +30692,7 @@ toughness=5
 [card]
 name=Krosan Warchief
 auto={1}{G}:regenerate target(beast)
-auto=lord(beast|myhand) colorless:-1
+auto=lord(beast|myhand) manaredux( colorless, -1 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -32386,8 +32386,8 @@ toughness=1
 [/card]
 [card]
 name=Lodestone Golem
-auto=lord(*[-artifact;-land]|myhand) colorless:+1
-auto=lord(*[-artifact;-land]|opponenthand) colorless:+1
+auto=lord(*[-artifact;-land]|myhand) manaredux( colorless, +1 )
+auto=lord(*[-artifact;-land]|opponenthand) manaredux( colorless, +1 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -32454,7 +32454,7 @@ autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
 autolibrary=all(*|myhand) resetcost
-auto=lord(arcane|myhand) colorless:-1
+auto=lord(arcane|myhand) manaredux( colorless, -1 )
 auto=lord(spirit|myBattlefield) 1/1
 text=Arcane spells you cast cost {1} less to cast. -- Spirit creatures you control get +1/+1.
 mana={3}
@@ -33473,8 +33473,8 @@ type=Sorcery
 [/card]
 [card]
 name=Mana Matrix
-auto=lord(instant|myhand) colorless:-2
-auto=lord(enchantment|myhand) colorless:-2
+auto=lord(instant|myhand) manaredux( colorless, -2 )
+auto=lord(enchantment|myhand) manaredux( colorless, -2 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -37700,7 +37700,7 @@ toughness=1
 [/card]
 [card]
 name=Nightscape Familiar
-auto=lord(*[blue;red]|myhand) colorless:-1
+auto=lord(*[blue;red]|myhand) manaredux( colorless, -1 )
 auto={1}{B}:regenerate
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
@@ -40116,7 +40116,7 @@ toughness=4
 [/card]
 [card]
 name=Pearl Medallion
-auto=lord(*[white]|myhand) colorless:-1
+auto=lord(*[white]|myhand) manaredux( colorless, -1 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -41426,7 +41426,7 @@ type=Sorcery
 [/card]
 [card]
 name=Planar Gate
-auto=lord(creature|myhand) colorless:-2
+auto=lord(creature|myhand) manaredux( colorless, -2 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -46038,7 +46038,7 @@ toughness=2
 [card]
 name=Ruby Leech
 abilities=first strike
-auto=lord(*[red]|myhand) red:+1
+auto=lord(*[red]|myhand) manaredux( red, +1 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -46052,7 +46052,7 @@ toughness=2
 [/card]
 [card]
 name=Ruby Medallion
-auto=lord(*[red]|myhand) colorless:-1
+auto=lord(*[red]|myhand) manaredux( colorless, -1 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -46787,7 +46787,7 @@ toughness=1
 [card]
 name=Sapphire Leech
 abilities=flying
-auto=lord(*[blue]|myhand) blue:+1
+auto=lord(*[blue]|myhand) manaredux( blue, +1 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -46801,7 +46801,7 @@ toughness=2
 [/card]
 [card]
 name=Sapphire Medallion
-auto=lord(*[blue]|myhand) colorless:-1
+auto=lord(*[blue]|myhand) manaredux( colorless, -1 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -48336,20 +48336,20 @@ auto=choice name(Sorcery) && moveTo(myexile) notatarget(sorcery|myhand) && count
 auto=choice name(Tribal Instant) && moveTo(myexile) notatarget(instant[tribal]|myhand) && counter(0/0,1,TribalInstant) all(this)
 auto=choice name(Tribal Sorcery) && moveTo(myexile) notatarget(sorcery[tribal]|myhand) && counter(0/0,1,TribalSorcery) all(this)
 auto=choice name(cancel) && 0/0
-auto=this(counter{0/0.1.Artifact}) lord(artifact[-land]|myhand) colorless:-2
-auto=this(counter{0/0.1.ArtifactCreature}) lord(artifact[-creature;-land]|myhand) colorless:-2
-auto=this(counter{0/0.1.ArtifactCreature}) lord(creature[-artifact]|myhand) colorless:-2
-auto=this(counter{0/0.1.ArtifactCreature}) lord(creature[artifact]|myhand) colorless:-2
-auto=this(counter{0/0.1.Creature}) lord(creature|myhand) colorless:-2
-auto=this(counter{0/0.1.Enchantment}) lord(enchantment|myhand) colorless:-2
-auto=this(counter{0/0.1.Instant}) lord(instant|myhand) colorless:-2
-auto=this(counter{0/0.1.Sorcery}) lord(sorcery|myhand) colorless:-2
-auto=this(counter{0/0.1.TribalInstant}) lord(tribal[-instant]|myhand) colorless:-2
-auto=this(counter{0/0.1.TribalInstant}) lord(instant[-tribal]|myhand) colorless:-2
-auto=this(counter{0/0.1.TribalInstant}) lord(instant[tribal]|myhand) colorless:-2
-auto=this(counter{0/0.1.TribalSorcery}) lord(tribal[-sorcery]|myhand) colorless:-2
-auto=this(counter{0/0.1.TribalSorcery}) lord(sorcery[-tribal]|myhand) colorless:-2
-auto=this(counter{0/0.1.TribalSorcery}) lord(sorcery[tribal]|myhand) colorless:-2
+auto=this(counter{0/0.1.Artifact}) lord(artifact[-land]|myhand) manaredux( colorless, -2 )
+auto=this(counter{0/0.1.ArtifactCreature}) lord(artifact[-creature;-land]|myhand) manaredux( colorless, -2 )
+auto=this(counter{0/0.1.ArtifactCreature}) lord(creature[-artifact]|myhand) manaredux( colorless, -2 )
+auto=this(counter{0/0.1.ArtifactCreature}) lord(creature[artifact]|myhand) manaredux( colorless, -2 )
+auto=this(counter{0/0.1.Creature}) lord(creature|myhand) manaredux( colorless, -2 )
+auto=this(counter{0/0.1.Enchantment}) lord(enchantment|myhand) manaredux( colorless, -2 )
+auto=this(counter{0/0.1.Instant}) lord(instant|myhand) manaredux( colorless, -2 )
+auto=this(counter{0/0.1.Sorcery}) lord(sorcery|myhand) manaredux( colorless, -2 )
+auto=this(counter{0/0.1.TribalInstant}) lord(tribal[-instant]|myhand) manaredux( colorless, -2 )
+auto=this(counter{0/0.1.TribalInstant}) lord(instant[-tribal]|myhand) manaredux( colorless, -2 )
+auto=this(counter{0/0.1.TribalInstant}) lord(instant[tribal]|myhand) manaredux( colorless, -2 )
+auto=this(counter{0/0.1.TribalSorcery}) lord(tribal[-sorcery]|myhand) manaredux( colorless, -2 )
+auto=this(counter{0/0.1.TribalSorcery}) lord(sorcery[-tribal]|myhand) manaredux( colorless, -2 )
+auto=this(counter{0/0.1.TribalSorcery}) lord(sorcery[tribal]|myhand) manaredux( colorless, -2 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -52520,8 +52520,8 @@ type=Enchantment
 [/card]
 [card]
 name=Sphere of Resistance
-auto=lord(*[-land]|myhand) colorless:+1
-auto=lord(*[-land]|opponenthand) colorless:+1
+auto=lord(*[-land]|myhand) manaredux( colorless, +1 )
+auto=lord(*[-land]|opponenthand) manaredux( colorless, +1 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -53368,8 +53368,8 @@ type=Artifact
 [card]
 name=Squeeze
 text=Sorcery spells cost {3} more to cast.
-auto=lord(sorcery|myhand) colorless:+3
-auto=lord(sorcery|opponenthand) colorless:+3
+auto=lord(sorcery|myhand) manaredux( colorless, +3 )
+auto=lord(sorcery|opponenthand) manaredux( colorless, +3 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -54005,7 +54005,7 @@ toughness=2
 [/card]
 [card]
 name=Stinkdrinker Daredevil
-auto=lord(giant|myhand) colorless:-2
+auto=lord(giant|myhand) manaredux( colorless, -2 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -54071,7 +54071,7 @@ autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
 autolibrary=all(*|myhand) resetcost
-auto=lord(*|myhand) colorless:-1
+auto=lord(*|myhand) manaredux( colorless, -1 )
 text=Spells you cast cost up to {1} less to cast.
 mana={5}
 type=Artifact
@@ -54209,8 +54209,8 @@ toughness=2
 [card]
 name=Stonybrook Banneret
 abilities=islandwalk
-auto=lord(merfolk|myhand) colorless:-1
-auto=lord(wizard|myhand) colorless:-1
+auto=lord(merfolk|myhand) manaredux( colorless, -1 )
+auto=lord(wizard|myhand) manaredux( colorless, -1 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -54336,7 +54336,7 @@ toughness=1
 [card]
 name=Stormscape Familiar
 abilities=flying
-auto=lord(*[white;black]|myhand) colorless:-1
+auto=lord(*[white;black]|myhand) manaredux( colorless, -1 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -55032,7 +55032,7 @@ toughness=1
 [card]
 name=Sunscape Familiar
 abilities=flying
-auto=lord(*[green;blue]|myhand) colorless:-1
+auto=lord(*[green;blue]|myhand) manaredux( colorless, -1 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -57122,8 +57122,8 @@ toughness=7
 [/card]
 [card]
 name=Thorn of Amethyst
-auto=lord(*[-creature;-land]|myhand) colorless:+1
-auto=lord(*[-creature;-land]|opponenthand) colorless:+1
+auto=lord(*[-creature;-land]|myhand) manaredux( colorless, +1 )
+auto=lord(*[-creature;-land]|opponenthand) manaredux( colorless, +1 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -57170,7 +57170,7 @@ toughness=1
 [/card]
 [card]
 name=Thornscape Familiar
-auto=lord(*[red;white]|myhand) colorless:-1
+auto=lord(*[red;white]|myhand) manaredux( colorless, -1 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -57635,7 +57635,7 @@ toughness=1
 [card]
 name=Thunderscape Familiar
 abilities=first strike
-auto=lord(*[black;green]|myhand) colorless:-1
+auto=lord(*[black;green]|myhand) manaredux( colorless, -1 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
@@ -59772,7 +59772,7 @@ toughness=2
 [card]
 name=Undead Warchief
 auto=lord(zombie|myBatllefield) 2/1
-auto=lord(zombie|myhand) colorless:-1
+auto=lord(zombie|myhand) manaredux( colorless, -1 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
 autohand=all(*|myhand) resetcost
