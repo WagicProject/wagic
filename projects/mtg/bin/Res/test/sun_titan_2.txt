@@ -1,0 +1,24 @@
+## Test Sun Titan's "On attacking" ability
+## Should result in bringing in a permanent with <= 3 CMC onto the battlefield
+[init]
+firstmain
+[player1]
+graveyard:forest,trinket mage
+inplay:sun titan
+manapool:{W}{W}{4}
+[player2]
+[do]
+next
+next
+sun titan
+next
+choice 0
+trinket mage
+eot
+[assert]
+untap
+[player1]
+inplay:sun titan,trinket mage
+graveyard:forest
+[player2]
+[end]

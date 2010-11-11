@@ -1,0 +1,23 @@
+## Test Primeval Titan's "Entering the battlefield" ability
+## Should result in bringing in two lands from player's library tapped onto the battlefield
+[init]
+firstmain
+[player1]
+library:forest,plains,swamp
+hand:primeval titan
+manapool:{G}{G}{4}
+[player2]
+[do]
+primeval titan
+choice 0
+choice 0
+swamp
+choice 0
+plains
+[assert]
+firstmain
+[player1]
+inplay:primeval titan,swamp,plains
+library:forest
+[player2]
+[end]

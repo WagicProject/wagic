@@ -1,0 +1,19 @@
+## Test Sun Titan's "Entering the battlefield" ability
+## Should result in bringing in a permanent with <= 3 CMC onto the battlefield
+[init]
+firstmain
+[player1]
+graveyard:trinket mage
+hand:sun titan
+manapool:{W}{W}{4}
+[player2]
+[do]
+sun titan
+choice 0
+trinket mage
+[assert]
+firstmain
+[player1]
+inplay:sun titan,trinket mage
+[player2]
+[end]

@@ -42103,15 +42103,15 @@ toughness=6
 [/card]
 [card]
 name=Primeval Titan's Fetch
-auto=@movedto(this|mygraveyard):may moveto(mybattlefield) target(land|mylibrary)&& tap && token(-20502712)
-auto=moveto(mygraveyard) all(this)
+auto=@movedto(this|exile):may moveto(mybattlefield) target(land|mylibrary)&& tap && token(-20502712)
+auto=moveto(exile)
 id=-20502711
 type=Nothing
 [/card]
 [card]
 name=Primeval Titan's 2nd Fetch
-auto=@movedto(this|mygraveyard):may moveto(mybattlefield) target(land|mylibrary) && tap
-auto=moveto(mygraveyard) all(this)
+auto=@movedto(this|exile):may moveto(mybattlefield) target(land|mylibrary) && tap
+auto=moveto(exile)
 id=-20502712
 type=Nothing
 [/card]
@@ -54858,8 +54858,8 @@ toughness=4
 [card]
 name=Sun Titan
 abilities=vigilance
-auto=may moveTo(myBattlefield) target(*[manacost<=3]|mygraveyard)
-auto=@attacking(this):may moveTo(myBattlefield) target(*[manacost<=3]|mygraveyard)
+auto=may moveTo(myBattlefield) target(*[manacost<=3;-sorcery;-instant]|mygraveyard)
+auto=@attacking(this):may moveTo(myBattlefield) target(*[manacost<=3;-sorcery;-instant]|mygraveyard)
 text=Vigilance -- Whenever Sun Titan enters the battlefield or attacks, you may return target permanent card with converted mana cost 3 or less from your graveyard to the battlefield.
 mana={4}{W}{W}
 type=Creature

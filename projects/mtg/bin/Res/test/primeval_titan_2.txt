@@ -1,0 +1,26 @@
+## Test Primeval Titan's "On attacking" ability
+## Should result in bringing in two lands into play tapped
+[init]
+combatbegin
+[player1]
+library:forest,plains,swamp
+inplay:primeval titan
+manapool:{G}{G}{4}
+[player2]
+[do]
+next
+primeval titan
+choice 0
+next
+choice 0
+swamp
+choice 0
+plains
+eot
+[assert]
+untap
+[player1]
+inplay:primeval titan,swamp,plains
+library:forest
+[player2]
+[end]
