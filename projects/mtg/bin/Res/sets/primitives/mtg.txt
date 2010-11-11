@@ -40248,11 +40248,11 @@ subtype=Equipment
 name=Pentad Prism
 abilities=sunburst
 auto=counter(0/0,sunburst,charge)
-auto={C(0/0,1,Charge)}:Add{W}
-auto={C(0/0,1,Charge)}:Add{U}
-auto={C(0/0,1,Charge)}:Add{B}
-auto={C(0/0,1,Charge)}:Add{R}
-auto={C(0/0,1,Charge)}:Add{G}
+auto={C(0/0,-1,Charge)}:Add{W}
+auto={C(0/0,-1,Charge)}:Add{U}
+auto={C(0/0,-1,Charge)}:Add{B}
+auto={C(0/0,-1,Charge)}:Add{R}
+auto={C(0/0,-1,Charge)}:Add{G}
 text=Sunburst (This enters the battlefield with a charge counter on it for each color of mana spent to cast it.) -- Remove a charge counter from Pentad Prism: Add one mana of any color to your mana pool.
 mana={2}
 type=Artifact
@@ -65154,7 +65154,7 @@ toughness=5
 [/card]
 [card]
 name=Yomiji, Who Bars the Way
-auto=@movedTo(mygraveyard) from(other creature|mybattlefield):all(trigger[to]) moveTo(myhand)
+auto=@movedTo(mygraveyard) from(other creature[legendary]|mybattlefield):all(trigger[to]) moveTo(myhand)
 text=Whenever a legendary permanent other than Yomiji, Who Bars the Way is put into a graveyard from the battlefield, return that card to its owner's hand.
 mana={5}{W}{W}
 type=Legendary Creature
