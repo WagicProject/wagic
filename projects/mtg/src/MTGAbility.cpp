@@ -1408,8 +1408,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     return a;
   }
 
-   if ( s.find("manaredux(") != string::npos )
-    return getManaReduxAbility( s.substr( s.find("manaredux(") + 10), id, spell, card, target );
+   if ( s.find("altercost(") != string::npos )
+    return getManaReduxAbility( s.substr( s.find("altercost(") + 10), id, spell, card, target );
 
   //resetcost dirty code
   found = s.find("resetcost");
