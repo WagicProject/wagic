@@ -124,7 +124,7 @@ bool CardDisplay::CheckUserInput(int x, int y) {
 
 
 bool CardDisplay::CheckUserInput(JButton key){
-  if (JGE_BTN_SEC == key || JGE_BTN_PRI == key)
+  if (JGE_BTN_SEC == key || JGE_BTN_PRI == key || JGE_BTN_UP == key || JGE_BTN_DOWN == key)
   {
     if (listener){
       listener->ButtonPressed(mId, 0);
