@@ -519,7 +519,7 @@ void GameStateShop::Update(float dt)
         if (btn == JGE_BTN_SEC)
           deleteDisplay();
         else {
-          boosterDisplay->CheckUserInput(btn);
+					boosterDisplay->CheckUserInputSHOP(btn);
           boosterDisplay->Update(dt);}
         return;
       }else if (btn == JGE_BTN_SEC)
