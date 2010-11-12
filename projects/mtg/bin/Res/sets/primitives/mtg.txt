@@ -2491,7 +2491,7 @@ auto=6/6
 auto=@attacking(mytgt):destroy target(*)
 auto={6}:equip
 text=Equipped creature gets +6/+6. -- Whenever equipped creature attacks, destroy target permanent. -- Equip {6}
-mana={2}
+mana={6}
 type=Artifact
 subtype=Equipment
 [/card]
@@ -38474,16 +38474,6 @@ auto=bury all(artifact,creature,land)
 text=Obliterate can't be countered. -- Destroy all artifacts, creatures, and lands. They can't be regenerated.
 mana={6}{R}{R}
 type=Sorcery
-[/card]
-[card]
-name=Oblivion Crown
-abilities=flash
-target=creature
-auto={S(*|myhand)}:1/1
-text=Flash (You may cast this spell any time you could cast an instant.) -- Enchant creature -- Enchanted creature has "Discard a card: This creature gets +1/+1 until end of turn."
-mana={1}{B}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Oboro Breezecaller
