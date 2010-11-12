@@ -17702,7 +17702,7 @@ toughness=3
 [/card]
 [card]
 name=Exuberant Firestoker
-auto=@each my end:aslongas(creature[power>=5]|myBattlefield) may damage:2 target(player)
+auto=@each my endofturn:aslongas(creature[power>=5]|myBattlefield) may damage:2 target(player)
 auto={T}:Add{1}
 text=At the beginning of your end step, if you control a creature with power 5 or greater, you may have Exuberant Firestoker deal 2 damage to target player. -- {T}: Add {1} to your mana pool.
 mana={2}{R}
