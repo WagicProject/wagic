@@ -42990,7 +42990,7 @@ toughness=1
 [/card]
 [card]
 name=Quirion Ranger
-auto={H(forest|myBattlefield)}:untap target(land) limit:1
+auto={H(forest|myBattlefield)}:untap target(creature) limit:1
 text=Return a Forest you control to its owner's hand: Untap target creature. Activate this ability only once each turn.
 mana={G}
 type=Creature
