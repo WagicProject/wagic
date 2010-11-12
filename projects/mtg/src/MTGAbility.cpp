@@ -1515,7 +1515,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     return a;
   }
 
-	 //frozen, next untap this does not untap.
+	 //identify what a leveler creature will max out at.
 	found = s.find("maxlevel:");
   if (found != string::npos){
     size_t start = s.find(":",found);
