@@ -89,11 +89,15 @@ clean:
 
 endif
 
+define compile
+$(CXX) -c $(CXXFLAGS) $< -o $@  
+endef
+
 PrecompiledHeader.h.gch: ../../projects/mtg/include/PrecompiledHeader.h
-	$(CXX) -c $(CXXFLAGS) $<
+	$(compile)
 
 $(OBJS): objs/%.o: src/%.cpp PrecompiledHeader.h.gch
-	$(CXX) -c $(CXXFLAGS) $< -o $@  
+	$(compile)
 
 $(DEPS): deps/%.d: src/%.cpp
 	@$(CXX) -MM $(CXXFLAGS) -MQ $(patsubst deps/%.d, objs/%.o, $(@)) -MQ $@ $< > $@
