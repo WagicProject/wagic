@@ -8,10 +8,6 @@
 
 using std::string;
 
-#define SCALE_SELECTED		1.2f
-#define SCALE_NORMAL		1.0f
-
-
 class DeckMenuItem: public JGuiObject
 {
  private:

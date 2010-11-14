@@ -172,17 +172,20 @@ void DeckMenu::Render()
       mFont->SetScale( menuFontScale );
       currentMenuItem->RenderWithOffset(-kLineHeight*startId);
     }
-
-    RenderBackground();
-
-    if (!title.empty())
-    {
-      mFont->SetScale( titleFontScale );
-      mFont->DrawString(title.c_str(), titleX, titleY, JGETEXT_CENTER);
-    }
-    mFont->SetScale( 1.0f );
-    scroller->Render();
   }
+
+  RenderBackground();
+
+
+  if (!title.empty())
+  {
+    mFont->SetColor(ARGB(255,255,255,255));
+    mFont->SetScale( titleFontScale );
+    mFont->DrawString(title.c_str(), titleX, titleY, JGETEXT_CENTER);
+  }
+  mFont->SetScale( 1.0f );
+  scroller->Render(); 
+ 
 }
 
 void DeckMenu::Update(float dt){

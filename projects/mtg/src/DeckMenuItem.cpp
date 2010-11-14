@@ -4,6 +4,7 @@
 #include "Translate.h"
 #include "WResourceManager.h"
 
+#define ITEM_PX_WIDTH 190.f
 
 DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, float x, float y, bool hasFocus, bool autoTranslate, DeckMetaData *deckMetaData)
 : JGuiObject(id), parent(_parent), fontId(fontId), mX(x), mY(y)
@@ -12,8 +13,14 @@ DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, f
     mText = _(text);
   else 
     mText = text;
-  mHasFocus = hasFocus;
+  
+  //trim the string so that its width fits in the background.
+  //in the future we might want to replace this with a horizontal scrolling of long strings
+  WFont * mFont = resources.GetWFont(fontId);
+  while (mFont->GetStringWidth(mText.c_str()) > ITEM_PX_WIDTH)
+    mText.erase(mText.size()-1);
 
+  mHasFocus = hasFocus;
   if (hasFocus)
     Entering();
 
@@ -29,8 +36,7 @@ DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, f
 void DeckMenuItem::RenderWithOffset(float yOffset)
 {
   WFont * mFont = resources.GetWFont(fontId);
-  string displayName = mText;
-  mFont->DrawString(displayName.c_str(), mX, mY + yOffset, JGETEXT_CENTER);
+  mFont->DrawString(mText.c_str(), mX, mY + yOffset, JGETEXT_CENTER);
 }
 
 void DeckMenuItem::Render()
