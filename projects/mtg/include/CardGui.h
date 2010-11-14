@@ -12,8 +12,34 @@
 class MTGCardInstance;
 class PlayGuiObject;
 
+namespace DrawMode
+{
+  enum
+  {
+    kNormal  = 0,
+    kText,
+    kHidden
+  };
+  const int kNumDrawModes = 3;
+}
+
 struct CardGui : public PlayGuiObject {
  protected:
+
+   /*
+   ** Tries to render the Big version of a card picture, backups to text version in case of failure
+   */
+   void RenderBig(const Pos&);
+   static void RenderBig(MTGCard * card, const Pos& pos);
+   
+   /*
+   **  Renders Text Version of a card
+   */
+   void AlternateRenderBig(const Pos&);
+
+   void RenderCountersBig(const Pos& pos);
+   static void AlternateRender(MTGCard * card, const Pos& pos);
+   static void TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad);
 
  public:
   static const float Width;
@@ -25,14 +51,12 @@ struct CardGui : public PlayGuiObject {
   CardGui(MTGCardInstance* card, float x, float y);
   CardGui(MTGCardInstance* card, const Pos& ref);
   virtual void Render();
-  void RenderBig(const Pos&); //Tries to render the Big version of a card picture, backups to text version in case of failure
-  static void RenderBig(MTGCard * card, const Pos& pos);
-  void alternateRenderBig(const Pos&); //Renders Text Version of a card
-  void renderCountersBig(const Pos& pos);
   virtual void Update(float dt);
-  static void alternateRender(MTGCard * card, const Pos& pos);
-  static void tinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad);
-  static JQuad * alternateThumbQuad(MTGCard * card);
+
+  void DrawCard(const Pos& inPosition, int inMode = DrawMode::kNormal);
+  static void DrawCard(MTGCard* inCard, const Pos& inPosition, int inMode = DrawMode::kNormal);
+
+  static JQuad * AlternateThumbQuad(MTGCard * card);
   virtual ostream& toString(ostream&) const;
 };
 

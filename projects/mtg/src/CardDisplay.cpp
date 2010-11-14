@@ -212,28 +212,18 @@ void CardDisplay::Render(){
   }
 
   //TODO: CardSelector should handle the graveyard and the library in the future...
-  if (mCount && mObjects[mCurr] != NULL){
+  if (mCount && mObjects[mCurr] != NULL)
+  {
     mObjects[mCurr]->Render();
     CardGui * cardg = ((CardGui *)mObjects[mCurr]);
     Pos pos = Pos(CardGui::BigWidth / 2, CardGui::BigHeight / 2 - 10, 1.0, 0.0, 220);
-    int showMode = BIG_MODE_SHOW;
-    if (game){
-      showMode = CardSelectorSingleton::Instance()->GetDrawMode();
+    if (game)
+    {
       pos.actY = 150;
       if (x < (CardGui::BigWidth / 2)) pos.actX = SCREEN_WIDTH - 10 - CardGui::BigWidth / 2;
     }
 
-    switch(showMode){
-        case BIG_MODE_SHOW:
-          cardg->RenderBig(pos);
-          break;
-        case BIG_MODE_TEXT:
-          cardg->alternateRenderBig(pos);
-          break;
-        default:
-          break;
-    }
-
+    cardg->DrawCard(pos, CardSelectorSingleton::Instance()->GetDrawMode());
   }
 }
 

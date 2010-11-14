@@ -34,7 +34,7 @@ CardSelector::SelectorMemory::SelectorMemory(PlayGuiObject* object) : object(obj
 CardSelector::SelectorMemory::SelectorMemory() { object = NULL; x = y = 0; }
 
 
-CardSelector::CardSelector(DuelLayers* duel) : CardSelectorBase(BIG_MODE_SHOW), active(NULL), duel(duel), limitor(NULL), bigpos(300, 150, 1.0, 0.0, 220) {}
+CardSelector::CardSelector(DuelLayers* duel) : active(NULL), duel(duel), limitor(NULL), bigpos(300, 150, 1.0, 0.0, 220) {}
 
 void CardSelector::Add(CardSelector::Target* target)
 {
@@ -132,8 +132,8 @@ bool CardSelector::CheckUserInput(JButton key)
     active = closest<Down>(cards, limitor, active);
     break;
   case JGE_BTN_CANCEL:
-    mDrawMode = (mDrawMode+1) % NB_BIG_MODES;
-    if(mDrawMode == BIG_MODE_TEXT)
+    mDrawMode = (mDrawMode+1) % DrawMode::kNumDrawModes;
+    if(mDrawMode == DrawMode::kText)
       options[Options::DISABLECARDS].number = 1;
     else
       options[Options::DISABLECARDS].number = 0;
@@ -236,17 +236,9 @@ void CardSelector::Update(float dt) {
 void CardSelector::Render() {
   if (active) {
     active->Render();
-    if (CardView* c = dynamic_cast<CardView*>(active)) {
-      switch(mDrawMode) {
-      case BIG_MODE_SHOW:
-        c->RenderBig(bigpos);
-        break;
-      case BIG_MODE_TEXT:
-        c->alternateRenderBig(bigpos);
-        break;
-      default:
-        break;
-      }
+    if (CardView* card = dynamic_cast<CardView*>(active))
+    {
+      card->DrawCard(bigpos, mDrawMode);
     }
   }
 }

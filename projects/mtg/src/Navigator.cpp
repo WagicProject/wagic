@@ -377,7 +377,7 @@ CardZone* LandCardZone::EnterZone(JButton inDirection)
 ** Constructor.  All the navigation logic is initialized here, by pairing up each card zone with a set of neighbours.
 */
 Navigator::Navigator(DuelLayers* inDuelLayers)
-  : CardSelectorBase(BIG_MODE_SHOW), mDrawPosition(kDefaultCardPosition), mDuelLayers(inDuelLayers), mLimitorEnabled(false)
+  : mDrawPosition(kDefaultCardPosition), mDuelLayers(inDuelLayers), mLimitorEnabled(false)
 {
   assert(mDuelLayers);
 
@@ -506,8 +506,8 @@ bool Navigator::CheckUserInput(JButton inKey)
       HandleKeyStroke(inKey);
       break;
     case JGE_BTN_CANCEL:
-      mDrawMode = (mDrawMode+1) % NB_BIG_MODES;
-      if(mDrawMode == BIG_MODE_TEXT)
+      mDrawMode = (mDrawMode+1) % DrawMode::kNumDrawModes;
+      if(mDrawMode == DrawMode::kText)
         options[Options::DISABLECARDS].number = 1;
       else
         options[Options::DISABLECARDS].number = 0;
@@ -568,17 +568,7 @@ void Navigator::Render()
     CardView* card = dynamic_cast<CardView*>(GetCurrentCard());
     if (card)
     {
-      switch(mDrawMode)
-      {
-      case BIG_MODE_SHOW:
-        card->RenderBig(mDrawPosition);
-        break;
-      case BIG_MODE_TEXT:
-        card->alternateRenderBig(mDrawPosition);
-        break;
-      default:
-        break;
-      }
+      card->DrawCard(mDrawPosition, mDrawMode);
     }
   }
 }

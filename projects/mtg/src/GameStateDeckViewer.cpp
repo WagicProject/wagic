@@ -1301,10 +1301,12 @@ void GameStateDeckViewer::renderCard(int id, float rotation){
 
   int cacheError = CACHE_ERROR_NONE;
 
-  if(!options[Options::DISABLECARDS].number){
+  if(!options[Options::DISABLECARDS].number)
+  {
     quad = resources.RetrieveCard(card,RETRIEVE_EXISTING);
     cacheError = resources.RetrieveError();
-    if (!quad && cacheError != CACHE_ERROR_404){
+    if (!quad && cacheError != CACHE_ERROR_404)
+    {
       if(last_user_activity > (abs(2-id) + 1)* NO_USER_ACTIVITY_SHOWCARD_DELAY)
         quad = resources.RetrieveCard(card);
       else{
@@ -1315,31 +1317,40 @@ void GameStateDeckViewer::renderCard(int id, float rotation){
 
   int quadAlpha = alpha;
   if ( !displayed_deck->count(card)) quadAlpha /=2;
-  if (quad){
-    if (quad == backQuad) {
+  if (quad)
+  {
+    if (quad == backQuad)
+    {
       quad->SetColor(ARGB(255,255,255,255));
       float _scale = scale *(285 / quad->mHeight);
-      JRenderer::GetInstance()->RenderQuad(quad, x   , y , 0.0f,_scale,_scale);
-    } else {
-      Pos pos = Pos(x, y, scale* 285/250, 0.0, 255);
-      CardGui::RenderBig(card, pos);
+      JRenderer::GetInstance()->RenderQuad(quad, x, y, 0.0f, _scale, _scale);
     }
-  }else{
+    else 
+    {
+      Pos pos = Pos(x, y, scale* 285/250, 0.0, 255);
+      CardGui::DrawCard(card, pos);
+    }
+  }
+  else
+  {
     Pos pos = Pos(x, y, scale* 285/250, 0.0, 255);
-    CardGui::alternateRender(card, pos);
+    CardGui::DrawCard(card, pos, DrawMode::kText);
     if(!options[Options::DISABLECARDS].number)
       quad = resources.RetrieveCard(card,CACHE_THUMB);
-    if (quad){
+    if (quad)
+    {
       float _scale = 285 * scale / quad->mHeight;
       quad->SetColor(ARGB(40,255,255,255));
-      JRenderer::GetInstance()->RenderQuad(quad,x,y,0,_scale,_scale);
+      JRenderer::GetInstance()->RenderQuad(quad, x, y, 0, _scale, _scale);
     }
   }
   quadAlpha = 255 - quadAlpha;
-  if (quadAlpha > 0){
+  if (quadAlpha > 0)
+  {
     JRenderer::GetInstance()->FillRect(x - scale * 100.0f ,y - scale * 142.5f , scale * 200.0f, scale * 285.0f, ARGB(quadAlpha,0,0,0));
   }
-  if (last_user_activity < 3){
+  if (last_user_activity < 3)
+  {
     int fontAlpha = alpha;
     float qtY  = y -135*scale;
     float qtX = x + 40*scale;

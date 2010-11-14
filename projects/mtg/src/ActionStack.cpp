@@ -74,7 +74,7 @@ void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string 
   JRenderer * renderer = JRenderer::GetInstance();
   JQuad * quad = resources.RetrieveCard(source,CACHE_THUMB);
   if (!quad)
-    quad = CardGui::alternateThumbQuad(source);
+    quad = CardGui::AlternateThumbQuad(source);
   if (quad){
     quad->SetColor(ARGB(255,255,255,255));
     float scale = mHeight  / quad->mHeight;
@@ -83,19 +83,10 @@ void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string 
     mFont->DrawString(_(alt1).c_str(),x,y-15);
   }
 
-  if (bigQuad){
-    int showMode = CardSelectorSingleton::Instance()->GetDrawMode();
+  if (bigQuad)
+  {
     Pos pos = Pos(CardGui::BigWidth / 2, CardGui::BigHeight / 2 - 10, 1.0, 0.0, 220);
-    switch(showMode){
-        case BIG_MODE_SHOW:
-          CardGui::RenderBig(source,pos);
-          break;
-        case BIG_MODE_TEXT:
-          CardGui::alternateRender(source, pos);
-          break;
-        default:
-          break;
-    }
+    CardGui::DrawCard(source, pos, CardSelectorSingleton::Instance()->GetDrawMode());
   }
 
   if (targetQuad){

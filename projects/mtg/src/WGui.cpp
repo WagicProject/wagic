@@ -1142,10 +1142,10 @@ void WGuiImage::Render(){
 WGuiCardImage::WGuiCardImage(WDataSource * wds, bool _thumb) : WGuiImage(wds){
   bThumb = _thumb;
 };
-void WGuiCardImage::Render(){
 
+void WGuiCardImage::Render()
+{
   JRenderer * renderer = JRenderer::GetInstance();
-
   MTGCard * c = NULL;
   Pos p(x+margin, y+margin, 1,0,255);
 
@@ -1163,26 +1163,30 @@ void WGuiCardImage::Render(){
     float scale = p.actZ * 257.f / q->mHeight;
     q->SetColor(ARGB(255,255,255,255));
     renderer->RenderQuad(q,p.x,p.y,0,scale,scale);
-  }else{ //Have card.
-    if(bThumb){ //Thumbnail.
+  }
+  else
+  { //Have card.
+    if(bThumb)
+    { //Thumbnail.
       JQuad * q = NULL;
-      if(!options[Options::DISABLECARDS].number){
+      if(!options[Options::DISABLECARDS].number)
+      {
         q = source->getThumb(mOffset.getPos());
 #if defined WIN32 || defined LINUX
         if(!q)
           q = source->getImage(mOffset.getPos());
 #endif
       }
-      if(!q && (q = CardGui::alternateThumbQuad(c)) == NULL)
+      if(!q && (q = CardGui::AlternateThumbQuad(c)) == NULL)
         return; //TODO Some kind of error image.
       renderer->RenderQuad(q,p.x,p.y);
     }
-    else{ //Normal card.
+    else
+    { //Normal card.
       JQuad * q = source->getImage(mOffset.getPos());
-      if(!q || options[Options::DISABLECARDS].number)
-        CardGui::alternateRender(c,p);
-      else
-        CardGui::RenderBig(c,p);
+
+      int mode = (!q || options[Options::DISABLECARDS].number) ? DrawMode::kText : DrawMode::kNormal;
+      CardGui::DrawCard(c,p, mode);
     }
   }
 }
@@ -1229,12 +1233,12 @@ void WGuiCardDistort::Render(){
         q = source->getImage(mOffset.getPos());
 #endif
       if(!q || options[Options::DISABLECARDS].number)
-        q = CardGui::alternateThumbQuad(c);
+        q = CardGui::AlternateThumbQuad(c);
     }
     else {
       q = source->getImage(mOffset.getPos());
       if(!q || options[Options::DISABLECARDS].number)
-        q = CardGui::alternateThumbQuad(c); //TODO alternateX should render to texture.
+        q = CardGui::AlternateThumbQuad(c); //TODO alternateX should render to texture.
     }
   }
   if(!q)

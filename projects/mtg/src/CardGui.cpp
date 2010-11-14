@@ -61,6 +61,27 @@ void CardGui::Update(float dt)
   PlayGuiObject::Update(dt);
 }
 
+void CardGui::DrawCard(const Pos& inPosition, int inMode)
+{
+  DrawCard(card, inPosition, inMode);
+  RenderCountersBig(inPosition);
+}
+
+void CardGui::DrawCard(MTGCard* inCard, const Pos& inPosition, int inMode)
+{
+  switch(inMode)
+  {
+  case DrawMode::kNormal:
+      RenderBig(inCard, inPosition);
+      break;
+  case DrawMode::kText:
+      AlternateRender(inCard, inPosition);
+      break;
+  default:
+    break;
+  }
+}
+
 
 void CardGui::Render()
 {
@@ -79,7 +100,7 @@ void CardGui::Render()
   if (!quad) quad = resources.RetrieveCard(card);
 #endif
   if (quad) alternate = false;
-  else quad = alternateThumbQuad(card);
+  else quad = AlternateThumbQuad(card);
 
   float cardScale = quad ? 40 / quad->mHeight : 1;
   float scale = actZ * cardScale;
@@ -161,7 +182,7 @@ void CardGui::Render()
 
 
 
-JQuad * CardGui::alternateThumbQuad(MTGCard * card){
+JQuad * CardGui::AlternateThumbQuad(MTGCard * card){
   JQuad * q;
 
   if(card->data->countColors() > 1){
@@ -185,7 +206,7 @@ JQuad * CardGui::alternateThumbQuad(MTGCard * card){
   return q;
 }
 
-void CardGui::alternateRender(MTGCard * card, const Pos& pos){
+void CardGui::AlternateRender(MTGCard * card, const Pos& pos){
   // Draw the "unknown" card model
   JRenderer * renderer = JRenderer::GetInstance();
   JQuad * q;
@@ -373,7 +394,7 @@ void CardGui::alternateRender(MTGCard * card, const Pos& pos){
 }
 
 
-void CardGui::tinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad) {
+void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad) {
   
   if (!quad) return;
 
@@ -572,9 +593,9 @@ void CardGui::tinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad) {
   font->SetScale(backup_scale);
 }
 
-void CardGui::alternateRenderBig(const Pos& pos){
-  alternateRender(card,pos);
-  renderCountersBig(pos);
+void CardGui::AlternateRenderBig(const Pos& pos){
+  AlternateRender(card,pos);
+  RenderCountersBig(pos);
 }
 
 //Renders a big card on screen. Defaults to the "alternate" rendering if no image is found
@@ -586,7 +607,7 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos){
   JQuad * quad = resources.RetrieveCard(card);
   if (quad){
     if (quad->mHeight < quad->mWidth) {
-      return tinyCropRender(card, pos, quad);
+      return TinyCropRender(card, pos, quad);
     }
     quad->SetColor(ARGB(255,255,255,255));
     float scale = pos.actZ * 257.f / quad->mHeight;
@@ -605,10 +626,10 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos){
     }
 
   // If we come here, we do not have the picture.
-  alternateRender(card,pos);
+  AlternateRender(card,pos);
 }
 
-void CardGui::renderCountersBig(const Pos& pos){
+void CardGui::RenderCountersBig(const Pos& pos){
   // Write Named Counters
   if (card->counters) {
     WFont * font = resources.GetWFont(Fonts::MAGIC_FONT);
@@ -640,7 +661,7 @@ void CardGui::renderCountersBig(const Pos& pos){
 
 void CardGui::RenderBig(const Pos& pos){
   RenderBig(card,pos);
-  renderCountersBig(pos);
+  RenderCountersBig(pos);
 }
 
 

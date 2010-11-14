@@ -12,14 +12,6 @@ using std::vector;
 class PlayGuiObject;
 class DuelLayers;
 
-
-enum {
-  BIG_MODE_SHOW = 0,
-  BIG_MODE_TEXT = 1,
-  BIG_MODE_HIDE = 2,
-  NB_BIG_MODES = 3
-};
-
 template <typename T>
 struct LimitorFunctor
 {
@@ -32,7 +24,7 @@ class CardSelectorBase : public GuiLayer
 {
 public:
 
-  CardSelectorBase(int inDrawMode) : mDrawMode(inDrawMode) {};
+  CardSelectorBase(int inDrawMode = DrawMode::kNormal) : mDrawMode(inDrawMode) {};
   virtual void Add(PlayGuiObject*) = 0;
   virtual void Remove(PlayGuiObject*) = 0;
   virtual bool CheckUserInput(JButton key) = 0;
