@@ -41019,7 +41019,6 @@ toughness=3
 [/card]
 [card]
 name=Phyrexian War Beast
-auto={S}:Add{G}
 auto=@movedTo(this|nonbattlezone) from(mybattlefield):moveTo(mygraveyard) notatarget(land|myBattlefield)
 auto=@movedTo(this|nonbattlezone) from(mybattlefield):damage:1 controller
 text=When Phyrexian War Beast leaves the battlefield, sacrifice a land and Phyrexian War Beast deals 1 damage to you.
