@@ -30,6 +30,12 @@
 class MTGPack;
 class MTGPacks;
 
+class BoosterDisplay:public CardDisplay {
+public:
+  BoosterDisplay(int id, GameObserver* game, int x, int y, JGuiListener * listener = NULL, TargetChooser * tc = NULL, int nb_displayed_items = 7);
+  bool CheckUserInput(JButton key);
+};
+
 class ShopBooster{
 public:
   ShopBooster();
@@ -61,7 +67,7 @@ class GameStateShop: public GameState, public JGuiListener
   WGuiMenu * shopMenu;
   WGuiFilters * filterMenu; //Filter menu slides in sideways from right, or up from bottom.
   WGuiCardImage * bigDisplay;
-  CardDisplay * boosterDisplay;
+  BoosterDisplay * boosterDisplay;
   vector<MTGCardInstance*> subBooster;
   MTGDeck * booster;
   bool bListCards;

@@ -6,7 +6,6 @@
 #include "TargetChooser.h"
 #include "MTGGameZones.h"
 #include "GameObserver.h"
-#include "GameStateShop.h"
 
 CardDisplay::CardDisplay() : mId(0), game(GameObserver::GetInstance()) {
   tc = NULL;
@@ -192,73 +191,6 @@ bool CardDisplay::CheckUserInput(JButton key){
   return false;
 }
 
-bool CardDisplay::CheckUserInputSHOP(JButton key){
-  if (JGE_BTN_SEC == key || JGE_BTN_PRI == key)
-  {
-    if (listener){
-      listener->ButtonPressed(mId, 0);
-      return true;
-    }
-  }
-  if (!mCount)
-    return false;
-
-  if (mActionButton == key)
-  {
-    if (mObjects[mCurr] && mObjects[mCurr]->ButtonPressed()){
-      CardGui * cardg = (CardGui *)mObjects[mCurr];
-      if (tc) {
-        tc->toggleTarget(cardg->card);
-        return true;
-      } else {
-        if (game) game->ButtonPressed(cardg);
-        return true;
-      }
-    }
-    return true;
-  }
-
-
-  switch(key)
-  {
-  case JGE_BTN_LEFT :
-  {
-    int n = mCurr;
-    n--;
-    if (n<start_item) {
-      if (n< 0) {
-        n = 0;
-      } else {
-        rotateLeft();
-      }
-    }
-    if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(JGE_BTN_LEFT)){
-      mCurr = n;
-      mObjects[mCurr]->Entering();
-    }
-    return true;
-  }
-  case JGE_BTN_RIGHT :
-  {
-    int n = mCurr;
-    n++;
-    if (n>= mCount) {
-      n = mCount-1;
-    }
-    if (n>= start_item + nb_displayed_items) {
-      rotateRight();
-    }
-    if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(JGE_BTN_RIGHT)){
-      mCurr = n;
-      mObjects[mCurr]->Entering();
-    }
-  }
-  return true;
-  default:
-    ;
-  }
-  return false;
-}
 
 void CardDisplay::Render(){
 

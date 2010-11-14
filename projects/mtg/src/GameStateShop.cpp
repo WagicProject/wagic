@@ -26,6 +26,19 @@ float GameStateShop::_y3[] = {164,205,257,184,180,170,219,212,195,251,252};
 float GameStateShop::_x4[] = { 76, 90, 65,131,171,221,123,187,225,141,237};
 float GameStateShop::_y4[] = {169,188,250,182,182,168,220,208,198,259,245};
 
+
+BoosterDisplay::BoosterDisplay(int id, GameObserver* game, int x, int y, JGuiListener * listener, TargetChooser * tc, int nb_displayed_items):
+CardDisplay(id, game,x,y,listener,tc,nb_displayed_items){}
+
+bool BoosterDisplay::CheckUserInput(JButton key){
+  if (JGE_BTN_UP == key || JGE_BTN_DOWN == key)
+    return false;
+
+  return CardDisplay::CheckUserInput(key);
+
+}
+
+
 GameStateShop::GameStateShop(GameApp* parent): GameState(parent) {
   menu = NULL;
   for(int i=0;i<8;i++)
@@ -252,7 +265,7 @@ void GameStateShop::purchaseBooster(int controlId){
   SAFE_DELETE(booster);
   deleteDisplay();
   booster = NEW MTGDeck(mParent->collection);
-  boosterDisplay = NEW CardDisplay(12,NULL, SCREEN_WIDTH - 200, SCREEN_HEIGHT/2,this,NULL,5);
+  boosterDisplay = NEW BoosterDisplay(12,NULL, SCREEN_WIDTH - 200, SCREEN_HEIGHT/2,this,NULL,5);
   mBooster[controlId].addToDeck(booster,srcCards);
   
   string sort = mBooster[controlId].getSort();
@@ -519,7 +532,7 @@ void GameStateShop::Update(float dt)
         if (btn == JGE_BTN_SEC)
           deleteDisplay();
         else {
-					boosterDisplay->CheckUserInputSHOP(btn);
+					boosterDisplay->CheckUserInput(btn);
           boosterDisplay->Update(dt);}
         return;
       }else if (btn == JGE_BTN_SEC)
