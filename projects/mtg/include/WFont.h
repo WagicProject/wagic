@@ -18,7 +18,7 @@ namespace Fonts
   };
 
   // when using gbk languages and we need to keep around single byte font variants,
-  // the single byte fonts will be offset by this value 
+  // the single byte fonts will be offset by this value
   const unsigned int kSingleByteFontOffset = 100;
 }
 
@@ -75,27 +75,29 @@ class WFBFont : public WFont
 {
 public:
   WFBFont(int inFontID, const char *fontname, int lineheight, bool useVideoRAM=false);
+  WFBFont(int inFontID) : WFont(inFontID) {}; // Legacy : remove it when possible
   ~WFBFont();
 
-  void DrawString(const char *s, float x, float y, int align=JGETEXT_LEFT, float leftOffset = 0, float width = 0);
   void DrawString(std::string s, float x, float y, int align=JGETEXT_LEFT, float leftOffset = 0, float width = 0);
   void SetColor(PIXEL_TYPE color);
   PIXEL_TYPE GetColor() const {return mColor0;};
   void SetScale(float scale);
   float GetScale() const;
   float GetHeight() const;
-  float	GetStringWidth(const char *s) const;
+  virtual float	GetStringWidth(const char *s) const;
   void SetTracking(float tracking) {};
   void SetBase(int base) {};
 
-  virtual int GetCode(const u8 *ch, bool *dualByteFont) const = 0;
+  virtual void DrawString(const char *s, float x, float y, int align=JGETEXT_LEFT, float leftOffset = 0, float width = 0);
+  virtual int GetCode(const u8 *ch, int *charLength) const = 0;
   virtual int GetMana(const u8 *ch) const = 0;
 
-private:
-  static JRenderer * mRenderer;
+ protected:
+  static JRenderer* mRenderer;
 
-  u8 * mEngFont;
-  u8 * mChnFont;
+  u16* mIndex;
+  u8* mStdFont;
+  u8* mExtraFont;
 
   PIXEL_TYPE mColor0;
   PIXEL_TYPE mColor;
@@ -116,26 +118,28 @@ private:
 
   u32 * mCharBuffer;
 
-  int PreCacheChar(const u8 *ch);
+  virtual int PreCacheChar(const u8 *ch);
 };
 
 class WGBKFont : public WFBFont
 {
 public:
-  WGBKFont(int inFontID, const char *fontname, int lineheight, bool useVideoRAM=false)
-	: WFBFont(inFontID, fontname, lineheight, useVideoRAM) {};
+  WGBKFont(int inFontID, const char *fontname, int lineheight, bool useVideoRAM = false);
 
-  int GetCode(const u8 *ch, bool *dualByteFont) const;
+  int PreCacheChar(const u8 *ch);
+  float GetStringWidth(const char *s) const;
+  void DrawString(const char *s, float x, float y, int align=JGETEXT_LEFT, float leftOffset = 0, float width = 0);
+  int GetCode(const u8 *ch, int *charLength) const;
   int GetMana(const u8 *ch) const;
 };
 
-class WSJISFont : public WFBFont
+class WUFont : public WFBFont
 {
 public:
-  WSJISFont(int inFontID, const char *fontname, int lineheight, bool useVideoRAM=false)
+  WUFont(int inFontID, const char *fontname, int lineheight, bool useVideoRAM = false)
     : WFBFont(inFontID, fontname, lineheight, useVideoRAM) {};
 
-  int GetCode(const u8 *ch, bool *dualByteFont) const;
+  int GetCode(const u8 *ch, int *charLength) const;
   int GetMana(const u8 *ch) const;
 };
 

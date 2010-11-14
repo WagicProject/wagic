@@ -24,7 +24,7 @@ namespace
 {
   const std::string kExtension_png(".png");
   const std::string kExtension_gbk(".gbk");
-  const std::string kExtension_sjis(".sjis");
+  const std::string kExtension_font(".font");
 }
 
 int WResourceManager::RetrieveError(){
@@ -861,7 +861,7 @@ void WResourceManager::InitFonts(const std::string& inLang)
 
   if (inLang.compare("jp") == 0)
   {
-    mFontFileExtension = kExtension_sjis;
+    mFontFileExtension = kExtension_font;
     LoadWFont("simon", 12, Fonts::MAIN_FONT);
     LoadWFont("f3", 16, Fonts::MENU_FONT);
     LoadWFont("magic", 16, Fonts::MAGIC_FONT);
@@ -899,21 +899,15 @@ WFont* WResourceManager::LoadWFont(const string& inFontname, int inFontHeight, i
 
   string mFontName = inFontname + mFontFileExtension;
   string path = graphicsFile(mFontName);
- 
-  if (mFontFileExtension == kExtension_gbk)
-  {
+
+  if (mFontFileExtension == kExtension_font)
+    font = NEW WUFont(inFontID, path.c_str(), inFontHeight, true);
+  else if (mFontFileExtension == kExtension_gbk)
     font = NEW WGBKFont(inFontID, path.c_str(), inFontHeight, true);
-  }
-  else if (mFontFileExtension == kExtension_sjis)
-  {
-    font = NEW WSJISFont(inFontID, path.c_str(), inFontHeight, true);
-  }
   else
-  {
     font = NEW WLBFont(inFontID, path.c_str(), inFontHeight, true);
-  }
   mWFontMap[inFontID] = font;
-  
+
   return font;
 }
 

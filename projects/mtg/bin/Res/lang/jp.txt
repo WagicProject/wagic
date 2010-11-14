@@ -1,47 +1,42 @@
 #LANG:Japanese
-#Wagic 0.13.1 “ú–{Œê
-
-#Note:
-# - Limitation: Special characters that are not in the limited Shift-JIS
-#     set can not be used, the game won't display them.
-
+#Wagic 0.13.1 æ—¥æœ¬èª
 
 ##########################
 # MAIN MENU              #
 ##########################
 
 # Main menu:
-Play=ƒXƒ^[ƒg
-Deck Editor=ƒfƒbƒL
-Shop=ƒVƒ‡ƒbƒv
-Options=ƒIƒvƒVƒ‡ƒ“
-Exit=‚â‚ß‚é
+Play=ã‚¹ã‚¿ãƒ¼ãƒˆ
+Deck Editor=ãƒ‡ãƒƒã‚­
+Shop=ã‚·ãƒ§ãƒƒãƒ—
+Options=ã‚ªãƒ—ã‚·ãƒ§ãƒ³
+Exit=ã‚„ã‚ã‚‹
 
 ##########################
 # DECK EDITOR            #
 ##########################
 
 # Filter:
-5DN=ƒtƒBƒtƒXEƒh[ƒ“
+5DN=ãƒ•ã‚£ãƒ•ã‚¹ãƒ»ãƒ‰ãƒ¼ãƒ³
 #Archenemy
-ALA=ƒAƒ‰[ƒ‰‚Ì’f•Ğ
+ALA=ã‚¢ãƒ©ãƒ¼ãƒ©ã®æ–­ç‰‡
 #ALL
 #APC
-ARB=ƒAƒ‰[ƒ‰Ä’a
+ARB=ã‚¢ãƒ©ãƒ¼ãƒ©å†èª•
 #ARN
 #ATQ
-BOK=_‰Í–d”¾
+BOK=ç¥æ²³è¬€å›
 #BRB
 #BTD
-CHK=_‰Í•¨Œê
+CHK=ç¥æ²³ç‰©èª
 #CHR
-CSP=ƒR[ƒ‹ƒhƒXƒiƒbƒv
-DIS=ƒfƒBƒZƒ“ƒVƒ‡ƒ“
+CSP=ã‚³ãƒ¼ãƒ«ãƒ‰ã‚¹ãƒŠãƒƒãƒ—
+DIS=ãƒ‡ã‚£ã‚»ãƒ³ã‚·ãƒ§ãƒ³
 #DRK
-DST=ƒ_[ƒNƒXƒeƒB[ƒ‹
+DST=ãƒ€ãƒ¼ã‚¯ã‚¹ãƒ†ã‚£ãƒ¼ãƒ«
 #Duel Decks: Phyrexia vs. the Coalition
 #DVD
-EVE=ƒC[ƒuƒ“ƒ^ƒCƒh
+EVE=ã‚¤ãƒ¼ãƒ–ãƒ³ã‚¿ã‚¤ãƒ‰
 #EVG
 #EVT
 #EXO
@@ -50,7 +45,7 @@ EVE=ƒC[ƒuƒ“ƒ^ƒCƒh
 #FVD
 #FVE
 #FVR
-GPT=ƒMƒ‹ƒhƒpƒNƒg
+GPT=ã‚®ãƒ«ãƒ‰ãƒ‘ã‚¯ãƒˆ
 #GVL
 #HML
 #HOP
@@ -62,12 +57,12 @@ GPT=ƒMƒ‹ƒhƒpƒNƒg
 #LEB
 #LEG
 #LGN
-LRW=ƒ[ƒEƒBƒ“
+LRW=ãƒ­ãƒ¼ã‚¦ã‚£ãƒ³
 #MED
 #ME2
 #ME3
 #MIR
-MOR=ƒ‚[ƒjƒ“ƒOƒ^ƒCƒh
+MOR=ãƒ¢ãƒ¼ãƒ‹ãƒ³ã‚°ã‚¿ã‚¤ãƒ‰
 #MRD
 #MRQ
 #NMS
@@ -76,24 +71,24 @@ MOR=ƒ‚[ƒjƒ“ƒOƒ^ƒCƒh
 #P02
 #PCY
 #PDS
-PLC=ŸŒ³‚Ì¬—
+PLC=æ¬¡å…ƒã®æ··ä¹±
 #PLS
 #POR
 #PPR
 #PTK
-RAV=ƒ‰ƒuƒjƒJFƒMƒ‹ƒh‚Ì“s
-ROE=ƒGƒ‹ƒhƒ‰[ƒWŠoÁ
+RAV=ãƒ©ãƒ–ãƒ‹ã‚«ï¼šã‚®ãƒ«ãƒ‰ã®éƒ½
+ROE=ã‚¨ãƒ«ãƒ‰ãƒ©ãƒ¼ã‚¸è¦šé†’
 #SCG
-SHM=ƒVƒƒƒhƒEƒ€[ƒA
-SOK=_‰Í‹~Ï
-SOM=ƒ~ƒ‰ƒfƒBƒ“‚ÌÕ
+SHM=ã‚·ãƒ£ãƒ‰ã‚¦ãƒ ãƒ¼ã‚¢
+SOK=ç¥æ²³æ•‘æ¸ˆ
+SOM=ãƒŸãƒ©ãƒ‡ã‚£ãƒ³ã®å‚·è·¡
 #STH
 Starter '00=Starter '00
 Starter '99=Starter '99
 #TMP
 #TOR
-TSB=‚Ì‚ç‚¹‚ñ‚Ìƒ^ƒCƒ€ƒVƒtƒg
-TSP=‚Ì‚ç‚¹‚ñ
+TSB=æ™‚ã®ã‚‰ã›ã‚“ã®ã‚¿ã‚¤ãƒ ã‚·ãƒ•ãƒˆ
+TSP=æ™‚ã®ã‚‰ã›ã‚“
 #UDS
 #UGL
 #ULG
@@ -101,10 +96,10 @@ TSP=‚Ì‚ç‚¹‚ñ
 #USG
 #VIS
 #WTH
-WWK=ƒ[ƒ‹ƒhƒEƒFƒCƒN
+WWK=ãƒ¯ãƒ¼ãƒ«ãƒ‰ã‚¦ã‚§ã‚¤ã‚¯
 Wagic 2010=M2010
 Wagic 2011=M2011
-ZEN=ƒ[ƒ“ƒfƒBƒJ[
+ZEN=ã‚¼ãƒ³ãƒ‡ã‚£ã‚«ãƒ¼
 
 
 ##########################
@@ -112,232 +107,232 @@ ZEN=ƒ[ƒ“ƒfƒBƒJ[
 ##########################
 
 # please keep this alphabetized
-Abuna Acolyte=‚‘m‚ÌŒ©K‚¢
-Accorder's Shield=’²˜aÒ‘à‚Ì‚
-Acid Web Spider=_‚Ì‘ƒ‚Ì’wå
-Alpha Tyrranax=ÅãˆÊ‚ÌƒeƒBƒ‰ƒiƒbƒNƒX
-Arc Trail=“dŒÊ‚Ì­Õ
-Argent Sphinx=‹â”’‚ÌƒXƒtƒBƒ“ƒNƒX
-Argentum Armor=ƒA[ƒWƒFƒ“ƒ^ƒ€‚ÌŠZ
-Arrest=Sˆø
-Asceticism=‹êså‹`
-Assault Strobe=“ËŒ‚‚ÌƒXƒgƒƒ{
-Auriok Edgewright=ƒI[ƒŠƒIƒbƒN‚ÌnH
-Auriok Replica=ƒI[ƒŠƒIƒbƒN‚Ì–Í‘¢•i
-Auriok Sunchaser=ƒI[ƒŠƒIƒbƒN‚Ì‘¾—z’Ç‚¢
-Barbed Battlegear=‹th‚Ìí‹ï
-Barrage Ogre=˜AË‚ÌƒI[ƒK
-Bellowing Tanglewurm=–i‚¦‚é—‚İƒ[ƒ€
-Blackcleave Cliffs=•Š„‚ê‚ÌŠR
-Blackcleave Goblin=•Š„‚ê‚ÌƒSƒuƒŠƒ“
-Bladed Pinions=n‚Ì—ƒ
-Blade-Tribe Berserkers=n‘°‚Ì‹¶ím
-Bleak Coven Vampires=—â‚½‚«W‚¢‚Ì‹zŒŒ‹S
-Blight Mamba=r”p‚Ìƒ}ƒ“ƒo
-Blistergrub=…–c‚ê’nŒ@‚è
-Bloodshot Trainee=ŒŒ‚Ü‚È‚±‚Ì—ûK¶
-Blunt the Assault=“ËŒ‚‚Ì“İ‰»
-Bonds of Quicksilver=…‹â‚Ì”›‚ß
-Carapace Forger=bŠk‚Ì’b–èH
-Carnifex Demon=·s‚Ìˆ«–‚
-Carrion Call=r“÷‚ÌŒÄ‚Ñº
-Cerebral Eruption=’m«‚Ì”š”­
-Chimeric Mass=ƒLƒ}ƒCƒ‰“I‘åŒQ
-Chrome Steed=‹à‘®‚Ìx”n
-Clone Shell=ƒNƒ[ƒ“‚ÌŠk
-Contagion Clasp=“`õ•a‚Ì—¯‚ß‹à
-Contagion Engine=“`õ•aƒGƒ“ƒWƒ“
-Contagious Nim=“`õ•a‚Ìr‘¯
-Copperhorn Scout=“ºŠp“J‚ÌËŒó
-Copperline Gorge=“ºü‚Ì’na
-Copper Myr=“º‚Ìƒ}ƒCƒA
-Corpse Cur=€‘Ì‚Ì–ìŒ¢
-Corrupted Harvester=‘Â—‚µ‚½ûŠnÒ
-Culling Dais=‘I•Ê‚Ì‚À
-Cystbearer=”X–E•ø‚¦
-Darkslick Drake=ˆÅŠŠ‚è‚ÌƒhƒŒƒCƒN
-Darkslick Shores=ˆÅŠŠ‚è‚ÌŠİ
-Darksteel Axe=ƒ_[ƒNƒXƒeƒB[ƒ‹‚Ì•€
-Darksteel Juggernaut=ƒ_[ƒNƒXƒeƒB[ƒ‹‚Ì‹‘åíÔ
-Darksteel Myr=ƒ_[ƒNƒXƒeƒB[ƒ‹‚Ìƒ}ƒCƒA
-Darksteel Sentinel=ƒ_[ƒNƒXƒeƒB[ƒ‹‚Ì•à£
-Dispense Justice=³‹`‚Ì{s
-Disperse=•ªU
-Dissipation Field=–¶Á‚Ìê
-Dross Hopper=ƒhƒƒXƒoƒbƒ^
-Echo Circlet=‚±‚¾‚Ü‚Ìü‚è—Ö
-Elspeth Tirel=ƒGƒ‹ƒYƒyƒXEƒeƒBƒŒƒ‹
-Embersmith=”R‚¦‚³‚µ’b–è
-Engulfing Slagwurm=ˆù‚İ‚Ş‹à‹ûƒ[ƒ€
-Etched Champion=‚Ü‚ê‚½—EÒ
-Exsanguinate=àbŒŒ
-Ezuri, Renegade Leader=”w‹³‚Ìå“±ÒAƒGƒY[ƒŠ
-Ezuri's Archers=ƒGƒY[ƒŠ‚ÌËè
-Ezuri's Brigade=ƒGƒY[ƒŠ‚Ì‘å•”‘à
-Ferrovore=“S‚ğH‚¤‚à‚Ì
-Flameborn Hellion=‰Š¶‚Ü‚ê‚ÌƒwƒŠƒIƒ“
-Flesh Allergy=“÷‘ÌƒAƒŒƒ‹ƒM[
-Flight Spellbomb=”òs‚Ìô•¶”š’e
-Fulgent Distraction=Wà£‚½‚é•úS
-Fume Spitter=‰Œ–¶“f‚«
-Furnace Celebration=˜F‚Ì®“T
-Galvanic Blast=Š´“d”j
-Genesis Wave=‹NŒ¹‚Ì”g
-Geth, Lord of the Vault=‘å—ì“°‚Ì‰¤AƒQƒX
-Ghalma's Warden=ƒKƒ‹ƒ}‚Ì•ÛŒìÒ
-Glimmerpoint Stag=”÷ŒõŠp‚Ì­
-Glimmerpost=”÷Œõ’n
-Glint Hawk=‚«‚ç‚ß‚­‘é
-Glint Hawk Idol=‚«‚ç‚ß‚­‘é‚Ì‹ô‘œ
-Goblin Gaveleer=ƒSƒuƒŠƒ“‚Ì¬’Æ‘Å‚¿
-Golden Urn=‰©‹à‚ÌáP
-Gold Myr=‹à‚Ìƒ}ƒCƒA
-Golem Artisan=ƒS[ƒŒƒ€‚ÌEH
-Golem Foundry=ƒS[ƒŒƒ€‚Ì’’‘¢Š
-Golem's Heart=ƒS[ƒŒƒ€‚ÌS‘Ÿ
-Grafted Exoskeleton=¶‘Ì—Z‡ŠOœŠi
-Grand Architect=‘åŒš’z‰Æ
-Grasp of Darkness=ˆÅ‚Ì¶ˆ¬
-Grindclock=Œ¤–Œv
-Halt Order=’â~–½—ß
-Hand of the Praetors=–@–±Š¯‚Ìè
-Heavy Arbalest=‘åÎ‹|
-Hoard-Smelter Dragon=‘ »˜B‚Ìƒhƒ‰ƒSƒ“
-Horizon Spellbomb=’n•½ü‚Ìô•¶”š’e
-Ichorclaw Myr=’_‰t’Ü‚Ìƒ}ƒCƒA
-Ichor Rats=’_‰t‚Ì‘l
-Indomitable Archangel=•s‘Ş“]‚Ì‘å“Vg
-Inexorable Tide=—eÍ–³‚¢’ª—¬
-Infiltration Lens=Z“§‚ÌƒŒƒ“ƒY
-Instill Infection=Š´õ‚Ì•ŠŠˆ
-Iron Myr=“S‚Ìƒ}ƒCƒA
-Kemba, Kha Regent=‰¤‚ÌÛ­AƒPƒ“ƒo
-Kemba's Skyguard=ƒPƒ“ƒo‚Ì‹óŒì‰q
-Koth of the Hammer=’Æ‚ÌƒRƒX
-Kuldotha Forgemaster=ƒJƒ‹ƒh[ƒT‚Ì’b–èêå
-Kuldotha Phoenix=ƒJƒ‹ƒh[ƒT‚ÌƒtƒFƒjƒbƒNƒX
-Kuldotha Rebirth=ƒJƒ‹ƒh[ƒT‚ÌÄ’a
-Leaden Myr=‰”‚Ìƒ}ƒCƒA
-Leonin Arbiter=ƒŒƒIƒjƒ“‚ÌÙ‚«l
-Liege of the Tangle=—‚İX‚Ìå
-Lifesmith=¶–½’b–è
-Liquimetal Coating=‰t|‚Ì“h–Œ
-Livewire Lash=Šˆü‚Ì•Ú
-Loxodon Wayfarer=ƒƒNƒ\ƒhƒ“‚Ì—·l
-Lumengrid Drake=ƒ‹[ƒƒ“ƒOƒŠƒbƒh‚ÌƒhƒŒƒCƒN
-Lux Cannon=Œõ–¾‚Ì‘å–C
-Melt Terrain=’nŒ`‚Ì—Z‰ğ
-Memnite=ƒƒ€ƒiƒCƒg
-Memoricide=‹L‰¯E‚µ
-Mimic Vat=ƒ~ƒ~ƒbƒN‚Ì‘å‰±
-Mindslaver=¸_—ê‘®Ší
-Molder Beast=•…Hb
-Molten Psyche=—n“S‚Ì¸_
-Molten-Tail Masticore=—n“S‚Ì”ö‚Ìƒ}ƒXƒeƒBƒRƒA
-Moriok Reaver=ƒ‚ƒŠƒIƒbƒN‚Ì“÷—ô‚«
-Moriok Replica=ƒ‚ƒŠƒIƒbƒN‚Ì–Í‘¢•i
-Mox Opal=ƒIƒp[ƒ‹‚Ìƒ‚ƒbƒNƒX
-Myr Battlesphere=ƒ}ƒCƒA‚Ìí“¬‹…
-Myr Galvanizer=ƒ}ƒCƒA‚ÌŠ´“dÒ
-Myr Propagator=ƒ}ƒCƒA‚Ì”ÉBÒ
-Myr Reservoir=ƒ}ƒCƒA‚Ì’™‘ ŒÉ
-Myrsmith=ƒ}ƒCƒA’b–è
-Necrogen Censer=r‹C‚Ì˜F
-Necrogen Scudder=r‹C‚ğ”ò‚Î‚·‚à‚Ì
-Necropede=r•S‘«
-Necrotic Ooze=‰ó€‚ÌƒE[ƒY
-Neurok Invisimancer=ƒjƒ…[ƒƒbƒN‚Ì“§pm
-Neurok Replica=ƒjƒ…[ƒƒbƒN‚Ì–Í‘¢•i
-Nihil Spellbomb=‹•–³‚Ìô•¶”š’e
-Nim Deathmantle=r‘¯‚Ì€‚Ìƒ}ƒ“ƒg
-Ogre Geargrabber=ƒI[ƒK‚Ì‘•‹ï’D‚¢
-Origin Spellbomb=‹NŒ¹‚Ìô•¶”š’e
-Oxidda Daredevil=ƒIƒLƒVƒ_‚ÌŒü‚±‚¤Œ©‚¸
-Oxidda Scrapmelter=ƒIƒLƒVƒ_‚Ì‹û“S—n‚©‚µ
-Painful Quandary=’É‚Ü‚µ‚¢‹ê‹«
-Painsmith=‹ê’É’b–è
-Palladium Myr=ƒpƒ‰ƒWƒEƒ€‚Ìƒ}ƒCƒA
-Panic Spellbomb=‹°Q‚Ìô•¶”š’e
-Perilous Myr=ŠëŒ¯‚Èƒ}ƒCƒA
-Plague Stinger=‰u•a‚Ì‚Æ‚°h‚µ
-Plated Seastrider=”Â‹àŠZ‚ÌŠC‚¤‚ë‚Â‚«
-Platinum Emperion=”’‹à‚Ì’é‘œ
-Precursor Golem=æ‹ì‚ÌƒS[ƒŒƒ€
-Prototype Portal=ì•i‚Ì”à
-Psychic Miasma=¸_‚Ìá‹C
-Putrefax=‰»”^b
-Quicksilver Gargantuan=…‹â‚ÌƒKƒ‹ƒKƒ“ƒ`ƒ…ƒAƒ“
-Ratchet Bomb=‘Q‘”š’e
-Razorfield Thresher=’ä“ƒ–Œ´‚Ì‘Å‚Â‚à‚Ì
-Razor Hippogriff=’ä“‚Ìƒqƒ|ƒOƒŠƒt
-Razorverge Thicket=’ä“‹«‚Ì–Î‚İ
-Relic Putrescence=”é•ó‚Ì•…”s
-Revoke Existence=‘¶İ‚Ì”jŠü
-Riddlesmith=“ä’b–è
-Rusted Relic=K‚Ñ‚½”é•ó
-Rust Tick=Kƒ_ƒj
-Saberclaw Golem=Œ•’Ü‚ÌƒS[ƒŒƒ€
-Salvage Scout=‰ñû‚ÌËŒó
-Scoria Elemental=ŠâŸæ‚Ì¸—ì
-Scrapdiver Serpent=‹û“Sö‚è‚ÌŠCÖ
-Screeching Silcaw=‹àØ‚èº‚ÌƒVƒ‹ƒJƒE
-Seachrome Coast=‹à‘®ŠC‚Ì‰ˆŠİ
-Seize the Initiative=å“±Œ ‚Ì’Dæ
-Semblance Anvil=—Ş—‚Ì‹à°
-Shape Anew=V‚½‚È‘¢Œ`
-Shatter=•²Ó
-Silver Myr=‹â‚Ìƒ}ƒCƒA
-Skinrender=”ç—ô‚«
-Skithiryx, the Blight Dragon=r”p‚Ìƒhƒ‰ƒSƒ“AƒXƒLƒWƒŠƒNƒX
-Sky-Eel School=‹ó’·‹›‚ÌŒQ‚ê
-Slice in Twain=^‚Á“ñ‚Â
-Snapsail Glider=›Æ‚ßæ‚è‚ÌŠŠ‹óÒ
-Soliton=ƒ\ƒŠƒgƒ“
-Soul Parry=°‚Ìó‚¯—¬‚µ
-Spikeshot Elder=ƒgƒQŒ‚‚¿‚ÌŒÃ˜V
-Steady Progress=’…À‚Èi•à
-Steel Hellkite=|‚Ìƒwƒ‹ƒJƒCƒg
-Stoic Rebuttal=—âÃ‚È”½˜_
-Strata Scythe=’n‘w‚ÌŠ™
-Strider Harness=èˆ•à‚·‚é‚à‚Ì‚Ì‘•‹ï
-Sunblast Angel=‘¾—z”j‚Ì“Vg
-Sunspear Shikari=‘¾—z‚Ì‘„‚ÌƒVƒJ[ƒ‹
-Sword of Body and Mind=“÷‘Ì‚Æ¸_‚ÌŒ•
-Sylvok Lifestaff=ƒVƒ‹ƒ”ƒHƒN‚Ì¶–½ñ
-Sylvok Replica=ƒVƒ‹ƒ”ƒHƒN‚Ì–Í‘¢•i
-Tainted Strike=‰˜‚ê‚½ˆêŒ‚
-Tangle Angler=—‚İX‚Ìé»éß
-Tel-Jilad Defiance=ƒeƒ‹ƒWƒ‰[ƒh‚Ì’ïR
-Tel-Jilad Fallen=ƒeƒ‹ƒWƒ‰[ƒh‚Ì‘Â‚¿‚½‚éÒ
-Tempered Steel=’b‚¦‚ç‚ê‚½|
-Throne of Geth=ƒQƒX‚Ì‹ÊÀ
-Thrummingbird=‚©‚«–Â‚ç‚µ’¹
-Tower of Calamities=Ğ“ï‚Ì“ƒ
-Trigon of Corruption=‘Â—‚ÌOŠpŒì•„
-Trigon of Infestation=Š´õ‚ÌOŠpŒì•„
-Trigon of Mending=‰ñ•œ‚ÌOŠpŒì•„
-Trigon of Rage=•®“{‚ÌOŠpŒì•„
-Trigon of Thought=vl‚ÌOŠpŒì•„
-Trinket Mage=‘eÎ‚Ì–‚“¹m
-True Conviction=^À‚ÌŠmM
-Tumble Magnet=“]“|‚Ì¥Î
-Tunnel Ignus=ƒgƒ“ƒlƒ‹‚ÌƒCƒOƒiƒX
-Turn Aside=æ‚è‘U‚¢
-Turn to Slag=‹à‹û‰»
-Twisted Image=‚æ‚¶‚ê‚½‰f‘œ
-Untamed Might=rX‚µ‚«—Í
-Vault Skyward=‹ó‚Ö‚Ì’µ–ô
-Vector Asp=”}‰î‚ÌƒAƒXƒv
-Vedalken Certarch=ƒ”ƒBƒ_ƒ‹ƒPƒ“‚ÌƒZƒ‹ƒ^[ƒ`
-Venser's Journal=ƒ”ƒFƒ“ƒZ[ƒ‹‚Ì“ú
-Venser, the Sojourner=‘Ø—¯Òƒ”ƒFƒ“ƒZ[ƒ‹
-Vigil for the Lost=¸‚í‚ê‚µÒ‚Ö‚Ì‹F‚è
-Viridian Revel=ƒ”ƒBƒŠƒWƒAƒ“‚Ì‚¨Õ‚è‘›‚¬
-Volition Reins=Œˆ’f‚Ìèj
-Vulshok Heartstoker=ƒ”ƒ@ƒ‹ƒVƒ‡ƒN‚ÌS‘Ÿ•°‚«
-Vulshok Replica=ƒ”ƒ@ƒ‹ƒVƒ‡ƒN‚Ì–Í‘¢•i
-Wall of Tanglecord=—‚İü‚Ì•Ç
-Whitesun's Passage=”’‚Ì‘¾—z‚Ì’Ê‰ß
-Wing Puncture=•—‚Ì“Ë‚«h‚µ
-Withstand Death=€‚Ö‚Ì’ïR
-Wurmcoil Engine=ƒ[ƒ€‚Æ‚®‚ëƒGƒ“ƒWƒ“
+Abuna Acolyte=é«˜åƒ§ã®è¦‹ç¿’ã„
+Accorder's Shield=èª¿å’Œè€…éšŠã®ç›¾
+Acid Web Spider=é…¸ã®å·£ã®èœ˜è››
+Alpha Tyrranax=æœ€ä¸Šä½ã®ãƒ†ã‚£ãƒ©ãƒŠãƒƒã‚¯ã‚¹
+Arc Trail=é›»å¼§ã®ç—•è·¡
+Argent Sphinx=éŠ€ç™½ã®ã‚¹ãƒ•ã‚£ãƒ³ã‚¯ã‚¹
+Argentum Armor=ã‚¢ãƒ¼ã‚¸ã‚§ãƒ³ã‚¿ãƒ ã®é§
+Arrest=æ‹˜å¼•
+Asceticism=è‹¦è¡Œä¸»ç¾©
+Assault Strobe=çªæ’ƒã®ã‚¹ãƒˆãƒ­ãƒœ
+Auriok Edgewright=ã‚ªãƒ¼ãƒªã‚ªãƒƒã‚¯ã®åˆƒå·¥
+Auriok Replica=ã‚ªãƒ¼ãƒªã‚ªãƒƒã‚¯ã®æ¨¡é€ å“
+Auriok Sunchaser=ã‚ªãƒ¼ãƒªã‚ªãƒƒã‚¯ã®å¤ªé™½è¿½ã„
+Barbed Battlegear=é€†åˆºã®æˆ¦å…·
+Barrage Ogre=é€£å°„ã®ã‚ªãƒ¼ã‚¬
+Bellowing Tanglewurm=å ãˆã‚‹çµ¡ã¿ãƒ¯ãƒ¼ãƒ 
+Blackcleave Cliffs=é»’å‰²ã‚Œã®å´–
+Blackcleave Goblin=é»’å‰²ã‚Œã®ã‚´ãƒ–ãƒªãƒ³
+Bladed Pinions=åˆƒã®ç¿¼
+Blade-Tribe Berserkers=åˆƒæ—ã®ç‹‚æˆ¦å£«
+Bleak Coven Vampires=å†·ãŸãé›†ã„ã®å¸è¡€é¬¼
+Blight Mamba=è’å»ƒã®ãƒãƒ³ãƒ
+Blistergrub=æ°´è†¨ã‚Œåœ°æ˜ã‚Š
+Bloodshot Trainee=è¡€ã¾ãªã“ã®ç·´ç¿’ç”Ÿ
+Blunt the Assault=çªæ’ƒã®éˆåŒ–
+Bonds of Quicksilver=æ°´éŠ€ã®ç¸›ã‚
+Carapace Forger=ç”²æ®»ã®é›å†¶å·¥
+Carnifex Demon=åŸ·è¡Œã®æ‚ªé­”
+Carrion Call=å±è‚‰ã®å‘¼ã³å£°
+Cerebral Eruption=çŸ¥æ€§ã®çˆ†ç™º
+Chimeric Mass=ã‚­ãƒã‚¤ãƒ©çš„å¤§ç¾¤
+Chrome Steed=é‡‘å±ã®é§¿é¦¬
+Clone Shell=ã‚¯ãƒ­ãƒ¼ãƒ³ã®æ®»
+Contagion Clasp=ä¼æŸ“ç—…ã®ç•™ã‚é‡‘
+Contagion Engine=ä¼æŸ“ç—…ã‚¨ãƒ³ã‚¸ãƒ³
+Contagious Nim=ä¼æŸ“ç—…ã®å±è³Š
+Copperhorn Scout=éŠ…è§’ç¬›ã®æ–¥å€™
+Copperline Gorge=éŠ…ç·šã®åœ°æº
+Copper Myr=éŠ…ã®ãƒã‚¤ã‚¢
+Corpse Cur=æ­»ä½“ã®é‡çŠ¬
+Corrupted Harvester=å •è½ã—ãŸåç©«è€…
+Culling Dais=é¸åˆ¥ã®é«˜åº§
+Cystbearer=åš¢èƒæŠ±ãˆ
+Darkslick Drake=é—‡æ»‘ã‚Šã®ãƒ‰ãƒ¬ã‚¤ã‚¯
+Darkslick Shores=é—‡æ»‘ã‚Šã®å²¸
+Darksteel Axe=ãƒ€ãƒ¼ã‚¯ã‚¹ãƒ†ã‚£ãƒ¼ãƒ«ã®æ–§
+Darksteel Juggernaut=ãƒ€ãƒ¼ã‚¯ã‚¹ãƒ†ã‚£ãƒ¼ãƒ«ã®å·¨å¤§æˆ¦è»Š
+Darksteel Myr=ãƒ€ãƒ¼ã‚¯ã‚¹ãƒ†ã‚£ãƒ¼ãƒ«ã®ãƒã‚¤ã‚¢
+Darksteel Sentinel=ãƒ€ãƒ¼ã‚¯ã‚¹ãƒ†ã‚£ãƒ¼ãƒ«ã®æ­©å“¨
+Dispense Justice=æ­£ç¾©ã®æ–½è¡Œ
+Disperse=åˆ†æ•£
+Dissipation Field=éœ§æ¶ˆã®å ´
+Dross Hopper=ãƒ‰ãƒ­ã‚¹ãƒãƒƒã‚¿
+Echo Circlet=ã“ã ã¾ã®é£¾ã‚Šè¼ª
+Elspeth Tirel=ã‚¨ãƒ«ã‚ºãƒšã‚¹ãƒ»ãƒ†ã‚£ãƒ¬ãƒ«
+Embersmith=ç‡ƒãˆã•ã—é›å†¶
+Engulfing Slagwurm=é£²ã¿è¾¼ã‚€é‡‘å±‘ãƒ¯ãƒ¼ãƒ 
+Etched Champion=åˆ»ã¾ã‚ŒãŸå‹‡è€…
+Exsanguinate=ç€‰è¡€
+Ezuri, Renegade Leader=èƒŒæ•™ã®ä¸»å°è€…ã€ã‚¨ã‚ºãƒ¼ãƒª
+Ezuri's Archers=ã‚¨ã‚ºãƒ¼ãƒªã®å°„æ‰‹
+Ezuri's Brigade=ã‚¨ã‚ºãƒ¼ãƒªã®å¤§éƒ¨éšŠ
+Ferrovore=é‰„ã‚’é£Ÿã†ã‚‚ã®
+Flameborn Hellion=ç‚ç”Ÿã¾ã‚Œã®ãƒ˜ãƒªã‚ªãƒ³
+Flesh Allergy=è‚‰ä½“ã‚¢ãƒ¬ãƒ«ã‚®ãƒ¼
+Flight Spellbomb=é£›è¡Œã®å‘ªæ–‡çˆ†å¼¾
+Fulgent Distraction=ç‡¦çˆ›ãŸã‚‹æ”¾å¿ƒ
+Fume Spitter=ç…™éœ§åã
+Furnace Celebration=ç‚‰ã®å¼å…¸
+Galvanic Blast=æ„Ÿé›»ç ´
+Genesis Wave=èµ·æºã®æ³¢
+Geth, Lord of the Vault=å¤§éœŠå ‚ã®ç‹ã€ã‚²ã‚¹
+Ghalma's Warden=ã‚¬ãƒ«ãƒã®ä¿è­·è€…
+Glimmerpoint Stag=å¾®å…‰è§’ã®é¹¿
+Glimmerpost=å¾®å…‰åœ°
+Glint Hawk=ãã‚‰ã‚ãé·¹
+Glint Hawk Idol=ãã‚‰ã‚ãé·¹ã®å¶åƒ
+Goblin Gaveleer=ã‚´ãƒ–ãƒªãƒ³ã®å°æ§Œæ‰“ã¡
+Golden Urn=é»„é‡‘ã®ç”•
+Gold Myr=é‡‘ã®ãƒã‚¤ã‚¢
+Golem Artisan=ã‚´ãƒ¼ãƒ¬ãƒ ã®è·å·¥
+Golem Foundry=ã‚´ãƒ¼ãƒ¬ãƒ ã®é‹³é€ æ‰€
+Golem's Heart=ã‚´ãƒ¼ãƒ¬ãƒ ã®å¿ƒè‡“
+Grafted Exoskeleton=ç”Ÿä½“èåˆå¤–éª¨æ ¼
+Grand Architect=å¤§å»ºç¯‰å®¶
+Grasp of Darkness=é—‡ã®æŒæ¡
+Grindclock=ç ”ç£¨æ™‚è¨ˆ
+Halt Order=åœæ­¢å‘½ä»¤
+Hand of the Praetors=æ³•å‹™å®˜ã®æ‰‹
+Heavy Arbalest=å¤§çŸ³å¼“
+Hoard-Smelter Dragon=è”µè£½éŒ¬ã®ãƒ‰ãƒ©ã‚´ãƒ³
+Horizon Spellbomb=åœ°å¹³ç·šã®å‘ªæ–‡çˆ†å¼¾
+Ichorclaw Myr=èƒ†æ¶²çˆªã®ãƒã‚¤ã‚¢
+Ichor Rats=èƒ†æ¶²ã®é¼ 
+Indomitable Archangel=ä¸é€€è»¢ã®å¤§å¤©ä½¿
+Inexorable Tide=å®¹èµ¦ç„¡ã„æ½®æµ
+Infiltration Lens=æµ¸é€ã®ãƒ¬ãƒ³ã‚º
+Instill Infection=æ„ŸæŸ“ã®è³¦æ´»
+Iron Myr=é‰„ã®ãƒã‚¤ã‚¢
+Kemba, Kha Regent=ç‹ã®æ‘‚æ”¿ã€ã‚±ãƒ³ãƒ
+Kemba's Skyguard=ã‚±ãƒ³ãƒã®ç©ºè­·è¡›
+Koth of the Hammer=æ§Œã®ã‚³ã‚¹
+Kuldotha Forgemaster=ã‚«ãƒ«ãƒ‰ãƒ¼ã‚µã®é›å†¶å ´ä¸»
+Kuldotha Phoenix=ã‚«ãƒ«ãƒ‰ãƒ¼ã‚µã®ãƒ•ã‚§ãƒ‹ãƒƒã‚¯ã‚¹
+Kuldotha Rebirth=ã‚«ãƒ«ãƒ‰ãƒ¼ã‚µã®å†èª•
+Leaden Myr=é‰›ã®ãƒã‚¤ã‚¢
+Leonin Arbiter=ãƒ¬ã‚ªãƒ‹ãƒ³ã®è£ãäºº
+Liege of the Tangle=çµ¡ã¿æ£®ã®ä¸»
+Lifesmith=ç”Ÿå‘½é›å†¶
+Liquimetal Coating=æ¶²é‹¼ã®å¡—è†œ
+Livewire Lash=æ´»ç·šã®é­
+Loxodon Wayfarer=ãƒ­ã‚¯ã‚½ãƒ‰ãƒ³ã®æ—…äºº
+Lumengrid Drake=ãƒ«ãƒ¼ãƒ¡ãƒ³ã‚°ãƒªãƒƒãƒ‰ã®ãƒ‰ãƒ¬ã‚¤ã‚¯
+Lux Cannon=å…‰æ˜ã®å¤§ç ²
+Melt Terrain=åœ°å½¢ã®èè§£
+Memnite=ãƒ¡ãƒ ãƒŠã‚¤ãƒˆ
+Memoricide=è¨˜æ†¶æ®ºã—
+Mimic Vat=ãƒŸãƒŸãƒƒã‚¯ã®å¤§æ¡¶
+Mindslaver=ç²¾ç¥éš·å±å™¨
+Molder Beast=è…é£Ÿç£
+Molten Psyche=æº¶é‰„ã®ç²¾ç¥
+Molten-Tail Masticore=æº¶é‰„ã®å°¾ã®ãƒã‚¹ãƒ†ã‚£ã‚³ã‚¢
+Moriok Reaver=ãƒ¢ãƒªã‚ªãƒƒã‚¯ã®è‚‰è£‚ã
+Moriok Replica=ãƒ¢ãƒªã‚ªãƒƒã‚¯ã®æ¨¡é€ å“
+Mox Opal=ã‚ªãƒ‘ãƒ¼ãƒ«ã®ãƒ¢ãƒƒã‚¯ã‚¹
+Myr Battlesphere=ãƒã‚¤ã‚¢ã®æˆ¦é—˜çƒ
+Myr Galvanizer=ãƒã‚¤ã‚¢ã®æ„Ÿé›»è€…
+Myr Propagator=ãƒã‚¤ã‚¢ã®ç¹æ®–è€…
+Myr Reservoir=ãƒã‚¤ã‚¢ã®è²¯è”µåº«
+Myrsmith=ãƒã‚¤ã‚¢é›å†¶
+Necrogen Censer=å±æ°—ã®é¦™ç‚‰
+Necrogen Scudder=å±æ°—ã‚’é£›ã°ã™ã‚‚ã®
+Necropede=å±ç™¾è¶³
+Necrotic Ooze=å£Šæ­»ã®ã‚¦ãƒ¼ã‚º
+Neurok Invisimancer=ãƒ‹ãƒ¥ãƒ¼ãƒ­ãƒƒã‚¯ã®é€è¡“å£«
+Neurok Replica=ãƒ‹ãƒ¥ãƒ¼ãƒ­ãƒƒã‚¯ã®æ¨¡é€ å“
+Nihil Spellbomb=è™šç„¡ã®å‘ªæ–‡çˆ†å¼¾
+Nim Deathmantle=å±è³Šã®æ­»ã®ãƒãƒ³ãƒˆ
+Ogre Geargrabber=ã‚ªãƒ¼ã‚¬ã®è£…å…·å¥ªã„
+Origin Spellbomb=èµ·æºã®å‘ªæ–‡çˆ†å¼¾
+Oxidda Daredevil=ã‚ªã‚­ã‚·ãƒ€ã®å‘ã“ã†è¦‹ãš
+Oxidda Scrapmelter=ã‚ªã‚­ã‚·ãƒ€ã®å±‘é‰„æº¶ã‹ã—
+Painful Quandary=ç—›ã¾ã—ã„è‹¦å¢ƒ
+Painsmith=è‹¦ç—›é›å†¶
+Palladium Myr=ãƒ‘ãƒ©ã‚¸ã‚¦ãƒ ã®ãƒã‚¤ã‚¢
+Panic Spellbomb=ææ…Œã®å‘ªæ–‡çˆ†å¼¾
+Perilous Myr=å±é™ºãªãƒã‚¤ã‚¢
+Plague Stinger=ç–«ç—…ã®ã¨ã’åˆºã—
+Plated Seastrider=æ¿é‡‘é§ã®æµ·ã†ã‚ã¤ã
+Platinum Emperion=ç™½é‡‘ã®å¸åƒ
+Precursor Golem=å…ˆé§†ã®ã‚´ãƒ¼ãƒ¬ãƒ 
+Prototype Portal=è©¦ä½œå“ã®æ‰‰
+Psychic Miasma=ç²¾ç¥ã®ç˜´æ°—
+Putrefax=åŒ–è†¿ç£
+Quicksilver Gargantuan=æ°´éŠ€ã®ã‚¬ãƒ«ã‚¬ãƒ³ãƒãƒ¥ã‚¢ãƒ³
+Ratchet Bomb=æ¼¸å¢—çˆ†å¼¾
+Razorfield Thresher=å‰ƒåˆ€ãƒ¶åŸã®æ‰“ã¤ã‚‚ã®
+Razor Hippogriff=å‰ƒåˆ€ã®ãƒ’ãƒã‚°ãƒªãƒ•
+Razorverge Thicket=å‰ƒåˆ€å¢ƒã®èŒ‚ã¿
+Relic Putrescence=ç§˜å®ã®è…æ•—
+Revoke Existence=å­˜åœ¨ã®ç ´æ£„
+Riddlesmith=è¬é›å†¶
+Rusted Relic=éŒ†ã³ãŸç§˜å®
+Rust Tick=éŒ†ãƒ€ãƒ‹
+Saberclaw Golem=å‰£çˆªã®ã‚´ãƒ¼ãƒ¬ãƒ 
+Salvage Scout=å›åã®æ–¥å€™
+Scoria Elemental=å²©æ»“ã®ç²¾éœŠ
+Scrapdiver Serpent=å±‘é‰„æ½œã‚Šã®æµ·è›‡
+Screeching Silcaw=é‡‘åˆ‡ã‚Šå£°ã®ã‚·ãƒ«ã‚«ã‚¦
+Seachrome Coast=é‡‘å±æµ·ã®æ²¿å²¸
+Seize the Initiative=ä¸»å°æ¨©ã®å¥ªå–
+Semblance Anvil=é¡ä¼¼ã®é‡‘åºŠ
+Shape Anew=æ–°ãŸãªé€ å½¢
+Shatter=ç²‰ç •
+Silver Myr=éŠ€ã®ãƒã‚¤ã‚¢
+Skinrender=çš®è£‚ã
+Skithiryx, the Blight Dragon=è’å»ƒã®ãƒ‰ãƒ©ã‚´ãƒ³ã€ã‚¹ã‚­ã‚¸ãƒªã‚¯ã‚¹
+Sky-Eel School=ç©ºé•·é­šã®ç¾¤ã‚Œ
+Slice in Twain=çœŸã£äºŒã¤
+Snapsail Glider=åµŒã‚ä¹—ã‚Šã®æ»‘ç©ºè€…
+Soliton=ã‚½ãƒªãƒˆãƒ³
+Soul Parry=é­‚ã®å—ã‘æµã—
+Spikeshot Elder=ãƒˆã‚²æ’ƒã¡ã®å¤è€
+Steady Progress=ç€å®Ÿãªé€²æ­©
+Steel Hellkite=é‹¼ã®ãƒ˜ãƒ«ã‚«ã‚¤ãƒˆ
+Stoic Rebuttal=å†·é™ãªåè«–
+Strata Scythe=åœ°å±¤ã®éŒ
+Strider Harness=é—Šæ­©ã™ã‚‹ã‚‚ã®ã®è£…å…·
+Sunblast Angel=å¤ªé™½ç ´ã®å¤©ä½¿
+Sunspear Shikari=å¤ªé™½ã®æ§ã®ã‚·ã‚«ãƒ¼ãƒ«
+Sword of Body and Mind=è‚‰ä½“ã¨ç²¾ç¥ã®å‰£
+Sylvok Lifestaff=ã‚·ãƒ«ãƒ´ã‚©ã‚¯ã®ç”Ÿå‘½æ–
+Sylvok Replica=ã‚·ãƒ«ãƒ´ã‚©ã‚¯ã®æ¨¡é€ å“
+Tainted Strike=æ±šã‚ŒãŸä¸€æ’ƒ
+Tangle Angler=çµ¡ã¿æ£®ã®é®Ÿé±‡
+Tel-Jilad Defiance=ãƒ†ãƒ«ï¼ã‚¸ãƒ©ãƒ¼ãƒ‰ã®æŠµæŠ—
+Tel-Jilad Fallen=ãƒ†ãƒ«ï¼ã‚¸ãƒ©ãƒ¼ãƒ‰ã®å •ã¡ãŸã‚‹è€…
+Tempered Steel=é›ãˆã‚‰ã‚ŒãŸé‹¼
+Throne of Geth=ã‚²ã‚¹ã®ç‰åº§
+Thrummingbird=ã‹ãé³´ã‚‰ã—é³¥
+Tower of Calamities=ç½é›£ã®å¡”
+Trigon of Corruption=å •è½ã®ä¸‰è§’è­·ç¬¦
+Trigon of Infestation=æ„ŸæŸ“ã®ä¸‰è§’è­·ç¬¦
+Trigon of Mending=å›å¾©ã®ä¸‰è§’è­·ç¬¦
+Trigon of Rage=æ†¤æ€’ã®ä¸‰è§’è­·ç¬¦
+Trigon of Thought=æ€è€ƒã®ä¸‰è§’è­·ç¬¦
+Trinket Mage=ç²—çŸ³ã®é­”é“å£«
+True Conviction=çœŸå®Ÿã®ç¢ºä¿¡
+Tumble Magnet=è»¢å€’ã®ç£çŸ³
+Tunnel Ignus=ãƒˆãƒ³ãƒãƒ«ã®ã‚¤ã‚°ãƒŠã‚¹
+Turn Aside=å–ã‚Šç¹•ã„
+Turn to Slag=é‡‘å±‘åŒ–
+Twisted Image=ã‚ˆã˜ã‚ŒãŸæ˜ åƒ
+Untamed Might=è’ã€…ã—ãåŠ›
+Vault Skyward=ç©ºã¸ã®è·³èº
+Vector Asp=åª’ä»‹ã®ã‚¢ã‚¹ãƒ—
+Vedalken Certarch=ãƒ´ã‚£ãƒ€ãƒ«ã‚±ãƒ³ã®ã‚»ãƒ«ã‚¿ãƒ¼ãƒ
+Venser's Journal=ãƒ´ã‚§ãƒ³ã‚»ãƒ¼ãƒ«ã®æ—¥èªŒ
+Venser, the Sojourner=æ»ç•™è€…ãƒ´ã‚§ãƒ³ã‚»ãƒ¼ãƒ«
+Vigil for the Lost=å¤±ã‚ã‚Œã—è€…ã¸ã®ç¥ˆã‚Š
+Viridian Revel=ãƒ´ã‚£ãƒªã‚¸ã‚¢ãƒ³ã®ãŠç¥­ã‚Šé¨’ã
+Volition Reins=æ±ºæ–­ã®æ‰‹ç¶±
+Vulshok Heartstoker=ãƒ´ã‚¡ãƒ«ã‚·ãƒ§ã‚¯ã®å¿ƒè‡“ç„šã
+Vulshok Replica=ãƒ´ã‚¡ãƒ«ã‚·ãƒ§ã‚¯ã®æ¨¡é€ å“
+Wall of Tanglecord=çµ¡ã¿ç·šã®å£
+Whitesun's Passage=ç™½ã®å¤ªé™½ã®é€šé
+Wing Puncture=é¢¨ã®çªãåˆºã—
+Withstand Death=æ­»ã¸ã®æŠµæŠ—
+Wurmcoil Engine=ãƒ¯ãƒ¼ãƒ ã¨ãã‚ã‚¨ãƒ³ã‚¸ãƒ³

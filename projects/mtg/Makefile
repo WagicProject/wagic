@@ -42,7 +42,7 @@ OBJS += objs/TestSuiteAI.o
 INCDIR = -I../../JGE/include -I../../JGE/src -I/usr/X11/include -I../../projects/mtg/include
 LIBDIR = -L../../JGE/lib/linux -L../../JGE -L/usr/X11/lib
 LIBS = -ljge -lfreetype -ljpeg -lgif -lpng -lz -lm -lstdc++ -lhgetools -lGL -lGLU -lX11 $(FMOD)
-CFLAGS = $(INCDIR) -O2 -DLINUX -DUSE_PRECOMPILED_HEADERS=1
+CFLAGS = $(INCDIR) -DLINUX -DUSE_PRECOMPILED_HEADERS=1
 ASFLAGS = $(CXXFLAGS)
 
 all: $(DEFAULT_RULE)

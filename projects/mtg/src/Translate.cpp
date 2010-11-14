@@ -139,7 +139,7 @@ void  Translator::init() {
   string name = JGE_GET_RES("lang/") + lang + ".txt";
 
   if (fileExists(name.c_str())){
-    // fixup for Chinese language support.
+    // fixup for multibyte support.
     std::transform(lang.begin(), lang.end(), lang.begin(), ::tolower);
     if (lang.compare("cn") == 0 || lang.compare("jp") == 0)
       neofont = true;
@@ -151,7 +151,6 @@ void  Translator::init() {
 
   initCards();
   initDecks();
- 
 }
 
 string _(string toTranslate){

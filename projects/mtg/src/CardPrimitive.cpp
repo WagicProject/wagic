@@ -57,9 +57,7 @@ const vector<string>& CardPrimitive::formattedText()
     {
       std::string s = text;
       std::string::size_type found = s.find_first_of("{}");
-      // XXX: neofonts don't use {} for mana cost because some Shift-JIS character's
-      //      second byte equals to the value of '{' or '}'.
-      while (!neofont && found!=string::npos)
+      while (found!=string::npos)
 	{
 	  s[found] = '/';
 	  found = s.find_first_of("{}", found + 1);
@@ -74,7 +72,7 @@ const vector<string>& CardPrimitive::formattedText()
               u8 * src = (u8 *)s.c_str();
               if (neofont) {
                 len = 0;
-                std::string::size_type limit = 24; 
+                std::string::size_type limit = 24;
                 while (*src != 0) {
                   if (*src > 0x80) { // Non-ASCII
                     if (len + 2 > limit && !(((*src & 0xF0) == 0xA0) && ((*(src+1) & 0xF0) == 0xA0))) break;
