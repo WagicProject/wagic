@@ -10883,7 +10883,7 @@ name=Corpsehatch
 target=creature[-black]
 auto=destroy
 auto=Token(-193507)*2
-text=Destroy target nonblack creature. -- Put two 0/1 colorless Eldrazi Spawn creature tokens onto the battlefield. They have ìSacrifice this creature: Add {1} to your mana pool.Å"
+text=Destroy target nonblack creature. -- Put two 0/1 colorless Eldrazi Spawn creature tokens onto the battlefield. They have ìSacrifice this creature: Add {1} to your mana pool.ÅE
 mana={3}{B}{B}
 type=Sorcery
 [/card]
@@ -14800,7 +14800,7 @@ toughness=3
 [/card]
 [card]
 name=Dregscape Zombie
-autograveyard={B}:moveto(mybattlefield) && transforms(,un,haste) asSorcery forever
+autograveyard={B}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
 text=Unearth {B} ({B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={1}{B}
 type=Creature

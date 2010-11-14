@@ -463,6 +463,7 @@ void GameStateDuel::Render()
           }else{
             sprintf(buf, "%i tests out of %i FAILED!", nbFailed, nbTests);
           }
+          mFont->SetColor(ARGB(255,255,255,255));
           mFont->DrawString(buf,0,SCREEN_HEIGHT/2);
           nbFailed = testSuite->nbAIFailed;
           nbTests = testSuite->nbAITests;
