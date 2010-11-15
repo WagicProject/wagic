@@ -5613,7 +5613,7 @@ toughness=1
 [/card]
 [card]
 name=Blitz Hellion
-auto=trample,haste
+abilities=trample,haste
 auto=@each my endofturn:moveto(myLibrary) && shuffle
 text=Trample, haste -- At the beginning of the end step, Blitz Hellion's owner shuffles it into his or her library.
 mana={3}{R}{G}
@@ -12682,7 +12682,7 @@ toughness=6
 [/card]
 [card]
 name=Deathcoil Wurm
-auto=@blocked(this):name(assign combat damage to defending player) && may thisforeach(power>=1) opponent && fog from(this)
+auto=@blocked(this):may name(assign combat damage to defending player) && thisforeach(power>=1) damage:1 opponent && fog from(this)
 text=You may have Deathcoil Wurm assign its combat damage as though it weren't blocked.
 mana={6}{G}{G}
 type=Creature
@@ -19953,16 +19953,6 @@ type=Creature
 subtype=Human Soldier
 power=2
 toughness=4
-[/card]
-[card]
-name=Footsteps of the Goryo
-target=creature|myGraveyard
-auto=moveto(myBattlefield)
-auto=treason
-text=Return target creature card from your graveyard to the battlefield. Sacrifice that creature at the beginning of the next end step.
-mana={2}{B}
-type=Sorcery
-subtype=Arcane
 [/card]
 [card]
 name=Foratog
@@ -30922,7 +30912,7 @@ toughness=4
 [/card]
 [card]
 name=Laccolith Grunt
-auto=@blocked(this):name(assign combat damage to a creature) && may thisforeach(power>=1) target(creature) && fog from(this)
+auto=@blocked(this):may name(assign combat damage to a creature) && thisforeach(power>=1) damage:1 target(creature) && fog from(this)
 text=Whenever Laccolith Grunt becomes blocked, you may have it deal damage equal to its power to target creature. If you do, Laccolith Grunt assigns no combat damage this turn.
 mana={2}{R}
 type=Creature
@@ -30932,7 +30922,7 @@ toughness=2
 [/card]
 [card]
 name=Laccolith Titan
-auto=@blocked(this):name(assign combat damage to a creature) && may thisforeach(power>=1) target(creature) && fog from(this)
+auto=@blocked(this):may name(assign combat damage to a creature) && thisforeach(power>=1) damage:1 target(creature) && fog from(this)
 text=Whenever Laccolith Titan becomes blocked, you may have it deal damage equal to its power to target creature. If you do, Laccolith Titan assigns no combat damage this turn.
 mana={5}{R}{R}
 type=Creature
@@ -30942,7 +30932,7 @@ toughness=6
 [/card]
 [card]
 name=Laccolith Warrior
-auto=@blocked(this):name(assign combat damage to a creature) && may thisforeach(power>=1) target(creature) && fog from(this)
+auto=@blocked(this):may name(assign combat damage to a creature) && thisforeach(power>=1) damage:1 target(creature) && fog from(this)
 text=Whenever Laccolith Warrior becomes blocked, you may have it deal damage equal to its power to target creature. If you do, Laccolith Warrior assigns no combat damage this turn.
 mana={2}{R}{R}
 type=Creature
@@ -30952,7 +30942,7 @@ toughness=3
 [/card]
 [card]
 name=Laccolith Whelp
-auto=@blocked(this):name(assign combat damage to a creature) && may thisforeach(power>=1) target(creature) && fog from(this)
+auto=@blocked(this):may name(assign combat damage to a creature) && thisforeach(power>=1) damage:1 target(creature) && fog from(this)
 text=Whenever Laccolith Whelp becomes blocked, you may have it deal damage equal to its power to target creature. If you do, Laccolith Whelp assigns no combat damage this turn.
 mana={R}
 type=Creature
@@ -32422,7 +32412,7 @@ toughness=1
 [/card]
 [card]
 name=Lone Wolf
-auto=@blocked(this):name(assign combat damage to defending player) && may thisforeach(power>=1) opponent && fog from(this)
+auto=@blocked(this):may name(assign combat damage to defending player) && thisforeach(power>=1) damage:1 opponent && fog from(this)
 text=You may have Lone Wolf assign its combat damage as though it weren't blocked.
 mana={2}{G}
 type=Creature
@@ -41968,7 +41958,7 @@ toughness=1
 [/card]
 [card]
 name=Pride of Lions
-auto=@blocked(this):name(assign combat damage to defending player) && may thisforeach(power>=1) opponent && fog from(this)
+auto=@blocked(this):may name(assign combat damage to defending player) && thisforeach(power>=1) damage:1 opponent && fog from(this)
 text=You may have Pride of Lions assign its combat damage as though it weren't blocked.
 mana={3}{G}{G}
 type=Creature
@@ -44989,7 +44979,7 @@ toughness=6
 [/card]
 [card]
 name=Rhox
-auto=@blocked(this):name(assign combat damage to defending player) && may thisforeach(power>=1) opponent && fog from(this)
+auto=@blocked(this):may name(assign combat damage to defending player) && thisforeach(power>=1) damage:1 opponent && fog from(this)
 text=You may have Rhox assign its combat damage as though it weren't blocked. -- {2}{G}: Regenerate Rhox. (The next time this creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
 mana={4}{G}{G}
 type=Creature
@@ -45201,7 +45191,7 @@ type=Sorcery
 [/card]
 [card]
 name=Righteous Fury
-auto=@movedTo(creature[tapped]|graveyard):life:2 controller
+auto=@movedTo(creature|graveyard) from(battlefield):life:2 controller
 auto=destroy all(creature[tapped])
 text=Destroy all tapped creatures. You gain 2 life for each creature destroyed this way.
 mana={4}{W}{W}
@@ -57103,7 +57093,7 @@ toughness=0
 [/card]
 [card]
 name=Thorn Elemental
-auto=@blocked(this):name(assign combat damage to defending player) && may thisforeach(power>=1) opponent && fog from(this)
+auto=@blocked(this):may name(assign combat damage to defending player) && thisforeach(power>=1) damage:1 opponent && fog from(this)
 text=You may have Thorn Elemental assign its combat damage as though it weren't blocked.
 mana={5}{G}{G}
 type=Creature
@@ -58362,7 +58352,7 @@ type=Artifact
 [/card]
 [card]
 name=Tornado Elemental
-auto=@blocked(this):name(assign combat damage to defending player) && may thisforeach(power>=1) opponent && fog from(this)
+auto=@blocked(this):may name(assign combat damage to defending player) && thisforeach(power>=1) damage:1 opponent && fog from(this)
 text=When Tornado Elemental enters the battlefield, it deals 6 damage to each creature with flying. -- You may have Tornado Elemental assign its combat damage as though it weren't blocked.
 mana={5}{G}{G}
 type=Creature
@@ -64463,7 +64453,7 @@ toughness=5
 [/card]
 [card]
 name=Wolf Pack
-auto=@blocked(this):name(assign combat damage to defending player) && may thisforeach(power>=1) opponent && fog from(this)
+auto=@blocked(this):may name(assign combat damage to defending player) && thisforeach(power>=1) damage:1 opponent && fog from(this)
 text=You may have Wolf Pack assign its combat damage as though it weren't blocked.
 mana={6}{G}{G}
 type=Creature
