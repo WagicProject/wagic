@@ -3,129 +3,167 @@
 #include "Counters.h"
 #include "MTGCardInstance.h"
 
-Counter::Counter(MTGCardInstance * _target, int _power, int _toughness){
-  init(_target,"",_power, _toughness);
-}
-Counter::Counter(MTGCardInstance * _target, const char * _name,int _power, int _toughness ){
-  init(_target,_name,_power, _toughness);
+Counter::Counter(MTGCardInstance * _target, int _power, int _toughness)
+{
+    init(_target, "", _power, _toughness);
 }
 
-int Counter::init(MTGCardInstance * _target,const char * _name, int _power, int _toughness){
-  target = _target;
-  name = _name;
-  power = _power;
-  toughness = _toughness;
-  nb = 1;
-  return 1;
+Counter::Counter(MTGCardInstance * _target, const char * _name, int _power, int _toughness)
+{
+    init(_target, _name, _power, _toughness);
 }
 
-bool Counter::sameAs(const char * _name, int _power, int _toughness){
-  if (power == 0 && toughness == 0) return (name.compare(_name) == 0);
-  return (power == _power && toughness == _toughness);
+int Counter::init(MTGCardInstance * _target, const char * _name, int _power, int _toughness)
+{
+    target = _target;
+    name = _name;
+    power = _power;
+    toughness = _toughness;
+    nb = 1;
+    return 1;
 }
 
-bool Counter::cancels(int _power, int _toughness){
-  if (power == 0 && toughness == 0) return false;
-  return (power == -_power && toughness == -_toughness);
+bool Counter::sameAs(const char * _name, int _power, int _toughness)
+{
+    if (power == 0 && toughness == 0)
+        return (name.compare(_name) == 0);
+    return (power == _power && toughness == _toughness);
 }
 
-int Counter::added(){
-  if (power != 0 || toughness != 0){
-    target->power+= power;
-    target->addToToughness(toughness);
-  }
-  return 1;
+bool Counter::cancels(int _power, int _toughness)
+{
+    if (power == 0 && toughness == 0)
+        return false;
+    return (power == -_power && toughness == -_toughness);
 }
 
-int Counter::removed(){
-  if (power != 0 || toughness != 0){
-    target->power-= power;
-    target->addToToughness(-toughness);
-  }
-  return 1;
-}
-
-
-Counters::Counters(MTGCardInstance * _target):target(_target){
-  mCount = 0;
-}
-Counters::~Counters(){
-  for (int i = 0; i < mCount; i++){
-    SAFE_DELETE(counters[i]);
-  }
-}
-
-int Counters::addCounter(const char * _name,int _power, int _toughness){
-  for (int i = 0; i < mCount; i++){
-    if (counters[i]->cancels( _power,_toughness) && counters[i]->nb > 0){
-      counters[i]->removed();
-      counters[i]->nb--;
-      return mCount;
+int Counter::added()
+{
+    if (power != 0 || toughness != 0)
+    {
+        target->power += power;
+        target->addToToughness(toughness);
     }
-  }
+    return 1;
+}
 
-  for (int i = 0; i < mCount; i++){
-    if (counters[i]->sameAs(_name, _power,_toughness)){
-      counters[i]->added();
-      counters[i]->nb++;
-      return mCount;
+int Counter::removed()
+{
+    if (power != 0 || toughness != 0)
+    {
+        target->power -= power;
+        target->addToToughness(-toughness);
     }
-  }
-  Counter * counter = NEW Counter(target,_name, _power, _toughness);
-  counters[mCount] = counter;
-  counter->added();
-  mCount++;
-  return mCount;
+    return 1;
 }
 
-int Counters::addCounter(int _power, int _toughness){
-  return addCounter("",_power, _toughness);
+Counters::Counters(MTGCardInstance * _target) :
+    target(_target)
+{
+    mCount = 0;
 }
-
-int Counters::init(){
-  for (int i = mCount-1; i >= 0; i--){
-    while (counters[i]->nb >= 1) {
-      counters[i]->removed();
-      counters[i]->nb--;
+Counters::~Counters()
+{
+    for (int i = 0; i < mCount; i++)
+    {
+        SAFE_DELETE(counters[i]);
     }
-  }
-  return 1;
 }
 
-int Counters::removeCounter(const char * _name,int _power, int _toughness){
-  for (int i = 0; i < mCount; i++){
-    if (counters[i]->sameAs(_name, _power,_toughness)){
-      if (counters[i]->nb < 1) return 0;
-      counters[i]->removed();
-      counters[i]->nb--;
-      return mCount;
+int Counters::addCounter(const char * _name, int _power, int _toughness)
+{
+    for (int i = 0; i < mCount; i++)
+    {
+        if (counters[i]->cancels(_power, _toughness) && counters[i]->nb > 0)
+        {
+            counters[i]->removed();
+            counters[i]->nb--;
+            return mCount;
+        }
     }
-  }
-  return 0;
-}
 
-int Counters::removeCounter(int _power, int _toughness){
-  return removeCounter("",_power, _toughness);
-}
-
-Counter * Counters::hasCounter(const char * _name,int _power, int _toughness){
-  for (int i = 0; i < mCount; i++){
-    if (counters[i]->sameAs(_name, _power,_toughness)){
-      if (counters[i]->nb > 0) return counters[i];
+    for (int i = 0; i < mCount; i++)
+    {
+        if (counters[i]->sameAs(_name, _power, _toughness))
+        {
+            counters[i]->added();
+            counters[i]->nb++;
+            return mCount;
+        }
     }
-  }
-  return NULL;
+    Counter * counter = NEW Counter(target, _name, _power, _toughness);
+    counters[mCount] = counter;
+    counter->added();
+    mCount++;
+    return mCount;
 }
 
-Counter * Counters::hasCounter(int _power , int _toughness ){
-  return hasCounter("",_power, _toughness);
+int Counters::addCounter(int _power, int _toughness)
+{
+    return addCounter("", _power, _toughness);
 }
 
-Counter * Counters::getNext(Counter * previous){
-  int found = 0;
-  for (int i = 0; i < mCount ; i++){
-    if (found && counters[i]->nb > 0) return counters[i];
-    if (counters[i] == previous) found = 1;
-  }
-  return NULL;
+int Counters::init()
+{
+    for (int i = mCount - 1; i >= 0; i--)
+    {
+        while (counters[i]->nb >= 1)
+        {
+            counters[i]->removed();
+            counters[i]->nb--;
+        }
+    }
+    return 1;
+}
+
+int Counters::removeCounter(const char * _name, int _power, int _toughness)
+{
+    for (int i = 0; i < mCount; i++)
+    {
+        if (counters[i]->sameAs(_name, _power, _toughness))
+        {
+            if (counters[i]->nb < 1)
+                return 0;
+            counters[i]->removed();
+            counters[i]->nb--;
+            return mCount;
+        }
+    }
+    return 0;
+}
+
+int Counters::removeCounter(int _power, int _toughness)
+{
+    return removeCounter("", _power, _toughness);
+}
+
+Counter * Counters::hasCounter(const char * _name, int _power, int _toughness)
+{
+    for (int i = 0; i < mCount; i++)
+    {
+        if (counters[i]->sameAs(_name, _power, _toughness))
+        {
+            if (counters[i]->nb > 0)
+                return counters[i];
+        }
+    }
+    return NULL;
+}
+
+Counter * Counters::hasCounter(int _power, int _toughness)
+{
+    return hasCounter("", _power, _toughness);
+}
+
+Counter * Counters::getNext(Counter * previous)
+{
+    int found = 0;
+    for (int i = 0; i < mCount; i++)
+    {
+        if (found && counters[i]->nb > 0)
+            return counters[i];
+        if (counters[i] == previous)
+            found = 1;
+    }
+    return NULL;
 }

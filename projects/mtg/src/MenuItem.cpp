@@ -4,127 +4,109 @@
 #include "GameOptions.h"
 #include "Translate.h"
 
-MenuItem::MenuItem(int id, WFont *font, string text, float x, float y, JQuad * _off, JQuad * _on, const char * particle, JQuad * particleTex, bool hasFocus): JGuiObject(id), mFont(font), mX(x), mY(y)
+MenuItem::MenuItem(int id, WFont *font, string text, float x, float y, JQuad * _off, JQuad * _on, const char * particle,
+                JQuad * particleTex, bool hasFocus) :
+    JGuiObject(id), mFont(font), mX(x), mY(y)
 {
-  mText = _(text);
-  updatedSinceLastRender = 1;
-  mParticleSys = NEW hgeParticleSystem(resources.RetrievePSI(particle, particleTex));
-  mParticleSys->MoveTo(mX, mY);
+    mText = _(text);
+    updatedSinceLastRender = 1;
+    mParticleSys = NEW hgeParticleSystem(resources.RetrievePSI(particle, particleTex));
+    mParticleSys->MoveTo(mX, mY);
 
-  mHasFocus = hasFocus;
-  lastDt = 0.001f;
-  mScale = 1.0f;
-  mTargetScale = 1.0f;
+    mHasFocus = hasFocus;
+    lastDt = 0.001f;
+    mScale = 1.0f;
+    mTargetScale = 1.0f;
 
-  onQuad = _on;
-  offQuad = _off;
+    onQuad = _on;
+    offQuad = _off;
 
-  if (hasFocus)
-    Entering();
+    if (hasFocus)
+        Entering();
 }
-
 
 void MenuItem::Render()
 {
-  JRenderer * renderer = JRenderer::GetInstance();
+    JRenderer * renderer = JRenderer::GetInstance();
 
-
-  if (mHasFocus)
+    if (mHasFocus)
     {
-      PIXEL_TYPE start = ARGB(46,255,255,200);
-      if(mParticleSys)
-        start = mParticleSys->info.colColorStart.GetHWColor();
-
-      PIXEL_TYPE colors[] =
-      {
-        ARGB(0,0,0,0),
-        start,
-        ARGB(0,0,0,0),
-        start,
-      }; 
-      renderer->FillRect(255,0,SCREEN_WIDTH-155,SCREEN_HEIGHT,colors); 
-      // set additive blending
-      renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE);
-      mParticleSys->Render();
-      // set normal blending
-      renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
-      mFont->SetColor(ARGB(255,255,255,255));
-      onQuad->SetColor(ARGB(70,255,255,255));
-      renderer->RenderQuad(onQuad, SCREEN_WIDTH  , SCREEN_HEIGHT/2 , 0,8,8);
-      onQuad->SetColor(ARGB(255,255,255,255));
-      mFont->DrawString(mText.c_str(), SCREEN_WIDTH/2, 20 + 3*SCREEN_HEIGHT/4, JGETEXT_CENTER);
-      renderer->RenderQuad(onQuad, mX  , mY , 0,mScale,mScale);
+        PIXEL_TYPE start = ARGB(46,255,255,200);
+        if (mParticleSys)
+            start = mParticleSys->info.colColorStart.GetHWColor();
+        PIXEL_TYPE colors[] = { ARGB(0,0,0,0), start, ARGB(0,0,0,0), start, };
+        renderer->FillRect(255, 0, SCREEN_WIDTH - 155, SCREEN_HEIGHT, colors);
+        // set additive blending
+        renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE);
+        mParticleSys->Render();
+        // set normal blending
+        renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
+        mFont->SetColor(ARGB(255,255,255,255));
+        onQuad->SetColor(ARGB(70,255,255,255));
+        renderer->RenderQuad(onQuad, SCREEN_WIDTH, SCREEN_HEIGHT / 2, 0, 8, 8);
+        onQuad->SetColor(ARGB(255,255,255,255));
+        mFont->DrawString(mText.c_str(), SCREEN_WIDTH / 2, 20 + 3 * SCREEN_HEIGHT / 4, JGETEXT_CENTER);
+        renderer->RenderQuad(onQuad, mX, mY, 0, mScale, mScale);
 
     }
-  else
+    else
     {
-      renderer->RenderQuad(offQuad, mX  , mY , 0,mScale,mScale);
+        renderer->RenderQuad(offQuad, mX, mY, 0, mScale, mScale);
     }
-  updatedSinceLastRender= 0;
+    updatedSinceLastRender = 0;
 }
 
 void MenuItem::Update(float dt)
 {
-  updatedSinceLastRender = 1;
-  lastDt = dt;
-  if (mScale < mTargetScale)
+    updatedSinceLastRender = 1;
+    lastDt = dt;
+    if (mScale < mTargetScale)
     {
-      mScale += 8.0f*dt;
-      if (mScale > mTargetScale)
-	mScale = mTargetScale;
+        mScale += 8.0f * dt;
+        if (mScale > mTargetScale)
+            mScale = mTargetScale;
     }
-  else if (mScale > mTargetScale)
+    else if (mScale > mTargetScale)
     {
-      mScale -= 8.0f*dt;
-      if (mScale < mTargetScale)
-	mScale = mTargetScale;
+        mScale -= 8.0f * dt;
+        if (mScale < mTargetScale)
+            mScale = mTargetScale;
     }
 
     mParticleSys->Update(dt);
 }
 
-
-
-
 void MenuItem::Entering()
 {
 
-  mParticleSys->Fire();
-  mHasFocus = true;
-  mTargetScale = 1.3f;
+    mParticleSys->Fire();
+    mHasFocus = true;
+    mTargetScale = 1.3f;
 }
-
 
 bool MenuItem::Leaving(JButton key)
 {
-  mParticleSys->Stop(true);
-  mHasFocus = false;
-  mTargetScale = 1.0f;
-  return true;
+    mParticleSys->Stop(true);
+    mHasFocus = false;
+    mTargetScale = 1.0f;
+    return true;
 }
-
 
 bool MenuItem::ButtonPressed()
 {
-  return true;
+    return true;
 }
 
-
-MenuItem::~MenuItem(){
-  if (mParticleSys) delete mParticleSys;
+MenuItem::~MenuItem()
+{
+    if (mParticleSys)
+        delete mParticleSys;
 }
 
 ostream& MenuItem::toString(ostream& out) const
 {
-  return out << "MenuItem ::: mHasFocus : " << mHasFocus
-	     << " ; mFont : " << mFont
-	     << " ; mText : " << mText
-	     << " ; mX,mY : " << mX << "," << mY
-	     << " ; updatedSinceLastRender : " << updatedSinceLastRender
-	     << " ; lastDt : " << lastDt
-	     << " ; mScale : " << mScale
-	     << " ; mTargetScale : " << mTargetScale
-	     << " ; onQuad : " << onQuad
-	     << " ; offQuad : " << offQuad
-	     << " ; mParticleSys : " << mParticleSys;
+    return out << "MenuItem ::: mHasFocus : " << mHasFocus << " ; mFont : " << mFont << " ; mText : " << mText << " ; mX,mY : "
+                    << mX << "," << mY << " ; updatedSinceLastRender : " << updatedSinceLastRender << " ; lastDt : " << lastDt
+                    << " ; mScale : " << mScale << " ; mTargetScale : " << mTargetScale << " ; onQuad : " << onQuad
+                    << " ; offQuad : " << offQuad << " ; mParticleSys : " << mParticleSys;
 }

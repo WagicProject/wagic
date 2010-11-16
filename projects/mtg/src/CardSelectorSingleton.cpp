@@ -6,31 +6,31 @@
 #include "Navigator.h"
 
 /*
-** 
-*/
+ **
+ */
 namespace CardSelectorSingleton
 {
-  static CardSelectorBase* sCardSelectorInstance = NULL;
+    static CardSelectorBase* sCardSelectorInstance = NULL;
 
-  CardSelectorBase* Create(DuelLayers* inDuelLayers)
-  {
-    if (sCardSelectorInstance == NULL)
-      sCardSelectorInstance = NEW CardSelector(inDuelLayers);
-      //sCardSelectorInstance = NEW Navigator(inDuelLayers);
+    CardSelectorBase* Create(DuelLayers* inDuelLayers)
+    {
+        if (sCardSelectorInstance == NULL)
+            sCardSelectorInstance = NEW CardSelector(inDuelLayers);
+        //sCardSelectorInstance = NEW Navigator(inDuelLayers);
 
-    return sCardSelectorInstance;
-  }
+        return sCardSelectorInstance;
+    }
 
-  CardSelectorBase* Instance()
-  {
-    assert(sCardSelectorInstance);
-    return sCardSelectorInstance;
-  }
+    CardSelectorBase* Instance()
+    {
+        assert(sCardSelectorInstance);
+        return sCardSelectorInstance;
+    }
 
-  void Terminate()
-  {
-    SAFE_DELETE(sCardSelectorInstance);
-    sCardSelectorInstance = NULL;
-  }
+    void Terminate()
+    {
+        SAFE_DELETE(sCardSelectorInstance);
+        sCardSelectorInstance = NULL;
+    }
 }
 

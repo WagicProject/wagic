@@ -9,169 +9,177 @@
 //Merge this with DeckStats
 //Have this class handle all the Meta Data rather than relying on MTGDeck. Then MTGDeck would have a MetaData object...
 
-
 DeckMetaDataList * DeckMetaDataList::decksMetaData = NEW DeckMetaDataList();
 
-DeckMetaData::DeckMetaData(){
-  
-}
-
-DeckMetaData::DeckMetaData(string filename, Player * statsPlayer){
-  load(filename);
-}
-
-
-void DeckMetaData::loadStatsForPlayer( Player * statsPlayer, string deckStatsFileName )
+DeckMetaData::DeckMetaData()
 {
-  DeckStats * stats = DeckStats::GetInstance();
-  if ( statsPlayer )
-  {
-    stats->load(statsPlayer);
-    DeckStat * opponentDeckStats = stats->getDeckStat(deckStatsFileName);
-    if ( opponentDeckStats )
+
+}
+
+DeckMetaData::DeckMetaData(string filename, Player * statsPlayer)
+{
+    load(filename);
+}
+
+void DeckMetaData::loadStatsForPlayer(Player * statsPlayer, string deckStatsFileName)
+{
+    DeckStats * stats = DeckStats::GetInstance();
+    if (statsPlayer)
     {
-      _percentVictories = stats->percentVictories(deckStatsFileName);
-      _victories = opponentDeckStats->victories;
-      _nbGamesPlayed = opponentDeckStats->nbgames;
-      ostringstream oss;
-      int oppDeckId = atoi ( deckStatsFileName.substr( deckStatsFileName.find("deck") + 4, deckStatsFileName.find_last_of(".") ).c_str() );
-      int avatarId = getAvatarId( oppDeckId );
-      oss << "avatar" << avatarId << ".jpg";
-      _avatarFilename = oss.str();
-      if (_percentVictories < 34)
-      {
-        _difficulty = HARD;
-      }
-      else if (_percentVictories < 55)
-      {
-        _difficulty = NORMAL;
-      }
-      else
-      {
-        _difficulty = EASY;
-      }
+        stats->load(statsPlayer);
+        DeckStat * opponentDeckStats = stats->getDeckStat(deckStatsFileName);
+        if (opponentDeckStats)
+        {
+            _percentVictories = stats->percentVictories(deckStatsFileName);
+            _victories = opponentDeckStats->victories;
+            _nbGamesPlayed = opponentDeckStats->nbgames;
+            ostringstream oss;
+            int deckFilenameOffset = deckStatsFileName.find("deck") + 4;
+            int oppDeckId = atoi(deckStatsFileName.substr(deckFilenameOffset, deckStatsFileName.find_last_of(".")).c_str());
+            int avatarId = getAvatarId(oppDeckId);
+            oss << "avatar" << avatarId << ".jpg";
+            _avatarFilename = oss.str();
+            if (_percentVictories < 34)
+            {
+                _difficulty = HARD;
+            }
+            else if (_percentVictories < 55)
+            {
+                _difficulty = NORMAL;
+            }
+            else
+            {
+                _difficulty = EASY;
+            }
+        }
+        else
+        {
+            ostringstream oss;
+            oss << "avatar" << getAvatarId(_deckid) << ".jpg";
+            _avatarFilename = oss.str();
+        }
     }
     else
     {
-      ostringstream oss;
-      oss << "avatar" << getAvatarId( _deckid ) << ".jpg";
-      _avatarFilename = oss.str();
+        if (fileExists(deckStatsFileName.c_str()))
+        {
+            stats->load(deckStatsFileName.c_str());
+            _nbGamesPlayed = stats->nbGames();
+            _percentVictories = stats->percentVictories();
+        }
     }
-  }
-  else
-  {
-    if(fileExists(deckStatsFileName.c_str())){
-      stats->load(deckStatsFileName.c_str());
-      _nbGamesPlayed = stats->nbGames();
-      _percentVictories = stats->percentVictories();
-    }
-  }
-  stats = NULL;
+    stats = NULL;
 }
 
 // since we only have 100 stock avatar images, we need to recylce the images for deck numbers > 99
-int DeckMetaData::getAvatarId( int deckId )
+int DeckMetaData::getAvatarId(int deckId)
 {
-  int avatarId = deckId % 100;
-  if ( deckId >= 100 && avatarId == 0) 
-    return 100;
+    int avatarId = deckId % 100;
+    if (deckId >= 100 && avatarId == 0)
+        return 100;
 
-  return avatarId;
-}
-   
-void DeckMetaData::load(string filename){
-  MTGDeck * mtgd = NEW MTGDeck(filename.c_str(),NULL,1);
-  _name = trim( mtgd->meta_name );
-  _desc =  trim( mtgd->meta_desc );
-  _deckid = atoi( (filename.substr( filename.find("deck") + 4, filename.find(".txt") )).c_str() );
-  _percentVictories = 0;
-  _nbGamesPlayed = 0;
-  _filename = filename;
-  _victories = 0;
-  delete(mtgd);
+    return avatarId;
 }
 
-
-DeckMetaDataList::~DeckMetaDataList(){
-  for(map<string,DeckMetaData *>::iterator it = values.begin(); it != values.end(); ++it){
-    SAFE_DELETE(it->second);
-  }
-  values.clear();
+void DeckMetaData::load(string filename)
+{
+    MTGDeck * mtgd = NEW MTGDeck(filename.c_str(), NULL, 1);
+    _name = trim(mtgd->meta_name);
+    _desc = trim(mtgd->meta_desc);
+    _deckid = atoi((filename.substr(filename.find("deck") + 4, filename.find(".txt"))).c_str());
+    _percentVictories = 0;
+    _nbGamesPlayed = 0;
+    _filename = filename;
+    _victories = 0;
+    delete (mtgd);
 }
 
-void DeckMetaDataList::invalidate(string filename){
-   map<string,DeckMetaData *>::iterator it = values.find(filename);
-   if (it !=values.end()){
-     SAFE_DELETE(it->second);
-     values.erase(it);
-   }
-}
-
-DeckMetaData * DeckMetaDataList::get(string filename, Player * statsPlayer){
-  map<string,DeckMetaData *>::iterator it = values.find(filename);
-  if (it ==values.end()){
-    if (fileExists(filename.c_str())) {
-      values[filename] = NEW DeckMetaData(filename, statsPlayer);
+DeckMetaDataList::~DeckMetaDataList()
+{
+    for (map<string, DeckMetaData *>::iterator it = values.begin(); it != values.end(); ++it)
+    {
+        SAFE_DELETE(it->second);
     }
-  }
+    values.clear();
+}
 
-   return values[filename]; //this creates a NULL entry if the file does not exist
+void DeckMetaDataList::invalidate(string filename)
+{
+    map<string, DeckMetaData *>::iterator it = values.find(filename);
+    if (it != values.end())
+    {
+        SAFE_DELETE(it->second);
+        values.erase(it);
+    }
+}
+
+DeckMetaData * DeckMetaDataList::get(string filename, Player * statsPlayer)
+{
+    map<string, DeckMetaData *>::iterator it = values.find(filename);
+    if (it == values.end())
+    {
+        if (fileExists(filename.c_str()))
+        {
+            values[filename] = NEW DeckMetaData(filename, statsPlayer);
+        }
+    }
+
+    return values[filename]; //this creates a NULL entry if the file does not exist
 }
 
 //Accessors
 
 string DeckMetaData::getFilename()
 {
-  return _filename;
+    return _filename;
 }
 
 string DeckMetaData::getName()
 {
-  return _name;
+    return _name;
 }
 
 int DeckMetaData::getDeckId()
 {
-  return _deckid;
+    return _deckid;
 }
 
 string DeckMetaData::getAvatarFilename()
 {
-  return _avatarFilename;
+    return _avatarFilename;
 }
 
 int DeckMetaData::getGamesPlayed()
 {
-  return _nbGamesPlayed;
+    return _nbGamesPlayed;
 }
-
 
 int DeckMetaData::getVictories()
 {
-  return _victories;
+    return _victories;
 }
 
 int DeckMetaData::getVictoryPercentage()
 {
-  return _percentVictories;
+    return _percentVictories;
 }
 
 int DeckMetaData::getDifficulty()
 {
-  return _difficulty;
+    return _difficulty;
 }
 
 string DeckMetaData::getDifficultyString()
 {
     string difficultyString = "Normal";
-    switch( _difficulty )
+    switch (_difficulty)
     {
-        case HARD: 
-            difficultyString = "Hard";
-            break;
-        case EASY:
-            difficultyString = "Easy";
-            break;
+    case HARD:
+        difficultyString = "Hard";
+        break;
+    case EASY:
+        difficultyString = "Easy";
+        break;
     }
 
     return difficultyString;
@@ -184,11 +192,11 @@ string DeckMetaData::getDescription()
 
 string DeckMetaData::getStatsSummary()
 {
-  ostringstream statsSummary;
-  statsSummary << "Difficulty: " << getDifficultyString() << endl
-    << "Victory %: " << getVictoryPercentage() << endl
-    << "Games Played: " << getGamesPlayed() << endl;
+    ostringstream statsSummary;
+    statsSummary << "Difficulty: " << getDifficultyString() << endl
+                    << "Victory %: " << getVictoryPercentage() << endl
+                    << "Games Played: " << getGamesPlayed() << endl;
 
-  return statsSummary.str();
-    
+    return statsSummary.str();
+
 }

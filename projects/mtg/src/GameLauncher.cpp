@@ -18,20 +18,19 @@ static char GameName[] = "Wagic";
 //-------------------------------------------------------------------------------------
 JApp* JGameLauncher::GetGameApp()
 {
-  return NEW GameApp();
-};
-
+    return NEW GameApp();
+}
+;
 
 //-------------------------------------------------------------------------------------
 char *JGameLauncher::GetName()
 {
-  return GameName;
+    return GameName;
 }
-
 
 //-------------------------------------------------------------------------------------
 u32 JGameLauncher::GetInitFlags()
 {
-  return JINIT_FLAG_NORMAL;
+    return JINIT_FLAG_NORMAL;
 }
 

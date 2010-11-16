@@ -8,10 +8,10 @@
 
 namespace
 {
-  const float kPoleWidth = 7;
-  const float kVerticalMargin = 16;
-  const float kHorizontalMargin = 30;
-  const float kLineHeight = 20;
+    const float kPoleWidth = 7;
+    const float kVerticalMargin = 16;
+    const float kHorizontalMargin = 30;
+    const float kLineHeight = 20;
 }
 
 JQuad* SimpleMenu::spadeR = NULL;
@@ -25,162 +25,184 @@ JTexture* SimpleMenu::sideTex = NULL;
 WFont* SimpleMenu::titleFont = NULL;
 hgeParticleSystem* SimpleMenu::stars = NULL;
 
-SimpleMenu::SimpleMenu(int id, JGuiListener* listener, int fontId, float x, float y, const char * _title, int _maxItems): JGuiController(id, listener), fontId(fontId){
-  autoTranslate = true;
-  mHeight = 2 * kVerticalMargin;
-  mWidth = 0;
-  mX = x;
-  mY = y;
-  title = _(_title);
-  startId = 0;
-  maxItems = _maxItems;
-  selectionT = 0;
-  timeOpen = 0;
-  closed = false;
-  selectionTargetY = selectionY = y + kVerticalMargin;
+SimpleMenu::SimpleMenu(int id, JGuiListener* listener, int fontId, float x, float y, const char * _title, int _maxItems) :
+    JGuiController(id, listener), fontId(fontId)
+{
+    autoTranslate = true;
+    mHeight = 2 * kVerticalMargin;
+    mWidth = 0;
+    mX = x;
+    mY = y;
+    title = _(_title);
+    startId = 0;
+    maxItems = _maxItems;
+    selectionT = 0;
+    timeOpen = 0;
+    closed = false;
+    selectionTargetY = selectionY = y + kVerticalMargin;
 
-  JRenderer* renderer = JRenderer::GetInstance();
+    JRenderer* renderer = JRenderer::GetInstance();
 
-  if (!spadeLTex)  spadeLTex= resources.RetrieveTexture("spade_ul.png", RETRIEVE_MANAGE);
-  if (!spadeRTex) spadeRTex = resources.RetrieveTexture("spade_ur.png", RETRIEVE_MANAGE);
-  if (!jewelTex)   jewelTex= renderer->CreateTexture(5, 5, TEX_TYPE_USE_VRAM);
-  if (!sideTex)   sideTex = resources.RetrieveTexture("menuside.png", RETRIEVE_MANAGE);
-  if (NULL == spadeL) spadeL = resources.RetrieveQuad("spade_ul.png", 0, 0, 11, 11, "spade_ul", RETRIEVE_MANAGE);
-  if (NULL == spadeR) spadeR = resources.RetrieveQuad("spade_ur.png", 0, 0, 11, 11, "spade_ur", RETRIEVE_MANAGE);
-  if (NULL == jewel)  jewel  = NEW JQuad(jewelTex, 1, 1, 3, 3);
-  if (NULL == side)   side   = resources.RetrieveQuad("menuside.png", 1, 1, 1, 7,"menuside", RETRIEVE_MANAGE);
+    if (!spadeLTex) spadeLTex = resources.RetrieveTexture("spade_ul.png", RETRIEVE_MANAGE);
+    if (!spadeRTex) spadeRTex = resources.RetrieveTexture("spade_ur.png", RETRIEVE_MANAGE);
+    if (!jewelTex) jewelTex = renderer->CreateTexture(5, 5, TEX_TYPE_USE_VRAM);
+    if (!sideTex) sideTex = resources.RetrieveTexture("menuside.png", RETRIEVE_MANAGE);
+    if (NULL == spadeL) spadeL = resources.RetrieveQuad("spade_ul.png", 0, 0, 11, 11, "spade_ul", RETRIEVE_MANAGE);
+    if (NULL == spadeR) spadeR = resources.RetrieveQuad("spade_ur.png", 0, 0, 11, 11, "spade_ur", RETRIEVE_MANAGE);
+    if (NULL == jewel) jewel = NEW JQuad(jewelTex, 1, 1, 3, 3);
+    if (NULL == side) side = resources.RetrieveQuad("menuside.png", 1, 1, 1, 7, "menuside", RETRIEVE_MANAGE);
 
-  if (NULL == stars)
-    stars = NEW hgeParticleSystem(resources.RetrievePSI("stars.psi", resources.GetQuad("stars")));
+    if (NULL == stars) stars = NEW hgeParticleSystem(resources.RetrievePSI("stars.psi", resources.GetQuad("stars")));
 
-  stars->FireAt(mX, mY);
+    stars->FireAt(mX, mY);
 }
 
 void SimpleMenu::drawHorzPole(float x, float y, float width)
 {
-  JRenderer* renderer = JRenderer::GetInstance();
+    JRenderer* renderer = JRenderer::GetInstance();
 
-  float offset = (spadeR->mWidth - kPoleWidth) / 2;
-  renderer->RenderQuad(side, x, y, 0, width);
-  spadeR->SetHFlip(true);
-  spadeL->SetHFlip(false);
-  renderer->RenderQuad(spadeR, x - offset, y - offset);
-  renderer->RenderQuad(spadeL, x - offset + width, y - offset);
+    float offset = (spadeR->mWidth - kPoleWidth) / 2;
+    renderer->RenderQuad(side, x, y, 0, width);
+    spadeR->SetHFlip(true);
+    spadeL->SetHFlip(false);
+    renderer->RenderQuad(spadeR, x - offset, y - offset);
+    renderer->RenderQuad(spadeL, x - offset + width, y - offset);
 
-  renderer->RenderQuad(jewel, x, y - 1);
-  renderer->RenderQuad(jewel, x + width - 1, y - 1);
+    renderer->RenderQuad(jewel, x, y - 1);
+    renderer->RenderQuad(jewel, x + width - 1, y - 1);
 }
 
 void SimpleMenu::drawVertPole(float x, float y, float height)
 {
-  JRenderer* renderer = JRenderer::GetInstance();
+    JRenderer* renderer = JRenderer::GetInstance();
 
-  float offset = (spadeR->mHeight - kPoleWidth) / 2;
-  renderer->RenderQuad(side, x + kPoleWidth, y, M_PI/2, height);
-  spadeR->SetHFlip(false);
-  spadeL->SetHFlip(true);
-  renderer->RenderQuad(spadeR, x  + kPoleWidth + offset, y - offset, M_PI/2);
-  renderer->RenderQuad(spadeL, x + kPoleWidth + offset, y - offset + height, M_PI/2);
+    float offset = (spadeR->mHeight - kPoleWidth) / 2;
+    renderer->RenderQuad(side, x + kPoleWidth, y, M_PI / 2, height);
+    spadeR->SetHFlip(false);
+    spadeL->SetHFlip(true);
+    renderer->RenderQuad(spadeR, x + kPoleWidth + offset, y - offset, M_PI / 2);
+    renderer->RenderQuad(spadeL, x + kPoleWidth + offset, y - offset + height, M_PI / 2);
 
-  renderer->RenderQuad(jewel, x - 1, y - 1);
-  renderer->RenderQuad(jewel, x - 1, y + height - 1);
+    renderer->RenderQuad(jewel, x - 1, y - 1);
+    renderer->RenderQuad(jewel, x - 1, y + height - 1);
 }
 
-void SimpleMenu::Render() {
-  WFont * titleFont = resources.GetWFont(Fonts::SMALLFACE_FONT);
-  WFont * mFont = resources.GetWFont(fontId);
-  if (0 == mWidth) {
-    float sY = mY + kVerticalMargin;
-    for (int i = startId; i < startId + mCount; ++i) {
-      float width = (static_cast<SimpleMenuItem*>(mObjects[i]))->GetWidth();
-      if (mWidth < width) mWidth = width;
+void SimpleMenu::Render()
+{
+    WFont * titleFont = resources.GetWFont(Fonts::SMALLFACE_FONT);
+    WFont * mFont = resources.GetWFont(fontId);
+    if (0 == mWidth)
+    {
+        float sY = mY + kVerticalMargin;
+        for (int i = startId; i < startId + mCount; ++i)
+        {
+            float width = (static_cast<SimpleMenuItem*> (mObjects[i]))->GetWidth();
+            if (mWidth < width) mWidth = width;
+        }
+        if ((!title.empty()) && (mWidth < titleFont->GetStringWidth(title.c_str()))) mWidth = titleFont->GetStringWidth(
+                        title.c_str());
+        mWidth += 2 * kHorizontalMargin;
+        for (int i = startId; i < startId + mCount; ++i)
+        {
+            float y = mY + kVerticalMargin + i * kLineHeight;
+            SimpleMenuItem * smi = static_cast<SimpleMenuItem*> (mObjects[i]);
+            smi->Relocate(mX + mWidth / 2, y);
+            if (smi->hasFocus()) sY = y;
+        }
+        stars->Fire();
+        selectionTargetY = selectionY = sY;
+        timeOpen = 0;
     }
-    if ((!title.empty()) && (mWidth < titleFont->GetStringWidth(title.c_str()))) mWidth = titleFont->GetStringWidth(title.c_str());
-    mWidth += 2*kHorizontalMargin;
-    for (int i = startId; i < startId + mCount; ++i) {
-      float y = mY + kVerticalMargin + i * kLineHeight;
-      SimpleMenuItem * smi = static_cast<SimpleMenuItem*>(mObjects[i]);
-      smi->Relocate(mX + mWidth / 2, y);
-      if (smi->hasFocus()) sY = y;
+
+    JRenderer * renderer = JRenderer::GetInstance();
+
+    float height = mHeight;
+    if (timeOpen < 1) height *= timeOpen > 0 ? timeOpen : -timeOpen;
+
+    renderer->FillRect(mX, mY, mWidth, height, ARGB(180,0,0,0));
+
+    renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
+    drawVertPole(mX, mY - 16, height + 32);
+    drawVertPole(mX + mWidth, mY - 16, height + 32);
+    drawHorzPole(mX - 16, mY, mWidth + 32);
+    drawHorzPole(mX - 25, mY + height, mWidth + 50);
+
+    renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE);
+    stars->Render();
+    renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
+
+    mFont->SetScale(1.0f);
+    if (!title.empty()) titleFont->DrawString(title.c_str(), mX + mWidth / 2, mY - 3, JGETEXT_CENTER);
+    for (int i = startId; i < startId + maxItems; i++)
+    {
+        if (i > mCount - 1) break;
+        if ((static_cast<SimpleMenuItem*> (mObjects[i]))->mY - kLineHeight * startId < mY + height - kLineHeight + 7)
+        {
+            if (static_cast<SimpleMenuItem*> (mObjects[i])->hasFocus())
+            {
+                resources.GetWFont(Fonts::MAIN_FONT)->DrawString(static_cast<SimpleMenuItem*> (mObjects[i])->desc.c_str(), mX
+                                + mWidth + 10, mY + 15);
+                mFont->SetColor(ARGB(255,255,255,0));
+            }
+            else
+                mFont->SetColor(ARGB(150,255,255,255));
+            (static_cast<SimpleMenuItem*> (mObjects[i]))->RenderWithOffset(-kLineHeight * startId);
+        }
     }
-    stars->Fire();
-    selectionTargetY = selectionY = sY;
-    timeOpen = 0;
-  }
-
-  JRenderer * renderer = JRenderer::GetInstance();
-
-  float height = mHeight;
-  if (timeOpen < 1) height *= timeOpen > 0 ? timeOpen : -timeOpen;
-
-  renderer->FillRect(mX, mY, mWidth, height, ARGB(180,0,0,0));
-
-  renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
-  drawVertPole(mX, mY - 16, height + 32);
-  drawVertPole(mX + mWidth, mY - 16, height + 32);
-  drawHorzPole(mX - 16, mY, mWidth + 32);
-  drawHorzPole(mX - 25, mY + height, mWidth + 50);
-
-  renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE);
-  stars->Render();
-  renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
-
-  mFont->SetScale(1.0f);
-  if (!title.empty())
-    titleFont->DrawString(title.c_str(), mX+mWidth/2, mY - 3, JGETEXT_CENTER);
-  for (int i = startId; i < startId + maxItems ; i++){
-    if (i > mCount-1) break;
-    if ((static_cast<SimpleMenuItem*>(mObjects[i]))->mY - kLineHeight * startId < mY + height - kLineHeight + 7) {
-      if (static_cast<SimpleMenuItem*>(mObjects[i])->hasFocus()){
-        resources.GetWFont(Fonts::MAIN_FONT)->DrawString(static_cast<SimpleMenuItem*>(mObjects[i])->desc.c_str(),mX+mWidth+10,mY+15);
-        mFont->SetColor(ARGB(255,255,255,0));
-      } else
-        mFont->SetColor(ARGB(150,255,255,255));
-      (static_cast<SimpleMenuItem*>(mObjects[i]))->RenderWithOffset(-kLineHeight*startId);
-    }
-  }
 }
 
-void SimpleMenu::Update(float dt){
-  JGuiController::Update(dt);
-  if (mCurr > startId + maxItems-1)
-    startId = mCurr - maxItems +1;
-  else if (mCurr < startId)
-    startId = mCurr;
-  stars->Update(dt);
-  selectionT += 3*dt;
-  selectionY += (selectionTargetY - selectionY) * 8 * dt;
-  stars->MoveTo(mX + kHorizontalMargin + ((mWidth-2 * kHorizontalMargin) * (1+cos(selectionT))/2), 
-                selectionY + 5 * cos( selectionT * 2.35f ) + kLineHeight / 2 - kLineHeight * startId);
-  if (timeOpen < 0) {
-    timeOpen += dt * 10;
-    if (timeOpen >= 0) { timeOpen = 0; closed = true; stars->FireAt(mX, mY); }
-  } else {
-    closed = false;
-    timeOpen += dt * 10;
-  }
+void SimpleMenu::Update(float dt)
+{
+    JGuiController::Update(dt);
+    if (mCurr > startId + maxItems - 1)
+        startId = mCurr - maxItems + 1;
+    else if (mCurr < startId) startId = mCurr;
+    stars->Update(dt);
+    selectionT += 3 * dt;
+    selectionY += (selectionTargetY - selectionY) * 8 * dt;
+    stars->MoveTo(mX + kHorizontalMargin + ((mWidth - 2 * kHorizontalMargin) * (1 + cos(selectionT)) / 2), selectionY + 5 * cos(
+                    selectionT * 2.35f) + kLineHeight / 2 - kLineHeight * startId);
+    if (timeOpen < 0)
+    {
+        timeOpen += dt * 10;
+        if (timeOpen >= 0)
+        {
+            timeOpen = 0;
+            closed = true;
+            stars->FireAt(mX, mY);
+        }
+    }
+    else
+    {
+        closed = false;
+        timeOpen += dt * 10;
+    }
 }
 
-void SimpleMenu::Add(int id, const char * text,string desc, bool forceFocus){
-  SimpleMenuItem * smi = NEW SimpleMenuItem(this, id, fontId, text, 0, mY + kVerticalMargin + mCount*kLineHeight, (mCount == 0), autoTranslate);
-  smi->desc = desc;
-  JGuiController::Add(smi);
-  if (mCount <= maxItems) mHeight += kLineHeight;
-  if (forceFocus){
-    mObjects[mCurr]->Leaving(JGE_BTN_DOWN);
-    mCurr = mCount-1;
-    smi->Entering();
-  }
+void SimpleMenu::Add(int id, const char * text, string desc, bool forceFocus)
+{
+    SimpleMenuItem * smi = NEW SimpleMenuItem(this, id, fontId, text, 0, mY + kVerticalMargin + mCount * kLineHeight,
+                    (mCount == 0), autoTranslate);
+    smi->desc = desc;
+    JGuiController::Add(smi);
+    if (mCount <= maxItems) mHeight += kLineHeight;
+    if (forceFocus)
+    {
+        mObjects[mCurr]->Leaving(JGE_BTN_DOWN);
+        mCurr = mCount - 1;
+        smi->Entering();
+    }
 }
 
 void SimpleMenu::Close()
 {
-  timeOpen = -1.0;
-  stars->Stop(true);
+    timeOpen = -1.0;
+    stars->Stop(true);
 }
 
-void SimpleMenu::destroy(){
-  SAFE_DELETE(SimpleMenu::jewel);
-  SAFE_DELETE(SimpleMenu::stars);
-  SAFE_DELETE(SimpleMenu::jewelTex);
+void SimpleMenu::destroy()
+{
+    SAFE_DELETE(SimpleMenu::jewel);
+    SAFE_DELETE(SimpleMenu::stars);
+    SAFE_DELETE(SimpleMenu::jewelTex);
 }
