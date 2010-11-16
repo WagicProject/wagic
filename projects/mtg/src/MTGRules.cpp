@@ -406,6 +406,7 @@ MTGAlternativeCostRule * MTGAlternativeCostRule::clone() const
     MTGAlternativeCostRule * a = NEW MTGAlternativeCostRule(*this);
     a->isClone = 1;
     return a;
+}
 
 //-------------------------------------------------------------------------
 //-------------------------------------------------------------------------
