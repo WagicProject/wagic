@@ -19955,6 +19955,16 @@ power=2
 toughness=4
 [/card]
 [card]
+name=Footsteps of the Goryo
+target=creature|myGraveyard
+auto=moveto(myBattlefield)
+auto=transforms(,treason) forever
+text=Return target creature card from your graveyard to the battlefield. Sacrifice that creature at the beginning of the next end step.
+mana={2}{B}
+type=Sorcery
+subtype=Arcane
+[/card]
+[card]
 name=Foratog
 auto={G}{S(forest|myBattlefield)}:2/2
 text={G}, Sacrifice a Forest: Foratog gets +2/+2 until end of turn.
@@ -60569,7 +60579,7 @@ type=Instant
 name=Vebulid
 auto=counter(1/1)
 auto=@each my upkeep:may counter(1/1)
-auto=@each combatends:destroy all(vebuild[attacking;blocking]|myBattlefield)
+auto=@each combatends:destroy all(vebulid[attacking;blocking]|myBattlefield)
 text=Vebulid enters the battlefield with a +1/+1 counter on it. -- At the beginning of your upkeep, you may put a +1/+1 counter on Vebulid. -- When Vebulid attacks or blocks, destroy it at end of combat.
 mana={B}
 type=Creature

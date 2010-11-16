@@ -10251,18 +10251,6 @@ power=1
 toughness=1
 [/card]
 [card]
-####This card had to be removed for the same reason as Miraculous Recovery: 
-####Abilities given by a spell to a target which is not in the battlefield don't "survive" when the target changes the zone immediately!! 
-name=Footsteps of the Goryo
-target=creature|myGraveyard
-auto=moveto(myBattlefield)
-auto=treason
-text=Return target creature card from your graveyard to the battlefield. Sacrifice that creature at the beginning of the next end step.
-mana={2}{B}
-type=Sorcery
-subtype=Arcane
-[/card]
-[card]
 name=Forbid
 text=Buyback - Discard two cards. (You may discard two cards in addition to any other costs as you cast this spell. If you do, put this card into your hand as it resolves.) -- Counter target spell.
 mana={1}{U}{U}
