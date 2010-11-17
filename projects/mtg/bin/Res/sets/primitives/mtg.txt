@@ -30136,6 +30136,7 @@ auto=this(counter{0/0,4,Level}) vigilance
 auto=this(counter{0/0,4,Level}) 2/1
 text=Level up 3 -- [Level 1-3] Flying (2/3) -- [Level 4+] Flying, vigilance (4/4)
 mana={1}{W}
+auto=maxlevel:4
 type=Creature
 subtype=Level Kor Knight
 power=2
@@ -44989,6 +44990,7 @@ toughness=6
 [/card]
 [card]
 name=Rhox
+auto={g}{2}:regenerate
 auto=@blocked(this):may name(assign combat damage to defending player) && thisforeach(power>=1) damage:1 opponent && fog from(this)
 text=You may have Rhox assign its combat damage as though it weren't blocked. -- {2}{G}: Regenerate Rhox. (The next time this creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
 mana={4}{G}{G}
