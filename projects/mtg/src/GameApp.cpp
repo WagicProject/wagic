@@ -1,6 +1,7 @@
 #include "PrecompiledHeader.h"
 
 #include <JGE.h>
+#include <JLogger.h>
 #include <JRenderer.h>
 #if defined (WIN32) || defined (LINUX)
 #include <time.h>

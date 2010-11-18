@@ -12,6 +12,7 @@
 #include <sys/stat.h>
 #endif
 #include "WFont.h"
+#include <JLogger.h>
 
 //#define FORCE_LOW_CACHE_MEMORY
 const unsigned int kConstrainedCacheLimit = 8 * 1024 * 1024;

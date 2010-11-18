@@ -17,6 +17,7 @@
 #include "PlayerData.h"
 #include "utils.h"
 #include "WFont.h"
+#include <JLogger.h>
 
 static const char* GAME_VERSION = "WTH?! 0.13.1 - by wololo";
 

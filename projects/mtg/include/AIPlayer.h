@@ -53,42 +53,46 @@ class CmpAbilities { // compares Abilities efficiency
 };
 
 class AIPlayer: public Player{
- protected:
-  MTGCardInstance * nextCardToPlay;
-  queue<AIAction *> clickstream;
-  void tapLandsForMana(ManaCost * cost, MTGCardInstance * card = NULL);
-  int orderBlockers();
-  int combatDamages();
-  int interruptIfICan();
-  int chooseAttackers();
-  int chooseBlockers();
-  int canFirstStrikeKill(MTGCardInstance * card, MTGCardInstance *ennemy);
-  int effectBadOrGood(MTGCardInstance * card, int mode = MODE_PUTINTOPLAY, TargetChooser * tc = NULL);
-  int getCreaturesInfo(Player * player, int neededInfo = INFO_NBCREATURES , int untapMode = 0, int canAttack = 0);
-  AIStats * getStats();
-  //Variables used by Test suite
- public:
-	int agressivity;
-  bool Checked;
-  bool forceBestAbilityUse;
-  void End(){};
-  virtual int displayStack() {return 0;};
-  int receiveEvent(WEvent * event);
-  void Render();
-  AIStats * stats;
-  ManaCost * getPotentialMana(MTGCardInstance * card = NULL);
-  AIPlayer(MTGDeck * deck, string deckFile, string deckFileSmall);
-  virtual ~AIPlayer();
-  virtual MTGCardInstance * chooseCard(TargetChooser * tc, MTGCardInstance * source, int random = 0);
-  virtual int chooseTarget(TargetChooser * tc = NULL, Player * forceTarget =NULL);
-  virtual int Act(float dt);
-  virtual int affectCombatDamages(CombatStep);
-  int isAI(){return 1;};
-  int canHandleCost(MTGAbility * ability);
-  int selectAbility();
-  int createAbilityTargets(MTGAbility * a, MTGCardInstance * c, map<AIAction *, int,CmpAbilities> * ranking);
-  int useAbility();
-  virtual int getEfficiency(AIAction * action);
+protected:
+    //Variables used by Test suite
+    MTGCardInstance * nextCardToPlay;
+    queue<AIAction *> clickstream;
+    void tapLandsForMana(ManaCost * cost, MTGCardInstance * card = NULL);
+    int orderBlockers();
+    int combatDamages();
+    int interruptIfICan();
+    int chooseAttackers();
+    int chooseBlockers();
+    int canFirstStrikeKill(MTGCardInstance * card, MTGCardInstance *ennemy);
+    int effectBadOrGood(MTGCardInstance * card, int mode = MODE_PUTINTOPLAY, TargetChooser * tc = NULL);
+    int getCreaturesInfo(Player * player, int neededInfo = INFO_NBCREATURES , int untapMode = 0, int canAttack = 0);
+    AIStats * getStats();
+
+    // returns 1 if the AI algorithm supports a given cost (ex:simple mana cost), 0 otherwise (ex: cost involves Sacrificing a target)
+    int CanHandleCost(ManaCost * cost); 
+
+public:
+    AIStats * stats;
+    int agressivity;
+    bool Checked;
+    bool forceBestAbilityUse;
+    void End(){};
+    virtual int displayStack() {return 0;};
+    int receiveEvent(WEvent * event);
+    void Render();
+    ManaCost * getPotentialMana(MTGCardInstance * card = NULL);
+    AIPlayer(MTGDeck * deck, string deckFile, string deckFileSmall);
+    virtual ~AIPlayer();
+    virtual MTGCardInstance * chooseCard(TargetChooser * tc, MTGCardInstance * source, int random = 0);
+    virtual int chooseTarget(TargetChooser * tc = NULL, Player * forceTarget =NULL);
+    virtual int Act(float dt);
+    virtual int affectCombatDamages(CombatStep);
+    int isAI(){return 1;};
+    int canHandleCost(MTGAbility * ability);
+    int selectAbility();
+    int createAbilityTargets(MTGAbility * a, MTGCardInstance * c, map<AIAction *, int,CmpAbilities> * ranking);
+    int useAbility();
+    virtual int getEfficiency(AIAction * action);
 
 };
 

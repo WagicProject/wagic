@@ -6,7 +6,7 @@
 #include "Damage.h"
 #include "Rules.h"
 #include "ExtraCost.h"
-
+#include <JLogger.h>
 #include <JRenderer.h>
 
 GameObserver * GameObserver::mInstance = NULL;

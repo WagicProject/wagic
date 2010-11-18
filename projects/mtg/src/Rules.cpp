@@ -10,6 +10,7 @@
 #include "MTGAbility.h"
 #include "DeckManager.h"
 #include "AIPlayer.h"
+#include <JLogger.h>
 
 int Rules::getMTGId(string cardName)
 {
@@ -297,6 +298,7 @@ Player * Rules::loadPlayerRandom(int isAI, int mode)
     else
         player = NEW AIPlayerBaka(tempDeck, deckFile, deckFileSmall, "");
 
+    delete tempDeck;
     return player;
 }
 

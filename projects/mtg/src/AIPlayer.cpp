@@ -159,22 +159,28 @@ int AIPlayer::getEfficiency(AIAction * action)
     return action->getEfficiency();
 }
 
+
+
+//Can't yet handle extraCost objects (ex: sacrifice) if they require a target :(
+int AIPlayer::CanHandleCost(ManaCost * cost)
+{
+    if (!cost) return 1;
+
+    ExtraCosts * ec = cost->extraCosts;
+    if (!ec) return 1;
+
+    for (size_t i = 0; i < ec->costs.size(); ++i)
+    {
+        if (ec->costs[i]->tc)
+            return 0;
+    }
+
+    return 1;
+}
+
 int AIPlayer::canHandleCost(MTGAbility * ability)
 {
-    //Can't handle sacrifice costs that require a target yet :(
-    if (ability->cost)
-    {
-        ExtraCosts * ec = ability->cost->extraCosts;
-        if (ec)
-        {
-            for (size_t i = 0; i < ec->costs.size(); i++)
-            {
-                if (ec->costs[i]->tc)
-                    return 0;
-            }
-        }
-    }
-    return 1;
+    return CanHandleCost(ability->cost);
 }
 
 int AIAction::getEfficiency()
@@ -871,6 +877,8 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
     card = NULL;
     while ((card = cd.nextmatch(game->hand, card)))
     {
+        if (!CanHandleCost(card->getManaCost()))
+            continue;
         if (card->hasType(Subtypes::TYPE_CREATURE) && this->castrestrictedcreature < 0 && this->castrestrictedspell < 0)
             continue;
         if (card->hasType(Subtypes::TYPE_ENCHANTMENT) && this->castrestrictedspell < 0)
