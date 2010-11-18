@@ -838,6 +838,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\SimplePopup.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\StoryFlow.cpp"
 				>
 			</File>
@@ -1255,6 +1259,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\ShopItem.h"
+				>
+			</File>
+			<File
 				RelativePath=".\include\SimpleMenu.h"
 				>
 			</File>
@@ -1264,6 +1272,10 @@
 			</File>
 			<File
 				RelativePath=".\include\SimplePad.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\SimplePopup.h"
 				>
 			</File>
 			<File

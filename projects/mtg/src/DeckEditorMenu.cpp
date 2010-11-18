@@ -6,13 +6,13 @@
 #include "GameApp.h"
 #include <iomanip>
 
-DeckEditorMenu::DeckEditorMenu(int id, JGuiListener* listener, int fontId, const char * _title, DeckDataWrapper *_selectedDeck,
-                StatsWrapper *stats) :
+DeckEditorMenu::DeckEditorMenu(int id, JGuiListener* listener, int fontId, const char * _title, DeckDataWrapper *_selectedDeck, StatsWrapper *stats) :
     DeckMenu(id, listener, fontId, _title), selectedDeck(_selectedDeck), stw(stats)
 {
     backgroundName = "DeckEditorMenuBackdrop";
 
     deckTitle = selectedDeck ? selectedDeck->parent->meta_name : "";
+    enableDetails = false;
 
     mX = 123;
     mY = 70;
@@ -37,6 +37,7 @@ DeckEditorMenu::DeckEditorMenu(int id, JGuiListener* listener, int fontId, const
 
     float scrollerWidth = 80;
     SAFE_DELETE(scroller); // need to delete the scroller init in the base class
+    this->showDetailsScreen = false;
     scroller = NEW TextScroller(Fonts::MAIN_FONT, 40, 230, scrollerWidth, 100, 1, 1);
 
 }
@@ -56,8 +57,7 @@ void DeckEditorMenu::Render()
         mainFont->SetColor(currentColor);
     }
 
-    if (stw && selectedDeck)
-        drawDeckStatistics();
+    if (stw && selectedDeck) drawDeckStatistics();
 
 }
 
@@ -67,7 +67,7 @@ void DeckEditorMenu::drawDeckStatistics()
 
     deckStatsString
         << "------- Deck Summary -----" << endl
-        << "Cards: "<< selectedDeck->getCount() << endl
+        << "Cards: "<< stw->cardCount << endl
         << "Creatures: "<< setw(2) << stw->countCreatures
         << "  Enchantments: " << stw->countEnchantments << endl
         << "Instants: " << setw(4) << stw->countInstants
@@ -79,7 +79,6 @@ void DeckEditorMenu::drawDeckStatistics()
         << "U: " << setw(2) << left  << stw->countLandsPerColor[ Constants::MTG_COLOR_BLUE ] + stw->countBasicLandsPerColor[ Constants::MTG_COLOR_BLUE ] << " "
         << "B: " << setw(2) << left  << stw->countLandsPerColor[ Constants::MTG_COLOR_BLACK ] + stw->countBasicLandsPerColor[ Constants::MTG_COLOR_BLACK ] << " "
         << "W: " << setw(2) << left  << stw->countLandsPerColor[ Constants::MTG_COLOR_WHITE ] + stw->countBasicLandsPerColor[ Constants::MTG_COLOR_WHITE ] << endl
-
         << "  --- Card color count ---  " << endl
         << "A: " << setw(2) << left  << selectedDeck->getCount(Constants::MTG_COLOR_ARTIFACT) << " "
         << "G: " << setw(2) << left << selectedDeck->getCount(Constants::MTG_COLOR_GREEN) << " "
@@ -93,8 +92,8 @@ void DeckEditorMenu::drawDeckStatistics()
         << "Mana: " << setprecision(2) << stw->avgManaCost << "   "
         << "Spell: " << setprecision(2) << stw->avgSpellCost << endl;
 
-    WFont *mainFont = resources.GetWFont( Fonts::MAIN_FONT );
-    mainFont->DrawString( deckStatsString.str().c_str(), descX, descY + 25 );
+    WFont *mainFont = resources.GetWFont(Fonts::MAIN_FONT);
+    mainFont->DrawString(deckStatsString.str().c_str(), descX, descY + 25);
 }
 
 DeckEditorMenu::~DeckEditorMenu()

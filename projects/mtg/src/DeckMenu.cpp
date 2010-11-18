@@ -17,6 +17,7 @@ namespace
     const float kLineHeight = 20;
     const float kDescriptionVerticalBoxPadding = 5;
     const float kDescriptionHorizontalBoxPadding = 5;
+    const int DETAILED_INFO_THRESHOLD = 4;
 }
 
 hgeParticleSystem* DeckMenu::stars = NULL;
@@ -30,12 +31,14 @@ hgeParticleSystem* DeckMenu::stars = NULL;
 //    * descriptive information 125
 //    *** Need to make this configurable in a file somewhere to allow for class reuse
 
-DeckMenu::DeckMenu(int id, JGuiListener* listener, int fontId, const string _title, const float& mFontScale) :
+DeckMenu::DeckMenu(int id, JGuiListener* listener, int fontId, const string _title, const int& startIndex, const float& mFontScale) :
     JGuiController(id, listener), fontId(fontId), menuFontScale(mFontScale)
 {
 
     backgroundName = "DeckMenuBackdrop";
 
+    selectedDeck = NULL;
+    enableDetails = true;
     mY = 55;
     mWidth = 176;
     mX = 125;
@@ -49,12 +52,16 @@ DeckMenu::DeckMenu(int id, JGuiListener* listener, int fontId, const string _tit
     descHeight = 145;
     descWidth = 220;
 
+    detailedInfoBoxX = 400;
+    detailedInfoBoxY = 235;
     starsOffsetX = 50;
 
     statsX = 280;
     statsY = 8;
     statsHeight = 50;
     statsWidth = 227;
+
+    selectedDeckId = startIndex;
 
     avatarX = 230;
     avatarY = 8;
@@ -85,8 +92,7 @@ DeckMenu::DeckMenu(int id, JGuiListener* listener, int fontId, const string _tit
 
     selectionTargetY = selectionY = kVerticalMargin;
 
-    if (NULL == stars)
-        stars = NEW hgeParticleSystem(resources.RetrievePSI("stars.psi", resources.GetQuad("stars")));
+    if (NULL == stars) stars = NEW hgeParticleSystem(resources.RetrievePSI("stars.psi", resources.GetQuad("stars")));
     stars->FireAt(mX, mY);
 
     updateScroller();
@@ -108,6 +114,21 @@ void DeckMenu::RenderBackground()
     }
 }
 
+DeckMetaData * DeckMenu::getSelectedDeck()
+{
+    if (selectedDeck) return selectedDeck;
+
+    return NULL;
+}
+
+bool DeckMenu::selectedDeckHasDetails()
+{
+    DeckMetaData * currentMenuItem = getSelectedDeck();
+    if (currentMenuItem) return (enableDetails && currentMenuItem->getGamesPlayed() > DETAILED_INFO_THRESHOLD);
+
+    return false;
+}
+
 void DeckMenu::initMenuItems()
 {
     float sY = mY + kVerticalMargin;
@@ -116,10 +137,21 @@ void DeckMenu::initMenuItems()
         float y = mY + kVerticalMargin + i * kLineHeight;
         DeckMenuItem * currentMenuItem = static_cast<DeckMenuItem*> (mObjects[i]);
         currentMenuItem->Relocate(mX, y);
-        if (currentMenuItem->hasFocus())
-            sY = y;
+        if (currentMenuItem->hasFocus()) sY = y;
     }
     selectionTargetY = selectionY = sY;
+
+    //Grab a texture in VRAM.
+    pspIconsTexture = resources.RetrieveTexture("iconspsp.png", RETRIEVE_LOCK);
+
+    char buf[512];
+    for (int i = 0; i < 8; i++)
+    {
+        sprintf(buf, "iconspsp%d", i);
+        pspIcons[i] = resources.RetrieveQuad("iconspsp.png", (float) i * 32, 0, 32, 32, buf);
+        pspIcons[i]->SetHotSpot(16, 16);
+    }
+
 }
 
 void DeckMenu::Render()
@@ -134,32 +166,47 @@ void DeckMenu::Render()
         timeOpen = 0;
         menuInitialized = true;
     }
-    if (timeOpen < 1)
-        height *= timeOpen > 0 ? timeOpen : -timeOpen;
-
-    renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE);
-    stars->Render();
-    renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
+    if (timeOpen < 1) height *= timeOpen > 0 ? timeOpen : -timeOpen;
 
     for (int i = startId; i < startId + maxItems; i++)
     {
-        if (i > mCount - 1)
-            break;
+        if (i > mCount - 1) break;
         DeckMenuItem *currentMenuItem = static_cast<DeckMenuItem*> (mObjects[i]);
         if (currentMenuItem->mY - kLineHeight * startId < mY + height - kLineHeight + 7)
         {
             if (currentMenuItem->hasFocus())
             {
+                selectedDeckId = i;
+                selectedDeck = currentMenuItem->meta;
+
+                WFont *mainFont = resources.GetWFont(Fonts::MAIN_FONT);
+
+                // display the "more info" button if special condition is met
+                if (selectedDeckHasDetails())
+                {
+                    showDetailsScreen = true;
+                    float pspIconsSize = 0.5;
+                    const string detailedInfoString = "Detailed Info";
+                    float stringWidth = mainFont->GetStringWidth(detailedInfoString.c_str());
+                    float boxStartX = detailedInfoBoxX - stringWidth / 2;
+                    DWORD currentColor = mainFont->GetColor();
+                    renderer->FillRoundRect( boxStartX, detailedInfoBoxY - 5, stringWidth, 
+                                        mainFont->GetHeight() + 15, .5, ARGB( 125, 0, 255, 255) );
+                    renderer->RenderQuad(pspIcons[5], detailedInfoBoxX, detailedInfoBoxY + 2, 0, pspIconsSize, pspIconsSize);
+                    mainFont->SetColor(currentColor);
+                    mainFont->DrawString(detailedInfoString, boxStartX, detailedInfoBoxY + 10);
+                }
+                else
+                    showDetailsScreen = false;
+
                 // display the avatar image
                 if (currentMenuItem->imageFilename.size() > 0)
                 {
                     JQuad * quad = resources.RetrieveTempQuad(currentMenuItem->imageFilename, TEXTURE_SUB_AVATAR);
-                    if (quad)
-                        renderer->RenderQuad(quad, avatarX, avatarY);
+                    if (quad) renderer->RenderQuad(quad, avatarX, avatarY);
                 }
                 // fill in the description part of the screen
                 string text = currentMenuItem->desc;
-                WFont *mainFont = resources.GetWFont(Fonts::MAIN_FONT);
                 mainFont->DrawString(text.c_str(), descX, descY);
                 mFont->SetColor(ARGB(255,255,255,255));
 
@@ -200,8 +247,7 @@ void DeckMenu::Update(float dt)
     JGuiController::Update(dt);
     if (mCurr > startId + maxItems - 1)
         startId = mCurr - maxItems + 1;
-    else if (mCurr < startId)
-        startId = mCurr;
+    else if (mCurr < startId) startId = mCurr;
     stars->Update(dt);
     selectionT += 3 * dt;
     selectionY += (selectionTargetY - selectionY) * 8 * dt;
@@ -224,14 +270,13 @@ void DeckMenu::Update(float dt)
         closed = false;
         timeOpen += dt * 10;
     }
-
-    scroller->Update(dt);
+    if (scroller) scroller->Update(dt);
 }
 
 void DeckMenu::Add(int id, const char * text, string desc, bool forceFocus, DeckMetaData * deckMetaData)
 {
     DeckMenuItem * menuItem = NEW DeckMenuItem(this, id, fontId, text, 0, mY + kVerticalMargin + mCount * kLineHeight,
-                    (mCount == 0), autoTranslate, deckMetaData);
+                                    (mCount == 0), autoTranslate, deckMetaData);
     Translator * t = Translator::GetInstance();
     map<string, string>::iterator it = t->deckValues.find(text);
     if (it != t->deckValues.end()) //translate decks desc
@@ -240,8 +285,8 @@ void DeckMenu::Add(int id, const char * text, string desc, bool forceFocus, Deck
         menuItem->desc = deckMetaData ? deckMetaData->getDescription() : desc;
 
     JGuiController::Add(menuItem);
-    if (mCount <= maxItems)
-        mHeight += kLineHeight;
+    if (mCount <= maxItems) mHeight += kLineHeight;
+
     if (forceFocus)
     {
         mObjects[mCurr]->Leaving(JGE_BTN_DOWN);
@@ -258,8 +303,8 @@ void DeckMenu::updateScroller()
     for (vector<Task*>::iterator it = taskList.tasks.begin(); it != taskList.tasks.end(); it++)
     {
         ostringstream taskDescription;
-        taskDescription << "[ " << setw(4) << (*it)->getReward() << " / " << (*it)->getExpiration() << " ]   "
-                        << (*it)->getDesc() << endl;
+        taskDescription << "[ " << setw(4) << (*it)->getReward() << " / " << (*it)->getExpiration() << " ]   " 
+                << (*it)->getDesc() << endl;
         scroller->Add(taskDescription.str());
     }
 }
@@ -277,5 +322,7 @@ void DeckMenu::destroy()
 
 DeckMenu::~DeckMenu()
 {
+    resources.Release(pspIconsTexture);
     SAFE_DELETE(scroller);
+    scroller = NULL;
 }

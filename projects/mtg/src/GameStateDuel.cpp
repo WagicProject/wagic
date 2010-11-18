@@ -31,6 +31,8 @@ enum ENUM_DUEL_STATE
     DUEL_STATE_START,
     DUEL_STATE_END,
     DUEL_STATE_CHOOSE_DECK1,
+    DUEL_STATE_DECK1_DETAILED_INFO,
+    DUEL_STATE_DECK2_DETAILED_INFO,
     DUEL_STATE_CHOOSE_DECK1_TO_2,
     DUEL_STATE_CHOOSE_DECK2,
     DUEL_STATE_CHOOSE_DECK2_TO_PLAY,
@@ -46,8 +48,13 @@ enum ENUM_DUEL_MENUS
 {
     DUEL_MENU_GAME_MENU,
     DUEL_MENU_CHOOSE_DECK,
-    DUEL_MENU_CHOOSE_OPPONENT
+    DUEL_MENU_CHOOSE_OPPONENT,
+    DUEL_MENU_DETAILED_DECK1_INFO,
+    DUEL_MENU_DETAILED_DECK2_INFO
 };
+
+int GameStateDuel::selectedPlayerDeckId = 0;
+int GameStateDuel::selectedAIDeckId = 0;
 
 GameStateDuel::GameStateDuel(GameApp* parent) :
     GameState(parent)
@@ -62,6 +69,8 @@ GameStateDuel::GameStateDuel(GameApp* parent) :
     deckmenu = NULL;
     opponentMenu = NULL;
     menu = NULL;
+    popupScreen = NULL;
+
 #ifdef TESTSUITE
     testSuite = NULL;
 #endif
@@ -100,7 +109,8 @@ void GameStateDuel::Start()
         {
             decksneeded = 1;
 
-            deckmenu = NEW DeckMenu(DUEL_MENU_CHOOSE_DECK, this, Fonts::OPTION_FONT, "Choose a Deck", MENU_FONT_SCALE);
+            deckmenu = NEW DeckMenu(DUEL_MENU_CHOOSE_DECK, this, Fonts::OPTION_FONT, "Choose a Deck",
+                    GameStateDuel::selectedPlayerDeckId);
 
             DeckManager *deckManager = DeckManager::GetInstance();
             vector<DeckMetaData *> playerDeckList = getValidDeckMetaData(options.profileFile());
@@ -109,8 +119,7 @@ void GameStateDuel::Start()
             if (nbDecks)
             {
                 decksneeded = 0;
-                if (nbDecks > 1)
-                    deckmenu->Add(MENUITEM_RANDOM_PLAYER, "Random", "Play with a random deck.");
+                if (nbDecks > 1) deckmenu->Add(MENUITEM_RANDOM_PLAYER, "Random", "Play with a random deck.");
             }
 
             renderDeckMenu(deckmenu, playerDeckList);
@@ -118,6 +127,7 @@ void GameStateDuel::Start()
             deckManager->updateMetaDataList(&playerDeckList, false);
             playerDeckList.clear();
 
+            DebugTrace("INFO: Player Deck menu has a size of " << sizeof( deckmenu ) );
             break;
         }
     }
@@ -170,8 +180,7 @@ void GameStateDuel::loadPlayer(int playerId, int decknb, int isAI)
         { //AI Player, chooses deck
             AIPlayerFactory playerCreator;
             Player * opponent = NULL;
-            if (playerId == 1)
-                opponent = mPlayers[0];
+            if (playerId == 1) opponent = mPlayers[0];
             mPlayers[playerId] = playerCreator.createAIPlayer(mParent->collection, opponent, decknb);
             deck[playerId] = mPlayers[playerId]->game;
         }
@@ -180,8 +189,7 @@ void GameStateDuel::loadPlayer(int playerId, int decknb, int isAI)
     { //Random deck
         AIPlayerFactory playerCreator;
         Player * opponent = NULL;
-        if (playerId == 1)
-            opponent = mPlayers[0];
+        if (playerId == 1) opponent = mPlayers[0];
         mPlayers[playerId] = playerCreator.createAIPlayer(mParent->collection, opponent);
         deck[playerId] = mPlayers[playerId]->game;
     }
@@ -189,8 +197,7 @@ void GameStateDuel::loadPlayer(int playerId, int decknb, int isAI)
 
 void GameStateDuel::initRand(unsigned int seed)
 {
-    if (!seed)
-        seed = time(0);
+    if (!seed) seed = time(0);
     srand(seed);
 }
 
@@ -246,6 +253,8 @@ void GameStateDuel::End()
     SAFE_DELETE(menu);
     SAFE_DELETE(opponentMenu);
     SAFE_DELETE(deckmenu);
+    SAFE_DELETE(popupScreen);
+
 #ifdef TESTSUITE
     SAFE_DELETE(testSuite);
 #endif
@@ -267,12 +276,13 @@ bool GameStateDuel::MusicExist(string FileName)
 
 void GameStateDuel::ensureOpponentMenu()
 {
-    if (!opponentMenu)
+    if (opponentMenu == NULL)
     {
-        opponentMenu = NEW DeckMenu(DUEL_MENU_CHOOSE_OPPONENT, this, Fonts::OPTION_FONT, "Choose Your Opponent", MENU_FONT_SCALE);
+        opponentMenu = NEW DeckMenu(DUEL_MENU_CHOOSE_OPPONENT, this, Fonts::OPTION_FONT, "Choose Your Opponent",
+                GameStateDuel::selectedAIDeckId);
         opponentMenu->Add(MENUITEM_RANDOM_AI, "Random");
-        if (options[Options::EVILTWIN_MODE_UNLOCKED].number)
-            opponentMenu->Add(MENUITEM_EVIL_TWIN, "Evil Twin", _("Can you play against yourself?").c_str());
+        if (options[Options::EVILTWIN_MODE_UNLOCKED].number) opponentMenu->Add(MENUITEM_EVIL_TWIN, "Evil Twin", _(
+                "Can you play against yourself?").c_str());
         DeckManager * deckManager = DeckManager::GetInstance();
         vector<DeckMetaData*> opponentDeckList = fillDeckMenu(opponentMenu, JGE_GET_RES("ai/baka"), "ai_baka", mPlayers[0]);
         deckManager->updateMetaDataList(&opponentDeckList, true);
@@ -286,9 +296,14 @@ void GameStateDuel::Update(float dt)
     switch (mGamePhase)
     {
     case DUEL_STATE_ERROR_NO_DECK:
-        if (JGE_BTN_OK == mEngine->ReadButton())
-            mParent->SetNextState(GAME_STATE_DECK_VIEWER);
+        if (JGE_BTN_OK == mEngine->ReadButton()) mParent->SetNextState(GAME_STATE_DECK_VIEWER);
         break;
+
+    case DUEL_STATE_DECK1_DETAILED_INFO:
+    case DUEL_STATE_DECK2_DETAILED_INFO:
+        popupScreen->Update(dt);
+        break;
+
     case DUEL_STATE_CHOOSE_DECK1:
         if (mParent->gameType == GAME_TYPE_MOMIR)
         {
@@ -331,10 +346,11 @@ void GameStateDuel::Update(float dt)
 #endif
         else
         {
-            if (!rules)
-                rules = NEW Rules("mtg.txt");
+            if (!rules) rules = NEW Rules("mtg.txt");
             if (mParent->players[0] == PLAYER_TYPE_HUMAN)
-                deckmenu->Update(dt);
+            {
+                if (!popupScreen || popupScreen->closed) deckmenu->Update(dt);
+            }
             else
             {
                 loadPlayer(0);
@@ -406,19 +422,17 @@ void GameStateDuel::Update(float dt)
                 musictrack = "ai_baka_music.mp3";
             else if (mParent->gameType == GAME_TYPE_MOMIR)
                 musictrack = "ai_baka_music_momir.mp3";
-            else if (mParent->gameType == GAME_TYPE_RANDOM1 || mParent->gameType == GAME_TYPE_RANDOM2)
-                musictrack = "ai_baka_music_random.mp3";
+            else if (mParent->gameType == GAME_TYPE_RANDOM1 || mParent->gameType == GAME_TYPE_RANDOM2) musictrack
+                    = "ai_baka_music_random.mp3";
 
-            if (!MusicExist(musictrack))
-                musictrack = "ai_baka_music.mp3";
+            if (!MusicExist(musictrack)) musictrack = "ai_baka_music.mp3";
 
             GameApp::playMusic(musictrack);
         }
         game->Update(dt);
         if (game->gameOver)
         {
-            if (game->players[1]->playMode != Player::MODE_TEST_SUITE)
-                credits->compute(game->players[0], game->players[1], mParent);
+            if (game->players[1]->playMode != Player::MODE_TEST_SUITE) credits->compute(game->players[0], game->players[1], mParent);
             mGamePhase = DUEL_STATE_END;
 #ifdef TESTSUITE
             if (mParent->players[1] == PLAYER_TYPE_TESTSUITE)
@@ -445,13 +459,13 @@ void GameStateDuel::Update(float dt)
             if (!menu)
             {
                 menu = NEW SimpleMenu(DUEL_MENU_GAME_MENU, this, Fonts::MENU_FONT, SCREEN_WIDTH / 2 - 100, 25,
-                                game->players[1]->deckName.c_str());
+                        game->players[1]->deckName.c_str());
                 int cardsinhand = game->players[0]->game->hand->nb_cards;
 
                 //almosthumane - mulligan
                 if ((game->turn < 1) && (cardsinhand != 0) && game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN
-                                && game->players[0]->game->inPlay->nb_cards == 0 && game->players[0]->game->graveyard->nb_cards
-                                == 0 && game->players[0]->game->exile->nb_cards == 0) //1st Play Check
+                        && game->players[0]->game->inPlay->nb_cards == 0 && game->players[0]->game->graveyard->nb_cards == 0
+                        && game->players[0]->game->exile->nb_cards == 0) //1st Play Check
                 //IF there was no play at the moment automatically mulligan
                 {
                     menu->Add(MENUITEM_MULLIGAN, "Mulligan");
@@ -491,8 +505,7 @@ void GameStateDuel::Update(float dt)
 
         break;
     default:
-        if (JGE_BTN_OK == mEngine->ReadButton())
-            mParent->SetNextState(GAME_STATE_MENU);
+        if (JGE_BTN_OK == mEngine->ReadButton()) mParent->SetNextState(GAME_STATE_MENU);
     }
 }
 
@@ -502,8 +515,7 @@ void GameStateDuel::Render()
     JRenderer * r = JRenderer::GetInstance();
     r->ClearScreen(ARGB(0,0,0,0));
 
-    if (game)
-        game->Render();
+    if (game) game->Render();
 
     switch (mGamePhase)
     {
@@ -557,15 +569,19 @@ void GameStateDuel::Render()
     case DUEL_STATE_CHOOSE_DECK1_TO_2:
     case DUEL_STATE_CHOOSE_DECK2:
     case DUEL_STATE_CHOOSE_DECK2_TO_PLAY:
+    case DUEL_STATE_DECK1_DETAILED_INFO:
+    case DUEL_STATE_DECK2_DETAILED_INFO:
         if (mParent->gameType != GAME_TYPE_CLASSIC)
             mFont->DrawString(_("LOADING DECKS").c_str(), 0, SCREEN_HEIGHT / 2);
         else
         {
             if (opponentMenu)
                 opponentMenu->Render();
-            else if (deckmenu)
-                deckmenu->Render();
+            else if (deckmenu && !deckmenu->closed) deckmenu->Render();
 
+            if (menu) menu->Render();
+
+            if (popupScreen && !popupScreen->closed) popupScreen->Render();
         }
         break;
     case DUEL_STATE_ERROR_NO_DECK:
@@ -583,8 +599,7 @@ void GameStateDuel::Render()
             mFont->SetColor(ARGB(255,255,255,255));
             mFont->DrawString(buffer, SCREEN_WIDTH / 2, 0, JGETEXT_CENTER);
         }
-        if (menu)
-            menu->Render();
+        if (menu) menu->Render();
     }
 }
 
@@ -595,8 +610,44 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
     int aiDeckSize = deckManager->getAIDeckOrderList()->size();
     switch (controllerId)
     {
+
+    case DUEL_MENU_DETAILED_DECK1_INFO:
+        if ((popupScreen || deckmenu->selectedDeckHasDetails()))
+        {
+            DeckMetaData* selectedDeck = deckmenu->getSelectedDeck();
+            if (!popupScreen->closed)
+            {
+                popupScreen->Close();
+                mGamePhase = DUEL_STATE_CHOOSE_DECK1;
+                SAFE_DELETE( popupScreen );
+            }
+            else
+            {
+                popupScreen->Update(selectedDeck);
+                popupScreen->Render();
+            }
+        }
+        break;
+    case DUEL_MENU_DETAILED_DECK2_INFO:
+        if ((popupScreen || opponentMenu->selectedDeckHasDetails()))
+        {
+            DeckMetaData* selectedDeck = opponentMenu->getSelectedDeck();
+            if (!popupScreen->closed)
+            {
+                popupScreen->Close();
+                mGamePhase = DUEL_STATE_CHOOSE_DECK2_TO_PLAY;
+                SAFE_DELETE( popupScreen );
+            }
+            else
+            {
+                popupScreen->Update(selectedDeck);
+                popupScreen->Render();
+            }
+        }
+        break;
+
     case DUEL_MENU_CHOOSE_OPPONENT:
-    {
+
         switch (controlId)
         {
         case MENUITEM_RANDOM_AI:
@@ -612,12 +663,34 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
                 opponentMenu->Close();
                 deckmenu->Close();
                 mParent->SetNextState(DUEL_STATE_CHOOSE_DECK1);
-                mGamePhase = DUEL_MENU_GAME_MENU;
+                mGamePhase = DUEL_STATE_CHOOSE_DECK1;
+                break;
+            }
+
+            else if (controlId == MENUITEM_MORE_INFO && opponentMenu->showDetailsScreen)
+            {
+                DeckMetaData* selectedDeck = opponentMenu->getSelectedDeck();
+                if (!popupScreen)
+                {
+                    popupScreen = NEW SimplePopup(DUEL_MENU_DETAILED_DECK2_INFO, this, Fonts::MAIN_FONT, "Detailed Information",
+                            selectedDeck, mParent->collection);
+                    popupScreen->Render();
+                    selectedAIDeckId = selectedDeck->getDeckId();
+                }
+                else
+                {
+                    popupScreen->Update(selectedDeck);
+                }
+                mGamePhase = DUEL_STATE_DECK2_DETAILED_INFO;
+                break;
+            }
+            else if (controlId == MENUITEM_MORE_INFO && !opponentMenu->showDetailsScreen)
+            {
+                // do nothing, ignore all key requests until popup is dismissed.
                 break;
             }
             else if (controlId != MENUITEM_EVIL_TWIN && aiDeckSize > 0) // evil twin
-                deckNumber = deckManager->getAIDeckOrderList()->at(controlId - 1)->getDeckId();
-
+            deckNumber = deckManager->getAIDeckOrderList()->at(controlId - 1)->getDeckId();
             loadPlayer(1, deckNumber, 1);
             OpponentsDeckid = deckNumber;
             opponentMenu->Close();
@@ -625,9 +698,9 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
             break;
         }
         break;
-    }
+
     case DUEL_MENU_CHOOSE_DECK:
-    {
+
         if (controlId == MENUITEM_RANDOM_PLAYER) // Random Player Deck Selection
         {
             vector<DeckMetaData *> * playerDeckList = deckManager->getPlayerDeckOrderList();
@@ -639,9 +712,30 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
         }
         else if (controlId == MENUITEM_MAIN_MENU || controlId == MENUITEM_CANCEL) // user clicked on "Cancel"
         {
-            if (deckmenu)
-                deckmenu->Close();
+            if (deckmenu) deckmenu->Close();
             mGamePhase = DUEL_STATE_BACK_TO_MAIN_MENU;
+            break;
+        }
+        else if (controlId == MENUITEM_MORE_INFO && deckmenu->showDetailsScreen)
+        {
+            DeckMetaData* selectedDeck = deckmenu->getSelectedDeck();
+            if (!popupScreen)
+            {
+                popupScreen = NEW SimplePopup(DUEL_MENU_DETAILED_DECK1_INFO, this, Fonts::MAIN_FONT, "Detailed Information",
+                        selectedDeck, mParent->collection);
+                popupScreen->Render();
+                selectedPlayerDeckId = deckmenu->selectedDeckId;
+            }
+            else
+            {
+                popupScreen->Update(selectedDeck);
+            }
+            mGamePhase = DUEL_STATE_DECK1_DETAILED_INFO;
+            break;
+        }
+        else if (controlId == MENUITEM_MORE_INFO)
+        {
+            // do nothing
             break;
         }
         if (controlId < 0)
@@ -652,8 +746,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
         if (mGamePhase == DUEL_STATE_CHOOSE_DECK1)
         {
             vector<DeckMetaData *> * playerDeck = deckManager->getPlayerDeckOrderList();
-            if (!premadeDeck && controlId > 0)
-                deckNumber = playerDeck->at(controlId - 1)->getDeckId();
+            if (!premadeDeck && controlId > 0) deckNumber = playerDeck->at(controlId - 1)->getDeckId();
             loadPlayer(0, deckNumber);
             deckmenu->Close();
             mGamePhase = DUEL_STATE_CHOOSE_DECK1_TO_2;
@@ -666,9 +759,9 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
             mGamePhase = DUEL_STATE_CHOOSE_DECK2_TO_PLAY;
         }
         break;
-    }
+
     default:
-    {
+
         switch (controlId)
         {
 
@@ -682,13 +775,14 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
             break;
         case MENUITEM_MULLIGAN:
             //almosthumane - mulligan
-        {
+
 
             int cardsinhand = game->players[0]->game->hand->nb_cards;
 
             for (int i = 0; i < cardsinhand; i++) //Discard hand
-                game->currentPlayer->game->putInZone(game->currentPlayer->game->hand->cards[0], game->currentPlayer->game->hand,
-                                game->currentPlayer->game->library);
+                game->currentPlayer->game->putInZone(game->currentPlayer->game->hand->cards[0],
+                        game->currentPlayer->game->hand,
+                        game->currentPlayer->game->library);
 
             game->currentPlayer->game->library->shuffle(); //Shuffle
 
@@ -697,9 +791,9 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
             menu->Close();
             mGamePhase = DUEL_STATE_CANCEL;
             break;
-        }
+
             //END almosthumane - mulligan
         }
-    }
+
     }
 }

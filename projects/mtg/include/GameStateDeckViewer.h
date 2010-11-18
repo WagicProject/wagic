@@ -23,7 +23,7 @@
 #define NO_USER_ACTIVITY_SHOWCARD_DELAY 0.1
 
 enum
-  {
+{
     STAGE_TRANSITION_RIGHT = 0,
     STAGE_TRANSITION_LEFT = 1,
     STAGE_WAITING = 2,
@@ -33,8 +33,7 @@ enum
     STAGE_WELCOME = 6,
     STAGE_MENU = 7,
     STAGE_FILTERS = 8
-  };
-
+};
 
 // TODO: need a better name for MENU_FIRST_MENU, this is reused for the 1st submenu of
 // available options in the duel menu
@@ -47,10 +46,10 @@ enum
     MENU_LANGUAGE_SELECTION = 103,
 };
 
-  // enums for menu options
-  // TODO: make these enums a little more descriptive. (ie should reflect what menu they are attached to )
+// enums for menu options
+// TODO: make these enums a little more descriptive. (ie should reflect what menu they are attached to )
 enum DECK_VIEWER_MENU_ITEMS
-  {
+{
     MENU_ITEM_NEW_DECK = -30,
     MENU_ITEM_CHEAT_MODE = -12,
     MENU_ITEM_CANCEL = kCancelMenuID,
@@ -62,10 +61,10 @@ enum DECK_VIEWER_MENU_ITEMS
     MENU_ITEM_SAVE_AS_AI_DECK = 5,
     MENU_ITEM_YES = 20,
     MENU_ITEM_NO = 21,
-    MENU_ITEM_FILTER_BY = 22
+    MENU_ITEM_FILTER_BY = 22,
+    MENUITEM_MORE_INFO = kInfoMenuID
 
-
-  };
+};
 
 #define ALL_COLORS -1
 
@@ -81,73 +80,73 @@ enum DECK_VIEWER_MENU_ITEMS
 class GameStateDeckViewer: public GameState, public JGuiListener
 {
 private:
-  JQuad * mIcons[7];
-  JQuad * pspIcons[8];
-  JTexture * pspIconsTexture;
-  float last_user_activity;
-  float onScreenTransition;
-  float mRotation;
-  float mSlide;
-  int mAlpha;
-  int mStage;
-  int nbDecks;
-  int deckNum;
-  int useFilter;
-  JMusic * bgMusic;
-  JQuad * backQuad;
-  int lastPos;
-  int lastTotal;
-  
-  WGuiFilters * filterMenu;
-  WSrcDeckViewer * source;
+    JQuad * mIcons[7];
+    JQuad * pspIcons[8];
+    JTexture * pspIconsTexture;
+    float last_user_activity;
+    float onScreenTransition;
+    float mRotation;
+    float mSlide;
+    int mAlpha;
+    int mStage;
+    int nbDecks;
+    int deckNum;
+    int useFilter;
+    JMusic * bgMusic;
+    JQuad * backQuad;
+    int lastPos;
+    int lastTotal;
 
-  DeckEditorMenu * welcome_menu;
-  SimpleMenu * subMenu;
-  DeckEditorMenu * menu;
-  PriceList* pricelist;
-  PlayerData * playerdata;
-  int price;
-  DeckDataWrapper * displayed_deck;
-  DeckDataWrapper * myDeck;
-  DeckDataWrapper * myCollection;
-  MTGCard *  cardIndex[7];
-  StatsWrapper *stw;
+    WGuiFilters * filterMenu;
+    WSrcDeckViewer * source;
 
-  int hudAlpha;
-  string newDeckname;
-  bool isAIDeckSave;
-  bool mSwitching;
-  void saveDeck(); //Saves the deck and additional necessary information
-  void saveAsAIDeck(string deckName); // saves deck as an AI Deck
-  int getCurrentPos();
+    DeckEditorMenu * welcome_menu;
+    SimpleMenu * subMenu;
+    DeckEditorMenu * menu;
+    PriceList* pricelist;
+    PlayerData * playerdata;
+    int price;
+    DeckDataWrapper * displayed_deck;
+    DeckDataWrapper * myDeck;
+    DeckDataWrapper * myCollection;
+    MTGCard * cardIndex[7];
+    StatsWrapper *stw;
+
+    int hudAlpha;
+    string newDeckname;
+    bool isAIDeckSave;
+    bool mSwitching;
+    void saveDeck(); //Saves the deck and additional necessary information
+    void saveAsAIDeck(string deckName); // saves deck as an AI Deck
+    int getCurrentPos();
 
 public:
-  GameStateDeckViewer(GameApp* parent);
-  virtual ~GameStateDeckViewer();
-  void updateDecks();
-  void rotateCards(int direction);
-  void loadIndexes();
-  void updateFilters();
-  void rebuildFilters();
-  void switchDisplay();
-  void Start();
-  virtual void End();
-  void addRemove(MTGCard * card);
-  virtual void Update(float dt);
-  void renderOnScreenBasicInfo();
-  void renderSlideBar();
-  void renderDeckBackground();
-  void renderOnScreenMenu();
-  virtual void renderCard(int id, float rotation);
-  virtual void renderCard (int id);
-  virtual void Render();
-  int loadDeck(int deckid);
-  void LoadDeckStatistics(int deckId);
+    GameStateDeckViewer(GameApp* parent);
+    virtual ~GameStateDeckViewer();
+    void updateDecks();
+    void rotateCards(int direction);
+    void loadIndexes();
+    void updateFilters();
+    void rebuildFilters();
+    void switchDisplay();
+    void Start();
+    virtual void End();
+    void addRemove(MTGCard * card);
+    virtual void Update(float dt);
+    void renderOnScreenBasicInfo();
+    void renderSlideBar();
+    void renderDeckBackground();
+    void renderOnScreenMenu();
+    virtual void renderCard(int id, float rotation);
+    virtual void renderCard(int id);
+    virtual void Render();
+    int loadDeck(int deckid);
+    void LoadDeckStatistics(int deckId);
 
-  void buildEditorMenu();
-  virtual void ButtonPressed(int controllerId, int controlId);
-  void updateStats();
-  int countCardsByType(const char * _type);
+    void buildEditorMenu();
+    virtual void ButtonPressed(int controllerId, int controlId);
+    void updateStats();
+    int countCardsByType(const char * _type);
 };
 
 // n cards total, a of them are desired, x drawn 

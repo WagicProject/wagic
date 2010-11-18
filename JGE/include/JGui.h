@@ -16,106 +16,107 @@
 #include "JGE.h"
 #include "JSprite.h"
 
-#define MAX_GUIOBJECT			64
+#define MAX_GUIOBJECT           64
 
-#define JGUI_STYLE_LEFTRIGHT	0x01
-#define JGUI_STYLE_UPDOWN		0x02
-#define JGUI_STYLE_WRAPPING		0x04
+#define JGUI_STYLE_LEFTRIGHT    0x01
+#define JGUI_STYLE_UPDOWN       0x02
+#define JGUI_STYLE_WRAPPING     0x04
 
-#define JGUI_INITIAL_DELAY		0.4
-#define JGUI_REPEAT_DELAY		0.2
+#define JGUI_INITIAL_DELAY      0.4
+#define JGUI_REPEAT_DELAY       0.2
 
 const int kCancelMenuID = -1;
+const int kInfoMenuID = -200;
 
 class JGuiListener
 {
- public:
-  virtual ~JGuiListener() {}
-  virtual void ButtonPressed(int controllerId, int controlId) = 0;
+public:
+    virtual ~JGuiListener()
+    {
+    }
+    virtual void ButtonPressed(int controllerId, int controlId) = 0;
 };
-
 
 class JGuiObject
 {
- protected:
-  static JGE*	mEngine;
+protected:
+    static JGE* mEngine;
 
- private:
-  int mId;
+private:
+    int mId;
 
+public:
+    JGuiObject(int id);
+    virtual ~JGuiObject();
 
- public:
-  JGuiObject(int id);
-  virtual ~JGuiObject();
+    virtual void Render() = 0;
+    virtual std::ostream& toString(std::ostream&) const = 0;
+    virtual void Update(float dt);
 
-  virtual void Render() = 0;
-  virtual std::ostream& toString(std::ostream&) const = 0;
-  virtual void Update(float dt);
+    virtual void Entering(); // when focus is transferring to this obj
+    virtual bool Leaving(JButton key); // when focus is transferring away from this obj, true to go ahead
+    virtual bool ButtonPressed(); // action button pressed, return false to ignore
 
-  virtual void Entering();			// when focus is transferring to this obj
-  virtual bool Leaving(JButton key);		// when focus is transferring away from this obj, true to go ahead
-  virtual bool ButtonPressed();		// action button pressed, return false to ignore
+    // Used for mouse support so that the GUI engine can found out which Object was selected
+    virtual bool getTopLeft(int& top, int& left)
+    {
+        return false;
+    }
+    ;
 
-  // Used for mouse support so that the GUI engine can found out which Object was selected
-  virtual bool getTopLeft(int& top, int& left) {return false;};
-
-  int GetId();
+    int GetId();
 };
-
 
 class JGuiController
 {
- protected:
-  static JGE*	mEngine;
+protected:
+    static JGE* mEngine;
 
-  int mId;
-  bool mActive;
+    int mId;
+    bool mActive;
 
+    JButton mActionButton;
+    JButton mCancelButton;
+    int mCurr;
+    int mStyle;
 
-  JButton mActionButton;
-  JButton mCancelButton;
-  int mCurr;
-  int mStyle;
+    JSprite* mCursor;
+    bool mShowCursor;
+    int mCursorX;
+    int mCursorY;
 
-  JSprite* mCursor;
-  bool mShowCursor;
-  int mCursorX;
-  int mCursorY;
+    int mBgX;
+    int mBgY;
+    const JTexture* mBg;
+    PIXEL_TYPE mShadingColor;
+    Rect* mShadingBg;
 
-  int mBgX;
-  int mBgY;
-  const JTexture* mBg;
-  PIXEL_TYPE mShadingColor;
-  Rect* mShadingBg;
+    JGuiListener* mListener;
+    //int mKeyHoldTime;
 
-  JGuiListener* mListener;
-  //int mKeyHoldTime;
+public:
+    vector<JGuiObject*> mObjects;
+    int mCount;
 
- public:
-  vector<JGuiObject*> mObjects;
-  int mCount;
+    JGuiController(int id, JGuiListener* listener);
+    ~JGuiController();
 
-  JGuiController(int id, JGuiListener* listener);
-  ~JGuiController();
+    virtual void Render();
+    virtual void Update(float dt);
+    virtual bool CheckUserInput(JButton key);
 
-  virtual void Render();
-  virtual void Update(float dt);
-  virtual bool CheckUserInput(JButton key);
+    void Add(JGuiObject* ctrl);
+    void RemoveAt(int i);
+    void Remove(int id);
+    void Remove(JGuiObject* ctrl);
 
-  void Add(JGuiObject* ctrl);
-  void RemoveAt(int i);
-  void Remove(int id);
-  void Remove(JGuiObject* ctrl);
+    void SetActionButton(JButton button);
+    void SetStyle(int style);
+    void SetCursor(JSprite* cursor);
 
-  void SetActionButton(JButton button);
-  void SetStyle(int style);
-  void SetCursor(JSprite* cursor);
+    bool IsActive();
+    void SetActive(bool flag);
 
-  bool IsActive();
-  void SetActive(bool flag);
-
-  //void SetImageBackground(const JTexture* tex, int x, int y);
-  //void SetShadingBackground(int x, int y, int width, int height, PIXEL_TYPE color);
 };
 
 ostream& operator<<(ostream &out, const JGuiObject &j);
