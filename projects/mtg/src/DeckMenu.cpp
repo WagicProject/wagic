@@ -121,6 +121,11 @@ DeckMetaData * DeckMenu::getSelectedDeck()
     return NULL;
 }
 
+void DeckMenu::enableDisplayDetailsOverride()
+{
+    mAlwaysShowDetailsButton = true;
+}
+
 bool DeckMenu::showDetailsScreen()
 {
     DeckMetaData * currentMenuItem = getSelectedDeck();

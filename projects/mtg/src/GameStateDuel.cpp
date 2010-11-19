@@ -111,7 +111,7 @@ void GameStateDuel::Start()
 
             deckmenu = NEW DeckMenu(DUEL_MENU_CHOOSE_DECK, this, Fonts::OPTION_FONT, "Choose a Deck",
                     GameStateDuel::selectedPlayerDeckId, true);
-
+            deckmenu->enableDisplayDetailsOverride();
             DeckManager *deckManager = DeckManager::GetInstance();
             vector<DeckMetaData *> playerDeckList = getValidDeckMetaData(options.profileFile());
             int nbDecks = playerDeckList.size();

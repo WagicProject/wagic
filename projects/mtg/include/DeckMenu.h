@@ -61,6 +61,7 @@ public:
     ~DeckMenu();
 
     DeckMetaData * getSelectedDeck();
+    void enableDisplayDetailsOverride();
     bool showDetailsScreen(); 
     bool isClosed() { return mClosed; }
     int getSelectedDeckId() { return mSelectedDeckId; }
