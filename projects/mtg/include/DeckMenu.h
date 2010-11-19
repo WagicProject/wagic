@@ -29,7 +29,6 @@ protected:
     string title;
     string displayTitle;
     WFont * mFont;
-    float menuFontScale;
     float titleFontScale;
 
     int maxItems, startId;
@@ -42,25 +41,29 @@ protected:
     void initMenuItems();
     string getDescription();
     string getMetaInformation();
-    DeckMetaData *selectedDeck;
+    DeckMetaData *mSelectedDeck;
+    int mSelectedDeckId;
+    bool mShowDetailsScreen;
+    bool mAlwaysShowDetailsButton;
+    bool mClosed;
 
 public:
-    TextScroller * scroller;
-    bool autoTranslate;
+    TextScroller * mScroller;
+    bool mAutoTranslate;
+    float mSelectionTargetY;
 
     //used for detailed info button
     JQuad * pspIcons[8];
     JTexture * pspIconsTexture;
-    DeckMetaData * getSelectedDeck();
-    bool selectedDeckHasDetails();
-    int selectedDeckId;
-    bool showDetailsScreen;
-    bool enableDetails;
-    float selectionTargetY;
-    bool closed;
 
-    DeckMenu(int id, JGuiListener* listener, int fontId, const string _title = "", const int& startIndex = 0, const float& mFontScale = 1.0f);
+
+    DeckMenu(int id, JGuiListener* listener, int fontId, const string _title = "", const int& startIndex = 0, bool alwaysShowDetailsButton = false);
     ~DeckMenu();
+
+    DeckMetaData * getSelectedDeck();
+    bool showDetailsScreen(); 
+    bool isClosed() { return mClosed; }
+    int getSelectedDeckId() { return mSelectedDeckId; }
 
     void Render();
     void Update(float dt);

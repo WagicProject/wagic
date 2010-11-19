@@ -10,9 +10,8 @@ DeckEditorMenu::DeckEditorMenu(int id, JGuiListener* listener, int fontId, const
     DeckMenu(id, listener, fontId, _title), selectedDeck(_selectedDeck), stw(stats)
 {
     backgroundName = "DeckEditorMenuBackdrop";
-
+    mShowDetailsScreen = false;
     deckTitle = selectedDeck ? selectedDeck->parent->meta_name : "";
-    enableDetails = false;
 
     mX = 123;
     mY = 70;
@@ -36,9 +35,8 @@ DeckEditorMenu::DeckEditorMenu(int id, JGuiListener* listener, int fontId, const
     avatarY = 8;
 
     float scrollerWidth = 80;
-    SAFE_DELETE(scroller); // need to delete the scroller init in the base class
-    this->showDetailsScreen = false;
-    scroller = NEW TextScroller(Fonts::MAIN_FONT, 40, 230, scrollerWidth, 100, 1, 1);
+    SAFE_DELETE(mScroller); // need to delete the scroller init in the base class
+    mScroller = NEW TextScroller(Fonts::MAIN_FONT, 40, 230, scrollerWidth, 100, 1, 1);
 
 }
 
@@ -98,5 +96,5 @@ void DeckEditorMenu::drawDeckStatistics()
 
 DeckEditorMenu::~DeckEditorMenu()
 {
-    SAFE_DELETE( scroller );
+    SAFE_DELETE( mScroller );
 }

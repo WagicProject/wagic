@@ -46,7 +46,7 @@ void DeckMenuItem::Render()
 void DeckMenuItem::Entering()
 {
     mHasFocus = true;
-    parent->selectionTargetY = mY;
+    parent->mSelectionTargetY = mY;
 }
 
 bool DeckMenuItem::Leaving(JButton key)

@@ -18,6 +18,7 @@ class SimpleMenu:public JGuiController{
   int maxItems,startId;
   float selectionT, selectionY;
   float timeOpen;
+  bool mClosed;
 
   static JQuad *spadeR, *spadeL, *jewel, *side;
   static JTexture *spadeRTex, *spadeLTex, *jewelTex, *sideTex;
@@ -37,7 +38,7 @@ class SimpleMenu:public JGuiController{
   void Close();
 
   float selectionTargetY;
-  bool closed;
+  bool isClosed() { return mClosed; }
   static void destroy();
 };
 

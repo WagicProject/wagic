@@ -371,7 +371,7 @@ void GameStateDeckViewer::Update(float dt)
     if (subMenu)
     {
         subMenu->Update(dt);
-        if (subMenu->closed)
+        if (subMenu->isClosed())
         {
             SAFE_DELETE(subMenu);
         }

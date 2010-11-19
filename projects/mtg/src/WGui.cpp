@@ -1616,7 +1616,7 @@ void WGuiFilters::setSrc(WSrcCards * wsc)
 }
 void WGuiFilters::Update(float dt)
 {
-    if (subMenu && !subMenu->closed) subMenu->Update(dt);
+    if (subMenu && !subMenu->isClosed()) subMenu->Update(dt);
     if (list)
     {
         list->Update(dt);
@@ -1652,11 +1652,11 @@ void WGuiFilters::Render()
     list->setY(tY);
     list->Render();
 
-    if (subMenu && !subMenu->closed) subMenu->Render();
+    if (subMenu && !subMenu->isClosed()) subMenu->Render();
 }
 bool WGuiFilters::CheckUserInput(JButton key)
 {
-    if (subMenu && !subMenu->closed && subMenu->CheckUserInput(key)) return true;
+    if (subMenu && !subMenu->isClosed() && subMenu->CheckUserInput(key)) return true;
     if (key == JGE_BTN_SEC)
     {//|| key == JGE_BTN_MENU){
         //TODO Pop up a "Are you sure?" dialog.

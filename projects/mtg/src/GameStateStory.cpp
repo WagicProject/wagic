@@ -77,7 +77,7 @@ void GameStateStory::Update(float dt)
     if (menu)
     {
         menu->Update(dt);
-        if (menu->closed)
+        if (menu->isClosed())
             SAFE_DELETE(menu);
         //return;
     }

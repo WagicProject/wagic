@@ -452,7 +452,7 @@ void GameStateShop::beginFilters()
 }
 void GameStateShop::Update(float dt)
 {
-    if (menu && menu->closed)
+    if (menu && menu->isClosed())
         SAFE_DELETE(menu);
     srcCards->Update(dt);
     alphaChange = static_cast<int> (500 - (int) ((rand() % 1000)) * dt);
@@ -536,7 +536,7 @@ void GameStateShop::Update(float dt)
         break;
     case STAGE_ASK_ABOUT:
         btn = mEngine->ReadButton();
-        if (menu && !menu->closed)
+        if (menu && !menu->isClosed())
         {
             menu->CheckUserInput(btn);
             menu->Update(dt);
@@ -576,7 +576,7 @@ void GameStateShop::Update(float dt)
         break;
     case STAGE_SHOP_SHOP:
         btn = mEngine->ReadButton();
-        if (menu && !menu->closed)
+        if (menu && !menu->isClosed())
         {
             menu->CheckUserInput(btn);
             menu->Update(dt);

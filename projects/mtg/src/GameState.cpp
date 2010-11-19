@@ -28,11 +28,11 @@ vector<DeckMetaData *> GameState::fillDeckMenu(SimpleMenu * _menu, const string&
 vector<DeckMetaData *> GameState::fillDeckMenu(DeckMenu * _menu, const string& path, const string& smallDeckPrefix,
                 Player * statsPlayer)
 {
-    bool translate = _menu->autoTranslate;
-    _menu->autoTranslate = false;
+    bool translate = _menu->mAutoTranslate;
+    _menu->mAutoTranslate = false;
     vector<DeckMetaData *> deckMetaDataVector = getValidDeckMetaData(path, smallDeckPrefix, statsPlayer);
     renderDeckMenu(_menu, deckMetaDataVector);
-    _menu->autoTranslate = translate;
+    _menu->mAutoTranslate = translate;
 
     return deckMetaDataVector;
 }

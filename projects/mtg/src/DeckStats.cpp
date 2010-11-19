@@ -82,6 +82,21 @@ int DeckStats::nbGames()
     return nbgames;
 }
 
+int DeckStats::nbVictories()
+{
+    int victories = 0;
+    int nbgames = 0;
+    map<string, DeckStat *>::iterator it;
+    for (it = stats.begin(); it != stats.end(); it++)
+    {
+        DeckStat * d = it->second;
+        nbgames += d->nbgames;
+        victories += d->victories;
+    }
+
+    return victories;
+}
+
 int DeckStats::percentVictories()
 {
     int victories = 0;

@@ -17,7 +17,8 @@ namespace
     const float kLineHeight = 20;
     const float kDescriptionVerticalBoxPadding = 5;
     const float kDescriptionHorizontalBoxPadding = 5;
-    const int DETAILED_INFO_THRESHOLD = 4;
+    const float kMenuFontScale = 1.0f;
+    const int DETAILED_INFO_THRESHOLD = 20;
 }
 
 hgeParticleSystem* DeckMenu::stars = NULL;
@@ -31,14 +32,13 @@ hgeParticleSystem* DeckMenu::stars = NULL;
 //    * descriptive information 125
 //    *** Need to make this configurable in a file somewhere to allow for class reuse
 
-DeckMenu::DeckMenu(int id, JGuiListener* listener, int fontId, const string _title, const int& startIndex, const float& mFontScale) :
-    JGuiController(id, listener), fontId(fontId), menuFontScale(mFontScale)
+DeckMenu::DeckMenu(int id, JGuiListener* listener, int fontId, const string _title, const int& startIndex, bool showDetailsOverride) :
+JGuiController(id, listener), fontId(fontId), mShowDetailsScreen( showDetailsOverride )
 {
 
     backgroundName = "DeckMenuBackdrop";
-
-    selectedDeck = NULL;
-    enableDetails = true;
+    mAlwaysShowDetailsButton = false;
+    mSelectedDeck = NULL;
     mY = 55;
     mWidth = 176;
     mX = 125;
@@ -61,7 +61,7 @@ DeckMenu::DeckMenu(int id, JGuiListener* listener, int fontId, const string _tit
     statsHeight = 50;
     statsWidth = 227;
 
-    selectedDeckId = startIndex;
+    mSelectedDeckId = startIndex;
 
     avatarX = 230;
     avatarY = 8;
@@ -69,9 +69,9 @@ DeckMenu::DeckMenu(int id, JGuiListener* listener, int fontId, const string _tit
     menuInitialized = false;
 
     float scrollerWidth = 80;
-    scroller = NEW TextScroller(Fonts::MAIN_FONT, 40, 230, scrollerWidth, 100, 1, 1);
+    mScroller = NEW TextScroller(Fonts::MAIN_FONT, 40, 230, scrollerWidth, 100, 1, 1);
 
-    autoTranslate = true;
+    mAutoTranslate = true;
     maxItems = 7;
     mHeight = 2 * kVerticalMargin + (maxItems * kLineHeight);
 
@@ -83,14 +83,14 @@ DeckMenu::DeckMenu(int id, JGuiListener* listener, int fontId, const string _tit
     startId = 0;
     selectionT = 0;
     timeOpen = 0;
-    closed = false;
+    mClosed = false;
 
     if (mFont->GetStringWidth(title.c_str()) > titleWidth)
         titleFontScale = 0.75f;
     else
         titleFontScale = 1.0f;
 
-    selectionTargetY = selectionY = kVerticalMargin;
+    mSelectionTargetY = selectionY = kVerticalMargin;
 
     if (NULL == stars) stars = NEW hgeParticleSystem(resources.RetrievePSI("stars.psi", resources.GetQuad("stars")));
     stars->FireAt(mX, mY);
@@ -116,15 +116,19 @@ void DeckMenu::RenderBackground()
 
 DeckMetaData * DeckMenu::getSelectedDeck()
 {
-    if (selectedDeck) return selectedDeck;
+    if (mSelectedDeck) return mSelectedDeck;
 
     return NULL;
 }
 
-bool DeckMenu::selectedDeckHasDetails()
+bool DeckMenu::showDetailsScreen()
 {
     DeckMetaData * currentMenuItem = getSelectedDeck();
-    if (currentMenuItem) return (enableDetails && currentMenuItem->getGamesPlayed() > DETAILED_INFO_THRESHOLD);
+    if (currentMenuItem)
+    {
+        if (mAlwaysShowDetailsButton) return true;
+        if (mShowDetailsScreen && currentMenuItem->getVictories() > DETAILED_INFO_THRESHOLD) return true;
+    }
 
     return false;
 }
@@ -139,7 +143,7 @@ void DeckMenu::initMenuItems()
         currentMenuItem->Relocate(mX, y);
         if (currentMenuItem->hasFocus()) sY = y;
     }
-    selectionTargetY = selectionY = sY;
+    mSelectionTargetY = selectionY = sY;
 
     //Grab a texture in VRAM.
     pspIconsTexture = resources.RetrieveTexture("iconspsp.png", RETRIEVE_LOCK);
@@ -176,28 +180,24 @@ void DeckMenu::Render()
         {
             if (currentMenuItem->hasFocus())
             {
-                selectedDeckId = i;
-                selectedDeck = currentMenuItem->meta;
+                mSelectedDeckId = i;
+                mSelectedDeck = currentMenuItem->meta;
 
                 WFont *mainFont = resources.GetWFont(Fonts::MAIN_FONT);
 
                 // display the "more info" button if special condition is met
-                if (selectedDeckHasDetails())
-                {
-                    showDetailsScreen = true;
+                if (showDetailsScreen())
+                {                    
                     float pspIconsSize = 0.5;
                     const string detailedInfoString = "Detailed Info";
                     float stringWidth = mainFont->GetStringWidth(detailedInfoString.c_str());
                     float boxStartX = detailedInfoBoxX - stringWidth / 2;
                     DWORD currentColor = mainFont->GetColor();
-                    renderer->FillRoundRect( boxStartX, detailedInfoBoxY - 5, stringWidth, 
-                                        mainFont->GetHeight() + 15, .5, ARGB( 125, 0, 255, 255) );
+                    renderer->FillRoundRect( boxStartX, detailedInfoBoxY - 5, stringWidth, mainFont->GetHeight() + 15, .5, ARGB( 255, 0, 0, 0) );
                     renderer->RenderQuad(pspIcons[5], detailedInfoBoxX, detailedInfoBoxY + 2, 0, pspIconsSize, pspIconsSize);
                     mainFont->SetColor(currentColor);
                     mainFont->DrawString(detailedInfoString, boxStartX, detailedInfoBoxY + 10);
                 }
-                else
-                    showDetailsScreen = false;
 
                 // display the avatar image
                 if (currentMenuItem->imageFilename.size() > 0)
@@ -224,7 +224,7 @@ void DeckMenu::Render()
             {
                 mFont->SetColor(ARGB(150,255,255,255));
             }
-            mFont->SetScale(menuFontScale);
+            mFont->SetScale(kMenuFontScale);
             currentMenuItem->RenderWithOffset(-kLineHeight * startId);
         }
     }
@@ -238,7 +238,7 @@ void DeckMenu::Render()
         mFont->DrawString(title.c_str(), titleX, titleY, JGETEXT_CENTER);
     }
     mFont->SetScale(1.0f);
-    scroller->Render();
+    mScroller->Render();
 
 }
 
@@ -250,7 +250,7 @@ void DeckMenu::Update(float dt)
     else if (mCurr < startId) startId = mCurr;
     stars->Update(dt);
     selectionT += 3 * dt;
-    selectionY += (selectionTargetY - selectionY) * 8 * dt;
+    selectionY += (mSelectionTargetY - selectionY) * 8 * dt;
 
     float starsX = starsOffsetX + ((mWidth - 2 * kHorizontalMargin) * (1 + cos(selectionT)) / 2);
     float starsY = selectionY + 5 * cos(selectionT * 2.35f) + kLineHeight / 2 - kLineHeight * startId;
@@ -261,22 +261,22 @@ void DeckMenu::Update(float dt)
         if (timeOpen >= 0)
         {
             timeOpen = 0;
-            closed = true;
+            mClosed = true;
             stars->FireAt(mX, mY);
         }
     }
     else
     {
-        closed = false;
+        mClosed = false;
         timeOpen += dt * 10;
     }
-    if (scroller) scroller->Update(dt);
+    if (mScroller) mScroller->Update(dt);
 }
 
 void DeckMenu::Add(int id, const char * text, string desc, bool forceFocus, DeckMetaData * deckMetaData)
 {
-    DeckMenuItem * menuItem = NEW DeckMenuItem(this, id, fontId, text, 0, mY + kVerticalMargin + mCount * kLineHeight,
-                                    (mCount == 0), autoTranslate, deckMetaData);
+    DeckMenuItem * menuItem = NEW DeckMenuItem(this, id, fontId, text, 0, 
+            mY + kVerticalMargin + mCount * kLineHeight, (mCount == 0), mAutoTranslate, deckMetaData);
     Translator * t = Translator::GetInstance();
     map<string, string>::iterator it = t->deckValues.find(text);
     if (it != t->deckValues.end()) //translate decks desc
@@ -299,13 +299,13 @@ void DeckMenu::updateScroller()
 {
     // add all the items from the Tasks db.
     TaskList taskList;
-    scroller->Reset();
+    mScroller->Reset();
     for (vector<Task*>::iterator it = taskList.tasks.begin(); it != taskList.tasks.end(); it++)
     {
         ostringstream taskDescription;
         taskDescription << "[ " << setw(4) << (*it)->getReward() << " / " << (*it)->getExpiration() << " ]   " 
                 << (*it)->getDesc() << endl;
-        scroller->Add(taskDescription.str());
+        mScroller->Add(taskDescription.str());
     }
 }
 
@@ -323,6 +323,6 @@ void DeckMenu::destroy()
 DeckMenu::~DeckMenu()
 {
     resources.Release(pspIconsTexture);
-    SAFE_DELETE(scroller);
-    scroller = NULL;
+    SAFE_DELETE(mScroller);
+    mScroller = NULL;
 }

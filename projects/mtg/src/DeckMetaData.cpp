@@ -66,6 +66,7 @@ void DeckMetaData::loadStatsForPlayer(Player * statsPlayer, string deckStatsFile
             stats->load(deckStatsFileName.c_str());
             _nbGamesPlayed = stats->nbGames();
             _percentVictories = stats->percentVictories();
+            _victories = stats->nbVictories();
         }
     }
     stats = NULL;

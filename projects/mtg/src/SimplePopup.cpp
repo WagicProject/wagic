@@ -22,13 +22,13 @@ SimplePopup::SimplePopup(int id, JGuiListener* listener, const int fontId, const
     mMaxLines = 10;
     mTextFont = resources.GetWFont(fontId);
     this->mCount = 1;
-    stw = NULL;
+    mStatsWrapper = NULL;
     Update(deckMetaData);
 }
 
 void SimplePopup::Render()
 {
-    closed = false;
+    mClosed = false;
 
     JRenderer *r = JRenderer::GetInstance();
     string detailedInformation = getDetailedInformation(mDeckInformation->getFilename());
@@ -45,9 +45,9 @@ void SimplePopup::Render()
 void SimplePopup::Update(DeckMetaData* selectedDeck)
 {
     mDeckInformation = selectedDeck;
-    SAFE_DELETE(stw);
-    stw = NEW StatsWrapper(mDeckInformation->getDeckId());
-    stw->updateStats(mDeckInformation->getFilename(), mCollection);
+    SAFE_DELETE(mStatsWrapper);
+    mStatsWrapper = NEW StatsWrapper(mDeckInformation->getDeckId());
+    mStatsWrapper->updateStats(mDeckInformation->getFilename(), mCollection);
 }
 
 
@@ -56,31 +56,31 @@ string SimplePopup::getDetailedInformation(string filename)
     ostringstream oss;
     oss
         << "------- Deck Summary -----" << endl
-        << "Cards: "<< stw->cardCount << endl
-        << "Creatures: "<< setw(2) << stw->countCreatures
-        << "  Enchantments: " << stw->countEnchantments << endl
-        << "Instants: " << setw(4) << stw->countInstants
-        << "   Sorceries:      " << setw(2) << stw->countSorceries << endl
+        << "Cards: "<< mStatsWrapper->cardCount << endl
+        << "Creatures: "<< setw(2) << mStatsWrapper->countCreatures
+        << "  Enchantments: " << mStatsWrapper->countEnchantments << endl
+        << "Instants: " << setw(4) << mStatsWrapper->countInstants
+        << "   Sorceries:      " << setw(2) << mStatsWrapper->countSorceries << endl
         << "Lands: "
-        << "A: " << setw(2) << left  << stw->countLandsPerColor[ Constants::MTG_COLOR_ARTIFACT ] + stw->countBasicLandsPerColor[ Constants::MTG_COLOR_ARTIFACT ] << " "
-        << "G: " << setw(2) << left  << stw->countLandsPerColor[ Constants::MTG_COLOR_GREEN ] + stw->countLandsPerColor[ Constants::MTG_COLOR_GREEN ] << " "
-        << "R: " << setw(2) << left  << stw->countLandsPerColor[ Constants::MTG_COLOR_RED ] + stw->countBasicLandsPerColor[ Constants::MTG_COLOR_RED ] << " "
-        << "U: " << setw(2) << left  << stw->countLandsPerColor[ Constants::MTG_COLOR_BLUE ] + stw->countBasicLandsPerColor[ Constants::MTG_COLOR_BLUE ] << " "
-        << "B: " << setw(2) << left  << stw->countLandsPerColor[ Constants::MTG_COLOR_BLACK ] + stw->countBasicLandsPerColor[ Constants::MTG_COLOR_BLACK ] << " "
-        << "W: " << setw(2) << left  << stw->countLandsPerColor[ Constants::MTG_COLOR_WHITE ] + stw->countBasicLandsPerColor[ Constants::MTG_COLOR_WHITE ] << endl
+        << "A: " << setw(2) << left  << mStatsWrapper->countLandsPerColor[ Constants::MTG_COLOR_ARTIFACT ] + mStatsWrapper->countBasicLandsPerColor[ Constants::MTG_COLOR_ARTIFACT ] << " "
+        << "G: " << setw(2) << left  << mStatsWrapper->countLandsPerColor[ Constants::MTG_COLOR_GREEN ] + mStatsWrapper->countLandsPerColor[ Constants::MTG_COLOR_GREEN ] << " "
+        << "R: " << setw(2) << left  << mStatsWrapper->countLandsPerColor[ Constants::MTG_COLOR_RED ] + mStatsWrapper->countBasicLandsPerColor[ Constants::MTG_COLOR_RED ] << " "
+        << "U: " << setw(2) << left  << mStatsWrapper->countLandsPerColor[ Constants::MTG_COLOR_BLUE ] + mStatsWrapper->countBasicLandsPerColor[ Constants::MTG_COLOR_BLUE ] << " "
+        << "B: " << setw(2) << left  << mStatsWrapper->countLandsPerColor[ Constants::MTG_COLOR_BLACK ] + mStatsWrapper->countBasicLandsPerColor[ Constants::MTG_COLOR_BLACK ] << " "
+        << "W: " << setw(2) << left  << mStatsWrapper->countLandsPerColor[ Constants::MTG_COLOR_WHITE ] + mStatsWrapper->countBasicLandsPerColor[ Constants::MTG_COLOR_WHITE ] << endl
         << "  --- Mana Curve ---  " << endl;
 
     for ( int costIdx = 0; costIdx < Constants::STATS_MAX_MANA_COST+1; ++costIdx )
-            if ( stw->countCardsPerCost[ costIdx ] > 0 )
-                oss << costIdx << ": " << setw(2) << left << stw->countCardsPerCost[ costIdx ] << "  ";
+            if ( mStatsWrapper->countCardsPerCost[ costIdx ] > 0 )
+                oss << costIdx << ": " << setw(2) << left << mStatsWrapper->countCardsPerCost[ costIdx ] << "  ";
 
     oss << endl;
 
     oss
         << " --- Average Cost --- " << endl
-        << "Creature: "<< setprecision(2) << stw->avgCreatureCost << endl
-        << "Mana: " << setprecision(2) << stw->avgManaCost << "   "
-        << "Spell: " << setprecision(2) << stw->avgSpellCost << endl;
+        << "Creature: "<< setprecision(2) << mStatsWrapper->avgCreatureCost << endl
+        << "Mana: " << setprecision(2) << mStatsWrapper->avgManaCost << "   "
+        << "Spell: " << setprecision(2) << mStatsWrapper->avgSpellCost << endl;
 
     return oss.str();
 }
@@ -93,7 +93,7 @@ string SimplePopup::getDetailedInformation(string filename)
 
 void SimplePopup::Close()
 {
-    closed = true;
+    mClosed = true;
     mCount = 0;
 }
 
@@ -101,7 +101,7 @@ SimplePopup::~SimplePopup(void)
 {
     mTextFont = NULL;
     mDeckInformation = NULL;
-    SAFE_DELETE(stw);
+    SAFE_DELETE(mStatsWrapper);
 }
 
 void SimplePopup::drawHorzPole(float x, float y, float width)

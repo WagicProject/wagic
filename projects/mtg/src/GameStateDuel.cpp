@@ -110,7 +110,7 @@ void GameStateDuel::Start()
             decksneeded = 1;
 
             deckmenu = NEW DeckMenu(DUEL_MENU_CHOOSE_DECK, this, Fonts::OPTION_FONT, "Choose a Deck",
-                    GameStateDuel::selectedPlayerDeckId);
+                    GameStateDuel::selectedPlayerDeckId, true);
 
             DeckManager *deckManager = DeckManager::GetInstance();
             vector<DeckMetaData *> playerDeckList = getValidDeckMetaData(options.profileFile());
@@ -279,7 +279,7 @@ void GameStateDuel::ensureOpponentMenu()
     if (opponentMenu == NULL)
     {
         opponentMenu = NEW DeckMenu(DUEL_MENU_CHOOSE_OPPONENT, this, Fonts::OPTION_FONT, "Choose Your Opponent",
-                GameStateDuel::selectedAIDeckId);
+                GameStateDuel::selectedAIDeckId, true);
         opponentMenu->Add(MENUITEM_RANDOM_AI, "Random");
         if (options[Options::EVILTWIN_MODE_UNLOCKED].number) opponentMenu->Add(MENUITEM_EVIL_TWIN, "Evil Twin", _(
                 "Can you play against yourself?").c_str());
@@ -349,7 +349,7 @@ void GameStateDuel::Update(float dt)
             if (!rules) rules = NEW Rules("mtg.txt");
             if (mParent->players[0] == PLAYER_TYPE_HUMAN)
             {
-                if (!popupScreen || popupScreen->closed) deckmenu->Update(dt);
+                if (!popupScreen || popupScreen->isClosed()) deckmenu->Update(dt);
             }
             else
             {
@@ -359,7 +359,7 @@ void GameStateDuel::Update(float dt)
         }
         break;
     case DUEL_STATE_CHOOSE_DECK1_TO_2:
-        if (deckmenu->closed)
+        if (deckmenu->isClosed())
             mGamePhase = DUEL_STATE_CHOOSE_DECK2;
         else
             deckmenu->Update(dt);
@@ -384,7 +384,7 @@ void GameStateDuel::Update(float dt)
     case DUEL_STATE_CHOOSE_DECK2_TO_PLAY:
         if (mParent->players[1] == PLAYER_TYPE_HUMAN)
         {
-            if (deckmenu->closed)
+            if (deckmenu->isClosed())
                 mGamePhase = DUEL_STATE_PLAY;
             else
                 deckmenu->Update(dt);
@@ -392,7 +392,7 @@ void GameStateDuel::Update(float dt)
         else
         {
             ensureOpponentMenu();
-            if (opponentMenu->closed)
+            if (opponentMenu->isClosed())
                 mGamePhase = DUEL_STATE_PLAY;
             else
                 opponentMenu->Update(dt);
@@ -482,7 +482,7 @@ void GameStateDuel::Update(float dt)
         break;
     case DUEL_STATE_CANCEL:
         menu->Update(dt);
-        if (menu->closed)
+        if (menu->isClosed())
         {
             mGamePhase = DUEL_STATE_PLAY;
             SAFE_DELETE(menu);
@@ -492,7 +492,7 @@ void GameStateDuel::Update(float dt)
         if (menu)
         {
             menu->Update(dt);
-            if (menu->closed)
+            if (menu->isClosed())
             {
                 PlayerData * playerdata = NEW PlayerData(mParent->collection);
                 playerdata->taskList->passOneDay();
@@ -577,11 +577,11 @@ void GameStateDuel::Render()
         {
             if (opponentMenu)
                 opponentMenu->Render();
-            else if (deckmenu && !deckmenu->closed) deckmenu->Render();
+            else if (deckmenu && !deckmenu->isClosed()) deckmenu->Render();
 
             if (menu) menu->Render();
 
-            if (popupScreen && !popupScreen->closed) popupScreen->Render();
+            if (popupScreen && !popupScreen->isClosed()) popupScreen->Render();
         }
         break;
     case DUEL_STATE_ERROR_NO_DECK:
@@ -612,10 +612,10 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
     {
 
     case DUEL_MENU_DETAILED_DECK1_INFO:
-        if ((popupScreen || deckmenu->selectedDeckHasDetails()))
+        if ((popupScreen || deckmenu->showDetailsScreen()))
         {
             DeckMetaData* selectedDeck = deckmenu->getSelectedDeck();
-            if (!popupScreen->closed)
+            if (!popupScreen->isClosed())
             {
                 popupScreen->Close();
                 mGamePhase = DUEL_STATE_CHOOSE_DECK1;
@@ -629,10 +629,10 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
         }
         break;
     case DUEL_MENU_DETAILED_DECK2_INFO:
-        if ((popupScreen || opponentMenu->selectedDeckHasDetails()))
+        if ((popupScreen || opponentMenu->showDetailsScreen()))
         {
             DeckMetaData* selectedDeck = opponentMenu->getSelectedDeck();
-            if (!popupScreen->closed)
+            if (!popupScreen->isClosed())
             {
                 popupScreen->Close();
                 mGamePhase = DUEL_STATE_CHOOSE_DECK2_TO_PLAY;
@@ -667,7 +667,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
                 break;
             }
 
-            else if (controlId == MENUITEM_MORE_INFO && opponentMenu->showDetailsScreen)
+            else if (controlId == MENUITEM_MORE_INFO && opponentMenu->showDetailsScreen())
             {
                 DeckMetaData* selectedDeck = opponentMenu->getSelectedDeck();
                 if (!popupScreen)
@@ -684,7 +684,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
                 mGamePhase = DUEL_STATE_DECK2_DETAILED_INFO;
                 break;
             }
-            else if (controlId == MENUITEM_MORE_INFO && !opponentMenu->showDetailsScreen)
+            else if (controlId == MENUITEM_MORE_INFO && !opponentMenu->showDetailsScreen())
             {
                 // do nothing, ignore all key requests until popup is dismissed.
                 break;
@@ -716,7 +716,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
             mGamePhase = DUEL_STATE_BACK_TO_MAIN_MENU;
             break;
         }
-        else if (controlId == MENUITEM_MORE_INFO && deckmenu->showDetailsScreen)
+        else if (controlId == MENUITEM_MORE_INFO && deckmenu->showDetailsScreen())
         {
             DeckMetaData* selectedDeck = deckmenu->getSelectedDeck();
             if (!popupScreen)
@@ -724,7 +724,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
                 popupScreen = NEW SimplePopup(DUEL_MENU_DETAILED_DECK1_INFO, this, Fonts::MAIN_FONT, "Detailed Information",
                         selectedDeck, mParent->collection);
                 popupScreen->Render();
-                selectedPlayerDeckId = deckmenu->selectedDeckId;
+                selectedPlayerDeckId = deckmenu->getSelectedDeckId();
             }
             else
             {

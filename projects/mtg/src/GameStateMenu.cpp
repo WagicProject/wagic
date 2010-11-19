@@ -573,7 +573,7 @@ void GameStateMenu::Update(float dt)
             currentState &= ~MENU_STATE_MINOR_SUBMENU_CLOSING;
             break;
         }
-        if (subMenuController->closed)
+        if (subMenuController->isClosed())
         {
             SAFE_DELETE(subMenuController);
             currentState &= ~MENU_STATE_MINOR_SUBMENU_CLOSING;

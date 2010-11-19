@@ -24,18 +24,22 @@ private:
     DeckMetaData * mDeckInformation;
     string mTitle;
     WFont *mTextFont;
-    StatsWrapper *stw;
+    StatsWrapper *mStatsWrapper;
+    bool mClosed;
+    MTGAllCards * mCollection;
 
     void drawHorzPole(float x, float y, float width);
     void drawVertPole(float x, float y, float height);
 
 public:
-    MTGAllCards * mCollection;
     bool autoTranslate;
-    bool closed;
+
 
     SimplePopup(int id, JGuiListener* listener, const int fontId, const char * _title = "", DeckMetaData* deckInfo = NULL, MTGAllCards * collection = NULL);
     ~SimplePopup(void);
+    
+    bool isClosed() { return mClosed; }
+    MTGAllCards* getCollection() { return mCollection; }
     void Render();
     void Update(DeckMetaData* deckMetaData);
 

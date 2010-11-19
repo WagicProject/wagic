@@ -38,7 +38,7 @@ SimpleMenu::SimpleMenu(int id, JGuiListener* listener, int fontId, float x, floa
     maxItems = _maxItems;
     selectionT = 0;
     timeOpen = 0;
-    closed = false;
+    mClosed = false;
     selectionTargetY = selectionY = y + kVerticalMargin;
 
     JRenderer* renderer = JRenderer::GetInstance();
@@ -168,13 +168,13 @@ void SimpleMenu::Update(float dt)
         if (timeOpen >= 0)
         {
             timeOpen = 0;
-            closed = true;
+            mClosed = true;
             stars->FireAt(mX, mY);
         }
     }
     else
     {
-        closed = false;
+        mClosed = false;
         timeOpen += dt * 10;
     }
 }
