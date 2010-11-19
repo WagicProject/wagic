@@ -425,7 +425,7 @@ AForeverTransformer::AForeverTransformer(int id, MTGCardInstance * source, MTGCa
         }
     }
 }
-int addToGame()
+int AForeverTransformer::addToGame()
 {
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
@@ -706,5 +706,5 @@ ABecomesUEOT * ABecomesUEOT::clone() const
 
 ABecomesUEOT::~ABecomesUEOT()
 {
-    SAFE_DELETE ability;
+    SAFE_DELETE(ability);
 }
