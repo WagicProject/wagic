@@ -3,11 +3,11 @@
 
 // BanishCard implementations
 
-AABanishCard::AABanishCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost = NULL, int _banishmentType = -1) :
+AABanishCard::AABanishCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost = NULL,
+        int _banishmentType = -1) :
     ActivatedAbility(_id, _source, _cost), banishmentType(_banishmentType)
 {
-    if (_target)
-        target = _target;
+    if (_target) target = _target;
 }
 
 const char * AABanishCard::getMenuText()
@@ -31,7 +31,7 @@ AABanishCard * AABanishCard::clone() const
 // Bury
 
 AABuryCard::AABuryCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost = NULL, int _banishmentType =
-                0) :
+        0) :
     AABanishCard(_id, _source, _target, _cost, AABanishCard::BURY)
 {
 }
@@ -60,7 +60,8 @@ AABuryCard * AABuryCard::clone() const
 
 // Destroy
 
-AADestroyCard::AADestroyCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost = NULL, int _banishmentType = 0) :
+AADestroyCard::AADestroyCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost = NULL,
+        int _banishmentType = 0) :
     AABanishCard(_id, _source, _target, _cost, AABanishCard::DESTROY)
 {
 }
@@ -88,7 +89,8 @@ AADestroyCard * AADestroyCard::clone() const
 }
 
 // Sacrifice
-AASacrificeCard::AASacrificeCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost = NULL, int _banishmentType = 0) :
+AASacrificeCard::AASacrificeCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost = NULL,
+        int _banishmentType = 0) :
     AABanishCard(_id, _source, _target, _cost, AABanishCard::SACRIFICE)
 {
 }
@@ -123,7 +125,7 @@ AASacrificeCard * AASacrificeCard::clone() const
 // Discard 
 
 AADiscardCard::AADiscardCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost = NULL,
-                int _banishmentType = 0) :
+        int _banishmentType = 0) :
     AABanishCard(_id, _source, _target, _cost, AABanishCard::DISCARD)
 {
 }
@@ -208,4 +210,149 @@ AManaRedux * AManaRedux::clone() const
 
 AManaRedux::~AManaRedux()
 {
+}
+
+// ABecomes
+ABecomes::ABecomes(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, WParsedPT * wppt, string sabilities) :
+    MTGAbility(id, source, target), wppt(wppt)
+{
+
+    aType = MTGAbility::STANDARD_BECOMES;
+
+    for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++)
+    {
+        size_t found = sabilities.find(Constants::MTGBasicAbilities[j]);
+        if (found != string::npos)
+        {
+            abilities.push_back(j);
+        }
+    }
+
+    for (int j = 0; j < Constants::MTG_NB_COLORS; j++)
+    {
+        size_t found = sabilities.find(Constants::MTGColorStrings[j]);
+        if (found != string::npos)
+        {
+            colors.push_back(j);
+        }
+    }
+
+    string s = stypes;
+    menu = stypes;
+    while (s.size())
+    {
+        size_t found = s.find(" ");
+        if (found != string::npos)
+        {
+            int id = Subtypes::subtypesList->find(s.substr(0, found));
+            types.push_back(id);
+            s = s.substr(found + 1);
+        }
+        else
+        {
+            int id = Subtypes::subtypesList->find(s);
+            types.push_back(id);
+            s = "";
+        }
+    }
+}
+int ABecomes::addToGame()
+{
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    list<int>::iterator it;
+    for (it = types.begin(); it != types.end(); it++)
+    {
+        _target->addType(*it);
+    }
+    for (it = colors.begin(); it != colors.end(); it++)
+    {
+        _target->setColor(*it);
+    }
+    for (it = abilities.begin(); it != abilities.end(); it++)
+    {
+        _target->basicAbilities[*it]++;
+    }
+
+    if (wppt)
+    {
+        _target->power = wppt->power.getValue();
+        _target->toughness = wppt->toughness.getValue();
+        _target->life = _target->toughness;
+    }
+    return MTGAbility::addToGame();
+}
+
+int ABecomes::destroy()
+{
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    list<int>::iterator it;
+    for (it = types.begin(); it != types.end(); it++)
+    {
+        _target->removeType(*it);
+    }
+    for (it = colors.begin(); it != colors.end(); it++)
+    {
+        _target->removeColor(*it);
+    }
+    for (it = abilities.begin(); it != abilities.end(); it++)
+    {
+        _target->basicAbilities[*it]--;
+    }
+    return 1;
+}
+
+const char * ABecomes::getMenuText()
+{
+    string s = menu;
+    sprintf(menuText, "Becomes %s", s.c_str());
+    return menuText;
+}
+
+ABecomes * ABecomes::clone() const
+{
+    ABecomes * a = NEW ABecomes(*this);
+    if (a->wppt) a->wppt = NEW WParsedPT(*(a->wppt));
+    a->isClone = 1;
+    return a;
+}
+
+ABecomes::~ABecomes()
+{
+    SAFE_DELETE (wppt);
+}
+
+//  ABecomes
+
+// ABecomesUEOT
+ABecomesUEOT::ABecomesUEOT(int id, MTGCardInstance * source, MTGCardInstance * target, string types, WParsedPT * wpt, string abilities) :
+    InstantAbility(id, source, target)
+{
+    ability = NEW ABecomes(id, source, target, types, wpt, abilities);
+    aType = MTGAbility::STANDARD_BECOMES;
+}
+
+int ABecomesUEOT::resolve()
+{
+    ABecomes * a = ability->clone();
+    GenericInstantAbility * wrapper = NEW GenericInstantAbility(1, source, (Damageable *) (this->target), a);
+    wrapper->addToGame();
+    return 1;
+}
+
+const char * ABecomesUEOT::getMenuText()
+{
+    return ability->getMenuText();
+}
+
+ABecomesUEOT * ABecomesUEOT::clone() const
+{
+    ABecomesUEOT * a = NEW ABecomesUEOT(*this);
+    a->ability = this->ability->clone();
+    a->isClone = 1;
+    return a;
+}
+
+ABecomesUEOT::~ABecomesUEOT()
+{
+    SAFE_DELETE ability;
 }
