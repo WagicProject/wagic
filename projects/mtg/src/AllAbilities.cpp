@@ -392,8 +392,6 @@ MTGAbility(id, source, target)
     aType = MTGAbility::STANDARD_BECOMES;
     //TODO this is a copy/past of other code that's all around the place, everything should be in a dedicated parser class;
     MTGCardInstance * _target = (MTGCardInstance *) target;
-    vector<string> cardSubTypes = split( stypes, ' ');
-
 
     for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++)
     {
@@ -418,7 +416,7 @@ MTGAbility(id, source, target)
     for (vector<string>::iterator it = subTypesList.begin(); it != subTypesList.end(); ++it)
     {
         string subtype = *it;
-        int id = Subtypes::subtypesList->find( subtype );
+        size_t id = Subtypes::subtypesList->find( subtype );
         if ( id != string::npos )
             types.push_back(id);
     }
