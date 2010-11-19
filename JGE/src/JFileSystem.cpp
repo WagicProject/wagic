@@ -85,7 +85,7 @@ void JFileSystem::Destroy()
 JFileSystem::JFileSystem()
 {
 	mZipAvailable = false;
-#if defined (WIN32) || defined (LINUX)
+#if defined (WIN32) || defined (LINUX) || defined (IOS)
 	mFile = NULL;
 #else
 	mFile = -1;
@@ -95,9 +95,9 @@ JFileSystem::JFileSystem()
 	mFileSize = 0;
 
 #ifdef RESPATH
-	mResourceRoot = RESPATH"/";
+	SetResourceRoot(RESPATH"/");
 #else
-	mResourceRoot = "Res/";				// default root folder
+	SetResourceRoot("Res/");				// default root folder
 #endif
 }
 
@@ -186,7 +186,7 @@ bool JFileSystem::OpenFile(const string &filename)
 	}
 	else
 	{
-		#if defined (WIN32) || defined (LINUX)
+		#if defined (WIN32) || defined (LINUX)|| defined (IOS)
 			mFile = fopen(path.c_str(), "rb");
 			if (mFile != NULL)
 			{
@@ -220,7 +220,7 @@ void JFileSystem::CloseFile()
 		return;
   }
 
-	#if defined (WIN32) || defined (LINUX)
+	#if defined (WIN32) || defined (LINUX) || defined (IOS)
 		if (mFile != NULL)
 			fclose(mFile);
 	#else
@@ -238,7 +238,7 @@ int JFileSystem::ReadFile(void *buffer, int size)
 	}
 	else
 	{
-		#if defined (WIN32) || defined (LINUX)
+		#if defined (WIN32) || defined (LINUX) || defined (IOS)
 			return fread(buffer, 1, size, mFile);
 		#else
 			return sceIoRead(mFile, buffer, size);
@@ -255,7 +255,14 @@ int JFileSystem::GetFileSize()
 
 void JFileSystem::SetResourceRoot(const string& resourceRoot)
 {
+#ifdef IOS
+	NSString *pathUTF8 = [NSString stringWithUTF8String: resourceRoot.c_str()];
+	NSString *fullpath = [[[NSBundle mainBundle] resourcePath]  stringByAppendingPathComponent:pathUTF8]; 
+	mResourceRoot = [fullpath cStringUsingEncoding:1];
+	mResourceRoot += "/";
+#else
 	mResourceRoot = resourceRoot;
+#endif
 }
 
 string JFileSystem::GetResourceRoot() 

@@ -10,7 +10,7 @@ using std::map;
 static map<const LocalKeySym, KeyRep> fattable;
 static map<const JButton, KeyRep> slimtable;
 
-#ifdef LINUX
+#if defined(LINUX) || defined (IOS)
 const KeyRep& translateKey(LocalKeySym key)
 {
     {
@@ -20,7 +20,7 @@ const KeyRep& translateKey(LocalKeySym key)
     }
 
     char* str = NULL;
-#ifndef QT_CONFIG
+#if not defined(QT_CONFIG) && not defined(IOS)
     str = XKeysymToString(key);
 #endif // QT_CONFIG
     if (!str)

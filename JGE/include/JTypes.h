@@ -11,7 +11,7 @@
 #ifndef _JTYPES_H
 #define _JTYPES_H
 
-#if defined (WIN32) || defined (LINUX)
+#if defined (WIN32) || defined (LINUX) || defined (IOS)
 
 #include <stdint.h>
 
@@ -81,15 +81,24 @@ enum {
 #ifdef WIN32
 	#include <windows.h>
 #endif
-#ifdef LINUX
+#if defined(LINUX) || defined(IOS)
         typedef uint8_t byte;
         typedef uint32_t DWORD;
         typedef uint8_t BYTE;
-        typedef bool BOOL;
+#ifndef IOS
+		typedef bool BOOL;
+#endif
 #endif
 
+
+
 #ifndef QT_CONFIG
-#if defined (WIN32) || defined (LINUX)
+#if defined (IOS)
+	#import <OpenGLES/ES2/gl.h>
+	#import <OpenGLES/ES2/glext.h>
+	#import <OpenGLES/ES1/gl.h>
+#	import <OpenGLES/ES1/glext.h>
+#elif defined (WIN32) || defined (LINUX)
 	#include <GL/gl.h>
 	#include <GL/glu.h>
 #endif
@@ -97,7 +106,7 @@ enum {
 # include <QtOpenGL>
 #endif
 
-#if defined (WIN32) || defined (LINUX)
+#if defined (WIN32) || defined (LINUX) || defined (IOS)
 
 typedef int8_t s8;
 typedef int16_t s16;
@@ -329,7 +338,7 @@ public:
 
 	int mFilter;
 
-#if defined (WIN32) || defined (LINUX)
+#if defined (WIN32) || defined (LINUX) || defined (IOS) 	
 	GLuint mTexId;
 #else
   int mTextureFormat;
@@ -439,7 +448,7 @@ public:
 
 	JTexture* mTex;
 
-#if defined (WIN32) || defined(LINUX)
+#if defined (WIN32) || defined(LINUX) || defined(IOS)
 	float mTX0;
 	float mTY0;
 	float mTX1;
@@ -499,7 +508,7 @@ public:
 
 
 //------------------------------------------------------------------------------------------------
-class Rect
+class JgeRect
 {
 public:
 	int x;
@@ -508,7 +517,7 @@ public:
 	int height;
 
 public:
-	Rect(int _x, int _y, int _width, int _height): x(_x), y(_y), width(_width), height(_height) {}
+	JgeRect(int _x, int _y, int _width, int _height): x(_x), y(_y), width(_width), height(_height) {}
 
 };
 

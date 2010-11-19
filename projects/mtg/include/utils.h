@@ -3,7 +3,7 @@
 
 #include <JGE.h>
 
-#if defined (WIN32) || defined (LINUX)
+#if defined (WIN32) || defined (LINUX) || defined (IOS) 
 
 #else
 #include <pspkernel.h>

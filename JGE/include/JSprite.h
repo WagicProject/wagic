@@ -11,7 +11,7 @@
 #ifndef _SPRITE_H_
 #define _SPRITE_H_
 
-#if defined (WIN32) || defined(LINUX)
+#if defined (WIN32) || defined(LINUX) || defined(IOS)
 #include <math.h>
 #else
 #include <fastmath.h>

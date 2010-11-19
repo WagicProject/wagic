@@ -309,7 +309,8 @@ JGE::~JGE()
 
 
 
-#if defined (WIN32) || defined (LINUX) // Non-PSP code
+#if defined (WIN32) || defined (LINUX)  || defined (IOS)
+// Non-PSP code
 
 void JGE::Init()
 {

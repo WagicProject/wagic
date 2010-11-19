@@ -55,7 +55,7 @@ Task::Task(char _type)
 {
     reward = 0;
     expiresIn = 1;
-    accepted = FALSE;
+    accepted = false;
     if (_type == ' ')
     {
         type = TASK_BASIC;
@@ -603,7 +603,7 @@ void TaskList::addRandomTask(int diff)
     string s(TASKS_ALL);
     char taskType[2];
     sprintf(taskType, "%c", s[rand() % s.length()]);
-    addTask(string(taskType), TRUE);
+    addTask(string(taskType), true);
 }
 
 TaskList::~TaskList()
@@ -742,7 +742,7 @@ TaskDelay::TaskDelay(int _opponent, int _turn) :
 {
     type = TASK_DELAY;
     turn = _turn;
-    afterTurn = TRUE;
+    afterTurn = true;
 }
 
 int TaskDelay::computeReward()

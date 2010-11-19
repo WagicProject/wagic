@@ -60,7 +60,7 @@ class Interruptible: public PlayGuiObject, public Targetable{
   virtual const string getDisplayName() const;
   void Render(MTGCardInstance * source, JQuad * targetQuad, string alt1, string alt2, string action, bool bigQuad = false);
   virtual int receiveEvent(WEvent * event) {return 0;};
-#if defined (WIN32) || defined (LINUX)
+#if defined (WIN32) || defined (LINUX) || defined (IOS)
   virtual void Dump();
 #endif
 };
@@ -181,8 +181,8 @@ class ActionStack :public GuiLayer{
   int has(Interruptible * action);
   int has(MTGAbility * ability);
   int receiveEventPlus(WEvent * event);
-#if defined (WIN32) || defined (LINUX)
-   void Dump();
+#if defined (WIN32) || defined (LINUX) || defined (IOS)
+  void Dump();
 #endif
 
 };

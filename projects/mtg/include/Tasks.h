@@ -51,7 +51,7 @@ public:
 
   Task(char _type = ' ');
 
-  static Task* createFromStr(string params, bool rand = FALSE);
+  static Task* createFromStr(string params, bool rand = false);
   virtual string toString();
   string getDesc();
   virtual string createDesc() = 0;
@@ -89,7 +89,7 @@ public:
   int load(string _fileName = "");
   int save(string _fileName = "");
   int getState() {return mState;};
-  void addTask(string params, bool rand = FALSE);
+  void addTask(string params, bool rand = false);
   void addTask(Task *task);
   void addRandomTask(int diff = 100);
   void removeTask(Task *task);

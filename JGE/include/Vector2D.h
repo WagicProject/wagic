@@ -13,7 +13,7 @@
 
 #ifdef WIN32
 #include <math.h>
-#elif defined LINUX
+#elif (defined LINUX) || (defined IOS)
 #include <math.h>
 #else
 #include <fastmath.h>

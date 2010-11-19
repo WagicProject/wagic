@@ -51,7 +51,7 @@ u8 JGEGetAnalogX();
 u8 JGEGetAnalogY();
 bool JGEToggleFullscreen();
 
-#if !defined(WIN32) && !defined(LINUX)
+#if !defined(WIN32) && !defined(LINUX) && !defined(IOS)
 
 #include <pspgu.h>
 #include <pspkernel.h>

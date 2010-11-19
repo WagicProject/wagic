@@ -9,6 +9,7 @@
 //-------------------------------------------------------------------------------------
 #define GL_GLEXT_PROTOTYPES
 
+#ifndef IOS
 #ifdef WIN32
   #pragma warning(disable : 4786)
   #pragma comment( lib, "giflib.lib" )
@@ -26,7 +27,7 @@ extern "C" {
 #ifdef __cplusplus
 }
 #endif
-
+#endif //IOS
 
 #include "../../include/JGE.h"
 #include "../../include/JRenderer.h"
@@ -1469,7 +1470,7 @@ static int getNextPower2(int width)
 }
 
 
-
+#ifndef IOS
 static void jpg_null(j_decompress_ptr cinfo __attribute__((unused)))
 {
 }
@@ -1649,7 +1650,6 @@ static void PNGCustomReadDataFn(png_structp png_ptr, png_bytep data, png_size_t 
    }
 }
 
-
 JTexture* JRenderer::LoadTexture(const char* filename, int mode, int TextureFormat __attribute__((unused)))
 {
 	TextureInfo textureInfo;
@@ -1663,10 +1663,10 @@ JTexture* JRenderer::LoadTexture(const char* filename, int mode, int TextureForm
 	else if(strstr(filename, ".png")!=NULL || strstr(filename, ".PNG")!=NULL)
 		LoadPNG(textureInfo, filename);
 
-        if (textureInfo.mBits == NULL) {
-            printf("Texture %s failed to load\n", filename);
-            return NULL;
-        }
+  if (textureInfo.mBits == NULL) {
+      printf("Texture %s failed to load\n", filename);
+      return NULL;
+  }
 
 	bool ret = false;
 
@@ -1720,10 +1720,10 @@ JTexture* JRenderer::LoadTexture(const char* filename, int mode, int TextureForm
 				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 				glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
 				glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
-                                glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureInfo.mTexWidth, textureInfo.mTexHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureInfo.mBits);
-                        }
+				glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureInfo.mTexWidth, textureInfo.mTexHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureInfo.mBits);
+			}
 
-			ret = TRUE;
+			ret = true;
 
 		}
     else
@@ -2038,7 +2038,92 @@ void JRenderer::LoadGIF(TextureInfo &textureInfo, const char *filename, int mode
 	return ;//*/
 }
 
+#else //IOS
 
+#include <UIKit/UIImage.h>
+
+JTexture* JRenderer::LoadTexture(const char* filename, int mode, int TextureFormat __attribute__((unused)))
+{
+	TextureInfo textureInfo;
+	
+	textureInfo.mBits = NULL;
+	
+	NSString *path = [NSString stringWithUTF8String: JGE_GET_RES(filename).c_str()];
+//	NSString *path = [[[NSBundle mainBundle] resourcePath]  stringByAppendingPathComponent:newString2];
+    NSData *texData = [[NSData alloc] initWithContentsOfFile:path];
+    UIImage *image = [[UIImage alloc] initWithData:texData];
+    if (image == nil)
+        NSLog(@"Do real error checking here");
+	
+    textureInfo.mWidth = CGImageGetWidth(image.CGImage);
+    textureInfo.mHeight = CGImageGetHeight(image.CGImage);
+	textureInfo.mTexWidth = textureInfo.mWidth;
+	textureInfo.mTexHeight = textureInfo.mHeight;
+	
+	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    textureInfo.mBits = new u8 [ textureInfo.mHeight * textureInfo.mWidth * 4 ];
+    CGContextRef context = CGBitmapContextCreate( textureInfo.mBits, textureInfo.mWidth, textureInfo.mHeight, 8, 4 * textureInfo.mWidth, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big );
+    CGColorSpaceRelease( colorSpace );
+    CGContextClearRect( context, CGRectMake( 0, 0, textureInfo.mWidth, textureInfo.mHeight ) );
+    CGContextTranslateCTM( context, 0, textureInfo.mHeight - textureInfo.mHeight );
+    CGContextDrawImage( context, CGRectMake( 0, 0, textureInfo.mWidth, textureInfo.mHeight ), image.CGImage );
+	
+	if (textureInfo.mBits == NULL) {
+		printf("Texture %s failed to load\n", filename);
+		return NULL;
+	}
+	
+	bool ret = false;
+	
+	JTexture *tex = new JTexture();
+	
+ 	if (tex)
+	{
+		if (mImageFilter != NULL)
+			mImageFilter->ProcessImage((PIXEL_TYPE*)textureInfo.mBits, textureInfo.mWidth, textureInfo.mHeight);
+		
+		tex->mFilter = TEX_FILTER_LINEAR;
+		tex->mWidth = textureInfo.mWidth;
+		tex->mHeight = textureInfo.mHeight;
+		tex->mTexWidth = textureInfo.mTexWidth;
+		tex->mTexHeight = textureInfo.mTexHeight;
+		
+		GLuint texid;
+		checkGlError();
+		glGenTextures(1, &texid);
+		tex->mTexId = texid;
+		//    glError = glGetError();
+		
+		glBindTexture(GL_TEXTURE_2D, texid);    // Bind To The Texture ID
+			
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureInfo.mTexWidth, textureInfo.mTexHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureInfo.mBits);
+			
+		ret = true;
+	}
+	
+    CGContextRelease(context);
+	
+	delete [] textureInfo.mBits;
+	//delete textureInfo;
+	
+    [image release];
+    [texData release];
+		
+	if (!ret)
+	{
+		if (tex)
+			delete tex;
+		tex = NULL;
+	}
+	
+	checkGlError();
+	return tex;
+}
+#endif //IOS
 
 JTexture* JRenderer::CreateTexture(int width, int height, int mode __attribute__((unused)))
 {

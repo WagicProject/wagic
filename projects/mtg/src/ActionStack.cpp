@@ -1091,7 +1091,7 @@ void ActionStack::Render()
     }
 }
 
-#if defined (WIN32) || defined (LINUX)
+#if defined (WIN32) || defined (LINUX)  || defined (IOS)
 
 void Interruptible::Dump()
 {

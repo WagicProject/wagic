@@ -278,7 +278,7 @@ int GameStateMenu::nextDirectory(const char * root, const char * file)
     int found = 0;
     if (!mDip)
     {
-        mDip = opendir(root);
+        mDip = opendir(JGE_GET_RES(root).c_str());
     }
 
     while (!found && (mDit = readdir(mDip)))

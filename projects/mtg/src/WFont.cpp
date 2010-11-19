@@ -249,7 +249,7 @@ int WFBFont::PreCacheChar(const u8 *ch)
     int index = mCurr++;
     if (mCurr >= mCacheSize) mCurr = 0;
 
-#if defined (WIN32) || defined (LINUX)
+#if defined (WIN32) || defined (LINUX)  || defined (IOS)
     int x = 0;
     int y = 0;
     memset(mCharBuffer, 0, sizeof(u32) * mFontSize * mFontSize);
@@ -285,7 +285,7 @@ int WFBFont::PreCacheChar(const u8 *ch)
 #if 1
         for (; j < offset; j++)
         {
-#if defined (WIN32) || defined (LINUX)
+#if defined (WIN32) || defined (LINUX) || defined (IOS)
             mCharBuffer[y * mFontSize + x] = ARGB(0, 0, 0, 0);
 #else
             SwizzlePlot(pTexture, ARGB(0, 0, 0, 0), x * PIXEL_SIZE, y, mTexture->mTexWidth * PIXEL_SIZE);
@@ -300,7 +300,7 @@ int WFBFont::PreCacheChar(const u8 *ch)
             gray = src[(i * size + j - offset) / 2];
             gray = ((j - offset) & 1) ? (gray & 0xF0) : ((gray & 0x0F) << 4);
             if (gray) gray |= 0x0F;
-#if defined (WIN32) || defined (LINUX)
+#if defined (WIN32) || defined (LINUX) || defined (IOS)
             mCharBuffer[y * mFontSize + x] = ARGB(gray, 255, 255, 255);
 #else
             SwizzlePlot(pTexture, ARGB(gray, 255, 255, 255), x * PIXEL_SIZE, y, mTexture->mTexWidth * PIXEL_SIZE);
@@ -309,7 +309,7 @@ int WFBFont::PreCacheChar(const u8 *ch)
         }
         for (; j < mFontSize; j++)
         {
-#if defined (WIN32) || defined (LINUX)
+#if defined (WIN32) || defined (LINUX) || defined (IOS)
             mCharBuffer[y * mFontSize + x] = ARGB(0, 0, 0, 0);
 #else
             SwizzlePlot(pTexture, ARGB(0, 0, 0, 0), x * PIXEL_SIZE, y, mTexture->mTexWidth * PIXEL_SIZE);
@@ -321,7 +321,7 @@ int WFBFont::PreCacheChar(const u8 *ch)
 
     mGBCode[index] = code;
 
-#if defined (WIN32) || defined (LINUX)
+#if defined (WIN32) || defined (LINUX) || defined (IOS)
     x = (int)mSprites[index]->mX;
     y = (int)mSprites[index]->mY;
     glTexSubImage2D(GL_TEXTURE_2D, 0, x, y, mFontSize, mFontSize, GL_RGBA, GL_UNSIGNED_BYTE, mCharBuffer);
@@ -601,7 +601,7 @@ WGBKFont::WGBKFont(int inFontID, const char *fontname, int lineheight, bool useV
     mSprites = NEW JQuad*[mCacheSize];
     mGBCode = NEW int[mCacheSize];
 
-#if defined (WIN32) || defined (LINUX)
+#if defined (WIN32) || defined (LINUX) || defined (IOS)
     mCharBuffer = NEW u32[mFontSize*mFontSize];
 #endif
 
@@ -657,7 +657,7 @@ int WGBKFont::PreCacheChar(const u8 *ch)
     int index = mCurr++;
     if (mCurr >= mCacheSize) mCurr = 0;
 
-#if defined (WIN32) || defined (LINUX)
+#if defined (WIN32) || defined (LINUX) || defined (IOS)
     int x = 0;
     int y = 0;
     memset(mCharBuffer, 0, sizeof(u32) * mFontSize * mFontSize);
@@ -685,7 +685,7 @@ int WGBKFont::PreCacheChar(const u8 *ch)
     // set up the font texture buffer
     for (unsigned int i = 0; i < mFontSize; i++)
     {
-#if defined (WIN32) || defined (LINUX)
+#if defined (WIN32) || defined (LINUX) || defined (IOS)
         x = 0;
 #else
         x = (int) mSprites[index]->mX;
@@ -694,7 +694,7 @@ int WGBKFont::PreCacheChar(const u8 *ch)
 #if 1
         for (; j < offset; j++)
         {
-#if defined (WIN32) || defined (LINUX)
+#if defined (WIN32) || defined (LINUX) || defined (IOS)
             mCharBuffer[y * mFontSize + x] = ARGB(0, 0, 0, 0);
 #else
             SwizzlePlot(pTexture, ARGB(0, 0, 0, 0), x * PIXEL_SIZE, y, mTexture->mTexWidth * PIXEL_SIZE);
@@ -709,7 +709,7 @@ int WGBKFont::PreCacheChar(const u8 *ch)
             gray = src[(i * size + j - offset) / 2];
             gray = ((j - offset) & 1) ? (gray & 0xF0) : ((gray & 0x0F) << 4);
             if (gray) gray |= 0x0F;
-#if defined (WIN32) || defined (LINUX)
+#if defined (WIN32) || defined (LINUX) || defined (IOS)
             mCharBuffer[y * mFontSize + x] = ARGB(gray, 255, 255, 255);
 #else
             SwizzlePlot(pTexture, ARGB(gray, 255, 255, 255), x * PIXEL_SIZE, y, mTexture->mTexWidth * PIXEL_SIZE);
@@ -718,7 +718,7 @@ int WGBKFont::PreCacheChar(const u8 *ch)
         }
         for (; j < mFontSize; j++)
         {
-#if defined (WIN32) || defined (LINUX)
+#if defined (WIN32) || defined (LINUX) || defined (IOS)
             mCharBuffer[y * mFontSize + x] = ARGB(0, 0, 0, 0);
 #else
             SwizzlePlot(pTexture, ARGB(0, 0, 0, 0), x * PIXEL_SIZE, y, mTexture->mTexWidth * PIXEL_SIZE);
@@ -730,7 +730,7 @@ int WGBKFont::PreCacheChar(const u8 *ch)
 
     mGBCode[index] = code;
 
-#if defined (WIN32) || defined (LINUX)
+#if defined (WIN32) || defined (LINUX) || defined (IOS)
     x = (int)mSprites[index]->mX;
     y = (int)mSprites[index]->mY;
     glTexSubImage2D(GL_TEXTURE_2D, 0, x, y, mFontSize, mFontSize, GL_RGBA, GL_UNSIGNED_BYTE, mCharBuffer);

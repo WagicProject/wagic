@@ -16,7 +16,9 @@
 #include <string.h>
 #include <stdarg.h>
 
+#ifndef IOS 
 #include <gif_lib.h>
+#endif //IOS
 
 #include "JTypes.h"
 
@@ -25,7 +27,7 @@
 
 	#include <windows.h>
 
-#elif defined (LINUX)
+#elif defined (LINUX) || defined(IOS)
 
 #else
 
@@ -78,7 +80,7 @@ protected:
 
 public:
 
-#if defined (WIN32) || defined (LINUX)
+#if defined (WIN32) || defined (LINUX) || defined (IOS)
 #else
   int PixelSize(int textureMode);
 #endif
@@ -560,16 +562,17 @@ private:
 		bool mVRAM;
 	};
 
+#ifndef IOS
 	void LoadJPG(TextureInfo &textureInfo, const char *filename, int mode = 0, int TextureFormat = TEXTURE_FORMAT);
 	int LoadPNG(TextureInfo &textureInfo, const char *filename, int mode = 0, int TextureFormat = TEXTURE_FORMAT);
 	void LoadGIF(TextureInfo &textureInfo, const char *filename, int mode = 0, int TextureFormat = TEXTURE_FORMAT);
 	int image_readgif(void * handle, TextureInfo &textureInfo, DWORD * bgcolor, InputFunc readFunc,int mode = 0, int TextureFormat = TEXTURE_FORMAT);
-
+#endif //(IOS)
+	
 	static JRenderer* mInstance;
 
-
-#if defined (WIN32) || defined (LINUX)
-
+#if defined (WIN32) || defined (LINUX) || defined (IOS)
+	
 	GLuint mCurrentTex;
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0) || (defined WIN32)
   // MVP matrix

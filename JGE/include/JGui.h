@@ -89,7 +89,7 @@ protected:
     int mBgY;
     const JTexture* mBg;
     PIXEL_TYPE mShadingColor;
-    Rect* mShadingBg;
+    JgeRect* mShadingBg;
 
     JGuiListener* mListener;
     //int mKeyHoldTime;

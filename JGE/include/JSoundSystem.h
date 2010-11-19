@@ -27,7 +27,8 @@
 
 	#include <windows.h>
 #define WITH_FMOD
-#elif defined (LINUX)
+#elif defined (LINUX) || defined (IOS)
+
 #else
 
 	#include <pspgu.h>
@@ -72,12 +73,12 @@ public:
 
 #else
 
-#if defined (WIN32) || defined (LINUX)
-  #ifdef WITH_FMOD
+#if defined (WIN32) || defined (LINUX) || defined (IOS)
+#ifdef WITH_FMOD
   FSOUND_SAMPLE* mTrack;		// MP3 needed to be of "sample" type for FMOD, FMUSIC_MODULE is for MODs
   #else
   void* mTrack;
-  #endif
+#endif
 #else
   JMP3* mTrack;
 #endif
@@ -96,8 +97,8 @@ class JSample
   int mVoice;
 
   unsigned long fileSize();
-#if defined (WIN32) || defined (LINUX)
-  #ifdef WITH_FMOD
+#if defined (WIN32) || defined (LINUX) || defined (IOS)
+#ifdef WITH_FMOD
   FSOUND_SAMPLE *mSample;
   #else
 #ifdef USE_PHONON

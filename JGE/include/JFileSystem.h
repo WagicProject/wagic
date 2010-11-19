@@ -19,7 +19,7 @@
 #include <map>
 #include <string>
 
-#if defined (WIN32) || defined (LINUX)
+#if defined (WIN32) || defined (LINUX) || defined(IOS)
 
 #else
 	#include <pspiofilemgr.h>
@@ -130,7 +130,7 @@ private:
 	char *mPassword;
 	bool mZipAvailable;
   void preloadZip(string filename);
-#if defined (WIN32) || defined (LINUX)
+#if defined (WIN32) || defined (LINUX) || defined(IOS)
 	FILE *mFile;
 #else
 	SceUID mFile;

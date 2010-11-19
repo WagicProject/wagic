@@ -188,7 +188,7 @@ int JGBKFont::PreCacheChar(const BYTE *ch)
 	if (mCurr >= mCacheSize)
 		mCurr = 0;
 
-#if defined (WIN32) || defined (LINUX)
+#if defined (WIN32) || defined (LINUX) || defined (IOS)
 	int x = 0;
 	int y = 0;
 
@@ -225,7 +225,7 @@ int JGBKFont::PreCacheChar(const BYTE *ch)
 				BYTE bitMask = 0x80;
 				for (int z=0;z<8&&bitCount;z++)
 				{
-#if defined (WIN32) || defined (LINUX)
+#if defined (WIN32) || defined (LINUX) || defined (IOS)
 					if ((bits & bitMask) != 0)
 						mCharBuffer[y*mFontSize+x] = ARGB(255,255,255,255);
 					else
@@ -257,7 +257,7 @@ int JGBKFont::PreCacheChar(const BYTE *ch)
 		for (int i=0;i<size;)
 		{
 
-#if defined (WIN32) || defined (LINUX)
+#if defined (WIN32) || defined (LINUX) || defined (IOS)
 			x = 0;
 #else
 			x = (int)mSprites[index]->mX;
@@ -269,7 +269,7 @@ int JGBKFont::PreCacheChar(const BYTE *ch)
 
 				for (n=0;n<(mFontSize-8)/2;n++)
 				{
-	#if defined (WIN32) || defined (LINUX)
+	#if defined (WIN32) || defined (LINUX) || defined (IOS)
 					mCharBuffer[y*mFontSize+x] = ARGB(0,0,0,0);
 	#else
 					SwizzlePlot(pTexture, ARGB(0,0,0,0), x*PIXEL_SIZE, y, mTexture->mTexWidth*PIXEL_SIZE);
@@ -286,7 +286,7 @@ int JGBKFont::PreCacheChar(const BYTE *ch)
 				BYTE bitMask = 0x80;
 				for (int z=0;z<8&&bitCount;z++)
 				{
-				#if defined (WIN32) || defined (LINUX)
+				#if defined (WIN32) || defined (LINUX) || defined (IOS)
 					if ((bits & bitMask) != 0)
 						mCharBuffer[y*mFontSize+x] = ARGB(255,255,255,255);
 					else
@@ -308,7 +308,7 @@ int JGBKFont::PreCacheChar(const BYTE *ch)
 
 				for (n=0;n<(mFontSize-8)/2;n++)
 				{
-				#if defined (WIN32) || defined (LINUX)
+				#if defined (WIN32) || defined (LINUX) || defined (IOS)
 					mCharBuffer[y*mFontSize+x] = ARGB(0,0,0,0);
 				#else
 					SwizzlePlot(pTexture, ARGB(0,0,0,0), x*PIXEL_SIZE, y, mTexture->mTexWidth*PIXEL_SIZE);
@@ -324,7 +324,7 @@ int JGBKFont::PreCacheChar(const BYTE *ch)
 
 	mGBCode[index] = code;
 
-#if defined (WIN32) || defined (LINUX)
+#if defined (WIN32) || defined (LINUX) || defined (IOS)
 	x = (int)mSprites[index]->mX;
 	y = (int)mSprites[index]->mY;
 

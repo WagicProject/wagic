@@ -43,7 +43,7 @@ int WRand()
 int filesize(const char * filename)
 {
     int file_size = 0;
-#if defined (WIN32) || defined (LINUX)
+#if defined (WIN32) || defined (LINUX) || defined (IOS)
     FILE * file = fopen(filename, "rb");
     if (file != NULL)
     {

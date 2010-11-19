@@ -3,7 +3,7 @@
 #include <JGE.h>
 #include <JLogger.h>
 #include <JRenderer.h>
-#if defined (WIN32) || defined (LINUX)
+#if defined (WIN32) || defined (LINUX) || defined (IOS) 
 #include <time.h>
 #else
 #include <pspfpu.h>
@@ -78,7 +78,7 @@ GameApp::~GameApp()
 void GameApp::Create()
 {
     srand((unsigned int) time(0)); // initialize random
-#ifndef QT_CONFIG
+#if not defined(QT_CONFIG) && not defined(IOS)
 #if defined (WIN32)
     _CrtSetDbgFlag ( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
 #elif not defined (LINUX)

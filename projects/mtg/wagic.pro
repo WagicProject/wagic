@@ -84,7 +84,6 @@ SOURCES += \
         src/GuiPhaseBar.cpp\
         src/GuiPlay.cpp\
         src/GuiStatic.cpp\
-        src/Logger.cpp\
         src/ManaCost.cpp\
         src/ManaCostHybrid.cpp\
         src/MenuItem.cpp\
@@ -110,6 +109,7 @@ SOURCES += \
         src/SimpleMenu.cpp\
         src/SimpleMenuItem.cpp\
         src/SimplePad.cpp\
+        src/SimplePopup.cpp\
         src/StoryFlow.cpp\
         src/Subtypes.cpp\
         src/StyleManager.cpp\
@@ -234,6 +234,7 @@ HEADERS  += \
         include/StyleManager.h\
         include/WFont.h\
         include/DeckManager.h\
+        include/SimplePopup.h\
         include/SimpleMenu.h
 
 # JGE, could probably be moved outside

@@ -7,7 +7,7 @@
 */
 
 
-#include "..\..\include\hge\hgeparticle.h"
+#include "../../include/hge/hgeparticle.h"
 
 
 hgeParticleManager::hgeParticleManager()
