@@ -101,7 +101,7 @@ void GameStateDeckViewer::rebuildFilters()
     filterMenu->setSrc(source);
     if (displayed_deck != myDeck) source->swapSrc();
     filterMenu->Finish(true);
-    updateStats();
+    stw->updateStats( myDeck );;
 }
 void GameStateDeckViewer::updateFilters()
 {
@@ -130,7 +130,7 @@ void GameStateDeckViewer::updateFilters()
             displayed_deck->next();
         }
     }
-    updateStats();
+    stw->updateStats( myDeck );;
     return;
 }
 void GameStateDeckViewer::loadIndexes()
@@ -792,10 +792,7 @@ void GameStateDeckViewer::renderOnScreenMenu()
     }
     else
     {
-        if (stw->needUpdate)
-        {
-            updateStats();
-        }
+        stw->updateStats( myDeck );;
 
         char buffer[300];
 
@@ -1258,190 +1255,6 @@ void GameStateDeckViewer::renderOnScreenMenu()
     }
 }
 
-void GameStateDeckViewer::updateStats()
-{
-    if (!stw->needUpdate || !myDeck) return;
-    stw->needUpdate = false;
-    stw->cardCount = myDeck->getCount(WSrcDeck::UNFILTERED_COPIES);
-    stw->countLands = myDeck->getCount(Constants::MTG_COLOR_LAND);
-    stw->totalPrice = myDeck->totalPrice();
-
-    stw->countManaProducers = 0;
-    // Mana cost
-    int currentCount, convertedCost;
-    ManaCost * currentCost;
-    stw->totalManaCost = 0;
-    stw->totalCreatureCost = 0;
-    stw->totalSpellCost = 0;
-    MTGCard * current = myDeck->getCard();
-
-    // Clearing arrays
-    for (int i = 0; i <= Constants::STATS_MAX_MANA_COST; i++)
-    {
-        stw->countCardsPerCost[i] = 0;
-        stw->countCreaturesPerCost[i] = 0;
-        stw->countSpellsPerCost[i] = 0;
-    }
-
-    for (int i = 0; i <= Constants::MTG_NB_COLORS; i++)
-    {
-        stw->totalCostPerColor[i] = 0;
-        stw->countLandsPerColor[i] = 0;
-        stw->countBasicLandsPerColor[i] = 0;
-        stw->countNonLandProducersPerColor[i] = 0;
-    }
-
-    for (int i = 0; i <= Constants::STATS_MAX_MANA_COST; i++)
-    {
-        for (int k = 0; k <= Constants::MTG_NB_COLORS; k++)
-        {
-            stw->countCardsPerCostAndColor[i][k] = 0;
-            stw->countCreaturesPerCostAndColor[i][k] = 0;
-            stw->countSpellsPerCostAndColor[i][k] = 0;
-        }
-    }
-
-    for (int ic = 0; ic < myDeck->Size(true); ic++)
-    {
-        current = myDeck->getCard(ic, true);
-        currentCost = current->data->getManaCost();
-        convertedCost = currentCost->getConvertedCost();
-        currentCount = myDeck->count(current);
-
-        // Add to the cards per cost counters
-        stw->totalManaCost += convertedCost * currentCount;
-        if (convertedCost > Constants::STATS_MAX_MANA_COST)
-        {
-            convertedCost = Constants::STATS_MAX_MANA_COST;
-        }
-        stw->countCardsPerCost[convertedCost] += currentCount;
-        if (current->data->isCreature())
-        {
-            stw->countCreaturesPerCost[convertedCost] += currentCount;
-            stw->totalCreatureCost += convertedCost * currentCount;
-        }
-        else if (current->data->isSpell())
-        {
-            stw->countSpellsPerCost[convertedCost] += currentCount;
-            stw->totalSpellCost += convertedCost * currentCount;
-        }
-
-        // Lets look for mana producing abilities
-
-        vector<string> abilityStrings;
-        abilityStrings = split(current->data->magicText, '\n');
-
-        for (int v = 0; v < (int) abilityStrings.size(); v++)
-        {
-            string s = abilityStrings[v];
-            size_t t = s.find("add");
-            if (t != string::npos)
-            {
-                s = s.substr(t + 3);
-                ManaCost * mc = ManaCost::parseManaCost(s);
-                for (int j = 0; j < Constants::MTG_NB_COLORS; j++)
-                {
-                    if (mc->hasColor(j))
-                    {
-                        if (current->data->isLand())
-                        {
-                            if (current->data->hasType("Basic"))
-                            {
-                                stw->countBasicLandsPerColor[j] += currentCount;
-                            }
-                            else
-                            {
-                                stw->countLandsPerColor[j] += currentCount;
-                            }
-                        }
-                        else
-                        {
-                            stw->countNonLandProducersPerColor[j] += currentCount;
-                        }
-                    }
-                }
-                SAFE_DELETE(mc);
-            }
-        }
-
-        // Add to the per color counters
-        //  a. regular costs
-        for (int j = 0; j < Constants::MTG_NB_COLORS; j++)
-        {
-            stw->totalCostPerColor[j] += currentCost->getCost(j) * currentCount;
-            if (current->data->hasColor(j))
-            {
-                // Add to the per cost and color counter
-                stw->countCardsPerCostAndColor[convertedCost][j] += currentCount;
-                if (current->data->isCreature())
-                {
-                    stw->countCreaturesPerCostAndColor[convertedCost][j] += currentCount;
-                }
-                else if (current->data->isSpell())
-                {
-                    stw->countSpellsPerCostAndColor[convertedCost][j] += currentCount;
-                }
-            }
-        }
-
-        //  b. Hybrid costs
-        ManaCostHybrid * hybridCost;
-        int i;
-        i = 0;
-
-        while ((hybridCost = currentCost->getHybridCost(i++)) != NULL)
-        {
-            stw->totalCostPerColor[hybridCost->color1] += hybridCost->value1 * currentCount;
-            stw->totalCostPerColor[hybridCost->color2] += hybridCost->value2 * currentCount;
-        }
-    }
-
-    stw->totalColoredSymbols = 0;
-    for (int j = 1; j < Constants::MTG_NB_COLORS; j++)
-    {
-        stw->totalColoredSymbols += stw->totalCostPerColor[j];
-    }
-
-    stw->countCardsPerCost[0] -= stw->countLands;
-
-    // Counts by type
-    stw->countCreatures = countCardsByType("Creature");
-    stw->countInstants = countCardsByType("Instant");
-    stw->countEnchantments = countCardsByType("Enchantment");
-    stw->countSorceries = countCardsByType("Sorcery");
-    stw->countSpells = stw->countInstants + stw->countEnchantments + stw->countSorceries;
-    //stw->countArtifacts = countCardsByType("Artifact");
-
-    // Average mana costs
-    stw->avgManaCost = ((stw->cardCount - stw->countLands) <= 0) ? 0 : (float) stw->totalManaCost / (stw->cardCount
-            - stw->countLands);
-    stw->avgCreatureCost = (stw->countCreatures <= 0) ? 0 : (float) stw->totalCreatureCost / stw->countCreatures;
-    stw->avgSpellCost = (stw->countSpells <= 0) ? 0 : (float) stw->totalSpellCost / stw->countSpells;
-
-    // Probabilities
-    // TODO: this could be optimized by reusing results
-    for (int i = 0; i < Constants::STATS_FOR_TURNS; i++)
-    {
-        stw->noLandsProbInTurn[i] = noLuck(stw->cardCount, stw->countLands, 7 + i) * 100;
-        stw->noCreaturesProbInTurn[i] = noLuck(stw->cardCount, stw->countCreatures, 7 + i) * 100;
-    }
-}
-
-// This should probably be cached in DeckDataWrapper
-// or at least be calculated for all common types in one go
-int GameStateDeckViewer::countCardsByType(const char * _type)
-{
-    int result = 0;
-    for (int i = 0; i < myDeck->Size(true); i++)
-    {
-        MTGCard * current = myDeck->getCard(i, true);
-        if (current->data->hasType(_type))
-        {
-            result += myDeck->count(current);
-        }
-    }
-    return result;
-}
 
 void GameStateDeckViewer::renderCard(int id, float rotation)
 {
@@ -1796,17 +1609,3 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
     }
 }
 
-// n cards total, a of them are of desired type (A), x drawn
-// returns probability of no A's
-float noLuck(int n, int a, int x)
-{
-    if ((a >= n) || (a == 0)) return 1;
-    if ((n == 0) || (x == 0) || (x > n) || (n - a < x)) return 0;
-
-    a = n - a;
-    float result = 1;
-
-    for (int i = 0; i < x; i++)
-        result *= (float) (a - i) / (n - i);
-    return result;
-}

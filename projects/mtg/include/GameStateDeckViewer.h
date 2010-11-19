@@ -145,12 +145,7 @@ public:
 
     void buildEditorMenu();
     virtual void ButtonPressed(int controllerId, int controlId);
-    void updateStats();
-    int countCardsByType(const char * _type);
 };
 
-// n cards total, a of them are desired, x drawn 
-// returns probability of no A's
-float noLuck(int n, int a, int x);
 
 #endif

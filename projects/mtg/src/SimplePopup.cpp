@@ -70,7 +70,7 @@ string SimplePopup::getDetailedInformation(string filename)
         << "W: " << setw(2) << left  << stw->countLandsPerColor[ Constants::MTG_COLOR_WHITE ] + stw->countBasicLandsPerColor[ Constants::MTG_COLOR_WHITE ] << endl
         << "  --- Mana Curve ---  " << endl;
 
-    for ( int costIdx = 0; costIdx < 15; ++costIdx )
+    for ( int costIdx = 0; costIdx < Constants::STATS_MAX_MANA_COST+1; ++costIdx )
             if ( stw->countCardsPerCost[ costIdx ] > 0 )
                 oss << costIdx << ": " << setw(2) << left << stw->countCardsPerCost[ costIdx ] << "  ";
 
