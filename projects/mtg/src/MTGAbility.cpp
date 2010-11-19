@@ -2884,7 +2884,7 @@ MTGAbility * AbilityFactory::getManaReduxAbility(string s, int id, Spell *spell,
     }
     // figure out the mana cost
     int amount = atoi(manaCost.c_str());
-    return NEW AManaRedux(id, card, target, amount, color);
+    return NEW AAlterCost(id, card, target, amount, color);
 }
 
 MTGAbility::MTGAbility(int id, MTGCardInstance * card) :

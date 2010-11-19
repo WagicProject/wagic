@@ -158,13 +158,13 @@ AADiscardCard * AADiscardCard::clone() const
 }
 
 //Mana Redux
-AManaRedux::AManaRedux(int id, MTGCardInstance * source, MTGCardInstance * target, int amount, int type) :
+AAlterCost::AAlterCost(int id, MTGCardInstance * source, MTGCardInstance * target, int amount, int type) :
     MTGAbility(id, source, target), amount(amount), type(type)
 {
     MTGCardInstance * _target = (MTGCardInstance *) target;
 }
 
-int AManaRedux::addToGame()
+int AAlterCost::addToGame()
 {
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (amount < 0)
@@ -201,14 +201,14 @@ int AManaRedux::addToGame()
     return MTGAbility::addToGame();
 }
 
-AManaRedux * AManaRedux::clone() const
+AAlterCost * AAlterCost::clone() const
 {
-    AManaRedux * a = NEW AManaRedux(*this);
+    AAlterCost * a = NEW AAlterCost(*this);
     a->isClone = 1;
     return a;
 }
 
-AManaRedux::~AManaRedux()
+AAlterCost::~AAlterCost()
 {
 }
 
@@ -226,6 +226,8 @@ ATransformer::ATransformer(int id, MTGCardInstance * source, MTGCardInstance * t
             abilities.push_back(j);
         }
     }
+    // This seems error prone, what if sabilities contained "protection from green" but not "green"?
+    // is it supposed to add to the colors vector in this case?
     for (int j = 0; j < Constants::MTG_NB_COLORS; j++)
     {
         size_t found = sabilities.find(Constants::MTGColorStrings[j]);
@@ -384,13 +386,15 @@ ATransformer::~ATransformer()
 }
 
 // AForeverTransformer
-AForeverTransformer::AForeverTransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes,
-        string sabilities) :
-    MTGAbility(id, source, target)
+AForeverTransformer::AForeverTransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities) :
+MTGAbility(id, source, target)
 {
     aType = MTGAbility::STANDARD_BECOMES;
     //TODO this is a copy/past of other code that's all around the place, everything should be in a dedicated parser class;
     MTGCardInstance * _target = (MTGCardInstance *) target;
+    vector<string> cardSubTypes = split( stypes, ' ');
+
+
     for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++)
     {
         size_t found = sabilities.find(Constants::MTGBasicAbilities[j]);
@@ -399,6 +403,8 @@ AForeverTransformer::AForeverTransformer(int id, MTGCardInstance * source, MTGCa
             abilities.push_back(j);
         }
     }
+    // This seems error prone, what if sabilities contained "protection from green" but not "green"?
+    // is it supposed to add to the colors vector in this case?
     for (int j = 0; j < Constants::MTG_NB_COLORS; j++)
     {
         size_t found = sabilities.find(Constants::MTGColorStrings[j]);
@@ -407,24 +413,18 @@ AForeverTransformer::AForeverTransformer(int id, MTGCardInstance * source, MTGCa
             colors.push_back(j);
         }
     }
-    string s = stypes;
-    while (s.size())
+
+    vector<string> subTypesList = split( stypes, ' ');
+    for (vector<string>::iterator it = subTypesList.begin(); it != subTypesList.end(); ++it)
     {
-        size_t found = s.find(" ");
-        if (found != string::npos)
-        {
-            int id = Subtypes::subtypesList->find(s.substr(0, found));
+        string subtype = *it;
+        int id = Subtypes::subtypesList->find( subtype );
+        if ( id != string::npos )
             types.push_back(id);
-            s = s.substr(found + 1);
-        }
-        else
-        {
-            int id = Subtypes::subtypesList->find(s);
-            types.push_back(id);
-            s = "";
-        }
     }
 }
+
+
 int AForeverTransformer::addToGame()
 {
     MTGCardInstance * _target = (MTGCardInstance *) target;
@@ -578,7 +578,8 @@ ABecomes::ABecomes(int id, MTGCardInstance * source, MTGCardInstance * target, s
             abilities.push_back(j);
         }
     }
-
+    // This seems error prone, what if sabilities contained "protection from green" but not "green"?
+    // is it supposed to add to the colors vector in this case?
     for (int j = 0; j < Constants::MTG_NB_COLORS; j++)
     {
         size_t found = sabilities.find(Constants::MTGColorStrings[j]);
@@ -706,5 +707,163 @@ ABecomesUEOT * ABecomesUEOT::clone() const
 
 ABecomesUEOT::~ABecomesUEOT()
 {
+    SAFE_DELETE(ability);
+}
+
+//APreventDamageTypes
+APreventDamageTypes::APreventDamageTypes(int id, MTGCardInstance * source, string to, string from, int type) :
+    MTGAbility(id, source), to(to), from(from), type(type)
+{
+    re = NULL;
+}
+
+int APreventDamageTypes::addToGame()
+{
+    if (re)
+    {
+        DebugTrace("FATAL:re shouldn't be already set in APreventDamageTypes\n");
+        return 0;
+    }
+    TargetChooserFactory tcf;
+    TargetChooser *toTc = tcf.createTargetChooser(to, source, this);
+    if (toTc) toTc->targetter = NULL;
+    TargetChooser *fromTc = tcf.createTargetChooser(from, source, this);
+    if (fromTc) fromTc->targetter = NULL;
+    if (type != 1 && type != 2)
+    {//not adding this creates a memory leak.
+        re = NEW REDamagePrevention(this, fromTc, toTc, -1, false, DAMAGE_COMBAT);
+    }
+    else if (type == 1)
+    {
+        re = NEW REDamagePrevention(this, fromTc, toTc, -1, false, DAMAGE_ALL_TYPES);
+    }
+    else if (type == 2)
+    {
+        re = NEW REDamagePrevention(this, fromTc, toTc, -1, false, DAMAGE_OTHER);
+    }
+    game->replacementEffects->add(re);
+    return MTGAbility::addToGame();
+}
+
+int APreventDamageTypes::destroy()
+{
+    game->replacementEffects->remove(re);
+    SAFE_DELETE(re);
+    return 1;
+}
+
+APreventDamageTypes * APreventDamageTypes::clone() const
+{
+    APreventDamageTypes * a = NEW APreventDamageTypes(*this);
+    a->isClone = 1;
+    return a;
+}
+
+APreventDamageTypes::~APreventDamageTypes()
+{
+    SAFE_DELETE(re);
+}
+
+//APreventDamageTypesUEOT
+APreventDamageTypesUEOT::APreventDamageTypesUEOT(int id, MTGCardInstance * source, string to, string from, int type) :
+    InstantAbility(id, source)
+{
+    ability = NEW APreventDamageTypes(id, source, to, from, type);
+}
+
+int APreventDamageTypesUEOT::resolve()
+{
+    APreventDamageTypes * a = ability->clone();
+    GenericInstantAbility * wrapper = NEW GenericInstantAbility(1, source, (Damageable *) (this->target), a);
+    wrapper->addToGame();
+    return 1;
+}
+
+int APreventDamageTypesUEOT::destroy()
+{
+    for (size_t i = 0; i < clones.size(); ++i)
+    {
+        clones[i]->forceDestroy = 0;
+    }
+    clones.clear();
+    return 1;
+}
+
+const char * APreventDamageTypesUEOT::getMenuText()
+{
+    return ability->getMenuText();
+}
+
+APreventDamageTypesUEOT * APreventDamageTypesUEOT::clone() const
+{
+    APreventDamageTypesUEOT * a = NEW APreventDamageTypesUEOT(*this);
+    a->ability = this->ability->clone();
+    a->isClone = 1;
+    return a;
+}
+
+APreventDamageTypesUEOT::~APreventDamageTypesUEOT()
+{
+    SAFE_DELETE(ability);
+}
+
+//AUpkeep
+AUpkeep::AUpkeep(int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int _tap, int restrictions, int _phase, int _once) :
+    ActivatedAbility(_id, card, _cost, restrictions, _tap), NestedAbility(a), phase(_phase), once(_once)
+{
+    paidThisTurn = 0;
+}
+
+void AUpkeep::Update(float dt)
+{
+    // once: 0 means always go off, 1 means go off only once, 2 means go off only once and already has.
+    if (newPhase != currentPhase && source->controller() == game->currentPlayer && once < 2)
+    {
+        if (newPhase == Constants::MTG_PHASE_UNTAP)
+        {
+            paidThisTurn = 0;
+        }
+        else if (newPhase == phase + 1 && !paidThisTurn)
+        {
+            ability->resolve();
+        }
+        if (newPhase == phase + 1 && once) once = 2;
+    }
+    ActivatedAbility::Update(dt);
+}
+
+int AUpkeep::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
+{
+    if (currentPhase != phase || paidThisTurn || once >= 2) return 0;
+    return ActivatedAbility::isReactingToClick(card, mana);
+}
+
+int AUpkeep::resolve()
+{
+    paidThisTurn = 1;
+    return 1;
+}
+
+const char * AUpkeep::getMenuText()
+{
+    return "Upkeep";
+}
+
+ostream& AUpkeep::toString(ostream& out) const
+{
+    out << "AUpkeep ::: paidThisTurn : " << paidThisTurn << " (";
+    return ActivatedAbility::toString(out) << ")";
+}
+
+AUpkeep * AUpkeep::clone() const
+{
+    AUpkeep * a = NEW AUpkeep(*this);
+    a->isClone = 1;
+    return a;
+}
+
+AUpkeep::~AUpkeep()
+{
+    if (!isClone)
     SAFE_DELETE(ability);
 }

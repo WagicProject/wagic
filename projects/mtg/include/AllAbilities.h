@@ -3997,15 +3997,15 @@ public:
 };
 
 //reduce or increase manacost of target by color:amount------------------------------------------
-class AManaRedux: public MTGAbility
+class AAlterCost: public MTGAbility
 {
 public:
     int amount;
     int type;
-    AManaRedux(int id, MTGCardInstance * source, MTGCardInstance * target, int amount, int type);
+    AAlterCost(int id, MTGCardInstance * source, MTGCardInstance * target, int amount, int type);
     int addToGame();
-    AManaRedux * clone() const;
-    ~AManaRedux();
+    AAlterCost * clone() const;
+    ~AAlterCost();
 };
 
 //------------------------------------
@@ -4016,8 +4016,9 @@ public:
     list<int> types;
     list<int> colors;
     list<int> oldcolors;
-    bool remove;
     list<int> oldtypes;
+    bool remove;
+
     ATransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities);
     int addToGame();
     int destroy();
@@ -4033,6 +4034,7 @@ public:
     list<int> abilities;
     list<int> types;
     list<int> colors;
+
     AForeverTransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities);
     int addToGame();
     const char * getMenuText();
@@ -4045,6 +4047,7 @@ class ATransformerUEOT: public InstantAbility
 {
 public:
     ATransformer * ability;
+
     ATransformerUEOT(int id, MTGCardInstance * source, MTGCardInstance * target, string types, string abilities);
     int resolve();
     const char * getMenuText();
@@ -4057,6 +4060,7 @@ class ATransformerFOREVER: public InstantAbility
 {
 public:
     AForeverTransformer * ability;
+
     ATransformerFOREVER(int id, MTGCardInstance * source, MTGCardInstance * target, string types, string abilities);
     int resolve();
     const char * getMenuText();
@@ -4114,56 +4118,11 @@ public:
     REDamagePrevention * re;
     int type;
 
-    APreventDamageTypes(int id, MTGCardInstance * source, string to, string from, int type = 0) :
-        MTGAbility(id, source), to(to), from(from), type(type)
-    {
-        re = NULL;
-    }
-
-    int addToGame()
-    {
-        if (re)
-        {
-            DebugTrace("FATAL:re shouldn't be already set in APreventDamageTypes\n");
-            return 0;
-        }
-        TargetChooserFactory tcf;
-        TargetChooser *toTc = tcf.createTargetChooser(to, source, this);
-        if (toTc) toTc->targetter = NULL;
-        TargetChooser *fromTc = tcf.createTargetChooser(from, source, this);
-        if (fromTc) fromTc->targetter = NULL;
-        if (type != 1 && type != 2)
-        {//not adding this creates a memory leak.
-            re = NEW REDamagePrevention(this, fromTc, toTc, -1, false, DAMAGE_COMBAT);
-        }
-        if (type == 1)
-        {
-            re = NULL;
-            re = NEW REDamagePrevention(this, fromTc, toTc, -1, false, DAMAGE_ALL_TYPES);
-        }
-        if (type == 2)
-        {
-            re = NULL;
-            re = NEW REDamagePrevention(this, fromTc, toTc, -1, false, DAMAGE_OTHER);
-        }
-        game->replacementEffects->add(re);
-        return MTGAbility::addToGame();
-    }
-
-    int destroy()
-    {
-        game->replacementEffects->remove(re);
-        SAFE_DELETE(re);
-        return 1;
-    }
-
-    APreventDamageTypes * clone() const
-    {
-        APreventDamageTypes * a = NEW APreventDamageTypes(*this);
-        a->isClone = 1;
-        return a;
-    }
-
+    APreventDamageTypes(int id, MTGCardInstance * source, string to, string from, int type = 0);
+    int addToGame();
+    int destroy();
+    APreventDamageTypes * clone() const;
+    ~APreventDamageTypes();
 };
 
 //Adds types/abilities/P/T to a card (until end of turn)
@@ -4173,48 +4132,12 @@ public:
     APreventDamageTypes * ability;
     vector<APreventDamageTypes *> clones;
     int type;
-    APreventDamageTypesUEOT(int id, MTGCardInstance * source, string to, string from, int type = 0) :
-        InstantAbility(id, source)
-    {
-        ability = NEW APreventDamageTypes(id, source, to, from, type);
-    }
-
-    int resolve()
-    {
-        APreventDamageTypes * a = ability->clone();
-        GenericInstantAbility * wrapper = NEW GenericInstantAbility(1, source, (Damageable *) (this->target), a);
-        wrapper->addToGame();
-        return 1;
-    }
-
-    int destroy()
-    {
-        for (size_t i = 0; i < clones.size(); ++i)
-        {
-            clones[i]->forceDestroy = 0;
-        }
-        clones.clear();
-        return 1;
-    }
-
-    const char * getMenuText()
-    {
-        return ability->getMenuText();
-    }
-
-    APreventDamageTypesUEOT * clone() const
-    {
-        APreventDamageTypesUEOT * a = NEW APreventDamageTypesUEOT(*this);
-        a->ability = this->ability->clone();
-        a->isClone = 1;
-        return a;
-    }
-
-    ~APreventDamageTypesUEOT()
-    {
-        delete ability;
-    }
-
+    APreventDamageTypesUEOT(int id, MTGCardInstance * source, string to, string from, int type = 0);
+    int resolve();
+    int destroy();
+    const char * getMenuText();
+    APreventDamageTypesUEOT * clone() const;
+    ~APreventDamageTypesUEOT();
 };
 
 //Upkeep Cost
@@ -4226,65 +4149,14 @@ public:
     int once;
 
     AUpkeep(int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int _tap = 0, int restrictions = 0, int _phase =
-            Constants::MTG_PHASE_UPKEEP, int _once = 0) :
-        ActivatedAbility(_id, card, _cost, restrictions, _tap), NestedAbility(a), phase(_phase), once(_once)
-    {
-        paidThisTurn = 0;
-    }
-
-    void Update(float dt)
-    {
-        // once: 0 means always go off, 1 means go off only once, 2 means go off only once and already has.
-        if (newPhase != currentPhase && source->controller() == game->currentPlayer && once < 2)
-        {
-            if (newPhase == Constants::MTG_PHASE_UNTAP)
-            {
-                paidThisTurn = 0;
-            }
-            else if (newPhase == phase + 1 && !paidThisTurn)
-            {
-                ability->resolve();
-            }
-            if (newPhase == phase + 1 && once) once = 2;
-        }
-        ActivatedAbility::Update(dt);
-    }
-
-    int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL)
-    {
-        if (currentPhase != phase || paidThisTurn || once >= 2) return 0;
-        return ActivatedAbility::isReactingToClick(card, mana);
-    }
-
-    int resolve()
-    {
-        paidThisTurn = 1;
-        return 1;
-    }
-
-    const char * getMenuText()
-    {
-        return "Upkeep";
-    }
-
-    virtual ostream& toString(ostream& out) const
-    {
-        out << "AUpkeep ::: paidThisTurn : " << paidThisTurn << " (";
-        return ActivatedAbility::toString(out) << ")";
-    }
-
-    ~AUpkeep()
-    {
-        if (!isClone)
-        SAFE_DELETE(ability);
-    }
-
-    AUpkeep * clone() const
-    {
-        AUpkeep * a = NEW AUpkeep(*this);
-        a->isClone = 1;
-        return a;
-    }
+            Constants::MTG_PHASE_UPKEEP, int _once = 0);
+    void Update(float dt);
+    int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
+    int resolve();
+    const char * getMenuText();
+    virtual ostream& toString(ostream& out) const;
+    AUpkeep * clone() const;
+    ~AUpkeep();
 };
 
 /*
