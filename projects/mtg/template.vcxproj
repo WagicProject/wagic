@@ -107,7 +107,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>./include;$(MTGEXTRAS);../../JGE/include;../../JGE/Dependencies/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./include;$(MTGEXTRAS);../../JGE/include;../../JGE/Dependencies/include;../../Boost;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -129,7 +129,7 @@
     <Link>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;libpng.lib;fmodvc.lib;zdll.lib;libjpeg-static-mt.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\..\JGE\Dependencies\lib;..\..\JGE\lib\win;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\JGE\Dependencies\lib;..\..\JGE\lib\win;..\..\Boost\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>LIBCD;LIBCMT;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ProgramDatabaseFile>.\Release/template.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
@@ -155,7 +155,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./include;$(MTGEXTRAS);../../JGE/include;../../JGE/Dependencies/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./include;$(MTGEXTRAS);../../JGE/include;../../JGE/Dependencies/include;../../Boost;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -179,7 +179,7 @@
     <Link>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;libpngd.lib;fmodvc.lib;libjpeg-static-mt-debug.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\..\JGE\Dependencies\lib;..\..\JGE\lib\win;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\JGE\Dependencies\lib;..\..\JGE\lib\win;..\..\Boost\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>LIBCD;LIBC;MSVCRT;LIBCMTD;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>.\Debug/template.pdb</ProgramDatabaseFile>
@@ -208,7 +208,7 @@
     <ClCompile>
       <Optimization>Full</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>./include;$(MTGEXTRAS);../../JGE/include;../../JGE/Dependencies/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./include;$(MTGEXTRAS);../../JGE/include;../../JGE/Dependencies/include;../../Boost;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_SECURE_SCL=0;_HAS_ITERATOR_DEBBUGING=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -231,7 +231,7 @@
     <Link>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;libpng.lib;fmodvc.lib;zdll.lib;libjpeg-static-mt.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\..\JGE\Dependencies\lib;..\..\JGE\lib\win;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\JGE\Dependencies\lib;..\..\JGE\lib\win;..\..\Boost\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>LIBCD;LIBCMT;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>.\Release/template.pdb</ProgramDatabaseFile>
@@ -259,7 +259,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./include;$(MTGEXTRAS);../../JGE/include;../../JGE/Dependencies/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./include;$(MTGEXTRAS);../../JGE/include;../../JGE/Dependencies/include;../../Boost;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -282,7 +282,7 @@
     <Link>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;libpngd.lib;fmodvc.lib;jge_debug.lib;libjpeg-static-mt-debug.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\..\JGE\Dependencies\lib;..\..\JGE\lib\win;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\JGE\Dependencies\lib;..\..\JGE\lib\win;..\..\Boost\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>LIBCD;LIBC;MSVCRT;LIBCMTD;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>.\Debug/template.pdb</ProgramDatabaseFile>
@@ -367,7 +367,6 @@
     <ClCompile Include="src\GuiPhaseBar.cpp" />
     <ClCompile Include="src\GuiPlay.cpp" />
     <ClCompile Include="src\GuiStatic.cpp" />
-    <ClCompile Include="src\Logger.cpp" />
     <ClCompile Include="src\ManaCost.cpp" />
     <ClCompile Include="src\ManaCostHybrid.cpp" />
     <ClCompile Include="src\MenuItem.cpp" />
@@ -400,6 +399,7 @@
     <ClCompile Include="src\SimpleMenu.cpp" />
     <ClCompile Include="src\SimpleMenuItem.cpp" />
     <ClCompile Include="src\SimplePad.cpp" />
+    <ClCompile Include="src\SimplePopup.cpp" />
     <ClCompile Include="src\StoryFlow.cpp" />
     <ClCompile Include="src\StyleManager.cpp" />
     <ClCompile Include="src\Subtypes.cpp" />
@@ -447,10 +447,10 @@
     <ClInclude Include="include\Credits.h" />
     <ClInclude Include="include\Damage.h" />
     <ClInclude Include="include\DamagerDamaged.h" />
-    <ClInclude Include="include\DebugRoutines.h" />
     <ClInclude Include="include\DeckDataWrapper.h" />
     <ClInclude Include="include\DeckEditorMenu.h" />
     <ClInclude Include="include\DeckManager.h" />
+    <ClInclude Include="include\DeckMenu.h" />
     <ClInclude Include="include\DeckMenuItem.h" />
     <ClInclude Include="include\DeckMetaData.h" />
     <ClInclude Include="include\DeckStats.h" />
@@ -480,7 +480,6 @@
     <ClInclude Include="include\GuiPhaseBar.h" />
     <ClInclude Include="include\GuiPlay.h" />
     <ClInclude Include="include\GuiStatic.h" />
-    <ClInclude Include="include\Logger.h" />
     <ClInclude Include="include\Manacost.h" />
     <ClInclude Include="include\ManaCostHybrid.h" />
     <ClInclude Include="include\MenuItem.h" />
@@ -509,6 +508,7 @@
     <ClInclude Include="include\SimpleMenu.h" />
     <ClInclude Include="include\SimpleMenuItem.h" />
     <ClInclude Include="include\SimplePad.h" />
+    <ClInclude Include="include\SimplePopup.h" />
     <ClInclude Include="include\StoryFlow.h" />
     <ClInclude Include="include\StyleManager.h" />
     <ClInclude Include="include\Subtypes.h" />

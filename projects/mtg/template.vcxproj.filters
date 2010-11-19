@@ -151,9 +151,6 @@
     <ClCompile Include="src\GuiStatic.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Logger.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\ManaCostHybrid.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -298,6 +295,9 @@
     <ClCompile Include="src\PriceList.cpp">
       <Filter>inc</Filter>
     </ClCompile>
+    <ClCompile Include="src\SimplePopup.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ActionElement.h">
@@ -358,9 +358,6 @@
       <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="include\DamagerDamaged.h">
-      <Filter>inc</Filter>
-    </ClInclude>
-    <ClInclude Include="include\DebugRoutines.h">
       <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="include\DeckDataWrapper.h">
@@ -454,9 +451,6 @@
       <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="include\GuiStatic.h">
-      <Filter>inc</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Logger.h">
       <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="include\Manacost.h">
@@ -607,6 +601,12 @@
       <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="include\DeckMenuItem.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DeckMenu.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SimplePopup.h">
       <Filter>inc</Filter>
     </ClInclude>
   </ItemGroup>
