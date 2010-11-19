@@ -278,7 +278,11 @@ int GameStateMenu::nextDirectory(const char * root, const char * file)
     int found = 0;
     if (!mDip)
     {
+#ifdef IOS
         mDip = opendir(JGE_GET_RES(root).c_str());
+#else
+        mDip = opendir(root);
+#endif //IOS
     }
 
     while (!found && (mDit = readdir(mDip)))
