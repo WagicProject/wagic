@@ -76,7 +76,10 @@ void CardGui::Update(float dt)
 void CardGui::DrawCard(const Pos& inPosition, int inMode)
 {
     DrawCard(card, inPosition, inMode);
-    RenderCountersBig(inPosition);
+    if (inMode != DrawMode::kHidden)
+    {
+        RenderCountersBig(inPosition);
+    }
 }
 
 void CardGui::DrawCard(MTGCard* inCard, const Pos& inPosition, int inMode)
@@ -706,12 +709,6 @@ font->SetColor(ARGB((int)pos.actA, 0, 0, 0));
 font->SetScale(backup_scale);
 }
 
-void CardGui::AlternateRenderBig(const Pos& pos)
-{
-    AlternateRender(card, pos);
-    RenderCountersBig(pos);
-}
-
 //Renders a big card on screen. Defaults to the "alternate" rendering if no image is found
 void CardGui::RenderBig(MTGCard* card, const Pos& pos)
 {
@@ -785,12 +782,6 @@ void CardGui::RenderCountersBig(const Pos& pos)
             }
         }
     }
-}
-
-void CardGui::RenderBig(const Pos& pos)
-{
-    RenderBig(card, pos);
-    RenderCountersBig(pos);
 }
 
 MTGCardInstance* CardView::getCard()

@@ -29,14 +29,8 @@ struct CardGui : public PlayGuiObject {
    /*
    ** Tries to render the Big version of a card picture, backups to text version in case of failure
    */
-   void RenderBig(const Pos&);
    static void RenderBig(MTGCard * card, const Pos& pos);
    
-   /*
-   **  Renders Text Version of a card
-   */
-   void AlternateRenderBig(const Pos&);
-
    void RenderCountersBig(const Pos& pos);
    static void AlternateRender(MTGCard * card, const Pos& pos);
    static void TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad);
