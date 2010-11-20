@@ -552,9 +552,16 @@ int JTTFont::RenderString(const u8 *text, float x, float y, bool render)
 
 	u8 ch;
 	int index;
+	float xo = x;
 
 	while ((ch=*text)!=0)
 	{
+		if (ch == 0x0a) {
+			text++;
+			x = xo;
+			y += mSize;
+			continue;
+		}
 		if (ch < 0x80)
 		{
 			index = PreCacheChar(ch, ch);
