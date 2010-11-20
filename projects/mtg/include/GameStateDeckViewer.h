@@ -76,11 +76,12 @@ enum DECK_VIEWER_MENU_ITEMS
 #define LOW_SPEED 1.5
 
 #define MAX_SAVED_FILTERS 8
+#define CARDS_DISPLAYED 7
 
 class GameStateDeckViewer: public GameState, public JGuiListener
 {
 private:
-    JQuad * mIcons[7];
+    JQuad * mIcons[CARDS_DISPLAYED];
     JQuad * pspIcons[8];
     JTexture * pspIconsTexture;
     float last_user_activity;
@@ -109,7 +110,7 @@ private:
     DeckDataWrapper * displayed_deck;
     DeckDataWrapper * myDeck;
     DeckDataWrapper * myCollection;
-    MTGCard * cardIndex[7];
+    MTGCard * cardIndex[CARDS_DISPLAYED];
     StatsWrapper *stw;
 
     int hudAlpha;
@@ -119,6 +120,7 @@ private:
     void saveDeck(); //Saves the deck and additional necessary information
     void saveAsAIDeck(string deckName); // saves deck as an AI Deck
     int getCurrentPos();
+    pair<float, float> cardsCoordinates[CARDS_DISPLAYED];
 
 public:
     GameStateDeckViewer(GameApp* parent);

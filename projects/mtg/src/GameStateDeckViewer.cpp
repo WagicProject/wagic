@@ -339,6 +339,11 @@ void GameStateDeckViewer::Update(float dt)
 
     int myD = (displayed_deck == myDeck);
 
+    int x, y;
+    unsigned int distance2;
+    unsigned int minDistance2 = -1;
+    int n;
+
     if (options.keypadActive())
     {
         options.keypadUpdate(dt);
@@ -463,6 +468,32 @@ void GameStateDeckViewer::Update(float dt)
             else if ((mStage == STAGE_ONSCREEN_MENU) && (++stw->currentPage > stw->pageCount)) stw->currentPage = 0;
             break;
         default: // no keypress
+            if (mEngine->GetLeftClickCoordinates(x, y))
+            {
+              for(int i=0; i < CARDS_DISPLAYED; i++)
+              {
+                distance2 = (cardsCoordinates[i].second - y) * (cardsCoordinates[i].second - y) + (cardsCoordinates[i].first - x) * (cardsCoordinates[i].first - x);
+                if (distance2 < minDistance2)
+                {
+                    minDistance2 = distance2;
+                    n = i;
+                }
+              }
+
+              if (n < ((CARDS_DISPLAYED/2) - 1))
+              {
+                  last_user_activity = 0;
+                  mStage = STAGE_TRANSITION_RIGHT;
+              }
+              if (n > ((CARDS_DISPLAYED/2) + 1))
+              {
+                last_user_activity = 0;
+                mStage = STAGE_TRANSITION_LEFT;
+              }
+              mEngine->LeftClickedProcessed();
+              break;
+            }
+
             if (last_user_activity > NO_USER_ACTIVITY_HELP_DELAY)
             {
                 if (mStage != STAGE_ONSCREEN_MENU)
@@ -1272,6 +1303,8 @@ void GameStateDeckViewer::renderCard(int id, float rotation)
 
     float y = (SCREEN_HEIGHT_F) / 2.0f + SCREEN_HEIGHT_F * mSlide * (scale + 0.2f);
 
+    cardsCoordinates[id] = pair<float, float>(x, y);
+
     int alpha = (int) (255 * (scale + 1.0 - max_scale));
 
     if (!card) return;
@@ -1354,8 +1387,8 @@ void GameStateDeckViewer::Render()
 {
 
     WFont * mFont = resources.GetWFont(Fonts::MAIN_FONT);
-
     JRenderer * r = JRenderer::GetInstance();
+
     r->ClearScreen(ARGB(0,0,0,0));
     if (displayed_deck == myDeck && mStage != STAGE_MENU) renderDeckBackground();
     int order[3] = { 1, 2, 3 };
