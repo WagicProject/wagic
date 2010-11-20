@@ -44,18 +44,6 @@ DeckStats::~DeckStats()
     cleanStats();
 }
 
-int DeckStats::percentVictories(string opponentsFile)
-{
-    map<string, DeckStat *>::iterator it = stats.find(opponentsFile);
-    if (it == stats.end())
-    {
-        return 50;
-    }
-    else
-    {
-        return (it->second->percentVictories());
-    }
-}
 
 DeckStat* DeckStats::getDeckStat(string opponentsFile)
 {
@@ -82,19 +70,17 @@ int DeckStats::nbGames()
     return nbgames;
 }
 
-int DeckStats::nbVictories()
+int DeckStats::percentVictories(string opponentsFile)
 {
-    int victories = 0;
-    int nbgames = 0;
-    map<string, DeckStat *>::iterator it;
-    for (it = stats.begin(); it != stats.end(); it++)
+    map<string, DeckStat *>::iterator it = stats.find(opponentsFile);
+    if (it == stats.end())
     {
-        DeckStat * d = it->second;
-        nbgames += d->nbgames;
-        victories += d->victories;
+        return 50;
     }
-
-    return victories;
+    else
+    {
+        return (it->second->percentVictories());
+    }
 }
 
 int DeckStats::percentVictories()

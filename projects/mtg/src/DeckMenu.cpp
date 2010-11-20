@@ -141,7 +141,7 @@ bool DeckMenu::showDetailsScreen()
 void DeckMenu::initMenuItems()
 {
     float sY = mY + kVerticalMargin;
-    for (int i = startId; i < startId + mCount; ++i)
+    for (int i = startId; i < mCount; ++i)
     {
         float y = mY + kVerticalMargin + i * kLineHeight;
         DeckMenuItem * currentMenuItem = static_cast<DeckMenuItem*> (mObjects[i]);

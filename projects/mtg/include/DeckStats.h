@@ -39,7 +39,6 @@ public:
     int percentVictories();
     DeckStat * getDeckStat(string opponentsFile);
     int nbGames();
-    int nbVictories();
 };
 
 class StatsWrapper
