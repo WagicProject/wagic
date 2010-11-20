@@ -25,7 +25,6 @@ const string Constants::kFlashBackKeyword = "flashback";
 const string Constants::kRetraceKeyword = "retrace";
 const string Constants::kKickerKeyword = "kicker";
 
-
 const char* Constants::MTGBasicAbilities[] = {
     "trample",
     "forestwalk",
@@ -113,6 +112,33 @@ const char* Constants::MTGBasicAbilities[] = {
     "exiledeath",
 };
 
+map<string,int> Constants::MTGBasicAbilitiesMap;
+int Constants::GetBasicAbilityIndex(string basicAbllity)
+{
+    if ( Constants::MTGBasicAbilitiesMap.size() == 0 )
+    {
+        for (int idx = 0; idx < Constants::NB_BASIC_ABILITIES; ++idx)
+        {
+            string ability = MTGBasicAbilities[idx];
+            MTGBasicAbilitiesMap[ability] =  idx;
+        }
+    }
+    if ( Constants::MTGBasicAbilitiesMap.find(basicAbllity) != Constants::MTGBasicAbilitiesMap.end() )
+        return Constants::MTGBasicAbilitiesMap[basicAbllity];
+
+    return -1;
+}
+
+int Constants::GetColorStringIndex(string mtgColor)
+{
+    for (int idx = 0; idx < Constants::MTG_NB_COLORS; ++idx)
+    {
+        if (Constants::MTGColorStrings[idx])
+            return idx;
+    }
+    
+    return -1;
+}
 
 const char* Constants::MTGPhaseNames[] =
 {

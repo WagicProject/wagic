@@ -43,6 +43,10 @@ std::vector<std::string> &split(const std::string &s, char delim, std::vector<st
 std::vector<std::string> split(const std::string &s, char delim); //splits a string with "delim" and returns a vector of strings.
 std::string wordWrap(std::string s, int width);
 
+void PopulateColorIndexVector( list<int>& colors, const string& colorsString, char delimiter = ' ');
+void PopulateAbilityIndexVector( list<int>& abilities, const string& abilitiesString, char delimiter = ',');
+void PopulateSubtypesIndexVector( list<int>& subtypes, const string& subtypesString, char delimiter = ' ');
+
 
 int loadRandValues(string s);
 int filesize(const char * filename);

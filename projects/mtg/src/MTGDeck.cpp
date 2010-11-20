@@ -93,6 +93,7 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
                     attribute = value;
                     value = "";
                 }
+                
                 for (int j = Constants::NB_BASIC_ABILITIES - 1; j >= 0; --j)
                 {
                     size_t found = attribute.find(Constants::MTGBasicAbilities[j]);

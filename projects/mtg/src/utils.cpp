@@ -1,6 +1,8 @@
 #include "PrecompiledHeader.h"
 
 #include "utils.h"
+#include "MTGDefinitions.h"
+#include "Subtypes.h"
 
 using std::vector;
 
@@ -258,4 +260,42 @@ std::string wordWrap(std::string sentence, int width)
     }
 
     return sentence;
+}
+
+
+
+void PopulateAbilityIndexVector( list<int>& abilities, const string& abilityStringList, char delimiter )
+{
+    vector<string> abilitiesList = split( abilityStringList, delimiter);
+    for ( vector<string>::iterator iter = abilitiesList.begin(); iter != abilitiesList.end(); ++iter)
+    {
+        int abilityIndex = Constants::GetBasicAbilityIndex( *iter );
+
+        if (abilityIndex != -1)
+            abilities.push_back( abilityIndex );
+    }
+}
+
+void PopulateColorIndexVector( list<int>& colors, const string& colorStringList, char delimiter )
+{
+    vector<string> abilitiesList = split( colorStringList, delimiter);
+    for ( vector<string>::iterator iter = abilitiesList.begin(); iter != abilitiesList.end(); ++iter)
+    {
+        int colorIndex = Constants::GetColorStringIndex(*iter);
+
+        if (colorIndex != -1)
+            colors.push_back(colorIndex);
+    }
+}
+
+void PopulateSubtypesIndexVector( list<int>& types, const string& subTypesStringList, char delimiter)
+{
+    vector<string> subTypesList = split( subTypesStringList, delimiter);
+    for (vector<string>::iterator it = subTypesList.begin(); it != subTypesList.end(); ++it)
+    {
+        string subtype = *it;
+        size_t id = Subtypes::subtypesList->find( subtype );
+        if ( id != string::npos )
+            types.push_back(id);
+    }
 }

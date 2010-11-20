@@ -1154,25 +1154,25 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     //Bury, destroy, sacrifice, reject(discard)
     if (s.find("bury") != string::npos)
     {
-        MTGAbility *a = NEW AABuryCard(id, card, target, NULL, AABanishCard::BURY);
+        MTGAbility *a = NEW AABuryCard(id, card, target, AABanishCard::BURY);
         a->oneShot = 1;
         return a;
     }
     else if (s.find("destroy") != string::npos)
     {
-        MTGAbility * a = NEW AADestroyCard(id, card, target, NULL, AABanishCard::DESTROY);
+        MTGAbility * a = NEW AADestroyCard(id, card, target, AABanishCard::DESTROY);
         a->oneShot = 1;
         return a;
     }
     else if (s.find("sacrifice") != string::npos)
     {
-        MTGAbility *a = NEW AASacrificeCard(id, card, target, NULL, AABanishCard::SACRIFICE);
+        MTGAbility *a = NEW AASacrificeCard(id, card, target, AABanishCard::SACRIFICE);
         a->oneShot = 1;
         return a;
     }
     else if (s.find("reject") != string::npos)
     {
-        MTGAbility *a = NEW AADiscardCard(id, card, target, NULL, AABanishCard::DISCARD);
+        MTGAbility *a = NEW AADiscardCard(id, card, target, AABanishCard::DISCARD);
         a->oneShot = 1;
         return a;
     }
@@ -1712,19 +1712,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         size_t end = s.find(",", found);
         if (end == string::npos)
             end = real_end;
-        string stypes = s.substr(found + 11, end - found - 11);
-        string sabilities;
-        if (end != real_end)
-        {
-            int previous = end + 1;
-            if (end == string::npos)
-                end = real_end;
-            string temp = s.substr(previous, end - previous);
-        }
-        if (end != real_end)
-        {
-            sabilities = s.substr(end + 1, real_end - end);
-        }
+        size_t stypesStartIndex = found + 11;
+        string transformsParamsString = s.substr(stypesStartIndex, real_end - stypesStartIndex);
+        vector<string> effectParameters = split( transformsParamsString, ',');
+        string stypes = effectParameters[0];
+        
+        string sabilities = transformsParamsString.substr(stypes.length());
+
         MTGAbility * a;
         if (forceFOREVER)
         {

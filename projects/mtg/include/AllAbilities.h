@@ -625,84 +625,23 @@ public:
     int power;
     int toughness;
     string name;
+
     AACounter(int id, MTGCardInstance * source, MTGCardInstance * target, const char * _name, int power, int toughness, int nb,
-            ManaCost * cost = NULL, int doTap = 0) :
-        ActivatedAbility(id, source, cost, 0, doTap), nb(nb), power(power), toughness(toughness), name(_name)
-    {
-        this->target = target;
-        if (name.find("Level")) aType = MTGAbility::STANDARD_LEVELUP;
-    }
+            ManaCost * cost = NULL, int doTap = 0);
 
-    int resolve()
-    {
-        if (target)
-        {
-            MTGCardInstance * _target = (MTGCardInstance *) target;
-            if (nb > 0)
-            {
-                for (int i = 0; i < nb; i++)
-                {
-                    while (_target->next)
-                        _target = _target->next;
-                    _target->counters->addCounter(name.c_str(), power, toughness);
-                }
-            }
-            else
-            {
-                for (int i = 0; i < -nb; i++)
-                {
-                    while (_target->next)
-                        _target = _target->next;
-                    _target->counters->removeCounter(name.c_str(), power, toughness);
-                }
-            }
-            return nb;
-        }
-        return 0;
-    }
-
-    const char* getMenuText()
-    {
-        return "Counter";
-    }
-
-    AACounter * clone() const
-    {
-        AACounter * a = NEW AACounter(*this);
-        a->isClone = 1;
-        return a;
-    }
+    int resolve();
+    const char* getMenuText();
+    AACounter * clone() const;
 };
 
 class AAFizzler: public ActivatedAbility
 {
+
 public:
-    AAFizzler(int _id, MTGCardInstance * card, Spell * _target, ManaCost * _cost = NULL, int _tap = 0) :
-        ActivatedAbility(_id, card, _cost, 0, _tap)
-    {
-        target = _target;
-    }
-
-    int resolve()
-    {
-        Spell * _target = (Spell *) target;
-        if (target && _target->source->has(Constants::NOFIZZLE)) return 0;
-        game->mLayers->stackLayer()->Fizzle(_target);
-        return 1;
-    }
-
-    const char * getMenuText()
-    {
-        return "Fizzle";
-    }
-
-    AAFizzler* clone() const
-    {
-        AAFizzler * a = NEW AAFizzler(*this);
-        a->isClone = 1;
-        return a;
-    }
-
+    AAFizzler(int _id, MTGCardInstance * card, Spell * _target, ManaCost * _cost = NULL, int _tap = 0);
+    int resolve();
+    const char * getMenuText();
+    AAFizzler* clone() const;
 };
 
 /*
@@ -716,67 +655,20 @@ public:
     int triggered;
     bool must;
     MTGAbility * mClone;
-    MayAbility(int _id, MTGAbility * _ability, MTGCardInstance * _source, bool must = false) :
-        MTGAbility(_id, _source), NestedAbility(_ability), must(must)
-    {
-        triggered = 0;
-        mClone = NULL;
-    }
 
-    void Update(float dt)
-    {
-        MTGAbility::Update(dt);
-        if (!triggered)
-        {
-            triggered = 1;
-            if (TargetAbility * ta = dynamic_cast<TargetAbility *>(ability))
-            {
-                if (!ta->tc->validTargetsExist()) return;
-            }
-            game->mLayers->actionLayer()->setMenuObject(source, must);
-            game->mLayers->stackLayer()->setIsInterrupting(source->controller());
-        }
-    }
+    MayAbility(int _id, MTGAbility * _ability, MTGCardInstance * _source, bool must = false);
 
-    const char * getMenuText()
-    {
-        return ability->getMenuText();
-    }
+    void Update(float dt);
 
-    int testDestroy()
-    {
-        if (!triggered) return 0;
-        if (game->mLayers->actionLayer()->menuObject) return 0;
-        if (game->mLayers->actionLayer()->getIndexOf(mClone) != -1) return 0;
-        return 1;
-    }
+    const char * getMenuText();
+    int testDestroy();
 
-    int isReactingToTargetClick(Targetable * card)
-    {
-        if (card == source) return 1;
-        return 0;
-    }
+    int isReactingToTargetClick(Targetable * card);
 
-    int reactToTargetClick(Targetable * object)
-    {
-        mClone = ability->clone();
-        mClone->addToGame();
-        mClone->forceDestroy = 1;
-        return mClone->reactToTargetClick(object);
-    }
+    int reactToTargetClick(Targetable * object);
 
-    ~MayAbility()
-    {
-        SAFE_DELETE(ability);
-    }
-
-    MayAbility * clone() const
-    {
-        MayAbility * a = NEW MayAbility(*this);
-        a->ability = ability->clone();
-        a->isClone = 1;
-        return a;
-    }
+    MayAbility * clone() const;
+    ~MayAbility();
 
 };
 
@@ -786,57 +678,12 @@ class MultiAbility: public ActivatedAbility
 public:
     vector<MTGAbility *> abilities;
 
-    MultiAbility(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost, int _tap) :
-        ActivatedAbility(_id, card, _cost, 0, _tap)
-    {
-        if (_target) target = _target;
-    }
-
-    int Add(MTGAbility * ability)
-    {
-        abilities.push_back(ability);
-        return 1;
-    }
-
-    int resolve()
-    {
-        vector<int>::size_type sz = abilities.size();
-        for (unsigned int i = 0; i < sz; i++)
-        {
-            if (abilities[i] == NULL) continue;
-            Targetable * backup = abilities[i]->target;
-            if (target && target != source && abilities[i]->target == abilities[i]->source) abilities[i]->target = target;
-            abilities[i]->resolve();
-            abilities[i]->target = backup;
-        }
-        return 1;
-    }
-
-    ~MultiAbility()
-    {
-        if (!isClone)
-        {
-            vector<int>::size_type sz = abilities.size();
-            for (size_t i = 0; i < sz; i++)
-            {
-                delete abilities[i];
-            }
-        }
-        abilities.clear();
-    }
-
-    const char * getMenuText()
-    {
-        if (abilities.size()) return abilities[0]->getMenuText();
-        return "";
-    }
-
-    MultiAbility * clone() const
-    {
-        MultiAbility * a = NEW MultiAbility(*this);
-        a->isClone = 1;
-        return a;
-    }
+    MultiAbility(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost, int _tap);
+    int Add(MTGAbility * ability);
+    int resolve();
+    const char * getMenuText();
+    MultiAbility * clone() const;
+    ~MultiAbility();
 };
 
 //Generic Activated Ability
@@ -847,68 +694,16 @@ public:
     int limitPerTurn;
     int counters;
     MTGGameZone * activeZone;
+
     GenericActivatedAbility(int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int _tap = 0, int limit = 0,
-            int restrictions = 0, MTGGameZone * dest = NULL) :
-        ActivatedAbility(_id, card, _cost, restrictions, _tap), NestedAbility(a), limitPerTurn(limit), activeZone(dest)
-    {
-        counters = 0;
-        target = ability->target;
-    }
-
-    int resolve()
-    {
-        counters++;
-        ManaCost * diff = abilityCost->Diff(cost);
-        source->X = diff->hasX();
-        SAFE_DELETE(diff);
-        //SAFE_DELETE(abilityCost); this line has been reported as a bug. removing it doesn't seem to break anything, although I didn't get any error in the test suite by leaving it either, so... leaving it for now as a comment, in case.
-        ability->target = target; //may have been updated...
-        if (ability) return ability->resolve();
-        return 0;
-    }
-
-    const char * getMenuText()
-    {
-        if (ability) return ability->getMenuText();
-        return "Error";
-    }
-
-    int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL)
-    {
-        if (limitPerTurn && counters >= limitPerTurn) return 0;
-        return ActivatedAbility::isReactingToClick(card, mana);
-    }
-
-    void Update(float dt)
-    {
-        if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_AFTER_EOT)
-        {
-            counters = 0;
-        }
-        ActivatedAbility::Update(dt);
-    }
-
-    GenericActivatedAbility * clone() const
-    {
-        GenericActivatedAbility * a = NEW GenericActivatedAbility(*this);
-        a->cost = NEW ManaCost();
-        a->cost->copy(cost);
-        a->ability = ability->clone();
-        return a;
-    }
-
-    ~GenericActivatedAbility()
-    {
-        SAFE_DELETE(ability);
-    }
-
-    int testDestroy()
-    {
-        if (!activeZone) return ActivatedAbility::testDestroy();
-        if (activeZone->hasCard(source)) return 0;
-        return 1;
-
-    }
+            int restrictions = 0, MTGGameZone * dest = NULL);
+    int resolve();
+    const char * getMenuText();
+    int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
+    void Update(float dt);
+    int testDestroy();
+    GenericActivatedAbility * clone() const;
+    ~GenericActivatedAbility();
 
 };
 
@@ -916,34 +711,10 @@ public:
 class AACopier: public ActivatedAbility
 {
 public:
-    AACopier(int _id, MTGCardInstance * _source, MTGCardInstance * _target = NULL, ManaCost * _cost = NULL) :
-        ActivatedAbility(_id, _source, _cost, 0, 0)
-    {
-        target = _target;
-    }
-
-    int resolve()
-    {
-        MTGCardInstance * _target = (MTGCardInstance *) target;
-        if (_target)
-        {
-            source->copy(_target);
-            return 1;
-        }
-        return 0;
-    }
-
-    const char * getMenuText()
-    {
-        return "Copy";
-    }
-
-    AACopier * clone() const
-    {
-        AACopier * a = NEW AACopier(*this);
-        a->isClone = 1;
-        return a;
-    }
+    AACopier(int _id, MTGCardInstance * _source, MTGCardInstance * _target = NULL, ManaCost * _cost = NULL);
+    int resolve();
+    const char * getMenuText();
+    AACopier * clone() const;
 };
 
 //cloning...this makes a token thats a copy of the target.
@@ -954,152 +725,86 @@ public:
     string with;
     list<int> awith;
     list<int> colors;
+
     AACloner(int _id, MTGCardInstance * _source, MTGCardInstance * _target = NULL, ManaCost * _cost = NULL, int who = 0,
-            string with = "") :
-        ActivatedAbility(_id, _source, _cost, 0, 0), who(who)
-    {
-        target = _target;
-        source = _source;
-
-        for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++)
-        {
-            size_t found = with.find(Constants::MTGBasicAbilities[j]);
-            if (found != string::npos)
-            {
-                awith.push_back(j);
-            }
-        }
-        for (int j = 0; j < Constants::MTG_NB_COLORS; j++)
-        {
-            size_t found = with.find(Constants::MTGColorStrings[j]);
-            if (found != string::npos)
-            {
-                colors.push_back(j);
-            }
-        }
-
-    }
-
-    int resolve()
-    {
-        MTGCardInstance * _target = (MTGCardInstance *) target;
-        if (_target)
-        {
-            MTGCardInstance * myClone = NULL;
-            MTGCard* clone = (_target->isToken ? _target : GameApp::collection->getCardById(_target->getId()));
-
-            if (who != 1) myClone = NEW MTGCardInstance(clone, source->controller()->game);
-            if (who == 1) myClone = NEW MTGCardInstance(clone, source->controller()->opponent()->game);
-            if (who != 1)
-                source->controller()->game->temp->addCard(myClone);
-            else
-                source->controller()->opponent()->game->temp->addCard(myClone);
-            Spell * spell = NEW Spell(myClone);
-            spell->resolve();
-            spell->source->isToken = 1;
-            spell->source->fresh = 1;
-            list<int>::iterator it;
-            for (it = awith.begin(); it != awith.end(); it++)
-            {
-                spell->source->basicAbilities[*it] = 1;
-            }
-            for (it = colors.begin(); it != colors.end(); it++)
-            {
-                spell->source->setColor(*it);
-            }
-            delete spell;
-            return 1;
-        }
-        return 0;
-    }
-
-    const char * getMenuText()
-    {
-        if (who == 1) return "Clone For Opponent";
-        return "Clone";
-    }
-
-    virtual ostream& toString(ostream& out) const
-    {
-        out << "AACloner ::: with : ?" // << abilities
-                << " (";
-        return ActivatedAbility::toString(out) << ")";
-    }
-
-    AACloner * clone() const
-    {
-        AACloner * a = NEW AACloner(*this);
-        a->isClone = 1;
-        return a;
-    }
-    ~AACloner()
-    {
-    }
+            string abilitiesStringList = "");
+    int resolve();
+    const char * getMenuText();
+    virtual ostream& toString(ostream& out) const;
+    AACloner * clone() const;
+    ~AACloner();
 };
 
+// AAMover
 class AAMover: public ActivatedAbility
 {
 public:
     string destination;
-    AAMover(int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest, ManaCost * _cost = NULL, int doTap = 0) :
-        ActivatedAbility(_id, _source, _cost, 0, doTap), destination(dest)
-    {
-        if (_target) target = _target;
-    }
 
-    MTGGameZone * destinationZone()
-    {
-        MTGCardInstance * _target = (MTGCardInstance *) target;
-        return MTGGameZone::stringToZone(destination, source, _target);
-    }
-
-    int resolve()
-    {
-        MTGCardInstance * _target = (MTGCardInstance *) target;
-        if (target)
-        {
-            Player* p = _target->controller();
-            if (p)
-            {
-                GameObserver * g = GameObserver::GetInstance();
-                MTGGameZone * fromZone = _target->getCurrentZone();
-                MTGGameZone * destZone = destinationZone();
-
-                //inplay is a special zone !
-                for (int i = 0; i < 2; i++)
-                {
-                    if (destZone == g->players[i]->game->inPlay && fromZone != g->players[i]->game->inPlay && fromZone
-                            != g->players[i]->opponent()->game->inPlay)
-                    {
-                        MTGCardInstance * copy = g->players[i]->game->putInZone(_target, fromZone, g->players[i]->game->temp);
-                        Spell * spell = NEW Spell(copy);
-                        spell->resolve();
-                        delete spell;
-                        return 1;
-                    }
-                }
-                p->game->putInZone(_target, fromZone, destZone);
-                return 1;
-            }
-        }
-        return 0;
-    }
-
-    const char * getMenuText()
-    {
-        return "Move";
-    }
-
-    AAMover * clone() const
-    {
-        AAMover * a = NEW AAMover(*this);
-        a->isClone = 1;
-        return a;
-    }
-
+    AAMover(int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest, ManaCost * _cost = NULL, int doTap = 0);
+    MTGGameZone * destinationZone();
+    int resolve();
+    const char * getMenuText();
+    AAMover * clone() const;
 };
 
-/* Generic TargetAbility */
+//-----------------------------------------------------------------------------------------------
+class AABanishCard: public ActivatedAbility
+{
+
+protected:
+
+public:
+    int banishmentType;
+    const static int BANISHED = -1;
+    const static int BURY = 0;
+    const static int DESTROY = 1;
+    const static int SACRIFICE = 2;
+    const static int DISCARD = 3;
+
+    AABanishCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target, int _banishmentType = BANISHED);
+    int resolve();
+    virtual const char * getMenuText();
+    AABanishCard * clone() const;
+};
+
+class AABuryCard: public AABanishCard
+{
+public:
+    AABuryCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target, int _banishmentType = BURY);
+    int resolve();
+    const char * getMenuText();
+    AABuryCard * clone() const;
+};
+
+class AADestroyCard: public AABanishCard
+{
+public:
+    AADestroyCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target, int _banishmentType = DESTROY);
+    int resolve();
+    const char * getMenuText();
+    AADestroyCard * clone() const;
+};
+
+class AASacrificeCard: public AABanishCard
+{
+public:
+    AASacrificeCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target, int _banishmentType = SACRIFICE);
+    int resolve();
+    const char * getMenuText();
+    AASacrificeCard * clone() const;
+};
+
+class AADiscardCard: public AABanishCard
+{
+public:
+    AADiscardCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target, int _banishmentType = DISCARD);
+    int resolve();
+    const char * getMenuText();
+    AADiscardCard * clone() const;
+};
+
+/* Generic Target Ability */
 class GenericTargetAbility: public TargetAbility
 {
 
@@ -1107,125 +812,16 @@ public:
     int limitPerTurn;
     int counters;
     MTGGameZone * activeZone;
+
     GenericTargetAbility(int _id, MTGCardInstance * _source, TargetChooser * _tc, MTGAbility * a, ManaCost * _cost = NULL,
-            int _tap = 0, int limit = 0, int restrictions = 0, MTGGameZone * dest = NULL) :
-        TargetAbility(_id, _source, _tc, _cost, restrictions, _tap), limitPerTurn(limit), activeZone(dest)
-    {
-        ability = a;
-        MTGAbility * core = AbilityFactory::getCoreAbility(a);
-        if (dynamic_cast<AACopier *> (core)) tc->other = true; //http://code.google.com/p/wagic/issues/detail?id=209 (avoid inifinite loop)
-        counters = 0;
-    }
-
-    const char * getMenuText()
-    {
-        if (!ability) return "Error";
-
-        MTGAbility * core = AbilityFactory::getCoreAbility(ability);
-        if (AAMover * move = dynamic_cast<AAMover *>(core))
-        {
-            MTGGameZone * dest = move->destinationZone();
-            GameObserver * g = GameObserver::GetInstance();
-            for (int i = 0; i < 2; i++)
-            {
-                if (dest == g->players[i]->game->hand && tc->targetsZone(g->players[i]->game->inPlay))
-                {
-                    return "Bounce";
-                }
-                else if (dest == g->players[i]->game->hand && tc->targetsZone(g->players[i]->game->graveyard))
-                {
-                    return "Reclaim";
-                }
-                else if (dest == g->players[i]->game->graveyard && tc->targetsZone(g->players[i]->game->inPlay))
-                {
-                    return "Sacrifice";
-                }
-                else if (dest == g->players[i]->game->library && tc->targetsZone(g->players[i]->game->graveyard))
-                {
-                    return "Recycle";
-                }
-                else if (dest == g->players[i]->game->battlefield && tc->targetsZone(g->players[i]->game->graveyard))
-                {
-                    return "Reanimate";
-                }
-                else if (dest == g->players[i]->game->library)
-                {
-                    return "Put in Library";
-                }
-                else if (dest == g->players[i]->game->inPlay)
-                {
-                    return "Put in Play";
-                }
-                else if (dest == g->players[i]->game->graveyard && tc->targetsZone(g->players[i]->game->hand))
-                {
-                    return "Discard";
-                }
-                else if (dest == g->players[i]->game->exile)
-                {
-                    return "Exile";
-                }
-                else if (tc->targetsZone(g->players[i]->game->library))
-                {
-                    return "Fetch";
-                }
-                else if (dest == g->players[i]->game->hand && tc->targetsZone(g->opponent()->game->hand))
-                {
-                    return "Steal";
-                }
-                else if (dest == g->players[i]->game->graveyard && tc->targetsZone(g->opponent()->game->hand))
-                {
-                    return "Opponent Discards";
-                }
-            }
-        }
-
-        return ability->getMenuText();
-
-    }
-
-    ~GenericTargetAbility()
-    {
-        SAFE_DELETE(ability);
-    }
-
-    GenericTargetAbility * clone() const
-    {
-        GenericTargetAbility * a = NEW GenericTargetAbility(*this);
-        a->ability = ability->clone();
-        a->cost = NEW ManaCost();
-        a->cost->copy(cost);
-        if (tc) a->tc = tc->clone();
-        return a;
-    }
-
-    int resolve()
-    {
-        counters++;
-        return TargetAbility::resolve();
-    }
-
-    int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL)
-    {
-        if (limitPerTurn && counters >= limitPerTurn) return 0;
-        return TargetAbility::isReactingToClick(card, mana);
-    }
-
-    void Update(float dt)
-    {
-        if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_AFTER_EOT)
-        {
-            counters = 0;
-        }
-        TargetAbility::Update(dt);
-    }
-
-    int testDestroy()
-    {
-        if (!activeZone) return TargetAbility::testDestroy();
-        if (activeZone->hasCard(source)) return 0;
-        return 1;
-
-    }
+            int _tap = 0, int limit = 0, int restrictions = 0, MTGGameZone * dest = NULL);
+    const char * getMenuText();
+    ~GenericTargetAbility();
+    GenericTargetAbility * clone() const;
+    int resolve();
+    int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
+    void Update(float dt);
+    int testDestroy();
 
 };
 
@@ -1342,52 +938,13 @@ class AADrawer: public ActivatedAbilityTP
 {
 public:
     WParsedInt *nbcards;
+
     AADrawer(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost, WParsedInt * _nbcards, int _tap = 0, int who =
-            TargetChooser::UNSET) :
-        ActivatedAbilityTP(_id, card, _target, _cost, _tap, who), nbcards(_nbcards)
-    {
-        aType = MTGAbility::STANDARD_DRAW;
-        nbcardAmount = nbcards->getValue();
-    }
-
-    int resolve()
-    {
-        Targetable * _target = getTarget();
-        Player * player;
-        if (_target)
-        {
-            if (_target->typeAsTarget() == TARGET_CARD)
-            {
-                player = ((MTGCardInstance *) _target)->controller();
-            }
-            else
-            {
-                player = (Player *) _target;
-            }
-            game->mLayers->stackLayer()->addDraw(player, nbcards->getValue());
-            game->mLayers->stackLayer()->resolve();
-        }
-        return 1;
-    }
-
-    const char * getMenuText()
-    {
-        return "Draw";
-    }
-
-    AADrawer * clone() const
-    {
-        AADrawer * a = NEW AADrawer(*this);
-        a->nbcards = NEW WParsedInt(*(a->nbcards));
-        a->isClone = 1;
-        return a;
-    }
-
-    ~AADrawer()
-    {
-        SAFE_DELETE(nbcards);
-    }
-
+            TargetChooser::UNSET);
+    int resolve();
+    const char * getMenuText();
+    AADrawer * clone() const;
+    ~AADrawer();
 };
 
 //lands, allows to play more land during a turn:
@@ -1396,48 +953,13 @@ class AAMoreLandPlz: public ActivatedAbilityTP
 {
 public:
     WParsedInt *additional;
+
     AAMoreLandPlz(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost, WParsedInt * _additional, int _tap = 0,
-            int who = TargetChooser::UNSET) :
-        ActivatedAbilityTP(_id, card, _target, _cost, _tap, who), additional(_additional)
-    {
-    }
-
-    int resolve()
-    {
-        Targetable * _target = getTarget();
-        Player * player;
-        if (_target)
-        {
-            if (_target->typeAsTarget() == TARGET_CARD)
-            {
-                player = ((MTGCardInstance *) _target)->controller();
-            }
-            else
-            {
-                player = (Player *) _target;
-            }
-            player->canPutLandsIntoPlay += additional->getValue();
-        }
-        return 1;
-    }
-
-    const char * getMenuText()
-    {
-        return "Additional Lands";
-    }
-
-    AAMoreLandPlz * clone() const
-    {
-        AAMoreLandPlz * a = NEW AAMoreLandPlz(*this);
-        a->additional = NEW WParsedInt(*(a->additional));
-        a->isClone = 1;
-        return a;
-    }
-
-    ~AAMoreLandPlz()
-    {
-        SAFE_DELETE(additional);
-    }
+            int who = TargetChooser::UNSET);
+    int resolve();
+    const char * getMenuText();
+    AAMoreLandPlz * clone() const;
+    ~AAMoreLandPlz();
 
 };
 
@@ -1447,42 +969,11 @@ class AALifer: public ActivatedAbilityTP
 public:
     WParsedInt *life;
     AALifer(int _id, MTGCardInstance * card, Targetable * _target, WParsedInt * life, ManaCost * _cost = NULL, int _tap = 0,
-            int who = TargetChooser::UNSET) :
-        ActivatedAbilityTP(_id, card, _target, _cost, _tap, who), life(life)
-    {
-    }
-
-    int resolve()
-    {
-        Damageable * _target = (Damageable *) getTarget();
-        if (_target)
-        {
-            if (_target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
-            {
-                _target = ((MTGCardInstance *) _target)->controller();
-            }
-            _target->life += life->getValue();
-        }
-        return 1;
-    }
-
-    const char * getMenuText()
-    {
-        return "Life";
-    }
-
-    AALifer * clone() const
-    {
-        AALifer * a = NEW AALifer(*this);
-        a->life = NEW WParsedInt(*(a->life));
-        a->isClone = 1;
-        return a;
-    }
-
-    ~AALifer()
-    {
-        SAFE_DELETE(life);
-    }
+            int who = TargetChooser::UNSET);
+    int resolve();
+    const char * getMenuText();
+    AALifer * clone() const;
+    ~AALifer();
 
 };
 
@@ -1491,62 +982,10 @@ class AAWinGame: public ActivatedAbilityTP
 {
 public:
     AAWinGame(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost = NULL, int _tap = 0, int who =
-            TargetChooser::UNSET) :
-        ActivatedAbilityTP(_id, card, _target, _cost, _tap, who)
-    {
-    }
-
-    int resolve()
-    {
-        Damageable * _target = (Damageable *) getTarget();
-        if (_target)
-        {
-            if (_target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
-            {
-                _target = ((MTGCardInstance *) _target)->controller();
-            }
-            int cantlosers = 0;
-            MTGGameZone * z = ((Player *) _target)->opponent()->game->inPlay;
-            int nbcards = z->nb_cards;
-
-            for (int i = 0; i < nbcards; i++)
-            {
-                MTGCardInstance * c = z->cards[i];
-                if (c->has(Constants::CANTLOSE))
-                {
-                    cantlosers++;
-                }
-            }
-            MTGGameZone * k = ((Player *) _target)->game->inPlay;
-            int onbcards = k->nb_cards;
-            for (int m = 0; m < onbcards; ++m)
-            {
-                MTGCardInstance * e = k->cards[m];
-                if (e->has(Constants::CANTWIN))
-                {
-                    cantlosers++;
-                }
-            }
-            if (cantlosers < 1)
-            {
-                game->gameOver = ((Player *) _target)->opponent();
-            }
-        }
-        return 1;
-    }
-
-    const char * getMenuText()
-    {
-        return "Win Game";
-    }
-
-    AAWinGame * clone() const
-    {
-        AAWinGame * a = NEW AAWinGame(*this);
-        a->isClone = 1;
-        return a;
-    }
-
+            TargetChooser::UNSET);
+    int resolve();
+    const char * getMenuText();
+    AAWinGame * clone() const;
 };
 
 class ATokenCreator: public ActivatedAbility
@@ -1579,43 +1018,10 @@ public:
         who = who;
         tokenId = 0;
         if (!multiplier) this->multiplier = NEW WParsedInt(1);
-        //TODO this is a copy/past of other code that's all around the place, everything should be in a dedicated parser class;
 
-        for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++)
-        {
-            size_t found = sabilities.find(Constants::MTGBasicAbilities[j]);
-            if (found != string::npos)
-            {
-                abilities.push_back(j);
-            }
-        }
-
-        for (int j = 0; j < Constants::MTG_NB_COLORS; j++)
-        {
-            size_t found = sabilities.find(Constants::MTGColorStrings[j]);
-            if (found != string::npos)
-            {
-                colors.push_back(j);
-            }
-        }
-
-        string s = stypes;
-        while (s.size())
-        {
-            size_t found = s.find(" ");
-            if (found != string::npos)
-            {
-                int id = Subtypes::subtypesList->find(s.substr(0, found));
-                types.push_back(id);
-                s = s.substr(found + 1);
-            }
-            else
-            {
-                int id = Subtypes::subtypesList->find(s);
-                types.push_back(id);
-                s = "";
-            }
-        }
+        PopulateAbilityIndexVector(abilities, sabilities);
+        PopulateColorIndexVector(colors, sabilities);
+        PopulateSubtypesIndexVector(types, stypes);
     }
 
     int resolve()
@@ -1736,61 +1142,6 @@ public:
         }
     }
 };
-//-----------------------------------------------------------------------------------------------
-class AABanishCard: public ActivatedAbility
-{
-
-protected:
-
-public:
-    int banishmentType;
-    const static int BANISHED = -1;
-    const static int BURY = 0;
-    const static int DESTROY = 1;
-    const static int SACRIFICE = 2;
-    const static int DISCARD = 3;
-
-    AABanishCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost, int _banishmentType);
-    int resolve();
-    virtual const char * getMenuText();
-    AABanishCard * clone() const;
-};
-
-class AABuryCard: public AABanishCard
-{
-public:
-    AABuryCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost, int _banishmentType);
-    int resolve();
-    const char * getMenuText();
-    AABuryCard * clone() const;
-};
-
-class AADestroyCard: public AABanishCard
-{
-public:
-    AADestroyCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost, int _banishmentType);
-    int resolve();
-    const char * getMenuText();
-    AADestroyCard * clone() const;
-};
-
-class AASacrificeCard: public AABanishCard
-{
-public:
-    AASacrificeCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost, int _banishmentType);
-    int resolve();
-    const char * getMenuText();
-    AASacrificeCard * clone() const;
-};
-
-class AADiscardCard: public AABanishCard
-{
-public:
-    AADiscardCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost, int _banishmentType);
-    int resolve();
-    const char * getMenuText();
-    AADiscardCard * clone() const;
-};
 
 /*Changes one of the basic abilities of target
  source : spell
@@ -1852,7 +1203,7 @@ public:
 
 };
 
-//Modifies an	ability until end of turn. Needs a target
+//Modifies an   ability until end of turn. Needs a target
 class ABasicAbilityModifierUntilEOT: public TargetAbility
 {
 public:
@@ -3354,86 +2705,29 @@ class AALifeSet: public ActivatedAbilityTP
 {
 public:
     WParsedInt * life;
+
     AALifeSet(int _id, MTGCardInstance * _source, Targetable * _target, WParsedInt * life, ManaCost * _cost = NULL, int doTap = 0,
-            int who = TargetChooser::UNSET) :
-        ActivatedAbilityTP(_id, _source, _target, _cost, doTap, who), life(life)
-    {
-    }
-
-    int resolve()
-    {
-        Damageable * _target = (Damageable *) getTarget();
-        if (_target)
-        {
-            if (_target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
-            {
-                _target = ((MTGCardInstance *) _target)->controller();
-            }
-            _target->life = life->getValue();
-        }
-        return 0;
-    }
-
-    const char * getMenuText()
-    {
-        return "Set Life";
-    }
-
-    AALifeSet * clone() const
-    {
-        AALifeSet * a = NEW AALifeSet(*this);
-        a->life = NEW WParsedInt(*(a->life));
-        a->isClone = 1;
-        return a;
-    }
-
-    ~AALifeSet()
-    {
-        SAFE_DELETE(life);
-    }
+            int who = TargetChooser::UNSET);
+    int resolve();
+    const char * getMenuText();
+    AALifeSet * clone() const;
+    ~AALifeSet();
 
 };
 
 //lifesetend
+
 class AADamager: public ActivatedAbilityTP
 {
 public:
     WParsedInt * damage;
 
     AADamager(int _id, MTGCardInstance * _source, Targetable * _target, WParsedInt * damage, ManaCost * _cost = NULL,
-            int doTap = 0, int who = TargetChooser::UNSET) :
-        ActivatedAbilityTP(_id, _source, _target, _cost, doTap, who), damage(damage)
-    {
-        aType = MTGAbility::DAMAGER;
-    }
-
-    int resolve()
-    {
-        Damageable * _target = (Damageable *) getTarget();
-        if (_target)
-        {
-            game->mLayers->stackLayer()->addDamage(source, _target, damage->getValue());
-            game->mLayers->stackLayer()->resolve();
-            return 1;
-        }
-        return 0;
-    }
-    const char * getMenuText()
-    {
-        return "Damage";
-    }
-    AADamager * clone() const
-    {
-        AADamager * a = NEW AADamager(*this);
-        a->damage = NEW WParsedInt(*(a->damage));
-        a->isClone = 1;
-        return a;
-    }
-
-    ~AADamager()
-    {
-        SAFE_DELETE(damage);
-    }
+            int doTap = 0, int who = TargetChooser::UNSET);
+    int resolve();
+    const char * getMenuText();
+    AADamager * clone() const;
+    ~AADamager();
 
 };
 
@@ -3442,77 +2736,27 @@ class AADamagePrevent: public ActivatedAbilityTP
 {
 public:
     int preventing;
+
     AADamagePrevent(int _id, MTGCardInstance * _source, Targetable * _target, int preventing, ManaCost * _cost = NULL, int doTap =
-            0, int who = TargetChooser::UNSET) :
-        ActivatedAbilityTP(_id, _source, _target, _cost, doTap, who), preventing(preventing)
-    {
-        aType = MTGAbility::STANDARD_PREVENT;
-    }
-
-    int resolve()
-    {
-        Damageable * _target = (Damageable *) getTarget();
-        if (_target)
-        {
-            _target->preventable += preventing;
-        }
-        return 0;
-    }
-
-    const char * getMenuText()
-    {
-        return "Prevent Damage";
-    }
-
-    AADamagePrevent * clone() const
-    {
-        AADamagePrevent * a = NEW AADamagePrevent(*this);
-        a->isClone = 1;
-        return a;
-    }
-
-    ~AADamagePrevent()
-    {
-    }
-
+            0, int who = TargetChooser::UNSET);
+    int resolve();
+    const char * getMenuText();
+    AADamagePrevent * clone() const;
+    ~AADamagePrevent();
 };
+
 //poison removel
 class AAAlterPoison: public ActivatedAbilityTP
 {
 public:
     int poison;
+
     AAAlterPoison(int _id, MTGCardInstance * _source, Targetable * _target, int poison, ManaCost * _cost = NULL, int doTap = 0,
-            int who = TargetChooser::UNSET) :
-        ActivatedAbilityTP(_id, _source, _target, _cost, doTap, who), poison(poison)
-    {
-    }
-
-    int resolve()
-    {
-        Damageable * _target = (Damageable *) getTarget();
-        if (_target)
-        {
-            _target->poisonCount += poison;
-        }
-        return 0;
-    }
-
-    const char * getMenuText()
-    {
-        return "Poison";
-    }
-
-    AAAlterPoison * clone() const
-    {
-        AAAlterPoison * a = NEW AAAlterPoison(*this);
-        a->isClone = 1;
-        return a;
-    }
-
-    ~AAAlterPoison()
-    {
-    }
-
+            int who = TargetChooser::UNSET);
+    int resolve();
+    const char * getMenuText();
+    AAAlterPoison * clone() const;
+    ~AAAlterPoison();
 };
 /* Standard Damager, can choose a NEW target each time the price is paid */
 class TADamager: public TargetAbility
@@ -3538,70 +2782,20 @@ public:
 class AATapper: public ActivatedAbility
 {
 public:
-    AATapper(int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL, int doTap = 0) :
-        ActivatedAbility(id, card, _cost, 0, doTap)
-    {
-        target = _target;
-    }
-
-    int resolve()
-    {
-        MTGCardInstance * _target = (MTGCardInstance *) target;
-        if (_target)
-        {
-            while (_target->next)
-                _target = _target->next; //This is for cards such as rampant growth
-            _target->tap();
-        }
-        return 1;
-    }
-
-    const char * getMenuText()
-    {
-        return "Tap";
-    }
-
-    AATapper * clone() const
-    {
-        AATapper * a = NEW AATapper(*this);
-        a->isClone = 1;
-        return a;
-    }
+    AATapper(int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL, int doTap = 0);
+    int resolve();
+    const char * getMenuText();
+    AATapper * clone() const;
 };
 
 /* Can untap a target for a cost */
 class AAUntapper: public ActivatedAbility
 {
 public:
-    AAUntapper(int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL, int doTap = 0) :
-        ActivatedAbility(id, card, _cost, 0, doTap)
-    {
-        target = _target;
-    }
-
-    int resolve()
-    {
-        MTGCardInstance * _target = (MTGCardInstance *) target;
-        if (_target)
-        {
-            while (_target->next)
-                _target = _target->next; //This is for cards such as rampant growth
-            _target->untap();
-        }
-        return 1;
-    }
-
-    const char * getMenuText()
-    {
-        return "Untap";
-    }
-
-    AAUntapper * clone() const
-    {
-        AAUntapper * a = NEW AAUntapper(*this);
-        a->isClone = 1;
-        return a;
-    }
+    AAUntapper(int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL, int doTap = 0);
+    int resolve();
+    const char * getMenuText();
+    AAUntapper * clone() const;
 };
 
 /* set max level up on a levelup creature this is an Ai hint ability, no effect for players.*/
@@ -3609,60 +2803,20 @@ class AAWhatsMax: public ActivatedAbility
 {
 public:
     int value;
-    AAWhatsMax(int id, MTGCardInstance * card, MTGCardInstance * source, ManaCost * _cost = NULL, int doTap = 0, int value = 0) :
-        ActivatedAbility(id, card, _cost, 0, doTap), value(value)
-    {
-    }
-    int resolve()
-    {
-        MTGCardInstance * _target = (MTGCardInstance *) target;
-        if (source)
-        {
-            source->MaxLevelUp = value;
-        }
-        return 1;
-    }
-    AAWhatsMax * clone() const
-    {
-        AAWhatsMax * a = NEW AAWhatsMax(*this);
-        a->isClone = 1;
-        return a;
-    }
+
+    AAWhatsMax(int id, MTGCardInstance * card, MTGCardInstance * source, ManaCost * _cost = NULL, int doTap = 0, int value = 0);
+    int resolve();
+    AAWhatsMax * clone() const;
 };
 
 /* Can prevent a card from untapping next untap */
 class AAFrozen: public ActivatedAbility
 {
 public:
-    AAFrozen(int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL, int doTap = 0) :
-        ActivatedAbility(id, card, _cost, 0, doTap)
-    {
-        target = _target;
-    }
-
-    int resolve()
-    {
-        MTGCardInstance * _target = (MTGCardInstance *) target;
-        if (_target)
-        {
-            while (_target->next)
-                _target = _target->next; //This is for cards such as rampant growth
-            _target->frozen += 1;
-        }
-        return 1;
-    }
-
-    const char * getMenuText()
-    {
-        return "Freeze";
-    }
-
-    AAFrozen * clone() const
-    {
-        AAFrozen * a = NEW AAFrozen(*this);
-        a->isClone = 1;
-        return a;
-    }
+    AAFrozen(int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL, int doTap = 0);
+    int resolve();
+    const char * getMenuText();
+    AAFrozen * clone() const;
 };
 
 /* switch power and toughness of target */
@@ -5572,46 +4726,12 @@ class AADepleter: public ActivatedAbilityTP
 {
 public:
     int nbcards;
+
     AADepleter(int _id, MTGCardInstance * card, Targetable * _target, int nbcards = 1, ManaCost * _cost = NULL, int _tap = 0,
-            int who = TargetChooser::UNSET) :
-        ActivatedAbilityTP(_id, card, _target, _cost, _tap, who), nbcards(nbcards)
-    {
-    }
-    int resolve()
-    {
-        Targetable * _target = getTarget();
-        Player * player;
-        if (_target)
-        {
-            if (_target->typeAsTarget() == TARGET_CARD)
-            {
-                player = ((MTGCardInstance *) _target)->controller();
-            }
-            else
-            {
-                player = (Player *) _target;
-            }
-            MTGLibrary * library = player->game->library;
-            for (int i = 0; i < nbcards; i++)
-            {
-                if (library->nb_cards) player->game->putInZone(library->cards[library->nb_cards - 1], library,
-                        player->game->graveyard);
-            }
-        }
-        return 1;
-    }
-
-    const char * getMenuText()
-    {
-        return "Deplete";
-    }
-
-    AADepleter * clone() const
-    {
-        AADepleter * a = NEW AADepleter(*this);
-        a->isClone = 1;
-        return a;
-    }
+            int who = TargetChooser::UNSET);
+    int resolve();
+    const char * getMenuText();
+    AADepleter * clone() const;
 };
 
 //Shuffle
@@ -5619,41 +4739,10 @@ class AAShuffle: public ActivatedAbilityTP
 {
 public:
     AAShuffle(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost = NULL, int _tap = 0, int who =
-            TargetChooser::UNSET) :
-        ActivatedAbilityTP(_id, card, _target, _cost, _tap, who)
-    {
-    }
-    int resolve()
-    {
-        Targetable * _target = getTarget();
-        Player * player;
-        if (_target)
-        {
-            if (_target->typeAsTarget() == TARGET_CARD)
-            {
-                player = ((MTGCardInstance *) _target)->controller();
-            }
-            else
-            {
-                player = (Player *) _target;
-            }
-            MTGLibrary * library = player->game->library;
-            library->shuffle();
-        }
-        return 1;
-    }
-
-    const char * getMenuText()
-    {
-        return "Shuffle";
-    }
-
-    AAShuffle * clone() const
-    {
-        AAShuffle * a = NEW AAShuffle(*this);
-        a->isClone = 1;
-        return a;
-    }
+            TargetChooser::UNSET);
+    int resolve();
+    const char * getMenuText();
+    AAShuffle * clone() const;
 };
 
 //only 1 spell
@@ -5661,164 +4750,45 @@ class AAOnlyOne: public ActivatedAbilityTP
 {
 public:
     AAOnlyOne(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost = NULL, int _tap = 0, int who =
-            TargetChooser::UNSET) :
-        ActivatedAbilityTP(_id, card, _target, _cost, _tap, who)
-    {
-    }
-    int resolve()
-    {
-        Targetable * _target = getTarget();
-        Player * player;
-        if (_target)
-        {
-            if (_target->typeAsTarget() == TARGET_CARD)
-            {
-                player = ((MTGCardInstance *) _target)->controller();
-            }
-            else
-            {
-                player = (Player *) _target;
-            }
-            player->onlyoneinstant = 1;
-        }
-        return 1;
-    }
-
-    const char * getMenuText()
-    {
-        return "Only One Spell!";
-    }
-
-    AAOnlyOne * clone() const
-    {
-        AAOnlyOne * a = NEW AAOnlyOne(*this);
-        a->isClone = 1;
-        return a;
-    }
+            TargetChooser::UNSET);
+    int resolve();
+    const char * getMenuText();
+    AAOnlyOne * clone() const;
 };
+
 //nospells
 class AANoSpells: public ActivatedAbilityTP
 {
 public:
     AANoSpells(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost = NULL, int _tap = 0, int who =
-            TargetChooser::UNSET) :
-        ActivatedAbilityTP(_id, card, _target, _cost, _tap, who)
-    {
-    }
-    int resolve()
-    {
-        Targetable * _target = getTarget();
-        Player * player;
-        if (_target)
-        {
-            if (_target->typeAsTarget() == TARGET_CARD)
-            {
-                player = ((MTGCardInstance *) _target)->controller();
-            }
-            else
-            {
-                player = (Player *) _target;
-            }
-            player->nospellinstant = 1;
-        }
-        return 1;
-    }
-
-    const char * getMenuText()
-    {
-        return "No Spells!";
-    }
-
-    AANoSpells * clone() const
-    {
-        AANoSpells * a = NEW AANoSpells(*this);
-        a->isClone = 1;
-        return a;
-    }
+            TargetChooser::UNSET);
+    int resolve();
+    const char * getMenuText();
+    AANoSpells * clone() const;
 };
+
 //NoCreature
 class AANoCreatures: public ActivatedAbilityTP
 {
 public:
     AANoCreatures(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost = NULL, int _tap = 0, int who =
-            TargetChooser::UNSET) :
-        ActivatedAbilityTP(_id, card, _target, _cost, _tap, who)
-    {
-    }
-    int resolve()
-    {
-        Targetable * _target = getTarget();
-        Player * player;
-        if (_target)
-        {
-            if (_target->typeAsTarget() == TARGET_CARD)
-            {
-                player = ((MTGCardInstance *) _target)->controller();
-            }
-            else
-            {
-                player = (Player *) _target;
-            }
-            player->nocreatureinstant = 1;
-        }
-        return 1;
-    }
-
-    const char * getMenuText()
-    {
-        return "No Creatures!";
-    }
-
-    AANoCreatures * clone() const
-    {
-        AANoCreatures * a = NEW AANoCreatures(*this);
-        a->isClone = 1;
-        return a;
-    }
+            TargetChooser::UNSET);
+    int resolve();
+    const char * getMenuText();
+    AANoCreatures * clone() const;
 };
+
 //Random Discard
 class AARandomDiscarder: public ActivatedAbilityTP
 {
 public:
     int nbcards;
+
     AARandomDiscarder(int _id, MTGCardInstance * card, Targetable * _target, int nbcards = 1, ManaCost * _cost = NULL,
-            int _tap = 0, int who = TargetChooser::UNSET) :
-        ActivatedAbilityTP(_id, card, _target, _cost, _tap, who), nbcards(nbcards)
-    {
-    }
-    int resolve()
-    {
-        Targetable * _target = getTarget();
-        Player * player;
-        if (_target)
-        {
-            if (_target->typeAsTarget() == TARGET_CARD)
-            {
-                player = ((MTGCardInstance *) _target)->controller();
-            }
-            else
-            {
-                player = (Player *) _target;
-            }
-            for (int i = 0; i < nbcards; i++)
-            {
-                player->game->discardRandom(player->game->hand, source);
-            }
-        }
-        return 1;
-    }
-
-    const char * getMenuText()
-    {
-        return "Discard Random";
-    }
-
-    AARandomDiscarder * clone() const
-    {
-        AARandomDiscarder * a = NEW AARandomDiscarder(*this);
-        a->isClone = 1;
-        return a;
-    }
+            int _tap = 0, int who = TargetChooser::UNSET);
+    int resolve();
+    const char * getMenuText();
+    AARandomDiscarder * clone() const;
 };
 
 //Minion of Leshrac
