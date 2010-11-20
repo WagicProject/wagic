@@ -419,8 +419,9 @@ int TestSuite::assertGame()
     GameObserver * g = GameObserver::GetInstance();
     if (g->currentGamePhase != endState.phase)
     {
-        sprintf(result, "<span class=\"error\">==phase problem. Expected %i, got %i==</span><br />", endState.phase,
-                        g->currentGamePhase);
+        sprintf(result, "<span class=\"error\">==phase problem. Expected [ %s ](%i), got [ %s ](%i)==</span><br />", 
+            Constants::MTGPhaseNames[endState.phase],endState.phase,
+            Constants::MTGPhaseNames[g->currentGamePhase], g->currentGamePhase);
         Log(result);
         error++;
     }
