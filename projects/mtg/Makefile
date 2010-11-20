@@ -67,7 +67,7 @@ log: CXXFLAGS += -DDOLOG
 ifeq ($(TARGET_ARCHITECTURE),psp)
 include $(PSPSDK)/lib/build.mak
 
-EXTRA_CLEAN += PrecompiledHeader.h.gch
+EXTRA_CLEAN += PrecompiledHeader.h.gch ../../projects/mtg/include/PrecompiledHeader.h.gch
 
 log: all
 debug: all
