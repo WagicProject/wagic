@@ -39,7 +39,7 @@ LIBDIR = ../../JGE/lib/psp
 CFLAGS = -O2 -G0 -DPSPFW3XX -DDEVHOOK -DUSE_PRECOMPILED_HEADERS=1
 else
 OBJS += objs/TestSuiteAI.o
-INCDIR = -I../../JGE/include -I../../JGE/src -I/usr/X11/include -I../../projects/mtg/include ../../Boost
+INCDIR = -I../../JGE/include -I../../JGE/src -I/usr/X11/include -I../../projects/mtg/include -I../../Boost
 LIBDIR = -L../../JGE/lib/linux -L../../JGE -L/usr/X11/lib
 LIBS = -ljge -lfreetype -ljpeg -lgif -lpng -lz -lm -lstdc++ -lhgetools -lGL -lGLU -lX11 $(FMOD)
 CFLAGS = $(INCDIR) -DLINUX -DUSE_PRECOMPILED_HEADERS=1
