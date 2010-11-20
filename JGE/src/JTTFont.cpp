@@ -39,6 +39,7 @@ JTTFont::JTTFont(int cacheImageSize)
 {
 
   mColor = ARGB(255,255,255,255);
+        mSize = 0;
 	mAngle = 0.0;
 	mLibrary = 0;
 	mFace = 0;
@@ -112,6 +113,9 @@ bool JTTFont::SetSize(int size)
 	if(!mFace)
 		return false;
 
+	if (mSize == size)
+		return true;
+
 	// size is in 26.6 fixed point formant!
 	if (FT_Set_Pixel_Sizes(mFace, size, size) == 0)
 	{
@@ -130,6 +134,10 @@ bool JTTFont::SetSize(int size)
 
 
 		FT_Set_Transform(mFace, 0, 0);
+
+		// JTTFont.h says setting font size will clear the cache
+		for (int i = 0; i < TTF_CACHE_SIZE; i++)
+			mCachedCode[i] = 0;
 
 		return true;
 	}
