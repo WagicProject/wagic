@@ -34,12 +34,12 @@ PSP_EBOOT_ICON = icon.png
 #PSP_EBOOT_ICON1 = icon1.pmf
 PSP_EBOOT_UNKPNG = pic0.png
 PSP_EBOOT_PIC1 = pic1.png
-INCDIR = ../../JGE/include ../../JGE/include/psp ../../JGE/include/psp/freetype2 ../../JGE/src ../../projects/mtg/include
+INCDIR = ../../JGE/include ../../JGE/include/psp ../../JGE/include/psp/freetype2 ../../JGE/src ../../projects/mtg/include ../../Boost
 LIBDIR = ../../JGE/lib/psp
 CFLAGS = -O2 -G0 -DPSPFW3XX -DDEVHOOK -DUSE_PRECOMPILED_HEADERS=1
 else
 OBJS += objs/TestSuiteAI.o
-INCDIR = -I../../JGE/include -I../../JGE/src -I/usr/X11/include -I../../projects/mtg/include
+INCDIR = -I../../JGE/include -I../../JGE/src -I/usr/X11/include -I../../projects/mtg/include ../../Boost
 LIBDIR = -L../../JGE/lib/linux -L../../JGE -L/usr/X11/lib
 LIBS = -ljge -lfreetype -ljpeg -lgif -lpng -lz -lm -lstdc++ -lhgetools -lGL -lGLU -lX11 $(FMOD)
 CFLAGS = $(INCDIR) -DLINUX -DUSE_PRECOMPILED_HEADERS=1
@@ -67,6 +67,8 @@ log: CXXFLAGS += -DDOLOG
 ifeq ($(TARGET_ARCHITECTURE),psp)
 include $(PSPSDK)/lib/build.mak
 
+EXTRA_CLEAN += PrecompiledHeader.h.gch
+
 log: all
 debug: all
 
@@ -85,7 +87,7 @@ linux: $(TARGET)
 debug: linux
 
 clean:
-	$(RM) $(OBJS) Makefile.$(TARGET_ARCHITECTURE)
+	$(RM) PrecompiledHeader.h.gch $(OBJS) Makefile.$(TARGET_ARCHITECTURE)
 
 endif
 

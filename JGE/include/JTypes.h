@@ -508,7 +508,7 @@ public:
 
 
 //------------------------------------------------------------------------------------------------
-class JgeRect
+class JRect
 {
 public:
 	int x;
@@ -517,7 +517,7 @@ public:
 	int height;
 
 public:
-	JgeRect(int _x, int _y, int _width, int _height): x(_x), y(_y), width(_width), height(_height) {}
+	JRect(int _x, int _y, int _width, int _height): x(_x), y(_y), width(_width), height(_height) {}
 
 };
 
