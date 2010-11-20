@@ -230,7 +230,6 @@ HEADERS  += \
         include/GuiStatic.h\
         include/ShopItem.h\
         include/Effects.h\
-        include/Logger.h\
         include/StyleManager.h\
         include/WFont.h\
         include/DeckManager.h\
@@ -250,7 +249,6 @@ SOURCES += \
         ../../JGE/src/JGE.cpp\
         ../../JGE/src/JGui.cpp\
         ../../JGE/src/JLBFont.cpp\
-        ../../JGE/src/JLogger.cpp\
         ../../JGE/src/JMD2Model.cpp\
         ../../JGE/src/JOBJModel.cpp\
         ../../JGE/src/JParticle.cpp\
@@ -293,7 +291,6 @@ HEADERS += \
         ../../JGE/include/JGE.h\
         ../../JGE/include/JGui.h\
         ../../JGE/include/JLBFont.h\
-        ../../JGE/include/JLogger.h\
         ../../JGE/include/JMD2Model.h\
         ../../JGE/include/JMP3.h\
         ../../JGE/include/JNetwork.h\

@@ -171,7 +171,10 @@ public:
   WGuiCardDistort(WDataSource * wds, bool _thumb=false, WDataSource * _distort=NULL);
   ~WGuiCardDistort();
   virtual void Render();
-  WDistort xy; 
+  WDistort xy;
+  /* we assume first xy is the top left of the distorted card */
+  virtual float getX() {return xy[0];};
+  virtual float getY() {return xy[1];};
 protected:
   hgeDistortionMesh* mesh;
   WDataSource * distortSrc;

@@ -878,6 +878,7 @@ void WGuiMenu::Add(WGuiBase * it)
 }
 bool WGuiMenu::CheckUserInput(JButton key)
 {
+    bool result = false;
     bool kidModal = false;
     bool handledInput = false;
     int nbitems = (int) items.size();
@@ -914,9 +915,40 @@ bool WGuiMenu::CheckUserInput(JButton key)
         }
     }
 
-    if (currentItem >= 0 && currentItem < nbitems) return items[currentItem]->CheckUserInput(key);
+    if (currentItem >= 0 && currentItem < nbitems) result = items[currentItem]->CheckUserInput(key);
 
-    return false;
+    if(result == false)
+    { // a dude may have clicked somewhere, we're gonna select the closest object from where he clicked
+      int x, y;
+      unsigned int distance2;
+      unsigned int minDistance2 = -1;
+      int n = currentItem;
+
+      if (mEngine->GetLeftClickCoordinates(x, y))
+      {
+        for(int i=0; i < items.size(); i++)
+        {
+          WGuiItem* pItem = (WGuiItem*)items[i];
+          distance2 = (pItem-> getY() - y) * (pItem-> getY() - y) + (pItem-> getX() - x) * (pItem-> getX() - x);
+          if (distance2 < minDistance2)
+          {
+              minDistance2 = distance2;
+              n = i;
+          }
+        }
+
+        if (n != currentItem && items[currentItem] != NULL && items[currentItem]->Leaving(JGE_BTN_DOWN))
+        {
+            currentItem = n;
+            items[currentItem]->Entering(JGE_BTN_DOWN);
+            if (sync) syncMove();
+        }
+        mEngine->LeftClickedProcessed();
+        return true;
+      }
+    }
+
+    return result;
 }
 void WGuiMenu::syncMove()
 {
