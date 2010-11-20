@@ -926,7 +926,7 @@ bool WGuiMenu::CheckUserInput(JButton key)
 
       if (mEngine->GetLeftClickCoordinates(x, y))
       {
-        for(int i=0; i < items.size(); i++)
+        for(size_t i=0; i < items.size(); i++)
         {
           WGuiItem* pItem = (WGuiItem*)items[i];
           distance2 = (pItem-> getY() - y) * (pItem-> getY() - y) + (pItem-> getX() - x) * (pItem-> getX() - x);
