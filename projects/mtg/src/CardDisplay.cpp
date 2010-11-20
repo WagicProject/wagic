@@ -105,7 +105,7 @@ bool CardDisplay::CheckUserInput(int x, int y)
     {
         for (int i = 0; i < mCount; i++)
         {
-            int top, left;
+            float top, left;
             if (mObjects[i]->getTopLeft(top, left))
             {
                 distance2 = (top - y) * (top - y) + (left - x) * (left - x);

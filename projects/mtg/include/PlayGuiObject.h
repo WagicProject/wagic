@@ -34,7 +34,7 @@ class PlayGuiObject: public JGuiObject, public JGuiListener, public Pos{
   PlayGuiObject(float desiredHeight, float x, float y, bool hasFocus);
   PlayGuiObject(float desiredHeight, const Pos& ref, bool hasFocus);
   virtual void ButtonPressed(int controllerId, int controlId){};
-  virtual bool getTopLeft(int& top, int& left) {top = static_cast<int>(actY); left = static_cast<int>(actX); return true;};
+  virtual bool getTopLeft(float& top, float& left) {top = actY; left = actX; return true;};
   virtual ~PlayGuiObject(){};
   vector<Effect*> effects;
 };

@@ -58,7 +58,7 @@ public:
     virtual bool ButtonPressed(); // action button pressed, return false to ignore
 
     // Used for mouse support so that the GUI engine can found out which Object was selected
-    virtual bool getTopLeft(int& top, int& left)
+    virtual bool getTopLeft(float& top, float& left)
     {
         return false;
     }
