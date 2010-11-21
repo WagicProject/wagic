@@ -342,7 +342,7 @@ void GameStateDeckViewer::Update(float dt)
     int x, y;
     unsigned int distance2;
     unsigned int minDistance2 = -1;
-    int n;
+    int n = 0;
 
     if (options.keypadActive())
     {
