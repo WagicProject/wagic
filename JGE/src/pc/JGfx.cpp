@@ -835,7 +835,7 @@ void JRenderer::BindTexture(JTexture *tex)
 	{
 		mCurrentTex = tex->mTexId;
 
-		glBindTexture(GL_TEXTURE_2D, tex->mTexId);
+		glBindTexture(GL_TEXTURE_2D, mCurrentTex);
 
 		//if (mCurrentTextureFilter != tex->mFilter)
 		{
@@ -1695,7 +1695,8 @@ JTexture* JRenderer::LoadTexture(const char* filename, int mode, int TextureForm
 			// OpenGL texture has (0,0) at lower-left
 			// Pay attention when doing texture mapping!!!
 
-                            glBindTexture(GL_TEXTURE_2D, texid);    // Bind To The Texture ID
+                            mCurrentTex = texid;
+                            glBindTexture(GL_TEXTURE_2D, mCurrentTex);    // Bind To The Texture ID
 
 /* NOT USED
 			if (mode == TEX_TYPE_MIPMAP)			// generate mipmaps
@@ -2094,7 +2095,8 @@ JTexture* JRenderer::LoadTexture(const char* filename, int mode, int TextureForm
 		tex->mTexId = texid;
 		//    glError = glGetError();
 		
-		glBindTexture(GL_TEXTURE_2D, texid);    // Bind To The Texture ID
+		mCurrentTex = texid;
+		glBindTexture(GL_TEXTURE_2D, mCurrentTex);    // Bind To The Texture ID
 			
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -2148,7 +2150,8 @@ JTexture* JRenderer::CreateTexture(int width, int height, int mode __attribute__
 
 		memset(buffer, 0, size);
 
-		glBindTexture(GL_TEXTURE_2D, texid);
+		mCurrentTex = texid;
+		glBindTexture(GL_TEXTURE_2D, mCurrentTex);
 
 		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
