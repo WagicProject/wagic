@@ -832,7 +832,7 @@ int WResourceManager::dirOK(string dirname)
     return (_stat(fname, &statBuffer) >= 0 && // make sure it exists
                     statBuffer.st_mode & S_IFDIR); // and it's not a file
 #else
-    sprintf(fname, JGE_GET_RES(dirname).c_str());
+    sprintf(fname, "%s", JGE_GET_RES(dirname).c_str());
     struct stat st;
     if (stat(fname, &st) == 0) return 1;
 #endif

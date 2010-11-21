@@ -495,9 +495,9 @@ void OptionTheme::Render()
         author = "";
         bChecked = true;
         if (selections[value] == "Default")
-            sprintf(buf, JGE_GET_RES("graphics/themeinfo.txt").c_str());
+            sprintf(buf, "%s", JGE_GET_RES("graphics/themeinfo.txt").c_str());
         else
-            sprintf(buf, JGE_GET_RES("themes/%s/themeinfo.txt").c_str(), selections[value].c_str());
+            sprintf(buf, "%s%s", JGE_GET_RES("themes/%s/themeinfo.txt").c_str(), selections[value].c_str());
         std::ifstream file(buf);
         if (file)
         {
