@@ -197,7 +197,6 @@ JGEQtRenderer::JGEQtRenderer(QWidget *parent)
   , dBusConnection(QDBusConnection::systemBus())
 #endif //Q_WS_MAEMO_5
 {
-//  startTimer( 33 ); // 30 fps should be more than enough
   setWindowTitle(g_launcher->GetName());
 #ifdef Q_WS_MAEMO_5
   setAttribute(Qt::WA_Maemo5AutoOrientation);
@@ -490,7 +489,13 @@ void JGEQtRenderer::showEvent ( QShowEvent * event )
 {
   if(!timerStarted)
   {
+#ifdef Q_WS_MAEMO_5
+    // 30 fps max on mobile
     timerId = startTimer(33);
+#else
+    // 200 fps max on desktop
+    timerId = startTimer(5);
+#endif //Q_WS_MAEMO_5
     timerStarted = true;
   }
 }
@@ -529,7 +534,13 @@ int main(int argc, char* argv[])
 
   g_glwidget = new JGEQtRenderer(NULL);
   g_glwidget->resize(ACTUAL_SCREEN_WIDTH, ACTUAL_SCREEN_HEIGHT);
+#ifdef Q_WS_MAEMO_5
+  // We start in fullscreen on mobile
+  g_glwidget->showFullScreen();
+#else
+  // not on desktop
   g_glwidget->show();
+#endif
 
   if (!InitGame())
   {
