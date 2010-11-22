@@ -262,8 +262,7 @@ std::string wordWrap(std::string sentence, int width)
     return sentence;
 }
 
-
-
+// Given a delimited string of abilities, add the ones to the list that are "Basic"  MTG abilities
 void PopulateAbilityIndexVector( list<int>& abilities, const string& abilityStringList, char delimiter )
 {
     vector<string> abilitiesList = split( abilityStringList, delimiter);
@@ -276,15 +275,18 @@ void PopulateAbilityIndexVector( list<int>& abilities, const string& abilityStri
     }
 }
 
+
 void PopulateColorIndexVector( list<int>& colors, const string& colorStringList, char delimiter )
 {
     vector<string> abilitiesList = split( colorStringList, delimiter);
     for ( vector<string>::iterator iter = abilitiesList.begin(); iter != abilitiesList.end(); ++iter)
     {
-        int colorIndex = Constants::GetColorStringIndex(*iter);
-
-        if (colorIndex != -1)
-            colors.push_back(colorIndex);
+        for (int colorIndex = Constants::MTG_COLOR_ARTIFACT; colorIndex < Constants::MTG_NB_COLORS; ++colorIndex)
+        {
+            // if the text is not a basic ability but contains a valid color add it to the color vector
+            if ( (Constants::GetBasicAbilityIndex( *iter ) != -1) && ((*iter).find( Constants::MTGColorStrings[ colorIndex ] ) != string::npos) )
+                colors.push_back(colorIndex);
+        }
     }
 }
 

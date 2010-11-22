@@ -1018,10 +1018,43 @@ public:
         who = who;
         tokenId = 0;
         if (!multiplier) this->multiplier = NEW WParsedInt(1);
+      //TODO this is a copy/past of other code that's all around the place, everything should be in a dedicated parser class;
 
-        PopulateAbilityIndexVector(abilities, sabilities);
-        PopulateColorIndexVector(colors, sabilities);
-        PopulateSubtypesIndexVector(types, stypes);
+        for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++)
+        {
+            size_t found = sabilities.find(Constants::MTGBasicAbilities[j]);
+            if (found != string::npos)
+            {
+                abilities.push_back(j);
+            }
+        }
+
+        for (int j = 0; j < Constants::MTG_NB_COLORS; j++)
+        {
+            size_t found = sabilities.find(Constants::MTGColorStrings[j]);
+            if (found != string::npos)
+            {
+                colors.push_back(j);
+            }
+        }
+
+        string s = stypes;
+        while (s.size())
+        {
+            size_t found = s.find(" ");
+            if (found != string::npos)
+            {
+                int id = Subtypes::subtypesList->find(s.substr(0, found));
+                types.push_back(id);
+                s = s.substr(found + 1);
+            }
+            else
+            {
+                int id = Subtypes::subtypesList->find(s);
+                types.push_back(id);
+                s = "";
+            }
+        }
     }
 
     int resolve()

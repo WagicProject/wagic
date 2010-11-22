@@ -631,9 +631,11 @@ AACloner::AACloner(int _id, MTGCardInstance * _source, MTGCardInstance * _target
 {
     target = _target;
     source = _source;
-
-    PopulateAbilityIndexVector(awith, abilitiesStringList);
-    PopulateColorIndexVector(colors, abilitiesStringList);
+    if ( abilitiesStringList.size() > 0 )
+    {
+        PopulateAbilityIndexVector(awith, abilitiesStringList);
+        PopulateColorIndexVector(colors, abilitiesStringList);
+    }
 
 }
 
