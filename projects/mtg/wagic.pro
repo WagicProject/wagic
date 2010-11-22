@@ -27,7 +27,7 @@ MOC_DIR = objs
 DESTDIR = bin
 
 unix:LIBS += -ljpeg -lgif -lpng12
-windows:LIBS += -LD:\Projects\Wagic\JGE\Dependencies\lib -llibjpeg-static-mt-debug -lgiflib -llibpng -lfmodvc
+windows:LIBS += -L../../JGE/Dependencies/lib -llibjpeg-static-mt-debug -lgiflib -llibpng -lfmodvc
 
 # MGT
 SOURCES += \
