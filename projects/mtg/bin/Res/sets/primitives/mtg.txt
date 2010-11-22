@@ -25033,7 +25033,7 @@ type=Enchantment
 [card]
 name=Heat Shimmer
 target=creature
-auto=clone with(unearth haste)
+auto=clone with(unearth,haste)
 text=Put a token that's a copy of target creature onto the battlefield. That token has haste and "At the beginning of the end step, exile this permanent."
 mana={2}{R}
 type=Sorcery
@@ -29592,7 +29592,7 @@ type=Legendary Land
 [card]
 name=Kiki-Jiki, Mirror Breaker
 abilities=haste
-auto={T}:clone with(treason haste) target(creature[-legendary]|mybattlefield)
+auto={T}:clone with(treason,haste) target(creature[-legendary]|mybattlefield)
 text=Tap: Put a token that's a copy of target nonlegendary creature you control onto the battlefield. That token has haste. Sacrifice it at the beginning of the next end step.
 mana={2}{R}{R}{R}
 type=Legendary Creature
@@ -55249,7 +55249,7 @@ toughness=1
 [card]
 name=Svogthos, the Restless Tomb
 auto={T}:Add{1}
-auto={3}{B}{G}:becomes(Plant Zombie Creature,0/0,black green) ueot && foreach(creature|mygraveyard) 1/1 ueot
+auto={3}{B}{G}:becomes(Plant Zombie Creature,0/0,black,green) ueot && foreach(creature|mygraveyard) 1/1 ueot
 text={T}: Add {1} to your mana pool. -- {3}{B}{G}: Until end of turn, Svogthos, the Restless Tomb becomes a black and green Plant Zombie creature with "This creature's power and toughness are each equal to the number of creature cards in your graveyard." It's still a land.
 type=Land
 [/card]
