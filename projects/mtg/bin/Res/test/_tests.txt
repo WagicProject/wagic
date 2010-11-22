@@ -422,6 +422,7 @@ reclusive_wight.txt
 reclusive_wight2.txt
 recover.txt
 regal_force.txt
+reinforcements_1.txt
 resounding_roar.txt
 resurrection.txt
 resuscitate_i210.txt
