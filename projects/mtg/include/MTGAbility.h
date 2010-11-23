@@ -99,6 +99,7 @@ class MTGAbility: public ActionElement{
 		STANDARD_DRAW = 17,
 		STANDARD_PUMP = 18,
 		STANDARD_BECOMES = 19,
+		UPCOST = 20,
 
 
   };

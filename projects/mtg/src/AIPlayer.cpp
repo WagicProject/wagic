@@ -172,9 +172,10 @@ int AIPlayer::CanHandleCost(ManaCost * cost)
     for (size_t i = 0; i < ec->costs.size(); ++i)
     {
         if (ec->costs[i]->tc)
+				{
             return 0;
+				}
     }
-
     return 1;
 }
 
@@ -279,6 +280,12 @@ int AIAction::getEfficiency()
     {
         MTGCardInstance * _target = (MTGCardInstance *) (a->target);
         efficiency = 0;
+				int equips = 0;
+					equips = p->game->battlefield->countByType("Equipment");
+				int myArmy = 0;
+					myArmy = p->game->battlefield->countByType("Creature");
+				int equilized = 0;
+					equilized = abs(equips/myArmy);
         if (p == target->controller() && target->equipment <= 1 && !a->source->target)
         {
             efficiency = 20 * (target->DangerRanking());
@@ -287,9 +294,10 @@ int AIAction::getEfficiency()
             if (target->power == 1 && target->toughness == 1 && target->isToken == 0)
                 efficiency += 10; //small bonus to encourage equipping nontoken 1/1 creatures.
         }
-        if (p == target->controller() && target->equipment > 2 && !a->source->target)
+				if (p == target->controller() && !a->source->target && target->equipment < equilized)
         {
             efficiency = 15 * (target->DangerRanking());
+						efficiency -= 5 * (target->equipment);
         }
         break;
     }
@@ -347,6 +355,36 @@ int AIAction::getEfficiency()
         {
             efficiency = 100;
         }
+        break;
+    }
+		  case MTGAbility::UPCOST:
+    {
+        MTGCardInstance * _target = (MTGCardInstance *) (a->target);
+        //hello, Ai pay your upcost please :P, this entices Ai into paying upcost, the conditional isAi() is required strangely ai is able to pay upcost during YOUR upkeep.
+				if (g->getCurrentGamePhase() == Constants::MTG_PHASE_UPKEEP && g->currentPlayer->isAI())
+        {
+            efficiency = 100;
+        }
+        break;
+    }
+		case MTGAbility::FOREACH:
+    {
+        MTGCardInstance * _target = (MTGCardInstance *) (a->target);
+        //trying to encourage Ai to use his foreach manaproducers in first main
+				if ((g->getCurrentGamePhase() == Constants::MTG_PHASE_FIRSTMAIN || g->getCurrentGamePhase() == Constants::MTG_PHASE_SECONDMAIN ) && _target->controller()->game->hand->nb_cards > 0)
+        {
+            efficiency = 100;
+        }
+				 AbilityFactory af;
+        int suggestion = af.abilityEfficiency(a, p, MODE_ABILITY);
+				if (target)
+        {
+        if ((suggestion == BAKA_EFFECT_BAD && p == target->controller()) || (suggestion == BAKA_EFFECT_GOOD && p
+                            != target->controller()))
+            {
+                efficiency = 0;
+            }
+				}
         break;
     }
     case MTGAbility::MANA_PRODUCER: //can't use mana producers right now :/
@@ -877,17 +915,17 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
     card = NULL;
     while ((card = cd.nextmatch(game->hand, card)))
     {
-        if (!CanHandleCost(card->getManaCost()))
+				if (!CanHandleCost(card->getManaCost()))
             continue;
-        if (card->hasType(Subtypes::TYPE_CREATURE) && this->castrestrictedcreature < 0 && this->castrestrictedspell < 0)
+        if (card->hasType(Subtypes::TYPE_CREATURE) && this->castrestrictedcreature > 0 && this->castrestrictedspell > 0)
             continue;
-        if (card->hasType(Subtypes::TYPE_ENCHANTMENT) && this->castrestrictedspell < 0)
+        if (card->hasType(Subtypes::TYPE_ENCHANTMENT) && this->castrestrictedspell > 0)
             continue;
-        if (card->hasType(Subtypes::TYPE_ARTIFACT) && this->castrestrictedspell < 0)
+        if (card->hasType(Subtypes::TYPE_ARTIFACT) && this->castrestrictedspell > 0)
             continue;
-        if (card->hasType(Subtypes::TYPE_SORCERY) && this->castrestrictedspell < 0)
+        if (card->hasType(Subtypes::TYPE_SORCERY) && this->castrestrictedspell > 0)
             continue;
-        if (card->hasType(Subtypes::TYPE_INSTANT) && this->castrestrictedspell < 0)
+        if (card->hasType(Subtypes::TYPE_INSTANT) && this->castrestrictedspell > 0)
             continue;
         if (card->hasType(Subtypes::TYPE_LAND) && !this->canPutLandsIntoPlay)
             continue;
@@ -1012,21 +1050,30 @@ int AIPlayerBaka::computeActions()
                         if (castrestrictedcreature == 0 && nocreatureinstant == 0)
                         {
                             if (!nextCardToPlay)
+														{
                                 nextCardToPlay = FindCardToPlay(currentMana, "creature");
+														}
                         }
                         //Let's Try an enchantment maybe ?
                         if (!nextCardToPlay)
+												{
                             nextCardToPlay = FindCardToPlay(currentMana, "enchantment");
+												}
                         if (!nextCardToPlay)
+												{
                             nextCardToPlay = FindCardToPlay(currentMana, "artifact");
+												}
                         if (!nextCardToPlay)
+												{
                             nextCardToPlay = FindCardToPlay(currentMana, "sorcery");
+												}
                         if (!nextCardToPlay)
+												{
                             nextCardToPlay = FindCardToPlay(currentMana, "instant");
-
+												}
+											}
                     }
                 }
-            }
             if (potential)
                 delete (currentMana);
             if (nextCardToPlay)

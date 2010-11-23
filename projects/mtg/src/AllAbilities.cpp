@@ -1930,6 +1930,7 @@ AUpkeep::AUpkeep(int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _co
     ActivatedAbility(_id, card, _cost, restrictions, _tap), NestedAbility(a), phase(_phase), once(_once)
 {
     paidThisTurn = 0;
+		aType = MTGAbility::UPCOST;
 }
 
 void AUpkeep::Update(float dt)
