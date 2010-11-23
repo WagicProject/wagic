@@ -248,6 +248,7 @@ SOURCES += \
         ../../JGE/src/JGBKFont.cpp\
         ../../JGE/src/JGE.cpp\
         ../../JGE/src/JGui.cpp\
+        ../../JGE/src/JLogger.cpp\
         ../../JGE/src/JLBFont.cpp\
         ../../JGE/src/JMD2Model.cpp\
         ../../JGE/src/JOBJModel.cpp\
@@ -278,6 +279,7 @@ SOURCES += \
 
 HEADERS += \
         ../../JGE/include/decoder_prx.h\
+        ../../JGE/include/DebugRoutines.h\
         ../../JGE/include/Encoding.h\
         ../../JGE/include/JAnimator.h\
         ../../JGE/include/JApp.h\
@@ -291,6 +293,7 @@ HEADERS += \
         ../../JGE/include/JGE.h\
         ../../JGE/include/JGui.h\
         ../../JGE/include/JLBFont.h\
+        ../../JGE/include/JLogger.h\
         ../../JGE/include/JMD2Model.h\
         ../../JGE/include/JMP3.h\
         ../../JGE/include/JNetwork.h\
