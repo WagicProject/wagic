@@ -62,7 +62,7 @@ void dumpStack();
 
 // *** DEFINES ***
 
-#if defined (WIN32) || defined (LINUX)
+#if defined (WIN32) || defined (LINUX) || defined (IOS)
 #define RAM_BLOCK      (100 * 1024 * 1024)
 #else
 #define RAM_BLOCK      (1024 * 1024)

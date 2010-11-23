@@ -69,7 +69,7 @@ void WResourceManager::DebugRender()
                     textureWCache.cacheSize, textureWCache.maxCacheSize, man);
     font->DrawString(buf, 10, 5);
 
-#if defined (WIN32) || defined (LINUX)
+#if defined (WIN32) || defined (LINUX) || defined (IOS)
 #else
     int maxLinear = ramAvailableLineareMax();
     int ram = ramAvailable();
@@ -950,7 +950,7 @@ void WResourceManager::RemoveWFonts()
 
 void WResourceManager::ResetCacheLimits()
 {
-#if defined WIN32 || defined LINUX
+#if defined WIN32 || defined LINUX || defined (IOS)
 #ifdef FORCE_LOW_CACHE_MEMORY
     textureWCache.Resize(kConstrainedCacheLimit, MAX_CACHE_OBJECTS);
 #else
@@ -1383,7 +1383,7 @@ bool WCache<cacheItem, cacheActual>::Cleanup()
     }
 
     while (cacheItems > MAX_CACHE_OBJECTS || cacheItems > maxCached || cacheSize > maxCacheSize
-#if defined WIN32 || defined LINUX
+#if defined WIN32 || defined LINUX || defined (IOS)
 #else
                     || ramAvailableLineareMax() < MIN_LINEAR_RAM
 #endif
