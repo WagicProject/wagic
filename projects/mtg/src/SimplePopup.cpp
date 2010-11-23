@@ -40,8 +40,10 @@ void SimplePopup::Render()
     r->DrawRoundRect(mX, mY, mWidth, textHeight, 2.0f, ARGB( 255, 125, 255, 0) );
     r->FillRoundRect(mX, mY, mWidth, textHeight, 2.0f, ARGB( 255, 0, 0, 0 ) );
 
-    drawBoundingBox( mX, mY, mWidth, textHeight );
-
+	// currently causes a crash on the PSP when drawing the corners.
+#if defined (WIN32) || (LINUX) || (IOS)
+	drawBoundingBox( mX, mY, mWidth, textHeight );
+#endif
     mTextFont->DrawString(detailedInformation.c_str(), mX + 20 , mY + 15);
 
 }
@@ -123,32 +125,52 @@ string SimplePopup::getDetailedInformation(string filename)
 // drawing routines
 void SimplePopup::drawCorner(string imageName, bool flipX, bool flipY, float x, float y)
 {
+	LOG(" Drawing a Corner! ");
     JRenderer* r = JRenderer::GetInstance();
     JQuad *horizontalBarImage = resources.RetrieveTempQuad( imageName, TEXTURE_SUB_5551);
 	horizontalBarImage->SetHFlip(flipX);
 	horizontalBarImage->SetVFlip(flipY);
 
 	r->RenderQuad( horizontalBarImage, x, y);
+	LOG(" Done Drawing a Corner! ");
 }
 
 void SimplePopup::drawHorzPole(string imageName, bool flipX = false, bool flipY = false, float x = 0, float y = 0, float width = SCREEN_WIDTH_F)
 {
+	LOG(" Drawing a horizontal border! ");
     JRenderer* r = JRenderer::GetInstance();
     JQuad *horizontalBarImage = resources.RetrieveTempQuad( imageName, TEXTURE_SUB_5551);
+	if ( horizontalBarImage != NULL )
+	{
 	horizontalBarImage->SetHFlip(flipX);
 	horizontalBarImage->SetVFlip(flipY);
 
 	r->RenderQuad( horizontalBarImage, x, y, 0, width );
+	}
+	else
+	{
+		LOG ( "ERROR: Error trying to render horizontal edge! ");
+	}
+	LOG(" Done Drawing a horizontal border! ");
 }
 
 void SimplePopup::drawVertPole(string imageName, bool flipX = false, bool flipY = false, float x = 0, float y = 0, float height = SCREEN_HEIGHT_F)
 {
+	LOG(" Drawing a Vertical border! ");
     JRenderer* r = JRenderer::GetInstance();
     JQuad *verticalBarImage = resources.RetrieveTempQuad( imageName, TEXTURE_SUB_5551);
-	verticalBarImage->SetHFlip(flipX);
-	verticalBarImage->SetVFlip(flipY);
+	if ( verticalBarImage != NULL )
+	{
+		verticalBarImage->SetHFlip(flipX);
+		verticalBarImage->SetVFlip(flipY);
 
-	r->RenderQuad( verticalBarImage, x, y, 0, 1.0f, height);
+		r->RenderQuad( verticalBarImage, x, y, 0, 1.0f, height);
+	}
+	else
+	{
+		LOG ( "ERROR: Error trying to render vertical edge! ");
+	}
+	LOG(" DONE Drawing a horizontal border! ");
 }
 
 
