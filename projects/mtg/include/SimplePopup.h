@@ -18,7 +18,7 @@ class SimplePopup: public JGuiController
 {
 
 private:
-    float mHeight, mWidth, mX, mY;
+    float mWidth, mX, mY;
     int mMaxLines;
     int mFontId;
     DeckMetaData * mDeckInformation;
@@ -28,8 +28,9 @@ private:
     bool mClosed;
     MTGAllCards * mCollection;
 
-    void drawHorzPole(float x, float y, float width);
-    void drawVertPole(float x, float y, float height);
+    void drawHorzPole(string imageName, bool flipX, bool flipY, float x, float y, float width);
+    void drawCorner(string imageName, bool flipX, bool flipY, float x, float y);
+    void drawVertPole(string imageName, bool flipX, bool flipY, float x, float y, float height);
 
 public:
     bool autoTranslate;
@@ -37,7 +38,7 @@ public:
 
     SimplePopup(int id, JGuiListener* listener, const int fontId, const char * _title = "", DeckMetaData* deckInfo = NULL, MTGAllCards * collection = NULL);
     ~SimplePopup(void);
-    
+    void drawBoundingBox(  float x, float y, float width, float height );
     bool isClosed() { return mClosed; }
     MTGAllCards* getCollection() { return mCollection; }
     void Render();

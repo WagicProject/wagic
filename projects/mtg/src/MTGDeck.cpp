@@ -259,7 +259,7 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
                 }
                 else
                 {
-                    primitive->setType(val);
+                      primitive->setType(val);
                     break;
                 }
             }

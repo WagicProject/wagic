@@ -50,31 +50,31 @@ vector<DeckMetaData *> GameState::getValidDeckMetaData(const string& path, const
         std::ostringstream filename;
         filename << path << "/deck" << nbDecks << ".txt";
         DeckMetaData * meta = metas->get(filename.str(), statsPlayer);
+		string deckStatsFileName;
         if (meta)
         {
             found = 1;
             if (statsPlayer)
             {
-                std::ostringstream smallDeckName;
-                smallDeckName << smallDeckPrefix << "_deck" << nbDecks;
-                meta->loadStatsForPlayer(statsPlayer, smallDeckName.str());
+                std::ostringstream aiStatsDeckName;
+                aiStatsDeckName << smallDeckPrefix << "_deck" << nbDecks;
+				deckStatsFileName = aiStatsDeckName.str();
             }
             else
             {
                 std::ostringstream playerStatsDeckName;
                 playerStatsDeckName << "stats/player_deck" << nbDecks << ".txt";
-                string deckstats = options.profileFile(playerStatsDeckName.str());
-                meta->loadStatsForPlayer(NULL, deckstats);
+                deckStatsFileName = options.profileFile(playerStatsDeckName.str());
             }
 
+			meta->loadStatsForPlayer(statsPlayer, deckStatsFileName);
             retList.push_back(meta);
             nbDecks++;
         }
         meta = NULL;
     }
 
-    std::sort(retList.begin(), retList.end(), sortByName);
-
+	std::sort(retList.begin(), retList.end(), sortByName);
     return retList;
 
 }
@@ -101,7 +101,6 @@ void GameState::renderDeckMenu(DeckMenu * _menu, const vector<DeckMetaData *>& d
         DeckMetaData * deckMetaData = *i;
         string deckName = deckMetaData -> getName();
         string deckDescription = deckMetaData -> getDescription();
-        //int deckId = deckMetaData -> getDeckId(); //do we need this?
         _menu->Add(deckNumber++, deckName.c_str(), deckDescription.c_str(), false, deckMetaData);
     }
 }

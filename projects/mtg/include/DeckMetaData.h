@@ -32,7 +32,7 @@ public:
   DeckMetaData();
   DeckMetaData(string filename, Player * statsPlayer);
   void load(string filename);
-  void loadStatsForPlayer( Player * statsPlayer, string opponentDeckName = "" );
+  void loadStatsForPlayer( Player * statsPlayer, string deckStatsFileName = "" );
   
   // Accessors
   string getFilename();
@@ -52,6 +52,9 @@ public:
 };
 
 class DeckMetaDataList {
+private:
+  map<string,DeckMetaData *>values; 
+
 public:
   void invalidate(string filename);
   DeckMetaData * get(string filename, Player * statsPlayer = NULL);
@@ -59,8 +62,6 @@ public:
   static DeckMetaDataList * decksMetaData;
 
   
-private:
-  map<string,DeckMetaData *>values;
 };
 
 #endif

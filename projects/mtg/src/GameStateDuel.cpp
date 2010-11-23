@@ -127,7 +127,6 @@ void GameStateDuel::Start()
             deckManager->updateMetaDataList(&playerDeckList, false);
             playerDeckList.clear();
 
-            DebugTrace("INFO: Player Deck menu has a size of " << sizeof( deckmenu ) );
             break;
         }
     }
@@ -278,7 +277,7 @@ void GameStateDuel::ensureOpponentMenu()
 {
     if (opponentMenu == NULL)
     {
-        opponentMenu = NEW DeckMenu(DUEL_MENU_CHOOSE_OPPONENT, this, Fonts::OPTION_FONT, "Choose Your Opponent",
+        opponentMenu = NEW DeckMenu(DUEL_MENU_CHOOSE_OPPONENT, this, Fonts::OPTION_FONT, "Choose Opponent",
                 GameStateDuel::selectedAIDeckId, true);
         opponentMenu->Add(MENUITEM_RANDOM_AI, "Random");
         if (options[Options::EVILTWIN_MODE_UNLOCKED].number) opponentMenu->Add(MENUITEM_EVIL_TWIN, "Evil Twin", _(
@@ -690,7 +689,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
                 break;
             }
             else if (controlId != MENUITEM_EVIL_TWIN && aiDeckSize > 0) // evil twin
-            deckNumber = deckManager->getAIDeckOrderList()->at(controlId - 1)->getDeckId();
+                deckNumber = deckManager->getAIDeckOrderList()->at(controlId - 1)->getDeckId();
             loadPlayer(1, deckNumber, 1);
             OpponentsDeckid = deckNumber;
             opponentMenu->Close();
@@ -746,7 +745,8 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
         if (mGamePhase == DUEL_STATE_CHOOSE_DECK1)
         {
             vector<DeckMetaData *> * playerDeck = deckManager->getPlayerDeckOrderList();
-            if (!premadeDeck && controlId > 0) deckNumber = playerDeck->at(controlId - 1)->getDeckId();
+            if (!premadeDeck && controlId > 0) 
+                deckNumber = playerDeck->at(controlId - 1)->getDeckId();
             loadPlayer(0, deckNumber);
             deckmenu->Close();
             mGamePhase = DUEL_STATE_CHOOSE_DECK1_TO_2;

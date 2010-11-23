@@ -16,12 +16,14 @@
 SimplePopup::SimplePopup(int id, JGuiListener* listener, const int fontId, const char * _title, DeckMetaData* deckMetaData, MTGAllCards * collection) :
     JGuiController(id, listener), mFontId(fontId), mCollection(collection)
 {
-    mX = 35;
-    mY = 50;
+    mX = 18;
+    mY = 66;
+	mWidth = 180.0f;
     mTitle = _title;
-    mMaxLines = 10;
+    mMaxLines = 11;
+
     mTextFont = resources.GetWFont(fontId);
-    this->mCount = 1;
+    this->mCount = 1; // a hack to ensure the menus do book keeping correctly.  Since we aren't adding items to the menu, this is required
     mStatsWrapper = NULL;
     Update(deckMetaData);
 }
@@ -34,14 +36,41 @@ void SimplePopup::Render()
     string detailedInformation = getDetailedInformation(mDeckInformation->getFilename());
 
     mTextFont->SetScale(0.85f);
-    const float textWidth = 183.0f;
-    const float textHeight = mTextFont->GetHeight() * 10;
-    r->DrawRoundRect(mX, mY, textWidth, textHeight, 2.0f, ARGB( 255, 125, 255, 0) );
-    r->FillRoundRect(mX, mY, textWidth, textHeight, 2.0f, ARGB( 255, 0, 0, 0 ) );
+    const float textHeight = mTextFont->GetHeight() * mMaxLines;
+    r->DrawRoundRect(mX, mY, mWidth, textHeight, 2.0f, ARGB( 255, 125, 255, 0) );
+    r->FillRoundRect(mX, mY, mWidth, textHeight, 2.0f, ARGB( 255, 0, 0, 0 ) );
 
-    mTextFont->DrawString(detailedInformation.c_str(), mX + 20 , mY + 10);
+    drawBoundingBox( mX, mY, mWidth, textHeight );
+
+    mTextFont->DrawString(detailedInformation.c_str(), mX + 20 , mY + 15);
 
 }
+
+void SimplePopup::drawBoundingBox( float x, float y, float width, float height )
+{
+    JRenderer *r = JRenderer::GetInstance();
+
+    //draw the corners
+    string topCornerImageName = "top_corner.png";
+    string bottomCornerImageName = "bottom_corner.png";
+	string verticalBarImageName = "vert_bar.png";
+    string horizontalBarImageName = "top_bar.png";
+
+	const float boxWidth	= ( width + 15 ) / 3.0f;
+	const float boxHeight = ( height + 15 ) / 3.0f;
+
+	drawHorzPole( horizontalBarImageName, false, false, x, y, boxWidth );
+	drawHorzPole( horizontalBarImageName, false, true, x, y + height, boxWidth );
+	
+	drawVertPole( verticalBarImageName, false, false, x, y, boxHeight );
+	drawVertPole( verticalBarImageName, true, false, x + width, y, boxHeight );
+
+	drawCorner( topCornerImageName, false, false, x, y );
+	drawCorner( topCornerImageName, true, false, x + width, y );
+	drawCorner( bottomCornerImageName, false, false, x, y + height );
+	drawCorner( bottomCornerImageName, true, false, x + width, y + height );
+}
+
 void SimplePopup::Update(DeckMetaData* selectedDeck)
 {
     mDeckInformation = selectedDeck;
@@ -91,6 +120,38 @@ string SimplePopup::getDetailedInformation(string filename)
     CheckUserInput(key);
 }
 
+// drawing routines
+void SimplePopup::drawCorner(string imageName, bool flipX, bool flipY, float x, float y)
+{
+    JRenderer* r = JRenderer::GetInstance();
+    JQuad *horizontalBarImage = resources.RetrieveTempQuad( imageName, TEXTURE_SUB_5551);
+	horizontalBarImage->SetHFlip(flipX);
+	horizontalBarImage->SetVFlip(flipY);
+
+	r->RenderQuad( horizontalBarImage, x, y);
+}
+
+void SimplePopup::drawHorzPole(string imageName, bool flipX = false, bool flipY = false, float x = 0, float y = 0, float width = SCREEN_WIDTH_F)
+{
+    JRenderer* r = JRenderer::GetInstance();
+    JQuad *horizontalBarImage = resources.RetrieveTempQuad( imageName, TEXTURE_SUB_5551);
+	horizontalBarImage->SetHFlip(flipX);
+	horizontalBarImage->SetVFlip(flipY);
+
+	r->RenderQuad( horizontalBarImage, x, y, 0, width );
+}
+
+void SimplePopup::drawVertPole(string imageName, bool flipX = false, bool flipY = false, float x = 0, float y = 0, float height = SCREEN_HEIGHT_F)
+{
+    JRenderer* r = JRenderer::GetInstance();
+    JQuad *verticalBarImage = resources.RetrieveTempQuad( imageName, TEXTURE_SUB_5551);
+	verticalBarImage->SetHFlip(flipX);
+	verticalBarImage->SetVFlip(flipY);
+
+	r->RenderQuad( verticalBarImage, x, y, 0, 1.0f, height);
+}
+
+
 void SimplePopup::Close()
 {
     mClosed = true;
@@ -104,12 +165,3 @@ SimplePopup::~SimplePopup(void)
     SAFE_DELETE(mStatsWrapper);
 }
 
-void SimplePopup::drawHorzPole(float x, float y, float width)
-{
-
-}
-
-void SimplePopup::drawVertPole(float x, float y, float height)
-{
-
-}

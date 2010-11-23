@@ -15,9 +15,12 @@ namespace
     const float kVerticalMargin = 16;
     const float kHorizontalMargin = 20;
     const float kLineHeight = 20;
-    const float kDescriptionVerticalBoxPadding = 5;
+	const float kDescriptionVerticalBoxPadding = 5;
     const float kDescriptionHorizontalBoxPadding = 5;
-    const float kMenuFontScale = 1.0f;
+	
+	const float kDescriptiveTextFontScale = 0.85f;
+    const float kDefaultFontScale = 1.0f;
+
     const int DETAILED_INFO_THRESHOLD = 20;
 }
 
@@ -39,16 +42,16 @@ JGuiController(id, listener), fontId(fontId), mShowDetailsScreen( showDetailsOve
     backgroundName = "DeckMenuBackdrop";
     mAlwaysShowDetailsButton = false;
     mSelectedDeck = NULL;
-    mY = 55;
+    mY = 50;
     mWidth = 176;
-    mX = 125;
+    mX = 110;
 
-    titleX = 130; // center point in title box
-    titleY = 28;
+    titleX = 110; // center point in title box
+    titleY = 15;
     titleWidth = 180; // width of inner box of title
 
-    descX = 230 + kDescriptionVerticalBoxPadding;
-    descY = 65 + kDescriptionHorizontalBoxPadding;
+    descX = 260 + kDescriptionVerticalBoxPadding;
+    descY = 100 + kDescriptionHorizontalBoxPadding;
     descHeight = 145;
     descWidth = 220;
 
@@ -56,20 +59,20 @@ JGuiController(id, listener), fontId(fontId), mShowDetailsScreen( showDetailsOve
     detailedInfoBoxY = 235;
     starsOffsetX = 50;
 
-    statsX = 280;
-    statsY = 8;
+    statsX = 300;
+    statsY = 15;
     statsHeight = 50;
     statsWidth = 227;
 
     mSelectedDeckId = startIndex;
 
-    avatarX = 230;
-    avatarY = 8;
+    avatarX = 232;
+    avatarY = 11;
 
     menuInitialized = false;
 
-    float scrollerWidth = 80;
-    mScroller = NEW TextScroller(Fonts::MAIN_FONT, 40, 230, scrollerWidth, 100, 1, 1);
+    float scrollerWidth = 60;
+    mScroller = NEW TextScroller(Fonts::MAIN_FONT, 20, 235, scrollerWidth, 100, 1, 1);
 
     mAutoTranslate = true;
     maxItems = 7;
@@ -189,7 +192,6 @@ void DeckMenu::Render()
                 mSelectedDeck = currentMenuItem->meta;
 
                 WFont *mainFont = resources.GetWFont(Fonts::MAIN_FONT);
-
                 // display the "more info" button if special condition is met
                 if (showDetailsScreen())
                 {                    
@@ -212,6 +214,7 @@ void DeckMenu::Render()
                 }
                 // fill in the description part of the screen
                 string text = currentMenuItem->desc;
+				mainFont->SetScale(kDescriptiveTextFontScale);
                 mainFont->DrawString(text.c_str(), descX, descY);
                 mFont->SetColor(ARGB(255,255,255,255));
 
@@ -229,22 +232,22 @@ void DeckMenu::Render()
             {
                 mFont->SetColor(ARGB(150,255,255,255));
             }
-            mFont->SetScale(kMenuFontScale);
+			mFont->SetScale(kDefaultFontScale);
             currentMenuItem->RenderWithOffset(-kLineHeight * startId);
         }
     }
 
     RenderBackground();
 
-    if (!title.empty())
+    mFont->SetScale(kDescriptiveTextFontScale);
+    mScroller->Render();
+	mFont->SetScale(kDefaultFontScale);
+    
+	if (!title.empty())
     {
         mFont->SetColor(ARGB(255,255,255,255));
-        mFont->SetScale(titleFontScale);
         mFont->DrawString(title.c_str(), titleX, titleY, JGETEXT_CENTER);
     }
-    mFont->SetScale(1.0f);
-    mScroller->Render();
-
 }
 
 void DeckMenu::Update(float dt)
