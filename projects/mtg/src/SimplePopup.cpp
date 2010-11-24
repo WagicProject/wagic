@@ -41,7 +41,8 @@ void SimplePopup::Render()
     r->FillRoundRect(mX, mY, mWidth, textHeight, 2.0f, ARGB( 255, 0, 0, 0 ) );
 
 	// currently causes a crash on the PSP when drawing the corners.
-#if defined (WIN32) || (LINUX) || (IOS)
+	// TODO: clean up the image ot make it loook cleaner. Find solution to load gfx to not crash PSP
+#if 0
 	drawBoundingBox( mX, mY, mWidth, textHeight );
 #endif
     mTextFont->DrawString(detailedInformation.c_str(), mX + 20 , mY + 15);
