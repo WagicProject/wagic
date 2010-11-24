@@ -36,7 +36,7 @@ DeckEditorMenu::DeckEditorMenu(int id, JGuiListener* listener, int fontId, const
 
     float scrollerWidth = 80;
     SAFE_DELETE(mScroller); // need to delete the scroller init in the base class
-    mScroller = NEW TextScroller(Fonts::MAIN_FONT, 40, 230, scrollerWidth, 100, 1, 1);
+    mScroller = NEW VerticalTextScroller(Fonts::MAIN_FONT, 40, 230, scrollerWidth, 100);
 
 }
 

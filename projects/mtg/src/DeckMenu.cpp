@@ -18,7 +18,6 @@ namespace
 	const float kDescriptionVerticalBoxPadding = 5;
     const float kDescriptionHorizontalBoxPadding = 5;
 	
-	const float kDescriptiveTextFontScale = 0.85f;
     const float kDefaultFontScale = 1.0f;
 
     const int DETAILED_INFO_THRESHOLD = 20;
@@ -71,8 +70,9 @@ JGuiController(id, listener), fontId(fontId), mShowDetailsScreen( showDetailsOve
 
     menuInitialized = false;
 
-    float scrollerWidth = 60;
-    mScroller = NEW TextScroller(Fonts::MAIN_FONT, 20, 235, scrollerWidth, 100, 1, 1);
+    float scrollerWidth = 200.0f;
+	float scrollerHeight = 28.0f;
+    mScroller = NEW VerticalTextScroller(Fonts::MAIN_FONT, 14, 235, scrollerWidth, 28.0f, 100);
 
     mAutoTranslate = true;
     maxItems = 7;
@@ -214,7 +214,6 @@ void DeckMenu::Render()
                 }
                 // fill in the description part of the screen
                 string text = currentMenuItem->desc;
-				mainFont->SetScale(kDescriptiveTextFontScale);
                 mainFont->DrawString(text.c_str(), descX, descY);
                 mFont->SetColor(ARGB(255,255,255,255));
 
@@ -232,22 +231,18 @@ void DeckMenu::Render()
             {
                 mFont->SetColor(ARGB(150,255,255,255));
             }
-			mFont->SetScale(kDefaultFontScale);
             currentMenuItem->RenderWithOffset(-kLineHeight * startId);
         }
     }
-
-    RenderBackground();
-
-    mFont->SetScale(kDescriptiveTextFontScale);
-    mScroller->Render();
-	mFont->SetScale(kDefaultFontScale);
     
 	if (!title.empty())
     {
         mFont->SetColor(ARGB(255,255,255,255));
         mFont->DrawString(title.c_str(), titleX, titleY, JGETEXT_CENTER);
     }
+
+    mScroller->Render();
+	RenderBackground();
 }
 
 void DeckMenu::Update(float dt)

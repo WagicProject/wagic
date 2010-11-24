@@ -16,11 +16,11 @@
 SimplePopup::SimplePopup(int id, JGuiListener* listener, const int fontId, const char * _title, DeckMetaData* deckMetaData, MTGAllCards * collection) :
     JGuiController(id, listener), mFontId(fontId), mCollection(collection)
 {
-    mX = 18;
+    mX = 19;
     mY = 66;
 	mWidth = 180.0f;
     mTitle = _title;
-    mMaxLines = 11;
+    mMaxLines = 12;
 
     mTextFont = resources.GetWFont(fontId);
     this->mCount = 1; // a hack to ensure the menus do book keeping correctly.  Since we aren't adding items to the menu, this is required
@@ -35,7 +35,6 @@ void SimplePopup::Render()
     JRenderer *r = JRenderer::GetInstance();
     string detailedInformation = getDetailedInformation(mDeckInformation->getFilename());
 
-    mTextFont->SetScale(0.85f);
     const float textHeight = mTextFont->GetHeight() * mMaxLines;
     r->DrawRoundRect(mX, mY, mWidth, textHeight, 2.0f, ARGB( 255, 125, 255, 0) );
     r->FillRoundRect(mX, mY, mWidth, textHeight, 2.0f, ARGB( 255, 0, 0, 0 ) );
@@ -45,10 +44,11 @@ void SimplePopup::Render()
 #if 0
 	drawBoundingBox( mX, mY, mWidth, textHeight );
 #endif
-    mTextFont->DrawString(detailedInformation.c_str(), mX + 20 , mY + 15);
+    mTextFont->DrawString(detailedInformation.c_str(), mX + 9 , mY + 15);
 
 }
 
+// draws a bounding box around the popup.
 void SimplePopup::drawBoundingBox( float x, float y, float width, float height )
 {
     JRenderer *r = JRenderer::GetInstance();
