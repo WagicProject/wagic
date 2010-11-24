@@ -81,7 +81,7 @@ void GameObserver::nextGamePhase()
         }
 
     if (cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS)
-        if (BLOCKERS == combatStep || TRIGGERS == combatStep)
+        if (BLOCKERS == combatStep)
         {
             nextCombatStep();
             return;

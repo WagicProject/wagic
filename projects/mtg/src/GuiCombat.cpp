@@ -168,7 +168,6 @@ bool GuiCombat::clickOK()
     {
     case BLOCKERS:
     case TRIGGERS:
-        assert(false);
         return false; // that should not happen
 
     case ORDER:
