@@ -168,6 +168,7 @@ bool GuiCombat::clickOK()
     {
     case BLOCKERS:
     case TRIGGERS:
+			assert(false);//this is an assert for "do i show the screen that lets you select multiple blocker damage assignment.
         return false; // that should not happen
 
     case ORDER:
