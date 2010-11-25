@@ -2046,81 +2046,105 @@ void JRenderer::LoadGIF(TextureInfo &textureInfo, const char *filename, int mode
 JTexture* JRenderer::LoadTexture(const char* filename, int mode, int TextureFormat __attribute__((unused)))
 {
 	TextureInfo textureInfo;
-	
+	JTexture *tex = NULL;
 	textureInfo.mBits = NULL;
 	
 	NSString *path = [NSString stringWithUTF8String: JGE_GET_RES(filename).c_str()];
-//	NSString *path = [[[NSBundle mainBundle] resourcePath]  stringByAppendingPathComponent:newString2];
     NSData *texData = [[NSData alloc] initWithContentsOfFile:path];
     UIImage *image = [[UIImage alloc] initWithData:texData];
-    if (image == nil)
-        NSLog(@"Do real error checking here");
-	
-    textureInfo.mWidth = CGImageGetWidth(image.CGImage);
-    textureInfo.mHeight = CGImageGetHeight(image.CGImage);
-	textureInfo.mTexWidth = textureInfo.mWidth;
-	textureInfo.mTexHeight = textureInfo.mHeight;
-	
-	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    textureInfo.mBits = new u8 [ textureInfo.mHeight * textureInfo.mWidth * 4 ];
-    CGContextRef context = CGBitmapContextCreate( textureInfo.mBits, textureInfo.mWidth, textureInfo.mHeight, 8, 4 * textureInfo.mWidth, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big );
-    CGColorSpaceRelease( colorSpace );
-    CGContextClearRect( context, CGRectMake( 0, 0, textureInfo.mWidth, textureInfo.mHeight ) );
-    CGContextTranslateCTM( context, 0, textureInfo.mHeight - textureInfo.mHeight );
-    CGContextDrawImage( context, CGRectMake( 0, 0, textureInfo.mWidth, textureInfo.mHeight ), image.CGImage );
-	
-	if (textureInfo.mBits == NULL) {
-		printf("Texture %s failed to load\n", filename);
-		return NULL;
-	}
-	
-	bool ret = false;
-	
-	JTexture *tex = new JTexture();
-	
- 	if (tex)
-	{
-		if (mImageFilter != NULL)
-			mImageFilter->ProcessImage((PIXEL_TYPE*)textureInfo.mBits, textureInfo.mWidth, textureInfo.mHeight);
+	CGImageAlphaInfo info;
+	BOOL hasAlpha;
+
+	do {
+		info = CGImageGetAlphaInfo(image.CGImage);
+		hasAlpha = ((info == kCGImageAlphaPremultipliedLast) || (info == kCGImageAlphaPremultipliedFirst) || (info == kCGImageAlphaLast) || (info == kCGImageAlphaFirst) ? YES : NO);
 		
-		tex->mFilter = TEX_FILTER_LINEAR;
-		tex->mWidth = textureInfo.mWidth;
-		tex->mHeight = textureInfo.mHeight;
-		tex->mTexWidth = textureInfo.mTexWidth;
-		tex->mTexHeight = textureInfo.mTexHeight;
+		if (image == nil) {
+			NSLog(@"Loading Texture : %s failed", filename);
+			break;
+		}
 		
-		GLuint texid;
-		checkGlError();
-		glGenTextures(1, &texid);
-		tex->mTexId = texid;
-		//    glError = glGetError();
+		textureInfo.mWidth = CGImageGetWidth(image.CGImage);
+		textureInfo.mHeight = CGImageGetHeight(image.CGImage);
+		textureInfo.mTexWidth = getNextPower2(textureInfo.mWidth);
+		textureInfo.mTexHeight = getNextPower2(textureInfo.mHeight);
 		
-		mCurrentTex = texid;
-		glBindTexture(GL_TEXTURE_2D, mCurrentTex);    // Bind To The Texture ID
-			
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureInfo.mTexWidth, textureInfo.mTexHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureInfo.mBits);
-			
-		ret = true;
-	}
-	
-    CGContextRelease(context);
-	
-	delete [] textureInfo.mBits;
-	//delete textureInfo;
-	
-    [image release];
-    [texData release];
+		NSLog(@"Loading Texture : %s : %s : %ux%u", filename, (hasAlpha?"Alpha ":"No Alpha "), textureInfo.mWidth, textureInfo.mHeight); 
 		
-	if (!ret)
-	{
+		textureInfo.mBits = new u8 [ textureInfo.mTexHeight * textureInfo.mTexWidth * 4 ];
+		if (textureInfo.mBits == NULL) {
+			NSLog(@"Texture %s failed to load\n", filename);
+			break;
+		}
+		
+		CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+		info = hasAlpha ? kCGImageAlphaPremultipliedLast : kCGImageAlphaNoneSkipLast; 
+		
+		CGContextRef context = 
+		CGBitmapContextCreate(textureInfo.mBits, 
+							  textureInfo.mTexWidth, 
+							  textureInfo.mTexHeight, 8, 
+							  4 * textureInfo.mTexWidth, 
+							  colorSpace, 
+							  info /*| kCGBitmapByteOrder32Big*/);
+		CGColorSpaceRelease(colorSpace);
+		CGContextClearRect( context, CGRectMake( 0, 0, textureInfo.mTexWidth, textureInfo.mTexHeight ) );
+		CGContextTranslateCTM( context, 0, textureInfo.mTexHeight - textureInfo.mHeight );
+		if(!hasAlpha) {
+			CGContextSetAlpha(context, 1.0f);
+		}
+		CGContextDrawImage( context, CGRectMake( 0, 0, textureInfo.mWidth, textureInfo.mHeight ), image.CGImage );
+		
+		bool ret = false;
+		
+		tex = new JTexture();
+		
 		if (tex)
-			delete tex;
-		tex = NULL;
-	}
+		{
+			if (mImageFilter != NULL)
+				mImageFilter->ProcessImage((PIXEL_TYPE*)textureInfo.mBits, textureInfo.mWidth, textureInfo.mHeight);
+			
+			tex->mFilter = TEX_FILTER_LINEAR;
+			tex->mWidth = textureInfo.mWidth;
+			tex->mHeight = textureInfo.mHeight;
+			tex->mTexWidth = textureInfo.mTexWidth;
+			tex->mTexHeight = textureInfo.mTexHeight;
+			
+			GLuint texid;
+			checkGlError();
+			glGenTextures(1, &texid);
+			tex->mTexId = texid;
+			//    glError = glGetError();
+			
+			mCurrentTex = texid;
+			glBindTexture(GL_TEXTURE_2D, mCurrentTex);    // Bind To The Texture ID
+			
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureInfo.mTexWidth, textureInfo.mTexHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureInfo.mBits);
+			
+			ret = true;
+		} else {
+			NSLog(@"JTexture for %s not created\n", filename);
+		}
+		
+		CGContextRelease(context);
+		
+		delete [] textureInfo.mBits;
+		//delete textureInfo;
+		
+		[image release];
+		[texData release];
+	
+		if (!ret)
+		{
+			if (tex)
+				delete tex;
+			tex = NULL;
+		}
+	} while(0);
 	
 	checkGlError();
 	return tex;
