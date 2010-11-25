@@ -12,6 +12,9 @@ class DeckMenuItem: public JGuiObject
 {
  private:
   bool mHasFocus;
+  bool mScrollEnabled;
+  int mRemainder; // difference between the number of characters shown and full title
+
   DeckMenu* parent;
   int fontId;
   string mText;
@@ -19,6 +22,8 @@ class DeckMenuItem: public JGuiObject
  public:
   string imageFilename;
   string desc;
+  string displayName;
+  int mScrollTimer;
   DeckMetaData *meta;
 
   float mX;
@@ -26,6 +31,8 @@ class DeckMenuItem: public JGuiObject
 
   void Relocate(float x, float y);
   float GetWidth();
+  string GetText() { return mText; }
+  string GetDescription() { return desc; }
   bool hasFocus();
 
   DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, float x, float y, bool hasFocus = false, bool autoTranslate = false, DeckMetaData *meta = NULL);

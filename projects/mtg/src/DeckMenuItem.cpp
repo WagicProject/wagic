@@ -5,23 +5,31 @@
 #include "WResourceManager.h"
 
 #define ITEM_PX_WIDTH 190.f
+const int kHorizontalScrollSpeed = 10; // lower numbers mean faster scrolling
 
 DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, float x, float y, bool hasFocus, bool autoTranslate, DeckMetaData *deckMetaData)
                         : JGuiObject(id), parent(_parent), fontId(fontId), mX(x), mY(y)
 {
-    if (autoTranslate)
-        mText = _(text);
-    else
-        mText = text;
+	mText = trim(text);
+	displayName = text;
+	if (autoTranslate)
+		mText = _(mText);	
+    
+	WFont * mFont = resources.GetWFont(fontId);
+    while (mFont->GetStringWidth(displayName.c_str()) > ITEM_PX_WIDTH)
+        displayName.erase(displayName.size() - 1);
 
-    //trim the string so that its width fits in the background.
-    //in the future we might want to replace this with a horizontal scrolling of long strings
-    WFont * mFont = resources.GetWFont(fontId);
-    while (mFont->GetStringWidth(mText.c_str()) > ITEM_PX_WIDTH)
-        mText.erase(mText.size() - 1);
-
+	mScrollTimer = 0;
     mHasFocus = hasFocus;
-    if (hasFocus)
+	mScrollEnabled = (displayName.length() != mText.length()) ;
+
+	if (mScrollEnabled)
+		mText.append("   "); // add padding to reduce jerkiness when text scrolls
+
+	mRemainder = ( mText.length() - displayName.length() );
+
+
+	if (hasFocus)
         Entering();
 
     meta = deckMetaData;
@@ -35,7 +43,25 @@ DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, f
 void DeckMenuItem::RenderWithOffset(float yOffset)
 {
     WFont * mFont = resources.GetWFont(fontId);
-    mFont->DrawString(mText.c_str(), mX, mY + yOffset, JGETEXT_CENTER);
+	string menuItemString = displayName;
+	size_t offset = 0;
+	
+	if ( mHasFocus && mScrollEnabled )
+	{
+		offset = mScrollTimer / kHorizontalScrollSpeed;
+		int wrapIndexEnd = mText.length() - offset;
+		int nbWrapAroundChars =  displayName.length() - wrapIndexEnd;
+		menuItemString = mText.substr(offset, displayName.length());
+		if ( nbWrapAroundChars > 0 )
+			// need to append start of title to end of menuItemString
+			menuItemString.append( mText.substr(0, nbWrapAroundChars ) );
+	}
+
+	mFont->DrawString(menuItemString.c_str(), mX, mY + yOffset, JGETEXT_CENTER);
+	if ( mHasFocus && mScrollEnabled && offset == mText.length())
+		mScrollTimer = 0;
+	else if (mHasFocus && mScrollEnabled)
+		mScrollTimer++;
 }
 
 void DeckMenuItem::Render()
