@@ -25,7 +25,7 @@ protected:
   int scrollDirection;
 
 public:
-  TextScroller(int fontId, float x, float y, float width, float speed = 100);
+  TextScroller(int fontId, float x, float y, float width, float speed = 30);
   void Add(string text);
   void Reset();
   void setRandom(int mode = 1);
