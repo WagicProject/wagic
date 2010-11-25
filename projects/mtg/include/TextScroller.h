@@ -41,10 +41,11 @@ private:
 	size_t mNbItemsShown;
 	bool mScrollerInitialized;
 	float mHeight; // maximum height availble for display
-	int marginX;
-	int marginY; // margin used to allow text to scroll off screen without
+	int mMarginX;
+	int mMarginY; // margin used to allow text to scroll off screen without
 				// affecting look and feel.  Should be enough
 				// for at least one line of text ( marginY)
+	float mVerticalScrollSpeed;
 
 protected:
 	string wordWrap(string sentence, float width);

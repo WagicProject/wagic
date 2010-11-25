@@ -90,9 +90,9 @@ TextScroller( fontId, x, y, width, scrollSpeed)
 {
 	mHeight = height;
 	mNbItemsShown = numItemsShown;
-
-	marginX = 0;
-	marginY = 215;
+	mVerticalScrollSpeed = 10.0f;
+	mMarginX = 0;
+	mMarginY = 215;
 	mScrollerInitialized = false;
 
 }
@@ -102,13 +102,16 @@ void VerticalTextScroller::Update(float dt)
 	if (!strings.size()) return;
 	WFont * mFont = resources.GetWFont(fontId);
 	ostringstream scrollerText;
-	if ( mScrollerInitialized && timer % 10 == 0 )
+
+	// update the veritcal scrolling
+	if ( mScrollerInitialized )
 	{
-		mY -= 1;
-		if ( mY < marginY )
-			mY = marginY + 20;
+		mY -= mVerticalScrollSpeed * dt;
+		if ( mY < mMarginY )
+			mY = mMarginY + 20;
 	}
 
+	// update the text
 	if (timer == 0)
 	{
 		mScrollerInitialized = false;
@@ -122,7 +125,7 @@ void VerticalTextScroller::Update(float dt)
 		if (currentId >= strings.size()) 
 			currentId = 0;
 		mText = wordWrap(scrollerText.str(), mWidth);
-		mY = marginY + 20;
+		mY = mMarginY + 20;
 
 	}
 	timer = ++timer % ((int) mScrollSpeed);
