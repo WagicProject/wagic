@@ -95,7 +95,8 @@ JGuiController(id, listener), fontId(fontId), mShowDetailsScreen( showDetailsOve
 
     mSelectionTargetY = selectionY = kVerticalMargin;
 
-    if (NULL == stars) stars = NEW hgeParticleSystem(resources.RetrievePSI("stars.psi", resources.GetQuad("stars")));
+    if (NULL == stars) 
+		stars = NEW hgeParticleSystem(resources.RetrievePSI("stars.psi", resources.GetQuad("stars")));
     stars->FireAt(mX, mY);
 
     updateScroller();
@@ -243,6 +244,7 @@ void DeckMenu::Render()
 
     mScroller->Render();
 	RenderBackground();
+	stars->Render();
 }
 
 void DeckMenu::Update(float dt)
@@ -273,7 +275,8 @@ void DeckMenu::Update(float dt)
         mClosed = false;
         timeOpen += dt * 10;
     }
-    if (mScroller) mScroller->Update(dt);
+    if (mScroller) 
+		mScroller->Update(dt);
 }
 
 void DeckMenu::Add(int id, const char * text, string desc, bool forceFocus, DeckMetaData * deckMetaData)
@@ -303,13 +306,15 @@ void DeckMenu::updateScroller()
     // add all the items from the Tasks db.
     TaskList taskList;
     mScroller->Reset();
+
     for (vector<Task*>::iterator it = taskList.tasks.begin(); it != taskList.tasks.end(); it++)
     {
-        ostringstream taskDescription;
+		ostringstream taskDescription;
         taskDescription << "[ " << setw(4) << (*it)->getReward() << " / " << (*it)->getExpiration() << " ]   " 
                 << (*it)->getDesc() << endl;
-        mScroller->Add(taskDescription.str());
+		mScroller->Add(taskDescription.str());
     }
+	
 }
 
 void DeckMenu::Close()
