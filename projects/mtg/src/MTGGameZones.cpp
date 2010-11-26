@@ -538,6 +538,30 @@ int MTGGameZone::hasType(const char * value)
     return 0;
 }
 
+int MTGGameZone::hasColor(int value)
+{
+    for (int i = 0; i < (nb_cards); i++)
+    {
+        if (cards[i]->getManaCost()->hasColor(value))
+        {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int MTGGameZone::hasX()
+{
+    for (int i = 0; i < (nb_cards); i++)
+    {
+        if (cards[i]->getManaCost()->hasX())
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
 int MTGGameZone::hasAbility(int ability)
 {
     for (int i = 0; i < (nb_cards); i++)

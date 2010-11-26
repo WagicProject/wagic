@@ -322,6 +322,16 @@ int AIAction::getEfficiency()
             //increase the efficeincy of leveling up by a small amount equal to current level.
             efficiency += currentlevel;
         }
+				if(p->game->hand->nb_cards > 0 && p->isAI())
+				{
+				efficiency -= (10 * p->game->hand->nb_cards);//reduce the eff if by 10 times the amount of cards in Ais hand.
+				//it should always try playing more cards before deciding
+				}
+				if(g->getCurrentGamePhase() == Constants::MTG_PHASE_SECONDMAIN)
+				{
+            efficiency = 100;
+						//in 2nd main, go all out and try to max stuff.
+				}
         break;
     }
     case MTGAbility::STANDARD_PUMP:
@@ -370,20 +380,49 @@ int AIAction::getEfficiency()
 		case MTGAbility::FOREACH:
     {
         MTGCardInstance * _target = (MTGCardInstance *) (a->target);
+				MTGAbility * a = AbilityFactory::getCoreAbility(ability);
+				AManaProducer * amp = dynamic_cast<AManaProducer*> (a);
         //trying to encourage Ai to use his foreach manaproducers in first main
-				if ((g->getCurrentGamePhase() == Constants::MTG_PHASE_FIRSTMAIN || g->getCurrentGamePhase() == Constants::MTG_PHASE_SECONDMAIN ) && _target->controller()->game->hand->nb_cards > 0)
+				if (a->naType == MTGAbility::MANA_PRODUCER && (g->getCurrentGamePhase() == Constants::MTG_PHASE_FIRSTMAIN || g->getCurrentGamePhase() == Constants::MTG_PHASE_SECONDMAIN ) 
+					&& _target->controller()->game->hand->nb_cards > 0)
         {
-            efficiency = 100;
-        }
+					for (int i = Constants::MTG_NB_COLORS - 1; i > 0; i--)
+					{
+          if((p->game->hand->hasColor(i) || p->game->hand->hasColor(0) )
+					&& (dynamic_cast<AManaProducer*>(( dynamic_cast<AForeach*>( a )->ability))->output->hasColor(i)))
+					{
+           efficiency = 100;
+					}
+					else
+					{
+					 efficiency = 0;
+					}
+					}
+					if(p->game->hand->hasX())
+					{
+          efficiency = 100;
+					}
+				}
+				else
+				{
 				 AbilityFactory af;
         int suggestion = af.abilityEfficiency(a, p, MODE_ABILITY);
 				if (target)
         {
-        if ((suggestion == BAKA_EFFECT_BAD && p == target->controller()) || (suggestion == BAKA_EFFECT_GOOD && p
-                            != target->controller()))
+        if (a->naType != MTGAbility::MANA_PRODUCER && ((suggestion == BAKA_EFFECT_BAD && p == target->controller()) || (suggestion == BAKA_EFFECT_GOOD && p
+                            != target->controller())))
             {
                 efficiency = 0;
             }
+				else if (a->naType != MTGAbility::MANA_PRODUCER)
+				{
+					efficiency = 90;
+				}
+				else
+				{
+        efficiency = 0;
+				}
+				}
 				}
         break;
     }
@@ -1038,8 +1077,8 @@ int AIPlayerBaka::computeActions()
                 currentMana = getPotentialMana();
                 potential = true;
             }
-
             nextCardToPlay = FindCardToPlay(currentMana, "land");
+            selectAbility();
             //look for the most expensive creature we can afford
             if (castrestrictedspell == 0 && nospellinstant == 0)
             {
@@ -1071,9 +1110,14 @@ int AIPlayerBaka::computeActions()
 												{
                             nextCardToPlay = FindCardToPlay(currentMana, "instant");
 												}
+												if (!nextCardToPlay)
+												{
+                            selectAbility();
+												}
 											}
-                    }
-                }
+										}
+								
+						}
             if (potential)
                 delete (currentMana);
             if (nextCardToPlay)

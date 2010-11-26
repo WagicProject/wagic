@@ -45,8 +45,10 @@ public:
 class CmpAbilities { // compares Abilities efficiency
  public:
   bool operator()(AIAction * a1, AIAction * a2) const {
-    int e1 = a1->getEfficiency();
-    int e2 = a2->getEfficiency();
+    int e1 = 0;
+			e1 = a1->getEfficiency();
+    int e2 = 0;
+			e2 = a2->getEfficiency();
     if (e1 == e2) return a1->id < a2->id;
     return (e1 > e2);
   }

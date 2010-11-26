@@ -83,6 +83,8 @@ class MTGGameZone {
    MTGCardInstance * findByName(string name);
    int hasAbility(int ability); //returns 1 if one of the cards in the  zone has the ability, 0 otherwise
    int hasType(const char * value); //returns 1 if one of the cards in the zone has the type, 0 otherwise
+	 int hasColor(int value); //returns 1 if one of the cards in the zone has the color, 0 otherwise
+	 int hasX();
    void setOwner(Player * player);
    MTGCardInstance * lastCardDrawn;
    static MTGGameZone * stringToZone(string zoneName, MTGCardInstance * source, MTGCardInstance * target);
