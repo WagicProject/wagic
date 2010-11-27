@@ -542,7 +542,7 @@ int MTGGameZone::hasColor(int value)
 {
     for (int i = 0; i < (nb_cards); i++)
     {
-        if (cards[i]->getManaCost()->hasColor(value))
+			if (cards[i]->getManaCost()->hasColor(value) && cards[i]->getManaCost()->getConvertedCost() > 0)
         {
             return 1;
         }

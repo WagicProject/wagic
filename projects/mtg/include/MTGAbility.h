@@ -57,6 +57,7 @@ class MTGAbility: public ActionElement{
   Targetable * target;
   int aType;
 	int naType;
+	int abilitygranted;
 	int nbcardAmount;
   MTGCardInstance * source;
   MTGAbility(int id, MTGCardInstance * card);
@@ -100,6 +101,10 @@ class MTGAbility: public ActionElement{
 		STANDARD_PUMP = 18,
 		STANDARD_BECOMES = 19,
 		UPCOST = 20,
+		STANDARDABILITYGRANT = 21,
+		UNTAPPER = 22,
+		TAPPER = 23,
+		LIFER = 24,
 
 
   };

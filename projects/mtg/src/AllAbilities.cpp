@@ -550,6 +550,7 @@ AAFrozen * AAFrozen::clone() const
 AALifer::AALifer(int _id, MTGCardInstance * card, Targetable * _target, WParsedInt * life, ManaCost * _cost, int _tap, int who) :
     ActivatedAbilityTP(_id, card, _target, _cost, _tap, who), life(life)
 {
+		aType = MTGAbility::LIFER;
 }
 
 int AALifer::resolve()
@@ -990,6 +991,7 @@ AATapper::AATapper(int id, MTGCardInstance * card, MTGCardInstance * _target, Ma
     ActivatedAbility(id, card, _cost, 0, doTap)
 {
     target = _target;
+		aType = MTGAbility::TAPPER;
 }
 
 int AATapper::resolve()
@@ -1021,6 +1023,7 @@ AAUntapper::AAUntapper(int id, MTGCardInstance * card, MTGCardInstance * _target
     ActivatedAbility(id, card, _cost, 0, doTap)
 {
     target = _target;
+		aType = MTGAbility::UNTAPPER;
 }
 
 int AAUntapper::resolve()

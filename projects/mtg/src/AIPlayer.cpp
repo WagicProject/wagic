@@ -150,7 +150,8 @@ ManaCost * AIPlayer::getPotentialMana(MTGCardInstance * target)
                 used[card] = true;
             }
         }
-    }
+		}
+		result->add(this->getManaPool());
     return result;
 }
 
@@ -382,20 +383,17 @@ int AIAction::getEfficiency()
         MTGCardInstance * _target = (MTGCardInstance *) (a->target);
 				MTGAbility * a = AbilityFactory::getCoreAbility(ability);
 				AManaProducer * amp = dynamic_cast<AManaProducer*> (a);
+        efficiency = 0;
         //trying to encourage Ai to use his foreach manaproducers in first main
 				if (a->naType == MTGAbility::MANA_PRODUCER && (g->getCurrentGamePhase() == Constants::MTG_PHASE_FIRSTMAIN || g->getCurrentGamePhase() == Constants::MTG_PHASE_SECONDMAIN ) 
 					&& _target->controller()->game->hand->nb_cards > 0)
         {
 					for (int i = Constants::MTG_NB_COLORS - 1; i > 0; i--)
 					{
-          if((p->game->hand->hasColor(i) || p->game->hand->hasColor(0) )
+          if((p->game->hand->hasColor(i) || p->game->hand->hasColor(0))
 					&& (dynamic_cast<AManaProducer*>(( dynamic_cast<AForeach*>( a )->ability))->output->hasColor(i)))
 					{
            efficiency = 100;
-					}
-					else
-					{
-					 efficiency = 0;
 					}
 					}
 					if(p->game->hand->hasX())
@@ -426,7 +424,70 @@ int AIAction::getEfficiency()
 				}
         break;
     }
-    case MTGAbility::MANA_PRODUCER: //can't use mana producers right now :/
+		case MTGAbility::STANDARDABILITYGRANT:
+			{
+			efficiency = 0;
+			  MTGCardInstance * _target = (MTGCardInstance *) (a->target);
+        //ensuring that Ai grants abilities to creatures during first main, so it can actually use them in combat.
+				if (_target && !_target->has(a->abilitygranted) && g->getCurrentGamePhase() == Constants::MTG_PHASE_FIRSTMAIN)
+        {
+				//trying to avoid Ai giving ie:flying creatures ie:flying twice.
+					efficiency = (20 * _target->DangerRanking());
+        }
+        if (target)
+        {
+            AbilityFactory af;
+            int suggestion = af.abilityEfficiency(a, p, MODE_ABILITY);
+
+            if ((suggestion == BAKA_EFFECT_BAD && p == target->controller()) || (suggestion == BAKA_EFFECT_GOOD && p
+                            != target->controller()))
+            {
+                efficiency = 0;
+					//stop giving trample to the players creatures.
+            }
+						if (suggestion == BAKA_EFFECT_BAD && p != target->controller() && target->has(a->abilitygranted))
+            {
+					efficiency = (20 * _target->DangerRanking());
+            }
+				}
+			break;
+			}
+    case MTGAbility::UNTAPPER: 
+			//untap things that Ai owns and are tapped.
+			{
+        efficiency = 0;
+			  MTGCardInstance * _target = (MTGCardInstance *) (a->target);
+				if (_target && _target->isTapped() && p->isAI() && p == _target->controller())
+				{
+				efficiency = 100;
+				}
+        break;
+			}
+		case MTGAbility::TAPPER: 
+			//tap things the player owns and that are untapped.
+			{
+        efficiency = 0;
+			  MTGCardInstance * _target = (MTGCardInstance *) (a->target);
+				if (_target && !_target->isTapped() && p != _target->controller())
+				{
+				efficiency = 100;
+				}
+        break;
+			}
+    case MTGAbility::LIFER:
+			{
+    //use life abilities whenever possible.
+        efficiency = 100;
+				  AbilityFactory af;
+            int suggestion = af.abilityEfficiency(a, p, MODE_ABILITY);
+            if ((suggestion == BAKA_EFFECT_BAD && p == a->target) || (suggestion == BAKA_EFFECT_GOOD && p
+                            != a->target))
+            {
+                efficiency = 0;
+            }
+        break;
+				}
+		case MTGAbility::MANA_PRODUCER:
         efficiency = 0;
         break;
     default:

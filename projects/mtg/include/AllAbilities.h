@@ -1191,7 +1191,8 @@ public:
     ABasicAbilityModifier(int _id, MTGCardInstance * _source, MTGCardInstance * _target, int _ability, int _modifier = 1) :
         MTGAbility(_id, _source, _target), modifier(_modifier), ability(_ability)
     {
-
+			aType = MTGAbility::STANDARDABILITYGRANT;
+			abilitygranted = ability;
     }
 
     int addToGame()
@@ -1249,6 +1250,8 @@ public:
             int _modifier = 1, int _tap = 1) :
         TargetAbility(_id, _source, _cost, 0, _tap), modifier(_modifier), ability(_ability)
     {
+			  aType = MTGAbility::STANDARDABILITYGRANT;
+				abilitygranted = ability;
         nbTargets = 0;
         tc = _tc;
         if (!tc) tc = NEW CreatureTargetChooser(_source);
@@ -1321,7 +1324,8 @@ public:
     AInstantBasicAbilityModifierUntilEOT(int _id, MTGCardInstance * _source, MTGCardInstance * _target, int _ability, int value) :
         InstantAbility(_id, _source, _target), ability(_ability), value(value)
     {
-
+		aType = MTGAbility::STANDARDABILITYGRANT;
+		abilitygranted = ability;
     }
 
     int addToGame()
@@ -1370,6 +1374,7 @@ public:
     {
         target = _target;
         ability = NEW AInstantBasicAbilityModifierUntilEOT(_id, _source, _target, _ability, _value);
+				aType = MTGAbility::STANDARDABILITYGRANT;
     }
 
     int isReactingToClick(MTGCardInstance * card, ManaCost * cost = NULL)
@@ -1423,6 +1428,7 @@ public:
     ASpellCastLife(int id, MTGCardInstance * _source, CardDescriptor _trigger, ManaCost * _cost, int _life) :
         MTGAbility(id, _source), trigger(_trigger), cost(_cost), life(_life), lastUsedOn(NULL), lastChecked(NULL)
     {
+			aType = MTGAbility::LIFER;
     }
     ASpellCastLife(int id, MTGCardInstance * _source, int color, ManaCost * _cost, int _life) :
         MTGAbility(id, _source), cost(_cost), life(_life), lastUsedOn(NULL), lastChecked(NULL)
