@@ -1375,6 +1375,7 @@ public:
         target = _target;
         ability = NEW AInstantBasicAbilityModifierUntilEOT(_id, _source, _target, _ability, _value);
 				aType = MTGAbility::STANDARDABILITYGRANT;
+				abilitygranted = _ability;
     }
 
     int isReactingToClick(MTGCardInstance * card, ManaCost * cost = NULL)

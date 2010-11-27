@@ -426,13 +426,14 @@ int AIAction::getEfficiency()
     }
 		case MTGAbility::STANDARDABILITYGRANT:
 			{
-			efficiency = 0;
+			efficiency = 10;
 			  MTGCardInstance * _target = (MTGCardInstance *) (a->target);
         //ensuring that Ai grants abilities to creatures during first main, so it can actually use them in combat.
 				if (_target && !_target->has(a->abilitygranted) && g->getCurrentGamePhase() == Constants::MTG_PHASE_FIRSTMAIN)
         {
 				//trying to avoid Ai giving ie:flying creatures ie:flying twice.
-					efficiency = (20 * _target->DangerRanking());
+					efficiency += (15 * _target->DangerRanking());
+
         }
         if (target)
         {
@@ -447,7 +448,7 @@ int AIAction::getEfficiency()
             }
 						if (suggestion == BAKA_EFFECT_BAD && p != target->controller() && target->has(a->abilitygranted))
             {
-					efficiency = (20 * _target->DangerRanking());
+					efficiency += (15 * _target->DangerRanking());
             }
 				}
 			break;
