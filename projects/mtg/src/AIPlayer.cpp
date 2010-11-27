@@ -459,21 +459,23 @@ int AIAction::getEfficiency()
 			{
         efficiency = 0;
 			  MTGCardInstance * _target = (MTGCardInstance *) (a->target);
-				if (_target && _target->isTapped() && p->isAI() && p == _target->controller())
+				if (_target && target->isTapped() && target->controller()->isAI())
 				{
-				efficiency = 100;
+					efficiency = (20 * target->DangerRanking());
 				}
         break;
 			}
 		case MTGAbility::TAPPER: 
 			//tap things the player owns and that are untapped.
 			{
-        efficiency = 0;
 			  MTGCardInstance * _target = (MTGCardInstance *) (a->target);
-				if (_target && !_target->isTapped() && p != _target->controller())
+				if (_target && !target->controller()->isAI())
 				{
-				efficiency = 100;
-
+				efficiency = (20 * target->DangerRanking());
+				}
+				if(target->isTapped())
+				{
+			  efficiency = 0;
 				}
         break;
 			}
