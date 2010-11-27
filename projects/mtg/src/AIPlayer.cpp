@@ -405,25 +405,22 @@ int AIAction::getEfficiency()
 				{
 				 AbilityFactory af;
         int suggestion = af.abilityEfficiency(a, p, MODE_ABILITY);
-				if (target)
-        {
-        if (a->naType != MTGAbility::MANA_PRODUCER && ((suggestion == BAKA_EFFECT_BAD && p == target->controller()) || (suggestion == BAKA_EFFECT_GOOD && p
+
+        if (target && a->naType != MTGAbility::MANA_PRODUCER && ((suggestion == BAKA_EFFECT_BAD && p == target->controller()) || (suggestion == BAKA_EFFECT_GOOD && p
                             != target->controller())))
             {
                 efficiency = 0;
             }
-				else if (a->naType != MTGAbility::MANA_PRODUCER)
+				else if (a->naType != MTGAbility::MANA_PRODUCER && (g->getCurrentGamePhase() == Constants::MTG_PHASE_FIRSTMAIN || g->getCurrentGamePhase() == Constants::MTG_PHASE_SECONDMAIN ))
 				{
+					//if its not a manaproducing foreach, and its not targetted, its eff is 90.
+					//added this basically to cover the unknown foreachs, or untrained ones which were not targetted effects.
 					efficiency = 90;
 				}
-				else
-				{
-        efficiency = 0;
-				}
-				}
+
 				}
         break;
-    }
+		}
 		case MTGAbility::STANDARDABILITYGRANT:
 			{
 			efficiency = 10;
@@ -452,7 +449,7 @@ int AIAction::getEfficiency()
 			      if (_target && _target->has(a->abilitygranted))
         {
 				//trying to avoid Ai giving ie:flying creatures ie:flying twice.
-					efficiency = 0;
+ 				efficiency = 0;
         }
 				}
 			break;
