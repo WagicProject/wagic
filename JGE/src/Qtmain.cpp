@@ -119,6 +119,8 @@ JGEQtRenderer *g_glwidget = NULL;
 static const struct { LocalKeySym keysym; JButton keycode; } gDefaultBindings[] =
 {
   { Qt::Key_Enter,        JGE_BTN_MENU },
+  { Qt::Key_Return,       JGE_BTN_MENU },
+  { Qt::Key_Escape,       JGE_BTN_MENU },
   { Qt::Key_Backspace,    JGE_BTN_CTRL },
   { Qt::Key_Up,           JGE_BTN_UP },
   { Qt::Key_Down,         JGE_BTN_DOWN },
