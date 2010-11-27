@@ -244,7 +244,11 @@ void DeckMenu::Render()
 
     mScroller->Render();
 	RenderBackground();
+
+	renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE);
 	stars->Render();
+	renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
+
 }
 
 void DeckMenu::Update(float dt)
