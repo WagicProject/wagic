@@ -472,17 +472,20 @@ int AIAction::getEfficiency()
 				if (_target && !_target->isTapped() && p != _target->controller())
 				{
 				efficiency = 100;
+
 				}
         break;
 			}
     case MTGAbility::LIFER:
 			{
     //use life abilities whenever possible.
+				  AALifer * alife = (AALifer *) a;
+          Targetable * _t = alife->getTarget();
+
         efficiency = 100;
 				  AbilityFactory af;
             int suggestion = af.abilityEfficiency(a, p, MODE_ABILITY);
-            if ((suggestion == BAKA_EFFECT_BAD && p == a->target) || (suggestion == BAKA_EFFECT_GOOD && p
-                            != a->target))
+						if ((suggestion == BAKA_EFFECT_BAD && _t == p && p->isAI()) || (suggestion == BAKA_EFFECT_GOOD && _t == p && !p->isAI()))
             {
                 efficiency = 0;
             }
