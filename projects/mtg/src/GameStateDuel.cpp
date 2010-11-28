@@ -284,13 +284,13 @@ void GameStateDuel::ensureOpponentMenu()
                 "Can you play against yourself?").c_str());
         DeckManager * deckManager = DeckManager::GetInstance();
         vector<DeckMetaData*> opponentDeckList;
-				if(!options[Options::CHEATMODEAIDECK].number)
+	   		if(!options[Options::CHEATMODEAIDECK].number)
 				{
-        vector<DeckMetaData*> opponentDeckList = fillDeckMenu(opponentMenu, JGE_GET_RES("ai/baka"), "ai_baka", mPlayers[0], options[Options::AIDECKS_UNLOCKED].number);
+         opponentDeckList = fillDeckMenu(opponentMenu, JGE_GET_RES("ai/baka"), "ai_baka", mPlayers[0], options[Options::AIDECKS_UNLOCKED].number);
 				}
 				else
 				{
-					vector<DeckMetaData*> opponentDeckList = fillDeckMenu(opponentMenu, JGE_GET_RES("ai/baka"), "ai_baka", mPlayers[0],1000);
+         opponentDeckList = fillDeckMenu(opponentMenu, JGE_GET_RES("ai/baka"), "ai_baka", mPlayers[0],1000);
 				}
         deckManager->updateMetaDataList(&opponentDeckList, true);
         opponentMenu->Add(MENUITEM_CANCEL, "Cancel", _("Choose a different player deck").c_str());
