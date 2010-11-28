@@ -41,11 +41,11 @@ private:
 	size_t mNbItemsShown;
 	bool mScrollerInitialized;
 	float mHeight; // maximum height availble for display
-	int mMarginX;
-	int mMarginY; // margin used to allow text to scroll off screen without
+	float mMarginX;
+	float mMarginY; // margin used to allow text to scroll off screen without
 				// affecting look and feel.  Should be enough
-				// for at least one line of text ( marginY)
-	float mVerticalScrollSpeed;
+				// for at least one line of text ( mY - line height of current font )
+	float mOriginalY; // mY initially, used to restore scroller to original position after update
 
 protected:
 	string wordWrap(string sentence, float width);
@@ -54,6 +54,6 @@ public:
 	VerticalTextScroller(int fontId, float x, float y, float width, float height, float scrollSpeed = 30, size_t _minimumItems = 1);
 	void Render();
 	void Update(float dt);
-	
+	void Add(string text);
 };
 #endif

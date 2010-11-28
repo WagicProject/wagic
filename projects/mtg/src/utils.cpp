@@ -218,6 +218,18 @@ std::vector<std::string> &split(const std::string &s, char delim, std::vector<st
     return elems;
 }
 
+std::string join( vector<string> &v, string delim)
+{
+	std::string retVal;
+	for ( vector<string>::iterator it = v.begin(); it != v.end(); ++it )
+	{
+		retVal.append( *it );
+		retVal.append( delim );
+	}
+
+	return retVal;
+}
+
 std::vector<std::string> split(const std::string &s, char delim)
 {
     std::vector<std::string> elems;

@@ -48,7 +48,7 @@ protected:
     bool mClosed;
 
 public:
-    TextScroller * mScroller;
+    VerticalTextScroller * mScroller;
     bool mAutoTranslate;
     float mSelectionTargetY;
 

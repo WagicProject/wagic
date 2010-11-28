@@ -31,7 +31,8 @@ void TextScroller::setRandom(int mode)
 
 void TextScroller::Add(string text)
 {
-    if (!strings.size()) mText = text;
+    if (!strings.size()) 
+		mText = text;
     strings.push_back(text);
 }
 
@@ -85,50 +86,61 @@ ostream& TextScroller::toString(ostream& out) const
 
 
 
+
+
+
+
 VerticalTextScroller::VerticalTextScroller(int fontId, float x, float y, float width, float height, float scrollSpeed, size_t numItemsShown) :
 TextScroller( fontId, x, y, width, scrollSpeed)
 {
 	mHeight = height;
 	mNbItemsShown = numItemsShown;
-	mVerticalScrollSpeed = 10.0f;
 	mMarginX = 0;
-	mMarginY = 215;
 	mScrollerInitialized = false;
+	timer=0;
+	WFont *mFont = resources.GetWFont(fontId);
+	mOriginalY = mY;
+	mMarginY = mY - mFont->GetHeight();
+	Add("\n"); // initialize the scroller with a blank line
 
 }
 
+
+void VerticalTextScroller::Add( string text )
+{
+	strings.push_back( text );
+	string wrappedText =  wordWrap(text, mWidth);
+	mText.append(wrappedText);
+}
+
+/*
+	Updates happen everytime the top line disappears from view.  
+	The top line is then moved to the end of the file and the scrolling resumes where it left off
+
+*/
 void VerticalTextScroller::Update(float dt)
 {
 	if (!strings.size()) return;
-	WFont * mFont = resources.GetWFont(fontId);
-	ostringstream scrollerText;
 
-	// update the veritcal scrolling
-	if ( mScrollerInitialized )
-	{
-		mY -= mVerticalScrollSpeed * dt;
-		if ( mY < mMarginY )
-			mY = mMarginY + 20;
+	float currentYOffset = mScrollSpeed * dt;
+
+	if ( mY <= mMarginY ) // top line has disappeared
+	{			
+		timer = 0;
+		// now readjust mText 
+		size_t nbLines = 1;
+		vector<string> displayText = split( mText, '\n');
+		vector<string> newDisplayText;
+		for ( size_t i = nbLines; i < displayText.size(); ++i )
+			newDisplayText.push_back( displayText[i] );
+		for ( size_t i = 0; i < nbLines; ++i )
+			newDisplayText.push_back( displayText[i] );
+
+		mText = join( newDisplayText, "\n" );
+		mY = mOriginalY;
 	}
-
-	// update the text
-	if (timer == 0)
-	{
-		mScrollerInitialized = false;
-		size_t nbItemsToDisplay = (mNbItemsShown < strings.size() ? mNbItemsShown : strings.size());
-		for (size_t idx = 0; idx < nbItemsToDisplay; ++idx)
-		{
-			size_t index = (currentId + idx) % strings.size();
-			scrollerText << strings[index];
-		}
-		currentId++;
-		if (currentId >= strings.size()) 
-			currentId = 0;
-		mText = wordWrap(scrollerText.str(), mWidth);
-		mY = mMarginY + 20;
-
-	}
-	timer = ++timer % ((int) mScrollSpeed);
+	++timer;
+	mY -= currentYOffset;
 }
 
 void VerticalTextScroller::Render()
@@ -172,6 +184,6 @@ std::string VerticalTextScroller::wordWrap(std::string sentence, float width)
     }
 	if ( numLines * mFont->GetHeight() > mHeight )
 		mScrollerInitialized = true;
-
+	
     return retVal;
 }

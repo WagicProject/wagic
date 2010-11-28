@@ -19,6 +19,7 @@ namespace
     const float kDescriptionHorizontalBoxPadding = 5;
 	
     const float kDefaultFontScale = 1.0f;
+	const float kVerticalScrollSpeed = 7.0f
 
     const int DETAILED_INFO_THRESHOLD = 20;
 }
@@ -27,11 +28,7 @@ hgeParticleSystem* DeckMenu::stars = NULL;
 
 //
 //  For the additional info window, maximum characters per line is roughly 30 characters across.
-//  TODO: figure a way to get incoming text to wrap.
-//        
-// used fixed locations where the menu, title and descriptive text are located.
-//    * menu at (125, 60 )
-//    * descriptive information 125
+//  TODO:        
 //    *** Need to make this configurable in a file somewhere to allow for class reuse
 
 DeckMenu::DeckMenu(int id, JGuiListener* listener, int fontId, const string _title, const int& startIndex, bool showDetailsOverride) :
@@ -72,7 +69,7 @@ JGuiController(id, listener), fontId(fontId), mShowDetailsScreen( showDetailsOve
 
     float scrollerWidth = 200.0f;
 	float scrollerHeight = 28.0f;
-    mScroller = NEW VerticalTextScroller(Fonts::MAIN_FONT, 14, 235, scrollerWidth, 28.0f, 100);
+    mScroller = NEW VerticalTextScroller(Fonts::MAIN_FONT, 14, 235, scrollerWidth, 28.0f, kVerticalScrollSpeed);
 
     mAutoTranslate = true;
     maxItems = 7;
@@ -315,7 +312,7 @@ void DeckMenu::updateScroller()
     {
 		ostringstream taskDescription;
         taskDescription << "[ " << setw(4) << (*it)->getReward() << " / " << (*it)->getExpiration() << " ]   " 
-                << (*it)->getDesc() << endl;
+                << (*it)->getDesc() << endl << endl;
 		mScroller->Add(taskDescription.str());
     }
 	
