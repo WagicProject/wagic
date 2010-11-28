@@ -18454,6 +18454,17 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Additional Mana
+auto=choice add{W}
+auto=choice add{U}
+auto=choice add{B}
+auto=choice add{R}
+auto=choice add{G}
+auto=moveto(exile) all(this)
+id=-9876543
+type=nothing
+[/card]
+[card]
 name=Fertilid
 auto=counter(1/1,2)
 auto={1}{G}{C(1/1,-1)}:moveTo(myBattlefield) notatarget(land[basic]|mylibrary) && tap
