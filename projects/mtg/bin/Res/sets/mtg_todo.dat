@@ -9139,6 +9139,13 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Eye for an Eye
+alias=1344
+text=The next time a source of your choice would deal damage to you this turn, instead that source deals that much damage to you and Eye for an Eye deals that much damage to that source's controller.
+mana={W}{W}
+type=Instant
+[/card]
+[card]
 name=Eye Spy
 text=Look at the top card of target player's library. You may put that card into his or her graveyard.
 mana={U}
