@@ -290,12 +290,9 @@ void Credits::Render()
 
     if (showMsg == 1)
     {
-        f2->DrawString(_("Please support this project!").c_str(), 10, y + 15);
-        f->DrawString(_("Wagic is free, open source, and developed on the little free time I have").c_str(), 10, y + 30);
-        f->DrawString(_("If you enjoy this game, please consider donating a few bucks").c_str(), 10, y + 42);
-        f->DrawString(_("(Seriously, donate or I'll kill this cute little bunny)").c_str(), 10, y + 54);
-        f->DrawString(_("Thanks in advance for your support.").c_str(), 10, y + 66);
-        f2->DrawString("-> http://wololo.net/wagic", 10, y + 78);
+        f2->DrawString(_("There's more!").c_str(), 10, y + 15);
+        f->DrawString(_("Mods, additional cards, updates and more at:").c_str(), 10, y + 30);
+        f2->DrawString("-> http://wololo.net/wagic", 10, y + 42);
     }
 
 }

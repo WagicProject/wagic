@@ -19,7 +19,7 @@
 #include "WFont.h"
 #include <JLogger.h>
 
-static const char* GAME_VERSION = "WTH?! 0.13.1 - by wololo";
+static const char* GAME_VERSION = "WTH?! 0.14.0 - wololo.net";
 
 #define DEFAULT_ANGLE_MULTIPLIER 0.4f
 #define MAX_ANGLE_MULTIPLIER (3*M_PI)
