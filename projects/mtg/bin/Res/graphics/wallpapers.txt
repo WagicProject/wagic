@@ -7,3 +7,4 @@ wallpapers/kaioshin_jace.jpg
 graphics/shop.jpg
 themes/Classic/backdrop.jpg
 wallpapers/kaioshin_ravager.jpg
+wallpapers/kaioshin_elsXIII.jpg
