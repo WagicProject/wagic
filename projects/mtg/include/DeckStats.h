@@ -38,6 +38,8 @@ public:
     int percentVictories(string opponentsDeckFile);
     int percentVictories();
     DeckStat * getDeckStat(string opponentsFile);
+
+    //returns the total number of games played with this deck
     int nbGames();
 };
 

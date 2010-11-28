@@ -978,9 +978,10 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, Player * op
     {
         if (!deckid)
         {
+            //random deck
             int nbdecks = 0;
             int found = 1;
-            while (found)
+            while (found && nbdecks < options[Options::AIDECKS_UNLOCKED].number)
             {
                 found = 0;
                 char buffer[512];

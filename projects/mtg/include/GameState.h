@@ -69,10 +69,11 @@ class GameState
   static vector<DeckMetaData *> fillDeckMenu(SimpleMenu * _menu, const string& path, const string& smallDeckPrefix = "", Player * statsPlayer = NULL);
 
   // generate the Deck Meta Data and build the menu items of the menu given
-  static vector<DeckMetaData *> fillDeckMenu(DeckMenu * _menu, const string& path, const string& smallDeckPrefix = "", Player * statsPlayer = NULL);
+  // Will display up to maxDecks if maxDecks is non 0,all decks in path otherwise
+  static vector<DeckMetaData *> fillDeckMenu(DeckMenu * _menu, const string& path, const string& smallDeckPrefix = "", Player * statsPlayer = NULL, int maxDecks = 0);
   
   // build a vector of decks with the information passsed in. 
-  static vector<DeckMetaData *> getValidDeckMetaData(const string& path, const string& smallDeckPrefix = "", Player * statsPlayer = NULL);
+  static vector<DeckMetaData *> getValidDeckMetaData(const string& path, const string& smallDeckPrefix = "", Player * statsPlayer = NULL, int maxDecks = 0);
   
   // build menu items based on the vector<DeckMetaData *>
   static void renderDeckMenu(SimpleMenu * _menu, const vector<DeckMetaData *>& deckMetaDataList);

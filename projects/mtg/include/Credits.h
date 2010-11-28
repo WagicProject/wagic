@@ -25,10 +25,11 @@ public:
 class Credits{
 private:
   time_t gameLength;
-  int isDifficultyUnlocked();
+  int isDifficultyUnlocked(DeckStats * stats);
   int isMomirUnlocked();
   int isEvilTwinUnlocked();
   int isRandomDeckUnlocked();
+  int IsMoreAIDecksUnlocked(DeckStats * stats);
 public:
   int value;
   Player * p1, *p2;

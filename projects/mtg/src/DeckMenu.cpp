@@ -336,5 +336,4 @@ DeckMenu::~DeckMenu()
 {
     resources.Release(pspIconsTexture);
     SAFE_DELETE(mScroller);
-    mScroller = NULL;
 }

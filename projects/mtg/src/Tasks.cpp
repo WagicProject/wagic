@@ -189,9 +189,13 @@ void Task::passOneDay()
 
 void Task::loadAIDeckNames()
 {
+    //check if cache is up to date
+    if (AIDeckNames.size() == (unsigned int)(options[Options::AIDECKS_UNLOCKED].number)) return;
+
+    AIDeckNames.clear();
     int found = 1;
     int nbDecks = 0;
-    while (found)
+    while (found && nbDecks < options[Options::AIDECKS_UNLOCKED].number)
     {
         found = 0;
         char buffer[512];
@@ -211,19 +215,13 @@ void Task::loadAIDeckNames()
 
 int Task::getAIDeckCount()
 {
-    if (AIDeckNames.size() == 0)
-    {
-        loadAIDeckNames();
-    }
+    loadAIDeckNames();
     return AIDeckNames.size();
 }
 
 string Task::getAIDeckName(int id)
 {
-    if (AIDeckNames.size() == 0)
-    {
-        loadAIDeckNames();
-    }
+    loadAIDeckNames();
     return ((unsigned int) id <= AIDeckNames.size()) ? AIDeckNames.at(id - 1) : "<Undefined>";
 }
 

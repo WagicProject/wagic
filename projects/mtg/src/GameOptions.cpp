@@ -39,6 +39,7 @@ const string Options::optionNames[] = {
   "keybindings_psp",
 #endif
 #endif
+  "aidecks",
   "interruptMySpells",
   "interruptMyAbilities",
 //General interrupts
@@ -341,6 +342,9 @@ int GameOptions::load()
     //Default values. Anywhere else to put those ?
     if (!(*this)[Options::MAX_GRADE].number)
         (*this)[Options::MAX_GRADE].number = Constants::GRADE_BORDERLINE;
+
+    if (!(*this)[Options::AIDECKS_UNLOCKED].number)
+        (*this)[Options::AIDECKS_UNLOCKED].number = 10;
 
     return 1;
 }

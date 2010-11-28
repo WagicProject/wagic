@@ -3,6 +3,7 @@
 #include "DeckMenuItem.h"
 #include "Translate.h"
 #include "WResourceManager.h"
+#include <algorithm>
 
 #define ITEM_PX_WIDTH 190.f
 const int kHorizontalScrollSpeed = 10; // lower numbers mean faster scrolling
@@ -62,6 +63,19 @@ void DeckMenuItem::RenderWithOffset(float yOffset)
 		mScrollTimer = 0;
 	else if (mHasFocus && mScrollEnabled)
 		mScrollTimer++;
+
+    //Render a "new" icon for decks that have never been played yet
+    if (meta && !meta->getGamesPlayed())
+    {
+        JTexture * tex = resources.RetrieveTexture("new.png");
+        if (tex)
+        {
+            JQuad * quad = resources.RetrieveQuad("new.png", 2, 2, tex->mWidth - 4, tex->mHeight - 4); //avoids weird rectangle aroudn the texture because of bilinear filtering
+            quad->SetHotSpot(quad->mWidth/2, quad->mHeight/2);
+            float x = mX + min(ITEM_PX_WIDTH - quad->mWidth, mFont->GetStringWidth(menuItemString.c_str()))/2 + quad->mWidth/2;
+            if (quad) JRenderer::GetInstance()->RenderQuad(quad, x , mY + yOffset + quad->mHeight/2, 0.5);
+        }
+    }
 }
 
 void DeckMenuItem::Render()

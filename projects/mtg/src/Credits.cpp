@@ -119,7 +119,9 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app)
 
         if (unlocked == -1)
         {
-            unlocked = isDifficultyUnlocked();
+            DeckStats * stats = DeckStats::GetInstance();
+            stats->load(p1);
+            unlocked = isDifficultyUnlocked(stats);
             if (unlocked)
             {
                 unlockedTex = resources.RetrieveTexture("unlocked.png");
@@ -159,6 +161,12 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app)
                 MTGSetInfo * si = setlist.getInfo(unlocked - 1);
                 if (si)
                     unlockedString = si->getName(); //Show the set's pretty name for unlocks.
+            }
+            else if ((unlocked = IsMoreAIDecksUnlocked(stats)))
+            {
+                options[Options::AIDECKS_UNLOCKED].number += 10;
+                unlockedTex = resources.RetrieveTexture("ai_unlocked.png");
+                unlockedQuad = resources.RetrieveQuad("ai_unlocked.png", 2, 2, 396, 96);
             }
 
             if (unlocked && options[Options::SFXVOLUME].number > 0)
@@ -292,15 +300,14 @@ void Credits::Render()
 
 }
 
-int Credits::isDifficultyUnlocked()
+int Credits::isDifficultyUnlocked(DeckStats * stats)
 {
     if (options[Options::DIFFICULTY_MODE_UNLOCKED].number)
         return 0;
     int nbAIDecks = 0;
     int found = 1;
     int wins = 0;
-    DeckStats * stats = DeckStats::GetInstance();
-    stats->load(p1);
+
     while (found)
     {
         found = 0;
@@ -423,4 +430,32 @@ int Credits::unlockRandomSet(bool force)
     goa->giveAward();
     options.save();
     return setId + 1; //We add 1 here to show success/failure. Be sure to subtract later.
+}
+
+
+int Credits::IsMoreAIDecksUnlocked(DeckStats * stats) {
+    int currentlyUnlocked = options[Options::AIDECKS_UNLOCKED].number;
+
+    // Random rule: having played at least twice as much games as 
+    // the number of currently unlocked decks in order to go through.
+    if (stats->nbGames() < currentlyUnlocked * 2) return 0;
+
+    int nbdecks = 0;
+    int found = 1;
+    while (found)
+    {
+        found = 0;
+        char buffer[512];
+        sprintf(buffer, JGE_GET_RES("ai/baka/deck%i.txt").c_str(), nbdecks + 1);
+        std::ifstream file(buffer);
+        if (file)
+        {
+            found = 1;
+            file.close();
+            nbdecks++;
+            if (nbdecks > currentlyUnlocked)
+                return 1;
+        }
+    }
+    return 0;
 }

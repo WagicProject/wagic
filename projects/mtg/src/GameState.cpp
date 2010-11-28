@@ -26,25 +26,25 @@ vector<DeckMetaData *> GameState::fillDeckMenu(SimpleMenu * _menu, const string&
 }
 
 vector<DeckMetaData *> GameState::fillDeckMenu(DeckMenu * _menu, const string& path, const string& smallDeckPrefix,
-                Player * statsPlayer)
+                Player * statsPlayer, int maxDecks)
 {
     bool translate = _menu->mAutoTranslate;
     _menu->mAutoTranslate = false;
-    vector<DeckMetaData *> deckMetaDataVector = getValidDeckMetaData(path, smallDeckPrefix, statsPlayer);
+    vector<DeckMetaData *> deckMetaDataVector = getValidDeckMetaData(path, smallDeckPrefix, statsPlayer, maxDecks);
     renderDeckMenu(_menu, deckMetaDataVector);
     _menu->mAutoTranslate = translate;
 
     return deckMetaDataVector;
 }
 
-vector<DeckMetaData *> GameState::getValidDeckMetaData(const string& path, const string& smallDeckPrefix, Player * statsPlayer)
+vector<DeckMetaData *> GameState::getValidDeckMetaData(const string& path, const string& smallDeckPrefix, Player * statsPlayer, int maxDecks)
 {
     vector<DeckMetaData*> retList;
 
     DeckMetaDataList * metas = DeckMetaDataList::decksMetaData;
     int found = 1;
     int nbDecks = 1;
-    while (found)
+    while (found && (!maxDecks || nbDecks <= maxDecks))
     {
         found = 0;
         std::ostringstream filename;
