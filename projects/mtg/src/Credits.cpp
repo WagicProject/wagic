@@ -165,6 +165,7 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app)
             else if ((unlocked = IsMoreAIDecksUnlocked(stats)))
             {
                 options[Options::AIDECKS_UNLOCKED].number += 10;
+                options.save();
                 unlockedTex = resources.RetrieveTexture("ai_unlocked.png");
                 unlockedQuad = resources.RetrieveQuad("ai_unlocked.png", 2, 2, 396, 96);
             }
