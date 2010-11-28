@@ -39,6 +39,8 @@ public:
     SFXVOLUME,
     DIFFICULTY,
     CHEATMODE,
+		OPTIMIZE_HAND,
+		CHEATMODEAIDECK,
     OSD,
     CLOSEDHAND,
     HANDDIRECTION,
@@ -79,6 +81,7 @@ public:
     AWARD_COLLECTOR,
     LAST_NAMED, //Any option after this does not look up in optionNames.
     SET_UNLOCKS = LAST_NAMED + 1, //For sets.
+
   };
   
   static int optionSet(int setID);
@@ -171,7 +174,7 @@ private:
 };
 class OptionManaDisplay: public EnumDefinition {
 public:
-  enum { DYNAMIC = 0, STATIC = 1, BOTH = 2};
+  enum { DYNAMIC = 0, STATIC = 1, NOSTARSDYNAMIC = 2, BOTH = 3};
   static EnumDefinition * getInstance() {return &mDef;};
 private:
   OptionManaDisplay();

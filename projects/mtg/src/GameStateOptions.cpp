@@ -81,7 +81,10 @@ void GameStateOptions::Start()
     optionsList->Add(cStyle);
     optionsList->Add(NEW WGuiButton(NEW WGuiHeader("New Profile"), -102, kNewProfileID, this));
 
-    optionsList->Add(NEW WDecoCheat(NEW OptionInteger(Options::CHEATMODE, "Enable cheat mode")));
+    optionsList->Add(NEW WDecoCheat(NEW OptionInteger(Options::CHEATMODE, "Enable Cheat Mode")));
+		optionsList->Add(NEW WDecoCheat(NEW OptionInteger(Options::OPTIMIZE_HAND, "Optimize Starting Hand")));
+		optionsList->Add(NEW WDecoCheat(NEW OptionInteger(Options::CHEATMODEAIDECK, "Unlock All Ai Decks")));
+
     optionsTabs->Add(optionsList);
 
     optionsList = NEW WGuiList("Advanced");

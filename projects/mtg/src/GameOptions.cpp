@@ -18,6 +18,8 @@ const string Options::optionNames[] = {
   "sfxVolume",
   "difficulty",
   "cheatmode",
+	"optimizedhand",
+	"cheatmodedecks",
   "displayOSD",
   "closed_hand",
   "hand_direction",
@@ -337,7 +339,11 @@ int GameOptions::load()
     }
     // (PSY) Make sure that cheatmode is switched off for ineligible profiles:
     if (options[Options::ACTIVE_PROFILE].str != SECRET_PROFILE)
+		{
         (*this)[Options::CHEATMODE].number = 0;
+		    (*this)[Options::OPTIMIZE_HAND].number = 0;
+				(*this)[Options::CHEATMODEAIDECK].number = 0;
+		}
 
     //Default values. Anywhere else to put those ?
     if (!(*this)[Options::MAX_GRADE].number)
@@ -352,7 +358,11 @@ int GameOptions::save()
 {
     // (PSY) Make sure that cheatmode is switched off for ineligible profiles:
     if (options[Options::ACTIVE_PROFILE].str != SECRET_PROFILE)
+		{
         (*this)[Options::CHEATMODE].number = 0;
+				(*this)[Options::OPTIMIZE_HAND].number = 0;
+				(*this)[Options::CHEATMODEAIDECK].number = 0;
+		}
 
     std::ofstream file(mFilename.c_str());
     if (file)
@@ -878,7 +888,9 @@ OptionManaDisplay::OptionManaDisplay()
 {
     mDef.values.push_back(EnumDefinition::assoc(DYNAMIC, "Eye candy"));
     mDef.values.push_back(EnumDefinition::assoc(STATIC, "Simple"));
-    mDef.values.push_back(EnumDefinition::assoc(BOTH, "Both"));
+	  mDef.values.push_back(EnumDefinition::assoc(NOSTARSDYNAMIC, "No Glitter"));
+    mDef.values.push_back(EnumDefinition::assoc(BOTH, "Both"));//no luck in getting this to show up as an option.
+		//Both should still work as always however the enum and this dont want to pair up, no "both" in options now.
 }
 ;
 OptionVolume OptionVolume::mDef;

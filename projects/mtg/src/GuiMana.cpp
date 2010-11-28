@@ -105,7 +105,14 @@ ManaIcon::ManaIcon(int color, float x, float y, float destx, float desty) :
 
     // if we want to throttle the amount of particles for mana,
     // here's where to do it - this is hardcoded to something like 114 in the psi file
+		if(OptionManaDisplay::NOSTARSDYNAMIC == options[Options::MANADISPLAY].number)
+		{
+    particleSys->info.nEmission = 0;
+		}
+		else
+		{
     particleSys->info.nEmission = 60;
+		}
     icon = manaIcons[color];
 
     particleSys->FireAt(x, y);
@@ -185,7 +192,7 @@ void ManaIcon::Update(float dt, float shift)
 
         if (particleSys && (fabs(destx - x) < 5) && (fabs(desty + shift - y) < 5))
         {
-            if (OptionManaDisplay::STATIC == options[Options::MANADISPLAY].number)
+					if (OptionManaDisplay::STATIC == options[Options::MANADISPLAY].number)
             {
                 SAFE_DELETE(particleSys); //Static Mana Only: avoid expensive particle processing
             }
@@ -285,7 +292,7 @@ void GuiMana::Render()
     for (vector<ManaIcon*>::iterator it = manas.begin(); it != manas.end(); ++it)
         (*it)->Render();
 
-    if (OptionManaDisplay::DYNAMIC != options[Options::MANADISPLAY].number)
+		if (OptionManaDisplay::DYNAMIC != options[Options::MANADISPLAY].number && OptionManaDisplay::NOSTARSDYNAMIC != options[Options::MANADISPLAY].number )
         RenderStatic();
 }
 

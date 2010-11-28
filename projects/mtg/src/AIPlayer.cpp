@@ -428,6 +428,8 @@ int AIAction::getEfficiency()
         //ensuring that Ai grants abilities to creatures during first main, so it can actually use them in combat.
         if (target)
         {
+					//quick note: the eff is multiplied by creatures ranking then divided by the number of cards in hand.
+					//the reason i do this is to encourage more casting and less waste of mana on abilities.
             AbilityFactory af;
             int suggestion = af.abilityEfficiency(a, p, MODE_ABILITY);
 
@@ -437,16 +439,16 @@ int AIAction::getEfficiency()
                 efficiency = 0;
 					//stop giving trample to the players creatures.
             }
-						if (suggestion == BAKA_EFFECT_BAD && p != _target->controller() && _target->has(a->abilitygranted))
+						if (suggestion == BAKA_EFFECT_BAD && p != _target->controller() && target->has(a->abilitygranted))
             {
-					efficiency += (15 * _target->DangerRanking());
+					efficiency += (15 * target->DangerRanking())/p->game->hand->nb_cards; 
 						}
-				    if (_target && !_target->has(a->abilitygranted) && g->getCurrentGamePhase() == Constants::MTG_PHASE_FIRSTMAIN)
+				    if (_target && !target->has(a->abilitygranted) && g->getCurrentGamePhase() == Constants::MTG_PHASE_FIRSTMAIN)
         {
-					efficiency += (15 * _target->DangerRanking());
+					efficiency += (15 * target->DangerRanking())/p->game->hand->nb_cards;
 
         }
-			      if (_target && _target->has(a->abilitygranted))
+			      if (_target && target->has(a->abilitygranted))
         {
 				//trying to avoid Ai giving ie:flying creatures ie:flying twice.
  				efficiency = 0;

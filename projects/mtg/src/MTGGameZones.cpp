@@ -90,7 +90,7 @@ void MTGPlayerCards::initGame(int shuffle, int draw)
     }
 }
 
-void MTGPlayerCards::OptimizedHand(int amount, int lands, int creatures, int othercards)
+void MTGPlayerCards::OptimizedHand(Player * who,int amount, int lands, int creatures, int othercards)
 {
     //give the Ai hand adventage to insure a challanging match.
     GameObserver * game = game->GetInstance();
@@ -99,7 +99,7 @@ void MTGPlayerCards::OptimizedHand(int amount, int lands, int creatures, int oth
 
     if (!game->players[0]->isAI() && game->players[1]->isAI())
     {
-        Player * p = game->players[1];
+        Player * p = who;
         MTGCardInstance * card = NULL;
         MTGGameZone * z = p->game->library;
         MTGGameZone * e = p->game->temp;
