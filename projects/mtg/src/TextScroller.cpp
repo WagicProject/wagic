@@ -96,7 +96,6 @@ TextScroller( fontId, x, y, width, scrollSpeed)
 	mHeight = height;
 	mNbItemsShown = numItemsShown;
 	mMarginX = 0;
-	mScrollerInitialized = false;
 	timer=0;
 	WFont *mFont = resources.GetWFont(fontId);
 	mOriginalY = mY;
@@ -109,7 +108,7 @@ TextScroller( fontId, x, y, width, scrollSpeed)
 void VerticalTextScroller::Add( string text )
 {
 	strings.push_back( text );
-	string wrappedText =  wordWrap(text, mWidth);
+	string wrappedText =  wordWrap(text, mWidth, fontId);
 	mText.append(wrappedText);
 }
 
@@ -147,48 +146,4 @@ void VerticalTextScroller::Render()
 {
     WFont * mFont = resources.GetWFont(fontId);
 	mFont->DrawString(mText.c_str(), mX, mY);
-}
-
-
-
-// This is a customized word wrap based on pixel width.  It tries it's best 
-// to wrap strings using spaces as delimiters.  
-// Not sure how this translates into non-english fonts.
-std::string VerticalTextScroller::wordWrap(std::string sentence, float width)
-{
-	WFont * mFont = resources.GetWFont(fontId);
-	float lineWidth = mFont->GetStringWidth( sentence.c_str() );
-	string retVal = sentence;
-	if ( lineWidth < width ) return sentence;
-   
-	int numLines = 1;
-	int breakIdx = 0;
-	for( size_t idx = 0; idx < sentence.length(); idx ++ )
-    {
-		if ( sentence[idx] == ' ' )
-		{
-			string currentSentence = sentence.substr(breakIdx, idx - breakIdx);
-			float stringLength = mFont->GetStringWidth( currentSentence.c_str() );
-			if (stringLength >= width)
-			{				
-				if ( stringLength > width )
-				{
-					while ( sentence[idx-1] != ' ' )
-						idx--;
-				}
-				retVal[idx-1] = '\n';				
-				breakIdx = idx;
-				numLines++;
-			}
-		}
-		else if ( sentence[idx] == '\n' )
-		{
-			numLines++;
-			breakIdx = idx;
-		}
-    }
-	if ( numLines * mFont->GetHeight() > mHeight )
-		mScrollerInitialized = true;
-	
-    return retVal;
 }

@@ -275,27 +275,21 @@ bool GameStateDuel::MusicExist(string FileName)
 
 void GameStateDuel::ensureOpponentMenu()
 {
-    if (opponentMenu == NULL)
-    {
-        opponentMenu = NEW DeckMenu(DUEL_MENU_CHOOSE_OPPONENT, this, Fonts::OPTION_FONT, "Choose Opponent",
-                GameStateDuel::selectedAIDeckId, true);
-        opponentMenu->Add(MENUITEM_RANDOM_AI, "Random");
-        if (options[Options::EVILTWIN_MODE_UNLOCKED].number) opponentMenu->Add(MENUITEM_EVIL_TWIN, "Evil Twin", _(
-                "Can you play against yourself?").c_str());
-        DeckManager * deckManager = DeckManager::GetInstance();
-        vector<DeckMetaData*> opponentDeckList;
-	   		if(!options[Options::CHEATMODEAIDECK].number)
-				{
-         opponentDeckList = fillDeckMenu(opponentMenu, JGE_GET_RES("ai/baka"), "ai_baka", mPlayers[0], options[Options::AIDECKS_UNLOCKED].number);
-				}
-				else
-				{
-         opponentDeckList = fillDeckMenu(opponentMenu, JGE_GET_RES("ai/baka"), "ai_baka", mPlayers[0],1000);
-				}
-        deckManager->updateMetaDataList(&opponentDeckList, true);
-        opponentMenu->Add(MENUITEM_CANCEL, "Cancel", _("Choose a different player deck").c_str());
-        opponentDeckList.clear();
-    }
+	if (opponentMenu == NULL)
+	{
+		opponentMenu = NEW DeckMenu(DUEL_MENU_CHOOSE_OPPONENT, this, Fonts::OPTION_FONT, "Choose Opponent",
+			GameStateDuel::selectedAIDeckId, true);
+		opponentMenu->Add(MENUITEM_RANDOM_AI, "Random");
+		if (options[Options::EVILTWIN_MODE_UNLOCKED].number) opponentMenu->Add(MENUITEM_EVIL_TWIN, "Evil Twin", 
+				_("Can you defeat yourself?").c_str());
+		DeckManager * deckManager = DeckManager::GetInstance();
+		vector<DeckMetaData*> opponentDeckList;
+		int nbUnlockedDecks = options[Options::CHEATMODEAIDECK].number ? 1000 : options[Options::AIDECKS_UNLOCKED].number;
+		opponentDeckList = fillDeckMenu(opponentMenu, JGE_GET_RES("ai/baka"), "ai_baka", mPlayers[0], nbUnlockedDecks);
+		deckManager->updateMetaDataList(&opponentDeckList, true);
+		opponentMenu->Add(MENUITEM_CANCEL, "Cancel", _("Choose a different player deck").c_str());
+		opponentDeckList.clear();
+	}
 }
 
 void GameStateDuel::Update(float dt)

@@ -49,7 +49,7 @@ JGuiController(id, listener), fontId(fontId), mShowDetailsScreen( showDetailsOve
     descX = 260 + kDescriptionVerticalBoxPadding;
     descY = 100 + kDescriptionHorizontalBoxPadding;
     descHeight = 145;
-    descWidth = 220;
+    descWidth = 200;
 
     detailedInfoBoxX = 400;
     detailedInfoBoxY = 235;
@@ -211,7 +211,7 @@ void DeckMenu::Render()
                     if (quad) renderer->RenderQuad(quad, avatarX, avatarY);
                 }
                 // fill in the description part of the screen
-                string text = currentMenuItem->desc;
+				string text = wordWrap(currentMenuItem->desc, descWidth, mainFont->mFontID );
                 mainFont->DrawString(text.c_str(), descX, descY);
                 mFont->SetColor(ARGB(255,255,255,255));
 

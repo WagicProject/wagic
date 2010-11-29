@@ -5138,4 +5138,12 @@ public:
     }
 };
 
+// utility functions
+
+void PopulateColorIndexVector( list<int>& colors, const string& colorsString, char delimiter = ',');
+void PopulateAbilityIndexVector( list<int>& abilities, const string& abilitiesString, char delimiter = ',');
+void PopulateSubtypesIndexVector( list<int>& subtypes, const string& subtypesString, char delimiter = ' ');
+
+
+
 #endif

@@ -1991,3 +1991,44 @@ AUpkeep::~AUpkeep()
 }
 
 
+// utility functions
+
+// Given a delimited string of abilities, add the ones to the list that are "Basic"  MTG abilities
+void PopulateAbilityIndexVector( list<int>& abilities, const string& abilityStringList, char delimiter )
+{
+    vector<string> abilitiesList = split( abilityStringList, delimiter);
+    for ( vector<string>::iterator iter = abilitiesList.begin(); iter != abilitiesList.end(); ++iter)
+    {
+        int abilityIndex = Constants::GetBasicAbilityIndex( *iter );
+
+        if (abilityIndex != -1)
+            abilities.push_back( abilityIndex );
+    }
+}
+
+
+void PopulateColorIndexVector( list<int>& colors, const string& colorStringList, char delimiter )
+{
+    vector<string> abilitiesList = split( colorStringList, delimiter);
+    for ( vector<string>::iterator iter = abilitiesList.begin(); iter != abilitiesList.end(); ++iter)
+    {
+        for (int colorIndex = Constants::MTG_COLOR_ARTIFACT; colorIndex < Constants::MTG_NB_COLORS; ++colorIndex)
+        {
+            // if the text is not a basic ability but contains a valid color add it to the color vector
+            if ( (Constants::GetBasicAbilityIndex( *iter ) != -1) && ((*iter).find( Constants::MTGColorStrings[ colorIndex ] ) != string::npos) )
+                colors.push_back(colorIndex);
+        }
+    }
+}
+
+void PopulateSubtypesIndexVector( list<int>& types, const string& subTypesStringList, char delimiter)
+{
+    vector<string> subTypesList = split( subTypesStringList, delimiter);
+    for (vector<string>::iterator it = subTypesList.begin(); it != subTypesList.end(); ++it)
+    {
+        string subtype = *it;
+        size_t id = Subtypes::subtypesList->find( subtype );
+        if ( id != string::npos )
+            types.push_back(id);
+    }
+}
