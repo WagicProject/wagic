@@ -114,6 +114,38 @@ WLBFont::WLBFont(int inFontID, const char *fontname, int lineheight, bool useVid
     it = NEW JLBFont(path.c_str(), lineheight, useVideoRAM);
 }
 
+void WLBFont::FormatText(string &s, vector<string>& output)
+{
+    // The way of CardPrimitive::formattedText() in r2081.
+    std::string::size_type len = 30;
+    while (s.length() > 0)
+    {
+        std::string::size_type cut = s.find_first_of("., \t)", 0);
+        if (cut >= len || cut == string::npos)
+        {
+            output.push_back(s.substr(0,len));
+            if (s.length() > len)
+                s = s.substr(len, s.length() - len);
+            else
+                s = "";
+        }
+        else
+        {
+            std::string::size_type newcut = cut;
+            while (newcut < len && newcut != string::npos)
+            {
+                cut = newcut;
+                newcut = s.find_first_of("., \t)", newcut + 1);
+            }
+            output.push_back(s.substr(0,cut+1));
+            if (s.length() > cut+1)
+                s = s.substr(cut+1,s.length() - cut - 1);
+            else
+                s = "";
+        }
+    }
+}
+
 WFBFont::WFBFont(int inFontID, const char *fontname, int lineheight, bool useVideoRAM) :
     WFont(inFontID)
 {
@@ -242,6 +274,7 @@ int WFBFont::PreCacheChar(const u8 *ch)
     u8 gray;
 
     code = this->GetCode(ch, &charLength);
+    if (doubleWidthChar(ch) && mIndex) code = mIndex[code]; // mGBCode[] stores the final code.
 
     if (mGBCode[mCurr] != -1) for (int i = 0; i < mCacheSize; i++)
         if (mGBCode[i] == code) return i;
@@ -261,7 +294,7 @@ int WFBFont::PreCacheChar(const u8 *ch)
 
     if (doubleWidthChar(ch))
     {
-        if (mIndex) code = mIndex[code];
+        //if (mIndex) code = mIndex[code];
         size = mFontSize;
         src = mExtraFont + code * mBytesPerChar;
         offset = 0;
@@ -629,27 +662,7 @@ int WGBKFont::PreCacheChar(const u8 *ch)
     unsigned int size, offset;
     u8 gray;
 
-#if 0
-    if (*ch > 0xA0 && *(ch + 1) > 0xA0)
-    {
-        // get offset to the proper character bits (GB2312 encoding)
-        code = (((u32)(*ch - 0xA1)) * 0x5E + ((u32)(*(ch + 1) - 0xA1)));
-        charLength = 2;
-    }
-    else if (*ch > 0x80)
-    {
-        // get offset to the character space's bits (GBK encoding)
-        code = 0;
-        charLength = 2;
-    }
-    else
-    {
-        code = ((u32)*ch);
-        charLength = 1;
-    }
-#else
     code = this->GetCode(ch, &charLength);
-#endif
 
     if (mGBCode[mCurr] != -1) for (int i = 0; i < mCacheSize; i++)
         if (mGBCode[i] == code) return i;
@@ -1022,6 +1035,68 @@ int WGBKFont::GetMana(const u8 *ch) const
     return mana;
 }
 
+void WGBKFont::FormatText(string &s, vector<string>& output)
+{
+    while (s.length() > 0)
+    {
+        std::string::size_type len = 24;
+        std::string::size_type cut = s.find_first_of("., \t)", 0);
+        if (cut >= len || cut == string::npos)
+        {
+            // Fix for single byte character in some complex language like Chinese
+            u8 * src = (u8 *) s.c_str();
+            //if (neofont)
+            {
+                len = 0;
+                std::string::size_type limit = 24;
+                while (*src != 0)
+                {
+                    if (*src > 0x80)
+                    { // Non-ASCII
+                        if (len + 2 > limit && !(((*src & 0xF0) == 0xA0) && ((*(src + 1) & 0xF0) == 0xA0)))
+                            break;
+                        src += 2;
+                        len += 2;
+                    }
+                    else
+                    { // ASCII
+                        if (*src == '/' && (*(src + 1) & 0xF0) == 0xA0)
+                            limit += 3;
+                        if (len + 1 > limit && (*src == '+' || *src == '-' || *src == '/'))
+                            break;
+                        src += 1;
+                        len += 1;
+                    }
+                }
+            }
+            output.push_back(s.substr(0, len));
+            if (s.length() > len)
+                s = s.substr(len, s.length() - len);
+            else
+                s = "";
+        }
+        else
+        {
+            std::string::size_type newcut = cut;
+            while (newcut < len && newcut != string::npos)
+            {
+                // neofont use space to separate one line
+                u8 * src = (u8 *) s.c_str();
+                //if (neofont && *src > 0x80)
+                if (*src > 0x80)
+                    break;
+                cut = newcut;
+                newcut = s.find_first_of("., \t)", newcut + 1);
+            }
+            output.push_back(s.substr(0, cut + 1));
+            if (s.length() > cut + 1)
+                s = s.substr(cut + 1, s.length() - cut - 1);
+            else
+                s = "";
+        }
+    }
+}
+
 int WUFont::GetCode(const u8 *ch, int *charLength) const
 {
     int code = 0;
@@ -1035,7 +1110,7 @@ int WUFont::GetCode(const u8 *ch, int *charLength) const
     if ((*ch & 0xF8) == 0xF0)
     { // Four bytes
         *charLength = 4;
-        code = ((*ch * 0x7) << 18) + ((*(ch + 1) & 0x3F) << 12) + ((*(ch + 2) & 0x3F) << 6) + ((*(ch + 3) * 0x3F));
+        code = ((*ch & 0x7) << 18) + ((*(ch + 1) & 0x3F) << 12) + ((*(ch + 2) & 0x3F) << 6) + ((*(ch + 3) * 0x3F));
     }
     else if ((*ch & 0xF0) == 0xE0)
     { // Three bytes
@@ -1045,7 +1120,7 @@ int WUFont::GetCode(const u8 *ch, int *charLength) const
     else if ((*ch & 0xE0) == 0xC0)
     { // Two bytes
         *charLength = 2;
-        code = ((*ch & 0x1F) << 6) + ((*(ch + 2) & 0x3F));
+        code = ((*ch & 0x1F) << 6) + ((*(ch + 1) & 0x3F));
     }
     else
     {
@@ -1099,4 +1174,39 @@ int WUFont::GetMana(const u8 *ch) const
         if (*ch >= 0x90 && *ch <= 0x99) return Constants::MTG_UNCOLORED;
     }
     return -1;
+}
+
+void WUFont::FormatText(string &s, vector<string>& output)
+{
+    std::string::size_type limit = 22; //28
+    string delim("., \t)");
+
+    while (s.length() > 0)
+    {
+        u8 * src = (u8 *) s.c_str();
+        std::string::size_type len = 0;
+        std::string::size_type ctr = 0;
+        std::string::size_type lastcut = 0;
+        u8 ch = 0;
+        while ((ch = src[len]) != 0)
+        {
+            ctr += 2;
+            if      ((ch & 0xF8) == 0xF0) len += 4;
+            else if ((ch & 0xF0) == 0xE0) len += 3;
+            else if ((ch & 0xE0) == 0xC0) len += 2;
+            else // ASCII
+            {
+                ctr--; len += 1;
+                if (delim.find(ch) != string::npos) lastcut = len;
+                if (ctr > limit && lastcut) {len = lastcut; break;}
+                //if (ch == ' ') break; // if we use ' ' to break a line.
+            }
+            if (ctr > limit) break;
+        }
+        output.push_back(s.substr(0, len));
+        if (s.length() > len)
+            s = s.substr(len, s.length() - len);
+        else
+            s = "";
+    }
 }
