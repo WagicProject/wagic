@@ -311,8 +311,9 @@ void DeckMenu::updateScroller()
     for (vector<Task*>::iterator it = taskList.tasks.begin(); it != taskList.tasks.end(); it++)
     {
 		ostringstream taskDescription;
-        taskDescription << "[ " << setw(4) << (*it)->getReward() << " / " << (*it)->getExpiration() << " ]   " 
-                << (*it)->getDesc() << endl << endl;
+		taskDescription << "Credits: " << setw(4) << (*it)->getReward() << " / "
+			<< "Days Left: " << (*it)->getExpiration() << endl 
+            << (*it)->getDesc() << endl << endl;
 		mScroller->Add(taskDescription.str());
     }
 	

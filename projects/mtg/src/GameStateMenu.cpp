@@ -8,6 +8,7 @@
 #include <math.h>
 
 #include "GameStateMenu.h"
+#include "DeckManager.h"
 #include "MenuItem.h"
 #include "GameOptions.h"
 #include "GameApp.h"
@@ -191,23 +192,24 @@ void GameStateMenu::fillScroller()
     char buff2[512];
 
     DeckStats * stats = DeckStats::GetInstance();
+	DeckManager *deckManager = DeckManager::GetInstance();
+	vector<DeckMetaData *> playerDecks = getValidDeckMetaData(options.profileFile());
     int totalGames = 0;
-
-    for (int j = 1; j < 6; j++)
+	for (size_t j = 0; j < playerDecks.size(); j++)
     {
-        sprintf(buffer, "stats/player_deck%i.txt", j);
+		DeckMetaData* meta = playerDecks[j];
+		sprintf(buffer, "stats/player_deck%i.txt", meta->getDeckId());
         string deckstats = options.profileFile(buffer);
         if (fileExists(deckstats.c_str()))
         {
             stats->load(deckstats.c_str());
             int percentVictories = stats->percentVictories();
 
-            sprintf(buff2, _("You have a %i%% victory ratio with Deck%i").c_str(), percentVictories, j);
+			sprintf(buff2, _("You have a %i%% victory ratio with \"%s\"").c_str(), percentVictories, meta->getName().c_str());
             scroller->Add(buff2);
-            int nbGames = stats->nbGames();
-            totalGames += nbGames;
-            sprintf(buff2, _("You have played %i games with Deck%i").c_str(), nbGames, j);
+			sprintf(buff2, _("You have played %i games with \"%s\"").c_str(), meta->getGamesPlayed(), meta->getName().c_str());
             scroller->Add(buff2);
+			totalGames += meta->getGamesPlayed();
         }
     }
     if (totalGames)

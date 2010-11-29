@@ -181,6 +181,11 @@ std::string VerticalTextScroller::wordWrap(std::string sentence, float width)
 				numLines++;
 			}
 		}
+		else if ( sentence[idx] == '\n' )
+		{
+			numLines++;
+			breakIdx = idx;
+		}
     }
 	if ( numLines * mFont->GetHeight() > mHeight )
 		mScrollerInitialized = true;
