@@ -101,7 +101,10 @@ void GameStateDeckViewer::rebuildFilters()
     filterMenu->setSrc(source);
     if (displayed_deck != myDeck) source->swapSrc();
     filterMenu->Finish(true);
-    stw->updateStats( myDeck );;
+
+	// no stats need updating if there isn't a deck to update
+	if (stw && myDeck) 
+		stw->updateStats( myDeck );;
 }
 void GameStateDeckViewer::updateFilters()
 {
