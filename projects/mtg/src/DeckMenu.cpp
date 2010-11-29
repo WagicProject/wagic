@@ -19,7 +19,7 @@ namespace
     const float kDescriptionHorizontalBoxPadding = 5;
 	
     const float kDefaultFontScale = 1.0f;
-	const float kVerticalScrollSpeed = 7.0f
+	const float kVerticalScrollSpeed = 7.0f;
 
     const int DETAILED_INFO_THRESHOLD = 20;
 }
