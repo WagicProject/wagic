@@ -260,7 +260,11 @@ void StatsWrapper::updateStats(string filename, MTGAllCards *collection)
 
 void StatsWrapper::updateStats(DeckDataWrapper *myDeck)
 {
-    if (!this->needUpdate || !myDeck) return;
+	  if (!myDeck)
+	  {
+    return;
+	  }
+    if (!this->needUpdate) return;
     this->needUpdate = false;
     this->cardCount = myDeck->getCount(WSrcDeck::UNFILTERED_COPIES);
     this->countLands = myDeck->getCount(Constants::MTG_COLOR_LAND);
