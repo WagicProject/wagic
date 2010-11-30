@@ -193,7 +193,7 @@ void GameStateMenu::fillScroller()
 
     DeckStats * stats = DeckStats::GetInstance();
 	DeckManager *deckManager = DeckManager::GetInstance();
-	vector<DeckMetaData *> playerDecks = getValidDeckMetaData(options.profileFile());
+	vector<DeckMetaData *> playerDecks = getValidDeckMetaData(options.profileFile(), "", NULL, 6);
     int totalGames = 0;
 	for (size_t j = 0; j < playerDecks.size(); j++)
     {
