@@ -27,8 +27,6 @@ void CreditBonus::Render(float x, float y, WFont * font)
 
 Credits::Credits()
 {
-    unlockedTex = NULL;
-    unlockedQuad = NULL;
     unlocked = -1;
     p1 = NULL;
     p2 = NULL;
@@ -36,7 +34,6 @@ Credits::Credits()
 
 Credits::~Credits()
 {
-    resources.Release(unlockedTex);
     for (unsigned int i = 0; i < bonus.size(); ++i)
         if (bonus[i])
             delete bonus[i];
@@ -124,40 +121,35 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app)
             unlocked = isDifficultyUnlocked(stats);
             if (unlocked)
             {
-                unlockedTex = resources.RetrieveTexture("unlocked.png");
-                unlockedQuad = resources.RetrieveQuad("unlocked.png", 2, 2, 396, 96);
+                unlockedTextureName = "unlocked.png";
                 goa = (GameOptionAward*) &options[Options::DIFFICULTY_MODE_UNLOCKED];
                 goa->giveAward();
                 options.save();
             }
             else if ((unlocked = isMomirUnlocked()))
             {
-                unlockedTex = resources.RetrieveTexture("momir_unlocked.png");
-                unlockedQuad = resources.RetrieveQuad("momir_unlocked.png", 2, 2, 396, 96);
+                unlockedTextureName = "momir_unlocked.png";
                 goa = (GameOptionAward*) &options[Options::MOMIR_MODE_UNLOCKED];
                 goa->giveAward();
                 options.save();
             }
             else if ((unlocked = isEvilTwinUnlocked()))
             {
-                unlockedTex = resources.RetrieveTexture("eviltwin_unlocked.png");
-                unlockedQuad = resources.RetrieveQuad("eviltwin_unlocked.png", 2, 2, 396, 96);
+                unlockedTextureName = "eviltwin_unlocked.png";
                 goa = (GameOptionAward*) &options[Options::EVILTWIN_MODE_UNLOCKED];
                 goa->giveAward();
                 options.save();
             }
             else if ((unlocked = isRandomDeckUnlocked()))
             {
-                unlockedTex = resources.RetrieveTexture("randomdeck_unlocked.png");
-                unlockedQuad = resources.RetrieveQuad("randomdeck_unlocked.png", 2, 2, 396, 96);
+                unlockedTextureName = "randomdeck_unlocked.png";
                 goa = (GameOptionAward*) &options[Options::RANDOMDECK_MODE_UNLOCKED];
                 goa->giveAward();
                 options.save();
             }
             else if ((unlocked = unlockRandomSet()))
             {
-                unlockedTex = resources.RetrieveTexture("set_unlocked.png");
-                unlockedQuad = resources.RetrieveQuad("set_unlocked.png", 2, 2, 396, 96);
+                unlockedTextureName = "set_unlocked.png";
                 MTGSetInfo * si = setlist.getInfo(unlocked - 1);
                 if (si)
                     unlockedString = si->getName(); //Show the set's pretty name for unlocks.
@@ -166,8 +158,7 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app)
             {
                 options[Options::AIDECKS_UNLOCKED].number += 10;
                 options.save();
-                unlockedTex = resources.RetrieveTexture("ai_unlocked.png");
-                unlockedQuad = resources.RetrieveQuad("ai_unlocked.png", 2, 2, 396, 96);
+                unlockedTextureName = "ai_unlocked.png";
             }
 
             if (unlocked && options[Options::SFXVOLUME].number > 0)
@@ -210,6 +201,17 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app)
     SAFE_DELETE(playerdata);
 }
 
+JQuad * Credits::GetUnlockedQuad(string textureName)
+{
+    if (!textureName.size()) return NULL;
+
+    JTexture * unlockedTex = resources.RetrieveTexture(textureName);
+    if (!unlockedTex) return NULL;
+
+    return resources.RetrieveQuad(unlockedTextureName, 2, 2, unlockedTex->mWidth - 4, unlockedTex->mHeight - 4);
+    
+}
+
 void Credits::Render()
 {
     if (!p1)
@@ -237,6 +239,7 @@ void Credits::Render()
             if (g->gameOver != p1)
             {
                 sprintf(buffer, _("Congratulations! You earn %i credits").c_str(), value);
+                JQuad * unlockedQuad = GetUnlockedQuad(unlockedTextureName);
                 if (unlockedQuad)
                 {
                     showMsg = 0;
@@ -434,9 +437,9 @@ int Credits::unlockRandomSet(bool force)
 int Credits::IsMoreAIDecksUnlocked(DeckStats * stats) {
     int currentlyUnlocked = options[Options::AIDECKS_UNLOCKED].number;
 
-    // Random rule: having played at least twice as much games as 
+    // Random rule: having played at least 1.2 times as much games as 
     // the number of currently unlocked decks in order to go through.
-    if (stats->nbGames() < currentlyUnlocked * 2) return 0;
+    if (stats->nbGames() < currentlyUnlocked * 1.2) return 0;
 
     int nbdecks = 0;
     int found = 1;

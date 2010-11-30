@@ -30,14 +30,14 @@ private:
   int isEvilTwinUnlocked();
   int isRandomDeckUnlocked();
   int IsMoreAIDecksUnlocked(DeckStats * stats);
+  string unlockedTextureName;
+  JQuad * GetUnlockedQuad(string texturename);
 public:
   int value;
   Player * p1, *p2;
   GameApp * app;
   int showMsg;
   int unlocked;
-  JQuad * unlockedQuad;
-  JTexture * unlockedTex;
   string unlockedString;
   vector<CreditBonus *> bonus;
   Credits();
