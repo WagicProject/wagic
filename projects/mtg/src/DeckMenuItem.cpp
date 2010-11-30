@@ -5,74 +5,78 @@
 #include "WResourceManager.h"
 #include <algorithm>
 
-#define ITEM_PX_WIDTH 190.f
-const int kHorizontalScrollSpeed = 10; // lower numbers mean faster scrolling
+#define ITEM_PX_WIDTH 190.0f
+
+const int kHorizontalScrollSpeed = 30; // higher numbers mean faster scrolling
 
 DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, float x, float y, bool hasFocus, bool autoTranslate, DeckMetaData *deckMetaData)
                         : JGuiObject(id), parent(_parent), fontId(fontId), mX(x), mY(y)
 {
+	WFont * mFont = resources.GetWFont(fontId);
+    meta = deckMetaData;
 	mText = trim(text);
-	displayName = text;
 	if (autoTranslate)
 		mText = _(mText);	
     
-	WFont * mFont = resources.GetWFont(fontId);
-    while (mFont->GetStringWidth(displayName.c_str()) > ITEM_PX_WIDTH)
-        displayName.erase(displayName.size() - 1);
 
-	mScrollTimer = 0;
     mHasFocus = hasFocus;
-	mScrollEnabled = (displayName.length() != mText.length()) ;
-
-	if (mScrollEnabled)
-		mText.append("   "); // add padding to reduce jerkiness when text scrolls
-
-	mRemainder = ( mText.length() - displayName.length() );
-
-
-	if (hasFocus)
-        Entering();
-
-    meta = deckMetaData;
-    if (meta && meta->getAvatarFilename().size() > 0)
-        this->imageFilename = meta->getAvatarFilename();
-    else
-        this->imageFilename = "avatar.jpg";
-
-}
-
-void DeckMenuItem::RenderWithOffset(float yOffset)
-{
-    WFont * mFont = resources.GetWFont(fontId);
-	string menuItemString = displayName;
-	size_t offset = 0;
-	
-	if ( mHasFocus && mScrollEnabled )
-	{
-		offset = mScrollTimer / kHorizontalScrollSpeed;
-		int wrapIndexEnd = mText.length() - offset;
-		int nbWrapAroundChars =  displayName.length() - wrapIndexEnd;
-		menuItemString = mText.substr(offset, displayName.length());
-		if ( nbWrapAroundChars > 0 )
-			// need to append start of title to end of menuItemString
-			menuItemString.append( mText.substr(0, nbWrapAroundChars ) );
-	}
-
-	mFont->DrawString(menuItemString.c_str(), mX, mY + yOffset, JGETEXT_CENTER);
-	if ( mHasFocus && mScrollEnabled && offset == mText.length())
-		mScrollTimer = 0;
-	else if (mHasFocus && mScrollEnabled)
-		mScrollTimer++;
-
-    //Render a "new" icon for decks that have never been played yet
+	float newImageWidth = 0.0f;
     if (meta && !meta->getGamesPlayed())
     {
         JTexture * tex = resources.RetrieveTexture("new.png");
         if (tex)
         {
-            JQuad * quad = resources.RetrieveQuad("new.png", 2, 2, tex->mWidth - 4, tex->mHeight - 4); //avoids weird rectangle aroudn the texture because of bilinear filtering
-            quad->SetHotSpot(quad->mWidth/2, quad->mHeight/2);
-            float x = mX + min(ITEM_PX_WIDTH - quad->mWidth, mFont->GetStringWidth(menuItemString.c_str()))/2 + quad->mWidth/2;
+            JQuad * quad = resources.RetrieveQuad("new.png", 2.0f, 2.0f, tex->mWidth - 4.0f, tex->mHeight - 4.0f); //avoids weird rectangle around the texture because of bilinear filtering
+			newImageWidth = quad->mWidth;
+		}
+	}
+
+	float titleStringWidth = mFont->GetStringWidth( mText.c_str() );
+	mTitleResetWidth = (titleStringWidth - newImageWidth )/ 2; 
+	mScrollEnabled = titleStringWidth  > ( ITEM_PX_WIDTH - newImageWidth );
+	mScrollerOffset = 0.0f;
+
+	if (hasFocus)
+        Entering();
+
+    if (meta && meta->getAvatarFilename().size() > 0)
+        this->imageFilename = meta->getAvatarFilename();
+    else
+        this->imageFilename = "avatar.jpg";
+
+	mDisplayInitialized = false;
+
+}
+
+void DeckMenuItem::Update(float dt)
+{
+	mScrollerOffset += kHorizontalScrollSpeed * dt;
+	if ( (mScrollerOffset) > mTitleResetWidth )
+		mScrollerOffset = -ITEM_PX_WIDTH;
+}
+
+
+void DeckMenuItem::RenderWithOffset(float yOffset)
+{
+    WFont * mFont = resources.GetWFont(fontId);
+	
+	if (!( mHasFocus && mScrollEnabled ))
+		mScrollerOffset = 0;
+	if (!mHasFocus && mScrollEnabled)
+		mScrollerOffset = -1 * ( GetWidth() - ITEM_PX_WIDTH )/2;
+	float offSet = mScrollerOffset;
+
+	mFont->DrawString(mText.c_str(), mX, mY + yOffset, JGETEXT_CENTER, offSet, ITEM_PX_WIDTH);
+	mDisplayInitialized = true;
+	//Render a "new" icon for decks that have never been played yet
+    if (meta && !meta->getGamesPlayed())
+    {
+        JTexture * tex = resources.RetrieveTexture("new.png");
+        if (tex)
+        {
+            JQuad * quad = resources.RetrieveQuad("new.png", 2.0f, 2.0f, tex->mWidth - 4.0f, tex->mHeight - 4.0f); //avoids weird rectangle aroudn the texture because of bilinear filtering
+            quad->SetHotSpot(quad->mWidth/2.0f, quad->mHeight/2.0f);
+            float x = mX + min(ITEM_PX_WIDTH - quad->mWidth, GetWidth() )/2 + quad->mWidth/2;
             if (quad) JRenderer::GetInstance()->RenderQuad(quad, x , mY + yOffset + quad->mHeight/2, 0.5);
         }
     }

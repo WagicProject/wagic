@@ -40,7 +40,7 @@ JGuiController(id, listener), fontId(fontId), mShowDetailsScreen( showDetailsOve
     mSelectedDeck = NULL;
     mY = 50;
     mWidth = 176;
-    mX = 110;
+    mX = 115;
 
     titleX = 110; // center point in title box
     titleY = 15;
