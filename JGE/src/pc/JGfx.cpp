@@ -41,13 +41,16 @@ extern "C" {
 #endif
 #endif
 
+#ifdef _DEBUG
 #define checkGlError()            \
 {                                 \
   GLenum glError = glGetError();  \
   if(glError != 0)                \
     printf("%s : %u : GLerror is %u\n", __FUNCTION__, __LINE__, glError); \
 }
-
+#else
+#define checkGlError() (void(0))
+#endif
 
 //#define FORCE_GL2
 #ifdef FORCE_GL2
