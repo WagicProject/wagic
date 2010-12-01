@@ -20,11 +20,11 @@ void GuiBackground::Render()
     GameObserver * go = GameObserver::GetInstance();
     if (go && go->mRules && go->mRules->bg.size())
     {
-        quad = resources.RetrieveTempQuad(go->mRules->bg);
+        quad = WResourceManager::Instance()->RetrieveTempQuad(go->mRules->bg);
     }
     if (!quad)
     {
-        quad = resources.RetrieveTempQuad("backdrop.jpg");
+        quad = WResourceManager::Instance()->RetrieveTempQuad("backdrop.jpg");
     }
     if (!quad)
         return;

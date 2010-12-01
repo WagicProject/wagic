@@ -304,7 +304,7 @@ string SimplePad::Finish()
 void SimplePad::Render()
 {
     //This could use some cleaning up to make margins more explicit
-    WFont * mFont = resources.GetWFont(Fonts::MENU_FONT);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MENU_FONT);
 
     float offX = 0, offY = 0;
     float kH = mFont->GetHeight();

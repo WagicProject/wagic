@@ -39,7 +39,7 @@ GuiCombat::GuiCombat(GameObserver* go) :
 {
     if (NULL == ok_tex)
     {
-        ok_tex = resources.RetrieveTexture("Ok.png", RETRIEVE_LOCK);
+        ok_tex = WResourceManager::Instance()->RetrieveTexture("Ok.png", RETRIEVE_LOCK);
     }
 }
 
@@ -47,7 +47,7 @@ GuiCombat::~GuiCombat()
 {
     if (ok_tex)
     {
-        resources.Release(ok_tex);
+        WResourceManager::Instance()->Release(ok_tex);
         ok_tex = NULL;
     }
 
@@ -391,7 +391,7 @@ void GuiCombat::Render()
         {
             go->opponent()->mAvatar->SetHotSpot(18, 25);
             enemy_avatar.Render(go->opponent()->mAvatar);
-            WFont * mFont = resources.GetWFont(Fonts::MAIN_FONT);
+            WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
             mFont->SetColor(ARGB(255, 255, 64, 0));
             {
                 char buf[10];
@@ -402,14 +402,14 @@ void GuiCombat::Render()
     }
     if (ok_tex)
     {
-        JQuad *ok_quad = resources.RetrieveTempQuad("Ok.png");
+        JQuad *ok_quad = WResourceManager::Instance()->RetrieveTempQuad("Ok.png");
         ok_quad->SetHotSpot(28, 22);
         ok.Render(ok_quad);
     }
     renderer->DrawLine(0, SCREEN_HEIGHT / 2 + 10, SCREEN_WIDTH, SCREEN_HEIGHT / 2 + 10, ARGB(255, 255, 64, 0));
     if (FIRST_STRIKE == step)
     {
-        WFont * mFont = resources.GetWFont(Fonts::MAIN_FONT);
+        WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
         mFont->SetColor(ARGB(255, 64, 255, 64));
         mFont->DrawString("First strike damage", 370, 2);
     }

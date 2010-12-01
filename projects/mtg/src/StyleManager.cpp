@@ -45,7 +45,7 @@ void StyleManager::loadRules()
 {
     killRules();
     //TODO Placeholder until XML format available.
-    string filename = JGE_GET_RES(resources.graphicsFile("style.txt"));
+    string filename = JGE_GET_RES(WResourceManager::Instance()->graphicsFile("style.txt"));
     TiXmlDocument xmlfile(filename.c_str());
     if (!xmlfile.LoadFile()) return;
     TiXmlHandle hDoc(&xmlfile);
@@ -121,7 +121,7 @@ void StyleManager::determineActive(MTGDeck * p1, MTGDeck * p2)
     {
         string prior = activeStyle;
         activeStyle = check;
-        if (prior != activeStyle) resources.Refresh();
+        if (prior != activeStyle) WResourceManager::Instance()->Refresh();
         return;
     }
     topRule = -1;
@@ -158,6 +158,6 @@ void StyleManager::determineActive(MTGDeck * p1, MTGDeck * p2)
         map<string, WStyle*>::iterator mi = styles.find(rules[topRule]->style);
         if (mi != styles.end()) activeStyle = mi->first;
     }
-    if (prior != activeStyle) resources.Refresh();
+    if (prior != activeStyle) WResourceManager::Instance()->Refresh();
 
 }

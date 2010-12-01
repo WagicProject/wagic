@@ -123,16 +123,16 @@ void GameStateShop::Start()
     }
 
     //alternateRender doesn't lock, so lock our thumbnails for hgeDistort.
-    altThumb[0] = resources.RetrieveTexture("artifact_thumb.jpg", RETRIEVE_LOCK);
-    altThumb[1] = resources.RetrieveTexture("green_thumb.jpg", RETRIEVE_LOCK);
-    altThumb[2] = resources.RetrieveTexture("blue_thumb.jpg", RETRIEVE_LOCK);
-    altThumb[3] = resources.RetrieveTexture("red_thumb.jpg", RETRIEVE_LOCK);
-    altThumb[4] = resources.RetrieveTexture("black_thumb.jpg", RETRIEVE_LOCK);
-    altThumb[5] = resources.RetrieveTexture("white_thumb.jpg", RETRIEVE_LOCK);
-    altThumb[6] = resources.RetrieveTexture("land_thumb.jpg", RETRIEVE_LOCK);
-    altThumb[7] = resources.RetrieveTexture("gold_thumb.jpg", RETRIEVE_LOCK);
+    altThumb[0] = WResourceManager::Instance()->RetrieveTexture("artifact_thumb.jpg", RETRIEVE_LOCK);
+    altThumb[1] = WResourceManager::Instance()->RetrieveTexture("green_thumb.jpg", RETRIEVE_LOCK);
+    altThumb[2] = WResourceManager::Instance()->RetrieveTexture("blue_thumb.jpg", RETRIEVE_LOCK);
+    altThumb[3] = WResourceManager::Instance()->RetrieveTexture("red_thumb.jpg", RETRIEVE_LOCK);
+    altThumb[4] = WResourceManager::Instance()->RetrieveTexture("black_thumb.jpg", RETRIEVE_LOCK);
+    altThumb[5] = WResourceManager::Instance()->RetrieveTexture("white_thumb.jpg", RETRIEVE_LOCK);
+    altThumb[6] = WResourceManager::Instance()->RetrieveTexture("land_thumb.jpg", RETRIEVE_LOCK);
+    altThumb[7] = WResourceManager::Instance()->RetrieveTexture("gold_thumb.jpg", RETRIEVE_LOCK);
 
-    mBack = resources.GetQuad("back");
+    mBack = WResourceManager::Instance()->GetQuad("back");
 
     JRenderer::GetInstance()->EnableVSync(true);
 
@@ -194,7 +194,7 @@ string GameStateShop::descPurchase(int controlId, bool tiny)
 }
 void GameStateShop::beginPurchase(int controlId)
 {
-    WFont * mFont = resources.GetWFont(Fonts::MENU_FONT);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MENU_FONT);
     mFont->SetScale(DEFAULT_MENU_FONT_SCALE);
     SAFE_DELETE(menu);
     if (mInventory[controlId] <= 0)
@@ -428,7 +428,7 @@ void GameStateShop::End()
     //Release alternate thumbnails.
     for (int i = 0; i < 8; i++)
     {
-        resources.Release(altThumb[i]);
+        WResourceManager::Instance()->Release(altThumb[i]);
         altThumb[i] = NULL;
     }
 
@@ -652,17 +652,17 @@ void GameStateShop::deleteDisplay()
 void GameStateShop::Render()
 {
     //Erase
-    WFont * mFont = resources.GetWFont(Fonts::MAIN_FONT);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     JRenderer * r = JRenderer::GetInstance();
     r->ClearScreen(ARGB(0,0,0,0));
     if (mStage == STAGE_FADE_IN)
         return;
 
-    JQuad * mBg = resources.RetrieveTempQuad("shop.jpg", TEXTURE_SUB_5551);
+    JQuad * mBg = WResourceManager::Instance()->RetrieveTempQuad("shop.jpg", TEXTURE_SUB_5551);
     if (mBg)
         r->RenderQuad(mBg, 0, 0);
 
-    JQuad * quad = resources.RetrieveTempQuad("shop_light.jpg", TEXTURE_SUB_5551);
+    JQuad * quad = WResourceManager::Instance()->RetrieveTempQuad("shop_light.jpg", TEXTURE_SUB_5551);
     if (quad)
     {
         r->EnableTextureFilter(false);

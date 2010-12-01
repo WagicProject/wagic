@@ -10,7 +10,7 @@ MenuItem::MenuItem(int id, WFont *font, string text, float x, float y, JQuad * _
 {
     mText = _(text);
     updatedSinceLastRender = 1;
-    mParticleSys = NEW hgeParticleSystem(resources.RetrievePSI(particle, particleTex));
+    mParticleSys = NEW hgeParticleSystem(WResourceManager::Instance()->RetrievePSI(particle, particleTex));
     mParticleSys->MoveTo(mX, mY);
 
     mHasFocus = hasFocus;

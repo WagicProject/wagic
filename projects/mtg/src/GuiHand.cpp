@@ -35,7 +35,7 @@ HandLimitor::HandLimitor(GuiHand* hand) :
 GuiHand::GuiHand(MTGHand* hand) :
     GuiLayer(), hand(hand)
 {
-    back = resources.RetrieveTempQuad("handback.png");
+    back = WResourceManager::Instance()->RetrieveTempQuad("handback.png");
     if (back)
         back->SetTextureRect(1, 0, 100, 250);
     else
@@ -68,7 +68,7 @@ GuiHandOpponent::GuiHandOpponent(MTGHand* hand) :
 
 void GuiHandOpponent::Render()
 {
-    JQuad * quad = resources.GetQuad("back_thumb");
+    JQuad * quad = WResourceManager::Instance()->GetQuad("back_thumb");
 
     float x = 45;
     for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
@@ -202,7 +202,7 @@ void GuiHandSelf::Render()
     //Empty hand
     if (state == Open && cards.size() == 0)
     {
-        WFont * mFont = resources.GetWFont(Fonts::MAIN_FONT);
+        WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
         mFont->SetColor(ARGB(255,255,0,0));
         if (OptionHandDirection::HORIZONTAL == options[Options::HANDDIRECTION].number)
         {

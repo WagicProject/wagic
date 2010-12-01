@@ -224,30 +224,30 @@ void GameStateDeckViewer::Start()
     displayed_deck = myCollection;
 
     //Icons
-    mIcons[Constants::MTG_COLOR_ARTIFACT] = resources.GetQuad("c_artifact");
-    mIcons[Constants::MTG_COLOR_LAND] = resources.GetQuad("c_land");
-    mIcons[Constants::MTG_COLOR_WHITE] = resources.GetQuad("c_white");
-    mIcons[Constants::MTG_COLOR_RED] = resources.GetQuad("c_red");
-    mIcons[Constants::MTG_COLOR_BLACK] = resources.GetQuad("c_black");
-    mIcons[Constants::MTG_COLOR_BLUE] = resources.GetQuad("c_blue");
-    mIcons[Constants::MTG_COLOR_GREEN] = resources.GetQuad("c_green");
+    mIcons[Constants::MTG_COLOR_ARTIFACT] = WResourceManager::Instance()->GetQuad("c_artifact");
+    mIcons[Constants::MTG_COLOR_LAND] = WResourceManager::Instance()->GetQuad("c_land");
+    mIcons[Constants::MTG_COLOR_WHITE] = WResourceManager::Instance()->GetQuad("c_white");
+    mIcons[Constants::MTG_COLOR_RED] = WResourceManager::Instance()->GetQuad("c_red");
+    mIcons[Constants::MTG_COLOR_BLACK] = WResourceManager::Instance()->GetQuad("c_black");
+    mIcons[Constants::MTG_COLOR_BLUE] = WResourceManager::Instance()->GetQuad("c_blue");
+    mIcons[Constants::MTG_COLOR_GREEN] = WResourceManager::Instance()->GetQuad("c_green");
     for (int i = 0; i < 7; i++)
     {
         mIcons[i]->SetHotSpot(16, 16);
     }
 
     //Grab a texture in VRAM.
-    pspIconsTexture = resources.RetrieveTexture("iconspsp.png", RETRIEVE_LOCK);
+    pspIconsTexture = WResourceManager::Instance()->RetrieveTexture("iconspsp.png", RETRIEVE_LOCK);
 
     char buf[512];
     for (int i = 0; i < 8; i++)
     {
         sprintf(buf, "iconspsp%d", i);
-        pspIcons[i] = resources.RetrieveQuad("iconspsp.png", (float) i * 32, 0, 32, 32, buf);
+        pspIcons[i] = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float) i * 32, 0, 32, 32, buf);
         pspIcons[i]->SetHotSpot(16, 16);
     }
 
-    backQuad = resources.GetQuad("back");
+    backQuad = WResourceManager::Instance()->GetQuad("back");
 
     //init welcome menu
     updateDecks();
@@ -267,7 +267,7 @@ void GameStateDeckViewer::End()
     SAFE_DELETE(menu);
     SAFE_DELETE(subMenu);
 
-    resources.Release(pspIconsTexture);
+    WResourceManager::Instance()->Release(pspIconsTexture);
     if (myCollection)
     {
         SAFE_DELETE(myCollection);
@@ -617,7 +617,7 @@ void GameStateDeckViewer::Update(float dt)
 void GameStateDeckViewer::renderOnScreenBasicInfo()
 {
     JRenderer *renderer = JRenderer::GetInstance();
-    WFont * mFont = resources.GetWFont(Fonts::MAIN_FONT);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     char buffer[256];
     int myD = (displayed_deck == myDeck);
 
@@ -656,7 +656,7 @@ int GameStateDeckViewer::getCurrentPos()
 
 void GameStateDeckViewer::renderSlideBar()
 {
-    WFont * mFont = resources.GetWFont(Fonts::MAIN_FONT);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
 
     int total = displayed_deck->Size();
     if (total == 0) return;
@@ -726,7 +726,7 @@ void GameStateDeckViewer::renderDeckBackground()
 void GameStateDeckViewer::renderOnScreenMenu()
 {
 
-    WFont * font = resources.GetWFont(Fonts::MAIN_FONT);
+    WFont * font = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     font->SetColor(ARGB(255,255,255,255));
     JRenderer * r = JRenderer::GetInstance();
     float pspIconsSize = 0.5;
@@ -1292,7 +1292,7 @@ void GameStateDeckViewer::renderOnScreenMenu()
 
 void GameStateDeckViewer::renderCard(int id, float rotation)
 {
-    WFont * mFont = resources.GetWFont(Fonts::MAIN_FONT);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     MTGCard * card = cardIndex[id];
 
     float max_scale = 0.96f;
@@ -1317,12 +1317,12 @@ void GameStateDeckViewer::renderCard(int id, float rotation)
 
     if (!options[Options::DISABLECARDS].number)
     {
-        quad = resources.RetrieveCard(card, RETRIEVE_EXISTING);
-        cacheError = resources.RetrieveError();
+        quad = WResourceManager::Instance()->RetrieveCard(card, RETRIEVE_EXISTING);
+        cacheError = WResourceManager::Instance()->RetrieveError();
         if (!quad && cacheError != CACHE_ERROR_404)
         {
             if (last_user_activity > (abs(2 - id) + 1) * NO_USER_ACTIVITY_SHOWCARD_DELAY)
-                quad = resources.RetrieveCard(card);
+                quad = WResourceManager::Instance()->RetrieveCard(card);
             else
             {
                 quad = backQuad;
@@ -1350,7 +1350,7 @@ void GameStateDeckViewer::renderCard(int id, float rotation)
     {
         Pos pos = Pos(x, y, scale * 285 / 250, 0.0, 255);
         CardGui::DrawCard(card, pos, DrawMode::kText);
-        if (!options[Options::DISABLECARDS].number) quad = resources.RetrieveCard(card, CACHE_THUMB);
+        if (!options[Options::DISABLECARDS].number) quad = WResourceManager::Instance()->RetrieveCard(card, CACHE_THUMB);
         if (quad)
         {
             float _scale = 285 * scale / quad->mHeight;
@@ -1389,7 +1389,7 @@ void GameStateDeckViewer::renderCard(int id)
 void GameStateDeckViewer::Render()
 {
 
-    WFont * mFont = resources.GetWFont(Fonts::MAIN_FONT);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     JRenderer * r = JRenderer::GetInstance();
 
     r->ClearScreen(ARGB(0,0,0,0));

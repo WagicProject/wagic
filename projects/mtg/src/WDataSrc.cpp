@@ -37,7 +37,7 @@ bool WSyncable::prev()
 //WSrcImage
 JQuad * WSrcImage::getImage(int offset)
 {
-    return resources.RetrieveTempQuad(filename);
+    return WResourceManager::Instance()->RetrieveTempQuad(filename);
 }
 
 WSrcImage::WSrcImage(string s)
@@ -60,15 +60,15 @@ JQuad * WSrcCards::getImage(int offset)
 #else
     if (mDelay && mLastInput < mDelay)
     {
-        return resources.RetrieveCard(getCard(offset), RETRIEVE_EXISTING);
+        return WResourceManager::Instance()->RetrieveCard(getCard(offset), RETRIEVE_EXISTING);
     }
 #endif
-    return resources.RetrieveCard(getCard(offset));
+    return WResourceManager::Instance()->RetrieveCard(getCard(offset));
 }
 
 JQuad * WSrcCards::getThumb(int offset)
 {
-    return resources.RetrieveCard(getCard(offset), RETRIEVE_THUMB);
+    return WResourceManager::Instance()->RetrieveCard(getCard(offset), RETRIEVE_THUMB);
 }
 
 WSrcCards::~WSrcCards()

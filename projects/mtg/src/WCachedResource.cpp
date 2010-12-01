@@ -17,7 +17,7 @@ WResource::~WResource()
 WResource::WResource()
 {
     locks = WRES_UNLOCKED;
-    lastTime = resources.nowTime();
+    lastTime = WResourceManager::Instance()->nowTime();
     loadedMode = 0;
 }
 
@@ -60,7 +60,7 @@ void WResource::unlock(bool force)
 
 void WResource::hit()
 {
-    lastTime = resources.nowTime();
+    lastTime = WResourceManager::Instance()->nowTime();
 }
 
 WCachedResource::~WCachedResource()
@@ -174,7 +174,7 @@ WTrackedQuad * WCachedTexture::GetTrackedQuad(float offX, float offY, float widt
          There's a risk this erases the texture calling the quad creation.... Erwan 2010/03/13
          if(!quad) {
          //Probably out of memory. Try again.
-         resources.Cleanup();
+         WResourceManager::Instance()->Cleanup();
          quad = NEW JQuad(texture,offX,offY,width,height);
          }
          */
@@ -289,16 +289,16 @@ bool WCachedTexture::Attempt(string filename, int submode, int & error)
             }
 
         }
-        realname = resources.cardFile(filename);
+        realname = WResourceManager::Instance()->cardFile(filename);
     }
     else
     {
         if (submode & TEXTURE_SUB_THUMB) filename.insert(0, "thumbnails/");
 
         if (submode & TEXTURE_SUB_AVATAR)
-            realname = resources.avatarFile(filename);
+            realname = WResourceManager::Instance()->avatarFile(filename);
         else
-            realname = resources.graphicsFile(filename);
+            realname = WResourceManager::Instance()->graphicsFile(filename);
     }
 
     //Apply pixel mode
@@ -362,7 +362,7 @@ bool WCachedSample::Attempt(string filename, int submode, int & error)
 {
     loadedMode = submode;
 
-    sample = JSoundSystem::GetInstance()->LoadSample(resources.sfxFile(filename).c_str());
+    sample = JSoundSystem::GetInstance()->LoadSample(WResourceManager::Instance()->sfxFile(filename).c_str());
 
     if (!isGood())
     {
@@ -417,7 +417,7 @@ bool WCachedParticles::Attempt(string filename, int submode, int & error)
 
     JFileSystem* fileSys = JFileSystem::GetInstance();
 
-    if (!fileSys->OpenFile(resources.graphicsFile(filename)))
+    if (!fileSys->OpenFile(WResourceManager::Instance()->graphicsFile(filename)))
     {
         error = CACHE_ERROR_404;
         return false;

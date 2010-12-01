@@ -99,7 +99,7 @@ void CardGui::DrawCard(MTGCard* inCard, const Pos& inPosition, int inMode)
 
 void CardGui::Render()
 {
-    WFont * mFont = resources.GetWFont(Fonts::MAIN_FONT);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
 
     JRenderer * renderer = JRenderer::GetInstance();
     GameObserver * game = GameObserver::GetInstance();
@@ -109,10 +109,10 @@ void CardGui::Render()
         tc = game->getCurrentTargetChooser();
 
     bool alternate = true;
-    JQuad * quad = resources.RetrieveCard(card, CACHE_THUMB);
+    JQuad * quad = WResourceManager::Instance()->RetrieveCard(card, CACHE_THUMB);
 #if defined (WIN32) || defined (LINUX)
     //On pcs we render the big image if the thumbnail is not available
-    if (!quad) quad = resources.RetrieveCard(card);
+    if (!quad) quad = WResourceManager::Instance()->RetrieveCard(card);
 #endif
     if (quad)
         alternate = false;
@@ -125,7 +125,7 @@ void CardGui::Render()
     JQuad* shadow = NULL;
     if (actZ > 1)
     {
-        shadow = resources.GetQuad("shadow");
+        shadow = WResourceManager::Instance()->GetQuad("shadow");
         shadow->SetColor(ARGB(static_cast<unsigned char>(actA)/2,255,255,255));
         renderer->RenderQuad(shadow, actX + (actZ - 1) * 15, actY + (actZ - 1) * 15, actT, 28 * actZ / 16, 40 * actZ / 16);
     }
@@ -145,15 +145,15 @@ void CardGui::Render()
 
         JQuad * icon = NULL;
         if (card->hasSubtype("plains"))
-            icon = resources.GetQuad("c_white");
+            icon = WResourceManager::Instance()->GetQuad("c_white");
         else if (card->hasSubtype("swamp"))
-            icon = resources.GetQuad("c_black");
+            icon = WResourceManager::Instance()->GetQuad("c_black");
         else if (card->hasSubtype("forest"))
-            icon = resources.GetQuad("c_green");
+            icon = WResourceManager::Instance()->GetQuad("c_green");
         else if (card->hasSubtype("mountain"))
-            icon = resources.GetQuad("c_red");
+            icon = WResourceManager::Instance()->GetQuad("c_red");
         else if (card->hasSubtype("island"))
-            icon = resources.GetQuad("c_blue");
+            icon = WResourceManager::Instance()->GetQuad("c_blue");
 
         if (icon)
         {
@@ -201,7 +201,7 @@ void CardGui::Render()
     if (tc && !tc->canTarget(card))
     {
         if (!shadow)
-            shadow = resources.GetQuad("shadow");
+            shadow = WResourceManager::Instance()->GetQuad("shadow");
         shadow->SetColor(ARGB(200,255,255,255));
         renderer->RenderQuad(shadow, actX, actY, actT, (28 * actZ + 1) / 16, 40 * actZ / 16);
     }
@@ -215,35 +215,35 @@ JQuad * CardGui::AlternateThumbQuad(MTGCard * card)
 
     if (card->data->countColors() > 1)
     {
-        q = resources.RetrieveTempQuad("gold_thumb.jpg");
+        q = WResourceManager::Instance()->RetrieveTempQuad("gold_thumb.jpg");
     }
     else
     {
         switch (card->data->getColor())
         {
         case Constants::MTG_COLOR_ARTIFACT:
-            q = resources.RetrieveTempQuad("artifact_thumb.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("artifact_thumb.jpg");
             break;
         case Constants::MTG_COLOR_GREEN:
-            q = resources.RetrieveTempQuad("green_thumb.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("green_thumb.jpg");
             break;
         case Constants::MTG_COLOR_BLUE:
-            q = resources.RetrieveTempQuad("blue_thumb.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("blue_thumb.jpg");
             break;
         case Constants::MTG_COLOR_RED:
-            q = resources.RetrieveTempQuad("red_thumb.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("red_thumb.jpg");
             break;
         case Constants::MTG_COLOR_BLACK:
-            q = resources.RetrieveTempQuad("black_thumb.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("black_thumb.jpg");
             break;
         case Constants::MTG_COLOR_WHITE:
-            q = resources.RetrieveTempQuad("white_thumb.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("white_thumb.jpg");
             break;
         case Constants::MTG_COLOR_LAND:
-            q = resources.RetrieveTempQuad("land_thumb.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("land_thumb.jpg");
             break;
         default:
-            q = resources.RetrieveTempQuad("gold_thumb.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("gold_thumb.jpg");
             break;
         }
     }
@@ -262,35 +262,35 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
 
     if (card->data->countColors() > 1)
     {
-        q = resources.RetrieveTempQuad("gold.jpg");
+        q = WResourceManager::Instance()->RetrieveTempQuad("gold.jpg");
     }
     else
     {
         switch (card->data->getColor())
         {
         case Constants::MTG_COLOR_ARTIFACT:
-            q = resources.RetrieveTempQuad("artifact.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("artifact.jpg");
             break;
         case Constants::MTG_COLOR_GREEN:
-            q = resources.RetrieveTempQuad("green.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("green.jpg");
             break;
         case Constants::MTG_COLOR_BLUE:
-            q = resources.RetrieveTempQuad("blue.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("blue.jpg");
             break;
         case Constants::MTG_COLOR_RED:
-            q = resources.RetrieveTempQuad("red.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("red.jpg");
             break;
         case Constants::MTG_COLOR_BLACK:
-            q = resources.RetrieveTempQuad("black.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("black.jpg");
             break;
         case Constants::MTG_COLOR_WHITE:
-            q = resources.RetrieveTempQuad("white.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("white.jpg");
             break;
         case Constants::MTG_COLOR_LAND:
-            q = resources.RetrieveTempQuad("land.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("land.jpg");
             break;
         default:
-            q = resources.RetrieveTempQuad("gold.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("gold.jpg");
             break;
         }
     }
@@ -303,7 +303,7 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
         renderer->RenderQuad(q, x, pos.actY, pos.actT, scale, scale);
     }
     // Write the title
-    WFont * font = resources.GetWFont(Fonts::MAGIC_FONT);
+    WFont * font = WResourceManager::Instance()->GetWFont(Fonts::MAGIC_FONT);
     float backup_scale = font->GetScale();
     font->SetColor(ARGB((int)pos.actA, 0, 0, 0));
     font->SetScale(kWidthScaleFactor * pos.actZ);
@@ -489,35 +489,35 @@ void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
 
     if (card->data->countColors() > 1)
     {
-        q = resources.RetrieveTempQuad("gold.jpg");
+        q = WResourceManager::Instance()->RetrieveTempQuad("gold.jpg");
     }
     else
     {
         switch (card->data->getColor())
         {
         case Constants::MTG_COLOR_ARTIFACT:
-            q = resources.RetrieveTempQuad("artifact.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("artifact.jpg");
             break;
         case Constants::MTG_COLOR_GREEN:
-            q = resources.RetrieveTempQuad("green.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("green.jpg");
             break;
         case Constants::MTG_COLOR_BLUE:
-            q = resources.RetrieveTempQuad("blue.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("blue.jpg");
             break;
         case Constants::MTG_COLOR_RED:
-            q = resources.RetrieveTempQuad("red.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("red.jpg");
             break;
         case Constants::MTG_COLOR_BLACK:
-            q = resources.RetrieveTempQuad("black.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("black.jpg");
             break;
         case Constants::MTG_COLOR_WHITE:
-            q = resources.RetrieveTempQuad("white.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("white.jpg");
             break;
         case Constants::MTG_COLOR_LAND:
-            q = resources.RetrieveTempQuad("land.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("land.jpg");
             break;
         default:
-            q = resources.RetrieveTempQuad("gold.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("gold.jpg");
             break;
         }
     }
@@ -545,7 +545,7 @@ void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
     renderer->RenderQuad(quad, x, imgY, pos.actT, imgScale, imgScale);
 
     // Write the title
-    WFont * font = resources.GetWFont(Fonts::MAGIC_FONT);
+    WFont * font = WResourceManager::Instance()->GetWFont(Fonts::MAGIC_FONT);
     float backup_scale = font->GetScale();
     font->SetColor(ARGB((int)pos.actA, 0, 0, 0));
     font->SetScale(kWidthScaleFactor * pos.actZ);
@@ -716,7 +716,7 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos)
 
     float x = pos.actX;
 
-    JQuad * quad = resources.RetrieveCard(card);
+    JQuad * quad = WResourceManager::Instance()->RetrieveCard(card);
     if (quad)
     {
         if (quad->mHeight < quad->mWidth)
@@ -731,7 +731,7 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos)
 
     //No card found, attempt to render the thumbnail instead (better than nothing, even if it gets super stretched)
     JQuad * q;
-    if ((q = resources.RetrieveCard(card, CACHE_THUMB)))
+    if ((q = WResourceManager::Instance()->RetrieveCard(card, CACHE_THUMB)))
     {
         float scale = pos.actZ * 250 / q->mHeight;
         q->SetColor(ARGB(255,255,255,255));
@@ -748,7 +748,7 @@ void CardGui::RenderCountersBig(const Pos& pos)
     // Write Named Counters
     if (card->counters)
     {
-        WFont * font = resources.GetWFont(Fonts::MAGIC_FONT);
+        WFont * font = WResourceManager::Instance()->GetWFont(Fonts::MAGIC_FONT);
         font->SetColor(ARGB((int)pos.actA, 0, 0, 0));
         font->SetScale(kWidthScaleFactor * pos.actZ);
         std::vector<string> txt = card->formattedText();

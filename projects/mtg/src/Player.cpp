@@ -46,7 +46,7 @@ Player::~Player()
 {
     SAFE_DELETE(manaPool);
     SAFE_DELETE(game);
-    resources.Release(mAvatarTex);
+    WResourceManager::Instance()->Release(mAvatarTex);
     mAvatar = NULL;
     mAvatarTex = NULL;
 }
@@ -55,13 +55,13 @@ void Player::loadAvatar(string file)
 {
     if (mAvatarTex)
     {
-        resources.Release(mAvatarTex);
+        WResourceManager::Instance()->Release(mAvatarTex);
         mAvatar = NULL;
         mAvatarTex = NULL;
     }
-    mAvatarTex = resources.RetrieveTexture(file, RETRIEVE_LOCK, TEXTURE_SUB_AVATAR);
+    mAvatarTex = WResourceManager::Instance()->RetrieveTexture(file, RETRIEVE_LOCK, TEXTURE_SUB_AVATAR);
     if (mAvatarTex)
-        mAvatar = resources.RetrieveQuad(file, 0, 0, 35, 50, "playerAvatar", RETRIEVE_NORMAL, TEXTURE_SUB_AVATAR);
+        mAvatar = WResourceManager::Instance()->RetrieveQuad(file, 0, 0, 35, 50, "playerAvatar", RETRIEVE_NORMAL, TEXTURE_SUB_AVATAR);
     else
         mAvatar = NULL;
 }

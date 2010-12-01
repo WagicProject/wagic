@@ -78,7 +78,7 @@ JGuiController(id, listener), fontId(fontId), mShowDetailsScreen( showDetailsOve
     // we want to cap the deck titles to 15 characters to avoid overflowing deck names
     title = _(_title);
     displayTitle = title;
-    mFont = resources.GetWFont(fontId);
+    mFont = WResourceManager::Instance()->GetWFont(fontId);
 
     startId = 0;
     selectionT = 0;
@@ -93,7 +93,7 @@ JGuiController(id, listener), fontId(fontId), mShowDetailsScreen( showDetailsOve
     mSelectionTargetY = selectionY = kVerticalMargin;
 
     if (NULL == stars) 
-		stars = NEW hgeParticleSystem(resources.RetrievePSI("stars.psi", resources.GetQuad("stars")));
+		stars = NEW hgeParticleSystem(WResourceManager::Instance()->RetrievePSI("stars.psi", WResourceManager::Instance()->GetQuad("stars")));
     stars->FireAt(mX, mY);
 
     updateScroller();
@@ -107,7 +107,7 @@ void DeckMenu::RenderBackground()
     static bool loadBackground = true;
     if (loadBackground)
     {
-        JQuad *background = resources.RetrieveTempQuad(bgFilename.str(), TEXTURE_SUB_5551);
+        JQuad *background = WResourceManager::Instance()->RetrieveTempQuad(bgFilename.str(), TEXTURE_SUB_5551);
         if (background)
             JRenderer::GetInstance()->RenderQuad(background, 0, 0);
         else
@@ -152,13 +152,13 @@ void DeckMenu::initMenuItems()
     mSelectionTargetY = selectionY = sY;
 
     //Grab a texture in VRAM.
-    pspIconsTexture = resources.RetrieveTexture("iconspsp.png", RETRIEVE_LOCK);
+    pspIconsTexture = WResourceManager::Instance()->RetrieveTexture("iconspsp.png", RETRIEVE_LOCK);
 
     char buf[512];
     for (int i = 0; i < 8; i++)
     {
         sprintf(buf, "iconspsp%d", i);
-        pspIcons[i] = resources.RetrieveQuad("iconspsp.png", (float) i * 32, 0, 32, 32, buf);
+        pspIcons[i] = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float) i * 32, 0, 32, 32, buf);
         pspIcons[i]->SetHotSpot(16, 16);
     }
 
@@ -189,7 +189,7 @@ void DeckMenu::Render()
                 mSelectedDeckId = i;
                 mSelectedDeck = currentMenuItem->meta;
 
-                WFont *mainFont = resources.GetWFont(Fonts::MAIN_FONT);
+                WFont *mainFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
                 // display the "more info" button if special condition is met
                 if (showDetailsScreen())
                 {                    
@@ -207,7 +207,7 @@ void DeckMenu::Render()
                 // display the avatar image
                 if (currentMenuItem->imageFilename.size() > 0)
                 {
-                    JQuad * quad = resources.RetrieveTempQuad(currentMenuItem->imageFilename, TEXTURE_SUB_AVATAR);
+                    JQuad * quad = WResourceManager::Instance()->RetrieveTempQuad(currentMenuItem->imageFilename, TEXTURE_SUB_AVATAR);
                     if (quad) renderer->RenderQuad(quad, avatarX, avatarY);
                 }
                 // fill in the description part of the screen
@@ -332,6 +332,6 @@ void DeckMenu::destroy()
 
 DeckMenu::~DeckMenu()
 {
-    resources.Release(pspIconsTexture);
+    WResourceManager::Instance()->Release(pspIconsTexture);
     SAFE_DELETE(mScroller);
 }

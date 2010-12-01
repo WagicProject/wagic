@@ -19,7 +19,6 @@ const unsigned int kConstrainedCacheLimit = 8 * 1024 * 1024;
 
 extern bool neofont;
 int idCounter = OTHERS_OFFSET;
-WResourceManager resources;
 
 namespace
 {
@@ -27,6 +26,8 @@ namespace
     const std::string kExtension_gbk(".gbk");
     const std::string kExtension_font(".font");
 }
+
+WResourceManager* WResourceManager::sInstance = NULL;
 
 int WResourceManager::RetrieveError()
 {
@@ -46,7 +47,7 @@ bool WResourceManager::RemoveOldest()
 void WResourceManager::DebugRender()
 {
     JRenderer* renderer = JRenderer::GetInstance();
-    WFont * font = resources.GetWFont(Fonts::MAIN_FONT);
+    WFont * font = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     font->SetColor(ARGB(255,255,255,255));
 
     if (!font || !renderer) return;
@@ -1198,7 +1199,7 @@ cacheItem* WCache<cacheItem, cacheActual>::Retrieve(int id, const string& filena
                 //Unlink the managed resource from the cache.
                 UnlinkCache(tc);
 
-                //Post it in managed resources.
+                //Post it in managed WResourceManager::Instance()->
                 managed[makeID(id, filename, submode)] = tc;
                 tc->deadbolt();
             }

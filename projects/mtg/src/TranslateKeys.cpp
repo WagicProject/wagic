@@ -112,19 +112,19 @@ const KeyRep& translateKey(LocalKeySym key)
     KeyRep& k = res->second;
     switch (key)
     {
-        case PSP_CTRL_SELECT :   k.second = resources.RetrieveQuad("iconspsp.png", (float)2*32, 32, 64, 32, "PSP_CTRL_SELECT",   RETRIEVE_NORMAL); break;
-        case PSP_CTRL_START :    k.second = resources.RetrieveQuad("iconspsp.png", (float)0*32, 32, 64, 32, "PSP_CTRL_START",    RETRIEVE_NORMAL); break;
-        case PSP_CTRL_UP :       k.second = resources.RetrieveQuad("iconspsp.png", (float)0*32,  0, 32, 32, "PSP_CTRL_UP",       RETRIEVE_NORMAL); break;
-        case PSP_CTRL_RIGHT :    k.second = resources.RetrieveQuad("iconspsp.png", (float)3*32,  0, 32, 32, "PSP_CTRL_RIGHT",    RETRIEVE_NORMAL); break;
-        case PSP_CTRL_DOWN :     k.second = resources.RetrieveQuad("iconspsp.png", (float)1*32,  0, 32, 32, "PSP_CTRL_DOWN",     RETRIEVE_NORMAL); break;
-        case PSP_CTRL_LEFT :     k.second = resources.RetrieveQuad("iconspsp.png", (float)2*32,  0, 32, 32, "PSP_CTRL_LEFT",     RETRIEVE_NORMAL); break;
-        case PSP_CTRL_LTRIGGER : k.second = resources.RetrieveQuad("iconspsp.png", (float)6*32, 32, 64, 32, "PSP_CTRL_LTRIGGER", RETRIEVE_NORMAL); break;
-        case PSP_CTRL_RTRIGGER : k.second = resources.RetrieveQuad("iconspsp.png", (float)8*32, 32, 64, 32, "PSP_CTRL_RTRIGGER", RETRIEVE_NORMAL); break;
-        case PSP_CTRL_TRIANGLE : k.second = resources.RetrieveQuad("iconspsp.png", (float)5*32,  0, 32, 32, "PSP_CTRL_TRIANGLE", RETRIEVE_NORMAL); break;
-        case PSP_CTRL_CIRCLE :   k.second = resources.RetrieveQuad("iconspsp.png", (float)4*32,  0, 32, 32, "PSP_CTRL_CIRCLE",   RETRIEVE_NORMAL); break;
-        case PSP_CTRL_CROSS :    k.second = resources.RetrieveQuad("iconspsp.png", (float)7*32,  0, 32, 32, "PSP_CTRL_CROSS",    RETRIEVE_NORMAL); break;
-        case PSP_CTRL_SQUARE :   k.second = resources.RetrieveQuad("iconspsp.png", (float)6*32,  0, 32, 32, "PSP_CTRL_SQUARE",   RETRIEVE_NORMAL); break;
-        case PSP_CTRL_HOLD :     k.second = resources.RetrieveQuad("iconspsp.png", (float)4*32,  0, 32, 32, "PSP_CTRL_HOLD",     RETRIEVE_NORMAL); break;
+        case PSP_CTRL_SELECT :   k.second = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float)2*32, 32, 64, 32, "PSP_CTRL_SELECT",   RETRIEVE_NORMAL); break;
+        case PSP_CTRL_START :    k.second = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float)0*32, 32, 64, 32, "PSP_CTRL_START",    RETRIEVE_NORMAL); break;
+        case PSP_CTRL_UP :       k.second = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float)0*32,  0, 32, 32, "PSP_CTRL_UP",       RETRIEVE_NORMAL); break;
+        case PSP_CTRL_RIGHT :    k.second = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float)3*32,  0, 32, 32, "PSP_CTRL_RIGHT",    RETRIEVE_NORMAL); break;
+        case PSP_CTRL_DOWN :     k.second = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float)1*32,  0, 32, 32, "PSP_CTRL_DOWN",     RETRIEVE_NORMAL); break;
+        case PSP_CTRL_LEFT :     k.second = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float)2*32,  0, 32, 32, "PSP_CTRL_LEFT",     RETRIEVE_NORMAL); break;
+        case PSP_CTRL_LTRIGGER : k.second = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float)6*32, 32, 64, 32, "PSP_CTRL_LTRIGGER", RETRIEVE_NORMAL); break;
+        case PSP_CTRL_RTRIGGER : k.second = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float)8*32, 32, 64, 32, "PSP_CTRL_RTRIGGER", RETRIEVE_NORMAL); break;
+        case PSP_CTRL_TRIANGLE : k.second = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float)5*32,  0, 32, 32, "PSP_CTRL_TRIANGLE", RETRIEVE_NORMAL); break;
+        case PSP_CTRL_CIRCLE :   k.second = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float)4*32,  0, 32, 32, "PSP_CTRL_CIRCLE",   RETRIEVE_NORMAL); break;
+        case PSP_CTRL_CROSS :    k.second = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float)7*32,  0, 32, 32, "PSP_CTRL_CROSS",    RETRIEVE_NORMAL); break;
+        case PSP_CTRL_SQUARE :   k.second = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float)6*32,  0, 32, 32, "PSP_CTRL_SQUARE",   RETRIEVE_NORMAL); break;
+        case PSP_CTRL_HOLD :     k.second = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float)4*32,  0, 32, 32, "PSP_CTRL_HOLD",     RETRIEVE_NORMAL); break;
         default: /* Unknown key : no icon */ ;
     }
     return k;
@@ -191,18 +191,18 @@ const KeyRep& translateKey(JButton key) {
     KeyRep& k = res->second;
     switch (key)
     {
-        case JGE_BTN_CTRL :   k.second = resources.RetrieveQuad("iconspsp.png", (float)2*32, 32, 64, 32, "PSP_CTRL_SELECT",   RETRIEVE_NORMAL); break;
-        case JGE_BTN_MENU :   k.second = resources.RetrieveQuad("iconspsp.png", (float)0*32, 32, 64, 32, "PSP_CTRL_START",    RETRIEVE_NORMAL); break;
-        case JGE_BTN_UP :     k.second = resources.RetrieveQuad("iconspsp.png", (float)0*32,  0, 32, 32, "PSP_CTRL_UP",       RETRIEVE_NORMAL); break;
-        case JGE_BTN_RIGHT :  k.second = resources.RetrieveQuad("iconspsp.png", (float)3*32,  0, 32, 32, "PSP_CTRL_RIGHT",    RETRIEVE_NORMAL); break;
-        case JGE_BTN_DOWN :   k.second = resources.RetrieveQuad("iconspsp.png", (float)1*32,  0, 32, 32, "PSP_CTRL_DOWN",     RETRIEVE_NORMAL); break;
-        case JGE_BTN_LEFT :   k.second = resources.RetrieveQuad("iconspsp.png", (float)2*32,  0, 32, 32, "PSP_CTRL_LEFT",     RETRIEVE_NORMAL); break;
-        case JGE_BTN_PREV :   k.second = resources.RetrieveQuad("iconspsp.png", (float)6*32, 32, 64, 32, "PSP_CTRL_LTRIGGER", RETRIEVE_NORMAL); break;
-        case JGE_BTN_NEXT :   k.second = resources.RetrieveQuad("iconspsp.png", (float)8*32, 32, 64, 32, "PSP_CTRL_RTRIGGER", RETRIEVE_NORMAL); break;
-        case JGE_BTN_CANCEL : k.second = resources.RetrieveQuad("iconspsp.png", (float)5*32,  0, 32, 32, "PSP_CTRL_TRIANGLE", RETRIEVE_NORMAL); break;
-        case JGE_BTN_OK :     k.second = resources.RetrieveQuad("iconspsp.png", (float)4*32,  0, 32, 32, "PSP_CTRL_CIRCLE",   RETRIEVE_NORMAL); break;
-        case JGE_BTN_SEC :    k.second = resources.RetrieveQuad("iconspsp.png", (float)7*32,  0, 32, 32, "PSP_CTRL_CROSS",    RETRIEVE_NORMAL); break;
-        case JGE_BTN_PRI :    k.second = resources.RetrieveQuad("iconspsp.png", (float)6*32,  0, 32, 32, "PSP_CTRL_SQUARE",   RETRIEVE_NORMAL); break;
+        case JGE_BTN_CTRL :   k.second = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float)2*32, 32, 64, 32, "PSP_CTRL_SELECT",   RETRIEVE_NORMAL); break;
+        case JGE_BTN_MENU :   k.second = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float)0*32, 32, 64, 32, "PSP_CTRL_START",    RETRIEVE_NORMAL); break;
+        case JGE_BTN_UP :     k.second = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float)0*32,  0, 32, 32, "PSP_CTRL_UP",       RETRIEVE_NORMAL); break;
+        case JGE_BTN_RIGHT :  k.second = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float)3*32,  0, 32, 32, "PSP_CTRL_RIGHT",    RETRIEVE_NORMAL); break;
+        case JGE_BTN_DOWN :   k.second = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float)1*32,  0, 32, 32, "PSP_CTRL_DOWN",     RETRIEVE_NORMAL); break;
+        case JGE_BTN_LEFT :   k.second = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float)2*32,  0, 32, 32, "PSP_CTRL_LEFT",     RETRIEVE_NORMAL); break;
+        case JGE_BTN_PREV :   k.second = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float)6*32, 32, 64, 32, "PSP_CTRL_LTRIGGER", RETRIEVE_NORMAL); break;
+        case JGE_BTN_NEXT :   k.second = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float)8*32, 32, 64, 32, "PSP_CTRL_RTRIGGER", RETRIEVE_NORMAL); break;
+        case JGE_BTN_CANCEL : k.second = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float)5*32,  0, 32, 32, "PSP_CTRL_TRIANGLE", RETRIEVE_NORMAL); break;
+        case JGE_BTN_OK :     k.second = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float)4*32,  0, 32, 32, "PSP_CTRL_CIRCLE",   RETRIEVE_NORMAL); break;
+        case JGE_BTN_SEC :    k.second = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float)7*32,  0, 32, 32, "PSP_CTRL_CROSS",    RETRIEVE_NORMAL); break;
+        case JGE_BTN_PRI :    k.second = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float)6*32,  0, 32, 32, "PSP_CTRL_SQUARE",   RETRIEVE_NORMAL); break;
         default: /* Unknown key : no icon */ ;
     }
     return k;

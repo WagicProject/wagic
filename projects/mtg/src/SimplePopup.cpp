@@ -22,7 +22,7 @@ SimplePopup::SimplePopup(int id, JGuiListener* listener, const int fontId, const
     mTitle = _title;
     mMaxLines = 12;
 
-    mTextFont = resources.GetWFont(fontId);
+    mTextFont = WResourceManager::Instance()->GetWFont(fontId);
     this->mCount = 1; // a hack to ensure the menus do book keeping correctly.  Since we aren't adding items to the menu, this is required
     mStatsWrapper = NULL;
     Update(deckMetaData);
@@ -128,7 +128,7 @@ void SimplePopup::drawCorner(string imageName, bool flipX, bool flipY, float x, 
 {
 	LOG(" Drawing a Corner! ");
     JRenderer* r = JRenderer::GetInstance();
-    JQuad *horizontalBarImage = resources.RetrieveTempQuad( imageName, TEXTURE_SUB_5551);
+    JQuad *horizontalBarImage = WResourceManager::Instance()->RetrieveTempQuad( imageName, TEXTURE_SUB_5551);
 	horizontalBarImage->SetHFlip(flipX);
 	horizontalBarImage->SetVFlip(flipY);
 
@@ -140,7 +140,7 @@ void SimplePopup::drawHorzPole(string imageName, bool flipX = false, bool flipY 
 {
 	LOG(" Drawing a horizontal border! ");
     JRenderer* r = JRenderer::GetInstance();
-    JQuad *horizontalBarImage = resources.RetrieveTempQuad( imageName, TEXTURE_SUB_5551);
+    JQuad *horizontalBarImage = WResourceManager::Instance()->RetrieveTempQuad( imageName, TEXTURE_SUB_5551);
 	if ( horizontalBarImage != NULL )
 	{
 	horizontalBarImage->SetHFlip(flipX);
@@ -159,7 +159,7 @@ void SimplePopup::drawVertPole(string imageName, bool flipX = false, bool flipY 
 {
 	LOG(" Drawing a Vertical border! ");
     JRenderer* r = JRenderer::GetInstance();
-    JQuad *verticalBarImage = resources.RetrieveTempQuad( imageName, TEXTURE_SUB_5551);
+    JQuad *verticalBarImage = WResourceManager::Instance()->RetrieveTempQuad( imageName, TEXTURE_SUB_5551);
 	if ( verticalBarImage != NULL )
 	{
 		verticalBarImage->SetHFlip(flipX);

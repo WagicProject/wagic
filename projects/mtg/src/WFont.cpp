@@ -371,7 +371,7 @@ void WFBFont::DrawString(const char *s, float x, float y, int align, float leftO
     {
         // tricky:  the single byte font is always mFontID + kSingleByteFontOffset!
         // See WResourceManager::InitFonts()
-        WFont * mFont = resources.GetWFont(mFontID + Fonts::kSingleByteFontOffset);
+        WFont * mFont = WResourceManager::Instance()->GetWFont(mFontID + Fonts::kSingleByteFontOffset);
         mFont->SetScale(GetScale());
         mFont->SetColor(GetColor());
         mFont->DrawString(s, x, y, align, leftOffset, width);
@@ -572,7 +572,7 @@ float WFBFont::GetStringWidth(const char *s) const
     }
     else
     {
-        WFont * mFont = resources.GetWFont(mFontID + Fonts::kSingleByteFontOffset);
+        WFont * mFont = WResourceManager::Instance()->GetWFont(mFontID + Fonts::kSingleByteFontOffset);
         mFont->SetScale(GetScale());
         return mFont->GetStringWidth(s);
     }
@@ -773,7 +773,7 @@ void WGBKFont::DrawString(const char *s, float x, float y, int align, float left
     {
         // tricky:  the single byte font is always mFontID + kSingleByteFontOffset!
         // See WResourceManager::InitFonts()
-        WFont * mFont = resources.GetWFont(mFontID + Fonts::kSingleByteFontOffset);
+        WFont * mFont = WResourceManager::Instance()->GetWFont(mFontID + Fonts::kSingleByteFontOffset);
         mFont->SetScale(GetScale());
         mFont->SetColor(GetColor());
         mFont->DrawString(s, x, y, align, leftOffset, width);
@@ -993,7 +993,7 @@ float WGBKFont::GetStringWidth(const char *s) const
     }
     else
     {
-        WFont * mFont = resources.GetWFont(mFontID + Fonts::kSingleByteFontOffset);
+        WFont * mFont = WResourceManager::Instance()->GetWFont(mFontID + Fonts::kSingleByteFontOffset);
         mFont->SetScale(GetScale());
         return mFont->GetStringWidth(s);
     }

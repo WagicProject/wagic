@@ -640,7 +640,7 @@ void GameSettings::reloadProfile(bool images)
     SAFE_DELETE(profileOptions);
     checkProfile();
     if (images)
-        resources.Refresh(); //Update images
+        WResourceManager::Instance()->Refresh(); //Update images
 }
 
 void GameSettings::checkProfile()

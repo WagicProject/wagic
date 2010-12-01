@@ -1403,7 +1403,7 @@ void MTGMomirRule::Render()
 {
     if (!textAlpha)
         return;
-    WFont * mFont = resources.GetWFont(Fonts::MENU_FONT);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MENU_FONT);
     mFont->SetScale(2 - (float) textAlpha / 130);
     mFont->SetColor(ARGB(textAlpha,255,255,255));
     mFont->DrawString(text.c_str(), SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, JGETEXT_CENTER);
@@ -1521,7 +1521,7 @@ HUDDisplay::HUDDisplay(int _id) :
 {
     timestamp = 0;
     popdelay = 2;
-    f = resources.GetWFont(Fonts::MAIN_FONT);
+    f = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     maxWidth = 0;
 }
 

@@ -44,7 +44,7 @@ GuiPhaseBar::GuiPhaseBar() :
     phase(NULL), angle(0.0f)
 {
     JQuad * quad = NULL;
-    if ((quad = resources.GetQuad("phasebar")) != NULL)
+    if ((quad = WResourceManager::Instance()->GetQuad("phasebar")) != NULL)
     {
         quad->mHeight = kHeight;
         quad->mWidth = kWidth;
@@ -68,7 +68,7 @@ void GuiPhaseBar::Update(float dt)
 void GuiPhaseBar::Render()
 {
     GameObserver * g = GameObserver::GetInstance();
-    JQuad * quad = resources.GetQuad("phasebar");
+    JQuad * quad = WResourceManager::Instance()->GetQuad("phasebar");
 
     JRenderer::GetInstance()->DrawLine(0, CENTER, SCREEN_WIDTH, CENTER, ARGB(255, 255, 255, 255));
 
@@ -101,7 +101,7 @@ void GuiPhaseBar::Render()
     }
 
     //print phase name
-    WFont * font = resources.GetWFont(Fonts::MAIN_FONT);
+    WFont * font = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     string currentP = _("your turn");
     string interrupt = "";
     if (g->currentPlayer == g->players[1])

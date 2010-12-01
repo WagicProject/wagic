@@ -130,8 +130,23 @@ struct WManagedQuad
 class WResourceManager: public JResourceManager
 {
 public:
-    WResourceManager();
-    ~WResourceManager();
+    static WResourceManager* Instance()
+    {
+        if (sInstance == NULL)
+        {
+            sInstance = NEW WResourceManager;
+        }
+
+        return sInstance;
+    }
+
+    static void Terminate()
+    {
+        if (sInstance)
+            SAFE_DELETE(sInstance);
+    }
+
+    virtual ~WResourceManager();
 
     void Unmiss(string filename);
     JQuad * RetrieveCard(MTGCard * card, int style = RETRIEVE_NORMAL,int submode = CACHE_NORMAL);
@@ -200,7 +215,12 @@ public:
     string debugMessage;
 #endif
 
-private:  
+private:
+    /*
+    ** Singleton object only accessibly via Instance(), constructor is private
+    */
+    WResourceManager();
+
     bool bThemedCards;  //Does the theme have a "sets" directory for overwriting cards?
     void FlattenTimes(); //To prevent bad cache timing on int overflow
 
@@ -222,7 +242,8 @@ private:
     typedef  std::map<int, WFont*> FontMap;
     FontMap mWFontMap;
     std::string mFontFileExtension;
+
+    static WResourceManager* sInstance;
 };
 
-extern WResourceManager resources;
 #endif

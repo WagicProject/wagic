@@ -175,14 +175,14 @@ int Damage::resolve()
 }
 void Damage::Render()
 {
-    WFont * mFont = resources.GetWFont(Fonts::MAIN_FONT);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     mFont->SetBase(0);
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     char buffer[200];
     sprintf(buffer, _("Deals %i damage to").c_str(), damage);
     mFont->DrawString(buffer, x + 20, y, JGETEXT_LEFT);
     JRenderer * renderer = JRenderer::GetInstance();
-    JQuad * quad = resources.RetrieveCard(source, CACHE_THUMB);
+    JQuad * quad = WResourceManager::Instance()->RetrieveCard(source, CACHE_THUMB);
     if (quad)
     {
         float scale = 30 / quad->mHeight;

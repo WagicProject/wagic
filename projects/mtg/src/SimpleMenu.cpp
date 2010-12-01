@@ -43,16 +43,16 @@ SimpleMenu::SimpleMenu(int id, JGuiListener* listener, int fontId, float x, floa
 
     JRenderer* renderer = JRenderer::GetInstance();
 
-    if (!spadeLTex) spadeLTex = resources.RetrieveTexture("spade_ul.png", RETRIEVE_MANAGE);
-    if (!spadeRTex) spadeRTex = resources.RetrieveTexture("spade_ur.png", RETRIEVE_MANAGE);
+    if (!spadeLTex) spadeLTex = WResourceManager::Instance()->RetrieveTexture("spade_ul.png", RETRIEVE_MANAGE);
+    if (!spadeRTex) spadeRTex = WResourceManager::Instance()->RetrieveTexture("spade_ur.png", RETRIEVE_MANAGE);
     if (!jewelTex) jewelTex = renderer->CreateTexture(5, 5, TEX_TYPE_USE_VRAM);
-    if (!sideTex) sideTex = resources.RetrieveTexture("menuside.png", RETRIEVE_MANAGE);
-    if (NULL == spadeL) spadeL = resources.RetrieveQuad("spade_ul.png", 0, 0, 11, 11, "spade_ul", RETRIEVE_MANAGE);
-    if (NULL == spadeR) spadeR = resources.RetrieveQuad("spade_ur.png", 0, 0, 11, 11, "spade_ur", RETRIEVE_MANAGE);
+    if (!sideTex) sideTex = WResourceManager::Instance()->RetrieveTexture("menuside.png", RETRIEVE_MANAGE);
+    if (NULL == spadeL) spadeL = WResourceManager::Instance()->RetrieveQuad("spade_ul.png", 0, 0, 11, 11, "spade_ul", RETRIEVE_MANAGE);
+    if (NULL == spadeR) spadeR = WResourceManager::Instance()->RetrieveQuad("spade_ur.png", 0, 0, 11, 11, "spade_ur", RETRIEVE_MANAGE);
     if (NULL == jewel) jewel = NEW JQuad(jewelTex, 1, 1, 3, 3);
-    if (NULL == side) side = resources.RetrieveQuad("menuside.png", 1, 1, 1, 7, "menuside", RETRIEVE_MANAGE);
+    if (NULL == side) side = WResourceManager::Instance()->RetrieveQuad("menuside.png", 1, 1, 1, 7, "menuside", RETRIEVE_MANAGE);
 
-    if (NULL == stars) stars = NEW hgeParticleSystem(resources.RetrievePSI("stars.psi", resources.GetQuad("stars")));
+    if (NULL == stars) stars = NEW hgeParticleSystem(WResourceManager::Instance()->RetrievePSI("stars.psi", WResourceManager::Instance()->GetQuad("stars")));
 
     stars->FireAt(mX, mY);
 }
@@ -89,8 +89,8 @@ void SimpleMenu::drawVertPole(float x, float y, float height)
 
 void SimpleMenu::Render()
 {
-    WFont * titleFont = resources.GetWFont(Fonts::SMALLFACE_FONT);
-    WFont * mFont = resources.GetWFont(fontId);
+    WFont * titleFont = WResourceManager::Instance()->GetWFont(Fonts::SMALLFACE_FONT);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
     if (0 == mWidth)
     {
         float sY = mY + kVerticalMargin;
@@ -140,7 +140,7 @@ void SimpleMenu::Render()
         {
             if (static_cast<SimpleMenuItem*> (mObjects[i])->hasFocus())
             {
-                resources.GetWFont(Fonts::MAIN_FONT)->DrawString(static_cast<SimpleMenuItem*> (mObjects[i])->desc.c_str(), mX
+                WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT)->DrawString(static_cast<SimpleMenuItem*> (mObjects[i])->desc.c_str(), mX
                                 + mWidth + 10, mY + 15);
                 mFont->SetColor(ARGB(255,255,255,0));
             }

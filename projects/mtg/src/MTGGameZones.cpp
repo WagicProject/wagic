@@ -355,7 +355,7 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
             {
                 if (card->isCreature())
                 {
-                    JSample * sample = resources.RetrieveSample("graveyard.wav");
+                    JSample * sample = WResourceManager::Instance()->RetrieveSample("graveyard.wav");
                     if (sample)
                         JSoundSystem::GetInstance()->PlaySample(sample);
                 }

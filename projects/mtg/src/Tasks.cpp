@@ -427,7 +427,7 @@ void TaskList::Start()
     mState = TASKS_IN;
     if (!mBgTex)
     {
-        mBgTex = resources.RetrieveTexture("taskboard.png", RETRIEVE_LOCK);
+        mBgTex = WResourceManager::Instance()->RetrieveTexture("taskboard.png", RETRIEVE_LOCK);
         float unitH = static_cast<float> (mBgTex->mHeight / 4);
         float unitW = static_cast<float> (mBgTex->mWidth / 4);
         if (unitH == 0 || unitW == 0) return;
@@ -517,9 +517,9 @@ void TaskList::Render()
 {
     JRenderer * r = JRenderer::GetInstance();
     //Setup fonts.
-    WFont * f = resources.GetWFont(Fonts::MAIN_FONT);
-    WFont * f2 = resources.GetWFont(Fonts::MAGIC_FONT);
-    WFont * f3 = resources.GetWFont(Fonts::MENU_FONT); //OPTION_FONT
+    WFont * f = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
+    WFont * f2 = WResourceManager::Instance()->GetWFont(Fonts::MAGIC_FONT);
+    WFont * f3 = WResourceManager::Instance()->GetWFont(Fonts::MENU_FONT); //OPTION_FONT
     f2->SetColor(ARGB(255, 205, 237, 240));
     f3->SetColor(ARGB(255, 219, 206, 151));
 
@@ -611,7 +611,7 @@ TaskList::~TaskList()
     {
         SAFE_DELETE(tasks[i]);
     }
-    if (mBgTex) resources.Release(mBgTex);
+    if (mBgTex) WResourceManager::Instance()->Release(mBgTex);
     for (int i = 0; i < 9; i++)
         SAFE_DELETE(mBg[i]);
 }

@@ -5,8 +5,8 @@
 
 GuiFrame::GuiFrame()
 {
-    if (resources.GetTexture("wood.png"))
-        wood = resources.RetrieveQuad("wood.png", 0, 0, SCREEN_WIDTH, 28);
+    if (WResourceManager::Instance()->GetTexture("wood.png"))
+        wood = WResourceManager::Instance()->RetrieveQuad("wood.png", 0, 0, SCREEN_WIDTH, 28);
     else
     {
         wood = NULL;
@@ -14,12 +14,12 @@ GuiFrame::GuiFrame()
     }
 
     goldGlow = gold1 = gold2 = NULL;
-    if (resources.GetTexture("gold.png"))
+    if (WResourceManager::Instance()->GetTexture("gold.png"))
     {
-        gold1 = resources.RetrieveQuad("gold.png", 0, 0, SCREEN_WIDTH, 6, "gold1");
-        gold2 = resources.RetrieveQuad("gold.png", 0, 6, SCREEN_WIDTH, 6, "gold2");
-        if (resources.GetTexture("goldglow.png"))
-            goldGlow = resources.RetrieveQuad("goldglow.png", 1, 1, SCREEN_WIDTH - 2, 18);
+        gold1 = WResourceManager::Instance()->RetrieveQuad("gold.png", 0, 0, SCREEN_WIDTH, 6, "gold1");
+        gold2 = WResourceManager::Instance()->RetrieveQuad("gold.png", 0, 6, SCREEN_WIDTH, 6, "gold2");
+        if (WResourceManager::Instance()->GetTexture("goldglow.png"))
+            goldGlow = WResourceManager::Instance()->RetrieveQuad("goldglow.png", 1, 1, SCREEN_WIDTH - 2, 18);
         if (gold2)
         {
             gold2->SetColor(ARGB(127, 255, 255, 255));

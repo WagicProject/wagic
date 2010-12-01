@@ -12,7 +12,7 @@ const int kHorizontalScrollSpeed = 30; // higher numbers mean faster scrolling
 DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, float x, float y, bool hasFocus, bool autoTranslate, DeckMetaData *deckMetaData)
                         : JGuiObject(id), parent(_parent), fontId(fontId), mX(x), mY(y)
 {
-	WFont * mFont = resources.GetWFont(fontId);
+	WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
     meta = deckMetaData;
 	mText = trim(text);
 	if (autoTranslate)
@@ -23,10 +23,10 @@ DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, f
 	float newImageWidth = 0.0f;
     if (meta && !meta->getGamesPlayed())
     {
-        JTexture * tex = resources.RetrieveTexture("new.png");
+        JTexture * tex = WResourceManager::Instance()->RetrieveTexture("new.png");
         if (tex)
         {
-            JQuad * quad = resources.RetrieveQuad("new.png", 2.0f, 2.0f, tex->mWidth - 4.0f, tex->mHeight - 4.0f); //avoids weird rectangle around the texture because of bilinear filtering
+            JQuad * quad = WResourceManager::Instance()->RetrieveQuad("new.png", 2.0f, 2.0f, tex->mWidth - 4.0f, tex->mHeight - 4.0f); //avoids weird rectangle around the texture because of bilinear filtering
 			newImageWidth = quad->mWidth;
 		}
 	}
@@ -58,7 +58,7 @@ void DeckMenuItem::Update(float dt)
 
 void DeckMenuItem::RenderWithOffset(float yOffset)
 {
-    WFont * mFont = resources.GetWFont(fontId);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
 	
 	if (!( mHasFocus && mScrollEnabled ))
 		mScrollerOffset = 0;
@@ -71,10 +71,10 @@ void DeckMenuItem::RenderWithOffset(float yOffset)
 	//Render a "new" icon for decks that have never been played yet
     if (meta && !meta->getGamesPlayed())
     {
-        JTexture * tex = resources.RetrieveTexture("new.png");
+        JTexture * tex = WResourceManager::Instance()->RetrieveTexture("new.png");
         if (tex)
         {
-            JQuad * quad = resources.RetrieveQuad("new.png", 2.0f, 2.0f, tex->mWidth - 4.0f, tex->mHeight - 4.0f); //avoids weird rectangle aroudn the texture because of bilinear filtering
+            JQuad * quad = WResourceManager::Instance()->RetrieveQuad("new.png", 2.0f, 2.0f, tex->mWidth - 4.0f, tex->mHeight - 4.0f); //avoids weird rectangle aroudn the texture because of bilinear filtering
             quad->SetHotSpot(quad->mWidth/2.0f, quad->mHeight/2.0f);
             float x = mX + min(ITEM_PX_WIDTH - quad->mWidth, GetWidth() )/2 + quad->mWidth/2;
             if (quad) JRenderer::GetInstance()->RenderQuad(quad, x , mY + yOffset + quad->mHeight/2, 0.5);
@@ -112,7 +112,7 @@ void DeckMenuItem::Relocate(float x, float y)
 
 float DeckMenuItem::GetWidth()
 {
-    WFont * mFont = resources.GetWFont(fontId);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
     return mFont->GetStringWidth(mText.c_str());
 }
 

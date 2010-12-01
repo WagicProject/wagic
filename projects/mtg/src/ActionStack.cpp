@@ -41,7 +41,7 @@ void NextGamePhase::Render()
     GameObserver * g = GameObserver::GetInstance();
     int nextPhase = (g->getCurrentGamePhase() + 1) % Constants::MTG_PHASE_CLEANUP;
 
-    WFont * mFont = resources.GetWFont(Fonts::MAIN_FONT);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     mFont->SetBase(0);
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     char buffer[200];
@@ -75,12 +75,12 @@ const string Interruptible::getDisplayName() const
                 void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string alt1, string alt2, string action,
                                 bool bigQuad)
                 {
-                    WFont * mFont = resources.GetWFont(Fonts::MAIN_FONT);
+                    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
                     mFont->SetColor(ARGB(255,255,255,255));
                     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
                     mFont->DrawString(_(action).c_str(), x + 30, y, JGETEXT_LEFT);
                     JRenderer * renderer = JRenderer::GetInstance();
-                    JQuad * quad = resources.RetrieveCard(source, CACHE_THUMB);
+                    JQuad * quad = WResourceManager::Instance()->RetrieveCard(source, CACHE_THUMB);
                     if (!quad)
                         quad = CardGui::AlternateThumbQuad(source);
                     if (quad)
@@ -372,7 +372,7 @@ const string Interruptible::getDisplayName() const
 
                 void PutInGraveyard::Render()
                 {
-                    WFont * mFont = resources.GetWFont(Fonts::MAIN_FONT);
+                    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
                     mFont->SetBase(0);
                     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
                     if (!removeFromGame)
@@ -384,7 +384,7 @@ const string Interruptible::getDisplayName() const
                         mFont->DrawString(_("is exiled").c_str(), x + 30, y, JGETEXT_LEFT);
                     }
                     JRenderer * renderer = JRenderer::GetInstance();
-                    JQuad * quad = resources.RetrieveCard(card, CACHE_THUMB);
+                    JQuad * quad = WResourceManager::Instance()->RetrieveCard(card, CACHE_THUMB);
                     if (quad)
                     {
                         quad->SetColor(ARGB(255,255,255,255));
@@ -420,7 +420,7 @@ const string Interruptible::getDisplayName() const
 
                 void DrawAction::Render()
                 {
-                    WFont * mFont = resources.GetWFont(Fonts::MAIN_FONT);
+                    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
                     mFont->SetBase(0);
                     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
                     char buffer[200];
@@ -996,13 +996,13 @@ void ActionStack::Render()
                 height += current->mHeight;
         }
 
-        WFont * mFont = resources.GetWFont(Fonts::MAIN_FONT);
+        WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
         mFont->SetBase(0);
         mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
         mFont->SetColor(ARGB(255,255,255,255));
         JRenderer * renderer = JRenderer::GetInstance();
 
-        //JQuad * back = resources.GetQuad("interrupt");
+        //JQuad * back = WResourceManager::Instance()->GetQuad("interrupt");
         //float xScale = width / back->mWidth;
         //float yScale = height / back->mHeight;
         renderer->FillRoundRect(x0 + 16, y0 + 16, width + 2, height + 2, 10, ARGB(128,0,0,0));
@@ -1061,7 +1061,7 @@ void ActionStack::Render()
                 height += current->mHeight;
         }
 
-        WFont * mFont = resources.GetWFont(Fonts::MAIN_FONT);
+        WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
         mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
         mFont->SetColor(ARGB(255,255,255,255));
 

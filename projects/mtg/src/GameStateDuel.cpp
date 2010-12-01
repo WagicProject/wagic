@@ -262,7 +262,7 @@ void GameStateDuel::End()
 //TODO Move This to utils or ResourceManager. Don't we have more generic functions that can do that?
 bool GameStateDuel::MusicExist(string FileName)
 {
-    string filepath = JGE_GET_RES(resources.musicFile(FileName));
+    string filepath = JGE_GET_RES(WResourceManager::Instance()->musicFile(FileName));
     std::ifstream file(filepath.c_str());
     if (file)
     {
@@ -512,7 +512,7 @@ void GameStateDuel::Update(float dt)
 
 void GameStateDuel::Render()
 {
-    WFont * mFont = resources.GetWFont(Fonts::MAIN_FONT);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     JRenderer * r = JRenderer::GetInstance();
     r->ClearScreen(ARGB(0,0,0,0));
 

@@ -243,7 +243,7 @@ void GameStateOptions::Render()
         "Please support this project with donations at http://wololo.net/wagic",
     };
 
-    WFont * mFont = resources.GetWFont(Fonts::MAGIC_FONT);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAGIC_FONT);
     mFont->SetColor(ARGB(255,200,200,200));
     mFont->SetScale(1.0);
     float startpos = 272 - timer;

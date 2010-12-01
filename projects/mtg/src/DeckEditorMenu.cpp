@@ -48,7 +48,7 @@ void DeckEditorMenu::Render()
     DeckMenu::Render();
     if (deckTitle.size() > 0)
     {
-        WFont *mainFont = resources.GetWFont(Fonts::OPTION_FONT);
+        WFont *mainFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
         DWORD currentColor = mainFont->GetColor();
         mainFont->SetColor(ARGB(255,255,255,255));
         mainFont->DrawString(deckTitle.c_str(), statsX + (statsWidth / 2), statsHeight / 2, JGETEXT_CENTER);
@@ -90,7 +90,7 @@ void DeckEditorMenu::drawDeckStatistics()
         << "Mana: " << setprecision(2) << stw->avgManaCost << "   "
         << "Spell: " << setprecision(2) << stw->avgSpellCost << endl;
 
-    WFont *mainFont = resources.GetWFont(Fonts::MAIN_FONT);
+    WFont *mainFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     mainFont->DrawString(deckStatsString.str().c_str(), descX, descY + 25);
 }
 

@@ -47,7 +47,7 @@ void TextScroller::Update(float dt)
     if (!strings.size()) return;
 
 	start += mScrollSpeed * dt;
-	WFont * mFont = resources.GetWFont(fontId);
+	WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
 	if (start > mFont->GetStringWidth(mText.c_str()))
 	{
 		start = -mWidth;
@@ -66,7 +66,7 @@ void TextScroller::Update(float dt)
 
 void TextScroller::Render()
 {
-    WFont * mFont = resources.GetWFont(fontId);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
 	mFont->DrawString(mText.c_str(), mX, mY, JGETEXT_LEFT, start, mWidth);
 }
 
@@ -97,7 +97,7 @@ TextScroller( fontId, x, y, width, scrollSpeed)
 	mNbItemsShown = numItemsShown;
 	mMarginX = 0;
 	timer=0;
-	WFont *mFont = resources.GetWFont(fontId);
+	WFont *mFont = WResourceManager::Instance()->GetWFont(fontId);
 	mOriginalY = mY;
 	mMarginY = mY - mFont->GetHeight();
 	Add("\n"); // initialize the scroller with a blank line
@@ -144,6 +144,6 @@ void VerticalTextScroller::Update(float dt)
 
 void VerticalTextScroller::Render()
 {
-    WFont * mFont = resources.GetWFont(fontId);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
 	mFont->DrawString(mText.c_str(), mX, mY);
 }

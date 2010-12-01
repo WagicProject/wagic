@@ -570,7 +570,7 @@ int MTGCardInstance::canBlock(MTGCardInstance * opponent)
 
 JQuad * MTGCardInstance::getIcon()
 {
-    return resources.RetrieveCard(this, CACHE_THUMB);
+    return WResourceManager::Instance()->RetrieveCard(this, CACHE_THUMB);
 }
 
 MTGCardInstance * MTGCardInstance::getNextPartner()
@@ -891,13 +891,13 @@ JSample * MTGCardInstance::getSample()
     JSample * js;
 
     if (sample.size())
-        return resources.RetrieveSample(sample);
+        return WResourceManager::Instance()->RetrieveSample(sample);
 
     for (int i = types.size() - 1; i > 0; i--)
     {
         string type = Subtypes::subtypesList->find(types[i]);
         type = type + ".wav";
-        js = resources.RetrieveSample(type);
+        js = WResourceManager::Instance()->RetrieveSample(type);
         if (js)
         {
             sample = string(type);
@@ -912,7 +912,7 @@ JSample * MTGCardInstance::getSample()
             continue;
         string type = Constants::MTGBasicAbilities[i];
         type = type + ".wav";
-        js = resources.RetrieveSample(type);
+        js = WResourceManager::Instance()->RetrieveSample(type);
         if (js)
         {
             sample = string(type);
@@ -922,7 +922,7 @@ JSample * MTGCardInstance::getSample()
 
     string type = Subtypes::subtypesList->find(types[0]);
     type = type + ".wav";
-    js = resources.RetrieveSample(type);
+    js = WResourceManager::Instance()->RetrieveSample(type);
     if (js)
     {
         sample = string(type);

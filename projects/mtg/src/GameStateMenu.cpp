@@ -105,7 +105,7 @@ void GameStateMenu::Create()
         for (int j = 0; j < 2; j++)
         {
             sprintf(buf, "menuicons%d%d", i, j);
-            mIcons[n] = resources.RetrieveQuad("menuicons.png", 2 + i * 36.0f, 2.0f + j * 36.0f, 32.0f, 32.0f, buf);
+            mIcons[n] = WResourceManager::Instance()->RetrieveQuad("menuicons.png", 2 + i * 36.0f, 2.0f + j * 36.0f, 32.0f, 32.0f, buf);
             if (mIcons[n])
                 mIcons[n]->SetHotSpot(16, 16);
             n++;
@@ -138,7 +138,7 @@ void GameStateMenu::Destroy()
     SAFE_DELETE(mGuiController);
     SAFE_DELETE(subMenuController);
     SAFE_DELETE(gameTypeMenu);
-    resources.Release(bgTexture);
+    WResourceManager::Instance()->Release(bgTexture);
     SAFE_DELETE(scroller);
 }
 
@@ -158,8 +158,8 @@ void GameStateMenu::Start()
      if (options[Options::MOMIR_MODE_UNLOCKED].number) hasChosenGameType = 0;
      if (options[Options::RANDOMDECK_MODE_UNLOCKED].number) hasChosenGameType = 0;
      */
-    bgTexture = resources.RetrieveTexture("menutitle.png", RETRIEVE_LOCK);
-    mBg = resources.RetrieveQuad("menutitle.png", 0, 0, 256, 166); // Create background quad for rendering.
+    bgTexture = WResourceManager::Instance()->RetrieveTexture("menutitle.png", RETRIEVE_LOCK);
+    mBg = WResourceManager::Instance()->RetrieveQuad("menutitle.png", 0, 0, 256, 166); // Create background quad for rendering.
 
     if (mBg)
         mBg->SetHotSpot(128, 50);
@@ -303,7 +303,7 @@ void GameStateMenu::End()
 {
     JRenderer::GetInstance()->EnableVSync(false);
 
-    resources.Release(bgTexture);
+    WResourceManager::Instance()->Release(bgTexture);
     SAFE_DELETE(mGuiController);
 }
 
@@ -422,18 +422,18 @@ void GameStateMenu::ensureMGuiController()
         mGuiController = NEW JGuiController(100, this);
         if (mGuiController)
         {
-            WFont * mFont = resources.GetWFont(Fonts::MENU_FONT);
+            WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MENU_FONT);
             mFont->SetColor(ARGB(255,255,255,255));
             mGuiController->Add(NEW MenuItem(MENUITEM_PLAY, mFont, "Play", 80, 50 + SCREEN_HEIGHT / 2, mIcons[8], mIcons[9],
-                            "particle1.psi", resources.GetQuad("particles"), true));
+                            "particle1.psi", WResourceManager::Instance()->GetQuad("particles"), true));
             mGuiController->Add(NEW MenuItem(MENUITEM_DECKEDITOR, mFont, "Deck Editor", 160, 50 + SCREEN_HEIGHT / 2, mIcons[2],
-                            mIcons[3], "particle2.psi", resources.GetQuad("particles")));
+                            mIcons[3], "particle2.psi", WResourceManager::Instance()->GetQuad("particles")));
             mGuiController->Add(NEW MenuItem(MENUITEM_SHOP, mFont, "Shop", 240, 50 + SCREEN_HEIGHT / 2, mIcons[0], mIcons[1],
-                            "particle3.psi", resources.GetQuad("particles")));
+                            "particle3.psi", WResourceManager::Instance()->GetQuad("particles")));
             mGuiController->Add(NEW MenuItem(MENUITEM_OPTIONS, mFont, "Options", 320, 50 + SCREEN_HEIGHT / 2, mIcons[6], mIcons[7],
-                            "particle4.psi", resources.GetQuad("particles")));
+                            "particle4.psi", WResourceManager::Instance()->GetQuad("particles")));
             mGuiController->Add(NEW MenuItem(MENUITEM_EXIT, mFont, "Exit", 400, 50 + SCREEN_HEIGHT / 2, mIcons[4], mIcons[5],
-                            "particle5.psi", resources.GetQuad("particles")));
+                            "particle5.psi", WResourceManager::Instance()->GetQuad("particles")));
         }
     }
 }
@@ -492,7 +492,7 @@ void GameStateMenu::Update(float dt)
                 options[Options::ACTIVE_PROFILE].str = "Default";
 
             //Release splash texture
-            resources.Release(splashTex);
+            WResourceManager::Instance()->Release(splashTex);
             splashTex = NULL;
             mSplash = NULL;
 
@@ -513,7 +513,7 @@ void GameStateMenu::Update(float dt)
             genNbCardsStr();
             resetDirectory();
             //All major things have been loaded, resize the cache to use it as efficiently as possible
-            resources.ResetCacheLimits();
+            WResourceManager::Instance()->ResetCacheLimits();
         }
         break;
     case MENU_STATE_MAJOR_FIRST_TIME:
@@ -633,7 +633,7 @@ void GameStateMenu::Render()
         return;
 
     JRenderer * renderer = JRenderer::GetInstance();
-    WFont * mFont = resources.GetWFont(Fonts::MENU_FONT);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MENU_FONT);
     if ((currentState & MENU_STATE_MAJOR) == MENU_STATE_MAJOR_LANG)
     {
     }
@@ -641,8 +641,8 @@ void GameStateMenu::Render()
     {
         if (!splashTex)
         {
-            splashTex = resources.RetrieveTexture("splash.jpg", RETRIEVE_LOCK);
-            mSplash = resources.RetrieveTempQuad("splash.jpg");
+            splashTex = WResourceManager::Instance()->RetrieveTexture("splash.jpg", RETRIEVE_LOCK);
+            mSplash = WResourceManager::Instance()->RetrieveTempQuad("splash.jpg");
         }
         if (mSplash)
             renderer->RenderQuad(mSplash, 0, 0);
@@ -651,10 +651,10 @@ void GameStateMenu::Render()
             string wp = loadRandomWallpaper();
             if (wp.size())
             {
-                JTexture * wpTex = resources.RetrieveTexture(wp);
+                JTexture * wpTex = WResourceManager::Instance()->RetrieveTexture(wp);
                 if (wpTex)
                 {
-                    JQuad * wpQuad = resources.RetrieveTempQuad(wp);
+                    JQuad * wpQuad = WResourceManager::Instance()->RetrieveTempQuad(wp);
                     renderer->RenderQuad(wpQuad, 0, 0, 0, SCREEN_WIDTH_F / wpQuad->mWidth, SCREEN_HEIGHT_F / wpQuad->mHeight);
                 }
             }
@@ -678,7 +678,7 @@ void GameStateMenu::Render()
     }
     else
     {
-        mFont = resources.GetWFont(Fonts::MAIN_FONT);
+        mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
         PIXEL_TYPE colors[] = {
 
         ARGB(255,3,3,0), ARGB(255,8,8,0), ARGB(255,21,21,10), ARGB(255,50,50,30), };
@@ -700,14 +700,14 @@ void GameStateMenu::Render()
         if (mBg)
             renderer->RenderQuad(mBg, SCREEN_WIDTH / 2, 50);
 
-        JQuad * jq = resources.RetrieveTempQuad("button_shoulder.png");
+        JQuad * jq = WResourceManager::Instance()->RetrieveTempQuad("button_shoulder.png");
         if (jq)
         {
             int alp = 255;
             if (options.newAward())
                 alp = (int) (sin(timeIndex) * 255);
             float olds = mFont->GetScale();
-            mFont = resources.GetWFont(Fonts::OPTION_FONT);
+            mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
             jq->SetColor(ARGB(abs(alp),255,255,255));
             mFont->SetColor(ARGB(abs(alp),0,0,0));
             string s = _("Trophy Room");
@@ -716,7 +716,7 @@ void GameStateMenu::Render()
             mFont->SetScale(50.0f / mFont->GetStringWidth(s.c_str()));
             renderer->RenderQuad(jq, SCREEN_WIDTH - 64, 2);
             mFont->DrawString(s, SCREEN_WIDTH - 10, 9, JGETEXT_RIGHT);
-            mFont = resources.GetWFont(Fonts::MENU_FONT);
+            mFont = WResourceManager::Instance()->GetWFont(Fonts::MENU_FONT);
             mFont->SetScale(olds);
         }
     }
@@ -728,14 +728,14 @@ void GameStateMenu::Render()
 
 void GameStateMenu::ButtonPressed(int controllerId, int controlId)
 {
-    WFont * mFont = resources.GetWFont(Fonts::MENU_FONT);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MENU_FONT);
 
     DebugTrace("GameStateMenu: controllerId " << controllerId << " selected");
     switch (controllerId)
     {
     case MENU_LANGUAGE_SELECTION:
         setLang(controlId);
-        resources.ReloadWFonts(); // Fix for choosing Chinese language at first time.
+        WResourceManager::Instance()->ReloadWFonts(); // Fix for choosing Chinese language at first time.
         subMenuController->Close();
         currentState = MENU_STATE_MAJOR_LOADING_CARDS | MENU_STATE_MINOR_SUBMENU_CLOSING;
         break;

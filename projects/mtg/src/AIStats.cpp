@@ -192,7 +192,7 @@ void AIStats::Render()
         x0 = 280;
     JRenderer::GetInstance()->FillRoundRect(x0, 10, 200, 180, 5, ARGB(50,0,0,0));
 
-    WFont * f = resources.GetWFont(Fonts::MAIN_FONT);
+    WFont * f = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     int i = 0;
     char buffer[512];
     list<AIStat *>::iterator it;

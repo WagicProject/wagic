@@ -46,7 +46,7 @@ StoryText::StoryText(string text, float _mX, float _mY, string _align, int _font
 }
 void StoryText::Render()
 {
-    WFont * mFont = resources.GetWFont(font);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(font);
     mFont->SetColor(ARGB(200,255,255,255));
     mFont->SetScale(1.0);
     mFont->DrawString(text.c_str(), mX, mY, align);
@@ -54,7 +54,7 @@ void StoryText::Render()
 
 float StoryText::getHeight()
 {
-    WFont * mFont = resources.GetWFont(font);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(font);
     return mFont->GetHeight();
 }
 
@@ -171,7 +171,7 @@ void StoryReward::Update(float dt)
 
     if (!rewardSoundPlayed && options[Options::SFXVOLUME].number > 0)
     {
-        JSample * sample = resources.RetrieveSample("bonus.wav");
+        JSample * sample = WResourceManager::Instance()->RetrieveSample("bonus.wav");
         if (sample)
         {
             JSoundSystem::GetInstance()->PlaySample(sample);
@@ -193,7 +193,7 @@ StoryImage::StoryImage(string img, float mX, float mY) :
 }
 void StoryImage::Render()
 {
-    JQuad * quad = resources.RetrieveTempQuad(img);
+    JQuad * quad = WResourceManager::Instance()->RetrieveTempQuad(img);
     if (quad)
     {
         float x = mX;
@@ -208,7 +208,7 @@ void StoryImage::Render()
 
 float StoryImage::getHeight()
 {
-    JQuad * quad = resources.RetrieveQuad(img);
+    JQuad * quad = WResourceManager::Instance()->RetrieveQuad(img);
     if (quad)
     {
         return quad->mHeight;
@@ -233,7 +233,7 @@ StoryPage::StoryPage(StoryFlow * mParent) :
 
 void StoryChoice::Render()
 {
-    WFont * mFont = resources.GetWFont(font);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(font);
     mFont->SetColor(ARGB(200,255,255,255));
     if (mHasFocus) mFont->SetColor(ARGB(255,255,255,0));
     mFont->SetScale(mScale);
@@ -242,7 +242,7 @@ void StoryChoice::Render()
 
 float StoryChoice::getHeight()
 {
-    WFont * mFont = resources.GetWFont(font);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(font);
     return mFont->GetHeight() * mScale;
 }
 

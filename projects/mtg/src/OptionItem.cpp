@@ -19,7 +19,7 @@ OptionItem::OptionItem(int _id, string _displayValue) :
 //OptionInteger
 void OptionInteger::Render()
 {
-    WFont * mFont = resources.GetWFont(Fonts::OPTION_FONT);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
     mFont->SetColor(getColor(WGuiColor::TEXT));
     JRenderer * renderer = JRenderer::GetInstance();
 
@@ -78,7 +78,7 @@ void OptionSelect::Entering(JButton key)
 
 void OptionSelect::Render()
 {
-    WFont * mFont = resources.GetWFont(Fonts::OPTION_FONT);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
     mFont->SetColor(getColor(WGuiColor::TEXT));
 
     JRenderer * renderer = JRenderer::GetInstance();
@@ -193,7 +193,7 @@ void OptionProfile::populate()
 void OptionProfile::Render()
 {
     JRenderer * renderer = JRenderer::GetInstance();
-    WFont * mFont = resources.GetWFont(Fonts::OPTION_FONT);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
     mFont->SetScale(1);
     int spacing = 2 + (int) mFont->GetHeight();
 
@@ -206,7 +206,7 @@ void OptionProfile::Render()
     else
         sprintf(buf, "profiles/%s/avatar.jpg", selections[value].c_str());
     string filename = buf;
-    JQuad * mAvatar = resources.RetrieveTempQuad(filename, TEXTURE_SUB_EXACT);
+    JQuad * mAvatar = WResourceManager::Instance()->RetrieveTempQuad(filename, TEXTURE_SUB_EXACT);
 
     if (mAvatar)
     {
@@ -472,7 +472,7 @@ JQuad * OptionTheme::getImage()
     else
         sprintf(buf, "themes/%s/preview.png", val.c_str());
     string filename = buf;
-    return resources.RetrieveTempQuad(filename, TEXTURE_SUB_EXACT);
+    return WResourceManager::Instance()->RetrieveTempQuad(filename, TEXTURE_SUB_EXACT);
 }
 
 float OptionTheme::getHeight()
@@ -520,7 +520,7 @@ void OptionTheme::Render()
         renderer->RenderQuad(q, x, y, 0, scale, scale);
     }
 
-    WFont * mFont = resources.GetWFont(Fonts::OPTION_FONT);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
     mFont->SetColor(getColor(WGuiColor::TEXT_HEADER));
     mFont->DrawString(buf, x + 2, y + 2);
     if (bChecked && author.size())
@@ -554,7 +554,7 @@ void OptionTheme::confirmChange(bool confirmed)
         if (ts)
             ts->Reload();
 
-        resources.Refresh(); //Update images
+        WResourceManager::Instance()->Refresh(); //Update images
         prior_value = value;
     }
 }
@@ -571,7 +571,7 @@ void OptionKey::Update(float dt)
 }
 void OptionKey::Render()
 {
-    WFont * mFont = resources.GetWFont(Fonts::OPTION_FONT);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
     mFont->SetColor(getColor(WGuiColor::TEXT));
     JRenderer * renderer = JRenderer::GetInstance();
 
@@ -652,7 +652,7 @@ bool OptionKey::isModal()
 void OptionKey::Overlay()
 {
     JRenderer * renderer = JRenderer::GetInstance();
-    WFont * mFont = resources.GetWFont(Fonts::OPTION_FONT);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
     mFont->SetColor(ARGB(255, 0, 0, 0));
     if (grabbed)
     {

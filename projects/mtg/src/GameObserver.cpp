@@ -265,8 +265,8 @@ void GameObserver::startGame(Rules * rules)
     {
         for (int i = 0; i < players[0]->game->hand->nb_cards; i++)
         {
-            resources.RetrieveCard(players[0]->game->hand->cards[i], CACHE_THUMB);
-            resources.RetrieveCard(players[0]->game->hand->cards[i]);
+            WResourceManager::Instance()->RetrieveCard(players[0]->game->hand->cards[i], CACHE_THUMB);
+            WResourceManager::Instance()->RetrieveCard(players[0]->game->hand->cards[i]);
         }
     }
 

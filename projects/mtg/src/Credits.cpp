@@ -163,7 +163,7 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app)
 
             if (unlocked && options[Options::SFXVOLUME].number > 0)
             {
-                JSample * sample = resources.RetrieveSample("bonus.wav");
+                JSample * sample = WResourceManager::Instance()->RetrieveSample("bonus.wav");
                 if (sample)
                 {
                     JSoundSystem::GetInstance()->PlaySample(sample);
@@ -205,10 +205,10 @@ JQuad * Credits::GetUnlockedQuad(string textureName)
 {
     if (!textureName.size()) return NULL;
 
-    JTexture * unlockedTex = resources.RetrieveTexture(textureName);
+    JTexture * unlockedTex = WResourceManager::Instance()->RetrieveTexture(textureName);
     if (!unlockedTex) return NULL;
 
-    return resources.RetrieveQuad(unlockedTextureName, 2, 2, unlockedTex->mWidth - 4, unlockedTex->mHeight - 4);
+    return WResourceManager::Instance()->RetrieveQuad(unlockedTextureName, 2, 2, unlockedTex->mWidth - 4, unlockedTex->mHeight - 4);
     
 }
 
@@ -218,9 +218,9 @@ void Credits::Render()
         return;
     GameObserver * g = GameObserver::GetInstance();
     JRenderer * r = JRenderer::GetInstance();
-    WFont * f = resources.GetWFont(Fonts::MAIN_FONT);
-    WFont * f2 = resources.GetWFont(Fonts::MENU_FONT);
-    WFont * f3 = resources.GetWFont(Fonts::MAGIC_FONT);
+    WFont * f = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
+    WFont * f2 = WResourceManager::Instance()->GetWFont(Fonts::MENU_FONT);
+    WFont * f3 = WResourceManager::Instance()->GetWFont(Fonts::MAGIC_FONT);
     f->SetScale(1);
     f->SetColor(ARGB(255,255,255,255));
     f2->SetScale(1);

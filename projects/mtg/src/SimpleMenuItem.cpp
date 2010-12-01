@@ -21,7 +21,7 @@ SimpleMenuItem::SimpleMenuItem(SimpleMenu* _parent, int id, int fontId, string t
 
 void SimpleMenuItem::RenderWithOffset(float yOffset)
 {
-    WFont * mFont = resources.GetWFont(fontId);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
     mFont->DrawString(mText.c_str(), mX, mY + yOffset, JGETEXT_CENTER);
 }
 
@@ -69,7 +69,7 @@ void SimpleMenuItem::Relocate(float x, float y)
 
 float SimpleMenuItem::GetWidth()
 {
-    WFont * mFont = resources.GetWFont(fontId);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
     mFont->SetScale(1.0);
     return mFont->GetStringWidth(mText.c_str());
 }

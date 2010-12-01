@@ -73,6 +73,7 @@ GameApp::GameApp() :
 
 GameApp::~GameApp()
 {
+    WResourceManager::Terminate();
 }
 
 void GameApp::Create()
@@ -114,14 +115,14 @@ void GameApp::Create()
 
     LOG("Checking for music files");
     //Test for Music files presence
-    string filepath = JGE_GET_RES(resources.musicFile("Track0.mp3"));
+    string filepath = JGE_GET_RES(WResourceManager::Instance()->musicFile("Track0.mp3"));
     std::ifstream file(filepath.c_str());
     if (file)
         file.close();
     else
         HasMusic = 0;
 
-    filepath = JGE_GET_RES(resources.musicFile("Track1.mp3"));
+    filepath = JGE_GET_RES(WResourceManager::Instance()->musicFile("Track1.mp3"));
     std::ifstream file2(filepath.c_str());
     if (file2)
         file2.close();
@@ -130,21 +131,21 @@ void GameApp::Create()
 
     LOG("Loading Textures");
     LOG("--Loading menuicons.png");
-    resources.RetrieveTexture("menuicons.png", RETRIEVE_MANAGE);
+    WResourceManager::Instance()->RetrieveTexture("menuicons.png", RETRIEVE_MANAGE);
     LOG("---Gettings menuicons.png quads");
     //Creating thes quad in this specific order allows us to have them in the correct order to call them by integer id
-    manaIcons[Constants::MTG_COLOR_GREEN] = resources.RetrieveQuad("menuicons.png", 2 + 0 * 36, 38, 32, 32, "c_green",
+    manaIcons[Constants::MTG_COLOR_GREEN] = WResourceManager::Instance()->RetrieveQuad("menuicons.png", 2 + 0 * 36, 38, 32, 32, "c_green",
                     RETRIEVE_MANAGE);
-    manaIcons[Constants::MTG_COLOR_BLUE] = resources.RetrieveQuad("menuicons.png", 2 + 1 * 36, 38, 32, 32, "c_blue",
+    manaIcons[Constants::MTG_COLOR_BLUE] = WResourceManager::Instance()->RetrieveQuad("menuicons.png", 2 + 1 * 36, 38, 32, 32, "c_blue",
                     RETRIEVE_MANAGE);
-    manaIcons[Constants::MTG_COLOR_RED] = resources.RetrieveQuad("menuicons.png", 2 + 3 * 36, 38, 32, 32, "c_red", RETRIEVE_MANAGE);
-    manaIcons[Constants::MTG_COLOR_BLACK] = resources.RetrieveQuad("menuicons.png", 2 + 2 * 36, 38, 32, 32, "c_black",
+    manaIcons[Constants::MTG_COLOR_RED] = WResourceManager::Instance()->RetrieveQuad("menuicons.png", 2 + 3 * 36, 38, 32, 32, "c_red", RETRIEVE_MANAGE);
+    manaIcons[Constants::MTG_COLOR_BLACK] = WResourceManager::Instance()->RetrieveQuad("menuicons.png", 2 + 2 * 36, 38, 32, 32, "c_black",
                     RETRIEVE_MANAGE);
-    manaIcons[Constants::MTG_COLOR_WHITE] = resources.RetrieveQuad("menuicons.png", 2 + 4 * 36, 38, 32, 32, "c_white",
+    manaIcons[Constants::MTG_COLOR_WHITE] = WResourceManager::Instance()->RetrieveQuad("menuicons.png", 2 + 4 * 36, 38, 32, 32, "c_white",
                     RETRIEVE_MANAGE);
-    manaIcons[Constants::MTG_COLOR_LAND] = resources.RetrieveQuad("menuicons.png", 2 + 5 * 36, 38, 32, 32, "c_land",
+    manaIcons[Constants::MTG_COLOR_LAND] = WResourceManager::Instance()->RetrieveQuad("menuicons.png", 2 + 5 * 36, 38, 32, 32, "c_land",
                     RETRIEVE_MANAGE);
-    manaIcons[Constants::MTG_COLOR_ARTIFACT] = resources.RetrieveQuad("menuicons.png", 2 + 6 * 36, 38, 32, 32, "c_artifact",
+    manaIcons[Constants::MTG_COLOR_ARTIFACT] = WResourceManager::Instance()->RetrieveQuad("menuicons.png", 2 + 6 * 36, 38, 32, 32, "c_artifact",
                     RETRIEVE_MANAGE);
 
     for (int i = sizeof(manaIcons) / sizeof(manaIcons[0]) - 1; i >= 0; --i)
@@ -152,49 +153,49 @@ void GameApp::Create()
             manaIcons[i]->SetHotSpot(16, 16);
 
     LOG("--Loading back.jpg");
-    resources.RetrieveTexture("back.jpg", RETRIEVE_MANAGE);
-    JQuad * jq = resources.RetrieveQuad("back.jpg", 0, 0, 0, 0, "back", RETRIEVE_MANAGE);
+    WResourceManager::Instance()->RetrieveTexture("back.jpg", RETRIEVE_MANAGE);
+    JQuad * jq = WResourceManager::Instance()->RetrieveQuad("back.jpg", 0, 0, 0, 0, "back", RETRIEVE_MANAGE);
     if (jq)
         jq->SetHotSpot(jq->mWidth / 2, jq->mHeight / 2);
 
-    resources.RetrieveTexture("back_thumb.jpg", RETRIEVE_MANAGE);
-    resources.RetrieveQuad("back_thumb.jpg", 0, 0, MTG_MINIIMAGE_WIDTH, MTG_MINIIMAGE_HEIGHT, "back_thumb", RETRIEVE_MANAGE);
+    WResourceManager::Instance()->RetrieveTexture("back_thumb.jpg", RETRIEVE_MANAGE);
+    WResourceManager::Instance()->RetrieveQuad("back_thumb.jpg", 0, 0, MTG_MINIIMAGE_WIDTH, MTG_MINIIMAGE_HEIGHT, "back_thumb", RETRIEVE_MANAGE);
 
     LOG("--Loading particles.png");
-    resources.RetrieveTexture("particles.png", RETRIEVE_MANAGE);
-    jq = resources.RetrieveQuad("particles.png", 0, 0, 32, 32, "particles", RETRIEVE_MANAGE);
+    WResourceManager::Instance()->RetrieveTexture("particles.png", RETRIEVE_MANAGE);
+    jq = WResourceManager::Instance()->RetrieveQuad("particles.png", 0, 0, 32, 32, "particles", RETRIEVE_MANAGE);
     if (jq)
         jq->SetHotSpot(16, 16);
-    jq = resources.RetrieveQuad("particles.png", 64, 0, 32, 32, "stars", RETRIEVE_MANAGE);
+    jq = WResourceManager::Instance()->RetrieveQuad("particles.png", 64, 0, 32, 32, "stars", RETRIEVE_MANAGE);
     if (jq)
         jq->SetHotSpot(16, 16);
 
     LOG("--Loading fonts");
     string lang = options[Options::LANG].str;
     std::transform(lang.begin(), lang.end(), lang.begin(), ::tolower);
-    resources.InitFonts(lang);
+    WResourceManager::Instance()->InitFonts(lang);
 
     LOG("--Loading various textures");
-    resources.RetrieveTexture("phasebar.png", RETRIEVE_MANAGE);
-    resources.RetrieveTexture("wood.png", RETRIEVE_MANAGE);
-    resources.RetrieveTexture("gold.png", RETRIEVE_MANAGE);
-    resources.RetrieveTexture("goldglow.png", RETRIEVE_MANAGE);
-    resources.RetrieveTexture("backdrop.jpg", RETRIEVE_MANAGE);
-    resources.RetrieveTexture("handback.png", RETRIEVE_MANAGE);
-    resources.RetrieveTexture("BattleIcon.png", RETRIEVE_MANAGE);
-    resources.RetrieveTexture("DefenderIcon.png", RETRIEVE_MANAGE);
-    resources.RetrieveTexture("shadow.png", RETRIEVE_MANAGE);
+    WResourceManager::Instance()->RetrieveTexture("phasebar.png", RETRIEVE_MANAGE);
+    WResourceManager::Instance()->RetrieveTexture("wood.png", RETRIEVE_MANAGE);
+    WResourceManager::Instance()->RetrieveTexture("gold.png", RETRIEVE_MANAGE);
+    WResourceManager::Instance()->RetrieveTexture("goldglow.png", RETRIEVE_MANAGE);
+    WResourceManager::Instance()->RetrieveTexture("backdrop.jpg", RETRIEVE_MANAGE);
+    WResourceManager::Instance()->RetrieveTexture("handback.png", RETRIEVE_MANAGE);
+    WResourceManager::Instance()->RetrieveTexture("BattleIcon.png", RETRIEVE_MANAGE);
+    WResourceManager::Instance()->RetrieveTexture("DefenderIcon.png", RETRIEVE_MANAGE);
+    WResourceManager::Instance()->RetrieveTexture("shadow.png", RETRIEVE_MANAGE);
 
-    jq = resources.RetrieveQuad("BattleIcon.png", 0, 0, 25, 25, "BattleIcon", RETRIEVE_MANAGE);
+    jq = WResourceManager::Instance()->RetrieveQuad("BattleIcon.png", 0, 0, 25, 25, "BattleIcon", RETRIEVE_MANAGE);
     if (jq)
         jq->SetHotSpot(12, 12);
-    jq = resources.RetrieveQuad("DefenderIcon.png", 0, 0, 24, 23, "DefenderIcon", RETRIEVE_MANAGE);
+    jq = WResourceManager::Instance()->RetrieveQuad("DefenderIcon.png", 0, 0, 24, 23, "DefenderIcon", RETRIEVE_MANAGE);
     if (jq)
         jq->SetHotSpot(12, 12);
-    jq = resources.RetrieveQuad("shadow.png", 0, 0, 16, 16, "shadow", RETRIEVE_MANAGE);
+    jq = WResourceManager::Instance()->RetrieveQuad("shadow.png", 0, 0, 16, 16, "shadow", RETRIEVE_MANAGE);
     if (jq)
         jq->SetHotSpot(8, 8);
-    jq = resources.RetrieveQuad("phasebar.png", 0, 0, 0, 0, "phasebar", RETRIEVE_MANAGE);
+    jq = WResourceManager::Instance()->RetrieveQuad("phasebar.png", 0, 0, 0, 0, "phasebar", RETRIEVE_MANAGE);
 
     LOG("Init Collection");
     collection = NEW MTGAllCards();
@@ -352,7 +353,7 @@ void GameApp::Render()
     if (systemError.size())
     {
         fprintf(stderr, "%s", systemError.c_str());
-        WFont * mFont = resources.GetWFont(Fonts::MAIN_FONT);
+        WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
         if (mFont)
             mFont->DrawString(systemError.c_str(), 1, 1);
         return;
@@ -365,7 +366,7 @@ void GameApp::Render()
         mCurrentState->Render();
 
 #ifdef DEBUG_CACHE
-    resources.DebugRender();
+    WResourceManager::Instance()->DebugRender();
 #endif
 
 #ifdef DEBUG
@@ -373,7 +374,7 @@ void GameApp::Render()
     float fps = mEngine->GetFPS();
     totalFPS += fps;
     nbUpdates+=1;
-    WFont * mFont= resources.GetWFont(Fonts::MAIN_FONT);
+    WFont * mFont= WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     char buf[512];
     sprintf(buf, "avg:%.02f - %.02f fps",totalFPS/nbUpdates, fps);
     if (mFont)
@@ -464,7 +465,7 @@ void GameApp::playMusic(string filename, bool loop)
 
     if (HasMusic && options[Options::MUSICVOLUME].number > 0)
     {
-        music = resources.ssLoadMusic(filename.c_str());
+        music = WResourceManager::Instance()->ssLoadMusic(filename.c_str());
         if (music)
             JSoundSystem::GetInstance()->PlayMusic(music, loop);
         currentMusicFile = filename;

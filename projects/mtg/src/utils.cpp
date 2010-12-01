@@ -243,7 +243,7 @@ std::vector<std::string> split(const std::string &s, char delim)
 // Not sure how this translates into non-english fonts.
 std::string wordWrap(std::string sentence, float width, int fontId)
 {
-	WFont * mFont = resources.GetWFont(fontId);
+	WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
 	float lineWidth = mFont->GetStringWidth( sentence.c_str() );
 	string retVal = sentence;
 	if ( lineWidth < width ) return sentence;

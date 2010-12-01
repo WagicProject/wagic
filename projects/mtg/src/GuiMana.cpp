@@ -11,7 +11,7 @@ ManaIcon::ManaIcon(int color, float x, float y, float destx, float desty) :
     Pos(x, y, 0.5, 0.0, 255), f(-1), destx(destx), desty(desty), mode(ALIVE), color(color)
 {
     hgeParticleSystemInfo * psi = NULL;
-    JQuad * mq = resources.GetQuad("stars");
+    JQuad * mq = WResourceManager::Instance()->GetQuad("stars");
 
     if (!mq)
     {
@@ -22,22 +22,22 @@ ManaIcon::ManaIcon(int color, float x, float y, float destx, float desty) :
     switch (color)
     {
     case Constants::MTG_COLOR_RED:
-        psi = resources.RetrievePSI("manared.psi", mq);
+        psi = WResourceManager::Instance()->RetrievePSI("manared.psi", mq);
         break;
     case Constants::MTG_COLOR_BLUE:
-        psi = resources.RetrievePSI("manablue.psi", mq);
+        psi = WResourceManager::Instance()->RetrievePSI("manablue.psi", mq);
         break;
     case Constants::MTG_COLOR_GREEN:
-        psi = resources.RetrievePSI("managreen.psi", mq);
+        psi = WResourceManager::Instance()->RetrievePSI("managreen.psi", mq);
         break;
     case Constants::MTG_COLOR_BLACK:
-        psi = resources.RetrievePSI("manablack.psi", mq);
+        psi = WResourceManager::Instance()->RetrievePSI("manablack.psi", mq);
         break;
     case Constants::MTG_COLOR_WHITE:
-        psi = resources.RetrievePSI("manawhite.psi", mq);
+        psi = WResourceManager::Instance()->RetrievePSI("manawhite.psi", mq);
         break;
     default:
-        psi = resources.RetrievePSI("mana.psi", mq);
+        psi = WResourceManager::Instance()->RetrievePSI("mana.psi", mq);
     }
 
     if (!psi)
@@ -45,7 +45,7 @@ ManaIcon::ManaIcon(int color, float x, float y, float destx, float desty) :
         psi = NEW hgeParticleSystemInfo();
         if (!psi)
             return;
-        hgeParticleSystemInfo * defaults = resources.RetrievePSI("mana.psi", mq);
+        hgeParticleSystemInfo * defaults = WResourceManager::Instance()->RetrievePSI("mana.psi", mq);
         if (defaults)
         {
             memcpy(psi, defaults, sizeof(hgeParticleSystemInfo));
@@ -242,7 +242,7 @@ void GuiMana::RenderStatic()
 {
     int values[Constants::MTG_NB_COLORS];
     int totalColors = 0;
-    WFont * mFont = resources.GetWFont(Fonts::MAIN_FONT);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     JRenderer * r = JRenderer::GetInstance();
     for (int i = 0; i < Constants::MTG_NB_COLORS; ++i)
         values[i] = 0;

@@ -32,7 +32,7 @@ void GuiAvatar::Render()
     JRenderer * r = JRenderer::GetInstance();
     int life = player->life;
     int poisonCount = player->poisonCount;
-    WFont * mFont = resources.GetWFont(Fonts::MAIN_FONT);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     //Avatar
     int lifeDiff = life - currentLife;
@@ -152,7 +152,7 @@ void GuiGameZone::toggleDisplay()
 void GuiGameZone::Render()
 {
     //Texture
-    JQuad * quad = resources.GetQuad("back_thumb");
+    JQuad * quad = WResourceManager::Instance()->GetQuad("back_thumb");
     float scale = defaultHeight / quad->mHeight;
     quad->SetColor(ARGB((int)(actA),255,255,255));
 
@@ -169,7 +169,7 @@ void GuiGameZone::Render()
                         ARGB(abs(128 - wave),255,255,255));
 
     //Number of cards
-    WFont * mFont = resources.GetWFont(Fonts::MAIN_FONT);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     char buffer[11];
     int mAlpha = (int) (actA);

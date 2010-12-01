@@ -64,7 +64,7 @@ const vector<string>& CardPrimitive::formattedText()
             s[found] = '/';
             found = s.find_first_of("{}", found + 1);
         }
-        WFont * mFont = resources.GetWFont(Fonts::MAGIC_FONT);
+        WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAGIC_FONT);
         mFont->FormatText(s, ftdText);
     }
     return ftdText;

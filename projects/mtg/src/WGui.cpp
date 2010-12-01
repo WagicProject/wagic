@@ -77,12 +77,12 @@ void WGuiItem::Entering(JButton key)
 }
 float WGuiItem::minWidth()
 {
-    WFont * mFont = resources.GetWFont(Fonts::OPTION_FONT);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
     return mFont->GetStringWidth(_(displayValue).c_str()) + 4;
 }
 float WGuiItem::minHeight()
 {
-    WFont * mFont = resources.GetWFont(Fonts::OPTION_FONT);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
     return mFont->GetHeight();
 }
 
@@ -95,7 +95,7 @@ bool WGuiItem::Leaving(JButton key)
 void WGuiItem::Render()
 {
     JRenderer * renderer = JRenderer::GetInstance();
-    WFont * mFont = resources.GetWFont(Fonts::OPTION_FONT);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
     DWORD oldcolor = mFont->GetColor();
     mFont->SetColor(getColor(WGuiColor::TEXT));
     float fH = (height - mFont->GetHeight()) / 2;
@@ -188,7 +188,7 @@ PIXEL_TYPE WDecoStyled::getColor(int type)
 //WGuiHeader
 void WGuiHeader::Render()
 {
-    WFont * mFont = resources.GetWFont(Fonts::OPTION_FONT);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
     mFont->SetColor(getColor(WGuiColor::TEXT));
 
     JRenderer * renderer = JRenderer::GetInstance();
@@ -299,7 +299,7 @@ void WGuiList::Render()
     //List is empty.
     if (!items.size() && failMsg != "")
     {
-        WFont * mFont = resources.GetWFont(Fonts::OPTION_FONT);
+        WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
         mFont->SetColor(getColor(WGuiColor::TEXT_FAIL));
         mFont->DrawString(_(failMsg).c_str(), x + width / 2, y, JGETEXT_RIGHT);
         return;
@@ -439,7 +439,7 @@ string WDecoEnum::lookupVal(int value)
 
 void WDecoEnum::Render()
 {
-    WFont * mFont = resources.GetWFont(Fonts::OPTION_FONT);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
     mFont->SetColor(getColor(WGuiColor::TEXT));
     JRenderer * renderer = JRenderer::GetInstance();
     mFont->DrawString(_(getDisplay()).c_str(), getX() + 2, getY() + 3);
@@ -1095,7 +1095,7 @@ void WGuiTabMenu::Add(WGuiBase * it)
 
 void WGuiTabMenu::Render()
 {
-    WFont * mFont = resources.GetWFont(Fonts::OPTION_FONT);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
     JRenderer * renderer = JRenderer::GetInstance();
 
     if (!items.size()) return;
@@ -1127,7 +1127,7 @@ void WGuiTabMenu::save()
 void WGuiAward::Overlay()
 {
     JRenderer * r = JRenderer::GetInstance();
-    WFont * mFont = resources.GetWFont(Fonts::OPTION_FONT);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
     mFont->SetScale(0.8f);
     mFont->SetColor(getColor(WGuiColor::TEXT));
 
@@ -1138,7 +1138,7 @@ void WGuiAward::Overlay()
         float fH = mFont->GetHeight();
 
         if (fH < 16) fH = 18;
-        JQuad * button = resources.RetrieveQuad("iconspsp.png", (float) 4 * 32, 0, 32, 32, "", RETRIEVE_NORMAL);
+        JQuad * button = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float) 4 * 32, 0, 32, 32, "", RETRIEVE_NORMAL);
 
         r->FillRoundRect(5, 10, fW + 32, fH + 2, 2, getColor(WGuiColor::BACK));
         if (button) r->RenderQuad(button, 10, 12, 0, .5, .5);
@@ -1157,16 +1157,16 @@ void WGuiAward::Underlay()
     if (n.size())
     {
         sprintf(buf, "trophy_%s.png", n.c_str()); //Trophy specific to the award
-        trophy = resources.RetrieveTempQuad(buf); //Themed version...
+        trophy = WResourceManager::Instance()->RetrieveTempQuad(buf); //Themed version...
     }
 
     if (!trophy && id >= Options::SET_UNLOCKS)
     {
-        trophy = resources.RetrieveTempQuad("trophy_set.png"); //TODO FIXME: Should look in set dir too.
+        trophy = WResourceManager::Instance()->RetrieveTempQuad("trophy_set.png"); //TODO FIXME: Should look in set dir too.
     }
 
     if (!trophy) //Fallback to basic trophy image.
-    trophy = resources.RetrieveTempQuad("trophy.png");
+    trophy = WResourceManager::Instance()->RetrieveTempQuad("trophy.png");
 
     if (trophy)
     {
@@ -1181,7 +1181,7 @@ void WGuiAward::Render()
     if (!goa) return;
 
     JRenderer * renderer = JRenderer::GetInstance();
-    WFont * mFont = resources.GetWFont(Fonts::OPTION_FONT);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
     mFont->SetScale(1);
     mFont->SetColor(getColor(WGuiColor::TEXT));
 
@@ -1296,14 +1296,14 @@ void WGuiCardImage::Render()
         JQuad * q;
         if (bThumb)
         {
-            q = resources.GetQuad("back_thumb");
+            q = WResourceManager::Instance()->GetQuad("back_thumb");
 #if defined WIN32 || defined LINUX
             if(!q)
-            q = resources.GetQuad("back");
+            q = WResourceManager::Instance()->GetQuad("back");
 #endif
         }
         else
-            q = resources.GetQuad("back");
+            q = WResourceManager::Instance()->GetQuad("back");
         float scale = p.actZ * 257.f / q->mHeight;
         q->SetColor(ARGB(255,255,255,255));
         renderer->RenderQuad(q, p.x, p.y, 0, scale, scale);
@@ -1362,14 +1362,14 @@ void WGuiCardDistort::Render()
         //Default to back.
         if (bThumb)
         {
-            q = resources.GetQuad("back_thumb");
+            q = WResourceManager::Instance()->GetQuad("back_thumb");
 #if defined WIN32 || defined LINUX
             if(!q)
-            q = resources.GetQuad("back");
+            q = WResourceManager::Instance()->GetQuad("back");
 #endif
         }
         else
-            q = resources.GetQuad("back");
+            q = WResourceManager::Instance()->GetQuad("back");
     }
     else
     {
@@ -1457,7 +1457,7 @@ void WGuiListRow::Render()
     //List is empty.
     if (!items.size() && failMsg != "")
     {
-        WFont * mFont = resources.GetWFont(Fonts::OPTION_FONT);
+        WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
         mFont->SetColor(getColor(WGuiColor::TEXT_FAIL));
         mFont->DrawString(_(failMsg).c_str(), x + width / 2, y, JGETEXT_RIGHT);
         return;
@@ -2228,7 +2228,7 @@ void WGuiKeyBinder::Render()
     if (confirmMenu)
     {
         JRenderer * renderer = JRenderer::GetInstance();
-        WFont * mFont = resources.GetWFont(Fonts::OPTION_FONT);
+        WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
         mFont->SetColor(ARGB(255, 255, 0, 0));
         renderer->FillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, ARGB(230, 255, 240, 240));
 
