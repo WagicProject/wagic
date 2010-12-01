@@ -145,7 +145,10 @@ void GameStateDuel::Start()
             premadeDeck = true;
             fillDeckMenu(deckmenu, JGE_GET_RES("player/premade"));
         }
+			if (!decksneeded)
+			{
         deckmenu->Add(MENUITEM_NEW_DECK, "New Deck...", "Create a new deck to play with.");
+			}
         deckmenu->Add(MENUITEM_CANCEL, "Main Menu", "Return to Main Menu");
     }
 
