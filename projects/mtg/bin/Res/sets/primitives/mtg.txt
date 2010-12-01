@@ -29081,7 +29081,7 @@ toughness=4
 [card]
 name=Kashi-Tribe Elite
 auto=lord(snake[legendary]|mybattlefield) shroud
-auto=@combatdamaged(creature) from(this):all(trigger[to]) tap && frozen
+auto=@combatdamaged(creature) from(this):all(trigger[to]) tap && all(trigger[to]) frozen
 text=Legendary Snakes you control have shroud. (They can't be the targets of spells or abilities.) -- Whenever Kashi-Tribe Elite deals combat damage to a creature, tap that creature and it doesn't untap during its controller's next untap step.
 mana={1}{G}{G}
 type=Creature
@@ -29091,7 +29091,7 @@ toughness=3
 [/card]
 [card]
 name=Kashi-Tribe Reaver
-auto=@combatdamaged(creature) from(this):all(trigger[to]) tap && frozen
+auto=@combatdamaged(creature) from(this):all(trigger[to]) tap && all(trigger[to]) frozen
 auto={1}{G}:regenerate
 text=Whenever Kashi-Tribe Reaver deals combat damage to a creature, tap that creature and it doesn't untap during its controller's next untap step. -- {1}{G}: Regenerate Kashi-Tribe Reaver.
 mana={3}{G}
@@ -29102,7 +29102,7 @@ toughness=2
 [/card]
 [card]
 name=Kashi-Tribe Warriors
-auto=@combatdamaged(creature) from(this):all(trigger[to]) tap && frozen
+auto=@combatdamaged(creature) from(this):all(trigger[to]) tap && all(trigger[to]) frozen
 text=Whenever Kashi-Tribe Warriors deals combat damage to a creature, tap that creature and it doesn't untap during its controller's next untap step.
 mana={3}{G}{G}
 type=Creature
@@ -34182,7 +34182,7 @@ toughness=3
 [/card]
 [card]
 name=Matsu-Tribe Birdstalker
-auto=@combatdamaged(creature) from(this):all(trigger[to]) tap && frozen
+auto=@combatdamaged(creature) from(this):all(trigger[to]) tap && all(trigger[to]) frozen
 auto={G}:reach
 text=Whenever Matsu-Tribe Birdstalker deals combat damage to a creature, tap that creature and it doesn't untap during its controller's next untap step. -- {G}: Matsu-Tribe Birdstalker gains reach until end of turn. (It can block creatures with flying.)
 mana={2}{G}{G}
@@ -39302,7 +39302,7 @@ toughness=1
 [/card]
 [card]
 name=Orochi Ranger
-auto=@damaged(creature) from(this):all(trigger[to]) tap && frozen
+auto=@combatdamaged(creature) from(this):all(trigger[to]) tap && all(trigger[to]) frozen
 text=Whenever Orochi Ranger deals combat damage to a creature, tap that creature and it doesn't untap during its controller's next untap step.
 mana={1}{G}
 type=Creature
@@ -43622,7 +43622,6 @@ type=Sorcery
 name=Rancor
 target=creature
 autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
-auto=teach(creature) preventAllCombatDamage to(this)
 auto=2/0
 auto=trample
 text=Enchant creature -- Enchanted creature gets +2/+0 and has trample. -- When Rancor is put into a graveyard from the battlefield, return Rancor to its owner's hand.
@@ -62193,7 +62192,7 @@ subtype=Equipment
 [card]
 name=Vulshok Heartstoker
 auto=target(creature) +2/+0 ueot
-text=When Vulshok Heartstoker enters the battlefield, target creature gets +2/+0 until end of turn..
+text=When Vulshok Heartstoker enters the battlefield, target creature gets +2/+0 until end of turn.
 mana={2}{R}
 type=Creature
 subtype=Human Shaman
@@ -63302,7 +63301,6 @@ toughness=3
 [card]
 name=Wei Ambush Force
 auto=@attcking(this):2/0 ueot
-auto=@blocking(this):3/0 ueot
 text=Whenever Wei Ambush Force attacks, it gets +2/+0 until end of turn.
 mana={1}{B}
 type=Creature
