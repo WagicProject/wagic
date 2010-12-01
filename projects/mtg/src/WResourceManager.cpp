@@ -65,8 +65,8 @@ void WResourceManager::DebugRender()
     if (textureWCache.totalSize > textureWCache.cacheSize) man = textureWCache.totalSize - textureWCache.cacheSize;
 
     sprintf(buf, "Textures %u+%llu (of %u) items (%u misses), Pixels: %lu (of %lu) + %lu", textureWCache.cacheItems,
-                    (long long unsigned int) textureWCache.managed.size(), textureWCache.maxCached, misses,
-                    textureWCache.cacheSize, textureWCache.maxCacheSize, man);
+        (long long unsigned int) textureWCache.managed.size(), textureWCache.maxCached, misses,
+        textureWCache.cacheSize, textureWCache.maxCacheSize, man);
     font->DrawString(buf, 10, 5);
 
 #if defined (WIN32) || defined (LINUX) || defined (IOS)
@@ -82,7 +82,7 @@ void WResourceManager::DebugRender()
 
 #ifdef DEBUG_CACHE
     if(debugMessage.size())
-    font->DrawString(debugMessage.c_str(), SCREEN_WIDTH-10,SCREEN_HEIGHT-25,JGETEXT_RIGHT);
+        font->DrawString(debugMessage.c_str(), SCREEN_WIDTH-10,SCREEN_HEIGHT-25,JGETEXT_RIGHT);
 
 #endif
 }
@@ -116,6 +116,7 @@ unsigned long WResourceManager::SizeManaged()
 
     return res;
 }
+
 unsigned int WResourceManager::Count()
 {
     unsigned int count = 0;
@@ -127,6 +128,7 @@ unsigned int WResourceManager::Count()
     count += psiWCache.managed.size();
     return count;
 }
+
 unsigned int WResourceManager::CountCached()
 {
     unsigned int count = 0;
@@ -185,6 +187,7 @@ WResourceManager::WResourceManager()
 
     bThemedCards = false;
 }
+
 WResourceManager::~WResourceManager()
 {
     LOG("==Destroying WResourceManager==");
@@ -333,13 +336,13 @@ JQuad * WResourceManager::GetQuad(int id)
     return result;
 }
 
-JQuad * WResourceManager::RetrieveTempQuad(string filename, int submode)
+JQuad * WResourceManager::RetrieveTempQuad(const string& filename, int submode)
 {
     return RetrieveQuad(filename, 0, 0, 0, 0, "temporary", RETRIEVE_NORMAL, submode);
 }
 
-JQuad * WResourceManager::RetrieveQuad(string filename, float offX, float offY, float width, float height, string resname,
-                int style, int submode, int id)
+JQuad * WResourceManager::RetrieveQuad(const string& filename, float offX, float offY, float width, float height, string resname,
+    int style, int submode, int id)
 {
     JQuad * jq = NULL;
 
@@ -399,6 +402,7 @@ JQuad * WResourceManager::RetrieveQuad(string filename, float offX, float offY, 
     //Texture doesn't exist, so no quad.
     return NULL;
 }
+
 void WResourceManager::Release(JTexture * tex)
 {
     if (!tex) return;
@@ -416,7 +420,7 @@ void WResourceManager::Release(JTexture * tex)
     {
         it->second->unlock(); //Release one lock.
         if (it->second->locks != WRES_UNLOCKED) //Normally we'd call isLocked, but this way ignores quads.
-        return; //Locked
+            return; //Locked
     }
 
     textureWCache.Delete(it->second);
@@ -454,10 +458,8 @@ void WResourceManager::Release(JSample * sample)
     sampleWCache.Release(sample);
 }
 
-JTexture * WResourceManager::RetrieveTexture(string filename, int style, int submode)
+JTexture * WResourceManager::RetrieveTexture(const string& filename, int style, int submode)
 {
-    WCachedTexture * res = NULL;
-
     //Aliases.
     if (style == RETRIEVE_THUMB)
     {
@@ -465,7 +467,7 @@ JTexture * WResourceManager::RetrieveTexture(string filename, int style, int sub
         style = RETRIEVE_NORMAL;
     }
 
-    res = textureWCache.Retrieve(0, filename, style, submode);
+    WCachedTexture* res = textureWCache.Retrieve(0, filename, style, submode);
     lastError = textureWCache.mError;
 
     if (res)
@@ -478,25 +480,25 @@ JTexture * WResourceManager::RetrieveTexture(string filename, int style, int sub
     {
         switch(textureWCache.mError)
         {
-            case CACHE_ERROR_NONE:
+        case CACHE_ERROR_NONE:
             debugMessage = "Not in cache: ";
             break;
-            case CACHE_ERROR_404:
+        case CACHE_ERROR_404:
             debugMessage = "File not found: ";
             break;
-            case CACHE_ERROR_BAD_ALLOC:
+        case CACHE_ERROR_BAD_ALLOC:
             debugMessage = "Out of memory: ";
             break;
-            case CACHE_ERROR_BAD:
+        case CACHE_ERROR_BAD:
             debugMessage = "Cache bad: ";
             break;
-            case CACHE_ERROR_NOT_MANAGED:
+        case CACHE_ERROR_NOT_MANAGED:
             debugMessage = "Resource not managed: ";
             break;
-            case CACHE_ERROR_LOST:
+        case CACHE_ERROR_LOST:
             debugMessage = "Resource went bad, potential memory leak: ";
             break;
-            default:
+        default:
             debugMessage = "Unspecified error: ";
         }
         debugMessage += filename;
@@ -540,9 +542,8 @@ JTexture* WResourceManager::GetTexture(int id)
     return jtex;
 }
 
-hgeParticleSystemInfo * WResourceManager::RetrievePSI(string filename, JQuad * texture, int style, int submode)
+hgeParticleSystemInfo * WResourceManager::RetrievePSI(const string& filename, JQuad * texture, int style, int submode)
 {
-
     if (!texture) return NULL;
 
     WCachedParticles * res = psiWCache.Retrieve(0, filename, style, submode);
@@ -558,7 +559,7 @@ hgeParticleSystemInfo * WResourceManager::RetrievePSI(string filename, JQuad * t
     return NULL;
 }
 
-JSample * WResourceManager::RetrieveSample(string filename, int style, int submode)
+JSample * WResourceManager::RetrieveSample(const string& filename, int style, int submode)
 {
     WCachedSample * tc = NULL;
     tc = sampleWCache.Retrieve(0, filename, style, submode);
@@ -574,7 +575,7 @@ JSample * WResourceManager::RetrieveSample(string filename, int style, int submo
     return NULL;
 }
 
-string WResourceManager::graphicsFile(const string filename)
+string WResourceManager::graphicsFile(const string& filename)
 {
     char buf[512];
 
@@ -598,16 +599,16 @@ string WResourceManager::graphicsFile(const string filename)
         if (fileOK(buf, true)) return buf;
     }
     /*
-     //FIXME Put back when we're using modes.
-     //Failure. Check mode graphics
-     string mode = options[Options::ACTIVE_MODE].str;
+    //FIXME Put back when we're using modes.
+    //Failure. Check mode graphics
+    string mode = options[Options::ACTIVE_MODE].str;
 
-     if(mode != "" && mode != "Default"){
-     sprintf(buf,"modes/%s/graphics/%s",mode.c_str(),filename.c_str());
-     if(fileOK(buf,true))
-     return buf;
-     }
-     */
+    if(mode != "" && mode != "Default"){
+    sprintf(buf,"modes/%s/graphics/%s",mode.c_str(),filename.c_str());
+    if(fileOK(buf,true))
+    return buf;
+    }
+    */
     //Failure. Check graphics
     char graphdir[512];
     sprintf(graphdir, "graphics/%s", filename.c_str());
@@ -625,7 +626,7 @@ string WResourceManager::graphicsFile(const string filename)
     return graphdir;
 }
 
-string WResourceManager::avatarFile(const string filename)
+string WResourceManager::avatarFile(const string& filename)
 {
     char buf[512];
 
@@ -652,16 +653,16 @@ string WResourceManager::avatarFile(const string filename)
         if (fileOK(buf, true)) return buf;
     }
     /*
-     //FIXME Put back when we're using modes.
-     //Failure. Check mode graphics
-     string mode = options[Options::ACTIVE_MODE].str;
+    //FIXME Put back when we're using modes.
+    //Failure. Check mode graphics
+    string mode = options[Options::ACTIVE_MODE].str;
 
-     if(mode != "" && mode != "Default"){
-     sprintf(buf,"modes/%s/graphics/%s",mode.c_str(),filename.c_str());
-     if(fileOK(buf,true))
-     return buf;
-     }
-     */
+    if(mode != "" && mode != "Default"){
+    sprintf(buf,"modes/%s/graphics/%s",mode.c_str(),filename.c_str());
+    if(fileOK(buf,true))
+    return buf;
+    }
+    */
 
     //Failure. Check Baka
     sprintf(buf, "ai/baka/avatars/%s", filename.c_str());
@@ -679,7 +680,7 @@ string WResourceManager::avatarFile(const string filename)
     return "";
 }
 
-string WResourceManager::cardFile(const string filename)
+string WResourceManager::cardFile(const string& filename)
 {
     char buf[512];
     string::size_type i = 0;
@@ -716,15 +717,15 @@ string WResourceManager::cardFile(const string filename)
 
     //FIXME Put back when we're using modes.
     /*
-     //Failure. Check mode
-     string mode = options[Options::ACTIVE_MODE].str;
+    //Failure. Check mode
+    string mode = options[Options::ACTIVE_MODE].str;
 
-     if(mode != "" && mode != "Default"){
-     sprintf(buf,"modes/%s/sets/%s",mode.c_str(),filename.c_str());
-     if(fileOK(buf,true))
-     return buf;
-     }
-     */
+    if(mode != "" && mode != "Default"){
+    sprintf(buf,"modes/%s/sets/%s",mode.c_str(),filename.c_str());
+    if(fileOK(buf,true))
+    return buf;
+    }
+    */
     //Failure. Assume it's in a zip file?
     if (!set.size())
     { //Didn't fill "set" string, so do it now.
@@ -752,7 +753,7 @@ string WResourceManager::cardFile(const string filename)
     return "";
 }
 
-string WResourceManager::musicFile(const string filename)
+string WResourceManager::musicFile(const string& filename)
 {
     char buf[512];
 
@@ -766,15 +767,15 @@ string WResourceManager::musicFile(const string filename)
     }
 
     /*
-     //FIXME Put back when we're using modes.
-     //Failure. Check mode
-     string mode = options[Options::ACTIVE_MODE].str;
+    //FIXME Put back when we're using modes.
+    //Failure. Check mode
+    string mode = options[Options::ACTIVE_MODE].str;
 
-     if(mode != "" && mode != "Default"){
-     sprintf(buf,"modes/%s/sound/%s",mode.c_str(),filename.c_str());
-     if(fileOK(buf,true))
-     return buf;
-     }*/
+    if(mode != "" && mode != "Default"){
+    sprintf(buf,"modes/%s/sound/%s",mode.c_str(),filename.c_str());
+    if(fileOK(buf,true))
+    return buf;
+    }*/
 
     //Failure. Check sound
     char defdir[512];
@@ -789,7 +790,7 @@ string WResourceManager::musicFile(const string filename)
     return "";
 }
 
-string WResourceManager::sfxFile(const string filename)
+string WResourceManager::sfxFile(const string& filename)
 {
     char buf[512];
 
@@ -803,15 +804,15 @@ string WResourceManager::sfxFile(const string filename)
     }
 
     /*
-     //FIXME: Put back when we're using modes.
-     //Failure. Check mode
-     string mode = options[Options::ACTIVE_MODE].str;
-     if(mode != "" && mode != "Default"){
-     sprintf(buf,"modes/%s/sound/sfx/%s",mode.c_str(),filename.c_str());
-     if(fileOK(buf,true))
-     return buf;
-     }
-     */
+    //FIXME: Put back when we're using modes.
+    //Failure. Check mode
+    string mode = options[Options::ACTIVE_MODE].str;
+    if(mode != "" && mode != "Default"){
+    sprintf(buf,"modes/%s/sound/sfx/%s",mode.c_str(),filename.c_str());
+    if(fileOK(buf,true))
+    return buf;
+    }
+    */
     //Failure. Check sound
     char defdir[512];
     sprintf(defdir, "sound/sfx/%s", filename.c_str());
@@ -821,7 +822,7 @@ string WResourceManager::sfxFile(const string filename)
     return "";
 }
 
-int WResourceManager::dirOK(string dirname)
+int WResourceManager::dirOK(const string& dirname)
 {
     char fname[512];
 
@@ -830,7 +831,7 @@ int WResourceManager::dirOK(string dirname)
 
     struct _stat statBuffer;
     return (_stat(fname, &statBuffer) >= 0 && // make sure it exists
-                    statBuffer.st_mode & S_IFDIR); // and it's not a file
+        statBuffer.st_mode & S_IFDIR); // and it's not a file
 #else
     sprintf(fname, "%s", JGE_GET_RES(dirname).c_str());
     struct stat st;
@@ -839,7 +840,7 @@ int WResourceManager::dirOK(string dirname)
     return 0;
 }
 
-int WResourceManager::fileOK(string filename, bool relative)
+int WResourceManager::fileOK(const string& filename, bool relative)
 {
     std::ifstream * fp = NULL;
     if (relative)
@@ -1068,10 +1069,10 @@ bool WCache<cacheItem, cacheActual>::RemoveOldest()
 {
     typename map<int, cacheItem*>::iterator oldest = cache.end();
 
-    for (typename map<int, cacheItem *>::iterator it = cache.begin(); it != cache.end(); it++)
+    for (typename map<int, cacheItem*>::iterator it = cache.begin(); it != cache.end(); ++it)
     {
         if (it->second && !it->second->isLocked() && (oldest == cache.end() || it->second->lastTime < oldest->second->lastTime)) oldest
-                        = it;
+            = it;
     }
 
     if (oldest != cache.end() && oldest->second && !oldest->second->isLocked())
@@ -1117,7 +1118,7 @@ void WCache<cacheItem, cacheActual>::Resize(unsigned long size, int items)
 }
 
 template<class cacheItem, class cacheActual>
-cacheItem* WCache<cacheItem, cacheActual>::AttemptNew(string filename, int submode)
+cacheItem* WCache<cacheItem, cacheActual>::AttemptNew(const string& filename, int submode)
 {
     if (submode & CACHE_EXISTING)
     { //Should never get this far.
@@ -1162,7 +1163,7 @@ cacheItem* WCache<cacheItem, cacheActual>::AttemptNew(string filename, int submo
 }
 
 template<class cacheItem, class cacheActual>
-cacheItem * WCache<cacheItem, cacheActual>::Retrieve(int id, string filename, int style, int submode)
+cacheItem* WCache<cacheItem, cacheActual>::Retrieve(int id, const string& filename, int style, int submode)
 {
     //Check cache.
     cacheItem * tc = NULL;
@@ -1220,12 +1221,13 @@ cacheItem * WCache<cacheItem, cacheActual>::Retrieve(int id, string filename, in
 
     //Record managed failure. Cache failure is recorded in Get().
     if ((style == RETRIEVE_MANAGE || style == RETRIEVE_RESOURCE) && mError == CACHE_ERROR_404) managed[makeID(id, filename, submode)]
-                    = NULL;
+    = NULL;
 
     return NULL;
 }
+
 template<class cacheItem, class cacheActual>
-int WCache<cacheItem, cacheActual>::makeID(int id, string filename, int submode)
+int WCache<cacheItem, cacheActual>::makeID(int id, const string& filename, int submode)
 {
     int mId = id;
     if (!mId)
@@ -1250,7 +1252,7 @@ int WCache<cacheItem, cacheActual>::makeID(int id, string filename, int submode)
 }
 
 template<class cacheItem, class cacheActual>
-cacheItem * WCache<cacheItem, cacheActual>::Get(int id, string filename, int style, int submode)
+cacheItem* WCache<cacheItem, cacheActual>::Get(int id, const string& filename, int style, int submode)
 {
     typename map<int, cacheItem*>::iterator it;
     int lookup = makeID(id, filename, submode);
@@ -1385,9 +1387,9 @@ bool WCache<cacheItem, cacheActual>::Cleanup()
     while (cacheItems > MAX_CACHE_OBJECTS || cacheItems > maxCached || cacheSize > maxCacheSize
 #if defined WIN32 || defined LINUX || defined (IOS)
 #else
-                    || ramAvailableLineareMax() < MIN_LINEAR_RAM
+        || ramAvailableLineareMax() < MIN_LINEAR_RAM
 #endif
-    )
+        )
     {
         if (!RemoveOldest())
         {
@@ -1505,7 +1507,7 @@ bool WCache<cacheItem, cacheActual>::Delete(cacheItem * item)
     cacheSize -= isize;
 #ifdef DEBUG_CACHE
     if(cacheItems == 0)
-    DebugTrace("cacheItems out of sync.");
+        DebugTrace("cacheItems out of sync.");
 #endif
 
     cacheItems--;
