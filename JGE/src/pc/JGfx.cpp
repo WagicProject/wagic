@@ -44,8 +44,8 @@ extern "C" {
 #ifdef _DEBUG
 #define checkGlError()            \
 {                                 \
-  GLenum glError = glGetError();  \
-  if(glError != 0)                \
+    GLenum glError = glGetError();  \
+    if(glError != 0)                \
     printf("%s : %u : GLerror is %u\n", __FUNCTION__, __LINE__, glError); \
 }
 #else
@@ -290,6 +290,8 @@ JQuad::JQuad(JTexture *tex, float x, float y, float width, float height)
 
 	JASSERT(tex != NULL);
 
+    JRenderer::TransferTextureToGLContext(*tex);
+
 	mHotSpotX = 0.0f;
 	mHotSpotY = 0.0f;
 	//mBlend = BLEND_DEFAULT;
@@ -341,7 +343,7 @@ void JQuad::SetHotSpot(float x, float y)
 
 //////////////////////////////////////////////////////////////////////////
 
-JTexture::JTexture()
+JTexture::JTexture() : mBuffer(NULL)
 {
 	mTexId = -1;
 }
@@ -352,6 +354,12 @@ JTexture::~JTexture()
         if (mTexId != (GLuint)-1)
 		glDeleteTextures(1, &mTexId);
   checkGlError();
+
+  if (mBuffer)
+  {
+      delete [] mBuffer;
+      mBuffer = NULL;
+  }
 }
 
 
@@ -1653,110 +1661,107 @@ static void PNGCustomReadDataFn(png_structp png_ptr, png_bytep data, png_size_t 
    }
 }
 
+void JRenderer::TransferTextureToGLContext(JTexture& inTexture)
+{
+    if (inTexture.mBuffer != NULL)
+    {
+        GLuint texid;
+        checkGlError();
+        glGenTextures(1, &texid);
+        inTexture.mTexId = texid;
+        JRenderer::GetInstance()->mCurrentTex = texid;
+
+        //    glError = glGetError();
+
+        if (1)///*texid*/ glError == 0)
+        {
+
+            // OpenGL texture has (0,0) at lower-left
+            // Pay attention when doing texture mapping!!!
+
+            glBindTexture(GL_TEXTURE_2D, inTexture.mTexId);    // Bind To The Texture ID
+
+            /* NOT USED
+            if (mode == TEX_TYPE_MIPMAP)			// generate mipmaps
+            {
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_NEAREST);
+            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR_MIPMAP_LINEAR);
+            gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, textureInfo.mTexWidth, textureInfo.mTexHeight, GL_RGBA, GL_UNSIGNED_BYTE, textureInfo.mBits);
+            }
+            else if (mode == TEX_TYPE_SKYBOX)		// for skybox
+            {
+            #define GL_CLAMP_TO_EDGE	0x812F
+
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+            gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, textureInfo.mTexWidth, textureInfo.mTexHeight, GL_RGBA, GL_UNSIGNED_BYTE, textureInfo.mBits);
+            }
+            else									// single texture
+            */	
+            {
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+                glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+                glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+                glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, inTexture.mTexWidth, inTexture.mTexHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, inTexture.mBuffer);
+            }
+        }
+
+        delete [] inTexture.mBuffer;
+        inTexture.mBuffer = NULL;
+
+        checkGlError();
+    }
+}
+
 JTexture* JRenderer::LoadTexture(const char* filename, int mode, int TextureFormat __attribute__((unused)))
 {
-	TextureInfo textureInfo;
+    TextureInfo textureInfo;
 
-	textureInfo.mBits = NULL;
+    textureInfo.mBits = NULL;
 
-	if (strstr(filename, ".jpg")!=NULL || strstr(filename, ".JPG")!=NULL)
-		LoadJPG(textureInfo, filename);
-	else if(strstr(filename, ".gif")!=NULL || strstr(filename, ".GIF")!=NULL)
-		LoadGIF(textureInfo,filename);
-	else if(strstr(filename, ".png")!=NULL || strstr(filename, ".PNG")!=NULL)
-		LoadPNG(textureInfo, filename);
+    if (strstr(filename, ".jpg")!=NULL || strstr(filename, ".JPG")!=NULL)
+        LoadJPG(textureInfo, filename);
+    else if(strstr(filename, ".gif")!=NULL || strstr(filename, ".GIF")!=NULL)
+        LoadGIF(textureInfo,filename);
+    else if(strstr(filename, ".png")!=NULL || strstr(filename, ".PNG")!=NULL)
+        LoadPNG(textureInfo, filename);
 
-  if (textureInfo.mBits == NULL) {
-      printf("Texture %s failed to load\n", filename);
-      return NULL;
-  }
-
-	bool ret = false;
-
-	JTexture *tex = new JTexture();
-
- 	if (tex)
-	{
-		if (mImageFilter != NULL)
-			mImageFilter->ProcessImage((PIXEL_TYPE*)textureInfo.mBits, textureInfo.mWidth, textureInfo.mHeight);
-
-		tex->mFilter = TEX_FILTER_LINEAR;
-		tex->mWidth = textureInfo.mWidth;
-		tex->mHeight = textureInfo.mHeight;
-		tex->mTexWidth = textureInfo.mTexWidth;
-		tex->mTexHeight = textureInfo.mTexHeight;
-
-		GLuint texid;
-    checkGlError();
-    glGenTextures(1, &texid);
-		tex->mTexId = texid;
-//    glError = glGetError();
-
-    if (1)///*texid*/ glError == 0)
-		{
-
-			// OpenGL texture has (0,0) at lower-left
-			// Pay attention when doing texture mapping!!!
-
-                            mCurrentTex = texid;
-                            glBindTexture(GL_TEXTURE_2D, mCurrentTex);    // Bind To The Texture ID
-
-/* NOT USED
-			if (mode == TEX_TYPE_MIPMAP)			// generate mipmaps
-			{
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-				glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_NEAREST);
-				glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR_MIPMAP_LINEAR);
-                                gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, textureInfo.mTexWidth, textureInfo.mTexHeight, GL_RGBA, GL_UNSIGNED_BYTE, textureInfo.mBits);
-                        }
-			else if (mode == TEX_TYPE_SKYBOX)		// for skybox
-			{
-#define GL_CLAMP_TO_EDGE	0x812F
-
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-                                gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, textureInfo.mTexWidth, textureInfo.mTexHeight, GL_RGBA, GL_UNSIGNED_BYTE, textureInfo.mBits);
-                        }
-			else									// single texture
-*/			{
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-				glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
-				glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
-				glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureInfo.mTexWidth, textureInfo.mTexHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureInfo.mBits);
-			}
-
-			ret = true;
-
-		}
-    else
-    {
-//        printf("LoadTexture> TextureId is 0, GLerror is %u\n", glError);
+    if (textureInfo.mBits == NULL) {
+        printf("Texture %s failed to load\n", filename);
+        return NULL;
     }
-	}
 
-	delete [] textureInfo.mBits;
-	//delete textureInfo;
+    bool ret = false;
 
-	if (!ret)
-	{
-		if (tex)
-			delete tex;
-		tex = NULL;
-	}
+    JTexture *tex = new JTexture();
 
+    if (tex)
+    {
+        if (mImageFilter != NULL)
+            mImageFilter->ProcessImage((PIXEL_TYPE*)textureInfo.mBits, textureInfo.mWidth, textureInfo.mHeight);
 
-  checkGlError();
-	return tex;
+        tex->mFilter = TEX_FILTER_LINEAR;
+        tex->mWidth = textureInfo.mWidth;
+        tex->mHeight = textureInfo.mHeight;
+        tex->mTexWidth = textureInfo.mTexWidth;
+        tex->mTexHeight = textureInfo.mTexHeight;
+
+        tex->mBuffer = textureInfo.mBits;
+        GLuint texid;
+        //checkGlError();
+        glGenTextures(1, &texid);
+        tex->mTexId = texid;
+    }
+ 
+    return tex;
 }
 
 int JRenderer::LoadPNG(TextureInfo &textureInfo, const char *filename, int mode __attribute__((unused)), int TextureFormat __attribute__((unused)))
 {
-
-
 	textureInfo.mBits = NULL;
-
 
 	DWORD* p32;
 

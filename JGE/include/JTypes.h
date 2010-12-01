@@ -340,8 +340,9 @@ public:
 
 #if defined (WIN32) || defined (LINUX) || defined (IOS) 	
 	GLuint mTexId;
+    u8* mBuffer;
 #else
-  int mTextureFormat;
+    int mTextureFormat;
 	int mTexId;
 	bool mInVideoRAM;
 	PIXEL_TYPE* mBits;

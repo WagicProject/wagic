@@ -144,6 +144,15 @@ public:
 	//////////////////////////////////////////////////////////////////////////
 	JTexture* LoadTexture(const char* filename, int mode = 0, int textureFormat = TEXTURE_FORMAT);
 
+    /*
+    ** Helper function - on Win, LoadTexture previously performed the image transfer into GL memory.
+    ** However, this doesn't work if you want to call LoadTexture in a separate worker thread, as 
+    ** OpenGL has a limitation where only one thread can run the context. Now, the image loading/decompression
+    ** happens in LoadTexture, and the JQuad constructor will complete the texture binding with this helper function.
+    */
+#if defined (WIN32) || defined (LINUX)
+    void static TransferTextureToGLContext(JTexture& inTexture);
+#endif
 	//////////////////////////////////////////////////////////////////////////
 	/// Create texture from memory on the fly.
 	///
