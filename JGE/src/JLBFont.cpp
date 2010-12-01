@@ -113,10 +113,22 @@ void JLBFont::DrawString(const char *string, float x, float y, int align, float 
 
 	float width = GetStringWidth(string);
 
-	if (align == JGETEXT_RIGHT)
-		dx0 -= width;
-	else if (align == JGETEXT_CENTER)
-		dx0 -= width/2;
+	if (align == JGETEXT_RIGHT) {
+		if (displayWidth) {
+			dx0 -= displayWidth;
+			leftOffset += width - displayWidth;
+		}
+		else
+			dx0 -= width;
+	}
+	else if (align == JGETEXT_CENTER) {
+		if (displayWidth) {
+			dx0 -= displayWidth/2;
+			leftOffset += width/2 - displayWidth/2;
+		}
+		else
+			dx0 -= width/2;
+	}
 
 	float dx = floorf(dx0);
 	dy = floorf(dy);
@@ -147,7 +159,7 @@ void JLBFont::DrawString(const char *string, float x, float y, int align, float 
       if (leftOffset < 0){
         dx-=leftOffset;
         leftOffset = 0;
-        continue;
+        //continue;
       }else if (leftOffset - delta > 0){
         leftOffset -= delta;
         p++;
@@ -160,7 +172,8 @@ void JLBFont::DrawString(const char *string, float x, float y, int align, float 
         charWidth = (delta/mScale) - mTracking;
       }
     }
-    else if (displayWidth){
+    if (displayWidth){
+    // This condiction must be tested indepently in the case leftOffset and displayWidth need a fix at the same time.
       if (dx > x0+displayWidth)  return;
       if (dx+delta > x0+displayWidth) {
         delta = x0 + displayWidth - dx;

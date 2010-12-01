@@ -386,10 +386,20 @@ void WFBFont::DrawString(const char *s, float x, float y, int align, float leftO
     switch (align)
     {
     case JGETEXT_RIGHT:
-        x -= GetStringWidth(s);
+        if (width) {
+            x -= width;
+            leftOffset += GetStringWidth(s) - width;
+        }
+        else
+            x -= GetStringWidth(s);
         break;
     case JGETEXT_CENTER:
-        x -= GetStringWidth(s) / 2;
+        if (width) {
+            x -= width/2;
+            leftOffset += GetStringWidth(s)/2 - width/2;
+        }
+        else
+            x -= GetStringWidth(s)/2;
         break;
     case JGETEXT_LEFT:
     default:
@@ -473,7 +483,7 @@ void WFBFont::DrawString(const char *s, float x, float y, int align, float leftO
                         charW = delta / mScale;
                     }
                 }
-                else if (width)
+                if (width)
                 {
                     if (xx > x + width) return;
                     if (xx + delta > x + width)
@@ -778,10 +788,20 @@ void WGBKFont::DrawString(const char *s, float x, float y, int align, float left
     switch (align)
     {
     case JGETEXT_RIGHT:
-        x -= GetStringWidth(s);
+        if (width) {
+            x -= width;
+            leftOffset += GetStringWidth(s) - width;
+        }
+        else
+            x -= GetStringWidth(s);
         break;
     case JGETEXT_CENTER:
-        x -= GetStringWidth(s) / 2;
+        if (width) {
+            x -= width/2;
+            leftOffset += GetStringWidth(s)/2 - width/2;
+        }
+        else
+            x -= GetStringWidth(s)/2;
         break;
     case JGETEXT_LEFT:
     default:
@@ -882,7 +902,7 @@ void WGBKFont::DrawString(const char *s, float x, float y, int align, float left
                         charW = delta / mScale;
                     }
                 }
-                else if (width)
+                if (width)
                 {
                     if (xx > x + width) return;
                     if (xx + delta > x + width)

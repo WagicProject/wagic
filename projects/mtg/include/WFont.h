@@ -28,8 +28,14 @@ class WFont
 public:
   int mFontID;
   // Rendering text to screen.
-  virtual void DrawString(const char *s, float x, float y, int align=JGETEXT_LEFT, float leftOffset = 0, float width = 0) = 0;
-  virtual void DrawString(std::string s, float x, float y, int align=JGETEXT_LEFT, float leftOffset = 0, float width = 0) = 0;
+  // Note:
+  // align=JGETEXT_LEFT,   string region (x-leftOffset, x-leftOffset+StringWidth), display window (x, x+displayWidth)
+  // align=JGETEXT_CENTER, string region (x-leftOffset-StringWidth/2, x-leftOffset+StringWidth/2), display window (x-displayWidth/2, x+displayWidth/2)
+  // align=JGETEXT_RIGHT,  string region (x-leftOffset-StringWidth, x-leftOffset), display window (x-displayWidth, x)
+  // Only when width is NOT zero, characters outside the display window are not rendered.
+  // 
+  virtual void DrawString(const char *s, float x, float y, int align=JGETEXT_LEFT, float leftOffset = 0, float displayWidth = 0) = 0;
+  virtual void DrawString(std::string s, float x, float y, int align=JGETEXT_LEFT, float leftOffset = 0, float displayWidth = 0) = 0;
   // Set font color.
   virtual void SetColor(PIXEL_TYPE color) = 0;
   // Get font color.
