@@ -94,12 +94,18 @@ void GameApp::Create()
     string resPath;
     if (mfile)
     {
-        if (std::getline(mfile, resPath))
+        bool found = false;
+        while (!found && std::getline(mfile, resPath))
         {
             if (resPath[resPath.size() - 1] == '\r')
                 resPath.erase(resPath.size() - 1); //Handle DOS files
-            //TODO ERROR Handling if file does not exist
-            JFileSystem::GetInstance()->SetResourceRoot(trim(resPath));
+            string testfile = resPath;
+            testfile.append("graphics/simon.dat");
+            if (fileExists(testfile.c_str()))
+            {
+                JFileSystem::GetInstance()->SetResourceRoot(trim(resPath));
+                found = true;
+            }
         }
         mfile.close();
     }
