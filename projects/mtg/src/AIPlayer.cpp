@@ -440,7 +440,7 @@ int AIAction::getEfficiency()
 
     case MTGAbility::STANDARDABILITYGRANT:
 	{
-        efficiency = 10;
+        efficiency = 0;
         MTGCardInstance * _target = (MTGCardInstance *) (a->target);
         if (!target)
             break;
@@ -461,7 +461,7 @@ int AIAction::getEfficiency()
 			efficiency += (15 * target->DangerRanking())/p->game->hand->nb_cards; 
 		}
 
-        if (!target->has(a->abilitygranted) && g->getCurrentGamePhase() == Constants::MTG_PHASE_FIRSTMAIN)
+				if (!target->has(a->abilitygranted) && g->getCurrentGamePhase() == Constants::MTG_PHASE_COMBATBEGIN)
         {
 			efficiency += (15 * target->DangerRanking())/p->game->hand->nb_cards;
 
