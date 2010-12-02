@@ -97,6 +97,7 @@ void CardDisplay::Update(float dt)
 
 bool CardDisplay::CheckUserInput(int x, int y)
 {
+    bool result = false;
     unsigned int distance2;
     unsigned int minDistance2 = -1;
     int n = mCurr;
@@ -126,7 +127,7 @@ bool CardDisplay::CheckUserInput(int x, int y)
         {
             rotateLeft();
         }
-        else if (n >= mCount)
+        else if (n >= mCount && mCount > 0)
         {
             n = mCount - 1;
         }
@@ -139,12 +140,12 @@ bool CardDisplay::CheckUserInput(int x, int y)
         {
             mCurr = n;
             mObjects[mCurr]->Entering();
+            result = true;
         }
         JGE::GetInstance()->LeftClickedProcessed();
-        return true;
     }
 
-    return false;
+    return result;
 }
 
 bool CardDisplay::CheckUserInput(JButton key)
