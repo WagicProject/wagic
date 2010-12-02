@@ -63300,7 +63300,7 @@ toughness=3
 [/card]
 [card]
 name=Wei Ambush Force
-auto=@attcking(this):2/0 ueot
+auto=@attacking(this):2/0 ueot
 text=Whenever Wei Ambush Force attacks, it gets +2/+0 until end of turn.
 mana={1}{B}
 type=Creature
