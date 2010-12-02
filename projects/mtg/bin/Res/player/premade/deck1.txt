@@ -1,8 +1,5 @@
 #NAME:Premade G/R
-#DESC:A Red/Green deck with simple mechanics
-#DESC:to get you started.
-#DESC:We recommend to create your own decks
-#DESC:to get the full Wagic Fun!
+#DESC:A Red/Green deck with simple mechanics to get you started. We recommend to create your own decks to get the full Wagic Fun!
 
 Forest (10E) *11
 Mountain (10E) *12

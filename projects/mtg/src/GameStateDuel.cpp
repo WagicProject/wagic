@@ -233,13 +233,13 @@ void GameStateDuel::End()
     JRenderer::GetInstance()->EnableVSync(false);
     DeckManager::EndInstance();
 
-    if (mPlayers[0] && mPlayers[1]) // save the stats for the game
+    if (!premadeDeck && mPlayers[0] && mPlayers[1]) // save the stats for the game
         mPlayers[0]->End();
-    else
+    else if ( !mPlayers[1] && mPlayers[0] )
         // clean up player object
         SAFE_DELETE( mPlayers[0] );
 
-    GameObserver::EndInstance();
+    GameObserver::EndInstance(); // this will delete both player objects
     game = NULL;
     premadeDeck = false;
 
