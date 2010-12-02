@@ -606,6 +606,14 @@ mana={2}{R}{R}
 type=Sorcery
 [/card]
 [card]
+name=Afiya Grove
+auto=counter(1/1,3)
+auto=@each my upkeep:choice counter(1/1,1) target(creature) && counter(1/1,-1) all(this) && bury all(Afiya Grove[-counter{1/1.1}])
+text=Afiya Grove enters the battlefield with three +1/+1 counters on it. -- At the beginning of your upkeep, move a +1/+1 counter from Afiya Grove onto target creature. -- When Afiya Grove has no +1/+1 counters on it, sacrifice it.
+mana={1}{G}
+type=Enchantment
+[/card]
+[card]
 name=Agent of Masks
 auto=@each my upkeep:life:-1 opponent
 auto=@each my upkeep:life:1 controller
