@@ -629,17 +629,25 @@ int AIPlayer::selectAbility()
         }
         else
         {
+					  if(!clickstream.size())
+						{
             DebugTrace("AIPlayer:Using Activated ability");
             tapLandsForMana(a->ability->cost, a->click);
-            clickstream.push(a);
+						clickstream.push(a);
+						}
+						else
+						{
+							a = NULL;
+						}
         }
         map<AIAction *, int, CmpAbilities>::iterator it2;
         for (it2 = ranking.begin(); it2 != ranking.end(); it2++)
         {
-            if (a != it2->first)
+            if (a && a != it2->first)
                 delete (it2->first);
         }
     }
+    AIPlayer::findingAbility = false;
     return 1;
 }
 
@@ -1145,6 +1153,7 @@ int AIPlayerBaka::computeActions()
 {
     GameObserver * g = GameObserver::GetInstance();
     Player * p = g->currentPlayer;
+		AIPlayer::findingAbility = false;
     if (!(g->currentlyActing() == this))
         return 0;
     if (g->mLayers->actionLayer()->menuObject)
@@ -1157,7 +1166,11 @@ int AIPlayerBaka::computeActions()
     int currentGamePhase = g->getCurrentGamePhase();
     if (g->isInterrupting == this)
     { // interrupting
-        selectAbility();
+				if(!findingAbility)
+				{
+				 AIPlayer::findingAbility = true;
+         selectAbility();
+				}
         return 1;
     }
     else if (p == this && g->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0)
@@ -1178,7 +1191,11 @@ int AIPlayerBaka::computeActions()
                 potential = true;
             }
             nextCardToPlay = FindCardToPlay(currentMana, "land");
+						if(!findingAbility)
+						{
+			      AIPlayer::findingAbility = true;
             selectAbility();
+						}
             //look for the most expensive creature we can afford
             if (castrestrictedspell == 0 && nospellinstant == 0)
             {
@@ -1212,7 +1229,11 @@ int AIPlayerBaka::computeActions()
 												}
 												if (!nextCardToPlay)
 												{
-                            selectAbility();
+						              if(!findingAbility)
+						             {
+										     AIPlayer::findingAbility = true;
+                         selectAbility();
+													}
 												}
 											}
 										}
@@ -1261,7 +1282,11 @@ int AIPlayerBaka::computeActions()
             }
             else
             {
-                selectAbility();
+						if(!findingAbility)
+						{
+			      AIPlayer::findingAbility = true;
+            selectAbility();
+						}
             }
             if (p->getManaPool()->getConvertedCost() > 0 && Checked == false)//not the best thing ever, but allows the Ai a chance to double check if its mana pool has something before moving on, atleast one time.
             {
@@ -1277,7 +1302,11 @@ int AIPlayerBaka::computeActions()
             Checked = false;
             break;
         default:
-            selectAbility();
+			  if(!findingAbility)
+				{
+				AIPlayer::findingAbility = true;
+        selectAbility();
+				}
             break;
         }
     }

@@ -95,7 +95,11 @@ int AIMomirPlayer::computeActions()
     int currentGamePhase = g->getCurrentGamePhase();
     if (g->isInterrupting == this)
     { // interrupting
-        selectAbility();
+		  if(!findingAbility)
+		  {
+	    AIPlayer::findingAbility = true;
+      selectAbility();
+			}
         return 1;
     }
     else if (p == this && g->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0)
@@ -129,7 +133,11 @@ int AIMomirPlayer::computeActions()
             break;
         }
         case Constants::MTG_PHASE_SECONDMAIN:
-            selectAbility();
+				if(!findingAbility)
+				{
+		    AIPlayer::findingAbility = true;
+        selectAbility();
+			  }
             return 1;
             break;
         default:
