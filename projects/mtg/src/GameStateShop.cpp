@@ -455,7 +455,7 @@ void GameStateShop::Update(float dt)
     if (menu && menu->isClosed())
         SAFE_DELETE(menu);
     srcCards->Update(dt);
-    alphaChange = static_cast<int> (500 - (int) ((rand() % 1000)) * dt);
+    alphaChange = 25 - static_cast<int>((float) (rand() - 1) / (RAND_MAX) * 50.0f);
     lightAlpha += alphaChange;
     if (lightAlpha < 0)
         lightAlpha = 0;
