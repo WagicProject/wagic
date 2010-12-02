@@ -509,7 +509,7 @@ void GameStateMenu::Update(float dt)
             }
 
             //Reload list of unlocked sets, now that we know about the sets.
-            options.reloadProfile(false);
+            options.reloadProfile();
             genNbCardsStr();
             resetDirectory();
             //All major things have been loaded, resize the cache to use it as efficiently as possible

@@ -287,10 +287,8 @@ static glslFunctions g_glslfuncts;
 JQuad::JQuad(JTexture *tex, float x, float y, float width, float height)
 		:mTex(tex), mX(x), mY(y), mWidth(width), mHeight(height)
 {
-
 	JASSERT(tex != NULL);
-
-    JRenderer::TransferTextureToGLContext(*tex);
+    JRenderer::GetInstance()->TransferTextureToGLContext(*tex);
 
 	mHotSpotX = 0.0f;
 	mHotSpotY = 0.0f;
@@ -302,7 +300,6 @@ JQuad::JQuad(JTexture *tex, float x, float y, float width, float height)
 	mVFlipped = false;
 
 	SetTextureRect(x, y, width, height);
-
 }
 
 void JQuad::SetTextureRect(float x, float y, float w, float h)
@@ -316,7 +313,6 @@ void JQuad::SetTextureRect(float x, float y, float w, float h)
 	mTY0 = y/mTex->mTexHeight;
 	mTX1 = (x+w)/mTex->mTexWidth;
 	mTY1 = (y+h)/mTex->mTexHeight;
-
 }
 
 
@@ -350,16 +346,16 @@ JTexture::JTexture() : mBuffer(NULL)
 
 JTexture::~JTexture()
 {
-  checkGlError();
-        if (mTexId != (GLuint)-1)
-		glDeleteTextures(1, &mTexId);
-  checkGlError();
+    checkGlError();
+    if (mTexId != (GLuint)-1)
+        glDeleteTextures(1, &mTexId);
+    checkGlError();
 
-  if (mBuffer)
-  {
-      delete [] mBuffer;
-      mBuffer = NULL;
-  }
+    if (mBuffer)
+    {
+        delete [] mBuffer;
+        mBuffer = NULL;
+    }
 }
 
 
@@ -1669,7 +1665,7 @@ void JRenderer::TransferTextureToGLContext(JTexture& inTexture)
         checkGlError();
         glGenTextures(1, &texid);
         inTexture.mTexId = texid;
-        JRenderer::GetInstance()->mCurrentTex = texid;
+        mCurrentTex = texid;
 
         //    glError = glGetError();
 
@@ -1679,7 +1675,7 @@ void JRenderer::TransferTextureToGLContext(JTexture& inTexture)
             // OpenGL texture has (0,0) at lower-left
             // Pay attention when doing texture mapping!!!
 
-            glBindTexture(GL_TEXTURE_2D, inTexture.mTexId);    // Bind To The Texture ID
+            glBindTexture(GL_TEXTURE_2D, mCurrentTex);    // Bind To The Texture ID
 
             /* NOT USED
             if (mode == TEX_TYPE_MIPMAP)			// generate mipmaps
@@ -1750,10 +1746,6 @@ JTexture* JRenderer::LoadTexture(const char* filename, int mode, int TextureForm
         tex->mTexHeight = textureInfo.mTexHeight;
 
         tex->mBuffer = textureInfo.mBits;
-        GLuint texid;
-        //checkGlError();
-        glGenTextures(1, &texid);
-        tex->mTexId = texid;
     }
  
     return tex;

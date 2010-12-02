@@ -139,7 +139,7 @@ void GameStateOptions::Update(float dt)
             if (newProfile != "")
             {
                 options[Options::ACTIVE_PROFILE] = newProfile;
-                options.reloadProfile(false);
+                options.reloadProfile();
                 optionsTabs->Reload();
             }
             newProfile = "";
@@ -192,7 +192,7 @@ void GameStateOptions::Update(float dt)
         }
     if (mReload)
     {
-        options.reloadProfile(true);
+        options.reloadProfile();
         Translator::EndInstance();
         Translator::GetInstance()->init();
         optionsTabs->Reload();

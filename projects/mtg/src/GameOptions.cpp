@@ -635,12 +635,10 @@ string GameSettings::profileFile(string filename, string fallback, bool sanity, 
     return buf;
 }
 
-void GameSettings::reloadProfile(bool images)
+void GameSettings::reloadProfile()
 {
     SAFE_DELETE(profileOptions);
     checkProfile();
-    if (images)
-        WResourceManager::Instance()->Refresh(); //Update images
 }
 
 void GameSettings::checkProfile()

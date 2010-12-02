@@ -149,10 +149,11 @@ public:
     ** However, this doesn't work if you want to call LoadTexture in a separate worker thread, as 
     ** OpenGL has a limitation where only one thread can run the context. Now, the image loading/decompression
     ** happens in LoadTexture, and the JQuad constructor will complete the texture binding with this helper function.
+    **
+    ** On PSP, this is a no-op.
     */
-#if defined (WIN32) || defined (LINUX)
-    void static TransferTextureToGLContext(JTexture& inTexture);
-#endif
+    void TransferTextureToGLContext(JTexture& inTexture);
+
 	//////////////////////////////////////////////////////////////////////////
 	/// Create texture from memory on the fly.
 	///

@@ -248,7 +248,7 @@ public:
   //The sanity=false option returns the adjusted path even if the file doesn't exist.
   string profileFile(string filename="", string fallback="", bool sanity=false,bool relative=false);
 
-  void reloadProfile(bool images = true); //Reloads profile using current options[ACTIVE_PROFILE]
+  void reloadProfile(); //Reloads profile using current options[ACTIVE_PROFILE]
   void checkProfile();  //Confirms that a profile is loaded and contains a collection.
   void createUsersFirstDeck(int setId); 
 

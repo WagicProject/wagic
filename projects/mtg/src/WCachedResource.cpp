@@ -252,12 +252,14 @@ void WCachedTexture::Refresh()
     texture = NULL;
 
     if (!Attempt(mFilename, loadedMode, error))
-    SAFE_DELETE(texture);
+        SAFE_DELETE(texture);
 
     if (!texture)
         texture = old;
     else
         SAFE_DELETE(old);
+
+    JRenderer::GetInstance()->TransferTextureToGLContext(*texture);
 
     for (vector<WTrackedQuad*>::iterator it = trackedQuads.begin(); it != trackedQuads.end(); it++)
     {
