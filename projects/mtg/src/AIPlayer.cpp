@@ -458,12 +458,12 @@ int AIAction::getEfficiency()
 
         if (suggestion == BAKA_EFFECT_BAD && p != target->controller() && target->has(a->abilitygranted))
         {
-			efficiency += (15 * target->DangerRanking())/p->game->hand->nb_cards; 
+			efficiency += (25 * target->DangerRanking())/p->game->hand->nb_cards; 
 		}
 
 				if (!target->has(a->abilitygranted) && g->getCurrentGamePhase() == Constants::MTG_PHASE_COMBATBEGIN)
         {
-			efficiency += (15 * target->DangerRanking())/p->game->hand->nb_cards;
+			efficiency += (25 * target->DangerRanking())/p->game->hand->nb_cards;
 
         }
 
