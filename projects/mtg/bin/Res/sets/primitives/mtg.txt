@@ -5155,6 +5155,7 @@ name=Blackcleave Cliffs
 auto=aslongas(other land|myBattlefield) tap >2 oneshot 
 auto={T}:Add {B}
 auto={T}:Add {R}
+text=Blackcleave Cliffs enters the battlefield tapped unless you control two or fewer other lands. -- {T}: Add {B} or {R} to your mana pool.
 type=Land
 [/card]
 [card]
@@ -10795,6 +10796,7 @@ name=Copperline Gorge
 auto=aslongas(other land|myBattlefield) tap >2 oneshot 
 auto={T}:Add {R}
 auto={T}:Add {G}
+text=Copperline Gorge enters the battlefield tapped unless you control two or fewer other lands. -- {T}: Add {R} or {G} to your mana pool.
 type=Land
 [/card]
 [card]
@@ -12253,6 +12255,7 @@ name=Darkslick Shores
 auto=aslongas(other land|myBattlefield) tap >2 oneshot 
 auto={T}:Add {U}
 auto={T}:Add {B}
+text=Darkslick Shores enters the battlefield tapped unless you control two or fewer other lands. -- {T}: Add {U} or {B} to your mana pool.
 type=Land
 [/card]
 [card]
@@ -44040,6 +44043,7 @@ name=Razorverge Thicket
 auto=aslongas(other land|myBattlefield) tap >2 oneshot 
 auto={T}:Add {G}
 auto={T}:Add {W}
+text=Razorverge Thicket enters the battlefield tapped unless you control two or fewer other lands. -- {T}: Add {G} or {W} to your mana pool.
 type=Land
 [/card]
 [card]
@@ -47828,6 +47832,7 @@ name=Seachrome Coast
 auto=aslongas(other land|myBattlefield) tap >2 oneshot 
 auto={T}:Add {W}
 auto={T}:Add {U}
+text=Seachrome Coast enters the battlefield tapped unless you control two or fewer other lands. -- {T}: Add {W} or {U} to your mana pool.
 type=Land
 [/card]
 [card]
