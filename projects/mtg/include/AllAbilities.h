@@ -3212,6 +3212,7 @@ public:
     list<int> oldcolors;
     list<int> oldtypes;
     bool remove;
+		string menu;
 
     ATransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities);
     int addToGame();
@@ -3228,6 +3229,7 @@ public:
     list<int> abilities;
     list<int> types;
     list<int> colors;
+		string menu;
 
     AForeverTransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities);
     int addToGame();
@@ -3266,11 +3268,12 @@ public:
 class ASwapPTUEOT: public InstantAbility
 {
 public:
-    ASwapPT * ability;
-    ASwapPTUEOT(int id, MTGCardInstance * source, MTGCardInstance * target);
-    int resolve();
-    ASwapPTUEOT * clone() const;
-    ~ASwapPTUEOT();
+	ASwapPT * ability;
+	ASwapPTUEOT(int id, MTGCardInstance * source, MTGCardInstance * target);
+	int resolve();
+	const char * getMenuText();
+	ASwapPTUEOT * clone() const;
+	~ASwapPTUEOT();
 };
 
 //becomes ability

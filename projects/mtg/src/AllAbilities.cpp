@@ -630,6 +630,7 @@ AACloner::AACloner(int _id, MTGCardInstance * _source, MTGCardInstance * _target
         string abilitiesStringList) :
     ActivatedAbility(_id, _source, _cost, 0, 0), who(who)
 {
+	  aType = MTGAbility::CLONING;
     target = _target;
     source = _source;
     if ( abilitiesStringList.size() > 0 )
@@ -1459,6 +1460,8 @@ ATransformer::ATransformer(int id, MTGCardInstance * source, MTGCardInstance * t
     {
         PopulateSubtypesIndexVector(types, stypes);
     }
+
+		menu = stypes;
 }
 
 int ATransformer::addToGame()
@@ -1551,7 +1554,9 @@ int ATransformer::destroy()
 
 const char * ATransformer::getMenuText()
 {
-    return "Transform";
+    string s = menu;
+    sprintf(menuText, "Becomes %s", s.c_str());
+    return menuText;
 }
 
 ATransformer * ATransformer::clone() const
@@ -1576,6 +1581,7 @@ AForeverTransformer::AForeverTransformer(int id, MTGCardInstance * source, MTGCa
     PopulateAbilityIndexVector(abilities, sabilities);
     PopulateColorIndexVector(colors, sabilities);
     PopulateSubtypesIndexVector(types, stypes);
+	  menu = stypes;
 }
 
 int AForeverTransformer::addToGame()
@@ -1608,7 +1614,9 @@ int AForeverTransformer::addToGame()
 
 const char * AForeverTransformer::getMenuText()
 {
-    return "Transform";
+    string s = menu;
+    sprintf(menuText, "Becomes %s", s.c_str());
+    return menuText;
 }
 
 AForeverTransformer * AForeverTransformer::clone() const
@@ -1638,7 +1646,7 @@ int ATransformerUEOT::resolve()
 }
 const char * ATransformerUEOT::getMenuText()
 {
-    return "Transform";
+	return ability->getMenuText();
 }
 
 ATransformerUEOT * ATransformerUEOT::clone() const
@@ -1672,7 +1680,7 @@ int ATransformerFOREVER::resolve()
 
 const char * ATransformerFOREVER::getMenuText()
 {
-    return "Transform";
+	return ability->getMenuText();
 }
 
 ATransformerFOREVER * ATransformerFOREVER::clone() const
@@ -1703,6 +1711,11 @@ int ASwapPTUEOT::resolve()
     return 1;
 }
 
+const char * ASwapPTUEOT::getMenuText()
+{
+	return ability->getMenuText();
+}
+
 ASwapPTUEOT * ASwapPTUEOT::clone() const
 {
     ASwapPTUEOT * a = NEW ASwapPTUEOT(*this);
@@ -1726,6 +1739,7 @@ ABecomes::ABecomes(int id, MTGCardInstance * source, MTGCardInstance * target, s
     PopulateAbilityIndexVector(abilities, sabilities);
     PopulateColorIndexVector(colors, sabilities);
     PopulateSubtypesIndexVector(types, stypes);
+		menu = stypes;
 
 }
 int ABecomes::addToGame()

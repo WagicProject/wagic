@@ -499,6 +499,33 @@ int AIAction::getEfficiency()
 
         break;
     }
+		case MTGAbility::STANDARD_DRAW:
+		{
+			//adding this case since i played a few games where Ai litterally decided to mill himself to death. fastest and easiest win ever.
+			//this should help a little, tho ultimately it will be decided later what the best course of action is.
+			efficiency = 0;
+			//eff of drawing ability is calculated by base 20 + the amount of cards in library minus the amount of cards in hand times 7.
+			//drawing is never going to return a hundred eff because later eff is multiplied by 1.3 if no cards in hand.
+			efficiency = int(20 + p->game->library->nb_cards) - int(p->game->hand->nb_cards * 7);
+			if(p->game->hand->nb_cards > 8)//reduce by 20 if cards in hand are over 8, high chance ai cant play them.
+			{
+      efficiency -= 20;
+			}
+			if(a->nbcardAmount >= p->game->library->nb_cards)//if the amount im drawing will mill me to death, eff is 0;
+			{
+      efficiency = 0;
+			}
+			break;
+		}
+		case MTGAbility::CLONING:
+			{
+				efficiency = 0;
+				if (p == target->controller())
+				{
+					efficiency = 20 * target->DangerRanking();
+				}
+				break;
+			}
     case MTGAbility::MANA_PRODUCER:
         efficiency = 0;
         break;

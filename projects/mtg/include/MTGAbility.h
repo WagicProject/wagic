@@ -105,6 +105,7 @@ class MTGAbility: public ActionElement{
 		UNTAPPER = 22,
 		TAPPER = 23,
 		LIFER = 24,
+		CLONING = 25,
 
 
   };
