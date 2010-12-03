@@ -1960,7 +1960,7 @@ toughness=4
 [card]
 name=Aphetto Vulture
 abilities=flying
-auto=@movedTo(graveyard) from(this|battlefield):may moveto(mylibrary) target(zombie other|mygraveyard)
+auto=@movedTo(graveyard) from(this|battlefield):may moveto(mylibrary) target(other zombie|mygraveyard)
 text=Flying -- When Aphetto Vulture is put into a graveyard from the battlefield, you may put target Zombie card from your graveyard on top of your library.
 mana={4}{B}{B}
 type=Creature
@@ -2621,16 +2621,16 @@ type=Artifact
 [/card]
 [card]
 name=Armament Master
-auto=this(gear = 1) lord(creature[kor]|myBattlefield) 2/2 other
-auto=this(gear = 2) lord(creature[kor]|myBattlefield) 4/4 other
-auto=this(gear = 3) lord(creature[kor]|myBattlefield) 6/6 other
-auto=this(gear = 4) lord(creature[kor]|myBattlefield) 8/8 other
-auto=this(gear = 5) lord(creature[kor]|myBattlefield) 10/10 other
-auto=this(gear = 6) lord(creature[kor]|myBattlefield) 12/12 other
-auto=this(gear = 7) lord(creature[kor]|myBattlefield) 14/14 other
-auto=this(gear = 8) lord(creature[kor]|myBattlefield) 16/16 other
-auto=this(gear = 9) lord(creature[kor]|myBattlefield) 18/18 other
-auto=this(gear = 10) lord(creature[kor]|myBattlefield) 20/20 other
+auto=this(gear = 1) lord(other creature[kor]|myBattlefield) 2/2
+auto=this(gear = 2) lord(other creature[kor]|myBattlefield) 4/4
+auto=this(gear = 3) lord(other creature[kor]|myBattlefield) 6/6
+auto=this(gear = 4) lord(other creature[kor]|myBattlefield) 8/8
+auto=this(gear = 5) lord(other creature[kor]|myBattlefield) 10/10
+auto=this(gear = 6) lord(other creature[kor]|myBattlefield) 12/12
+auto=this(gear = 7) lord(other creature[kor]|myBattlefield) 14/14
+auto=this(gear = 8) lord(other creature[kor]|myBattlefield) 16/16
+auto=this(gear = 9) lord(other creature[kor]|myBattlefield) 18/18
+auto=this(gear = 10) lord(other creature[kor]|myBattlefield) 20/20
 text=Other Kor creatures you control get +2/+2 for each Equipment attached to Armament Master.
 mana={W}{W}
 type=Creature
@@ -2841,7 +2841,7 @@ type=Enchantment
 [card]
 name=Ascendant Evincar
 abilities=flying
-auto=lord(creature[black]) 1/1 other
+auto=lord(other creature[black]) 1/1
 auto=lord(creature[-black]) -1/-1
 text=Flying (This creature can't be blocked except by creatures with flying or reach.) -- Other black creatures get +1/+1. -- Nonblack creatures get -1/-1.
 mana={4}{B}{B}
@@ -3358,8 +3358,8 @@ toughness=2
 [card]
 name=Aven Brigadier
 abilities=flying
-auto=lord(soldier) 1/1 other
-auto=lord(bird) 1/1 other
+auto=lord(other soldier) 1/1
+auto=lord(other bird) 1/1
 text=Flying -- Other Bird creatures get +1/+1. -- Other Soldier creatures get +1/+1.
 mana={3}{W}{W}{W}
 type=Creature
@@ -3966,7 +3966,7 @@ toughness=2
 [/card]
 [card]
 name=Balthor the Stout
-auto=lord(barbarian)1/1 other
+auto=lord(other barbarian)1/1
 auto={R}:1/0 target(other barbarian)
 text=Other Barbarian creatures get +1/+1. -- {R}: Another target Barbarian creature gets +1/+0 until end of turn.
 mana={1}{R}{R}
@@ -5374,7 +5374,7 @@ toughness=3
 [/card]
 [card]
 name=Blessed Orator
-auto=lord(creature|myBattlefield) 0/1 other
+auto=lord(other creature|myBattlefield) 0/1
 text=Other creatures you control get +0/+1.
 mana={3}{W}
 type=Creature
@@ -6042,8 +6042,8 @@ toughness=3
 [card]
 name=Boartusk Liege
 abilities=trample
-auto=lord(creature[red]|myBattlefield) 1/1 other
-auto=lord(creature[green]|myBattlefield) 1/1 other
+auto=lord(other creature[red]|myBattlefield) 1/1
+auto=lord(other creature[green]|myBattlefield) 1/1
 text=Trample -- Other red creatures you control get +1/+1. -- Other green creatures you control get +1/+1.
 mana={1}{RG}{RG}{RG}
 type=Creature
@@ -6505,7 +6505,7 @@ toughness=6
 [card]
 name=Borderland Behemoth
 abilities=trample
-auto=foreach(giant|myBattlefield) 4/4 other
+auto=foreach(other giant|myBattlefield) 4/4
 text=Trample -- Borderland Behemoth gets +4/+4 for each other Giant you control.
 mana={5}{R}{R}
 type=Creature
@@ -7985,8 +7985,8 @@ toughness=2
 [card]
 name=Captain of the Watch
 abilities=vigilance
-auto=lord(soldier|myBattlefield) 1/1 other
-auto=lord(soldier|myBattlefield) vigilance other
+auto=lord(other soldier|myBattlefield) 1/1
+auto=lord(other soldier|myBattlefield) vigilance
 auto=token(Soldier,Creature Soldier,1/1,white)*3
 text=Vigilance (Attacking doesn't cause this creature to tap.) -- Other Soldier creatures you control get +1/+1 and have vigilance. -- When Captain of the Watch enters the battlefield, put three 1/1 white Soldier creature tokens onto the battlefield.
 mana={4}{W}{W}
@@ -8600,7 +8600,7 @@ toughness=5
 [/card]
 [card]
 name=Cemetery Reaper
-auto=lord(zombie|myBattlefield) 1/1 other
+auto=lord(other zombie|myBattlefield) 1/1
 auto={2}{B}{T}:moveTo(Exile) target(creature|graveyard) && token(Zombie,Creature Zombie,2/2,black)
 text=Other Zombie creatures you control get +1/+1. -- {2}{B}, {T}: Exile target creature card from a graveyard. Put a 2/2 black Zombie creature token onto the battlefield.
 mana={1}{B}{B}
@@ -11287,8 +11287,8 @@ toughness=3
 [/card]
 [card]
 name=Creakwood Liege
-auto=lord(creature[black]|myBattlefield) 1/1 other
-auto=lord(creature[green]|myBattlefield) 1/1 other
+auto=lord(other creature[black]|myBattlefield) 1/1
+auto=lord(other creature[green]|myBattlefield) 1/1
 auto=@each my upkeep:may token(Worm,Worm Creature, 1/1,green black)
 text=Other black creatures you control get +1/+1. -- Other green creatures you control get +1/+1. -- At the beginning of your upkeep, you may put a 1/1 black and green Worm creature token onto the battlefield.
 mana={1}{BG}{BG}{BG}
@@ -11496,7 +11496,7 @@ type=Enchantment
 [/card]
 [card]
 name=Crovax, Ascendant Hero
-auto=lord(creature[white]) 1/1 other
+auto=lord(other creature[white]) 1/1
 auto=lord(creature[-white]) -1/-1
 auto={L}{L}:moveTo(ownerhand)
 text=Other white creatures get +1/+1. -- Nonwhite creatures get -1/-1. -- Pay 2 life: Return Crovax, Ascendant Hero to its owner's hand.
@@ -12439,7 +12439,7 @@ toughness=1
 name=Dauntless Dourbark
 auto=foreach(forest|myBattlefield) 1/1
 auto=foreach(treefolk|myBattlefield) 1/1
-auto=aslongas(treefolk|myBattlefield) trample other
+auto=aslongas(other treefolk|myBattlefield) trample
 text=Dauntless Dourbark's power and toughness are each equal to the number of Forests you control plus the number of Treefolk you control. -- Dauntless Dourbark has trample as long as you control another Treefolk.
 mana={3}{G}
 type=Creature
@@ -12727,8 +12727,8 @@ toughness=7
 name=Death Baron
 auto=lord(skeleton|myBattlefield) 1/1
 auto=lord(skeleton|myBattlefield) deathtouch
-auto=lord(zombie|myBattlefield) 1/1 other
-auto=lord(zombie|myBattlefield) deathtouch other
+auto=lord(other zombie|myBattlefield) 1/1
+auto=lord(other zombie|myBattlefield) deathtouch
 text=Skeleton creatures you control and other Zombie creatures you control get +1/+1 and have deathtouch.
 mana={1}{B}{B}
 type=Creature
@@ -12846,8 +12846,8 @@ toughness=13
 [/card]
 [card]
 name=Deathbringer Liege
-auto=lord(creature[black]|myBattlefield) 1/1 other
-auto=lord(creature[white]|myBattlefield) 1/1 other
+auto=lord(other creature[black]|myBattlefield) 1/1
+auto=lord(other creature[white]|myBattlefield) 1/1
 auto=@movedto(*[black]|mystack):may destroy target(creature[tapped])
 auto=@movedto(*[white]|mystack):may tap target(creature)
 text=Other white creatures you control get +1/+1. -- Other black creatures you control get +1/+1. -- Whenever you cast a white spell, you may tap target creature. -- Whenever you cast a black spell, you may destroy target creature if it's tapped.
@@ -15890,8 +15890,8 @@ type=Enchantment
 [/card]
 [card]
 name=Eladamri, Lord of Leaves
-auto=lord(elf) forestwalk other
-auto=lord(elf) shroud other
+auto=lord(other elf) forestwalk
+auto=lord(other elf) shroud
 text=Other Elf creatures have forestwalk. -- Other Elves have shroud. (They can't be the targets of spells or abilities.)
 mana={G}{G}
 type=Legendary Creature
@@ -16200,7 +16200,7 @@ toughness=5
 [/card]
 [card]
 name=Elvish Archdruid
-auto=lord(elf|myBattlefield) 1/1 other
+auto=lord(other elf|myBattlefield) 1/1
 auto={T}:foreach(elf|mybattlefield) add{G}
 text=Other Elf creatures you control get +1/+1. -- {T}: Add {G} to your mana pool for each Elf you control.
 mana={1}{G}{G}
@@ -16231,8 +16231,8 @@ toughness=1
 [/card]
 [card]
 name=Elvish Champion
-auto=lord(elf) 1/1 other
-auto=lord(elf) forestwalk other
+auto=lord(other elf) 1/1
+auto=lord(other elf) forestwalk
 text=Other Elf creatures get +1/+1 and have forestwalk. (They're unblockable as long as defending player controls a Forest.)
 mana={1}{G}{G}
 type=Creature
@@ -18512,7 +18512,7 @@ type=Enchantment
 [card]
 name=Festercreep
 auto=counter(1/1,1)
-auto={1}{B}{C(1/1,-1)}:lord(creature) -1/-1 other
+auto={1}{B}{C(1/1,-1)}:all(other creature) -1/-1 ueot
 text=Festercreep enters the battlefield with a +1/+1 counter on it. -- {1}{B}, Remove a +1/+1 counter from Festercreep: All other creatures get -1/-1 until end of turn.
 mana={1}{B}
 type=Creature
@@ -18611,8 +18611,8 @@ toughness=3
 [/card]
 [card]
 name=Field Marshal
-auto=lord(soldier) 1/1 other
-auto=lord(soldier) first strike other
+auto=lord(other soldier) 1/1
+auto=lord(other soldier) first strike
 text=Other Soldier creatures get +1/+1 and have first strike. (They deal combat damage before creatures without first strike.)
 mana={1}{W}{W}
 type=Creature
@@ -18768,7 +18768,7 @@ type=Sorcery
 [/card]
 [card]
 name=Fire Ants
-auto={T}:damage:1 all(creature[-flying]) other
+auto={T}:damage:1 all(other creature[-flying])
 text={T}: Fire Ants deals 1 damage to each other creature without flying.
 mana={2}{R}
 type=Creature
@@ -21822,8 +21822,8 @@ toughness=2
 [card]
 name=Glen Elendra Liege
 abilities=flying
-auto=lord(creature[blue]|myinplay) 1/1 other
-auto=lord(creature[black]|myinplay) 1/1 other
+auto=lord(other creature[blue]|myinplay) 1/1
+auto=lord(other creature[black]|myinplay) 1/1
 text=Flying -- Other blue creatures you control get +1/+1. -- Other black creatures you control get +1/+1.
 mana={1}{UB}{UB}{UB}
 type=Creature
@@ -22213,8 +22213,8 @@ toughness=2
 [card]
 name=Goblin Chieftain
 abilities=haste
-auto=lord(goblin|myBattlefield) 1/1 other
-auto=lord(goblin|myBattlefield) haste other
+auto=lord(other goblin|myBattlefield) 1/1
+auto=lord(other goblin|myBattlefield) haste
 text=Haste (This creature can attack and {T} as soon as it comes under your control.) -- Other Goblin creatures you control get +1/+1 and have haste.
 mana={1}{R}{R}
 type=Creature
@@ -22396,8 +22396,8 @@ toughness=2
 [/card]
 [card]
 name=Goblin King
-auto=lord(goblin) 1/1 other
-auto=lord(goblin) mountainwalk other
+auto=lord(other goblin) 1/1
+auto=lord(other goblin) mountainwalk
 text=Other Goblin creatures get +1/+1 and have mountainwalk. (They're unblockable as long as defending player controls a Mountain.)
 mana={1}{R}{R}
 type=Creature
@@ -26882,7 +26882,7 @@ toughness=1
 [/card]
 [card]
 name=Imperious Perfect
-auto=lord(elf|myBattlefield) 1/1 other
+auto=lord(other elf|myBattlefield) 1/1
 auto={G}{T}:token(Elf Warrior,creature Elf Warrior,1/1,green)
 text=Other Elf creatures you control get +1/+1. -- {G}, {T}: Put a 1/1 green Elf Warrior creature token onto the battlefield.
 mana={2}{G}
@@ -28684,9 +28684,9 @@ type=Land
 [card]
 name=Kabira Vindicator
 auto={2}{W}:counter(0/0,1,Level) asSorcery 
-auto=this(counter{0/0.2.Level}) lord(creature|myBattlefield) 1/1 other
+auto=this(counter{0/0.2.Level}) lord(other creature|myBattlefield) 1/1
 auto=this(counter{0/0.2.Level}) 1/2
-auto=this(counter{0/0.5.Level}) lord(creature|myBattlefield) 1/1 other
+auto=this(counter{0/0.5.Level}) lord(other creature|myBattlefield) 1/1
 auto=this(counter{0/0.5.Level}) 1/2
 auto=maxlevel:5
 text=Level up {2}{W} -- [Level 2-4] Other creatures you control get +1/+1. (3/6) -- [Level 5+] Other creatures you control get +1/+1. (4/8)
@@ -29045,7 +29045,7 @@ name=Karrthus, Tyrant of Jund
 abilities=flying,haste
 auto=moveTo(myBattlefield) all(dragon)
 auto=untap all(dragon)
-auto=lord(dragon|myBattlefield) haste other
+auto=lord(other dragon|myBattlefield) haste
 text=Flying, haste -- When Karrthus, Tyrant of Jund enters the battlefield, gain control of all Dragons, then untap all Dragons. -- Other Dragon creatures you control have haste.
 mana={4}{B}{R}{G}
 type=Legendary Creature
@@ -30272,8 +30272,8 @@ toughness=1
 [/card]
 [card]
 name=Kobold Drill Sergeant
-auto=lord(kobold|myBattlefield) 0/1 other
-auto=lord(kobold|myBattlefield) trample other
+auto=lord(other kobold|myBattlefield) 0/1
+auto=lord(other kobold|myBattlefield) trample
 text=Other Kobold creatures you control get +0/+1 and have trample.
 mana={1}{R}
 type=Creature
@@ -30293,7 +30293,7 @@ toughness=2
 [/card]
 [card]
 name=Kobold Taskmaster
-auto=lord(kobold|myBattlefield) 1/0 other
+auto=lord(other kobold|myBattlefield) 1/0
 text=Other Kobold creatures you control get +1/+0.
 mana={1}{R}
 type=Creature
@@ -30323,8 +30323,8 @@ toughness=4
 [/card]
 [card]
 name=Kodama of the South Tree
-auto=@movedTo(arcane,spirit|mystack):lord(creature|myBattlefield) 1/1 other ueot
-auto=@movedTo(arcane,spirit|mystack):lord(creature|myBattlefield) trample other ueot
+auto=@movedTo(arcane,spirit|mystack):lord(other creature|myBattlefield) 1/1 ueot
+auto=@movedTo(other arcane,spirit|mystack):lord(creature|myBattlefield) trample ueot
 text=Whenever you cast a Spirit or Arcane spell, each other creature you control gets +1/+1 and gains trample until end of turn.
 mana={2}{G}{G}
 type=Legendary Creature
@@ -30379,7 +30379,7 @@ toughness=4
 [/card]
 [card]
 name=Kongming, "Sleeping Dragon"
-auto=lord(creature|myBattlefield) 1/1 other
+auto=lord(other creature|myBattlefield) 1/1
 text=Other creatures you control get +1/+1.
 mana={2}{W}{W}
 type=Legendary Creature
@@ -32530,8 +32530,8 @@ toughness=3
 [/card]
 [card]
 name=Lord of Atlantis
-auto=lord(merfolk) 1/1 other
-auto=lord(merfolk) islandwalk other
+auto=lord(other merfolk) 1/1
+auto=lord(other merfolk) islandwalk
 text=Other Merfolk creatures get +1/+1 and have islandwalk.
 mana={U}{U}
 type=Creature
@@ -32576,7 +32576,7 @@ toughness=7
 [/card]
 [card]
 name=Lord of the Undead
-auto=lord(zombie) 1/1 other
+auto=lord(other zombie) 1/1
 auto={1}{B}{T}:moveTo(myhand) target(zombie|mygraveyard)
 text=Other Zombie creatures get +1/+1. -- {1}{B}, {T}: Return target Zombie card from your graveyard to your hand.
 mana={1}{B}{B}
@@ -33073,7 +33073,7 @@ toughness=4
 [/card]
 [card]
 name=Mad Auntie
-auto=lord(goblin|myBattlefield) 1/1 other
+auto=lord(other goblin|myBattlefield) 1/1
 auto={T}:regenerate target(other goblin)
 text=Other Goblin creatures you control get +1/+1. -- {T}: Regenerate another target Goblin.
 mana={2}{B}
@@ -34126,7 +34126,7 @@ toughness=4
 [/card]
 [card]
 name=Master of Etherium
-auto=lord(creature[artifact]|mybattlefield) 1/1 other
+auto=lord(other creature[artifact]|mybattlefield) 1/1
 auto=foreach(artifact|mybattlefield) 1/1
 text=Master of Etherium's power and toughness are each equal to the number of artifacts you control. -- Other artifact creatures you control get +1/+1.
 mana={2}{U}
@@ -34251,7 +34251,7 @@ toughness=3
 name=Measure of Wickedness
 auto=@next my endofturn:bury
 auto=@next my endofturn:life:-8 controller
-auto=@movedto(* other|graveyard) from(exile,library,graveyard,hand,battlefield):moveto(opponentBattlefield)
+auto=@movedto(other *|graveyard) from(exile,library,graveyard,hand,battlefield):moveto(opponentBattlefield)
 text=At the beginning of your end step, sacrifice Measure of Wickedness and you lose 8 life. -- Whenever another card is put into your graveyard from anywhere, target opponent gains control of Measure of Wickedness.
 mana={3}{B}
 type=Enchantment
@@ -34368,7 +34368,7 @@ toughness=5
 [/card]
 [card]
 name=Meng Huo, Barbarian King
-auto=lord(creature[green]|myBattlefield) 1/1 other
+auto=lord(other creature[green]|myBattlefield) 1/1
 text=Other green creatures you control get +1/+1.
 mana={3}{G}{G}
 type=Legendary Creature
@@ -34560,8 +34560,8 @@ toughness=3
 [/card]
 [card]
 name=Merfolk Sovereign
-auto=lord(merfolk|myBattlefield) 1/1 other
-auto={T}:unblockable target(merfolk) other
+auto=lord(other merfolk|myBattlefield) 1/1
+auto={T}:unblockable target(other merfolk)
 text=Other Merfolk creatures you control get +1/+1. -- {T}: Target Merfolk creature is unblockable this turn.
 mana={1}{U}{U}
 type=Creature
@@ -35064,8 +35064,8 @@ toughness=2
 [/card]
 [card]
 name=Mindwrack Liege
-auto=lord(creature[blue]|myBattlefield) 1/1 other
-auto=lord(creature[red]|myBattlefield) 1/1 other
+auto=lord(other creature[blue]|myBattlefield) 1/1
+auto=lord(other creature[red]|myBattlefield) 1/1
 auto={UR}{UR}{UR}{UR}:moveTo(myBattlefield) target(creature[blue;red]|myhand)
 text=Other blue creatures you control get +1/+1. -- Other red creatures you control get +1/+1. -- {(u/r){(u/r){(u/r){(u/r)}: You may put a blue or red creature card from your hand onto the battlefield.
 mana={3}{UR}{UR}{UR}
@@ -35575,7 +35575,7 @@ toughness=1
 [/card]
 [card]
 name=Mogg Squad
-auto=foreach(creature|battlefield) -1/-1 other
+auto=foreach(other creature|battlefield) -1/-1
 text=Mogg Squad gets -1/-1 for each other creature on the battlefield.
 mana={1}{R}
 type=Creature
@@ -36480,8 +36480,8 @@ toughness=2
 [card]
 name=Murkfiend Liege
 auto=@each opponent untap:untap all(creature[green;blue]|mybattlefield)
-auto=lord(creature[green]|myBattlefield) 1/1 other
-auto=lord(creature[blue]|myBattlefield) 1/1 other
+auto=lord(other creature[green]|myBattlefield) 1/1
+auto=lord(other creature[blue]|myBattlefield) 1/1
 text=Other green creatures you control get +1/+1. -- Other blue creatures you control get +1/+1. -- Untap all green and/or blue creatures you control during each other player's untap step.
 mana={2}{GU}{GU}{GU}
 type=Creature
@@ -38373,8 +38373,8 @@ type=Land
 [card]
 name=Oathsworn Giant
 abilities=vigilance
-auto=lord(creature|myBattlefield) 0/2 other
-auto=lord(creature|myBattlefield) vigilance other
+auto=lord(other creature|myBattlefield) 0/2
+auto=lord(other creature|myBattlefield) vigilance
 text=Vigilance -- Other creatures you control get +0/+2 and have vigilance.
 mana={4}{W}{W}
 type=Creature
@@ -39001,8 +39001,8 @@ type=Artifact
 [/card]
 [card]
 name=Orc General
-auto={T}{S(orc other|myBattlefield)}:lord(orc) 1/1 other
-auto={T}{S(goblin|myBattlefield)}:lord(orc) 1/1 other
+auto={T}{S(other orc other|myBattlefield)}:lord(orc) 1/1
+auto={T}{S(other goblin|myBattlefield)}:lord(orc) 1/1
 text={T}, Sacrifice another Orc or Goblin: Other Orc creatures get +1/+1 until end of turn.
 mana={2}{R}
 type=Creature
@@ -42254,7 +42254,7 @@ subtype=Aura
 [/card]
 [card]
 name=Privileged Position
-auto=lord(*|mybattlefield) opponentshroud other
+auto=lord(other *|mybattlefield) opponentshroud
 text=({(g/w)} can be paid with either {G} or {W}.) -- Other permanents you control can't be the targets of spells or abilities your opponents control.
 mana={2}{GW}{GW}{GW}
 type=Enchantment
@@ -44074,7 +44074,7 @@ type=Sorcery
 [/card]
 [card]
 name=Reaper King
-auto=lord(creature[scarecrow]|myBattlefield) 1/1 other
+auto=lord(other creature[scarecrow]|myBattlefield) 1/1
 auto=@movedTo(other scarecrow|myBattlefield):destroy target(*)
 text=({(2/w)} can be paid with any two mana or with {W}. This card's converted mana cost is 10.) -- Other Scarecrow creatures you control get +1/+1. -- Whenever another Scarecrow enters the battlefield under your control, destroy target permanent.
 mana={2W}{2U}{2B}{2R}{2G}
@@ -44470,7 +44470,7 @@ type=Sorcery
 [/card]
 [card]
 name=Relentless Rats
-auto=foreach(relentless rats) 1/1 other
+auto=foreach(other relentless rats) 1/1
 text=Relentless Rats gets +1/+1 for each other creature on the battlefield named Relentless Rats. -- A deck can have any number of cards named Relentless Rats.
 mana={1}{B}{B}
 type=Creature
@@ -45062,7 +45062,7 @@ toughness=4
 [card]
 name=Rhox Pikemaster
 abilities=first strike
-auto=lord(soldiers|mybattlefield) first strike other
+auto=lord(other soldiers|mybattlefield) first strike
 text=First strike (This creature deals combat damage before creatures without first strike.) -- Other Soldier creatures you control have first strike.
 mana={2}{W}{W}
 type=Creature
@@ -46356,7 +46356,7 @@ toughness=3
 [/card]
 [card]
 name=Sachi, Daughter of Seshiro
-auto=lord(snake|mybattlefield) 0/1 other
+auto=lord(other snake|mybattlefield) 0/1
 auto=lord(shaman|mybattlefield) {T}:Add{G}{G}
 text=Other Snake creatures you control get +0/+1. -- Shamans you control have "{T}: Add {G}{G} to your mana pool."
 mana={2}{G}{G}
@@ -47387,8 +47387,8 @@ toughness=6
 [card]
 name=Scion of Oona
 abilities=flash,flying
-auto=lord(faerie|myBattlefield) 1/1 other
-auto=lord(faerie|myBattlefield) shroud other
+auto=lord(other faerie|myBattlefield) 1/1
+auto=lord(other faerie|myBattlefield) shroud
 text=Flash -- Flying -- Other Faerie creatures you control get +1/+1. -- Other Faeries you control have shroud. (A permanent with shroud can't be the target of spells or abilities.)
 mana={2}{U}
 type=Creature
@@ -48655,7 +48655,7 @@ toughness=3
 [/card]
 [card]
 name=Seshiro the Anointed
-auto=lord(snake|myBattlefield) 2/2 other
+auto=lord(other snake|myBattlefield) 2/2
 auto=@damaged(player) from(snake|myBattlefield):may draw:1 controller
 text=Other Snake creatures you control get +2/+2. -- Whenever a Snake you control deals combat damage to a player, you may draw a card.
 mana={4}{G}{G}
@@ -49512,7 +49512,7 @@ toughness=1
 [card]
 name=Shrieking Mogg
 abilities=haste
-auto=tap all(creature) other
+auto=tap all(other creature)
 text=Haste -- When Shrieking Mogg enters the battlefield, tap all other creatures.
 mana={1}{R}
 type=Creature
@@ -53863,7 +53863,7 @@ toughness=4
 [card]
 name=Steelclad Serpent
 abilities=cantattack
-auto=aslongas(artifact|myBattlefield) other -cantattack
+auto=aslongas(artifact|myBattlefield) -cantattack >1
 text=Steelclad Serpent can't attack unless you control another artifact.
 mana={5}{U}
 type=Artifact Creature
@@ -57730,7 +57730,7 @@ type=Instant
 name=Tidal Kraken
 abilities=unblockable
 text=Tidal Kraken is unblockable.
-mana={5}{U}{U}{U}
+mana={5}{u}{u}{u}
 type=Creature
 subtype=Kraken
 power=6
