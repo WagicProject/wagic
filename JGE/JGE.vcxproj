@@ -338,6 +338,7 @@
     <ClCompile Include="src\tinyxml\tinyxmlparser.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\DebugRoutines.h" />
     <ClInclude Include="include\decoder_prx.h" />
     <ClInclude Include="include\Encoding.h" />
     <ClInclude Include="include\JAnimator.h" />
