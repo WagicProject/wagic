@@ -18,20 +18,17 @@ AIMomirPlayer::AIMomirPlayer(MTGDeck * deck, string file, string fileSmall, stri
 int AIMomirPlayer::getEfficiency(AIAction * action)
 {
     MTGAbility * ability = action->ability;
-    if (ability->cost && !(ability->cost->isExtraPaymentSet()))
-        return 0; //Does not handle abilities with sacrifice yet
+    if (ability->cost && !(ability->cost->isExtraPaymentSet())) return 0; //Does not handle abilities with sacrifice yet
     int efficiency = AIPlayerBaka::getEfficiency(action);
 
     GameObserver * g = GameObserver::GetInstance();
-    if (g->getCurrentGamePhase() < Constants::MTG_PHASE_FIRSTMAIN)
-        return 0;
+    if (g->getCurrentGamePhase() < Constants::MTG_PHASE_FIRSTMAIN) return 0;
     return efficiency;
 }
 
 MTGAbility * AIMomirPlayer::getMomirAbility()
 {
-    if (momirAbility)
-        return momirAbility;
+    if (momirAbility) return momirAbility;
 
     GameObserver * g = GameObserver::GetInstance();
     momirAbility = g->mLayers->actionLayer()->getAbility(MTGAbility::MOMIR);
@@ -40,8 +37,7 @@ MTGAbility * AIMomirPlayer::getMomirAbility()
 
 int AIMomirPlayer::momir()
 {
-    if (!game->hand->nb_cards)
-        return 0; //nothing to discard :/
+    if (!game->hand->nb_cards) return 0; //nothing to discard :/
     int result = 0;
     int opponentCreatures = getCreaturesInfo(opponent(), INFO_NBCREATURES);
     int myCreatures = getCreaturesInfo(this, INFO_NBCREATURES );
@@ -50,14 +46,10 @@ int AIMomirPlayer::momir()
     SAFE_DELETE(potentialMana);
     int efficiency = 100;
     int chance = 1 + (WRand() % 100);
-    if (converted == 5 && myCreatures > opponentCreatures && game->hand->nb_cards < 4)
-        efficiency = 5; //Strategy: skip 5 drop
-    if (converted == 7 && myCreatures > opponentCreatures && game->hand->nb_cards < 2)
-        efficiency = 50; //Strategy: 7 drops have bad upkeep costs and the AI doesn't handle those right now...
-    if (converted > 8)
-        converted = 8;
-    if (converted == 8)
-        efficiency = 100 - (myCreatures - opponentCreatures);
+    if (converted == 5 && myCreatures > opponentCreatures && game->hand->nb_cards < 4) efficiency = 5; //Strategy: skip 5 drop
+    if (converted == 7 && myCreatures > opponentCreatures && game->hand->nb_cards < 2) efficiency = 50; //Strategy: 7 drops have bad upkeep costs and the AI doesn't handle those right now...
+    if (converted > 8) converted = 8;
+    if (converted == 8) efficiency = 100 - (myCreatures - opponentCreatures);
 
     if (efficiency >= chance)
     {
@@ -88,18 +80,16 @@ int AIMomirPlayer::computeActions()
      */
     GameObserver * g = GameObserver::GetInstance();
     Player * p = g->currentPlayer;
-    if (!(g->currentlyActing() == this))
-        return 0;
-    if (chooseTarget())
-        return 1;
+    if (!(g->currentlyActing() == this)) return 0;
+    if (chooseTarget()) return 1;
     int currentGamePhase = g->getCurrentGamePhase();
     if (g->isInterrupting == this)
     { // interrupting
-		  if(!findingAbility)
-		  {
-	    AIPlayer::findingAbility = true;
-      selectAbility();
-			}
+        if (!findingAbility)
+        {
+            AIPlayer::findingAbility = true;
+            selectAbility();
+        }
         return 1;
     }
     else if (p == this && g->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0)
@@ -133,11 +123,11 @@ int AIMomirPlayer::computeActions()
             break;
         }
         case Constants::MTG_PHASE_SECONDMAIN:
-				if(!findingAbility)
-				{
-		    AIPlayer::findingAbility = true;
-        selectAbility();
-			  }
+            if (!findingAbility)
+            {
+                AIPlayer::findingAbility = true;
+                selectAbility();
+            }
             return 1;
             break;
         default:

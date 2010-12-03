@@ -23,15 +23,13 @@ int AIAction::Act()
     if (ability)
     {
         g->mLayers->actionLayer()->reactToClick(ability, click);
-        if (target)
-            g->cardClick(target);
+        if (target) g->cardClick(target);
         return 1;
     }
     else if (click)
     { //Shouldn't be used, really...
         g->cardClick(click, click);
-        if (target)
-            g->cardClick(target);
+        if (target) g->cardClick(target);
         return 1;
     }
     return 0;
@@ -78,15 +76,13 @@ MTGCardInstance * AIPlayer::chooseCard(TargetChooser * tc, MTGCardInstance * sou
 int AIPlayer::Act(float dt)
 {
     GameObserver * gameObs = GameObserver::GetInstance();
-    if (gameObs->currentPlayer == this)
-        gameObs->userRequestNextGamePhase();
+    if (gameObs->currentPlayer == this) gameObs->userRequestNextGamePhase();
     return 1;
 }
 
 void AIPlayer::tapLandsForMana(ManaCost * cost, MTGCardInstance * target)
 {
-    if (!cost)
-        return; DebugTrace(" AI tapping land for mana");
+    if (!cost) return;DebugTrace(" AI tapping land for mana");
 
     ManaCost * pMana = getPotentialMana(target);
     ManaCost * diff = pMana->Diff(cost);
@@ -102,8 +98,7 @@ void AIPlayer::tapLandsForMana(ManaCost * cost, MTGCardInstance * target)
         if (amp && canHandleCost(amp))
         {
             MTGCardInstance * card = amp->source;
-            if (card == target)
-                used[card] = true; //http://code.google.com/p/wagic/issues/detail?id=76
+            if (card == target) used[card] = true; //http://code.google.com/p/wagic/issues/detail?id=76
             if (!used[card] && amp->isReactingToClick(card) && amp->output->getConvertedCost() == 1)
             {
                 used[card] = true;
@@ -142,16 +137,15 @@ ManaCost * AIPlayer::getPotentialMana(MTGCardInstance * target)
         if (amp && canHandleCost(amp))
         {
             MTGCardInstance * card = amp->source;
-            if (card == target)
-                used[card] = true; //http://code.google.com/p/wagic/issues/detail?id=76
+            if (card == target) used[card] = true; //http://code.google.com/p/wagic/issues/detail?id=76
             if (!used[card] && amp->isReactingToClick(card) && amp->output->getConvertedCost() == 1)
             {
                 result->add(amp->output);
                 used[card] = true;
             }
         }
-		}
-		result->add(this->getManaPool());
+    }
+    result->add(this->getManaPool());
     return result;
 }
 
@@ -159,8 +153,6 @@ int AIPlayer::getEfficiency(AIAction * action)
 {
     return action->getEfficiency();
 }
-
-
 
 //Can't yet handle extraCost objects (ex: sacrifice) if they require a target :(
 int AIPlayer::CanHandleCost(ManaCost * cost)
@@ -173,9 +165,9 @@ int AIPlayer::CanHandleCost(ManaCost * cost)
     for (size_t i = 0; i < ec->costs.size(); ++i)
     {
         if (ec->costs[i]->tc)
-				{
+        {
             return 0;
-				}
+        }
     }
     return 1;
 }
@@ -190,15 +182,12 @@ int AIPlayer::canHandleCost(MTGAbility * ability)
 int AIAction::getEfficiency()
 {
     //TODO add multiplier according to what the player wants
-    if (efficiency != -1)
-        return efficiency;
-    if (!ability)
-        return 0;
+    if (efficiency != -1) return efficiency;
+    if (!ability) return 0;
     GameObserver * g = GameObserver::GetInstance();
     ActionStack * s = g->mLayers->stackLayer();
     Player * p = g->currentlyActing();
-    if (s->has(ability))
-        return 0;
+    if (s->has(ability)) return 0;
 
     MTGAbility * a = AbilityFactory::getCoreAbility(ability);
 
@@ -208,8 +197,7 @@ int AIAction::getEfficiency()
         return 0;
     }
 
-    if (!((AIPlayer *) p)->canHandleCost(ability))
-        return 0;
+    if (!((AIPlayer *) p)->canHandleCost(ability)) return 0;
     switch (a->aType)
     {
     case MTGAbility::DAMAGER:
@@ -246,11 +234,10 @@ int AIAction::getEfficiency()
     {
         MTGCardInstance * _target = (MTGCardInstance *) (a->target);
         efficiency = 0;
-        if (!_target)
-            break;
-        
+        if (!_target) break;
+
         if (!_target->regenerateTokens && g->getCurrentGamePhase() == Constants::MTG_PHASE_COMBATBLOCKERS && (_target->defenser
-                        || _target->blockers.size()))
+                || _target->blockers.size()))
         {
             efficiency = 95;
         }
@@ -261,22 +248,20 @@ int AIAction::getEfficiency()
     case MTGAbility::STANDARD_PREVENT:
     {
         efficiency = 0;//starts out low to avoid spamming it when its not needed.
-        if (!target)
-            break;
+        if (!target) break;
 
         bool NeedPreventing;
         NeedPreventing = false;
         if (g->getCurrentGamePhase() == Constants::MTG_PHASE_COMBATBLOCKERS)
         {
-            if ((target->defenser || target->blockers.size()) && target->preventable < target->getNextOpponent()->power)
-                NeedPreventing = true;
+            if ((target->defenser || target->blockers.size()) && target->preventable < target->getNextOpponent()->power) NeedPreventing
+                    = true;
         }
         if (p == target->controller() && NeedPreventing == true && !(target->getNextOpponent()->has(Constants::DEATHTOUCH)
-                        || target->getNextOpponent()->has(Constants::WITHER)))
+                || target->getNextOpponent()->has(Constants::WITHER)))
         {
             efficiency = 20 * (target->DangerRanking());//increase this chance to be used in combat if the creature blocking/blocked could kill the creature this chance is taking into consideration how good the creature is, best creature will always be the first "saved"..
-            if (target->toughness == 1 && target->getNextOpponent()->power == 1)
-                efficiency += 15;
+            if (target->toughness == 1 && target->getNextOpponent()->power == 1) efficiency += 15;
             //small bonus added for the poor 1/1s, if we can save them, we will unless something else took precidence.
         }
         //note is the target is being blocked or blocking a creature with wither or deathtouch, it is not even considered for preventing as it is a waste.
@@ -286,28 +271,25 @@ int AIAction::getEfficiency()
     }
     case MTGAbility::STANDARD_EQUIP:
     {
-        
+
         efficiency = 0;
-        if (!target)
-            break;
+        if (!target) break;
 
         int equips = p->game->battlefield->countByType("Equipment");
         int myArmy = p->game->battlefield->countByType("Creature");
-        int equilized = abs(equips/myArmy);
-        
+        int equilized = abs(equips / myArmy);
+
         if (p == target->controller() && target->equipment <= 1 && !a->source->target)
         {
             efficiency = 20 * (target->DangerRanking());
-            if (target->hasColor(5))
-                efficiency += 20;//this is to encourage Ai to equip white creatures in a weenie deck. ultimately it will depend on what had the higher dangerranking.
-            if (target->power == 1 && target->toughness == 1 && target->isToken == 0)
-                efficiency += 10; //small bonus to encourage equipping nontoken 1/1 creatures.
+            if (target->hasColor(5)) efficiency += 20;//this is to encourage Ai to equip white creatures in a weenie deck. ultimately it will depend on what had the higher dangerranking.
+            if (target->power == 1 && target->toughness == 1 && target->isToken == 0) efficiency += 10; //small bonus to encourage equipping nontoken 1/1 creatures.
         }
 
-		if (p == target->controller() && !a->source->target && target->equipment < equilized)
+        if (p == target->controller() && !a->source->target && target->equipment < equilized)
         {
             efficiency = 15 * (target->DangerRanking());
-						efficiency -= 5 * (target->equipment);
+            efficiency -= 5 * (target->equipment);
         }
         break;
     }
@@ -318,7 +300,7 @@ int AIAction::getEfficiency()
         efficiency = 0;
         Counter * targetCounter = NULL;
         int currentlevel = 0;
-        
+
         if (_target)
         {
             if (_target->counters && _target->counters->hasCounter("level", 0, 0))
@@ -335,31 +317,30 @@ int AIAction::getEfficiency()
             efficiency += currentlevel;
         }
 
-        if(p->game->hand->nb_cards > 0 && p->isAI())
-		{
+        if (p->game->hand->nb_cards > 0 && p->isAI())
+        {
             efficiency -= (10 * p->game->hand->nb_cards);//reduce the eff if by 10 times the amount of cards in Ais hand.
-			//it should always try playing more cards before deciding
+            //it should always try playing more cards before deciding
         }
 
-        if(g->getCurrentGamePhase() == Constants::MTG_PHASE_SECONDMAIN)
-		{
+        if (g->getCurrentGamePhase() == Constants::MTG_PHASE_SECONDMAIN)
+        {
             efficiency = 100;
-			//in 2nd main, go all out and try to max stuff.
-		}
+            //in 2nd main, go all out and try to max stuff.
+        }
         break;
     }
     case MTGAbility::STANDARD_PUMP:
     {
         MTGCardInstance * _target = (MTGCardInstance *) (a->target);
-        if (!target)
-            break;
+        if (!target) break;
         //i do not set a starting eff. on this ability, this allows Ai to sometimes randomly do it as it normally does.
         if (g->getCurrentGamePhase() == Constants::MTG_PHASE_COMBATBLOCKERS)
         {
             if (BAKA_EFFECT_GOOD)
             {
                 if ((_target->defenser || _target->blockers.size()) && ((_target->power < _target->getNextOpponent()->toughness
-                                || _target->toughness < _target->getNextOpponent()->power) || (_target->has(Constants::TRAMPLE))))
+                        || _target->toughness < _target->getNextOpponent()->power) || (_target->has(Constants::TRAMPLE))))
                 {
                     //this pump is based on a start eff. of 20 multiplied by how good the creature is.
                     efficiency = 20 * _target->DangerRanking();
@@ -394,134 +375,130 @@ int AIAction::getEfficiency()
         break;
     }
 
-	case MTGAbility::FOREACH:
+    case MTGAbility::FOREACH:
     {
         MTGCardInstance * _target = (MTGCardInstance *) (a->target);
-		MTGAbility * a = AbilityFactory::getCoreAbility(ability);
-		AManaProducer * amp = dynamic_cast<AManaProducer*> (a);
+        MTGAbility * a = AbilityFactory::getCoreAbility(ability);
+        AManaProducer * amp = dynamic_cast<AManaProducer*> (a);
         efficiency = 0;
         //trying to encourage Ai to use his foreach manaproducers in first main
-		if (a->naType == MTGAbility::MANA_PRODUCER && (g->getCurrentGamePhase() == Constants::MTG_PHASE_FIRSTMAIN || g->getCurrentGamePhase() == Constants::MTG_PHASE_SECONDMAIN ) 
-		    && _target->controller()->game->hand->nb_cards > 0)
+        if (a->naType == MTGAbility::MANA_PRODUCER && (g->getCurrentGamePhase() == Constants::MTG_PHASE_FIRSTMAIN
+                || g->getCurrentGamePhase() == Constants::MTG_PHASE_SECONDMAIN) && _target->controller()->game->hand->nb_cards > 0)
         {
-		    for (int i = Constants::MTG_NB_COLORS - 1; i > 0; i--)
-			{
-                if((p->game->hand->hasColor(i) || p->game->hand->hasColor(0))
-					&& (dynamic_cast<AManaProducer*>(( dynamic_cast<AForeach*>( a )->ability))->output->hasColor(i)))
-				{
+            for (int i = Constants::MTG_NB_COLORS - 1; i > 0; i--)
+            {
+                if ((p->game->hand->hasColor(i) || p->game->hand->hasColor(0))
+                        && (dynamic_cast<AManaProducer*> ((dynamic_cast<AForeach*> (a)->ability))->output->hasColor(i)))
+                {
                     efficiency = 100;
-				}
-			}
+                }
+            }
 
-			if(p->game->hand->hasX())
-                efficiency = 100;
+            if (p->game->hand->hasX()) efficiency = 100;
 
-		}
-		else
-		{
-		    AbilityFactory af;
+        }
+        else
+        {
+            AbilityFactory af;
             int suggestion = af.abilityEfficiency(a, p, MODE_ABILITY);
 
-            if (target && a->naType != MTGAbility::MANA_PRODUCER && ((suggestion == BAKA_EFFECT_BAD && p == target->controller()) || (suggestion == BAKA_EFFECT_GOOD && p
-                != target->controller())))
+            if (target && a->naType != MTGAbility::MANA_PRODUCER && ((suggestion == BAKA_EFFECT_BAD && p == target->controller())
+                    || (suggestion == BAKA_EFFECT_GOOD && p != target->controller())))
             {
                 efficiency = 0;
             }
-			else if (a->naType != MTGAbility::MANA_PRODUCER && (g->getCurrentGamePhase() == Constants::MTG_PHASE_FIRSTMAIN || g->getCurrentGamePhase() == Constants::MTG_PHASE_SECONDMAIN ))
-			{
-				//if its not a manaproducing foreach, and its not targetted, its eff is 90.
-				//added this basically to cover the unknown foreachs, or untrained ones which were not targetted effects.
-				efficiency = 90;
-			}
+            else if (a->naType != MTGAbility::MANA_PRODUCER && (g->getCurrentGamePhase() == Constants::MTG_PHASE_FIRSTMAIN
+                    || g->getCurrentGamePhase() == Constants::MTG_PHASE_SECONDMAIN))
+            {
+                //if its not a manaproducing foreach, and its not targetted, its eff is 90.
+                //added this basically to cover the unknown foreachs, or untrained ones which were not targetted effects.
+                efficiency = 90;
+            }
 
-		}
+        }
         break;
-	}
+    }
 
     case MTGAbility::STANDARDABILITYGRANT:
-	{
+    {
         efficiency = 0;
         MTGCardInstance * _target = (MTGCardInstance *) (a->target);
-        if (!target)
-            break;
+        if (!target) break;
         //ensuring that Ai grants abilities to creatures during first main, so it can actually use them in combat.
         //quick note: the eff is multiplied by creatures ranking then divided by the number of cards in hand.
         //the reason i do this is to encourage more casting and less waste of mana on abilities.
         AbilityFactory af;
         int suggestion = af.abilityEfficiency(a, p, MODE_ABILITY);
 
-        if ((suggestion == BAKA_EFFECT_BAD && p == target->controller()) || (suggestion == BAKA_EFFECT_GOOD && p!= target->controller()))
+        if ((suggestion == BAKA_EFFECT_BAD && p == target->controller()) || (suggestion == BAKA_EFFECT_GOOD && p
+                != target->controller()))
         {
             efficiency = 0;
-			//stop giving trample to the players creatures.
+            //stop giving trample to the players creatures.
         }
 
         if (suggestion == BAKA_EFFECT_BAD && p != target->controller() && target->has(a->abilitygranted))
         {
-			efficiency += (25 * target->DangerRanking())/p->game->hand->nb_cards; 
-		}
+            efficiency += (25 * target->DangerRanking()) / p->game->hand->nb_cards;
+        }
 
-				if (!target->has(a->abilitygranted) && g->getCurrentGamePhase() == Constants::MTG_PHASE_COMBATBEGIN)
+        if (!target->has(a->abilitygranted) && g->getCurrentGamePhase() == Constants::MTG_PHASE_COMBATBEGIN)
         {
-			efficiency += (25 * target->DangerRanking())/p->game->hand->nb_cards;
+            efficiency += (25 * target->DangerRanking()) / p->game->hand->nb_cards;
 
         }
 
-	    if (target->has(a->abilitygranted))
+        if (target->has(a->abilitygranted))
         {
-		    //trying to avoid Ai giving ie:flying creatures ie:flying twice.
-		    efficiency = 0;
+            //trying to avoid Ai giving ie:flying creatures ie:flying twice.
+            efficiency = 0;
         }
-		break;
-	}
+        break;
+    }
 
-    case MTGAbility::UNTAPPER: 
-	//untap things that Ai owns and are tapped.
-	{
+    case MTGAbility::UNTAPPER:
+        //untap things that Ai owns and are tapped.
+    {
         efficiency = 0;
-        if (!target)
-            break;
+        if (!target) break;
 
-		if (target->isTapped() && target->controller()->isAI())
-		{
-			efficiency = (20 * target->DangerRanking());
-		}
+        if (target->isTapped() && target->controller()->isAI())
+        {
+            efficiency = (20 * target->DangerRanking());
+        }
         break;
-	}
+    }
 
-	case MTGAbility::TAPPER: 
-	//tap things the player owns and that are untapped.
-	{
-        if (!target)
-            break;
+    case MTGAbility::TAPPER:
+        //tap things the player owns and that are untapped.
+    {
+        if (!target) break;
 
-		if (!target->controller()->isAI())
-		    efficiency = (20 * target->DangerRanking());
+        if (!target->controller()->isAI()) efficiency = (20 * target->DangerRanking());
 
-		if(target->isTapped())
-		    efficiency = 0;
-	
+        if (target->isTapped()) efficiency = 0;
+
         break;
-	}
+    }
 
     case MTGAbility::LIFER:
-	{
-    //use life abilities whenever possible.
-	    AALifer * alife = (AALifer *) a;
+    {
+        //use life abilities whenever possible.
+        AALifer * alife = (AALifer *) a;
         Targetable * _t = alife->getTarget();
 
         efficiency = 100;
-		AbilityFactory af;
+        AbilityFactory af;
         int suggestion = af.abilityEfficiency(a, p, MODE_ABILITY);
-		
+
         if ((suggestion == BAKA_EFFECT_BAD && _t == p && p->isAI()) || (suggestion == BAKA_EFFECT_GOOD && _t == p && !p->isAI()))
         {
             efficiency = 0;
         }
-        
+
         break;
-			}
-	case MTGAbility::MANA_PRODUCER:
+    }
+    case MTGAbility::MANA_PRODUCER:
         efficiency = 0;
         break;
 
@@ -531,7 +508,7 @@ int AIAction::getEfficiency()
             AbilityFactory af;
             int suggestion = af.abilityEfficiency(a, p, MODE_ABILITY);
             if ((suggestion == BAKA_EFFECT_BAD && p == target->controller()) || (suggestion == BAKA_EFFECT_GOOD && p
-                            != target->controller()))
+                    != target->controller()))
             {
                 efficiency = 0;
             }
@@ -547,13 +524,11 @@ int AIAction::getEfficiency()
         break;
     }
 
-    if (p->game->hand->nb_cards == 0)
-        efficiency = (int) ((float) efficiency * 1.3); //increase chance of using ability if hand is empty
+    if (p->game->hand->nb_cards == 0) efficiency = (int) ((float) efficiency * 1.3); //increase chance of using ability if hand is empty
     if (ability->cost)
     {
         ExtraCosts * ec = ability->cost->extraCosts;
-        if (ec)
-            efficiency = efficiency / 3; //Decrease chance of using ability if there is an extra cost to use the ability
+        if (ec) efficiency = efficiency / 3; //Decrease chance of using ability if there is an extra cost to use the ability
     }
     return efficiency;
 }
@@ -600,8 +575,7 @@ int AIPlayer::selectAbility()
     { //0 is not a mtgability...hackish
         MTGAbility * a = ((MTGAbility *) g->mLayers->actionLayer()->mObjects[i]);
         //Skip mana abilities for performance
-        if (dynamic_cast<AManaProducer*> (a))
-            continue;
+        if (dynamic_cast<AManaProducer*> (a)) continue;
         //Make sure we can use the ability
         for (int j = 0; j < game->inPlay->nb_cards; j++)
         {
@@ -609,8 +583,7 @@ int AIPlayer::selectAbility()
             if (a->isReactingToClick(card, totalPotentialMana))
             { //This test is to avod the huge call to getPotentialManaCost after that
                 ManaCost * pMana = getPotentialMana(card);
-                if (a->isReactingToClick(card, pMana))
-                    createAbilityTargets(a, card, &ranking);
+                if (a->isReactingToClick(card, pMana)) createAbilityTargets(a, card, &ranking);
                 delete (pMana);
             }
         }
@@ -621,30 +594,28 @@ int AIPlayer::selectAbility()
     {
         AIAction * a = ranking.begin()->first;
         int chance = 1;
-        if (!forceBestAbilityUse)
-            chance = 1 + WRand() % 100;
+        if (!forceBestAbilityUse) chance = 1 + WRand() % 100;
         if (getEfficiency(a) < chance)
         {
             a = NULL;
         }
         else
         {
-					  if(!clickstream.size())
-						{
-            DebugTrace("AIPlayer:Using Activated ability");
-            tapLandsForMana(a->ability->cost, a->click);
-						clickstream.push(a);
-						}
-						else
-						{
-							a = NULL;
-						}
+            if (!clickstream.size())
+            {
+                DebugTrace("AIPlayer:Using Activated ability");
+                tapLandsForMana(a->ability->cost, a->click);
+                clickstream.push(a);
+            }
+            else
+            {
+                a = NULL;
+            }
         }
         map<AIAction *, int, CmpAbilities>::iterator it2;
         for (it2 = ranking.begin(); it2 != ranking.end(); it2++)
         {
-            if (a && a != it2->first)
-                delete (it2->first);
+            if (a && a != it2->first) delete (it2->first);
         }
     }
     AIPlayer::findingAbility = false;
@@ -671,8 +642,7 @@ int AIPlayer::effectBadOrGood(MTGCardInstance * card, int mode, TargetChooser * 
     int id = card->getMTGId();
     AbilityFactory af;
     int autoGuess = af.magicText(id, NULL, card, mode, tc);
-    if (autoGuess)
-        return autoGuess;
+    if (autoGuess) return autoGuess;
     return BAKA_EFFECT_DONTKNOW;
 }
 
@@ -691,11 +661,9 @@ int AIPlayer::chooseTarget(TargetChooser * _tc, Player * forceTarget)
     {
         tc = gameObs->getCurrentTargetChooser();
     }
-    if (!tc)
-        return 0;
+    if (!tc) return 0;
 
-    if (!(gameObs->currentlyActing() == this))
-        return 0;
+    if (!(gameObs->currentlyActing() == this)) return 0;
     Player * target = forceTarget;
 
     if (!target)
@@ -715,8 +683,7 @@ int AIPlayer::chooseTarget(TargetChooser * _tc, Player * forceTarget)
             potentialTargets.push_back(target);
             nbtargets++;
         }
-        if (checkOnly)
-            return 1;
+        if (checkOnly) return 1;
     }
     MTGPlayerCards * playerZones = target->game;
     MTGGameZone * zones[] = { playerZones->hand, playerZones->library, playerZones->inPlay, playerZones->graveyard };
@@ -728,8 +695,7 @@ int AIPlayer::chooseTarget(TargetChooser * _tc, Player * forceTarget)
             MTGCardInstance * card = zone->cards[k];
             if (!tc->alreadyHasTarget(card) && tc->canTarget(card) && nbtargets < 50)
             {
-                if (checkOnly)
-                    return 1;
+                if (checkOnly) return 1;
                 int multiplier = 1;
                 if (getStats() && getStats()->isInTop(card, 10))
                 {
@@ -776,11 +742,9 @@ int AIPlayer::chooseTarget(TargetChooser * _tc, Player * forceTarget)
     //Couldn't find any valid target,
     //usually that's because we played a card that has bad side effects (ex: when X comes into play, return target land you own to your hand)
     //so we try again to choose a target in the other player's field...
-    if (checkOnly)
-        return 0;
+    if (checkOnly) return 0;
     int cancel = gameObs->cancelCurrentAction();
-    if (!cancel && !forceTarget)
-        return chooseTarget(_tc, target->opponent());
+    if (!cancel && !forceTarget) return chooseTarget(_tc, target->opponent());
 
     //ERROR!!!
     DebugTrace("AIPLAYER: ERROR! AI needs to choose a target but can't decide!!!");
@@ -826,7 +790,7 @@ int AIPlayer::chooseAttackers()
         opponentCreatures = getCreaturesInfo(opponent(), INFO_NBCREATURES, -1);
         opponentForce = getCreaturesInfo(opponent(), INFO_CREATURESPOWER, -1);
         attack = (myCreatures >= opponentCreatures && myForce > opponentForce) || (myForce > opponentForce) || (myForce
-                        > opponent()->life);
+                > opponent()->life);
     }
     printf("Choose attackers : %i %i %i %i -> %i\n", opponentForce, opponentCreatures, myForce, myCreatures, attack);
     if (attack)
@@ -848,14 +812,10 @@ int AIPlayer::chooseAttackers()
 /* Can I first strike my oponent and get away with murder ? */
 int AIPlayer::canFirstStrikeKill(MTGCardInstance * card, MTGCardInstance *ennemy)
 {
-    if (ennemy->has(Constants::FIRSTSTRIKE) || ennemy->has(Constants::DOUBLESTRIKE))
-        return 0;
-    if (!(card->has(Constants::FIRSTSTRIKE) || card->has(Constants::DOUBLESTRIKE)))
-        return 0;
-    if (!(card->power >= ennemy->toughness))
-        return 0;
-    if (!(card->power >= ennemy->toughness + 1) && ennemy->has(Constants::FLANKING))
-        return 0;
+    if (ennemy->has(Constants::FIRSTSTRIKE) || ennemy->has(Constants::DOUBLESTRIKE)) return 0;
+    if (!(card->has(Constants::FIRSTSTRIKE) || card->has(Constants::DOUBLESTRIKE))) return 0;
+    if (!(card->power >= ennemy->toughness)) return 0;
+    if (!(card->power >= ennemy->toughness + 1) && ennemy->has(Constants::FLANKING)) return 0;
     return 1;
 }
 
@@ -934,7 +894,7 @@ int AIPlayer::chooseBlockers()
                 {
                     MTGCardInstance * attacker = card->defenser;
                     if (opponentsToughness[attacker] <= 0 || (card->toughness <= attacker->power && opponentForce * 2 < life
-                                    && !canFirstStrikeKill(card, attacker)) || attacker->nbOpponents() > 1)
+                            && !canFirstStrikeKill(card, attacker)) || attacker->nbOpponents() > 1)
                     {
                         g->mLayers->actionLayer()->reactToClick(a, card);
                     }
@@ -979,11 +939,9 @@ int AIPlayer::combatDamages()
     GameObserver * gameObs = GameObserver::GetInstance();
     int currentGamePhase = gameObs->getCurrentGamePhase();
 
-    if (currentGamePhase == Constants::MTG_PHASE_COMBATBLOCKERS)
-        return orderBlockers();
+    if (currentGamePhase == Constants::MTG_PHASE_COMBATBLOCKERS) return orderBlockers();
 
-    if (currentGamePhase != Constants::MTG_PHASE_COMBATDAMAGE)
-        return 0;
+    if (currentGamePhase != Constants::MTG_PHASE_COMBATDAMAGE) return 0;
 
     return 0;
 
@@ -1033,8 +991,7 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, Player * op
                     nbdecks++;
                 }
             }
-            if (!nbdecks)
-                return NULL;
+            if (!nbdecks) return NULL;
             deckid = 1 + WRand() % (nbdecks);
         }
         sprintf(deckFile, JGE_GET_RES("ai/baka/deck%i.txt").c_str(), deckid);
@@ -1062,22 +1019,14 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
     card = NULL;
     while ((card = cd.nextmatch(game->hand, card)))
     {
-				if (!CanHandleCost(card->getManaCost()))
-            continue;
-        if (card->hasType(Subtypes::TYPE_CREATURE) && this->castrestrictedcreature > 0 && this->castrestrictedspell > 0)
-            continue;
-        if (card->hasType(Subtypes::TYPE_ENCHANTMENT) && this->castrestrictedspell > 0)
-            continue;
-        if (card->hasType(Subtypes::TYPE_ARTIFACT) && this->castrestrictedspell > 0)
-            continue;
-        if (card->hasType(Subtypes::TYPE_SORCERY) && this->castrestrictedspell > 0)
-            continue;
-        if (card->hasType(Subtypes::TYPE_INSTANT) && this->castrestrictedspell > 0)
-            continue;
-        if (card->hasType(Subtypes::TYPE_LAND) && !this->canPutLandsIntoPlay)
-            continue;
-        if (card->hasType(Subtypes::TYPE_LEGENDARY) && game->inPlay->findByName(card->name))
-            continue;
+        if (!CanHandleCost(card->getManaCost())) continue;
+        if (card->hasType(Subtypes::TYPE_CREATURE) && this->castrestrictedcreature > 0 && this->castrestrictedspell > 0) continue;
+        if (card->hasType(Subtypes::TYPE_ENCHANTMENT) && this->castrestrictedspell > 0) continue;
+        if (card->hasType(Subtypes::TYPE_ARTIFACT) && this->castrestrictedspell > 0) continue;
+        if (card->hasType(Subtypes::TYPE_SORCERY) && this->castrestrictedspell > 0) continue;
+        if (card->hasType(Subtypes::TYPE_INSTANT) && this->castrestrictedspell > 0) continue;
+        if (card->hasType(Subtypes::TYPE_LAND) && !this->canPutLandsIntoPlay) continue;
+        if (card->hasType(Subtypes::TYPE_LEGENDARY) && game->inPlay->findByName(card->name)) continue;
         int currentCost = card->getManaCost()->getConvertedCost();
         int hasX = card->getManaCost()->hasX();
         if ((currentCost > maxCost || hasX) && pMana->canAfford(card->getManaCost()))
@@ -1089,8 +1038,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
             {
                 int hasTarget = (chooseTarget(tc));
                 delete tc;
-                if (!hasTarget)
-                    continue;
+                if (!hasTarget) continue;
                 shouldPlayPercentage = 90;
             }
             else
@@ -1109,17 +1057,14 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
             if (hasX)
             {
                 int xDiff = pMana->getConvertedCost() - currentCost;
-                if (xDiff < 0)
-                    xDiff = 0;
+                if (xDiff < 0) xDiff = 0;
                 shouldPlayPercentage = shouldPlayPercentage - static_cast<int> ((shouldPlayPercentage * 1.9f) / (1 + xDiff));
             }
 
-            if (WRand() % 100 > shouldPlayPercentage)
-                continue;
+            if (WRand() % 100 > shouldPlayPercentage) continue;
             nextCardToPlay = card;
             maxCost = currentCost;
-            if (hasX)
-                maxCost = pMana->getConvertedCost();
+            if (hasX) maxCost = pMana->getConvertedCost();
         }
     }
     return nextCardToPlay;
@@ -1137,7 +1082,8 @@ AIPlayerBaka::AIPlayerBaka(MTGDeck * deck, string file, string fileSmall, string
     }
 
     if (mAvatarTex)
-        mAvatar = WResourceManager::Instance()->RetrieveQuad(avatarFile, 0, 0, 35, 50, "bakaAvatar", RETRIEVE_NORMAL, TEXTURE_SUB_AVATAR);
+        mAvatar = WResourceManager::Instance()->RetrieveQuad(avatarFile, 0, 0, 35, 50, "bakaAvatar", RETRIEVE_NORMAL,
+                TEXTURE_SUB_AVATAR);
     else
         mAvatar = NULL;
 
@@ -1153,24 +1099,22 @@ int AIPlayerBaka::computeActions()
 {
     GameObserver * g = GameObserver::GetInstance();
     Player * p = g->currentPlayer;
-		AIPlayer::findingAbility = false;
-    if (!(g->currentlyActing() == this))
-        return 0;
+    AIPlayer::findingAbility = false;
+    if (!(g->currentlyActing() == this)) return 0;
     if (g->mLayers->actionLayer()->menuObject)
     {
         g->mLayers->actionLayer()->doReactTo(0);
         return 1;
     }
-    if (chooseTarget())
-        return 1;
+    if (chooseTarget()) return 1;
     int currentGamePhase = g->getCurrentGamePhase();
     if (g->isInterrupting == this)
     { // interrupting
-				if(!findingAbility)
-				{
-				 AIPlayer::findingAbility = true;
-         selectAbility();
-				}
+        if (!findingAbility)
+        {
+            AIPlayer::findingAbility = true;
+            selectAbility();
+        }
         return 1;
     }
     else if (p == this && g->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0)
@@ -1191,11 +1135,11 @@ int AIPlayerBaka::computeActions()
                 potential = true;
             }
             nextCardToPlay = FindCardToPlay(currentMana, "land");
-						if(!findingAbility)
-						{
-			      AIPlayer::findingAbility = true;
-            selectAbility();
-						}
+            if (!findingAbility)
+            {
+                AIPlayer::findingAbility = true;
+                selectAbility();
+            }
             //look for the most expensive creature we can afford
             if (castrestrictedspell == 0 && nospellinstant == 0)
             {
@@ -1206,41 +1150,40 @@ int AIPlayerBaka::computeActions()
                         if (castrestrictedcreature == 0 && nocreatureinstant == 0)
                         {
                             if (!nextCardToPlay)
-														{
+                            {
                                 nextCardToPlay = FindCardToPlay(currentMana, "creature");
-														}
+                            }
                         }
                         //Let's Try an enchantment maybe ?
                         if (!nextCardToPlay)
-												{
+                        {
                             nextCardToPlay = FindCardToPlay(currentMana, "enchantment");
-												}
+                        }
                         if (!nextCardToPlay)
-												{
+                        {
                             nextCardToPlay = FindCardToPlay(currentMana, "artifact");
-												}
+                        }
                         if (!nextCardToPlay)
-												{
+                        {
                             nextCardToPlay = FindCardToPlay(currentMana, "sorcery");
-												}
+                        }
                         if (!nextCardToPlay)
-												{
+                        {
                             nextCardToPlay = FindCardToPlay(currentMana, "instant");
-												}
-												if (!nextCardToPlay)
-												{
-						              if(!findingAbility)
-						             {
-										     AIPlayer::findingAbility = true;
-                         selectAbility();
-													}
-												}
-											}
-										}
-								
-						}
-            if (potential)
-                delete (currentMana);
+                        }
+                        if (!nextCardToPlay)
+                        {
+                            if (!findingAbility)
+                            {
+                                AIPlayer::findingAbility = true;
+                                selectAbility();
+                            }
+                        }
+                    }
+                }
+
+            }
+            if (potential) delete (currentMana);
             if (nextCardToPlay)
             {
                 if (potential)
@@ -1282,11 +1225,11 @@ int AIPlayerBaka::computeActions()
             }
             else
             {
-						if(!findingAbility)
-						{
-			      AIPlayer::findingAbility = true;
-            selectAbility();
-						}
+                if (!findingAbility)
+                {
+                    AIPlayer::findingAbility = true;
+                    selectAbility();
+                }
             }
             if (p->getManaPool()->getConvertedCost() > 0 && Checked == false)//not the best thing ever, but allows the Ai a chance to double check if its mana pool has something before moving on, atleast one time.
             {
@@ -1302,11 +1245,11 @@ int AIPlayerBaka::computeActions()
             Checked = false;
             break;
         default:
-			  if(!findingAbility)
-				{
-				AIPlayer::findingAbility = true;
-        selectAbility();
-				}
+            if (!findingAbility)
+            {
+                AIPlayer::findingAbility = true;
+                selectAbility();
+            }
             break;
         }
     }
@@ -1329,8 +1272,7 @@ int AIPlayerBaka::computeActions()
 
 int AIPlayer::receiveEvent(WEvent * event)
 {
-    if (getStats())
-        return getStats()->receiveEvent(event);
+    if (getStats()) return getStats()->receiveEvent(event);
     return 0;
 }
 
@@ -1370,8 +1312,7 @@ int AIPlayerBaka::Act(float dt)
         DebugTrace("Cannot interrupt");
         return 0;
     }
-    if (clickstream.empty())
-        computeActions();
+    if (clickstream.empty()) computeActions();
     if (clickstream.empty())
     {
         if (g->isInterrupting == this)
