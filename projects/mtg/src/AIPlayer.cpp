@@ -43,6 +43,7 @@ AIPlayer::AIPlayer(MTGDeck * deck, string file, string fileSmall) :
     agressivity = 50;
     forceBestAbilityUse = false;
     Checked = false;
+		 mFindingAbility = false;
     playMode = Player::MODE_AI;
 }
 
@@ -618,7 +619,7 @@ int AIPlayer::selectAbility()
             if (a && a != it2->first) delete (it2->first);
         }
     }
-    AIPlayer::findingAbility = false;
+    mFindingAbility = false;
     return 1;
 }
 
@@ -1099,7 +1100,11 @@ int AIPlayerBaka::computeActions()
 {
     GameObserver * g = GameObserver::GetInstance();
     Player * p = g->currentPlayer;
-    AIPlayer::findingAbility = false;
+    mFindingAbility = false;
+		//set to false at start of compute actions, 
+		//Ai will then selectAbility often before this function is done running
+		//each time setting it to true until the end of selectAbility() function is reached
+		//this prevents overlaps of selectAbility function.
     if (!(g->currentlyActing() == this)) return 0;
     if (g->mLayers->actionLayer()->menuObject)
     {
@@ -1110,9 +1115,9 @@ int AIPlayerBaka::computeActions()
     int currentGamePhase = g->getCurrentGamePhase();
     if (g->isInterrupting == this)
     { // interrupting
-        if (!findingAbility)
+        if (!mFindingAbility)//if not looking for an activated ability to use, then go ahead and look now.
         {
-            AIPlayer::findingAbility = true;
+            mFindingAbility = true;
             selectAbility();
         }
         return 1;
@@ -1135,9 +1140,9 @@ int AIPlayerBaka::computeActions()
                 potential = true;
             }
             nextCardToPlay = FindCardToPlay(currentMana, "land");
-            if (!findingAbility)
+            if (!mFindingAbility)//if not looking for an activated ability to use, then go ahead and look now.
             {
-                AIPlayer::findingAbility = true;
+                mFindingAbility = true;
                 selectAbility();
             }
             //look for the most expensive creature we can afford
@@ -1173,9 +1178,9 @@ int AIPlayerBaka::computeActions()
                         }
                         if (!nextCardToPlay)
                         {
-                            if (!findingAbility)
+                            if (!mFindingAbility)//if not looking for an activated ability to use, then go ahead and look now.
                             {
-                                AIPlayer::findingAbility = true;
+                                mFindingAbility = true;
                                 selectAbility();
                             }
                         }
@@ -1225,9 +1230,9 @@ int AIPlayerBaka::computeActions()
             }
             else
             {
-                if (!findingAbility)
+                if (!mFindingAbility)//if not looking for an activated ability to use, then go ahead and look now.
                 {
-                    AIPlayer::findingAbility = true;
+                    mFindingAbility = true;
                     selectAbility();
                 }
             }
@@ -1245,9 +1250,9 @@ int AIPlayerBaka::computeActions()
             Checked = false;
             break;
         default:
-            if (!findingAbility)
+            if (!mFindingAbility)//if not looking for an activated ability to use, then go ahead and look now.
             {
-                AIPlayer::findingAbility = true;
+                mFindingAbility = true;
                 selectAbility();
             }
             break;

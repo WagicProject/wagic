@@ -59,7 +59,7 @@ protected:
     //Variables used by Test suite
     MTGCardInstance * nextCardToPlay;
     queue<AIAction *> clickstream;
-		bool findingAbility;
+		bool mFindingAbility;//is Ai currently looking for an activated ability to use?
     void tapLandsForMana(ManaCost * cost, MTGCardInstance * card = NULL);
     int orderBlockers();
     int combatDamages();
