@@ -764,7 +764,7 @@ void CardGui::RenderCountersBig(const Pos& pos)
             {
                 c = card->counters->counters[0];
             }
-            if (c->nb > 0)
+            if (c != NULL && c->nb > 0)
             {
                 char buf[512];
                 if (c->name != "")
