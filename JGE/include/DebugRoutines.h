@@ -4,12 +4,13 @@
 // dirty, but I get OS header includes this way
 #include "JGE.h"
 
+#include <ostream>
 #include <iostream>
 #include <stdio.h>
 #include <string>
 #include <sstream>
 
-#if defined (WIN32) || defined (LINUX)
+#if defined (WIN32) || defined (LINUX) 
 #ifdef _DEBUG
 
 #ifndef QT_CONFIG
@@ -30,6 +31,14 @@
 
 #endif //#ifdef _DEBUG
 #endif // Win32, Linux
+
+#if defined (IOS) && defined (DEBUG) 
+#define DebugTrace(inString)								\
+{																						\
+  std::cout << inString << std::endl;					\
+}
+#endif // IOS, DEBUG
+
 
 #ifndef DebugTrace
 #define DebugTrace(inString)	(void (0))
