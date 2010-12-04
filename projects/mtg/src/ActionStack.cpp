@@ -903,7 +903,7 @@ bool ActionStack::CheckUserInput(JButton key)
                     {
                         mCurr = n;
                         mObjects[mCurr]->Entering();
-                        DebugTrace                                    ("ACTIONSTACK UP TO mCurr = " << mCurr);
+                        DebugTrace("ACTIONSTACK UP TO mCurr = " << mCurr);
                     }
                 }
                 return true;

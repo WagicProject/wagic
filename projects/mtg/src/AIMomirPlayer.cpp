@@ -85,11 +85,7 @@ int AIMomirPlayer::computeActions()
     int currentGamePhase = g->getCurrentGamePhase();
     if (g->isInterrupting == this)
     { // interrupting
-        if (!mFindingAbility)//if not looking for an activated ability to use, then go ahead and look now.
-        {
-            mFindingAbility = true;
-            selectAbility();
-        }
+        selectAbility();
         return 1;
     }
     else if (p == this && g->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0)
@@ -123,11 +119,7 @@ int AIMomirPlayer::computeActions()
             break;
         }
         case Constants::MTG_PHASE_SECONDMAIN:
-            if (!mFindingAbility)//if not looking for an activated ability to use, then go ahead and look now.
-            {
-                mFindingAbility = true;
-                selectAbility();
-            }
+            selectAbility();
             return 1;
             break;
         default:

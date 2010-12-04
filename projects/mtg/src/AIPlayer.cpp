@@ -43,7 +43,6 @@ AIPlayer::AIPlayer(MTGDeck * deck, string file, string fileSmall) :
     agressivity = 50;
     forceBestAbilityUse = false;
     Checked = false;
-		 mFindingAbility = false;
     playMode = Player::MODE_AI;
 }
 
@@ -594,6 +593,14 @@ int AIPlayer::createAbilityTargets(MTGAbility * a, MTGCardInstance * c, map<AIAc
 
 int AIPlayer::selectAbility()
 {
+	  static bool mFindingAbility = false;
+		//this gaurd is put in place to prevent Ai from
+		//ever running selectAbility() function WHILE its already doing so.
+    if (mFindingAbility) 
+		{//is already looking kick me out of this function!
+			return 0;
+		}
+    mFindingAbility = true;//im looking now safely!
     map<AIAction *, int, CmpAbilities> ranking;
     list<int>::iterator it;
     GameObserver * g = GameObserver::GetInstance();
@@ -646,7 +653,7 @@ int AIPlayer::selectAbility()
             if (a && a != it2->first) delete (it2->first);
         }
     }
-    mFindingAbility = false;
+    mFindingAbility = false;//ok to start looking again.
     return 1;
 }
 
@@ -1127,11 +1134,6 @@ int AIPlayerBaka::computeActions()
 {
     GameObserver * g = GameObserver::GetInstance();
     Player * p = g->currentPlayer;
-    mFindingAbility = false;
-		//set to false at start of compute actions, 
-		//Ai will then selectAbility often before this function is done running
-		//each time setting it to true until the end of selectAbility() function is reached
-		//this prevents overlaps of selectAbility function.
     if (!(g->currentlyActing() == this)) return 0;
     if (g->mLayers->actionLayer()->menuObject)
     {
@@ -1142,11 +1144,7 @@ int AIPlayerBaka::computeActions()
     int currentGamePhase = g->getCurrentGamePhase();
     if (g->isInterrupting == this)
     { // interrupting
-        if (!mFindingAbility)//if not looking for an activated ability to use, then go ahead and look now.
-        {
-            mFindingAbility = true;
-            selectAbility();
-        }
+        selectAbility();
         return 1;
     }
     else if (p == this && g->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0)
@@ -1167,11 +1165,7 @@ int AIPlayerBaka::computeActions()
                 potential = true;
             }
             nextCardToPlay = FindCardToPlay(currentMana, "land");
-            if (!mFindingAbility)//if not looking for an activated ability to use, then go ahead and look now.
-            {
-                mFindingAbility = true;
-                selectAbility();
-            }
+            selectAbility();
             //look for the most expensive creature we can afford
             if (castrestrictedspell == 0 && nospellinstant == 0)
             {
@@ -1205,11 +1199,7 @@ int AIPlayerBaka::computeActions()
                         }
                         if (!nextCardToPlay)
                         {
-                            if (!mFindingAbility)//if not looking for an activated ability to use, then go ahead and look now.
-                            {
-                                mFindingAbility = true;
-                                selectAbility();
-                            }
+                         selectAbility();
                         }
                     }
                 }
@@ -1257,11 +1247,7 @@ int AIPlayerBaka::computeActions()
             }
             else
             {
-                if (!mFindingAbility)//if not looking for an activated ability to use, then go ahead and look now.
-                {
-                    mFindingAbility = true;
-                    selectAbility();
-                }
+               selectAbility();
             }
             if (p->getManaPool()->getConvertedCost() > 0 && Checked == false)//not the best thing ever, but allows the Ai a chance to double check if its mana pool has something before moving on, atleast one time.
             {
@@ -1277,11 +1263,7 @@ int AIPlayerBaka::computeActions()
             Checked = false;
             break;
         default:
-            if (!mFindingAbility)//if not looking for an activated ability to use, then go ahead and look now.
-            {
-                mFindingAbility = true;
-                selectAbility();
-            }
+            selectAbility();
             break;
         }
     }
