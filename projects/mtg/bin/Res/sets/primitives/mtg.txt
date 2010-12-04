@@ -18824,7 +18824,7 @@ type=Artifact
 [card]
 name=Fire Dragon
 abilities=flying
-auto=foreach(mountain|myBattlefield) damage:1 target(creature)
+auto=foreach(mountain|myBattlefield) damage:1 target(creature) oneshot
 text=Flying -- When Fire Dragon enters the battlefield, it deals damage equal to the number of Mountains you control to target creature.
 mana={6}{R}{R}{R}
 type=Creature
