@@ -769,6 +769,13 @@ void GameStateShop::ButtonPressed(int controllerId, int controlId)
                 purchaseBooster(sel);
             else
                 purchaseCard(sel);
+
+            //Check if we just scored an award...
+            if (myCollection && myCollection->totalPrice() > 10000)
+            {
+                GameOptionAward * goa = dynamic_cast<GameOptionAward *> (&options[Options::AWARD_COLLECTOR]);
+                if (goa) goa->giveAward();
+            }
         }
         mStage = STAGE_SHOP_SHOP;
         return;
