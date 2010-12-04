@@ -3677,6 +3677,7 @@ int AManaProducer::reactToClick(MTGCardInstance * _card)
         return 0;
     if (cost)
     {
+        cost->setExtraCostsAction(this, _card);
         if (!cost->isExtraPaymentSet())
         {
             GameObserver::GetInstance()->waitForExtraPayment = cost->extraCosts;
