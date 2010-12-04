@@ -8,8 +8,9 @@
 //
 //-------------------------------------------------------------------------------------
 #define GL_GLEXT_PROTOTYPES
+//#define USE_QT_IMAGE
 
-#ifndef IOS
+#if (!defined IOS) && (!defined USE_QT_IMAGE)
 #ifdef WIN32
   #pragma warning(disable : 4786)
   #pragma comment( lib, "giflib.lib" )
@@ -353,7 +354,9 @@ JTexture::~JTexture()
 
     if (mBuffer)
     {
+#ifndef USE_QT_IMAGE
         delete [] mBuffer;
+#endif
         mBuffer = NULL;
     }
 }
@@ -1477,7 +1480,7 @@ static int getNextPower2(int width)
 }
 
 
-#ifndef IOS
+#if (!defined IOS) && (!defined USE_QT_IMAGE)
 static void jpg_null(j_decompress_ptr cinfo __attribute__((unused)))
 {
 }
@@ -1655,61 +1658,6 @@ static void PNGCustomReadDataFn(png_structp png_ptr, png_bytep data, png_size_t 
    {
       png_error(png_ptr, "Read Error!");
    }
-}
-
-void JRenderer::TransferTextureToGLContext(JTexture& inTexture)
-{
-    if (inTexture.mBuffer != NULL)
-    {
-        GLuint texid;
-        checkGlError();
-        glGenTextures(1, &texid);
-        inTexture.mTexId = texid;
-        mCurrentTex = texid;
-
-        //    glError = glGetError();
-
-        if (1)///*texid*/ glError == 0)
-        {
-
-            // OpenGL texture has (0,0) at lower-left
-            // Pay attention when doing texture mapping!!!
-
-            glBindTexture(GL_TEXTURE_2D, mCurrentTex);    // Bind To The Texture ID
-
-            /* NOT USED
-            if (mode == TEX_TYPE_MIPMAP)			// generate mipmaps
-            {
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_NEAREST);
-            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR_MIPMAP_LINEAR);
-            gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, textureInfo.mTexWidth, textureInfo.mTexHeight, GL_RGBA, GL_UNSIGNED_BYTE, textureInfo.mBits);
-            }
-            else if (mode == TEX_TYPE_SKYBOX)		// for skybox
-            {
-            #define GL_CLAMP_TO_EDGE	0x812F
-
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-            gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, textureInfo.mTexWidth, textureInfo.mTexHeight, GL_RGBA, GL_UNSIGNED_BYTE, textureInfo.mBits);
-            }
-            else									// single texture
-            */	
-            {
-                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-                glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
-                glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
-                glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, inTexture.mTexWidth, inTexture.mTexHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, inTexture.mBuffer);
-            }
-        }
-
-        delete [] inTexture.mBuffer;
-        inTexture.mBuffer = NULL;
-
-        checkGlError();
-    }
 }
 
 JTexture* JRenderer::LoadTexture(const char* filename, int mode, int TextureFormat __attribute__((unused)))
@@ -2039,7 +1987,7 @@ void JRenderer::LoadGIF(TextureInfo &textureInfo, const char *filename, int mode
 	return ;//*/
 }
 
-#else //IOS
+#elif (defined IOS)
 
 #include <UIKit/UIImage.h>
 
@@ -2149,7 +2097,115 @@ JTexture* JRenderer::LoadTexture(const char* filename, int mode, int TextureForm
 	checkGlError();
 	return tex;
 }
+#elif (defined USE_QT_IMAGE)
+JTexture* JRenderer::LoadTexture(const char* filename, int mode, int TextureFormat __attribute__((unused)))
+{
+  JTexture *tex = NULL;
+  int rawsize = 0;
+  BYTE* rawdata = NULL;
+  JFileSystem* fileSystem = JFileSystem::GetInstance();
+
+  do {
+    if (!fileSystem->OpenFile(filename))
+      break;
+
+    rawsize = fileSystem->GetFileSize();
+    rawdata = new BYTE[rawsize];
+
+    if (!rawdata)
+    {
+      fileSystem->CloseFile();
+      break;
+    }
+
+    fileSystem->ReadFile(rawdata, rawsize);
+    fileSystem->CloseFile();
+
+    QImage tmpImage = QImage::fromData(rawdata, rawsize);
+    if(tmpImage.isNull())
+      break;
+
+    tex = new JTexture();
+    if (tex)
+    {
+      tmpImage = tmpImage.convertToFormat(QImage::Format_ARGB32_Premultiplied);
+      tex->mImage = tmpImage.rgbSwapped();
+
+      if (mImageFilter != NULL)
+          mImageFilter->ProcessImage((PIXEL_TYPE*)tex->mImage.bits(), tex->mImage.width(), tex->mImage.height());
+
+      tex->mFilter = TEX_FILTER_LINEAR;
+      tex->mWidth = tex->mImage.width();
+      tex->mHeight = tex->mImage.height();
+      tex->mTexWidth = tex->mImage.width();
+      tex->mTexHeight = tex->mImage.height();
+
+      tex->mBuffer = tex->mImage.bits();
+    }
+  } while(false);
+
+  if(rawdata)
+    delete[] rawdata;
+
+  return tex;
+}
 #endif //IOS
+
+void JRenderer::TransferTextureToGLContext(JTexture& inTexture)
+{
+    if (inTexture.mBuffer != NULL)
+    {
+        GLuint texid;
+        checkGlError();
+        glGenTextures(1, &texid);
+        inTexture.mTexId = texid;
+        mCurrentTex = texid;
+
+        //    glError = glGetError();
+
+        if (1)///*texid*/ glError == 0)
+        {
+
+            // OpenGL texture has (0,0) at lower-left
+            // Pay attention when doing texture mapping!!!
+
+            glBindTexture(GL_TEXTURE_2D, mCurrentTex);    // Bind To The Texture ID
+
+            /* NOT USED
+            if (mode == TEX_TYPE_MIPMAP)			// generate mipmaps
+            {
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_NEAREST);
+            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR_MIPMAP_LINEAR);
+            gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, textureInfo.mTexWidth, textureInfo.mTexHeight, GL_RGBA, GL_UNSIGNED_BYTE, textureInfo.mBits);
+            }
+            else if (mode == TEX_TYPE_SKYBOX)		// for skybox
+            {
+            #define GL_CLAMP_TO_EDGE	0x812F
+
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+            gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, textureInfo.mTexWidth, textureInfo.mTexHeight, GL_RGBA, GL_UNSIGNED_BYTE, textureInfo.mBits);
+            }
+            else									// single texture
+            */
+            {
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+                glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+                glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+                glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, inTexture.mTexWidth, inTexture.mTexHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, inTexture.mBuffer);
+            }
+        }
+#ifndef USE_QT_IMAGE
+        delete [] inTexture.mBuffer;
+#endif
+        inTexture.mBuffer = NULL;
+
+        checkGlError();
+    }
+}
 
 JTexture* JRenderer::CreateTexture(int width, int height, int mode __attribute__((unused)))
 {
