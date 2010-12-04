@@ -250,6 +250,7 @@ AACounter::AACounter(int id, MTGCardInstance * source, MTGCardInstance * target,
 {
     this->target = target;
     if (name.find("Level")) aType = MTGAbility::STANDARD_LEVELUP;
+    menu = "";
 }
 
 int AACounter::resolve()
@@ -282,27 +283,34 @@ int AACounter::resolve()
 
 const char* AACounter::getMenuText()
 {
+  if(menu.size())
+  {
+		return menu.c_str();
+  }
+		char buffer[128];
 
-	if(name.size()){
+    if(name.size())
+				{
     string s = name;
-		if(power == 0 && toughness == 0)
+		menu.append(s.c_str());
+				}
+
+		if(power != 0 || toughness != 0)
 		{
-			if( nb != 1) sprintf(menuText, "%s Counter:%i", s.c_str(),nb);
-			else sprintf(menuText, "%s Counter", s.c_str(),nb);
+			sprintf(buffer, " %i/%i", power,toughness);
+      menu.append(buffer);
 		}
-		else
+
+		menu.append(" Counter");
+    if(nb != 1) 
 		{
-			if( nb != 1) sprintf(menuText, "%i/%i %s Counter:%i",power,toughness, s.c_str(),nb);
-			else sprintf(menuText, "%i/%i %s Counter",power,toughness, s.c_str(),nb);
+			sprintf(buffer, ": %i", nb);
+      menu.append(buffer);
 		}
-	}
-	else
-	{
-		if(nb != 1) sprintf(menuText, "%i/%i Counter:%i",power,toughness,nb);
-		else sprintf(menuText, "%i/%i Counter",power,toughness,nb);
-	}
+
+    sprintf(menuText, "%s",menu.c_str());
 		return menuText;
-}
+	}
 
 AACounter * AACounter::clone() const
 {

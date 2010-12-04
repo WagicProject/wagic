@@ -625,6 +625,7 @@ public:
     int power;
     int toughness;
     string name;
+		string menu;
 
     AACounter(int id, MTGCardInstance * source, MTGCardInstance * target, const char * _name, int power, int toughness, int nb,
             ManaCost * cost = NULL, int doTap = 0);
