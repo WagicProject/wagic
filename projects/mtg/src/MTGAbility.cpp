@@ -1315,7 +1315,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
 
     //Damage
-    found = s.find("damage");
+		found = s.find("damage:");
     if (found != string::npos)
     {
         size_t start = s.find(":", found);
@@ -1387,7 +1387,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
     //set life total
-    found = s.find("lifeset");
+		found = s.find("lifeset:");
     if (found != string::npos)
     {
         size_t start = s.find(":", found);

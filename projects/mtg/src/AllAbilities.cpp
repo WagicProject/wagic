@@ -282,7 +282,26 @@ int AACounter::resolve()
 
 const char* AACounter::getMenuText()
 {
-    return "Counter";
+
+	if(name.size()){
+    string s = name;
+		if(power == 0 && toughness == 0)
+		{
+			if( nb != 1) sprintf(menuText, "%s Counter:%i", s.c_str(),nb);
+			else sprintf(menuText, "%s Counter", s.c_str(),nb);
+		}
+		else
+		{
+			if( nb != 1) sprintf(menuText, "%i/%i %s Counter:%i",power,toughness, s.c_str(),nb);
+			else sprintf(menuText, "%i/%i %s Counter",power,toughness, s.c_str(),nb);
+		}
+	}
+	else
+	{
+		if(nb != 1) sprintf(menuText, "%i/%i Counter:%i",power,toughness,nb);
+		else sprintf(menuText, "%i/%i Counter",power,toughness,nb);
+	}
+		return menuText;
 }
 
 AACounter * AACounter::clone() const
