@@ -8853,7 +8853,7 @@ name=Chainer, Dementia Master
 auto=lord(Nightmare) 1/1
 auto={B}{B}{B}{L}{L}{L}:moveto(mybattlefield) target(creature|graveyard) && transforms(Nightmare,black) forever
 auto=@movedto(this|nonbattlezone):moveto(exile) all(Nightmare)
-text={B}{B}{B}, Pay 3 life: Put target creature card from a graveyard onto the battlefield under your control. That creature is black and is a Nightmare in addition to its other creature types. -- When Chainer, Dementia Master leaves the battlefield, exile all Nightmares.
+text=Nightmare creatures get +1/+1. -- {B}{B}{B}, Pay 3 life: Put target creature card from a graveyard onto the battlefield under your control. That creature is black and is a Nightmare in addition to its other creature types. -- When Chainer, Dementia Master leaves the battlefield, exile all Nightmares.
 mana={3}{B}{B}
 power=3
 toughness=3
@@ -10893,7 +10893,7 @@ name=Corpsehatch
 target=creature[-black]
 auto=destroy
 auto=Token(-193507)*2
-text=Destroy target nonblack creature. -- Put two 0/1 colorless Eldrazi Spawn creature tokens onto the battlefield. They have ìSacrifice this creature: Add {1} to your mana pool.ÅE
+text=Destroy target nonblack creature. -- Put two 0/1 colorless Eldrazi Spawn creature tokens onto the battlefield. They have sacrifice this creature: Add {1} to your mana pool.
 mana={3}{B}{B}
 type=Sorcery
 [/card]
@@ -22962,7 +22962,7 @@ auto={2}:flying target(creature[artifact])
 auto={2}:trample target(creature[artifact])
 auto={2}:haste target(creature[artifact])
 text={2}: Target atifact creature gets +1/+1 until end of turn. -- {2}: Target artifact creature gains your choice of flying, trample, or haste until end of turn.
-mana={6}
+mana={5}
 type=Artifact Creature
 subtype=Golem
 power=3
@@ -26922,7 +26922,7 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Imp's Mischief
+name=Imps' Taunt
 target=creature
 auto=mustattack
 buyback={1}{B}{3}
@@ -46644,7 +46644,7 @@ toughness=4
 [card]
 name=Samurai of the Pale Curtain
 auto=bushido(1/1)
-auto=@movedTo(*|graveyard):all(trigger) moveTo(exile)
+auto=@movedTo(*|graveyard) from(battlefield):all(trigger) moveTo(exile)
 text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.) -- If a permanent would be put into a graveyard, exile it instead.
 mana={W}{W}
 type=Creature
@@ -54844,7 +54844,7 @@ type=Instant
 [card]
 name=Summoning Station
 auto=@movedTo(artifact|graveyard) from(battlefield):may untap
-auto={T}:token(Pincher,creature artifact pincher,2/2,artifact)
+auto={T}:token(Pincher,Creature Pincher,2/2)
 text={T}: Put a 2/2 colorless Pincher creature token onto the battlefield. -- Whenever an artifact is put into a graveyard from the battlefield, you may untap Summoning Station.
 mana={7}
 type=Artifact
