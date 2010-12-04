@@ -145,7 +145,11 @@ ManaCost * AIPlayer::getPotentialMana(MTGCardInstance * target)
             }
         }
     }
-    result->add(this->getManaPool());
+		if(this->getManaPool()->getConvertedCost())
+		{
+			//adding the current manapool if any, to the potential mana Ai can use.
+			result->add(this->getManaPool());
+		}
     return result;
 }
 
@@ -1158,10 +1162,10 @@ int AIPlayerBaka::computeActions()
         {
 
             bool potential = false;
-            ManaCost * currentMana = manaPool;
-            if (!currentMana->getConvertedCost())
+            ManaCost * currentMana = getPotentialMana();
+            if (currentMana->getConvertedCost())
             {
-                currentMana = getPotentialMana();
+							//if theres mana i can use there then potential is true.
                 potential = true;
             }
             nextCardToPlay = FindCardToPlay(currentMana, "land");
