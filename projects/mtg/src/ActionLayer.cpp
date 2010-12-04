@@ -307,8 +307,7 @@ void ActionLayer::doReactTo(int menuIndex)
 
 void ActionLayer::ButtonPressed(int controllerid, int controlid)
 {
-	int Objects = mObjects.size();
-    if (controlid >= 0 && controlid < Objects)
+    if (controlid >= 0 && controlid < static_cast<int>(mObjects.size()))
     {
         ActionElement * currentAction = (ActionElement *) mObjects[controlid];
         currentAction->reactToTargetClick(menuObject);
