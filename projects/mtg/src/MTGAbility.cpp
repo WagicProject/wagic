@@ -569,6 +569,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             if (amp)
             {
                 amp->cost = cost;
+                if (cost && card->typeAsTarget() == TARGET_CARD)
+                    cost->setExtraCostsAction(a, card);
                 amp->oneShot = 0;
                 amp->tap = doTap;
                 return amp;
@@ -3640,6 +3642,10 @@ int AManaProducer::isReactingToClick(MTGCardInstance * _card, ManaCost * mana)
         if (!cost || mana->canAfford(cost))
         {
             result = 1;
+            if (cost && cost->extraCosts != NULL)
+            {
+                return cost->canPayExtra();
+            }
         }
     }
     return result;
@@ -3671,7 +3677,6 @@ int AManaProducer::reactToClick(MTGCardInstance * _card)
         return 0;
     if (cost)
     {
-        cost->setExtraCostsAction(this, _card);
         if (!cost->isExtraPaymentSet())
         {
             GameObserver::GetInstance()->waitForExtraPayment = cost->extraCosts;
