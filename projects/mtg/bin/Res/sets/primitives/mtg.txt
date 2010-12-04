@@ -21822,8 +21822,8 @@ toughness=2
 [card]
 name=Glen Elendra Liege
 abilities=flying
-auto=lord(other creature[blue]|myinplay) 1/1
-auto=lord(other creature[black]|myinplay) 1/1
+auto=lord(other creature[blue]|mybattlefield) 1/1
+auto=lord(other creature[black]|mybattlefield) 1/1
 text=Flying -- Other blue creatures you control get +1/+1. -- Other black creatures you control get +1/+1.
 mana={1}{UB}{UB}{UB}
 type=Creature
@@ -60271,24 +60271,21 @@ subtype=Urza's
 [/card]
 [card]
 name=Urza's Mine
-auto={T}:add {1} && aslongas(Urza's Power Plant|myinplay)aslongas(Urza's Tower|myinplay) add{1}
+auto={T}:add {1} && aslongas(Urza's Power Plant|mybattlefield) aslongas(Urza's Tower|mybattlefield) add{1}
 text={T}: Add {1} to your mana pool. If you control an Urza's Power-Plant and an Urza's Tower, add {2} to your mana pool instead.
 type=Land
-subtype=Urza's Mine
 [/card]
 [card]
 name=Urza's Power Plant
-auto={T}:add {1} && aslongas(Urza's Mine|myinplay)aslongas(Urza's Tower|myinplay) add{1}
+auto={T}:add {1} && aslongas(Urza's Mine|mybattlefield) aslongas(Urza's Tower|mybattlefield) add{1}
 text={T}: Add {1} to your mana pool. If you control an Urza's Mine and an Urza's Tower, add {2} to your mana pool instead.
 type=Land
-subtype=Urza's Power-Plant
 [/card]
 [card]
 name=Urza's Tower
-auto={T}:add {1} && aslongas(Urza's Power Plant|myinplay)aslongas(Urza's Mine|myinplay) add{2}
+auto={T}:add {1} && aslongas(Urza's Power Plant|mybattlefield) aslongas(Urza's Mine|mybattlefield) add{2}
 text={T}: Add {1} to your mana pool. If you control an Urza's Mine and an Urza's Power-Plant, add {3} to your mana pool instead.
 type=Land
-subtype=Urza's Tower
 [/card]
 [card]
 name=Uthden Troll
