@@ -150,7 +150,7 @@ ManaCost * AIPlayer::getPotentialMana(MTGCardInstance * target)
 			//adding the current manapool if any, to the potential mana Ai can use.
 			result->add(this->getManaPool());
 		}
-    return result;
+		return result;
 }
 
 int AIPlayer::getEfficiency(AIAction * action)
@@ -933,7 +933,7 @@ int AIPlayer::chooseBlockers()
                 {
                     MTGCardInstance * attacker = card->defenser;
                     if (opponentsToughness[attacker] <= 0 || (card->toughness <= attacker->power && opponentForce * 2 < life
-                            && !canFirstStrikeKill(card, attacker)) || attacker->nbOpponents() > 1)
+											&& !canFirstStrikeKill(card, attacker)) || attacker->nbOpponents() > 1 || attacker->controller()->isAI())
                     {
                         g->mLayers->actionLayer()->reactToClick(a, card);
                     }
