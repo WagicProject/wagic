@@ -1238,13 +1238,16 @@ int MTGBlockRule::reactToClick(MTGCardInstance * card)
         return 0;
     MTGCardInstance * currentOpponent = card->isDefenser();
     bool result = false;
-    int candefend = 0;
+    int canDefend = 0;
     while (!result)
     {
         currentOpponent = game->currentPlayer->game->inPlay->getNextAttacker(currentOpponent);
-        DebugTrace("Defenser Toggle: " << card->getName());
-        candefend = card->toggleDefenser(currentOpponent);
-        result = (candefend || currentOpponent == NULL);
+        canDefend = card->toggleDefenser(currentOpponent);
+
+        DebugTrace("Defenser Toggle: " << card->getName() << endl
+        					<< "- canDefend: " << (canDefend == 0) << endl
+							<< "- currentOpponent: " << currentOpponent);
+        result = (canDefend || currentOpponent == NULL);
     }
     return 1;
 }
