@@ -32,6 +32,7 @@ class SimpleMenu:public JGuiController{
  public:
   bool autoTranslate;
   SimpleMenu(int id, JGuiListener* listener, int fontId, float x, float y, const char * _title = "", int _maxItems = 7);
+  virtual ~SimpleMenu();
   void Render();
   void Update(float dt);
   void Add(int id, const char * Text,string desc = "", bool forceFocus = false);

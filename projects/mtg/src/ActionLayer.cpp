@@ -307,17 +307,22 @@ void ActionLayer::doReactTo(int menuIndex)
 
 void ActionLayer::ButtonPressed(int controllerid, int controlid)
 {
-    if (controlid != -1)
+    if (controlid >= 0 && controlid < mObjects.size())
     {
         ActionElement * currentAction = (ActionElement *) mObjects[controlid];
         currentAction->reactToTargetClick(menuObject);
+        menuObject = 0;
+    }
+    else if (controlid == kCancelMenuID)
+    {
+        GameObserver::GetInstance()->mLayers->stackLayer()->endOfInterruption();
+        menuObject = 0;
     }
     else
     {
-        GameObserver::GetInstance()->mLayers->stackLayer()->endOfInterruption();
+        // fallthrough case. We have an id we don't recognize - do nothing, don't clear the menu!
+        //assert(false);
     }
-    menuObject = 0;
-
 }
 
 ActionLayer::ActionLayer()

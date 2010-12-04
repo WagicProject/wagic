@@ -90,9 +90,9 @@ void JGuiController::Render()
     for (int i = 0; i < mCount; i++)
         if (mObjects[i] != NULL) mObjects[i]->Render();
 }
+
 bool JGuiController::CheckUserInput(JButton key)
 {
-
     if (!mCount) return false;
     if (key == mActionButton)
     {
@@ -112,8 +112,8 @@ bool JGuiController::CheckUserInput(JButton key)
     else if (JGE_BTN_CANCEL == key)
     {
         if (mListener != NULL) mListener->ButtonPressed(mId, kInfoMenuID);
+        return true;
     }
-
     else if ((JGE_BTN_LEFT == key) || (JGE_BTN_UP == key)) // || mEngine->GetAnalogY() < 64 || mEngine->GetAnalogX() < 64)
     {
         int n = mCurr;
@@ -185,6 +185,7 @@ bool JGuiController::CheckUserInput(JButton key)
     }
     return false;
 }
+
 void JGuiController::Update(float dt)
 {
     for (int i = 0; i < mCount; i++)

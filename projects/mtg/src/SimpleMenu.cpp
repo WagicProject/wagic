@@ -57,6 +57,10 @@ SimpleMenu::SimpleMenu(int id, JGuiListener* listener, int fontId, float x, floa
     stars->FireAt(mX, mY);
 }
 
+SimpleMenu::~SimpleMenu()
+{
+}
+
 void SimpleMenu::drawHorzPole(float x, float y, float width)
 {
     JRenderer* renderer = JRenderer::GetInstance();
