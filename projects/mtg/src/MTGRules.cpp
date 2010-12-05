@@ -307,7 +307,7 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card)
     {
         if (cost->alternative->isExtraPaymentSet())
         {
-            card->paymenttype = 1;
+            card->paymenttype = MTGAbility::ALTERNATIVE_COST;
             if (!game->targetListIsSet(card))
             {
                 return 0;
@@ -317,7 +317,7 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card)
         {
             cost->alternative->setExtraCostsAction(this, card);
             game->waitForExtraPayment = cost->alternative->extraCosts;
-            card->paymenttype = 1;
+            card->paymenttype = MTGAbility::ALTERNATIVE_COST;
             return 0;
         }
     }
@@ -496,7 +496,7 @@ int MTGBuyBackRule::reactToClick(MTGCardInstance * card)
     {
         if (cost->BuyBack->isExtraPaymentSet())
         {
-            card->paymenttype = 2;
+            card->paymenttype = MTGAbility::BUYBACK_COST;
             if (!game->targetListIsSet(card))
             {
                 return 0;
@@ -506,7 +506,7 @@ int MTGBuyBackRule::reactToClick(MTGCardInstance * card)
         {
             cost->BuyBack->setExtraCostsAction(this, card);
             game->waitForExtraPayment = cost->BuyBack->extraCosts;
-            card->paymenttype = 2;
+            card->paymenttype = MTGAbility::BUYBACK_COST;
             return 0;
         }
     }
@@ -680,7 +680,7 @@ int MTGFlashBackRule::reactToClick(MTGCardInstance * card)
     {
         if (cost->FlashBack->isExtraPaymentSet())
         {
-            card->paymenttype = 3;
+            card->paymenttype = MTGAbility::FLASHBACK_COST;
             if (!game->targetListIsSet(card))
             {
                 return 0;
@@ -690,7 +690,7 @@ int MTGFlashBackRule::reactToClick(MTGCardInstance * card)
         {
             cost->FlashBack->setExtraCostsAction(this, card);
             game->waitForExtraPayment = cost->FlashBack->extraCosts;
-            card->paymenttype = 3;
+            card->paymenttype = MTGAbility::FLASHBACK_COST;
             return 0;
         }
     }
@@ -864,7 +864,7 @@ int MTGRetraceRule::reactToClick(MTGCardInstance * card)
     {
         if (cost->Retrace->isExtraPaymentSet())
         {
-            card->paymenttype = 4;
+            card->paymenttype = MTGAbility::RETRACE_COST;
             if (!game->targetListIsSet(card))
             {
                 return 0;
@@ -874,7 +874,7 @@ int MTGRetraceRule::reactToClick(MTGCardInstance * card)
         {
             cost->Retrace->setExtraCostsAction(this, card);
             game->waitForExtraPayment = cost->Retrace->extraCosts;
-            card->paymenttype = 4;
+            card->paymenttype = MTGAbility::RETRACE_COST;;
             return 0;
         }
     }

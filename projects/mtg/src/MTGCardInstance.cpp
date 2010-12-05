@@ -120,7 +120,7 @@ void MTGCardInstance::initMTGCI()
     equipment = NULL;
     boughtback = 0;
     flashedback = 0;
-    paymenttype = 0;
+    paymenttype = MTGAbility::PUT_INTO_PLAY;
     reduxamount = 0;
     summoningSickness = 1;
     preventable = 0;

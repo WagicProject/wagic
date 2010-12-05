@@ -3101,7 +3101,8 @@ public:
             {
                 for (int i = 0; i < nbOpponents; i++)
                 {
-                    opponents[i]->destroy();
+                    if (game->isInPlay(opponents[i]))
+                        opponents[i]->destroy();
                 }
             }
         }

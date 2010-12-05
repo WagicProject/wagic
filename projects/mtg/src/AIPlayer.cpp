@@ -605,14 +605,18 @@ int AIPlayer::createAbilityTargets(MTGAbility * a, MTGCardInstance * c, map<AIAc
 
 int AIPlayer::selectAbility()
 {
-	static bool mFindingAbility = false;
-	//this gaurd is put in place to prevent Ai from
+	static bool findingAbility = false;
+	//this guard is put in place to prevent Ai from
 	//ever running selectAbility() function WHILE its already doing so.
-	if (mFindingAbility) 
+    
+    // Break if this happens in debug mode. If this happens, it's actually a bug
+    assert(!findingAbility);
+
+	if (findingAbility) 
 	{//is already looking kick me out of this function!
 		return 0;
 	}
-	mFindingAbility = true;//im looking now safely!
+	findingAbility = true;//im looking now safely!
 	map<AIAction *, int, CmpAbilities> ranking;
 	list<int>::iterator it;
 	GameObserver * g = GameObserver::GetInstance();
@@ -665,7 +669,7 @@ int AIPlayer::selectAbility()
 			if (a && a != it2->first) delete (it2->first);
 		}
 	}
-	mFindingAbility = false;//ok to start looking again.
+	findingAbility = false;//ok to start looking again.
 	return 1;
 }
 
@@ -709,7 +713,7 @@ int AIPlayer::chooseTarget(TargetChooser * _tc, Player * forceTarget)
 		tc = gameObs->getCurrentTargetChooser();
 	}
 	if (!tc) return 0;
-
+    tc->initTargets(); //cleanup the targetchooser just in case.
 	if (!(gameObs->currentlyActing() == this)) return 0;
 	Player * target = forceTarget;
 

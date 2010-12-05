@@ -24,7 +24,6 @@ using namespace std;
 
 class GameObserver{
  protected:
-  int reaction;
   static GameObserver * mInstance;
   MTGCardInstance * cardWaitingForTargets;
   queue<WEvent *> eventsQueue;
@@ -54,7 +53,7 @@ class GameObserver{
   TargetChooser * getCurrentTargetChooser();
   void stackObjectClicked(Interruptible * action);
 
-  void cardClick(MTGCardInstance * card,Targetable * _object = NULL );
+  int cardClick(MTGCardInstance * card,Targetable * _object = NULL );
   int getCurrentGamePhase();
   void nextCombatStep();
   void userRequestNextGamePhase();

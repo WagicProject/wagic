@@ -43,7 +43,6 @@ GameObserver::GameObserver(Player * _players[], int _nb_players)
     targetChooser = NULL;
     cardWaitingForTargets = NULL;
     waitForExtraPayment = NULL;
-    reaction = 0;
     gameOver = NULL;
     phaseRing = NULL;
     replacementEffects = NEW ReplacementEffects();
@@ -518,13 +517,13 @@ void GameObserver::stackObjectClicked(Interruptible * action)
     }
     else
     {
-        reaction = mLayers->actionLayer()->isReactingToTargetClick(action);
+        int reaction = mLayers->actionLayer()->isReactingToTargetClick(action);
         if (reaction == -1)
             mLayers->actionLayer()->reactToTargetClick(action);
     }
 }
 
-void GameObserver::cardClick(MTGCardInstance * card, Targetable * object)
+int GameObserver::cardClick(MTGCardInstance * card, Targetable * object)
 {
     Player * clickedPlayer = NULL;
     if (!card)
@@ -558,7 +557,7 @@ void GameObserver::cardClick(MTGCardInstance * card, Targetable * object)
         if (result == TARGET_OK_FULL)
             card = cardWaitingForTargets;
         else
-            return;
+            return 1;
     }
 
     if (waitForExtraPayment)
@@ -572,17 +571,24 @@ void GameObserver::cardClick(MTGCardInstance * card, Targetable * object)
             mLayers->actionLayer()->reactToClick(waitForExtraPayment->action, waitForExtraPayment->source);
             waitForExtraPayment = NULL;
         }
-        return;
+        return 1;
     }
+
+    int reaction = 0;
 
     if (ORDER == combatStep)
     {
         card->defenser->raiseBlockerRankOrder(card);
-        return;
+        return 1;
     }
 
-    if (card && card->paymenttype <= 0)
-    {//card played as normal.
+    if (card)
+    {
+        //card played as normal, alternative cost, buyback, flashback, retrace.
+
+        //the varible "paymenttype = int" only serves one purpose, to tell this bug fix what menu item you clicked on...
+        // all alternative cost or play methods suffered from the fix because if the card contained "target=" 
+        // it would automatically force the play method to putinplayrule...even charge you the original mana cost.
 
         /* Fix for Issue http://code.google.com/p/wagic/issues/detail?id=270
          put into play is hopefully the only ability causing that kind of trouble
@@ -590,84 +596,23 @@ void GameObserver::cardClick(MTGCardInstance * card, Targetable * object)
          */
         if (targetChooser)
         {
-            MTGAbility * a = mLayers->actionLayer()->getAbility(MTGAbility::PUT_INTO_PLAY);
-            a->reactToClick(card);
-            return;
+            MTGAbility * a = mLayers->actionLayer()->getAbility(card->paymenttype);
+            return a->reactToClick(card);
         }
 
         reaction = mLayers->actionLayer()->isReactingToClick(card);
         if (reaction == -1)
-            mLayers->actionLayer()->reactToClick(card);
+            return mLayers->actionLayer()->reactToClick(card);
     }
-    /* added same fix for buyback and alternative cost, the varible "paymenttype = int" only serves one purpose, to tell this bug fix what menu item you clicked on...all alternative cost or play methods suffered from the fix because if the card contained "target=" it would automatically force the play method to putinplayrule...even charge you the original mana cost.*/
-    else if (card && card->paymenttype == 1)
-    {//this is alternitive cost
-        if (targetChooser)
-        {
-            MTGAbility * a = mLayers->actionLayer()->getAbility(MTGAbility::ALTERNATIVE_COST);
-            a->reactToClick(card);
-            return;
-        }
-
-        reaction = mLayers->actionLayer()->isReactingToClick(card);
-        if (reaction == -1)
-            mLayers->actionLayer()->reactToClick(card);
-    }
-    //--------------
-    else if (card && card->paymenttype == 2)
-    {//this is buyback
-        if (targetChooser)
-        {
-            MTGAbility * a = mLayers->actionLayer()->getAbility(MTGAbility::BUYBACK_COST);
-            a->reactToClick(card);
-            return;
-        }
-
-        reaction = mLayers->actionLayer()->isReactingToClick(card);
-        if (reaction == -1)
-            mLayers->actionLayer()->reactToClick(card);
-    }
-    //=====================
-    else if (card && card->paymenttype == 3)
-    {//this is Flashback
-        if (targetChooser)
-        {
-            MTGAbility * a = mLayers->actionLayer()->getAbility(MTGAbility::FLASHBACK_COST);
-            a->reactToClick(card);
-            return;
-        }
-
-        reaction = mLayers->actionLayer()->isReactingToClick(card);
-        if (reaction == -1)
-            mLayers->actionLayer()->reactToClick(card);
-    }
-    //=====================
-    else if (card && card->paymenttype == 4)
-    {//this is retrace
-        if (targetChooser)
-        {
-            MTGAbility * a = mLayers->actionLayer()->getAbility(MTGAbility::RETRACE_COST);
-            a->reactToClick(card);
-            return;
-        }
-
-        reaction = mLayers->actionLayer()->isReactingToClick(card);
-        if (reaction == -1)
-            mLayers->actionLayer()->reactToClick(card);
-    }
-    //=====================
     else
     {//this handles abilities on a menu...not just when card is being played
         reaction = mLayers->actionLayer()->isReactingToTargetClick(object);
         if (reaction == -1)
-            mLayers->actionLayer()->reactToTargetClick(object);
+            return mLayers->actionLayer()->reactToTargetClick(object);
     }
 
-    if (reaction == -1)
-        return;
-
     if (!card)
-        return;
+        return 0;
 
     //Current player's hand
     if (currentPlayer->game->hand->hasCard(card) && currentGamePhase == Constants::MTG_PHASE_CLEANUP
@@ -679,17 +624,20 @@ void GameObserver::cardClick(MTGCardInstance * card, Targetable * object)
     {
         if (reaction == 1)
         {
-            mLayers->actionLayer()->reactToClick(card);
+            return mLayers->actionLayer()->reactToClick(card);
         }
         else
         {
             mLayers->actionLayer()->setMenuObject(object);
+            return 1;
         }
     }
     else if (card->isTapped() && card->controller() == currentPlayer)
     {
-        untap(card);
+        return untap(card);
     }
+
+    return 0;
 
 }
 
