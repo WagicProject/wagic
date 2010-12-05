@@ -59583,9 +59583,9 @@ subtype=Aura
 name=Twisted Image
 target=creature
 auto=swap
-auto=draw:1
+auto=draw:1 controller
 text=Switch target creature's power and toughness until end of turn. -- Draw a card.
-mana={1}{U}
+mana={U}
 type=Instant
 [/card]
 [card]
