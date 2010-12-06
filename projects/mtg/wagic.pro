@@ -8,6 +8,7 @@ QT       += core gui opengl
 VERSION = 0.13.0
 TARGET = wagic
 TEMPLATE = app
+QMAKE_CXXFLAGS += -Wno-unused-parameter
 windows:DEFINES += WIN32
 windows:DEFINES += _CRT_SECURE_NO_WARNINGS
 windows:DEFINES += FORCE_GL2
@@ -21,12 +22,13 @@ windows:INCLUDEPATH += ../../JGE/Dependencies/include
 unix:INCLUDEPATH += /usr/include/GL
 unix:INCLUDEPATH += /usr/include/freetype2
 INCLUDEPATH += ../../JGE/include
+INCLUDEPATH += ../../Boost
 INCLUDEPATH += include
 OBJECTS_DIR = objs
 MOC_DIR = objs
 DESTDIR = bin
 
-unix:LIBS += -ljpeg -lgif -lpng12
+unix:LIBS += -ljpeg -lgif -lpng12 -lboost_thread -L../../Boost/lib
 windows:LIBS += -L../../JGE/Dependencies/lib -llibjpeg-static-mt-debug -lgiflib -llibpng -lfmodvc
 
 # MGT
