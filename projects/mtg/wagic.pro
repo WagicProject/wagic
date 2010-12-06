@@ -13,6 +13,7 @@ windows:DEFINES += WIN32
 windows:DEFINES += _CRT_SECURE_NO_WARNINGS
 windows:DEFINES += FORCE_GL2
 unix:DEFINES += LINUX
+mac:DEFINES += LINUX
 DEFINES += QT_CONFIG
 maemo5 {
 DEFINES += USE_PHONON
@@ -21,6 +22,7 @@ QT += phonon dbus
 windows:INCLUDEPATH += ../../JGE/Dependencies/include
 unix:INCLUDEPATH += /usr/include/GL
 #unix:INCLUDEPATH += /usr/include/freetype2
+mac:INCLUDEPATH += /opt/include
 INCLUDEPATH += ../../JGE/include
 #INCLUDEPATH += ../../Boost
 INCLUDEPATH += include
@@ -30,6 +32,7 @@ DESTDIR = bin
 
 #unix:LIBS += -lboost_thread -L../../Boost/lib
 windows:LIBS += -L../../JGE/Dependencies/lib -llibjpeg-static-mt-debug -lgiflib -llibpng -lfmodvc
+mac:LIBS += -L/opt/lib -lz
 
 # MGT
 SOURCES += \

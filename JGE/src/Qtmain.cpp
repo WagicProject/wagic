@@ -293,7 +293,8 @@ void JGEQtRenderer::resizeGL(int width, int height)
 
 void JGEQtRenderer::paintGL()
 {
-  g_engine->Render();
+    if(g_engine)
+        g_engine->Render();
 }
 
 void JGEQtRenderer::timerEvent( QTimerEvent* )
