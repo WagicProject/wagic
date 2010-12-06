@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui opengl
-VERSION = 0.13.0
+VERSION = 0.14.0
 TARGET = wagic
 TEMPLATE = app
 QMAKE_CXXFLAGS += -Wno-unused-parameter
@@ -20,15 +20,15 @@ QT += phonon dbus
 }
 windows:INCLUDEPATH += ../../JGE/Dependencies/include
 unix:INCLUDEPATH += /usr/include/GL
-unix:INCLUDEPATH += /usr/include/freetype2
+#unix:INCLUDEPATH += /usr/include/freetype2
 INCLUDEPATH += ../../JGE/include
-INCLUDEPATH += ../../Boost
+#INCLUDEPATH += ../../Boost
 INCLUDEPATH += include
 OBJECTS_DIR = objs
 MOC_DIR = objs
 DESTDIR = bin
 
-unix:LIBS += -ljpeg -lgif -lpng12 -lboost_thread -L../../Boost/lib
+#unix:LIBS += -lboost_thread -L../../Boost/lib
 windows:LIBS += -L../../JGE/Dependencies/lib -llibjpeg-static-mt-debug -lgiflib -llibpng -lfmodvc
 
 # MGT
@@ -247,7 +247,6 @@ SOURCES += \
         ../../JGE/src/JDistortionMesh.cpp\
         ../../JGE/src/JFileSystem.cpp\
         ../../JGE/src/JGameObject.cpp\
-        ../../JGE/src/JGBKFont.cpp\
         ../../JGE/src/JGE.cpp\
         ../../JGE/src/JGui.cpp\
         ../../JGE/src/JLogger.cpp\
@@ -261,7 +260,6 @@ SOURCES += \
         ../../JGE/src/JResourceManager.cpp\
         ../../JGE/src/JSpline.cpp\
         ../../JGE/src/JSprite.cpp\
-        ../../JGE/src/JTTFont.cpp\
         ../../JGE/src/Vector2D.cpp\
         ../../JGE/src/tinyxml/tinystr.cpp\
         ../../JGE/src/tinyxml/tinyxml.cpp\
@@ -291,7 +289,6 @@ HEADERS += \
         ../../JGE/include/JFileSystem.h\
         ../../JGE/include/JGameLauncher.h\
         ../../JGE/include/JGameObject.h\
-        ../../JGE/include/JGBKFont.h\
         ../../JGE/include/JGE.h\
         ../../JGE/include/JGui.h\
         ../../JGE/include/JLBFont.h\
@@ -310,7 +307,6 @@ HEADERS += \
         ../../JGE/include/JSoundSystem.h\
         ../../JGE/include/JSpline.h\
         ../../JGE/include/JSprite.h\
-        ../../JGE/include/JTTFont.h\
         ../../JGE/include/JTypes.h\
         ../../JGE/include/Vector2D.h\
         ../../JGE/include/Vector3D.h\

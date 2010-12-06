@@ -8,9 +8,8 @@
 //
 //-------------------------------------------------------------------------------------
 #define GL_GLEXT_PROTOTYPES
-//#define USE_QT_IMAGE
 
-#if (!defined IOS) && (!defined USE_QT_IMAGE)
+#if (!defined IOS) && (!defined QT_CONFIG)
 #ifdef WIN32
   #pragma warning(disable : 4786)
   #pragma comment( lib, "giflib.lib" )
@@ -354,7 +353,7 @@ JTexture::~JTexture()
 
     if (mBuffer)
     {
-#ifndef USE_QT_IMAGE
+#ifndef QT_CONFIG
         delete [] mBuffer;
 #endif
         mBuffer = NULL;
@@ -1480,7 +1479,7 @@ static int getNextPower2(int width)
 }
 
 
-#if (!defined IOS) && (!defined USE_QT_IMAGE)
+#if (!defined IOS) && (!defined QT_CONFIG)
 static void jpg_null(j_decompress_ptr cinfo __attribute__((unused)))
 {
 }
@@ -2097,7 +2096,7 @@ JTexture* JRenderer::LoadTexture(const char* filename, int mode, int TextureForm
 	checkGlError();
 	return tex;
 }
-#elif (defined USE_QT_IMAGE)
+#elif (defined QT_CONFIG)
 JTexture* JRenderer::LoadTexture(const char* filename, int mode, int TextureFormat __attribute__((unused)))
 {
   JTexture *tex = NULL;
@@ -2198,7 +2197,7 @@ void JRenderer::TransferTextureToGLContext(JTexture& inTexture)
                 glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, inTexture.mTexWidth, inTexture.mTexHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, inTexture.mBuffer);
             }
         }
-#ifndef USE_QT_IMAGE
+#ifndef QT_CONFIG
         delete [] inTexture.mBuffer;
 #endif
         inTexture.mBuffer = NULL;
