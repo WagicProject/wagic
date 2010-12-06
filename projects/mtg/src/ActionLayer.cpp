@@ -64,9 +64,9 @@ int ActionLayer::reactToTargetClick(ActionElement* ability, Targetable * card)
 bool ActionLayer::CheckUserInput(JButton key)
 {
     GameObserver * g = GameObserver::GetInstance();
-    if (g->waitForExtraPayment && key == JGE_BTN_SEC)
+    if (g->mExtraPayment && key == JGE_BTN_SEC)
     {
-        g->waitForExtraPayment = NULL;
+        g->mExtraPayment = NULL;
         return 1;
     }
     if (menuObject)

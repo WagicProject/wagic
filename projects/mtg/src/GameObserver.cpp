@@ -42,7 +42,7 @@ GameObserver::GameObserver(Player * _players[], int _nb_players)
     currentGamePhase = -1;
     targetChooser = NULL;
     cardWaitingForTargets = NULL;
-    waitForExtraPayment = NULL;
+    mExtraPayment = NULL;
     gameOver = NULL;
     phaseRing = NULL;
     replacementEffects = NEW ReplacementEffects();
@@ -199,6 +199,12 @@ void GameObserver::userRequestNextGamePhase()
     if (mLayers->stackLayer()->getNext(NULL, 0, NOT_RESOLVED))
         return;
     if (getCurrentTargetChooser())
+        return;
+
+    // Wil 12/5/10: additional check, not quite understanding why TargetChooser doesn't seem active at this point.
+    // If we deem that an extra cost payment needs to be made, don't allow the next game phase to proceed.
+    // Here's what I find weird - if the extra cost is something like a sacrifice, doesn't that imply a TargetChooser?
+    if (WaitForExtraPayment(NULL))
         return;
 
     bool executeNextPhaseImmediately = true;
@@ -445,8 +451,8 @@ void GameObserver::Render()
     mLayers->Render();
     if (targetChooser || mLayers->actionLayer()->isWaitingForAnswer())
         JRenderer::GetInstance()->DrawRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, ARGB(255,255,0,0));
-    if (waitForExtraPayment)
-        waitForExtraPayment->Render();
+    if (mExtraPayment)
+        mExtraPayment->Render();
     for (int i = 0; i < nbPlayers; ++i)
     {
         players[i]->Render();
@@ -523,6 +529,26 @@ void GameObserver::stackObjectClicked(Interruptible * action)
     }
 }
 
+bool GameObserver::WaitForExtraPayment(MTGCardInstance * card)
+{
+    bool result = false;
+    if (mExtraPayment)
+    {
+        if (card)
+        {
+            mExtraPayment->tryToSetPayment(card);
+        }
+        if (mExtraPayment->isPaymentSet())
+        {
+            mLayers->actionLayer()->reactToClick(mExtraPayment->action, mExtraPayment->source);
+            mExtraPayment = NULL;
+        }
+        result = true;
+    }
+
+    return result;
+}
+
 int GameObserver::cardClick(MTGCardInstance * card, Targetable * object)
 {
     Player * clickedPlayer = NULL;
@@ -560,21 +586,10 @@ int GameObserver::cardClick(MTGCardInstance * card, Targetable * object)
             return 1;
     }
 
-    if (waitForExtraPayment)
-    {
-        if (card)
-        {
-            waitForExtraPayment->tryToSetPayment(card);
-        }
-        if (waitForExtraPayment->isPaymentSet())
-        {
-            mLayers->actionLayer()->reactToClick(waitForExtraPayment->action, waitForExtraPayment->source);
-            waitForExtraPayment = NULL;
-        }
+    if (WaitForExtraPayment(card))
         return 1;
-    }
 
-    int reaction = 0;
+	int reaction = 0;
 
     if (ORDER == combatStep)
     {

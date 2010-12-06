@@ -30,6 +30,7 @@ class GameObserver{
 
   int nbPlayers;
   int untap(MTGCardInstance * card);
+  bool WaitForExtraPayment(MTGCardInstance* card);
 
  public:
   int currentPlayerId;
@@ -40,7 +41,7 @@ class GameObserver{
   PhaseRing * phaseRing;
   int cancelCurrentAction();
   int currentGamePhase;
-  ExtraCosts * waitForExtraPayment;
+  ExtraCosts * mExtraPayment;
   int oldGamePhase;
   TargetChooser * targetChooser;
   DuelLayers * mLayers;

@@ -3036,7 +3036,6 @@ int ActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 
 int ActivatedAbility::reactToClick(MTGCardInstance * card)
 {
-    //  if (cost) cost->setExtraCostsAction(this, card);
     if (!isReactingToClick(card))
         return 0;
     Player * player = game->currentlyActing();
@@ -3044,7 +3043,7 @@ int ActivatedAbility::reactToClick(MTGCardInstance * card)
     {
         if (!cost->isExtraPaymentSet())
         {
-            game->waitForExtraPayment = cost->extraCosts;
+            game->mExtraPayment = cost->extraCosts;
             return 0;
         }
         ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
@@ -3073,7 +3072,7 @@ int ActivatedAbility::reactToTargetClick(Targetable * object)
             cost->setExtraCostsAction(this, (MTGCardInstance *) object);
         if (!cost->isExtraPaymentSet())
         {
-            game->waitForExtraPayment = cost->extraCosts;
+            game->mExtraPayment = cost->extraCosts;
             return 0;
         }
         ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
@@ -3141,6 +3140,12 @@ int TargetAbility::reactToClick(MTGCardInstance * card)
     {
         if (isReactingToClick(card))
         {
+            if (cost && !cost->isExtraPaymentSet())
+            {
+                game->mExtraPayment = cost->extraCosts;
+                return 0;
+            }
+
             waitingForAnswer = 1;
             game->mLayers->actionLayer()->setCurrentWaitingAction(this);
             tc->initTargets();
@@ -3680,7 +3685,7 @@ int AManaProducer::reactToClick(MTGCardInstance * _card)
         cost->setExtraCostsAction(this, _card);
         if (!cost->isExtraPaymentSet())
         {
-            GameObserver::GetInstance()->waitForExtraPayment = cost->extraCosts;
+            GameObserver::GetInstance()->mExtraPayment = cost->extraCosts;
             return 0;
         }
         GameObserver::GetInstance()->currentlyActing()->getManaPool()->pay(cost);

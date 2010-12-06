@@ -132,7 +132,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
     else
     {
         cost->setExtraCostsAction(this, card);
-        game->waitForExtraPayment = cost->extraCosts;
+        game->mExtraPayment = cost->extraCosts;
         return 0;
     }
 
@@ -316,7 +316,7 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card)
         else
         {
             cost->alternative->setExtraCostsAction(this, card);
-            game->waitForExtraPayment = cost->alternative->extraCosts;
+            game->mExtraPayment = cost->alternative->extraCosts;
             card->paymenttype = MTGAbility::ALTERNATIVE_COST;
             return 0;
         }
@@ -505,7 +505,7 @@ int MTGBuyBackRule::reactToClick(MTGCardInstance * card)
         else
         {
             cost->BuyBack->setExtraCostsAction(this, card);
-            game->waitForExtraPayment = cost->BuyBack->extraCosts;
+            game->mExtraPayment = cost->BuyBack->extraCosts;
             card->paymenttype = MTGAbility::BUYBACK_COST;
             return 0;
         }
@@ -689,7 +689,7 @@ int MTGFlashBackRule::reactToClick(MTGCardInstance * card)
         else
         {
             cost->FlashBack->setExtraCostsAction(this, card);
-            game->waitForExtraPayment = cost->FlashBack->extraCosts;
+            game->mExtraPayment = cost->FlashBack->extraCosts;
             card->paymenttype = MTGAbility::FLASHBACK_COST;
             return 0;
         }
@@ -873,7 +873,7 @@ int MTGRetraceRule::reactToClick(MTGCardInstance * card)
         else
         {
             cost->Retrace->setExtraCostsAction(this, card);
-            game->waitForExtraPayment = cost->Retrace->extraCosts;
+            game->mExtraPayment = cost->Retrace->extraCosts;
             card->paymenttype = MTGAbility::RETRACE_COST;;
             return 0;
         }
