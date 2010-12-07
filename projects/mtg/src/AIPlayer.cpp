@@ -441,19 +441,12 @@ int AIAction::getEfficiency()
 			AbilityFactory af;
 			int suggestion = af.abilityEfficiency(a, p, MODE_ABILITY);
 
-			if ((suggestion == BAKA_EFFECT_BAD && p == target->controller()) || (suggestion == BAKA_EFFECT_GOOD && p
-				!= target->controller()))
-			{
-				efficiency = 0;
-				//stop giving trample to the players creatures.
-			}
-
-			if (suggestion == BAKA_EFFECT_BAD && p != target->controller() && target->has(a->abilitygranted))
+			if (suggestion == BAKA_EFFECT_BAD && p != target->controller() && target->has(a->abilitygranted) && p->isAI())
 			{
 				efficiency += (25 * target->DangerRanking()) / p->game->hand->nb_cards;
 			}
 
-			if (!target->has(a->abilitygranted) && g->getCurrentGamePhase() == Constants::MTG_PHASE_COMBATBEGIN)
+			if (!target->has(a->abilitygranted) && g->getCurrentGamePhase() == Constants::MTG_PHASE_COMBATBEGIN && p == target->controller() && p->isAI())
 			{
 				efficiency += (25 * target->DangerRanking()) / p->game->hand->nb_cards;
 
@@ -463,6 +456,13 @@ int AIAction::getEfficiency()
 			{
 				//trying to avoid Ai giving ie:flying creatures ie:flying twice.
 				efficiency = 0;
+			}
+
+      if ((suggestion == BAKA_EFFECT_BAD && p == target->controller()) || (suggestion == BAKA_EFFECT_GOOD && p
+				!= target->controller()))
+			{
+				efficiency = 0;
+				//stop giving trample to the players creatures.
 			}
 			break;
 		}
@@ -519,9 +519,9 @@ int AIAction::getEfficiency()
 			efficiency = int(20 + p->game->library->nb_cards) - int(p->game->hand->nb_cards * 7);
 			if(p->game->hand->nb_cards > 8)//reduce by 50 if cards in hand are over 8, high chance ai cant play them.
 			{
-				efficiency -= 50;
+				efficiency -= 70;
 			}
-			if(a->nbcardAmount >= p->game->library->nb_cards || p->game->hand->nb_cards > 10)
+			if((a->nbcardAmount >= p->game->library->nb_cards && p->isAI()) || (p->game->hand->nb_cards > 10 && p->isAI()))
 			{
 				//if the amount im drawing will mill me to death or i have more then 10 cards in hand, eff is 0;
 				efficiency = 0;

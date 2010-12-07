@@ -196,36 +196,60 @@ void GameObserver::nextCombatStep()
 
 void GameObserver::userRequestNextGamePhase()
 {
-    if (mLayers->stackLayer()->getNext(NULL, 0, NOT_RESOLVED))
-        return;
-    if (getCurrentTargetChooser())
-        return;
-
+	if (mLayers->stackLayer()->getNext(NULL, 0, NOT_RESOLVED))
+		return;
+	if (getCurrentTargetChooser())
+		return;
+	if (mLayers->actionLayer()->isWaitingForAnswer())
+		return;
     // Wil 12/5/10: additional check, not quite understanding why TargetChooser doesn't seem active at this point.
     // If we deem that an extra cost payment needs to be made, don't allow the next game phase to proceed.
     // Here's what I find weird - if the extra cost is something like a sacrifice, doesn't that imply a TargetChooser?
-    if (WaitForExtraPayment(NULL))
+  if (WaitForExtraPayment(NULL))
         return;
 
     bool executeNextPhaseImmediately = true;
+	Phase * cPhaseOld = phaseRing->getCurrentPhase();
+	if ((cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS && combatStep == ORDER) || (cPhaseOld->id
+		== Constants::MTG_PHASE_COMBATBLOCKERS && combatStep == TRIGGERS) || cPhaseOld->id
+		== Constants::MTG_PHASE_COMBATDAMAGE || (opponent()->isAI() && currentPlayer->isAI())//test suite
+		||options[Options::optionInterrupt(currentGamePhase)].number ||(cPhaseOld->id == Constants::MTG_PHASE_COMBATDAMAGE && combatStep == FIRST_STRIKE))
+	{
+		executeNextPhaseImmediately = false;
+	}
 
-    Phase * cPhaseOld = phaseRing->getCurrentPhase();
-    if ((cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS && combatStep == ORDER) || (cPhaseOld->id
-                    == Constants::MTG_PHASE_COMBATBLOCKERS && combatStep == TRIGGERS) || cPhaseOld->id
-                    == Constants::MTG_PHASE_COMBATDAMAGE || opponent()->isAI()
-                    || options[Options::optionInterrupt(currentGamePhase)].number)
-    {
-        executeNextPhaseImmediately = false;
-    }
+	//this is a stupid case added just for phase pass automation, without it the phase ring breaks.
+	//we might want to consider moving phase pass automation into stateeffects() and out of update()
+	//and have it use phasering->forward instead of making a call to this function.
+	if((cPhaseOld->id == Constants::MTG_PHASE_UPKEEP || cPhaseOld->id == Constants::MTG_PHASE_DRAW )&& opponent()->isAI())
+    executeNextPhaseImmediately = false;
+	
 
-    if (executeNextPhaseImmediately)
-    {
-        nextGamePhase();
-    }
-    else
-    {
-        mLayers->stackLayer()->AddNextGamePhase();
-    }
+	if (combatStep == TRIGGERS)
+	{
+		if (mLayers->stackLayer()->getNext(NULL, 0, NOT_RESOLVED) || targetChooser || mLayers->actionLayer()->isWaitingForAnswer())
+			executeNextPhaseImmediately = false;//if theres one of the above actions taking place, then dont just move to next.
+	}
+
+	if (cPhaseOld->id == Constants::MTG_PHASE_COMBATDAMAGE && combatStep == END_FIRST_STRIKE) 
+		executeNextPhaseImmediately = true;//change this to false to add an interupt after firststrike/doublestrike damage
+
+	if (executeNextPhaseImmediately)
+	{
+		nextGamePhase();
+	}
+	else
+	{
+		if (cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS && combatStep == TRIGGERS)
+		{
+			mLayers->stackLayer()->AddNextCombatStep();
+		}
+		else
+		{
+			mLayers->stackLayer()->AddNextGamePhase();
+		}
+	}
+
 }
 
 int GameObserver::forceShuffleLibraries()
@@ -341,6 +365,7 @@ GameObserver::~GameObserver()
 void GameObserver::Update(float dt)
 {
     Player * player = currentPlayer;
+
     if (Constants::MTG_PHASE_COMBATBLOCKERS == currentGamePhase && BLOCKERS == combatStep)
         player = player->opponent();
 
@@ -356,14 +381,6 @@ void GameObserver::Update(float dt)
     stateEffects();
     oldGamePhase = currentGamePhase;
 
-    if (combatStep == TRIGGERS)
-    {
-        if (!mLayers->stackLayer()->getNext(NULL, 0, NOT_RESOLVED))
-        {
-            mLayers->stackLayer()->AddNextCombatStep();
-        }
-    }
-
     //Auto skip Phases
     int skipLevel = (player->playMode == Player::MODE_TEST_SUITE) ? Constants::ASKIP_NONE : options[Options::ASPHASES].number;
     int nrCreatures = currentPlayer->game->inPlay->countByType("Creature");
@@ -375,15 +392,14 @@ void GameObserver::Update(float dt)
                         == Constants::MTG_PHASE_COMBATATTACKERS) && (nrCreatures == 0)) || currentGamePhase
                         == Constants::MTG_PHASE_COMBATEND || currentGamePhase == Constants::MTG_PHASE_ENDOFTURN
                         || ((currentGamePhase == Constants::MTG_PHASE_CLEANUP) && (currentPlayer->game->hand->nb_cards < 8))))
-            userRequestNextGamePhase();
+				    userRequestNextGamePhase();
     }
     if (skipLevel == Constants::ASKIP_FULL)
     {
-        if ((opponent()->isAI() && !(isInterrupting)) && (currentGamePhase == Constants::MTG_PHASE_UPKEEP || currentGamePhase
+  if ((opponent()->isAI() && !(isInterrupting)) && (currentGamePhase == Constants::MTG_PHASE_UPKEEP || currentGamePhase
                         == Constants::MTG_PHASE_COMBATDAMAGE))
             userRequestNextGamePhase();
-
-    }
+		}
 }
 
 //applies damage to creatures after updates
@@ -444,6 +460,13 @@ void GameObserver::stateEffects()
     for (int i = 0; i < 2; i++)
         if (players[i]->poisonCount >= 10)
             gameOver = players[i];
+
+	if (combatStep == TRIGGERS)
+		{
+      if (!mLayers->stackLayer()->getNext(NULL, 0, NOT_RESOLVED) && !targetChooser && !mLayers->actionLayer()->isWaitingForAnswer())
+			userRequestNextGamePhase();
+		}
+
 }
 
 void GameObserver::Render()
