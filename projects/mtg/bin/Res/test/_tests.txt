@@ -469,6 +469,7 @@ sleeper_agent.txt
 slith_bloodletter.txt
 sneak_attack.txt
 soulblast.txt
+souls_attendant_i489.txt
 spark_elemental.txt
 sphinx_summoner.txt
 spirit_link.txt

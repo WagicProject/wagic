@@ -540,9 +540,12 @@ bool TargetChooser::canTarget(Targetable * target)
                 tempcard = tempcard->previous;
             }
         }
-        if (source && targetter && card->isInPlay() && (card->has(Constants::SHROUD) || card->protectedAgainst(targetter))) return false;
-        if (source && targetter && card->isInPlay() && (targetter->controller() != card->controller()) && (card->has(
-                        Constants::OPPONENTSHROUD) || card->protectedAgainst(targetter))) return false;
+        if (source && targetter && card->isInPlay()) 
+        { 
+            if (card->has(Constants::SHROUD)) return false;
+            if (card->protectedAgainst(targetter)) return false;
+            if ((targetter->controller() != card->controller()) && card->has(Constants::OPPONENTSHROUD)) return false;
+        }
         return true;
     }
     else if (target->typeAsTarget() == TARGET_STACKACTION) return true;

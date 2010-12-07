@@ -137,9 +137,10 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int 
             found = end + 1;
         }
         toTcCard->setAllZones();
+        toTcCard->targetter = NULL; //avoid protection from
         starget = starget.substr(found, end - found).insert(0, "*|");
         toTc = tcf.createTargetChooser(starget, card);
-        toTc->targetter = NULL;
+        toTc->targetter = NULL; //avoid protection from
 
         TargetChooser *fromTc = NULL;
         TargetChooser * fromTcCard = NULL;
@@ -158,10 +159,11 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int 
                 found = end + 1;
             }
             fromTcCard->setAllZones();
+            fromTcCard->targetter=NULL; //avoid protection from
             end = s.find(")", found);
             starget = s.substr(found, end - found).insert(0, "*|");
             fromTc = tcf.createTargetChooser(starget, card);
-            fromTc->targetter = NULL;
+            fromTc->targetter = NULL; //avoid protection from
         }
         return NEW TrCardAddedToZone(id, card, (TargetZoneChooser *) toTc, toTcCard, (TargetZoneChooser *) fromTc, fromTcCard);
     }
