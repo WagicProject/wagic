@@ -102,7 +102,7 @@ JGuiController(id, listener), fontId(fontId), mShowDetailsScreen( showDetailsOve
 void DeckMenu::RenderBackground()
 {
     ostringstream bgFilename;
-    bgFilename << backgroundName << ".png";
+    bgFilename << backgroundName << ".jpg";
 
     static bool loadBackground = true;
     if (loadBackground)
@@ -178,6 +178,8 @@ void DeckMenu::Render()
     }
     if (timeOpen < 1) height *= timeOpen > 0 ? timeOpen : -timeOpen;
 
+    RenderBackground();
+
     for (int i = startId; i < startId + maxItems; i++)
     {
         if (i > mCount - 1) break;
@@ -198,7 +200,6 @@ void DeckMenu::Render()
                     float stringWidth = mainFont->GetStringWidth(detailedInfoString.c_str());
                     float boxStartX = detailedInfoBoxX - stringWidth / 2;
                     DWORD currentColor = mainFont->GetColor();
-                    renderer->FillRoundRect( boxStartX, detailedInfoBoxY - 5, stringWidth, mainFont->GetHeight() + 15, .5, ARGB( 255, 0, 0, 0) );
                     renderer->RenderQuad(pspIcons[5], detailedInfoBoxX, detailedInfoBoxY + 2, 0, pspIconsSize, pspIconsSize);
                     mainFont->SetColor(currentColor);
                     mainFont->DrawString(detailedInfoString, boxStartX, detailedInfoBoxY + 10);
@@ -240,7 +241,6 @@ void DeckMenu::Render()
     }
 
     mScroller->Render();
-	RenderBackground();
 
 	renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE);
 	stars->Render();
