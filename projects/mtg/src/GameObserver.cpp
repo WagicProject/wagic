@@ -379,6 +379,12 @@ void GameObserver::Update(float dt)
     {
         mLayers->actionLayer()->Update(0);
     }
+
+		if(player->playMode
+== Player::MODE_TEST_SUITE && currentGamePhase == Constants::MTG_PHASE_COMBATBLOCKERS && TRIGGERS == combatStep)
+		{
+			      nextCombatStep();
+		}
     stateEffects();
     oldGamePhase = currentGamePhase;
 
@@ -401,6 +407,7 @@ void GameObserver::Update(float dt)
                         == Constants::MTG_PHASE_COMBATDAMAGE))
             userRequestNextGamePhase();
 		}
+
 }
 
 //applies damage to creatures after updates
