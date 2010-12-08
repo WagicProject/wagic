@@ -146,6 +146,7 @@ void GameObserver::nextGamePhase()
     switch (currentGamePhase)
     {
     case Constants::MTG_PHASE_UNTAP:
+		DebugTrace("Untap Phase -------------   Turn " << turn );
         untapPhase();
         break;
     case Constants::MTG_PHASE_DRAW:
