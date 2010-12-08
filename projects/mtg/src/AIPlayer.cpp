@@ -441,15 +441,23 @@ int AIAction::getEfficiency()
 			AbilityFactory af;
 			int suggestion = af.abilityEfficiency(a, p, MODE_ABILITY);
 
+            int efficiencyModifier = (25 * target->DangerRanking());
+            if (p->game->hand->nb_cards > 1)
+            {
+                efficiencyModifier /= p->game->hand->nb_cards;
+            }
+
+            // Z, please review.  If this condition is hit, it's immediately wiped out later at line 464 (the don't give flying twice check), 
+            // since both satisfy the check for (target->has(a->abilitygranted)).
+            // Is this if statement section obsolete? 
 			if (suggestion == BAKA_EFFECT_BAD && p != target->controller() && target->has(a->abilitygranted) && p->isAI())
 			{
-				efficiency += (25 * target->DangerRanking()) / p->game->hand->nb_cards;
+				efficiency += efficiencyModifier;
 			}
 
 			if (!target->has(a->abilitygranted) && g->getCurrentGamePhase() == Constants::MTG_PHASE_COMBATBEGIN && p == target->controller() && p->isAI())
 			{
-				efficiency += (25 * target->DangerRanking()) / p->game->hand->nb_cards;
-
+				efficiency += efficiencyModifier;
 			}
 
 			if (target->has(a->abilitygranted))
