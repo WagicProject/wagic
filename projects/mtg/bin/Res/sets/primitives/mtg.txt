@@ -14269,7 +14269,7 @@ toughness=2
 name=Doomsday Specter
 abilities=flying
 auto=@combatdamaged(player) from(this|mybattlefield): moveto(graveyard) target(*|opponenthand)
-auto=moveTo(ownerhand) notatarget(creature[blue;blue]|myBattlefield)
+auto=moveTo(ownerhand) notatarget(creature[blue;black]|myBattlefield)
 text=Flying -- When Doomsday Specter enters the battlefield, return a blue or black creature you control to its owner's hand. -- Whenever Doomsday Specter deals combat damage to a player, look at that player's hand and choose a card from it. The player discards that card.
 mana={2}{U}{B}
 type=Creature
@@ -23450,6 +23450,7 @@ toughness=2
 [/card]
 [card]
 name=Graypelt Hunter
+abilities=trample
 auto=may counter(1/1,1)
 auto=@movedTo(other ally|myBattlefield):may counter(1/1,1)
 text=Trample -- Whenever Graypelt Hunter or another Ally enters the battlefield under your control, you may put a +1/+1 counter on Graypelt Hunter.
