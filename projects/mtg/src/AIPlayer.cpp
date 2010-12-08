@@ -446,10 +446,6 @@ int AIAction::getEfficiency()
             {
                 efficiencyModifier /= p->game->hand->nb_cards;
             }
-
-            // Z, please review.  If this condition is hit, it's immediately wiped out later at line 464 (the don't give flying twice check), 
-            // since both satisfy the check for (target->has(a->abilitygranted)).
-            // Is this if statement section obsolete? 
 			if (suggestion == BAKA_EFFECT_BAD && p != target->controller() && target->has(a->abilitygranted) && p->isAI())
 			{
 				efficiency += efficiencyModifier;
@@ -460,7 +456,7 @@ int AIAction::getEfficiency()
 				efficiency += efficiencyModifier;
 			}
 
-			if (target->has(a->abilitygranted))
+			if (suggestion == BAKA_EFFECT_GOOD && target->has(a->abilitygranted))
 			{
 				//trying to avoid Ai giving ie:flying creatures ie:flying twice.
 				efficiency = 0;
