@@ -393,7 +393,6 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
             }
         }
 
-        GameObserver *g = GameObserver::GetInstance();
         WEvent * e = NEW WEventZoneChange(copy, from, to);
         g->receiveEvent(e);
 
