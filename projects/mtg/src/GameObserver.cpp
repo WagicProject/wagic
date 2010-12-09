@@ -427,7 +427,7 @@ void GameObserver::stateEffects()
 	if (combatStep == TRIGGERS)
 		{
       if (!mLayers->stackLayer()->getNext(NULL, 0, NOT_RESOLVED) && !targetChooser && !mLayers->actionLayer()->isWaitingForAnswer())
-			userRequestNextGamePhase();
+				mLayers->stackLayer()->AddNextCombatStep();
 		}
 
 	  //Auto skip Phases
