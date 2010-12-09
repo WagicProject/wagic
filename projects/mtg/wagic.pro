@@ -8,7 +8,7 @@ QT       += core gui opengl
 VERSION = 0.14.0
 TARGET = wagic
 TEMPLATE = app
-QMAKE_CXXFLAGS += -Wno-unused-parameter
+unix:QMAKE_CXXFLAGS += -Wno-unused-parameter
 windows:DEFINES += WIN32
 windows:DEFINES += _CRT_SECURE_NO_WARNINGS
 windows:DEFINES += FORCE_GL2
@@ -20,20 +20,19 @@ DEFINES += USE_PHONON
 QT += phonon dbus
 }
 windows:INCLUDEPATH += ../../JGE/Dependencies/include
+windows:INCLUDEPATH += extra
 unix:INCLUDEPATH += /usr/include/GL
-#unix:INCLUDEPATH += /usr/include/freetype2
 mac:INCLUDEPATH += /opt/include
 INCLUDEPATH += ../../JGE/include
-#INCLUDEPATH += ../../Boost
 INCLUDEPATH += include
 OBJECTS_DIR = objs
 MOC_DIR = objs
 DESTDIR = bin
 
-#unix:LIBS += -lboost_thread -L../../Boost/lib
-windows:LIBS += -L../../JGE/Dependencies/lib -llibjpeg-static-mt-debug -lgiflib -llibpng -lfmodvc
-mac:LIBS += -L/opt/lib -lz
-unix:LIBS += -L/opt/lib -lz
+windows:LIBS += -L../../JGE/Dependencies/lib -lfmodvc
+macx|unix:LIBS += -L/opt/lib -lz
+
+PRECOMPILED_HEADER = include/PrecompiledHeader.h
 
 # MGT
 SOURCES += \
