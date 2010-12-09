@@ -424,11 +424,6 @@ int ManaCost::add(ManaCost * _cost)
     return 1;
 }
 
-string ManaCost::toString()
-{
-    return "ManaCost - Todo";
-}
-
 int ManaCost::addHybrid(int c1, int v1, int c2, int v2)
 {
     ManaCostHybrid * h = NEW ManaCostHybrid(c1, v1, c2, v2);
@@ -621,24 +616,32 @@ ManaCost * ManaCost::Diff(ManaCost * _cost)
 
 }
 
-#ifdef WIN32
-void ManaCost::Dump()
+string ManaCost::toString()
 {
-    DebugTrace("\n===ManaCost===\n");
-    for (int i=0; i<= Constants::MTG_NB_COLORS; i++)
+    ostringstream oss;
+    oss << "\n===ManaCost===\n";
+    for (int i = 0; i <= Constants::MTG_NB_COLORS; i++)
     {
         if (cost[i])
         {
-            DebugTrace(Constants::MTGColorChars[i] << ":" << cost[i] << " - ");
+            oss << Constants::MTGColorChars[i] << ":" << cost[i] << " - ";
         }
     }
 
-    for (unsigned int i=0; i< nbhybrids; i++)
+    for (unsigned int i = 0; i < nbhybrids; i++)
     {
         ManaCostHybrid * h = hybrids[i];
-        DebugTrace("H:{" << Constants::MTGColorChars[h->color1] << ":" << h->value1 << "}/{" << Constants::MTGColorChars[h->color2] << ":" << h->value2 << "}");
+        oss << "H:{" << Constants::MTGColorChars[h->color1] << ":" << h->value1 << "}/{" << Constants::MTGColorChars[h->color2]
+                << ":" << h->value2 << "}";
     }
-    DebugTrace("\n=============\n");
+    oss << "\n=============\n";
+    return oss.str();
+}
+
+#ifdef WIN32
+void ManaCost::Dump()
+{
+    DebugTrace( this->toString() );
 }
 
 #endif
@@ -659,6 +662,7 @@ ManaPool::ManaPool(Player * player) :
     ManaCost(), player(player)
 {
 }
+
 ManaPool::ManaPool(ManaCost * _manaCost, Player * player) :
     ManaCost(_manaCost), player(player)
 {
@@ -701,6 +705,7 @@ int ManaPool::add(ManaCost * _cost, MTGCardInstance * source)
     }
     return result;
 }
+
 int ManaPool::pay(ManaCost * _cost)
 {
     int current[Constants::MTG_NB_COLORS];
