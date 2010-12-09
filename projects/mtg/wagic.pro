@@ -33,6 +33,7 @@ DESTDIR = bin
 #unix:LIBS += -lboost_thread -L../../Boost/lib
 windows:LIBS += -L../../JGE/Dependencies/lib -llibjpeg-static-mt-debug -lgiflib -llibpng -lfmodvc
 mac:LIBS += -L/opt/lib -lz
+unix:LIBS += -L/opt/lib -lz
 
 # MGT
 SOURCES += \
