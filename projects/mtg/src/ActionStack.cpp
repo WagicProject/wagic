@@ -616,6 +616,7 @@ int ActionStack::resolve()
     {
         for (int i = 0; i < 2; i++)
         {
+					if (interruptDecision[i] != 2)
             interruptDecision[i] = 0;
         }
     }
