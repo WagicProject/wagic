@@ -2270,69 +2270,84 @@ public:
         SAFE_DELETE(ability);
     }
 
-    const char * getMenuText()
-    {
-
+	const char * getMenuText()
+	{
 		if (AAMover * move = dynamic_cast<AAMover *>(ability))
-    {
-        MTGGameZone * dest = move->destinationZone();
-        GameObserver * g = GameObserver::GetInstance();
-        for (int i = 0; i < 2; i++)
-        {
-            if (dest == g->players[i]->game->hand && tc->targetsZone(g->players[i]->game->inPlay))
-            {
-                return "Bounce";
-            }
-            else if (dest == g->players[i]->game->hand && tc->targetsZone(g->players[i]->game->graveyard))
-            {
-                return "Reclaim";
-            }
-            else if (dest == g->players[i]->game->graveyard && tc->targetsZone(g->players[i]->game->inPlay))
-            {
-                return "Sacrifice";
-            }
-            else if (dest == g->players[i]->game->library && tc->targetsZone(g->players[i]->game->graveyard))
-            {
-                return "Recycle";
-            }
-            else if (dest == g->players[i]->game->battlefield && tc->targetsZone(g->players[i]->game->graveyard))
-            {
-                return "Reanimate";
-            }
-            else if (dest == g->players[i]->game->library)
-            {
-                return "Put in Library";
-            }
-            else if (dest == g->players[i]->game->inPlay)
-            {
-                return "Put in Play";
-            }
-            else if (dest == g->players[i]->game->graveyard && tc->targetsZone(g->players[i]->game->hand))
-            {
-                return "Discard";
-            }
-            else if (dest == g->players[i]->game->exile)
-            {
-                return "Exile";
-            }
-            else if (tc->targetsZone(g->players[i]->game->library))
-            {
-                return "Fetch";
-            }
-            else if (dest == g->players[i]->game->hand && tc->targetsZone(g->opponent()->game->hand))
-            {
-                return "Steal";
-            }
-            else if (dest == g->players[i]->game->graveyard && tc->targetsZone(g->opponent()->game->hand))
-            {
-                return "Opponent Discards";
-            }
+		{
+			MTGGameZone * dest = move->destinationZone();
+			GameObserver * g = GameObserver::GetInstance();
+			for (int i = 0; i < 2; i++)
+			{
+				// Move card to hand
+				if (dest == g->players[i]->game->hand)
+				{
+					if (tc->targetsZone(g->players[i]->game->inPlay))
+					{
+						return "Bounce";
+					}
+					else if (tc->targetsZone(g->players[i]->game->graveyard))
+					{
+						return "Reclaim";
+					}
+					else if (tc->targetsZone(g->opponent()->game->hand))
+					{
+						return "Steal";
+					}
 				}
-				return "Move";
+				// Move card to graveyard
+				else if (dest == g->players[i]->game->graveyard)
+				{
+					if (tc->targetsZone(g->players[i]->game->inPlay))
+					{
+						return "Sacrifice";
+					}
+					else if (tc->targetsZone(g->players[i]->game->hand))
+					{
+						return "Discard";
+					}
+					else if (tc->targetsZone(g->opponent()->game->hand))
+					{
+						return "Opponent Discards";
+					}
+				}
+				// move card to library
+				else if (dest == g->players[i]->game->library)
+				{
+					if (tc->targetsZone(g->players[i]->game->graveyard))
+					{
+						return "Recycle";
+					}
+					else
+					{
+						return "Put in Library";
+					}
+				}
+				// move card to battlefield
+				else if (dest == g->players[i]->game->battlefield && tc->targetsZone(g->players[i]->game->graveyard))
+				{
+					return "Reanimate";
+				}
+				// move card in play ( different from battlefield? )
+				else if (dest == g->players[i]->game->inPlay)
+				{
+					return "Put in Play";
+				}
+				// move card into exile
+				else if (dest == g->players[i]->game->exile)
+				{
+					return "Exile";
+				}
+				// move card from Library
+				else if (tc->targetsZone(g->players[i]->game->library))
+				{
+					return "Fetch";
+				}
+			}
+			return "Move";
 		}
-	  else
-    return ability->getMenuText();
-		}
+		else
+			return ability->getMenuText();
+	}
 
     ALord * clone() const
     {
