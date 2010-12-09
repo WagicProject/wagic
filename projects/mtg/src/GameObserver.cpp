@@ -201,39 +201,24 @@ void GameObserver::userRequestNextGamePhase()
 		return;
 	if (getCurrentTargetChooser())
 		return;
-	if (mLayers->actionLayer()->isWaitingForAnswer())
-		return;
+	//if (mLayers->actionLayer()->isWaitingForAnswer())
+	//	return;
     // Wil 12/5/10: additional check, not quite understanding why TargetChooser doesn't seem active at this point.
     // If we deem that an extra cost payment needs to be made, don't allow the next game phase to proceed.
     // Here's what I find weird - if the extra cost is something like a sacrifice, doesn't that imply a TargetChooser?
   if (WaitForExtraPayment(NULL))
         return;
 
-    bool executeNextPhaseImmediately = true;
+	bool executeNextPhaseImmediately = true;
+
 	Phase * cPhaseOld = phaseRing->getCurrentPhase();
 	if ((cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS && combatStep == ORDER) || (cPhaseOld->id
 		== Constants::MTG_PHASE_COMBATBLOCKERS && combatStep == TRIGGERS) || cPhaseOld->id
-		== Constants::MTG_PHASE_COMBATDAMAGE || (opponent()->isAI() && currentPlayer->isAI())//test suite
-		||options[Options::optionInterrupt(currentGamePhase)].number ||(cPhaseOld->id == Constants::MTG_PHASE_COMBATDAMAGE && combatStep == FIRST_STRIKE))
+		== Constants::MTG_PHASE_COMBATDAMAGE || opponent()->isAI()
+		|| options[Options::optionInterrupt(currentGamePhase)].number)
 	{
 		executeNextPhaseImmediately = false;
 	}
-
-	//this is a stupid case added just for phase pass automation, without it the phase ring breaks.
-	//we might want to consider moving phase pass automation into stateeffects() and out of update()
-	//and have it use phasering->forward instead of making a call to this function.
-	if((cPhaseOld->id == Constants::MTG_PHASE_UPKEEP || cPhaseOld->id == Constants::MTG_PHASE_DRAW )&& opponent()->isAI())
-    executeNextPhaseImmediately = false;
-	
-
-	if (combatStep == TRIGGERS)
-	{
-		if (mLayers->stackLayer()->getNext(NULL, 0, NOT_RESOLVED) || targetChooser || mLayers->actionLayer()->isWaitingForAnswer())
-			executeNextPhaseImmediately = false;//if theres one of the above actions taking place, then dont just move to next.
-	}
-
-	if (cPhaseOld->id == Constants::MTG_PHASE_COMBATDAMAGE && combatStep == END_FIRST_STRIKE) 
-		executeNextPhaseImmediately = true;//change this to false to add an interupt after firststrike/doublestrike damage
 
 	if (executeNextPhaseImmediately)
 	{
@@ -241,14 +226,7 @@ void GameObserver::userRequestNextGamePhase()
 	}
 	else
 	{
-		if (cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS && combatStep == TRIGGERS)
-		{
-			mLayers->stackLayer()->AddNextCombatStep();
-		}
-		else
-		{
-			mLayers->stackLayer()->AddNextGamePhase();
-		}
+		mLayers->stackLayer()->AddNextGamePhase();
 	}
 
 }
@@ -380,11 +358,6 @@ void GameObserver::Update(float dt)
         mLayers->actionLayer()->Update(0);
     }
 
-		if(player->playMode
-== Player::MODE_TEST_SUITE && currentGamePhase == Constants::MTG_PHASE_COMBATBLOCKERS && TRIGGERS == combatStep)
-		{
-			      nextCombatStep();
-		}
     stateEffects();
     oldGamePhase = currentGamePhase;
 

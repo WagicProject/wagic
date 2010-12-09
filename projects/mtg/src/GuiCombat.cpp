@@ -648,7 +648,7 @@ int GuiCombat::receiveEventMinus(WEvent* e)
                 cursor_pos = ATK;
             }
             else
-							go->userRequestNextGamePhase();
+							go->nextCombatStep();
             return 1;
         case END_DAMAGE:
             step = END_DAMAGE;
