@@ -16,7 +16,6 @@ next
 #blockers
 Raging Goblin
 next
-next
 #damage
 next
 #end combat
