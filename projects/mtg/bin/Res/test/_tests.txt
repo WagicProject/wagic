@@ -411,10 +411,6 @@ pyroclasm.txt
 quilled_sliver.txt
 rain_of_filth_i206.txt
 rain_of_filth_i283.txt
-rakdos_pit_dragon_1.txt
-rakdos_pit_dragon_2.txt
-rakdos_pit_dragon_3.txt
-rakdos_pit_dragon_4.txt
 rampant_growth.txt
 rancor.txt
 ray_of_command.txt
