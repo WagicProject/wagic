@@ -1,0 +1,29 @@
+#Testing Rakdos Pit Dragon WITHOUT Hellbent.
+#Hellbent - Rakdos Pit Dragon has double strike as long as you have no cards in hand.
+#
+# Rakdos Pit Dragon should only deal damamge once for 3 points
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:rakdos pit dragon
+hand:white knight
+graveyard: black knight
+[PLAYER2]
+life:20
+[DO]
+rakdos pit dragon
+next
+#blockers
+next
+#damage
+next
+#combatend
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:rakdos pit dragon
+hand:white knight
+graveyard: black knight
+[PLAYER2]
+life:17
+[END]
