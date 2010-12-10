@@ -106,17 +106,18 @@ void GameObserver::nextGamePhase()
 
     //init begin of turn
     if (currentGamePhase == Constants::MTG_PHASE_BEFORE_BEGIN)
-    {
-        cleanupPhase();
-        currentPlayer->canPutLandsIntoPlay = 1;
-        currentPlayer->castedspellsthisturn = 0;
-        currentPlayer->opponent()->castedspellsthisturn = 0;
-        currentPlayer->castcount = 0;
-        currentPlayer->nocreatureinstant = 0;
-        currentPlayer->nospellinstant = 0;
-        currentPlayer->onlyoneinstant = 0;
-        currentPlayer->damageCount = 0;
-        currentPlayer->preventable = 0;
+		{
+			cleanupPhase();
+			currentPlayer->canPutLandsIntoPlay = true;
+			currentPlayer->landsPlayerCanStillPlay = 1;
+			currentPlayer->castedspellsthisturn = 0;
+			currentPlayer->opponent()->castedspellsthisturn = 0;
+			currentPlayer->castcount = 0;
+			currentPlayer->nocreatureinstant = false;
+			currentPlayer->nospellinstant = false;
+			currentPlayer->onlyoneinstant = false;
+			currentPlayer->damageCount = 0;
+			currentPlayer->preventable = 0;
         mLayers->actionLayer()->cleanGarbage(); //clean abilities history for this turn;
         mLayers->stackLayer()->garbageCollect(); //clean stack history for this turn;
         mLayers->actionLayer()->Update(0);
@@ -136,7 +137,7 @@ void GameObserver::nextGamePhase()
     if (currentGamePhase == Constants::MTG_PHASE_AFTER_EOT)
     {
         //Auto Hand cleaning, in case the player didn't do it himself
-        while (currentPlayer->game->hand->nb_cards > 7 && currentPlayer->nomaxhandsize < 1)
+        while (currentPlayer->game->hand->nb_cards > 7 && currentPlayer->nomaxhandsize == false)
             currentPlayer->game->putInGraveyard(currentPlayer->game->hand->cards[0]);
         mLayers->actionLayer()->Update(0);
         return nextGamePhase();
@@ -358,99 +359,268 @@ void GameObserver::Update(float dt)
         mLayers->actionLayer()->Update(0);
     }
 
-    stateEffects();
-    oldGamePhase = currentGamePhase;
-
-  
-
+		gameStateBasedEffects();
+		oldGamePhase = currentGamePhase;
 }
 
 //applies damage to creatures after updates
 //Players life test
-void GameObserver::stateEffects()
+//Handles game state based effects
+void GameObserver::gameStateBasedEffects()
 {
-    if (mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
-        return;
-    if (mLayers->actionLayer()->menuObject)
-        return;
-    if (targetChooser || mLayers->actionLayer()->isWaitingForAnswer())
-        return;
-    for (int i = 0; i < 2; i++)
-    {
-        MTGGameZone * zone = players[i]->game->inPlay;
-        for (int j = zone->nb_cards - 1; j >= 0; j--)
-        {
-            MTGCardInstance * card = zone->cards[j];
-            card->afterDamage();
-
-            //Remove auras that don't have a valid target anymore
-            if (card->target && !isInPlay(card->target) && !card->hasType("equipment"))
-            {
-                players[i]->game->putInGraveyard(card);
-            }
-        }
-    }
-    for (int i = 0; i < 2; i++)
-        if (players[i]->life <= 0)
-        {
-            int cantlosers = 0;
-            MTGGameZone * z = players[i]->game->inPlay;
-            int nbcards = z->nb_cards;
-            for (int j = 0; j < nbcards; ++j)
-            {
-                MTGCardInstance * c = z->cards[j];
-                if (c->has(Constants::CANTLOSE) || c->has(Constants::CANTLIFELOSE))
-                {
-                    cantlosers++;
-                }
-            }
-            MTGGameZone * k = players[i]->opponent()->game->inPlay;
-            int onbcards = k->nb_cards;
-            for (int m = 0; m < onbcards; ++m)
-            {
-                MTGCardInstance * e = k->cards[m];
-                if (e->has(Constants::CANTWIN))
-                {
-                    cantlosers++;
-                }
-            }
-            if (cantlosers < 1)
-            {
-                gameOver = players[i];
-            }
-        }
-
-    for (int i = 0; i < 2; i++)
-        if (players[i]->poisonCount >= 10)
-            gameOver = players[i];
-
-	if (combatStep == TRIGGERS)
+	//check land playability at start; as we want this effect to happen reguardless of unresolved
+	//effects or menus actions
+	for (int i = 0; i < 2; i++)
+	{
+		if(players[i]->landsPlayerCanStillPlay <= 0)
 		{
-      if (!mLayers->stackLayer()->getNext(NULL, 0, NOT_RESOLVED) && !targetChooser && !mLayers->actionLayer()->isWaitingForAnswer())
-				mLayers->stackLayer()->AddNextCombatStep();
+			players[i]->canPutLandsIntoPlay = false;
 		}
+		else
+		{
+			players[i]->canPutLandsIntoPlay = true;
+		}
+	}
+	if (mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
+		return;
+	if (mLayers->actionLayer()->menuObject)
+		return;
+	if (targetChooser || mLayers->actionLayer()->isWaitingForAnswer())
+		return;
 
-	  //Auto skip Phases
+	////////////////////////
+	//---apply damage-----//
+	//after combat effects//
+	////////////////////////
+	for (int i = 0; i < 2; i++)
+	{
+		MTGGameZone * zone = players[i]->game->inPlay;
+		for (int j = zone->nb_cards - 1; j >= 0; j--)
+		{
+			MTGCardInstance * card = zone->cards[j];
+			card->afterDamage();
+
+			//Remove auras that don't have a valid target anymore
+			if (card->target && !isInPlay(card->target) && !card->hasType("equipment"))
+			{
+				players[i]->game->putInGraveyard(card);
+			}
+		}
+	}
+	//-------------------------------------
+
+	for (int i = 0; i < 2; i++)
+	{
+		///////////////////////////////////////////////////////////
+		//life checks/poison checks also checks cant win or lose.//
+		///////////////////////////////////////////////////////////
+		if (players[i]->life <= 0)
+		{
+			int cantlosers = 0;
+			MTGGameZone * z = players[i]->game->inPlay;
+			int nbcards = z->nb_cards;
+			for (int j = 0; j < nbcards; ++j)
+			{
+				MTGCardInstance * c = z->cards[j];
+				if (c->has(Constants::CANTLOSE) || c->has(Constants::CANTLIFELOSE))
+				{
+					cantlosers++;
+				}
+			}
+			MTGGameZone * k = players[i]->opponent()->game->inPlay;
+			int onbcards = k->nb_cards;
+			for (int m = 0; m < onbcards; ++m)
+			{
+				MTGCardInstance * e = k->cards[m];
+				if (e->has(Constants::CANTWIN))
+				{
+					cantlosers++;
+				}
+			}
+			if (cantlosers < 1)
+			{
+				gameOver = players[i];
+			}
+			if (players[i]->poisonCount >= 10)
+			{
+				gameOver = players[i];
+			}
+		}
+	}
+	//////////////////////////////////////////////////////
+	//-------------card based states effects------------//
+	//////////////////////////////////////////////////////
+	//ie:cantcast; extra land; extra turn;no max hand;--//
+	//////////////////////////////////////////////////////
+
+	for (int i = 0; i < 2; i++)
+	{
+		//checks if a player has a card which has the stated ability in play.
+		Player * p = players[i];
+		MTGGameZone * z = players[i]->game->inPlay;
+		int nbcards = z->nb_cards;
+		p->onlyonecast = false;
+		p->opponent()->onlyonecast = false;
+		//------------------------------
+		if (z->hasAbility(Constants::NOMAXHAND))
+		{
+			p->nomaxhandsize = true;
+		}
+		else
+		{
+			p->nomaxhandsize = false;
+		}
+		//------------------------------
+		if (z->hasAbility(Constants::CANTCASTCREATURE))
+		{
+			p->castrestrictedcreature = true;
+		}
+		else
+		{
+			p->castrestrictedcreature = false;
+		}
+		//------------------------------
+		if (z->hasAbility(Constants::CANTCAST))
+		{
+			p->castrestrictedspell = true;
+		}
+		else
+		{ 
+			p->castrestrictedspell = false;
+		}
+		//------------------------------
+		if (z->hasAbility(Constants::CANTCASTTWO))
+		{
+			p->onlyonecast = true;
+		}
+		else
+		{
+			p->onlyonecast = false;
+		}
+		//--------------------------------
+		if (z->hasAbility(Constants::BOTHCANTCAST))
+		{
+			p->bothrestrictedspell = true;
+		}
+		else
+		{
+			p->bothrestrictedspell = false;
+		}
+		//---------------------------------
+		if (z->hasAbility(Constants::BOTHNOCREATURE))
+		{
+			p->bothrestrictedcreature = true;
+		}
+		else
+		{					
+			p->bothrestrictedcreature = false;
+		}
+		//-----------------------------------
+		if (z->hasAbility(Constants::ONLYONEBOTH))
+		{
+			p->onlyoneboth = true;
+		}
+		else
+		{
+			p->onlyoneboth = false;
+		}
+		//------------------------------------
+		if(players[0]->bothrestrictedcreature)
+			players[1]->castrestrictedcreature = true;
+		//------------------------------------
+		if(players[0]->bothrestrictedspell)
+			players[1]->castrestrictedspell = true;
+		//------------------------------------
+		if(players[0]->onlyoneboth)
+			players[1]->onlyoneboth = true;
+		//------------------------------------
+		if(players[1]->bothrestrictedcreature)
+			players[0]->castrestrictedcreature = true;
+		//------------------------------------
+		if(players[1]->bothrestrictedspell)
+			players[0]->castrestrictedspell = true;
+		//------------------------------------
+		if(players[1]->onlyoneboth)
+			players[0]->onlyoneboth = true;
+		//------------------------------------
+		/////////////////////////////////////////////////
+		//handle end of turn effects while we're at it.//
+		/////////////////////////////////////////////////
+		if( currentGamePhase == Constants::MTG_PHASE_ENDOFTURN)
+		{
+			for (int j = 0; j < nbcards; ++j)
+			{
+				MTGCardInstance * c = z->cards[j];
+				while (c->flanked)
+				{//undoes the flanking on a card
+					c->power += 1;
+					c->addToToughness(1);
+					c->flanked -= 1;
+				}
+				if (c->has(Constants::TREASON))
+				{
+					WEvent * e = NEW WEventCardSacrifice(c);
+					GameObserver * game = GameObserver::GetInstance();
+					game->receiveEvent(e);
+					p->game->putInGraveyard(c);
+				}
+				if (c->has(Constants::UNEARTH))
+					p->game->putInExile(c);
+				if (c->fresh)
+					c->fresh = 0;
+				if (c->has(Constants::ONLYONEBOTH))
+				{
+					c->controller()->castcount = 0;
+					c->controller()->opponent()->castcount = 0;
+				}
+
+			}
+			MTGGameZone * f = p->game->graveyard;
+			for (int k = 0; k < f->nb_cards; k++)
+			{
+				MTGCardInstance * card = f->cards[k];
+				card->fresh = 0;
+			}
+		}
+		if(z->nb_cards == 0)
+		{
+			p->nomaxhandsize = false;
+			if(!p->bothrestrictedcreature && !p->opponent()->bothrestrictedcreature)
+				p->castrestrictedcreature = false;
+			if(!p->bothrestrictedspell && !p->opponent()->bothrestrictedspell)
+				p->castrestrictedspell = false;
+			p->onlyonecast = false;
+		}
+	}
+	///////////////////////////////////
+	//phase based state effects------//
+	///////////////////////////////////
+	if (combatStep == TRIGGERS)
+	{
+		if (!mLayers->stackLayer()->getNext(NULL, 0, NOT_RESOLVED) && !targetChooser && !mLayers->actionLayer()->isWaitingForAnswer())
+			mLayers->stackLayer()->AddNextCombatStep();
+	}
+
+	//Auto skip Phases
 	GameObserver * game = game->GetInstance();
 	int skipLevel = (game->currentPlayer->playMode == Player::MODE_TEST_SUITE) ? Constants::ASKIP_NONE : options[Options::ASPHASES].number;
-    int nrCreatures = currentPlayer->game->inPlay->countByType("Creature");
+	int nrCreatures = currentPlayer->game->inPlay->countByType("Creature");
 
-    if (skipLevel == Constants::ASKIP_SAFE || skipLevel == Constants::ASKIP_FULL)
-    {
-        if ((opponent()->isAI() && !(isInterrupting)) && (currentGamePhase == Constants::MTG_PHASE_UNTAP || currentGamePhase
-                        == Constants::MTG_PHASE_DRAW || currentGamePhase == Constants::MTG_PHASE_COMBATBEGIN || ((currentGamePhase
-                        == Constants::MTG_PHASE_COMBATATTACKERS) && (nrCreatures == 0)) || currentGamePhase
-                        == Constants::MTG_PHASE_COMBATEND || currentGamePhase == Constants::MTG_PHASE_ENDOFTURN
-                        || ((currentGamePhase == Constants::MTG_PHASE_CLEANUP) && (currentPlayer->game->hand->nb_cards < 8))))
-				    userRequestNextGamePhase();
-    }
-    if (skipLevel == Constants::ASKIP_FULL)
-    {
-  if ((opponent()->isAI() && !(isInterrupting)) && (currentGamePhase == Constants::MTG_PHASE_UPKEEP || currentGamePhase
-                        == Constants::MTG_PHASE_COMBATDAMAGE))
-            userRequestNextGamePhase();
-		}
-
+	if (skipLevel == Constants::ASKIP_SAFE || skipLevel == Constants::ASKIP_FULL)
+	{
+		if ((opponent()->isAI() && !(isInterrupting)) && (currentGamePhase == Constants::MTG_PHASE_UNTAP || currentGamePhase
+			== Constants::MTG_PHASE_DRAW || currentGamePhase == Constants::MTG_PHASE_COMBATBEGIN || ((currentGamePhase
+			== Constants::MTG_PHASE_COMBATATTACKERS) && (nrCreatures == 0)) || currentGamePhase
+			== Constants::MTG_PHASE_COMBATEND || currentGamePhase == Constants::MTG_PHASE_ENDOFTURN
+			|| ((currentGamePhase == Constants::MTG_PHASE_CLEANUP) && (currentPlayer->game->hand->nb_cards < 8))))
+			userRequestNextGamePhase();
+	}
+	if (skipLevel == Constants::ASKIP_FULL)
+	{
+		if ((opponent()->isAI() && !(isInterrupting)) && (currentGamePhase == Constants::MTG_PHASE_UPKEEP || currentGamePhase
+			== Constants::MTG_PHASE_COMBATDAMAGE))
+			userRequestNextGamePhase();
+	}
 }
 
 void GameObserver::Render()
@@ -638,7 +808,7 @@ int GameObserver::cardClick(MTGCardInstance * card, Targetable * object)
 
     //Current player's hand
     if (currentPlayer->game->hand->hasCard(card) && currentGamePhase == Constants::MTG_PHASE_CLEANUP
-                    && currentPlayer->game->hand->nb_cards > 7 && currentPlayer->nomaxhandsize < 1)
+                    && currentPlayer->game->hand->nb_cards > 7 && currentPlayer->nomaxhandsize == false)
     {
         currentPlayer->game->putInGraveyard(card);
     }

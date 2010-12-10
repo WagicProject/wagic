@@ -4027,58 +4027,61 @@ public:
         AErgRaiders * a = NEW AErgRaiders(*this);
         a->isClone = 1;
         return a;
-    }
+		}
 };
 
 //Fastbond
 class AFastbond: public TriggeredAbility
 {
 public:
-    int alreadyPlayedALand;
-    int previous;
-    AFastbond(int _id, MTGCardInstance * card) :
-        TriggeredAbility(_id, card)
-    {
-        alreadyPlayedALand = 0;
-        if (source->controller()->canPutLandsIntoPlay == 0)
-        {
-            alreadyPlayedALand = 1;
-            source->controller()->canPutLandsIntoPlay = 1;
-        }
-        previous = source->controller()->canPutLandsIntoPlay;
-    }
+	int alreadyPlayedALand;
+	int previous;
+	AFastbond(int _id, MTGCardInstance * card) :
+	TriggeredAbility(_id, card)
+	{
+		alreadyPlayedALand = 0;
+		if (source->controller()->landsPlayerCanStillPlay == 0)
+		{
+			alreadyPlayedALand = 1;
+			source->controller()->landsPlayerCanStillPlay += 1;
+			source->controller()->canPutLandsIntoPlay = true;
 
-    void Update(float dt)
-    {
-        if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UNTAP)
-        {
-            alreadyPlayedALand = 0;
-        }
-        TriggeredAbility::Update(dt);
-    }
+		}
+		previous = source->controller()->landsPlayerCanStillPlay;
+	}
 
-    int trigger()
-    {
-        if (source->controller()->canPutLandsIntoPlay == 0 && previous == 1)
-        {
-            previous = 0;
-            source->controller()->canPutLandsIntoPlay = 1;
-            if (alreadyPlayedALand) return 1;
-            alreadyPlayedALand = 1;
-            return 0;
-        }
-        previous = source->controller()->canPutLandsIntoPlay;
-        return 0;
-    }
+	void Update(float dt)
+	{
+		if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UNTAP)
+		{
+			alreadyPlayedALand = 0;
+		}
+		TriggeredAbility::Update(dt);
+	}
 
-    int resolve()
-    {
-        game->mLayers->stackLayer()->addDamage(source, source->controller(), 1);
-        game->mLayers->stackLayer()->resolve();
-        return 1;
-    }
+	int trigger()
+	{
+		if (source->controller()->landsPlayerCanStillPlay == 0 && previous >= 1)
+		{
+			previous = 0;
+			source->controller()->canPutLandsIntoPlay = true;
+			source->controller()->landsPlayerCanStillPlay += 1;
+			if (alreadyPlayedALand) return 1;
+			alreadyPlayedALand = 1;
+			return 0;
+		}
+		previous = source->controller()->landsPlayerCanStillPlay;
+		return 0;
+	}
 
-    virtual ostream& toString(ostream& out) const
+	int resolve()
+	{
+		game->mLayers->stackLayer()->addDamage(source, source->controller(), 1);
+		game->mLayers->stackLayer()->resolve();
+		return 1;
+	}
+
+	virtual ostream& toString(ostream& out) const
     {
         out << "AFastbond ::: alreadyPlayedALand : " << alreadyPlayedALand << " ; previous : " << previous << " (";
         return TriggeredAbility::toString(out) << ")";

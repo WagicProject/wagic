@@ -1062,11 +1062,11 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
 	while ((card = cd.nextmatch(game->hand, card)))
 	{
 		if (!CanHandleCost(card->getManaCost())) continue;
-		if (card->hasType(Subtypes::TYPE_CREATURE) && this->castrestrictedcreature > 0 && this->castrestrictedspell > 0) continue;
-		if (card->hasType(Subtypes::TYPE_ENCHANTMENT) && this->castrestrictedspell > 0) continue;
-		if (card->hasType(Subtypes::TYPE_ARTIFACT) && this->castrestrictedspell > 0) continue;
-		if (card->hasType(Subtypes::TYPE_SORCERY) && this->castrestrictedspell > 0) continue;
-		if (card->hasType(Subtypes::TYPE_INSTANT) && this->castrestrictedspell > 0) continue;
+		if (card->hasType(Subtypes::TYPE_CREATURE) && this->castrestrictedcreature == true && this->castrestrictedspell == true) continue;
+		if (card->hasType(Subtypes::TYPE_ENCHANTMENT) && this->castrestrictedspell == true) continue;
+		if (card->hasType(Subtypes::TYPE_ARTIFACT) && this->castrestrictedspell == true) continue;
+		if (card->hasType(Subtypes::TYPE_SORCERY) && this->castrestrictedspell == true) continue;
+		if (card->hasType(Subtypes::TYPE_INSTANT) && this->castrestrictedspell == true) continue;
 		if (card->hasType(Subtypes::TYPE_LAND) && !this->canPutLandsIntoPlay) continue;
 		if (card->hasType(Subtypes::TYPE_LEGENDARY) && game->inPlay->findByName(card->name)) continue;
 		int currentCost = card->getManaCost()->getConvertedCost();
@@ -1174,13 +1174,13 @@ int AIPlayerBaka::computeActions()
 				nextCardToPlay = FindCardToPlay(currentMana, "land");
 				selectAbility();
 				//look for the most expensive creature we can afford
-				if (castrestrictedspell == 0 && nospellinstant == 0)
+				if (castrestrictedspell == false && nospellinstant == false)
 				{
-					if (onlyonecast == 0 || castcount < 2)
+					if (onlyonecast == false || castcount < 2)
 					{
-						if (onlyoneinstant == 0 || castcount < 2)
+						if (onlyoneinstant == false || castcount < 2)
 						{
-							if (castrestrictedcreature == 0 && nocreatureinstant == 0)
+							if (castrestrictedcreature == false && nocreatureinstant == false)
 							{
 								if (!nextCardToPlay)
 								{

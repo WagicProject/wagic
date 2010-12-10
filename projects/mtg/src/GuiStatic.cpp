@@ -97,7 +97,7 @@ void GuiAvatar::Render()
         r->DrawRect(x0, y0, 34 * actZ, 49 * actZ, ARGB((int)actA, 255, 0, 0));
 
     //Life
-    char buffer[5];
+    char buffer[10];
     sprintf(buffer, "%i", life);
     switch (corner)
     {

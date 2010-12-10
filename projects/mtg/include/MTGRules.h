@@ -118,15 +118,6 @@ class MTGPersistRule:public MTGAbility{
   int testDestroy();
   virtual MTGPersistRule * clone() const;
 };
-//cantcast rules
-class MTGCantCasterstart:public MTGAbility{
- public:
-  MTGCantCasterstart(int _id);
-  int receiveEvent(WEvent * event);
-  virtual ostream& toString(ostream& out) const;
-  int testDestroy();
-  virtual MTGCantCasterstart * clone() const;
-};
 //affinity rules
 class MTGAffinityRule:public MTGAbility{
  public:
@@ -145,16 +136,6 @@ class MTGUnearthRule:public MTGAbility{
   int testDestroy();
   virtual MTGUnearthRule * clone() const;
 };
-//bury at end of turn effect.
-class MTGSneakAttackRule:public MTGAbility{
- public:
-  MTGSneakAttackRule(int _id);
-  int receiveEvent(WEvent * event);
-  virtual ostream& toString(ostream& out) const;
-  int testDestroy();
-  virtual MTGSneakAttackRule * clone() const;
-};
-
 class MTGTokensCleanup:public MTGAbility{
  public:
   vector<MTGCardInstance *> list;

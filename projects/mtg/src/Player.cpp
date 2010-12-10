@@ -6,34 +6,38 @@
 #include "ManaCost.h"
 
 Player::Player(MTGDeck * deck, string file, string fileSmall) :
-    Damageable(20)
+Damageable(20)
 {
-    deckFile = file;
-    deckFileSmall = fileSmall;
-    manaPool = NEW ManaPool(this);
-    canPutLandsIntoPlay = 1;
-    nomaxhandsize = 0;
-    castedspellsthisturn = 0;
-    castrestrictedspell = 0;
-    castrestrictedcreature = 0;
-    onlyonecast = 0;
-    castcount = 0;
-    nocreatureinstant = 0;
-    nospellinstant = 0;
-    onlyoneinstant = 0;
-    poisonCount = 0;
-    damageCount = 0;
-    preventable = 0;
-    mAvatar = NULL;
-    mAvatarTex = NULL;
-    type_as_damageable = DAMAGEABLE_PLAYER;
-    playMode = MODE_HUMAN;
-    if (deck != NULL)
-    {
-        game = NEW MTGPlayerCards(deck);
-        game->setOwner(this);
-        deckName = deck->meta_name;
-    }
+	deckFile = file;
+	deckFileSmall = fileSmall;
+	manaPool = NEW ManaPool(this);
+	canPutLandsIntoPlay = true;
+	landsPlayerCanStillPlay = 1;
+	nomaxhandsize = false;
+	castedspellsthisturn = 0;
+	castrestrictedspell = false;
+	castrestrictedcreature = false;
+	bothrestrictedspell = false;
+	bothrestrictedcreature = false;
+	onlyoneboth = false;
+	onlyonecast = false;
+	castcount = 0;
+	nocreatureinstant = false;
+	nospellinstant = false;
+	onlyoneinstant = false;
+	poisonCount = 0;
+	damageCount = 0;
+	preventable = 0;
+	mAvatar = NULL;
+	mAvatarTex = NULL;
+	type_as_damageable = DAMAGEABLE_PLAYER;
+	playMode = MODE_HUMAN;
+	if (deck != NULL)
+	{
+		game = NEW MTGPlayerCards(deck);
+		game->setOwner(this);
+		deckName = deck->meta_name;
+	}
 }
 
 /*Method to call at the end of a game, before all objects involved in the game are destroyed */

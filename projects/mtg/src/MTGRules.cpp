@@ -53,30 +53,30 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 #ifdef WIN32
         cost->Dump();
 #endif
-        if (player->castrestrictedspell > 0 && !card->hasType("land"))
+        if (player->castrestrictedspell == true && !card->hasType("land"))
         {
             return 0;
         }
-        if (player->onlyonecast > 0 && player->castcount >= 1)
+        if (player->onlyonecast == true && player->castcount >= 1)
         {
             return 0;
         }
-        if (player->nospellinstant > 0)
+        if (player->nospellinstant == true)
         {
             return 0;
         }
-        if (player->onlyoneinstant > 0)
+        if (player->onlyoneinstant == true)
         {
             if (player->castcount >= 1)
             {
                 return 0;
             }
         }
-        if (player->nocreatureinstant > 0 && card->hasType("creature"))
+        if (player->nocreatureinstant == true && card->hasType("creature"))
         {
             return 0;
         }
-        if (player->castrestrictedcreature > 0 && card->hasType("creature"))
+        if (player->castrestrictedcreature == true && card->hasType("creature"))
         {
             return 0;
         }
@@ -149,7 +149,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
         spell->resolve();
         delete spellCost;
         delete spell;
-        player->canPutLandsIntoPlay--;
+        player->landsPlayerCanStillPlay--;
     }
     else
     {
@@ -161,7 +161,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
             game->targetChooser = NULL;
             player->castedspellsthisturn += 1;
             player->opponent()->castedspellsthisturn += 1;
-            if (player->onlyonecast > 0 || player->onlyoneinstant > 0)
+            if (player->onlyonecast == true || player->onlyoneinstant == true)
             {
                 player->castcount += 1;
             }
@@ -171,7 +171,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
             spell = game->mLayers->stackLayer()->addSpell(copy, NULL, spellCost, payResult, 0);
             player->castedspellsthisturn += 1;
             player->opponent()->castedspellsthisturn += 1;
-            if (player->onlyonecast > 0 || player->onlyoneinstant > 0)
+            if (player->onlyonecast == true || player->onlyoneinstant == true)
             {
                 player->castcount += 1;
             }
@@ -258,30 +258,30 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
 #ifdef WIN32
         cost->Dump();
 #endif
-        if (player->castrestrictedspell > 0 && !card->hasType("land"))
+        if (player->castrestrictedspell == true && !card->hasType("land"))
         {
             return 0;
         }
-        if (player->onlyonecast > 0 && player->castcount >= 1)
+        if (player->onlyonecast == true && player->castcount >= 1)
         {
             return 0;
         }
-        if (player->nospellinstant > 0)
+        if (player->nospellinstant == true)
         {
             return 0;
         }
-        if (player->onlyoneinstant > 0)
+        if (player->onlyoneinstant == true)
         {
             if (player->castcount >= 1)
             {
                 return 0;
             }
         }
-        if (player->nocreatureinstant > 0 && card->hasType("creature"))
+        if (player->nocreatureinstant == true && card->hasType("creature"))
         {
             return 0;
         }
-        if (player->castrestrictedcreature > 0 && card->hasType("creature"))
+        if (player->castrestrictedcreature == true && card->hasType("creature"))
         {
             return 0;
         }
@@ -341,7 +341,7 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card)
         spell->resolve();
         delete spellCost;
         delete spell;
-        player->canPutLandsIntoPlay--;
+        player->landsPlayerCanStillPlay--;
         payResult = ManaCost::MANA_PAID_WITH_ALTERNATIVE;
         spell = game->mLayers->stackLayer()->addSpell(copy, NULL, spellCost, payResult, 1);
     }
@@ -355,7 +355,7 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card)
             game->targetChooser = NULL;
             player->castedspellsthisturn += 1;
             player->opponent()->castedspellsthisturn += 1;
-            if (player->onlyonecast > 0 || player->onlyoneinstant > 0)
+            if (player->onlyonecast == true || player->onlyoneinstant == true)
             {
                 player->castcount += 1;
             }
@@ -365,7 +365,7 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card)
             spell = game->mLayers->stackLayer()->addSpell(copy, NULL, spellCost, payResult, 0);
             player->castedspellsthisturn += 1;
             player->opponent()->castedspellsthisturn += 1;
-            if (player->onlyonecast > 0 || player->onlyoneinstant > 0)
+            if (player->onlyonecast == true || player->onlyoneinstant == true)
             {
                 player->castcount += 1;
             }
@@ -447,30 +447,30 @@ int MTGBuyBackRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 #ifdef WIN32
         cost->Dump();
 #endif
-        if (player->castrestrictedspell > 0 && !card->hasType("land"))
+        if (player->castrestrictedspell == true && !card->hasType("land"))
         {
             return 0;
         }
-        if (player->onlyonecast > 0 && player->castcount >= 1)
+        if (player->onlyonecast == true && player->castcount >= 1)
         {
             return 0;
         }
-        if (player->nospellinstant > 0)
+        if (player->nospellinstant == true )
         {
             return 0;
         }
-        if (player->onlyoneinstant > 0)
+        if (player->onlyoneinstant == true )
         {
             if (player->castcount >= 1)
             {
                 return 0;
             }
         }
-        if (player->nocreatureinstant > 0 && card->hasType("creature"))
+        if (player->nocreatureinstant == true && card->hasType("creature"))
         {
             return 0;
         }
-        if (player->castrestrictedcreature > 0 && card->hasType("creature"))
+        if (player->castrestrictedcreature == true && card->hasType("creature"))
         {
             return 0;
         }
@@ -532,7 +532,7 @@ int MTGBuyBackRule::reactToClick(MTGCardInstance * card)
         spell->resolve();
         delete spellCost;
         delete spell;
-        player->canPutLandsIntoPlay--;
+        player->landsPlayerCanStillPlay--;
         payResult = ManaCost::MANA_PAID_WITH_BUYBACK;
         spell = game->mLayers->stackLayer()->addSpell(copy, NULL, spellCost, payResult, 1);
     }
@@ -548,7 +548,7 @@ int MTGBuyBackRule::reactToClick(MTGCardInstance * card)
             game->targetChooser = NULL;
             player->castedspellsthisturn += 1;
             player->opponent()->castedspellsthisturn += 1;
-            if (player->onlyonecast > 0 || player->onlyoneinstant > 0)
+            if (player->onlyonecast == true || player->onlyoneinstant == true)
             {
                 player->castcount += 1;
             }
@@ -558,7 +558,7 @@ int MTGBuyBackRule::reactToClick(MTGCardInstance * card)
             spell = game->mLayers->stackLayer()->addSpell(copy, NULL, spellCost, payResult, 0);
             player->castedspellsthisturn += 1;
             player->opponent()->castedspellsthisturn += 1;
-            if (player->onlyonecast > 0 || player->onlyoneinstant > 0)
+            if (player->onlyonecast == true || player->onlyoneinstant == true)
             {
                 player->castcount += 1;
 
@@ -632,30 +632,30 @@ int MTGFlashBackRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 #ifdef WIN32
         cost->Dump();
 #endif
-        if (player->castrestrictedspell > 0 && !card->hasType("land"))
+        if (player->castrestrictedspell == true && !card->hasType("land"))
         {
             return 0;
         }
-        if (player->onlyonecast > 0 && player->castcount >= 1)
+        if (player->onlyonecast == true && player->castcount >= 1)
         {
             return 0;
         }
-        if (player->nospellinstant > 0)
+        if (player->nospellinstant == true )
         {
             return 0;
         }
-        if (player->onlyoneinstant > 0)
+        if (player->onlyoneinstant == true )
         {
             if (player->castcount >= 1)
             {
                 return 0;
             }
         }
-        if (player->nocreatureinstant > 0 && card->hasType("creature"))
+        if (player->nocreatureinstant == true && card->hasType("creature"))
         {
             return 0;
         }
-        if (player->castrestrictedcreature > 0 && card->hasType("creature"))
+        if (player->castrestrictedcreature == true && card->hasType("creature"))
         {
             return 0;
         }
@@ -716,7 +716,7 @@ int MTGFlashBackRule::reactToClick(MTGCardInstance * card)
         spell->resolve();
         delete spellCost;
         delete spell;
-        player->canPutLandsIntoPlay--;
+        player->landsPlayerCanStillPlay--;
         payResult = ManaCost::MANA_PAID_WITH_FLASHBACK;
         spell = game->mLayers->stackLayer()->addSpell(copy, NULL, spellCost, payResult, 1);
     }
@@ -732,7 +732,7 @@ int MTGFlashBackRule::reactToClick(MTGCardInstance * card)
             game->targetChooser = NULL;
             player->castedspellsthisturn += 1;
             player->opponent()->castedspellsthisturn += 1;
-            if (player->onlyonecast > 0 || player->onlyoneinstant > 0)
+            if (player->onlyonecast == true || player->onlyoneinstant == true )
             {
                 player->castcount += 1;
             }
@@ -742,7 +742,7 @@ int MTGFlashBackRule::reactToClick(MTGCardInstance * card)
             spell = game->mLayers->stackLayer()->addSpell(copy, NULL, spellCost, payResult, 0);
             player->castedspellsthisturn += 1;
             player->opponent()->castedspellsthisturn += 1;
-            if (player->onlyonecast > 0 || player->onlyoneinstant > 0)
+            if (player->onlyonecast == true || player->onlyoneinstant == true)
             {
                 player->castcount += 1;
 
@@ -816,30 +816,30 @@ int MTGRetraceRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 #ifdef WIN32
         cost->Dump();
 #endif
-        if (player->castrestrictedspell > 0 && !card->hasType("land"))
+        if (player->castrestrictedspell == true && !card->hasType("land"))
         {
             return 0;
         }
-        if (player->onlyonecast > 0 && player->castcount >= 1)
+        if (player->onlyonecast == true && player->castcount >= 1)
         {
             return 0;
         }
-        if (player->nospellinstant > 0)
+        if (player->nospellinstant == true )
         {
             return 0;
         }
-        if (player->onlyoneinstant > 0)
+        if (player->onlyoneinstant == true )
         {
             if (player->castcount >= 1)
             {
                 return 0;
             }
         }
-        if (player->nocreatureinstant > 0 && card->hasType("creature"))
+        if (player->nocreatureinstant == true && card->hasType("creature"))
         {
             return 0;
         }
-        if (player->castrestrictedcreature > 0 && card->hasType("creature"))
+        if (player->castrestrictedcreature == true && card->hasType("creature"))
         {
             return 0;
         }
@@ -898,7 +898,7 @@ int MTGRetraceRule::reactToClick(MTGCardInstance * card)
         spell->resolve();
         delete spellCost;
         delete spell;
-        player->canPutLandsIntoPlay--;
+        player->landsPlayerCanStillPlay--;
         payResult = ManaCost::MANA_PAID_WITH_RETRACE;
         spell = game->mLayers->stackLayer()->addSpell(copy, NULL, spellCost, payResult, 1);
     }
@@ -912,7 +912,7 @@ int MTGRetraceRule::reactToClick(MTGCardInstance * card)
             game->targetChooser = NULL;
             player->castedspellsthisturn += 1;
             player->opponent()->castedspellsthisturn += 1;
-            if (player->onlyonecast > 0 || player->onlyoneinstant > 0)
+            if (player->onlyonecast == true || player->onlyoneinstant == true )
             {
                 player->castcount += 1;
             }
@@ -922,7 +922,7 @@ int MTGRetraceRule::reactToClick(MTGCardInstance * card)
             spell = game->mLayers->stackLayer()->addSpell(copy, NULL, spellCost, payResult, 0);
             player->castedspellsthisturn += 1;
             player->opponent()->castedspellsthisturn += 1;
-            if (player->onlyonecast > 0 || player->onlyoneinstant > 0)
+            if (player->onlyonecast == true || player->onlyoneinstant == true)
             {
                 player->castcount += 1;
 
@@ -1604,161 +1604,6 @@ MTGPersistRule * MTGPersistRule::clone() const
     return a;
 }
 
-//putting cards with restricting effects inplay
-MTGCantCasterstart::MTGCantCasterstart(int _id) :
-    MTGAbility(_id, NULL)
-{
-}
-;
-int MTGCantCasterstart::receiveEvent(WEvent * event)
-{
-    if (event->type == WEvent::CHANGE_ZONE)
-    {
-        WEventZoneChange * e = (WEventZoneChange *) event;
-        MTGCardInstance * card = e->card->previous;
-        if (card)
-        {
-            if (e->from == e->card->controller()->game->battlefield && e->to == e->card->controller()->game->graveyard)
-            {
-                e->card->fresh = 1;
-            }
-            if (e->to == e->card->controller()->game->battlefield)
-            {
-                e->card->fresh = 1;
-            }
-            if (card->basicAbilities[Constants::BOTHCANTCAST] || card->basicAbilities[Constants::BOTHNOCREATURE]
-                            || card->basicAbilities[Constants::CANTCAST] || card->basicAbilities[Constants::CANTCASTCREATURE]
-                            || card->basicAbilities[Constants::CANTCASTTWO] || card->basicAbilities[Constants::ONLYONEBOTH]
-                            || card->basicAbilities[Constants::NOMAXHAND])
-            {
-                int ok = 0;
-                for (int i = 0; i < 2; i++)
-                {
-                    Player * p = game->players[i];
-                    if (e->from == p->game->graveyard || e->from == p->game->hand || e->from == p->game->library || e->from
-                                    == p->game->exile || e->to == p->game->inPlay || e->to == p->game->graveyard || e->to
-                                    == p->game->hand || e->to == p->game->library || e->to == p->game->exile || e->from
-                                    == p->game->inPlay)
-                    {
-                        ok = 1;
-                        //check happens----------
-                        //reset restrictions if they exist and runs a check if these cards still exist.
-                        p->nomaxhandsize = 0;
-                        p->opponent()->nomaxhandsize = 0;
-                        p->onlyonecast = 0;
-                        p->opponent()->onlyonecast = 0;
-                        p->castrestrictedspell = 0;//0 means no restrictions apply.
-                        p->castrestrictedcreature = 0;
-                        p->opponent()->castrestrictedspell = 0;
-                        p->opponent()->castrestrictedcreature = 0;
-                        /*--------------------------------------------------------------*/
-                        for (int i = 0; i < 2; i++)
-                        {
-                            Player * p = game->players[i];
-                            MTGGameZone * z = card->controller()->game->inPlay;
-                            MTGGameZone * y = card->controller()->opponent()->game->inPlay;
-                            int nbcards = z->nb_cards;
-                            int onbcards = y->nb_cards;
-                            //handsize modifier
-                            //check my battlefield and opponents
-                            for (int j = 0; j < nbcards; ++j)
-                            {
-                                MTGCardInstance * c = z->cards[j];
-                                if (c->has(Constants::NOMAXHAND))
-                                {
-                                    card->controller()->nomaxhandsize = 1;
-                                }
-                                if (c->has(Constants::BOTHCANTCAST))
-                                {
-                                    card->controller()->castrestrictedspell = 1;
-                                    card->controller()->opponent()->castrestrictedspell = 1;
-                                }
-                                if (c->has(Constants::CANTCAST))
-                                {
-                                    card->controller()->castrestrictedspell = 1;
-                                }
-                                if (c->has(Constants::BOTHNOCREATURE))
-                                {
-                                    card->controller()->castrestrictedcreature += 1;
-                                    card->controller()->opponent()->castrestrictedcreature += 1;
-                                }
-                                if (c->has(Constants::CANTCASTCREATURE))
-                                {
-                                    card->controller()->castrestrictedcreature = 1;
-                                }
-                                if (c->has(Constants::ONLYONEBOTH))
-                                {
-                                    card->controller()->onlyonecast = 1;
-                                    card->controller()->opponent()->onlyonecast = 1;
-                                }
-                                if (c->has(Constants::CANTCASTTWO))
-                                {
-                                    card->controller()->onlyonecast = 1;
-                                }
-                            }
-                            //any on other side?
-                            for (int j = 0; j < onbcards; ++j)
-                            {
-                                MTGCardInstance * c = y->cards[j];
-                                if (c->has(Constants::NOMAXHAND))
-                                {
-                                    card->controller()->opponent()->nomaxhandsize = 1;
-                                }
-                                if (c->has(Constants::BOTHCANTCAST))
-                                {
-                                    card->controller()->castrestrictedspell = 1;
-                                    card->controller()->opponent()->castrestrictedspell = 1;
-                                }
-                                if (c->has(Constants::BOTHNOCREATURE))
-                                {
-                                    card->controller()->castrestrictedcreature = 1;
-                                    card->controller()->opponent()->castrestrictedcreature = 1;
-                                }
-                                if (c->has(Constants::CANTCASTCREATURE))
-                                {
-                                    card->controller()->opponent()->castrestrictedcreature = 1;
-                                }
-                                if (c->has(Constants::ONLYONEBOTH))
-                                {
-                                    card->controller()->onlyonecast = 1;
-                                    card->controller()->opponent()->onlyonecast = 1;
-                                }
-                                if (c->has(Constants::CANTCASTTWO))
-                                {
-                                    card->controller()->opponent()->onlyonecast = 1;
-                                }
-                                if (c->has(Constants::CANTCAST))
-                                {
-                                    card->controller()->opponent()->castrestrictedspell = 1;
-                                }
-                            }
-                            //-----if a card with both*restrict* was found then the players are still restricted, if one player is still restricted he stays restricted.
-                        }
-                    }
-                }
-            }
-        }
-    }
-    return 1;
-}
-ostream& MTGCantCasterstart::toString(ostream& out) const
-{
-    out << "MTGCantCasterstart ::: (";
-    return MTGAbility::toString(out) << ")";
-}
-int MTGCantCasterstart::testDestroy()
-{
-    return 0;
-}
-MTGCantCasterstart * MTGCantCasterstart::clone() const
-{
-    MTGCantCasterstart * a = NEW MTGCantCasterstart(*this);
-    a->isClone = 1;
-    return a;
-}
-//the end of this very complex code line.
-
-
 //unearth rule----------------------------------
 //if the card leaves play, exile it instead.
 MTGUnearthRule::MTGUnearthRule(int _id) :
@@ -1770,14 +1615,23 @@ MTGUnearthRule::MTGUnearthRule(int _id) :
 int MTGUnearthRule::receiveEvent(WEvent * event)
 {
     if (event->type == WEvent::CHANGE_ZONE)
-    {
-        WEventZoneChange * e = (WEventZoneChange *) event;
-        MTGCardInstance * card = e->card->previous;
-        if (card && card->basicAbilities[Constants::UNEARTH])
-        {
-            int ok = 0;
-            for (int i = 0; i < 2; i++)
-            {
+		{
+			WEventZoneChange * e = (WEventZoneChange *) event;
+			MTGCardInstance * card = e->card->previous;
+			if (e->from == e->card->controller()->game->battlefield && e->to == e->card->controller()->game->graveyard)
+			{
+				e->card->fresh = 1;
+			}
+			if (e->to == e->card->controller()->game->battlefield)
+			{
+				e->card->fresh = 1;
+			}
+
+			if (card && card->basicAbilities[Constants::UNEARTH])
+			{
+				int ok = 0;
+				for (int i = 0; i < 2; i++)
+				{
                 Player * p = game->players[i];
                 if (e->from == p->game->inPlay)
                     ok = 1;
@@ -1814,83 +1668,6 @@ MTGUnearthRule * MTGUnearthRule::clone() const
     return a;
 }
 //----------------------------------------------------------------------
-//sneakattack rule------------------------------------------------------
-//this rule also handles the exile of unearth cards at end of turn.
-
-MTGSneakAttackRule::MTGSneakAttackRule(int _id) :
-    MTGAbility(_id, NULL)
-{
-}
-;
-
-int MTGSneakAttackRule::receiveEvent(WEvent *e)
-{
-    if (WEventPhaseChange* event = dynamic_cast<WEventPhaseChange*>(e))
-    {
-        if (Constants::MTG_PHASE_ENDOFTURN == event->from->id)
-        {
-            for (int j = 0; j < 2; j++)
-            {
-                Player * p = game->players[j];
-                MTGGameZone * z = p->game->inPlay;
-                for (int i = 0; i < z->nb_cards; i++)
-                {
-                    MTGCardInstance * card = z->cards[i];
-                    while (card->flanked)
-                    {//undoes the flanking on a card
-                        card->power += 1;
-                        card->addToToughness(1);
-                        card->flanked -= 1;
-                    }
-                    if (card->has(Constants::TREASON))
-                    {
-                        WEvent * e = NEW WEventCardSacrifice(card);
-                        GameObserver * game = GameObserver::GetInstance();
-                        game->receiveEvent(e);
-                        p->game->putInGraveyard(card);
-                        i--;
-                    }
-                    if (card->has(Constants::UNEARTH))
-                    {
-                        p->game->putInExile(card);
-                        i--;
-                    }
-                    if (card->fresh)
-                        card->fresh = 0;
-                    if (card->has(Constants::ONLYONEBOTH))
-                    {
-                        card->controller()->castcount = 0;
-                        card->controller()->opponent()->castcount = 0;
-                    }
-                }
-                MTGGameZone * f = p->game->graveyard;
-                for (int k = 0; k < f->nb_cards; k++)
-                {
-                    MTGCardInstance * card = f->cards[k];
-                    card->fresh = 0;
-                }
-            }
-        }
-        return 1;
-    }
-    return 1;
-}
-
-ostream& MTGSneakAttackRule::toString(ostream& out) const
-{
-    out << "MTGSneakAttackRule ::: (";
-    return MTGAbility::toString(out) << ")";
-}
-int MTGSneakAttackRule::testDestroy()
-{
-    return 0;
-}
-MTGSneakAttackRule * MTGSneakAttackRule::clone() const
-{
-    MTGSneakAttackRule * a = NEW MTGSneakAttackRule(*this);
-    a->isClone = 1;
-    return a;
-}
 //Affinity rule------------------------------------------------------
 //this rule is for Affinity cards.
 

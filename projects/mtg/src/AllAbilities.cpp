@@ -745,7 +745,7 @@ int AAMoreLandPlz::resolve()
         {
             player = (Player *) _target;
         }
-        player->canPutLandsIntoPlay += additional->getValue();
+        player->landsPlayerCanStillPlay += additional->getValue();
     }
     return 1;
 }
@@ -845,7 +845,7 @@ int AANoCreatures::resolve()
         {
             player = (Player *) _target;
         }
-        player->nocreatureinstant = 1;
+        player->nocreatureinstant = true;
     }
     return 1;
 }
@@ -881,7 +881,7 @@ int AANoSpells::resolve()
         {
             player = (Player *) _target;
         }
-        player->nospellinstant = 1;
+        player->nospellinstant = true;
     }
     return 1;
 }
@@ -918,7 +918,7 @@ int AAOnlyOne::resolve()
         {
             player = (Player *) _target;
         }
-        player->onlyoneinstant = 1;
+        player->onlyoneinstant = true;
     }
     return 1;
 }
@@ -1318,7 +1318,7 @@ const char * GenericTargetAbility::getMenuText()
             {
                 return "Reanimate";
             }
-            else if (dest == g->players[i]->game->library)
+            else if ((tc->targetsZone(g->players[i]->game->inPlay) && dest == g->players[i]->game->library) || dest == g->players[i]->game->library )
             {
                 return "Put in Library";
             }

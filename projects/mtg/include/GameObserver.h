@@ -71,7 +71,7 @@ class GameObserver{
   Player * currentlyActing();
   GameObserver(Player * _players[], int _nbplayers);
   ~GameObserver();
-  void stateEffects();
+  void gameStateBasedEffects();
   void eventOccured();
   void addObserver(MTGAbility * observer);
   void removeObserver(ActionElement * observer);

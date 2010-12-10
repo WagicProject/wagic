@@ -22,23 +22,27 @@ public:
         MODE_TEST_SUITE, MODE_HUMAN, MODE_AI,
     };
 
-    JTexture * mAvatarTex;
-    JQuad * mAvatar;
-    int playMode;
-    int canPutLandsIntoPlay;
-    int nomaxhandsize;
-    int castedspellsthisturn;
-    int onlyonecast;
-    int castcount;
-    int nocreatureinstant;
-    int nospellinstant;
-    int onlyoneinstant;
-    int castrestrictedcreature;
-    int castrestrictedspell;
-    MTGPlayerCards * game;
-    string deckFile;
-    string deckFileSmall;
-    string deckName;
+		JTexture * mAvatarTex;
+		JQuad * mAvatar;
+		int playMode;
+		bool canPutLandsIntoPlay;
+		int landsPlayerCanStillPlay;
+		bool nomaxhandsize;
+		int castedspellsthisturn;
+		bool onlyonecast;
+		int castcount;
+		bool nocreatureinstant;
+		bool nospellinstant;
+		bool onlyoneinstant;
+		bool castrestrictedcreature;
+		bool castrestrictedspell;
+		bool onlyoneboth;
+		bool bothrestrictedspell;
+		bool bothrestrictedcreature;
+		MTGPlayerCards * game;
+		string deckFile;
+		string deckFileSmall;
+		string deckName;
 
     Player(MTGDeck * deck, string deckFile, string deckFileSmall);
     virtual ~Player();
