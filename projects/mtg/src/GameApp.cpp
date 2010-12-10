@@ -79,7 +79,7 @@ GameApp::~GameApp()
 void GameApp::Create()
 {
     srand((unsigned int) time(0)); // initialize random
-#if not defined(QT_CONFIG) && not defined(IOS)
+#if !defined(QT_CONFIG) && !defined(IOS)
 #if defined (WIN32)
     _CrtSetDbgFlag ( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
 #elif not defined (LINUX)
