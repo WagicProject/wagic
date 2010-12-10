@@ -36,19 +36,19 @@ public:
     MTGCardInstance * target; // TODO Improve
 
     AIAction(MTGAbility * a, MTGCardInstance * c, MTGCardInstance * t = NULL)
-        : ability(a),click(c),target(t), player(NULL), efficiency(-1)
+        : efficiency(-1), ability(a), player(NULL), click(c), target(t)
     {
         id = currentId++;
     };
 
     AIAction(MTGCardInstance * c, MTGCardInstance * t = NULL)
-        : click(c),target(t), player(NULL), ability(NULL), efficiency(-1)
+        : efficiency(-1), ability(NULL), player(NULL), click(c), target(t)
     {
         id = currentId++;
     };
 
     AIAction(Player * p)
-        : player(p), ability(NULL), target(NULL), click(NULL), efficiency(-1)
+        : efficiency(-1), ability(NULL), player(p), click(NULL), target(NULL)
     {
     };
 
