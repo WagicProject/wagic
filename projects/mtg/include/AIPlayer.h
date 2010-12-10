@@ -21,38 +21,57 @@ using std::queue;
 
 class AIStats;
 
-class AIAction{
+class AIAction
+{
 protected:
-  int efficiency;
-  static int currentId;
+    int efficiency;
+    static int currentId;
 public:
-  MTGAbility * ability;
-	NestedAbility * nability;
-  Player * player;
-  int id;
-	bool checked;
-  MTGCardInstance * click;
-  MTGCardInstance * target; // TODO Improve
-  AIAction(MTGAbility * a, MTGCardInstance * c, MTGCardInstance * t = NULL):ability(a),click(c),target(t){player = NULL; efficiency = -1; id = currentId++;};
-  AIAction(MTGCardInstance * c, MTGCardInstance * t = NULL):click(c),target(t){player = NULL; ability = NULL; efficiency = -1; id = currentId++;};
-  AIAction(Player * p):player(p){ability = NULL; target = NULL; click = NULL; efficiency = -1;};
-  int getEfficiency();
-  int Act();
-  
+    MTGAbility * ability;
+    NestedAbility * nability;
+    Player * player;
+    int id;
+    bool checked;
+    MTGCardInstance * click;
+    MTGCardInstance * target; // TODO Improve
 
+    AIAction(MTGAbility * a, MTGCardInstance * c, MTGCardInstance * t = NULL)
+        : ability(a),click(c),target(t), player(NULL), efficiency(-1)
+    {
+        id = currentId++;
+    };
+
+    AIAction(MTGCardInstance * c, MTGCardInstance * t = NULL)
+        : click(c),target(t), player(NULL), ability(NULL), efficiency(-1)
+    {
+        id = currentId++;
+    };
+
+    AIAction(Player * p)
+        : player(p), ability(NULL), target(NULL), click(NULL), efficiency(-1)
+    {
+    };
+
+    int getEfficiency();
+    int Act();
 };
 
-class CmpAbilities { // compares Abilities efficiency
- public:
-  bool operator()(AIAction * a1, AIAction * a2) const {
-    int e1 = 0;
-			e1 = a1->getEfficiency();
-    int e2 = 0;
-			e2 = a2->getEfficiency();
-    if (e1 == e2) return a1->id < a2->id;
-    return (e1 > e2);
-  }
+// compares Abilities efficiency
+class CmpAbilities
+{ 
+public:
+    bool operator()(const AIAction& a1, const AIAction& a2) const
+    {
+        AIAction* a1Ptr = const_cast<AIAction*>(&a1);
+        AIAction* a2Ptr = const_cast<AIAction*>(&a2);
+        int e1 = a1Ptr->getEfficiency();
+        int e2 = a2Ptr->getEfficiency();
+        if (e1 == e2) return a1Ptr->id < a2Ptr->id;
+        return (e1 > e2);
+    }
 };
+
+typedef std::map<AIAction, int, CmpAbilities> RankingContainer;
 
 class AIPlayer: public Player{
 protected:
@@ -92,7 +111,7 @@ public:
     int isAI(){return 1;};
     int canHandleCost(MTGAbility * ability);
     int selectAbility();
-    int createAbilityTargets(MTGAbility * a, MTGCardInstance * c, map<AIAction *, int,CmpAbilities> * ranking);
+    int createAbilityTargets(MTGAbility * a, MTGCardInstance * c, RankingContainer& ranking);
     int useAbility();
     virtual int getEfficiency(AIAction * action);
 

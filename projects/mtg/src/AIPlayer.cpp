@@ -576,12 +576,12 @@ int AIAction::getEfficiency()
 	return efficiency;
 }
 
-int AIPlayer::createAbilityTargets(MTGAbility * a, MTGCardInstance * c, map<AIAction *, int, CmpAbilities> * ranking)
+int AIPlayer::createAbilityTargets(MTGAbility * a, MTGCardInstance * c, RankingContainer& ranking)
 {
 	if (!a->tc)
 	{
-		AIAction * as = NEW AIAction(a, c, NULL);
-		(*ranking)[as] = 1;
+		AIAction aiAction(a, c, NULL);
+		ranking[aiAction] = 1;
 		return 1;
 	}
 	GameObserver * g = GameObserver::GetInstance();
@@ -598,8 +598,8 @@ int AIPlayer::createAbilityTargets(MTGAbility * a, MTGCardInstance * c, map<AIAc
 				if (a->tc->canTarget(t))
 				{
 
-					AIAction * as = NEW AIAction(a, c, t);
-					(*ranking)[as] = 1;
+					AIAction aiAction(a, c, t);
+					ranking[aiAction] = 1;
 				}
 			}
 		}
@@ -621,7 +621,7 @@ int AIPlayer::selectAbility()
 		return 0;
 	}
 	findingAbility = true;//im looking now safely!
-	map<AIAction *, int, CmpAbilities> ranking;
+	RankingContainer ranking;
 	list<int>::iterator it;
 	GameObserver * g = GameObserver::GetInstance();
 	//This loop is extrmely inefficient. TODO: optimize!
@@ -636,9 +636,10 @@ int AIPlayer::selectAbility()
 		{
 			MTGCardInstance * card = game->inPlay->cards[j];
 			if (a->isReactingToClick(card, totalPotentialMana))
-			{ //This test is to avod the huge call to getPotentialManaCost after that
+			{ //This test is to avoid the huge call to getPotentialManaCost after that
 				ManaCost * pMana = getPotentialMana(card);
-				if (a->isReactingToClick(card, pMana)) createAbilityTargets(a, card, &ranking);
+				if (a->isReactingToClick(card, pMana))
+                    createAbilityTargets(a, card, ranking);
 				delete (pMana);
 			}
 		}
@@ -647,30 +648,17 @@ int AIPlayer::selectAbility()
 
 	if (ranking.size())
 	{
-		AIAction * a = ranking.begin()->first;
+		AIAction action = ranking.begin()->first;
 		int chance = 1;
 		if (!forceBestAbilityUse) chance = 1 + WRand() % 100;
-		if (getEfficiency(a) < chance)
-		{
-			a = NULL;
-		}
-		else
+		if (action.getEfficiency() >= chance)
 		{
 			if (!clickstream.size())
 			{
 				DebugTrace("AIPlayer:Using Activated ability");
-				if (tapLandsForMana(a->ability->cost, a->click))
-					clickstream.push(a);
+				if (tapLandsForMana(action.ability->cost, action.click))
+					clickstream.push(NEW AIAction(action));
 			}
-			else
-			{
-				a = NULL;
-			}
-		}
-		map<AIAction *, int, CmpAbilities>::iterator it2;
-		for (it2 = ranking.begin(); it2 != ranking.end(); it2++)
-		{
-			if (a && a != it2->first) delete (it2->first);
 		}
 	}
 	findingAbility = false;//ok to start looking again.
@@ -1224,7 +1212,8 @@ int AIPlayerBaka::computeActions()
 					}
 
 				}
-				if (potential) delete (currentMana);
+                if (currentMana != NULL)
+				    delete (currentMana);
 				if (nextCardToPlay)
 				{
 					if (potential)
