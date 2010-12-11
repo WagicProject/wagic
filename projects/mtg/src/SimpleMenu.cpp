@@ -12,6 +12,11 @@ namespace
     const float kVerticalMargin = 16;
     const float kHorizontalMargin = 30;
     const float kLineHeight = 20;
+
+    //For the "Classic" Theme
+    const float kSpadeHeightOffset = 4;
+    const float kSpadeWidthOffset = 9;
+    const float kSpadeRightBottomOffset = 3;
 }
 
 JQuad* SimpleMenu::spadeR = NULL;
@@ -47,14 +52,15 @@ SimpleMenu::SimpleMenu(int id, JGuiListener* listener, int fontId, float x, floa
     if (!spadeRTex) spadeRTex = WResourceManager::Instance()->RetrieveTexture("spade_ur.png", RETRIEVE_MANAGE);
     if (!jewelTex) jewelTex = renderer->CreateTexture(5, 5, TEX_TYPE_USE_VRAM);
     if (!sideTex) sideTex = WResourceManager::Instance()->RetrieveTexture("menuside.png", RETRIEVE_MANAGE);
-    if (NULL == spadeL) spadeL = WResourceManager::Instance()->RetrieveQuad("spade_ul.png", 0, 0, 11, 11, "spade_ul", RETRIEVE_MANAGE);
-    if (NULL == spadeR) spadeR = WResourceManager::Instance()->RetrieveQuad("spade_ur.png", 0, 0, 11, 11, "spade_ur", RETRIEVE_MANAGE);
+    if (NULL == spadeL) spadeL = WResourceManager::Instance()->RetrieveQuad("spade_ul.png", 0, 0,  0, 0, "spade_ul", RETRIEVE_MANAGE);
+    if (NULL == spadeR) spadeR = WResourceManager::Instance()->RetrieveQuad("spade_ur.png", 0, 0, 0, 0, "spade_ur", RETRIEVE_MANAGE);
     if (NULL == jewel) jewel = NEW JQuad(jewelTex, 1, 1, 3, 3);
-    if (NULL == side) side = WResourceManager::Instance()->RetrieveQuad("menuside.png", 1, 1, 1, 7, "menuside", RETRIEVE_MANAGE);
+    if (NULL == side) side = WResourceManager::Instance()->RetrieveQuad("menuside.png", 1, 1, 1, kPoleWidth, "menuside", RETRIEVE_MANAGE);
 
     if (NULL == stars) stars = NEW hgeParticleSystem(WResourceManager::Instance()->RetrievePSI("stars.psi", WResourceManager::Instance()->GetQuad("stars")));
 
     stars->FireAt(mX, mY);
+
 }
 
 SimpleMenu::~SimpleMenu()
@@ -65,12 +71,23 @@ void SimpleMenu::drawHorzPole(float x, float y, float width)
 {
     JRenderer* renderer = JRenderer::GetInstance();
 
-    float offset = (spadeR->mWidth - kPoleWidth) / 2;
+    float leftXOffset = (spadeR->mWidth - kPoleWidth) / 2;
+    float rightXOffset = leftXOffset;
+    float yOffset = leftXOffset;
+    if (spadeR->mWidth != spadeR->mHeight) 
+    {
+        //We have a weird case to deal with in the "Classic" theme, the spades graphics need to be aligned specifically,
+        // While the ones in the "Final Saga" theme need to be centered
+        leftXOffset =  kSpadeWidthOffset;
+        yOffset = kSpadeHeightOffset;
+        rightXOffset = kSpadeRightBottomOffset;
+    }
+
     renderer->RenderQuad(side, x, y, 0, width);
     spadeR->SetHFlip(true);
     spadeL->SetHFlip(false);
-    renderer->RenderQuad(spadeR, x - offset, y - offset);
-    renderer->RenderQuad(spadeL, x - offset + width, y - offset);
+    renderer->RenderQuad(spadeR, x - leftXOffset, y - yOffset );
+    renderer->RenderQuad(spadeL, x + width - rightXOffset, y - yOffset);
 
     renderer->RenderQuad(jewel, x, y - 1);
     renderer->RenderQuad(jewel, x + width - 1, y - 1);
@@ -80,12 +97,24 @@ void SimpleMenu::drawVertPole(float x, float y, float height)
 {
     JRenderer* renderer = JRenderer::GetInstance();
 
-    float offset = (spadeR->mHeight - kPoleWidth) / 2;
+
+    float xOffset = (spadeR->mWidth - kPoleWidth) / 2;
+    float topYOffset = xOffset;
+    float bottomYOffset = xOffset;
+    if (spadeR->mWidth != spadeR->mHeight) 
+    {
+        //We have a weird case to deal with in the "Classic" theme, the spades graphics need to be aligned specifically,
+        // While the ones in the "Final Saga" theme need to be centered
+        xOffset = kSpadeHeightOffset;
+        topYOffset = kSpadeWidthOffset;
+        bottomYOffset = kSpadeRightBottomOffset;
+    }
+
     renderer->RenderQuad(side, x + kPoleWidth, y, M_PI / 2, height);
-    spadeR->SetHFlip(false);
-    spadeL->SetHFlip(true);
-    renderer->RenderQuad(spadeR, x + kPoleWidth + offset, y - offset, M_PI / 2);
-    renderer->RenderQuad(spadeL, x + kPoleWidth + offset, y - offset + height, M_PI / 2);
+    spadeR->SetHFlip(true);
+    spadeL->SetHFlip(false);
+    renderer->RenderQuad(spadeR, x + kPoleWidth + xOffset, y - topYOffset, M_PI / 2);
+    renderer->RenderQuad(spadeL, x + kPoleWidth + xOffset, y + height - bottomYOffset, M_PI / 2);
 
     renderer->RenderQuad(jewel, x - 1, y - 1);
     renderer->RenderQuad(jewel, x - 1, y + height - 1);
