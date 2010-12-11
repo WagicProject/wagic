@@ -72,19 +72,19 @@ void GameObserver::nextPlayer()
 void GameObserver::nextGamePhase()
 {
     Phase * cPhaseOld = phaseRing->getCurrentPhase();
-    if (cPhaseOld->id == Constants::MTG_PHASE_COMBATDAMAGE)
-        if (FIRST_STRIKE == combatStep || END_FIRST_STRIKE == combatStep || DAMAGE == combatStep)
-        {
-            nextCombatStep();
-            return;
-        }
+    if (cPhaseOld->id == Constants::MTG_PHASE_COMBATDAMAGE) 
+    	if ((FIRST_STRIKE == combatStep) || (END_FIRST_STRIKE == combatStep) || (DAMAGE == combatStep))
+    	{
+        	nextCombatStep();
+        	return;
+    	}
 
-    if (cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS)
-        if (BLOCKERS == combatStep || TRIGGERS == combatStep)
-        {
-            nextCombatStep();
-            return;
-        }
+    if (cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS) 
+    	if (BLOCKERS == combatStep || TRIGGERS == combatStep)
+    	{
+        	nextCombatStep();
+        	return;
+    	}
 
     phaseRing->forward();
 
@@ -99,25 +99,25 @@ void GameObserver::nextGamePhase()
     currentGamePhase = cPhase->id;
 
     if (Constants::MTG_PHASE_COMBATDAMAGE == currentGamePhase)
-        nextCombatStep();
+    	nextCombatStep();
 
     if (currentPlayer != cPhase->player)
-        nextPlayer();
+    	nextPlayer();
 
     //init begin of turn
     if (currentGamePhase == Constants::MTG_PHASE_BEFORE_BEGIN)
-		{
-			cleanupPhase();
-			currentPlayer->canPutLandsIntoPlay = true;
-			currentPlayer->landsPlayerCanStillPlay = 1;
-			currentPlayer->castedspellsthisturn = 0;
-			currentPlayer->opponent()->castedspellsthisturn = 0;
-			currentPlayer->castcount = 0;
-			currentPlayer->nocreatureinstant = false;
-			currentPlayer->nospellinstant = false;
-			currentPlayer->onlyoneinstant = false;
-			currentPlayer->damageCount = 0;
-			currentPlayer->preventable = 0;
+    {
+        cleanupPhase();
+        currentPlayer->canPutLandsIntoPlay = true;
+        currentPlayer->landsPlayerCanStillPlay = 1;
+        currentPlayer->castedspellsthisturn = 0;
+        currentPlayer->opponent()->castedspellsthisturn = 0;
+        currentPlayer->castcount = 0;
+        currentPlayer->nocreatureinstant = false;
+        currentPlayer->nospellinstant = false;
+        currentPlayer->onlyoneinstant = false;
+        currentPlayer->damageCount = 0;
+        currentPlayer->preventable = 0;
         mLayers->actionLayer()->cleanGarbage(); //clean abilities history for this turn;
         mLayers->stackLayer()->garbageCollect(); //clean stack history for this turn;
         mLayers->actionLayer()->Update(0);
@@ -147,7 +147,7 @@ void GameObserver::nextGamePhase()
     switch (currentGamePhase)
     {
     case Constants::MTG_PHASE_UNTAP:
-		DebugTrace("Untap Phase -------------   Turn " << turn );
+        DebugTrace("Untap Phase -------------   Turn " << turn );
         untapPhase();
         break;
     case Constants::MTG_PHASE_DRAW:
@@ -198,37 +198,39 @@ void GameObserver::nextCombatStep()
 
 void GameObserver::userRequestNextGamePhase()
 {
-	if (mLayers->stackLayer()->getNext(NULL, 0, NOT_RESOLVED))
-		return;
-	if (getCurrentTargetChooser())
-		return;
-	//if (mLayers->actionLayer()->isWaitingForAnswer())
-	//	return;
+    if (mLayers->stackLayer()->getNext(NULL, 0, NOT_RESOLVED))
+    	return;
+    if (getCurrentTargetChooser())
+    	return;
+    //if (mLayers->actionLayer()->isWaitingForAnswer())
+    //	return;
     // Wil 12/5/10: additional check, not quite understanding why TargetChooser doesn't seem active at this point.
     // If we deem that an extra cost payment needs to be made, don't allow the next game phase to proceed.
     // Here's what I find weird - if the extra cost is something like a sacrifice, doesn't that imply a TargetChooser?
-  if (WaitForExtraPayment(NULL))
-        return;
+    if (WaitForExtraPayment(NULL)) 
+    	return;
 
-	bool executeNextPhaseImmediately = true;
+    bool executeNextPhaseImmediately = true;
 
-	Phase * cPhaseOld = phaseRing->getCurrentPhase();
-	if ((cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS && combatStep == ORDER) || (cPhaseOld->id
-		== Constants::MTG_PHASE_COMBATBLOCKERS && combatStep == TRIGGERS) || cPhaseOld->id
-		== Constants::MTG_PHASE_COMBATDAMAGE || opponent()->isAI()
-		|| options[Options::optionInterrupt(currentGamePhase)].number)
-	{
-		executeNextPhaseImmediately = false;
-	}
+    Phase * cPhaseOld = phaseRing->getCurrentPhase();
+    if ((cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS && combatStep == ORDER) 
+    	|| (cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS && combatStep == TRIGGERS) 
+    	|| (cPhaseOld->id == Constants::MTG_PHASE_COMBATDAMAGE)
+        || opponent()->isAI() 
+        || options[Options::optionInterrupt(currentGamePhase)].number
+    )
+    {
+        executeNextPhaseImmediately = false;
+    }
 
-	if (executeNextPhaseImmediately)
-	{
-		nextGamePhase();
-	}
-	else
-	{
-		mLayers->stackLayer()->AddNextGamePhase();
-	}
+    if (executeNextPhaseImmediately)
+    {
+        nextGamePhase();
+    }
+    else
+    {
+        mLayers->stackLayer()->AddNextGamePhase();
+    }
 
 }
 
@@ -254,8 +256,8 @@ void GameObserver::startGame(Rules * rules)
 {
     turn = 0;
     mRules = rules;
-    if (rules)
-        rules->initPlayers();
+    if (rules) 
+    	rules->initPlayers();
 
     options.automaticStyle(players[0], players[1]);
 
@@ -266,8 +268,8 @@ void GameObserver::startGame(Rules * rules)
     currentPlayer = players[0];
     currentActionPlayer = currentPlayer;
     phaseRing = NEW PhaseRing(players, nbPlayers);
-    if (rules)
-        rules->initGame();
+    if (rules) 
+    	rules->initGame();
 
     //Preload images from hand
     if (!players[0]->isAI())
@@ -346,12 +348,12 @@ void GameObserver::Update(float dt)
 {
     Player * player = currentPlayer;
 
-    if (Constants::MTG_PHASE_COMBATBLOCKERS == currentGamePhase && BLOCKERS == combatStep)
-        player = player->opponent();
+    if (Constants::MTG_PHASE_COMBATBLOCKERS == currentGamePhase && BLOCKERS == combatStep) 
+    	player = player->opponent();
 
     currentActionPlayer = player;
-    if (isInterrupting)
-        player = isInterrupting;
+    if (isInterrupting) 
+    	player = isInterrupting;
     mLayers->Update(dt, player);
 
     while (mLayers->actionLayer()->stuffHappened)
@@ -359,8 +361,8 @@ void GameObserver::Update(float dt)
         mLayers->actionLayer()->Update(0);
     }
 
-		gameStateBasedEffects();
-		oldGamePhase = currentGamePhase;
+    gameStateBasedEffects();
+    oldGamePhase = currentGamePhase;
 }
 
 //applies damage to creatures after updates
@@ -368,268 +370,269 @@ void GameObserver::Update(float dt)
 //Handles game state based effects
 void GameObserver::gameStateBasedEffects()
 {
-	//check land playability at start; as we want this effect to happen reguardless of unresolved
-	//effects or menus actions
-	for (int i = 0; i < 2; i++)
-	{
-		if(players[i]->landsPlayerCanStillPlay <= 0)
-		{
-			players[i]->canPutLandsIntoPlay = false;
-		}
-		else
-		{
-			players[i]->canPutLandsIntoPlay = true;
-		}
-	}
-	if (mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
-		return;
-	if (mLayers->actionLayer()->menuObject)
-		return;
-	if (targetChooser || mLayers->actionLayer()->isWaitingForAnswer())
-		return;
+    //check land playability at start; as we want this effect to happen reguardless of unresolved
+    //effects or menus actions
+    for (int i = 0; i < 2; i++)
+    {
+        if (players[i]->landsPlayerCanStillPlay <= 0)
+        {
+            players[i]->canPutLandsIntoPlay = false;
+        }
+        else
+        {
+            players[i]->canPutLandsIntoPlay = true;
+        }
+    }
+    if (mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
+    	return;
+    if (mLayers->actionLayer()->menuObject) 
+    	return;
+    if (targetChooser || mLayers->actionLayer()->isWaitingForAnswer()) 
+    	return;
 
-	////////////////////////
-	//---apply damage-----//
-	//after combat effects//
-	////////////////////////
-	for (int i = 0; i < 2; i++)
-	{
-		MTGGameZone * zone = players[i]->game->inPlay;
-		for (int j = zone->nb_cards - 1; j >= 0; j--)
-		{
-			MTGCardInstance * card = zone->cards[j];
-			card->afterDamage();
+    ////////////////////////
+    //---apply damage-----//
+    //after combat effects//
+    ////////////////////////
+    for (int i = 0; i < 2; i++)
+    {
+        MTGGameZone * zone = players[i]->game->inPlay;
+        for (int j = zone->nb_cards - 1; j >= 0; j--)
+        {
+            MTGCardInstance * card = zone->cards[j];
+            card->afterDamage();
 
-			//Remove auras that don't have a valid target anymore
-			if (card->target && !isInPlay(card->target) && !card->hasType("equipment"))
-			{
-				players[i]->game->putInGraveyard(card);
-			}
-		}
-	}
-	//-------------------------------------
+            //Remove auras that don't have a valid target anymore
+            if (card->target && !isInPlay(card->target) && !card->hasType("equipment"))
+            {
+                players[i]->game->putInGraveyard(card);
+            }
+        }
+    }
+    //-------------------------------------
 
-	for (int i = 0; i < 2; i++)
-	{
-		///////////////////////////////////////////////////////////
-		//life checks/poison checks also checks cant win or lose.//
-		///////////////////////////////////////////////////////////
-		if (players[i]->life <= 0)
-		{
-			int cantlosers = 0;
-			MTGGameZone * z = players[i]->game->inPlay;
-			int nbcards = z->nb_cards;
-			for (int j = 0; j < nbcards; ++j)
-			{
-				MTGCardInstance * c = z->cards[j];
-				if (c->has(Constants::CANTLOSE) || c->has(Constants::CANTLIFELOSE))
-				{
-					cantlosers++;
-				}
-			}
-			MTGGameZone * k = players[i]->opponent()->game->inPlay;
-			int onbcards = k->nb_cards;
-			for (int m = 0; m < onbcards; ++m)
-			{
-				MTGCardInstance * e = k->cards[m];
-				if (e->has(Constants::CANTWIN))
-				{
-					cantlosers++;
-				}
-			}
-			if (cantlosers < 1)
-			{
-				gameOver = players[i];
-			}
-			if (players[i]->poisonCount >= 10)
-			{
-				gameOver = players[i];
-			}
-		}
-	}
-	//////////////////////////////////////////////////////
-	//-------------card based states effects------------//
-	//////////////////////////////////////////////////////
-	//ie:cantcast; extra land; extra turn;no max hand;--//
-	//////////////////////////////////////////////////////
+    for (int i = 0; i < 2; i++)
+    {
+        ///////////////////////////////////////////////////////////
+        //life checks/poison checks also checks cant win or lose.//
+        ///////////////////////////////////////////////////////////
+        if (players[i]->life <= 0)
+        {
+            int cantlosers = 0;
+            MTGGameZone * z = players[i]->game->inPlay;
+            int nbcards = z->nb_cards;
+            for (int j = 0; j < nbcards; ++j)
+            {
+                MTGCardInstance * c = z->cards[j];
+                if (c->has(Constants::CANTLOSE) || c->has(Constants::CANTLIFELOSE))
+                {
+                    cantlosers++;
+                }
+            }
+            MTGGameZone * k = players[i]->opponent()->game->inPlay;
+            int onbcards = k->nb_cards;
+            for (int m = 0; m < onbcards; ++m)
+            {
+                MTGCardInstance * e = k->cards[m];
+                if (e->has(Constants::CANTWIN))
+                {
+                    cantlosers++;
+                }
+            }
+            if (cantlosers < 1)
+            {
+                gameOver = players[i];
+            }
+            if (players[i]->poisonCount >= 10)
+            {
+                gameOver = players[i];
+            }
+        }
+    }
+    //////////////////////////////////////////////////////
+    //-------------card based states effects------------//
+    //////////////////////////////////////////////////////
+    //ie:cantcast; extra land; extra turn;no max hand;--//
+    //////////////////////////////////////////////////////
 
-	for (int i = 0; i < 2; i++)
-	{
-		//checks if a player has a card which has the stated ability in play.
-		Player * p = players[i];
-		MTGGameZone * z = players[i]->game->inPlay;
-		int nbcards = z->nb_cards;
-		p->onlyonecast = false;
-		p->opponent()->onlyonecast = false;
-		//------------------------------
-		if (z->hasAbility(Constants::NOMAXHAND))
-		{
-			p->nomaxhandsize = true;
-		}
-		else
-		{
-			p->nomaxhandsize = false;
-		}
-		//------------------------------
-		if (z->hasAbility(Constants::CANTCASTCREATURE))
-		{
-			p->castrestrictedcreature = true;
-		}
-		else
-		{
-			p->castrestrictedcreature = false;
-		}
-		//------------------------------
-		if (z->hasAbility(Constants::CANTCAST))
-		{
-			p->castrestrictedspell = true;
-		}
-		else
-		{ 
-			p->castrestrictedspell = false;
-		}
-		//------------------------------
-		if (z->hasAbility(Constants::CANTCASTTWO))
-		{
-			p->onlyonecast = true;
-		}
-		else
-		{
-			p->onlyonecast = false;
-		}
-		//--------------------------------
-		if (z->hasAbility(Constants::BOTHCANTCAST))
-		{
-			p->bothrestrictedspell = true;
-		}
-		else
-		{
-			p->bothrestrictedspell = false;
-		}
-		//---------------------------------
-		if (z->hasAbility(Constants::BOTHNOCREATURE))
-		{
-			p->bothrestrictedcreature = true;
-		}
-		else
-		{					
-			p->bothrestrictedcreature = false;
-		}
-		//-----------------------------------
-		if (z->hasAbility(Constants::ONLYONEBOTH))
-		{
-			p->onlyoneboth = true;
-		}
-		else
-		{
-			p->onlyoneboth = false;
-		}
-		//------------------------------------
-		if(players[0]->bothrestrictedcreature)
-			players[1]->castrestrictedcreature = true;
-		//------------------------------------
-		if(players[0]->bothrestrictedspell)
-			players[1]->castrestrictedspell = true;
-		//------------------------------------
-		if(players[0]->onlyoneboth)
-			players[1]->onlyoneboth = true;
-		//------------------------------------
-		if(players[1]->bothrestrictedcreature)
-			players[0]->castrestrictedcreature = true;
-		//------------------------------------
-		if(players[1]->bothrestrictedspell)
-			players[0]->castrestrictedspell = true;
-		//------------------------------------
-		if(players[1]->onlyoneboth)
-			players[0]->onlyoneboth = true;
-		//------------------------------------
-		/////////////////////////////////////////////////
-		//handle end of turn effects while we're at it.//
-		/////////////////////////////////////////////////
-		if( currentGamePhase == Constants::MTG_PHASE_ENDOFTURN)
-		{
-			for (int j = 0; j < nbcards; ++j)
-			{
-				MTGCardInstance * c = z->cards[j];
-				while (c->flanked)
-				{//undoes the flanking on a card
-					c->power += 1;
-					c->addToToughness(1);
-					c->flanked -= 1;
-				}
-				if (c->has(Constants::TREASON))
-				{
-					WEvent * e = NEW WEventCardSacrifice(c);
-					GameObserver * game = GameObserver::GetInstance();
-					game->receiveEvent(e);
-					p->game->putInGraveyard(c);
-				}
-				if (c->has(Constants::UNEARTH))
-					p->game->putInExile(c);
-				if (c->fresh)
-					c->fresh = 0;
-				if (c->has(Constants::ONLYONEBOTH))
-				{
-					c->controller()->castcount = 0;
-					c->controller()->opponent()->castcount = 0;
-				}
+    for (int i = 0; i < 2; i++)
+    {
+        //checks if a player has a card which has the stated ability in play.
+        Player * p = players[i];
+        MTGGameZone * z = players[i]->game->inPlay;
+        int nbcards = z->nb_cards;
+        p->onlyonecast = false;
+        p->opponent()->onlyonecast = false;
+        //------------------------------
+        if (z->hasAbility(Constants::NOMAXHAND))
+        {
+            p->nomaxhandsize = true;
+        }
+        else
+        {
+            p->nomaxhandsize = false;
+        }
+        //------------------------------
+        if (z->hasAbility(Constants::CANTCASTCREATURE))
+        {
+            p->castrestrictedcreature = true;
+        }
+        else
+        {
+            p->castrestrictedcreature = false;
+        }
+        //------------------------------
+        if (z->hasAbility(Constants::CANTCAST))
+        {
+            p->castrestrictedspell = true;
+        }
+        else
+        {
+            p->castrestrictedspell = false;
+        }
+        //------------------------------
+        if (z->hasAbility(Constants::CANTCASTTWO))
+        {
+            p->onlyonecast = true;
+        }
+        else
+        {
+            p->onlyonecast = false;
+        }
+        //--------------------------------
+        if (z->hasAbility(Constants::BOTHCANTCAST))
+        {
+            p->bothrestrictedspell = true;
+        }
+        else
+        {
+            p->bothrestrictedspell = false;
+        }
+        //---------------------------------
+        if (z->hasAbility(Constants::BOTHNOCREATURE))
+        {
+            p->bothrestrictedcreature = true;
+        }
+        else
+        {
+            p->bothrestrictedcreature = false;
+        }
+        //-----------------------------------
+        if (z->hasAbility(Constants::ONLYONEBOTH))
+        {
+            p->onlyoneboth = true;
+        }
+        else
+        {
+            p->onlyoneboth = false;
+        }
+        //------------------------------------
+        if (players[0]->bothrestrictedcreature) 
+        	players[1]->castrestrictedcreature = true;
+        //------------------------------------
+        if (players[0]->bothrestrictedspell) 
+        	players[1]->castrestrictedspell = true;
+        //------------------------------------
+        if (players[0]->onlyoneboth) 
+        	players[1]->onlyoneboth = true;
+        //------------------------------------
+        if (players[1]->bothrestrictedcreature) 
+        	players[0]->castrestrictedcreature = true;
+        //------------------------------------
+        if (players[1]->bothrestrictedspell) 
+        	players[0]->castrestrictedspell = true;
+        //------------------------------------
+        if (players[1]->onlyoneboth) 
+        	players[0]->onlyoneboth = true;
+        //------------------------------------
+        /////////////////////////////////////////////////
+        //handle end of turn effects while we're at it.//
+        /////////////////////////////////////////////////
+        if (currentGamePhase == Constants::MTG_PHASE_ENDOFTURN)
+        {
+            for (int j = 0; j < nbcards; ++j)
+            {
+                MTGCardInstance * c = z->cards[j];
+                while (c->flanked)
+                {//undoes the flanking on a card
+                    c->power += 1;
+                    c->addToToughness(1);
+                    c->flanked -= 1;
+                }
+                if (c->has(Constants::TREASON))
+                {
+                    WEvent * e = NEW WEventCardSacrifice(c);
+                    GameObserver * game = GameObserver::GetInstance();
+                    game->receiveEvent(e);
+                    p->game->putInGraveyard(c);
+                }
+                if (c->has(Constants::UNEARTH)) p->game->putInExile(c);
+                if (c->fresh) c->fresh = 0;
+                if (c->has(Constants::ONLYONEBOTH))
+                {
+                    c->controller()->castcount = 0;
+                    c->controller()->opponent()->castcount = 0;
+                }
 
-			}
-			MTGGameZone * f = p->game->graveyard;
-			for (int k = 0; k < f->nb_cards; k++)
-			{
-				MTGCardInstance * card = f->cards[k];
-				card->fresh = 0;
-			}
-		}
-		if(z->nb_cards == 0)
-		{
-			p->nomaxhandsize = false;
-			if(!p->bothrestrictedcreature && !p->opponent()->bothrestrictedcreature)
-				p->castrestrictedcreature = false;
-			if(!p->bothrestrictedspell && !p->opponent()->bothrestrictedspell)
-				p->castrestrictedspell = false;
-			p->onlyonecast = false;
-		}
-	}
-	///////////////////////////////////
-	//phase based state effects------//
-	///////////////////////////////////
-	if (combatStep == TRIGGERS)
-	{
-		if (!mLayers->stackLayer()->getNext(NULL, 0, NOT_RESOLVED) && !targetChooser && !mLayers->actionLayer()->isWaitingForAnswer())
+            }
+            MTGGameZone * f = p->game->graveyard;
+            for (int k = 0; k < f->nb_cards; k++)
+            {
+                MTGCardInstance * card = f->cards[k];
+                card->fresh = 0;
+            }
+        }
+        if (z->nb_cards == 0)
+        {
+            p->nomaxhandsize = false;
+            if (!p->bothrestrictedcreature && !p->opponent()->bothrestrictedcreature)
+            	p->castrestrictedcreature = false;
+            if (!p->bothrestrictedspell && !p->opponent()->bothrestrictedspell) 
+            	p->castrestrictedspell = false;
+            p->onlyonecast = false;
+        }
+    }
+    ///////////////////////////////////
+    //phase based state effects------//
+    ///////////////////////////////////
+    if (combatStep == TRIGGERS)
+    {
+        if (!mLayers->stackLayer()->getNext(NULL, 0, NOT_RESOLVED) && !targetChooser
+                && !mLayers->actionLayer()->isWaitingForAnswer()) 
 			mLayers->stackLayer()->AddNextCombatStep();
-	}
+    }
 
-	//Auto skip Phases
-	GameObserver * game = game->GetInstance();
-	int skipLevel = (game->currentPlayer->playMode == Player::MODE_TEST_SUITE) ? Constants::ASKIP_NONE : options[Options::ASPHASES].number;
-	int nrCreatures = currentPlayer->game->inPlay->countByType("Creature");
+    //Auto skip Phases
+    GameObserver * game = game->GetInstance();
+    int skipLevel = (game->currentPlayer->playMode == Player::MODE_TEST_SUITE) ? Constants::ASKIP_NONE
+            : options[Options::ASPHASES].number;
+    int nrCreatures = currentPlayer->game->inPlay->countByType("Creature");
 
-	if (skipLevel == Constants::ASKIP_SAFE || skipLevel == Constants::ASKIP_FULL)
-	{
-		if ((opponent()->isAI() && !(isInterrupting)) && (currentGamePhase == Constants::MTG_PHASE_UNTAP || currentGamePhase
-			== Constants::MTG_PHASE_DRAW || currentGamePhase == Constants::MTG_PHASE_COMBATBEGIN || ((currentGamePhase
-			== Constants::MTG_PHASE_COMBATATTACKERS) && (nrCreatures == 0)) || currentGamePhase
-			== Constants::MTG_PHASE_COMBATEND || currentGamePhase == Constants::MTG_PHASE_ENDOFTURN
-			|| ((currentGamePhase == Constants::MTG_PHASE_CLEANUP) && (currentPlayer->game->hand->nb_cards < 8))))
+    if (skipLevel == Constants::ASKIP_SAFE || skipLevel == Constants::ASKIP_FULL)
+    {
+        if ((opponent()->isAI() && !(isInterrupting)) && ((currentGamePhase == Constants::MTG_PHASE_UNTAP)
+        		|| (currentGamePhase == Constants::MTG_PHASE_DRAW) || (currentGamePhase == Constants::MTG_PHASE_COMBATBEGIN) 
+        		|| ((currentGamePhase == Constants::MTG_PHASE_COMBATATTACKERS) && (nrCreatures == 0)) 
+        		|| currentGamePhase == Constants::MTG_PHASE_COMBATEND || currentGamePhase == Constants::MTG_PHASE_ENDOFTURN 
+                || ((currentGamePhase == Constants::MTG_PHASE_CLEANUP) && (currentPlayer->game->hand->nb_cards < 8)))) 
 			userRequestNextGamePhase();
-	}
-	if (skipLevel == Constants::ASKIP_FULL)
-	{
-		if ((opponent()->isAI() && !(isInterrupting)) && (currentGamePhase == Constants::MTG_PHASE_UPKEEP || currentGamePhase
-			== Constants::MTG_PHASE_COMBATDAMAGE))
-			userRequestNextGamePhase();
-	}
+    }
+    if (skipLevel == Constants::ASKIP_FULL)
+    {
+        if ((opponent()->isAI() && !(isInterrupting)) && (currentGamePhase == Constants::MTG_PHASE_UPKEEP 
+        		|| currentGamePhase == Constants::MTG_PHASE_COMBATDAMAGE)) 
+        	userRequestNextGamePhase();
+    }
 }
 
 void GameObserver::Render()
 {
     mLayers->Render();
-    if (targetChooser || mLayers->actionLayer()->isWaitingForAnswer())
-        JRenderer::GetInstance()->DrawRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, ARGB(255,255,0,0));
-    if (mExtraPayment)
-        mExtraPayment->Render();
+    if (targetChooser || mLayers->actionLayer()->isWaitingForAnswer()) 
+	    JRenderer::GetInstance()->DrawRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, ARGB(255,255,0,0));
+    if (mExtraPayment) 
+    	mExtraPayment->Render();
+    
     for (int i = 0; i < nbPlayers; ++i)
     {
         players[i]->Render();
@@ -701,8 +704,8 @@ void GameObserver::stackObjectClicked(Interruptible * action)
     else
     {
         int reaction = mLayers->actionLayer()->isReactingToTargetClick(action);
-        if (reaction == -1)
-            mLayers->actionLayer()->reactToTargetClick(action);
+        if (reaction == -1) 
+        	mLayers->actionLayer()->reactToTargetClick(action);
     }
 }
 
@@ -729,8 +732,8 @@ bool GameObserver::WaitForExtraPayment(MTGCardInstance * card)
 int GameObserver::cardClick(MTGCardInstance * card, Targetable * object)
 {
     Player * clickedPlayer = NULL;
-    if (!card)
-        clickedPlayer = ((Player *) object);
+    if (!card) 
+    	clickedPlayer = ((Player *) object);
     if (targetChooser)
     {
         int result;
@@ -763,10 +766,10 @@ int GameObserver::cardClick(MTGCardInstance * card, Targetable * object)
             return 1;
     }
 
-    if (WaitForExtraPayment(card))
-        return 1;
+    if (WaitForExtraPayment(card)) 
+    	return 1;
 
-	int reaction = 0;
+    int reaction = 0;
 
     if (ORDER == combatStep)
     {
@@ -793,22 +796,22 @@ int GameObserver::cardClick(MTGCardInstance * card, Targetable * object)
         }
 
         reaction = mLayers->actionLayer()->isReactingToClick(card);
-        if (reaction == -1)
-            return mLayers->actionLayer()->reactToClick(card);
+        if (reaction == -1) 
+        	return mLayers->actionLayer()->reactToClick(card);
     }
     else
     {//this handles abilities on a menu...not just when card is being played
         reaction = mLayers->actionLayer()->isReactingToTargetClick(object);
-        if (reaction == -1)
-            return mLayers->actionLayer()->reactToTargetClick(object);
+        if (reaction == -1) 
+        	return mLayers->actionLayer()->reactToTargetClick(object);
     }
 
-    if (!card)
-        return 0;
+    if (!card) 
+    	return 0;
 
     //Current player's hand
     if (currentPlayer->game->hand->hasCard(card) && currentGamePhase == Constants::MTG_PHASE_CLEANUP
-                    && currentPlayer->game->hand->nb_cards > 7 && currentPlayer->nomaxhandsize == false)
+            && currentPlayer->game->hand->nb_cards > 7 && currentPlayer->nomaxhandsize == false)
     {
         currentPlayer->game->putInGraveyard(card);
     }
@@ -840,9 +843,9 @@ int GameObserver::untap(MTGCardInstance * card)
         return 0;
     }
     if (card->has(Constants::DOESNOTUNTAP))
-        return 0;
-    if (card->frozen > 0)
-        return 0;
+    	return 0;
+    if (card->frozen > 0) 
+    	return 0;
     card->attemptUntap();
     return 1;
 }
@@ -850,8 +853,8 @@ int GameObserver::untap(MTGCardInstance * card)
 TargetChooser * GameObserver::getCurrentTargetChooser()
 {
     TargetChooser * _tc = mLayers->actionLayer()->getCurrentTargetChooser();
-    if (_tc)
-        return _tc;
+    if (_tc) 
+    	return _tc;
     return targetChooser;
 }
 
@@ -860,8 +863,8 @@ int GameObserver::isInPlay(MTGCardInstance * card)
 {
     for (int i = 0; i < 2; i++)
     {
-        if (players[i]->game->isInPlay(card))
-            return 1;
+        if (players[i]->game->isInPlay(card)) 
+        	return 1;
     }
     return 0;
 }
@@ -884,11 +887,11 @@ void GameObserver::untapPhase()
 
 int GameObserver::receiveEvent(WEvent * e)
 {
-    if (!e)
-        return 0;
+    if (!e) 
+    	return 0;
     eventsQueue.push(e);
-    if (eventsQueue.size() > 1)
-        return -1; //resolving events can generate more events
+    if (eventsQueue.size() > 1) 
+    	return -1; //resolving events can generate more events
     int result = 0;
     while (eventsQueue.size())
     {
@@ -906,8 +909,8 @@ int GameObserver::receiveEvent(WEvent * e)
 
 Player * GameObserver::currentlyActing()
 {
-    if (isInterrupting)
-        return isInterrupting;
+    if (isInterrupting) 
+    	return isInterrupting;
     return currentActionPlayer;
 }
 

@@ -19,9 +19,11 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
     Player * currentPlayer = game->currentPlayer;
     if (!player->game->hand->hasCard(card))
         return 0;
-    if ((game->turn < 1) && (cardsinhand != 0) && (card->basicAbilities[Constants::LEYLINE]) && game->currentGamePhase
-                    == Constants::MTG_PHASE_FIRSTMAIN && game->players[0]->game->graveyard->nb_cards == 0
-                    && game->players[0]->game->exile->nb_cards == 0)
+    if ((game->turn < 1) && (cardsinhand != 0) && (card->basicAbilities[Constants::LEYLINE])
+            && game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN
+            && game->players[0]->game->graveyard->nb_cards == 0
+            && game->players[0]->game->exile->nb_cards == 0
+    )
     {
         Player * p = game->currentPlayer;
         if (card->basicAbilities[Constants::LEYLINE])
@@ -35,15 +37,18 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
     }
     if (card->hasType("land"))
     {
-        if (player == currentPlayer && currentPlayer->canPutLandsIntoPlay && (game->currentGamePhase
-                        == Constants::MTG_PHASE_FIRSTMAIN || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN))
+        if (player == currentPlayer && currentPlayer->canPutLandsIntoPlay
+                && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN)
+        )
         {
             return 1;
         }
     }
-    else if ((card->hasType("instant")) || card->has(Constants::FLASH) || (player == currentPlayer && !game->isInterrupting
-                    && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN || game->currentGamePhase
-                                    == Constants::MTG_PHASE_SECONDMAIN)))
+    else if ((card->hasType("instant")) || card->has(Constants::FLASH)
+            || (player == currentPlayer && !game->isInterrupting
+            && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN
+                    || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN))
+    )
     {
         ManaCost * playerMana = player->getManaPool();
         ManaCost * cost = card->getManaCost();
@@ -241,15 +246,17 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
         return 0;
     if (card->hasType("land"))
     {
-        if (player == currentPlayer && currentPlayer->canPutLandsIntoPlay && (game->currentGamePhase
-                        == Constants::MTG_PHASE_FIRSTMAIN || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN))
-        {
+        if (player == currentPlayer && currentPlayer->canPutLandsIntoPlay
+                && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN
+                        || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN)
+        )
             return 1;
-        }
     }
-    else if ((card->hasType("instant")) || card->has(Constants::FLASH) || (player == currentPlayer && !game->isInterrupting
-                    && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN || game->currentGamePhase
-                                    == Constants::MTG_PHASE_SECONDMAIN)))
+    else if ((card->hasType("instant")) || card->has(Constants::FLASH) || (player == currentPlayer
+            && !game->isInterrupting
+            && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN
+                    || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN))
+    )
     {
         ManaCost * playerMana = player->getManaPool();
         ManaCost * cost = card->getManaCost();
@@ -431,14 +438,14 @@ int MTGBuyBackRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
     if (card->hasType("land"))
     {
         if (player == currentPlayer && currentPlayer->canPutLandsIntoPlay && (game->currentGamePhase
-                        == Constants::MTG_PHASE_FIRSTMAIN || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN))
+                == Constants::MTG_PHASE_FIRSTMAIN || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN))
         {
             return 1;
         }
     }
     else if ((card->hasType("instant")) || card->has(Constants::FLASH) || (player == currentPlayer && !game->isInterrupting
-                    && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN || game->currentGamePhase
-                                    == Constants::MTG_PHASE_SECONDMAIN)))
+            && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN || game->currentGamePhase
+                    == Constants::MTG_PHASE_SECONDMAIN)))
     {
         ManaCost * playerMana = player->getManaPool();
         ManaCost * cost = card->getManaCost();
@@ -455,11 +462,11 @@ int MTGBuyBackRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
         {
             return 0;
         }
-        if (player->nospellinstant == true )
+        if (player->nospellinstant == true)
         {
             return 0;
         }
-        if (player->onlyoneinstant == true )
+        if (player->onlyoneinstant == true)
         {
             if (player->castcount >= 1)
             {
@@ -621,9 +628,11 @@ int MTGFlashBackRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
         return 0;
     if (!card->getManaCost()->FlashBack)
         return 0;
-    if ((card->hasType("instant")) || card->has(Constants::FLASH) || (player == currentPlayer && !game->isInterrupting
-                    && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN || game->currentGamePhase
-                                    == Constants::MTG_PHASE_SECONDMAIN)))
+    if ((card->hasType("instant")) || card->has(Constants::FLASH)
+            || (player == currentPlayer && !game->isInterrupting
+                    && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN
+                            || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN))
+    )
     {
         ManaCost * playerMana = player->getManaPool();
         ManaCost * cost = card->getManaCost();
@@ -640,11 +649,11 @@ int MTGFlashBackRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
         {
             return 0;
         }
-        if (player->nospellinstant == true )
+        if (player->nospellinstant == true)
         {
             return 0;
         }
-        if (player->onlyoneinstant == true )
+        if (player->onlyoneinstant == true)
         {
             if (player->castcount >= 1)
             {
@@ -732,7 +741,7 @@ int MTGFlashBackRule::reactToClick(MTGCardInstance * card)
             game->targetChooser = NULL;
             player->castedspellsthisturn += 1;
             player->opponent()->castedspellsthisturn += 1;
-            if (player->onlyonecast == true || player->onlyoneinstant == true )
+            if (player->onlyonecast == true || player->onlyoneinstant == true)
             {
                 player->castcount += 1;
             }
@@ -805,9 +814,11 @@ int MTGRetraceRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
         return 0;
     if (!card->getManaCost()->Retrace)
         return 0;
-    if ((card->hasType("instant")) || card->has(Constants::FLASH) || (player == currentPlayer && !game->isInterrupting
-                    && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN || game->currentGamePhase
-                                    == Constants::MTG_PHASE_SECONDMAIN)))
+    if ((card->hasType("instant")) || card->has(Constants::FLASH)
+            || (player == currentPlayer && !game->isInterrupting
+                    && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN
+                            || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN))
+    )
     {
         ManaCost * playerMana = player->getManaPool();
         ManaCost * cost = card->getManaCost();
@@ -824,11 +835,11 @@ int MTGRetraceRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
         {
             return 0;
         }
-        if (player->nospellinstant == true )
+        if (player->nospellinstant == true)
         {
             return 0;
         }
-        if (player->onlyoneinstant == true )
+        if (player->onlyoneinstant == true)
         {
             if (player->castcount >= 1)
             {
@@ -874,7 +885,8 @@ int MTGRetraceRule::reactToClick(MTGCardInstance * card)
         {
             cost->Retrace->setExtraCostsAction(this, card);
             game->mExtraPayment = cost->Retrace->extraCosts;
-            card->paymenttype = MTGAbility::RETRACE_COST;;
+            card->paymenttype = MTGAbility::RETRACE_COST;
+            ;
             return 0;
         }
     }
@@ -912,7 +924,7 @@ int MTGRetraceRule::reactToClick(MTGCardInstance * card)
             game->targetChooser = NULL;
             player->castedspellsthisturn += 1;
             player->opponent()->castedspellsthisturn += 1;
-            if (player->onlyonecast == true || player->onlyoneinstant == true )
+            if (player->onlyonecast == true || player->onlyoneinstant == true)
             {
                 player->castcount += 1;
             }
@@ -1013,8 +1025,10 @@ int MTGAttackRule::receiveEvent(WEvent *e)
             for (int i = 0; i < z->nb_cards; i++)
             {
                 MTGCardInstance * card = z->cards[i];
-                if (!card->isAttacker() && card->has(Constants::MUSTATTACK)) reactToClick(card);
-                if (!card->isAttacker() && card->has(Constants::TREASON) && p->isAI()) reactToClick(card);
+                if (!card->isAttacker() && card->has(Constants::MUSTATTACK))
+                    reactToClick(card);
+                if (!card->isAttacker() && card->has(Constants::TREASON) && p->isAI())
+                    reactToClick(card);
                 if (card->isAttacker() && card->isTapped())
                     card->setAttacker(0);
                 if (card->isAttacker() && !card->has(Constants::VIGILANCE))
@@ -1223,8 +1237,9 @@ MTGBlockRule::MTGBlockRule(int _id) :
 
 int MTGBlockRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 {
-    if (currentPhase == Constants::MTG_PHASE_COMBATBLOCKERS && !game->isInterrupting && card->controller()
-                    == game->currentlyActing())
+    if (currentPhase == Constants::MTG_PHASE_COMBATBLOCKERS && !game->isInterrupting
+            && card->controller() == game->currentlyActing()
+    )
     {
         if (card->canBlock())
             return 1;
@@ -1245,8 +1260,8 @@ int MTGBlockRule::reactToClick(MTGCardInstance * card)
         canDefend = card->toggleDefenser(currentOpponent);
 
         DebugTrace("Defenser Toggle: " << card->getName() << endl
-        					<< "- canDefend: " << (canDefend == 0) << endl
-							<< "- currentOpponent: " << currentOpponent);
+                << "- canDefend: " << (canDefend == 0) << endl
+                << "- currentOpponent: " << currentOpponent);
         result = (canDefend || currentOpponent == NULL);
     }
     return 1;
@@ -1291,7 +1306,7 @@ MTGMomirRule::MTGMomirRule(int _id, MTGAllCards * _collection) :
         {
             MTGCard * card = collection->collection[collection->ids[i]];
             if (card->data->isCreature() && (card->getRarity() != Constants::RARITY_T) && //remove tokens
-                            card->setId != MTGSets::INTERNAL_SET //remove cards that are defined in primitives. Those are workarounds (usually tokens) and should only be used internally
+                    card->setId != MTGSets::INTERNAL_SET //remove cards that are defined in primitives. Those are workarounds (usually tokens) and should only be used internally
             )
             {
                 int convertedCost = card->data->getManaCost()->getConvertedCost();
@@ -1315,8 +1330,10 @@ int MTGMomirRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
     Player * currentPlayer = game->currentPlayer;
     if (!player->game->hand->hasCard(card))
         return 0;
-    if (player == currentPlayer && !game->isInterrupting && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN
-                    || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN))
+    if (player == currentPlayer && !game->isInterrupting
+            && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN
+                    || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN)
+    )
     {
         return 1;
     }
@@ -1414,8 +1431,9 @@ void MTGMomirRule::Render()
 
 ostream& MTGMomirRule::toString(ostream& out) const
 {
-    out << "MTGMomirRule ::: pool : " << pool << " ; initialized : " << initialized << " ; textAlpha : " << textAlpha << " ; text "
-                    << text << " ; alreadyplayed : " << alreadyplayed << " ; collection : " << collection << "(";
+    out << "MTGMomirRule ::: pool : " << pool << " ; initialized : " << initialized << " ; textAlpha : " << textAlpha
+            << " ; text " << text << " ; alreadyplayed : " << alreadyplayed
+            << " ; collection : " << collection << "(";
     return MTGAbility::toString(out) << ")";
 }
 
@@ -1487,7 +1505,7 @@ int HUDDisplay::receiveEvent(WEvent * event)
     {
         char buffer[512];
         sprintf(buffer, "%s: %i -> %s", _(ed->damage->source->name).c_str(), ed->damage->damage, _(
-                        ed->damage->target->getDisplayName()).c_str());
+                ed->damage->target->getDisplayName()).c_str());
         string s = buffer;
         return addEvent(s);
     }
@@ -1615,23 +1633,23 @@ MTGUnearthRule::MTGUnearthRule(int _id) :
 int MTGUnearthRule::receiveEvent(WEvent * event)
 {
     if (event->type == WEvent::CHANGE_ZONE)
-		{
-			WEventZoneChange * e = (WEventZoneChange *) event;
-			MTGCardInstance * card = e->card->previous;
-			if (e->from == e->card->controller()->game->battlefield && e->to == e->card->controller()->game->graveyard)
-			{
-				e->card->fresh = 1;
-			}
-			if (e->to == e->card->controller()->game->battlefield)
-			{
-				e->card->fresh = 1;
-			}
+    {
+        WEventZoneChange * e = (WEventZoneChange *) event;
+        MTGCardInstance * card = e->card->previous;
+        if (e->from == e->card->controller()->game->battlefield && e->to == e->card->controller()->game->graveyard)
+        {
+            e->card->fresh = 1;
+        }
+        if (e->to == e->card->controller()->game->battlefield)
+        {
+            e->card->fresh = 1;
+        }
 
-			if (card && card->basicAbilities[Constants::UNEARTH])
-			{
-				int ok = 0;
-				for (int i = 0; i < 2; i++)
-				{
+        if (card && card->basicAbilities[Constants::UNEARTH])
+        {
+            int ok = 0;
+            for (int i = 0; i < 2; i++)
+            {
                 Player * p = game->players[i];
                 if (e->from == p->game->inPlay)
                     ok = 1;
@@ -1696,10 +1714,19 @@ int MTGAffinityRule::receiveEvent(WEvent * event)
                 //when cards with affinity enter you hand from anywhere a redux is applied to them for the artifacts in play.
                 if (ok == 1)
                 {//enters play from anywhere
-                    if (e->from == p->game->graveyard || e->from == p->game->hand || e->from == p->game->library || e->from
-                                    == p->game->exile || e->from == p->game->stack || e->from == p->opponent()->game->battlefield
-                                    || e->from == p->game->temp || e->from == p->game->battlefield)
+                    if (e->from == p->game->graveyard
+                            || e->from == p->game->hand
+                            || e->from == p->game->library
+                            || e->from == p->game->exile
+                            || e->from == p->game->stack
+                            || e->from == p->opponent()->game->battlefield
+                            || e->from == p->game->temp
+                            || e->from == p->game->battlefield
+                    )
                     {
+                        // TODO:
+                        // what happens if there are any cards with two or more affinity abilities?  If no such card exist
+                        // then could this block be changed to use else if?  That will save on the number of operations.
                         MTGCardInstance * card = e->card->previous;
                         if (card && card->has(Constants::AFFINITYARTIFACTS))
                         {
@@ -1743,13 +1770,14 @@ int MTGAffinityRule::receiveEvent(WEvent * event)
                         {
                             MTGCardInstance * c = z->cards[j];
                             int check = e->card->getManaCost()->getConvertedCost();
-                            if ((e->card->has(Constants::AFFINITYARTIFACTS) && c->hasSubtype("artifact")) || (e->card->has(
-                                            Constants::AFFINITYSWAMP) && c->hasSubtype("swamp")) || (e->card->has(
-                                            Constants::AFFINITYMOUNTAIN) && c->hasSubtype("moutain")) || (e->card->has(
-                                            Constants::AFFINITYPLAINS) && c->hasSubtype("plains")) || (e->card->has(
-                                            Constants::AFFINITYISLAND) && c->hasSubtype("island")) || (e->card->has(
-                                            Constants::AFFINITYFOREST) && c->hasSubtype("forest")) || (e->card->has(
-                                            Constants::AFFINITYGREENCREATURES) && c->hasColor(1) && c->isCreature()))
+                            if ((e->card->has(Constants::AFFINITYARTIFACTS) && c->hasSubtype("artifact"))
+                                    || (e->card->has(Constants::AFFINITYSWAMP) && c->hasSubtype("swamp"))
+                                    || (e->card->has(Constants::AFFINITYMOUNTAIN) && c->hasSubtype("moutain"))
+                                    || (e->card->has(Constants::AFFINITYPLAINS) && c->hasSubtype("plains"))
+                                    || (e->card->has(Constants::AFFINITYISLAND) && c->hasSubtype("island"))
+                                    || (e->card->has(Constants::AFFINITYFOREST) && c->hasSubtype("forest"))
+                                    || (e->card->has(Constants::AFFINITYGREENCREATURES) && c->hasColor(1) && c->isCreature())
+                            )
                             {
                                 if (check > 0)
                                 {
@@ -1776,8 +1804,13 @@ int MTGAffinityRule::receiveEvent(WEvent * event)
                     ok = 2;//card enters play
                 if (ok == 2)
                 {//enters play from anywhere
-                    if (e->from == p->game->graveyard || e->from == p->game->hand || e->from == p->game->library || e->from
-                                    == p->game->exile || e->from == p->game->stack || e->from == p->game->temp)
+                    if (e->from == p->game->graveyard
+                            || e->from == p->game->hand
+                            || e->from == p->game->library
+                            || e->from == p->game->exile
+                            || e->from == p->game->stack
+                            || e->from == p->game->temp
+                    )
                     {
                         //--redux effect
                         MTGGameZone * z = card->controller()->game->hand;
@@ -1817,13 +1850,14 @@ int MTGAffinityRule::receiveEvent(WEvent * event)
                         for (int j = 0; j < nbcards; ++j)
                         {
                             MTGCardInstance * c = z->cards[j];
-                            if ((c->has(Constants::AFFINITYARTIFACTS) && etype.find("art") != string::npos) || (c->has(
-                                            Constants::AFFINITYSWAMP) && etype.find("swa") != string::npos) || (c->has(
-                                            Constants::AFFINITYMOUNTAIN) && etype.find("mou") != string::npos) || (c->has(
-                                            Constants::AFFINITYPLAINS) && etype.find("pla") != string::npos) || (c->has(
-                                            Constants::AFFINITYISLAND) && etype.find("isl") != string::npos) || (c->has(
-                                            Constants::AFFINITYFOREST) && etype.find("for") != string::npos) || (c->has(
-                                            Constants::AFFINITYGREENCREATURES) && etype.find("cre") != string::npos))
+                            if ((c->has(Constants::AFFINITYARTIFACTS) && etype.find("art") != string::npos)
+                                    || (c->has(Constants::AFFINITYSWAMP) && etype.find("swa") != string::npos)
+                                    || (c->has(Constants::AFFINITYMOUNTAIN) && etype.find("mou") != string::npos)
+                                    || (c->has(Constants::AFFINITYPLAINS) && etype.find("pla") != string::npos)
+                                    || (c->has(Constants::AFFINITYISLAND) && etype.find("isl") != string::npos)
+                                    || (c->has(Constants::AFFINITYFOREST) && etype.find("for") != string::npos)
+                                    || (c->has(Constants::AFFINITYGREENCREATURES) && etype.find("cre") != string::npos)
+                            )
                             {
                                 if (c->getManaCost()->getConvertedCost() > 0)
                                 {
@@ -1839,9 +1873,15 @@ int MTGAffinityRule::receiveEvent(WEvent * event)
                 }//--end of redux bracket ok == 2
                 //---------
                 ok = 0;
-                if (e->to == p->game->graveyard || e->to == p->game->hand || e->to == p->game->library || e->to == p->game->exile
-                                || e->to == p->game->stack || e->to == p->opponent()->game->battlefield)
+                if (e->to == p->game->graveyard
+                        || e->to == p->game->hand
+                        || e->to == p->game->library
+                        || e->to == p->game->exile
+                        || e->to == p->game->stack
+                        || e->to == p->opponent()->game->battlefield
+                )
                     ok = 3;//card leaves play
+
                 if (ok == 3)
                 {//leave play from your battlefield
                     if (e->from == p->game->battlefield)
@@ -1883,13 +1923,14 @@ int MTGAffinityRule::receiveEvent(WEvent * event)
                         for (int j = 0; j < nbcards; ++j)
                         {
                             MTGCardInstance * c = z->cards[j];
-                            if (c && ((c->has(Constants::AFFINITYARTIFACTS) && etype.find("art") != string::npos) || (c->has(
-                                            Constants::AFFINITYSWAMP) && etype.find("swa") != string::npos) || (c->has(
-                                            Constants::AFFINITYMOUNTAIN) && etype.find("mou") != string::npos) || (c->has(
-                                            Constants::AFFINITYPLAINS) && etype.find("pla") != string::npos) || (c->has(
-                                            Constants::AFFINITYISLAND) && etype.find("isl") != string::npos) || (c->has(
-                                            Constants::AFFINITYFOREST) && etype.find("for") != string::npos) || (c->has(
-                                            Constants::AFFINITYGREENCREATURES) && etype.find("cre") != string::npos)))
+                            if (c && ((c->has(Constants::AFFINITYARTIFACTS) && etype.find("art") != string::npos)
+                                    || (c->has(Constants::AFFINITYSWAMP) && etype.find("swa") != string::npos)
+                                    || (c->has(Constants::AFFINITYMOUNTAIN) && etype.find("mou") != string::npos)
+                                    || (c->has(Constants::AFFINITYPLAINS) && etype.find("pla") != string::npos)
+                                    || (c->has(Constants::AFFINITYISLAND) && etype.find("isl") != string::npos)
+                                    || (c->has(Constants::AFFINITYFOREST) && etype.find("for") != string::npos)
+                                    || (c->has(Constants::AFFINITYGREENCREATURES) && etype.find("cre") != string::npos))
+                            )
                             {
                                 if (c->reduxamount > 0)
                                 {
@@ -1911,21 +1952,25 @@ int MTGAffinityRule::receiveEvent(WEvent * event)
     }
     return 0;
 }
+
 ostream& MTGAffinityRule::toString(ostream& out) const
 {
     out << "MTGAffinityRule ::: (";
     return MTGAbility::toString(out) << ")";
 }
+
 int MTGAffinityRule::testDestroy()
 {
     return 0;
 }
+
 MTGAffinityRule * MTGAffinityRule::clone() const
 {
     MTGAffinityRule * a = NEW MTGAffinityRule(*this);
     a->isClone = 1;
     return a;
 }
+
 //-------------------------------------------------------------------
 
 MTGTokensCleanup::MTGTokensCleanup(int _id) :

@@ -21,7 +21,7 @@ bool GuiStatic::Leaving(JButton key)
 
 GuiAvatar::GuiAvatar(float x, float y, bool hasFocus, Player * player, Corner corner, GuiAvatars* parent) :
     GuiStatic(static_cast<float> (GuiAvatar::Height), x, y, hasFocus, parent), avatarRed(255), currentLife(player->life),
-                    currentpoisonCount(player->poisonCount), corner(corner), player(player)
+            currentpoisonCount(player->poisonCount), corner(corner), player(player)
 {
     type = GUI_AVATAR;
 }
@@ -135,7 +135,7 @@ void GuiAvatar::Render()
 ostream& GuiAvatar::toString(ostream& out) const
 {
     return out << "GuiAvatar ::: avatarRed : " << avatarRed << " ; currentLife : " << currentLife << " ; currentpoisonCount : "
-                    << currentpoisonCount << " ; player : " << player;
+            << currentpoisonCount << " ; player : " << player;
 }
 
 void GuiGameZone::toggleDisplay()
@@ -166,7 +166,7 @@ void GuiGameZone::Render()
 
     if (mHasFocus)
         JRenderer::GetInstance()->FillRect(actX, actY, quad->mWidth * scale * actZ, quad->mHeight * scale * actZ,
-                        ARGB(abs(128 - wave),255,255,255));
+                ARGB(abs(128 - wave),255,255,255));
 
     //Number of cards
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);

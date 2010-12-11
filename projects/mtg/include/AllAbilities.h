@@ -625,7 +625,7 @@ public:
     int power;
     int toughness;
     string name;
-		string menu;
+    string menu;
 
     AACounter(int id, MTGCardInstance * source, MTGCardInstance * target, const char * _name, int power, int toughness, int nb,
             ManaCost * cost = NULL, int doTap = 0);
@@ -1019,7 +1019,7 @@ public:
         who = who;
         tokenId = 0;
         if (!multiplier) this->multiplier = NEW WParsedInt(1);
-      //TODO this is a copy/past of other code that's all around the place, everything should be in a dedicated parser class;
+        //TODO this is a copy/past of other code that's all around the place, everything should be in a dedicated parser class;
 
         for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++)
         {
@@ -1192,8 +1192,8 @@ public:
     ABasicAbilityModifier(int _id, MTGCardInstance * _source, MTGCardInstance * _target, int _ability, int _modifier = 1) :
         MTGAbility(_id, _source, _target), modifier(_modifier), ability(_ability)
     {
-			aType = MTGAbility::STANDARDABILITYGRANT;
-			abilitygranted = ability;
+        aType = MTGAbility::STANDARDABILITYGRANT;
+        abilitygranted = ability;
     }
 
     int addToGame()
@@ -1251,8 +1251,8 @@ public:
             int _modifier = 1, int _tap = 1) :
         TargetAbility(_id, _source, _cost, 0, _tap), modifier(_modifier), ability(_ability)
     {
-			  aType = MTGAbility::STANDARDABILITYGRANT;
-				abilitygranted = ability;
+        aType = MTGAbility::STANDARDABILITYGRANT;
+        abilitygranted = ability;
         nbTargets = 0;
         tc = _tc;
         if (!tc) tc = NEW CreatureTargetChooser(_source);
@@ -1325,8 +1325,8 @@ public:
     AInstantBasicAbilityModifierUntilEOT(int _id, MTGCardInstance * _source, MTGCardInstance * _target, int _ability, int value) :
         InstantAbility(_id, _source, _target), ability(_ability), value(value)
     {
-		aType = MTGAbility::STANDARDABILITYGRANT;
-		abilitygranted = ability;
+        aType = MTGAbility::STANDARDABILITYGRANT;
+        abilitygranted = ability;
     }
 
     int addToGame()
@@ -1375,8 +1375,8 @@ public:
     {
         target = _target;
         ability = NEW AInstantBasicAbilityModifierUntilEOT(_id, _source, _target, _ability, _value);
-				aType = MTGAbility::STANDARDABILITYGRANT;
-				abilitygranted = _ability;
+        aType = MTGAbility::STANDARDABILITYGRANT;
+        abilitygranted = _ability;
     }
 
     int isReactingToClick(MTGCardInstance * card, ManaCost * cost = NULL)
@@ -1430,7 +1430,7 @@ public:
     ASpellCastLife(int id, MTGCardInstance * _source, CardDescriptor _trigger, ManaCost * _cost, int _life) :
         MTGAbility(id, _source), trigger(_trigger), cost(_cost), life(_life), lastUsedOn(NULL), lastChecked(NULL)
     {
-			aType = MTGAbility::LIFER;
+        aType = MTGAbility::LIFER;
     }
     ASpellCastLife(int id, MTGCardInstance * _source, int color, ManaCost * _cost, int _life) :
         MTGAbility(id, _source), cost(_cost), life(_life), lastUsedOn(NULL), lastChecked(NULL)
@@ -2270,84 +2270,84 @@ public:
         SAFE_DELETE(ability);
     }
 
-	const char * getMenuText()
-	{
-		if (AAMover * move = dynamic_cast<AAMover *>(ability))
-		{
-			MTGGameZone * dest = move->destinationZone();
-			GameObserver * g = GameObserver::GetInstance();
-			for (int i = 0; i < 2; i++)
-			{
-				// Move card to hand
-				if (dest == g->players[i]->game->hand)
-				{
-					if (tc->targetsZone(g->players[i]->game->inPlay))
-					{
-						return "Bounce";
-					}
-					else if (tc->targetsZone(g->players[i]->game->graveyard))
-					{
-						return "Reclaim";
-					}
-					else if (tc->targetsZone(g->opponent()->game->hand))
-					{
-						return "Steal";
-					}
-				}
-				// Move card to graveyard
-				else if (dest == g->players[i]->game->graveyard)
-				{
-					if (tc->targetsZone(g->players[i]->game->inPlay))
-					{
-						return "Sacrifice";
-					}
-					else if (tc->targetsZone(g->players[i]->game->hand))
-					{
-						return "Discard";
-					}
-					else if (tc->targetsZone(g->opponent()->game->hand))
-					{
-						return "Opponent Discards";
-					}
-				}
-				// move card to library
-				else if (dest == g->players[i]->game->library)
-				{
-					if (tc->targetsZone(g->players[i]->game->graveyard))
-					{
-						return "Recycle";
-					}
-					else
-					{
-						return "Put in Library";
-					}
-				}
-				// move card to battlefield
-				else if (dest == g->players[i]->game->battlefield && tc->targetsZone(g->players[i]->game->graveyard))
-				{
-					return "Reanimate";
-				}
-				// move card in play ( different from battlefield? )
-				else if (dest == g->players[i]->game->inPlay)
-				{
-					return "Put in Play";
-				}
-				// move card into exile
-				else if (dest == g->players[i]->game->exile)
-				{
-					return "Exile";
-				}
-				// move card from Library
-				else if (tc->targetsZone(g->players[i]->game->library))
-				{
-					return "Fetch";
-				}
-			}
-			return "Move";
-		}
-		else
-			return ability->getMenuText();
-	}
+    const char * getMenuText()
+    {
+        if (AAMover * move = dynamic_cast<AAMover *>(ability))
+        {
+            MTGGameZone * dest = move->destinationZone();
+            GameObserver * g = GameObserver::GetInstance();
+            for (int i = 0; i < 2; i++)
+            {
+                // Move card to hand
+                if (dest == g->players[i]->game->hand)
+                {
+                    if (tc->targetsZone(g->players[i]->game->inPlay))
+                    {
+                        return "Bounce";
+                    }
+                    else if (tc->targetsZone(g->players[i]->game->graveyard))
+                    {
+                        return "Reclaim";
+                    }
+                    else if (tc->targetsZone(g->opponent()->game->hand))
+                    {
+                        return "Steal";
+                    }
+                }
+                // Move card to graveyard
+                else if (dest == g->players[i]->game->graveyard)
+                {
+                    if (tc->targetsZone(g->players[i]->game->inPlay))
+                    {
+                        return "Sacrifice";
+                    }
+                    else if (tc->targetsZone(g->players[i]->game->hand))
+                    {
+                        return "Discard";
+                    }
+                    else if (tc->targetsZone(g->opponent()->game->hand))
+                    {
+                        return "Opponent Discards";
+                    }
+                }
+                // move card to library
+                else if (dest == g->players[i]->game->library)
+                {
+                    if (tc->targetsZone(g->players[i]->game->graveyard))
+                    {
+                        return "Recycle";
+                    }
+                    else
+                    {
+                        return "Put in Library";
+                    }
+                }
+                // move card to battlefield
+                else if (dest == g->players[i]->game->battlefield && tc->targetsZone(g->players[i]->game->graveyard))
+                {
+                    return "Reanimate";
+                }
+                // move card in play ( different from battlefield? )
+                else if (dest == g->players[i]->game->inPlay)
+                {
+                    return "Put in Play";
+                }
+                // move card into exile
+                else if (dest == g->players[i]->game->exile)
+                {
+                    return "Exile";
+                }
+                // move card from Library
+                else if (tc->targetsZone(g->players[i]->game->library))
+                {
+                    return "Fetch";
+                }
+            }
+            return "Move";
+        }
+        else
+            return ability->getMenuText();
+    }
 
     ALord * clone() const
     {
@@ -3175,8 +3175,8 @@ public:
             {
                 for (int i = 0; i < nbOpponents; i++)
                 {
-                    if (game->isInPlay(opponents[i]))
-                        opponents[i]->destroy();
+                    if (game->isInPlay(opponents[i])) 
+                    	opponents[i]->destroy();
                 }
             }
         }
@@ -3288,7 +3288,7 @@ public:
     list<int> oldcolors;
     list<int> oldtypes;
     bool remove;
-		string menu;
+    string menu;
 
     ATransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities);
     int addToGame();
@@ -3305,7 +3305,7 @@ public:
     list<int> abilities;
     list<int> types;
     list<int> colors;
-		string menu;
+    string menu;
 
     AForeverTransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities);
     int addToGame();
@@ -3344,12 +3344,12 @@ public:
 class ASwapPTUEOT: public InstantAbility
 {
 public:
-	ASwapPT * ability;
-	ASwapPTUEOT(int id, MTGCardInstance * source, MTGCardInstance * target);
-	int resolve();
-	const char * getMenuText();
-	ASwapPTUEOT * clone() const;
-	~ASwapPTUEOT();
+    ASwapPT * ability;
+    ASwapPTUEOT(int id, MTGCardInstance * source, MTGCardInstance * target);
+    int resolve();
+    const char * getMenuText();
+    ASwapPTUEOT * clone() const;
+    ~ASwapPTUEOT();
 };
 
 //becomes ability
@@ -4027,61 +4027,61 @@ public:
         AErgRaiders * a = NEW AErgRaiders(*this);
         a->isClone = 1;
         return a;
-		}
+    }
 };
 
 //Fastbond
 class AFastbond: public TriggeredAbility
 {
 public:
-	int alreadyPlayedALand;
-	int previous;
-	AFastbond(int _id, MTGCardInstance * card) :
-	TriggeredAbility(_id, card)
-	{
-		alreadyPlayedALand = 0;
-		if (source->controller()->landsPlayerCanStillPlay == 0)
-		{
-			alreadyPlayedALand = 1;
-			source->controller()->landsPlayerCanStillPlay += 1;
-			source->controller()->canPutLandsIntoPlay = true;
+    int alreadyPlayedALand;
+    int previous;
+    AFastbond(int _id, MTGCardInstance * card) :
+        TriggeredAbility(_id, card)
+    {
+        alreadyPlayedALand = 0;
+        if (source->controller()->landsPlayerCanStillPlay == 0)
+        {
+            alreadyPlayedALand = 1;
+            source->controller()->landsPlayerCanStillPlay += 1;
+            source->controller()->canPutLandsIntoPlay = true;
 
-		}
-		previous = source->controller()->landsPlayerCanStillPlay;
-	}
+        }
+        previous = source->controller()->landsPlayerCanStillPlay;
+    }
 
-	void Update(float dt)
-	{
-		if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UNTAP)
-		{
-			alreadyPlayedALand = 0;
-		}
-		TriggeredAbility::Update(dt);
-	}
+    void Update(float dt)
+    {
+        if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UNTAP)
+        {
+            alreadyPlayedALand = 0;
+        }
+        TriggeredAbility::Update(dt);
+    }
 
-	int trigger()
-	{
-		if (source->controller()->landsPlayerCanStillPlay == 0 && previous >= 1)
-		{
-			previous = 0;
-			source->controller()->canPutLandsIntoPlay = true;
-			source->controller()->landsPlayerCanStillPlay += 1;
-			if (alreadyPlayedALand) return 1;
-			alreadyPlayedALand = 1;
-			return 0;
-		}
-		previous = source->controller()->landsPlayerCanStillPlay;
-		return 0;
-	}
+    int trigger()
+    {
+        if (source->controller()->landsPlayerCanStillPlay == 0 && previous >= 1)
+        {
+            previous = 0;
+            source->controller()->canPutLandsIntoPlay = true;
+            source->controller()->landsPlayerCanStillPlay += 1;
+            if (alreadyPlayedALand) return 1;
+            alreadyPlayedALand = 1;
+            return 0;
+        }
+        previous = source->controller()->landsPlayerCanStillPlay;
+        return 0;
+    }
 
-	int resolve()
-	{
-		game->mLayers->stackLayer()->addDamage(source, source->controller(), 1);
-		game->mLayers->stackLayer()->resolve();
-		return 1;
-	}
+    int resolve()
+    {
+        game->mLayers->stackLayer()->addDamage(source, source->controller(), 1);
+        game->mLayers->stackLayer()->resolve();
+        return 1;
+    }
 
-	virtual ostream& toString(ostream& out) const
+    virtual ostream& toString(ostream& out) const
     {
         out << "AFastbond ::: alreadyPlayedALand : " << alreadyPlayedALand << " ; previous : " << previous << " (";
         return TriggeredAbility::toString(out) << ")";
@@ -5222,10 +5222,8 @@ public:
 
 // utility functions
 
-void PopulateColorIndexVector( list<int>& colors, const string& colorsString, char delimiter = ',');
-void PopulateAbilityIndexVector( list<int>& abilities, const string& abilitiesString, char delimiter = ',');
-void PopulateSubtypesIndexVector( list<int>& subtypes, const string& subtypesString, char delimiter = ' ');
-
-
+void PopulateColorIndexVector(list<int>& colors, const string& colorsString, char delimiter = ',');
+void PopulateAbilityIndexVector(list<int>& abilities, const string& abilitiesString, char delimiter = ',');
+void PopulateSubtypesIndexVector(list<int>& subtypes, const string& subtypesString, char delimiter = ' ');
 
 #endif
