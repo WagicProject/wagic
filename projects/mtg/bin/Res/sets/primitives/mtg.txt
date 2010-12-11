@@ -22545,7 +22545,7 @@ toughness=1
 [/card]
 [card]
 name=Goblin Piledriver
-abilities=protecion from blue
+abilities=protection from blue
 auto=@attacking(this):all(this) foreach(other goblin[attacking]|battlefield) 2/0 ueot
 text=Protection from blue -- Whenever Goblin Piledriver attacks, it gets +2/+0 until end of turn for each other attacking Goblin.
 mana={1}{R}
