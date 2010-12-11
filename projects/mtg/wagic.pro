@@ -5,16 +5,19 @@
 #-------------------------------------------------
 
 QT       += core gui opengl
+macx:QT += phonon
+#CONFIG += warn_off precompile_header // causes some massives errors on mac.
 VERSION = 0.14.0
 TARGET = wagic
 TEMPLATE = app
-unix:QMAKE_CXXFLAGS += -Wno-unused-parameter
+unix|macx:QMAKE_CXXFLAGS += -Wno-unused-parameter
 windows:DEFINES += WIN32
 windows:DEFINES += _CRT_SECURE_NO_WARNINGS
 windows:DEFINES += FORCE_GL2
-unix:DEFINES += LINUX
-mac:DEFINES += LINUX
+unix|macx:DEFINES += LINUX
+CONFIG(debug, debug|release):DEFINES += _DEBUG
 DEFINES += QT_CONFIG
+macx:DEFINES += USE_PHONON
 maemo5 {
 DEFINES += USE_PHONON
 QT += phonon dbus
@@ -22,7 +25,7 @@ QT += phonon dbus
 windows:INCLUDEPATH += ../../JGE/Dependencies/include
 windows:INCLUDEPATH += extra
 unix:INCLUDEPATH += /usr/include/GL
-mac:INCLUDEPATH += /opt/include
+macx:INCLUDEPATH += /opt/include
 INCLUDEPATH += ../../JGE/include
 INCLUDEPATH += include
 OBJECTS_DIR = objs
@@ -30,7 +33,7 @@ MOC_DIR = objs
 DESTDIR = bin
 
 windows:LIBS += -L../../JGE/Dependencies/lib -lfmodvc
-macx|unix:LIBS += -L/opt/lib -lz
+macx|unix:LIBS += -lz
 
 PRECOMPILED_HEADER = include/PrecompiledHeader.h
 
@@ -121,7 +124,6 @@ SOURCES += \
         src/TargetChooser.cpp\
         src/TargetsList.cpp\
         src/Tasks.cpp\
-        src/TestSuiteAI.cpp\
         src/TextScroller.cpp\
         src/ThisDescriptor.cpp\
         src/Token.cpp\
@@ -136,6 +138,8 @@ SOURCES += \
         src/WFont.cpp\
         src/WGui.cpp\
         src/WResourceManager.cpp
+
+CONFIG(debug, debug|release):SOURCES += src/TestSuiteAI.cpp
 
 HEADERS  += \
         include/AllAbilities.h\
