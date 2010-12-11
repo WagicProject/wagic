@@ -16,7 +16,7 @@
 #include <string.h>
 #include <stdarg.h>
 
-#ifndef IOS 
+#if (!defined IOS) && (!defined QT_CONFIG)
 #include <gif_lib.h>
 #endif //IOS
 
@@ -572,7 +572,7 @@ private:
 		bool mVRAM;
 	};
 
-#ifndef IOS
+#if (!defined IOS) && (!defined QT_CONFIG)
 	void LoadJPG(TextureInfo &textureInfo, const char *filename, int mode = 0, int TextureFormat = TEXTURE_FORMAT);
 	int LoadPNG(TextureInfo &textureInfo, const char *filename, int mode = 0, int TextureFormat = TEXTURE_FORMAT);
 	void LoadGIF(TextureInfo &textureInfo, const char *filename, int mode = 0, int TextureFormat = TEXTURE_FORMAT);
