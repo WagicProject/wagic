@@ -3711,7 +3711,7 @@ subtype=Swamp Mountain
 [/card]
 [card]
 name=Baku Altar
-auto={2}{T}{C(0/0,-2,Ki)}:token(Spirit,Creature Spirit,1/1)
+auto={2}{T}{C(0/0,-1,Ki)}:token(Spirit,Creature Spirit,1/1)
 auto=@movedTo(spirit,arcane|mystack):counter(0/0,1,Ki)
 text=Whenever you cast a Spirit or Arcane spell, you may put a ki counter on Baku Altar. -- {2}, {T}, Remove a ki counter from Baku Altar: Put a 1/1 colorless Spirit creature token onto the battlefield.
 mana={2}
