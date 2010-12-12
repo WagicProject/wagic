@@ -580,7 +580,7 @@ int GuiCombat::receiveEventMinus(WEvent* e)
                 (*it)->show = (1 < (*it)->blockers.size());
                 autoaffectDamage(*it, DAMAGE);
             }
-            active = NULL;
+            active = activeAtk = NULL;
             for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
                 if ((*it)->show)
                 {
@@ -633,7 +633,7 @@ int GuiCombat::receiveEventMinus(WEvent* e)
                                 == step))) && (((*it)->card->has(Constants::TRAMPLE) ? (size_t) 0 : (size_t) 1)
                                 < (*it)->blockers.size());
             repos<AttackerDamaged> (attackers.begin(), attackers.end(), 0);
-            active = NULL;
+            active = activeAtk = NULL;
             for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
                 if ((*it)->show)
                 {
