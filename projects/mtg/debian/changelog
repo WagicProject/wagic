@@ -1,4 +1,8 @@
-wagic (0.13.1maemo2) unstable; urgency=low
+wagic (0.14.0maemo0) unstable; urgency=low
 
   * Touch interface
- -- Xawotihs <xawotihs@gmail.com>  Sun, 09 Oct 2010 14:11:42 +0200
+  * Usage of the volume buttons to go to next phase and interrupt
+  * CPU load improvements
+  * Fixed upgrade
+  * wagic 0.14.0
+ -- Xawotihs <xawotihs@gmail.com>  Sun, 12 Dec 2010 14:11:42 +0200
