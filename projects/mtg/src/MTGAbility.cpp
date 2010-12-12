@@ -1665,7 +1665,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         }
         if (pt && end != real_end)
         {
-            sabilities = s.substr(end + 1, real_end - end);
+            sabilities = s.substr(end + 1, real_end - end - 1);
         }
         MTGAbility * ab;
         if (forceUEOT)
@@ -1721,7 +1721,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         vector<string> effectParameters = split( transformsParamsString, ',');
         string stypes = effectParameters[0];
         
-        string sabilities = transformsParamsString.substr(stypes.length());
+        string sabilities = transformsParamsString.substr(stypes.length() + 1);
 
         MTGAbility * a;
         if (forceFOREVER)
