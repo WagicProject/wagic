@@ -412,6 +412,8 @@ quilled_sliver.txt
 rain_of_filth_i206.txt
 rain_of_filth_i283.txt
 rampant_growth.txt
+rancid_earth_with_threshold.txt
+rancid_earth_without_threshold.txt
 rancor.txt
 ray_of_command.txt
 ray_of_command_i176.txt

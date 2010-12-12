@@ -1,0 +1,25 @@
+#Testing Rancid Earth without Treshold.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Rancid Earth
+inplay:Raging Goblin
+graveyard:Swamp,Swamp,Swamp,Swamp,Swamp,Swamp,Swamp
+life:20
+manapool:{1}{B}{B}
+[PLAYER2]
+inplay:Mountain,Lightning Elemental
+life:20
+[DO]
+Rancid Earth
+Mountain
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Raging Goblin,Rancid Earth,Swamp,Swamp,Swamp,Swamp,Swamp,Swamp,Swamp
+manapool:{0}
+life:19
+[PLAYER2]
+graveyard:Lightning Elemental,Mountain
+life:19
+[END]

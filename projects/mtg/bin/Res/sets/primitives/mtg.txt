@@ -43626,7 +43626,9 @@ toughness=1
 name=Rancid Earth
 target=land
 auto=destroy
-auto=aslongas(*|mygraveyard) damage:1 all(creature,player) >6
+auto=aslongas(*|mygraveyard) lord(creature) damage:1 >1
+auto=aslongas(*|mygraveyard) damage:1 controller >1
+auto=aslongas(*|mygraveyard) damage:1 opponent >1
 text=Destroy target land. -- Threshold - If seven or more cards are in your graveyard, instead destroy that land and Rancid Earth deals 1 damage to each creature and each player.
 mana={1}{B}{B}
 type=Sorcery
@@ -55391,7 +55393,7 @@ type=Instant
 [/card]
 [card]
 name=Swirling Sandstorm
-auto=aslongas(*|mygraveyard) damage:5 all(creature[-flying]) >6
+auto=aslongas(*|mygraveyard) lord(creature[-flying]) damage:5 >6
 text=Threshold - Swirling Sandstorm deals 5 damage to each creature without flying if seven or more cards are in your graveyard.
 mana={3}{R}
 type=Sorcery
