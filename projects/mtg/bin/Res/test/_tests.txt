@@ -3,6 +3,7 @@
 ########################
 generic/attacks_each_turn.txt
 generic/becomes_transform_i559.txt
+generic/becomes_transform_i559_2.txt
 generic/bushido_1.txt
 generic/bushido_2.txt
 generic/cycling.txt

@@ -1,0 +1,37 @@
+#NAME: Test becomes ability
+#Test: verify that creature gets flying 
+#BUG: #559 Halcyon Glaze does not get flying from casting Grizzly Bears
+# Cast Grizzly Bears with Halcyon Glaze and Moat in play
+# Attack with Halcyon Glaze
+# Cast Plummet on Halcyon Glaze
+#This was reported in the forums as an issue.  This just is a sanity check to make sure Becomes works as specified.
+# see http://code.google.com/p/wagic/issues/detail?id=559
+[INIT]
+firstmain
+[PLAYER1]
+hand:plummet
+inplay:Halcyon Glaze,Grizzly Bears,forest,island
+manapool:{G}{G}{G}{G}
+[PLAYER2]
+inplay:Moat
+[DO]
+next
+next
+Halcyon Glaze
+Grizzly Bears
+next
+next
+next
+forest
+island
+plummet
+Halcyon Glaze
+eot
+[ASSERT]
+firstmain
+[PLAYER1]
+graveyard:Halcyon Glaze,plummet
+manapool={0}
+inplay:island,forest,Grizzly Bears
+[PLAYER2]
+[END]
