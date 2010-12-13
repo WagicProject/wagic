@@ -11,6 +11,8 @@
 
 using std::string;
 
+#ifdef TESTSUITE
+
 // NULL is sent in place of a MTGDeck since there is no way to create a MTGDeck without a proper deck file.
 // TestSuiteAI will be responsible for managing its own deck state.
 TestSuiteAI::TestSuiteAI(TestSuite * _suite, int playerId) :
@@ -761,3 +763,4 @@ void TestSuite::pregameTests()
         if (!sb.unitTest()) nbFailed++;
     }
 }
+#endif

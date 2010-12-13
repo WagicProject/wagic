@@ -1,6 +1,8 @@
 #ifndef _TESTSUITE_AI_H_
 #define _TESTSUITE_AI_H_
 
+#ifdef TESTSUITE
+
 #define MAX_TESTSUITE_ACTIONS 100
 #define MAX_TESTUITE_CARDS 100
 
@@ -97,4 +99,5 @@ class TestSuiteAI:public AIPlayerBaka{
 
 
 
+#endif
 #endif
