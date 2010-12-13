@@ -352,26 +352,26 @@ int AIAction::getEfficiency()
             }
         }
 
-        if (currentlevel < _target->MaxLevelUp)
-        {
-            efficiency = 85;
-            //increase the efficeincy of leveling up by a small amount equal to current level.
-            efficiency += currentlevel;
-        }
+				if (currentlevel < _target->MaxLevelUp)
+				{
+					efficiency = 85;
+					//increase the efficeincy of leveling up by a small amount equal to current level.
+					efficiency += currentlevel;
 
-        if (p->game->hand->nb_cards > 0 && p->isAI())
-        {
-            efficiency -= (10 * p->game->hand->nb_cards);//reduce the eff if by 10 times the amount of cards in Ais hand.
-            //it should always try playing more cards before deciding
-        }
+					if (p->game->hand->nb_cards > 0 && p->isAI())
+					{
+						efficiency -= (10 * p->game->hand->nb_cards);//reduce the eff if by 10 times the amount of cards in Ais hand.
+						//it should always try playing more cards before deciding
+					}
 
-        if (g->getCurrentGamePhase() == Constants::MTG_PHASE_SECONDMAIN)
-        {
-            efficiency = 100;
-            //in 2nd main, go all out and try to max stuff.
-        }
-        break;
-    }
+					if (g->getCurrentGamePhase() == Constants::MTG_PHASE_SECONDMAIN)
+					{
+						efficiency = 100;
+						//in 2nd main, go all out and try to max stuff.
+					}
+				}
+				break;
+		}
     case MTGAbility::STANDARD_PUMP:
     {
         MTGCardInstance * _target = (MTGCardInstance *) (a->target);
