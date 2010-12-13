@@ -1721,7 +1721,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         vector<string> effectParameters = split( transformsParamsString, ',');
         string stypes = effectParameters[0];
         
-        string sabilities = transformsParamsString.substr(stypes.length() + 1);
+        string sabilities = transformsParamsString.substr(stypes.length());
 
         MTGAbility * a;
         if (forceFOREVER)
