@@ -281,18 +281,31 @@ int AIAction::getEfficiency()
         {
             if ((target->defenser || target->blockers.size()) && target->preventable < target->getNextOpponent()->power)
                 NeedPreventing = true;
-        }
-        if (p == target->controller() && NeedPreventing == true && !(target->getNextOpponent()->has(Constants::DEATHTOUCH)
+        if (p == target->controller() && target->controller()->isAI() && NeedPreventing == true && !(target->getNextOpponent()->has(Constants::DEATHTOUCH)
                 || target->getNextOpponent()->has(Constants::WITHER)))
         {
             efficiency = 20 * (target->DangerRanking());//increase this chance to be used in combat if the creature blocking/blocked could kill the creature this chance is taking into consideration how good the creature is, best creature will always be the first "saved"..
             if (target->toughness == 1 && target->getNextOpponent()->power == 1)
                 efficiency += 15;
             //small bonus added for the poor 1/1s, if we can save them, we will unless something else took precidence.
-        }
+				}
         //note is the target is being blocked or blocking a creature with wither or deathtouch, it is not even considered for preventing as it is a waste.
         //if its combat blockers, it is being blocked or blocking, and has less prevents the the amount of damage it will be taking, the effeincy is increased slightly and totalled by the danger rank multiplier for final result.
-        //TODO If the card is the target of a damage spell
+				int calculateAfterDamage = 0;
+				int damages = 0;
+				if((target->defenser || target->blockers.size()) && target->controller()->isAI())
+				{
+					damages = target->getNextOpponent()->power;
+					calculateAfterDamage = int(target->toughness - damages);
+					if((calculateAfterDamage + target->preventable) > 0)
+					{
+          efficiency = 0;
+					//this is to avoid wasting prevents on creatures that will already survive.
+					//this should take into account bushido and flanking as this check is run after every trigger.
+					}
+				}
+				}
+				//TODO If the card is the target of a damage spell
         break;
     }
     case MTGAbility::STANDARD_EQUIP:
