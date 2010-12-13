@@ -1,0 +1,26 @@
+#NAME: Niveous Wisps + Grizzly Bears + Execute=FAIL!
+#Card Explanation:
+#Niveous Wisps: (target creature becomes white)
+#Execute: (destroy target white creature)
+#BUG: Grizzly Bears cannot be targeted by Execute though it should be able to.
+#This is because Grizzly Bears didn't become white.
+# see http://code.google.com/p/wagic/issues/detail?id=559
+[INIT]
+firstmain
+[PLAYER1]
+hand:Niveous Wisps,Execute
+inplay:Grizzly Bears
+manapool:{W}{B}{2}
+[PLAYER2]
+[DO]
+Niveous Wisps
+Grizzly Bears
+Execute
+Grizzly Bears
+[ASSERT]
+firstmain
+[PLAYER1]
+graveyard:Niveous Wisps,Execute,Grizzly Bears
+manapool={0}
+[PLAYER2]
+[END]

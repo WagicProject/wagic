@@ -2095,7 +2095,7 @@ void PopulateColorIndexVector(list<int>& colors, const string& colorStringList, 
         for (int colorIndex = Constants::MTG_COLOR_ARTIFACT; colorIndex < Constants::MTG_NB_COLORS; ++colorIndex)
         {
             // if the text is not a basic ability but contains a valid color add it to the color vector
-            if ((Constants::GetBasicAbilityIndex(*iter) != -1)
+            if ((Constants::GetBasicAbilityIndex(*iter) == -1)
                     && ((*iter).find(Constants::MTGColorStrings[colorIndex]) != string::npos))
                 colors.push_back(colorIndex);
         }
