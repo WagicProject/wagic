@@ -375,13 +375,14 @@ int AIAction::getEfficiency()
     case MTGAbility::STANDARD_PUMP:
     {
         MTGCardInstance * _target = (MTGCardInstance *) (a->target);
+			 efficiency = 0;
         if (!target)
             break;
         //i do not set a starting eff. on this ability, this allows Ai to sometimes randomly do it as it normally does.
         if (g->getCurrentGamePhase() == Constants::MTG_PHASE_COMBATBLOCKERS)
         {
-            if (BAKA_EFFECT_GOOD)
-            {
+					if (BAKA_EFFECT_GOOD && target->controller()->isAI())
+					{
                 if ((_target->defenser || _target->blockers.size()) && ((_target->power < _target->getNextOpponent()->toughness
                         || _target->toughness < _target->getNextOpponent()->power) || (_target->has(Constants::TRAMPLE))))
                 {
@@ -393,7 +394,12 @@ int AIAction::getEfficiency()
                     //this means im heading directly for the player, pump this creature as much as possible.
                     efficiency = 100;
                 }
-            }
+					}
+					if (BAKA_EFFECT_BAD && !target->controller()->isAI())
+					{
+                    efficiency = 100;
+					}
+
         }
         break;
     }
