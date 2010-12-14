@@ -288,7 +288,6 @@ int AIAction::getEfficiency()
             if (target->toughness == 1 && target->getNextOpponent()->power == 1)
                 efficiency += 15;
             //small bonus added for the poor 1/1s, if we can save them, we will unless something else took precidence.
-				}
         //note is the target is being blocked or blocking a creature with wither or deathtouch, it is not even considered for preventing as it is a waste.
         //if its combat blockers, it is being blocked or blocking, and has less prevents the the amount of damage it will be taking, the effeincy is increased slightly and totalled by the danger rank multiplier for final result.
 				int calculateAfterDamage = 0;
@@ -303,6 +302,7 @@ int AIAction::getEfficiency()
 					//this is to avoid wasting prevents on creatures that will already survive.
 					//this should take into account bushido and flanking as this check is run after every trigger.
 					}
+				}
 				}
 				}
 				//TODO If the card is the target of a damage spell
