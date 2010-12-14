@@ -223,6 +223,7 @@ int AIAction::getEfficiency()
     switch (a->aType)
     {
     case MTGAbility::DAMAGER:
+    {
         AADamager * aad = (AADamager *) a;
         if (!target)
         {
@@ -250,23 +251,26 @@ int AIAction::getEfficiency()
             efficiency = 0;
         }
         break;
-
+    }
     case MTGAbility::STANDARD_REGENERATE:
+    {
         MTGCardInstance * _target = (MTGCardInstance *) (a->target);
         efficiency = 0;
         if (!_target)
             break;
 
-        if (!_target->regenerateTokens && g->getCurrentGamePhase() == Constants::MTG_PHASE_COMBATBLOCKERS && (_target->defenser
-                || _target->blockers.size()))
+        if (!_target->regenerateTokens && g->getCurrentGamePhase() == Constants::MTG_PHASE_COMBATBLOCKERS
+                && (_target->defenser || _target->blockers.size())
+        )
         {
             efficiency = 95;
         }
 
         //TODO If the card is the target of a damage spell
         break;
-
+    }
     case MTGAbility::STANDARD_PREVENT:
+    {
         efficiency = 0;//starts out low to avoid spamming it when its not needed.
         if (!target)
             break;
@@ -277,34 +281,35 @@ int AIAction::getEfficiency()
         {
             if ((target->defenser || target->blockers.size()) && target->preventable < target->getNextOpponent()->power)
                 NeedPreventing = true;
-            if (p == target->controller() && target->controller()->isAI() && NeedPreventing == true
-                    && !(target->getNextOpponent()->has(Constants::DEATHTOUCH) || target->getNextOpponent()->has(Constants::WITHER)))
-            {
-                efficiency = 20 * (target->DangerRanking());//increase this chance to be used in combat if the creature blocking/blocked could kill the creature this chance is taking into consideration how good the creature is, best creature will always be the first "saved"..
-                if (target->toughness == 1 && target->getNextOpponent()->power == 1)
-                    efficiency += 15;
-                //small bonus added for the poor 1/1s, if we can save them, we will unless something else took precidence.
-                //note is the target is being blocked or blocking a creature with wither or deathtouch, it is not even considered for preventing as it is a waste.
-                //if its combat blockers, it is being blocked or blocking, and has less prevents the the amount of damage it will be taking, the effeincy is increased slightly and totalled by the danger rank multiplier for final result.
-                int calculateAfterDamage = 0;
-                int damages = 0;
-                if ((target->defenser || target->blockers.size()) && target->controller()->isAI())
-                {
-                    damages = target->getNextOpponent()->power;
-                    calculateAfterDamage = int(target->toughness - damages);
-                    if ((calculateAfterDamage + target->preventable) > 0)
-                    {
-                        efficiency = 0;
-                        //this is to avoid wasting prevents on creatures that will already survive.
-                        //this should take into account bushido and flanking as this check is run after every trigger.
-                    }
-                }
-            }
-        }
-        //TODO If the card is the target of a damage spell
+        if (p == target->controller() && target->controller()->isAI() && NeedPreventing == true && !(target->getNextOpponent()->has(Constants::DEATHTOUCH)
+                || target->getNextOpponent()->has(Constants::WITHER)))
+        {
+            efficiency = 20 * (target->DangerRanking());//increase this chance to be used in combat if the creature blocking/blocked could kill the creature this chance is taking into consideration how good the creature is, best creature will always be the first "saved"..
+            if (target->toughness == 1 && target->getNextOpponent()->power == 1)
+                efficiency += 15;
+            //small bonus added for the poor 1/1s, if we can save them, we will unless something else took precidence.
+        //note is the target is being blocked or blocking a creature with wither or deathtouch, it is not even considered for preventing as it is a waste.
+        //if its combat blockers, it is being blocked or blocking, and has less prevents the the amount of damage it will be taking, the effeincy is increased slightly and totalled by the danger rank multiplier for final result.
+				int calculateAfterDamage = 0;
+				int damages = 0;
+				if((target->defenser || target->blockers.size()) && target->controller()->isAI())
+				{
+					damages = target->getNextOpponent()->power;
+					calculateAfterDamage = int(target->toughness - damages);
+					if((calculateAfterDamage + target->preventable) > 0)
+					{
+          efficiency = 0;
+					//this is to avoid wasting prevents on creatures that will already survive.
+					//this should take into account bushido and flanking as this check is run after every trigger.
+					}
+				}
+				}
+				}
+				//TODO If the card is the target of a damage spell
         break;
-
+    }
     case MTGAbility::STANDARD_EQUIP:
+    {
 
         efficiency = 0;
         if (!target)
@@ -329,8 +334,10 @@ int AIAction::getEfficiency()
             efficiency -= 5 * (target->equipment);
         }
         break;
+    }
 
     case MTGAbility::STANDARD_LEVELUP:
+    {
         MTGCardInstance * _target = (MTGCardInstance *) (a->target);
         efficiency = 0;
         Counter * targetCounter = NULL;
@@ -345,39 +352,38 @@ int AIAction::getEfficiency()
             }
         }
 
-        if (currentlevel < _target->MaxLevelUp)
-        {
-            efficiency = 85;
-            //increase the efficeincy of leveling up by a small amount equal to current level.
-            efficiency += currentlevel;
+				if (currentlevel < _target->MaxLevelUp)
+				{
+					efficiency = 85;
+					//increase the efficeincy of leveling up by a small amount equal to current level.
+					efficiency += currentlevel;
 
-            if (p->game->hand->nb_cards > 0 && p->isAI())
-            {
-                efficiency -= (10 * p->game->hand->nb_cards);//reduce the eff if by 10 times the amount of cards in Ais hand.
-                //it should always try playing more cards before deciding
-            }
+					if (p->game->hand->nb_cards > 0 && p->isAI())
+					{
+						efficiency -= (10 * p->game->hand->nb_cards);//reduce the eff if by 10 times the amount of cards in Ais hand.
+						//it should always try playing more cards before deciding
+					}
 
-            if (g->getCurrentGamePhase() == Constants::MTG_PHASE_SECONDMAIN)
-            {
-                efficiency = 100;
-                //in 2nd main, go all out and try to max stuff.
-            }
-        }
-        break;
-    }
+					if (g->getCurrentGamePhase() == Constants::MTG_PHASE_SECONDMAIN)
+					{
+						efficiency = 100;
+						//in 2nd main, go all out and try to max stuff.
+					}
+				}
+				break;
+		}
     case MTGAbility::STANDARD_PUMP:
-    {
         MTGCardInstance * _target = (MTGCardInstance *) (a->target);
-        efficiency = 0;
+			 efficiency = 0;
         if (!target)
             break;
-        AbilityFactory af;
+				AbilityFactory af;
         int suggestion = af.abilityEfficiency(a, p, MODE_ABILITY);
         //i do not set a starting eff. on this ability, this allows Ai to sometimes randomly do it as it normally does.
         if (g->getCurrentGamePhase() == Constants::MTG_PHASE_COMBATBLOCKERS)
         {
-            if (suggestion == BAKA_EFFECT_GOOD && target->controller()->isAI())
-            {
+					if (suggestion == BAKA_EFFECT_GOOD && target->controller()->isAI())
+					{
                 if ((_target->defenser || _target->blockers.size()) && ((_target->power < _target->getNextOpponent()->toughness
                         || _target->toughness < _target->getNextOpponent()->power) || (_target->has(Constants::TRAMPLE))))
                 {
@@ -389,16 +395,17 @@ int AIAction::getEfficiency()
                     //this means im heading directly for the player, pump this creature as much as possible.
                     efficiency = 100;
                 }
-            }
-            if (suggestion == BAKA_EFFECT_BAD && !target->controller()->isAI())
-            {
-                efficiency = 100;
-            }
+					}
+					if (suggestion == BAKA_EFFECT_BAD && !target->controller()->isAI())
+					{
+                    efficiency = 100;
+					}
 
         }
         break;
-
+    }
     case MTGAbility::STANDARD_BECOMES:
+    {
         MTGCardInstance * _target = (MTGCardInstance *) (a->target);
         //nothing huge here, just ensuring that Ai makes his noncreature becomers into creatures during first main, so it can actually use them in combat.
         if (_target && !_target->hasType("Creature") && g->getCurrentGamePhase() == Constants::MTG_PHASE_FIRSTMAIN)
@@ -406,16 +413,20 @@ int AIAction::getEfficiency()
             efficiency = 100;
         }
         break;
+    }
 
     case MTGAbility::UPCOST:
+    {
         //hello, Ai pay your upcost please :P, this entices Ai into paying upcost, the conditional isAi() is required strangely ai is able to pay upcost during YOUR upkeep.
         if (g->getCurrentGamePhase() == Constants::MTG_PHASE_UPKEEP && g->currentPlayer->isAI())
         {
             efficiency = 100;
         }
         break;
+    }
 
     case MTGAbility::FOREACH:
+    {
         MTGCardInstance * _target = (MTGCardInstance *) (a->target);
         MTGAbility * a = AbilityFactory::getCoreAbility(ability);
         AManaProducer * amp = dynamic_cast<AManaProducer*> (a);
@@ -457,8 +468,10 @@ int AIAction::getEfficiency()
 
         }
         break;
+    }
 
     case MTGAbility::STANDARDABILITYGRANT:
+    {
         efficiency = 0;
         MTGCardInstance * _target = (MTGCardInstance *) (a->target);
         if (!target)
@@ -479,8 +492,9 @@ int AIAction::getEfficiency()
             efficiency += efficiencyModifier;
         }
 
-        if (!target->has(a->abilitygranted) && g->getCurrentGamePhase() == Constants::MTG_PHASE_COMBATBEGIN 
-				&& p == target->controller() && p->isAI())
+        if (!target->has(a->abilitygranted) && g->getCurrentGamePhase() == Constants::MTG_PHASE_COMBATBEGIN
+                && p == target->controller() && p->isAI()
+        )
         {
             efficiency += efficiencyModifier;
         }
@@ -492,15 +506,18 @@ int AIAction::getEfficiency()
         }
 
         if ((suggestion == BAKA_EFFECT_BAD && p == target->controller()) 
-        		|| (suggestion == BAKA_EFFECT_GOOD && p != target->controller()))
+                || (suggestion == BAKA_EFFECT_GOOD && p != target->controller())
+        )
         {
             efficiency = 0;
             //stop giving trample to the players creatures.
         }
         break;
+    }
 
     case MTGAbility::UNTAPPER:
         //untap things that Ai owns and are tapped.
+    {
         efficiency = 0;
         if (!target)
             break;
@@ -510,9 +527,11 @@ int AIAction::getEfficiency()
             efficiency = (20 * target->DangerRanking());
         }
         break;
+    }
 
     case MTGAbility::TAPPER:
         //tap things the player owns and that are untapped.
+    {
         if (!target)
             break;
 
@@ -523,8 +542,10 @@ int AIAction::getEfficiency()
             efficiency = 0;
 
         break;
+    }
 
     case MTGAbility::LIFER:
+    {
         //use life abilities whenever possible.
         AALifer * alife = (AALifer *) a;
         Targetable * _t = alife->getTarget();
@@ -539,8 +560,9 @@ int AIAction::getEfficiency()
         }
 
         break;
-
+    }
     case MTGAbility::STANDARD_DRAW:
+    {
         //adding this case since i played a few games where Ai litterally decided to mill himself to death. fastest and easiest win ever.
         //this should help a little, tho ultimately it will be decided later what the best course of action is.
         efficiency = 0;
@@ -557,15 +579,16 @@ int AIAction::getEfficiency()
             efficiency = 0;
         }
         break;
-
+    }
     case MTGAbility::CLONING:
+    {
         efficiency = 0;
         if (p == target->controller())
         {
             efficiency = 20 * target->DangerRanking();
         }
         break;
-
+    }
     case MTGAbility::MANA_PRODUCER:
         efficiency = 0;
         break;
@@ -576,7 +599,7 @@ int AIAction::getEfficiency()
             AbilityFactory af;
             int suggestion = af.abilityEfficiency(a, p, MODE_ABILITY);
             if ((suggestion == BAKA_EFFECT_BAD && p == target->controller())
-            		|| (suggestion == BAKA_EFFECT_GOOD && p != target->controller()))
+                    || (suggestion == BAKA_EFFECT_GOOD && p != target->controller()))
             {
                 efficiency = 0;
             }
@@ -801,16 +824,19 @@ int AIPlayer::chooseTarget(TargetChooser * _tc, Player * forceTarget)
         switch (type)
         {
         case TARGET_CARD:
+        {
             MTGCardInstance * card = ((MTGCardInstance *) potentialTargets[i]);
             clickstream.push(NEW AIAction(card));
             return 1;
             break;
-
+        }
         case TARGET_PLAYER:
+        {
             Player * player = ((Player *) potentialTargets[i]);
             clickstream.push(NEW AIAction(player));
             return 1;
             break;
+        }
         }
     }
     //Couldn't find any valid target,
@@ -866,7 +892,7 @@ int AIPlayer::chooseAttackers()
         opponentCreatures = getCreaturesInfo(opponent(), INFO_NBCREATURES, -1);
         opponentForce = getCreaturesInfo(opponent(), INFO_CREATURESPOWER, -1);
         attack = (myCreatures >= opponentCreatures && myForce > opponentForce)
-        		|| (myForce > opponentForce) || (myForce > opponent()->life);
+                || (myForce > opponentForce) || (myForce > opponent()->life);
     }
     printf("Choose attackers : %i %i %i %i -> %i\n", opponentForce, opponentCreatures, myForce, myCreatures, attack);
     if (attack)
@@ -1214,6 +1240,8 @@ int AIPlayerBaka::computeActions()
         {
         case Constants::MTG_PHASE_FIRSTMAIN:
         case Constants::MTG_PHASE_SECONDMAIN:
+        {
+
             bool potential = false;
             ManaCost * currentMana = getPotentialMana();
             if (currentMana->getConvertedCost())
@@ -1313,15 +1341,13 @@ int AIPlayerBaka::computeActions()
                 computeActions();
             }
             break;
-
+        }
         case Constants::MTG_PHASE_COMBATATTACKERS:
             chooseAttackers();
             break;
-
         case Constants::MTG_PHASE_ENDOFTURN:
             Checked = false;
             break;
-
         default:
             selectAbility();
             break;
@@ -1335,13 +1361,11 @@ int AIPlayerBaka::computeActions()
         case Constants::MTG_PHASE_COMBATBLOCKERS:
             chooseBlockers();
             break;
-
         default:
             break;
         }
         return 1;
     }
-
     return 1;
 }
 ;
