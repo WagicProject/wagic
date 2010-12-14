@@ -378,10 +378,12 @@ int AIAction::getEfficiency()
 			 efficiency = 0;
         if (!target)
             break;
+				AbilityFactory af;
+        int suggestion = af.abilityEfficiency(a, p, MODE_ABILITY);
         //i do not set a starting eff. on this ability, this allows Ai to sometimes randomly do it as it normally does.
         if (g->getCurrentGamePhase() == Constants::MTG_PHASE_COMBATBLOCKERS)
         {
-					if (BAKA_EFFECT_GOOD && target->controller()->isAI())
+					if (suggestion == BAKA_EFFECT_GOOD && target->controller()->isAI())
 					{
                 if ((_target->defenser || _target->blockers.size()) && ((_target->power < _target->getNextOpponent()->toughness
                         || _target->toughness < _target->getNextOpponent()->power) || (_target->has(Constants::TRAMPLE))))
@@ -395,7 +397,7 @@ int AIAction::getEfficiency()
                     efficiency = 100;
                 }
 					}
-					if (BAKA_EFFECT_BAD && !target->controller()->isAI())
+					if (suggestion == BAKA_EFFECT_BAD && !target->controller()->isAI())
 					{
                     efficiency = 100;
 					}
