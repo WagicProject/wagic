@@ -158,7 +158,7 @@
 		CEE2332E128A01F400C34032 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = CEE232F0128A01F400C34032 /* unzip.c */; };
 		CEE23330128A01F400C34032 /* Vector2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232F4128A01F400C34032 /* Vector2D.cpp */; };
 		CEE23331128A01F400C34032 /* vram.c in Sources */ = {isa = PBXBuildFile; fileRef = CEE232F5128A01F400C34032 /* vram.c */; };
-		F233DC3812A111EB008594F2 /* icon-64x64.png in Resources */ = {isa = PBXBuildFile; fileRef = F233DC3712A111EB008594F2 /* icon-64x64.png */; };
+		F233DC3812A111EB008594F2 /* wagic-64x64.png in Resources */ = {isa = PBXBuildFile; fileRef = F233DC3712A111EB008594F2 /* wagic-64x64.png */; };
 		F2494AC912A1BBFD00D6284A /* Res in Resources */ = {isa = PBXBuildFile; fileRef = F24944BE12A1BBFD00D6284A /* Res */; };
 		F2494ADC12A1BD4100D6284A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F2494ADB12A1BD4100D6284A /* libz.dylib */; };
 		F2CDD5E312A6F7A2007B35AF /* EAGLViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2CDD5E212A6F7A2007B35AF /* EAGLViewController.xib */; };
@@ -472,7 +472,7 @@
 		CEE232F1128A01F400C34032 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
 		CEE232F4128A01F400C34032 /* Vector2D.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = Vector2D.cpp; sourceTree = "<group>"; };
 		CEE232F5128A01F400C34032 /* vram.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vram.c; sourceTree = "<group>"; };
-		F233DC3712A111EB008594F2 /* icon-64x64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-64x64.png"; sourceTree = "<group>"; };
+		F233DC3712A111EB008594F2 /* wagic-64x64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wagic-64x64.png"; sourceTree = "<group>"; };
 		F24944BE12A1BBFD00D6284A /* Res */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Res; path = bin/Res; sourceTree = "<group>"; };
 		F2494ADB12A1BD4100D6284A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		F2CDD5E212A6F7A2007B35AF /* EAGLViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EAGLViewController.xib; path = ../../JGE/src/iOS/EAGLViewController.xib; sourceTree = "<group>"; };
@@ -532,7 +532,7 @@
 			children = (
 				F2CDD5E212A6F7A2007B35AF /* EAGLViewController.xib */,
 				8D1107310486CEB800E47090 /* wagic-Info.plist */,
-				F233DC3712A111EB008594F2 /* icon-64x64.png */,
+				F233DC3712A111EB008594F2 /* wagic-64x64.png */,
 				CECB67E012B517C000321D5A /* MainWindow.xib */,
 				F24944BE12A1BBFD00D6284A /* Res */,
 			);
@@ -978,7 +978,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEE23327128A01F400C34032 /* ChangeLogUnzip in Resources */,
-				F233DC3812A111EB008594F2 /* icon-64x64.png in Resources */,
+				F233DC3812A111EB008594F2 /* wagic-64x64.png in Resources */,
 				F2494AC912A1BBFD00D6284A /* Res in Resources */,
 				F2CDD5E312A6F7A2007B35AF /* EAGLViewController.xib in Resources */,
 				CECB67E112B517C000321D5A /* MainWindow.xib in Resources */,
@@ -1212,8 +1212,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.2;
-				TARGETED_DEVICE_FAMILY = 2;
+				SDKROOT = iphoneos4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1227,8 +1227,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.2;
-				TARGETED_DEVICE_FAMILY = 2;
+				SDKROOT = iphoneos4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
