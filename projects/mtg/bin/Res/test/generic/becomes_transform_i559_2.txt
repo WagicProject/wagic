@@ -22,16 +22,17 @@ Grizzly Bears
 next
 next
 next
+next
 forest
 island
 plummet
 Halcyon Glaze
-eot
 [ASSERT]
-firstmain
+secondmain
 [PLAYER1]
 graveyard:Halcyon Glaze,plummet
-manapool={0}
 inplay:island,forest,Grizzly Bears
 [PLAYER2]
+life:16
+inplay:Moat
 [END]
