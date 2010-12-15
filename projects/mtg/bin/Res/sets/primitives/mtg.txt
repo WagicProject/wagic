@@ -57460,7 +57460,7 @@ toughness=5
 [card]
 name=Throat Slitter
 autohand={2}{B}{N}:ninjutsu
-auto=@combatdamaged(player) from(this):destroy target(creature
+auto=@combatdamaged(player) from(this):destroy target(creature[-black]|opponentbattlefield)
 text=Ninjutsu {2}{B} ({2}{B}, Return an unblocked attacker you control to hand: Put this card onto the battlefield from your hand tapped and attacking.) -- Whenever Throat Slitter deals combat damage to a player, destroy target nonblack creature that player controls.
 mana={4}{B}
 type=Creature
@@ -57487,7 +57487,7 @@ subtype=Aura
 [/card]
 [card]
 name=Thrull Surgeon
-auto={1}{B}{S}:moveTo(opponentgravyard) notatarget(*|myhand) asSorcery
+auto={1}{B}{S}:moveTo(opponentgraveyard) notatarget(*|myhand) asSorcery
 text={1}{B}, Sacrifice Thrull Surgeon: Look at target player's hand and choose a card from it. That player discards that card. Activate this ability only any time you could cast a sorcery.
 mana={1}{B}
 type=Creature
