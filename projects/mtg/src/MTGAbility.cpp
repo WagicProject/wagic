@@ -3085,7 +3085,15 @@ int ActivatedAbility::reactToTargetClick(Targetable * object)
         delete previousManaPool;
     }
     if (needsTapping && source->isInPlay())
-        source->tap();
+    {
+    if (dynamic_cast<AManaProducer *> (this))
+    {
+        GameObserver *g = GameObserver::GetInstance();
+        WEvent * e = NEW WEventCardTappedForMana(source, 0, 1);
+        g->receiveEvent(e);
+    }
+    source->tap();
+    }
     fireAbility();
     return 1;
 
