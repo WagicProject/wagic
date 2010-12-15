@@ -1,0 +1,18 @@
+#Bug: Manabarbs doesn't trigger for special lands
+# See: http://code.google.com/p/wagic/issues/detail?id=562
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:manabarbs,savannah
+[PLAYER2]
+[DO]
+savannah
+choice 0
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+life:19
+inplay:manabarbs,savannah
+manapool:{W}
+[PLAYER2]
+[END]

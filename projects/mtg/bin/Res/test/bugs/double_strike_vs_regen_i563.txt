@@ -1,0 +1,31 @@
+#Bug: If a creature with regenerate block a creature with double strike and dies (then gets regenerated),
+# then the double strike creature deals its second row of damage to the player.
+# This shouldn't happen as the creature is markes as blocked.
+# See: http://code.google.com/p/wagic/issues/detail?id=563
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:Hearthfire Hobgoblin
+[PLAYER2]
+inplay:Drudge skeletons, swamp
+[DO]
+Hearthfire Hobgoblin
+next
+#blockers
+swamp
+Drudge skeletons
+choice 1
+Drudge skeletons
+next
+#damage first strike
+next
+#damage
+next
+#end of combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Hearthfire Hobgoblin
+[PLAYER2]
+inplay:Drudge skeletons, swamp
+[END]
