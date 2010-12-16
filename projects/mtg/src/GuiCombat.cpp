@@ -451,7 +451,11 @@ int GuiCombat::receiveEventPlus(WEvent* e)
     {
         if (NULL == event->after)
             return 0;
-        AttackerDamaged* t = NEW AttackerDamaged(event->card, *(event->card->view), true, NULL);
+        Pos pos(0, 0, 0, 0, 255);
+        if (event->card->view != NULL)
+            pos = *event->card->view;
+
+        AttackerDamaged* t = NEW AttackerDamaged(event->card, pos, true, NULL);
         attackers.push_back(t);
         return 1;
     }
@@ -460,7 +464,11 @@ int GuiCombat::receiveEventPlus(WEvent* e)
         for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
             if ((*it)->card == event->after)
             {
-                DefenserDamaged* t = NEW DefenserDamaged(event->card, *(event->card->view), true, NULL);
+                Pos pos(0, 0, 0, 0, 255);
+                if (event->card->view != NULL)
+                    pos = *event->card->view;
+
+                DefenserDamaged* t = NEW DefenserDamaged(event->card, pos, true, NULL);
                 t->y = t->actY = TOP_LINE;
                 t->actT = t->t = 0;
                 t->actZ = t->zoom = kZoom_level2;

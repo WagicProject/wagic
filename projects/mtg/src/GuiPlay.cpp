@@ -339,8 +339,10 @@ int GuiPlay::receiveEventPlus(WEvent * e)
     {
         if (CardView* cv = dynamic_cast<CardView*>(event->card->view))
             cv->t = event->after ? M_PI / 2 : 0;
-        else
+        else if (event->card->view != NULL)
+        {
             event->card->view->actT = event->after ? M_PI / 2 : 0;
+        }
         return 1;
     }
     else if (WEventPhaseChange *event = dynamic_cast<WEventPhaseChange*>(e))
