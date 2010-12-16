@@ -348,7 +348,10 @@ string GameStateMenu::getLang(string s)
 
 void GameStateMenu::setLang(int id)
 {
-    options[Options::LANG].str = langs[id - 1];
+    if(id != kCancelMenuID)
+    {
+        options[Options::LANG].str = langs[id - 1];
+    }
     options.save();
 }
 
