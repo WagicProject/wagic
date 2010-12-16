@@ -416,7 +416,7 @@ void GameObserver::gameStateBasedEffects()
         ///////////////////////////////////////////////////////////
         //life checks/poison checks also checks cant win or lose.//
         ///////////////////////////////////////////////////////////
-        if (players[i]->life <= 0)
+        if (players[i]->life <= 0 || players[i]->poisonCount >= 10)
         {
             int cantlosers = 0;
             MTGGameZone * z = players[i]->game->inPlay;
@@ -440,10 +440,6 @@ void GameObserver::gameStateBasedEffects()
                 }
             }
             if (cantlosers < 1)
-            {
-                gameOver = players[i];
-            }
-            if (players[i]->poisonCount >= 10)
             {
                 gameOver = players[i];
             }

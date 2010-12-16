@@ -1973,6 +1973,8 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
         return BAKA_EFFECT_GOOD;
     if (AALifer * abi = dynamic_cast<AALifer *>(a))
         return abi->life > 0 ? BAKA_EFFECT_GOOD : BAKA_EFFECT_BAD;
+    if (AAAlterPoison * abi = dynamic_cast<AAAlterPoison *>(a))
+        return abi->poison < 0 ? BAKA_EFFECT_GOOD : BAKA_EFFECT_BAD;
     if (dynamic_cast<AADepleter *> (a))
         return BAKA_EFFECT_BAD;
     if (dynamic_cast<AADrawer *> (a))
