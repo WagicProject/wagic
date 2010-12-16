@@ -24,6 +24,9 @@ DeckMetaData::DeckMetaData(string filename, Player * statsPlayer)
 void DeckMetaData::loadStatsForPlayer(Player * statsPlayer, string deckStatsFileName)
 {
     DeckStats * stats = DeckStats::GetInstance();
+    _nbGamesPlayed = 0;
+    _percentVictories = 0;
+    _victories = 0;
     if (statsPlayer)
     {
         stats->load(statsPlayer);
