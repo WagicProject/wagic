@@ -14,6 +14,8 @@
 #if defined (WIN32) || defined (LINUX) 
 #ifdef _DEBUG
 
+using namespace std;
+
 template <class T>
 std::string ToHex(T* pointer)
 {
