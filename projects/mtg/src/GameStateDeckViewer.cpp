@@ -1393,7 +1393,8 @@ void GameStateDeckViewer::Render()
     JRenderer * r = JRenderer::GetInstance();
 
     r->ClearScreen(ARGB(0,0,0,0));
-    if (displayed_deck == myDeck && mStage != STAGE_MENU) renderDeckBackground();
+    if (displayed_deck == myDeck && mStage != STAGE_MENU) 
+		renderDeckBackground();
     int order[3] = { 1, 2, 3 };
     if (mRotation < 0.5 && mRotation > -0.5)
     {
@@ -1601,7 +1602,7 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
             break;
 
         case MENU_ITEM_SWITCH_DECKS_NO_SAVE:
-            updateDecks();
+            //updateDecks();
             mStage = STAGE_WELCOME;
             mSwitching = true;
             break;

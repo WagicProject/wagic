@@ -708,7 +708,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     string thises[] = { "this(", "thisforeach(" };
     found = string::npos;
     int i = -1;
-    for (int j = 0; j < 2; ++j)
+    for (int j = 0; j < thises->length(); ++j)
     {
         size_t found2 = s.find(thises[j]);
         if (found2 != string::npos && ((found == string::npos) || found2 < found))
@@ -792,7 +792,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     string lords[] = { "lord(", "foreach(", "aslongas(", "teach(", "all(" };
     found = string::npos;
     i = -1;
-    for (int j = 0; j < 5; ++j)
+	for (int j = 0; j < lords->length(); ++j)
     {
         size_t found2 = s.find(lords[j]);
         if (found2 != string::npos && ((found == string::npos) || found2 < found))

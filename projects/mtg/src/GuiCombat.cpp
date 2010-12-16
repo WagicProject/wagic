@@ -637,9 +637,9 @@ int GuiCombat::receiveEventMinus(WEvent* e)
             for (inner_iterator attacker = attackers.begin(); attacker != attackers.end(); ++attacker)
                 autoaffectDamage(*attacker, step);
             for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
-                (*it)->show = ((*it)->card->has(Constants::DOUBLESTRIKE) || ((*it)->card->has(Constants::FIRSTSTRIKE) ^ (DAMAGE
-                                == step))) && (((*it)->card->has(Constants::TRAMPLE) ? (size_t) 0 : (size_t) 1)
-                                < (*it)->blockers.size());
+                (*it)->show = ((*it)->card->has(Constants::DOUBLESTRIKE) 
+                                || ((*it)->card->has(Constants::FIRSTSTRIKE) ^ (DAMAGE == step))) 
+                                && (((*it)->card->has(Constants::TRAMPLE) ? (size_t) 0 : (size_t) 1) < (*it)->blockers.size());
             repos<AttackerDamaged> (attackers.begin(), attackers.end(), 0);
             active = activeAtk = NULL;
             for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
@@ -656,7 +656,7 @@ int GuiCombat::receiveEventMinus(WEvent* e)
                 cursor_pos = ATK;
             }
             else
-							go->nextCombatStep();
+				go->nextCombatStep();
             return 1;
         case END_DAMAGE:
             step = END_DAMAGE;
