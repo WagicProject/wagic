@@ -44,6 +44,23 @@ CardGui::CardGui(MTGCardInstance* card, const Pos& ref) :
 {
 }
 
+float CardView::GetCenterX()
+{
+    bool largeCard = mHeight == BigHeight;
+
+    float centerX = x + (largeCard ? BigWidth : Width) * 0.5f * zoom;
+    return centerX;
+}
+
+float CardView::GetCenterY()
+{
+    bool largeCard = mHeight == BigHeight;
+
+    float centerY = y + (largeCard ? BigHeight : Height) * 0.5f * zoom;
+    return centerY;
+}
+
+
 CardView::CardView(const SelectorZone owner, MTGCardInstance* card, float x, float y) :
     CardGui(card, x, y), owner(owner)
 {
@@ -65,6 +82,20 @@ CardView::CardView(const SelectorZone owner, MTGCardInstance* card, const Pos& r
         if (r == card->view)
             card->view = this;
         card = card->next;
+    }
+}
+
+CardView::~CardView()
+{
+    if (card)
+    {
+        const Pos* r = card->view;
+        while (card)
+        {
+            if (r == card->view)
+                card->view = NULL;
+            card = card->next;
+        }
     }
 }
 

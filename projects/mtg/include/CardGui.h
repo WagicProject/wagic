@@ -67,9 +67,14 @@ class CardView : public CardGui {
   MTGCardInstance* getCard(); // remove this when possible
   CardView(const SelectorZone, MTGCardInstance* card, float x, float y);
   CardView(const SelectorZone, MTGCardInstance* card, const Pos& ref);
+  virtual ~CardView();
+
   void Render(){CardGui::Render();};
   void Render(JQuad* q){Pos::Render(q);};
   virtual ostream& toString(ostream&) const;
+
+  float GetCenterX();
+  float GetCenterY();
 };
 
 class TransientCardView : public CardGui {

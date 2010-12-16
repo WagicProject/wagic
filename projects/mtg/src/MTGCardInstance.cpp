@@ -88,7 +88,11 @@ void MTGCardInstance::copy(MTGCardInstance * card)
 MTGCardInstance::~MTGCardInstance()
 {
     SAFE_DELETE(counters);
-    SAFE_DELETE(previous);
+	if (previous != NULL)
+	{
+		//DebugTrace("MTGCardInstance::~MTGCardInstance():  deleting " << ToHex(previous));
+	    SAFE_DELETE(previous);
+	}
 }
 
 int MTGCardInstance::init()
@@ -411,6 +415,7 @@ int MTGCardInstance::cleanup()
     }
     if (previous && !previous->stillInUse())
     {
+        //DebugTrace("MTGCardInstance::cleanup():  deleting " << ToHex(previous));
         SAFE_DELETE(previous);
     }
     regenerateTokens = 0;

@@ -120,7 +120,7 @@ class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable {
   int triggerRegenerate();
   Player * controller();
 
-  ~MTGCardInstance();
+  virtual ~MTGCardInstance();
   int bury();
   int destroy();
 
