@@ -2081,7 +2081,6 @@ subtype=Spider
 power=2
 toughness=6
 [/card]
-
 [card]
 name=Arashi, the Sky Asunder
 auto={X}{G}{T}:thisforeach(X) damage:1 target(creature[flying])
@@ -2095,15 +2094,13 @@ toughness=5
 [/card]
 [card]
 name=Arbor Elf
-auto=@vampired(creature) from(this):counter(1/1,1) all(this)
-auto={0}:damage:1 all(creature)
-auto={0}:bury target(creature)
+auto={T}:untap target(forest)
 text={T}: Untap target Forest.
 mana={G}
 type=Creature
 subtype=Elf Druid
-power=6
-toughness=3
+power=1
+toughness=1
 [/card]
 [card]
 name=Arc-Slogger
@@ -32675,8 +32672,6 @@ auto={T}{S}:Add{R}
 auto={T}{S}:Add{U}
 auto={T}{S}:Add{B}
 auto={T}{S}:Add{W}
-abilities=nomaxhand
-
 text={T}, Sacrifice Lotus Petal: Add one mana of any color to your mana pool.
 mana={0}
 type=Artifact
@@ -43631,7 +43626,9 @@ toughness=1
 name=Rancid Earth
 target=land
 auto=destroy
-auto=aslongas(*|mygraveyard) damage:1 all(creature,player) >6
+auto=aslongas(*|mygraveyard) lord(creature) damage:1 >1
+auto=aslongas(*|mygraveyard) damage:1 controller >1
+auto=aslongas(*|mygraveyard) damage:1 opponent >1
 text=Destroy target land. -- Threshold - If seven or more cards are in your graveyard, instead destroy that land and Rancid Earth deals 1 damage to each creature and each player.
 mana={1}{B}{B}
 type=Sorcery
@@ -55396,7 +55393,7 @@ type=Instant
 [/card]
 [card]
 name=Swirling Sandstorm
-auto=aslongas(*|mygraveyard) damage:5 all(creature[-flying]) >6
+auto=aslongas(*|mygraveyard) lord(creature[-flying]) damage:5 >6
 text=Threshold - Swirling Sandstorm deals 5 damage to each creature without flying if seven or more cards are in your graveyard.
 mana={3}{R}
 type=Sorcery
@@ -57463,7 +57460,7 @@ toughness=5
 [card]
 name=Throat Slitter
 autohand={2}{B}{N}:ninjutsu
-auto=@combatdamaged(player) from(this):destroy target(creature
+auto=@combatdamaged(player) from(this):destroy target(creature[-black]|opponentbattlefield)
 text=Ninjutsu {2}{B} ({2}{B}, Return an unblocked attacker you control to hand: Put this card onto the battlefield from your hand tapped and attacking.) -- Whenever Throat Slitter deals combat damage to a player, destroy target nonblack creature that player controls.
 mana={4}{B}
 type=Creature
@@ -57490,7 +57487,7 @@ subtype=Aura
 [/card]
 [card]
 name=Thrull Surgeon
-auto={1}{B}{S}:moveTo(opponentgravyard) notatarget(*|myhand) asSorcery
+auto={1}{B}{S}:moveTo(opponentgraveyard) notatarget(*|myhand) asSorcery
 text={1}{B}, Sacrifice Thrull Surgeon: Look at target player's hand and choose a card from it. That player discards that card. Activate this ability only any time you could cast a sorcery.
 mana={1}{B}
 type=Creature
@@ -57735,12 +57732,13 @@ type=Instant
 [/card]
 [card]
 name=Tidal Kraken
+abilities=unblockable
 text=Tidal Kraken is unblockable.
-mana={0}
+mana={5}{u}{u}{u}
 type=Creature
 subtype=Kraken
-power=2
-toughness=2
+power=6
+toughness=6
 [/card]
 [card]
 name=Tidal Surge
