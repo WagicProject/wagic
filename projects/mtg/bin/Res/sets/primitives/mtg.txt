@@ -25237,7 +25237,7 @@ toughness=4
 [/card]
 [card]
 name=Hell-Bent Raider
-auto=first strike,haste
+abilities=first strike,haste
 auto={D}:protection from white
 text=First strike, haste -- Discard a card at random: Hell-Bent Raider gains protection from white until end of turn.
 mana={1}{R}{R}
