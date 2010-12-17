@@ -185,7 +185,7 @@ void Rules::addExtraRules()
             MTGAbility * a = af.parseMagicLine(initState.playerData[i].extraRules[j], id++, NULL, &MTGCardInstance::ExtraRules[i]);
             if (p->playMode != Player::MODE_TEST_SUITE && g->mRules->gamemode != GAME_TYPE_MOMIR && g->mRules->gamemode
                             != GAME_TYPE_RANDOM1 && g->mRules->gamemode != GAME_TYPE_RANDOM2 && g->mRules->gamemode
-                            != GAME_TYPE_STORY)//keep this out of mimor and other game modes.
+                            != GAME_TYPE_STORY && (!g->players[0] == PLAYER_TYPE_CPU && !g->players[1] == PLAYER_TYPE_CPU))//keep this out of mimor and other game modes.
             {
                 difficultyRating = DeckManager::getDifficultyRating(g->players[0], g->players[1]);
             }

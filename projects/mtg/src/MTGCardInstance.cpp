@@ -808,8 +808,11 @@ int MTGCardInstance::toggleDefenser(MTGCardInstance * opponent)
             didblocked = 1;
             if (opponent && opponent->controller()->isAI())
             {
-                opponent->view->actZ += .8f;
-                opponent->view->actT -= .2f;
+                if(opponent->view != NULL)
+                {
+                    opponent->view->actZ += .8f;
+                    opponent->view->actT -= .2f;
+                }
             }
             if (!opponent)
                 didblocked = 0;

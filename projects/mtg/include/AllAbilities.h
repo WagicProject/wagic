@@ -2188,11 +2188,13 @@ public:
 
     ALord(int _id, MTGCardInstance * card, TargetChooser * _tc, int _includeSelf, MTGAbility * a) :
         ListMaintainerAbility(_id, card), NestedAbility(a)
-    {
-        tc = _tc;
-        tc->targetter = NULL;
-        includeSelf = _includeSelf;
-    }
+        {
+            tc = _tc;
+            tc->targetter = NULL;
+            includeSelf = _includeSelf;
+            if(ability->aType == MTGAbility::STANDARD_PREVENT)
+            aType = MTGAbility::STANDARD_PREVENT;
+        }
 
     int canBeInList(Player *p)
     {

@@ -272,8 +272,18 @@ int AIAction::getEfficiency()
     case MTGAbility::STANDARD_PREVENT:
     {
         efficiency = 0;//starts out low to avoid spamming it when its not needed.
-        if (!target)
+        if (!target && !dynamic_cast<ALord*> (a))
             break;
+            if(dynamic_cast<ALord*> (a) && !target)
+            {
+            //this is a specail case for all(this) targetting workaround.
+            //adding a direct method for targetting the source is planned for
+            //the coming releases, all(this) workaround prevents eff from being returned
+            //as its not targetted the same as abilities
+            //for now this dirty hack will calculate eff on lords as tho the source is
+            //the target...otherwise these abilities will never be used.
+             target = a->source;
+            }
 
         bool NeedPreventing;
         NeedPreventing = false;
@@ -376,8 +386,13 @@ int AIAction::getEfficiency()
     {
         MTGCardInstance * _target = (MTGCardInstance *) (a->target);
 			 efficiency = 0;
-        if (!target)
+        if (!target && !dynamic_cast<ALord*> (a))
             break;
+            if(dynamic_cast<ALord*> (a) && !target)
+            {
+             target = a->source;
+            }
+            
 				AbilityFactory af;
         int suggestion = af.abilityEfficiency(a, p, MODE_ABILITY);
         //i do not set a starting eff. on this ability, this allows Ai to sometimes randomly do it as it normally does.
@@ -475,8 +490,13 @@ int AIAction::getEfficiency()
     {
         efficiency = 0;
         MTGCardInstance * _target = (MTGCardInstance *) (a->target);
-        if (!target)
+        if (!target && !dynamic_cast<ALord*> (a))
             break;
+            if(dynamic_cast<ALord*> (a) && !target)
+            {
+             target = a->source;
+            }
+            
         //ensuring that Ai grants abilities to creatures during first main, so it can actually use them in combat.
         //quick note: the eff is multiplied by creatures ranking then divided by the number of cards in hand.
         //the reason i do this is to encourage more casting and less waste of mana on abilities.
@@ -520,8 +540,12 @@ int AIAction::getEfficiency()
         //untap things that Ai owns and are tapped.
     {
         efficiency = 0;
-        if (!target)
+        if (!target && !dynamic_cast<ALord*> (a))
             break;
+            if(dynamic_cast<ALord*> (a) && !target)
+            {
+             target = a->source;
+            }
 
         if (target->isTapped() && target->controller()->isAI())
         {
@@ -533,8 +557,12 @@ int AIAction::getEfficiency()
     case MTGAbility::TAPPER:
         //tap things the player owns and that are untapped.
     {
-        if (!target)
+        if (!target && !dynamic_cast<ALord*> (a))
             break;
+            if(dynamic_cast<ALord*> (a) && !target)
+            {
+             target = a->source;
+            }
 
         if (!target->controller()->isAI())
             efficiency = (20 * target->DangerRanking());
