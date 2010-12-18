@@ -11,6 +11,12 @@
 #include "Translate.h"
 #include "ThisDescriptor.h"
 
+const string kLordKeywords[] = { "foreach(", "lord(", "aslongas(", "teach(", "all(" };
+const size_t kLordKeywordsCount = 5;
+
+const string kThisKeywords[] = { "this(", "thisforeach(" };
+const size_t kThisKeywordsCount = 2;
+
 int AbilityFactory::countCards(TargetChooser * tc, Player * player, int option)
 {
     int result = 0;
@@ -693,11 +699,10 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
 
     //rather dirty way to stop thises and lords from conflicting with each other.
-    string prelords[] = { "foreach(", "lord(", "aslongas(", "teach(", "all(" };
     size_t lord = string::npos;
-    for (int j = 0; j < 5; ++j)
+    for (size_t j = 0; j < kLordKeywordsCount; ++j)
     {
-        size_t found2 = s.find(prelords[j]);
+        size_t found2 = s.find(kLordKeywords[j]);
         if (found2 != string::npos && ((found == string::npos) || found2 < found))
         {
             lord = found2;
@@ -705,12 +710,11 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
 
     //This, ThisForEach;
-    string thises[] = { "this(", "thisforeach(" };
     found = string::npos;
     int i = -1;
-    for (size_t j = 0; j < sizeof(thises)/sizeof(string); j++)
+    for (size_t j = 0; j < kThisKeywordsCount; ++j)
     {
-        size_t found2 = s.find(thises[j]);
+        size_t found2 = s.find(kThisKeywords[j]);
         if (found2 != string::npos && ((found == string::npos) || found2 < found))
         {
             found = found2;
@@ -722,7 +726,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         //why does tc even exist here? This shouldn't happen...
         SAFE_DELETE(tc); //http://code.google.com/p/wagic/issues/detail?id=424
 
-        size_t header = thises[i].size();
+        size_t header = kThisKeywords[i].size();
         size_t end = s.find(")", found + header);
         string s1;
         if (found == 0 || end != s.size() - 1)
@@ -789,12 +793,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
 
     //Lord, foreach, aslongas
-    string lords[] = { "lord(", "foreach(", "aslongas(", "teach(", "all(" };
+
     found = string::npos;
     i = -1;
-	for (size_t j = 0; j < sizeof(lords)/sizeof(string); ++j)
+	for (size_t j = 0; j < kLordKeywordsCount; ++j)
     {
-        size_t found2 = s.find(lords[j]);
+        size_t found2 = s.find(kLordKeywords[j]);
         if (found2 != string::npos && ((found == string::npos) || found2 < found))
         {
             found = found2;
@@ -804,7 +808,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (found != string::npos)
     {
         SAFE_DELETE(tc);
-        size_t header = lords[i].size();
+        size_t header = kLordKeywords[i].size();
         size_t end = s.find(")", found + header);
         string s1;
         if (found == 0 || end != s.size() - 1)
