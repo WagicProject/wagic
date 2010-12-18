@@ -217,7 +217,7 @@ void GameStateOptions::Render()
         "",
         "Dev Team:",
         "Abrasax, almosthumane, Daddy32, DJardin, Dr.Solomat,",
-        "J, Jeck, Leungclj, linshier, Mnguyen, Psyringe,",
+        "J, Jeck, Leungclj, linshier, Mootpoint, Mnguyen, Psyringe,",
         "Salmelo, Superhiro, Wololo, Yeshua, Zethfox",
         "",
         "Music by Celestial Aeon Project, http://www.jamendo.com",
