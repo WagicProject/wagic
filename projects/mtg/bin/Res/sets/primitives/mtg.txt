@@ -21152,7 +21152,7 @@ subtype=Aura
 [card]
 name=Genju of the Fields
 target=plains
-auto={2}:becomes(Spirit Creature,2/5,white) ueot
+auto={2}:becomes(Spirit Creature,2/5,lifelink,white) ueot
 auto=@movedTo(mytgt|mygraveyard) from(battlefield):moveTo(myhand) all(this)
 text=Enchant Plains -- {2}: Until end of turn, enchanted Plains becomes a 2/5 white Spirit creature with "Whenever this creaure deals damage, its controller gains that much life." It's still a land. -- When enchanted Plains is put into a graveyard, you may return Genju of the Fields from your graveyard to your hand.
 mana={W}
@@ -23194,7 +23194,7 @@ type=Artifact
 [/card]
 [card]
 name=Grand Arbiter Augustin IV
-auto=lord(*[white;blue]|myhand) altercost( colorless, -1 )
+auto=lord(*[white]|myhand) altercost( colorless, -1 )
 auto=lord(*[blue]|myhand) altercost( colorless, -1 )
 auto=lord(*[-land]|opponenthand) altercost( colorless, +1 )
 autoexile=all(*|myhand) resetcost
