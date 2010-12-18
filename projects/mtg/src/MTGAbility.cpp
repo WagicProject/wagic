@@ -11,7 +11,8 @@
 #include "Translate.h"
 #include "ThisDescriptor.h"
 
-const string kLordKeywords[] = { "foreach(", "lord(", "aslongas(", "teach(", "all(" };
+//const string kPreLordKeywords[] = { "foreach(", "lord(", "aslongas(", "teach(", "all(" };
+const string kLordKeywords[] = { "lord(", "foreach(", "aslongas(", "teach(", "all(" };
 const size_t kLordKeywordsCount = 5;
 
 const string kThisKeywords[] = { "this(", "thisforeach(" };
