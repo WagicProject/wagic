@@ -32,6 +32,9 @@ const string Options::optionNames[] = {
   "transitions",
   "bgStyle",
   "interruptSeconds",
+#if defined(QT_CONFIG)
+  "keybindings_qt",
+#else
 #if defined(WIN32)
   "keybindings_win",
 #else
@@ -39,6 +42,7 @@ const string Options::optionNames[] = {
   "keybindings_x",
 #else
   "keybindings_psp",
+#endif
 #endif
 #endif
   "aidecks",
