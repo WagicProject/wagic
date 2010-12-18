@@ -327,6 +327,16 @@ void JGEQtRenderer::mousePressEvent(QMouseEvent *event)
     g_engine->LeftClicked((lastPos.x()*SCREEN_WIDTH)/actualWidth, (lastPos.y()*SCREEN_HEIGHT)/actualHeight);
     event->accept();
   }
+  else if(event->button() == Qt::RightButton)
+  { /* next phase please */
+    g_engine->HoldKey_NoRepeat(JGE_BTN_PREV);
+    event->accept();
+  }
+  else if(event->button() == Qt::MidButton)
+  { /* interrupt please */
+    g_engine->HoldKey_NoRepeat(JGE_BTN_SEC);
+    event->accept();
+  }
   else
   {
     QGLWidget::mousePressEvent(event);
@@ -341,12 +351,12 @@ void JGEQtRenderer::mouseReleaseEvent(QMouseEvent *event)
   }
   else if(event->button() == Qt::RightButton)
   { /* next phase please */
-    g_engine->HoldKey_NoRepeat(JGE_BTN_PREV);
+    g_engine->ReleaseKey(JGE_BTN_PREV);
     event->accept();
   }
   else if(event->button() == Qt::MidButton)
   { /* interrupt please */
-    g_engine->HoldKey_NoRepeat(JGE_BTN_SEC);
+    g_engine->ReleaseKey(JGE_BTN_SEC);
     event->accept();
   }
   else
@@ -354,7 +364,6 @@ void JGEQtRenderer::mouseReleaseEvent(QMouseEvent *event)
     QGLWidget::mouseReleaseEvent(event);
   }
 }
-
 
 void JGEQtRenderer::mouseMoveEvent(QMouseEvent *event)
 {
@@ -366,63 +375,6 @@ void JGEQtRenderer::mouseMoveEvent(QMouseEvent *event)
   g_engine->LeftClicked((event->pos().x()*SCREEN_WIDTH)/actualWidth, (event->pos().y()*SCREEN_HEIGHT)/actualHeight);
   event->accept();
 }
-
-/*
-void JGEQtRenderer::mousePressEvent(QMouseEvent *event)
-{
-  if(event->button() == Qt::LeftButton)
-  {
-    lastPos = event->pos();
-    event->accept();
-  }
-  else
-  {
-    QGLWidget::mousePressEvent(event);
-  }
-}
-
-void JGEQtRenderer::mouseReleaseEvent(QMouseEvent *event)
-{
-  if(event->button() == Qt::LeftButton)
-  {
-    QPoint currentPos = event->pos();
-    int dx = currentPos.x() - lastPos.x();
-    int dy = currentPos.y() - lastPos.y();
-
-    if(abs(dx) > abs(dy) && dx > 5)
-    {
-      g_engine->HoldKey_NoRepeat(JGE_BTN_RIGHT);
-    }
-    else if(abs(dx) > abs(dy) && dx < -5)
-    {
-      g_engine->HoldKey_NoRepeat(JGE_BTN_LEFT);
-    }
-    else if(abs(dx) < abs(dy) && dy < -5)
-    {
-      g_engine->HoldKey_NoRepeat(JGE_BTN_UP);
-    }
-    else if(abs(dx) < abs(dy) && dy > 5)
-    {
-      g_engine->HoldKey_NoRepeat(JGE_BTN_DOWN);
-    }
-    event->accept();
-  }
-  else if(event->button() == Qt::RightButton)
-  {
-    g_engine->HoldKey_NoRepeat(JGE_BTN_PREV);
-    event->accept();
-  }
-  else if(event->button() == Qt::MidButton)
-  {
-    g_engine->HoldKey_NoRepeat(JGE_BTN_SEC);
-    event->accept();
-  }
-  else
-  {
-    QGLWidget::mouseReleaseEvent(event);
-  }
-}
-*/
 
 void JGEQtRenderer::mouseDoubleClickEvent(QMouseEvent *event)
 {
@@ -462,7 +414,6 @@ void JGEQtRenderer::wheelEvent(QWheelEvent *event)
   event->accept();
 }
 
-
 void JGEQtRenderer::keyPressEvent(QKeyEvent *event)
 {
   switch(event->key())
@@ -488,6 +439,29 @@ void JGEQtRenderer::keyPressEvent(QKeyEvent *event)
   return;
 }
 
+void JGEQtRenderer::keyReleaseEvent(QKeyEvent *event)
+{
+    switch(event->key())
+    {
+  #ifdef Q_WS_MAEMO_5
+    case Qt::Key_F7:
+      /* interrupt please */
+      g_engine->ReleaseKey(JGE_BTN_SEC);
+      break;
+    case Qt::Key_F8:
+      /* next phase please */
+      g_engine->ReleaseKey(JGE_BTN_PREV);
+      break;
+  #endif // Q_WS_MAEMO_5
+    default:
+      g_engine->ReleaseKey((LocalKeySym)event->key());
+    }
+
+    event->accept();
+    QWidget::keyReleaseEvent(event);
+    return;
+}
+
 void JGEQtRenderer::showEvent ( QShowEvent * event )
 {
   if(!timerStarted)
@@ -511,15 +485,6 @@ void JGEQtRenderer::hideEvent ( QHideEvent * event )
     timerStarted = false;
   }
 }
-
-void JGEQtRenderer::keyReleaseEvent(QKeyEvent *event)
-{
-  g_engine->ReleaseKey((LocalKeySym)event->key());
-  event->accept();
-  QWidget::keyReleaseEvent(event);
-  return;
-}
-
 
 int main(int argc, char* argv[])
 {
