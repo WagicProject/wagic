@@ -16,37 +16,32 @@ using std::cout;
 #undef True
 #endif
 
-// small sized cards are 40 * 28, use this as a compensation factor
-const float kCardRatio = 28.0f / 40.0f;
-// allow a slight fudge factor of 4 pixels when comparing distances (ie ~ 1/10th of a small card's diagonal length)
-const float kSlopValue = 4.0f;
-
 struct Left: public Exp
 {
     static inline bool test(CardSelector::Target* ref, CardSelector::Target* test)
     {
-        return (ref->x - test->x) * kCardRatio > fabs(ref->y - test->y) - kSlopValue;
+        return ref->x - test->x > fabs(ref->y - test->y);
     }
 };
 struct Right: public Exp
 {
     static inline bool test(CardSelector::Target* ref, CardSelector::Target* test)
     {
-        return (test->x - ref->x) * kCardRatio > fabs(ref->y - test->y) - kSlopValue;
+        return test->x - ref->x > fabs(ref->y - test->y);
     }
 };
 struct Up: public Exp
 {
     static inline bool test(CardSelector::Target* ref, CardSelector::Target* test)
     {
-        return ref->y - test->y > fabs(ref->x - test->x) * kCardRatio - kSlopValue;
+        return ref->y - test->y > fabs(ref->x - test->x);
     }
 };
 struct Down: public Exp
 {
     static inline bool test(CardSelector::Target* ref, CardSelector::Target* test)
     {
-        return test->y - ref->y > fabs(ref->x - test->x) * kCardRatio - kSlopValue;
+        return test->y - ref->y > fabs(ref->x - test->x);
     }
 };
 struct Diff: public Exp
