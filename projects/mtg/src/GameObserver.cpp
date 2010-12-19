@@ -549,20 +549,14 @@ void GameObserver::gameStateBasedEffects()
             for (int j = 0; j < nbcards; ++j)
             {
                 MTGCardInstance * c = z->cards[j];
+
+                if(!c)break;
                 while (c->flanked)
                 {//undoes the flanking on a card
                     c->power += 1;
                     c->addToToughness(1);
                     c->flanked -= 1;
                 }
-                if (c->has(Constants::TREASON))
-                {
-                    WEvent * e = NEW WEventCardSacrifice(c);
-                    GameObserver * game = GameObserver::GetInstance();
-                    game->receiveEvent(e);
-                    p->game->putInGraveyard(c);
-                }
-                if (c->has(Constants::UNEARTH)) p->game->putInExile(c);
                 if (c->fresh) c->fresh = 0;
                 if (c->has(Constants::ONLYONEBOTH))
                 {
@@ -571,6 +565,31 @@ void GameObserver::gameStateBasedEffects()
                 }
 
             }
+            for (int t = 0; t < nbcards; t++)
+            {
+                MTGCardInstance * c = z->cards[t];
+
+                if (c->has(Constants::TREASON))
+                {
+                    WEvent * e = NEW WEventCardSacrifice(c);
+                    GameObserver * game = GameObserver::GetInstance();
+                    game->receiveEvent(e);
+
+                    p->game->putInGraveyard(c);
+                }
+                if (c->has(Constants::UNEARTH))
+                {
+                    p->game->putInExile(c);
+
+                }
+             if(nbcards > z->nb_cards)
+             {
+              t = 0;
+              nbcards = z->nb_cards;
+              }
+            }
+
+
             MTGGameZone * f = p->game->graveyard;
             for (int k = 0; k < f->nb_cards; k++)
             {
