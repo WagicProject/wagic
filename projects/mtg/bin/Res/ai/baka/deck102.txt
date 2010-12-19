@@ -1,0 +1,28 @@
+#NAME:The KOR
+#DESC:Can you beat your own creations?
+#DESC:User created AI Deck # 104
+Golem-Skin Gauntlets	 (MRD) *1
+Plains	 (8ED) *4
+Plains	 (8ED) *4
+Bonesplitter	 (MRD) *2
+Vulshok Battlegear	 (MRD) *1
+Plains	 (MRD) *4
+Plains	 (MRD) *4
+Plains	 (MRD) *4
+Cranial Plating	 (5DN) *2
+Skyhunter Skirmisher	 (5DN) *2
+Paradise Mantle	 (5DN) *2
+Shuko	 (BOK) *2
+Umezawa's Jitte	 (BOK) *2
+Kor Duelist	 (ZEN) *2
+Spidersilk Net	 (ZEN) *1
+Bone Saw	 (CFX) *2
+Armament Master	 (ZEN) *3
+Lone Missionary	 (ROE) *2
+Pennon Blade	 (ROE) *1
+Kor Line-Slinger	 (ROE) *2
+Kitesail Apprentice	 (WWK) *2
+Stoneforge Mystic	 (WWK) *2
+Accorder's Shield	 (SOM) *2
+Swords to Plowshares	 (EVT) *2
+Kor Hookmaster	 (EVT) *2

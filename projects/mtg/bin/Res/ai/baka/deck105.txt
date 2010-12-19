@@ -1,0 +1,28 @@
+#NAME:Infected wounds
+Forest	 (UGL) *4
+Forest	 (ALA) *1
+Forest	 (ALA) *1
+Forest	 (M10) *1
+Forest	 (M10) *1
+Necropede	 (SOM) *2
+Contagious Nim	 (SOM) *2
+Blight Mamba	 (SOM) *2
+Ichor Rats	 (SOM) *2
+Ichorclaw Myr	 (SOM) *4
+Blackcleave Goblin	 (SOM) *2
+Corpse Cur	 (SOM) *2
+Forest	 (ZEN) *4
+Forest	 (ZEN) *3
+Forest	 (ZEN) *4
+Forest	 (ZEN) *2
+Swamp	 (HOP) *3
+Cystbearer	 (SOM) *2
+Tel-Jilad Fallen	 (SOM) *2
+Swamp	 (ROE) *4
+Swamp	 (ROE) *3
+Swamp	 (ROE) *4
+Putrefax	 (SOM) *2
+Plague Stinger	 (SOM) *2
+Relic Putrescence	 (SOM) *2
+Skithiryx, the Blight Dragon	 (SOM) *2
+Hand of the Praetors	 (SOM) *2

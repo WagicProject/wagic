@@ -1,0 +1,23 @@
+#NAME:Kill by Numbers
+#DESC:They just keep multiplying.
+Mox Emerald	 (LEA) *2
+Mox Pearl	 (LEA) *2
+Forest	 (LEA) *15
+Plains	 (LEA) *8
+Marble Diamond	 (MIR) *2
+Blazing Archon	 (*) *2
+Serra's Sanctum	 (USG) *1
+Gaea's Cradle	 (USG) *2
+Rofellos, Llanowar Emissary	 (UDS) *2
+Beacon of Creation	 (5DN) *2
+Honden of Life's Web	 (CHK) *2
+Kabira Vindicator	 (*) *2
+Rhys the Redeemed	 (SHM) *2
+Fable of Wolf and Owl	 (EVE) *2
+Murkfiend Liege	 (EVE) *2
+Creakwood Liege	 (EVE) *2
+Spawnwrithe	 (SHM) *2
+Awakening Zone	 (ROE) *3
+Kazandu Tuskcaller	 (ROE) *2
+Conqueror's Pledge	 (ZEN) *2
+Bestial Menace	 (WWK) *2

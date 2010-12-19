@@ -1,0 +1,37 @@
+#NAME:Smoke and mirrors
+Order of the Ebon Hand	 (FEM) *2
+Combat Medic	 (FEM) *1
+Combat Medic	 (FEM) *1
+Combat Medic	 (FEM) *1
+Sanctum Custodian	 (USG) *2
+False Prophet	 (UDS) *1
+Revered Elder	 (MRQ) *1
+Hallowed Healer	 (ODY) *1
+Beloved Chaplain	 (ODY) *2
+Ancestor's Chosen	 (JUD) *1
+Battlefield Medic	 (ONS) *1
+Rotlung Reanimator	 (ONS) *4
+Doubtless One	 (ONS) *2
+Glowrider	 (LGN) *2
+Aven Redeemer	 (LGN) *1
+Edgewalker	 (SCG) *2
+Vile Deacon	 (LGN) *2
+Master Healer	 (8ED) *1
+Auriok Champion	 (5DN) *2
+Swamp	 (UNH) *3
+Master Healer	 (9ED) *1
+Godless Shrine	 (GPT) *3
+Disciple of Tevesh Szat	 (CSP) *2
+Blightspeaker	 (PLC) *2
+True Believer	 (10E) *1
+Soul Warden	 (10E) *1
+Icatian Priest	 (10E) *1
+Platinum Angel	 (10E) *1
+Soul's Attendant	 (ROE) *1
+Plains	 (ZEN) *3
+Plains	 (ZEN) *2
+Plains	 (ZEN) *2
+Plains	 (ZEN) *3
+Swamp	 (ZEN) *3
+Swamp	 (ZEN) *3
+Shepherd of Rot	 (HOP) *2
