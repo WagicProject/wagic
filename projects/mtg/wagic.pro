@@ -7,7 +7,7 @@
 QT       += core gui opengl
 macx:QT += phonon
 #CONFIG += warn_off precompile_header // causes some massives errors on mac.
-VERSION = 0.14.0
+VERSION = 0.14.1
 TARGET = wagic
 TEMPLATE = app
 unix|macx:QMAKE_CXXFLAGS += -Wno-unused-parameter
