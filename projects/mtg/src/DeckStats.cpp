@@ -185,6 +185,41 @@ void DeckStats::saveStats(Player *player, Player *opponent, GameObserver * game)
     }
     save(player);
 }
+
+// StatsWrapper
+
+    float noLandsProbInTurn[Constants::STATS_FOR_TURNS] = {0.0f};
+    float noCreaturesProbInTurn[Constants::STATS_FOR_TURNS] = {0.0f};
+
+    int countCardsPerCostAndColor[Constants::STATS_MAX_MANA_COST + 1][Constants::MTG_NB_COLORS + 1] = {{0,0}};
+    int countCreaturesPerCostAndColor[Constants::STATS_MAX_MANA_COST + 1][Constants::MTG_NB_COLORS + 1] = {{0,0}};
+    int countSpellsPerCostAndColor[Constants::STATS_MAX_MANA_COST + 1][Constants::MTG_NB_COLORS + 1] = {{0,0}};
+
+    int countCardsPerCost[Constants::STATS_MAX_MANA_COST + 1] = {0};
+    int countCreaturesPerCost[Constants::STATS_MAX_MANA_COST + 1] = {0};
+    int countSpellsPerCost[Constants::STATS_MAX_MANA_COST + 1] = {0};
+    int countLandsPerColor[Constants::MTG_NB_COLORS + 1] = {0};
+    int countBasicLandsPerColor[Constants::MTG_NB_COLORS + 1] = {0};
+    int countNonLandProducersPerColor[Constants::MTG_NB_COLORS + 1] = {0};
+    int totalCostPerColor[Constants::MTG_NB_COLORS + 1] = {0};
+
+void StatsWrapper::initValues()
+{
+    // initilize all member values to 0
+       // Stats parameters and status
+    mDeckId = currentPage = pageCount = 0;
+    needUpdate = true;
+
+    // Actual stats
+    percentVictories = 0;
+    gamesPlayed = cardCount = countLands = totalPrice = totalManaCost = 0;
+    totalCreatureCost = totalSpellCost = countManaProducers = 0;
+    avgManaCost = avgCreatureCost = avgSpellCost = 0.0f;
+
+    countCreatures = countSpells = countInstants = countEnchantments = countSorceries = countArtifacts = 0;
+    
+}
+
 StatsWrapper::StatsWrapper(int deckId)
 {
     mDeckId = deckId;
@@ -201,6 +236,9 @@ StatsWrapper::StatsWrapper(string deckstats)
 
 void StatsWrapper::initStatistics(string deckstats)
 {
+    // initialize member variables to make sure they have valid values
+    initValues();
+    
     // Load deck statistics
     DeckStats * stats = DeckStats::GetInstance();
     aiDeckNames.clear();

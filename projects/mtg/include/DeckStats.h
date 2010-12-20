@@ -45,9 +45,10 @@ public:
 
 class StatsWrapper
 {
-
+private: 
+    void initValues();
+    
 public:
-
     StatsWrapper(int deckId);
     StatsWrapper(string filename);
     ~StatsWrapper();
