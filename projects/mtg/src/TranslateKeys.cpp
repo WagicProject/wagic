@@ -20,7 +20,7 @@ const KeyRep& translateKey(LocalKeySym key)
     }
 
     char* str = NULL;
-#if not defined(QT_CONFIG) && not defined(IOS)
+#if !defined(QT_CONFIG) && !defined(IOS)
     str = XKeysymToString(key);
 #endif // QT_CONFIG
     if (!str)
