@@ -272,7 +272,7 @@ void JGEQtRenderer::initializeGL()
 
 void JGEQtRenderer::resizeGL(int width, int height)
 {
-  if ((GLfloat)width / (GLfloat)height < ACTUAL_RATIO)
+  if ((GLfloat)width / (GLfloat)height <= ACTUAL_RATIO)
   {
     viewPort.setLeft(0);
     viewPort.setTop(-((width/ACTUAL_RATIO)-height)/2);
