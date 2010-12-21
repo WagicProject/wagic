@@ -100,9 +100,9 @@ protected:
 #endif //Q_WS_MAEMO_5
 
 protected:
-  QPoint lastPos;
   int timerId;
   bool timerStarted;
+  QRect viewPort;
 
 #ifdef Q_WS_MAEMO_5
   QDBusConnection dBusConnection;
@@ -270,25 +270,40 @@ void JGEQtRenderer::initializeGL()
   glEnable(GL_SCISSOR_TEST);				// Enable Clipping
 }
 
-GLvoid ReSizeGLScene(GLsizei width, GLsizei height)	// Resize The GL Window
+void JGEQtRenderer::resizeGL(int width, int height)
 {
-  JRenderer::GetInstance()->SetActualWidth(width);
-  JRenderer::GetInstance()->SetActualHeight(height);
-
   if ((GLfloat)width / (GLfloat)height < ACTUAL_RATIO)
   {
-    glViewport(0, -((width/ACTUAL_RATIO)-height)/2, width, width / ACTUAL_RATIO);			// Reset The Current Viewport
+    viewPort.setLeft(0);
+    viewPort.setTop(-((width/ACTUAL_RATIO)-height)/2);
+    viewPort.setRight(width);
+    viewPort.setBottom(-((width/ACTUAL_RATIO)-height)/2 + width / ACTUAL_RATIO);
   }
   else
   {
-    glViewport(-(height*ACTUAL_RATIO-width)/2, 0, height * ACTUAL_RATIO, height);
+    viewPort.setLeft(-(height*ACTUAL_RATIO-width)/2);
+    viewPort.setTop(0);
+    viewPort.setRight(height * ACTUAL_RATIO);
+    viewPort.setBottom(-((width/ACTUAL_RATIO)-height)/2 + width / ACTUAL_RATIO + height);
   }
-  glScissor(0, 0, width, height);
-}
 
-void JGEQtRenderer::resizeGL(int width, int height)
-{
-  ReSizeGLScene(width, height);
+  glViewport(viewPort.left(), viewPort.top(), viewPort.right()-viewPort.left(), viewPort.bottom()-viewPort.top());
+
+  JRenderer::GetInstance()->SetActualWidth(viewPort.right()-viewPort.left());
+  JRenderer::GetInstance()->SetActualHeight(viewPort.bottom()-viewPort.top());
+  glScissor(0, 0, width, height);
+
+#if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
+  glMatrixMode (GL_PROJECTION);										// Select The Projection Matrix
+  glLoadIdentity ();													// Reset The Projection Matrix
+
+  gluOrtho2D(0.0f, (float) width-1.0f, 0.0f, (float) height-1.0f);
+
+  glMatrixMode (GL_MODELVIEW);										// Select The Modelview Matrix
+  glLoadIdentity ();													// Reset The Modelview Matrix
+
+  glDisable (GL_DEPTH_TEST);
+#endif
 }
 
 void JGEQtRenderer::paintGL()
@@ -319,12 +334,26 @@ void JGEQtRenderer::mousePressEvent(QMouseEvent *event)
 {
   if(event->button() == Qt::LeftButton)
   {
-    lastPos = event->pos();
+    QPoint lastPos = event->pos();
     // this is intended to convert window coordinate into game coordinate.
     // this is correct only if the game and window have the same aspect ratio, otherwise, it's just wrong
     int actualWidth = (int) JRenderer::GetInstance()->GetActualWidth();
     int actualHeight = (int) JRenderer::GetInstance()->GetActualHeight();
-    g_engine->LeftClicked((lastPos.x()*SCREEN_WIDTH)/actualWidth, (lastPos.y()*SCREEN_HEIGHT)/actualHeight);
+
+    if (lastPos.y() >= viewPort.top() &&
+      lastPos.y() <= viewPort.bottom() &&
+      lastPos.x() <= viewPort.right() &&
+      lastPos.x() >= viewPort.left()) {
+      g_engine->LeftClicked(
+                  ((lastPos.x()-viewPort.left())*SCREEN_WIDTH)/actualWidth,
+                  ((lastPos.y()-viewPort.top())*SCREEN_HEIGHT)/actualHeight);
+    } else if(lastPos.y()<viewPort.top()) {
+      g_engine->HoldKey_NoRepeat(JGE_BTN_MENU);
+    } else if(lastPos.y()>viewPort.bottom()) {
+      g_engine->HoldKey_NoRepeat(JGE_BTN_NEXT);
+    }
+
+//    g_engine->LeftClicked((lastPos.x()*SCREEN_WIDTH)/actualWidth, (lastPos.y()*SCREEN_HEIGHT)/actualHeight);
     event->accept();
   }
   else if(event->button() == Qt::RightButton)
@@ -347,7 +376,22 @@ void JGEQtRenderer::mouseReleaseEvent(QMouseEvent *event)
 {
   if(event->button() == Qt::LeftButton)
   {
-    QGLWidget::mouseReleaseEvent(event);
+    QPoint lastPos = event->pos();
+    // this is intended to convert window coordinate into game coordinate.
+    // this is correct only if the game and window have the same aspect ratio, otherwise, it's just wrong
+    int actualWidth = (int) JRenderer::GetInstance()->GetActualWidth();
+    int actualHeight = (int) JRenderer::GetInstance()->GetActualHeight();
+
+    if (lastPos.y() >= viewPort.top() &&
+      lastPos.y() <= viewPort.bottom() &&
+      lastPos.x() <= viewPort.right() &&
+      lastPos.x() >= viewPort.left()) {
+    } else if(lastPos.y() < viewPort.top()) {
+      g_engine->ReleaseKey(JGE_BTN_MENU);
+    } else if(lastPos.y() > viewPort.bottom()) {
+      g_engine->ReleaseKey(JGE_BTN_NEXT);
+    }
+    event->accept();
   }
   else if(event->button() == Qt::RightButton)
   { /* next phase please */
@@ -367,13 +411,22 @@ void JGEQtRenderer::mouseReleaseEvent(QMouseEvent *event)
 
 void JGEQtRenderer::mouseMoveEvent(QMouseEvent *event)
 {
-  // this is intended to convert window coordinate into game coordinate.
-  // this is correct only if the game and window have the same aspect ratio, otherwise, it's just wrong
   int actualWidth = (int) JRenderer::GetInstance()->GetActualWidth();
   int actualHeight = (int) JRenderer::GetInstance()->GetActualHeight();
 
-  g_engine->LeftClicked((event->pos().x()*SCREEN_WIDTH)/actualWidth, (event->pos().y()*SCREEN_HEIGHT)/actualHeight);
-  event->accept();
+  QPoint lastPos = event->pos();
+
+  if (lastPos.y() >= viewPort.top() &&
+    lastPos.y() <= viewPort.bottom() &&
+    lastPos.x() <= viewPort.right() &&
+    lastPos.x() >= viewPort.left()) {
+    g_engine->LeftClicked(
+                ((lastPos.x()-viewPort.left())*SCREEN_WIDTH)/actualWidth,
+                ((lastPos.y()-viewPort.top())*SCREEN_HEIGHT)/actualHeight);
+    event->accept();
+  } else {
+    QGLWidget::mouseMoveEvent(event);
+  }
 }
 
 void JGEQtRenderer::mouseDoubleClickEvent(QMouseEvent *event)
