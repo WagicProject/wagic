@@ -338,10 +338,6 @@ public:
 
 	int mFilter;
 
-#if defined (QT_CONFIG)
-  QImage mImage;
-#endif
-
 #if defined (WIN32) || defined (LINUX) || defined (IOS) 	
 	GLuint mTexId;
     u8* mBuffer;

@@ -353,9 +353,7 @@ JTexture::~JTexture()
 
     if (mBuffer)
     {
-#ifndef QT_CONFIG
         delete [] mBuffer;
-#endif
         mBuffer = NULL;
     }
 }
@@ -2118,18 +2116,22 @@ JTexture* JRenderer::LoadTexture(const char* filename, int mode, int TextureForm
     if (tex)
     {
       tmpImage = tmpImage.convertToFormat(QImage::Format_ARGB32_Premultiplied);
-      tex->mImage = tmpImage.rgbSwapped();
+      tmpImage = tmpImage.rgbSwapped();
 
       if (mImageFilter != NULL)
-          mImageFilter->ProcessImage((PIXEL_TYPE*)tex->mImage.bits(), tex->mImage.width(), tex->mImage.height());
+          mImageFilter->ProcessImage((PIXEL_TYPE*)tmpImage.bits(), tmpImage.width(), tmpImage.height());
 
       tex->mFilter = TEX_FILTER_LINEAR;
-      tex->mWidth = tex->mImage.width();
-      tex->mHeight = tex->mImage.height();
-      tex->mTexWidth = tex->mImage.width();
-      tex->mTexHeight = tex->mImage.height();
+      tex->mWidth = tmpImage.width();
+      tex->mHeight = tmpImage.height();
+      tex->mTexWidth = getNextPower2(tmpImage.width());
+      tex->mTexHeight = getNextPower2(tmpImage.height());;
+      tex->mBuffer = new BYTE[tex->mTexWidth*tex->mTexHeight*4];
 
-      tex->mBuffer = tex->mImage.bits();
+      for(int i=0; i < tex->mHeight; i++)
+      {
+        memcpy(tex->mBuffer+(i*4*tex->mTexWidth), tmpImage.constScanLine(i), tmpImage.bytesPerLine());
+      }
     }
   } while(false);
 
@@ -2187,9 +2189,7 @@ void JRenderer::TransferTextureToGLContext(JTexture& inTexture)
                 glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, inTexture.mTexWidth, inTexture.mTexHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, inTexture.mBuffer);
             }
         }
-#ifndef QT_CONFIG
         delete [] inTexture.mBuffer;
-#endif
         inTexture.mBuffer = NULL;
 
         checkGlError();
