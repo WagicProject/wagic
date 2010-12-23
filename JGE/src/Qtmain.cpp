@@ -555,6 +555,20 @@ int main(int argc, char* argv[])
 
   g_glwidget = new JGEQtRenderer(NULL);
   g_glwidget->resize(ACTUAL_SCREEN_WIDTH, ACTUAL_SCREEN_HEIGHT);
+
+  QGLFormat::OpenGLVersionFlags glflags = g_glwidget->format().openGLVersionFlags();
+
+#ifdef Q_WS_MAEMO_5
+  if((glflags & QGLFormat::OpenGL_ES_Version_2_0) == 0)
+#else
+  if((glflags & QGLFormat::OpenGL_Version_2_0) == 0)
+#endif
+  {
+    qCritical("OpenGL flags 0x%x unsupported", glflags);
+    return -1;
+  }
+
+
 #ifdef Q_WS_MAEMO_5
   // We start in fullscreen on mobile
   g_glwidget->showFullScreen();
@@ -565,7 +579,7 @@ int main(int argc, char* argv[])
 
   if (!InitGame())
   {
-      qDebug("Could not init the game\n");
+      qCritical("Could not init the game\n");
       return 1;
   }
 
