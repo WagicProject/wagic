@@ -32,7 +32,8 @@ OBJECTS_DIR = objs
 MOC_DIR = objs
 DESTDIR = bin
 
-windows:LIBS += -L../../JGE/Dependencies/lib -lfmodvc
+unix:LIBS += -ljpeg -lgif -lpng12
+windows:LIBS += -L../../JGE/Dependencies/lib -llibjpeg-static-mt-debug -lgiflib -llibpng -lfmodvc
 macx|unix:LIBS += -lz
 
 PRECOMPILED_HEADER = include/PrecompiledHeader.h
