@@ -55874,7 +55874,8 @@ toughness=3
 [/card]
 [card]
 name=Talon of Pain
-auto=@damaged(opponent) from(other *|mybattlefield,mystack):counter(0/0,1,charge)
+auto=@damaged(opponent) from(other *|mystack):counter(0/0,1,charge)
+auto=@damaged(opponent) from(other *|mybattlefield):counter(0/0,1,charge)
 auto={1}{C(0/0,-1,charge)}{T}:name(remove 1 counter) && damage:1 target(creature,player)
 auto={2}{C(0/0,-2,charge)}{T}:name(remove 2 counters) && damage:2 target(creature,player)
 auto={3}{C(0/0,-3,charge)}{T}:name(remove 3 counters) && damage:3 target(creature,player)
@@ -64679,7 +64680,7 @@ toughness=2
 [/card]
 [card]
 name=Worldslayer
-auto=@damaged(player) from(mytgt[attacking]):destroy all(other *|battlefield)
+auto=@combatdamaged(opponent) from(mytgt):destroy all(other *|battlefield)
 auto={5}:equip
 mana={5}
 text=Whenever equipped creature deals combat damage to a player, destroy all permanents other than Worldslayer. -- Equip {5} ({5}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
