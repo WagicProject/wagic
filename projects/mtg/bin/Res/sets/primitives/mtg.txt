@@ -12314,8 +12314,8 @@ toughness=3
 [card]
 name=Darksteel Garrison
 auto={3}:equip target(land|mybattlefield)
-auto=indestructible
-auto=@tapped(mytgt):1/1 target(creature|battlefield)
+auto=teach(land) indestructible
+auto=@tapped(mytgt):1/1 target(creature|battlefield) ueot
 text=Fortified land is indestructible. Whenever fortified land becomes tapped, target creature gets +1/+1 until end of turn. -- Fortify  ({3}: Attach to target land you control. Fortify only as a sorcery. This card comes into play unattached and stays in play if the land leaves play.)
 mana={2}
 type=Artifact
@@ -21101,7 +21101,7 @@ type=Land
 [card]
 name=General's Kabuto
 auto={2}:equip
-auto=shroud
+auto=teach(creature) shroud
 auto=teach(creature) preventAllCombatDamage to(this)
 text=Equipped creature has shroud. (It can't be the target of spells or abilities.) -- Prevent all combat damage that would be dealt to equipped creature. -- Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
 mana={4}
@@ -31974,7 +31974,7 @@ toughness=1
 [card]
 name=Lightning Greaves
 auto={0}:equip
-auto=shroud
+auto=teach(creature) shroud
 auto=haste
 text=Equipped creature has haste and shroud. (It can't be the target of spells or abilities.) -- Equip {0} ({0}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
 mana={2}
@@ -32567,8 +32567,8 @@ toughness=3
 [card]
 name=Lord of the Pit
 abilities=flying,trample
-alias=1166
-auto=upcost[{S(other creature|myBattlefield)}] damage:7 controller
+auto=@each myupkeep:moveTo(mygraveyard) notatarget(other creature|mybattlefield)
+auto=@each myupkeep:aslongas(other creature|mybattlefield) damage:7 controller <1
 text=Flying, trample -- At the beginning of your upkeep, sacrifice a creature other than Lord of the Pit. If you can't, Lord of the Pit deals 7 damage to you.
 mana={4}{B}{B}{B}
 type=Creature
@@ -33139,7 +33139,7 @@ name=Magebane Armor
 auto={2}:equip
 auto=-flying
 auto=2/4
-auto=preventallnoncombatdamage to(mytgt)
+auto=teach(creature) preventAllNoncombatDamage to(this)
 text=Equipped creature gets +2/+4 and loses flying. -- Prevent all noncombat damage that would be dealt to equipped creature. -- Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
 mana={3}
 type=Artifact
@@ -37568,7 +37568,7 @@ toughness=2
 [/card]
 [card]
 name=Neurok Stealthsuit
-auto=shroud
+auto=teach(creature) shroud
 auto={U}{U}:attach
 auto={1}:equip
 text=Equipped creature has shroud. (It can't be the target of spells or abilities.) -- {U}{U}: Attach Neurok Stealthsuit to target creature you control. -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
@@ -49109,7 +49109,7 @@ subtype=Aura
 [card]
 name=Shield of Kaldra
 auto=lord(sword of kaldra,shield of kaldra,helm of kaldra) indestructible
-auto=indestructible
+auto=teach(creature) indestructible
 auto={4}:equip
 text=Equipment named Sword of Kaldra, Shield of Kaldra, and Helm of Kaldra are indestructible. -- Equipped creature is indestructible. ("Destroy" effects and lethal damage don't destroy it.) -- Equip {4}
 mana={4}
@@ -55874,28 +55874,27 @@ toughness=3
 [/card]
 [card]
 name=Talon of Pain
-auto=@damaged(player) from(other *|mybattlefield,mystack):counter(0/0,1,charge)
-auto=@damaged(player) from(other *|mystack):counter(0/0,1,charge)
-auto={C(0/0,-1,charge)}{T}:name(remove 1 counter) && damage:1 target(creature,player)
-auto={C(0/0,-2,charge)}{T}:name(remove 2 counters) && damage:2 target(creature,player)
-auto={C(0/0,-3,charge)}{T}:name(remove 3 counters) && damage:3 target(creature,player)
-auto={C(0/0,-4,charge)}{T}:name(remove 4 counters) && damage:4 target(creature,player)
-auto={C(0/0,-5,charge)}{T}:name(remove 5 counters) && damage:5 target(creature,player)
-auto={C(0/0,-6,charge)}{T}:name(remove 6 counters) && damage:6 target(creature,player)
-auto={C(0/0,-7,charge)}{T}:name(remove 7 counters) && damage:7 target(creature,player)
-auto={C(0/0,-8,charge)}{T}:name(remove 8 counters) && damage:8 target(creature,player)
-auto={C(0/0,-9,charge)}{T}:name(remove 9 counters) && damage:9 target(creature,player)
-auto={C(0/0,-10,charge)}{T}:name(remove 10 counter) && damage:10 target(creature,player)
-auto={C(0/0,-11,charge)}{T}:name(remove 11 counters) && damage:11 target(creature,player)
-auto={C(0/0,-12,charge)}{T}:name(remove 12 counters) && damage:12 target(creature,player)
-auto={C(0/0,-13,charge)}{T}:name(remove 13 counters) && damage:13 target(creature,player)
-auto={C(0/0,-14,charge)}{T}:name(remove 14 counter) && damage:14 target(creature,player)
-auto={C(0/0,-15,charge)}{T}:name(remove 9 counters) && damage:15 target(creature,player)
-auto={C(0/0,-16,charge)}{T}:name(remove 10 counter) && damage:16 target(creature,player)
-auto={C(0/0,-17,charge)}{T}:name(remove 11 counters) && damage:17 target(creature,player)
-auto={C(0/0,-18,charge)}{T}:name(remove 12 counters) && damage:18 target(creature,player)
-auto={C(0/0,-19,charge)}{T}:name(remove 13 counters) && damage:19 target(creature,player)
-auto={C(0/0,-20,charge)}{T}:name(remove 14 counter) && damage:20 target(creature,player)
+auto=@damaged(opponent) from(other *|mybattlefield,mystack):counter(0/0,1,charge)
+auto={1}{C(0/0,-1,charge)}{T}:name(remove 1 counter) && damage:1 target(creature,player)
+auto={2}{C(0/0,-2,charge)}{T}:name(remove 2 counters) && damage:2 target(creature,player)
+auto={3}{C(0/0,-3,charge)}{T}:name(remove 3 counters) && damage:3 target(creature,player)
+auto={4}{C(0/0,-4,charge)}{T}:name(remove 4 counters) && damage:4 target(creature,player)
+auto={5}{C(0/0,-5,charge)}{T}:name(remove 5 counters) && damage:5 target(creature,player)
+auto={6}{C(0/0,-6,charge)}{T}:name(remove 6 counters) && damage:6 target(creature,player)
+auto={7}{C(0/0,-7,charge)}{T}:name(remove 7 counters) && damage:7 target(creature,player)
+auto={8}{C(0/0,-8,charge)}{T}:name(remove 8 counters) && damage:8 target(creature,player)
+auto={9}{C(0/0,-9,charge)}{T}:name(remove 9 counters) && damage:9 target(creature,player)
+auto={10}{C(0/0,-10,charge)}{T}:name(remove 10 counter) && damage:10 target(creature,player)
+auto={11}{C(0/0,-11,charge)}{T}:name(remove 11 counters) && damage:11 target(creature,player)
+auto={12}{C(0/0,-12,charge)}{T}:name(remove 12 counters) && damage:12 target(creature,player)
+auto={13}{C(0/0,-13,charge)}{T}:name(remove 13 counters) && damage:13 target(creature,player)
+auto={14}{C(0/0,-14,charge)}{T}:name(remove 14 counter) && damage:14 target(creature,player)
+auto={15}{C(0/0,-15,charge)}{T}:name(remove 15 counters) && damage:15 target(creature,player)
+auto={16}{C(0/0,-16,charge)}{T}:name(remove 16 counter) && damage:16 target(creature,player)
+auto={17}{C(0/0,-17,charge)}{T}:name(remove 17 counters) && damage:17 target(creature,player)
+auto={18}{C(0/0,-18,charge)}{T}:name(remove 18 counters) && damage:18 target(creature,player)
+auto={19}{C(0/0,-19,charge)}{T}:name(remove 19 counters) && damage:19 target(creature,player)
+auto={20}{C(0/0,-20,charge)}{T}:name(remove 20 counter) && damage:20 target(creature,player)
 text=Whenever a source you control other than Talon of Pain deals damage to an opponent, put a charge counter on Talon of Pain. -- {X}, {T}, Remove X charge counters from Talon of Pain: Talon of Pain deals X damage to target creature or player.
 mana={4}
 type=Artifact
@@ -56925,7 +56924,7 @@ toughness=5
 [/card]
 [card]
 name=That Which Was Taken
-auto={4}{T}:counter(0/0,1,Divinity) target(*)
+auto={4}{T}:counter(0/0,1,Divinity) target(other *)
 auto=lord(*[counter{0/0.1.Divinity}]) indestructible
 text={4}, {T}: Put a divinity counter on target permanent other than That Which Was Taken. -- Each permanent with a divinity counter on it is indestructible.
 mana={5}
@@ -61393,7 +61392,7 @@ toughness=2
 [card]
 name=Vigor
 abilities=trample
-auto=lord(creature|myBattlefield) vigor
+auto=lord(other creature|myBattlefield) vigor
 autograveyard=moveTo(ownerlibrary) && shuffle
 text=Trample -- If damage would be dealt to a creature you control other than Vigor, prevent that damage. Put a +1/+1 counter on that creature for each 1 damage prevented this way. -- When Vigor is put into a graveyard from anywhere, shuffle it into its owner's library.
 mana={3}{G}{G}{G}
@@ -63629,7 +63628,7 @@ type=Instant
 name=Whispersilk Cloak
 auto={2}:equip
 auto=unblockable
-auto=shroud
+auto=teach(creature) shroud
 text=Equipped creature is unblockable. -- Equipped creature has shroud. (It can't be the target of spells or abilities.) -- Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
 mana={3}
 type=Artifact
@@ -64680,7 +64679,7 @@ toughness=2
 [/card]
 [card]
 name=Worldslayer
-auto=@damaged(player) from(mytgt[attacking]):destroy all(other *[-worldslayer]|battlefield)
+auto=@damaged(player) from(mytgt[attacking]):destroy all(other *|battlefield)
 auto={5}:equip
 mana={5}
 text=Whenever equipped creature deals combat damage to a player, destroy all permanents other than Worldslayer. -- Equip {5} ({5}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
@@ -65169,7 +65168,7 @@ toughness=5
 [/card]
 [card]
 name=Yomiji, Who Bars the Way
-auto=@movedTo(mygraveyard) from(other creature[legendary]|mybattlefield):all(trigger[to]) moveTo(myhand)
+auto=@movedTo(graveyard) from(other *[legendary]|battlefield):all(trigger[to]) moveTo(hand)
 text=Whenever a legendary permanent other than Yomiji, Who Bars the Way is put into a graveyard from the battlefield, return that card to its owner's hand.
 mana={5}{W}{W}
 type=Legendary Creature
