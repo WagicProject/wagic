@@ -347,6 +347,9 @@ void JGEQtRenderer::mousePressEvent(QMouseEvent *event)
       g_engine->LeftClicked(
                   ((lastPos.x()-viewPort.left())*SCREEN_WIDTH)/actualWidth,
                   ((lastPos.y()-viewPort.top())*SCREEN_HEIGHT)/actualHeight);
+#ifndef Q_WS_MAEMO_5
+      g_engine->HoldKey_NoRepeat(JGE_BTN_OK);
+#endif
     } else if(lastPos.y()<viewPort.top()) {
       g_engine->HoldKey_NoRepeat(JGE_BTN_MENU);
     } else if(lastPos.y()>viewPort.bottom()) {
@@ -386,6 +389,9 @@ void JGEQtRenderer::mouseReleaseEvent(QMouseEvent *event)
       lastPos.y() <= viewPort.bottom() &&
       lastPos.x() <= viewPort.right() &&
       lastPos.x() >= viewPort.left()) {
+#ifndef Q_WS_MAEMO_5
+      g_engine->ReleaseKey(JGE_BTN_OK);
+#endif
     } else if(lastPos.y() < viewPort.top()) {
       g_engine->ReleaseKey(JGE_BTN_MENU);
     } else if(lastPos.y() > viewPort.bottom()) {
@@ -431,12 +437,14 @@ void JGEQtRenderer::mouseMoveEvent(QMouseEvent *event)
 
 void JGEQtRenderer::mouseDoubleClickEvent(QMouseEvent *event)
 {
+#ifdef Q_WS_MAEMO_5
   if(event->button() == Qt::LeftButton)
   {
     g_engine->HoldKey_NoRepeat(JGE_BTN_OK);
     event->accept();
   }
   else
+#endif
   {
     QGLWidget::mouseDoubleClickEvent(event);
   }
