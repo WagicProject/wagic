@@ -349,7 +349,7 @@ type=Sorcery
 [card]
 name=Acid Web Spider
 abilities=reach
-auto=destroy target(equipment)
+auto=may destroy target(equipment)
 text=Reach -- When Acid Web Spider enters the battlefield, you may destroy target Equipment.
 mana={3}{G}{G}
 type=Creature
