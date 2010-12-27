@@ -44,9 +44,9 @@ JGBKFont::JGBKFont()
 
 JGBKFont::~JGBKFont()
 {
-	SAFE_DELETE(mEngFont);
+	SAFE_DELETE_ARRAY(mEngFont);
 
-	SAFE_DELETE(mChnFont);
+	SAFE_DELETE_ARRAY(mChnFont);
 
 	SAFE_DELETE(mTexture);
 

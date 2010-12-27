@@ -800,7 +800,11 @@ void JRenderer::ScreenShot(const char* filename)
         fp = fopen(filename, "wb");
         if (!fp) return;
         png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
-        if (!png_ptr) return;
+        if (!png_ptr)
+  		{
+			fclose(fp);
+			return;
+		}
         info_ptr = png_create_info_struct(png_ptr);
         if (!info_ptr) {
                 png_destroy_write_struct(&png_ptr, (png_infopp)NULL);

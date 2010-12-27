@@ -53,7 +53,7 @@ JDistortionMesh::~JDistortionMesh()
 {
 
 	delete mQuad;
-	delete mVertices;
+	delete[] mVertices;
 
 //	JGERelease();
 }

@@ -2198,41 +2198,47 @@ void JRenderer::TransferTextureToGLContext(JTexture& inTexture)
 
 JTexture* JRenderer::CreateTexture(int width, int height, int mode __attribute__((unused)))
 {
-  checkGlError();
-  int size = width * height * sizeof(PIXEL_TYPE);			// RGBA
-
-	BYTE* buffer = new BYTE[size];
-
-	JTexture *tex = new JTexture();
-
-	if (buffer && tex)
-	{
-		tex->mFilter = TEX_FILTER_LINEAR;
-		tex->mWidth = width;
-		tex->mHeight = height;
-		tex->mTexWidth = width;
-		tex->mTexHeight = height;
-
-		GLuint texid;
-		glGenTextures(1, &texid);
-		tex->mTexId = texid;
-
-		memset(buffer, 0, size);
-
-		mCurrentTex = texid;
-		glBindTexture(GL_TEXTURE_2D, mCurrentTex);
-
-		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
-
-		delete[] buffer;
-
     checkGlError();
+    JTexture *tex = new JTexture();
+
+    if (tex)
+    {
+        int size = width * height * sizeof(PIXEL_TYPE);			// RGBA
+        BYTE* buffer = new BYTE[size];
+        if (buffer)
+        {
+            tex->mFilter = TEX_FILTER_LINEAR;
+            tex->mWidth = width;
+            tex->mHeight = height;
+            tex->mTexWidth = width;
+            tex->mTexHeight = height;
+
+            GLuint texid;
+            glGenTextures(1, &texid);
+            tex->mTexId = texid;
+
+            memset(buffer, 0, size);
+
+            mCurrentTex = texid;
+            glBindTexture(GL_TEXTURE_2D, mCurrentTex);
+
+            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
+
+            delete[] buffer;
+
+	        checkGlError();
+
+        }
+        else
+        {
+            delete tex;
+            tex = NULL;
+        }
+    }
+
     return tex;
-	}
-	else
-		return NULL;
 }
 
 
