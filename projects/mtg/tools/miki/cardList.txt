@@ -1,0 +1,37 @@
+There are a total of 6715 cards supported in this release.
+
+__NOTOC__ 
+<ul id="Top">
+<li style="display:inline; list-style-type: none; right-padding: 5px" >[[#A]]</li>
+<li style="display:inline; list-style-type: none; right-padding: 5px" >[[#B]]</li>
+<li style="display:inline; list-style-type: none; right-padding: 5px" >[[#C]]</li>
+<li style="display:inline; list-style-type: none; right-padding: 5px" >[[#D]]</li>
+<li style="display:inline; list-style-type: none; right-padding: 5px" >[[#E]]</li>
+<li style="display:inline; list-style-type: none; right-padding: 5px" >[[#F]]</li>
+<li style="display:inline; list-style-type: none; right-padding: 5px" >[[#G]]</li>
+<li style="display:inline; list-style-type: none; right-padding: 5px" >[[#H]]</li>
+<li style="display:inline; list-style-type: none; right-padding: 5px" >[[#I]]</li>
+<li style="display:inline; list-style-type: none; right-padding: 5px" >[[#J]]</li>
+<li style="display:inline; list-style-type: none; right-padding: 5px" >[[#K]]</li>
+<li style="display:inline; list-style-type: none; right-padding: 5px" >[[#L]]</li>
+<li style="display:inline; list-style-type: none; right-padding: 5px" >[[#M]]</li>
+<li style="display:inline; list-style-type: none; right-padding: 5px" >[[#N]]</li>
+<li style="display:inline; list-style-type: none; right-padding: 5px" >[[#O]]</li>
+<li style="display:inline; list-style-type: none; right-padding: 5px" >[[#P]]</li>
+<li style="display:inline; list-style-type: none; right-padding: 5px" >[[#Q]]</li>
+<li style="display:inline; list-style-type: none; right-padding: 5px" >[[#R]]</li>
+<li style="display:inline; list-style-type: none; right-padding: 5px" >[[#S]]</li>
+<li style="display:inline; list-style-type: none; right-padding: 5px" >[[#T]]</li>
+<li style="display:inline; list-style-type: none; right-padding: 5px" >[[#U]]</li>
+<li style="display:inline; list-style-type: none; right-padding: 5px" >[[#V]]</li>
+<li style="display:inline; list-style-type: none; right-padding: 5px" >[[#W]]</li>
+<li style="display:inline; list-style-type: none; right-padding: 5px" >[[#X]]</li>
+<li style="display:inline; list-style-type: none; right-padding: 5px" >[[#Y]]</li>
+<li style="display:inline; list-style-type: none; right-padding: 5px" >[[#Z]]</li>
+</ul>
+
+<h2 style="width: 100%"><span id="0-9">0-9</span> <span style="font-size:small; float: right;">Back to [[#Top]]</span></h2>
+<ul id="index_0-9">
+	<li>3rd Creature Buried Alive</li>
+</ul>
+
