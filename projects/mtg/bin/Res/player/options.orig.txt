@@ -1,0 +1,7 @@
+Theme=Default
+musicVolume=50
+sfxVolume=100
+closed_hand=visible
+hand_direction=vertical
+mana_display=Eye candy
+interruptSeconds=5
