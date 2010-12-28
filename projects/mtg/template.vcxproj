@@ -426,6 +426,7 @@
     <None Include="Makefile" />
     <None Include="Makefile.1xx" />
     <None Include="Makefile.3xx" />
+    <None Include="My Amplifier Results\r000hs\r000hs.ampl" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ActionElement.h" />

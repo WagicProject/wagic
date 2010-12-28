@@ -9,7 +9,7 @@
 #include <JRenderer.h>
 #include <math.h>
 
-vector<string> Task::AIDeckNames;
+vector<string> Task::sAIDeckNames;
 
 /*---------------- Utils -----------------*/
 // TODO: Move to dedicated file
@@ -187,42 +187,40 @@ void Task::passOneDay()
 
 // AI deck buffering code
 
-void Task::loadAIDeckNames()
+void Task::LoadAIDeckNames()
 {
-    //check if cache is up to date
-    if (AIDeckNames.size() == (unsigned int)(options[Options::AIDECKS_UNLOCKED].number)) return;
-
-    AIDeckNames.clear();
-    int found = 1;
-    int nbDecks = 0;
-    while (found && nbDecks < options[Options::AIDECKS_UNLOCKED].number)
+    if (sAIDeckNames.empty())
     {
-        found = 0;
-        char buffer[512];
-        sprintf(buffer, "%s/deck%i.txt", JGE_GET_RES("ai/baka").c_str(), nbDecks + 1);
-
-        if (fileExists(buffer))
+        int found = 1;
+        int nbDecks = 0;
+        while (found)
         {
-            found = 1;
-            nbDecks++;
-            // TODO: Creating MTGDeck only for getting decks name. Find an easier way.
-            MTGDeck * mtgd = NEW MTGDeck(buffer, NULL, 1);
-            AIDeckNames.push_back(mtgd->meta_name);
-            delete mtgd;
+            found = 0;
+            std::ostringstream stream;
+            stream << JGE_GET_RES("ai/baka") << "/deck" << nbDecks + 1 << ".txt";
+            if (fileExists(stream.str().c_str()))
+            {
+                found = 1;
+                nbDecks++;
+                // TODO: Creating MTGDeck only for getting decks name. Find an easier way.
+                MTGDeck * mtgd = NEW MTGDeck(stream.str().c_str(), NULL, 1);
+                sAIDeckNames.push_back(mtgd->meta_name);
+                delete mtgd;
+            }
         }
     }
 }
 
 int Task::getAIDeckCount()
 {
-    loadAIDeckNames();
-    return AIDeckNames.size();
+    LoadAIDeckNames();
+    return min((size_t) options[Options::AIDECKS_UNLOCKED].number, sAIDeckNames.size());
 }
 
 string Task::getAIDeckName(int id)
 {
-    loadAIDeckNames();
-    return ((unsigned int) id <= AIDeckNames.size()) ? AIDeckNames.at(id - 1) : "<Undefined>";
+    LoadAIDeckNames();
+    return ((unsigned int) id <= sAIDeckNames.size()) ? sAIDeckNames.at(id - 1) : "<Undefined>";
 }
 
 // End of AI deck buffering code

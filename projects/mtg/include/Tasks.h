@@ -43,8 +43,8 @@ protected:
 public:
   // variable to store and method to obtain names of AI decks
   //!! Todo: This should _really_ be handled elsewhere (dedicated class?)
-  static vector<string> AIDeckNames;
-  static void loadAIDeckNames();
+  static vector<string> sAIDeckNames;
+  static void LoadAIDeckNames();
   static int getAIDeckCount();
   static string getAIDeckName(int id);
   // End of AI deck buffering code

@@ -614,6 +614,9 @@
     <None Include="Makefile" />
     <None Include="Makefile.1xx" />
     <None Include="Makefile.3xx" />
+    <None Include="My Amplifier Results\r000hs\r000hs.ampl">
+      <Filter>My Amplifier Results</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -621,6 +624,9 @@
     </Filter>
     <Filter Include="inc">
       <UniqueIdentifier>{92d0309c-53b0-48a4-8b4d-07af74f87f0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="My Amplifier Results">
+      <UniqueIdentifier>{0d64b46c-731f-4756-af96-7f2e050e91d2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
