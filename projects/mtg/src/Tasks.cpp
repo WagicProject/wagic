@@ -214,7 +214,7 @@ void Task::LoadAIDeckNames()
 int Task::getAIDeckCount()
 {
     LoadAIDeckNames();
-    return min((size_t) options[Options::AIDECKS_UNLOCKED].number, sAIDeckNames.size());
+    return MIN((size_t) options[Options::AIDECKS_UNLOCKED].number, sAIDeckNames.size());
 }
 
 string Task::getAIDeckName(int id)
