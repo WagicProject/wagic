@@ -2,7 +2,7 @@ Source: wagic
 Section: user/games
 Priority: extra
 Maintainer: xawotihs <xawotihs@gmail.com>
-Build-Depends: debhelper (>= 5), libqt4-dev, zlib1g-dev, libx11-dev, mce-dev
+Build-Depends: debhelper (>= 5), libqt4-dev, zlib1g-dev, libx11-dev, mce-dev, libgif-dev, libjpeg62-dev, libpng12-dev,
 Standards-Version: 3.7.3
 Homepage: http://wololo.net/wagic/
 XSBC-Bugtracker: http://code.google.com/p/wagic/issues/list
