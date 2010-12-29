@@ -1,0 +1,21 @@
+#Testing Indestructible: Darksteel Myr against Runeclaw Bear
+#Result: Nothing happens
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:Darksteel Myr
+[PLAYER2]
+inplay:Runeclaw Bear
+[DO]
+Darksteel Myr
+next
+Runeclaw Bear
+next
+next
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Darksteel Myr
+[PLAYER2]
+inplay:Runeclaw Bear
+[END]

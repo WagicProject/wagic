@@ -1,0 +1,21 @@
+#Testing Indestructible: Darksteel Myr against Runeclaw Bear
+#Result: Darksteel Myr should be dead
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Darksteel Myr
+hand:Blister Beetle
+manapool:{1}{B}
+[PLAYER2]
+inplay:Runeclaw Bear
+[DO]
+Blister Beetle
+Darksteel Myr
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Blister Beetle
+graveyard:Darksteel Myr
+[PLAYER2]
+inplay:Runeclaw Bear
+[END]

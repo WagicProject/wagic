@@ -33,6 +33,7 @@ generic/fresh.txt
 generic/hybrid_mana.txt
 generic/hybrid_mana_2.txt
 generic/hybrid_mana_3.txt
+generic/indestructible.txt
 generic/kicker.txt
 generic/kicker2.txt
 generic/landwalk.txt
