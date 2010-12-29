@@ -42,7 +42,7 @@ private:
 
     bool MusicExist(string FileName);
     void loadPlayer(int playerId, int decknb = 0, int isAI = 0);
-    void ensureOpponentMenu(); //loads the opponentMenu if it doesn't exist
+    void ConstructOpponentMenu(); //loads the opponentMenu if it doesn't exist
     void initScroller();
 
 public:

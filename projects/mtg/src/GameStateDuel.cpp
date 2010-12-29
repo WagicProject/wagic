@@ -276,7 +276,7 @@ bool GameStateDuel::MusicExist(string FileName)
         return false;
 }
 
-void GameStateDuel::ensureOpponentMenu()
+void GameStateDuel::ConstructOpponentMenu()
 {
 	if (opponentMenu == NULL)
 	{
@@ -375,7 +375,7 @@ void GameStateDuel::Update(float dt)
         {
             if (mParent->players[0] == PLAYER_TYPE_HUMAN)
             {
-                ensureOpponentMenu();
+                ConstructOpponentMenu();
                 opponentMenu->Update(dt);
             }
             else
@@ -395,7 +395,7 @@ void GameStateDuel::Update(float dt)
         }
         else
         {
-            ensureOpponentMenu();
+            ConstructOpponentMenu();
             if (opponentMenu->isClosed())
                 mGamePhase = DUEL_STATE_PLAY;
             else
