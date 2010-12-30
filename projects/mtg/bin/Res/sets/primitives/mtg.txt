@@ -16765,7 +16765,7 @@ text=Level up {1}{U} -- [Level 1-2] {T}:Draw a card, then discard a card. -- [Le
 auto=maxlevel:2
 mana={U}
 type=Creature
-subtype=Level Melfolk Wizard
+subtype=Level Merfolk Wizard
 power=0
 toughness=1
 [/card]
@@ -59789,7 +59789,7 @@ toughness=2
 [/card]
 [card]
 name=Undead Warchief
-auto=lord(zombie|myBatllefield) 2/1
+auto=lord(zombie|myBattlefield) 2/1
 auto=lord(zombie|myhand) altercost( colorless, -1 )
 autoexile=all(*|myhand) resetcost
 autograveyard=all(*|myhand) resetcost
