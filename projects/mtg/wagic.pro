@@ -326,7 +326,7 @@ HEADERS += \
 maemo5: {
     # Variables
     BINDIR = /opt/wagic
-    RESDIR = /opt/wagic/ResInst
+    RESDIR = /home/user/wagic/Res
     ICONDIR = /usr/share
     DEFINES += RESDIR=\\\"$$RESDIR\\\"
 
@@ -334,6 +334,7 @@ maemo5: {
         desktop \
         icon \
         res \
+        restxt \
 
     target.path = $$BINDIR
 
@@ -346,4 +347,7 @@ maemo5: {
     res.path = $$RESDIR
     res.files += bin/Res/*
     # res.extra = tar -C ../../../../src/projects/mtg/bin -czf Res.tgz Res
+
+    restxt.path = $$BINDIR
+    restxt.files += debian/Res.txt
 }
