@@ -1,11 +1,11 @@
 #!/bin/sh -e
 
 chmod +x /opt/wagic/wagic
-mkdir -p /home/user/MyDocs/wagic
-mkdir -p /home/user/MyDocs/wagic/Res
-cp -rf /opt/wagic/ResInst/* /home/user/MyDocs/wagic/Res
-rm -rf /opt/wagic/ResInst
-ln -s  /home/user/MyDocs/wagic/Res /opt/wagic/Res
+if grep -q /home/user/MyDocs /proc/mounts; then
+  mkdir -p /home/user/MyDocs/wagic
+  mkdir -p /home/user/MyDocs/wagic/Res
+  cp -rf /home/user/wagic/Res/* /home/user/MyDocs/wagic/Res
+fi  
 gtk-update-icon-cache -f /usr/share/icons/hicolor
 
 exit 0

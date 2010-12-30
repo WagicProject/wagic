@@ -1,8 +1,6 @@
-wagic (0.14.0maemo0) unstable; urgency=low
+wagic (0.14.1maemo0) unstable; urgency=low
 
-  * Touch interface
-  * Usage of the volume buttons to go to next phase and interrupt
-  * CPU load improvements
-  * Fixed upgrade
-  * wagic 0.14.0
- -- Xawotihs <xawotihs@gmail.com>  Sun, 12 Dec 2010 14:11:42 +0200
+  * Fixed crashes in the touch interface
+  * Changed the installation mechanism to be able to work while the FAT partition is mounted
+  * wagic 0.14.1
+ -- Xawotihs <xawotihs@gmail.com>  Wed, 29 Dec 2010 14:11:42 +0200
