@@ -283,8 +283,8 @@ void JGEQtRenderer::resizeGL(int width, int height)
   {
     viewPort.setLeft(-(height*ACTUAL_RATIO-width)/2);
     viewPort.setTop(0);
-    viewPort.setRight(height * ACTUAL_RATIO);
-    viewPort.setBottom(-((width/ACTUAL_RATIO)-height)/2 + width / ACTUAL_RATIO + height);
+    viewPort.setRight(-(height*ACTUAL_RATIO-width)/2 + height * ACTUAL_RATIO);
+    viewPort.setBottom(height);
   }
 
   glViewport(viewPort.left(), viewPort.top(), viewPort.right()-viewPort.left(), viewPort.bottom()-viewPort.top());
@@ -380,10 +380,6 @@ void JGEQtRenderer::mouseReleaseEvent(QMouseEvent *event)
   if(event->button() == Qt::LeftButton)
   {
     QPoint lastPos = event->pos();
-    // this is intended to convert window coordinate into game coordinate.
-    // this is correct only if the game and window have the same aspect ratio, otherwise, it's just wrong
-    int actualWidth = (int) JRenderer::GetInstance()->GetActualWidth();
-    int actualHeight = (int) JRenderer::GetInstance()->GetActualHeight();
 
     if (lastPos.y() >= viewPort.top() &&
       lastPos.y() <= viewPort.bottom() &&
@@ -572,7 +568,7 @@ int main(int argc, char* argv[])
   if((glflags & QGLFormat::OpenGL_Version_2_0) == 0)
 #endif
   {
-    qCritical("OpenGL flags 0x%x unsupported", glflags);
+    qCritical("OpenGL flags 0x%x unsupported", (unsigned int)glflags);
     return -1;
   }
 
