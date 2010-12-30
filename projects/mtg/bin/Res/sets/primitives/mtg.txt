@@ -3568,7 +3568,7 @@ toughness=2+*
 [/card]
 [card]
 name=Aysen Highway
-auto=lord(creature[white])plainswalk
+auto=lord(creature[white]) plainswalk
 text=White creatures have plainswalk.
 mana={3}{W}{W}{W}
 type=Enchantment
@@ -26120,9 +26120,8 @@ toughness=6
 [/card]
 [card]
 name=Hoverguard Sweeper's 2nd Bounce
-auto=counter(0/0,1,Hoverguard Sweeper)
-auto=@movedTo(creature|ownerhand) from(battlefield):thisforeach(counter{0/0.1.Hoverguard Sweeper}>0) may moveTo(ownerhand) target(creature) && counter(0/0,-1,Hoverguard Sweeper) && counter(0/0,1,Bury)
-auto=thisforeach(counter{0/0.1.Bury}>0) bury
+auto=@movedTo(this|exile) from(Battlefield):may moveTo(ownerhand) target(creature)
+auto=moveto(exile)
 id=-1111125
 type=Nothing
 [/card
@@ -34139,13 +34138,20 @@ toughness=*
 [/card]
 [card]
 name=Master Transmuter
-auto={H(artifact|mybattlefield)}{U}{T}:moveTo(mybattlefield) notatarget(artifact|myhand)
+auto={H(artifact|mybattlefield)}{U}{T}:token(-17925211)
 text={U}, {T}, Return an artifact you control to its owner's hand: You may put an artifact card from your hand onto the battlefield.
 mana={3}{U}
 type=Artifact Creature
 subtype=Human Artificer
 power=1
 toughness=2
+[/card]
+[card]
+name=Master Transmuter's Artifact
+auto=@movedTo(this|exile) from(Battlefield):may moveTo(mybattlefield) notatarget(artifact|myhand)
+auto=moveto(exile)
+id=-17925211
+type=Nothing
 [/card]
 [card]
 name=Masticore
@@ -38240,7 +38246,7 @@ toughness=7
 [card]
 name=Novijen, Heart of Progress
 auto={T}:Add{1}
-auto={G}{U}{T}:counter(1/1,1) all(creature[fresh]|myBattlefield)
+auto={G}{U}{T}:counter(1/1,1) all(creature[fresh]|battlefield)
 text={T}: Add {1} to your mana pool. -- {G}{U}, {T}: Put a +1/+1 counter on each creature that entered the battlefield this turn.
 type=Land
 [/card]
