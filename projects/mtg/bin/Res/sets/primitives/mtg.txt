@@ -34138,20 +34138,13 @@ toughness=*
 [/card]
 [card]
 name=Master Transmuter
-auto={H(artifact|mybattlefield)}{U}{T}:token(-17925211)
+auto={H(artifact|mybattlefield)}{U}{T}:moveTo(mybattlefield) notatarget(artifact|myhand)
 text={U}, {T}, Return an artifact you control to its owner's hand: You may put an artifact card from your hand onto the battlefield.
 mana={3}{U}
 type=Artifact Creature
 subtype=Human Artificer
 power=1
 toughness=2
-[/card]
-[card]
-name=Master Transmuter's Artifact
-auto=@movedTo(this|exile) from(Battlefield):may moveTo(mybattlefield) notatarget(artifact|myhand)
-auto=moveto(exile)
-id=-17925211
-type=Nothing
 [/card]
 [card]
 name=Masticore
