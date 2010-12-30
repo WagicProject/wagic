@@ -548,6 +548,8 @@ int main(int argc, char* argv[])
   QApplication a( argc, argv );
   QDir::setCurrent(QCoreApplication::applicationDirPath () );
 
+  qDebug() << "Current path : " << QCoreApplication::applicationDirPath ();
+
   g_launcher = new JGameLauncher();
 
   u32 flags = g_launcher->GetInitFlags();
@@ -559,6 +561,8 @@ int main(int argc, char* argv[])
 
   g_glwidget = new JGEQtRenderer(NULL);
   g_glwidget->resize(ACTUAL_SCREEN_WIDTH, ACTUAL_SCREEN_HEIGHT);
+
+  a.setApplicationName(g_launcher->GetName());
 
   QGLFormat::OpenGLVersionFlags glflags = g_glwidget->format().openGLVersionFlags();
 
