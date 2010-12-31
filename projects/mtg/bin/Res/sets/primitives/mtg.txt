@@ -10657,7 +10657,7 @@ type=Instant
 [card]
 name=Consuming Bonfire
 auto=aslongas(creature[-elemental]|battlefield) choice damage:4 target(creature[-elemental])
-auto=aslongas(creature[treefolk]|battlefield) choice target(treefolk)
+auto=aslongas(creature[treefolk]|battlefield) choice damage:7 target(treefolk)
 text=Choose one - Consuming Bonfire deals 4 damage to target non-Elemental creature; or Consuming Bonfire deals 7 damage to target Treefolk creature.
 mana={3}{R}{R}
 type=Tribal Sorcery
@@ -25811,8 +25811,7 @@ type=Instant
 [/card]
 [card]
 name=Honorable Scout
-auto=foreach(creature[black]|opponentBattlefield) life:2 controller
-auto=foreach(creature[red]|opponentBattlefield) life:2 controller
+auto=foreach(creature[red;black]|opponentBattlefield) life:2
 text=When Honorable Scout enters the battlefield, you gain 2 life for each black and/or red creature target opponent controls.
 mana={W}
 type=Creature
@@ -41081,8 +41080,8 @@ type=Instant
 [/card]
 [card]
 name=Piety Charm
-auto=aslongas(aura|battlefield) choicedestroy target(aura)
-auto=aslongas(creature[soldier]|battlefield) choice target(creature[soldier]) 2/2
+auto=aslongas(aura|battlefield) choice destroy target(aura)
+auto=aslongas(creature[soldier]|battlefield) choice target(creature[soldier]) 2/2 ueot
 auto=choice lord(creature|myBattlefield) vigilance ueot
 text=Choose one - Destroy target Aura attached to a creature; or target Soldier creature gets +2/+2 until end of turn; or creatures you control gain vigilance until end of turn.
 mana={W}
