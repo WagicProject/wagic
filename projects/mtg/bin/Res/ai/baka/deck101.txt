@@ -1,19 +1,8 @@
-#NAME:Herdsmen
-Aurochs	 (ICE) *4
-Brushwagg	 (MIR) *2
-Birds of Paradise	 (7ED) *4
-Snorting Gahr	 (MRQ) *1
-Aggressive Urge	 (INV) *4
-Blanchwood Armor	 (8ED) *4
-Bull Aurochs	 (CSP) *4
-Boreal Druid	 (CSP) *4
-Aurochs Herd	 (CSP) *4
-Timbermaw Larva	 (ZEN) *4
-Bramble Creeper	 (M10) *2
-Awakening Zone	 (ROE) *4
-Beastmaster Ascension	 (ZEN) *4
-Forest	 (M11) *4
-Forest	 (SOM) *4
-Forest	 (SOM) *4
-Forest	 (SOM) *4
-Forest	 (SOM) *4
+#NAME:Atcst
+Forest	 (MIR) *3
+Treetop Village	 (ULG) *4
+Halcyon Glaze	 (RAV) *4
+Elvish Berserker	 (10E) *4
+Giant Growth	 (10E) *4
+Llanowar Elves	 (10E) *4
+Forest	 (ZEN) *4
