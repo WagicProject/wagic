@@ -43456,6 +43456,7 @@ toughness=1
 name=Rakdos Pit Dragon
 auto={R}{R}:flying
 auto={R}:1/0
+auto=aslongas(*|myHand) double strike <1 oneShot
 auto=aslongas(*|myHand) double strike <1
 text={R}{R}: Rakdos Pit Dragon gains flying until end of turn. -- {R}: Rakdos Pit Dragon gets +1/+0 until end of turn. -- Hellbent - Rakdos Pit Dragon has double strike as long as you have no cards in hand.
 mana={2}{R}{R}
