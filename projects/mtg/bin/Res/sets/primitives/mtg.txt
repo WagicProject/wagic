@@ -61703,7 +61703,7 @@ subtype=Equipment
 [/card]
 [card]
 name=Viridian Lorebearers
-auto={3}{G}{T}:foreach(artifact|opponentBattlefield) 1/1 target(creature)
+auto={3}{G}{T}:target(creature) foreach(artifact|opponentBattlefield) 1/1 ueot
 text={3}{G}, {T}: Target creature gets +X/+X until end of turn, where X is the number of artifacts your opponents control.
 mana={3}{G}
 type=Creature
