@@ -1,12 +1,8 @@
 #!/bin/sh -e
 
 chmod a+x /opt/wagic/wagic
+chmod a+x /opt/wagic/launcher
 chmod -R a+rw /home/user/wagic
-if grep -q /home/user/MyDocs /proc/mounts; then
-  mkdir -p /home/user/MyDocs/wagic
-  mkdir -p /home/user/MyDocs/wagic/Res
-  cp -rf /home/user/wagic/Res/* /home/user/MyDocs/wagic/Res
-fi
 gtk-update-icon-cache -f /usr/share/icons/hicolor
 
 exit 0

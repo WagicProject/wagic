@@ -238,7 +238,6 @@ HEADERS  += \
         include/WResourceManager.h\
         include/DuelLayers.h\
         include/GuiStatic.h\
-        include/ShopItem.h\
         include/Effects.h\
         include/StyleManager.h\
         include/WFont.h\
@@ -319,8 +318,8 @@ HEADERS += \
         ../../JGE/include/Vector2D.h\
         ../../JGE/include/Vector3D.h\
         ../../JGE/include/vram.h\
-        ../../JGE/src/tinyxml\tinystr.h\
-        ../../JGE/src/tinyxml\tinyxml.h\
+        ../../JGE/src/tinyxml/tinystr.h\
+        ../../JGE/src/tinyxml/tinyxml.h\
         ../../JGE/include/vram.h
 
 maemo5: {
@@ -335,6 +334,7 @@ maemo5: {
         icon \
         res \
         restxt \
+        launcher \
 
     target.path = $$BINDIR
 
@@ -350,4 +350,7 @@ maemo5: {
 
     restxt.path = $$BINDIR
     restxt.files += debian/Res.txt
+
+    launcher.path = $$BINDIR
+    launcher.files += debian/launcher
 }
