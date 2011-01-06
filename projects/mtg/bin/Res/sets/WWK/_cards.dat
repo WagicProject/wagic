@@ -79,6 +79,21 @@ id=197843
 rarity=U
 [/card]
 [card]
+primitive=Snake Token
+id=-19784311
+rarity=T
+[/card]
+[card]
+primitive=Wolf Token
+id=-19784312
+rarity=T
+[/card]
+[card]
+primitive=Elephant Token
+id=-19784313
+rarity=T
+[/card]
+[card]
 primitive=Bloodhusk Ritualist
 id=191570
 rarity=U

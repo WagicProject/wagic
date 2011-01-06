@@ -1050,6 +1050,31 @@ id=114921
 rarity=R
 [/card]
 [card]
+primitive=Citizen Token
+id=-11492111
+rarity=T
+[/card]
+[card]
+primitive=Camarid Token
+id=-11492112
+rarity=T
+[/card]
+[card]
+primitive=Thrull Token
+id=-11492113
+rarity=T
+[/card]
+[card]
+primitive=Goblin Token
+id=-11492114
+rarity=T
+[/card]
+[card]
+primitive=Saproling Token
+id=-11492115
+rarity=T
+[/card]
+[card]
 primitive=Savage Thallid
 id=106643
 rarity=C

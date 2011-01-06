@@ -1248,3 +1248,13 @@ primitive=Wurmcoil Engine
 id=207875
 rarity=M
 [/card]
+[card]
+primitive=Wurm Token with Deathtouch
+id=-20787511
+rarity=T
+[/card]
+[card]
+primitive=Wurm Token with Lifelink
+id=-20787512
+rarity=T
+[/card]

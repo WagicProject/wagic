@@ -904,6 +904,16 @@ id=48385
 rarity=U
 [/card]
 [card]
+primitive=Beast Token
+id=-4838511
+rarity=T
+[/card]
+[card]
+primitive=Insect Token
+id=-4838512
+rarity=T
+[/card]
+[card]
 primitive=Ornithopter
 id=46016
 rarity=U

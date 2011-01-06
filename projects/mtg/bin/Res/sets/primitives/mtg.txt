@@ -4941,12 +4941,36 @@ subtype=Aura
 [/card]
 [card]
 name=Bestial Menace
-auto=token(Snake,creature snake, 1/1,green)
-auto=token(Wolf,creature wolf, 2/2,green)
-auto=token(Elephant,creature elephant, 3/3,green)
+auto=token(-19784311)
+auto=token(-19784312)
+auto=token(-19784313)
 text=Put a 1/1 green Snake creature token, a 2/2 green Wolf creature token, and a 3/3 green Elephant creature token onto the battlefield.
 mana={3}{G}{G}
 type=Sorcery
+[/card]
+[card]
+name=Snake Token
+type=Creature
+subtype=Snake
+power=1
+toughness=1
+color=green
+[/card]
+[card]
+name=Wolf Token
+type=Creature
+subtype=Wolf
+power=2
+toughness=2
+color=green
+[/card]
+[card]
+name=Elephant Token
+type=Creature
+subtype=Elephant
+power=3
+toughness=3
+color=green
 [/card]
 [card]
 name=Betrayal
@@ -12973,12 +12997,30 @@ type=Sorcery
 [/card]
 [card]
 name=Decree of Justice
-auto=token(Angel,Creature Angel,4/4,flying,white)*XX
+auto=token(-4514111)*XX
 autohand={2}{W}:cycling
-autohand={X}{W}:name(cycle and soldier tokens) && cycling && thisforeach(X) token(Soldier,Creature Soldier,1/1,white)*X
+autohand={X}{2}{W}:name(cycle and soldier tokens) && cycling && thisforeach(X) token(-4514112)*X
 text=Put X 4/4 white Angel creature tokens with flying onto the battlefield. -- Cycling {2}{W} ({2}{W}, Discard this card: Draw a card.) -- When you cycle Decree of Justice, you may pay {X}. If you do, put X 1/1 white Soldier creature tokens onto the battlefield.
 mana={X}{X}{2}{W}{W}
 type=Sorcery
+[/card]
+[card]
+name=Angel Token
+type=Creature
+subtype=Angel
+abilities=flying
+text=Flying
+power=4
+toughness=4
+color=white
+[/card]
+[card]
+name=Soldier Token
+type=Creature
+subtype=Soldier
+power=1
+toughness=1
+color=white
 [/card]
 [card]
 name=Decree of Savagery
@@ -17802,11 +17844,29 @@ toughness=2
 [/card]
 [card]
 name=Fable of Wolf and Owl
-auto=@movedTo(*[green]|mystack):may token(Wolf,creature wolf,2/2,green)
-auto=@movedTo(*[blue]|mystack):may token(Bird,creature bird,1/1,flying blue)
+auto=@movedTo(*[green]|mystack):may token(-15208711)
+auto=@movedTo(*[blue]|mystack):may token(-15208712)
 text=Whenever you cast a green spell, you may put a 2/2 green Wolf creature token onto the battlefield. -- Whenever you cast a blue spell, you may put a 1/1 blue Bird creature token with flying onto the battlefield.
 mana={3}{GU}{GU}{GU}
 type=Enchantment
+[/card]
+[card]
+name=Green Wolf Token
+type=Creature
+subtype=Wolf
+power=2
+toughness=2
+color=green
+[/card]
+[card]
+name=Blue Bird Token
+type=Creature
+subtype=Bird
+abilities=flying
+text=Flying
+power=1
+toughness=1
+color=blue
 [/card]
 [card]
 name=Fabricate
@@ -19860,12 +19920,13 @@ type=Artifact
 [/card]
 [card]
 name=Fodder Launch
-auto=-5/-5 target(creature)
-auto=damage:5 targetcontroller
+target=creature
+auto=damage:5 targetController
+auto=-5/-5
 text=As an additional cost to cast Fodder Launch, sacrifice a Goblin. -- Target creature gets -5/-5 until end of turn. Fodder Launch deals 5 damage to that creature's controller.
 mana={3}{B}{s;notatarget(goblin|mybattlefield)}
-type=Sorcery
-subtype=Tribal
+type=Tribal Sorcery
+subtype=Goblin
 [/card]
 [card]
 name=Fog
@@ -30124,7 +30185,6 @@ name=Knight Token from Waylay
 type=Creature
 subtype=Knight
 auto=@next cleanup:moveTo(exile)
-text=
 power=2
 toughness=2
 color=white
@@ -38763,20 +38823,36 @@ toughness=4
 name=One Dozen Eyes
 kicker={G}{G}{G}
 auto=kicker token(-483851111)
-auto=may token(Beast,creature beast, 5/5,green)
-auto=may token(Insect,creature insect, 1/1,green)*5
-text=Choose one E- Put a 5/5 green Beast creature token onto the battlefield; or put five 1/1 green Insect creature tokens onto the battlefield. -- Entwine {G}{G}{G} (Choose both if you pay the entwine cost.)
+auto=may token(-4838511)
+auto=may token(-4838512)*5
+text=Choose one - Put a 5/5 green Beast creature token onto the battlefield; or put five 1/1 green Insect creature tokens onto the battlefield. -- Entwine {G}{G}{G} (Choose both if you pay the entwine cost.)
 mana={5}{G}
 type=Sorcery
 [/card]
 [card]
 name=One Dozen Eyes Entwine
 auto=counter(0/0,1,Entwine)
-auto=@movedTo(insect|mybattlefield):thisforeach(counter{0/0.1.Entwine}>0) token(Beast,creature beast, 5/5,green) && counter(0/0,-1,Entwine) && counter(0/0,1,Bury)
-auto=@movedTo(beast|mybattlefield):thisforeach(counter{0/0.1.Entwine}>0) token(Insect,creature insect, 1/1,green)*5 && counter(0/0,-1,Entwine) && counter(0/0,1,Bury)
+auto=@movedTo(insect|mybattlefield):thisforeach(counter{0/0.1.Entwine}>0) token(-4838511) && counter(0/0,-1,Entwine) && counter(0/0,1,Bury)
+auto=@movedTo(beast|mybattlefield):thisforeach(counter{0/0.1.Entwine}>0) token(-4838512)*5 && counter(0/0,-1,Entwine) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-483851111
 type=Nothing
+[/card]
+[card]
+name=Beast Token
+type=Creature
+subtype=Beast
+power=5
+toughness=5
+color=green
+[/card]
+[card]
+name=Insect Token
+type=Creature
+subtype=Insect
+power=1
+toughness=1
+color=green
 [/card]
 [card]
 name=One with Nothing
@@ -46935,14 +47011,54 @@ auto=choice name(blue camarid) && counter(0/0,1,Blue Camarid) all(this)
 auto=choice name(black thrull) && counter(0/0,1,Black Thrull) all(this)
 auto=choice name(red goblin) && counter(0/0,1,Red Goblin) all(this)
 auto=choice name(green saproling) && counter(0/0,1,Green Saproling) all(this)
-auto=this(counter{0/0.1.White Citizen}) {T}:token(Citizen,Creature Citizen,1/1,white)
-auto=this(counter{0/0.1.Blue Camarid}) {T}:token(Camarid,Creature Camarid,1/1,blue)
-auto=this(counter{0/0.1.Black Thrull}) {T}:token(Thrull,Creature Thrull,1/1,black)
-auto=this(counter{0/0.1.Red Goblin}) {T}:token(Goblin,Creature Goblin,1/1,red)
-auto=this(counter{0/0.1.Green Saproling}) {T}:token(Saproling,Creature Saproling,1/1,green)
+auto=this(counter{0/0.1.White Citizen}) {3}{T}:token(-11492111)
+auto=this(counter{0/0.1.Blue Camarid}) {3}{T}:token(-11492112)
+auto=this(counter{0/0.1.Black Thrull}) {3}{T}:token(-11492113)
+auto=this(counter{0/0.1.Red Goblin}) {3}{T}:token(-11492114)
+auto=this(counter{0/0.1.Green Saproling}) {3}{T}:token(-11492115)
 text=As Sarpadian Empires, Vol. VII enters the battlefield, choose white Citizen, blue Camarid, black Thrull, red Goblin, or green Saproling. -- {3}, {T}: Put a 1/1 creature token of the chosen color and type onto the battlefield.
 mana={3}
 type=Artifact
+[/card]
+[card]
+name=Citizen Token
+type=Creature
+subtype=Citizen
+power=1
+toughness=1
+color=white
+[/card]
+[card]
+name=Camarid Token
+type=Creature
+subtype=Camarid
+power=1
+toughness=1
+color=blue
+[/card]
+[card]
+name=Thrull Token
+type=Creature
+subtype=Thrull
+power=1
+toughness=1
+color=black
+[/card]
+[card]
+name=Goblin Token
+type=Creature
+subtype=Goblin
+power=1
+toughness=1
+color=red
+[/card]
+[card]
+name=Saproling Token
+type=Creature
+subtype=Saproling
+power=1
+toughness=1
+color=green
 [/card]
 [card]
 name=Savage Conception
@@ -55440,7 +55556,7 @@ auto=5/5
 auto=@damaged(creature) from(mytgt):all(trigger[to]) moveto(exile)
 text=Equipped creature gets +5/+5. -- Whenever equipped creature deals damage to a creature, exile that creature. -- Equip {4} ({4}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
 mana={4}
-type=Artifact
+type=Legendary Artifact
 subtype=Equipment
 [/card]
 [card]
@@ -56995,8 +57111,27 @@ type=Sorcery
 [/card]
 [card]
 name=Thelon of Havenwood
-auto={B}{G}:moveTo(exile) target(fungus|mygraveyard) && counter(0/0,1,Spore) all(fungus)
-auto=lord(fungus) thisforeach(counter{0/0,1,Spore}) 1/1
+auto={B}{G}:moveTo(exile) target(fungus|graveyard) && counter(0/0,1,Spore) all(fungus)
+auto=lord(fungus[counter{0/0.1.spore}]) 1/1
+auto=lord(fungus[counter{0/0.2.spore}]) 1/1
+auto=lord(fungus[counter{0/0.3.spore}]) 1/1
+auto=lord(fungus[counter{0/0.4.spore}]) 1/1
+auto=lord(fungus[counter{0/0.5.spore}]) 1/1
+auto=lord(fungus[counter{0/0.6.spore}]) 1/1
+auto=lord(fungus[counter{0/0.7.spore}]) 1/1
+auto=lord(fungus[counter{0/0.8.spore}]) 1/1
+auto=lord(fungus[counter{0/0.9.spore}]) 1/1
+auto=lord(fungus[counter{0/0.10.spore}]) 1/1
+auto=lord(fungus[counter{0/0.11.spore}]) 1/1
+auto=lord(fungus[counter{0/0.12.spore}]) 1/1
+auto=lord(fungus[counter{0/0.13.spore}]) 1/1
+auto=lord(fungus[counter{0/0.14.spore}]) 1/1
+auto=lord(fungus[counter{0/0.15.spore}]) 1/1
+auto=lord(fungus[counter{0/0.16.spore}]) 1/1
+auto=lord(fungus[counter{0/0.17.spore}]) 1/1
+auto=lord(fungus[counter{0/0.18.spore}]) 1/1
+auto=lord(fungus[counter{0/0.19.spore}]) 1/1
+auto=lord(fungus[counter{0/0.20.spore}]) 1/1
 text=Each Fungus creature gets +1/+1 for each spore counter on it. -- {B}{G}, Exile a Fungus card from a graveyard: Put a spore counter on each Fungus on the battlefield.
 mana={G}{G}
 type=Legendary Creature
@@ -62757,11 +62892,29 @@ type=Sorcery
 [/card]
 [card]
 name=Wand of the Elements
-auto={T}{S(island|myBattlefield)}:token(Elemental,Creature Elemental,2/2,flying blue)
-auto={T}{S(mountain|myBattlefield)}:token(Elemental,Creature Elemental,3/3,red)
+auto={T}{S(island|myBattlefield)}:token(-4977511)
+auto={T}{S(mountain|myBattlefield)}:token(-4977512)
 text={T}, Sacrifice an Island: Put a 2/2 blue Elemental creature token with flying onto the battlefield. -- {T}, Sacrifice a Mountain: Put a 3/3 red Elemental creature token onto the battlefield.
 mana={4}
 type=Artifact
+[/card]
+[card]
+name=Blue Elemental Token
+type=Creature
+subtype=Elemental
+abilities=flying
+text=Flying
+power=2
+toughness=2
+color=blue
+[/card]
+[card]
+name=Red Elemental Token
+type=Creature
+subtype=Elemental
+power=3
+toughness=3
+color=red
 [/card]
 [card]
 name=Wanderbrine Rootcutters
@@ -64862,13 +65015,31 @@ type=Sorcery
 [card]
 name=Wurmcoil Engine
 abilities=lifelink,deathtouch
-auto=@movedTo(this|graveyard) from(battlefield):token(Wurm,Artifact Creature Wurm,3/3,deathtouch) && token(Wurm,Artifact Creature Wurm,3/3,lifelink)
+auto=@movedTo(this|graveyard) from(battlefield):token(-20787511) && token(-20787512)
 text=Deathtouch, Lifelink -- When Wurmcoil Engine is put into a graveyard from the battlefield, put a 3/3 colorless Wurm artifact creature token with deathtouch and a 3/3 colorless Wurm artifact creature token with lifelink onto the battlefield.
 mana={6}
 type=Artifact Creature
 subtype=Wurm
 power=6
 toughness=6
+[/card]
+[card]
+name=Wurm Token with Deathtouch
+type=Artifact Creature
+subtype=Wurm
+abilities=deathtouch
+text=Deathtouch
+power=3
+toughness=3
+[/card]
+[card]
+name=Wurm Token with Lifelink
+type=Artifact Creature
+subtype=Wurm
+abilities=lifelink
+text=Lifelink
+power=3
+toughness=3
 [/card]
 [card]
 name=Wurmweaver Coil

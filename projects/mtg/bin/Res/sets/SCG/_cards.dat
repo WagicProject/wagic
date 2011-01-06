@@ -169,6 +169,16 @@ id=45141
 rarity=R
 [/card]
 [card]
+primitive=Angel Token
+id=-4514111
+rarity=T
+[/card]
+[card]
+primitive=Soldier Token
+id=-4514112
+rarity=T
+[/card]
+[card]
 primitive=Decree of Pain
 id=43522
 rarity=R
