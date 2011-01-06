@@ -10,7 +10,6 @@ if grep -q /home/user/MyDocs /proc/mounts; then
   dirSize=`du -s /home/user/wagic/Res | awk '{print $1}'`
 # Size available on the FAT partition
   avaSize=`df | grep /dev/mmcblk0p1 | awk '{print $4}'`
-  echo "$usedSize $dirSize $avaSize"
   if [ $usedSize -lt 100 ]
     then if [ $avaSize -gt $dirSize ]
     then
@@ -20,5 +19,5 @@ if grep -q /home/user/MyDocs /proc/mounts; then
   fi
 fi
 
-./wagic
+/opt/wagic/wagic
 exit 0
