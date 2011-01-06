@@ -57111,7 +57111,7 @@ type=Sorcery
 [/card]
 [card]
 name=Thelon of Havenwood
-auto={B}{G}:moveTo(exile) target(fungus|graveyard) && counter(0/0,1,Spore) all(fungus)
+auto={B}{G}{e(fungus|graveyard)}: counter(0/0,1,Spore) all(fungus)
 auto=lord(fungus[counter{0/0.1.spore}]) 1/1
 auto=lord(fungus[counter{0/0.2.spore}]) 1/1
 auto=lord(fungus[counter{0/0.3.spore}]) 1/1
