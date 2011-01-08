@@ -127,7 +127,8 @@ void SimpleMenu::Render()
     if (0 == mWidth)
     {
         float sY = mY + kVerticalMargin;
-        for (int i = startId; i < startId + mCount; ++i)
+
+        for (int i = 0; i < mCount; ++i)
         {
             float width = (static_cast<SimpleMenuItem*> (mObjects[i]))->GetWidth();
             if (mWidth < width) mWidth = width;
@@ -135,7 +136,7 @@ void SimpleMenu::Render()
         if ((!title.empty()) && (mWidth < titleFont->GetStringWidth(title.c_str()))) 
 			mWidth = titleFont->GetStringWidth(title.c_str());
         mWidth += 2 * kHorizontalMargin;
-        for (int i = startId; i < startId + mCount; ++i)
+        for (int i = 0; i < mCount; ++i)
         {
             float y = mY + kVerticalMargin + i * kLineHeight;
             SimpleMenuItem * smi = static_cast<SimpleMenuItem*> (mObjects[i]);
