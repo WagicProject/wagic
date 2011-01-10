@@ -39542,8 +39542,8 @@ type=Enchantment
 name=Overgrown Tomb
 auto=tap
 auto=may untap && life:-2 controller
-auto={T}:Add {G}
 auto={T}:Add {B}
+auto={T}:Add {G}
 text=({T}: Add {B} or {G} to your mana pool.) -- As Overgrown Tomb enters the battlefield, you may pay 2 life. If you don't, Overgrown Tomb enters the battlefield tapped.
 type=Land
 subtype=Swamp Forest
@@ -57352,7 +57352,7 @@ toughness=2
 [/card]
 [card]
 name=Thorntooth Witch
-auto=@movedTo(treefolk|mystack):may 3/-3 target(creature)
+auto=@movedTo(treefolk|mystack):may 3/-3 target(creature) ueot
 text=Whenever you cast a Treefolk spell, you may have target creature get +3/-3 until end of turn.
 mana={5}{B}
 type=Creature
@@ -58524,6 +58524,7 @@ type=Artifact
 [/card]
 [card]
 name=Tornado Elemental
+auto=damage:6 all(creature[flying])
 auto=@blocked(this):may name(assign combat damage to defending player) && thisforeach(power>=1) damage:1 opponent && fog from(this)
 text=When Tornado Elemental enters the battlefield, it deals 6 damage to each creature with flying. -- You may have Tornado Elemental assign its combat damage as though it weren't blocked.
 mana={5}{G}{G}
