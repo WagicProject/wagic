@@ -30,20 +30,59 @@
 #include <algorithm>
 #include <stdlib.h>
 
+// enable this define to collect statistics on how many times an ifstream is created for a given file.
+//#define TRACK_FILE_USAGE_STATS
+
+namespace wagic
+{
+
+#ifdef TRACK_FILE_USAGE_STATS
+    class ifstream : public std::ifstream
+    {
+    public:
+        explicit ifstream(const char *inFilename, ios_base::openmode inMode = ios_base::in) :
+        std::ifstream(inFilename, inMode)
+        {
+            sFileMap[std::string(inFilename)] += 1;
+        }
+
+        static void Dump()
+        {
+            DebugTrace("-------------------");
+            DebugTrace("File Usage Statistics" << std::endl);
+            std::map<std::string, int>::const_iterator iter = sFileMap.begin();
+            for (; iter != sFileMap.end(); ++iter)
+            {
+                DebugTrace(iter->first << "  -- " << iter->second);
+            }
+
+            DebugTrace("End File Usage Statistics");
+            DebugTrace("-------------------");
+        }
+
+    private:
+        static std::map<std::string, int> sFileMap;
+    };
+
+#else
+typedef std::ifstream ifstream;
+#endif
+
+} //namespace wagic
 
 using std::string;
 
 
 //string manipulation methods
-string& trim(string &str);
-string& ltrim(string &str);
-string& rtrim(string &str);
+string& trim(string& str);
+string& ltrim(string& str);
+string& rtrim(string& str);
 
-std::string join(vector<string> &v, string delim = " ");
+std::string join(vector<string>& v, string delim = " ");
 
-std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems);
-std::vector<std::string> split(const std::string &s, char delim); //splits a string with "delim" and returns a vector of strings.
-std::string wordWrap(std::string s, float width, int fontId);
+std::vector<std::string>& split(const std::string& s, char delim, std::vector<std::string>& elems);
+std::vector<std::string> split(const std::string& s, char delim); //splits a string with "delim" and returns a vector of strings.
+std::string wordWrap(const std::string& s, float width, int fontId);
 
 int loadRandValues(string s);
 int filesize(const char * filename);

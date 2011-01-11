@@ -286,7 +286,7 @@ int GameStateMenu::nextDirectory(const char * root, const char * file)
     while (!found && (mDit = readdir(mDip)))
     {
         sprintf(mCurrentSetFileName, "%s/%s/%s", root, mDit->d_name, file);
-        std::ifstream file(mCurrentSetFileName);
+        wagic::ifstream file(mCurrentSetFileName);
         if (file)
         {
             sprintf(mCurrentSetName, "%s", mDit->d_name);
@@ -313,7 +313,7 @@ string GameStateMenu::loadRandomWallpaper()
         return wallpaper;
 
     vector<string> wallpapers;
-    std::ifstream file(JGE_GET_RES("graphics/wallpapers.txt").c_str());
+    wagic::ifstream file(JGE_GET_RES("graphics/wallpapers.txt").c_str());
 
     if (!file)
         return wallpaper;
@@ -371,7 +371,7 @@ void GameStateMenu::loadLangMenu()
     {
         string filename = JGE_GET_RES("lang/");
         filename += mDit->d_name;
-        std::ifstream file(filename.c_str());
+        wagic::ifstream file(filename.c_str());
         string s;
         string lang;
         if (file)
@@ -407,7 +407,7 @@ void GameStateMenu::listPrimitives()
     {
         string filename = JGE_GET_RES("sets/primitives/");
         filename += mDit->d_name;
-        std::ifstream file(filename.c_str());
+        wagic::ifstream file(filename.c_str());
         if (!file)
             continue;
         file.close();
@@ -500,7 +500,7 @@ void GameStateMenu::Update(float dt)
             mSplash = NULL;
 
             //check for deleted collection / first-timer
-            std::ifstream file(options.profileFile(PLAYER_COLLECTION).c_str());
+            wagic::ifstream file(options.profileFile(PLAYER_COLLECTION).c_str());
             if (file)
             {
                 file.close();

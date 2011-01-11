@@ -90,7 +90,7 @@ void GameApp::Create()
     LOG("starting Game");
 
     //Find the Res folder
-    std::ifstream mfile("Res.txt");
+    wagic::ifstream mfile("Res.txt");
     string resPath;
     if (mfile)
     {
@@ -122,14 +122,14 @@ void GameApp::Create()
     LOG("Checking for music files");
     //Test for Music files presence
     string filepath = JGE_GET_RES(WResourceManager::Instance()->musicFile("Track0.mp3"));
-    std::ifstream file(filepath.c_str());
+    wagic::ifstream file(filepath.c_str());
     if (file)
         file.close();
     else
         HasMusic = 0;
 
     filepath = JGE_GET_RES(WResourceManager::Instance()->musicFile("Track1.mp3"));
-    std::ifstream file2(filepath.c_str());
+    wagic::ifstream file2(filepath.c_str());
     if (file2)
         file2.close();
     else
@@ -280,6 +280,10 @@ void GameApp::Destroy()
 
     options.theGame = NULL;
     LOG("==Destroying GameApp Successful==");
+
+#ifdef TRACK_FILE_USAGE_STATS
+    wagic::ifstream::Dump();
+#endif
 
 }
 

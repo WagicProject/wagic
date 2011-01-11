@@ -843,13 +843,13 @@ int WResourceManager::dirOK(const string& dirname)
 
 int WResourceManager::fileOK(const string& filename, bool relative)
 {
-    std::ifstream * fp = NULL;
+    wagic::ifstream * fp = NULL;
     if (relative)
     {
-        fp = NEW std::ifstream(JGE_GET_RES(filename).c_str());
+        fp = NEW wagic::ifstream(JGE_GET_RES(filename).c_str());
     }
     else
-        fp = NEW std::ifstream(filename.c_str());
+        fp = NEW wagic::ifstream(filename.c_str());
 
     int result = 0;
     if (fp)

@@ -65,7 +65,7 @@ Translator::Translator()
 
 void Translator::load(string filename, map<string, string> * dictionary)
 {
-    std::ifstream file(filename.c_str());
+    wagic::ifstream file(filename.c_str());
 
     if (file)
     {
@@ -89,7 +89,7 @@ void Translator::load(string filename, map<string, string> * dictionary)
 
 #if defined DEBUG_TRANSLATE
     if (!checkMisses) return;
-    std::ifstream file2(JGE_GET_RES("lang/dontcare.txt").c_str());
+    wagic::ifstream file2(JGE_GET_RES("lang/dontcare.txt").c_str());
 
     if(file2)
     {
@@ -123,7 +123,7 @@ void Translator::initDecks()
     string decks_dict = JGE_GET_RES("lang/") + lang + "_decks.txt";
 
     // Load file
-    std::ifstream file(decks_dict.c_str());
+    wagic::ifstream file(decks_dict.c_str());
     if (file)
     {
         string s;

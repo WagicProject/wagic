@@ -316,7 +316,7 @@ GameOptions::GameOptions(string filename)
 
 int GameOptions::load()
 {
-    std::ifstream file(mFilename.c_str());
+    wagic::ifstream file(mFilename.c_str());
     std::string s;
 
     if (file)

@@ -143,7 +143,7 @@ AIStat * AIStats::find(MTGCard * source)
 
 void AIStats::load(char * filename)
 {
-    std::ifstream file(filename);
+    wagic::ifstream file(filename);
     std::string s;
 
     if (file)

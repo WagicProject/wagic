@@ -352,7 +352,7 @@ int TaskList::load(string _fileName)
         return -1;
     }
 
-    std::ifstream file(fileName.c_str());
+    wagic::ifstream file(fileName.c_str());
     std::string s;
 
     if (file)

@@ -448,7 +448,7 @@ int Credits::IsMoreAIDecksUnlocked(DeckStats * stats) {
         found = 0;
         char buffer[512];
         sprintf(buffer, JGE_GET_RES("ai/baka/deck%i.txt").c_str(), nbdecks + 1);
-        std::ifstream file(buffer);
+        wagic::ifstream file(buffer);
         if (file)
         {
             found = 1;

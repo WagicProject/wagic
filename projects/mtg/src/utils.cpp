@@ -6,6 +6,13 @@
 #include "WResourceManager.h"
 #include "WFont.h"
 
+namespace wagic
+{
+#ifdef TRACK_FILE_USAGE_STATS
+    std::map<std::string, int> ifstream::sFileMap;
+#endif
+}
+
 using std::vector;
 
 int randValuesCursor = -1;
@@ -70,14 +77,14 @@ int filesize(const char * filename)
 
 int fileExists(const char * filename)
 {
-    std::ifstream fichier(filename);
+    wagic::ifstream fichier(filename);
     if (fichier)
     {
         fichier.close();
         return 1;
     }
 
-    std::ifstream fichier2(JGE_GET_RES(filename).c_str());
+    wagic::ifstream fichier2(JGE_GET_RES(filename).c_str());
     if (fichier2)
     {
         fichier2.close();
@@ -190,26 +197,26 @@ u32 ramAvailable(void)
     return size;
 }
 
-string& trim(string &str)
+string& trim(string& str)
 {
     str = ltrim(str);
     str = rtrim(str);
     return str;
 }
 
-string& ltrim(string &str)
+string& ltrim(string& str)
 {
     str.erase(0, str.find_first_not_of(" \t"));
     return str;
 }
 
-string& rtrim(string &str)
+string& rtrim(string& str)
 {
     str.resize(str.find_last_not_of(" \t") + 1);
     return str;
 }
 
-std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems)
+std::vector<std::string>& split(const std::string& s, char delim, std::vector<std::string>& elems)
 {
     std::stringstream ss(s);
     std::string item;
@@ -220,7 +227,7 @@ std::vector<std::string> &split(const std::string &s, char delim, std::vector<st
     return elems;
 }
 
-std::string join( vector<string> &v, string delim)
+std::string join(vector<string>& v, string delim)
 {
 	std::string retVal;
 	for ( vector<string>::iterator it = v.begin(); it != v.end(); ++it )
@@ -232,7 +239,7 @@ std::string join( vector<string> &v, string delim)
 	return retVal;
 }
 
-std::vector<std::string> split(const std::string &s, char delim)
+std::vector<std::string> split(const std::string& s, char delim)
 {
     std::vector<std::string> elems;
     return split(s, delim, elems);
@@ -241,7 +248,7 @@ std::vector<std::string> split(const std::string &s, char delim)
 // This is a customized word wrap based on pixel width.  It tries it's best 
 // to wrap strings using spaces as delimiters.  
 // Not sure how this translates into non-english fonts.
-std::string wordWrap(std::string sentence, float width, int fontId)
+std::string wordWrap(const std::string& sentence, float width, int fontId)
 {
 	WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
 	float lineWidth = mFont->GetStringWidth( sentence.c_str() );

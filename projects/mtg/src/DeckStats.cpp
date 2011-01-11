@@ -111,7 +111,7 @@ void DeckStats::load(Player * player)
 void DeckStats::load(const char * filename)
 {
     cleanStats();
-    std::ifstream file(filename);
+    wagic::ifstream file(filename);
     std::string s;
 
     if (file)

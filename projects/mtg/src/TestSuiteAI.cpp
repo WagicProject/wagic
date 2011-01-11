@@ -509,7 +509,7 @@ TestSuite::TestSuite(const char * filename, MTGAllCards* _collection)
 {
     collection = _collection;
     timerLimit = 0;
-    std::ifstream file(filename);
+    wagic::ifstream file(filename);
     std::string s;
     nbfiles = 0;
     currentfile = 0;
@@ -617,7 +617,7 @@ int TestSuite::load(const char * _filename)
     gameType = GAME_TYPE_CLASSIC;
     char filename[4096];
     sprintf(filename, JGE_GET_RES("/test/%s").c_str(), _filename);
-    std::ifstream file(filename);
+    wagic::ifstream file(filename);
     std::string s;
     loadRandValues("");
 

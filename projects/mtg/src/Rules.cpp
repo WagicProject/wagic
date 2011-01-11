@@ -487,7 +487,7 @@ int Rules::load(string _filename)
     {
         sprintf(filename, JGE_GET_RES("rules/%s").c_str(), _filename.c_str());
     }
-    std::ifstream file(filename);
+    wagic::ifstream file(filename);
     std::string s;
 
     int state = PARSE_UNDEFINED;

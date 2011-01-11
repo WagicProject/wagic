@@ -25,7 +25,7 @@ void PlayerData::init()
     //CREDITS
     credits = 3000; //Default value
 
-    std::ifstream file(options.profileFile(PLAYER_SAVEFILE).c_str());
+    wagic::ifstream file(options.profileFile(PLAYER_SAVEFILE).c_str());
     std::string s;
     if (file)
     {

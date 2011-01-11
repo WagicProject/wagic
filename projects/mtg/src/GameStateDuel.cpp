@@ -266,7 +266,7 @@ void GameStateDuel::End()
 bool GameStateDuel::MusicExist(string FileName)
 {
     string filepath = JGE_GET_RES(WResourceManager::Instance()->musicFile(FileName));
-    std::ifstream file(filepath.c_str());
+    wagic::ifstream file(filepath.c_str());
     if (file)
     {
         file.close();

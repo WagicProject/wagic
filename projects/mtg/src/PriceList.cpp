@@ -8,7 +8,7 @@ PriceList::PriceList(const char * _filename, MTGAllCards * _collection) :
     collection(_collection)
 {
     filename = _filename;
-    std::ifstream file(_filename);
+    wagic::ifstream file(_filename);
     std::string cardid;
     std::string price;
     if (file)

@@ -31,7 +31,7 @@ void GameStateStory::loadStoriesMenu(const char * root)
     {
         char buffer[4096];
         sprintf(buffer, "%s%s/story.xml", root, mDit->d_name);
-        std::ifstream file(buffer);
+        wagic::ifstream file(buffer);
         if (file)
         {
             string fname = mDit->d_name;

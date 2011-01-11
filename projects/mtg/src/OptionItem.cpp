@@ -168,7 +168,7 @@ void OptionProfile::populate()
     PlayerData * pdata = NEW PlayerData(app->collection);
 
     int unlocked = 0, sets = setlist.size();
-    std::ifstream file(options.profileFile(PLAYER_SETTINGS).c_str());
+    wagic::ifstream file(options.profileFile(PLAYER_SETTINGS).c_str());
     std::string s;
     if (file)
     {
@@ -333,7 +333,7 @@ void OptionLanguage::Reload()
     {
         string filename = JGE_GET_RES("lang/");
         filename += mDit->d_name;
-        std::ifstream file(filename.c_str());
+        wagic::ifstream file(filename.c_str());
         string s;
         string lang;
         if (file)
@@ -412,7 +412,7 @@ void OptionDirectory::Reload()
     while ((mDit = readdir(mDip)))
     {
         sprintf(buf, "%s/%s/%s", root.c_str(), mDit->d_name, type.c_str());
-        std::ifstream file(buf);
+        wagic::ifstream file(buf);
         if (!file)
             continue;
         file.close();
@@ -439,7 +439,7 @@ OptionDirectory::OptionDirectory(string root, int id, string displayValue, strin
     while ((mDit = readdir(mDip)))
     {
         sprintf(buf, "%s/%s/%s", root.c_str(), mDit->d_name, type.c_str());
-        std::ifstream file(buf);
+        wagic::ifstream file(buf);
         if (!file)
             continue;
         file.close();
@@ -498,7 +498,7 @@ void OptionTheme::Render()
             sprintf(buf, "%s", JGE_GET_RES("graphics/themeinfo.txt").c_str());
         else
             sprintf(buf, "%s%s", JGE_GET_RES("themes/%s/themeinfo.txt").c_str(), selections[value].c_str());
-        std::ifstream file(buf);
+        wagic::ifstream file(buf);
         if (file)
         {
             string temp;

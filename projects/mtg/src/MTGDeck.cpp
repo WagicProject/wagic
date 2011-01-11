@@ -301,7 +301,7 @@ int MTGAllCards::load(const char * config_file, const char * set_name, int autol
     const int set_id = set_name ? setlist.Add(set_name) : MTGSets::INTERNAL_SET;
     MTGSetInfo *si = setlist.getInfo(set_id);
 
-    std::ifstream setFile(config_file, ios::in | ios::ate);
+    wagic::ifstream setFile(config_file, ios::in | ios::ate);
     if (!setFile) return total_cards;
 
     streampos fileSize = setFile.tellg();
@@ -620,7 +620,7 @@ MTGDeck::MTGDeck(const char * config_file, MTGAllCards * _allcards, int meta_onl
     size_t slash = filename.find_last_of("/");
     size_t dot = filename.find(".");
     meta_name = filename.substr(slash + 1, dot - slash - 1);
-    std::ifstream file(config_file);
+    wagic::ifstream file(config_file);
     std::string s;
 
     if (file)
