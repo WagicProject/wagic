@@ -534,176 +534,186 @@ void JRenderer::PlotArray(float *x, float *y, int count, PIXEL_TYPE color)
 //		v3---v4
 void JRenderer::RenderQuad(JQuad* quad, float xo, float yo, float angle, float xScale, float yScale)
 {
-  if (mCurrentTextureFormat != quad->mTex->mTextureFormat){
-    mCurrentTextureFormat = quad->mTex->mTextureFormat;
-    sceGuTexMode(mCurrentTextureFormat, 0, 0, mSwizzle);
-  }
-  
-  if (mCurrentTex != quad->mTex->mTexId)
-	{
-		sceGuTexImage(0, quad->mTex->mTexWidth, quad->mTex->mTexHeight, quad->mTex->mTexWidth, quad->mTex->mBits);
-		mCurrentTex = quad->mTex->mTexId;
-	}
+    if (quad == NULL)
+    {
+        JLOG("JRenderer::RenderQuad: NULL quad pointer!");
+        return;
+    }
+    if (quad->mTex == NULL)
+    {
+        JLOG("JRenderer::RenderQuad:: invalid texture!");
+        return;
+    }
 
-	if (mCurrentBlend != quad->mBlend)
-	{
-		sceGuTexFunc(quad->mBlend, GU_TCC_RGBA);
-		mCurrentBlend = quad->mBlend;
-	}
+    if (mCurrentTextureFormat != quad->mTex->mTextureFormat)
+    {
+        mCurrentTextureFormat = quad->mTex->mTextureFormat;
+        sceGuTexMode(mCurrentTextureFormat, 0, 0, mSwizzle);
+    }
 
+    if (mCurrentTex != quad->mTex->mTexId)
+    {
+        sceGuTexImage(0, quad->mTex->mTexWidth, quad->mTex->mTexHeight, quad->mTex->mTexWidth, quad->mTex->mBits);
+        mCurrentTex = quad->mTex->mTexId;
+    }
 
+    if (mCurrentBlend != quad->mBlend)
+    {
+        sceGuTexFunc(quad->mBlend, GU_TCC_RGBA);
+        mCurrentBlend = quad->mBlend;
+    }
 
-	//float destWidth = quad->mWidth*quad->mScaleX;
-	float destHeight = quad->mHeight*yScale;
-	float x = xo - quad->mHotSpotX*xScale;
-	float y = yo - quad->mHotSpotY*yScale;
+    //float destWidth = quad->mWidth*quad->mScaleX;
+    float destHeight = quad->mHeight*yScale;
+    float x = xo - quad->mHotSpotX*xScale;
+    float y = yo - quad->mHotSpotY*yScale;
 
-	float start, end;
+    float start, end;
 
-	float width;
-	float destWidth;
-	float fixedWidth = SLICE_SIZE_F*xScale;
-	float xx, yy;
-	float cosAngle = cosf(angle);
-	float sinAngle = sinf(angle);
+    float width;
+    float destWidth;
+    float fixedWidth = SLICE_SIZE_F*xScale;
+    float xx, yy;
+    float cosAngle = cosf(angle);
+    float sinAngle = sinf(angle);
 
-	if (quad->mHFlipped)// || quad->mVFlipped)
-	{
+    if (quad->mHFlipped)// || quad->mVFlipped)
+    {
 
-		for (end = quad->mX, start = quad->mX+quad->mWidth; start > end; start -= SLICE_SIZE_F)
-		{
-			// allocate memory on the current display list for temporary storage
-			// in order to rotate, we use 4 vertices this time
-			struct Vertex* vertices = (struct Vertex*)sceGuGetMemory(4 * sizeof(struct Vertex));
-			if ((start - SLICE_SIZE_F) > end)
-			{
-				width = SLICE_SIZE_F;
-				destWidth = fixedWidth;
-			}
-			else
-			{
-				width = start-end;
-				destWidth = width*xScale;
-			}
+        for (end = quad->mX, start = quad->mX+quad->mWidth; start > end; start -= SLICE_SIZE_F)
+        {
+            // allocate memory on the current display list for temporary storage
+            // in order to rotate, we use 4 vertices this time
+            struct Vertex* vertices = (struct Vertex*)sceGuGetMemory(4 * sizeof(struct Vertex));
+            if ((start - SLICE_SIZE_F) > end)
+            {
+                width = SLICE_SIZE_F;
+                destWidth = fixedWidth;
+            }
+            else
+            {
+                width = start-end;
+                destWidth = width*xScale;
+            }
 
-			vertices[0].u = start;
-			vertices[0].v = quad->mY;
-			vertices[0].color = quad->mColor[0];//.color;
-			vertices[0].x = x;
-			vertices[0].y = y;
-			vertices[0].z = 0.0f;
+            vertices[0].u = start;
+            vertices[0].v = quad->mY;
+            vertices[0].color = quad->mColor[0];//.color;
+            vertices[0].x = x;
+            vertices[0].y = y;
+            vertices[0].z = 0.0f;
 
-			vertices[2].u = start - width;
-			vertices[2].v = quad->mY;
-			vertices[2].color = quad->mColor[2];//.color;
-			vertices[2].x = x + destWidth;
-			vertices[2].y = y;
-			vertices[2].z = 0.0f;
+            vertices[2].u = start - width;
+            vertices[2].v = quad->mY;
+            vertices[2].color = quad->mColor[2];//.color;
+            vertices[2].x = x + destWidth;
+            vertices[2].y = y;
+            vertices[2].z = 0.0f;
 
-			vertices[1].u = start;
-			vertices[1].v = quad->mY + quad->mHeight;
-			vertices[1].color = quad->mColor[1];//.color;
-			vertices[1].x = x;
-			vertices[1].y = y + destHeight;
-			vertices[1].z = 0.0f;
+            vertices[1].u = start;
+            vertices[1].v = quad->mY + quad->mHeight;
+            vertices[1].color = quad->mColor[1];//.color;
+            vertices[1].x = x;
+            vertices[1].y = y + destHeight;
+            vertices[1].z = 0.0f;
 
-			vertices[3].u = start - width;
-			vertices[3].v = quad->mY + quad->mHeight;
-			vertices[3].color = quad->mColor[3];//.color;
-			vertices[3].x = x + destWidth;
-			vertices[3].y = y + destHeight;
-			vertices[3].z = 0.0f;
+            vertices[3].u = start - width;
+            vertices[3].v = quad->mY + quad->mHeight;
+            vertices[3].color = quad->mColor[3];//.color;
+            vertices[3].x = x + destWidth;
+            vertices[3].y = y + destHeight;
+            vertices[3].z = 0.0f;
 
-			if (quad->mVFlipped)
-			{
-				Swap(&vertices[0].v, &vertices[2].v);
-				Swap(&vertices[1].v, &vertices[3].v);
-			}
+            if (quad->mVFlipped)
+            {
+                Swap(&vertices[0].v, &vertices[2].v);
+                Swap(&vertices[1].v, &vertices[3].v);
+            }
 
-			if (angle != 0.0f)
-			{
-				for (int i=0;i<4;i++)
-				{
-					xx = (cosAngle*(vertices[i].x-xo) - sinAngle*(vertices[i].y-yo) + xo);
-					yy = (sinAngle*(vertices[i].x-xo) + cosAngle*(vertices[i].y-yo) + yo);
-					vertices[i].x = xx;
-					vertices[i].y = yy;
-				}
-			}
+            if (angle != 0.0f)
+            {
+                for (int i=0;i<4;i++)
+                {
+                    xx = (cosAngle*(vertices[i].x-xo) - sinAngle*(vertices[i].y-yo) + xo);
+                    yy = (sinAngle*(vertices[i].x-xo) + cosAngle*(vertices[i].y-yo) + yo);
+                    vertices[i].x = xx;
+                    vertices[i].y = yy;
+                }
+            }
 
-			x += destWidth;
+            x += destWidth;
 
-			sceGuDrawArray(GU_TRIANGLE_STRIP,GU_TEXTURE_32BITF|TEXTURE_COLOR_FORMAT|GU_VERTEX_32BITF|GU_TRANSFORM_2D, 4, 0, vertices);
-		}
-	}
-	else
-	{
-		for (start = quad->mX, end = quad->mX+quad->mWidth; start < end; start += SLICE_SIZE_F)
-		{
-			// allocate memory on the current display list for temporary storage
-			// in order to rotate, we use 4 vertices this time
-			struct Vertex* vertices = (struct Vertex*)sceGuGetMemory(4 * sizeof(struct Vertex));
-			if ((start + SLICE_SIZE_F) < end)
-			{
-				width = SLICE_SIZE_F;
-				destWidth = fixedWidth;
-			}
-			else
-			{
-				width = end-start;
-				destWidth = width*xScale;
-			}
+            sceGuDrawArray(GU_TRIANGLE_STRIP,GU_TEXTURE_32BITF|TEXTURE_COLOR_FORMAT|GU_VERTEX_32BITF|GU_TRANSFORM_2D, 4, 0, vertices);
+        }
+    }
+    else
+    {
+        for (start = quad->mX, end = quad->mX+quad->mWidth; start < end; start += SLICE_SIZE_F)
+        {
+            // allocate memory on the current display list for temporary storage
+            // in order to rotate, we use 4 vertices this time
+            struct Vertex* vertices = (struct Vertex*)sceGuGetMemory(4 * sizeof(struct Vertex));
+            if ((start + SLICE_SIZE_F) < end)
+            {
+                width = SLICE_SIZE_F;
+                destWidth = fixedWidth;
+            }
+            else
+            {
+                width = end-start;
+                destWidth = width*xScale;
+            }
 
-			vertices[0].u = start;
-			vertices[0].v = quad->mY;
-			vertices[0].color = quad->mColor[0];//.color;
-			vertices[0].x = x;
-			vertices[0].y = y;
-			vertices[0].z = 0.0f;
+            vertices[0].u = start;
+            vertices[0].v = quad->mY;
+            vertices[0].color = quad->mColor[0];//.color;
+            vertices[0].x = x;
+            vertices[0].y = y;
+            vertices[0].z = 0.0f;
 
-			vertices[2].u = start + width;
-			vertices[2].v = quad->mY;
-			vertices[2].color = quad->mColor[2];//.color;
-			vertices[2].x = x + destWidth;
-			vertices[2].y = y;
-			vertices[2].z = 0.0f;
+            vertices[2].u = start + width;
+            vertices[2].v = quad->mY;
+            vertices[2].color = quad->mColor[2];//.color;
+            vertices[2].x = x + destWidth;
+            vertices[2].y = y;
+            vertices[2].z = 0.0f;
 
-			vertices[1].u = start;
-			vertices[1].v = quad->mY + quad->mHeight;
-			vertices[1].color = quad->mColor[1];//.color;
-			vertices[1].x = x;
-			vertices[1].y = y + destHeight;
-			vertices[1].z = 0.0f;
+            vertices[1].u = start;
+            vertices[1].v = quad->mY + quad->mHeight;
+            vertices[1].color = quad->mColor[1];//.color;
+            vertices[1].x = x;
+            vertices[1].y = y + destHeight;
+            vertices[1].z = 0.0f;
 
-			vertices[3].u = start + width;
-			vertices[3].v = quad->mY + quad->mHeight;
-			vertices[3].color = quad->mColor[3];//.color;
-			vertices[3].x = x + destWidth;
-			vertices[3].y = y + destHeight;
-			vertices[3].z = 0.0f;
+            vertices[3].u = start + width;
+            vertices[3].v = quad->mY + quad->mHeight;
+            vertices[3].color = quad->mColor[3];//.color;
+            vertices[3].x = x + destWidth;
+            vertices[3].y = y + destHeight;
+            vertices[3].z = 0.0f;
 
-			if (quad->mVFlipped)
-			{
-				Swap(&vertices[0].v, &vertices[2].v);
-				Swap(&vertices[1].v, &vertices[3].v);
-			}
+            if (quad->mVFlipped)
+            {
+                Swap(&vertices[0].v, &vertices[2].v);
+                Swap(&vertices[1].v, &vertices[3].v);
+            }
 
-			if (angle != 0.0f)
-			{
-				for (int i=0;i<4;i++)
-				{
-					xx = (cosAngle*(vertices[i].x-xo) - sinAngle*(vertices[i].y-yo) + xo);
-					yy = (sinAngle*(vertices[i].x-xo) + cosAngle*(vertices[i].y-yo) + yo);
-					vertices[i].x = xx;
-					vertices[i].y = yy;
-				}
-			}
+            if (angle != 0.0f)
+            {
+                for (int i=0;i<4;i++)
+                {
+                    xx = (cosAngle*(vertices[i].x-xo) - sinAngle*(vertices[i].y-yo) + xo);
+                    yy = (sinAngle*(vertices[i].x-xo) + cosAngle*(vertices[i].y-yo) + yo);
+                    vertices[i].x = xx;
+                    vertices[i].y = yy;
+                }
+            }
 
-			x += destWidth;
+            x += destWidth;
 
-			sceGuDrawArray(GU_TRIANGLE_STRIP,GU_TEXTURE_32BITF|TEXTURE_COLOR_FORMAT|GU_VERTEX_32BITF|GU_TRANSFORM_2D, 4, 0, vertices);
-		}
-	}
+            sceGuDrawArray(GU_TRIANGLE_STRIP,GU_TEXTURE_32BITF|TEXTURE_COLOR_FORMAT|GU_VERTEX_32BITF|GU_TRANSFORM_2D, 4, 0, vertices);
+        }
+    }
 }
 
 
