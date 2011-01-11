@@ -231,12 +231,12 @@ void CardPrimitive::setName(const string& value)
         Subtypes::subtypesList->find(lcname);
 }
 
-const string CardPrimitive::getName() const
+const string& CardPrimitive::getName() const
 {
     return name;
 }
 
-const string CardPrimitive::getLCName() const
+const string& CardPrimitive::getLCName() const
 {
     return lcname;
 }

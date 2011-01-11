@@ -49,8 +49,8 @@ class CardPrimitive {
   void addMagicText(string value, string zone);
 
   void setName(const string& value);
-  const string getName() const;
-  const string getLCName() const;
+  const string& getName() const;
+  const string& getLCName() const;
 
   void addType(char * type_text);
   void addType(int id);
