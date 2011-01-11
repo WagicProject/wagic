@@ -225,8 +225,8 @@ WFBFont::WFBFont(int inFontID, const char *fontname, int lineheight, bool useVid
 
 WFBFont::~WFBFont()
 {
-    SAFE_DELETE(mStdFont);
-    SAFE_DELETE(mExtraFont);
+    SAFE_DELETE_ARRAY(mStdFont);
+    SAFE_DELETE_ARRAY(mExtraFont);
     SAFE_DELETE(mTexture);
 
     if (mSprites)
