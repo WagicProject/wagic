@@ -9772,7 +9772,7 @@ type=Instant
 name=Clearwater Goblet
 abilities=sunburst
 auto=counter(0/0,sunburst,charge)
-auto=@each my upkeep:thisforeach(counter[0/0.1.Charge]) life:1 controller
+auto=@each my upkeep:thisforeach(counter{0/0.1.Charge}) life:1 controller
 text=Sunburst (This enters the battlefield with a charge counter on it for each color of mana spent to cast it.) -- At the beginning of your upkeep, you may gain 1 life for each charge counter on Clearwater Goblet.
 mana={5}
 type=Artifact
@@ -39907,7 +39907,7 @@ auto=@movedto(*[black]|stack):this(counter{0/0.1.Black}) life:1 controller
 auto=@movedto(*[red]|stack):this(counter{0/0.1.Red}) life:1 controller
 auto=@movedto(*[green]|stack):this(counter{0/0.1.Green}) life:1 controller
 text=As Paradise Plume enters the battlefield, choose a color. -- Whenever a player casts a spell of the chosen color, you may gain 1 life. -- {T}: Add one mana of the chosen color to your mana pool.
-mana={1}
+mana={4}
 type=Artifact
 [/card]
 [card]
