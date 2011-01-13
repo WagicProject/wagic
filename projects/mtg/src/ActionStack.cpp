@@ -17,10 +17,18 @@ The Action Stack contains all information for Game Events that can be interrupte
 
 #include <typeinfo>
 
+namespace
+{
+    float kGamepadIconSize = 0.5f;
+
+    const std::string kInterruptString(": Interrupt");
+    const std::string kNoString(": No");
+    const std::string kNoToAllString(": No To All");
+}
+
 /*
 NextGamePhase requested by user
 */
-
 int NextGamePhase::resolve()
 {
     GameObserver::GetInstance()->nextGamePhase();
@@ -72,13 +80,20 @@ const string Interruptible::getDisplayName() const
     return typeid(*this).name();
 }
 
+float Interruptible::GetVerticalTextOffset() const
+{
+    static const float kTextVerticalOffset = (mHeight - WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT)->GetHeight()) / 2;
+    return kTextVerticalOffset;
+}
+
 void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string alt1, string alt2, string action,
     bool bigQuad)
 {
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     mFont->SetColor(ARGB(255,255,255,255));
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
-    mFont->DrawString(_(action).c_str(), x + 30, y, JGETEXT_LEFT);
+
+    mFont->DrawString(_(action).c_str(), x + 35, y + GetVerticalTextOffset(), JGETEXT_LEFT);
     JRenderer * renderer = JRenderer::GetInstance();
     JQuad * quad = WResourceManager::Instance()->RetrieveCard(source, CACHE_THUMB);
     if (!quad)
@@ -87,11 +102,11 @@ void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string 
     {
         quad->SetColor(ARGB(255,255,255,255));
         float scale = mHeight / quad->mHeight;
-        renderer->RenderQuad(quad, x + 10 * scale, y + 15 * scale, 0, scale, scale);
+        renderer->RenderQuad(quad, x + (quad->mWidth * scale / 2), y + (quad->mHeight * scale / 2), 0, scale, scale);
     }
     else if (alt1.size())
     {
-        mFont->DrawString(_(alt1).c_str(), x, y - 15);
+        mFont->DrawString(_(alt1).c_str(), x, y + GetVerticalTextOffset());
     }
 
     if (bigQuad)
@@ -107,12 +122,12 @@ void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string 
         targetQuad->SetColor(ARGB(255,255,255,255));
         targetQuad->SetHotSpot(targetQuad->mWidth / 2, targetQuad->mHeight / 2);
         float scale = mHeight / targetQuad->mHeight;
-        renderer->RenderQuad(targetQuad, x + 150, y + 15 * scale, 0, scale, scale);
+        renderer->RenderQuad(targetQuad, x + 150, y + ((mHeight - targetQuad->mHeight) / 2) + targetQuad->mHotSpotY, 0, scale, scale);
         targetQuad->SetHotSpot(backupX, backupY);
     }
     else if (alt2.size())
     {
-        mFont->DrawString(_(alt2).c_str(), x + 120, y);
+        mFont->DrawString(_(alt2).c_str(), x + 120, y + GetVerticalTextOffset());
     }
 }
 
@@ -428,7 +443,7 @@ void DrawAction::Render()
     if (player == GameObserver::GetInstance()->players[1])
         playerId = 2;
     sprintf(buffer, _("Player %i draws %i card").c_str(), playerId, nbcards);
-    mFont->DrawString(buffer, x + 20, y, JGETEXT_LEFT);
+    mFont->DrawString(buffer, x + 35, y + GetVerticalTextOffset(), JGETEXT_LEFT);
 }
 
 ostream& DrawAction::toString(ostream& out) const
@@ -437,7 +452,6 @@ ostream& DrawAction::toString(ostream& out) const
     return out;
 }
 
-/* The Action Stack itself */
 int ActionStack::addPutInGraveyard(MTGCardInstance * card)
 {
     PutInGraveyard * death = NEW PutInGraveyard(mCount, card);
@@ -556,8 +570,8 @@ Interruptible * ActionStack::getAt(int id)
     return (Interruptible *) mObjects[id];
 }
 
-ActionStack::ActionStack(GameObserver* game) :
-game(game)
+ActionStack::ActionStack(GameObserver* game)
+    : game(game)
 {
     for (int i = 0; i < 2; i++)
         interruptDecision[i] = 0;
@@ -567,6 +581,13 @@ game(game)
     mode = ACTIONSTACK_STANDARD;
     checked = 0;
 
+    for (int i = 0; i < 8; ++i)
+    {
+        std::ostringstream stream;
+        stream << "iconspsp" << i;
+        pspIcons[i] = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float) i * 32, 0, 32, 32, stream.str(), RETRIEVE_MANAGE);
+        pspIcons[i]->SetHotSpot(16, 16);
+    }
 }
 
 int ActionStack::has(MTGAbility * ability)
@@ -991,8 +1012,9 @@ void ActionStack::Fizzle(Interruptible * action)
 
 void ActionStack::Render()
 {
-    float x0 = 250;
-    float y0 = 30;
+    static const float kSpacer = 8;
+    static const float x0 = 250;
+    static const float y0 = 0;
     float width = 200;
     float height = 90;
     float currenty = y0 + 5;
@@ -1019,51 +1041,59 @@ void ActionStack::Render()
         //float xScale = width / back->mWidth;
         //float yScale = height / back->mHeight;
         renderer->FillRoundRect(x0 + 16, y0 + 16, width + 2, height + 2, 10, ARGB(128,0,0,0));
-        renderer->FillRoundRect(x0 - 5, y0 - 5, width + 2, height + 2, 10, ARGB(200,0,0,0));
+        renderer->FillRoundRect(x0 - 5, y0, width + 2, height + 2, 10, ARGB(200,0,0,0));
         //renderer->RenderQuad(back,x0,y0,0,xScale, yScale);
-        renderer->DrawRoundRect(x0 - 5, y0 - 5, width + 2, height + 2, 10, ARGB(255,255,255,255));
+        renderer->DrawRoundRect(x0 - 5, y0, width + 2, height + 2, 10, ARGB(255,255,255,255));
+
+        std::ostringstream stream;
+        // WALDORF - changed "interrupt ?" to "Interrupt?". Don't display count down
+        // seconds if the user disables auto progressing interrupts by setting the seconds
+        // value to zero in Options.
+
+        // Mootpoint 01/12/2011: draw the interrupt text first, at the top.  Offset the rest of the 
+        // unresolved stack effects down so that they don't collide with the interrupt text.
+        if (options[Options::INTERRUPT_SECONDS].number == 0)
+            stream << "Interrupt?";
+        else
+            stream << "Interrupt? " << static_cast<int>(timer);
+
+        mFont->DrawString(stream.str(), x0 + 5, currenty);
+
+        static const float kIconVerticalOffset = 24;
+        if (mCount > 1)
+        {
+            renderer->RenderQuad(pspIcons[7], x0 + 10, kIconVerticalOffset, 0, kGamepadIconSize, kGamepadIconSize);
+            mFont->DrawString(kInterruptString, x0 + 19, kIconVerticalOffset - 6);
+
+            renderer->RenderQuad(pspIcons[4], x0 + 97, kIconVerticalOffset, 0, kGamepadIconSize, kGamepadIconSize);
+            mFont->DrawString(kNoString, x0 + 106, kIconVerticalOffset - 6);
+
+            renderer->RenderQuad(pspIcons[6], x0 + 145, kIconVerticalOffset, 0, kGamepadIconSize, kGamepadIconSize);
+            mFont->DrawString(kNoToAllString, x0 + 154, kIconVerticalOffset - 6);
+        }
+        else
+        {
+            renderer->RenderQuad(pspIcons[7], x0 + 40, kIconVerticalOffset, 0, kGamepadIconSize, kGamepadIconSize);
+            mFont->DrawString(kInterruptString, x0 + 49, kIconVerticalOffset - 6);
+
+            renderer->RenderQuad(pspIcons[4], x0 + 140, kIconVerticalOffset - 6, 0, kGamepadIconSize, kGamepadIconSize);
+            mFont->DrawString(kNoString, x0 + 146, kIconVerticalOffset - 6);
+        }
+
+        currenty += kIconVerticalOffset + kSpacer;
 
         for (int i = 0; i < mCount; i++)
         {
             Interruptible * current = (Interruptible *) mObjects[i];
             if (current && current->state == NOT_RESOLVED)
             {
-                current->x = x0 + 5;
-                if (i != mCount - 1)
-                {
-                    current->y = currenty;
-                    currenty += current->mHeight;
-                }
-                else
-                {
-                    current->y = currenty + 40;
-                    currenty += current->mHeight + 40;
-                }
+                current->x = x0;
+                current->y = currenty;
                 current->Render();
+
+                currenty += current->mHeight;
             }
         }
-
-        char buffer[200];
-        // WALDORF - changed "interrupt ?" to "Interrupt?". Don't display count down
-        // seconds if the user disables auto progressing interrupts by setting the seconds
-        // value to zero in Options.
-        if (options[Options::INTERRUPT_SECONDS].number == 0)
-            sprintf(buffer, "%s", _("Interrupt?").c_str());
-        else
-            sprintf(buffer, "%s  %i", _("Interrupt?").c_str(), static_cast<int> (timer));
-
-        //WALDORF - removed all the unnecessary math. just display the prompt at the
-        // top of the box.
-        mFont->DrawString(buffer, x0 + 5, y0);
-
-        if (mCount > 1)
-            sprintf(buffer, "%s", _("X Interrupt - 0 No - [] No to All").c_str());
-        else
-            sprintf(buffer, "%s", _("X Interrupt - 0 No").c_str());
-
-        // WALDORF - puts the button legend right under the prompt. the stack
-        // will be displayed below it now. no more need to do wierd currY math.
-        mFont->DrawString(buffer, x0 + 5, y0 + 14);
     }
     else if (mode == ACTIONSTACK_TARGET && modal)
     {

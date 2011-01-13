@@ -59,6 +59,7 @@ private:
 class GameStateShop: public GameState, public JGuiListener
 {
  private:
+  JQuad * pspIcons[8];
   WSrcCards * srcCards;
   JTexture * altThumb[8];
   JQuad * mBack;

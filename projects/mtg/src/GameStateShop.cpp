@@ -26,6 +26,13 @@ float GameStateShop::_y3[] = { 164, 205, 257, 184, 180, 170, 219, 212, 195, 251,
 float GameStateShop::_x4[] = { 76, 90, 65, 131, 171, 221, 123, 187, 225, 141, 237 };
 float GameStateShop::_y4[] = { 169, 188, 250, 182, 182, 168, 220, 208, 198, 259, 245 };
 
+namespace
+{
+    float kGamepadIconSize = 0.5f;
+    const std::string kOtherCardsString(": Other cards");
+}
+
+
 BoosterDisplay::BoosterDisplay(int id, GameObserver* game, int x, int y, JGuiListener * listener, TargetChooser * tc,
                 int nb_displayed_items) :
     CardDisplay(id, game, x, y, listener, tc, nb_displayed_items)
@@ -133,6 +140,14 @@ void GameStateShop::Start()
     altThumb[7] = WResourceManager::Instance()->RetrieveTexture("gold_thumb.jpg", RETRIEVE_LOCK);
 
     mBack = WResourceManager::Instance()->GetQuad("back");
+
+    for (int i = 0; i < 8; ++i)
+    {
+        std::ostringstream stream;
+        stream << "iconspsp" << i;
+        pspIcons[i] = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float) i * 32, 0, 32, 32, stream.str(), RETRIEVE_MANAGE);
+        pspIcons[i]->SetHotSpot(16, 16);
+    }
 
     JRenderer::GetInstance()->EnableVSync(true);
 
@@ -718,13 +733,14 @@ void GameStateShop::Render()
 
     //Render the info bar
     r->FillRect(0, SCREEN_HEIGHT - 17, SCREEN_WIDTH, 17, ARGB(128,0,0,0));
-    char c[512];
-    sprintf(c, _("credits: %i").c_str(), playerdata->credits);
+    std::ostringstream stream;
+    stream << "Credits: " << playerdata->credits;
     mFont->SetColor(ARGB(255,255,255,255));
-    mFont->DrawString(c, 5, SCREEN_HEIGHT - 12);
-    sprintf(c, "%s", _("[]:other cards").c_str());
-    float len = 4 + mFont->GetStringWidth(c);
-    mFont->DrawString(c, SCREEN_WIDTH - len, SCREEN_HEIGHT - 14);
+    mFont->DrawString(stream.str(), 5, SCREEN_HEIGHT - 14);
+
+    float len = 4 + mFont->GetStringWidth(kOtherCardsString.c_str());
+	r->RenderQuad(pspIcons[6], SCREEN_WIDTH - len - kGamepadIconSize - 10, SCREEN_HEIGHT - 8, 0, kGamepadIconSize, kGamepadIconSize);
+    mFont->DrawString(kOtherCardsString, SCREEN_WIDTH - len, SCREEN_HEIGHT - 14);
 
     mFont->SetColor(ARGB(255,255,255,0));
     mFont->DrawString(descPurchase(bigSync.getPos()).c_str(), SCREEN_WIDTH / 2, SCREEN_HEIGHT - 14, JGETEXT_CENTER);

@@ -63,6 +63,9 @@ class Interruptible: public PlayGuiObject, public Targetable{
 #if defined (WIN32) || defined (LINUX) || defined (IOS)
   virtual void Dump();
 #endif
+
+protected:
+  float GetVerticalTextOffset() const;
 };
 
 class NextGamePhase: public Interruptible {
@@ -136,6 +139,7 @@ class DrawAction: public Interruptible {
 
 class ActionStack :public GuiLayer{
  protected:
+  JQuad * pspIcons[8];
   GameObserver* game;
   int interruptDecision[2];
   float timer;
@@ -145,7 +149,8 @@ class ActionStack :public GuiLayer{
 
  public:
 
-   enum{
+   enum
+   {
      NOT_DECIDED = 0,
      INTERRUPT = -1,
      DONT_INTERRUPT = 1,
