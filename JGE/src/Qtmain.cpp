@@ -72,6 +72,22 @@ protected:
 
   void hideEvent ( QHideEvent * event );
 
+  bool event(QEvent *event)
+  {
+      if (event->type() == QEvent::Gesture)
+          return gestureEvent(static_cast<QGestureEvent*>(event));
+      return QGLWidget::event(event);
+  }
+
+  bool gestureEvent(QGestureEvent* event)
+  {
+      if (QGesture *tapAndHold = event->gesture(Qt::TapAndHoldGesture))
+          tapAndHoldTriggered(static_cast<QTapAndHoldGesture *>(tapAndHold));
+      return true;
+  }
+
+  void tapAndHoldTriggered(QTapAndHoldGesture* gesture);
+
 #ifdef Q_WS_MAEMO_5
   void grabZoomKeys(bool grab)
   {
@@ -207,9 +223,12 @@ JGEQtRenderer::JGEQtRenderer(QWidget *parent)
 #endif
   setAttribute(Qt::WA_AcceptTouchEvents);
   setMouseTracking(true);
+/*
   grabGesture(Qt::PanGesture);
   grabGesture(Qt::PinchGesture);
   grabGesture(Qt::SwipeGesture);
+*/
+  grabGesture(Qt::TapAndHoldGesture);
 
 #ifdef Q_WS_MAEMO_5
   dBusInterface = new QDBusInterface(MCE_SERVICE, MCE_REQUEST_PATH,
@@ -291,7 +310,7 @@ void JGEQtRenderer::resizeGL(int width, int height)
 
   JRenderer::GetInstance()->SetActualWidth(viewPort.right()-viewPort.left());
   JRenderer::GetInstance()->SetActualHeight(viewPort.bottom()-viewPort.top());
-  glScissor(viewPort.left(), viewPort.top(), viewPort.right()-viewPort.left(), viewPort.bottom()-viewPort.top());
+  glScissor(0, 0, width, height);
 
 #if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
 
@@ -332,6 +351,13 @@ void JGEQtRenderer::timerEvent( QTimerEvent* )
   updateGL();
 }
 
+void JGEQtRenderer::tapAndHoldTriggered(QTapAndHoldGesture* gesture)
+{
+    if (gesture->state() == Qt::GestureFinished) {
+        g_engine->HoldKey_NoRepeat(JGE_BTN_MENU);
+    }
+}
+
 void JGEQtRenderer::mousePressEvent(QMouseEvent *event)
 {
   if(event->button() == Qt::LeftButton)
@@ -349,7 +375,7 @@ void JGEQtRenderer::mousePressEvent(QMouseEvent *event)
       g_engine->LeftClicked(
                   ((lastPos.x()-viewPort.left())*SCREEN_WIDTH)/actualWidth,
                   ((lastPos.y()-viewPort.top())*SCREEN_HEIGHT)/actualHeight);
-#ifndef Q_WS_MAEMO_5
+#if (!defined Q_WS_MAEMO_5) && (!defined Q_WS_MEEGO)
       g_engine->HoldKey_NoRepeat(JGE_BTN_OK);
 #endif
     } else if(lastPos.y()<viewPort.top()) {
@@ -387,7 +413,7 @@ void JGEQtRenderer::mouseReleaseEvent(QMouseEvent *event)
       lastPos.y() <= viewPort.bottom() &&
       lastPos.x() <= viewPort.right() &&
       lastPos.x() >= viewPort.left()) {
-#ifndef Q_WS_MAEMO_5
+#if (!defined Q_WS_MAEMO_5) && (!defined Q_WS_MEEGO)
       g_engine->ReleaseKey(JGE_BTN_OK);
 #endif
     } else if(lastPos.y() < viewPort.top()) {
@@ -435,7 +461,7 @@ void JGEQtRenderer::mouseMoveEvent(QMouseEvent *event)
 
 void JGEQtRenderer::mouseDoubleClickEvent(QMouseEvent *event)
 {
-#ifdef Q_WS_MAEMO_5
+#if (defined Q_WS_MAEMO_5) || (defined Q_WS_MEEGO)
   if(event->button() == Qt::LeftButton)
   {
     g_engine->HoldKey_NoRepeat(JGE_BTN_OK);
@@ -447,7 +473,6 @@ void JGEQtRenderer::mouseDoubleClickEvent(QMouseEvent *event)
     QGLWidget::mouseDoubleClickEvent(event);
   }
 }
-
 
 void JGEQtRenderer::wheelEvent(QWheelEvent *event)
 {
@@ -525,7 +550,7 @@ void JGEQtRenderer::showEvent ( QShowEvent * event )
 {
   if(!timerStarted)
   {
-#ifdef Q_WS_MAEMO_5
+#if (defined Q_WS_MAEMO_5) || (defined Q_WS_MEEGO)
     // 30 fps max on mobile
     timerId = startTimer(33);
 #else
@@ -566,20 +591,7 @@ int main(int argc, char* argv[])
 
   a.setApplicationName(g_launcher->GetName());
 
-  QGLFormat::OpenGLVersionFlags glflags = g_glwidget->format().openGLVersionFlags();
-
-#ifdef Q_WS_MAEMO_5
-  if((glflags & QGLFormat::OpenGL_ES_Version_2_0) == 0)
-#else
-  if((glflags & QGLFormat::OpenGL_Version_2_0) == 0)
-#endif
-  {
-    qCritical("OpenGL flags 0x%x unsupported", (unsigned int)glflags);
-    return -1;
-  }
-
-
-#ifdef Q_WS_MAEMO_5
+#if (defined Q_WS_MAEMO_5) || (defined Q_WS_MEEGO)
   // We start in fullscreen on mobile
   g_glwidget->showFullScreen();
 #else
