@@ -13,7 +13,6 @@ TEMPLATE = app
 unix|macx:QMAKE_CXXFLAGS += -Wno-unused-parameter
 windows:DEFINES += WIN32
 windows:DEFINES += _CRT_SECURE_NO_WARNINGS
-windows:DEFINES += FORCE_GL2
 unix|macx:DEFINES += LINUX
 CONFIG(debug, debug|release):DEFINES += _DEBUG
 DEFINES += QT_CONFIG

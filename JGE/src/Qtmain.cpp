@@ -291,18 +291,20 @@ void JGEQtRenderer::resizeGL(int width, int height)
 
   JRenderer::GetInstance()->SetActualWidth(viewPort.right()-viewPort.left());
   JRenderer::GetInstance()->SetActualHeight(viewPort.bottom()-viewPort.top());
-  glScissor(0, 0, width, height);
+  glScissor(viewPort.left(), viewPort.top(), viewPort.right()-viewPort.left(), viewPort.bottom()-viewPort.top());
 
 #if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
+
   glMatrixMode (GL_PROJECTION);										// Select The Projection Matrix
   glLoadIdentity ();													// Reset The Projection Matrix
 
-  gluOrtho2D(0.0f, (float) width-1.0f, 0.0f, (float) height-1.0f);
+  gluOrtho2D(0.0f, (float) (viewPort.right()-viewPort.left())-1.0f, 0.0f, (float) (viewPort.bottom()-viewPort.top())-1.0f);
 
   glMatrixMode (GL_MODELVIEW);										// Select The Modelview Matrix
   glLoadIdentity ();													// Reset The Modelview Matrix
 
   glDisable (GL_DEPTH_TEST);
+
 #endif
 }
 
