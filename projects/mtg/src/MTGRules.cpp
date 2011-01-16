@@ -233,6 +233,7 @@ MTGAlternativeCostRule::MTGAlternativeCostRule(int _id) :
 {
     aType = MTGAbility::ALTERNATIVE_COST;
 }
+
 int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 {
 
@@ -257,6 +258,7 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
     )
     {
         ManaCost * playerMana = player->getManaPool();
+		ManaCost * alternative = card->getManaCost()->alternative;
 
 #ifdef WIN32
         ManaCost * cost = card->getManaCost();
@@ -434,8 +436,10 @@ int MTGBuyBackRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
         return 0;
     if (card->hasType("land"))
     {
-        if (player == currentPlayer && currentPlayer->canPutLandsIntoPlay && (game->currentGamePhase
-                == Constants::MTG_PHASE_FIRSTMAIN || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN))
+        if (player == currentPlayer && currentPlayer->canPutLandsIntoPlay 
+			&& (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN 
+				|| game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN)
+		)
         {
             return 1;
         }
