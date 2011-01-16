@@ -102,7 +102,7 @@ void MTGPlayerCards::OptimizedHand(Player * who,int amount, int lands, int creat
         Player * p = who;
         MTGCardInstance * card = NULL;
         MTGGameZone * z = p->game->library;
-        MTGGameZone * e = p->game->temp;
+
         int optimizedland = 0;
         int optimizedothercards = 0;
         int optimizedcreatures = 0;

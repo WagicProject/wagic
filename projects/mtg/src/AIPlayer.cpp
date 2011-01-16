@@ -445,7 +445,7 @@ int AIAction::getEfficiency()
     {
         MTGCardInstance * _target = (MTGCardInstance *) (a->target);
         MTGAbility * a = AbilityFactory::getCoreAbility(ability);
-        AManaProducer * amp = dynamic_cast<AManaProducer*> (a);
+
         efficiency = 0;
         //trying to encourage Ai to use his foreach manaproducers in first main
         if (a->naType == MTGAbility::MANA_PRODUCER && (g->getCurrentGamePhase() == Constants::MTG_PHASE_FIRSTMAIN
@@ -489,7 +489,7 @@ int AIAction::getEfficiency()
     case MTGAbility::STANDARDABILITYGRANT:
     {
         efficiency = 0;
-        MTGCardInstance * _target = (MTGCardInstance *) (a->target);
+
         if (!target && !dynamic_cast<ALord*> (a))
             break;
             if(dynamic_cast<ALord*> (a) && !target)
@@ -1264,7 +1264,7 @@ int AIPlayerBaka::computeActions()
     else if (p == this && g->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0)
     { //standard actions
         CardDescriptor cd;
-        MTGCardInstance * card = NULL;
+
         switch (currentGamePhase)
         {
         case Constants::MTG_PHASE_FIRSTMAIN:

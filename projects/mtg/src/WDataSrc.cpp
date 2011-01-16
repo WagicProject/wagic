@@ -171,7 +171,7 @@ int WSrcCards::loadMatches(WSrcCards* src, bool all)
     if (!src) return count;
 
     MTGCard * c = NULL;
-    size_t t = 0;
+
     int oldp = src->getOffset();
     src->setOffset(0);
     for (int t = 0; t < src->Size(all); t++)
@@ -257,8 +257,6 @@ int WSrcCards::addToDeck(MTGDeck * i, int num)
 
 bool WSrcCards::next()
 {
-    int oldpos = currentPos;
-    bool bMatch = true;
     int size = (int) cards.size();
     if (filtersRoot) size = (int) validated.size();
     if (currentPos + 1 >= size) return false;
@@ -268,8 +266,6 @@ bool WSrcCards::next()
 
 bool WSrcCards::prev()
 {
-    int oldpos = currentPos;
-    bool bMatch = true;
     if (currentPos == 0) return false;
 
     currentPos--;

@@ -249,7 +249,7 @@ JQuad * WResourceManager::RetrieveCard(MTGCard * card, int style, int submode)
         }
         filename1 = filename + card->data->getName() + ".jpg";
         jq = RetrieveQuad(filename1, 0, 0, 0, 0, "", style, submode | TEXTURE_SUB_5551, id);
-        int i = 0; //TODO remove debug test;
+
     }
     lastError = textureWCache.mError;
     if (jq)

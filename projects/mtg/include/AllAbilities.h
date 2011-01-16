@@ -3216,21 +3216,24 @@ public:
     AResetCost(int id, MTGCardInstance * source, MTGCardInstance * target) :
         MTGAbility(id, source, target)
     {
-        MTGCardInstance * _target = (MTGCardInstance *) target;
+
     }
+
     int addToGame()
     {
         MTGCardInstance * _target = (MTGCardInstance *) target;
         _target->controller()->game->putInZone(_target, _target->controller()->game->hand, _target->controller()->game->hand);
         return MTGAbility::addToGame();
     }
-    AResetCost * clone() const
+    
+	AResetCost * clone() const
     {
         AResetCost * a = NEW AResetCost(*this);
         a->isClone = 1;
         return a;
     }
-    ~AResetCost()
+    
+	~AResetCost()
     {
     }
 };
@@ -3242,8 +3245,8 @@ public:
     ABloodThirst(int id, MTGCardInstance * source, MTGCardInstance * target, int amount) :
         MTGAbility(id, source, target), amount(amount)
     {
-        MTGCardInstance * _target = (MTGCardInstance *) target;
     }
+	
     int addToGame()
     {
         MTGCardInstance * _target = (MTGCardInstance *) target;
@@ -3257,12 +3260,14 @@ public:
         }
         return MTGAbility::addToGame();
     }
+	
     ABloodThirst * clone() const
     {
         ABloodThirst * a = NEW ABloodThirst(*this);
         a->isClone = 1;
         return a;
     }
+	
     ~ABloodThirst()
     {
     }

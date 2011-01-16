@@ -69,7 +69,7 @@ JGuiController(id, listener), fontId(fontId), mShowDetailsScreen( showDetailsOve
 
     float scrollerWidth = 200.0f;
 	float scrollerHeight = 28.0f;
-    mScroller = NEW VerticalTextScroller(Fonts::MAIN_FONT, 14, 235, scrollerWidth, 28.0f, kVerticalScrollSpeed);
+    mScroller = NEW VerticalTextScroller(Fonts::MAIN_FONT, 14, 235, scrollerWidth, scrollerHeight, kVerticalScrollSpeed);
 
     mAutoTranslate = true;
     maxItems = 7;

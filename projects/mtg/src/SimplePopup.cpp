@@ -51,7 +51,6 @@ void SimplePopup::Render()
 // draws a bounding box around the popup.
 void SimplePopup::drawBoundingBox( float x, float y, float width, float height )
 {
-    JRenderer *r = JRenderer::GetInstance();
 
     //draw the corners
     string topCornerImageName = "top_corner.png";

@@ -94,7 +94,7 @@ bool WGuiItem::Leaving(JButton key)
 
 void WGuiItem::Render()
 {
-    JRenderer * renderer = JRenderer::GetInstance();
+
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
     DWORD oldcolor = mFont->GetColor();
     mFont->SetColor(getColor(WGuiColor::TEXT));
@@ -190,8 +190,6 @@ void WGuiHeader::Render()
 {
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
     mFont->SetColor(getColor(WGuiColor::TEXT));
-
-    JRenderer * renderer = JRenderer::GetInstance();
     mFont->DrawString(_(displayValue).c_str(), x + width / 2, y, JGETEXT_CENTER);
 }
 
@@ -441,8 +439,8 @@ void WDecoEnum::Render()
 {
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
     mFont->SetColor(getColor(WGuiColor::TEXT));
-    JRenderer * renderer = JRenderer::GetInstance();
     mFont->DrawString(_(getDisplay()).c_str(), getX() + 2, getY() + 3);
+
     OptionInteger* opt = dynamic_cast<OptionInteger*> (it);
     if (opt) mFont->DrawString(_(lookupVal(opt->value)).c_str(), getWidth() - 5, getY() + 3, JGETEXT_RIGHT);
 }
@@ -880,7 +878,6 @@ bool WGuiMenu::CheckUserInput(JButton key)
 {
     bool result = false;
     bool kidModal = false;
-    bool handledInput = false;
     int nbitems = (int) items.size();
     JGE * mEngine = JGE::GetInstance();
 
@@ -998,7 +995,6 @@ bool WGuiMenu::isButtonDir(JButton key, int dir)
 void WGuiMenu::Update(float dt)
 {
     int nbitems = (int) items.size();
-    JGE * mEngine = JGE::GetInstance();
 
     if (held) duration += dt;
 
@@ -1348,7 +1344,6 @@ WGuiCardDistort::~WGuiCardDistort()
 
 void WGuiCardDistort::Render()
 {
-    JRenderer * renderer = JRenderer::GetInstance();
     JQuad * q = NULL;
 
     if (distortSrc)
@@ -1447,10 +1442,7 @@ WDistort::WDistort(float x1, float y1, float x2, float y2, float x3, float y3, f
 
 void WGuiListRow::Render()
 {
-    JRenderer * renderer = JRenderer::GetInstance();
-    int listHeight = 40;
-    int listSelectable = 0;
-    int adjustedCurrent = 0;
+
     int start = 0, nowPos = 0, vHeight = 0;
     int nbitems = (int) items.size();
 
@@ -1496,7 +1488,6 @@ void WGuiListRow::Render()
 
             items[pos]->setX(x + nowPos);
             items[pos]->setY(y + nowVPos);
-            //items[pos]->setWidth(width/nbitems);
             items[pos]->setWidth(items[pos]->minWidth());
             float temp = items[pos]->getHeight() + 3;
             if (temp > tallestRow) tallestRow = temp;
@@ -1519,6 +1510,7 @@ void WGuiListRow::Render()
     }
     setHeight(tallestRow * numRows + 10);
 }
+
 WGuiListRow::WGuiListRow(string n, WSyncable * s) :
     WGuiList(n, s)
 {
@@ -1527,6 +1519,7 @@ WGuiListRow::WGuiListRow(string n, WSyncable * s) :
     width = SCREEN_WIDTH;
     height = 20;
 }
+
 //WGuiFilterUI
 bool WGuiFilters::Finish(bool emptyset)
 {
@@ -1561,6 +1554,7 @@ bool WGuiFilters::Finish(bool emptyset)
     }
     return true;
 }
+
 void WGuiFilters::ButtonPressed(int controllerId, int controlId)
 {
     if (controllerId == -102)
@@ -1588,6 +1582,7 @@ void WGuiFilters::ButtonPressed(int controllerId, int controlId)
         if (list != NULL) list->ButtonPressed(controllerId, controlId);
     }
 }
+
 void WGuiFilters::buildList()
 {
     list = NEW WGuiList("");
@@ -1601,18 +1596,20 @@ void WGuiFilters::buildList()
     list->Add(wgs);
     list->Entering(JGE_BTN_NONE);
 }
-WGuiFilters::WGuiFilters(string header, WSrcCards * src) :
-    WGuiItem(header)
+
+WGuiFilters::WGuiFilters(string header, WSrcCards * src) : WGuiItem(header)
 {
     bFinished = false;
     source = src;
     recolorTo = -1;
     buildList();
 }
+
 void WGuiFilters::recolorFilter(int color)
 {
     recolorTo = color;
 }
+
 string WGuiFilters::getCode()
 {
     if (!list) return "";
@@ -1642,10 +1639,12 @@ string WGuiFilters::getCode()
     }
     return res;
 }
+
 void WGuiFilters::setSrc(WSrcCards * wsc)
 {
     source = wsc;
 }
+
 void WGuiFilters::Update(float dt)
 {
     if (subMenu && !subMenu->isClosed()) subMenu->Update(dt);
@@ -1667,11 +1666,13 @@ void WGuiFilters::Update(float dt)
         if (bDeleted) wgl->Entering(JGE_BTN_NONE);
     }
 }
+
 void WGuiFilters::Entering(JButton key)
 {
     bFinished = false;
     WGuiItem::Entering(key);
 }
+
 void WGuiFilters::Render()
 {
     if (!list) return; //Hurrah for paranoia.
@@ -1686,6 +1687,7 @@ void WGuiFilters::Render()
 
     if (subMenu && !subMenu->isClosed()) subMenu->Render();
 }
+
 bool WGuiFilters::CheckUserInput(JButton key)
 {
     if (subMenu && !subMenu->isClosed() && subMenu->CheckUserInput(key)) return true;
@@ -1700,11 +1702,13 @@ bool WGuiFilters::CheckUserInput(JButton key)
     }
     return WGuiItem::CheckUserInput(key);
 }
+
 WGuiFilters::~WGuiFilters()
 {
     SAFE_DELETE(list);
     SAFE_DELETE(subMenu);
 }
+
 void WGuiFilters::addColumn()
 {
     if (!list) return;
@@ -1715,6 +1719,7 @@ void WGuiFilters::addColumn()
         wgl->Add(NEW WGuiFilterItem(this));
     }
 }
+
 bool WGuiFilters::isAvailableCode(string code)
 {
     if (!list) return false;
@@ -1733,6 +1738,7 @@ bool WGuiFilters::isAvailableCode(string code)
     }
     return false; //For some reason, we don't have any rows?
 }
+
 bool WGuiFilters::isAvailable(int type)
 {
     if (!list) return false;
@@ -1766,10 +1772,12 @@ bool WGuiFilters::isAvailable(int type)
     }
     return false; //For some reason, we don't have any rows?
 }
+
 void WGuiFilters::clearArgs()
 {
     tempArgs.clear();
 }
+
 void WGuiFilters::addArg(string display, string code)
 {
     if (!subMenu || !isAvailableCode(code)) return;
@@ -1787,7 +1795,7 @@ WGuiFilterItem::WGuiFilterItem(WGuiFilters * parent) :
     mParent = parent;
     mNew = true;
 }
-;
+
 void WGuiFilterItem::updateValue()
 {
     bool delMenu = true;
@@ -2013,6 +2021,7 @@ void WGuiFilterItem::updateValue()
         break;
     }
 }
+
 void WGuiFilterItem::ButtonPressed(int controllerId, int controlId)
 {
     if (!mParent) return;
@@ -2083,6 +2092,7 @@ WGuiKeyBinder::WGuiKeyBinder(string name, GameStateOptions* parent) :
     for (JGE::keybindings_it it = start; it != end; ++it)
         Add(NEW OptionKey(parent, it->first, it->second));
 }
+
 void WGuiKeyBinder::Update(float dt)
 {
     OptionKey* o = dynamic_cast<OptionKey*> (items[0]);
@@ -2096,12 +2106,14 @@ void WGuiKeyBinder::Update(float dt)
         (*it)->Update(dt);
     if (confirmMenu) confirmMenu->Update(dt);
 }
+
 bool WGuiKeyBinder::isModal()
 {
     for (vector<WGuiBase*>::iterator it = items.begin(); it != items.end(); ++it)
         if ((*it)->isModal()) return true;
     return modal;
 }
+
 bool WGuiKeyBinder::CheckUserInput(JButton key)
 {
     if (confirmMenu) return confirmMenu->CheckUserInput(key);
@@ -2109,6 +2121,7 @@ bool WGuiKeyBinder::CheckUserInput(JButton key)
     if (!items[currentItem]->Selectable()) nextItem();
     return true;
 }
+
 void WGuiKeyBinder::setData()
 {
     JGE* j = JGE::GetInstance();
@@ -2205,6 +2218,7 @@ WGuiBase::CONFIRM_TYPE WGuiKeyBinder::needsConfirm()
 
     return CONFIRM_OK;
 }
+
 void WGuiKeyBinder::ButtonPressed(int controllerId, int controlId)
 {
     if (2 == controlId)
@@ -2222,6 +2236,7 @@ void WGuiKeyBinder::ButtonPressed(int controllerId, int controlId)
     SAFE_DELETE(confirmMenu);
     confirmMenu = NULL;
 }
+
 void WGuiKeyBinder::Render()
 {
     WGuiList::Render();
@@ -2245,6 +2260,7 @@ void WGuiKeyBinder::Render()
         confirmMenu->Render();
     }
 }
+
 bool WGuiKeyBinder::yieldFocus()
 {
     return true;

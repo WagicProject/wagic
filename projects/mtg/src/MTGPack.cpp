@@ -28,11 +28,7 @@ int MTGPackEntryRandom::addCard(WSrcCards *pool, MTGDeck *to)
 }
 int MTGPackEntrySpecific::addCard(WSrcCards *pool, MTGDeck *to)
 {
-    int fails = 0;
-    //Ignores pool entirely.
-    MTGAllCards * ac = GameApp::collection;
-
-    if (!card)
+	if (!card)
         return copies;
     for (int i = 0; i < copies; i++)
         to->add(card);

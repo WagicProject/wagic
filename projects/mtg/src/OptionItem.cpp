@@ -21,10 +21,9 @@ void OptionInteger::Render()
 {
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
     mFont->SetColor(getColor(WGuiColor::TEXT));
-    JRenderer * renderer = JRenderer::GetInstance();
-
     mFont->DrawString(_(displayValue).c_str(), x + 2, y + 3);
     char buf[512];
+
     if (maxValue == 1)
     {
         if (value)
@@ -80,8 +79,6 @@ void OptionSelect::Render()
 {
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
     mFont->SetColor(getColor(WGuiColor::TEXT));
-
-    JRenderer * renderer = JRenderer::GetInstance();
     mFont->DrawString(_(displayValue).c_str(), x, y + 2);
 
     if (value < selections.size())

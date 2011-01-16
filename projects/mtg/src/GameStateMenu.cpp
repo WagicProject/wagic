@@ -192,7 +192,6 @@ void GameStateMenu::fillScroller()
     char buff2[512];
 
     DeckStats * stats = DeckStats::GetInstance();
-	DeckManager *deckManager = DeckManager::GetInstance();
 	vector<DeckMetaData *> playerDecks = getValidDeckMetaData(options.profileFile(), "", NULL, 6);
     int totalGames = 0;
 	for (size_t j = 0; j < playerDecks.size(); j++)
@@ -731,7 +730,6 @@ void GameStateMenu::Render()
 
 void GameStateMenu::ButtonPressed(int controllerId, int controlId)
 {
-    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MENU_FONT);
 
     DebugTrace("GameStateMenu: controllerId " << controllerId << " selected");
     switch (controllerId)

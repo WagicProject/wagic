@@ -268,7 +268,6 @@ void StatsWrapper::initStatistics(string deckstats)
 
             if ((deckStat != NULL) && (deckStat->nbgames > 0))
             {
-                int percentVictories = stats->percentVictories(string(smallDeckName));
                 aiDeckNames.push_back(string(mtgd->meta_name));
                 aiDeckStats.push_back(deckStat);
             }

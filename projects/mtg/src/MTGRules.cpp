@@ -25,7 +25,7 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
             && game->players[0]->game->exile->nb_cards == 0
     )
     {
-        Player * p = game->currentPlayer;
+
         if (card->basicAbilities[Constants::LEYLINE])
         {
             MTGCardInstance * copy = player->game->putInZone(card, player->game->hand, player->game->temp);
@@ -52,8 +52,6 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
     {
         ManaCost * playerMana = player->getManaPool();
         ManaCost * cost = card->getManaCost();
-        ManaCost * alternative = card->getManaCost()->alternative;
-        ManaCost * BuyBack = card->getManaCost()->BuyBack;
 
 #ifdef WIN32
         cost->Dump();
@@ -124,7 +122,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
         return 0;
     Player * player = game->currentlyActing();
     ManaCost * cost = card->getManaCost();
-    ManaCost * playerMana = player->getManaPool();
+
     //this handles extra cost payments at the moment a card is played.
 
     if (cost->isExtraPaymentSet())
@@ -237,7 +235,7 @@ MTGAlternativeCostRule::MTGAlternativeCostRule(int _id) :
 }
 int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 {
-    int cardsinhand = game->players[0]->game->hand->nb_cards;
+
     Player * player = game->currentlyActing();
     Player * currentPlayer = game->currentPlayer;
     if (!player->game->hand->hasCard(card))
@@ -259,10 +257,9 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
     )
     {
         ManaCost * playerMana = player->getManaPool();
-        ManaCost * cost = card->getManaCost();
-        ManaCost * alternative = card->getManaCost()->alternative;
 
 #ifdef WIN32
+        ManaCost * cost = card->getManaCost();
         cost->Dump();
 #endif
         if (player->castrestrictedspell == true && !card->hasType("land"))
@@ -428,7 +425,7 @@ MTGBuyBackRule::MTGBuyBackRule(int _id) :
 }
 int MTGBuyBackRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 {
-    int cardsinhand = game->players[0]->game->hand->nb_cards;
+
     Player * player = game->currentlyActing();
     Player * currentPlayer = game->currentPlayer;
     if (!player->game->hand->hasCard(card))
@@ -448,10 +445,10 @@ int MTGBuyBackRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
                     == Constants::MTG_PHASE_SECONDMAIN)))
     {
         ManaCost * playerMana = player->getManaPool();
-        ManaCost * cost = card->getManaCost();
         ManaCost * BuyBack = card->getManaCost()->BuyBack;
 
 #ifdef WIN32
+        ManaCost * cost = card->getManaCost();
         cost->Dump();
 #endif
         if (player->castrestrictedspell == true && !card->hasType("land"))
@@ -621,7 +618,7 @@ MTGFlashBackRule::MTGFlashBackRule(int _id) :
 }
 int MTGFlashBackRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 {
-    int cardsingraveyard = game->players[0]->game->graveyard->nb_cards;
+
     Player * player = game->currentlyActing();
     Player * currentPlayer = game->currentPlayer;
     if (!player->game->graveyard->hasCard(card))
@@ -634,11 +631,12 @@ int MTGFlashBackRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
                             || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN))
     )
     {
-        ManaCost * playerMana = player->getManaPool();
-        ManaCost * cost = card->getManaCost();
+
         ManaCost * FlashBack = card->getManaCost()->FlashBack;
+        ManaCost * playerMana = player->getManaPool();
 
 #ifdef WIN32
+        ManaCost * cost = card->getManaCost();
         cost->Dump();
 #endif
         if (player->castrestrictedspell == true && !card->hasType("land"))
@@ -807,7 +805,7 @@ MTGRetraceRule::MTGRetraceRule(int _id) :
 }
 int MTGRetraceRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 {
-    int cardsingraveyard = game->players[0]->game->graveyard->nb_cards;
+
     Player * player = game->currentlyActing();
     Player * currentPlayer = game->currentPlayer;
     if (!player->game->graveyard->hasCard(card))
@@ -821,10 +819,10 @@ int MTGRetraceRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
     )
     {
         ManaCost * playerMana = player->getManaPool();
-        ManaCost * cost = card->getManaCost();
         ManaCost * Retrace = card->getManaCost()->Retrace;
 
 #ifdef WIN32
+        ManaCost * cost = card->getManaCost();
         cost->Dump();
 #endif
         if (player->castrestrictedspell == true && !card->hasType("land"))
@@ -1118,7 +1116,7 @@ int MTGCombatTriggersRule::receiveEvent(WEvent *e)
         }
         //---------------
     }
-    if (WEventAttackersChosen * event = dynamic_cast<WEventAttackersChosen*>(e))
+    if (dynamic_cast<WEventAttackersChosen*>(e))
     {
         MTGCardInstance * lonelyAttacker = NULL;
         int nbattackers = 0;
@@ -1141,7 +1139,7 @@ int MTGCombatTriggersRule::receiveEvent(WEvent *e)
         else
             lonelyAttacker = NULL;
     }
-    if (WEventBlockersChosen * event = dynamic_cast<WEventBlockersChosen*>(e))
+    if (dynamic_cast<WEventBlockersChosen*>(e))
     {
         Player * p = game->currentPlayer;
         MTGGameZone * z = p->game->inPlay;

@@ -90,8 +90,9 @@ void GameStateDeckViewer::rotateCards(int direction)
         lastPos = getCurrentPos();
         lastTotal = total;
     }
-    int i = 0;
+
 }
+
 void GameStateDeckViewer::rebuildFilters()
 {
     if (!filterMenu) filterMenu = NEW WGuiFilters("Filter by...", NULL);
@@ -106,6 +107,7 @@ void GameStateDeckViewer::rebuildFilters()
 	if (stw && myDeck) 
 		stw->updateStats( myDeck );;
 }
+
 void GameStateDeckViewer::updateFilters()
 {
     if (!displayed_deck) return;
@@ -136,6 +138,7 @@ void GameStateDeckViewer::updateFilters()
     stw->updateStats( myDeck );;
     return;
 }
+
 void GameStateDeckViewer::loadIndexes()
 {
     for (int i = 0; i < 7; i++)
@@ -316,7 +319,7 @@ void GameStateDeckViewer::saveDeck()
  */
 void GameStateDeckViewer::saveAsAIDeck(string deckName)
 {
-    DeckManager * deckManager = DeckManager::GetInstance();
+
     vector<DeckMetaData *> aiDecks = GameState::getValidDeckMetaData(JGE_GET_RES("ai/baka"), "ai_baka", NULL);
     int nbAiDecks = aiDecks.size() + 1;
     aiDecks.clear();
@@ -339,8 +342,6 @@ void GameStateDeckViewer::saveAsAIDeck(string deckName)
 
 void GameStateDeckViewer::Update(float dt)
 {
-
-    int myD = (displayed_deck == myDeck);
 
     int x, y;
     unsigned int distance2;
@@ -619,7 +620,6 @@ void GameStateDeckViewer::renderOnScreenBasicInfo()
     JRenderer *renderer = JRenderer::GetInstance();
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     char buffer[256];
-    int myD = (displayed_deck == myDeck);
 
     float y = 0;
     int allCopies, nowCopies;

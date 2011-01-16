@@ -931,7 +931,7 @@ GameOptionAward::GameOptionAward()
 bool GameOptionAward::read(string input)
 {
     //This is quick and dirty.
-    bool bNumeric = true;
+
     achieved = time(NULL);
     tm * at = localtime(&achieved);
     viewed = false;
@@ -1040,7 +1040,7 @@ string GameOptionAward::menuStr()
         return _("Unlocked.");
 
     char buf[256];
-    Translator * t = Translator::GetInstance();
+
     tm * lt = localtime(&achieved);
     if (!lt)
         return "Error";

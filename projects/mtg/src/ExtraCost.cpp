@@ -293,7 +293,7 @@ ExileTargetCost::ExileTargetCost(TargetChooser *_tc) :
 
 int ExileTargetCost::doPay()
 {
-    MTGCardInstance * _target = (MTGCardInstance *) target;
+
     if (target)
     {
         target->controller()->game->putInExile(target);
@@ -321,7 +321,7 @@ BounceTargetCost::BounceTargetCost(TargetChooser *_tc) :
 
 int BounceTargetCost::doPay()
 {
-    MTGCardInstance * _target = (MTGCardInstance *) target;
+
     if (target)
     {
         target->controller()->game->putInHand(target);
@@ -365,7 +365,7 @@ int Ninja::isPaymentSet()
 
 int Ninja::doPay()
 {
-    MTGCardInstance * _target = (MTGCardInstance *) target;
+
     if (target)
     {
         target->controller()->game->putInHand(target);

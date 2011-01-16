@@ -962,7 +962,7 @@ MTGSetInfo* MTGSets::getInfo(int setID)
 MTGSetInfo* MTGSets::randomSet(int blockId, int atleast)
 {
     char * unlocked = (char *) calloc(size(), sizeof(char));
-    int attempts = 50;
+
     //Figure out which sets are available.
     for (int i = 0; i < size(); i++)
     {

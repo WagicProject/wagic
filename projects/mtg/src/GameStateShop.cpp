@@ -371,9 +371,6 @@ void GameStateShop::updateCounts()
 }
 void GameStateShop::load()
 {
-    int nbsets = 0;
-    int nbboostersets = 0;
-
     for (int i = 0; i < BOOSTER_SLOTS; i++)
     {
         mBooster[i].randomize(packlist);
@@ -891,7 +888,7 @@ void ShopBooster::randomCustom(MTGPacks * packlist)
 }
 void ShopBooster::randomStandard()
 {
-    int mSet = -1;
+
     MTGSetInfo * si = setlist.randomSet(-1);
     mainSet = si;
     altSet = NULL;

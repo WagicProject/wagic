@@ -1097,13 +1097,14 @@ AAWhatsMax::AAWhatsMax(int id, MTGCardInstance * card, MTGCardInstance * source,
 
 int AAWhatsMax::resolve()
 {
-    MTGCardInstance * _target = (MTGCardInstance *) target;
+
     if (source)
     {
         source->MaxLevelUp = value;
     }
     return 1;
 }
+
 AAWhatsMax * AAWhatsMax::clone() const
 {
     AAWhatsMax * a = NEW AAWhatsMax(*this);
@@ -1428,7 +1429,6 @@ GenericTargetAbility::~GenericTargetAbility()
 AAlterCost::AAlterCost(int id, MTGCardInstance * source, MTGCardInstance * target, int amount, int type) :
     MTGAbility(id, source, target), amount(amount), type(type)
 {
-    MTGCardInstance * _target = (MTGCardInstance *) target;
 }
 
 int AAlterCost::addToGame()
@@ -1483,7 +1483,7 @@ AAlterCost::~AAlterCost()
 ATransformer::ATransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities) :
     MTGAbility(id, source, target)
 {
-    MTGCardInstance * _target = (MTGCardInstance *) target;
+
     PopulateAbilityIndexVector(abilities, sabilities);
     PopulateColorIndexVector(colors, sabilities);
 
@@ -1639,7 +1639,6 @@ AForeverTransformer::AForeverTransformer(int id, MTGCardInstance * source, MTGCa
     MTGAbility(id, source, target)
 {
     aType = MTGAbility::STANDARD_BECOMES;
-    MTGCardInstance * _target = (MTGCardInstance *) target;
 
     PopulateAbilityIndexVector(abilities, sabilities);
     PopulateColorIndexVector(colors, sabilities);
