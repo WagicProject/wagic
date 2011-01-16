@@ -382,8 +382,10 @@ public:
   virtual bool CheckUserInput(JButton key);
   WGuiBase * Current();
   virtual int getSelected() {return currentItem;};
-  virtual void setSelected(vector<WGuiBase*>::iterator& it);
-  virtual bool nextItem(); 
+  virtual void setSelected(vector<WGuiBase*>::iterator& it) {
+      int c = it - items.begin();setSelected(c);};
+  virtual void setSelected(int newItem);
+  virtual bool nextItem();
   virtual bool prevItem();
   virtual bool isModal();
   virtual void setModal(bool val);
@@ -421,6 +423,7 @@ class WGuiTabMenu: public WGuiMenu {
   virtual void Render();
   virtual void Add(WGuiBase * it);
   void save();
+  virtual bool CheckUserInput(JButton key);
 };
 class WGuiListRow: public WGuiList{
  public:

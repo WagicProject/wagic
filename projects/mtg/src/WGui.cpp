@@ -243,13 +243,12 @@ void WGuiMenu::subBack(WGuiBase * item)
 
 }
 
-void WGuiMenu::setSelected(vector<WGuiBase*>::iterator& it)
+void WGuiMenu::setSelected(int newItem)
 {
-    int c = it - items.begin();
-    if (c != currentItem)
+    if (newItem != currentItem)
     {
         items[currentItem]->Leaving(JGE_BTN_NONE);
-        currentItem = c;
+        currentItem = newItem;
         items[currentItem]->Entering(JGE_BTN_NONE);
     }
 }
@@ -880,9 +879,34 @@ bool WGuiMenu::CheckUserInput(JButton key)
     bool kidModal = false;
     int nbitems = (int) items.size();
     JGE * mEngine = JGE::GetInstance();
+    int i, j;
 
     if (!mEngine->GetButtonState(held)) //Key isn't held down.
     held = JGE_BTN_NONE;
+
+    if (mEngine->GetLeftClickCoordinates(i, j))
+    {   // a dude clicked somwhere, we're gonna select the closest object from where he clicked
+        int n = currentItem;
+        unsigned int distance2;
+        unsigned int minDistance2 = -1;
+        for(size_t k=0; k < items.size(); k++)
+        {
+          WGuiItem* pItem = (WGuiItem*)items[k];
+          distance2 = (pItem-> getY() - j) * (pItem-> getY() - j) + (pItem-> getX() - i) * (pItem-> getX() - i);
+          if (distance2 < minDistance2)
+          {
+              minDistance2 = distance2;
+              n = k;
+          }
+        }
+
+        if (n != currentItem)
+        {
+            setSelected(n);
+            mEngine->LeftClickedProcessed();
+            return true;
+        }
+    }
 
     if (currentItem >= 0 && currentItem < nbitems) kidModal = items[currentItem]->isModal();
 
@@ -913,37 +937,6 @@ bool WGuiMenu::CheckUserInput(JButton key)
     }
 
     if (currentItem >= 0 && currentItem < nbitems) result = items[currentItem]->CheckUserInput(key);
-
-    if(result == false)
-    { // a dude may have clicked somewhere, we're gonna select the closest object from where he clicked
-      int x, y;
-      unsigned int distance2;
-      unsigned int minDistance2 = -1;
-      int n = currentItem;
-
-      if (mEngine->GetLeftClickCoordinates(x, y))
-      {
-        for(size_t i=0; i < items.size(); i++)
-        {
-          WGuiItem* pItem = (WGuiItem*)items[i];
-          distance2 = (pItem-> getY() - y) * (pItem-> getY() - y) + (pItem-> getX() - x) * (pItem-> getX() - x);
-          if (distance2 < minDistance2)
-          {
-              minDistance2 = distance2;
-              n = i;
-          }
-        }
-
-        if (n != currentItem && items[currentItem] != NULL && items[currentItem]->Leaving(JGE_BTN_DOWN))
-        {
-            currentItem = n;
-            items[currentItem]->Entering(JGE_BTN_DOWN);
-            if (sync) syncMove();
-        }
-        mEngine->LeftClickedProcessed();
-        return true;
-      }
-    }
 
     return result;
 }
@@ -1110,6 +1103,74 @@ void WGuiTabMenu::Render()
 
     WGuiBase * c = Current();
     if (c) c->Render();
+}
+
+bool WGuiTabMenu::CheckUserInput(JButton key)
+{
+    bool result = false;
+    bool kidModal = false;
+    bool handledInput = false;
+    int nbitems = (int) items.size();
+    JGE * mEngine = JGE::GetInstance();
+    int i, j;
+
+    if (!mEngine->GetButtonState(held)) //Key isn't held down.
+        held = JGE_BTN_NONE;
+
+    if (mEngine->GetLeftClickCoordinates(i, j))
+    {
+        if(j <= 25)
+        { // a dude clicked in the tab title bar, let's compute which tab from i
+            float offset = x;
+            WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
+            mFont->SetScale(0.8f);
+            for (vector<WGuiBase*>::iterator it = items.begin(); it != items.end(); it++)
+            {
+                float w = mFont->GetStringWidth(_((*it)->getDisplay()).c_str());
+
+                if(i >= offset+5 && i <= offset+w+10+2)
+                {
+                    setSelected(it);
+                    mEngine->LeftClickedProcessed();
+                    return true;
+                }
+                offset += w + 10 + 2;
+            }
+            mFont->SetScale(1);
+        }
+    }
+
+    if (currentItem >= 0 && currentItem < nbitems) kidModal = items[currentItem]->isModal();
+
+    if (!kidModal && hasFocus())
+    {
+        if (isButtonDir(key, -1))
+        {
+            held = buttonPrev;
+            duration = 0;
+            if (prevItem()) return true;
+        }
+        else if (held == buttonPrev && duration > 1)
+        {
+            duration = .92f;
+            if (prevItem()) return true;
+        }
+        else if (isButtonDir(key, 1))
+        {
+            held = buttonNext;
+            duration = 0;
+            if (nextItem()) return true;
+        }
+        else if (held == buttonNext && duration > 1)
+        {
+            duration = .92f;
+            if (nextItem()) return true;
+        }
+    }
+
+    if (currentItem >= 0 && currentItem < nbitems) result = items[currentItem]->CheckUserInput(key);
+
+    return result;
 }
 
 void WGuiTabMenu::save()
