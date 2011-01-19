@@ -26,7 +26,7 @@ DEFAULT_RULE = 3xx
 TARGET_ARCHITECTURE = psp
 PSP_FW_VERSION=371
 BUILD_PRX = 1
-SIGN_PRX = 1
+#SIGN_PRX = 1
 LIBS = -ljge300 -lhgetools -lfreetype -ljpeg -lgif -lpng -lz -lm -lmikmod -lpsppower -lpspmpeg -lpspaudiocodec -lpspaudiolib -lpspaudio -lpspmp3 -lpspgum -lpspgu -lpsprtc -lstdc++ -lpspfpu
 
 EXTRA_TARGETS = EBOOT.PBP
