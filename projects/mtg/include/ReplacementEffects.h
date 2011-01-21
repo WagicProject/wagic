@@ -9,35 +9,42 @@ using namespace std;
 class TargetChooser;
 class MTGAbility;
 
-class ReplacementEffect {
+class ReplacementEffect
+{
 public:
-  virtual WEvent * replace (WEvent * e) {return e;};
-  virtual ~ReplacementEffect(){};
+    virtual WEvent * replace(WEvent * e)
+    {
+        return e;
+    }
+    ;
+    virtual ~ReplacementEffect() {}
 };
 
-class REDamagePrevention: public ReplacementEffect {
+class REDamagePrevention: public ReplacementEffect
+{
 protected:
-  MTGAbility * source;
-  TargetChooser * tcSource;
-  TargetChooser * tcTarget;
-  int damage;
-  bool oneShot;
-  int typeOfDamage;
+    MTGAbility * source;
+    TargetChooser * tcSource;
+    TargetChooser * tcTarget;
+    int damage;
+    bool oneShot;
+    int typeOfDamage;
 public:
-  REDamagePrevention(MTGAbility * _source, TargetChooser *_tcSource = NULL,TargetChooser *_tcTarget = NULL, int _damage = -1, bool _oneShot = true, int typeOfDamage = DAMAGE_ALL_TYPES);
-  WEvent * replace (WEvent *e);
-  ~REDamagePrevention();
+    REDamagePrevention(MTGAbility * _source, TargetChooser *_tcSource = NULL, TargetChooser *_tcTarget = NULL, int _damage = -1, bool _oneShot = true, int typeOfDamage = DAMAGE_ALL_TYPES);
+    WEvent * replace(WEvent *e);
+    ~REDamagePrevention();
 };
 
-class ReplacementEffects {
+class ReplacementEffects
+{
 protected:
-  list<ReplacementEffect *>modifiers;
+    list<ReplacementEffect *> modifiers;
 public:
-  ReplacementEffects();
-  WEvent * replace(WEvent *e);
-  int add(ReplacementEffect * re);
-  int remove (ReplacementEffect * re);
-  ~ReplacementEffects();
+    ReplacementEffects();
+    WEvent * replace(WEvent *e);
+    int add(ReplacementEffect * re);
+    int remove(ReplacementEffect * re);
+    ~ReplacementEffects();
 };
 
 #endif

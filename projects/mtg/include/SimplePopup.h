@@ -35,12 +35,17 @@ private:
 public:
     bool autoTranslate;
 
-
     SimplePopup(int id, JGuiListener* listener, const int fontId, const char * _title = "", DeckMetaData* deckInfo = NULL, MTGAllCards * collection = NULL);
     ~SimplePopup(void);
-    void drawBoundingBox(  float x, float y, float width, float height );
-    bool isClosed() { return mClosed; }
-    MTGAllCards* getCollection() { return mCollection; }
+    void drawBoundingBox(float x, float y, float width, float height);
+    bool isClosed()
+    {
+        return mClosed;
+    }
+    MTGAllCards* getCollection()
+    {
+        return mCollection;
+    }
     void Render();
     void Update(DeckMetaData* deckMetaData);
 

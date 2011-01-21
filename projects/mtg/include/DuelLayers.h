@@ -15,35 +15,36 @@ class GuiAvatars;
 class CardSelectorBase;
 struct Pos;
 
-class DuelLayers {
- protected:
-  int nbitems;
-  vector<GuiLayer*> objects;
-  vector<Pos*> waiters;
-  GuiCombat* combat;
-  ActionLayer* action;
-  ActionStack* stack;
-  GuiHandSelf *hand;
-  GuiAvatars * avatars;
+class DuelLayers
+{
+protected:
+    int nbitems;
+    vector<GuiLayer*> objects;
+    vector<Pos*> waiters;
+    GuiCombat* combat;
+    ActionLayer* action;
+    ActionStack* stack;
+    GuiHandSelf *hand;
+    GuiAvatars * avatars;
 
 public:
-  DuelLayers();
-  ~DuelLayers();
+    DuelLayers();
+    ~DuelLayers();
 
-  ActionLayer * actionLayer();
-  ActionStack * stackLayer();
-  GuiCombat * combatLayer();
-  GuiAvatars * GetAvatars();
-  void init();
-  virtual void Update(float dt, Player * player);
-  void CheckUserInput(int isAI);
-  void Render();
-  void Add(GuiLayer * layer);
-  void Remove();
-  int receiveEvent(WEvent * e);
-  float RightBoundary();
+    ActionLayer * actionLayer();
+    ActionStack * stackLayer();
+    GuiCombat * combatLayer();
+    GuiAvatars * GetAvatars();
+    void init();
+    virtual void Update(float dt, Player * player);
+    void CheckUserInput(int isAI);
+    void Render();
+    void Add(GuiLayer * layer);
+    void Remove();
+    int receiveEvent(WEvent * e);
+    float RightBoundary();
 
-  CardSelectorBase* mCardSelector;
+    CardSelectorBase* mCardSelector;
 };
 
 #include "ActionLayer.h"
@@ -51,6 +52,5 @@ public:
 #include "MTGGamePhase.h"
 #include "ActionStack.h"
 #include "Damage.h"
-
 
 #endif

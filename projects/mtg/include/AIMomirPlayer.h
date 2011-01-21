@@ -3,15 +3,15 @@
 
 #include "AIPlayer.h"
 
-
-class AIMomirPlayer:public AIPlayerBaka{
+class AIMomirPlayer: public AIPlayerBaka
+{
 public:
-  AIMomirPlayer(MTGDeck * deck, string file, string fileSmall, string avatarFile);
-  int getEfficiency(AIAction * action);
-  int momir();
-  int computeActions();
-  static MTGAbility * momirAbility;
-  static MTGAbility * getMomirAbility();
+    AIMomirPlayer(MTGDeck * deck, string file, string fileSmall, string avatarFile);
+    int getEfficiency(AIAction * action);
+    int momir();
+    int computeActions();
+    static MTGAbility * momirAbility;
+    static MTGAbility * getMomirAbility();
 };
 
 #endif

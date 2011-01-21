@@ -56,15 +56,20 @@ public:
     JQuad * pspIcons[8];
     JTexture * pspIconsTexture;
 
-
     DeckMenu(int id, JGuiListener* listener, int fontId, const string _title = "", const int& startIndex = 0, bool alwaysShowDetailsButton = false);
     ~DeckMenu();
 
     DeckMetaData * getSelectedDeck();
     void enableDisplayDetailsOverride();
-    bool showDetailsScreen(); 
-    bool isClosed() { return mClosed; }
-    int getSelectedDeckId() { return mSelectedDeckId; }
+    bool showDetailsScreen();
+    bool isClosed()
+    {
+        return mClosed;
+    }
+    int getSelectedDeckId()
+    {
+        return mSelectedDeckId;
+    }
 
     void Render();
     void Update(float dt);

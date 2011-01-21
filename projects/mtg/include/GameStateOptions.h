@@ -10,40 +10,42 @@ class WGuiTabMenu;
 class SimpleMenu;
 class SimplePad;
 
-struct KeybGrabber {
-  virtual void KeyPressed(LocalKeySym) = 0;
+struct KeybGrabber
+{
+    virtual void KeyPressed(LocalKeySym) = 0;
 };
 
-class GameStateOptions: public GameState, public JGuiListener {
+class GameStateOptions: public GameState, public JGuiListener
+{
 private:
-  enum {
-    SHOW_OPTIONS,
-    SHOW_OPTIONS_MENU,
-    SAVE
-  };
-  float timer;
-  bool mReload;
-  KeybGrabber* grabber;
+    enum
+    {
+        SHOW_OPTIONS,
+        SHOW_OPTIONS_MENU,
+        SAVE
+    };
+    float timer;
+    bool mReload;
+    KeybGrabber* grabber;
 
- public:
-  SimpleMenu * optionsMenu;
-  WGuiTabMenu * optionsTabs;
-  int mState;
+public:
+    SimpleMenu * optionsMenu;
+    WGuiTabMenu * optionsTabs;
+    int mState;
 
-  GameStateOptions(GameApp* parent);
-  virtual ~GameStateOptions();
+    GameStateOptions(GameApp* parent);
+    virtual ~GameStateOptions();
 
-  virtual void Start();
-  virtual void End();
-  virtual void Update(float dt);
-  virtual void Render();
-  virtual void GrabKeyboard(KeybGrabber*);
-  virtual void UngrabKeyboard(const KeybGrabber*);
-  void ButtonPressed(int controllerId, int ControlId);
+    virtual void Start();
+    virtual void End();
+    virtual void Update(float dt);
+    virtual void Render();
+    virtual void GrabKeyboard(KeybGrabber*);
+    virtual void UngrabKeyboard(const KeybGrabber*);
+    void ButtonPressed(int controllerId, int ControlId);
 
-  string newProfile;
+    string newProfile;
 
 };
-
 
 #endif

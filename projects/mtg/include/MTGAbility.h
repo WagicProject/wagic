@@ -22,7 +22,6 @@ class Counter;
 using std::string;
 using std::map;
 
-
 //stupid variables used to give a hint to the AI:
 // Should I cast a spell on an enemy or friendly unit ?
 #define BAKA_EFFECT_GOOD 1
@@ -63,22 +62,38 @@ public:
     MTGAbility(int id, MTGCardInstance* _source, Targetable* _target);
     virtual int testDestroy();
     virtual ~MTGAbility();
-    virtual void Render(){};
-    virtual int isReactingToClick(MTGCardInstance* card, ManaCost* mana = NULL){return 0;};
-    virtual int reactToClick(MTGCardInstance* card){return 0;};
-    virtual int receiveEvent(WEvent* event){return 0;};
-    virtual void Update(float dt){};
+    virtual void Render() {}
+    virtual int isReactingToClick(MTGCardInstance* card, ManaCost* mana = NULL)
+    {
+        return 0;
+    }
+    ;
+    virtual int reactToClick(MTGCardInstance* card)
+    {
+        return 0;
+    }
+    ;
+    virtual int receiveEvent(WEvent* event)
+    {
+        return 0;
+    }
+    ;
+    virtual void Update(float dt) {};
     virtual int fireAbility();
     virtual int stillInUse(MTGCardInstance* card);
-    virtual int resolve(){return 0;};
-    virtual MTGAbility* clone() const = 0; 
+    virtual int resolve()
+    {
+        return 0;
+    }
+    ;
+    virtual MTGAbility* clone() const = 0;
     virtual ostream& toString(ostream& out) const;
     virtual int addToGame();
     virtual int removeFromGame();
 
     /*Poor man's casting */
     /* Todo replace that crap with dynamic casting */
-    enum 
+    enum
     {
         UNKNOWN = 0,
         MANA_PRODUCER = 1,
@@ -116,26 +131,35 @@ public:
     NestedAbility(MTGAbility* _ability);
 };
 
-class TriggeredAbility:public MTGAbility
+class TriggeredAbility: public MTGAbility
 {
 public:
     TriggeredAbility(int id, MTGCardInstance* card);
     TriggeredAbility(int id, MTGCardInstance* _source, Targetable* _target);
     virtual void Update(float dt);
-    virtual void Render(){};
-    virtual int trigger(){return 0;};
-    virtual int triggerOnEvent(WEvent* e){return 0;};
+    virtual void Render() {}
+    ;
+    virtual int trigger()
+    {
+        return 0;
+    }
+    ;
+    virtual int triggerOnEvent(WEvent* e)
+    {
+        return 0;
+    }
+    ;
     int receiveEvent(WEvent* e);
     virtual int resolve() = 0;
-    virtual TriggeredAbility* clone() const = 0; 
+    virtual TriggeredAbility* clone() const = 0;
     virtual ostream& toString(ostream& out) const;
 };
 
-
-class ActivatedAbility:public MTGAbility
+class ActivatedAbility: public MTGAbility
 {
 public:
-    enum {
+    enum
+    {
         NO_RESTRICTION = 0,
         PLAYER_TURN_ONLY = 1,
         AS_SORCERY = 2,
@@ -190,21 +214,21 @@ public:
     ManaCost* abilityCost;
     int restrictions;
     int needsTapping;
-    ActivatedAbility(int id, MTGCardInstance* card,ManaCost* _cost = NULL, int _restrictions = NO_RESTRICTION,int tap = 1);
+    ActivatedAbility(int id, MTGCardInstance* card, ManaCost* _cost = NULL, int _restrictions = NO_RESTRICTION, int tap = 1);
     virtual ~ActivatedAbility();
     virtual int reactToClick(MTGCardInstance* card);
     virtual int isReactingToClick(MTGCardInstance* card, ManaCost* mana = NULL);
     virtual int reactToTargetClick(Targetable* object);
     virtual int resolve() = 0;
-    virtual ActivatedAbility* clone() const = 0; 
+    virtual ActivatedAbility* clone() const = 0;
     virtual ostream& toString(ostream& out) const;
 };
 
-class TargetAbility:public ActivatedAbility, public NestedAbility
+class TargetAbility: public ActivatedAbility, public NestedAbility
 {
 public:
-    TargetAbility(int id, MTGCardInstance* card, TargetChooser* _tc,ManaCost* _cost = NULL, int _playerturnonly = 0,int tap = 1);
-    TargetAbility(int id, MTGCardInstance* card,ManaCost* _cost = NULL, int _playerturnonly = 0,int tap = 1);
+    TargetAbility(int id, MTGCardInstance* card, TargetChooser* _tc, ManaCost* _cost = NULL, int _playerturnonly = 0, int tap = 1);
+    TargetAbility(int id, MTGCardInstance* card, ManaCost* _cost = NULL, int _playerturnonly = 0, int tap = 1);
     virtual int reactToClick(MTGCardInstance* card);
     virtual int reactToTargetClick(Targetable* object);
     virtual TargetAbility* clone() const = 0;
@@ -215,71 +239,100 @@ public:
     ~TargetAbility();
 };
 
-class InstantAbility:public MTGAbility
+class InstantAbility: public MTGAbility
 {
 public:
     int init;
     virtual void Update(float dt);
     virtual int testDestroy();
     InstantAbility(int _id, MTGCardInstance* source);
-    InstantAbility(int _id, MTGCardInstance* source,Damageable* _target);
-    virtual int resolve(){return 0;};
+    InstantAbility(int _id, MTGCardInstance* source, Damageable* _target);
+    virtual int resolve()
+    {
+        return 0;
+    }
+    ;
     virtual InstantAbility* clone() const = 0;
     virtual ostream& toString(ostream& out) const;
 };
 
 /* State based effects. This class works ONLY for InPlay and needs to be extended for other areas of the game !!! */
-class ListMaintainerAbility:public MTGAbility
+class ListMaintainerAbility: public MTGAbility
 {
 public:
-    map<MTGCardInstance *,bool> cards;
-    map<Player *,bool> players;
-    ListMaintainerAbility(int _id):MTGAbility(_id,NULL){};
-    ListMaintainerAbility(int _id, MTGCardInstance *_source):MTGAbility(_id, _source){};
-    ListMaintainerAbility(int _id, MTGCardInstance *_source,Damageable* _target):MTGAbility(_id, _source, _target){};
+    map<MTGCardInstance *, bool> cards;
+    map<Player *, bool> players;
+    ListMaintainerAbility(int _id) : MTGAbility(_id, NULL)
+    {
+    }
+    ;
+    ListMaintainerAbility(int _id, MTGCardInstance *_source) : MTGAbility(_id, _source)
+    {
+    }
+    ;
+    ListMaintainerAbility(int _id, MTGCardInstance *_source, Damageable* _target) : MTGAbility(_id, _source, _target)
+    {
+    }
+    ;
     virtual void Update(float dt);
     void updateTargets();
     virtual bool canTarget(MTGGameZone* zone);
     virtual int canBeInList(MTGCardInstance* card) = 0;
     virtual int added(MTGCardInstance* card) = 0;
     virtual int removed(MTGCardInstance* card) = 0;
-    virtual int canBeInList(Player* p){return 0;};
-    virtual int added(Player* p){return 0;};
-    virtual int removed(Player* p){return 0;};
+    virtual int canBeInList(Player* p)
+    {
+        return 0;
+    }
+    ;
+    virtual int added(Player* p)
+    {
+        return 0;
+    }
+    ;
+    virtual int removed(Player* p)
+    {
+        return 0;
+    }
+    ;
     virtual int destroy();
     virtual ListMaintainerAbility* clone() const = 0;
     virtual ostream& toString(ostream& out) const;
 };
 
-class TriggerAtPhase:public TriggeredAbility
+class TriggerAtPhase: public TriggeredAbility
 {
 public:
     int phaseId;
     int who;
-    TriggerAtPhase(int id, MTGCardInstance* source, Targetable* target,int _phaseId, int who = 0);
+    TriggerAtPhase(int id, MTGCardInstance* source, Targetable* target, int _phaseId, int who = 0);
     virtual int trigger();
-    int resolve(){return 0;};
+    int resolve()
+    {
+        return 0;
+    }
+    ;
     virtual TriggerAtPhase* clone() const;
 };
 
-class TriggerNextPhase:public TriggerAtPhase
+class TriggerNextPhase: public TriggerAtPhase
 {
 public:
     int destroyActivated;
-    TriggerNextPhase(int id, MTGCardInstance* source, Targetable* target,int _phaseId, int who = 0);
+    TriggerNextPhase(int id, MTGCardInstance* source, Targetable* target, int _phaseId, int who = 0);
     virtual TriggerNextPhase* clone() const;
     virtual int testDestroy();
 
 };
 
-
-class GenericTriggeredAbility:public TriggeredAbility, public NestedAbility
+class GenericTriggeredAbility: public TriggeredAbility, public NestedAbility
 {
 public:
     TriggeredAbility* t;
     queue<Targetable *> targets;
     MTGAbility* destroyCondition;
-    GenericTriggeredAbility(int id, MTGCardInstance* _source,  TriggeredAbility* _t, MTGAbility* a,MTGAbility* dc = NULL, Targetable* _target = NULL);
+    GenericTriggeredAbility(int id, MTGCardInstance* _source, TriggeredAbility* _t, MTGAbility* a, MTGAbility* dc = NULL,
+            Targetable* _target = NULL);
     virtual int trigger();
     virtual int triggerOnEvent(WEvent* e);
     virtual int resolve();
@@ -301,17 +354,19 @@ private:
     int countCards(TargetChooser* tc, Player* player = NULL, int option = 0);
     TriggeredAbility* parseTrigger(string s, string magicText, int id, Spell* spell, MTGCardInstance *card, Targetable* target);
     int parseRestriction(string s);
-    MTGAbility* getAlternateCost( string s, int id, Spell *spell, MTGCardInstance *card );
+    MTGAbility* getAlternateCost(string s, int id, Spell *spell, MTGCardInstance *card);
     MTGAbility* getManaReduxAbility(string s, int id, Spell *spell, MTGCardInstance *card, MTGCardInstance *target);
 
 public:
     Counter* parseCounter(string s, MTGCardInstance* target, Spell* spell = NULL);
-    int parsePowerToughness(string s, int* power, int* toughness);	
-    int getAbilities(vector<MTGAbility *>* v, Spell* spell, MTGCardInstance* card = NULL, int id = 0,MTGGameZone* dest = NULL);
-    MTGAbility* parseMagicLine(string s, int id, Spell* spell, MTGCardInstance *card, int activated = 0, int forceUEOT = 0,int oneShot = 0,int forceForever = 0, MTGGameZone* dest = NULL);
+    int parsePowerToughness(string s, int* power, int* toughness);
+    int getAbilities(vector<MTGAbility *>* v, Spell* spell, MTGCardInstance* card = NULL, int id = 0, MTGGameZone* dest = NULL);
+    MTGAbility* parseMagicLine(string s, int id, Spell* spell, MTGCardInstance *card, int activated = 0, int forceUEOT = 0,
+            int oneShot = 0, int forceForever = 0, MTGGameZone* dest = NULL);
 
     int abilityEfficiency(MTGAbility* a, Player* p, int mode = MODE_ABILITY, TargetChooser* tc = NULL);
-    int magicText(int id, Spell* spell, MTGCardInstance* card = NULL, int mode = MODE_PUTINTOPLAY, TargetChooser* tc = NULL, MTGGameZone* dest = NULL);
+    int magicText(int id, Spell* spell, MTGCardInstance* card = NULL, int mode = MODE_PUTINTOPLAY, TargetChooser* tc = NULL,
+            MTGGameZone* dest = NULL);
     static int computeX(Spell* spell, MTGCardInstance* card);
     static int computeXX(Spell* spell, MTGCardInstance* card);
     static MTGAbility* getCoreAbility(MTGAbility* a);
@@ -323,12 +378,12 @@ public:
     void addAbilities(int _id, Spell* spell);
 };
 
-
-class ActivatedAbilityTP:public ActivatedAbility
+class ActivatedAbilityTP: public ActivatedAbility
 {
 public:
     int who;
-    ActivatedAbilityTP(int id, MTGCardInstance* card, Targetable* _target = NULL, ManaCost* cost=NULL, int doTap = 0, int who = TargetChooser::UNSET);
+    ActivatedAbilityTP(int id, MTGCardInstance* card, Targetable* _target = NULL, ManaCost* cost = NULL, int doTap = 0, int who =
+            TargetChooser::UNSET);
     Targetable* getTarget();
 };
 
@@ -343,9 +398,9 @@ public:
     ManaCost* output;
     int tap;
     AManaProducer(int id, MTGCardInstance* card, Targetable* t, ManaCost* _output, ManaCost* _cost = NULL, int doTap = 1, int who = TargetChooser::UNSET);
-    int isReactingToClick(MTGCardInstance*  _card, ManaCost* mana = NULL);
+    int isReactingToClick(MTGCardInstance* _card, ManaCost* mana = NULL);
     int resolve();
-    int reactToClick(MTGCardInstance*  _card);
+    int reactToClick(MTGCardInstance* _card);
     const char* getMenuText();
     ~AManaProducer();
     virtual AManaProducer* clone() const;

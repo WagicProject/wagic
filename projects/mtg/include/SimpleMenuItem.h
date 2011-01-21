@@ -11,37 +11,42 @@ using std::string;
 #define SCALE_SELECTED		1.2f
 #define SCALE_NORMAL		1.0f
 
-
 class SimpleMenuItem: public JGuiObject
 {
- private:
-  bool mHasFocus;
-  SimpleMenu* parent;
-  int fontId;
-  string mText;
-  float mScale;
-  float mTargetScale;
+private:
+    bool mHasFocus;
+    SimpleMenu* parent;
+    int fontId;
+    string mText;
+    float mScale;
+    float mTargetScale;
 
- public:
-  string desc;
-  SimpleMenuItem(SimpleMenu* _parent, int id, int fontId, string text, float x, float y, bool hasFocus = false, bool autoTranslate = false);
+public:
+    string desc;
+    SimpleMenuItem(SimpleMenu* _parent, int id, int fontId, string text, float x, float y, bool hasFocus = false, bool autoTranslate = false);
 
-  float mX;
-  float mY;
+    float mX;
+    float mY;
 
-  void Relocate(float x, float y);
-  float GetWidth();
-  bool hasFocus();
+    void Relocate(float x, float y);
+    float GetWidth();
+    bool hasFocus();
 
-  void RenderWithOffset(float yOffset);
-  virtual void Render();
-  virtual void Update(float dt);
+    void RenderWithOffset(float yOffset);
+    virtual void Render();
+    virtual void Update(float dt);
 
-  virtual void Entering();
-  virtual bool Leaving(JButton key);
-  virtual bool ButtonPressed();
-  virtual ostream& toString(ostream& out) const;
-  virtual bool getTopLeft(float& top, float& left) {top = mY; left = mX; return true;};
+    virtual void Entering();
+    virtual bool Leaving(JButton key);
+    virtual bool ButtonPressed();
+    virtual ostream& toString(ostream& out) const;
+    virtual bool getTopLeft(float& top, float& left)
+    {
+        top = mY;
+        left = mX;
+        return true;
+    }
+    ;
 };
 
 #endif

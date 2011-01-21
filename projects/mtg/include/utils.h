@@ -20,7 +20,6 @@
 
 #endif
 
-
 #include <math.h>
 #include <stdio.h>
 #include <string>
@@ -65,13 +64,12 @@ namespace wagic
     };
 
 #else
-typedef std::ifstream ifstream;
+    typedef std::ifstream ifstream;
 #endif
 
 } //namespace wagic
 
 using std::string;
-
 
 //string manipulation methods
 string& trim(string& str);
@@ -93,7 +91,6 @@ int WRand();
 void dumpStack();
 #endif
 
-
 /* RAM simple check functions header */
 
 // *** DEFINES ***
@@ -106,8 +103,8 @@ void dumpStack();
 
 // *** FUNCTIONS DECLARATIONS ***
 
-u32 ramAvailableLineareMax (void);
-u32 ramAvailable (void);
+u32 ramAvailableLineareMax(void);
+u32 ramAvailable(void);
 
 #ifdef WIN32
 #include <direct.h>

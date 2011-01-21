@@ -4,15 +4,15 @@
 #include "GuiLayers.h"
 #include "WEvent.h"
 
-class GuiBackground : public GuiLayer
+class GuiBackground: public GuiLayer
 {
- protected:
-  JQuad* quad;
+protected:
+    JQuad* quad;
 
- public:
-  GuiBackground();
-  ~GuiBackground();
-  virtual void Render();
+public:
+    GuiBackground();
+    ~GuiBackground();
+    virtual void Render();
 };
 
 #endif // _GUIBACKGROUND_H_

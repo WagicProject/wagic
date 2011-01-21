@@ -11,30 +11,30 @@ class WSrcCards;
 
 class GameStateAwards: public GameState, public JGuiListener
 {
- private:
-  WGuiList * listview;
-  WGuiMenu * detailview;
-  WSrcCards * setSrc;
-  SimpleMenu * menu;
-  bool showMenu;
-  bool showAlt;
-  bool saveMe;
-  int mState;
-  int mDetailItem;
+private:
+    WGuiList * listview;
+    WGuiMenu * detailview;
+    WSrcCards * setSrc;
+    SimpleMenu * menu;
+    bool showMenu;
+    bool showAlt;
+    bool saveMe;
+    int mState;
+    int mDetailItem;
 
- public:
-  GameStateAwards(GameApp* parent);
-  bool enterSet(int setid);
-  bool enterStats(int option);
-  virtual ~GameStateAwards();
+public:
+    GameStateAwards(GameApp* parent);
+    bool enterSet(int setid);
+    bool enterStats(int option);
+    virtual ~GameStateAwards();
 
-  virtual void Start();
-  virtual void End();
-  virtual void Create();
-  virtual void Destroy();
-  virtual void Update(float dt);
-  virtual void Render();
-  virtual void ButtonPressed(int controllerId, int controlId);
+    virtual void Start();
+    virtual void End();
+    virtual void Create();
+    virtual void Destroy();
+    virtual void Update(float dt);
+    virtual void Render();
+    virtual void ButtonPressed(int controllerId, int controlId);
 };
 
 #endif

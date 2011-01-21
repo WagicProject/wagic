@@ -5,10 +5,11 @@
 #define TARGET_PLAYER 2
 #define TARGET_STACKACTION 3
 
-class Targetable{
- public:
-  virtual int typeAsTarget() = 0;
-  virtual const string getDisplayName() const = 0;
+class Targetable
+{
+public:
+    virtual int typeAsTarget() = 0;
+    virtual const string getDisplayName() const = 0;
 };
 
 #endif

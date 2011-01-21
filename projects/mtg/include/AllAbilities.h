@@ -3177,7 +3177,7 @@ public:
             {
                 for (int i = 0; i < nbOpponents; i++)
                 {
-                    if (game->isInPlay(opponents[i])) 
+                    if (game->isInPlay(opponents[i]))
                     	opponents[i]->destroy();
                 }
             }
@@ -3225,14 +3225,14 @@ public:
         _target->controller()->game->putInZone(_target, _target->controller()->game->hand, _target->controller()->game->hand);
         return MTGAbility::addToGame();
     }
-    
+
 	AResetCost * clone() const
     {
         AResetCost * a = NEW AResetCost(*this);
         a->isClone = 1;
         return a;
     }
-    
+
 	~AResetCost()
     {
     }
@@ -3246,7 +3246,7 @@ public:
         MTGAbility(id, source, target), amount(amount)
     {
     }
-	
+
     int addToGame()
     {
         MTGCardInstance * _target = (MTGCardInstance *) target;
@@ -3260,14 +3260,14 @@ public:
         }
         return MTGAbility::addToGame();
     }
-	
+
     ABloodThirst * clone() const
     {
         ABloodThirst * a = NEW ABloodThirst(*this);
         a->isClone = 1;
         return a;
     }
-	
+
     ~ABloodThirst()
     {
     }

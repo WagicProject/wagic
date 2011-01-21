@@ -17,34 +17,32 @@ class CardPrimitive;
 
 using namespace std;
 
-class MTGCard {
- protected:
-   friend class MTGSetInfo;
-  int mtgid;
-  char rarity;
-  char image_name[MTGCARD_NAME_SIZE];
-  int  init();
+class MTGCard
+{
+protected:
+    friend class MTGSetInfo;
+    int mtgid;
+    char rarity;
+    char image_name[MTGCARD_NAME_SIZE];
+    int init();
 
- public:
-  int setId;
-  CardPrimitive * data;
- 
-  MTGCard();
-  MTGCard(int set_id);
-  MTGCard(MTGCard * source);
+public:
+    int setId;
+    CardPrimitive * data;
 
-  void setMTGId(int id);
-  void setRarity(char _rarity);
-  //void setImageName( char * value);
-  void setPrimitive(CardPrimitive * cp);
+    MTGCard();
+    MTGCard(int set_id);
+    MTGCard(MTGCard * source);
 
-  int getMTGId() const;
-  int getId() const;
-  char getRarity() const;
-  char * getImageName();
+    void setMTGId(int id);
+    void setRarity(char _rarity);
+    //void setImageName( char * value);
+    void setPrimitive(CardPrimitive * cp);
+
+    int getMTGId() const;
+    int getId() const;
+    char getRarity() const;
+    char * getImageName();
 };
-
-
-
 
 #endif

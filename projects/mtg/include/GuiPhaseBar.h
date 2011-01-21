@@ -5,18 +5,18 @@
 #include "PhaseRing.h"
 #include "WEvent.h"
 
-class GuiPhaseBar : public GuiLayer
+class GuiPhaseBar: public GuiLayer
 {
- protected:
-  Phase* phase;
-  float angle;
+protected:
+    Phase* phase;
+    float angle;
 
- public:
-  GuiPhaseBar();
-  ~GuiPhaseBar();
-  void Update(float dt);
-  virtual void Render();
-  virtual int receiveEventMinus(WEvent * e);
+public:
+    GuiPhaseBar();
+    ~GuiPhaseBar();
+    void Update(float dt);
+    virtual void Render();
+    virtual int receiveEventMinus(WEvent * e);
 };
 
 #endif // _GUIPHASEBAR_H_

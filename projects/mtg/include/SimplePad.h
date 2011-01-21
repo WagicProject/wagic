@@ -19,51 +19,54 @@ enum SIMPLE_KEYS{
   KPD_INPUT = 255,
 };
 
-struct SimpleKey{
-  SimpleKey( string _ds, int _id);
-  string displayValue;
-  unsigned char id;
-  unsigned char adjacency[4];
+struct SimpleKey
+{
+    SimpleKey(string _ds, int _id);
+    string displayValue;
+    unsigned char id;
+    unsigned char adjacency[4];
 };
 
-class SimplePad{
-public:  
-  friend class GameSettings;
+class SimplePad
+{
+public:
+    friend class GameSettings;
 
-  string buffer;
-  string title;
-  unsigned int cursorPos();
-  bool isActive() {return bActive;};
-  void Render();
-  void Update(float dt);  
-  void pressKey(unsigned char id);
+    string buffer;
+    string title;
+    unsigned int cursorPos();
+    bool isActive()
+    {
+        return bActive;
+    }
+    ;
+    void Render();
+    void Update(float dt);
+    void pressKey(unsigned char id);
 
+    SimplePad();
+    ~SimplePad();
 
+    float mX, mY;
 
-  SimplePad();
-  ~SimplePad();
+private:
+    void linkKeys(int from, int to, int dir);
+    SimpleKey * Add(string display, unsigned char id);
+    void MoveSelection(unsigned char dir);
+    void Start(string value, string * _dest = NULL);
+    string Finish();
 
-  float mX, mY; 
-
-private:  
-  void linkKeys(int from, int to, int dir);
-  SimpleKey * Add(string display, unsigned char id);
-  void MoveSelection(unsigned char dir);
-  void Start(string value, string * _dest=NULL);
-  string Finish();
-
-  bool bActive;
-  bool bCapslock;
-  bool bShowCancel, bShowNumpad;
-  bool bCanceled; 
-  int nbitems;
-  unsigned int cursor;
-  int selected;
-  int priorKey; //The prior key from those places.
-  SimpleKey * keys[KPD_MAX];
-  string * dest;
-  string original; //For cancelling.
+    bool bActive;
+    bool bCapslock;
+    bool bShowCancel, bShowNumpad;
+    bool bCanceled;
+    int nbitems;
+    unsigned int cursor;
+    int selected;
+    int priorKey; //The prior key from those places.
+    SimpleKey * keys[KPD_MAX];
+    string * dest;
+    string original; //For cancelling.
 };
-
 
 #endif

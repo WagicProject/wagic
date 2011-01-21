@@ -19,7 +19,9 @@ protected:
 public:
     enum ENUM_PLAY_MODE
     {
-        MODE_TEST_SUITE, MODE_HUMAN, MODE_AI,
+        MODE_TEST_SUITE,
+        MODE_HUMAN,
+        MODE_AI
     };
 
     JTexture * mAvatarTex;

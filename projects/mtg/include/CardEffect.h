@@ -6,17 +6,16 @@
 
 struct CardGui;
 
-class CardEffect : public Effect
+class CardEffect: public Effect
 {
- public:
-  CardEffect(CardGui* target);
-  ~CardEffect();
- private:
-  CardGui* target;
+public:
+    CardEffect(CardGui* target);
+    ~CardEffect();
+private:
+    CardGui* target;
 
- public:
-  virtual void Render();
+public:
+    virtual void Render();
 };
-
 
 #endif // _CARDEFFECT_H_

@@ -12,11 +12,7 @@
 #define OutputDebugString(val) {}
 #endif
 
-
-
-
 #include "limits.h"
-
 
 #if defined (_DEBUG) && defined (WIN32)
 #include "crtdbg.h"
@@ -37,7 +33,6 @@
 #endif
 #endif
 #endif
-
 
 #ifndef RESPATH
 #define RESPATH "Res"

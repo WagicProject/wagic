@@ -3,18 +3,18 @@
 
 #include "GuiLayers.h"
 
-class GuiFrame : public GuiLayer
+class GuiFrame: public GuiLayer
 {
- protected:
-  JQuad* wood;
-  JQuad* gold1, *gold2, *goldGlow;
-  float step;
+protected:
+    JQuad* wood;
+    JQuad* gold1, *gold2, *goldGlow;
+    float step;
 
- public:
-  GuiFrame();
-  ~GuiFrame();
-  virtual void Render();
-  void Update(float dt);
+public:
+    GuiFrame();
+    ~GuiFrame();
+    virtual void Render();
+    void Update(float dt);
 };
 
 #endif // _GUIFRAME_H_

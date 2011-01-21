@@ -149,5 +149,4 @@ public:
     virtual void ButtonPressed(int controllerId, int controlId);
 };
 
-
 #endif

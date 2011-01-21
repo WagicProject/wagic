@@ -1,7 +1,6 @@
 #ifndef THREADING_H
 #define THREADING_H
 
-
 #if defined (WIN32) || defined (LINUX)
 
 #include <boost/date_time.hpp>
@@ -18,7 +17,8 @@ namespace boost
     public:
         struct scoped_lock
         {
-            scoped_lock(mutex& inMutex) : mID(inMutex.mID)
+            scoped_lock(mutex& inMutex) :
+                mID(inMutex.mID)
             {
                 sceKernelWaitSema(mID, 1, 0);
             }
@@ -43,7 +43,7 @@ namespace boost
 
         int mID;
     };
-    
+
 }
 
 #endif

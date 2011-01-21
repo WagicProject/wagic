@@ -20,7 +20,6 @@
 #define MAX_CACHE_TIME 2000000000 
 #endif
 
-
 #define THUMBNAILS_OFFSET 100000000
 #define OTHERS_OFFSET 2000000000
 
@@ -31,54 +30,61 @@
 #define MAX_CACHED_SAMPLES 50
 #define MAX_CACHE_GARBAGE 10
 
-
-enum ENUM_WRES_INFO{
-    WRES_UNLOCKED = 0,      //Resource is unlocked.
-    WRES_MAX_LOCK = 250,    //Maximum number of locks for a resource.
-    WRES_PERMANENT = 251,   //Resource is permanent (ie, managed)  
-    WRES_UNDERLOCKED = 252, //Resource was released too many times.
+enum ENUM_WRES_INFO
+{
+    WRES_UNLOCKED = 0, //Resource is unlocked.
+    WRES_MAX_LOCK = 250, //Maximum number of locks for a resource.
+    WRES_PERMANENT = 251, //Resource is permanent (ie, managed)
+    WRES_UNDERLOCKED = 252,
+//Resource was released too many times.
 };
 
-enum ENUM_RETRIEVE_STYLE{
-    RETRIEVE_EXISTING,  //Only returns a resource if it already exists. Does not lock or unlock.
-    RETRIEVE_NORMAL,    //Returns or creates a resource. Does not change lock status.
-    RETRIEVE_LOCK,      //As above, locks cached resource. Not for quads.
-    RETRIEVE_UNLOCK,    //As above, unlocks cached resource. Not for quads.
-    RETRIEVE_RESOURCE,  //Only retrieves a managed resource. Does not make a new one.
-    RETRIEVE_MANAGE,    //Makes resource permanent.
-    RETRIEVE_THUMB,     //Retrieve it as a thumbnail.
-    CACHE_THUMB = RETRIEVE_THUMB, //Backwords compatibility. 
+enum ENUM_RETRIEVE_STYLE
+{
+    RETRIEVE_EXISTING, //Only returns a resource if it already exists. Does not lock or unlock.
+    RETRIEVE_NORMAL, //Returns or creates a resource. Does not change lock status.
+    RETRIEVE_LOCK, //As above, locks cached resource. Not for quads.
+    RETRIEVE_UNLOCK, //As above, unlocks cached resource. Not for quads.
+    RETRIEVE_RESOURCE, //Only retrieves a managed resource. Does not make a new one.
+    RETRIEVE_MANAGE, //Makes resource permanent.
+    RETRIEVE_THUMB, //Retrieve it as a thumbnail.
+    CACHE_THUMB = RETRIEVE_THUMB,
+//Backwords compatibility.
 };
 
-enum ENUM_CACHE_SUBTYPE{
-    CACHE_NORMAL =  (1<<0),    //Use default values. Not really a flag.
-    CACHE_EXISTING = (1<<1),   //Retrieve it only if it already exists
+enum ENUM_CACHE_SUBTYPE
+{
+    CACHE_NORMAL = (1 << 0), //Use default values. Not really a flag.
+    CACHE_EXISTING = (1 << 1), //Retrieve it only if it already exists
 
     //Because these bits only modify how a cached resource's Attempt() is called,
     //We can use them over and over for each resource type.
-    TEXTURE_SUB_EXACT = (1<<2),      //Don't do any fiddling with the filename.
-    TEXTURE_SUB_CARD = (1<<3), //Retrieve using cardFile, not graphicsFile.
-    TEXTURE_SUB_AVATAR = (1<<4), //Retrieve using avatarFile, not graphicsFile.
-    TEXTURE_SUB_THUMB = (1<<5),//Retrieve prepending "thumbnails\" to the filename.
-    TEXTURE_SUB_5551 = (1<<6), //For textures. If we have to allocate, use RGBA5551.
+    TEXTURE_SUB_EXACT = (1 << 2), //Don't do any fiddling with the filename.
+    TEXTURE_SUB_CARD = (1 << 3), //Retrieve using cardFile, not graphicsFile.
+    TEXTURE_SUB_AVATAR = (1 << 4), //Retrieve using avatarFile, not graphicsFile.
+    TEXTURE_SUB_THUMB = (1 << 5),//Retrieve prepending "thumbnails\" to the filename.
+    TEXTURE_SUB_5551 = (1 << 6),
+//For textures. If we have to allocate, use RGBA5551.
 
 };
 
-enum ENUM_CACHE_ERROR{
+enum ENUM_CACHE_ERROR
+{
     CACHE_ERROR_NONE = 0,
     CACHE_ERROR_NOT_CACHED = CACHE_ERROR_NONE,
     CACHE_ERROR_404,
-    CACHE_ERROR_BAD,  //Something went wrong with item->attempt()
+    CACHE_ERROR_BAD, //Something went wrong with item->attempt()
     CACHE_ERROR_BAD_ALLOC, //Couldn't allocate item
     CACHE_ERROR_LOST,
     CACHE_ERROR_NOT_MANAGED,
 };
 
-struct WCacheSort{
+struct WCacheSort
+{
     bool operator()(const WResource * l, const WResource * r); //Predicate for use in sorting. See flatten().
 };
 
-template <class cacheItem, class cacheActual> 
+template<class cacheItem, class cacheActual>
 class WCache
 {
 public:
@@ -87,13 +93,13 @@ public:
     WCache();
     ~WCache();
 
-    cacheItem* Retrieve(int id, const string& filename, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL);  //Primary interface function.
-    bool Release(cacheActual* actual);         //Releases an item, and deletes it if unlocked.
-    bool RemoveMiss(int id=0); //Removes a cache miss.
-    bool RemoveOldest();    //Remove oldest unlocked item.
-    bool Cleanup();         //Repeats RemoveOldest() until cache fits in size limits
-    void ClearUnlocked();   //Remove all unlocked items.
-    void Refresh();         //Refreshes all cache items.
+    cacheItem* Retrieve(int id, const string& filename, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL); //Primary interface function.
+    bool Release(cacheActual* actual); //Releases an item, and deletes it if unlocked.
+    bool RemoveMiss(int id = 0); //Removes a cache miss.
+    bool RemoveOldest(); //Remove oldest unlocked item.
+    bool Cleanup(); //Repeats RemoveOldest() until cache fits in size limits
+    void ClearUnlocked(); //Remove all unlocked items.
+    void Refresh(); //Refreshes all cache items.
     unsigned int Flatten(); //Ensures that the times don't loop. Returns new lastTime.
     void Resize(unsigned long size, int items); //Sets new limits, then enforces them. Lock safe, so not a "hard limit".
 protected:
@@ -101,24 +107,23 @@ protected:
     bool UnlinkCache(cacheItem * item); //Removes an item from our cache, does not delete it. Use with care.
     bool Delete(cacheItem * item); //SAFE_DELETE and garbage collect. If maxCached == 0, nullify first. (This means you have to free that cacheActual later!)
     cacheItem* Get(int id, const string& filename, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL); //Subordinate to Retrieve.
-    cacheItem* AttemptNew(const string& filename, int submode);   //Attempts a new cache item, progressively clearing cache if it fails.
+    cacheItem* AttemptNew(const string& filename, int submode); //Attempts a new cache item, progressively clearing cache if it fails.
 
-    int makeID(int id, const string& filename, int submode);  //Makes an ID appropriate to the submode.
+    int makeID(int id, const string& filename, int submode); //Makes an ID appropriate to the submode.
 
-    map<string,int> ids;
-    map<int,cacheItem*> cache; 
-    map<int,cacheItem*> managed;  //Cache can be arbitrarily large, so managed items are seperate.
+    map<string, int> ids;
+    map<int, cacheItem*> cache;
+    map<int, cacheItem*> managed; //Cache can be arbitrarily large, so managed items are seperate.
     unsigned long totalSize;
     unsigned long cacheSize;
 
     //Applies to cacheSize only.
-    unsigned long maxCacheSize;  
+    unsigned long maxCacheSize;
     unsigned int maxCached;
 
     unsigned int cacheItems;
     int mError;
 };
-
 
 struct WManagedQuad
 {
@@ -149,10 +154,10 @@ public:
     virtual ~WResourceManager();
 
     void Unmiss(string filename);
-    JQuad * RetrieveCard(MTGCard * card, int style = RETRIEVE_NORMAL,int submode = CACHE_NORMAL);
+    JQuad * RetrieveCard(MTGCard * card, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL);
     JSample * RetrieveSample(const string& filename, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL);
     JTexture * RetrieveTexture(const string& filename, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL);
-    JQuad * RetrieveQuad(const string& filename, float offX=0.0f, float offY=0.0f, float width=0.0f, float height=0.0f,  string resname="",  int style = RETRIEVE_LOCK, int submode = CACHE_NORMAL, int id = 0);
+    JQuad * RetrieveQuad(const string& filename, float offX = 0.0f, float offY = 0.0f, float width = 0.0f, float height = 0.0f, string resname = "", int style = RETRIEVE_LOCK, int submode = CACHE_NORMAL, int id = 0);
     JQuad * RetrieveTempQuad(const string& filename, int submode = CACHE_NORMAL);
     hgeParticleSystemInfo * RetrievePSI(const string& filename, JQuad * texture, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL);
     int RetrieveError();
@@ -161,19 +166,19 @@ public:
     void Release(JSample * sample);
     bool RemoveOldest();
 
-    bool Cleanup();       //Force a cleanup. Return false if nothing removed.
+    bool Cleanup(); //Force a cleanup. Return false if nothing removed.
     void ClearUnlocked(); //Remove unlocked items.
-    void Refresh();       //Refreshes all files in cache, for when mode/profile changes.
+    void Refresh(); //Refreshes all files in cache, for when mode/profile changes.
 
     unsigned int nowTime();
 
     unsigned long Size();
     unsigned long SizeCached();
-    unsigned long SizeManaged();  
+    unsigned long SizeManaged();
 
     unsigned int Count();
     unsigned int CountCached();
-    unsigned int CountManaged();  
+    unsigned int CountManaged();
 
     int CreateQuad(const string &quadName, const string &textureName, float x, float y, float width, float height);
     JQuad* GetQuad(const string &quadName);
@@ -206,7 +211,7 @@ public:
     JMusic * ssLoadMusic(const char *fileName);
 
     //Resets the cache limits on when it starts to purge data.
-    void ResetCacheLimits(); 
+    void ResetCacheLimits();
 
     void DebugRender();
 
@@ -217,17 +222,17 @@ public:
 
 private:
     /*
-    ** Singleton object only accessibly via Instance(), constructor is private
-    */
+     ** Singleton object only accessibly via Instance(), constructor is private
+     */
     WResourceManager();
 
-    bool bThemedCards;  //Does the theme have a "sets" directory for overwriting cards?
+    bool bThemedCards; //Does the theme have a "sets" directory for overwriting cards?
     void FlattenTimes(); //To prevent bad cache timing on int overflow
 
     //For cached stuff
-    WCache<WCachedTexture,JTexture> textureWCache;
-    WCache<WCachedSample,JSample> sampleWCache;
-    WCache<WCachedParticles,hgeParticleSystemInfo> psiWCache;
+    WCache<WCachedTexture, JTexture> textureWCache;
+    WCache<WCachedSample, JSample> sampleWCache;
+    WCache<WCachedParticles, hgeParticleSystemInfo> psiWCache;
 
     typedef std::map<std::string, WManagedQuad> ManagedQuadMap;
     ManagedQuadMap mManagedQuads;
@@ -239,7 +244,7 @@ private:
     unsigned int lastTime;
     int lastError;
 
-    typedef  std::map<int, WFont*> FontMap;
+    typedef std::map<int, WFont*> FontMap;
     FontMap mWFontMap;
     std::string mFontFileExtension;
 

@@ -1,6 +1,6 @@
 /*
-   A class for all interactive objects in the play area (cards, avatars, etc...)
-*/
+ A class for all interactive objects in the play area (cards, avatars, etc...)
+ */
 
 #ifndef _PLAYGUIOBJECT_H_
 #define _PLAYGUIOBJECT_H_
@@ -16,27 +16,53 @@
 #include "WEvent.h"
 #include "Pos.h"
 
-class PlayGuiObject: public JGuiObject, public JGuiListener, public Pos{
- protected:
+class PlayGuiObject: public JGuiObject, public JGuiListener, public Pos
+{
+protected:
 
- public:
-  int wave;
-  float mHeight;
-  float defaultHeight;
-  bool mHasFocus;
-  int type;
-  virtual void Entering(){mHasFocus = true; zoom = 1.4f;};
-  virtual bool Leaving(JButton key){mHasFocus = false; zoom = 1.0; return true;};
-  virtual bool CheckUserInput(JButton key) {return false;};
-  virtual bool ButtonPressed(){return true;};
-  virtual void Render();
-  virtual void Update(float dt);
-  PlayGuiObject(float desiredHeight, float x, float y, bool hasFocus);
-  PlayGuiObject(float desiredHeight, const Pos& ref, bool hasFocus);
-  virtual void ButtonPressed(int controllerId, int controlId){};
-  virtual bool getTopLeft(float& top, float& left) {top = actY; left = actX; return true;};
-  virtual ~PlayGuiObject(){};
-  vector<Effect*> effects;
+public:
+    int wave;
+    float mHeight;
+    float defaultHeight;
+    bool mHasFocus;
+    int type;
+    virtual void Entering()
+    {
+        mHasFocus = true;
+        zoom = 1.4f;
+    }
+    ;
+    virtual bool Leaving(JButton key)
+    {
+        mHasFocus = false;
+        zoom = 1.0;
+        return true;
+    }
+    ;
+    virtual bool CheckUserInput(JButton key)
+    {
+        return false;
+    }
+    ;
+    virtual bool ButtonPressed()
+    {
+        return true;
+    }
+    ;
+    virtual void Render();
+    virtual void Update(float dt);
+    PlayGuiObject(float desiredHeight, float x, float y, bool hasFocus);
+    PlayGuiObject(float desiredHeight, const Pos& ref, bool hasFocus);
+    virtual void ButtonPressed(int controllerId, int controlId) {}
+    virtual bool getTopLeft(float& top, float& left)
+    {
+        top = actY;
+        left = actX;
+        return true;
+    }
+    ;
+    virtual ~PlayGuiObject() {};
+    vector<Effect*> effects;
 };
 
 #endif
