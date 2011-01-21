@@ -118,6 +118,7 @@ void GameObserver::nextGamePhase()
         currentPlayer->onlyoneinstant = false;
         currentPlayer->damageCount = 0;
         currentPlayer->preventable = 0;
+        currentPlayer->isPoisoned = false;
         mLayers->actionLayer()->cleanGarbage(); //clean abilities history for this turn;
         mLayers->stackLayer()->garbageCollect(); //clean stack history for this turn;
         mLayers->actionLayer()->Update(0);
@@ -140,6 +141,8 @@ void GameObserver::nextGamePhase()
         while (currentPlayer->game->hand->nb_cards > 7 && currentPlayer->nomaxhandsize == false)
             currentPlayer->game->putInGraveyard(currentPlayer->game->hand->cards[0]);
         mLayers->actionLayer()->Update(0);
+        currentPlayer->lifeLostThisTurn = 0;
+        currentPlayer->opponent()->lifeLostThisTurn = 0;
         return nextGamePhase();
     }
 
@@ -382,6 +385,14 @@ void GameObserver::gameStateBasedEffects()
         {
             players[i]->canPutLandsIntoPlay = true;
         }
+        if(players[i]->poisonCount > 0)
+        {
+        players[i]->isPoisoned = true;
+        }
+        else
+        {
+        players[i]->isPoisoned = false;
+        }
     }
     if (mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
     	return;
@@ -401,11 +412,76 @@ void GameObserver::gameStateBasedEffects()
         {
             MTGCardInstance * card = zone->cards[j];
             card->afterDamage();
-
-            //Remove auras that don't have a valid target anymore
+            ///////////////////////////////////////////////////////
+            //Remove auras that don't have a valid target anymore//
+            ///////////////////////////////////////////////////////
             if (card->target && !isInPlay(card->target) && !card->hasType("equipment"))
             {
                 players[i]->game->putInGraveyard(card);
+            }
+            card->enchanted = false;
+            if (card->target && isInPlay(card->target) && !card->hasType("equipment") && card->hasSubtype("aura"))
+            {
+                card->target->enchanted = true;
+            }
+            ///////////////////////////
+            //reset extracost shadows//
+            ///////////////////////////
+            card->isExtraCostTarget = false;
+            if(mExtraPayment != NULL)
+            {
+                for(unsigned int ec = 0;ec < mExtraPayment->costs.size();ec++)
+                {
+                    if( mExtraPayment->costs[ec]->target)
+                        mExtraPayment->costs[ec]->target->isExtraCostTarget = true;
+                }
+            }
+            //////////////////////
+            //reset morph hiding//
+            //////////////////////
+            if((card->previous && card->previous->morphed && !card->turningOver) || (card->morphed && !card->turningOver))
+            {
+                card->morphed = true;
+                card->isMorphed = true;
+            }
+            else
+            {
+                card->isMorphed = false;
+                card->morphed = false;
+            }
+            //////////////////////////
+            //handles phasing events//
+            //////////////////////////
+            if((card->has(Constants::PHASING)&& currentGamePhase == Constants::MTG_PHASE_UNTAP && currentPlayer == card->controller() && card->phasedTurn != turn && !card->isPhased) || (card->isTempPhased && !card->isPhased))
+            {
+                card->isPhased = true;
+                card->phasedTurn = turn;
+                if(card->view)
+                card->view->alpha = 50;
+                card->initAttackersDefensers();
+            }
+            else if((card->has(Constants::PHASING) || card->isTempPhased)&& currentGamePhase == Constants::MTG_PHASE_UNTAP && currentPlayer == card->controller() && card->phasedTurn != turn)
+            {
+                card->isPhased = false;
+                card->phasedTurn = turn;
+                if(card->view)
+                card->view->alpha = 255;
+                card->isTempPhased = false;
+            }
+            if (card->target && isInPlay(card->target) && (card->hasSubtype("equipment") || card->hasSubtype("aura")))
+            {
+                card->isPhased = card->target->isPhased;
+                card->phasedTurn = card->target->phasedTurn;
+                if(card->view && card->target->view)
+                card->view->alpha = card->target->view->alpha;
+            }
+            //////////////////////////  
+            //forceDestroy over ride//
+            //////////////////////////
+            if(card->isInPlay())
+            {
+                card->graveEffects = false;
+                card->exileEffects = false;
             }
         }
     }
@@ -524,22 +600,22 @@ void GameObserver::gameStateBasedEffects()
         }
         //------------------------------------
         if (players[0]->bothrestrictedcreature) 
-        	players[1]->castrestrictedcreature = true;
+            players[1]->castrestrictedcreature = true;
         //------------------------------------
         if (players[0]->bothrestrictedspell) 
-        	players[1]->castrestrictedspell = true;
+            players[1]->castrestrictedspell = true;
         //------------------------------------
         if (players[0]->onlyoneboth) 
-        	players[1]->onlyoneboth = true;
+            players[1]->onlyoneboth = true;
         //------------------------------------
         if (players[1]->bothrestrictedcreature) 
-        	players[0]->castrestrictedcreature = true;
+            players[0]->castrestrictedcreature = true;
         //------------------------------------
         if (players[1]->bothrestrictedspell) 
-        	players[0]->castrestrictedspell = true;
+            players[0]->castrestrictedspell = true;
         //------------------------------------
         if (players[1]->onlyoneboth) 
-        	players[0]->onlyoneboth = true;
+            players[0]->onlyoneboth = true;
         //------------------------------------
         /////////////////////////////////////////////////
         //handle end of turn effects while we're at it.//
@@ -552,7 +628,10 @@ void GameObserver::gameStateBasedEffects()
 
                 if(!c)break;
                 while (c->flanked)
-                {//undoes the flanking on a card
+                {
+                    /////////////////////////////////
+                    //undoes the flanking on a card//
+                    /////////////////////////////////
                     c->power += 1;
                     c->addToToughness(1);
                     c->flanked -= 1;
@@ -582,13 +661,12 @@ void GameObserver::gameStateBasedEffects()
                     p->game->putInExile(c);
 
                 }
-             if(nbcards > z->nb_cards)
-             {
-              t = 0;
-              nbcards = z->nb_cards;
-              }
+                if(nbcards > z->nb_cards)
+                {
+                    t = 0;
+                    nbcards = z->nb_cards;
+                }
             }
-
 
             MTGGameZone * f = p->game->graveyard;
             for (int k = 0; k < f->nb_cards; k++)
@@ -601,10 +679,54 @@ void GameObserver::gameStateBasedEffects()
         {
             p->nomaxhandsize = false;
             if (!p->bothrestrictedcreature && !p->opponent()->bothrestrictedcreature)
-            	p->castrestrictedcreature = false;
+                p->castrestrictedcreature = false;
             if (!p->bothrestrictedspell && !p->opponent()->bothrestrictedspell) 
-            	p->castrestrictedspell = false;
+                p->castrestrictedspell = false;
             p->onlyonecast = false;
+        }
+        //////////////////////////
+        // Check auras on a card//
+        //////////////////////////
+        enchantmentStatus();
+        /////////////////////////////////////
+        // Check colored statuses on cards //
+        /////////////////////////////////////
+        for(int w = 0;w < z->nb_cards;w++)
+        {  
+            int colored = 0;
+            for (int i = Constants::MTG_COLOR_GREEN; i <= Constants::MTG_COLOR_WHITE; ++i)
+            {
+                if (z->cards[w]->hasColor(i))
+                    ++colored;
+            }
+            if(colored > 1)
+            {
+                z->cards[w]->isMultiColored = 1;
+            }
+            else
+            {
+                z->cards[w]->isMultiColored = 0;
+            }
+            if(z->cards[w]->hasColor(Constants::MTG_COLOR_WHITE) && z->cards[w]->hasColor(Constants::MTG_COLOR_BLACK))
+                z->cards[w]->isBlackAndWhite = 1;
+            else
+                z->cards[w]->isBlackAndWhite = 0;
+            if(z->cards[w]->hasColor(Constants::MTG_COLOR_RED) && z->cards[w]->hasColor(Constants::MTG_COLOR_BLUE))
+                z->cards[w]->isRedAndBlue = 1;
+            else
+                z->cards[w]->isRedAndBlue = 0;
+            if(z->cards[w]->hasColor(Constants::MTG_COLOR_GREEN) && z->cards[w]->hasColor(Constants::MTG_COLOR_BLACK))
+                z->cards[w]->isBlackAndGreen = 1;
+            else
+                z->cards[w]->isBlackAndGreen = 0;
+            if(z->cards[w]->hasColor(Constants::MTG_COLOR_BLUE) && z->cards[w]->hasColor(Constants::MTG_COLOR_GREEN))
+                z->cards[w]->isBlueAndGreen = 1;
+            else
+                z->cards[w]->isBlueAndGreen = 0;
+            if(z->cards[w]->hasColor(Constants::MTG_COLOR_RED) && z->cards[w]->hasColor(Constants::MTG_COLOR_WHITE))
+                z->cards[w]->isRedAndWhite = 1;
+            else
+                z->cards[w]->isRedAndWhite = 0;
         }
     }
     ///////////////////////////////////
@@ -613,33 +735,58 @@ void GameObserver::gameStateBasedEffects()
     if (combatStep == TRIGGERS)
     {
         if (!mLayers->stackLayer()->getNext(NULL, 0, NOT_RESOLVED) && !targetChooser
-                && !mLayers->actionLayer()->isWaitingForAnswer()) 
-			mLayers->stackLayer()->AddNextCombatStep();
+            && !mLayers->actionLayer()->isWaitingForAnswer()) 
+            mLayers->stackLayer()->AddNextCombatStep();
     }
 
     //Auto skip Phases
     GameObserver * game = game->GetInstance();
     int skipLevel = (game->currentPlayer->playMode == Player::MODE_TEST_SUITE) ? Constants::ASKIP_NONE
-            : options[Options::ASPHASES].number;
+        : options[Options::ASPHASES].number;
     int nrCreatures = currentPlayer->game->inPlay->countByType("Creature");
 
     if (skipLevel == Constants::ASKIP_SAFE || skipLevel == Constants::ASKIP_FULL)
     {
         if ((opponent()->isAI() && !(isInterrupting)) && ((currentGamePhase == Constants::MTG_PHASE_UNTAP)
-        		|| (currentGamePhase == Constants::MTG_PHASE_DRAW) || (currentGamePhase == Constants::MTG_PHASE_COMBATBEGIN) 
-        		|| ((currentGamePhase == Constants::MTG_PHASE_COMBATATTACKERS) && (nrCreatures == 0)) 
-        		|| currentGamePhase == Constants::MTG_PHASE_COMBATEND || currentGamePhase == Constants::MTG_PHASE_ENDOFTURN 
-                || ((currentGamePhase == Constants::MTG_PHASE_CLEANUP) && (currentPlayer->game->hand->nb_cards < 8)))) 
-			userRequestNextGamePhase();
+            || (currentGamePhase == Constants::MTG_PHASE_DRAW) || (currentGamePhase == Constants::MTG_PHASE_COMBATBEGIN) 
+            || ((currentGamePhase == Constants::MTG_PHASE_COMBATATTACKERS) && (nrCreatures == 0)) 
+            || currentGamePhase == Constants::MTG_PHASE_COMBATEND || currentGamePhase == Constants::MTG_PHASE_ENDOFTURN 
+            || ((currentGamePhase == Constants::MTG_PHASE_CLEANUP) && (currentPlayer->game->hand->nb_cards < 8)))) 
+            userRequestNextGamePhase();
     }
     if (skipLevel == Constants::ASKIP_FULL)
     {
         if ((opponent()->isAI() && !(isInterrupting)) && (currentGamePhase == Constants::MTG_PHASE_UPKEEP 
-        		|| currentGamePhase == Constants::MTG_PHASE_COMBATDAMAGE)) 
-        	userRequestNextGamePhase();
+            || currentGamePhase == Constants::MTG_PHASE_COMBATDAMAGE)) 
+            userRequestNextGamePhase();
     }
 }
 
+void GameObserver::enchantmentStatus()
+{
+    for (int i = 0; i < 2; i++)
+    {
+        MTGGameZone * zone = players[i]->game->inPlay;
+        for (int k = zone->nb_cards - 1; k >= 0; k--)
+        {
+            MTGCardInstance * card = zone->cards[k];
+            if (card && !card->hasType("equipment") && !card->hasSubtype("aura"))
+            {
+                card->enchanted = false;
+                card->auras = 0;
+            }
+        }
+        for (int j = zone->nb_cards - 1; j >= 0; j--)
+        {
+            MTGCardInstance * card = zone->cards[j];
+            if (card->target && isInPlay(card->target) && !card->hasType("equipment") && card->hasSubtype("aura"))
+            {
+                card->target->enchanted = true;
+                card->target->auras += 1;
+            }
+        }
+    }
+}
 void GameObserver::Render()
 {
     mLayers->Render();
@@ -883,7 +1030,28 @@ int GameObserver::isInPlay(MTGCardInstance * card)
     }
     return 0;
 }
+int GameObserver::isInGrave(MTGCardInstance * card)
+{
 
+    for (int i = 0; i < 2; i++)
+    {
+        MTGGameZone * graveyard = players[i]->game->graveyard;
+        if (players[i]->game->isInZone(card,graveyard)) 
+            return 1;
+    }
+    return 0;
+}
+int GameObserver::isInExile(MTGCardInstance * card)
+{
+
+    for (int i = 0; i < 2; i++)
+    {
+        MTGGameZone * exile = players[i]->game->exile;
+        if (players[i]->game->isInZone(card,exile)) 
+            return 1;
+    }
+    return 0;
+}
 void GameObserver::draw()
 {
     currentPlayer->game->drawFromLibrary();

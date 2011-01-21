@@ -39,7 +39,7 @@ void DuelLayers::init()
     action->Add(NEW MTGLifelinkRule(-1));
     action->Add(NEW MTGDeathtouchRule(-1));
     action->Add(NEW OtherAbilitiesEventReceiver(-1));
-
+    action->Add(NEW MTGMorphCostRule(-1));
     //Other display elements
     action->Add(NEW HUDDisplay(-1));
 

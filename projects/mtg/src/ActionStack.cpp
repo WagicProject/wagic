@@ -214,7 +214,8 @@ Interruptible(id), tc(tc), cost(_cost), payResult(payResult)
 int Spell::computeX(MTGCardInstance * card)
 {
     ManaCost * c = cost->Diff(card->getManaCost());
-    int x = c->getCost(Constants::MTG_NB_COLORS);
+    int x = 0;
+    x = c->getCost(Constants::MTG_NB_COLORS);
     delete c;
     return x;
 }
@@ -222,7 +223,8 @@ int Spell::computeX(MTGCardInstance * card)
 int Spell::computeXX(MTGCardInstance * card)
 {
     ManaCost * c = cost->Diff(card->getManaCost());
-    int xx = c->getCost(Constants::MTG_NB_COLORS) / 2;
+    int xx = 0;
+    xx = c->getCost(Constants::MTG_NB_COLORS) / 2;
     delete c;
     return xx;
 }
@@ -451,7 +453,39 @@ ostream& DrawAction::toString(ostream& out) const
     out << "DrawAction ::: nbcards : " << nbcards << " ; player : " << player;
     return out;
 }
+//////
+LifeAction::LifeAction(int id, Damageable * _target, int amount) :
+Interruptible(id), amount(amount),target(_target)
+{
+}
 
+int LifeAction::resolve()
+{
+target->life += amount;
+    return 1;
+}
+
+void LifeAction::Render()
+{
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
+    mFont->SetBase(0);
+    mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
+    char buffer[200];
+    if(amount >= 0)
+        sprintf(buffer, _("Player gains %i life").c_str(), amount);
+    else if(amount >= 0)
+        sprintf(buffer, _("Player loses %i life").c_str(), amount);
+    else
+        sprintf(buffer, _("Nothing happened").c_str(), amount);
+    mFont->DrawString(buffer, x + 20, y, JGETEXT_LEFT);
+}
+
+ostream& LifeAction::toString(ostream& out) const
+{
+    out << "LifeAction ::: amount : " << amount << " ; target : " << target;
+    return out;
+}
+/* The Action Stack itself */
 int ActionStack::addPutInGraveyard(MTGCardInstance * card)
 {
     PutInGraveyard * death = NEW PutInGraveyard(mCount, card);
@@ -482,10 +516,20 @@ int ActionStack::addDraw(Player * player, int nb_cards)
     return 1;
 }
 
+int ActionStack::addLife(Damageable * _target, int amount)
+{
+    LifeAction * life = NEW LifeAction(mCount, _target, amount);
+    addAction(life);
+    return 1;
+}
+
 int ActionStack::addDamage(MTGCardInstance * _source, Damageable * _target, int _damage)
 {
     Damage * damage = NEW Damage(_source, _target, _damage);
     addAction(damage);
+    _source->thatmuch = _damage;
+    _target->thatmuch = _damage;
+    _target->lifeLostThisTurn += _damage;
     return 1;
 }
 

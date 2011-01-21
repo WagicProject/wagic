@@ -166,7 +166,7 @@ void RulesState::parsePlayerState(int playerId, string s)
 void Rules::addExtraRules()
 {
     GameObserver * g = GameObserver::GetInstance();
-
+            
     int id = g->mLayers->actionLayer()->getMaxId();
     for (int i = 0; i < 2; ++i)
     {
@@ -378,6 +378,16 @@ void Rules::initGame()
     DebugTrace("RULES Init Game\n");
 
     //Set the current player/phase
+    if (g->currentPlayer->playMode
+        != Player::MODE_TEST_SUITE && /*g->mRules->gamemode != GAME_TYPE_MOMIR && g->mRules->gamemode
+        != GAME_TYPE_RANDOM1 && g->mRules->gamemode != GAME_TYPE_RANDOM2 &&*/ g->mRules->gamemode
+        != GAME_TYPE_STORY)
+    {
+        if(OptionWhosFirst::WHO_R == options[Options::FIRSTPLAYER].number)
+            initState.player = WRand() % 2;
+        if(OptionWhosFirst::WHO_O == options[Options::FIRSTPLAYER].number)
+            initState.player = 1;
+    }
     g->currentPlayer = g->players[initState.player];
     g->currentActionPlayer = g->currentPlayer;
     g->currentPlayerId = initState.player;

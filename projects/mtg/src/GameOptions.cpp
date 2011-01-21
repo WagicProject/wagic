@@ -28,6 +28,7 @@ const string Options::optionNames[] = {
   "disable_cards",
   "maxGrade",
   "ASPhases",
+  "FirstPlayer",
   "economic_difficulty",
   "transitions",
   "bgStyle",
@@ -439,6 +440,11 @@ GameOption * GameOptions::get(int optionID)
         case Options::ASPHASES:
             goEnum = NEW GameOptionEnum();
             goEnum->def = OptionASkipPhase::getInstance();
+            go = goEnum;
+            break;
+        case Options::FIRSTPLAYER:
+            goEnum = NEW GameOptionEnum();
+            goEnum->def = OptionWhosFirst::getInstance();
             go = goEnum;
             break;
         case Options::KEY_BINDINGS:
@@ -870,6 +876,16 @@ OptionASkipPhase::OptionASkipPhase()
     mDef.values.push_back(EnumDefinition::assoc(Constants::ASKIP_FULL, "Full"));
 }
 ;
+
+OptionWhosFirst OptionWhosFirst::mDef;
+OptionWhosFirst::OptionWhosFirst()
+{
+    mDef.values.push_back(EnumDefinition::assoc(Constants::WHO_P, "Player"));
+    mDef.values.push_back(EnumDefinition::assoc(Constants::WHO_O, "Opponent"));
+    mDef.values.push_back(EnumDefinition::assoc(Constants::WHO_R, "Random"));
+}
+;
+
 OptionClosedHand OptionClosedHand::mDef;
 OptionClosedHand::OptionClosedHand()
 {

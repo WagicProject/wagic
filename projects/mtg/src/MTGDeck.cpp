@@ -138,11 +138,20 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
 
     case 'o': //othercost
         if (!primitive) primitive = NEW CardPrimitive();
+        if(key[5] == 'r')//otherrestrictions
+        {
+            string value = val;
+            primitive->setOtherRestrictions(value);
+
+        }
+        else
+        {
         if (ManaCost * cost = primitive->getManaCost())
         {
             string value = val;
             std::transform(value.begin(), value.end(), value.begin(), ::tolower);
             cost->alternative = ManaCost::parseManaCost(value);
+        }
         }
         break;
 
@@ -155,16 +164,26 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
             cost->BuyBack = ManaCost::parseManaCost(value);
         }
         break;
-    case 'f': //flashback
-        if (!primitive) primitive = NEW CardPrimitive();
-        if (ManaCost * cost = primitive->getManaCost())
+    case 'f': //flashback//morph
         {
-            string value = val;
-            std::transform(value.begin(), value.end(), value.begin(), ::tolower);
-            cost->FlashBack = ManaCost::parseManaCost(value);
+            if (!primitive) primitive = NEW CardPrimitive();
+            if(ManaCost * cost = primitive->getManaCost())
+            {
+                if( s.find("facedown") != string::npos)//morph
+                {
+                    string value = val;
+                    std::transform(value.begin(), value.end(), value.begin(), ::tolower);
+                    cost->morph = ManaCost::parseManaCost(value);
+                }
+                else
+                {
+                    string value = val;
+                    std::transform(value.begin(), value.end(), value.begin(), ::tolower);
+                    cost->FlashBack = ManaCost::parseManaCost(value);
+                }
+            }
+            break;
         }
-        break;
-
     case 'i': //id
         if (!card) card = NEW MTGCard();
         card->setMTGId(atoi(val));
@@ -200,7 +219,61 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
         break;
 
     case 'r': //retrace/rarity
-        if ('e' == key[1])
+        if('s' == key[2])//restrictions
+        {
+            if (!primitive) primitive = NEW CardPrimitive();
+            string value = val;
+            primitive->setRestrictions(CardPrimitive::NO_RESTRICTION);
+            primitive->hasRestriction = false;
+            if (value.find("control two or more vampires") != string::npos)
+                primitive->setRestrictions(CardPrimitive::VAMPIRES);
+            if (value.find("control less creatures") != string::npos)
+                primitive->setRestrictions(CardPrimitive::LESS_CREATURES);
+            if (value.find("control snow land") != string::npos)
+                primitive->setRestrictions(CardPrimitive::SNOW_LAND_INPLAY);
+            if (value.find("casted a spell") != string::npos)
+                primitive->setRestrictions(CardPrimitive::CASTED_A_SPELL);
+            if (value.find("one of a kind") != string::npos)
+                primitive->setRestrictions(CardPrimitive::ONE_OF_AKIND);
+            if (value.find("fourth turn") != string::npos)
+                primitive->setRestrictions(CardPrimitive::FOURTHTURN);
+            if (value.find("before battle damage") != string::npos)
+                primitive->setRestrictions(CardPrimitive::BEFORECOMBATDAMAGE);
+            if (value.find("after battle") != string::npos)
+                primitive->setRestrictions(CardPrimitive::AFTERCOMBAT);
+            if (value.find("during battle") != string::npos)
+                primitive->setRestrictions(CardPrimitive::DURINGCOMBAT);
+            if (value.find("myturnonly") != string::npos)
+                primitive->setRestrictions(CardPrimitive::PLAYER_TURN_ONLY);
+            if (value.find("opponentturnonly") != string::npos)
+                primitive->setRestrictions(CardPrimitive::OPPONENT_TURN_ONLY);
+            if (value.find("assorcery") != string::npos)
+                primitive->setRestrictions(CardPrimitive::AS_SORCERY);
+            string types[] = { "my", "opponent", "" };
+            int starts[] = { CardPrimitive::MY_BEFORE_BEGIN, CardPrimitive::OPPONENT_BEFORE_BEGIN, CardPrimitive::BEFORE_BEGIN };
+            for (int j = 0; j < 3; ++j)
+            {
+                size_t found = value.find(types[j]);
+                if (found != string::npos)
+                {
+                    for (int i = 0; i < Constants::NB_MTG_PHASES; i++)
+                    {
+                        string toFind = types[j];
+                        toFind.append(Constants::MTGPhaseCodeNames[i]).append("only");
+                        found = value.find(toFind);
+                        if (found != string::npos)
+                        {
+                            if(primitive->hasRestriction == false)
+                            {
+                                primitive->setRestrictions(starts[j] + i);
+                                primitive->hasRestriction = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        else if ('e' == key[1])
         { //retrace
             if (!primitive) primitive = NEW CardPrimitive();
             if (ManaCost * cost = primitive->getManaCost())

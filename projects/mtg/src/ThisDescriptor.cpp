@@ -144,7 +144,7 @@ ThisDescriptor * ThisDescriptorFactory::createThisDescriptor(string s)
         return NULL;
     }
 
-    //equips
+    //equips and auras
     found = s.find("gear");//still same meaning, better wording to word conflict with MTGAbility equip.
     if (found != string::npos)
     {
@@ -156,7 +156,52 @@ ThisDescriptor * ThisDescriptorFactory::createThisDescriptor(string s)
         }
         return NULL;
     }
-
+    found = s.find("auras");
+    if (found != string::npos)
+    {
+        ThisAuras * td = NEW ThisAuras(criterion);
+        if (td)
+        {
+            td->comparisonMode = mode;
+            return td;
+        }
+        return NULL;
+    }
+    // opponent damage count
+        found = s.find("opponentdamagecount");
+    if (found != string::npos)
+    {
+        ThisOpponentDamageAmount * td = NEW ThisOpponentDamageAmount(criterion);
+        if (td)
+        {
+            td->comparisonMode = mode;
+            return td;
+        }
+        return NULL;
+    }
+    //untapped status
+    found = s.find("untapped");
+    if (found != string::npos)
+    {
+        ThisUntapped * td = NEW ThisUntapped(criterion);
+        if (td)
+        {
+            td->comparisonMode = mode;
+            return td;
+        }
+        return NULL;
+    }
+    found = s.find("tapped");
+    if (found != string::npos)
+    {
+        ThisTapped * td = NEW ThisTapped(criterion);
+        if (td)
+        {
+            td->comparisonMode = mode;
+            return td;
+        }
+        return NULL;
+    }
     //whenever this creature attacks do effect
     found = s.find("attacking");
     if (found != string::npos)
@@ -336,6 +381,42 @@ ThisEquip::ThisEquip(int equipment)
 int ThisEquip::match(MTGCardInstance * card)
 {
     return matchValue(card->equipment);
+}
+
+ThisAuras::ThisAuras(int auras)
+{
+    comparisonCriterion = auras;
+}
+int ThisAuras::match(MTGCardInstance * card)
+{
+    return matchValue(card->auras);
+}
+
+ThisOpponentDamageAmount::ThisOpponentDamageAmount(int damagecount)
+{
+    comparisonCriterion = damagecount;
+}
+int ThisOpponentDamageAmount::match(MTGCardInstance * card)
+{
+    return matchValue(card->controller()->opponent()->damageCount);
+}
+
+ThisUntapped::ThisUntapped(int untapped)
+{
+    comparisonCriterion = untapped;
+}
+int ThisUntapped::match(MTGCardInstance * card)
+{
+    return matchValue(!card->isTapped());
+}
+
+ThisTapped::ThisTapped(int tapped)
+{
+    comparisonCriterion = tapped;
+}
+int ThisTapped::match(MTGCardInstance * card)
+{
+    return matchValue(card->isTapped());
 }
 
 ThisAttacked::ThisAttacked(int attack)

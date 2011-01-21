@@ -103,7 +103,11 @@ bool WCachedTexture::isLocked()
 
     for (vector<WTrackedQuad*>::iterator it = trackedQuads.begin(); it != trackedQuads.end(); it++)
     {
-        if ((*it)->isLocked()) return true;
+        if ((*it) && (*it)->isLocked()) return true;
+        //null case
+        //tokens that were using workarounds such as mixes of aslongas with CD checks
+        //and thisforeach would call to cache the tokens image, but since the effect never resolved it was NULL
+        //when it came time to check if it was locked, it would trigger a break point here.
     }
 
     return false;

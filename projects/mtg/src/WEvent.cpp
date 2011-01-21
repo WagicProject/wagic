@@ -21,6 +21,11 @@ WEventDamage::WEventDamage(Damage *damage) :
 {
 }
 
+WEventLife::WEventLife(Player * player,int amount,int Ltype) :
+    WEvent(), player(player),amount(amount), Ltype(Ltype)
+{
+}
+
 WEventDamageStackResolved::WEventDamageStackResolved() :
     WEvent()
 {
@@ -87,6 +92,16 @@ WEventCardDiscard::WEventCardDiscard(MTGCardInstance * card) :
 {
 }
 
+WEventVampire::WEventVampire(MTGCardInstance * card,MTGCardInstance * source,MTGCardInstance * victem) :
+    WEventCardUpdate(card),source(source),victem(victem)
+{
+}
+
+WEventTarget::WEventTarget(MTGCardInstance * card,MTGCardInstance * source) :
+    WEventCardUpdate(card),card(card),source(source)
+{
+}
+
 WEventCardChangeType::WEventCardChangeType(MTGCardInstance * card, int type, bool before, bool after) :
     WEventCardUpdate(card), type(type), before(before), after(after)
 {
@@ -142,6 +157,42 @@ Targetable * WEventDamage::getTarget(int target)
 int WEventDamage::getValue()
 {
     return damage->damage;
+}
+
+Targetable * WEventLife::getTarget(int target)
+{
+    switch (target)
+    {
+    case TARGET_TO:
+        return player;
+    case TARGET_FROM:
+        return player;
+    }
+    return NULL;
+}
+
+Targetable * WEventVampire::getTarget(int target)
+{
+    switch (target)
+    {
+    case TARGET_TO:
+        return victem->next;
+    case TARGET_FROM:
+        return source;
+    }
+    return NULL;
+}
+
+Targetable * WEventTarget::getTarget(int target)
+{
+    switch (target)
+    {
+    case TARGET_TO:
+        return card;
+    case TARGET_FROM:
+        return source;
+    }
+    return NULL;
 }
 
 Targetable * WEventZoneChange::getTarget(int target)

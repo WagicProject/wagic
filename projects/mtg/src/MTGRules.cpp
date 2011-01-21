@@ -35,6 +35,8 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
         }
         return 1;
     }
+if(!allowedToCast(card,player))
+  return 0;
     if (card->hasType("land"))
     {
         if (player == currentPlayer && currentPlayer->canPutLandsIntoPlay
@@ -44,7 +46,7 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
             return 1;
         }
     }
-    else if ((card->hasType("instant")) || card->has(Constants::FLASH)
+    else if ((card->hasType("instant")) || card->basicAbilities[Constants::FLASH]
         || (player == currentPlayer && !game->isInterrupting
         && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN
         || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN))
@@ -250,6 +252,11 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
     if (!alternateManaCost)
         return 0;
 
+    if(!allowedToCast(card,player))
+        return 0;
+    if(!allowedToAltCast(card,player))
+        return 0;
+
     if (card->hasType("land"))
     {
         if (player == currentPlayer && currentPlayer->canPutLandsIntoPlay
@@ -356,7 +363,7 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
 
     if (card->hasType("land"))
     {
-        MTGCardInstance * copy = player->game->putInZone(card, player->game->hand, player->game->temp);
+        MTGCardInstance * copy = player->game->putInZone(card, card->currentZone, player->game->temp);
         spell = NEW Spell(copy);
         copy->alternateCostPaid[alternateCostType] = 1;
         spell->resolve();
@@ -368,7 +375,7 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
     else
     {        
         ManaCost *spellCost = previousManaPool->Diff(player->getManaPool());
-        MTGCardInstance * copy = player->game->putInZone(card, originatingZone, player->game->stack);
+        MTGCardInstance * copy = player->game->putInZone(card, card->currentZone, player->game->stack);
         copy->alternateCostPaid[alternateCostType] = 1;
         spell = game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, spellCost, payResult, 0);
         game->targetChooser = NULL;
@@ -431,6 +438,8 @@ MTGAlternativeCostRule(_id)
 int MTGBuyBackRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 {
     Player * player = game->currentlyActing();
+    if(!allowedToCast(card,player))
+        return 0;
     if (!player->game->hand->hasCard(card))
         return 0;
     return MTGAlternativeCostRule::isReactingToClick( card, mana, card->getManaCost()->BuyBack );
@@ -584,13 +593,179 @@ MTGRetraceRule * MTGRetraceRule::clone() const
 //-------------------------------------------------------------------------
 //-------------------------------------------------------------------------
 //-------------------------------------------------------------------------
-//-----------------------------
+//-------------------------------------------------------------------------
+//-------------------------------------------------------------------------
+
+MTGMorphCostRule::MTGMorphCostRule(int _id) :
+    MTGAbility(_id, NULL)
+{
+    aType = MTGAbility::MORPH_COST;
+}
+int MTGMorphCostRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
+{
+    int cardsinhand = game->players[0]->game->hand->nb_cards;
+    Player * player = game->currentlyActing();
+    Player * currentPlayer = game->currentPlayer;
+    if (!player->game->hand->hasCard(card))
+        return 0;
+    if (!card->getManaCost()->morph)
+        return 0;
+    if(!allowedToCast(card,player))
+        return 0;
+    if(!allowedToAltCast(card,player))
+        return 0;
+    //note lands can morph too, this is different from other cost types.
+    if ((card->hasType("instant")) || card->has(Constants::FLASH) || (player == currentPlayer
+        && !game->isInterrupting
+        && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN
+        || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN))
+        )
+    {
+        ManaCost * playerMana = player->getManaPool();
+        ManaCost * cost = card->getManaCost();
+        ManaCost * morph = card->getManaCost()->morph;
+#ifdef WIN32
+        cost->Dump();
+#endif
+        if (player->castrestrictedspell == true && !card->hasType("land"))
+        {
+            return 0;
+        }
+        if (player->onlyonecast == true && player->castcount >= 1)
+        {
+            return 0;
+        }
+        if (player->nospellinstant == true)
+        {
+            return 0;
+        }
+        if (player->onlyoneinstant == true)
+        {
+            if (player->castcount >= 1)
+            {
+                return 0;
+            }
+        }
+        if (player->nocreatureinstant == true && card->hasType("creature"))
+        {
+            return 0;
+        }
+        if (player->castrestrictedcreature == true && card->hasType("creature"))
+        {
+            return 0;
+        }
+        //cost of card.
+        if (morph && playerMana->canAfford(morph))
+        {
+            return 1;
+        }
+    }
+    return 0;//dont play if you cant afford it.
+}
+
+int MTGMorphCostRule::reactToClick(MTGCardInstance * card)
+{
+//morphs reactToClick is extremely different then the other cost.
+    if (!isReactingToClick(card))
+        return 0;
+    Player * player = game->currentlyActing();
+    ManaCost * cost = card->getManaCost();
+    ManaCost * morph = card->getManaCost()->morph;
+    ManaCost * playerMana = player->getManaPool();
+    //this handles extra cost payments at the moment a card is played.
+    if (playerMana->canAfford(morph))
+    {
+        if (cost->morph->isExtraPaymentSet())
+        {
+            card->paymenttype = MTGAbility::MORPH_COST;
+            if (!game->targetListIsSet(card))
+            {
+                return 0;
+            }
+        }
+        else
+        {
+            cost->morph->setExtraCostsAction(this, card);
+            game->mExtraPayment = cost->morph->extraCosts;
+            card->paymenttype = MTGAbility::MORPH_COST;
+            return 0;
+        }
+    }
+    //------------------------------------------------------------------------
+    ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
+    int payResult = player->getManaPool()->pay(card->getManaCost()->morph);
+    card->getManaCost()->morph->doPayExtra();
+    payResult = ManaCost::MANA_PAID_WITH_MORPH;
+    //if morph has a extra payment thats set, this code pays it.the if statement is 100% needed as it would cause a crash on cards that dont have the morph cost.
+    if (morph)
+    {
+        card->getManaCost()->morph->doPayExtra();
+    }
+    //---------------------------------------------------------------------------
+    ManaCost * spellCost = previousManaPool->Diff(player->getManaPool());
+    delete previousManaPool;
+    card->morphed = true;
+    card->isMorphed = true;
+    MTGCardInstance * copy = player->game->putInZone(card, card->currentZone, player->game->stack);
+    Spell * spell = NULL;
+    spell = game->mLayers->stackLayer()->addSpell(copy, NULL, spellCost, payResult, 0);
+    spell->source->morphed = true;
+    spell->source->isMorphed = true;
+    spell->source->name = "";
+    spell->source->power = 2;
+    spell->source->toughness = 2;
+    copy->morphed = true;
+    copy->isMorphed = true;
+    copy->power = 2;
+    copy->toughness = 2;
+    player->castedspellsthisturn += 1;
+    player->opponent()->castedspellsthisturn += 1;
+    if (player->onlyonecast == true || player->onlyoneinstant == true)
+    {
+        player->castcount += 1;
+
+    }
+    if (!card->has(Constants::STORM))
+    {
+        copy->X = spell->computeX(copy);
+        copy->XX = spell->computeXX(copy);
+    }
+    return 1;
+}
+
+//The morph rule is never destroyed
+int MTGMorphCostRule::testDestroy()
+{
+    return 0;
+}
+
+ostream& MTGMorphCostRule::toString(ostream& out) const
+{
+    out << "MTGMorphCostRule ::: (";
+    return MTGAbility::toString(out) << ")";
+}
+
+MTGMorphCostRule * MTGMorphCostRule::clone() const
+{
+    MTGMorphCostRule * a = NEW MTGMorphCostRule(*this);
+    a->isClone = 1;
+    return a;
+}
+
+//-------------------------------------------------------------------------
+//-------------------------------------------------------------------------
+//-------------------------------------------------------------------------
+//-------------------------------------------------------------------------
+
+
+
+
 bool MTGAttackRule::select(Target* t)
 {
     if (CardView* c = dynamic_cast<CardView*>(t))
     {
         MTGCardInstance * card = c->getCard();
-        if (card->canAttack())
+        if (card->canAttack() && !card->isPhased)
             return true;
     }
     return false;
@@ -610,6 +785,8 @@ int MTGAttackRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 {
     if (currentPhase == Constants::MTG_PHASE_COMBATATTACKERS && card->controller() == game->currentPlayer)
     {
+        if(card->isPhased)
+            return 0;
         if (card->isAttacker())
             return 1;
         if (card->canAttack())
@@ -845,7 +1022,7 @@ int MTGBlockRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
         && card->controller() == game->currentlyActing()
         )
     {
-        if (card->canBlock())
+        if (card->canBlock() && !card->isPhased)
             return 1;
     }
     return 0;
@@ -1620,6 +1797,8 @@ ListMaintainerAbility(_id)
 
 int MTGLegendRule::canBeInList(MTGCardInstance * card)
 {
+    if(card->isPhased)
+        return 0;
     if (card->hasType(Subtypes::TYPE_LEGENDARY) && game->isInPlay(card))
     {
         return 1;
@@ -1684,6 +1863,11 @@ int MTGLifelinkRule::receiveEvent(WEvent * event)
         MTGCardInstance * card = d->source;
         if (d->damage > 0 && card && card->basicAbilities[Constants::LIFELINK])
         {
+            card->controller()->thatmuch = d->damage;
+            WEvent * lifed = NULL;
+            lifed = NEW WEventLife(card->controller(),d->damage);
+            GameObserver * game = GameObserver::GetInstance();
+            game->receiveEvent(lifed);
             card->controller()->life += d->damage;
             return 1;
         }

@@ -31,6 +31,8 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     model = card;
     attacker = 0;
     lifeOrig = life;
+    origpower = power;
+    origtoughness = toughness;
     belongs_to = arg_belongs_to;
     owner = NULL;
     if (arg_belongs_to)
@@ -69,7 +71,6 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     toughness = data->toughness;
     life = toughness;
     lifeOrig = life;
-
     magicText = data->magicText;
     spellTargetType = data->spellTargetType;
     alias = data->alias;
@@ -109,6 +110,7 @@ void MTGCardInstance::initMTGCI()
 {
     sample = "";
     model = NULL;
+    imprint = NULL;
     isToken = false;
     lifeOrig = 0;
     doDamageTest = 1;
@@ -117,11 +119,29 @@ void MTGCardInstance::initMTGCI()
     untapping = 0;
     frozen = 0;
     fresh = 0;
+    isMultiColored = 0;
+    isBlackAndWhite = 0;
+    isRedAndBlue = 0;
+    isBlackAndGreen = 0;
+    isBlueAndGreen = 0;
+    isRedAndWhite = 0;
+    isLeveler = 0;
+    enchanted = false;
+    CDenchanted = NULL;
+    blinked = false;
+    isExtraCostTarget = false;
+    morphed = false;
+    turningOver = false;
+    isMorphed = false;
+    isPhased = false;
+    isTempPhased = false;
+    phasedTurn = -1;
     didattacked = 0;
     didblocked = 0;
     notblocked = 0;
     sunburst = NULL;
-    equipment = NULL;
+    equipment = 0;
+    auras = 0;
     
     for (int i = 0; i < ManaCost::MANA_PAID_WITH_RETRACE +1; i++)
         alternateCostPaid[i] = 0;
@@ -161,13 +181,39 @@ void MTGCardInstance::initMTGCI()
                         s == "Dismiss" || s == "Equipment" || s == "Everglades" || s == "Grasslands" || s == "Lair" ||
                         s == "Level" || s == "Levelup" || s == "Mine" || s == "Oasis" || s == "World" || s == "Aura"
                 )
-                    continue;
+                continue;
 
                 addType(i);
             }
         }
     }
-
+    int colored = 0;
+    
+    for (int i = Constants::MTG_COLOR_GREEN; i <= Constants::MTG_COLOR_WHITE; ++i)
+    {
+        if (this->hasColor(i))
+            ++colored;
+    }
+    if(colored > 1)
+    {
+        isMultiColored = 1;
+    }
+    
+    if(this->hasColor(Constants::MTG_COLOR_WHITE) && this->hasColor(Constants::MTG_COLOR_BLACK))
+        isBlackAndWhite = 1;
+    if(this->hasColor(Constants::MTG_COLOR_RED) && this->hasColor(Constants::MTG_COLOR_BLUE))
+        isRedAndBlue = 1;
+    if(this->hasColor(Constants::MTG_COLOR_GREEN) && this->hasColor(Constants::MTG_COLOR_BLACK))
+        isBlackAndGreen = 1;
+    if(this->hasColor(Constants::MTG_COLOR_BLUE) && this->hasColor(Constants::MTG_COLOR_GREEN))
+        isBlueAndGreen = 1;
+    if(this->hasColor(Constants::MTG_COLOR_RED) && this->hasColor(Constants::MTG_COLOR_WHITE))
+        isRedAndWhite = 1;
+ if(previous && previous->morphed == true && !turningOver)
+ {
+ morphed = true;
+ isMorphed = true;
+ }
 }
 
 const string MTGCardInstance::getDisplayName() const
@@ -529,6 +575,10 @@ int MTGCardInstance::canBlock(MTGCardInstance * opponent)
         return 0;
     if (opponent->basicAbilities[Constants::ONEBLOCKER] && opponent->blocked)
         return 0;
+    if(opponent->basicAbilities[Constants::STRONG] && power < opponent->power)
+        return 0;
+    if(has(basicAbilities[Constants::WEAK]) && power < opponent->power)
+        return 0;
     if (opponent->basicAbilities[Constants::FEAR] && !(hasType(Subtypes::TYPE_ARTIFACT) || hasColor(Constants::MTG_COLOR_BLACK)))
         return 0;
 
@@ -571,6 +621,24 @@ int MTGCardInstance::canBlock(MTGCardInstance * opponent)
     if (opponent->basicAbilities[Constants::MOUNTAINWALK] && controller()->game->inPlay->hasType("mountain"))
         return 0;
     if (opponent->basicAbilities[Constants::PLAINSWALK] && controller()->game->inPlay->hasType("plains"))
+        return 0;
+    if (opponent->basicAbilities[Constants::LEGENDARYWALK] && controller()->game->inPlay->hasPrimaryType("legendary","land"))
+        return 0;
+    if (opponent->basicAbilities[Constants::DESERTWALK] && controller()->game->inPlay->hasSpecificType("land","desert"))
+        return 0;
+    if (opponent->basicAbilities[Constants::SNOWSWAMPWALK] && controller()->game->inPlay->hasSpecificType("snow","swamp"))
+        return 0;
+    if (opponent->basicAbilities[Constants::SNOWFORESTWALK] && controller()->game->inPlay->hasSpecificType("snow","forest"))
+        return 0;
+    if (opponent->basicAbilities[Constants::SNOWISLANDWALK] && controller()->game->inPlay->hasSpecificType("snow","island"))
+        return 0;
+    if (opponent->basicAbilities[Constants::SNOWMOUNTAINWALK] && controller()->game->inPlay->hasSpecificType("snow","mountain"))
+        return 0;
+    if (opponent->basicAbilities[Constants::SNOWPLAINSWALK] && controller()->game->inPlay->hasSpecificType("snow","plains"))
+        return 0;
+    if (opponent->basicAbilities[Constants::SNOWWALK] && controller()->game->inPlay->hasPrimaryType("snow","land"))
+        return 0;
+    if (opponent->basicAbilities[Constants::NONBASICWALK] && controller()->game->inPlay->hasTypeButNotType("land","basic"))
         return 0;
     return 1;
 }

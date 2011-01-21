@@ -7,6 +7,7 @@
 #include "Subtypes.h"
 #include "Counters.h"
 #include "WEvent.h"
+#include "AllAbilities.h"
 
 TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInstance * card, MTGAbility * ability)
 {
@@ -153,8 +154,23 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
     TargetChooser * tc = NULL;
     int maxtargets = 1;
     CardDescriptor * cd = NULL;
+//max targets allowed
+        size_t limit = s1.find('<');
+        if (limit != string::npos) 
+        {
+                size_t end = s1.find(">", limit);
+            string howmany;
+            if (end != string::npos)
+            {
+                howmany = s1.substr(limit + 1, end - limit - 1);
+            WParsedInt * howmuch = NEW WParsedInt(howmany, NULL, card);
+            maxtargets = howmuch->getValue();
+            delete howmuch;
+            s1 = s1.substr(end + 1);
+            }
+        }
 
-    while (s1.size())
+        while (s1.size())
     {
         found = s1.find(",");
         string typeName;
@@ -206,8 +222,11 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     size_t operatorPosition = attribute.find("=", 1);
                     if (operatorPosition != string::npos)
                     {
-                        comparisonCriterion = atoi(
-                                        attribute.substr(operatorPosition + 1, attribute.size() - operatorPosition - 1).c_str());
+                    string numberCD = attribute.substr(operatorPosition + 1, attribute.size() - operatorPosition - 1);
+                        WParsedInt * val = NEW WParsedInt(numberCD,NULL, card);
+                        comparisonCriterion = val->getValue();
+                        /*atoi(attribute.substr(operatorPosition + 1, attribute.size() - operatorPosition - 1).c_str());*/
+                             delete val;           
                         switch (attribute[operatorPosition - 1])
                         {
                         case '<':
@@ -305,10 +324,112 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     {
                         cd->unsecuresetfresh(1);
                     }
-                    //Power restrictions
+                }
+                //creature is a level up creature
+                else if (attribute.find("leveler") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->isLeveler = -1;
+                    }
+                    else
+                    {
+                        cd->isLeveler = 1;
+                    }
+                }
+                                //creature is a level up creature
+                else if (attribute.find("enchanted") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDenchanted = -1;
+                    }
+                    else
+                    {
+                        cd->CDenchanted = 1;
+                    }
+                }
+                else if (attribute.find("multicolor") != string::npos)
+                {
+                    //card is multicolored?
+                    if (minus)
+                    {
+                        cd->setisMultiColored(-1);
+                    }
+                    else
+                    {
+                        cd->setisMultiColored(1);
+                    }
+
+                }
+                else if (attribute.find("blackandgreen") != string::npos)
+                {
+                    //card is both colors?
+                    if (minus)
+                    {
+                        cd->setisBlackAndGreen(-1);
+                    }
+                    else
+                    {
+                        cd->setisBlackAndGreen(1);
+                    }
+
+                }
+                else if (attribute.find("blackandwhite") != string::npos)
+                {
+                    //card is both colors?
+                    if (minus)
+                    {
+                        cd->setisBlackAndWhite(-1);
+                    }
+                    else
+                    {
+                        cd->setisBlackAndWhite(1);
+                    }
+
+                }
+                else if (attribute.find("redandblue") != string::npos)
+                {
+                    //card is both colors?
+                    if (minus)
+                    {
+                        cd->setisRedAndBlue(-1);
+                    }
+                    else
+                    {
+                        cd->setisRedAndBlue(1);
+                    }
+
+                }
+                else if (attribute.find("blueandgreen") != string::npos)
+                {
+                    //card is both colors?
+                    if (minus)
+                    {
+                        cd->setisBlueAndGreen(-1);
+                    }
+                    else
+                    {
+                        cd->setisBlueAndGreen(1);
+                    }
+
+                }
+                else if (attribute.find("redandwhite") != string::npos)
+                {
+                    //card is both colors?
+                    if (minus)
+                    {
+                        cd->setisRedAndWhite(-1);
+                    }
+                    else
+                    {
+                        cd->setisRedAndWhite(1);
+                    }
+
                 }
                 else if (attribute.find("power") != string::npos)
                 {
+                    //Power restrictions
                     cd->setPower(comparisonCriterion);
                     cd->powerComparisonMode = comparisonMode;
                     //Toughness restrictions
@@ -462,6 +583,8 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
 
 TargetChooser * TargetChooserFactory::createTargetChooser(MTGCardInstance * card)
 {
+    if(!card)
+        return NULL;
     int id = card->getId();
     string s = card->spellTargetType;
     if (card->alias)
@@ -540,6 +663,11 @@ bool TargetChooser::canTarget(Targetable * target)
                 tempcard = tempcard->previous;
             }
         }
+        if(source && ((source->hasSubtype("aura") || source->hasSubtype("equipment")) && source->target && source->target == card && source->target->isPhased && targetter->target == card)) 
+        return true;
+        //this is kinda cheating but by defualt we let auras and equipments always contenue to target a phased creature.
+        else if(card->isPhased) 
+        return false;
         if (source && targetter && card->isInPlay()) 
         { 
             if (card->has(Constants::SHROUD)) return false;
@@ -574,7 +702,7 @@ int TargetChooser::ForceTargetListReady()
 
 int TargetChooser::targetsReadyCheck()
 {
-    if (cursor == 0)
+    if (cursor <= 0)
     {
         return TARGET_NOK;
     }
@@ -605,8 +733,8 @@ bool TargetChooser::validTargetsExist()
     {
         Player *p = GameObserver::GetInstance()->players[i];
         if (canTarget(p)) return true;
-        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library };
-        for (int k = 0; k < 4; k++)
+        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile };
+        for (int k = 0; k < 5; k++)
         {
             MTGGameZone * z = zones[k];
             if (targetsZone(z))
@@ -764,7 +892,8 @@ bool DescriptorTargetChooser::canTarget(Targetable * target)
     if (target->typeAsTarget() == TARGET_CARD)
     {
         MTGCardInstance * _target = (MTGCardInstance *) target;
-        if (cd->match(_target)) return true;
+        if (cd->match(_target)) 
+        return true;
     }
     else if (target->typeAsTarget() == TARGET_STACKACTION)
     {

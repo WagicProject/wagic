@@ -44,8 +44,11 @@ GuiHand::GuiHand(MTGHand* hand) :
 
 GuiHand::~GuiHand()
 {
-    for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
-        delete (*it);
+    if(cards.size())
+    {
+        for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
+            delete (*it);
+    }
 }
 
 void GuiHand::Update(float dt)

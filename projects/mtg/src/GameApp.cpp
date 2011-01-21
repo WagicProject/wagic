@@ -191,6 +191,8 @@ void GameApp::Create()
     WResourceManager::Instance()->RetrieveTexture("BattleIcon.png", RETRIEVE_MANAGE);
     WResourceManager::Instance()->RetrieveTexture("DefenderIcon.png", RETRIEVE_MANAGE);
     WResourceManager::Instance()->RetrieveTexture("shadow.png", RETRIEVE_MANAGE);
+    WResourceManager::Instance()->RetrieveTexture("extracostshadow.png", RETRIEVE_MANAGE);
+    WResourceManager::Instance()->RetrieveTexture("morph.jpg", RETRIEVE_MANAGE);
 
     jq = WResourceManager::Instance()->RetrieveQuad("BattleIcon.png", 0, 0, 25, 25, "BattleIcon", RETRIEVE_MANAGE);
     if (jq)
@@ -201,6 +203,12 @@ void GameApp::Create()
     jq = WResourceManager::Instance()->RetrieveQuad("shadow.png", 0, 0, 16, 16, "shadow", RETRIEVE_MANAGE);
     if (jq)
         jq->SetHotSpot(8, 8);
+    jq = WResourceManager::Instance()->RetrieveQuad("extracostshadow.png", 0, 0, 16, 16, "extracostshadow", RETRIEVE_MANAGE);
+    if (jq)
+        jq->SetHotSpot(8, 8);
+    jq = WResourceManager::Instance()->RetrieveQuad("morph.jpg", 0, 0, MTG_MINIIMAGE_WIDTH, MTG_MINIIMAGE_HEIGHT, "morph", RETRIEVE_MANAGE);
+    if (jq)
+        jq->SetHotSpot(static_cast<float> (jq->mTex->mWidth / 2), static_cast<float> (jq->mTex->mHeight / 2));
     jq = WResourceManager::Instance()->RetrieveQuad("phasebar.png", 0, 0, 0, 0, "phasebar", RETRIEVE_MANAGE);
 
     LOG("Init Collection");

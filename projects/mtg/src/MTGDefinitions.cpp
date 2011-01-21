@@ -24,6 +24,7 @@ const string Constants::kBuyBackKeyword = "buyback";
 const string Constants::kFlashBackKeyword = "flashback";
 const string Constants::kRetraceKeyword = "retrace";
 const string Constants::kKickerKeyword = "kicker";
+const string Constants::kMorphKeyword = "facedown";
 
 const char* Constants::MTGBasicAbilities[] = {
     "trample",
@@ -110,6 +111,18 @@ const char* Constants::MTGBasicAbilities[] = {
     "sunburst",
     "flanking",
     "exiledeath",
+    "legendarylandwalk",
+    "desertlandwalk",
+    "snowforestlandwalk",
+    "snowplainslandwalk",
+    "snowmountainlandwalk",
+    "snowislandlandwalk",
+    "snowswamplandwalk",
+    "snowlandwalk",
+    "nonbasiclandwalk",
+    "strong",//cant be blocked by creature with less power
+    "weak",//cant block creatures with more power
+    "phasing",
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

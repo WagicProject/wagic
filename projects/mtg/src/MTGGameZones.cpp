@@ -275,6 +275,10 @@ MTGCardInstance * MTGPlayerCards::putInExile(MTGCardInstance * card)
     {
         copy = putInZone(card, stack, exile);
     }
+    else if (hand->hasCard(card))
+    {
+        copy = putInZone(card, hand, exile);
+    }
     else if (graveyard->hasCard(card))
     {
         copy = putInZone(card, graveyard, exile);
@@ -325,9 +329,40 @@ MTGCardInstance * MTGPlayerCards::putInHand(MTGCardInstance * card)
     {
         copy = putInZone(card, graveyard, hand);
     }
+    else if (exile->hasCard(card))
+    {
+        copy = putInZone(card, exile, hand);
+    }
     else
     {
         copy = putInZone(card, hand, hand);
+    }
+    return copy;
+}
+
+MTGCardInstance * MTGPlayerCards::putInBattlefield(MTGCardInstance * card)
+{
+    MTGCardInstance * copy = NULL;
+    MTGInPlay * InPlay = card->owner->game->battlefield;
+    if (inPlay->hasCard(card))
+    {
+        copy = putInZone(card, inPlay, InPlay);
+    }
+    else if (stack->hasCard(card))
+    {
+        copy = putInZone(card, stack, InPlay);
+    }
+    else if (graveyard->hasCard(card))
+    {
+        copy = putInZone(card, graveyard, InPlay);
+    }
+    else if (exile->hasCard(card))
+    {
+        copy = putInZone(card, exile, InPlay);
+    }
+    else
+    {
+        copy = putInZone(card, InPlay, InPlay);
     }
     return copy;
 }
@@ -420,7 +455,14 @@ int MTGPlayerCards::isInPlay(MTGCardInstance * card)
     }
     return 0;
 }
-
+int MTGPlayerCards::isInZone(MTGCardInstance * card,MTGGameZone * zone)
+{
+    if (zone->hasCard(card))
+    {
+        return 1;
+    }
+    return 0;
+}
 //--------------------------------------
 // Zones specific code
 //--------------------------------------
@@ -530,6 +572,54 @@ int MTGGameZone::hasType(const char * value)
     for (int i = 0; i < (nb_cards); i++)
     {
         if (cards[i]->hasType(value))
+        {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int MTGGameZone::hasPrimaryType(const char * value,const char * secondvalue)
+{
+    for (int i = 0; i < (nb_cards); i++)
+    {
+        if (cards[i]->hasType(value) && cards[i]->hasType(secondvalue))
+        {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int MTGGameZone::hasSpecificType(const char * value,const char * secondvalue)
+{
+    for (int i = 0; i < (nb_cards); i++)
+    {
+        if (cards[i]->hasType(value) && cards[i]->hasSubtype(secondvalue))
+        {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int MTGGameZone::hasTypeButNotType(const char * value,const char * secondvalue)
+{
+    for (int i = 0; i < (nb_cards); i++)
+    {
+        if (cards[i]->hasType(value) && cards[i]->hasSubtype(value) && !cards[i]->hasType(secondvalue) && !cards[i]->hasSubtype(secondvalue))
+        {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int MTGGameZone::hasName(string value)
+{
+    for (int i = 0; i < (nb_cards); i++)
+    {
+        if (cards[i]->name == value)
         {
             return 1;
         }

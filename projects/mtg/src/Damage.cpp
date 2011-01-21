@@ -94,7 +94,9 @@ int Damage::resolve()
         }
         if ((_target)->has(Constants::ABSORB))
         {
-            damage -= 1;
+            damage -=  (_target)->basicAbilities[Constants::ABSORB];
+            if(damage < 0)
+                damage = 0;
         }
         if ((_target)->has(Constants::WILTING))
         {
@@ -132,6 +134,8 @@ int Damage::resolve()
         {
             _target->counters->addCounter(-1, -1);
         }
+        if(_target->toughness <= 0 && _target->has(Constants::INDESTRUCTIBLE))
+            _target->controller()->game->putInGraveyard(_target);
 
     }
     else if (target->type_as_damageable == DAMAGEABLE_PLAYER && source->has(Constants::INFECT))

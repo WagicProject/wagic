@@ -34,11 +34,13 @@ public:
     int computeX(Spell * spell, MTGCardInstance * card)
     {
         if (spell) return spell->computeX(card);
+        if (card) return card->X;
         return 1; //this should only hapen when the ai calls the ability. This is to give it an idea of the "direction" of X (positive/negative)
     }
     int computeXX(Spell * spell, MTGCardInstance * card)
     {
         if (spell) return spell->computeXX(card);
+        if (card) return card->XX;
         return 1; //this should only hapen when the ai calls the ability. This is to give it an idea of the "direction" of X (positive/negative)
     }
     WParsedInt(int value = 0)
@@ -49,6 +51,7 @@ public:
     WParsedInt(string s, Spell * spell, MTGCardInstance * card)
     {
         MTGCardInstance * target = card->target;
+        intValue = 0;
         if (!target) target = card;
         int multiplier = 1;
         if (s[0] == '-')
@@ -59,18 +62,32 @@ public:
         if (s == "x" || s == "X")
         {
             intValue = computeX(spell, card);
+            if(intValue < 0)
+                intValue = 0;
         }
         else if (s == "xx" || s == "XX")
         {
             intValue = computeXX(spell, card);
+            if(intValue < 0)
+                intValue = 0;
         }
         else if (s == "gear")
         {
             intValue = target->equipment;
         }
+        else if (s == "auras")
+        {
+            intValue = target->auras;
+        }
         else if (s == "manacost")
         {
             intValue = target->getManaCost()->getConvertedCost();
+        }
+        else if (s.find("type:") != string::npos)
+        {
+        size_t begins = s.find(":");
+        string theType = s.substr(begins + 1);
+            intValue = target->controller()->game->inPlay->countByType(theType.c_str());
         }
         else if (s == "sunburst")
         {
@@ -83,6 +100,29 @@ public:
         else if (s == "lifetotal")
         {
             intValue = target->controller()->life;
+        }
+        else if (s == "thatmuch")
+        {
+            intValue = 0;
+            intValue = target->thatmuch;
+            int checkagain = 0;
+            if(target->hasSubtype("aura") || target->hasSubtype("equipment"))
+            {
+            if(target->target)
+            {
+            checkagain = target->target->thatmuch;
+            }
+            }
+            if(checkagain > intValue)
+                intValue = checkagain;
+        }
+        else if (s == "oplifelost")
+        {
+            intValue = target->controller()->opponent()->lifeLostThisTurn;
+        }
+        else if (s == "lifelost")
+        {
+            intValue = target->controller()->lifeLostThisTurn;
         }
         else if (s == "pdcount")
         {
@@ -162,10 +202,14 @@ class TrCardAddedToZone: public TriggeredAbility
 public:
     TargetZoneChooser * toTcZone, *fromTcZone;
     TargetChooser * toTcCard, *fromTcCard;
+    bool once;
+    bool sourceUntapped;
+    bool activeTrigger;
     TrCardAddedToZone(int id, MTGCardInstance * source, TargetZoneChooser * toTcZone, TargetChooser * toTcCard,
-            TargetZoneChooser * fromTcZone = NULL, TargetChooser * fromTcCard = NULL) :
-        TriggeredAbility(id, source), toTcZone(toTcZone), fromTcZone(fromTcZone), toTcCard(toTcCard), fromTcCard(fromTcCard)
+            TargetZoneChooser * fromTcZone = NULL, TargetChooser * fromTcCard = NULL,bool once = false,bool sourceUntapped = false) :
+        TriggeredAbility(id, source), toTcZone(toTcZone), fromTcZone(fromTcZone), toTcCard(toTcCard), fromTcCard(fromTcCard),once(once),sourceUntapped(sourceUntapped)
     {
+    activeTrigger = true;
     }
     ;
 
@@ -176,9 +220,13 @@ public:
 
     int triggerOnEvent(WEvent * event)
     {
+        if(source->isPhased) return 0;
         WEventZoneChange * e = dynamic_cast<WEventZoneChange*> (event);
         if (!e) return 0;
-
+        if(sourceUntapped == true && source->isTapped() == 1)
+            return 0;
+        if(activeTrigger == false)
+            return 0;
         if (!toTcZone->targetsZone(e->to)) return 0;
         if (!toTcCard->canTarget(e->card)) return 0;
         if (fromTcZone && !fromTcZone->targetsZone(e->from)) return 0;
@@ -191,7 +239,9 @@ public:
         {
             return 0;
         }
-        return 1;
+        if(once == true && activeTrigger == true)
+            activeTrigger = false;
+            return 1;
     }
 
     ~TrCardAddedToZone()
@@ -227,6 +277,7 @@ public:
 
     int triggerOnEvent(WEvent * event)
     {
+        if(source->isPhased) return 0;
         WEventCardTap * e = dynamic_cast<WEventCardTap *> (event);
         if (!e) return 0;
         if (e->before == e->after) return 0;
@@ -265,6 +316,7 @@ public:
 
     int triggerOnEvent(WEvent * event)
     {
+        if(source->isPhased) return 0;
         WEventCardTappedForMana * e = dynamic_cast<WEventCardTappedForMana *> (event);
         if (!e) return 0;
         if (e->before == e->after) return 0;
@@ -302,6 +354,7 @@ public:
 
     int triggerOnEvent(WEvent * event)
     {
+        if(source->isPhased) return 0;
         WEventCardAttackedNotBlocked * e = dynamic_cast<WEventCardAttackedNotBlocked *> (event);
         if (!e) return 0;
         if (e->card->didattacked < 1) return 0;
@@ -340,6 +393,7 @@ public:
 
     int triggerOnEvent(WEvent * event)
     {
+        if(source->isPhased) return 0;
         WEventCardAttackedBlocked * e = dynamic_cast<WEventCardAttackedBlocked *> (event);
         if (!e) return 0;
         if (e->card->didattacked < 1) return 0;
@@ -367,8 +421,9 @@ class TrCardAttacked: public TriggeredAbility
 {
 public:
     TargetChooser * tc;
-    TrCardAttacked(int id, MTGCardInstance * source, TargetChooser * tc) :
-        TriggeredAbility(id, source), tc(tc)
+    bool sourceUntapped;
+    TrCardAttacked(int id, MTGCardInstance * source, TargetChooser * tc,bool sourceUntapped) :
+        TriggeredAbility(id, source), tc(tc), sourceUntapped(sourceUntapped)
     {
     }
 
@@ -379,8 +434,11 @@ public:
 
     int triggerOnEvent(WEvent * event)
     {
+        if(source->isPhased) return 0;
         WEventCardAttacked * e = dynamic_cast<WEventCardAttacked *> (event);
         if (!e) return 0;
+        if (sourceUntapped == true && source->isTapped() == 1)
+        return 0;
         if (e->card->didattacked < 1) return 0;
         if (!tc->canTarget(e->card)) return 0;
         return 1;
@@ -415,6 +473,7 @@ public:
 
     int triggerOnEvent(WEvent * event)
     {
+        if(source->isPhased) return 0;
         WEventCardAttackedAlone * e = dynamic_cast<WEventCardAttackedAlone *> (event);
         if (!e) return 0;
         if (e->card->didattacked < 1) return 0;
@@ -440,9 +499,12 @@ class TrCardBlocked: public TriggeredAbility
 public:
     TargetChooser * tc;
     TargetChooser * fromTc;
-    TrCardBlocked(int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL) :
-        TriggeredAbility(id, source), tc(tc), fromTc(fromTc)
+    bool once;
+    bool activeTrigger;
+    TrCardBlocked(int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL,bool once = false) :
+        TriggeredAbility(id, source), tc(tc), fromTc(fromTc), once(once)
     {
+    activeTrigger = true;
     }
 
     int resolve()
@@ -452,11 +514,16 @@ public:
 
     int triggerOnEvent(WEvent * event)
     {
+        if(source->isPhased) return 0;
         WEventCardBlocked * e = dynamic_cast<WEventCardBlocked *> (event);
         if (!e) return 0;
+        if(activeTrigger == false)
+            return 0;
         //if(e->card->didblocked < 1) return 0;
         if (fromTc && !fromTc->canTarget(e->card->getNextOpponent())) return 0;
         if (!tc->canTarget(e->card)) return 0;
+        if(once == true && activeTrigger == true)
+            activeTrigger = false;
         return 1;
     }
 
@@ -490,6 +557,7 @@ public:
 
     int triggerOnEvent(WEvent * event)
     {
+        if(source->isPhased) return 0;
         WEventcardDraw * e = dynamic_cast<WEventcardDraw *> (event);
         if (!e) return 0;
         if (!tc->canTarget(e->player)) return 0;
@@ -525,6 +593,7 @@ public:
 
     int triggerOnEvent(WEvent * event)
     {
+        if(source->isPhased) return 0;
         WEventCardSacrifice * e = dynamic_cast<WEventCardSacrifice *> (event);
         if (!e) return 0;
         if (!tc->canTarget(e->card)) return 0;
@@ -559,6 +628,7 @@ public:
     }
     int triggerOnEvent(WEvent * event)
     {
+        if(source->isPhased) return 0;
         WEventCardDiscard * e = dynamic_cast<WEventCardDiscard *> (event);
         if (!e) return 0;
         if (!tc->canTarget(e->card)) return 0;
@@ -582,8 +652,9 @@ public:
     TargetChooser * tc;
     TargetChooser * fromTc;
     int type;//this allows damagenoncombat and combatdamage to share this trigger
-    TrDamaged(int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0) :
-        TriggeredAbility(id, source), tc(tc), fromTc(fromTc), type(type)
+    bool sourceUntapped;
+    TrDamaged(int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0,bool sourceUntapped = false) :
+        TriggeredAbility(id, source), tc(tc), fromTc(fromTc), type(type) , sourceUntapped(sourceUntapped)
     {
     }
 
@@ -594,12 +665,17 @@ public:
 
     int triggerOnEvent(WEvent * event)
     {
+        if(source->isPhased) return 0;
         WEventDamage * e = dynamic_cast<WEventDamage *> (event);
         if (!e) return 0;
+        if (sourceUntapped == true && source->isTapped() == 1)
+            return 0;
         if (!tc->canTarget(e->damage->target)) return 0;
         if (fromTc && !fromTc->canTarget(e->damage->source)) return 0;
         if (type == 1 && e->damage->typeOfDamage != DAMAGE_COMBAT) return 0;
         if (type == 2 && e->damage->typeOfDamage == DAMAGE_COMBAT) return 0;
+        e->damage->target->thatmuch = e->damage->damage;
+        e->damage->source->thatmuch = e->damage->damage;
         return 1;
     }
 
@@ -617,8 +693,214 @@ public:
     }
 };
 
+class TrLifeGained: public TriggeredAbility
+{
+public:
+    TargetChooser * tc;
+    TargetChooser * fromTc;
+    int type;//this allows damagenoncombat and combatdamage to share this trigger
+    bool sourceUntapped;
+    TrLifeGained(int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0,bool sourceUntapped = false) :
+        TriggeredAbility(id, source), tc(tc), fromTc(fromTc), type(type) , sourceUntapped(sourceUntapped)
+    {
+    }
+
+    int resolve()
+    {
+        return 0; //This is a trigger, this function should not be called
+    }
+
+    int triggerOnEvent(WEvent * event)
+    {
+        if(source->isPhased) return 0;
+        WEventLife * e = dynamic_cast<WEventLife *> (event);
+        if (!e) return 0;
+        if (sourceUntapped == true && source->isTapped() == 1)
+        return 0;
+        if (!tc->canTarget(e->player)) return 0;
+        if (fromTc && !fromTc->canTarget(e->player)) return 0;
+        if (type == 1 && (e->amount > 0 || e->Ltype == 0)) return 0;
+        if (type == 0 && (e->amount < 0 || e->Ltype == 1)) return 0;
+        if(type != 1)
+        e->player->thatmuch = e->amount;
+        else
+        e->player->thatmuch = abs(e->amount);
+        return 1;
+    }
+
+    ~TrLifeGained()
+    {
+        SAFE_DELETE(tc);
+        SAFE_DELETE(fromTc);
+    }
+
+    TrLifeGained * clone() const
+    {
+        TrLifeGained * a = NEW TrLifeGained(*this);
+        a->isClone = 1;
+        return a;
+    }
+};
+
+//vampire trigger
+class TrVampired: public TriggeredAbility
+{
+public:
+    TargetChooser * tc;
+    TargetChooser * fromTc;
+    vector<MTGCardInstance*> victems;
+    int type;
+    TrVampired(int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0) :
+    TriggeredAbility(id, source), tc(tc), fromTc(fromTc), type(type)
+    {
+    }
+
+    int resolve()
+    {
+        return 0; //This is a trigger, this function should not be called
+    }
+
+    int triggerOnEvent(WEvent * event)
+    {
+        if(source->isPhased) return 0;
+        WEventDamage * e = dynamic_cast<WEventDamage *> (event);
+        WEventZoneChange * z = dynamic_cast<WEventZoneChange *> (event);
+        WEventPhaseChange * pe = dynamic_cast<WEventPhaseChange*>(event);
+        WEventVampire * vamp = dynamic_cast<WEventVampire*>(event);
+        if (e == event)
+        {
+            if (!tc->canTarget(e->damage->target)) return 0;
+            if (fromTc && !fromTc->canTarget(e->damage->source)) return 0;
+
+            MTGCardInstance * newVictem = (MTGCardInstance*)(e->damage->target);
+
+            victems.push_back(newVictem);
+            std::sort(victems.begin(), victems.end());
+            victems.erase(std::unique(victems.begin(), victems.end()), victems.end());
+        }
+        else if (z == event && !victems.empty())
+        {
+            MTGCardInstance * card = z->card;
+
+
+                for(unsigned int k = 0;k < victems.size();k--)
+                {
+                    if(victems[k] == NULL) 
+                        continue;
+                    if(victems[k] != z->card->previous) 
+                    {
+                        return 0;
+                    }
+                }
+                for(unsigned int w = 0;w < victems.size();w++)
+            {
+                    if(victems[w] == NULL) 
+                        continue;
+                    Player * p = victems[w]->controller();
+                    if (z->from == p->game->inPlay && z->to == p->game->graveyard)
+                    {
+                        if(victems[w] == z->card->previous)
+                        {
+                        if(!source->isInPlay())
+                        return 0;
+                            WEvent * e = NEW WEventVampire(victems[w],victems[w],source);
+                            game->receiveEvent(e);
+                            victems[w] = NULL;
+                            return 0;
+                        }
+                    }
+                }
+            }
+        else if (vamp == event)
+        {
+        return 1;
+        }
+        else if (pe == event)
+        {
+            if( pe->from->id == Constants::MTG_PHASE_ENDOFTURN)
+            {
+                victems.clear();
+            }
+        }
+        return 0;
+    }
+
+    ~TrVampired()
+    {
+        SAFE_DELETE(tc);
+        SAFE_DELETE(fromTc);
+    }
+
+    TrVampired * clone() const
+    {
+        TrVampired * a = NEW TrVampired(*this);
+        a->isClone = 1;
+        return a;
+    }
+};
+
+//targetted trigger
+class TrTargeted: public TriggeredAbility
+{
+public:
+    TargetChooser * tc;
+    TargetChooser * fromTc;
+    int type;
+    TrTargeted(int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0) :
+    TriggeredAbility(id, source), tc(tc), fromTc(fromTc), type(type)
+    {
+    }
+
+    int resolve()
+    {
+        return 0; //This is a trigger, this function should not be called
+    }
+
+    int triggerOnEvent(WEvent * event)
+    {
+        if(source->isPhased) return 0;
+        WEventTarget * e = dynamic_cast<WEventTarget *> (event);
+        if (!e) return 0;
+        if (!tc->canTarget(e->card)) return 0;
+        if (fromTc && !fromTc->canTarget(e->source)) return 0;
+        
+        return 1;
+    }
+
+    ~TrTargeted()
+    {
+        SAFE_DELETE(tc);
+        SAFE_DELETE(fromTc);
+    }
+
+    TrTargeted * clone() const
+    {
+        TrTargeted * a = NEW TrTargeted(*this);
+        a->isClone = 1;
+        return a;
+    }
+};
 //counters
 class AACounter: public ActivatedAbility
+{
+public:
+    string counterstring;
+    int nb;
+    int power;
+    int toughness;
+    string name;
+    string menu;
+
+    AACounter(int id, MTGCardInstance * source, MTGCardInstance * target,string counterstring, const char * _name, int power, int toughness, int nb,
+            ManaCost * cost = NULL, int doTap = 0);
+
+    int resolve();
+    const char* getMenuText();
+    AACounter * clone() const;
+};
+
+//counters
+class AARemoveAllCounter: public ActivatedAbility
 {
 public:
     int nb;
@@ -626,14 +908,16 @@ public:
     int toughness;
     string name;
     string menu;
+    bool all;
 
-    AACounter(int id, MTGCardInstance * source, MTGCardInstance * target, const char * _name, int power, int toughness, int nb,
-            ManaCost * cost = NULL, int doTap = 0);
+    AARemoveAllCounter(int id, MTGCardInstance * source, MTGCardInstance * target, const char * _name, int power, int toughness, int nb,
+            bool all,ManaCost * cost = NULL, int doTap = 0);
 
     int resolve();
     const char* getMenuText();
-    AACounter * clone() const;
+    AARemoveAllCounter * clone() const;
 };
+
 
 class AAFizzler: public ActivatedAbility
 {
@@ -717,7 +1001,15 @@ public:
     const char * getMenuText();
     AACopier * clone() const;
 };
-
+//imprint
+class AAPhaseOut: public ActivatedAbility
+{
+public:
+    AAPhaseOut(int _id, MTGCardInstance * _source, MTGCardInstance * _target = NULL, ManaCost * _cost = NULL);
+    int resolve();
+    const char * getMenuText();
+    AAPhaseOut * clone() const;
+};
 //cloning...this makes a token thats a copy of the target.
 class AACloner: public ActivatedAbility
 {
@@ -899,7 +1191,7 @@ public:
     }
 };
 
-//ninjutsu
+//remove from combat
 
 class ACombatRemovel: public ActivatedAbility
 {
@@ -939,8 +1231,11 @@ class AADrawer: public ActivatedAbilityTP
 {
 public:
     WParsedInt *nbcards;
+    WParsedInt *RefreshedNbcards;
+    
+    string nbcardsStr;
 
-    AADrawer(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost, WParsedInt * _nbcards, int _tap = 0, int who =
+    AADrawer(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost, WParsedInt * nbcards,string nbcardsStr, int _tap = 0, int who =
             TargetChooser::UNSET);
     int resolve();
     const char * getMenuText();
@@ -968,8 +1263,10 @@ public:
 class AALifer: public ActivatedAbilityTP
 {
 public:
+    string life_s;
     WParsedInt *life;
-    AALifer(int _id, MTGCardInstance * card, Targetable * _target, WParsedInt * life, ManaCost * _cost = NULL, int _tap = 0,
+    WParsedInt *RefreshedLife;
+    AALifer(int _id, MTGCardInstance * card, Targetable * _target,string life_s, WParsedInt * life, ManaCost * _cost = NULL, int _tap = 0,
             int who = TargetChooser::UNSET);
     int resolve();
     const char * getMenuText();
@@ -998,26 +1295,35 @@ public:
     int power, toughness;
     int tokenId;
     string name;
+    string sabilities;
+    string starfound;
     WParsedInt * multiplier;
     int who;
-    ATokenCreator(int _id, MTGCardInstance * _source, ManaCost * _cost, int tokenId, int _doTap, WParsedInt * multiplier = NULL,
-            int who = 0) :
-        ActivatedAbility(_id, _source, _cost, 0, _doTap), tokenId(tokenId), multiplier(multiplier), who(who)
+    bool aLivingWeapon;
+    bool battleReady;
+    MTGCardInstance * myToken;
+    vector<MTGAbility *> currentAbilities;
+    ATokenCreator(int _id, MTGCardInstance * _source, Targetable * _target, ManaCost * _cost, int tokenId, int _doTap,string starfound, WParsedInt * multiplier = NULL,
+        int who = 0,bool aLivingWeapon = false) :
+    ActivatedAbility(_id, _source, _cost, 0, _doTap), tokenId(tokenId), starfound(starfound),multiplier(multiplier), who(who),aLivingWeapon(aLivingWeapon)
     {
         if (!multiplier) this->multiplier = NEW WParsedInt(1);
         MTGCard * card = GameApp::collection->getCardById(tokenId);
         if (card) name = card->data->getName();
+        battleReady = false;
     }
 
-    ATokenCreator(int _id, MTGCardInstance * _source, ManaCost * _cost, string sname, string stypes, int _power, int _toughness,
-            string sabilities, int _doTap, WParsedInt * multiplier = NULL, int who = 0) :
-        ActivatedAbility(_id, _source, _cost, 0, _doTap), multiplier(multiplier), who(who)
+    ATokenCreator(int _id, MTGCardInstance * _source, Targetable * _target, ManaCost * _cost, string sname, string stypes, int _power, int _toughness,
+        string sabilities, int _doTap, string starfound,WParsedInt * multiplier = NULL, int who = 0,bool aLivingWeapon = false) :
+    ActivatedAbility(_id, _source, _cost, 0, _doTap),sabilities(sabilities),starfound(starfound), multiplier(multiplier), who(who),aLivingWeapon(aLivingWeapon)
     {
         power = _power;
         toughness = _toughness;
         name = sname;
         who = who;
         tokenId = 0;
+        aType = MTGAbility::STANDARD_TOKENCREATOR;
+        battleReady = false;
         if (!multiplier) this->multiplier = NEW WParsedInt(1);
         //TODO this is a copy/past of other code that's all around the place, everything should be in a dedicated parser class;
 
@@ -1029,6 +1335,9 @@ public:
                 abilities.push_back(j);
             }
         }
+
+        if(sabilities.find("battleready") != string::npos)
+            battleReady = true;
 
         for (int j = 0; j < Constants::MTG_NB_COLORS; j++)
         {
@@ -1060,13 +1369,18 @@ public:
 
     int resolve()
     {
+        if(!starfound.empty())
+        {
+            multiplier = NEW WParsedInt(starfound, NULL, (MTGCardInstance *)source);
+        }
         for (int i = 0; i < multiplier->getValue(); ++i)
         {
-            MTGCardInstance * myToken;
+            //MTGCardInstance * myToken;
             if (tokenId)
             {
                 MTGCard * card = GameApp::collection->getCardById(tokenId);
                 myToken = NEW MTGCardInstance(card, source->controller()->game);
+
             }
             else
             {
@@ -1085,16 +1399,48 @@ public:
                     myToken->basicAbilities[*it] = 1;
                 }
             }
-            if (who == 0 || who != 1)
+            string tokenText = "";
+            if(sabilities.find("token(") == string::npos)
+            {
+                tokenText = "(";
+                size_t endAbility = sabilities.find(")");
+                string words = sabilities.substr(0,endAbility);
+                tokenText.append(words);
+                string sourcename = ((MTGCardInstance*)source)->name;
+                tokenText.append(") source: ");
+                tokenText.append( sourcename);
+                myToken->text =  tokenText;
+            }
+            if (who == 0 && who != 1 && who != 2)
             {
                 source->controller()->game->temp->addCard(myToken);
                 Spell * spell = NEW Spell(myToken);
                 spell->resolve();
                 spell->source->isToken = 1;
                 spell->source->fresh = 1;
+                if(aLivingWeapon)
+                {
+                    source->target = spell->source;
+                    source->target->equipment += 1;
+                    AbilityFactory af;
+                    af.getAbilities(&currentAbilities, NULL, source);
+                    for (size_t i = 0; i < currentAbilities.size(); ++i)
+                    {
+                        MTGAbility * a = currentAbilities[i];
+                        if (a->aType == MTGAbility::STANDARD_EQUIP) continue;
+                        if (a->aType == MTGAbility::STANDARD_TEACH) continue;
+                        a->addToGame();
+                    }
+                }
+                if(battleReady)
+                {
+                    spell->source->summoningSickness = 0;
+                    spell->source->tap();
+                    spell->source->setAttacker(1);
+                }
                 delete spell;
             }
-            else if (who == 1)
+            else if (who == 1 && who != 0 && who != 2)
             {
                 source->controller()->opponent()->game->temp->addCard(myToken);
                 Spell * spell = NEW Spell(myToken);
@@ -1102,6 +1448,57 @@ public:
                 spell->source->owner = spell->source->controller();
                 spell->source->isToken = 1;
                 spell->source->fresh = 1;
+                if(aLivingWeapon)
+                {
+                    source->target = spell->source;
+                    source->target->equipment += 1;
+                    AbilityFactory af;
+                    af.getAbilities(&currentAbilities, NULL, source);
+                    for (size_t i = 0; i < currentAbilities.size(); ++i)
+                    {
+                        MTGAbility * a = currentAbilities[i];
+                        if (a->aType == MTGAbility::STANDARD_EQUIP) continue;
+                        if (a->aType == MTGAbility::STANDARD_TEACH) continue;
+                        a->addToGame();
+                    }
+                }
+                if(battleReady)
+                {
+                    spell->source->summoningSickness = 0;
+                    spell->source->tap();
+                    spell->source->setAttacker(1);
+                }
+                delete spell;
+            }
+            else
+            {
+                ((MTGCardInstance*)target)->controller()->game->temp->addCard(myToken);
+                Spell * spell = NEW Spell(myToken);
+                spell->resolve();
+                spell->source->owner = ((MTGCardInstance*)target)->controller();
+                spell->source->isToken = 1;
+                spell->source->fresh = 1;
+                myToken = spell->source;
+                if(aLivingWeapon)
+                {
+                    source->target = spell->source;
+                    source->target->equipment += 1;
+                    AbilityFactory af;
+                    af.getAbilities(&currentAbilities, NULL, source);
+                    for (size_t i = 0; i < currentAbilities.size(); ++i)
+                    {
+                        MTGAbility * a = currentAbilities[i];
+                        if (a->aType == MTGAbility::STANDARD_EQUIP) continue;
+                        if (a->aType == MTGAbility::STANDARD_TEACH) continue;
+                        a->addToGame();
+                    }
+                }
+                if(battleReady)
+                {
+                    spell->source->summoningSickness = 0;
+                    spell->source->tap();
+                    spell->source->setAttacker(1);
+                }
                 delete spell;
             }
         }
@@ -1109,7 +1506,7 @@ public:
     }
 
     const char * getMenuText()
-    {
+        {
         sprintf(menuText, "Create %s", name.c_str());
         return menuText;
     }
@@ -1134,6 +1531,7 @@ public:
     {
         if (!isClone)
         {
+        if(multiplier != NULL)
             delete (multiplier);
         }
     }
@@ -1199,20 +1597,32 @@ public:
     int addToGame()
     {
         value_before_modification = ((MTGCardInstance *) target)->basicAbilities[ability];
-        ((MTGCardInstance *) target)->basicAbilities[ability] = modifier;
+        if(ability != Constants::ABSORB && ability != Constants::FLANKING)
+        {
+            ((MTGCardInstance *) target)->basicAbilities[ability] = modifier;
+        }
+        else
+        {
+            ((MTGCardInstance *) target)->basicAbilities[ability] += modifier;
+        }
         return MTGAbility::addToGame();
     }
 
     int destroy()
     {
-        if (((MTGCardInstance *) target)->basicAbilities[ability] == modifier)
+        if (((MTGCardInstance *) target)->basicAbilities[ability] == modifier && (ability != Constants::ABSORB && ability != Constants::FLANKING))
         {
             ((MTGCardInstance *) target)->basicAbilities[ability] = value_before_modification;
             return 1;
         }
+        else if (ability == Constants::ABSORB || ability == Constants::FLANKING)
+        {
+            ((MTGCardInstance *) target)->basicAbilities[ability] -= 1;
+            return 1;
+        }
         else
         {
-            //BUG !!!
+                    //BUG !!!
             return 0;
         }
     }
@@ -1324,23 +1734,30 @@ public:
     int value;
     AInstantBasicAbilityModifierUntilEOT(int _id, MTGCardInstance * _source, MTGCardInstance * _target, int _ability, int value) :
         InstantAbility(_id, _source, _target), ability(_ability), value(value)
-    {
-        aType = MTGAbility::STANDARDABILITYGRANT;
-        abilitygranted = ability;
-    }
+        {
+            aType = MTGAbility::STANDARDABILITYGRANT;
+            abilitygranted = ability;
+        }
 
-    int addToGame()
-    {
-        MTGCardInstance * _target = (MTGCardInstance *) target;
-        stateBeforeActivation = _target->basicAbilities[ability];
-        _target->basicAbilities[ability] = value;
-        return InstantAbility::addToGame();
-    }
+        int addToGame()
+        {
+            MTGCardInstance * _target = (MTGCardInstance *) target;
+            stateBeforeActivation = _target->basicAbilities[ability];
+            if(ability != Constants::ABSORB)
+            {
+                _target->basicAbilities[ability] = value;
+            }
+            else
+            {
+                _target->basicAbilities[ability] += value;
+            }
+            return InstantAbility::addToGame();
+        }
 
-    const char * getMenuText()
-    {
-        return Constants::MTGBasicAbilities[ability];
-    }
+        const char * getMenuText()
+        {
+            return Constants::MTGBasicAbilities[ability];
+        }
 
     int destroy()
     {
@@ -1629,6 +2046,10 @@ public:
         MTGCardInstance * _target = (MTGCardInstance *) target;
         _target->power += wppt->power.getValue();
         _target->addToToughness(wppt->toughness.getValue());
+        if(_target->has(Constants::INDESTRUCTIBLE) && wppt->toughness.getValue() < 0 && _target->toughness <= 0)
+        {
+        _target->controller()->game->putInGraveyard(_target);
+        }
         return MTGAbility::addToGame();
     }
 
@@ -1659,20 +2080,25 @@ class AInstantPowerToughnessModifierUntilEOT: public InstantAbility
 {
 public:
     WParsedPT * wppt;
+    string s;
     AInstantPowerToughnessModifierUntilEOT(int _id, MTGCardInstance * _source, MTGCardInstance * _target, WParsedPT * wppt) :
         InstantAbility(_id, _source, _target), wppt(wppt)
     {
         aType = MTGAbility::STANDARD_PUMP;
-    }
+        }
 
-    int resolve()
-    {
-        ((MTGCardInstance *) target)->power += wppt->power.getValue();
-        ((MTGCardInstance *) target)->addToToughness(wppt->toughness.getValue());
-        return 1;
-    }
+        int resolve()
+        {
+            ((MTGCardInstance *) target)->power += wppt->power.getValue();
+            ((MTGCardInstance *) target)->addToToughness(wppt->toughness.getValue());
+            if(((MTGCardInstance *) target)->has(Constants::INDESTRUCTIBLE) && wppt->toughness.getValue() < 0 && ((MTGCardInstance *) target)->toughness <= 0)
+            {
+                ((MTGCardInstance *) target)->controller()->game->putInGraveyard(((MTGCardInstance *) target));
+            }
+            return 1;
+        }
 
-    int destroy()
+        int destroy()
     {
         ((MTGCardInstance *) target)->power -= wppt->power.getValue();
         ((MTGCardInstance *) target)->addToToughness(-wppt->toughness.getValue());
@@ -2082,19 +2508,23 @@ public:
         a = NULL;
     }
 
-    int canBeInList(MTGCardInstance * card)
-    {
-        int size = 0;
-        size = (int) cards.size();
-        if (includeSelf && maxi && card == source && size > maxi)
+        int canBeInList(MTGCardInstance * card)
         {
-            removed(card);
-        }
-        if ((includeSelf || card != source) && tc->canTarget(card)) return 1;
-        return 0;
-    }
+            if(card->isPhased || source->isPhased)
+                return 0;
+            int size = 0;
+            size = (int) cards.size();
+            if (includeSelf && maxi && card == source && size > maxi)
+            {
+                removed(card);
+            }
+            if ((includeSelf || card != source) && tc->canTarget(card)) 
+                return 1;
 
-    int resolve()
+            return 0;
+        }
+
+        int resolve()
     {
         //TODO check if ability is oneShot ?
         updateTargets();
@@ -2133,8 +2563,7 @@ public:
     int _added(Damageable * d)
     {
         int size = (int) cards.size();
-        if (maxi && size < maxi) return 0;
-        if (maxi && size > maxi) return removeAbilityFromGame();
+        if (maxi && size >= maxi) return removeAbilityFromGame();
         if (maxi) return 0;
         if (size <= mini) return 0;
         return addAbilityToGame();
@@ -2153,7 +2582,7 @@ public:
     int removed(MTGCardInstance * card)
     {
         size_t size = cards.size();
-        if (maxi && (int) size <= maxi) return addAbilityToGame();
+        if (maxi && (int) size < maxi) return addAbilityToGame();
         if (mini && (int) size > mini) return 0;
         if (mini && (int) size <= mini) return removeAbilityFromGame();
         if (!mini && !maxi && size != 0) return 0;
@@ -2168,7 +2597,14 @@ public:
 
     const char * getMenuText()
     {
+			if(ability)
+			{
         return ability->getMenuText();
+			}
+			else
+			{
+			  return "Ability";
+			}
     }
 
     AAsLongAs * clone() const
@@ -2204,6 +2640,8 @@ public:
 
     int canBeInList(MTGCardInstance * card)
     {
+        if(card->isPhased || source->isPhased)
+            return 0;
         if ((includeSelf || card != source) && tc->canTarget(card)) return 1;
         return 0;
     }
@@ -2372,6 +2810,7 @@ public:
         tc = _tc;
         tc->targetter = NULL;
         includeSelf = NULL;
+        aType = MTGAbility::STANDARD_TEACH;
     }
 
     int canBeInList(MTGCardInstance * card)
@@ -2563,11 +3002,13 @@ public:
         naType = ability->aType;
     }
 
-    int canBeInList(MTGCardInstance * card)
-    {
-        if ((includeSelf || card != source) && tc->canTarget(card)) return 1;
-        return 0;
-    }
+        int canBeInList(MTGCardInstance * card)
+        {
+            if(card->isPhased || source->isPhased)
+                return 0;
+            if ((includeSelf || card != source) && tc->canTarget(card)) return 1;
+            return 0;
+        }
 
     int added(MTGCardInstance * card)
     {
@@ -2838,8 +3279,10 @@ class AADamager: public ActivatedAbilityTP
 {
 public:
     WParsedInt * damage;
+    WParsedInt * RefreshedDamage;
+    string d;
 
-    AADamager(int _id, MTGCardInstance * _source, Targetable * _target, WParsedInt * damage, ManaCost * _cost = NULL,
+    AADamager(int _id, MTGCardInstance * _source, Targetable * _target,WParsedInt * damage, string d, ManaCost * _cost = NULL,
             int doTap = 0, int who = TargetChooser::UNSET);
     int resolve();
     const char * getMenuText();
@@ -2880,11 +3323,11 @@ class TADamager: public TargetAbility
 {
 public:
 
-    TADamager(int id, MTGCardInstance * card, ManaCost * _cost, WParsedInt * damage, TargetChooser * _tc = NULL, int _tap = 0) :
+    TADamager(int id, MTGCardInstance * card, ManaCost * _cost,WParsedInt *damage, string d, TargetChooser * _tc = NULL, int _tap = 0) :
         TargetAbility(id, card, _tc, _cost, 0, _tap)
     {
         if (!tc) tc = NEW DamageableTargetChooser(card);
-        ability = NEW AADamager(id, card, NULL, damage);
+        ability = NEW AADamager(id, card, NULL,damage, d);
     }
 
     TADamager * clone() const
@@ -2934,6 +3377,62 @@ public:
     int resolve();
     const char * getMenuText();
     AAFrozen * clone() const;
+};
+/* ghetto new target*/
+class AANewTarget: public ActivatedAbility
+{
+public:
+    AANewTarget(int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL, int doTap = 0);
+    int resolve();
+    const char * getMenuText();
+    AANewTarget * clone() const;
+};
+/* morph*/
+class AAMorph: public ActivatedAbility
+{
+public:
+    vector<MTGAbility *> currentAbilities;
+    AAMorph(int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL, int doTap = 0);
+    int resolve();
+    int testDestroy();
+    const char * getMenuText();
+    AAMorph * clone() const;
+};
+/* dynamic ability build*/
+class AADYNAMIC: public ActivatedAbility
+{
+public:
+int type;
+int effect;
+int who;
+int sourceamount;
+int targetamount;
+int amountsource;
+bool eachother;
+bool tosrc;
+MTGCardInstance * OriginalSrc;
+MTGCardInstance * storedTarget;
+MTGAbility * storedAbility;
+MTGAbility * clonedStored;
+string menu;
+
+    AADYNAMIC(int id, MTGCardInstance * card, Damageable * _target,int type = 0,int effect = 0,int who = 0,int amountsource = 1,MTGAbility * storedAbility = NULL, ManaCost * _cost = NULL, int doTap = 0);
+    int resolve();
+    int activateStored();
+    const char * getMenuText();
+    AADYNAMIC * clone() const;
+    ~AADYNAMIC();
+};
+
+/* removes a card and all with the same name as it from the game */
+class AAEradicate: public ActivatedAbility
+{
+public:
+int type;
+    AAEradicate(int id, MTGCardInstance * card, MTGCardInstance * _target,int type = 0, ManaCost * _cost = NULL, int doTap = 0);
+    int resolve();
+    const char * getMenuText();
+    AAEradicate * clone() const;
 };
 
 /* switch power and toughness of target */
@@ -3296,8 +3795,15 @@ public:
     list<int> oldtypes;
     bool remove;
     string menu;
+    int newpower;
+    bool newpowerfound;
+    int oldpower;
+    int newtoughness;
+    bool newtoughnessfound;
+    int oldtoughness;
 
-    ATransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities);
+
+    ATransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities,int newpower,bool newpowerfound,int newtoughness,bool newtoughnessfound);
     int addToGame();
     int destroy();
     const char * getMenuText();
@@ -3313,8 +3819,15 @@ public:
     list<int> types;
     list<int> colors;
     string menu;
+    int newpower;
+    bool newpowerfound;
+    int oldpower;
+    int newtoughness;
+    bool newtoughnessfound;
+    int oldtoughness;
+    bool remove;
 
-    AForeverTransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities);
+    AForeverTransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities,int newpower,bool newpowerfound,int newtoughness,bool newtoughnessfound);
     int addToGame();
     const char * getMenuText();
     AForeverTransformer * clone() const;
@@ -3326,8 +3839,12 @@ class ATransformerUEOT: public InstantAbility
 {
 public:
     ATransformer * ability;
+    int newpower;
+    bool newpowerfound;
+    int newtoughness;
+    bool newtoughnessfound;
 
-    ATransformerUEOT(int id, MTGCardInstance * source, MTGCardInstance * target, string types, string abilities);
+    ATransformerUEOT(int id, MTGCardInstance * source, MTGCardInstance * target, string types, string abilities,int newpower,bool newpowerfound,int newtoughness,bool newtoughnessfound);
     int resolve();
     const char * getMenuText();
     ATransformerUEOT * clone() const;
@@ -3339,8 +3856,12 @@ class ATransformerFOREVER: public InstantAbility
 {
 public:
     AForeverTransformer * ability;
-
-    ATransformerFOREVER(int id, MTGCardInstance * source, MTGCardInstance * target, string types, string abilities);
+    int newpower;
+    bool newpowerfound;
+    int newtoughness;
+    bool newtoughnessfound;
+    
+    ATransformerFOREVER(int id, MTGCardInstance * source, MTGCardInstance * target, string types, string abilities,int newpower = 0,bool newpowerfound = false,int newtoughness = 0,bool newtoughnessfound = false);
     int resolve();
     const char * getMenuText();
     ATransformerFOREVER * clone() const;
@@ -3427,9 +3948,11 @@ public:
     int paidThisTurn;
     int phase;
     int once;
+    bool Cumulative;
+    int currentage;
 
     AUpkeep(int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int _tap = 0, int restrictions = 0, int _phase =
-            Constants::MTG_PHASE_UPKEEP, int _once = 0);
+            Constants::MTG_PHASE_UPKEEP, int _once = 0,bool Cumulative = false);
     void Update(float dt);
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     int resolve();
@@ -3437,6 +3960,73 @@ public:
     virtual ostream& toString(ostream& out) const;
     AUpkeep * clone() const;
     ~AUpkeep();
+};
+
+//phase based actions
+class APhaseAction: public MTGAbility, public NestedAbility
+{
+public:
+    int phase;
+    bool forcedestroy;
+    bool next;
+    Player * abilityOwner;
+
+    APhaseAction(int _id, MTGCardInstance * card, MTGCardInstance * target, MTGAbility * a, int _tap = 0, int restrictions = 0, int _phase =
+        Constants::MTG_PHASE_UPKEEP,bool forcedestroy = false,bool next = true);
+    void Update(float dt);
+    int resolve();
+    int removeAbility();
+    const char * getMenuText();
+    APhaseAction * clone() const;
+    ~APhaseAction();
+};
+
+//Adds types/abilities/P/T to a card (until end of turn)
+class APhaseActionGeneric: public InstantAbility
+{
+public:
+    APhaseAction * ability;
+    APhaseActionGeneric(int _id, MTGCardInstance * card, MTGCardInstance * target, MTGAbility * a, int _tap = 0, int restrictions = 0, int _phase =
+            Constants::MTG_PHASE_UPKEEP,bool forcedestroy = false,bool next = true);
+    int resolve();
+    const char * getMenuText();
+    APhaseActionGeneric * clone() const;
+    ~APhaseActionGeneric();
+
+};
+
+//ABlink
+class ABlink: public MTGAbility
+{
+public:
+    bool blinkueot;
+    bool blinkForSource;
+    bool blinkhand;
+    MTGCardInstance * Blinked;
+    bool resolved;
+    ABlink(int _id, MTGCardInstance * card, MTGCardInstance * _target,bool blinkueot=false,bool blinkForSource = false,bool blinkhand = false);
+    void Update(float dt);
+    void resolveBlink();
+    int resolve();
+    const char * getMenuText();
+    ABlink * clone() const;
+    ~ABlink();
+};
+
+//blinkinstant
+class ABlinkGeneric: public InstantAbility
+{
+public:
+    bool blinkueot;
+    bool blinkForSource;
+    bool blinkhand;
+    ABlink * ability;
+    ABlinkGeneric(int _id, MTGCardInstance * card, MTGCardInstance * _target,bool blinkueot=false,bool blinkForSource = false,bool blinkhand = false);
+    int resolve();
+    const char * getMenuText();
+    ABlinkGeneric * clone() const;
+    ~ABlinkGeneric();
+
 };
 
 /*
@@ -3474,14 +4064,16 @@ public:
                 game->currentlyActing()->getManaPool()->pay(cost);
                 nbcards = 0;
                 MTGGameZone * library = game->currentlyActing()->game->library;
-                while (nbcards < wished && nbcards < library->nb_cards)
+                while (nbcards < wished)
                 {
                     cd.AddCard(library->cards[library->nb_cards - 1 - nbcards]);
                     nbcards++;
                 }
                 init = 1;
+                Render(dt);
             }
             cd.Update(dt);
+
             //      cd.CheckUserInput(dt);
         }
     }
@@ -3498,9 +4090,10 @@ public:
     {
         source->tap();
         MTGLibrary * library = game->currentlyActing()->game->library;
+                MTGHand * hand = game->currentlyActing()->game->hand;
         MTGCardInstance * card = library->removeCard(tc->getNextCardTarget());
-        library->shuffleTopToBottom(nbcards - 1);
-        library->addCard(card);
+        //library->shuffleTopToBottom(nbcards - 1);
+        hand->addCard(card);
         init = 0;
         return 1;
     }
@@ -4254,7 +4847,7 @@ public:
 
     void Update(float dt)
     {
-        if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_EOT)
+        if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_ENDOFTURN)
         {
             if (!game->players[0]->game->inPlay->hasType("creature") && !game->players[1]->game->inPlay->hasType("creature"))
             {
@@ -4854,13 +5447,16 @@ public:
 class AADepleter: public ActivatedAbilityTP
 {
 public:
-    int nbcards;
+    WParsedInt * nbcards;
+    WParsedInt * RefreshedNbcards;
+    string nbcardsStr;
 
-    AADepleter(int _id, MTGCardInstance * card, Targetable * _target, int nbcards = 1, ManaCost * _cost = NULL, int _tap = 0,
+    AADepleter(int _id, MTGCardInstance * card, Targetable * _target, WParsedInt * nbcards,string nbcardsStr, ManaCost * _cost = NULL, int _tap = 0,
             int who = TargetChooser::UNSET);
     int resolve();
     const char * getMenuText();
     AADepleter * clone() const;
+        ~AADepleter();
 };
 
 //Shuffle
@@ -4911,13 +5507,16 @@ public:
 class AARandomDiscarder: public ActivatedAbilityTP
 {
 public:
-    int nbcards;
+    WParsedInt * nbcards;
+    WParsedInt * RefreshedNbcards;
+    string nbcardsStr;
 
-    AARandomDiscarder(int _id, MTGCardInstance * card, Targetable * _target, int nbcards = 1, ManaCost * _cost = NULL,
+    AARandomDiscarder(int _id, MTGCardInstance * card, Targetable * _target, WParsedInt * nbcards,string nbcardsStr, ManaCost * _cost = NULL,
             int _tap = 0, int who = TargetChooser::UNSET);
     int resolve();
     const char * getMenuText();
     AARandomDiscarder * clone() const;
+    ~AARandomDiscarder();
 };
 
 //Minion of Leshrac
@@ -5133,6 +5732,47 @@ public:
         return a;
     }
 };
+
+//A Spirit Link Ability
+class ASpiritLinkAbility: public MTGAbility
+{
+public:
+    MTGCardInstance * source;
+    bool combatonly;
+    ASpiritLinkAbility(int _id, MTGCardInstance * _source,bool combatonly = false) :
+    MTGAbility(_id, _source),source(_source),combatonly(combatonly)
+    {
+    }
+    int receiveEvent(WEvent * event)
+    {
+        if (event->type == WEvent::DAMAGE)
+        {
+            WEventDamage * e = (WEventDamage *) event;
+            Damage * d = e->damage;
+            if (combatonly == true && e->damage->typeOfDamage != DAMAGE_COMBAT) 
+                return 0;
+            MTGCardInstance * card = d->source;
+            if (d->damage > 0 && card && (card == source || card == source->target))
+            {
+                source->owner->life += d->damage;
+                source->owner->thatmuch = d->damage;
+                WEvent * lifed = NULL;
+                lifed = NEW WEventLife(source->owner,d->damage);
+                GameObserver * game = GameObserver::GetInstance();
+                game->receiveEvent(lifed);
+                return 1;
+            }
+        }
+        return 0;
+    }
+    ASpiritLinkAbility * clone() const
+    {
+        ASpiritLinkAbility * a = NEW ASpiritLinkAbility(*this);
+        a->isClone = 1;
+        return a;
+    }
+};
+
 //Instant Steal control of a target
 class AInstantControlSteal: public InstantAbility
 {

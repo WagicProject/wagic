@@ -9,6 +9,7 @@
 
 #define MAX_SPELL_TARGETS 10
 
+
 #define ACTION_SPELL 10
 #define ACTION_DAMAGE 11
 #define ACTION_DAMAGES 12
@@ -38,197 +39,172 @@ class DamageStack;
 class ManaCost;
 class TargetChooser;
 
+
 #define ACTIONSTACK_STANDARD 0
 #define ACTIONSTACK_TARGET 1
 
-class Interruptible: public PlayGuiObject, public Targetable
-{
-public:
-    //TODO : remove these when they are back in PlayGuiObject
-    float x, y;
+class Interruptible: public PlayGuiObject, public Targetable{
+ public:
+  //TODO : remove these when they are back in PlayGuiObject
+  float x, y;
 
-    int state, display;
-    MTGCardInstance * source;
-    virtual void Entering()
-    {
-        mHasFocus = true;
-    }
-    ;
-    virtual bool Leaving(JButton key)
-    {
-        mHasFocus = false;
-        return true;
-    }
-    ;
-    virtual bool ButtonPressed()
-    {
-        return true;
-    }
-    ;
-    virtual int resolve()
-    {
-        return 0;
-    }
-    ;
-    virtual void Render()
-    {
-    }
-    ;
-    int typeAsTarget()
-    {
-        return TARGET_STACKACTION;
-    }
-    ;
-    Interruptible(bool hasFocus = false) :
-        PlayGuiObject(40, x, y, hasFocus)
-    {
-        state = NOT_RESOLVED;
-        display = 0;
-        source = NULL;
-    }
-    ;
-    virtual const string getDisplayName() const;
-    void Render(MTGCardInstance * source, JQuad * targetQuad, string alt1, string alt2, string action, bool bigQuad = false);
-    virtual int receiveEvent(WEvent * event)
-    {
-        return 0;
-    }
-    ;
+  int state, display;
+  MTGCardInstance * source;
+  virtual void Entering(){mHasFocus = true;};
+  virtual bool Leaving(JButton key){mHasFocus = false;return true;};
+  virtual bool ButtonPressed(){return true;};
+  virtual int resolve(){return 0;};
+  virtual void Render(){};
+  int typeAsTarget(){return TARGET_STACKACTION;};
+ Interruptible(bool hasFocus = false):PlayGuiObject(40,x,y,hasFocus){state=NOT_RESOLVED;display=0;source=NULL;};
+  virtual const string getDisplayName() const;
+  void Render(MTGCardInstance * source, JQuad * targetQuad, string alt1, string alt2, string action, bool bigQuad = false);
+  virtual int receiveEvent(WEvent * event) {return 0;};
 #if defined (WIN32) || defined (LINUX) || defined (IOS)
-    virtual void Dump();
+  virtual void Dump();
 #endif
 
 protected:
-    float GetVerticalTextOffset() const;
+  float GetVerticalTextOffset() const;
 };
 
-class NextGamePhase: public Interruptible
-{
-public:
-    int resolve();
-    bool extraDamagePhase();
-    void Render();
-    virtual ostream& toString(ostream& out) const;
-    virtual const string getDisplayName() const;
-    NextGamePhase(int id);
+class NextGamePhase: public Interruptible {
+ public:
+  int resolve();
+  bool extraDamagePhase();
+  void Render();
+  virtual ostream& toString(ostream& out) const;
+  virtual const string getDisplayName() const;
+  NextGamePhase(int id);
 };
 
-class Spell: public Interruptible
-{
-protected:
+class Spell: public Interruptible {
+ protected:
 
-public:
-    MTGGameZone * from;
-    TargetChooser * tc;
-    ManaCost * cost;
-    int payResult;
-    int computeX(MTGCardInstance * card);
-    int computeXX(MTGCardInstance * card);
-    Spell(MTGCardInstance* _source);
-    Spell(int id, MTGCardInstance* _source, TargetChooser *_tc, ManaCost * _cost, int payResult);
-    ~Spell();
-    int resolve();
-    void Render();
-    bool FullfilledAlternateCost(const int &costType);
-    const string getDisplayName() const;
-    virtual ostream& toString(ostream& out) const;
-    MTGCardInstance * getNextCardTarget(MTGCardInstance * previous = 0);
-    Player * getNextPlayerTarget(Player * previous = 0);
-    Damageable * getNextDamageableTarget(Damageable * previous = 0);
-    Interruptible * getNextInterruptible(Interruptible * previous, int type);
-    Spell * getNextSpellTarget(Spell * previous = 0);
-    Damage * getNextDamageTarget(Damage * previous = 0);
-    Targetable * getNextTarget(Targetable * previous = 0, int type = -1);
-    int getNbTargets();
+ public:
+  MTGGameZone * from;
+  TargetChooser * tc;
+  ManaCost * cost;
+  int payResult;
+  int computeX(MTGCardInstance * card);
+  int computeXX(MTGCardInstance * card);
+  Spell(MTGCardInstance* _source);
+  Spell(int id, MTGCardInstance* _source, TargetChooser *_tc, ManaCost * _cost, int payResult);
+  ~Spell();
+  int resolve();
+  void Render();
+  bool FullfilledAlternateCost(const int &costType);
+  const string getDisplayName() const;
+  virtual ostream& toString(ostream& out) const;
+  MTGCardInstance * getNextCardTarget(MTGCardInstance * previous = 0);
+  Player * getNextPlayerTarget(Player * previous = 0);
+  Damageable * getNextDamageableTarget(Damageable * previous = 0);
+  Interruptible * getNextInterruptible(Interruptible * previous, int type);
+  Spell * getNextSpellTarget(Spell * previous = 0);
+  Damage * getNextDamageTarget(Damage * previous = 0);
+  Targetable * getNextTarget(Targetable * previous = 0, int type = -1);
+  int getNbTargets();
 };
 
-class StackAbility: public Interruptible
-{
-public:
-    MTGAbility * ability;
-    int resolve();
-    void Render();
-    virtual ostream& toString(ostream& out) const;
-    virtual const string getDisplayName() const;
-    StackAbility(int id, MTGAbility * _ability);
+class StackAbility: public Interruptible {
+ public:
+  MTGAbility * ability;
+  int resolve();
+  void Render();
+  virtual ostream& toString(ostream& out) const;
+  virtual const string getDisplayName() const;
+  StackAbility(int id, MTGAbility * _ability);
 };
 
-class PutInGraveyard: public Interruptible
-{
-public:
-    MTGCardInstance * card;
-    int removeFromGame;
-    int resolve();
-    void Render();
-    virtual ostream& toString(ostream& out) const;
-    PutInGraveyard(int id, MTGCardInstance * _card);
+class PutInGraveyard: public Interruptible {
+ public:
+  MTGCardInstance * card;
+  int removeFromGame;
+  int resolve();
+  void Render();
+  virtual ostream& toString(ostream& out) const;
+  PutInGraveyard(int id, MTGCardInstance * _card);
 };
 
-class DrawAction: public Interruptible
-{
-public:
-    int nbcards;
-    Player * player;
-    int resolve();
-    void Render();
-    virtual ostream& toString(ostream& out) const;
-    DrawAction(int id, Player * _player, int _nbcards);
+
+class DrawAction: public Interruptible {
+ public:
+  int nbcards;
+  Player * player;
+  int resolve();
+  void Render();
+  virtual ostream& toString(ostream& out) const;
+  DrawAction(int id, Player *  _player, int _nbcards);
 };
 
-class ActionStack: public GuiLayer
-{
-protected:
-    JQuad * pspIcons[8];
-    GameObserver* game;
-    int interruptDecision[2];
-    float timer;
-    int currentState;
-    int mode;
-    int checked;
+class LifeAction: public Interruptible {
+ public:
+  int amount;
+  Damageable * target;
+  int resolve();
+  void Render();
+  virtual ostream& toString(ostream& out) const;
+  LifeAction(int id, Damageable * _target, int amount);
+};
 
-public:
+class ActionStack :public GuiLayer{
+ protected:
+  JQuad * pspIcons[8];
+  GameObserver* game;
+  int interruptDecision[2];
+  float timer;
+  int currentState;
+  int mode;
+  int checked;
 
-    enum
-    {
-        NOT_DECIDED = 0,
-        INTERRUPT = -1,
-        DONT_INTERRUPT = 1,
-        DONT_INTERRUPT_ALL = 2,
-    };
+ public:
 
-    int setIsInterrupting(Player * player);
-    int count(int type = 0, int state = 0, int display = -1);
-    Interruptible * getPrevious(Interruptible * next, int type = 0, int state = 0, int display = -1);
-    int getPreviousIndex(Interruptible * next, int type = 0, int state = 0, int display = -1);
-    Interruptible * getNext(Interruptible * previous, int type = 0, int state = 0, int display = -1);
-    int getNextIndex(Interruptible * previous, int type = 0, int state = 0, int display = -1);
-    void Fizzle(Interruptible * action);
-    Interruptible * getAt(int id);
-    void cancelInterruptOffer(int cancelMode = 1);
-    void endOfInterruption();
-    Interruptible * getLatest(int state);
-    Player * askIfWishesToInterrupt;
-    int garbageCollect();
-    int addAction(Interruptible * interruptible);
-    Spell * addSpell(MTGCardInstance* card, TargetChooser * tc, ManaCost * mana, int payResult, int storm);
-    int AddNextGamePhase();
-    int AddNextCombatStep();
-    int addPutInGraveyard(MTGCardInstance * card);
-    int addDraw(Player * player, int nbcards = 1);
-    int addDamage(MTGCardInstance * _source, Damageable * target, int _damage);
-    int addAbility(MTGAbility * ability);
-    void Update(float dt);
-    bool CheckUserInput(JButton key);
-    virtual void Render();
-    ActionStack(GameObserver* game);
-    int resolve();
-    int has(Interruptible * action);
-    int has(MTGAbility * ability);
-    int receiveEventPlus(WEvent * event);
+   enum
+   {
+     NOT_DECIDED = 0,
+     INTERRUPT = -1,
+     DONT_INTERRUPT = 1,
+     DONT_INTERRUPT_ALL = 2,
+   };
+
+  int setIsInterrupting(Player * player);
+  int count( int type = 0 , int state = 0 , int display = -1);
+  Interruptible * getPrevious(Interruptible * next, int type = 0, int state = 0 , int display = -1);
+  int getPreviousIndex(Interruptible * next, int type = 0, int state = 0 , int display = -1);
+  Interruptible * getNext(Interruptible * previous, int type = 0, int state = 0 , int display = -1);
+  int getNextIndex(Interruptible * previous, int type = 0, int state = 0 , int display = -1);
+  void Fizzle(Interruptible * action);
+  Interruptible * getAt(int id);
+  void cancelInterruptOffer(int cancelMode = 1);
+  void endOfInterruption();
+  Interruptible * getLatest(int state);
+  Player * askIfWishesToInterrupt;
+  int garbageCollect();
+  int addAction(Interruptible * interruptible);
+  Spell * addSpell(MTGCardInstance* card, TargetChooser * tc, ManaCost * mana, int payResult, int storm);
+  int AddNextGamePhase();
+	int AddNextCombatStep();
+  int addPutInGraveyard(MTGCardInstance * card);
+  int addDraw(Player * player, int nbcards = 1);
+  int addLife(Damageable * _target,int amount = 0);
+  int addDamage(MTGCardInstance * _source, Damageable * target, int _damage);
+  int addAbility(MTGAbility * ability);
+  void Update(float dt);
+  bool CheckUserInput(JButton key);
+  virtual void Render();
+  ActionStack(GameObserver* game);
+  int resolve();
+  int has(Interruptible * action);
+  int has(MTGAbility * ability);
+  int receiveEventPlus(WEvent * event);
 #if defined (WIN32) || defined (LINUX) || defined (IOS)
-    void Dump();
+  void Dump();
 #endif
 
 };
+
+
+
+
 
 #endif

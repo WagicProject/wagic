@@ -135,13 +135,44 @@ int TestSuiteAI::Act(float dt)
         playMode = MODE_AI;
         return 1;
     }
-    else if (action.compare("next") == 0)
+    else if (action.compare("next") == 0 || action.find("goto") != string::npos)
     {
-        GuiCombat * gc = g->mLayers->combatLayer();
-        if (ORDER == g->combatStep || DAMAGE == g->combatStep)
-            gc->clickOK();
+        if(action.find("goto ")!= string::npos)
+        {
+            size_t found = action.find("goto ");
+            string phase = action.substr(found + 5);
+            int phaseToGo = 0;
+            for (int i = 0; i < Constants::NB_MTG_PHASES; i++)
+            {
+                if (phase.find(Constants::MTGPhaseCodeNames[i]) != string::npos)
+                {
+                    phaseToGo = i;
+                }
+            }
+            if(g->currentGamePhase != phaseToGo)
+                suite->currentAction--;
+                else
+                {
+                return 1;
+                }
+            GuiCombat * gc = g->mLayers->combatLayer();
+            if (ORDER == g->combatStep || DAMAGE == g->combatStep)
+            {
+                gc->clickOK();
+            }
+            else
+            {
+                g->userRequestNextGamePhase();
+            }
+        }
         else
-            g->userRequestNextGamePhase();
+        {
+            GuiCombat * gc = g->mLayers->combatLayer();
+            if (ORDER == g->combatStep || DAMAGE == g->combatStep)
+                gc->clickOK();
+            else
+                g->userRequestNextGamePhase();
+        }
     }
     else if (action.compare("yes") == 0)
         g->mLayers->stackLayer()->setIsInterrupting(this);

@@ -103,6 +103,10 @@ void GameStateOptions::Start()
     optionsList->Add(oASPhases);
     optionsTabs->Add(optionsList);
 
+    WDecoEnum * oFirstPlayer = NEW WDecoEnum(NEW OptionInteger(Options::FIRSTPLAYER, "First Turn Player", Constants::WHO_R, 1,
+                    Constants::WHO_P, "", Constants::WHO_P));
+    optionsList->Add(oFirstPlayer);
+
     optionsList = NEW WGuiKeyBinder("Key Bindings", this);
     optionsTabs->Add(optionsList);
 

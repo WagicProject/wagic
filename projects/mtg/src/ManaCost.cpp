@@ -251,13 +251,13 @@ ManaCost::~ManaCost()
     {
         SAFE_DELETE(hybrids[i]);
     }
-
     SAFE_DELETE(extraCosts);
     SAFE_DELETE(kicker);
     SAFE_DELETE(alternative);
     SAFE_DELETE(BuyBack);
     SAFE_DELETE(FlashBack);
     SAFE_DELETE(Retrace);
+    SAFE_DELETE(morph);
 }
 
 void ManaCost::x()
@@ -285,6 +285,7 @@ void ManaCost::init()
     BuyBack = NULL;
     FlashBack = NULL;
     Retrace = NULL;
+    morph = NULL;
 }
 
 void ManaCost::copy(ManaCost * _manaCost)
@@ -340,6 +341,12 @@ void ManaCost::copy(ManaCost * _manaCost)
     {
         Retrace = NEW ManaCost();
         Retrace->copy(_manaCost->Retrace);
+    }
+    SAFE_DELETE(morph);
+    if (_manaCost->morph)
+    {
+        morph = NEW ManaCost();
+        morph->copy(_manaCost->morph);
     }
 }
 

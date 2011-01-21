@@ -150,7 +150,7 @@ ManaCost * AIPlayer::getPotentialMana(MTGCardInstance * target)
             MTGCardInstance * card = amp->source;
             if (card == target)
                 used[card] = true; //http://code.google.com/p/wagic/issues/detail?id=76
-            if (!used[card] && amp->isReactingToClick(card) && amp->output->getConvertedCost() == 1)
+            if (!used[card] && amp->isReactingToClick(card) && amp->output->getConvertedCost() >= 1)
             {
                 result->add(amp->output);
                 used[card] = true;
@@ -771,7 +771,7 @@ int AIPlayer::effectBadOrGood(MTGCardInstance * card, int mode, TargetChooser * 
     return BAKA_EFFECT_DONTKNOW;
 }
 
-int AIPlayer::chooseTarget(TargetChooser * _tc, Player * forceTarget)
+int AIPlayer::chooseTarget(TargetChooser * _tc, Player * forceTarget,MTGCardInstance * Choosencard)
 {
     vector<Targetable *> potentialTargets;
     TargetChooser * tc = _tc;
@@ -780,11 +780,13 @@ int AIPlayer::chooseTarget(TargetChooser * _tc, Player * forceTarget)
     int checkOnly = 0;
     if (tc)
     {
+    if(!Choosencard)
         checkOnly = 1;
     }
     else
     {
-        tc = gameObs->getCurrentTargetChooser();
+            tc = gameObs->getCurrentTargetChooser();
+
     }
     if (!tc)
         return 0;
@@ -845,6 +847,35 @@ int AIPlayer::chooseTarget(TargetChooser * _tc, Player * forceTarget)
                 }
             }
         }
+        //targetting the stack
+        zone = playerZones->stack;
+        for (int k = 0; k < zone->nb_cards; k++)
+        {
+         MTGCardInstance* card = zone->cards[k];
+            if (!tc->alreadyHasTarget(card) && tc->canTarget(card) && nbtargets < 50)
+            {
+                if (checkOnly)
+                    return 1;
+                int multiplier = 1;
+                if (getStats() && getStats()->isInTop(card, 10))
+                {
+                    multiplier++;
+                    if (getStats()->isInTop(card, 5))
+                    {
+                        multiplier++;
+                        if (getStats()->isInTop(card, 3))
+                        {
+                            multiplier++;
+                        }
+                    }
+                }
+                for (int l = 0; l < multiplier; l++)
+                {
+                    potentialTargets.push_back(card);
+                    nbtargets++;
+                }
+            }
+        }
     }
     if (nbtargets)
     {
@@ -853,26 +884,28 @@ int AIPlayer::chooseTarget(TargetChooser * _tc, Player * forceTarget)
         switch (type)
         {
         case TARGET_CARD:
-        {
-            MTGCardInstance * card = ((MTGCardInstance *) potentialTargets[i]);
-            clickstream.push(NEW AIAction(card));
-            return 1;
-            break;
-        }
+            {
+                MTGCardInstance * card = ((MTGCardInstance *) potentialTargets[i]);
+                clickstream.push(NEW AIAction(card));
+                return 1;
+                break;
+            }
         case TARGET_PLAYER:
-        {
-            Player * player = ((Player *) potentialTargets[i]);
-            clickstream.push(NEW AIAction(player));
-            return 1;
-            break;
-        }
+            {
+                Player * player = ((Player *) potentialTargets[i]);
+                clickstream.push(NEW AIAction(player));
+                return 1;
+                break;
+            }
         }
     }
     //Couldn't find any valid target,
     //usually that's because we played a card that has bad side effects (ex: when X comes into play, return target land you own to your hand)
     //so we try again to choose a target in the other player's field...
     if (checkOnly)
+    {
         return 0;
+    }
     int cancel = gameObs->cancelCurrentAction();
     if (!cancel && !forceTarget)
         return chooseTarget(_tc, target->opponent());
@@ -1180,6 +1213,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
             if (tc)
             {
                 int hasTarget = (chooseTarget(tc));
+                if(tc)
                 delete tc;
                 if (!hasTarget)
                     continue;
@@ -1241,7 +1275,6 @@ void AIPlayerBaka::initTimer()
 {
     timer = 0.1f;
 }
-
 int AIPlayerBaka::computeActions()
 {
     GameObserver * g = GameObserver::GetInstance();
@@ -1256,121 +1289,160 @@ int AIPlayerBaka::computeActions()
     if (chooseTarget())
         return 1;
     int currentGamePhase = g->getCurrentGamePhase();
-    if (g->isInterrupting == this)
-    { // interrupting
-        selectAbility();
-        return 1;
+    static bool findingCard = false;
+    //this guard is put in place to prevent Ai from
+    //ever running computeActions() function WHILE its already doing so.
+    // Break if this happens in debug mode. If this happens, it's actually a bug
+    assert(!findingCard);
+    if (findingCard)
+    {//is already looking kick me out of this function!
+        return 0;
+    } 
+    if (p != this && (Player*)g->isInterrupting == this && g->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 1) 
+    {
+        findingCard = true;
+        CardDescriptor cd;
+        ManaCost * currentMana = getPotentialMana();
+        bool potential = false;
+        if (currentMana->getConvertedCost())
+        {
+            //if theres mana i can use there then potential is true.
+            potential = true;
+        }
+        //look for an instant of ability to interupt with
+        if((castrestrictedspell == false && nospellinstant == false)&&
+            (onlyonecast == false || castcount < 2) && (onlyoneinstant == false || castcount < 2))
+        {
+
+            if (!nextCardToPlay)
+            {
+                nextCardToPlay = FindCardToPlay(currentMana, "instant");
+            }
+            if (!nextCardToPlay)
+            {
+                selectAbility();
+            }
+        }
+        if (currentMana != NULL)
+            delete (currentMana);
+        if (nextCardToPlay)
+        {
+            if (potential)
+            {
+                tapLandsForMana(nextCardToPlay->getManaCost());
+            }
+            AIAction * a = NEW AIAction(nextCardToPlay);
+            clickstream.push(a);
+            findingCard = false;
+            nextCardToPlay = NULL;
+            return 1;
+        }
+        nextCardToPlay = NULL;
+        findingCard = false;
+        return 0;
     }
-    else if (p == this && g->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0)
+    else if(p == this && g->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0)
     { //standard actions
         CardDescriptor cd;
-
         switch (currentGamePhase)
         {
         case Constants::MTG_PHASE_FIRSTMAIN:
         case Constants::MTG_PHASE_SECONDMAIN:
-        {
-
-            bool potential = false;
-            ManaCost * currentMana = getPotentialMana();
-            if (currentMana->getConvertedCost())
             {
-                //if theres mana i can use there then potential is true.
-                potential = true;
-            }
-            nextCardToPlay = FindCardToPlay(currentMana, "land");
-            selectAbility();
-            //look for the most expensive creature we can afford
-            if (castrestrictedspell == false && nospellinstant == false)
-            {
-                if (onlyonecast == false || castcount < 2)
+                ManaCost * currentMana = getPotentialMana();
+                bool potential = false;
+                if (currentMana->getConvertedCost())
                 {
-                    if (onlyoneinstant == false || castcount < 2)
+                    //if theres mana i can use there then potential is true.
+                    potential = true;
+                }
+                nextCardToPlay = FindCardToPlay(currentMana, "land");
+                selectAbility();
+                //look for the most expensive creature we can afford
+                if((castrestrictedspell == false && nospellinstant == false)&&
+                    (onlyonecast == false || castcount < 2)&&(onlyoneinstant == false || castcount < 2))
+                {
+                    if (castrestrictedcreature == false && nocreatureinstant == false)
                     {
-                        if (castrestrictedcreature == false && nocreatureinstant == false)
-                        {
-                            if (!nextCardToPlay)
-                            {
-                                nextCardToPlay = FindCardToPlay(currentMana, "creature");
-                            }
-                        }
-                        //Let's Try an enchantment maybe ?
                         if (!nextCardToPlay)
                         {
-                            nextCardToPlay = FindCardToPlay(currentMana, "enchantment");
-                        }
-                        if (!nextCardToPlay)
-                        {
-                            nextCardToPlay = FindCardToPlay(currentMana, "artifact");
-                        }
-                        if (!nextCardToPlay)
-                        {
-                            nextCardToPlay = FindCardToPlay(currentMana, "sorcery");
-                        }
-                        if (!nextCardToPlay)
-                        {
-                            nextCardToPlay = FindCardToPlay(currentMana, "instant");
-                        }
-                        if (!nextCardToPlay)
-                        {
-                            selectAbility();
+                            nextCardToPlay = FindCardToPlay(currentMana, "creature");
                         }
                     }
-                }
-
-            }
-            if (currentMana != NULL)
-                delete (currentMana);
-            if (nextCardToPlay)
-            {
-                if (potential)
-                {
-                    /////////////////////////
-                    //had to force this on Ai other wise it would pay nothing but 1 color for a sunburst card.
-                    //this does not teach it to use manaproducer more effectively, it simply allow it to use the manaproducers it does understand better on sunburst by force.
-                    if (nextCardToPlay->has(Constants::SUNBURST))
+                    //Let's Try an enchantment maybe ?
+                    if (!nextCardToPlay)
                     {
-                        ManaCost * SunCheck = manaPool;
-                        SunCheck = getPotentialMana();
-                        for (int i = Constants::MTG_NB_COLORS - 1; i > 0; i--)
+                        nextCardToPlay = FindCardToPlay(currentMana, "enchantment");
+                    }
+                    if (!nextCardToPlay)
+                    {
+                        nextCardToPlay = FindCardToPlay(currentMana, "artifact");
+                    }
+                    if (!nextCardToPlay)
+                    {
+                        nextCardToPlay = FindCardToPlay(currentMana, "sorcery");
+                    }
+                    if (!nextCardToPlay)
+                    {
+                        nextCardToPlay = FindCardToPlay(currentMana, "instant");
+                    }
+                    if (!nextCardToPlay)
+                    {
+                        selectAbility();
+                    }
+                }
+                if (currentMana != NULL)
+                    delete (currentMana);
+                if (nextCardToPlay)
+                {
+                    if (potential)
+                    {
+                        /////////////////////////
+                        //had to force this on Ai other wise it would pay nothing but 1 color for a sunburst card.
+                        //this does not teach it to use manaproducer more effectively, it simply allow it to use the manaproducers it does understand better on sunburst by force.
+                        if (nextCardToPlay->has(Constants::SUNBURST))
                         {
-                            //sunburst for Ai
-                            if (SunCheck->hasColor(i))
+                            ManaCost * SunCheck = manaPool;
+                            SunCheck = getPotentialMana();
+                            for (int i = Constants::MTG_NB_COLORS - 1; i > 0; i--)
                             {
-                                if (nextCardToPlay->getManaCost()->hasColor(i) > 0)
-                                {//do nothing if the card already has this color.
-                                }
-                                else
+                                //sunburst for Ai
+                                if (SunCheck->hasColor(i))
                                 {
-                                    if (nextCardToPlay->sunburst < nextCardToPlay->getManaCost()->getConvertedCost())
+                                    if (nextCardToPlay->getManaCost()->hasColor(i) > 0)
+                                    {//do nothing if the card already has this color.
+                                    }
+                                    else
                                     {
-                                        nextCardToPlay->getManaCost()->add(i, 1);
-                                        nextCardToPlay->getManaCost()->remove(0, 1);
-                                        nextCardToPlay->sunburst += 1;
+                                        if (nextCardToPlay->sunburst < nextCardToPlay->getManaCost()->getConvertedCost())
+                                        {
+                                            nextCardToPlay->getManaCost()->add(i, 1);
+                                            nextCardToPlay->getManaCost()->remove(0, 1);
+                                            nextCardToPlay->sunburst += 1;
+                                        }
                                     }
                                 }
                             }
+                            delete (SunCheck);
                         }
-                        delete (SunCheck);
+                        /////////////////////////
+                        tapLandsForMana(nextCardToPlay->getManaCost());
                     }
-                    /////////////////////////
-                    tapLandsForMana(nextCardToPlay->getManaCost());
+                    AIAction * a = NEW AIAction(nextCardToPlay);
+                    clickstream.push(a);
+                    return 1;
                 }
-                AIAction * a = NEW AIAction(nextCardToPlay);
-                clickstream.push(a);
-                return 1;
+                else
+                {
+                    selectAbility();
+                }
+                if (p->getManaPool()->getConvertedCost() > 0 && Checked == false)//not the best thing ever, but allows the Ai a chance to double check if its mana pool has something before moving on, atleast one time.
+                {
+                    Checked = true;
+                    computeActions();
+                }
+                break;
             }
-            else
-            {
-                selectAbility();
-            }
-            if (p->getManaPool()->getConvertedCost() > 0 && Checked == false)//not the best thing ever, but allows the Ai a chance to double check if its mana pool has something before moving on, atleast one time.
-            {
-                Checked = true;
-                computeActions();
-            }
-            break;
-        }
         case Constants::MTG_PHASE_COMBATATTACKERS:
             chooseAttackers();
             break;

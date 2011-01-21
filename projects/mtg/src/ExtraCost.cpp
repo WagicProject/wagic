@@ -79,7 +79,13 @@ int LifeCost::doPay()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (target)
     {
+        _target->controller()->thatmuch = 1;
+        WEvent * lifed = NULL;
+        lifed = NEW WEventLife(_target->controller(),-1,1);
+        GameObserver * game = GameObserver::GetInstance();
+        game->receiveEvent(lifed);
         _target->controller()->life -= 1;
+        _target->controller()->lifeLostThisTurn += 1;
         target = NULL;
         if (tc)
             tc->initTargets();
@@ -261,6 +267,20 @@ TapTargetCost * TapTargetCost::clone() const
 TapTargetCost::TapTargetCost(TargetChooser *_tc) :
     ExtraCost("Tap Target", _tc)
 {
+}
+
+int TapTargetCost::isPaymentSet()
+{
+    if (target && target->isTapped())
+    {
+        tc->removeTarget(target);
+        target->isExtraCostTarget = false;
+        target = NULL;
+        return 0;
+    }
+    if (target)
+        return 1;
+    return 0;
 }
 
 int TapTargetCost::doPay()
@@ -563,8 +583,19 @@ int ExtraCosts::tryToSetPayment(MTGCardInstance * card)
 {
     for (size_t i = 0; i < costs.size(); i++)
     {
-        if (int result = costs[i]->setPayment(card))
-            return result;
+        if(!costs[i]->isPaymentSet())
+        {
+            for(size_t k = 0; k < costs.size(); k++)
+            {
+                if(card == costs[k]->target)
+                    return 0;
+            }
+            if (int result = costs[i]->setPayment(card))
+            {
+                card->isExtraCostTarget = true;
+                return result;
+            }
+        }
     }
     return 0;
 }
@@ -584,7 +615,10 @@ int ExtraCosts::canPay()
     for (size_t i = 0; i < costs.size(); i++)
     {
         if (!costs[i]->canPay())
+        {
+            costs[i]->target->isExtraCostTarget = false;
             return 0;
+        }
     }
     return 1;
 }
@@ -594,6 +628,8 @@ int ExtraCosts::doPay()
     int result = 0;
     for (size_t i = 0; i < costs.size(); i++)
     {
+    if(costs[i]->target)
+        costs[i]->target->isExtraCostTarget = false;
         result += costs[i]->doPay();
     }
     return result;

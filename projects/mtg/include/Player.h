@@ -41,6 +41,7 @@ public:
     bool onlyoneboth;
     bool bothrestrictedspell;
     bool bothrestrictedcreature;
+    bool isPoisoned;
     MTGPlayerCards * game;
     string deckFile;
     string deckFileSmall;

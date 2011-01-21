@@ -18,7 +18,6 @@ public:
     OtherAbilitiesEventReceiver(int _id);
     OtherAbilitiesEventReceiver * clone() const;
 };
-
 class MTGPutInPlayRule: public MTGAbility
 {
 public:
@@ -37,10 +36,11 @@ public:
 class MTGAlternativeCostRule: public MTGAbility
 {
 public:
+ 
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana, ManaCost *alternateManaCost);
 
-    int reactToClick(MTGCardInstance * card, ManaCost * alternateManaCost, MTGGameZone * originatingZone, int paymentType = ManaCost::MANA_PAID);
+    int reactToClick(MTGCardInstance * card, ManaCost * alternateManaCost, int paymentType = ManaCost::MANA_PAID);
     int reactToClick(MTGCardInstance * card);
 
     int testDestroy();
@@ -71,6 +71,7 @@ public:
 class MTGFlashBackRule: public MTGAlternativeCostRule
 {
 public:
+
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     int reactToClick(MTGCardInstance * card);
     int testDestroy();
@@ -98,9 +99,26 @@ public:
     virtual MTGRetraceRule * clone() const;
 };
 
+class MTGMorphCostRule: public MTGAbility
+{
+public:
+ 
+    int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
+    int reactToClick(MTGCardInstance * card);
+    int testDestroy();
+    virtual ostream& toString(ostream& out) const;
+    MTGMorphCostRule(int _id);
+    const char * getMenuText()
+    {
+        return "Play Morphed";
+    }
+    virtual MTGMorphCostRule * clone() const;
+};
+
 class MTGAttackRule: public MTGAbility, public Limitor
 {
 public:
+ 
     virtual bool select(Target*);
     virtual bool greyout(Target*);
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);

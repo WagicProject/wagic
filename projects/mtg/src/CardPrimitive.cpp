@@ -29,6 +29,8 @@ CardPrimitive::CardPrimitive(CardPrimitive * source)
 
     power = source->power;
     toughness = source->toughness;
+    restriction = source->restriction;
+    otherrestriction = source->otherrestriction;
 
     magicText = source->magicText;
     for (map<string, string>::const_iterator it = source->magicTexts.begin(); it != source->magicTexts.end(); ++it)
@@ -50,6 +52,7 @@ int CardPrimitive::init()
     magicTexts.clear();
     spellTargetType = "";
     alias = 0;
+    bool hasRestriction = false;
     return 1;
 }
 
@@ -81,6 +84,24 @@ bool CardPrimitive::isLand()
 bool CardPrimitive::isSpell()
 {
     return (!isCreature() && !isLand());
+}
+
+void CardPrimitive::setRestrictions(int _restriction)
+{
+    restriction = _restriction;
+}
+int CardPrimitive::getRestrictions()
+{
+    return restriction;
+}
+
+void CardPrimitive::setOtherRestrictions(string _restriction)
+{
+    otherrestriction = _restriction;
+}
+void CardPrimitive::getOtherRestrictions()
+{
+    otherrestriction;
 }
 
 void CardPrimitive::setColor(string _color, int removeAllOthers)

@@ -141,6 +141,7 @@ void CardGui::Render()
 
     bool alternate = true;
     JQuad * quad = WResourceManager::Instance()->RetrieveCard(card, CACHE_THUMB);
+
 #if defined (WIN32) || defined (LINUX)
     //On pcs we render the big image if the thumbnail is not available
     if (!quad) quad = WResourceManager::Instance()->RetrieveCard(card);
@@ -160,7 +161,13 @@ void CardGui::Render()
         shadow->SetColor(ARGB(static_cast<unsigned char>(actA)/2,255,255,255));
         renderer->RenderQuad(shadow, actX + (actZ - 1) * 15, actY + (actZ - 1) * 15, actT, 28 * actZ / 16, 40 * actZ / 16);
     }
-
+    JQuad* extracostshadow = NULL;
+    if(card->isExtraCostTarget == true)
+    {
+        extracostshadow = WResourceManager::Instance()->GetQuad("extracostshadow");
+        extracostshadow->SetColor(ARGB(static_cast<unsigned char>(actA)/2,100,0,0));
+        renderer->RenderQuad(extracostshadow, actX + (actZ - 1) * 15, actY + (actZ - 1) * 15, actT, 28 * actZ / 16, 40 * actZ / 16);
+    }
     if (quad)
     {
         quad->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));
@@ -185,7 +192,7 @@ void CardGui::Render()
             icon = WResourceManager::Instance()->GetQuad("c_red");
         else if (card->hasSubtype("island"))
             icon = WResourceManager::Instance()->GetQuad("c_blue");
-
+    
         if (icon)
         {
             icon->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));
@@ -194,6 +201,14 @@ void CardGui::Render()
         }
 
     }
+    JQuad * mor = NULL;
+    if(card->isMorphed && !alternate)
+    {
+        mor = WResourceManager::Instance()->GetQuad("morph");
+        mor->SetColor(ARGB(255,255,255,255));
+        renderer->RenderQuad(mor, actX, actY, actT,scale, scale);
+    }
+    
     //draws the numbers power/toughness
     if (card->isCreature())
     {
@@ -236,7 +251,6 @@ void CardGui::Render()
         shadow->SetColor(ARGB(200,255,255,255));
         renderer->RenderQuad(shadow, actX, actY, actT, (28 * actZ + 1) / 16, 40 * actZ / 16);
     }
-
     PlayGuiObject::Render();
 }
 
@@ -552,6 +566,7 @@ void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
             break;
         }
     }
+
     if (q && q->mTex)
     {
         q->SetHotSpot(static_cast<float> (q->mTex->mWidth / 2), static_cast<float> (q->mTex->mHeight / 2));
