@@ -324,10 +324,10 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card)
 	if (playerMana->canAfford( alternateCost ) )
 		card->paymenttype = MTGAbility::ALTERNATIVE_COST;
 
-    return reactToClick(card, card->getManaCost()->alternative, player->game->hand, ManaCost::MANA_PAID_WITH_ALTERNATIVE);
+    return reactToClick(card, card->getManaCost()->alternative, ManaCost::MANA_PAID_WITH_ALTERNATIVE);
 }
 
-int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alternateCost, MTGGameZone * originatingZone, int alternateCostType){
+int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alternateCost, int alternateCostType){
 
     Player * player = game->currentlyActing();
     ManaCost * playerMana = player->getManaPool();
@@ -458,7 +458,7 @@ int MTGBuyBackRule::reactToClick(MTGCardInstance * card)
     if (playerMana->canAfford(alternateCost))
         card->paymenttype = MTGAbility::BUYBACK_COST;
 
-    return MTGAlternativeCostRule::reactToClick(card, alternateCost, player->game->hand, ManaCost::MANA_PAID_WITH_BUYBACK);
+    return MTGAlternativeCostRule::reactToClick(card, alternateCost, ManaCost::MANA_PAID_WITH_BUYBACK);
 
 }
 
@@ -510,7 +510,7 @@ int MTGFlashBackRule::reactToClick(MTGCardInstance * card)
     if ( playerMana->canAfford(alternateCost) )
         card->paymenttype = MTGAbility::FLASHBACK_COST;
 
-    return MTGAlternativeCostRule::reactToClick(card, alternateCost, player->game->graveyard, ManaCost::MANA_PAID_WITH_FLASHBACK);
+    return MTGAlternativeCostRule::reactToClick(card, alternateCost, ManaCost::MANA_PAID_WITH_FLASHBACK);
 
 }
 
@@ -568,7 +568,7 @@ int MTGRetraceRule::reactToClick(MTGCardInstance * card)
     if (playerMana->canAfford(alternateCost))
         card->paymenttype = MTGAbility::RETRACE_COST;
 
-    return MTGAlternativeCostRule::reactToClick(card, alternateCost, player->game->graveyard, ManaCost::MANA_PAID_WITH_RETRACE);
+    return MTGAlternativeCostRule::reactToClick(card, alternateCost, ManaCost::MANA_PAID_WITH_RETRACE);
 }
 
 
