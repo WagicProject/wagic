@@ -40,7 +40,7 @@ public:
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana, ManaCost *alternateManaCost);
 
-    int reactToClick(MTGCardInstance * card, ManaCost * alternateManaCost, int paymentType = ManaCost::MANA_PAID);
+    int reactToClick(MTGCardInstance * card, ManaCost * alternateManaCost, MTGGameZone * originatingZone, int paymentType = ManaCost::MANA_PAID);
     int reactToClick(MTGCardInstance * card);
 
     int testDestroy();
