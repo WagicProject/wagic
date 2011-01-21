@@ -45,8 +45,7 @@ class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable {
   Pos* view;
   int X;
   int XX;
-  int boughtback;
-  int flashedback;
+  int alternateCostPaid[ManaCost::MANA_PAID_WITH_RETRACE + 1]; 
   int paymenttype;
   int frozen;
   int sunburst;

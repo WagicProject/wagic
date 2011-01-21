@@ -122,8 +122,10 @@ void MTGCardInstance::initMTGCI()
     notblocked = 0;
     sunburst = NULL;
     equipment = NULL;
-    boughtback = 0;
-    flashedback = 0;
+    
+    for (int i = 0; i < ManaCost::MANA_PAID_WITH_RETRACE +1; i++)
+        alternateCostPaid[i] = 0;
+
     paymenttype = MTGAbility::PUT_INTO_PLAY;
     reduxamount = 0;
     summoningSickness = 1;

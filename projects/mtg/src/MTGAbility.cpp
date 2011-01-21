@@ -2827,11 +2827,11 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
     if (card->hasType("instant") || card->hasType("sorcery"))
     {
         MTGPlayerCards * zones = card->controller()->game;
-        if (card->boughtback > 0)
+        if (card->alternateCostPaid[ManaCost::MANA_PAID_WITH_BUYBACK] > 0)
         {
             zones->putInZone(card, zones->stack, zones->hand);
         }
-        else if (card->flashedback > 0)
+        else if (card->alternateCostPaid[ManaCost::MANA_PAID_WITH_FLASHBACK] > 0)
         {
             zones->putInZone(card, zones->stack, zones->exile);
         }

@@ -8,6 +8,7 @@
 #include "Counters.h"
 #include "WEvent.h"
 #include "CardSelector.h"
+#include "ManaCost.h"
 
 class OtherAbilitiesEventReceiver: public MTGAbility
 {
@@ -37,7 +38,11 @@ class MTGAlternativeCostRule: public MTGAbility
 {
 public:
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
+    int isReactingToClick(MTGCardInstance * card, ManaCost * mana, ManaCost *alternateManaCost);
+    
+    int reactToClick(MTGCardInstance * card, ManaCost * alternateManaCost, int paymentType = ManaCost::MANA_PAID);
     int reactToClick(MTGCardInstance * card);
+  
     int testDestroy();
     virtual ostream& toString(ostream& out) const;
     MTGAlternativeCostRule(int _id);
@@ -48,7 +53,7 @@ public:
     virtual MTGAlternativeCostRule * clone() const;
 };
 
-class MTGBuyBackRule: public MTGAbility
+class MTGBuyBackRule: public MTGAlternativeCostRule
 {
 public:
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
@@ -63,7 +68,7 @@ public:
     virtual MTGBuyBackRule * clone() const;
 };
 
-class MTGFlashBackRule: public MTGAbility
+class MTGFlashBackRule: public MTGAlternativeCostRule
 {
 public:
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
@@ -78,7 +83,7 @@ public:
     virtual MTGFlashBackRule * clone() const;
 };
 
-class MTGRetraceRule: public MTGAbility
+class MTGRetraceRule: public MTGAlternativeCostRule
 {
 public:
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);

@@ -21,6 +21,7 @@ class ManaCost{
   
  public:
    enum{
+     MANA_UNPAID = 0,
      MANA_PAID = 1,
      MANA_PAID_WITH_KICKER = 2,
 	 MANA_PAID_WITH_ALTERNATIVE = 3,
