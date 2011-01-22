@@ -151,10 +151,10 @@ AADamager::AADamager(int _id, MTGCardInstance * _source, Targetable * _target,WP
 
     int AADamager::resolve()
     {
-        RefreshedDamage = NEW WParsedInt(d, NULL, (MTGCardInstance *)source);
         Damageable * _target = (Damageable *) getTarget();
         if (_target)
         {
+            RefreshedDamage = NEW WParsedInt(d, NULL, (MTGCardInstance *)source);
             game->mLayers->stackLayer()->addDamage(source, _target, RefreshedDamage->getValue());
             game->mLayers->stackLayer()->resolve();
             delete RefreshedDamage;
@@ -190,11 +190,11 @@ RefreshedNbcards = NULL;
     int AADepleter::resolve()
     {
 
-        RefreshedNbcards = NEW WParsedInt(nbcardsStr, NULL, source);
         Targetable * _target = getTarget();
         Player * player;
         if (_target)
         {
+            RefreshedNbcards = NEW WParsedInt(nbcardsStr, NULL, source);
             if (_target->typeAsTarget() == TARGET_CARD)
             {
                 player = ((MTGCardInstance *) _target)->controller();
@@ -209,8 +209,8 @@ RefreshedNbcards = NULL;
                 if (library->nb_cards)
                     player->game->putInZone(library->cards[library->nb_cards - 1], library, player->game->graveyard);
             }
+            delete RefreshedNbcards;
         }
-        delete RefreshedNbcards;
         return 1;
     }
 
@@ -657,11 +657,11 @@ AADrawer::AADrawer(int _id, MTGCardInstance * card, Targetable * _target, ManaCo
 
     int AADrawer::resolve()
     {
-        RefreshedNbcards = NEW WParsedInt(nbcardsStr, NULL, source);
         Targetable * _target = getTarget();
         Player * player;
         if (_target)
         {
+            RefreshedNbcards = NEW WParsedInt(nbcardsStr, NULL, source);
             if (_target->typeAsTarget() == TARGET_CARD)
             {
                 player = ((MTGCardInstance *) _target)->controller();
@@ -672,8 +672,8 @@ AADrawer::AADrawer(int _id, MTGCardInstance * card, Targetable * _target, ManaCo
             }
             game->mLayers->stackLayer()->addDraw(player, RefreshedNbcards->getValue());
             game->mLayers->stackLayer()->resolve();
+            delete RefreshedNbcards;
         }
-        delete RefreshedNbcards;
         return 1;
     }
 
@@ -845,7 +845,7 @@ AAMorph * AAMorph::clone() const
     return a;
 }
 // AADYNAMIC: dynamic ability builder
-AADYNAMIC::AADYNAMIC(int id, MTGCardInstance * card, Damageable * _target,int type,int effect,int who,int amountsource,MTGAbility * storedAbility, ManaCost * _cost, int doTap) :
+AADynamic::AADynamic(int id, MTGCardInstance * card, Damageable * _target,int type,int effect,int who,int amountsource,MTGAbility * storedAbility, ManaCost * _cost, int doTap) :
 ActivatedAbility(id, card, _cost, 0, doTap),type(type),effect(effect),who(who),amountsource(amountsource),eachother(eachother),storedAbility(storedAbility)
 {
     target = _target;
@@ -859,7 +859,7 @@ ActivatedAbility(id, card, _cost, 0, doTap),type(type),effect(effect),who(who),a
     clonedStored = NULL;
 }
 
-int AADYNAMIC::resolve()
+int AADynamic::resolve()
 {
     Damageable * _target = (Damageable *) target;
     Damageable * secondaryTarget = NULL;
@@ -1144,7 +1144,7 @@ int AADYNAMIC::resolve()
     return 0;
 }
 
-int AADYNAMIC::activateStored()
+int AADynamic::activateStored()
 {
     clonedStored = storedAbility->clone();
     clonedStored->target = target;
@@ -1160,7 +1160,7 @@ int AADYNAMIC::activateStored()
     return 1;
 }
 
-const char * AADYNAMIC::getMenuText()
+const char * AADynamic::getMenuText()
 {
     if (menu.size())
     {
@@ -1233,14 +1233,14 @@ const char * AADYNAMIC::getMenuText()
     return menuText;
 }
 
-AADYNAMIC * AADYNAMIC::clone() const
+AADynamic * AADynamic::clone() const
 {
-    AADYNAMIC * a = NEW AADYNAMIC(*this);
+    AADynamic * a = NEW AADynamic(*this);
     a->isClone = 1;
     return a;
 }
 
-AADYNAMIC::~AADYNAMIC()
+AADynamic::~AADynamic()
 {
     if (!isClone)
         SAFE_DELETE(storedAbility);
@@ -1294,7 +1294,6 @@ AALifer * AALifer::clone() const
 
 AALifer::~AALifer()
 {
-if(life)
     SAFE_DELETE(life);
 }
 
@@ -1319,15 +1318,14 @@ int AALifeSet::resolve()
         WEvent * lifed = NULL;
         if(lifeDiff < 0)
         {
-            _target->thatmuch = abs(lifeDiff);
             _target->lifeLostThisTurn += abs(lifeDiff);
             lifed = NEW WEventLife((Player*)_target,lifeDiff,1);
         }
         else
         {
-            _target->thatmuch = abs(lifeDiff);
             lifed = NEW WEventLife((Player*)_target,lifeDiff,0);
         }
+        _target->thatmuch = abs(lifeDiff);
         GameObserver * game = GameObserver::GetInstance();
         game->receiveEvent(lifed);
         _target->life = life->getValue();
@@ -1692,6 +1690,7 @@ AARandomDiscarder * AARandomDiscarder::clone() const
 {
     AARandomDiscarder * a = NEW AARandomDiscarder(*this);
     a->isClone = 1;
+    a->nbcards = NEW WParsedInt(nbcardsStr, NULL, source);
     return a;
 }
 AARandomDiscarder ::~AARandomDiscarder ()
@@ -2408,7 +2407,7 @@ int AForeverTransformer::addToGame()
         }
         for (it = types.begin(); it != types.end(); it++)
         {
-            if(remove == true)
+            if(remove)
             {
             _target->removeType(0,1);
             _target->removeType(1,1);
@@ -3015,6 +3014,8 @@ void ABlink::Update(float dt)
                     this->forceDestroy = 1;
                     return;
                 }
+                if(!tc->validTargetsExist())
+                return;
             }
         }
         spell->source->power = spell->source->origpower;
@@ -3076,7 +3077,6 @@ void ABlink::resolveBlink()
                         spell->source->target = inplay->cards[i];
                         spell->getNextCardTarget();
                         spell->resolve();
-
                         delete spell;
                         delete tc;
                         this->forceDestroy = 1;
@@ -3087,6 +3087,7 @@ void ABlink::resolveBlink()
             spell->source->power = spell->source->origpower;
             spell->source->toughness = spell->source->origtoughness;
             spell->resolve();
+            delete tc;
             delete spell;
             this->forceDestroy = 1;
             Blinked = NULL;

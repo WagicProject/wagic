@@ -3398,7 +3398,7 @@ public:
     AAMorph * clone() const;
 };
 /* dynamic ability build*/
-class AADYNAMIC: public ActivatedAbility
+class AADynamic: public ActivatedAbility
 {
 public:
 int type;
@@ -3415,12 +3415,12 @@ MTGAbility * storedAbility;
 MTGAbility * clonedStored;
 string menu;
 
-    AADYNAMIC(int id, MTGCardInstance * card, Damageable * _target,int type = 0,int effect = 0,int who = 0,int amountsource = 1,MTGAbility * storedAbility = NULL, ManaCost * _cost = NULL, int doTap = 0);
+    AADynamic(int id, MTGCardInstance * card, Damageable * _target,int type = 0,int effect = 0,int who = 0,int amountsource = 1,MTGAbility * storedAbility = NULL, ManaCost * _cost = NULL, int doTap = 0);
     int resolve();
     int activateStored();
     const char * getMenuText();
-    AADYNAMIC * clone() const;
-    ~AADYNAMIC();
+    AADynamic * clone() const;
+    ~AADynamic();
 };
 
 /* switch power and toughness of target */

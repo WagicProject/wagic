@@ -1472,7 +1472,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         {
         stored = parseMagicLine(sAbility, id, spell, card);
         }
-        MTGAbility * a = NEW AADYNAMIC(id, card, target,type,effect,who,amountsource,stored);
+        MTGAbility * a = NEW AADynamic(id, card, target,type,effect,who,amountsource,stored);
         a->oneShot = 1;
         return a;
    }
