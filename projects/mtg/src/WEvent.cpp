@@ -161,11 +161,8 @@ int WEventDamage::getValue()
 
 Targetable * WEventLife::getTarget(int target)
 {
-    switch (target)
+    if (target)
     {
-    case TARGET_TO:
-        return player;
-    case TARGET_FROM:
         return player;
     }
     return NULL;

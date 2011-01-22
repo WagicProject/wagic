@@ -52,7 +52,7 @@ int CardPrimitive::init()
     magicTexts.clear();
     spellTargetType = "";
     alias = 0;
-    bool hasRestriction = false;
+    hasRestriction = false;
     return 1;
 }
 

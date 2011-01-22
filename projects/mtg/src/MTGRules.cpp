@@ -46,7 +46,7 @@ if(!allowedToCast(card,player))
             return 1;
         }
     }
-    else if ((card->hasType("instant")) || card->basicAbilities[Constants::FLASH]
+    else if ((card->hasType("instant")) || card->has(Constants::FLASH)
         || (player == currentPlayer && !game->isInterrupting
         && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN
         || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN))

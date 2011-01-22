@@ -2798,7 +2798,7 @@ int AbilityFactory::computeX(Spell * spell, MTGCardInstance * card)
 {
     if (spell)
         return spell->computeX(card);
-        if(card) return card->X;
+    if(card) return card->X;
     return 0;
 }
 
@@ -2807,7 +2807,8 @@ int AbilityFactory::computeXX(Spell * spell, MTGCardInstance * card)
 {
     if (spell)
         return spell->computeXX(card);
-                if(card) return card->XX;
+    if(card)
+        return card->XX;
     return 0;
 }
 
