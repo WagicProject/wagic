@@ -2901,7 +2901,11 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
             card->types = card->model->data->types;
             for (int i = 0; i < Constants::MTG_NB_COLORS; ++i)
                 card->colors[i] = card->model->data->colors[i];
-            card->basicAbilities = card->model->data->basicAbilities;
+            for (map<int, int>::const_iterator it = card->model->data->basicAbilities.begin(); it != card->model->data->basicAbilities.end(); ++it)
+            {
+                int i = it->first;
+                card->basicAbilities[i] += card->model->data->basicAbilities[i];
+            }
             ManaCost * copyCost = card->model->data->getManaCost();
             card->getManaCost()->copy(copyCost);
             magicText = card->model->data->magicText;

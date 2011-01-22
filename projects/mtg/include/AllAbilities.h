@@ -2631,7 +2631,7 @@ public:
             if(ability->aType == MTGAbility::STANDARD_PREVENT)
             aType = MTGAbility::STANDARD_PREVENT;
         }
-
+        
     int canBeInList(Player *p)
     {
         if (tc->canTarget(p)) return 1;
@@ -2642,7 +2642,8 @@ public:
     {
         if(card->isPhased || source->isPhased)
             return 0;
-        if ((includeSelf || card != source) && tc->canTarget(card)) return 1;
+        if ((includeSelf || card != source) && tc->canTarget(card)) 
+        return 1;
         return 0;
     }
 
