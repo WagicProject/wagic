@@ -223,7 +223,7 @@ public:
         if(source->isPhased) return 0;
         WEventZoneChange * e = dynamic_cast<WEventZoneChange*> (event);
         if (!e) return 0;
-        if(sourceUntapped == true && source->isTapped() == 1)
+        if(sourceUntapped && source->isTapped() == 1)
             return 0;
         if(activeTrigger == false)
             return 0;
@@ -239,7 +239,7 @@ public:
         {
             return 0;
         }
-        if(once == true && activeTrigger == true)
+        if(once && activeTrigger)
             activeTrigger = false;
             return 1;
     }
@@ -437,7 +437,7 @@ public:
         if(source->isPhased) return 0;
         WEventCardAttacked * e = dynamic_cast<WEventCardAttacked *> (event);
         if (!e) return 0;
-        if (sourceUntapped == true && source->isTapped() == 1)
+        if (sourceUntapped  && source->isTapped() == 1)
         return 0;
         if (e->card->didattacked < 1) return 0;
         if (!tc->canTarget(e->card)) return 0;
@@ -522,7 +522,7 @@ public:
         //if(e->card->didblocked < 1) return 0;
         if (fromTc && !fromTc->canTarget(e->card->getNextOpponent())) return 0;
         if (!tc->canTarget(e->card)) return 0;
-        if(once == true && activeTrigger == true)
+        if(once  && activeTrigger )
             activeTrigger = false;
         return 1;
     }
@@ -668,7 +668,7 @@ public:
         if(source->isPhased) return 0;
         WEventDamage * e = dynamic_cast<WEventDamage *> (event);
         if (!e) return 0;
-        if (sourceUntapped == true && source->isTapped() == 1)
+        if (sourceUntapped  && source->isTapped() == 1)
             return 0;
         if (!tc->canTarget(e->damage->target)) return 0;
         if (fromTc && !fromTc->canTarget(e->damage->source)) return 0;
@@ -715,7 +715,7 @@ public:
         if(source->isPhased) return 0;
         WEventLife * e = dynamic_cast<WEventLife *> (event);
         if (!e) return 0;
-        if (sourceUntapped == true && source->isTapped() == 1)
+        if (sourceUntapped  && source->isTapped() == 1)
         return 0;
         if (!tc->canTarget(e->player)) return 0;
         if (fromTc && !fromTc->canTarget(e->player)) return 0;
@@ -5737,7 +5737,7 @@ public:
         {
             WEventDamage * e = (WEventDamage *) event;
             Damage * d = e->damage;
-            if (combatonly == true && e->damage->typeOfDamage != DAMAGE_COMBAT) 
+            if (combatonly && e->damage->typeOfDamage != DAMAGE_COMBAT) 
                 return 0;
             MTGCardInstance * card = d->source;
             if (d->damage > 0 && card && (card == source || card == source->target))

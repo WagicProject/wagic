@@ -110,7 +110,7 @@ bool AIPlayer::tapLandsForMana(ManaCost * cost, MTGCardInstance * target)
             MTGCardInstance * card = amp->source;
             if (card == target)
                 used[card] = true; //http://code.google.com/p/wagic/issues/detail?id=76
-            if (!used[card] && amp->isReactingToClick(card) && amp->output->getConvertedCost() == 1)
+            if (!used[card] && amp->isReactingToClick(card) && amp->output->getConvertedCost() >= 1)
             {
                 used[card] = true;
                 int doTap = 1;
@@ -291,7 +291,7 @@ int AIAction::getEfficiency()
         {
             if ((target->defenser || target->blockers.size()) && target->preventable < target->getNextOpponent()->power)
                 NeedPreventing = true;
-        if (p == target->controller() && target->controller()->isAI() && NeedPreventing == true && !(target->getNextOpponent()->has(Constants::DEATHTOUCH)
+        if (p == target->controller() && target->controller()->isAI() && NeedPreventing  && !(target->getNextOpponent()->has(Constants::DEATHTOUCH)
                 || target->getNextOpponent()->has(Constants::WITHER)))
         {
             efficiency = 20 * (target->DangerRanking());//increase this chance to be used in combat if the creature blocking/blocked could kill the creature this chance is taking into consideration how good the creature is, best creature will always be the first "saved"..
@@ -1189,15 +1189,15 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
     {
         if (!CanHandleCost(card->getManaCost()))
             continue;
-        if (card->hasType(Subtypes::TYPE_CREATURE) && this->castrestrictedcreature == true && this->castrestrictedspell == true)
+        if (card->hasType(Subtypes::TYPE_CREATURE) && this->castrestrictedcreature  && this->castrestrictedspell )
             continue;
-        if (card->hasType(Subtypes::TYPE_ENCHANTMENT) && this->castrestrictedspell == true)
+        if (card->hasType(Subtypes::TYPE_ENCHANTMENT) && this->castrestrictedspell )
             continue;
-        if (card->hasType(Subtypes::TYPE_ARTIFACT) && this->castrestrictedspell == true)
+        if (card->hasType(Subtypes::TYPE_ARTIFACT) && this->castrestrictedspell )
             continue;
-        if (card->hasType(Subtypes::TYPE_SORCERY) && this->castrestrictedspell == true)
+        if (card->hasType(Subtypes::TYPE_SORCERY) && this->castrestrictedspell )
             continue;
-        if (card->hasType(Subtypes::TYPE_INSTANT) && this->castrestrictedspell == true)
+        if (card->hasType(Subtypes::TYPE_INSTANT) && this->castrestrictedspell )
             continue;
         if (card->hasType(Subtypes::TYPE_LAND) && !this->canPutLandsIntoPlay)
             continue;

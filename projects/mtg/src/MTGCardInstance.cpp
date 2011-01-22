@@ -209,7 +209,7 @@ void MTGCardInstance::initMTGCI()
         isBlueAndGreen = 1;
     if(this->hasColor(Constants::MTG_COLOR_RED) && this->hasColor(Constants::MTG_COLOR_WHITE))
         isRedAndWhite = 1;
- if(previous && previous->morphed == true && !turningOver)
+ if(previous && previous->morphed && !turningOver)
  {
  morphed = true;
  isMorphed = true;

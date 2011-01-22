@@ -387,7 +387,7 @@ AARemoveAllCounter::AARemoveAllCounter(int id, MTGCardInstance * source, MTGCard
         if (target)
         {
             MTGCardInstance * _target = (MTGCardInstance *) target;
-            if (all == true)
+            if (all )
             {
                 for(int amount = 0;amount < _target->counters->mCount;amount++)
                 {
@@ -914,13 +914,13 @@ int AADynamic::resolve()
     case 0:
         sourceamount = ((MTGCardInstance *) source)->power;
         targetamount = ((MTGCardInstance *) _target)->power;
-        if(eachother == true)
+        if(eachother )
             sourceamount = ((MTGCardInstance *) source)->power;
         break;
     case 1:
         sourceamount = ((MTGCardInstance *) source)->toughness;
         targetamount = ((MTGCardInstance *) _target)->toughness;
-        if(eachother == true)
+        if(eachother )
             sourceamount = ((MTGCardInstance *) source)->toughness;
         break;
     case 2:
@@ -1030,7 +1030,7 @@ int AADynamic::resolve()
                 game->mLayers->stackLayer()->addDamage((MTGCardInstance *)source, _target, sourceamount);
             else
                 game->mLayers->stackLayer()->addDamage((MTGCardInstance *)source, OriginalSrc, sourceamount);
-            if(eachother == true)
+            if(eachother )
             {
                 game->mLayers->stackLayer()->addDamage((MTGCardInstance *)_target, source, targetamount);
             }
@@ -2277,7 +2277,7 @@ int ATransformer::addToGame()
 
         for (it = types.begin(); it != types.end(); it++)
         {
-            if (remove == true)
+            if (remove )
             {
                 _target->removeType(*it);
             }
@@ -2297,13 +2297,13 @@ int ATransformer::addToGame()
         for (it = oldcolors.begin(); it != oldcolors.end(); it++)
         {
         }
-        if(newpowerfound == true)
+        if(newpowerfound )
         {
             oldpower = _target->power;
             _target->power += newpower;
             _target->power -= oldpower;
         }
-        if(newtoughnessfound == true)
+        if(newtoughnessfound )
         {
             oldtoughness = _target->toughness;
             _target->addToToughness(newtoughness);
@@ -2338,7 +2338,7 @@ int ATransformer::destroy()
         {
             _target->setColor(*it);
         }
-        if (remove == true)
+        if (remove )
         {
             for (it = oldtypes.begin(); it != oldtypes.end(); it++)
             {
@@ -2346,11 +2346,11 @@ int ATransformer::destroy()
                     _target->addType(*it);
             }
         }
-        if(newpowerfound == true)
+        if(newpowerfound )
         {
             _target->power = oldpower;
         }
-        if(newtoughnessfound == true)
+        if(newtoughnessfound )
         {
             _target->toughness = oldtoughness;
         }
@@ -2429,13 +2429,13 @@ int AForeverTransformer::addToGame()
         {
             _target->basicAbilities[*it]++;
         }
-        if(newpowerfound == true)
+        if(newpowerfound )
         {
             oldpower = _target->power -= oldpower;
             _target->power += newpower;
             _target->power -= oldpower;
         }
-        if(newtoughnessfound == true)
+        if(newtoughnessfound )
         {
             oldtoughness = _target->toughness;
             _target->addToToughness(newtoughness);
@@ -2795,7 +2795,7 @@ void AUpkeep::Update(float dt)
         {
             paidThisTurn = 0;
         }
-        else if(newPhase == Constants::MTG_PHASE_UPKEEP && Cumulative == true)
+        else if(newPhase == Constants::MTG_PHASE_UPKEEP && Cumulative )
         {
             source->counters->addCounter("age",0,0);
                 Counter * targetCounter = NULL;
@@ -2867,7 +2867,7 @@ void APhaseAction::Update(float dt)
 {
     if (newPhase != currentPhase)
     {
-        if(newPhase == phase && next == true)
+        if(newPhase == phase && next )
         {
             MTGCardInstance * _target = (MTGCardInstance *) target;
             if (_target)

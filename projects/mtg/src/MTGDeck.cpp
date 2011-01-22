@@ -895,7 +895,7 @@ int MTGDeck::complete()
         {
             StypeIsNothing = true;
         }
-        if (!StypeIsNothing == true)
+        if (!StypeIsNothing )
         {
             if (cards.find(id) == cards.end())
             {

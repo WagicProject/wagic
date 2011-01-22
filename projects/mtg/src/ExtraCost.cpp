@@ -371,7 +371,7 @@ int Ninja::isPaymentSet()
 {
     GameObserver * g = GameObserver::GetInstance();
     int currentPhase = g->getCurrentGamePhase();
-    if (target && ((target->isAttacker() && target->blocked == true) || target->isAttacker() < 1 || currentPhase
+    if (target && ((target->isAttacker() && target->blocked) || target->isAttacker() < 1 || currentPhase
                     != Constants::MTG_PHASE_COMBATBLOCKERS))
     {
         tc->removeTarget(target);

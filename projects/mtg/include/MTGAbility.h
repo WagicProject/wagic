@@ -419,7 +419,5 @@ class AManaProducer: public ActivatedAbilityTP{
   virtual AManaProducer * clone() const;
 };
 
-#include "MTGCardInstance.h"
-
 #endif
 

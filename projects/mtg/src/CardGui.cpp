@@ -162,7 +162,7 @@ void CardGui::Render()
         renderer->RenderQuad(shadow, actX + (actZ - 1) * 15, actY + (actZ - 1) * 15, actT, 28 * actZ / 16, 40 * actZ / 16);
     }
     JQuad* extracostshadow = NULL;
-    if(card->isExtraCostTarget == true)
+    if(card->isExtraCostTarget )
     {
         extracostshadow = WResourceManager::Instance()->GetQuad("extracostshadow");
         extracostshadow->SetColor(ARGB(static_cast<unsigned char>(actA)/2,100,0,0));

@@ -58,30 +58,30 @@ if(!allowedToCast(card,player))
 #ifdef WIN32
         cost->Dump();
 #endif
-        if (player->castrestrictedspell == true && !card->hasType("land"))
+        if (player->castrestrictedspell && !card->hasType("land"))
         {
             return 0;
         }
-        if (player->onlyonecast == true && player->castcount >= 1)
+        if (player->onlyonecast && player->castcount >= 1)
         {
             return 0;
         }
-        if (player->nospellinstant == true)
+        if (player->nospellinstant)
         {
             return 0;
         }
-        if (player->onlyoneinstant == true)
+        if (player->onlyoneinstant)
         {
             if (player->castcount >= 1)
             {
                 return 0;
             }
         }
-        if (player->nocreatureinstant == true && card->hasType("creature"))
+        if (player->nocreatureinstant && card->hasType("creature"))
         {
             return 0;
         }
-        if (player->castrestrictedcreature == true && card->hasType("creature"))
+        if (player->castrestrictedcreature && card->hasType("creature"))
         {
             return 0;
         }
@@ -166,7 +166,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
             game->targetChooser = NULL;
             player->castedspellsthisturn += 1;
             player->opponent()->castedspellsthisturn += 1;
-            if (player->onlyonecast == true || player->onlyoneinstant == true)
+            if (player->onlyonecast || player->onlyoneinstant)
             {
                 player->castcount += 1;
             }
@@ -176,7 +176,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
             spell = game->mLayers->stackLayer()->addSpell(copy, NULL, spellCost, payResult, 0);
             player->castedspellsthisturn += 1;
             player->opponent()->castedspellsthisturn += 1;
-            if (player->onlyonecast == true || player->onlyoneinstant == true)
+            if (player->onlyonecast || player->onlyoneinstant)
             {
                 player->castcount += 1;
             }
@@ -277,30 +277,30 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
         ManaCost * cost = card->getManaCost();
         cost->Dump();
 #endif
-        if (player->castrestrictedspell == true && !card->hasType("land"))
+        if (player->castrestrictedspell  && !card->hasType("land"))
         {
             return 0;
         }
-        if (player->onlyonecast == true && player->castcount >= 1)
+        if (player->onlyonecast  && player->castcount >= 1)
         {
             return 0;
         }
-        if (player->nospellinstant == true)
+        if (player->nospellinstant )
         {
             return 0;
         }
-        if (player->onlyoneinstant == true)
+        if (player->onlyoneinstant )
         {
             if (player->castcount >= 1)
             {
                 return 0;
             }
         }
-        if (player->nocreatureinstant == true && card->hasType("creature"))
+        if (player->nocreatureinstant && card->hasType("creature"))
         {
             return 0;
         }
-        if (player->castrestrictedcreature == true && card->hasType("creature"))
+        if (player->castrestrictedcreature  && card->hasType("creature"))
         {
             return 0;
         }
@@ -381,7 +381,7 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
         game->targetChooser = NULL;
         player->castedspellsthisturn += 1;
         player->opponent()->castedspellsthisturn += 1;
-        if (player->onlyonecast == true || player->onlyoneinstant == true)
+        if (player->onlyonecast  || player->onlyoneinstant)
             player->castcount += 1;
 
         if (card->has(Constants::STORM))
@@ -627,30 +627,30 @@ int MTGMorphCostRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 #ifdef WIN32
         cost->Dump();
 #endif
-        if (player->castrestrictedspell == true && !card->hasType("land"))
+        if (player->castrestrictedspell  && !card->hasType("land"))
         {
             return 0;
         }
-        if (player->onlyonecast == true && player->castcount >= 1)
+        if (player->onlyonecast  && player->castcount >= 1)
         {
             return 0;
         }
-        if (player->nospellinstant == true)
+        if (player->nospellinstant )
         {
             return 0;
         }
-        if (player->onlyoneinstant == true)
+        if (player->onlyoneinstant )
         {
             if (player->castcount >= 1)
             {
                 return 0;
             }
         }
-        if (player->nocreatureinstant == true && card->hasType("creature"))
+        if (player->nocreatureinstant  && card->hasType("creature"))
         {
             return 0;
         }
-        if (player->castrestrictedcreature == true && card->hasType("creature"))
+        if (player->castrestrictedcreature && card->hasType("creature"))
         {
             return 0;
         }
@@ -720,7 +720,7 @@ int MTGMorphCostRule::reactToClick(MTGCardInstance * card)
     copy->toughness = 2;
     player->castedspellsthisturn += 1;
     player->opponent()->castedspellsthisturn += 1;
-    if (player->onlyonecast == true || player->onlyoneinstant == true)
+    if (player->onlyonecast || player->onlyoneinstant)
     {
         player->castcount += 1;
 

@@ -173,9 +173,9 @@ int MTGAbility::allowedToAltCast(MTGCardInstance * card,Player * player)
         if(opponenttypemin < opponentmin && less == false && more == false)
             return 0;
     }
-    if(less == true && more == false && opponenttypemin <= mytypemin)
+    if(less  && more == false && opponenttypemin <= mytypemin)
         return 0;
-    if(less == false && more == true && opponenttypemin >= mytypemin)
+    if(less == false && more  && opponenttypemin >= mytypemin)
         return 0;
     return 1;
 }
@@ -4276,13 +4276,13 @@ TriggerAtPhase::TriggerAtPhase(int id, MTGCardInstance * source, Targetable * ta
     int TriggerAtPhase::trigger()
     {
         if(source->isPhased) return 0;
-        if(lifelost == true && source->controller()->opponent()->lifeLostThisTurn < lifeamount)
+        if(lifelost  && source->controller()->opponent()->lifeLostThisTurn < lifeamount)
         {
             return 0;
         }
-        if (sourceUntapped == true && source->isTapped() == 1)
+        if (sourceUntapped  && source->isTapped() == 1)
             return 0;
-        if (sourceTap == true && !source->isTapped())
+        if (sourceTap  && !source->isTapped())
             return 0;
         if (testDestroy())
             return 0; // http://code.google.com/p/wagic/issues/detail?id=426
