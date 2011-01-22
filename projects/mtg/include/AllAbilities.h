@@ -1371,6 +1371,7 @@ public:
     {
         if(!starfound.empty())
         {
+            SAFE_DELETE(multiplier);
             multiplier = NEW WParsedInt(starfound, NULL, (MTGCardInstance *)source);
         }
         for (int i = 0; i < multiplier->getValue(); ++i)
@@ -1523,17 +1524,14 @@ public:
     ATokenCreator * clone() const
     {
         ATokenCreator * a = NEW ATokenCreator(*this);
+        a->multiplier = NEW WParsedInt(*(multiplier));
         a->isClone = 1;
         return a;
     }
 
     ~ATokenCreator()
     {
-        if (!isClone)
-        {
-        if(multiplier != NULL)
-            delete (multiplier);
-        }
+        SAFE_DELETE(multiplier);
     }
 
 };

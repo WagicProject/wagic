@@ -367,6 +367,8 @@ MTGCardInstance * MTGPlayerCards::putInBattlefield(MTGCardInstance * card)
     return copy;
 }
 
+// Moves a card from one zone to another
+// If the card is not actually in the expected "from" zone, does nothing and returns null 
 MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone * from, MTGGameZone * to)
 {
     MTGCardInstance * copy = NULL;
@@ -382,58 +384,58 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
         doCopy = 0;
     }
 
-    if ((copy = from->removeCard(card, doCopy)))
+    if (!(copy = from->removeCard(card, doCopy)))
+        return NULL; //ERROR
+
+    if (options[Options::SFXVOLUME].number > 0)
     {
-        if (options[Options::SFXVOLUME].number > 0)
+        if (to == g->players[0]->game->graveyard || to == g->players[1]->game->graveyard)
         {
-            if (to == g->players[0]->game->graveyard || to == g->players[1]->game->graveyard)
+            if (card->isCreature())
             {
-                if (card->isCreature())
-                {
-                    JSample * sample = WResourceManager::Instance()->RetrieveSample("graveyard.wav");
-                    if (sample)
-                        JSoundSystem::GetInstance()->PlaySample(sample);
-                }
+                JSample * sample = WResourceManager::Instance()->RetrieveSample("graveyard.wav");
+                if (sample)
+                    JSoundSystem::GetInstance()->PlaySample(sample);
             }
         }
-
-        MTGCardInstance * ret = copy;
-
-        to->addCard(copy);
-
-        //The "Temp" zone are purely for code purposes, and we don't want the abilities engine to
-        //Trigger when cards move in this zone
-        // Additionally, when they mve "from" this zone,
-        // we trick the engine into believing that they moved from the zone the card was previously in
-        // See http://code.google.com/p/wagic/issues/detail?id=335
-        {
-            if (to == g->players[0]->game->temp || to == g->players[1]->game->temp)
-            {
-                //don't send event when moving to temp
-                return ret;
-            }
-
-            if (from == g->players[0]->game->temp || from == g->players[1]->game->temp)
-            {
-                //remove temporary stuff
-                MTGCardInstance * previous = copy->previous;
-                MTGCardInstance * previous2 = previous->previous;
-                from = previous->previousZone;
-                copy->previous = previous2;
-                if (previous2)
-                    previous2->next = copy;
-                previous->previous = NULL;
-                previous->next = NULL;
-                SAFE_DELETE(previous);
-            }
-        }
-
-        WEvent * e = NEW WEventZoneChange(copy, from, to);
-        g->receiveEvent(e);
-
-        return ret;
     }
-    return card; //Error
+
+    MTGCardInstance * ret = copy;
+
+    to->addCard(copy);
+
+    //The "Temp" zone are purely for code purposes, and we don't want the abilities engine to
+    //Trigger when cards move in this zone
+    // Additionally, when they mve "from" this zone,
+    // we trick the engine into believing that they moved from the zone the card was previously in
+    // See http://code.google.com/p/wagic/issues/detail?id=335
+    {
+        if (to == g->players[0]->game->temp || to == g->players[1]->game->temp)
+        {
+            //don't send event when moving to temp
+            return ret;
+        }
+
+        if (from == g->players[0]->game->temp || from == g->players[1]->game->temp)
+        {
+            //remove temporary stuff
+            MTGCardInstance * previous = copy->previous;
+            MTGCardInstance * previous2 = previous->previous;
+            from = previous->previousZone;
+            copy->previous = previous2;
+            if (previous2)
+                previous2->next = copy;
+            previous->previous = NULL;
+            previous->next = NULL;
+            SAFE_DELETE(previous);
+        }
+    }
+
+    WEvent * e = NEW WEventZoneChange(copy, from, to);
+    g->receiveEvent(e);
+
+    return ret;
+
 }
 
 void MTGPlayerCards::discardRandom(MTGGameZone * from, MTGCardInstance * source)

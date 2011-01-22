@@ -1375,6 +1375,11 @@ int MTGPersistRule::receiveEvent(WEvent * event)
                 if (e->to == p->game->graveyard)
                 {
                     MTGCardInstance * copy = p->game->putInZone(e->card, p->game->graveyard, e->card->owner->game->stack);
+                    if (!copy)
+                    {
+                        DebugTrace("MTGRULES: couldn't move card for persist");
+                        return 0;
+                    }
                     Spell * spell = NEW Spell(copy);
                     spell->resolve();
                     spell->source->counters->addCounter(-1, -1);

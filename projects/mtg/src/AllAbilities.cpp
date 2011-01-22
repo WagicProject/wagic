@@ -685,15 +685,14 @@ const char * AADrawer::getMenuText()
 AADrawer * AADrawer::clone() const
 {
     AADrawer * a = NEW AADrawer(*this);
-    a->nbcards = NEW WParsedInt(*(a->nbcards));
+    a->nbcards = NEW WParsedInt(*(this->nbcards));
     a->isClone = 1;
     return a;
 }
 
 AADrawer::~AADrawer()
 {
-    if(!isClone)
-        SAFE_DELETE(nbcards);
+    SAFE_DELETE(nbcards);
 }
 
 // AAFrozen: Prevent a card from untapping during next untap phase
