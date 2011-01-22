@@ -916,6 +916,8 @@ int GameObserver::cardClick(MTGCardInstance * card, Targetable * object)
             else
             {
                 result = targetChooser->toggleTarget(card);
+                WEvent * e = NEW WEventTarget(card,cardWaitingForTargets);
+                receiveEvent(e);
             }
         }
         else
