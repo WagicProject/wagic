@@ -55,6 +55,10 @@ class CardDescriptor: public MTGCardInstance{
   MTGCardInstance * match(MTGCardInstance * card);
   MTGCardInstance * match(MTGGameZone * zone);
   MTGCardInstance * nextmatch(MTGGameZone * zone, MTGCardInstance * previous);
+  
+  int nameComparisonMode;
+  int colorComparisonMode;
+  string compareName;
 };
 
 #endif

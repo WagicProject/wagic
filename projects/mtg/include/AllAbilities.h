@@ -3423,17 +3423,6 @@ string menu;
     ~AADYNAMIC();
 };
 
-/* removes a card and all with the same name as it from the game */
-class AAEradicate: public ActivatedAbility
-{
-public:
-int type;
-    AAEradicate(int id, MTGCardInstance * card, MTGCardInstance * _target,int type = 0, ManaCost * _cost = NULL, int doTap = 0);
-    int resolve();
-    const char * getMenuText();
-    AAEradicate * clone() const;
-};
-
 /* switch power and toughness of target */
 class ASwapPT: public InstantAbility
 {

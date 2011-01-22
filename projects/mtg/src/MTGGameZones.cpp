@@ -785,8 +785,19 @@ MTGGameZone * MTGGameZone::intToZone(int zoneId, MTGCardInstance * source, MTGCa
         p = source->controller();
     if (!target)
     {
-        p2 = p;
-        target = source;//hack ?
+        if(source->target)
+        {
+        //bug case, this is a patchwork fix for now
+        //we need to find the root cause of why the 2nd variable is not returning the target.
+            p2 = source->target->controller();
+            target = source->target;
+        }
+        else
+        {
+        //bug or bug case default to 
+            p2 = source->controller();
+                target = source;
+        }
     }
     else
         p2 = target->controller();

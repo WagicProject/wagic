@@ -2579,15 +2579,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
     
-        //eradicate
-    found = s.find("eradicate");
-    if (found != string::npos)
-    {
-        MTGAbility * a = NEW AAEradicate(id, card, target,1);
-        a->oneShot = 1;
-        return a;
-    }
-    
     //identify what a leveler creature will max out at.
     found = s.find("maxlevel:");
     if (found != string::npos)

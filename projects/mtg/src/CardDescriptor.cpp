@@ -17,6 +17,9 @@ CardDescriptor::CardDescriptor() :  MTGCardInstance()
     manacostComparisonMode = COMPARISON_NONE;
     counterComparisonMode = COMPARISON_NONE;
     convertedManacost = -1;
+    compareName ="";
+    nameComparisonMode = COMPARISON_NONE;
+    colorComparisonMode = COMPARISON_NONE;
 }
 
 int CardDescriptor::init()
@@ -154,7 +157,8 @@ MTGCardInstance * CardDescriptor::match_or(MTGCardInstance * card)
         return NULL;
     if (manacostComparisonMode && !valueInRange(manacostComparisonMode, card->getManaCost()->getConvertedCost(), convertedManacost))
         return NULL;
-
+    if (nameComparisonMode && compareName != card->name)
+        return NULL;
     return card;
 }
 
@@ -192,7 +196,23 @@ MTGCardInstance * CardDescriptor::match_and(MTGCardInstance * card)
         match = NULL;
     if (manacostComparisonMode && !valueInRange(manacostComparisonMode, card->getManaCost()->getConvertedCost(), convertedManacost))
         match = NULL;
-
+    if(nameComparisonMode && compareName != card->name)
+        match = NULL;
+    if(colorComparisonMode)
+    {
+        bool hasMatch = false;
+        for (int i=0;i< Constants::MTG_NB_COLORS;i++) 
+        {
+            if (card->hasColor(i) && colors[i] > 0) 
+            {
+                hasMatch = true;
+            }
+        }
+        if( !hasMatch ) 
+        {
+            match = NULL;
+        }
+    }
     return match;
 }
 

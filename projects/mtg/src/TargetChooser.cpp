@@ -446,6 +446,52 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     cd->manacostComparisonMode = comparisonMode;
                     //Counter Restrictions
                 }
+                else if (attribute.find("share!") != string::npos)
+                {
+                    size_t start = attribute.find("share!");
+                    size_t end = attribute.find("!");
+                    string CDtype = attribute.substr(start + 6,end - start);
+                    if( CDtype.find("name") != string::npos )
+                    {
+                        if(card->target)
+                            cd->compareName = card->target->name;
+                        else
+                            cd->compareName = card->name;
+
+                        cd->nameComparisonMode = COMPARISON_EQUAL;
+                    }
+                    else if( CDtype.find("color") != string::npos )
+                    {
+                        for(int i = 0; i < Constants::MTG_NB_COLORS; i++)
+                        {
+                            if(card->target)
+                                cd->colors[i] = card->target->colors[i];
+                            else
+                                cd->colors[i] = card->colors[i];
+                        }
+                        cd->mode = CD_OR;
+                    }
+                    else if( CDtype.find("types") != string::npos )
+                    {
+                        if(card->target)
+                        {
+                            cd->types = card->target->types;
+                            //remove main types because we only care about subtypes here.
+                            cd->removeType("artifact");
+                            cd->removeType("land");
+                            cd->removeType("enchantment");
+                            cd->removeType("instant");
+                            cd->removeType("sorcery");
+                            cd->removeType("legendary");
+                            cd->removeType("creature");
+                        }
+                        else
+                        {
+                            cd->types = card->types;
+                        }
+                        cd->mode = CD_OR;
+                    }
+                }
                 else if (attribute.find("counter") != string::npos)
                 {
                     if (attribute.find("{any}") != string::npos)
