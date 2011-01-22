@@ -438,6 +438,7 @@ CounterCost * CounterCost::clone() const
         ec->tc = tc->clone();
     if (counter)
         ec->counter = NEW Counter(counter->target, counter->name.c_str(), counter->power, counter->toughness);
+        ec->counter->nb = counter->nb;
     return ec;
 }
 
