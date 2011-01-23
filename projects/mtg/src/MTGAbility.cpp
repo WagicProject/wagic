@@ -3783,6 +3783,7 @@ int MTGAbility::fireAbility()
     game->mLayers->stackLayer()->addAbility(this);
     return 1;
 }
+
 ostream& MTGAbility::toString(ostream& out) const
 {
     return out << "MTGAbility ::: menuText : " << menuText << " ; game : " << game << " ; forceDestroy : " << forceDestroy
@@ -4074,6 +4075,13 @@ TriggeredAbility::TriggeredAbility(int id, MTGCardInstance * card) :
 
 int TriggeredAbility::receiveEvent(WEvent * e)
 {
+    if(dynamic_cast<WEventTarget*>(e))
+    {
+    //@targetted trigger as per mtg rules is a state based trigger
+    //that resolves instantly before the event that targetted it.
+        resolve();
+        return 1;
+    }
     if (triggerOnEvent(e))
     {
         fireAbility();
