@@ -1227,17 +1227,15 @@ public:
 class AADrawer: public ActivatedAbilityTP
 {
 public:
-    WParsedInt *nbcards;
-    WParsedInt *RefreshedNbcards;
-    
+
     string nbcardsStr;
 
-    AADrawer(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost, WParsedInt * nbcards,string nbcardsStr, int _tap = 0, int who =
+    AADrawer(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost,string nbcardsStr, int _tap = 0, int who =
             TargetChooser::UNSET);
     int resolve();
     const char * getMenuText();
     AADrawer * clone() const;
-    ~AADrawer();
+    int getNumCards();
 };
 
 //lands, allows to play more land during a turn:
@@ -1261,14 +1259,12 @@ class AALifer: public ActivatedAbilityTP
 {
 public:
     string life_s;
-    WParsedInt *life;
-    WParsedInt *RefreshedLife;
-    AALifer(int _id, MTGCardInstance * card, Targetable * _target,string life_s, WParsedInt * life, ManaCost * _cost = NULL, int _tap = 0,
+    AALifer(int _id, MTGCardInstance * card, Targetable * _target,string life_s, ManaCost * _cost = NULL, int _tap = 0,
             int who = TargetChooser::UNSET);
     int resolve();
     const char * getMenuText();
     AALifer * clone() const;
-    ~AALifer();
+    int getLife();
 
 };
 
@@ -3274,16 +3270,14 @@ public:
 class AADamager: public ActivatedAbilityTP
 {
 public:
-    WParsedInt * damage;
-    WParsedInt * RefreshedDamage;
     string d;
 
-    AADamager(int _id, MTGCardInstance * _source, Targetable * _target,WParsedInt * damage, string d, ManaCost * _cost = NULL,
+    AADamager(int _id, MTGCardInstance * _source, Targetable * _target, string d, ManaCost * _cost = NULL,
             int doTap = 0, int who = TargetChooser::UNSET);
     int resolve();
     const char * getMenuText();
+    int getDamage();
     AADamager * clone() const;
-    ~AADamager();
 
 };
 
@@ -3319,11 +3313,11 @@ class TADamager: public TargetAbility
 {
 public:
 
-    TADamager(int id, MTGCardInstance * card, ManaCost * _cost,WParsedInt *damage, string d, TargetChooser * _tc = NULL, int _tap = 0) :
+    TADamager(int id, MTGCardInstance * card, ManaCost * _cost, string d, TargetChooser * _tc = NULL, int _tap = 0) :
         TargetAbility(id, card, _tc, _cost, 0, _tap)
     {
         if (!tc) tc = NEW DamageableTargetChooser(card);
-        ability = NEW AADamager(id, card, NULL,damage, d);
+        ability = NEW AADamager(id, card, NULL, d);
     }
 
     TADamager * clone() const
@@ -5432,16 +5426,13 @@ public:
 class AADepleter: public ActivatedAbilityTP
 {
 public:
-    WParsedInt * nbcards;
-    WParsedInt * RefreshedNbcards;
     string nbcardsStr;
 
-    AADepleter(int _id, MTGCardInstance * card, Targetable * _target, WParsedInt * nbcards,string nbcardsStr, ManaCost * _cost = NULL, int _tap = 0,
+    AADepleter(int _id, MTGCardInstance * card, Targetable * _target,string nbcardsStr, ManaCost * _cost = NULL, int _tap = 0,
             int who = TargetChooser::UNSET);
     int resolve();
     const char * getMenuText();
     AADepleter * clone() const;
-        ~AADepleter();
 };
 
 //Shuffle
@@ -5492,16 +5483,13 @@ public:
 class AARandomDiscarder: public ActivatedAbilityTP
 {
 public:
-    WParsedInt * nbcards;
-    WParsedInt * RefreshedNbcards;
     string nbcardsStr;
 
-    AARandomDiscarder(int _id, MTGCardInstance * card, Targetable * _target, WParsedInt * nbcards,string nbcardsStr, ManaCost * _cost = NULL,
+    AARandomDiscarder(int _id, MTGCardInstance * card, Targetable * _target,string nbcardsStr, ManaCost * _cost = NULL,
             int _tap = 0, int who = TargetChooser::UNSET);
     int resolve();
     const char * getMenuText();
     AARandomDiscarder * clone() const;
-    ~AARandomDiscarder();
 };
 
 //Minion of Leshrac

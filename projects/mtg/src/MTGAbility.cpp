@@ -2004,11 +2004,11 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         {
             d = s.substr(start + 1);
         }
-        WParsedInt * damage = NEW WParsedInt(d, spell, card);
+
         Targetable * t = NULL;
         if (spell)
             t = spell->getNextTarget();
-        MTGAbility * a = NEW AADamager(id, card, t,damage, d, NULL, 0, who);
+        MTGAbility * a = NEW AADamager(id, card, t, d, NULL, 0, who);
         a->oneShot = 1;
         return a;
     }
@@ -2100,11 +2100,10 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         {
             life_s = s.substr(start + 1);
         }
-        WParsedInt * life = NEW WParsedInt(life_s, spell, card);
         Targetable * t = NULL;
         if (spell)
             t = spell->getNextTarget();
-        MTGAbility * a = NEW AALifer(id, card, t,life_s, life, NULL, 0, who);
+        MTGAbility * a = NEW AALifer(id, card, t, life_s, NULL, 0, who);
         a->oneShot = 1;
         return a;
     }
@@ -2136,11 +2135,10 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         {
             nbcardsStr = s.substr(start + 1);
         }
-        WParsedInt * nbcards = NEW WParsedInt(nbcardsStr, spell, card);
         Targetable * t = NULL;
         if (spell)
             t = spell->getNextTarget();
-        MTGAbility * a = NEW AADrawer(id, card, t, NULL,nbcards ,nbcardsStr, 0, who);
+        MTGAbility * a = NEW AADrawer(id, card, t, NULL,nbcardsStr, 0, who);
         a->oneShot = 1;
         return a;
     }
@@ -2183,11 +2181,10 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         {
             nbcardsStr = s.substr(start + 1);
         }
-        WParsedInt * nbcards = NEW WParsedInt(nbcardsStr, spell, card);
         Targetable * t = NULL;
         if (spell)
             t = spell->getNextTarget();
-        MTGAbility * a = NEW AADepleter(id, card, t,nbcards ,nbcardsStr, NULL, 0, who);
+        MTGAbility * a = NEW AADepleter(id, card, t ,nbcardsStr, NULL, 0, who);
         a->oneShot = 1;
         return a;
     }
@@ -2253,12 +2250,10 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         {
             nbcardsStr = s.substr(start + 1);
         }
-        WParsedInt * nbcards = NEW WParsedInt(nbcardsStr, spell, card);
-
         Targetable * t = NULL;
         if (spell)
             t = spell->getNextPlayerTarget();
-        MTGAbility * a = NEW AARandomDiscarder(id, card, t, nbcards,nbcardsStr, NULL, 0, who);
+        MTGAbility * a = NEW AARandomDiscarder(id, card, t, nbcardsStr, NULL, 0, who);
         a->oneShot = 1;
         return a;
     }
@@ -2742,7 +2737,7 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
     if (dynamic_cast<AStandardRegenerate *> (a))
         return BAKA_EFFECT_GOOD;
     if (AALifer * abi = dynamic_cast<AALifer *>(a))
-        return abi->life > 0 ? BAKA_EFFECT_GOOD : BAKA_EFFECT_BAD;
+        return abi->getLife() > 0 ? BAKA_EFFECT_GOOD : BAKA_EFFECT_BAD;
     if (AAAlterPoison * abi = dynamic_cast<AAAlterPoison *>(a))
         return abi->poison > 0 ? BAKA_EFFECT_GOOD : BAKA_EFFECT_BAD;
     if (dynamic_cast<AADepleter *> (a))

@@ -142,9 +142,9 @@ AADamagePrevent::~AADamagePrevent()
 }
 
 //AADamager
-AADamager::AADamager(int _id, MTGCardInstance * _source, Targetable * _target,WParsedInt * damage, string d, ManaCost * _cost, int doTap,
+AADamager::AADamager(int _id, MTGCardInstance * _source, Targetable * _target, string d, ManaCost * _cost, int doTap,
         int who) :
-    ActivatedAbilityTP(_id, _source, _target, _cost, doTap, who),damage(damage), d(d)
+    ActivatedAbilityTP(_id, _source, _target, _cost, doTap, who), d(d)
 {
     aType = MTGAbility::DAMAGER;
     }
@@ -154,13 +154,18 @@ AADamager::AADamager(int _id, MTGCardInstance * _source, Targetable * _target,WP
         Damageable * _target = (Damageable *) getTarget();
         if (_target)
         {
-            RefreshedDamage = NEW WParsedInt(d, NULL, (MTGCardInstance *)source);
-            game->mLayers->stackLayer()->addDamage(source, _target, RefreshedDamage->getValue());
+            WParsedInt damage(d, NULL, (MTGCardInstance *)source);
+            game->mLayers->stackLayer()->addDamage(source, _target, damage.getValue());
             game->mLayers->stackLayer()->resolve();
-            delete RefreshedDamage;
             return 1;
         }
         return 0;
+    }
+
+    int AADamager::getDamage()
+    {
+        WParsedInt damage(d, NULL, (MTGCardInstance *)source);
+        return damage.getValue();
     }
 
     const char * AADamager::getMenuText()
@@ -171,21 +176,16 @@ AADamager::AADamager(int _id, MTGCardInstance * _source, Targetable * _target,WP
 AADamager * AADamager::clone() const
 {
     AADamager * a = NEW AADamager(*this);
-    a->damage = NEW WParsedInt(*(a->damage));
     a->isClone = 1;
     return a;
 }
 
-AADamager::~AADamager()
-{
-SAFE_DELETE(damage);
-}
 
 //AADepleter
-AADepleter::AADepleter(int _id, MTGCardInstance * card, Targetable * _target,WParsedInt * nbcards,string nbcardsStr, ManaCost * _cost, int _tap, int who) :
-    ActivatedAbilityTP(_id, card, _target, _cost, _tap, who), nbcards(nbcards),nbcardsStr(nbcardsStr)
+AADepleter::AADepleter(int _id, MTGCardInstance * card, Targetable * _target,string nbcardsStr, ManaCost * _cost, int _tap, int who) :
+    ActivatedAbilityTP(_id, card, _target, _cost, _tap, who),nbcardsStr(nbcardsStr)
 {
-RefreshedNbcards = NULL;
+
 }
     int AADepleter::resolve()
     {
@@ -194,7 +194,7 @@ RefreshedNbcards = NULL;
         Player * player;
         if (_target)
         {
-            RefreshedNbcards = NEW WParsedInt(nbcardsStr, NULL, source);
+            WParsedInt numCards(nbcardsStr, NULL, source);
             if (_target->typeAsTarget() == TARGET_CARD)
             {
                 player = ((MTGCardInstance *) _target)->controller();
@@ -204,12 +204,11 @@ RefreshedNbcards = NULL;
                 player = (Player *) _target;
             }
             MTGLibrary * library = player->game->library;
-            for (int i = 0; i < RefreshedNbcards->getValue(); i++)
+            for (int i = 0; i < numCards.getValue(); i++)
             {
                 if (library->nb_cards)
                     player->game->putInZone(library->cards[library->nb_cards - 1], library, player->game->graveyard);
             }
-            delete RefreshedNbcards;
         }
         return 1;
     }
@@ -225,11 +224,7 @@ AADepleter * AADepleter::clone() const
     a->isClone = 1;
     return a;
 }
-AADepleter::~AADepleter()
-{
-if(!isClone)
-SAFE_DELETE(nbcards);
-}
+
 //AACopier
 AACopier::AACopier(int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost) :
     ActivatedAbility(_id, _source, _cost, 0, 0)
@@ -647,12 +642,11 @@ AADiscardCard * AADiscardCard::clone() const
     return a;
 }
 
-AADrawer::AADrawer(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost,WParsedInt * nbcards, string nbcardsStr, int _tap,
+AADrawer::AADrawer(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost, string nbcardsStr, int _tap,
         int who) :
-    ActivatedAbilityTP(_id, card, _target, _cost, _tap, who),nbcards(nbcards), nbcardsStr(nbcardsStr)
+    ActivatedAbilityTP(_id, card, _target, _cost, _tap, who), nbcardsStr(nbcardsStr)
 {
     aType = MTGAbility::STANDARD_DRAW;
-    nbcardAmount = nbcards->getValue();
 }
 
     int AADrawer::resolve()
@@ -661,7 +655,7 @@ AADrawer::AADrawer(int _id, MTGCardInstance * card, Targetable * _target, ManaCo
         Player * player;
         if (_target)
         {
-            RefreshedNbcards = NEW WParsedInt(nbcardsStr, NULL, source);
+            WParsedInt numCards(nbcardsStr, NULL, source);
             if (_target->typeAsTarget() == TARGET_CARD)
             {
                 player = ((MTGCardInstance *) _target)->controller();
@@ -670,11 +664,16 @@ AADrawer::AADrawer(int _id, MTGCardInstance * card, Targetable * _target, ManaCo
             {
                 player = (Player *) _target;
             }
-            game->mLayers->stackLayer()->addDraw(player, RefreshedNbcards->getValue());
+            game->mLayers->stackLayer()->addDraw(player, numCards.getValue());
             game->mLayers->stackLayer()->resolve();
-            delete RefreshedNbcards;
         }
         return 1;
+    }
+
+    int AADrawer::getNumCards()
+    {
+        WParsedInt numCards(nbcardsStr, NULL, source);
+        return numCards.getValue();
     }
 
 const char * AADrawer::getMenuText()
@@ -685,14 +684,8 @@ const char * AADrawer::getMenuText()
 AADrawer * AADrawer::clone() const
 {
     AADrawer * a = NEW AADrawer(*this);
-    a->nbcards = NEW WParsedInt(*(this->nbcards));
     a->isClone = 1;
     return a;
-}
-
-AADrawer::~AADrawer()
-{
-    SAFE_DELETE(nbcards);
 }
 
 // AAFrozen: Prevent a card from untapping during next untap phase
@@ -1247,8 +1240,8 @@ AADynamic::~AADynamic()
 }
 
 //AALifer
-AALifer::AALifer(int _id, MTGCardInstance * card, Targetable * _target, string life_s, WParsedInt * life, ManaCost * _cost, int _tap, int who) :
-ActivatedAbilityTP(_id, card, _target, _cost, _tap, who),life_s(life_s), life(life)
+AALifer::AALifer(int _id, MTGCardInstance * card, Targetable * _target, string life_s, ManaCost * _cost, int _tap, int who) :
+ActivatedAbilityTP(_id, card, _target, _cost, _tap, who),life_s(life_s)
 {
     aType = MTGAbility::LIFER;
 }
@@ -1259,37 +1252,38 @@ int AALifer::resolve()
     if (!_target)
         return 0;
 
-    RefreshedLife = NEW WParsedInt(life_s, NULL, source);
+    WParsedInt life(life_s, NULL, source);
     if (_target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
     {
         _target = ((MTGCardInstance *) _target)->controller();
     }
     Player *player = (Player*)_target;
-    player->gainOrLoseLife(RefreshedLife->getValue());
+    player->gainOrLoseLife(life.getValue());
 
-    delete RefreshedLife;
     return 1;
+}
+
+int AALifer::getLife()
+{
+    WParsedInt life(life_s, NULL, source);
+    return life.getValue();
 }
 
 const char * AALifer::getMenuText()
 {
-if(life->getValue() < 0)
-return "Life Loss";
+    if(getLife() < 0)
+        return "Life Loss";
     return "Life";
 }
 
 AALifer * AALifer::clone() const
 {
     AALifer * a = NEW AALifer(*this);
-    a->life = NEW WParsedInt(*(a->life));
     a->isClone = 1;
     return a;
 }
 
-AALifer::~AALifer()
-{
-    SAFE_DELETE(life);
-}
+
 
 //Lifeset
 AALifeSet::AALifeSet(int _id, MTGCardInstance * _source, Targetable * _target, WParsedInt * life, ManaCost * _cost, int doTap,
@@ -1636,9 +1630,9 @@ AAOnlyOne * AAOnlyOne::clone() const
 }
 
 //Random Discard
-AARandomDiscarder::AARandomDiscarder(int _id, MTGCardInstance * card, Targetable * _target,WParsedInt * nbcards,string nbcardsStr, ManaCost * _cost,
+AARandomDiscarder::AARandomDiscarder(int _id, MTGCardInstance * card, Targetable * _target,string nbcardsStr, ManaCost * _cost,
         int _tap, int who) :
-    ActivatedAbilityTP(_id, card, _target, _cost, _tap, who), nbcards(nbcards),nbcardsStr(nbcardsStr)
+    ActivatedAbilityTP(_id, card, _target, _cost, _tap, who), nbcardsStr(nbcardsStr)
 {
 }
 
@@ -1658,13 +1652,13 @@ int AARandomDiscarder::resolve()
         }
 
 
-        RefreshedNbcards = NEW WParsedInt(nbcardsStr, NULL, source);
-        for (int i = 0; i < RefreshedNbcards->intValue; i++)
+        WParsedInt numCards(nbcardsStr, NULL, source);
+        for (int i = 0; i < numCards.intValue; i++)
         {
             player->game->discardRandom(player->game->hand, source);
         }
     }
-            delete RefreshedNbcards;
+            
     return 1;
 }
 
@@ -1677,12 +1671,7 @@ AARandomDiscarder * AARandomDiscarder::clone() const
 {
     AARandomDiscarder * a = NEW AARandomDiscarder(*this);
     a->isClone = 1;
-    a->nbcards = NEW WParsedInt(nbcardsStr, NULL, source);
     return a;
-}
-AARandomDiscarder ::~AARandomDiscarder ()
-{
-SAFE_DELETE(nbcards);
 }
 
 // Shuffle 

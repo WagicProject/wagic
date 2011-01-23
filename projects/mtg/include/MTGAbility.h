@@ -124,7 +124,6 @@ class MTGAbility: public ActionElement{
   int aType;
 	int naType;
 	int abilitygranted;
-	int nbcardAmount;
   MTGCardInstance * source;
   MTGAbility(int id, MTGCardInstance * card);
   MTGAbility(int id, MTGCardInstance * _source, Targetable * _target);

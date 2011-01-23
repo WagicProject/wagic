@@ -238,13 +238,13 @@ int AIAction::getEfficiency()
         {
             efficiency = 0;
         }
-        else if (aad->damage->getValue() >= target->toughness)
+        else if (aad->getDamage() >= target->toughness)
         {
             efficiency = 100;
         }
         else if (target->toughness)
         {
-            efficiency = (50 * aad->damage->getValue()) / target->toughness;
+            efficiency = (50 * aad->getDamage()) / target->toughness;
         }
         else
         {
@@ -592,6 +592,7 @@ int AIAction::getEfficiency()
     }
     case MTGAbility::STANDARD_DRAW:
     {
+        AADrawer * drawer = (AADrawer *)a;
         //adding this case since i played a few games where Ai litterally decided to mill himself to death. fastest and easiest win ever.
         //this should help a little, tho ultimately it will be decided later what the best course of action is.
         efficiency = 0;
@@ -602,7 +603,7 @@ int AIAction::getEfficiency()
         {
             efficiency -= 70;
         }
-        if ((a->nbcardAmount >= p->game->library->nb_cards && p->isAI()) || (p->game->hand->nb_cards > 10 && p->isAI()))
+        if ((drawer->getNumCards() >= p->game->library->nb_cards && p->isAI()) || (p->game->hand->nb_cards > 10 && p->isAI()))
         {
             //if the amount im drawing will mill me to death or i have more then 10 cards in hand, eff is 0;
             efficiency = 0;

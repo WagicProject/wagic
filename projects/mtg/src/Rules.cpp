@@ -8,6 +8,7 @@
 
 #include "MTGGameZones.h"
 #include "MTGAbility.h"
+#include "AllAbilities.h"
 #include "DeckManager.h"
 #include "AIPlayer.h"
 #include <JLogger.h>
@@ -199,7 +200,7 @@ void Rules::addExtraRules()
                                     != GAME_TYPE_RANDOM1 && g->mRules->gamemode != GAME_TYPE_RANDOM2 && g->mRules->gamemode
                                     != GAME_TYPE_STORY)//stupid protections to keep this out of mimor and other game modes.
                     {
-                        handsize = a->nbcardAmount;
+                        handsize = ((AADrawer *)a)->getNumCards();
                         ((AIPlayer *) p)->forceBestAbilityUse = true;
                         ((AIPlayer *) p)->agressivity += 100;
                         hand->OptimizedHand(p,handsize, 3, 1, 3);//easy decks get a major boost, open hand is 2lands,1 creature under 3 mana,3spells under 3 mana.
@@ -209,7 +210,7 @@ void Rules::addExtraRules()
                                     != GAME_TYPE_RANDOM1 && g->mRules->gamemode != GAME_TYPE_RANDOM2 && g->mRules->gamemode
                                     != GAME_TYPE_STORY)//stupid protections to keep this out of mimor and other game modes.
                     {
-                        handsize = a->nbcardAmount; 
+                        handsize = ((AADrawer *)a)->getNumCards();
                         hand->OptimizedHand(p,handsize, 1, 0, 2);//give the Ai deck a tiny boost by giving it 1 land and 2 spells under 3 manacost.
                     }else if (( !p->isAI() && Optimizedhandcheat) && a->aType == MTGAbility::STANDARD_DRAW && p->playMode
                                     != Player::MODE_TEST_SUITE && g->mRules->gamemode != GAME_TYPE_MOMIR && g->mRules->gamemode
