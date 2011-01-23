@@ -4075,6 +4075,8 @@ TriggeredAbility::TriggeredAbility(int id, MTGCardInstance * card) :
 
 int TriggeredAbility::receiveEvent(WEvent * e)
 {
+    if (triggerOnEvent(e))
+    {
     if(dynamic_cast<WEventTarget*>(e))
     {
     //@targetted trigger as per mtg rules is a state based trigger
@@ -4082,8 +4084,6 @@ int TriggeredAbility::receiveEvent(WEvent * e)
         resolve();
         return 1;
     }
-    if (triggerOnEvent(e))
-    {
         fireAbility();
         return 1;
     }

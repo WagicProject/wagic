@@ -875,10 +875,11 @@ int MTGCardInstance::toggleDefenser(MTGCardInstance * opponent)
         {
             setDefenser(opponent);
             didblocked = 1;
-            if (opponent && opponent->controller()->isAI())
+            if (opponent && opponent->controller()->isAI() && opponent->controller()->playMode != Player::MODE_TEST_SUITE)
             {
                 if(opponent->view != NULL)
                 {
+                //todo: qoute wololo "change this into a cool blinking effects when opposing creature has cursor focus."
                     opponent->view->actZ += .8f;
                     opponent->view->actT -= .2f;
                 }
