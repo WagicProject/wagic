@@ -171,7 +171,6 @@ class MTGPlayerCards {
   MTGCardInstance * putInExile(MTGCardInstance * card);
   MTGCardInstance * putInLibrary(MTGCardInstance * card);
   MTGCardInstance * putInHand(MTGCardInstance * card);
-  MTGCardInstance * putInBattlefield(MTGCardInstance * card);
   MTGCardInstance * putInZone(MTGCardInstance * card, MTGGameZone * from, MTGGameZone * to);
   int isInPlay(MTGCardInstance * card);
   int isInGrave(MTGCardInstance * card);

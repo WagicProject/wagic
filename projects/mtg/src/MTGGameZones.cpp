@@ -243,129 +243,30 @@ void MTGPlayerCards::showHand()
     hand->debugPrint();
 }
 
+// Moves a card to its owner's graveyard
 MTGCardInstance * MTGPlayerCards::putInGraveyard(MTGCardInstance * card)
 {
-    MTGCardInstance * copy = NULL;
-    MTGGraveyard * grave = card->owner->game->graveyard;
-    if (inPlay->hasCard(card))
-    {
-        copy = putInZone(card, inPlay, grave);
-    }
-    else if (stack->hasCard(card))
-    {
-        copy = putInZone(card, stack, grave);
-    }
-    else
-    {
-        copy = putInZone(card, hand, grave);
-    }
-    return copy;
-
+    return putInZone(card, card->currentZone, card->owner->game->graveyard);
 }
 
+// Moves a card to its owner's exile
 MTGCardInstance * MTGPlayerCards::putInExile(MTGCardInstance * card)
 {
-    MTGCardInstance * copy = NULL;
-    MTGRemovedFromGame * exile = card->owner->game->exile;
-    if (inPlay->hasCard(card))
-    {
-        copy = putInZone(card, inPlay, exile);
-    }
-    else if (stack->hasCard(card))
-    {
-        copy = putInZone(card, stack, exile);
-    }
-    else if (hand->hasCard(card))
-    {
-        copy = putInZone(card, hand, exile);
-    }
-    else if (graveyard->hasCard(card))
-    {
-        copy = putInZone(card, graveyard, exile);
-    }
-    else
-    {
-        copy = putInZone(card, hand, exile);
-    }
-    return copy;
+    return putInZone(card, card->currentZone, card->owner->game->exile);
 }
+
+// Moves a card to its owner's library
 MTGCardInstance * MTGPlayerCards::putInLibrary(MTGCardInstance * card)
 {
-    MTGCardInstance * copy = NULL;
-    MTGLibrary * library = card->owner->game->library;
-    MTGHand * hand = card->owner->game->hand;
-    if (inPlay->hasCard(card))
-    {
-        copy = putInZone(card, inPlay, library);
-    }
-    else if (stack->hasCard(card))
-    {
-        copy = putInZone(card, stack, library);
-    }
-    else if (graveyard->hasCard(card))
-    {
-        copy = putInZone(card, graveyard, library);
-    }
-    else
-    {
-        copy = putInZone(card, hand, library);
-    }
-    return copy;
+    return putInZone(card, card->currentZone, card->owner->game->library);
 }
 
+// Moves a card to its *owner's* (not controller!) hand
 MTGCardInstance * MTGPlayerCards::putInHand(MTGCardInstance * card)
 {
-    MTGCardInstance * copy = NULL;
-    MTGHand * hand = card->owner->game->hand;
-    if (inPlay->hasCard(card))
-    {
-        copy = putInZone(card, inPlay, hand);
-    }
-    else if (stack->hasCard(card))
-    {
-        copy = putInZone(card, stack, hand);
-    }
-    else if (graveyard->hasCard(card))
-    {
-        copy = putInZone(card, graveyard, hand);
-    }
-    else if (exile->hasCard(card))
-    {
-        copy = putInZone(card, exile, hand);
-    }
-    else
-    {
-        copy = putInZone(card, hand, hand);
-    }
-    return copy;
+    return putInZone(card, card->currentZone, card->owner->game->hand);
 }
 
-MTGCardInstance * MTGPlayerCards::putInBattlefield(MTGCardInstance * card)
-{
-    MTGCardInstance * copy = NULL;
-    MTGInPlay * InPlay = card->owner->game->battlefield;
-    if (inPlay->hasCard(card))
-    {
-        copy = putInZone(card, inPlay, InPlay);
-    }
-    else if (stack->hasCard(card))
-    {
-        copy = putInZone(card, stack, InPlay);
-    }
-    else if (graveyard->hasCard(card))
-    {
-        copy = putInZone(card, graveyard, InPlay);
-    }
-    else if (exile->hasCard(card))
-    {
-        copy = putInZone(card, exile, InPlay);
-    }
-    else
-    {
-        copy = putInZone(card, InPlay, InPlay);
-    }
-    return copy;
-}
 
 // Moves a card from one zone to another
 // If the card is not actually in the expected "from" zone, does nothing and returns null 
