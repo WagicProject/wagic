@@ -3269,12 +3269,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
         game->mLayers->stackLayer()->addDamage(card, target, x);
         if (target->life < x)
             x = target->life;
-        game->currentlyActing()->life += x;
-        game->currentlyActing()->thatmuch = x;
-        WEvent * lifed = NULL;
-        lifed = NEW WEventLife(game->currentlyActing(),x);
-        GameObserver * game = GameObserver::GetInstance();
-        game->receiveEvent(lifed);
+        game->currentlyActing()->gainLife(x);
         break;
     }
     case 1159: //Erg Raiders
@@ -3485,12 +3480,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
                 if (current->hasType("Artifact"))
                 {
                     game->players[i]->game->putInGraveyard(current);
-                    current->controller()->life += current->getManaCost()->getConvertedCost();
-                    current->controller()->thatmuch = current->getManaCost()->getConvertedCost();
-                    WEvent * lifed = NULL;
-                    lifed = NEW WEventLife(current->controller(),current->getManaCost()->getConvertedCost());
-                    GameObserver * game = GameObserver::GetInstance();
-                    game->receiveEvent(lifed);
+                    current->controller()->gainLife(current->getManaCost()->getConvertedCost());
                 }
             }
         }
@@ -3603,12 +3593,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
             if (library->nb_cards)
                 player->game->putInZone(library->cards[library->nb_cards - 1], library, player->game->graveyard);
         }
-        game->currentlyActing()->life += x;
-        game->currentlyActing()->thatmuch = x;
-        WEvent * lifed = NULL;
-        lifed = NEW WEventLife(game->currentlyActing(),x);
-        GameObserver * game = GameObserver::GetInstance();
-        game->receiveEvent(lifed);
+        game->currentlyActing()->gainLife(x);
         break;
     }
 

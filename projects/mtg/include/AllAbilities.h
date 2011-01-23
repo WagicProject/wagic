@@ -719,11 +719,8 @@ public:
         return 0;
         if (!tc->canTarget(e->player)) return 0;
         if (fromTc && !fromTc->canTarget(e->player)) return 0;
-        if (type == 1 && (e->amount > 0 || e->Ltype == 0)) return 0;
-        if (type == 0 && (e->amount < 0 || e->Ltype == 1)) return 0;
-        if(type != 1)
-        e->player->thatmuch = e->amount;
-        else
+        if (type == 1 && (e->amount > 0)) return 0;
+        if (type == 0 && (e->amount < 0)) return 0;
         e->player->thatmuch = abs(e->amount);
         return 1;
     }
@@ -5742,12 +5739,7 @@ public:
             MTGCardInstance * card = d->source;
             if (d->damage > 0 && card && (card == source || card == source->target))
             {
-                source->owner->life += d->damage;
-                source->owner->thatmuch = d->damage;
-                WEvent * lifed = NULL;
-                lifed = NEW WEventLife(source->owner,d->damage);
-                GameObserver * game = GameObserver::GetInstance();
-                game->receiveEvent(lifed);
+                source->owner->gainLife(d->damage);
                 return 1;
             }
         }

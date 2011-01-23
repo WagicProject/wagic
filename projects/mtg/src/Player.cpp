@@ -116,6 +116,45 @@ ManaPool * Player::getManaPool()
     return manaPool;
 }
 
+int Player::gainOrLoseLife(int value)
+{
+    if (!value)
+        return 0; //Don't do anything if there's no actual life change
+
+    thatmuch = abs(value); //What is thatmuch used for? 
+    life+=value;
+    if (value<0)
+        lifeLostThisTurn -= value;
+
+    //Send life event to listeners
+    WEvent * lifed = NEW WEventLife(this,value);
+    GameObserver * game = GameObserver::GetInstance();
+    game->receiveEvent(lifed);
+
+    return value;
+};
+
+int Player::gainLife(int value)
+{
+    if (value <0)
+    {
+        DebugTrace("PLAYER.CPP: don't call gainLife on a negative value, use loseLife instead");
+        return 0;
+    }
+    return gainOrLoseLife(value);
+};
+
+int Player::loseLife(int value)
+{
+    if (value <0)
+    {
+        DebugTrace("PLAYER.CPP: don't call loseLife on a negative value, use gainLife instead");
+        return 0;
+    }
+    return gainOrLoseLife(-value);
+};
+
+
 int Player::afterDamage()
 {
     return life;

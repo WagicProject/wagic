@@ -76,22 +76,16 @@ LifeCost::LifeCost(TargetChooser *_tc) :
 
 int LifeCost::doPay()
 {
+    if (!target)
+        return 0;
+
     MTGCardInstance * _target = (MTGCardInstance *) target;
-    if (target)
-    {
-        _target->controller()->thatmuch = 1;
-        WEvent * lifed = NULL;
-        lifed = NEW WEventLife(_target->controller(),-1,1);
-        GameObserver * game = GameObserver::GetInstance();
-        game->receiveEvent(lifed);
-        _target->controller()->life -= 1;
-        _target->controller()->lifeLostThisTurn += 1;
-        target = NULL;
-        if (tc)
-            tc->initTargets();
-        return 1;
-    }
-    return 0;
+
+    _target->controller()->loseLife(1);
+    target = NULL;
+    if (tc)
+        tc->initTargets();
+    return 1;
 }
 
 //discard a card at random as a cost

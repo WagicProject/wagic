@@ -21,8 +21,8 @@ WEventDamage::WEventDamage(Damage *damage) :
 {
 }
 
-WEventLife::WEventLife(Player * player,int amount,int Ltype) :
-    WEvent(), player(player),amount(amount), Ltype(Ltype)
+WEventLife::WEventLife(Player * player,int amount) :
+    WEvent(), player(player),amount(amount)
 {
 }
 

@@ -62,6 +62,11 @@ public:
     }
 
     int afterDamage();
+
+    int gainLife(int value);
+    int loseLife(int value);
+    int gainOrLoseLife(int value);
+
     int poisoned();
     int damaged();
     int prevented();

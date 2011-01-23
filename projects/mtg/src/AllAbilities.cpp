@@ -1254,25 +1254,19 @@ ActivatedAbilityTP(_id, card, _target, _cost, _tap, who),life_s(life_s), life(li
 }
 
 int AALifer::resolve()
-{
-    RefreshedLife = NEW WParsedInt(life_s, NULL, source);
+{  
     Damageable * _target = (Damageable *) getTarget();
-    if (_target)
+    if (!_target)
+        return 0;
+
+    RefreshedLife = NEW WParsedInt(life_s, NULL, source);
+    if (_target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
     {
-        if (_target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
-        {
-            _target = ((MTGCardInstance *) _target)->controller();
-        }
-        Player *player = (Player*)_target;
-        player->thatmuch = abs(RefreshedLife->getValue());
-        WEvent * lifed = NULL;
-        lifed = NEW WEventLife(player,RefreshedLife->getValue());
-        GameObserver * game = GameObserver::GetInstance();
-        game->receiveEvent(lifed);
-        _target->life += RefreshedLife->getValue();
-        if(life->getValue() < 0)
-        _target->lifeLostThisTurn += abs(RefreshedLife->getValue());
+        _target = ((MTGCardInstance *) _target)->controller();
     }
+    Player *player = (Player*)_target;
+    player->gainOrLoseLife(RefreshedLife->getValue());
+
     delete RefreshedLife;
     return 1;
 }
@@ -1307,30 +1301,23 @@ AALifeSet::AALifeSet(int _id, MTGCardInstance * _source, Targetable * _target, W
 int AALifeSet::resolve()
 {
     Damageable * _target = (Damageable *) getTarget();
-    if (_target)
-    {
-        if (_target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
-        {
-            _target = ((MTGCardInstance *) _target)->controller();
-        }
+    if (!_target)
+        return 0;
 
-        int lifeDiff = life->getValue() - _target->life ;
-        WEvent * lifed = NULL;
-        if(lifeDiff < 0)
-        {
-            _target->lifeLostThisTurn += abs(lifeDiff);
-            lifed = NEW WEventLife((Player*)_target,lifeDiff,1);
-        }
-        else
-        {
-            lifed = NEW WEventLife((Player*)_target,lifeDiff,0);
-        }
-        _target->thatmuch = abs(lifeDiff);
-        GameObserver * game = GameObserver::GetInstance();
-        game->receiveEvent(lifed);
-        _target->life = life->getValue();
+    Player * p = NULL;
+    if (_target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
+    {
+        p = ((MTGCardInstance *) _target)->controller();
     }
-    return 0;
+    else
+    {
+        p = (Player*)_target;
+    }
+
+    int lifeDiff = life->getValue() - p->life ;
+    p->gainOrLoseLife(lifeDiff);
+
+    return 1;
 }
 
 const char * AALifeSet::getMenuText()

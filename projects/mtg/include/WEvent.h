@@ -54,8 +54,7 @@ struct WEventDamage : public WEvent {
 struct WEventLife : public WEvent {
     Player * player;
     int amount;
-    int Ltype;
-    WEventLife(Player * player,int amount,int Ltype = 0);
+    WEventLife(Player * player,int amount);
     virtual Targetable * getTarget(int target);
 };
 
