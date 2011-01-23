@@ -1,0 +1,40 @@
+#Testing Armadillo Cloak (keyword:SPIRITLINK).
+#Whenever enchanted creature deals damage, you gain that much life.
+#Test 2: Armadillo Cloak enchanting a creature opponent controls.
+#You as the controller of Armadillo Cloak should gain the life points.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Armadillo Cloak
+inplay:Grizzly Bears
+manapool:{1}{G}{W}
+life:20
+[PLAYER2]
+inplay:Serra Angel
+life:20
+[DO]
+Armadillo Cloak
+Serra Angel
+next
+#combatbegins
+next
+#attackers
+Grizzly Bears
+next
+#blockers
+Serra Angel
+next
+#combatdamage
+next
+#combatend
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Armadillo Cloak
+graveyard:Grizzly Bears
+manapool:{0}
+life:26
+[PLAYER2]
+life:20
+inplay:Serra Angel
+[END]

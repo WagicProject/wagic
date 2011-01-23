@@ -85,11 +85,13 @@ generic/wither.txt
 ########################
 #Specific Cards
 ########################
+abyssal_hunter_POWERSTRIKE.txt
 act_of_treason.txt
 aegis_of_the_meek.txt
 aether_mutation.txt
 aether_flash.txt
 afflict.txt
+ageless_entity.txt
 akron_legionnaire.txt
 alabaster_dragon.txt
 alabaster_leech.txt
@@ -98,6 +100,7 @@ alluring_siren.txt
 Amugaba.txt
 anarchy.txt
 ancestors_chosen.txt
+angelic_chorus_TOUGHNESSLIFEGAIN.txt
 angry_mob1.txt
 angry_mob2.txt
 angry_mob3.txt
@@ -127,6 +130,7 @@ ascendant_evincar3.txt
 ashen_firebeast.txt
 ashen_firebeast2.txt
 aura_mutation.txt
+auriok_bladewarden_POWERPUMPBOTH.txt
 Auriok_Sunchaser_ASLONGAS_1.txt
 Auriok_Sunchaser_ASLONGAS_2.txt
 avarice_totem.txt
@@ -175,6 +179,7 @@ Call_to_Heel_1.txt
 Call_to_Heel_2.txt
 castle.txt
 cathodion.txt
+celestial_mantle.txt
 celestial_purge.txt
 chainbreaker.txt
 circle_of_protection.txt
@@ -247,8 +252,10 @@ emblem_of_the_warmind.txt
 enchanted evening.txt
 enervate.txt
 enchantress_s_presence.txt
+Eradicate.txt
 erg_raiders_i157.txt
 explore.txt
+Faceless_Butcher.txt
 fangren_pathcutter.txt
 farhaven_elf.txt
 farmstead.txt
@@ -325,6 +332,8 @@ imaginary_pet.txt
 immaculate_magistrate.txt
 incinerate.txt
 instill_energy_i166.txt
+invigorate.txt
+invigorate#2.txt
 iron_will_i270.txt
 ivy_elemental.txt
 jodahs_avenger.txt
@@ -340,6 +349,7 @@ kjeldoran_frostbeast1.txt
 kjeldoran_frostbeast2_i167.txt
 knight_captain_of_eos_i294.txt
 knight_captain_of_eos_i294_2.txt
+Kor_Spiritdancer.txt
 kormus_bell_i301.txt
 krosan_beast.txt
 krosan_beast2.txt
@@ -374,12 +384,20 @@ memnarch.txt
 memory_erosion.txt
 mephidross_vampire.txt
 millstone.txt
+Mimics#1.txt
+Mimics#2.txt
 mirri_the_cursed.txt
 mirri_the_cursed2_i284.txt
 misc01.txt
 moat.txt
 mobile_fort.txt
+Morph#1.txt
+Morph#2.txt
+Morph#3.txt
+Morph#4.txt
+Morph#5.txt
 mortuary.txt
+Multicolor.txt
 nantuko_husk.txt
 natural_order.txt
 necrogenesis.txt
@@ -448,6 +466,7 @@ seedcradle_witch.txt
 seismic_assault.txt
 seismic_spike_i191.txt
 selesnya_guildmage.txt
+setpower_settoughness.txt
 shard_volley.txt
 sigil_captain_i467.txt
 silver_seraph_i300.txt
@@ -473,12 +492,17 @@ slith_bloodletter.txt
 sneak_attack.txt
 soulblast.txt
 souls_attendant_i489.txt
+soul's_grace_POWERLIFEGAIN.txt
 spark_elemental.txt
 sphinx_summoner.txt
 spirit_link.txt
+SPIRITLINK_keyword#1.txt
+SPIRITLINK_keyword#2.txt
+SPIRITLINK_keyword#3.txt
 spitting_earth.txt
 spoils_of_evil.txt
 spore_frog.txt
+stacking_flanking.txt
 stasis.txt
 steelclad_serpent1.txt
 steelclad_serpent2.txt
@@ -519,18 +543,22 @@ unwilling_recruit.txt
 urzas_lands.txt
 urzas_lands2.txt
 urzas_mine_i287.txt
+[at]Vampired#1.txt
 vampire_bats.txt
 vampiric_link.txt
+vendetta_TOUGHNESSLIFELOSS.txt
 vine_dryad.txt
 volcanic_eruption.txt
 walking_wall.txt
 wall_of_diffusion.txt
 wall_of_diffusion2.txt
 warren_instigator.txt
+wave_of_reckoning.txt
 welkin_hawk.txt
 whispers_of_the_muse.txt
 white_knight1.txt
 windswept_heath.txt
+winds_of_Rath.txt
 wrath_of_god.txt
 wrath_of_god2.txt
 wreak_havoc.txt

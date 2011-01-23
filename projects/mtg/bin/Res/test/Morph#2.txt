@@ -1,0 +1,30 @@
+#Testing Exalted Angel (keyword:morph).
+#Test 2: Turning Exalted Angel face-up prevents him from being killed by Pyroclasm.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Exalted Angel,Pyroclasm
+inplay:Forest,Fervor
+life:20
+manapool:{6}{R}{W}{W}
+[PLAYER2]
+life:20
+[DO]
+Exalted Angel
+choice 1
+Exalted Angel
+Pyroclasm
+next
+next
+Exalted Angel
+goto secondmain
+[ASSERT]
+secondmain
+[PLAYER1]
+graveyard:Pyroclasm
+inplay:Forest,Exalted Angel,Fervor
+life:24
+manapool:{0}
+[PLAYER2]
+life:16
+[END]

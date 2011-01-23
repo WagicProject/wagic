@@ -1,0 +1,33 @@
+#Testing SETPOWER & SETTOUGHNESS -- Example: Diminish
+#Target creature becomes a 1/1 until end of turn. Rootbreaker Wurm should drop from 6/6 to 1/1.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Diminish
+inplay:Rootbreaker Wurm
+manapool:{U}
+[PLAYER2]
+life:20
+[DO]
+Diminish
+Rootbreaker Wurm
+next
+#combatbegins
+next
+#attackers
+Rootbreaker Wurm
+next
+#blockers
+next
+#combatdamage
+next
+#combatend
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Rootbreaker Wurm
+graveyard:Diminish
+manapool:{0}
+[PLAYER2]
+life:19
+[END]

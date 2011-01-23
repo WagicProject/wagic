@@ -1,0 +1,26 @@
+#Testing Faceless Butcher (keyword:(blink)forsrc).
+#When Faceless Butcher enters the battlefield, exile target creature other than Faceless Butcher. -- When Faceless Butcher leaves the battlefield, return the exiled card to the battlefield under its owner's control.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Faceless Butcher,Wrath of God
+inplay:Grizzly Bears,Forest
+life:20
+manapool:{4}{B}{B}{W}{W}
+[PLAYER2]
+inplay:Raging Goblin
+[DO]
+Faceless Butcher
+choice 0
+Raging Goblin
+Wrath of God
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Faceless Butcher,Grizzly Bears,Wrath of God
+inplay:Forest
+life:20
+manapool:{0}
+[PLAYER2]
+inplay:Raging Goblin
+[END]

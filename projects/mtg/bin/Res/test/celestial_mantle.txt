@@ -1,0 +1,34 @@
+#Testing Celestial Mantle and life:lifetotal.
+#Whenever enchanted creature deals combat damage to a player, double its controller's life total.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Celestial Mantle
+inplay:Raging Goblin
+manapool:{3}{W}{W}{W}
+life:20
+[PLAYER2]
+life:20
+[DO]
+Celestial Mantle
+Raging Goblin
+next
+#combatbegins
+next
+#attackers
+Raging Goblin
+next
+#blockers
+next
+#combatdamage
+next
+#combatend
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Raging Goblin,Celestial Mantle
+manapool:{0}
+life:40
+[PLAYER2]
+life:16
+[END]

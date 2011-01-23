@@ -1,0 +1,35 @@
+#Testing Armadillo Cloak (keyword:SPIRITLINK).
+#Whenever enchanted creature deals damage, you gain that much life.
+#Test 1: Armadillo Cloak enchanting a creature you control.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Armadillo Cloak
+inplay:Raging Goblin
+manapool:{1}{G}{W}
+life:20
+[PLAYER2]
+life:20
+[DO]
+Armadillo Cloak
+Raging Goblin
+next
+#combatbegins
+next
+#attackers
+Raging Goblin
+next
+#blockers
+next
+#combatdamage
+next
+#combatend
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Armadillo Cloak,Raging Goblin
+manapool:{0}
+life:23
+[PLAYER2]
+life:17
+[END]

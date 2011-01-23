@@ -1,0 +1,43 @@
+#Testing "Armadillo Cloak", "Spirit Link" and "Lifelink" (keywords:SPIRITLINK and LIFELINK).
+#Whenever enchanted creature deals damage, you gain that much life.
+#Test 3: 1. Baneslayer Angel (lifelink) + 2. Spirit Link (spiritlink) + 3. Lifelink (lifelink) + 4. Armadillo Cloak (+2/+2,spiritlink).
+#--> this combo should lead to: 1. 7 life + 2. 7 life + 3. no life + 7 life.
+#"Lifelink" and "Spiritlink" should stack.
+#"Lifelink" and "Lifelink" should not stack.
+#"Spiritlink" and "Spiritlink" should stack.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Armadillo Cloak,Spirit Link,Lifelink
+inplay:Baneslayer Angel
+manapool:{2}{G}{W}{W}{W}
+life:20
+[PLAYER2]
+life:20
+[DO]
+Armadillo Cloak
+Baneslayer Angel
+Spirit Link
+Baneslayer Angel
+Lifelink
+Baneslayer Angel
+next
+#combatbegins
+next
+#attackers
+Baneslayer Angel
+next
+#blockers
+next
+#combatdamage
+next
+#combatend
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Armadillo Cloak,Spirit Link,Lifelink,Baneslayer Angel
+manapool:{0}
+life:41
+[PLAYER2]
+life:13
+[END]

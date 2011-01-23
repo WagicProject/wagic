@@ -1,0 +1,34 @@
+#Testing Ageless Entity and @LIFED trigger.
+#Whenever you gain life, put that many +1/+1 counters on Ageless Entity.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Sacred Nectar
+inplay:Ageless Entity
+manapool:{1}{W}
+life:20
+[PLAYER2]
+life:20
+[DO]
+Sacred Nectar
+next
+#combatbegins
+next
+#attackers
+Ageless Entity
+next
+#blockers
+next
+#combatdamage
+next
+#combatend
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Ageless Entity
+graveyard:Sacred Nectar
+manapool:{0}
+life:24
+[PLAYER2]
+life:12
+[END]

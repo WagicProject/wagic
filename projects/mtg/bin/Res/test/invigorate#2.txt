@@ -1,0 +1,36 @@
+#Testing Invigorate (keyword:OTHERRESTRICTION) by casting it alternatively (= opponent gains 3 life).
+#This time the casting should fail because you don't control a forest.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Invigorate
+inplay:Raging Goblin
+manapool:{0}
+[PLAYER2]
+inplay:Serra Angel
+life:20
+[DO]
+Invigorate
+Raging Goblin
+next
+#combatbegins
+next
+#attackers
+Raging Goblin
+next
+#blockers
+Serra Angel
+next
+#combatdamage
+next
+#combatend
+[ASSERT]
+COMBATEND
+[PLAYER1]
+hand:Invigorate
+graveyard:Raging Goblin
+manapool:{0}
+[PLAYER2]
+life:20
+inplay:Serra Angel
+[END]

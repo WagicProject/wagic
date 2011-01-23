@@ -1,0 +1,34 @@
+#Testing Fathom Seer (keyword:morph).
+#Test 4: Turning Fathom Seer face-up will allow you to draw 3 cards.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Fathom Seer
+inplay:Island,Underground Sea,Fervor
+library:Lord of Atlantis,Counterspell
+life:20
+manapool:{3}
+[PLAYER2]
+life:20
+[DO]
+Fathom Seer
+choice 1
+Fathom Seer
+choice 0
+Island
+choice 0
+Underground Sea
+next
+next
+Fathom Seer
+goto secondmain
+[ASSERT]
+secondmain
+[PLAYER1]
+hand:Lord of Atlantis,Counterspell,Island,Underground Sea
+inplay:Fervor,Fathom Seer
+life:20
+manapool:{0}
+[PLAYER2]
+life:19
+[END]

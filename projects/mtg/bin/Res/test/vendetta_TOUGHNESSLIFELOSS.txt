@@ -1,0 +1,20 @@
+#Testing Vendetta: TOUGHNESSLIFELOSS (dynamicability)
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Vendetta
+inplay:Giant Spider
+life:20
+manapool:{B}
+[PLAYER2]
+[DO]
+Vendetta
+Giant Spider
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Vendetta,Giant Spider
+life:16
+manapool:{0}
+[PLAYER2]
+[END]

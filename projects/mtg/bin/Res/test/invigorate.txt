@@ -1,0 +1,36 @@
+#Testing Invigorate by casting it alternatively (= opponent gains 3 life).
+#If you control a Forest, you may have an opponent gain 3 life rather than pay Invigorate's mana cost. -- Target creature gets +4/+4 until end of turn.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Invigorate
+inplay:Raging Goblin,Forest
+manapool:{0}
+[PLAYER2]
+inplay:Serra Angel
+life:20
+[DO]
+Invigorate
+Raging Goblin
+next
+#combatbegins
+next
+#attackers
+Raging Goblin
+next
+#blockers
+Serra Angel
+next
+#combatdamage
+next
+#combatend
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Raging Goblin,Forest
+graveyard:Invigorate
+manapool:{0}
+[PLAYER2]
+life:23
+graveyard:Serra Angel
+[END]

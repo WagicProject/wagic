@@ -1,0 +1,21 @@
+#Testing Vendetta: POWERLIFEGAIN (dynamicability)
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Soul's Grace
+inplay:Giant Spider,Gaea's Anthem
+life:20
+manapool:{1}{W}
+[PLAYER2]
+[DO]
+Soul's Grace
+Giant Spider
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Soul's Grace
+inplay:Giant Spider
+life:23
+manapool:{0}
+[PLAYER2]
+[END]

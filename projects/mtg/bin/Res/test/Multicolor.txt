@@ -1,0 +1,29 @@
+#Testing "multicolor" keyword. Example: Bant Sureblade.
+#As long as you control another multicolored permanent, Bant Sureblade gets +1/+1 and has first strike.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Bant Sureblade,Odious Trow
+[PLAYER2]
+life:20
+[DO]
+Skyknight Legionnaire
+next
+#combatbegins
+next
+#attackers
+Bant Sureblade
+next
+#blockers
+next
+#combatdamage
+next
+#combatend
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Bant Sureblade,Odious Trow
+manapool:{0}
+[PLAYER2]
+life:17
+[END]

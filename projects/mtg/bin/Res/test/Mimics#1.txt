@@ -1,0 +1,31 @@
+#Testing Mimics and their [colorandcolor] keyword. Example: Battlegate Mimic.
+#Player one plays a card that is red and white, Battlegate Mimic becomes 4/2 attacks.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Skyknight Legionnaire
+inplay:Battlegate Mimic
+manapool:{1}{R}{W}
+[PLAYER2]
+life:20
+[DO]
+Skyknight Legionnaire
+next
+#combatbegins
+next
+#attackers
+Battlegate Mimic
+next
+#blockers
+next
+#combatdamage
+next
+#combatend
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Skyknight Legionnaire,Battlegate Mimic
+manapool:{0}
+[PLAYER2]
+life:16
+[END]

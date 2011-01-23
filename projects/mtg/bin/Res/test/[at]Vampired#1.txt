@@ -1,0 +1,35 @@
+#Testing Vampiric Dragon (trigger:@vampired).
+#Whenever a creature dealt damage by Vampiric Dragon this turn is put into a graveyard, put a +1/+1 counter on Vampiric Dragon. -- {1}{R}: Vampiric Dragon deals 1 damage to target creature.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Vampiric Dragon
+manapool:{1}{R}
+life:20
+[PLAYER2]
+life:20
+inplay:Raging Goblin
+[DO]
+Vampiric Dragon
+Raging Goblin
+next
+#combatbegins
+next
+#attackers
+Vampiric Dragon
+next
+#blockers
+next
+#combatdamage
+next
+#combatend
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Vampiric Dragon
+manapool:{0}
+life:20
+[PLAYER2]
+life:14
+graveyard:Raging Goblin
+[END]

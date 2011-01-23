@@ -1,0 +1,36 @@
+#Testing Kor Spiritdancer (keyword:auras).
+#Kor Spiritdancer gets +2/+2 for each Aura attached to it.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Rancor,Eternal Warrior
+inplay:Kor Spiritdancer
+manapool:{G}{R}
+life:20
+[PLAYER2]
+life:20
+[DO]
+Rancor
+Kor Spiritdancer
+Eternal Warrior
+Kor Spiritdancer
+next
+#combatbegins
+next
+#attackers
+Kor Spiritdancer
+next
+#blockers
+next
+#combatdamage
+next
+#combatend
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Rancor,Kor Spiritdancer,Eternal Warrior
+manapool:{0}
+life:20
+[PLAYER2]
+life:14
+[END]

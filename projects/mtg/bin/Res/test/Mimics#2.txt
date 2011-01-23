@@ -1,0 +1,31 @@
+#Testing Mimics and their [colorandcolor] keyword. Example: Battlegate Mimic.
+#Player one plays a card that is only red, Battlegate Mimic should stay 2/1.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Raging Goblin
+inplay:Battlegate Mimic
+manapool:{R}
+[PLAYER2]
+life:20
+[DO]
+Raging Goblin
+next
+#combatbegins
+next
+#attackers
+Battlegate Mimic
+next
+#blockers
+next
+#combatdamage
+next
+#combatend
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Raging Goblin,Battlegate Mimic
+manapool:{0}
+[PLAYER2]
+life:18
+[END]

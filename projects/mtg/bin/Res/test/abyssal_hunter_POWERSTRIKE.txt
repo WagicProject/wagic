@@ -1,0 +1,23 @@
+#Testing Abyssal Hunter. POWERSTRIKE (dynamicability)
+#auto={B}{T}:target(creature) dynamicability[powerstrike] tap
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Rancor
+inplay:Abyssal Hunter
+manapool:{B}{G}
+[PLAYER2]
+inplay:Hill Giant
+[DO]
+Rancor
+Abyssal Hunter
+Abyssal Hunter
+Hill Giant
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Abyssal Hunter,Rancor
+manapool:{0}
+[PLAYER2]
+graveyard:Hill Giant
+[END]

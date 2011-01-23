@@ -1,0 +1,36 @@
+#Testing Auriok Bladewarden +++ POWERPUMPBOTH (dynamicability)
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Rancor,Lightning Bolt
+inplay:Auriok Bladewarden,Raging Goblin
+manapool:{R}{G}
+[PLAYER2]
+life:20
+[DO]
+Rancor
+Auriok Bladewarden
+Auriok Bladewarden
+Raging Goblin
+Lightning Bolt
+Raging Goblin
+next
+#combatbegins
+next
+#attackers
+Raging Goblin
+next
+#blockers
+next
+#combatdamage
+next
+#combatend
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Auriok Bladewarden,Rancor,Raging Goblin
+graveyard:Lightning Bolt
+manapool:{0}
+[PLAYER2]
+life:16
+[END]

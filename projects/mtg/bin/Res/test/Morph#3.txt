@@ -1,0 +1,31 @@
+#Testing Exalted Angel (keyword:morph).
+#Test 3: Turning Exalted Angel face-up won't cause him to lose former p/t bonuses.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Exalted Angel,Giant Growth
+inplay:Forest,Fervor,Gaea's Anthem
+life:20
+manapool:{6}{G}{W}{W}
+[PLAYER2]
+life:20
+[DO]
+Exalted Angel
+choice 1
+Giant Growth
+Exalted Angel
+Exalted Angel
+next
+next
+Exalted Angel
+goto secondmain
+[ASSERT]
+secondmain
+[PLAYER1]
+graveyard:Giant Growth
+inplay:Forest,Exalted Angel,Fervor,Gaea's Anthem
+life:28
+manapool:{0}
+[PLAYER2]
+life:12
+[END]

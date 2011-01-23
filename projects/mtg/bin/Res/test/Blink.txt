@@ -1,0 +1,31 @@
+#Testing Flicker (keyword:blink).
+Exile target nontoken permanent, then return it to the battlefield under its owner's control.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Flicker
+inplay:Venerable Monk,Grizzly Bears
+manapool:{1}{W}
+life:20
+[PLAYER2]
+hand:Wrath of God
+manapool:{2}{W}{W}
+[DO]
+Wrath of God
+no
+yes
+Flicker
+Venerable Monk
+endinterruption
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Venerable Monk
+graveyard:Grizzly Bears,Flicker
+manapool:{0}
+life:22
+[PLAYER2]
+graveyard:Wrath of God
+manapool:{0}
+life:20
+[END]

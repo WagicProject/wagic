@@ -1,0 +1,23 @@
+#Testing Winds of Rath (keyword:enchanted).
+#Destroy all creatures that aren't enchanted. They can't be regenerated.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Winds of Rath,Rancor
+inplay:Giant Spider,Grizzly Bears
+life:20
+manapool:{3}{W}{W}{G}
+[PLAYER2]
+[DO]
+Rancor
+Giant Spider
+Winds of Rath
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Grizzly Bears,Winds of Rath
+inplay:Giant Spider,Rancor
+life:20
+manapool:{0}
+[PLAYER2]
+[END]

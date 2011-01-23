@@ -1,0 +1,23 @@
+#Testing Fathom Seer (keyword:morph).
+#Test 4: Casting Fathom Seer normally will not allow you to draw 3 cards.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Fathom Seer
+inplay:Island,Underground Sea
+library:Lord of Atlantis,Counterspell
+life:20
+manapool:{1}{U}
+[PLAYER2]
+[DO]
+Fathom Seer
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+hand:
+inplay:Fathom Seer,Island,Underground Sea
+library:Lord of Atlantis,Counterspell
+life:20
+manapool:{0}
+[PLAYER2]
+[END]

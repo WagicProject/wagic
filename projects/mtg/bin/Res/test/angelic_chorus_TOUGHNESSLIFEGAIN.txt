@@ -1,0 +1,20 @@
+#Testing Angelic Chorus: TOUGHNESSLIFEGAIN (dynamicability)
+###auto=@movedTo(creature|mybattlefield):[all(trigger[to]) dynamicability<!mytgt toughnesslifegain targetcontroller!>
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Grizzly Bears
+inplay:Angelic Chorus,Gaea's Anthem
+manapool:{1}{G}
+life:20
+[PLAYER2]
+[DO]
+Grizzly Bears
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Angelic Chorus,Gaea's Anthem,Grizzly Bears
+life:23
+manapool:{0}
+[PLAYER2]
+[END]

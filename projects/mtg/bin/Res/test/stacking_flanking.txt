@@ -1,0 +1,28 @@
+#Testing If a creature with flanking is given flanking by another effect, then this ability will grant a second instance.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Cavalry Master,Benalish Cavalry
+[PLAYER2]
+inplay:Serra Angel
+[DO]
+next
+#combatbegins
+next
+#attackers
+Benalish Cavalry
+next
+#blockers
+Serra Angel
+next
+#combatdamage
+next
+#combatend
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Cavalry Master
+graveyard:Benalish Cavalry
+[PLAYER2]
+graveyard:Serra Angel
+[END]

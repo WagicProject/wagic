@@ -1,0 +1,23 @@
+#Testing Exalted Angel (keyword:morph).
+#Test 1: Casting Exalted Angel face-down makes him a 2/2 creature.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Exalted Angel,Pyroclasm
+inplay:Forest
+life:20
+manapool:{4}{R}
+[PLAYER2]
+[DO]
+Exalted Angel
+choice 1
+Pyroclasm
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Pyroclasm,Exalted Angel
+inplay:Forest
+life:20
+manapool:{0}
+[PLAYER2]
+[END]
