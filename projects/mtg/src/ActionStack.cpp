@@ -209,6 +209,11 @@ Interruptible(id), tc(tc), cost(_cost), payResult(payResult)
     mHeight = 40;
     type = ACTION_SPELL;
     from = _source->getCurrentZone();
+    for(int i = 0;i < MAX_TARGETS;i++)
+    {
+    if(tc && tc->targets[i] != NULL)
+    _source->backupTargets[i] = tc->targets[i];
+    }
 }
 
 int Spell::computeX(MTGCardInstance * card)

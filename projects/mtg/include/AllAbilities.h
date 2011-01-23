@@ -860,7 +860,6 @@ public:
         if (!e) return 0;
         if (!tc->canTarget(e->card)) return 0;
         if (fromTc && !fromTc->canTarget(e->source)) return 0;
-        
         return 1;
     }
 

@@ -97,7 +97,7 @@ class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable {
   int typeAsTarget(){return TARGET_CARD;}
   const string getDisplayName() const;
   MTGCardInstance * target;
-  MTGCardInstance * imprint;
+  Targetable * backupTargets[MAX_TARGETS];
 
 
   //types

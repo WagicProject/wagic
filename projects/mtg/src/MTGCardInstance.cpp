@@ -110,7 +110,6 @@ void MTGCardInstance::initMTGCI()
 {
     sample = "";
     model = NULL;
-    imprint = NULL;
     isToken = false;
     lifeOrig = 0;
     doDamageTest = 1;
