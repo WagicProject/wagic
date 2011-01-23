@@ -121,7 +121,9 @@ int Player::gainOrLoseLife(int value)
     if (!value)
         return 0; //Don't do anything if there's no actual life change
 
-    thatmuch = abs(value); //What is thatmuch used for? 
+    thatmuch = abs(value); //the value that much is a variable to be used with triggered abilities.
+    //ie:when ever you gain life, draw that many cards. when used in a trigger draw:thatmuch, will return the value
+    //that the triggered event stored in the card for "that much".
     life+=value;
     if (value<0)
         lifeLostThisTurn -= value;

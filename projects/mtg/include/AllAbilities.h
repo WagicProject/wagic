@@ -103,6 +103,9 @@ public:
         }
         else if (s == "thatmuch")
         {
+            //the value that much is a variable to be used with triggered abilities.
+            //ie:when ever you gain life, draw that many cards. when used in a trigger draw:thatmuch, will return the value
+            //that the triggered event stored in the card for "that much".
             intValue = 0;
             intValue = target->thatmuch;
             int checkagain = 0;
