@@ -293,7 +293,7 @@ void GuiPlay::Render()
             else
                 opponentCreatures.Render(*it, cards.begin(), end_spells);
         }
-        else if(!(*it)->card->hasSubtype("Planeswalker"))
+        else if(!(*it)->card->hasType("Planeswalker"))
         {
             if (!(*it)->card->target)
             {
