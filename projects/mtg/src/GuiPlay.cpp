@@ -213,13 +213,6 @@ void GuiPlay::Replace()
             else
                 ++opponentLandsN;
         }
-        //else if ((*it)->card->hasType("Planeswalker"))
-        //{
-        //    if (game->players[0] == (*it)->card->controller())
-        //        ++selfPlaneswalkern;
-        //    else
-        //        ++opponentPlaneswalkern;
-        //}
     }
 
     opponentSpells.reset(opponentSpellsN, 18, 60);
@@ -240,7 +233,7 @@ void GuiPlay::Replace()
     //seperated the varible X into 2 different varibles. There are 2 players here!!
     //we should not be using a single varible to determine the positioning of cards!!
     float myx = 24 + selfSpells.nextX();
-    opponentLands.reset(opponentLandsN,55 + x, 50);
+    opponentLands.reset(opponentLandsN,x, 50);
     opponentCreatures.reset(opponentCreaturesN, x, 95);
     battleField.reset(x, 145);//what does this varible do? i can comment it out with no reprocussions...is this being double handled?
     selfCreatures.reset(selfCreaturesN, myx, 195);
