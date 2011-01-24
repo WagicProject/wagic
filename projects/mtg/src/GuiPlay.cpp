@@ -173,22 +173,25 @@ GuiPlay::~GuiPlay()
 
 bool isSpell(CardView* c)
 {
-    return c->card->isSpell() && !c->card->isCreature();
+    return c->card->isSpell() && !c->card->isCreature() && !c->card->hasType("Planeswalker");
 }
 void GuiPlay::Replace()
 {
     unsigned opponentSpellsN = 0, selfSpellsN = 0, opponentLandsN = 0, opponentCreaturesN = 0, battleFieldAttackersN = 0,
-                    battleFieldBlockersN = 0, selfCreaturesN = 0, selfLandsN = 0;
+                    battleFieldBlockersN = 0, selfCreaturesN = 0, selfLandsN = 0, selfPlaneswalkern = 0,opponentPlaneswalkern = 0;
 
     end_spells = stable_partition(cards.begin(), cards.end(), &isSpell);
 
     for (iterator it = cards.begin(); it != end_spells; ++it)
         if (!(*it)->card->target)
         {
-            if (game->players[0] == (*it)->card->controller())
-                ++selfSpellsN;
-            else
-                ++opponentSpellsN;
+            if(!(*it)->card->hasSubtype("aura") && !(*it)->card->hasType("Planeswalker"))
+            {
+                if (game->players[0] == (*it)->card->controller())
+                    ++selfSpellsN;
+                else
+                    ++opponentSpellsN;
+            }
         }
     for (iterator it = end_spells; it != cards.end(); ++it)
     {
@@ -203,13 +206,20 @@ void GuiPlay::Replace()
             else
                 ++opponentCreaturesN;
         }
-        else if ((*it)->card->isLand())
+        else if ((*it)->card->isLand() || (*it)->card->hasType("Planeswalker"))
         {
             if (game->players[0] == (*it)->card->controller())
                 ++selfLandsN;
             else
                 ++opponentLandsN;
         }
+        //else if ((*it)->card->hasType("Planeswalker"))
+        //{
+        //    if (game->players[0] == (*it)->card->controller())
+        //        ++selfPlaneswalkern;
+        //    else
+        //        ++opponentPlaneswalkern;
+        //}
     }
 
     opponentSpells.reset(opponentSpellsN, 18, 60);
@@ -218,17 +228,19 @@ void GuiPlay::Replace()
     for (iterator it = cards.begin(); it != end_spells; ++it)
         if (!(*it)->card->target)
         {
-            if (game->players[0] == (*it)->card->controller())
-                selfSpells.Enstack(*it);
-            else
-                opponentSpells.Enstack(*it);
+            if(!(*it)->card->hasSubtype("aura") && !(*it)->card->hasType("Planeswalker"))
+            {
+                if (game->players[0] == (*it)->card->controller())
+                    selfSpells.Enstack(*it);
+                else
+                    opponentSpells.Enstack(*it);
+            }
         }
-
     float x = 24 + opponentSpells.nextX();
     //seperated the varible X into 2 different varibles. There are 2 players here!!
     //we should not be using a single varible to determine the positioning of cards!!
     float myx = 24 + selfSpells.nextX();
-    opponentLands.reset(opponentLandsN, x, 50);
+    opponentLands.reset(opponentLandsN,55 + x, 50);
     opponentCreatures.reset(opponentCreaturesN, x, 95);
     battleField.reset(x, 145);//what does this varible do? i can comment it out with no reprocussions...is this being double handled?
     selfCreatures.reset(selfCreaturesN, myx, 195);
@@ -248,6 +260,18 @@ void GuiPlay::Replace()
                 opponentCreatures.Enstack(*it);
         }
         else if ((*it)->card->isLand())
+        {
+            if (game->players[0] == (*it)->card->controller())
+                selfLands.Enstack(*it);
+            else
+                opponentLands.Enstack(*it);
+        }
+
+    }
+    //rerun the iter reattaching planes walkers to the back of the lands.
+    for (iterator it = end_spells; it != cards.end(); ++it)
+    {
+        if ((*it)->card->hasType("Planeswalker"))
         {
             if (game->players[0] == (*it)->card->controller())
                 selfLands.Enstack(*it);
@@ -276,7 +300,7 @@ void GuiPlay::Render()
             else
                 opponentCreatures.Render(*it, cards.begin(), end_spells);
         }
-        else
+        else if(!(*it)->card->hasSubtype("Planeswalker"))
         {
             if (!(*it)->card->target)
             {
@@ -284,6 +308,16 @@ void GuiPlay::Render()
                     selfSpells.Render(*it, cards.begin(), end_spells);
                 else
                     opponentSpells.Render(*it, cards.begin(), end_spells);
+            }
+        }
+        else
+        {
+            if (!(*it)->card->target)
+            {
+                if (game->players[0] == (*it)->card->controller())
+                    selfPlaneswalker.Render(*it, cards.begin(), end_spells);
+                else
+                    opponentPlaneswalker.Render(*it, cards.begin(), end_spells);
             }
         }
 

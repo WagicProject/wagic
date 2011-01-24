@@ -67,6 +67,7 @@ protected:
 
     class Lands: public HorzStack {};
     class Creatures: public HorzStack {};
+    class Planeswalker: public HorzStack {};
     class Spells: public VertStack {};
 
 protected:
@@ -75,6 +76,7 @@ protected:
     BattleField battleField;
     Lands selfLands, opponentLands;
     Spells selfSpells, opponentSpells;
+    Planeswalker selfPlaneswalker,opponentPlaneswalker;
     iterator end_spells;
 
     vector<CardView*> cards;

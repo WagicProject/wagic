@@ -1852,6 +1852,65 @@ MTGLegendRule * MTGLegendRule::clone() const
     return a;
 }
 
+/* PlaneWalker Rule */
+MTGPlaneWalkerRule::MTGPlaneWalkerRule(int _id) :
+ListMaintainerAbility(_id)
+{
+}
+;
+
+int MTGPlaneWalkerRule::canBeInList(MTGCardInstance * card)
+{
+    if(card->isPhased)
+        return 0;
+    if (card->hasType("Planeswalker") && game->isInPlay(card))
+    {
+        return 1;
+    }
+    return 0;
+}
+
+int MTGPlaneWalkerRule::added(MTGCardInstance * card)
+{
+    map<MTGCardInstance *, bool>::iterator it;
+    int destroy = 0;
+    for (it = cards.begin(); it != cards.end(); it++)
+    {
+        MTGCardInstance * comparison = (*it).first;
+        if (comparison != card && comparison->types == card->types)
+        {
+            comparison->controller()->game->putInGraveyard(comparison);
+            destroy = 1;
+        }
+    }
+    if (destroy)
+    {
+        card->owner->game->putInGraveyard(card);
+    }
+    return 1;
+}
+
+int MTGPlaneWalkerRule::removed(MTGCardInstance * card)
+{
+    return 0;
+}
+
+int MTGPlaneWalkerRule::testDestroy()
+{
+    return 0;
+}
+
+ostream& MTGPlaneWalkerRule::toString(ostream& out) const
+{
+    return out << "MTGLegendRule :::";
+}
+MTGPlaneWalkerRule * MTGPlaneWalkerRule::clone() const
+{
+    MTGPlaneWalkerRule * a = NEW MTGPlaneWalkerRule(*this);
+    a->isClone = 1;
+    return a;
+}
+
 /* Lifelink */
 MTGLifelinkRule::MTGLifelinkRule(int _id) :
 MTGAbility(_id, NULL)

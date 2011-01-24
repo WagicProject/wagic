@@ -219,7 +219,7 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
         break;
 
     case 'r': //retrace/rarity
-        if('s' == key[2])//restrictions
+        if('s' == key[2] && 't' == key[3])//restrictions
         {
             if (!primitive) primitive = NEW CardPrimitive();
             string value = val;
@@ -273,7 +273,7 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
                 }
             }
         }
-        else if ('e' == key[1])
+        else if ('e' == key[1] && 't' == key[2])
         { //retrace
             if (!primitive) primitive = NEW CardPrimitive();
             if (ManaCost * cost = primitive->getManaCost())
@@ -283,13 +283,12 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
                 cost->Retrace = ManaCost::parseManaCost(value);
             }
         }
-        else
+        else if (s.find("rar") != string::npos)
         {//rarity
             if (!card) card = NEW MTGCard();
             card->setRarity(val[0]);
         }
         break;
-
     case 's': //subtype
         if (!primitive) primitive = NEW CardPrimitive();
         while (true)

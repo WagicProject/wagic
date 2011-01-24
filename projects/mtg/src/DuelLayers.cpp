@@ -32,6 +32,7 @@ void DuelLayers::init()
     action->Add(NEW MTGBlockRule(-1));
     action->Add(NEW MTGCombatTriggersRule(-1));
     action->Add(NEW MTGLegendRule(-1));
+    action->Add(NEW MTGPlaneWalkerRule(-1));
     action->Add(NEW MTGTokensCleanup(-1)); // needs to be before persist
     action->Add(NEW MTGPersistRule(-1));
     action->Add(NEW MTGAffinityRule(-1));

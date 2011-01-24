@@ -217,6 +217,17 @@ public:
     virtual ostream& toString(ostream& out) const;
     virtual MTGLegendRule * clone() const;
 };
+class MTGPlaneWalkerRule: public ListMaintainerAbility
+{
+public:
+    MTGPlaneWalkerRule(int _id);
+    int canBeInList(MTGCardInstance * card);
+    int added(MTGCardInstance * card);
+    int removed(MTGCardInstance * card);
+    int testDestroy();
+    virtual ostream& toString(ostream& out) const;
+    virtual MTGPlaneWalkerRule * clone() const;
+};
 
 class MTGMomirRule: public MTGAbility
 {
