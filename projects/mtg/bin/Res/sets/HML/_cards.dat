@@ -628,6 +628,11 @@ id=2979
 rarity=C
 [/card]
 [card]
+primitive=Skeleton
+id=-2915
+rarity=T
+[/card]
+[card]
 primitive=Soraya the Falconer
 id=3031
 rarity=R
