@@ -10543,17 +10543,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Goblin Dynamo
-auto={T}:damage:1 target(creature,player)
-auto={X}{R}{T}{S}:thisforeach(X) damage:1 target(creature,player)
-text={T}: Goblin Dynamo deals 1 damage to target creature or player. -- {X}{R}, {T}, Sacrifice Goblin Dynamo: Goblin Dynamo deals X damage to target creature or player.
-mana={5}{R}{R}
-type=Creature
-subtype=Goblin Mutant
-power=4
-toughness=4
-[/card]
-[card]
 name=Cinder Cloud
 target=creature
 auto=teach(creature[white]) dynamicability<!mytgt powerstrike targetcontroller!>
@@ -13000,16 +12989,6 @@ auto={T}:Add {1}
 auto={5}{T}:Add {W}{U}{B}{R}{G}
 text={T}: Add {1} to your mana pool. -- {5}, {T}: Add {W}{U}{B}{R}{G} to your mana pool.
 type=Land
-[/card]
-[card]
-name=Crystal Golem
-auto=@each my endofturn:phaseout
-text=At the beginning of your end step, Crystal Golem phases out. (While it's phased out, it's treated as though it doesn't exist. It phases in before you untap during your next untap step.)
-mana={4}
-type=Artifact Creature
-subtype=Golem
-power=3
-toughness=3
 [/card]
 [card]
 name=Crystal Rod
