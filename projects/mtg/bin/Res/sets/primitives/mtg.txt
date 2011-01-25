@@ -4453,10 +4453,10 @@ toughness=4
 [/card]
 [card]
 name=Bant Sureblade
-auto=aslongas(*[multicolor]|mybattlefield) 1/1
-auto=aslongas(*[multicolor]|mybattlefield) first strike
+auto=aslongas(other *[multicolor]|mybattlefield) 1/1
+auto=aslongas(other *[multicolor]|mybattlefield) first strike
 text=As long as you control another multicolored permanent, Bant Sureblade gets +1/+1 and has first strike.
-mana={G/U}{W}
+mana={GU}{W}
 type=Creature
 subtype=Human Soldier
 power=2
@@ -13021,7 +13021,7 @@ auto=cantattack
 auto=cantblock
 auto=@targeted(mytgt):all(trigger[to]) moveTo(exile)
 text=Enchant creature -- Enchanted creature can't attack or block. -- When enchanted creature becomes the target of a spell or ability, exile that creature.
-mana={G/U}{W}
+mana={GU}{W}
 type=Enchantment
 subtype=Aura
 [/card]
@@ -19086,8 +19086,8 @@ type=Land
 [/card]
 [card]
 name=Esper Stormblade
-auto=aslongas(*[multicolor]|mybattlefield) 1/1
-auto=aslongas(*[multicolor]|mybattlefield) flying
+auto=aslongas(other *[multicolor]|mybattlefield) 1/1
+auto=aslongas(other *[multicolor]|mybattlefield) flying
 text=As long as you control another multicolored permanent, Esper Stormblade gets +1/+1 and has flying.
 mana={WB}{U}
 type=Artifact Creature
@@ -26410,8 +26410,8 @@ type=Instant
 [/card]
 [card]
 name=Grixis Grimblade
-auto=aslongas(*[multicolor]|mybattlefield) 1/1
-auto=aslongas(*[multicolor]|mybattlefield) deathtouch
+auto=aslongas(other *[multicolor]|mybattlefield) 1/1
+auto=aslongas(other *[multicolor]|mybattlefield) deathtouch
 text=As long as you control another multicolored permanent, Grixis Grimblade gets +1/+1 and has deathtouch. (Creatures dealt damage by this creature are destroyed. You can divide its combat damage among any of the creatures blocking or blocked by it.)
 mana={UR}{B}
 type=Creature
@@ -31531,8 +31531,8 @@ type=Instant
 [/card]
 [card]
 name=Jund Hackblade
-auto=aslongas(*[multicolor]|mybattlefield) 1/1
-auto=aslongas(*[multicolor]|mybattlefield) haste
+auto=aslongas(other *[multicolor]|mybattlefield) 1/1
+auto=aslongas(other *[multicolor]|mybattlefield) haste
 text=As long as you control another multicolored permanent, Jund Hackblade gets +1/+1 and has haste.
 mana={BG}{R}
 type=Creature
@@ -41006,8 +41006,8 @@ type=Instant
 [/card]
 [card]
 name=Naya Hushblade
-auto=aslongas(*[multicolor]|mybattlefield) 1/1
-auto=aslongas(*[multicolor]|mybattlefield) shroud
+auto=aslongas(other *[multicolor]|mybattlefield) 1/1
+auto=aslongas(other *[multicolor]|mybattlefield) shroud
 text=As long as you control another multicolored permanent, Naya Hushblade gets +1/+1 and has shroud. (It can't be the target of spells or abilities.)
 mana={RW}{G}
 type=Creature
