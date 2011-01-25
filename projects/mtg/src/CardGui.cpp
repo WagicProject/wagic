@@ -89,7 +89,7 @@ CardView::~CardView()
 {
     if (card)
     {
-        const Pos* r = card->view;
+        const Pos* r = this;
         while (card)
         {
             if (r == card->view)

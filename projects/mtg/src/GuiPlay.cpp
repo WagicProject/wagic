@@ -370,6 +370,11 @@ int GuiPlay::receiveEventPlus(WEvent * e)
         {
             event->card->view->actT = event->after ? M_PI / 2 : 0;
         }
+        else
+        {
+			// this should never happen, if you have a consistent repro case, ping Wil please
+            assert(false);
+        }
         return 1;
     }
     else if (WEventPhaseChange *event = dynamic_cast<WEventPhaseChange*>(e))
