@@ -69385,7 +69385,7 @@ type=Artifact
 [/card]
 [card]
 name=War Elemental
-auto=this(opponentdamagecount < 1) aslongas(arbor elf|mybattlefield) sacrifice oneshot
+auto=this(opponentdamagecount < 1) aslongas(War Elemental|mybattlefield) sacrifice oneshot
 auto=@damaged(opponent):may all(trigger[to]) dynamicability<!myfoe thatmuchcountersoneone tosrc!>
 text=When War Elemental enters the battlefield, sacrifice it unless an opponent was dealt damage this turn. -- Whenever an opponent is dealt damage, put that many +1/+1 counters on War Elemental.
 mana={R}{R}{R}
