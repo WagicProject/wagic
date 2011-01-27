@@ -23,30 +23,44 @@ DeckStats * DeckStats::GetInstance()
     if (!mInstance)
     {
         mInstance = NEW DeckStats();
-
     }
     return mInstance;
 }
 
 void DeckStats::cleanStats()
 {
-    map<string, DeckStat *>::iterator it;
+/*    map<string, DeckStat *>::iterator it;
     for (it = stats.begin(); it != stats.end(); it++)
     {
         SAFE_DELETE(it->second);
     }
 
     stats.clear();
+    
+    */
 }
 
 DeckStats::~DeckStats()
 {
-    cleanStats();
+    map<string, map<string,DeckStat*> > ::iterator it;
+    for (it = masterDeckStats.begin(); it != masterDeckStats.end(); ++it)
+    {
+        string key = it->first;
+        map<string, DeckStat *> innerMap = masterDeckStats[key];
+        map<string, DeckStat *>::iterator it2;
+        for (it2 = innerMap.begin(); it2 != innerMap.end(); it2++)
+        {
+            SAFE_DELETE(it2->second);
+        }
+        innerMap.clear();
+    }    
+    masterDeckStats.clear();
 }
 
 
 DeckStat* DeckStats::getDeckStat(string opponentsFile)
 {
+    map<string, DeckStat *> stats = masterDeckStats[currentDeck];
     map<string, DeckStat *>::iterator it = stats.find(opponentsFile);
     if (it == stats.end())
     {
@@ -61,6 +75,7 @@ DeckStat* DeckStats::getDeckStat(string opponentsFile)
 int DeckStats::nbGames()
 {
     int nbgames = 0;
+    map<string, DeckStat *> stats = masterDeckStats[currentDeck];
     map<string, DeckStat *>::iterator it;
     for (it = stats.begin(); it != stats.end(); it++)
     {
@@ -72,6 +87,7 @@ int DeckStats::nbGames()
 
 int DeckStats::percentVictories(string opponentsFile)
 {
+    map<string, DeckStat *> stats = masterDeckStats[currentDeck];
     map<string, DeckStat *>::iterator it = stats.find(opponentsFile);
     if (it == stats.end())
     {
@@ -87,6 +103,7 @@ int DeckStats::percentVictories()
 {
     int victories = 0;
     int nbgames = 0;
+    map<string, DeckStat *> stats = masterDeckStats[currentDeck];
     map<string, DeckStat *>::iterator it;
     for (it = stats.begin(); it != stats.end(); it++)
     {
@@ -110,7 +127,12 @@ void DeckStats::load(Player * player)
 
 void DeckStats::load(const char * filename)
 {
-    cleanStats();
+
+    currentDeck = filename;
+    if ( masterDeckStats.find(filename) != masterDeckStats.end() )
+    {
+        return;
+    }
     wagic::ifstream file(filename);
     std::string s;
 
@@ -123,11 +145,12 @@ void DeckStats::load(const char * filename)
             int games = atoi(s.c_str());
             std::getline(file, s);
             int victories = atoi(s.c_str());
-            map<string, DeckStat *>::iterator it = stats.find(deckfile);
-            if (it == stats.end())
+            if ( masterDeckStats[filename].find(deckfile) != masterDeckStats[filename].end())
             {
-                stats[deckfile] = NEW DeckStat(games, victories);
+                SAFE_DELETE( masterDeckStats[filename][deckfile] );
             }
+            DeckStat * newDeckStat = NEW DeckStat(games, victories);
+            (masterDeckStats[filename])[deckfile] = newDeckStat;
         }
         file.close();
     }
@@ -146,6 +169,7 @@ void DeckStats::save(const char * filename)
     char writer[512];
     if (file)
     {
+        map<string, DeckStat *> stats = masterDeckStats[currentDeck];
         map<string, DeckStat *>::iterator it;
         for (it = stats.begin(); it != stats.end(); it++)
         {
@@ -173,10 +197,11 @@ void DeckStats::saveStats(Player *player, Player *opponent, GameObserver * game)
         victory = 0;
     }
     load(player);
-    map<string, DeckStat *>::iterator it = stats.find(opponent->deckFileSmall);
-    if (it == stats.end())
+    map<string, DeckStat *> *stats = &masterDeckStats[currentDeck];
+    map<string, DeckStat *>::iterator it = stats->find(opponent->deckFileSmall);
+    if (it == stats->end())
     {
-        stats[opponent->deckFileSmall] = NEW DeckStat(1, victory);
+        stats->insert( make_pair( opponent->deckFileSmall, NEW DeckStat(1, victory) ));
     }
     else
     {
@@ -185,6 +210,12 @@ void DeckStats::saveStats(Player *player, Player *opponent, GameObserver * game)
     }
     save(player);
 }
+
+void DeckStats::EndInstance()
+{
+    SAFE_DELETE( mInstance );
+}
+
 
 // StatsWrapper
 
@@ -256,10 +287,13 @@ void StatsWrapper::initStatistics(string deckstats)
         found = 0;
         char buffer[512];
         char smallDeckName[512];
-        sprintf(buffer, "%s/deck%i.txt", RESPATH"/ai/baka", nbDecks + 1);
+        ostringstream oss;
+        oss << "deck" << (nbDecks + 1);
+        string bakaDir = JGE_GET_RES("/ai/baka");
+        string deckFilename = oss.str();
+        sprintf(buffer, "%s/%s.txt", bakaDir.c_str(), deckFilename.c_str());
         if (fileExists(buffer))
         {
-            MTGDeck * mtgd = NEW MTGDeck(buffer, NULL, 1);
             found = 1;
             nbDecks++;
 
@@ -268,11 +302,10 @@ void StatsWrapper::initStatistics(string deckstats)
 
             if ((deckStat != NULL) && (deckStat->nbgames > 0))
             {
-                aiDeckNames.push_back(string(mtgd->meta_name));
+                aiDeckNames.push_back(deckFilename);
                 aiDeckStats.push_back(deckStat);
             }
 
-            delete mtgd;
         }
     }
     else

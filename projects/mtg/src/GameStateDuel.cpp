@@ -83,7 +83,6 @@ GameStateDuel::GameStateDuel(GameApp* parent) :
 GameStateDuel::~GameStateDuel()
 {
     End();
-
 }
 
 void GameStateDuel::Start()
@@ -156,7 +155,6 @@ void GameStateDuel::Start()
     {
         mPlayers[i] = NULL;
     }
-
 }
 
 void GameStateDuel::loadPlayer(int playerId, int decknb, int isAI)
@@ -231,15 +229,14 @@ void GameStateDuel::End()
     DebugTrace("Ending GameStateDuel");
 
     JRenderer::GetInstance()->EnableVSync(false);
-    DeckManager::EndInstance();
-
+  
     if (!premadeDeck && mPlayers[0] && mPlayers[1]) // save the stats for the game
         mPlayers[0]->End();
     else if ( !mPlayers[1] && mPlayers[0] )
         // clean up player object
         SAFE_DELETE( mPlayers[0] );
+    GameObserver::EndInstance(); // this will delete both player objects if a game has been played
 
-    GameObserver::EndInstance(); // this will delete both player objects
     game = NULL;
     premadeDeck = false;
 
@@ -248,7 +245,6 @@ void GameStateDuel::End()
         mPlayers[i] = NULL;
         deck[i] = NULL;
     }
-
     SAFE_DELETE(credits);
     SAFE_DELETE(rules);
 

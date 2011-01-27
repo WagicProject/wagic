@@ -15,9 +15,10 @@ class GameObserver;
 class DeckStat
 {
 public:
+    DeckStat(int _nbgames = 0, int _victories = 0);
+
     int nbgames;
     int victories;
-    DeckStat(int _nbgames = 0, int _victories = 0);
     int percentVictories();
 };
 
@@ -26,8 +27,12 @@ class DeckStats
 protected:
     static DeckStats * mInstance;
 public:
-    map<string, DeckStat *> stats;
+    //map<string, DeckStat *> stats; // current set of statistics
+    string currentDeck;
+    map<string, map<string,DeckStat*> > masterDeckStats;
+    
     static DeckStats * GetInstance();
+    static void EndInstance();
     void saveStats(Player * player, Player * opponent, GameObserver * game);
     void save(const char * filename);
     void save(Player * player);

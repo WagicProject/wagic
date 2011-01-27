@@ -22,6 +22,7 @@
 #include "GameStateStory.h"
 #include "DeckStats.h"
 #include "DeckMetaData.h"
+#include "DeckManager.h"
 #include "Translate.h"
 #include "WFilter.h"
 
@@ -273,7 +274,9 @@ void GameApp::Destroy()
         collection->destroyAllCards();
         SAFE_DELETE(collection);
     }
-    delete (DeckStats::GetInstance());
+
+    DeckManager::EndInstance();
+    DeckStats::EndInstance();
 
     SAFE_DELETE(Subtypes::subtypesList);
     SAFE_DELETE(DeckMetaDataList::decksMetaData);

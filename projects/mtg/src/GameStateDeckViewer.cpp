@@ -1453,8 +1453,12 @@ void GameStateDeckViewer::Render()
 int GameStateDeckViewer::loadDeck(int deckid)
 {
 
-    if (!stw) stw = new StatsWrapper(deckid);
-
+    if (!stw) 
+    {
+        DeckManager *deckManager = DeckManager::GetInstance();
+        stw = deckManager->getExtendedStatsForDeckId( deckid, mParent->collection, false );
+    }
+    
     stw->currentPage = 0;
     stw->pageCount = 9;
     stw->needUpdate = true;

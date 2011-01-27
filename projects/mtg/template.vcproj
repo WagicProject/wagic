@@ -1023,10 +1023,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\include\DebugRoutines.h"
-				>
-			</File>
-			<File
 				RelativePath=".\include\DeckDataWrapper.h"
 				>
 			</File>

@@ -604,8 +604,7 @@ Spell * ActionStack::addSpell(MTGCardInstance * _source, TargetChooser * tc, Man
     }
     Spell * spell = NEW Spell(mCount, _source, tc, mana, payResult);
     addAction(spell);
-    if (!game->players[0]->isAI() && _source->controller() == game->players[0] && 0
-        == options[Options::INTERRUPTMYSPELLS].number)
+    if (!game->players[0]->isAI() && _source->controller() == game->players[0] && 0 == options[Options::INTERRUPTMYSPELLS].number)
         interruptDecision[0] = DONT_INTERRUPT;
     return spell;
 }

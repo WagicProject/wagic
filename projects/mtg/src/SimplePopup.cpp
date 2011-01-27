@@ -76,9 +76,11 @@ void SimplePopup::drawBoundingBox( float x, float y, float width, float height )
 void SimplePopup::Update(DeckMetaData* selectedDeck)
 {
     mDeckInformation = selectedDeck;
-    SAFE_DELETE(mStatsWrapper);
-    mStatsWrapper = NEW StatsWrapper(mDeckInformation->getDeckId());
-    mStatsWrapper->updateStats(mDeckInformation->getFilename(), mCollection);
+    
+    // get the information from the cache, if it doesn't exist create an entry
+    DeckManager *deckManager = DeckManager::GetInstance();
+    mStatsWrapper = deckManager->getExtendedDeckStats( mDeckInformation, mCollection, (mDeckInformation->getFilename().find("baka") != string::npos) );
+    
 }
 
 
@@ -184,6 +186,5 @@ SimplePopup::~SimplePopup(void)
 {
     mTextFont = NULL;
     mDeckInformation = NULL;
-    SAFE_DELETE(mStatsWrapper);
 }
 
