@@ -3127,8 +3127,10 @@ type=Instant
 [card]
 name=Artifact Ward
 target=creature
-auto=protection from(artifact)
-text=Enchant creature -- Enchanted creature has protection from artifacts. This effect doesn't remove Artifact Ward.
+auto=cantbeblockedby(creature[artifact])
+auto=teach(creature) preventAllCombatDamage to(this) from(creature[artifact])
+auto=teach(creature) cantbetargetof(artifact)
+text=Enchant creature -- Enchanted creature can't be blocked by artifact creatures. -- Prevent all damage that would be dealt to enchanted creature by artifact sources. -- Enchanted creature can't be the target of abilities from artifact sources.
 mana={W}
 type=Enchantment
 subtype=Aura
@@ -3673,6 +3675,19 @@ type=Creature
 subtype=Human Nomad
 power=2
 toughness=2
+[/card]
+[card]
+name=Avatar of Fury
+abilities=flying
+auto={R}:1/0
+otherrestriction=opponenttypemin:7 type(land)
+other={R}{R}
+text=If an opponent controls seven or more lands, Avatar of Fury costs {6} less to cast. -- Flying -- {R}: Avatar of Fury gets +1/+0 until end of turn.
+mana={6}{R}{R}
+type=Creature
+subtype=Avatar
+power=6
+toughness=6
 [/card]
 [card]
 name=Avarax
@@ -4632,7 +4647,6 @@ text=Target creature gets +2/+2 until end of turn. -- Conspire (As you cast this
 mana={GW}
 type=Instant
 [/card]
-
 [card]
 name=Barktooth Warbeard
 mana={4}{B}{R}{R}
@@ -4734,6 +4748,17 @@ auto={4}{T}{S}:thisforeach(counter{0/0.1.Page}) draw:1 controller
 text=At the beginning of your upkeep, you may put a page counter on Barrin's Codex. -- {4}, {T}, Sacrifice Barrin's Codex: Draw X cards, where X is the number of page counters on Barrin's Codex.
 mana={4}
 type=Artifact
+[/card]
+[card]
+name=Bartel Runeaxe
+abilities=vigilance
+auto=cantbetargetof(aura)
+text=Vigilance -- Bartel Runeaxe can't be the target of Aura spells.
+mana={3}{B}{R}{G}
+type=Legendary Creature
+subtype=Giant Warrior
+power=6
+toughness=5
 [/card]
 [card]
 name=Basal Sliver
@@ -23217,6 +23242,17 @@ mana={G}
 type=Instant
 [/card]
 [card]
+name=Gaea's Revenge
+abilities=nofizzle,haste
+auto=cantbetargetof(*[-green])
+text=Gaea's Revenge can't be countered. -- Haste -- Gaea's Revenge can't be the target of nongreen spells or abilities from nongreen sources.
+mana={5}{G}{G}
+type=Creature
+subtype=Elemental
+power=8
+toughness=5
+[/card]
+[card]
 name=Gaea's Skyfolk
 abilities=flying
 text=Flying
@@ -32345,6 +32381,16 @@ type=Creature
 subtype=Giant
 power=3
 toughness=3
+[/card]
+[card]
+name=Karplusan Strider
+auto=cantbetargetof(*[blue;black])
+text=Karplusan Strider can't be the target of blue or black spells.
+mana={3}{G}
+type=Creature
+subtype=Yeti
+power=3
+toughness=4
 [/card]
 [card]
 name=Karplusan Wolverine
@@ -58149,6 +58195,16 @@ mana={U}
 type=Instant
 [/card]
 [card]
+name=Spellbane Centaur
+auto=lord(creature|mybattlefield) cantbetargetof(*[blue])
+text=Creatures you control can't be the targets of blue spells or abilities from blue sources.
+mana={2}{G}
+type=Creature
+subtype=Centaur
+power=3
+toughness=2
+[/card]
+[card]
 name=Spellbook
 abilities=nomaxhand
 text=You have no maximum hand size.
@@ -61026,6 +61082,17 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Suq'Ata Firewalker
+auto=cantbetargetof(*[red])
+auto={T}:damage:1 target(creature,player)
+text=Suq'Ata Firewalker can't be the target of red spells or abilities from red sources. -- {T}: Suq'Ata Firewalker deals 1 damage to target creature or player.
+mana={1}{U}{U}
+type=Creature
+subtype=Human Wizard
+power=0
+toughness=1
+[/card]
+[card]
 name=Suq'Ata Lancer
 abilities=haste,flanking
 text=Haste -- Flanking (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.)
@@ -62868,6 +62935,17 @@ type=Creature
 subtype=Imp
 power=2
 toughness=2
+[/card]
+[card]
+name=Tetsuo Umezawa
+auto=cantbetargetof(aura)
+auto={U}{B}{B}{R}{T}:destroy target(creature[tapped;blocking])
+text=Tetsuo Umezawa can't be the target of Aura spells. -- {U}{B}{B}{R}, {T}: Destroy target tapped or blocking creature.
+mana={U}{B}{R}
+type=Legendary Creature
+subtype=Human Archer
+power=3
+toughness=3
 [/card]
 [card]
 name=Teysa, Orzhov Scion

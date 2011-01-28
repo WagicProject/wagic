@@ -1145,15 +1145,6 @@ power=5
 toughness=3
 [/card]
 [card]
-name=Avatar of Fury
-text=If an opponent controls seven or more lands, Avatar of Fury costs {6} less to cast. -- Flying -- {R}: Avatar of Fury gets +1/+0 until end of turn.
-mana={6}{R}{R}
-type=Creature
-subtype=Avatar
-power=6
-toughness=6
-[/card]
-[card]
 name=Avatar of Hope
 text=If you have 3 or less life, Avatar of Hope costs {6} less to cast. -- Flying -- Avatar of Hope can block any number of creatures.
 mana={6}{W}{W}
@@ -1562,15 +1553,6 @@ type=Creature
 subtype=Zombie
 power=4
 toughness=4
-[/card]
-[card]
-name=Bartel Runeaxe
-text=Vigilance -- Bartel Runeaxe can't be the target of Aura spells.
-mana={3}{B}{R}{G}
-type=Legendary Creature
-subtype=Giant Warrior
-power=6
-toughness=5
 [/card]
 [card]
 name=Barter in Blood
@@ -8867,15 +8849,6 @@ power=*
 toughness=*
 [/card]
 [card]
-name=Gaea's Revenge
-text=Gaea's Revenge can't be countered. -- Haste -- Gaea's Revenge can't be the target of nongreen spells or abilities from nongreen sources.
-mana={5}{G}{G}
-type=Creature
-subtype=Elemental
-power=8
-toughness=5
-[/card]
-[card]
 name=Gaea's Touch
 text=You may play an additional land during your turn if that land is a basic Forest. -- Sacrifice Gaea's Touch: Add {G}{G} to your mana pool.
 mana={G}{G}
@@ -12491,15 +12464,6 @@ type=Creature
 subtype=Minotaur Warrior
 power=3
 toughness=3
-[/card]
-[card]
-name=Karplusan Strider
-text=Karplusan Strider can't be the target of blue or black spells.
-mana={3}{G}
-type=Creature
-subtype=Yeti
-power=3
-toughness=4
 [/card]
 [card]
 name=Katabatic Winds
@@ -23586,31 +23550,11 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
-name=Spellbane Centaur
-text=Creatures you control can't be the targets of blue spells or abilities from blue sources.
-mana={2}{G}
-type=Creature
-subtype=Centaur
-power=3
-toughness=2
-[/card]
-[card]
 name=Spellbinder
 text=Imprint - When Spellbinder enters the battlefield, you may exile an instant card from your hand. -- Whenever equipped creature deals combat damage to a player, you may copy the exiled card. If you do, you may cast the copy without paying its mana cost. -- Equip {4}
 mana={3}
 type=Artifact
 subtype=Equipment
-[/card]
-[card]
-name=Spellbound Dragon
-auto=@attacking(this):target(*|myhand) dynamicability<!mytgt manacostpumppow tosrc!>
-#auto=@attacking(this):draw:1 controller
-text=Flying -- Whenever Spellbound Dragon attacks, draw a card, then discard a card. Spellbound Dragon gets +X/+0 until end of turn, where X is the discarded card's converted mana cost.
-mana={3}{U}{R}
-type=Creature
-subtype=Dragon
-power=3
-toughness=5
 [/card]
 [card]
 name=Spellbreaker Behemoth
@@ -24802,15 +24746,6 @@ power=1
 toughness=3
 [/card]
 [card]
-name=Suq'Ata Firewalker
-text=Suq'Ata Firewalker can't be the target of red spells or abilities from red sources. -- {T}: Suq'Ata Firewalker deals 1 damage to target creature or player.
-mana={1}{U}{U}
-type=Creature
-subtype=Human Wizard
-power=0
-toughness=1
-[/card]
-[card]
 name=Surestrike Trident
 text=Equipped creature has first strike and "{T}, Unattach Surestrike Trident: This creature deals damage equal to its power to target player." -- Equip {4} ({4}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
 mana={2}
@@ -25469,15 +25404,6 @@ type=Artifact Creature
 subtype=Construct
 power=1
 toughness=1
-[/card]
-[card]
-name=Tetsuo Umezawa
-text=Tetsuo Umezawa can't be the target of Aura spells. -- {U}{B}{B}{R}, {T}: Destroy target tapped or blocking creature.
-mana={U}{B}{R}
-type=Legendary Creature
-subtype=Human Archer
-power=3
-toughness=3
 [/card]
 [card]
 name=Tezzeret the Seeker
