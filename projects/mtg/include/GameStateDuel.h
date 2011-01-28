@@ -26,7 +26,6 @@ private:
     int mGamePhase;
     Player * mCurrentPlayer;
     Player * mPlayers[2];
-    MTGPlayerCards * deck[2];
     GameObserver * game;
     DeckMenu * deckmenu;
     DeckMenu * opponentMenu;

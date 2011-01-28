@@ -61,7 +61,6 @@ GameState(parent)
 {
     for (int i = 0; i < 2; i++)
     {
-        deck[i] = NULL;
         mPlayers[i] = NULL;
     }
     premadeDeck = false;
@@ -173,7 +172,6 @@ void GameStateDuel::loadPlayer(int playerId, int decknb, int isAI)
             MTGDeck * tempDeck = NEW MTGDeck(deckFile, mParent->collection);
             mPlayers[playerId] = NEW HumanPlayer(tempDeck, deckFile, deckFileSmall);
 
-            deck[playerId] = mPlayers[playerId]->game;
             delete tempDeck;
         }
         else
@@ -182,7 +180,6 @@ void GameStateDuel::loadPlayer(int playerId, int decknb, int isAI)
             Player * opponent = NULL;
             if (playerId == 1) opponent = mPlayers[0];
             mPlayers[playerId] = playerCreator.createAIPlayer(mParent->collection, opponent, decknb);
-            deck[playerId] = mPlayers[playerId]->game;
         }
     }
     else
@@ -191,7 +188,6 @@ void GameStateDuel::loadPlayer(int playerId, int decknb, int isAI)
         Player * opponent = NULL;
         if (playerId == 1) opponent = mPlayers[0];
         mPlayers[playerId] = playerCreator.createAIPlayer(mParent->collection, opponent);
-        deck[playerId] = mPlayers[playerId]->game;
     }
 }
 
@@ -210,7 +206,6 @@ void GameStateDuel::loadTestSuitePlayers()
     for (int i = 0; i < 2; i++)
     {
         mPlayers[i] = NEW TestSuiteAI(testSuite, i);
-        deck[i] = mPlayers[i]->game;
     }
     mParent->gameType = testSuite->gameType;
 
@@ -243,7 +238,6 @@ void GameStateDuel::End()
     for (int i = 0; i < 2; i++)
     {
         mPlayers[i] = NULL;
-        deck[i] = NULL;
     }
     SAFE_DELETE(credits);
     SAFE_DELETE(rules);
