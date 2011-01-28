@@ -59,7 +59,14 @@ StatsWrapper * DeckManager::getExtendedStatsForDeckId( int deckId, MTGAllCards *
 {
     DeckMetaData *selectedDeck = getDeckMetaDataById( deckId, isAI );
     if (selectedDeck == NULL)
-        return NEW StatsWrapper( deckId );
+    {
+        ostringstream deckName;
+        deckName << options.profileFile() << "/deck" << deckId << ".txt";
+        map<string, StatsWrapper*>* statsMap = isAI ? &aiDeckStatsMap : &playerDeckStatsMap;
+        StatsWrapper * stats = NEW StatsWrapper( deckId );      
+        statsMap->insert( make_pair(deckName.str(), stats));
+        return stats;
+    }
     return getExtendedDeckStats( selectedDeck, collection, isAI);
 }
 
