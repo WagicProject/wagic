@@ -728,6 +728,7 @@ bool TargetChooser::canTarget(Targetable * target)
         { 
             if (card->has(Constants::SHROUD)) return false;
             if (card->protectedAgainst(targetter)) return false;
+            if (card->CantBeTargetby(targetter)) return false;
             if ((targetter->controller() != card->controller()) && card->has(Constants::OPPONENTSHROUD)) return false;
         }
         return true;

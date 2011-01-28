@@ -932,6 +932,38 @@ int MTGCardInstance::protectedAgainst(MTGCardInstance * card)
     return 0;
 }
 
+int MTGCardInstance::addCantBeTarget(TargetChooser * tc)
+{
+    tc->targetter = NULL;
+    canttarget.push_back(tc);
+    return canttarget.size();
+}
+
+int MTGCardInstance::removeCantBeTarget(TargetChooser * tc, int erase)
+{
+    for (size_t i = 0; i < canttarget.size(); i++)
+    {
+        if (canttarget[i] == tc)
+        {
+            if (erase)
+                delete (canttarget[i]);
+            canttarget.erase(canttarget.begin() + i);
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int MTGCardInstance::CantBeTargetby(MTGCardInstance * card)
+{
+    for (size_t i = 0; i < canttarget.size(); i++)
+    {
+        if (canttarget[i]->canTarget(card))
+            return 1;
+    }
+    return 0;
+}
+
 int MTGCardInstance::addCantBeBlockedBy(TargetChooser * tc)
 {
     cantBeBlockedBys.push_back(tc);

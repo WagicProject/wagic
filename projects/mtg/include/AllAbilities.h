@@ -425,7 +425,8 @@ class TrCardAttacked: public TriggeredAbility
 public:
     TargetChooser * tc;
     bool sourceUntapped;
-    TrCardAttacked(int id, MTGCardInstance * source, TargetChooser * tc,bool sourceUntapped) :
+    bool opponentPoisoned;
+    TrCardAttacked(int id, MTGCardInstance * source, TargetChooser * tc,bool sourceUntapped,bool opponentPoisoned) :
         TriggeredAbility(id, source), tc(tc), sourceUntapped(sourceUntapped)
     {
     }
@@ -444,6 +445,7 @@ public:
         return 0;
         if (e->card->didattacked < 1) return 0;
         if (!tc->canTarget(e->card)) return 0;
+        if (opponentPoisoned && !source->controller()->opponent()->isPoisoned) return 0;
         return 1;
     }
 
@@ -1984,6 +1986,44 @@ public:
 
 };
 
+//cant be target of...
+class ACantBeTargetFrom: public MTGAbility
+{
+public:
+    TargetChooser * fromTc;
+    ACantBeTargetFrom(int id, MTGCardInstance * _source, MTGCardInstance * _target, TargetChooser *fromTc) :
+        MTGAbility(id, _source, _target), fromTc(fromTc)
+    {
+
+    }
+
+    int addToGame()
+    {
+        MTGCardInstance * _target = (MTGCardInstance *) target;
+        _target->addCantBeTarget(fromTc);
+        return MTGAbility::addToGame();
+    }
+
+    int destroy()
+    {
+        ((MTGCardInstance *) target)->removeCantBeTarget(fromTc);
+        return 1;
+    }
+
+    ACantBeTargetFrom * clone() const
+    {
+        ACantBeTargetFrom * a = NEW ACantBeTargetFrom(*this);
+        a->fromTc = fromTc->clone();
+        a->isClone = 1;
+        return a;
+    }
+
+    ~ACantBeTargetFrom()
+    {
+        SAFE_DELETE(fromTc);
+    }
+
+};
 //Can't be blocked by...
 class ACantBeBlockedBy: public MTGAbility
 {

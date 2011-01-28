@@ -155,6 +155,11 @@ class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable {
   int removeProtection(TargetChooser *tc, int erase = 0);
   int protectedAgainst(MTGCardInstance * card);
 
+  vector<TargetChooser *>canttarget;
+  int addCantBeTarget(TargetChooser * tc);
+  int removeCantBeTarget(TargetChooser *tc, int erase = 0);
+  int CantBeTargetby(MTGCardInstance * card);
+  
   vector<TargetChooser *>cantBeBlockedBys;
   int addCantBeBlockedBy(TargetChooser * tc);
   int removeCantBeBlockedBy(TargetChooser *tc, int erase = 0);

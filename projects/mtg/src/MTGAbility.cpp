@@ -288,6 +288,7 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int 
     bool once = false;
     bool sourceUntapped = false;
     bool sourceTap = false;
+    bool opponentPoisoned = false;
     bool lifelost = false;
     int lifeamount = 0;
     found = s.find("once");
@@ -316,6 +317,11 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int 
     {
         lifelost = true;
         lifeamount = 2;
+    }
+    found = s.find("opponentpoisoned");
+    if ( found != string::npos)
+    {
+    opponentPoisoned = true;
     }
     //Card Changed Zone
     found = s.find("movedto(");
@@ -419,7 +425,7 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int 
         TargetChooser *tc = tcf.createTargetChooser(starget, card);
         tc->targetter = NULL;
 
-        return NEW TrCardAttacked(id, card, tc,sourceUntapped);
+        return NEW TrCardAttacked(id, card, tc,sourceUntapped,opponentPoisoned);
     }
     //Card is attacking alone
     found = s.find("attackedalone(");
@@ -2524,7 +2530,28 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         }
         return NULL; //TODO
     }
-
+    //targetter can not target...
+    found = s.find("cantbetargetof(");
+    if (found == 0)
+    {
+        size_t end = s.find(")", found);
+        string targets = s.substr(found + 15, end - found - 15);
+        TargetChooserFactory tcf;
+        TargetChooser * fromTc = tcf.createTargetChooser(targets, card);
+        if (!fromTc)
+            return NULL;
+        fromTc->setAllZones();
+        if (!activated)
+        {
+            if (card->hasType("instant") || card->hasType("sorcery") || forceUEOT)
+            {
+                return NULL; //TODO
+            }
+            return NEW ACantBeTargetFrom(id, card, target, fromTc);
+        }
+        return NULL; //TODO
+    }
+    
     //Can't be blocked by...
     found = s.find("cantbeblockedby(");
     if (found == 0)
