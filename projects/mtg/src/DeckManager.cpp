@@ -58,6 +58,8 @@ DeckMetaData* DeckManager::getDeckMetaDataById( int deckId, bool isAI )
 StatsWrapper * DeckManager::getExtendedStatsForDeckId( int deckId, MTGAllCards *collection, bool isAI )
 {
     DeckMetaData *selectedDeck = getDeckMetaDataById( deckId, isAI );
+    if (selectedDeck == NULL)
+        return NEW StatsWrapper( deckId );
     return getExtendedDeckStats( selectedDeck, collection, isAI);
 }
 
