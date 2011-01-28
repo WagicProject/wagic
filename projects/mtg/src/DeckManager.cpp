@@ -24,30 +24,35 @@ vector<DeckMetaData *> * DeckManager::getAIDeckOrderList()
     return &aiDeckOrderList;
 }
 
-DeckMetaData * DeckManager::getDeckMetaDataById( int deckId, bool isAI )
+/*
+** Predicate helper for getDeckMetadataByID()
+*/
+struct DeckIDMatch
 {
-
-    DeckMetaData* currentDeck = NULL;
-    vector<DeckMetaData *>::iterator currentPos, end;
-    if ( isAI )
+    DeckIDMatch(int id) : mID(id)
     {
-        currentPos = aiDeckOrderList.begin();
-        end = aiDeckOrderList.end();
-    }
-    else
-    {
-        currentPos = playerDeckOrderList.begin();
-        end = playerDeckOrderList.end();    
     }
 
-
-    for (; currentPos != end; ++currentPos) 
+    bool operator() (DeckMetaData* inPtr)
     {
-        currentDeck = *currentPos;
-        if (currentDeck->getDeckId() == deckId )
-            return currentDeck;
+        return inPtr->getDeckId() == mID;
     }
-    return NULL;
+
+    int mID;
+};
+
+DeckMetaData* DeckManager::getDeckMetaDataById( int deckId, bool isAI )
+{
+    DeckMetaData* deck = NULL;
+    std::vector<DeckMetaData *>& deckList = isAI ? aiDeckOrderList : playerDeckOrderList;
+
+    std::vector<DeckMetaData *>::iterator pos = find_if(deckList.begin(), deckList.end(), DeckIDMatch(deckId));
+    if (pos != deckList.end())
+    {
+        deck = *pos;
+    }
+
+    return deck;
 }
 
 StatsWrapper * DeckManager::getExtendedStatsForDeckId( int deckId, MTGAllCards *collection, bool isAI )
@@ -59,24 +64,22 @@ StatsWrapper * DeckManager::getExtendedStatsForDeckId( int deckId, MTGAllCards *
 
 StatsWrapper * DeckManager::getExtendedDeckStats( DeckMetaData *selectedDeck, MTGAllCards *collection, bool isAI )
 {
-    StatsWrapper * stats = NULL;
-    map<string, StatsWrapper *> *statsMap = NULL;
+    StatsWrapper* stats = NULL;
 
     string deckName = selectedDeck->getFilename();
     int deckId = selectedDeck->getDeckId();
 
-    if (isAI)
-        statsMap = &aiDeckStatsMap;
-    else
-        statsMap = &playerDeckStatsMap;    
-
-    if (statsMap->empty() || (statsMap->find(deckName) == statsMap->end()))
+    map<string, StatsWrapper*>* statsMap = isAI ? &aiDeckStatsMap : &playerDeckStatsMap;
+    if (statsMap->find(deckName) == statsMap->end())
     {
         stats = NEW StatsWrapper(deckId);
         stats->updateStats( deckName, collection);
-        statsMap->insert( make_pair( deckName, stats));
+        statsMap->insert( make_pair(deckName, stats));
     }
-    stats = statsMap->find(deckName) ->second;
+    else
+    {
+        stats = statsMap->find(deckName)->second;
+    }
 
     return stats;
 }

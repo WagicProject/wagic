@@ -71,7 +71,6 @@ GameStateDeckViewer::~GameStateDeckViewer()
         SAFE_DELETE(myCollection->parent);
         SAFE_DELETE(myCollection);
     }
-    SAFE_DELETE(stw);
     SAFE_DELETE(filterMenu);
 }
 

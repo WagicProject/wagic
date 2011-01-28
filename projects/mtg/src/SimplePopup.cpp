@@ -78,8 +78,7 @@ void SimplePopup::Update(DeckMetaData* selectedDeck)
     mDeckInformation = selectedDeck;
     
     // get the information from the cache, if it doesn't exist create an entry
-    DeckManager *deckManager = DeckManager::GetInstance();
-    mStatsWrapper = deckManager->getExtendedDeckStats( mDeckInformation, mCollection, (mDeckInformation->getFilename().find("baka") != string::npos) );
+    mStatsWrapper = DeckManager::GetInstance()->getExtendedDeckStats( mDeckInformation, mCollection, (mDeckInformation->getFilename().find("baka") != string::npos) );
     
 }
 
