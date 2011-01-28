@@ -51,12 +51,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=AEthertow
-text=Put target attacking or blocking creature on top of its owner's library. -- Conspire (As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
-mana={3}{WU}
-type=Instant
-[/card]
-[card]
 name=Abandon Hope
 text=As an additional cost to cast Abandon Hope, discard X cards. -- Look at target opponent's hand and choose X cards from it. That player discards those cards.
 mana={X}{1}{B}
@@ -421,21 +415,6 @@ text=Enchant creature -- Enchanted creature gets +2/+2 for each other creature o
 mana={2}{G}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Altar Golem
-text=Trample -- Altar Golem's power and toughness are each equal to the number of creatures on the battlefield. -- Altar Golem doesn't untap during your untap step. -- Tap five untapped creatures you control: Untap Altar Golem.
-mana={7}
-type=Artifact Creature
-subtype=Golem
-power=*
-toughness=*
-[/card]
-[card]
-name=Altar of Dementia
-text=Sacrifice a creature: Target player puts a number of cards equal to the sacrificed creature's power from the top of his or her library into his or her graveyard.
-mana={2}
-type=Artifact
 [/card]
 [card]
 name=Alter Reality
@@ -1551,12 +1530,6 @@ mana={1}
 type=Artifact
 [/card]
 [card]
-name=Barkshell Blessing
-text=Target creature gets +2/+2 until end of turn. -- Conspire (As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
-mana={GW}
-type=Instant
-[/card]
-[card]
 name=Barrel Down Sokenzan
 text=Sweep - Return any number of Mountains you control to their owner's hand. Barrel Down Sokenzan deals damage to target creature equal to twice the number of Mountains returned this way.
 mana={2}{R}
@@ -1844,12 +1817,6 @@ name=Betrayal of Flesh
 text=Choose one - Destroy target creature; or return target creature card from your graveyard to the battlefield. -- Entwine - Sacrifice three lands. (Choose both if you pay the entwine cost.)
 mana={5}{B}
 type=Instant
-[/card]
-[card]
-name=Bifurcate
-text=Search your library for a permanent card with the same name as target nontoken creature and put that card onto the battlefield. Then shuffle your library.
-mana={3}{G}
-type=Sorcery
 [/card]
 [card]
 name=Big Game Hunter
@@ -2721,12 +2688,6 @@ auto=@movedTo(land|opponentinplay) from(opponenthand):may moveTo(myinplay) targe
 text=Whenever an opponent plays a land, you may put a land card from your hand onto the battlefield.
 mana={G}
 type=Enchantment
-[/card]
-[card]
-name=Burn Trail
-text=Burn Trail deals 3 damage to target creature or player. -- Conspire (As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
-mana={3}{R}
-type=Sorcery
 [/card]
 [card]
 name=Burning Sands
@@ -3874,12 +3835,6 @@ mana={W}{W}{W}
 type=Sorcery
 [/card]
 [card]
-name=Cleansing Beam
-text=Radiance - Cleansing Beam deals 2 damage to target creature and each other creature that shares a color with it.
-mana={4}{R}
-type=Instant
-[/card]
-[card]
 name=Cleansing Meditation
 text=Destroy all enchantments. -- Threshold - If seven or more cards are in your graveyard, instead destroy all enchantments, then return all cards in your graveyard destroyed this way to the battlefield.
 mana={1}{W}{W}
@@ -4443,12 +4398,6 @@ name=Counterbalance
 text=Whenever an opponent casts a spell, you may reveal the top card of your library. If you do, counter that spell if it has the same converted mana cost as the revealed card.
 mana={U}{U}
 type=Enchantment
-[/card]
-[card]
-name=Counterbore
-text=Counter target spell. Search its controller's graveyard, hand, and library for all cards with the same name as that spell and exile them. Then that player shuffles his or her library.
-mana={3}{U}{U}
-type=Instant
 [/card]
 [card]
 name=Countryside Crusher
@@ -6026,12 +5975,6 @@ mana={X}{U}{U}{U}
 type=Sorcery
 [/card]
 [card]
-name=Disturbing Plot
-text=Return target creature card in a graveyard to its owner's hand. -- Conspire (As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
-mana={1}{B}
-type=Sorcery
-[/card]
-[card]
 name=Divert
 text=Change the target of target spell with a single target unless that spell's controller pays {2}.
 mana={U}
@@ -6744,36 +6687,6 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-name=Echoing Calm
-text=Destroy target enchantment and all other enchantments with the same name as that enchantment.
-mana={1}{W}
-type=Instant
-[/card]
-[card]
-name=Echoing Courage
-text=Target creature and all other creatures with the same name as that creature get +2/+2 until end of turn.
-mana={1}{G}
-type=Instant
-[/card]
-[card]
-name=Echoing Decay
-text=Target creature and all other creatures with the same name as that creature get -2/-2 until end of turn.
-mana={1}{B}
-type=Instant
-[/card]
-[card]
-name=Echoing Ruin
-text=Destroy target artifact and all other artifacts with the same name as that artifact.
-mana={1}{R}
-type=Sorcery
-[/card]
-[card]
-name=Echoing Truth
-text=Return target nonland permanent and all other permanents with the same name as that permanent to their owners' hands.
-mana={1}{U}
-type=Instant
-[/card]
-[card]
 name=Edge of Autumn
 text=If you control four or fewer lands, search your library for a basic land card, put it onto the battlefield tapped, then shuffle your library. -- Cycling - Sacrifice a land. (Sacrifice a land, Discard this card: Draw a card.)
 mana={1}{G}
@@ -7009,12 +6922,6 @@ name=Endbringer's Revel
 text={4}: Return target creature card from a graveyard to its owner's hand. Any player may activate this ability but only any time he or she could cast a sorcery.
 mana={2}{B}
 type=Enchantment
-[/card]
-[card]
-name=Endemic Plague
-text=As an additional cost to cast Endemic Plague, sacrifice a creature. -- Destroy all creatures that share a creature type with the sacrificed creature. They can't be regenerated.
-mana={3}{B}
-type=Sorcery
 [/card]
 [card]
 name=Endless Horizons
@@ -9290,12 +9197,6 @@ power=2
 toughness=4
 [/card]
 [card]
-name=Giantbaiting
-text=Put a 4/4 red and green Giant Warrior creature token with haste onto the battlefield. Exile it at the beginning of the next end step. -- Conspire (As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it.)
-mana={2}{RG}
-type=Sorcery
-[/card]
-[card]
 name=Gibbering Descent
 text=At the beginning of each player's upkeep, that player loses 1 life and discards a card. -- Hellbent - Skip your upkeep step if you have no cards in hand. -- Madness {2}{B}{B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
 mana={4}{B}{B}
@@ -9455,21 +9356,6 @@ type=Creature
 subtype=Snake
 power=2
 toughness=1
-[/card]
-[card]
-name=Gleancrawler
-text=({(b/g)} can be paid with either {B} or {G}.) -- Trample -- At the beginning of your end step, return to your hand all creature cards in your graveyard that were put there from the battlefield this turn.
-mana={3}{BG}{BG}{BG}
-type=Creature
-subtype=Insect Horror
-power=6
-toughness=6
-[/card]
-[card]
-name=Gleeful Sabotage
-text=Destroy target artifact or enchantment. -- Conspire (As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
-mana={1}{G}
-type=Sorcery
 [/card]
 [card]
 name=Glen Elendra Pranksters
@@ -11044,12 +10930,6 @@ mana={3}{U}
 type=Instant
 [/card]
 [card]
-name=Hint of Insanity
-text=Target player reveals his or her hand. That player discards all nonland cards with the same name as another card in his or her hand.
-mana={2}{B}
-type=Sorcery
-[/card]
-[card]
 name=Hipparion
 text=Hipparion can't block creatures with power 3 or greater unless you pay {1}.
 mana={1}{W}
@@ -11714,12 +11594,6 @@ toughness=4
 name=Incendiary Command
 text=Choose two - Incendiary Command deals 4 damage to target player; or Incendiary Command deals 2 damage to each creature; or destroy target nonbasic land; or each player discards all the cards in his or her hand, then draws that many cards.
 mana={3}{R}{R}
-type=Sorcery
-[/card]
-[card]
-name=Incite Hysteria
-text=Radiance - Until end of turn, target creature and each other creature that shares a color with it gain "This creature can't block."
-mana={2}{R}
 type=Sorcery
 [/card]
 [card]
@@ -13549,23 +13423,9 @@ power=3
 toughness=5
 [/card]
 [card]
-name=Leafdrake Roost
-target=land
-text=Enchant land -- Enchanted land has "{G}{U}, {T}: Put a 2/2 green and blue Drake creature token with flying onto the battlefield."
-mana={3}{G}{U}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Leap of Flame
 text=Replicate {U}{R} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.) -- Target creature gets +1/+0 and gains flying and first strike until end of turn.
 mana={U}{R}
-type=Instant
-[/card]
-[card]
-name=Leave No Trace
-text=Radiance - Destroy target enchantment and each other enchantment that shares a color with it.
-mana={1}{W}
 type=Instant
 [/card]
 [card]
@@ -14032,12 +13892,6 @@ power=3
 toughness=2
 [/card]
 [card]
-name=Lobotomy
-text=Target player reveals his or her hand, then you choose a card other than a basic land card from it. Search that player's graveyard, hand, and library for all cards with the same name as the chosen card and exile them. Then that player shuffles his or her library.
-mana={2}{U}{B}
-type=Sorcery
-[/card]
-[card]
 name=Locket of Yesterdays
 text=Spells you cast cost {1} less to cast for each card with the same name as that spell in your graveyard.
 mana={1}
@@ -14329,12 +14183,6 @@ name=Maelstrom Nexus
 text=The first spell you cast each turn has cascade. (When you cast your first spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.)
 mana={W}{U}{B}{R}{G}
 type=Enchantment
-[/card]
-[card]
-name=Maelstrom Pulse
-text=Destroy target nonland permanent and all other permanents with the same name as that permanent.
-mana={1}{B}{G}
-type=Sorcery
 [/card]
 [card]
 name=Mages' Contest
@@ -15032,12 +14880,6 @@ mana={UB}{UB}{UB}{UB}
 type=Instant
 [/card]
 [card]
-name=Memory Sluice
-text=Target player puts the top four cards of his or her library into his or her graveyard. -- Conspire (As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
-mana={UB}
-type=Sorcery
-[/card]
-[card]
 name=Menacing Ogre
 text=Trample, haste -- When Menacing Ogre enters the battlefield, each player secretly chooses a number. Then those numbers are revealed. Each player with the highest number loses that much life. If you are one of those players, put two +1/+1 counters on Menacing Ogre.
 mana={3}{R}{R}
@@ -15484,12 +15326,6 @@ type=Creature
 subtype=Spirit
 power=0
 toughness=0
-[/card]
-[card]
-name=Mine Excavation
-text=Return target artifact or enchantment card in a graveyard to its owner's hand. -- Conspire (As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
-mana={1}{W}
-type=Sorcery
 [/card]
 [card]
 name=Minion Reflector
@@ -16013,12 +15849,6 @@ subtype=Island
 name=Moonring Mirror
 text=Whenever you draw a card, exile the top card of your library face down. -- At the beginning of your upkeep, you may exile all cards from your hand face down. If you do, put all other cards you own exiled with Moonring Mirror into your hand.
 mana={5}
-type=Artifact
-[/card]
-[card]
-name=Moratorium Stone
-text={2}, {T}: Exile target card from a graveyard. -- {2}{W}{B}, {T}, Sacrifice Moratorium Stone: Exile target nonland card from a graveyard, all other cards from graveyards with the same name as that card, and all permanents with that name.
-mana={1}
 type=Artifact
 [/card]
 [card]
@@ -19557,12 +19387,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Quash
-text=Counter target instant or sorcery spell. Search its controller's graveyard, hand, and library for all cards with the same name as that spell and exile them. That player then shuffles his or her library.
-mana={2}{U}{U}
-type=Instant
-[/card]
-[card]
 name=Quenchable Fire
 text=Quenchable Fire deals 3 damage to target player. It deals an additional 3 damage to that player at the beginning of your next upkeep step unless he or she pays {U} before that step.
 mana={3}{R}
@@ -19823,12 +19647,6 @@ name=Rally the Horde
 text=Exile the top three cards of your library. If the last card exiled isn't a land, repeat this process until the last card exiled is a land. Put a 1/1 red Warrior creature token onto the battlefield for each nonland card exiled this way.
 mana={5}{R}
 type=Sorcery
-[/card]
-[card]
-name=Rally the Righteous
-text=Radiance - Untap target creature and each other creature that shares a color with it. Those creatures get +2/+0 until end of turn.
-mana={1}{R}{W}
-type=Instant
 [/card]
 [card]
 name=Rampant Elephant
@@ -20422,12 +20240,6 @@ name=Rethink
 text=Counter target spell unless its controller pays {X}, where X is its converted mana cost.
 mana={2}{U}
 type=Instant
-[/card]
-[card]
-name=Retraced Image
-text=Reveal a card in your hand, then put that card onto the battlefield if it has the same name as a permanent.
-mana={U}
-type=Sorcery
 [/card]
 [card]
 name=Retribution
@@ -25012,12 +24824,6 @@ mana={R}{G}
 type=Instant
 [/card]
 [card]
-name=Surge of Zeal
-text=Radiance - Target creature and each other creature that shares a color with it gain haste until end of turn.
-mana={R}
-type=Instant
-[/card]
-[card]
 name=Surgespanner
 auto=@tapped(this):may {1}{U}:moveto(ownerhand) target(*)
 text=Whenever Surgespanner becomes tapped, you may pay {1}{U}. If you do, return target permanent to its owner's hand.
@@ -27752,12 +27558,6 @@ mana={2}{B}
 type=Instant
 [/card]
 [card]
-name=Wake of Destruction
-text=Destroy target land and all other lands with the same name as that land.
-mana={3}{R}{R}{R}
-type=Sorcery
-[/card]
-[card]
 name=Waking Nightmare
 text=Target player discards two cards.
 mana={2}{B}
@@ -28565,12 +28365,6 @@ mana={1}{W}{W}
 type=Instant
 [/card]
 [card]
-name=Winnow
-text=Destroy target nonland permanent if another permanent with the same name is on the battlefield. -- Draw a card.
-mana={1}{W}
-type=Instant
-[/card]
-[card]
 name=Winnower Patrol
 text=Kinship - At the beginning of your upkeep, you may look at the top card of your library. If it shares a creature type with Winnower Patrol, you may reveal it. If you do, put a +1/+1 counter on Winnower Patrol.
 mana={2}{G}
@@ -28732,12 +28526,6 @@ type=Creature
 subtype=Human Wizard
 power=1
 toughness=2
-[/card]
-[card]
-name=Wojek Siren
-text=Radiance - Target creature and each other creature that shares a color with it get +1/+1 until end of turn.
-mana={W}
-type=Instant
 [/card]
 [card]
 name=Wolf-Skull Shaman

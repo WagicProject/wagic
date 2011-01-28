@@ -153,6 +153,16 @@ power=4
 toughness=4
 [/card]
 [card]
+name=AEthertow
+target=creature[attacking;blocking]
+auto=moveTo(ownerlibrary)
+auto=alternative moveTo(ownerlibrary) target(creature[attacking;blocking])
+other={3}{WU}{T(creature[blue;white|mybattlefield])}{T(creature[blue;white|mybattlefield])}
+text=Put target attacking or blocking creature on top of its owner's library. -- Conspire (As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
+mana={3}{WU}
+type=Instant
+[/card]
+[card]
 name=Abandoned Outpost
 auto=tap
 auto={T}:Add {W}
@@ -4612,7 +4622,17 @@ type=Creature
 subtype=Beast
 power=4
 toughness=4
+[/card][card]
+name=Barkshell Blessing
+target=creature
+auto=2/2
+auto=alternative target(creature) 2/2
+other={GW}{T(creature[green;white]mybattlefield)}{T(creature[green;white]mybattlefield)}
+text=Target creature gets +2/+2 until end of turn. -- Conspire (As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
+mana={GW}
+type=Instant
 [/card]
+
 [card]
 name=Barktooth Warbeard
 mana={4}{B}{R}{R}
@@ -5543,6 +5563,14 @@ auto=draw:1 controller
 text=Target creature gets -3/-0 until end of turn. -- Draw a card.
 mana={2}{U}
 type=Instant
+[/card]
+[card]
+name=Bifurcate
+target=creature[-token]
+auto=moveTo(mybattlefield) target(*[share!name!]|mylibrary)
+text=Search your library for a permanent card with the same name as target nontoken creature and put that card onto the battlefield. Then shuffle your library.
+mana={3}{G}
+type=Sorcery
 [/card]
 [card]
 name=Bile Urchin
@@ -8273,6 +8301,16 @@ mana={G}
 type=Enchantment
 [/card]
 [card]
+name=Burn Trail
+target=creature,player
+auto=damage:3
+auto=alternative damage:3 target(creature,player)
+other={3}{R}{T(creature[red]|mybattlefield)}{T(creature[red]mybattlefield)}
+text=Burn Trail deals 3 damage to target creature or player. -- Conspire (As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
+mana={3}{R}
+type=Sorcery
+[/card]
+[card]
 name=Burning Cloak
 target=creature
 auto=2/0
@@ -10833,6 +10871,14 @@ mana={2}{W}{W}
 type=Sorcery
 [/card]
 [card]
+name=Cleansing Beam
+target=creature
+auto=all(*[share!color!]) damage:2
+text=Radiance - Cleansing Beam deals 2 damage to target creature and each other creature that shares a color with it.
+mana={4}{R}
+type=Instant
+[/card]
+[card]
 name=Clear
 target=enchantment
 auto=destroy
@@ -12229,6 +12275,17 @@ auto=draw:2
 text=Draw two cards.
 mana={2}{U}
 type=Sorcery
+[/card]
+[card]
+name=Counterbore
+target=*|stack
+auto=fizzle
+auto=all(*[share!name!]|targetcontrollerlibrary) moveto(exile)
+auto=all(*[share!name!]|targetcontrollerhand) moveto(exile)
+auto=all(*[share!name!]|targetcontrollergraveyard) moveto(exile)
+text=Counter target spell. Search its controller's graveyard, hand, and library for all cards with the same name as that spell and exile them. Then that player shuffles his or her library.
+mana={3}{U}{U}
+type=Instant
 [/card]
 [card]
 name=Counterintelligence
@@ -15738,6 +15795,16 @@ mana={1}{B}
 type=Sorcery
 [/card]
 [card]
+name=Disturbing Plot
+target=creature|mygraveyard
+auto=moveTo(myhand)
+auto=alternative moveTo(myhand) creature(mygraveyard)
+other={1}{B}{T(creature[black])}{T(creature[black])}
+text=Return target creature card in a graveyard to its owner's hand. -- Conspire (As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
 name=Dive Bomber
 abilities=flying
 auto={T}{S}:damage:2 target(creature[attacking;blocking])
@@ -17591,6 +17658,49 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Echoing Calm
+target=enchantment
+auto=destroy
+auto=all(other enchantment[share!name!]) destroy
+text=Destroy target enchantment and all other enchantments with the same name as that enchantment.
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+name=Echoing Courage
+target=creature
+auto=all(creature[share!name!]) 2/2
+text=Target creature and all other creatures with the same name as that creature get +2/+2 until end of turn.
+mana={1}{G}
+type=Instant
+[/card]
+[card]
+name=Echoing Decay
+target=creature
+auto=all(creature[share!name!]) -2/-2
+text=Target creature and all other creatures with the same name as that creature get -2/-2 until end of turn.
+mana={1}{B}
+type=Instant
+[/card]
+[card]
+name=Echoing Ruin
+target=artifact
+auto=destroy
+auto=all(other creature[share!name!]) destroy
+text=Destroy target artifact and all other artifacts with the same name as that artifact.
+mana={1}{R}
+type=Sorcery
+[/card]
+[card]
+name=Echoing Truth
+target=*[-land]
+auto=moveTo(ownerhand)
+auto=all(*[share!name!]) moveTo(ownerhand)
+text=Return target nonland permanent and all other permanents with the same name as that permanent to their owners' hands.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
 name=Edgewalker
 auto=lord(cleric|myhand) altercost( white, -1 )
 auto=lord(cleric|myhand) altercost( black, -1 )
@@ -18649,6 +18759,15 @@ power=4
 toughness=5
 [/card]
 [card]
+name=Endemic Plague
+target=creature
+auto=sacrifice
+auto=all(*[share!types!]) bury
+text=As an additional cost to cast Endemic Plague, sacrifice a creature. -- Destroy all creatures that share a creature type with the sacrificed creature. They can't be regenerated.
+mana={3}{B}
+type=Sorcery
+[/card]
+[card]
 name=Endless Cockroaches
 autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
 text=When Endless Cockroaches is put into a graveyard from the battlefield, return Endless Cockroaches to its owner's hand.
@@ -18945,7 +19064,11 @@ type=Enchantment
 [card]
 name=Eradicate
 target=creature[-black]
-auto=eradicate
+auto=moveTo(exile)
+auto=all(*[share!name!]|targetcontrollerhand) moveto(exile)
+auto=all(*[share!name!]|targetcontrollerlibrary) moveto(exile)
+auto=all(*[share!name!]|targetcontrollergraveyard)moveto(exile)
+auto=all(*[share!name!]|targetcontrollerbattlefield) moveto(exile)
 text=Exile target nonblack creature. Search its controller's graveyard, hand, and library for all cards with the same name as that creature and exile them. That player then shuffles his or her library.
 mana={2}{B}{B}
 type=Sorcery
@@ -24028,6 +24151,15 @@ type=Tribal Sorcery
 subtype=Giant
 [/card]
 [card]
+name=Giantbaiting
+auto=token(Giant,Creature Giant,4/4,haste,unearth)
+auto=alternative moveTo(myhand) token(Giant,Creature Giant,4/4,haste,unearth)
+other={2}{RG}{T(creature[red;green])}{T(creature[red;green])}
+text=Put a 4/4 red and green Giant Warrior creature token with haste onto the battlefield. Exile it at the beginning of the next end step. -- Conspire (As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it.)
+mana={2}{RG}
+type=Sorcery
+[/card]
+[card]
 name=Gibbering Hyenas
 auto=lord(creature[black]) cantbeblockedby(gibbering hyenas)
 text=Gibbering Hyenas can't block black creatures.
@@ -24230,6 +24362,15 @@ type=Creature
 subtype=Insect Horror
 power=6
 toughness=6
+[/card]
+[card]
+name=Gleeful Sabotage
+target=artifact,enchantment
+auto=alternative moveTo(myhand) destroy target(artifact,enchantment)
+other={1}{G}{T(creature[green])}{T(creature[green])}
+text=Destroy target artifact or enchantment. -- Conspire (As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
+mana={1}{G}
+type=Sorcery
 [/card]
 [card]
 name=Glen Elendra Archmage
@@ -29921,6 +30062,14 @@ mana={R}
 type=Instant
 [/card]
 [card]
+name=Incite Hysteria
+target=creature
+auto=all(other *[share!color!]) cantblock
+text=Radiance - Until end of turn, target creature and each other creature that shares a color with it gain "This creature can't block."
+mana={2}{R}
+type=Sorcery
+[/card]
+[card]
 name=Incurable Ogre
 mana={3}{R}
 type=Creature
@@ -34753,6 +34902,14 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Leave No Trace
+target=enchantment
+auto=all(*[share!color!]) destroy
+text=Radiance - Destroy target enchantment and each other enchantment that shares a color with it.
+mana={1}{W}
+type=Instant
+[/card]
+[card]
 name=Leafdrake Roost
 target=land
 auto=teach(land) {G}{U}{T}:token(Drake,Creature Drake,2/2,flying,bluegreen)
@@ -35790,6 +35947,17 @@ power=7
 toughness=6
 [/card]
 [card]
+name=Lobotomy
+target=*[-basic]|opponenthand
+auto=moveTo(exile)
+auto=all(*[share!name!]|targetcontrollerhand) moveto(exile)
+auto=all(*[share!name!]|targetcontrollerlibrary) moveto(exile)
+auto=all(*[share!name!]|targetcontrollergraveyard)moveto(exile)
+text=Target player reveals his or her hand, then you choose a card other than a basic land card from it. Search that player's graveyard, hand, and library for all cards with the same name as the chosen card and exile them. Then that player shuffles his or her library.
+mana={2}{U}{B}
+type=Sorcery
+[/card]
+[card]
 name=Loch Korrigan
 auto={UB}:1/1
 text={(u/b)}: Loch Korrigan gets +1/+1 until end of turn.
@@ -36563,6 +36731,14 @@ type=Creature
 subtype=Cyclops Warrior
 power=3
 toughness=4
+[/card]
+[card]
+name=Maelstrom Pulse
+target=*[-land]
+auto=all(*[share!name!]) destroy
+text=Destroy target nonland permanent and all other permanents with the same name as that permanent.
+mana={1}{B}{G}
+type=Sorcery
 [/card]
 [card]
 name=Maga, Traitor to Mortals
@@ -37926,6 +38102,16 @@ auto=@movedTo(*|opponentstack):deplete:2 opponent
 text=Whenever an opponent casts a spell, that player puts the top two cards of his or her library into his or her graveyard.
 mana={1}{U}{U}
 type=Enchantment
+[/card]
+[card]
+name=Memory Sluice
+target=player
+auto=deplete:4
+auto=alternative deplete:4 target(player)
+other={UB}{T(creature[black;blue])}{T(creature[black;blue])}
+text=Target player puts the top four cards of his or her library into his or her graveyard. -- Conspire (As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
+mana={UB}
+type=Sorcery
 [/card]
 [card]
 name=Mending Hands
@@ -39622,6 +39808,14 @@ auto=moveTo(myLibrary) all(*|mygraveyard) && moveTo(mygraveyard) all(*|myLibrary
 text=Exchange your graveyard and library. Then shuffle your library.
 mana={5}{B}{B}
 type=Sorcery
+[/card]
+[card]
+name=Moratorium Stone
+auto={2}{T}:moveTo(exile) target(*|graveyard)
+auto={2}{W}{B}{T}{S}:moveTo(exile) target(*|graveyard) && moveTo(exile) all(*[share!name!]|graveyard,battlefield)
+text={2}, {T}: Exile target card from a graveyard. -- {2}{W}{B}, {T}, Sacrifice Moratorium Stone: Exile target nonland card from a graveyard, all other cards from graveyards with the same name as that card, and all permanents with that name.
+mana={1}
+type=Artifact
 [/card]
 [card]
 name=Morbid Bloom
@@ -47047,6 +47241,18 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Quash
+target=instant,sorcery|stack
+auto=fizzle
+auto=all(*[share!name!]|targetcontrollerlibrary) moveto(exile)
+auto=all(*[share!name!]|targetcontrollerhand) moveto(exile)
+auto=all(*[share!name!]|targetcontrollergraveyard) moveto(exile)
+text=Counter target instant or sorcery spell. Search its controller's graveyard, hand, and library for all cards with the same name as that spell and exile them. That player then shuffles his or her library.
+mana={2}{U}{U}
+type=Instant
+[/card]
+
+[card]
 name=Quest for the Gemblades
 auto=@combatdamaged(creature) from(creature|myBattlefield):may counter(0/0,1,Quest) all(this)
 auto={C(0/0,-1,Quest)}{S}:counter(1/1,4) target(creature)
@@ -47763,6 +47969,15 @@ name=Rally
 auto=lord(creature[blocking]) 1/1
 text=Blocking creatures get +1/+1 until end of turn.
 mana={W}{W}
+type=Instant
+[/card]
+[card]
+name=Rally the Righteous
+target=creature
+auto=all(*[share!color!]) untap
+auto=all(*[share!color!]) 2/0
+text=Radiance - Untap target creature and each other creature that shares a color with it. Those creatures get +2/+0 until end of turn.
+mana={1}{R}{W}
 type=Instant
 [/card]
 [card]
@@ -49317,6 +49532,14 @@ type=Creature
 subtype=Griffin
 power=2
 toughness=2
+[/card]
+[card]
+name=Retraced Image
+target=*|myhand
+auto=aslongas(*[share!name!]|mybattlefield) moveTo(mybattlefield)
+text=Reveal a card in your hand, then put that card onto the battlefield if it has the same name as a permanent.
+mana={U}
+type=Sorcery
 [/card]
 [card]
 name=Retract
@@ -52321,7 +52544,11 @@ toughness=1
 [card]
 name=Scour
 target=enchantment
-auto=eradicate
+auto=moveTo(exile)
+auto=all(*[share!name!]|targetcontrollerhand) moveto(exile)
+auto=all(*[share!name!]|targetcontrollerlibrary) moveto(exile)
+auto=all(*[share!name!]|targetcontrollergraveyard)moveto(exile)
+auto=all(*[share!name!]|targetcontrollerbattlefield) moveto(exile)
 text=Exile target enchantment. Search its controller's graveyard, hand, and library for all cards with the same name as that enchantment and exile them. That player then shuffles his or her library.
 mana={2}{W}{W}
 type=Instant
@@ -57655,7 +57882,11 @@ toughness=3
 [card]
 name=Sowing Salt
 target=land[-basic]
-auto=eradicate
+auto=moveTo(exile)
+auto=all(*[share!name!]|targetcontrollerhand) moveto(exile)
+auto=all(*[share!name!]|targetcontrollerlibrary) moveto(exile)
+auto=all(*[share!name!]|targetcontrollergraveyard)moveto(exile)
+auto=all(*[share!name!]|targetcontrollerbattlefield) moveto(exile)
 text=Exile target nonbasic land. Search its controller's graveyard, hand, and library for all cards with the same name as that land and exile them. That player then shuffles his or her library.
 mana={2}{R}{R}
 type=Sorcery
@@ -58548,7 +58779,11 @@ toughness=5
 [card]
 name=Splinter
 target=artifact
-auto=eradicate
+auto=moveTo(exile)
+auto=all(*[share!name!]|targetcontrollerhand) moveto(exile)
+auto=all(*[share!name!]|targetcontrollerlibrary) moveto(exile)
+auto=all(*[share!name!]|targetcontrollergraveyard)moveto(exile)
+auto=all(*[share!name!]|targetcontrollerbattlefield) moveto(exile)
 text=Exile target artifact. Search its controller's graveyard, hand, and library for all cards with the same name as that artifact and exile them. That player then shuffles his or her library.
 mana={2}{G}{G}
 type=Sorcery
@@ -60773,6 +61008,14 @@ text=Creatures you control get +1/+1 until end of turn. If you control a Kithkin
 mana={1}{W}
 type=Tribal Instant
 subtype=Kithkin
+[/card]
+[card]
+name=Surge of Zeal
+target=creature
+auto=all(other *[share!color!]) haste
+text=Radiance - Target creature and each other creature that shares a color with it gain haste until end of turn.
+mana={R}
+type=Instant
 [/card]
 [card]
 name=Surprise Deployment
@@ -68697,6 +68940,15 @@ mana={1}{G}{G}
 type=Sorcery
 [/card]
 [card]
+name=Wake of Destruction
+target=land
+auto=destroy
+auto=all(*[share!name!]) destroy
+text=Destroy target land and all other lands with the same name as that land.
+mana={3}{R}{R}{R}
+type=Sorcery
+[/card]
+[card]
 name=Wake of Vultures
 abilities=flying
 auto={1}{B}{S(creature|myBattlefield)}:regenerate
@@ -70867,6 +71119,15 @@ type=Tribal Instant
 subtype=Shapeshifter
 [/card]
 [card]
+name=Winnow
+target=*[-land]
+auto=aslongas(*[share!name!]|battlefield) destroy
+auto=draw:1 controller
+text=Destroy target nonland permanent if another permanent with the same name is on the battlefield. -- Draw a card.
+mana={1}{W}
+type=Instant
+[/card]
+[card]
 name=Winter's Grasp
 target=land
 auto=destroy
@@ -71135,6 +71396,14 @@ type=Creature
 subtype=Elemental
 power=3
 toughness=5
+[/card]
+[card]
+name=Wojek Siren
+target=creature
+auto=all(other *[share!color!]) 1/1
+text=Radiance - Target creature and each other creature that shares a color with it get +1/+1 until end of turn.
+mana={W}
+type=Instant
 [/card]
 [card]
 name=Wolf Pack
