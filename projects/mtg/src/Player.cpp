@@ -173,6 +173,23 @@ int Player::prevented()
 {
     return preventable;
 }
+
+void Player::takeMulligan()
+{
+    MTGPlayerCards * currentPlayerZones = game;
+    int cardsinhand = currentPlayerZones->hand->nb_cards;
+    for (int i = 0; i < cardsinhand; i++) //Discard hand
+        currentPlayerZones->putInZone(currentPlayerZones->hand->cards[0],
+        currentPlayerZones->hand,
+        currentPlayerZones->library);
+
+    currentPlayerZones->library->shuffle(); //Shuffle
+    
+    for (int i = 0; i < (cardsinhand - 1); i++)
+        game->drawFromLibrary();
+         //Draw hand with 1 less card penalty //almhum
+}
+
 //Cleanup phase at the end of a turn
 void Player::cleanupPhase()
 {

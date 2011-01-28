@@ -73,6 +73,8 @@ public:
     void unTapPhase();
     MTGInPlay * inPlay();
     ManaPool * getManaPool();
+    void takeMulligan();
+    
     void cleanupPhase();
     virtual int Act(float dt)
     {
