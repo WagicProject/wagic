@@ -990,6 +990,14 @@ int AIPlayer::canFirstStrikeKill(MTGCardInstance * card, MTGCardInstance *ennemy
 
 int AIPlayer::chooseBlockers()
 {
+    GameObserver * g = GameObserver::GetInstance();
+    if (g->currentActionPlayer != this)
+    return 0;
+    //ai should not be allowed to run this if it is not legally allowed to do so
+    //this fixes a bug where ai would try to use this as an interupt
+    //when ai is given priority to select blockers it is allowed to run this as normal.
+    //but as soon as its selected it blockers and proirity switch back to other player
+    //kick the ai out of this function.
     map<MTGCardInstance *, int> opponentsToughness;
     int opponentForce = getCreaturesInfo(opponent(), INFO_CREATURESPOWER);
     CardDescriptor cd;
@@ -997,8 +1005,8 @@ int AIPlayer::chooseBlockers()
     cd.setType("Creature");
     cd.unsecureSetTapped(-1);
     MTGCardInstance * card = NULL;
-    GameObserver * g = GameObserver::GetInstance();
     MTGAbility * a = g->mLayers->actionLayer()->getAbility(MTGAbility::MTG_BLOCK_RULE);
+
 
     while ((card = cd.nextmatch(game->inPlay, card)))
     {
@@ -1303,12 +1311,12 @@ int AIPlayerBaka::computeActions()
     {
         findingCard = true;
         CardDescriptor cd;
-        ManaCost * currentMana = getPotentialMana();
-        bool potential = false;
-        if (currentMana->getConvertedCost())
+        ManaCost * icurrentMana = getPotentialMana();
+        bool ipotential = false;
+        if (icurrentMana->getConvertedCost())
         {
             //if theres mana i can use there then potential is true.
-            potential = true;
+            ipotential = true;
         }
         //look for an instant of ability to interupt with
         if((castrestrictedspell == false && nospellinstant == false)&&
@@ -1317,18 +1325,18 @@ int AIPlayerBaka::computeActions()
 
             if (!nextCardToPlay)
             {
-                nextCardToPlay = FindCardToPlay(currentMana, "instant");
+                nextCardToPlay = FindCardToPlay(icurrentMana, "instant");
             }
             if (!nextCardToPlay)
             {
                 selectAbility();
             }
         }
-        if (currentMana != NULL)
-            delete (currentMana);
+        if (icurrentMana != NULL)
+            delete (icurrentMana);
         if (nextCardToPlay)
         {
-            if (potential)
+            if (ipotential)
             {
                 tapLandsForMana(nextCardToPlay->getManaCost());
             }
@@ -1340,7 +1348,7 @@ int AIPlayerBaka::computeActions()
         }
         nextCardToPlay = NULL;
         findingCard = false;
-        return 0;
+        return 1;
     }
     else if(p == this && g->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0)
     { //standard actions
@@ -1451,7 +1459,7 @@ int AIPlayerBaka::computeActions()
             Checked = false;
             break;
         default:
-            selectAbility();
+        selectAbility();
             break;
         }
     }
