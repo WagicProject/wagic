@@ -419,6 +419,11 @@ id=72928
 rarity=R
 [/card]
 [card]
+primitive=Kaldra
+id=-47449
+rarity=T
+[/card]
+[card]
 primitive=Krark-Clan Engineers
 id=50201
 rarity=U

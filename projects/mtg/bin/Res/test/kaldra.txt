@@ -1,0 +1,31 @@
+#Testing Kaldra token (keyword:newtarget).
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Fervor,Sword of Kaldra,Shield of Kaldra,Helm of Kaldra
+manapool:{1}
+life:20
+[PLAYER2]
+life:20
+[DO]
+Helm of Kaldra
+next
+#combatbegins
+next
+#attackers
+Kaldra
+next
+#blockers
+next
+#combatdamage
+next
+#combatend
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Fervor,Sword of Kaldra,Shield of Kaldra,Helm of Kaldra,Kaldra
+manapool:{0}
+life:20
+[PLAYER2]
+life:11
+[END]

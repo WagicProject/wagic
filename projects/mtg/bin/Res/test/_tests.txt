@@ -340,6 +340,7 @@ jodahs_avenger.txt
 juggernaut.txt
 jump.txt
 juniper_order_ranger.txt
+kaldra.txt
 karns_touch_i233.txt
 keldon_warlord.txt
 keldon_warlord2.txt
