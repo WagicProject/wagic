@@ -28257,7 +28257,7 @@ auto=first strike
 auto=trample
 auto=haste
 auto={2}:equip
-auto={1}:aslongas(Sword of Kaldra|mybattlefield) aslongas(Shield of Kaldra|mybattlefield):token(-47449)
+auto=aslongas(Sword of Kaldra|mybattlefield)aslongas(Shield of Kaldra|mybattlefield)aslongas(Helm of Kaldra|mybattlefield) {1}:token(-47449)
 text=Equipped creature has first strike, trample, and haste. -- {1}: If you control Equipment named Helm of Kaldra, Sword of Kaldra, and Shield of Kaldra, put a legendary 4/4 colorless Avatar creature token named Kaldra onto the battlefield and attach those Equipment to it. -- Equip {2}
 mana={3}
 type=Legendary Artifact
@@ -32067,7 +32067,6 @@ type=Legendary Creature
 subtype=Avatar
 power=4
 toughness=4
-id=-47449
 [/card]
 [card]
 name=Kaleidostone
