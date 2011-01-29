@@ -28007,7 +28007,7 @@ toughness=3
 [/card]
 [card]
 name=Heavy Fog
-auto=preventalldamage to(controller) from(creature[attacking] ueot
+auto=preventalldamage to(controller) from(creature[attacking]) ueot
 restriction=opponentblockersonly
 text=Cast Heavy Fog only during the declare attackers step and only if you've been attacked this step. -- Prevent all damage that would be dealt to you this turn by attacking creatures.
 mana={1}{G}
@@ -48056,7 +48056,7 @@ type=Instant
 [card]
 name=Rally the Troops
 auto=untap all(creature|mybattlefield)
-restriction=opponentblockeronly
+restriction=opponentblockersonly
 text=Cast Rally the Troops only during the declare attackers step and only if you've been attacked this step. -- Untap all creatures you control.
 mana={W}
 type=Instant
@@ -49246,7 +49246,7 @@ type=Land
 name=Remove
 target=creature[attacking]|opponentBattlefield
 auto=moveTo(ownerHand)
-restriction=opponentblockeronly
+restriction=opponentblockersonly
 text=Cast Remove only during the declare attackers step and only if you've been attacked this step. -- Return target attacking creature to its owner's hand.
 mana={U}
 type=Instant
@@ -52569,7 +52569,7 @@ type=Sorcery
 [card]
 name=Scorching Winds
 auto=damage:1 all(creature[attacking])
-restriction=opponentblockeronly
+restriction=opponentblockersonly
 text=Cast Scorching Winds only during the declare attackers step and only if you've been attacked this step. -- Scorching Winds deals 1 damage to each attacking creature.
 mana={R}
 type=Instant
@@ -65355,7 +65355,7 @@ subtype=Aura
 [card]
 name=Treetop Defense
 auto=lord(creature|mybattlefield) reach ueot
-restriction=opponentblockeronly
+restriction=opponentblockersonly
 text=Cast Treetop Defense only during the declare attackers step and only if you've been attacked this step. -- Creatures you control gain reach until end of turn. (They can block creatures with flying.)
 mana={1}{G}
 type=Instant
@@ -69950,7 +69950,7 @@ type=Instant
 [card]
 name=Warrior's Stand
 auto=lord(creature|mybattlefield) 2/2 ueot
-restriction=opponentblockeronly
+restriction=opponentblockersonly
 text=Cast Warrior's Stand only during the declare attackers step and only if you've been attacked this step. -- Creatures you control get +2/+2 until end of turn.
 mana={1}{W}
 type=Instant
