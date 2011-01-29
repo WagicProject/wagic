@@ -58703,6 +58703,14 @@ power=6
 toughness=6
 [/card]
 [card]
+name=Spiritual Asylum
+auto=lord(creature|myBattlefield) shroud
+auto=lord(creature|opponentBattlefield) shroud
+text=@attacking(creature|myBattlefield):sacrifice
+mana={2}{W}{W}
+type=Enchantment
+[/card]
+[card]
 name=Spiritual Guardian
 auto=life:4
 text=When Spiritual Guardian enters the battlefield, you gain 4 life.
