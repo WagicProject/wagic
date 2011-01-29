@@ -58706,7 +58706,8 @@ toughness=6
 name=Spiritual Asylum
 auto=lord(creature|myBattlefield) shroud
 auto=lord(creature|opponentBattlefield) shroud
-text=@attacking(creature|myBattlefield):sacrifice
+auto=@attacking(creature|myBattlefield):sacrifice
+text=Creatures and lands you control have shroud. (They can't be the targets of spells or abilities.) -- When a creature you control attacks, sacrifice Spiritual Asylum.
 mana={2}{W}{W}
 type=Enchantment
 [/card]
