@@ -720,8 +720,8 @@ AAFrozen * AAFrozen::clone() const
 }
 
 // chose a new target for an aura or enchantment and equip it note: VERY basic right now.
-AANewTarget::AANewTarget(int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost, int doTap) :
-ActivatedAbility(id, card, _cost, 0, doTap)
+AANewTarget::AANewTarget(int id, MTGCardInstance * card, MTGCardInstance * _target,bool retarget, ManaCost * _cost, int doTap) :
+ActivatedAbility(id, card, _cost, 0, doTap),retarget(retarget)
 {
     target = _target;
 }
@@ -729,20 +729,48 @@ ActivatedAbility(id, card, _cost, 0, doTap)
 int AANewTarget::resolve()
 {
     MTGCardInstance * _target = (MTGCardInstance *) target;
+    if(retarget)
+    {
+        _target = source;
+        source = (MTGCardInstance *) target;
+    }
     if (_target)
     {
         while (_target->next)
-            _target = _target->next; //This is for cards such as rampant growth
-            
+            _target = _target->next; 
         _target->controller()->game->putInZone(_target, _target->currentZone,
             _target->owner->game->exile);
         _target = _target->next;
-        
+
         MTGCardInstance * refreshed = source->controller()->game->putInZone(_target,_target->currentZone,source->controller()->game->battlefield);
         Spell * reUp = NEW Spell(refreshed);
-        reUp->source->target = source;
-        reUp->resolve();
+        if(reUp->source->hasSubtype("aura"))
+        {
+            reUp->source->target = source;
+            reUp->resolve();
+        }
+        if(_target->hasSubtype("equipment"))
+        {
+            reUp->resolve();
+            GameObserver * g = g->GetInstance();
+            for (int i = 1; i < g->mLayers->actionLayer()->mCount; i++)
+            {
+                MTGAbility * a = ((MTGAbility *) g->mLayers->actionLayer()->mObjects[i]);
+                AEquip * eq = dynamic_cast<AEquip*> (a);
+                if (eq && eq->source == reUp->source)
+                {
+                    ((AEquip*)a)->unequip();
+                    ((AEquip*)a)->equip(source);
+                }
+            }
+        }
         delete reUp;
+        if(retarget)
+        {
+            target = source;
+            source = _target;
+        }
+
     }
     return 1;
 }
@@ -756,6 +784,7 @@ AANewTarget * AANewTarget::clone() const
 {
     AANewTarget * a = NEW AANewTarget(*this);
     a->isClone = 1;
+    a->oneShot = 1;
     return a;
 }
 // morph a card

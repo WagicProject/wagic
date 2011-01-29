@@ -2581,17 +2581,25 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         a->oneShot = 1;
         return a;
     }
-    
-        //get a new target
-    found = s.find("newtarget");
+
+    //get a new target
+    found = s.find("retarget");
     if (found != string::npos)
     {
-        MTGAbility * a = NEW AANewTarget(id, card, target);
+        MTGAbility * a = NEW AANewTarget(id, card,target,true);
         a->oneShot = 1;
         return a;
     }
-    
-           //morph
+
+    //get a new target
+    found = s.find("newtarget");
+    if (found != string::npos)
+    {
+        MTGAbility * a = NEW AANewTarget(id, card, target,false);
+        a->oneShot = 1;
+        return a;
+    }
+    //morph
     found = s.find("morph");
     if (found != string::npos)
     {

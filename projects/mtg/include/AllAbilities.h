@@ -427,7 +427,7 @@ public:
     bool sourceUntapped;
     bool opponentPoisoned;
     TrCardAttacked(int id, MTGCardInstance * source, TargetChooser * tc,bool sourceUntapped,bool opponentPoisoned) :
-        TriggeredAbility(id, source), tc(tc), sourceUntapped(sourceUntapped)
+        TriggeredAbility(id, source), tc(tc), sourceUntapped(sourceUntapped),opponentPoisoned(opponentPoisoned)
     {
     }
 
@@ -3414,7 +3414,8 @@ public:
 class AANewTarget: public ActivatedAbility
 {
 public:
-    AANewTarget(int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL, int doTap = 0);
+bool retarget;
+    AANewTarget(int id, MTGCardInstance * card, MTGCardInstance * _target,bool retarget = false, ManaCost * _cost = NULL, int doTap = 0);
     int resolve();
     const char * getMenuText();
     AANewTarget * clone() const;
