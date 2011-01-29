@@ -171,7 +171,13 @@ int Damage::resolve()
         //return the left over amount after effects have been applied to them.
         a = target->dealDamage(damage);
         target->damageCount += 1;
-        target->lifeLostThisTurn += damage;
+        if (target->type_as_damageable == DAMAGEABLE_PLAYER)
+        {
+            target->lifeLostThisTurn += damage;
+            WEvent * lifed = NEW WEventLife((Player*)target,-damage);
+            GameObserver * game = GameObserver::GetInstance();
+            game->receiveEvent(lifed);
+        }
     }
 
     //Send (Damage/Replaced effect) event to listeners
