@@ -1,0 +1,32 @@
+#Testing Flayer Husk (keyword:livingweapon).
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Flayer Husk
+inplay:Fervor
+manapool:{1}
+life:20
+[PLAYER2]
+life:20
+[DO]
+Flayer Husk
+next
+#combatbegins
+next
+#attackers
+Germ
+next
+#blockers
+next
+#combatdamage
+next
+#combatend
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Fervor,Flayer Husk,*
+manapool:{0}
+life:20
+[PLAYER2]
+life:19
+[END]

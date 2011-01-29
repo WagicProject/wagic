@@ -2390,6 +2390,15 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Brass Squire
+text={T}: Attach target Equipment you control to target creature you control.
+mana={3}
+type=Artifact Creature
+subtype=Myr
+power=1
+toughness=3
+[/card]
+[card]
 name=Brawl
 text=Until end of turn, all creatures gain "{T}: This creature deals damage equal to its power to target creature."
 mana={3}{R}{R}
@@ -4297,6 +4306,15 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Core Prowler
+text=Infect (This creature deals damage to creatures in the form of -1/-1 counters and to players in the form of poison counters.) -- When Core Prowler is put into a graveyard from the battlefield, proliferate. (You choose any number of permanents and/or players with counters on them, then give each another counter of a kind already there.)
+mana={4}
+type=Artifact Creature
+subtype=Horror
+power=2
+toughness=2
+[/card]
+[card]
 name=Cornered Market
 text=Players can't cast spells with the same name as a nontoken permanent. -- Players can't play nonbasic lands with the same name as a nontoken permanent.
 mana={2}{W}
@@ -4746,6 +4764,15 @@ name=Cryptic Gateway
 text=Tap two untapped creatures you control: You may put a creature card from your hand that shares a creature type with each creature tapped this way onto the battlefield.
 mana={5}
 type=Artifact
+[/card]
+[card]
+name=Cryptoplasm
+text=At the beginning of your upkeep, you may have Cryptoplasm become a copy of another target creature. If you do, Cryptoplasm gains this ability.
+mana={1}{U}{U}
+type=Creature
+subtype=Shapeshifter
+power=2
+toughness=2
 [/card]
 [card]
 name=Cryptwailing
@@ -5948,6 +5975,12 @@ type=Instant
 name=Distant Melody
 text=Choose a creature type. Draw a card for each permanent you control of that type.
 mana={3}{U}
+type=Sorcery
+[/card]
+[card]
+name=Distant Memories
+text=Search your library for a card, exile it, then shuffle your library. An opponent may have you put that card into your hand. If no player does, you draw three cards.
+mana={2}{U}{U}
 type=Sorcery
 [/card]
 [card]
@@ -8605,6 +8638,12 @@ mana={2}{W}
 type=Instant
 [/card]
 [card]
+name=Frantic Salvage
+text=Put any number of target artifact cards from your graveyard on top of your library. -- Draw a card.
+mana={3}{W}
+type=Instant
+[/card]
+[card]
 name=Frantic Search
 text=Draw two cards, then discard two cards. -- Untap up to three lands.
 mana={2}{U}
@@ -8684,6 +8723,12 @@ type=Creature
 subtype=Giant
 power=6
 toughness=6
+[/card]
+[card]
+name=Fuel for the Cause
+text=Counter target spell, then proliferate. (You choose any number of permanents and/or players with counters on them, then give each another counter of a kind already there.)
+mana={2}{U}{U}
+type=Instant
 [/card]
 [card]
 name=Fugitive Druid
@@ -8853,6 +8898,15 @@ name=Gaea's Touch
 text=You may play an additional land during your turn if that land is a basic Forest. -- Sacrifice Gaea's Touch: Add {G}{G} to your mana pool.
 mana={G}{G}
 type=Enchantment
+[/card]
+[card]
+name=Galvanoth
+text=At the beginning of your upkeep, you may look at the top card of your library. If it's an instant or sorcery card, you may cast it without paying its mana cost.
+mana={3}{R}{R}
+type=Creature
+subtype=Beast
+power=3
+toughness=3
 [/card]
 [card]
 name=Game Preserve
@@ -9663,7 +9717,8 @@ toughness=2
 [/card]
 [card]
 name=Goblin Ringleader
-text=Haste -- When Goblin Ringleader enters the battlefield, reveal the top four cards of your library. Put all Goblin cards revealed this way into your hand and the rest on the bottom of your library.
+text=Haste -- When Goblin Ring
+er enters the battlefield, reveal the top four cards of your library. Put all Goblin cards revealed this way into your hand and the rest on the bottom of your library.
 mana={3}{R}
 type=Creature
 subtype=Goblin
@@ -9807,6 +9862,15 @@ type=Creature
 subtype=Jellyfish
 power=0
 toughness=3
+[/card]
+[card]
+name=Gore Vassal
+text=Sacrifice Gore Vassal: Put a -/1-1 counter on target creature. Then, if that creature's toughness is 1 or greater, regenerate it.
+mana={2}{W}
+type=Creature
+subtype=Hound
+power=2
+toughness=1
 [/card]
 [card]
 name=Gorger Wurm
@@ -11096,6 +11160,12 @@ type=Instant
 subtype=Arcane
 [/card]
 [card]
+name=Horrifying Revelation
+text=Target player discards a card, then puts the top card of his or her library into his or her graveyard.
+mana={B}
+type=Sorcery
+[/card]
+[card]
 name=Hostility
 text=Haste -- If a spell you control would deal damage to an opponent, prevent that damage. Put a 3/1 red Elemental Shaman creature token with haste onto the battlefield for each 1 damage prevented this way. -- When Hostility is put into a graveyard from anywhere, shuffle it into its owner's library.
 mana={3}{R}{R}{R}
@@ -11938,6 +12008,12 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Into the Core
+text=Exile two target artifacts.
+mana={2}{R}{R}
+type=Instant
+[/card]
+[card]
 name=Into the Fray
 text=Target creature attacks this turn if able. -- Splice onto Arcane {R} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 mana={R}
@@ -12631,6 +12707,15 @@ mana={1}{B}{R}
 type=Enchantment
 [/card]
 [card]
+name=Kemba's Legion
+text=Vigilance -- Kemba's Legion can block an additional creature for each Equipment attached to Kemba's Legion.
+mana={5}{W}{W}
+type=Creature
+subtype=Cat Soldier
+power=4
+toughness=6
+[/card]
+[card]
 name=Kemuri-Onna
 text=When Kemuri-Onna enters the battlefield, target player discards a card. -- Whenever you cast a Spirit or Arcane spell, you may return Kemuri-Onna to its owner's hand.
 mana={4}{B}
@@ -12964,6 +13049,12 @@ type=Tribal Sorcery
 subtype=Rogue
 [/card]
 [card]
+name=Knowledge Pool
+text=Imprint - When Knowledge Pool enters the battlefield, each player exiles the top three cards of his or her library. -- Whenever a player casts a spell from his or her hand, that player exiles it. If the player does, he or she may cast another nonland card exiled with Knowledge Pool without paying that card's mana cost.
+mana={6}
+type=Artifact
+[/card]
+[card]
 name=Knowledge Vault
 text={2}, {T}: Exile the top card of your library face down. -- {0}: Sacrifice Knowledge Vault. If you do, discard your hand, then put all cards exiled with Knowledge Vault into their owner's hand. -- When Knowledge Vault leaves the battlefield, put all cards exiled with Knowledge Vault into their owner's graveyard.
 mana={4}
@@ -13160,6 +13251,15 @@ type=Creature
 subtype=Serpent
 power=4
 toughness=3
+[/card]
+[card]
+name=Kuldotha Flamefiend
+text=When Kuldotha Flamefiend enters the battlefield, you may sacrifice an artifact. If you do, Kuldotha Flamefiend deals 4 damage divided as you choose among any number of target creatures and/or players.
+mana={4}{R}{R}
+type=Creature
+subtype=Elemental
+power=4
+toughness=4
 [/card]
 [card]
 name=Kumano's Blessing
@@ -13376,6 +13476,12 @@ subtype=Trap
 name=Lavaclaw Reaches
 text=Lavaclaw Reaches enters the battlefield tapped. -- {T}: Add {B} or {R} to your mana pool. -- {1}{B}{R}: Until end of turn, Lavaclaw Reaches becomes a 2/2 black and red Elemental creature with "{X}: This creature gets +X/+0 until end of turn." It's still a land.
 type=Land
+[/card]
+[card]
+name=Lead the Stampede
+text=Look at the top five cards of your library. You may reveal any number of creature cards from among them and put the revealed cards into your hand. Put the rest on the bottom of your library in any order.
+mana={2}{G}
+type=Sorcery
 [/card]
 [card]
 name=Leaf-Crowned Elder
@@ -14810,6 +14916,15 @@ mana={4}{R}
 type=Instant
 [/card]
 [card]
+name=Melira's Keepers
+text=Melira's Keepers can't have counters placed on it.
+mana={4}{G}
+type=Creature
+subtype=Human Warrior
+power=4
+toughness=4
+[/card]
+[card]
 name=Melting
 text=All lands are no longer snow.
 mana={3}{R}
@@ -15422,6 +15537,12 @@ power=2
 toughness=4
 [/card]
 [card]
+name=Mirrorworks
+text=Whenever another nontoken artifact enters the battlefield under your control, you may pay {2}. If you do, put a token that's a copy of that artifact onto the battlefield.
+mana={4}
+type=Artifact
+[/card]
+[card]
 name=Miscalculation
 text=Counter target spell unless its controller pays {2}. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={1}{U}
@@ -15626,6 +15747,12 @@ name=Mistveil Plains
 text=({T}: Add {W} to your mana pool.) -- Mistveil Plains enters the battlefield tapped. -- {W}, {T}: Put target card in your graveyard on the bottom of your library. Activate this ability only if you control two or more white permanents.
 type=Land
 subtype=Plains
+[/card]
+[card]
+name=Mitotic Manipulation
+text=Look at the top seven cards of your library. You may put one of those cards onto the battlefield if it has the same name as a permanent. Put the rest on the bottom of your library in any order.
+mana={1}{U}{U}
+type=Sorcery
 [/card]
 [card]
 name=Mizzium Transreliquat
@@ -16057,6 +16184,15 @@ type=Artifact Creature
 subtype=Myr
 power=1
 toughness=1
+[/card]
+[card]
+name=Myr Welder
+text=Imprint - {T}: Exile target artifact card from a graveyard. -- Myr Welder has all activated abilities of all cards exiled with it.
+mana={3}
+type=Artifact Creature
+subtype=Myr
+power=1
+toughness=4
 [/card]
 [card]
 name=Mystic Compass
@@ -18118,13 +18254,6 @@ power=5
 toughness=5
 [/card]
 [card]
-name=Phyrexian Boon
-text=Enchant creature -- Enchanted creature gets +2/+1 as long as it's black. Otherwise, it gets -1/-2.
-mana={2}{B}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Phyrexian Colossus
 text=Phyrexian Colossus doesn't untap during your untap step. -- Pay 8 life: Untap Phyrexian Colossus. -- Phyrexian Colossus can't be blocked except by three or more creatures.
 mana={7}
@@ -18208,6 +18337,21 @@ name=Phyrexian Purge
 text=Destroy any number of target creatures. -- Phyrexian Purge costs 3 life more to cast for each target.
 mana={2}{B}{R}
 type=Sorcery
+[/card]
+[card]
+name=Phyrexian Rebirth
+text=Destroy all creatures, then put an X/X colorless Horror artifact creature token onto the battlefield, where X is the number of creatures destroyed this way.
+mana={4}{W}{W}
+type=Sorcery
+[/card]
+[card]
+name=Phyrexian Revoker
+text=As Phyrexian Revoker enters the battlefield, name a nonland card. -- Activated abilities of sources with the chosen name can't be activated.
+mana={3}
+type=Artifact Creature
+subtype=Horror
+power=2
+toughness=1
 [/card]
 [card]
 name=Phyrexian Scuta
@@ -18317,6 +18461,13 @@ mana={U}
 type=Instant
 [/card]
 [card]
+name=Piston Sledge
+text=When Piston Sledge enters the battlefield, attach it to target creature you control. -- Equipped creature gets +3/+1. -- Equip - Sacrifice an artifact.
+mana={3}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
 name=Pitchstone Wall
 text=Defender (This creature can't attack.) -- Whenever you discard a card, you may sacrifice Pitchstone Wall. If you do, return the discarded card from your graveyard to your hand.
 mana={2}{R}
@@ -18364,6 +18515,15 @@ name=Plague of Vermin
 text=Starting with you, each player may pay any amount of life. Repeat this process until no one pays life. Each player puts a 1/1 black Rat creature token onto the battlefield for each 1 life he or she paid this way.
 mana={6}{B}
 type=Sorcery
+[/card]
+[card]
+name=Plaguemaw Beast
+text={T}, Sacrifice a creature: Proliferate.
+mana={3}{G}{G}
+type=Creature
+subtype=Beast
+power=4
+toughness=3
 [/card]
 [card]
 name=Planar Chaos
@@ -22103,6 +22263,15 @@ mana={3}
 type=Artifact
 [/card]
 [card]
+name=Serum Raker
+text=Flying -- When Serum Raker is put into a graveyard from the battlefield, each player discards a card.
+mana={2}{U}{U}
+type=Creature
+subtype=Drake
+power=3
+toughness=2
+[/card]
+[card]
 name=Serum Visions
 text=Draw a card. -- Scry 2. (To scry 2, look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
 mana={U}
@@ -22390,6 +22559,15 @@ text=Flying -- Whenever Shimian Specter deals combat damage to a player, that pl
 mana={2}{B}{B}
 type=Creature
 subtype=Specter
+power=2
+toughness=2
+[/card]
+[card]
+name=Shimmer Myr
+text=Flash -- You may cast artifact cards as though they had flash.
+mana={3}
+type=Artifact Creature
+subtype=Myr
 power=2
 toughness=2
 [/card]
@@ -23735,6 +23913,15 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Spin Engine
+text={R}: Target creature can't block Spin Engine this turn.
+mana={3}
+type=Artifact Creature
+subtype=Construct
+power=3
+toughness=1
+[/card]
+[card]
 name=Spin into Myth
 text=Put target creature on top of its owner's library, then fateseal 2. (To fateseal 2, look at the top two cards of an opponent's library, then put any number of them on the bottom of that player's library and the rest on top in any order.)
 mana={4}{U}
@@ -23869,6 +24056,12 @@ name=Sporogenesis
 text=At the beginning of your upkeep, you may put a fungus counter on target nontoken creature. -- Whenever a creature with a fungus counter on it is put into a graveyard from the battlefield, put a 1/1 green Saproling creature token onto the battlefield for each fungus counter on that creature. -- When Sporogenesis leaves the battlefield, remove all fungus counters from all creatures.
 mana={3}{G}
 type=Enchantment
+[/card]
+[card]
+name=Spread the Sickness
+text=Destroy target creature, then proliferate. (You choose any number of permanents and/or players with counters on them, then give each another counter of a kind already there.)
+mana={4}{B}
+type=Sorcery
 [/card]
 [card]
 name=Spreading Plague
@@ -24872,6 +25065,12 @@ power=2
 toughness=6
 [/card]
 [card]
+name=Sword of Feast and Famine
+text=Equipped creature gets +2/+2 and has protection from black and from green. -- Whenever equipped creature deals combat damage to a player, that player discards a card and you untap all lands you control. -- Equip {2}
+mana={3}
+type=Artifact
+[/card]
+[card]
 name=Sword of the Ages
 text=Sword of the Ages enters the battlefield tapped. -- {T}, Exile Sword of the Ages and any number of creatures you control: the Ages deals X damage to target creature or player, where X is the total power of the creatures exiled this way.
 mana={6}
@@ -25404,6 +25603,13 @@ type=Artifact Creature
 subtype=Construct
 power=1
 toughness=1
+[/card]
+[card]
+name=Tezzeret, Agent of Bolas
+text=+1: Look at the top five cards of your library. You may reveal an artifact card from among them and put it into your hand. Put the rest on the bottom of your library in any order. -- -1: Target artifact becomes a 5/5 artifact creature. -- -4: Target player loses X life and you gain X life, where X is twice the number of artifacts you control.
+mana={2}{U}{B}
+type=Planeswalker
+subtype=Tezzeret
 [/card]
 [card]
 name=Tezzeret the Seeker
