@@ -126,7 +126,7 @@ int Player::gainOrLoseLife(int value)
     //that the triggered event stored in the card for "that much".
     life+=value;
     if (value<0)
-        lifeLostThisTurn -= value;
+        lifeLostThisTurn += abs(value);
 
     //Send life event to listeners
     WEvent * lifed = NEW WEventLife(this,value);

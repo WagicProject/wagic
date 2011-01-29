@@ -171,6 +171,7 @@ int Damage::resolve()
         //return the left over amount after effects have been applied to them.
         a = target->dealDamage(damage);
         target->damageCount += 1;
+        target->lifeLostThisTurn += damage;
     }
 
     //Send (Damage/Replaced effect) event to listeners
