@@ -45,9 +45,8 @@ int MTGAbility::allowedToCast(MTGCardInstance * card,Player * player)
             return 0;
         break;
     case VAMPIRES:
-
         vamps = player->game->inPlay->countByType("vampire");
-        if(vamps < 3)
+        if(vamps < 2)
             return 0;
         break;
     case LESS_CREATURES:
