@@ -18401,6 +18401,8 @@ toughness=1
 [card]
 name=Elvish Berserker
 auto=rampage(1/1,0)
+auto=@attacking(this):2/2 ueot
+auto=@attacking(this):token(Zombie,Creature Zombie,2/2,black)*2
 text=Whenever Elvish Berserker becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.
 mana={G}
 type=Creature

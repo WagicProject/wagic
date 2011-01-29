@@ -73,14 +73,14 @@ generic/tokens2.txt
 generic/trample.txt
 generic/trample_vs_indestructible.txt
 generic/trample_vs_multiblock.txt
-generic/triggers_at_movedto_i179.txt
-generic/triggers_attacking.txt
-generic/triggers_blocking.txt
-generic/triggers_combatdamaged_1.txt
-generic/triggers_combatdamaged_2.txt
-generic/triggers_drawn.txt
-generic/triggers_noncombatdamaged.txt
-generic/triggers_untapped.txt
+generic/trigger_at_movedto_i179.txt
+generic/trigger_attacking.txt
+generic/trigger_blocking.txt
+generic/trigger_combatdamaged_1.txt
+generic/trigger_combatdamaged_2.txt
+generic/trigger_drawn.txt
+generic/trigger_noncombatdamaged.txt
+generic/trigger_untapped.txt
 generic/wither.txt
 ########################
 #Specific Cards

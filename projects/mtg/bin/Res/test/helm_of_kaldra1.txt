@@ -13,6 +13,7 @@ inplay:Lightning Elemental
 [DO]
 Grizzly Bears
 Helm of Kaldra
+choice 0
 Grizzly Bears
 next
 next
