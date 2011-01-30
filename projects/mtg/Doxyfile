@@ -44,7 +44,7 @@ PROJECT_BRIEF          = "An open source card game"
 # exceed 55 pixels and the maximum width should not exceed 200 pixels. 
 # Doxygen will copy the logo to the output directory.
 
-PROJECT_LOGO           = F:/Programming/Wagic/projects/mtg/icon.png
+PROJECT_LOGO           = ./icon.png
 
 # The OUTPUT_DIRECTORY tag is used to specify the (relative or absolute) 
 # base path where the generated documentation will be put. 
