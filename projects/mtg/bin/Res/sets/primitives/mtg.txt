@@ -11147,6 +11147,13 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Clock of Omens
+auto={T(artifact|myBattlefield)}{T(artifact|myBattlefield)}:untap target(artifact)
+text=Tap two untapped artifacts you control: Untap target artifact.
+mana={4}
+type=Artifact
+[/card]
+[card]
 name=Clockwork Avian
 abilities=flying
 auto=counter(1/0,4)
@@ -31565,7 +31572,7 @@ subtype=Hound
 power=2
 toughness=2
 [/card]
-ard]
+[card]
 name=Jackal Pup
 auto=@damaged(this):damage:thatmuch controller
 text=Whenever Jackal Pup is dealt damage, it deals that much damage to you.

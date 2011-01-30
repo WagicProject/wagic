@@ -27248,13 +27248,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Veteran's Armaments
-text=Equipped creature has "Whenever this creature attacks or blocks, it gets +1/+1 until end of turn for each attacking creature." -- Whenever a Soldier creature enters the battlefield, you may attach Veteran's Armaments to it. -- Equip {2}
-mana={2}
-type=Tribal Artifact
-subtype=Soldier Equipment
-[/card]
-[card]
 name=Veteran's Voice
 target=creature|mybattlefield
 auto=lord(mytgt) {T}:2/1 target(other creature)
