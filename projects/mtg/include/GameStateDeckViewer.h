@@ -90,8 +90,6 @@ private:
     float mSlide;
     int mAlpha;
     int mStage;
-    int nbDecks;
-    int deckNum;
     int useFilter;
     JMusic * bgMusic;
     JQuad * backQuad;

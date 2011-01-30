@@ -17,7 +17,7 @@ vector<DeckMetaData *> GameState::fillDeckMenu(SimpleMenu * _menu, const string&
                 Player * statsPlayer)
 {
 
-    vector<DeckMetaData *> deckMetaDataVector = getValidDeckMetaData(path, smallDeckPrefix, statsPlayer);
+    vector<DeckMetaData *> deckMetaDataVector = BuildDeckList(path, smallDeckPrefix, statsPlayer);
     renderDeckMenu(_menu, deckMetaDataVector);
 
     return deckMetaDataVector;
@@ -27,13 +27,13 @@ vector<DeckMetaData *> GameState::fillDeckMenu(DeckMenu * _menu, const string& p
                 Player * statsPlayer, int maxDecks)
 {
 
-    vector<DeckMetaData *> deckMetaDataVector = getValidDeckMetaData(path, smallDeckPrefix, statsPlayer, maxDecks);
+    vector<DeckMetaData *> deckMetaDataVector = BuildDeckList(path, smallDeckPrefix, statsPlayer, maxDecks);
     renderDeckMenu(_menu, deckMetaDataVector);
 
     return deckMetaDataVector;
 }
 
-vector<DeckMetaData *> GameState::getValidDeckMetaData(const string& path, const string& smallDeckPrefix, Player * statsPlayer, int maxDecks)
+vector<DeckMetaData *> GameState::BuildDeckList(const string& path, const string& smallDeckPrefix, Player * statsPlayer, int maxDecks)
 {
     vector<DeckMetaData*> retList;
 
@@ -45,8 +45,8 @@ vector<DeckMetaData *> GameState::getValidDeckMetaData(const string& path, const
         found = 0;
         std::ostringstream filename;
         filename << path << "/deck" << nbDecks << ".txt";
-        DeckMetaData * meta = metas->get(filename.str(), statsPlayer);
-		string deckStatsFileName;
+        DeckMetaData * meta = metas->get(filename.str());
+
         if (meta)
         {
             found = 1;
@@ -54,16 +54,22 @@ vector<DeckMetaData *> GameState::getValidDeckMetaData(const string& path, const
             {
                 std::ostringstream aiStatsDeckName;
                 aiStatsDeckName << smallDeckPrefix << "_deck" << nbDecks;
-				deckStatsFileName = aiStatsDeckName.str();
+				meta->mStatsFilename = aiStatsDeckName.str();
+                meta->mIsAI = true;
+                if (meta->mPlayerDeck != statsPlayer->GetCurrentDeckStatsFile())
+                {
+                    meta->mPlayerDeck = statsPlayer->GetCurrentDeckStatsFile();
+                    meta->Invalidate();
+                }
             }
             else
             {
                 std::ostringstream playerStatsDeckName;
                 playerStatsDeckName << "stats/player_deck" << nbDecks << ".txt";
-                deckStatsFileName = options.profileFile(playerStatsDeckName.str());
+                meta->mStatsFilename = options.profileFile(playerStatsDeckName.str());
+                meta->mIsAI = false;
             }
 
-			meta->loadStatsForPlayer(statsPlayer, deckStatsFileName);
             retList.push_back(meta);
             nbDecks++;
         }

@@ -34,11 +34,9 @@ public:
     static DeckStats * GetInstance();
     static void EndInstance();
     void saveStats(Player * player, Player * opponent, GameObserver * game);
-    void save(const char * filename);
-    void save(Player * player);
-    void load(const char * filename);
-    void load(Player * player);
-    void cleanStats();
+    void save(const std::string& filename);
+    void load(const std::string& filename);
+
     ~DeckStats();
     int percentVictories(string opponentsDeckFile);
     int percentVictories();

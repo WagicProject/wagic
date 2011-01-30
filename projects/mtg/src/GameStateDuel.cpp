@@ -111,7 +111,7 @@ void GameStateDuel::Start()
                 GameStateDuel::selectedPlayerDeckId, true);
             deckmenu->enableDisplayDetailsOverride();
             DeckManager *deckManager = DeckManager::GetInstance();
-            vector<DeckMetaData *> playerDeckList = getValidDeckMetaData(options.profileFile());
+            vector<DeckMetaData *> playerDeckList = BuildDeckList(options.profileFile());
             int nbDecks = playerDeckList.size();
 
             if (nbDecks)

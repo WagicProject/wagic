@@ -134,7 +134,7 @@ int Player::gainOrLoseLife(int value)
     game->receiveEvent(lifed);
 
     return value;
-};
+}
 
 int Player::gainLife(int value)
 {
@@ -144,7 +144,7 @@ int Player::gainLife(int value)
         return 0;
     }
     return gainOrLoseLife(value);
-};
+}
 
 int Player::loseLife(int value)
 {
@@ -154,21 +154,23 @@ int Player::loseLife(int value)
         return 0;
     }
     return gainOrLoseLife(-value);
-};
-
+}
 
 int Player::afterDamage()
 {
     return life;
 }
+
 int Player::poisoned()
 {
     return poisonCount;
 }
+
 int Player::damaged()
 {
     return damageCount;
 }
+
 int Player::prevented()
 {
     return preventable;
@@ -195,6 +197,13 @@ void Player::cleanupPhase()
 {
     game->inPlay->cleanupPhase();
     game->graveyard->cleanupPhase();
+}
+
+std::string Player::GetCurrentDeckStatsFile()
+{
+    std::ostringstream filename;
+    filename << "stats/" << deckFileSmall << ".txt";
+   return options.profileFile(filename.str());
 }
 
 ostream& operator<<(ostream& out, const Player& p)

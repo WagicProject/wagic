@@ -117,7 +117,7 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app)
         if (unlocked == -1)
         {
             DeckStats * stats = DeckStats::GetInstance();
-            stats->load(p1);
+            stats->load(p1->GetCurrentDeckStatsFile());
             unlocked = isDifficultyUnlocked(stats);
             if (unlocked)
             {

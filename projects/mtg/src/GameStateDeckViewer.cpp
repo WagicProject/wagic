@@ -39,8 +39,6 @@ GameStateDeckViewer::GameStateDeckViewer(GameApp* parent) :
     GameState(parent)
 {
     bgMusic = NULL;
-    nbDecks = 0;
-    deckNum = 0;
     useFilter = 0;
     isAIDeckSave = false;
     mSwitching = false;
@@ -168,9 +166,7 @@ void GameStateDeckViewer::updateDecks()
     DeckManager * deckManager = DeckManager::GetInstance();
     vector<DeckMetaData *> playerDeckList = fillDeckMenu(welcome_menu, options.profileFile());
 
-    deckNum = 0;
     newDeckname = "";
-    nbDecks = playerDeckList.size() + 1;
     welcome_menu->Add(MENU_ITEM_NEW_DECK, "--NEW--");
     if (options[Options::CHEATMODE].number && (!myCollection || myCollection->getCount(WSrcDeck::UNFILTERED_MIN_COPIES) < 4)) welcome_menu->Add(
             MENU_ITEM_CHEAT_MODE, "--UNLOCK CARDS--");
@@ -319,7 +315,7 @@ void GameStateDeckViewer::saveDeck()
 void GameStateDeckViewer::saveAsAIDeck(string deckName)
 {
 
-    vector<DeckMetaData *> aiDecks = GameState::getValidDeckMetaData(JGE_GET_RES("ai/baka"), "ai_baka", NULL);
+    vector<DeckMetaData *> aiDecks = GameState::BuildDeckList(JGE_GET_RES("ai/baka"), "ai_baka", NULL);
     int nbAiDecks = aiDecks.size() + 1;
     aiDecks.clear();
 
@@ -1570,7 +1566,6 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
 
         loadDeck(deckIdNumber);
         mStage = STAGE_WAITING;
-        deckNum = controlId;
         break;
 
     case MENU_DECK_BUILDER: //Save / exit menu

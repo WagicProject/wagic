@@ -1,5 +1,6 @@
 #include "PrecompiledHeader.h"
 
+#include "DeckManager.h"
 #include "DeckStats.h"
 #include "Player.h"
 #include "GameObserver.h"
@@ -25,19 +26,6 @@ DeckStats * DeckStats::GetInstance()
         mInstance = NEW DeckStats();
     }
     return mInstance;
-}
-
-void DeckStats::cleanStats()
-{
-/*    map<string, DeckStat *>::iterator it;
-    for (it = stats.begin(); it != stats.end(); it++)
-    {
-        SAFE_DELETE(it->second);
-    }
-
-    stats.clear();
-    
-    */
 }
 
 DeckStats::~DeckStats()
@@ -118,14 +106,7 @@ int DeckStats::percentVictories()
     return 50;
 }
 
-void DeckStats::load(Player * player)
-{
-    char filename[512];
-    sprintf(filename, "stats/%s.txt", player->deckFileSmall.c_str());
-    load(options.profileFile(filename).c_str());
-}
-
-void DeckStats::load(const char * filename)
+void DeckStats::load(const std::string& filename)
 {
 
     currentDeck = filename;
@@ -133,7 +114,7 @@ void DeckStats::load(const char * filename)
     {
         return;
     }
-    wagic::ifstream file(filename);
+    wagic::ifstream file(filename.c_str());
     std::string s;
 
     if (file)
@@ -156,16 +137,9 @@ void DeckStats::load(const char * filename)
     }
 }
 
-void DeckStats::save(Player * player)
+void DeckStats::save(const std::string& filename)
 {
-    char filename[512];
-    sprintf(filename, "stats/%s.txt", player->deckFileSmall.c_str());
-    save(options.profileFile(filename).c_str());
-}
-
-void DeckStats::save(const char * filename)
-{
-    std::ofstream file(filename);
+    std::ofstream file(filename.c_str());
     char writer[512];
     if (file)
     {
@@ -196,7 +170,7 @@ void DeckStats::saveStats(Player *player, Player *opponent, GameObserver * game)
     {
         victory = 0;
     }
-    load(player);
+    load(currentDeck);
     map<string, DeckStat *> *stats = &masterDeckStats[currentDeck];
     map<string, DeckStat *>::iterator it = stats->find(opponent->deckFileSmall);
     if (it == stats->end())
@@ -208,7 +182,18 @@ void DeckStats::saveStats(Player *player, Player *opponent, GameObserver * game)
         it->second->victories += victory;
         it->second->nbgames += 1;
     }
-    save(player);
+    save(currentDeck);
+    
+    DeckMetaData* playerMeta = DeckManager::GetInstance()->getDeckMetaDataByFilename(player->deckFile, false);
+
+    // metadata caches its internal data (number of games, victories, etc)
+    // tell it to refresh when stats are updated
+    if (playerMeta)
+        playerMeta->Invalidate();
+
+    DeckMetaData* aiMeta = DeckManager::GetInstance()->getDeckMetaDataByFilename(opponent->deckFile, true);
+    if (aiMeta)
+        aiMeta->Invalidate();
 }
 
 void DeckStats::EndInstance()

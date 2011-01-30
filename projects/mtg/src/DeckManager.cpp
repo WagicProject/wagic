@@ -55,6 +55,38 @@ DeckMetaData* DeckManager::getDeckMetaDataById( int deckId, bool isAI )
     return deck;
 }
 
+/*
+** Predicate helper for getDeckMetadataByFilename()
+*/
+struct DeckFilenameMatch
+{
+    DeckFilenameMatch(const std::string& filename) : mFilename(filename)
+    {
+    }
+
+    bool operator() (DeckMetaData* inPtr)
+    {
+        return inPtr->getFilename() == mFilename;
+    }
+
+    std::string mFilename;
+};
+
+DeckMetaData* DeckManager::getDeckMetaDataByFilename(const string& filename, bool isAI)
+{
+    DeckMetaData* deck = NULL;
+    std::vector<DeckMetaData *>& deckList = isAI ? aiDeckOrderList : playerDeckOrderList;
+
+    std::vector<DeckMetaData *>::iterator pos = find_if(deckList.begin(), deckList.end(), DeckFilenameMatch(filename));
+    if (pos != deckList.end())
+    {
+        deck = *pos;
+    }
+
+    return deck;
+}
+
+
 StatsWrapper * DeckManager::getExtendedStatsForDeckId( int deckId, MTGAllCards *collection, bool isAI )
 {
     DeckMetaData *selectedDeck = getDeckMetaDataById( deckId, isAI );
@@ -133,7 +165,7 @@ int DeckManager::getDifficultyRating(Player *statsPlayer, Player *player)
 {
     DeckMetaDataList * metas = DeckMetaDataList::decksMetaData;
 
-    DeckMetaData *meta = metas->get(player->deckFile, statsPlayer);
+    DeckMetaData *meta = metas->get(player->deckFile);
 
     return meta->getDifficulty();
 }

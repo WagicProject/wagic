@@ -17,20 +17,21 @@ private:
 
 public:
 
-    vector<DeckMetaData *> playerDeckOrderList;
-    vector<DeckMetaData *> aiDeckOrderList;
+    vector<DeckMetaData*> playerDeckOrderList;
+    vector<DeckMetaData*> aiDeckOrderList;
     
-    map<string, StatsWrapper *> playerDeckStatsMap;
-    map<string, StatsWrapper *> aiDeckStatsMap;
+    map<string, StatsWrapper*> playerDeckStatsMap;
+    map<string, StatsWrapper*> aiDeckStatsMap;
     
-    void updateMetaDataList(vector<DeckMetaData *>* refList, bool isAI);
-    vector<DeckMetaData *> * getPlayerDeckOrderList();
-    vector<DeckMetaData *> * getAIDeckOrderList();
+    void updateMetaDataList(vector<DeckMetaData*>* refList, bool isAI);
+    vector<DeckMetaData*> * getPlayerDeckOrderList();
+    vector<DeckMetaData*> * getAIDeckOrderList();
 
-    DeckMetaData * getDeckMetaDataById( int deckId, bool isAI );
-    StatsWrapper * getExtendedStatsForDeckId( int deckId, MTGAllCards *collection, bool isAI );
-    StatsWrapper * getExtendedDeckStats( DeckMetaData *selectedDeck, MTGAllCards *collection, bool isAI );
-    static DeckManager * GetInstance();
+    DeckMetaData* getDeckMetaDataById(int deckId, bool isAI);
+    DeckMetaData* getDeckMetaDataByFilename(const std::string& filename, bool isAI);
+    StatsWrapper* getExtendedStatsForDeckId(int deckId, MTGAllCards* collection, bool isAI);
+    StatsWrapper* getExtendedDeckStats(DeckMetaData* selectedDeck, MTGAllCards* collection, bool isAI);
+    static DeckManager* GetInstance();
     static void EndInstance();
 
     //convenience method to get the difficulty rating between two decks.  This should be refined a little more

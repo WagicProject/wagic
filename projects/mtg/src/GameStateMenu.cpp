@@ -192,11 +192,13 @@ void GameStateMenu::fillScroller()
     char buff2[512];
 
     DeckStats * stats = DeckStats::GetInstance();
-	vector<DeckMetaData *> playerDecks = getValidDeckMetaData(options.profileFile(), "", NULL, 6);
+	vector<DeckMetaData *> playerDecks = BuildDeckList(options.profileFile(), "", NULL, 6);
     int totalGames = 0;
 	for (size_t j = 0; j < playerDecks.size(); j++)
     {
 		DeckMetaData* meta = playerDecks[j];
+        if (meta)
+            meta->LoadStats();
 		sprintf(buffer, "stats/player_deck%i.txt", meta->getDeckId());
         string deckstats = options.profileFile(buffer);
         if (fileExists(deckstats.c_str()))

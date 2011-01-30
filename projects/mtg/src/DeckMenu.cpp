@@ -184,6 +184,12 @@ void DeckMenu::Render()
         DeckMenuItem *currentMenuItem = static_cast<DeckMenuItem*> (mObjects[i]);
         if (currentMenuItem->mY - kLineHeight * startId < mY + height - kLineHeight + 7)
         {
+            // only load stats for visible items in the list
+            if (currentMenuItem->meta)
+            {
+                currentMenuItem->meta->LoadStats();
+			}
+
             if (currentMenuItem->hasFocus())
             {
                 mSelectedDeckId = i;

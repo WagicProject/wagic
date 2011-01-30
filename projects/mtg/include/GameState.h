@@ -73,7 +73,7 @@ public:
     static vector<DeckMetaData *> fillDeckMenu(DeckMenu * _menu, const string& path, const string& smallDeckPrefix = "", Player * statsPlayer = NULL, int maxDecks = 0);
 
     // build a vector of decks with the information passsed in.
-    static vector<DeckMetaData *> getValidDeckMetaData(const string& path, const string& smallDeckPrefix = "", Player * statsPlayer = NULL, int maxDecks = 0);
+    static vector<DeckMetaData *> BuildDeckList(const string& path, const string& smallDeckPrefix = "", Player * statsPlayer = NULL, int maxDecks = 0);
 
     // build menu items based on the vector<DeckMetaData *>
     static void renderDeckMenu(SimpleMenu * _menu, const vector<DeckMetaData *>& deckMetaDataList);

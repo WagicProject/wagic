@@ -100,6 +100,11 @@ public:
     }
 
     void loadAvatar(string file);
+
+    /**
+    ** Returns the path to the stats file of currently selected deck. 
+    */
+    std::string GetCurrentDeckStatsFile();
 };
 
 class HumanPlayer: public Player
