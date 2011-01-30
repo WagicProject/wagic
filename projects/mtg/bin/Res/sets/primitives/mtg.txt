@@ -12130,11 +12130,11 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Contested Warzone
+name=Contested War Zone
 auto={T}:Add{1}
 auto={1}{T}:lord(creature[attacking]) 1/0 ueot
 auto=@combatdamaged(controller) from(creature):moveTo(opponentbattlefield)
-text={T}: Add {1} to your mana pool. -- {1}: Inkmoth Nexus becomes a 1/1 Blinkmoth artifact creature with flying and infect until end of turn. It's still a land.
+text=Whenever a creature deals combat damage to you, that creature's controller gains control of Contested War Zone. -- {T}: Add {1} to your mana pool. -- {1}, {T}: Attacking creatures get +1/+0 until end of turn.
 type=Land
 [/card]
 [card]
