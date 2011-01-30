@@ -1154,15 +1154,6 @@ power=4
 toughness=9
 [/card]
 [card]
-name=Avatar of Might
-text=If an opponent controls at least four more creatures than you, Avatar of Might costs {6} less to cast. -- Trample (If this creature would deal enough damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player or planeswalker.)
-mana={6}{G}{G}
-type=Creature
-subtype=Avatar
-power=8
-toughness=8
-[/card]
-[card]
 name=Avatar of Will
 text=If an opponent has no cards in hand, Avatar of Will costs {6} less to cast. -- Flying
 mana={6}{U}{U}
