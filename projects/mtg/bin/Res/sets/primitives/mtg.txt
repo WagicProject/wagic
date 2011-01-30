@@ -11099,6 +11099,17 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Cloak and Dagger
+auto={3}:equip
+auto=2/0
+auto=shroud
+auto=@movedto(creature[rogue]|battlefield):may all(trigger[to]) retarget
+text=Equipped creature gets +2/+0 and has shroud. (It can't be the target of spells or abilities.) -- Whenever a Rogue creature enters the battlefield, you may attach Cloak and Dagger to it. -- Equip {3}
+mana={2}
+type=Tribal Artifact
+subtype=Rogue Equipment
+[/card]
+[card]
 name=Cloak of Confusion
 target=creature|myBattlefield
 auto=@notblocked(mytgt):may name(no combat damage this turn and discard at random) && preventallcombatdamage from(mytgt) && discard:1 opponent
@@ -16421,6 +16432,17 @@ mana={3}
 type=Artifact
 [/card]
 [card]
+name=Dragon Breath
+target=creature
+auto=haste
+auto={R}:1/0
+autograveyard=@movedto(creature[power >=6]|mybattlefield):may all(trigger[to]) retarget
+text=Enchant creature -- Enchanted creature has haste. -- {R}: Enchanted creature gets +1/+0 until end of turn. -- When a creature with converted mana cost 6 or more enters the battlefield, you may return Dragon Breath from your graveyard to the battlefield attached to that creature.
+mana={1}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Dragon Broodmother
 auto=@each upkeep: token(22222220)
 mana={2}{R}{R}{R}{G}
@@ -16455,6 +16477,17 @@ power=1
 toughness=3
 [/card]
 [card]
+name=Dragon Fangs
+target=creature
+auto=trample
+auto=1/1
+autograveyard=@movedto(creature[power >=6]|mybattlefield):may all(trigger[to]) retarget
+text=Enchant creature -- Enchanted creature gets +1/+1 and has trample. -- When a creature with converted mana cost 6 or more enters the battlefield, you may return Dragon Fangs from your graveyard to the battlefield attached to that creature.
+mana={1}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Dragon Fodder
 auto=token(Goblin,creature goblin, 1/1,red)*2
 text=Put two 1/1 red Goblin creature tokens onto the battlefield.
@@ -16480,6 +16513,28 @@ mana={4}{R}{R}
 type=Enchantment
 [/card]
 [card]
+name=Dragon Scales
+target=creature
+auto=vigilance
+auto=1/2
+autograveyard=@movedto(creature[power >=6]|mybattlefield):may all(trigger[to]) retarget
+text=Enchant creature -- Enchanted creature gets +1/+2 and has vigilance. -- When a creature with converted mana cost 6 or more enters the battlefield, you may return Dragon Scales from your graveyard to the battlefield attached to that creature.
+mana={1}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Dragon Shadow
+target=creature
+auto=fear
+auto=1/0
+autograveyard=@movedto(creature[power >=6]|mybattlefield):may all(trigger[to]) retarget
+text=Enchant creature -- Enchanted creature gets +1/+0 and has fear. (It can't be blocked except by artifact creatures and/or black creatures.) -- When a creature with converted mana cost 6 or more enters the battlefield, you may return Dragon Shadow from your graveyard to the battlefield attached to that creature.
+mana={1}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Dragon Tyrant
 abilities=flying,trample,double strike
 auto=upcost[{R}{R}{R}{R}] moveTo(mygraveyard)
@@ -16501,6 +16556,18 @@ type=Creature
 subtype=Dragon
 power=2
 toughness=3
+[/card]
+[card]
+name=Dragon Wings
+target=creature
+auto=flying
+auto=1/0
+autohand={1}{U}:cycling
+autograveyard=@movedto(creature[power >=6]|mybattlefield):may all(trigger[to]) retarget
+text=Enchant creature -- Enchanted creature has flying. -- Cycling {1}{U} ({1}{U}, Discard this card: Draw a card.) -- When a creature with converted mana cost 6 or more enters the battlefield, you may return Dragon Wings from your graveyard to the battlefield attached to that creature.
+mana={1}{U}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Dragon's Claw
@@ -26758,6 +26825,17 @@ type=Creature
 subtype=Griffin
 power=1
 toughness=3
+[/card]
+[card]
+name=Grifter's Blade
+abilities=flash
+auto={1}:equip
+auto=1/1
+auto=attach target(creature|mybattlefield)
+text=Flash -- As Grifter's Blade enters the battlefield, choose a creature you control it could be attached to. If you do, it enters the battlefield attached to that creature. -- Equipped creature gets +1/+1. -- Equip {1}
+mana={3}
+type=Artifact
+subtype=Equipment
 [/card]
 [card]
 name=Grim Feast
@@ -43285,6 +43363,17 @@ type=Creature
 subtype=Human Cleric
 power=1
 toughness=1
+[/card]
+[card]
+name=Obsidian Battle-Axe
+auto={3}:equip
+auto=2/1
+auto=haste
+auto=@movedto(creature[warrior]|battlefield):may all(trigger[to]) retarget
+text=Equipped creature gets +2/+1 and has haste. -- Whenever a Warrior creature enters the battlefield, you may attach Obsidian Battle-Axe to it. -- Equip {3}
+mana={3}
+type=Tribal Artifact
+subtype=Warrior Equipment
 [/card]
 [card]
 name=Obsidian Giant
@@ -62364,6 +62453,16 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
+name=Sword the Meek
+auto={2}:equip
+auto=1/2
+autograveyard=@movedto(creature[power=1;toughness=1]|mybattlefield):may all(trigger[to]) retarget
+text=Equipped creature gets +1/+2. -- Equip {2} -- Whenever a 1/1 creature enters the battlefield under your control, you may return Sword of the Meek from your graveyard to the battlefield, then attach it to that creature.
+mana={2}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
 name=Sword of Vengeance
 auto={3}:equip
 auto=2/0
@@ -68761,6 +68860,17 @@ auto=tap
 auto=may copy notatarget(land)
 text=You may have Vesuva enter the battlefield tapped as a copy of any land on the battlefield.
 type=Land
+[/card]
+[card]
+name=Veteran's Armaments
+auto={2}:equip
+auto=@attacking(mytgt):all(trigger[to]) foreach(creature[attacking]|battlefield) 1/1 ueot
+auto=@blocking(mytgt):all(trigger[to]) foreach(creature[attacking]|battlefield) 1/1 ueot
+auto=@movedto(creature[soldier]|battlefield):may all(trigger[to]) retarget
+text=Equipped creature has "Whenever this creature attacks or blocks, it gets +1/+1 until end of turn for each attacking creature." -- Whenever a Soldier creature enters the battlefield, you may attach Veteran's Armaments to it. -- Equip {2}
+mana={2}
+type=Tribal Artifact
+subtype=Soldier Equipment
 [/card]
 [card]
 name=Veteran Armorer

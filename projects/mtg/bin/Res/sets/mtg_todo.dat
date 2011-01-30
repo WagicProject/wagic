@@ -3847,13 +3847,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Cloak and Dagger
-text=Equipped creature gets +2/+0 and has shroud. (It can't be the target of spells or abilities.) -- Whenever a Rogue creature enters the battlefield, you may attach Cloak and Dagger to it. -- Equip {3}
-mana={2}
-type=Tribal Artifact
-subtype=Rogue Equipment
-[/card]
-[card]
 name=Clock of Omens
 text=Tap two untapped artifacts you control: Untap target artifact.
 mana={4}
@@ -6176,13 +6169,6 @@ mana={3}{B}{R}{G}
 type=Enchantment
 [/card]
 [card]
-name=Dragon Breath
-text=Enchant creature -- Enchanted creature has haste. -- {R}: Enchanted creature gets +1/+0 until end of turn. -- When a creature with converted mana cost 6 or more enters the battlefield, you may return Dragon Breath from your graveyard to the battlefield attached to that creature.
-mana={1}{R}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Dragon Broodmother
 text=Flying -- At the beginning of each upkeep, put a 1/1 red and green Dragon creature token with flying and devour 2 onto the battlefield. (As the token enters the battlefield, you may sacrifice any number of creatures. It enters the battlefield with twice that many +1/+1 counters on it.)
 mana={2}{R}{R}{R}{G}
@@ -6192,38 +6178,10 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Dragon Fangs
-text=Enchant creature -- Enchanted creature gets +1/+1 and has trample. -- When a creature with converted mana cost 6 or more enters the battlefield, you may return Dragon Fangs from your graveyard to the battlefield attached to that creature.
-mana={1}{G}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Dragon Mask
 text={3}, {T}: Target creature you control gets +2/+2 until end of turn. Return it to its owner's hand at the beginning of the next end step. (Return it only if it's on the battlefield.)
 mana={3}
 type=Artifact
-[/card]
-[card]
-name=Dragon Scales
-text=Enchant creature -- Enchanted creature gets +1/+2 and has vigilance. -- When a creature with converted mana cost 6 or more enters the battlefield, you may return Dragon Scales from your graveyard to the battlefield attached to that creature.
-mana={1}{W}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
-name=Dragon Shadow
-text=Enchant creature -- Enchanted creature gets +1/+0 and has fear. (It can't be blocked except by artifact creatures and/or black creatures.) -- When a creature with converted mana cost 6 or more enters the battlefield, you may return Dragon Shadow from your graveyard to the battlefield attached to that creature.
-mana={1}{B}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
-name=Dragon Wings
-text=Enchant creature -- Enchanted creature has flying. -- Cycling {1}{U} ({1}{U}, Discard this card: Draw a card.) -- When a creature with converted mana cost 6 or more enters the battlefield, you may return Dragon Wings from your graveyard to the battlefield attached to that creature.
-mana={1}{U}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Drain Power
@@ -10139,13 +10097,6 @@ type=Creature
 subtype=Horror
 power=8
 toughness=8
-[/card]
-[card]
-name=Grifter's Blade
-text=Flash -- As Grifter's Blade enters the battlefield, choose a creature you control it could be attached to. If you do, it enters the battlefield attached to that creature. -- Equipped creature gets +1/+1. -- Equip {1}
-mana={3}
-type=Artifact
-subtype=Equipment
 [/card]
 [card]
 name=Grim Discovery
@@ -17106,13 +17057,6 @@ name=Obsessive Search
 text=Draw a card. -- Madness {U} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
 mana={U}
 type=Instant
-[/card]
-[card]
-name=Obsidian Battle-Axe
-text=Equipped creature gets +2/+1 and has haste. -- Whenever a Warrior creature enters the battlefield, you may attach Obsidian Battle-Axe to it. -- Equip {3}
-mana={3}
-type=Tribal Artifact
-subtype=Warrior Equipment
 [/card]
 [card]
 name=Obsidian Fireheart
@@ -25075,15 +25019,6 @@ name=Sword of the Ages
 text=Sword of the Ages enters the battlefield tapped. -- {T}, Exile Sword of the Ages and any number of creatures you control: the Ages deals X damage to target creature or player, where X is the total power of the creatures exiled this way.
 mana={6}
 type=Artifact
-[/card]
-[card]
-name=Sword the Meek
-auto={2}:equip
-auto=1/2
-text=Equipped creature gets +1/+2. -- Equip {2} -- Whenever a 1/1 creature enters the battlefield under your control, you may return Sword of the Meek from your graveyard to the battlefield, then attach it to that creature.
-mana={2}
-type=Artifact
-subtype=Equipment
 [/card]
 [card]
 name=Sworn Defender
