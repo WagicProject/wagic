@@ -1,12 +1,24 @@
 #ifndef _WFILTER_H_
 #define _WFILTER_H_
+/**
+  @file WFilter.h
+  Includes classes and functionality related to card filtering.
+
+  @defgroup Filter Card filtering
+  @{
+*/
 
 class WCardFilter;
 
+/**
+  A factory class used to construct a WCardFilter from a string. It does so via
+  recursive calls to Leaf(), which handles the structure of the filter, and Terminal(),
+  which handles specific filter components.
+*/
 class WCFilterFactory
 {
 public:
-    WCFilterFactory(){};
+    WCFilterFactory() {};
     static WCFilterFactory * GetInstance();
     static void Destroy();
     WCardFilter * Construct(string src);
@@ -17,17 +29,34 @@ private:
     static WCFilterFactory * me;
 };
 
+/**
+  An abstract parent to all filter components. Children provide implementations of 
+  isMatch() to filter cards, and filterFee() to adjust card prices based on filtering.
+*/
 class WCardFilter
 {
 public:
     WCardFilter() {};
     virtual ~WCardFilter() {};
+
+    /**
+      Returns true if the card argument matches a certain condition.
+    */
     virtual bool isMatch(MTGCard * c)
     {
         return true;
     }
     ;
+    /**
+      Returns the filter in the same string form used by WCFilterFactory to construct it.
+    */
     virtual string getCode() = 0;
+
+    /**
+      Returns a price multiplier which is summed using some logic (see the WCFBranch classes). Once a 
+      multiplier has been figured, it is added to the card's base price in GameStateShop::purchasePrice(), 
+      using the following equation: price + (price * filterFee * ((countAllCards - countMatchFilter)/countAllCards).
+    */
     virtual float filterFee()
     {
         return 0.0f;
@@ -35,6 +64,9 @@ public:
     ;
 };
 
+/**   
+  An abstract parent to all filter logical branches. 
+*/
 class WCFBranch: public WCardFilter
 {
 public:
@@ -66,6 +98,10 @@ protected:
     WCardFilter *lhs, *rhs;
 };
 
+/**
+  Handles the logical inclusive OR operator. 
+  When returning a filterFee, it returns whichever is higher.
+*/
 class WCFilterOR: public WCFBranch
 {
 public:
@@ -79,6 +115,10 @@ public:
     float filterFee();
 };
 
+/**
+  Handles the logical inclusive AND operator. 
+  When returning a filterFee, it returns the sum of the two filters.
+*/
 class WCFilterAND: public WCFBranch
 {
 public:
@@ -96,6 +136,10 @@ public:
     float filterFee();
 };
 
+
+/**
+  Logical group operator. 
+*/
 class WCFilterGROUP: public WCardFilter
 {
 public:
@@ -124,6 +168,10 @@ protected:
     WCardFilter * kid;
 };
 
+
+/**
+  A logical negation, returns true if the child filter returns false.
+*/
 class WCFilterNOT: public WCardFilter
 {
 public:
@@ -147,6 +195,10 @@ protected:
     WCardFilter * kid;
 };
 
+/**
+  An empty filter, matches anything. Used when WCFilterFactory is passed an empty string,
+  or cannot parse the syntax of something.
+*/
 class WCFilterNULL: public WCardFilter
 {
 public:
@@ -166,7 +218,9 @@ public:
     ;
 };
 
-//Filter terminals:
+/**
+  Matches a card against a particular set. 
+*/
 class WCFilterSet: public WCardFilter
 {
 public:
@@ -190,6 +244,10 @@ public:
 protected:
     int setid;
 };
+
+/**
+  Matches a card that contains a particular letter. 
+*/
 class WCFilterLetter: public WCardFilter
 {
 public:
@@ -198,12 +256,16 @@ public:
     string getCode();
     float filterFee()
     {
-        return 4.0f;
+        return 4.0f; //Alpha searches are expensive!
     }
-    ; //Alpha searches are expensive!
+    ; 
 protected:
     char alpha;
 };
+
+/**
+  Matches a card that contains a particular color (inclusively). 
+*/
 class WCFilterColor: public WCardFilter
 {
 public:
@@ -223,6 +285,10 @@ public:
 protected:
     int color;
 };
+
+/**
+  Matches a card that is a particular color (exclusively). 
+*/
 class WCFilterOnlyColor: public WCFilterColor
 {
 public:
@@ -231,6 +297,10 @@ public:
     bool isMatch(MTGCard * c);
     string getCode();
 };
+
+/**
+  Matches a card that produces mana of a particular color (inclusively). 
+*/
 class WCFilterProducesColor: public WCFilterColor
 {
 public:
@@ -239,6 +309,10 @@ public:
     bool isMatch(MTGCard * c);
     string getCode();
 };
+
+/**
+  The base class to all filters which compare a numeric value. 
+*/
 class WCFilterNumeric: public WCardFilter
 {
 public:
@@ -254,6 +328,10 @@ public:
 protected:
     int number;
 };
+
+/**
+  Matches a card with a given combined mana cost.
+*/
 class WCFilterCMC: public WCFilterNumeric
 {
 public:
@@ -267,6 +345,10 @@ public:
     }
     ;
 };
+
+/**
+  Matches a card with a given power.
+*/
 class WCFilterPower: public WCFilterNumeric
 {
 public:
@@ -280,6 +362,10 @@ public:
     }
     ;
 };
+
+/**
+  Matches a card with a given toughness.
+*/
 class WCFilterToughness: public WCFilterNumeric
 {
 public:
@@ -294,6 +380,9 @@ public:
     ;
 };
 
+/**
+  Matches a card of a given type (inclusively).
+*/
 class WCFilterType: public WCardFilter
 {
 public:
@@ -312,6 +401,11 @@ public:
 protected:
     string type;
 };
+
+
+/**
+  Matches a card of a given rarity. If passed 'A' for any rarity, will always return true.
+*/
 class WCFilterRarity: public WCardFilter
 {
 public:
@@ -327,6 +421,11 @@ public:
 protected:
     char rarity;
 };
+
+
+/**
+  Matches a card of a given basic ability.
+*/
 class WCFilterAbility: public WCardFilter
 {
 public:
@@ -343,4 +442,5 @@ protected:
     int ability;
 };
 
+/**@} This comment used by Doxyyen. */
 #endif

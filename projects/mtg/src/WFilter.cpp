@@ -435,11 +435,19 @@ string WCFilterAbility::getCode()
     return buf;
 }
 ;
+
 float WCFilterAbility::filterFee()
 {
     switch (ability)
     {
+    case Constants::CANTLOSE:
+      return 2.0f;
+    case Constants::CANTLIFELOSE:
+    case Constants::CANTMILLLOSE:
+      return 1.5f;
     case Constants::SHROUD:
+    case Constants::CONTROLLERSHROUD:
+    case Constants::PLAYERSHROUD:
     case Constants::DEATHTOUCH:
     case Constants::UNBLOCKABLE:
     case Constants::WITHER:
@@ -491,8 +499,11 @@ float WCFilterAND::filterFee()
 }
 float WCFilterOR::filterFee()
 {
-    if (lhs->filterFee() > rhs->filterFee()) return lhs->filterFee();
-    return rhs->filterFee();
+  float lFee = lhs->filterFee();
+  float rFee = rhs->filterFee();
+    if (lFee > rFee) 
+      return lFee;
+    return rFee;
 }
 string WCFilterNOT::getCode()
 {
