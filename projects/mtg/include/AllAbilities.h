@@ -16,7 +16,6 @@
 #include "GuiStatic.h"
 #include "GameObserver.h"
 #include "ThisDescriptor.h"
-
 #include <JGui.h>
 #include <hge/hgeparticle.h>
 
@@ -1283,255 +1282,7 @@ public:
     AAWinGame * clone() const;
 };
 
-class ATokenCreator: public ActivatedAbility
-{
-public:
-    list<int> abilities;
-    list<int> types;
-    list<int> colors;
-    int power, toughness;
-    int tokenId;
-    string name;
-    string sabilities;
-    string starfound;
-    WParsedInt * multiplier;
-    int who;
-    bool aLivingWeapon;
-    bool battleReady;
-    MTGCardInstance * myToken;
-    vector<MTGAbility *> currentAbilities;
-    ATokenCreator(int _id, MTGCardInstance * _source, Targetable * _target, ManaCost * _cost, int tokenId, int _doTap,string starfound, WParsedInt * multiplier = NULL,
-        int who = 0,bool aLivingWeapon = false) :
-    ActivatedAbility(_id, _source, _cost, 0, _doTap), tokenId(tokenId), starfound(starfound),multiplier(multiplier), who(who),aLivingWeapon(aLivingWeapon)
-    {
-        if (!multiplier) this->multiplier = NEW WParsedInt(1);
-        MTGCard * card = GameApp::collection->getCardById(tokenId);
-        if (card) name = card->data->getName();
-        battleReady = false;
-    }
 
-    ATokenCreator(int _id, MTGCardInstance * _source, Targetable * _target, ManaCost * _cost, string sname, string stypes, int _power, int _toughness,
-        string sabilities, int _doTap, string starfound,WParsedInt * multiplier = NULL, int who = 0,bool aLivingWeapon = false) :
-    ActivatedAbility(_id, _source, _cost, 0, _doTap),sabilities(sabilities),starfound(starfound), multiplier(multiplier), who(who),aLivingWeapon(aLivingWeapon)
-    {
-        power = _power;
-        toughness = _toughness;
-        name = sname;
-        who = who;
-        tokenId = 0;
-        aType = MTGAbility::STANDARD_TOKENCREATOR;
-        battleReady = false;
-        if (!multiplier) this->multiplier = NEW WParsedInt(1);
-        //TODO this is a copy/past of other code that's all around the place, everything should be in a dedicated parser class;
-
-        for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++)
-        {
-            size_t found = sabilities.find(Constants::MTGBasicAbilities[j]);
-            if (found != string::npos)
-            {
-                abilities.push_back(j);
-            }
-        }
-
-        if(sabilities.find("battleready") != string::npos)
-            battleReady = true;
-
-        for (int j = 0; j < Constants::MTG_NB_COLORS; j++)
-        {
-            size_t found = sabilities.find(Constants::MTGColorStrings[j]);
-            if (found != string::npos)
-            {
-                colors.push_back(j);
-            }
-        }
-
-        string s = stypes;
-        while (s.size())
-        {
-            size_t found = s.find(" ");
-            if (found != string::npos)
-            {
-                int id = Subtypes::subtypesList->find(s.substr(0, found));
-                types.push_back(id);
-                s = s.substr(found + 1);
-            }
-            else
-            {
-                int id = Subtypes::subtypesList->find(s);
-                types.push_back(id);
-                s = "";
-            }
-        }
-    }
-
-    int resolve()
-    {
-        if(!starfound.empty())
-        {
-            SAFE_DELETE(multiplier);
-            multiplier = NEW WParsedInt(starfound, NULL, (MTGCardInstance *)source);
-        }
-        for (int i = 0; i < multiplier->getValue(); ++i)
-        {
-            //MTGCardInstance * myToken;
-            if (tokenId)
-            {
-                MTGCard * card = GameApp::collection->getCardById(tokenId);
-                myToken = NEW MTGCardInstance(card, source->controller()->game);
-
-            }
-            else
-            {
-                myToken = NEW Token(name, source, power, toughness);
-                list<int>::iterator it;
-                for (it = types.begin(); it != types.end(); it++)
-                {
-                    myToken->addType(*it);
-                }
-                for (it = colors.begin(); it != colors.end(); it++)
-                {
-                    myToken->setColor(*it);
-                }
-                for (it = abilities.begin(); it != abilities.end(); it++)
-                {
-                    myToken->basicAbilities[*it] = 1;
-                }
-            }
-            string tokenText = "";
-            if(sabilities.find("token(") == string::npos)
-            {
-                tokenText = "(";
-                size_t endAbility = sabilities.find(")");
-                string words = sabilities.substr(0,endAbility);
-                tokenText.append(words);
-                string sourcename = ((MTGCardInstance*)source)->name;
-                tokenText.append(") source: ");
-                tokenText.append( sourcename);
-                myToken->text =  tokenText;
-            }
-            if (who == 0 && who != 1 && who != 2)
-            {
-                source->controller()->game->temp->addCard(myToken);
-                Spell * spell = NEW Spell(myToken);
-                spell->resolve();
-                spell->source->isToken = 1;
-                spell->source->fresh = 1;
-                if(aLivingWeapon)
-                {
-                    source->target = spell->source;
-                    source->target->equipment += 1;
-                    AbilityFactory af;
-                    af.getAbilities(&currentAbilities, NULL, source);
-                    for (size_t i = 0; i < currentAbilities.size(); ++i)
-                    {
-                        MTGAbility * a = currentAbilities[i];
-                        if (a->aType == MTGAbility::STANDARD_EQUIP) continue;
-                        if (a->aType == MTGAbility::STANDARD_TEACH) continue;
-                        a->addToGame();
-                    }
-                }
-                if(battleReady)
-                {
-                    spell->source->summoningSickness = 0;
-                    spell->source->tap();
-                    spell->source->setAttacker(1);
-                }
-                delete spell;
-            }
-            else if (who == 1 && who != 0 && who != 2)
-            {
-                source->controller()->opponent()->game->temp->addCard(myToken);
-                Spell * spell = NEW Spell(myToken);
-                spell->resolve();
-                spell->source->owner = spell->source->controller();
-                spell->source->isToken = 1;
-                spell->source->fresh = 1;
-                if(aLivingWeapon)
-                {
-                    source->target = spell->source;
-                    source->target->equipment += 1;
-                    AbilityFactory af;
-                    af.getAbilities(&currentAbilities, NULL, source);
-                    for (size_t i = 0; i < currentAbilities.size(); ++i)
-                    {
-                        MTGAbility * a = currentAbilities[i];
-                        if (a->aType == MTGAbility::STANDARD_EQUIP) continue;
-                        if (a->aType == MTGAbility::STANDARD_TEACH) continue;
-                        a->addToGame();
-                    }
-                }
-                if(battleReady)
-                {
-                    spell->source->summoningSickness = 0;
-                    spell->source->tap();
-                    spell->source->setAttacker(1);
-                }
-                delete spell;
-            }
-            else
-            {
-                ((MTGCardInstance*)target)->controller()->game->temp->addCard(myToken);
-                Spell * spell = NEW Spell(myToken);
-                spell->resolve();
-                spell->source->owner = ((MTGCardInstance*)target)->controller();
-                spell->source->isToken = 1;
-                spell->source->fresh = 1;
-                myToken = spell->source;
-                if(aLivingWeapon)
-                {
-                    source->target = spell->source;
-                    source->target->equipment += 1;
-                    AbilityFactory af;
-                    af.getAbilities(&currentAbilities, NULL, source);
-                    for (size_t i = 0; i < currentAbilities.size(); ++i)
-                    {
-                        MTGAbility * a = currentAbilities[i];
-                        if (a->aType == MTGAbility::STANDARD_EQUIP) continue;
-                        if (a->aType == MTGAbility::STANDARD_TEACH) continue;
-                        a->addToGame();
-                    }
-                }
-                if(battleReady)
-                {
-                    spell->source->summoningSickness = 0;
-                    spell->source->tap();
-                    spell->source->setAttacker(1);
-                }
-                delete spell;
-            }
-        }
-        return 1;
-    }
-
-    const char * getMenuText()
-        {
-        sprintf(menuText, "Create %s", name.c_str());
-        return menuText;
-    }
-
-    virtual ostream& toString(ostream& out) const
-    {
-        out << "ATokenCreator ::: abilities : ?" // << abilities
-                << " ; types : ?" // << types
-                << " ; colors : ?" // << colors
-                << " ; power : " << power << " ; toughness : " << toughness << " ; name : " << name << " ; who : " << who << " (";
-        return ActivatedAbility::toString(out) << ")";
-    }
-
-    ATokenCreator * clone() const
-    {
-        ATokenCreator * a = NEW ATokenCreator(*this);
-        a->multiplier = NEW WParsedInt(*(multiplier));
-        a->isClone = 1;
-        return a;
-    }
-
-    ~ATokenCreator()
-    {
-        SAFE_DELETE(multiplier);
-    }
-
-};
 //naming an ability line-------------------------------------------------------------------------
 class ANamer: public ActivatedAbility
 {
@@ -3016,6 +2767,243 @@ public:
     }
 
 };
+
+class ATokenCreator: public ActivatedAbility
+{
+public:
+    list<int> abilities;
+    list<int> types;
+    list<int> colors;
+    int power, toughness;
+    int tokenId;
+    string name;
+    string sabilities;
+    string starfound;
+    WParsedInt * multiplier;
+    int who;
+    bool aLivingWeapon;
+    bool battleReady;
+    MTGCardInstance * myToken;
+    vector<MTGAbility *> currentAbilities;
+    ATokenCreator(int _id, MTGCardInstance * _source, Targetable * _target, ManaCost * _cost, int tokenId, int _doTap,string starfound, WParsedInt * multiplier = NULL,
+        int who = 0,bool aLivingWeapon = false) :
+    ActivatedAbility(_id, _source, _cost, 0, _doTap), tokenId(tokenId), starfound(starfound),multiplier(multiplier), who(who),aLivingWeapon(aLivingWeapon)
+    {
+        if (!multiplier) this->multiplier = NEW WParsedInt(1);
+        MTGCard * card = GameApp::collection->getCardById(tokenId);
+        if (card) name = card->data->getName();
+        battleReady = false;
+    }
+
+    ATokenCreator(int _id, MTGCardInstance * _source, Targetable * _target, ManaCost * _cost, string sname, string stypes, int _power, int _toughness,
+        string sabilities, int _doTap, string starfound,WParsedInt * multiplier = NULL, int who = 0,bool aLivingWeapon = false) :
+    ActivatedAbility(_id, _source, _cost, 0, _doTap),sabilities(sabilities),starfound(starfound), multiplier(multiplier), who(who),aLivingWeapon(aLivingWeapon)
+    {
+        power = _power;
+        toughness = _toughness;
+        name = sname;
+        who = who;
+        tokenId = 0;
+        aType = MTGAbility::STANDARD_TOKENCREATOR;
+        battleReady = false;
+        if (!multiplier) this->multiplier = NEW WParsedInt(1);
+        //TODO this is a copy/past of other code that's all around the place, everything should be in a dedicated parser class;
+
+        for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++)
+        {
+            size_t found = sabilities.find(Constants::MTGBasicAbilities[j]);
+            if (found != string::npos)
+            {
+                abilities.push_back(j);
+            }
+        }
+
+        if(sabilities.find("battleready") != string::npos)
+            battleReady = true;
+
+        for (int j = 0; j < Constants::MTG_NB_COLORS; j++)
+        {
+            size_t found = sabilities.find(Constants::MTGColorStrings[j]);
+            if (found != string::npos)
+            {
+                colors.push_back(j);
+            }
+        }
+
+        string s = stypes;
+        while (s.size())
+        {
+            size_t found = s.find(" ");
+            if (found != string::npos)
+            {
+                int id = Subtypes::subtypesList->find(s.substr(0, found));
+                types.push_back(id);
+                s = s.substr(found + 1);
+            }
+            else
+            {
+                int id = Subtypes::subtypesList->find(s);
+                types.push_back(id);
+                s = "";
+            }
+        }
+    }
+
+    int resolve()
+    {
+        if(!starfound.empty())
+        {
+            SAFE_DELETE(multiplier);
+            multiplier = NEW WParsedInt(starfound, NULL, (MTGCardInstance *)source);
+        }
+        for (int i = 0; i < multiplier->getValue(); ++i)
+        {
+            //MTGCardInstance * myToken;
+            if (tokenId)
+            {
+                MTGCard * card = GameApp::collection->getCardById(tokenId);
+                myToken = NEW MTGCardInstance(card, source->controller()->game);
+
+            }
+            else
+            {
+                myToken = NEW Token(name, source, power, toughness);
+                list<int>::iterator it;
+                for (it = types.begin(); it != types.end(); it++)
+                {
+                    myToken->addType(*it);
+                }
+                for (it = colors.begin(); it != colors.end(); it++)
+                {
+                    myToken->setColor(*it);
+                }
+                for (it = abilities.begin(); it != abilities.end(); it++)
+                {
+                    myToken->basicAbilities[*it] = 1;
+                }
+            }
+            string tokenText = "";
+            if(sabilities.find("token(") == string::npos)
+            {
+                tokenText = "(";
+                size_t endAbility = sabilities.find(")");
+                string words = sabilities.substr(0,endAbility);
+                tokenText.append(words);
+                string sourcename = ((MTGCardInstance*)source)->name;
+                tokenText.append(") source: ");
+                tokenText.append( sourcename);
+                myToken->text =  tokenText;
+            }
+            if (who == 0 && who != 1 && who != 2)
+            {
+                source->controller()->game->temp->addCard(myToken);
+                Spell * spell = NEW Spell(myToken);
+                spell->resolve();
+                spell->source->isToken = 1;
+                spell->source->fresh = 1;
+                if(aLivingWeapon)
+                {
+                    livingWeaponToken(spell->source);
+                }
+                if(battleReady)
+                {
+                    battleReadyToken(spell->source);
+                }
+                delete spell;
+            }
+            else if (who == 1 && who != 0 && who != 2)
+            {
+                source->controller()->opponent()->game->temp->addCard(myToken);
+                Spell * spell = NEW Spell(myToken);
+                spell->resolve();
+                spell->source->owner = spell->source->controller();
+                spell->source->isToken = 1;
+                spell->source->fresh = 1;
+                if(aLivingWeapon)
+                {
+                    livingWeaponToken(spell->source);
+                }
+                if(battleReady)
+                {
+                    battleReadyToken(spell->source);
+                }
+                delete spell;
+            }
+            else
+            {
+                ((MTGCardInstance*)target)->controller()->game->temp->addCard(myToken);
+                Spell * spell = NEW Spell(myToken);
+                spell->resolve();
+                spell->source->owner = ((MTGCardInstance*)target)->controller();
+                spell->source->isToken = 1;
+                spell->source->fresh = 1;
+                myToken = spell->source;
+                if(aLivingWeapon)
+                {
+                    livingWeaponToken(spell->source);
+                }
+                if(battleReady)
+                {
+                    battleReadyToken(spell->source);
+                }
+                delete spell;
+            }
+        }
+        return 1;
+    }
+
+    void livingWeaponToken(MTGCardInstance * card)
+    {
+        GameObserver * g = g->GetInstance();
+        for (int i = 1; i < g->mLayers->actionLayer()->mCount; i++)
+        {
+            MTGAbility * a = ((MTGAbility *) g->mLayers->actionLayer()->mObjects[i]);
+            if (a->aType == MTGAbility::STANDARD_EQUIP && a->source == source)
+            {
+                AEquip* ae = dynamic_cast<AEquip*>(a);
+                ae->unequip();
+                ae->equip(card);    
+            }
+        }
+    }
+
+    void battleReadyToken(MTGCardInstance * card)
+    {
+        card->summoningSickness = 0;
+        card->tap();
+        card->setAttacker(1);
+    }
+
+    const char * getMenuText()
+        {
+        sprintf(menuText, "Create %s", name.c_str());
+        return menuText;
+    }
+
+    virtual ostream& toString(ostream& out) const
+    {
+        out << "ATokenCreator ::: abilities : ?" // << abilities
+                << " ; types : ?" // << types
+                << " ; colors : ?" // << colors
+                << " ; power : " << power << " ; toughness : " << toughness << " ; name : " << name << " ; who : " << who << " (";
+        return ActivatedAbility::toString(out) << ")";
+    }
+
+    ATokenCreator * clone() const
+    {
+        ATokenCreator * a = NEW ATokenCreator(*this);
+        a->multiplier = NEW WParsedInt(*(multiplier));
+        a->isClone = 1;
+        return a;
+    }
+
+    ~ATokenCreator()
+    {
+        SAFE_DELETE(multiplier);
+    }
+
+};
+
 //Foreach (plague rats...)
 class AForeach: public ListMaintainerAbility, public NestedAbility
 {
