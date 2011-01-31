@@ -7,7 +7,11 @@
 #include "TranslateKeys.h"
 #include <hge/hgedistort.h>
 
-//WGuiBase
+/** 
+  Provides an interface to retrieve some standardized colors. The idea here is that a child of WGuiBase 
+  could override, for example, the color of the background based on whether or notit is highlighted 
+  (as WGuiButton does), or be given a particular styling with the WDecoStyled decorator.
+*/
 PIXEL_TYPE WGuiBase::getColor(int type)
 {
     switch (type)
@@ -34,7 +38,10 @@ PIXEL_TYPE WGuiBase::getColor(int type)
     }
     return ARGB(150,50,50,50);
 }
-
+/**
+  Renders the backdrop of a WGui item. 
+  Meant to be overriden in subclasses that require a unique backdrop.
+*/
 void WGuiBase::renderBack(WGuiBase * it)
 {
     if (!it) return;
@@ -44,6 +51,7 @@ void WGuiBase::renderBack(WGuiBase * it)
     else
         subBack(it);
 }
+
 WGuiBase::CONFIRM_TYPE WGuiBase::needsConfirm()
 {
     for (vector<WGuiBase*>::iterator it = items.begin(); it != items.end(); ++it)

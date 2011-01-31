@@ -1,10 +1,23 @@
 #ifndef _WGUI_H_
 #define _WGUI_H_
+/**
+  @file WFilter.h
+  Includes classes and functionality related to card filtering.
+*/
 #include <set>
 
 class hgeDistortionMesh;
 class GameStateOptions;
 
+/**
+  @defgroup WGui Basic Gui
+  @{
+*/
+
+/**
+  Color definition groups. Used to group text and background areas of similar purpose, 
+  so that their color need only be defined once.
+*/
 class WGuiColor
 {
 public:
@@ -26,6 +39,9 @@ public:
     };
 };
 
+/**
+  Quad distortion structure. Stores the modified x and y positions for all four corners of a quad.
+*/
 struct WDistort
 {
     WDistort();
@@ -35,43 +51,68 @@ protected:
     float xy[8];
 };
 
-//Complete item interface
+/**
+  Base class for all GUI item classes. 
+*/
 class WGuiBase: public JGuiListener
 {
 public:
     typedef enum
     {
-        CONFIRM_NEED, // Still needs confirmation
-        CONFIRM_OK, // Is okay (no need to confirm, or has been confirmed)
-        CONFIRM_CANCEL,
-    // Is not okay, must cancel save
+        CONFIRM_NEED, ///< Still needs confirmation
+        CONFIRM_OK,   ///< Is okay (no need to confirm, or has been confirmed)
+        CONFIRM_CANCEL, ///< Is not okay, must cancel save
     } CONFIRM_TYPE;
 
     WGuiBase() {};
     virtual ~WGuiBase() {};
 
+    /**
+     If false, the option will be skipped over when moving the selection cursor.
+    */
     virtual bool Selectable()
     {
         return true;
     }
     ;
+    /** 
+      If true, the item overrides the button handling of the WGuiMenu classes. See 
+      WGuiMenu::CheckUserInput() for an example of modality implementation.
+    */
     virtual bool isModal()
     {
         return false;
     }
     ;
+    /**
+      If false, the item will not render, and any lists will contract as if it weren't there. Meant to be 
+      overridden in subclasses so that visibility is conditional on some function.
+    */
     virtual bool Visible()
     {
         return true;
     }
     ;
-
+    /**
+      Returns true when the underlying data that this item represents has been changed by user interaction.
+      This is used to help WDecoConfirm determine if a confirmation dialog is needed or not.
+    */
     virtual bool Changed()
     {
         return false;
     }
     ;
+    /**
+      In cases where a WDecoConfirm dialog is used, it is meant to be overridden with an implementation
+      that then applies the change to the underlying data. See the OptionProfile for an example.
+      Note: This is ONLY called after the user presses "OK" on a WDecoConfirm dialog. See setData() 
+      for the standard method of changing underlying data.
+    */
     virtual void confirmChange(bool confirmed) {};
+    /**
+      Returns whether or not any changes to this item would require confirmation. Can also be used to 
+      validate those changes, or to perform necessary cleanup when a change fails.
+    */
     virtual CONFIRM_TYPE needsConfirm();
     virtual bool yieldFocus();
     virtual PIXEL_TYPE getColor(int type);
@@ -81,19 +122,55 @@ public:
     }
     ;
 
+    /**
+      What to do when the selection cursor enters the item. 
+      @param key The key pressed to enter this item.
+    */
     virtual void Entering(JButton key)=0;
+    /**
+      Request permission to leave the item. If the return value is false, the item remains selected.
+      @param key The key pressed to leave this item.
+    */
     virtual bool Leaving(JButton key)=0;
 
     virtual void Update(float dt)=0;
+    /**
+      Called when the item is selected and the OK button is pressed. Generally used to 
+      change the visible notification of the selected item, but not to change the underlying data.
+      For example, the OptionTheme class reacts to a button press by changing the selected theme,
+      but does not actually apply the theme.
+    */
     virtual void updateValue() {};
     virtual void Render()=0;
+    /**
+      Used to change the underlying data this gui element represents. 
+    */
     virtual void setData()=0;
+
     virtual void ButtonPressed(int controllerId, int controlId) {};
+    /**
+      Used when it is necessary to update some information. Often called from confirmChange(), but also called
+      in other places, such as to reload the list of possible profiles after a new one is created. See OptionProfile
+      for details.
+    */
     virtual void Reload() {};
+
+    /**
+      Render something after (and thus on top of) the regular Render() call.
+    */
     virtual void Overlay() {};
+    /**
+      Render something before (and thus under) the regular Render() call.
+    */
     virtual void Underlay() {};
 
+    /**
+      Returns true if the object currently has the focus.
+    */
     virtual bool hasFocus()=0;
+    /**
+      Sets whether or not the object has the focus.
+    */
     virtual void setFocus(bool bFocus)=0;
     virtual float getX()=0;
     virtual float getY()=0;
@@ -120,6 +197,7 @@ public:
     }
     ;
 
+    /** Sets the modality of the item, if applicable. */
     virtual void setModal(bool val) {};
     virtual void setDisplay(string s) {};
     virtual void setX(float _x) {};
@@ -141,7 +219,9 @@ protected:
     vector<WGuiBase*> items;
 };
 
-//This is our base class for concrete items. 
+/**
+  Base class for all GUI concrete implementation classes. 
+*/
 class WGuiItem: public WGuiBase
 {
 public:
@@ -242,6 +322,9 @@ protected:
     string displayValue;
 };
 
+/**
+  An image drawn from the current position in a WDataSource.
+*/
 class WGuiImage: public WGuiItem
 {
 public:
@@ -265,6 +348,9 @@ protected:
     WDataSource * source;
 };
 
+/**
+  A card image drawn from the current position in a WDataSource.
+*/
 class WGuiCardImage: public WGuiImage
 {
 public:
@@ -275,6 +361,9 @@ protected:
     bool bThumb;
 };
 
+/**
+  A variation of the WGuiCardImage that is distorted.
+*/
 class WGuiCardDistort: public WGuiCardImage
 {
 public:
@@ -298,7 +387,9 @@ protected:
     WDataSource * distortSrc;
 };
 
-//This is our base class for decorators. It wraps everything about WGuiBase.
+/**
+  Base decorator class, wraps all WGuiBase functionality and forwards it to the decorated item.
+*/
 class WGuiDeco: public WGuiBase
 {
 public:
@@ -496,6 +587,10 @@ protected:
     WGuiBase * it;
 };
 
+/**
+  An item used to represent an award, can also function as a button for more details. 
+  Visibility and selectability are dependent on whether or not the award has been unlocked.
+*/
 class WGuiAward: public WGuiItem
 {
 public:
@@ -522,6 +617,9 @@ protected:
     string text;
 };
 
+/**
+  When the decorated items are members of a WGuiList, causes them to render in two columns.
+*/
 class WGuiSplit: public WGuiItem
 {
 public:
@@ -555,6 +653,10 @@ public:
     WGuiBase* left;
 };
 
+
+/**
+  Causes a confirmation dialog to pop up when the decorated item is changed. 
+*/
 class WDecoConfirm: public WGuiDeco
 {
 public:
@@ -586,6 +688,11 @@ protected:
     bool bModal;
 };
 
+/**
+  Decorator for numeric values, transforms them into meaningful strings. Used by options 
+  that have an enum or similar as their underlying representation. Requires an EnumDefinition 
+  so it knows what value maps to what string.
+*/
 class WDecoEnum: public WGuiDeco
 {
 public:
@@ -596,6 +703,9 @@ protected:
     EnumDefinition * edef;
 };
 
+/**
+  Makes the decorated item's visibility contingent on the player cheating. 
+*/
 class WDecoCheat: public WGuiDeco
 {
 public:
@@ -607,6 +717,9 @@ protected:
     bool bVisible;
 };
 
+/**
+  Allows the decorated item to send a button notification to a JGuiListener.
+*/
 class WGuiButton: public WGuiDeco
 {
 public:
@@ -634,6 +747,9 @@ protected:
     JGuiListener * mListener;
 };
 
+/**
+  Similar to an HTML heading, this displays text without any other functionality.
+*/
 class WGuiHeader: public WGuiItem
 {
 public:
@@ -646,6 +762,9 @@ public:
     virtual void Render();
 };
 
+/**
+  Allows the application of a certain color style in the decorated class.
+*/
 class WDecoStyled: public WGuiDeco
 {
 public:
@@ -666,6 +785,12 @@ public:
     u8 mStyle;
 };
 
+/**
+  Base class for menu GUIs. Provides useful functionality: basic 1-dimensional item selection 
+  and the ability to sync the current index of a WSyncable with the menu's selected index 
+  (to allow the menu to easily iterate through arrays of data). Items are rendered at the 
+  X/Y position of the individual WGuiItem itself.
+*/
 class WGuiMenu: public WGuiItem
 {
 public:
@@ -715,6 +840,11 @@ protected:
     float duration;
 };
 
+/**
+  Creates a vertically scrolling menu of items. Items are rendered based on their 
+  position within the items vector, and disregard the X/Y position of the individual
+  WGuiItem itself.
+*/
 class WGuiList: public WGuiMenu
 {
 public:
@@ -730,6 +860,12 @@ public:
 protected:
     bool mFocus;
 };
+
+/**
+  Creates a horizontal menu of items, each of which is usually a WGuiMenu derivative 
+  themselves. Items are rendered based on their position within the items vector, and 
+  disregard the X/Y position of the individual WGuiItem itself.
+*/
 class WGuiTabMenu: public WGuiMenu
 {
 public:
@@ -739,6 +875,9 @@ public:
     void save();
     virtual bool CheckUserInput(JButton key);
 };
+/**
+  A variant of WGuiList that renders as a horizontal row, rather than vertically.
+*/
 class WGuiListRow: public WGuiList
 {
 public:
@@ -746,6 +885,9 @@ public:
     virtual void Render();
 };
 
+/**
+  The filter building interface. 
+*/
 class WGuiFilters: public WGuiItem
 {
 public:
@@ -781,11 +923,13 @@ protected:
     WGuiList * list;
 };
 
+/**
+  An interface item representing a single component of a filter.
+*/
 class WGuiFilterItem: public WGuiItem
 {
 public:
     friend class WGuiFilters;
-    friend struct WLFiltersSort;
     WGuiFilterItem(WGuiFilters * parent);
     void updateValue();
     void ButtonPressed(int controllerId, int controlId);
@@ -822,16 +966,10 @@ protected:
     WGuiFilters * mParent;
 };
 
-struct WListSort
-{
-    virtual bool operator()(const WGuiBase*l, const WGuiBase*r);
-};
-
-struct WLFiltersSort
-{
-    bool operator()(const WGuiBase*l, const WGuiBase*r);
-};
-
+/**
+  Used by the options menu for keybindings. This WGuiList derivative automatically populates itself 
+  with OptionKey items representing all the potential interaction bindings.
+*/
 class WGuiKeyBinder: public WGuiList
 {
 public:
@@ -856,4 +994,5 @@ protected:
     string confirmationString;
 };
 
+/**@} This comment used by Doxyyen. */
 #endif
