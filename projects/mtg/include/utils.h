@@ -119,3 +119,4 @@ u32 ramAvailable(void);
 
 #endif
 
+bool FileExists(const string& strFilename);
