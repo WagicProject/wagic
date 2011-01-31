@@ -32589,7 +32589,7 @@ type=Sorcery
 [/card]
 [card]
 name=Kamahl, Fist of Krosa
-auto={G}{T}:target(land) becomes(Creature,1/1) ueot
+auto={G}:target(land) becomes(Creature,1/1) ueot
 auto={2}{G}{G}{G}:lord(creature|mybattlefield) 3/3 && lord(creature|mybattlefield) trample ueot
 text={G}: Target land becomes a 1/1 creature until end of turn. It's still a land. -- {2}{G}{G}{G}: Creatures you control get +3/+3 and gain trample until end of turn.
 mana={4}{G}{G}
@@ -38589,7 +38589,7 @@ toughness=3
 name=Mayael's Aria
 auto=@each my upkeep:aslongas(creature[power>=20]|myBattlefield) winGame
 auto=@each my upkeep:aslongas(creature[power>=10]|myBattlefield) life:10
-auto=@each my upkeep:aslongas(creature[power>=5]|myBattlefield) counter(1/1) target(creature)
+auto=@each my upkeep:aslongas(creature[power>=5]|myBattlefield) counter(1/1) all(creature|myBattlefield)
 text=At the beginning of your upkeep, put a +1/+1 counter on each creature you control if you control a creature with power 5 or greater. Then you gain 10 life if you control a creature with power 10 or greater. Then you win the game if you control a creature with power 20 or greater.
 mana={R}{G}{W}
 type=Enchantment
@@ -45158,6 +45158,7 @@ toughness=2
 [/card]
 [card]
 name=Peat Bog
+auto=tap
 auto=counter(0/0,2,Depletion)
 auto={T}{C(0/0,-1,Depletion)}:Add{B}{B}
 auto=@tapped(this):bury all(peat bog[-counter{0/0.1.Depletion}]|myBattlefield)
@@ -71190,11 +71191,11 @@ toughness=2
 [/card]
 [card]
 name=Wash Out
-auto=choice name(return all white creatures to owners' hand) && moveTo(myhand) all(creature[white]|mybattlefield) && moveTo(myhand) all(creature[white]|opponentbattlefield)
-auto=choice name(return all blue creatures to owners' hand) && moveTo(myhand) all(creature[blue]|mybattlefield) && moveTo(myhand) all(creature[blue]|opponentbattlefield)
-auto=choice name(return all black creatures to owners' hand) && moveTo(myhand) all(creature[black]|mybattlefield) && moveTo(myhand) all(creature[black]|opponentbattlefield)
-auto=choice name(return all red creatures to owners' hand) && moveTo(myhand) all(creature[red]|mybattlefield) && moveTo(myhand) all(creature[red]|opponentbattlefield)
-auto=choice name(return all green creatures to owners' hand) && moveTo(myhand) all(creature[green]|mybattlefield) && moveTo(myhand) all(creature[green]|opponentbattlefield)
+auto=choice name(return all white permanents to owners' hand) && moveTo(myhand) all(*[white]|mybattlefield) && moveTo(myhand) all(*[white]|opponentbattlefield)
+auto=choice name(return all blue permanents to owners' hand) && moveTo(myhand) all(*[blue]|mybattlefield) && moveTo(myhand) all(*[blue]|opponentbattlefield)
+auto=choice name(return all black permanents to owners' hand) && moveTo(myhand) all(*[black]|mybattlefield) && moveTo(myhand) all(*[black]|opponentbattlefield)
+auto=choice name(return all red permanents to owners' hand) && moveTo(myhand) all(*[red]|mybattlefield) && moveTo(myhand) all(*[red]|opponentbattlefield)
+auto=choice name(return all green permanents to owners' hand) && moveTo(myhand) all(*[green]|mybattlefield) && moveTo(myhand) all(*[green]|opponentbattlefield)
 text=Return all permanents of the color of your choice to their owners' hands.
 mana={3}{U}
 type=Sorcery
@@ -71959,7 +71960,7 @@ toughness=6
 [/card]
 [card]
 name=Wickerbough Elder
-auto=counter(-1/-1,1)
+auto=counter(-1/-1,2)
 auto={G}{C(-1/-1,-1)}:destroy target(artifact,enchantment)
 text=Wickerbough Elder enters the battlefield with a -1/-1 counter on it. -- {G}, Remove a -1/-1 counter from Wickerbough Elder: Destroy target artifact or enchantment.
 mana={3}{G}
