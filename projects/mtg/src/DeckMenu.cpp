@@ -264,12 +264,12 @@ void DeckMenu::Render()
             {               
                 if ( (deckManaColors.at(colorIdx) == '1') != 0)
                 {
-                    renderer->RenderQuad(manaIcons[colorIdx], manaIconX, manaIconY);
-                    manaIconX += 30;
+                    renderer->RenderQuad(manaIcons[colorIdx], manaIconX, manaIconY, 0, 0.6f, 0.6f);
+                    manaIconX += 20;
                 }
             }
         }
-        else
+        else if (deckManaColors.compare("") != 0 )
             DebugTrace("Error with color index string for "<< mSelectedDeck->getName() << ". [" << deckManaColors << "].");
     }
     
