@@ -3700,7 +3700,7 @@ toughness=2
 name=Avatar of Fury
 abilities=flying
 auto={R}:1/0
-otherrestriction=opponenttypemin:7 type(land)
+otherrestriction=opponenttypemin:7 opponenttype(land)
 other={R}{R}
 text=If an opponent controls seven or more lands, Avatar of Fury costs {6} less to cast. -- Flying -- {R}: Avatar of Fury gets +1/+0 until end of turn.
 mana={6}{R}{R}
@@ -3712,7 +3712,7 @@ toughness=6
 [card]
 name=Avatar of Might
 abilities=trample
-otherrestriction=opponenttypemin:4 type(creature)
+otherrestriction=opponenttypemin:4 opponenttype(creature)
 other={G}{G}
 text=If an opponent controls at least four more creatures than you, Avatar of Might costs {6} less to cast. -- Trample (If this creature would deal enough damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player or planeswalker.)
 mana={6}{G}{G}
