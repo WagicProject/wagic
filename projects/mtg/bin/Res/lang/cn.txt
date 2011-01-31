@@ -1,5 +1,5 @@
 #LANG:Chinese
-#Wagic 0.12.1 简体中文语言文件 by linshier and Phantom
+#Wagic 0.14.1 简体中文语言文件 by linshier and Phantom
 
 #Note:
 # - Limitation: Special characters that are not in the limited GB2312
@@ -118,7 +118,7 @@ NO DECK AVAILABLE,=没有可用的套牌，
 PRESS CIRCLE TO GO TO THE DECK EDITOR!=按○键返回套牌编辑界面！
 
 # Opponent deck menu:
-Choose Your Opponent=选择对手
+Choose Opponent=选择对手
 ##(easy)=（简单）
 ##(hard)=（困难）
 Random=随机
@@ -126,6 +126,7 @@ Random=随机
 LOADING DECKS=加载套牌
 Can you play against yourself?=你能击败你自己吗？
 Choose a different player deck=重新选择一个套牌进行游戏
+Detailed Info=详细信息
 
 
 ##########################
@@ -164,8 +165,9 @@ Cleanup=清除步骤
 
 # Interrupts:
 Interrupt?=是否获得优先权？
-X Interrupt - 0 No - [] No to All=按×键确认－○键让过－□键让过所有
-X Interrupt - 0 No=按×键确认－○键让过
+: Interrupt=获得优先权
+: No=让过
+: No To All=让过所有
 
 # Stack:
 Deals %i damage to=造成%i点伤害->
@@ -221,6 +223,7 @@ Doesnotuntap=不可重置
 Double strike=连击
 Exalted=颂威
 First strike=先攻
+Flanking=侧面攻击
 Flying=飞行
 Foresthome=树林居者
 Forestwalk=树林行者
@@ -260,6 +263,7 @@ Retrace=追溯
 Shadow=次元幽影
 Shroud=帷幕
 Storm=风暴
+Sunburst=晖映
 Swamphome=沼泽居者
 Swampwalk=沼泽行者
 Trample=践踏
@@ -632,13 +636,34 @@ Victories against AI:=与人工智能对战时的获胜场数：
 Games played: %i=游戏场数：
 Victory ratio: %i%%=胜率：%i%%
 
+# Statistics - menu:
+------- Deck Summary -----=　----- 套牌数据摘要 -----　
+Cards: =总卡牌：
+Creatures: =生物：  
+  Enchantments: =　结界：
+Instants: =瞬间：
+   Sorceries:      =　法术：
+Lands: =地：
+A: =总
+G: =绿
+R: =红
+U: =蓝
+B: =黑
+W: =白
+  --- Card color count ---  =　----- 卡牌颜色费用 -----　
+ --- Average Cost --- =　----- 卡牌平均费用 -----　
+Creature: =生物：
+Mana: =非地：
+Spell: =咒语：
+
 
 ##########################
 # SHOP                   #
 ##########################
 
-credits: %i=积分点数：%i
-[]:other cards=按□键查看其他卡牌
+##credits: %i=积分点数：%i
+Credits: =积分点数：
+: Other cards=查看其他卡牌
 %s & %s (15 Cards)=补充包%s+%s（共15张）
 %s Booster (15 Cards)=补充包%s（共15张）
 %s (%i)=%s（限%i张）
@@ -765,6 +790,8 @@ Minimum Card Grade=允许游戏包含的卡牌质量
 -3: Unsupported=　-3:不支持的
 -4: Dangerous (risk of crash)=　-4:危险的
 Phase Skip Automation=回合阶段自动跳过
+First Turn Player=第一回合先手
+Opponent=对手
 Off=关
 On=开
 
@@ -983,6 +1010,7 @@ Elemental=元素
 Elephant=象
 Elf=妖精
 Elk=麋鹿
+Eight-and-a-half-tails=八尾半
 Eye=眼
 Faerie=仙灵
 Ferret=雪貂
@@ -999,12 +1027,14 @@ Goblin=鬼怪
 Golem=魔像
 Gorgon=蛇发妖
 Graveborn=墓生兽
+Gremlin=怪灵
 Griffin=狮鹫
 Hag=巫婆
 Harpy=哈痞
 Hellion=地狱兽
 Hippo=河马
 Homarid=荷马利
+Homnuculus=造妖
 Homunculus=造妖
 Horror=惊惧兽
 Horse=马
@@ -1053,6 +1083,7 @@ Ninja=忍者
 Noggle=诺格
 Nomad=游牧人
 Octopus=章鱼
+Oculus=眼球妖
 Ogre=食人魔
 Ooze=流浆
 Orb=法球

@@ -465,7 +465,8 @@ void GameStateMenu::Update(float dt)
         if (primitivesLoadCounter == -1)
         {
             listPrimitives();
-            Translator::GetInstance()->init();
+            // Move translator init to GameApp::Create().
+            // Translator::GetInstance()->init();
         }
         if (primitivesLoadCounter < (int) (primitives.size()))
         {

@@ -181,6 +181,8 @@ void GameApp::Create()
     string lang = options[Options::LANG].str;
     std::transform(lang.begin(), lang.end(), lang.begin(), ::tolower);
     WResourceManager::Instance()->InitFonts(lang);
+    Translator::GetInstance()->init();
+    // The translator is ready now.
 
     LOG("--Loading various textures");
     WResourceManager::Instance()->RetrieveTexture("phasebar.png", RETRIEVE_MANAGE);

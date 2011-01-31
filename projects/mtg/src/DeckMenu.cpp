@@ -200,7 +200,7 @@ void DeckMenu::Render()
                 if (showDetailsScreen())
                 {                    
                     float pspIconsSize = 0.5;
-                    const string detailedInfoString = "Detailed Info";
+                    const string detailedInfoString = _("Detailed Info");
                     float stringWidth = mainFont->GetStringWidth(detailedInfoString.c_str());
                     float boxStartX = detailedInfoBoxX - stringWidth / 2;
                     DWORD currentColor = mainFont->GetColor();

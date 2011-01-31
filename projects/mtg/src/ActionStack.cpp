@@ -21,9 +21,10 @@ namespace
 {
     float kGamepadIconSize = 0.5f;
 
-    const std::string kInterruptString(": Interrupt");
-    const std::string kNoString(": No");
-    const std::string kNoToAllString(": No To All");
+    std::string kInterruptMessageString("Interrupt?");
+    std::string kInterruptString(": Interrupt");
+    std::string kNoString(": No");
+    std::string kNoToAllString(": No To All");
 }
 
 /*
@@ -636,6 +637,12 @@ ActionStack::ActionStack(GameObserver* game)
         pspIcons[i] = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float) i * 32, 0, 32, 32, stream.str(), RETRIEVE_MANAGE);
         pspIcons[i]->SetHotSpot(16, 16);
     }
+
+    // fix for translation.
+    kInterruptMessageString = _(kInterruptMessageString);
+    kInterruptString = _(kInterruptString);
+    kNoString = _(kNoString);
+    kNoToAllString = _(kNoToAllString);
 }
 
 int ActionStack::has(MTGAbility * ability)
@@ -1101,9 +1108,9 @@ void ActionStack::Render()
         // Mootpoint 01/12/2011: draw the interrupt text first, at the top.  Offset the rest of the 
         // unresolved stack effects down so that they don't collide with the interrupt text.
         if (options[Options::INTERRUPT_SECONDS].number == 0)
-            stream << "Interrupt?";
+            stream << kInterruptMessageString;
         else
-            stream << "Interrupt? " << static_cast<int>(timer);
+            stream << kInterruptMessageString << " " << static_cast<int>(timer);
 
         mFont->DrawString(stream.str(), x0 + 5, currenty);
 

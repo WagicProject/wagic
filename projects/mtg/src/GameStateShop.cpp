@@ -29,7 +29,8 @@ float GameStateShop::_y4[] = { 169, 188, 250, 182, 182, 168, 220, 208, 198, 259,
 namespace
 {
     float kGamepadIconSize = 0.5f;
-    const std::string kOtherCardsString(": Other cards");
+    std::string kOtherCardsString(": Other cards");
+    std::string kCreditsString("Credits: ");
 }
 
 
@@ -74,6 +75,9 @@ GameStateShop::GameStateShop(GameApp* parent) :
         mCounts[i] = 0;
     }
     mTouched = false;
+
+    kOtherCardsString = _(kOtherCardsString);
+    kCreditsString = _(kCreditsString);
 }
 
 GameStateShop::~GameStateShop()
@@ -731,7 +735,7 @@ void GameStateShop::Render()
     //Render the info bar
     r->FillRect(0, SCREEN_HEIGHT - 17, SCREEN_WIDTH, 17, ARGB(128,0,0,0));
     std::ostringstream stream;
-    stream << "Credits: " << playerdata->credits;
+    stream << kCreditsString << playerdata->credits;
     mFont->SetColor(ARGB(255,255,255,255));
     mFont->DrawString(stream.str(), 5, SCREEN_HEIGHT - 14);
 
