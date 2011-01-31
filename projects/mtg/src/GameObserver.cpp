@@ -1054,10 +1054,6 @@ int GameObserver::isInExile(MTGCardInstance * card)
     }
     return 0;
 }
-void GameObserver::draw()
-{
-    currentPlayer->game->drawFromLibrary();
-}
 
 void GameObserver::cleanupPhase()
 {
