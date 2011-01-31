@@ -71960,7 +71960,7 @@ toughness=6
 [/card]
 [card]
 name=Wickerbough Elder
-auto=counter(-1/-1,2)
+auto=counter(-1/-1,1)
 auto={G}{C(-1/-1,-1)}:destroy target(artifact,enchantment)
 text=Wickerbough Elder enters the battlefield with a -1/-1 counter on it. -- {G}, Remove a -1/-1 counter from Wickerbough Elder: Destroy target artifact or enchantment.
 mana={3}{G}
