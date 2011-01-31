@@ -258,15 +258,19 @@ void DeckMenu::Render()
     if (mSelectedDeck &&displayDeckMana)
     {
         string deckManaColors = mSelectedDeck->getColorIndex();
-        if ( deckManaColors.compare("") != 0 )
-            for( int colorIdx = Constants::MTG_COLOR_ARTIFACT; colorIdx < 5; ++colorIdx )
-            {
+        if ( deckManaColors.compare("") != 0  && ( deckManaColors.length() == 6 ))
+        {
+            for( int colorIdx = Constants::MTG_COLOR_ARTIFACT; colorIdx < Constants::MTG_COLOR_LAND; ++colorIdx )
+            {               
                 if ( (deckManaColors.at(colorIdx) == '1') != 0)
                 {
                     renderer->RenderQuad(manaIcons[colorIdx], manaIconX, manaIconY);
                     manaIconX += 30;
                 }
             }
+        }
+        else
+            DebugTrace("Error with color index string for "<< mSelectedDeck->getName() << ". [" << deckManaColors << "].");
     }
     
     renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE);
