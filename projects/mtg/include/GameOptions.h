@@ -59,6 +59,7 @@ public:
     //My interrupts    
     INTERRUPTMYSPELLS,
     INTERRUPTMYABILITIES,
+    SAVEDETAILEDDECKINFO,
     //Other interrupts
     INTERRUPT_BEFOREBEGIN,
     INTERRUPT_UNTAP,

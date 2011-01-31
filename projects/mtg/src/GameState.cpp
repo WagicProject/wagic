@@ -6,6 +6,7 @@
 #include "SimpleMenu.h"
 #include "DeckStats.h"
 #include "DeckMetaData.h"
+#include "DeckManager.h"
 #include "Player.h"
 
 // The purpose of this method is to create a listing of decks to be used for the input menu
@@ -37,15 +38,16 @@ vector<DeckMetaData *> GameState::BuildDeckList(const string& path, const string
 {
     vector<DeckMetaData*> retList;
 
-    DeckMetaDataList * metas = DeckMetaDataList::decksMetaData;
     int found = 1;
     int nbDecks = 1;
+    DeckManager *deckManager = DeckManager::GetInstance();
+    bool isAI = path.find("baka") != string::npos;
     while (found && (!maxDecks || nbDecks <= maxDecks))
     {
         found = 0;
         std::ostringstream filename;
         filename << path << "/deck" << nbDecks << ".txt";
-        DeckMetaData * meta = metas->get(filename.str());
+        DeckMetaData * meta = deckManager->getDeckMetaDataByFilename(filename.str(), isAI);
 
         if (meta)
         {

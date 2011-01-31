@@ -220,7 +220,8 @@ void DeckMenu::Render()
 				string text = wordWrap(currentMenuItem->desc, descWidth, mainFont->mFontID );
                 mainFont->DrawString(text.c_str(), descX, descY);
                 mFont->SetColor(ARGB(255,255,255,255));
-
+                
+                
                 // fill in the statistical portion
                 if (currentMenuItem->meta)
                 {
@@ -247,8 +248,28 @@ void DeckMenu::Render()
 
     mScroller->Render();
 	RenderBackground();
-
-	renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE);
+    
+    // display the deck mana colors if known
+    // We only want to display the mana symbols on the game screens and not the Deck Editor screens.  
+    // Need a better way to determine when to display the mana symbols.  Perhaps make it a property setting.
+    bool displayDeckMana = backgroundName.find("DeckMenuBackdrop") != string::npos;
+    float manaIconX = 300;
+    float manaIconY = 75;
+    if (mSelectedDeck &&displayDeckMana)
+    {
+        string deckManaColors = mSelectedDeck->getColorIndex();
+        if ( deckManaColors.compare("") != 0 )
+            for( int colorIdx = Constants::MTG_COLOR_ARTIFACT; colorIdx < 5; ++colorIdx )
+            {
+                if ( (deckManaColors.at(colorIdx) == '1') != 0)
+                {
+                    renderer->RenderQuad(manaIcons[colorIdx], manaIconX, manaIconY);
+                    manaIconX += 30;
+                }
+            }
+    }
+    
+    renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE);
 	stars->Render();
 	renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
 

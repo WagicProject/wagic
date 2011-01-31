@@ -7,6 +7,7 @@
 #include "ExtraCost.h"
 #include "GuiCombat.h"
 #include "GameStateDuel.h"
+#include "DeckManager.h"
 
 const char * const MTG_LAND_TEXTS[] = { "artifact", "forest", "island", "mountain", "swamp", "plains", "other lands" };
 
@@ -1139,7 +1140,7 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, Player * op
     char deckFile[512];
     char avatarFile[512];
     char deckFileSmall[512];
-
+    
     if (deckid == GameStateDuel::MENUITEM_EVIL_TWIN)
     { //Evil twin
         sprintf(deckFile, "%s", opponent->deckFile.c_str());
@@ -1177,11 +1178,10 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, Player * op
     }
 
     MTGDeck * tempDeck = NEW MTGDeck(deckFile, collection);
-    //MTGPlayerCards * deck = NEW MTGPlayerCards(tempDeck);
     AIPlayerBaka * baka = NEW AIPlayerBaka(tempDeck, deckFile, deckFileSmall, avatarFile);
     baka->deckId = deckid;
-
-    delete tempDeck;
+    DeckManager::GetInstance()->saveDeck( tempDeck, deckid, collection);
+    SAFE_DELETE(tempDeck);
     return baka;
 }
 

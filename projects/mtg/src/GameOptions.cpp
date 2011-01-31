@@ -49,6 +49,7 @@ const string Options::optionNames[] = {
   "aidecks",
   "interruptMySpells",
   "interruptMyAbilities",
+  "saveDetailedDeckInfo",
 //General interrupts
   "interruptBeforeBegin",
   "interruptUntap",

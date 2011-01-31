@@ -9,8 +9,6 @@
 //Merge this with DeckStats
 //Have this class handle all the Meta Data rather than relying on MTGDeck. Then MTGDeck would have a MetaData object...
 
-DeckMetaDataList * DeckMetaDataList::decksMetaData = NEW DeckMetaDataList();
-
 DeckMetaData::DeckMetaData(const string& filename)
     : mFilename(filename), mGamesPlayed(0), mVictories(0), mPercentVictories(0), mDifficulty(0),
       mDeckLoaded(false), mStatsLoaded(false)
@@ -96,44 +94,11 @@ void DeckMetaData::LoadDeck()
         mName = trim(deck.meta_name);
         mDescription = trim(deck.meta_desc);
         mDeckId = atoi((mFilename.substr(mFilename.find("deck") + 4, mFilename.find(".txt"))).c_str());
-
+        mColorIndex = deck.meta_deck_colors;
         mDeckLoaded = true;
     }
 
 
-}
-
-DeckMetaDataList::~DeckMetaDataList()
-{
-    for (map<string, DeckMetaData *>::iterator it = values.begin(); it != values.end(); ++it)
-    {
-        SAFE_DELETE(it->second);
-    }
-    values.clear();
-}
-
-void DeckMetaDataList::invalidate(string filename)
-{
-    map<string, DeckMetaData *>::iterator it = values.find(filename);
-    if (it != values.end())
-    {
-        SAFE_DELETE(it->second);
-        values.erase(it);
-    }
-}
-
-DeckMetaData * DeckMetaDataList::get(string filename)
-{
-    map<string, DeckMetaData *>::iterator it = values.find(filename);
-    if (it == values.end())
-    {
-        if (fileExists(filename.c_str()))
-        {
-            values[filename] = NEW DeckMetaData(filename);
-        }
-    }
-
-    return values[filename]; //this creates a NULL entry if the file does not exist
 }
 
 //Accessors
@@ -156,6 +121,11 @@ int DeckMetaData::getDeckId()
 string DeckMetaData::getAvatarFilename()
 {
     return mAvatarFilename;
+}
+
+string DeckMetaData::getColorIndex()
+{
+    return mColorIndex;
 }
 
 int DeckMetaData::getGamesPlayed()
@@ -209,6 +179,11 @@ string DeckMetaData::getStatsSummary()
                     << "Games Played: " << getGamesPlayed() << endl;
 
     return statsSummary.str();
+}
+
+void DeckMetaData::setColorIndex(const string& colorIndex)
+{
+    mColorIndex = colorIndex;
 }
 
 void DeckMetaData::Invalidate()

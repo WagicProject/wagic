@@ -9,6 +9,7 @@
 #include "WDataSrc.h"
 #include "MTGPack.h"
 #include "utils.h"
+#include "DeckManager.h"
 
 #if defined (WIN32) || defined (LINUX)
 #include <time.h>
@@ -43,13 +44,10 @@ static inline int getGrade(int v)
 //MTGAllCards
 int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primitive)
 {
-    if ('#' == s[0]) return 0;
+    if ('#' == s[0]) return 1; // a comment shouldn't be treated as an error condition
     size_t i = s.find_first_of('=');
     if (i == string::npos || 0 == i)
-    {
-        DebugTrace("MTGDECK: Bad Line:\n\t" << s);
         return 0;
-    }
 
     char* key = const_cast<char*> (s.c_str()); // I know what I'm doing, let me do it
     key[i] = 0;
@@ -373,6 +371,7 @@ int MTGAllCards::load(const char * config_file, const char * set_name, int autol
     const int set_id = set_name ? setlist.Add(set_name) : MTGSets::INTERNAL_SET;
     MTGSetInfo *si = setlist.getInfo(set_id);
 
+    int lineNumber = 0;
     wagic::ifstream setFile(config_file, ios::in | ios::ate);
     if (!setFile) return total_cards;
 
@@ -389,6 +388,7 @@ int MTGAllCards::load(const char * config_file, const char * set_name, int autol
     while (true)
     {
         if (!std::getline(stream, s)) return total_cards;
+        lineNumber++;
         if (!s.size()) continue;
 
         if (s[s.size() - 1] == '\r') s.erase(s.size() - 1); // Handle DOS files
@@ -435,7 +435,8 @@ int MTGAllCards::load(const char * config_file, const char * set_name, int autol
             }
             else
             {
-                processConfLine(s, tempCard, tempPrimitive);
+                if (!processConfLine(s, tempCard, tempPrimitive))
+                    DebugTrace("MTGDECK: BAD Line: \n[" << lineNumber << "]: " << s );
             }
             continue;
         }
@@ -716,6 +717,12 @@ MTGDeck::MTGDeck(const char * config_file, MTGAllCards * _allcards, int meta_onl
                     meta_desc.append(s.substr(found + 5));
                     continue;
                 }
+                found = s.find("MANA:");
+                if ( found != string::npos )
+                {
+                    string colorIndex = s.substr(found + 5);
+                    meta_deck_colors = trim(colorIndex);
+                }
                 continue;
             }
             if (meta_only) break;
@@ -758,6 +765,11 @@ MTGDeck::MTGDeck(const char * config_file, MTGAllCards * _allcards, int meta_onl
 int MTGDeck::totalCards()
 {
     return total_cards;
+}
+
+string MTGDeck::getFilename()
+{
+    return filename;
 }
 
 MTGCard * MTGDeck::getCardById(int mtgId)
@@ -970,8 +982,31 @@ int MTGDeck::save(string destFileName, bool useExpandedDescriptions, string &dec
             }
             file << "#DESC:" << desc << "\n";
         }
+        
+        // add in color information
+        bool saveDetailedDeckInfo = options.get( Options::SAVEDETAILEDDECKINFO )->number == 1;
 
-        if (useExpandedDescriptions)
+        if ( filename.find("collection.dat") == string::npos )
+        {
+            DeckManager *deckManager = DeckManager::GetInstance();
+            file <<"#MANA:";
+            string deckId = filename.substr( filename.find("/deck")+5, filename.find(".txt") - (filename.find("/deck")+5) );
+            bool isAI = filename.find("ai/baka") != string::npos;
+            StatsWrapper *stats = deckManager->getExtendedStatsForDeckId( atoi(deckId.c_str()), this->database, isAI );
+            
+            for (int i = Constants::MTG_COLOR_ARTIFACT; i < Constants::MTG_COLOR_LAND; ++i)
+            {
+                if (stats->totalCostPerColor[i] != 0)
+                    file << "1";
+                else
+                    file <<"0";
+            }
+            file << endl;
+        }
+        else
+            saveDetailedDeckInfo = false;
+            
+        if (useExpandedDescriptions || saveDetailedDeckInfo)
         {
             map<int, int>::iterator it;
             for (it = cards.begin(); it != cards.end(); it++)
@@ -1005,7 +1040,6 @@ int MTGDeck::save(string destFileName, bool useExpandedDescriptions, string &dec
         std::remove(destFileName.c_str());
         rename(tmp.c_str(), destFileName.c_str());
     }
-    DeckMetaDataList::decksMetaData->invalidate(destFileName);
     return 1;
 }
 

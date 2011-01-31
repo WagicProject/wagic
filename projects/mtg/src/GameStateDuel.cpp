@@ -171,7 +171,7 @@ void GameStateDuel::loadPlayer(int playerId, int decknb, int isAI)
             sprintf(deckFileSmall, "player_deck%i", decknb);
             MTGDeck * tempDeck = NEW MTGDeck(deckFile, mParent->collection);
             mPlayers[playerId] = NEW HumanPlayer(tempDeck, deckFile, deckFileSmall);
-
+            DeckManager::GetInstance()->saveDeck( tempDeck, decknb, mParent->collection);
             delete tempDeck;
         }
         else

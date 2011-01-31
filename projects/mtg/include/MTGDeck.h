@@ -141,6 +141,7 @@ public:
     map<int, int> cards;
     string meta_desc;
     string meta_name;
+    string meta_deck_colors;
     int totalCards();
     int totalPrice();
     MTGDeck(MTGAllCards * _allcards);
@@ -154,6 +155,7 @@ public:
     int removeAll();
     int add(MTGCard * card);
     int remove(MTGCard * card);
+    string getFilename();
     int save();
     int save(string destFileName, bool useExpandedDescriptions, string &deckTitle, string &deckDesc);
     MTGCard * getCardById(int id);

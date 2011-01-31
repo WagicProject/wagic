@@ -279,7 +279,6 @@ void GameApp::Destroy()
     DeckStats::EndInstance();
 
     SAFE_DELETE(Subtypes::subtypesList);
-    SAFE_DELETE(DeckMetaDataList::decksMetaData);
 
     playMusic("none");
 

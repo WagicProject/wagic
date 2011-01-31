@@ -22,13 +22,16 @@ private:
     string mName;
     int mDeckId;
     string mAvatarFilename;
-
+    string  mColorIndex;
+    
     // statistical information
     int mGamesPlayed, mVictories, mPercentVictories, mDifficulty;
 
     DeckMetaData();
 
 public:
+
+
     DeckMetaData(const string& filename);
     void LoadDeck();
     void LoadStats();
@@ -38,6 +41,7 @@ public:
     string getDescription();
     string getName();
     string getAvatarFilename();
+    string getColorIndex();
     int getAvatarId(int deckId);
     string getStatsSummary();
 
@@ -48,6 +52,7 @@ public:
     int getDifficulty();
     string getDifficultyString();
 
+    void setColorIndex(const string& colorIndex);
     void Invalidate();
 
     string mStatsFilename;
@@ -57,16 +62,5 @@ public:
     bool mIsAI;
 };
 
-class DeckMetaDataList
-{
-private:
-    map<string, DeckMetaData *> values;
-
-public:
-    void invalidate(string filename);
-    DeckMetaData * get(string filename);
-    ~DeckMetaDataList();
-    static DeckMetaDataList * decksMetaData;
-};
 
 #endif

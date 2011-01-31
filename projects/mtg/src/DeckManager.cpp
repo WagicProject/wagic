@@ -51,7 +51,19 @@ DeckMetaData* DeckManager::getDeckMetaDataById( int deckId, bool isAI )
     {
         deck = *pos;
     }
-
+    else
+    {
+        ostringstream deckFilename;
+        string filepath;
+        if ( isAI )
+            filepath = options.profileFile( "ai/baka/"); 
+        else
+            filepath = options.profileFile( "" );
+            
+        deckFilename << filepath << "/deck" << deckId << ".txt";
+        AddMetaData( deckFilename.str(), isAI );
+        deck = deckList.back();
+    }
     return deck;
 }
 
@@ -82,10 +94,54 @@ DeckMetaData* DeckManager::getDeckMetaDataByFilename(const string& filename, boo
     {
         deck = *pos;
     }
-
+    else
+    {
+        if ( FileExists( filename) )
+        {
+            AddMetaData( filename, isAI );
+            deck = deckList.back();
+        }
+    }
     return deck;
 }
 
+void DeckManager::saveDeck( MTGDeck *deck, int deckId, MTGAllCards *collection )
+{
+    if ( deck->meta_deck_colors == "" )
+    {
+        bool isAI = deck->getFilename().find("baka") != string::npos;
+        StatsWrapper *stats = getExtendedStatsForDeckId( deckId, collection, isAI );
+        ostringstream manaColorIndex;
+        for (int i = Constants::MTG_COLOR_ARTIFACT; i < Constants::MTG_COLOR_LAND; ++i)
+        {
+            if (stats->totalCostPerColor[i] != 0)
+                manaColorIndex << "1";
+            else
+                manaColorIndex <<"0";
+        }
+        deck->meta_deck_colors = manaColorIndex.str();
+        // save the deck to disk
+        deck->save( deck->getFilename(), true, deck->meta_name, deck->meta_desc );
+        // update DeckMetaData object
+        DeckMetaData *meta = getDeckMetaDataByFilename(deck->getFilename(), isAI);
+        meta->setColorIndex( deck->meta_deck_colors );
+    }
+}
+
+
+void DeckManager::AddMetaData( const string& filename, bool isAI )
+{
+    if (isAI)
+    {
+        aiDeckOrderList.push_back ( NEW DeckMetaData( filename ) );
+        aiDeckStatsMap.insert( make_pair( filename.c_str(), new StatsWrapper( aiDeckOrderList.back()->getDeckId()) ));
+    }
+    else
+    {
+        playerDeckOrderList.push_back ( NEW DeckMetaData( filename ) );
+        playerDeckStatsMap.insert( make_pair( filename.c_str(), new StatsWrapper( playerDeckOrderList.back()->getDeckId()) ));
+    }
+}
 
 StatsWrapper * DeckManager::getExtendedStatsForDeckId( int deckId, MTGAllCards *collection, bool isAI )
 {
@@ -111,7 +167,7 @@ StatsWrapper * DeckManager::getExtendedDeckStats( DeckMetaData *selectedDeck, MT
     int deckId = selectedDeck->getDeckId();
 
     map<string, StatsWrapper*>* statsMap = isAI ? &aiDeckStatsMap : &playerDeckStatsMap;
-    if (statsMap->find(deckName) == statsMap->end())
+    if ( statsMap->find(deckName) == statsMap->end())
     {
         stats = NEW StatsWrapper(deckId);
         stats->updateStats( deckName, collection);
@@ -120,8 +176,9 @@ StatsWrapper * DeckManager::getExtendedDeckStats( DeckMetaData *selectedDeck, MT
     else
     {
         stats = statsMap->find(deckName)->second;
+        if ( stats->needUpdate )
+            stats->updateStats( deckName, collection );
     }
-
     return stats;
 }
 
@@ -133,15 +190,27 @@ void DeckManager::EndInstance()
 {
     if (mInstance)
     {
-        mInstance->aiDeckOrderList.clear();
-        mInstance->playerDeckOrderList.clear();
+       
         map<string, StatsWrapper *>::iterator it;
+        vector<DeckMetaData *>::iterator metaDataIter;
+        
         for (it = mInstance->aiDeckStatsMap.begin(); it != mInstance->aiDeckStatsMap.end(); it++){
             SAFE_DELETE(it->second);
         }
         for (it = mInstance->playerDeckStatsMap.begin(); it != mInstance->playerDeckStatsMap.end(); it++){
             SAFE_DELETE(it->second);
         }
+
+        for( metaDataIter =  mInstance->aiDeckOrderList.begin(); metaDataIter !=  mInstance->aiDeckOrderList.end(); ++metaDataIter)
+        {
+            SAFE_DELETE( *metaDataIter );
+        }
+        for( metaDataIter = mInstance->playerDeckOrderList.begin(); metaDataIter !=  mInstance->playerDeckOrderList.end(); ++metaDataIter)
+        {
+            SAFE_DELETE( *metaDataIter );
+        }
+        mInstance->aiDeckOrderList.clear();
+        mInstance->playerDeckOrderList.clear();
         mInstance->aiDeckStatsMap.clear();
         mInstance->playerDeckStatsMap.clear();
         SAFE_DELETE( mInstance );
@@ -163,10 +232,7 @@ DeckManager* DeckManager::GetInstance()
 //  p2 is the opponent
 int DeckManager::getDifficultyRating(Player *statsPlayer, Player *player)
 {
-    DeckMetaDataList * metas = DeckMetaDataList::decksMetaData;
-
-    DeckMetaData *meta = metas->get(player->deckFile);
-
+    DeckMetaData *meta = DeckManager::GetInstance()->getDeckMetaDataByFilename(player->deckFile, (player->isAI() == 1) );
     return meta->getDifficulty();
 }
 
