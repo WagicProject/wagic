@@ -994,6 +994,8 @@ int AIPlayer::chooseBlockers()
     GameObserver * g = GameObserver::GetInstance();
     if (g->currentActionPlayer != this)
     return 0;
+    if(g->isInterrupting == this)
+    return 0;
     //ai should not be allowed to run this if it is not legally allowed to do so
     //this fixes a bug where ai would try to use this as an interupt
     //when ai is given priority to select blockers it is allowed to run this as normal.
