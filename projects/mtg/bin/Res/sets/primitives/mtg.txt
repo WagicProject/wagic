@@ -372,7 +372,7 @@ type=Sorcery
 [/card]
 [card]
 name=Accorder Paladin
-auto=@attacking(this):lord(other creature[attacking]) 1/0 ueot
+auto=@attacking(this):all(other creature[attacking]) 1/0 ueot
 text=Battle cry (Whenever this creature attacks, each other attacking creature gets +1/+0 until end of turn.)
 mana={1}{W}
 type=Creature
@@ -5824,7 +5824,7 @@ subtype=Aura
 name=Black Sun's Zenith
 auto=counter(-1/-1,X) all(creature)
 alias=135262
-text=Put X 2/2 Cat creature tokens onto the battlefield. Shuffle White Sun's Zenith into its owner's library.
+text=Put X -1/-1 counters on each creature. Shuffle Black Sun's Zenith into its owner's library.
 mana={X}{B}{B}
 type=Sorcery
 [/card]
@@ -6226,7 +6226,7 @@ toughness=11
 name=Blightwidow
 abilities=infect,reach
 text=Infect, reach
-mana={1}{G}{G}
+mana={3}{G}
 type=Creature
 subtype=Spider
 power=2
@@ -25895,7 +25895,7 @@ toughness=2
 [/card]
 [card]
 name=Goblin Wardriver
-auto=@attacking(this):lord(other creature[attacking]) 1/0 ueot
+auto=@attacking(this):all(other creature[attacking]) 1/0 ueot
 text=Battle cry (Whenever this creature attacks, each other attacking creature gets +1/+0 until end of turn.) -- Whenever Hero of Bladehold attacks, put two 1/1 white soldier creature tokens onto the battlefield tapped and attacking.
 mana={R}{R}
 type=Creature
@@ -28791,7 +28791,7 @@ subtype=Aura
 [card]
 name=Hero of Bladehold
 auto=@attacking(this):token(Soldier,Creature Soldier,1/1,white,battleready)*2
-auto=@attacking(this):lord(creature[attacking]) 1/0 ueot
+auto=@attacking(this):all(other creature[attacking]) 1/0 ueot
 text=Battle cry (Whenever this creature attacks, each other attacking creature gets +1/+0 until end of turn.) -- Whenever Hero of Bladehold attacks, put two 1/1 white soldier creature tokens onto the battlefield tapped and attacking.
 mana={2}{W}{W}
 type=Creature
@@ -28802,8 +28802,8 @@ toughness=4
 [card]
 name=Hero of Oxida Ridge
 abilities=haste
-auto=@attacking(this):lord(creature[attacking]) 1/0 ueot
-auto=@attacking(this):lord(creature[power<=1]) cantblock ueot
+auto=@attacking(this):all(other creature[attacking]) 1/0 ueot
+auto=@attacking(this):all(creature[power<=1]) cantblock ueot
 text=Haste -- Battle cry (Whenever this creature attacks, each other attacking creature gets +1/+0 until end of turn.) -- Whenever Hero of Oxid Ridge attacks, creatures with power 1 or less can't block this turn.
 mana={2}{R}{R}
 type=Creature
@@ -34777,7 +34777,7 @@ type=Sorcery
 [card]
 name=Kuldotha Ringleader
 abilities=mustattack
-auto=@attacking(this):lord(other creature[attacking]) 1/0 ueot
+auto=@attacking(this):all(other creature[attacking]) 1/0 ueot
 text=Battle cry (Whenever this creature attacks, each other attacking creature gets +1/+0 until end of turn.) -- Kuldotha Ringleader attacks each turn if able.
 mana={4}{R}
 type=Creature
@@ -36934,7 +36934,7 @@ toughness=3
 [/card]
 [card]
 name=Loxodon Partisan
-auto=@attacking(this):lord(other creature[attacking]) 1/0 ueot
+auto=@attacking(this):all(other creature[attacking]) 1/0 ueot
 text=Battle cry (Whenever this creature attacks, each other attacking creature gets +1/+0 until end of turn.)
 mana={4}{W}
 type=Creature
@@ -56073,7 +56073,7 @@ toughness=2
 [/card]
 [card]
 name=Signal Pest
-auto=@attacking(this):lord(other creature[attacking]) 1/0 ueot
+auto=@attacking(this):all(other creature[attacking]) 1/0 ueot
 auto=cantbeblockedby(creature[-flying;-reach])
 text=Battle cry (Whenever this creature attacks, each other attacking creature gets +1/+0 until end of turn.) -- Signal Pest can't be blocked except by creatures with flying or reach.
 mana={1}
@@ -59568,7 +59568,7 @@ toughness=2
 [card]
 name=Spiraling Duelist
 auto=aslongas(artifact|mybattlefield) double strike >2
-text=Haste -- Battle cry (Whenever this creature attacks, each other attacking creature gets +1/+0 until end of turn.) -- Whenever Hero of Oxid Ridge attacks, creatures with power 1 or less can't block this turn.
+text=Metalcraft - Spiraling Duelist has double strike as long as you control three or more artifacts.
 mana={2}{R}{R}
 type=Creature
 subtype=Human Knight
@@ -62472,7 +62472,7 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
-name=Sword the Meek
+name=Sword of the Meek
 auto={2}:equip
 auto=1/2
 autograveyard=@movedto(creature[power=1;toughness=1]|mybattlefield):may all(trigger[to]) retarget
@@ -68409,7 +68409,7 @@ name=Vedalken Anatomist
 auto={2}{U}{T}:tap target(creature) && counter(-1/-1,1)
 auto={2}{U}{T}:untap target(creature) && counter(-1/-1,1)
 text={2}{U}, {T}:Put a -1/-1 counter on target creature. You may tap or untap that creature.
-mana={3}{U}
+mana={2}{U}
 type=Creature
 subtype=Vedalken Wizard
 power=1
@@ -69194,8 +69194,8 @@ toughness=2
 [card]
 name=Victory's Herald
 abilities=flying
-auto=@attacking(this):lord(creature[attacking]) first strike ueot
-auto=@attacking(this):lord(creature[attacking]) lifelink ueot
+auto=@attacking(this):all(creature[attacking]) first strike ueot
+auto=@attacking(this):all(creature[attacking]) lifelink ueot
 text=Flying -- Whenever Victory's Herald attacks, attacking creatures gain first strike and lifelink until end of turn.
 mana={3}{W}{W}{W}
 type=Creature
@@ -71898,7 +71898,7 @@ toughness=1
 [/card]
 [card]
 name=White Sun's Zenith
-auto=token(Cat,Creature,Cat,2/2,white)*X
+auto=token(Cat,Creature Cat,2/2,white)*X
 alias=135262
 text=Put X 2/2 Cat creature tokens onto the battlefield. Shuffle White Sun's Zenith into its owner's library.
 mana={X}{W}{W}{W}
