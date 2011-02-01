@@ -9,6 +9,8 @@
 #else
 #include "pspthreadman.h"
 
+#include "JLogger.h"
+
 namespace boost
 {
 
@@ -17,15 +19,24 @@ namespace boost
     public:
         struct scoped_lock
         {
-            scoped_lock(mutex& inMutex) :
-                mID(inMutex.mID)
+            scoped_lock(mutex& inMutex) : mID(inMutex.mID)
             {
-                sceKernelWaitSema(mID, 1, 0);
+                int result = sceKernelWaitSema(mID, 1, 0);
+                if (result < 0)
+                {
+                    LOG("Semaphore error on lock acquire, mutex id: ");
+                    LOG((char*)mID);
+                }
             }
 
             ~scoped_lock()
             {
-                sceKernelSignalSema(mID, 1);
+                int result = sceKernelSignalSema(mID, 1);
+                if (result < 0)
+                {
+                    LOG("Semaphore error on lock release, mutex id: ");
+                    LOG((char*)mID);
+                }
             }
 
             int mID;
