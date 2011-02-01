@@ -26,6 +26,7 @@ windows:INCLUDEPATH += extra
 unix:INCLUDEPATH += /usr/include/GL
 macx:INCLUDEPATH += /opt/include
 INCLUDEPATH += ../../JGE/include
+INCLUDEPATH += ../../Boost
 INCLUDEPATH += include
 OBJECTS_DIR = objs
 MOC_DIR = objs
