@@ -2503,7 +2503,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         Targetable * t = NULL;
         if (spell)
             t = spell->getNextTarget();
-        MTGAbility * a = NEW AManaProducer(id, card, t, output, NULL, 1, who);
+        MTGAbility * a = NEW AManaProducer(id, card, t, output, NULL, doTap, who);
         a->oneShot = 1;
         return a;
     }
@@ -3947,15 +3947,25 @@ int ActivatedAbility::reactToTargetClick(Targetable * object)
         abilityCost = previousManaPool->Diff(player->getManaPool());
         delete previousManaPool;
     }
+    if(dynamic_cast<AManaProducer *> (this))
+    {
+    AManaProducer * amp = dynamic_cast<AManaProducer *> (this);
+    needsTapping = amp->tap;
+    }
     if (needsTapping && source->isInPlay())
     {
+        if (dynamic_cast<AManaProducer *> (this))
+        {
+            GameObserver *g = GameObserver::GetInstance();
+            WEvent * e = NEW WEventCardTappedForMana(source, 0, 1);
+            g->receiveEvent(e);
+        }
+        source->tap();
+    }
     if (dynamic_cast<AManaProducer *> (this))
     {
-        GameObserver *g = GameObserver::GetInstance();
-        WEvent * e = NEW WEventCardTappedForMana(source, 0, 1);
-        g->receiveEvent(e);
-    }
-    source->tap();
+        this->resolve();
+        return 1;
     }
     fireAbility();
     return 1;

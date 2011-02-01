@@ -409,7 +409,7 @@ class AManaProducer: public ActivatedAbilityTP{
  public:
    ManaCost * output;
    int tap;
-   AManaProducer(int id, MTGCardInstance * card, Targetable * t, ManaCost * _output, ManaCost * _cost = NULL, int doTap = 1, int who = TargetChooser::UNSET );
+   AManaProducer(int id, MTGCardInstance * card, Targetable * t, ManaCost * _output, ManaCost * _cost = NULL, int doTap = 0, int who = TargetChooser::UNSET );
    int isReactingToClick(MTGCardInstance *  _card, ManaCost * mana = NULL);
   int resolve();
   int reactToClick(MTGCardInstance *  _card);
