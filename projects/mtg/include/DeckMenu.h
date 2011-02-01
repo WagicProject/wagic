@@ -77,7 +77,8 @@ public:
     void Close();
     void updateScroller();
     void RenderBackground();
-
+    void RenderDeckManaColors();
+    
     static void destroy();
 };
 

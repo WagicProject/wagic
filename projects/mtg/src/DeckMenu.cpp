@@ -99,6 +99,37 @@ JGuiController(id, listener), fontId(fontId), mShowDetailsScreen( showDetailsOve
     updateScroller();
 }
 
+void DeckMenu::RenderDeckManaColors()
+{
+    JRenderer *renderer = JRenderer::GetInstance();
+    
+    // display the deck mana colors if known
+    // We only want to display the mana symbols on the game screens and not the Deck Editor screens.  
+    // Need a better way to determine where/when to display the mana symbols.  Perhaps make it a property setting.
+    bool displayDeckMana = backgroundName.find("DeckMenuBackdrop") != string::npos;
+    // current set of coordinates puts the mana symbols to the right of the last stat info in the upper right
+    // box of the deck selection screen.
+    float manaIconX = 398;
+    float manaIconY = 55;
+    if (mSelectedDeck &&displayDeckMana)
+    {
+        string deckManaColors = mSelectedDeck->getColorIndex();
+        if ( deckManaColors.compare("") != 0  && ( deckManaColors.length() == 6 ))
+        {
+            for( int colorIdx = Constants::MTG_COLOR_GREEN; colorIdx < Constants::MTG_COLOR_LAND; ++colorIdx )
+            {               
+                if ( (deckManaColors.at(colorIdx) == '1') != 0)
+                {
+                    renderer->RenderQuad(manaIcons[colorIdx], manaIconX, manaIconY, 0, 0.5f, 0.5f);
+                    manaIconX += 15;
+                }
+            }
+        }
+        else if (deckManaColors.compare("") != 0 )
+            DebugTrace("Error with color index string for "<< mSelectedDeck->getName() << ". [" << deckManaColors << "].");
+    }
+}
+
 void DeckMenu::RenderBackground()
 {
     ostringstream bgFilename;
@@ -248,30 +279,7 @@ void DeckMenu::Render()
 
     mScroller->Render();
 	RenderBackground();
-    
-    // display the deck mana colors if known
-    // We only want to display the mana symbols on the game screens and not the Deck Editor screens.  
-    // Need a better way to determine when to display the mana symbols.  Perhaps make it a property setting.
-    bool displayDeckMana = backgroundName.find("DeckMenuBackdrop") != string::npos;
-    float manaIconX = 300;
-    float manaIconY = 75;
-    if (mSelectedDeck &&displayDeckMana)
-    {
-        string deckManaColors = mSelectedDeck->getColorIndex();
-        if ( deckManaColors.compare("") != 0  && ( deckManaColors.length() == 6 ))
-        {
-            for( int colorIdx = Constants::MTG_COLOR_ARTIFACT; colorIdx < Constants::MTG_COLOR_LAND; ++colorIdx )
-            {               
-                if ( (deckManaColors.at(colorIdx) == '1') != 0)
-                {
-                    renderer->RenderQuad(manaIcons[colorIdx], manaIconX, manaIconY, 0, 0.6f, 0.6f);
-                    manaIconX += 20;
-                }
-            }
-        }
-        else if (deckManaColors.compare("") != 0 )
-            DebugTrace("Error with color index string for "<< mSelectedDeck->getName() << ". [" << deckManaColors << "].");
-    }
+    RenderDeckManaColors();
     
     renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE);
 	stars->Render();
