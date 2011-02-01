@@ -104,7 +104,6 @@ void StyleManager::loadRules()
         }
     }
 
-    determineActive(NULL, NULL);
     return;
 }
 

@@ -548,6 +548,7 @@ void OptionTheme::confirmChange(bool confirmed)
     {
         setData();
         options.getStyleMan()->loadRules();
+        options.getStyleMan()->determineActive(NULL, NULL);
         if (ts)
             ts->Reload();
 

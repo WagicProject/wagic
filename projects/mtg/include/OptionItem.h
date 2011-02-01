@@ -1,6 +1,9 @@
 #ifndef _OPTION_ITEM_H_
 #define _OPTION_ITEM_H_
-
+/**
+  @file OptionItem.h
+  Includes classes and functionality related to the options menu.
+*/
 #include <JGui.h>
 #include <vector>
 #include <string>
@@ -20,18 +23,32 @@ using std::string;
 #define PATH_MAX 4096
 #endif
 
+/**
+  @defgroup WGuiOptions Options Gui
+  @ingroup WGui
+  @{
+*/
+
+/**
+  The base class for all option menu items.
+*/
 class OptionItem: public WGuiItem
 {
 public:
     OptionItem(int _id, string _displayValue);
     virtual ~OptionItem() {};
 
-    //Accessors
+    /**
+      Returns the index into ::options used to store and retrieve this option.
+    */    
     virtual int getId()
     {
         return id;
     }
 
+    /**
+      Changes the index into ::options used to store and retrieve this option.
+    */
     virtual void setId(int _id)
     {
         id = _id;
@@ -41,13 +58,18 @@ protected:
     int id;
 };
 
+/**
+  A numeric option item. Can be decorated with WDecoEnum to provide a string representation of the numeric values.
+*/
 class OptionInteger: public OptionItem
 {
 public:
-    int value; //Current value.
-    int defValue; //Default value.
-    string strDefault; //What to call the default value.
-    int maxValue, increment, minValue;
+    int value; ///< Current value the option is displaying.
+    int defValue; ///< Default value for the option.
+    string strDefault; ///< What to call the default value in the menu.
+    int maxValue; ///< Maximum value of the option.
+    int minValue; ///< Minimum value of the option.
+    int increment; ///< Amount to increment the option by when clicked.
 
     OptionInteger(int _id, string _displayValue, int _maxValue = 1, int _increment = 1, int _defV = 0, string _sDef = "", int _minValue = 0);
 
@@ -73,11 +95,14 @@ public:
 
 };
 
+/**
+  An option represented as one of a set of strings. 
+*/
 class OptionSelect: public OptionItem
 {
 public:
-    size_t value;
-    vector<string> selections;
+    size_t value; ///< Currently selected option, an index into selections.
+    vector<string> selections; ///< Vector containing all possible values.
 
     virtual void addSelection(string s);
     OptionSelect(int _id, string _displayValue) :
@@ -109,9 +134,12 @@ public:
     }
     ;
 protected:
-    size_t prior_value;
+    size_t prior_value; ///< The prior selected value, in case a change is cancelled.
 };
 
+/**
+  An option representing possible languages. Automatically loads the list of possibilities from the lang/ folder.
+*/
 class OptionLanguage: public OptionSelect
 {
 public:
@@ -130,9 +158,12 @@ public:
     virtual bool Selectable();
     virtual void setData();
 protected:
-    vector<string> actual_data;
+    vector<string> actual_data; ///< An array containing the actual value we set the option to, rather than the display value in selections.
 };
 
+/**
+  An option representing possible theme substyles. Automatically loads the list of possibilities from the current theme.
+*/
 class OptionThemeStyle: public OptionSelect
 {
 public:
@@ -142,20 +173,25 @@ public:
     OptionThemeStyle(string _displayValue);
 };
 
+/**
+  An option allowing the user to choose a directory, provided it contains a certain file.
+*/
 class OptionDirectory: public OptionSelect
 {
 public:
     virtual void Reload();
     OptionDirectory(string root, int id, string displayValue, const string type);
 protected:
-    const string root;
-    const string type;
+    const string root; ///< The root directory to search for subdirectories.
+    const string type; ///< The file to check for in a useable subdirectory.
 };
-
+/**
+  An option allowing the player to choose a theme directory. Requires that the theme directory contains a preview.png.
+*/
 class OptionTheme: public OptionDirectory
 {
 private:
-    static const string DIRTESTER;
+    static const string DIRTESTER; ///< A particular file to look for when building the list of possible directories.
 public:
     OptionTheme(OptionThemeStyle * style = NULL);
     JQuadPtr getImage();
@@ -166,15 +202,18 @@ public:
     virtual bool Visible();
 
 protected:
-    OptionThemeStyle * ts;
-    string author;
-    bool bChecked;
+    OptionThemeStyle * ts; ///< The current theme style.
+    string author;  ///< The theme author
+    bool bChecked;  ///< Whether or not the theme has been checked for metadata
 };
 
+/**
+  An option allowing the player to choose a profile directory. Requires that the profile directory contains a collection.dat.
+*/
 class OptionProfile: public OptionDirectory
 {
 private:
-    static const string DIRTESTER;
+    static const string DIRTESTER; ///< A particular file to look for when building the list of possible directories.
 public:
     OptionProfile(GameApp * _app, JGuiListener * jgl);
     virtual void addSelection(string s);
@@ -203,6 +242,9 @@ private:
     size_t initialValue;
 };
 
+/**
+  An option allowing the player to bind a key to a specific interaction.
+*/
 class OptionKey: public WGuiItem, public KeybGrabber
 {
 public:
@@ -223,4 +265,6 @@ protected:
     GameStateOptions* g;
     SimpleMenu* btnMenu;
 };
+
+/**@} This comment used by Doxyyen. */
 #endif

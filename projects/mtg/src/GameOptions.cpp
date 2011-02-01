@@ -490,8 +490,10 @@ GameSettings::GameSettings()
 
 WStyle * GameSettings::getStyle()
 {
-    if (!styleMan)
-        styleMan = new StyleManager();
+    if (!styleMan){
+          styleMan = new StyleManager();
+          styleMan->determineActive(NULL,NULL);
+    }
     return styleMan->get();
 }
 
