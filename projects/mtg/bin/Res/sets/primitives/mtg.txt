@@ -9091,7 +9091,7 @@ toughness=3
 [card]
 name=Captivating Vampire
 auto=lord(other vampire|myBattlefield) 1/1
-auto={T(vampire|myBattlefield)}{T(vampire|myBattlefield)}{T(vampire|myBattlefield)}{T(vampire|myBattlefield)}{T(vampire|myBattlefield)}:moveTo(opponentbattlefield) target(creature) && transforms(Vampire)
+auto={T(vampire|myBattlefield)}{T(vampire|myBattlefield)}{T(vampire|myBattlefield)}{T(vampire|myBattlefield)}{T(vampire|myBattlefield)}:moveTo(mybattlefield) target(creature) && transforms(Vampire) forever
 text=Other Vampire creatures you control get +1/+1. -- Tap five untapped Vampires you control: Gain control of target creature. It becomes a Vampire in addition to its other types. (This effect doesn't end at end of turn)
 mana={1}{B}{B}
 type=Creature
