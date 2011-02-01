@@ -28,7 +28,6 @@ Damageable(20)
 	poisonCount = 0;
 	damageCount = 0;
 	preventable = 0;
-	mAvatar = NULL;
 	mAvatarTex = NULL;
 	type_as_damageable = DAMAGEABLE_PLAYER;
 	playMode = MODE_HUMAN;
@@ -51,7 +50,6 @@ Player::~Player()
     SAFE_DELETE(manaPool);
     SAFE_DELETE(game);
     WResourceManager::Instance()->Release(mAvatarTex);
-    mAvatar = NULL;
     mAvatarTex = NULL;
 }
 
@@ -60,14 +58,11 @@ void Player::loadAvatar(string file)
     if (mAvatarTex)
     {
         WResourceManager::Instance()->Release(mAvatarTex);
-        mAvatar = NULL;
         mAvatarTex = NULL;
     }
     mAvatarTex = WResourceManager::Instance()->RetrieveTexture(file, RETRIEVE_LOCK, TEXTURE_SUB_AVATAR);
     if (mAvatarTex)
         mAvatar = WResourceManager::Instance()->RetrieveQuad(file, 0, 0, 35, 50, "playerAvatar", RETRIEVE_NORMAL, TEXTURE_SUB_AVATAR);
-    else
-        mAvatar = NULL;
 }
 
 const string Player::getDisplayName() const
@@ -92,7 +87,7 @@ int Player::getId()
     return -1;
 }
 
-JQuad * Player::getIcon()
+JQuadPtr Player::getIcon()
 {
     return mAvatar;
 }

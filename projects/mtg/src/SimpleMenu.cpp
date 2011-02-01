@@ -19,10 +19,10 @@ namespace
     const float kSpadeRightBottomOffset = 3;
 }
 
-JQuad* SimpleMenu::spadeR = NULL;
-JQuad* SimpleMenu::spadeL = NULL;
-JQuad* SimpleMenu::jewel = NULL;
-JQuad* SimpleMenu::side = NULL;
+JQuadPtr SimpleMenu::spadeR;
+JQuadPtr SimpleMenu::spadeL;
+JQuadPtr SimpleMenu::jewel;
+JQuadPtr SimpleMenu::side;
 JTexture* SimpleMenu::spadeRTex = NULL;
 JTexture* SimpleMenu::spadeLTex = NULL;
 JTexture* SimpleMenu::jewelTex = NULL;
@@ -52,15 +52,15 @@ SimpleMenu::SimpleMenu(int id, JGuiListener* listener, int fontId, float x, floa
     if (!spadeRTex) spadeRTex = WResourceManager::Instance()->RetrieveTexture("spade_ur.png", RETRIEVE_MANAGE);
     if (!jewelTex) jewelTex = renderer->CreateTexture(5, 5, TEX_TYPE_USE_VRAM);
     if (!sideTex) sideTex = WResourceManager::Instance()->RetrieveTexture("menuside.png", RETRIEVE_MANAGE);
-    if (NULL == spadeL) spadeL = WResourceManager::Instance()->RetrieveQuad("spade_ul.png", 0, 0,  0, 0, "spade_ul", RETRIEVE_MANAGE);
-    if (NULL == spadeR) spadeR = WResourceManager::Instance()->RetrieveQuad("spade_ur.png", 0, 0, 0, 0, "spade_ur", RETRIEVE_MANAGE);
-    if (NULL == jewel) jewel = NEW JQuad(jewelTex, 1, 1, 3, 3);
-    if (NULL == side) side = WResourceManager::Instance()->RetrieveQuad("menuside.png", 1, 1, 1, kPoleWidth, "menuside", RETRIEVE_MANAGE);
+    spadeL = WResourceManager::Instance()->RetrieveQuad("spade_ul.png", 0, 0, 0, 0, "spade_ul", RETRIEVE_MANAGE);
+    spadeR = WResourceManager::Instance()->RetrieveQuad("spade_ur.png", 0, 0, 0, 0, "spade_ur", RETRIEVE_MANAGE);
+    jewel.reset(NEW JQuad(jewelTex, 1, 1, 3, 3));
+    side = WResourceManager::Instance()->RetrieveQuad("menuside.png", 1, 1, 1, kPoleWidth, "menuside", RETRIEVE_MANAGE);
 
-    if (NULL == stars) stars = NEW hgeParticleSystem(WResourceManager::Instance()->RetrievePSI("stars.psi", WResourceManager::Instance()->GetQuad("stars")));
+    if (NULL == stars)
+        stars = NEW hgeParticleSystem(WResourceManager::Instance()->RetrievePSI("stars.psi", WResourceManager::Instance()->GetQuad("stars").get()));
 
     stars->FireAt(mX, mY);
-
 }
 
 SimpleMenu::~SimpleMenu()
@@ -83,14 +83,14 @@ void SimpleMenu::drawHorzPole(float x, float y, float width)
         rightXOffset = kSpadeRightBottomOffset;
     }
 
-    renderer->RenderQuad(side, x, y, 0, width);
+    renderer->RenderQuad(side.get(), x, y, 0, width);
     spadeR->SetHFlip(true);
     spadeL->SetHFlip(false);
-    renderer->RenderQuad(spadeR, x - leftXOffset, y - yOffset );
-    renderer->RenderQuad(spadeL, x + width - rightXOffset, y - yOffset);
+    renderer->RenderQuad(spadeR.get(), x - leftXOffset, y - yOffset );
+    renderer->RenderQuad(spadeL.get(), x + width - rightXOffset, y - yOffset);
 
-    renderer->RenderQuad(jewel, x, y - 1);
-    renderer->RenderQuad(jewel, x + width - 1, y - 1);
+    renderer->RenderQuad(jewel.get(), x, y - 1);
+    renderer->RenderQuad(jewel.get(), x + width - 1, y - 1);
 }
 
 void SimpleMenu::drawVertPole(float x, float y, float height)
@@ -110,14 +110,14 @@ void SimpleMenu::drawVertPole(float x, float y, float height)
         bottomYOffset = kSpadeRightBottomOffset;
     }
 
-    renderer->RenderQuad(side, x + kPoleWidth, y, M_PI / 2, height);
+    renderer->RenderQuad(side.get(), x + kPoleWidth, y, M_PI / 2, height);
     spadeR->SetHFlip(true);
     spadeL->SetHFlip(false);
-    renderer->RenderQuad(spadeR, x + kPoleWidth + xOffset, y - topYOffset, M_PI / 2);
-    renderer->RenderQuad(spadeL, x + kPoleWidth + xOffset, y + height - bottomYOffset, M_PI / 2);
+    renderer->RenderQuad(spadeR.get(), x + kPoleWidth + xOffset, y - topYOffset, M_PI / 2);
+    renderer->RenderQuad(spadeL.get(), x + kPoleWidth + xOffset, y + height - bottomYOffset, M_PI / 2);
 
-    renderer->RenderQuad(jewel, x - 1, y - 1);
-    renderer->RenderQuad(jewel, x - 1, y + height - 1);
+    renderer->RenderQuad(jewel.get(), x - 1, y - 1);
+    renderer->RenderQuad(jewel.get(), x - 1, y + height - 1);
 }
 
 void SimpleMenu::Render()
@@ -236,7 +236,7 @@ void SimpleMenu::Close()
 
 void SimpleMenu::destroy()
 {
-    SAFE_DELETE(SimpleMenu::jewel);
+    SimpleMenu::jewel.reset();
     SAFE_DELETE(SimpleMenu::stars);
     SAFE_DELETE(SimpleMenu::jewelTex);
 }

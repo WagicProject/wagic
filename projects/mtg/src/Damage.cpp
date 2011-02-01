@@ -193,21 +193,21 @@ void Damage::Render()
     sprintf(buffer, _("Deals %i damage to").c_str(), damage);
     mFont->DrawString(buffer, x + 20, y, JGETEXT_LEFT);
     JRenderer * renderer = JRenderer::GetInstance();
-    JQuad * quad = WResourceManager::Instance()->RetrieveCard(source, CACHE_THUMB);
-    if (quad)
+    JQuadPtr quad = WResourceManager::Instance()->RetrieveCard(source, CACHE_THUMB);
+    if (quad.get())
     {
         float scale = 30 / quad->mHeight;
-        renderer->RenderQuad(quad, x, y, 0, scale, scale);
+        renderer->RenderQuad(quad.get(), x, y, 0, scale, scale);
     }
     else
     {
         mFont->DrawString(_(source->getName()).c_str(), x, y - 15);
     }
     quad = target->getIcon();
-    if (quad)
+    if (quad.get())
     {
         float scale = 30 / quad->mHeight;
-        renderer->RenderQuad(quad, x + 150, y, 0, scale, scale);
+        renderer->RenderQuad(quad.get(), x + 150, y, 0, scale, scale);
     }
     else
     {

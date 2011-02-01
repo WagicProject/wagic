@@ -201,12 +201,12 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app)
     SAFE_DELETE(playerdata);
 }
 
-JQuad * Credits::GetUnlockedQuad(string textureName)
+JQuadPtr Credits::GetUnlockedQuad(string textureName)
 {
-    if (!textureName.size()) return NULL;
+    if (!textureName.size()) return JQuadPtr();
 
     JTexture * unlockedTex = WResourceManager::Instance()->RetrieveTexture(textureName);
-    if (!unlockedTex) return NULL;
+    if (!unlockedTex) return JQuadPtr();
 
     return WResourceManager::Instance()->RetrieveQuad(unlockedTextureName, 2, 2, unlockedTex->mWidth - 4, unlockedTex->mHeight - 4);
     
@@ -239,11 +239,11 @@ void Credits::Render()
             if (g->gameOver != p1)
             {
                 sprintf(buffer, _("Congratulations! You earn %i credits").c_str(), value);
-                JQuad * unlockedQuad = GetUnlockedQuad(unlockedTextureName);
+                JQuadPtr unlockedQuad = GetUnlockedQuad(unlockedTextureName);
                 if (unlockedQuad)
                 {
                     showMsg = 0;
-                    r->RenderQuad(unlockedQuad, 20, 20);
+                    r->RenderQuad(unlockedQuad.get(), 20, 20);
                 }
                 if (unlockedString.size())
                 {

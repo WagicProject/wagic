@@ -1,6 +1,6 @@
 /*
- A class for very simple menus structure
- */
+A class for very simple menus structure
+*/
 #ifndef _SIMPLEMENU_H_
 #define _SIMPLEMENU_H_
 
@@ -8,6 +8,8 @@
 #include <JGui.h>
 #include "WFont.h"
 #include "hge/hgeparticle.h"
+
+#include "WResource_Fwd.h"
 
 class SimpleMenu: public JGuiController
 {
@@ -21,7 +23,7 @@ private:
     float timeOpen;
     bool mClosed;
 
-    static JQuad *spadeR, *spadeL, *jewel, *side;
+    static JQuadPtr spadeR, spadeL, jewel, side;
     static JTexture *spadeRTex, *spadeLTex, *jewelTex, *sideTex;
     static WFont* titleFont;
     static hgeParticleSystem* stars;

@@ -25,7 +25,7 @@ public:
     };
 
     JTexture * mAvatarTex;
-    JQuad * mAvatar;
+    JQuadPtr mAvatar;
     int playMode;
     bool canPutLandsIntoPlay;
     int landsPlayerCanStillPlay;
@@ -88,7 +88,7 @@ public:
 
     Player * opponent();
     int getId();
-    JQuad * getIcon();
+    JQuadPtr getIcon();
 
     virtual int receiveEvent(WEvent * event)
     {

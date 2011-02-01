@@ -11,9 +11,9 @@ ManaIcon::ManaIcon(int color, float x, float y, float destx, float desty) :
     Pos(x, y, 0.5, 0.0, 255), f(-1), destx(destx), desty(desty), mode(ALIVE), color(color)
 {
     hgeParticleSystemInfo * psi = NULL;
-    JQuad * mq = WResourceManager::Instance()->GetQuad("stars");
+    JQuadPtr mq = WResourceManager::Instance()->GetQuad("stars");
 
-    if (!mq)
+    if (!mq.get())
     {
         particleSys = NULL;
         return;
@@ -22,22 +22,22 @@ ManaIcon::ManaIcon(int color, float x, float y, float destx, float desty) :
     switch (color)
     {
     case Constants::MTG_COLOR_RED:
-        psi = WResourceManager::Instance()->RetrievePSI("manared.psi", mq);
+        psi = WResourceManager::Instance()->RetrievePSI("manared.psi", mq.get());
         break;
     case Constants::MTG_COLOR_BLUE:
-        psi = WResourceManager::Instance()->RetrievePSI("manablue.psi", mq);
+        psi = WResourceManager::Instance()->RetrievePSI("manablue.psi", mq.get());
         break;
     case Constants::MTG_COLOR_GREEN:
-        psi = WResourceManager::Instance()->RetrievePSI("managreen.psi", mq);
+        psi = WResourceManager::Instance()->RetrievePSI("managreen.psi", mq.get());
         break;
     case Constants::MTG_COLOR_BLACK:
-        psi = WResourceManager::Instance()->RetrievePSI("manablack.psi", mq);
+        psi = WResourceManager::Instance()->RetrievePSI("manablack.psi", mq.get());
         break;
     case Constants::MTG_COLOR_WHITE:
-        psi = WResourceManager::Instance()->RetrievePSI("manawhite.psi", mq);
+        psi = WResourceManager::Instance()->RetrievePSI("manawhite.psi", mq.get());
         break;
     default:
-        psi = WResourceManager::Instance()->RetrievePSI("mana.psi", mq);
+        psi = WResourceManager::Instance()->RetrievePSI("mana.psi", mq.get());
     }
 
     if (!psi)
@@ -45,7 +45,7 @@ ManaIcon::ManaIcon(int color, float x, float y, float destx, float desty) :
         psi = NEW hgeParticleSystemInfo();
         if (!psi)
             return;
-        hgeParticleSystemInfo * defaults = WResourceManager::Instance()->RetrievePSI("mana.psi", mq);
+        hgeParticleSystemInfo * defaults = WResourceManager::Instance()->RetrievePSI("mana.psi", mq.get());
         if (defaults)
         {
             memcpy(psi, defaults, sizeof(hgeParticleSystemInfo));
@@ -66,7 +66,7 @@ ManaIcon::ManaIcon(int color, float x, float y, float destx, float desty) :
             psi->fSizeVar = 0.25396827f;
             psi->fSpinStart = -5.5555553f;
             psi->fAlphaVar = 0.77777779f;
-            psi->sprite = mq;
+            psi->sprite = mq.get();
         }
 
         switch (color)
@@ -150,7 +150,7 @@ void ManaIcon::Render()
     renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE);
     particleSys->Render();
     renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
-    renderer->RenderQuad(icon, actX, actY, actT, actZ + zoomP1 * sinf(M_PI * zoomP3), actZ + zoomP2 * cosf(M_PI * zoomP4));
+    renderer->RenderQuad(icon.get(), actX, actY, actT, actZ + zoomP1 * sinf(M_PI * zoomP3), actZ + zoomP2 * cosf(M_PI * zoomP4));
 }
 void ManaIcon::Update(float dt, float shift)
 {
@@ -269,7 +269,7 @@ void GuiMana::RenderStatic()
         if (values[i])
         {
             offset -= 20;
-            r->RenderQuad(manaIcons[i], xEnd + 15 + offset, y + 5, 0, 0.7f, 0.7f);
+            r->RenderQuad(manaIcons[i].get(), xEnd + 15 + offset, y + 5, 0, 0.7f, 0.7f);
         }
     }
     r->FillRoundRect(x0, y, static_cast<float> (20 * totalColors + 5), 8, 2, ARGB(100,0,0,0));

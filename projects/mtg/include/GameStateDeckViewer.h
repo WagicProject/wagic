@@ -81,8 +81,8 @@ enum DECK_VIEWER_MENU_ITEMS
 class GameStateDeckViewer: public GameState, public JGuiListener
 {
 private:
-    JQuad * mIcons[CARDS_DISPLAYED];
-    JQuad * pspIcons[8];
+    JQuadPtr mIcons[CARDS_DISPLAYED];
+    JQuadPtr pspIcons[8];
     JTexture * pspIconsTexture;
     float last_user_activity;
     float onScreenTransition;
@@ -92,7 +92,6 @@ private:
     int mStage;
     int useFilter;
     JMusic * bgMusic;
-    JQuad * backQuad;
     int lastPos;
     int lastTotal;
 

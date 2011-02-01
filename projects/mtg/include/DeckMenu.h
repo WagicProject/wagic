@@ -53,7 +53,7 @@ public:
     float mSelectionTargetY;
 
     //used for detailed info button
-    JQuad * pspIcons[8];
+    JQuadPtr pspIcons[8];
     JTexture * pspIconsTexture;
 
     DeckMenu(int id, JGuiListener* listener, int fontId, const string _title = "", const int& startIndex = 0, bool alwaysShowDetailsButton = false);

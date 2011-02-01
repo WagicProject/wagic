@@ -4,6 +4,7 @@
 #include <JGui.h>
 #include "GuiLayers.h"
 #include "ActionStack.h"
+#include "WResource_Fwd.h"
 
 class GuiLayer;
 class JGuiObject;
@@ -17,7 +18,8 @@ class GameObserver;
 #define DAMAGE_COMBAT 1
 #define DAMAGE_OTHER 2
 
-class Damageable:public Targetable {
+class Damageable:public Targetable
+{
 protected:
 public:
     int life;
@@ -33,10 +35,11 @@ public:
   virtual int afterDamage(){return 0;}
   virtual int poisoned(){return 0;}
   virtual int prevented(){return 0;}
-  virtual JQuad * getIcon(){return NULL;};
+  virtual JQuadPtr getIcon(){return JQuadPtr();}
 };
 
-class Damage: public Interruptible {
+class Damage: public Interruptible
+{
  protected:
   void init(MTGCardInstance * source, Damageable * target, int damage, int typeOfDamage);
  public:
@@ -50,8 +53,8 @@ class Damage: public Interruptible {
   virtual ostream& toString(ostream& out) const;
 };
 
-
-class DamageStack : public GuiLayer, public Interruptible{
+class DamageStack : public GuiLayer, public Interruptible
+{
  protected:
   int currentState;
   GameObserver* game;

@@ -36,7 +36,7 @@ GuiHand::GuiHand(MTGHand* hand) :
     GuiLayer(), hand(hand)
 {
     back = WResourceManager::Instance()->RetrieveTempQuad("handback.png");
-    if (back)
+    if (back.get())
         back->SetTextureRect(1, 0, 100, 250);
     else
         GameApp::systemError = "Error loading hand texture : " __FILE__;
@@ -68,7 +68,7 @@ GuiHandOpponent::GuiHandOpponent(MTGHand* hand) :
 
 void GuiHandOpponent::Render()
 {
-    JQuad * quad = WResourceManager::Instance()->GetQuad("back_thumb");
+    JQuadPtr quad = WResourceManager::Instance()->GetQuad("back_thumb");
 
     float x = 45;
     for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
@@ -76,7 +76,7 @@ void GuiHandOpponent::Render()
         (*it)->x = x;
         (*it)->y = 2;
         (*it)->zoom = 0.3f;
-        (*it)->Render(quad);
+        (*it)->Render(quad.get());
         x += 18;
     }
 }
@@ -207,16 +207,16 @@ void GuiHandSelf::Render()
         if (OptionHandDirection::HORIZONTAL == options[Options::HANDDIRECTION].number)
         {
             back->SetColor(ARGB(255,255,0,0));
-            JRenderer::GetInstance()->RenderQuad(back, backpos.actX, backpos.actY, backpos.actT, backpos.actZ, backpos.actZ);
+            JRenderer::GetInstance()->RenderQuad(back.get(), backpos.actX, backpos.actY, backpos.actT, backpos.actZ, backpos.actZ);
             back->SetColor(ARGB(255,255,255,255));
             mFont->DrawString("0", SCREEN_WIDTH - 10, backpos.actY);
         }
         else
-            backpos.Render(back);
+            backpos.Render(back.get());
         return;
     }
 
-    backpos.Render(back);
+    backpos.Render(back.get());
     if (OptionClosedHand::VISIBLE == options[Options::CLOSEDHAND].number || state == Open)
         for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
             (*it)->Render();

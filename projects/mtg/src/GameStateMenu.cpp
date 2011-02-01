@@ -73,8 +73,6 @@ GameStateMenu::GameStateMenu(GameApp* parent) :
     mGuiController = NULL;
     subMenuController = NULL;
     gameTypeMenu = NULL;
-    mSplash = NULL;
-    mBg = NULL;
     //bgMusic = NULL;
     timeIndex = 0;
     angleMultiplier = MIN_ANGLE_MULTIPLIER;
@@ -129,8 +127,6 @@ void GameStateMenu::Create()
     scrollerSet = 0;
 
     splashTex = NULL;
-    mSplash = NULL;
-
 }
 
 void GameStateMenu::Destroy()
@@ -428,16 +424,16 @@ void GameStateMenu::ensureMGuiController()
         {
             WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MENU_FONT);
             mFont->SetColor(ARGB(255,255,255,255));
-            mGuiController->Add(NEW MenuItem(MENUITEM_PLAY, mFont, "Play", 80, 50 + SCREEN_HEIGHT / 2, mIcons[8], mIcons[9],
-                            "particle1.psi", WResourceManager::Instance()->GetQuad("particles"), true));
-            mGuiController->Add(NEW MenuItem(MENUITEM_DECKEDITOR, mFont, "Deck Editor", 160, 50 + SCREEN_HEIGHT / 2, mIcons[2],
-                            mIcons[3], "particle2.psi", WResourceManager::Instance()->GetQuad("particles")));
-            mGuiController->Add(NEW MenuItem(MENUITEM_SHOP, mFont, "Shop", 240, 50 + SCREEN_HEIGHT / 2, mIcons[0], mIcons[1],
-                            "particle3.psi", WResourceManager::Instance()->GetQuad("particles")));
-            mGuiController->Add(NEW MenuItem(MENUITEM_OPTIONS, mFont, "Options", 320, 50 + SCREEN_HEIGHT / 2, mIcons[6], mIcons[7],
-                            "particle4.psi", WResourceManager::Instance()->GetQuad("particles")));
-            mGuiController->Add(NEW MenuItem(MENUITEM_EXIT, mFont, "Exit", 400, 50 + SCREEN_HEIGHT / 2, mIcons[4], mIcons[5],
-                            "particle5.psi", WResourceManager::Instance()->GetQuad("particles")));
+            mGuiController->Add(NEW MenuItem(MENUITEM_PLAY, mFont, "Play", 80, 50 + SCREEN_HEIGHT / 2, mIcons[8].get(), mIcons[9].get(),
+                            "particle1.psi", WResourceManager::Instance()->GetQuad("particles").get(), true));
+            mGuiController->Add(NEW MenuItem(MENUITEM_DECKEDITOR, mFont, "Deck Editor", 160, 50 + SCREEN_HEIGHT / 2, mIcons[2].get(),
+                            mIcons[3].get(), "particle2.psi", WResourceManager::Instance()->GetQuad("particles").get()));
+            mGuiController->Add(NEW MenuItem(MENUITEM_SHOP, mFont, "Shop", 240, 50 + SCREEN_HEIGHT / 2, mIcons[0].get(), mIcons[1].get(),
+                            "particle3.psi", WResourceManager::Instance()->GetQuad("particles").get()));
+            mGuiController->Add(NEW MenuItem(MENUITEM_OPTIONS, mFont, "Options", 320, 50 + SCREEN_HEIGHT / 2, mIcons[6].get(), mIcons[7].get(),
+                            "particle4.psi", WResourceManager::Instance()->GetQuad("particles").get()));
+            mGuiController->Add(NEW MenuItem(MENUITEM_EXIT, mFont, "Exit", 400, 50 + SCREEN_HEIGHT / 2, mIcons[4].get(), mIcons[5].get(),
+                            "particle5.psi", WResourceManager::Instance()->GetQuad("particles").get()));
         }
     }
 }
@@ -499,7 +495,6 @@ void GameStateMenu::Update(float dt)
             //Release splash texture
             WResourceManager::Instance()->Release(splashTex);
             splashTex = NULL;
-            mSplash = NULL;
 
             //check for deleted collection / first-timer
             wagic::ifstream file(options.profileFile(PLAYER_COLLECTION).c_str());
@@ -644,26 +639,17 @@ void GameStateMenu::Render()
     }
     else if ((currentState & MENU_STATE_MAJOR) == MENU_STATE_MAJOR_LOADING_CARDS)
     {
-        if (!splashTex)
+        string wp = loadRandomWallpaper();
+        if (wp.size())
         {
-            splashTex = WResourceManager::Instance()->RetrieveTexture("splash.jpg", RETRIEVE_LOCK);
-            mSplash = WResourceManager::Instance()->RetrieveTempQuad("splash.jpg");
-        }
-        if (mSplash)
-            renderer->RenderQuad(mSplash, 0, 0);
-        else
-        {
-            string wp = loadRandomWallpaper();
-            if (wp.size())
+            JTexture * wpTex = WResourceManager::Instance()->RetrieveTexture(wp);
+            if (wpTex)
             {
-                JTexture * wpTex = WResourceManager::Instance()->RetrieveTexture(wp);
-                if (wpTex)
-                {
-                    JQuad * wpQuad = WResourceManager::Instance()->RetrieveTempQuad(wp);
-                    renderer->RenderQuad(wpQuad, 0, 0, 0, SCREEN_WIDTH_F / wpQuad->mWidth, SCREEN_HEIGHT_F / wpQuad->mHeight);
-                }
+                JQuadPtr wpQuad = WResourceManager::Instance()->RetrieveTempQuad(wp);
+                renderer->RenderQuad(wpQuad.get(), 0, 0, 0, SCREEN_WIDTH_F / wpQuad->mWidth, SCREEN_HEIGHT_F / wpQuad->mHeight);
             }
         }
+
         char text[512];
         if (mCurrentSetName[0])
         {
@@ -702,11 +688,11 @@ void GameStateMenu::Render()
         renderer->FillRoundRect(SCREEN_WIDTH / 2 - 100, SCREEN_HEIGHT, 191, 6, 5, ARGB(100,10,5,0));
         scroller->Render();
 
-        if (mBg)
-            renderer->RenderQuad(mBg, SCREEN_WIDTH / 2, 50);
+        if (mBg.get())
+            renderer->RenderQuad(mBg.get(), SCREEN_WIDTH / 2, 50);
 
-        JQuad * jq = WResourceManager::Instance()->RetrieveTempQuad("button_shoulder.png");
-        if (jq)
+        JQuadPtr jq = WResourceManager::Instance()->RetrieveTempQuad("button_shoulder.png");
+        if (jq.get())
         {
             int alp = 255;
             if (options.newAward())
@@ -719,7 +705,7 @@ void GameStateMenu::Render()
             ;
             mFont->SetScale(1.0f);
             mFont->SetScale(50.0f / mFont->GetStringWidth(s.c_str()));
-            renderer->RenderQuad(jq, SCREEN_WIDTH - 64, 2);
+            renderer->RenderQuad(jq.get(), SCREEN_WIDTH - 64, 2);
             mFont->DrawString(s, SCREEN_WIDTH - 10, 9, JGETEXT_RIGHT);
             mFont = WResourceManager::Instance()->GetWFont(Fonts::MENU_FONT);
             mFont->SetScale(olds);

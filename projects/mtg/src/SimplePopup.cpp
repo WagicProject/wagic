@@ -128,11 +128,11 @@ void SimplePopup::drawCorner(string imageName, bool flipX, bool flipY, float x, 
 {
 	LOG(" Drawing a Corner! ");
     JRenderer* r = JRenderer::GetInstance();
-    JQuad *horizontalBarImage = WResourceManager::Instance()->RetrieveTempQuad( imageName, TEXTURE_SUB_5551);
+    JQuadPtr horizontalBarImage = WResourceManager::Instance()->RetrieveTempQuad( imageName, TEXTURE_SUB_5551);
 	horizontalBarImage->SetHFlip(flipX);
 	horizontalBarImage->SetVFlip(flipY);
 
-	r->RenderQuad( horizontalBarImage, x, y);
+	r->RenderQuad(horizontalBarImage.get(), x, y);
 	LOG(" Done Drawing a Corner! ");
 }
 
@@ -140,13 +140,13 @@ void SimplePopup::drawHorzPole(string imageName, bool flipX = false, bool flipY 
 {
 	LOG(" Drawing a horizontal border! ");
     JRenderer* r = JRenderer::GetInstance();
-    JQuad *horizontalBarImage = WResourceManager::Instance()->RetrieveTempQuad( imageName, TEXTURE_SUB_5551);
+    JQuadPtr horizontalBarImage = WResourceManager::Instance()->RetrieveTempQuad( imageName, TEXTURE_SUB_5551);
 	if ( horizontalBarImage != NULL )
 	{
 	horizontalBarImage->SetHFlip(flipX);
 	horizontalBarImage->SetVFlip(flipY);
 
-	r->RenderQuad( horizontalBarImage, x, y, 0, width );
+	r->RenderQuad(horizontalBarImage.get(), x, y, 0, width);
 	}
 	else
 	{
@@ -159,13 +159,13 @@ void SimplePopup::drawVertPole(string imageName, bool flipX = false, bool flipY 
 {
 	LOG(" Drawing a Vertical border! ");
     JRenderer* r = JRenderer::GetInstance();
-    JQuad *verticalBarImage = WResourceManager::Instance()->RetrieveTempQuad( imageName, TEXTURE_SUB_5551);
+    JQuadPtr verticalBarImage = WResourceManager::Instance()->RetrieveTempQuad( imageName, TEXTURE_SUB_5551);
 	if ( verticalBarImage != NULL )
 	{
 		verticalBarImage->SetHFlip(flipX);
 		verticalBarImage->SetVFlip(flipY);
 
-		r->RenderQuad( verticalBarImage, x, y, 0, 1.0f, height);
+		r->RenderQuad(verticalBarImage.get(), x, y, 0, 1.0f, height);
 	}
 	else
 	{

@@ -16,17 +16,18 @@ GuiBackground::~GuiBackground()
 void GuiBackground::Render()
 {
     JRenderer* renderer = JRenderer::GetInstance();
-    JQuad * quad = NULL;
+    JQuadPtr quad;
     GameObserver * go = GameObserver::GetInstance();
     if (go && go->mRules && go->mRules->bg.size())
     {
         quad = WResourceManager::Instance()->RetrieveTempQuad(go->mRules->bg);
     }
-    if (!quad)
+    if (!quad.get())
     {
         quad = WResourceManager::Instance()->RetrieveTempQuad("backdrop.jpg");
     }
-    if (!quad)
-        return;
-    renderer->RenderQuad(quad, 0, 18);
+    if (quad.get())
+    {
+        renderer->RenderQuad(quad.get(), 0, 18);
+    }
 }

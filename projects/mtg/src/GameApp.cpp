@@ -35,7 +35,7 @@ JMusic * GameApp::music = NULL;
 string GameApp::currentMusicFile = "";
 string GameApp::systemError = "";
 
-JQuad* manaIcons[7] = { NULL, NULL, NULL, NULL, NULL, NULL, NULL };
+JQuadPtr manaIcons[7];
 
 GameState::GameState(GameApp* parent) :
     mParent(parent)
@@ -156,13 +156,13 @@ void GameApp::Create()
                     RETRIEVE_MANAGE);
 
     for (int i = sizeof(manaIcons) / sizeof(manaIcons[0]) - 1; i >= 0; --i)
-        if (manaIcons[i])
+        if (manaIcons[i].get())
             manaIcons[i]->SetHotSpot(16, 16);
 
     LOG("--Loading back.jpg");
     WResourceManager::Instance()->RetrieveTexture("back.jpg", RETRIEVE_MANAGE);
-    JQuad * jq = WResourceManager::Instance()->RetrieveQuad("back.jpg", 0, 0, 0, 0, "back", RETRIEVE_MANAGE);
-    if (jq)
+    JQuadPtr jq = WResourceManager::Instance()->RetrieveQuad("back.jpg", 0, 0, 0, 0, "back", RETRIEVE_MANAGE);
+    if (jq.get())
         jq->SetHotSpot(jq->mWidth / 2, jq->mHeight / 2);
 
     WResourceManager::Instance()->RetrieveTexture("back_thumb.jpg", RETRIEVE_MANAGE);

@@ -390,7 +390,7 @@ void GuiCombat::Render()
         if (activeAtk->card->has(Constants::TRAMPLE))
         {
             go->opponent()->mAvatar->SetHotSpot(18, 25);
-            enemy_avatar.Render(go->opponent()->mAvatar);
+            enemy_avatar.Render(go->opponent()->mAvatar.get());
             WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
             mFont->SetColor(ARGB(255, 255, 64, 0));
             {
@@ -402,9 +402,9 @@ void GuiCombat::Render()
     }
     if (ok_tex)
     {
-        JQuad *ok_quad = WResourceManager::Instance()->RetrieveTempQuad("Ok.png");
+        JQuadPtr ok_quad = WResourceManager::Instance()->RetrieveTempQuad("Ok.png");
         ok_quad->SetHotSpot(28, 22);
-        ok.Render(ok_quad);
+        ok.Render(ok_quad.get());
     }
     renderer->DrawLine(0, SCREEN_HEIGHT / 2 + 10, SCREEN_WIDTH, SCREEN_HEIGHT / 2 + 10, ARGB(255, 255, 64, 0));
     if (FIRST_STRIKE == step)

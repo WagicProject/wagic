@@ -137,9 +137,9 @@ void GameStateAwards::Render()
     JRenderer * r = JRenderer::GetInstance();
     r->ClearScreen(ARGB(0,0,0,0));
 
-    JQuad * mBg = WResourceManager::Instance()->RetrieveTempQuad("awardback.jpg", TEXTURE_SUB_5551);
-    if (mBg)
-        r->RenderQuad(mBg, 0, 0);
+    JQuadPtr background = WResourceManager::Instance()->RetrieveTempQuad("awardback.jpg", TEXTURE_SUB_5551);
+    if (background.get())
+        r->RenderQuad(background.get(), 0, 0);
 
     switch (mState)
     {

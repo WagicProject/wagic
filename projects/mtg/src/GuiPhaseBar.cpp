@@ -43,8 +43,8 @@ namespace
 GuiPhaseBar::GuiPhaseBar() :
     phase(NULL), angle(0.0f)
 {
-    JQuad * quad = NULL;
-    if ((quad = WResourceManager::Instance()->GetQuad("phasebar")) != NULL)
+    JQuadPtr quad = WResourceManager::Instance()->GetQuad("phasebar");
+    if (quad.get() != NULL)
     {
         quad->mHeight = kHeight;
         quad->mWidth = kWidth;
@@ -68,7 +68,7 @@ void GuiPhaseBar::Update(float dt)
 void GuiPhaseBar::Render()
 {
     GameObserver * g = GameObserver::GetInstance();
-    JQuad * quad = WResourceManager::Instance()->GetQuad("phasebar");
+    JQuadPtr quad = WResourceManager::Instance()->GetQuad("phasebar");
 
     JRenderer::GetInstance()->DrawLine(0, CENTER, SCREEN_WIDTH, CENTER, ARGB(255, 255, 255, 255));
 
@@ -79,7 +79,7 @@ void GuiPhaseBar::Render()
     for (int glyph = 3; glyph < 6; ++glyph)
     {
         scale = ICONSCALE * sinf(angle + glyph * M_PI / 6) / 2;
-        DrawGlyph(quad, glyph, yPos, angle, p, scale);
+        DrawGlyph(quad.get(), glyph, yPos, angle, p, scale);
         yPos += kWidth * scale;
     }
 
@@ -88,7 +88,7 @@ void GuiPhaseBar::Render()
     {
         scale = ICONSCALE * sinf(angle + glyph * M_PI / 6) / 2;
         yPos -= kWidth * scale;
-        DrawGlyph(quad, glyph, yPos, angle, p, scale);
+        DrawGlyph(quad.get(), glyph, yPos, angle, p, scale);
     }
 
     if (angle > 0)
@@ -97,7 +97,7 @@ void GuiPhaseBar::Render()
         yPos -= kWidth * scale;
         float xPos = static_cast<float> (p % (kPhases * (int) (kWidth + 1)));
         quad->SetTextureRect(xPos, kHeight, kWidth, kHeight);
-        JRenderer::GetInstance()->RenderQuad(quad, 0, yPos, 0.0, scale, scale);
+        JRenderer::GetInstance()->RenderQuad(quad.get(), 0, yPos, 0.0, scale, scale);
     }
 
     //print phase name

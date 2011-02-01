@@ -172,13 +172,6 @@ WResourceManager::WResourceManager()
 #ifdef DEBUG_CACHE
     menuCached = 0;
 #endif
-    mTextureList.clear();
-    mTextureList.reserve(0);
-    mTextureMap.clear();
-
-    mQuadList.clear();
-    mQuadList.reserve(0);
-    mQuadMap.clear();
 
     psiWCache.Resize(PSI_CACHE_SIZE, 20);
     sampleWCache.Resize(SAMPLES_CACHE_SIZE, MAX_CACHED_SAMPLES);
@@ -192,16 +185,15 @@ WResourceManager::WResourceManager()
 WResourceManager::~WResourceManager()
 {
     LOG("==Destroying WResourceManager==");
-    RemoveAll();
     RemoveWFonts();
 
     LOG("==Successfully Destroyed WResourceManager==");
 }
 
-JQuad * WResourceManager::RetrieveCard(MTGCard * card, int style, int submode)
+JQuadPtr WResourceManager::RetrieveCard(MTGCard * card, int style, int submode)
 {
     //Cards are never, ever resource managed, so just check cache.
-    if (!card || options[Options::DISABLECARDS].number) return NULL;
+    if (!card || options[Options::DISABLECARDS].number) return JQuadPtr();
 
     submode = submode | TEXTURE_SUB_CARD;
 
@@ -224,14 +216,14 @@ JQuad * WResourceManager::RetrieveCard(MTGCard * card, int style, int submode)
     // In that case, we "unmiss" it after trying the [id].jpg, in order to give a chance to the [name.jpg]
     bool canUnmiss = false;
     {
-        JQuad * tempQuad = RetrieveQuad(filename1, 0, 0, 0, 0, "", RETRIEVE_EXISTING, submode | TEXTURE_SUB_5551, id);
+        JQuadPtr tempQuad = RetrieveQuad(filename1, 0, 0, 0, 0, "", RETRIEVE_EXISTING, submode | TEXTURE_SUB_5551, id);
         lastError = textureWCache.mError;
         if (!tempQuad && lastError != CACHE_ERROR_404)
         {
             canUnmiss = true;
         }
     }
-    JQuad * jq = RetrieveQuad(filename1, 0, 0, 0, 0, "", style, submode | TEXTURE_SUB_5551, id);
+    JQuadPtr jq = RetrieveQuad(filename1, 0, 0, 0, 0, "", style, submode | TEXTURE_SUB_5551, id);
     if (!jq)
     {
         if (canUnmiss)
@@ -258,7 +250,7 @@ JQuad * WResourceManager::RetrieveCard(MTGCard * card, int style, int submode)
         return jq;
     }
 
-    return NULL;
+    return JQuadPtr();
 }
 
 int WResourceManager::AddQuadToManaged(const WManagedQuad& inQuad)
@@ -288,11 +280,11 @@ int WResourceManager::CreateQuad(const string &quadName, const string &textureNa
 
     if (jtex)
     {
-        WTrackedQuad * tq = jtex->GetTrackedQuad(x, y, width, height, quadName);
+        JQuadPtr quad = jtex->GetQuad(x, y, width, height, quadName);
 
-        if (tq)
+        if (quad.get())
         {
-            tq->deadbolt();
+            jtex->deadbolt();
 
             WManagedQuad mq;
             mq.resname = quadName;
@@ -305,10 +297,9 @@ int WResourceManager::CreateQuad(const string &quadName, const string &textureNa
     return id;
 }
 
-JQuad* WResourceManager::GetQuad(const string &quadName)
+JQuadPtr WResourceManager::GetQuad(const string &quadName)
 {
-
-    JQuad* result = NULL;
+    JQuadPtr result;
     ManagedQuadMap::const_iterator found = mManagedQuads.find(quadName);
     if (found != mManagedQuads.end())
     {
@@ -318,16 +309,15 @@ JQuad* WResourceManager::GetQuad(const string &quadName)
     return result;
 }
 
-JQuad * WResourceManager::GetQuad(int id)
+JQuadPtr WResourceManager::GetQuad(int id)
 {
-
-    JQuad* result = NULL;
+    JQuadPtr result;
     if (id < 0 || id >= (int) mManagedQuads.size()) return result;
 
     IDLookupMap::const_iterator key = mIDLookupMap.find(id);
     if (key != mIDLookupMap.end())
     {
-        WCachedTexture * jtex = mManagedQuads[key->second].texture;
+        WCachedTexture* jtex = mManagedQuads[key->second].texture;
         if (jtex)
         {
             result = jtex->GetQuad(key->second);
@@ -337,21 +327,19 @@ JQuad * WResourceManager::GetQuad(int id)
     return result;
 }
 
-JQuad * WResourceManager::RetrieveTempQuad(const string& filename, int submode)
+JQuadPtr WResourceManager::RetrieveTempQuad(const string& filename, int submode)
 {
     return RetrieveQuad(filename, 0, 0, 0, 0, "temporary", RETRIEVE_NORMAL, submode);
 }
 
-JQuad * WResourceManager::RetrieveQuad(const string& filename, float offX, float offY, float width, float height, string resname,
+JQuadPtr WResourceManager::RetrieveQuad(const string& filename, float offX, float offY, float width, float height, string resname,
     int style, int submode, int id)
 {
-    JQuad * jq = NULL;
-
     //Lookup managed resources, but only with a real resname.
     if (resname.size() && (style == RETRIEVE_MANAGE || style == RETRIEVE_RESOURCE))
     {
-        jq = GetQuad(resname);
-        if (jq || style == RETRIEVE_RESOURCE) return jq;
+       JQuadPtr quad = GetQuad(resname);
+        if (quad.get() || style == RETRIEVE_RESOURCE) return quad;
     }
 
     //Aliases.
@@ -374,14 +362,15 @@ JQuad * WResourceManager::RetrieveQuad(const string& filename, float offX, float
     lastError = textureWCache.mError;
 
     //Somehow, jtex wasn't promoted.
-    if (style == RETRIEVE_MANAGE && jtex && !jtex->isPermanent()) return NULL;
+    if (style == RETRIEVE_MANAGE && jtex && !jtex->isPermanent()) return JQuadPtr();
 
     //Make this quad, overwriting any similarly resname'd quads.
     if (jtex)
     {
-        WTrackedQuad * tq = jtex->GetTrackedQuad(offX, offY, width, height, resname);
+        JQuadPtr quad = jtex->GetQuad(offX, offY, width, height, resname);
 
-        if (!tq) return NULL;
+        if (!quad.get())
+            return quad;
 
         if (style == RETRIEVE_MANAGE && resname != "")
         {
@@ -392,16 +381,16 @@ JQuad * WResourceManager::RetrieveQuad(const string& filename, float offX, float
         }
 
         if (style == RETRIEVE_LOCK)
-            tq->lock();
+            jtex->lock();
         else if (style == RETRIEVE_UNLOCK)
-            tq->unlock();
-        else if (style == RETRIEVE_MANAGE) tq->deadbolt();
+            jtex->unlock();
+        else if (style == RETRIEVE_MANAGE) jtex->deadbolt();
 
-        return tq->quad;
+        return quad;
     }
 
     //Texture doesn't exist, so no quad.
-    return NULL;
+    return JQuadPtr();
 }
 
 void WResourceManager::Release(JTexture * tex)
@@ -442,16 +431,7 @@ void WResourceManager::ClearUnlocked()
     sampleWCache.ClearUnlocked();
     psiWCache.ClearUnlocked();
 }
-bool WResourceManager::Cleanup()
-{
-    int check = 0;
 
-    if (textureWCache.Cleanup()) check++;
-    if (sampleWCache.Cleanup()) check++;
-    if (psiWCache.Cleanup()) check++;
-
-    return (check > 0);
-}
 void WResourceManager::Release(JSample * sample)
 {
     if (!sample) return;
@@ -985,74 +965,6 @@ void WResourceManager::Refresh()
     textureWCache.Refresh();
     psiWCache.Refresh();
 
-    map<string, WCachedTexture*>::iterator it;
-    vector<JQuad*>::iterator q;
-
-    //Now do some juggling so that managed resources also reload.
-    map<JTexture *, JTexture *> oldTextures;
-    map<JTexture *, string> newNames;
-    map<JTexture *, JTexture *>::iterator oldIt;
-    vector<JTexture*>::iterator jtex;
-    map<string, int>::iterator mapping;
-    JTexture * newtex;
-    JTexture * oldtex = NULL;
-
-    //Store old mappings.
-    for (mapping = mTextureMap.begin(); mapping != mTextureMap.end(); mapping++)
-    {
-        if (oldTextures[mTextureList[mapping->second]] == NULL)
-        {
-            newtex = JRenderer::GetInstance()->LoadTexture(graphicsFile(mapping->first).c_str(), 0, TEXTURE_FORMAT);
-            oldtex = mTextureList[mapping->second];
-            if (!newtex)
-                newNames[oldtex] = mapping->first;
-            else
-            {
-                newNames[newtex] = mapping->first;
-            }
-
-            oldTextures[oldtex] = newtex;
-        }
-    }
-
-    //Remap quads.
-    for (q = mQuadList.begin(); q != mQuadList.end(); q++)
-    {
-        newtex = oldTextures[(*q)->mTex];
-        if (newtex != NULL) (*q)->mTex = newtex;
-    }
-
-    //Rebuild mTextureList and mapping.
-    mTextureList.clear();
-    mTextureMap.clear();
-    int x = 0;
-    for (oldIt = oldTextures.begin(); oldIt != oldTextures.end(); oldIt++)
-    {
-
-        if (oldIt->second)
-            newtex = oldIt->second;
-        else
-            newtex = oldIt->first;
-
-        mTextureList.push_back(newtex);
-        mTextureMap[newNames[newtex]] = x;
-        x++;
-    }
-
-    //Rebuild mapping.
-    for (mapping = mTextureMap.begin(); mapping != mTextureMap.end(); mapping++)
-    {
-        if (oldTextures[mTextureList[mapping->second]] == NULL) continue;
-    }
-
-    //Delete unused textures.
-    for (oldIt = oldTextures.begin(); oldIt != oldTextures.end(); oldIt++)
-    {
-        if (!oldIt->second || !oldIt->first) continue;
-
-        SAFE_DELETE(oldtex);
-    }
-
     //Check for card images in theme.
     bThemedCards = false;
     if (!options[Options::ACTIVE_THEME].isDefault())
@@ -1199,7 +1111,7 @@ cacheItem* WCache<cacheItem, cacheActual>::Retrieve(int id, const string& filena
                 //Unlink the managed resource from the cache.
                 UnlinkCache(tc);
 
-                //Post it in managed WResourceManager::Instance()->
+                //Post it in managed resources.
                 managed[makeID(id, filename, submode)] = tc;
                 tc->deadbolt();
             }
@@ -1221,8 +1133,8 @@ cacheItem* WCache<cacheItem, cacheActual>::Retrieve(int id, const string& filena
     }
 
     //Record managed failure. Cache failure is recorded in Get().
-    if ((style == RETRIEVE_MANAGE || style == RETRIEVE_RESOURCE) && mError == CACHE_ERROR_404) managed[makeID(id, filename, submode)]
-    = NULL;
+    if ((style == RETRIEVE_MANAGE || style == RETRIEVE_RESOURCE) && mError == CACHE_ERROR_404)
+        managed[makeID(id, filename, submode)] = NULL;
 
     return NULL;
 }

@@ -57,28 +57,27 @@ void GuiAvatar::Render()
     float x0 = actX;
     float y0 = actY;
 
-    JQuad * quad = player->mAvatar;
-    if (quad)
+    if (player->mAvatar.get())
     {
         if (corner == BOTTOM_RIGHT)
         {
-            x0 -= quad->mWidth * actZ;
-            y0 -= quad->mHeight * actZ;
+            x0 -= player->mAvatar->mWidth * actZ;
+            y0 -= player->mAvatar->mHeight * actZ;
         }
         switch (corner)
         {
         case TOP_LEFT:
-            quad->SetHotSpot(0, 0);
+            player->mAvatar->SetHotSpot(0, 0);
             break;
         case BOTTOM_RIGHT:
-            quad->SetHotSpot(35, 50);
+            player->mAvatar->SetHotSpot(35, 50);
             break;
         }
-        quad->SetColor(ARGB((int)actA, 255, avatarRed, avatarRed));
-        r->RenderQuad(quad, actX, actY, actT, actZ, actZ);
+        player->mAvatar->SetColor(ARGB((int)actA, 255, avatarRed, avatarRed));
+        r->RenderQuad(player->mAvatar.get(), actX, actY, actT, actZ, actZ);
         if (mHasFocus)
         {
-            r->FillRect(x0, x0, quad->mWidth * actZ, quad->mHeight * actZ, ARGB(abs(128 - wave),255,255,255));
+            r->FillRect(x0, x0, player->mAvatar->mWidth * actZ, player->mAvatar->mHeight * actZ, ARGB(abs(128 - wave),255,255,255));
         }
     }
 
@@ -152,11 +151,11 @@ void GuiGameZone::toggleDisplay()
 void GuiGameZone::Render()
 {
     //Texture
-    JQuad * quad = WResourceManager::Instance()->GetQuad("back_thumb");
+    JQuadPtr quad = WResourceManager::Instance()->GetQuad("back_thumb");
     float scale = defaultHeight / quad->mHeight;
     quad->SetColor(ARGB((int)(actA),255,255,255));
 
-    JRenderer::GetInstance()->RenderQuad(quad, actX, actY, 0.0, scale * actZ, scale * actZ);
+    JRenderer::GetInstance()->RenderQuad(quad.get(), actX, actY, 0.0, scale * actZ, scale * actZ);
 
     float x0 = actX;
     if (x0 < SCREEN_WIDTH / 2)

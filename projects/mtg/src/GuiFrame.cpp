@@ -9,11 +9,9 @@ GuiFrame::GuiFrame()
         wood = WResourceManager::Instance()->RetrieveQuad("wood.png", 0, 0, SCREEN_WIDTH, 28);
     else
     {
-        wood = NULL;
         GameApp::systemError += "Can't load wood texture : " __FILE__ "\n";
     }
 
-    goldGlow = gold1 = gold2 = NULL;
     if (WResourceManager::Instance()->GetTexture("gold.png"))
     {
         gold1 = WResourceManager::Instance()->RetrieveQuad("gold.png", 0, 0, SCREEN_WIDTH, 6, "gold1");
@@ -41,23 +39,23 @@ void GuiFrame::Render()
     float sized = step / 4;
     if (sized > SCREEN_WIDTH)
         sized -= SCREEN_WIDTH;
-    renderer->RenderQuad(wood, 0, 0);
-    if (gold1)
+    renderer->RenderQuad(wood.get(), 0, 0);
+    if (gold1.get())
     {
-        renderer->RenderQuad(gold1, -sized, 16);
-        renderer->RenderQuad(gold1, -sized + 479, 16);
+        renderer->RenderQuad(gold1.get(), -sized, 16);
+        renderer->RenderQuad(gold1.get(), -sized + 479, 16);
 
-        if (goldGlow)
+        if (goldGlow.get())
         {
             goldGlow->SetColor(ARGB((100+(rand()%50)), 255, 255, 255));
-            renderer->RenderQuad(goldGlow, -sized, 9);
-            renderer->RenderQuad(goldGlow, -sized + 480, 9);
+            renderer->RenderQuad(goldGlow.get(), -sized, 9);
+            renderer->RenderQuad(goldGlow.get(), -sized + 480, 9);
         }
 
-        if (gold2)
+        if (gold2.get())
         {
-            renderer->RenderQuad(gold2, step / 2, 16);
-            renderer->RenderQuad(gold2, step / 2 - 479, 16);
+            renderer->RenderQuad(gold2.get(), step / 2, 16);
+            renderer->RenderQuad(gold2.get(), step / 2 - 479, 16);
         }
     }
 }

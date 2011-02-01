@@ -94,7 +94,7 @@ void GameStateDeckViewer::rebuildFilters()
 {
     if (!filterMenu) filterMenu = NEW WGuiFilters("Filter by...", NULL);
     if (source)
-    SAFE_DELETE(source);
+        SAFE_DELETE(source);
     source = NEW WSrcDeckViewer(myDeck, myCollection);
     filterMenu->setSrc(source);
     if (displayed_deck != myDeck) source->swapSrc();
@@ -184,7 +184,7 @@ void GameStateDeckViewer::buildEditorMenu()
     deckSummaryInformation << "All changes are final." << endl;
 
     if (menu)
-    SAFE_DELETE( menu );
+        SAFE_DELETE( menu );
     //Build menu.
     JRenderer::GetInstance()->FillRoundRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, 100, ARGB(0, 0, 0, 0) );
     menu = NEW DeckEditorMenu(MENU_DECK_BUILDER, this, Fonts::OPTION_FONT, "Deck Editor", myDeck, stw);
@@ -244,8 +244,6 @@ void GameStateDeckViewer::Start()
         pspIcons[i] = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float) i * 32, 0, 32, 32, buf);
         pspIcons[i]->SetHotSpot(16, 16);
     }
-
-    backQuad = WResourceManager::Instance()->GetQuad("back");
 
     //init welcome menu
     updateDecks();
@@ -449,7 +447,7 @@ void GameStateDeckViewer::Update(float dt)
             {
                 filterMenu = NEW WGuiFilters("Filter by...", NULL);
                 if (source)
-                SAFE_DELETE(source);
+                    SAFE_DELETE(source);
                 source = NEW WSrcDeckViewer(myDeck, myCollection);
                 filterMenu->setSrc(source);
                 if (displayed_deck != myDeck) source->swapSrc();
@@ -633,7 +631,7 @@ void GameStateDeckViewer::renderOnScreenBasicInfo()
     renderer->FillRoundRect(SCREEN_WIDTH - (w + 27), y + 5, w + 10, 15, 5, ARGB(128,0,0,0));
 
     mFont->DrawString(buffer, SCREEN_WIDTH - 22, y + 15, JGETEXT_RIGHT);
-    if (useFilter != 0) renderer->RenderQuad(mIcons[useFilter - 1], SCREEN_WIDTH - 10, y + 15, 0.0f, 0.5, 0.5);
+    if (useFilter != 0) renderer->RenderQuad(mIcons[useFilter - 1].get(), SCREEN_WIDTH - 10, y + 15, 0.0f, 0.5, 0.5);
 }
 
 //returns position of the current card (cusor) in the currently viewed color/filter
@@ -743,10 +741,10 @@ void GameStateDeckViewer::renderOnScreenMenu()
         //LEFT PSP CIRCLE render
         r->FillCircle(leftPspX, leftPspY, 40, ARGB(128,50,50,50));
 
-        r->RenderQuad(pspIcons[0], leftPspX, leftPspY - 20, 0, pspIconsSize, pspIconsSize);
-        r->RenderQuad(pspIcons[1], leftPspX, leftPspY + 20, 0, pspIconsSize, pspIconsSize);
-        r->RenderQuad(pspIcons[2], leftPspX - 20, leftPspY, 0, pspIconsSize, pspIconsSize);
-        r->RenderQuad(pspIcons[3], leftPspX + 20, leftPspY, 0, pspIconsSize, pspIconsSize);
+        r->RenderQuad(pspIcons[0].get(), leftPspX, leftPspY - 20, 0, pspIconsSize, pspIconsSize);
+        r->RenderQuad(pspIcons[1].get(), leftPspX, leftPspY + 20, 0, pspIconsSize, pspIconsSize);
+        r->RenderQuad(pspIcons[2].get(), leftPspX - 20, leftPspY, 0, pspIconsSize, pspIconsSize);
+        r->RenderQuad(pspIcons[3].get(), leftPspX + 20, leftPspY, 0, pspIconsSize, pspIconsSize);
 
         font->DrawString(_("Prev."), leftPspX - 35, leftPspY - 15);
         font->DrawString(_("Next"), leftPspX + 15, leftPspY - 15);
@@ -757,10 +755,10 @@ void GameStateDeckViewer::renderOnScreenMenu()
 
         //RIGHT PSP CIRCLE render
         r->FillCircle(rightPspX + (onScreenTransition * 204), rightPspY, 40, ARGB(128,50,50,50));
-        r->RenderQuad(pspIcons[4], rightPspX + 20, rightPspY, 0, pspIconsSize, pspIconsSize);
-        r->RenderQuad(pspIcons[5], rightPspX, rightPspY - 20, 0, pspIconsSize, pspIconsSize);
-        r->RenderQuad(pspIcons[6], rightPspX - 20, rightPspY, 0, pspIconsSize, pspIconsSize);
-        r->RenderQuad(pspIcons[7], rightPspX, rightPspY + 20, 0, pspIconsSize, pspIconsSize);
+        r->RenderQuad(pspIcons[4].get(), rightPspX + 20, rightPspY, 0, pspIconsSize, pspIconsSize);
+        r->RenderQuad(pspIcons[5].get(), rightPspX, rightPspY - 20, 0, pspIconsSize, pspIconsSize);
+        r->RenderQuad(pspIcons[6].get(), rightPspX - 20, rightPspY, 0, pspIconsSize, pspIconsSize);
+        r->RenderQuad(pspIcons[7].get(), rightPspX, rightPspY + 20, 0, pspIconsSize, pspIconsSize);
 
         font->DrawString(_("Toggle Images"), rightPspX - 35, rightPspY - 40);
 
@@ -789,8 +787,8 @@ void GameStateDeckViewer::renderOnScreenMenu()
             {
                 sprintf(buffer, "%i", value);
                 font->DrawString(buffer, SCREEN_WIDTH - 190 + rightTransition + nb_letters * 13, SCREEN_HEIGHT / 2 + 40);
-                r->RenderQuad(mIcons[j], SCREEN_WIDTH - 197 + rightTransition + nb_letters * 13, SCREEN_HEIGHT / 2 + 46, 0, 0.5,
-                        0.5);
+                r->RenderQuad(mIcons[j].get(), SCREEN_WIDTH - 197 + rightTransition + nb_letters * 13, SCREEN_HEIGHT / 2 + 46, 0, 0.5,
+                                0.5);
                 if (value > 9)
                 {
                     nb_letters += 3;
@@ -863,7 +861,7 @@ void GameStateDeckViewer::renderOnScreenMenu()
                 {
                     sprintf(buffer, "%i", value);
                     font->DrawString(buffer, 38 + nb_letters * 13 + leftTransition, posY + 5);
-                    r->RenderQuad(mIcons[j], 30 + nb_letters * 13 + leftTransition, posY + 11, 0, 0.5, 0.5);
+                    r->RenderQuad(mIcons[j].get(), 30 + nb_letters * 13 + leftTransition, posY + 11, 0, 0.5, 0.5);
                     if (value > 9)
                     {
                         nb_letters += 3;
@@ -976,7 +974,7 @@ void GameStateDeckViewer::renderOnScreenMenu()
             // Column titles
             for (int j = 0; j < Constants::MTG_NB_COLORS - 1; j++)
             {
-                r->RenderQuad(mIcons[j], 52 + j * 15 + leftTransition, posY - 10, 0, 0.5, 0.5);
+                r->RenderQuad(mIcons[j].get(), 52 + j * 15 + leftTransition, posY - 10, 0, 0.5, 0.5);
             }
 
             //font->DrawString(_("C"), 30 + leftTransition, posY-16);
@@ -1060,7 +1058,7 @@ void GameStateDeckViewer::renderOnScreenMenu()
                     posX = 72;
                     for (int j = 0; j < stw->countLandsPerColor[i] + stw->countBasicLandsPerColor[i]; j++)
                     {
-                        r->RenderQuad(mIcons[i], posX + leftTransition, posY + 6, 0, 0.5, 0.5);
+                        r->RenderQuad(mIcons[i].get(), posX + leftTransition, posY + 6, 0, 0.5, 0.5);
                         posX += ((j + 1) % 10 == 0) ? 17 : 13;
                         if ((((j + 1) % 30) == 0) && (j < stw->countLandsPerColor[i] + stw->countBasicLandsPerColor[i] - 1))
                         {
@@ -1122,7 +1120,7 @@ void GameStateDeckViewer::renderOnScreenMenu()
             // Column titles
             for (int j = 0; j < Constants::MTG_NB_COLORS - 1; j++)
             {
-                r->RenderQuad(mIcons[j], 67 + j * 15 + leftTransition, posY - 10, 0, 0.5, 0.5);
+                r->RenderQuad(mIcons[j].get(), 67 + j * 15 + leftTransition, posY - 10, 0, 0.5, 0.5);
             }
 
             font->DrawString(_("C"), 30 + leftTransition, posY - 16);
@@ -1234,7 +1232,7 @@ void GameStateDeckViewer::renderOnScreenMenu()
                     posX = 72;
                     for (int j = 0; j < stw->totalCostPerColor[i]; j++)
                     {
-                        r->RenderQuad(mIcons[i], posX + leftTransition, posY + 6, 0, 0.5, 0.5);
+                        r->RenderQuad(mIcons[i].get(), posX + leftTransition, posY + 6, 0, 0.5, 0.5);
                         posX += ((j + 1) % 10 == 0) ? 17 : 13;
                         if ((((j + 1) % 30) == 0) && (j < stw->totalCostPerColor[i] - 1))
                         {
@@ -1306,53 +1304,14 @@ void GameStateDeckViewer::renderCard(int id, float rotation)
     int alpha = (int) (255 * (scale + 1.0 - max_scale));
 
     if (!card) return;
-    JQuad * quad = NULL;
 
-    int cacheError = CACHE_ERROR_NONE;
+    int mode = !options[Options::DISABLECARDS].number ? DrawMode::kNormal : DrawMode::kText;
 
-    if (!options[Options::DISABLECARDS].number)
-    {
-        quad = WResourceManager::Instance()->RetrieveCard(card, RETRIEVE_EXISTING);
-        cacheError = WResourceManager::Instance()->RetrieveError();
-        if (!quad && cacheError != CACHE_ERROR_404)
-        {
-            if (last_user_activity > (abs(2 - id) + 1) * NO_USER_ACTIVITY_SHOWCARD_DELAY)
-                quad = WResourceManager::Instance()->RetrieveCard(card);
-            else
-            {
-                quad = backQuad;
-            }
-        }
-    }
+    Pos pos = Pos(x, y, scale * 285 / 250, 0.0, 255);
+    CardGui::DrawCard(card, pos, mode);
 
     int quadAlpha = alpha;
     if (!displayed_deck->count(card)) quadAlpha /= 2;
-    if (quad)
-    {
-        if (quad == backQuad)
-        {
-            quad->SetColor(ARGB(255,255,255,255));
-            float _scale = scale * (285 / quad->mHeight);
-            JRenderer::GetInstance()->RenderQuad(quad, x, y, 0.0f, _scale, _scale);
-        }
-        else
-        {
-            Pos pos = Pos(x, y, scale * 285 / 250, 0.0, 255);
-            CardGui::DrawCard(card, pos);
-        }
-    }
-    else
-    {
-        Pos pos = Pos(x, y, scale * 285 / 250, 0.0, 255);
-        CardGui::DrawCard(card, pos, DrawMode::kText);
-        if (!options[Options::DISABLECARDS].number) quad = WResourceManager::Instance()->RetrieveCard(card, CACHE_THUMB);
-        if (quad)
-        {
-            float _scale = 285 * scale / quad->mHeight;
-            quad->SetColor(ARGB(40,255,255,255));
-            JRenderer::GetInstance()->RenderQuad(quad, x, y, 0, _scale, _scale);
-        }
-    }
     quadAlpha = 255 - quadAlpha;
     if (quadAlpha > 0)
     {
@@ -1385,9 +1344,8 @@ void GameStateDeckViewer::Render()
 {
 
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
-    JRenderer * r = JRenderer::GetInstance();
 
-    r->ClearScreen(ARGB(0,0,0,0));
+    JRenderer::GetInstance()->ClearScreen(ARGB(0,0,0,0));
     if (displayed_deck == myDeck && mStage != STAGE_MENU) 
 		renderDeckBackground();
     int order[3] = { 1, 2, 3 };

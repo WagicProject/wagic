@@ -9,7 +9,7 @@
 
 class GuiHand;
 
-struct HandLimitor: public Limitor
+struct HandLimitor : public Limitor
 {
     GuiHand* hand;
     virtual bool select(Target*);
@@ -18,7 +18,7 @@ struct HandLimitor: public Limitor
     HandLimitor(GuiHand* hand);
 };
 
-class GuiHand: public GuiLayer
+class GuiHand : public GuiLayer
 {
 public:
     static const float ClosedRowX;
@@ -32,7 +32,7 @@ public:
 
 protected:
     const MTGHand* hand;
-    JQuad *back;
+    JQuadPtr back;
     vector<CardView*> cards;
 
 public:
@@ -44,7 +44,7 @@ public:
     friend struct HandLimitor;
 };
 
-class GuiHandOpponent: public GuiHand
+class GuiHandOpponent : public GuiHand
 {
 public:
     GuiHandOpponent(MTGHand* hand);
@@ -53,12 +53,13 @@ public:
     virtual int receiveEventMinus(WEvent* e);
 };
 
-class GuiHandSelf: public GuiHand
+class GuiHandSelf : public GuiHand
 {
 protected:
     typedef enum
     {
-        Open, Closed
+        Open,
+        Closed
     } HandState;
     HandState state;
     Pos backpos;
@@ -79,7 +80,6 @@ public:
     {
         return state;
     }
-    ;
 
     HandLimitor* limitor;
 };

@@ -193,7 +193,7 @@ StoryImage::StoryImage(string img, float mX, float mY) :
 }
 void StoryImage::Render()
 {
-    JQuad * quad = WResourceManager::Instance()->RetrieveTempQuad(img);
+    JQuadPtr quad = WResourceManager::Instance()->RetrieveTempQuad(img);
     if (quad)
     {
         float x = mX;
@@ -202,13 +202,13 @@ void StoryImage::Render()
             x = SCREEN_WIDTH / 2;
             quad->SetHotSpot(quad->mWidth / 2, 0);
         }
-        JRenderer::GetInstance()->RenderQuad(quad, x, mY);
+        JRenderer::GetInstance()->RenderQuad(quad.get(), x, mY);
     }
 }
 
 float StoryImage::getHeight()
 {
-    JQuad * quad = WResourceManager::Instance()->RetrieveQuad(img);
+    JQuadPtr quad = WResourceManager::Instance()->RetrieveQuad(img);
     if (quad)
     {
         return quad->mHeight;

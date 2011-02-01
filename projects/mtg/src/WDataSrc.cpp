@@ -35,7 +35,7 @@ bool WSyncable::prev()
 }
 
 //WSrcImage
-JQuad * WSrcImage::getImage(int offset)
+JQuadPtr WSrcImage::getImage(int offset)
 {
     return WResourceManager::Instance()->RetrieveTempQuad(filename);
 }
@@ -54,7 +54,7 @@ WSrcCards::WSrcCards(float delay)
     filtersRoot = NULL;
 }
 
-JQuad * WSrcCards::getImage(int offset)
+JQuadPtr WSrcCards::getImage(int offset)
 {
 #if defined WIN32 || defined LINUX //Loading delay only on PSP.
 #else
@@ -66,7 +66,7 @@ JQuad * WSrcCards::getImage(int offset)
     return WResourceManager::Instance()->RetrieveCard(getCard(offset));
 }
 
-JQuad * WSrcCards::getThumb(int offset)
+JQuadPtr WSrcCards::getThumb(int offset)
 {
     return WResourceManager::Instance()->RetrieveCard(getCard(offset), RETRIEVE_THUMB);
 }

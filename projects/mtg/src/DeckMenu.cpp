@@ -92,8 +92,8 @@ JGuiController(id, listener), fontId(fontId), mShowDetailsScreen( showDetailsOve
 
     mSelectionTargetY = selectionY = kVerticalMargin;
 
-    if (NULL == stars) 
-		stars = NEW hgeParticleSystem(WResourceManager::Instance()->RetrievePSI("stars.psi", WResourceManager::Instance()->GetQuad("stars")));
+    if (NULL == stars)
+		stars = NEW hgeParticleSystem(WResourceManager::Instance()->RetrievePSI("stars.psi", WResourceManager::Instance()->GetQuad("stars").get()));
     stars->FireAt(mX, mY);
 
     updateScroller();
@@ -101,8 +101,6 @@ JGuiController(id, listener), fontId(fontId), mShowDetailsScreen( showDetailsOve
 
 void DeckMenu::RenderDeckManaColors()
 {
-    JRenderer *renderer = JRenderer::GetInstance();
-    
     // display the deck mana colors if known
     // We only want to display the mana symbols on the game screens and not the Deck Editor screens.  
     // Need a better way to determine where/when to display the mana symbols.  Perhaps make it a property setting.
@@ -120,7 +118,7 @@ void DeckMenu::RenderDeckManaColors()
             {               
                 if ( (deckManaColors.at(colorIdx) == '1') != 0)
                 {
-                    renderer->RenderQuad(manaIcons[colorIdx], manaIconX, manaIconY, 0, 0.5f, 0.5f);
+                    JRenderer::GetInstance()->RenderQuad(manaIcons[colorIdx].get(), manaIconX, manaIconY, 0, 0.5f, 0.5f);
                     manaIconX += 15;
                 }
             }
@@ -138,9 +136,9 @@ void DeckMenu::RenderBackground()
     static bool loadBackground = true;
     if (loadBackground)
     {
-        JQuad *background = WResourceManager::Instance()->RetrieveTempQuad(bgFilename.str(), TEXTURE_SUB_5551);
-        if (background)
-            JRenderer::GetInstance()->RenderQuad(background, 0, 0);
+        JQuadPtr background = WResourceManager::Instance()->RetrieveTempQuad(bgFilename.str(), TEXTURE_SUB_5551);
+        if (background.get())
+            JRenderer::GetInstance()->RenderQuad(background.get(), 0, 0);
         else
             loadBackground = false;
     }
@@ -227,6 +225,7 @@ void DeckMenu::Render()
                 mSelectedDeck = currentMenuItem->meta;
 
                 WFont *mainFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
+
                 // display the "more info" button if special condition is met
                 if (showDetailsScreen())
                 {                    
@@ -236,7 +235,7 @@ void DeckMenu::Render()
                     float boxStartX = detailedInfoBoxX - stringWidth / 2;
                     DWORD currentColor = mainFont->GetColor();
                     renderer->FillRoundRect( boxStartX, detailedInfoBoxY - 5, stringWidth, mainFont->GetHeight() + 15, .5, ARGB( 255, 0, 0, 0) );
-                    renderer->RenderQuad(pspIcons[5], detailedInfoBoxX, detailedInfoBoxY + 2, 0, pspIconsSize, pspIconsSize);
+                    renderer->RenderQuad(pspIcons[5].get(), detailedInfoBoxX, detailedInfoBoxY + 2, 0, pspIconsSize, pspIconsSize);
                     mainFont->SetColor(currentColor);
                     mainFont->DrawString(detailedInfoString, boxStartX, detailedInfoBoxY + 10);
                 }
@@ -244,8 +243,9 @@ void DeckMenu::Render()
                 // display the avatar image
                 if (currentMenuItem->imageFilename.size() > 0)
                 {
-                    JQuad * quad = WResourceManager::Instance()->RetrieveTempQuad(currentMenuItem->imageFilename, TEXTURE_SUB_AVATAR);
-                    if (quad) renderer->RenderQuad(quad, avatarX, avatarY);
+                    JQuadPtr quad = WResourceManager::Instance()->RetrieveTempQuad(currentMenuItem->imageFilename, TEXTURE_SUB_AVATAR);
+                    if (quad.get())
+                        renderer->RenderQuad(quad.get(), avatarX, avatarY);
                 }
                 // fill in the description part of the screen
 				string text = wordWrap(currentMenuItem->desc, descWidth, mainFont->mFontID );

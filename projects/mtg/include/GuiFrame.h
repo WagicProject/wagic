@@ -3,11 +3,11 @@
 
 #include "GuiLayers.h"
 
-class GuiFrame: public GuiLayer
+class GuiFrame : public GuiLayer
 {
 protected:
-    JQuad* wood;
-    JQuad* gold1, *gold2, *goldGlow;
+    JQuadPtr wood;
+    JQuadPtr gold1, gold2, goldGlow;
     float step;
 
 public:

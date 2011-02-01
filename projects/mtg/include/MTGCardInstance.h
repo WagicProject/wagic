@@ -183,7 +183,7 @@ class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable {
   int isInPlay();
   JSample * getSample();
 
-  JQuad * getIcon();
+  JQuadPtr getIcon();
 
   ostream& toString(ostream&) const;
 

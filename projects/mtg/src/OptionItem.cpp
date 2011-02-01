@@ -203,11 +203,11 @@ void OptionProfile::Render()
     else
         sprintf(buf, "profiles/%s/avatar.jpg", selections[value].c_str());
     string filename = buf;
-    JQuad * mAvatar = WResourceManager::Instance()->RetrieveTempQuad(filename, TEXTURE_SUB_EXACT);
+    JQuadPtr avatar = WResourceManager::Instance()->RetrieveTempQuad(filename, TEXTURE_SUB_EXACT);
 
-    if (mAvatar)
+    if (avatar)
     {
-        renderer->RenderQuad(mAvatar, x, pY);
+        renderer->RenderQuad(avatar.get(), x, pY);
         pX += 40;
     }
 
@@ -460,7 +460,7 @@ OptionTheme::OptionTheme(OptionThemeStyle * style) :
     ts = style;
 }
 
-JQuad * OptionTheme::getImage()
+JQuadPtr OptionTheme::getImage()
 {
     char buf[512];
     string val = selections[value];
@@ -510,11 +510,11 @@ void OptionTheme::Render()
     }
     sprintf(buf, _("Theme: %s").c_str(), selections[value].c_str());
 
-    JQuad * q = getImage();
+    JQuadPtr q = getImage();
     if (q)
     {
         float scale = 128 / q->mHeight;
-        renderer->RenderQuad(q, x, y, 0, scale, scale);
+        renderer->RenderQuad(q.get(), x, y, 0, scale, scale);
     }
 
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);

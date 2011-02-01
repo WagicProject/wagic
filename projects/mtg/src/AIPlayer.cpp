@@ -1275,9 +1275,7 @@ AIPlayerBaka::AIPlayerBaka(MTGDeck * deck, string file, string fileSmall, string
 
     if (mAvatarTex)
         mAvatar = WResourceManager::Instance()->RetrieveQuad(avatarFile, 0, 0, 35, 50, "bakaAvatar", RETRIEVE_NORMAL,
-                TEXTURE_SUB_AVATAR);
-    else
-        mAvatar = NULL;
+        	TEXTURE_SUB_AVATAR);
 
     initTimer();
 }

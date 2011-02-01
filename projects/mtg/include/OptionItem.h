@@ -141,6 +141,7 @@ public:
     virtual void confirmChange(bool confirmed);
     OptionThemeStyle(string _displayValue);
 };
+
 class OptionDirectory: public OptionSelect
 {
 public:
@@ -157,7 +158,7 @@ private:
     static const string DIRTESTER;
 public:
     OptionTheme(OptionThemeStyle * style = NULL);
-    JQuad * getImage();
+    JQuadPtr getImage();
     virtual void updateValue();
     virtual float getHeight();
     virtual void Render();

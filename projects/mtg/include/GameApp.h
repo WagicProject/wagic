@@ -83,6 +83,6 @@ public:
 
 };
 
-extern JQuad* manaIcons[7];
+extern JQuadPtr manaIcons[7];
 
 #endif

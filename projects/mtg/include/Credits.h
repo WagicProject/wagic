@@ -31,7 +31,7 @@ private:
     int isRandomDeckUnlocked();
     int IsMoreAIDecksUnlocked(DeckStats * stats);
     string unlockedTextureName;
-    JQuad * GetUnlockedQuad(string texturename);
+    JQuadPtr GetUnlockedQuad(string texturename);
 public:
     int value;
     Player * p1, *p2;

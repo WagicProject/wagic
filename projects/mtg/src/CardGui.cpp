@@ -140,13 +140,14 @@ void CardGui::Render()
         tc = game->getCurrentTargetChooser();
 
     bool alternate = true;
-    JQuad * quad = WResourceManager::Instance()->RetrieveCard(card, CACHE_THUMB);
+    JQuadPtr quad = WResourceManager::Instance()->RetrieveCard(card, CACHE_THUMB);
 
 #if defined (WIN32) || defined (LINUX)
     //On pcs we render the big image if the thumbnail is not available
-    if (!quad) quad = WResourceManager::Instance()->RetrieveCard(card);
+    if (!quad.get())
+		quad = WResourceManager::Instance()->RetrieveCard(card);
 #endif
-    if (quad)
+    if (quad.get())
         alternate = false;
     else
         quad = AlternateThumbQuad(card);
@@ -154,24 +155,26 @@ void CardGui::Render()
     float cardScale = quad ? 40 / quad->mHeight : 1;
     float scale = actZ * cardScale;
 
-    JQuad* shadow = NULL;
+    JQuadPtr shadow;
     if (actZ > 1)
     {
         shadow = WResourceManager::Instance()->GetQuad("shadow");
         shadow->SetColor(ARGB(static_cast<unsigned char>(actA)/2,255,255,255));
-        renderer->RenderQuad(shadow, actX + (actZ - 1) * 15, actY + (actZ - 1) * 15, actT, 28 * actZ / 16, 40 * actZ / 16);
+        renderer->RenderQuad(shadow.get(), actX + (actZ - 1) * 15, actY + (actZ - 1) * 15, actT, 28 * actZ / 16, 40 * actZ / 16);
     }
-    JQuad* extracostshadow = NULL;
-    if(card->isExtraCostTarget )
+
+    JQuadPtr extracostshadow;
+    if (card->isExtraCostTarget)
     {
         extracostshadow = WResourceManager::Instance()->GetQuad("extracostshadow");
         extracostshadow->SetColor(ARGB(static_cast<unsigned char>(actA)/2,100,0,0));
-        renderer->RenderQuad(extracostshadow, actX + (actZ - 1) * 15, actY + (actZ - 1) * 15, actT, 28 * actZ / 16, 40 * actZ / 16);
+        renderer->RenderQuad(extracostshadow.get(), actX + (actZ - 1) * 15, actY + (actZ - 1) * 15, actT, 28 * actZ / 16, 40 * actZ / 16);
     }
+
     if (quad)
     {
         quad->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));
-        renderer->RenderQuad(quad, actX, actY, actT, scale, scale);
+        renderer->RenderQuad(quad.get(), actX, actY, actT, scale, scale);
     }
 
     if (alternate)
@@ -181,7 +184,7 @@ void CardGui::Render()
         mFont->DrawString(_(card->getName()), actX - actZ * Width / 2 + 1, actY - actZ * Height / 2 + 1);
         mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
 
-        JQuad * icon = NULL;
+        JQuadPtr icon;
         if (card->hasSubtype("plains"))
             icon = WResourceManager::Instance()->GetQuad("c_white");
         else if (card->hasSubtype("swamp"))
@@ -192,21 +195,21 @@ void CardGui::Render()
             icon = WResourceManager::Instance()->GetQuad("c_red");
         else if (card->hasSubtype("island"))
             icon = WResourceManager::Instance()->GetQuad("c_blue");
-    
-        if (icon)
+
+        if (icon.get())
         {
             icon->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));
-            renderer->RenderQuad(icon, actX, actY, 0);
+            renderer->RenderQuad(icon.get(), actX, actY, 0);
             icon->SetColor(ARGB(255,255,255,255)); //Putting color back as this quad is shared
         }
 
     }
-    JQuad * mor = NULL;
+    JQuadPtr mor;
     if(card->isMorphed && !alternate)
     {
         mor = WResourceManager::Instance()->GetQuad("morph");
         mor->SetColor(ARGB(255,255,255,255));
-        renderer->RenderQuad(mor, actX, actY, actT,scale, scale);
+        renderer->RenderQuad(mor.get(), actX, actY, actT,scale, scale);
     }
     
     //draws the numbers power/toughness
@@ -249,14 +252,15 @@ void CardGui::Render()
         if (!shadow)
             shadow = WResourceManager::Instance()->GetQuad("shadow");
         shadow->SetColor(ARGB(200,255,255,255));
-        renderer->RenderQuad(shadow, actX, actY, actT, (28 * actZ + 1) / 16, 40 * actZ / 16);
+        renderer->RenderQuad(shadow.get(), actX, actY, actT, (28 * actZ + 1) / 16, 40 * actZ / 16);
     }
+
     PlayGuiObject::Render();
 }
 
-JQuad * CardGui::AlternateThumbQuad(MTGCard * card)
+JQuadPtr CardGui::AlternateThumbQuad(MTGCard * card)
 {
-    JQuad * q;
+    JQuadPtr q;
 
     if (card->data->countColors() > 1)
     {
@@ -301,7 +305,7 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
 {
     // Draw the "unknown" card model
     JRenderer * renderer = JRenderer::GetInstance();
-    JQuad * q;
+    JQuadPtr q;
 
     float x = pos.actX;
 
@@ -339,13 +343,13 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
             break;
         }
     }
-    if (q && q->mTex)
+    if (q.get() && q->mTex)
     {
         q->SetHotSpot(static_cast<float> (q->mTex->mWidth / 2), static_cast<float> (q->mTex->mHeight / 2));
 
         float scale = pos.actZ * 250 / q->mHeight;
         q->SetColor(ARGB((int)pos.actA,255,255,255));
-        renderer->RenderQuad(q, x, pos.actY, pos.actT, scale, scale);
+        renderer->RenderQuad(q.get(), x, pos.actY, pos.actT, scale, scale);
     }
     // Write the title
     WFont * font = WResourceManager::Instance()->GetWFont(Fonts::MAGIC_FONT);
@@ -395,19 +399,19 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
 
             if (scale < 0)
             {
-                renderer->RenderQuad(manaIcons[h->color1], x + (-12 * j + 75 + 3 * SineHelperFunction((float) t)) * pos.actZ,
+                renderer->RenderQuad(manaIcons[h->color1].get(), x + (-12 * j + 75 + 3 * SineHelperFunction((float) t)) * pos.actZ,
                                 pos.actY + (yOffset + 3 * CosineHelperFunction((float) t)) * pos.actZ, 0, 0.4f + scale, 0.4f
                                                 + scale);
-                renderer->RenderQuad(manaIcons[h->color2], x + (-12 * j + 75 + 3 * SineHelperFunction((float) v)) * pos.actZ,
+                renderer->RenderQuad(manaIcons[h->color2].get(), x + (-12 * j + 75 + 3 * SineHelperFunction((float) v)) * pos.actZ,
                                 pos.actY + (yOffset + 3 * CosineHelperFunction((float) v)) * pos.actZ, 0, 0.4f - scale, 0.4f
                                                 - scale);
             }
             else
             {
-                renderer->RenderQuad(manaIcons[h->color2], x + (-12 * j + 75 + 3 * SineHelperFunction((float) v)) * pos.actZ,
+                renderer->RenderQuad(manaIcons[h->color2].get(), x + (-12 * j + 75 + 3 * SineHelperFunction((float) v)) * pos.actZ,
                                 pos.actY + (yOffset + 3 * CosineHelperFunction((float) v)) * pos.actZ, 0, 0.4f - scale, 0.4f
                                                 - scale);
-                renderer->RenderQuad(manaIcons[h->color1], x + (-12 * j + 75 + 3 * SineHelperFunction((float) t)) * pos.actZ,
+                renderer->RenderQuad(manaIcons[h->color1].get(), x + (-12 * j + 75 + 3 * SineHelperFunction((float) t)) * pos.actZ,
                                 pos.actY + (yOffset + 3 * CosineHelperFunction((float) t)) * pos.actZ, 0, 0.4f + scale, 0.4f
                                                 + scale);
             }
@@ -417,7 +421,7 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
         {
             for (int cost = manacost->getCost(i); cost > 0; --cost)
             {
-                renderer->RenderQuad(manaIcons[i], x + (-12 * j + 75) * pos.actZ, pos.actY + (yOffset) * pos.actZ, 0, 0.4f
+                renderer->RenderQuad(manaIcons[i].get(), x + (-12 * j + 75) * pos.actZ, pos.actY + (yOffset) * pos.actZ, 0, 0.4f
                                 * pos.actZ, 0.4f * pos.actZ);
                 ++j;
             }
@@ -427,7 +431,7 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
         {
             char buffer[10];
             sprintf(buffer, "%d", cost);
-            renderer->RenderQuad(manaIcons[0], x + (-12 * j + 75) * pos.actZ, pos.actY + (yOffset) * pos.actZ, 0, 0.4f * pos.actZ,
+            renderer->RenderQuad(manaIcons[0].get(), x + (-12 * j + 75) * pos.actZ, pos.actY + (yOffset) * pos.actZ, 0, 0.4f * pos.actZ,
                             0.4f * pos.actZ);
             float w = font->GetStringWidth(buffer);
             font->DrawString(buffer, x + (-12 * j + 76 - w / 2) * pos.actZ, pos.actY + (yOffset - 5) * pos.actZ);
@@ -438,7 +442,7 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
         {
             char buffer[10];
             sprintf(buffer, "X");
-            renderer->RenderQuad(manaIcons[0], x + (-12 * j + 75) * pos.actZ, pos.actY + (yOffset) * pos.actZ, 0, 0.4f * pos.actZ,
+            renderer->RenderQuad(manaIcons[0].get(), x + (-12 * j + 75) * pos.actZ, pos.actY + (yOffset) * pos.actZ, 0, 0.4f * pos.actZ,
                             0.4f * pos.actZ);
             float w = font->GetStringWidth(buffer);
             font->DrawString(buffer, x + (-12 * j + 76 - w / 2) * pos.actZ, pos.actY + (yOffset - 5) * pos.actZ);
@@ -522,12 +526,11 @@ font->SetScale(backup_scale);
 
 void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
 {
-
     if (!quad)
         return;
 
     JRenderer * renderer = JRenderer::GetInstance();
-    JQuad * q;
+    JQuadPtr q;
 
     float x = pos.actX;
     float displayScale = 250 / BigHeight;
@@ -566,14 +569,13 @@ void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
             break;
         }
     }
-
-    if (q && q->mTex)
+    if (q.get() && q->mTex)
     {
         q->SetHotSpot(static_cast<float> (q->mTex->mWidth / 2), static_cast<float> (q->mTex->mHeight / 2));
 
         float scale = pos.actZ * displayScale * BigHeight / q->mHeight;
         q->SetColor(ARGB((int)pos.actA,255,255,255));
-        renderer->RenderQuad(q, x, pos.actY, pos.actT, scale, scale);
+        renderer->RenderQuad(q.get(), x, pos.actY, pos.actT, scale, scale);
     }
 
     const std::vector<string> txt = card->data->formattedText();
@@ -638,21 +640,21 @@ void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
 
             if (scale < 0)
             {
-                renderer->RenderQuad(manaIcons[h->color1], x + (-12 * j + 75 + 3 * SineHelperFunction((float) t)) * pos.actZ,
-                                pos.actY + (yOffset + 3 * CosineHelperFunction((float) t)) * pos.actZ, 0, 0.4f + scale, 0.4f
-                                                + scale);
-                renderer->RenderQuad(manaIcons[h->color2], x + (-12 * j + 75 + 3 * SineHelperFunction((float) v)) * pos.actZ,
-                                pos.actY + (yOffset + 3 * CosineHelperFunction((float) v)) * pos.actZ, 0, 0.4f - scale, 0.4f
-                                                - scale);
+                renderer->RenderQuad(manaIcons[h->color1].get(), x + (-12 * j + 75 + 3 * SineHelperFunction((float) t)) * pos.actZ,
+                    pos.actY + (yOffset + 3 * CosineHelperFunction((float) t)) * pos.actZ, 0, 0.4f + scale, 0.4f
+                    + scale);
+                renderer->RenderQuad(manaIcons[h->color2].get(), x + (-12 * j + 75 + 3 * SineHelperFunction((float) v)) * pos.actZ,
+                    pos.actY + (yOffset + 3 * CosineHelperFunction((float) v)) * pos.actZ, 0, 0.4f - scale, 0.4f
+                    - scale);
             }
             else
             {
-                renderer->RenderQuad(manaIcons[h->color2], x + (-12 * j + 75 + 3 * SineHelperFunction((float) v)) * pos.actZ,
-                                pos.actY + (yOffset + 3 * CosineHelperFunction((float) v)) * pos.actZ, 0, 0.4f - scale, 0.4f
-                                                - scale);
-                renderer->RenderQuad(manaIcons[h->color1], x + (-12 * j + 75 + 3 * SineHelperFunction((float) t)) * pos.actZ,
-                                pos.actY + (yOffset + 3 * CosineHelperFunction((float) t)) * pos.actZ, 0, 0.4f + scale, 0.4f
-                                                + scale);
+                renderer->RenderQuad(manaIcons[h->color2].get(), x + (-12 * j + 75 + 3 * SineHelperFunction((float) v)) * pos.actZ,
+                    pos.actY + (yOffset + 3 * CosineHelperFunction((float) v)) * pos.actZ, 0, 0.4f - scale, 0.4f
+                    - scale);
+                renderer->RenderQuad(manaIcons[h->color1].get(), x + (-12 * j + 75 + 3 * SineHelperFunction((float) t)) * pos.actZ,
+                    pos.actY + (yOffset + 3 * CosineHelperFunction((float) t)) * pos.actZ, 0, 0.4f + scale, 0.4f
+                    + scale);
             }
             ++j;
         }
@@ -660,8 +662,8 @@ void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
         {
             for (int cost = manacost->getCost(i); cost > 0; --cost)
             {
-                renderer->RenderQuad(manaIcons[i], x + (-12 * j + 75) * pos.actZ, pos.actY + (yOffset) * pos.actZ, 0, 0.4f
-                                * pos.actZ, 0.4f * pos.actZ);
+                renderer->RenderQuad(manaIcons[i].get(), x + (-12 * j + 75) * pos.actZ, pos.actY + (yOffset) * pos.actZ, 0, 0.4f
+                    * pos.actZ, 0.4f * pos.actZ);
                 ++j;
             }
         }
@@ -670,19 +672,19 @@ void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
         {
             char buffer[10];
             sprintf(buffer, "%d", cost);
-            renderer->RenderQuad(manaIcons[0], x + (-12 * j + 75) * pos.actZ, pos.actY + (yOffset) * pos.actZ, 0, 0.4f * pos.actZ,
-                            0.4f * pos.actZ);
+            renderer->RenderQuad(manaIcons[0].get(), x + (-12 * j + 75) * pos.actZ, pos.actY + (yOffset) * pos.actZ, 0, 0.4f * pos.actZ,
+                0.4f * pos.actZ);
             float w = font->GetStringWidth(buffer);
             font->DrawString(buffer, x + (-12 * j + 76 - w / 2) * pos.actZ, pos.actY + (yOffset - 5) * pos.actZ);
             ++j;
         }
         //Has X?
-        if (manacost->hasX())
+        if (int cost = manacost->hasX())
         {
             char buffer[10];
             sprintf(buffer, "X");
-            renderer->RenderQuad(manaIcons[0], x + (-12 * j + 75) * pos.actZ, pos.actY + (yOffset) * pos.actZ, 0, 0.4f * pos.actZ,
-                            0.4f * pos.actZ);
+            renderer->RenderQuad(manaIcons[0].get(), x + (-12 * j + 75) * pos.actZ, pos.actY + (yOffset) * pos.actZ, 0, 0.4f * pos.actZ,
+                0.4f * pos.actZ);
             float w = font->GetStringWidth(buffer);
             font->DrawString(buffer, x + (-12 * j + 76 - w / 2) * pos.actZ, pos.actY + (yOffset - 5) * pos.actZ);
         }
@@ -700,59 +702,59 @@ void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
             s += _(Subtypes::subtypesList->find(card->data->types[0]));
         else
         {
-DebugTrace        ("Typeless card: " << setlist[card->setId].c_str() << card->data->getName() << card->getId());
+            DebugTrace("Typeless card: " << setlist[card->setId].c_str() << card->data->getName() << card->getId());
+        }
+
+        font->DrawString(s.c_str(), x + (22 - BigWidth / 2)*pos.actZ, pos.actY + (49 - BigHeight / 2)*pos.actZ);
     }
 
-    font->DrawString(s.c_str(), x + (22 - BigWidth / 2)*pos.actZ, pos.actY + (49 - BigHeight / 2)*pos.actZ);
-}
-
-//expansion and rarity
-font->SetColor(ARGB((int)pos.actA, 0, 0, 0));
-{
-    char buf[512];
-    switch(card->getRarity())
+    //expansion and rarity
+    font->SetColor(ARGB((int)pos.actA, 0, 0, 0));
     {
+        char buf[512];
+        switch(card->getRarity())
+        {
         case Constants::RARITY_M:
-        sprintf(buf,_("%s Mythic").c_str(),setlist[card->setId].c_str());
-        break;
+            sprintf(buf,_("%s Mythic").c_str(),setlist[card->setId].c_str());
+            break;
         case Constants::RARITY_R:
-        sprintf(buf,_("%s Rare").c_str(),setlist[card->setId].c_str());
-        break;
+            sprintf(buf,_("%s Rare").c_str(),setlist[card->setId].c_str());
+            break;
         case Constants::RARITY_U:
-        sprintf(buf,_("%s Uncommon").c_str(),setlist[card->setId].c_str());
-        break;
+            sprintf(buf,_("%s Uncommon").c_str(),setlist[card->setId].c_str());
+            break;
         case Constants::RARITY_C:
-        sprintf(buf,_("%s Common").c_str(),setlist[card->setId].c_str());
-        break;
+            sprintf(buf,_("%s Common").c_str(),setlist[card->setId].c_str());
+            break;
         case Constants::RARITY_L:
-        sprintf(buf,_("%s Land").c_str(),setlist[card->setId].c_str());
-        break;
+            sprintf(buf,_("%s Land").c_str(),setlist[card->setId].c_str());
+            break;
         case Constants::RARITY_T:
-        sprintf(buf,_("%s Token").c_str(),setlist[card->setId].c_str());
-        break;
+            sprintf(buf,_("%s Token").c_str(),setlist[card->setId].c_str());
+            break;
         default:
         case Constants::RARITY_S:
-        sprintf(buf,_("%s Special").c_str(),setlist[card->setId].c_str());
-        break;
-    }
+            sprintf(buf,_("%s Special").c_str(),setlist[card->setId].c_str());
+            break;
+        }
 
-    switch(card->data->getColor())
-    {
+        switch(card->data->getColor())
+        {
         case Constants::MTG_COLOR_BLACK:
         case Constants::MTG_COLOR_GREEN:
         case Constants::MTG_COLOR_BLUE:
         case Constants::MTG_COLOR_LAND:
-        font->SetColor(ARGB((int)pos.actA,255,255,255));
-        font->DrawString(buf, x + (22 - BigWidth / 2)*pos.actZ, pos.actY + (BigHeight / 2 - 30)*pos.actZ);
-        break;
+            font->SetColor(ARGB((int)pos.actA,255,255,255));
+            font->DrawString(buf, x + (22 - BigWidth / 2)*pos.actZ, pos.actY + (BigHeight / 2 - 30)*pos.actZ);
+            break;
         default:
-        font->DrawString(buf, x + (22 - BigWidth / 2)*pos.actZ, pos.actY + (BigHeight / 2 - 30)*pos.actZ);
-        break; //Leave black
+            font->DrawString(buf, x + (22 - BigWidth / 2)*pos.actZ, pos.actY + (BigHeight / 2 - 30)*pos.actZ);
+            break; //Leave black
+        }
+
     }
 
-}
-
-font->SetScale(backup_scale);
+    font->SetScale(backup_scale);
 }
 
 //Renders a big card on screen. Defaults to the "alternate" rendering if no image is found
@@ -762,26 +764,26 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos)
 
     float x = pos.actX;
 
-    JQuad * quad = WResourceManager::Instance()->RetrieveCard(card);
-    if (quad)
+    JQuadPtr quad = WResourceManager::Instance()->RetrieveCard(card);
+    if (quad.get())
     {
         if (quad->mHeight < quad->mWidth)
         {
-            return TinyCropRender(card, pos, quad);
+            return TinyCropRender(card, pos, quad.get());
         }
         quad->SetColor(ARGB(255,255,255,255));
         float scale = pos.actZ * 257.f / quad->mHeight;
-        renderer->RenderQuad(quad, x, pos.actY, pos.actT, scale, scale);
+        renderer->RenderQuad(quad.get(), x, pos.actY, pos.actT, scale, scale);
         return;
     }
 
     //No card found, attempt to render the thumbnail instead (better than nothing, even if it gets super stretched)
-    JQuad * q;
+    JQuadPtr q;
     if ((q = WResourceManager::Instance()->RetrieveCard(card, CACHE_THUMB)))
     {
         float scale = pos.actZ * 250 / q->mHeight;
         q->SetColor(ARGB(255,255,255,255));
-        renderer->RenderQuad(q, x, pos.actY, pos.actT, scale, scale);
+        renderer->RenderQuad(q.get(), x, pos.actY, pos.actT, scale, scale);
         return;
     }
 

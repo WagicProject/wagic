@@ -16,10 +16,9 @@ private:
     SimpleMenu* subMenuController;
     SimpleMenu* gameTypeMenu;
     int hasChosenGameType;
-    JQuad * mIcons[10];
+    JQuadPtr mIcons[10];
     JTexture * bgTexture;
-    JQuad * mBg;
-    JQuad * mSplash;
+    JQuadPtr mBg;
     JTexture * splashTex;
     float mCreditsYPos;
     int currentState;

@@ -1,6 +1,8 @@
 #ifndef _WDATASRC_H_
 #define _WDATASRC_H_
 
+#include "WResource_Fwd.h"
+
 class WCardFilter;
 struct WCardSort;
 struct WDistort;
@@ -18,24 +20,24 @@ public:
         hooked = NULL;
         currentPos = 0;
     }
-    ;
+
     virtual ~WSyncable()
     {
     }
-    ;
+
     //Local
     virtual bool Hook(WSyncable* s);
     virtual int getOffset()
     {
         return currentPos;
     }
-    ;
+
     virtual bool setOffset(int i)
     {
         currentPos = i;
         return true;
     }
-    ;
+
     //Recursive
     virtual int getPos();
     virtual bool next();
@@ -51,47 +53,48 @@ public:
     WDataSource()
     {
     }
-    ;
-    virtual JQuad * getImage(int offset = 0)
+
+    virtual JQuadPtr getImage(int offset = 0)
     {
-        return NULL;
+        return JQuadPtr();
     }
-    ;
-    virtual JQuad * getThumb(int offset = 0)
+
+    virtual JQuadPtr getThumb(int offset = 0)
     {
-        return NULL;
+        return JQuadPtr();
     }
-    ;
+
     virtual MTGCard * getCard(int offset = 0, bool ignore = false)
     {
         return NULL;
     }
-    ;
+
     virtual MTGDeck * getDeck(int offset = 0)
     {
         return NULL;
     }
-    ;
+
     virtual WDistort * getDistort(int offset = 0)
     {
         return NULL;
     }
-    ;
+
     virtual bool thisCard(int mtgid)
     {
         return false;
     }
-    ;
+
     virtual int getControlID()
     {
         return -1;
     }
-    ; //TODO FIXME: Need a "not a valid button" define.
+
+    //TODO FIXME: Need a "not a valid button" define.
     virtual void Update(float dt)
     {
         mLastInput += dt;
     }
-    ;
+
     virtual void Touch()
     {
         mLastInput = 0;
@@ -101,12 +104,12 @@ public:
     {
         return mLastInput;
     }
-    ;
+
     virtual void setElapsed(float f)
     {
         mLastInput = f;
     }
-    ;
+
 protected:
     float mLastInput;
 };
@@ -114,7 +117,7 @@ protected:
 class WSrcImage: public WDataSource
 {
 public:
-    virtual JQuad * getImage(int offset = 0);
+    virtual JQuadPtr getImage(int offset = 0);
     WSrcImage(string s);
 
 protected:
@@ -133,8 +136,8 @@ public:
     WSrcCards(float delay = 0.2);
     ~WSrcCards();
 
-    virtual JQuad * getImage(int offset = 0);
-    virtual JQuad * getThumb(int offset = 0);
+    virtual JQuadPtr getImage(int offset = 0);
+    virtual JQuadPtr getThumb(int offset = 0);
     virtual MTGCard * getCard(int offset = 0, bool ignore = false);
 
     virtual int Size(bool all = false); //Returns the number of cards, or the number of cards that match the filter.
@@ -171,7 +174,6 @@ public:
     {
         return filtersRoot;
     }
-    ;
 
     enum
     {
@@ -191,141 +193,141 @@ public:
     void swapSrc();
 
     //Wrapped functions
-    JQuad * getImage(int offset = 0)
+    JQuadPtr getImage(int offset = 0)
     {
         return active->getImage(offset);
     }
-    ;
-    JQuad * getThumb(int offset = 0)
+
+    JQuadPtr getThumb(int offset = 0)
     {
         return active->getThumb(offset);
     }
-    ;
+
     MTGCard * getCard(int offset = 0, bool ignore = false)
     {
         return active->getCard(offset, ignore);
     }
-    ;
+
     int Size(bool all = false)
     {
         return active->Size();
     }
-    ;
+
     WCardFilter * getfiltersRoot()
     {
         return active->getFiltersRoot();
     }
-    ;
+
     void Shuffle()
     {
         active->Shuffle();
     }
-    ;
+
     bool thisCard(int mtgid)
     {
         return active->thisCard(mtgid);
     }
-    ;
+
     bool next()
     {
         return active->next();
     }
-    ;
+
     bool prev()
     {
         return active->prev();
     }
-    ;
+
     void Sort(int method)
     {
         active->Sort(method);
     }
-    ;
+
     bool setOffset(int pos)
     {
         return active->setOffset(pos);
     }
-    ;
+
     bool isEmptySet(WCardFilter * f)
     {
         return active->isEmptySet(f);
     }
-    ;
+
     void addFilter(WCardFilter * f)
     {
         active->addFilter(f);
     }
-    ;
+
     void clearFilters()
     {
         active->clearFilters();
     }
-    ;
+
     WCardFilter* unhookFilters()
     {
         return active->unhookFilters();
     }
-    ;
+
     bool matchesFilters(MTGCard * c)
     {
         return active->matchesFilters(c);
     }
-    ;
+
     void validate()
     {
         active->validate();
     }
-    ;
+
     void bakeFilters()
     {
         active->bakeFilters();
     }
-    ; //Discards all invalidated cards.
+    //Discards all invalidated cards.
     float filterFee()
     {
         return active->filterFee();
     }
-    ;
+
     void updateCounts()
     {
         active->updateCounts();
     }
-    ;
+
     void clearCounts()
     {
         active->clearCounts();
     }
-    ;
+
     void addCount(MTGCard * c, int qty = 1)
     {
         active->addCount(c, qty);
     }
-    ;
+
     int loadMatches(MTGAllCards* ac)
     {
         return active->loadMatches(ac);
     }
-    ;
+
     int loadMatches(MTGDeck * deck)
     {
         return active->loadMatches(deck);
     }
-    ;
+
     int loadMatches(WSrcCards* src, bool all = false)
     {
         return loadMatches(src, all);
     }
-    ;
+
     int addRandomCards(MTGDeck * i, int howmany = 1)
     {
         return active->addRandomCards(i, howmany);
     }
-    ;
+
     int addToDeck(MTGDeck * i, int num = -1)
     {
         return active->addToDeck(i, num);
     }
-    ;
+
 protected:
     WSrcCards * active;
     WSrcCards * inactive;

@@ -16,7 +16,7 @@ namespace DrawMode
 {
     enum
     {
-        kNormal,
+        kNormal  = 0,
         kText,
         kHidden
     };
@@ -28,8 +28,8 @@ struct CardGui: public PlayGuiObject
 protected:
 
     /*
-     ** Tries to render the Big version of a card picture, backups to text version in case of failure
-     */
+    ** Tries to render the Big version of a card picture, backups to text version in case of failure
+    */
     static void RenderBig(MTGCard * card, const Pos& pos);
 
     void RenderCountersBig(const Pos& pos);
@@ -51,7 +51,7 @@ public:
     void DrawCard(const Pos& inPosition, int inMode = DrawMode::kNormal);
     static void DrawCard(MTGCard* inCard, const Pos& inPosition, int inMode = DrawMode::kNormal);
 
-    static JQuad * AlternateThumbQuad(MTGCard * card);
+    static JQuadPtr AlternateThumbQuad(MTGCard * card);
     virtual ostream& toString(ostream&) const;
 };
 
@@ -75,12 +75,12 @@ public:
     {
         CardGui::Render();
     }
-    ;
+    
     void Render(JQuad* q)
     {
         Pos::Render(q);
     }
-    ;
+    
     virtual ostream& toString(ostream&) const;
 
     float GetCenterX();

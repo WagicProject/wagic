@@ -38,6 +38,7 @@ PIXEL_TYPE WGuiBase::getColor(int type)
     }
     return ARGB(150,50,50,50);
 }
+
 /**
   Renders the backdrop of a WGui item. 
   Meant to be overriden in subclasses that require a unique backdrop.
@@ -102,7 +103,6 @@ bool WGuiItem::Leaving(JButton key)
 
 void WGuiItem::Render()
 {
-
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
     DWORD oldcolor = mFont->GetColor();
     mFont->SetColor(getColor(WGuiColor::TEXT));
@@ -1203,10 +1203,10 @@ void WGuiAward::Overlay()
         float fH = mFont->GetHeight();
 
         if (fH < 16) fH = 18;
-        JQuad * button = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float) 4 * 32, 0, 32, 32, "", RETRIEVE_NORMAL);
+        JQuadPtr button = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float) 4 * 32, 0, 32, 32, "", RETRIEVE_NORMAL);
 
         r->FillRoundRect(5, 10, fW + 32, fH + 2, 2, getColor(WGuiColor::BACK));
-        if (button) r->RenderQuad(button, 10, 12, 0, .5, .5);
+        if (button) r->RenderQuad(button.get(), 10, 12, 0, .5, .5);
         mFont->DrawString(::_(s), 30, 16);
     }
 
@@ -1215,8 +1215,7 @@ void WGuiAward::Overlay()
 void WGuiAward::Underlay()
 {
     char buf[1024];
-    JRenderer * r = JRenderer::GetInstance();
-    JQuad * trophy = NULL;
+    JQuadPtr trophy;
 
     string n = Options::getName(id);
     if (n.size())
@@ -1230,12 +1229,12 @@ void WGuiAward::Underlay()
         trophy = WResourceManager::Instance()->RetrieveTempQuad("trophy_set.png"); //TODO FIXME: Should look in set dir too.
     }
 
-    if (!trophy) //Fallback to basic trophy image.
+    if (!trophy.get()) //Fallback to basic trophy image.
     trophy = WResourceManager::Instance()->RetrieveTempQuad("trophy.png");
 
-    if (trophy)
+    if (trophy.get())
     {
-        r->RenderQuad(trophy, 0, SCREEN_HEIGHT - trophy->mHeight);
+        JRenderer::GetInstance()->RenderQuad(trophy.get(), 0, SCREEN_HEIGHT - trophy->mHeight);
     }
 
 }
@@ -1245,7 +1244,6 @@ void WGuiAward::Render()
 
     if (!goa) return;
 
-    JRenderer * renderer = JRenderer::GetInstance();
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
     mFont->SetScale(1);
     mFont->SetColor(getColor(WGuiColor::TEXT));
@@ -1256,7 +1254,7 @@ void WGuiAward::Render()
     float fM = fH / 5; //Font Margin is 20% font height
 
     myX += fM;
-    renderer->FillRoundRect(x - fM / 2, y - fM, getWidth() - fM, fH - fM, fM, getColor(WGuiColor::BACK_TAB));
+    JRenderer::GetInstance()->FillRoundRect(x - fM / 2, y - fM, getWidth() - fM, fH - fM, fM, getColor(WGuiColor::BACK_TAB));
     mFont->DrawString(::_(displayValue).c_str(), myX, myY, JGETEXT_LEFT);
 
     myY += fH + 3 * fM;
@@ -1292,7 +1290,7 @@ WGuiAward::~WGuiAward()
 }
 bool WGuiAward::Visible()
 {
-    //WGuiAward is only visible when it's tied to an already acchieved award.
+    //WGuiAward is only visible when it's tied to an already achieved award.
     GameOptionAward * goa = dynamic_cast<GameOptionAward*> (&options[id]);
     if (!goa || !goa->number) return false;
     return true;
@@ -1316,11 +1314,11 @@ void WGuiImage::imageScale(float _w, float _h)
 
 float WGuiImage::getHeight()
 {
-    JQuad * q = NULL;
+    JQuadPtr q =  source->getImage();
 
     if (imgH == 0)
     {
-        if (source && (q = source->getImage())) //Intentional assignment.
+        if (source && q.get())
         return MAX(height,q->mHeight+(2*margin));
     }
 
@@ -1331,15 +1329,14 @@ void WGuiImage::Render()
 {
     if (!source) return;
 
-    JRenderer * renderer = JRenderer::GetInstance();
-    JQuad * q = source->getImage();
+    JQuadPtr q = source->getImage();
     if (q)
     {
         float xS = 1, yS = 1;
         if (imgH != 0 && q->mHeight != 0) yS = imgH / q->mHeight;
         if (imgW != 0 && q->mWidth != 0) xS = imgW / q->mWidth;
 
-        renderer->RenderQuad(q, x + margin, y + margin, 0, xS, yS);
+        JRenderer::GetInstance()->RenderQuad(q.get(), x + margin, y + margin, 0, xS, yS);
     }
 }
 
@@ -1358,7 +1355,7 @@ void WGuiCardImage::Render()
 
     if (!source || (c = source->getCard(mOffset.getPos())) == NULL)
     { //No card, use card back.
-        JQuad * q;
+        JQuadPtr q;
         if (bThumb)
         {
             q = WResourceManager::Instance()->GetQuad("back_thumb");
@@ -1371,13 +1368,13 @@ void WGuiCardImage::Render()
             q = WResourceManager::Instance()->GetQuad("back");
         float scale = p.actZ * 257.f / q->mHeight;
         q->SetColor(ARGB(255,255,255,255));
-        renderer->RenderQuad(q, p.x, p.y, 0, scale, scale);
+        renderer->RenderQuad(q.get(), p.x, p.y, 0, scale, scale);
     }
     else
     { //Have card.
         if (bThumb)
         { //Thumbnail.
-            JQuad * q = NULL;
+            JQuadPtr q;
             if (!options[Options::DISABLECARDS].number)
             {
                 q = source->getThumb(mOffset.getPos());
@@ -1386,14 +1383,19 @@ void WGuiCardImage::Render()
                 q = source->getImage(mOffset.getPos());
 #endif
             }
-            if (!q && (q = CardGui::AlternateThumbQuad(c)) == NULL) return; //TODO Some kind of error image.
-            renderer->RenderQuad(q, p.x, p.y);
+            if (!q.get())
+            {
+                 q = CardGui::AlternateThumbQuad(c);
+                 if (q.get() == NULL)
+                     return; //TODO Some kind of error image.
+            }
+            renderer->RenderQuad(q.get(), p.x, p.y);
         }
         else
         { //Normal card.
-            JQuad * q = source->getImage(mOffset.getPos());
+            JQuadPtr q = source->getImage(mOffset.getPos());
 
-            int mode = (!q || options[Options::DISABLECARDS].number) ? DrawMode::kText : DrawMode::kNormal;
+            int mode = (!q.get() || options[Options::DISABLECARDS].number) ? DrawMode::kText : DrawMode::kNormal;
             CardGui::DrawCard(c, p, mode);
         }
     }
@@ -1413,7 +1415,7 @@ WGuiCardDistort::~WGuiCardDistort()
 
 void WGuiCardDistort::Render()
 {
-    JQuad * q = NULL;
+    JQuadPtr q;
 
     if (distortSrc)
     {
@@ -1455,7 +1457,7 @@ void WGuiCardDistort::Render()
             if (!q || options[Options::DISABLECARDS].number) q = CardGui::AlternateThumbQuad(c); //TODO alternateX should render to texture.
         }
     }
-    if (!q) return;
+    if (!q.get()) return;
     mesh->SetTexture(q->mTex);
     float x0, y0, w0, h0;
     q->GetTextureRect(&x0, &y0, &w0, &h0);
@@ -1511,7 +1513,6 @@ WDistort::WDistort(float x1, float y1, float x2, float y2, float x3, float y3, f
 
 void WGuiListRow::Render()
 {
-
     int start = 0, nowPos = 0, vHeight = 0;
     int nbitems = (int) items.size();
 

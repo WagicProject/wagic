@@ -642,7 +642,7 @@ int MTGCardInstance::canBlock(MTGCardInstance * opponent)
     return 1;
 }
 
-JQuad * MTGCardInstance::getIcon()
+JQuadPtr MTGCardInstance::getIcon()
 {
     return WResourceManager::Instance()->RetrieveCard(this, CACHE_THUMB);
 }

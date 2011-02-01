@@ -55,7 +55,6 @@ GameStateShop::GameStateShop(GameApp* parent) :
     menu = NULL;
     for (int i = 0; i < 8; i++)
         altThumb[i] = NULL;
-    mBack = NULL;
     boosterDisplay = NULL;
     taskList = NULL;
     srcCards = NULL;
@@ -142,8 +141,6 @@ void GameStateShop::Start()
     altThumb[5] = WResourceManager::Instance()->RetrieveTexture("white_thumb.jpg", RETRIEVE_LOCK);
     altThumb[6] = WResourceManager::Instance()->RetrieveTexture("land_thumb.jpg", RETRIEVE_LOCK);
     altThumb[7] = WResourceManager::Instance()->RetrieveTexture("gold_thumb.jpg", RETRIEVE_LOCK);
-
-    mBack = WResourceManager::Instance()->GetQuad("back");
 
     for (int i = 0; i < 8; ++i)
     {
@@ -674,17 +671,17 @@ void GameStateShop::Render()
     if (mStage == STAGE_FADE_IN)
         return;
 
-    JQuad * mBg = WResourceManager::Instance()->RetrieveTempQuad("shop.jpg", TEXTURE_SUB_5551);
-    if (mBg)
-        r->RenderQuad(mBg, 0, 0);
+    JQuadPtr mBg = WResourceManager::Instance()->RetrieveTempQuad("shop.jpg", TEXTURE_SUB_5551);
+    if (mBg.get())
+        r->RenderQuad(mBg.get(), 0, 0);
 
-    JQuad * quad = WResourceManager::Instance()->RetrieveTempQuad("shop_light.jpg", TEXTURE_SUB_5551);
-    if (quad)
+    JQuadPtr quad = WResourceManager::Instance()->RetrieveTempQuad("shop_light.jpg", TEXTURE_SUB_5551);
+    if (quad.get())
     {
         r->EnableTextureFilter(false);
         r->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE);
         quad->SetColor(ARGB(lightAlpha,255,255,255));
-        r->RenderQuad(quad, 0, 0);
+        r->RenderQuad(quad.get(), 0, 0);
         r->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
         r->EnableTextureFilter(true);
     }
@@ -740,7 +737,7 @@ void GameStateShop::Render()
     mFont->DrawString(stream.str(), 5, SCREEN_HEIGHT - 14);
 
     float len = 4 + mFont->GetStringWidth(kOtherCardsString.c_str());
-	r->RenderQuad(pspIcons[6], SCREEN_WIDTH - len - kGamepadIconSize - 10, SCREEN_HEIGHT - 8, 0, kGamepadIconSize, kGamepadIconSize);
+	r->RenderQuad(pspIcons[6].get(), SCREEN_WIDTH - len - kGamepadIconSize - 10, SCREEN_HEIGHT - 8, 0, kGamepadIconSize, kGamepadIconSize);
     mFont->DrawString(kOtherCardsString, SCREEN_WIDTH - len, SCREEN_HEIGHT - 14);
 
     mFont->SetColor(ARGB(255,255,255,0));

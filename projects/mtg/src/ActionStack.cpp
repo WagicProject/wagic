@@ -96,14 +96,14 @@ void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string 
 
     mFont->DrawString(_(action).c_str(), x + 35, y + GetVerticalTextOffset(), JGETEXT_LEFT);
     JRenderer * renderer = JRenderer::GetInstance();
-    JQuad * quad = WResourceManager::Instance()->RetrieveCard(source, CACHE_THUMB);
-    if (!quad)
+    JQuadPtr quad = WResourceManager::Instance()->RetrieveCard(source, CACHE_THUMB);
+    if (!quad.get())
         quad = CardGui::AlternateThumbQuad(source);
-    if (quad)
+    if (quad.get())
     {
         quad->SetColor(ARGB(255,255,255,255));
         float scale = mHeight / quad->mHeight;
-        renderer->RenderQuad(quad, x + (quad->mWidth * scale / 2), y + (quad->mHeight * scale / 2), 0, scale, scale);
+        renderer->RenderQuad(quad.get(), x + (quad->mWidth * scale / 2), y + (quad->mHeight * scale / 2), 0, scale, scale);
     }
     else if (alt1.size())
     {
@@ -157,7 +157,7 @@ void StackAbility::Render()
         target = (Damageable *) _target;
     }
 
-    JQuad * quad = NULL;
+    JQuadPtr quad;
     string alt2 = "";
     if (target)
     {
@@ -168,7 +168,7 @@ void StackAbility::Render()
         }
     }
 
-    Interruptible::Render(source, quad, alt1, alt2, action);
+    Interruptible::Render(source, quad.get(), alt1, alt2, action);
 }
 StackAbility::StackAbility(int id, MTGAbility * _ability) :
 Interruptible(id), ability(_ability)
@@ -220,8 +220,7 @@ Interruptible(id), tc(tc), cost(_cost), payResult(payResult)
 int Spell::computeX(MTGCardInstance * card)
 {
     ManaCost * c = cost->Diff(card->getManaCost());
-    int x = 0;
-    x = c->getCost(Constants::MTG_NB_COLORS);
+    int x = c->getCost(Constants::MTG_NB_COLORS);
     delete c;
     return x;
 }
@@ -229,8 +228,7 @@ int Spell::computeX(MTGCardInstance * card)
 int Spell::computeXX(MTGCardInstance * card)
 {
     ManaCost * c = cost->Diff(card->getManaCost());
-    int xx = 0;
-    xx = c->getCost(Constants::MTG_NB_COLORS) / 2;
+    int xx = c->getCost(Constants::MTG_NB_COLORS) / 2;
     delete c;
     return xx;
 }
@@ -351,9 +349,9 @@ void Spell::Render()
     string action = source->getName();
     string alt1 = "";
 
-    JQuad * quad = NULL;
     string alt2 = "";
     Damageable * target = getNextDamageableTarget();
+    JQuadPtr quad;
     if (target)
     {
         quad = target->getIcon();
@@ -362,7 +360,7 @@ void Spell::Render()
             alt2 = ((MTGCardInstance *) target)->name;
         }
     }
-    Interruptible::Render(source, quad, alt1, alt2, action, true);
+    Interruptible::Render(source, quad.get(), alt1, alt2, action, true);
 }
 
 ostream& Spell::toString(ostream& out) const
@@ -407,12 +405,12 @@ void PutInGraveyard::Render()
         mFont->DrawString(_("is exiled").c_str(), x + 30, y, JGETEXT_LEFT);
     }
     JRenderer * renderer = JRenderer::GetInstance();
-    JQuad * quad = WResourceManager::Instance()->RetrieveCard(card, CACHE_THUMB);
-    if (quad)
+    JQuadPtr quad = WResourceManager::Instance()->RetrieveCard(card, CACHE_THUMB);
+    if (quad.get())
     {
         quad->SetColor(ARGB(255,255,255,255));
         float scale = 30 / quad->mHeight;
-        renderer->RenderQuad(quad, x, y, 0, scale, scale);
+        renderer->RenderQuad(quad.get(), x, y, 0, scale, scale);
     }
     else
     {
@@ -1117,21 +1115,21 @@ void ActionStack::Render()
         static const float kIconVerticalOffset = 24;
         if (mCount > 1)
         {
-            renderer->RenderQuad(pspIcons[7], x0 + 10, kIconVerticalOffset, 0, kGamepadIconSize, kGamepadIconSize);
+            renderer->RenderQuad(pspIcons[7].get(), x0 + 10, kIconVerticalOffset, 0, kGamepadIconSize, kGamepadIconSize);
             mFont->DrawString(kInterruptString, x0 + 19, kIconVerticalOffset - 6);
 
-            renderer->RenderQuad(pspIcons[4], x0 + 97, kIconVerticalOffset, 0, kGamepadIconSize, kGamepadIconSize);
+            renderer->RenderQuad(pspIcons[4].get(), x0 + 97, kIconVerticalOffset, 0, kGamepadIconSize, kGamepadIconSize);
             mFont->DrawString(kNoString, x0 + 106, kIconVerticalOffset - 6);
 
-            renderer->RenderQuad(pspIcons[6], x0 + 145, kIconVerticalOffset, 0, kGamepadIconSize, kGamepadIconSize);
+            renderer->RenderQuad(pspIcons[6].get(), x0 + 145, kIconVerticalOffset, 0, kGamepadIconSize, kGamepadIconSize);
             mFont->DrawString(kNoToAllString, x0 + 154, kIconVerticalOffset - 6);
         }
         else
         {
-            renderer->RenderQuad(pspIcons[7], x0 + 40, kIconVerticalOffset, 0, kGamepadIconSize, kGamepadIconSize);
+            renderer->RenderQuad(pspIcons[7].get(), x0 + 40, kIconVerticalOffset, 0, kGamepadIconSize, kGamepadIconSize);
             mFont->DrawString(kInterruptString, x0 + 49, kIconVerticalOffset - 6);
 
-            renderer->RenderQuad(pspIcons[4], x0 + 140, kIconVerticalOffset - 6, 0, kGamepadIconSize, kGamepadIconSize);
+            renderer->RenderQuad(pspIcons[4].get(), x0 + 140, kIconVerticalOffset - 6, 0, kGamepadIconSize, kGamepadIconSize);
             mFont->DrawString(kNoString, x0 + 146, kIconVerticalOffset - 6);
         }
 

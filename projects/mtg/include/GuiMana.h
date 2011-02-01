@@ -6,10 +6,10 @@
 #include "GameApp.h"
 #include "GuiLayers.h"
 
-class ManaIcon: public Pos
+class ManaIcon : public Pos
 {
     hgeParticleSystem* particleSys;
-    JQuad* icon;
+    JQuadPtr icon;
 
     float zoomP1, zoomP2, zoomP3, zoomP4, zoomP5, zoomP6;
     float xP1, xP2, xP3;
@@ -35,7 +35,7 @@ public:
     ~ManaIcon();
 };
 
-class GuiMana: public GuiLayer
+class GuiMana : public GuiLayer
 {
 protected:
     vector<ManaIcon*> manas;

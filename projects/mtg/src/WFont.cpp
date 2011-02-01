@@ -504,22 +504,22 @@ void WFBFont::DrawString(const char *s, float x, float y, int align, float leftO
                         float scale = 0.05f * cosf(2 * M_PI * ((float) t) / 256.0f);
                         if (scale < 0)
                         {
-                            mRenderer->RenderQuad(manaIcons[mana], xx + 3 * sinf(2 * M_PI * ((float) t) / 256.0f), yy + 3 * cosf(2
+                            mRenderer->RenderQuad(manaIcons[mana].get(), xx + 3 * sinf(2 * M_PI * ((float) t) / 256.0f), yy + 3 * cosf(2
                                             * M_PI * ((float) (t - 35)) / 256.0f), 0, 0.5f * mScale, 0.5f * mScale);
-                            mRenderer->RenderQuad(manaIcons[mana2], xx + 3 * sinf(2 * M_PI * ((float) v) / 256.0f), yy + 3 * cosf(2
+                            mRenderer->RenderQuad(manaIcons[mana2].get(), xx + 3 * sinf(2 * M_PI * ((float) v) / 256.0f), yy + 3 * cosf(2
                                             * M_PI * ((float) (v - 35)) / 256.0f), 0, 0.5f * mScale, 0.5f * mScale);
                         }
                         else
                         {
-                            mRenderer->RenderQuad(manaIcons[mana2], xx + 3 * sinf(2 * M_PI * ((float) v) / 256.0f), yy + 3 * cosf(2
+                            mRenderer->RenderQuad(manaIcons[mana2].get(), xx + 3 * sinf(2 * M_PI * ((float) v) / 256.0f), yy + 3 * cosf(2
                                             * M_PI * ((float) (v - 35)) / 256.0f), 0, 0.5f * mScale, 0.5f * mScale);
-                            mRenderer->RenderQuad(manaIcons[mana], xx + 3 * sinf(2 * M_PI * ((float) t) / 256.0f), yy + 3 * cosf(2
+                            mRenderer->RenderQuad(manaIcons[mana].get(), xx + 3 * sinf(2 * M_PI * ((float) t) / 256.0f), yy + 3 * cosf(2
                                             * M_PI * ((float) (t - 35)) / 256.0f), 0, 0.5f * mScale, 0.5f * mScale);
                         }
                         mana = Constants::MTG_NB_COLORS + 1; // do not draw colorless cost in hybrid mana cost
                     }
                     else
-                        mRenderer->RenderQuad(manaIcons[mana], xx, yy, 0, 0.5f * mScale, 0.5f * mScale);
+                        mRenderer->RenderQuad(manaIcons[mana].get(), xx, yy, 0, 0.5f * mScale, 0.5f * mScale);
                     mRenderer->BindTexture(mTexture); // manaIcons use different texture, so we need to rebind it.
                 }
 
@@ -923,22 +923,22 @@ void WGBKFont::DrawString(const char *s, float x, float y, int align, float left
                         float scale = 0.05f * cosf(2 * M_PI * ((float) t) / 256.0f);
                         if (scale < 0)
                         {
-                            mRenderer->RenderQuad(manaIcons[mana], xx + 3 * sinf(2 * M_PI * ((float) t) / 256.0f), yy + 3 * cosf(2
+                            mRenderer->RenderQuad(manaIcons[mana].get(), xx + 3 * sinf(2 * M_PI * ((float) t) / 256.0f), yy + 3 * cosf(2
                                             * M_PI * ((float) (t - 35)) / 256.0f), 0, 0.5f * mScale, 0.5f * mScale);
-                            mRenderer->RenderQuad(manaIcons[mana2], xx + 3 * sinf(2 * M_PI * ((float) v) / 256.0f), yy + 3 * cosf(2
+                            mRenderer->RenderQuad(manaIcons[mana2].get(), xx + 3 * sinf(2 * M_PI * ((float) v) / 256.0f), yy + 3 * cosf(2
                                             * M_PI * ((float) (v - 35)) / 256.0f), 0, 0.5f * mScale, 0.5f * mScale);
                         }
                         else
                         {
-                            mRenderer->RenderQuad(manaIcons[mana2], xx + 3 * sinf(2 * M_PI * ((float) v) / 256.0f), yy + 3 * cosf(2
+                            mRenderer->RenderQuad(manaIcons[mana2].get(), xx + 3 * sinf(2 * M_PI * ((float) v) / 256.0f), yy + 3 * cosf(2
                                             * M_PI * ((float) (v - 35)) / 256.0f), 0, 0.5f * mScale, 0.5f * mScale);
-                            mRenderer->RenderQuad(manaIcons[mana], xx + 3 * sinf(2 * M_PI * ((float) t) / 256.0f), yy + 3 * cosf(2
+                            mRenderer->RenderQuad(manaIcons[mana].get(), xx + 3 * sinf(2 * M_PI * ((float) t) / 256.0f), yy + 3 * cosf(2
                                             * M_PI * ((float) (t - 35)) / 256.0f), 0, 0.5f * mScale, 0.5f * mScale);
                         }
                         mana = Constants::MTG_NB_COLORS + 1; // donot draw colorless cost in hybrid mana cost
                     }
                     else
-                        mRenderer->RenderQuad(manaIcons[mana], xx, yy, 0, 0.5f * mScale, 0.5f * mScale);
+                        mRenderer->RenderQuad(manaIcons[mana].get(), xx, yy, 0, 0.5f * mScale, 0.5f * mScale);
                     mRenderer->BindTexture(mTexture); // manaIcons use different texture, so we need to rebind it.
                 }
 

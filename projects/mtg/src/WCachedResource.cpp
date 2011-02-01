@@ -77,19 +77,7 @@ WCachedTexture::WCachedTexture()
 WCachedTexture::~WCachedTexture()
 {
     if (texture)
-    SAFE_DELETE(texture);
-
-    if (!trackedQuads.size()) return;
-
-    vector<WTrackedQuad*>::iterator it;
-    WTrackedQuad * tq = NULL;
-
-    for (it = trackedQuads.begin(); it != trackedQuads.end(); it++)
-    {
-        tq = (*it);
-        SAFE_DELETE(tq);
-    }
-    trackedQuads.clear();
+    	SAFE_DELETE(texture);
 }
 
 JTexture * WCachedTexture::Actual()
@@ -99,135 +87,44 @@ JTexture * WCachedTexture::Actual()
 
 bool WCachedTexture::isLocked()
 {
-    if (locks != WRES_UNLOCKED) return true;
-
-    for (vector<WTrackedQuad*>::iterator it = trackedQuads.begin(); it != trackedQuads.end(); it++)
-    {
-        if ((*it) && (*it)->isLocked()) return true;
-        //null case
-        //tokens that were using workarounds such as mixes of aslongas with CD checks
-        //and thisforeach would call to cache the tokens image, but since the effect never resolved it was NULL
-        //when it came time to check if it was locked, it would trigger a break point here.
-    }
-
-    return false;
+    return (locks != WRES_UNLOCKED);
 }
 
-bool WCachedTexture::ReleaseQuad(JQuad* quad)
+JQuadPtr WCachedTexture::GetQuad(float offX, float offY, float width, float height, const string& resname)
 {
-    if (quad == NULL) return false;
-
-    WTrackedQuad * tq = NULL;
-    vector<WTrackedQuad*>::iterator nit;
-    for (vector<WTrackedQuad*>::iterator it = trackedQuads.begin(); it != trackedQuads.end(); it = nit)
-    {
-        nit = it;
-        nit++;
-        if ((*it) && (*it)->quad == quad)
-        {
-            tq = (*it);
-            tq->unlock();
-
-            if (!tq->isLocked())
-            {
-                SAFE_DELETE(tq);
-                trackedQuads.erase(it);
-            }
-
-            return true; //Returns true when found.
-        }
-    }
-    return false;
-}
-
-WTrackedQuad * WCachedTexture::GetTrackedQuad(float offX, float offY, float width, float height, string resname)
-{
-    if (!texture) return NULL;
-
-    bool allocated = false;
-    WTrackedQuad * tq = NULL;
-    JQuad * quad = NULL;
-
-    vector<WTrackedQuad*>::iterator it;
+    if (!texture) return JQuadPtr();
 
     if (width == 0.0f || width > static_cast<float> (texture->mWidth)) width = static_cast<float> (texture->mWidth);
     if (height == 0.0f || height > static_cast<float> (texture->mHeight)) height = static_cast<float> (texture->mHeight);
 
-    for (it = trackedQuads.begin(); it != trackedQuads.end(); it++)
-    {
-        if ((*it) && (*it)->resname == resname)
-        {
-            tq = (*it);
-            break;
-        }
-    }
+	std::map<string, JQuadPtr>::iterator iter = mTrackedQuads.find(resname);
+	if (iter != mTrackedQuads.end())
+		return iter->second;
 
-    if (!tq)
-    {
-        allocated = true;
-        tq = NEW WTrackedQuad(resname);
-        if (!tq) return NULL;
-    }
-
-    quad = tq->quad;
-
-    if (!quad)
-    {
-        quad = NEW JQuad(texture, offX, offY, width, height);
-        /*
-         There's a risk this erases the texture calling the quad creation.... Erwan 2010/03/13
-         if(!quad) {
-         //Probably out of memory. Try again.
-         WResourceManager::Instance()->Cleanup();
-         quad = NEW JQuad(texture,offX,offY,width,height);
-         }
-         */
-        if (!quad)
-        {
-            if (allocated && tq)
-            SAFE_DELETE(tq);
-            fprintf(stderr, "WCACHEDRESOURCE:GetTrackedQuad -  Quad is null\n");
-            return NULL; //Probably a crash.
-        }
-
-        tq->quad = quad;
-        if (allocated) trackedQuads.push_back(tq);
-        return tq;
-    }
+	JQuadPtr quad(NEW JQuad(texture, offX, offY, width, height));
 
     //Update JQ's values to what we called this with.
     quad->SetTextureRect(offX, offY, width, height);
-    return tq;
+	mTrackedQuads.insert(std::pair<string, JQuadPtr>(resname, quad));
+    return quad;
 
 }
 
-JQuad * WCachedTexture::GetQuad(float offX, float offY, float width, float height, string resname)
+JQuadPtr WCachedTexture::GetQuad(const string& resname)
 {
-    WTrackedQuad * tq = GetTrackedQuad(offX, offY, width, height, resname);
+	JQuadPtr result;
+ 	std::map<string, JQuadPtr>::iterator iter = mTrackedQuads.find(resname);
+	if (iter != mTrackedQuads.end())
+		result = iter->second;
 
-    if (tq) return tq->quad;
-
-    return NULL;
+	return result;
 }
 
-JQuad * WCachedTexture::GetQuad(string resname)
+JQuadPtr WCachedTexture::GetCard(float offX, float offY, float width, float height, const string& resname)
 {
-    vector<WTrackedQuad*>::iterator it;
-
-    for (it = trackedQuads.begin(); it != trackedQuads.end(); it++)
-    {
-        if ((*it) && (*it)->resname == resname)
-        {
-            return (*it)->quad;
-        }
-    }
-
-    return NULL;
-}
-JQuad * WCachedTexture::GetCard(float offX, float offY, float width, float height, string resname)
-{
-    JQuad * jq = GetQuad(offX, offY, width, height, resname);
-    if (jq) jq->SetHotSpot(static_cast<float> (jq->mTex->mWidth / 2), static_cast<float> (jq->mTex->mHeight / 2));
+    JQuadPtr jq = GetQuad(offX, offY, width, height, resname);
+    if (jq.get())
+        jq->SetHotSpot(static_cast<float> (jq->mTex->mWidth / 2), static_cast<float> (jq->mTex->mHeight / 2));
 
     return jq;
 }
@@ -265,46 +162,45 @@ void WCachedTexture::Refresh()
 
     JRenderer::GetInstance()->TransferTextureToGLContext(*texture);
 
-    for (vector<WTrackedQuad*>::iterator it = trackedQuads.begin(); it != trackedQuads.end(); it++)
+    for (map<string, JQuadPtr>::iterator it = mTrackedQuads.begin(); it != mTrackedQuads.end(); ++it)
     {
-        if ((*it) && (*it)->quad) (*it)->quad->mTex = texture;
+        if (it->second.get())
+            it->second->mTex = texture;
     }
 }
 
-bool WCachedTexture::Attempt(string filename, int submode, int & error)
+bool WCachedTexture::Attempt(const string& filename, int submode, int & error)
 {
     mFilename = filename;
     int format = TEXTURE_FORMAT;
     loadedMode = submode;
-    string realname;
+    string realname = filename;
 
     //Form correct filename.
-    if (submode & TEXTURE_SUB_EXACT)
-        realname = filename;
-    else if (submode & TEXTURE_SUB_CARD)
+	if (submode & TEXTURE_SUB_CARD)
     {
         if (submode & TEXTURE_SUB_THUMB)
         {
-            for (string::size_type i = 0; i < filename.size(); i++)
+            for (string::size_type i = 0; i < realname.size(); i++)
             {
-                if (filename[i] == '\\' || filename[i] == '/')
+                if (realname[i] == '\\' || realname[i] == '/')
                 {
-                    filename.insert(i + 1, "thumbnails/");
+                    realname.insert(i + 1, "thumbnails/");
                     break;
                 }
             }
 
         }
-        realname = WResourceManager::Instance()->cardFile(filename);
+        realname = WResourceManager::Instance()->cardFile(realname);
     }
     else
     {
-        if (submode & TEXTURE_SUB_THUMB) filename.insert(0, "thumbnails/");
+        if (submode & TEXTURE_SUB_THUMB) realname.insert(0, "thumbnails/");
 
         if (submode & TEXTURE_SUB_AVATAR)
-            realname = WResourceManager::Instance()->avatarFile(filename);
+            realname = WResourceManager::Instance()->avatarFile(realname);
         else
-            realname = WResourceManager::Instance()->graphicsFile(filename);
+            realname = WResourceManager::Instance()->graphicsFile(realname);
     }
 
     //Apply pixel mode
@@ -364,7 +260,7 @@ void WCachedSample::Refresh()
     return;
 }
 
-bool WCachedSample::Attempt(string filename, int submode, int & error)
+bool WCachedSample::Attempt(const string& filename, int submode, int & error)
 {
     loadedMode = submode;
 
@@ -418,7 +314,7 @@ void WCachedParticles::Refresh()
     return;
 }
 
-bool WCachedParticles::Attempt(string filename, int submode, int & error)
+bool WCachedParticles::Attempt(const string& filename, int submode, int & error)
 {
 
     JFileSystem* fileSys = JFileSystem::GetInstance();
@@ -458,27 +354,4 @@ WCachedParticles::WCachedParticles()
 WCachedParticles::~WCachedParticles()
 {
     SAFE_DELETE(particles);
-}
-
-//WTrackedQuad
-unsigned long WTrackedQuad::size()
-{
-    return sizeof(JQuad);
-}
-
-bool WTrackedQuad::isGood()
-{
-    return (quad != NULL);
-}
-
-WTrackedQuad::WTrackedQuad(string _resname)
-{
-    quad = NULL;
-    resname = _resname;
-}
-
-WTrackedQuad::~WTrackedQuad()
-{
-    if (quad)
-    SAFE_DELETE(quad);
 }
