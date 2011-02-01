@@ -117,6 +117,6 @@ u32 ramAvailable(void);
 #define MAKEDIR(name) mkdir(name, 0777)
 #endif
 
-#endif
-
 bool FileExists(const string& strFilename);
+
+#endif

@@ -95,21 +95,21 @@ int fileExists(const char * filename)
 }
 
 /*
- #ifdef LINUX
+#ifdef LINUX
 
- #include <execinfo.h>
- void dumpStack()
- {
- void* buffer[50];
- int s = backtrace(buffer, 50);
- char** tab = backtrace_symbols(buffer, s);
- for (int i = 1; i < s; ++i) printf("%s\n", tab[i]);
- printf("\n");
- free(tab);
- }
+#include <execinfo.h>
+void dumpStack()
+{
+void* buffer[50];
+int s = backtrace(buffer, 50);
+char** tab = backtrace_symbols(buffer, s);
+for (int i = 1; i < s; ++i) printf("%s\n", tab[i]);
+printf("\n");
+free(tab);
+}
 
- #endif
- */
+#endif
+*/
 
 /* RAM simple check functions source */
 
@@ -230,14 +230,14 @@ std::vector<std::string>& split(const std::string& s, char delim, std::vector<st
 
 std::string join(vector<string>& v, string delim)
 {
-	std::string retVal;
-	for ( vector<string>::iterator it = v.begin(); it != v.end(); ++it )
-	{
-		retVal.append( *it );
-		retVal.append( delim );
-	}
+    std::string retVal;
+    for ( vector<string>::iterator it = v.begin(); it != v.end(); ++it )
+    {
+        retVal.append( *it );
+        retVal.append( delim );
+    }
 
-	return retVal;
+    return retVal;
 }
 
 std::vector<std::string> split(const std::string& s, char delim)
@@ -251,75 +251,78 @@ std::vector<std::string> split(const std::string& s, char delim)
 // Not sure how this translates into non-english fonts.
 std::string wordWrap(const std::string& sentence, float width, int fontId)
 {
-	WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
-	float lineWidth = mFont->GetStringWidth( sentence.c_str() );
-	string retVal = sentence;
-	if ( lineWidth < width ) return sentence;
-   
-	int numLines = 1;
-	int breakIdx = 0;
-	for( size_t idx = 0; idx < sentence.length(); idx ++ )
+    WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
+    float lineWidth = mFont->GetStringWidth( sentence.c_str() );
+    string retVal = sentence;
+    if ( lineWidth < width ) return sentence;
+
+    int numLines = 1;
+    int breakIdx = 0;
+    for( size_t idx = 0; idx < sentence.length(); idx ++ )
     {
-		if ( sentence[idx] == ' ' )
-		{
-			string currentSentence = sentence.substr(breakIdx, idx - breakIdx);
-			float stringLength = mFont->GetStringWidth( currentSentence.c_str() );
-			if (stringLength >= width)
-			{				
-				if ( stringLength > width )
-				{
-					while ( sentence[idx-1] != ' ' )
-						idx--;
-				}
-				retVal[idx-1] = '\n';				
-				breakIdx = idx;
-				numLines++;
-			}
-		}
-		else if ( sentence[idx] == '\n' )
-		{
-			string currentSentence = sentence.substr(breakIdx, idx - breakIdx);
-			float stringLength = mFont->GetStringWidth( currentSentence.c_str() );
-			if (stringLength >= width)
-			{				
-				if ( stringLength > width )
-				{
-					while ( sentence[idx-1] != ' ' )
-						idx--;
-					retVal[idx-1] = '\n';				
-				}
-				numLines++;
-			}
-			breakIdx = idx;
-			numLines++;
-		}
+        if ( sentence[idx] == ' ' )
+        {
+            string currentSentence = sentence.substr(breakIdx, idx - breakIdx);
+            float stringLength = mFont->GetStringWidth( currentSentence.c_str() );
+            if (stringLength >= width)
+            {				
+                if ( stringLength > width )
+                {
+                    while ( sentence[idx-1] != ' ' )
+                        idx--;
+                }
+                retVal[idx-1] = '\n';				
+                breakIdx = idx;
+                numLines++;
+            }
+        }
+        else if ( sentence[idx] == '\n' )
+        {
+            string currentSentence = sentence.substr(breakIdx, idx - breakIdx);
+            float stringLength = mFont->GetStringWidth( currentSentence.c_str() );
+            if (stringLength >= width)
+            {				
+                if ( stringLength > width )
+                {
+                    while ( sentence[idx-1] != ' ' )
+                        idx--;
+                    retVal[idx-1] = '\n';				
+                }
+                numLines++;
+            }
+            breakIdx = idx;
+            numLines++;
+        }
     }
 
     return retVal;
 }
 
+bool FileExists(const string& strFilename)
+{ 
+    struct stat stFileInfo; 
+    bool blnReturn; 
+    int intStat; 
 
-bool FileExists(const string& strFilename) { 
-  struct stat stFileInfo; 
-  bool blnReturn; 
-  int intStat; 
+    // Attempt to get the file attributes 
+    intStat = stat(strFilename.c_str(),&stFileInfo); 
+    if(intStat == 0)
+    {
+        // We were able to get the file attributes 
+        // so the file obviously exists. 
+        blnReturn = true; 
+    }
+    else
+    {
+        // We were not able to get the file attributes. 
+        // This may mean that we don't have permission to 
+        // access the folder which contains this file. If you 
+        // need to do that level of checking, lookup the 
+        // return values of stat which will give you 
+        // more details on why stat failed. 
+        blnReturn = false; 
+    }
 
-  // Attempt to get the file attributes 
-  intStat = stat(strFilename.c_str(),&stFileInfo); 
-  if(intStat == 0) { 
-    // We were able to get the file attributes 
-    // so the file obviously exists. 
-    blnReturn = true; 
-  } else { 
-    // We were not able to get the file attributes. 
-    // This may mean that we don't have permission to 
-    // access the folder which contains this file. If you 
-    // need to do that level of checking, lookup the 
-    // return values of stat which will give you 
-    // more details on why stat failed. 
-    blnReturn = false; 
-  } 
-   
-  return(blnReturn); 
+    return(blnReturn); 
 }
 
