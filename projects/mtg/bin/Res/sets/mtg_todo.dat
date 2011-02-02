@@ -9124,15 +9124,6 @@ power=0
 toughness=3
 [/card]
 [card]
-name=Giant Shark
-text=Giant Shark can't attack unless defending player controls an Island. -- Whenever Giant Shark blocks or becomes blocked by a creature that has been dealt damage this turn, Giant Shark gets +2/+0 and gains trample until end of turn. -- When you control no Islands, sacrifice Giant Shark.
-mana={5}{U}
-type=Creature
-subtype=Fish
-power=4
-toughness=4
-[/card]
-[card]
 name=Giant Slug
 text={5}: At the beginning of your next upkeep, choose a basic land type. Giant Slug gains landwalk of the chosen type until the end of that turn.
 mana={1}{B}
@@ -11718,12 +11709,6 @@ name=Infinite Hourglass
 text=At the beginning of your upkeep, put a time counter on Infinite Hourglass. -- All creatures get +1/+0 for each time counter on Infinite Hourglass. -- {3}: Remove a time counter from Infinite Hourglass. Any player may activate this ability but only during any upkeep step.
 mana={4}
 type=Artifact
-[/card]
-[card]
-name=Inflame
-text=Inflame deals 2 damage to each creature dealt damage this turn.
-mana={R}
-type=Instant
 [/card]
 [card]
 name=Information Dealer
