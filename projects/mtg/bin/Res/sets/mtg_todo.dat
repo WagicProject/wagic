@@ -9241,15 +9241,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Giltspire Avenger
-text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.) -- {T}: Destroy target creature that dealt damage to you this turn.
-mana={G}{W}{U}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=2
-[/card]
-[card]
 name=Glacial Plating
 text=Enchant creature -- Cumulative upkeep {S}i} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it. {S}i} can be paid with one mana from a snow permanent.) -- Enchanted creature gets +3/+3 for each age counter on Glacial Plating.
 mana={2}{W}{W}
@@ -19925,12 +19916,6 @@ mana={3}{U}{U}
 type=Enchantment
 [/card]
 [card]
-name=Reciprocate
-text=Exile target creature that dealt damage to you this turn.
-mana={W}
-type=Instant
-[/card]
-[card]
 name=Reckless Embermage
 text={1}{R}: Reckless Embermage deals 1 damage to target creature or player and 1 damage to itself.
 mana={3}{R}
@@ -20250,12 +20235,6 @@ type=Sorcery
 name=Restore Balance
 text=Restore Balance is white. -- Suspend 6 - {W} (Rather than cast this card from your hand, pay {W} and exile it with six time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.) -- Each player chooses a number of lands he or she controls equal to the number of lands controlled by the player who controls the fewest, then sacrifices the rest. Players sacrifice creatures and discard cards the same way.
 type=Sorcery
-[/card]
-[card]
-name=Retaliate
-text=Destroy all creatures that dealt damage to you this turn.
-mana={2}{W}{W}
-type=Instant
 [/card]
 [card]
 name=Retether
