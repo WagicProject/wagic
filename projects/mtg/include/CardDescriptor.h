@@ -59,6 +59,8 @@ class CardDescriptor: public MTGCardInstance{
   int nameComparisonMode;
   int colorComparisonMode;
   string compareName;
+  int CDopponentDamaged;
+  int CDcontrollerDamaged;
 };
 
 #endif

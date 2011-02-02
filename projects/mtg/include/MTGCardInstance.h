@@ -50,8 +50,11 @@ class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable {
   int sunburst;
   int equipment;
   int auras;
+  bool wasDealtDamage;
+  bool damageToOpponent;
+  bool damageToController;
   int reduxamount;
-	int flanked;
+  int flanked;
   int regenerateTokens;
   int isToken;
   int origpower;
@@ -65,6 +68,7 @@ class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable {
     int isLeveler;
     bool enchanted;
     int CDenchanted;
+    int CDdamaged;
     bool blinked;
     bool isExtraCostTarget;
     bool morphed;
@@ -75,14 +79,14 @@ class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable {
     int phasedTurn;
     bool graveEffects;
     bool exileEffects;
-    
-  int stillInUse();
-	int didattacked;
-	int didblocked;
-	int notblocked;
-	int fresh;
-	int MaxLevelUp;
-  Player * lastController;
+
+    int stillInUse();
+    int didattacked;
+    int didblocked;
+    int notblocked;
+    int fresh;
+    int MaxLevelUp;
+    Player * lastController;
   MTGGameZone * getCurrentZone();
   MTGGameZone * previousZone;
   MTGCardInstance * previous;

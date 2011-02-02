@@ -20,6 +20,8 @@ CardDescriptor::CardDescriptor() :  MTGCardInstance()
     compareName ="";
     nameComparisonMode = COMPARISON_NONE;
     colorComparisonMode = COMPARISON_NONE;
+    CDopponentDamaged = 0;
+    CDcontrollerDamaged = 0;
 }
 
 int CardDescriptor::init()
@@ -278,6 +280,21 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
             match = NULL;
         }
         if ((CDenchanted == -1 && card->enchanted) || (CDenchanted == 1 && !card->enchanted))
+        {
+            match = NULL;
+        }
+        if ((CDdamaged == -1 && card->wasDealtDamage) || (CDdamaged == 1 && !card->wasDealtDamage))
+        {
+            match = NULL;
+        }
+        Player * p = controller()->opponent();
+        if ((CDopponentDamaged == -1 && card->damageToOpponent && card->controller() == p) || (CDopponentDamaged == 1 && !card->damageToOpponent && card->controller() == p)
+            || (CDopponentDamaged == -1 && card->damageToController && card->controller() == p->opponent()) || (CDopponentDamaged == 1 && !card->damageToController && card->controller() == p->opponent()))
+        {
+            match = NULL;
+        }
+        if ((CDcontrollerDamaged == -1 && card->damageToController && card->controller() == p) || (CDcontrollerDamaged == 1 && !card->damageToController && card->controller() == p)
+            || (CDcontrollerDamaged == -1 && card->damageToOpponent && card->controller() == p->opponent()) || (CDcontrollerDamaged == 1 && !card->damageToOpponent && card->controller() == p->opponent()))
         {
             match = NULL;
         }

@@ -105,6 +105,13 @@ class ThisNotBlocked:public ThisDescriptor{
 	ThisNotBlocked(int unblocked);
 };
 
+class ThisDamaged:public ThisDescriptor{
+ public:
+    virtual int match(MTGCardInstance * card);
+
+	ThisDamaged(int wasDealtDamage);
+};
+
 class ThisPower:public ThisDescriptor{
  public:
     virtual int match(MTGCardInstance * card);

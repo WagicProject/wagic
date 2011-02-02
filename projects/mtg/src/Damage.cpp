@@ -171,8 +171,18 @@ int Damage::resolve()
         //return the left over amount after effects have been applied to them.
         a = target->dealDamage(damage);
         target->damageCount += 1;
+        if (target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
+            ((MTGCardInstance*)target)->wasDealtDamage = true;
         if (target->type_as_damageable == DAMAGEABLE_PLAYER)
         {
+            if(target == source->controller())
+            {
+                ((MTGCardInstance*)source)->damageToController = true;
+            }
+            else
+            {
+                ((MTGCardInstance*)source)->damageToOpponent = true;
+            }
             target->lifeLostThisTurn += damage;
             WEvent * lifed = NEW WEventLife((Player*)target,-damage);
             GameObserver * game = GameObserver::GetInstance();

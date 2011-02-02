@@ -228,6 +228,19 @@ ThisDescriptor * ThisDescriptorFactory::createThisDescriptor(string s)
         return NULL;
     }
 
+    //this creature was dealt damage this turn
+    found = s.find("damaged");
+    if (found != string::npos)
+    {
+        ThisDamaged * td = NEW ThisDamaged(criterion);
+        if (td)
+        {
+            td->comparisonMode = mode;
+            return td;
+        }
+        return NULL;
+    }
+    
     //controller life
     found = s.find("opponentlife");
     if (found != string::npos)
@@ -441,6 +454,20 @@ int ThisNotBlocked::match(MTGCardInstance * card)
 {
 
     return matchValue(card->notblocked);
+}
+
+ThisDamaged::ThisDamaged(int wasDealtDamage)
+{
+
+    comparisonCriterion = wasDealtDamage;
+}
+
+int ThisDamaged::match(MTGCardInstance * card)
+{
+int result = 0;
+if(card->wasDealtDamage)
+result = 1;
+    return matchValue(result);
 }
 
 ThisToughness::ThisToughness(int toughness)

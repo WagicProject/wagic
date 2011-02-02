@@ -127,6 +127,7 @@ void MTGCardInstance::initMTGCI()
     isLeveler = 0;
     enchanted = false;
     CDenchanted = NULL;
+    CDdamaged = 0;
     blinked = false;
     isExtraCostTarget = false;
     morphed = false;
@@ -141,7 +142,10 @@ void MTGCardInstance::initMTGCI()
     sunburst = NULL;
     equipment = 0;
     auras = 0;
-    
+    damageToOpponent = false;
+    damageToController = false;
+    wasDealtDamage = false;
+
     for (int i = 0; i < ManaCost::MANA_PAID_WITH_RETRACE +1; i++)
         alternateCostPaid[i] = 0;
 

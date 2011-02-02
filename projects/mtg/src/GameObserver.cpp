@@ -620,7 +620,7 @@ void GameObserver::gameStateBasedEffects()
         /////////////////////////////////////////////////
         //handle end of turn effects while we're at it.//
         /////////////////////////////////////////////////
-        if (currentGamePhase == Constants::MTG_PHASE_ENDOFTURN)
+        if (currentGamePhase == Constants::MTG_PHASE_ENDOFTURN+1)
         {
             for (int j = 0; j < nbcards; ++j)
             {
@@ -637,6 +637,10 @@ void GameObserver::gameStateBasedEffects()
                     c->flanked -= 1;
                 }
                 if (c->fresh) c->fresh = 0;
+                if(c->wasDealtDamage && c->isInPlay())
+                c->wasDealtDamage = false;
+                c->damageToController = false;
+                c->damageToOpponent = false;
                 if (c->has(Constants::ONLYONEBOTH))
                 {
                     c->controller()->castcount = 0;

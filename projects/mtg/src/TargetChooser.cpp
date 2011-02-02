@@ -337,7 +337,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         cd->isLeveler = 1;
                     }
                 }
-                                //creature is a level up creature
+                //creature is enchanted
                 else if (attribute.find("enchanted") != string::npos)
                 {
                     if (minus)
@@ -347,6 +347,42 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     else
                     {
                         cd->CDenchanted = 1;
+                    }
+                }
+                //creature was damaged
+                else if (attribute.find("damaged") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDdamaged = -1;
+                    }
+                    else
+                    {
+                        cd->CDdamaged = 1;
+                    }
+                }
+                //creature dealt damage to opponent
+                else if (attribute.find("opponentdamager") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDopponentDamaged = -1;
+                    }
+                    else
+                    {
+                        cd->CDopponentDamaged = 1;
+                    }
+                }
+                //creature dealt damage to controller
+                else if (attribute.find("controllerdamager") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd->CDcontrollerDamaged = -1;
+                    }
+                    else
+                    {
+                        cd->CDcontrollerDamaged = 1;
                     }
                 }
                 else if (attribute.find("multicolor") != string::npos)
