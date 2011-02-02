@@ -3947,14 +3947,14 @@ int ActivatedAbility::reactToTargetClick(Targetable * object)
         abilityCost = previousManaPool->Diff(player->getManaPool());
         delete previousManaPool;
     }
-    if(dynamic_cast<AManaProducer *> (this))
-    {
     AManaProducer * amp = dynamic_cast<AManaProducer *> (this);
+    if(amp)
+    {
     needsTapping = amp->tap;
     }
     if (needsTapping && source->isInPlay())
     {
-        if (dynamic_cast<AManaProducer *> (this))
+        if (amp)
         {
             GameObserver *g = GameObserver::GetInstance();
             WEvent * e = NEW WEventCardTappedForMana(source, 0, 1);
@@ -3962,7 +3962,7 @@ int ActivatedAbility::reactToTargetClick(Targetable * object)
         }
         source->tap();
     }
-    if (dynamic_cast<AManaProducer *> (this))
+    if (amp)
     {
         this->resolve();
         return 1;
