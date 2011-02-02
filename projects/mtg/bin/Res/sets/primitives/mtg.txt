@@ -6461,6 +6461,17 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Bloodcrazed Goblin
+auto=this(opponentdamagecount >0) -cantattack
+text=Bloodcrazed Goblin can't attack unless an opponent was dealt noncombat damage this turn.
+mana={R}
+abilities=cantattack
+type=Creature
+subtype=Goblin Berserker
+power=2
+toughness=2
+[/card]
+[card]
 name=Blood Crypt
 auto=tap
 auto=may untap && life:-2 controller

@@ -2033,15 +2033,6 @@ power=3
 toughness=2
 [/card]
 [card]
-name=Bloodcrazed Goblin
-text=Bloodcrazed Goblin can't attack unless an opponent was dealt noncombat damage this turn.
-mana={R}
-type=Creature
-subtype=Goblin Berserker
-power=2
-toughness=2
-[/card]
-[card]
 name=Bloodcurdler
 text=Flying -- At the beginning of your upkeep, put the top card of your library into your graveyard. -- Threshold - As long as seven or more cards are in your graveyard, Bloodcurdler gets +1/+1 and has "At the beginning of your end step, exile two cards from your graveyard."
 mana={1}{B}
