@@ -41643,6 +41643,11 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Mystifying Maze
+type=land
+auto={t}:add{1}
+auto={4}{t}:target(creature[attacking]|opponentbattlefield) (blink)ueot return(tap)
+[card]
 name=Nacatl Outlander
 abilities=protection from blue
 text=Protection from blue
@@ -44448,6 +44453,15 @@ type=Artifact Creature
 subtype=Juggernaut
 power=2
 toughness=3
+[/card]
+[card]
+name=Otherworldly Journey
+target=creature
+auto=(blink)ueot return(counter(1/1,1))
+text=Exile target creature. At the beginning of the next end step, return that card to the battlefield under its owner's control with a +1/+1 counter on it.
+mana={1}{W}
+type=Instant
+subtype=Arcane
 [/card]
 [card]
 name=Outrider of Jhess
