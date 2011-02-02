@@ -40536,10 +40536,11 @@ toughness=5
 [/card]
 [card]
 name=Morgue Theft
-auto=moveTo(myhand) target(creature|mygraveyard)
-autograveyard={4}{B}:copy(this) && moveTo(mystack) asSorcery
+target=creature|mygraveyard
+auto=moveTo(myhand)
 text=Return target creature card from your graveyard to your hand. -- Flashback {4}{B} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={1}{B}
+flashback={4}{b}
 type=Sorcery
 [/card]
 [card]
