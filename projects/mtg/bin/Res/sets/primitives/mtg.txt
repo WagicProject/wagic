@@ -68162,6 +68162,14 @@ power=1
 toughness=7
 [/card]
 [card]
+name=Valakut, the Molten Pinnacle
+auto=tap
+auto=@movedTo(mountain|myBattlefield): aslongas(other mountain|myBattlefield) may damage:3 target(creature,player) >4
+auto={T}:Add {R}
+text=Valakut, the Molten Pinnacle enters the battlefield tapped. -- Whenever a Mountain enters the battlefield under your control, if you control at least five other Mountains, you may have Valakut, the Molten Pinnacle deal 3 damage to target creature or player. -- {T}: Add {R} to your mana pool.
+type=Land
+[/card]
+[card]
 name=Valeron Outlander
 abilities=protection from black
 text=Protection from black
