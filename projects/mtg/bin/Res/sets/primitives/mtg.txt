@@ -13190,6 +13190,15 @@ mana={R}
 type=Instant
 [/card]
 [card]
+name=Crushing Pain
+target=creature[damaged]
+auto=damage:6
+text=Crushing Pain deals 6 damage to target creature that was dealt damage this turn.
+mana={1}{R}
+type=Instant
+subtype=Arcane
+[/card]
+[card]
 name=Crush of Wurms
 auto=token(Wurm,creature wurm, 6/6,green)*3
 flashback={9}{G}{G}{G}
@@ -20619,6 +20628,14 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Fatal Blow
+target=creature[damaged]
+auto=destroy
+text=Destroy target creature that was dealt damage this turn. It can't be regenerated.
+mana={B}
+type=Instant
+[/card]
+[card]
 name=Fatal Frenzy
 target=creature
 auto=trample
@@ -21328,6 +21345,16 @@ auto=choice lord(creature) 0/-2
 text=Choose one - All creatures get +2/+0 until end of turn; or all creatures get -0/-2 until end of turn.
 mana={4}{B}
 type=Sorcery
+[/card]
+[card]
+name=Final-Sting Faerie
+auto=aslongas(creature[damaged]|battlefield) destroy target(creature[damaged]) oneshot
+text=Flying -- When Final-Sting Faerie enters the battlefield, destroy target creature that was dealt damage this turn.
+mana={3}{B}
+type=Creature
+subtype=Faerie Assassin
+power=2
+toughness=2
 [/card]
 [card]
 name=Fire Ambush
@@ -24633,6 +24660,17 @@ auto={T}:Add {B}
 auto={T}:Add {G}
 text=As Gilt-Leaf Palace enters the battlefield, you may reveal an Elf card from your hand. If you don't, Gilt-Leaf Palace enters the battlefield tapped. -- {T}: Add {B} or {G} to your mana pool.
 type=Land
+[/card]
+[card]
+name=Giltspire Avenger
+auto={t}:target(creature[controllerdamager]) destroy
+abilities=exalted
+text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.) -- {T}: Destroy target creature that dealt damage to you this turn.
+mana={G}{W}{U}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
 [/card]
 [card]
 name=Glacial Chasm
@@ -43861,6 +43899,16 @@ mana={4}{U}{U}
 type=Instant
 [/card]
 [card]
+name=Opportunist
+auto={t}: damage:1 target(creature[damaged])
+text={T}: Opportunist deals 1 damage to target creature that was dealt damage this turn.
+mana={2}{R}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+[/card]
+[card]
 name=Opposition
 auto={T(creature[-tapped]|myBattlefield)}:tap target(artifact,creature,land)
 text=Tap an untapped creature you control: Tap target artifact, creature, or land.
@@ -49637,6 +49685,14 @@ mana={2}{U}
 type=Instant
 [/card]
 [card]
+name=Reciprocate
+target=creature[controllerdamager]
+auto=moveto(exile)
+text=Exile target creature that dealt damage to you this turn.
+mana={W}
+type=Instant
+[/card]
+[card]
 name=Reckless Abandon
 auto=damage:4 target(creature,player)
 text=As an additional cost to cast Reckless Abandon, sacrifice a creature. -- Reckless Abandon deals 4 damage to target creature or player.
@@ -50466,6 +50522,13 @@ auto=lord(creature|myBattlefield) rampage(1/1,0)
 text=Creatures you control have "Whenever this creature becomes blocked by a creature, this creature gets +1/+1 until end of turn."
 mana={2}{G}
 type=Enchantment
+[/card]
+[card]
+name=Retaliate
+auto=all(creature[controllerdamager]) destroy
+text=Destroy all creatures that dealt damage to you this turn.
+mana={2}{W}{W}
+type=Instant
 [/card]
 [card]
 name=Retaliator Griffin
@@ -70716,6 +70779,16 @@ power=4
 toughness=1
 [/card]
 [card]
+name=Wall of Resistance
+auto=@each end of turn:this(damaged) counter(0/1,1)
+text=Defender (This creature can't attack.) -- Flying -- At the beginning of each end step, if Wall of Resistance was dealt damage this turn, put a +0/+1 counter on it.
+mana={1}{W}
+type=Creature
+subtype=Wall
+power=0
+toughness=3
+[/card]
+[card]
 name=Wall of Reverence
 abilities=defender,flying
 auto=@each myendofturn:target(creature|myBattlefield) dynamicability<!mytgt powerlife targetcontroller!>
@@ -72640,6 +72713,13 @@ type=Creature
 subtype=Horror
 power=4
 toughness=4
+[/card]
+[card]
+name=Witch's Mist
+auto={2}{b}{t}:destroy target(creature[damaged])
+text={2}{B}, {T}: Destroy target creature that was dealt damage this turn.
+mana={2}{B}
+type=Enchantment
 [/card]
 [card]
 name=Witch Hunter

@@ -4691,13 +4691,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Crushing Pain
-text=Crushing Pain deals 6 damage to target creature that was dealt damage this turn.
-mana={1}{R}
-type=Instant
-subtype=Arcane
-[/card]
-[card]
 name=Crush Underfoot
 text=Choose a Giant creature you control. It deals damage equal to its power to target creature.
 mana={1}{R}
@@ -7735,12 +7728,6 @@ mana={W}
 type=Enchantment
 [/card]
 [card]
-name=Fatal Blow
-text=Destroy target creature that was dealt damage this turn. It can't be regenerated.
-mana={B}
-type=Instant
-[/card]
-[card]
 name=Fatal Lore
 text=An opponent chooses one - You draw three cards; or you destroy up to two target creatures that opponent controls and that player draws up to three cards. Those creatures can't be regenerated.
 mana={2}{B}{B}
@@ -7992,15 +7979,6 @@ name=Final Strike
 text=As an additional cost to cast Final Strike, sacrifice a creature. -- Final Strike deals damage to target opponent equal to the sacrificed creature's power.
 mana={2}{B}{B}
 type=Sorcery
-[/card]
-[card]
-name=Final-Sting Faerie
-text=Flying -- When Final-Sting Faerie enters the battlefield, destroy target creature that was dealt damage this turn.
-mana={3}{B}
-type=Creature
-subtype=Faerie Assassin
-power=2
-toughness=2
 [/card]
 [card]
 name=Finest Hour
@@ -17292,15 +17270,6 @@ text=All Slivers have "Whenever this permanent becomes the target of a spell an 
 mana={1}{W}{U}
 type=Creature
 subtype=Sliver
-power=2
-toughness=2
-[/card]
-[card]
-name=Opportunist
-text={T}: Opportunist deals 1 damage to target creature that was dealt damage this turn.
-mana={2}{R}
-type=Creature
-subtype=Human Soldier
 power=2
 toughness=2
 [/card]
@@ -27694,15 +27663,6 @@ power=0
 toughness=5
 [/card]
 [card]
-name=Wall of Resistance
-text=Defender (This creature can't attack.) -- Flying -- At the beginning of each end step, if Wall of Resistance was dealt damage this turn, put a +0/+1 counter on it.
-mana={1}{W}
-type=Creature
-subtype=Wall
-power=0
-toughness=3
-[/card]
-[card]
 name=Wall of Shadows
 text=Defender (This creature can't attack.) -- Prevent all damage that would be dealt to Wall of Shadows by creatures it's blocking. -- Wall of Shadows can't be the target of spells that can target only Walls or of abilities that can target only Walls.
 mana={1}{B}{B}
@@ -28501,12 +28461,6 @@ name=Wit's End
 text=Target player discards his or her hand.
 mana={5}{B}{B}
 type=Sorcery
-[/card]
-[card]
-name=Witch's Mist
-text={2}{B}, {T}: Destroy target creature that was dealt damage this turn.
-mana={2}{B}
-type=Enchantment
 [/card]
 [card]
 name=Withdraw
