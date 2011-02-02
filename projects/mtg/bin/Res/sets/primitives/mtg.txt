@@ -49398,8 +49398,9 @@ type=Instant
 [/card]
 [card]
 name=Ray of Revelation
-auto=destroy target(enchantment)
-autograveyard={G}:copy(this) && moveTo(mystack)
+target=enchantment
+auto=destroy
+flashback={g}
 text=Destroy target enchantment. -- Flashback {G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={1}{W}
 type=Instant
