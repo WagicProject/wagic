@@ -2958,8 +2958,8 @@ APhaseActionGeneric::~APhaseActionGeneric()
 }
 
 //a blink
-ABlink::ABlink(int _id, MTGCardInstance * card, MTGCardInstance * _target,bool blinkueot,bool blinkForSource,bool blinkhand) :
-MTGAbility(_id, card),blinkueot(blinkueot),blinkForSource(blinkForSource),blinkhand(blinkhand)
+ABlink::ABlink(int _id, MTGCardInstance * card, MTGCardInstance * _target,bool blinkueot,bool blinkForSource,bool blinkhand,MTGAbility * stored) :
+MTGAbility(_id, card),blinkueot(blinkueot),blinkForSource(blinkForSource),blinkhand(blinkhand),stored(stored)
 {
     target = _target;
     Blinked = NULL;
@@ -3028,6 +3028,20 @@ void ABlink::Update(float dt)
         if(!spell->source->hasSubtype("aura"))
         {
             spell->resolve();
+            if(stored)
+            {
+                MTGAbility * clonedStored = stored->clone();
+                clonedStored->target = spell->source;
+                if (clonedStored->oneShot)
+                {
+                    clonedStored->resolve();
+                    delete (clonedStored);
+                }
+                else
+                {
+                    clonedStored->addToGame();
+                }
+            }
         }
         delete spell;
         this->forceDestroy = 1;
@@ -3102,9 +3116,25 @@ void ABlink::resolveBlink()
             spell->source->power = spell->source->origpower;
             spell->source->toughness = spell->source->origtoughness;
             spell->resolve();
+            if(stored)
+            {
+                MTGAbility * clonedStored = stored->clone();
+                clonedStored->target = spell->source;
+                if (clonedStored->oneShot)
+                {
+                    clonedStored->resolve();
+                    delete (clonedStored);
+                }
+                else
+                {
+                    clonedStored->addToGame();
+                }
+            }
             delete tc;
             delete spell;
             this->forceDestroy = 1;
+            if(stored)
+            delete(stored);
             Blinked = NULL;
         }
     }
@@ -3128,12 +3158,14 @@ ABlink * ABlink::clone() const
 };
 ABlink::~ABlink()
 {
+    if (!isClone)
+        SAFE_DELETE(stored);
 }
 
-ABlinkGeneric::ABlinkGeneric(int _id, MTGCardInstance * card, MTGCardInstance * _target,bool blinkueot,bool blinkForSource,bool blinkhand) :
+ABlinkGeneric::ABlinkGeneric(int _id, MTGCardInstance * card, MTGCardInstance * _target,bool blinkueot,bool blinkForSource,bool blinkhand,MTGAbility * stored) :
     InstantAbility(_id, source, _target)
 {
-    ability = NEW ABlink(_id,card,_target,blinkueot,blinkForSource,blinkhand);
+    ability = NEW ABlink(_id,card,_target,blinkueot,blinkForSource,blinkhand,stored);
 }
 
 int ABlinkGeneric::resolve()

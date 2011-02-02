@@ -4014,7 +4014,8 @@ public:
     bool blinkhand;
     MTGCardInstance * Blinked;
     bool resolved;
-    ABlink(int _id, MTGCardInstance * card, MTGCardInstance * _target,bool blinkueot=false,bool blinkForSource = false,bool blinkhand = false);
+    MTGAbility * stored;
+    ABlink(int _id, MTGCardInstance * card, MTGCardInstance * _target,bool blinkueot=false,bool blinkForSource = false,bool blinkhand = false,MTGAbility * stored = NULL);
     void Update(float dt);
     void resolveBlink();
     int resolve();
@@ -4031,7 +4032,8 @@ public:
     bool blinkForSource;
     bool blinkhand;
     ABlink * ability;
-    ABlinkGeneric(int _id, MTGCardInstance * card, MTGCardInstance * _target,bool blinkueot=false,bool blinkForSource = false,bool blinkhand = false);
+    MTGAbility * stored;
+    ABlinkGeneric(int _id, MTGCardInstance * card, MTGCardInstance * _target,bool blinkueot=false,bool blinkForSource = false,bool blinkhand = false,MTGAbility * stored = NULL);
     int resolve();
     const char * getMenuText();
     ABlinkGeneric * clone() const;

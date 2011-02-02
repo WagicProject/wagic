@@ -1623,7 +1623,14 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         size_t hblink = s.find("hand(blink)");
         if(hblink != string::npos)
             blinkhand = true;
-        MTGAbility * a = NEW ABlinkGeneric(id, card, target,ueoteffect,forsource,blinkhand);
+        size_t returnAbility = s.find("return(");
+        string sAbility = s.substr(returnAbility + 7);
+        MTGAbility * stored = NULL;
+        if(!sAbility.empty())
+        {
+            stored = parseMagicLine(sAbility, id, spell, card);
+        }
+        MTGAbility * a = NEW ABlinkGeneric(id, card, target,ueoteffect,forsource,blinkhand,stored);
         a->oneShot = 1;
         return a;
     }
