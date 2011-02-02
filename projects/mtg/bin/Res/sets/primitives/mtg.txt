@@ -37411,6 +37411,21 @@ power=3
 toughness=4
 [/card]
 [card]
+name=Maelstrom Djinn
+abilties=flying
+facedown={3}
+autofacedown={2}{u}:morph
+autofaceup=counter(0/0,2,Time)
+autofaceup=@each my upkeep:counter(0/0,-1,Time)
+autofaceup=lord(Maelstrom Djinn[-counter{0/0.1.Time}]|myBattlefield) sacrifice
+text=Flying -- Morph {2}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Maelstrom Djinn is turned face up, put two time counters on it and it gains vanishing. (At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.)
+mana={7}{U}
+type=Creature
+subtype=Djinn
+power=5
+toughness=6
+[/card]
+[card]
 name=Maelstrom Pulse
 target=*[-land]
 auto=all(*[share!name!]) destroy

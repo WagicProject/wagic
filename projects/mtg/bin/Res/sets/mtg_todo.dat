@@ -14127,15 +14127,6 @@ power=5
 toughness=5
 [/card]
 [card]
-name=Maelstrom Djinn
-text=Flying -- Morph {2}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Maelstrom Djinn is turned face up, put two time counters on it and it gains vanishing. (At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.)
-mana={7}{U}
-type=Creature
-subtype=Djinn
-power=5
-toughness=6
-[/card]
-[card]
 name=Maelstrom Nexus
 text=The first spell you cast each turn has cascade. (When you cast your first spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.)
 mana={W}{U}{B}{R}{G}
