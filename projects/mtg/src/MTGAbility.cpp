@@ -1750,6 +1750,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         ATokenCreator * tok = NEW ATokenCreator(id, card,target, NULL, sname, stypes, power + value, toughness + value, sabilities, 0,starfound,
             multiplier, who,aLivingWeapon);
         tok->oneShot = 1;
+        if(aLivingWeapon)
+        tok->forceDestroy = 1;
         return tok;  
     }
 
@@ -2422,7 +2424,25 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         MTGAbility * a = NEW ABloodThirst(id, card, target, amount);
         return a;
     }
-
+    //Vanishing
+    found = s.find("vanishing:");
+    if (found != string::npos)
+    {
+        size_t start = s.find(":", found);
+        size_t end = s.find(" ", start);
+        int amount;
+        if (end != string::npos)
+        {
+            amount = atoi(s.substr(start + 1, end - start - 1).c_str());
+        }
+        else
+        {
+            amount = atoi(s.substr(start + 1).c_str());
+        }
+        MTGAbility * a = NEW AVanishing(id, card, NULL, doTap, restrictions,amount);
+        return a;
+    }
+    
     if (s.find("altercost(") != string::npos)
         return getManaReduxAbility(s.substr(s.find("altercost(") + 10), id, spell, card, target);
 

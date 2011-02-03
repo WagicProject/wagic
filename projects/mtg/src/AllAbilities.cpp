@@ -2782,6 +2782,73 @@ APreventDamageTypesUEOT::~APreventDamageTypesUEOT()
     SAFE_DELETE(ability);
 }
 
+//AVanishing creature
+AVanishing::AVanishing(int _id, MTGCardInstance * card, ManaCost * _cost, int _tap, int restrictions, int amount) :
+ActivatedAbility(_id, card, _cost, restrictions, _tap),amount(amount)
+{
+    for(int i = 0;i< amount;i++)
+        source->counters->addCounter("time",0,0);
+}
+
+void AVanishing::Update(float dt)
+{
+    if (newPhase != currentPhase && source->controller() == game->currentPlayer)
+    {
+        if(newPhase == Constants::MTG_PHASE_UPKEEP)
+        {
+            source->counters->removeCounter("time",0,0);
+            Counter * targetCounter = NULL;
+            timeLeft = 0;
+
+            if (source->counters && source->counters->hasCounter("time", 0, 0))
+            {
+                targetCounter = source->counters->hasCounter("time", 0, 0);
+                timeLeft = targetCounter->nb;
+            }
+            else
+            {
+                timeLeft = 0;
+                WEvent * e = NEW WEventCardSacrifice(source);
+                GameObserver * game = GameObserver::GetInstance();
+                game->receiveEvent(e);
+                source->controller()->game->putInGraveyard(source);
+            }
+
+        }
+        else if (newPhase == Constants::MTG_PHASE_UPKEEP && timeLeft <= 0)
+        {
+            WEvent * e = NEW WEventCardSacrifice(source);
+            GameObserver * game = GameObserver::GetInstance();
+            game->receiveEvent(e);
+            source->controller()->game->putInGraveyard(source);
+        }
+
+    }
+    ActivatedAbility::Update(dt);
+}
+
+int AVanishing::resolve()
+{
+
+    return 1;
+}
+
+const char * AVanishing::getMenuText()
+{
+    return "Vanishing";
+}
+
+AVanishing * AVanishing::clone() const
+{
+    AVanishing * a = NEW AVanishing(*this);
+    a->isClone = 1;
+    return a;
+}
+
+AVanishing::~AVanishing()
+{
+}
+
 //AUpkeep
 AUpkeep::AUpkeep(int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int _tap, int restrictions, int _phase,
         int _once,bool Cumulative) :

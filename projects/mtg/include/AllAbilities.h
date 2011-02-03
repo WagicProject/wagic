@@ -2704,7 +2704,7 @@ public:
         for (size_t i = 0; i < currentAbilities.size(); ++i)
         {
             MTGAbility * a = currentAbilities[i];
-            if (dynamic_cast<AEquip *> (a) || dynamic_cast<ATeach *> (a))
+            if (dynamic_cast<AEquip *> (a) || dynamic_cast<ATeach *> (a) || a->aType == MTGAbility::STANDARD_TOKENCREATOR && a->oneShot)
             {
                 SAFE_DELETE(a);
                 continue;
@@ -2726,6 +2726,13 @@ public:
             MTGAbility * a = currentAbilities[i];
             if (dynamic_cast<AEquip *> (a)) continue;
             if (dynamic_cast<ATeach *> (a)) continue;
+            if (a->aType == MTGAbility::STANDARD_TOKENCREATOR && a->oneShot)
+            {
+            a->forceDestroy = 1;
+            continue;
+            }
+            //we generally dont want to pass oneShot tokencreators to the cards
+            //we equip...
             a->addToGame();
         }
         return 1;
@@ -2962,7 +2969,7 @@ public:
             {
                 AEquip* ae = dynamic_cast<AEquip*>(a);
                 ae->unequip();
-                ae->equip(card);    
+                ae->equip(card);  
             }
         }
     }
@@ -3949,6 +3956,21 @@ public:
     const char * getMenuText();
     APreventDamageTypesUEOT * clone() const;
     ~APreventDamageTypesUEOT();
+};
+
+//Upkeep Cost
+class AVanishing: public ActivatedAbility
+{
+public:
+    int timeLeft;
+    int amount;
+
+    AVanishing(int _id, MTGCardInstance * card, ManaCost * _cost, int _tap = 0, int restrictions = 0,int amount = 0);
+    void Update(float dt);
+    int resolve();
+    const char * getMenuText();
+    AVanishing * clone() const;
+    ~AVanishing();
 };
 
 //Upkeep Cost

@@ -173,9 +173,9 @@ Targetable * WEventVampire::getTarget(int target)
     switch (target)
     {
     case TARGET_TO:
-        return victem->next;
+        return source->next;
     case TARGET_FROM:
-        return source;
+        return victem;
     }
     return NULL;
 }
