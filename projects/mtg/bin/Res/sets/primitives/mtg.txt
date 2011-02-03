@@ -3859,11 +3859,9 @@ toughness=2
 [card]
 name=Aven Riftwatcher
 abilities=flying
-auto=counter(0/0,3,Time)
 auto=life:2
 auto=@movedTo(this|nonbattlezone) from(myBattlefield):life:2
-auto=@each my upkeep:counter(0/0,-1,Time)
-auto=lord(aven riftwatcher[-counter{0/0.1.Time}]|myBattlefield) sacrifice
+auto=vanishing:3
 text=Flying -- Vanishing 3 (This permanent enters the battlefield with three time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- When Aven Riftwatcher enters the battlefield or leaves the battlefield, you gain 2 life.
 mana={2}{W}
 type=Creature
@@ -8792,9 +8790,7 @@ toughness=4
 [card]
 name=Calciderm
 abilities=shroud
-auto=counter(0/0,4,Time)
-auto=@each my upkeep:counter(0/0,-1,Time)
-auto=lord(calciderm[-counter{0/0.1.Time}]|myBattlefield) sacrifice
+auto=vanishing:4
 text=Shroud -- Vanishing 4 (This permanent enters the battlefield with three time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.)
 mana={2}{W}{W}
 type=Creature
@@ -10732,9 +10728,7 @@ toughness=7
 [card]
 name=Chronozoa
 abilities=flying
-auto=counter(0/0,3,Time)
-auto=@each my upkeep:counter(0/0,-1,Time)
-auto=this(counter{0/0.1.Time}=0) sacrifice
+auto=vanishing:3
 auto=@movedTo(this|graveyard) from(myBattlefield):this(counter{0/0.1.Time}=0) token(111066)*2
 text=Vanishing 3 (This permanent enters the battlefield with three time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- When Chronozoa is put into a graveyard from the battlefield, if it had no time counters on it, put two tokens that are copies of it onto the battlefield.
 mana={3}{U}
@@ -14460,9 +14454,7 @@ type=Enchantment
 [/card]
 [card]
 name=Deadly Grub
-auto=counter(0/0,3,Time)
-auto=@each my upkeep:counter(0/0,-1,Time)
-auto=lord(deadly grub[-counter{0/0.1.Time}]|myBattlefield) sacrifice 
+auto=vanishing:3
 auto=@movedTo(this|graveyard) from(myBattlefield):this(counter{0/0.1.Time}<1) all(trigger) token(Insect,creature token insect,6/1,shroud green)
 text=Vanishing 3 (This permanent enters the battlefield with three time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- When Deadly Grub is put into a graveyard from the battlefield, if it had no time counters on it, put a 6/1 green Insect creature token with shroud onto the battlefield. (It can't be the target of spells or abilities.)
 mana={2}{B}
@@ -14504,11 +14496,9 @@ toughness=4
 [/card]
 [card]
 name=Deadwood Treefolk
-auto=counter(0/0,3,Time)
-auto=@each my upkeep:counter(0/0,-1,Time)
+auto=vanishing:3
 auto=moveTo(myhand) target(other creature|myGraveyard)
 auto=@movedTo(this|nonbattlezone) from(myBattlefield):moveTo(myhand) target(other creature|myGraveyard)
-auto=lord(deadwood treefolk[-counter{0/0.1.Time}]|myBattlefield) sacrifice
 text=Vanishing 3 (This permanent enters the battlefield with three time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- When Deadwood Treefolk enters the battlefield or leaves the battlefield, return another target creature card from your graveyard to your hand.
 mana={5}{G}
 type=Creature
@@ -33444,11 +33434,9 @@ subtype=Aura
 [/card]
 [card]
 name=Keldon Marauders
-auto=counter(0/0,2,Time)
-auto=@each my upkeep:counter(0/0,-1,Time)
+auto=vanishing:2
 auto=damage:1 target(player)
 auto=@movedTo(this|nonbattlezone) from(myBattlefield):damage:1 target(player)
-auto=lord(keldon marauders[-counter{0/0.1.Time}]|myBattlefield) sacrifice
 text=Vanishing 2 (This permanent enters the battlefield with two time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- When Keldon Marauders enters the battlefield or leaves the battlefield, it deals 1 damage to target player.
 mana={1}{R}
 type=Creature
@@ -35434,9 +35422,7 @@ toughness=3
 [/card]
 [card]
 name=Lavacore Elemental
-auto=counter(0/0,1,Time)
-auto=@each my upkeep:counter(0/0,-1,Time)
-auto=lord(lavacore elemental[-counter{0/0.1.Time}]|myBattlefield) sacrifice
+auto=vanishing:1
 auto=@combatdamaged(player) from(creature|myBattlefield):counter(0/0,1,Time)
 text=Vanishing 1 (This permanent enters the battlefield with a time counter on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- Whenever a creature you control deals combat damage to a player, put a time counter on Lavacore Elemental.
 mana={2}{R}
@@ -37458,9 +37444,7 @@ name=Maelstrom Djinn
 abilties=flying
 facedown={3}
 autofacedown={2}{u}:morph
-autofaceup=counter(0/0,2,Time)
-autofaceup=@each my upkeep:counter(0/0,-1,Time)
-autofaceup=lord(Maelstrom Djinn[-counter{0/0.1.Time}]|myBattlefield) sacrifice
+autofaceup=vanishing:2
 text=Flying -- Morph {2}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Maelstrom Djinn is turned face up, put two time counters on it and it gains vanishing. (At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.)
 mana={7}{U}
 type=Creature
@@ -49442,11 +49426,9 @@ toughness=3
 [/card]
 [card]
 name=Ravaging Riftwurm
-auto=counter(0/0,2,Time)
-auto=@each my upkeep:counter(0/0,-1,Time)
+auto=vanishing:2
 kicker={4}
 auto=kicker counter(0/0,3,Time)
-auto=lord(ravaging riftwurm[-counter{0/0.1.Time}]|myBattlefield) sacrifice
 text=Kicker {4} (You may pay an additional 4 as you cast this spell.) -- Vanishing 2 (This permanent enters the battlefield with two time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- If Ravaging Riftwurm was kicked, it enters the battlefield with three additional time counters on it.
 mana={1}{G}{G}
 type=Creature
@@ -59183,10 +59165,8 @@ toughness=4
 [/card]
 [card]
 name=Soultether Golem
-auto=counter(0/0,1,Time)
-auto=@each my upkeep:counter(0/0,-1,Time)
+auto=vanishing:1
 auto=@movedTo(other creature|myBattlefield):counter(0/0,1,Time)
-auto=lord(soultether golem[-counter{0/0.1.Time}]|myBattlefield) sacrifice
 text=Vanishing 1 (This permanent enters the battlefield with a time counter on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- Whenever another creature enters the battlefield under your control, put a time counter on Soultether Golem.
 mana={2}
 type=Artifact Creature
@@ -65583,8 +65563,7 @@ toughness=5
 name=Tidewalker
 auto=foreach(island|myBattlefield) counter(0/0,1,Time)
 auto=thisforeach(counter{0/0.1.Time}) 1/1
-auto=@each my upkeep:counter(0/0,-1,Time)
-auto=lord(tidewalker[-counter{0/0.1.Time}]|myBattlefield) sacrifice
+auto=vanishing:0
 text=Tidewalker enters the battlefield with a time counter on it for each Island you control. -- Vanishing (At the beginning of your upkeep, remove a time counter from this permanent. When the last is removed, sacrifice it.) -- Tidewalker's power and toughness are each equal to the number of time counters on it.
 mana={2}{U}
 type=Creature
@@ -71407,9 +71386,7 @@ type=Land
 [/card]
 [card]
 name=Waning Wurm
-auto=counter(0/0,2,Time)
-auto=@each my upkeep:counter(0/0,-1,Time)
-auto=lord(waning wurm[-counter{0/0.1.Time}]|myBattlefield) sacrifice
+auto=vanishing:2
 text=Vanishing 2 (This permanent enters the battlefield with two time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.)
 mana={3}{B}
 type=Creature
