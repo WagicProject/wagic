@@ -34442,7 +34442,7 @@ type=Legendary Land
 [/card]
 [card]
 name=Kor Hookmaster
-auto=choice target(creature) tap && frozen
+auto=choice target(creature|opponentbattlefield) tap && frozen
 text=When Kor Hookmaster enters the battlefield, tap target creature an opponent controls. That creature doesn't untap during its controller's next untap step.
 mana={2}{W}
 type=Creature
