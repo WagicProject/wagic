@@ -47816,6 +47816,17 @@ power=0
 toughness=3
 [/card]
 [card]
+name=Psychic Overload
+target=*|battlefield
+auto=tap
+auto=teach(*) doesnotuntap
+auto=teach(*) {discard(*|myhand)}{discard(*|myhand)}:untap
+text=Enchant permanent -- When Psychic Overload enters the battlefield, tap enchanted permanent. -- Enchanted permanent doesn't untap during its controller's untap step. -- Enchanted permanent has "Discard two artifact cards: Untap this permanent."
+mana={3}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Psychic Spear
 target=spirit,arcane|opponenthand
 auto=moveTo(graveyard)
