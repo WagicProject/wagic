@@ -19830,15 +19830,6 @@ mana={3}{U}{U}
 type=Enchantment
 [/card]
 [card]
-name=Reckless Embermage
-text={1}{R}: Reckless Embermage deals 1 damage to target creature or player and 1 damage to itself.
-mana={3}{R}
-type=Creature
-subtype=Human Wizard
-power=2
-toughness=2
-[/card]
-[card]
 name=Reckless Scholar
 text={T}: Target player draws a card, then discards a card.
 mana={2}{U}
@@ -20451,14 +20442,6 @@ mana={5}
 type=Artifact
 [/card]
 [card]
-name=Ring of Renewal
-auto=aslongas(*|myHand) {5}{T}:discard:1 && draw:2 controller >1
-# this does not work in WTH 0.10, make you discard a card when comes into play.
-text={5}, {T}: Discard a card at random, then draw two cards.
-mana={5}
-type=Artifact
-[/card]
-[card]
 name=Rings of Brighthearth
 text=Whenever you activate an ability, if it isn't a mana ability, you may pay {2}. If you do, copy that ability. You may choose new targets for the copy.
 mana={3}
@@ -20689,15 +20672,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Rock Hydra
-text=Rock Hydra enters the battlefield with X +1/+1 counters on it. -- For each 1 damage that would be dealt to Rock Hydra, if it has a +1/+1 counter on it, remove a +1/+1 counter from it and prevent that 1 damage. -- {R}: Prevent the next 1 damage that would be dealt to Rock Hydra this turn. -- {R}{R}{R}: Put a +1/+1 counter on Rock Hydra. Activate this ability only during your upkeep.
-mana={X}{R}{R}
-type=Creature
-subtype=Hydra
-power=0
-toughness=0
-[/card]
-[card]
 name=Rock Jockey
 text=You can't cast Rock Jockey if you've played a land this turn. -- You can't play lands if you've cast Rock Jockey this turn.
 mana={2}{R}
@@ -20752,23 +20726,10 @@ power=*
 toughness=*
 [/card]
 [card]
-name=Roiling Terrain
-text=Destroy target land, then Roiling Terrain deals damage to that land's controller equal to the number of land cards in that player's graveyard.
-mana={2}{R}{R}
-type=Sorcery
-[/card]
-[card]
 name=Rolling Thunder
 text=Rolling Thunder deals X damage divided as you choose among any number of target creatures and/or players.
 mana={X}{R}{R}
 type=Sorcery
-[/card]
-[card]
-name=Ronin Warclub
-text=Equipped creature gets +2/+1. -- Whenever a creature enters the battlefield under your control, attach Ronin Warclub to that creature. -- Equip {5} ({5}: Attach to target creature you control. Equip only as a sorcery.)
-mana={3}
-type=Artifact
-subtype=Equipment
 [/card]
 [card]
 name=Root Sliver
@@ -21017,13 +20978,6 @@ mana={W}{W}
 type=Enchantment
 [/card]
 [card]
-name=Runed Stalactite
-text=Equipped creature gets +1/+1 and is every creature type. -- Equip {2}
-mana={1}
-type=Artifact
-subtype=Equipment
-[/card]
-[card]
 name=Runeflare Trap
 text=If an opponent drew three or more cards this turn, you may pay {R} rather than pay Runeflare Trap's mana cost. -- Runeflare Trap deals damage to target player equal to the number of cards in that player's hand.
 mana={4}{R}{R}
@@ -21083,15 +21037,6 @@ type=Creature
 subtype=Badger
 power=2
 toughness=2
-[/card]
-[card]
-name=Sabertooth Alley Cat
-text=Sabertooth Alley Cat attacks each turn if able. -- {1}{R}: Creatures without defender can't block Sabertooth Alley Cat this turn.
-mana={1}{R}{R}
-type=Creature
-subtype=Cat
-power=2
-toughness=1
 [/card]
 [card]
 name=Sabertooth Cobra
@@ -21697,13 +21642,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Scythe of the Wretched
-text=Equipped creature gets +2/+2. -- Whenever a creature dealt damage by equipped creature this turn is put into a graveyard, return that card to the battlefield under your control. Attach Scythe of the Wretched to that creature. -- Equip {4}
-mana={2}
-type=Artifact
-subtype=Equipment
-[/card]
-[card]
 name=Sea Drake
 text=Flying -- When Sea Drake enters the battlefield, return two target lands you control to their owner's hand.
 mana={2}{U}
@@ -21831,12 +21769,6 @@ type=Creature
 subtype=Spirit
 power=2
 toughness=2
-[/card]
-[card]
-name=Security Detail
-text={W}{W}: Put a 1/1 white Soldier creature token onto the battlefield. Activate this ability only if you control no creatures and only once each turn.
-mana={3}{W}
-type=Enchantment
 [/card]
 [card]
 name=Sedraxis Specter
@@ -22073,12 +22005,6 @@ name=Serum Visions
 text=Draw a card. -- Scry 2. (To scry 2, look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
 mana={U}
 type=Sorcery
-[/card]
-[card]
-name=Sewers of Estark
-text=Choose target creature. If it's attacking, it's unblockable this turn. If it's blocking, prevent all combat damage that would be dealt this turn by it and each creature it's blocking.
-mana={2}{B}{B}
-type=Instant
 [/card]
 [card]
 name=Seton's Desire
@@ -23166,7 +23092,7 @@ toughness=1
 [/card]
 [card]
 name=Soldier of Fortune
-auto={R}{T}:shuffle target(library)
+auto={R}{T}:shuffle target(player)
 text={R}, {T}: Target player shuffles his or her library.
 mana={R}
 type=Creature
@@ -23283,12 +23209,6 @@ text={T}: Choose two target blocking creatures an opponent controls. If each of 
 type=Land
 [/card]
 [card]
-name=Sosuke's Summons
-text=Put two 1/1 green Snake creature tokens onto the battlefield. -- Whenever a nontoken Snake enters the battlefield under your control, you may return Sosuke's Summons from your graveyard to your hand.
-mana={2}{G}
-type=Sorcery
-[/card]
-[card]
 name=Soul Barrier
 text=Whenever an opponent casts a creature spell, Soul Barrier deals 2 damage to that player unless he or she pays {2}.
 mana={2}{U}
@@ -23308,15 +23228,6 @@ type=Creature
 subtype=Human Rebel
 power=2
 toughness=2
-[/card]
-[card]
-name=Soul Collector
-text=Flying -- Whenever a creature dealt damage by Soul Collector this turn is put into a graveyard, return that card to the battlefield under your control. -- Morph {B}{B}{B} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
-mana={3}{B}{B}
-type=Creature
-subtype=Vampire
-power=3
-toughness=4
 [/card]
 [card]
 name=Soul Echo
@@ -23360,12 +23271,6 @@ target=creature
 text=Destroy target nongreen creature. Its controller loses 3 life if you've cast another black spell this turn.
 mana={1}{B}
 type=Sorcery
-[/card]
-[card]
-name=Soul Rend
-text=Destroy target creature if it's white. A creature destroyed this way can't be regenerated. -- Draw a card at the beginning of the next turn's upkeep.
-mana={1}{B}
-type=Instant
 [/card]
 [card]
 name=Soul Scourge
@@ -23467,13 +23372,6 @@ text=Equipped creature gets +1/+0. -- Whenever equipped creature deals combat da
 mana={2}
 type=Artifact
 subtype=Equipment
-[/card]
-[card]
-name=Spectral Cloak
-text=Enchant creature -- Enchanted creature has shroud as long as it's untapped. (It can't be the target of spells or abilities.)
-mana={U}{U}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Spectral Searchlight
@@ -23999,15 +23897,6 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
-name=Squirrel Nest
-target=land
-auto={T}:token(Squirrel,Creature Squirrel,1/1,green)
-text=Enchant land -- Enchanted land has "{T}: Put a 1/1 green Squirrel creature token onto the battlefield."
-mana={1}{G}{G}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Stabilizer
 text=Players can't cycle cards.
 mana={2}
@@ -24095,13 +23984,6 @@ mana={1}{U}
 type=Enchantment
 [/card]
 [card]
-name=Stasis Cell
-text=Enchant creature -- Enchanted creature doesn't untap during its controller's untap step. -- {3}{U}: Attach Stasis Cell to target creature.
-mana={4}{U}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Stasis Cocoon
 text=Enchant artifact -- Enchanted artifact's activated abilities can't be activated. If enchanted artifact is a creature, it can't attack or block.
 mana={1}{W}
@@ -24113,12 +23995,6 @@ name=Static Orb
 text=If Static Orb is untapped, players can't untap more than two permanents during their untap steps.
 mana={3}
 type=Artifact
-[/card]
-[card]
-name=Steal Strength
-text=Target creature gets +1/+1 until end of turn. Another target creature gets -1/-1 until end of turn.
-mana={1}{B}
-type=Instant
 [/card]
 [card]
 name=Steam Vines
@@ -24135,13 +24011,6 @@ type=Creature
 subtype=Goblin Rigger
 power=3
 toughness=3
-[/card]
-[card]
-name=Steel of the Godhead
-text=Enchant creature -- As long as enchanted creature is white, it gets +1/+1 and has lifelink. (Damage dealt by the creature also causes its controller to gain that much life.) -- As long as enchanted creature is blue, it gets +1/+1 and is unblockable.
-mana={2}{WU}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Steely Resolve
@@ -24242,7 +24111,8 @@ toughness=2
 [/card]
 [card]
 name=Stomp and Howl
-auto=destroy target(artifact)
+target=artifact
+auto=destroy
 auto=destroy target(enchantment)
 text=Destroy target artifact and target enchantment.
 mana={2}{G}
@@ -24943,13 +24813,6 @@ mana={R}
 type=Sorcery
 [/card]
 [card]
-name=Tahngarth's Rage
-text=Enchant creature -- Enchanted creature gets +3/+0 as long as it's attacking. Otherwise, it gets -2/-1.
-mana={R}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Tainted AEther
 text=Whenever a creature enters the battlefield, its controller sacrifices a creature or land.
 mana={2}{B}{B}
@@ -24992,15 +24855,6 @@ text=Bushido 2 (When this blocks or becomes blocked, it gets +2/+2 until end of 
 mana={5}{W}
 type=Legendary Creature
 subtype=Human Samurai
-power=3
-toughness=3
-[/card]
-[card]
-name=Takenuma Bleeder
-text=Whenever Takenuma Bleeder attacks or blocks, you lose 1 life if you don't control a Demon.
-mana={2}{B}
-type=Creature
-subtype=Ogre Shaman
 power=3
 toughness=3
 [/card]
@@ -25289,13 +25143,6 @@ mana={B}
 type=Sorcery
 [/card]
 [card]
-name=Tenza, Godo's Maul
-text=Equipped creature gets +1/+1. As long as it's legendary, it gets an additional +2/+2. As long as it's red, it has trample. -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
-mana={3}
-type=Legendary Artifact
-subtype=Equipment
-[/card]
-[card]
 name=Tephraderm
 text=Whenever a creature deals damage to Tephraderm, Tephraderm deals that much damage to that creature. -- Whenever a spell deals damage to Tephraderm, Tephraderm deals that much damage to that spell's controller.
 mana={4}{R}
@@ -25344,19 +25191,6 @@ name=Test of Faith
 text=Prevent the next 3 damage that would be dealt to target creature this turn, and put a +1/+1 counter on that creature for each 1 damage prevented this way.
 mana={1}{W}
 type=Instant
-[/card]
-[card]
-name=Tetravus
-abilities=flying
-auto=counter(1/1,3)
-auto=@each my upkeep:may counter(1/1,-1) && token(Tetravite,Artifact Creature,1/1,flying)
-auto=@each my upkeep:may moveto(exile) target(Tetravite|myBattlefield) && counter(1/1,1)
-text=Flying -- Tetravus enters the battlefield with three +1/+1 counters on it. -- At the beginning of your upkeep, you may remove any number of +1/+1 counters from Tetravus. If you do, put that many 1/1 colorless Tetravite artifact creature tokens onto the battlefield. They each have flying and "This creature can't be enchanted." -- At the beginning of your upkeep, you may exile any number of tokens put onto the battlefield with Tetravus. If you do, put that many +1/+1 counters on Tetravus.
-mana={6}
-type=Artifact Creature
-subtype=Construct
-power=1
-toughness=1
 [/card]
 [card]
 name=Tezzeret, Agent of Bolas
@@ -25448,14 +25282,6 @@ mana={U}
 type=Instant
 [/card]
 [card]
-name=Thermokarst
-target=land
-auto=destroy
-text=Destroy target land. If that land was a snow land, you gain 1 life.
-mana={1}{G}{G}
-type=Sorcery
-[/card]
-[card]
 name=Thermopod
 text={S}i}: Thermopod gains haste until end of turn. ({S}i} can be paid with one mana from a snow permanent.) -- Sacrifice a creature: Add {R} to your mana pool.
 mana={4}{R}
@@ -25540,13 +25366,6 @@ type=Creature
 subtype=Viashino Warrior
 power=2
 toughness=2
-[/card]
-[card]
-name=Thornbite Staff
-text=Equipped creature has "{2}, {T}: This creature deals 1 damage to target creature or player" and "Whenever a creature is put into a graveyard from the battlefield, untap this creature." -- Whenever a Shaman creature enters the battlefield, you may attach Thornbite Staff to it. -- Equip {4}
-mana={2}
-type=Tribal Artifact
-subtype=Shaman Equipment
 [/card]
 [card]
 name=Thornscape Battlemage
@@ -25956,15 +25775,6 @@ text={T}: Add {U} to your mana pool. -- {T}: Target creature loses banding and a
 type=Legendary Land
 [/card]
 [card]
-name=Tolarian Entrancer
-text=Whenever Tolarian Entrancer becomes blocked by a creature, gain control of that creature at end of combat.
-mana={1}{U}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
-[/card]
-[card]
 name=Tolarian Winds
 text=Discard all the cards in your hand, then draw that many cards.
 mana={1}{U}
@@ -26094,6 +25904,8 @@ type=Artifact
 [/card]
 [card]
 name=Tower of the Magistrate
+auto={t}:add{1}
+auto={1}{t}:target(creature)
 text={T}: Add {1} to your mana pool. -- {1}, {T}: Target creature gains protection from artifacts until end of turn.
 type=Land
 [/card]
