@@ -18974,13 +18974,6 @@ mana={3}{U}{U}
 type=Enchantment
 [/card]
 [card]
-name=Psychic Overload
-text=Enchant permanent -- When Psychic Overload enters the battlefield, tap enchanted permanent. -- Enchanted permanent doesn't untap during its controller's untap step. -- Enchanted permanent has "Discard two artifact cards: Untap this permanent."
-mana={3}{U}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Psychic Possession
 text=Enchant opponent -- Skip your draw step. -- Whenever enchanted opponent draws a card, you may draw a card.
 mana={2}{U}{U}
