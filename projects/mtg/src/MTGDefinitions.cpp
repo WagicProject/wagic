@@ -123,6 +123,7 @@ const char* Constants::MTGBasicAbilities[] = {
     "strong",//cant be blocked by creature with less power
     "weak",//cant block creatures with more power
     "phasing",
+    "split second",
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

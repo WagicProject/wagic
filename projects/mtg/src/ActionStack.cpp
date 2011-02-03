@@ -685,7 +685,6 @@ int ActionStack::resolve()
     }
     if (action->type == ACTION_DAMAGE)
         ((Damage *) action)->target->afterDamage();
-
     if (!getNext(NULL, NOT_RESOLVED))
     {
         for (int i = 0; i < 2; i++)
@@ -850,39 +849,48 @@ void ActionStack::Update(float dt)
         modal = 0;
         if (getLatest(NOT_RESOLVED))
         {
-            int currentPlayerId = 0;
-            int otherPlayerId = 1;
-            if (game->currentlyActing() != game->players[0])
+            Interruptible * currentSpell = (Interruptible *)getLatest(NOT_RESOLVED);
+            MTGCardInstance * card = currentSpell->source;
+            if(card && card->has(Constants::SPLITSECOND))
             {
-                currentPlayerId = 1;
-                otherPlayerId = 0;
-            }
-            if (interruptDecision[currentPlayerId] == NOT_DECIDED)
-            {
-                askIfWishesToInterrupt = game->players[currentPlayerId];
-                game->isInterrupting = game->players[currentPlayerId];
-                modal = 1;
-            }
-            else if (interruptDecision[currentPlayerId] == INTERRUPT)
-            {
-                game->isInterrupting = game->players[currentPlayerId];
-
+                resolve();
             }
             else
             {
-                if (interruptDecision[otherPlayerId] == NOT_DECIDED)
+                int currentPlayerId = 0;
+                int otherPlayerId = 1;
+                if (game->currentlyActing() != game->players[0])
                 {
-                    askIfWishesToInterrupt = game->players[otherPlayerId];
-                    game->isInterrupting = game->players[otherPlayerId];
+                    currentPlayerId = 1;
+                    otherPlayerId = 0;
+                }
+                if (interruptDecision[currentPlayerId] == NOT_DECIDED)
+                {
+                    askIfWishesToInterrupt = game->players[currentPlayerId];
+                    game->isInterrupting = game->players[currentPlayerId];
                     modal = 1;
                 }
-                else if (interruptDecision[otherPlayerId] == INTERRUPT)
+                else if (interruptDecision[currentPlayerId] == INTERRUPT)
                 {
-                    game->isInterrupting = game->players[otherPlayerId];
+                    game->isInterrupting = game->players[currentPlayerId];
+
                 }
                 else
                 {
-                    resolve();
+                    if (interruptDecision[otherPlayerId] == NOT_DECIDED)
+                    {
+                        askIfWishesToInterrupt = game->players[otherPlayerId];
+                        game->isInterrupting = game->players[otherPlayerId];
+                        modal = 1;
+                    }
+                    else if (interruptDecision[otherPlayerId] == INTERRUPT)
+                    {
+                        game->isInterrupting = game->players[otherPlayerId];
+                    }
+                    else
+                    {
+                        resolve();
+                    }
                 }
             }
         }
