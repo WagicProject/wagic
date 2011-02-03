@@ -2704,7 +2704,7 @@ public:
         for (size_t i = 0; i < currentAbilities.size(); ++i)
         {
             MTGAbility * a = currentAbilities[i];
-            if (dynamic_cast<AEquip *> (a) || dynamic_cast<ATeach *> (a) || a->aType == MTGAbility::STANDARD_TOKENCREATOR && a->oneShot)
+            if (dynamic_cast<AEquip *> (a) || dynamic_cast<ATeach *> (a) || (a->aType == MTGAbility::STANDARD_TOKENCREATOR && a->oneShot))
             {
                 SAFE_DELETE(a);
                 continue;
