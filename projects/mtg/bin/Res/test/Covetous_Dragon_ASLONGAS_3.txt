@@ -4,7 +4,7 @@
 [INIT]
 FIRSTMAIN
 [PLAYER1]
-inplay:Covetous Dragon,Bottle Gnomes,Mox Pearl,Bonesplitter
+inplay:Bottle Gnomes,Mox Pearl,Bonesplitter,Covetous Dragon
 hand:Shatter
 manapool:{1}{R}
 [PLAYER2]
