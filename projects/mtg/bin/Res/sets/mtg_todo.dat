@@ -3197,15 +3197,6 @@ mana={2}{W}{W}
 type=Enchantment
 [/card]
 [card]
-name=Celestial Crusader
-text=Flash (You may cast this spell any time you could cast an instant.) -- Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- Flying -- Other white creatures get +1/+1.
-mana={2}{W}{W}
-type=Creature
-subtype=Spirit
-power=2
-toughness=2
-[/card]
-[card]
 name=Celestial Dawn
 text=Lands you control are Plains. -- Nonland cards you own that aren't on the battlefield, spells you control, and nonland permanents you control are white. -- You may spend white mana as though it were mana of any color. You may spend other mana only as though it were colorless mana.
 mana={1}{W}{W}
@@ -7459,12 +7450,6 @@ name=Extinction
 text=Destroy all creatures of the creature type of your choice.
 mana={4}{B}
 type=Sorcery
-[/card]
-[card]
-name=Extirpate
-text=Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- Choose target card in a graveyard other than a basic land. Search its owner's graveyard, hand, and library for all cards with the same name as that card and exile them. Then that player shuffles his or her library.
-mana={B}
-type=Instant
 [/card]
 [card]
 name=Extortion
@@ -12354,15 +12339,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Kaijin of the Vanishing Touch
-text=Defender (This creature can't attack.) -- Whenever Kaijin of the Vanishing Touch blocks a creature, return that creature to its owner's hand at end of combat. (Return it only if it's on the battlefield.)
-mana={1}{U}
-type=Creature
-subtype=Spirit
-power=0
-toughness=3
-[/card]
-[card]
 name=Kalastria Highborn
 text=Whenever Kalastria Highborn or another Vampire you control is put into a graveyard from the battlefield, you may pay {B}. If you do, target player loses 2 life and you gain 2 life.
 mana={B}{B}
@@ -13039,12 +13015,6 @@ type=Creature
 subtype=Elf
 power=2
 toughness=2
-[/card]
-[card]
-name=Krosan Grip
-text=Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- Destroy target artifact or enchantment.
-mana={2}{G}
-type=Instant
 [/card]
 [card]
 name=Krosan Reclamation
@@ -24353,12 +24323,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Stonewood Invocation
-text=Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- Target creature gets +5/+5 and gains shroud until end of turn. (It can't be the target of spells or abilities.)
-mana={3}{G}
-type=Instant
-[/card]
-[card]
 name=Storage Matrix
 text=As long as Storage Matrix is untapped, each player chooses artifact, creature, or land during his or her untap step. That player can untap only permanents of the chosen type this step.
 mana={3}
@@ -24589,18 +24553,6 @@ mana={2}{B}
 type=Sorcery
 [/card]
 [card]
-name=Sudden Death
-text=Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- Target creature gets -4/-4 until end of turn.
-mana={1}{B}{B}
-type=Instant
-[/card]
-[card]
-name=Sudden Shock
-text=Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- Sudden Shock deals 2 damage to target creature or player.
-mana={1}{R}
-type=Instant
-[/card]
-[card]
 name=Sudden Spoiling
 text=Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- Creatures target player controls become 0/2 and lose all abilities until end of turn.
 mana={1}{B}{B}
@@ -24626,15 +24578,6 @@ type=Creature
 subtype=Djinn
 power=6
 toughness=6
-[/card]
-[card]
-name=Sulfur Elemental
-text=Flash (You may cast this spell any time you could cast an instant.) -- Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- White creatures get +1/-1.
-mana={2}{R}
-type=Creature
-subtype=Elemental
-power=3
-toughness=2
 [/card]
 [card]
 name=Sulfuric Vapors
@@ -25058,13 +25001,6 @@ type=Creature
 subtype=Cat Soldier
 power=2
 toughness=3
-[/card]
-[card]
-name=Take Possession
-text=Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- Enchant permanent -- You control enchanted permanent.
-mana={5}{U}{U}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Takeno, Samurai General
@@ -28354,12 +28290,6 @@ text=Wintermoon Mesa enters the battlefield tapped. -- {T}: Add {1} to your mana
 type=Land
 [/card]
 [card]
-name=Wipe Away
-text=Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- Return target permanent to its owner's hand.
-mana={1}{U}{U}
-type=Instant
-[/card]
-[card]
 name=Wirefly Hive
 text={3}, {T}: Flip a coin. If you win the flip, put a 2/2 colorless Insect artifact creature token with flying named Wirefly onto the battlefield. If you lose the flip, destroy all permanents named Wirefly.
 mana={3}
@@ -28518,12 +28448,6 @@ type=Sorcery
 name=Word of Command
 text=Look at target opponent's hand and choose a card from it. That player plays that card with his or her own mana, but you make all decisions it calls for. The player is required only to spend mana in his or her mana pool and/or mana that can be produced by lands.
 mana={B}{B}
-type=Instant
-[/card]
-[card]
-name=Word of Seizing
-text=Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- Untap target permanent and gain control of it until end of turn. It gains haste until end of turn.
-mana={3}{R}{R}
 type=Instant
 [/card]
 [card]

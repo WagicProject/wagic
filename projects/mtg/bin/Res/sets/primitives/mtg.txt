@@ -3863,7 +3863,7 @@ auto=counter(0/0,3,Time)
 auto=life:2
 auto=@movedTo(this|nonbattlezone) from(myBattlefield):life:2
 auto=@each my upkeep:counter(0/0,-1,Time)
-auto=lord(aven riftwatcher[-counter{0/0.1.Time}]|myBattlefield) -99/-99
+auto=lord(aven riftwatcher[-counter{0/0.1.Time}]|myBattlefield) sacrifice
 text=Flying -- Vanishing 3 (This permanent enters the battlefield with three time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- When Aven Riftwatcher enters the battlefield or leaves the battlefield, you gain 2 life.
 mana={2}{W}
 type=Creature
@@ -8794,7 +8794,7 @@ name=Calciderm
 abilities=shroud
 auto=counter(0/0,4,Time)
 auto=@each my upkeep:counter(0/0,-1,Time)
-auto=lord(calciderm[-counter{0/0.1.Time}]|myBattlefield) -99/-99
+auto=lord(calciderm[-counter{0/0.1.Time}]|myBattlefield) sacrifice
 text=Shroud -- Vanishing 4 (This permanent enters the battlefield with three time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.)
 mana={2}{W}{W}
 type=Creature
@@ -9715,6 +9715,17 @@ type=Creature
 subtype=Elemental
 power=3
 toughness=3
+[/card]
+[card]
+name=Celestial Crusader
+auto=lord(other creature[white]) 1/1
+text=Flash (You may cast this spell any time you could cast an instant.) -- Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- Flying -- Other white creatures get +1/+1.
+mana={2}{W}{W}
+type=Creature
+subtype=Spirit
+power=2
+toughness=2
+abilities=flash,split second,flying
 [/card]
 [card]
 name=Celestial Colonnade
@@ -10723,7 +10734,7 @@ name=Chronozoa
 abilities=flying
 auto=counter(0/0,3,Time)
 auto=@each my upkeep:counter(0/0,-1,Time)
-auto=this(counter{0/0.1.Time}=0) -99/-99
+auto=this(counter{0/0.1.Time}=0) sacrifice
 auto=@movedTo(this|graveyard) from(myBattlefield):this(counter{0/0.1.Time}=0) token(111066)*2
 text=Vanishing 3 (This permanent enters the battlefield with three time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- When Chronozoa is put into a graveyard from the battlefield, if it had no time counters on it, put two tokens that are copies of it onto the battlefield.
 mana={3}{U}
@@ -12602,14 +12613,13 @@ toughness=2
 [card]
 name=Covetous Dragon
 abilities=flying
-auto=aslongas(artifact|myBattlefield) -99/-99 <1
+auto=aslongas(artifact|myBattlefield) sacrifice <1
 text=Flying -- When you control no artifacts, sacrifice Covetous Dragon.
 mana={4}{R}
 type=Creature
 subtype=Dragon
 power=6
 toughness=5
-# P/T modified to make auto rule possible
 [/card]
 [card]
 name=Crabapple Cohort
@@ -14452,7 +14462,7 @@ type=Enchantment
 name=Deadly Grub
 auto=counter(0/0,3,Time)
 auto=@each my upkeep:counter(0/0,-1,Time)
-auto=lord(deadly grub[-counter{0/0.1.Time}]|myBattlefield) -99/-99 
+auto=lord(deadly grub[-counter{0/0.1.Time}]|myBattlefield) sacrifice 
 auto=@movedTo(this|graveyard) from(myBattlefield):this(counter{0/0.1.Time}<1) all(trigger) token(Insect,creature token insect,6/1,shroud green)
 text=Vanishing 3 (This permanent enters the battlefield with three time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- When Deadly Grub is put into a graveyard from the battlefield, if it had no time counters on it, put a 6/1 green Insect creature token with shroud onto the battlefield. (It can't be the target of spells or abilities.)
 mana={2}{B}
@@ -14498,7 +14508,7 @@ auto=counter(0/0,3,Time)
 auto=@each my upkeep:counter(0/0,-1,Time)
 auto=moveTo(myhand) target(other creature|myGraveyard)
 auto=@movedTo(this|nonbattlezone) from(myBattlefield):moveTo(myhand) target(other creature|myGraveyard)
-auto=lord(deadwood treefolk[-counter{0/0.1.Time}]|myBattlefield) -99/-99
+auto=lord(deadwood treefolk[-counter{0/0.1.Time}]|myBattlefield) sacrifice
 text=Vanishing 3 (This permanent enters the battlefield with three time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- When Deadwood Treefolk enters the battlefield or leaves the battlefield, return another target creature card from your graveyard to your hand.
 mana={5}{G}
 type=Creature
@@ -18952,7 +18962,7 @@ toughness=1
 [/card]
 [card]
 name=Emperor Crocodile
-auto=aslongas(other creature|myBattlefield) -99/-99 <1
+auto=aslongas(other creature|myBattlefield) sacrifice <1
 text=When you control no other creatures, sacrifice Emperor Crocodile.
 mana={3}{G}
 type=Creature
@@ -19094,7 +19104,7 @@ type=Sorcery
 [/card]
 [card]
 name=Endangered Armodon
-auto=aslongas(creature[toughness<=2]|myBattlefield) -99/-99
+auto=aslongas(creature[toughness<=2]|myBattlefield) sacrifice
 text=When you control a creature with toughness 2 or less, sacrifice Endangered Armodon.
 mana={2}{G}{G}
 type=Creature
@@ -20147,6 +20157,19 @@ type=Artifact Creature
 subtype=Juggernaut
 power=4
 toughness=3
+[/card]
+[card]
+name=Extirpate
+target=*[-basic]|graveyard
+auto=moveTo(exile)
+auto=all(*[share!name!]|targetcontrollerhand) moveto(exile)
+auto=all(*[share!name!]|targetcontrollerlibrary) moveto(exile)
+auto=all(*[share!name!]|targetcontrollergraveyard)moveto(exile)
+auto=all(*[share!name!]|targetcontrollerbattlefield) moveto(exile)
+text=Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- Choose target card in a graveyard other than a basic land. Search its owner's graveyard, hand, and library for all cards with the same name as that card and exile them. Then that player shuffles his or her library.
+abilities=split second
+mana={B}
+type=Instant
 [/card]
 [card]
 name=Exuberant Firestoker
@@ -25995,7 +26018,7 @@ toughness=1
 [card]
 name=Goblins of the Flarg
 abilities=mountainwalk
-auto=aslongas(dwarf|myBattlefield) -99/-99
+auto=aslongas(dwarf|myBattlefield) sacrifice
 text=Mountainwalk -- When you control a Dwarf, sacrifice Goblins of the Flarg.
 mana={R}
 type=Creature
@@ -32597,6 +32620,17 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Kaijin of the Vanishing Touch
+auto=@blocking(this) from(creature):all(trigger[from]) phaseaction[combatends,sourceinplay] moveTo(ownerhand)
+text=Defender (This creature can't attack.) -- Whenever Kaijin of the Vanishing Touch blocks a creature, return that creature to its owner's hand at end of combat. (Return it only if it's on the battlefield.)
+mana={1}{U}
+type=Creature
+subtype=Spirit
+power=0
+toughness=3
+abilities=defender
+[/card]
+[card]
 name=Kagemaro, First to Suffer
 auto=foreach(*|myhand) 1/1
 auto={B}{S}:foreach(*|myhand) -1/-1 all(creature)
@@ -33414,7 +33448,7 @@ auto=counter(0/0,2,Time)
 auto=@each my upkeep:counter(0/0,-1,Time)
 auto=damage:1 target(player)
 auto=@movedTo(this|nonbattlezone) from(myBattlefield):damage:1 target(player)
-auto=lord(keldon marauders[-counter{0/0.1.Time}]|myBattlefield) -99/-99
+auto=lord(keldon marauders[-counter{0/0.1.Time}]|myBattlefield) sacrifice
 text=Vanishing 2 (This permanent enters the battlefield with two time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- When Keldon Marauders enters the battlefield or leaves the battlefield, it deals 1 damage to target player.
 mana={1}{R}
 type=Creature
@@ -34701,6 +34735,15 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Krosan Grip
+target=artifact,enchantment
+auto=destroy
+text=Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- Destroy target artifact or enchantment.
+mana={2}{G}
+type=Instant
+abilities=split second
+[/card]
+[card]
 name=Krosan Groundshaker
 auto={G}:trample target(beast)
 text={G}: Target Beast creature gains trample until end of turn.
@@ -35393,7 +35436,7 @@ toughness=3
 name=Lavacore Elemental
 auto=counter(0/0,1,Time)
 auto=@each my upkeep:counter(0/0,-1,Time)
-auto=lord(lavacore elemental[-counter{0/0.1.Time}]|myBattlefield) -99/-99
+auto=lord(lavacore elemental[-counter{0/0.1.Time}]|myBattlefield) sacrifice
 auto=@combatdamaged(player) from(creature|myBattlefield):counter(0/0,1,Time)
 text=Vanishing 1 (This permanent enters the battlefield with a time counter on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- Whenever a creature you control deals combat damage to a player, put a time counter on Lavacore Elemental.
 mana={2}{R}
@@ -36301,7 +36344,7 @@ toughness=4
 [card]
 name=Lingering Death
 target=creature
-auto=@each targetController upkeep:-99/-99(mytgt)
+auto=@each targetController upkeep:sacrifice(mytgt)
 text=Enchant creature -- At the beginning of the end step of enchanted creature's controller, that player sacrifices that creature.
 mana={1}{B}
 type=Enchantment
@@ -49391,7 +49434,7 @@ auto=counter(0/0,2,Time)
 auto=@each my upkeep:counter(0/0,-1,Time)
 kicker={4}
 auto=kicker counter(0/0,3,Time)
-auto=lord(ravaging riftwurm[-counter{0/0.1.Time}]|myBattlefield) -99/-99
+auto=lord(ravaging riftwurm[-counter{0/0.1.Time}]|myBattlefield) sacrifice
 text=Kicker {4} (You may pay an additional 4 as you cast this spell.) -- Vanishing 2 (This permanent enters the battlefield with two time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- If Ravaging Riftwurm was kicked, it enters the battlefield with three additional time counters on it.
 mana={1}{G}{G}
 type=Creature
@@ -59013,7 +59056,7 @@ name=Soultether Golem
 auto=counter(0/0,1,Time)
 auto=@each my upkeep:counter(0/0,-1,Time)
 auto=@movedTo(other creature|myBattlefield):counter(0/0,1,Time)
-auto=lord(soultether golem[-counter{0/0.1.Time}]|myBattlefield) -99/-99
+auto=lord(soultether golem[-counter{0/0.1.Time}]|myBattlefield) sacrifice
 text=Vanishing 1 (This permanent enters the battlefield with a time counter on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- Whenever another creature enters the battlefield under your control, put a time counter on Soultether Golem.
 mana={2}
 type=Artifact Creature
@@ -61197,6 +61240,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Stonewood Invocation
+target=creature
+auto=+5/+5 ueot
+auto=shroud ueot
+text=Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- Target creature gets +5/+5 and gains shroud until end of turn. (It can't be the target of spells or abilities.)
+mana={3}{G}
+type=Instant
+abilities=split second
+[/card]
+[card]
 name=Stonework Puma
 mana={3}
 type=Artifact Creature
@@ -61814,12 +61867,30 @@ mana={3}{B}{B}
 type=Enchantment
 [/card]
 [card]
+name=Sudden Death
+target=creature
+auto=-4/-4 ueot
+text=Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- Target creature gets -4/-4 until end of turn.
+mana={1}{B}{B}
+type=Instant
+abilities=split second
+[/card]
+[card]
 name=Sudden Impact
 target=player
 alias=129750
 text=Sudden Impact deals damage equal to the number of cards in target player's hand to that player.
 mana={3}{R}
 type=Instant
+[/card]
+[card]
+name=Sudden Shock
+target=creature,player
+auto=damage:2
+text=Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- Sudden Shock deals 2 damage to target creature or player.
+mana={1}{R}
+type=Instant
+abilities=split second
 [/card]
 [card]
 name=Sudden Strength
@@ -61839,11 +61910,22 @@ type=Enchantment
 [/card]
 [card]
 name=Suleiman's Legacy
-auto=lord(djinn) -99/-99
-auto=lord(efreet) -99/-99
+auto=lord(djinn) sacrifice
+auto=lord(efreet) sacrifice
 text=When Suleiman's Legacy enters the battlefield, destroy all Djinns and Efreets. They can't be regenerated. -- Whenever a Djinn or Efreet enters the battlefield, destroy it. It can't be regenerated.
 mana={R}{W}
 type=Enchantment
+[/card]
+[card]
+name=Sulfur Elemental
+auto=lord(creature[white]) +1/-1
+text=Flash (You may cast this spell any time you could cast an instant.) -- Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- White creatures get +1/-1.
+mana={2}{R}
+type=Creature
+subtype=Elemental
+power=3
+toughness=2
+abilities=split second,flash
 [/card]
 [card]
 name=Sulfur Vent
@@ -62902,6 +62984,16 @@ type=Creature
 subtype=Elf Archer Ally
 power=1
 toughness=2
+[/card]
+[card]
+name=Take Possession
+target=*|battlefield
+alias=1194
+text=Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- Enchant permanent -- You control enchanted permanent.
+mana={5}{U}{U}
+type=Enchantment
+subtype=Aura
+abilities=split second
 [/card]
 [card]
 name=Takeno's Cavalry
@@ -64112,7 +64204,7 @@ type=Enchantment
 [card]
 name=Tethered Griffin
 abilities=flying
-auto=aslongas(enchantment|myBattlefield) -99/-99 <1
+auto=aslongas(enchantment|myBattlefield) sacrifice <1
 text=Flying -- When you control no enchantments, sacrifice Tethered Griffin.
 mana={W}
 type=Creature
@@ -65302,7 +65394,7 @@ name=Tidewalker
 auto=foreach(island|myBattlefield) counter(0/0,1,Time)
 auto=thisforeach(counter{0/0.1.Time}) 1/1
 auto=@each my upkeep:counter(0/0,-1,Time)
-auto=lord(tidewalker[-counter{0/0.1.Time}]|myBattlefield) -99/-99
+auto=lord(tidewalker[-counter{0/0.1.Time}]|myBattlefield) sacrifice
 text=Tidewalker enters the battlefield with a time counter on it for each Island you control. -- Vanishing (At the beginning of your upkeep, remove a time counter from this permanent. When the last is removed, sacrifice it.) -- Tidewalker's power and toughness are each equal to the number of time counters on it.
 mana={2}{U}
 type=Creature
@@ -71106,7 +71198,7 @@ type=Land
 name=Waning Wurm
 auto=counter(0/0,2,Time)
 auto=@each my upkeep:counter(0/0,-1,Time)
-auto=lord(waning wurm[-counter{0/0.1.Time}]|myBattlefield) -99/-99
+auto=lord(waning wurm[-counter{0/0.1.Time}]|myBattlefield) sacrifice
 text=Vanishing 2 (This permanent enters the battlefield with two time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.)
 mana={3}{B}
 type=Creature
@@ -72638,6 +72730,15 @@ mana={1}{G}{G}
 type=Sorcery
 [/card]
 [card]
+name=Wipe Away
+target=*|battlefield
+auto=moveto(ownerhand)
+text=Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- Return target permanent to its owner's hand.
+mana={1}{U}{U}
+type=Instant
+abilities=split second
+[/card]
+[card]
 name=Wipe Clean
 target=enchantment
 auto=moveto(exile)
@@ -73130,6 +73231,17 @@ auto=draw:1 opponent
 text=You draw two cards, then each other player draws a card.
 mana={1}{U}
 type=Instant
+[/card]
+[card]
+name=Word of Seizing
+target=*|battlefield
+auto=haste
+auto=untap
+alias=129767
+text=Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- Untap target permanent and gain control of it until end of turn. It gains haste until end of turn.
+mana={3}{R}{R}
+type=Instant
+abilities=split second
 [/card]
 [card]
 name=Worldgorger Dragon
