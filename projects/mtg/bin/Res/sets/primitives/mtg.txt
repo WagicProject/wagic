@@ -59535,7 +59535,7 @@ auto={C(0/0,-1,Charge)}{T}:Add{B}
 auto={C(0/0,-1,Charge)}{T}:Add{R}
 auto={C(0/0,-1,Charge)}{T}:Add{G}
 text=Living weapon (When this Equipment enters the battlefield, put a 0/0 black Germ creature token onto the battlefield, then attach this to it.) -- Equipped creature gets +1/+1. -- Equip {2}
-mana={1}
+mana={2}
 type=Artifact
 [/card]
 [card]
@@ -67466,7 +67466,7 @@ mana={2}{U}{U}
 name=Turn the Tide
 auto=all(creature|opponentbattlefield) -2/0
 text=Creatures your opponents control get -2/-0 until end of turn.
-mana={2}{U}
+mana={1}{U}
 type=Instant
 [/card]
 [card]
@@ -68914,7 +68914,7 @@ toughness=1
 name=Vedalken Infuser
 auto=@each my upkeep:may counter(0/0,1,Charge) target(artifact)
 text=At the beginning of your upkeep, you may put a charge counter on target artifact.
-mana={2}{U}
+mana={3}{U}
 type=Creature
 subtype=Vedalken Wizard
 power=1
@@ -69885,7 +69885,7 @@ name=Viridian Corrupter
 abilities=infect
 auto=destroy target(artifact)
 text=Infect (This creature deals damage to creatures in the form of -1/-1 counters and to players in the form of poison counters.) -- When Viridian Corrupter enters the battlefield, destroy target artifact.
-mana={2}{G}
+mana={1}{G}{G}
 type=Creature
 subtype=Elf Shaman
 power=2
