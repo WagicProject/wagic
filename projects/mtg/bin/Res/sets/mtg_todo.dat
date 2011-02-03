@@ -19024,15 +19024,6 @@ mana={2}{B}{B}
 type=Instant
 [/card]
 [card]
-name=Psychotrope Thallid
-text=At the beginning of your upkeep, put a spore counter on Psychotrope Thallid. -- Remove three spore counters from Psychotrope Thallid: Put a 1/1 green Saproling creature token onto the battlefield. -- {1}, Sacrifice a Saproling: Draw a card.
-mana={2}{G}
-type=Creature
-subtype=Fungus
-power=1
-toughness=1
-[/card]
-[card]
 name=Puca's Mischief
 text=At the beginning of your upkeep, you may exchange control of target nonland permanent you control and target nonland permanent an opponent controls with an equal or lesser converted mana cost.
 mana={3}{U}
