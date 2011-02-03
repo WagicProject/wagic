@@ -41705,6 +41705,7 @@ name=Mystifying Maze
 type=land
 auto={t}:add{1}
 auto={4}{t}:target(creature[attacking]|opponentbattlefield) (blink)ueot return(tap)
+[/card]
 [card]
 name=Nacatl Outlander
 abilities=protection from blue
