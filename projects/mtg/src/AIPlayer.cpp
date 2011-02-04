@@ -1182,7 +1182,6 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, Player * op
     MTGDeck * tempDeck = NEW MTGDeck(deckFile, collection);
     AIPlayerBaka * baka = NEW AIPlayerBaka(tempDeck, deckFile, deckFileSmall, avatarFile);
     baka->deckId = deckid;
-    DeckManager::GetInstance()->saveDeck( tempDeck, deckid, collection);
     SAFE_DELETE(tempDeck);
     return baka;
 }

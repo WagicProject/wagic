@@ -76,6 +76,8 @@ int filesize(const char * filename)
     return file_size;
 }
 
+
+// check to see if a file exists on the file system.
 int fileExists(const char * filename)
 {
     wagic::ifstream fichier(filename);
@@ -93,6 +95,42 @@ int fileExists(const char * filename)
     }
     return 0;
 }
+
+// check to see if a file exists on the file system.
+// this can be used to extract last modified date of a file.
+bool FileExists(const string& strFilename)
+{ 
+    struct stat stFileInfo; 
+    bool blnReturn = false;
+    int intStat; 
+
+    // Attempt to get the file attributes 
+    intStat = stat(strFilename.c_str(),&stFileInfo); 
+    if(intStat == 0)
+    {
+        // We were able to get the file attributes 
+        // so the file obviously exists. 
+        blnReturn = true; 
+    }
+    else
+    {
+        // We were not able to get the file attributes. 
+        // This may mean that we don't have permission to 
+        // access the folder which contains this file. If you 
+        // need to do that level of checking, lookup the 
+        // return values of stat which will give you 
+        // more details on why stat failed. 
+        
+        // try to search in the resource directory 
+        if ( stat( JGE_GET_RES(strFilename).c_str(), &stFileInfo ) == 0)
+            blnReturn = true;
+        else
+            blnReturn = false; 
+    }
+
+    return(blnReturn); 
+}
+
 
 /*
 #ifdef LINUX
@@ -198,6 +236,29 @@ u32 ramAvailable(void)
     return size;
 }
 
+/* String manipulation functions */
+string trim_right (const string & s, const string & t)
+{
+    string d (s);
+    string::size_type i (d.find_last_not_of (t));
+    if (i == string::npos)
+        return "";
+    else
+        return d.erase (d.find_last_not_of (t) + 1) ;
+}  
+
+string trim_left (const string & s, const string & t)
+{
+    string d (s);
+    return d.erase (0, s.find_first_not_of (t)) ;
+}  
+
+string trim (const string & s, const string & t)
+{
+    string d (s);
+    return trim_left (trim_right (d, t), t) ;
+}
+
 string& trim(string& str)
 {
     str = ltrim(str);
@@ -298,31 +359,4 @@ std::string wordWrap(const std::string& sentence, float width, int fontId)
     return retVal;
 }
 
-bool FileExists(const string& strFilename)
-{ 
-    struct stat stFileInfo; 
-    bool blnReturn; 
-    int intStat; 
-
-    // Attempt to get the file attributes 
-    intStat = stat(strFilename.c_str(),&stFileInfo); 
-    if(intStat == 0)
-    {
-        // We were able to get the file attributes 
-        // so the file obviously exists. 
-        blnReturn = true; 
-    }
-    else
-    {
-        // We were not able to get the file attributes. 
-        // This may mean that we don't have permission to 
-        // access the folder which contains this file. If you 
-        // need to do that level of checking, lookup the 
-        // return values of stat which will give you 
-        // more details on why stat failed. 
-        blnReturn = false; 
-    }
-
-    return(blnReturn); 
-}
 

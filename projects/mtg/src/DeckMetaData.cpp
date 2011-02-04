@@ -62,7 +62,7 @@ void DeckMetaData::LoadStats()
         }
         else
         {
-            if (fileExists(mStatsFilename.c_str()))
+            if (FileExists(mStatsFilename))
             {
                 stats->load(mStatsFilename);
                 mGamesPlayed = stats->nbGames();

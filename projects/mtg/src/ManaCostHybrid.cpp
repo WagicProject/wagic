@@ -1,6 +1,7 @@
 #include "PrecompiledHeader.h"
 
 #include "ManaCostHybrid.h"
+#include "MTGDefinitions.h"
 
 ManaCostHybrid::ManaCostHybrid()
 {
@@ -32,4 +33,22 @@ int ManaCostHybrid::hasColor(int color)
     if (((color1 == color) && value1) || ((color2 == color) && value2))
         return 1;
     return 0;
+}
+
+string ManaCostHybrid::toString()
+{
+    ostringstream oss;
+    if ( color1 != 0 && color2 != 0)
+        oss << "{" << Constants::MTGColorChars[color1] << "/" << Constants::MTGColorChars[color2] << "}";
+    return oss.str();
+}
+
+ostream& operator<<(ostream& out, ManaCostHybrid& r)
+{
+  return out<< r.toString();
+}
+
+ostream& operator<<(ostream& out, ManaCostHybrid* r)
+{
+  return out<< r->toString();
 }

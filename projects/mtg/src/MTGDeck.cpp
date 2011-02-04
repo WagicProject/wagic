@@ -10,6 +10,7 @@
 #include "MTGPack.h"
 #include "utils.h"
 #include "DeckManager.h"
+#include <iomanip>
 
 #if defined (WIN32) || defined (LINUX)
 #include <time.h>
@@ -91,7 +92,7 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
                     attribute = value;
                     value = "";
                 }
-                
+
                 for (int j = Constants::NB_BASIC_ABILITIES - 1; j >= 0; --j)
                 {
                     size_t found = attribute.find(Constants::MTGBasicAbilities[j]);
@@ -144,12 +145,12 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
         }
         else
         {
-        if (ManaCost * cost = primitive->getManaCost())
-        {
-            string value = val;
-            std::transform(value.begin(), value.end(), value.begin(), ::tolower);
-            cost->alternative = ManaCost::parseManaCost(value);
-        }
+            if (ManaCost * cost = primitive->getManaCost())
+            {
+                string value = val;
+                std::transform(value.begin(), value.end(), value.begin(), ::tolower);
+                cost->alternative = ManaCost::parseManaCost(value);
+            }
         }
         break;
 
@@ -329,7 +330,7 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
                 }
                 else
                 {
-                      primitive->setType(val);
+                    primitive->setType(val);
                     break;
                 }
             }
@@ -656,7 +657,7 @@ MTGCard * MTGAllCards::getCardByName(string name)
         if (setId != -1 && setId != c->setId) continue;
         string cardName = c->data->name;
         std::transform(cardName.begin(), cardName.end(), cardName.begin(), ::tolower);
-        if (cardName.compare(name) == 0) return c;
+        if (cardName.compare(name) == 0)  return c;
 
     }
     return NULL;
@@ -693,6 +694,7 @@ MTGDeck::MTGDeck(const char * config_file, MTGAllCards * _allcards, int meta_onl
     size_t slash = filename.find_last_of("/");
     size_t dot = filename.find(".");
     meta_name = filename.substr(slash + 1, dot - slash - 1);
+    meta_id = atoi(meta_name.substr(4).c_str());
     wagic::ifstream file(config_file);
     std::string s;
 
@@ -807,8 +809,8 @@ int MTGDeck::addRandomCards(int howmany, int * setIds, int nbSets, int rarity, c
         MTGCard * card = database->_(i);
         int r = card->getRarity();
         if (r != Constants::RARITY_T && (rarity == -1 || r == rarity) && // remove tokens
-                card->setId != MTGSets::INTERNAL_SET && //remove cards that are defined in primitives. Those are workarounds (usually tokens) and should only be used internally
-                (!_subtype || card->data->hasSubtype(subtype)))
+            card->setId != MTGSets::INTERNAL_SET && //remove cards that are defined in primitives. Those are workarounds (usually tokens) and should only be used internally
+            (!_subtype || card->data->hasSubtype(subtype)))
         {
             int ok = 0;
 
@@ -843,8 +845,7 @@ int MTGDeck::addRandomCards(int howmany, int * setIds, int nbSets, int rarity, c
     }
     if (subtotal == 0)
     {
-        if (rarity == Constants::RARITY_M) return addRandomCards(howmany, setIds, nbSets, Constants::RARITY_R, _subtype, colors,
-                nbcolors);
+        if (rarity == Constants::RARITY_M) return addRandomCards(howmany, setIds, nbSets, Constants::RARITY_R, _subtype, colors, nbcolors);
         return 0;
     }
     for (int i = 0; i < howmany; i++)
@@ -893,8 +894,8 @@ int MTGDeck::add(MTGCard * card)
 int MTGDeck::complete()
 {
     /* (PSY) adds cards to the deck/collection. Makes sure that the deck
-     or collection has at least 4 of every implemented card. Does not
-     change the number of cards of which already 4 or more are present. */
+    or collection has at least 4 of every implemented card. Does not
+    change the number of cards of which already 4 or more are present. */
     int id, n;
     bool StypeIsNothing;
     size_t databaseSize = database->ids.size();
@@ -955,7 +956,7 @@ int MTGDeck::save()
     return save(filename, false, meta_name, meta_desc);
 }
 
-int MTGDeck::save(string destFileName, bool useExpandedDescriptions, string &deckTitle, string &deckDesc)
+int MTGDeck::save(const string& destFileName, bool useExpandedDescriptions, const string& deckTitle, const string& deckDesc)
 {
     string tmp = destFileName;
     tmp.append(".tmp"); //not thread safe
@@ -982,18 +983,19 @@ int MTGDeck::save(string destFileName, bool useExpandedDescriptions, string &dec
             }
             file << "#DESC:" << desc << "\n";
         }
-        
-        // add in color information
+
         bool saveDetailedDeckInfo = options.get( Options::SAVEDETAILEDDECKINFO )->number == 1;
 
         if ( filename.find("collection.dat") == string::npos )
         {
+            // add in color information
             DeckManager *deckManager = DeckManager::GetInstance();
             file <<"#MANA:";
+            
             string deckId = filename.substr( filename.find("/deck")+5, filename.find(".txt") - (filename.find("/deck")+5) );
             bool isAI = filename.find("ai/baka") != string::npos;
             StatsWrapper *stats = deckManager->getExtendedStatsForDeckId( atoi(deckId.c_str()), this->database, isAI );
-            
+
             for (int i = Constants::MTG_COLOR_ARTIFACT; i < Constants::MTG_COLOR_LAND; ++i)
             {
                 if (stats->totalCostPerColor[i] != 0)
@@ -1005,24 +1007,10 @@ int MTGDeck::save(string destFileName, bool useExpandedDescriptions, string &dec
         }
         else
             saveDetailedDeckInfo = false;
-            
+
         if (useExpandedDescriptions || saveDetailedDeckInfo)
         {
-            map<int, int>::iterator it;
-            for (it = cards.begin(); it != cards.end(); it++)
-            {
-                int nbCards = it->second;
-                MTGCard *card = this->getCardById(it->first);
-                if (card == NULL)
-                {
-                    continue;
-                }
-                MTGSetInfo *setInfo = setlist.getInfo(card->setId);
-                string setName = setInfo->id;
-                string cardName = card->data->getName();
-                file << cardName << "\t " << "(" << setName << ") *" << nbCards << endl;
-                setInfo = NULL;
-            }
+            printDetailedDeckText(file);
         }
         else
         {
@@ -1041,6 +1029,92 @@ int MTGDeck::save(string destFileName, bool useExpandedDescriptions, string &dec
         rename(tmp.c_str(), destFileName.c_str());
     }
     return 1;
+}
+
+/***
+    print out an expanded version of the deck to file.  
+    This save meta data about each card to allow easy reading of the deck file.  It will
+    also save each card by id, to speed up the loading of the deck next time.
+*/
+void MTGDeck::printDetailedDeckText(std::ofstream& file )
+{
+    ostringstream currentCard, creatures, lands, spells, types;
+    map<int, int>::iterator it;
+    for (it = cards.begin(); it != cards.end(); it++)
+    {
+        int cardId = it->first;
+        int nbCards = it->second;
+        MTGCard *card = this->getCardById( cardId );
+        if (card == NULL)
+        {
+            continue;
+        }
+        MTGSetInfo *setInfo = setlist.getInfo(card->setId);
+        string setName = setInfo->id;
+        string cardName = card->data->getName();
+        string description = card->data->getText();
+
+        currentCard << "#" << nbCards << " x " << cardName << " (" << setName << "), ";
+
+        if ( !card->data->isLand() )
+            currentCard << card->data->getManaCost() << ", ";
+
+        // Add the card's types 
+        vector<int>::iterator typeIter;
+        for ( typeIter = card->data->types.begin(); typeIter != card->data->types.end(); ++typeIter )
+            types << Subtypes::subtypesList->find( *typeIter ) << " ";
+
+        currentCard << trim(types.str()) << ", ";
+        types.str(""); // reset the buffer.
+
+        // Add P/T if a creature
+        if ( card->data->isCreature() )
+            currentCard << card->data->getPower() << "/" << card->data->getToughness() << ", ";
+
+
+        if ( card->data->hasRestriction )
+            currentCard << ", " << card->data->otherrestriction;
+
+        map<int,int>::iterator abilityIter;
+        for ( abilityIter = card->data->basicAbilities.begin(); abilityIter != card->data->basicAbilities.end(); ++abilityIter )
+            currentCard << Constants::MTGBasicAbilities[ abilityIter->first ] << "; ";
+        currentCard <<endl;
+
+        for ( int i = 0; i < nbCards; i++ )
+            currentCard << cardId << endl;
+
+        currentCard <<endl;
+        setInfo = NULL;
+        if ( card->data->isLand() )
+            lands<< currentCard.str();
+        else if ( card->data->isCreature() )
+            creatures << currentCard.str();
+        else 
+            spells << currentCard.str();
+        currentCard.str("");
+    }
+    file << getCardBlockText( "Creatures", creatures.str() ) << endl;
+    file << getCardBlockText( "Spells", spells.str() ) << endl;
+    file << getCardBlockText( "Lands", lands.str() ) << endl;
+    creatures.str("");
+    spells.str("");
+    lands.str("");
+}
+
+/***
+* Convience method to print out blocks of card descriptions
+*/
+string MTGDeck::getCardBlockText( const string& title, const string& text )
+{
+    ostringstream oss;
+    string textBlock (text);
+
+    oss << setfill('#') << setw( 40 ) << "#" << endl;
+    oss << "#    " << setfill(' ') << setw(34) << left << title << "#" << endl;
+    oss << setfill('#') << setw( 40 ) << "#" << endl;
+    oss << trim(textBlock) << endl;
+
+    return oss.str();    
 }
 
 //MTGSets
@@ -1082,7 +1156,7 @@ MTGSetInfo* MTGSets::randomSet(int blockId, int atleast)
         for (int i = a; i < size(); i++)
         {
             if (unlocked[i] && (blockId == -1 || setinfo[i]->block == blockId) &&
-                    (atleast == -1 || setinfo[i]->totalCards() >= atleast))
+                (atleast == -1 || setinfo[i]->totalCards() >= atleast))
             {
                 free(unlocked);
                 return setinfo[i];
@@ -1091,7 +1165,7 @@ MTGSetInfo* MTGSets::randomSet(int blockId, int atleast)
         for (int i = 0; i < a; i++)
         {
             if (unlocked[i] && (blockId == -1 || setinfo[i]->block == blockId) &&
-                    (atleast == -1 || setinfo[i]->totalCards() >= atleast))
+                (atleast == -1 || setinfo[i]->totalCards() >= atleast))
             {
                 free(unlocked);
                 return setinfo[i];

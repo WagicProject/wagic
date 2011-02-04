@@ -13,6 +13,11 @@ class MTGCardInstance;
 class Player;
 
 class ManaCost{
+
+ friend std::ostream& operator<<(std::ostream& out, ManaCost& m);
+ friend std::ostream& operator<<(std::ostream& out, ManaCost* m);
+ friend std::ostream& operator<<(std::ostream& out, ManaCost m);
+
  protected:
   int cost[Constants::MTG_NB_COLORS+1];
   ManaCostHybrid * hybrids[10];
@@ -80,9 +85,9 @@ class ManaCost{
 #ifdef WIN32
   void Dump();
 #endif
-};
 
-std::ostream& operator<<(std::ostream& out, const ManaCost& m);
+
+};
 
 class ManaPool:public ManaCost{
 protected:

@@ -132,6 +132,9 @@ private:
 
 class MTGDeck
 {
+private:
+    string getCardBlockText( const string& title, const string& textBlock );
+    void printDetailedDeckText(std::ofstream& file );
 protected:
     string filename;
     int total_cards;
@@ -141,6 +144,7 @@ public:
     map<int, int> cards;
     string meta_desc;
     string meta_name;
+    int meta_id;
     string meta_deck_colors;
     int totalCards();
     int totalPrice();
@@ -157,7 +161,7 @@ public:
     int remove(MTGCard * card);
     string getFilename();
     int save();
-    int save(string destFileName, bool useExpandedDescriptions, string &deckTitle, string &deckDesc);
+    int save(const string& destFileName, bool useExpandedDescriptions, const string& deckTitle, const string& deckDesc);
     MTGCard * getCardById(int id);
 
 };

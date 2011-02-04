@@ -171,8 +171,7 @@ void GameStateDuel::loadPlayer(int playerId, int decknb, int isAI)
             sprintf(deckFileSmall, "player_deck%i", decknb);
             MTGDeck * tempDeck = NEW MTGDeck(deckFile, mParent->collection);
             mPlayers[playerId] = NEW HumanPlayer(tempDeck, deckFile, deckFileSmall);
-            DeckManager::GetInstance()->saveDeck( tempDeck, decknb, mParent->collection);
-            delete tempDeck;
+            SAFE_DELETE( tempDeck );
         }
         else
         { //AI Player, chooses deck
@@ -224,9 +223,15 @@ void GameStateDuel::End()
     DebugTrace("Ending GameStateDuel");
 
     JRenderer::GetInstance()->EnableVSync(false);
-
-    if (!premadeDeck && mPlayers[0] && mPlayers[1]) // save the stats for the game
+    if (!premadeDeck && mPlayers[0] && mPlayers[1])
+    { // save the stats for the game
         mPlayers[0]->End();
+        if (mParent->players[1] != PLAYER_TYPE_TESTSUITE)
+        {
+            DeckManager::GetInstance()->saveDeck( mPlayers[1]->deckFile, mParent->collection);
+            DeckManager::GetInstance()->saveDeck( mPlayers[0]->deckFile, mParent->collection);
+        }
+    }
     else if ( !mPlayers[1] && mPlayers[0] )
         // clean up player object
         SAFE_DELETE( mPlayers[0] );

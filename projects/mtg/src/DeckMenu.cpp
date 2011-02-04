@@ -113,7 +113,8 @@ void DeckMenu::RenderDeckManaColors()
     {
         string deckManaColors = mSelectedDeck->getColorIndex();
         if ( deckManaColors.compare("") != 0  && ( deckManaColors.length() == 6 ))
-        {
+        {   
+            // due to space constraints don't display icons for colorless mana.
             for( int colorIdx = Constants::MTG_COLOR_GREEN; colorIdx < Constants::MTG_COLOR_LAND; ++colorIdx )
             {               
                 if ( (deckManaColors.at(colorIdx) == '1') != 0)

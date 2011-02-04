@@ -626,36 +626,49 @@ ManaCost * ManaCost::Diff(ManaCost * _cost)
 string ManaCost::toString()
 {
     ostringstream oss;
-    oss << "\n===ManaCost===\n";
     for (int i = 0; i <= Constants::MTG_NB_COLORS; i++)
     {
         if (cost[i])
         {
-            oss << Constants::MTGColorChars[i] << ":" << cost[i] << " - ";
+            if ( i == Constants::MTG_COLOR_ARTIFACT)
+                oss << "{" << cost[i] << "}";
+            else
+                for (int colorCount = 0; colorCount < cost[i]; colorCount++ )
+                    oss << "{" << Constants::MTGColorChars[i] << "}";
         }
     }
 
     for (unsigned int i = 0; i < nbhybrids; i++)
     {
-        ManaCostHybrid * h = hybrids[i];
-        oss << "H:{" << Constants::MTGColorChars[h->color1] << ":" << h->value1 << "}/{" << Constants::MTGColorChars[h->color2]
-                << ":" << h->value2 << "}";
+        oss << hybrids[i];
     }
-    oss << "\n=============\n";
     return oss.str();
 }
 
 #ifdef WIN32
 void ManaCost::Dump()
 {
+    DebugTrace( "\n===ManaCost===" );
     DebugTrace( this->toString() );
+    DebugTrace( "\n=============" );
 }
 
 #endif
 
-ostream& operator<<(ostream& out, const ManaCost& m)
+ostream& operator<<(ostream& out, ManaCost& m)
 {
-    return out << "(manacost)";
+    return out << m.toString();
+}
+
+
+ostream& operator<<(ostream& out, ManaCost* m)
+{
+    return out << m->toString();
+}
+
+ostream& operator<<(ostream& out, ManaCost m)
+{
+    return out << m.toString();
 }
 
 void ManaPool::init()

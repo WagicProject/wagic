@@ -74,7 +74,15 @@ namespace wagic
 
 using std::string;
 
+#define SPACES " \t\r\n"
 //string manipulation methods
+
+// for trimming strings on the fly
+string trim (const string & s, const string & t = SPACES);
+string trim_right (const string & s, const string & t = SPACES);
+string trim_left (const string & s, const string & t = SPACES);
+
+// trimmning strings inplace
 string& trim(string& str);
 string& ltrim(string& str);
 string& rtrim(string& str);

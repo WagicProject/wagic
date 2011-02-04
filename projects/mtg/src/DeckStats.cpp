@@ -260,7 +260,7 @@ void StatsWrapper::initStatistics(string deckstats)
     aiDeckNames.clear();
     aiDeckStats.clear();
 
-    if (fileExists(deckstats.c_str()))
+    if (FileExists(deckstats))
     {
         stats->load(deckstats.c_str());
         percentVictories = stats->percentVictories();
@@ -302,7 +302,7 @@ void StatsWrapper::initStatistics(string deckstats)
 
 void StatsWrapper::updateStats(string filename, MTGAllCards *collection)
 {
-    if (fileExists(filename.c_str()))
+    if (FileExists(filename))
     {
         MTGDeck * mtgd = NEW MTGDeck(filename.c_str(), collection);
         DeckDataWrapper *deckDataWrapper = NEW DeckDataWrapper(mtgd);
