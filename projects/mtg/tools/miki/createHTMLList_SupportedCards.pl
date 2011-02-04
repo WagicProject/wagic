@@ -1,8 +1,23 @@
 #!/bin/perl 
 
+use Getopt::Std;
+
+# declare the perl command line flags/options we want to allow
+my %options=();
+getopts("i:t:", \%options);
+
 my $currentIndex = 0;
-my %data;
-while ( <> )
+my %data = ();
+
+my $outputFile = "cardList.html";
+if ( $options{t} =~ /todo/i)
+{
+	$outputFile = "todoList.html";
+}
+
+print "Processing $options{i}\n";
+open INFILE, "<$options{i}" || die "$options{i} can't open for reading. $!\n";
+while ( <INFILE> )
 {
 	s///;
 	s/\n//;
@@ -18,25 +33,26 @@ while ( <> )
 		push @{$data->{$currentIndex}}, $line;
 	}
 }
+close INFILE;
 
 my @keys = sort keys %$data;
 foreach (@keys)
 {
 	my $cardCount = scalar @{$data->{$_}};
-	print $_ . " => $cardCount \n";
+#	print $_ . " => $cardCount \n";
 	$totalCardCount += $cardCount;
 }
-
+my $summaryMessage = "There are a total of $totalCardCount cards supported in this release.";
 my $headerRow = &getHeader( \@keys );
 
-open OUTFILE, ">cardList.txt";
+open OUTFILE, ">$outputFile" || die "$0: Can't write to $outputFile. $!\n";
 
 #print index keys of cards
 
 # print the miki card count information
 
 print OUTFILE<<MIKI;
-There are a total of $totalCardCount cards supported in this release.
+$summaryMessage
 
 MIKI
 
@@ -57,6 +73,8 @@ foreach my $key ( @keys )
 	close OUTFILE;
 
 }
+
+print "$totalCardCount Processed\n";
 
 
 sub getHeader
