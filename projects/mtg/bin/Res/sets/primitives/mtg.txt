@@ -65841,7 +65841,7 @@ toughness=1
 [card]
 name=Titan Forge
 auto={3}{T}:counter(0/0,1,Charge)
-auto={T}{C(0/0,1,Charge)}:token(Golem,Artifact Creature Golem,9/9)
+auto={T}{C(0/0,-3,Charge)}:token(Golem,Artifact Creature Golem,9/9)
 text={3},{T}: Put a charge counter on Titan Forge. -- {T}, Remove three charge counters from Titan Forge: Put a 9/9 colorless Golem artifact creature token onto the battlefield.
 mana={3}
 type=Artifact
