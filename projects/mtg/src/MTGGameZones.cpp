@@ -574,14 +574,7 @@ void MTGGameZone::cleanupPhase()
 
 void MTGGameZone::shuffle()
 {
-    int i;
-    for (i = 0; i < (nb_cards); i++)
-    {
-        int r = i + (WRand() % (nb_cards - i)); // Random remaining position.
-        MTGCardInstance * temp = cards[i];
-        cards[i] = cards[r];
-        cards[r] = temp;
-    }
+    std::random_shuffle(cards.begin(), cards.end());
 }
 
 void MTGGameZone::addCard(MTGCardInstance * card)

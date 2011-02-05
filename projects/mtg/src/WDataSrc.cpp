@@ -284,30 +284,7 @@ bool WSrcCards::setOffset(int pos)
 
 void WSrcCards::Shuffle()
 {
-    vector<MTGCard*> a;
-    MTGCard * temp;
-    vector<MTGCard*>::iterator k;
-
-    while (cards.size())
-    {
-        k = cards.begin();
-        k += rand() % cards.size();
-        temp = *k;
-        cards.erase(k);
-        a.push_back(temp);
-    }
-#if defined WIN32 || defined LINUX //PC performs a double shuffle for less streaking.
-    while(a.size())
-    {
-        k = a.begin();
-        k += rand() % a.size();
-        temp = *k;
-        a.erase(k);
-        cards.push_back(temp);
-    }
-#else //PSP does a straight swap for speed.
-    cards.swap(a);
-#endif
+    std::random_shuffle(cards.begin(), cards.end());
     validate();
 }
 
