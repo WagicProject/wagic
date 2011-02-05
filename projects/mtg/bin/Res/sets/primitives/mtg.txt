@@ -39821,12 +39821,12 @@ toughness=3
 [card]
 name=Mirrodin's Core
 auto={T}:add{1}
-auto={T}:counter(0/0,1,Charge)
 auto={T}{C(0/0,-1,Charge)}:add{W}
 auto={T}{C(0/0,-1,Charge)}:add{U}
 auto={T}{C(0/0,-1,Charge)}:add{B}
 auto={T}{C(0/0,-1,Charge)}:add{R}
 auto={T}{C(0/0,-1,Charge)}:add{G}
+auto={T}:counter(0/0,1,Charge)
 text={T}: Add {1} to your mana pool. -- {T}: Put a charge counter on Mirrodin's Core. -- {T}, Remove a charge counter from Mirrodin's Core: Add one mana of any color to your mana pool.
 type=Land
 [/card]
@@ -45541,7 +45541,7 @@ type=Enchantment
 [/card]
 [card]
 name=Perilous Myr
-auto=@movedTo(this|graveyard) from(battlefield):damage:2 target(creature,player)
+auto=@movedTo(this|graveyard) from(battlefield):choice damage:2 target(creature,player)
 text=When Perilous Myr is put into a graveyard from the battlefield, it deals 2 damage to target creature or player.
 mana={2}
 type=Artifact Creature
@@ -65840,8 +65840,8 @@ toughness=1
 [/card]
 [card]
 name=Titan Forge
-auto={3}{T}:counter(0/0,1,Charge)
 auto={T}{C(0/0,-3,Charge)}:token(Golem,Artifact Creature Golem,9/9)
+auto={3}{T}:counter(0/0,1,Charge)
 text={3},{T}: Put a charge counter on Titan Forge. -- {T}, Remove three charge counters from Titan Forge: Put a 9/9 colorless Golem artifact creature token onto the battlefield.
 mana={3}
 type=Artifact
