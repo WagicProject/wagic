@@ -8,7 +8,6 @@
 #include <math.h>
 #include <iomanip>
 
-#include "DeckManager.h"
 #include "GameStateDuel.h"
 #include "GameStateDeckViewer.h"
 #include "Translate.h"
@@ -16,6 +15,8 @@
 #include "MTGCardInstance.h"
 #include "WFilter.h"
 #include "WDataSrc.h"
+#include "DeckManager.h"
+#include "DeckMetaData.h"
 #include "DeckEditorMenu.h"
 #include "SimpleMenu.h"
 #include "utils.h"
@@ -302,6 +303,10 @@ void GameStateDeckViewer::addRemove(MTGCard * card)
 
 void GameStateDeckViewer::saveDeck()
 {
+    //update the corresponding meta data object
+    DeckMetaData *metaData = DeckManager::GetInstance()->getDeckMetaDataById( myDeck->parent->meta_id, false );
+    metaData->setDeckName( newDeckname );
+    mSwitching = true;
     myDeck->save();
     playerdata->save();
     pricelist->save();
@@ -360,6 +365,7 @@ void GameStateDeckViewer::Update(float dt)
                 {
                     myDeck->parent->meta_name = newDeckname;
                     saveDeck();
+                    updateDecks();
                 }
                 mStage = STAGE_WAITING;
             }
@@ -1558,7 +1564,6 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
             break;
 
         case MENU_ITEM_SWITCH_DECKS_NO_SAVE:
-            //updateDecks();
             mStage = STAGE_WELCOME;
             mSwitching = true;
             break;

@@ -186,6 +186,11 @@ void DeckMetaData::setColorIndex(const string& colorIndex)
     mColorIndex = colorIndex;
 }
 
+void DeckMetaData::setDeckName(const string& newDeckTitle)
+{
+    mName = newDeckTitle;
+}
+
 void DeckMetaData::Invalidate()
 {
     mStatsLoaded = false;

@@ -52,7 +52,9 @@ public:
     int getDifficulty();
     string getDifficultyString();
 
+    // setters
     void setColorIndex(const string& colorIndex);
+    void setDeckName( const string& newDeckTitle );
     void Invalidate();
 
     string mStatsFilename;
