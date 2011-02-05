@@ -632,10 +632,18 @@ MTGCard * MTGAllCards::getCardByName(string name)
     if (!name.size()) return NULL;
     if (name[0] == '#') return NULL;
 
+    map<string, MTGCard * >::iterator cached = mtgCardByNameCache.find(name);
+    if (cached!= mtgCardByNameCache.end())
+    {
+        return cached->second;
+    }
+
     int cardnb = atoi(name.c_str());
     if (cardnb)
     {
-        return getCardById(cardnb);
+        MTGCard * result = getCardById(cardnb);
+        mtgCardByNameCache[name] = result;
+        return result;
     }
 
     std::transform(name.begin(), name.end(), name.begin(), ::tolower);
@@ -657,9 +665,13 @@ MTGCard * MTGAllCards::getCardByName(string name)
         if (setId != -1 && setId != c->setId) continue;
         string cardName = c->data->name;
         std::transform(cardName.begin(), cardName.end(), cardName.begin(), ::tolower);
-        if (cardName.compare(name) == 0)  return c;
+        if (cardName.compare(name) == 0) {
+            mtgCardByNameCache[name] = c;
+            return c;
+        }
 
     }
+    mtgCardByNameCache[name] = NULL;
     return NULL;
 }
 

@@ -125,6 +125,7 @@ public:
     int totalCards();
     int randomCardId();
 private:
+    map<string, MTGCard *> mtgCardByNameCache;
     int processConfLine(string &s, MTGCard* card, CardPrimitive * primitive);
     bool addCardToCollection(MTGCard * card, int setId);
     CardPrimitive * addPrimitive(CardPrimitive * primitive, MTGCard * card = NULL);
