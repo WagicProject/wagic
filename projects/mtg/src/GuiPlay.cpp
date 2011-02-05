@@ -68,22 +68,15 @@ void GuiPlay::HorzStack::Enstack(CardView* card)
 
 void GuiPlay::VertStack::Enstack(CardView* card)
 {
-    if(total < 10)
+    int modulus = total < 10 ? 3 : 5;
     {
-        if (0 == count % 3)
+        if (0 == count % modulus)
         {
             x += CARD_WIDTH;
             y = 0;
         }
     }
-    else
-    {
-        if (0 == count % 5)
-        {
-            x += CARD_WIDTH;
-            y = 0;
-        }
-    }
+
     card->x = x + baseX;
     card->y = y + baseY;
     y += 12;
