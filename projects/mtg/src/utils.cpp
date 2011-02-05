@@ -237,28 +237,6 @@ u32 ramAvailable(void)
 }
 
 /* String manipulation functions */
-string trim_right (const string & s, const string & t)
-{
-    string d (s);
-    string::size_type i (d.find_last_not_of (t));
-    if (i == string::npos)
-        return "";
-    else
-        return d.erase (d.find_last_not_of (t) + 1) ;
-}  
-
-string trim_left (const string & s, const string & t)
-{
-    string d (s);
-    return d.erase (0, s.find_first_not_of (t)) ;
-}  
-
-string trim (const string & s, const string & t)
-{
-    string d (s);
-    return trim_left (trim_right (d, t), t) ;
-}
-
 string& trim(string& str)
 {
     str = ltrim(str);
