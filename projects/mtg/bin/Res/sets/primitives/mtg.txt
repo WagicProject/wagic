@@ -7175,7 +7175,7 @@ toughness=1
 [/card]
 [card]
 name=Boggart Mob
-auto=aslongas(other goblin|mybattlefield) choice target(other goblin|mybattlefield) (blink)forsrc
+auto=aslongas(other goblin|mybattlefield) choice target(other goblin|mybattlefield) (blink)forsrc oneshot
 auto=choice sacrifice
 auto=@combatdamaged(player) from(this):may token(Goblin Rogue,Creature Goblin Rogue,1/1,black)
 text=Champion a Goblin (When this enters the battlefield, sacrifice it unless you exile another Goblin you control. When this leaves the battlefield, that card returns to the battlefield.) -- Whenever a Goblin you control deals combat damage to a player, you may put a 1/1 black Goblin Rogue creature token onto the battlefield.
@@ -10221,7 +10221,7 @@ type=Instant
 [card]
 name=Changeling Berserker
 abilities=changeling,haste
-auto=aslongas(other creature|mybattlefield) choice target(other creature|mybattlefield) (blink)forsrc
+auto=aslongas(other creature|mybattlefield) choice target(other creature|mybattlefield) (blink)forsrc oneshot
 auto=choice sacrifice
 text=Changeling (This card is every creature type at all times.) -- Haste -- Champion a creature (When this enters the battlefield, sacrifice it unless you exile another creature you control. When this leaves the battlefield, that card returns to the battlefield.)
 mana={3}{R}
@@ -10233,7 +10233,7 @@ toughness=3
 [card]
 name=Changeling Hero
 abilities=changeling,lifelink
-auto=aslongas(other creature|mybattlefield) choice target(other creature|mybattlefield) (blink)forsrc
+auto=aslongas(other creature|mybattlefield) choice target(other creature|mybattlefield) (blink)forsrc oneshot
 auto=choice sacrifice
 text=Changeling (This card is every creature type at all times.) -- Champion a creature (When this enters the battlefield, sacrifice it unless you exile another creature you control. When this leaves the battlefield, that card returns to the battlefield.) -- Lifelink (Damage dealt by this creature also causes you to gain that much life.)
 mana={4}{W}
@@ -10255,7 +10255,7 @@ toughness=2
 [card]
 name=Changeling Titan
 abilities=changeling
-auto=aslongas(other creature|mybattlefield) choice target(other creature|mybattlefield) (blink)forsrc
+auto=aslongas(other creature|mybattlefield) choice target(other creature|mybattlefield) (blink)forsrc oneshot
 auto=choice sacrifice
 text=Changeling (This card is every creature type at all times.) -- Champion a creature (When this enters the battlefield, sacrifice it unless you exile another creature you control. When this leaves the battlefield, that card returns to the battlefield.)
 mana={4}{G}
@@ -36160,8 +36160,8 @@ type=Artifact
 [/card]
 [card]
 name=Lightning Crafter
-auto=aslongas(other goblin|mybattlefield) choice target(other goblin|mybattlefield) (blink)forsrc
-auto=aslongas(other shaman|mybattlefield) choice target(other shaman|mybattlefield) (blink)forsrc
+auto=aslongas(other goblin|mybattlefield) choice target(other goblin|mybattlefield) (blink)forsrc oneshot
+auto=aslongas(other shaman|mybattlefield) choice target(other shaman|mybattlefield) (blink)forsrc oneshot
 auto=choice sacrifice
 auto={T}:damage:3 target(creature,player)
 text=Champion a Goblin or Shaman (When this enters the battlefield, sacrifice it unless you exile another Goblin or Shaman you control. When this leaves the battlefield, that card returns to the battlefield.) -- {T}: Lightning Crafter deals 3 damage to target creature or player.
@@ -39962,7 +39962,7 @@ toughness=2
 [card]
 name=Mistbind Clique
 abilities=flash,flying
-auto=aslongas(other faerie|mybattlefield) choice target(other faerie|mybattlefield) (blink)forsrc && tap all(land|opponentbattlefield)
+auto=aslongas(other faerie|mybattlefield) choice target(other faerie|mybattlefield) (blink)forsrc oneshot && tap all(land|opponentbattlefield)
 auto=choice sacrifice
 text=Flash -- Flying -- Champion a Faerie (When this enters the battlefield, sacrifice it unless you exile another Faerie you control. When this leaves the battlefield, that card returns to the battlefield.) -- When a Faerie is championed with Mistbind Clique, tap all lands target player controls.
 mana={3}{U}
@@ -43142,7 +43142,7 @@ type=Instant
 [card]
 name=Nova Chaser
 abilties=trample
-auto=aslongas(other elemental|mybattlefield) choice target(other elemental|mybattlefield) (blink)forsrc
+auto=aslongas(other elemental|mybattlefield) choice target(other elemental|mybattlefield) (blink)forsrc oneshot
 auto=choice sacrifice
 text=Trample -- Champion an Elemental (When this enters the battlefield, sacrifice it unless you exile another Elemental you control. When this leaves the battlefield, that card returns to the battlefield.)
 mana={3}{R}
@@ -62436,7 +62436,7 @@ toughness=6
 [card]
 name=Supreme Exemplar
 abilities=flying
-auto=aslongas(other elemental|mybattlefield) choice target(other elemental|mybattlefield) (blink)forsrc
+auto=aslongas(other elemental|mybattlefield) choice target(other elemental|mybattlefield) (blink)forsrc oneshot
 auto=choice sacrifice
 text=Flying -- Champion an Elemental (When this enters the battlefield, sacrifice it unless you exile another Elemental you control. When this leaves the battlefield, that card returns to the battlefield.)
 mana={6}{U}
@@ -68005,8 +68005,8 @@ subtype=Aura
 [card]
 name=Unstoppable Ash
 abilities=trample
-auto=aslongas(other treefolk|mybattlefield) choice target(other treefolk|mybattlefield) (blink)forsrc
-auto=aslongas(other warrior|mybattlefield) choice target(other warrior|mybattlefield) (blink)forsrc
+auto=aslongas(other treefolk|mybattlefield) choice target(other treefolk|mybattlefield) (blink)forsrc oneshot
+auto=aslongas(other warrior|mybattlefield) choice target(other warrior|mybattlefield) (blink)forsrc oneshot
 auto=choice sacrifice
 auto=@blocked(creature|mybattlefield):all(trigger[to]) 0/5 ueot
 text=Trample -- Champion a Treefolk or Warrior (When this enters the battlefield, sacrifice it unless you exile another Treefolk or Warrior you control. When this leaves the battlefield, that card returns to the battlefield.) -- Whenever a creature you control becomes blocked, it gets +0/+5 until end of turn.
@@ -73613,7 +73613,7 @@ type=Instant
 [/card]
 [card]
 name=Wren's Run Packmaster
-auto=aslongas(other elf|mybattlefield) choice target(other elf|mybattlefield) (blink)forsrc
+auto=aslongas(other elf|mybattlefield) choice target(other elf|mybattlefield) (blink)forsrc oneshot
 auto=choice sacrifice
 auto={2}{G}:token(Wolf,Creature Wolf,2/2,green)
 auto=lord(wolf|mybattlefield) deathtouch
