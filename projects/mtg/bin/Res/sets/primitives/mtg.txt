@@ -41527,7 +41527,6 @@ subtype=Myr
 power=1
 toughness=1
 [/card]
-
 [card]
 name=Myr Turbine
 auto={T}:token(Myr,Artifact Creature Myr,1/1)
