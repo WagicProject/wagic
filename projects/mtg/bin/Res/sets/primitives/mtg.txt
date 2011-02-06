@@ -1715,10 +1715,7 @@ toughness=6
 [/card]
 [card]
 name=Ancient Hydra
-auto=counter(0/0,5,Fade)
-auto={1}{C(0/0,-1,Fade)}:damage:1 target(creature,player)
-auto=@each my upkeep:counter(0/0,-1,Fade)
-auto=@each my untap:moveTo(mygraveyard) all(ancient hydra[-counter{0/0.1.Fade}]|myBattlefield)
+auto=fading:5
 text=Fading 5 (This creature enters the battlefield with five fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- {1}, Remove a fade counter from Ancient Hydra: Ancient Hydra deals 1 damage to target creature or player.
 mana={4}{R}
 type=Creature
@@ -6015,9 +6012,7 @@ type=Artifact
 [card]
 name=Blastoderm
 abilities=shroud
-auto=counter(0/0,3,Fade)
-auto=@each my upkeep:counter(0/0,-1,Fade)
-auto=@each my untap:moveTo(mygraveyard) all(blastoderm[-counter{0/0.1.Fade}]|myBattlefield)
+auto=fading:3
 text=Shroud (This permanent can't be the target of spells or abilities.) -- Fading 3 (This creature enters the battlefield with three fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.)
 mana={2}{G}{G}
 type=Creature
@@ -11554,9 +11549,7 @@ toughness=1
 [card]
 name=Cloudskate
 abilities=flying
-auto=counter(0/0,3,Fade)
-auto=@each my upkeep:counter(0/0,-1,Fade)
-auto=@each my untap:moveTo(mygraveyard) all(cloudskate[-counter{0/0.1.Fade}]|myBattlefield)
+auto=fading:3
 text=Flying -- Fading 3 (This creature enters the battlefield with three fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.)
 mana={1}{U}
 type=Creature
@@ -15031,10 +15024,7 @@ toughness=1
 [/card]
 [card]
 name=Defender en-Vec
-auto=counter(0/0,4,Fade)
-auto={1}{C(0/0,-1,Fade)}:prevent:2 target(creature,player)
-auto=@each my upkeep:counter(0/0,-1,Fade)
-auto=@each my untap:moveTo(mygraveyard) all(defender en-vec[-counter{0/0.1.Fade}]|myBattlefield)
+auto=fading:4
 text=Fading 4 (This creature enters the battlefield with four fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- Remove a fade counter from Defender en-Vec: Prevent the next 2 damage that would be dealt to target creature or player this turn.
 mana={3}{W}
 type=Creature
@@ -32127,10 +32117,8 @@ type=Instant
 [/card]
 [card]
 name=Jolting Merfolk
-auto=counter(0/0,4,Fade)
 auto={1}{C(0/0,-1,Fade)}:tap target(creature)
-auto=@each my upkeep:counter(0/0,-1,Fade)
-auto=@each my untap:moveTo(mygraveyard) all(jolting merfolk[-counter{0/0.1.Fade}]|myBattlefield)
+auto=fading:4
 text=Fading 4 (This creature enters the battlefield with five fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- {1}, Remove a fade counter from Jolting Merfolk: Tap target creature.
 mana={2}{U}{U}
 type=Creature
@@ -44951,9 +44939,7 @@ toughness=2
 name=Parallax Dementia
 target=creature
 auto=3/2
-auto=counter(0/0,1,Fade)
-auto=@each my upkeep:counter(0/0,-1,Fade)
-auto=@each my upkeep:moveTo(mygraveyard) all(parallax dementia[-counter{0/0.1.Fade}]|myBattlefield)
+auto=fading:1
 auto=@movedTo(this|nonbattlezone) from(battlefield):bury(mytgt)
 text=Enchant creature -- Fading 1 (This enchantment enters the battlefield with one fade counter on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- Enchanted creature gets +3/+2. -- When Parallax Dementia leaves the battlefield, destroy enchanted creature. That creature can't be regenerated.
 mana={1}{B}
@@ -44962,9 +44948,7 @@ subtype=Aura
 [/card]
 [card]
 name=Parallax Tide
-auto=counter(0/0,5,Fade)
-auto=@each my upkeep:counter(0/0,-1,Fade)
-auto=@each my upkeep:moveTo(mygraveyard) all(parallax tide[-counter{0/0.1.Fade}]|myBattlefield)
+auto=fading:5
 auto={C(0/0,-1,Fade)}:(blink)forsrc target(land)
 text=Fading 5 (This enchantment enters the battlefield with five fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- Remove a fade counter from Parallax Tide: Exile target land. -- When Parallax Tide leaves the battlefield, each player returns to the battlefield all cards he or she owns exiled with Parallax Tide.
 mana={2}{U}{U}
@@ -44972,9 +44956,7 @@ type=Enchantment
 [/card]
 [card]
 name=Parallax Wave
-auto=counter(0/0,5,Fade)
-auto=@each my upkeep:counter(0/0,-1,Fade)
-auto=@each my upkeep:moveTo(mygraveyard) all(parallax wave[-counter{0/0.1.Fade}]|myBattlefield)
+auto=fading:5
 auto={C(0/0,-1,Fade)}:(blink)forsrc target(creature)
 text=Fading 5 (This enchantment enters the battlefield with five fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- Remove a fade counter from Parallax Wave: Exile target creature. -- When Parallax Wave leaves the battlefield, each player returns to the battlefield all cards he or she owns exiled with Parallax Wave.
 mana={2}{W}{W}
@@ -46202,10 +46184,8 @@ toughness=4
 [/card]
 [card]
 name=Phyrexian Prowler
-auto=counter(0/0,3,Fade)
 auto={C(0/0,-1,Fade)}:1/1
-auto=@each my upkeep:counter(0/0,-1,Fade)
-auto=@each my upkeep:moveTo(mygraveyard) all(phyrexian prowler[-counter{0/0.1.Fade}]|myBattlefield)
+auto=fading:3
 text=Fading 3 (This creature enters the battlefield with three fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- Remove a fade counter from Phyrexian Prowler: Phyrexian Prowler gets +1/+1 until end of turn.
 mana={3}{B}
 type=Creature
@@ -50161,10 +50141,8 @@ type=Sorcery
 [/card]
 [card]
 name=Rejuvenation Chamber
-auto=counter(0/0,2,Fade)
+auto=fading:2
 auto={T}:life:2
-auto=@each my upkeep:counter(0/0,-1,Fade)
-auto=@each my untap:moveTo(mygraveyard) all(Rejuvenation Chamber[-counter{0/0.1.Fade}]|myBattlefield)
 text=Fading 2 (This artifact enters the battlefield with two fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- {T}: You gain 2 life.
 mana={3}
 type=Artifact
@@ -52305,10 +52283,8 @@ type=Artifact
 [/card]
 [card]
 name=Rusting Golem
-auto=counter(0/0,5,Fade)
-auto=@each my upkeep:counter(0/0,-1,Fade)
+auto=fading:5
 auto=thisforeach(counter{0/0.1.Fade}) 1/1
-auto=@each my untap:moveTo(mygraveyard) all(rusting golem[-counter{0/0.1.Fade}]|myBattlefield)
 text=Fading 5 (This creature enters the battlefield with five fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- Rusting Golem's power and toughness are each equal to the number of fade counters on it.
 mana={4}
 type=Artifact Creature
@@ -57505,9 +57481,7 @@ toughness=1
 [card]
 name=Skyshroud Behemoth
 auto=tap
-auto=counter(0/0,2,Fade)
-auto=@each my upkeep:counter(0/0,-1,Fade)
-auto=@each my untap:moveTo(mygraveyard) all(skyshroud behemoth[-counter{0/0.1.Fade}]|myBattlefield)
+auto=fading:2
 text=Fading 2 (This creature enters the battlefield with two fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- Skyshroud Behemoth enters the battlefield tapped.
 mana={5}{G}{G}
 type=Creature
@@ -57618,9 +57592,7 @@ toughness=1
 [/card]
 [card]
 name=Skyshroud Ridgeback
-auto=counter(0/0,2,Fade)
-auto=@each my upkeep:counter(0/0,-1,Fade)
-auto=@each my untap:moveTo(mygraveyard) all(skyshroud ridgeback[-counter{0/0.1.Fade}]|myBattlefield)
+auto=fading:2
 text=Fading 2 (This creature enters the battlefield with two fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.)
 mana={G}
 type=Creature
@@ -73337,10 +73309,8 @@ toughness=1
 [/card]
 [card]
 name=Woodripper
-auto=counter(0/0,3,Fade)
-auto=@each my upkeep:counter(0/0,-1,Fade)
-auto=auto={1}{C(0/0,-1,Fade)}:destroy target(artifact)
-auto=@each my untap:moveTo(mygraveyard) all(woodripper[-counter{0/0.1.Fade}]|myBattlefield)
+auto=fading:3
+auto={1}{C(0/0,-1,Fade)}:destroy target(artifact)
 text=Fading 3 (This creature enters the battlefield with three fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- {1}, Remove a fade counter from Woodripper: Destroy target artifact.
 mana={3}{G}{G}
 type=Creature
