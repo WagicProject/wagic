@@ -181,12 +181,12 @@ void Rules::addExtraRules()
             MTGPlayerCards * hand = NULL;
             int handsize = 7;
             int difficultyRating = 0;
-						int Optimizedhandcheat = options[Options::OPTIMIZE_HAND].number;
-
+            int Optimizedhandcheat = options[Options::OPTIMIZE_HAND].number;
             MTGAbility * a = af.parseMagicLine(initState.playerData[i].extraRules[j], id++, NULL, &MTGCardInstance::ExtraRules[i]);
             if (p->playMode != Player::MODE_TEST_SUITE && g->mRules->gamemode != GAME_TYPE_MOMIR && g->mRules->gamemode
-                            != GAME_TYPE_RANDOM1 && g->mRules->gamemode != GAME_TYPE_RANDOM2 && g->mRules->gamemode
-                            != GAME_TYPE_STORY && (!g->players[0] == PLAYER_TYPE_CPU && !g->players[1] == PLAYER_TYPE_CPU))//keep this out of mimor and other game modes.
+                != GAME_TYPE_RANDOM1 && g->mRules->gamemode != GAME_TYPE_RANDOM2 && g->mRules->gamemode
+                != GAME_TYPE_STORY && 
+                g->mRules->gamemode != GAME_TYPE_DEMO && (!g->players[0] == PLAYER_TYPE_CPU && !g->players[1] == PLAYER_TYPE_CPU))//keep this out of mimor and other game modes.
             {
                 difficultyRating = DeckManager::getDifficultyRating(g->players[0], g->players[1]);
             }
@@ -195,31 +195,37 @@ void Rules::addExtraRules()
             {
                 if (a->oneShot)
                 {
-									if (( p->isAI() ||( !p->isAI() && Optimizedhandcheat)) && a->aType == MTGAbility::STANDARD_DRAW && difficultyRating == EASY && p->playMode
-                                    != Player::MODE_TEST_SUITE && g->mRules->gamemode != GAME_TYPE_MOMIR && g->mRules->gamemode
-                                    != GAME_TYPE_RANDOM1 && g->mRules->gamemode != GAME_TYPE_RANDOM2 && g->mRules->gamemode
-                                    != GAME_TYPE_STORY)//stupid protections to keep this out of mimor and other game modes.
+                    if (((p->isAI() && p->playMode
+                        != Player::MODE_AI && p->opponent()->playMode
+                        != Player::MODE_AI)||( !p->isAI() && Optimizedhandcheat)) && a->aType == MTGAbility::STANDARD_DRAW && difficultyRating == EASY && p->playMode
+                        != Player::MODE_TEST_SUITE && g->mRules->gamemode != GAME_TYPE_MOMIR && g->mRules->gamemode
+                        != GAME_TYPE_RANDOM1 && g->mRules->gamemode != GAME_TYPE_RANDOM2 && g->mRules->gamemode
+                        != GAME_TYPE_STORY)//stupid protections to keep this out of mimor and other game modes.
                     {
                         handsize = ((AADrawer *)a)->getNumCards();
                         ((AIPlayer *) p)->forceBestAbilityUse = true;
                         ((AIPlayer *) p)->agressivity += 100;
                         hand->OptimizedHand(p,handsize, 3, 1, 3);//easy decks get a major boost, open hand is 2lands,1 creature under 3 mana,3spells under 3 mana.
                     }
-                    else if (( p->isAI() ||( !p->isAI() && Optimizedhandcheat)) && a->aType == MTGAbility::STANDARD_DRAW && difficultyRating == NORMAL && p->playMode
-                                    != Player::MODE_TEST_SUITE && g->mRules->gamemode != GAME_TYPE_MOMIR && g->mRules->gamemode
-                                    != GAME_TYPE_RANDOM1 && g->mRules->gamemode != GAME_TYPE_RANDOM2 && g->mRules->gamemode
-                                    != GAME_TYPE_STORY)//stupid protections to keep this out of mimor and other game modes.
+                    else if (((p->isAI() && p->playMode
+                        != Player::MODE_AI && p->opponent()->playMode
+                        != Player::MODE_AI)||( !p->isAI() && Optimizedhandcheat)) && a->aType == MTGAbility::STANDARD_DRAW && difficultyRating == NORMAL && p->playMode
+                        != Player::MODE_TEST_SUITE && g->mRules->gamemode != GAME_TYPE_MOMIR && g->mRules->gamemode
+                        != GAME_TYPE_RANDOM1 && g->mRules->gamemode != GAME_TYPE_RANDOM2 && g->mRules->gamemode
+                        != GAME_TYPE_STORY)//stupid protections to keep this out of mimor and other game modes.
                     {
                         handsize = ((AADrawer *)a)->getNumCards();
                         hand->OptimizedHand(p,handsize, 1, 0, 2);//give the Ai deck a tiny boost by giving it 1 land and 2 spells under 3 manacost.
-                    }else if (( !p->isAI() && Optimizedhandcheat) && a->aType == MTGAbility::STANDARD_DRAW && p->playMode
-                                    != Player::MODE_TEST_SUITE && g->mRules->gamemode != GAME_TYPE_MOMIR && g->mRules->gamemode
-                                    != GAME_TYPE_RANDOM1 && g->mRules->gamemode != GAME_TYPE_RANDOM2 && g->mRules->gamemode
-                                    != GAME_TYPE_STORY)
-										{
-									      hand->OptimizedHand(p,handsize, 3, 1, 3);
-										}
-										else
+                    }else if (((p->isAI() && p->playMode
+                        != Player::MODE_AI && p->opponent()->playMode
+                        != Player::MODE_AI)||( !p->isAI() && Optimizedhandcheat)) && a->aType == MTGAbility::STANDARD_DRAW && p->playMode
+                        != Player::MODE_TEST_SUITE && g->mRules->gamemode != GAME_TYPE_MOMIR && g->mRules->gamemode
+                        != GAME_TYPE_RANDOM1 && g->mRules->gamemode != GAME_TYPE_RANDOM2 && g->mRules->gamemode
+                        != GAME_TYPE_STORY)
+                    {
+                        hand->OptimizedHand(p,handsize, 3, 1, 3);
+                    }
+                    else
                     {//resolve normally if the deck is listed as hard.
                         a->resolve();
                     }

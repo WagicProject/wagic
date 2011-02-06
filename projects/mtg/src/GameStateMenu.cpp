@@ -802,6 +802,7 @@ void GameStateMenu::ButtonPressed(int controllerId, int controlId)
         case SUBMENUITEM_DEMO:
             mParent->players[0] = PLAYER_TYPE_CPU;
             mParent->players[1] = PLAYER_TYPE_CPU;
+            mParent->gameType = GAME_TYPE_DEMO;
             subMenuController->Close();
             currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
             break;
