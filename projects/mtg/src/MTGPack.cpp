@@ -85,11 +85,11 @@ WSrcCards * MTGPack::getPool(string poolstr)
         if (sub.size())
         {
             mySrc->addFilter(ff->Construct(sub));
-            mySrc->loadMatches(GameApp::collection);
+            mySrc->loadMatches(MTGCollection());
             mySrc->bakeFilters();
         }
         else
-            mySrc->loadMatches(GameApp::collection);
+            mySrc->loadMatches(MTGCollection());
     }
     mySrc->Shuffle();
     return mySrc;
@@ -223,7 +223,7 @@ void MTGPack::load(string filename)
                     es->copies = atoi(holder);
                 else
                     es->copies = 1;
-                es->card = GameApp::collection->getCardByName(pEntry->Value());
+                es->card = MTGCollection()->getCardByName(pEntry->Value());
                 s->addEntry(es);
             }
             else if (tag == "random_card")

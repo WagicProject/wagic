@@ -126,7 +126,7 @@ void StoryReward::Update(float dt)
         MTGCard * card = NULL;
         if (value.size())
         {
-            card = GameApp::collection->getCardByName(value);
+            card = MTGCollection()->getCardByName(value);
             if (card)
             {
                 cardId = card->getId();
@@ -134,15 +134,15 @@ void StoryReward::Update(float dt)
         }
         else
         {
-            cardId = GameApp::collection->randomCardId();
-            card = GameApp::collection->getCardById(cardId);
+            cardId = MTGCollection()->randomCardId();
+            card = MTGCollection()->getCardById(cardId);
         }
 
         if (!cardId) break;
 
         if (!collection)
         {
-            collection = NEW MTGDeck(options.profileFile(PLAYER_COLLECTION).c_str(), GameApp::collection);
+            collection = NEW MTGDeck(options.profileFile(PLAYER_COLLECTION).c_str(), MTGCollection());
         }
 
         result = Credits::addCardToCollection(cardId, collection);
@@ -305,13 +305,13 @@ void StoryDuel::init()
     sprintf(folder, JGE_GET_RES(CAMPAIGNS_FOLDER"%s/%s").c_str(), mParent->folder.c_str(), pageId.c_str());
 
     sprintf(deckFile, "%s/deck.txt", folder);
-    MTGDeck * tempDeck = NEW MTGDeck(deckFile, GameApp::collection);
+    MTGDeck * tempDeck = NEW MTGDeck(deckFile, MTGCollection());
     sprintf(deckFileSmall, "campaign_%s", mParent->folder.c_str());
     players[0] = NEW HumanPlayer(tempDeck, deckFile, deckFileSmall);
     SAFE_DELETE(tempDeck);
 
     sprintf(deckFile, "%s/opponent_deck.txt", folder);
-    tempDeck = NEW MTGDeck(deckFile, GameApp::collection);
+    tempDeck = NEW MTGDeck(deckFile, MTGCollection());
     sprintf(deckFileSmall, "campaign_ennemy_%s_%s", mParent->folder.c_str(), pageId.c_str());
     players[1] = NEW AIPlayerBaka(tempDeck, deckFile, deckFileSmall, "baka.jpg");
     SAFE_DELETE(tempDeck);

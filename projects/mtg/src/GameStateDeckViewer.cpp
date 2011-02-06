@@ -216,8 +216,8 @@ void GameStateDeckViewer::Start()
     lastPos = 0;
     lastTotal = 0;
 
-    pricelist = NEW PriceList(JGE_GET_RES("settings/prices.dat").c_str(), mParent->collection);
-    playerdata = NEW PlayerData(mParent->collection);
+    pricelist = NEW PriceList(JGE_GET_RES("settings/prices.dat").c_str(), MTGCollection());
+    playerdata = NEW PlayerData(MTGCollection());
     myCollection = NEW DeckDataWrapper(playerdata->collection);
     myCollection->Sort(WSrcCards::SORT_ALPHA);
     displayed_deck = myCollection;
@@ -1415,14 +1415,14 @@ int GameStateDeckViewer::loadDeck(int deckid)
     if (!stw) 
     {
         DeckManager *deckManager = DeckManager::GetInstance();
-        stw = deckManager->getExtendedStatsForDeckId( deckid, mParent->collection, false );
+        stw = deckManager->getExtendedStatsForDeckId( deckid, MTGCollection(), false );
     }
     
     stw->currentPage = 0;
     stw->pageCount = 9;
     stw->needUpdate = true;
 
-    if (!playerdata) playerdata = NEW PlayerData(mParent->collection);
+    if (!playerdata) playerdata = NEW PlayerData(MTGCollection());
     SAFE_DELETE(myCollection);
     myCollection = NEW DeckDataWrapper(playerdata->collection);
     myCollection->Sort(WSrcCards::SORT_ALPHA);
@@ -1435,7 +1435,7 @@ int GameStateDeckViewer::loadDeck(int deckid)
         SAFE_DELETE(myDeck->parent);
         SAFE_DELETE(myDeck);
     }
-    myDeck = NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(deckname, "", false, false).c_str(), mParent->collection));
+    myDeck = NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(deckname, "", false, false).c_str(), MTGCollection()));
 
     // Check whether the cards in the deck are actually available in the player's collection:
     int cheatmode = options[Options::CHEATMODE].number;

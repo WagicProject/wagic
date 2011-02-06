@@ -6,6 +6,7 @@
 #include "MTGDefinitions.h"
 #include "GameApp.h"
 #include "WResourceManager.h"
+#include <dirent.h>
 
 #include <string>
 
@@ -94,13 +95,18 @@ private:
     MTGCard * tempCard; //used by parser
     CardPrimitive * tempPrimitive; //used by parser
     int currentGrade; //used by Parser (we don't want an additional attribute for the primitives for that as it is only used at load time)
+    static MTGAllCards* instance;
+
 protected:
     int conf_read_mode;
     int colorsCount[Constants::MTG_NB_COLORS];
     int total_cards;
-    GameApp * parent;
     void init();
     void initCounters();
+    MTGAllCards();
+    MTGAllCards(const char * config_file, const char * set_name);
+    ~MTGAllCards();
+
 public:
     enum
     {
@@ -111,11 +117,7 @@ public:
     vector<int> ids;
     map<int, MTGCard *> collection;
     map<string, CardPrimitive *> primitives;
-    MTGAllCards();
-    ~MTGAllCards();
     MTGCard * _(int id);
-    void destroyAllCards();
-    MTGAllCards(const char * config_file, const char * set_name);
     MTGCard * getCardById(int id);
     MTGCard * getCardByName(string name);
     int load(const char * config_file, const char * setName = NULL, int autoload = 1);
@@ -124,12 +126,21 @@ public:
     int countBySet(int setId);
     int totalCards();
     int randomCardId();
+
+    static void loadPrimitives(const char *root_directory);
+    static void loadSets(const char *root_directory, const char* filename);
+    static void loadInstance();
+    static void unloadAll();
+    static inline MTGAllCards* getInstance() { return instance; };
+
 private:
     map<string, MTGCard *> mtgCardByNameCache;
     int processConfLine(string &s, MTGCard* card, CardPrimitive * primitive);
     bool addCardToCollection(MTGCard * card, int setId);
     CardPrimitive * addPrimitive(CardPrimitive * primitive, MTGCard * card = NULL);
 };
+
+#define MTGCollection() MTGAllCards::getInstance()
 
 class MTGDeck
 {

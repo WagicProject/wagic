@@ -28,7 +28,6 @@
 
 #define DEFAULT_DURATION .25
 
-MTGAllCards * GameApp::collection = NULL;
 int GameApp::players[] = { 0, 0 };
 int GameApp::HasMusic = 1;
 JMusic * GameApp::music = NULL;
@@ -67,7 +66,6 @@ GameApp::GameApp() :
 
     mCurrentState = NULL;
     mNextState = NULL;
-    collection = NULL;
 
     music = NULL;
 }
@@ -215,7 +213,7 @@ void GameApp::Create()
     jq = WResourceManager::Instance()->RetrieveQuad("phasebar.png", 0, 0, 0, 0, "phasebar", RETRIEVE_MANAGE);
 
     LOG("Init Collection");
-    collection = NEW MTGAllCards();
+    MTGAllCards::loadInstance();
 
     LOG("Creating Game States");
     mGameStates[GAME_STATE_DECK_VIEWER] = NEW GameStateDeckViewer(this);
@@ -271,11 +269,7 @@ void GameApp::Destroy()
         }
     }
 
-    if (collection)
-    {
-        collection->destroyAllCards();
-        SAFE_DELETE(collection);
-    }
+    MTGAllCards::unloadAll();
 
     DeckManager::EndInstance();
     DeckStats::EndInstance();

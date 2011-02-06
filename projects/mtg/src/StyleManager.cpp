@@ -126,7 +126,7 @@ void StyleManager::determineActive(MTGDeck * p1, MTGDeck * p2)
     topRule = -1;
     topSize = 0;
 
-    MTGDeck * tempDeck = NEW MTGDeck(GameApp::collection);
+    MTGDeck * tempDeck = NEW MTGDeck(MTGCollection());
     if (p1 && playerSrc != 2) tempDeck->add(p1);
     if (p2 && playerSrc != 1) tempDeck->add(p2);
     WCFilterFactory * ff = WCFilterFactory::GetInstance();

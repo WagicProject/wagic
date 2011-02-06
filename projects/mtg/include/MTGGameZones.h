@@ -95,7 +95,7 @@ class MTGGameZone {
    static int zoneStringToId(string zoneName);
    static MTGGameZone *intToZone(int zoneId, MTGCardInstance * source = NULL,MTGCardInstance * target = NULL);
    bool needShuffle;
-   virtual const char * getName(){return "zone";}; 
+   virtual const char * getName(){return "zone";};
    virtual ostream& toString(ostream&) const;
 };
 
@@ -156,6 +156,7 @@ class MTGPlayerCards {
   MTGGameZone * garbage;
   MTGGameZone * temp;
 
+  MTGPlayerCards();
   MTGPlayerCards(int * idList, int idListSize);
   MTGPlayerCards(MTGDeck * deck);
   ~MTGPlayerCards();
@@ -178,5 +179,7 @@ class MTGPlayerCards {
 };
 
 ostream& operator<<(ostream&, const MTGGameZone&);
+ostream& operator<<(ostream&, const MTGPlayerCards&);
+istream& operator>>(istream&, MTGPlayerCards&);
 
 #endif

@@ -2797,7 +2797,7 @@ public:
     ActivatedAbility(_id, _source, _cost, 0, _doTap), tokenId(tokenId), starfound(starfound),multiplier(multiplier), who(who),aLivingWeapon(aLivingWeapon)
     {
         if (!multiplier) this->multiplier = NEW WParsedInt(1);
-        MTGCard * card = GameApp::collection->getCardById(tokenId);
+        MTGCard * card = MTGCollection()->getCardById(tokenId);
         if (card) name = card->data->getName();
         battleReady = false;
     }
@@ -2868,7 +2868,7 @@ public:
             //MTGCardInstance * myToken;
             if (tokenId)
             {
-                MTGCard * card = GameApp::collection->getCardById(tokenId);
+                MTGCard * card = MTGCollection()->getCardById(tokenId);
                 myToken = NEW MTGCardInstance(card, source->controller()->game);
 
             }

@@ -1696,7 +1696,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         }
         if (tokenId)
         {
-            MTGCard * safetycard = GameApp::collection->getCardById(tokenId);
+            MTGCard * safetycard = MTGCollection()->getCardById(tokenId);
             if (safetycard)
             {//contenue
                 ATokenCreator * tok = NEW ATokenCreator(id, card,target, NULL, tokenId, 0, starfound, multiplier, who);
@@ -2969,7 +2969,7 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
     }
     if (card->alias && magicText.size() == 0 && !dest)
     {
-        MTGCard * c = GameApp::collection->getCardById(card->alias);
+        MTGCard * c = MTGCollection()->getCardById(card->alias);
         if (!c)
             return 0;
         magicText = c->data->magicText;

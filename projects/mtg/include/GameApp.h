@@ -23,9 +23,12 @@
 
 #include "CardEffect.h"
 
-#define PLAYER_TYPE_CPU 0
-#define PLAYER_TYPE_HUMAN 1
-#define PLAYER_TYPE_TESTSUITE 2
+enum
+{
+    PLAYER_TYPE_CPU = 0,
+    PLAYER_TYPE_HUMAN=1,
+    PLAYER_TYPE_TESTSUITE=2
+};
 
 enum
 {
@@ -78,7 +81,6 @@ public:
     static JMusic* music;
     static string currentMusicFile;
     static void playMusic(string filename, bool loop = true);
-    static MTGAllCards * collection;
     static int players[2];
 
 };

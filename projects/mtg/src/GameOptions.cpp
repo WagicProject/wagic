@@ -511,7 +511,7 @@ void GameSettings::automaticStyle(Player * p1, Player * p2)
     MTGDeck * decks[2];
     for (int i = 0; i < 2; i++)
     {
-        decks[i] = new MTGDeck(GameApp::collection);
+        decks[i] = new MTGDeck(MTGCollection());
         Player * p;
         if (i == 0)
             p = p1;
@@ -677,7 +677,7 @@ void GameSettings::checkProfile()
     }
 
     //Validation of collection, etc, only happens if the game is up.
-    if (theGame == NULL || theGame->collection == NULL)
+    if (theGame == NULL || MTGCollection() == NULL)
         return;
 
     string pcFile = profileFile(PLAYER_COLLECTION, "", false);
@@ -707,7 +707,7 @@ void GameSettings::checkProfile()
     int ok = 0;
     for (int i = 0; i < setlist.size(); i++)
     {
-        int value = theGame->collection->countBySet(i);
+        int value = MTGCollection()->countBySet(i);
         if (value > maxcards)
         {
             maxcards = value;
@@ -734,10 +734,10 @@ void GameSettings::checkProfile()
 void GameSettings::createUsersFirstDeck(int setId)
 {
 
-    if (theGame == NULL || theGame->collection == NULL)
+    if (theGame == NULL || MTGCollection() == NULL)
         return;
 
-    MTGDeck *mCollection = NEW MTGDeck(options.profileFile(PLAYER_COLLECTION, "", false).c_str(), theGame->collection);
+    MTGDeck *mCollection = NEW MTGDeck(options.profileFile(PLAYER_COLLECTION, "", false).c_str(), MTGCollection());
     if (mCollection->totalCards() > 0)
         return;
 

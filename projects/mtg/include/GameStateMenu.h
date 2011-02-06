@@ -15,7 +15,7 @@ private:
     JGuiController* mGuiController;
     SimpleMenu* subMenuController;
     SimpleMenu* gameTypeMenu;
-    int hasChosenGameType;
+    bool hasChosenGameType;
     JQuadPtr mIcons[10];
     JTexture * bgTexture;
     JQuadPtr mBg;

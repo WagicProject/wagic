@@ -205,7 +205,7 @@ void AIStats::Render()
         AIStat * stat = *it;
         if (stat->value > 0)
         {
-            MTGCard * card = GameApp::collection->getCardById(stat->source);
+            MTGCard * card = MTGCollection()->getCardById(stat->source);
             if (card)
             {
                 sprintf(buffer, "%s %i", card->data->getName().c_str(), stat->value);

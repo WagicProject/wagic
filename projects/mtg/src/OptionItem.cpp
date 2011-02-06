@@ -162,7 +162,7 @@ void OptionProfile::populate()
         return;
     }
     options[Options::ACTIVE_PROFILE].str = selections[value];
-    PlayerData * pdata = NEW PlayerData(app->collection);
+    PlayerData * pdata = NEW PlayerData(MTGCollection());
 
     int unlocked = 0, sets = setlist.size();
     wagic::ifstream file(options.profileFile(PLAYER_SETTINGS).c_str());

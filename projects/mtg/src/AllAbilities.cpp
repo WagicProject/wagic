@@ -1384,7 +1384,7 @@ AACloner::AACloner(int _id, MTGCardInstance * _source, MTGCardInstance * _target
         if (_target)
         {
             MTGCardInstance * myClone = NULL;
-            MTGCard* clone = (_target->isToken ? _target: GameApp::collection->getCardByName(_target->name));
+            MTGCard* clone = (_target->isToken ? _target: MTGCollection()->getCardByName(_target->name));
             if (who != 1)
             {
                 myClone = NEW MTGCardInstance(clone, source->controller()->game);

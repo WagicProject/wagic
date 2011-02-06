@@ -92,7 +92,7 @@ void GameStateDuel::Start()
 
 #ifdef TESTSUITE
     SAFE_DELETE(testSuite);
-    testSuite = NEW TestSuite(JGE_GET_RES("test/_tests.txt").c_str(),mParent->collection);
+    testSuite = NEW TestSuite(JGE_GET_RES("test/_tests.txt").c_str(),MTGCollection());
 #endif
 
     mGamePhase = DUEL_STATE_CHOOSE_DECK1;
@@ -169,7 +169,7 @@ void GameStateDuel::loadPlayer(int playerId, int decknb, int isAI)
                 sprintf(deckFile, "%s/deck%i.txt", options.profileFile().c_str(), decknb);
             char deckFileSmall[255];
             sprintf(deckFileSmall, "player_deck%i", decknb);
-            MTGDeck * tempDeck = NEW MTGDeck(deckFile, mParent->collection);
+            MTGDeck * tempDeck = NEW MTGDeck(deckFile, MTGCollection());
             mPlayers[playerId] = NEW HumanPlayer(tempDeck, deckFile, deckFileSmall);
             SAFE_DELETE( tempDeck );
         }
@@ -178,7 +178,7 @@ void GameStateDuel::loadPlayer(int playerId, int decknb, int isAI)
             AIPlayerFactory playerCreator;
             Player * opponent = NULL;
             if (playerId == 1) opponent = mPlayers[0];
-            mPlayers[playerId] = playerCreator.createAIPlayer(mParent->collection, opponent, decknb);
+            mPlayers[playerId] = playerCreator.createAIPlayer(MTGCollection(), opponent, decknb);
         }
     }
     else
@@ -186,7 +186,7 @@ void GameStateDuel::loadPlayer(int playerId, int decknb, int isAI)
         AIPlayerFactory playerCreator;
         Player * opponent = NULL;
         if (playerId == 1) opponent = mPlayers[0];
-        mPlayers[playerId] = playerCreator.createAIPlayer(mParent->collection, opponent);
+        mPlayers[playerId] = playerCreator.createAIPlayer(MTGCollection(), opponent);
     }
 }
 
@@ -213,7 +213,7 @@ void GameStateDuel::loadTestSuitePlayers()
     game->startGame(rules);
     if (mParent->gameType == GAME_TYPE_MOMIR)
     {
-        game->addObserver(NEW MTGMomirRule(-1, mParent->collection));
+        game->addObserver(NEW MTGMomirRule(-1, MTGCollection()));
     }
 }
 #endif
@@ -228,8 +228,8 @@ void GameStateDuel::End()
         mPlayers[0]->End();
         if (mParent->players[1] != PLAYER_TYPE_TESTSUITE)
         {
-            DeckManager::GetInstance()->saveDeck( mPlayers[1]->deckFile, mParent->collection);
-            DeckManager::GetInstance()->saveDeck( mPlayers[0]->deckFile, mParent->collection);
+            DeckManager::GetInstance()->saveDeck( mPlayers[1]->deckFile, MTGCollection());
+            DeckManager::GetInstance()->saveDeck( mPlayers[0]->deckFile, MTGCollection());
         }
     }
     else if ( !mPlayers[1] && mPlayers[0] )
@@ -405,7 +405,7 @@ void GameStateDuel::Update(float dt)
             game->startGame(rules);
             if (mParent->gameType == GAME_TYPE_MOMIR)
             {
-                game->addObserver(NEW MTGMomirRule(-1, mParent->collection));
+                game->addObserver(NEW MTGMomirRule(-1, MTGCollection()));
             }
 
             //start of in game music code
@@ -493,7 +493,7 @@ void GameStateDuel::Update(float dt)
             menu->Update(dt);
             if (menu->isClosed())
             {
-                PlayerData * playerdata = NEW PlayerData(mParent->collection);
+                PlayerData * playerdata = NEW PlayerData(MTGCollection());
                 playerdata->taskList->passOneDay();
                 playerdata->taskList->save();
                 SAFE_DELETE(playerdata);
@@ -672,7 +672,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
                 if (!popupScreen)
                 {
                     popupScreen = NEW SimplePopup(DUEL_MENU_DETAILED_DECK2_INFO, this, Fonts::MAIN_FONT, "Detailed Information",
-                        selectedDeck, mParent->collection);
+                        selectedDeck, MTGCollection());
                     popupScreen->Render();
                     selectedAIDeckId = selectedDeck->getDeckId();
                 }
@@ -721,7 +721,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
             if (!popupScreen)
             {
                 popupScreen = NEW SimplePopup(DUEL_MENU_DETAILED_DECK1_INFO, this, Fonts::MAIN_FONT, "Detailed Information",
-                    selectedDeck, mParent->collection);
+                    selectedDeck, MTGCollection());
                 popupScreen->Render();
                 selectedPlayerDeckId = deckmenu->getSelectedDeckId();
             }

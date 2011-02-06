@@ -8,35 +8,36 @@
 Player::Player(MTGDeck * deck, string file, string fileSmall) :
 Damageable(20)
 {
-	deckFile = file;
-	deckFileSmall = fileSmall;
-	manaPool = NEW ManaPool(this);
-	canPutLandsIntoPlay = true;
-	landsPlayerCanStillPlay = 1;
-	nomaxhandsize = false;
-	castedspellsthisturn = 0;
-	castrestrictedspell = false;
-	castrestrictedcreature = false;
-	bothrestrictedspell = false;
-	bothrestrictedcreature = false;
-	onlyoneboth = false;
-	onlyonecast = false;
-	castcount = 0;
-	nocreatureinstant = false;
-	nospellinstant = false;
-	onlyoneinstant = false;
-	poisonCount = 0;
-	damageCount = 0;
-	preventable = 0;
-	mAvatarTex = NULL;
-	type_as_damageable = DAMAGEABLE_PLAYER;
-	playMode = MODE_HUMAN;
-	if (deck != NULL)
-	{
-		game = NEW MTGPlayerCards(deck);
-		game->setOwner(this);
-		deckName = deck->meta_name;
-	}
+    game = NULL;
+    deckFile = file;
+    deckFileSmall = fileSmall;
+    manaPool = NEW ManaPool(this);
+    canPutLandsIntoPlay = true;
+    landsPlayerCanStillPlay = 1;
+    nomaxhandsize = false;
+    castedspellsthisturn = 0;
+    castrestrictedspell = false;
+    castrestrictedcreature = false;
+    bothrestrictedspell = false;
+    bothrestrictedcreature = false;
+    onlyoneboth = false;
+    onlyonecast = false;
+    castcount = 0;
+    nocreatureinstant = false;
+    nospellinstant = false;
+    onlyoneinstant = false;
+    poisonCount = 0;
+    damageCount = 0;
+    preventable = 0;
+    mAvatarTex = NULL;
+    type_as_damageable = DAMAGEABLE_PLAYER;
+    playMode = MODE_HUMAN;
+    if (deck != NULL)
+    {
+            game = NEW MTGPlayerCards(deck);
+            game->setOwner(this);
+            deckName = deck->meta_name;
+    }
 }
 
 /*Method to call at the end of a game, before all objects involved in the game are destroyed */
@@ -201,7 +202,20 @@ std::string Player::GetCurrentDeckStatsFile()
    return options.profileFile(filename.str());
 }
 
+
 ostream& operator<<(ostream& out, const Player& p)
 {
-    return out << p.getDisplayName();
+    return out << *(p.game);
+}
+
+istream& operator>>(istream& in, Player& p)
+{
+    if(!p.game)
+    {
+        p.game = new MTGPlayerCards();
+    }
+
+    in >> *(p.game);
+
+    return in;
 }

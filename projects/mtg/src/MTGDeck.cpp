@@ -366,6 +366,41 @@ void MTGAllCards::init()
     initCounters();
 }
 
+void MTGAllCards::loadPrimitives(const char *root_directory)
+{
+    DIR *dir = opendir(root_directory);
+    struct dirent *dit;
+
+    while ((dit = readdir(dir)))
+    {
+        char fullname[1000];
+        sprintf(fullname, "%s/%s", root_directory, dit->d_name);
+        wagic::ifstream file(fullname);
+        if (!file)
+            continue;
+        file.close();
+        MTGCollection()->load(fullname);
+    }
+    closedir(dir);
+}
+
+void MTGAllCards::loadSets(const char *root_directory, const char* filename)
+{
+    DIR *dir = opendir(root_directory);
+    struct dirent *dit;
+
+    while ((dit = readdir(dir)))
+    {
+        char fullname[1000];
+        sprintf(fullname, "%s/%s/%s", root_directory, dit->d_name, filename);
+        wagic::ifstream file(fullname);
+        if (!file)
+            continue;
+        file.close();
+        MTGCollection()->load(fullname, dit->d_name);
+    }
+    closedir(dir);}
+
 int MTGAllCards::load(const char * config_file, const char * set_name, int autoload)
 {
     conf_read_mode = 0;
@@ -445,19 +480,21 @@ int MTGAllCards::load(const char * config_file, const char * set_name, int autol
     return total_cards;
 }
 
+MTGAllCards* MTGAllCards::instance = NULL;
+
 MTGAllCards::MTGAllCards()
 {
     init();
 }
 
-MTGAllCards::~MTGAllCards()
+MTGAllCards::MTGAllCards(const char * config_file, const char * set_name)
 {
-    //Why don't we call destroyAllCards from here ???
+    init();
+    load(config_file, set_name, 0);
 }
 
-void MTGAllCards::destroyAllCards()
+MTGAllCards::~MTGAllCards()
 {
-
     for (map<int, MTGCard *>::iterator it = collection.begin(); it != collection.end(); it++)
         delete (it->second);
     collection.clear();
@@ -466,13 +503,20 @@ void MTGAllCards::destroyAllCards()
     for (map<string, CardPrimitive *>::iterator it = primitives.begin(); it != primitives.end(); it++)
         delete (it->second);
     primitives.clear();
-
 }
 
-MTGAllCards::MTGAllCards(const char * config_file, const char * set_name)
+void MTGAllCards::loadInstance()
 {
-    init();
-    load(config_file, set_name, 0);
+    if(!instance)
+        instance = new MTGAllCards();
+}
+
+void MTGAllCards::unloadAll()
+{
+    if(instance) {
+        delete instance;
+        instance = NULL;
+    }
 }
 
 int MTGAllCards::randomCardId()
@@ -687,7 +731,7 @@ MTGDeck::MTGDeck(MTGAllCards * _allcards)
 int MTGDeck::totalPrice()
 {
     int total = 0;
-    PriceList * pricelist = NEW PriceList(JGE_GET_RES("settings/prices.dat").c_str(), GameApp::collection);
+    PriceList * pricelist = NEW PriceList(JGE_GET_RES("settings/prices.dat").c_str(), MTGCollection());
     map<int, int>::iterator it;
     for (it = cards.begin(); it != cards.end(); it++)
     {

@@ -49,7 +49,7 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app)
     GameObserver * g = GameObserver::GetInstance();
     if (!g->turn)
         return;
-    PlayerData * playerdata = NEW PlayerData(app->collection);
+    PlayerData * playerdata = NEW PlayerData(MTGCollection());
     if (!p1->isAI() && p2->isAI() && p1 != g->gameOver)
     {
         gameLength = time(0) - g->startedAt;
@@ -383,8 +383,7 @@ int Credits::addCardToCollection(int cardId, MTGDeck * collection)
  */
 int Credits::addCardToCollection(int cardId)
 {
-    MTGAllCards * ac = GameApp::collection;
-    PlayerData * playerdata = NEW PlayerData(ac);
+    PlayerData * playerdata = NEW PlayerData(MTGCollection());
     int result = addCardToCollection(cardId, playerdata->collection);
     playerdata->collection->save();
     return result;

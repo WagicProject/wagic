@@ -18,7 +18,7 @@ int Rules::getMTGId(string cardName)
     int cardnb = atoi(cardName.c_str());
     if (cardnb) return cardnb;
     if (cardName.compare("*") == 0) return -1; //Any card
-    MTGCard * card = GameApp::collection->getCardByName(cardName);
+    MTGCard * card = MTGCollection()->getCardByName(cardName);
     if (card) return card->getMTGId();
     DebugTrace("RULES: Can't find card:" << cardName.c_str());
     return 0;
@@ -259,7 +259,7 @@ Player * Rules::loadPlayerMomir(int isAI)
     string deckFileSmall = "momir";
     char empty[] = "";
 
-    MTGDeck * tempDeck = NEW MTGDeck(GameApp::collection); //Autogenerate a momir deck. Leave the "momir.txt" bits below for stats.
+    MTGDeck * tempDeck = NEW MTGDeck(MTGCollection()); //Autogenerate a momir deck. Leave the "momir.txt" bits below for stats.
     tempDeck->addRandomCards(12, 0, 0, Constants::RARITY_L, "Forest");
     tempDeck->addRandomCards(12, 0, 0, Constants::RARITY_L, "Plains");
     tempDeck->addRandomCards(12, 0, 0, Constants::RARITY_L, "Swamp");
@@ -287,7 +287,7 @@ Player * Rules::loadPlayerRandom(int isAI, int mode)
 
     string lands[] = { "forest", "forest", "island", "mountain", "swamp", "plains", "forest" };
 
-    MTGDeck * tempDeck = NEW MTGDeck(GameApp::collection);
+    MTGDeck * tempDeck = NEW MTGDeck(MTGCollection());
     tempDeck->addRandomCards(9, 0, 0, -1, lands[color1].c_str());
     tempDeck->addRandomCards(9, 0, 0, -1, lands[color2].c_str());
     tempDeck->addRandomCards(1, 0, 0, 'U', "land");
@@ -337,7 +337,7 @@ Player * Rules::initPlayer(int playerId)
 MTGDeck * Rules::buildDeck(int playerId)
 {
     int nbcards = 0;
-    MTGDeck * deck = NEW MTGDeck(GameApp::collection);
+    MTGDeck * deck = NEW MTGDeck(MTGCollection());
     for (int j = 0; j < 4; j++)
     {
         for (size_t k = 0; k < initState.playerData[playerId].zones[j].cards.size(); k++)

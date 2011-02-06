@@ -104,7 +104,7 @@ void GameStateShop::Start()
 
     bigSync = 0;
     shopMenu = NEW WGuiMenu(JGE_BTN_DOWN, JGE_BTN_UP, true, &bigSync);
-    MTGAllCards * ac = GameApp::collection;
+    MTGAllCards * ac = MTGCollection();
     playerdata = NEW PlayerData(ac);
     myCollection = NEW DeckDataWrapper(playerdata->collection);
     pricelist = NEW PriceList(JGE_GET_RES("settings/prices.dat").c_str(), ac);
@@ -310,7 +310,7 @@ void GameStateShop::purchaseBooster(int controlId)
     mInventory[controlId]--;
     SAFE_DELETE(booster);
     deleteDisplay();
-    booster = NEW MTGDeck(mParent->collection);
+    booster = NEW MTGDeck(MTGCollection());
     boosterDisplay = NEW BoosterDisplay(12, NULL, SCREEN_WIDTH - 200, SCREEN_HEIGHT / 2, this, NULL, 5);
     mBooster[controlId].addToDeck(booster, srcCards);
 
@@ -950,7 +950,7 @@ void ShopBooster::addToDeck(MTGDeck * d, WSrcCards * srcCards)
 bool ShopBooster::unitTest()
 {
     //this tests the default random pack creation.
-    MTGDeck * d = NEW MTGDeck(GameApp::collection);
+    MTGDeck * d = NEW MTGDeck(MTGCollection());
     char result[1024];
 
     randomStandard();

@@ -226,7 +226,7 @@ bool GameStateAwards::enterSet(int setid)
 
     setSrc = NEW WSrcCards();
     setSrc->addFilter(NEW WCFilterSet(setid));
-    setSrc->loadMatches(mParent->collection);
+    setSrc->loadMatches(MTGCollection());
     setSrc->bakeFilters();
     setSrc->Sort(WSrcCards::SORT_COLLECTOR);
 
@@ -255,7 +255,7 @@ bool GameStateAwards::enterStats(int option)
 {
     if (option != Options::AWARD_COLLECTOR)
         return false;
-    DeckDataWrapper* ddw = NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(PLAYER_COLLECTION).c_str(), mParent->collection));
+    DeckDataWrapper* ddw = NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(PLAYER_COLLECTION).c_str(), MTGCollection()));
     if (!ddw)
         return false;
 

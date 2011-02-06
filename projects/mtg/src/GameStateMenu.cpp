@@ -19,6 +19,9 @@
 #include "utils.h"
 #include "WFont.h"
 #include <JLogger.h>
+#ifdef NETWORK_SUPPORT
+#include <JNetwork.h>
+#endif//NETWORK_SUPPORT
 
 static const char* GAME_VERSION = "WTH?! 0.14.1 - wololo.net";
 
@@ -57,14 +60,17 @@ enum
     MENUITEM_OPTIONS,
     MENUITEM_EXIT,
     SUBMENUITEM_1PLAYER,
-    SUBMENUITEM_2PLAYER,
+#ifdef NETWORK_SUPPORT
+    SUBMENUITEM_2PLAYER_SERVER,
+    SUBMENUITEM_2PLAYER_CLIENT,
+#endif //NETWORK_SUPPORT
     SUBMENUITEM_DEMO,
     SUBMENUITEM_TESTSUITE,
     SUBMENUITEM_MOMIR,
     SUBMENUITEM_CLASSIC,
     SUBMENUITEM_RANDOM1,
     SUBMENUITEM_RANDOM2,
-    SUBMENUITEM_STORY,
+    SUBMENUITEM_STORY
 };
 
 GameStateMenu::GameStateMenu(GameApp* parent) :
@@ -147,7 +153,7 @@ void GameStateMenu::Start()
 
     GameApp::playMusic("Track0.mp3");
 
-    hasChosenGameType = 0;
+    hasChosenGameType = false;
     mParent->gameType = GAME_TYPE_CLASSIC;
 
     /*
@@ -169,14 +175,14 @@ void GameStateMenu::Start()
 void GameStateMenu::genNbCardsStr()
 {
     //How many cards total ?
-    PlayerData * playerdata = NEW PlayerData(mParent->collection);
+    PlayerData * playerdata = NEW PlayerData(MTGCollection());
     if (playerdata && !options[Options::ACTIVE_PROFILE].isDefault())
         sprintf(nbcardsStr, _("%s: %i cards (%i) (%i unique)").c_str(), options[Options::ACTIVE_PROFILE].str.c_str(),
-                        playerdata->collection->totalCards(), mParent->collection->totalCards(),
-                        mParent->collection->primitives.size());
+                        playerdata->collection->totalCards(), MTGCollection()->totalCards(),
+                        MTGCollection()->primitives.size());
     else
-        sprintf(nbcardsStr, _("%i cards (%i unique)").c_str(), mParent->collection->totalCards(),
-                        mParent->collection->primitives.size());
+        sprintf(nbcardsStr, _("%i cards (%i unique)").c_str(), MTGCollection()->totalCards(),
+                        MTGCollection()->primitives.size());
 
     SAFE_DELETE(playerdata);
 }
@@ -238,7 +244,7 @@ void GameStateMenu::fillScroller()
     sprintf(buff2, _("You have unlocked %i expansions out of %i").c_str(), nbunlocked, setlist.size());
     scroller->Add(buff2);
 
-    PlayerData * playerdata = NEW PlayerData(mParent->collection);
+    PlayerData * playerdata = NEW PlayerData(MTGCollection());
     int totalCards = playerdata->collection->totalCards();
     if (totalCards)
     {
@@ -466,14 +472,14 @@ void GameStateMenu::Update(float dt)
         }
         if (primitivesLoadCounter < (int) (primitives.size()))
         {
-            mParent->collection->load(primitives[primitivesLoadCounter].c_str());
+            MTGCollection()->load(primitives[primitivesLoadCounter].c_str());
             primitivesLoadCounter++;
             break;
         }
         primitivesLoadCounter = primitives.size() + 1;
         if (mReadConf)
         {
-            mParent->collection->load(mCurrentSetFileName, mCurrentSetName);
+            MTGCollection()->load(mCurrentSetFileName, mCurrentSetName);
         }
         else
         {
@@ -485,8 +491,8 @@ void GameStateMenu::Update(float dt)
             Translator::GetInstance()->tempValues.clear();
 
             DebugTrace(std::endl << "==" << std::endl <<
-                            "Total MTGCards: " << mParent->collection->collection.size() << std::endl <<
-                            "Total CardPrimitives: " << mParent->collection->primitives.size() << std::endl << "==");
+                            "Total MTGCards: " << MTGCollection()->collection.size() << std::endl <<
+                            "Total CardPrimitives: " << MTGCollection()->primitives.size() << std::endl << "==");
 
             //Force default, if necessary.
             if (options[Options::ACTIVE_PROFILE].str == "")
@@ -719,6 +725,8 @@ void GameStateMenu::Render()
 
 void GameStateMenu::ButtonPressed(int controllerId, int controlId)
 {
+    int deckId;
+    int result;
 
     DebugTrace("GameStateMenu: controllerId " << controllerId << " selected");
     switch (controllerId)
@@ -743,7 +751,10 @@ void GameStateMenu::ButtonPressed(int controllerId, int controlId)
                 subMenuController->Add(SUBMENUITEM_1PLAYER, "1 Player");
                 // TODO Put 2 players mode back
                 // This requires to fix the hand (to accept 2 players) OR to implement network game
-                //subMenuController->Add(SUBMENUITEM_2PLAYER, "2 Players");
+#ifdef NETWORK_SUPPORT
+                subMenuController->Add(SUBMENUITEM_2PLAYER_SERVER, "2 Players - server");
+                subMenuController->Add(SUBMENUITEM_2PLAYER_CLIENT, "2 Players - client");
+#endif //NETWORK_SUPPORT
                 subMenuController->Add(SUBMENUITEM_DEMO, "Demo");
                 subMenuController->Add(SUBMENUITEM_CANCEL, "Cancel");
 #ifdef TESTSUITE
@@ -770,12 +781,24 @@ void GameStateMenu::ButtonPressed(int controllerId, int controlId)
             subMenuController->Close();
             currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
             break;
-        case SUBMENUITEM_2PLAYER:
+#ifdef NETWORK_SUPPORT
+        case SUBMENUITEM_2PLAYER_SERVER:
             mParent->players[0] = PLAYER_TYPE_HUMAN;
             mParent->players[1] = PLAYER_TYPE_HUMAN;
+            this->hasChosenGameType = true;
+            mParent->gameType = GAME_TYPE_CLASSIC;
             subMenuController->Close();
             currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
             break;
+        case SUBMENUITEM_2PLAYER_CLIENT:
+            mParent->players[0] = PLAYER_TYPE_HUMAN;
+            mParent->players[1] = PLAYER_TYPE_HUMAN;
+            this->hasChosenGameType = true;
+            mParent->gameType = GAME_TYPE_CLASSIC;
+            subMenuController->Close();
+            currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
+            break;
+#endif //NETWORK_SUPPORT
         case SUBMENUITEM_DEMO:
             mParent->players[0] = PLAYER_TYPE_CPU;
             mParent->players[1] = PLAYER_TYPE_CPU;
@@ -791,35 +814,35 @@ void GameStateMenu::ButtonPressed(int controllerId, int controlId)
             break;
 
         case SUBMENUITEM_CLASSIC:
-            this->hasChosenGameType = 1;
+            this->hasChosenGameType = true;
             mParent->gameType = GAME_TYPE_CLASSIC;
             subMenuController->Close();
             currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
             break;
 
         case SUBMENUITEM_MOMIR:
-            this->hasChosenGameType = 1;
+            this->hasChosenGameType = true;
             mParent->gameType = GAME_TYPE_MOMIR;
             subMenuController->Close();
             currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
             break;
 
         case SUBMENUITEM_RANDOM1:
-            this->hasChosenGameType = 1;
+            this->hasChosenGameType = true;
             mParent->gameType = GAME_TYPE_RANDOM1;
             subMenuController->Close();
             currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
             break;
 
         case SUBMENUITEM_RANDOM2:
-            this->hasChosenGameType = 1;
+            this->hasChosenGameType = true;
             mParent->gameType = GAME_TYPE_RANDOM2;
             subMenuController->Close();
             currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
             break;
 
         case SUBMENUITEM_STORY:
-            this->hasChosenGameType = 1;
+            this->hasChosenGameType = true;
             mParent->gameType = GAME_TYPE_STORY;
             subMenuController->Close();
             currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;

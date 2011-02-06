@@ -116,5 +116,6 @@ public:
 };
 
 ostream& operator<<(ostream&, const Player&);
+istream& operator>>(istream& in, Player& p);
 
 #endif

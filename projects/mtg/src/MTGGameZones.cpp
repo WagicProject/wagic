@@ -14,13 +14,18 @@
 //Players Game
 //------------------------------
 
+MTGPlayerCards::MTGPlayerCards()
+{
+    init();
+}
+
 MTGPlayerCards::MTGPlayerCards(int * idList, int idListSize)
 {
     init();
     int i;
     for (i = 0; i < idListSize; i++)
     {
-        MTGCard * card = GameApp::collection->getCardById(idList[i]);
+        MTGCard * card = MTGCollection()->getCardById(idList[i]);
         if (card)
         {
             MTGCardInstance * newCard = NEW MTGCardInstance(card, this);
@@ -845,29 +850,64 @@ ostream& MTGGameZone::toString(ostream& out) const
 }
 ostream& MTGLibrary::toString(ostream& out) const
 {
-    return out << "Library " << *owner;
+    return out << "Library " << owner->getDisplayName();
 }
 ostream& MTGGraveyard::toString(ostream& out) const
 {
-    return out << "Graveyard " << *owner;
+    return out << "Graveyard " << owner->getDisplayName();
 }
 ostream& MTGHand::toString(ostream& out) const
 {
-    return out << "Hand " << *owner;
+    return out << "Hand " << owner->getDisplayName();
 }
 ostream& MTGRemovedFromGame::toString(ostream& out) const
 {
-    return out << "RemovedFromGame " << *owner;
+    return out << "RemovedFromGame " << owner->getDisplayName();
 }
 ostream& MTGStack::toString(ostream& out) const
 {
-    return out << "Stack " << *owner;
+    return out << "Stack " << owner->getDisplayName();
 }
 ostream& MTGInPlay::toString(ostream& out) const
 {
-    return out << "InPlay " << *owner;
+    return out << "InPlay " << owner->getDisplayName();
 }
 ostream& operator<<(ostream& out, const MTGGameZone& z)
 {
     return z.toString(out);
+}
+ostream& operator<<(ostream& out, const MTGPlayerCards& z)
+{
+    out << z.library->nb_cards << endl;
+    for (int i = 0; i < z.library->nb_cards; i++)
+        out << z.library->cards[i]->getMTGId() << " ";
+
+    out << endl;
+    return out;
+}
+
+istream& operator>>(istream& in, MTGPlayerCards& z)
+{
+    int nb, mtgid;
+    in >> nb;
+
+    for (int i = 0; i < z.library->nb_cards; i++)
+    {
+        SAFE_DELETE( z.library->cards[i] );
+    }
+    z.library->cards.clear();
+    z.library->cardsMap.clear();
+
+    for (int i = 0; i < nb; i++)
+    {
+        in >> mtgid;
+        MTGCard * card = MTGCollection()->getCardById(mtgid);
+        if (card)
+        {
+            MTGCardInstance * newCard = NEW MTGCardInstance(card, &z);
+            z.library->addCard(newCard);
+        }
+    }
+
+    return in;
 }
