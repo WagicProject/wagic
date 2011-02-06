@@ -180,12 +180,11 @@ void MTGCardInstance::initMTGCI()
                 if (s.find(" ") != string::npos)
                     continue;
                 if (s == "Nothing" || s == "Swamp" || s == "Plains" || s == "Mountain" || s == "Forest" ||
-                        s == "Island" || s == "Shrine" || s == "Basic" || s == "Colony" || s == "Desert" ||
-                        s == "Dismiss" || s == "Equipment" || s == "Everglades" || s == "Grasslands" || s == "Lair" ||
-                        s == "Level" || s == "Levelup" || s == "Mine" || s == "Oasis" || s == "World" || s == "Aura"
-                )
-                continue;
-
+                    s == "Island" || s == "Shrine" || s == "Basic" || s == "Colony" || s == "Desert" ||
+                    s == "Dismiss" || s == "Equipment" || s == "Everglades" || s == "Grasslands" || s == "Lair" ||
+                    s == "Level" || s == "Levelup" || s == "Mine" || s == "Oasis" || s == "World" || s == "Aura"
+                    || s == "Land"|| s == "Legendary" || s == "Token")
+                    continue;
                 addType(i);
             }
         }
