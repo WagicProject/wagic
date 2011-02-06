@@ -34492,7 +34492,7 @@ toughness=1
 [/card]
 [card]
 name=Korlash Heir to Blackblade
-auto={S(Korlash Heir to Blackblade|myhand)}:(token(-13620811)
+auto={discard(Korlash Heir to Blackblade|myhand)}:(token(-13620811)
 auto=foreach(swamp|mybattlefield) 1/1
 auto={1}{B}:regenerate
 text=Korlash, Heir to Blackblade's power and toughness are each equal to the number of Swamps you control. -- {1}{B}: Regenerate Korlash. -- Grandeur - Discard another card named Korlash, Heir to Blackblade: Search your library for up to two Swamp cards, put them onto the battlefield tapped, then shuffle your library.
@@ -37378,7 +37378,7 @@ toughness=3
 [/card]
 [card]
 name=Lys Alana Scarblade
-auto={T}{S(elf|myhand)}:foreach(elf|mybattlefield) -1/-1 target(creature)
+auto={T}{discard(elf|myhand)}:foreach(elf|mybattlefield) -1/-1 target(creature)
 text={T}, Discard an Elf card: Target creature gets -X/-X until end of turn, where X is the number of Elves you control.
 mana={2}{B}
 type=Creature
@@ -40466,7 +40466,7 @@ type=Enchantment
 name=Monstrify
 target=creature
 auto=4/4
-retrace={3}{G}{S(land|myhand)}
+retrace={3}{G}{discard(land|myhand)}
 text=Target creature gets +4/+4 until end of turn. -- Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
 mana={3}{G}
 type=Sorcery
@@ -42414,7 +42414,7 @@ toughness=1
 [card]
 name=Neurok Prodigy
 abilities=flying
-auto={S(artifact|myhand)}:moveto(ownerhand)
+auto={discard(artifact|myhand)}:moveto(ownerhand)
 text=Flying -- Discard an artifact card: Return Neurok Prodigy to its owner's hand.
 mana={2}{U}
 type=Creature
@@ -43855,7 +43855,7 @@ toughness=1
 name=Oona's Grace
 target=player
 auto=draw:1
-retrace={2}{U}{S(land|myhand)}
+retrace={2}{U}{discard(land|myhand)}
 text=Target player draws a card. -- Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
 mana={2}{U}
 type=Instant
@@ -44354,8 +44354,8 @@ toughness=3
 [card]
 name=Oriss Samite Guardian
 auto={T}:prevent:999 target(creature)
-auto={S(oriss samite guardian|myhand)}:name(opponent can't cast spells and his creatures cannot attack ueot) && nospell opponent && cantattack all(creature|opponentBattlefield)
-auto={S(oriss samite guardian|myhand)}:name(you can't cast spells and your creatures cannot attack ueot) && nospell control && cantattack all(creature|myBattlefield)
+auto={discard(oriss samite guardian|myhand)}:name(opponent can't cast spells and his creatures cannot attack ueot) && nospell opponent && cantattack all(creature|opponentBattlefield)
+auto={discard(oriss samite guardian|myhand)}:name(you can't cast spells and your creatures cannot attack ueot) && nospell control && cantattack all(creature|myBattlefield)
 text={T}: Prevent all damage that would be dealt to target creature this turn. -- Grandeur - Discard another card named Oriss, Samite Guardian: Target player can't cast spells this turn, and creatures that player controls can't attack this turn.
 mana={1}{W}{W}
 type=Legendary Creature
@@ -53189,7 +53189,7 @@ color=green
 [card]
 name=Savage Conception
 auto=token(Beast,creature beast, 3/3,green)
-retrace={3}{G}{G}{S(land|myhand)}
+retrace={3}{G}{G}{discard(land|myhand)}
 text=Put a 3/3 green Beast creature token onto the battlefield. -- Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
 mana={3}{G}{G}
 type=Sorcery
@@ -54525,7 +54525,7 @@ toughness=3
 [/card]
 [card]
 name=Seismic Assault
-auto={S(land|myhand)}:damage:2 target(creature,player)
+auto={discard(land|myhand)}:damage:2 target(creature,player)
 text=Discard a land card: Seismic Assault deals 2 damage to target creature or player.
 mana={R}{R}{R}
 type=Enchantment
@@ -56619,7 +56619,7 @@ toughness=4
 [/card]
 [card]
 name=Simian Brawler
-auto={S(land|myHand)}:1/1
+auto={discard(land|myHand)}:1/1
 text=Discard a land card: Simian Brawler gets +1/+1 until end of turn.
 mana={3}{G}
 type=Creature
@@ -57644,7 +57644,7 @@ toughness=3
 [card]
 name=Skyshroud Vampire
 abilities=flying
-auto={S(creature|myhand)}:2/2
+auto={discard(creature|myhand)}:2/2
 text=Flying -- Discard a creature card: Skyshroud Vampire gets +2/+2 until end of turn.
 mana={3}{B}{B}
 type=Creature
@@ -62548,7 +62548,7 @@ toughness=1
 [/card]
 [card]
 name=Survival of the Fittest
-auto={G}{S(creature|myhand)}:moveTo(myhand) target(creature|myLibrary)
+auto={G}{discard(creature|myhand)}:moveTo(myhand) target(creature|myLibrary)
 text={G}, Discard a creature card: Search your library for a creature card, reveal that card, and put it into your hand. Then shuffle your library.
 mana={1}{G}
 type=Enchantment
@@ -63023,7 +63023,7 @@ name=Syphon Life
 target=player
 auto=life:-2
 auto=life:2 controller
-retrace={1}{B}{B}{S(land|myhand)}
+retrace={1}{B}{B}{discard(land|myhand)}
 text=Target player loses 2 life and you gain 2 life. -- Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
 mana={1}{B}{B}
 type=Sorcery
@@ -63584,7 +63584,7 @@ type=Land
 [card]
 name=Tarox Bladewing
 abilities=flying,haste
-auto={S(tarox bladewing|myhand)}:dynamicability<!powerpumppow!> && dynamicability<!toughnesspumptough!>
+auto={discard(tarox bladewing|myhand)}:dynamicability<!powerpumppow!> && dynamicability<!toughnesspumptough!>
 text=Flying, haste -- Grandeur - Discard another card named Tarox Bladewing: Tarox Bladewing gets +X/+X until end of turn, where X is its power.
 mana={2}{R}{R}{R}
 type=Legendary Creature
@@ -66307,7 +66307,7 @@ type=Artifact
 [/card]
 [card]
 name=Tortured Existence
-auto={S(creature|myhand)}:moveTo(myhand) target(creature|mygraveyard)
+auto={discard(creature|myhand)}:moveTo(myhand) target(creature|mygraveyard)
 text={B}, Discard a creature card: Return target creature card from your graveyard to your hand.
 mana={B}
 type=Enchantment
@@ -66526,7 +66526,7 @@ toughness=1
 [card]
 name=Trade Routes
 auto={1}:moveTo(ownerhand) target(land|myBattlefield)
-auto={1}{S(land|myhand)}:draw:1
+auto={1}{discard(land|myhand)}:draw:1
 text={1}: Return target land you control to its owner's hand. -- {1}, Discard a land card: Draw a card.
 mana={1}{U}
 type=Enchantment
@@ -67253,7 +67253,7 @@ type=Sorcery
 [/card]
 [card]
 name=Troubled Healer
-auto={S(land|myhand)}:prevent:2 target(creature,player)
+auto={discard(land|myhand)}:prevent:2 target(creature,player)
 text=Sacrifice a land: Prevent the next 2 damage that would be dealt to target creature or player this turn.
 mana={2}{W}
 type=Creature
@@ -68571,7 +68571,7 @@ toughness=1
 [/card]
 [card]
 name=Vampire Hounds
-auto={S(creature|myhand)}:2/2
+auto={discard(creature|myhand)}:2/2
 text=Discard a creature card: Vampire Hounds gets +2/+2 until end of turn.
 mana={2}{B}
 type=Creature
@@ -73476,7 +73476,7 @@ subtype=Equipment
 [card]
 name=Worm Harvest
 auto=foreach(land|mygraveyard) token(Worm,creature worm,1/1,blackgreen)
-retrace={2}{BG}{BG}{BG}{S(land|myhand)}
+retrace={2}{BG}{BG}{BG}{discard(land|myhand)}
 text=Put a 1/1 black and green Worm creature token onto the battlefield for each land card in your graveyard. -- Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
 mana={2}{BG}{BG}{BG}
 type=Sorcery
