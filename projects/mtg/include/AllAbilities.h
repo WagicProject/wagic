@@ -3965,6 +3965,7 @@ public:
     int timeLeft;
     int amount;
     string counterName;
+    int next;
 
     AVanishing(int _id, MTGCardInstance * card, ManaCost * _cost, int _tap = 0, int restrictions = 0,int amount = 0,string counterName = "");
     void Update(float dt);

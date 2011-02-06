@@ -2786,6 +2786,7 @@ APreventDamageTypesUEOT::~APreventDamageTypesUEOT()
 AVanishing::AVanishing(int _id, MTGCardInstance * card, ManaCost * _cost, int _tap, int restrictions, int amount, string counterName) :
 ActivatedAbility(_id, card, _cost, restrictions, _tap),amount(amount),counterName(counterName)
 {
+    next = 0;
     for(int i = 0;i< amount;i++)
         source->counters->addCounter(counterName.c_str(),0,0);
 }
@@ -2808,21 +2809,23 @@ void AVanishing::Update(float dt)
             else
             {
                 timeLeft = 0;
-                WEvent * e = NEW WEventCardSacrifice(source);
-                GameObserver * game = GameObserver::GetInstance();
-                game->receiveEvent(e);
-                source->controller()->game->putInGraveyard(source);
+                if(counterName.find("fade") != string::npos && next == 0)
+                {
+                    next = 1;
+                }
+                else
+                {
+                    next = 0;
+                }
+                if (newPhase == Constants::MTG_PHASE_UPKEEP && timeLeft <= 0 && next == 0)
+                {
+                    WEvent * e = NEW WEventCardSacrifice(source);
+                    GameObserver * game = GameObserver::GetInstance();
+                    game->receiveEvent(e);
+                    source->controller()->game->putInGraveyard(source);
+                }
             }
-
         }
-        else if (newPhase == Constants::MTG_PHASE_UPKEEP && timeLeft <= 0)
-        {
-            WEvent * e = NEW WEventCardSacrifice(source);
-            GameObserver * game = GameObserver::GetInstance();
-            game->receiveEvent(e);
-            source->controller()->game->putInGraveyard(source);
-        }
-
     }
     ActivatedAbility::Update(dt);
 }
@@ -2835,7 +2838,7 @@ int AVanishing::resolve()
 
 const char * AVanishing::getMenuText()
 {
-if(counterName.find("fading") != string::npos)
+if(counterName.find("fade") != string::npos)
 return "Fading";
     return "Vanishing";
 }
