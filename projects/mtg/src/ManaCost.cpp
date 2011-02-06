@@ -223,12 +223,11 @@ ManaCost::ManaCost()
 {
     init();
 }
+
 ManaCost::ManaCost(int _cost[], int nb_elems)
 {
     init();
-    int i;
-    int total = nb_elems;
-    for (i = 0; i < total; i++)
+    for (int i = 0; i < nb_elems; i++)
     {
         cost[_cost[i * 2]] = _cost[i * 2 + 1];
     }
@@ -238,8 +237,7 @@ ManaCost::ManaCost(int _cost[], int nb_elems)
 ManaCost::ManaCost(ManaCost * _manaCost)
 {
     init();
-    int i;
-    for (i = 0; i <= Constants::MTG_NB_COLORS; i++)
+    for (int i = 0; i <= Constants::MTG_NB_COLORS; i++)
     {
         cost[i] = _manaCost->getCost(i);
     }
@@ -286,6 +284,10 @@ void ManaCost::init()
     FlashBack = NULL;
     Retrace = NULL;
     morph = NULL;
+    
+    // why is hybrids hardcoded to 10?
+    for (i = 0; i < 10; i++)
+        hybrids[i] = NULL;
 }
 
 void ManaCost::copy(ManaCost * _manaCost)
@@ -425,9 +427,9 @@ int ManaCost::add(ManaCost * _cost)
     }
     for (unsigned int i = 0; i < _cost->nbhybrids; i++)
     {
-        hybrids[nbhybrids] = NEW ManaCostHybrid((*_cost->hybrids[i]));
-        nbhybrids++;
+        hybrids[i] = NEW ManaCostHybrid((*_cost->hybrids[i]));
     }
+    nbhybrids = _cost->nbhybrids;
     return 1;
 }
 
@@ -640,7 +642,8 @@ string ManaCost::toString()
 
     for (unsigned int i = 0; i < nbhybrids; i++)
     {
-        oss << hybrids[i];
+        if ( hybrids[i] != NULL )
+            oss << hybrids[i];
     }
     return oss.str();
 }
@@ -659,7 +662,6 @@ ostream& operator<<(ostream& out, ManaCost& m)
 {
     return out << m.toString();
 }
-
 
 ostream& operator<<(ostream& out, ManaCost* m)
 {
