@@ -20726,7 +20726,7 @@ toughness=4
 [/card]
 [card]
 name=Fauna Shaman
-auto={G}{T}{S(creature|myhand)}:moveTo(myhand) target(creature|myLibrary)
+auto={G}{T}{discard(creature|myhand)}:moveTo(myhand) target(creature|myLibrary)
 text={G},{T}, Discard a creature card: Search your library for a creature card, reveal that card, and put it into your hand. Then shuffle your library.
 mana={1}{G}
 type=Creature
