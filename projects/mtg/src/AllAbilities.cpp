@@ -2782,12 +2782,12 @@ APreventDamageTypesUEOT::~APreventDamageTypesUEOT()
     SAFE_DELETE(ability);
 }
 
-//AVanishing creature
-AVanishing::AVanishing(int _id, MTGCardInstance * card, ManaCost * _cost, int _tap, int restrictions, int amount) :
-ActivatedAbility(_id, card, _cost, restrictions, _tap),amount(amount)
+//AVanishing creature also fading
+AVanishing::AVanishing(int _id, MTGCardInstance * card, ManaCost * _cost, int _tap, int restrictions, int amount, string counterName) :
+ActivatedAbility(_id, card, _cost, restrictions, _tap),amount(amount),counterName(counterName)
 {
     for(int i = 0;i< amount;i++)
-        source->counters->addCounter("time",0,0);
+        source->counters->addCounter(counterName.c_str(),0,0);
 }
 
 void AVanishing::Update(float dt)
@@ -2796,13 +2796,13 @@ void AVanishing::Update(float dt)
     {
         if(newPhase == Constants::MTG_PHASE_UPKEEP)
         {
-            source->counters->removeCounter("time",0,0);
+            source->counters->removeCounter(counterName.c_str(),0,0);
             Counter * targetCounter = NULL;
             timeLeft = 0;
 
-            if (source->counters && source->counters->hasCounter("time", 0, 0))
+            if (source->counters && source->counters->hasCounter(counterName.c_str(), 0, 0))
             {
-                targetCounter = source->counters->hasCounter("time", 0, 0);
+                targetCounter = source->counters->hasCounter(counterName.c_str(), 0, 0);
                 timeLeft = targetCounter->nb;
             }
             else
@@ -2835,6 +2835,8 @@ int AVanishing::resolve()
 
 const char * AVanishing::getMenuText()
 {
+if(counterName.find("fading") != string::npos)
+return "Fading";
     return "Vanishing";
 }
 

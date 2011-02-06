@@ -2439,10 +2439,27 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         {
             amount = atoi(s.substr(start + 1).c_str());
         }
-        MTGAbility * a = NEW AVanishing(id, card, NULL, doTap, restrictions,amount);
+        MTGAbility * a = NEW AVanishing(id, card, NULL, doTap, restrictions,amount,"time");
         return a;
     }
-    
+        //Fading
+    found = s.find("fading:");
+    if (found != string::npos)
+    {
+        size_t start = s.find(":", found);
+        size_t end = s.find(" ", start);
+        int amount;
+        if (end != string::npos)
+        {
+            amount = atoi(s.substr(start + 1, end - start - 1).c_str());
+        }
+        else
+        {
+            amount = atoi(s.substr(start + 1).c_str());
+        }
+        MTGAbility * a = NEW AVanishing(id, card, NULL, doTap, restrictions,amount,"fade");
+        return a;
+    }
     if (s.find("altercost(") != string::npos)
         return getManaReduxAbility(s.substr(s.find("altercost(") + 10), id, spell, card, target);
 
