@@ -205,7 +205,7 @@ type=Instant
 [card]
 name=Abolish
 target=artifact,enchantment
-other={S(plains|myhand)}
+other={discard(plains|myhand)}
 auto=destroy
 text=You may discard a Plains card rather than pay Abolish's mana cost. -- Destroy target artifact or enchantment.
 mana={1}{W}{W}
@@ -1486,7 +1486,7 @@ toughness=2
 [card]
 name=Amugaba
 abilities=flying
-auto={2}{U}{S(*|myhand)}:moveTo(ownerhand)
+auto={2}{U}{discard(*|myhand)}:moveTo(ownerhand)
 text=Flying -- {2}{U}, Discard a card: Return Amugaba to its owner's hand.
 mana={5}{U}{U}
 type=Creature
@@ -2308,7 +2308,7 @@ toughness=1
 [/card]
 [card]
 name=Aquamoeba
-auto={S(*|myhand)}:swap
+auto={discard(*|myhand)}:swap
 text=Discard a card: Switch Aquamoeba's power and toughness until end of turn.
 mana={1}{U}
 type=Creature
@@ -3157,7 +3157,7 @@ subtype=Aura
 [/card]
 [card]
 name=Artificer's Intuition
-auto={U}{S(artifact|myhand)}:moveTo(myhand) target(artifact[manacost<=1]|mylibrary)
+auto={U}{discard(artifact|myhand)}:moveTo(myhand) target(artifact[manacost<=1]|mylibrary)
 text={U}, Discard an artifact card: Search your library for an artifact card with converted mana cost 1 or less, reveal that card, and put it into your hand. Then shuffle your library.
 mana={1}{U}
 type=Enchantment
@@ -3907,7 +3907,7 @@ toughness=*
 [card]
 name=Aven Trooper
 abilities=flying
-auto={2}{W}{S(*|myHand)}:1/2
+auto={2}{W}{discard(*|myHand)}:1/2
 text=Flying -- {2}{W}, Discard a card: Aven Trooper gets +1/+2 until end of turn.
 mana={3}{W}
 type=Creature
@@ -3917,7 +3917,7 @@ toughness=1
 [/card]
 [card]
 name=Avenger en-Dal
-auto={2}{W}{T}{S(*|myhand)}:target(creature[attcking]) dynamicability<!mytgt toughnesslife targetcontroller!> moveTo(exile)
+auto={2}{W}{T}{discard(*|myhand)}:target(creature[attcking]) dynamicability<!mytgt toughnesslife targetcontroller!> moveTo(exile)
 text={2}{W}, {T}, Discard a card: Exile target attacking creature. Its controller gains life equal to its toughness.
 mana={1}{W}
 type=Creature
@@ -4319,7 +4319,7 @@ toughness=2
 [/card]
 [card]
 name=Balloon Peddler
-auto={U}{T}{S(*|myhand)}:flying target(creature)
+auto={U}{T}{discard(*|myhand)}:flying target(creature)
 text={U}, {T}, Discard a card: Target creature gains flying until end of turn.
 mana={2}{U}
 type=Creature
@@ -4397,7 +4397,7 @@ toughness=2
 [card]
 name=Balshan Griffin
 abilities=flying
-auto={1}{U}{S(*|myhand)}:moveTo(hand)
+auto={1}{U}{discard(*|myhand)}:moveTo(hand)
 text=Flying -- {1}{U}, Discard a card: Return Balshan Griffin to its owner's hand.
 mana={3}{U}{U}
 type=Creature
@@ -5996,7 +5996,7 @@ type=Land
 [/card]
 [card]
 name=Blaster Mage
-auto={R}{T}{S(*|myhand)}:destroy target(wall)
+auto={R}{T}{discard(*|myhand)}:destroy target(wall)
 text={R}, {T}, Discard a card: Destroy target Wall.
 mana={2}{R}
 type=Creature
@@ -7058,7 +7058,7 @@ toughness=2
 [/card]
 [card]
 name=Bog Witch
-auto={B}{T}{S(*|myhand)}:Add {B}{B}{B}
+auto={B}{T}{discard(*|myhand)}:Add {B}{B}{B}
 text={B}, {T}, Discard a card: Add {B}{B}{B} to your mana pool.
 mana={2}{B}
 type=Creature
@@ -7260,7 +7260,7 @@ toughness=1
 [/card]
 [card]
 name=Bola Warrior
-auto={R}{T}{S(*|myhand)}:cantblock target(creature)
+auto={R}{T}{discard(*|myhand)}:cantblock target(creature)
 text={R}, {T}, Discard a card: Target creature can't block this turn.
 mana={1}{R}
 type=Creature
@@ -8686,7 +8686,7 @@ type=Instant
 [/card]
 [card]
 name=Cackling Witch
-auto={X}{B}{T}{S(*|myhand)}:thisforeach(X) 1/0 target(creature)
+auto={X}{B}{T}{discard(*|myhand)}:thisforeach(X) 1/0 target(creature)
 text={X}{B}, {T}, Discard a card: Target creature gets +X/+0 until end of turn.
 mana={1}{B}
 type=Creature
@@ -9899,7 +9899,7 @@ toughness=1
 [card]
 name=Centaur Veteran
 abilities=trample
-auto={G}{S(*|myhand)}:regenerate
+auto={G}{discard(*|myhand)}:regenerate
 text=Trample -- {G}, Discard a card: Regenerate Centaur Veteran.
 mana={5}{G}
 type=Creature
@@ -9930,7 +9930,7 @@ toughness=1
 [/card]
 [card]
 name=Cephalid Inkshrouder
-auto={S(*|myHand)}:shroud && unblockable
+auto={discard(*|myHand)}:shroud && unblockable
 text=Discard a card: Cephalid Inkshrouder gains shroud until end of turn and is unblockable this turn. (A permanent with shroud can't be the target of spells or abilities.)
 mana={2}{U}
 type=Creature
@@ -11543,7 +11543,7 @@ toughness=1
 [card]
 name=Cloudseeder
 abilities=flying
-auto={U}{T}{S(*|myhand)}:token(Cloud Sprite,creature faerie, 1/1,flying,cloud blue)
+auto={U}{T}{discard(*|myhand)}:token(Cloud Sprite,creature faerie, 1/1,flying,cloud blue)
 text=Flying -- {U}, {T}, Discard a card: Put a 1/1 blue Faerie creature token named Cloud Sprite onto the battlefield. It has flying and "Cloud Sprite can block only creatures with flying."
 mana={1}{U}
 type=Creature
@@ -11974,7 +11974,7 @@ type=Enchantment
 [/card]
 [card]
 name=Compulsion
-auto={1}{U}{S(*|myhand)}:draw:1 controller
+auto={1}{U}{discard(*|myhand)}:draw:1 controller
 auto={1}{U}{S}:draw:1 controller
 text={1}{U}, Discard a card: Draw a card. -- {1}{U}, Sacrifice Compulsion: Draw a card.
 mana={1}{U}
@@ -12721,7 +12721,7 @@ toughness=4
 [/card]
 [card]
 name=Crashing Centaur
-auto={G}{S(*|myhand)}:trample
+auto={G}{discard(*|myhand)}:trample
 auto=aslongas(*|mygraveyard) 2/2 >6
 auto=aslongas(*|mygraveyard) shroud >6
 text={G}, Discard a card: Crashing Centaur gains trample until end of turn. -- Threshold - As long as seven or more cards are in your graveyard, Crashing Centaur gets +2/+2 and has shroud. (It can't be the target of spells or abilities.)
@@ -14395,7 +14395,7 @@ toughness=1
 [/card]
 [card]
 name=Dawnstrider
-auto={G}{T}{S(*|myhand)}:fog oneshot
+auto={G}{T}{discard(*|myhand)}:fog oneshot
 text={G}, {T}, Discard a card: Prevent all combat damage that would be dealt this turn.
 mana={1}{G}
 type=Creature
@@ -14923,7 +14923,7 @@ toughness=7
 [card]
 name=Deepcavern Imp
 abilities=flying,haste
-auto=upcost[{S(*|myhand)};next upkeep] moveTo(graveyard)
+auto=upcost[{discard(*|myhand)};next upkeep] moveTo(graveyard)
 text=Flying, haste -- Echo - Discard a card. (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
 mana={2}{B}
 type=Creature
@@ -14979,7 +14979,7 @@ toughness=1
 [/card]
 [card]
 name=Deepwood Drummer
-auto={G}{T}{S(*|myhand)}:2/2 target(creature)
+auto={G}{T}{discard(*|myhand)}:2/2 target(creature)
 text={G}, {T}, Discard a card: Target creature gets +2/+2 until end of turn.
 mana={1}{G}
 type=Creature
@@ -15646,7 +15646,7 @@ toughness=1
 [/card]
 [card]
 name=Devout Witness
-auto={W}{T}{S(*|myhand)}:destroy target(artifact,enchantment)
+auto={W}{T}{discard(*|myhand)}:destroy target(artifact,enchantment)
 text={1}{W}, {T}, Discard a card: Destroy target artifact or enchantment.
 mana={2}{W}
 type=Creature
@@ -15817,7 +15817,7 @@ toughness=3
 [/card]
 [card]
 name=Dirty Wererat
-auto={B}{S(*|myhand)}:regenerate
+auto={B}{discard(*|myhand)}:regenerate
 auto=aslongas(*|mygraveyard) 2/2 >6
 auto=aslongas(*|mygraveyard) cantblock >6
 text={B}, Discard a card: Regenerate Dirty Wererat. -- Threshold - As long as seven or more cards are in your graveyard, Dirty Wererat gets +2/+2 and can't block.
@@ -17596,8 +17596,8 @@ subtype=Aura
 [/card]
 [card]
 name=Dwarven Armorer
-auto={R}{T}{S(*|myhand)}:counter(0/1,1) target(creature)
-auto={R}{T}{S(*|myhand)}:counter(1/0,1) target(creature)
+auto={R}{T}{discard(*|myhand)}:counter(0/1,1) target(creature)
+auto={R}{T}{discard(*|myhand)}:counter(1/0,1) target(creature)
 text={R}, {T}, Discard a card: Put a +0/+1 counter or a +1/+0 counter on target creature.
 mana={R}
 type=Creature
@@ -19379,7 +19379,7 @@ type=Instant
 [card]
 name=Ephemeron
 abilities=flying
-auto={S(*|myhand)}:moveTo(myhand)
+auto={discard(*|myhand)}:moveTo(myhand)
 text=Flying -- Discard a card: Return Ephemeron to its owner's hand.
 mana={4}{U}{U}
 type=Creature
@@ -19479,7 +19479,7 @@ toughness=4
 [card]
 name=Escape Artist
 abilities=unblockable
-auto={U}{S(*|myhand)}:moveTo(ownerhand)
+auto={U}{discard(*|myhand)}:moveTo(ownerhand)
 text=Escape Artist is unblockable. -- {U}, Discard a card: Return Escape Artist to its owner's hand.
 mana={1}{U}
 type=Creature
@@ -20285,7 +20285,7 @@ type=Sorcery
 [/card]
 [card]
 name=Face of Fear
-auto={2}{B}{S(*|myhand)}:fear
+auto={2}{B}{discard(*|myhand)}:fear
 text={2}{B}, Discard a card: Face of Fear gains fear until end of turn. (It can't be blocked except by artifact creatures and/or black creatures.)
 mana={5}{B}
 type=Creature
@@ -22109,7 +22109,7 @@ toughness=2
 [/card]
 [card]
 name=Fledgling Imp
-auto={B}{S(*|myhand)}:flying
+auto={B}{discard(*|myhand)}:flying
 text={B}, Discard a card: Fledgling Imp gains flying until end of turn.
 mana={2}{B}
 type=Creature
@@ -22225,7 +22225,7 @@ toughness=2
 [/card]
 [card]
 name=Fleshgrafter
-auto={S(artifact|myhand)}:2/2
+auto={discard(artifact|myhand)}:2/2
 text=Discard an artifact card: Fleshgrafter gets +2/+2 until end of turn.
 mana={2}{B}
 type=Creature
@@ -22449,7 +22449,7 @@ subtype=Aura
 [/card]
 [card]
 name=Flowstone Channeler
-auto={1}{R}{T}{S(*|myhand)}: 1/-1 && haste target(creature)
+auto={1}{R}{T}{discard(*|myhand)}: 1/-1 && haste target(creature)
 text={1}{R}, {T}, Discard a card: Target creature gets +1/-1 and gains haste until end of turn.
 mana={2}{R}
 type=Creature
@@ -24324,7 +24324,7 @@ toughness=4
 [/card]
 [card]
 name=Ghost Tactician
-auto={W}{T}{S(*|myhand)}:lord(creature|mybattlefield) 1/0
+auto={W}{T}{discard(*|myhand)}:lord(creature|mybattlefield) 1/0
 text={W}, {T}, Discard a card: Creatures you control get +1/+0 until end of turn.
 mana={4}{W}
 type=Creature
@@ -24407,7 +24407,7 @@ type=Sorcery
 name=Ghostly Wings
 target=creature
 auto=1/1
-auto={S}:teach(creature) moveTo(myhand)
+auto={discard(*|myhand)}:teach(creature) moveTo(myhand)
 text=Enchant creature -- Enchanted creature gets +1/+1 and has flying. -- Discard a card: Return enchanted creature to its owner's hand.
 mana={1}{U}
 type=Enchantment
@@ -24922,7 +24922,7 @@ id=-752411111
 [card]
 name=Glint-Eye Nephilim
 auto=@combatdamaged(player) from(this):draw:thatmuch controller
-auto={1}{S(*|myhand)}:1/1
+auto={1}{discard(*|myhand)}:1/1
 text=Whenever Glint-Eye Nephilim deals combat damage to a player, draw that many cards. -- {1}, Discard a card: Glint-Eye Nephilim gets +1/+1 until end of turn.
 mana={U}{B}{R}{G}
 type=Creature
@@ -26132,7 +26132,7 @@ toughness=1
 [/card]
 [card]
 name=Goldmeadow Lookout
-auto={W}{T}{S(*|myhand)}:token(130311)
+auto={W}{T}{discard(*|myhand)}:token(130311)
 text={W}, {T}, Discard a card: Put a 1/1 white Kithkin Soldier creature token named Goldmeadow Harrier onto the battlefield. It has "{W}, {T}: Tap target creature."
 mana={3}{W}
 type=Creature
@@ -26862,7 +26862,7 @@ subtype=Aura
 [/card]
 [card]
 name=Greenseeker
-auto={G}{T}{S(*|myhand)}:moveTo(myHand) target(land[basic]|mylibrary)
+auto={G}{T}{discard(*|myhand)}:moveTo(myHand) target(land[basic]|mylibrary)
 text={G}, {T}, Discard a card: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.
 mana={G}
 type=Creature
@@ -27182,7 +27182,7 @@ toughness=3
 [/card]
 [card]
 name=Grotesque Hybrid
-auto={S(*|myhand)}:flying & protection from white && protection from green
+auto={discard(*|myhand)}:flying & protection from white && protection from green
 auto=@combatdamaged(creature) from(this):all(trigger[to]) bury
 text=Whenever Grotesque Hybrid deals combat damage to a creature, destroy that creature. It can't be regenerated. -- Discard a card: Grotesque Hybrid gains flying and protection from green and from white until end of turn.
 mana={4}{B}
@@ -28974,7 +28974,7 @@ type=Enchantment
 [card]
 name=Hidden Horror
 auto=moveTo(graveyard) target(this|myBattlefield) oneshot
-auto=aslongas(creature|myhand) moveTo(graveyard) target(creature|myhand) oneshot
+auto=aslongas(creature|myhand) reject target(creature|myhand) oneshot
 text=When Hidden Horror enters the battlefield, sacrifice it unless you discard a creature card.
 mana={1}{B}{B}
 type=Creature
@@ -30138,7 +30138,7 @@ toughness=8
 [/card]
 [card]
 name=Hypochondria
-auto={W}{S(*|myhand)}:prevent:3 target(creature,player)
+auto={W}{discard(*|myhand)}:prevent:3 target(creature,player)
 auto={S}:prevent:3 target(creature,player)
 text={W}, Discard a card: Prevent the next 3 damage that would be dealt to target creature or player this turn. -- {W}, Sacrifice Hypochondria: Prevent the next 3 damage that would be dealt to target creature or player this turn.
 mana={1}{W}
@@ -30169,7 +30169,7 @@ toughness=2
 [/card]
 [card]
 name=Icatian Crier
-auto={1}{W}{T}{S(*|myhand)}:token(Citizen,creature citizen, 1/1, white) && token(Citizen,creature citizen, 1/1, white)
+auto={1}{W}{T}{discard(*|myhand)}:token(Citizen,creature citizen, 1/1, white) && token(Citizen,creature citizen, 1/1, white)
 text={1}{W}, {T}, Discard a card: Put two 1/1 white Citizen creature tokens onto the battlefield.
 mana={2}{W}
 type=Creature
@@ -30517,7 +30517,7 @@ toughness=2
 name=Immobilizing Ink
 target=creature
 auto=doesnotuntap
-auto=teach(creature) {1}{S(*|myhand)}:untap
+auto=teach(creature) {1}{discard(*|myhand)}:untap
 text=Enchant creature -- Enchanted creature doesn't untap during its controller's untap step. -- Enchanted creature has "{1}, Discard a card: Untap this creature."
 mana={1}{U}
 type=Enchantment
@@ -31109,7 +31109,7 @@ type=Instant
 [/card]
 [card]
 name=Instigator
-auto={1}{B}{B}{T}{S(*|myhand)}:lord(creature|opponentBattlefield) mustattack ueot
+auto={1}{B}{B}{T}{discard(*|myhand)}:lord(creature|opponentBattlefield) mustattack ueot
 text={1}{B}{B}, {T}, Discard a card: Creatures target player controls attack this turn if able.
 mana={1}{B}
 type=Creature
@@ -31820,9 +31820,9 @@ toughness=1
 [/card]
 [card]
 name=Jaya Ballard, Task Mage
-auto={R}{T}{S(*|myHand)}:destroy target(*[blue])
-auto={1}{R}{T}{S(*|myHand)}:damage:3 && cantregen target(creature,player)
-auto={5}{R}{R}{S(*|myHand)}:damage:6 all(creature,player)
+auto={R}{T}{discard(*|myHand)}:destroy target(*[blue])
+auto={1}{R}{T}{discard(*|myHand)}:damage:3 && cantregen target(creature,player)
+auto={5}{R}{R}{discard(*|myHand)}:damage:6 all(creature,player)
 text={R}, {T}, Discard a card: Destroy target blue permanent. -- {1}{R}, {T}, Discard a card: Jaya Ballard, Task Mage deals 3 damage to target creature or player. A creature dealt damage this way can't be regenerated this turn. -- {5}{R}{R}, {T}, Discard a card: Jaya Ballard deals 6 damage to each creature and each player.
 mana={1}{R}{R}
 type=Legendary Creature
@@ -32451,7 +32451,7 @@ toughness=1
 name=Junk Golem
 auto=counter(1/1,3)
 auto=upcost[{C(1/1,-1)}] moveTo(graveyard)
-auto={S(*|myhand)}:counter(1/1)
+auto={discard(*|myhand)}:counter(1/1)
 text=Junk Golem enters the battlefield with three +1/+1 counters on it. -- At the beginning of your upkeep, sacrifice Junk Golem unless you remove a +1/+1 counter from it. -- {1}, Discard a card: Put a +1/+1 counter on Junk Golem.
 mana={4}
 type=Artifact Creature
@@ -34648,7 +34648,7 @@ toughness=2
 [/card]
 [card]
 name=Kris Mage
-auto={R}{T}{S(*|myhand)}:damage:1 target(creature,player)
+auto={R}{T}{discard(*|myhand)}:damage:1 target(creature,player)
 text={R}, {T}, Discard a card: Kris Mage deals 1 damage to target creature or player.
 mana={R}
 type=Creature
@@ -34659,7 +34659,7 @@ toughness=1
 [card]
 name=Krosan Archer
 abilities=reach
-auto={G}{S(*|myhand)}:0/2
+auto={G}{discard(*|myhand)}:0/2
 text=Reach (This creature can block creatures with flying.) -- {G}, Discard a card: Krosan Archer gets +0/+2 until end of turn.
 mana={3}{G}
 type=Creature
@@ -36307,7 +36307,7 @@ toughness=1
 [card]
 name=Lim-Dul's Paladin
 abilities=trample
-auto=upcostmulti[{S(*|myhand)} sacrifice && draw:1 controller
+auto=upcostmulti[{discard(*|myhand)} sacrifice && draw:1 controller
 auto=@blocked(this):6/3 ueot
 auto=@notblocked(this):preventAllCombatDamage from(this) ueot && life:-4 opponent
 text=Trample -- At the beginning of your upkeep, sacrifice Lim-Dul's Paladin unless you discard a card. If you sacrifice it this way, draw a card. -- Whenever Lim-Dul's Paladin becomes blocked, it gets +6/+3 until end of turn. -- Whenever Lim-Dul's Paladin attacks and isn't blocked, it assigns no combat damage this turn and defending player loses 4 life.
@@ -36566,7 +36566,7 @@ toughness=2
 [/card]
 [card]
 name=Llanowar Mentor
-auto={G}{T}{S(*|myhand)}:token(461)
+auto={G}{T}{discard(*|myhand)}:token(461)
 text={G}, {T}, Discard a card: Put a 1/1 green Elf Druid creature token named Llanowar Elves onto the battlefield. It has "{T}: Add {G} to your mana pool."
 mana={G}
 type=Creature
@@ -38616,7 +38616,7 @@ type=Instant
 [/card]
 [card]
 name=Masticore
-auto=upcost[{S(*|myhand)}] moveTo(mygraveyard)
+auto=upcost[{discard(*|myhand)}] moveTo(mygraveyard)
 auto={2}:damage:1 target(creature)
 auto={2}:regenerate
 text=At the beginning of your upkeep, sacrifice Masticore unless you discard a card. -- {2}: Masticore deals 1 damage to target creature. -- {2}: Regenerate Masticore.
@@ -38739,7 +38739,7 @@ type=Enchantment
 [/card]
 [card]
 name=Medicine Bag
-auto={1}{T}{S(*|myhand)}:regenerate target(creature)
+auto={1}{T}{discard(*|myhand)}:regenerate target(creature)
 text={1}, {T}, Discard a card: Regenerate target creature.
 mana={3}
 type=Artifact
@@ -38887,7 +38887,7 @@ toughness=4
 [/card]
 [card]
 name=Mental Discipline
-auto={1}{U}{S(*|myhand)}:draw:1
+auto={1}{U}{discard(*|myhand)}:draw:1
 text={1}{U}, Discard a card: Draw a card.
 mana={1}{U}{U}
 type=Enchantment
@@ -39514,8 +39514,8 @@ type=Sorcery
 [/card]
 [card]
 name=Mind Over Matter
-auto={S(*|myhand)}:tap target(artifact,creature,land)
-auto={S(*|myhand)}:untap target(artifact,creature,land)
+auto={discard(*|myhand)}:tap target(artifact,creature,land)
+auto={discard(*|myhand)}:untap target(artifact,creature,land)
 text=Discard a card: You may tap or untap target artifact, creature, or land.
 mana={2}{U}{U}{U}{U}
 type=Enchantment
@@ -39561,7 +39561,7 @@ type=Sorcery
 [card]
 name=Mindless Automaton
 auto=counter(1/1,2)
-auto={1}{S(*|myhand)}:counter(1/1)
+auto={1}{discard(*|myhand)}:counter(1/1)
 auto={C(1/1,-2)}:draw:1 controller
 text=Mindless Automaton enters the battlefield with two +1/+1 counters on it. -- {1}, Discard a card: Put a +1/+1 counter on Mindless Automaton. -- Remove two +1/+1 counters from Mindless Automaton: Draw a card.
 mana={4}
@@ -40359,7 +40359,7 @@ toughness=4
 [/card]
 [card]
 name=Molten-Tail Masticore
-auto=upcost[{S(*|myhand)}] moveTo(mygraveyard)
+auto=upcost[{discard(*|myhand)}] moveTo(mygraveyard)
 auto={4}{E(creature|mygraveyard)}:damage:4 target(creature,player)
 auto={2}:regenerate
 text=At the beginning of your upkeep, sacrifice Molten-Tail Masticore unless you discard a card. -- {4}, Exile a creature card from your graveyard: Molten-Tail Masticore deals 4 damage to target creature or player. -- {2}: Regenerate Molten-Tail Masticore.
@@ -40816,7 +40816,7 @@ type=Instant
 [/card]
 [card]
 name=Mortiphobia
-auto={1}{B}{S(*|myHand)}:moveto(exile) target(*|graveyard)
+auto={1}{B}{discard(*|myhand)}:moveto(exile) target(*|graveyard)
 auto={1}{B}{S}:moveto(exile) target(*|graveyard)
 text={1}{B}, Discard a card: Exile target card from a graveyard. -- {1}{B}, Sacrifice Mortiphobia: Exile target card from a graveyard.
 mana={1}{B}{B}
@@ -41837,7 +41837,7 @@ toughness=2
 [/card]
 [card]
 name=Narcissism
-auto={G}{S(*|myHand)}:2/2 target(creature)
+auto={G}{discard(*|myhand)}:2/2 target(creature)
 auto={G}{S}:2/2 target(creature)
 text={G}, Discard a card: Target creature gets +2/+2 until end of turn. -- {G}, Sacrifice Narcissism: Target creature gets +2/+2 until end of turn.
 mana={2}{G}
@@ -42340,7 +42340,7 @@ toughness=2
 [/card]
 [card]
 name=Netter en-Dal
-auto={W}{T}{S(*|myhand)}:cantattack target(creature)
+auto={W}{T}{discard(*|myhand)}:cantattack target(creature)
 text={W}, {T}, Discard a card: Target creature can't attack this turn.
 mana={W}
 type=Creature
@@ -42696,7 +42696,7 @@ toughness=2
 [/card]
 [card]
 name=Nihilistic Glee
-auto={2}{B}{S(*|myhand)}:life:-1 opponent && life:1 controller
+auto={2}{B}{discard(*|myhand)}:life:-1 opponent && life:1 controller
 auto=aslongas(*|myhand) {L}{L}{1}:draw:1 <1
 text={2}{B}, Discard a card: Target opponent loses 1 life and you gain 1 life. -- Hellbent - {1}, Pay 2 life: Draw a card. Activate this ability only if you have no cards in hand.
 mana={2}{B}{B}
@@ -43124,7 +43124,7 @@ toughness=2
 [/card]
 [card]
 name=Notorious Assassin
-auto={2}{B}{T}{S(*|myhand)}:bury target(creature[-black])
+auto={2}{B}{T}{discard(*|myhand)}:bury target(creature[-black])
 text={2}{B}, {T}, Discard a card: Destroy target nonblack creature. It can't be regenerated.
 mana={3}{B}
 type=Creature
@@ -43341,7 +43341,7 @@ type=Instant
 name=Oblivion Crown
 target=creature
 abilities=flash
-auto=teach(creature) {S(*|myhand)}:1/1
+auto=teach(creature) {discard(*|myhand)}:1/1
 text=Enchant creature -- Enchanted creature has "Discard a card: This creature gets +1/+1 until end of turn."
 mana={1}{B}
 type=Enchantment
@@ -44529,7 +44529,7 @@ toughness=*
 [/card]
 [card]
 name=Overeager Apprentice
-auto={S}{S(*|myhand)}:Add {B}{B}{B}
+auto={S}{discard(*|myhand)}:Add {B}{B}{B}
 text=Discard a card, Sacrifice Overeager Apprentice: Add {B}{B}{B} to your mana pool.
 mana={2}{B}
 type=Creature
@@ -45133,7 +45133,7 @@ toughness=1
 [/card]
 [card]
 name=Patchwork Gnomes
-auto={S(*|myhand)}:regenerate
+auto={discard(*|myhand)}:regenerate
 text=Discard a card: Regenerate Patchwork Gnomes.
 mana={3}
 type=Artifact Creature
@@ -45170,7 +45170,7 @@ subtype=Aura
 [/card]
 [card]
 name=Patrol Hound
-auto={S(*|myhand)}:first strike
+auto={discard(*|myhand)}:first strike
 text=Discard a card: Patrol Hound gains first strike until end of turn.
 mana={1}{W}
 type=Creature
@@ -45220,7 +45220,7 @@ toughness=2
 [/card]
 [card]
 name=Peace of Mind
-auto={W}{S(*|myhand)}:life:3
+auto={W}{discard(*|myhand)}:life:3
 text={W}, Discard a card: You gain 3 life.
 mana={1}{W}
 type=Enchantment
@@ -45320,7 +45320,7 @@ toughness=1
 [/card]
 [card]
 name=Pegasus Refuge
-auto={2}{S(*|myhand)}:token(Pegasus,Creature Pegasus, 1/1,flying white)
+auto={2}{discard(*|myhand)}:token(Pegasus,Creature Pegasus, 1/1,flying white)
 text={2}, Discard a card: Put a 1/1 white Pegasus creature token with flying onto the battlefield.
 mana={3}{W}
 type=Enchantment
@@ -45766,7 +45766,7 @@ toughness=1
 [card]
 name=Phantatog
 auto={S(enchantment|myBattlefield)}:1/1
-auto={S(*|myhand)}:1/1
+auto={discard(*|myhand)}:1/1
 text=Sacrifice an enchantment: Phantatog gets +1/+1 until end of turn. -- Discard a card: Phantatog gets +1/+1 until end of turn.
 mana={1}{W}{U}
 type=Creature
@@ -46655,7 +46655,7 @@ type=Sorcery
 [/card]
 [card]
 name=Plague Witch
-auto={B}{T}{S(*|myhand)}:-1/-1 target(creature)
+auto={B}{T}{discard(*|myhand)}:-1/-1 target(creature)
 text={B}, {T}, Discard a card: Target creature gets -1/-1 until end of turn.
 mana={1}{B}
 type=Creature
@@ -47907,7 +47907,7 @@ subtype=Arcane
 [card]
 name=Pulsating Illusion
 abilities=flying
-auto={S(*|myhand)}:4/4 limit:1
+auto={discard(*|myhand)}:4/4 limit:1
 text=Flying -- Discard a card: Pulsating Illusion gets +4/+4 until end of turn. Activate this ability only once each turn.
 mana={4}{U}
 type=Creature
@@ -48052,7 +48052,7 @@ type=Instant
 [/card]
 [card]
 name=Putrid Imp
-auto={S(*|myHand)}:flying
+auto={discard(*|myhand)}:flying
 auto=aslongas(*|mygraveyard) 1/1 >6
 auto=aslongas(*|mygraveyard) cantblock >6
 text=Discard a card: Putrid Imp gains flying until end of turn. -- Threshold - As long as seven or more cards are in your graveyard, Putrid Imp gets +1/+1 and can't block.
@@ -48947,7 +48947,7 @@ type=Land
 [/card]
 [card]
 name=Rakdos Guildmage
-auto={3}{B}{S(*|myhand)}:-2/-2 target(creature)
+auto={3}{B}{discard(*|myhand)}:-2/-2 target(creature)
 auto={3}{R}:token(Goblin,Creature Goblin,2/1,red,haste,unearth)
 text=({(b/r)} can be paid with either {B} or {R}.) -- {3}{B}, Discard a card: Target creature gets -2/-2 until end of turn. -- {3}{R}: Put a 2/1 red Goblin creature token with haste onto the battlefield. Exile it at the beginning of the next end step.
 mana={BR}{BR}
@@ -49646,7 +49646,7 @@ toughness=5
 [card]
 name=Razormane Masticore
 auto=first strike
-auto=upcost[{S(*|myhand)}] moveTo(graveyard)
+auto=upcost[{discard(*|myhand)}] moveTo(graveyard)
 auto=@each my draw:may damage:3 target(creature)
 text=First strike (This creature deals combat damage before creatures without first strike.) -- At the beginning of your upkeep, sacrifice Razormane Masticore unless you discard a card. -- At the beginning of your draw step, you may have Razormane Masticore deal 3 damage to target creature.
 mana={5}
@@ -50489,11 +50489,11 @@ type=Sorcery
 [card]
 name=Resilient Wanderer
 abilities=first strike
-auto={S(*|myhand)}:name(white) && protection from white
-auto={S(*|myhand)}:name(blue) && protection from blue
-auto={S(*|myhand)}:name(black) && protection from black
-auto={S(*|myhand)}:name(red) && protection from red
-auto={S(*|myhand)}:name(green) && protection from green
+auto={discard(*|myhand)}:name(white) && protection from white
+auto={discard(*|myhand)}:name(blue) && protection from blue
+auto={discard(*|myhand)}:name(black) && protection from black
+auto={discard(*|myhand)}:name(red) && protection from red
+auto={discard(*|myhand)}:name(green) && protection from green
 text=First strike -- Discard a card: Resilient Wanderer gains protection from the color of your choice until end of turn.
 mana={2}{W}{W}
 type=Creature
@@ -51011,7 +51011,7 @@ toughness=4
 [/card]
 [card]
 name=Ridged Kusite
-auto={1}{B}{T}{S(*|myhand)}:1/0 && first strike target(creature)
+auto={1}{B}{T}{discard(*|myhand)}:1/0 && first strike target(creature)
 text={1}{B}, {T}, Discard a card: Target creature gets +1/+0 and gains first strike until end of turn.
 mana={B}
 type=Creature
@@ -52240,7 +52240,7 @@ type=Land
 [/card]
 [card]
 name=Rushwood Herbalist
-auto={G}{T}{S(*|myhand)}:regenerate target(creature)
+auto={G}{T}{discard(*|myhand)}:regenerate target(creature)
 text={G}, {T}, Discard a card: Regenerate target creature.
 mana={2}{G}
 type=Creature
@@ -54532,7 +54532,7 @@ type=Enchantment
 [/card]
 [card]
 name=Seismic Mage
-auto={2}{R}{T}{S(*|myhand)}:destroy target(land)
+auto={2}{R}{T}{discard(*|myhand)}:destroy target(land)
 text={2}{R}, {T}, Discard a card: Destroy target land.
 mana={3}{R}
 type=Creature
@@ -56568,7 +56568,7 @@ toughness=4
 [/card]
 [card]
 name=Silverglade Pathfinder
-auto={1}{G}{T}{S(*|myHand)}:moveTo(myBattlefield) target(basic|myLibrary) && tap
+auto={1}{G}{T}{discard(*|myhand)}:moveTo(myBattlefield) target(basic|myLibrary) && tap
 text={1}{G}, {T}, Discard a card: Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library.
 mana={1}{G}
 type=Creature
@@ -57008,7 +57008,7 @@ type=Artifact
 [card]
 name=Skirge Familiar
 abilities=flying
-auto={S(*|myhand)}:Add{B}
+auto={discard(*|myhand)}:Add{B}
 text=Flying -- Discard a card: Add {B} to your mana pool.
 mana={4}{B}
 type=Creature
@@ -57074,7 +57074,7 @@ toughness=1
 [/card]
 [card]
 name=Skirk Ridge Exhumer
-auto={B}{S(*|myhand)}{T}:token(39905)
+auto={B}{discard(*|myhand)}{T}:token(39905)
 text={B}, {T}, Discard a card: Put a 1/1 black Zombie Goblin creature token named Festering Goblin onto the battlefield. It has "When Festering Goblin is put into a graveyard from the battlefield, target creature gets -1/-1 until end of turn."
 mana={1}{B}
 type=Creature
@@ -57286,7 +57286,7 @@ toughness=1
 [card]
 name=Skullmead Cauldron
 auto={T}:life:1
-auto={T}{S(*|myhand)}:life:3
+auto={T}{discard(*|myhand)}:life:3
 text={T}: You gain 1 life. -- {T}, Discard a card: You gain 3 life.
 mana={4}
 type=Artifact
@@ -57680,7 +57680,7 @@ toughness=1
 [card]
 name=Skywing Aven
 abilities=flying
-auto={S(*|myHand)}:moveto(ownerhand)
+auto={discard(*|myhand)}:moveto(ownerhand)
 text=Flying -- Discard a card: Return Skywing Aven to its owner's hand.
 mana={2}{U}
 type=Creature
@@ -58047,7 +58047,7 @@ toughness=7
 [/card]
 [card]
 name=Sliversmith
-auto={1}{T}{S(*|myhand)}:token(Metallic Sliver,artifact creature sliver, 1/1)
+auto={1}{T}{discard(*|myhand)}:token(Metallic Sliver,artifact creature sliver, 1/1)
 text={1}, {T}, Discard a card: Put a 1/1 colorless Sliver artifact creature token named Metallic Sliver onto the battlefield.
 mana={2}
 type=Artifact Creature
@@ -58784,7 +58784,7 @@ toughness=3
 [/card]
 [card]
 name=Sophic Centaur
-auto={2}{G}{G}{T}{S(*|myhand)}:foreach(*|myhand) life:2 controller
+auto={2}{G}{G}{T}{discard(*|myhand)}:foreach(*|myhand) life:2 controller
 text={2}{G}{G}, {T}, Discard a card: You gain 2 life for each card in your hand.
 mana={3}{G}
 type=Creature
@@ -59274,7 +59274,7 @@ toughness=1
 [/card]
 [card]
 name=Sparkspitter
-auto={R}{T}{S(*|myhand)}:token(73579)
+auto={R}{T}{discard(*|myhand)}:token(73579)
 text={R}, {T}, Discard a card: Put a 3/1 red Elemental creature token named Spark Elemental onto the battlefield. It has trample, haste, and "At the beginning of the end step, sacrifice Spark Elemental."
 mana={2}{R}
 type=Creature
@@ -60602,7 +60602,7 @@ toughness=1
 [card]
 name=Stalking Bloodsucker
 abilities=flying
-auto={1}{B}{S(*|myhand)}:2/2
+auto={1}{B}{discard(*|myhand)}:2/2
 text=Flying -- {1}{B}, Discard a card: Stalking Bloodsucker gets +2/+2 until end of turn.
 mana={4}{B}{B}
 type=Creature
@@ -60661,7 +60661,7 @@ type=Instant
 [/card]
 [card]
 name=Stampede Driver
-auto={1}{G}{T}{S(*|myhand)}:lord(creature|myBattlefield) 1/1 && lord(creature|mybattlefield) trample
+auto={1}{G}{T}{discard(*|myhand)}:lord(creature|myBattlefield) 1/1 && lord(creature|mybattlefield) trample
 text={1}{G}, {T}, Discard a card: Creatures you control get +1/+1 and gain trample until end of turn.
 mana={G}
 type=Creature
@@ -61801,7 +61801,7 @@ toughness=1
 [/card]
 [card]
 name=Stronghold Biologist
-auto={U}{U}{T}{S(*|myhand)}:fizzle target(creature|stack)
+auto={U}{U}{T}{discard(*|myhand)}:fizzle target(creature|stack)
 text={U}{U}, {T}, Discard a card: Counter target creature spell.
 mana={2}{U}
 type=Creature
@@ -61819,7 +61819,7 @@ type=Sorcery
 [/card]
 [card]
 name=Stronghold Machinist
-auto={U}{U}{T}{S(*|myhand)}:fizzle target(*[-creature]|stack)
+auto={U}{U}{T}{discard(*|myhand)}:fizzle target(*[-creature]|stack)
 text={U}{U}, {T}, Discard a card: Counter target noncreature spell.
 mana={2}{U}
 type=Creature
@@ -64416,7 +64416,7 @@ toughness=1
 [/card]
 [card]
 name=Thalakos Drifters
-auto={S(*|myhand)}:shadow
+auto={discard(*|myhand)}:shadow
 text=Discard a card: Thalakos Drifters gains shadow until end of turn. (This creature can block or be blocked by only creatures with shadow.)
 mana={2}{U}{U}
 type=Creature
@@ -64446,7 +64446,7 @@ toughness=1
 [card]
 name=Thalakos Scout
 abilities=shadow
-auto={S(*|myhand)}:moveTo(myhand)
+auto={discard(*|myhand)}:moveTo(myhand)
 text=Shadow (This creature can block or be blocked by only creatures with shadow.) -- Discard a card: Return Thalakos Scout to its owner's hand.
 mana={2}{U}
 type=Creature
@@ -65830,7 +65830,7 @@ toughness=3
 [/card]
 [card]
 name=Tireless Tribe
-auto={S(*|myhand)}:0/4
+auto={discard(*|myhand)}:0/4
 text=Discard a card: Tireless Tribe gets +0/+4 until end of turn.
 mana={W}
 type=Creature
@@ -65999,7 +65999,7 @@ toughness=2
 [card]
 name=Tolarian Sentinel
 abilities=flying
-auto={U}{T}{S(*|myhand)}:moveTo(ownerhand) target(*|myBattlefield)
+auto={U}{T}{discard(*|myhand)}:moveTo(ownerhand) target(*|myBattlefield)
 text=Flying -- {U}, {T}, Discard a card: Return target permanent you control to its owner's hand.
 mana={3}{U}
 type=Creature
@@ -66106,7 +66106,7 @@ type=Sorcery
 [/card]
 [card]
 name=Tonic Peddler
-auto={W}{T}{S(*|myhand)}:life:3
+auto={W}{T}{discard(*|myhand)}:life:3
 text={W}, {T}, Discard a card: Target player gains 3 life.
 mana={1}{W}
 type=Creature
@@ -66605,7 +66605,7 @@ toughness=6
 [/card]
 [card]
 name=Trained Pronghorn
-auto={S(*|myhand)}:prevent:999 all(this)
+auto={discard(*|myhand)}:prevent:999 all(this)
 text=Discard a card: Prevent all damage that would be dealt to Trained Pronghorn this turn.
 mana={1}{W}
 type=Creature
@@ -66959,7 +66959,7 @@ toughness=3
 [/card]
 [card]
 name=Trespasser il-Vec
-auto={S(*|myhand)}:shadow
+auto={discard(*|myhand)}:shadow
 text=Discard a card: Trespasser il-Vec gains shadow until end of turn. (It can block or be blocked by only creatures with shadow.)
 mana={2}{B}
 type=Creature
@@ -67060,8 +67060,8 @@ toughness=4
 [/card]
 [card]
 name=Trickster Mage
-auto={U}{T}{S(*|myhand)}:tap target(artifact,creature,land)
-auto={U}{T}{S(*|myhand)}:untap target(artifact,creature,land)
+auto={U}{T}{discard(*|myhand)}:tap target(artifact,creature,land)
+auto={U}{T}{discard(*|myhand)}:untap target(artifact,creature,land)
 text={U}, {T}, Discard a card: You may tap or untap target artifact, creature, or land.
 mana={U}
 type=Creature
@@ -67415,7 +67415,7 @@ type=Instant
 [/card]
 [card]
 name=Tunneler Wurm
-auto={S(*|myhand)}:regenerate
+auto={discard(*|myhand)}:regenerate
 text=Discard a card: Regenerate Tunneler Wurm.
 mana={6}{G}{G}
 type=Creature
@@ -67763,7 +67763,7 @@ toughness=4
 [card]
 name=Undead Gladiator
 autohand={1}{B}:cycling
-autograveyard={1}{B}{S(*|myhand)}:moveTo(myhand) myUpkeepOnly
+autograveyard={1}{B}{discard(*|myhand)}:moveTo(myhand) myUpkeepOnly
 text={1}{B}, Discard a card: Return Undead Gladiator from your graveyard to your hand. Activate this ability only during your upkeep. -- Cycling {1}{B} ({1}{B}, Discard this card: Draw a card.)
 mana={1}{B}{B}
 type=Creature
@@ -67833,7 +67833,7 @@ type=Instant
 [/card]
 [card]
 name=Undertaker
-auto={B}{T}{S(*|myhand)}:moveTo(ownerhand) target(creature|mygraveyard)
+auto={B}{T}{discard(*|myhand)}:moveTo(ownerhand) target(creature|mygraveyard)
 text={B}, {T}, Discard a card: Return target creature card from your graveyard to your hand.
 mana={1}{B}
 type=Creature
@@ -68246,7 +68246,7 @@ toughness=4
 [/card]
 [card]
 name=Urborg Syphon-Mage
-auto={2}{B}{T}{S(*|myhand)}:life:-2 opponent && life:2 controller
+auto={2}{B}{T}{discard(*|myhand)}:life:-2 opponent && life:2 controller
 text={2}{B}, {T}, Discard a card: Each other player loses 2 life. You gain life equal to the life lost this way.
 mana={2}{B}
 type=Creature
@@ -69400,7 +69400,7 @@ toughness=6
 name=Vexing Sphinx
 abilities=flying
 auto=@each my upkeep:counter(0/0,1,Age)
-auto=thisforeach(counter{0/0.1.Age}) upcost[{S(*|myhand)}] moveTo(graveyard)
+auto=thisforeach(counter{0/0.1.Age}) upcost[{discard(*|myhand)}] moveTo(graveyard)
 auto=@movedTo(this|graveyard) from(battlefield):thisforeach(counter{0/0.1.Age}) draw:1 controller
 text=Flying -- Cumulative upkeep - Discard a card. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- When Vexing Sphinx is put into a graveyard from the battlefield, draw a card for each age counter on it.
 mana={1}{U}{U}
@@ -69516,7 +69516,7 @@ toughness=2
 [/card]
 [card]
 name=Viashino Skeleton
-auto={1}{B}{S(*|myhand)}:regenerate
+auto={1}{B}{discard(*|myhand)}:regenerate
 text={1}{B}, Discard a card: Regenerate Viashino Skeleton.
 mana={3}{R}
 type=Creature
@@ -71643,7 +71643,7 @@ toughness=2
 name=Waste Away
 auto=-5/-5 target(creature)
 text=As an additional cost to cast Waste Away, discard a card. -- Target creature gets -5/-5 until end of turn.
-mana={4}{B}{S(*|myhand)}
+mana={4}{B}{discard(*|myhand)}
 type=Instant
 [/card]
 [card]
@@ -71713,7 +71713,7 @@ toughness=1
 [/card]
 [card]
 name=Waterfront Bouncer
-auto={U}{T}{S(*|myhand)}:moveTo(ownerhand) target(creature)
+auto={U}{T}{discard(*|myhand)}:moveTo(ownerhand) target(creature)
 text={U}, {T}, Discard a card: Return target creature to its owner's hand.
 mana={1}{U}
 type=Creature
@@ -72473,11 +72473,11 @@ toughness=4
 [/card]
 [card]
 name=Wild Mongrel
-auto={S(*|myhand)}:name(becomes white ueot) && 1/1 && transforms(,white) ueot
-auto={S(*|myhand)}:name(becomes blue ueot) && 1/1 && transforms(,blue) ueot
-auto={S(*|myhand)}:name(becomes black ueot) && 1/1 && transforms(,black) ueot
-auto={S(*|myhand)}:name(becomes red ueot) && 1/1 && transforms(,red) ueot
-auto={S(*|myhand)}:name(becomes green ueot) && 1/1 && transforms(,green) ueot
+auto={discard(*|myhand)}:name(becomes white ueot) && 1/1 && transforms(,white) ueot
+auto={discard(*|myhand)}:name(becomes blue ueot) && 1/1 && transforms(,blue) ueot
+auto={discard(*|myhand)}:name(becomes black ueot) && 1/1 && transforms(,black) ueot
+auto={discard(*|myhand)}:name(becomes red ueot) && 1/1 && transforms(,red) ueot
+auto={discard(*|myhand)}:name(becomes green ueot) && 1/1 && transforms(,green) ueot
 text=Discard a card: Wild Mongrel gets +1/+1 and becomes the color of your choice until end of turn.
 mana={1}{G}
 type=Creature
