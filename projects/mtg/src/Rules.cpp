@@ -198,7 +198,7 @@ void Rules::addExtraRules()
                     if (((p->isAI() && p->playMode
                         != Player::MODE_AI && p->opponent()->playMode
                         != Player::MODE_AI)||( !p->isAI() && Optimizedhandcheat)) && a->aType == MTGAbility::STANDARD_DRAW &&
-                        difficultyRating == HARD && p->playMode
+                        difficultyRating != HARD && p->playMode
                         != Player::MODE_TEST_SUITE && g->mRules->gamemode != GAME_TYPE_MOMIR && g->mRules->gamemode
                         != GAME_TYPE_RANDOM1 && g->mRules->gamemode != GAME_TYPE_RANDOM2 && g->mRules->gamemode
                         != GAME_TYPE_STORY)//stupid protections to keep this out of mimor and other game modes.
