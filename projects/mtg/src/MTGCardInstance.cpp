@@ -183,7 +183,7 @@ void MTGCardInstance::initMTGCI()
                     s == "Island" || s == "Shrine" || s == "Basic" || s == "Colony" || s == "Desert" ||
                     s == "Dismiss" || s == "Equipment" || s == "Everglades" || s == "Grasslands" || s == "Lair" ||
                     s == "Level" || s == "Levelup" || s == "Mine" || s == "Oasis" || s == "World" || s == "Aura"
-                    || s == "Land"|| s == "Legendary" || s == "Token")
+                    || s == "Land"|| s == "Legendary" || s == "Token" || s == "Planeswalker")
                     continue;
                 addType(i);
             }
