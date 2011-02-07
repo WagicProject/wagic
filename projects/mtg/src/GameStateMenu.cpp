@@ -732,6 +732,8 @@ void GameStateMenu::ButtonPressed(int controllerId, int controlId)
     switch (controllerId)
     {
     case MENU_LANGUAGE_SELECTION:
+        if ( controlId == kInfoMenuID )
+            break;
         setLang(controlId);
         WResourceManager::Instance()->ReloadWFonts(); // Fix for choosing Chinese language at first time.
         subMenuController->Close();
