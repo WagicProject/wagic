@@ -38801,7 +38801,7 @@ target=land
 auto=destroy
 auto=damage:2 targetcontroller
 text=Destroy target land. Melt Terrain deals 2 damage to that land's controller.
-mana={1}{R}{R}
+mana={2}{R}{R}
 type=Sorcery
 [/card]
 [card]
