@@ -6223,7 +6223,7 @@ mana={3}{G}
 type=Creature
 subtype=Spider
 power=2
-toughness=3
+toughness=4
 [/card]
 [card]
 name=Blind Creeper
@@ -7352,7 +7352,7 @@ type=Sorcery
 [card]
 name=Bonehoard
 auto={2}:equip
-auto=foreach(creature|mygraveyard) 1/1
+auto=foreach(creature|graveyard) 1/1
 auto=livingweapontoken(Germ,Creature Germ,0/0,black)
 text=Living weapon (When this Equipment enters the battlefield, put a 0/0 black Germ creature token onto the battlefield, then attach this to it.) -- Equipped creature gets +X/+X, where X is the number of creature cards in all graveyards. -- Equip {2}
 mana={4}
@@ -13191,7 +13191,7 @@ toughness=2
 [/card]
 [card]
 name=Crush
-target=creature[-artifact]
+target=artifact[-creature]
 auto=destroy
 text=Destroy target noncreature artifact.
 mana={R}
@@ -14050,7 +14050,7 @@ toughness=*
 name=Darksteel Myr
 abilities=indestructible
 text=Darksteel Myr is indestructible. ("Destroy" effects and lethal damage don't destroy it.)
-mana={0}
+mana={3}
 type=Artifact Creature
 subtype=Myr
 power=0
@@ -50823,7 +50823,7 @@ target=artifact,enchantment
 auto=moveTo(exile)
 text=Exile target artifact or enchantment.
 mana={1}{W}
-type=Instant
+type=Sorcery
 [/card]
 [card]
 name=Rewards of Diversity
