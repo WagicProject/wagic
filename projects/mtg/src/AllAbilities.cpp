@@ -3140,6 +3140,12 @@ void ABlink::resolveBlink()
         }
         _target->controller()->game->putInZone(_target, _target->currentZone,
             _target->owner->game->exile);
+        if(_target->isToken)
+        {
+            //if our target is a token, we're done as soon as its sent to exile.
+            this->forceDestroy = 1;
+            return;
+        }
         _target = _target->next;
         Blinked = _target;
         if(!blinkueot && !blinkForSource)
