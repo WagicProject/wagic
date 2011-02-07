@@ -1496,7 +1496,6 @@ void AIPlayer::Render()
 int AIPlayerBaka::Act(float dt)
 {
     GameObserver * g = GameObserver::GetInstance();
-
     if (!(g->currentlyActing() == this))
     {
         return 0;
@@ -1541,29 +1540,6 @@ int AIPlayerBaka::Act(float dt)
         action->Act();
         SAFE_DELETE(action);
         clickstream.pop();
-        if (clickstream.empty())
-        {
-            //check if we're done executing our actions
-            //then if we were interrupting cancel the offer
-            //or request next game phase.
-            //this help relieve the ai in edge cases where it can still trip over it's own clickstream
-            //as exhabited when multiple inkmoth's are in play without this condiational.
-            if (g->isInterrupting == this)
-            {
-                g->mLayers->stackLayer()->cancelInterruptOffer(); //endOfInterruption();
-                //this brings us inline with MTG rules. as we shouldnt be able to interrupt our own action.
-            }
-            else
-            {
-                g->userRequestNextGamePhase();
-                //this does not impact the amount of cards ai will play in a phase as
-                //we can only go ahead with a request for next phase if nothing is happening.
-                //ei: nothing on stack, nothing waiting for targets ect.
-                //what this does is safegaurd against ai getting trapped in a loop
-                //where it tries to repeatedly cast an ability it cant afford
-                //such as inkmoth lands, "becomes" ability which it find just too tempting.
-            }
-        }
     }
     return 1;
 }
