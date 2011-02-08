@@ -287,8 +287,8 @@ AAPhaseOut * AAPhaseOut::clone() const
 
 //Counters
 AACounter::AACounter(int id, MTGCardInstance * source, MTGCardInstance * target,string counterstring, const char * _name, int power, int toughness,
-        int nb, ManaCost * cost, int doTap) :
-    ActivatedAbility(id, source, cost, 0, doTap),counterstring(counterstring), nb(nb), power(power), toughness(toughness), name(_name)
+        int nb,int maxNb, ManaCost * cost, int doTap) :
+    ActivatedAbility(id, source, cost, 0, doTap),counterstring(counterstring), nb(nb),maxNb(maxNb), power(power), toughness(toughness), name(_name)
 {
     this->target = target;
     if (name.find("Level"))
@@ -307,13 +307,22 @@ AACounter::AACounter(int id, MTGCardInstance * source, MTGCardInstance * target,
             delete checkcounter;
             if (nb > 0)
             {
-            for (int i = 0; i < nb; i++)
-            {
-                while (_target->next)
-                    _target = _target->next;
-                _target->counters->addCounter(name.c_str(), power, toughness);
+                for (int i = 0; i < nb; i++)
+                {
+                    while (_target->next)
+                        _target = _target->next;
+
+                    Counter * targetCounter = NULL;
+                    int currentAmount = 0;
+                    if (_target->counters && _target->counters->hasCounter(name.c_str(), power, toughness))
+                    {
+                        targetCounter = _target->counters->hasCounter(name.c_str(), power, toughness);
+                        currentAmount = targetCounter->nb;
+                    }
+                    if(!maxNb || (maxNb && currentAmount < maxNb))
+                        _target->counters->addCounter(name.c_str(), power, toughness);
+                }
             }
-        }
         else
         {
             for (int i = 0; i < -nb; i++)

@@ -11,6 +11,7 @@ class Counter
 public:
     string name;
     int nb;
+    int maxNb;
     int power, toughness;
     MTGCardInstance * target;
     Counter(MTGCardInstance * _target, int _power, int _toughness);

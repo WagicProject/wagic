@@ -886,12 +886,13 @@ class AACounter: public ActivatedAbility
 public:
     string counterstring;
     int nb;
+    int maxNb;
     int power;
     int toughness;
     string name;
     string menu;
 
-    AACounter(int id, MTGCardInstance * source, MTGCardInstance * target,string counterstring, const char * _name, int power, int toughness, int nb,
+    AACounter(int id, MTGCardInstance * source, MTGCardInstance * target,string counterstring, const char * _name, int power, int toughness, int nb,int maxNb = 0,
             ManaCost * cost = NULL, int doTap = 0);
 
     int resolve();

@@ -214,6 +214,7 @@ int AbilityFactory::countCards(TargetChooser * tc, Player * player, int option)
 Counter * AbilityFactory::parseCounter(string s, MTGCardInstance * target, Spell * spell)
 {
     int nb = 1;
+    int maxNb = 0;
     string name = "";
     size_t start = 0;
     size_t end = s.length();
@@ -225,9 +226,15 @@ Counter * AbilityFactory::parseCounter(string s, MTGCardInstance * target, Spell
         size_t separator2 = s.find(",", separator + 1);
         if (separator2 == string::npos)
             separator2 = s.find(".", separator + 1);
+        size_t separator3 = string::npos;
         if (separator2 != string::npos)
         {
             name = s.substr(separator2 + 1, end - separator2 - 1);
+            separator3 = s.find(",", separator2 + 1);
+            if (separator3 != string::npos)
+            {
+                name = s.substr(separator2 + 1,separator3 - separator2 - 1);
+            }
         }
         string nbstr = s.substr(separator + 1, separator2 - separator - 1);
         WParsedInt * wpi;
@@ -241,6 +248,22 @@ Counter * AbilityFactory::parseCounter(string s, MTGCardInstance * target, Spell
         }
         nb = wpi->getValue();
         delete (wpi);
+        string maxNbstr;
+        if (separator3 != string::npos)
+        {
+            maxNbstr = s.substr(separator3 + 1, end - separator3 - 1);
+            WParsedInt * wpinb;
+            if (target)
+            {
+                wpinb = NEW WParsedInt(maxNbstr, spell, target);
+            }
+            else
+            {
+                wpinb = NEW WParsedInt(atoi(maxNbstr.c_str()));
+            }
+            maxNb = wpinb->getValue();
+            delete(wpinb);
+        }
         end = separator;
     }
 
@@ -250,6 +273,7 @@ Counter * AbilityFactory::parseCounter(string s, MTGCardInstance * target, Spell
     {
         Counter * counter = NEW Counter(target, name.c_str(), power, toughness);
         counter->nb = nb;
+        counter->maxNb = maxNb;
         return counter;
     }
     return NULL;
@@ -2330,7 +2354,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         if (counter)
         {
             MTGAbility * a =
-                            NEW AACounter(id, card, target,counterString, counter->name.c_str(), counter->power, counter->toughness, counter->nb);
+                            NEW AACounter(id, card, target,counterString, counter->name.c_str(), counter->power, counter->toughness, counter->nb,counter->maxNb);
             delete (counter);
             a->oneShot = 1;
             return a;
