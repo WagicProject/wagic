@@ -3921,6 +3921,7 @@ int ActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
     case OPPONENT_TURN_ONLY:
         if (player == game->currentPlayer)
             return 0;
+            break;
     case AS_SORCERY:
         if (player != game->currentPlayer)
             return 0;
