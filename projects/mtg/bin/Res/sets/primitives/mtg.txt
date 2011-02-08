@@ -11987,7 +11987,6 @@ type=Sorcery
 [card]
 name=Concordant Crossroads
 auto=lord(creature) haste
-auto=lord(creature|mybattlefield) 2/2
 auto=@movedTo(enchantment[world]|battlefield):bury
 text=All creatures have haste.
 mana={G}
