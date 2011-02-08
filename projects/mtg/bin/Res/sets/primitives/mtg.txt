@@ -69002,7 +69002,7 @@ toughness=2
 [/card]
 [card]
 name=Venerated Teacher
-auto=all(creature[leveler]) counter(0/0,1,level)
+auto=all(creature[leveler]) counter(0/0,2,level)
 text=When Venerated Teacher enters the battlefield, put two level counters on each creature you control with level up.
 mana={2}{U}
 type=Creature
