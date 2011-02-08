@@ -24326,6 +24326,13 @@ power=2
 toughness=5
 [/card]
 [card]
+name=Ghost Town
+auto={T}:Add{1}
+auto={0}:moveTo(myhand) opponentturnonly
+text={T}: Add {1} to your mana pool. -- {0}: Return Ghost Town to its owner's hand. Activate this ability only if it's not your turn.
+type=Land
+[/card]
+[card]
 name=Ghost Warden
 auto={T}:1/1 target(creature)
 text={T}: Target creature gets +1/+1 until end of turn.

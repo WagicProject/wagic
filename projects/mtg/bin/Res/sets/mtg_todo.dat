@@ -8994,11 +8994,6 @@ text={T}: Add {1} to your mana pool. -- {T}, Sacrifice Ghost Quarter: Destroy ta
 type=Land
 [/card]
 [card]
-name=Ghost Town
-text={T}: Add {1} to your mana pool. -- {0}: Return Ghost Town to its owner's hand. Activate this ability only if it's not your turn.
-type=Land
-[/card]
-[card]
 name=Ghost-Lit Stalker
 text={4}{B}, {T}: Target player discards two cards. Activate this ability only any time you could cast a sorcery. -- Channel - {5}{B}{B}, Discard Ghost-Lit Stalker: Target player discards four cards. Activate this ability only any time you could cast a sorcery.
 mana={B}
