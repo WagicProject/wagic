@@ -1247,7 +1247,7 @@ type=Instant
 [/card]
 [card]
 name=Allay
-target=artifact,enchantment
+target=enchantment
 auto=destroy
 buyback={1}{W}{3}
 text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Destroy target enchantment.
@@ -24951,7 +24951,7 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Glissa, The Traitor
+name=Glissa, the Traitor
 abilities=first strike,deathtouch
 auto=@movedto(graveyard) from(creature|opponentbattlefield):may moveto(myhand) target(artifact|mygraveyard)
 text=First strike. -- Deathtouch. -- Whenever a creature an opponent controls is put into a graveyard from the battlefield, you may return target artifact card from your graveyard to your hand.
@@ -34834,7 +34834,7 @@ toughness=2
 [/card]
 [card]
 name=Kuldotha Forgemaster
-auto={T}{S(artifact|myBattlefield)}{S(artifact|myBattlefield)}{S(artifact|myBattlefield)}:moveTo(mbattlefield) target(artifact|mylibrary)
+auto={T}{S(artifact|myBattlefield)}{S(artifact|myBattlefield)}{S(artifact|myBattlefield)}:moveTo(myBattlefield) target(artifact|mylibrary)
 text={T}, Sacrifice three artifacts: Search your library for an artifact card and put it onto the battlefield. Then shuffle your library.
 mana={5}
 type=Artifact Creature
