@@ -347,9 +347,8 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
         }
     }
     //------------------------------------------------------------------------
-    ManaCost * previousManaPool = NEW ManaCost(playerMana);
-    int payResult = playerMana->pay(alternateCost);
-    alternateCost->doPayExtra();
+    ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
+    int payResult = player->getManaPool()->pay(alternateCost);
     payResult = alternateCostType;
     //if alternate cost has a extra payment thats set, this code pays it.
     // the if statement is 100% needed as it would cause a crash on cards that dont have the BuyBack cost.
