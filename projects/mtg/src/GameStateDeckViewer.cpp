@@ -305,7 +305,8 @@ void GameStateDeckViewer::saveDeck()
 {
     //update the corresponding meta data object
     DeckMetaData *metaData = DeckManager::GetInstance()->getDeckMetaDataById( myDeck->parent->meta_id, false );
-    metaData->setDeckName( newDeckname );
+    if ( newDeckname.length() > 0 )
+        metaData->setDeckName( newDeckname );
     mSwitching = true;
     myDeck->save();
     playerdata->save();
