@@ -1747,11 +1747,11 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         int power, toughness;
         if (!spt.find("X/X") || !spt.find("x/x"))
         {
-            value = spell->computeX(card);
+            value = card->X;
         }
         if (!spt.find("XX/XX") || !spt.find("xx/xx"))
         {
-            value = spell->computeXX(card);
+            value = card->XX;
         }
         parsePowerToughness(spt, &power, &toughness);
         string sabilities = s.substr(end + 1);
