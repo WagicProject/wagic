@@ -302,7 +302,7 @@ AACounter::AACounter(int id, MTGCardInstance * source, MTGCardInstance * target,
         {
             MTGCardInstance * _target = (MTGCardInstance *) target;
             AbilityFactory af;
-            Counter * checkcounter = af.parseCounter(counterstring, _target, NULL);
+            Counter * checkcounter = af.parseCounter(counterstring, source, NULL);
             nb = checkcounter->nb;
             delete checkcounter;
             if (nb > 0)
