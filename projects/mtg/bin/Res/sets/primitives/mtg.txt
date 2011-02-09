@@ -47659,6 +47659,17 @@ mana={2}{B}{B}
 type=Sorcery
 [/card]
 [card]
+name=Progenitus
+auto=protection from(*)
+autograveyard=moveTo(ownerlibrary) && shuffle
+text=Protection from everything -- If Progenitus would be put into a graveyard from anywhere, reveal Progenitus and shuffle it into its owner's library instead.
+mana={W}{W}{U}{U}{B}{B}{R}{R}{G}{G}
+type=Legendary Creature
+subtype=Hydra Avatar
+power=10
+toughness=10
+[/card]
+[card]
 name=Promise of Bunrei
 auto=@movedto(graveyard) from(creature|myBattlefield):token(Spirit,Creature Spirit,1/1)*4
 auto=@movedto(graveyard) from(creature|myBattlefield):bury
@@ -60161,6 +60172,17 @@ auto=all(*[share!name!]|targetcontrollerbattlefield) moveto(exile)
 text=Exile target artifact. Search its controller's graveyard, hand, and library for all cards with the same name as that artifact and exile them. That player then shuffles his or her library.
 mana={2}{G}{G}
 type=Sorcery
+[/card]
+[card]
+name=Splinter Twin
+target=creature
+auto=teach(creature) {T}:clone with(,treason,haste)
+text=Enchant creature
+Enchanted creature has "{T}: Put a token that's a copy of this creature onto the battlefield. That token has haste. Exile it 
+at the beginning of the next end step."
+mana={2}{R}{R}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Splinter Token
