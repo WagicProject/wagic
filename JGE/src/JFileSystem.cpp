@@ -29,7 +29,7 @@ JZipCache::JZipCache(){}
 
 JZipCache::~JZipCache(){
   map<string,unz_file_pos *>::iterator it;
-  for (it = dir.begin(); it != dir.end(); it++){
+  for (it = dir.begin(); it != dir.end(); ++it){
     delete(it->second);
   }
   dir.clear();
@@ -108,7 +108,7 @@ JFileSystem::~JFileSystem()
 	DetachZipFile();
 	
   map<string,JZipCache *>::iterator it;
-  for (it = mZipCache.begin(); it != mZipCache.end(); it++){
+  for (it = mZipCache.begin(); it != mZipCache.end(); ++it){
     delete(it->second);
   }
   mZipCache.clear();	

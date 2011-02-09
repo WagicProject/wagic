@@ -55,7 +55,7 @@ void JParticleSystem::Update(float dt)
 				mEffects.erase(curr++);
 			}
 			else	
-				curr++;
+				++curr;
 		}
 	}
 	
@@ -74,7 +74,7 @@ void JParticleSystem::Render()
 			effect = *curr;
 			effect->Render();
 			
-			curr++;
+			++curr;
 		}
 	}
 }
@@ -92,7 +92,7 @@ void JParticleSystem::StartEffect(JParticleEffect* effect)
 			effect->Start();
 			return;
 		}
-		curr++;
+		++curr;
 	}
 	mEffects.push_back(effect);
 	effect->SetParticleSystem(this);
@@ -111,7 +111,7 @@ void JParticleSystem::StopAllEffects()
 		{
 			effect = *curr;
 			effect->Stop();
-			curr++;
+			++curr;
 		}
 	}
 	
