@@ -8,6 +8,28 @@ ManaCostHybrid::ManaCostHybrid()
     init(0, 0, 0, 0);
 }
 
+ManaCostHybrid::ManaCostHybrid(const ManaCostHybrid& hybridManaCost)
+{
+    color1 = hybridManaCost.color1;
+    color2 = hybridManaCost.color2;
+    value1 = hybridManaCost.value1;
+    value2 = hybridManaCost.value2;
+}
+
+ManaCostHybrid::ManaCostHybrid(const ManaCostHybrid* hybridManaCost)
+{
+    if (hybridManaCost)
+    {
+        color1 = hybridManaCost->color1;
+        color2 = hybridManaCost->color2;
+        value1 = hybridManaCost->value1;
+        value2 = hybridManaCost->value2;
+    }
+    else
+        color1 = color2 = value1 = value2 = 0;
+
+}
+
 ManaCostHybrid::ManaCostHybrid(int c1, int v1, int c2, int v2)
 {
     init(c1, v1, c2, v2);

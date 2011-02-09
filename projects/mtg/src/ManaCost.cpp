@@ -9,6 +9,7 @@
 #include "WEvent.h"
 #include "MTGAbility.h"
 
+
 ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstance * c)
 {
     ManaCost * manaCost;
@@ -234,9 +235,13 @@ ManaCost::ManaCost(int _cost[], int nb_elems)
 
 }
 
+// pointer copy constructor 
+
 ManaCost::ManaCost(ManaCost * manaCost)
 {
     init();
+    if ( !manaCost ) 
+        return;
     for (int i = 0; i <= Constants::MTG_NB_COLORS; i++)
     {
         cost[i] = manaCost->getCost(i);
@@ -245,14 +250,16 @@ ManaCost::ManaCost(ManaCost * manaCost)
         hybrids[i] = manaCost->hybrids[i];
 
     nbhybrids = manaCost->nbhybrids;
-    kicker = manaCost->kicker;
-    Retrace = manaCost->Retrace;
-    BuyBack = manaCost->BuyBack;
-    alternative = manaCost->alternative;
-    FlashBack = manaCost->FlashBack;
-    extraCosts = manaCost->extraCosts;
-    morph = manaCost->morph;
     extraCostsIsCopy = manaCost->extraCostsIsCopy;
+    kicker = NEW ManaCost( manaCost->kicker );
+    Retrace = NEW ManaCost( manaCost->Retrace );
+    BuyBack = NEW ManaCost( manaCost->BuyBack );
+    alternative = NEW ManaCost( manaCost->alternative );
+    FlashBack = NEW ManaCost( manaCost->FlashBack );
+    morph = NEW ManaCost( manaCost->morph );
+
+    // TODO: Need to figure out if a deep copy is necessary
+    extraCosts = manaCost->extraCosts;
 }
 
 // Copy Constructor 
@@ -265,17 +272,23 @@ ManaCost::ManaCost(const ManaCost& manaCost)
         cost[i] = manaCost.cost[i];      
     }
     for (int i = 0 ; i < 10; i++)
-        hybrids[i] = manaCost.hybrids[i];
+    {
+        ManaCostHybrid *hybridCopy = NEW ManaCostHybrid( manaCost.hybrids[i] );
+        hybrids[i] = hybridCopy;
+    }
 
     nbhybrids = manaCost.nbhybrids;
-    kicker = manaCost.kicker;
-    Retrace = manaCost.Retrace;
-    BuyBack = manaCost.BuyBack;
-    alternative = manaCost.alternative;
-    FlashBack = manaCost.FlashBack;
-    morph = manaCost.morph;
-    extraCosts = manaCost.extraCosts;
     extraCostsIsCopy = manaCost.extraCostsIsCopy;
+    // make new copies of the pointers for the deep copy
+    kicker = NEW ManaCost( manaCost.kicker );
+    Retrace = NEW ManaCost( manaCost.Retrace );
+    BuyBack = NEW ManaCost( manaCost.BuyBack );
+    alternative = NEW ManaCost( manaCost.alternative );
+    FlashBack = NEW ManaCost( manaCost.FlashBack );
+    morph = NEW ManaCost( manaCost.morph );
+    
+    // TODO: Need to figure out if a deep copy is necessary
+    extraCosts = manaCost.extraCosts;
 }
 
 // operator=
@@ -283,21 +296,23 @@ ManaCost & ManaCost::operator= (const ManaCost & manaCost)
 {
     if ( this != &manaCost )
     {
-        int * new_array = new int[Constants::MTG_NB_COLORS];
-        std::memcpy(cost, manaCost.cost, sizeof(new_array));
-        for (int i = 0 ; i < 10; i++)
-            hybrids[i] = manaCost.hybrids[i];
-        SAFE_DELETE_ARRAY( new_array );
+        for (int i = 0; i < Constants::MTG_NB_COLORS; i++)
+            cost[i] = manaCost.cost[i];
 
+        for (int i = 0 ; i < 10; i++)
+        {
+            SAFE_DELETE( hybrids[i] );
+            hybrids[i] = manaCost.hybrids[i];
+        }
         nbhybrids = manaCost.nbhybrids;
+        extraCosts = manaCost.extraCosts;
+        extraCostsIsCopy = manaCost.extraCostsIsCopy;
         kicker = manaCost.kicker;
         Retrace = manaCost.Retrace;
         BuyBack = manaCost.BuyBack;
         alternative = manaCost.alternative;
         FlashBack = manaCost.FlashBack;
         morph = manaCost.morph;
-        extraCosts = manaCost.extraCosts;
-        extraCostsIsCopy = manaCost.extraCostsIsCopy;
     }
     return *this;
 }

@@ -10,6 +10,8 @@ public:
     int value1;
     int value2;
     ManaCostHybrid();
+    ManaCostHybrid(const ManaCostHybrid& hybridManaCost);
+    ManaCostHybrid(const ManaCostHybrid* hybridManaCost);
     ManaCostHybrid(int c1, int v1, int c2, int v2);
 
     void init(int c1, int v1, int c2, int v2);
