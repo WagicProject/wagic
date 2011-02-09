@@ -4672,7 +4672,8 @@ type=Creature
 subtype=Beast
 power=4
 toughness=4
-[/card][card]
+[/card]
+[card]
 name=Barkshell Blessing
 target=creature
 auto=2/2
@@ -5948,7 +5949,7 @@ toughness=4
 [card]
 name=Bladewing's Thrall
 auto=aslongas(dragon|mybattlefield) flying
-autograveyard:@movedTo(dragon|battlefield):moveTo(mybattlefield)
+autograveyard=@movedTo(dragon|battlefield):moveTo(mybattlefield)
 text=Bladewing's Thrall has flying as long as you control a Dragon. -- When a Dragon enters the battlefield, you may return Bladewing's Thrall from your graveyard to the battlefield.
 mana={2}{B}{B}
 type=Creature
@@ -46979,8 +46980,7 @@ toughness=3
 name=Polar Kraken
 abilities=trample
 auto=tap
-{S(creature|myBattlefield)}
-{S(land|myBattlefield)}
+auto=cumulativeupcost[{S(creature|myBattlefield)}{S(land|myBattlefield)}] sacrifice all(this)
 text=Trample -- Polar Kraken enters the battlefield tapped. -- Cumulative upkeep - Sacrifice a land. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
 mana={8}{U}{U}{U}
 type=Creature
@@ -52682,7 +52682,7 @@ toughness=1
 [card]
 name=Salvage Titan
 other={S(artifact|myBattlefield)}{S(artifact|myBattlefield)}{S(artifact|myBattlefield)}
-autograveyard:{E(other artifact|mygraveyard)}{E(other artifact|mygraveyard)}{E(other artifact|mygraveyard)}:moveTo(myhand)
+autograveyard={E(other artifact|mygraveyard)}{E(other artifact|mygraveyard)}{E(other artifact|mygraveyard)}:moveTo(myhand)
 text=You may sacrifice three artifacts rather than pay Salvage Titan's mana cost. -- Exile three artifact cards from your graveyard: Return Salvage Titan from your graveyard to your hand.
 mana={4}{B}{B}
 type=Artifact Creature
@@ -60177,9 +60177,7 @@ type=Sorcery
 name=Splinter Twin
 target=creature
 auto=teach(creature) {T}:clone with(,treason,haste)
-text=Enchant creature
-Enchanted creature has "{T}: Put a token that's a copy of this creature onto the battlefield. That token has haste. Exile it 
-at the beginning of the next end step."
+text=Enchant creature ---Enchanted creature has "{T}: Put a token that's a copy of this creature onto the battlefield. That token has haste. Exile it at the beginning of the next end step."
 mana={2}{R}{R}
 type=Enchantment
 subtype=Aura
