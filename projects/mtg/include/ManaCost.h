@@ -75,7 +75,6 @@ public:
 
     int addHybrid(int c1, int v1, int c2, int v2);
     int tryToPayHybrids(ManaCostHybrid * _hybrids[], int _nbhybrids, int diff[]);
-    int tryToPayHybrids(vector<ManaCostHybrid *> hybridList, int diff[]);
     void randomDiffHybrids(ManaCost * _cost, int diff[]);
     int add(ManaCost * _cost);
     int pay (ManaCost * _cost);

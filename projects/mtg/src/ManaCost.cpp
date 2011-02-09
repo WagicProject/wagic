@@ -603,12 +603,6 @@ void ManaCost::randomDiffHybrids(ManaCost * _cost, int diff[])
         diff[h->color1 * 2 + 1] -= h->value1;
     }
 }
-int ManaCost::tryToPayHybrids(vector<ManaCostHybrid *> hybridList, int diff[])
-{
-    if (hybridList.empty())
-        return 1;
-
-}
 
 /**
     starting from the end of the array (diff) 
