@@ -234,13 +234,72 @@ ManaCost::ManaCost(int _cost[], int nb_elems)
 
 }
 
-ManaCost::ManaCost(ManaCost * _manaCost)
+ManaCost::ManaCost(ManaCost * manaCost)
 {
     init();
     for (int i = 0; i <= Constants::MTG_NB_COLORS; i++)
     {
-        cost[i] = _manaCost->getCost(i);
+        cost[i] = manaCost->getCost(i);
     }
+    for (int i = 0 ; i < 10; i++)
+        hybrids[i] = manaCost->hybrids[i];
+
+    nbhybrids = manaCost->nbhybrids;
+    kicker = manaCost->kicker;
+    Retrace = manaCost->Retrace;
+    BuyBack = manaCost->BuyBack;
+    alternative = manaCost->alternative;
+    FlashBack = manaCost->FlashBack;
+    extraCosts = manaCost->extraCosts;
+    morph = manaCost->morph;
+    extraCostsIsCopy = manaCost->extraCostsIsCopy;
+}
+
+// Copy Constructor 
+
+ManaCost::ManaCost(const ManaCost& manaCost)
+{
+
+    for (int i = 0; i <= Constants::MTG_NB_COLORS; i++)
+    {
+        cost[i] = manaCost.cost[i];      
+    }
+    for (int i = 0 ; i < 10; i++)
+        hybrids[i] = manaCost.hybrids[i];
+
+    nbhybrids = manaCost.nbhybrids;
+    kicker = manaCost.kicker;
+    Retrace = manaCost.Retrace;
+    BuyBack = manaCost.BuyBack;
+    alternative = manaCost.alternative;
+    FlashBack = manaCost.FlashBack;
+    morph = manaCost.morph;
+    extraCosts = manaCost.extraCosts;
+    extraCostsIsCopy = manaCost.extraCostsIsCopy;
+}
+
+// operator=
+ManaCost & ManaCost::operator= (const ManaCost & manaCost)
+{
+    if ( this != &manaCost )
+    {
+        int * new_array = new int[Constants::MTG_NB_COLORS];
+        std::memcpy(cost, manaCost.cost, sizeof(new_array));
+        for (int i = 0 ; i < 10; i++)
+            hybrids[i] = manaCost.hybrids[i];
+        SAFE_DELETE_ARRAY( new_array );
+
+        nbhybrids = manaCost.nbhybrids;
+        kicker = manaCost.kicker;
+        Retrace = manaCost.Retrace;
+        BuyBack = manaCost.BuyBack;
+        alternative = manaCost.alternative;
+        FlashBack = manaCost.FlashBack;
+        morph = manaCost.morph;
+        extraCosts = manaCost.extraCosts;
+        extraCostsIsCopy = manaCost.extraCostsIsCopy;
+    }
+    return *this;
 }
 
 ManaCost::~ManaCost()
@@ -249,6 +308,7 @@ ManaCost::~ManaCost()
     {
         SAFE_DELETE(hybrids[i]);
     }
+
     SAFE_DELETE(extraCosts);
     SAFE_DELETE(kicker);
     SAFE_DELETE(alternative);
@@ -543,7 +603,16 @@ void ManaCost::randomDiffHybrids(ManaCost * _cost, int diff[])
         diff[h->color1 * 2 + 1] -= h->value1;
     }
 }
+int ManaCost::tryToPayHybrids(vector<ManaCostHybrid *> hybridList, int diff[])
+{
+    if (hybridList.empty())
+        return 1;
 
+}
+
+/**
+    starting from the end of the array (diff) 
+*/
 int ManaCost::tryToPayHybrids(ManaCostHybrid * _hybrids[], int _nbhybrids, int diff[])
 {
     if (!_nbhybrids)
