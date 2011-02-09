@@ -305,7 +305,7 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
             return 0;
         }
         //cost of card.
-        if (alternateManaCost && playerMana->canAfford(alternateManaCost))
+        if (playerMana->canAfford(alternateManaCost))
         {
             return 1;
         }
@@ -321,8 +321,7 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card)
 	ManaCost *alternateCost = card->getManaCost()->alternative;
     Player * player = game->currentlyActing();
     ManaCost * playerMana = player->getManaPool();
-	if (playerMana->canAfford( alternateCost ) )
-		card->paymenttype = MTGAbility::ALTERNATIVE_COST;
+	card->paymenttype = MTGAbility::ALTERNATIVE_COST;
 
     return reactToClick(card, card->getManaCost()->alternative, ManaCost::MANA_PAID_WITH_ALTERNATIVE);
 }
@@ -330,53 +329,46 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card)
 int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alternateCost, int alternateCostType){
 
     Player * player = game->currentlyActing();
-    ManaCost * playerMana = player->getManaPool();
+    ManaPool * playerMana = player->getManaPool();
     //this handles extra cost payments at the moment a card is played.
-    if (playerMana->canAfford(alternateCost))
+
+    assert(alternateCost);
+    if (alternateCost->isExtraPaymentSet() )
+	{
+		if (!game->targetListIsSet(card))
+		    return 0;
+	}
+    else
     {
-        if (alternateCost->isExtraPaymentSet() )
-		{
-			if (!game->targetListIsSet(card))
-			    return 0;
-		}
-        else
-        {
-            alternateCost->setExtraCostsAction(this, card);
-            game->mExtraPayment = alternateCost->extraCosts;
-            return 0;
-        }
+        alternateCost->setExtraCostsAction(this, card);
+        game->mExtraPayment = alternateCost->extraCosts;
+        return 0;
     }
     //------------------------------------------------------------------------
-    ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
-    int payResult = player->getManaPool()->pay(alternateCost);
-    payResult = alternateCostType;
-    //if alternate cost has a extra payment thats set, this code pays it.
-    // the if statement is 100% needed as it would cause a crash on cards that dont have the BuyBack cost.
-    if (alternateCost)
-    {
-        alternateCost->doPayExtra();
-    }
-    //---------------------------------------------------------------------------
-    Spell * spell = NULL;
+    
+    playerMana->pay(alternateCost);
+    alternateCost->doPayExtra();
+
     card->alternateCostPaid[alternateCostType] = 1;
 
     if (card->hasType("land"))
     {
         MTGCardInstance * copy = player->game->putInZone(card, card->currentZone, player->game->temp);
-        spell = NEW Spell(copy);
+        Spell * spell = NEW Spell(copy);
         copy->alternateCostPaid[alternateCostType] = 1;
         spell->resolve();
         SAFE_DELETE(spell);
         player->landsPlayerCanStillPlay--;
-        payResult = alternateCostType;
-        spell = game->mLayers->stackLayer()->addSpell(copy, NULL, NULL, payResult, 1);
+        game->mLayers->stackLayer()->addSpell(copy, NULL, NULL, alternateCostType, 1);
     }
     else
-    {        
+    {   
+        ManaCost * previousManaPool = NEW ManaCost(playerMana); 
         ManaCost *spellCost = previousManaPool->Diff(player->getManaPool());
+        SAFE_DELETE(previousManaPool);
         MTGCardInstance * copy = player->game->putInZone(card, card->currentZone, player->game->stack);
         copy->alternateCostPaid[alternateCostType] = 1;
-        spell = game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, spellCost, payResult, 0);
+        Spell * spell = game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, spellCost, alternateCostType, 0);
         game->targetChooser = NULL;
         player->castedspellsthisturn += 1;
         player->opponent()->castedspellsthisturn += 1;
@@ -388,7 +380,7 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
             int storm = player->castedspellsthisturn;
             for (int i = storm; i > 1; i--)
             {
-                spell = game->mLayers->stackLayer()->addSpell(copy, NULL, playerMana, payResult, 1);
+                game->mLayers->stackLayer()->addSpell(copy, NULL, playerMana, alternateCostType, 1);
             }
         }//end of storm
         else
@@ -398,7 +390,7 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
         }
     }
 
-    SAFE_DELETE(previousManaPool);
+    
     return 1;
 }
 
@@ -453,9 +445,7 @@ int MTGBuyBackRule::reactToClick(MTGCardInstance * card)
     ManaCost * playerMana = player->getManaPool();
     ManaCost * alternateCost = card->getManaCost()->BuyBack;
     
-    //this handles extra cost payments at the moment a card is played.
-    if (playerMana->canAfford(alternateCost))
-        card->paymenttype = MTGAbility::BUYBACK_COST;
+    card->paymenttype = MTGAbility::BUYBACK_COST;
 
     return MTGAlternativeCostRule::reactToClick(card, alternateCost, ManaCost::MANA_PAID_WITH_BUYBACK);
 
@@ -506,8 +496,7 @@ int MTGFlashBackRule::reactToClick(MTGCardInstance * card)
     if (!isReactingToClick(card))
         return 0;
 
-    if ( playerMana->canAfford(alternateCost) )
-        card->paymenttype = MTGAbility::FLASHBACK_COST;
+    card->paymenttype = MTGAbility::FLASHBACK_COST;
 
     return MTGAlternativeCostRule::reactToClick(card, alternateCost, ManaCost::MANA_PAID_WITH_FLASHBACK);
 
@@ -563,9 +552,7 @@ int MTGRetraceRule::reactToClick(MTGCardInstance * card)
     ManaCost * playerMana = player->getManaPool();
     ManaCost * alternateCost = card->getManaCost()->Retrace;
     
-    //this handles extra cost payments at the moment a card is played.
-    if (playerMana->canAfford(alternateCost))
-        card->paymenttype = MTGAbility::RETRACE_COST;
+    card->paymenttype = MTGAbility::RETRACE_COST;
 
     return MTGAlternativeCostRule::reactToClick(card, alternateCost, ManaCost::MANA_PAID_WITH_RETRACE);
 }

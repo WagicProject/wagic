@@ -35,12 +35,12 @@ public:
 
 class MTGAlternativeCostRule: public MTGAbility
 {
-public:
- 
-    int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
+protected:
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana, ManaCost *alternateManaCost);
-
     int reactToClick(MTGCardInstance * card, ManaCost * alternateManaCost, int paymentType = ManaCost::MANA_PAID);
+
+public:
+    int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     int reactToClick(MTGCardInstance * card);
 
     int testDestroy();
