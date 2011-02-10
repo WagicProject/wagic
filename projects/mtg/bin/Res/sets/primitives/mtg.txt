@@ -32176,7 +32176,7 @@ toughness=3
 [/card]
 [card]
 name=Journey to Nowhere
-auto=moveTo(exile) target(creature) (blink)forsrc
+auto=target(creature) (blink)forsrc
 text=When Journey to Nowhere enters the battlefield, exile target creature. -- When Journey to Nowhere leaves the battlefield, return the exiled card to the battlefield under its owner's control.
 mana={1}{W}
 type=Enchantment
