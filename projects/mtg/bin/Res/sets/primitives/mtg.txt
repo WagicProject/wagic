@@ -3440,7 +3440,7 @@ type=Instant
 [card]
 name=Aura Extraction
 target=enchantment
-auto=moveTo(ownerhand)
+auto=moveTo(ownerlibrary)
 autohand={2}:cycling
 text=Put target enchantment on top of its owner's library. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={1}{W}
