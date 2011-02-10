@@ -26030,8 +26030,8 @@ toughness=4
 [/card]
 [card]
 name=Godless Shrine
-auto=tap
-auto=may untap && life:-2 controller
+auto=choice tap
+auto=choice untap && life:-2 controller
 auto={T}:Add {W}
 auto={T}:Add {B}
 text=({T}: Add {W} or {B} to your mana pool.) -- As Godless Shrine enters the battlefield, you may pay 2 life. If you don't, Godless Shrine enters the battlefield tapped.
@@ -29332,7 +29332,7 @@ toughness=3
 [/card]
 [card]
 name=Honden of Cleansing Fire
-auto=@each my upkeep:foreach(shrine|myBattlefield) life:2
+auto=@each my upkeep:life:type:shrine && life:type:shrine
 text=At the beginning of your upkeep, you gain 2 life for each Shrine you control.
 mana={3}{W}
 type=Legendary Enchantment
@@ -29340,7 +29340,7 @@ subtype=Shrine
 [/card]
 [card]
 name=Honden of Infinite Rage
-auto=@each my upkeep:foreach(shrine|myBattlefield) damage:1 target(creature,player)
+auto=@each my upkeep:damage:type:shrine target(creature,player)
 text=At the beginning of your upkeep, Honden of Infinite Rage deals damage to target creature or player equal to the number of Shrines you control.
 mana={2}{R}
 type=Legendary Enchantment
@@ -29348,7 +29348,7 @@ subtype=Shrine
 [/card]
 [card]
 name=Honden of Life's Web
-auto=@each my upkeep:foreach(shrine|myBattlefield) token(Spirit,Creature Spirit,1/1)
+auto=@each my upkeep:token(Spirit,Creature Spirit,1/1)*type:shrine
 text=At the beginning of your upkeep, put a 1/1 colorless Spirit creature token onto the battlefield for each Shrine you control.
 mana={4}{G}
 type=Legendary Enchantment
@@ -29356,7 +29356,7 @@ subtype=Shrine
 [/card]
 [card]
 name=Honden of Seeing Winds
-auto=@each my upkeep:foreach(shrine|myBattlefield) draw:1
+auto=@each my upkeep:draw:type:shrine
 text=At the beginning of your upkeep, draw a card for each Shrine you control.
 mana={4}{U}
 type=Legendary Enchantment
