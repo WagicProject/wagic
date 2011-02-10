@@ -226,11 +226,6 @@ void GameStateDuel::End()
     if (!premadeDeck && mPlayers[0] && mPlayers[1])
     { // save the stats for the game
         mPlayers[0]->End();
-        if (mParent->players[1] != PLAYER_TYPE_TESTSUITE)
-        {
-            DeckManager::GetInstance()->saveDeck( mPlayers[1]->deckFile, MTGCollection());
-            DeckManager::GetInstance()->saveDeck( mPlayers[0]->deckFile, MTGCollection());
-        }
     }
     else if ( !mPlayers[1] && mPlayers[0] )
         // clean up player object

@@ -34,6 +34,7 @@ void DeckMetaData::LoadStats()
                 mPercentVictories = stats->percentVictories(mStatsFilename);
                 mVictories = opponentDeckStats->victories;
                 mGamesPlayed = opponentDeckStats->nbgames;
+                mColorIndex = opponentDeckStats->manaColorIndex;
                 ostringstream oss;
                 int deckFilenameOffset = mStatsFilename.find("deck") + 4;
                 int oppDeckId = atoi(mStatsFilename.substr(deckFilenameOffset, mStatsFilename.find_last_of(".")).c_str());
@@ -65,7 +66,7 @@ void DeckMetaData::LoadStats()
             if (FileExists(mStatsFilename))
             {
                 stats->load(mStatsFilename);
-                mGamesPlayed = stats->nbGames();
+                mGamesPlayed = stats->nbGames();               
                 mPercentVictories = stats->percentVictories();
                 mVictories = static_cast<int>(mGamesPlayed * (mPercentVictories / 100.0f));
             }
@@ -94,7 +95,6 @@ void DeckMetaData::LoadDeck()
         mName = trim(deck.meta_name);
         mDescription = trim(deck.meta_desc);
         mDeckId = atoi((mFilename.substr(mFilename.find("deck") + 4, mFilename.find(".txt"))).c_str());
-        mColorIndex = deck.meta_deck_colors;
         mDeckLoaded = true;
     }
 

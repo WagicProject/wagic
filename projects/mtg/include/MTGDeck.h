@@ -157,7 +157,6 @@ public:
     string meta_desc;
     string meta_name;
     int meta_id;
-    string meta_deck_colors;
     int totalCards();
     int totalPrice();
     MTGDeck(MTGAllCards * _allcards);

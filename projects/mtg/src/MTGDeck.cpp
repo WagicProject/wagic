@@ -775,12 +775,6 @@ MTGDeck::MTGDeck(const char * config_file, MTGAllCards * _allcards, int meta_onl
                     meta_desc.append(s.substr(found + 5));
                     continue;
                 }
-                found = s.find("MANA:");
-                if ( found != string::npos )
-                {
-                    string colorIndex = s.substr(found + 5);
-                    meta_deck_colors = trim(colorIndex);
-                }
                 continue;
             }
             if (meta_only) break;
@@ -1042,26 +1036,7 @@ int MTGDeck::save(const string& destFileName, bool useExpandedDescriptions, cons
 
         bool saveDetailedDeckInfo = options.get( Options::SAVEDETAILEDDECKINFO )->number == 1;
 
-        if ( filename.find("collection.dat") == string::npos )
-        {
-            // add in color information
-            DeckManager *deckManager = DeckManager::GetInstance();
-            file <<"#MANA:";
-            
-            string deckId = filename.substr( filename.find("/deck")+5, filename.find(".txt") - (filename.find("/deck")+5) );
-            bool isAI = filename.find("ai/baka") != string::npos;
-            StatsWrapper *stats = deckManager->getExtendedStatsForDeckId( atoi(deckId.c_str()), this->database, isAI );
-
-            for (int i = Constants::MTG_COLOR_ARTIFACT; i < Constants::MTG_COLOR_LAND; ++i)
-            {
-                if (stats->totalCostPerColor[i] != 0)
-                    file << "1";
-                else
-                    file <<"0";
-            }
-            file << endl;
-        }
-        else
+        if ( filename.find("collection.dat") != string::npos )
             saveDetailedDeckInfo = false;
 
         if (useExpandedDescriptions || saveDetailedDeckInfo)

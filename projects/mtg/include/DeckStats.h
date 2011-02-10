@@ -15,10 +15,11 @@ class GameObserver;
 class DeckStat
 {
 public:
-    DeckStat(int _nbgames = 0, int _victories = 0);
+    DeckStat(int _nbgames = 0, int _victories = 0, string manaColorIndex = "");
 
     int nbgames;
     int victories;
+    string manaColorIndex;
     int percentVictories();
 };
 
@@ -27,9 +28,8 @@ class DeckStats
 protected:
     static DeckStats * mInstance;
 public:
-    //map<string, DeckStat *> stats; // current set of statistics
     string currentDeck;
-    map<string, map<string,DeckStat*> > masterDeckStats;
+    map<string, map<string, DeckStat*> > masterDeckStats;
     
     static DeckStats * GetInstance();
     static void EndInstance();
@@ -94,7 +94,8 @@ public:
     int countNonLandProducersPerColor[Constants::MTG_NB_COLORS + 1];
     int totalCostPerColor[Constants::MTG_NB_COLORS + 1];
     int totalColoredSymbols;
-
+    
+    string getManaColorIndex();
     void updateStats(string filename, MTGAllCards * collection);
     void updateStats(DeckDataWrapper *mtgDeck);
     int countCardsByType(const char * _type, DeckDataWrapper * myDeck);

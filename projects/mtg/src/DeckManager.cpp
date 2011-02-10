@@ -105,42 +105,6 @@ DeckMetaData* DeckManager::getDeckMetaDataByFilename(const string& filename, boo
     return deck;
 }
 
-void DeckManager::saveDeck( MTGDeck *deck, MTGAllCards *collection )
-{
-    if ( deck->meta_deck_colors == "" )
-    {
-        bool isAI = deck->getFilename().find("baka") != string::npos;
-        StatsWrapper *stats = getExtendedStatsForDeckId( deck->meta_id, collection, isAI );
-        ostringstream manaColorIndex;
-        for (int i = Constants::MTG_COLOR_ARTIFACT; i < Constants::MTG_COLOR_LAND; ++i)
-        {
-            if (stats->totalCostPerColor[i] != 0)
-                manaColorIndex << "1";
-            else
-                manaColorIndex <<"0";
-        }
-        deck->meta_deck_colors = manaColorIndex.str();
-        // save the deck to disk
-        deck->save( deck->getFilename(), true, deck->meta_name, deck->meta_desc );
-        // update DeckMetaData object
-        DeckMetaData *meta = getDeckMetaDataByFilename(deck->getFilename(), isAI);
-        meta->setColorIndex( deck->meta_deck_colors );
-    }
-}
-
-void DeckManager::saveDeck( const string& deckFilename, MTGAllCards *collection )
-{
-    bool isAI = deckFilename.find("baka") != string::npos;
-    DeckMetaData *metaData = getDeckMetaDataByFilename( deckFilename, isAI );
-    if ( metaData->getColorIndex() == "" )
-    {
-        MTGDeck *tempDeck = NEW MTGDeck( deckFilename.c_str(), collection, 0 );
-        saveDeck(tempDeck, collection);
-        SAFE_DELETE( tempDeck );
-    }
-}
-
-
 void DeckManager::AddMetaData( const string& filename, bool isAI )
 {
     if (isAI)

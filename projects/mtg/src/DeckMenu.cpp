@@ -224,7 +224,6 @@ void DeckMenu::Render()
             {
                 mSelectedDeckId = i;
                 mSelectedDeck = currentMenuItem->meta;
-
                 WFont *mainFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
 
                 // display the "more info" button if special condition is met
