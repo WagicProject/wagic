@@ -1435,6 +1435,19 @@ power=3
 toughness=1
 [/card]
 [card]
+name=Amphibious Kavu
+auto=@blocked(this) from(creature[blue]) turnlimited:3/3 ueot
+auto=@blocked(this) from(creature[black]) turnlimited:3/3 ueot
+auto=@blocking(this) from(creature[blue]) turnlimited:3/3 ueot
+auto=@blocking(this) from(creature[black]) turnlimited:3/3 ueot
+text=Whenever Amphibious Kavu blocks or becomes blocked by one or more blue and/or black creatures, Amphibious Kavu gets +3/+3 until end of turn.
+mana={2}{G}
+type=Creature
+subtype=Kavu
+power=2
+toughness=2
+[/card]
+[card]
 name=Amoeboid Changeling
 abilities=changeling
 auto={T}:transforms(allsubtypes) target(creature) ueot
@@ -12175,8 +12188,8 @@ subtype=Aura
 [card]
 name=Contested War Zone
 auto={T}:Add{1}
-auto={1}{T}:lord(creature[attacking]) 1/0 ueot
-auto=@combatdamaged(controller) from(creature):moveTo(opponentbattlefield)
+auto={1}{T}:all(creature[attacking]) 1/0 ueot
+auto=@combatdamaged(controller) from(creature) turnlimited:moveTo(opponentbattlefield)
 text=Whenever a creature deals combat damage to you, that creature's controller gains control of Contested War Zone. -- {T}: Add {1} to your mana pool. -- {1}, {T}: Attacking creatures get +1/+0 until end of turn.
 type=Land
 [/card]
@@ -17717,6 +17730,17 @@ auto={T}:Add {R}
 auto={T}{S}:Add {R}{R}
 text=Dwarven Ruins enters the battlefield tapped. -- {T}: Add {R} to your mana pool. -- {T}, Sacrifice Dwarven Ruins: Add {R}{R} to your mana pool.
 type=Land
+[/card]
+[card]
+name=Dwarven Soldier
+auto=@blocked(this) from(orc) turnlimited:0/2 ueot
+auto=@blocking(this) from(orc) turnlimited:0/2 ueot
+text=Whenever Dwarven Soldier blocks or becomes blocked by one or more Orcs, Dwarven Soldier gets +0/+2 until end of turn.
+mana={1}{R}
+type=Creature
+subtype=Dwarf Soldier
+power=2
+toughness=1
 [/card]
 [card]
 name=Dwarven Strike Force
@@ -54973,6 +54997,17 @@ auto=@movedTo(enchantment[world]|battlefield):bury
 text=Creatures with flying get +1/+1.
 mana={3}{W}
 type=World Enchantment
+[/card]
+[card]
+name=Serra Inquisitors
+auto=@blocked(this) from(creature[black]) turnlimited:2/0 ueot
+auto=@blocking(this) from(creature[black]) turnlimited:2/0 ueot
+text=Whenever Serra Inquisitors blocks or becomes blocked by one or more black creatures, Serra Inquisitors gets +2/+0 until end of turn.
+mana={4}{W}
+type=Creature
+subtype=Human Cleric
+power=3
+toughness=3
 [/card]
 [card]
 name=Serra Paladin

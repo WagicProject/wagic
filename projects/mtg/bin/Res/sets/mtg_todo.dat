@@ -441,15 +441,6 @@ mana={3}{U}{U}{U}
 type=Sorcery
 [/card]
 [card]
-name=Amphibious Kavu
-text=Whenever Amphibious Kavu blocks or becomes blocked by one or more blue and/or black creatures, Amphibious Kavu gets +3/+3 until end of turn.
-mana={2}{G}
-type=Creature
-subtype=Kavu
-power=2
-toughness=2
-[/card]
-[card]
 name=Amulet of Quoz
 text=Remove Amulet of Quoz from your deck before playing if you're not playing for ante. -- {T}, Sacrifice Amulet of Quoz: Target opponent may add the top card of his or her library to the ante. If he or she doesn't, you flip a coin. If you win the flip, that player loses the game. If you lose the flip, you lose the game. Activate this ability only during your upkeep.
 mana={6}
@@ -6491,15 +6482,6 @@ name=Dwarven Shrine
 text=Whenever a player casts a spell, Dwarven Shrine deals X damage to that player, where X is twice the number of cards in all graveyards with the same name as that spell.
 mana={1}{R}{R}
 type=Enchantment
-[/card]
-[card]
-name=Dwarven Soldier
-text=Whenever Dwarven Soldier blocks or becomes blocked by one or more Orcs, Dwarven Soldier gets +0/+2 until end of turn.
-mana={1}{R}
-type=Creature
-subtype=Dwarf Soldier
-power=2
-toughness=1
 [/card]
 [card]
 name=Dwarven Song
@@ -21953,15 +21935,6 @@ text=Enchant creature -- At the beginning of your upkeep, sacrifice Serra Bestia
 mana={W}{W}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Serra Inquisitors
-text=Whenever Serra Inquisitors blocks or becomes blocked by one or more black creatures, Serra Inquisitors gets +2/+0 until end of turn.
-mana={4}{W}
-type=Creature
-subtype=Human Cleric
-power=3
-toughness=3
 [/card]
 [card]
 name=Serra's Hymn
