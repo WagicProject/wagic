@@ -43380,7 +43380,7 @@ toughness=3
 [card]
 name=Obelisk of Alara
 auto={1}{W}{T}:life:5
-auto={1}{U}{T}:(-1111132) && Draw:1
+auto={1}{U}{T}:token(-1111132) && Draw:1
 auto={1}{B}{T}:-2/-2 target(creature)
 auto={1}{R}{T}:damage:3 target(player)
 auto={1}{G}{T}:4/4 target(creature)
