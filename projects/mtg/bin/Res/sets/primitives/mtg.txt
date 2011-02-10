@@ -38719,9 +38719,9 @@ toughness=3
 [/card]
 [card]
 name=Mayael's Aria
-auto=@each my upkeep:aslongas(creature[power>=20]|myBattlefield) winGame
-auto=@each my upkeep:aslongas(creature[power>=10]|myBattlefield) life:10
 auto=@each my upkeep:aslongas(creature[power>=5]|myBattlefield) counter(1/1) all(creature|myBattlefield)
+auto=@each my upkeep:aslongas(creature[power>=10]|myBattlefield) life:10
+auto=@each my upkeep:aslongas(creature[power>=20]|myBattlefield) winGame
 text=At the beginning of your upkeep, put a +1/+1 counter on each creature you control if you control a creature with power 5 or greater. Then you gain 10 life if you control a creature with power 10 or greater. Then you win the game if you control a creature with power 20 or greater.
 mana={R}{G}{W}
 type=Enchantment
