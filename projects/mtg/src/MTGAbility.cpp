@@ -314,6 +314,7 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int 
     bool opponentPoisoned = false;
     bool lifelost = false;
     int lifeamount = 0;
+    bool limitOnceATurn = false;
     found = s.find("once");
     if (found != string::npos)
     {
@@ -346,6 +347,12 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int 
     {
     opponentPoisoned = true;
     }
+    found = s.find("turnlimited");
+    if ( found != string::npos)
+    {
+    limitOnceATurn = true;
+    }
+    
     //Card Changed Zone
     found = s.find("movedto(");
     if (found != string::npos)
@@ -496,7 +503,7 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int 
             fromTc->targetter = NULL;
         }
 
-        return NEW TrCardAttackedBlocked(id, card, tc, fromTc);
+        return NEW TrCardAttackedBlocked(id, card, tc, fromTc,limitOnceATurn);
     }
 
     //Card card is a blocker
@@ -519,7 +526,7 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int 
             fromTc->targetter = NULL;
         }
 
-        return NEW TrCardBlocked(id, card, tc, fromTc,once);
+        return NEW TrCardBlocked(id, card, tc, fromTc,once,limitOnceATurn);
     }
 
     //Card card is drawn
@@ -602,7 +609,7 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int 
             fromTc = tcf.createTargetChooser(starget, card);
             fromTc->targetter = NULL;
         }
-        return NEW TrDamaged(id, card, tc, fromTc, 1);
+        return NEW TrDamaged(id, card, tc, fromTc, 1,sourceUntapped,limitOnceATurn);
     }
 
     //Card Damaging
@@ -624,7 +631,7 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int 
             fromTc = tcf.createTargetChooser(starget, card);
             fromTc->targetter = NULL;
         }
-        return NEW TrDamaged(id, card, tc, fromTc, 0,sourceUntapped);
+        return NEW TrDamaged(id, card, tc, fromTc, 0,sourceUntapped,limitOnceATurn);
     }
 
     //Card Damaging

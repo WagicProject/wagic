@@ -383,9 +383,12 @@ class TrCardAttackedBlocked: public TriggeredAbility
 public:
     TargetChooser * tc;
     TargetChooser * fromTc;
-    TrCardAttackedBlocked(int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL) :
-        TriggeredAbility(id, source), tc(tc), fromTc(fromTc)
+    bool limitOnceATurn;
+    int triggeredTurn;
+    TrCardAttackedBlocked(int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL,bool limitOnceATurn = false) :
+    TriggeredAbility(id, source), tc(tc), fromTc(fromTc),limitOnceATurn(limitOnceATurn)
     {
+        triggeredTurn = -1;
     }
 
     int resolve()
@@ -398,10 +401,14 @@ public:
         if(source->isPhased) return 0;
         WEventCardAttackedBlocked * e = dynamic_cast<WEventCardAttackedBlocked *> (event);
         if (!e) return 0;
+        GameObserver * g = GameObserver::GetInstance();
+        if (limitOnceATurn && triggeredTurn == g->turn)
+            return 0;
         if (e->card->didattacked < 1) return 0;
         if (!e->card->blocked) return 0;
         if (fromTc && !fromTc->canTarget(e->card->getNextOpponent())) return 0;
         if (!tc->canTarget(e->card)) return 0;
+        triggeredTurn = g->turn;
         return 1;
     }
 
@@ -505,10 +512,13 @@ public:
     TargetChooser * fromTc;
     bool once;
     bool activeTrigger;
-    TrCardBlocked(int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL,bool once = false) :
-        TriggeredAbility(id, source), tc(tc), fromTc(fromTc), once(once)
+    bool limitOnceATurn;
+    int triggeredTurn;
+    TrCardBlocked(int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL,bool once = false,bool limitOnceATurn = false) :
+    TriggeredAbility(id, source), tc(tc), fromTc(fromTc), once(once),limitOnceATurn(limitOnceATurn)
     {
-    activeTrigger = true;
+        activeTrigger = true;
+        triggeredTurn = -1;
     }
 
     int resolve()
@@ -523,11 +533,14 @@ public:
         if (!e) return 0;
         if(activeTrigger == false)
             return 0;
-        //if(e->card->didblocked < 1) return 0;
+        GameObserver * g = GameObserver::GetInstance();
+        if (limitOnceATurn && triggeredTurn == g->turn)
+            return 0;
         if (fromTc && !fromTc->canTarget(e->card->getNextOpponent())) return 0;
         if (!tc->canTarget(e->card)) return 0;
         if(once  && activeTrigger )
             activeTrigger = false;
+        triggeredTurn = g->turn;
         return 1;
     }
 
@@ -657,9 +670,12 @@ public:
     TargetChooser * fromTc;
     int type;//this allows damagenoncombat and combatdamage to share this trigger
     bool sourceUntapped;
-    TrDamaged(int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0,bool sourceUntapped = false) :
-        TriggeredAbility(id, source), tc(tc), fromTc(fromTc), type(type) , sourceUntapped(sourceUntapped)
+    bool limitOnceATurn;
+    int triggeredTurn;
+    TrDamaged(int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0,bool sourceUntapped = false,bool limitOnceATurn = false) :
+        TriggeredAbility(id, source), tc(tc), fromTc(fromTc), type(type) , sourceUntapped(sourceUntapped),limitOnceATurn(limitOnceATurn)
     {
+    triggeredTurn = -1;
     }
 
     int resolve()
@@ -672,6 +688,9 @@ public:
         if(source->isPhased) return 0;
         WEventDamage * e = dynamic_cast<WEventDamage *> (event);
         if (!e) return 0;
+        GameObserver * g = GameObserver::GetInstance();
+        if (limitOnceATurn && triggeredTurn == g->turn)
+            return 0;
         if (sourceUntapped  && source->isTapped() == 1)
             return 0;
         if (!tc->canTarget(e->damage->target)) return 0;
@@ -680,6 +699,7 @@ public:
         if (type == 2 && e->damage->typeOfDamage == DAMAGE_COMBAT) return 0;
         e->damage->target->thatmuch = e->damage->damage;
         e->damage->source->thatmuch = e->damage->damage;
+        triggeredTurn = g->turn;
         return 1;
     }
 
