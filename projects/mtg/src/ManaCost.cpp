@@ -273,8 +273,7 @@ ManaCost::ManaCost(const ManaCost& manaCost)
     }
     for (int i = 0 ; i < 10; i++)
     {
-        ManaCostHybrid *hybridCopy = NEW ManaCostHybrid( manaCost.hybrids[i] );
-        hybrids[i] = hybridCopy;
+        hybrids[i] = NEW ManaCostHybrid( manaCost.hybrids[i] );
     }
 
     nbhybrids = manaCost.nbhybrids;
@@ -319,7 +318,7 @@ ManaCost & ManaCost::operator= (const ManaCost & manaCost)
 
 ManaCost::~ManaCost()
 {
-    for (unsigned int i = 0; i < nbhybrids; i++)
+    for (unsigned int i = 0; i < 10; i++)
     {
         SAFE_DELETE(hybrids[i]);
     }
