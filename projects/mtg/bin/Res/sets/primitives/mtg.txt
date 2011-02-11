@@ -12189,7 +12189,7 @@ subtype=Aura
 name=Contested War Zone
 auto={T}:Add{1}
 auto={1}{T}:all(creature[attacking]) 1/0 ueot
-auto=@combatdamaged(controller) from(creature) turnlimited:moveTo(opponentbattlefield)
+auto=@combatdamaged(player) from(creature|opponentbattlefield) turnlimited:moveTo(opponentbattlefield)
 text=Whenever a creature deals combat damage to you, that creature's controller gains control of Contested War Zone. -- {T}: Add {1} to your mana pool. -- {1}, {T}: Attacking creatures get +1/+0 until end of turn.
 type=Land
 [/card]
@@ -26054,8 +26054,8 @@ toughness=4
 [/card]
 [card]
 name=Godless Shrine
-auto=choice tap
-auto=choice untap && life:-2 controller
+auto=tap
+auto=may untap && life:-2 controller
 auto={T}:Add {W}
 auto={T}:Add {B}
 text=({T}: Add {W} or {B} to your mana pool.) -- As Godless Shrine enters the battlefield, you may pay 2 life. If you don't, Godless Shrine enters the battlefield tapped.
