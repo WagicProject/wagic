@@ -20600,11 +20600,6 @@ mana={3}{R}
 type=Sorcery
 [/card]
 [card]
-name=River of Tears
-text={T}: Add {U} to your mana pool. If you played a land this turn, add {B} to your mana pool instead.
-type=Land
-[/card]
-[card]
 name=River's Grasp
 text=If {U} was spent to cast River's Grasp, return up to one target creature to its owner's hand. If {B} was spent to cast River's Grasp, target player reveals his or her hand, you choose a nonland card from it, then that player discards that card. (Do both if {U}{B} was spent.)
 mana={3}{UB}

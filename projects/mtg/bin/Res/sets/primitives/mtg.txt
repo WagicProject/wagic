@@ -51431,6 +51431,13 @@ power=2
 toughness=1
 [/card]
 [card]
+name=River of Tears
+auto=aslongas(land[-fresh]|mybattlefield){t}:add{u}
+auto=aslongas(land[fresh]|mybattlefield){t}:add{b}
+text={T}: Add {U} to your mana pool. If you played a land this turn, add {B} to your mana pool instead.
+type=Land
+[/card]
+[card]
 name=Riverfall Mimic
 auto=@movedTo(*[RedAndBlue]|mystack):transforms(,setpower=3,settoughness=3,unblockable) ueot
 text=Whenever you cast a spell that's both blue and red, Riverfall Mimic becomes 3/3 and is unblockable until end of turn.
