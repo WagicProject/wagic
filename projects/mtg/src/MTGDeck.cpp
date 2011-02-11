@@ -742,7 +742,7 @@ int MTGDeck::totalPrice()
     return total;
 }
 
-MTGDeck::MTGDeck(const char * config_file, MTGAllCards * _allcards, int meta_only)
+MTGDeck::MTGDeck(const char * config_file, MTGAllCards * _allcards, int meta_only,int difficultyRating)
 {
     total_cards = 0;
     database = _allcards;
@@ -753,7 +753,7 @@ MTGDeck::MTGDeck(const char * config_file, MTGAllCards * _allcards, int meta_onl
     meta_id = atoi(meta_name.substr(4).c_str());
     wagic::ifstream file(config_file);
     std::string s;
-
+    
     if (file)
     {
         while (std::getline(file, s))
@@ -778,6 +778,29 @@ MTGDeck::MTGDeck(const char * config_file, MTGAllCards * _allcards, int meta_onl
                 continue;
             }
             if (meta_only) break;
+            int nb = 1;
+            size_t found = s.find(" *");
+            if (found != string::npos)
+            {
+                nb = atoi(s.substr(found + 2).c_str());
+                s = s.substr(0, found);
+            }
+            size_t diff = s.find("toggledifficulty:");
+            if(diff != string::npos)
+            {
+                string cards = s.substr(diff + 17);
+                size_t separator = cards.find("|");
+                string cardeasy = cards.substr(0,separator);
+                string cardhard = cards.substr(separator + 1);
+                if(difficultyRating == HARD)
+                {
+                    s = cardhard;
+                }
+                else
+                {
+                    s = cardeasy;
+                }
+            }
             int cardnb = atoi(s.c_str());
             if (cardnb)
             {
@@ -785,7 +808,6 @@ MTGDeck::MTGDeck(const char * config_file, MTGAllCards * _allcards, int meta_onl
             }
             else
             {
-                int nb = 1;
                 size_t found = s.find(" *");
                 if (found != string::npos)
                 {
@@ -800,6 +822,7 @@ MTGDeck::MTGDeck(const char * config_file, MTGAllCards * _allcards, int meta_onl
                         add(card);
                     }
                 }
+
                 else
                 {
                     DebugTrace("could not find Card matching name: " << s);

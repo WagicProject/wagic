@@ -160,7 +160,7 @@ public:
     int totalCards();
     int totalPrice();
     MTGDeck(MTGAllCards * _allcards);
-    MTGDeck(const char * config_file, MTGAllCards * _allcards, int meta_only = 0);
+    MTGDeck(const char * config_file, MTGAllCards * _allcards, int meta_only = 0,int difficultySetting = 0);
     int addRandomCards(int howmany, int * setIds = NULL, int nbSets = 0, int rarity = -1, const char * subtype = NULL,
             int * colors = NULL, int nbcolors = 0);
     int add(int cardid);
