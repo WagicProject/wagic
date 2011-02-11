@@ -19581,17 +19581,6 @@ mana={3}{W}
 type=Instant
 [/card]
 [card]
-name=Rashka the Slayer
-abilities=reach
-auto=@blocked(creature[black]) from(this):1/2
-text=Reach (This creature can block creatures with flying.) -- Whenever Rashka blocks one or more black creatures, Rashka gets +1/+2 until end of turn.
-mana={3}{W}{W}
-type=Legendary Creature
-subtype=Human Archer
-power=3
-toughness=3
-[/card]
-[card]
 name=Rathi Dragon
 text=Flying (This creature can't be blocked except by creatures with flying or reach.) -- When Rathi Dragon enters the battlefield, sacrifice it unless you sacrifice two Mountains.
 mana={2}{R}{R}

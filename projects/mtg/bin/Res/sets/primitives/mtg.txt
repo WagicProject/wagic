@@ -49308,6 +49308,17 @@ power=3
 toughness=4
 [/card]
 [card]
+name=Rashka the Slayer
+abilities=reach
+auto=@blocking(this) from(creature[black]) turnlimited:1/2 ueot
+text=Reach (This creature can block creatures with flying.) -- Whenever Rashka blocks one or more black creatures, Rashka gets +1/+2 until end of turn.
+mana={3}{W}{W}
+type=Legendary Creature
+subtype=Human Archer
+power=3
+toughness=3
+[/card]
+[card]
 name=Rasputin Dreamweaver
 auto=counter(0/0,7,Dream)
 auto={C(0/0,-1,Dream)}:Add:{1}
