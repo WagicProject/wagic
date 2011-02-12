@@ -298,6 +298,9 @@
     <ClCompile Include="src\SimplePopup.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\PlayRestrictions.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ActionElement.h">
@@ -607,6 +610,9 @@
       <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="include\SimplePopup.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PlayRestrictions.h">
       <Filter>inc</Filter>
     </ClInclude>
   </ItemGroup>

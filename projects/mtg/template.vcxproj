@@ -386,6 +386,7 @@
     <ClCompile Include="src\PlayerData.cpp" />
     <ClCompile Include="src\PlayGuiObject.cpp" />
     <ClCompile Include="src\PlayGuiObjectController.cpp" />
+    <ClCompile Include="src\PlayRestrictions.cpp" />
     <ClCompile Include="src\Pos.cpp" />
     <ClCompile Include="src\PrecompiledHeader.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -500,6 +501,7 @@
     <ClInclude Include="include\PlayerData.h" />
     <ClInclude Include="include\PlayGuiObject.h" />
     <ClInclude Include="include\PlayGuiObjectController.h" />
+    <ClInclude Include="include\PlayRestrictions.h" />
     <ClInclude Include="include\Pos.h" />
     <ClInclude Include="include\PrecompiledHeader.h" />
     <ClInclude Include="include\PriceList.h" />
