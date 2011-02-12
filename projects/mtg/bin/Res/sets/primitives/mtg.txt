@@ -6324,6 +6324,14 @@ text={T}: Add {1} to your mana pool. -- {1}: Blinkmoth Nexus becomes a 1/1 Blink
 type=Land
 [/card]
 [card]
+name=Blinkmoth Urn
+auto=@each myfirstmain sourcenottapped:all(artifact|mybattlefield) add{1}
+auto=@each opponentfirstmain sourcenottapped:all(artifact|opponentbattlefield) add{1}
+text=At the beginning of each player's precombat main phase, if Blinkmoth Urn is untapped, that player adds {1} to his or her mana pool for each artifact he or she controls.
+mana={5}
+type=Artifact
+[/card]
+[card]
 name=Blinkmoth Well
 auto={T}: Add {1}
 auto={2}{T}:Tap target(artifact[-creature])

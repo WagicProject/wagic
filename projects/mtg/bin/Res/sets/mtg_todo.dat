@@ -1952,12 +1952,6 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
-name=Blinkmoth Urn
-text=At the beginning of each player's precombat main phase, if Blinkmoth Urn is untapped, that player adds {1} to his or her mana pool for each artifact he or she controls.
-mana={5}
-type=Artifact
-[/card]
-[card]
 name=Blizzard Specter
 text=Flying -- Whenever Blizzard Specter deals combat damage to a player, choose one - That player returns a permanent he or she controls to its owner's hand; or that player discards a card.
 mana={2}{U}{B}
