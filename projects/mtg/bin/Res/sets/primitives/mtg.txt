@@ -26157,7 +26157,7 @@ toughness=1
 [/card]
 [card]
 name=Goldmeadow Lookout
-auto={W}{T}{discard(*|myhand)}:token(130311)
+auto={W}{T}{discard(*|myhand)}:token(139397)
 text={W}, {T}, Discard a card: Put a 1/1 white Kithkin Soldier creature token named Goldmeadow Harrier onto the battlefield. It has "{W}, {T}: Tap target creature."
 mana={3}{W}
 type=Creature
