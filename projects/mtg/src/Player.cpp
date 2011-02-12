@@ -12,8 +12,6 @@ Damageable(20)
     deckFile = file;
     deckFileSmall = fileSmall;
     manaPool = NEW ManaPool(this);
-    canPutLandsIntoPlay = true;
-    landsPlayerCanStillPlay = 1;
     nomaxhandsize = false;
     castedspellsthisturn = 0;
     castrestrictedspell = false;

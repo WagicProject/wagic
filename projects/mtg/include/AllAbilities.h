@@ -1281,18 +1281,18 @@ public:
 };
 
 //lands, allows to play more land during a turn:
-
-class AAMoreLandPlz: public ActivatedAbilityTP
+class AMoreLandPlzUEOT: public InstantAbilityTP
 {
 public:
     WParsedInt *additional;
+    MaxPerTurnRestriction * landsRestriction;
 
-    AAMoreLandPlz(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost, WParsedInt * _additional, int _tap = 0,
-            int who = TargetChooser::UNSET);
-    int resolve();
+    AMoreLandPlzUEOT(int _id, MTGCardInstance * card, Targetable * _target, WParsedInt * _additional, int who = TargetChooser::UNSET);
+    int addToGame();
+    int destroy();
     const char * getMenuText();
-    AAMoreLandPlz * clone() const;
-    ~AAMoreLandPlz();
+    AMoreLandPlzUEOT * clone() const;
+    ~AMoreLandPlzUEOT();
 
 };
 
@@ -4709,43 +4709,39 @@ public:
 class AFastbond: public TriggeredAbility
 {
 public:
-    int alreadyPlayedALand;
-    int previous;
+
+    TargetChooser * counter;
+    MaxPerTurnRestriction * landsRestriction;
+    int landsPlayedThisTurn;
     AFastbond(int _id, MTGCardInstance * card) :
         TriggeredAbility(_id, card)
     {
-        alreadyPlayedALand = 0;
-        if (source->controller()->landsPlayerCanStillPlay == 0)
-        {
-            alreadyPlayedALand = 1;
-            source->controller()->landsPlayerCanStillPlay += 1;
-            source->controller()->canPutLandsIntoPlay = true;
 
-        }
-        previous = source->controller()->landsPlayerCanStillPlay;
+        counter = NEW TypeTargetChooser("land");
+        landsPlayedThisTurn = source->controller()->game->inPlay->seenThisTurn(counter);
+        PlayRestrictions * restrictions = source->controller()->game->playRestrictions;
+        landsRestriction = (MaxPerTurnRestriction *) (restrictions->getRestrictionById(PlayRestriction::LANDS_RULE_ID));
+        restrictions->removeRestriction(landsRestriction);
+
     }
 
     void Update(float dt)
     {
         if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UNTAP)
         {
-            alreadyPlayedALand = 0;
+            landsPlayedThisTurn = 0;
         }
         TriggeredAbility::Update(dt);
     }
 
     int trigger()
     {
-        if (source->controller()->landsPlayerCanStillPlay == 0 && previous >= 1)
+        int landsPlayedThisTurnUpdated = source->controller()->game->inPlay->seenThisTurn(counter);
+        if (landsPlayedThisTurnUpdated > 1 && landsPlayedThisTurnUpdated > landsPlayedThisTurn)
         {
-            previous = 0;
-            source->controller()->canPutLandsIntoPlay = true;
-            source->controller()->landsPlayerCanStillPlay += 1;
-            if (alreadyPlayedALand) return 1;
-            alreadyPlayedALand = 1;
-            return 0;
+            landsPlayedThisTurn = landsPlayedThisTurnUpdated;
+            return 1;
         }
-        previous = source->controller()->landsPlayerCanStillPlay;
         return 0;
     }
 
@@ -4756,9 +4752,18 @@ public:
         return 1;
     }
 
+    int destroy()
+    {
+        PlayRestrictions  * restrictions = source->controller()->game->playRestrictions;
+        if(restrictions->getRestrictionById(PlayRestriction::LANDS_RULE_ID))
+            return 1;
+
+        restrictions->addRestriction(landsRestriction);
+            return 1;
+    }
+
     virtual ostream& toString(ostream& out) const
     {
-        out << "AFastbond ::: alreadyPlayedALand : " << alreadyPlayedALand << " ; previous : " << previous << " (";
         return TriggeredAbility::toString(out) << ")";
     }
     AFastbond * clone() const
@@ -4766,6 +4771,11 @@ public:
         AFastbond * a = NEW AFastbond(*this);
         a->isClone = 1;
         return a;
+    }
+
+    ~AFastbond()
+    {
+        delete counter;
     }
 };
 

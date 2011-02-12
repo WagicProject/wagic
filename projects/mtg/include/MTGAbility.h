@@ -289,7 +289,7 @@ class InstantAbility:public MTGAbility{
   virtual void Update(float dt);
   virtual int testDestroy();
   InstantAbility(int _id, MTGCardInstance * source);
-  InstantAbility(int _id, MTGCardInstance * source,Damageable * _target);
+  InstantAbility(int _id, MTGCardInstance * source,Targetable * _target);
   virtual int resolve(){return 0;};
   virtual InstantAbility* clone() const = 0;
   virtual ostream& toString(ostream& out) const;
@@ -396,6 +396,13 @@ class ActivatedAbilityTP:public ActivatedAbility{
 public:
   int who;
   ActivatedAbilityTP(int id, MTGCardInstance * card, Targetable * _target = NULL, ManaCost * cost=NULL, int doTap = 0, int who = TargetChooser::UNSET);
+  Targetable * getTarget();
+};
+
+class InstantAbilityTP:public InstantAbility{
+public:
+  int who;
+  InstantAbilityTP(int id, MTGCardInstance * card, Targetable * _target = NULL, int who = TargetChooser::UNSET);
   Targetable * getTarget();
 };
 

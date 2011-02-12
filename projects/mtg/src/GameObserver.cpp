@@ -108,8 +108,6 @@ void GameObserver::nextGamePhase()
     if (currentGamePhase == Constants::MTG_PHASE_BEFORE_BEGIN)
     {
         cleanupPhase();
-        currentPlayer->canPutLandsIntoPlay = true;
-        currentPlayer->landsPlayerCanStillPlay = 1;
         currentPlayer->castedspellsthisturn = 0;
         currentPlayer->opponent()->castedspellsthisturn = 0;
         currentPlayer->castcount = 0;
@@ -124,9 +122,8 @@ void GameObserver::nextGamePhase()
         mLayers->actionLayer()->Update(0);
         for (int i = 0; i < 2; i++)
         {
-            delete (players[i]->game->garbage);
-            players[i]->game->garbage = NEW MTGGameZone();
-            players[i]->game->garbage->setOwner(players[i]);
+            //Cleanup of each player's gamezones
+            players[i]->game->beforeBeginPhase();
         }
         combatStep = BLOCKERS;
         return nextGamePhase();
@@ -377,14 +374,6 @@ void GameObserver::gameStateBasedEffects()
     //effects or menus actions
     for (int i = 0; i < 2; i++)
     {
-        if (players[i]->landsPlayerCanStillPlay <= 0)
-        {
-            players[i]->canPutLandsIntoPlay = false;
-        }
-        else
-        {
-            players[i]->canPutLandsIntoPlay = true;
-        }
         if(players[i]->poisonCount > 0)
         {
         players[i]->isPoisoned = true;

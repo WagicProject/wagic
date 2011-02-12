@@ -68,10 +68,28 @@ MTGPlayerCards::~MTGPlayerCards()
     SAFE_DELETE(removedFromGame);
     SAFE_DELETE(garbage);
     SAFE_DELETE(temp);
+    SAFE_DELETE(playRestrictions);
+}
+
+void MTGPlayerCards::beforeBeginPhase()
+{
+    delete garbage;
+    garbage = NEW MTGGameZone();
+    garbage->setOwner(this->owner);
+
+    library->beforeBeginPhase();
+    graveyard->beforeBeginPhase();
+    hand->beforeBeginPhase();
+    inPlay->beforeBeginPhase();
+    stack->beforeBeginPhase();
+    removedFromGame->beforeBeginPhase();
+    garbage->beforeBeginPhase();
+    temp->beforeBeginPhase();
 }
 
 void MTGPlayerCards::setOwner(Player * player)
 {
+    this->owner = player;
     library->setOwner(player);
     graveyard->setOwner(player);
     hand->setOwner(player);
@@ -241,6 +259,11 @@ void MTGPlayerCards::init()
     exile = removedFromGame;
     garbage = NEW MTGGameZone();
     temp = NEW MTGGameZone();
+
+    //This is a Rule that should ideally be moved as an ability in the game...
+    playRestrictions = NEW PlayRestrictions();
+    TargetChooser * tc = NEW TypeTargetChooser("land");
+    playRestrictions->addRestriction(NEW MaxPerTurnRestriction(PlayRestriction::LANDS_RULE_ID, tc, 1, inPlay));
 }
 
 void MTGPlayerCards::showHand()
@@ -312,7 +335,7 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
 
     //The "Temp" zone are purely for code purposes, and we don't want the abilities engine to
     //Trigger when cards move in this zone
-    // Additionally, when they mve "from" this zone,
+    // Additionally, when they move "from" this zone,
     // we trick the engine into believing that they moved from the zone the card was previously in
     // See http://code.google.com/p/wagic/issues/detail?id=335
     {
@@ -390,6 +413,11 @@ MTGGameZone::~MTGGameZone()
     cardsMap.clear();
     owner = NULL;
 }
+
+void MTGGameZone::beforeBeginPhase()
+{
+    cardsSeenThisTurn.clear();
+};
 
 void MTGGameZone::setOwner(Player * player)
 {
@@ -583,6 +611,22 @@ int MTGGameZone::hasAbility(int ability)
     return 0;
 }
 
+int MTGGameZone::seenThisTurn(TargetChooser * tc)
+{
+    //The following 2 lines modify the passed TargetChooser. Call this function with care :/
+    tc->setAllZones(); // This is to allow targetting cards without caring about the actual zone
+    tc->targetter = NULL;
+
+    int count = 0;
+    for (vector<MTGCardInstance *>::iterator iter = cardsSeenThisTurn.begin(); iter != cardsSeenThisTurn.end(); ++iter)
+    {
+        if (tc->canTarget(*iter))
+            count++;
+    }
+    return count;
+}
+
+
 void MTGGameZone::cleanupPhase()
 {
     for (int i = 0; i < (nb_cards); i++)
@@ -599,6 +643,7 @@ void MTGGameZone::addCard(MTGCardInstance * card)
     if (!card)
         return;
     cards.push_back(card);
+    cardsSeenThisTurn.push_back(card);
     nb_cards++;
     cardsMap[card] = 1;
     card->lastController = this->owner;

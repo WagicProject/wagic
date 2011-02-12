@@ -2206,9 +2206,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         Targetable * t = NULL;
         if (spell)
             t = spell->getNextTarget();
-        MTGAbility * a = NEW AAMoreLandPlz(id, card, t, NULL, additional, 0, who);
-        a->oneShot = 1;
-        return a;
+        return NEW AMoreLandPlzUEOT(id, card, t, additional, who);
     }
 
     //Deplete
@@ -4238,7 +4236,7 @@ void InstantAbility::Update(float dt)
     }
 }
 
-InstantAbility::InstantAbility(int _id, MTGCardInstance * source, Damageable * _target) :
+InstantAbility::InstantAbility(int _id, MTGCardInstance * source, Targetable * _target) :
     MTGAbility(_id, source, _target)
 {
     init = 0;
@@ -4757,6 +4755,44 @@ ActivatedAbilityTP::ActivatedAbilityTP(int id, MTGCardInstance * card, Targetabl
 }
 
 Targetable * ActivatedAbilityTP::getTarget()
+{
+    switch (who)
+    {
+    case TargetChooser::TARGET_CONTROLLER:
+        if (target)
+        {
+            switch (target->typeAsTarget())
+            {
+            case TARGET_CARD:
+                return ((MTGCardInstance *) target)->controller();
+            case TARGET_STACKACTION:
+                return ((Interruptible *) target)->source->controller();
+            default:
+                return (Player *) target;
+            }
+        }
+        return NULL;
+    case TargetChooser::CONTROLLER:
+        return source->controller();
+    case TargetChooser::OPPONENT:
+        return source->controller()->opponent();
+    case TargetChooser::OWNER:
+        return source->owner;
+    default:
+        return target;
+    }
+    return NULL;
+}
+
+InstantAbilityTP::InstantAbilityTP(int id, MTGCardInstance * card, Targetable * _target,int who) :
+    InstantAbility(id, card), who(who)
+{
+    if (_target)
+        target = _target;    
+}
+
+//This is the same as Targetable * ActivatedAbilityTP::getTarget(), anyway to move them together?
+Targetable * InstantAbilityTP::getTarget()
 {
     switch (who)
     {

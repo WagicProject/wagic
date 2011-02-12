@@ -725,9 +725,6 @@ void GameStateMenu::Render()
 
 void GameStateMenu::ButtonPressed(int controllerId, int controlId)
 {
-    int deckId;
-    int result;
-
     DebugTrace("GameStateMenu: controllerId " << controllerId << " selected");
     switch (controllerId)
     {

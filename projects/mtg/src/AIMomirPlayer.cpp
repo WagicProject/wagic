@@ -100,13 +100,15 @@ int AIMomirPlayer::computeActions()
             ManaCost * potentialMana = getPotentialMana();
             int converted = potentialMana->getConvertedCost();
             SAFE_DELETE(potentialMana);
-            if (canPutLandsIntoPlay && (converted < 8 || game->hand->nb_cards > 1))
+            
+            if (converted < 8 || game->hand->nb_cards > 1)
             {
                 //Attempt to put land into play
                 cd.init();
                 cd.setColor(Constants::MTG_COLOR_LAND);
                 card = cd.match(game->hand);
-                if (card)
+                int canPutLandsIntoPlay = game->playRestrictions->canPutIntoZone(card, game->inPlay);
+                if (card && (canPutLandsIntoPlay == PlayRestriction::CAN_PLAY))
                 {
                     MTGAbility * putIntoPlay = g->mLayers->actionLayer()->getAbility(MTGAbility::PUT_INTO_PLAY);
                     AIAction * a = NEW AIAction(putIntoPlay, card); //TODO putinplay action

@@ -1456,13 +1456,13 @@ AACloner::~AACloner()
 }
 
 // More Land - allow more lands to be played on a turn
-AAMoreLandPlz::AAMoreLandPlz(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost, WParsedInt * _additional,
-        int _tap, int who) :
-    ActivatedAbilityTP(_id, card, _target, _cost, _tap, who), additional(_additional)
+AMoreLandPlzUEOT::AMoreLandPlzUEOT(int _id, MTGCardInstance * card, Targetable * _target, WParsedInt * _additional, int who) :
+    InstantAbilityTP(_id, card, _target, who), additional(_additional)
 {
+    landsRestriction = NULL;
 }
 
-int AAMoreLandPlz::resolve()
+int AMoreLandPlzUEOT::addToGame()
 {
     Targetable * _target = getTarget();
     Player * player;
@@ -1476,25 +1476,38 @@ int AAMoreLandPlz::resolve()
         {
             player = (Player *) _target;
         }
-        player->landsPlayerCanStillPlay += additional->getValue();
+        landsRestriction = (MaxPerTurnRestriction *) (player->game->playRestrictions->getRestrictionById(PlayRestriction::LANDS_RULE_ID));
+        if(landsRestriction && landsRestriction->maxPerTurn != MaxPerTurnRestriction::NO_MAX)
+            landsRestriction->maxPerTurn += additional->getValue();
+        return InstantAbility::addToGame();
     }
+    return 0;
+}
+
+int AMoreLandPlzUEOT::destroy()
+{
+    if (!landsRestriction)
+        return 0;
+
+    if(landsRestriction && landsRestriction->maxPerTurn != MaxPerTurnRestriction::NO_MAX)
+        landsRestriction->maxPerTurn -= additional->getValue();
     return 1;
 }
 
-const char * AAMoreLandPlz::getMenuText()
+const char * AMoreLandPlzUEOT::getMenuText()
 {
     return "Additional Lands";
 }
 
-AAMoreLandPlz * AAMoreLandPlz::clone() const
+AMoreLandPlzUEOT * AMoreLandPlzUEOT::clone() const
 {
-    AAMoreLandPlz * a = NEW AAMoreLandPlz(*this);
+   AMoreLandPlzUEOT * a = NEW AMoreLandPlzUEOT(*this);
     a->additional = NEW WParsedInt(*(a->additional));
     a->isClone = 1;
     return a;
 }
 
-AAMoreLandPlz::~AAMoreLandPlz()
+AMoreLandPlzUEOT::~AMoreLandPlzUEOT()
 {
     SAFE_DELETE(additional);
 }

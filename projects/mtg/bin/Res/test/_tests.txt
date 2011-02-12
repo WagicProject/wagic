@@ -36,6 +36,7 @@ generic/hybrid_mana_3.txt
 generic/indestructible.txt
 generic/kicker.txt
 generic/kicker2.txt
+generic/lands_max_per_turn.txt
 generic/landwalk.txt
 generic/legendary.txt
 generic/level_up.txt

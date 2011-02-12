@@ -35,11 +35,14 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
         }
         return 1;
     }
-if(!allowedToCast(card,player))
-  return 0;
+    if(!allowedToCast(card,player))
+        return 0;
+
     if (card->hasType("land"))
     {
-        if (player == currentPlayer && currentPlayer->canPutLandsIntoPlay
+        if (currentPlayer->game->playRestrictions->canPutIntoZone(card, currentPlayer->game->inPlay) == PlayRestriction::CANT_PLAY)
+            return 0;
+        if (player == currentPlayer
             && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN)
             )
         {
@@ -58,7 +61,7 @@ if(!allowedToCast(card,player))
 #ifdef WIN32
         cost->Dump();
 #endif
-        if (player->castrestrictedspell && !card->hasType("land"))
+        if (player->castrestrictedspell)
         {
             return 0;
         }
@@ -154,7 +157,6 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
         spell->resolve();
         delete spellCost;
         delete spell;
-        player->landsPlayerCanStillPlay--;
     }
     else
     {
@@ -259,7 +261,9 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
 
     if (card->hasType("land"))
     {
-        if (player == currentPlayer && currentPlayer->canPutLandsIntoPlay
+        if (currentPlayer->game->playRestrictions->canPutIntoZone(card, currentPlayer->game->inPlay) == PlayRestriction::CANT_PLAY)
+            return 0;
+        if (player == currentPlayer
             && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN
             || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN)
             )
@@ -358,7 +362,6 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
         copy->alternateCostPaid[alternateCostType] = 1;
         spell->resolve();
         SAFE_DELETE(spell);
-        player->landsPlayerCanStillPlay--;
         game->mLayers->stackLayer()->addSpell(copy, NULL, NULL, alternateCostType, 1);
     }
     else

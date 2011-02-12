@@ -27,8 +27,6 @@ public:
     JTexture * mAvatarTex;
     JQuadPtr mAvatar;
     int playMode;
-    bool canPutLandsIntoPlay;
-    int landsPlayerCanStillPlay;
     bool nomaxhandsize;
     int castedspellsthisturn;
     bool onlyonecast;

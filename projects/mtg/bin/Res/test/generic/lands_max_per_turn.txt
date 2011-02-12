@@ -1,0 +1,16 @@
+#Tests that more than 1 land cannot be played per turn
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:swamp,plains
+[PLAYER2]
+[DO]
+swamp
+plains
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:swamp
+hand:plains
+[PLAYER2]
+[END]

@@ -770,6 +770,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\PlayRestrictions.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\Pos.cpp"
 				>
 			</File>
@@ -1232,6 +1236,10 @@
 			</File>
 			<File
 				RelativePath=".\include\PlayGuiObjectController.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\PlayRestrictions.h"
 				>
 			</File>
 			<File

@@ -1221,7 +1221,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
             continue;
         if (card->hasType(Subtypes::TYPE_INSTANT) && this->castrestrictedspell )
             continue;
-        if (card->hasType(Subtypes::TYPE_LAND) && !this->canPutLandsIntoPlay)
+        if (card->hasType(Subtypes::TYPE_LAND) && (game->playRestrictions->canPutIntoZone(card, game->inPlay) == PlayRestriction::CANT_PLAY))
             continue;
         if (card->hasType(Subtypes::TYPE_LEGENDARY) && game->inPlay->findByName(card->name))
             continue;

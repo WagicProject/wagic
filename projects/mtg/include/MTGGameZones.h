@@ -6,6 +6,7 @@ using std::map;
 
 #include "MTGDeck.h"
 #include "MTGCardInstance.h"
+#include "playRestrictions.h"
 #include "TargetChooser.h"
 
 #define MTG_MAX_PLAYER_CARDS 100
@@ -68,9 +69,12 @@ class MTGGameZone {
    };
 
    Player * owner;
-   //Both cards and cardsMap contain the cards of a zone. The long term objective is to get rid of the array
-   vector<MTGCardInstance *> cards; //[MTG_MAX_PLAYER_CARDS];
+   //Both cards and cardsMap contain the cards of a zone. The vector is used to keep the order, useful for some zones such as the stack, library, etc...
+   vector<MTGCardInstance *> cards;
    map<MTGCardInstance *,int> cardsMap;
+
+    //list of cards that have been through this zone in the current turn
+    vector<MTGCardInstance *> cardsSeenThisTurn;
    int nb_cards;
    MTGGameZone();
    ~MTGGameZone();
@@ -80,6 +84,8 @@ class MTGGameZone {
    MTGCardInstance * removeCard(MTGCardInstance * card, int createCopy = 1);
    MTGCardInstance * hasCard(MTGCardInstance * card);
    void cleanupPhase();
+   void beforeBeginPhase();
+
    int countByType(const char * value);
    int countByCanTarget(TargetChooser * tc);
    MTGCardInstance * findByName(string name);
@@ -91,6 +97,7 @@ class MTGGameZone {
    int hasName(string value);
    int hasColor(int value); //returns 1 if one of the cards in the zone has the color, 0 otherwise
    int hasX();
+   int seenThisTurn(TargetChooser * tc); //How many cards matching a TargetChooser have been put in this zone during the turn
    void setOwner(Player * player);
    MTGCardInstance * lastCardDrawn;
    static MTGGameZone * stringToZone(string zoneName, MTGCardInstance * source, MTGCardInstance * target);
@@ -145,7 +152,9 @@ class MTGPlayerCards {
  protected:
   void init();
 
- public:
+public:
+    Player * owner;
+    PlayRestrictions * playRestrictions;
   MTGLibrary * library;
   MTGGraveyard * graveyard;
   MTGHand * hand;
@@ -170,6 +179,7 @@ class MTGPlayerCards {
   void showHand();
   void resetLibrary();
   void initDeck(MTGDeck * deck);
+  void beforeBeginPhase();
   MTGCardInstance * putInGraveyard(MTGCardInstance * card);
   MTGCardInstance * putInExile(MTGCardInstance * card);
   MTGCardInstance * putInLibrary(MTGCardInstance * card);
