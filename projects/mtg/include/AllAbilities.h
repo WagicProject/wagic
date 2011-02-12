@@ -84,9 +84,27 @@ public:
         }
         else if (s.find("type:") != string::npos)
         {
-        size_t begins = s.find(":");
-        string theType = s.substr(begins + 1);
-            intValue = target->controller()->game->inPlay->countByType(theType.c_str());
+            size_t begins = s.find(":");
+            string theType = s.substr(begins + 1);
+            size_t zoned = theType.find("|");
+            if(zoned == string::npos)
+            {
+                theType.append("|mybattlefield");
+            }
+            TargetChooserFactory tf;
+            TargetChooser * tc = tf.createTargetChooser(theType.c_str(),NULL);
+            GameObserver * game = game->GetInstance();
+            for (int i = 0; i < 2; i++)
+            {
+                Player * p = game->players[i];
+                MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library };
+                for (int k = 0; k < 4; k++)
+                {
+                    MTGGameZone * zone = zones[k];
+                    intValue += zone->countByCanTarget(tc);
+                }
+            }
+            SAFE_DELETE(tc);
         }
         else if (s == "sunburst")
         {
