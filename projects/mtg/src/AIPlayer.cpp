@@ -106,25 +106,28 @@ bool AIPlayer::tapLandsForMana(ManaCost * cost, MTGCardInstance * target)
         //Make sure we can use the ability
         MTGAbility * a = ((MTGAbility *) g->mLayers->actionLayer()->mObjects[i]);
         AManaProducer * amp = dynamic_cast<AManaProducer*> (a);
-        if (amp && canHandleCost(amp))
+        if (amp && canHandleCost(amp) && (!amp->tap ||(amp->tap && !amp->source->isTapped())))
         {
             MTGCardInstance * card = amp->source;
             if (card == target)
-                used[card] = true; //http://code.google.com/p/wagic/issues/detail?id=76
-            if (!used[card] && amp->isReactingToClick(card) && amp->output->getConvertedCost() >= 1)
             {
                 used[card] = true;
-                int doTap = 1;
+            } //http://code.google.com/p/wagic/issues/detail?id=76
+            if (used[card] == false && amp->isReactingToClick(card) && amp->output->getConvertedCost() >= 1)
+            {
+                used[card] = true;
+                int doUse = 1;
                 for (int i = Constants::MTG_NB_COLORS - 1; i >= 0; i--)
                 {
                     if (diff->getCost(i) && amp->output->getCost(i))
                     {
                         diff->remove(i, 1);
-                        doTap = 0;
+                        doUse = 0;
+                        used[card] = false;
                         break;
                     }
                 }
-                if (doTap || amp->tap)
+                if (doUse || (amp->tap && used[card] == true))
                 {
                     AIAction * action = NEW AIAction(amp, card);
                     clickstream.push(action);
@@ -1316,7 +1319,7 @@ int AIPlayerBaka::computeActions()
     {//is already looking kick me out of this function!
         return 0;
     } 
-    if (p != this && (Player*)g->isInterrupting == this && g->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 1) 
+    if (p != this && interruptIfICan()&&  g->isInterrupting == this && g->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 1) 
     {
         findingCard = true;
         CardDescriptor cd;
