@@ -1183,7 +1183,7 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, Player * op
 DeckStats * stats = DeckStats::GetInstance();
 int deckSetting = NULL;
 int diff = stats->percentVictories();
-                if (diff > 65)
+                if (diff >= 65)
                 {
                     deckSetting = HARD;
                 }
