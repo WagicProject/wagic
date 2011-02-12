@@ -127,7 +127,7 @@ bool AIPlayer::tapLandsForMana(ManaCost * cost, MTGCardInstance * target)
                         break;
                     }
                 }
-                if (doUse || (amp->tap && used[card] == true))
+                if (doUse)
                 {
                     AIAction * action = NEW AIAction(amp, card);
                     clickstream.push(action);
