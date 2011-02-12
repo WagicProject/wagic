@@ -45,7 +45,6 @@ AIPlayer::AIPlayer(MTGDeck * deck, string file, string fileSmall) :
     stats = NULL;
     agressivity = 50;
     forceBestAbilityUse = false;
-    Checked = false;
     playMode = Player::MODE_AI;
 }
 
@@ -1457,18 +1456,12 @@ int AIPlayerBaka::computeActions()
                 {
                     selectAbility();
                 }
-                if (p->getManaPool()->getConvertedCost() > 0 && Checked == false)//not the best thing ever, but allows the Ai a chance to double check if its mana pool has something before moving on, atleast one time.
-                {
-                    Checked = true;
-                    computeActions();
-                }
                 break;
             }
         case Constants::MTG_PHASE_COMBATATTACKERS:
             chooseAttackers();
             break;
         case Constants::MTG_PHASE_ENDOFTURN:
-            Checked = false;
             break;
         default:
         selectAbility();

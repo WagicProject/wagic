@@ -31,7 +31,6 @@ public:
     NestedAbility * nability;
     Player * player;
     int id;
-    bool checked;
     MTGCardInstance * click;
     MTGCardInstance * target; // TODO Improve
     
@@ -95,7 +94,6 @@ protected:
 public:
     AIStats * stats;
     int agressivity;
-    bool Checked;
     bool forceBestAbilityUse;
     void End(){};
     virtual int displayStack() {return 0;};
