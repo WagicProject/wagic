@@ -14821,6 +14821,15 @@ mana={2}{G}
 type=Sorcery
 [/card]
 [card]
+name=Decomposition
+auto=teach(creature) cumulativeupcost[{l}] sacrifice
+auto=@movedto(mytgt|graveyard): all(trigger[to]) damage:2 targetcontroller
+text=Enchant black creature -- Enchanted creature has "Cumulative upkeep - Pay 1 life." (At the beginning of its controller's upkeep, that player puts an age counter on it, then sacrifices it unless he or she pays its upkeep cost for each age counter on it.) -- When enchanted creature is put into a graveyard, its controller loses 2 life.
+mana={1}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Decree of Annihilation
 auto=moveTo(exile) all(artifact,creature,land|battlefield)
 auto=moveTo(exile) all(*|mygraveyard)

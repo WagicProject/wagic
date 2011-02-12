@@ -2966,15 +2966,6 @@ type=Instant
 subtype=Arcane
 [/card]
 [card]
-name=Canker Abomination
-text=As Canker Abomination enters the battlefield, choose an opponent. Canker Abomination enters the battlefield with a -1/-1 counter on it for each creature that player controls.
-mana={2}{BG}{BG}
-type=Creature
-subtype=Treefolk Horror
-power=6
-toughness=6
-[/card]
-[card]
 name=Cankerous Thirst
 text=If {B} was spent to cast Cankerous Thirst, you may have target creature get -3/-3 until end of turn. If {G} was spent to cast Cankerous Thirst, you may have target creature get +3/+3 until end of turn. (Do both if {B}{G} was spent.)
 mana={3}{BG}
@@ -5307,13 +5298,6 @@ name=Decompose
 text=Exile up to three target cards from a single graveyard.
 mana={1}{B}
 type=Sorcery
-[/card]
-[card]
-name=Decomposition
-text=Enchant black creature -- Enchanted creature has "Cumulative upkeep - Pay 1 life." (At the beginning of its controller's upkeep, that player puts an age counter on it, then sacrifices it unless he or she pays its upkeep cost for each age counter on it.) -- When enchanted creature is put into a graveyard, its controller loses 2 life.
-mana={1}{G}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Decree of Pain
