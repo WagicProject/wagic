@@ -460,9 +460,21 @@ int MTGGameZone::countByType(const char * value)
         }
     }
     return result;
-
 }
-
+int MTGGameZone::countByCanTarget(TargetChooser * tc)
+{
+if(!tc)
+return 0;
+    int result = 0;
+    for (int i = 0; i < (nb_cards); i++)
+    {
+        if (tc->canTarget(cards[i]))
+        {
+            result++;
+        }
+    }
+    return result;
+}
 MTGCardInstance * MTGGameZone::findByName(string name)
 {
     for (int i = 0; i < (nb_cards); i++)

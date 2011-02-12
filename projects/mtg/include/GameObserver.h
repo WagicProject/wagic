@@ -73,6 +73,7 @@ class GameObserver{
   ~GameObserver();
   void gameStateBasedEffects();
   void enchantmentStatus();
+  void Affinity();
   void eventOccured();
   void addObserver(MTGAbility * observer);
   void removeObserver(ActionElement * observer);

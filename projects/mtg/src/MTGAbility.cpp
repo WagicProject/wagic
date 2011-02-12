@@ -2926,6 +2926,7 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
     MTGCardInstance * target = card->target;
     if (!target)
         target = card;
+    card->getManaCost()->copy(card->model->data->getManaCost());
     string magicText;
     card->graveEffects = false;
     card->exileEffects = false;

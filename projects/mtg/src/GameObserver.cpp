@@ -692,6 +692,10 @@ void GameObserver::gameStateBasedEffects()
         // Check auras on a card//
         //////////////////////////
         enchantmentStatus();
+        /////////////////////////////
+        // Check affinity on a card//
+        /////////////////////////////
+        Affinity();
         /////////////////////////////////////
         // Check colored statuses on cards //
         /////////////////////////////////////
@@ -787,6 +791,78 @@ void GameObserver::enchantmentStatus()
             {
                 card->target->enchanted = true;
                 card->target->auras += 1;
+            }
+        }
+    }
+}
+
+void GameObserver::Affinity()
+{
+    for (int i = 0; i < 2; i++)
+    {
+        MTGGameZone * zone = players[i]->game->hand;
+        for (int k = zone->nb_cards - 1; k >= 0; k--)
+        {
+            MTGCardInstance * card = zone->cards[k];
+            int color = 0;
+            string type = "";
+            //only do any of the following if a card with the stated ability is in your hand.
+            if(card && 
+                (card->has(Constants::AFFINITYARTIFACTS)||
+                card->has(Constants::AFFINITYFOREST)||
+                card->has(Constants::AFFINITYGREENCREATURES)||
+                card->has(Constants::AFFINITYISLAND)||
+                card->has(Constants::AFFINITYMOUNTAIN)||
+                card->has(Constants::AFFINITYPLAINS)||
+                card->has(Constants::AFFINITYSWAMP))){
+                    if (card && card->has(Constants::AFFINITYARTIFACTS))
+                    {
+                        type = "artifact";
+                    }
+                    else if (card && card->has(Constants::AFFINITYSWAMP))
+                    {
+                        type = "swamp";
+                    }
+                    else if (card && card->has(Constants::AFFINITYMOUNTAIN))
+                    {
+                        type = "mountain";
+                    }
+                    else if (card && card->has(Constants::AFFINITYPLAINS))
+                    {
+                        type = "plains";
+                    }
+                    else if (card && card->has(Constants::AFFINITYISLAND))
+                    {
+                        type = "island";
+                    }
+                    else if (card && card->has(Constants::AFFINITYFOREST))
+                    {
+                        type = "forest";
+                    }
+                    else if (card && card->has(Constants::AFFINITYGREENCREATURES))
+                    {
+                        color = 1;
+                        type = "creature";
+                    }
+                    ManaCost * original = card->model->data->getManaCost();
+                    card->getManaCost()->copy(original);
+                    int reduce = 0;
+                    if(card->has(Constants::AFFINITYGREENCREATURES))
+                    {
+                        TargetChooserFactory tf;
+                        TargetChooser * tc = tf.createTargetChooser("creature[green]",NULL);
+                        reduce = card->controller()->game->battlefield->countByCanTarget(tc);
+                        SAFE_DELETE(tc);
+                    }
+                    else
+                    {
+                        reduce = card->controller()->game->battlefield->countByType(type.c_str());
+                    }
+                    for(int i = 0; i < reduce;i++)
+                    {
+                        if(card->getManaCost()->getCost(color) > 0)
+                            card->getManaCost()->remove(color,1);
+                    }
             }
         }
     }

@@ -6,6 +6,7 @@ using std::map;
 
 #include "MTGDeck.h"
 #include "MTGCardInstance.h"
+#include "TargetChooser.h"
 
 #define MTG_MAX_PLAYER_CARDS 100
 
@@ -80,6 +81,7 @@ class MTGGameZone {
    MTGCardInstance * hasCard(MTGCardInstance * card);
    void cleanupPhase();
    int countByType(const char * value);
+   int countByCanTarget(TargetChooser * tc);
    MTGCardInstance * findByName(string name);
    int hasAbility(int ability); //returns 1 if one of the cards in the  zone has the ability, 0 otherwise
    int hasType(const char * value); //returns 1 if one of the cards in the zone has the type, 0 otherwise

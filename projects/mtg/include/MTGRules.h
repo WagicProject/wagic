@@ -170,16 +170,6 @@ public:
     int testDestroy();
     virtual MTGPersistRule * clone() const;
 };
-//affinity rules
-class MTGAffinityRule: public MTGAbility
-{
-public:
-    MTGAffinityRule(int _id);
-    int receiveEvent(WEvent * event);
-    virtual ostream& toString(ostream& out) const;
-    int testDestroy();
-    virtual MTGAffinityRule * clone() const;
-};
 //unearths destruction if leaves play effect
 class MTGUnearthRule: public MTGAbility
 {

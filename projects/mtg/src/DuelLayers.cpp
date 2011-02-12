@@ -35,7 +35,6 @@ void DuelLayers::init()
     action->Add(NEW MTGPlaneWalkerRule(-1));
     action->Add(NEW MTGTokensCleanup(-1)); // needs to be before persist
     action->Add(NEW MTGPersistRule(-1));
-    action->Add(NEW MTGAffinityRule(-1));
     action->Add(NEW MTGUnearthRule(-1));
     action->Add(NEW MTGLifelinkRule(-1));
     action->Add(NEW MTGDeathtouchRule(-1));
