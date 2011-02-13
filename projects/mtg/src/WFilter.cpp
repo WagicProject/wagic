@@ -51,7 +51,7 @@ WCardFilter * WCFilterFactory::Construct(string src)
             {
                 WCFilterGROUP * g = NEW WCFilterGROUP(Construct(src.substr(i + 1, endp - 1)));
                 if (endp < src.size())
-                {
+                {                    
                     if (src[endp + 1] == '|')
                         return NEW WCFilterOR(g, Construct(src.substr(endp + 2)));
                     else if (src[endp + 1] == '&')
@@ -59,6 +59,7 @@ WCardFilter * WCFilterFactory::Construct(string src)
                     else
                         return g;
                 }
+                SAFE_DELETE( g );
             }
             else
                 return NEW WCFilterNULL();
@@ -78,6 +79,7 @@ WCardFilter * WCFilterFactory::Construct(string src)
                     else
                         return g;
                 }
+                SAFE_DELETE( g );
             }
             else
                 return NEW WCFilterNULL();
