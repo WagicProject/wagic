@@ -1330,13 +1330,15 @@ int AIPlayerBaka::computeActions()
             ipotential = true;
         }
         //look for an instant of ability to interupt with
-        if((castrestrictedspell == false && nospellinstant == false)&&
-            (onlyonecast == false || castcount < 2) && (onlyoneinstant == false || castcount < 2))
+        if((castrestrictedspell == false)&&
+            (onlyonecast == false || castcount < 2))
         {
 
             if (!nextCardToPlay)
             {
                 nextCardToPlay = FindCardToPlay(icurrentMana, "instant");
+                if (game->playRestrictions->canPutIntoZone(nextCardToPlay, game->stack) == PlayRestriction::CANT_PLAY)
+                    nextCardToPlay = NULL;
             }
             if (!nextCardToPlay)
             {
@@ -1379,33 +1381,20 @@ int AIPlayerBaka::computeActions()
                 nextCardToPlay = FindCardToPlay(currentMana, "land");
                 selectAbility();
                 //look for the most expensive creature we can afford
-                if((castrestrictedspell == false && nospellinstant == false)&&
-                    (onlyonecast == false || castcount < 2)&&(onlyoneinstant == false || castcount < 2))
+                if((castrestrictedspell == false)&&
+                    (onlyonecast == false || castcount < 2))
                 {
-                    if (castrestrictedcreature == false && nocreatureinstant == false)
+
+                    const char* types[] = {"creature", "enchantment", "artifact", "sorcery", "instant"};
+                    int count = 0;
+                    while (!nextCardToPlay && count < 5)
                     {
-                        if (!nextCardToPlay)
-                        {
-                            nextCardToPlay = FindCardToPlay(currentMana, "creature");
-                        }
+                        nextCardToPlay = FindCardToPlay(currentMana, types[count]);
+                        if (game->playRestrictions->canPutIntoZone(nextCardToPlay, game->stack) == PlayRestriction::CANT_PLAY)
+                            nextCardToPlay = NULL;
+                        count++;
                     }
-                    //Let's Try an enchantment maybe ?
-                    if (!nextCardToPlay)
-                    {
-                        nextCardToPlay = FindCardToPlay(currentMana, "enchantment");
-                    }
-                    if (!nextCardToPlay)
-                    {
-                        nextCardToPlay = FindCardToPlay(currentMana, "artifact");
-                    }
-                    if (!nextCardToPlay)
-                    {
-                        nextCardToPlay = FindCardToPlay(currentMana, "sorcery");
-                    }
-                    if (!nextCardToPlay)
-                    {
-                        nextCardToPlay = FindCardToPlay(currentMana, "instant");
-                    }
+
                     if (!nextCardToPlay)
                     {
                         selectAbility();

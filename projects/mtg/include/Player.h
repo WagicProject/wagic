@@ -31,9 +31,6 @@ public:
     int castedspellsthisturn;
     bool onlyonecast;
     int castcount;
-    bool nocreatureinstant;
-    bool nospellinstant;
-    bool onlyoneinstant;
     bool castrestrictedcreature;
     bool castrestrictedspell;
     bool onlyoneboth;

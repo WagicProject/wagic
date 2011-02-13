@@ -1,0 +1,28 @@
+#Slience: Opponent cannot cast spells this turn
+[init]
+firstmain
+[player1]
+manapool:{G}{G}
+inplay:mountain
+hand:grizzly bears,raging golblin
+[player2]
+inplay:plains
+hand:Silence
+[do]
+Grizzly Bears
+no
+yes
+plains
+Silence
+endofinterruption
+mountain
+Raging goblin
+[assert]
+firstmain
+[player1]
+inplay:mountain,Grizzly bears
+manapool:{R}
+[player2]
+inplay:plains
+graveyard:Silence
+[end]

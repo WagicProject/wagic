@@ -1902,7 +1902,7 @@ type=Artifact
 name=Angelic Arbiter
 abilities=flying
 auto=@movedTo(*|opponentstack):all(creature|opponentBattlefield) cantattack
-auto=@attacking(creature|opponentBattlefield):nospell opponent
+auto=@attacking(creature|opponentBattlefield):maxCast(*)0 opponent ueot
 text=Flying -- Each opponent who cast a spell this turn can't attack with creatures. -- Each opponent who attacked with creatures this turn can't cast spells.
 mana={5}{W}{W}
 type=Creature
@@ -4109,8 +4109,7 @@ toughness=4
 [/card]
 [card]
 name=Azusa, Lost but Seeking
-auto=land:2
-auto=@each my upkeep:land:2 controller
+auto=maxPlay(land)+2
 text=You may play two additional lands on each of your turns.
 mana={2}{G}
 type=Legendary Creature
@@ -9712,7 +9711,7 @@ type=Sorcery
 [card]
 name=Cease-Fire
 target=player
-auto=nocreatures
+auto=maxCast(creature)0
 auto=draw:1 controller
 text=Target player can't cast creature spells this turn. -- Draw a card.
 mana={2}{W}
@@ -20094,15 +20093,14 @@ toughness=1
 [/card]
 [card]
 name=Exploration
-auto=land:1
-auto=@each my upkeep:land:1 controller
+auto=maxPlay(land)+1
 text=You may play an additional land on each of your turns.
 mana={G}
 type=Enchantment
 [/card]
 [card]
 name=Explore
-auto=land:1
+auto=maxPlay(land)+1
 auto=draw:1
 text=You may play an additional land this turn. -- Draw a card.
 mana={1}{G}
@@ -44353,7 +44351,7 @@ toughness=6
 [card]
 name=Orim's Chant
 target=player
-auto=nospells
+auto=maxCast(*)0
 kicker={W}
 auto=kicker cantattack all(creature)
 text=Kicker {W} (You may pay an additional {W} as you cast this spell.) -- Target player can't cast spells this turn. -- If Orim's Chant was kicked, creatures can't attack this turn.
@@ -44400,8 +44398,8 @@ toughness=3
 [card]
 name=Oriss Samite Guardian
 auto={T}:prevent:999 target(creature)
-auto={discard(oriss samite guardian|myhand)}:name(opponent can't cast spells and his creatures cannot attack ueot) && nospell opponent && cantattack all(creature|opponentBattlefield)
-auto={discard(oriss samite guardian|myhand)}:name(you can't cast spells and your creatures cannot attack ueot) && nospell control && cantattack all(creature|myBattlefield)
+auto={discard(oriss samite guardian|myhand)}:name(opponent can't cast spells and his creatures cannot attack ueot) && maxCast(*)0 opponent ueot && cantattack all(creature|opponentBattlefield)
+auto={discard(oriss samite guardian|myhand)}:name(you can't cast spells and your creatures cannot attack ueot) && maxCast(*)0 control ueot && cantattack all(creature|myBattlefield)
 text={T}: Prevent all damage that would be dealt to target creature this turn. -- Grandeur - Discard another card named Oriss, Samite Guardian: Target player can't cast spells this turn, and creatures that player controls can't attack this turn.
 mana={1}{W}{W}
 type=Legendary Creature
@@ -56424,7 +56422,7 @@ type=Sorcery
 [/card]
 [card]
 name=Silence
-auto=nospells opponent
+auto=maxCast(*)0 opponent
 text=Your opponents can't cast spells this turn. (Spells cast before this resolves are unaffected.)
 mana={W}
 type=Instant
@@ -62151,7 +62149,7 @@ type=Land
 [/card]
 [card]
 name=Summer Bloom
-auto=land:3
+auto=maxPlay(land)+3
 text=You may play up to three additional lands this turn.
 mana={1}{G}
 type=Sorcery

@@ -1455,62 +1455,123 @@ AACloner::~AACloner()
 {
 }
 
-// More Land - allow more lands to be played on a turn
-AMoreLandPlzUEOT::AMoreLandPlzUEOT(int _id, MTGCardInstance * card, Targetable * _target, WParsedInt * _additional, int who) :
-    InstantAbilityTP(_id, card, _target, who), additional(_additional)
+
+
+// Cast/Play Restriction modifier
+ACastRestriction::ACastRestriction(int _id, MTGCardInstance * card, Targetable * _target, TargetChooser * _restrictionsScope, WParsedInt * _value, bool _modifyExisting, int _zoneId, int who) :
+   AbilityTP(_id, card, _target, who), restrictionsScope(_restrictionsScope), value(_value), modifyExisting(_modifyExisting),zoneId(_zoneId)
 {
-    landsRestriction = NULL;
+    existingRestriction = NULL;
+    targetPlayer = NULL;
 }
 
-int AMoreLandPlzUEOT::addToGame()
+int ACastRestriction::addToGame()
 {
     Targetable * _target = getTarget();
-    Player * player;
+
     if (_target)
     {
         if (_target->typeAsTarget() == TARGET_CARD)
         {
-            player = ((MTGCardInstance *) _target)->controller();
+            targetPlayer = ((MTGCardInstance *) _target)->controller();
         }
         else
         {
-            player = (Player *) _target;
+            targetPlayer = (Player *) _target;
         }
-        landsRestriction = (MaxPerTurnRestriction *) (player->game->playRestrictions->getRestrictionById(PlayRestriction::LANDS_RULE_ID));
-        if(landsRestriction && landsRestriction->maxPerTurn != MaxPerTurnRestriction::NO_MAX)
-            landsRestriction->maxPerTurn += additional->getValue();
-        return InstantAbility::addToGame();
+        if (modifyExisting)
+        {
+            //For now the only modifying rule is the one for lands, so this is hardcoded here.
+            //This means that a modifying rule for anything lands will actually modify the lands rule.
+            //In the future, we need a way to "identify" rules that modify an existing restriction, probably by doing a comparison of the TargetChoosers
+            existingRestriction = (MaxPerTurnRestriction *) (targetPlayer->game->playRestrictions->getRestrictionById(PlayRestriction::LANDS_RULE_ID));
+            if(existingRestriction && existingRestriction->maxPerTurn != MaxPerTurnRestriction::NO_MAX)
+                existingRestriction->maxPerTurn += value->getValue();
+        }
+        else
+        {
+            TargetChooser * _tc = restrictionsScope->clone();
+            existingRestriction = NEW MaxPerTurnRestriction(PlayRestriction::UNDEF_ID, _tc, value->getValue(), MTGGameZone::intToZone(zoneId, source->controller(), targetPlayer));
+            targetPlayer->game->playRestrictions->addRestriction(existingRestriction);
+
+        }
+        AbilityTP::addToGame();
     }
     return 0;
 }
 
-int AMoreLandPlzUEOT::destroy()
+int ACastRestriction::destroy()
 {
-    if (!landsRestriction)
+    if (!existingRestriction)
         return 0;
 
-    if(landsRestriction && landsRestriction->maxPerTurn != MaxPerTurnRestriction::NO_MAX)
-        landsRestriction->maxPerTurn -= additional->getValue();
+    if (modifyExisting)
+    {
+        if(existingRestriction->maxPerTurn != MaxPerTurnRestriction::NO_MAX)
+            existingRestriction->maxPerTurn -= value->getValue();
+    }
+    else
+    {
+         targetPlayer->game->playRestrictions->removeRestriction(existingRestriction);
+         SAFE_DELETE(existingRestriction);
+    }
     return 1;
 }
 
-const char * AMoreLandPlzUEOT::getMenuText()
+const char * ACastRestriction::getMenuText()
 {
-    return "Additional Lands";
+    if (modifyExisting)
+        return "Additional Lands"; //hardoced because only the lands rule allows to modify existing rule for now
+    return "Cast Restriction";
 }
 
-AMoreLandPlzUEOT * AMoreLandPlzUEOT::clone() const
+ACastRestriction * ACastRestriction::clone() const
 {
-   AMoreLandPlzUEOT * a = NEW AMoreLandPlzUEOT(*this);
-    a->additional = NEW WParsedInt(*(a->additional));
+    ACastRestriction * a = NEW ACastRestriction(*this);
+    a->value = NEW WParsedInt(*(a->value));
+    a->restrictionsScope = restrictionsScope->clone();
     a->isClone = 1;
     return a;
 }
 
-AMoreLandPlzUEOT::~AMoreLandPlzUEOT()
+ACastRestriction::~ACastRestriction()
 {
-    SAFE_DELETE(additional);
+    SAFE_DELETE(value);
+    SAFE_DELETE(restrictionsScope);
 }
+
+
+AInstantCastRestrictionUEOT::AInstantCastRestrictionUEOT(int _id, MTGCardInstance * card, Targetable * _target, TargetChooser * _restrictionsScope, WParsedInt * _value, bool _modifyExisting, int _zoneId, int who) :
+    InstantAbilityTP(_id, card, _target, who)
+{
+    ability = NEW ACastRestriction(_id, card, _target, _restrictionsScope, _value, _modifyExisting,  _zoneId, who);
+}
+
+int AInstantCastRestrictionUEOT::resolve()
+{
+    ACastRestriction * a = ability->clone();
+    GenericInstantAbility * wrapper = NEW GenericInstantAbility(1, source, (Damageable *) (this->target), a);
+    wrapper->addToGame();
+    return 1;
+}
+const char * AInstantCastRestrictionUEOT::getMenuText()
+{
+    return ability->getMenuText();
+}
+
+AInstantCastRestrictionUEOT * AInstantCastRestrictionUEOT::clone() const
+{
+    AInstantCastRestrictionUEOT * a = NEW AInstantCastRestrictionUEOT(*this);
+    a->ability = this->ability->clone();
+    a->isClone = 1;
+    return a;
+}
+
+AInstantCastRestrictionUEOT::~AInstantCastRestrictionUEOT()
+{
+    SAFE_DELETE(ability);
+}
+
 
 //AAMover
 AAMover::AAMover(int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest, ManaCost * _cost, int doTap) :
@@ -1566,116 +1627,6 @@ const char * AAMover::getMenuText()
 AAMover * AAMover::clone() const
 {
     AAMover * a = NEW AAMover(*this);
-    a->isClone = 1;
-    return a;
-}
-
-// No Creatures
-AANoCreatures::AANoCreatures(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost, int _tap, int who) :
-    ActivatedAbilityTP(_id, card, _target, _cost, _tap, who)
-{
-}
-
-int AANoCreatures::resolve()
-{
-    Targetable * _target = getTarget();
-    Player * player;
-    if (_target)
-    {
-        if (_target->typeAsTarget() == TARGET_CARD)
-        {
-            player = ((MTGCardInstance *) _target)->controller();
-        }
-        else
-        {
-            player = (Player *) _target;
-        }
-        player->nocreatureinstant = true;
-    }
-    return 1;
-}
-
-const char * AANoCreatures::getMenuText()
-{
-    return "No Creatures!";
-}
-
-AANoCreatures * AANoCreatures::clone() const
-{
-    AANoCreatures * a = NEW AANoCreatures(*this);
-    a->isClone = 1;
-    return a;
-}
-
-// AA No Spells
-AANoSpells::AANoSpells(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost, int _tap, int who) :
-    ActivatedAbilityTP(_id, card, _target, _cost, _tap, who)
-{
-}
-int AANoSpells::resolve()
-{
-    Targetable * _target = getTarget();
-    Player * player;
-    if (_target)
-    {
-        if (_target->typeAsTarget() == TARGET_CARD)
-        {
-            player = ((MTGCardInstance *) _target)->controller();
-        }
-        else
-        {
-            player = (Player *) _target;
-        }
-        player->nospellinstant = true;
-    }
-    return 1;
-}
-
-const char * AANoSpells::getMenuText()
-{
-    return "No Spells!";
-}
-
-AANoSpells * AANoSpells::clone() const
-{
-    AANoSpells * a = NEW AANoSpells(*this);
-    a->isClone = 1;
-    return a;
-}
-
-//OnlyOne
-AAOnlyOne::AAOnlyOne(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost, int _tap, int who) :
-    ActivatedAbilityTP(_id, card, _target, _cost, _tap, who)
-{
-}
-
-int AAOnlyOne::resolve()
-{
-    Targetable * _target = getTarget();
-    Player * player;
-    if (_target)
-    {
-        if (_target->typeAsTarget() == TARGET_CARD)
-        {
-            player = ((MTGCardInstance *) _target)->controller();
-        }
-        else
-        {
-            player = (Player *) _target;
-        }
-        player->onlyoneinstant = true;
-    }
-    return 1;
-}
-
-const char * AAOnlyOne::getMenuText()
-{
-    return "Only One Spell!";
-}
-
-AAOnlyOne * AAOnlyOne::clone() const
-{
-    AAOnlyOne * a = NEW AAOnlyOne(*this);
     a->isClone = 1;
     return a;
 }

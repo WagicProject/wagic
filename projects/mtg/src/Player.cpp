@@ -21,9 +21,6 @@ Damageable(20)
     onlyoneboth = false;
     onlyonecast = false;
     castcount = 0;
-    nocreatureinstant = false;
-    nospellinstant = false;
-    onlyoneinstant = false;
     poisonCount = 0;
     damageCount = 0;
     preventable = 0;

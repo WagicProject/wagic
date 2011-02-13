@@ -731,6 +731,63 @@ void MTGLibrary::shuffleTopToBottom(int nbcards)
     }
 }
 
+MTGGameZone * MTGGameZone::intToZone(int zoneId, Player * p, Player * p2)
+{
+
+    switch (zoneId)
+    {
+    case MY_GRAVEYARD:
+        return p->game->graveyard;
+    case OPPONENT_GRAVEYARD:
+        return p->opponent()->game->graveyard;
+    case TARGET_CONTROLLER_GRAVEYARD:
+        return p2->game->graveyard;
+
+    case MY_BATTLEFIELD:
+        return p->game->inPlay;
+    case OPPONENT_BATTLEFIELD:
+        return p->opponent()->game->inPlay;
+    case TARGET_CONTROLLER_BATTLEFIELD:
+        return p2->game->inPlay;
+    case BATTLEFIELD:
+        return p->game->inPlay;
+
+    case MY_HAND:
+        return p->game->hand;
+    case OPPONENT_HAND:
+        return p->opponent()->game->hand;
+    case TARGET_CONTROLLER_HAND:
+        return p2->game->hand;
+
+    case MY_EXILE:
+        return p->game->removedFromGame;
+    case OPPONENT_EXILE:
+        return p->opponent()->game->removedFromGame;
+    case TARGET_CONTROLLER_EXILE:
+        return p2->game->removedFromGame;
+
+    case MY_LIBRARY:
+        return p->game->library;
+    case OPPONENT_LIBRARY:
+        return p->opponent()->game->library;
+    case TARGET_CONTROLLER_LIBRARY:
+        return p2->game->library;
+    case LIBRARY:
+        return p->game->library;
+
+    case MY_STACK:
+        return p->game->stack;
+    case OPPONENT_STACK:
+        return p->opponent()->game->stack;
+    case TARGET_CONTROLLER_STACK:
+        return p2->game->stack;
+    case STACK:
+        return p->game->stack;
+    default:
+        return NULL;
+    }
+}
+
 MTGGameZone * MTGGameZone::intToZone(int zoneId, MTGCardInstance * source, MTGCardInstance * target)
 {
     Player *p, *p2;
@@ -758,88 +815,51 @@ MTGGameZone * MTGGameZone::intToZone(int zoneId, MTGCardInstance * source, MTGCa
     else
         p2 = target->controller();
 
+
+    MTGGameZone * result = intToZone(zoneId, p, p2);
+    if (result) return result;
+
     switch (zoneId)
     {
-    case MY_GRAVEYARD:
-        return p->game->graveyard;
-    case OPPONENT_GRAVEYARD:
-        return p->opponent()->game->graveyard;
     case TARGET_OWNER_GRAVEYARD:
         return target->owner->game->graveyard;
-    case TARGET_CONTROLLER_GRAVEYARD:
-        return p2->game->graveyard;
     case GRAVEYARD:
         return target->owner->game->graveyard;
     case OWNER_GRAVEYARD:
         return target->owner->game->graveyard;
 
-    case MY_BATTLEFIELD:
-        return p->game->inPlay;
-    case OPPONENT_BATTLEFIELD:
-        return p->opponent()->game->inPlay;
     case TARGET_OWNER_BATTLEFIELD:
         return target->owner->game->inPlay;
-    case TARGET_CONTROLLER_BATTLEFIELD:
-        return p2->game->inPlay;
-    case BATTLEFIELD:
-        return p->game->inPlay;
     case OWNER_BATTLEFIELD:
         return target->owner->game->inPlay;
 
-    case MY_HAND:
-        return p->game->hand;
-    case OPPONENT_HAND:
-        return p->opponent()->game->hand;
     case TARGET_OWNER_HAND:
         return target->owner->game->hand;
-    case TARGET_CONTROLLER_HAND:
-        return p2->game->hand;
     case HAND:
         return target->owner->game->hand;
     case OWNER_HAND:
         return target->owner->game->hand;
 
-    case MY_EXILE:
-        return p->game->removedFromGame;
-    case OPPONENT_EXILE:
-        return p->opponent()->game->removedFromGame;
     case TARGET_OWNER_EXILE:
         return target->owner->game->removedFromGame;
-    case TARGET_CONTROLLER_EXILE:
-        return p2->game->removedFromGame;
     case EXILE:
         return target->owner->game->removedFromGame;
     case OWNER_EXILE:
         return target->owner->game->removedFromGame;
 
-    case MY_LIBRARY:
-        return p->game->library;
-    case OPPONENT_LIBRARY:
-        return p->opponent()->game->library;
     case TARGET_OWNER_LIBRARY:
         return target->owner->game->library;
-    case TARGET_CONTROLLER_LIBRARY:
-        return p2->game->library;
-    case LIBRARY:
-        return p->game->library;
     case OWNER_LIBRARY:
         return target->owner->game->library;
 
-    case MY_STACK:
-        return p->game->stack;
-    case OPPONENT_STACK:
-        return p->opponent()->game->stack;
     case TARGET_OWNER_STACK:
         return target->owner->game->stack;
-    case TARGET_CONTROLLER_STACK:
-        return p2->game->stack;
-    case STACK:
-        return p->game->stack;
     case OWNER_STACK:
         return target->owner->game->stack;
     default:
         return NULL;
     }
+ 
 }
 
 int MTGGameZone::zoneStringToId(string zoneName)

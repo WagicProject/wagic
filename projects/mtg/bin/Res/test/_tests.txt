@@ -472,6 +472,7 @@ selesnya_guildmage.txt
 setpower_settoughness.txt
 shard_volley.txt
 sigil_captain_i467.txt
+silence.txt
 silver_seraph_i300.txt
 skullcage0_i239.txt
 skullcage1_i239.txt

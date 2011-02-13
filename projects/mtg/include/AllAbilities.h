@@ -1280,20 +1280,39 @@ public:
     int getNumCards();
 };
 
-//lands, allows to play more land during a turn:
-class AMoreLandPlzUEOT: public InstantAbilityTP
+
+
+class ACastRestriction: public AbilityTP
 {
 public:
-    WParsedInt *additional;
-    MaxPerTurnRestriction * landsRestriction;
+    WParsedInt *value; //"maxPerTurn" value
+    MaxPerTurnRestriction * existingRestriction; // a pointer to the restriction that is being modified or that has been created (for restriction deletion purpose)
+    TargetChooser * restrictionsScope; //a minimalist TargetChooser object describing the cards impacted by the restriction (for example: lands)
+    bool modifyExisting; //if set to true, means we want to modify an existing restriction, otherwise we create a new one
+    int zoneId; // identifier of the zone id impacted by the restriction
+    Player * targetPlayer; // Reference to the player impacted by the restriction (for restriction deletion purpose)
 
-    AMoreLandPlzUEOT(int _id, MTGCardInstance * card, Targetable * _target, WParsedInt * _additional, int who = TargetChooser::UNSET);
+    ACastRestriction(int _id, MTGCardInstance * card, Targetable * _target, TargetChooser * _restrictionsScope, WParsedInt * _value, bool _modifyExisting, int _zoneId, int who = TargetChooser::UNSET);
     int addToGame();
     int destroy();
     const char * getMenuText();
-    AMoreLandPlzUEOT * clone() const;
-    ~AMoreLandPlzUEOT();
+    ACastRestriction * clone() const;
+    ~ACastRestriction();
 
+};
+
+
+class  AInstantCastRestrictionUEOT: public InstantAbilityTP
+{
+public:
+    ACastRestriction * ability;
+
+
+    AInstantCastRestrictionUEOT(int _id, MTGCardInstance * card, Targetable * _target, TargetChooser * _restrictionsScope, WParsedInt * _value, bool _modifyExisting, int _zoneId, int who = TargetChooser::UNSET);
+    int resolve();
+    const char * getMenuText();
+    AInstantCastRestrictionUEOT * clone() const;
+    ~AInstantCastRestrictionUEOT();
 };
 
 /*Gives life to target controller*/
@@ -2052,7 +2071,6 @@ public:
         a->isClone = 1;
         return a;
     }
-
 };
 
 //Circle of Protections
@@ -5552,38 +5570,6 @@ public:
     AAShuffle * clone() const;
 };
 
-//only 1 spell
-class AAOnlyOne: public ActivatedAbilityTP
-{
-public:
-    AAOnlyOne(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost = NULL, int _tap = 0, int who =
-            TargetChooser::UNSET);
-    int resolve();
-    const char * getMenuText();
-    AAOnlyOne * clone() const;
-};
-
-//nospells
-class AANoSpells: public ActivatedAbilityTP
-{
-public:
-    AANoSpells(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost = NULL, int _tap = 0, int who =
-            TargetChooser::UNSET);
-    int resolve();
-    const char * getMenuText();
-    AANoSpells * clone() const;
-};
-
-//NoCreature
-class AANoCreatures: public ActivatedAbilityTP
-{
-public:
-    AANoCreatures(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost = NULL, int _tap = 0, int who =
-            TargetChooser::UNSET);
-    int resolve();
-    const char * getMenuText();
-    AANoCreatures * clone() const;
-};
 
 //Random Discard
 class AARandomDiscarder: public ActivatedAbilityTP

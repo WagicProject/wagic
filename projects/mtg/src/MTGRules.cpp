@@ -55,6 +55,9 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
         || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN))
         )
     {
+
+        if (currentPlayer->game->playRestrictions->canPutIntoZone(card, currentPlayer->game->stack) == PlayRestriction::CANT_PLAY)
+            return 0;
         ManaCost * playerMana = player->getManaPool();
         ManaCost * cost = card->getManaCost();
 
@@ -69,21 +72,7 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
         {
             return 0;
         }
-        if (player->nospellinstant)
-        {
-            return 0;
-        }
-        if (player->onlyoneinstant)
-        {
-            if (player->castcount >= 1)
-            {
-                return 0;
-            }
-        }
-        if (player->nocreatureinstant && card->hasType("creature"))
-        {
-            return 0;
-        }
+
         if (player->castrestrictedcreature && card->hasType("creature"))
         {
             return 0;
@@ -168,7 +157,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
             game->targetChooser = NULL;
             player->castedspellsthisturn += 1;
             player->opponent()->castedspellsthisturn += 1;
-            if (player->onlyonecast || player->onlyoneinstant)
+            if (player->onlyonecast)
             {
                 player->castcount += 1;
             }
@@ -178,7 +167,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
             spell = game->mLayers->stackLayer()->addSpell(copy, NULL, spellCost, payResult, 0);
             player->castedspellsthisturn += 1;
             player->opponent()->castedspellsthisturn += 1;
-            if (player->onlyonecast || player->onlyoneinstant)
+            if (player->onlyonecast)
             {
                 player->castcount += 1;
             }
@@ -275,6 +264,8 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
         || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN))
         )
     {
+        if (currentPlayer->game->playRestrictions->canPutIntoZone(card, currentPlayer->game->stack) == PlayRestriction::CANT_PLAY)
+            return 0;
         ManaCost * playerMana = player->getManaPool();
 
 #ifdef WIN32
@@ -289,21 +280,7 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
         {
             return 0;
         }
-        if (player->nospellinstant )
-        {
-            return 0;
-        }
-        if (player->onlyoneinstant )
-        {
-            if (player->castcount >= 1)
-            {
-                return 0;
-            }
-        }
-        if (player->nocreatureinstant && card->hasType("creature"))
-        {
-            return 0;
-        }
+
         if (player->castrestrictedcreature  && card->hasType("creature"))
         {
             return 0;
@@ -375,7 +352,7 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
         game->targetChooser = NULL;
         player->castedspellsthisturn += 1;
         player->opponent()->castedspellsthisturn += 1;
-        if (player->onlyonecast  || player->onlyoneinstant)
+        if (player->onlyonecast )
             player->castcount += 1;
 
         if (card->has(Constants::STORM))
@@ -610,6 +587,8 @@ int MTGMorphCostRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
         || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN))
         )
     {
+        if (currentPlayer->game->playRestrictions->canPutIntoZone(card, currentPlayer->game->stack) == PlayRestriction::CANT_PLAY)
+            return 0;
         ManaCost * playerMana = player->getManaPool();
         ManaCost * cost = card->getManaCost();
         ManaCost * morph = card->getManaCost()->morph;
@@ -624,21 +603,7 @@ int MTGMorphCostRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
         {
             return 0;
         }
-        if (player->nospellinstant )
-        {
-            return 0;
-        }
-        if (player->onlyoneinstant )
-        {
-            if (player->castcount >= 1)
-            {
-                return 0;
-            }
-        }
-        if (player->nocreatureinstant  && card->hasType("creature"))
-        {
-            return 0;
-        }
+
         if (player->castrestrictedcreature && card->hasType("creature"))
         {
             return 0;
@@ -709,7 +674,7 @@ int MTGMorphCostRule::reactToClick(MTGCardInstance * card)
     copy->toughness = 2;
     player->castedspellsthisturn += 1;
     player->opponent()->castedspellsthisturn += 1;
-    if (player->onlyonecast || player->onlyoneinstant)
+    if (player->onlyonecast)
     {
         player->castcount += 1;
 

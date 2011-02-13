@@ -406,6 +406,14 @@ public:
   Targetable * getTarget();
 };
 
+class AbilityTP:public MTGAbility{
+public:
+  int who;
+  AbilityTP(int id, MTGCardInstance * card, Targetable * _target = NULL, int who = TargetChooser::UNSET);
+  Targetable * getTarget();
+  virtual ~AbilityTP(){};
+};
+
 class AManaProducer: public ActivatedAbilityTP{
  protected:
 

@@ -111,9 +111,6 @@ void GameObserver::nextGamePhase()
         currentPlayer->castedspellsthisturn = 0;
         currentPlayer->opponent()->castedspellsthisturn = 0;
         currentPlayer->castcount = 0;
-        currentPlayer->nocreatureinstant = false;
-        currentPlayer->nospellinstant = false;
-        currentPlayer->onlyoneinstant = false;
         currentPlayer->damageCount = 0;
         currentPlayer->preventable = 0;
         currentPlayer->isPoisoned = false;

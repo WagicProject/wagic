@@ -18,6 +18,10 @@ const size_t kLordKeywordsCount = 5;
 const string kThisKeywords[] = { "this(", "thisforeach(" };
 const size_t kThisKeywordsCount = 2;
 
+const string kMaxCastKeywords[] = { "maxplay(", "maxcost("};
+const int kMaxCastZones[] = { MTGGameZone::BATTLEFIELD, MTGGameZone::STACK};
+const size_t kMaxCastKeywordsCount = 2;
+
 int MTGAbility::allowedToCast(MTGCardInstance * card,Player * player)
 {
     int cPhase = game->getCurrentGamePhase();
@@ -699,7 +703,8 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int 
         }
         return NEW TrVampired(id, card, tc, fromTc, 0);
     }
-        //when card becomes the target of a spell or ability
+
+    //when card becomes the target of a spell or ability
     found = s.find("targeted(");
     if (found != string::npos)
     {
@@ -796,6 +801,7 @@ int AbilityFactory::parseRestriction(string s)
     return ActivatedAbility::NO_RESTRICTION;
 }
 
+// When abilities encapsulate each other, gets the deepest one (it is the one likely to have the most relevant information)
 MTGAbility * AbilityFactory::getCoreAbility(MTGAbility * a)
 {
     GenericTargetAbility * gta = dynamic_cast<GenericTargetAbility*> (a);
@@ -2187,27 +2193,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         a->oneShot = 1;
         return a;
     }
-    //additional lands per turn
-    found = s.find("land:");
-    if (found != string::npos)
-    {
-        size_t start = s.find(":", found);
-        size_t end = s.find(" ", start);
-        string additionalStr;
-        if (end != string::npos)
-        {
-            additionalStr = s.substr(start + 1, end - start - 1);
-        }
-        else
-        {
-            additionalStr = s.substr(start + 1);
-        }
-        WParsedInt * additional = NEW WParsedInt(additionalStr, spell, card);
-        Targetable * t = NULL;
-        if (spell)
-            t = spell->getNextTarget();
-        return NEW AMoreLandPlzUEOT(id, card, t, additional, who);
-    }
+
 
     //Deplete
     found = s.find("deplete:");
@@ -2244,38 +2230,45 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
-    //cantcastspells
-    found = s.find("onlyonespell");
-    if (found != string::npos)
+    //Cast/Play Restrictions
+	for (size_t i = 0; i < kMaxCastKeywordsCount; ++i)
     {
-        Targetable * t = NULL;
-        if (spell)
-            t = spell->getNextTarget();
-        MTGAbility * a = NEW AAOnlyOne(id, card, t, NULL, 0, who);
-        a->oneShot = 1;
-        return a;
-    }
-    //cantcastspells
-    found = s.find("nospells");
-    if (found != string::npos)
-    {
-        Targetable * t = NULL;
-        if (spell)
-            t = spell->getNextTarget();
-        MTGAbility * a = NEW AANoSpells(id, card, t, NULL, 0, who);
-        a->oneShot = 1;
-        return a;
-    }
-    //cantcastcreature
-    found = s.find("nocreatures");
-    if (found != string::npos)
-    {
-        Targetable * t = NULL;
-        if (spell)
-            t = spell->getNextTarget();
-        MTGAbility * a = NEW AANoCreatures(id, card, t, NULL, 0, who);
-        a->oneShot = 1;
-        return a;
+        found = s.find(kMaxCastKeywords[i]);
+        if (found != string::npos)
+        {
+            size_t header = kMaxCastKeywords[i].size();
+            size_t end = s.find(")");
+            string targetsString = s.substr(found + header, end - found - header);
+            TargetChooserFactory tcf;
+            TargetChooser * castTargets = tcf.createTargetChooser(targetsString, card);
+
+            size_t space = s.find(" ", end);
+            string valueStr;
+            if (space!= string::npos)
+            {
+                valueStr = s.substr(end + 1, space - end - 1);
+            }
+            else
+            {
+                valueStr = s.substr(end + 1);
+            }
+
+            bool modifyExisting = (valueStr.find("+") != string::npos || valueStr.find("-") != string::npos);
+
+            WParsedInt * value = NEW WParsedInt(valueStr, spell, card);
+            Targetable * t = NULL;
+            if (spell)
+                t = spell->getNextTarget();
+            if (!activated)
+            {
+                if (card->hasType("instant") || card->hasType("sorcery") || forceUEOT)
+                {
+                    return NEW AInstantCastRestrictionUEOT(id, card, t, castTargets, value, modifyExisting, kMaxCastZones[i], who);
+                }
+                return NEW ACastRestriction(id, card, t, castTargets, value, modifyExisting, kMaxCastZones[i], who);
+            }
+            return NULL; //TODO NEW ACastRestrictionUntilEndOfTurn(id, card, t, value, modifyExisting, kMaxCastZones[i], who);
+        }
     }
 
     //Discard
@@ -4750,6 +4743,44 @@ AManaProducer * AManaProducer::clone() const
     a->output->copy(output);
     a->isClone = 1;
     return a;
+}
+
+
+AbilityTP::AbilityTP(int id, MTGCardInstance * card, Targetable * _target, int who) :
+    MTGAbility(id, card), who(who)
+{
+    if (_target)
+        target = _target;
+}
+
+Targetable * AbilityTP::getTarget()
+{
+    switch (who)
+    {
+    case TargetChooser::TARGET_CONTROLLER:
+        if (target)
+        {
+            switch (target->typeAsTarget())
+            {
+            case TARGET_CARD:
+                return ((MTGCardInstance *) target)->controller();
+            case TARGET_STACKACTION:
+                return ((Interruptible *) target)->source->controller();
+            default:
+                return (Player *) target;
+            }
+        }
+        return NULL;
+    case TargetChooser::CONTROLLER:
+        return source->controller();
+    case TargetChooser::OPPONENT:
+        return source->controller()->opponent();
+    case TargetChooser::OWNER:
+        return source->owner;
+    default:
+        return target;
+    }
+    return NULL;
 }
 
 ActivatedAbilityTP::ActivatedAbilityTP(int id, MTGCardInstance * card, Targetable * _target, ManaCost * cost, int doTap, int who) :
