@@ -8447,7 +8447,7 @@ subtype=Aura
 [card]
 name=Burden of Greed
 target=opponent
-auto=foreach(artifact[tapped]|opponentBattlefield)damage:1
+auto=foreach(artifact[tapped]|opponentBattlefield) life:-1 opponent
 text=Target player loses 1 life for each tapped artifact he or she controls.
 mana={3}{B}
 type=Instant
@@ -21481,7 +21481,7 @@ type=Artifact
 [card]
 name=Fire Dragon
 abilities=flying
-auto=foreach(mountain|myBattlefield) damage:1 target(creature) oneshot
+auto=damage:type:mountain target(creature)
 text=Flying -- When Fire Dragon enters the battlefield, it deals damage equal to the number of Mountains you control to target creature.
 mana={6}{R}{R}{R}
 type=Creature
