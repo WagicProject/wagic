@@ -97,50 +97,38 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
 
             if (zoneName.compare("*") == 0)
             {
-                zones[nbzones] = MTGGameZone::ALL_ZONES;
+                zones[nbzones++] = MTGGameZone::ALL_ZONES;
             }
             else if (zoneName.compare("graveyard") == 0)
             {
-                zones[nbzones] = MTGGameZone::MY_GRAVEYARD;
-                nbzones++;
-                zones[nbzones] = MTGGameZone::OPPONENT_GRAVEYARD;
+                zones[nbzones++] = MTGGameZone::MY_GRAVEYARD;
+                zones[nbzones++] = MTGGameZone::OPPONENT_GRAVEYARD;
             }
             else if (zoneName.compare("battlefield") == 0 || zoneName.compare("inplay") == 0)
             {
-                zones[nbzones] = MTGGameZone::MY_BATTLEFIELD;
-                nbzones++;
-                zones[nbzones] = MTGGameZone::OPPONENT_BATTLEFIELD;
+                zones[nbzones++] = MTGGameZone::MY_BATTLEFIELD;
+                zones[nbzones++] = MTGGameZone::OPPONENT_BATTLEFIELD;
             }
             else if (zoneName.compare("nonbattlezone") == 0)
             {
-                zones[nbzones] = MTGGameZone::MY_GRAVEYARD;
-                nbzones++;
-                zones[nbzones] = MTGGameZone::OPPONENT_GRAVEYARD;
-                nbzones++;
-                zones[nbzones] = MTGGameZone::MY_LIBRARY;
-                nbzones++;
-                zones[nbzones] = MTGGameZone::OPPONENT_LIBRARY;
-                nbzones++;
-                zones[nbzones] = MTGGameZone::MY_HAND;
-                nbzones++;
-                zones[nbzones] = MTGGameZone::OPPONENT_HAND;
-                nbzones++;
-                zones[nbzones] = MTGGameZone::MY_EXILE;
-                nbzones++;
-                zones[nbzones] = MTGGameZone::OPPONENT_EXILE;
+                zones[nbzones++] = MTGGameZone::MY_GRAVEYARD;
+                zones[nbzones++] = MTGGameZone::OPPONENT_GRAVEYARD;
+                zones[nbzones++] = MTGGameZone::MY_LIBRARY;
+                zones[nbzones++] = MTGGameZone::OPPONENT_LIBRARY;
+                zones[nbzones++] = MTGGameZone::MY_HAND;
+                zones[nbzones++] = MTGGameZone::OPPONENT_HAND;
+                zones[nbzones++] = MTGGameZone::OPPONENT_EXILE;
             }
             else if (zoneName.compare("stack") == 0)
             {
-                zones[nbzones] = MTGGameZone::MY_STACK;
-                nbzones++;
-                zones[nbzones] = MTGGameZone::OPPONENT_STACK;
+                zones[nbzones++] = MTGGameZone::MY_STACK;
+                zones[nbzones++] = MTGGameZone::OPPONENT_STACK;
             }
             else
             {
                 int zone = MTGGameZone::zoneStringToId(zoneName);
-                if (zone) zones[nbzones] = zone;
+                if (zone) zones[nbzones++] = zone;
             }
-            nbzones++;
         }
     }
     else
@@ -154,23 +142,23 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
     TargetChooser * tc = NULL;
     int maxtargets = 1;
     CardDescriptor * cd = NULL;
-//max targets allowed
-        size_t limit = s1.find('<');
-        if (limit != string::npos) 
+    //max targets allowed
+    size_t limit = s1.find('<');
+    if (limit != string::npos) 
+    {
+        size_t end = s1.find(">", limit);
+        string howmany;
+        if (end != string::npos)
         {
-                size_t end = s1.find(">", limit);
-            string howmany;
-            if (end != string::npos)
-            {
-                howmany = s1.substr(limit + 1, end - limit - 1);
+            howmany = s1.substr(limit + 1, end - limit - 1);
             WParsedInt * howmuch = NEW WParsedInt(howmany, NULL, card);
             maxtargets = howmuch->getValue();
             delete howmuch;
             s1 = s1.substr(end + 1);
-            }
         }
+    }
 
-        while (s1.size())
+    while (s1.size())
     {
         found = s1.find(",");
         string typeName;
@@ -222,11 +210,11 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     size_t operatorPosition = attribute.find("=", 1);
                     if (operatorPosition != string::npos)
                     {
-                    string numberCD = attribute.substr(operatorPosition + 1, attribute.size() - operatorPosition - 1);
+                        string numberCD = attribute.substr(operatorPosition + 1, attribute.size() - operatorPosition - 1);
                         WParsedInt * val = NEW WParsedInt(numberCD,NULL, card);
                         comparisonCriterion = val->getValue();
                         /*atoi(attribute.substr(operatorPosition + 1, attribute.size() - operatorPosition - 1).c_str());*/
-                             delete val;           
+                        delete val;           
                         switch (attribute[operatorPosition - 1])
                         {
                         case '<':
