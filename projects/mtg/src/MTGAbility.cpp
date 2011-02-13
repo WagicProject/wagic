@@ -4150,7 +4150,11 @@ int TargetAbility::resolve()
     {
         ManaCost * diff = abilityCost->Diff(cost);
         source->X = diff->hasX();
-        source->XX = abs(source->X+.1)/2;
+        source->XX = 0;
+        if(source->X > 0)
+        {
+            source->XX = source->X/2;
+        }
         delete (diff);
         ability->target = t;
         if (ability->oneShot)
