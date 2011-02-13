@@ -20432,7 +20432,7 @@ toughness=3
 [/card]
 [card]
 name=Fallen Askari
-abilities=flanking
+abilities=flanking,cantblock
 text=Flanking (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.) -- Fallen Askari can't block.
 mana={1}{B}
 type=Creature
