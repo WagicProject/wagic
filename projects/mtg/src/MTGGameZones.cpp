@@ -626,6 +626,15 @@ int MTGGameZone::seenThisTurn(TargetChooser * tc)
     return count;
 }
 
+int MTGGameZone::seenThisTurn(string targetChooserDefinition)
+{
+    TargetChooserFactory tcf;
+    TargetChooser *tc = tcf.createTargetChooser(targetChooserDefinition, NULL);
+    int result = seenThisTurn(tc);
+    delete(tc);
+    return result;
+}
+
 
 void MTGGameZone::cleanupPhase()
 {

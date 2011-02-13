@@ -108,9 +108,6 @@ void GameObserver::nextGamePhase()
     if (currentGamePhase == Constants::MTG_PHASE_BEFORE_BEGIN)
     {
         cleanupPhase();
-        currentPlayer->castedspellsthisturn = 0;
-        currentPlayer->opponent()->castedspellsthisturn = 0;
-        currentPlayer->castcount = 0;
         currentPlayer->damageCount = 0;
         currentPlayer->preventable = 0;
         currentPlayer->isPoisoned = false;
@@ -519,8 +516,6 @@ void GameObserver::gameStateBasedEffects()
         Player * p = players[i];
         MTGGameZone * z = players[i]->game->inPlay;
         int nbcards = z->nb_cards;
-        p->onlyonecast = false;
-        p->opponent()->onlyonecast = false;
         //------------------------------
         if (z->hasAbility(Constants::NOMAXHAND))
         {
@@ -530,79 +525,7 @@ void GameObserver::gameStateBasedEffects()
         {
             p->nomaxhandsize = false;
         }
-        //------------------------------
-        if (z->hasAbility(Constants::CANTCASTCREATURE))
-        {
-            p->castrestrictedcreature = true;
-        }
-        else
-        {
-            p->castrestrictedcreature = false;
-        }
-        //------------------------------
-        if (z->hasAbility(Constants::CANTCAST))
-        {
-            p->castrestrictedspell = true;
-        }
-        else
-        {
-            p->castrestrictedspell = false;
-        }
-        //------------------------------
-        if (z->hasAbility(Constants::CANTCASTTWO))
-        {
-            p->onlyonecast = true;
-        }
-        else
-        {
-            p->onlyonecast = false;
-        }
-        //--------------------------------
-        if (z->hasAbility(Constants::BOTHCANTCAST))
-        {
-            p->bothrestrictedspell = true;
-        }
-        else
-        {
-            p->bothrestrictedspell = false;
-        }
-        //---------------------------------
-        if (z->hasAbility(Constants::BOTHNOCREATURE))
-        {
-            p->bothrestrictedcreature = true;
-        }
-        else
-        {
-            p->bothrestrictedcreature = false;
-        }
-        //-----------------------------------
-        if (z->hasAbility(Constants::ONLYONEBOTH))
-        {
-            p->onlyoneboth = true;
-        }
-        else
-        {
-            p->onlyoneboth = false;
-        }
-        //------------------------------------
-        if (players[0]->bothrestrictedcreature) 
-            players[1]->castrestrictedcreature = true;
-        //------------------------------------
-        if (players[0]->bothrestrictedspell) 
-            players[1]->castrestrictedspell = true;
-        //------------------------------------
-        if (players[0]->onlyoneboth) 
-            players[1]->onlyoneboth = true;
-        //------------------------------------
-        if (players[1]->bothrestrictedcreature) 
-            players[0]->castrestrictedcreature = true;
-        //------------------------------------
-        if (players[1]->bothrestrictedspell) 
-            players[0]->castrestrictedspell = true;
-        //------------------------------------
-        if (players[1]->onlyoneboth) 
-            players[0]->onlyoneboth = true;
-        //------------------------------------
+
         /////////////////////////////////////////////////
         //handle end of turn effects while we're at it.//
         /////////////////////////////////////////////////
@@ -627,11 +550,6 @@ void GameObserver::gameStateBasedEffects()
                 c->wasDealtDamage = false;
                 c->damageToController = false;
                 c->damageToOpponent = false;
-                if (c->has(Constants::ONLYONEBOTH))
-                {
-                    c->controller()->castcount = 0;
-                    c->controller()->opponent()->castcount = 0;
-                }
 
             }
             for (int t = 0; t < nbcards; t++)
@@ -668,11 +586,6 @@ void GameObserver::gameStateBasedEffects()
         if (z->nb_cards == 0)
         {
             p->nomaxhandsize = false;
-            if (!p->bothrestrictedcreature && !p->opponent()->bothrestrictedcreature)
-                p->castrestrictedcreature = false;
-            if (!p->bothrestrictedspell && !p->opponent()->bothrestrictedspell) 
-                p->castrestrictedspell = false;
-            p->onlyonecast = false;
         }
         //////////////////////////
         // Check auras on a card//

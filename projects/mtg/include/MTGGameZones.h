@@ -97,7 +97,11 @@ class MTGGameZone {
    int hasName(string value);
    int hasColor(int value); //returns 1 if one of the cards in the zone has the color, 0 otherwise
    int hasX();
-   int seenThisTurn(TargetChooser * tc); //How many cards matching a TargetChooser have been put in this zone during the turn
+
+   //How many cards matching a TargetChooser have been put in this zone during the turn
+   int seenThisTurn(TargetChooser * tc); 
+   int seenThisTurn(string s); 
+
    void setOwner(Player * player);
    MTGCardInstance * lastCardDrawn;
    static MTGGameZone * stringToZone(string zoneName, MTGCardInstance * source, MTGCardInstance * target);

@@ -89,13 +89,13 @@ const char* Constants::MTGBasicAbilities[] = {
     "cantlose",
     "cantlifelose",
     "cantmilllose",
-    "cantcreaturecast",
-    "cantspellcast",
-    "onlyonecast",
+    "snowlandwalk",
+    "nonbasiclandwalk",
+    "strong",//cant be blocked by creature with less power
     "storm",
-    "bothcantcast",
-    "bothnocreature",
-    "oneboth",
+    "phasing",
+    "split second",
+    "weak",//cant block creatures with more power
     "affinityartifacts",
     "affinityplains",
     "affinityforests",
@@ -117,13 +117,7 @@ const char* Constants::MTGBasicAbilities[] = {
     "snowplainslandwalk",
     "snowmountainlandwalk",
     "snowislandlandwalk",
-    "snowswamplandwalk",
-    "snowlandwalk",
-    "nonbasiclandwalk",
-    "strong",//cant be blocked by creature with less power
-    "weak",//cant block creatures with more power
-    "phasing",
-    "split second",
+    "snowswamplandwalk"
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

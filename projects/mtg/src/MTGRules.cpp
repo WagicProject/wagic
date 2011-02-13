@@ -64,20 +64,6 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 #ifdef WIN32
         cost->Dump();
 #endif
-        if (player->castrestrictedspell)
-        {
-            return 0;
-        }
-        if (player->onlyonecast && player->castcount >= 1)
-        {
-            return 0;
-        }
-
-        if (player->castrestrictedcreature && card->hasType("creature"))
-        {
-            return 0;
-        }
-
         //cost of card.
         if (playerMana->canAfford(cost))
         {
@@ -155,27 +141,15 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
         {
             spell = game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, spellCost, payResult, 0);
             game->targetChooser = NULL;
-            player->castedspellsthisturn += 1;
-            player->opponent()->castedspellsthisturn += 1;
-            if (player->onlyonecast)
-            {
-                player->castcount += 1;
-            }
         }
         else
         {
             spell = game->mLayers->stackLayer()->addSpell(copy, NULL, spellCost, payResult, 0);
-            player->castedspellsthisturn += 1;
-            player->opponent()->castedspellsthisturn += 1;
-            if (player->onlyonecast)
-            {
-                player->castcount += 1;
-            }
         }
 
         if (card->has(Constants::STORM))
         {
-            int storm = player->castedspellsthisturn;
+            int storm = player->game->stack->seenThisTurn("*");
             ManaCost * spellCost = player->getManaPool();
             for (int i = storm; i > 1; i--)
             {
@@ -272,19 +246,6 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
         ManaCost * cost = card->getManaCost();
         cost->Dump();
 #endif
-        if (player->castrestrictedspell  && !card->hasType("land"))
-        {
-            return 0;
-        }
-        if (player->onlyonecast  && player->castcount >= 1)
-        {
-            return 0;
-        }
-
-        if (player->castrestrictedcreature  && card->hasType("creature"))
-        {
-            return 0;
-        }
         //cost of card.
         if (playerMana->canAfford(alternateManaCost))
         {
@@ -350,14 +311,10 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
         copy->alternateCostPaid[alternateCostType] = 1;
         Spell * spell = game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, spellCost, alternateCostType, 0);
         game->targetChooser = NULL;
-        player->castedspellsthisturn += 1;
-        player->opponent()->castedspellsthisturn += 1;
-        if (player->onlyonecast )
-            player->castcount += 1;
 
         if (card->has(Constants::STORM))
         {
-            int storm = player->castedspellsthisturn;
+            int storm = player->game->stack->seenThisTurn("*");
             for (int i = storm; i > 1; i--)
             {
                 game->mLayers->stackLayer()->addSpell(copy, NULL, playerMana, alternateCostType, 1);
@@ -595,19 +552,6 @@ int MTGMorphCostRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 #ifdef WIN32
         cost->Dump();
 #endif
-        if (player->castrestrictedspell  && !card->hasType("land"))
-        {
-            return 0;
-        }
-        if (player->onlyonecast  && player->castcount >= 1)
-        {
-            return 0;
-        }
-
-        if (player->castrestrictedcreature && card->hasType("creature"))
-        {
-            return 0;
-        }
         //cost of card.
         if (morph && playerMana->canAfford(morph))
         {
@@ -672,13 +616,6 @@ int MTGMorphCostRule::reactToClick(MTGCardInstance * card)
     copy->isMorphed = true;
     copy->power = 2;
     copy->toughness = 2;
-    player->castedspellsthisturn += 1;
-    player->opponent()->castedspellsthisturn += 1;
-    if (player->onlyonecast)
-    {
-        player->castcount += 1;
-
-    }
     if (!card->has(Constants::STORM))
     {
         copy->X = spell->computeX(copy);

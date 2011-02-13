@@ -13,14 +13,6 @@ Damageable(20)
     deckFileSmall = fileSmall;
     manaPool = NEW ManaPool(this);
     nomaxhandsize = false;
-    castedspellsthisturn = 0;
-    castrestrictedspell = false;
-    castrestrictedcreature = false;
-    bothrestrictedspell = false;
-    bothrestrictedcreature = false;
-    onlyoneboth = false;
-    onlyonecast = false;
-    castcount = 0;
     poisonCount = 0;
     damageCount = 0;
     preventable = 0;

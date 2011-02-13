@@ -28,14 +28,6 @@ public:
     JQuadPtr mAvatar;
     int playMode;
     bool nomaxhandsize;
-    int castedspellsthisturn;
-    bool onlyonecast;
-    int castcount;
-    bool castrestrictedcreature;
-    bool castrestrictedspell;
-    bool onlyoneboth;
-    bool bothrestrictedspell;
-    bool bothrestrictedcreature;
     bool isPoisoned;
     MTGPlayerCards * game;
     string deckFile;

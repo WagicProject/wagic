@@ -1211,20 +1211,21 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
     {
         if (!CanHandleCost(card->getManaCost()))
             continue;
-        if (card->hasType(Subtypes::TYPE_CREATURE) && this->castrestrictedcreature  && this->castrestrictedspell )
-            continue;
-        if (card->hasType(Subtypes::TYPE_ENCHANTMENT) && this->castrestrictedspell )
-            continue;
-        if (card->hasType(Subtypes::TYPE_ARTIFACT) && this->castrestrictedspell )
-            continue;
-        if (card->hasType(Subtypes::TYPE_SORCERY) && this->castrestrictedspell )
-            continue;
-        if (card->hasType(Subtypes::TYPE_INSTANT) && this->castrestrictedspell )
-            continue;
-        if (card->hasType(Subtypes::TYPE_LAND) && (game->playRestrictions->canPutIntoZone(card, game->inPlay) == PlayRestriction::CANT_PLAY))
-            continue;
+
+        if (card->hasType(Subtypes::TYPE_LAND))
+        {
+            if (game->playRestrictions->canPutIntoZone(card, game->inPlay) == PlayRestriction::CANT_PLAY)
+                continue;
+        }
+        else
+        {
+            if (game->playRestrictions->canPutIntoZone(card, game->stack) == PlayRestriction::CANT_PLAY)
+                continue;
+        }
+
         if (card->hasType(Subtypes::TYPE_LEGENDARY) && game->inPlay->findByName(card->name))
             continue;
+
         int currentCost = card->getManaCost()->getConvertedCost();
         int hasX = card->getManaCost()->hasX();
         if ((currentCost > maxCost || hasX) && pMana->canAfford(card->getManaCost()))
@@ -1329,22 +1330,19 @@ int AIPlayerBaka::computeActions()
             //if theres mana i can use there then potential is true.
             ipotential = true;
         }
-        //look for an instant of ability to interupt with
-        if((castrestrictedspell == false)&&
-            (onlyonecast == false || castcount < 2))
-        {
 
-            if (!nextCardToPlay)
-            {
-                nextCardToPlay = FindCardToPlay(icurrentMana, "instant");
-                if (game->playRestrictions->canPutIntoZone(nextCardToPlay, game->stack) == PlayRestriction::CANT_PLAY)
-                    nextCardToPlay = NULL;
-            }
-            if (!nextCardToPlay)
-            {
-                selectAbility();
-            }
+
+        if (!nextCardToPlay)
+        {
+            nextCardToPlay = FindCardToPlay(icurrentMana, "instant");
+            if (game->playRestrictions->canPutIntoZone(nextCardToPlay, game->stack) == PlayRestriction::CANT_PLAY)
+                nextCardToPlay = NULL;
         }
+        if (!nextCardToPlay)
+        {
+            selectAbility();
+        }
+
         if (icurrentMana != NULL)
             delete (icurrentMana);
         if (nextCardToPlay)
@@ -1380,26 +1378,23 @@ int AIPlayerBaka::computeActions()
                 }
                 nextCardToPlay = FindCardToPlay(currentMana, "land");
                 selectAbility();
-                //look for the most expensive creature we can afford
-                if((castrestrictedspell == false)&&
-                    (onlyonecast == false || castcount < 2))
+
+                //look for the most expensive creature we can afford. If not found, try enchantment, then artifact, etc...
+                const char* types[] = {"creature", "enchantment", "artifact", "sorcery", "instant"};
+                int count = 0;
+                while (!nextCardToPlay && count < 5)
                 {
-
-                    const char* types[] = {"creature", "enchantment", "artifact", "sorcery", "instant"};
-                    int count = 0;
-                    while (!nextCardToPlay && count < 5)
-                    {
-                        nextCardToPlay = FindCardToPlay(currentMana, types[count]);
-                        if (game->playRestrictions->canPutIntoZone(nextCardToPlay, game->stack) == PlayRestriction::CANT_PLAY)
-                            nextCardToPlay = NULL;
-                        count++;
-                    }
-
-                    if (!nextCardToPlay)
-                    {
-                        selectAbility();
-                    }
+                    nextCardToPlay = FindCardToPlay(currentMana, types[count]);
+                    if (game->playRestrictions->canPutIntoZone(nextCardToPlay, game->stack) == PlayRestriction::CANT_PLAY)
+                        nextCardToPlay = NULL;
+                    count++;
                 }
+
+                if (!nextCardToPlay)
+                {
+                    selectAbility();
+                }
+
                 if (currentMana != NULL)
                     delete (currentMana);
                 if (nextCardToPlay)
