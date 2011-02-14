@@ -423,6 +423,7 @@ void TestSuite::initGame()
             }
             zone->cardsSeenThisTurn.clear(); //don't consider those cards as having moved in this area during this turn
         }
+        p->game->stack->cardsSeenThisTurn.clear(); //don't consider those cards as having moved in this area during this turn
     }
 DebugTrace("TESTUITE Init Game Done !");
 }

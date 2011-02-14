@@ -994,9 +994,9 @@ int AIPlayer::chooseBlockers()
 {
     GameObserver * g = GameObserver::GetInstance();
     if (g->currentActionPlayer != this)
-    return 0;
+        return 0;
     if(g->isInterrupting == this)
-    return 0;
+        return 0;
     //ai should not be allowed to run this if it is not legally allowed to do so
     //this fixes a bug where ai would try to use this as an interupt
     //when ai is given priority to select blockers it is allowed to run this as normal.
@@ -1337,13 +1337,15 @@ int AIPlayerBaka::computeActions()
             if (game->playRestrictions->canPutIntoZone(nextCardToPlay, game->stack) == PlayRestriction::CANT_PLAY)
                 nextCardToPlay = NULL;
         }
+        SAFE_DELETE (icurrentMana);
+
         if (!nextCardToPlay)
         {
             selectAbility();
         }
 
-        if (icurrentMana != NULL)
-            delete (icurrentMana);
+
+
         if (nextCardToPlay)
         {
             if (ipotential)
@@ -1389,13 +1391,8 @@ int AIPlayerBaka::computeActions()
                     count++;
                 }
 
-                if (!nextCardToPlay)
-                {
-                    selectAbility();
-                }
+                SAFE_DELETE(currentMana);
 
-                if (currentMana != NULL)
-                    delete (currentMana);
                 if (nextCardToPlay)
                 {
                     if (potential)
