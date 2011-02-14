@@ -2473,7 +2473,8 @@ toughness=7
 [/card]
 [card]
 name=Arcane Laboratory
-abilities=oneboth
+auto=maxCast(*)1
+auto=maxCast(*)1 opponent
 text=Each player can't cast more than one spell each turn.
 mana={2}{U}
 type=Enchantment
@@ -52176,7 +52177,8 @@ toughness=3
 [/card]
 [card]
 name=Rule of Law
-abilities=oneboth
+auto=maxCast(*)1
+auto=maxCast(*)1 opponent
 text=Each player can't cast more than one spell each turn.
 mana={2}{W}
 type=Enchantment
