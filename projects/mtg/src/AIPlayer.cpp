@@ -112,7 +112,7 @@ bool AIPlayer::tapLandsForMana(ManaCost * cost, MTGCardInstance * target)
             {
                 used[card] = true;
             } //http://code.google.com/p/wagic/issues/detail?id=76
-            if (used[card] == false && amp->isReactingToClick(card) && amp->output->getConvertedCost() >= 1)
+            if (!used[card] && amp->isReactingToClick(card) && amp->output->getConvertedCost() >= 1)
             {
                 used[card] = true;
                 int doUse = 1;
@@ -122,7 +122,6 @@ bool AIPlayer::tapLandsForMana(ManaCost * cost, MTGCardInstance * target)
                     {
                         diff->remove(i, 1);
                         doUse = 0;
-                        used[card] = false;
                         break;
                     }
                 }
