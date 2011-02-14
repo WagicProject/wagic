@@ -215,7 +215,7 @@ void DeckMenu::Render()
         if (currentMenuItem->mY - kLineHeight * startId < mY + height - kLineHeight + 7)
         {
             // only load stats for visible items in the list
-            if (currentMenuItem->meta)
+            if (currentMenuItem->meta && !currentMenuItem->meta->mStatsLoaded)
             {
                 currentMenuItem->meta->LoadStats();
 			}
