@@ -676,7 +676,10 @@ MTGCard * MTGAllCards::getCardByName(string name)
     if (!name.size()) return NULL;
     if (name[0] == '#') return NULL;
 
-    map<string, MTGCard * >::iterator cached = mtgCardByNameCache.find(name);
+    map<string, MTGCard * >::iterator cached = mtgCardByNameCache.end();
+    if (mtgCardByNameCache.size() > 0)
+        cached = mtgCardByNameCache.find(name);
+    
     if (cached!= mtgCardByNameCache.end())
     {
         return cached->second;
@@ -778,11 +781,11 @@ MTGDeck::MTGDeck(const char * config_file, MTGAllCards * _allcards, int meta_onl
                 continue;
             }
             if (meta_only) break;
-            int nb = 1;
+            int numberOfCopies = 1;
             size_t found = s.find(" *");
             if (found != string::npos)
             {
-                nb = atoi(s.substr(found + 2).c_str());
+                numberOfCopies = atoi(s.substr(found + 2).c_str());
                 s = s.substr(0, found);
             }
             size_t diff = s.find("toggledifficulty:");
@@ -801,32 +804,17 @@ MTGDeck::MTGDeck(const char * config_file, MTGAllCards * _allcards, int meta_onl
                     s = cardeasy;
                 }
             }
-            int cardnb = atoi(s.c_str());
-            if (cardnb)
+            MTGCard * card = database->getCardByName(s);
+            if (card)
             {
-                add(cardnb);
+                for (int i = 0; i < numberOfCopies; i++)
+                {
+                    add(card);
+                }
             }
             else
             {
-                size_t found = s.find(" *");
-                if (found != string::npos)
-                {
-                    nb = atoi(s.substr(found + 2).c_str());
-                    s = s.substr(0, found);
-                }
-                MTGCard * card = database->getCardByName(s);
-                if (card)
-                {
-                    for (int i = 0; i < nb; i++)
-                    {
-                        add(card);
-                    }
-                }
-
-                else
-                {
-                    DebugTrace("could not find Card matching name: " << s);
-                }
+                DebugTrace("could not find Card matching name: " << s);
             }
         }
         file.close();
