@@ -1147,7 +1147,7 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, Player * op
     if (deckid == GameStateDuel::MENUITEM_EVIL_TWIN)
     { //Evil twin
         sprintf(deckFile, "%s", opponent->deckFile.c_str());
-        DebugTrace(opponent->deckFile);
+        DebugTrace("Evil Twin => " << opponent->deckFile);
         sprintf(avatarFile, "%s", "baka.jpg");
         sprintf(deckFileSmall, "%s", "ai_baka_eviltwin");
     }
@@ -1179,18 +1179,16 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, Player * op
         sprintf(avatarFile, "avatar%i.jpg", deckid);
         sprintf(deckFileSmall, "ai_baka_deck%i", deckid);
     }
-DeckStats * stats = DeckStats::GetInstance();
-int deckSetting = NULL;
-int diff = stats->percentVictories();
-                if (diff >= 65)
-                {
-                    deckSetting = HARD;
-                }
-                else if (diff < 65)
-                {
-                    deckSetting = EASY;
-                }
-    MTGDeck * tempDeck = NEW MTGDeck(deckFile, collection,0,deckSetting);
+
+    int deckSetting = EASY;
+    if ( opponent ) 
+    {
+        bool isOpponentAI = opponent->isAI() == 1;
+        DeckMetaData *meta = DeckManager::GetInstance()->getDeckMetaDataByFilename( opponent->deckFile, isOpponentAI );
+        if ( meta->getVictoryPercentage() >= 65)
+            deckSetting = HARD;
+    }
+    MTGDeck * tempDeck = NEW MTGDeck(deckFile, collection,0, deckSetting);
     AIPlayerBaka * baka = NEW AIPlayerBaka(tempDeck, deckFile, deckFileSmall, avatarFile);
     baka->deckId = deckid;
     SAFE_DELETE(tempDeck);
