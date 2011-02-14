@@ -50,7 +50,7 @@ WCardFilter * WCFilterFactory::Construct(string src)
             if (endp != string::npos)
             {
                 WCFilterGROUP * g = NEW WCFilterGROUP(Construct(src.substr(i + 1, endp - 1)));
-                if ( endp < (srcLength - 2) )
+                if ( endp < (srcLength - 1) )
                 {
                     if (src[endp + 1] == '|')
                         return NEW WCFilterOR(g, Construct(src.substr(endp + 2)));
@@ -68,7 +68,7 @@ WCardFilter * WCFilterFactory::Construct(string src)
             if (endp != string::npos)
             {
                 WCFilterNOT * g = NEW WCFilterNOT(Construct(src.substr(i + 1, endp - 1)));
-                if (endp <  (srcLength - 2) )
+                if (endp <  (srcLength - 1) )
                 {
                     if (src[endp + 1] == '|')
                         return NEW WCFilterOR(g, Construct(src.substr(endp + 2)));
