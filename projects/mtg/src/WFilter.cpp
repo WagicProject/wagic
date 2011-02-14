@@ -32,15 +32,15 @@ size_t WCFilterFactory::findNext(string src, size_t start, char open, char close
 }
 WCardFilter * WCFilterFactory::Construct(string src)
 {
+    size_t srcLength = src.size();
     size_t x = 0;
     string whitespaces(" \t\f\v\n\r");
     x = src.find_first_not_of(whitespaces);
     if (x != string::npos) src = src.substr(x);
 
-    if (!src.size()) return NEW WCFilterNULL(); //Empty string.
+    if (!srcLength) return NEW WCFilterNULL(); //Empty string.
 
-
-    for (size_t i = 0; i < src.size(); i++)
+    for (size_t i = 0; i < srcLength; i++)
     {
         unsigned char c = src[i];
         if (isspace(c)) continue;
@@ -50,16 +50,14 @@ WCardFilter * WCFilterFactory::Construct(string src)
             if (endp != string::npos)
             {
                 WCFilterGROUP * g = NEW WCFilterGROUP(Construct(src.substr(i + 1, endp - 1)));
-                if (endp < src.size())
-                {                    
+                if ( endp < (srcLength - 1) )
+                {
                     if (src[endp + 1] == '|')
                         return NEW WCFilterOR(g, Construct(src.substr(endp + 2)));
                     else if (src[endp + 1] == '&')
                         return NEW WCFilterAND(g, Construct(src.substr(endp + 2)));
-                    else
-                        return g;
                 }
-                SAFE_DELETE( g );
+                return g;
             }
             else
                 return NEW WCFilterNULL();
@@ -70,16 +68,14 @@ WCardFilter * WCFilterFactory::Construct(string src)
             if (endp != string::npos)
             {
                 WCFilterNOT * g = NEW WCFilterNOT(Construct(src.substr(i + 1, endp - 1)));
-                if (endp < src.size())
+                if (endp <  (srcLength - 1) )
                 {
                     if (src[endp + 1] == '|')
                         return NEW WCFilterOR(g, Construct(src.substr(endp + 2)));
                     else if (src[endp + 1] == '&')
                         return NEW WCFilterAND(g, Construct(src.substr(endp + 2)));
-                    else
-                        return g;
                 }
-                SAFE_DELETE( g );
+                return g;
             }
             else
                 return NEW WCFilterNULL();
@@ -333,7 +329,7 @@ string WCFilterToughness::getCode()
 }
 //WCFilterRarity
 float WCFilterRarity::filterFee()
-{
+
     switch (rarity)
     {
     case 'M':
@@ -443,10 +439,10 @@ float WCFilterAbility::filterFee()
     switch (ability)
     {
     case Constants::CANTLOSE:
-      return 2.0f;
+        return 2.0f;
     case Constants::CANTLIFELOSE:
     case Constants::CANTMILLLOSE:
-      return 1.5f;
+        return 1.5f;
     case Constants::SHROUD:
     case Constants::CONTROLLERSHROUD:
     case Constants::PLAYERSHROUD:
@@ -501,10 +497,10 @@ float WCFilterAND::filterFee()
 }
 float WCFilterOR::filterFee()
 {
-  float lFee = lhs->filterFee();
-  float rFee = rhs->filterFee();
+    float lFee = lhs->filterFee();
+    float rFee = rhs->filterFee();
     if (lFee > rFee) 
-      return lFee;
+        return lFee;
     return rFee;
 }
 string WCFilterNOT::getCode()
