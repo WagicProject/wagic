@@ -1,7 +1,5 @@
 #include "PrecompiledHeader.h"
 
-#include "DeckManager.h"
-#include "DeckMetaData.h"
 #include "MTGGameZones.h"
 #include "Player.h"
 #include "GameOptions.h"
@@ -45,20 +43,10 @@ MTGPlayerCards::MTGPlayerCards(MTGDeck * deck)
 void MTGPlayerCards::initDeck(MTGDeck * deck)
 {
     resetLibrary();
-    bool isAI = deck->getFilename().find("baka") != string::npos;
-    DeckMetaData *deckMeta = DeckManager::GetInstance()->getDeckMetaDataById( deck->meta_id, isAI);
-    map<int,int> alternatesMap = deckMeta->getAlternateMappings();
-    bool useAlternates = deckMeta->getVictoryPercentage() >= 65;
     map<int, int>::iterator it;
     for (it = deck->cards.begin(); it != deck->cards.end(); it++)
     {
-        int cardId = it->first;
-        if (useAlternates && isAI)
-        {
-            if ( alternatesMap.find( cardId ) != alternatesMap.end() )
-                cardId = alternatesMap[ cardId ];
-        }
-        MTGCard * card = deck->getCardById(cardId);
+        MTGCard * card = deck->getCardById(it->first);
         if (card)
         {
             for (int i = 0; i < it->second; i++)

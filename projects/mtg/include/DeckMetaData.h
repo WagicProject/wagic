@@ -24,7 +24,6 @@ private:
     string mAvatarFilename;
     string  mColorIndex;
     
-    map<int,int> mAlternateCardMap;
     // statistical information
     int mGamesPlayed, mVictories, mPercentVictories, mDifficulty;
 
@@ -45,7 +44,6 @@ public:
     string getColorIndex();
     int getAvatarId(int deckId);
     string getStatsSummary();
-    map<int,int>& getAlternateMappings();
 
     int getDeckId();
     int getGamesPlayed();

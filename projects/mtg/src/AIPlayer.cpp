@@ -1180,8 +1180,17 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, Player * op
         sprintf(deckFileSmall, "ai_baka_deck%i", deckid);
     }
 DeckStats * stats = DeckStats::GetInstance();
-
-    MTGDeck * tempDeck = NEW MTGDeck(deckFile, collection, 0);
+int deckSetting = NULL;
+int diff = stats->percentVictories();
+                if (diff >= 65)
+                {
+                    deckSetting = HARD;
+                }
+                else if (diff < 65)
+                {
+                    deckSetting = EASY;
+                }
+    MTGDeck * tempDeck = NEW MTGDeck(deckFile, collection,0,deckSetting);
     AIPlayerBaka * baka = NEW AIPlayerBaka(tempDeck, deckFile, deckFileSmall, avatarFile);
     baka->deckId = deckid;
     SAFE_DELETE(tempDeck);
