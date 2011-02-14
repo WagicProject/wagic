@@ -50,7 +50,7 @@ WCardFilter * WCFilterFactory::Construct(string src)
             if (endp != string::npos)
             {
                 WCFilterGROUP * g = NEW WCFilterGROUP(Construct(src.substr(i + 1, endp - 1)));
-                if ( endp < (srcLength - 1) )
+                if ( endp < (srcLength - 2) )
                 {
                     if (src[endp + 1] == '|')
                         return NEW WCFilterOR(g, Construct(src.substr(endp + 2)));
@@ -68,7 +68,7 @@ WCardFilter * WCFilterFactory::Construct(string src)
             if (endp != string::npos)
             {
                 WCFilterNOT * g = NEW WCFilterNOT(Construct(src.substr(i + 1, endp - 1)));
-                if (endp <  (srcLength - 1) )
+                if (endp <  (srcLength - 2) )
                 {
                     if (src[endp + 1] == '|')
                         return NEW WCFilterOR(g, Construct(src.substr(endp + 2)));
@@ -329,7 +329,7 @@ string WCFilterToughness::getCode()
 }
 //WCFilterRarity
 float WCFilterRarity::filterFee()
-
+{
     switch (rarity)
     {
     case 'M':
@@ -439,10 +439,10 @@ float WCFilterAbility::filterFee()
     switch (ability)
     {
     case Constants::CANTLOSE:
-        return 2.0f;
+      return 2.0f;
     case Constants::CANTLIFELOSE:
     case Constants::CANTMILLLOSE:
-        return 1.5f;
+      return 1.5f;
     case Constants::SHROUD:
     case Constants::CONTROLLERSHROUD:
     case Constants::PLAYERSHROUD:
@@ -497,10 +497,10 @@ float WCFilterAND::filterFee()
 }
 float WCFilterOR::filterFee()
 {
-    float lFee = lhs->filterFee();
-    float rFee = rhs->filterFee();
+  float lFee = lhs->filterFee();
+  float rFee = rhs->filterFee();
     if (lFee > rFee) 
-        return lFee;
+      return lFee;
     return rFee;
 }
 string WCFilterNOT::getCode()
