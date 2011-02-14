@@ -105,7 +105,7 @@ bool AIPlayer::tapLandsForMana(ManaCost * cost, MTGCardInstance * target)
         //Make sure we can use the ability
         MTGAbility * a = ((MTGAbility *) g->mLayers->actionLayer()->mObjects[i]);
         AManaProducer * amp = dynamic_cast<AManaProducer*> (a);
-        if (amp && canHandleCost(amp) && (!amp->tap ||(amp->tap && !amp->source->isTapped())))
+        if (amp && canHandleCost(amp))
         {
             MTGCardInstance * card = amp->source;
             if (card == target)
