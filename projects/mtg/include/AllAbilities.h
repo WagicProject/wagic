@@ -1285,9 +1285,9 @@ public:
 class ACastRestriction: public AbilityTP
 {
 public:
+    TargetChooser * restrictionsScope; //a minimalist TargetChooser object describing the cards impacted by the restriction (for example: lands)
     WParsedInt *value; //"maxPerTurn" value
     MaxPerTurnRestriction * existingRestriction; // a pointer to the restriction that is being modified or that has been created (for restriction deletion purpose)
-    TargetChooser * restrictionsScope; //a minimalist TargetChooser object describing the cards impacted by the restriction (for example: lands)
     bool modifyExisting; //if set to true, means we want to modify an existing restriction, otherwise we create a new one
     int zoneId; // identifier of the zone id impacted by the restriction
     Player * targetPlayer; // Reference to the player impacted by the restriction (for restriction deletion purpose)
