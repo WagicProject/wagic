@@ -96,6 +96,7 @@ void DeckMetaData::LoadDeck()
         mDescription = trim(deck.meta_desc);
         mDeckId = atoi((mFilename.substr(mFilename.find("deck") + 4, mFilename.find(".txt"))).c_str());
         mDeckLoaded = true;
+        mAlternateCardMap = deck.alternates;
     }
 
 
@@ -179,6 +180,11 @@ string DeckMetaData::getStatsSummary()
                     << "Games Played: " << getGamesPlayed() << endl;
 
     return statsSummary.str();
+}
+
+map<int,int>& DeckMetaData::getAlternateMappings()
+{
+    return mAlternateCardMap;
 }
 
 void DeckMetaData::setColorIndex(const string& colorIndex)

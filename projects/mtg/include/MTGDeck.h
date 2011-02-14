@@ -120,6 +120,7 @@ public:
     MTGCard * _(int id);
     MTGCard * getCardById(int id);
     MTGCard * getCardByName(string name);
+    MTGCard * getCard(string inputText);
     int load(const char * config_file, const char * setName = NULL, int autoload = 1);
     int countByType(const char * _type);
     int countByColor(int color);
@@ -154,13 +155,14 @@ protected:
 public:
     MTGAllCards * database;
     map<int, int> cards;
+    map<int, int> alternates;
     string meta_desc;
     string meta_name;
     int meta_id;
     int totalCards();
     int totalPrice();
     MTGDeck(MTGAllCards * _allcards);
-    MTGDeck(const char * config_file, MTGAllCards * _allcards, int meta_only = 0,int difficultySetting = 0);
+    MTGDeck(const char * config_file, MTGAllCards * _allcards, int meta_only = 0);
     int addRandomCards(int howmany, int * setIds = NULL, int nbSets = 0, int rarity = -1, const char * subtype = NULL,
             int * colors = NULL, int nbcolors = 0);
     int add(int cardid);

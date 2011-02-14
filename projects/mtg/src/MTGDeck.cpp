@@ -676,16 +676,18 @@ MTGCard * MTGAllCards::getCardByName(string name)
     if (!name.size()) return NULL;
     if (name[0] == '#') return NULL;
 
-    map<string, MTGCard * >::iterator cached = mtgCardByNameCache.find(name);
+    map<string, MTGCard * >::iterator cached = mtgCardByNameCache.end();
+    if ( mtgCardByNameCache.size() > 0 )
+        cached = mtgCardByNameCache.find(name);
     if (cached!= mtgCardByNameCache.end())
     {
         return cached->second;
     }
 
-    int cardnb = atoi(name.c_str());
-    if (cardnb)
+    int cardId = atoi(name.c_str());
+    if (cardId)
     {
-        MTGCard * result = getCardById(cardnb);
+        MTGCard * result = getCardById(cardId);
         mtgCardByNameCache[name] = result;
         return result;
     }
@@ -742,7 +744,7 @@ int MTGDeck::totalPrice()
     return total;
 }
 
-MTGDeck::MTGDeck(const char * config_file, MTGAllCards * _allcards, int meta_only,int difficultyRating)
+MTGDeck::MTGDeck(const char * config_file, MTGAllCards * _allcards, int meta_only)
 {
     total_cards = 0;
     database = _allcards;
@@ -775,58 +777,44 @@ MTGDeck::MTGDeck(const char * config_file, MTGAllCards * _allcards, int meta_onl
                     meta_desc.append(s.substr(found + 5));
                     continue;
                 }
+
+                found = s.find("toggledifficulty:");
+                if (found != string::npos)
+                {
+                    string cards = s.substr(found + 17);
+                    size_t separator = cards.find("|");
+                    string cardeasy = cards.substr(0,separator);
+                    string cardhard = cards.substr(separator + 1);
+                    MTGCard *sourceCard = MTGCollection()->getCardByName( cardeasy );
+                    MTGCard *alternateCard = MTGCollection()->getCardByName( cardhard );
+                    if ( alternateCard && sourceCard )
+                        alternates.insert( make_pair( sourceCard->getMTGId(), alternateCard->getMTGId()));
+                    else
+                        DebugTrace("Failed to map card Alternates: [" << cardeasy << "] and  [" << cardhard << "]");
+                    continue;
+                }
+
                 continue;
             }
             if (meta_only) break;
-            int nb = 1;
+            int numberOfCopies = 1;
             size_t found = s.find(" *");
             if (found != string::npos)
             {
-                nb = atoi(s.substr(found + 2).c_str());
+                numberOfCopies = atoi(s.substr(found + 2).c_str());
                 s = s.substr(0, found);
             }
-            size_t diff = s.find("toggledifficulty:");
-            if(diff != string::npos)
+            MTGCard *card = database->getCardByName( s );
+            if ( card )
             {
-                string cards = s.substr(diff + 17);
-                size_t separator = cards.find("|");
-                string cardeasy = cards.substr(0,separator);
-                string cardhard = cards.substr(separator + 1);
-                if(difficultyRating == HARD)
+                for (int i = 0; i < numberOfCopies; i++)
                 {
-                    s = cardhard;
+                    add(card);
                 }
-                else
-                {
-                    s = cardeasy;
-                }
-            }
-            int cardnb = atoi(s.c_str());
-            if (cardnb)
-            {
-                add(cardnb);
             }
             else
             {
-                size_t found = s.find(" *");
-                if (found != string::npos)
-                {
-                    nb = atoi(s.substr(found + 2).c_str());
-                    s = s.substr(0, found);
-                }
-                MTGCard * card = database->getCardByName(s);
-                if (card)
-                {
-                    for (int i = 0; i < nb; i++)
-                    {
-                        add(card);
-                    }
-                }
-
-                else
-                {
-                    DebugTrace("could not find Card matching name: " << s);
-                }
+                DebugTrace("could not find Card matching name: " << s);
             }
         }
         file.close();
