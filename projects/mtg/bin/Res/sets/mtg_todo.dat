@@ -2259,12 +2259,6 @@ mana={3}{G}{G}
 type=Instant
 [/card]
 [card]
-name=Brace for Impact
-text=Prevent all damage that would be dealt to target multicolored creature this turn. For each 1 damage prevented this way, put a +1/+1 counter on that creature.
-mana={4}{W}
-type=Instant
-[/card]
-[card]
 name=Braids, Cabal Minion
 text=At the beginning of each player's upkeep, that player sacrifices an artifact, creature, or land.
 mana={2}{B}{B}
@@ -24952,12 +24946,6 @@ name=Tel-Jilad Stylus
 text={T}: Put target permanent you own on the bottom of your library.
 mana={1}
 type=Artifact
-[/card]
-[card]
-name=Telekinesis
-text=Tap target creature. Prevent all combat damage that would be dealt by that creature this turn. It doesn't untap during its controller's next two untap steps.
-mana={U}{U}
-type=Instant
 [/card]
 [card]
 name=Telekinetic Bonds
