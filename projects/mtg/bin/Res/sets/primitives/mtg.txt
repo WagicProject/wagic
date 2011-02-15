@@ -7679,8 +7679,8 @@ auto=@movedTo(*[arcane;spirit;manacost=7]|mystack):may life:7 controller
 auto=@movedTo(*[arcane;spirit;manacost=8]|mystack):may life:8 controller
 auto=@movedTo(*[arcane;spirit;manacost=9]|mystack):may life:9 controller
 auto=@movedTo(*[arcane;spirit;manacost=10]|mystack):may life:10 controller
-auto=@movedTo(*[arcane;spirit;manacost=11]|mystack):may life:12 controller
-auto=@movedTo(*[arcane;spirit;manacost=12]|mystack):may life:13 controller
+auto=@movedTo(*[arcane;spirit;manacost=11]|mystack):may life:11 controller
+auto=@movedTo(*[arcane;spirit;manacost=12]|mystack):may life:12 controller
 text=Flying -- Whenever you cast a Spirit or Arcane spell, you may gain life equal to that spell's converted mana cost.
 mana={5}{G}{G}
 type=Legendary Creature
