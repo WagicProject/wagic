@@ -1,0 +1,23 @@
+#Bug with maxCast, see http://code.google.com/p/wagic/issues/detail?id=595 
+#1. Have at least two or more spells in your hand, include Orim's Chant; and have enough mana in your mana pool for these spells
+#2. Cast Orim's Chant on yourself
+#3. Cast other spells in your hand
+[init]
+firstmain
+[player1]
+manapool:{W}{R}{1}{G}
+hand:Orim's chant,raging goblin, grizzly bears
+[player2]
+[do]
+Orim's chant
+p1
+raging goblin
+grizzly bears
+[assert]
+firstmain
+[player1]
+graveyard:Orim's chant
+hand:raging goblin, grizzly bears
+manapool:{R}{1}{G}
+[player2]
+[end]

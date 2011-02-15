@@ -1469,7 +1469,7 @@ public:
         abilitygranted = ability;
         nbTargets = 0;
         tc = _tc;
-        if (!tc) tc = NEW CreatureTargetChooser(_source);
+        if (!tc) tc = NEW TypeTargetChooser("creature",_source);
     }
 
     void Update(float dt)
@@ -4738,7 +4738,7 @@ public:
         counter = NEW TypeTargetChooser("land");
         landsPlayedThisTurn = source->controller()->game->inPlay->seenThisTurn(counter);
         PlayRestrictions * restrictions = source->controller()->game->playRestrictions;
-        landsRestriction = (MaxPerTurnRestriction *) (restrictions->getRestrictionById(PlayRestriction::LANDS_RULE_ID));
+        landsRestriction = restrictions->getMaxPerTurnRestrictionByTargetChooser(counter);
         restrictions->removeRestriction(landsRestriction);
 
     }
@@ -4773,7 +4773,7 @@ public:
     int destroy()
     {
         PlayRestrictions  * restrictions = source->controller()->game->playRestrictions;
-        if(restrictions->getRestrictionById(PlayRestriction::LANDS_RULE_ID))
+        if(restrictions->getMaxPerTurnRestrictionByTargetChooser(counter))
             return 1;
 
         restrictions->addRestriction(landsRestriction);
@@ -5590,7 +5590,7 @@ class AMinionofLeshrac: public TargetAbility
 public:
     int paidThisTurn;
     AMinionofLeshrac(int _id, MTGCardInstance * source) :
-        TargetAbility(_id, source, NEW CreatureTargetChooser(), 0, 1, 0)
+        TargetAbility(_id, source, NEW TypeTargetChooser("creature"), 0, 1, 0)
     {
         paidThisTurn = 1;
     }

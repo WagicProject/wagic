@@ -56,6 +56,11 @@ public:
     int targetsReadyCheck();
     virtual int addTarget(Targetable * target);
     virtual bool canTarget(Targetable * _target);
+
+    //returns true if tc is equivalent to this TargetChooser
+    //Two targetchoosers are equivalent if they target exactly the same cards
+    virtual bool equals(TargetChooser * tc);
+
     virtual int full()
     {
         if (maxtargets != -1 && cursor >= maxtargets)
@@ -100,6 +105,7 @@ public:
     virtual bool canTarget(Targetable * _card);
     int setAllZones();
     virtual TargetZoneChooser * clone() const;
+    virtual bool equals(TargetChooser * tc);
 };
 
 class CardTargetChooser: public TargetZoneChooser
@@ -110,43 +116,7 @@ public:
     CardTargetChooser(MTGCardInstance * card, MTGCardInstance * source, int * zones = NULL, int nbzones = 0);
     virtual bool canTarget(Targetable * target);
     virtual CardTargetChooser * clone() const;
-};
-
-class CreatureTargetChooser: public TargetZoneChooser
-{
-public:
-    CreatureTargetChooser(int * _zones, int _nbzones, MTGCardInstance * card = NULL, int _maxtargets = 1, bool other = false);
-    CreatureTargetChooser(MTGCardInstance * card = NULL, int _maxtargets = 1, bool other = false);
-    virtual bool canTarget(Targetable * _card);
-    virtual CreatureTargetChooser * clone() const;
-
-};
-
-class DamageableTargetChooser: public CreatureTargetChooser
-{
-public:
-    DamageableTargetChooser(int * _zones, int _nbzones, MTGCardInstance * card = NULL, int _maxtargets = 1, bool other = false) :
-        CreatureTargetChooser(_zones, _nbzones, card, _maxtargets, other)
-    {
-    }
-    ;
-    DamageableTargetChooser(MTGCardInstance * card = NULL, int _maxtargets = 1, bool other = false) :
-        CreatureTargetChooser(card, _maxtargets, other)
-    {
-    }
-    ;
-    virtual bool canTarget(Targetable * target);
-    virtual DamageableTargetChooser * clone() const;
-};
-
-class PlayerTargetChooser: public TargetChooser
-{
-protected:
-    Player * p; //In Case we can only target a specific player
-public:
-    PlayerTargetChooser(MTGCardInstance * card = NULL, int _maxtargets = 1, Player *_p = NULL);
-    virtual bool canTarget(Targetable * target);
-    virtual PlayerTargetChooser * clone() const;
+    virtual bool equals(TargetChooser * tc);
 };
 
 class TypeTargetChooser: public TargetZoneChooser
@@ -160,6 +130,36 @@ public:
     void addType(const char * type);
     virtual bool canTarget(Targetable * target);
     virtual TypeTargetChooser * clone() const;
+    virtual bool equals(TargetChooser * tc);
+};
+
+class DamageableTargetChooser: public TypeTargetChooser
+{
+public:
+    DamageableTargetChooser(int * _zones, int _nbzones, MTGCardInstance * card = NULL, int _maxtargets = 1, bool other = false) :
+        TypeTargetChooser("creature",_zones, _nbzones, card, _maxtargets, other)
+    {
+    }
+    ;
+    DamageableTargetChooser(MTGCardInstance * card = NULL, int _maxtargets = 1, bool other = false) :
+        TypeTargetChooser("creature", card, _maxtargets, other)
+    {
+    }
+    ;
+    virtual bool canTarget(Targetable * target);
+    virtual DamageableTargetChooser * clone() const;
+    virtual bool equals(TargetChooser * tc);
+};
+
+class PlayerTargetChooser: public TargetChooser
+{
+protected:
+    Player * p; //In Case we can only target a specific player
+public:
+    PlayerTargetChooser(MTGCardInstance * card = NULL, int _maxtargets = 1, Player *_p = NULL);
+    virtual bool canTarget(Targetable * target);
+    virtual PlayerTargetChooser * clone() const;
+    virtual bool equals(TargetChooser * tc);
 };
 
 class DescriptorTargetChooser: public TargetZoneChooser
@@ -171,6 +171,7 @@ public:
     virtual bool canTarget(Targetable * target);
     ~DescriptorTargetChooser();
     virtual DescriptorTargetChooser * clone() const;
+    virtual bool equals(TargetChooser * tc);
 };
 
 class SpellTargetChooser: public TargetChooser
@@ -180,6 +181,7 @@ public:
     SpellTargetChooser(MTGCardInstance * card = NULL, int _color = -1, int _maxtargets = 1, bool other = false);
     virtual bool canTarget(Targetable * target);
     virtual SpellTargetChooser * clone() const;
+    virtual bool equals(TargetChooser * tc);
 };
 
 class SpellOrPermanentTargetChooser: public TargetZoneChooser
@@ -189,6 +191,7 @@ public:
     SpellOrPermanentTargetChooser(MTGCardInstance * card = NULL, int _color = -1, int _maxtargets = 1, bool other = false);
     virtual bool canTarget(Targetable * target);
     virtual SpellOrPermanentTargetChooser * clone() const;
+    virtual bool equals(TargetChooser * tc);
 };
 
 class DamageTargetChooser: public TargetChooser
@@ -199,6 +202,7 @@ public:
     DamageTargetChooser(MTGCardInstance * card = NULL, int _color = -1, int _maxtargets = 1, int state = NOT_RESOLVED);
     virtual bool canTarget(Targetable * target);
     virtual DamageTargetChooser * clone() const;
+    virtual bool equals(TargetChooser * tc);
 };
 
 //Should only be used for triggered abilities.
@@ -211,6 +215,7 @@ public:
     virtual bool targetsZone(MTGGameZone * z);
     virtual bool canTarget(Targetable * _target);
     virtual TriggerTargetChooser * clone() const;
+    virtual bool equals(TargetChooser * tc);
 };
 
 #endif

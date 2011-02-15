@@ -5,7 +5,7 @@
 #include "MTGCardInstance.h"
 
 
-PlayRestriction::PlayRestriction(unsigned int id, TargetChooser * tc): id(id), tc(tc)
+PlayRestriction::PlayRestriction(TargetChooser * tc): tc(tc)
 {
     tc->setAllZones(); // This is to allow targetting cards without caring about the actual zone
     tc->targetter = NULL;
@@ -17,8 +17,8 @@ PlayRestriction::~PlayRestriction()
 };
 
 
-MaxPerTurnRestriction::MaxPerTurnRestriction(unsigned int id, TargetChooser * tc, int maxPerTurn, MTGGameZone * zone): 
-    PlayRestriction(id, tc), maxPerTurn(maxPerTurn), zone(zone)
+MaxPerTurnRestriction::MaxPerTurnRestriction(TargetChooser * tc, int maxPerTurn, MTGGameZone * zone): 
+    PlayRestriction(tc), maxPerTurn(maxPerTurn), zone(zone)
     {}
 
 int  MaxPerTurnRestriction::canPutIntoZone(MTGCardInstance * card, MTGGameZone * destZone)
@@ -38,17 +38,22 @@ int  MaxPerTurnRestriction::canPutIntoZone(MTGCardInstance * card, MTGGameZone *
 };
 
 
-PlayRestriction * PlayRestrictions::getRestrictionById(unsigned int id)
+MaxPerTurnRestriction * PlayRestrictions::getMaxPerTurnRestrictionByTargetChooser(TargetChooser * tc)
 {
-    if (id == PlayRestriction::UNDEF_ID)
-        return NULL; // do not request Restrictions that don't have an id, there are several of them
+    TargetChooser * _tc = tc->clone();
+     _tc->setAllZones(); // we don't care about the actual zone for the "equals" check
 
     for (vector<PlayRestriction *>::iterator iter = restrictions.begin(); iter != restrictions.end(); ++iter)
     {
-        if ((*iter)->id == id)
-            return *iter;
+        MaxPerTurnRestriction * mptr = dynamic_cast<MaxPerTurnRestriction *> (*iter);
+        if (mptr && mptr->tc->equals(_tc))
+        {
+            delete _tc;
+            return mptr;
+        }
     }
 
+    delete _tc;
     return NULL;
 }
 

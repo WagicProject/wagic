@@ -4,3 +4,4 @@ mode=mtg
 [PLAYERS]
 life:20
 auto=@each my draw:draw:1
+auto=maxPlay(land)1

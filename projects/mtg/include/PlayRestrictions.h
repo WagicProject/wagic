@@ -10,11 +10,6 @@ class PlayRestriction
 {
 
 public:
-    enum
-    {
-        LANDS_RULE_ID,
-        UNDEF_ID
-    };
     
     enum
     {
@@ -23,12 +18,11 @@ public:
         NO_OPINION
     };
 
-    unsigned int id;
     TargetChooser * tc;
 
     virtual int canPutIntoZone(MTGCardInstance * card, MTGGameZone * destZone) = 0;
 
-    PlayRestriction(unsigned int id, TargetChooser * tc);
+    PlayRestriction(TargetChooser * tc);
     ~PlayRestriction();
 };
 
@@ -41,7 +35,7 @@ public:
     };
     int maxPerTurn;
     MTGGameZone * zone;
-    MaxPerTurnRestriction(unsigned int id, TargetChooser * tc, int maxPerTurn, MTGGameZone * zone);
+    MaxPerTurnRestriction(TargetChooser * tc, int maxPerTurn, MTGGameZone * zone);
     int canPutIntoZone(MTGCardInstance * card, MTGGameZone * destZone);
 };
 
@@ -51,7 +45,8 @@ class PlayRestrictions
 protected:
     vector<PlayRestriction *>restrictions;
 public:
-    PlayRestriction * getRestrictionById(unsigned int id);
+    MaxPerTurnRestriction * getMaxPerTurnRestrictionByTargetChooser(TargetChooser * tc);
+
     void addRestriction(PlayRestriction * restriction);
     void removeRestriction(PlayRestriction * restriction);
     int canPutIntoZone(MTGCardInstance * card, MTGGameZone * destZone);

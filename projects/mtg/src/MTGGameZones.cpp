@@ -260,10 +260,7 @@ void MTGPlayerCards::init()
     garbage = NEW MTGGameZone();
     temp = NEW MTGGameZone();
 
-    //This is a Rule that should ideally be moved as an ability in the game...
     playRestrictions = NEW PlayRestrictions();
-    TargetChooser * tc = NEW TypeTargetChooser("land");
-    playRestrictions->addRestriction(NEW MaxPerTurnRestriction(PlayRestriction::LANDS_RULE_ID, tc, 1, inPlay));
 }
 
 void MTGPlayerCards::showHand()

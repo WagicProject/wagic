@@ -414,6 +414,7 @@ ondu_cleric.txt
 OneDozenEyes.txt
 orcish_artillery.txt
 orcish_lumberjack.txt
+orims_chant_i595.txt
 overrun.txt
 paradise_mantle.txt
 paralysis.txt

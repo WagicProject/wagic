@@ -745,7 +745,7 @@ bool TargetChooser::canTarget(Targetable * target)
         }
         if(source && ((source->hasSubtype("aura") || source->hasSubtype("equipment")) && source->target && source->target == card && source->target->isPhased && targetter->target == card)) 
         return true;
-        //this is kinda cheating but by defualt we let auras and equipments always contenue to target a phased creature.
+        //this is kinda cheating but by default we let auras and equipments always continue to target a phased creature.
         else if(card->isPhased) 
         return false;
         if (source && targetter && card->isInPlay()) 
@@ -830,6 +830,14 @@ bool TargetChooser::validTargetsExist()
     return false;
 }
 
+bool TargetChooser::equals(TargetChooser * tc)
+{
+
+    //This function always return 1 for now, since the default TargetChooser targets everything
+    //In the future we might need to check some of "targetter" settings to take protection into account...
+    return true;
+}
+
 /**
  a specific Card
  **/
@@ -859,6 +867,20 @@ CardTargetChooser * CardTargetChooser::clone() const
     CardTargetChooser * a = NEW CardTargetChooser(*this);
     return a;
 }
+
+bool CardTargetChooser::equals(TargetChooser * tc)
+{
+
+    CardTargetChooser * ctc = dynamic_cast<CardTargetChooser *> (tc);
+    if (!ctc)
+        return false;
+    
+    if (validTarget != ctc->validTarget) //todo, check also previous cards, see "cantarget"...
+        return false;
+
+    return TargetZoneChooser::equals(tc);
+}
+
 
 /**
  Choose anything that has a given list of types
@@ -940,6 +962,34 @@ TypeTargetChooser * TypeTargetChooser::clone() const
     return a;
 }
 
+bool TypeTargetChooser ::equals(TargetChooser * tc)
+{
+
+    TypeTargetChooser  * ttc = dynamic_cast<TypeTargetChooser  *> (tc);
+    if (!ttc)
+        return false;
+    
+    if (nbtypes != ttc->nbtypes)
+        return false;
+
+    map<int,int> counts;
+
+    for (int i = 0; i < nbtypes; ++i)
+    {
+        counts[types[i]] +=1;
+        counts[ttc->types[i]] -=1;
+    }
+
+    for (int i = 0; i < nbtypes; ++i)
+    {
+        if (counts[types[i]] || counts[ttc->types[i]])
+            return false;
+    }
+
+    return TargetZoneChooser::equals(tc);
+}
+
+
 /**
  A Target Chooser associated to a Card Descriptor object, for fine tuning of targets description
  **/
@@ -1001,46 +1051,16 @@ DescriptorTargetChooser * DescriptorTargetChooser::clone() const
     return a;
 }
 
-/**
- Choose a creature
- **/
-
-CreatureTargetChooser::CreatureTargetChooser(MTGCardInstance * card, int _maxtargets, bool other) :
-    TargetZoneChooser(card, _maxtargets, other)
+bool DescriptorTargetChooser::equals(TargetChooser * tc)
 {
-    int default_zones[] = { MTGGameZone::MY_BATTLEFIELD, MTGGameZone::OPPONENT_BATTLEFIELD };
-    init(default_zones, 2);
-}
 
-CreatureTargetChooser::CreatureTargetChooser(int * _zones, int nbzones, MTGCardInstance * card, int _maxtargets, bool other) :
-    TargetZoneChooser(card, _maxtargets, other)
-{
-    if (nbzones == 0)
-    {
-        int default_zones[] = { MTGGameZone::MY_BATTLEFIELD, MTGGameZone::OPPONENT_BATTLEFIELD };
-        init(default_zones, 2);
-    }
-    else
-    {
-        init(_zones, nbzones);
-    }
-}
+    DescriptorTargetChooser  * dtc = dynamic_cast<DescriptorTargetChooser  *> (tc);
+    if (!dtc)
+        return false;
+    
+    //TODO Descriptors need to have an "equals" method too -_-
 
-bool CreatureTargetChooser::canTarget(Targetable * target)
-{
-    if (!TargetZoneChooser::canTarget(target)) return false;
-    if (target->typeAsTarget() == TARGET_CARD)
-    {
-        MTGCardInstance * card = (MTGCardInstance *) target;
-        return card->isCreature();
-    }
-    return false;
-}
-
-CreatureTargetChooser * CreatureTargetChooser::clone() const
-{
-    CreatureTargetChooser * a = NEW CreatureTargetChooser(*this);
-    return a;
+    return TargetZoneChooser::equals(tc);
 }
 
 /* TargetzoneChooser targets everything in a given zone */
@@ -1114,6 +1134,35 @@ TargetZoneChooser * TargetZoneChooser::clone() const
     return a;
 }
 
+bool TargetZoneChooser::equals(TargetChooser * tc)
+{
+
+    TargetZoneChooser  * tzc = dynamic_cast<TargetZoneChooser  *> (tc);
+    if (!tzc)
+        return false;
+    
+    if (nbzones!= tzc->nbzones)
+        return false;
+
+    map<int,int> counts;
+
+    for (int i = 0; i < nbzones; ++i)
+    {
+        counts[zones[i]] +=1;
+        counts[tzc->zones[i]] -=1;
+    }
+
+    for (int i = 0; i < nbzones; ++i)
+    {
+        if (counts[zones[i]] || counts[tzc->zones[i]])
+            return false;
+    }
+
+    //TODO: ALL_ZONES should be equivalent to something actually targetting all zones...
+
+    return TargetChooser::equals(tc);
+}
+
 /* Player Target */
 PlayerTargetChooser::PlayerTargetChooser(MTGCardInstance * card, int _maxtargets, Player *p) :
     TargetChooser(card, _maxtargets), p(p)
@@ -1140,6 +1189,19 @@ PlayerTargetChooser* PlayerTargetChooser::clone() const
     return a;
 }
 
+bool PlayerTargetChooser::equals(TargetChooser * tc)
+{
+
+    PlayerTargetChooser  * ptc = dynamic_cast<PlayerTargetChooser   *> (tc);
+    if (!ptc)
+        return false;
+    
+    if (p != ptc->p)
+        return false;
+
+    return TargetChooser::equals(tc);
+}
+
 /*Damageable Target */
 bool DamageableTargetChooser::canTarget(Targetable * target)
 {
@@ -1156,13 +1218,23 @@ bool DamageableTargetChooser::canTarget(Targetable * target)
     {
         return true;
     }
-    return CreatureTargetChooser::canTarget(target);
+    return TypeTargetChooser::canTarget(target);
 }
 
 DamageableTargetChooser* DamageableTargetChooser::clone() const
 {
     DamageableTargetChooser * a = NEW DamageableTargetChooser(*this);
     return a;
+}
+
+bool DamageableTargetChooser::equals(TargetChooser * tc)
+{
+
+    DamageableTargetChooser  * dtc = dynamic_cast<DamageableTargetChooser  *> (tc);
+    if (!dtc)
+        return false;
+    
+    return TypeTargetChooser::equals(tc);
 }
 
 /*Spell */
@@ -1194,6 +1266,19 @@ SpellTargetChooser* SpellTargetChooser::clone() const
 {
     SpellTargetChooser * a = NEW SpellTargetChooser(*this);
     return a;
+}
+
+bool SpellTargetChooser::equals(TargetChooser * tc)
+{
+
+    SpellTargetChooser  * stc = dynamic_cast<SpellTargetChooser *> (tc);
+    if (!stc)
+        return false;
+    
+    if (color != stc->color)
+        return false;
+
+    return TargetChooser::equals(tc);
 }
 
 /*Spell or Permanent */
@@ -1232,6 +1317,19 @@ SpellOrPermanentTargetChooser* SpellOrPermanentTargetChooser::clone() const
     return a;
 }
 
+bool SpellOrPermanentTargetChooser::equals(TargetChooser * tc)
+{
+
+    SpellOrPermanentTargetChooser  * sptc = dynamic_cast<SpellOrPermanentTargetChooser *> (tc);
+    if (!sptc)
+        return false;
+    
+    if (color != sptc->color)
+        return false;
+
+    return TargetZoneChooser::equals(tc);
+}
+
 /*Damage */
 DamageTargetChooser::DamageTargetChooser(MTGCardInstance * card, int _color, int _maxtargets, int _state) :
     TargetChooser(card, _maxtargets)
@@ -1262,6 +1360,19 @@ DamageTargetChooser* DamageTargetChooser::clone() const
     return a;
 }
 
+bool DamageTargetChooser::equals(TargetChooser * tc)
+{
+
+    DamageTargetChooser * dtc = dynamic_cast<DamageTargetChooser *> (tc);
+    if (!dtc)
+        return false;
+
+    if (color != dtc->color || state != dtc->state)
+        return false;
+
+    return TargetChooser::equals(tc);
+}
+
 TriggerTargetChooser::TriggerTargetChooser(int _triggerTarget)
 {
     triggerTarget = _triggerTarget;
@@ -1283,4 +1394,17 @@ TriggerTargetChooser * TriggerTargetChooser::clone() const
 {
     TriggerTargetChooser * a = NEW TriggerTargetChooser(*this);
     return a;
+}
+
+bool TriggerTargetChooser::equals(TargetChooser * tc)
+{
+
+    TriggerTargetChooser * ttc = dynamic_cast<TriggerTargetChooser *> (tc);
+    if (!ttc)
+        return false;
+
+    if (triggerTarget != ttc->triggerTarget)
+        return false;
+
+    return TargetChooser::equals(tc);
 }

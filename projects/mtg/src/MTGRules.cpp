@@ -149,7 +149,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
 
         if (card->has(Constants::STORM))
         {
-            int storm = player->game->stack->seenThisTurn("*");
+            int storm = player->game->stack->seenThisTurn("*") + player->opponent()->game->stack->seenThisTurn("*");
             ManaCost * spellCost = player->getManaPool();
             for (int i = storm; i > 1; i--)
             {
@@ -314,8 +314,8 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
 
         if (card->has(Constants::STORM))
         {
-            int storm = player->game->stack->seenThisTurn("*");
-            for (int i = storm; i > 1; i--)
+           int storm = player->game->stack->seenThisTurn("*") + player->opponent()->game->stack->seenThisTurn("*");
+           for (int i = storm; i > 1; i--)
             {
                 game->mLayers->stackLayer()->addSpell(copy, NULL, playerMana, alternateCostType, 1);
             }

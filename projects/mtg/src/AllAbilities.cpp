@@ -1484,14 +1484,14 @@ int ACastRestriction::addToGame()
             //For now the only modifying rule is the one for lands, so this is hardcoded here.
             //This means that a modifying rule for anything lands will actually modify the lands rule.
             //In the future, we need a way to "identify" rules that modify an existing restriction, probably by doing a comparison of the TargetChoosers
-            existingRestriction = (MaxPerTurnRestriction *) (targetPlayer->game->playRestrictions->getRestrictionById(PlayRestriction::LANDS_RULE_ID));
+            existingRestriction = targetPlayer->game->playRestrictions->getMaxPerTurnRestrictionByTargetChooser(restrictionsScope);
             if(existingRestriction && existingRestriction->maxPerTurn != MaxPerTurnRestriction::NO_MAX)
                 existingRestriction->maxPerTurn += value->getValue();
         }
         else
         {
             TargetChooser * _tc = restrictionsScope->clone();
-            existingRestriction = NEW MaxPerTurnRestriction(PlayRestriction::UNDEF_ID, _tc, value->getValue(), MTGGameZone::intToZone(zoneId, source->controller(), targetPlayer));
+            existingRestriction = NEW MaxPerTurnRestriction(_tc, value->getValue(), MTGGameZone::intToZone(zoneId, source->controller(), targetPlayer));
             targetPlayer->game->playRestrictions->addRestriction(existingRestriction);
 
         }

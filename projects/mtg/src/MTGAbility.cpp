@@ -18,7 +18,7 @@ const size_t kLordKeywordsCount = 5;
 const string kThisKeywords[] = { "this(", "thisforeach(" };
 const size_t kThisKeywordsCount = 2;
 
-const string kMaxCastKeywords[] = { "maxplay(", "maxcost("};
+const string kMaxCastKeywords[] = { "maxplay(", "maxcast("};
 const int kMaxCastZones[] = { MTGGameZone::BATTLEFIELD, MTGGameZone::STACK};
 const size_t kMaxCastKeywordsCount = 2;
 
