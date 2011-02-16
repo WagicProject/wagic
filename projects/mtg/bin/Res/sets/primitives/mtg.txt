@@ -51349,6 +51349,16 @@ mana={2}{U}{U}
 type=Sorcery
 [/card]
 [card]
+name=Rites of Flourishing
+auto=maxplay(land)+1 opponent
+auto=maxplay(land)+1
+auto=@each my draw:draw:1 controller
+auto=@each opponent draw:draw:1 opponent
+text=At the beginning of each player's draw step, that player draws an additional card. -- Each player may play an additional land on each of his or her turns.
+mana={2}{G}
+type=Enchantment
+[/card]
+[card]
 name=Rith's Attendant
 auto={1}{S}:Add {R}{G}{W}
 text={1}, Sacrifice Rith's Attendant: Add {R}{G}{W} to your mana pool.
@@ -61507,6 +61517,15 @@ type=Creature
 subtype=Merfolk Wizard
 power=1
 toughness=2
+[/card]
+[card]
+name=Storm Cauldron
+auto=maxplay(land)+1 opponent
+auto=maxplay(land)+1
+auto=@tappedformana(land):all(trigger[to]) moveTo(ownerhand)
+text=Each player may play an additional land during each of his or her turns. -- Whenever a land is tapped for mana, return it to its owner's hand.
+mana={5}
+type=Artifact
 [/card]
 [card]
 name=Storm Crow

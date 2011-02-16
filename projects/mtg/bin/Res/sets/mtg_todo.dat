@@ -20504,12 +20504,6 @@ mana={1}{B}
 type=Sorcery
 [/card]
 [card]
-name=Rites of Flourishing
-text=At the beginning of each player's draw step, that player draws an additional card. -- Each player may play an additional land on each of his or her turns.
-mana={2}{G}
-type=Enchantment
-[/card]
-[card]
 name=Rites of Initiation
 text=Discard any number of cards at random. Creatures you control get +1/+0 until end of turn for each card discarded this way.
 mana={R}
@@ -24099,12 +24093,6 @@ toughness=1
 name=Storage Matrix
 text=As long as Storage Matrix is untapped, each player chooses artifact, creature, or land during his or her untap step. That player can untap only permanents of the chosen type this step.
 mana={3}
-type=Artifact
-[/card]
-[card]
-name=Storm Cauldron
-text=Each player may play an additional land during each of his or her turns. -- Whenever a land is tapped for mana, return it to its owner's hand.
-mana={5}
 type=Artifact
 [/card]
 [card]
