@@ -746,15 +746,11 @@ MTGGameZone * MTGGameZone::intToZone(int zoneId, Player * p, Player * p2)
         return p->game->graveyard;
     case OPPONENT_GRAVEYARD:
         return p->opponent()->game->graveyard;
-    case TARGET_CONTROLLER_GRAVEYARD:
-        return p2->game->graveyard;
 
     case MY_BATTLEFIELD:
         return p->game->inPlay;
     case OPPONENT_BATTLEFIELD:
         return p->opponent()->game->inPlay;
-    case TARGET_CONTROLLER_BATTLEFIELD:
-        return p2->game->inPlay;
     case BATTLEFIELD:
         return p->game->inPlay;
 
@@ -762,22 +758,17 @@ MTGGameZone * MTGGameZone::intToZone(int zoneId, Player * p, Player * p2)
         return p->game->hand;
     case OPPONENT_HAND:
         return p->opponent()->game->hand;
-    case TARGET_CONTROLLER_HAND:
-        return p2->game->hand;
 
     case MY_EXILE:
         return p->game->removedFromGame;
     case OPPONENT_EXILE:
         return p->opponent()->game->removedFromGame;
-    case TARGET_CONTROLLER_EXILE:
-        return p2->game->removedFromGame;
+
 
     case MY_LIBRARY:
         return p->game->library;
     case OPPONENT_LIBRARY:
         return p->opponent()->game->library;
-    case TARGET_CONTROLLER_LIBRARY:
-        return p2->game->library;
     case LIBRARY:
         return p->game->library;
 
@@ -785,10 +776,31 @@ MTGGameZone * MTGGameZone::intToZone(int zoneId, Player * p, Player * p2)
         return p->game->stack;
     case OPPONENT_STACK:
         return p->opponent()->game->stack;
-    case TARGET_CONTROLLER_STACK:
-        return p2->game->stack;
     case STACK:
         return p->game->stack;
+    }
+
+    if (!p2) return NULL;
+    switch (zoneId)
+    {    
+    case TARGET_CONTROLLER_GRAVEYARD:
+        return p2->game->graveyard;
+
+    case TARGET_CONTROLLER_BATTLEFIELD:
+        return p2->game->inPlay;
+
+    case TARGET_CONTROLLER_HAND:
+        return p2->game->hand;
+
+    case TARGET_CONTROLLER_EXILE:
+        return p2->game->removedFromGame;
+
+    case TARGET_CONTROLLER_LIBRARY:
+        return p2->game->library;
+
+    case TARGET_CONTROLLER_STACK:
+        return p2->game->stack;
+
     default:
         return NULL;
     }

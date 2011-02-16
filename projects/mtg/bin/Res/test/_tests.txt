@@ -415,6 +415,7 @@ OneDozenEyes.txt
 orcish_artillery.txt
 orcish_lumberjack.txt
 orims_chant_i595.txt
+orims_chant2.txt
 overrun.txt
 paradise_mantle.txt
 paralysis.txt

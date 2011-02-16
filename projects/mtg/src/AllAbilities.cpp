@@ -1491,7 +1491,7 @@ int ACastRestriction::addToGame()
         else
         {
             TargetChooser * _tc = restrictionsScope->clone();
-            existingRestriction = NEW MaxPerTurnRestriction(_tc, value->getValue(), MTGGameZone::intToZone(zoneId, source->controller(), targetPlayer));
+            existingRestriction = NEW MaxPerTurnRestriction(_tc, value->getValue(), MTGGameZone::intToZone(zoneId, targetPlayer));
             targetPlayer->game->playRestrictions->addRestriction(existingRestriction);
 
         }

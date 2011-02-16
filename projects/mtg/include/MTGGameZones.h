@@ -107,7 +107,7 @@ class MTGGameZone {
    static MTGGameZone * stringToZone(string zoneName, MTGCardInstance * source, MTGCardInstance * target);
    static int zoneStringToId(string zoneName);
    static MTGGameZone *intToZone(int zoneId, MTGCardInstance * source = NULL,MTGCardInstance * target = NULL);
-   static MTGGameZone *intToZone(int zoneId, Player * source, Player * target);
+   static MTGGameZone *intToZone(int zoneId, Player * source, Player * target = NULL);
    bool needShuffle;
    virtual const char * getName(){return "zone";};
    virtual ostream& toString(ostream&) const;
