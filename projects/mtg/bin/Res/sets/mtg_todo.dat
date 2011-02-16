@@ -10611,15 +10611,6 @@ type=Sorcery
 subtype=Arcane
 [/card]
 [card]
-name=Hellfire Mongrel
-text=At the beginning of each opponent's upkeep, if that player has two or fewer cards in hand, Hellfire Mongrel deals 2 damage to him or her.
-mana={2}{R}
-type=Creature
-subtype=Elemental Hound
-power=2
-toughness=2
-[/card]
-[card]
 name=Hellhole Rats
 text=Haste -- When Hellhole Rats enters the battlefield, target player discards a card. Hellhole Rats deals damage to that player equal to that card's converted mana cost.
 mana={2}{B}{R}
@@ -11876,15 +11867,6 @@ name=Invulnerability
 text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- The next time a source of your choice would deal damage to you this turn, prevent that damage.
 mana={1}{W}
 type=Instant
-[/card]
-[card]
-name=Iona, Shield of Emeria
-text=Flying -- As Iona, Shield of Emeria enters the battlefield, choose a color. -- Your opponents can't cast spells of the chosen color.
-mana={6}{W}{W}{W}
-type=Legendary Creature
-subtype=Angel
-power=7
-toughness=7
 [/card]
 [card]
 name=Ironclaw Curse
@@ -13703,15 +13685,6 @@ type=Creature
 subtype=Elemental
 power=8
 toughness=5
-[/card]
-[card]
-name=Living Tsunami
-text=Flying -- At the beginning of your upkeep, sacrifice Living Tsunami unless you return a land you control to its owner's hand.
-mana={2}{U}{U}
-type=Creature
-subtype=Elemental
-power=4
-toughness=4
 [/card]
 [card]
 name=Living Wish
@@ -19268,12 +19241,6 @@ name=Quenchable Fire
 text=Quenchable Fire deals 3 damage to target player. It deals an additional 3 damage to that player at the beginning of your next upkeep step unless he or she pays {U} before that step.
 mana={3}{R}
 type=Sorcery
-[/card]
-[card]
-name=Quest for Ancient Secrets
-text=Whenever a card is put into your graveyard from anywhere, you may put a quest counter on Quest for Ancient Secrets. -- Remove five quest counters from Quest for Ancient Secrets and sacrifice it: Target player shuffles his or her graveyard into his or her library.
-mana={U}
-type=Enchantment
 [/card]
 [card]
 name=Quest for Pure Flame

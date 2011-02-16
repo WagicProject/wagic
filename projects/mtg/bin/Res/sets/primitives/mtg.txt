@@ -28744,6 +28744,16 @@ mana={2}{B}{B}{B}
 type=Sorcery
 [/card]
 [card]
+name=Hellfire Mongrel
+auto=@each opponent upkeep:aslongas(*|opponenthand) damage:2 opponent <3
+text=At the beginning of each opponent's upkeep, if that player has two or fewer cards in hand, Hellfire Mongrel deals 2 damage to him or her.
+mana={2}{R}
+type=Creature
+subtype=Elemental Hound
+power=2
+toughness=2
+[/card]
+[card]
 name=Hellkite Hatchling
 auto=counter(0/0,-1,devour) all(other creature)
 auto=counter(0/0,1,devour)
@@ -31306,6 +31316,26 @@ auto=choice damage:X target(creature,player)
 text=Choose one - Draw X cards; or Invoke the Firemind deals X damage to target creature or player.
 mana={X}{U}{U}{R}
 type=Sorcery
+[/card]
+[card]
+name=Iona, Shield of Emeria
+abilities=flying
+auto=choice name(white) && counter(0/0,1,White) all(this)
+auto=choice name(blue) && counter(0/0,1,Blue) all(this)
+auto=choice name(black) && counter(0/0,1,Black) all(this)
+auto=choice name(red) && counter(0/0,1,Red) all(this)
+auto=choice name(green) && counter(0/0,1,Green) all(this)
+auto=this(counter{0/0.1.White}) cantcast(*[white]) opponent
+auto=this(counter{0/0.1.Blue}) cantcast(*[blue]) opponent
+auto=this(counter{0/0.1.Black}) cantcast(*[black]) opponent
+auto=this(counter{0/0.1.Red}) cantcast(*[red]) opponent
+auto=this(counter{0/0.1.Green}) cantcast(*[green]) opponent
+text=Flying -- As Iona, Shield of Emeria enters the battlefield, choose a color. -- Your opponents can't cast spells of the chosen color.
+mana={6}{W}{W}{W}
+type=Legendary Creature
+subtype=Angel
+power=7
+toughness=7
 [/card]
 [card]
 name=Iona's Judgment
@@ -36499,6 +36529,17 @@ text=Enchant land -- Enchanted land is a 5/6 green Treefolk creature that's stil
 mana={2}{G}{G}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Living Tsunami
+abilities=flying
+auto=upcost[{H(land|mybattlefield)}] sacrifice
+text=Flying -- At the beginning of your upkeep, sacrifice Living Tsunami unless you return a land you control to its owner's hand.
+mana={2}{U}{U}
+type=Creature
+subtype=Elemental
+power=4
+toughness=4
 [/card]
 [card]
 name=Living Wall
@@ -48350,7 +48391,15 @@ text=Counter target instant or sorcery spell. Search its controller's graveyard,
 mana={2}{U}{U}
 type=Instant
 [/card]
-
+[card]
+name=Quest for Ancient Secrets
+auto=@movedTo(*|mygraveyard):may counter(0/0,1,Quest) all(this)
+auto={C(0/0,-5,Quest)}{S}:name(shuffle your graveyard into your library) && moveto(myLibrary) all(*|myGraveyard) && shuffle
+auto={C(0/0,-5,Quest)}{S}:name(shuffle your graveyard into your library) && moveto(opponentLibrary) all(*|opponentGraveyard) && shuffle
+text=Whenever a card is put into your graveyard from anywhere, you may put a quest counter on Quest for Ancient Secrets. -- Remove five quest counters from Quest for Ancient Secrets and sacrifice it: Target player shuffles his or her graveyard into his or her library.
+mana={U}
+type=Enchantment
+[/card]
 [card]
 name=Quest for the Gemblades
 auto=@combatdamaged(creature) from(creature|myBattlefield):may counter(0/0,1,Quest) all(this)
