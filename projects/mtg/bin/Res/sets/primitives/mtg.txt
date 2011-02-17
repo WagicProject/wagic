@@ -71228,7 +71228,7 @@ toughness=4
 [card]
 name=Wall of Nets
 abilities=defender
-auto=@blocked(creature) from(this):all(trigger[to]) phaseaction(combatends) (blink)forsrc
+auto=@blocked(creature) from(this):all(trigger[to]) phaseaction[combatends] (blink)forsrc
 text=Defender (This creature can't attack.) -- At end of combat, exile all creatures blocked by Wall of Nets. -- When Wall of Nets leaves the battlefield, return all cards exiled with Wall of Nets to the battlefield under their owners' control.
 mana={1}{W}{W}
 type=Creature
