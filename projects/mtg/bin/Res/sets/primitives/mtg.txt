@@ -28932,7 +28932,7 @@ power=3
 toughness=4
 [/card]
 [card]
-name=Hero of Oxida Ridge
+name=Hero of Oxid Ridge
 abilities=haste
 auto=@attacking(this):all(other creature[attacking]) 1/0 ueot
 auto=@attacking(this):all(creature[power<=1]) cantblock ueot
@@ -67402,8 +67402,8 @@ toughness=3
 [/card]
 [card]
 name=Tropical Island
-auto={T}:Add {U}
 auto={T}:Add {G}
+auto={T}:Add {U}
 type=Land
 subtype=Forest Island
 [/card]
