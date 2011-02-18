@@ -37033,6 +37033,8 @@ text={T}, Sacrifice Lotus Petal: Add one mana of any color to your mana pool.
 mana={0}
 type=Artifact
 [/card]
+#Lovisa changed to follow the actual card, in her original state, this card was considered overpowered to the point that it recieved 2 major errattas
+#the errattas were so far from what the actual card states that its almost rediculous. removing the errattas.
 [card]
 name=Lovisa Coldeyes
 auto=lord(warrior) 2/2 
