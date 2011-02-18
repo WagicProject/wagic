@@ -2387,7 +2387,7 @@ toughness=5
 name=Arbor Elf
 auto={t}:untap target(forest)
 text={T}: Untap target Forest.
-mana={G}{r}
+mana={G}
 type=Creature
 subtype=Elf Druid
 power=1
@@ -37033,20 +37033,14 @@ text={T}, Sacrifice Lotus Petal: Add one mana of any color to your mana pool.
 mana={0}
 type=Artifact
 [/card]
-#Lovisa changed to follow the actual card, in her original state, this card was considered overpowered to the point that it recieved 2 major errattas
-#the errattas were so far from what the actual card states that its almost rediculous. removing the errattas.
 [card]
 name=Lovisa Coldeyes
-auto=lord(warrior) 2/2 
-auto=lord(berserker) 2/2 
-auto=lord(barbarian) 2/2 
-auto=lord(warrior) haste 
-auto=lord(berserker) haste
-auto=lord(barbarian) haste
+auto=lord(warrior,berserker,other barbarian) 2/2
+auto=lord(warrior,berserker,other barbarian) haste
 text=Warrior, Berserker, and Barbarian creatures get +2/+2 and have haste.
 mana={3}{R}{R}
 type=Legendary Creature
-subtype=Human lord
+subtype=Human barbarian
 power=3
 toughness=3
 [/card]
