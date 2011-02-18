@@ -1,5 +1,16 @@
 grade=Borderline
 [card]
+name=Anowon, the Ruin Sage
+auto=@each my upkeep: moveTo(mygraveyard) notatarget(creature[-vampire]|myBattlefield)
+auto=@each my upkeep: moveTo(opponentgraveyard) notatarget(creature[-vampire]|opponentBattlefield)
+text=At the beginning of your upkeep, each player sacrifices a non-Vampire creature.
+mana={3}{B}{B}
+type=Legendary Creature
+subtype=Vampire Shaman
+power=4
+toughness=3
+[/card]
+[card]
 name=Autumn Willow
 abilities=opponentshroud,shroud
 auto={G}:-shroud

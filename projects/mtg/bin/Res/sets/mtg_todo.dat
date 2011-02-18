@@ -572,15 +572,6 @@ mana={4}{G}
 type=Sorcery
 [/card]
 [card]
-name=Anowon, the Ruin Sage
-text=At the beginning of your upkeep, each player sacrifices a non-Vampire creature.
-mana={3}{B}{B}
-type=Legendary Creature
-subtype=Vampire Shaman
-power=4
-toughness=3
-[/card]
-[card]
 name=Antagonism
 text=At the beginning of each player's end step, Antagonism deals 2 damage to that player unless one of his or her opponents was dealt damage this turn.
 mana={3}{R}
