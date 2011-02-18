@@ -26353,23 +26353,23 @@ toughness=3
 [/card]
 [card]
 name=Gorilla Shaman
-auto={1}:name(X = 0) && destroy target(*[artifact[-creature];manacost=0])
-auto={3}:name(X = 1) && destroy target(*[artifact[-creature];manacost=1])
-auto={5}:name(X = 2) && destroy target(*[artifact[-creature];manacost=2])
-auto={7}:name(X = 3) && destroy target(*[artifact[-creature];manacost=3])
-auto={9}:name(X = 4) && destroy target(*[artifact[-creature];manacost=4])
-auto={11}:name(X = 5) && destroy target(*[artifact[-creature];manacost=5])
-auto={13}:name(X = 6) && destroy target(*[artifact[-creature];manacost=6])
-auto={15}:name(X = 7) && destroy target(*[artifact[-creature];manacost=7])
-auto={17}:name(X = 8) && destroy target(*[artifact[-creature];manacost=8])
-auto={19}:name(X = 9) && destroy target(*[artifact[-creature];manacost=9])
-auto={21}:name(X = 10) && destroy target(*[artifact[-creature];manacost=10])
-auto={23}:name(X = 11) && destroy target(*[artifact[-creature];manacost=11])
-auto={25}:name(X = 12) && destroy target(*[artifact[-creature];manacost=12])
-auto={27}:name(X = 13) && destroy target(*[artifact[-creature];manacost=13])
-auto={29}:name(X = 14) && destroy target(*[artifact[-creature];manacost=14])
-auto={31}:name(X = 15) && destroy target(*[artifact[-creature];manacost=15])
-auto={33}:name(X = 16) && destroy target(*[artifact[-creature];manacost=16])
+auto={1}:name(X = 0) && destroy target(artifact[-creature;manacost=0])
+auto={3}:name(X = 1) && destroy target(artifact[-creature;manacost=1])
+auto={5}:name(X = 2) && destroy target(artifact[-creature;manacost=2])
+auto={7}:name(X = 3) && destroy target(artifact[-creature;manacost=3])
+auto={9}:name(X = 4) && destroy target(artifact[-creature;manacost=4])
+auto={11}:name(X = 5) && destroy target(artifact[-creature;manacost=5])
+auto={13}:name(X = 6) && destroy target(artifact[-creature;manacost=6])
+auto={15}:name(X = 7) && destroy target(artifact[-creature;manacost=7])
+auto={17}:name(X = 8) && destroy target(artifact[-creature;manacost=8])
+auto={19}:name(X = 9) && destroy target(artifact[-creature;manacost=9])
+auto={21}:name(X = 10) && destroy target(artifact[-creature;manacost=10])
+auto={23}:name(X = 11) && destroy target(artifact[-creature;manacost=11])
+auto={25}:name(X = 12) && destroy target(artifact[-creature;manacost=12])
+auto={27}:name(X = 13) && destroy target(artifact[-creature;manacost=13])
+auto={29}:name(X = 14) && destroy target(artifact[-creature;manacost=14])
+auto={31}:name(X = 15) && destroy target(artifact[-creature;manacost=15])
+auto={33}:name(X = 16) && destroy target(artifact[-creature;manacost=16])
 text={X}{X}{1}: Destroy target noncreature artifact with converted mana cost X.
 mana={R}
 type=Creature
@@ -34974,7 +34974,8 @@ auto=lord(creature[counter{any}]|opponentbattlefield) cantblock
 [/card]
 [card]
 name=Kumano, Master Yamabushi
-auto={1}{R}:exiledeath target(creature,player) && damage:1
+auto={1}{R}:name(damage a creature) && exiledeath target(creature) && damage:1
+auto={1}{r}:name(damage a player) && damage:1 target(player)
 text={1}{R}: Kumano, Master Yamabushi deals 1 damage to target creature or player. -- If a creature dealt damage by Kumano this turn would be put into a graveyard, exile it instead.
 mana={3}{R}{R}
 type=Legendary Creature
@@ -35228,7 +35229,7 @@ toughness=3
 [/card]
 [card]
 name=Lake of the Dead
-auto=aslongas(swamp|mybattlefield) moveto(myhand) target(swamp|mybattlefield) oneshot && counter(0/0,-1,payment)
+auto=aslongas(swamp|mybattlefield) sacrifice target(swamp|mybattlefield) oneshot && counter(0/0,-1,payment)
 auto=moveto(mygraveyard) target(this|mybattlefield)
 auto=this(counter{0/0.1.payment}<1) {T}:Add{B}
 auto=this(counter{0/0.1.payment}<1) {T}{S(swamp|myBattlefield)}:Add{B}{B}{B}{B}
@@ -36913,7 +36914,7 @@ auto={1}{R}:counter(0/0,1,Level) asSorcery
 auto=this(counter{0/0.1.Level}) 3/3
 auto=@attacking(this):this(counter{0/0.6.Level}) damage:6 all(creature|opponentBattlefield)
 text=Level up {1}{r} (: Put a level counter on this. Level up only as a sorcery.)--LEVEL 1-5 6/6--LEVEL 6+ --6/6 Whenever Lord of Shatterskull Pass attacks, it deals 6 damage to each creature defending player controls.
-mana={2}{R}
+mana={3}{R}
 type=Creature
 subtype=Human Shaman
 auto=maxlevel:6
@@ -37036,14 +37037,14 @@ type=Artifact
 name=Lovisa Coldeyes
 auto=lord(warrior) 2/2 
 auto=lord(berserker) 2/2 
-auto=lord(other barbarian) 2/2 
+auto=lord(barbarian) 2/2 
 auto=lord(warrior) haste 
 auto=lord(berserker) haste
-auto=lord(other barbarian) haste
-text=Warrior, Berserker, and/or other Barbarian creatures get +2/+2 and have haste.
+auto=lord(barbarian) haste
+text=Warrior, Berserker, and Barbarian creatures get +2/+2 and have haste.
 mana={3}{R}{R}
 type=Legendary Creature
-subtype=Human Barbarian
+subtype=Human lord
 power=3
 toughness=3
 [/card]
@@ -42739,7 +42740,7 @@ toughness=1
 [/card]
 [card]
 name=Nightsky Mimic
-auto=@movedTo(*[blackandwhite]|mystack):transforms(,setpower=4,settoughness=4,flying) ueot
+auto=@movedTo(*[blackandwhite]|mystack) turnlimited:transforms(,setpower=4,settoughness=4,flying) ueot
 text=Whenever you cast a spell that's both white and black, Nightsky Mimic becomes 4/4 and gains flying until end of turn.
 mana={1}{WB}
 type=Creature
@@ -67267,7 +67268,7 @@ type=Artifact
 name=Trigon of Mending
 auto=counter(0/0,3,Charge)
 auto={W}{W}{T}:counter(0/0,1,Charge)
-auto={C(0/0,-1,Charge)}{2}{T}:3/0 target(creature)
+auto={C(0/0,-1,Charge)}{2}{T}:target(player) life:3
 text=Trigon of Mending enters the battlefield with three charge counters on it. -- {W}{W}, {T}: Put a charge counter on Trigon of Mending. -- {2}, {T}, Remove a charge counter from Trigon of Mending: Target player gains 3 life.
 mana={2}
 type=Artifact
