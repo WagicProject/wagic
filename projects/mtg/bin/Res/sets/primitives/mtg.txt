@@ -28924,8 +28924,8 @@ subtype=Aura
 [/card]
 [card]
 name=Hero of Bladehold
-auto=@attacking(this):token(Soldier,Creature Soldier,1/1,white,battleready)*2
 auto=@attacking(this):all(other creature[attacking]) 1/0 ueot
+auto=@attacking(this):token(Soldier,Creature Soldier,1/1,white,battleready)*2
 text=Battle cry (Whenever this creature attacks, each other attacking creature gets +1/+0 until end of turn.) -- Whenever Hero of Bladehold attacks, put two 1/1 white soldier creature tokens onto the battlefield tapped and attacking.
 mana={2}{W}{W}
 type=Creature
