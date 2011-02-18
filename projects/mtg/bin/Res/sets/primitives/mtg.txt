@@ -5057,7 +5057,7 @@ toughness=2
 [/card]
 [card]
 name=Battlegate Mimic
-auto=@movedTo(*[redandwhite]|mystack):transforms(,setpower=4,settoughness=2,first strike) ueot
+auto=@movedTo(*[redandwhite]|mystack) turnlimited:transforms(,setpower=4,settoughness=2,first strike) ueot
 text=Whenever you cast a spell that's both red and white, Battlegate Mimic becomes 4/2 and gains first strike until end of turn.
 mana={1}{RW}
 type=Creature
@@ -51530,7 +51530,7 @@ type=Land
 [/card]
 [card]
 name=Riverfall Mimic
-auto=@movedTo(*[RedAndBlue]|mystack):transforms(,setpower=3,settoughness=3,unblockable) ueot
+auto=@movedTo(*[RedAndBlue]|mystack) turnlimited:transforms(,setpower=3,settoughness=3,unblockable) ueot
 text=Whenever you cast a spell that's both blue and red, Riverfall Mimic becomes 3/3 and is unblockable until end of turn.
 mana={1}{UR}
 type=Creature
@@ -56095,7 +56095,7 @@ toughness=2
 [/card]
 [card]
 name=Shorecrasher Mimic
-auto=@movedTo(*[BlueAndGreen]|mystack):transforms(,setpower=5,settoughness=3,trample) ueot
+auto=@movedTo(*[BlueAndGreen]|mystack) turnlimited:transforms(,setpower=5,settoughness=3,trample) ueot
 text=Whenever you cast a spell that's both green and blue, Shorecrasher Mimic becomes 5/3 and gains trample until end of turn.
 mana={1}{GU}
 type=Creature
@@ -73466,7 +73466,7 @@ toughness=2
 [/card]
 [card]
 name=Woodlurker Mimic
-auto=@movedTo(*[BlackAndGreen]|mystack):transforms(,setpower=4,settoughness=5,wither) ueot
+auto=@movedTo(*[BlackAndGreen]|mystack) turnlimited:transforms(,setpower=4,settoughness=5,wither) ueot
 text=Whenever you cast a spell that's both black and green, Woodlurker Mimic becomes 4/5 and gains wither until end of turn. (It deals damage to creatures in the form of -1/-1 counters.)
 mana={1}{BG}
 type=Creature
