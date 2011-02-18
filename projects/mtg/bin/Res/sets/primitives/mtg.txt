@@ -26020,7 +26020,7 @@ toughness=2
 [card]
 name=Goblin Wardriver
 auto=@attacking(this):all(other creature[attacking]) 1/0 ueot
-text=Battle cry (Whenever this creature attacks, each other attacking creature gets +1/+0 until end of turn.) -- Whenever Hero of Bladehold attacks, put two 1/1 white soldier creature tokens onto the battlefield tapped and attacking.
+text=Battle cry (Whenever this creature attacks, each other attacking creature gets +1/+0 until end of turn.)
 mana={R}{R}
 type=Creature
 subtype=Goblin Warrior
