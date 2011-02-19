@@ -4270,7 +4270,7 @@ type=Instant
 [card]
 name=Balduvian Trading Post
 auto=aslongas(mountain[-tapped]|mybattlefield) sacrifice notatarget(mountain[-tapped]|mybattlefield) oneshot && counter(0/0,-1,payment)
-auto=moveto(mygraveyard) notatarget(this|mybattlefield)
+auto=sacrifice notatarget(this|mybattlefield)
 auto=this(counter{0/0.1.payment}<1) {T}:Add{1}{R}
 auto=this(counter{0/0.1.payment}<1) {1}{T}:damage:1 target(creature[attacking])
 text=If Balduvian Trading Post would enter the battlefield, sacrifice an untapped Mountain instead. If you do, put Balduvian Trading Post onto the battlefield. If you don't, put it into its owner's graveyard. -- {T}: Add {1}{R} to your mana pool. -- {1}, {T}: Balduvian Trading Post deals 1 damage to target attacking creature.
@@ -28366,8 +28366,8 @@ type=Artifact
 [/card]
 [card]
 name=Heart of Yavimaya
-auto=aslongas(forest|mybattlefield) moveto(myhand) notatarget(forest|mybattlefield) oneshot && counter(0/0,-1,payment)
-auto=moveTo(mygraveyard) notatarget(this|myBattlefield)
+auto=aslongas(forest|mybattlefield) sacrifice notatarget(forest|mybattlefield) oneshot && counter(0/0,-1,payment)
+auto=sacrifice notatarget(this|myBattlefield)
 auto=this(counter{0/0.1.payment}<1) {T}:Add{G}
 auto=this(counter{0/0.1.payment}<1) {T}:1/1 target(creature)
 text=If Heart of Yavimaya would enter the battlefield, sacrifice a Forest instead. If you do, put Heart of Yavimaya onto the battlefield. If you don't, put it into its owner's graveyard. -- {T}: Add {G} to your mana pool. -- {T}: Target creature gets +1/+1 until end of turn.
@@ -34137,8 +34137,8 @@ toughness=2
 [/card]
 [card]
 name=Kjeldoran Outpost
-auto=aslongas(plains|mybattlefield) moveto(mygraveyard) notatarget(plains|mybattlefield) oneshot && counter(0/0,-1,payment)
-auto=moveTo(mygraveyard) notatarget(this|myBattlefield)
+auto=aslongas(plains|mybattlefield) sacrifice notatarget(plains|mybattlefield) oneshot && counter(0/0,-1,payment)
+auto=sacrifice notatarget(this|myBattlefield)
 auto=this(counter{0/0.1.payment}<1) {T}:Add{W}
 auto=this(counter{0/0.1.payment}<1) {1}{W}{T}:token(Soldier,creature soldier, 1/1,white)
 text=If Kjeldoran Outpost would enter the battlefield, sacrifice a Plains instead. If you do, put Kjeldoran Outpost onto the battlefield. If you don't, put it into its owner's graveyard. -- {T}: Add {W} to your mana pool. -- {1}{W}, {T}: Put a 1/1 white Soldier creature token onto the battlefield.
@@ -35232,7 +35232,7 @@ toughness=3
 [card]
 name=Lake of the Dead
 auto=aslongas(swamp|mybattlefield) sacrifice notatarget(swamp|mybattlefield) oneshot && counter(0/0,-1,payment)
-auto=moveTo(mygraveyard) notatarget(this|myBattlefield)
+auto=sacrifice notatarget(this|myBattlefield)
 auto=this(counter{0/0.1.payment}<1) {T}:Add{B}
 auto=this(counter{0/0.1.payment}<1) {T}{S(swamp|myBattlefield)}:Add{B}{B}{B}{B}
 text=If Lake of the Dead would enter the battlefield, sacrifice a Swamp instead. If you do, put Lake of the Dead onto the battlefield. If you don't, put it into its owner's graveyard. -- {T}: Add {B} to your mana pool. -- {T}, Sacrifice a Swamp: Add {B}{B}{B}{B} to your mana pool.
