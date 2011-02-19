@@ -6,7 +6,7 @@ using std::map;
 
 #include "MTGDeck.h"
 #include "MTGCardInstance.h"
-#include "playRestrictions.h"
+#include "PlayRestrictions.h"
 #include "TargetChooser.h"
 
 #define MTG_MAX_PLAYER_CARDS 100

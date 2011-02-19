@@ -1,6 +1,6 @@
 #include "PrecompiledHeader.h"
 
-#include "playRestrictions.h"
+#include "PlayRestrictions.h"
 #include "TargetChooser.h"
 #include "MTGCardInstance.h"
 
