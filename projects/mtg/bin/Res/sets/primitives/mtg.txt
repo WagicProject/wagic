@@ -23956,7 +23956,7 @@ type=Sorcery
 [card]
 name=Gelatinous Genesis
 auto=token(Ooze,Creature Ooze,XX/XX,green)*XX
-text=Target creature gets +3/+3 until end of turn.
+text=Put X X/X green Ooze creature tokens onto the battlefield.
 mana={X}{X}{G}
 type=Sorcery
 [/card]
