@@ -276,16 +276,16 @@ int AIAction::getEfficiency()
         efficiency = 0;//starts out low to avoid spamming it when its not needed.
         if (!target && !dynamic_cast<ALord*> (a))
             break;
-            if(dynamic_cast<ALord*> (a) && !target)
-            {
-            //this is a specail case for all(this) targetting workaround.
+        if(dynamic_cast<ALord*> (a) && !target)
+        {
+            //this is a special case for all(this) targetting workaround.
             //adding a direct method for targetting the source is planned for
             //the coming releases, all(this) workaround prevents eff from being returned
             //as its not targetted the same as abilities
             //for now this dirty hack will calculate eff on lords as tho the source is
             //the target...otherwise these abilities will never be used.
-             target = a->source;
-            }
+            target = a->source;
+        }
 
         bool NeedPreventing;
         NeedPreventing = false;
@@ -293,30 +293,30 @@ int AIAction::getEfficiency()
         {
             if ((target->defenser || target->blockers.size()) && target->preventable < target->getNextOpponent()->power)
                 NeedPreventing = true;
-        if (p == target->controller() && target->controller()->isAI() && NeedPreventing  && !(target->getNextOpponent()->has(Constants::DEATHTOUCH)
+            if (p == target->controller() && target->controller()->isAI() && NeedPreventing  && !(target->getNextOpponent()->has(Constants::DEATHTOUCH)
                 || target->getNextOpponent()->has(Constants::WITHER)))
-        {
-            efficiency = 20 * (target->DangerRanking());//increase this chance to be used in combat if the creature blocking/blocked could kill the creature this chance is taking into consideration how good the creature is, best creature will always be the first "saved"..
-            if (target->toughness == 1 && target->getNextOpponent()->power == 1)
-                efficiency += 15;
-            //small bonus added for the poor 1/1s, if we can save them, we will unless something else took precidence.
-        //note is the target is being blocked or blocking a creature with wither or deathtouch, it is not even considered for preventing as it is a waste.
-        //if its combat blockers, it is being blocked or blocking, and has less prevents the the amount of damage it will be taking, the effeincy is increased slightly and totalled by the danger rank multiplier for final result.
-				int calculateAfterDamage = 0;
-				int damages = 0;
-				if((target->defenser || target->blockers.size()) && target->controller()->isAI())
-				{
-					damages = target->getNextOpponent()->power;
-					calculateAfterDamage = int(target->toughness - damages);
-					if((calculateAfterDamage + target->preventable) > 0)
-					{
-          efficiency = 0;
-					//this is to avoid wasting prevents on creatures that will already survive.
-					//this should take into account bushido and flanking as this check is run after every trigger.
-					}
-				}
-				}
-				}
+            {
+                efficiency = 20 * (target->DangerRanking());//increase this chance to be used in combat if the creature blocking/blocked could kill the creature this chance is taking into consideration how good the creature is, best creature will always be the first "saved"..
+                if (target->toughness == 1 && target->getNextOpponent()->power == 1)
+                    efficiency += 15;
+                //small bonus added for the poor 1/1s, if we can save them, we will unless something else took precidence.
+                //note is the target is being blocked or blocking a creature with wither or deathtouch, it is not even considered for preventing as it is a waste.
+                //if its combat blockers, it is being blocked or blocking, and has less prevents the the amount of damage it will be taking, the effeincy is increased slightly and totalled by the danger rank multiplier for final result.
+                int calculateAfterDamage = 0;
+                int damages = 0;
+                if((target->defenser || target->blockers.size()) && target->controller()->isAI())
+                {
+                    damages = target->getNextOpponent()->power;
+                    calculateAfterDamage = int(target->toughness - damages);
+                    if((calculateAfterDamage + target->preventable) > 0)
+                    {
+                        efficiency = 0;
+                        //this is to avoid wasting prevents on creatures that will already survive.
+                        //this should take into account bushido and flanking as this check is run after every trigger.
+                    }
+                }
+            }
+        }
 				//TODO If the card is the target of a damage spell
         break;
     }
@@ -329,12 +329,13 @@ int AIAction::getEfficiency()
 
         int equips = p->game->battlefield->countByType("Equipment");
         int myArmy = p->game->battlefield->countByType("Creature");
-        int equilized = abs(equips / myArmy);
+        // when can this ever be negative?
+        int equilized = myArmy ? abs(equips / myArmy) : 0;
 
         if (p == target->controller() && target->equipment <= 1 && !a->source->target)
         {
             efficiency = 20 * (target->DangerRanking());
-            if (target->hasColor(5))
+            if (target->hasColor(Constants::MTG_COLOR_WHITE))
                 efficiency += 20;//this is to encourage Ai to equip white creatures in a weenie deck. ultimately it will depend on what had the higher dangerranking.
             if (target->power == 1 && target->toughness == 1 && target->isToken == 0)
                 efficiency += 10; //small bonus to encourage equipping nontoken 1/1 creatures.
