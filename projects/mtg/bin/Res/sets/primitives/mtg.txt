@@ -16354,7 +16354,7 @@ toughness=3
 [card]
 name=Doomgape
 abilities=trample
-auto=@each my upkeep:notatarget(creature) dynamicability<!mytgt toughnesslifegain targetcontroller!> sacrifice
+auto=@each my upkeep:notatarget(creature|mybattlefield) dynamicability<!mytgt toughnesslifegain targetcontroller!> sacrifice
 text=Trample -- At the beginning of your upkeep, sacrifice a creature. You gain life equal to that creature's toughness.
 mana={4}{BG}{BG}{BG}
 type=Creature
