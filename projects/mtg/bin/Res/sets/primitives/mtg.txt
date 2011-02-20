@@ -10998,7 +10998,7 @@ type=Land
 [/card]
 [card]
 name=City of Traitors
-auto=@movedTo(land|mybattlefield):bury
+auto=@movedTo(land|mybattlefield) from(myhand):bury
 auto={T}:Add {2}
 text=When you play another land, sacrifice City of Traitors. -- {T}: Add {2} to your mana pool.
 type=Land
@@ -15829,7 +15829,7 @@ type=Sorcery
 [/card]
 [card]
 name=Dirtcowl Wurm
-auto=@movedTo(land|opponentbattlefield):counter(1/1,1)
+auto=@movedTo(land|opponentbattlefield) from(opponenthand):counter(1/1,1)
 text=Whenever an opponent plays a land, put a +1/+1 counter on Dirtcowl Wurm.
 mana={4}{G}
 type=Creature
@@ -29027,7 +29027,7 @@ type=Enchantment
 [/card]
 [card]
 name=Hidden Herd
-auto=@movedto(land[-basic]|opponentbattlefield) once:transforms(removetypes) forever && transforms(Beast Creature,setpower=3,settoughness=3) forever
+auto=@movedto(land[-basic]|opponentbattlefield) from(opponenthand) once:transforms(removetypes) forever && transforms(Beast Creature,setpower=3,settoughness=3) forever
 text=When an opponent plays a nonbasic land, if Hidden Herd is an enchantment, Hidden Herd becomes a 3/3 Beast creature.
 mana={G}
 type=Enchantment
@@ -29570,8 +29570,8 @@ type=Artifact
 [/card]
 [card]
 name=Horn of Greed
-auto=@movedTo(land|myBattlefield):draw:1 controller
-auto=@movedTo(land|opponentBattlefield):draw:1 opponent
+auto=@movedTo(land|myBattlefield) from(myhand):draw:1 controller
+auto=@movedTo(land|opponentBattlefield) from(opponenthand):draw:1 opponent
 text=Whenever a player plays a land, that player draws a card.
 mana={3}
 type=Artifact
@@ -44962,7 +44962,8 @@ toughness=2
 [/card]
 [card]
 name=Pangosaur
-auto=@movedTo(land|battlefield):moveTo(ownerhand)
+auto=@movedTo(land|myBattlefield) from(myhand):moveTo(ownerhand)
+auto=@movedTo(land|opponentBattlefield) from(opponenthand):moveTo(ownerhand)
 text=Whenever a player plays a land, return Pangosaur to its owner's hand.
 mana={2}{G}{G}
 type=Creature
