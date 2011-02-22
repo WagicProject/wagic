@@ -18565,6 +18565,16 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Elvish Branchbender
+auto={t}:target(forest) transforms(Forest Land TreeFolk Creature,setpower=type:elf|mybattlefield,settoughness=type:elf|mybattlefield) ueot
+text={T}: Until end of turn, target Forest becomes an X/X Treefolk creature in addition to its other types, where X is the number of Elves you control.
+mana={2}{G}
+type=Creature
+subtype=Elf Druid
+power=2
+toughness=2
+[/card]
+[card]
 name=Elvish Champion
 auto=lord(other elf) 1/1
 auto=lord(other elf) forestwalk
