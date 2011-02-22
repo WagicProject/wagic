@@ -111,6 +111,7 @@ SOURCES += \
         src/PlayerData.cpp\
         src/PlayGuiObject.cpp\
         src/PlayGuiObjectController.cpp\
+        src/PlayRestrictions.cpp\
         src/Pos.cpp\
         src/PriceList.cpp\
         src/ReplacementEffects.cpp\
