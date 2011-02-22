@@ -10570,8 +10570,7 @@ subtype=Aura
 [/card]
 [card]
 name=Chimeric Coils
-auto={X}{1}:becomes(artifact creature construct,*/*) ueot && thisforeach(X) all(this) 1/1
-auto=@each endofturn:bury all(creature[chimeric coils])
+auto={X}{1}:transforms(artifact creature,setpower=x,settoughness=x) ueot && treason
 text={X}{1}: Chimeric Coils becomes an X/X Construct artifact creature. Sacrifice it at the beginning of the next end step.
 mana={1}
 type=Artifact
