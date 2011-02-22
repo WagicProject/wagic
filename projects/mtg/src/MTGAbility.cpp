@@ -2507,26 +2507,26 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 
         string sabilities = transformsParamsString.substr(stypes.length());
         bool newpowerfound = false;
-        int newpower = 0;
-        size_t powerability = sabilities.find("setpower=");
-        if(sabilities.find(",setpower=") != string::npos)
-        {
-            newpowerfound = true;
-            int powerstart = s.find("setpower=", powerability);
-            int powerend = s.find(real_end, powerstart);
-            newpower = atoi(s.substr(powerstart + 9).c_str());
-        }
+        string newpower = "";
         bool newtoughnessfound = false;
-        int newtoughness = 0;
-        size_t toughnessability = sabilities.find("settoughness=");
-        if(sabilities.find(",settoughness=") != string::npos)
+        string newtoughness = "";
+        vector <string> abilities = split(sabilities, ',');
+        
+        for(unsigned int j = 0;j < abilities.size();j++)
         {
-            newtoughnessfound = true;
-            int toughnessstart = s.find("settoughness=", toughnessability);
-            int toughnessend = s.find(real_end, toughnessstart);
-            newtoughness = atoi(s.substr(toughnessstart + 13).c_str());
+            if(abilities[j].find("setpower=") != string::npos)
+            {
+                newpowerfound = true;
+                int powerstart = abilities[j].find("setpower=");
+                newpower = abilities[j].substr(powerstart + 9).c_str();
+            }
+            if(abilities[j].find("settoughness=") != string::npos)
+            {
+                newtoughnessfound = true;
+                int toughnessstart = abilities[j].find("settoughness=");
+                newtoughness = abilities[j].substr(toughnessstart + 13).c_str();
+            }
         }
-
         MTGAbility * a;
         if (forceFOREVER)
         {

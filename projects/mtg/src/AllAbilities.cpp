@@ -2181,7 +2181,7 @@ AAlterCost::~AAlterCost()
 }
 
 // ATransformer
-ATransformer::ATransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities,int newpower,bool newpowerfound,int newtoughness,bool newtoughnessfound) :
+ATransformer::ATransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities,string newpower,bool newpowerfound,string newtoughness,bool newtoughnessfound) :
     MTGAbility(id, source, target),newpower(newpower),newpowerfound(newpowerfound),newtoughness(newtoughness),newtoughnessfound(newtoughnessfound)
 {
 
@@ -2276,15 +2276,19 @@ int ATransformer::addToGame()
         }
         if(newpowerfound )
         {
+            WParsedInt * val = NEW WParsedInt(newpower,NULL, source);
             oldpower = _target->power;
-            _target->power += newpower;
+            _target->power += val->getValue();
             _target->power -= oldpower;
+            delete val;
         }
         if(newtoughnessfound )
         {
+        WParsedInt * val = NEW WParsedInt(newtoughness,NULL, source);
             oldtoughness = _target->toughness;
-            _target->addToToughness(newtoughness);
+            _target->addToToughness(val->getValue());
             _target->addToToughness(-oldtoughness);
+            delete val;
         }
     }
     return MTGAbility::addToGame();
@@ -2355,7 +2359,7 @@ ATransformer::~ATransformer()
 
 // AForeverTransformer
 AForeverTransformer::AForeverTransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes,
-        string sabilities,int newpower,bool newpowerfound, int newtoughness,bool newtoughnessfound) :
+        string sabilities,string newpower,bool newpowerfound, string newtoughness,bool newtoughnessfound) :
     MTGAbility(id, source, target),newpower(newpower),newpowerfound(newpowerfound),newtoughness(newtoughness),newtoughnessfound(newtoughnessfound)
 {
     aType = MTGAbility::STANDARD_BECOMES;
@@ -2408,15 +2412,19 @@ int AForeverTransformer::addToGame()
         }
         if(newpowerfound )
         {
+        WParsedInt * val = NEW WParsedInt(newpower,NULL, source);
             oldpower = _target->power -= oldpower;
-            _target->power += newpower;
+            _target->power += val->getValue();
             _target->power -= oldpower;
+            delete val;
         }
         if(newtoughnessfound )
         {
+        WParsedInt * val = NEW WParsedInt(newtoughness,NULL, source);
             oldtoughness = _target->toughness;
-            _target->addToToughness(newtoughness);
+            _target->addToToughness(val->getValue());
             _target->addToToughness(-oldtoughness);
+            delete val;
         }
     }
     return MTGAbility::addToGame();
@@ -2440,7 +2448,7 @@ AForeverTransformer::~AForeverTransformer()
 }
 
 //ATransformerUEOT
-ATransformerUEOT::ATransformerUEOT(int id, MTGCardInstance * source, MTGCardInstance * target, string types, string abilities,int newpower,bool newpowerfound,int newtoughness,bool newtoughnessfound) :
+ATransformerUEOT::ATransformerUEOT(int id, MTGCardInstance * source, MTGCardInstance * target, string types, string abilities,string newpower,bool newpowerfound,string newtoughness,bool newtoughnessfound) :
     InstantAbility(id, source, target),newpower(newpower),newpowerfound(newpowerfound),newtoughness(newtoughness),newtoughnessfound(newtoughnessfound)
 {
     ability = NEW ATransformer(id, source, target, types, abilities,newpower,newpowerfound,newtoughness,newtoughnessfound);
@@ -2473,7 +2481,7 @@ ATransformerUEOT::~ATransformerUEOT()
 }
 
 // ATransformerFOREVER
-ATransformerFOREVER::ATransformerFOREVER(int id, MTGCardInstance * source, MTGCardInstance * target, string types, string abilities,int newpower,bool newpowerfound,int newtoughness,bool newtoughnessfound) :
+ATransformerFOREVER::ATransformerFOREVER(int id, MTGCardInstance * source, MTGCardInstance * target, string types, string abilities,string newpower,bool newpowerfound,string newtoughness,bool newtoughnessfound) :
     InstantAbility(id, source, target),newpower(newpower),newpowerfound(newpowerfound),newtoughness(newtoughness),newtoughnessfound(newtoughnessfound)
 {
     ability = NEW AForeverTransformer(id, source, target, types, abilities,newpower,newpowerfound,newtoughness,newtoughnessfound);

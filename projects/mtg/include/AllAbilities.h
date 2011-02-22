@@ -3869,15 +3869,15 @@ public:
     list<int> oldtypes;
     bool remove;
     string menu;
-    int newpower;
+    string newpower;
     bool newpowerfound;
     int oldpower;
-    int newtoughness;
+    string newtoughness;
     bool newtoughnessfound;
     int oldtoughness;
 
 
-    ATransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities,int newpower,bool newpowerfound,int newtoughness,bool newtoughnessfound);
+    ATransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities,string newpower,bool newpowerfound,string newtoughness,bool newtoughnessfound);
     int addToGame();
     int destroy();
     const char * getMenuText();
@@ -3893,15 +3893,15 @@ public:
     list<int> types;
     list<int> colors;
     string menu;
-    int newpower;
+    string newpower;
     bool newpowerfound;
     int oldpower;
-    int newtoughness;
+    string newtoughness;
     bool newtoughnessfound;
     int oldtoughness;
     bool remove;
 
-    AForeverTransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities,int newpower,bool newpowerfound,int newtoughness,bool newtoughnessfound);
+    AForeverTransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities,string newpower,bool newpowerfound,string newtoughness,bool newtoughnessfound);
     int addToGame();
     const char * getMenuText();
     AForeverTransformer * clone() const;
@@ -3913,12 +3913,12 @@ class ATransformerUEOT: public InstantAbility
 {
 public:
     ATransformer * ability;
-    int newpower;
+    string newpower;
     bool newpowerfound;
-    int newtoughness;
+    string newtoughness;
     bool newtoughnessfound;
 
-    ATransformerUEOT(int id, MTGCardInstance * source, MTGCardInstance * target, string types, string abilities,int newpower,bool newpowerfound,int newtoughness,bool newtoughnessfound);
+    ATransformerUEOT(int id, MTGCardInstance * source, MTGCardInstance * target, string types, string abilities,string newpower,bool newpowerfound,string newtoughness,bool newtoughnessfound);
     int resolve();
     const char * getMenuText();
     ATransformerUEOT * clone() const;
@@ -3930,12 +3930,12 @@ class ATransformerFOREVER: public InstantAbility
 {
 public:
     AForeverTransformer * ability;
-    int newpower;
+    string newpower;
     bool newpowerfound;
-    int newtoughness;
+    string newtoughness;
     bool newtoughnessfound;
     
-    ATransformerFOREVER(int id, MTGCardInstance * source, MTGCardInstance * target, string types, string abilities,int newpower = 0,bool newpowerfound = false,int newtoughness = 0,bool newtoughnessfound = false);
+    ATransformerFOREVER(int id, MTGCardInstance * source, MTGCardInstance * target, string types, string abilities,string newpower = "",bool newpowerfound = false,string newtoughness = "",bool newtoughnessfound = false);
     int resolve();
     const char * getMenuText();
     ATransformerFOREVER * clone() const;
