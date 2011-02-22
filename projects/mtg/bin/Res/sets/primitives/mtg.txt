@@ -24778,6 +24778,7 @@ toughness=2
 [/card]
 [card]
 name=Glacial Chasm
+auto=bury notatarget(land|myBattlefield)
 auto=cumulativeupcost[{L}{L}] sacrifice
 auto=lord(creature|mybattlefield) cantattack
 auto=preventalldamage to(controller)
