@@ -68938,6 +68938,16 @@ power=3
 toughness=4
 [/card]
 [card]
+name=Vastwood Animist
+text={T}: Target land you control becomes an X/X Elemental creature until end of turn, where X is the number of Allies you control. It's still a land.
+auto={t}:target(land|mybattlefield) transforms(Elemental Creature,setpower=type:ally|mybattlefield,settoughness=type:ally|mybattlefield) ueot
+mana={2}{G}
+type=Creature
+subtype=Elf Shaman Ally
+power=1
+toughness=1
+[/card]
+[card]
 name=Vastwood Gorger
 mana={5}{G}
 type=Creature

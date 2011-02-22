@@ -26521,15 +26521,6 @@ mana={3}{W}
 type=Enchantment
 [/card]
 [card]
-name=Vastwood Animist
-text={T}: Target land you control becomes an X/X Elemental creature until end of turn, where X is the number of Allies you control. It's still a land.
-mana={2}{G}
-type=Creature
-subtype=Elf Shaman Ally
-power=1
-toughness=1
-[/card]
-[card]
 name=Vastwood Zendikon
 text=Enchant land -- Enchanted land is a 6/4 green Elemental creature. It's still a land. -- When enchanted land is put into a graveyard, return that card to its owner's hand.
 mana={4}{G}
