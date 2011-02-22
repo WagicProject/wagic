@@ -31338,11 +31338,11 @@ auto=choice name(blue) && counter(0/0,1,Blue) all(this)
 auto=choice name(black) && counter(0/0,1,Black) all(this)
 auto=choice name(red) && counter(0/0,1,Red) all(this)
 auto=choice name(green) && counter(0/0,1,Green) all(this)
-auto=this(counter{0/0.1.White}) cantcast(*[white]) opponent
-auto=this(counter{0/0.1.Blue}) cantcast(*[blue]) opponent
-auto=this(counter{0/0.1.Black}) cantcast(*[black]) opponent
-auto=this(counter{0/0.1.Red}) cantcast(*[red]) opponent
-auto=this(counter{0/0.1.Green}) cantcast(*[green]) opponent
+auto=this(counter{0/0.1.White}) maxCast(*[white])0 opponent
+auto=this(counter{0/0.1.Blue}) maxCast(*[blue])0 opponent
+auto=this(counter{0/0.1.Black}) maxCast(*[black])0 opponent
+auto=this(counter{0/0.1.Red}) maxCast(*[red])0 opponent
+auto=this(counter{0/0.1.Green}) maxCast(*[green])0 opponent
 text=Flying -- As Iona, Shield of Emeria enters the battlefield, choose a color. -- Your opponents can't cast spells of the chosen color.
 mana={6}{W}{W}{W}
 type=Legendary Creature
@@ -46895,8 +46895,8 @@ toughness=1
 [/card]
 [card]
 name=Plateau
-auto={T}:Add {W}
 auto={T}:Add {R}
+auto={T}:Add {W}
 type=Land
 subtype=Mountain Plains
 [/card]
