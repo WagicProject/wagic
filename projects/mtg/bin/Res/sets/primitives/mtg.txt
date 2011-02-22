@@ -39931,6 +39931,17 @@ text={T}: Add {1} to your mana pool. -- {T}: Put a charge counter on Mirrodin's 
 type=Land
 [/card]
 [card]
+name=Mirror Entity
+auto={x}:all(creature|mybattlefield) transforms(allsubtypes,setpower=x,settoughness=x) ueot
+text=Changeling (This card is every creature type at all times.) -- {X}: Creatures you control become X/X and gain all creature types until end of turn.
+mana={2}{W}
+type=Creature
+subtype=Shapeshifter
+abilities=changeling
+power=1
+toughness=1
+[/card]
+[card]
 name=Mirror-Sigil Sergeant
 abilities=trample
 auto=@each my upkeep:aslongas(*[blue]|myBattlefield) may token(158598)

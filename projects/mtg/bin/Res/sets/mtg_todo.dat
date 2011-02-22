@@ -15235,15 +15235,6 @@ mana={G}
 type=Enchantment
 [/card]
 [card]
-name=Mirror Entity
-text=Changeling (This card is every creature type at all times.) -- {X}: Creatures you control become X/X and gain all creature types until end of turn.
-mana={2}{W}
-type=Creature
-subtype=Shapeshifter
-power=1
-toughness=1
-[/card]
-[card]
 name=Mirror Gallery
 text=The "legend rule" doesn't apply.
 mana={5}
