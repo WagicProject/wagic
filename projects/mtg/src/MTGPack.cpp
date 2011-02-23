@@ -71,7 +71,7 @@ WSrcCards * MTGPack::getPool(string poolstr)
         s = poolstr.find("unlocked");
         string sub = poolstr;
         if (s != string::npos)
-            sub = poolstr.substr(s + 8);
+            sub = trim(poolstr.substr(s + 8));
         if (sub.size())
         {
             mySrc->addFilter(ff->Construct(sub));
