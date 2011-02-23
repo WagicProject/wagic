@@ -2193,6 +2193,15 @@ power=4
 toughness=3
 [/card]
 [card]
+name=Apathy
+auto=teach(creature) doesnotuntap
+auto=teach(creature) {d}:untap myupkeeponly
+text=Enchant creature -- Enchanted creature doesn't untap during its controller's untap step. -- At the beginning of the upkeep of enchanted creature's controller, that player may discard a card at random. If he or she does, untap that creature.
+mana={U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Apes of Rath
 auto=@attacking(this):frozen
 text=Whenever Apes of Rath attacks, it doesn't untap during its controller's next untap step.
@@ -3470,7 +3479,7 @@ type=Enchantment
 [/card]
 [card]
 name=Aura Gnarlid
-abilities=stronger
+abilities=strong
 auto=foreach(aura|battlefield) 1/1
 text=Creatures with power less than Aura Gnarlid's can't block it. -- Aura Gnarlid gets +1/+1 for each aura on the battlefield.
 mana={2}{G}
@@ -4926,7 +4935,7 @@ toughness=4
 [/card]
 [card]
 name=Battering Wurm
-abilities=stronger
+abilities=strong
 auto=bloodthirst:1
 text=Bloodthirst 1 (If an opponent was dealt damage this turn, this creature enters the battlefield with a +1/+1 counter on it.) -- Creatures with power less than Battering Wurm's power can't block it.
 mana={6}{G}
@@ -7796,6 +7805,16 @@ id=-1111114
 type=Nothing
 [/card]
 [card]
+name=Brainspoil
+target=creature[-enchanted]
+auto=cantregen
+auto=destroy
+autohand={1}{b}{b}{S}:moveto(mybattlefield) target(*[manacost=3]|mylibrary)
+text=Destroy target creature that isn't enchanted. It can't be regenerated. -- Transmute {1}{B}{B} ({1}{B}{B}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Transmute only as a sorcery.)
+mana={3}{B}{B}
+type=Sorcery
+[/card]
+[card]
 name=Bramble Creeper
 auto=@attacking(this):5/0 ueot
 text=Whenever Bramble Creeper attacks, it gets +5/+0 until end of turn.
@@ -8536,6 +8555,15 @@ type=Creature
 subtype=Human Knight
 power=2
 toughness=2
+[/card]
+[card]
+name=Burnout
+target=instant|stack
+auto=teach(instant[blue]) fizzle
+auto=@next upkeep:draw:1
+text=Counter target instant spell if it's blue. -- Draw a card at the beginning of the next turn's upkeep.
+mana={1}{R}
+type=Instant
 [/card]
 [card]
 name=Burr Grafter
@@ -12645,6 +12673,13 @@ power=6
 toughness=5
 [/card]
 [card]
+name=Cowardice
+auto=@targeted(creature):all(trigger[to]) moveto(ownerhand)
+text=Whenever a creature becomes the target of a spell or ability, return that creature to its owner's hand. (It won't be affected by the spell or ability.)
+mana={3}{U}{U}
+type=Enchantment
+[/card]
+[card]
 name=Crabapple Cohort
 auto=aslongas(other creature[green]|myBattlefield) 1/1 != 0
 text=Crabapple Cohort gets +1/+1 as long as you control another green creature.
@@ -13533,6 +13568,13 @@ type=Creature
 subtype=Zombie
 power=2
 toughness=1
+[/card]
+[card]
+name=Cyclopean Snare
+auto={3}{T}:tap target(creature) && all(this) moveto(ownerhand)
+text={3}, {T}: Tap target creature, then return Cyclopean Snare to its owner's hand.
+mana={2}
+type=Artifact
 [/card]
 [card]
 name=Cyclops Gladiator
@@ -14468,6 +14510,15 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Dead-Iron Sledge
+auto=@blocking(this) from(creature):all(trigger[to]) destroy && all(trigger[from]) destroy
+auto=@blocked(creature) from(this): all(trigger[to]) destroy && all(trigger[from]) destroy
+text=Whenever equipped creature blocks or becomes blocked by a creature, destroy both creatures. -- Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
+mana={1}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
 name=Deadapult
 auto={S(zombie|myBattlefield)}:Damage:2 target(creature,player)
 text={R}, Sacrifice a Zombie: Deadapult deals 2 damage to target creature or player.
@@ -14795,6 +14846,16 @@ type=Creature
 subtype=Rat Shaman
 power=2
 toughness=2
+[/card]
+[card]
+name=Deathrender
+auto=+2/+2
+auto=@movedto(mytgt|graveyard):may moveto(mybattlefield) target(creature|myhand) && retarget
+auto={2}:equip
+text=Equipped creature gets +2/+2. -- Whenever equipped creature is put into a graveyard, you may put a creature card from your hand onto the battlefield and attach Deathrender to it. -- Equip {2}
+mana={4}
+type=Artifact
+subtype=Equipment
 [/card]
 [card]
 name=Deathspore Thallid
@@ -15191,6 +15252,13 @@ type=Creature
 subtype=Human Wizard
 power=1
 toughness=1
+[/card]
+[card]
+name=Dega Sanctuary
+text=At the beginning of your upkeep, if you control a black or red permanent, you gain 2 life. If you control a black permanent and a red permanent, you gain 4 life instead.
+auto=@each my upkeep:aslongas(*[red]|mybattlefield) life:2 && aslongas(*[black]|mybattlefield) life:2
+mana={2}{W}
+type=Enchantment
 [/card]
 [card]
 name=Dehydration
@@ -16215,6 +16283,16 @@ auto=destroy
 text=Destroy target attacking or blocking creature.
 mana={3}{W}
 type=Instant
+[/card]
+[card]
+name=Diviner's Wand
+auto=@drawn(controller): +1/+1 ueot
+auto=teach(creature) {4}:draw:1 controller
+auto=@movedto(wizard|battlefield):may retarget all(trigger[to])
+text=Equipped creature has "Whenever you draw a card, this creature gets +1/+1 and gains flying until end of turn" and "{4}: Draw a card." -- Whenever a Wizard creature enters the battlefield, you may attach Diviner's Wand to it. -- Equip {3}
+mana={3}
+type=Tribal Artifact
+subtype=Wizard Equipment
 [/card]
 [card]
 name=Divinity of Pride
@@ -17438,6 +17516,15 @@ auto=damage:1 all(creature,player)
 text=Dry Spell deals 1 damage to each creature and each player.
 mana={1}{B}
 type=Sorcery
+[/card]
+[card]
+name=Dryad Arbor
+auto={t}:add{g}
+text=(Dryad Arbor isn't a spell, it's affected by summoning sickness, and it has "{T}: Add {G} to your mana pool.") -- Dryad Arbor is green.
+type=Land Creature
+subtype=Forest Dryad
+power=1
+toughness=1
 [/card]
 [card]
 name=Dryad's Caress
@@ -23208,6 +23295,15 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Frenzied Tilling
+target=land
+auto=destroy
+auto=target(land|mylibrary) moveto(mybattlefield) && tap
+text=Destroy target land. Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library.
+mana={3}{R}{G}
+type=Sorcery
+[/card]
+[card]
 name=Frenzy Sliver
 auto=@notblocked(sliver):all(trigger[to]) 1/0 oneshot
 text=All Sliver creatures have frenzy 1. (Whenever a Sliver attacks and isn't blocked, it gets +1/+0 until end of turn.)
@@ -23424,6 +23520,16 @@ mana={G}
 type=Sorcery
 [/card]
 [card]
+name=Fugitive Druid
+auto=@targeted(this) from(aura):may draw:1 controller
+text=Whenever Fugitive Druid becomes the target of an Aura spell, you draw a card.
+mana={3}{G}
+type=Creature
+subtype=Human Druid
+power=3
+toughness=2
+[/card]
+[card]
 name=Fugitive Wizard
 mana={U}
 type=Creature
@@ -23461,6 +23567,15 @@ type=Legendary Creature
 subtype=Human Samurai
 power=3
 toughness=2
+[/card]
+[card]
+name=Funeral Pyre
+target=*|graveyard
+auto=moveto(exile)
+auto=token(Spirit creature,1/1,flying) targetcontroller
+text=Exile target card from a graveyard. Its owner puts a 1/1 white Spirit creature token with flying onto the battlefield.
+mana={W}
+type=Instant
 [/card]
 [card]
 name=Fungal Bloom
@@ -28218,6 +28333,15 @@ power=1
 toughness=2
 [/card]
 [card]
+name=Haze of Rage
+auto=all(creature|mybattlefield) +1/+0 ueot
+text=Buyback {2} (You may pay an additional {2} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Creatures you control get +1/+0 until end of turn. -- Storm (When you cast this spell, copy it for each spell cast before it this turn.)
+mana={1}{R}
+buyback={1}{r}{2}
+abilities=storm
+type=Sorcery
+[/card]
+[card]
 name=Haze Frog
 abilities=flash
 auto=fog from(other creature) oneshot
@@ -28237,6 +28361,17 @@ type=Creature
 subtype=Drake
 power=2
 toughness=3
+[/card]
+[card]
+name=Hazezon Tamar
+auto=@next my upkeep:foreach(land|myBattlefield) token(Sand Warrior,Creature Sand Warrior,1/1,red,green,white)
+auto=@movedTo(this|nonbattlezone) from(battlefield):moveto(exile) all(sand warrior)
+text=When Hazezon Tamar enters the battlefield, put X 1/1 Sand Warrior creature tokens that are red, green, and white onto the battlefield at the beginning of your next upkeep, where X is the number of lands you control at that time. -- When Hazezon leaves the battlefield, exile all Sand Warriors.
+mana={4}{R}{G}{W}
+type=Legendary Creature
+subtype=Human Warrior
+power=2
+toughness=4
 [/card]
 [card]
 name=Hazy Homunculus
@@ -30991,6 +31126,21 @@ auto=@next upkeep:draw:1 controller
 text=Untap target artifact, creature, or land. -- Draw a card at the beginning of the next turn's upkeep.
 mana={2}{U}
 type=Instant
+[/card]
+[card]
+name=Infused Arrows
+abilities=sunburst
+auto=counter(0/0,sunburst,charge)
+auto={C(0/0,-1,Charge)}{T}:-1/-1 target(creature)
+auto={C(0/0,-2,Charge)}{T}:-2/-2 target(creature)
+auto={C(0/0,-3,Charge)}{T}:-3/-3 target(creature)
+auto={C(0/0,-4,Charge)}{T}:-4/-4 target(creature)
+auto={C(0/0,-5,Charge)}{T}:-5/-5 target(creature)
+auto={C(0/0,-6,Charge)}{T}:-6/-6 target(creature)
+auto={C(0/0,-7,Charge)}{T}:-7/-7 target(creature)
+text=Sunburst (This enters the battlefield with a charge counter on it for each color of mana spent to cast it.) -- {T}, Remove X charge counters from Infused Arrows: Target creature gets -X/-X until end of turn.
+mana={4}
+type=Artifact
 [/card]
 [card]
 name=Ingenious Thief
@@ -57044,7 +57194,7 @@ toughness=3
 [/card]
 [card]
 name=Skarrgan Pit-Skulk
-abilities=stronger
+abilities=strong
 auto=bloodthirst:1
 text=Bloodthirst 1 (If an opponent was dealt damage this turn, this creature enters the battlefield with a +1/+1 counter on it.) -- Creatures with power less than Skarrgan Pit-Skulk's power can't block it.
 mana={G}
@@ -60265,7 +60415,7 @@ toughness=3
 [/card]
 [card]
 name=Spitfire Handler
-abilities=weaker
+abilities=weak
 auto={R}:1/0
 text=Spitfire Handler can't block creatures with power greater than Spitfire Handler's power. -- {R}: Spitfire Handler gets +1/+0 until end of turn.
 mana={1}{R}
