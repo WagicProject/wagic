@@ -72902,16 +72902,6 @@ power=5
 toughness=7
 [/card]
 [card]
-name=Windfall
-auto=@movedTo(*|mygraveyard) from(myhand):draw:1 controller
-auto=@movedTo(*|opponentgraveyard) from(opponenthand):draw:1
-auto=moveTo(mygraveyard) all(*|myhand)
-auto=moveTo(opponentgraveyard) all(*|opponenthand)
-text=Each player discards his or her hand, then draws cards equal to the greatest number of cards a player discarded this way.
-mana={2}{U}
-type=Sorcery
-[/card]
-[card]
 name=Winding Wurm
 auto=upcost[{4}{G}{0};next upkeep] moveTo(graveyard)
 text=Echo {4}{G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)
