@@ -1301,8 +1301,8 @@ power=1
 toughness=1
 [/card]
 [card]
-name=All is Dust
-auto=moveTo(ownergraveyard) all(*[white;blue;black;red;green]|battlefield)
+name=All Is Dust
+auto=sacrifice all(*[white;blue;black;red;green]|battlefield)
 text=Each player sacrifices all colored permanents he or she controls. 
 mana={7}
 type=Tribal Sorcery
