@@ -2787,7 +2787,7 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
         int myCards = countCards(abi->tc, p);
         int theirCards = countCards(abi->tc, p->opponent());
         int efficiency = abilityEfficiency(abi->ability, p, mode, tc);
-        if (myCards > theirCards)
+        if ( ((myCards < theirCards) && efficiency == BAKA_EFFECT_GOOD) || ((myCards > theirCards) && efficiency == BAKA_EFFECT_BAD)   )
             return efficiency;
         return -efficiency;
     }

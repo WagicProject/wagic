@@ -1317,7 +1317,7 @@ int AIPlayerBaka::computeActions()
     {//is already looking kick me out of this function!
         return 0;
     } 
-    if (p != this && interruptIfICan()&&  g->isInterrupting == this && g->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 1) 
+    if ((interruptIfICan() || g->isInterrupting == this) && p != this && g->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 1) 
     {
         findingCard = true;
         CardDescriptor cd;
