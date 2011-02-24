@@ -4176,8 +4176,8 @@ type=Land
 [/card]
 [card]
 name=Badlands
-auto={T}:Add {B}
 auto={T}:Add {R}
+auto={T}:Add {B}
 type=Land
 subtype=Swamp Mountain
 [/card]
@@ -45199,11 +45199,16 @@ auto=this(counter{0/0.1.Blue}) {T}:add{U}
 auto=this(counter{0/0.1.Black}) {T}:add{B}
 auto=this(counter{0/0.1.Red}) {T}:add{R}
 auto=this(counter{0/0.1.Green}) {T}:add{G}
-auto=@movedto(*[white]|stack):this(counter{0/0.1.White}) life:1 controller
-auto=@movedto(*[blue]|stack):this(counter{0/0.1.Blue}) life:1 controller
-auto=@movedto(*[black]|stack):this(counter{0/0.1.Black}) life:1 controller
-auto=@movedto(*[red]|stack):this(counter{0/0.1.Red}) life:1 controller
-auto=@movedto(*[green]|stack):this(counter{0/0.1.Green}) life:1 controller
+auto=@movedto(*[white]|mystack) from(myhand):this(counter{0/0.1.White}) life:1 controller
+auto=@movedto(*[white]|opponentstack) from(opponenthand):this(counter{0/0.1.White}) life:1 controller
+auto=@movedto(*[blue]|mystack) from(myhand):this(counter{0/0.1.Blue}) life:1 controller
+auto=@movedto(*[blue]|opponentstack) from(opponenthand):this(counter{0/0.1.Blue}) life:1 controller
+auto=@movedto(*[black]|mystack) from(myhand):this(counter{0/0.1.Black}) life:1 controller
+auto=@movedto(*[black]|opponentstack) from(opponenthand):this(counter{0/0.1.Black}) life:1 controller
+auto=@movedto(*[red]|mystack) from(myhand):this(counter{0/0.1.Red}) life:1 controller
+auto=@movedto(*[red]|opponentstack) from(opponenthand):this(counter{0/0.1.Red}) life:1 controller
+auto=@movedto(*[green]|mystack) from(myhand):this(counter{0/0.1.Green}) life:1 controller
+auto=@movedto(*[green]|opponentstack) from(opponenthand):this(counter{0/0.1.Green}) life:1 controller
 text=As Paradise Plume enters the battlefield, choose a color. -- Whenever a player casts a spell of the chosen color, you may gain 1 life. -- {T}: Add one mana of the chosen color to your mana pool.
 mana={4}
 type=Artifact
@@ -54287,8 +54292,8 @@ toughness=3
 [/card]
 [card]
 name=Scrubland
-auto={T}:Add {B}
 auto={T}:Add {W}
+auto={T}:Add {B}
 type=Land
 subtype=Plains Swamp
 [/card]
@@ -63400,8 +63405,8 @@ toughness=5
 [/card]
 [card]
 name=Taiga
-auto={T}:Add {R}
 auto={T}:Add {G}
+auto={T}:Add {R}
 type=Land
 subtype=Mountain Forest
 [/card]
