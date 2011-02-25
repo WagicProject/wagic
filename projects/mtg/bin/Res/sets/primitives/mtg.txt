@@ -71988,11 +71988,11 @@ toughness=2
 [/card]
 [card]
 name=Wash Out
-auto=choice name(return all white permanents to owners' hand) && moveTo(myhand) all(*[white]|mybattlefield) && moveTo(myhand) all(*[white]|opponentbattlefield)
-auto=choice name(return all blue permanents to owners' hand) && moveTo(myhand) all(*[blue]|mybattlefield) && moveTo(myhand) all(*[blue]|opponentbattlefield)
-auto=choice name(return all black permanents to owners' hand) && moveTo(myhand) all(*[black]|mybattlefield) && moveTo(myhand) all(*[black]|opponentbattlefield)
-auto=choice name(return all red permanents to owners' hand) && moveTo(myhand) all(*[red]|mybattlefield) && moveTo(myhand) all(*[red]|opponentbattlefield)
-auto=choice name(return all green permanents to owners' hand) && moveTo(myhand) all(*[green]|mybattlefield) && moveTo(myhand) all(*[green]|opponentbattlefield)
+auto=choice name(return all white permanents to owners' hand) && moveTo(myhand) all(*[white]|mybattlefield) && moveTo(opponenthand) all(*[white]|opponentbattlefield)
+auto=choice name(return all blue permanents to owners' hand) && moveTo(myhand) all(*[blue]|mybattlefield) && moveTo(opponenthand) all(*[blue]|opponentbattlefield)
+auto=choice name(return all black permanents to owners' hand) && moveTo(myhand) all(*[black]|mybattlefield) && moveTo(opponenthand) all(*[black]|opponentbattlefield)
+auto=choice name(return all red permanents to owners' hand) && moveTo(myhand) all(*[red]|mybattlefield) && moveTo(opponenthand) all(*[red]|opponentbattlefield)
+auto=choice name(return all green permanents to owners' hand) && moveTo(myhand) all(*[green]|mybattlefield) && moveTo(opponenthand) all(*[green]|opponentbattlefield)
 text=Return all permanents of the color of your choice to their owners' hands.
 mana={3}{U}
 type=Sorcery
