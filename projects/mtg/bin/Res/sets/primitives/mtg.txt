@@ -29492,6 +29492,7 @@ toughness=4
 [/card]
 [card]
 name=Hoard-Smelter Dragon
+abilities=flying
 auto={3}{R}:target(artifact) dynamicability<!mytgt manacostpumppow tosrc!> destroy
 text=Flying -- {3}{R}: Destroy target artifact. Hoard-Smelter Dragon gets +X/+0 until end of turn, where X is that artifact's converted mana cost.
 mana={4}{R}{R}
