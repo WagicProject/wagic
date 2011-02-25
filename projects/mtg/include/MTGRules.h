@@ -115,6 +115,28 @@ public:
     virtual MTGMorphCostRule * clone() const;
 };
 
+class MTGSuspendRule: public MTGAlternativeCostRule
+{
+public:
+    int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
+    int MTGSuspendRule::receiveEvent(WEvent *e);
+    int reactToClick(MTGCardInstance * card);
+    int testDestroy();
+    string suspendmenu;
+    virtual ostream& toString(ostream& out) const;
+    MTGSuspendRule(int _id);
+    const char * getMenuText()
+    {
+        suspendmenu = "Suspend";
+        //char buffer[20];
+        //sprintf(buffer,"-%i",card->suspendedTime);
+        //suspendmenu.append(buffer);
+        //TODO:make this work so it shows "Suspend-the amount of turns"
+        return suspendmenu.c_str();
+    }
+    virtual MTGSuspendRule * clone() const;
+};
+
 class MTGAttackRule: public MTGAbility, public Limitor
 {
 public:

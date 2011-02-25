@@ -289,24 +289,43 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
         }
         break;
     case 's': //subtype
-        if (!primitive) primitive = NEW CardPrimitive();
-        while (true)
         {
-            char* found = strchr(val, ' ');
-            if (found)
+            if (s.find("suspend") != string::npos)
             {
-                string value(val, found - val);
-                primitive->setSubtype(value);
-                val = found + 1;
+            size_t time = s.find("suspend(");
+            size_t end = s.find(")=");
+            int suspendTime = atoi(s.substr(time + 8,end - 2).c_str());
+                if (!primitive) primitive = NEW CardPrimitive();
+                if (ManaCost * cost = primitive->getManaCost())
+                {
+                    string value = val;
+                    std::transform(value.begin(), value.end(), value.begin(), ::tolower);
+                    cost->suspend = ManaCost::parseManaCost(value);
+                    primitive->suspendedTime = suspendTime;
+                }
+                
             }
             else
             {
-                primitive->setSubtype(val);
-                break;
+                if (!primitive) primitive = NEW CardPrimitive();
+                while (true)
+                {
+                    char* found = strchr(val, ' ');
+                    if (found)
+                    {
+                        string value(val, found - val);
+                        primitive->setSubtype(value);
+                        val = found + 1;
+                    }
+                    else
+                    {
+                        primitive->setSubtype(val);
+                        break;
+                    }
+                }
             }
+            break;
         }
-        break;
-
     case 't':
         if (!primitive) primitive = NEW CardPrimitive();
         if (0 == strcmp("target", key))

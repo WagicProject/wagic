@@ -319,6 +319,7 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int 
     bool lifelost = false;
     int lifeamount = 0;
     bool limitOnceATurn = false;
+    bool isSuspended = false;
     found = s.find("once");
     if (found != string::npos)
     {
@@ -356,7 +357,11 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int 
     {
     limitOnceATurn = true;
     }
-    
+    found = s.find("suspended");
+    if ( found != string::npos)
+    {
+        isSuspended = true;
+    }
     //Card Changed Zone
     found = s.find("movedto(");
     if (found != string::npos)
@@ -407,7 +412,7 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int 
             fromTc = tcf.createTargetChooser(starget, card);
             fromTc->targetter = NULL; //avoid protection from
         }
-        return NEW TrCardAddedToZone(id, card, (TargetZoneChooser *) toTc, toTcCard, (TargetZoneChooser *) fromTc, fromTcCard,once,sourceUntapped);
+        return NEW TrCardAddedToZone(id, card, (TargetZoneChooser *) toTc, toTcCard, (TargetZoneChooser *) fromTc, fromTcCard,once,sourceUntapped,isSuspended);
     }
 
     //Card unTapped
@@ -3736,6 +3741,9 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
     {
         game->addObserver(NEW AStrongLandLinkCreature(_id, card, "plains"));
     }
+
+    if(card->previous && card->previous->previous && card->previous->previous->suspended)
+        card->basicAbilities[Constants::HASTE] = 1;
 
     if (card->hasType("instant") || card->hasType("sorcery"))
     {

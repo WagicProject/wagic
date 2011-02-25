@@ -64,6 +64,8 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 #ifdef WIN32
         cost->Dump();
 #endif
+        if(!cost->getConvertedCost() && card->getManaCost()->suspend)
+            return 0;
         //cost of card.
         if (playerMana->canAfford(cost))
         {
@@ -518,6 +520,119 @@ MTGRetraceRule * MTGRetraceRule::clone() const
 //-------------------------------------------------------------------------
 //-------------------------------------------------------------------------
 //-------------------------------------------------------------------------
+
+//Suspend
+MTGSuspendRule::MTGSuspendRule(int _id) :
+MTGAlternativeCostRule(_id)
+{
+    aType = MTGAbility::SUSPEND_COST;
+}
+
+int MTGSuspendRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
+{
+    Player * player = game->currentlyActing();
+    ManaCost * alternateManaCost = card->getManaCost()->suspend;
+
+    if (!player->game->hand->hasCard(card))
+        return 0;
+    return MTGAlternativeCostRule::isReactingToClick( card, mana, alternateManaCost  );
+}
+
+int MTGSuspendRule::receiveEvent(WEvent *e)
+{
+    if (WEventPhaseChange* event = dynamic_cast<WEventPhaseChange*>(e))
+    {
+        if (Constants::MTG_PHASE_UNTAP == event->from->id)
+        {
+            Player * p = game->currentPlayer;
+            MTGGameZone * z = p->game->exile;
+            int originalAmount = z->nb_cards;
+            for (int i = 0; i < z->nb_cards; i++)
+            {
+                MTGCardInstance * card = z->cards[i];
+
+                if (card->suspended && card->counters->hasCounter("Time",0,0))
+                    card->counters->removeCounter("Time",0,0);
+                if (card->suspended && !card->counters->hasCounter("Time",0,0))
+                {
+                    MTGCardInstance * copy = p->game->putInZone(card, card->currentZone, p->game->stack);
+                    Spell * spell = game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, NULL,1, 0);
+                    game->targetChooser = NULL;
+                }
+                if(z->nb_cards != originalAmount)
+                {
+                i = 0;
+                originalAmount = z->nb_cards;
+                }
+            }
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int MTGSuspendRule::reactToClick(MTGCardInstance * card)
+{
+    if (!isReactingToClick(card))
+        return 0;
+    Player *player = game->currentlyActing();
+    ManaCost * playerMana = player->getManaPool();
+    ManaCost * alternateCost = card->getManaCost()->suspend;
+    //this handles extra cost payments at the moment a card is played.
+    if (playerMana->canAfford(alternateCost))
+    {
+        if (alternateCost->isExtraPaymentSet())
+        {
+            if (!game->targetListIsSet(card))
+            {
+                return 0;
+            }
+        }
+        else
+        {
+            alternateCost->setExtraCostsAction(this, card);
+            game->mExtraPayment = cost->suspend->extraCosts;
+            return 0;
+        }
+            card->paymenttype = MTGAbility::SUSPEND_COST;
+    }
+    //------------------------------------------------------------------------
+    int payResult = player->getManaPool()->pay(card->getManaCost()->suspend);
+    card->getManaCost()->suspend->doPayExtra();
+    payResult = ManaCost::MANA_PAID_WITH_SUSPEND;
+    //---------------------------------------------------------------------------
+    player->game->putInZone(card, card->currentZone, player->game->exile);
+    card->next->suspended = true;
+    for(signed int i = 0; i < card->suspendedTime;i++)
+    card->next->counters->addCounter("Time",0,0);
+    return 1;
+}
+
+
+//The Put into play rule is never destroyed
+int MTGSuspendRule::testDestroy()
+{
+    return 0;
+}
+
+ostream& MTGSuspendRule::toString(ostream& out) const
+{
+    out << "MTGSuspendRule ::: (";
+    return MTGAbility::toString(out) << ")";
+}
+MTGSuspendRule * MTGSuspendRule::clone() const
+{
+    MTGSuspendRule * a = NEW MTGSuspendRule(*this);
+    a->isClone = 1;
+    return a;
+}
+
+//-------------------------------------------------------------------------
+//-------------------------------------------------------------------------
+//-------------------------------------------------------------------------
+//-------------------------------------------------------------------------
+//-------------------------------------------------------------------------
+
 
 MTGMorphCostRule::MTGMorphCostRule(int _id) :
     MTGAbility(_id, NULL)

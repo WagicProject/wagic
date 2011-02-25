@@ -96,6 +96,7 @@ class CardPrimitive {
   bool hasRestriction;
   int restriction;
   string otherrestriction;
+  int suspendedTime;
 
   vector<int>types;
   CardPrimitive();

@@ -145,6 +145,7 @@ void MTGCardInstance::initMTGCI()
     damageToOpponent = false;
     damageToController = false;
     wasDealtDamage = false;
+    suspended = false;
 
     for (int i = 0; i < ManaCost::MANA_PAID_WITH_RETRACE +1; i++)
         alternateCostPaid[i] = 0;

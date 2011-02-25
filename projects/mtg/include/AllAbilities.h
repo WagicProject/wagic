@@ -224,10 +224,11 @@ public:
     TargetChooser * toTcCard, *fromTcCard;
     bool once;
     bool sourceUntapped;
+    bool isSuspended;
     bool activeTrigger;
     TrCardAddedToZone(int id, MTGCardInstance * source, TargetZoneChooser * toTcZone, TargetChooser * toTcCard,
-            TargetZoneChooser * fromTcZone = NULL, TargetChooser * fromTcCard = NULL,bool once = false,bool sourceUntapped = false) :
-        TriggeredAbility(id, source), toTcZone(toTcZone), fromTcZone(fromTcZone), toTcCard(toTcCard), fromTcCard(fromTcCard),once(once),sourceUntapped(sourceUntapped)
+            TargetZoneChooser * fromTcZone = NULL, TargetChooser * fromTcCard = NULL,bool once = false,bool sourceUntapped = false,bool isSuspended = false) :
+        TriggeredAbility(id, source), toTcZone(toTcZone), fromTcZone(fromTcZone), toTcCard(toTcCard), fromTcCard(fromTcCard),once(once),sourceUntapped(sourceUntapped),isSuspended(isSuspended)
     {
     activeTrigger = true;
     }
@@ -244,6 +245,8 @@ public:
         WEventZoneChange * e = dynamic_cast<WEventZoneChange*> (event);
         if (!e) return 0;
         if(sourceUntapped && source->isTapped() == 1)
+            return 0;
+        if(isSuspended && !source->suspended)
             return 0;
         if(activeTrigger == false)
             return 0;

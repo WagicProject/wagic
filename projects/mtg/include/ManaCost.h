@@ -33,7 +33,8 @@ public:
         MANA_PAID_WITH_BUYBACK = 4,
         MANA_PAID_WITH_FLASHBACK = 5,
         MANA_PAID_WITH_RETRACE = 6,
-        MANA_PAID_WITH_MORPH = 7
+        MANA_PAID_WITH_MORPH = 7,
+        MANA_PAID_WITH_SUSPEND = 8
 
     };
     ExtraCosts * extraCosts;
@@ -43,6 +44,7 @@ public:
     ManaCost * FlashBack;
     ManaCost * Retrace;
     ManaCost * morph;
+    ManaCost * suspend;
     static ManaCost * parseManaCost(string value, ManaCost * _manacost = NULL, MTGCardInstance * c = NULL);
     virtual void init();
     void x();

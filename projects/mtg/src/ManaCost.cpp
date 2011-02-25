@@ -257,6 +257,7 @@ ManaCost::ManaCost(ManaCost * manaCost)
     alternative = NEW ManaCost( manaCost->alternative );
     FlashBack = NEW ManaCost( manaCost->FlashBack );
     morph = NEW ManaCost( manaCost->morph );
+    suspend = NEW ManaCost( manaCost->suspend );
 
     // TODO: Need to figure out if a deep copy is necessary
     extraCosts = manaCost->extraCosts;
@@ -285,6 +286,7 @@ ManaCost::ManaCost(const ManaCost& manaCost)
     alternative = NEW ManaCost( manaCost.alternative );
     FlashBack = NEW ManaCost( manaCost.FlashBack );
     morph = NEW ManaCost( manaCost.morph );
+    suspend = NEW ManaCost( manaCost.suspend );
     
     // TODO: Need to figure out if a deep copy is necessary
     extraCosts = manaCost.extraCosts;
@@ -312,6 +314,7 @@ ManaCost & ManaCost::operator= (const ManaCost & manaCost)
         alternative = manaCost.alternative;
         FlashBack = manaCost.FlashBack;
         morph = manaCost.morph;
+        suspend = manaCost.suspend;
     }
     return *this;
 }
@@ -330,6 +333,7 @@ ManaCost::~ManaCost()
     SAFE_DELETE(FlashBack);
     SAFE_DELETE(Retrace);
     SAFE_DELETE(morph);
+    SAFE_DELETE(suspend);
 }
 
 void ManaCost::x()
@@ -358,6 +362,7 @@ void ManaCost::init()
     FlashBack = NULL;
     Retrace = NULL;
     morph = NULL;
+    suspend = NULL;
     
     // why is hybrids hardcoded to 10?
     for (i = 0; i < 10; i++)
@@ -423,6 +428,12 @@ void ManaCost::copy(ManaCost * _manaCost)
     {
         morph = NEW ManaCost();
         morph->copy(_manaCost->morph);
+    }
+    SAFE_DELETE(suspend);
+    if (_manaCost->suspend)
+    {
+        suspend = NEW ManaCost();
+        suspend->copy(_manaCost->suspend);
     }
 }
 

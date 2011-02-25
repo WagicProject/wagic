@@ -79,6 +79,7 @@ class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable {
     int phasedTurn;
     bool graveEffects;
     bool exileEffects;
+    bool suspended;
 
     int stillInUse();
     int didattacked;

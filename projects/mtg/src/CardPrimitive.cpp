@@ -31,6 +31,7 @@ CardPrimitive::CardPrimitive(CardPrimitive * source)
     toughness = source->toughness;
     restriction = source->restriction;
     otherrestriction = source->otherrestriction;
+    suspendedTime = source->suspendedTime;
 
     magicText = source->magicText;
     for (map<string, string>::const_iterator it = source->magicTexts.begin(); it != source->magicTexts.end(); ++it)

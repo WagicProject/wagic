@@ -119,6 +119,7 @@ class MTGAbility: public ActionElement{
  ManaCost * FlashBack;
  ManaCost * Retrace;
  ManaCost * morph;
+ ManaCost * suspend;
 
   Targetable * target;
   int aType;
@@ -174,6 +175,7 @@ class MTGAbility: public ActionElement{
 		STANDARD_TEACH = 26,
 		STANDARD_TOKENCREATOR = 27,
 		MORPH_COST = 28,
+		SUSPEND_COST = 29,
 
 
   };
