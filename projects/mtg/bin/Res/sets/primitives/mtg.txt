@@ -1659,6 +1659,15 @@ power=1
 toughness=5
 [/card]
 [card]
+name=Ancestral Vision
+auto=target(player) draw:3
+text=Ancestral Vision is blue. -- Suspend 4 - {U} (Rather than cast this card from your hand, pay {U} and exile it with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.) -- Target player draws three cards.
+mana={0}
+color=blue
+suspend(4)={u}
+type=Sorcery
+[/card]
+[card]
 name=Ancestral Mask
 target=creature
 auto=foreach(other enchantment|battlefield) 2/2
@@ -12460,6 +12469,17 @@ mana={3}{B}{B}
 type=Sorcery
 [/card]
 [card]
+name=Corpulent Corpse
+abilities=fear
+text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- Suspend 5 - {B} (Rather than cast this card from your hand, you may pay {B} and exile it with five time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.)
+mana={5}{B}
+suspend(5)={b}
+type=Creature
+subtype=Zombie
+power=3
+toughness=3
+[/card]
+[card]
 name=Corrosive Mentor
 auto=lord(creature[black]|myBattlefield) wither
 text=Black creatures you control have wither. (They deal damage to creatures in the form of -1/-1 counters.)
@@ -14997,6 +15017,18 @@ mana={1}{G}
 type=Instant
 [/card]
 [card]
+name=Deep-Sea Kraken
+autoexile=@movedto(*|stack) from(opponenthand) suspended:counter(0/0,-1,Time)
+abilities=unblockable
+text=Deep-Sea Kraken is unblockable. -- Suspend 9 - {2}{U} (Rather than cast this card from your hand, you may pay {2}{U} and exile it with nine time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.) -- Whenever an opponent casts a spell, if Deep-Sea Kraken is suspended, remove a time counter from it.
+mana={7}{U}{U}{U}
+suspend(9)={2}{u}
+type=Creature
+subtype=Kraken
+power=6
+toughness=6
+[/card]
+[card]
 name=Deep-Sea Serpent
 abilities=cantattack
 auto=aslongas(island|opponentBattlefield) -cantattack
@@ -16233,6 +16265,15 @@ name=Divination
 auto=draw:2
 text=Draw two cards.
 mana={2}{U}
+type=Sorcery
+[/card]
+[card]
+name=Divine Congregation
+auto=choice name(My Creatures) && life:type:creature|mybattlefield
+auto=choice name(Opponents Creatures) && life:type:creature|opponentbattlefield
+text=You gain 2 life for each creature target player controls. -- Suspend 5 - {1}{W} (Rather than cast this card from your hand, you may pay {1}{W} and exile it with five time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
+mana={3}{W}
+suspend(5)={1}{w}
 type=Sorcery
 [/card]
 [card]
@@ -17613,6 +17654,16 @@ mana={B}
 type=Sorcery
 [/card]
 [card]
+name=Durkwood Baloth
+text=Suspend 5 - {G} (Rather than cast this card from your hand, you may pay {G} and exile it with five time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.)
+mana={4}{G}{G}
+suspend(5)={g}
+type=Creature
+subtype=Beast
+power=5
+toughness=5
+[/card]
+[card]
 name=Durkwood Boars
 mana={4}{G}
 type=Creature
@@ -17678,6 +17729,17 @@ type=Creature
 subtype=Bird
 power=1
 toughness=1
+[/card]
+[card]
+name=Duskrider Peregrine
+abilities=flying,protection from black
+text=Flying, protection from black -- Suspend 3 - {1}{W} (Rather than cast this card from your hand, you may pay {1}{W} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.)
+mana={5}{W}
+suspend(3)={1}{w}
+type=Creature
+subtype=Bird
+power=3
+toughness=3
 [/card]
 [card]
 name=Duskwalker
@@ -19603,6 +19665,17 @@ type=Creature
 subtype=Human Rebel
 power=1
 toughness=1
+[/card]
+[card]
+name=Errant Ephemeron
+abilities=flying
+text=Flying -- Suspend 4 - {1}{U} (Rather than cast this card from your hand, you may pay {1}{U} and exile it with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.)
+mana={6}{U}
+suspend(4)={1}{u}
+type=Creature
+subtype=Illusion
+power=4
+toughness=4
 [/card]
 [card]
 name=Ertai, Wizard Adept
@@ -24661,6 +24734,17 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Giant Dustwasp
+abilities=flying
+text=Flying -- Suspend 4 - {1}{G} (Rather than cast this card from your hand, you may pay {1}{G} and exile it with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.)
+mana={3}{G}{G}
+suspend(4)={1}{g}
+type=Creature
+subtype=Insect
+power=3
+toughness=3
+[/card]
+[card]
 name=Giant Growth
 target=creature
 auto=3/3
@@ -29127,6 +29211,13 @@ mana={G}{W}
 type=Instant
 [/card]
 [card]
+name=Heroes Remembered
+text=You gain 20 life. -- Suspend 10 - {W} (Rather than cast this card from your hand, you may pay {W} and exile it with ten time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
+mana={6}{W}{W}{W}
+suspend(10)={w}
+type=Sorcery
+[/card]
+[card]
 name=Hexplate Golem
 text=
 mana={7}
@@ -31103,6 +31194,17 @@ mana={U}
 type=Instant
 [/card]
 [card]
+name=Infiltrator il-Kor
+abilities=shadow
+text=Shadow (This creature can block or be blocked by only creatures with shadow.) -- Suspend 2 - {1}{U} (Rather than cast this card from your hand, you may pay {1}{U} and exile it with two time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.)
+mana={4}{U}
+suspend(2)={1}{u}
+type=Creature
+subtype=Kor Rogue
+power=3
+toughness=1
+[/card]
+[card]
 name=Infiltration Lens
 auto=@blocked(mytgt):may draw:2 controller
 auto={1}:equip
@@ -31791,6 +31893,18 @@ power=4
 toughness=8
 [/card]
 [card]
+name=Ith, High Arcanist
+abilities=vigilance
+auto={t}:target(creature[attacking]) removefromcombat
+text=Vigilance -- {T}: Untap target attacking creature. Prevent all combat damage that would be dealt to and dealt by that creature this turn. -- Suspend 4 - {W}{U} (Rather than cast this card from your hand, you may pay {W}{U} and exile it with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.)
+mana={5}{W}{U}
+suspend(4)={w}{u}
+type=Legendary Creature
+subtype=Human Wizard
+power=3
+toughness=5
+[/card]
+[card]
 name=Ivory Charm
 auto=choice name(all creatures get -2/-0 until end of turn) && lord(creature) -2/0
 auto=choice tap target(creature)
@@ -31812,6 +31926,17 @@ alias=1114
 text=Whenever a player casts a white spell, you may pay {1}. If you do, you gain 1 life.
 mana={1}
 type=Artifact
+[/card]
+[card]
+name=Ivory Giant
+auto=tap all(creature[-white])
+text=When Ivory Giant enters the battlefield, tap all nonwhite creatures. -- Suspend 5 - {W} (Rather than cast this card from your hand, you may pay {W} and exile it with five time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.)
+mana={5}{W}{W}
+suspend(5)={w}
+type=Creature
+subtype=Giant
+power=3
+toughness=4
 [/card]
 [card]
 name=Ivory Guardians
@@ -33672,6 +33797,17 @@ power=3
 toughness=2
 [/card]
 [card]
+name=Keldon Halberdier
+abilities=first strike
+text=First strike -- Suspend 4 - {R} (Rather than cast this card from your hand, you may pay {R} and exile it with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.)
+mana={4}{R}
+suspend(4)={r}
+type=Creature
+subtype=Human Warrior
+power=4
+toughness=1
+[/card]
+[card]
 name=Keldon Mantle
 target=creature
 auto={B}:regenerate
@@ -34400,6 +34536,17 @@ text=First strike -- Lifelink (Damage dealt by this creature also causes you to 
 mana={W}{W}
 type=Creature
 subtype=Kithkin Knight
+power=2
+toughness=2
+[/card]
+[card]
+name=Knight of Sursi
+abilities=flanking,flying
+text=Flying; flanking (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.) -- Suspend 3 - {W} (Rather than cast this card from your hand, you may pay {W} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.)
+mana={3}{W}
+suspend(3)={w}
+type=Creature
+subtype=Human Knight
 power=2
 toughness=2
 [/card]
@@ -37148,6 +37295,18 @@ type=Creature
 subtype=Spirit Minion
 power=2
 toughness=1
+[/card]
+[card]
+name=Lotus Bloom
+auto={T}{S}:add {W}{W}{W}
+auto={T}{S}:add {U}{U}{U}
+auto={T}{S}:add {B}{B}{B}
+auto={T}{S}:add {R}{R}{R}
+auto={T}{S}:add {G}{G}{G}
+text=Suspend 3 - {0} (Rather than cast this card from your hand, pay {0} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.) -- {T}, Sacrifice Lotus Bloom: Add three mana of any one color to your mana pool.
+type=Artifact
+mana={0}
+suspend(3)={0}
 [/card]
 [card]
 name=Lotus Blossom
@@ -42101,6 +42260,17 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Nantuko Shaman
+auto=aslongas(land[tapped]|mybattlefield) draw:1 controller <1
+text=When Nantuko Shaman enters the battlefield, if you control no tapped lands, draw a card. -- Suspend 1 - {2}{G}{G} (Rather than cast this card from your hand, you may pay {2}{G}{G} and exile it with a time counter on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.)
+mana={2}{G}
+suspend(1)={2}{g}{g}
+type=Creature
+subtype=Insect Shaman
+power=3
+toughness=2
+[/card]
+[card]
 name=Nantuko Vigilante
 facedown={3}
 autofacedown={1}{G}:morph
@@ -42970,6 +43140,17 @@ type=Creature
 subtype=Shade
 power=2
 toughness=2
+[/card]
+[card]
+name=Nihilith
+autoexile=@movedto(*|opponentgraveyard) suspended:may counter(0/0,-1,Time)
+text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- Suspend 7 - {1}{B} (Rather than cast this card from your hand, you may pay {1}{B} and exile it with seven time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.) -- Whenever a card is put into an opponent's graveyard from anywhere, if Nihilith is suspended, you may remove a time counter from Nihilith.
+mana={4}{B}{B}
+suspend(7)={1}{b}
+type=Creature
+subtype=Horror
+power=4
+toughness=4
 [/card]
 [card]
 name=Nihilistic Glee
@@ -47227,6 +47408,14 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Plunder
+auto=target(*[land;artifact]) destroy
+text=Destroy target artifact or land. -- Suspend 4 - {1}{R} (Rather than cast this card from your hand, you may pay {1}{R} and exile it with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
+mana={4}{R}
+suspend(4)={1}{r}
+type=Sorcery
+[/card]
+[card]
 name=Poison Arrow
 target=creature[-black]
 auto=destroy
@@ -49484,7 +49673,7 @@ toughness=3
 name=Rancid Earth
 target=land
 auto=destroy
-auto=aslongas(*|mygraveyard) damage:1 all(creature) >6
+auto=aslongas(*|mygraveyard) lord(creature) damage:1 >6
 auto=aslongas(*|mygraveyard) damage:1 controller >6
 auto=aslongas(*|mygraveyard) damage:1 opponent >6
 text=Destroy target land. -- Threshold - If seven or more cards are in your graveyard, instead destroy that land and Rancid Earth deals 1 damage to each creature and each player.
@@ -51359,12 +51548,32 @@ mana={2}{W}
 type=Sorcery
 [/card]
 [card]
+name=Rift Bolt
+auto=target(creature,player) damage:3
+text=Rift Bolt deals 3 damage to target creature or player. -- Suspend 1 - {R} (Rather than cast this card from your hand, you may pay {R} and exile it with a time counter on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
+mana={2}{R}
+suspend(1)={r}
+type=Sorcery
+[/card]
+[card]
 name=Riftstone Portal
 auto={T}:Add{1}
 autograveyard=lord(land|mybattlefield) {T}:Add{G}
 autograveyard=lord(land|mybattlefield) {T}:Add{W}
 text={T}: Add {1} to your mana pool. -- As long as Riftstone Portal is in your graveyard, lands you control have "{T}: Add {G} or {W} to your mana pool."
 type=Land
+[/card]
+[card]
+name=Riftwing Cloudskate
+abilities=flying
+auto=moveto(ownerhand) target(*)
+text=Flying -- When Riftwing Cloudskate enters the battlefield, return target permanent to its owner's hand. -- Suspend 3 - {1}{U} (Rather than cast this card from your hand, you may pay {1}{U} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.)
+mana={3}{U}{U}
+suspend(3)={1}{u}
+type=Creature
+subtype=Illusion
+power=2
+toughness=2
 [/card]
 [card]
 name=Righteous Avengers
@@ -54533,6 +54742,14 @@ mana={G}
 type=Enchantment
 [/card]
 [card]
+name=Search for Tomorrow
+auto=moveto(mybattlefield) target(land|mylibrary)
+text=Search your library for a basic land card and put it onto the battlefield. Then shuffle your library. -- Suspend 2 - {G} (Rather than cast this card from your hand, you may pay {G} and exile it with two time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
+mana={2}{G}
+suspend(2)={g}
+type=Sorcery
+[/card]
+[card]
 name=Searing Flesh
 auto=damage:7 opponent
 text=Searing Flesh deals 7 damage to target opponent.
@@ -55514,6 +55731,17 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Shade of Trokair
+auto={w}:+1/+1 ueot
+text={W}: Shade of Trokair gets +1/+1 until end of turn. -- Suspend 3 - {W} (Rather than cast this card from your hand, you may pay {W} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.)
+mana={3}{W}
+suspend(3)={w}
+type=Creature
+subtype=Shade
+power=1
+toughness=2
+[/card]
+[card]
 name=Shadow Guildmage
 auto={U}{T}:moveTo(ownerlibrary) target(creature|myBattlefield)
 auto={R}{T}:damage:1 target(creature,player) && damage:1 controller
@@ -56187,6 +56415,14 @@ type=Creature
 subtype=Dragon
 power=5
 toughness=5
+[/card]
+[card]
+name=Shivan Meteor
+auto=damage:13 target(creature)
+text=Shivan Meteor deals 13 damage to target creature. -- Suspend 2 - {1}{R}{R} (Rather than cast this card from your hand, you may pay {1}{R}{R} and exile it with two time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
+mana={3}{R}{R}
+suspend(2)={1}{r}{r}
+type=Sorcery
 [/card]
 [card]
 name=Shivan Oasis
@@ -70379,6 +70615,17 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Viscerid Deepwalker
+auto={u}:+1/+0 ueot
+text={U}: Viscerid Deepwalker gets +1/+0 until end of turn. -- Suspend 4 - {U} (Rather than cast this card from your hand, you may pay {U} and exile it with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.)
+mana={4}{U}
+suspend(4)={u}
+type=Creature
+subtype=Homarid Warrior
+power=2
+toughness=3
+[/card]
+[card]
 name=Viscerid Drone
 auto={S(creature|myBattlefield)}{S(swamp|myBattlefield)}{T}:bury target(creature[-artifact])
 auto={S(creature|myBattlefield)}{S(swamp[snow]|myBattlefield)}{T}:bury target(creature)
@@ -72453,6 +72700,18 @@ auto=draw:1 controller
 text=Any number of target opponents each discards his or her hand and draws seven cards. -- Draw a card.
 mana={3}{U}
 type=Instant
+[/card]
+[card]
+name=Wheel of Fate
+auto=moveto(opponentgraveyard) all(*|opponenthand)
+auto=draw:7 opponent
+auto=moveto(mygraveyard) all(*|myhand)
+auto=draw:7 controller
+text=Wheel of Fate is red. -- Suspend 4 - {1}{R} (Rather than cast this card from your hand, pay {1}{R} and exile it with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.) -- Each player discards his or her hand, then draws seven cards.
+type=Sorcery
+color=red
+mana={0}
+suspend(4)={1}{r}
 [/card]
 [card]
 name=Wheel of Fortune

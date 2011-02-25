@@ -489,11 +489,6 @@ mana={2}{U}{U}{U}
 type=Sorcery
 [/card]
 [card]
-name=Ancestral Vision
-text=Ancestral Vision is blue. -- Suspend 4 - {U} (Rather than cast this card from your hand, pay {U} and exile it with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.) -- Target player draws three cards.
-type=Sorcery
-[/card]
-[card]
 name=Ancient Ooze
 text=Ancient Ooze's power and toughness are each equal to the total converted mana cost of other creatures you control.
 mana={5}{G}{G}
@@ -4137,15 +4132,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Corpulent Corpse
-text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- Suspend 5 - {B} (Rather than cast this card from your hand, you may pay {B} and exile it with five time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.)
-mana={5}{B}
-type=Creature
-subtype=Zombie
-power=3
-toughness=3
-[/card]
-[card]
 name=Corrosion
 text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- At the beginning of your upkeep, put a rust counter on each artifact target opponent controls. Then destroy each artifact with converted mana cost less than or equal to the number of rust counters on it. Artifacts destroyed this way can't be regenerated. -- When Corrosion leaves the battlefield, remove all rust counters from all permanents.
 mana={1}{B}{R}
@@ -5123,15 +5109,6 @@ mana={U}{U}
 type=Enchantment
 [/card]
 [card]
-name=Deep-Sea Kraken
-text=Deep-Sea Kraken is unblockable. -- Suspend 9 - {2}{U} (Rather than cast this card from your hand, you may pay {2}{U} and exile it with nine time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.) -- Whenever an opponent casts a spell, if Deep-Sea Kraken is suspended, remove a time counter from it.
-mana={7}{U}{U}{U}
-type=Creature
-subtype=Kraken
-power=6
-toughness=6
-[/card]
-[card]
 name=Deepwood Elder
 text={X}{G}{G}, {T}, Discard a card: X target lands become Forests until end of turn.
 mana={G}{G}
@@ -5723,12 +5700,6 @@ mana={U}
 type=Instant
 [/card]
 [card]
-name=Divine Congregation
-text=You gain 2 life for each creature target player controls. -- Suspend 5 - {1}{W} (Rather than cast this card from your hand, you may pay {1}{W} and exile it with five time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
-mana={3}{W}
-type=Sorcery
-[/card]
-[card]
 name=Divine Intervention
 text=Divine Intervention enters the battlefield with two intervention counters on it. -- At the beginning of your upkeep, remove an intervention counter from Divine Intervention. -- When you remove the last intervention counter from Divine Intervention, the game is a draw.
 mana={6}{W}{W}
@@ -6147,24 +6118,6 @@ name=Duplicity
 text=When Duplicity enters the battlefield, exile the top five cards of your library face down. -- At the beginning of your upkeep, you may exile all cards from your hand face down. If you do, put all other cards you own exiled with Duplicity into your hand. -- At the beginning of your end step, discard a card. -- When you lose control of Duplicity, put all cards exiled with Duplicity into their owners' graveyards.
 mana={3}{U}{U}
 type=Enchantment
-[/card]
-[card]
-name=Durkwood Baloth
-text=Suspend 5 - {G} (Rather than cast this card from your hand, you may pay {G} and exile it with five time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.)
-mana={4}{G}{G}
-type=Creature
-subtype=Beast
-power=5
-toughness=5
-[/card]
-[card]
-name=Duskrider Peregrine
-text=Flying, protection from black -- Suspend 3 - {1}{W} (Rather than cast this card from your hand, you may pay {1}{W} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.)
-mana={5}{W}
-type=Creature
-subtype=Bird
-power=3
-toughness=3
 [/card]
 [card]
 name=Dust Elemental
@@ -6850,15 +6803,6 @@ auto=token(Knight,Creature Knight,1/1,banding white)
 text=Put a 1/1 white Knight creature token with banding onto the battlefield. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
 mana={1}{W}
 type=Instant
-[/card]
-[card]
-name=Errant Ephemeron
-text=Flying -- Suspend 4 - {1}{U} (Rather than cast this card from your hand, you may pay {1}{U} and exile it with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.)
-mana={6}{U}
-type=Creature
-subtype=Illusion
-power=4
-toughness=4
 [/card]
 [card]
 name=Errant Minion
@@ -8747,15 +8691,6 @@ power=4
 toughness=3
 [/card]
 [card]
-name=Giant Dustwasp
-text=Flying -- Suspend 4 - {1}{G} (Rather than cast this card from your hand, you may pay {1}{G} and exile it with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.)
-mana={3}{G}{G}
-type=Creature
-subtype=Insect
-power=3
-toughness=3
-[/card]
-[card]
 name=Giant Harbinger
 text=When Giant Harbinger enters the battlefield, you may search your library for a Giant card, reveal it, then shuffle your library and put that card on top of it.
 mana={4}{R}
@@ -10375,12 +10310,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Heroes Remembered
-text=You gain 20 life. -- Suspend 10 - {W} (Rather than cast this card from your hand, you may pay {W} and exile it with ten time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
-mana={6}{W}{W}{W}
-type=Sorcery
-[/card]
-[card]
 name=Heroic Defiance
 text=Enchant creature -- Enchanted creature gets +3/+3 unless it shares a color with the most common color among all permanents or a color tied for most common.
 mana={1}{W}
@@ -11277,15 +11206,6 @@ type=Instant
 subtype=Trap
 [/card]
 [card]
-name=Infiltrator il-Kor
-text=Shadow (This creature can block or be blocked by only creatures with shadow.) -- Suspend 2 - {1}{U} (Rather than cast this card from your hand, you may pay {1}{U} and exile it with two time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.)
-mana={4}{U}
-type=Creature
-subtype=Kor Rogue
-power=3
-toughness=1
-[/card]
-[card]
 name=Infiltrator's Magemark
 text=Enchant creature -- Creatures you control that are enchanted get +1/+1 and can't be blocked except by creatures with defender.
 mana={2}{U}
@@ -11562,15 +11482,6 @@ power=3
 toughness=6
 [/card]
 [card]
-name=Ith, High Arcanist
-text=Vigilance -- {T}: Untap target attacking creature. Prevent all combat damage that would be dealt to and dealt by that creature this turn. -- Suspend 4 - {W}{U} (Rather than cast this card from your hand, you may pay {W}{U} and exile it with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.)
-mana={5}{W}{U}
-type=Legendary Creature
-subtype=Human Wizard
-power=3
-toughness=5
-[/card]
-[card]
 name=Ivory Gargoyle
 text=Flying -- When Ivory Gargoyle is put into a graveyard from the battlefield, return it to the battlefield under its owner's control at the beginning of the next end step and you skip your next draw step. -- {4}{W}: Exile Ivory Gargoyle.
 mana={4}{W}
@@ -11578,15 +11489,6 @@ type=Creature
 subtype=Gargoyle
 power=2
 toughness=2
-[/card]
-[card]
-name=Ivory Giant
-text=When Ivory Giant enters the battlefield, tap all nonwhite creatures. -- Suspend 5 - {W} (Rather than cast this card from your hand, you may pay {W} and exile it with five time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.)
-mana={5}{W}{W}
-type=Creature
-subtype=Giant
-power=3
-toughness=4
 [/card]
 [card]
 name=Ivy Seer
@@ -12148,15 +12050,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Keldon Halberdier
-text=First strike -- Suspend 4 - {R} (Rather than cast this card from your hand, you may pay {R} and exile it with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.)
-mana={4}{R}
-type=Creature
-subtype=Human Warrior
-power=4
-toughness=1
-[/card]
-[card]
 name=Keldon Twilight
 text=At the beginning of each player's end step, if no creatures attacked this turn, that player sacrifices a creature he or she controlled since the beginning of the turn.
 mana={1}{B}{R}
@@ -12432,15 +12325,6 @@ toughness=2
 name=Knight of New Alara
 text=Each other multicolored creature you control gets +1/+1 for each of its colors.
 mana={2}{G}{W}
-type=Creature
-subtype=Human Knight
-power=2
-toughness=2
-[/card]
-[card]
-name=Knight of Sursi
-text=Flying; flanking (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.) -- Suspend 3 - {W} (Rather than cast this card from your hand, you may pay {W} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.)
-mana={3}{W}
 type=Creature
 subtype=Human Knight
 power=2
@@ -13480,11 +13364,6 @@ text=Enchant creature -- Enchanted creature can't attack or block and its activa
 mana={1}{U}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Lotus Bloom
-text=Suspend 3 - {0} (Rather than cast this card from your hand, pay {0} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.) -- {T}, Sacrifice Lotus Bloom: Add three mana of any one color to your mana pool.
-type=Artifact
 [/card]
 [card]
 name=Lotus Vale
@@ -15714,15 +15593,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Nantuko Shaman
-text=When Nantuko Shaman enters the battlefield, if you control no tapped lands, draw a card. -- Suspend 1 - {2}{G}{G} (Rather than cast this card from your hand, you may pay {2}{G}{G} and exile it with a time counter on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.)
-mana={2}{G}
-type=Creature
-subtype=Insect Shaman
-power=3
-toughness=2
-[/card]
-[card]
 name=Nantuko Shrine
 text=Whenever a player casts a spell, that player puts X 1/1 green Squirrel creature tokens onto the battlefield, where X is the number of cards in all graveyards with the same name as that spell.
 mana={1}{G}{G}
@@ -16158,15 +16028,6 @@ type=Creature
 subtype=Human Wizard
 power=1
 toughness=1
-[/card]
-[card]
-name=Nihilith
-text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- Suspend 7 - {1}{B} (Rather than cast this card from your hand, you may pay {1}{B} and exile it with seven time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.) -- Whenever a card is put into an opponent's graveyard from anywhere, if Nihilith is suspended, you may remove a time counter from Nihilith.
-mana={4}{B}{B}
-type=Creature
-subtype=Horror
-power=4
-toughness=4
 [/card]
 [card]
 name=Nim Devourer
@@ -17969,12 +17830,6 @@ subtype=Arcane
 name=Plow Under
 text=Put two target lands on top of their owners' libraries.
 mana={3}{G}{G}
-type=Sorcery
-[/card]
-[card]
-name=Plunder
-text=Destroy target artifact or land. -- Suspend 4 - {1}{R} (Rather than cast this card from your hand, you may pay {1}{R} and exile it with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
-mana={4}{R}
 type=Sorcery
 [/card]
 [card]
@@ -19864,12 +19719,6 @@ mana={2}{G}
 type=Sorcery
 [/card]
 [card]
-name=Rift Bolt
-text=Rift Bolt deals 3 damage to target creature or player. -- Suspend 1 - {R} (Rather than cast this card from your hand, you may pay {R} and exile it with a time counter on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
-mana={2}{R}
-type=Sorcery
-[/card]
-[card]
 name=Rift Elemental
 text={1}{R}, Remove a time counter from a permanent you control or suspended card you own: Rift Elemental gets +2/+0 until end of turn.
 mana={R}
@@ -19893,15 +19742,6 @@ text=When Riftsweeper enters the battlefield, choose target face-up exiled card.
 mana={1}{G}
 type=Creature
 subtype=Elf Shaman
-power=2
-toughness=2
-[/card]
-[card]
-name=Riftwing Cloudskate
-text=Flying -- When Riftwing Cloudskate enters the battlefield, return target permanent to its owner's hand. -- Suspend 3 - {1}{U} (Rather than cast this card from your hand, you may pay {1}{U} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.)
-mana={3}{U}{U}
-type=Creature
-subtype=Illusion
 power=2
 toughness=2
 [/card]
@@ -21222,12 +21062,6 @@ mana={2}{R}
 type=Sorcery
 [/card]
 [card]
-name=Search for Tomorrow
-text=Search your library for a basic land card and put it onto the battlefield. Then shuffle your library. -- Suspend 2 - {G} (Rather than cast this card from your hand, you may pay {G} and exile it with two time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
-mana={2}{G}
-type=Sorcery
-[/card]
-[card]
 name=Searing Blaze
 text=Searing Blaze deals 1 damage to target player and 1 damage to target creature that player controls. -- Landfall - If you had a land enter the battlefield under your control this turn, Searing Blaze deals 3 damage to that player and 3 damage to that creature instead.
 mana={R}{R}
@@ -21526,15 +21360,6 @@ text=Enchant creature -- Enchanted creature gets +2/+2. -- Threshold - As long a
 mana={2}{G}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Shade of Trokair
-text={W}: Shade of Trokair gets +1/+1 until end of turn. -- Suspend 3 - {W} (Rather than cast this card from your hand, you may pay {W} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.)
-mana={3}{W}
-type=Creature
-subtype=Shade
-power=1
-toughness=2
 [/card]
 [card]
 name=Shade's Breath
@@ -21865,12 +21690,6 @@ type=Legendary Creature
 subtype=Snake Warrior
 power=2
 toughness=2
-[/card]
-[card]
-name=Shivan Meteor
-text=Shivan Meteor deals 13 damage to target creature. -- Suspend 2 - {1}{R}{R} (Rather than cast this card from your hand, you may pay {1}{R}{R} and exile it with two time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
-mana={3}{R}{R}
-type=Sorcery
 [/card]
 [card]
 name=Shivan Sand-Mage
@@ -26527,15 +26346,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Viscerid Deepwalker
-text={U}: Viscerid Deepwalker gets +1/+0 until end of turn. -- Suspend 4 - {U} (Rather than cast this card from your hand, you may pay {U} and exile it with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.)
-mana={4}{U}
-type=Creature
-subtype=Homarid Warrior
-power=2
-toughness=3
-[/card]
-[card]
 name=Vision Charm
 text=Choose one - Target player puts the top four cards of his or her library into his or her graveyard; or choose a land type and a basic land type, and each land of the first chosen type becomes the second chosen type until end of turn; or target artifact phases out. (While it's phased out, it's treated as though it doesn't exist. It phases in before its controller untaps during his or her next untap step.)
 mana={U}
@@ -27245,11 +27055,6 @@ text=Enchant land -- When Wellspring enters the battlefield, gain control of enc
 mana={1}{G}{W}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Wheel of Fate
-text=Wheel of Fate is red. -- Suspend 4 - {1}{R} (Rather than cast this card from your hand, pay {1}{R} and exile it with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.) -- Each player discards his or her hand, then draws seven cards.
-type=Sorcery
 [/card]
 [card]
 name=Wheel of Sun and Moon
