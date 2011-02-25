@@ -9,12 +9,13 @@
 [INIT]
 firstmain
 [PLAYER1]
-hand:plummet
-inplay:Halcyon Glaze,Grizzly Bears,forest,island
+hand:plummet,Grizzly Bears
+inplay:Halcyon Glaze,forest,island
 manapool:{G}{G}{G}{G}
 [PLAYER2]
 inplay:Moat
 [DO]
+Grizzly Bears
 next
 next
 Halcyon Glaze
