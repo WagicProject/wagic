@@ -46382,6 +46382,14 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Phthisis
+auto=target(creature) destroy && life:-p targetcontroller && life:-t targetcontroller
+text=Destroy target creature. Its controller loses life equal to its power plus its toughness. -- Suspend 5 - {1}{B} (Rather than cast this card from your hand, you may pay {1}{B} and exile it with five time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
+mana={3}{B}{B}{B}{B}
+suspend(5)={1}{b}
+type=Sorcery
+[/card]
+[card]
 name=Phyresis
 target=creature
 auto=infect

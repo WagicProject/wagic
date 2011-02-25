@@ -17463,12 +17463,6 @@ mana={2}{G}{G}{G}
 type=Sorcery
 [/card]
 [card]
-name=Phthisis
-text=Destroy target creature. Its controller loses life equal to its power plus its toughness. -- Suspend 5 - {1}{B} (Rather than cast this card from your hand, you may pay {1}{B} and exile it with five time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
-mana={3}{B}{B}{B}{B}
-type=Sorcery
-[/card]
-[card]
 name=Phylactery Lich
 text=As Phylactery Lich enters the battlefield, put a Phylactery counter on an artifact you control. -- Phylactery Lich is indestructible. -- When you control no permanents with phylactery counters on them, sacrifice Phylactery Lich.
 mana={B}{B}{B}
