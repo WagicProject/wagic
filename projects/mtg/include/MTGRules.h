@@ -119,7 +119,7 @@ class MTGSuspendRule: public MTGAlternativeCostRule
 {
 public:
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
-    int MTGSuspendRule::receiveEvent(WEvent *e);
+    int receiveEvent(WEvent *e);
     int reactToClick(MTGCardInstance * card);
     int testDestroy();
     string suspendmenu;
