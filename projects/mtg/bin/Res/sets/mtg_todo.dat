@@ -13761,6 +13761,13 @@ mana={1}{R}{R}
 type=Enchantment
 [/card]
 [card]
+name=Mana Chains
+text=Enchant creature -- Enchanted creature has "Cumulative upkeep {1}." (At the beginning of its controller's upkeep, that player puts an age counter on it, then sacrifices it unless he or she pays its upkeep cost for each age counter on it.)
+mana={U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Mana Clash
 text=You and target opponent each flip a coin. Mana Clash deals 1 damage to each player whose coin comes up tails. Repeat this process until both players' coins come up heads on the same flip.
 mana={R}
@@ -17091,6 +17098,12 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Paradigm Shift
+text=Exile all cards from your library. Then shuffle your graveyard into your library.
+mana={1}{U}
+type=Sorcery
+[/card]
+[card]
 name=Paradox Haze
 text=Enchant player -- At the beginning of enchanted player's first upkeep each turn, that player gets an additional upkeep step after this step.
 mana={2}{U}
@@ -18722,6 +18735,12 @@ type=Enchantment
 name=Quest for Ula's Temple
 text=At the beginning of your upkeep, you may look at the top card of your library. If it's a creature card, you may reveal it and put a quest counter on Quest for Ula's Temple. -- At the beginning of each end step, if there are three or more quest counters on Quest for Ula's Temple, you may put a Kraken, Leviathan, Octopus, or Serpent creature card from your hand onto the battlefield.
 mana={U}
+type=Enchantment
+[/card]
+[card]
+name=Quest for the Goblin Lord
+text=Whenever a Goblin enters the battlefield under your control, you may put a quest counter on Quest for the Goblin Lord. -- As long as Quest for the Goblin Lord has five or more quest counters on it, creatures you control get +2/+0.
+mana={R}
 type=Enchantment
 [/card]
 [card]
@@ -21589,15 +21608,6 @@ type=Creature
 subtype=Nightstalker
 power=4
 toughness=4
-[/card]
-[card]
-name=Shimian Specter
-text=Flying -- Whenever Shimian Specter deals combat damage to a player, that player reveals his or her hand. You choose a nonland card from it. Search that player's graveyard, hand, and library for all cards with the same name as that card and exile them. Then that player shuffles his or her library.
-mana={2}{B}{B}
-type=Creature
-subtype=Specter
-power=2
-toughness=2
 [/card]
 [card]
 name=Shimmer Myr
@@ -25954,6 +25964,13 @@ mana={2}{W}{U}
 type=Instant
 [/card]
 [card]
+name=Vapor Snare
+text=Enchant creature -- You control enchanted creature. -- At the beginning of your upkeep, sacrifice Vapor Snare unless you return a land you control to its owner's hand.
+mana={4}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Vassal's Duty
 text={1}: The next 1 damage that would be dealt to target legendary creature you control this turn is dealt to you instead.
 mana={3}{W}
@@ -26833,6 +26850,15 @@ type=Artifact Creature
 subtype=Hound
 power=1
 toughness=2
+[/card]
+[card]
+name=Waterspout Djinn
+text=Flying -- At the beginning of your upkeep, sacrifice Waterspout Djinn unless you return an untapped Island you control to its owner's hand.
+mana={2}{U}{U}
+type=Creature
+subtype=Djinn
+power=4
+toughness=4
 [/card]
 [card]
 name=Waterspout Elemental
