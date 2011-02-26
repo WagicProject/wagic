@@ -49,7 +49,7 @@ type=Enchantment
 [card]
 name=AEther Membrane
 abilities=defender,reach
-auto=@blocking(this) from(creature):all(trigger[from]) phaseaction[combatends,sourceinplay] moveTo(ownerhand)
+auto=@blocking(this) from(creature):all(trigger[from]) phaseaction[combatends] moveTo(ownerhand)
 text=Defender; reach (This creature can block creatures with flying.) -- Whenever AEther Membrane blocks a creature, return that creature to its owner's hand at end of combat.
 mana={1}{R}{R}
 type=Creature
