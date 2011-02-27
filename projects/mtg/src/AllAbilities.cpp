@@ -332,6 +332,7 @@ AACounter::AACounter(int id, MTGCardInstance * source, MTGCardInstance * target,
                 _target->counters->removeCounter(name.c_str(), power, toughness);
             }
         }
+        //specail cases, indestructible creatures which recieve enough counters to kill it are destroyed as a state based effect
         if(_target->toughness <= 0 && _target->has(Constants::INDESTRUCTIBLE) && toughness < 0)
             _target->controller()->game->putInGraveyard(_target);
         return nb;

@@ -551,14 +551,8 @@ int MTGSuspendRule::receiveEvent(WEvent *e)
             {
                 MTGCardInstance * card = z->cards[i];
 
-                if (card->suspended && card->counters->hasCounter("Time",0,0))
-                    card->counters->removeCounter("Time",0,0);
-                if (card->suspended && !card->counters->hasCounter("Time",0,0))
-                {
-                    MTGCardInstance * copy = p->game->putInZone(card, card->currentZone, p->game->stack);
-                    Spell * spell = game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, NULL,1, 0);
-                    game->targetChooser = NULL;
-                }
+                if (card->suspended && card->counters->hasCounter("time",0,0))
+                    card->counters->removeCounter("time",0,0);
             }
             return 1;
         }
@@ -599,7 +593,7 @@ int MTGSuspendRule::reactToClick(MTGCardInstance * card)
     player->game->putInZone(card, card->currentZone, player->game->exile);
     card->next->suspended = true;
     for(signed int i = 0; i < card->suspendedTime;i++)
-    card->next->counters->addCounter("Time",0,0);
+    card->next->counters->addCounter("time",0,0);
     return 1;
 }
 
