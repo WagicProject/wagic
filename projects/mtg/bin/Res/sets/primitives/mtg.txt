@@ -32290,12 +32290,12 @@ type=Artifact
 [card]
 name=Jeweled Spirit
 abilities=flying
-auto={S(land|mybattlefield)}{S(land|mybattlefield)}:protection from white
-auto={S(land|mybattlefield)}{S(land|mybattlefield)}:protection from blue
-auto={S(land|mybattlefield)}{S(land|mybattlefield)}:protection from black
-auto={S(land|mybattlefield)}{S(land|mybattlefield)}:protection from red
-auto={S(land|mybattlefield)}{S(land|mybattlefield)}:protection from green
-auto={S(land|mybattlefield)}{S(land|mybattlefield)}:protection from(artifact)
+auto={S(land|mybattlefield)}{S(land|mybattlefield)}:protection from white ueot
+auto={S(land|mybattlefield)}{S(land|mybattlefield)}:protection from blue ueot
+auto={S(land|mybattlefield)}{S(land|mybattlefield)}:protection from black ueot
+auto={S(land|mybattlefield)}{S(land|mybattlefield)}:protection from red ueot
+auto={S(land|mybattlefield)}{S(land|mybattlefield)}:protection from green ueot
+auto={S(land|mybattlefield)}{S(land|mybattlefield)}:protection from(artifact) ueot
 text=Flying -- Sacrifice two lands: Jeweled Spirit gains protection from artifacts or from the color of your choice until end of turn.
 mana={3}{W}{W}
 type=Creature
@@ -56041,12 +56041,11 @@ toughness=2
 [/card]
 [card]
 name=Shelter
-target=creature
-auto=choice name(white) && protection from white ueot
-auto=choice name(blue) && protection from blue ueot
-auto=choice name(black) && protection from black ueot
-auto=choice name(red) && protection from red ueot
-auto=choice name(green) && protection from green ueot
+auto=choice protection from white target(creature|myBattlefield) ueot
+auto=choice protection from blue target(creature|myBattlefield) ueot
+auto=choice protection from black target(creature|myBattlefield) ueot
+auto=choice protection from red target(creature|myBattlefield) ueot
+auto=choice protection from green target(creature|myBattlefield) ueot
 auto=draw:1 controller
 text=Target creature you control gains protection from the color of your choice until end of turn. -- Draw a card.
 mana={1}{W}
@@ -64481,7 +64480,7 @@ name=Tel-Jilad Defiance
 target=creature
 auto=protection from(artifact)
 auto=draw:1 controller
-text=Target creature gains protectio from artifacts until end of turn. -- draw a card.
+text=Target creature gains protection from artifacts until end of turn. -- draw a card.
 mana={1}{G}
 type=Instant
 [/card]
