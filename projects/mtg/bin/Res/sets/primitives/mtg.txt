@@ -4030,8 +4030,7 @@ toughness=1
 [/card]
 [card]
 name=Aysen Crusader
-auto=foreach(soldier|myBattlefield)1/1
-auto=foreach(warrior|myBattlefield)1/1
+auto=foreach(soldier,warrior|myBattlefield) 1/1
 text=Aysen Crusader's power and toughness are each equal to 2 plus the number of Soldiers and Warriors you control.
 mana={2}{W}{W}
 type=Creature
