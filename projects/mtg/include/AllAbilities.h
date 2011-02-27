@@ -1764,8 +1764,9 @@ class AProtectionFrom: public MTGAbility
 {
 public:
     TargetChooser * fromTc;
-    AProtectionFrom(int id, MTGCardInstance * _source, MTGCardInstance * _target, TargetChooser *fromTc) :
-        MTGAbility(id, _source, _target), fromTc(fromTc)
+    string tcstr;
+    AProtectionFrom(int id, MTGCardInstance * _source, MTGCardInstance * _target, TargetChooser *fromTc,string tcstr) :
+        MTGAbility(id, _source, _target), fromTc(fromTc),tcstr(tcstr)
     {
 
     }
@@ -1783,6 +1784,12 @@ public:
         return 1;
     }
 
+    const char * getMenuText()
+    {
+        sprintf(menuText,"Protection from %s",tcstr.c_str());
+        return menuText;
+    }
+    
     AProtectionFrom * clone() const
     {
         AProtectionFrom * a = NEW AProtectionFrom(*this);

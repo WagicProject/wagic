@@ -2596,7 +2596,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             {
                 return NULL; //TODO
             }
-            return NEW AProtectionFrom(id, card, target, fromTc);
+            return NEW AProtectionFrom(id, card, target, fromTc,targets);
         }
         return NULL; //TODO
     }
