@@ -546,8 +546,8 @@ int MTGSuspendRule::receiveEvent(WEvent *e)
         {
             Player * p = game->currentPlayer;
             MTGGameZone * z = p->game->exile;
-            int originalAmount = z->nb_cards;
-            for (int i = 0; i < z->nb_cards; i++)
+            int originalAmount = z->nb_cards-1;
+            for (int i = originalAmount; i > -1; i--)
             {
                 MTGCardInstance * card = z->cards[i];
 
@@ -558,11 +558,6 @@ int MTGSuspendRule::receiveEvent(WEvent *e)
                     MTGCardInstance * copy = p->game->putInZone(card, card->currentZone, p->game->stack);
                     Spell * spell = game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, NULL,1, 0);
                     game->targetChooser = NULL;
-                }
-                if(z->nb_cards != originalAmount)
-                {
-                i = 0;
-                originalAmount = z->nb_cards;
                 }
             }
             return 1;
