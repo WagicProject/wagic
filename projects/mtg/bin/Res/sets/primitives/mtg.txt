@@ -29281,8 +29281,8 @@ type=Enchantment
 [/card]
 [card]
 name=Hidden Horror
-auto=moveTo(graveyard) target(this|myBattlefield) oneshot
 auto=aslongas(creature|myhand) reject target(creature|myhand) oneshot
+auto=moveTo(graveyard) notatarget(this|myBattlefield)
 text=When Hidden Horror enters the battlefield, sacrifice it unless you discard a creature card.
 mana={1}{B}{B}
 type=Creature
