@@ -615,6 +615,12 @@
     <ClInclude Include="include\PlayRestrictions.h">
       <Filter>inc</Filter>
     </ClInclude>
+    <ClInclude Include="include\WResource_Fwd.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Threading.h">
+      <Filter>inc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Makefile" />

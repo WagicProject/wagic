@@ -521,6 +521,7 @@
     <ClInclude Include="include\TestSuiteAI.h" />
     <ClInclude Include="include\TextScroller.h" />
     <ClInclude Include="include\ThisDescriptor.h" />
+    <ClInclude Include="include\Threading.h" />
     <ClInclude Include="include\Token.h" />
     <ClInclude Include="include\Translate.h" />
     <ClInclude Include="include\TranslateKeys.h" />
@@ -533,6 +534,7 @@
     <ClInclude Include="include\WFont.h" />
     <ClInclude Include="include\WGui.h" />
     <ClInclude Include="include\WResourceManager.h" />
+    <ClInclude Include="include\WResource_Fwd.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\JGE\JGE.vcxproj">
