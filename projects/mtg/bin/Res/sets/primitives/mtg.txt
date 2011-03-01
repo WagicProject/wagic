@@ -50764,6 +50764,7 @@ type=Sorcery
 [/card]
 [card]
 name=Remote Farm
+auto=tap
 auto=counter(0/0,2,Depletion)
 auto={T}{C(0/0,-1,Depletion)}:Add{W}{W}
 auto=@tapped(this):bury all(remote farm[-counter{0/0.1.Depletion}]|myBattlefield)
