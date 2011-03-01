@@ -144,7 +144,6 @@ void JFileSystem::DetachZipFile()
 {
 	if (mZipAvailable && mZipFile != NULL)
 	{
-        JLOG("DetachZipFile");
 		int error = unzCloseCurrentFile(mZipFile);
         if (error < 0 )
             JLOG("error calling unzCloseCurrentFile");
@@ -162,16 +161,13 @@ void JFileSystem::DetachZipFile()
 bool JFileSystem::OpenFile(const string &filename)
 {
     string path = mResourceRoot + filename;
-    JLOG(path.c_str());
 
     if (mZipAvailable && mZipFile != NULL)
     {
-        JLOG("zip available, calling preload")
         preloadZip(mZipFileName);
         map<string,JZipCache *>::iterator it = mZipCache.find(mZipFileName);
         if (it == mZipCache.end())
         {
-            JLOG("zip cache miss, detaching & calling open again");
             DetachZipFile();
             return OpenFile(filename);  
         }
@@ -179,7 +175,6 @@ bool JFileSystem::OpenFile(const string &filename)
         map<string,unz_file_pos *>::iterator it2 = zc->dir.find(filename);
         if (it2 == zc->dir.end())
         {
-            JLOG("directory miss, detaching & calling open again");
             DetachZipFile();
             return OpenFile(filename);  
         }
@@ -187,7 +182,6 @@ bool JFileSystem::OpenFile(const string &filename)
         char filenameInzip[256];
         unz_file_info fileInfo;
 
-        JLOG("calling unzGetCurrentFileInfo");
         if (unzGetCurrentFileInfo(mZipFile, &fileInfo, filenameInzip, sizeof(filenameInzip), NULL, 0, NULL, 0) == UNZ_OK)
             mFileSize = fileInfo.uncompressed_size;
         else
@@ -207,11 +201,9 @@ bool JFileSystem::OpenFile(const string &filename)
             return true;
         }
 #else
-        JLOG("calling sceIOpen");
         mFile = sceIoOpen(path.c_str(), PSP_O_RDONLY, 0777);
         if (mFile > 0)
         {
-            JLOG("calling sceIoSeek");
             mFileSize = sceIoLseek(mFile, 0, PSP_SEEK_END);
             sceIoLseek(mFile, 0, PSP_SEEK_SET);
             return true;
