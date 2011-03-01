@@ -14161,6 +14161,7 @@ auto=indestructible
 text=Darksteel Plate is indestructible. -- Equipped creature is indestructible. -- Equip {2}
 mana={3}
 type=Artifact
+subtype=Equipment
 [/card]
 [card]
 name=Darksteel Reactor
@@ -31877,13 +31878,6 @@ text={T}: The power of target creature with flying becomes 0 until end of turn.
 type=Land
 [/card]
 [card]
-name=Island Sanctuary
-alias=1351
-text=If you would draw a card during your draw step, instead you may skip that draw. If you do, until your next turn, you can't be attacked except by creatures with flying and/or islandwalk.
-mana={1}{W}
-type=Enchantment
-[/card]
-[card]
 name=Isleback Spawn
 auto=aslongas(*|mylibrary) 4/8 <21
 text=Shroud -- Isleback Spawn gets +4/+8 as long as a library has twenty or fewer cards in it.
@@ -42700,7 +42694,7 @@ toughness=1
 [card]
 name=Necroskitter
 abilities=wither
-auto=@movedTo(graveyard) from(creature[counter{-1/-1}]|battlefield):may all(trigger[from]) moveTo(myBattlefield)
+auto=@movedTo(graveyard) from(creature[counter{-1/-1}]|opponentbattlefield):may all(trigger[from]) moveTo(myBattlefield)
 text=Wither (This deals damage to creatures in the form of -1/-1 counters.) -- Whenever a creature an opponent controls with a -1/-1 counter on it is put into a graveyard, you may return that card to the battlefield under your control.
 mana={1}{B}{B}
 type=Creature
