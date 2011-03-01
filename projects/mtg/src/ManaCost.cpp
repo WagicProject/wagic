@@ -199,7 +199,8 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                                     }
                                 }
                             }
-                            manaCost->addHybrid(colors[0], values[0], colors[1], values[1]);
+                            if (values[0] > 0 || values[1] > 0)
+                                manaCost->addHybrid(colors[0], values[0], colors[1], values[1]);
                         }
                         else
                         {
