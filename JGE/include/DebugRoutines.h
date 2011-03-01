@@ -11,19 +11,18 @@
 #include <string>
 #include <sstream>
 
-#if defined (WIN32) || defined (LINUX) 
-#ifdef _DEBUG
-
 using namespace std;
 
 template <class T>
 std::string ToHex(T* pointer)
 {
     std::ostringstream stream;
-    stream << std::hex << showbase << setfill('0') << setw(8) << (int) pointer;
+    stream << hex << showbase << setfill('0') << setw(8) << (int) pointer;
     return stream.str();
 }
 
+#if defined (WIN32) || defined (LINUX) 
+#ifdef _DEBUG
 
 #ifndef QT_CONFIG
 #define DebugTrace(inString)								\
