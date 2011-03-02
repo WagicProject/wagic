@@ -521,7 +521,6 @@
     <ClInclude Include="include\TestSuiteAI.h" />
     <ClInclude Include="include\TextScroller.h" />
     <ClInclude Include="include\ThisDescriptor.h" />
-    <ClInclude Include="include\Threading.h" />
     <ClInclude Include="include\Token.h" />
     <ClInclude Include="include\Translate.h" />
     <ClInclude Include="include\TranslateKeys.h" />

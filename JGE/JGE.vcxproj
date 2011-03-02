@@ -369,6 +369,7 @@
     <ClInclude Include="include\JSprite.h" />
     <ClInclude Include="include\JTTFont.h" />
     <ClInclude Include="include\JTypes.h" />
+    <ClInclude Include="include\Threading.h" />
     <ClInclude Include="include\Vector2D.h" />
     <ClInclude Include="include\Vector3D.h" />
     <ClInclude Include="include\vram.h" />
