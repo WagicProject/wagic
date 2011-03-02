@@ -4,7 +4,7 @@
 #include "MTGDefinitions.h"
 #include "Player.h"
 #include "WEvent.h"
-
+#include "Rules.h"
 //Parses a string and gives phase numer
 int PhaseRing::phaseStrToInt(string s)
 {
@@ -30,10 +30,29 @@ PhaseRing::PhaseRing(Player* players[], int nbPlayers)
 {
     for (int i = 0; i < nbPlayers; i++)
     {
-        for (int j = 0; j < Constants::NB_MTG_PHASES; j++)
+        if(players[i]->phaseRing.size())
         {
-            Phase * phase = NEW Phase(j, players[i]);
-            addPhase(phase);
+            Phase * defaultsphase = NEW Phase(Constants::MTG_PHASE_BEFORE_BEGIN, players[i]);
+            addPhase(defaultsphase);
+            vector<string>customRing = split(players[i]->phaseRing,',');
+            for (unsigned int k = 0;k < customRing.size(); k++)
+            {
+                int customOrder = phaseStrToInt(customRing[k]);
+                Phase * phase = NEW Phase(customOrder, players[i]);
+                addPhase(phase);
+            }
+            defaultsphase = NEW Phase(Constants::MTG_PHASE_CLEANUP, players[i]);
+            addPhase(defaultsphase);
+            defaultsphase = NEW Phase(Constants::MTG_PHASE_AFTER_EOT, players[i]);
+            addPhase(defaultsphase);
+        }
+        else
+        {
+            for (int j = 0; j < Constants::NB_MTG_PHASES; j++)
+            {
+                Phase * phase = NEW Phase(j, players[i]);
+                addPhase(phase);
+            }
         }
     }
     current = ring.begin();

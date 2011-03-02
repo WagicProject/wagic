@@ -105,12 +105,12 @@ void RulesState::parsePlayerState(int playerId, string s)
             playerData[playerId].life = atoi((s.substr(limiter + 1)).c_str());
             return;
         }
-        else if (areaS.compare("poisonCount") == 0)
+        else if (areaS.compare("poisoncount") == 0)
         {
             playerData[playerId].poisonCount = atoi((s.substr(limiter + 1)).c_str());
             return;
         }
-        else if (areaS.compare("damageCount") == 0)
+        else if (areaS.compare("damagecount") == 0)
         {
             playerData[playerId].damageCount = atoi((s.substr(limiter + 1)).c_str());
             return;
@@ -129,6 +129,11 @@ void RulesState::parsePlayerState(int playerId, string s)
         {
             SAFE_DELETE(playerData[playerId].manapool);
             playerData[playerId].manapool = ManaCost::parseManaCost(s.substr(limiter + 1));
+            return;
+        }
+        else if (areaS.compare("customphasering") == 0)
+        {
+            playerData[playerId].phaseRing = s.substr(limiter + 1);
             return;
         }
         else if (areaS.compare("auto") == 0)
@@ -331,6 +336,7 @@ Player * Rules::initPlayer(int playerId)
             return loadPlayerRandom(isAI, GAME_TYPE_RANDOM2);
         }
     }
+    p->phaseRing = initState.playerData[playerId].phaseRing;
     return p;
 }
 

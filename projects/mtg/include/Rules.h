@@ -26,6 +26,7 @@ class RulesPlayerData
 {
 public:
     vector<string> extraRules;
+    string phaseRing;
     int life;
     int poisonCount;
     int damageCount;

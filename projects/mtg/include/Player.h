@@ -33,6 +33,7 @@ public:
     string deckFile;
     string deckFileSmall;
     string deckName;
+    string phaseRing;
 
     Player(MTGDeck * deck, string deckFile, string deckFileSmall);
     virtual ~Player();
