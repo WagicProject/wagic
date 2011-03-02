@@ -7,6 +7,7 @@
 #include <boost/thread/mutex.hpp>
 #else
 #include <boost/bind.hpp>
+#include <boost/shared_ptr.hpp>
 
 #include "pspthreadman.h"
 

@@ -82,7 +82,7 @@ PSPSDK = $(shell psp-config --pspsdk-path)
 PSPDIR = $(shell psp-config --psp-prefix)
 OBJS = $(GENERIC_OBJS) $(PSP_OBJS)
 TARGET_HGE = libhgetools.a
-INCDIR = include/psp include/psp/freetype2
+INCDIR = include/psp include/psp/freetype2 ../Boost
 CXXFLAGS += -O2 -G0
 LIBDIR = lib/psp
 endif
@@ -90,7 +90,7 @@ ifeq ($(TARGET_ARCHITECTURE),linux)
 OBJS = $(GENERIC_OBJS) $(LINUX_OBJS)
 TARGET_LIB = libjge.a
 TARGET_HGE = libhgetools.a
-INCDIR = $(shell freetype-config --cflags 2> /dev/null) -I/usr/X11/include
+INCDIR = $(shell freetype-config --cflags 2> /dev/null) -I/usr/X11/include -I../Boost
 CXXFLAGS += -DLINUX $(FMOD)
 CXXFLAGS += $(INCDIR)
 LIBDIR = lib/linux
