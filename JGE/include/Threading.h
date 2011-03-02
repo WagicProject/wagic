@@ -10,8 +10,8 @@
 
 #include "pspthreadman.h"
 
-#include "DebugRoutines.h"
-#include "JLogger.h"
+#include "../include/DebugRoutines.h"
+#include "../include/JLogger.h"
 
 namespace boost
 {
