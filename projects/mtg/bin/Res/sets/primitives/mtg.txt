@@ -44144,8 +44144,8 @@ toughness=3
 [/card]
 [card]
 name=Ohran Viper
-auto=@combatdamaged(creature) from(this):all(trigger[from]) phaseaction[combatends] destroy
-auto=@combatdamaged(player) from(ohran viper):draw:1 controller
+auto=@combatdamaged(creature) from(this):all(trigger[to]) phaseaction[combatends] destroy
+auto=@combatdamaged(player) from(this):draw:1 controller
 text=Whenever Ohran Viper deals combat damage to a creature, destroy that creature at end of combat. -- Whenever Ohran Viper deals combat damage to a player, you may draw a card.
 mana={1}{G}{G}
 type=Snow Creature
@@ -59458,8 +59458,7 @@ type=Sorcery
 [card]
 name=Sosuke, Son of Seshiro
 auto=lord(other snake|myBattlefield) 1/0
-auto=@combatdamaged(creature) from(Warrior):all(trigger[to]) phaseaction[combatends] destroy
-auto=@combatdamaged(creature) from(Warrior):all(trigger[to]) phaseaction[combatends] destroy
+auto=@combatdamaged(creature) from(warrior|myBattlefield):all(trigger[to]) phaseaction[combatends] destroy
 text=Other Snake creatures you control get +1/+0. -- Whenever a Warrior you control deals combat damage to a creature, destroy that creature at end of combat.
 mana={2}{G}{G}
 type=Legendary Creature
