@@ -10979,18 +10979,18 @@ toughness=1
 [card]
 name=Citanul Flute
 auto={0}{T}:name(X = 0) && moveTo(myhand) target(creature[manacost=0]|mylibrary)
-auto={1}{T}:name(X = 0) && moveTo(myhand) target(creature[manacost<=1]|mylibrary)
-auto={2}{T}:name(X = 0) && moveTo(myhand) target(creature[manacost<=2]|mylibrary)
-auto={3}{T}:name(X = 0) && moveTo(myhand) target(creature[manacost<=3]|mylibrary)
-auto={4}{T}:name(X = 0) && moveTo(myhand) target(creature[manacost<=4]|mylibrary)
-auto={5}{T}:name(X = 0) && moveTo(myhand) target(creature[manacost<=5]|mylibrary)
-auto={6}{T}:name(X = 0) && moveTo(myhand) target(creature[manacost<=6]|mylibrary)
-auto={7}{T}:name(X = 0) && moveTo(myhand) target(creature[manacost<=7]|mylibrary)
-auto={8}{T}:name(X = 0) && moveTo(myhand) target(creature[manacost<=8]|mylibrary)
-auto={9}{T}:name(X = 0) && moveTo(myhand) target(creature[manacost<=9]|mylibrary)
-auto={10}{T}:name(X = 0) && moveTo(myhand) target(creature[manacost<=10]|mylibrary)
-auto={11}{T}:name(X = 0) && moveTo(myhand) target(creature[manacost<=11]|mylibrary)
-auto={12}{T}:name(X = 0) && moveTo(myhand) target(creature[manacost<=12]|mylibrary)
+auto={1}{T}:name(X = 1) && moveTo(myhand) target(creature[manacost<=1]|mylibrary)
+auto={2}{T}:name(X = 2) && moveTo(myhand) target(creature[manacost<=2]|mylibrary)
+auto={3}{T}:name(X = 3) && moveTo(myhand) target(creature[manacost<=3]|mylibrary)
+auto={4}{T}:name(X = 4) && moveTo(myhand) target(creature[manacost<=4]|mylibrary)
+auto={5}{T}:name(X = 5) && moveTo(myhand) target(creature[manacost<=5]|mylibrary)
+auto={6}{T}:name(X = 6) && moveTo(myhand) target(creature[manacost<=6]|mylibrary)
+auto={7}{T}:name(X = 7) && moveTo(myhand) target(creature[manacost<=7]|mylibrary)
+auto={8}{T}:name(X = 8) && moveTo(myhand) target(creature[manacost<=8]|mylibrary)
+auto={9}{T}:name(X = 9) && moveTo(myhand) target(creature[manacost<=9]|mylibrary)
+auto={10}{T}:name(X = 10) && moveTo(myhand) target(creature[manacost<=10]|mylibrary)
+auto={11}{T}:name(X = 11) && moveTo(myhand) target(creature[manacost<=11]|mylibrary)
+auto={12}{T}:name(X = 12) && moveTo(myhand) target(creature[manacost<=12]|mylibrary)
 text={X}{T}: Search your library for a creature card with converted mana cost X or less, reveal it, and put it into your hand. Then shuffle your library.
 type=Artifact
 mana={5}
@@ -15413,7 +15413,7 @@ mana={3}{B}
 type=Creature
 subtype=Imp
 power=2
-toughness=1
+toughness=2
 [/card]
 [card]
 name=Demonic Appetite
@@ -33916,7 +33916,7 @@ toughness=4
 [/card]
 [card]
 name=Khabal Ghoul
-auto=@each endofturn:foreach(creature[fresh]|mygraveyard) counter(1/1,1)
+auto=@each endofturn:counter(1/1,type:creature[fresh]|graveyard)
 text=At the beginning of each end step, put a +1/+1 counter on Khabal Ghoul for each creature put into a graveyard from the battlefield this turn.
 mana={2}{B}
 type=Creature
@@ -34886,7 +34886,7 @@ toughness=1
 [/card]
 [card]
 name=Korlash Heir to Blackblade
-auto={discard(Korlash Heir to Blackblade|myhand)}:(token(-13620811)
+auto={discard(Korlash Heir to Blackblade|myhand)}:token(-13620811)
 auto=foreach(swamp|mybattlefield) 1/1
 auto={1}{B}:regenerate
 text=Korlash, Heir to Blackblade's power and toughness are each equal to the number of Swamps you control. -- {1}{B}: Regenerate Korlash. -- Grandeur - Discard another card named Korlash, Heir to Blackblade: Search your library for up to two Swamp cards, put them onto the battlefield tapped, then shuffle your library.
@@ -37102,7 +37102,7 @@ toughness=3
 [card]
 name=Lodestone Myr
 abilities=trample
-auto={T(creature[artifact]|myBattlefield)}:1/1
+auto={T(*[artifact]|myBattlefield)}:1/1 ueot
 text=Trample -- Tap an untapped artifact you control: Lodestone Myr gets +1/+1 until end of turn.
 mana={4}
 type=Artifact Creature
@@ -39113,7 +39113,7 @@ toughness=3
 name=Mayael's Aria
 auto=@each my upkeep:aslongas(creature[power>=20]|myBattlefield) winGame
 auto=@each my upkeep:aslongas(creature[power>=10]|myBattlefield) life:10
-auto=@each my upkeep:aslongas(creature[power>=5]|myBattlefield) counter(1/1) all(creature|myBattlefield)
+auto=@each my upkeep:aslongas(creature[power>=5]|myBattlefield) all(creature|mybattlefield) counter(1/1,1)
 text=At the beginning of your upkeep, put a +1/+1 counter on each creature you control if you control a creature with power 5 or greater. Then you gain 10 life if you control a creature with power 10 or greater. Then you win the game if you control a creature with power 20 or greater.
 mana={R}{G}{W}
 type=Enchantment
@@ -52314,7 +52314,7 @@ type=Enchantment
 [/card]
 [card]
 name=Root Spider
-auto=@blocking(this):1/0 && first strike ueot
+auto=@blocking(this):choice 1/0 && first strike ueot
 text=Whenever Root Spider blocks, it gets +1/+0 and gains first strike until end of turn.
 mana={3}{G}
 type=Creature
@@ -54114,7 +54114,7 @@ toughness=1
 [/card]
 [card]
 name=Scavenging Ghoul
-auto=@each endofturn:foreach(creature[fresh]|mygraveyard) counter(0/0,1,Corpse)
+auto=@each endofturn:counter(0/0,type:creature[fresh]|graveyard ,Corpse)
 auto={C(0/0,-1,Corpse)}:regenerate
 text=At the beginning of each end step, put a corpse counter on Scavenging Ghoul for each creature put into a graveyard from the battlefield this turn. -- Remove a corpse counter from Scavenging Ghoul: Regenerate Scavenging Ghoul.
 mana={3}{B}
@@ -63273,10 +63273,10 @@ toughness=1
 [card]
 name=Swarmyard
 auto={T}:Add {1}
-auto={T}:regenerate target(insect)
-auto={T}:regenerate target(rat)
-auto={T}:regenerate target(spider)
-auto={T}:regenerate target(squirrel)
+auto={T}:name(insect) && regenerate target(insect)
+auto={T}:name(rat) && regenerate target(rat)
+auto={T}:name(spider) && regenerate target(spider)
+auto={T}:name(squirrel) && regenerate target(squirrel)
 text={T}: Add {1} to your mana pool. -- {T}: Regenerate target Insect, Rat, Spider, or Squirrel.
 type=Land
 [/card]
