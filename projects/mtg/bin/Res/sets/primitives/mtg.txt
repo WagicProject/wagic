@@ -18513,14 +18513,14 @@ subtype=Aura
 [/card]
 [card]
 name=Elephant Resurgence
-auto=token(-21382111)
-auto=token(-21382111) opponent
+auto=token(-21382)
+auto=token(-21382) opponent
 text=Each player puts a green Elephant creature token onto the battlefield. Those creatures have "This creature's power and toughness are each equal to the number of creature cards in its controller's graveyard."
 mana={1}{G}
 type=Sorcery
 [/card]
 [card]
-name=Elephant from Elephant Resurgence
+name=Elephant Token from Elephant Resurgence
 type=Creature
 subtype=Elephant
 auto=foreach(creature|mygraveyard) 1/1
@@ -18528,7 +18528,6 @@ text=This creature's power and toughness are each equal to the number of creatur
 power=*
 toughness=*
 color=green
-id=-21382111
 [/card]
 [card]
 name=Elf Replica
@@ -66682,7 +66681,7 @@ color=black
 [card]
 name=Tombstone Stairwell
 auto=cumulativeupcost[{1}{B}] sacrifice
-auto=@each upkeep:foreach(creature|mygraveyard) token(-12253) && foreach(creature|opponentgraveyard) token(-12254)
+auto=@each upkeep:foreach(creature|mygraveyard) token(-3318) && foreach(creature|opponentgraveyard) token(-3318) opponent
 auto=@movedto(this|nonbattlezone) from(battlefield):bury all(Tombspawn)
 auto=@movedTo(enchantment[world]|battlefield):bury
 text=Cumulative upkeep {1}{B} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- At the beginning of each upkeep, if Tombstone Stairwell is on the battlefield, each player puts a 2/2 black Zombie creature token with haste named Tombspawn onto the battlefield for each creature card in his or her graveyard. -- At the beginning of each end step or when Tombstone Stairwell leaves the battlefield, destroy all tokens put onto the battlefield with Tombstone Stairwell. They can't be regenerated.
@@ -66698,19 +66697,6 @@ subtype=Zombie Tombspawn
 abilities=haste
 auto=@each endofturn:bury all(this)
 color=black
-id=-12253
-[/card]
-[card]
-name=Tombspawn
-auto=moveto(opponentbattlefield)
-power=2
-toughness=2
-type=Creature
-subtype=Zombie Tombspawn
-abilities=haste
-auto=@each endofturn:bury all(this)
-color=black
-id=-12254
 [/card]
 [card]
 name=Tome Scour

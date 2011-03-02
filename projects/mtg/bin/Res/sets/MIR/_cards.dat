@@ -1559,6 +1559,11 @@ id=3318
 rarity=R
 [/card]
 [card]
+primitive=Tombspawn
+id=-3318
+rarity=T
+[/card]
+[card]
 primitive=Torrent of Lava
 id=3470
 rarity=R
