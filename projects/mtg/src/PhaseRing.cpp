@@ -4,7 +4,6 @@
 #include "MTGDefinitions.h"
 #include "Player.h"
 #include "WEvent.h"
-#include "Rules.h"
 //Parses a string and gives phase numer
 int PhaseRing::phaseStrToInt(string s)
 {
