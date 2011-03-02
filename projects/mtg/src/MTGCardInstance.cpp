@@ -43,6 +43,7 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     life = toughness;
     preventable = 0;
     flanked = 0;
+    castMethod = Constants::NOT_CAST;
 }
 
 void MTGCardInstance::copy(MTGCardInstance * card)
@@ -146,6 +147,8 @@ void MTGCardInstance::initMTGCI()
     damageToController = false;
     wasDealtDamage = false;
     suspended = false;
+    castMethod = Constants::NOT_CAST;
+
 
     for (int i = 0; i < ManaCost::MANA_PAID_WITH_RETRACE +1; i++)
         alternateCostPaid[i] = 0;
@@ -883,7 +886,7 @@ int MTGCardInstance::toggleDefenser(MTGCardInstance * opponent)
             {
                 if(opponent->view != NULL)
                 {
-                //todo: qoute wololo "change this into a cool blinking effects when opposing creature has cursor focus."
+                //todo: quote wololo "change this into a cool blinking effects when opposing creature has cursor focus."
                     opponent->view->actZ += .8f;
                     opponent->view->actT -= .2f;
                 }
@@ -895,6 +898,16 @@ int MTGCardInstance::toggleDefenser(MTGCardInstance * opponent)
     }
     return 0;
 }
+
+bool MTGCardInstance::matchesCastFilter(int castFilter) {
+    if(castFilter == Constants::CAST_DONT_CARE)
+        return true; //everything
+    if(castFilter == Constants::CAST_ALL)
+        return (castMethod != Constants::NOT_CAST); //everything except "not cast"
+    if (castFilter == Constants::CAST_ALTERNATE && castMethod > Constants::CAST_NORMALLY)
+        return true; //all alternate casts
+    return (castFilter == castMethod);
+};
 
 int MTGCardInstance::addProtection(TargetChooser * tc)
 {

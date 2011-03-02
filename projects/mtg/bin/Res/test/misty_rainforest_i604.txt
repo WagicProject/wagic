@@ -1,0 +1,21 @@
+#Bug: Misty Rainforst triggers the "one land per turn" limit
+# see http://code.google.com/p/wagic/issues/detail?id=604
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:misty rainforest
+library:island
+hand:forest
+[PLAYER2]
+[DO]
+misty rainforest
+island
+forest
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+life:19
+graveyard:misty rainforest
+inplay:island,forest
+[PLAYER2]
+[END]

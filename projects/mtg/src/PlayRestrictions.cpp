@@ -31,7 +31,7 @@ int  MaxPerTurnRestriction::canPutIntoZone(MTGCardInstance * card, MTGGameZone *
 
     if (maxPerTurn == NO_MAX) return PlayRestriction::CAN_PLAY;
 
-    if (zone->seenThisTurn(tc) >= maxPerTurn)
+    if (zone->seenThisTurn(tc, Constants::CAST_ALL) >= maxPerTurn)
         return PlayRestriction::CANT_PLAY;
 
     return PlayRestriction::CAN_PLAY;

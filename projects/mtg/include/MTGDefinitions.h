@@ -228,6 +228,23 @@ SNOWSWAMPWALK = 90,
 	
   };
 
+    enum{
+        NOT_CAST = 0,
+        CAST_NORMALLY = 1,
+        CAST_WITH_KICKER = 2,
+        CAST_WITH_ALTERNATIVE = 3,
+        CAST_WITH_BUYBACK = 4,
+        CAST_WITH_FLASHBACK = 5,
+        CAST_WITH_RETRACE = 6,
+        CAST_WITH_MORPH = 7,
+        CAST_WITH_SUSPEND = 8,
+
+        CAST_ALTERNATE = -1, //matches all alternate costs, including itself
+        CAST_ALL = -2, // matches everything except NOT_CAST
+        CAST_DONT_CARE = -3 //matches everything
+
+    };
+
   static char MTGColorChars[];
   static const char* MTGColorStrings[];
   static int _r[], _g[], _b[];

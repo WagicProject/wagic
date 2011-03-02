@@ -99,8 +99,8 @@ class MTGGameZone {
    int hasX();
 
    //How many cards matching a TargetChooser have been put in this zone during the turn
-   int seenThisTurn(TargetChooser * tc); 
-   int seenThisTurn(string s); 
+   int seenThisTurn(TargetChooser * tc, int castFilter = Constants::CAST_DONT_CARE); 
+   int seenThisTurn(string s, int castFilter = Constants::CAST_DONT_CARE); 
 
    void setOwner(Player * player);
    MTGCardInstance * lastCardDrawn;

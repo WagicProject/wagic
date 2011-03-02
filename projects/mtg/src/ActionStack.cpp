@@ -201,11 +201,14 @@ Interruptible(0)
     cost = NEW ManaCost();
     tc = NULL;
     from = _source->getCurrentZone();
+    payResult = ManaCost::MANA_UNPAID;
+    source->castMethod = Constants::NOT_CAST;
 }
 
 Spell::Spell(int id, MTGCardInstance * _source, TargetChooser * tc, ManaCost * _cost, int payResult) :
 Interruptible(id), tc(tc), cost(_cost), payResult(payResult)
 {
+    if (!cost) cost = NEW ManaCost();
     source = _source;
     mHeight = 40;
     type = ACTION_SPELL;
@@ -214,6 +217,20 @@ Interruptible(id), tc(tc), cost(_cost), payResult(payResult)
     {
     if(tc && tc->targets[i] != NULL)
     _source->backupTargets[i] = tc->targets[i];
+    }
+
+    // fill information on how the card came into this zone. Right now the quickest way is to do it here, based on how the mana was paid...
+    switch(payResult) {
+        case ManaCost::MANA_UNPAID:
+            source->castMethod = Constants::NOT_CAST;
+            break;
+        case ManaCost::MANA_PAID:
+        case ManaCost::MANA_PAID_WITH_KICKER:
+            source->castMethod = Constants::CAST_NORMALLY;
+            break;
+        default:
+            source->castMethod = Constants::CAST_ALTERNATE;
+            break;
     }
 }
 
@@ -275,7 +292,13 @@ int Spell::resolve()
     if (!source->hasType("instant") && !source->hasType("sorcery"))
     {
         Player * p = source->controller();
+        int castMethod = source->castMethod;
         source = p->game->putInZone(source, from, p->game->battlefield);
+        
+        // We need to get the information about the cast method on both the card in the stack AND the card in play,
+        //so we copy it from the previous card (in the stack) to the new one (in play).
+        source->castMethod = castMethod; 
+
         from = p->game->battlefield;
     }
 

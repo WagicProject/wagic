@@ -130,7 +130,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
     if (card->hasType("land"))
     {
         MTGCardInstance * copy = player->game->putInZone(card, player->game->hand, player->game->temp);
-        Spell * spell = NEW Spell(copy);
+        Spell * spell = NEW Spell(0,copy,NULL,NULL, payResult);
         spell->resolve();
         delete spellCost;
         delete spell;
@@ -151,7 +151,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
 
         if (card->has(Constants::STORM))
         {
-            int storm = player->game->stack->seenThisTurn("*") + player->opponent()->game->stack->seenThisTurn("*");
+            int storm = player->game->stack->seenThisTurn("*", Constants::CAST_ALL) + player->opponent()->game->stack->seenThisTurn("*", Constants::CAST_ALL);
             ManaCost * spellCost = player->getManaPool();
             for (int i = storm; i > 1; i--)
             {
@@ -298,7 +298,7 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
     if (card->hasType("land"))
     {
         MTGCardInstance * copy = player->game->putInZone(card, card->currentZone, player->game->temp);
-        Spell * spell = NEW Spell(copy);
+        Spell * spell = NEW Spell(0,copy,NULL,NULL, alternateCostType);
         copy->alternateCostPaid[alternateCostType] = 1;
         spell->resolve();
         SAFE_DELETE(spell);
@@ -316,7 +316,7 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
 
         if (card->has(Constants::STORM))
         {
-           int storm = player->game->stack->seenThisTurn("*") + player->opponent()->game->stack->seenThisTurn("*");
+           int storm = player->game->stack->seenThisTurn("*", Constants::CAST_ALL) + player->opponent()->game->stack->seenThisTurn("*", Constants::CAST_ALL);
            for (int i = storm; i > 1; i--)
             {
                 game->mLayers->stackLayer()->addSpell(copy, NULL, playerMana, alternateCostType, 1);

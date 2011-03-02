@@ -608,7 +608,7 @@ int MTGGameZone::hasAbility(int ability)
     return 0;
 }
 
-int MTGGameZone::seenThisTurn(TargetChooser * tc)
+int MTGGameZone::seenThisTurn(TargetChooser * tc, int castMethod)
 {
     //The following 2 lines modify the passed TargetChooser. Call this function with care :/
     tc->setAllZones(); // This is to allow targetting cards without caring about the actual zone
@@ -617,17 +617,18 @@ int MTGGameZone::seenThisTurn(TargetChooser * tc)
     int count = 0;
     for (vector<MTGCardInstance *>::iterator iter = cardsSeenThisTurn.begin(); iter != cardsSeenThisTurn.end(); ++iter)
     {
-        if (tc->canTarget(*iter))
+        MTGCardInstance * c = (*iter);
+        if (c->matchesCastFilter(castMethod) &&  tc->canTarget(c))
             count++;
     }
     return count;
 }
 
-int MTGGameZone::seenThisTurn(string targetChooserDefinition)
+int MTGGameZone::seenThisTurn(string targetChooserDefinition, int castMethod)
 {
     TargetChooserFactory tcf;
     TargetChooser *tc = tcf.createTargetChooser(targetChooserDefinition, NULL);
-    int result = seenThisTurn(tc);
+    int result = seenThisTurn(tc, castMethod);
     delete(tc);
     return result;
 }

@@ -46,6 +46,7 @@ class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable {
   int XX;
   int alternateCostPaid[ManaCost::MANA_PAID_WITH_RETRACE + 1]; 
   int paymenttype;
+  int castMethod; /* Tells if the card reached its current zone by being cast or not (brought into the zone by an effect). non 0 == cast, 0 == not cast */
   int frozen;
   int sunburst;
   int equipment;
@@ -94,6 +95,9 @@ class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable {
   MTGCardInstance * next;
   int doDamageTest;
   int summoningSickness;
+
+  bool matchesCastFilter(int castMethod);
+
   // The recommended method to test for summoning Sickness !
   int hasSummoningSickness();
   MTGCardInstance * changeController(Player * newcontroller);

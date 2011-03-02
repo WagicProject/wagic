@@ -65,7 +65,7 @@ int MTGAbility::allowedToCast(MTGCardInstance * card,Player * player)
             return 0;
         break;
     case CASTED_A_SPELL:
-        if(player->game->stack->seenThisTurn("*") < 1)
+        if(player->game->stack->seenThisTurn("*", Constants::CAST_ALL) < 1)
             return 0;
         break;
     case ONE_OF_AKIND:

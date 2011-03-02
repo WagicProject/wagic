@@ -4746,7 +4746,7 @@ public:
     {
 
         counter = NEW TypeTargetChooser("land");
-        landsPlayedThisTurn = source->controller()->game->inPlay->seenThisTurn(counter);
+        landsPlayedThisTurn = source->controller()->game->inPlay->seenThisTurn(counter, Constants::CAST_ALL);
         PlayRestrictions * restrictions = source->controller()->game->playRestrictions;
         landsRestriction = restrictions->getMaxPerTurnRestrictionByTargetChooser(counter);
         restrictions->removeRestriction(landsRestriction);
@@ -4764,7 +4764,7 @@ public:
 
     int trigger()
     {
-        int landsPlayedThisTurnUpdated = source->controller()->game->inPlay->seenThisTurn(counter);
+        int landsPlayedThisTurnUpdated = source->controller()->game->inPlay->seenThisTurn(counter, Constants::CAST_ALL);
         if (landsPlayedThisTurnUpdated > 1 && landsPlayedThisTurnUpdated > landsPlayedThisTurn)
         {
             landsPlayedThisTurn = landsPlayedThisTurnUpdated;
