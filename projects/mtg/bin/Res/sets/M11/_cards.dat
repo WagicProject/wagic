@@ -754,7 +754,7 @@ id=205010
 rarity=C
 [/card]
 [card]
-primitive=Mitotic Ooze
+primitive=Mitotic Slime
 id=205032
 rarity=R
 [/card]
@@ -824,13 +824,13 @@ id=205075
 rarity=R
 [/card]
 [card]
-primitive=Ooze Token from Mitotic Ooze
-id=
+primitive=Ooze T1
+id=66666666
 rarity=T
 [/card]
 [card]
-primitive=Ooze Token from Ooze Token
-id=
+primitive=Ooze T2
+id=77777777
 rarity=T
 [/card]
 [card]

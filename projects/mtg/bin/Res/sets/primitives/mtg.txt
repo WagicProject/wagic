@@ -1905,7 +1905,7 @@ name=Angelheart Vial
 auto=@damaged(controller):may counter(0/0,thatmuch,Charge)
 auto={2}{T}{C(0/0,Charge,-4)}:life:2 && draw:1 controller
 text={1}, {T}, Sacrifice Elven Lyre: Target creature gets +2/+2 until end of turn.
-mana={2}
+mana={5}
 type=Artifact
 [/card]
 [card]
@@ -5606,7 +5606,7 @@ mana={3}{G}{G}
 type=Sorcery
 [/card]
 [card]
-name=Snake Token
+name=Snake
 type=Creature
 subtype=Snake
 power=1
@@ -5614,7 +5614,7 @@ toughness=1
 color=green
 [/card]
 [card]
-name=Wolf Token
+name=Wolf
 type=Creature
 subtype=Wolf
 power=2
@@ -5622,7 +5622,7 @@ toughness=2
 color=green
 [/card]
 [card]
-name=Elephant Token
+name=Elephant
 type=Creature
 subtype=Elephant
 power=3
@@ -14943,7 +14943,7 @@ mana={X}{X}{2}{W}{W}
 type=Sorcery
 [/card]
 [card]
-name=Angel Token
+name=Angel
 type=Creature
 subtype=Angel
 abilities=flying
@@ -14953,7 +14953,7 @@ toughness=4
 color=white
 [/card]
 [card]
-name=Soldier Token
+name=Soldier
 type=Creature
 subtype=Soldier
 power=1
@@ -18465,28 +18465,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Elemental Token from Feral Lightning
-type=Creature
-subtype=Elemental
-auto=@next end:moveTo(exile)
-abilities=haste
-text=Haste
-power=3
-toughness=1
-color=red
-[/card]
-[card]
-name=Elemental Token from Zendikar Shrine
-type=Creature
-subtype=Elemental
-auto=@next end:moveTo(exile)
-abilities=trample,haste
-text=Trample,haste
-power=7
-toughness=1
-color=red
-[/card]
-[card]
 name=Elephant Ambush
 auto=token(Elephant,creature elephant, 3/3,green)
 flashback={6}{G}{G}
@@ -18520,7 +18498,7 @@ mana={1}{G}
 type=Sorcery
 [/card]
 [card]
-name=Elephant from Elephant Resurgence
+name=Elephant T1
 type=Creature
 subtype=Elephant
 auto=foreach(creature|mygraveyard) 1/1
@@ -20478,7 +20456,7 @@ mana={3}{GU}{GU}{GU}
 type=Enchantment
 [/card]
 [card]
-name=Green Wolf Token
+name=Wolf
 type=Creature
 subtype=Wolf
 power=2
@@ -20486,7 +20464,7 @@ toughness=2
 color=green
 [/card]
 [card]
-name=Blue Bird Token
+name=Bird
 type=Creature
 subtype=Bird
 abilities=flying
@@ -21196,7 +21174,7 @@ type=Instant
 [/card]
 [card]
 name=Feral Lightning
-auto=token(-84373)*3
+auto=token(Elemental,Creature Elemental,3/1,red,haste,unearth)*3
 text=Put three 3/1 red Elemental creature tokens with haste onto the battlefield. Exile them at the beginning of the next end step.
 mana={3}{R}{R}{R}
 type=Sorcery
@@ -34467,7 +34445,7 @@ mana={1}{W}
 type=Instant
 [/card]
 [card]
-name=Knight Token from Waylay
+name=Knight
 type=Creature
 subtype=Knight
 auto=@next cleanup:moveTo(exile)
@@ -44227,7 +44205,7 @@ id=-483851111
 type=Nothing
 [/card]
 [card]
-name=Beast Token
+name=Beast
 type=Creature
 subtype=Beast
 power=5
@@ -44235,7 +44213,7 @@ toughness=5
 color=green
 [/card]
 [card]
-name=Insect Token
+name=Insect
 type=Creature
 subtype=Insect
 power=1
@@ -44316,7 +44294,7 @@ mana={2}{U}
 type=Instant
 [/card]
 [card]
-name=Ooze Token from Mitotic Slime
+name=Ooze T1
 type=Creature
 subtype=Ooze
 auto=@movedTo(this|graveyard) from(battlefield):token(77777777)*2
@@ -44326,7 +44304,7 @@ toughness=2
 color=green
 [/card]
 [card]
-name=Ooze Token from Ooze Token
+name=Ooze T2
 type=Creature
 subtype=Ooze
 power=1
@@ -49744,7 +49722,7 @@ toughness=3
 [card]
 name=Rapacious One
 abilities=trample
-auto=@combatdamaged(player) from(this):thisforeach(power>=1) token(-193507)
+auto=@combatdamaged(player) from(this):token(-193507)*thatmuch
 text=Trample -- Whenever Rapacious One deals combat damage to a player, put that many colorless 0/1 Eldrazi Spawn tokens onto the battlefield. They have "Sacrifice this creature: Add {1} to your mana pool."
 mana={5}{R}
 type=Creature
@@ -53694,7 +53672,7 @@ mana={3}
 type=Artifact
 [/card]
 [card]
-name=Citizen Token
+name=Citizen
 type=Creature
 subtype=Citizen
 power=1
@@ -53702,7 +53680,7 @@ toughness=1
 color=white
 [/card]
 [card]
-name=Camarid Token
+name=Camarid
 type=Creature
 subtype=Camarid
 power=1
@@ -53710,7 +53688,7 @@ toughness=1
 color=blue
 [/card]
 [card]
-name=Thrull Token
+name=Thrull
 type=Creature
 subtype=Thrull
 power=1
@@ -53718,7 +53696,7 @@ toughness=1
 color=black
 [/card]
 [card]
-name=Goblin Token
+name=Goblin
 type=Creature
 subtype=Goblin
 power=1
@@ -53726,7 +53704,7 @@ toughness=1
 color=red
 [/card]
 [card]
-name=Saproling Token
+name=Saproling
 type=Creature
 subtype=Saproling
 power=1
@@ -71948,7 +71926,7 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-name=Blue Elemental Token
+name=Elemental T1
 type=Creature
 subtype=Elemental
 abilities=flying
@@ -71958,7 +71936,7 @@ toughness=2
 color=blue
 [/card]
 [card]
-name=Red Elemental Token
+name=Elemental T2
 type=Creature
 subtype=Elemental
 power=3
@@ -73856,7 +73834,7 @@ power=7
 toughness=6
 [/card]
 [card]
-name=Wolf Token from Sound the Call
+name=Wolf T1
 type=Creature
 subtype=Wolf
 auto=foreach(sound the call|graveyard) 1/1
@@ -74361,7 +74339,7 @@ power=6
 toughness=6
 [/card]
 [card]
-name=Wurm Token with Deathtouch
+name=Wurm T1
 type=Artifact Creature
 subtype=Wurm
 abilities=deathtouch
@@ -74370,7 +74348,7 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Wurm Token with Lifelink
+name=Wurm T2
 type=Artifact Creature
 subtype=Wurm
 abilities=lifelink
@@ -74816,7 +74794,7 @@ toughness=2
 [card]
 name=Zektar Shrine Expedition
 auto=@movedTo(land|myBattlefield):may counter(0/0,1,Quest)
-auto={C(0/0,-3,Quest)}{S}:token(-183403)
+auto={C(0/0,-3,Quest)}{S}:token(Elemental,Creature Elemental,7/1,red,trample,haste,unearth)
 text=Landfall - Whenever a land enters the battlefield under your control, you may put a quest counter on Zektar Shrine Expedition. -- Remove three quest counters from Zektar Shrine Expedition and sacrifice it: Put a 7/1 red Elemental creature token with trample and haste onto the battlefield. Exile it at the beginning of the next end step.
 mana={1}{R}
 type=Enchantment
