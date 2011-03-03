@@ -48067,6 +48067,13 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Pristine Talisman
+auto={T}:add{1} && life:1
+text={T}: Add {1} to your mana pool.You gain 1 life.
+mana={3}
+type=Artifact
+[/card]
+[card]
 name=Private Research
 target=creature
 auto=@each my upkeep:counter(0/0,1,Page) all(this)
@@ -63204,6 +63211,17 @@ text=Flying -- {(w/b){(w/b){(w/b)}: Regenerate target creature.
 mana={1}{W}
 type=Creature
 subtype=Spirit
+power=1
+toughness=1
+[/card]
+[card]
+name=Suture Priest
+auto=@movedTo(creature|mybattlefield):life:1
+auto=@movedTo(creature|opponentBattlefield):may life:-1 opponent 
+text=Whenever a creature enters the battlefield under your control, you may gain 1 life. Whenever a creature enters the battlefield under an opponent's control, you may have that player lose 1 life.
+mana={1}{W}
+type=Creature
+subtype=Cleric
 power=1
 toughness=1
 [/card]
