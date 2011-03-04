@@ -7462,7 +7462,7 @@ type=Instant
 [/card]
 [card]
 name=Boon Reflection
-auto=@lifed(controller):dynamicability<!myself thatmuchlife srccontroller!>
+auto=@lifed(controller):dynamicability<!myself thatmuchlifegain srccontroller!>
 text=If you would gain life, you gain twice that much life instead.
 mana={4}{W}
 type=Enchantment
@@ -46898,7 +46898,7 @@ toughness=2
 [/card]
 [card]
 name=Pious Warrior
-auto=@damaged(this):life:thatmuch controller
+auto=@combatdamaged(this):life:thatmuch controller
 text=Whenever Pious Warrior is dealt combat damage, you gain that much life.
 mana={3}{W}
 type=Creature
@@ -70224,9 +70224,9 @@ toughness=2
 [card]
 name=Victory's Herald
 abilities=flying
-auto=@attacking(this):all(creature[attacking]) first strike ueot
+auto=@attacking(this):all(creature[attacking]) flying ueot
 auto=@attacking(this):all(creature[attacking]) lifelink ueot
-text=Flying -- Whenever Victory's Herald attacks, attacking creatures gain first strike and lifelink until end of turn.
+text=Flying -- Whenever Victory's Herald attacks, attacking creatures gain flying and lifelink until end of turn.
 mana={3}{W}{W}{W}
 type=Creature
 subtype=Angel
