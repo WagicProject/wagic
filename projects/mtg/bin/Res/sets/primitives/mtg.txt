@@ -1903,8 +1903,8 @@ toughness=3
 [card]
 name=Angelheart Vial
 auto=@damaged(controller):may counter(0/0,thatmuch,Charge)
-auto={2}{T}{C(0/0,Charge,-4)}:life:2 && draw:1 controller
-text={1}, {T}, Sacrifice Elven Lyre: Target creature gets +2/+2 until end of turn.
+auto={2}{T}{C(0/0,-4,Charge)}:life:2 && draw:1 controller
+text=Whenever you're dealt damage, you may put that many charge counters on Angelheart Vial. -- {2}, {T}, Remove four charge counters from Angelheart Vial: You gain 2 life and draw a card.
 mana={5}
 type=Artifact
 [/card]
@@ -12877,7 +12877,7 @@ toughness=2
 [/card]
 [card]
 name=Crazed Armodon
-auto={G}:3/0 && trample && phaseaction[endofturn] limit:1
+auto={G}:3/0 && trample && phaseaction[endofturn] destroy limit:1
 text={G}: Crazed Armodon gets +3/+0 and gains trample until end of turn. Destroy Crazed Armodon at the beginning of the next end step. Activate this ability only once each turn.
 mana={2}{G}{G}
 type=Creature
@@ -36528,6 +36528,10 @@ type=Instant
 [/card]
 [card]
 name=Lightning Coils
+auto=@movedto(graveyard) from(creature[-token]|myBattlefield):counter(0/0,1,Charge)
+auto=@each myupkeep:this(counter{0/0.1.charge}>4) removeallcounters(0/0,1,charge)
+auto=@each myupkeep:this(counter{0/0.1.charge}>4) token(Elemental,Creature Elemental,3/1,red,haste,unearth)*4
+auto=@each myupkeep:thisforeach(counter{0/0.1.charge}>4) token(Elemental,Creature Elemental,3/1,red,haste,unearth)*1
 text=Whenever a nontoken creature you control is put into a graveyard from the battlefield, put a charge counter on Lightning Coils. -- At the beginning of your upkeep, if Lightning Coils has five or more charge counters on it, remove all of them from it and put that many 3/1 red Elemental creature tokens with haste onto the battlefield. Exile them at the beginning of the next end step.
 mana={3}
 type=Artifact
@@ -66661,19 +66665,9 @@ type=Instant
 [card]
 name=Tomb of Urami
 auto={T}:add{B} && aslongas(ogre|myBattlefield) damage:1 controller <1
-auto={2}{B}{B}{T}:moveTo(mygraveyard) all(land|myBattlefield) && token(-74492)
+auto={2}{B}{B}{T}:moveTo(mygraveyard) all(land|myBattlefield) && token(Urami,Legendary Creature Demon Spirit, 5/5,flying,black)
 text={T}: Add {B} to your mana pool. Tomb of Urami deals 1 damage to you if you don't control an Ogre. -- {2}{B}{B}, {T}, Sacrifice all lands you control: Put a legendary 5/5 black Demon Spirit creature token with flying named Urami onto the battlefield.
 type=Legendary Land
-[/card]
-[card]
-name=Urami
-abilities=flying
-text=Flying
-type=Legendary Creature
-subtype=Demon Spirit
-power=5
-toughness=5
-color=black
 [/card]
 [card]
 name=Tombstone Stairwell
