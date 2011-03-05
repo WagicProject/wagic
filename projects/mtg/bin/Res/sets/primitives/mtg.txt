@@ -41463,6 +41463,7 @@ auto=aslongas(artifact|mybattlefield) {T}:Add{U} >2
 auto=aslongas(artifact|mybattlefield) {T}:Add{B} >2
 auto=aslongas(artifact|mybattlefield) {T}:Add{R} >2
 auto=aslongas(artifact|mybattlefield) {T}:Add{G} >2
+text=Metalcraft - {T}: Add one mana of any color to your mana pool. Activate this ability only if you control three or more artifacts.
 mana={0}
 type=Legendary Artifact
 [/card]
