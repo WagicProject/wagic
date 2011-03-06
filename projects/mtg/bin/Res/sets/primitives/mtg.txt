@@ -29726,7 +29726,7 @@ toughness=2
 [card]
 name=Hoofprints of the Stag
 auto=@drawn(controller):may counter(0/0,1,Hoofprint)
-auto={C(0/0,-4,Hoofprint)}{2}{W}:token(Elemental,Creature Elemental,4/4,flying,white) 
+auto={C(0/0,-4,Hoofprint)}{2}{W}:token(Elemental,Creature Elemental,4/4,flying,white) myTurnOnly
 text=Whenever you draw a card, you may put a hoofprint counter on Hoofprints of the Stag. -- {2}{W}, Remove four hoofprint counters from Hoofprints of the Stag: Put a 4/4 white Elemental creature token with flying onto the battlefield. Activate this ability only during your turn.
 mana={1}{W}
 type=Tribal Enchantment
@@ -71759,6 +71759,7 @@ toughness=1
 [/card]
 [card]
 name=Wall of Resistance
+abilities=defender,flying
 auto=@each end of turn:this(damaged) counter(0/1,1)
 text=Defender (This creature can't attack.) -- Flying -- At the beginning of each end step, if Wall of Resistance was dealt damage this turn, put a +0/+1 counter on it.
 mana={1}{W}
@@ -71770,7 +71771,7 @@ toughness=3
 [card]
 name=Wall of Reverence
 abilities=defender,flying
-auto=@each myendofturn:target(creature|myBattlefield) dynamicability<!mytgt powerlife targetcontroller!>
+auto=@each myendofturn:target(creature|myBattlefield) dynamicability<!mytgt powerlifegain targetcontroller!>
 text=Defender, flying -- At the beginning of your end step, you may gain life equal to the power of target creature you control.
 mana={3}{W}
 type=Creature
