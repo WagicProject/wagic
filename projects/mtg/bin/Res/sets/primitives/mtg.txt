@@ -14531,8 +14531,11 @@ subtype=Aura
 [/card]
 [card]
 name=Dead-Iron Sledge
-auto=@blocking(this) from(creature):all(trigger[to]) destroy && all(trigger[from]) destroy
-auto=@blocked(creature) from(this): all(trigger[to]) destroy && all(trigger[from]) destroy
+auto=@blocking(mytgt) from(creature):all(trigger[from]) destroy
+auto=@blocking(mytgt) from(creature):all(trigger[to]) destroy
+auto=@blocked(mytgt) from(creature):all(trigger[from]) destroy
+auto=@blocked(mytgt) from(creature):all(trigger[to]) destroy
+auto={2}:equip
 text=Whenever equipped creature blocks or becomes blocked by a creature, destroy both creatures. -- Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
 mana={1}
 type=Artifact
@@ -15236,7 +15239,7 @@ type=Instant
 [card]
 name=Defiant Vanguard
 auto=@blocking(this):all(trigger[to]) phaseaction[combatends] destroy
-auto=@blocked(creature) from(this):all(trigger[to]) phaseaction[combatends] destroy
+auto=@blocking(this) from(creature):all(trigger[from]) phaseaction[combatends] destroy
 auto={5}{T}:moveTo(myBattlefield) target(rebel[manacost<=4]|mylibrary)
 text=When Defiant Vanguard blocks, at end of combat, destroy it and all creatures it blocked this turn. -- {5}{T}: Search your library for a Rebel permanent card with converted mana cost 4 or less and put it onto the battlefield. Then shuffle your library.
 mana={2}{W}
@@ -71692,7 +71695,7 @@ toughness=4
 [card]
 name=Wall of Nets
 abilities=defender
-auto=@blocked(creature) from(this):all(trigger[to]) phaseaction[combatends] (blink)forsrc
+auto=@blocking(this) from(creature):all(trigger[from]) phaseaction[combatends] (blink)forsrc
 text=Defender (This creature can't attack.) -- At end of combat, exile all creatures blocked by Wall of Nets. -- When Wall of Nets leaves the battlefield, return all cards exiled with Wall of Nets to the battlefield under their owners' control.
 mana={1}{W}{W}
 type=Creature
