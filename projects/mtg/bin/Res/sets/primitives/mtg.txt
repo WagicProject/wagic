@@ -5293,7 +5293,7 @@ type=Instant
 name=Beastmaster's Magemark
 target=creature
 auto=lord(creature[enchanted]|myBattlefield) 1/1
-auto=@blocked(creature[enchanted]|myBattlefield):all(trigger[to] 1/1 ueot
+auto=@blocked(creature[enchanted]|myBattlefield):all(trigger[to]) 1/1 ueot
 text=Enchant creature -- Creatures you control that are enchanted get +1/+1. -- Whenever a creature you control that's enchanted becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.
 mana={2}{G}
 type=Enchantment
@@ -28541,7 +28541,7 @@ toughness=1
 [/card]
 [card]
 name=Heart of Bogardan
-auto=cumulativeupcostmulti[{2}] thisforeach(counter{0/0,1,age}) damage:2 opponent && thisforeach(counter{0/0,1,age}) damage:2 all(creature|opponentbattlefield)
+auto=cumulativeupcostmulti[{2}] thisforeach(counter{0/0,1,age}) damage:2 opponent && thisforeach(counter{0/0,1,age}) damage:2 all(creature|opponentbattlefield) && sacrifice
 text=Cumulative upkeep {2} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- When Heart of Bogardan's cumulative upkeep isn't paid, it deals X damage to target player and each creature he or she controls, where X is twice the number of age counters on Heart of Bogardan minus two.
 mana={2}{R}{R}
 type=Enchantment
@@ -56161,7 +56161,7 @@ name=Shield of the Righteous
 auto={2}:equip
 auto=0/2
 auto=vigilance
-auto=@blocked(creature) from(mytgt):all(trigger[to]) frozen
+auto=@blocking(mytgt) from(creature):all(trigger[from]) frozen
 text=Equipped creature gets +0/+2 and has vigilance. -- Whenever equipped creature blocks a creature, that creature doesn't untap during its controller's next untap step. -- Equip {2}
 mana={W}{U}
 type=Artifact
