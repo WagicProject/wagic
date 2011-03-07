@@ -36490,7 +36490,7 @@ toughness=2
 [card]
 name=Lightmine Field
 auto=@each blockers:foreach(creature[attacking]|Battlefield) damage:1 all(creature[attacking]|Battlefield)
-text=Whenever one ore more creatures attack, Lightmine Field deals damage to each of those creatures equal to the number of attacking creatures.
+text=Whenever one or more creatures attack, Lightmine Field deals damage to each of those creatures equal to the number of attacking creatures.
 mana={2}{W}{W}
 type=Enchantment
 [/card]
