@@ -16798,7 +16798,7 @@ toughness=1
 [card]
 name=Dragonskull Summit
 auto=tap
-auto=aslongas(mountain,swamp|myBattelfield) untap
+auto=aslongas(mountain,swamp|myBattlefield) untap
 auto={T}:Add {B}
 auto={T}:Add {R}
 text=Dragonskull Summit enters the battlefield tapped unless you control a Swamp or a Mountain. -- {T}: Add {B} or {R} to your mana pool.
@@ -17449,7 +17449,7 @@ toughness=1
 [card]
 name=Drowned Catacomb
 auto=tap
-auto=aslongas(island,swamp|myBattelfield) untap
+auto=aslongas(island,swamp|myBattlefield) untap
 auto={T}:Add {U}
 auto={T}:Add {B}
 text=Drowned Catacomb enters the battlefield tapped unless you control an Island or a Swamp. -- {T}: Add {U} or {B} to your mana pool.
@@ -24975,7 +24975,7 @@ type=Enchantment
 [card]
 name=Glacial Fortress
 auto=tap
-auto=aslongas(plains,island|myBattelfield) untap
+auto=aslongas(plains,island|myBattlefield) untap
 auto={T}:Add {W}
 auto={T}:Add {U}
 text=Glacial Fortress enters the battlefield tapped unless you control a Plains or an Island. -- {T}: Add {W} or {U} to your mana pool.
