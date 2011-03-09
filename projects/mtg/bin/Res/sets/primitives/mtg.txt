@@ -7549,7 +7549,7 @@ toughness=2
 name=Boros Fury-Shield
 target=creature[attacking;blocking]
 other={1}{W}{R}
-auto=0/0 && fog(mytgt) oneshot
+auto=0/0 && fog from(mytgt) oneshot
 auto=alternative dynamicability<!mytgt powerstrike targetcontroller!>
 text=Prevent all combat damage that would be dealt by target attacking or blocking creature this turn. If {R} was spent to cast Boros Fury-Shield, it deals damage to that creature's controller equal to the creature's power.
 mana={2}{W}
@@ -21150,7 +21150,7 @@ subtype=Aura
 [card]
 name=Fend Off
 target=creature
-auto=0/0 && fog(mytgt) oneshot
+auto=0/0 && fog from(mytgt) oneshot
 autohand={2}:cycling
 text=Prevent all combat damage that would be dealt by target creature this turn. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={1}{W}
@@ -41642,7 +41642,7 @@ toughness=2
 [card]
 name=Murderous Redcap
 abilities=persist
-auto=target(creature) dynamicability<!powerstrike!>
+auto=target(creature,player) dynamicability<!powerstrike!>
 text=When Murderous Redcap enters the battlefield, it deals damage equal to its power to target creature or player. -- Persist (When this creature is put into a graveyard from the battlefield, if it had no -1/-1 counters on it, return it to the battlefield under its owner's control with a -1/-1 counter on it.)
 mana={2}{BR}{BR}
 type=Creature
