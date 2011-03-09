@@ -58283,8 +58283,8 @@ toughness=3
 [/card]
 [card]
 name=Slagstorm
-auto=choice damage:3 all(creature)
-auto=choice damage:3 all(player)
+auto=choice name(deals 3 damage to each creature) && damage:3 all(creature)
+auto=choice name(deals 3 damage to each player) && damage:3 all(player)
 text=Choose one - Slagstorm deals 3 damage to each creature; or Slagstorm deals 3 damage to each player.
 mana={1}{R}{R}
 type=Sorcery
