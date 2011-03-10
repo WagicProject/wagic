@@ -14510,9 +14510,8 @@ type=Sorcery
 [/card]
 [card]
 name=Day of the Dragons
-auto=foreach(creature|mybattlefield) token(Daydragons,5/5,flying,red)
-auto=all(creature[-daydragons]|mybattlefield) (blink)forsrc
-auto=@movedto(this|nonbattlezone):exile all(dragons|mybattlefield)
+auto=all(creature|mybattlefield) (blink)forsrc && foreach(creature|mybattlefield) token(Dragon,creature dragon, 5/5,flying red)*1
+auto=@movedto(this|nonbattlezone):sacrifice all(creature[dragon]|mybattlefield)
 text=When Day of the Dragons enters the battlefield, exile all creatures you control. Then put that many 5/5 red Dragon creature tokens with flying onto the battlefield. -- When Day of the Dragons leaves the battlefield, sacrifice all Dragons you control. Then return the exiled cards to the battlefield under your control.
 mana={4}{U}{U}{U}
 type=Enchantment
