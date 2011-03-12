@@ -28947,8 +28947,8 @@ toughness=2
 [/card]
 [card]
 name=Helldozer
-auto={B}{B}{B}{T}:name(basic) && destroy target(land)
-auto={B}{B}{B}{T}:name(nonBasic) && destroy target(land[-basic]) && untap all(this)
+auto={B}{B}{B}{T}:name(basic) && destroy target(land[basic])
+auto={B}{B}{B}{T}:name(nonbasic) && destroy target(land[-basic]) && untap all(this)
 text={B}{B}{B}, {T}: Destroy target land. If that land was nonbasic, untap Helldozer.
 mana={3}{B}{B}{B}
 type=Creature
