@@ -100,7 +100,7 @@ public:
     int receiveEvent(WEvent * event);
     void Render();
     ManaCost * getPotentialMana(MTGCardInstance * card = NULL);
-    AIPlayer(MTGDeck * deck, string deckFile, string deckFileSmall);
+    AIPlayer(string deckFile, string deckFileSmall, MTGDeck * deck = NULL);
     virtual ~AIPlayer();
     virtual MTGCardInstance * chooseCard(TargetChooser * tc, MTGCardInstance * source, int random = 0);
     virtual int chooseTarget(TargetChooser * tc = NULL, Player * forceTarget =NULL,MTGCardInstance * Choosencard = NULL);
@@ -123,7 +123,7 @@ class AIPlayerBaka: public AIPlayer{
   MTGCardInstance * FindCardToPlay(ManaCost * potentialMana, const char * type);
  public:
   int deckId;
-  AIPlayerBaka(MTGDeck * deck, string deckFile, string deckfileSmall, string avatarFile);
+  AIPlayerBaka(string deckFile, string deckfileSmall, string avatarFile, MTGDeck * deck = NULL);
   virtual int Act(float dt);
   void initTimer();
   virtual int computeActions();

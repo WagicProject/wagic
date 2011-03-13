@@ -35,7 +35,7 @@ public:
     string deckName;
     string phaseRing;
 
-    Player(MTGDeck * deck, string deckFile, string deckFileSmall);
+    Player(string deckFile, string deckFileSmall, MTGDeck * deck = NULL);
     virtual ~Player();
 
     virtual void End();
@@ -98,7 +98,7 @@ public:
 class HumanPlayer: public Player
 {
 public:
-    HumanPlayer(MTGDeck * deck, string deckFile, string deckFileSmall);
+    HumanPlayer(string deckFile, string deckFileSmall, MTGDeck * deck = NULL);
     HumanPlayer(string deckFile);
 
 };

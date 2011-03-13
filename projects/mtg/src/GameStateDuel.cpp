@@ -20,6 +20,10 @@
 #include "TestSuiteAI.h"
 #endif
 
+#ifdef NETWORK_SUPPORT
+#include "NetworkPlayer.h"
+#endif
+
 #if defined (WIN32) || defined (LINUX)
 #include <time.h>
 #endif
@@ -41,6 +45,9 @@ enum ENUM_DUEL_STATE
     DUEL_STATE_PLAY,
     DUEL_STATE_BACK_TO_MAIN_MENU,
     DUEL_STATE_MENU,
+#ifdef NETWORK_SUPPORT
+    DUEL_STATE_OPPONENT_WAIT,
+#endif //NETWORK_SUPPORT
     DUEL_STATE_ERROR
 };
 
@@ -76,6 +83,10 @@ GameState(parent)
 
     credits = NULL;
     rules = NULL;
+
+#ifdef NETWORK_SUPPORT
+    RegisterNetworkPlayers();
+#endif //NETWORK_SUPPORT
 
 }
 
@@ -156,22 +167,34 @@ void GameStateDuel::Start()
     }
 }
 
-void GameStateDuel::loadPlayer(int playerId, int decknb, int isAI)
+void GameStateDuel::loadPlayer(int playerId, int decknb, bool isAI, bool isNetwork)
 {
     if (decknb)
     {
         if (!isAI)
         { //Human Player
-            char deckFile[255];
-            if (premadeDeck)
-                sprintf(deckFile, JGE_GET_RES("player/premade/deck%i.txt").c_str(), decknb);
+            if(playerId == 0)
+            {
+                char deckFile[255];
+                if (premadeDeck)
+                    sprintf(deckFile, JGE_GET_RES("player/premade/deck%i.txt").c_str(), decknb);
+                else
+                    sprintf(deckFile, "%s/deck%i.txt", options.profileFile().c_str(), decknb);
+                char deckFileSmall[255];
+                sprintf(deckFileSmall, "player_deck%i", decknb);
+                mPlayers[playerId] = NEW HumanPlayer(deckFile, deckFileSmall);
+#ifdef NETWORK_SUPPORT
+                if(isNetwork)
+                {
+                    ProxyPlayer* mProxy;
+                    mProxy = NEW ProxyPlayer(mPlayers[playerId], mParent->mpNetwork);
+                }
+            }
             else
-                sprintf(deckFile, "%s/deck%i.txt", options.profileFile().c_str(), decknb);
-            char deckFileSmall[255];
-            sprintf(deckFileSmall, "player_deck%i", decknb);
-            MTGDeck * tempDeck = NEW MTGDeck(deckFile, MTGCollection());
-            mPlayers[playerId] = NEW HumanPlayer(tempDeck, deckFile, deckFileSmall);
-            SAFE_DELETE( tempDeck );
+            {   //Remote player
+                mPlayers[playerId] = NEW RemotePlayer(mParent->mpNetwork);
+#endif //NETWORK_SUPPORT
+            }
         }
         else
         { //AI Player, chooses deck
@@ -471,6 +494,29 @@ void GameStateDuel::Update(float dt)
             mGamePhase = DUEL_STATE_MENU;
         }
         break;
+#ifdef NETWORK_SUPPORT
+    case DUEL_STATE_OPPONENT_WAIT:
+      {
+        if(mPlayers[1] && mPlayers[1]->game)
+        { // Player loaded
+          menu->Close();
+          SAFE_DELETE(menu);
+          mGamePhase = DUEL_STATE_PLAY;
+        } else if(menu == NULL)
+        {
+          loadPlayer(1, 42/* 0 not good*/, false, true);
+          menu = NEW SimpleMenu(DUEL_STATE_OPPONENT_WAIT, this, Fonts::MENU_FONT, 150, 60);
+          if (menu)
+          {
+              menu->Add(MENUITEM_MAIN_MENU, "Back to main menu");
+          }
+        } else
+        {
+          menu->Update(dt);
+        }
+      }
+      break;
+#endif //NETWORK_SUPPORT
     case DUEL_STATE_MENU:
         menu->Update(dt);
         break;
@@ -565,7 +611,11 @@ void GameStateDuel::Render()
     case DUEL_STATE_CHOOSE_DECK2_TO_PLAY:
     case DUEL_STATE_DECK1_DETAILED_INFO:
     case DUEL_STATE_DECK2_DETAILED_INFO:
-        if (mParent->gameType != GAME_TYPE_CLASSIC)
+        if (mParent->gameType != GAME_TYPE_CLASSIC
+#ifdef NETWORK_SUPPORT
+                && mParent->gameType != GAME_TYPE_SLAVE
+#endif //NETWORK_SUPPORT
+                )
             mFont->DrawString(_("LOADING DECKS").c_str(), 0, SCREEN_HEIGHT / 2);
         else
         {
@@ -582,6 +632,11 @@ void GameStateDuel::Render()
         mFont->DrawString(_("NO DECK AVAILABLE,").c_str(), 0, SCREEN_HEIGHT / 2);
         mFont->DrawString(_("PRESS CIRCLE TO GO TO THE DECK EDITOR!").c_str(), 0, SCREEN_HEIGHT / 2 + 20);
         break;
+#ifdef NETWORK_SUPPORT
+    case DUEL_STATE_OPPONENT_WAIT:
+        if (menu) menu->Render();
+        break;
+#endif //NETWORK_SUPPORT
     case DUEL_STATE_MENU:
     case DUEL_STATE_CANCEL:
     case DUEL_STATE_BACK_TO_MAIN_MENU:
@@ -742,9 +797,22 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
             vector<DeckMetaData *> * playerDeck = deckManager->getPlayerDeckOrderList();
             if (!premadeDeck && controlId > 0) 
                 deckNumber = playerDeck->at(controlId - 1)->getDeckId();
-            loadPlayer(0, deckNumber);
+            loadPlayer(0, deckNumber, false
+#ifdef NETWORK_SUPPORT
+                       ,(mParent->players[1] == PLAYER_TYPE_REMOTE)
+#endif //NETWORK_SUPPORT
+                       );
             deckmenu->Close();
-            mGamePhase = DUEL_STATE_CHOOSE_DECK1_TO_2;
+#ifdef NETWORK_SUPPORT
+            if(mParent->players[1] == PLAYER_TYPE_REMOTE)
+            {   // no need to choose an opponent deck in network mode
+                mGamePhase = DUEL_STATE_OPPONENT_WAIT;
+            }
+            else
+#endif //NETWORK_SUPPORT
+            {
+                mGamePhase = DUEL_STATE_CHOOSE_DECK1_TO_2;
+            }
             playerDeck = NULL;
         }
         else

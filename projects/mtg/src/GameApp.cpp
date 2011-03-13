@@ -44,6 +44,9 @@ GameState::GameState(GameApp* parent) :
 
 GameApp::GameApp() :
     JApp()
+#ifdef NETWORK_SUPPORT
+    ,mpNetwork(NULL)
+#endif //NETWORK_SUPPORT
 {
 #ifdef DEBUG
     nbUpdates = 0;

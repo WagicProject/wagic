@@ -38,8 +38,8 @@ int AIAction::Act()
     return 0;
 }
 
-AIPlayer::AIPlayer(MTGDeck * deck, string file, string fileSmall) :
-    Player(deck, file, fileSmall)
+AIPlayer::AIPlayer(string file, string fileSmall, MTGDeck * deck) :
+    Player(file, fileSmall, deck)
 {
     nextCardToPlay = NULL;
     stats = NULL;
@@ -1189,10 +1189,8 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, Player * op
         if ( meta->getVictoryPercentage() >= 65)
             deckSetting = HARD;
     }
-    MTGDeck * tempDeck = NEW MTGDeck(deckFile, collection,0, deckSetting);
-    AIPlayerBaka * baka = NEW AIPlayerBaka(tempDeck, deckFile, deckFileSmall, avatarFile);
+    AIPlayerBaka * baka = NEW AIPlayerBaka(deckFile, deckFileSmall, avatarFile);
     baka->deckId = deckid;
-    SAFE_DELETE(tempDeck);
     return baka;
 }
 
@@ -1272,8 +1270,8 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
     return nextCardToPlay;
 }
 
-AIPlayerBaka::AIPlayerBaka(MTGDeck * deck, string file, string fileSmall, string avatarFile) :
-    AIPlayer(deck, file, fileSmall)
+AIPlayerBaka::AIPlayerBaka(string file, string fileSmall, string avatarFile, MTGDeck * deck) :
+    AIPlayer(file, fileSmall, deck)
 {
     mAvatarTex = WResourceManager::Instance()->RetrieveTexture(avatarFile, RETRIEVE_LOCK, TEXTURE_SUB_AVATAR);
 

@@ -1,230 +1,301 @@
+#include "PrecompiledHeader.h"
+
+#include <errno.h>
+#ifdef WIN32
 #pragma comment(lib,"WSOCK32.LIB")
 #include <stdio.h>
 #include <conio.h>
 #include <winsock.h>
-#include <errno.h>
 #include <winsock.h>
+#include <fcntl.h>
+#elif LINUX
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netdb.h>
+#include <fcntl.h>
+#endif //WINDOWS
 
 #include "../../include/JSocket.h"
-JSocket * JSocket::mInstance = NULL;
+//JSocket * JSocket::mInstance = NULL;
 
-#define SERVER_PORT 20666
+//#define SERVER_PORT 20666
+#define SERVER_PORT 5001
 unsigned char ADRESSE_IP_SERVEUR [4] = {127,0,0,1};
 
 
-int JSocket::connected = 0;
-
-void JSocket::init(){
-	//TODO ?
-}
-
-JSocket::JSocket(){
-  init();
-}
-
-JSocket::~JSocket(){
- //TODO ?
-}
-
-
-void JSocket::readWrite(int val){
-  char data[1024];
-
-  	fd_set set;
-    FD_ZERO(&set);
-	  FD_SET(val, &set);
-    struct timeval tv;
-   int result = select(0, &set, NULL, NULL, &tv);
-		if( result< 0)
-		{
-      printf("Socket %d closed\n", val);
-		  closesocket(val);
-      connected= 0;
-			printf("select error\n");
-			return;
-		}
-    
-    if (result > 0){
-      OutputDebugString("Receiving!\n");
-      int readbytes = recv(val, data, sizeof(data),0);
-	    if(readbytes < 0)
-	    {
-        int error = WSAGetLastError();
-        if (error != WSAEWOULDBLOCK){
-		      printf("Socket %d closed\n", val);
-		      closesocket(val);
-          connected= 0;
-        }
-	    }
-	    else
-	    {
-        OutputDebugString("received Data!!!\n");
-		    for (int i = 0; i < readbytes; i++){
-		      received_data.push(data[i]);
-          OutputDebugString("getting byte\n");
-		    }
-	    }
-    }
-
-  //Write
-  int size = 0;
-  while(!tosend_data.empty()){
-    size++;
-    if (size > sizeof(data)){
-      send(val,data,sizeof(data),0);
-      size = 0;
-    }
-    data[size-1] = tosend_data.front();
-    tosend_data.pop();
-  }
-  if (size) {
-    send(val,data,size-1,0);
-    OutputDebugString("sending Data\n");
-  }
-}
-
-/* Start a client */
-int JSocket::start_client(const char *szIpAddr){
+JSocket::JSocket(string ipAddr)
+  : state(NOT_AVAILABLE),
+  mfd(-1)
+{
+  int result = -1;
+#ifdef WIN32
   SOCKET Desc_Socket_Cliente;
-  SOCKADDR_IN Adresse_Socket_Serveur;
+#elif LINUX
+  int Desc_Socket_Cliente;
+#endif
+
+  struct hostent *hostentptr;
+#ifdef WIN32
+  SOCKADDR_IN Adresse_Socket_Server;
   WORD wVersionRequested;
   WSADATA wsaData;
 
-  struct hostent *hostentptr;
-
   wVersionRequested=MAKEWORD(1,1);
-  WSAStartup(wVersionRequested,&wsaData);
+  result = WSAStartup(wVersionRequested,&wsaData);
+  if(result!=0){
+    DebugTrace("WSAStartup\t");
+    return;
+  }
+#elif LINUX
+  struct sockaddr_in Adresse_Socket_Server;
+#endif
 
-  Desc_Socket_Cliente=socket(AF_INET,SOCK_STREAM,0);
-  unsigned int addr_dest = inet_addr(szIpAddr); 
+  mfd=socket(AF_INET,SOCK_STREAM,0);
+  if(mfd < 0)
+    return;
+  DebugTrace("Connecting " << ipAddr);
+
+#ifdef WIN32
+  unsigned int addr_dest = inet_addr(ipAddr.c_str());
   hostentptr=gethostbyaddr((char*) &addr_dest,4,AF_INET);
+#elif LINUX
+  hostentptr = gethostbyname(ipAddr.c_str());
+#endif
+  if (hostentptr == NULL) {
+      DebugTrace("ERROR, no such host\n");
+      return;
+  }
 
-  ZeroMemory(&Adresse_Socket_Serveur,sizeof(Adresse_Socket_Serveur));
+#ifdef WIN32
+  ZeroMemory( (char*)&Adresse_Socket_Server,sizeof(Adresse_Socket_Server));
+#elif LINUX
+  bzero( (char*)&Adresse_Socket_Server,sizeof(Adresse_Socket_Server));
+#endif //WINDOWS
 
-  Adresse_Socket_Serveur.sin_family=(*hostentptr).h_addrtype;
-  Adresse_Socket_Serveur.sin_port=htons(SERVER_PORT);
-  Adresse_Socket_Serveur.sin_addr=*((struct in_addr*)(*hostentptr).h_addr);
+  Adresse_Socket_Server.sin_family=(*hostentptr).h_addrtype;
+  Adresse_Socket_Server.sin_port=htons(SERVER_PORT);
+  Adresse_Socket_Server.sin_addr=*((struct in_addr*)(*hostentptr).h_addr);
 
-  int result = connect(
-    Desc_Socket_Cliente,
-    (const struct sockaddr*)&Adresse_Socket_Serveur,
-    sizeof(Adresse_Socket_Serveur));
-
-OutputDebugString("client state 0\n");
-
+  result = connect(
+      mfd,
+      (const struct sockaddr*)&Adresse_Socket_Server,
+      sizeof(Adresse_Socket_Server));
   if (result != 0){
-    connected = 0;
-    return 0;
+      DebugTrace("client connect failed :" << strerror(errno));
+      state = FATAL_ERROR;
+      return;
   }
 
-OutputDebugString("client state 1\n");
+  state = CONNECTED;
+}
 
+bool JSocket::SetNonBlocking(int sock)
+{
+  int opts;
 
-  connected = 1;
-
-while(1){
-  readWrite(Desc_Socket_Cliente);
-/*  Nb_Caracteres_Recus=recv(Desc_Socket_Cliente,Message_Recu,sizeof(Message_Recu),0);
-  if(Nb_Caracteres_Recus<=0){
-    //continuer=FALSE;
-  }else{
-    strcpy(message,Message_Recu);
-    len=strlen(message);
+#ifdef WIN32
+#elif LINUX
+  opts = fcntl(sock,F_GETFL);
+  if (opts < 0) {
+    perror("fcntl(F_GETFL)");
+    return false;
   }
-  */
-}
-#
-closesocket(Desc_Socket_Cliente);
-WSACleanup();
-return 0;
+  opts = (opts | O_NONBLOCK);
+  if (fcntl(sock,F_SETFL,opts) < 0) {
+    perror("fcntl(F_SETFL)");
+    return false;
+  }
+#endif //WINDOWS
+  return true;
 }
 
-/* Start a server */
-int JSocket::start_server(const char *szIpAddr){
-  OutputDebugString("server state 0\n");
-  connected= 0;
-  int Code_Retour;
-  SOCKET Desc_Socket_Connection;
+JSocket::JSocket()
+  : state(NOT_AVAILABLE),
+  mfd(-1)
+{
+  int result;
+#ifdef WIN32
   SOCKADDR_IN Adresse_Socket_Connection;
   WORD wVersionRequested;
   WSADATA wsaData;
 
   wVersionRequested=MAKEWORD(1,1);
+  result=WSAStartup(wVersionRequested,&wsaData);
 
-  Code_Retour=WSAStartup(wVersionRequested,&wsaData);
-
-  if(Code_Retour!=0){
-    perror("WSAStartup\t");
-    _getch();
-    WSACleanup();
-    return Code_Retour;
+  if(result!=0){
+    DebugTrace("WSAStartup\t");
+    return;
   }
-  OutputDebugString("server state 1\n");
-/*    printf("la version supportee est : %d.%d\n",
-LOBYTE(wsaData.wHighVersion),
-HIBYTE(wsaData.wHighVersion)
-);*/
+#elif LINUX
+  struct sockaddr_in Adresse_Socket_Connection;
+#endif //WINDOWS
 
-  Desc_Socket_Connection=socket( AF_INET, SOCK_STREAM,0);
+  mfd=socket( AF_INET, SOCK_STREAM,0);
 
-//printf("valeur de la socket = %d\n",Desc_Socket_Connection);
+#ifdef WIN32
+#elif LINUX
+  int reuse_addr = 1;  /* Used so we can re-bind to our port
+        while a previous connection is still
+        in TIME_WAIT state. */
+  /* So that we can re-bind to it without TIME_WAIT problems */
+  setsockopt(mfd, SOL_SOCKET, SO_REUSEADDR, &reuse_addr,
+    sizeof(reuse_addr));
+#endif //WINDOWS
 
-  ZeroMemory(&Adresse_Socket_Connection,sizeof(Adresse_Socket_Connection));
+  SetNonBlocking(mfd);
+
+#ifdef WIN32
+  ZeroMemory( &Adresse_Socket_Connection,sizeof(Adresse_Socket_Connection));
+#elif LINUX
+  bzero( &Adresse_Socket_Connection,sizeof(Adresse_Socket_Connection));
+#endif //WINDOWS
   Adresse_Socket_Connection.sin_family=AF_INET;
   Adresse_Socket_Connection.sin_port=htons(SERVER_PORT);
 
-  Code_Retour=bind(Desc_Socket_Connection,
+  result=bind(mfd,
     (struct sockaddr*)&Adresse_Socket_Connection,
     sizeof(Adresse_Socket_Connection));
-
-
-
-  if(Code_Retour!=0){
-    perror("bind\t");
-    _getch();
-    closesocket(Desc_Socket_Connection);
-    WSACleanup();
-    return Code_Retour;
+  if(result!=0){
+    state = FATAL_ERROR;
+    DebugTrace("bind error:" <<  strerror(errno));
+    return;
   }
-  OutputDebugString("server state 3\n");
 
-  Code_Retour=listen(Desc_Socket_Connection,1);
-  if(Code_Retour!=0){
-    perror("listen\n");
-    WSACleanup();
-    return Code_Retour;
+  result=listen(mfd,1);
+  if(result!=0){
+    state = FATAL_ERROR;
+    DebugTrace("listen error:" << strerror(errno));
+    return;
   }
-  OutputDebugString("server state 4\n");
-  printf("serveur en attente d'une connection\n\n");
-  printf("***************arret du serveur par<CTRL><C>**************\n\n");
-  connected = 1;
-  while(1){
-    SOCKET * pt_Nouveau_Socket_Serveur;
-    SOCKADDR_IN Adresse_Socket_Cliente;
-    int Longueur_Adresse;
 
-    pt_Nouveau_Socket_Serveur = new SOCKET;
+  state = DISCONNECTED;
+}
 
-    Longueur_Adresse = sizeof(Adresse_Socket_Cliente);
+JSocket::JSocket(int fd)
+  : state(CONNECTED),
+  mfd(fd)
+{
+}
 
-    int val=accept(
-      Desc_Socket_Connection,
-      (struct sockaddr*)&Adresse_Socket_Cliente,
-      &Longueur_Adresse);
-    printf("connection accepte depuis le port client %d\n", ntohs(Adresse_Socket_Cliente.sin_port));
-      OutputDebugString("connection accepte depuis le port client\n");
+JSocket::~JSocket(){
+  Disconnect();
+#ifdef WIN32
+  WSACleanup();
+#endif
+}
 
-
-    while(1)
-    {
-	    readWrite(val);
-    }
-    closesocket(*pt_Nouveau_Socket_Serveur);
-    return 0;
+void JSocket::Disconnect()
+{
+  state = JSocket::DISCONNECTED;
+  if(mfd) {
+#ifdef WIN32
+    closesocket(mfd);
+#elif LINUX
+    close(mfd);
+#endif
+    mfd = 0;
   }
 }
 
+JSocket* JSocket::Accept()
+{
+  #ifdef WIN32
+  SOCKADDR_IN Adresse_Socket_Cliente;
+  int Longueur_Adresse;
+  #elif LINUX
+  struct sockaddr_in Adresse_Socket_Cliente;
+  socklen_t Longueur_Adresse;
+  #endif //WINDOWS
 
+  while(mfd) {
+    fd_set set;
+    FD_ZERO(&set);
+    FD_SET(mfd, &set);
+    struct timeval tv;
+    tv.tv_sec = 0;
+    tv.tv_usec = 1000*100;
 
+    int result = select(mfd+1, &set, NULL, NULL, &tv);
+    if( result > 0 && FD_ISSET(mfd, &set) ) {
+
+      Longueur_Adresse = sizeof(Adresse_Socket_Cliente);
+      int val=accept(
+        mfd,
+        (struct sockaddr*)&Adresse_Socket_Cliente,
+        &Longueur_Adresse);
+      DebugTrace("connection on client port "<< ntohs(Adresse_Socket_Cliente.sin_port));
+
+      if(val >=0 ) {
+        state = CONNECTED;
+        return new JSocket(val);
+      } else {
+        return NULL;
+      }
+    }
+  }
+}
+
+int JSocket::Read(char* buff, int size)
+{
+  if(state == CONNECTED)
+  {
+    fd_set set;
+    FD_ZERO(&set);
+    FD_SET(mfd, &set);
+    struct timeval tv;
+    tv.tv_sec = 0;
+    tv.tv_usec = 1000*100;
+
+    int result = select(mfd+1, &set, NULL, NULL, &tv);
+    if( result > 0 && FD_ISSET(mfd, &set) )
+    {
+  #ifdef WIN32
+      int readbytes = recv(mfd, buff, size,0);
+  #elif LINUX
+      int readbytes = read(mfd, buff, size);
+  #endif //WINDOWS
+      if(readbytes < 0)
+      {
+        DebugTrace("Error reading from socket\n");
+        return -1;
+      }
+      else
+        return readbytes;
+    }
+    else if( result < 0)
+    {
+      return -1;
+    }
+  }
+  return 0;
+}
+
+int JSocket::Write(char* buff, int size)
+{
+  int size1 = size;
+  while (size > 0 && state == CONNECTED) {
+    fd_set set;
+    FD_ZERO(&set);
+    FD_SET(mfd, &set);
+    struct timeval tv;
+    tv.tv_sec = 0;
+    tv.tv_usec = 1000*100;
+
+    int result = select(mfd+1, NULL, &set, NULL, &tv);
+    if( result > 0  && FD_ISSET(mfd, &set))
+    {
+      int len = send(mfd, buff, size, 0);
+      if (len < 0) {
+        return -1;
+      }
+      size -= len;
+      buff += len;
+    } else if (result < 0) {
+      return -1;
+    }
+  }
+  return size1 - size;
+}
 
 

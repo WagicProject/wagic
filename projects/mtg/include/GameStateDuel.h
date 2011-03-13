@@ -15,6 +15,9 @@ class TestSuite;
 #endif
 class Credits;
 class Rules;
+#ifdef NETWORK_SUPPORT
+class JNetwork;
+#endif
 
 class GameStateDuel: public GameState, public JGuiListener
 {
@@ -22,6 +25,7 @@ private:
 #ifdef TESTSUITE
     TestSuite * testSuite;
 #endif
+
     Credits * credits;
     int mGamePhase;
     Player * mCurrentPlayer;
@@ -40,7 +44,7 @@ private:
     Rules * rules;
 
     bool MusicExist(string FileName);
-    void loadPlayer(int playerId, int decknb = 0, int isAI = 0);
+    void loadPlayer(int playerId, int decknb = 0, bool isAI = false, bool isNetwork = false);
     void ConstructOpponentMenu(); //loads the opponentMenu if it doesn't exist
     void initScroller();
 
@@ -66,6 +70,10 @@ public:
         MENUITEM_MAIN_MENU = -13,
         MENUITEM_EVIL_TWIN = -14,
         MENUITEM_MULLIGAN = -15,
+#ifdef NETWORK_SUPPORT
+        MENUITEM_REMOTE_CLIENT = -16,
+        MENUITEM_REMOTE_SERVER = -17,
+#endif
         MENUITEM_MORE_INFO = kInfoMenuID
     };
 

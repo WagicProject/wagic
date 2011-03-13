@@ -5,9 +5,16 @@
 #include "DeckStats.h"
 #include "ManaCost.h"
 
-Player::Player(MTGDeck * deck, string file, string fileSmall) :
+Player::Player(string file, string fileSmall, MTGDeck * deck) :
 Damageable(20)
 {
+    bool deleteDeckPlease = false;
+    if(deck == NULL && file != "testsuite" && file != "remote")
+    {
+        deck = NEW MTGDeck(file.c_str(), MTGCollection());
+        deleteDeckPlease = true;
+    }
+
     game = NULL;
     deckFile = file;
     deckFileSmall = fileSmall;
@@ -24,6 +31,10 @@ Damageable(20)
             game = NEW MTGPlayerCards(deck);
             game->setOwner(this);
             deckName = deck->meta_name;
+    }
+    if(deleteDeckPlease)
+    {
+        SAFE_DELETE(deck);
     }
 }
 
@@ -87,8 +98,8 @@ Player * Player::opponent()
     return this == game->players[0] ? game->players[1] : game->players[0];
 }
 
-HumanPlayer::HumanPlayer(MTGDeck * deck, string file, string fileSmall) :
-    Player(deck, file, fileSmall)
+HumanPlayer::HumanPlayer(string file, string fileSmall, MTGDeck * deck) :
+    Player(file, fileSmall, deck)
 {
     loadAvatar("avatar.jpg");
     playMode = MODE_HUMAN;
@@ -203,6 +214,7 @@ istream& operator>>(istream& in, Player& p)
     }
 
     in >> *(p.game);
+    p.game->setOwner(&p);
 
     return in;
 }

@@ -39,7 +39,10 @@ enum ENUM_MENU_STATE_MAJOR
     MENU_STATE_MAJOR_FIRST_TIME = 0x05,
     MENU_STATE_MAJOR_DUEL = 0x06,
     MENU_STATE_MAJOR_LANG = 0x07,
-
+#ifdef NETWORK_SUPPORT
+    MENU_STATE_NETWORK_DEFINE = 0x08,
+    MENU_STATE_NETWORK_WAIT = 0x09,
+#endif //NETWORK_SUPPORT
     MENU_STATE_MAJOR = 0xFF
 };
 
@@ -61,8 +64,9 @@ enum
     MENUITEM_EXIT,
     SUBMENUITEM_1PLAYER,
 #ifdef NETWORK_SUPPORT
-    SUBMENUITEM_2PLAYER_SERVER,
-    SUBMENUITEM_2PLAYER_CLIENT,
+    SUBMENUITEM_2PLAYERS,
+    SUBMENUITEM_HOST_GAME,
+    SUBMENUITEM_JOIN_GAME,
 #endif //NETWORK_SUPPORT
     SUBMENUITEM_DEMO,
     SUBMENUITEM_TESTSUITE,
@@ -535,6 +539,44 @@ void GameStateMenu::Update(float dt)
         if (mEngine->GetButtonState(JGE_BTN_NEXT)) //Hook for GameStateAward state
             mParent->DoTransition(TRANSITION_FADE, GAME_STATE_AWARDS); //TODO: A slide transition would be nice.
         break;
+#ifdef NETWORK_SUPPORT
+    case MENU_STATE_NETWORK_DEFINE:
+        currentState = MENU_STATE_MAJOR_SUBMENU;
+        subMenuController = NEW SimpleMenu(MENU_FIRST_DUEL_SUBMENU, this, Fonts::MENU_FONT, 150, 60);
+        if (subMenuController)
+        {
+            subMenuController->Add(SUBMENUITEM_HOST_GAME, "Host a game");
+            subMenuController->Add(SUBMENUITEM_JOIN_GAME, "Join a game");
+            subMenuController->Add(SUBMENUITEM_CANCEL, "Cancel");
+        }
+    break;
+    case MENU_STATE_NETWORK_WAIT:
+        if(MENU_STATE_MINOR_NONE == (currentState & MENU_STATE_MINOR))
+        {
+            if(mParent->mpNetwork->isConnected())
+            {
+                if(subMenuController) subMenuController->Close();
+                currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
+            }
+            else if(!subMenuController)
+            {
+//                currentState = MENU_STATE_MAJOR_SUBMENU;
+                subMenuController = NEW SimpleMenu(MENU_FIRST_DUEL_SUBMENU, this, Fonts::MENU_FONT, 150, 60);
+                if (subMenuController)
+                {
+                    subMenuController->Add(SUBMENUITEM_CANCEL, "Cancel connection");
+                }
+            }
+            else{
+                if (subMenuController)
+                    subMenuController->Update(dt);
+                ensureMGuiController();
+                mGuiController->Update(dt);
+                break;
+            }
+        }
+        break;
+#endif //NETWORK_SUPPORT
     case MENU_STATE_MAJOR_SUBMENU:
         if (subMenuController)
             subMenuController->Update(dt);
@@ -751,8 +793,7 @@ void GameStateMenu::ButtonPressed(int controllerId, int controlId)
                 // TODO Put 2 players mode back
                 // This requires to fix the hand (to accept 2 players) OR to implement network game
 #ifdef NETWORK_SUPPORT
-                subMenuController->Add(SUBMENUITEM_2PLAYER_SERVER, "2 Players - server");
-                subMenuController->Add(SUBMENUITEM_2PLAYER_CLIENT, "2 Players - client");
+                subMenuController->Add(SUBMENUITEM_2PLAYERS, "2 Players");
 #endif //NETWORK_SUPPORT
                 subMenuController->Add(SUBMENUITEM_DEMO, "Demo");
                 subMenuController->Add(SUBMENUITEM_CANCEL, "Cancel");
@@ -781,22 +822,39 @@ void GameStateMenu::ButtonPressed(int controllerId, int controlId)
             currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
             break;
 #ifdef NETWORK_SUPPORT
-        case SUBMENUITEM_2PLAYER_SERVER:
+        case SUBMENUITEM_2PLAYERS:
             mParent->players[0] = PLAYER_TYPE_HUMAN;
-            mParent->players[1] = PLAYER_TYPE_HUMAN;
-            this->hasChosenGameType = true;
-            mParent->gameType = GAME_TYPE_CLASSIC;
+            mParent->players[1] = PLAYER_TYPE_REMOTE;
             subMenuController->Close();
-            currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
+            currentState = MENU_STATE_NETWORK_DEFINE | MENU_STATE_MINOR_SUBMENU_CLOSING;
             break;
-        case SUBMENUITEM_2PLAYER_CLIENT:
-            mParent->players[0] = PLAYER_TYPE_HUMAN;
-            mParent->players[1] = PLAYER_TYPE_HUMAN;
-            this->hasChosenGameType = true;
-            mParent->gameType = GAME_TYPE_CLASSIC;
+        case SUBMENUITEM_HOST_GAME:
+        {
+            if(!mParent->mpNetwork)
+            {
+                mParent->mpNetwork = new JNetwork();
+            }
+            mParent->mpNetwork->connect();
             subMenuController->Close();
-            currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
+            currentState = MENU_STATE_NETWORK_WAIT | MENU_STATE_MINOR_SUBMENU_CLOSING;
             break;
+        }
+        case SUBMENUITEM_JOIN_GAME:
+        {
+            if(!mParent->mpNetwork)
+            {
+                mParent->mpNetwork = new JNetwork();
+            }
+            // FIXME needs to be able to specify the server ip
+            mParent->mpNetwork->connect("127.0.0.1");
+            // we let the server choose the game mode
+            mParent->gameType = GAME_TYPE_SLAVE;
+            hasChosenGameType = true;
+            subMenuController->Close();
+//            currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
+            currentState = MENU_STATE_NETWORK_WAIT;
+            break;
+        }
 #endif //NETWORK_SUPPORT
         case SUBMENUITEM_DEMO:
             mParent->players[0] = PLAYER_TYPE_CPU;
@@ -810,6 +868,12 @@ void GameStateMenu::ButtonPressed(int controllerId, int controlId)
             {
                 subMenuController->Close();
             }
+#ifdef NETWORK_SUPPORT
+            if(mParent->mpNetwork)
+            {
+              SAFE_DELETE(mParent->mpNetwork);
+            }
+#endif //NETWORK_SUPPORT
             currentState = MENU_STATE_MAJOR_MAINMENU | MENU_STATE_MINOR_SUBMENU_CLOSING;
             break;
 

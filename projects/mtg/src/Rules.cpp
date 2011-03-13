@@ -191,7 +191,11 @@ void Rules::addExtraRules()
             if (p->playMode != Player::MODE_TEST_SUITE && g->mRules->gamemode != GAME_TYPE_MOMIR && g->mRules->gamemode
                 != GAME_TYPE_RANDOM1 && g->mRules->gamemode != GAME_TYPE_RANDOM2 && g->mRules->gamemode
                 != GAME_TYPE_STORY && 
-                g->mRules->gamemode != GAME_TYPE_DEMO && (!g->players[0] == PLAYER_TYPE_CPU && !g->players[1] == PLAYER_TYPE_CPU))//keep this out of mimor and other game modes.
+                g->mRules->gamemode != GAME_TYPE_DEMO && (!g->players[0] == PLAYER_TYPE_CPU && !g->players[1] == PLAYER_TYPE_CPU)
+#ifdef NETWORK_SUPPORT
+                && !g->players[1] == PLAYER_TYPE_REMOTE
+#endif //NETWORK_SUPPORT
+                    )//keep this out of mimor and other game modes.
             {
                 difficultyRating = DeckManager::getDifficultyRating(g->players[0], g->players[1]);
             }
@@ -273,9 +277,9 @@ Player * Rules::loadPlayerMomir(int isAI)
 
     Player *player = NULL;
     if (!isAI) // Human Player
-        player = NEW HumanPlayer(tempDeck, options.profileFile("momir.txt", "", true).c_str(), deckFileSmall);
+        player = NEW HumanPlayer(options.profileFile("momir.txt", "", true).c_str(), deckFileSmall, tempDeck);
     else
-        player = NEW AIMomirPlayer(tempDeck, options.profileFile("momir.txt", "", true).c_str(), deckFileSmall, empty);
+        player = NEW AIMomirPlayer(options.profileFile("momir.txt", "", true).c_str(), deckFileSmall, empty, tempDeck);
 
     delete tempDeck;
     return player;
@@ -308,9 +312,9 @@ Player * Rules::loadPlayerRandom(int isAI, int mode)
 
     Player *player = NULL;
     if (!isAI) // Human Player
-        player = NEW HumanPlayer(tempDeck, deckFile, deckFileSmall);
+        player = NEW HumanPlayer(deckFile, deckFileSmall, tempDeck);
     else
-        player = NEW AIPlayerBaka(tempDeck, deckFile, deckFileSmall, "");
+        player = NEW AIPlayerBaka(deckFile, deckFileSmall, "", tempDeck);
 
     delete tempDeck;
     return player;

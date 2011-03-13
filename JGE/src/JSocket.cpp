@@ -1,3 +1,5 @@
+#if 0
+// need a complete rewrite to comply to the new interface
 #ifdef NETWORK_SUPPORT
 
 #include <pspkernel.h>
@@ -223,5 +225,6 @@ int JSocket::start_server(const char *szIpAddr)
 	return 0;
 }
 
+#endif //NETWORK_SUPPORT
 
 

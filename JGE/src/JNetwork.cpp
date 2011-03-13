@@ -4,7 +4,7 @@
 
 */
 
-
+#include "../include/DebugRoutines.h"
 #include "../include/JNetwork.h"
 
 #if defined (WIN32) || defined (LINUX)
@@ -30,144 +30,154 @@
 
 #endif
 
-
-
+#include <sstream>
 #include "../include/JSocket.h"
 
-JNetwork* JNetwork::mInstance = NULL;
-string JNetwork::serverIP = "";
-string JNetwork::error = "";
+map<string, processCmd> JNetwork::sCommandMap;
 
-JNetwork * JNetwork::GetInstance(){
-  if (!mInstance) mInstance = new JNetwork();
-  return mInstance;
+bool JNetwork::isConnected(){
+  if (connected_to_ap !=1) return false;
+  return socket->isConnected();
 }
 
-void JNetwork::EndInstance(){
-  SAFE_DELETE(mInstance);
-}
-
-
-
-#if defined (WIN32)
-  DWORD JNetwork::netthread = 0;
-  int JNetwork::connected_to_ap = 1;
-#elif defined (LINUX)
-  pthread_t JNetwork::netthread = NULL;
-  int JNetwork::connected_to_ap = 1;
+JNetwork::JNetwork()
+  : mpWorkerThread(NULL)
+{
+#if (defined WIN32) || (defined LINUX)
+  connected_to_ap = 1;
 #else
-  int JNetwork::connected_to_ap = 0;
-  int JNetwork::netthread = 0;
+  connected_to_ap = 0;
 #endif
 
-int JNetwork::isConnected(){
-  if (connected_to_ap !=1) return 0;
-  return JSocket::connected;
 }
 
-JNetwork::JNetwork(){
-}
-
-int JNetwork::receive(char * buffer, int length){
-  JSocket * socket = JSocket::mInstance;
-  if (!socket) return 0;
-  int size = 0;
-  while(!socket->received_data.empty() && size < length){
-    buffer[size] = socket->received_data.front();
-    socket->received_data.pop();
-    size++;
-  }
-  return size;
-}
-
-int JNetwork::send(char * buffer, int length){
-  JSocket * socket = JSocket::mInstance;
-  if (!socket) return 0;
-  for (int i = 0; i < length; i++){
-    socket->tosend_data.push(buffer[i]);
-  }
-  return length;
-}
-
-
-
-#if defined (WIN32)
-int JNetwork::net_thread(void* param)
+JNetwork::~JNetwork()
 {
-  do
+  if(mpWorkerThread) {
+    socket->Disconnect();
+    mpWorkerThread->join();
+    delete mpWorkerThread;
+  }
+  if(socket)
+    delete socket;
+}
+
+bool JNetwork::sendCommand(string xString)
+{
+  string aString = xString;
+  boost::mutex::scoped_lock l(sendMutex);
+  if(!socket) {
+    DebugTrace("sendCommand failed: no sockeet");
+    return false;
+  }
+  aString = aString + "Command";
+  if(sCommandMap.find(aString) == sCommandMap.end()) {
+    DebugTrace("sendCommand failed: command not registered");
+    return false;
+  }
+  aString = aString + "\n";
+
+  toSend << aString;
+
+  return true;
+}
+
+void JNetwork::registerCommand(string command, processCmd processCommand, processCmd processResponse)
+{
+  sCommandMap[command + "Command"] = processCommand;
+  sCommandMap[command + "Response"] = processResponse;
+}
+
+void JNetwork::ThreadProc(void* param)
+{
+  JNetwork* pThis = reinterpret_cast<JNetwork*>(param);
+  JSocket* pSocket = NULL;
+  if (pThis->serverIP.size()) {
+    DebugTrace("Starting Client Thread");
+    pThis->socket = new JSocket(pThis->serverIP);
+    if(pThis->socket->isConnected())
+      pSocket = pThis->socket;
+  } else {
+    DebugTrace("Starting Server Thread");
+    pThis->socket = new JSocket();
+    // Wait for some client
+    pSocket = pThis->socket->Accept();
+  }
+
+  while(pSocket && pSocket->isConnected()) {
+    char buff[1024];
     {
-      JSocket::mInstance = new JSocket();
-      JSocket * s = JSocket::mInstance;
-      if (JNetwork::serverIP.size()){
-	OutputDebugString(JNetwork::serverIP.c_str());
-	s->start_client(JNetwork::serverIP.c_str());
-      }else{
-	s->start_server(""); //IP address useless for server ?
+      boost::mutex::scoped_lock l(pThis->receiveMutex);
+      int len =  pSocket->Read(buff, sizeof(buff));
+      if(len) {
+        DebugTrace("receiving " << len << " bytes : " << buff);
+        pThis->received << buff;
+      }
+      // Checking for some command to execute
+      size_t found = pThis->received.str().find("Command");
+      if(found != string::npos)
+      {
+        map<string, processCmd>::iterator ite = sCommandMap.find((pThis->received.str()).substr(0, found) + "Command");
+        if(ite != sCommandMap.end())
+        {
+          DebugTrace("begin of command received : "<< pThis->received.str() );
+          DebugTrace("begin of command toSend : "<< pThis->toSend.str() );
+
+          boost::mutex::scoped_lock l(pThis->sendMutex);
+          pThis->toSend << pThis->received.str().substr(0, found) + "Response ";
+          pThis->received.str("");
+          processCmd theMethod = (ite)->second;
+          theMethod(pThis->received, pThis->toSend);
+
+          DebugTrace("end of command received : "<< pThis->received.str() );
+          DebugTrace("end of command toSend : "<< pThis->toSend.str() );
+        }
+      }
+      // Checking for some response to execute
+      found = pThis->received.str().find("Response");
+      if(found != string::npos)
+      {
+        map<string, processCmd>::iterator ite = sCommandMap.find((pThis->received.str()).substr(0, found) + "Response");
+        if(ite != sCommandMap.end())
+        {
+          DebugTrace("begin of response received : "<< pThis->received.str() );
+          DebugTrace("begin of response toSend : "<< pThis->toSend.str() );
+
+          boost::mutex::scoped_lock l(pThis->sendMutex);
+          string aString;
+          pThis->received >> aString;
+          processCmd theMethod = (ite)->second;
+          theMethod(pThis->received, pThis->toSend);
+          pThis->received.str("");
+
+          DebugTrace("end of response received : "<< pThis->received.str() );
+          DebugTrace("end of response toSend : "<< pThis->toSend.str() );
+        }
       }
     }
-  while(0);
 
-  return 0;
-}
-int JNetwork::connect(string serverIP){
-  if(netthread) return 0;
-
-  JNetwork::serverIP = serverIP;
-  /* Create a user thread to do the real work */
-  HANDLE hthread;
-  hthread=CreateThread(NULL,0,(LPTHREAD_START_ROUTINE)net_thread,0,0,&netthread);
-  return netthread;
-}
-
-#elif defined (LINUX)
-void* JNetwork::net_thread(void* param __attribute__((unused)))
-{
-  do
+    boost::mutex::scoped_lock l(pThis->sendMutex);
+    if(!pThis->toSend.str().empty())
     {
-      JSocket::mInstance = new JSocket();
-      JSocket * s = JSocket::mInstance;
-      if (JNetwork::serverIP.size())
-	s->start_client(JNetwork::serverIP.c_str());
-      else
-	s->start_server(""); //IP address useless for server ?
+      DebugTrace("sending  " << pThis->toSend.str().size() << " bytes : " << pThis->toSend.str());
+      pSocket->Write((char*)pThis->toSend.str().c_str(), pThis->toSend.str().size()+1);
+      pThis->toSend.str("");
     }
-  while (0);
-  return NULL;
+  }
+
+  DebugTrace("Quitting Thread");
 }
 
-int JNetwork::connect(string serverIP)
+#if defined (WIN32) || defined (LINUX)
+int JNetwork::connect(string ip)
 {
-  if (netthread) return 0;
-  JNetwork::serverIP = serverIP;
-  return pthread_create(&netthread, NULL, net_thread, NULL);
+  if (mpWorkerThread) return 0;
+  serverIP = ip;
+  mpWorkerThread = new boost::thread(JNetwork::ThreadProc, this);
+  return 42;
 }
 
 #else
-int net_thread(SceSize args, void *argp)
-{
-#ifdef NETWORK_SUPPORT
-	do
-	{
-    JSocket::mInstance = new JSocket();
-    JSocket * s = JSocket::mInstance;
-    if (JNetwork::serverIP.size()){
-			s->start_client(JNetwork::serverIP.c_str());
-
-    }else{
-			// connected, get my IPADDR and run test
-			SceNetApctlInfo szMyIPAddr;
-      if (sceNetApctlGetInfo(8, &szMyIPAddr) != 0){
-      }else{
-			  s->start_server(szMyIPAddr.ip);
-      }
-
-		}
-	}
-	while(0);
-#endif
-	return 0;
-}
-
 
 int JNetwork::connect(string serverIP){
 #ifdef NETWORK_SUPPORT

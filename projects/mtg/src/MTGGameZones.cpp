@@ -974,11 +974,10 @@ ostream& operator<<(ostream& out, const MTGGameZone& z)
 }
 ostream& operator<<(ostream& out, const MTGPlayerCards& z)
 {
-    out << z.library->nb_cards << endl;
+    out << z.library->nb_cards << " ";
     for (int i = 0; i < z.library->nb_cards; i++)
         out << z.library->cards[i]->getMTGId() << " ";
 
-    out << endl;
     return out;
 }
 

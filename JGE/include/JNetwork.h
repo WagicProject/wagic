@@ -6,47 +6,41 @@
 
 #include "JGE.h"
 #include <string>
+#include <map>
 using namespace std;
+class JSocket;
+#include <iostream>
+#include <sstream>
+#include "Threading.h"
 
-class JNetwork{
+typedef void(*processCmd)(istream&, ostream&);
+
+class JNetwork {
 private:
-  static JNetwork * mInstance;
-  static int connected_to_ap;
-  
+  int connected_to_ap;
+  JSocket* socket;
+  boost::mutex sendMutex;
+  boost::mutex receiveMutex;
+  stringstream received;
+  stringstream toSend;
+  static map<string, processCmd> sCommandMap;
+
 public:
-  static  string error;
   JNetwork();
-  static JNetwork * GetInstance();
-  static void EndInstance();
-  static string serverIP;
-  int receive(char * buffer, int length);
-  int send(char * buffer, int length);
+  ~JNetwork();
+  string serverIP;
+
   int connect(string serverIP = "");
-  static int isConnected();
-#if defined (WIN32)
-  static int net_thread(void* param);
-#elif defined (LINUX)
-  static void* net_thread(void* param);
-#else
+  bool isConnected();
+  static void ThreadProc(void* param);
+#if !defined (WIN32) && !defined (LINUX)
   static int connect_to_apctl(int config);
 #endif
+  bool sendCommand(string command);
+  static void registerCommand(string command, processCmd processCommand, processCmd processResponse);
 
 private:
-
-#if defined (WIN32)
-  static DWORD netthread;
-#elif defined (LINUX)
-  static pthread_t netthread;
-#else
-    static int netthread;
-#endif
-
+  boost::thread *mpWorkerThread;
 };
-
-#if defined (WIN32)
-#elif defined (LINUX)
-#else
-  static int net_thread(SceSize args, void *argp);
-#endif
 
 #endif

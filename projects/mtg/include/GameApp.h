@@ -22,12 +22,18 @@
 #include "MTGGameZones.h"
 
 #include "CardEffect.h"
+#ifdef NETWORK_SUPPORT
+#include "JNetwork.h"
+#endif //NETWORK_SUPPORT
 
 enum
 {
     PLAYER_TYPE_CPU = 0,
     PLAYER_TYPE_HUMAN=1,
-    PLAYER_TYPE_TESTSUITE=2
+    PLAYER_TYPE_TESTSUITE=2,
+#ifdef NETWORK_SUPPORT
+    PLAYER_TYPE_REMOTE=3
+#endif //NETWORK_SUPPORT
 };
 
 enum
@@ -37,7 +43,10 @@ enum
     GAME_TYPE_RANDOM1,
     GAME_TYPE_RANDOM2,
     GAME_TYPE_STORY,
-    GAME_TYPE_DEMO
+    GAME_TYPE_DEMO,
+#ifdef NETWORK_SUPPORT
+    GAME_TYPE_SLAVE,
+#endif //NETWORK_SUPPORT
 };
 
 class MTGAllCards;
@@ -61,6 +70,9 @@ public:
 
     int gameType;
     CardEffect *effect;
+#ifdef NETWORK_SUPPORT
+    JNetwork* mpNetwork;
+#endif //NETWORK_SUPPORT
 
     GameApp();
     virtual ~GameApp();
