@@ -2726,8 +2726,8 @@ toughness=4
 [card]
 name=Archon of Redemption
 abilities=flying
-auto=dynamicability<!powerlife targetcontroller!>
-auto=@movedTo(creature[flying]|mybattlefield):all(trigger[to]) dynamicability<!mytgt powerlife targetcontroller!>
+auto=may dynamicability<!powerlifegain srccontroller!>
+auto=@movedTo(creature[flying]|mybattlefield):may all(trigger[to]) dynamicability<!mytgt powerlifegain srccontroller!>
 text=Flying -- Whenever Archon of Redemption or another creature with flying enters the battlefield under your control, you may gain life equal to that creature's power.
 mana={3}{W}{W}
 type=Creature
@@ -3947,7 +3947,7 @@ toughness=1
 [/card]
 [card]
 name=Avenger en-Dal
-auto={2}{W}{T}{discard(*|myhand)}:target(creature[attcking]) dynamicability<!mytgt toughnesslife targetcontroller!> moveTo(exile)
+auto={2}{W}{T}{discard(*|myhand)}:target(creature[attacking]) dynamicability<!mytgt toughnesslifegain targetcontroller!> moveTo(exile)
 text={2}{W}, {T}, Discard a card: Exile target attacking creature. Its controller gains life equal to its toughness.
 mana={1}{W}
 type=Creature
@@ -10794,7 +10794,7 @@ name=Chronozoa
 abilities=flying
 auto=vanishing:3
 auto=@movedTo(this|graveyard) from(myBattlefield):this(counter{0/0.1.Time}=0) token(111066)*2
-text=Vanishing 3 (This permanent enters the battlefield with three time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- When Chronozoa is put into a graveyard from the battlefield, if it had no time counters on it, put two tokens that are copies of it onto the battlefield.
+text=Flying -- Vanishing 3 (This permanent enters the battlefield with three time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- When Chronozoa is put into a graveyard from the battlefield, if it had no time counters on it, put two tokens that are copies of it onto the battlefield.
 mana={3}{U}
 type=Creature
 subtype=Illusion
@@ -14754,8 +14754,8 @@ type=Instant
 [card]
 name=Death Watch
 target=creature
-auto=@movedTo(mytgt|graveyard):all(trigger[to]) dynamicability<!mytgt toughnesslifeloss targetcontroller!>
-auto=@movedTo(mytgt|graveyard):all(trigger[to]) dynamicability<!mytgt toughnesslifegain targetopponent!>
+auto=@movedTo(mytgt|graveyard):all(trigger[to]) dynamicability<!mytgt powerlifeloss targetcontroller!>
+auto=@movedTo(mytgt|graveyard):all(trigger[to]) dynamicability<!mytgt toughnesslifegain srccontroller!>
 text=Enchant creature -- When enchanted creature is put into a graveyard, its controller loses life equal to its power and you gain life equal to its toughness.
 mana={B}
 type=Enchantment
@@ -27289,7 +27289,7 @@ toughness=3
 [card]
 name=Gristleback
 auto=bloodthirst:1
-auto={S}:dynamicability<!powerlife targetcontroller!>
+auto={S}:dynamicability<!powerlifegain targetcontroller!>
 text=Bloodthirst 1 (If an opponent was dealt damage this turn, this creature enters the battlefield with a +1/+1 counter on it.) -- Sacrifice Gristleback: You gain life equal to Gristleback's power.
 mana={2}{G}
 type=Creature
@@ -28496,7 +28496,7 @@ type=Instant
 name=Heal the Scars
 target=creature
 auto=regenerate
-auto=dynamicability<1mytgt toughnesslifegain srccontroller!>
+auto=dynamicability<!mytgt toughnesslifegain srccontroller!>
 text=Regenerate target creature. You gain life equal to that creature's toughness.
 mana={3}{G}
 type=Instant
@@ -49754,7 +49754,7 @@ toughness=4
 [/card]
 [card]
 name=Rashida Scalebane
-auto={T}:target(dragon[attacking;blocking]) dynamicability<!mytgt powerlife srccontroller!> destroy
+auto={T}:target(dragon[attacking;blocking]) dynamicability<!mytgt powerlifegain srccontroller!> destroy
 text={T}: Destroy target attacking or blocking Dragon. It can't be regenerated. You gain life equal to its power.
 mana={3}{W}{W}
 type=Legendary Creature
@@ -61221,7 +61221,7 @@ toughness=3
 [card]
 name=Stalking Vengeance
 abilities=haste
-auto=@movedTo(creature|graveyard) from(myBattlefield):all(trigger[to]) dynamicability<!mytgt powerstrike targetopponent!>
+auto=@movedTo(other creature|graveyard) from(myBattlefield):all(trigger[to]) dynamicability<!mytgt powerstrike targetopponent!>
 text=Haste -- Whenever another creature you control is put into a graveyard from the battlefield, it deals damage equal to its power to target player.
 mana={5}{R}{R}
 type=Creature
@@ -72383,7 +72383,7 @@ color=blue
 [/card]
 [card]
 name=Wave of Reckoning
-auto=lord(creature) dynamicability<!mytgt powerstrike!>
+auto=lord(creature) dynamicability<!mytgt powerstrike itself!>
 text=Each creature deals damage to itself equal to its power.
 mana={4}{W}
 type=Sorcery
