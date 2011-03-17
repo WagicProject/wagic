@@ -157,7 +157,7 @@ name=AEthertow
 target=creature[attacking;blocking]
 auto=moveTo(ownerlibrary)
 auto=alternative moveTo(ownerlibrary) target(creature[attacking;blocking])
-other={3}{WU}{T(creature[blue;white|mybattlefield])}{T(creature[blue;white|mybattlefield])}
+other={3}{WU}{T(creature[blue;white]|mybattlefield)}{T(creature[blue;white]|mybattlefield)}
 text=Put target attacking or blocking creature on top of its owner's library. -- Conspire (As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
 mana={3}{WU}
 type=Instant
@@ -4235,7 +4235,7 @@ toughness=2
 [/card]
 [card]
 name=Balduvian Dead
-auto={2}{R}{E(creature|mygraveyard)}:token(graveborn,creature zombie,3/1,blackred,treason,unearth,haste)
+auto={2}{R}{E(creature|mygraveyard)}:token(graveborn,creature zombie,3/1,blackred,treason,haste)
 text={2}{R}, Exile a creature card from your graveyard: Put a 3/1 black and red Graveborn creature token with haste onto the battlefield. Sacrifice it at the beginning of the next end step.
 mana={3}{B}
 type=Creature
@@ -4710,7 +4710,7 @@ name=Barkshell Blessing
 target=creature
 auto=2/2
 auto=alternative target(creature) 2/2
-other={GW}{T(creature[green;white]mybattlefield)}{T(creature[green;white]mybattlefield)}
+other={GW}{T(creature[green;white]|mybattlefield)}{T(creature[green;white]|mybattlefield)}
 text=Target creature gets +2/+2 until end of turn. -- Conspire (As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
 mana={GW}
 type=Instant
@@ -5156,7 +5156,7 @@ toughness=1
 [card]
 name=Bazaar of Baghdad
 auto={T}:token(-20122011)*3 && draw:2
-text={T}: Draw 2 cards, then discard 3 cards.
+text={T}: Draw two cards, then discard three cards.
 type=Land
 [/card]
 [card]
@@ -8282,8 +8282,8 @@ type=Enchantment
 [/card]
 [card]
 name=Brood Birthing
-auto=aslongas(eldrazi spawn|myBattlefield) Token(-193507)*2 && Token(-193507)
-text=If you control at least one 0/1 Eldrazi Spawn creature token, put 3 0/1 colorless Eldrazi Spawn creature tokens onto the battlefield. They have "Sacrifice this creature: Add {1} to your mana pool."
+auto=aslongas(eldrazi spawn|myBattlefield) Token(-193507)*3
+text=If you control at least one 0/1 Eldrazi Spawn creature token, put three 0/1 colorless Eldrazi Spawn creature tokens onto the battlefield. They have "Sacrifice this creature: Add {1} to your mana pool."
 mana={1}{R}
 type=Sorcery
 [/card]
@@ -13903,6 +13903,7 @@ type=Instant
 name=Dark Depths
 auto=counter(0/0,10,Ice)
 auto={3}:(counter(0/0,-1,Ice) all(this) && bury all(dark depths[-counter{0/0.1.Ice}])
+auto=this(counter{0/0.1.Ice}<1) {0}:sacrifice all(this)
 auto=@movedTo(mygraveyard) from(dark depths[-counter{0/0.1.Ice}]|myBattlefield):token(Marit Lage,legendary creature avatar, 20/20,flying,indestructible,black)
 text=Dark Depths enters the battlefield with ten ice counters on it. -- {3}: Remove an ice counter from Dark Depths. -- When Dark Depths has no ice counters on it, sacrifice it. If you do, put a legendary 20/20 black Avatar creature token with flying and "This creature is indestructible" named Marit Lage onto the battlefield.
 type=Legendary Snow Land
@@ -16206,7 +16207,7 @@ type=Sorcery
 [card]
 name=Disturbed Burial
 target=creature|mygraveyard
-auto=moveTo(mygraveyard)
+auto=moveTo(myhand)
 buyback={1}{B}{3}
 text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Return target creature card from your graveyard to your hand.
 mana={1}{B}
@@ -16214,10 +16215,10 @@ type=Sorcery
 [/card]
 [card]
 name=Disturbing Plot
-target=creature|mygraveyard
-auto=moveTo(myhand)
-auto=alternative moveTo(myhand) creature(mygraveyard)
-other={1}{B}{T(creature[black])}{T(creature[black])}
+target=creature|graveyard
+auto=moveTo(ownerhand)
+auto=alternative moveTo(ownerhand) target(creature|graveyard)
+other={1}{B}{T(creature[black]|mybattlefield)}{T(creature[black]|mybattlefield)}
 text=Return target creature card in a graveyard to its owner's hand. -- Conspire (As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
 mana={1}{B}
 type=Sorcery
@@ -24244,6 +24245,7 @@ auto={T}{C(0/0,-1,Mining)}:Add{B}
 auto={T}{C(0/0,-1,Mining)}:Add{R}
 auto={T}{C(0/0,-1,Mining)}:Add{G}
 auto=@tapped(this):bury all(gemstone mine[-counter{0/0.1.Mining}])
+auto=this(counter{0/0.1.Mining}<1) {0}:sacrifice all(this)
 text=Gemstone Mine enters the battlefield with three mining counters on it. -- {T}, Remove a mining counter from Gemstone Mine: Add one mana of any color to your mana pool. If there are no mining counters on Gemstone Mine, sacrifice it.
 type=Land
 [/card]
@@ -24842,9 +24844,9 @@ subtype=Giant
 [/card]
 [card]
 name=Giantbaiting
-auto=token(Giant,Creature Giant,4/4,haste,unearth)
-auto=alternative moveTo(myhand) token(Giant,Creature Giant,4/4,haste,unearth)
-other={2}{RG}{T(creature[red;green])}{T(creature[red;green])}
+auto=token(Giant,Creature Giant Warrior,4/4,haste,unearth,red green)
+auto=alternative token(Giant,Creature Giant Warrior,4/4,haste,unearth,red green)
+other={2}{RG}{T(creature[red;green]|mybattlefield)}{T(creature[red;green]|mybattlefield)}
 text=Put a 4/4 red and green Giant Warrior creature token with haste onto the battlefield. Exile it at the beginning of the next end step. -- Conspire (As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it.)
 mana={2}{RG}
 type=Sorcery
@@ -25069,8 +25071,9 @@ toughness=6
 [card]
 name=Gleeful Sabotage
 target=artifact,enchantment
-auto=alternative moveTo(myhand) destroy target(artifact,enchantment)
-other={1}{G}{T(creature[green])}{T(creature[green])}
+auto=destroy
+auto=alternative destroy target(artifact,enchantment)
+other={1}{G}{T(creature[green]|mybattlefield)}{T(creature[green]|mybattlefield)}
 text=Destroy target artifact or enchantment. -- Conspire (As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
 mana={1}{G}
 type=Sorcery
@@ -29226,9 +29229,11 @@ toughness=2
 [/card]
 [card]
 name=Hickory Woodlot
+auto=tap
 auto=counter(0/0,2,Depletion)
 auto={T}{C(0/0,-1,Depletion)}:Add{G}{G}
 auto=@tapped(this):bury all(hickory woodlot[-counter{0/0.1.Depletion}])
+auto=this(counter{0/0.1.Depletion}<1) {0}:sacrifice all(this)
 text=Hickory Woodlot enters the battlefield tapped with two depletion counters on it. -- {T}, Remove a depletion counter from Hickory Woodlot: Add {G}{G} to your mana pool. If there are no depletion counters on Hickory Woodlot, sacrifice it.
 type=Land
 [/card]
@@ -29878,7 +29883,7 @@ abilities=flying,haste
 auto=@next end:destroy
 text=Flying,haste
 type=Artifact Creature
-subtype=Hornet
+subtype=Insect
 power=1
 toughness=1
 [/card]
@@ -30177,7 +30182,7 @@ toughness=1
 [card]
 name=Hunted Dragon
 abilities=flying,haste
-auto=token(Knight,Creature Token Knight,2/2,first strike,white)*3 opponent
+auto=token(Knight,Creature Knight,2/2,first strike,white)*3 opponent
 text=Flying, haste -- When Hunted Dragon enters the battlefield, put three 2/2 white Knight creature tokens with first strike onto the battlefield under target opponent's control.
 mana={3}{R}{R}
 type=Creature
@@ -30188,7 +30193,7 @@ toughness=6
 [card]
 name=Hunted Horror
 abilities=trample
-auto=token(Centaur,Creature Token Centaur,3/3,protection from black,green)*2 opponent
+auto=token(Centaur,Creature Centaur,3/3,protection from black,green)*2 opponent
 text=Trample -- When Hunted Horror enters the battlefield, put two 3/3 green Centaur creature tokens with protection from black onto the battlefield under target opponent's control.
 mana={B}{B}
 type=Creature
@@ -30199,7 +30204,7 @@ toughness=7
 [card]
 name=Hunted Lammasu
 abilities=flying
-auto=token(Horror,Creature Token Horror,4/4,black) opponent
+auto=token(Horror,Creature Horror,4/4,black) opponent
 text=Flying -- When Hunted Lammasu enters the battlefield, put a 4/4 black Horror creature token onto the battlefield under target opponent's control.
 mana={2}{W}{W}
 type=Creature
@@ -30210,7 +30215,7 @@ toughness=5
 [card]
 name=Hunted Phantasm
 abilities=unblockable
-auto=token(Goblin,Creature Token Goblin,1/1,red)*5 opponent
+auto=token(Goblin,Creature Goblin,1/1,red)*5 opponent
 text=Hunted Phantasm is unblockable. -- When Hunted Phantasm enters the battlefield, put five 1/1 red Goblin creature tokens onto the battlefield under target opponent's control.
 mana={1}{U}{U}
 type=Creature
@@ -30221,7 +30226,7 @@ toughness=6
 [card]
 name=Hunted Troll
 auto={G}:regenerate
-auto=token(Faerie,Creature Token Faerie,1/1,flying,blue)*4 opponent
+auto=token(Faerie,Creature Faerie,1/1,flying,blue)*4 opponent
 text=When Hunted Troll enters the battlefield, put four 1/1 blue Faerie creature tokens with flying onto the battlefield under target opponent's control. -- {G}: Regenerate Hunted Troll.
 mana={2}{G}{G}
 type=Creature
@@ -30459,7 +30464,7 @@ toughness=2
 [/card]
 [card]
 name=Icatian Crier
-auto={1}{W}{T}{discard(*|myhand)}:token(Citizen,creature citizen, 1/1, white) && token(Citizen,creature citizen, 1/1, white)
+auto={1}{W}{T}{discard(*|myhand)}:token(Citizen,creature citizen, 1/1, white)*2
 text={1}{W}, {T}, Discard a card: Put two 1/1 white Citizen creature tokens onto the battlefield.
 mana={2}{W}
 type=Creature
@@ -35260,15 +35265,15 @@ toughness=4
 [/card]
 [card]
 name=Kulrath Knight
-mana={3}{BR}{BR}
-power=3
-toughness=3
-type=Creature
-subtype=Elemental Knight
 abilities=flying,wither
-text=Flying -- Wither (This deals damage to creatures in the form of -1/-1 counters.) -- Creatures your opponents control with counters on them can't attack or block.
 auto=lord(creature[counter{any}]|opponentbattlefield) cantattack
 auto=lord(creature[counter{any}]|opponentbattlefield) cantblock
+text=Flying -- Wither (This deals damage to creatures in the form of -1/-1 counters.) -- Creatures your opponents control with counters on them can't attack or block.
+mana={3}{BR}{BR}
+type=Creature
+subtype=Elemental Knight
+power=3
+toughness=3
 [/card]
 [card]
 name=Kumano, Master Yamabushi
@@ -39253,7 +39258,7 @@ name=Memory Sluice
 target=player
 auto=deplete:4
 auto=alternative deplete:4 target(player)
-other={UB}{T(creature[black;blue])}{T(creature[black;blue])}
+other={UB}{T(creature[black;blue]|mybattlefield)}{T(creature[black;blue]|mybattlefield)}
 text=Target player puts the top four cards of his or her library into his or her graveyard. -- Conspire (As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
 mana={UB}
 type=Sorcery
@@ -43797,7 +43802,7 @@ type=Enchantment
 [card]
 name=Oblivion Stone
 auto={4}{T}:counter(0/0,1,Fate) target(*)
-auto={5}{T}{S}:bury all(*[-land;-counter{0/0.1.Fate}]) && counter(0/0,-99,Fate) all(*[counter{0/0.1.Fate}])
+auto={5}{T}{S}:destroy all(*[-land;-counter{0/0.1.Fate}]) && all(*|battlefield) removeallcounters(0/0,1,Fate)
 text={4}, {T}: Put a fate counter on target permanent. -- {5}, {T}, Sacrifice Oblivion Stone: Destroy each nonland permanent without a fate counter on it, then remove all fate counters from all permanents.
 mana={3}
 type=Artifact
@@ -45737,6 +45742,7 @@ auto=tap
 auto=counter(0/0,2,Depletion)
 auto={T}{C(0/0,-1,Depletion)}:Add{B}{B}
 auto=@tapped(this):bury all(peat bog[-counter{0/0.1.Depletion}]|myBattlefield)
+auto=this(counter{0/0.1.Depletion}<1) {0}:sacrifice all(this)
 text=Peat Bog enters the battlefield tapped with two depletion counters on it. -- {T}, Remove a depletion counter from Peat Bog: Add {B}{B} to your mana pool. If there are no depletion counters on Peat Bog, sacrifice it.
 type=Land
 [/card]
@@ -47022,8 +47028,8 @@ toughness=1
 [card]
 name=Plague Boiler
 auto={1}{B}{G}:counter(0/0,-1,Plague)
-auto={1}{B}{G}:counter(0/0,1,Plague) && aslongas(plague boiler[counter{0/0.3.Plague}]|myBattlefield) destroy all(*[-land])
-auto=@each my upkeep:counter(0/0,1,Plague) && aslongas(plague boiler[counter{0/0.3.Plague}]|myBattlefield) destroy all(*[-land])
+auto={1}{B}{G}:counter(0/0,1,Plague) && aslongas(plague boiler[counter{0/0.3.Plague}]|myBattlefield) destroy all(*[-land]) && aslongas(plague boiler[counter{0/0.3.Plague}]|myBattlefield) sacrifice
+auto=@each my upkeep:counter(0/0,1,Plague) && aslongas(plague boiler[counter{0/0.3.Plague}]|myBattlefield) destroy all(*[-land]) && aslongas(plague boiler[counter{0/0.3.Plague}]|myBattlefield) sacrifice
 text=At the beginning of your upkeep, put a plague counter on Plague Boiler. -- {1}{B}{G}: Put a plague counter on Plague Boiler or remove a plague counter from it. -- When Plague Boiler has three or more plague counters on it, sacrifice it. If you do, destroy all nonland permanents.
 mana={3}
 type=Artifact
@@ -48682,6 +48688,7 @@ type=Sorcery
 name=Pyrohemia
 auto={R}:damage:1 all(creature,player)
 auto=@next endofturn:aslongas(creature|battlefield) moveto(mygraveyard) <1
+text=At the beginning of the end step, if no creatures are on the battlefield, sacrifice Pyrohemia. -- {R}: Pyrohemia deals 1 damage to each creature and each player.
 mana={2}{R}{R}
 type=Enchantment
 [/card]
@@ -50761,6 +50768,7 @@ auto=tap
 auto=counter(0/0,2,Depletion)
 auto={T}{C(0/0,-1,Depletion)}:Add{W}{W}
 auto=@tapped(this):bury all(remote farm[-counter{0/0.1.Depletion}]|myBattlefield)
+auto=this(counter{0/0.1.Depletion}<1) {0}:sacrifice all(this)
 text=Remote Farm enters the battlefield tapped with two depletion counters on it. -- {T}, Remove a depletion counter from Remote Farm: Add {W}{W} to your mana pool. If there are no depletion counters on Remote Farm, sacrifice it.
 type=Land
 [/card]
@@ -53406,9 +53414,11 @@ type=Artifact
 [/card]
 [card]
 name=Sandstone Needle
+auto=tap
 auto=counter(0/0,2,Depletion)
 auto={T}{C(0/0,-1,Depletion)}:Add{R}{R}
-auto=@tapped(this):bury all(sandstone needle[-counter{0/0.1.Depletion}]|myBattlefield) bury
+auto=@tapped(this):bury all(sandstone needle[-counter{0/0.1.Depletion}]|myBattlefield)
+auto=this(counter{0/0.1.Depletion}<1) {0}:sacrifice all(this)
 text=Sandstone Needle enters the battlefield tapped with two depletion counters on it. -- {T}, Remove a depletion counter from Sandstone Needle: Add {R}{R} to your mana pool. If there are no depletion counters on Sandstone Needle, sacrifice it.
 type=Land
 [/card]
@@ -53608,9 +53618,11 @@ toughness=2
 [/card]
 [card]
 name=Saprazzan Skerry
+auto=tap
 auto=counter(0/0,2,Depletion)
 auto={T}{C(0/0,-1,Depletion)}:Add{U}{U}
-auto=@tapped(this):bury all(saprazzan skerry[-counter{0/0.1.Depletion}]|myBattlefield) bury
+auto=@tapped(this):bury all(saprazzan skerry[-counter{0/0.1.Depletion}]|myBattlefield)
+auto=this(counter{0/0.1.Depletion}<1) {0}:sacrifice all(this)
 text=Saprazzan Skerry enters the battlefield tapped with two depletion counters on it. -- {T}, Remove a depletion counter from Saprazzan Skerry: Add {U}{U} to your mana pool. If there are no depletion counters on Saprazzan Skerry, sacrifice it.
 type=Land
 [/card]
@@ -65003,7 +65015,8 @@ toughness=2
 [card]
 name=Tetsuo Umezawa
 auto=cantbetargetof(aura)
-auto={U}{B}{B}{R}{T}:destroy target(creature[tapped;blocking])
+auto={U}{B}{B}{R}{T}:name(Destroy target tapped creature) && destroy target(creature[tapped])
+auto={U}{B}{B}{R}{T}:name(Destroy target blocking creature) && destroy target(creature[blocking])
 text=Tetsuo Umezawa can't be the target of Aura spells. -- {U}{B}{B}{R}, {T}: Destroy target tapped or blocking creature.
 mana={U}{B}{R}
 type=Legendary Creature
@@ -66130,7 +66143,7 @@ toughness=1
 [/card]
 [card]
 name=Tidal Wave
-auto=token(-3371)
+auto=token(Wall,Creature Wall,5/5,defender,treason,blue)
 text=Put a 5/5 blue Wall creature token with defender onto the battlefield. Sacrifice it at the beginning of the next end step.
 mana={2}{U}
 type=Instant
@@ -68791,7 +68804,7 @@ toughness=1
 [card]
 name=Urborg Emissary
 kicker={1}{U}
-auto=kicker moveTo(ownerhand) target(*|battlefield))
+auto=kicker moveTo(ownerhand) target(*|battlefield)
 text=Kicker {1}{U} (You may pay an additional {1}{U} as you cast this spell.) -- When Urborg Emissary enters the battlefield, if it was kicked, return target permanent to its owner's hand.
 mana={2}{B}
 type=Creature
@@ -69170,7 +69183,7 @@ toughness=1
 [card]
 name=Vampire Hexmage
 abilities=first strike
-auto={S}:all(*|battlefield) removeallcounters(all)
+auto={S}:removeallcounters(all) target(*[counter{any}]|battlefield)
 text=First strike -- Sacrifice Vampire Hexmage: Remove all counters from target permanent.
 mana={B}{B}
 type=Creature
@@ -72369,17 +72382,6 @@ auto={T}:Add {B}
 text=({T}: Add {U} or {B} to your mana pool.) -- As Watery Grave enters the battlefield, you may pay 2 life. If you don't, Watery Grave enters the battlefield tapped.
 type=Land
 subtype=Island Swamp
-[/card]
-[card]
-name=Wave
-power=5
-toughness=5
-abilities=defender
-auto=@next end:moveTo(mygraveyard)
-text=Defender
-type=Creature
-suptype=Wall
-color=blue
 [/card]
 [card]
 name=Wave of Reckoning
