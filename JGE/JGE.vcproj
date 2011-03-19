@@ -42,9 +42,10 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="Dependencies/include;&quot;$(JGEEXTRAS)&quot;"
+				AdditionalIncludeDirectories="Dependencies/include;&quot;$(JGEEXTRAS)&quot;;../Boost;../projects/mtg/include;include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -118,8 +119,9 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="0"
-				AdditionalIncludeDirectories="Dependencies/include;&quot;$(JGEEXTRAS)&quot;"
+				AdditionalIncludeDirectories="Dependencies/include;&quot;$(JGEEXTRAS)&quot;;../Boost;../projects/mtg/include;include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="2"
@@ -192,9 +194,10 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="3"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="Dependencies/include;&quot;$(JGEEXTRAS)&quot;"
+				AdditionalIncludeDirectories="Dependencies/include;&quot;$(JGEEXTRAS)&quot;;../Boost;../projects/mtg/include;include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;_SECURE_SCL=0;_HAS_ITERATOR_DEBBUGING=0"
 				StringPooling="true"
 				RuntimeLibrary="2"

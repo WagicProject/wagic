@@ -48,6 +48,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				AdditionalIncludeDirectories="&quot;$(MTGEXTRAS)&quot;;./include;../../JGE/include;../../JGE/Dependencies/include;../../Boost"
@@ -146,6 +147,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="0"
 				AdditionalIncludeDirectories="&quot;$(MTGEXTRAS)&quot;;./include;../../JGE/include;../../JGE/Dependencies/include;../../Boost"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS"
@@ -246,6 +248,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="3"
 				InlineFunctionExpansion="1"
 				AdditionalIncludeDirectories="&quot;$(MTGEXTRAS)&quot;;./include;../../JGE/include;../../JGE/Dependencies/include;../../Boost"
@@ -346,6 +349,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="0"
 				AdditionalIncludeDirectories="&quot;$(MTGEXTRAS)&quot;;./include;../../JGE/include;../../JGE/Dependencies/include;../../Boost"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS"
