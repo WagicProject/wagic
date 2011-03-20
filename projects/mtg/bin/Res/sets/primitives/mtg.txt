@@ -27052,9 +27052,9 @@ type=Enchantment
 [/card]
 [card]
 name=Green Sun's Zenith
-auto=moveto(mybattlefield) target(creature[manacost <=X]|mylibrary)
+auto=moveto(mybattlefield) target(creature[green;manacost <=X]|mylibrary)
 alias=135262
-text=Red Sun's Zenith deals X damage to target creature or player. If a creature dealt damage this way would be put into a graveyard this turn, exile it instead. Shuffle Red Sun's Zenith into its owner's library.
+text=Search your library for a green creature card with converted mana cost X or less, put it onto the battlefield, then shuffle your library. Shuffle Green Sun's Zenith into its owner's library.
 mana={X}{G}
 type=Sorcery
 [/card]
