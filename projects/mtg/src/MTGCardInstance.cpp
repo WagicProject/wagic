@@ -42,6 +42,7 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     banding = NULL;
     life = toughness;
     preventable = 0;
+    thatmuch = 0;
     flanked = 0;
     castMethod = Constants::NOT_CAST;
 }
@@ -157,6 +158,7 @@ void MTGCardInstance::initMTGCI()
     reduxamount = 0;
     summoningSickness = 1;
     preventable = 0;
+    thatmuch = 0;
     flanked = 0;
     target = NULL;
     type_as_damageable = DAMAGEABLE_MTGCARDINSTANCE;
@@ -474,6 +476,7 @@ int MTGCardInstance::cleanup()
     }
     regenerateTokens = 0;
     preventable = 0;
+    thatmuch = 0;
     return 1;
 }
 
