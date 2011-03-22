@@ -117,6 +117,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 zones[nbzones++] = MTGGameZone::OPPONENT_LIBRARY;
                 zones[nbzones++] = MTGGameZone::MY_HAND;
                 zones[nbzones++] = MTGGameZone::OPPONENT_HAND;
+                zones[nbzones++] = MTGGameZone::MY_EXILE;
                 zones[nbzones++] = MTGGameZone::OPPONENT_EXILE;
             }
             else if (zoneName.compare("stack") == 0)
