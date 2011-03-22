@@ -31243,6 +31243,14 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Inquisition of Kozilek
+target=*[manacost<=3;-land]|opponenthand
+auto=reject
+text=Target player reveals his or her hand. You choose a nonland card from it with converted mana cost 3 or less. That player discards that card.
+mana={B}
+type=Sorcery
+[/card]
+[card]
 name=Inquisitor's Snare
 target=creature
 auto=teach(creature[-red;-black]) preventalldamage from(mytgt) ueot
