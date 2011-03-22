@@ -6590,7 +6590,7 @@ toughness=1
 [/card]
 [card]
 name=Bloodchief Ascension
-auto=@each endofturn foelosttwo:may counter(0/0,1,Quest)
+auto=@each endofturn foelost(2):may counter(0/0,1,Quest)
 auto=@movedTo(*|opponentgraveyard):this(counter{0/0.3.Quest}) life:-2 opponent && this(counter{0/0.3.Quest}) life:2 controller
 text=At the beginning of each end step, if an opponent lost 2 or more life this turn, you may put a quest counter on Bloodchief Ascension. (Damage causes loss of life.) -- Whenever a card is put into an opponent's graveyard from anywhere, if Bloodchief Ascension has three or more quest counters on it, you may have that player lose 2 life. If you do, you gain 2 life.
 mana={B}
@@ -63245,6 +63245,16 @@ auto=dynamicability<!mytgt powerlifegain targetcontroller!>
 text=Exile target creature. Its controller gains life equal to its power.
 mana={W}
 type=Instant
+[/card]
+[card]
+name=Sygg, River Cutthroat
+auto=@each endofturn foelost(3):may draw:1 controller
+text=At the beginning of each end step, if an opponent lost 3 or more life this turn, you may draw a card. (Damage causes loss of life.)
+mana={UB}{UB}
+type=Legendary Creature
+subtype=Merfolk Rogue
+power=2
+toughness=2
 [/card]
 [card]
 name=Sygg, River Guide
