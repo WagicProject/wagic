@@ -556,7 +556,6 @@ int ActionStack::addDamage(MTGCardInstance * _source, Damageable * _target, int 
     addAction(damage);
     _source->thatmuch = _damage;
     _target->thatmuch = _damage;
-    //_target->lifeLostThisTurn += _damage;
     return 1;
 }
 

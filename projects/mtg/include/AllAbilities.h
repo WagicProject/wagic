@@ -4001,8 +4001,8 @@ public:
     ~APreventDamageTypesUEOT();
 };
 
-//Upkeep Cost
-class AVanishing: public ActivatedAbility
+//vanishing
+class AVanishing: public MTGAbility
 {
 public:
     int timeLeft;

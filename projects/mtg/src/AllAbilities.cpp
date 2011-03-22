@@ -2792,8 +2792,10 @@ APreventDamageTypesUEOT::~APreventDamageTypesUEOT()
 
 //AVanishing creature also fading
 AVanishing::AVanishing(int _id, MTGCardInstance * card, ManaCost * _cost, int _tap, int restrictions, int amount, string counterName) :
-ActivatedAbility(_id, card, _cost, restrictions, _tap),amount(amount),counterName(counterName)
+MTGAbility(_id, source, target),amount(amount),counterName(counterName)
 {
+    target = card;
+    source = card;
     next = 0;
     for(int i = 0;i< amount;i++)
         source->counters->addCounter(counterName.c_str(),0,0);
@@ -2835,7 +2837,7 @@ void AVanishing::Update(float dt)
             }
         }
     }
-    ActivatedAbility::Update(dt);
+    MTGAbility::Update(dt);
 }
 
 int AVanishing::resolve()
