@@ -335,17 +335,11 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int 
     {
         sourceTap = true;
     }
-    found = s.find("foelostthree");
+    found = s.find("foelost(");
     if (found != string::npos)
     {
         lifelost = true;
-        lifeamount = 3;
-    }
-    found = s.find("foelosttwo");
-    if (found != string::npos)
-    {
-        lifelost = true;
-        lifeamount = 2;
+        lifeamount = atoi(s.substr(found + 8,')').c_str());
     }
     found = s.find("opponentpoisoned");
     if ( found != string::npos)
@@ -4388,9 +4382,11 @@ TriggerAtPhase::TriggerAtPhase(int id, MTGCardInstance * source, Targetable * ta
     int TriggerAtPhase::trigger()
     {
         if(source->isPhased) return 0;
-        if(lifelost  && source->controller()->opponent()->lifeLostThisTurn < lifeamount)
+        if(lifelost)
         {
-            return 0;
+            int lifeloss = source->controller()->opponent()->lifeLostThisTurn;
+            if(lifeloss < lifeamount)
+                return 0;
         }
         if (sourceUntapped  && source->isTapped() == 1)
             return 0;
