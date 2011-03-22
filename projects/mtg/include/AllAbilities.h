@@ -2667,6 +2667,8 @@ public:
 
     int canBeInList(MTGCardInstance * card)
     {
+        if(card->isPhased || source->isPhased)
+            return 0;
         if ((tc->source->hasSubtype("aura") || tc->source->hasSubtype("equipment") || tc->source->hasSubtype("instant")
                 || tc->source->hasSubtype("sorcery")) && tc->canTarget(card) && card == tc->source->target && card != tc->source) return 1;
         return 0;
