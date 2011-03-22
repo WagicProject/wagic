@@ -3665,12 +3665,15 @@ public:
 
     void Update(float dt)
     {
-        if (source->isAttacker())
+        if (newPhase != currentPhase && (newPhase == Constants::MTG_PHASE_COMBATBEGIN || newPhase == Constants::MTG_PHASE_COMBATATTACKERS))
         {
-            if (!game->opponent()->game->inPlay->hasType(land))
+            if (source->controller()->opponent()->game->inPlay->hasType(land))
             {
-                source->toggleAttacker();
-                //TODO Improve, there can be race conditions here
+                source->basicAbilities[Constants::CANTATTACK] = 0;
+            }
+            else
+            {
+                source->basicAbilities[Constants::CANTATTACK] = 1;
             }
         }
         Player * player = source->controller();
