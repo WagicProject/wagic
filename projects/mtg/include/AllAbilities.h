@@ -3791,35 +3791,6 @@ public:
         return a;
     }
 };
-
-//reset card cost-----------------------------------------
-class AResetCost: public MTGAbility
-{
-public:
-    AResetCost(int id, MTGCardInstance * source, MTGCardInstance * target) :
-        MTGAbility(id, source, target)
-    {
-
-    }
-
-    int addToGame()
-    {
-        MTGCardInstance * _target = (MTGCardInstance *) target;
-        _target->controller()->game->putInZone(_target, _target->controller()->game->hand, _target->controller()->game->hand);
-        return MTGAbility::addToGame();
-    }
-
-	AResetCost * clone() const
-    {
-        AResetCost * a = NEW AResetCost(*this);
-        a->isClone = 1;
-        return a;
-    }
-
-	~AResetCost()
-    {
-    }
-};
 //bloodthirst ability------------------------------------------
 class ABloodThirst: public MTGAbility
 {
@@ -3860,10 +3831,13 @@ public:
 class AAlterCost: public MTGAbility
 {
 public:
+MTGCardInstance * manaReducer;
     int amount;
+    int tempAmount;
     int type;
     AAlterCost(int id, MTGCardInstance * source, MTGCardInstance * target, int amount, int type);
     int addToGame();
+    int testDestroy();
     AAlterCost * clone() const;
     ~AAlterCost();
 };

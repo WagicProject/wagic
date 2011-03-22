@@ -2131,6 +2131,7 @@ GenericTargetAbility::~GenericTargetAbility()
 AAlterCost::AAlterCost(int id, MTGCardInstance * source, MTGCardInstance * target, int amount, int type) :
     MTGAbility(id, source, target), amount(amount), type(type)
 {
+manaReducer = source;
 }
 
 int AAlterCost::addToGame()
@@ -2138,19 +2139,19 @@ int AAlterCost::addToGame()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (amount < 0)
     {
-        amount = abs(amount);
+        tempAmount = abs(amount);
         if (_target->getManaCost()->hasColor(type))
         {
             if (_target->getManaCost()->getConvertedCost() >= 1)
             {
-                _target->getManaCost()->remove(type, amount);
+                _target->getManaCost()->remove(type, tempAmount);
                 if (_target->getManaCost()->alternative > 0)
                 {
-                    _target->getManaCost()->alternative->remove(type, amount);
+                    _target->getManaCost()->alternative->remove(type, tempAmount);
                 }
                 if (_target->getManaCost()->BuyBack > 0)
                 {
-                    _target->getManaCost()->BuyBack->remove(type, amount);
+                    _target->getManaCost()->BuyBack->remove(type, tempAmount);
                 }
             }
         }
@@ -2168,6 +2169,32 @@ int AAlterCost::addToGame()
         }
     }
     return MTGAbility::addToGame();
+}
+
+int AAlterCost::testDestroy()
+{
+    MTGCardInstance * _target = (MTGCardInstance *)target;
+    if(!this->manaReducer->isInPlay())
+    {
+        if (amount > 0)
+        {
+            _target->getManaCost()->remove(type, amount);
+            if (_target->getManaCost()->alternative)
+            {
+                _target->getManaCost()->alternative->remove(type, amount);
+            }
+            if (_target->getManaCost()->BuyBack)
+            {
+                _target->getManaCost()->BuyBack->remove(type, amount);
+            }
+        }
+        else
+        {
+          _target->controller()->game->putInHand(_target);
+        }
+        return MTGAbility::testDestroy();
+    }
+return 0;
 }
 
 AAlterCost * AAlterCost::clone() const

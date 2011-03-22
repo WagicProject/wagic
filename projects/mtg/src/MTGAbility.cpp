@@ -2490,13 +2490,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (s.find("altercost(") != string::npos)
         return getManaReduxAbility(s.substr(s.find("altercost(") + 10), id, spell, card, target);
 
-    //resetcost dirty code
-    found = s.find("resetcost");
-    if (found != string::npos)
-    {
-        MTGAbility * a = NEW AResetCost(id, card, target);
-        return a;
-    }
     //transform....(hivestone,living enchantment)
     found = s.find("transforms(");
     if (found != string::npos)
