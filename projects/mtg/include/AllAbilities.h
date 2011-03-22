@@ -4260,68 +4260,6 @@ public:
     }
 };
 
-// Clockwork Beast
-class AClockworkBeast: public MTGAbility
-{
-public:
-    int counters;
-    ManaCost cost;
-    AClockworkBeast(int id, MTGCardInstance * _source) :
-        MTGAbility(id, _source)
-    {
-        counters = 7;
-        ((MTGCardInstance *) target)->power += 7;
-        int _cost[] = { Constants::MTG_COLOR_ARTIFACT, 1 };
-        cost = ManaCost(_cost, 1);
-    }
-
-    void Update(float dt)
-    {
-        if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_COMBATEND)
-        {
-            if (((MTGCardInstance *) source)->isAttacker() || ((MTGCardInstance *) source)->isDefenser())
-            {
-                counters--;
-                ((MTGCardInstance *) target)->power -= 1;
-            }
-        }
-    }
-    int isReactingToClick(MTGCardInstance * _card, ManaCost * mana = NULL)
-    {
-        if (counters < 7 && _card == source && currentPhase == Constants::MTG_PHASE_UPKEEP
-                && game->currentPlayer->game->inPlay->hasCard(source))
-        {
-            if (game->currentlyActing()->getManaPool()->canAfford(&cost))
-            {
-                return 1;
-            }
-        }
-        return 0;
-    }
-
-    int reactToClick(MTGCardInstance * _card)
-    {
-        if (!isReactingToClick(_card)) return 0;
-        game->currentlyActing()->getManaPool()->pay(&cost);
-        counters++;
-        ((MTGCardInstance *) target)->power++;
-        ((MTGCardInstance *) target)->tap();
-        return 1;
-    }
-
-    virtual ostream& toString(ostream& out) const
-    {
-        out << "AClockworkBeast ::: counters : " << counters << " ; cost : " << cost << " (";
-        return MTGAbility::toString(out) << ")";
-    }
-    AClockworkBeast * clone() const
-    {
-        AClockworkBeast * a = NEW AClockworkBeast(*this);
-        a->isClone = 1;
-        return a;
-    }
-};
-
 //1102: Conservator
 class AConservator: public MTGAbility
 {

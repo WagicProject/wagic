@@ -3179,11 +3179,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
         game->addObserver(NEW ACircleOfProtection(_id, card, Constants::MTG_COLOR_WHITE));
         break;
     }
-    case 1101: //clockwork Beast
-    {
-        game->addObserver(NEW AClockworkBeast(_id, card));
-        break;
-    }
     case 1102: //Conservator
     {
         game->addObserver(NEW AConservator(_id, card));
