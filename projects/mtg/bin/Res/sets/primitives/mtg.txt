@@ -551,7 +551,7 @@ type=Sorcery
 [card]
 name=Admonition Angel
 abilities=flying
-auto=@movedto(land|myBattlefield):(blink)forsrc target(*[-land]|battlefield)
+auto=@movedto(land|myBattlefield):may (blink)forsrc target(other *[-land]|battlefield)
 text=Flying -- Landfall - Whenever a land enters the battlefield under your control, you may exile target nonland permanent other than Admonition Angel. -- When Admonition Angel leaves the battlefield, return all cards exiled with it to the battlefield under their owners' control.
 mana={3}{W}{W}{W}
 type=Creature
@@ -14412,7 +14412,7 @@ power=0
 toughness=3
 [/card]
 [card]
-name=Dawnglow Invoker
+name=Dawnglare Invoker
 abilities=flying
 auto={8}:tap all(creature|opponentBattlefield)
 text=Flying -- {8}: Tap all creatures target player controls.
@@ -17515,8 +17515,9 @@ type=Sorcery
 [/card]
 [card]
 name=Dryad Arbor
-auto={t}:add{g}
+auto={T}:add{G}
 text=(Dryad Arbor isn't a spell, it's affected by summoning sickness, and it has "{T}: Add {G} to your mana pool.") -- Dryad Arbor is green.
+color=green
 type=Land Creature
 subtype=Forest Dryad
 power=1
@@ -41114,9 +41115,9 @@ toughness=*
 [/card]
 [card]
 name=Mortuary
-auto=@movedTo(creature|mygraveyard) from(myBattlefield):all(trigger) moveTo(myLibrary)
+auto=@movedTo(creature|mygraveyard) from(myBattlefield):all(trigger[to]) moveTo(myLibrary)
 text=Whenever a creature is put into your graveyard from the battlefield, put that card on top of your library.
-mana={2}{B}
+mana={3}{B}
 type=Enchantment
 [/card]
 [card]
@@ -50461,7 +50462,7 @@ mana={3}{B}{B}
 type=Sorcery
 [/card]
 [card]
-name=Reinforced Bullwark
+name=Reinforced Bulwark
 abilities=defender
 auto={T}:prevent:1 controller
 text=Defender (This creature can't attack.) -- {T}: Prevent the next 1 damage that would be dealt to you this turn.
@@ -63214,7 +63215,7 @@ type=Legendary Artifact
 name=Sword of the Paruns
 auto={3}:equip
 auto=teach(creature) this(tapped) lord(creature[tapped]|mybattlefield) 2/0
-auto=teach(creature) this(untapped) lord(creature[-tapped]|mybattlefield) 2/00/2
+auto=teach(creature) this(untapped) lord(creature[-tapped]|mybattlefield) 0/2
 auto={3}:tap(mytgt)
 auto={3}:untap(mytgt)
 text=As long as equipped creature is tapped, tapped creatures you control get +2/+0. -- As long as equipped creature is untapped, untapped creatures you control get +0/+2. -- {3}: You may tap or untap equipped creature. -- Equip {3}
@@ -66725,9 +66726,9 @@ mana={B}
 type=Enchantment
 [/card]
 [card]
-name=Totem-Guide Hartbeest
+name=Totem-Guide Hartebeest
 auto=moveTo(myhand) target(aura|myLibrary)
-text=When Totem-Guide Hartbeest enters the battlefield, you may search you library for an aura card, reveal it, put it into your hand and shuffle your library.
+text=When Totem-Guide Hartebeest enters the battlefield, you may search you library for an aura card, reveal it, put it into your hand and shuffle your library.
 mana={4}{W}
 type=Creature
 subtype=Antelope
