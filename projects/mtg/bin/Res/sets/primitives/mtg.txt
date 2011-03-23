@@ -3307,9 +3307,9 @@ type=Artifact
 [/card]
 [card]
 name=Ashnod's Transmogrant
-auto={s}{t}:target(creature[-artifact]) transforms(artifact) forever && counter(1/1,1)
-text={t}; Sacrifice Ashnod's Transmogrant: Put a +1/+1 counter on target nonartifact creature. That creature becomes an artifact in addition to its other types.
-type=artifact
+auto={T}{S}:target(creature[-artifact]) transforms(artifact) forever && counter(1/1,1)
+text={T}: Sacrifice Ashnod's Transmogrant: Put a +1/+1 counter on target nonartifact creature. That creature becomes an artifact in addition to its other types.
+type=Artifact
 mana={1}
 [/card]
 [card]
@@ -39211,7 +39211,7 @@ type=Land
 [/card]
 [card]
 name=Mercadian Lift
-auto={T}:counter(0/0,1,Winch)
+auto={1}{T}:counter(0/0,1,Winch)
 auto={T}{C(0/0,-1,Winch)}:name(Remove 1 Counters) && moveTo(myBattlefield) notatarget(creature[manacost=1]|myhand)
 auto={T}{C(0/0,-2,Winch)}:name(Remove 2 Counters) && moveTo(myBattlefield) notatarget(creature[manacost=2]|myhand)
 auto={T}{C(0/0,-3,Winch)}:name(Remove 3 Counters) && moveTo(myBattlefield) notatarget(creature[manacost=3]|myhand)
@@ -39222,8 +39222,10 @@ auto={T}{C(0/0,-7,Winch)}:name(Remove 7 Counters) && moveTo(myBattlefield) notat
 auto={T}{C(0/0,-8,Winch)}:name(Remove 8 Counters) && moveTo(myBattlefield) notatarget(creature[manacost=8]|myhand)
 auto={T}{C(0/0,-9,Winch)}:name(Remove 9 Counters) && moveTo(myBattlefield) notatarget(creature[manacost=9]|myhand)
 auto={T}{C(0/0,-10,Winch)}:name(Remove 10 Counters) && moveTo(myBattlefield) notatarget(creature[manacost=10]|myhand)
+auto={T}{C(0/0,-11,Winch)}:name(Remove 11 Counters) && moveTo(myBattlefield) notatarget(creature[manacost=11]|myhand)
+auto={T}{C(0/0,-12,Winch)}:name(Remove 12 Counters) && moveTo(myBattlefield) notatarget(creature[manacost=12]|myhand)
 text={1}, {T}: Put a winch counter on Mercadian Lift. -- {T}, Remove X winch counters from Mercadian Lift: You may put a creature card with converted mana cost X from your hand onto the battlefield.
-mana={1}
+mana={2}
 type=Artifact
 [/card]
 [card]
@@ -65649,7 +65651,7 @@ toughness=4
 [/card]
 [card]
 name=Thumbscrews
-auto=aslongas(*|myhand) damage:1 opponent >4
+auto=@each my upkeep:aslongas(*|myhand) damage:1 opponent >4
 text=At the beginning of your upkeep, if you have five or more cards in hand, Thumbscrews deals 1 damage to target opponent.
 mana={2}
 type=Artifact
