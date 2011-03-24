@@ -18,6 +18,6 @@ thallid
 [ASSERT]
 FIRSTMAIN
 [PLAYER1]
-inplay:Thallid,Saproling
+inplay:Thallid,-1924
 [PLAYER2]
 [END]
