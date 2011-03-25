@@ -6965,8 +6965,8 @@ toughness=5
 [card]
 name=Body Snatcher
 auto=choice moveTo(exile)
-auto=choice moveTo(mygraveyard) target(creature|myhand)
-auto=@movedTO(mygraveyard) from(this|battlefield):moveTo(myBattlefield) target(creature|mygraveyard)
+auto=choice reject target(creature|myhand)
+auto=@movedTo(mygraveyard) from(this|battlefield):moveTo(myBattlefield) target(creature|mygraveyard)
 autograveyard=moveTo(exile)
 text=When Body Snatcher enters the battlefield, you may discard a creature card. If you don't, exile Body Snatcher. -- When Body Snatcher is put into a graveyard from the battlefield, exile Body Snatcher and return target creature card from your graveyard to the battlefield.
 mana={2}{B}{B}
@@ -26967,7 +26967,7 @@ type=Sorcery
 [/card]
 [card]
 name=Greel, Mind Raker
-auto={X}{B}{T}{discard(*|myhand)}{discard(*|myhand)}:discard:X opponent
+auto={X}{B}{T}{discard(*|myhand)}{discard(*|myhand)}:discard:X target(player)
 text={X}{B}, {T}, Discard two cards: Target player discards X cards at random.
 mana={3}{B}{B}
 type=Legendary Creature
@@ -29313,6 +29313,14 @@ type=Creature
 subtype=Giant Scout
 power=3
 toughness=3
+[/card]
+[card]
+name=Hint of Insanity
+target=*[-land]|opponenthand
+auto=reject all(*[share!name!]|targetcontrollerhand)
+text=Target player reveals his or her hand. That player discards all nonland cards with the same name as another card in his or her hand.
+mana={2}{B}
+type=Sorcery
 [/card]
 [card]
 name=Hisoka's Defiance
@@ -35544,6 +35552,7 @@ auto=foreach(mountain|myBattlefield) damage:1
 auto=foreach(forest|myBattlefield) token(Saproling,Creature Saproling,1/1,green)
 auto=foreach(plains|myBattlefield) life:2 controller
 auto=foreach(island|myBattlefield) draw:1 controller
+auto=foreach(island|myBattlefield) reject target(*|myhand)
 text=Target opponent loses 2 life for each Swamp you control. Last Stand deals damage equal to the number of Mountains you control to target creature. Put a 1/1 green Saproling creature token onto the battlefield for each Forest you control. You gain 2 life for each Plains you control. Draw a card for each Island you control, then discard that many cards.
 mana={W}{U}{B}{R}{G}
 type=Sorcery
@@ -39457,7 +39466,7 @@ type=Artifact
 [/card]
 [card]
 name=Mesmeric Trance
-auto={U}{S|myhand}:draw:1
+auto={U}{discard(*|myhand)}:draw:1
 auto=cumulativeupcost[{1}] sacrifice
 text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- {U}, Discard a card: Draw a card.
 mana={1}{U}{U}
@@ -45910,6 +45919,17 @@ mana={1}{B}{G}
 type=Enchantment
 [/card]
 [card]
+name=Persecute
+auto=choice name(white) target(*[white]|opponenthand) && reject all(*[white]|opponenthand)
+auto=choice name(blue) target(*[blue]|opponenthand) && reject all(*[blue]|opponenthand)
+auto=choice name(black) target(*[black]|opponenthand) && reject all(*[black]|opponenthand)
+auto=choice name(red) target(*[red]|opponenthand) && reject all(*[red]|opponenthand)
+auto=choice name(green) target(*[green]|opponenthand) && reject all(*[green]|opponenthand)
+text=Choose a color. Target player reveals his or her hand and discards all cards of that color.
+mana={2}{B}{B}
+type=Sorcery
+[/card]
+[card]
 name=Persuasion
 target=creature
 alias=1194
@@ -47464,23 +47484,23 @@ toughness=3
 [card]
 name=Powder Keg
 auto=@each my upkeep:may counter(0/0,1,Fuse)
-auto=this(counter{0/0.1.Fuse}<1) {T}:destroy all(*[artifact;creature;manacost=0])
-auto=this(counter{0/0.1.Fuse}=) {T}:destroy all(*[artifact;creature;manacost=1])
-auto=this(counter{0/0.2.Fuse}=) {T}:destroy all(*[artifact;creature;manacost=2])
-auto=this(counter{0/0.3.Fuse}=) {T}:destroy all(*[artifact;creature;manacost=3])
-auto=this(counter{0/0.4.Fuse}=) {T}:destroy all(*[artifact;creature;manacost=4])
-auto=this(counter{0/0.5.Fuse}=) {T}:destroy all(*[artifact;creature;manacost=5])
-auto=this(counter{0/0.6.Fuse}=) {T}:destroy all(*[artifact;creature;manacost=6])
-auto=this(counter{0/0.7.Fuse}=) {T}:destroy all(*[artifact;creature;manacost=7])
-auto=this(counter{0/0.8.Fuse}=) {T}:destroy all(*[artifact;creature;manacost=8])
-auto=this(counter{0/0.9.Fuse}=) {T}:destroy all(*[artifact;creature;manacost=9])
-auto=this(counter{0/0.10.Fuse}=) {T}:destroy all(*[artifact;creature;manacost=10])
-auto=this(counter{0/0.11.Fuse}=) {T}:destroy all(*[artifact;creature;manacost=11])
-auto=this(counter{0/0.12.Fuse}=) {T}:destroy all(*[artifact;creature;manacost=12])
-auto=this(counter{0/0.13.Fuse}=) {T}:destroy all(*[artifact;creature;manacost=13])
-auto=this(counter{0/0.14.Fuse}=) {T}:destroy all(*[artifact;creature;manacost=14])
-auto=this(counter{0/0.15.Fuse}=) {T}:destroy all(*[artifact;creature;manacost=15])
-auto=this(counter{0/0.16.Fuse}=) {T}:destroy all(*[artifact;creature;manacost=16])
+auto=this(counter{0/0.1.Fuse}<1) {T}{S}:destroy all(*[artifact;creature;manacost=0])
+auto=this(counter{0/0.1.Fuse}=) {T}{S}:destroy all(*[artifact;creature;manacost=1])
+auto=this(counter{0/0.2.Fuse}=) {T}{S}:destroy all(*[artifact;creature;manacost=2])
+auto=this(counter{0/0.3.Fuse}=) {T}{S}:destroy all(*[artifact;creature;manacost=3])
+auto=this(counter{0/0.4.Fuse}=) {T}{S}:destroy all(*[artifact;creature;manacost=4])
+auto=this(counter{0/0.5.Fuse}=) {T}{S}:destroy all(*[artifact;creature;manacost=5])
+auto=this(counter{0/0.6.Fuse}=) {T}{S}:destroy all(*[artifact;creature;manacost=6])
+auto=this(counter{0/0.7.Fuse}=) {T}{S}:destroy all(*[artifact;creature;manacost=7])
+auto=this(counter{0/0.8.Fuse}=) {T}{S}:destroy all(*[artifact;creature;manacost=8])
+auto=this(counter{0/0.9.Fuse}=) {T}{S}:destroy all(*[artifact;creature;manacost=9])
+auto=this(counter{0/0.10.Fuse}=) {T}{S}:destroy all(*[artifact;creature;manacost=10])
+auto=this(counter{0/0.11.Fuse}=) {T}{S}:destroy all(*[artifact;creature;manacost=11])
+auto=this(counter{0/0.12.Fuse}=) {T}{S}:destroy all(*[artifact;creature;manacost=12])
+auto=this(counter{0/0.13.Fuse}=) {T}{S}:destroy all(*[artifact;creature;manacost=13])
+auto=this(counter{0/0.14.Fuse}=) {T}{S}:destroy all(*[artifact;creature;manacost=14])
+auto=this(counter{0/0.15.Fuse}=) {T}{S}:destroy all(*[artifact;creature;manacost=15])
+auto=this(counter{0/0.16.Fuse}=) {T}{S}:destroy all(*[artifact;creature;manacost=16])
 text=At the beginning of your upkeep, you may put a fuse counter on Powder Keg. -- {T}, Sacrifice Powder Keg: Destroy each artifact and creature with converted mana cost equal to the number of fuse counters on Powder Keg.
 mana={2}
 type=Artifact
@@ -48170,8 +48190,8 @@ name=Psychic Vortex
 auto=@each my upkeep:thisforeach(counter{0/0.1.Age}) draw:1 controller
 auto=@each my upkeep:may moveTo(mygraveyard)
 auto=@each my upkeep:counter(0/0,1,Age)
-auto=@each my endofturn:moveTo(mygraveyard) notatarget(land|myBattlefield)
-auto=@each my endofturn:moveTo(mygraveyard all(*|myhand)
+auto=@each my endofturn:reject target(land|myBattlefield)
+auto=@each my endofturn:reject all(*|myhand)
 text=Cumulative upkeep - Draw a card. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- At the beginning of your end step, sacrifice a land and discard your hand.
 mana={2}{U}{U}
 type=Enchantment
@@ -53955,7 +53975,7 @@ toughness=1
 [/card]
 [card]
 name=Scavenging Ghoul
-auto=@each endofturn:counter(0/0,type:creature[fresh]|graveyard ,Corpse)
+auto=@each endofturn:counter(0/0,type:creature[fresh]|graveyard,Corpse)
 auto={C(0/0,-1,Corpse)}:regenerate
 text=At the beginning of each end step, put a corpse counter on Scavenging Ghoul for each creature put into a graveyard from the battlefield this turn. -- Remove a corpse counter from Scavenging Ghoul: Regenerate Scavenging Ghoul.
 mana={3}{B}
@@ -59884,7 +59904,7 @@ type=Artifact
 [card]
 name=Spellbound Dragon
 abilities=flying
-auto=@attacking(this):target(*|myhand) dynamicability<!mytgt manacostpumppow tosrc!> moveTo(mygraveyard)
+auto=@attacking(this):target(*|myhand) dynamicability<!mytgt manacostpumppow tosrc!> reject
 auto=@attacking(this):draw:1 controller
 text=Flying -- Whenever Spellbound Dragon attacks, draw a card, then discard a card. Spellbound Dragon gets +X/+0 until end of turn, where X is the discarded card's converted mana cost.
 mana={3}{U}{R}
@@ -69395,7 +69415,7 @@ type=Land
 [/card]
 [card]
 name=Venarian Glimmer
-auto=discard target(*[manacost <=X]|opponenthand)
+auto=reject target(*[manacost <=X]|opponenthand)
 text=Target player reveals his or her hand. You choose a nonland card with converted mana cost X or less from it. That player discards that card.
 mana={X}{U}
 type=Instant
