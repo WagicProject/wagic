@@ -539,11 +539,11 @@ type=Land
 [/card]
 [card]
 name=Addle
-auto=choice name(white) && reject target(*[white]|opponenthand)
-auto=choice name(blue) && reject target(*[blue]|opponenthand)
-auto=choice name(black) && reject target(*[black]|opponenthand)
-auto=choice name(red) && reject target(*[red]|opponenthand)
-auto=choice name(green) && reject target(*[green]|opponenthand)
+auto=choice name(white) && reject target(*[white]|opponenthand,myhand)
+auto=choice name(blue) && reject target(*[blue]|opponenthand,myhand)
+auto=choice name(black) && reject target(*[black]|opponenthand,myhand)
+auto=choice name(red) && reject target(*[red]|opponenthand,myhand)
+auto=choice name(green) && reject target(*[green]|opponenthand,myhand)
 text=Choose a color. Target player reveals his or her hand and you choose a card of that color from it. That player discards that card.
 mana={1}{B}
 type=Sorcery
@@ -1429,6 +1429,14 @@ type=Creature
 subtype=Human Rogue
 power=3
 toughness=1
+[/card]
+[card]
+name=Amnesia
+target=*[-land]|opponenthand,myhand
+auto=reject all(*[-land]|targetcontrollerhand)
+text=Target player reveals his or her hand and discards all nonland cards.
+mana={3}{U}{U}{U}
+type=Sorcery
 [/card]
 [card]
 name=Amphibious Kavu
@@ -3407,11 +3415,11 @@ type=Instant
 [/card]
 [card]
 name=Astrolabe
-auto={1}{T}:sacrifice && Add{W}{W} && phaseaction[upkeep] draw:1 controller
-auto={1}{T}:sacrifice && Add{U}{U} && phaseaction[upkeep] draw:1 controller
-auto={1}{T}:sacrifice && Add{B}{B} && phaseaction[upkeep] draw:1 controller
-auto={1}{T}:sacrifice && Add{R}{R} && phaseaction[upkeep] draw:1 controller
-auto={1}{T}:sacrifice && Add{G}{G} && phaseaction[upkeep] draw:1 controller
+auto={1}{T}{S}:Add{W}{W} && phaseaction[upkeep] draw:1 controller
+auto={1}{T}{S}:Add{U}{U} && phaseaction[upkeep] draw:1 controller
+auto={1}{T}{S}:Add{B}{B} && phaseaction[upkeep] draw:1 controller
+auto={1}{T}{S}:Add{R}{R} && phaseaction[upkeep] draw:1 controller
+auto={1}{T}{S}:Add{G}{G} && phaseaction[upkeep] draw:1 controller
 text={1}, {T}, Sacrifice Astrolabe: Add two mana of any one color to your mana pool. Draw a card at the beginning of the next turn's upkeep.
 mana={3}
 type=Artifact
@@ -4633,11 +4641,11 @@ type=Enchantment
 [/card]
 [card]
 name=Barbed Sextant
-auto={1}{T}:sacrifice && Add{W} && phaseaction[upkeep] draw:1 controller
-auto={1}{T}:sacrifice && Add{U} && phaseaction[upkeep] draw:1 controller
-auto={1}{T}:sacrifice && Add{B} && phaseaction[upkeep] draw:1 controller
-auto={1}{T}:sacrifice && Add{R} && phaseaction[upkeep] draw:1 controller
-auto={1}{T}:sacrifice && Add{G} && phaseaction[upkeep] draw:1 controller
+auto={1}{T}{S}:Add{W} && phaseaction[upkeep] draw:1 controller
+auto={1}{T}{S}:Add{U} && phaseaction[upkeep] draw:1 controller
+auto={1}{T}{S}:Add{B} && phaseaction[upkeep] draw:1 controller
+auto={1}{T}{S}:Add{R} && phaseaction[upkeep] draw:1 controller
+auto={1}{T}{S}:Add{G} && phaseaction[upkeep] draw:1 controller
 text={1}, {T}, Sacrifice Barbed Sextant: Add one mana of any color to your mana pool. Draw a card at the beginning of the next turn's upkeep.
 mana={1}
 type=Artifact
@@ -9404,8 +9412,7 @@ type=Land
 [/card]
 [card]
 name=Castigate
-target=*[-land]|opponenthand
-auto=moveTo(exile)
+auto=moveTo(exile) target(*[-land]|opponenthand)
 text=Target opponent reveals his or her hand. You choose a nonland card from it and exile that card.
 mana={W}{B}
 type=Sorcery
@@ -9450,7 +9457,7 @@ toughness=2
 [card]
 name=Catalog
 auto=draw:2
-auto=moveTo(mygraveyard) target(*|myhand)
+auto=reject target(*|myhand)
 text=Draw two cards, then discard a card.
 mana={2}{U}
 type=Instant
@@ -12319,8 +12326,8 @@ type=Land
 [card]
 name=Coral Atoll
 auto=tap
-auto=aslongas(island[-tapped]|mybattlefield) moveto(myhand) target(island[-tapped]|mybattlefield) oneshot
-auto=moveto(mygraveyard) target(this|mybattlefield)
+auto=aslongas(island[-tapped]|mybattlefield) moveto(myhand) notatarget(island[-tapped]|mybattlefield) oneshot
+auto=moveto(mygraveyard) notatarget(this|mybattlefield)
 auto={T}:Add{1}{U}
 text=Coral Atoll enters the battlefield tapped. -- When Coral Atoll enters the battlefield, sacrifice it unless you return an untapped Island you control to its owner's hand. -- {T}: Add {1}{U} to your mana pool.
 type=Land
@@ -13070,8 +13077,8 @@ toughness=3
 [/card]
 [card]
 name=Crosis's Catacombs
-auto=aslongas(land[-lair]|mybattlefield) moveto(myhand) target(land[-lair]|mybattlefield) oneshot && counter(0/0,-1,payment)
-auto=moveto(mygraveyard) target(this|mybattlefield)
+auto=aslongas(land[-lair]|mybattlefield) moveto(myhand) notatarget(land[-lair]|mybattlefield) oneshot && counter(0/0,-1,payment)
+auto=moveto(mygraveyard) notatarget(this|mybattlefield)
 auto=this(counter{0/0.1.payment}<1) {T}:Add{U}
 auto=this(counter{0/0.1.payment}<1) {T}:Add{B}
 auto=this(counter{0/0.1.payment}<1) {T}:Add{R}
@@ -13813,8 +13820,8 @@ toughness=3
 [/card]
 [card]
 name=Darigaaz's Caldera
-auto=aslongas(land[-lair]|mybattlefield) moveto(myhand) target(land[-lair]|mybattlefield) oneshot && counter(0/0,-1,payment)
-auto=moveto(mygraveyard) target(this|mybattlefield)
+auto=aslongas(land[-lair]|mybattlefield) moveto(myhand) notatarget(land[-lair]|mybattlefield) oneshot && counter(0/0,-1,payment)
+auto=moveto(mygraveyard) notatarget(this|mybattlefield)
 auto=this(counter{0/0.1.payment}<1) {T}:Add{B}
 auto=this(counter{0/0.1.payment}<1) {T}:Add{R}
 auto=this(counter{0/0.1.payment}<1) {T}:Add{G}
@@ -15382,7 +15389,7 @@ toughness=2
 name=Demonic Appetite
 target=creature|myBattlefield
 auto=3/3
-auto=@each my upkeep:moveTo(mygraveyard) target(creature|myBattlefield)
+auto=@each my upkeep:moveTo(mygraveyard) notatarget(creature|myBattlefield)
 text=Enchant creature you control -- Enchanted creature gets +3/+3. -- At the beginning of your upkeep, sacrifice a creature.
 mana={B}
 type=Enchantment
@@ -16155,7 +16162,7 @@ type=Artifact
 [/card]
 [card]
 name=Distress
-auto=reject target(*[-land]|opponenthand)
+auto=reject target(*[-land]|opponenthand,myhand)
 text=Target player reveals his or her hand. You choose a nonland card from it. That player discards that card.
 mana={B}{B}
 type=Sorcery
@@ -16467,8 +16474,8 @@ toughness=2
 [card]
 name=Dormant Volcano
 auto=tap
-auto=aslongas(mountain[-tapped]|mybattlefield) moveto(myhand) target(mountain[-tapped]|mybattlefield) oneshot
-auto=moveto(mygraveyard) target(this|mybattlefield)
+auto=aslongas(mountain[-tapped]|mybattlefield) moveto(myhand) notatarget(mountain[-tapped]|mybattlefield) oneshot
+auto=moveto(mygraveyard) notatarget(this|mybattlefield)
 auto={T}:Add{1}{R}
 text=Dormant Volcano enters the battlefield tapped. -- When Dormant Volcano enters the battlefield, sacrifice it unless you return an untapped Mountain you control to its owner's hand. -- {T}: Add {1}{R} to your mana pool.
 type=Land
@@ -17242,8 +17249,8 @@ toughness=3
 [/card]
 [card]
 name=Dromar's Cavern
-auto=aslongas(land[-lair]|mybattlefield) moveto(myhand) target(land[-lair]|mybattlefield) oneshot && counter(0/0,-1,payment)
-auto=moveto(mygraveyard) target(this|mybattlefield)
+auto=aslongas(land[-lair]|mybattlefield) moveto(myhand) notatarget(land[-lair]|mybattlefield) oneshot && counter(0/0,-1,payment)
+auto=moveto(mygraveyard) notatarget(this|mybattlefield)
 auto=this(counter{0/0.1.payment}<1) {T}:Add{W}
 auto=this(counter{0/0.1.payment}<1) {T}:Add{U}
 auto=this(counter{0/0.1.payment}<1) {T}:Add{B}
@@ -19222,8 +19229,7 @@ auto=moveto(exile) all(this)
 [/card]
 [card]
 name=Encroach
-target=land[-basic]|opponenthand
-auto=reject
+auto=reject target(land[-basic]|opponenthand,myhand)
 text=Target player reveals his or her hand. You choose a nonbasic land card from it. That player discards that card.
 mana={B}
 type=Sorcery
@@ -19993,8 +19999,8 @@ type=Instant
 [card]
 name=Everglades
 auto=tap
-auto=aslongas(swamp[-tapped]|mybattlefield) moveto(myhand) target(swamp[-tapped]|mybattlefield) oneshot
-auto=moveto(mygraveyard) target(this|mybattlefield)
+auto=aslongas(swamp[-tapped]|mybattlefield) moveto(myhand) notatarget(swamp[-tapped]|mybattlefield) oneshot
+auto=moveto(mygraveyard) notatarget(this|mybattlefield)
 auto={T}:Add{1}{B}
 text=Everglades enters the battlefield tapped. -- When Everglades enters the battlefield, sacrifice it unless you return an untapped Swamp you control to its owner's hand. -- {T}: Add {1}{B} to your mana pool.
 type=Land
@@ -20260,8 +20266,7 @@ subtype=Aura
 [/card]
 [card]
 name=Extract
-target=*|myLibrary,opponentLibrary
-auto=moveTo(exile)
+auto=moveTo(exile) target(*|myLibrary,opponentLibrary)
 text=Search target player's library for a card and exile it. Then that player shuffles his or her library.
 mana={U}
 type=Sorcery
@@ -20340,7 +20345,7 @@ type=Artifact
 name=Eye of Ugin
 auto=lord(eldrazi[-white;-blue;-black;-red;-green]|myhand) altercost( colorless, -2 )
 auto={7}{T}:moveTo(myhand) target(creature[-white;-blue;-black;-red;-green]|myLibrary)
-text=Everglades enters the battlefield tapped. -- When Everglades enters the battlefield, sacrifice it unless you return an untapped Swamp you control to its owner's hand. -- {T}: Add {1}{B} to your mana pool.
+text=Colorless Eldrazi spells you cast cost {2} less to cast. -- {7}, {T}: Search your library for a colorless creature card, reveal it, and put it into your hand. Then shuffle your library.
 type=Legendary Land
 [/card]
 [card]
@@ -20576,7 +20581,7 @@ type=Sorcery
 [/card]
 [card]
 name=Fallow Wurm
-auto=aslongas(land|myhand) moveTo(graveyard) notatarget(land|myhand) oneshot
+auto=aslongas(land|myhand) reject target(land|myhand) oneshot
 auto=moveTo(graveyard) notatarget(this|myBattlefield)
 text=When Fallow Wurm enters the battlefield, sacrifice it unless you discard a land card.
 mana={2}{G}
@@ -27297,7 +27302,7 @@ name=Grizzly Fate
 auto=token(Bear,creature bear, 2/2,green)*2
 auto=aslongas(*|mygraveyard) token(Bear,creature bear, 2/2,green)*2 >6
 flashback={5}{G}{G}
-text=Put two 2/2 green Bear creature tokens onto the battlefield. -- Threshold - Put four 2/2 green Bear creature tokens onto the battlefield instead if seven or more cards are in your graveyard. -- Flashback {2}{G}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+text=Put two 2/2 green Bear creature tokens onto the battlefield. -- Threshold - Put four 2/2 green Bear creature tokens onto the battlefield instead if seven or more cards are in your graveyard. -- Flashback {5}{G}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={3}{G}{G}
 type=Sorcery
 [/card]
@@ -29316,7 +29321,7 @@ toughness=3
 [/card]
 [card]
 name=Hint of Insanity
-target=*[-land]|opponenthand
+target=*[-land]|opponenthand,myhand
 auto=reject all(*[share!name!]|targetcontrollerhand)
 text=Target player reveals his or her hand. That player discards all nonland cards with the same name as another card in his or her hand.
 mana={2}{B}
@@ -31251,8 +31256,7 @@ toughness=3
 [/card]
 [card]
 name=Inquisition of Kozilek
-target=*[manacost<=3;-land]|opponenthand
-auto=reject
+auto=reject target(*[manacost<=3;-land]|opponenthand,myhand)
 text=Target player reveals his or her hand. You choose a nonland card from it with converted mana cost 3 or less. That player discards that card.
 mana={B}
 type=Sorcery
@@ -32585,8 +32589,8 @@ toughness=6
 [card]
 name=Jungle Basin
 auto=tap
-auto=aslongas(forest[-tapped]|mybattlefield) moveto(myhand) target(forest[-tapped]|mybattlefield) oneshot
-auto=moveto(mygraveyard) target(this|mybattlefield)
+auto=aslongas(forest[-tapped]|mybattlefield) moveto(myhand) notatarget(forest[-tapped]|mybattlefield) oneshot
+auto=moveto(mygraveyard) notatarget(this|mybattlefield)
 auto={T}:Add{1}{G}
 text=Jungle Basin enters the battlefield tapped. -- When Jungle Basin enters the battlefield, sacrifice it unless you return an untapped Forest you control to its owner's hand. -- {T}: Add {1}{G}to your mana pool.
 type=Land
@@ -47094,7 +47098,7 @@ type=Enchantment
 [/card]
 [card]
 name=Plant Elemental
-auto=aslongas(forest|myBattlefield) moveTo(graveyard) target(forest|myBattlefield) oneshot
+auto=aslongas(forest|myBattlefield) moveTo(graveyard) notatarget(forest|myBattlefield) oneshot
 auto=moveTo(graveyard) notatarget(this|myBattlefield)
 text=When Plant Elemental enters the battlefield, sacrifice it unless you sacrifice a Forest.
 mana={1}{G}
@@ -48163,8 +48167,7 @@ subtype=Aura
 [/card]
 [card]
 name=Psychic Spear
-target=spirit,arcane|opponenthand
-auto=reject
+auto=reject target(spirit,arcane|opponenthand,myhand)
 text=Target player reveals his or her hand. You choose a Spirit or Arcane card from it. That player discards that card.
 mana={B}
 type=Sorcery
@@ -51703,8 +51706,8 @@ toughness=3
 [/card]
 [card]
 name=Rith's Grove
-auto=aslongas(land[-lair]|mybattlefield) moveto(myhand) target(land[-lair]|mybattlefield) oneshot && counter(0/0,-1,payment)
-auto=moveto(mygraveyard) target(this|mybattlefield)
+auto=aslongas(land[-lair]|mybattlefield) moveto(myhand) notatarget(land[-lair]|mybattlefield) oneshot && counter(0/0,-1,payment)
+auto=moveto(mygraveyard) notatarget(this|mybattlefield)
 auto=this(counter{0/0.1.payment}<1) {T}:Add{R}
 auto=this(counter{0/0.1.payment}<1) {T}:Add{G}
 auto=this(counter{0/0.1.payment}<1) {T}:Add{W}
@@ -51995,7 +51998,7 @@ toughness=1
 [/card]
 [card]
 name=Rogue Elephant
-auto=aslongas(forest|myBattlefield) moveTo(graveyard) target(forest|myBattlefield) oneshot
+auto=aslongas(forest|myBattlefield) moveTo(graveyard) notatarget(forest|myBattlefield) oneshot
 auto=moveTo(graveyard) notatarget(this|myBattlefield)
 text=When Rogue Elephant enters the battlefield, sacrifice it unless you sacrifice a Forest.
 mana={G}
@@ -52492,7 +52495,7 @@ type=Sorcery
 [/card]
 [card]
 name=Ruinous Minotaur
-auto=@damaged(opponent) from(this):moveto(graveyard) target(land|mybattlefield)
+auto=@damaged(opponent) from(this):moveto(graveyard) notatarget(land|mybattlefield)
 text=Whenever Ruinous Minotaur deals damage to an opponent, sacrifice a land.
 mana={1}{R}{R}
 type=Creature
@@ -54434,7 +54437,7 @@ toughness=1
 [card]
 name=Scythe Tiger
 abilities=shroud
-auto=aslongas(land|myBattlefield) moveTo(graveyard) target(land|myBattlefield) oneshot
+auto=aslongas(land|myBattlefield) moveTo(graveyard) notatarget(land|myBattlefield) oneshot
 auto=moveTo(graveyard) notatarget(this|myBattlefield)
 text=Shroud (This creature can't be the target of spells or abilities.) -- When Scythe Tiger enters the battlefield, sacrifice it unless you sacrifice a land.
 mana={G}
@@ -65457,8 +65460,7 @@ type=Enchantment
 [/card]
 [card]
 name=Thoughtseize
-target=*[-land]|opponenthand
-auto=reject
+auto=reject target(*[-land]|opponenthand,myhand)
 auto=life:-2 controller
 text=Target player reveals his or her hand. You choose a nonland card from it. That player discards that card. You lose 2 life.
 mana={B}
@@ -67436,8 +67438,8 @@ type=nothing
 [/card]
 [card]
 name=Treva's Ruins
-auto=aslongas(land[-lair]|mybattlefield) moveto(myhand) target(land[-lair]|mybattlefield) oneshot && counter(0/0,-1,payment)
-auto=moveto(mygraveyard) target(this|mybattlefield)
+auto=aslongas(land[-lair]|mybattlefield) moveto(myhand) notatarget(land[-lair]|mybattlefield) oneshot && counter(0/0,-1,payment)
+auto=moveto(mygraveyard) notatarget(this|mybattlefield)
 auto=this(counter{0/0.1.payment}<1) {T}:Add{G}
 auto=this(counter{0/0.1.payment}<1) {T}:Add{W}
 auto=this(counter{0/0.1.payment}<1) {T}:Add{U}
@@ -68345,9 +68347,8 @@ type=Instant
 [/card]
 [card]
 name=Unmask
-target=*[-land]|opponenthand
+auto=reject target(*[-land]|opponenthand,myhand)
 other={E(other *[black]|myhand)}
-auto=reject
 text=You may exile a black card from your hand rather than pay Unmask's mana cost. -- Target player reveals his or her hand. You choose a nonland card from it. That player discards that card.
 mana={3}{B}
 type=Sorcery
@@ -69406,7 +69407,7 @@ type=Land
 [/card]
 [card]
 name=Venarian Glimmer
-auto=reject target(*[manacost <=X]|opponenthand)
+auto=reject target(*[-land;manacost <=X]|opponenthand,myhand)
 text=Target player reveals his or her hand. You choose a nonland card with converted mana cost X or less from it. That player discards that card.
 mana={X}{U}
 type=Instant
