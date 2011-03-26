@@ -8,3 +8,5 @@ graphics/shop.jpg
 themes/Classic/backdrop.jpg
 wallpapers/kaioshin_ravager.jpg
 wallpapers/kaioshin_elsXIII.jpg
+wallpapers/kaioshin_sorin.jpg
+wallpapers/kaioshin_chandra.jpg
