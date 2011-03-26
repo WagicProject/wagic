@@ -539,11 +539,11 @@ type=Land
 [/card]
 [card]
 name=Addle
-auto=choice name(white) && moveTo(graveyard) target(*[white]|opponenthand)
-auto=choice name(blue) && moveTo(graveyard) target(*[blue]|opponenthand)
-auto=choice name(black) && moveTo(graveyard) target(*[black]|opponenthand)
-auto=choice name(red) && moveTo(graveyard) target(*[red]|opponenthand)
-auto=choice name(green) && moveTo(graveyard) target(*[green]|opponenthand)
+auto=choice name(white) && reject target(*[white]|opponenthand)
+auto=choice name(blue) && reject target(*[blue]|opponenthand)
+auto=choice name(black) && reject target(*[black]|opponenthand)
+auto=choice name(red) && reject target(*[red]|opponenthand)
+auto=choice name(green) && reject target(*[green]|opponenthand)
 text=Choose a color. Target player reveals his or her hand and you choose a card of that color from it. That player discards that card.
 mana={1}{B}
 type=Sorcery
@@ -2270,7 +2270,7 @@ type=Instant
 [card]
 name=Apocalypse
 auto=moveTo(exile) all(*|battlefield)
-auto=moveTo(mygraveyard) all(*|myhand)
+auto=reject all(*|myhand)
 text=Exile all permanents. You discard your hand.
 mana={2}{R}{R}{R}
 type=Sorcery
@@ -5146,7 +5146,7 @@ type=Land
 [card]
 name=Bazaar of Baghdad Discard
 auto=counter(0/0,1,Bazaar of Baghdad)
-auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Bazaar of Baghdad}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Bazaar of Baghdad) && counter(0/0,1,Bury)
+auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Bazaar of Baghdad}>0) reject target(*|myhand) && counter(0/0,-1,Bazaar of Baghdad) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 type=Nothing
 id=-20122011
@@ -7326,7 +7326,7 @@ toughness=2
 [card]
 name=Bonded Fetch's Discard
 auto=counter(0/0,1,Bonded Fetch)
-auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Bonded Fetch}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Bonded Fetch) && counter(0/0,1,Bury)
+auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Bonded Fetch}>0) reject target(*|myhand) && counter(0/0,-1,Bonded Fetch) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111145
 type=nothing
@@ -7761,7 +7761,7 @@ type=Instant
 [card]
 name=Brainbite
 target=*|opponenthand
-auto=moveTo(graveyard)
+auto=reject
 auto=draw:1 controller
 text=Target opponent reveals his or her hand. You choose a card from it. That player discards that card. -- Draw a card.
 mana={2}{U}{B}
@@ -9220,7 +9220,7 @@ type=Instant
 [card]
 name=Careful Study
 auto=draw:2
-auto=moveTo(mygraveyard) target(*|myhand)
+auto=reject target(*|myhand)
 auto=token(-1111116)
 text=Draw two cards, then discard two cards.
 mana={U}
@@ -9229,7 +9229,7 @@ type=Sorcery
 [card]
 name=Careful Studies 2nd Discard
 auto=counter(0/0,1,Careful Study)
-auto=@movedTo(*|mygraveyard) from(myhand):thisforeach(counter{0/0.1.Careful Study}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Careful Study) && counter(0/0,1,Bury)
+auto=@movedTo(*|mygraveyard) from(myhand):thisforeach(counter{0/0.1.Careful Study}>0) reject target(*|myhand) && counter(0/0,-1,Careful Study) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111116
 type=Nothing
@@ -11754,7 +11754,7 @@ toughness=4
 [card]
 name=Coercion
 target=*|opponenthand
-auto=moveTo(graveyard)
+auto=reject
 text=Target opponent reveals his or her hand. You choose a card from it. That player discards that card.
 mana={2}{B}
 type=Sorcery
@@ -16155,7 +16155,7 @@ type=Artifact
 [/card]
 [card]
 name=Distress
-auto=moveTo(graveyard) target(*[-land]|opponenthand)
+auto=reject target(*[-land]|opponenthand)
 text=Target player reveals his or her hand. You choose a nonland card from it. That player discards that card.
 mana={B}{B}
 type=Sorcery
@@ -16424,7 +16424,7 @@ toughness=2
 [card]
 name=Doomsday Specter
 abilities=flying
-auto=@combatdamaged(player) from(this|mybattlefield): moveto(graveyard) target(*|opponenthand)
+auto=@combatdamaged(player) from(this|mybattlefield):reject target(*|opponenthand)
 auto=moveTo(ownerhand) notatarget(creature[blue;black]|myBattlefield)
 text=Flying -- When Doomsday Specter enters the battlefield, return a blue or black creature you control to its owner's hand. -- Whenever Doomsday Specter deals combat damage to a player, look at that player's hand and choose a card from it. The player discards that card.
 mana={2}{U}{B}
@@ -16651,7 +16651,7 @@ type=Sorcery
 [card]
 name=Dragon Mage
 abilities=flying
-auto=@combatdamaged(player) from(this):moveto(graveyard) all(*|myhand) && draw:7 controller && moveto(graveyard) all(*|opponenthand) && draw:7 opponent
+auto=@combatdamaged(player) from(this):reject all(*|myhand) && draw:7 controller && reject all(*|opponenthand) && draw:7 opponent
 text=Flying -- Whenever Dragon Mage deals combat damage to a player, each player discards his or her hand and draws seven cards.
 mana={5}{R}{R}
 type=Creature
@@ -17104,7 +17104,7 @@ toughness=1
 [/card]
 [card]
 name=Drekavac
-auto=aslongas(*[-creature]|myhand) moveTo(graveyard) notatarget(*[-creature]|myhand) oneshot
+auto=aslongas(*[-creature]|myhand) reject target(*[-creature]|myhand) oneshot
 auto=moveTo(graveyard) notatarget(this|myBattlefield)
 text=When Drekavac enters the battlefield, sacrifice it unless you discard a noncreature card.
 mana={1}{B}
@@ -17420,7 +17420,7 @@ toughness=1
 [card]
 name=Drowned Rusalkas Discard
 auto=counter(0/0,1,Drowned Rusalka)
-auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Drowned Rusalka}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Drowned Rusalka) && counter(0/0,1,Bury)
+auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Drowned Rusalka}>0) reject target(*|myhand) && counter(0/0,-1,Drowned Rusalka) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111117
 type=nothing
@@ -17604,7 +17604,7 @@ toughness=1
 [card]
 name=Duress
 target=*[-creature;-land]|opponenthand
-auto=moveTo(graveyard)
+auto=reject
 text=Target opponent reveals his or her hand. You choose a noncreature, nonland card from it. That player discards that card.
 mana={B}
 type=Sorcery
@@ -19059,7 +19059,7 @@ type=Artifact
 [card]
 name=Emmessi Tome's Discard
 auto=counter(0/0,1,Emmessi Tome)
-auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Emmessi Tome}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Emmessi Tome) && counter(0/0,1,Bury)
+auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Emmessi Tome}>0) reject target(*|myhand) && counter(0/0,-1,Emmessi Tome) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111119
 type=nothing
@@ -19217,13 +19217,13 @@ name=Enclave Cryptologist's Draw-Discard
 type=nothing
 id=-194903111
 auto=draw:1 controller
-auto=@movedto(this|exile):moveto(mygraveyard) target(*|myhand)
+auto=@movedto(this|exile):reject target(*|myhand)
 auto=moveto(exile) all(this)
 [/card]
 [card]
 name=Encroach
 target=land[-basic]|opponenthand
-auto=moveTo(graveyard)
+auto=reject
 text=Target player reveals his or her hand. You choose a nonbasic land card from it. That player discards that card.
 mana={B}
 type=Sorcery
@@ -20131,7 +20131,7 @@ type=Instant
 [/card]
 [card]
 name=Exiled Boggart
-auto=@movedTo(this|graveyard) from(battlefield):moveTo(mygraveyard) notatarget(*|myhand)
+auto=@movedTo(this|graveyard) from(battlefield):reject target(*|myhand)
 text=When Exiled Boggart is put into a graveyard from the battlefield, discard a card.
 mana={1}{B}
 type=Creature
@@ -23388,7 +23388,7 @@ toughness=1
 [card]
 name=Frontline Sage's Discard
 auto=counter(0/0,1,Frontline Sage)
-auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Frontline Sage}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Frontline Sage) && counter(0/0,1,Bury)
+auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Frontline Sage}>0) reject target(*|myhand) && counter(0/0,-1,Frontline Sage) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111122
 type=nothing
@@ -27221,7 +27221,7 @@ toughness=2
 [card]
 name=Grixis Battlemage's Discard
 auto=counter(0/0,1,Grixis Battlemage)
-auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Grixis Battlemage}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Grixis Battlemage) && counter(0/0,1,Bury)
+auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Grixis Battlemage}>0) reject target(*|myhand) && counter(0/0,-1,Grixis Battlemage) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111123
 type=Nothing
@@ -28360,7 +28360,7 @@ toughness=1
 [card]
 name=He Who Hungers
 abilities=flying
-auto={1}{S(creature[spirit]|mybattlefield)}:moveTo(graveyard) target(*|opponenthand)
+auto={1}{S(creature[spirit]|mybattlefield)}:reject target(*|opponenthand)
 auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=4]|mygraveyard)
 text=Flying -- {1}, Sacrifice a Spirit: Target opponent reveals his or her hand. You choose a card from it. That player discards that card. Activate this ability only any time you could cast a sorcery. -- Soulshift 4 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 4 or less from your graveyard to your hand.)
 mana={4}{B}
@@ -31321,7 +31321,7 @@ toughness=2
 [card]
 name=Inspired Sprite's Discard
 auto=counter(0/0,1,Inspired Sprite)
-auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Inspired Sprite}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Inspired Sprite) && counter(0/0,1,Bury)
+auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Inspired Sprite}>0) reject target(*|myhand) && counter(0/0,-1,Inspired Sprite) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111127
 type=nothing
@@ -31999,7 +31999,7 @@ type=Artifact
 [card]
 name=Jalum Tome's Discard
 auto=counter(0/0,1,Jalum Tome)
-auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Jalum Tome}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Jalum Tome) && counter(0/0,1,Bury)
+auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Jalum Tome}>0) reject target(*|myhand) && counter(0/0,-1,Jalum Tome) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111128
 type=nothing
@@ -36621,11 +36621,11 @@ toughness=2
 [/card]
 [card]
 name=Lion's Eye Diamond
-auto={S}:add {W}{W}{W} && moveTo(mygraveyard) all(*|myhand)
-auto={S}:add {U}{U}{U} && moveTo(mygraveyard) all(*|myhand)
-auto={S}:add {B}{B}{B} && moveTo(mygraveyard) all(*|myhand)
-auto={S}:add {R}{R}{R} && moveTo(mygraveyard) all(*|myhand)
-auto={S}:add {G}{G}{G} && moveTo(mygraveyard) all(*|myhand)
+auto={S}:add {W}{W}{W} && reject all(*|myhand)
+auto={S}:add {U}{U}{U} && reject all(*|myhand)
+auto={S}:add {B}{B}{B} && reject all(*|myhand)
+auto={S}:add {R}{R}{R} && reject all(*|myhand)
+auto={S}:add {G}{G}{G} && reject all(*|myhand)
 text=Sacrifice Lion's Eye Diamond, Discard your hand: Add three mana of any one color to your mana pool. Activate this ability only any time you could cast an instant.
 mana={0}
 type=Artifact
@@ -37049,7 +37049,7 @@ toughness=1
 [card]
 name=Looter il-Kor
 abilities=shadow
-auto=@damaged(opponent) from(this):moveTo(mygraveyard) notatarget(*|myHand)
+auto=@damaged(opponent) from(this):reject target(*|myHand)
 auto=@damaged(opponent) from(this):draw:1 controller
 text=Shadow (This creature can block or be blocked by only creatures with shadow.) -- Whenever Looter il-Kor deals damage to an opponent, draw a card, then discard a card.
 mana={1}{U}
@@ -38002,7 +38002,7 @@ toughness=1
 [card]
 name=Magus of the Bazaar Discard
 auto=counter(0/0,1,Magus of Bazaar)
-auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Magus of Bazaar}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Magus of Bazaar) && counter(0/0,1,Bury)
+auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Magus of Bazaar}>0) reject target(*|myhand) && counter(0/0,-1,Magus of Bazaar) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 type=Nothing
 id=-13100811
@@ -38247,7 +38247,7 @@ type=Enchantment
 [/card]
 [card]
 name=Manabond
-auto=@each my end:may moveTo(myBattlefield) all(land|myhand) && moveTo(mygraveyard) all(*[-land]|myhand)
+auto=@each my end:may moveTo(myBattlefield) all(land|myhand) && reject all(*[-land]|myhand)
 text=At the beginning of your end step, you may reveal your hand and put all land cards from it onto the battlefield. If you do, discard your hand.
 mana={G}
 type=Enchantment
@@ -39245,7 +39245,7 @@ type=Instant
 [/card]
 [card]
 name=Mercenary Knight
-auto=aslongas(creature|myhand) moveTo(graveyard) notatarget(creature|myhand) oneshot
+auto=aslongas(creature|myhand) reject target(creature|myhand) oneshot
 auto=moveTo(graveyard) notatarget(this|myBattlefield)
 text=When Mercenary Knight enters the battlefield, sacrifice it unless you discard a creature card.
 mana={2}{B}
@@ -39317,7 +39317,7 @@ toughness=1
 [card]
 name=Merfolk Looter's Discard
 auto=counter(0/0,1,Merfolk Looter)
-auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Merfolk Looter}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Merfolk Looter) && counter(0/0,1,Bury)
+auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Merfolk Looter}>0) reject target(*|myhand) && counter(0/0,-1,Merfolk Looter) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111130
 type=nothing
@@ -39379,7 +39379,7 @@ toughness=2
 [card]
 name=Merfolk Traders
 auto=draw:1
-auto=moveTo(graveyard) notatarget(*|myhand)
+auto=reject target(*|myhand)
 text=When Merfolk Traders enters the battlefield, draw a card, then discard a card.
 mana={1}{U}
 type=Creature
@@ -39808,7 +39808,7 @@ type=Sorcery
 [/card]
 [card]
 name=Mind Slash
-auto={B}{S(creature|mybattlefield)}:moveTo(graveyard) target(*|opponenthand) asSorcery
+auto={B}{S(creature|mybattlefield)}:reject target(*|opponenthand) asSorcery
 text={B}, Sacrifice a creature: Target opponent reveals his or her hand. You choose a card from it. That player discards that card. Activate this ability only any time you could cast a sorcery.
 mana={1}{B}{B}
 type=Enchantment
@@ -39861,8 +39861,8 @@ toughness=2
 [/card]
 [card]
 name=Mindslicer
-auto=@movedto(this|graveyard) from(battlefield):moveto(graveyard) all(*|myhand)
-auto=@movedto(this|graveyard) from(battlefield):moveto(graveyard) all(*|opponenthand)
+auto=@movedto(this|graveyard) from(battlefield):reject all(*|myhand)
+auto=@movedto(this|graveyard) from(battlefield):reject all(*|opponenthand)
 text=When Mindslicer is put into a graveyard from the battlefield, each player discards his or her hand.
 mana={2}{B}{B}
 type=Creature
@@ -41312,8 +41312,8 @@ toughness=1
 [/card]
 [card]
 name=Mox Diamond
-auto=aslongas(land|myhand) moveto(mygraveyard) target(land|myhand) oneshot && counter(0/0,-1,payment)
-auto=moveto(mygraveyard) target(this|mybattlefield)
+auto=aslongas(land|myhand) reject target(land|myhand) oneshot && counter(0/0,-1,payment)
+auto=moveto(mygraveyard) notatarget(this|mybattlefield)
 auto=this(counter{0/0.1.payment}<1) {T}:Add{W}
 auto=this(counter{0/0.1.payment}<1) {T}:Add{U}
 auto=this(counter{0/0.1.payment}<1) {T}:Add{B}
@@ -41671,7 +41671,7 @@ toughness=4
 name=Myojin of Night's Reach
 auto=kicker counter(0/0,1,Divinity)
 auto=this(counter{0/0.1.Divinity}) indestructible
-auto={C(0/0,-1,Divinity)}:moveTo(graveyard) all(*|opponenthand)
+auto={C(0/0,-1,Divinity)}:reject all(*|opponenthand)
 text=Myojin of Night's Reach enters the battlefield with a divinity counter on it if you cast it from your hand. -- Myojin of Night's Reach is indestructible as long as it has a divinity counter on it. -- Remove a divinity counter from Myojin of Night's Reach: Each opponent discards his or her hand.
 mana={5}{B}{B}{B}
 kicker={0}
@@ -42824,7 +42824,7 @@ toughness=2
 name=Nicol Bolas
 auto=flying
 auto=upcost[{U}{B}{R}] moveTo(graveyard)
-auto=@damaged(opponent) from(this):moveTo(opponentgraveyard) all(*|opponenthand)
+auto=@damaged(opponent) from(this):reject all(*|opponenthand)
 text=Flying -- At the beginning of your upkeep, sacrifice Nicol Bolas unless you pay {U}{B}{R}. -- Whenever Nicol Bolas deals damage to an opponent, that player discards his or her hand.
 mana={2}{U}{U}{B}{B}{R}{R}
 type=Legendary Creature
@@ -43535,7 +43535,7 @@ type=Artifact
 [/card]
 [card]
 name=Null Brooch
-auto={2}{T}:fizzle target(*[-creature]|stack) && moveTo(graveyard) all(*|myhand)
+auto={2}{T}:fizzle target(*[-creature]|stack) && reject all(*|myhand)
 text={2}, {T}, Discard your hand: Counter target noncreature spell.
 mana={4}
 type=Artifact
@@ -43701,7 +43701,7 @@ type=Artifact
 [card]
 name=Obelisk of Alara's Discard
 auto=counter(0/0,1,Obelisk)
-auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Obelisk}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Obelisk) && counter(0/0,1,Bury)
+auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Obelisk}>0) reject target(*|myhand) && counter(0/0,-1,Obelisk) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111132
 type=nothing
@@ -44104,7 +44104,7 @@ color=green
 [/card]
 [card]
 name=One with Nothing
-auto=moveto(mygraveyard) all(*|myhand)
+auto=reject all(*|myhand)
 text=Discard your hand.
 mana={B}
 type=Instant
@@ -44795,7 +44795,7 @@ toughness=2
 [card]
 name=Ostracize
 target=creature|opponenthand
-auto=moveTo(graveyard)
+auto=reject
 text=Target opponent reveals his or her hand. You choose a creature card from it. That player discards that card.
 mana={B}
 type=Sorcery
@@ -44950,7 +44950,7 @@ type=Instant
 name=Owl Familiar
 abilities=flying
 auto=draw:1
-auto=moveTo(mygraveyard) notatarget(*|myhand)
+auto=reject target(*|myhand)
 text=Flying -- When Owl Familiar enters the battlefield, draw a card, then discard a card.
 mana={1}{U}
 type=Creature
@@ -48164,7 +48164,7 @@ subtype=Aura
 [card]
 name=Psychic Spear
 target=spirit,arcane|opponenthand
-auto=moveTo(graveyard)
+auto=reject
 text=Target player reveals his or her hand. You choose a Spirit or Arcane card from it. That player discards that card.
 mana={B}
 type=Sorcery
@@ -51371,7 +51371,7 @@ toughness=1
 [card]
 name=Riddlesmith's Discard
 auto=counter(0/0,1,Riddlesmith)
-auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Riddlesmith}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Riddlesmith) && counter(0/0,1,Bury)
+auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Riddlesmith}>0) reject target(*|myhand) && counter(0/0,-1,Riddlesmith) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-5555556
 type=nothing
@@ -54308,7 +54308,7 @@ type=Enchantment
 name=Screeching Drake
 abilities=flying
 auto=draw:1
-auto=moveTo(mygraveyard) notatarget(*|myhand)
+auto=reject target(*|myhand)
 text=Flying -- When Screeching Drake enters the battlefield, draw a card, then discard a card.
 mana={3}{U}
 type=Creature
@@ -55829,7 +55829,7 @@ type=Instant
 [card]
 name=Shattered Dreams
 target=artifact|opponenthand
-auto=moveTo(graveyard)
+auto=reject
 text=Target opponent reveals his or her hand. You choose an artifact card from it. That player discards that card.
 mana={B}
 type=Sorcery
@@ -56692,7 +56692,7 @@ toughness=2
 [card]
 name=Sift
 auto=draw:3
-auto=moveTo(mygraveyard) target(*|myhand)
+auto=reject target(*|myhand)
 text=Draw three cards, then discard a card.
 mana={3}{U}
 type=Sorcery
@@ -58136,7 +58136,7 @@ toughness=1
 name=Sky-Eel School
 abilities=flying
 auto=draw:1
-auto=moveTo(ownergraveyard) target(*|myhand)
+auto=reject target(*|myhand)
 text=Flying -- When Sky-Eel School enters the battlefield, draw a card, then discard a card.
 mana={3}{U}{U}
 type=Creature
@@ -58173,7 +58173,7 @@ toughness=3
 [/card]
 [card]
 name=Slate of Ancestry
-auto={4}{T}:moveTo(mygraveyard) all(*|myhand) && foreach(creature|myBattlefield) draw:1
+auto={4}{T}:reject all(*|myhand) && foreach(creature|myBattlefield) draw:1
 text={4}, {T}, Discard your hand: Draw a card for each creature you control.
 mana={4}
 type=Artifact
@@ -63593,7 +63593,7 @@ toughness=3
 [card]
 name=Talara's Bane
 target=creature[green;white]|opponenthand
-auto=moveTo(graveyard)
+auto=reject
 auto=dynamicability<!mytgt toughnesslifegain srccontroller!>
 text=Target opponent reveals his or her hand. You choose a green or white creature card from it. You gain life equal that creature card's toughness, then that player discards that card.
 mana={1}{B}
@@ -65410,7 +65410,7 @@ toughness=1
 [card]
 name=Thought Courier's Discard
 auto=counter(0/0,1,Thought Courier)
-auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Thought Courier}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Thought Courier) && counter(0/0,1,Bury)
+auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Thought Courier}>0) reject target(*|myhand) && counter(0/0,-1,Thought Courier) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111140
 type=nothing
@@ -65418,7 +65418,7 @@ type=nothing
 [card]
 name=Thought Gorger
 abilities=trample
-auto=foreach(*|myhand) counter(1/1,1) && moveTo(mygraveyard) all(*|myhand)
+auto=foreach(*|myhand) counter(1/1,1) && reject all(*|myhand)
 auto=@movedTo(this|nonbattlezone) from(myBattlefield):thisforeach(counter{1/1,1}) draw:1 controller
 text=Trample -- When Thought Gorger enters the battlefield, put a +1/+1 counter on it for each card in your hand. If you do, discard your hand. -- When Thought Gorger leaves the battlefield, draw a card for each +1/+1 counter on it.
 mana={2}{B}{B}
@@ -65467,7 +65467,7 @@ type=Enchantment
 [card]
 name=Thoughtseize
 target=*[-land]|opponenthand
-auto=moveTo(graveyard)
+auto=reject
 auto=life:-2 controller
 text=Target player reveals his or her hand. You choose a nonland card from it. That player discards that card. You lose 2 life.
 mana={B}
@@ -65645,7 +65645,7 @@ subtype=Aura
 [/card]
 [card]
 name=Thrull Surgeon
-auto={1}{B}{S}:moveTo(opponentgraveyard) notatarget(*|myhand) asSorcery
+auto={1}{B}{S}:reject target(*|opponenthand) asSorcery
 text={1}{B}, Sacrifice Thrull Surgeon: Look at target player's hand and choose a card from it. That player discards that card. Activate this ability only any time you could cast a sorcery.
 mana={1}{B}
 type=Creature
@@ -65789,7 +65789,7 @@ toughness=3
 [/card]
 [card]
 name=Thundering Wurm
-auto=aslongas(land|myhand) moveTo(graveyard) notatarget(land|myhand) oneshot
+auto=aslongas(land|myhand) reject target(land|myhand) oneshot
 auto=moveTo(graveyard) notatarget(this|myBattlefield)
 text=When Thundering Wurm enters the battlefield, sacrifice it unless you discard a land card.
 mana={2}{G}
@@ -67438,7 +67438,7 @@ type=Instant
 [card]
 name=Treva's Charm's Discard
 auto=counter(0/0,1,Treva)
-auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Treva}>0) moveTo(mygraveyard) target(*|myhand) && counter(0/0,-1,Treva) && counter(0/0,1,Bury)
+auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Treva}>0) reject target(*|myhand) && counter(0/0,-1,Treva) && counter(0/0,1,Bury)
 auto=thisforeach(counter{0/0.1.Bury}>0) bury
 id=-1111143
 type=nothing
@@ -68356,7 +68356,7 @@ type=Instant
 name=Unmask
 target=*[-land]|opponenthand
 other={E(other *[black]|myhand)}
-auto=moveTo(graveyard)
+auto=reject
 text=You may exile a black card from your hand rather than pay Unmask's mana cost. -- Target player reveals his or her hand. You choose a nonland card from it. That player discards that card.
 mana={3}{B}
 type=Sorcery
@@ -70664,7 +70664,7 @@ toughness=2
 [card]
 name=Vodalian Merchant
 auto=draw:1
-auto=moveTo(mygraveyard) notatarget(*|myhand)
+auto=reject target(*|myhand)
 text=When Vodalian Merchant enters the battlefield, draw a card, then discard a card.
 mana={1}{U}
 type=Creature
@@ -70903,7 +70903,7 @@ subtype=Aura
 [/card]
 [card]
 name=Volrath the Fallen
-auto={0}:notatarget(*|myhand) dynamicability<!mytgt manacostpumppow tosrc!> moveTo(graveyard)
+auto={0}:target(*|myhand) dynamicability<!mytgt manacostpumppow tosrc!> reject
 text={1}{B}, Discard a creature card: Volrath the Fallen gets +X/+X until end of turn, where X is the discarded card's converted mana cost.
 mana={3}{B}{B}{B}
 type=Legendary Creature
@@ -72500,7 +72500,7 @@ type=Artifact
 [/card]
 [card]
 name=Wheel and Deal
-auto=moveto(graveyard) all(*|opponenthand)
+auto=reject all(*|opponenthand)
 auto=draw:7 opponent
 auto=draw:1 controller
 text=Any number of target opponents each discards his or her hand and draws seven cards. -- Draw a card.
@@ -72509,9 +72509,9 @@ type=Instant
 [/card]
 [card]
 name=Wheel of Fate
-auto=moveto(opponentgraveyard) all(*|opponenthand)
+auto=reject all(*|opponenthand)
 auto=draw:7 opponent
-auto=moveto(mygraveyard) all(*|myhand)
+auto=reject all(*|myhand)
 auto=draw:7 controller
 text=Wheel of Fate is red. -- Suspend 4 - {1}{R} (Rather than cast this card from your hand, pay {1}{R} and exile it with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.) -- Each player discards his or her hand, then draws seven cards.
 type=Sorcery
@@ -72521,9 +72521,9 @@ suspend(4)={1}{r}
 [/card]
 [card]
 name=Wheel of Fortune
-auto=moveto(opponentgraveyard) all(*|opponenthand)
+auto=reject all(*|opponenthand)
 auto=draw:7 opponent
-auto=moveto(mygraveyard) all(*|myhand)
+auto=reject all(*|myhand)
 auto=draw:7 controller
 text=Each player discards his or her hand and draws seven cards.
 mana={2}{R}
