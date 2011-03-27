@@ -109,6 +109,16 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 zones[nbzones++] = MTGGameZone::MY_BATTLEFIELD;
                 zones[nbzones++] = MTGGameZone::OPPONENT_BATTLEFIELD;
             }
+            else if (zoneName.compare("hand") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::MY_HAND;
+                zones[nbzones++] = MTGGameZone::OPPONENT_HAND;
+            }
+            else if (zoneName.compare("library") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::MY_LIBRARY;
+                zones[nbzones++] = MTGGameZone::OPPONENT_LIBRARY;
+            }
             else if (zoneName.compare("nonbattlezone") == 0)
             {
                 zones[nbzones++] = MTGGameZone::MY_GRAVEYARD;
