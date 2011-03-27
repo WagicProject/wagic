@@ -9412,7 +9412,8 @@ type=Land
 [/card]
 [card]
 name=Castigate
-auto=moveTo(exile) target(*[-land]|opponenthand)
+target=*[-land]|opponenthand
+auto=moveTo(exile)
 text=Target opponent reveals his or her hand. You choose a nonland card from it and exile that card.
 mana={W}{B}
 type=Sorcery
@@ -16162,7 +16163,8 @@ type=Artifact
 [/card]
 [card]
 name=Distress
-auto=reject target(*[-land]|opponenthand,myhand)
+target=*[-land]|opponenthand,myhand
+auto=reject
 text=Target player reveals his or her hand. You choose a nonland card from it. That player discards that card.
 mana={B}{B}
 type=Sorcery
@@ -19229,7 +19231,8 @@ auto=moveto(exile) all(this)
 [/card]
 [card]
 name=Encroach
-auto=reject target(land[-basic]|opponenthand,myhand)
+target=land[-basic]|opponenthand,myhand
+auto=reject
 text=Target player reveals his or her hand. You choose a nonbasic land card from it. That player discards that card.
 mana={B}
 type=Sorcery
@@ -20266,7 +20269,8 @@ subtype=Aura
 [/card]
 [card]
 name=Extract
-auto=moveTo(exile) target(*|myLibrary,opponentLibrary)
+target=*|opponentLibrary,myLibrary
+auto=moveTo(exile)
 text=Search target player's library for a card and exile it. Then that player shuffles his or her library.
 mana={U}
 type=Sorcery
@@ -31256,7 +31260,8 @@ toughness=3
 [/card]
 [card]
 name=Inquisition of Kozilek
-auto=reject target(*[manacost<=3;-land]|opponenthand,myhand)
+target=*[manacost<=3;-land]|opponenthand,myhand
+auto=reject
 text=Target player reveals his or her hand. You choose a nonland card from it with converted mana cost 3 or less. That player discards that card.
 mana={B}
 type=Sorcery
@@ -65460,7 +65465,8 @@ type=Enchantment
 [/card]
 [card]
 name=Thoughtseize
-auto=reject target(*[-land]|opponenthand,myhand)
+target=*[-land]|opponenthand,myhand
+auto=reject
 auto=life:-2 controller
 text=Target player reveals his or her hand. You choose a nonland card from it. That player discards that card. You lose 2 life.
 mana={B}
@@ -68347,7 +68353,8 @@ type=Instant
 [/card]
 [card]
 name=Unmask
-auto=reject target(*[-land]|opponenthand,myhand)
+target=*[-land]|opponenthand,myhand
+auto=reject
 other={E(other *[black]|myhand)}
 text=You may exile a black card from your hand rather than pay Unmask's mana cost. -- Target player reveals his or her hand. You choose a nonland card from it. That player discards that card.
 mana={3}{B}
@@ -69407,7 +69414,8 @@ type=Land
 [/card]
 [card]
 name=Venarian Glimmer
-auto=reject target(*[-land;manacost <=X]|opponenthand,myhand)
+target=*[-land;manacost <=X]|opponenthand,myhand
+auto=reject
 text=Target player reveals his or her hand. You choose a nonland card with converted mana cost X or less from it. That player discards that card.
 mana={X}{U}
 type=Instant
