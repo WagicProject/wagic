@@ -2347,9 +2347,10 @@ public:
     MTGAbility * a;
     int includeSelf;
     int mini, maxi;
+    bool miniFound, maxiFound;
     AAsLongAs(int _id, MTGCardInstance * _source, Damageable * _target, TargetChooser * _tc, int _includeSelf,
-            MTGAbility * ability, int mini = 0, int maxi = 0) :
-        ListMaintainerAbility(_id, _source, _target), NestedAbility(ability), mini(mini), maxi(maxi)
+        MTGAbility * ability, int mini = 0, int maxi = 0,bool miniFound = false,bool maxiFound = false) :
+    ListMaintainerAbility(_id, _source, _target), NestedAbility(ability), mini(mini), maxi(maxi),miniFound(miniFound),maxiFound(maxiFound)
     {
         tc = _tc;
         includeSelf = _includeSelf;
@@ -2359,31 +2360,67 @@ public:
         a = NULL;
     }
 
-        int canBeInList(MTGCardInstance * card)
-        {
-            if(card->isPhased || source->isPhased)
-                return 0;
-            int size = 0;
-            size = (int) cards.size();
-            if (includeSelf && maxi && card == source && size > maxi)
-            {
-                removed(card);
-            }
-            if ((includeSelf || card != source) && tc->canTarget(card)) 
-                return 1;
-
-            return 0;
-        }
-
-        int resolve()
+    void Update(float dt)
     {
-        //TODO check if ability is oneShot ?
+        ListMaintainerAbility::Update(dt);
+        if(!ability->oneShot)
+            SorterFunction();
+
+    }
+
+    int SorterFunction()
+    {
         updateTargets();
-        int size = (int) cards.size();
-        if (maxi && size < maxi && (!mini || size > mini)) addAbilityToGame(); //special  case for 0
-        if (ability->oneShot) a = NULL; //allows to call the effect several times
+        int size = 0;
+        size = (int) cards.size();
+        /////////////////DO NOT REFACTOR THIS SECTION/////////////////////////////////////////
+        //these were seperated becuase previous methods were far too confusing to understand//
+        //////////////////////////////////////////////////////////////////////////////////////
+        if (miniFound)
+        {
+            if (size > mini) 
+            {
+                addAbilityToGame();
+            }
+            else
+            {
+                removeAbilityFromGame();
+            }
+        }
+        if (maxiFound)
+        {
+            if (size < maxi) 
+            {
+                addAbilityToGame();
+            }
+            else
+            {
+                removeAbilityFromGame();
+            }
+        }
+        /////////////////////////////////////////////////////////////////////////
         cards.clear();
         players.clear();
+        return 1;
+    }
+
+    int canBeInList(MTGCardInstance * card)
+    {
+        if(card->isPhased || source->isPhased)
+            return 0;
+        if ((includeSelf || card != source) && tc->canTarget(card)) 
+            return 1;
+
+        return 0;
+    }
+    //////////resolve is used when the aslongas is nested, or used on instants and sorceries/////////
+    int resolve()
+    {
+        SorterFunction();
+        if (ability->oneShot)
+        {
+            a = NULL; //allows to call the effect several times
+        }
         return 1;
     }
 
@@ -2410,52 +2447,36 @@ public:
         a = NULL;
         return 1;
     }
-
-    int _added(Damageable * d)
-    {
-        int size = (int) cards.size();
-        if (maxi && size >= maxi) return removeAbilityFromGame();
-        if (maxi) return 0;
-        if (size <= mini) return 0;
-        return addAbilityToGame();
-    }
-
+    /////////////////section required/////////////////////
     int added(MTGCardInstance * card)
     {
-        return _added(card);
+        return 1;
     }
-
     int added(Player * p)
     {
-        return _added(p);
+        return 1;
     }
-
     int removed(MTGCardInstance * card)
     {
-        size_t size = cards.size();
-        if (maxi && (int) size < maxi) return addAbilityToGame();
-        if (mini && (int) size > mini) return 0;
-        if (mini && (int) size <= mini) return removeAbilityFromGame();
-        if (!mini && !maxi && size != 0) return 0;
-        return removeAbilityFromGame();
+        return 1;
     }
-
+    ///////////////////////////////////////////////////////
     ~AAsLongAs()
     {
         if (!isClone)
-        SAFE_DELETE(ability);
+            SAFE_DELETE(ability);
     }
 
     const char * getMenuText()
     {
-			if(ability)
-			{
-        return ability->getMenuText();
-			}
-			else
-			{
-			  return "Ability";
-			}
+        if(ability)
+        {
+            return ability->getMenuText();
+        }
+        else
+        {
+            return "Ability";
+        }
     }
 
     AAsLongAs * clone() const

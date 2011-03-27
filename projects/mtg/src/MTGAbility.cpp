@@ -1291,6 +1291,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 oneShot = 1;
             if (a->oneShot)
                 oneShot = 1;
+            found = s.find("while ");
+            if (found != string::npos)
+                oneShot = 0;
             Damageable * _target = NULL;
             if (spell)
                 _target = spell->getNextDamageableTarget();
@@ -1299,14 +1302,22 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 
             int mini = 0;
             int maxi = 0;
+            bool miniFound = false;
+            bool maxiFound = false;
 
             found = s.find(" >");
             if (found != string::npos)
+            {
                 mini = atoi(s.substr(found + 2, 3).c_str());
+                miniFound = true;
+            }
 
             found = s.find(" <");
             if (found != string::npos)
+            {
                 maxi = atoi(s.substr(found + 2, 3).c_str());
+                maxiFound = true;
+            }
 
             switch (i)
             {
@@ -1317,7 +1328,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 result = NEW AForeach(id, card, _target, lordTargets, lordIncludeSelf, a, mini, maxi);
                 break;
             case 2:
-                result = NEW AAsLongAs(id, card, _target, lordTargets, lordIncludeSelf, a, mini, maxi);
+                {
+                    if (!miniFound && !maxiFound)//for code without an operator treat as a mini.
+                    {
+                        miniFound = true;
+                    }
+                    result = NEW AAsLongAs(id, card, _target, lordTargets, lordIncludeSelf, a, mini, maxi,miniFound,maxiFound);
+                }
                 break;
             case 3:
                 result = NEW ATeach(id, card, lordTargets, lordIncludeSelf, a);
