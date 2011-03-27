@@ -1,0 +1,17 @@
+## Emperor Crocodile is sacrificed when it is put in play
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Emperor Crocodile
+manapool:{3}{g}
+[PLAYER2]
+[DO]
+Emperor Crocodile
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Emperor Crocodile
+manapool:{0}
+life:20
+[PLAYER2]
+[END]

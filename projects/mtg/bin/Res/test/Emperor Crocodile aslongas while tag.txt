@@ -1,0 +1,19 @@
+## Emperor Crocodile is sacrificed when bottle gnomes is removed from battlefield
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Emperor Crocodile
+inplay:Bottle Gnomes
+manapool:{3}{g}
+[PLAYER2]
+[DO]
+Emperor Crocodile
+Bottle Gnomes
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Bottle Gnomes,Emperor Crocodile
+manapool:{0}
+life:23
+[PLAYER2]
+[END]

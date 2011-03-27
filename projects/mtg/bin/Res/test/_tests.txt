@@ -250,6 +250,8 @@ ekundu_cyclops2_i218.txt
 elvish_piper.txt
 elvish_promenade.txt
 emblem_of_the_warmind.txt
+Emperor Crocodile aslongas while tag.txt
+Emperor Crocodile aslongas while tag 2.txt
 enchanted evening.txt
 enervate.txt
 enchantress_s_presence.txt
