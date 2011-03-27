@@ -48172,7 +48172,8 @@ subtype=Aura
 [/card]
 [card]
 name=Psychic Spear
-auto=reject target(spirit,arcane|opponenthand,myhand)
+target=spirit,arcane|opponenthand,myhand
+auto=reject
 text=Target player reveals his or her hand. You choose a Spirit or Arcane card from it. That player discards that card.
 mana={B}
 type=Sorcery
@@ -69414,8 +69415,7 @@ type=Land
 [/card]
 [card]
 name=Venarian Glimmer
-target=*[-land;manacost <=X]|opponenthand,myhand
-auto=reject
+auto=reject target(*[-land;manacost <=X]|opponenthand,myhand)
 text=Target player reveals his or her hand. You choose a nonland card with converted mana cost X or less from it. That player discards that card.
 mana={X}{U}
 type=Instant
