@@ -19097,7 +19097,7 @@ toughness=1
 [/card]
 [card]
 name=Emperor Crocodile
-auto=aslongas(other creature|myBattlefield) sacrifice <1
+auto=aslongas(other creature|myBattlefield) all(this) sacrifice while <1
 text=When you control no other creatures, sacrifice Emperor Crocodile.
 mana={3}{G}
 type=Creature
