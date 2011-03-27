@@ -20403,14 +20403,6 @@ mana={3}{GU}{GU}{GU}
 type=Enchantment
 [/card]
 [card]
-name=Wolf
-type=Creature
-subtype=Wolf
-power=2
-toughness=2
-color=green
-[/card]
-[card]
 name=Bird
 type=Creature
 subtype=Bird
@@ -31773,7 +31765,7 @@ type=Land
 [card]
 name=Isleback Spawn
 abilities=shroud
-auto=aslongas(*|mylibrary) 4/8 <21
+auto=aslongas(*|library) 4/8 <21
 text=Shroud -- Isleback Spawn gets +4/+8 as long as a library has twenty or fewer cards in it.
 mana={5}{U}{U}
 type=Creature
