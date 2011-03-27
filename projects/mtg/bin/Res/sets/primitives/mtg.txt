@@ -72501,9 +72501,8 @@ type=Instant
 [/card]
 [card]
 name=Wheel of Fate
-auto=reject all(*|opponenthand)
+auto=reject all(*|hand)
 auto=draw:7 opponent
-auto=reject all(*|myhand)
 auto=draw:7 controller
 text=Wheel of Fate is red. -- Suspend 4 - {1}{R} (Rather than cast this card from your hand, pay {1}{R} and exile it with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.) -- Each player discards his or her hand, then draws seven cards.
 type=Sorcery
