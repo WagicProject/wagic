@@ -53,6 +53,24 @@ bool JGEToggleFullscreen();
 
 #if !defined(WIN32) && !defined(LINUX) && !defined(IOS)
 
+// hack to fix a typedef definition of u32 inside of newlib's stdint.h
+// this used to be defined as an unsigned long, but as of minpspw 11.1, it's 
+// now an unsigned int:
+
+// from stdint.h 
+// /* Check if "long" is 64bit or 32bit wide */
+// #if __STDINT_EXP(LONG_MAX) > 0x7fffffff
+// #define __have_long64 1
+// #elif __STDINT_EXP(LONG_MAX) == 0x7fffffff && !defined(__SPU__) && !defined(__psp__)
+// #define __have_long32 1
+// #endif
+
+// Note the dependency on the definition of __psp__, which isn't defined in JGE.  This probably
+// usually comes in via a makefile, but I couldn't unravel what setting it comes from...
+#if !defined(__psp__)
+#define __psp__ 1
+#endif
+
 #include <pspgu.h>
 #include <pspkernel.h>
 #include <pspdisplay.h>
