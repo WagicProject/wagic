@@ -16599,7 +16599,7 @@ name=Dragon Breath
 target=creature
 auto=haste
 auto={R}:1/0
-autograveyard=@movedto(creature[power >=6]|mybattlefield):may all(trigger[to]) retarget
+autograveyard=@movedto(creature[manacost >=6]|mybattlefield):may all(trigger[to]) retarget
 text=Enchant creature -- Enchanted creature has haste. -- {R}: Enchanted creature gets +1/+0 until end of turn. -- When a creature with converted mana cost 6 or more enters the battlefield, you may return Dragon Breath from your graveyard to the battlefield attached to that creature.
 mana={1}{R}
 type=Enchantment
@@ -16644,7 +16644,7 @@ name=Dragon Fangs
 target=creature
 auto=trample
 auto=1/1
-autograveyard=@movedto(creature[power >=6]|mybattlefield):may all(trigger[to]) retarget
+autograveyard=@movedto(creature[manacost >=6]|mybattlefield):may all(trigger[to]) retarget
 text=Enchant creature -- Enchanted creature gets +1/+1 and has trample. -- When a creature with converted mana cost 6 or more enters the battlefield, you may return Dragon Fangs from your graveyard to the battlefield attached to that creature.
 mana={1}{G}
 type=Enchantment
@@ -16680,7 +16680,7 @@ name=Dragon Scales
 target=creature
 auto=vigilance
 auto=1/2
-autograveyard=@movedto(creature[power >=6]|mybattlefield):may all(trigger[to]) retarget
+autograveyard=@movedto(creature[manacost >=6]|mybattlefield):may all(trigger[to]) retarget
 text=Enchant creature -- Enchanted creature gets +1/+2 and has vigilance. -- When a creature with converted mana cost 6 or more enters the battlefield, you may return Dragon Scales from your graveyard to the battlefield attached to that creature.
 mana={1}{W}
 type=Enchantment
@@ -16691,7 +16691,7 @@ name=Dragon Shadow
 target=creature
 auto=fear
 auto=1/0
-autograveyard=@movedto(creature[power >=6]|mybattlefield):may all(trigger[to]) retarget
+autograveyard=@movedto(creature[manacost >=6]|mybattlefield):may all(trigger[to]) retarget
 text=Enchant creature -- Enchanted creature gets +1/+0 and has fear. (It can't be blocked except by artifact creatures and/or black creatures.) -- When a creature with converted mana cost 6 or more enters the battlefield, you may return Dragon Shadow from your graveyard to the battlefield attached to that creature.
 mana={1}{B}
 type=Enchantment
@@ -16726,7 +16726,7 @@ target=creature
 auto=flying
 auto=1/0
 autohand={1}{U}:cycling
-autograveyard=@movedto(creature[power >=6]|mybattlefield):may all(trigger[to]) retarget
+autograveyard=@movedto(creature[manacost >=6]|mybattlefield):may all(trigger[to]) retarget
 text=Enchant creature -- Enchanted creature has flying. -- Cycling {1}{U} ({1}{U}, Discard this card: Draw a card.) -- When a creature with converted mana cost 6 or more enters the battlefield, you may return Dragon Wings from your graveyard to the battlefield attached to that creature.
 mana={1}{U}
 type=Enchantment
@@ -24569,7 +24569,7 @@ type=Sorcery
 name=Ghostly Wings
 target=creature
 auto=1/1
-auto={discard(*|myhand)}:teach(creature) moveTo(myhand)
+auto={discard(*|myhand)}:teach(creature) moveTo(ownerhand)
 text=Enchant creature -- Enchanted creature gets +1/+1 and has flying. -- Discard a card: Return enchanted creature to its owner's hand.
 mana={1}{U}
 type=Enchantment
@@ -32831,6 +32831,7 @@ auto=@movedTo(*[manacost=12]|opponentstack) from(opponenthand):damage:12 target(
 auto=@movedTo(*[manacost=13]|opponentstack) from(opponenthand):damage:13 target(creature,player)
 auto=@movedTo(*[manacost=14]|opponentstack) from(opponenthand):damage:14 target(creature,player)
 auto=@movedTo(*[manacost=15]|opponentstack) from(opponenthand):damage:15 target(creature,player)
+auto=@movedTo(*[manacost=16]|opponentstack) from(opponenthand):damage:16 target(creature,player)
 text=Whenever an opponent casts a spell, Kaervek the Merciless deals damage to target creature or player equal to that spell's converted mana cost.
 mana={5}{B}{R}
 type=Legendary Creature
@@ -48673,7 +48674,7 @@ type=Enchantment
 [/card]
 [card]
 name=Questing Phelddagrif
-auto={G}:1/1 && token(Hippo,Creature Token Hippo,1/1,green) && moveTo(opponentBattlefield) all(hippo[token]|myBattlefield)
+auto={G}:1/1 && token(Hippo,Creature Token Hippo,1/1,green) opponent
 auto={W}:protection from black && protection from red && life:2 opponent
 auto={U}:flying && draw:1 opponent
 text={G}: Questing Phelddagrif gets +1/+1 until end of turn. Target opponent puts a 1/1 green Hippo creature token onto the battlefield. -- {W}: Questing Phelddagrif gains protection from black and from red until end of turn. Target opponent gains 2 life. -- {U}: Questing Phelddagrif gains flying until end of turn. Target opponent may draw a card.
@@ -65264,9 +65265,8 @@ toughness=2
 [/card]
 [card]
 name=Thornbite Staff
-auto=teach(creature) {2}{t}:damage:1 target(creature,player)
-auto=@movedto(creature|mygraveyard) from(creature|mybattlefield):teach(mytgt) untap
-auto=@movedto(creature|opponentsgraveyard) from(creature|opponentsbattlefield):teach(mytgt) untap
+auto=teach(creature) {2}{T}:damage:1 target(creature,player)
+auto=@movedto(creature|graveyard) from(creature|battlefield):teach(creature) untap
 auto=@movedto(creature[shaman]|battlefield):may all(trigger[to]) retarget
 auto={4}:equip
 text=Equipped creature has "{2}, {T}: This creature deals 1 damage to target creature or player" and "Whenever a creature is put into a graveyard from the battlefield, untap this creature." -- Whenever a Shaman creature enters the battlefield, you may attach Thornbite Staff to it. -- Equip {4}
