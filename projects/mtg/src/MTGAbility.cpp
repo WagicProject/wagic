@@ -2527,7 +2527,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         bool newtoughnessfound = false;
         string newtoughness = "";
         vector <string> abilities = split(sabilities, ',');
-        
+        bool newAbilityFound = false;
+        vector<MTGAbility *> newAbilitiesList;
+
         for(unsigned int j = 0;j < abilities.size();j++)
         {
             if(abilities[j].find("setpower=") != string::npos)
@@ -2542,19 +2544,26 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 int toughnessstart = abilities[j].find("settoughness=");
                 newtoughness = abilities[j].substr(toughnessstart + 13).c_str();
             }
+            if(abilities[j].find("newability[") != string::npos)
+            {
+                newAbilityFound = true;
+                size_t NewSkill = abilities[j].find("[");
+                string newAbilities = abilities[j].substr(NewSkill + 1,abilities[j].find(']') - 1);
+                newAbilitiesList.push_back(parseMagicLine(newAbilities, id, spell, card));
+            }
         }
         MTGAbility * a;
         if (forceFOREVER)
         {
-            a = NEW ATransformerFOREVER(id, card, target, stypes, sabilities,newpower,newpowerfound,newtoughness,newtoughnessfound);
+            a = NEW ATransformerFOREVER(id, card, target, stypes, sabilities,newpower,newpowerfound,newtoughness,newtoughnessfound,newAbilitiesList,newAbilityFound);
         }
         else if (forceUEOT)
         {
-            a = NEW ATransformerUEOT(id, card, target, stypes, sabilities,newpower,newpowerfound,newtoughness,newtoughnessfound);
+            a = NEW ATransformerUEOT(id, card, target, stypes, sabilities,newpower,newpowerfound,newtoughness,newtoughnessfound,newAbilitiesList,newAbilityFound);
         }
         else
         {
-            a = NEW ATransformer(id, card, target, stypes, sabilities,newpower,newpowerfound,newtoughness,newtoughnessfound);
+            a = NEW ATransformer(id, card, target, stypes, sabilities,newpower,newpowerfound,newtoughness,newtoughnessfound,newAbilitiesList,newAbilityFound);
         }
         return a;
     }
