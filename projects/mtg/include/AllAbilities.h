@@ -2347,11 +2347,14 @@ public:
     MTGAbility * a;
     int includeSelf;
     int mini, maxi;
-    bool miniFound, maxiFound;
+    bool miniFound, maxiFound, compareZone;
+    int amount[2];
     AAsLongAs(int _id, MTGCardInstance * _source, Damageable * _target, TargetChooser * _tc, int _includeSelf,
-        MTGAbility * ability, int mini = 0, int maxi = 0,bool miniFound = false,bool maxiFound = false) :
-    ListMaintainerAbility(_id, _source, _target), NestedAbility(ability), mini(mini), maxi(maxi),miniFound(miniFound),maxiFound(maxiFound)
+        MTGAbility * ability, int mini = 0, int maxi = 0,bool miniFound = false,bool maxiFound = false,bool compareZone = false) :
+    ListMaintainerAbility(_id, _source, _target), NestedAbility(ability), mini(mini), maxi(maxi),miniFound(miniFound),maxiFound(maxiFound),compareZone(compareZone)
     {
+        for (int j = 0; j < 2; j++)
+            amount[j] = 0;
         tc = _tc;
         includeSelf = _includeSelf;
         tc->targetter = NULL;
@@ -2368,17 +2371,38 @@ public:
 
     }
 
+    void findMatchingAmount()
+    {
+        int Value = 0;
+        GameObserver * game = game->GetInstance();
+        for (int i = 0; i < 2; i++)
+        {
+            Player * p = game->players[i];
+            MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library };
+            for (int k = 0; k < 4; k++)
+            {
+                MTGGameZone * zone = zones[k];
+                Value = zone->countByCanTarget(tc);
+            }
+            amount[i] = Value;
+        }
+    }
+
     int SorterFunction()
     {
         updateTargets();
         int size = 0;
         size = (int) cards.size();
+        if(compareZone)
+            findMatchingAmount();
+        //compare like tc zones to find a matching amount.
+        //if any player has less/more of Tc targetable cards, ability is valid.
         /////////////////DO NOT REFACTOR THIS SECTION/////////////////////////////////////////
         //these were seperated becuase previous methods were far too confusing to understand//
         //////////////////////////////////////////////////////////////////////////////////////
         if (miniFound)
         {
-            if (size > mini) 
+            if (size > mini || (compareZone && (amount[0] > mini || amount[1] > mini))) 
             {
                 addAbilityToGame();
             }
@@ -2389,7 +2413,7 @@ public:
         }
         if (maxiFound)
         {
-            if (size < maxi) 
+            if (size < maxi || (compareZone && (amount[0] < maxi || amount[1] < maxi))) 
             {
                 addAbilityToGame();
             }

@@ -1304,6 +1304,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             int maxi = 0;
             bool miniFound = false;
             bool maxiFound = false;
+            bool compareZone = false;
 
             found = s.find(" >");
             if (found != string::npos)
@@ -1318,7 +1319,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 maxi = atoi(s.substr(found + 2, 3).c_str());
                 maxiFound = true;
             }
-
+            
+            found = s.find("compare");
+            if (found != string::npos)
+            {
+            compareZone = true;
+            }
+            
             switch (i)
             {
             case 0:
@@ -1333,7 +1340,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                     {
                         miniFound = true;
                     }
-                    result = NEW AAsLongAs(id, card, _target, lordTargets, lordIncludeSelf, a, mini, maxi,miniFound,maxiFound);
+                    result = NEW AAsLongAs(id, card, _target, lordTargets, lordIncludeSelf, a, mini, maxi,miniFound,maxiFound,compareZone);
                 }
                 break;
             case 3:
