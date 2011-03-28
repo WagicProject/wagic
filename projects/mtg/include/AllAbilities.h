@@ -3909,7 +3909,7 @@ public:
     string newtoughness;
     bool newtoughnessfound;
     int oldtoughness;
-    map<Damageable *, vector<MTGAbility *>> newAbilities;
+    map<Damageable *, vector<MTGAbility *> > newAbilities;
     vector<MTGAbility *> newAbilitiesList;
     bool newAbilityFound;
 
@@ -3938,7 +3938,7 @@ public:
     int oldtoughness;
     bool remove;
     vector<MTGAbility *> newAbilitiesList;
-    map<Damageable *, vector<MTGAbility *>> newAbilities;
+    map<Damageable *, vector<MTGAbility *> > newAbilities;
     bool newAbilityFound;
 
     AForeverTransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities,string newpower = "",bool newpowerfound = false,string newtoughness = "",bool newtoughnessfound = false,vector<MTGAbility*>newAbilitiesList = vector<MTGAbility*>(),bool newAbilityFound = false);
@@ -3958,7 +3958,7 @@ public:
     string newtoughness;
     bool newtoughnessfound;
     vector<MTGAbility *> newAbilitiesList;
-    map<Damageable *, vector<MTGAbility *>> newAbilities;
+    map<Damageable *, vector<MTGAbility *> > newAbilities;
     bool newAbilityFound;
 
     ATransformerUEOT(int id, MTGCardInstance * source, MTGCardInstance * target, string types = "", string abilities = "",string newpower = "",bool newpowerfound = false,string newtoughness = "",bool newtoughnessfound = false,vector<MTGAbility*>newAbilitiesList = vector<MTGAbility*>(),bool newAbilityFound = false);
@@ -3978,7 +3978,7 @@ public:
     string newtoughness;
     bool newtoughnessfound;
     vector<MTGAbility *> newAbilitiesList;
-    map<Damageable *, vector<MTGAbility *>> newAbilities;
+    map<Damageable *, vector<MTGAbility *> > newAbilities;
     bool newAbilityFound;
     
     ATransformerFOREVER(int id, MTGCardInstance * source, MTGCardInstance * target, string types, string abilities,string newpower = "",bool newpowerfound = false,string newtoughness = "",bool newtoughnessfound = false,vector<MTGAbility*>newAbilitiesList = vector<MTGAbility*>(),bool newAbilityFound = false);
