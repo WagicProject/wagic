@@ -1280,20 +1280,20 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             }
             MTGAbility * result = NULL;
             int oneShot = 0;
-            found = s.find(" oneshot");
-            if (found != string::npos)
-                oneShot = 1;
             if (activated)
-                oneShot = 1;
-            if (card->hasType("sorcery") || card->hasType("instant"))
                 oneShot = 1;
             if (i == 4)
                 oneShot = 1;
             if (a->oneShot)
                 oneShot = 1;
+            if (card->hasType("sorcery") || card->hasType("instant"))
+                oneShot = 1;
             found = s.find("while ");
             if (found != string::npos)
                 oneShot = 0;
+            found = s.find(" oneshot");
+            if (found != string::npos)
+                oneShot = 1;
             Damageable * _target = NULL;
             if (spell)
                 _target = spell->getNextDamageableTarget();
