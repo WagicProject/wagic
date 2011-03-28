@@ -338,7 +338,7 @@ toughness=6
 [/card]
 [card]
 name=Academy Researchers
-auto=target(aura|myhand) newtarget
+auto=may target(aura|myhand) newtarget
 text=When Academy Researchers enters the battlefield, you may put an Aura card from your hand onto the battlefield attached to Academy Researchers.
 mana={1}{U}{U}
 type=Creature
@@ -539,11 +539,11 @@ type=Land
 [/card]
 [card]
 name=Addle
-auto=choice name(white) && reject target(*[white]|opponenthand,myhand)
-auto=choice name(blue) && reject target(*[blue]|opponenthand,myhand)
-auto=choice name(black) && reject target(*[black]|opponenthand,myhand)
-auto=choice name(red) && reject target(*[red]|opponenthand,myhand)
-auto=choice name(green) && reject target(*[green]|opponenthand,myhand)
+auto=choice name(white) && reject target(*[white]|hand)
+auto=choice name(blue) && reject target(*[blue]|hand)
+auto=choice name(black) && reject target(*[black]|hand)
+auto=choice name(red) && reject target(*[red]|hand)
+auto=choice name(green) && reject target(*[green]|hand)
 text=Choose a color. Target player reveals his or her hand and you choose a card of that color from it. That player discards that card.
 mana={1}{B}
 type=Sorcery
@@ -1432,7 +1432,7 @@ toughness=1
 [/card]
 [card]
 name=Amnesia
-target=*[-land]|opponenthand,myhand
+target=*[-land]|hand
 auto=reject all(*[-land]|targetcontrollerhand)
 text=Target player reveals his or her hand and discards all nonland cards.
 mana={3}{U}{U}{U}
@@ -1867,8 +1867,7 @@ toughness=5
 [/card]
 [card]
 name=Angel's Feather
-auto=@movedTo(*[white]|mystack) from(myhand):may life:1 controller
-auto=@movedTo(*[white]|opponentstack) from(opponenthand):may life:1 controller
+auto=@movedTo(*[white]|stack) from(hand):may life:1 controller
 text=Whenever a player casts a white spell, you may gain 1 life.
 mana={2}
 type=Artifact
@@ -15369,8 +15368,7 @@ toughness=1
 [/card]
 [card]
 name=Demon's Horn
-auto=@movedTo(*[black]|mystack) from(myhand):may life:1 controller
-auto=@movedTo(*[black]|opponentstack) from(opponenthand):may life:1 controller
+auto=@movedTo(*[black]|stack) from(hand):may life:1 controller
 text=Whenever a player casts a black spell, you may gain 1 life.
 mana={2}
 type=Artifact
@@ -16163,7 +16161,7 @@ type=Artifact
 [/card]
 [card]
 name=Distress
-target=*[-land]|opponenthand,myhand
+target=*[-land]|hand
 auto=reject
 text=Target player reveals his or her hand. You choose a nonland card from it. That player discards that card.
 mana={B}{B}
@@ -16295,9 +16293,11 @@ type=Instant
 [/card]
 [card]
 name=Diviner's Wand
-auto=@drawn(controller): +1/+1 ueot
+auto={3}:equip
+auto=@drawn(controller):1/1 ueot
+auto=@drawn(controller):flying ueot
 auto=teach(creature) {4}:draw:1 controller
-auto=@movedto(wizard|battlefield):may retarget all(trigger[to])
+auto=@movedto(creature[wizard]|battlefield):may all(trigger[to]) retarget
 text=Equipped creature has "Whenever you draw a card, this creature gets +1/+1 and gains flying until end of turn" and "{4}: Draw a card." -- Whenever a Wizard creature enters the battlefield, you may attach Diviner's Wand to it. -- Equip {3}
 mana={3}
 type=Tribal Artifact
@@ -16660,7 +16660,7 @@ type=Sorcery
 [card]
 name=Dragon Mage
 abilities=flying
-auto=@combatdamaged(player) from(this):reject all(*|myhand) && draw:7 controller && reject all(*|opponenthand) && draw:7 opponent
+auto=@combatdamaged(player) from(this):reject all(*|hand) && draw:7 controller && draw:7 opponent
 text=Flying -- Whenever Dragon Mage deals combat damage to a player, each player discards his or her hand and draws seven cards.
 mana={5}{R}{R}
 type=Creature
@@ -16734,8 +16734,7 @@ subtype=Aura
 [/card]
 [card]
 name=Dragon's Claw
-auto=@movedTo(*[red]|mystack) from(myhand):may life:1 controller
-auto=@movedTo(*[red]|opponentstack) from(opponenthand):may life:1 controller
+auto=@movedTo(*[red]|stack) from(hand):may life:1 controller
 text=Whenever a player casts a red spell, you may gain 1 life.
 mana={2}
 type=Artifact
@@ -19231,7 +19230,7 @@ auto=moveto(exile) all(this)
 [/card]
 [card]
 name=Encroach
-target=land[-basic]|opponenthand,myhand
+target=land[-basic]|hand
 auto=reject
 text=Target player reveals his or her hand. You choose a nonbasic land card from it. That player discards that card.
 mana={B}
@@ -20269,7 +20268,7 @@ subtype=Aura
 [/card]
 [card]
 name=Extract
-target=*|opponentLibrary,myLibrary
+target=*|Library
 auto=moveTo(exile)
 text=Search target player's library for a card and exile it. Then that player shuffles his or her library.
 mana={U}
@@ -26328,8 +26327,7 @@ type=Artifact
 [/card]
 [card]
 name=Golem's Heart
-auto=@movedTo(artifact|mystack) from(myhand):may life:1 controller
-auto=@movedTo(artifact|opponentstack) from(opponenthand):may life:1 controller
+auto=@movedTo(artifact|stack) from(hand):may life:1 controller
 text=Whenever a player casts an artifact spell, you may gain 1 life.
 mana={2}
 type=Artifact
@@ -27581,7 +27579,7 @@ type=Instant
 [card]
 name=Guiltfeeder
 abilities=fear
-auto=@notblocked(this):foreach(*|opponentBattlefield) life:-1 opponent
+auto=@notblocked(this):foreach(*|opponentGraveyard) life:-1 opponent
 text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- Whenever Guiltfeeder attacks and isn't blocked, defending player loses 1 life for each card in his or her graveyard.
 mana={3}{B}{B}
 type=Creature
@@ -29317,7 +29315,7 @@ toughness=3
 [/card]
 [card]
 name=Hint of Insanity
-target=*[-land]|opponenthand,myhand
+target=*[-land]|hand
 auto=reject all(*[share!name!]|targetcontrollerhand)
 text=Target player reveals his or her hand. That player discards all nonland cards with the same name as another card in his or her hand.
 mana={2}{B}
@@ -31252,7 +31250,7 @@ toughness=3
 [/card]
 [card]
 name=Inquisition of Kozilek
-target=*[manacost<=3;-land]|opponenthand,myhand
+target=*[manacost<=3;-land]|hand
 auto=reject
 text=Target player reveals his or her hand. You choose a nonland card from it with converted mana cost 3 or less. That player discards that card.
 mana={B}
@@ -34683,8 +34681,7 @@ toughness=1
 [card]
 name=Kor Firewalker
 abilities=protection from red
-auto=@movedTo(*[red]|mystack) from(myhand):may life:1 controller
-auto=@movedTo(*[red]|opponentstack) from(opponenthand):may life:1 controller
+auto=@movedTo(*[red]|stack) from(hand):may life:1 controller
 text=Protection from red -- Whenever a player casts a red spell, you may gain 1 life.
 mana={W}{W}
 type=Creature
@@ -34834,8 +34831,7 @@ toughness=4
 [/card]
 [card]
 name=Kraken's Eye
-auto=@movedTo(*[blue]|mystack) from(myhand):may life:1 controller
-auto=@movedTo(*[blue]|opponentstack) from(opponenthand):may life:1 controller
+auto=@movedTo(*[blue]|stack) from(hand):may life:1 controller
 text=Whenever a player casts a blue spell, you may gain 1 life.
 mana={2}
 type=Artifact
@@ -36165,7 +36161,7 @@ abilities=leyline
 [/card]
 [card]
 name=Leyline of the Void
-auto=@movedTo(*|graveyard):all(trigger) moveTo(exile)
+auto=@movedTo(*|opponentGraveyard):all(trigger[to]) moveTo(exile)
 text=If Leyline of the Void is in your opening hand, you may begin the game with it on the battlefield. -- If a card would be put into an opponent's graveyard from anywhere, exile it instead.
 mana={2}{B}{B}
 type=Enchantment
@@ -39862,8 +39858,7 @@ toughness=2
 [/card]
 [card]
 name=Mindslicer
-auto=@movedto(this|graveyard) from(battlefield):reject all(*|myhand)
-auto=@movedto(this|graveyard) from(battlefield):reject all(*|opponenthand)
+auto=@movedto(this|graveyard) from(battlefield):reject all(*|hand)
 text=When Mindslicer is put into a graveyard from the battlefield, each player discards his or her hand.
 mana={2}{B}{B}
 type=Creature
@@ -45237,16 +45232,11 @@ auto=this(counter{0/0.1.Blue}) {T}:add{U}
 auto=this(counter{0/0.1.Black}) {T}:add{B}
 auto=this(counter{0/0.1.Red}) {T}:add{R}
 auto=this(counter{0/0.1.Green}) {T}:add{G}
-auto=@movedto(*[white]|mystack) from(myhand):this(counter{0/0.1.White}) life:1 controller
-auto=@movedto(*[white]|opponentstack) from(opponenthand):this(counter{0/0.1.White}) life:1 controller
-auto=@movedto(*[blue]|mystack) from(myhand):this(counter{0/0.1.Blue}) life:1 controller
-auto=@movedto(*[blue]|opponentstack) from(opponenthand):this(counter{0/0.1.Blue}) life:1 controller
-auto=@movedto(*[black]|mystack) from(myhand):this(counter{0/0.1.Black}) life:1 controller
-auto=@movedto(*[black]|opponentstack) from(opponenthand):this(counter{0/0.1.Black}) life:1 controller
-auto=@movedto(*[red]|mystack) from(myhand):this(counter{0/0.1.Red}) life:1 controller
-auto=@movedto(*[red]|opponentstack) from(opponenthand):this(counter{0/0.1.Red}) life:1 controller
-auto=@movedto(*[green]|mystack) from(myhand):this(counter{0/0.1.Green}) life:1 controller
-auto=@movedto(*[green]|opponentstack) from(opponenthand):this(counter{0/0.1.Green}) life:1 controller
+auto=@movedto(*[white]|stack) from(hand):this(counter{0/0.1.White}) life:1 controller
+auto=@movedto(*[blue]|stack) from(hand):this(counter{0/0.1.Blue}) life:1 controller
+auto=@movedto(*[black]|stack) from(hand):this(counter{0/0.1.Black}) life:1 controller
+auto=@movedto(*[red]|stack) from(hand):this(counter{0/0.1.Red}) life:1 controller
+auto=@movedto(*[green]|stack) from(hand):this(counter{0/0.1.Green}) life:1 controller
 text=As Paradise Plume enters the battlefield, choose a color. -- Whenever a player casts a spell of the chosen color, you may gain 1 life. -- {T}: Add one mana of the chosen color to your mana pool.
 mana={4}
 type=Artifact
@@ -48164,7 +48154,7 @@ subtype=Aura
 [/card]
 [card]
 name=Psychic Spear
-target=spirit,arcane|opponenthand,myhand
+target=spirit,arcane|hand
 auto=reject
 text=Target player reveals his or her hand. You choose a Spirit or Arcane card from it. That player discards that card.
 mana={B}
@@ -65277,7 +65267,7 @@ name=Thornbite Staff
 auto=teach(creature) {2}{t}:damage:1 target(creature,player)
 auto=@movedto(creature|mygraveyard) from(creature|mybattlefield):teach(mytgt) untap
 auto=@movedto(creature|opponentsgraveyard) from(creature|opponentsbattlefield):teach(mytgt) untap
-auto=@movedto(creature[shaman]|battlefield):all(trigger[to]) retarget
+auto=@movedto(creature[shaman]|battlefield):may all(trigger[to]) retarget
 auto={4}:equip
 text=Equipped creature has "{2}, {T}: This creature deals 1 damage to target creature or player" and "Whenever a creature is put into a graveyard from the battlefield, untap this creature." -- Whenever a Shaman creature enters the battlefield, you may attach Thornbite Staff to it. -- Equip {4}
 mana={2}
@@ -65458,7 +65448,7 @@ type=Enchantment
 [/card]
 [card]
 name=Thoughtseize
-target=*[-land]|opponenthand,myhand
+target=*[-land]|hand
 auto=reject
 auto=life:-2 controller
 text=Target player reveals his or her hand. You choose a nonland card from it. That player discards that card. You lose 2 life.
@@ -68346,7 +68336,7 @@ type=Instant
 [/card]
 [card]
 name=Unmask
-target=*[-land]|opponenthand,myhand
+target=*[-land]|hand
 auto=reject
 other={E(other *[black]|myhand)}
 text=You may exile a black card from your hand rather than pay Unmask's mana cost. -- Target player reveals his or her hand. You choose a nonland card from it. That player discards that card.
@@ -69407,7 +69397,7 @@ type=Land
 [/card]
 [card]
 name=Venarian Glimmer
-auto=reject target(*[-land;manacost <=X]|opponenthand,myhand)
+auto=reject target(*[-land;manacost <=X]|opponenthand)
 text=Target player reveals his or her hand. You choose a nonland card with converted mana cost X or less from it. That player discards that card.
 mana={X}{U}
 type=Instant
@@ -72512,9 +72502,8 @@ suspend(4)={1}{r}
 [/card]
 [card]
 name=Wheel of Fortune
-auto=reject all(*|opponenthand)
+auto=reject all(*|hand)
 auto=draw:7 opponent
-auto=reject all(*|myhand)
 auto=draw:7 controller
 text=Each player discards his or her hand and draws seven cards.
 mana={2}{R}
@@ -74100,8 +74089,7 @@ toughness=3
 [/card]
 [card]
 name=Wurm's Tooth
-auto=@movedTo(*[green]|mystack) from(myhand):may life:1 controller
-auto=@movedTo(*[green]|opponentstack) from(opponenthand):may life:1 controller
+auto=@movedTo(*[green]|stack) from(hand):may life:1 controller
 text=Whenever a player casts a green spell, you may gain 1 life.
 mana={2}
 type=Artifact
