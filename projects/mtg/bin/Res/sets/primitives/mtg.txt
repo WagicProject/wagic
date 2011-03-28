@@ -47863,16 +47863,7 @@ type=Artifact
 [/card]
 [card]
 name=Prismatic Omen
-auto=lord(land[-plains]|myBattlefield) transforms(plains)
-auto=lord(land|myBattlefield) {T}:Add{W}
-auto=lord(land[-island]|myBattlefield) transforms(island)
-auto=lord(land|myBattlefield) {T}:Add{U}
-auto=lord(land[-swamp]|myBattlefield) transforms(swamp)
-auto=lord(land|myBattlefield) {T}:Add{B}
-auto=lord(land[-mountain]|myBattlefield) transforms(mountain)
-auto=lord(land|myBattlefield) {T}:Add{R}
-auto=lord(land[-forest]|myBattlefield) transforms(forest)
-auto=lord(land|myBattlefield) {T}:Add{G}
+auto=lord(land|myBattlefield) transforms(plains forest mountain swamp island,newability[{t}:add{w}],newability[{t}:add{g}],newability[{t}:add{r}],newability[{t}:add{b}],newability[{t}:add{u}])
 text=Lands you control are every basic land type in addition to their other types.
 mana={1}{G}
 type=Enchantment
