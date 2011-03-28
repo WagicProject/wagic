@@ -31763,7 +31763,7 @@ type=Land
 [card]
 name=Isleback Spawn
 abilities=shroud
-auto=aslongas(*|library) 4/8 <21
+auto=aslongas(*|library) 4/8 <21 compare
 text=Shroud -- Isleback Spawn gets +4/+8 as long as a library has twenty or fewer cards in it.
 mana={5}{U}{U}
 type=Creature
