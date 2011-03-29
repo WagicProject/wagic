@@ -835,6 +835,22 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (!target)
         target = card;
 
+    //need to remove the section inside the transforms ability from the string before parsing
+    //TODO: store string values of "&&" so we can remove the classes added just to add support
+    //the current parser finds other abilities inside what should be nested abilities, and converts them into
+    //actual abilities, this is a limitation.
+    found = s.find("transforms((");
+    if (found != string::npos && storedString.empty())
+    {
+        size_t real_end = s.find("))", found);
+        size_t end = s.find(",", found);
+        if (end == string::npos)
+            end = real_end;
+        size_t stypesStartIndex = found + 12;
+        storedString.append(s.substr(stypesStartIndex, real_end - stypesStartIndex).c_str());
+        s.erase(stypesStartIndex, real_end - stypesStartIndex);
+    }
+    
     found = s.find("@");
     if (found != string::npos)
     {
@@ -984,7 +1000,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         DebugTrace("INFO parseMagicLine: Alternative Cost was not fulfilled for " << s);
         return NULL;
     }
-
+    
     //When...comes into play, you may...
     found = s.find("may ");
     if (found == 0)
@@ -1708,14 +1724,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
-    //Regeneration
-    found = s.find("regenerate");
-    if (found != string::npos)
-    {
-        MTGAbility * a = NEW AStandardRegenerate(id, card, target);
-        a->oneShot = 1;
-        return a;
-    }
     bool aLivingWeapon = false;
     //livingweapon
     size_t secondaryFound = s.find("livingweapon");
@@ -1936,13 +1944,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (s.find(" owner") != string::npos)
         who = TargetChooser::OWNER;
 
-    found = s.find("ueot");
+    found = s.find(" ueot");
     if (found != string::npos)
         forceUEOT = 1;
-    found = s.find("oneshot");
+    found = s.find(" oneshot");
     if (found != string::npos)
         oneShot = 1;
-    found = s.find("forever");
+    found = s.find(" forever");
     if (found != string::npos)
         forceFOREVER = 1;
 
@@ -2509,15 +2517,11 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return getManaReduxAbility(s.substr(s.find("altercost(") + 10), id, spell, card, target);
 
     //transform....(hivestone,living enchantment)
-    found = s.find("transforms(");
+    found = s.find("transforms((");
     if (found != string::npos)
     {
-        size_t real_end = s.find(")", found);
-        size_t end = s.find(",", found);
-        if (end == string::npos)
-            end = real_end;
-        size_t stypesStartIndex = found + 11;
-        string transformsParamsString = s.substr(stypesStartIndex, real_end - stypesStartIndex);
+        size_t stypesStartIndex = found + 12;
+        string transformsParamsString = storedString;//the string between found and real end is removed at start.
         vector<string> effectParameters = split( transformsParamsString, ',');
         string stypes = effectParameters[0];
 
@@ -2552,6 +2556,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 newAbilitiesList.push_back(parseMagicLine(newAbilities, id, spell, card));
             }
         }
+        storedString.erase();
         MTGAbility * a;
         if (forceFOREVER)
         {
@@ -2567,6 +2572,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         }
         return a;
     }
+    
     //Change Power/Toughness
     WParsedPT * wppt = NEW WParsedPT(s, spell, card);
     if (wppt->ok)
@@ -2727,7 +2733,16 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         a->oneShot = 1;
         return a;
     }
-
+    
+    //Regeneration
+    found = s.find("regenerate");
+    if (found != string::npos)
+    {
+        MTGAbility * a = NEW AStandardRegenerate(id, card, target);
+        a->oneShot = 1;
+        return a;
+    }
+    
     //Gain/loose simple Ability
     for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++)
     {

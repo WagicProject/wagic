@@ -368,7 +368,8 @@ class GenericTriggeredAbility:public TriggeredAbility, public NestedAbility{
 /* Ability Factory */
 class AbilityFactory{
  private:
-   int countCards(TargetChooser * tc, Player * player = NULL, int option = 0);
+     string storedString;
+     int countCards(TargetChooser * tc, Player * player = NULL, int option = 0);
   TriggeredAbility * parseTrigger(string s, string magicText, int id, Spell * spell, MTGCardInstance *card, Targetable * target);
   int parseRestriction(string s);
   MTGAbility * getAlternateCost( string s, int id, Spell *spell, MTGCardInstance *card );
