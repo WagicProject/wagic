@@ -37217,7 +37217,6 @@ toughness=4
 [/card]
 [card]
 name=Lotus Petal
-auto={0}:transforms((removetypes,black,newability[{0}:draw:12],newability[{0}:damage:12 target(player)])) forever && transforms((angel creature,setpower=1,settoughness=2)) forever
 auto={T}{S}:Add{G}
 auto={T}{S}:Add{R}
 auto={T}{S}:Add{U}
