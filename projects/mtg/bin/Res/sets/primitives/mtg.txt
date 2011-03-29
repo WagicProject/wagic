@@ -44812,7 +44812,7 @@ toughness=3
 [card]
 name=Otherworldly Journey
 target=creature
-auto=(blink)ueot return(counter(1/1,1)
+auto=(blink)ueot return(counter(1/1,1))
 text=Exile target creature. At the beginning of the next end step, return that card to the battlefield under its owner's control with a +1/+1 counter on it.
 mana={1}{W}
 type=Instant
@@ -59748,8 +59748,7 @@ type=Artifact
 name=Spawning Pool
 auto=tap
 auto={T}:Add{B}
-auto={1}{B}:becomes(Skeleton Creature,1/1,black) ueot
-auto=aslongas(creature[spawning pool]|myBattlefield) lord(creature[spawning pool]|myBattlefield) {B}:regenerate
+auto={1}{B}:transforms(Skeleton Creature,1/1,black,newability[{B}:regenerate]) ueot
 text=Spawning Pool enters the battlefield tapped. -- {T}: Add {B} to your mana pool. -- {1}{B}: Spawning Pool becomes a 1/1 black Skeleton creature with "{B}: Regenerate this creature" until end of turn. It's still a land. (If it regenerates, the next time it would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
 type=Land
 [/card]
