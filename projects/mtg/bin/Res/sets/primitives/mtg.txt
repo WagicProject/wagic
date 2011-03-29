@@ -16244,7 +16244,7 @@ type=Sorcery
 [/card]
 [card]
 name=Divine Light
-auto=preventalldamage to(creature|mybattlefield) ueot
+auto=all(creature|mybattlefield) prevent:9999
 text=Prevent all damage that would be dealt this turn to creatures you control.
 mana={W}
 type=Sorcery
@@ -19286,8 +19286,8 @@ toughness=9
 [/card]
 [card]
 name=Endure
-auto=preventalldamage to(*|mybattlefield) ueot
-auto=preventalldamage to(controller) ueot
+auto=all(*|mybattlefield) prevent:9999
+auto=prevent:9999 controller
 text=Prevent all damage that would be dealt to you and permanents you control this turn.
 mana={3}{W}{W}
 type=Instant
@@ -19968,7 +19968,7 @@ toughness=4
 [card]
 name=Ethersworn Shieldmage
 abilities=flash
-auto=preventalldamage to(creature[artifact]|battlefield) ueot
+auto=all(creature[artifact]|battlefield) prevent:9999
 text=Flash -- When Ethersworn Shieldmage enters the battlefield, prevent all damage that would be dealt to artifact creatures this turn.
 mana={1}{W}{U}
 type=Artifact Creature
@@ -52956,8 +52956,8 @@ toughness=2
 [/card]
 [card]
 name=Safe Passage
-auto=preventalldamage to(creature|mybattlefield) ueot
-auto=preventalldamage to(controller) ueot
+auto=all(creature|mybattlefield) prevent:9999
+auto=prevent:9999 controller
 text=Prevent all damage that would be dealt to you and creatures you control this turn.
 mana={2}{W}
 type=Instant
@@ -67004,7 +67004,7 @@ toughness=6
 [/card]
 [card]
 name=Trained Pronghorn
-auto={discard(*|myhand)}:preventAllDamage to(this) ueot
+auto={discard(*|myhand)}:all(this) prevent:9999
 text=Discard a card: Prevent all damage that would be dealt to Trained Pronghorn this turn.
 mana={1}{W}
 type=Creature
