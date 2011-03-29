@@ -705,7 +705,7 @@ toughness=4
 name=Ageless Sentinels
 abilities=flying,defender
 auto=@blocking(this) once:-defender
-auto=@blocking(this) once:transforms(removesubtypes) forever && transforms(Bird Giant Creature,flying) forever
+auto=@blocking(this) once:transforms((removesubtypes)) forever && transforms((Bird Giant Creature,flying)) forever
 text=Defender (This creature can't attack.) -- Flying -- When Ageless Sentinels blocks, it becomes a Bird Giant, and it loses defender. (It's no longer a Wall. This effect lasts indefinitely.)
 mana={3}{W}
 type=Creature
@@ -833,8 +833,8 @@ type=Sorcery
 [/card]
 [card]
 name=Aisling Leprechaun
-auto=@blocked(this) from(creature):all(trigger[from]) transforms(,green) forever
-auto=@blocking(this) from(creature):all(trigger[from]) transforms(,green) forever
+auto=@blocked(this) from(creature):all(trigger[from]) transforms((,green)) forever
+auto=@blocking(this) from(creature):all(trigger[from]) transforms((,green)) forever
 text=Whenever Aisling Leprechaun blocks or becomes blocked by a creature, that creature becomes green. (This effect lasts indefinitely.)
 mana={G}
 type=Creature
@@ -1183,11 +1183,11 @@ toughness=3
 [/card]
 [card]
 name=Alchor's Tomb
-auto={2}{T}:name(white) && target(*|myBattlefield) transforms(,white) forever
-auto={2}{T}:name(blue) && target(*|myBattlefield) transforms(,blue) forever
-auto={2}{T}:name(black) && target(*|myBattlefield) transforms(,black) forever
-auto={2}{T}:name(red) && target(*|myBattlefield) transforms(,red) forever
-auto={2}{T}:name(green) && target(*|myBattlefield) transforms(,green) forever
+auto={2}{T}:name(white) && target(*|myBattlefield) transforms((,white)) forever
+auto={2}{T}:name(blue) && target(*|myBattlefield) transforms((,blue)) forever
+auto={2}{T}:name(black) && target(*|myBattlefield) transforms((,black)) forever
+auto={2}{T}:name(red) && target(*|myBattlefield) transforms((,red)) forever
+auto={2}{T}:name(green) && target(*|myBattlefield) transforms((,green)) forever
 text={2}, {T}: Target permanent you control becomes the color of your choice. (This effect lasts indefinitely.)
 mana={4}
 type=Artifact
@@ -1274,11 +1274,11 @@ toughness=1+*
 [/card]
 [card]
 name=Alloy Golem
-auto=choice name(white) && transforms(,white) forever
-auto=choice name(blue) && transforms(,blue) forever
-auto=choice name(black) && transforms(,black) forever
-auto=choice name(red) && transforms(,red) forever
-auto=choice name(green) && transforms(,green) forever
+auto=choice name(white) && transforms((,white)) forever
+auto=choice name(blue) && transforms((,blue)) forever
+auto=choice name(black) && transforms((,black)) forever
+auto=choice name(red) && transforms((,red)) forever
+auto=choice name(green) && transforms((,green)) forever
 text=As Alloy Golem enters the battlefield, choose a color. -- Alloy Golem is the chosen color. (It's still an artifact.)
 mana={6}
 type=Artifact Creature
@@ -1454,8 +1454,8 @@ toughness=2
 [card]
 name=Amoeboid Changeling
 abilities=changeling
-auto={T}:transforms(allsubtypes) target(creature) ueot
-auto={T}:transforms(removesubtypes) target(creature) ueot
+auto={T}:transforms((allsubtypes)) target(creature) ueot
+auto={T}:transforms((removesubtypes)) target(creature) ueot
 text=Changeling (This card is every creature type at all times.) -- {T}: Target creature gains all creature types until end of turn. -- {T}: Target creature loses all creature types until end of turn.
 mana={1}{U}
 type=Creature
@@ -1633,7 +1633,7 @@ type=Sorcery
 [card]
 name=Anathemancer
 auto=foreach(land[-basic]|opponentBattlefield) damage:1 opponent
-autograveyard={5}{B}{R}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
+autograveyard={5}{B}{R}:moveto(mybattlefield) && transforms((,unearth,haste)) asSorcery forever
 text=When Anathemancer enters the battlefield, it deals damage to target player equal to the number of nonbasic lands that player controls. -- Unearth {5}{B}{R} ({5}{B}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={1}{B}{R}
 type=Creature
@@ -1751,7 +1751,7 @@ toughness=1
 [/card]
 [card]
 name=Ancient Kavu
-auto={2}:transforms(,artifact) ueot
+auto={2}:transforms((,artifact)) ueot
 text={2}: Ancient Kavu becomes colorless until end of turn.
 mana={3}{R}
 type=Creature
@@ -2268,7 +2268,7 @@ toughness=2
 name=Aphotic Wisps
 target=creature
 auto=fear
-auto=transforms(,black) ueot
+auto=transforms((,black)) ueot
 auto=draw:1 comtroller
 text=Target creature becomes black and gains fear until end of turn. (It can't be blocked except by artifact creatures and/or black creatures.) -- Draw a card.
 mana={B}
@@ -2306,7 +2306,7 @@ toughness=1
 [/card]
 [card]
 name=Apprentice Necromancer
-auto={B}{T}{S}:moveto(mybattlefield) target(creature|mygraveyard) && transforms(,treason,haste) forever
+auto={B}{T}{S}:moveto(mybattlefield) target(creature|mygraveyard) && transforms((,treason,haste)) forever
 text={B}, {T}, Sacrifice Apprentice Necromancer: Return target creature card from your graveyard to the battlefield. That creature gains haste. At the beginning of the next end step, sacrifice it.
 mana={1}{B}
 type=Creature
@@ -2348,8 +2348,8 @@ toughness=3
 name=Aquamorph Entity
 facedown={3}
 autofacedown={2}{U}:morph
-auto=choice transforms(,setpower=5,settoughness=1) forever
-auto=choice transforms(,setpower=1,settoughness=5) forever
+auto=choice transforms((,setpower=5,settoughness=1)) forever
+auto=choice transforms((,setpower=1,settoughness=5)) forever
 text=As Aquamorph Entity enters the battlefield or is turned face up, it becomes your choice of 5/1 or 1/5. -- Morph {2}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 mana={2}{U}{U}
 type=Creature
@@ -3314,7 +3314,7 @@ type=Artifact
 [/card]
 [card]
 name=Ashnod's Transmogrant
-auto={T}{S}:target(creature[-artifact]) transforms(artifact) forever && counter(1/1,1)
+auto={T}{S}:target(creature[-artifact]) transforms((artifact)) forever && counter(1/1,1)
 text={T}: Sacrifice Ashnod's Transmogrant: Put a +1/+1 counter on target nonartifact creature. That creature becomes an artifact in addition to its other types.
 type=Artifact
 mana={1}
@@ -3690,7 +3690,7 @@ toughness=2
 [card]
 name=Aurora Griffin
 abilities=flying
-auto={W}:transforms(,white) target(*) ueot
+auto={W}:transforms((,white)) target(*) ueot
 text=Flying -- {W}: Target permanent becomes white until end of turn.
 mana={3}{W}
 type=Creature
@@ -5067,7 +5067,7 @@ toughness=2
 [/card]
 [card]
 name=Battlegate Mimic
-auto=@movedTo(*[redandwhite]|mystack) from(myhand) turnlimited:transforms(,setpower=4,settoughness=2,first strike) ueot
+auto=@movedTo(*[redandwhite]|mystack) from(myhand) turnlimited:transforms((,setpower=4,settoughness=2,first strike)) ueot
 text=Whenever you cast a spell that's both red and white, Battlegate Mimic becomes 4/2 and gains first strike until end of turn.
 mana={1}{RW}
 type=Creature
@@ -5940,8 +5940,8 @@ name=Blades of Velis Vel
 abilities=changeling
 target=creature
 auto=2/0
-auto=transforms(allsubtypes) ueot
-auto=may 2/0 target(creature) && transforms(allsubtypes) ueot
+auto=transforms((allsubtypes)) ueot
+auto=may 2/0 target(creature) && transforms((allsubtypes)) ueot
 text=Changeling (This card is every creature type at all times.) -- Up to two target creatures each get +2/+0 and gain all creature types until end of turn.
 mana={1}{R}
 type=Tribal Instant
@@ -6085,7 +6085,7 @@ toughness=6
 [card]
 name=Blazing Blade Askari
 abilities=flanking
-auto={2}:transforms(,artifact) ueot
+auto={2}:transforms((,artifact)) ueot
 text=Flanking (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.) -- {2}: Blazing Blade Askari becomes colorless until end of turn.
 mana={2}{R}
 type=Creature
@@ -7310,8 +7310,8 @@ type=Instant
 [card]
 name=Boldwyr Intimidator
 auto=lord(warrior) cantbeblockedby(coward)
-auto={R}:transforms(coward) target(creature) ueot
-auto={2}{R}:transforms(warrior) target(creature) ueot
+auto={R}:transforms((coward)) target(creature) ueot
+auto={2}{R}:transforms((warrior)) target(creature) ueot
 text=Cowards can't block Warriors. -- {R}: Target creature becomes a Coward until end of turn. -- {2}{R}: Target creature becomes a Warrior until end of turn.
 mana={5}{R}{R}
 type=Creature
@@ -7726,7 +7726,7 @@ type=Instant
 name=Brackwater Elemental
 auto=@attacking(this):treason ueot
 auto=@blocking(this):treason ueot
-autograveyard={2}{U}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
+autograveyard={2}{U}:moveto(mybattlefield) && transforms((,unearth,haste)) asSorcery forever
 text=When Brackwater Elemental attacks or blocks, sacrifice it at the beginning of the next end step. -- Unearth {2}{U} ({2}{U}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={2}{U}
 type=Creature
@@ -7909,7 +7909,7 @@ toughness=2
 [card]
 name=Brass-Talon Chimera
 abilities=first strike
-auto={S}:counter(2/2,1) target(chimera) && transforms(,first strike) forever
+auto={S}:counter(2/2,1) target(chimera) && transforms((,first strike)) forever
 text=First strike -- Sacrifice Brass-Talon Chimera: Put a +2/+2 counter on target Chimera creature. It gains first strike. (This effect lasts indefinitely.)
 mana={4}
 type=Artifact Creature
@@ -8860,11 +8860,11 @@ toughness=4
 [card]
 name=Caldera Kavu
 auto={1}{B}:1/1
-auto={G}:name(becomes white ueot) && transforms(,white) ueot
-auto={G}:name(becomes blue ueot) && transforms(,blue) ueot
-auto={G}:name(becomes black ueot) && transforms(,black) ueot
-auto={G}:name(becomes red ueot) && transforms(,red) ueot
-auto={G}:name(becomes green ueot) && transforms(,green) ueot
+auto={G}:name(becomes white ueot) && transforms((,white)) ueot
+auto={G}:name(becomes blue ueot) && transforms((,blue)) ueot
+auto={G}:name(becomes black ueot) && transforms((,black)) ueot
+auto={G}:name(becomes red ueot) && transforms((,red)) ueot
+auto={G}:name(becomes green ueot) && transforms((,green)) ueot
 text={1}{B}: Caldera Kavu gets +1/+1 until end of turn. -- {G}: Caldera Kavu becomes the color of your choice until end of turn.
 mana={2}{R}
 type=Creature
@@ -9146,7 +9146,7 @@ toughness=3
 [card]
 name=Captivating Vampire
 auto=lord(other vampire|myBattlefield) 1/1
-auto={T(vampire|myBattlefield)}{T(vampire|myBattlefield)}{T(vampire|myBattlefield)}{T(vampire|myBattlefield)}{T(vampire|myBattlefield)}:moveTo(mybattlefield) target(creature) && transforms(Vampire) forever
+auto={T(vampire|myBattlefield)}{T(vampire|myBattlefield)}{T(vampire|myBattlefield)}{T(vampire|myBattlefield)}{T(vampire|myBattlefield)}:moveTo(mybattlefield) target(creature) && transforms((Vampire)) forever
 text=Other Vampire creatures you control get +1/+1. -- Tap five untapped Vampires you control: Gain control of target creature. It becomes a Vampire in addition to its other types. (This effect doesn't end at end of turn)
 mana={1}{B}{B}
 type=Creature
@@ -10070,7 +10070,7 @@ toughness=5
 [card]
 name=Cerulean Wisps
 target=creature
-auto=transforms(,blue)
+auto=transforms((,blue))
 auto=untap
 auto=draw:1 controller
 text=Target creature becomes blue until end of turn. Untap that creature. -- Draw a card.
@@ -10133,7 +10133,7 @@ toughness=3
 [card]
 name=Chainer, Dementia Master
 auto=lord(Nightmare) 1/1
-auto={B}{B}{B}{L}{L}{L}:moveto(mybattlefield) target(creature|graveyard) && transforms(Nightmare,black) forever
+auto={B}{B}{B}{L}{L}{L}:moveto(mybattlefield) target(creature|graveyard) && transforms((Nightmare,black)) forever
 auto=@movedto(this|nonbattlezone):moveto(exile) all(Nightmare)
 text=Nightmare creatures get +1/+1. -- {B}{B}{B}, Pay 3 life: Put target creature card from a graveyard onto the battlefield under your control. That creature is black and is a Nightmare in addition to its other creature types. -- When Chainer, Dementia Master leaves the battlefield, exile all Nightmares.
 mana={3}{B}{B}
@@ -10431,7 +10431,7 @@ toughness=3
 [/card]
 [card]
 name=Chariot of the Sun
-auto={2}{T}:target(creature|myBattlefield) transforms(,toughness=1,flying) ueot
+auto={2}{T}:target(creature|myBattlefield) transforms((,toughness=1,flying)) ueot
 text={2}, {T}: Until end of turn, target creature you control gains flying and its toughness becomes 1.
 mana={3}
 type=Artifact
@@ -10577,7 +10577,7 @@ subtype=Aura
 [/card]
 [card]
 name=Chimeric Coils
-auto={X}{1}:transforms(artifact creature,setpower=x,settoughness=x) ueot && treason
+auto={X}{1}:transforms((artifact creature,setpower=x,settoughness=x)) ueot && treason
 text={X}{1}: Chimeric Coils becomes an X/X Construct artifact creature. Sacrifice it at the beginning of the next end step.
 mana={1}
 type=Artifact
@@ -10601,7 +10601,7 @@ type=Artifact
 name=Chimeric Mass
 auto=counter(0/0,X,Charge)
 auto=thisforeach(counter{0/0.1.Charge}) 1/1
-auto={1}:transforms(Artifact Creature Construct,Artifact) ueot
+auto={1}:transforms((Artifact Creature Construct,Artifact)) ueot
 text=Chimeric Mass enters the battlefield with X charge counters. -- {1}: Until end of turn, Chimeric Mass becomes a Construct artifact creature with "This creature's power and toughness are each equal to the number of charge counters on it."
 mana={X}
 type=Artifact
@@ -11486,7 +11486,7 @@ toughness=2
 name=Cloudchaser Kestrel
 abilities=flying
 auto=destroy target(enchantment)
-auto={W}:transforms(,white) target(*) ueot
+auto={W}:transforms((,white)) target(*) ueot
 text=Flying -- When Cloudchaser Kestrel enters the battlefield, destroy target enchantment. -- {W}: Target permanent becomes white until end of turn.
 mana={1}{W}{W}
 type=Creature
@@ -12406,7 +12406,7 @@ toughness=1
 [card]
 name=Corpse Connoisseur
 auto=may moveTo(mygraveyard) target(creature|myLibrary)
-autograveyard={4}{B}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
+autograveyard={4}{B}:moveto(mybattlefield) && transforms((,unearth,haste)) asSorcery forever
 text=When Corpse Connoisseur enters the battlefield, you may search your library for a creature card and put that card into your graveyard. If you do, shuffle your library. -- Unearth {3}{B} ({3}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={4}{B}
 type=Creature
@@ -13009,7 +13009,7 @@ toughness=2
 [card]
 name=Crimson Wisps
 target=creature
-auto=transforms(,red) ueot
+auto=transforms((,red)) ueot
 auto=haste
 auto=draw:1 controller
 text=Target creature becomes red and gains haste until end of turn. -- Draw a card.
@@ -13953,7 +13953,7 @@ type=Instant
 [/card]
 [card]
 name=Darkest Hour
-auto=lord(creature) transforms(,black)
+auto=lord(creature) transforms((,black))
 text=All creatures are black.
 mana={B}
 type=Enchantment
@@ -15218,7 +15218,7 @@ toughness=2
 [card]
 name=Defiling Tears
 target=creature
-auto=transforms(,black) ueot
+auto=transforms((,black)) ueot
 auto=1/-1
 auto=teach(creature) {B}:regenerate
 text=Until end of turn, target creature becomes black, gets +1/-1, and gains "{B}: Regenerate this creature."
@@ -15819,7 +15819,7 @@ toughness=1
 [card]
 name=Diminish
 target=creature
-auto=transforms(,setpower=1,settoughness=1) ueot
+auto=transforms((,setpower=1,settoughness=1)) ueot
 text=Target creature becomes a 1/1 until end of turn.
 mana={U}
 type=Instant
@@ -15951,7 +15951,7 @@ toughness=2
 [/card]
 [card]
 name=Disciple of Kangee
-auto={T}:flying && transforms(,blue) target(creature) ueot
+auto={T}:flying && transforms((,blue)) target(creature) ueot
 text={U}, {T}: Target creature gains flying and becomes blue until end of turn.
 mana={2}{W}
 type=Creature
@@ -16150,11 +16150,11 @@ type=Enchantment
 [/card]
 [card]
 name=Distorting Lens
-auto={T}:name(target permanent becomes white) && transforms(,white) target(*) ueot
-auto={T}:name(target permanent becomes blue) && transforms(,blue) target(*) ueot
-auto={T}:name(target permanent becomes black) && transforms(,black) target(*) ueot
-auto={T}:name(target permanent becomes red) && transforms(,red) target(*) ueot
-auto={T}:name(target permanent becomes green) && transforms(,green) target(*) ueot
+auto={T}:name(target permanent becomes white) && transforms((,white)) target(*) ueot
+auto={T}:name(target permanent becomes blue) && transforms((,blue)) target(*) ueot
+auto={T}:name(target permanent becomes black) && transforms((,black)) target(*) ueot
+auto={T}:name(target permanent becomes red) && transforms((,red)) target(*) ueot
+auto={T}:name(target permanent becomes green) && transforms((,green)) target(*) ueot
 text={T}: Target permanent becomes the color of your choice until end of turn.
 mana={2}
 type=Artifact
@@ -16771,7 +16771,7 @@ type=Land
 [card]
 name=Dragonsoul Knight
 abilities=first strike
-auto={W}{U}{B}{R}{G}:+5/+3 && transforms(dragon,flying,trample) ueot
+auto={W}{U}{B}{R}{G}:+5/+3 && transforms((dragon,flying,trample)) ueot
 text=First strike -- {W}{U}{B}{R}{G}: Until end of turn, Dragonsoul Knight becomes a Dragon, gets +5/+3, and gains flying and trample.
 mana={2}{R}
 type=Creature
@@ -16851,7 +16851,7 @@ type=Artifact
 [card]
 name=Dralnu's Crusade
 auto=lord(goblin) 1/1
-auto=lord(goblin) transforms(zombie,black)
+auto=lord(goblin) transforms((zombie,black))
 text=Goblin creatures get +1/+1. -- All Goblins are black and are Zombies in addition to their other creature types.
 mana={1}{B}{R}
 type=Enchantment
@@ -17102,7 +17102,7 @@ toughness=3
 [/card]
 [card]
 name=Dregscape Zombie
-autograveyard={B}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
+autograveyard={B}:moveto(mybattlefield) && transforms((,unearth,haste)) asSorcery forever
 text=Unearth {B} ({B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={1}{B}
 type=Creature
@@ -18259,7 +18259,7 @@ toughness=4
 [card]
 name=Eight-and-a-Half-Tails
 auto={1}{W}:protection from white target(creature)
-auto={1}:name(target permanent becomes white ueot) && transforms(,white) target(*) ueot
+auto={1}:name(target permanent becomes white ueot) && transforms((,white)) target(*) ueot
 text={1}{W}: Target permanent you control gains protection from white until end of turn. -- {1}: Target spell or permanent becomes white until end of turn.
 mana={W}{W}
 type=Legendary Creature
@@ -18653,7 +18653,7 @@ toughness=1
 [/card]
 [card]
 name=Elvish Branchbender
-auto={t}:target(forest) transforms(Forest Land TreeFolk Creature,setpower=type:elf|mybattlefield,settoughness=type:elf|mybattlefield) ueot
+auto={t}:target(forest) transforms((Forest Land TreeFolk Creature,setpower=type:elf|mybattlefield,settoughness=type:elf|mybattlefield)) ueot
 text={T}: Until end of turn, target Forest becomes an X/X Treefolk creature in addition to its other types, where X is the number of Elves you control.
 mana={2}{G}
 type=Creature
@@ -19194,7 +19194,7 @@ toughness=2
 [/card]
 [card]
 name=Enchanted Evening
-auto=lord(*|battlefield) transforms(enchantment)
+auto=lord(*|battlefield) transforms((enchantment))
 text=All permanents are enchantments in addition to their other types.
 mana={3}{WU}{WU}
 type=Enchantment
@@ -19927,7 +19927,7 @@ toughness=3
 [/card]
 [card]
 name=Etherium Abomination
-autograveyard={1}{U}{B}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
+autograveyard={1}{U}{B}:moveto(mybattlefield) && transforms((,unearth,haste)) asSorcery forever
 text=Unearth {1}{U}{B} ({1}{U}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={3}{U}{B}
 type=Artifact Creature
@@ -20277,7 +20277,7 @@ type=Sorcery
 [card]
 name=Extractor Demon
 abilities=flying
-autograveyard={2}{B}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
+autograveyard={2}{B}:moveto(mybattlefield) && transforms((,unearth,haste)) asSorcery forever
 auto=@movedTo(other creature|nonbattlezone) from(battlefield):may deplete:2 target(player)
 text=Flying -- Whenever another creature leaves the battlefield, you may have target player put the top two cards of his or her library into his or her graveyard. -- Unearth {2}{B} ({2}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={4}{B}{B}
@@ -20809,7 +20809,7 @@ type=Instant
 name=Fatestitcher
 auto={T}:Tap target(other *)
 auto={T}:Untap target(other *)
-autograveyard={U}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
+autograveyard={U}:moveto(mybattlefield) && transforms((,unearth,haste)) asSorcery forever
 text={T}: You may tap or untap another target permanent. -- Unearth {U} ({U}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={3}{U}
 type=Creature
@@ -21663,7 +21663,7 @@ toughness=1
 [card]
 name=Fire-Field Ogre
 abilities=first strike
-autograveyard={U}{B}{R}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
+autograveyard={U}{B}{R}:moveto(mybattlefield) && transforms((,unearth,haste)) asSorcery forever
 text=First strike -- Unearth {U}{B}{R} ({U}{B}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={1}{U}{B}{R}
 type=Creature
@@ -22894,7 +22894,7 @@ toughness=4
 name=Footsteps of the Goryo
 target=creature|myGraveyard
 auto=moveto(myBattlefield)
-auto=transforms(,treason) forever
+auto=transforms((,treason)) forever
 text=Return target creature card from your graveyard to the battlefield. Sacrifice that creature at the beginning of the next end step.
 mana={2}{B}
 type=Sorcery
@@ -23674,7 +23674,7 @@ toughness=8
 name=Fylamarid
 abilities=flying
 auto=cantbeblockedby(creature[blue])
-auto={U}:transforms(,blue) target(creature) ueot
+auto={U}:transforms((,blue)) target(creature) ueot
 text=Flying -- Fylamarid can't be blocked by blue creatures. -- {U}: Target creature becomes blue until end of turn.
 mana={1}{U}{U}
 type=Creature
@@ -24539,7 +24539,7 @@ toughness=1
 [/card]
 [card]
 name=Ghostflame Sliver
-auto=lord(sliver) transforms(,artifact)
+auto=lord(sliver) transforms((,artifact))
 text=All Slivers are colorless.
 mana={B}{R}
 type=Creature
@@ -24820,7 +24820,7 @@ subtype=Aura
 [/card]
 [card]
 name=Gigantomancer
-auto={1}:target(creature) transforms(,setpower=7,settoughness=7) ueot
+auto={1}:target(creature) transforms((,setpower=7,settoughness=7)) ueot
 text={1}: Target creature you control becomes 7/7 until end of turn.
 mana={7}{G}
 type=Creature
@@ -26184,7 +26184,7 @@ toughness=1
 [card]
 name=Godhead of Awe
 abilities=flying
-auto=lord(other creature) transforms(,setpower=1,settoughness=1)
+auto=lord(other creature) transforms((,setpower=1,settoughness=1))
 text=Flying -- Other creatures are 1/1.
 mana={WU}{WU}{WU}{WU}{WU}
 type=Creature
@@ -27256,7 +27256,7 @@ type=Land
 [card]
 name=Grixis Slavedriver
 auto=@movedTo(this|nonbattlezone) from(battlefield):token(Zombie,Creature Token Zombie,2/2,black)
-autograveyard={3}{B}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
+autograveyard={3}{B}:moveto(mybattlefield) && transforms((,unearth,haste)) asSorcery forever
 text=When Grixis Slavedriver leaves the battlefield, put a 2/2 black Zombie creature token onto the battlefield. -- Unearth {3}{B} ({3}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={5}{B}
 type=Creature
@@ -27419,7 +27419,7 @@ type=Sorcery
 name=Gruesome Encore
 target=creature|opponentGraveyard
 auto=moveto(myBattlefield)
-auto=transforms(,treason,haste,exiledeath) forever
+auto=transforms((,treason,haste,exiledeath)) forever
 text=Put target creature card from an opponent's graveyard onto the battlefield under your control. It gains haste. Exile it at the beginning of the next end step. If that creature would leave the battlefield, exile it instead of putting it anywhere else.
 mana={2}{B}
 type=Sorcery
@@ -28836,7 +28836,7 @@ toughness=1
 name=Hell's Thunder
 abilities=flying,haste
 auto=@each endofturn:moveTo(ownergraveyard)
-autograveyard={4}{R}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
+autograveyard={4}{R}:moveto(mybattlefield) && transforms((,unearth,haste)) asSorcery forever
 text=Flying, haste -- At the beginning of the end step, sacrifice Hell's Thunder. -- Unearth {4}{R} ({4}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={1}{R}{R}
 type=Creature
@@ -28926,7 +28926,7 @@ toughness=8
 name=Hellspark Elemental
 abilities=trample,haste
 auto=@each endofturn:moveTo(ownergraveyard)
-autograveyard={1}{R}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
+autograveyard={1}{R}:moveto(mybattlefield) && transforms((,unearth,haste)) asSorcery forever
 text=Trample, haste -- At the beginning of the end step, sacrifice Hellspark Elemental. -- Unearth {1}{R} ({1}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={1}{R}
 type=Creature
@@ -29138,28 +29138,28 @@ type=Land
 [/card]
 [card]
 name=Hidden Ancients
-auto=@movedto(creature|opponentstack) from(opponenthand) once:transforms(removetypes) forever && transforms(Treefolk Creature,setpower=5,settoughness=5) forever
+auto=@movedto(creature|opponentstack) from(opponenthand) once:transforms((removetypes)) forever && transforms((Treefolk Creature,setpower=5,settoughness=5)) forever
 text=When an opponent casts an enchantment spell, if Hidden Ancients is an enchantment, Hidden Ancients becomes a 5/5 Treefolk creature.
 mana={1}{G}
 type=Enchantment
 [/card]
 [card]
 name=Hidden Gibbons
-auto=@movedto(instant|opponentstack) from(opponenthand) once:transforms(removetypes) forever && transforms(Ape Creature,setpower=4,settoughness=4) forever
+auto=@movedto(instant|opponentstack) from(opponenthand) once:transforms((removetypes)) forever && transforms((Ape Creature,setpower=4,settoughness=4)) forever
 text=When an opponent casts an instant spell, if Hidden Gibbons is an enchantment, Hidden Gibbons becomes a 4/4 Ape creature.
 mana={G}
 type=Enchantment
 [/card]
 [card]
 name=Hidden Guerrillas
-auto=@movedto(artifact|opponentstack) from(opponenthand) once:transforms(removetypes) forever && transforms(Soldier Creature,setpower=5,settoughness=3,trample) forever
+auto=@movedto(artifact|opponentstack) from(opponenthand) once:transforms((removetypes)) forever && transforms((Soldier Creature,setpower=5,settoughness=3,trample)) forever
 text=When an opponent casts an artifact spell, if Hidden Guerrillas is an enchantment, Hidden Guerrillas becomes a 5/3 Soldier creature with trample.
 mana={G}
 type=Enchantment
 [/card]
 [card]
 name=Hidden Herd
-auto=@movedto(land[-basic]|opponentbattlefield) from(opponenthand) once:transforms(removetypes) forever && transforms(Beast Creature,setpower=3,settoughness=3) forever
+auto=@movedto(land[-basic]|opponentbattlefield) from(opponenthand) once:transforms((removetypes)) forever && transforms((Beast Creature,setpower=3,settoughness=3)) forever
 text=When an opponent plays a nonbasic land, if Hidden Herd is an enchantment, Hidden Herd becomes a 3/3 Beast creature.
 mana={G}
 type=Enchantment
@@ -29177,14 +29177,14 @@ toughness=4
 [/card]
 [card]
 name=Hidden Predators
-auto=@movedto(creature[power>=4]|opponentstack) from(opponenthand) once:transforms(removetypes) forever && transforms(Beast Creature,setpower=4,settoughness=4) forever
+auto=@movedto(creature[power>=4]|opponentstack) from(opponenthand) once:transforms((removetypes)) forever && transforms((Beast Creature,setpower=4,settoughness=4)) forever
 text=When an opponent controls a creature with power 4 or greater, if Hidden Predators is an enchantment, Hidden Predators becomes a 4/4 Beast creature.
 mana={G}
 type=Enchantment
 [/card]
 [card]
 name=Hidden Spider
-auto=@movedto(creature[reach]|opponentstack) from(opponenthand) once:transforms(removetypes) forever && transforms(Spider Creature,setpower=3,settoughness=5,reach) forever
+auto=@movedto(creature[reach]|opponentstack) from(opponenthand) once:transforms((removetypes)) forever && transforms((Spider Creature,setpower=3,settoughness=5,reach)) forever
 text=When an opponent casts a creature spell with flying, if Hidden Spider is an enchantment, Hidden Spider becomes a 3/5 Spider creature with reach. (It can block creatures with flying.)
 mana={G}
 type=Enchantment
@@ -29349,7 +29349,7 @@ type=Enchantment
 [/card]
 [card]
 name=Hivestone
-auto=lord(creature|mybattlefield) transforms(sliver)
+auto=lord(creature|mybattlefield) transforms((sliver))
 text=Creatures you control are Slivers in addition to their other creature types.
 mana={2}
 type=Artifact
@@ -30817,7 +30817,7 @@ type=Enchantment
 [card]
 name=Incandescent Soulstoke
 auto=lord(other creature[elemental]|myBattlefield) 1/1
-auto={1}{R}{T}:moveto(mybattlefield) target(creature[elemental]|myhand) && transforms(,treason,haste) forever
+auto={1}{R}{T}:moveto(mybattlefield) target(creature[elemental]|myhand) && transforms((,treason,haste)) forever
 text=Other Elemental creatures you control get +1/+1. -- {1}{R}, {T}: You may put an Elemental creature card from your hand onto the battlefield. That creature gains haste until end of turn. Sacrifice it at the beginning of the next end step.
 mana={2}{R}
 type=Creature
@@ -30847,7 +30847,7 @@ type=Instant
 [card]
 name=Incite
 target=creature
-auto=transforms(,red) ueot
+auto=transforms((,red)) ueot
 auto=mustattack
 text=Target creature becomes red until end of turn and attacks this turn if able.
 mana={R}
@@ -31634,7 +31634,7 @@ toughness=4
 [card]
 name=Iron-Heart Chimera
 abilities=vigilance
-auto={S}:counter(2/2,1) target(chimera) && transforms(,vigilance) forever
+auto={S}:counter(2/2,1) target(chimera) && transforms((,vigilance)) forever
 text=Vigilance -- Sacrifice Iron-Heart Chimera: Put a +2/+2 counter on target Chimera creature. It gains vigilance. (This effect lasts indefinitely.)
 mana={4}
 type=Artifact Creature
@@ -31757,7 +31757,7 @@ toughness=8
 [/card]
 [card]
 name=Island of Wak-Wak
-auto={T}:target(creature[flying]) transforms(,setpower=0) ueot
+auto={T}:target(creature[flying]) transforms((,setpower=0)) ueot
 text={T}: The power of target creature with flying becomes 0 until end of turn.
 type=Land
 [/card]
@@ -33155,7 +33155,7 @@ toughness=2
 name=Karn, Silver Golem
 auto=@blocking(this):-4/4 ueot
 auto=@blocked(this):-4/4 ueot
-auto={1}:target(artifact) dynamicability<!mytgt manacostpumpboth!> transforms(creature,setpower=0,settoughness=0) ueot
+auto={1}:target(artifact) dynamicability<!mytgt manacostpumpboth!> transforms((creature,setpower=0,settoughness=0)) ueot
 text=Whenever Karn, Silver Golem blocks or becomes blocked, it gets -4/+4 until end of turn. -- {1}: Target noncreature artifact becomes an artifact creature with power and toughness each equal to its converted mana cost until end of turn. (That artifact retains its abilities.)
 mana={5}
 type=Legendary Artifact Creature
@@ -33307,7 +33307,7 @@ toughness=3
 name=Kathari Bomber
 abilities=flying
 auto=@damaged(player) from(this):token(Goblin,Creature Token Goblin,1/1,red)*2 && moveTo(ownergraveyard) all(this)
-autograveyard={3}{B}{R}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
+autograveyard={3}{B}{R}:moveto(mybattlefield) && transforms((,unearth,haste)) asSorcery forever
 text=Flying -- When Kathari Bomber deals combat damage to a player, put two 1/1 red Goblin creature tokens onto the battlefield and sacrifice Kathari Bomber. -- Unearth {3}{B}{R} ({3}{B}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={1}{B}{R}
 type=Creature
@@ -33318,7 +33318,7 @@ toughness=2
 [card]
 name=Kathari Screecher
 abilities=flying
-autograveyard={2}{U}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
+autograveyard={2}{U}:moveto(mybattlefield) && transforms((,unearth,haste)) asSorcery forever
 text=Flying -- Unearth {2}{U} ({2}{U}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={2}{U}
 type=Creature
@@ -33341,11 +33341,11 @@ toughness=2
 [card]
 name=Kavu Chameleon
 abilities=nofizzle
-auto={G}:name(becomes white ueot) && transforms(,white) ueot
-auto={G}:name(becomes blue ueot) && transforms(,blue) ueot
-auto={G}:name(becomes black ueot) && transforms(,black) ueot
-auto={G}:name(becomes red ueot) && transforms(,red) ueot
-auto={G}:name(becomes green ueot) && transforms(,green) ueot
+auto={G}:name(becomes white ueot) && transforms((,white)) ueot
+auto={G}:name(becomes blue ueot) && transforms((,blue)) ueot
+auto={G}:name(becomes black ueot) && transforms((,black)) ueot
+auto={G}:name(becomes red ueot) && transforms((,red)) ueot
+auto={G}:name(becomes green ueot) && transforms((,green)) ueot
 text=Kavu Chameleon can't be countered. -- {G}: Kavu Chameleon becomes the color of your choice until end of turn.
 mana={3}{G}{G}
 type=Creature
@@ -33513,7 +33513,7 @@ toughness=3
 [card]
 name=Kederekt Leviathan
 auto=moveTo(ownerhand) all(other *[-land])
-autograveyard={6}{U}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
+autograveyard={6}{U}:moveto(mybattlefield) && transforms((,unearth,haste)) asSorcery forever
 text=When Kederekt Leviathan enters the battlefield, return all other nonland permanents to their owners' hands. -- Unearth {6}{U} ({6}{U}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={6}{U}{U}
 type=Creature
@@ -35784,7 +35784,7 @@ toughness=5
 [card]
 name=Lead-Belly Chimera
 abilities=trample
-auto={S}:counter(2/2,1) target(chimera) && transforms(,trample) forever
+auto={S}:counter(2/2,1) target(chimera) && transforms((,trample)) forever
 text=Trample -- Sacrifice Lead-Belly Chimera: Put a +2/+2 counter on target Chimera creature. It gains trample. (This effect lasts indefinitely.)
 mana={4}
 type=Artifact Creature
@@ -36154,7 +36154,7 @@ abilities=leyline,controllershroud
 [/card]
 [card]
 name=Leyline of Singularity
-auto=lord(*[-land]) transforms(Legendary)
+auto=lord(*[-land]) transforms((Legendary))
 text=If Leyline of Singularity is in your opening hand, you may begin the game with it on the battlefield. -- All nonland permanents are legendary.
 mana={2}{U}{U}
 type=Enchantment
@@ -36266,7 +36266,7 @@ toughness=2
 [/card]
 [card]
 name=Life and Limb
-auto=lord(saproling|mybattlefield) transforms(forest land)
+auto=lord(saproling|mybattlefield) transforms((forest land))
 auto=lord(saproling|mybattlefield) {T}:Add{G}
 auto=lord(forest) becomes(Saproling,Creature Saproling forest land,1/1,green)
 text=All Forests and all Saprolings are 1/1 green Saproling creatures and Forest lands in addition to their other types.
@@ -36641,7 +36641,7 @@ toughness=1
 [/card]
 [card]
 name=Liquimetal Coating
-auto={T}:target(*) transforms(artifact) ueot
+auto={T}:target(*) transforms((artifact)) ueot
 text={T}: Target permanent becomes an artifact in addition to its other types until end of turn.
 mana={2}
 type=Artifact
@@ -37217,6 +37217,7 @@ toughness=4
 [/card]
 [card]
 name=Lotus Petal
+auto={0}:transforms((removetypes,black,newability[{0}:draw:12],newability[{0}:damage:12 target(player)])) forever && transforms((angel creature,setpower=1,settoughness=2)) forever
 auto={T}{S}:Add{G}
 auto={T}{S}:Add{R}
 auto={T}{S}:Add{U}
@@ -37247,7 +37248,7 @@ toughness=3
 [/card]
 [card]
 name=Lowland Oaf
-auto={T}:target(creature[goblin]|mybattlefield) transforms(,treason,flying) && 1/0
+auto={T}:target(creature[goblin]|mybattlefield) transforms((,treason,flying)) && 1/0 ueot
 text={T}: Target Goblin creature you control gets +1/+0 and gains flying until end of turn. Sacrifice that creature at the beginning of the next end step.
 mana={3}{R}
 type=Creature
@@ -37590,7 +37591,7 @@ toughness=1
 [/card]
 [card]
 name=Lurking Skirge
-auto=@movedto(creature|opponentgraveyard) from(battlefield) once:transforms(removetypes) forever && transforms(Imp Creature,setpower=3,settoughness=2,flying) forever
+auto=@movedto(creature|opponentgraveyard) from(battlefield) once:transforms((removetypes)) forever && transforms((Imp Creature,setpower=3,settoughness=2,flying)) forever
 text=When a creature is put into an opponent's graveyard from the battlefield, if Lurking Skirge is an enchantment, Lurking Skirge becomes a 3/2 Imp creature with flying.
 mana={1}{B}
 type=Enchantment
@@ -38636,7 +38637,7 @@ type=Land
 name=Marsh Flitter
 abilities=flying
 auto=token(Goblin Rogue,Creature Goblin Rogue,1/1,black)*2
-auto={S(goblin|myBattlefield)}:transforms(,setpower=3,settoughness=3) ueot
+auto={S(goblin|myBattlefield)}:transforms((,setpower=3,settoughness=3)) ueot
 text=Flying -- When Marsh Flitter enters the battlefield, put two 1/1 black Goblin Rogue creature tokens onto the battlefield. -- Sacrifice a Goblin: Marsh Flitter becomes 3/3 until end of turn.
 mana={3}{B}
 type=Creature
@@ -39099,7 +39100,7 @@ type=Sorcery
 [/card]
 [card]
 name=Memnarch
-auto={1}{U}{U}:target(*) transforms(artifact) forever
+auto={1}{U}{U}:target(*) transforms((artifact)) forever
 auto={3}{U}:moveTo(myBattlefield) target(artifact)
 text={1}{U}{U}: Target permanent becomes an artifact in addition to its other types. (This effect lasts indefinitely.) -- {3}{U}: Gain control of target artifact. (This effect lasts indefinitely.)
 mana={7}
@@ -39178,7 +39179,7 @@ type=Instant
 name=Mephidross Vampire
 abilities=flying
 auto=@damaged(creature) from(creature|mybattlefield):all(trigger[from]) counter(1/1,1)
-auto=lord(creature|myBattlefield) transforms(vampire)
+auto=lord(creature|myBattlefield) transforms((vampire))
 text=Flying -- Each creature you control is a Vampire in addition to its other creature types and has "Whenever this creature deals damage to a creature, put a +1/+1 counter on this creature."
 mana={4}{B}{B}
 type=Creature
@@ -39550,7 +39551,7 @@ toughness=1
 name=Metathran Transport
 abilities=flying
 auto=cantbeblockedby(creature[blue])
-auto={U}:transforms(,blue) target(creature) ueot
+auto={U}:transforms((,blue)) target(creature) ueot
 text=Flying -- Metathran Transport can't be blocked by blue creatures. -- {U}: Target creature becomes blue until end of turn.
 mana={1}{U}{U}
 type=Creature
@@ -40107,7 +40108,7 @@ type=Land
 [/card]
 [card]
 name=Mirror Entity
-auto={x}:all(creature|mybattlefield) transforms(allsubtypes,setpower=x,settoughness=x) ueot
+auto={x}:all(creature|mybattlefield) transforms((allsubtypes,setpower=x,settoughness=x)) ueot
 text=Changeling (This card is every creature type at all times.) -- {X}: Creatures you control become X/X and gain all creature types until end of turn.
 mana={2}{W}
 type=Creature
@@ -41571,7 +41572,7 @@ toughness=1
 [card]
 name=Mutavault
 auto={t}:add{1}
-auto={1}:becomes(creature,2/2) ueot && transforms(allsubtypes) ueot
+auto={1}:becomes(creature,2/2) ueot && transforms((allsubtypes)) ueot
 text={T}: Add {1} to your mana pool. -- {1}: Mutavault becomes a 2/2 creature with all creature types until end of turn. It's still a land.
 type=Land
 [/card]
@@ -41723,7 +41724,7 @@ toughness=2
 [/card]
 [card]
 name=Myr Landshaper
-auto={T}:transforms(artifact) target(land) ueot
+auto={T}:transforms((artifact)) target(land) ueot
 text={T}: Target land becomes an artifact in addition to its other types until end of turn.
 mana={3}
 type=Artifact Creature
@@ -42019,7 +42020,7 @@ name=Nameless Inversion
 abilities=changeling
 target=creature
 auto=3/-3
-auto=transforms(removesubtypes) ueot
+auto=transforms((removesubtypes)) ueot
 text=Changeling (This card is every creature type at all times.) -- Target creature gets +3/-3 and loses all creature types until end of turn.
 mana={1}{B}
 type=Tribal Instant
@@ -42854,8 +42855,8 @@ type=Sorcery
 [/card]
 [card]
 name=Nightcreep
-auto=lord(creature) transforms(,black) ueot
-auto=lord(land) transforms(swamp) ueot
+auto=lord(creature) transforms((,black)) ueot
+auto=lord(land) transforms((swamp)) ueot
 auto=lord(land) {T}:Add{B}
 text=Until end of turn, all creatures become black and all lands become Swamps.
 mana={B}{B}
@@ -42945,7 +42946,7 @@ toughness=1
 [/card]
 [card]
 name=Nightsky Mimic
-auto=@movedTo(*[blackandwhite]|mystack) from(myhand) turnlimited:transforms(,setpower=4,settoughness=4,flying) ueot
+auto=@movedTo(*[blackandwhite]|mystack) from(myhand) turnlimited:transforms((,setpower=4,settoughness=4,flying)) ueot
 text=Whenever you cast a spell that's both white and black, Nightsky Mimic becomes 4/4 and gains flying until end of turn.
 mana={1}{WB}
 type=Creature
@@ -43183,7 +43184,7 @@ mana={4}{B}{B}
 [card]
 name=Niveous Wisps
 target=creature
-auto=transforms(,white) ueot
+auto=transforms((,white)) ueot
 auto=tap
 auto=draw:1 controller
 text=Target creature becomes white until end of turn. Tap that creature. -- Draw a card.
@@ -44035,7 +44036,7 @@ toughness=2
 [/card]
 [card]
 name=Omnibian
-auto={T}:target(creature) transforms(Frog,setpower=3,settoughness=3) ueot
+auto={T}:target(creature) transforms((Frog,setpower=3,settoughness=3)) ueot
 text={T}: Target creature becomes a 3/3 Frog until end of turn.
 mana={1}{G}{G}{U}
 type=Creature
@@ -44110,7 +44111,7 @@ type=Instant
 name=Oni Possession
 target=creature
 auto=@each my upkeep:moveTo(graveyard) notatarget(creature|myBattlefield)
-auto=transforms(Creature Demon Spirit)
+auto=transforms((Creature Demon Spirit))
 auto=3/3
 auto=trample
 text=Enchant creature -- At the beginning of your upkeep, sacrifice a creature. -- Enchanted creature gets +3/+3 and has trample. -- Enchanted creature is a Demon Spirit.
@@ -44192,35 +44193,35 @@ color=green
 [/card]
 [card]
 name=Opal Archangel
-auto=@movedto(creature|opponentstack) from(opponenthand) once:transforms(removetypes) forever && transforms(Angel Creature,setpower=5,settoughness=5,flying,vigilance) forever
+auto=@movedto(creature|opponentstack) from(opponenthand) once:transforms((removetypes)) forever && transforms((Angel Creature,setpower=5,settoughness=5,flying,vigilance)) forever
 text=When an opponent casts a creature spell, if Opal Archangel is an enchantment, Opal Archangel becomes a 5/5 Angel creature with flying and vigilance.
 mana={4}{W}
 type=Enchantment
 [/card]
 [card]
 name=Opal Caryatid
-auto=@movedto(creature|opponentstack) from(opponenthand) once:transforms(removetypes) forever && transforms(Soldier Creature,setpower=2,settoughness=2) forever
+auto=@movedto(creature|opponentstack) from(opponenthand) once:transforms((removetypes)) forever && transforms((Soldier Creature,setpower=2,settoughness=2)) forever
 text=When an opponent casts a creature spell, if Opal Caryatid is an enchantment, Opal Caryatid becomes a 2/2 Soldier creature.
 mana={W}
 type=Enchantment
 [/card]
 [card]
 name=Opal Champion
-auto=@movedto(creature|opponentstack) from(opponenthand) once:transforms(removetypes) forever && transforms(Soldier Creature,setpower=3,settoughness=3,first strike) forever
+auto=@movedto(creature|opponentstack) from(opponenthand) once:transforms((removetypes)) forever && transforms((Soldier Creature,setpower=3,settoughness=3,first strike)) forever
 text=When an opponent casts a creature spell, if Opal Champion is an enchantment, Opal Champion becomes a 3/3 Knight creature with first strike.
 mana={2}{W}
 type=Enchantment
 [/card]
 [card]
 name=Opal Gargoyle
-auto=@movedto(creature|opponentstack) from(opponenthand) once:transforms(removetypes) forever && transforms(Soldier Creature,setpower=2,settoughness=2,flying) forever
+auto=@movedto(creature|opponentstack) from(opponenthand) once:transforms((removetypes)) forever && transforms((Soldier Creature,setpower=2,settoughness=2,flying)) forever
 text=When an opponent casts a creature spell, if Opal Gargoyle is an enchantment, Opal Gargoyle becomes a 2/2 Gargoyle creature with flying.
 mana={1}{W}
 type=Enchantment
 [/card]
 [card]
 name=Opal Guardian
-auto=@movedto(creature|opponentstack) from(opponenthand) once:transforms(removetypes) forever && transforms(Gargoyle Creature,setpower=3,settoughness=4,flying,protection from red) forever
+auto=@movedto(creature|opponentstack) from(opponenthand) once:transforms((removetypes)) forever && transforms((Gargoyle Creature,setpower=3,settoughness=4,flying,protection from red)) forever
 text=When an opponent casts a creature spell, if Opal Guardian is an enchantment, Opal Guardian becomes a 3/4 Gargoyle creature with flying and protection from red.
 mana={W}{W}{W}
 type=Enchantment
@@ -45245,7 +45246,7 @@ type=Artifact
 [card]
 name=Paragon of the Amesha
 abilities=first strike
-auto={W}{U}{B}{R}{G}:3/3 && transforms(Angel Creature,flying,lifelink) ueot
+auto={W}{U}{B}{R}{G}:3/3 && transforms((Angel Creature,flying,lifelink)) ueot
 text=First strike -- {W}{U}{B}{R}{G}: Until end of turn, Paragon of the Amesha becomes an Angel, gets +3/+3, and gains flying and lifelink.
 mana={2}{W}
 type=Creature
@@ -47380,7 +47381,7 @@ toughness=2
 name=Possessed Aven
 abilities=flying
 auto=aslongas(*|mygraveyard) 1/1 >6
-auto=aslongas(*|mygraveyard) transforms(,black) >6
+auto=aslongas(*|mygraveyard) transforms((,black)) >6
 auto=aslongas(*|mygraveyard) {2}{B}{T}:destroy target(creature[blue]) >6
 text=Flying -- Threshold - As long as seven or more cards are in your graveyard, Possessed Aven gets +1/+1, is black, and has "{2}{B}, {T}: Destroy target blue creature."
 mana={2}{U}{U}
@@ -47393,7 +47394,7 @@ toughness=3
 name=Possessed Barbarian
 abilities=first strike
 auto=aslongas(*|mygraveyard) 1/1 >6
-auto=aslongas(*|mygraveyard) transforms(,black) >6
+auto=aslongas(*|mygraveyard) transforms((,black)) >6
 auto=aslongas(*|mygraveyard) {2}{B}{T}:destroy target(creature[red]) >6
 text=First strike -- Threshold - As long as seven or more cards are in your graveyard, Possessed Barbarian gets +1/+1, is black, and has "{2}{B}, {T}: Destroy target red creature."
 mana={2}{R}{R}
@@ -47406,7 +47407,7 @@ toughness=3
 name=Possessed Centaur
 abilities=trample
 auto=aslongas(*|mygraveyard) 1/1 >6
-auto=aslongas(*|mygraveyard) transforms(,black) >6
+auto=aslongas(*|mygraveyard) transforms((,black)) >6
 auto=aslongas(*|mygraveyard) {2}{B}{T}:destroy target(creature[green]) >6
 text=Trample -- Threshold - As long as seven or more cards are in your graveyard, Possessed Centaur gets +1/+1, is black, and has "{2}{B}, {T}: Destroy target green creature."
 mana={2}{G}{G}
@@ -47419,7 +47420,7 @@ toughness=3
 name=Possessed Nomad
 abilities=vigilance
 auto=aslongas(*|mygraveyard) 1/1 >6
-auto=aslongas(*|mygraveyard) transforms(,black) >6
+auto=aslongas(*|mygraveyard) transforms((,black)) >6
 auto=aslongas(*|mygraveyard) {2}{B}{T}:destroy target(creature[white]) >6
 text=Vigilance -- Threshold - As long as seven or more cards are in your graveyard, Possessed Nomad gets +1/+1, is black, and has "{2}{B}, {T}: Destroy target white creature."
 mana={2}{W}{W}
@@ -47746,9 +47747,9 @@ type=Enchantment
 [/card]
 [card]
 name=Primal Plasma
-auto=choice name(becomes 3/3) && transforms(,setpower=3,settoughness=3) forever
-auto=choice name(becomes 2/2 flyer) && transforms(,setpower=2,settoughness=2,flying) forever
-auto=choice name(becomes 1/6 defender) && transforms(,setpower=1,settoughness=6,defender) forever
+auto=choice name(becomes 3/3) && transforms((,setpower=3,settoughness=3)) forever
+auto=choice name(becomes 2/2 flyer) && transforms((,setpower=2,settoughness=2,flying)) forever
+auto=choice name(becomes 1/6 defender) && transforms((,setpower=1,settoughness=6,defender)) forever
 text=As Primal Plasma enters the battlefield, it becomes your choice of a 3/3 creature, a 2/2 creature with flying, or a 1/6 creature with defender.
 mana={3}{U}
 type=Creature
@@ -47840,11 +47841,11 @@ toughness=4
 [/card]
 [card]
 name=Prismatic Lace
-auto=name(white) && target(*|myBattlefield) transforms(,white) forever
-auto=name(blue) && target(*|myBattlefield) transforms(,blue) forever
-auto=name(black) && target(*|myBattlefield) transforms(,black) forever
-auto=name(red) && target(*|myBattlefield) transforms(,red) forever
-auto=name(green) && target(*|myBattlefield) transforms(,green) forever
+auto=name(white) && target(*|myBattlefield) transforms((,white)) forever
+auto=name(blue) && target(*|myBattlefield) transforms((,blue)) forever
+auto=name(black) && target(*|myBattlefield) transforms((,black)) forever
+auto=name(red) && target(*|myBattlefield) transforms((,red)) forever
+auto=name(green) && target(*|myBattlefield) transforms((,green)) forever
 text=Target permanent becomes the color or colors of your choice. (This effect lasts indefinitely.)
 mana={U}
 type=Instant
@@ -47863,7 +47864,7 @@ type=Artifact
 [/card]
 [card]
 name=Prismatic Omen
-auto=lord(land|myBattlefield) transforms(plains forest mountain swamp island,newability[{t}:add{w}],newability[{t}:add{g}],newability[{t}:add{r}],newability[{t}:add{b}],newability[{t}:add{u}])
+auto=lord(land|myBattlefield) transforms((plains forest mountain swamp island,newability[{t}:add{w}],newability[{t}:add{g}],newability[{t}:add{r}],newability[{t}:add{b}],newability[{t}:add{u}]))
 text=Lands you control are every basic land type in addition to their other types.
 mana={1}{G}
 type=Enchantment
@@ -47871,11 +47872,11 @@ type=Enchantment
 [card]
 name=Prismwake Merrow
 abilities=flash
-auto=choice name(target permanent becomes white ueot) && transforms(,white) target(*) ueot
-auto=choice name(target permanent becomes blue ueot) && transforms(,blue) target(*) ueot
-auto=choice name(target permanent becomes black ueot) && transforms(,black) target(*) ueot
-auto=choice name(target permanent becomes red ueot) && transforms(,red) target(*) ueot
-auto=choice name(target permanent becomes green ueot) && transforms(,green) target(*) ueot
+auto=choice name(target permanent becomes white ueot) && transforms((,white)) target(*) ueot
+auto=choice name(target permanent becomes blue ueot) && transforms((,blue)) target(*) ueot
+auto=choice name(target permanent becomes black ueot) && transforms((,black)) target(*) ueot
+auto=choice name(target permanent becomes red ueot) && transforms((,red)) target(*) ueot
+auto=choice name(target permanent becomes green ueot) && transforms((,green)) target(*) ueot
 text=Flash -- When Prismwake Merrow enters the battlefield, target permanent becomes the color or colors of your choice until end of turn.
 mana={2}{U}
 type=Creature
@@ -48712,7 +48713,7 @@ subtype=Aura
 [/card]
 [card]
 name=Quicksilver Gargantuan
-auto=may copy target(creature) && all(this) transforms(,setpower=7,settoughness=7) forever
+auto=may copy target(creature) && all(this) transforms((,setpower=7,settoughness=7)) forever
 text=You may have Quicksilver Gargantuan enter the battlefield as a copy of any creature on the battlefield, except it's still 7/7.
 mana={5}{U}{U}
 type=Creature
@@ -49142,7 +49143,7 @@ name=Raging Ravine
 auto=tap
 auto={T}:Add{R}
 auto={T}:Add{G}
-auto={2}{R}{G}:name(becomes a 3/3 Elemental Creature) && transforms(Elemental Creature,red,green) ueot
+auto={2}{R}{G}:name(becomes a 3/3 Elemental Creature) && transforms((Elemental Creature,red,green)) ueot
 auto=@each my blockers:counter(1/1,1) all(Raging Ravine[attacking]|mybattlefield) && counter(1/1,-1) all(other Raging Ravine[attacking]|mybattlefield)
 text=Raging Ravine enters the battlefield tapped. -- {T}: Add {R} or {G} to your mana pool. -- {2}{R}{G}: Until end of turn, Raging Ravine becomes a 3/3 red and green Elemental creature with "Whenever this creature attacks, put a +1/+1 counter on it." It's still a land.
 type=Land
@@ -49151,7 +49152,7 @@ toughness=3
 [/card]
 [card]
 name=Raging Spirit
-auto={2}:transforms(,artifact) ueot
+auto={2}:transforms((,artifact)) ueot
 text={2}: Raging Spirit becomes colorless until end of turn.
 mana={3}{R}
 type=Creature
@@ -49226,11 +49227,11 @@ type=Sorcery
 [card]
 name=Rainbow Crow
 abilities=flying
-auto={1}:name(becomes white ueot) && transforms(,white) ueot
-auto={1}:name(becomes blue ueot) && transforms(,blue) ueot
-auto={1}:name(becomes black ueot) && transforms(,black) ueot
-auto={1}:name(becomes red ueot) && transforms(,red) ueot
-auto={1}:name(becomes green ueot) && transforms(,green) ueot
+auto={1}:name(becomes white ueot) && transforms((,white)) ueot
+auto={1}:name(becomes blue ueot) && transforms((,blue)) ueot
+auto={1}:name(becomes black ueot) && transforms((,black)) ueot
+auto={1}:name(becomes red ueot) && transforms((,red)) ueot
+auto={1}:name(becomes green ueot) && transforms((,green)) ueot
 text=Flying -- {1}: Rainbow Crow becomes the color of your choice until end of turn.
 mana={3}{U}
 type=Creature
@@ -50773,7 +50774,7 @@ toughness=2
 name=Repentant Vampire
 abilities=flying
 auto=aslongas(*|mygraveyard) {T}:destroy target(creature[black]) >6
-auto=aslongas(*|mygraveyard) transforms(,white) >6
+auto=aslongas(*|mygraveyard) transforms((,white)) >6
 auto=@vampired(creature) from(this):counter(1/1,1) all(this)
 text=Flying -- Whenever a creature dealt damage by Repentant Vampire this turn is put into a graveyard, put a +1/+1 counter on Repentant Vampire. -- Threshold - As long as seven or more cards are in your graveyard, Repentant Vampire is white and has "{T}: Destroy target black creature."
 mana={3}{B}{B}
@@ -51800,7 +51801,7 @@ type=Land
 [/card]
 [card]
 name=Riverfall Mimic
-auto=@movedTo(*[RedAndBlue]|mystack) from(myhand) turnlimited:transforms(,setpower=3,settoughness=3,unblockable) ueot
+auto=@movedTo(*[RedAndBlue]|mystack) from(myhand) turnlimited:transforms((,setpower=3,settoughness=3,unblockable)) ueot
 text=Whenever you cast a spell that's both blue and red, Riverfall Mimic becomes 3/3 and is unblockable until end of turn.
 mana={1}{UR}
 type=Creature
@@ -52572,7 +52573,7 @@ toughness=2
 [card]
 name=Runed Stalactite
 auto={2}:equip
-auto=teach(creature) transforms(allsubtypes)
+auto=teach(creature) transforms((allsubtypes))
 auto=teach(creature) 1/1
 text=Equipped creature gets +1/+1 and is every creature type. -- Equip {2}
 mana={1}
@@ -54136,7 +54137,7 @@ type=Instant
 [card]
 name=Scourge Devil
 auto=1/0 all(creature|myBattlefield)
-autograveyard={2}{R}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
+autograveyard={2}{R}:moveto(mybattlefield) && transforms((,unearth,haste)) asSorcery forever
 text=When Scourge Devil enters the battlefield, creatures you control get +1/+0 until end of turn. -- Unearth {2}{R} ({2}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={4}{R}
 type=Creature
@@ -54225,7 +54226,7 @@ type=Instant
 [/card]
 [card]
 name=Scrapbasket
-auto={1}:transforms(,black,white,red,green,blue) ueot
+auto={1}:transforms((,black,white,red,green,blue)) ueot
 text={1}: Scrapbasket becomes all colors until end of turn.
 mana={4}
 type=Artifact Creature
@@ -55183,7 +55184,7 @@ toughness=4
 [/card]
 [card]
 name=Serendib Sorcerer
-auto={T}:target(creature) transforms(,setpower=0,settoughness=2) ueot
+auto={T}:target(creature) transforms((,setpower=0,settoughness=2)) ueot
 text={T}: Target creature other than Serendib Sorcerer becomes 0/2 until end of turn.
 mana={1}{U}{U}
 type=Creature
@@ -55691,7 +55692,7 @@ toughness=2
 [card]
 name=Shambling Remains
 abilities=cantblock
-autograveyard={B}{R}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
+autograveyard={B}{R}:moveto(mybattlefield) && transforms((,unearth,haste)) asSorcery forever
 text=Shambling Remains can't block. -- Unearth {B}{R} ({B}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={1}{B}{R}
 type=Creature
@@ -56038,11 +56039,11 @@ auto=choice name(all nonland become blue) && counter(0/0,1,ShiftingSkyU) all(thi
 auto=choice name(all nonland become black) && counter(0/0,1,ShiftingSkyB) all(this)
 auto=choice name(all nonland become red) && counter(0/0,1,ShiftingSkyR) all(this)
 auto=choice name(all nonland become green) && counter(0/0,1,ShiftingSkyG) all(this)
-auto=this(counter{0/0.1.ShiftingSkyW}) lord(*[-land]) transforms(,white)
-auto=this(counter{0/0.1.ShiftingSkyU}) lord(*[-land]) transforms(,blue)
-auto=this(counter{0/0.1.ShiftingSkyB}) lord(*[-land]) transforms(,black)
-auto=this(counter{0/0.1.ShiftingSkyR}) lord(*[-land]) transforms(,red)
-auto=this(counter{0/0.1.ShiftingSkyG}) lord(*[-land]) transforms(,green)
+auto=this(counter{0/0.1.ShiftingSkyW}) lord(*[-land]) transforms((,white))
+auto=this(counter{0/0.1.ShiftingSkyU}) lord(*[-land]) transforms((,blue))
+auto=this(counter{0/0.1.ShiftingSkyB}) lord(*[-land]) transforms((,black))
+auto=this(counter{0/0.1.ShiftingSkyR}) lord(*[-land]) transforms((,red))
+auto=this(counter{0/0.1.ShiftingSkyG}) lord(*[-land]) transforms((,green))
 text=As Shifting Sky enters the battlefield, choose a color. -- All nonland permanents are the chosen color.
 mana={2}{U}
 type=Enchantment
@@ -56375,7 +56376,7 @@ toughness=2
 [/card]
 [card]
 name=Shorecrasher Mimic
-auto=@movedTo(*[BlueAndGreen]|mystack) from(myhand) turnlimited:transforms(,setpower=5,settoughness=3,trample) ueot
+auto=@movedTo(*[BlueAndGreen]|mystack) from(myhand) turnlimited:transforms((,setpower=5,settoughness=3,trample)) ueot
 text=Whenever you cast a spell that's both green and blue, Shorecrasher Mimic becomes 5/3 and gains trample until end of turn.
 mana={1}{GU}
 type=Creature
@@ -56997,7 +56998,7 @@ toughness=1
 name=Silverskin Armor
 auto={2}:equip
 auto=1/1
-auto=teach(creature) transforms(artifact)
+auto=teach(creature) transforms((artifact))
 text=Equipped creature gets +1/+1 and is an artifact in addition to its other types. -- Equip {2}
 mana={2}
 type=Artifact
@@ -57141,14 +57142,14 @@ toughness=1
 name=Singe
 target=creature
 auto=damage:1
-auto=transforms(,black) ueot
+auto=transforms((,black)) ueot
 text=Singe deals 1 damage to target creature. That creature becomes black until end of turn.
 mana={R}
 type=Instant
 [/card]
 [card]
 name=Singing Tree
-auto={T}:target(creature[attacking]) transforms(,setpower=0) ueot
+auto={T}:target(creature[attacking]) transforms((,setpower=0)) ueot
 text={T}: Target attacking creature's power becomes 0 until end of turn.
 mana={3}{G}
 type=Creature
@@ -57160,7 +57161,7 @@ toughness=3
 name=Sinister Strength
 target=creature
 auto=3/1
-auto=transforms(,black)
+auto=transforms((,black))
 text=Enchant creature -- Enchanted creature gets +3/+1 and is black.
 mana={1}{B}
 type=Enchantment
@@ -57207,11 +57208,11 @@ toughness=3
 name=Sisay's Ingenuity
 target=creature
 auto=draw:1
-auto=teach(creature) {2}{U}:name(becomes white ueot) && transforms(,white) ueot
-auto=teach(creature) {2}{U}:name(becomes blue ueot) && transforms(,blue) ueot
-auto=teach(creature) {2}{U}:name(becomes black ueot) && transforms(,black) ueot
-auto=teach(creature) {2}{U}:name(becomes red ueot) && transforms(,red) ueot
-auto=teach(creature) {2}{U}:name(becomes green ueot) && transforms(,green) ueot
+auto=teach(creature) {2}{U}:name(becomes white ueot) && transforms((,white)) ueot
+auto=teach(creature) {2}{U}:name(becomes blue ueot) && transforms((,blue)) ueot
+auto=teach(creature) {2}{U}:name(becomes black ueot) && transforms((,black)) ueot
+auto=teach(creature) {2}{U}:name(becomes red ueot) && transforms((,red)) ueot
+auto=teach(creature) {2}{U}:name(becomes green ueot) && transforms((,green)) ueot
 text=Enchant creature -- When Sisay's Ingenuity enters the battlefield, draw a card. -- Enchanted creature has "{2}{U}: Target creature becomes the color of your choice until end of turn."
 mana={U}
 type=Enchantment
@@ -58686,7 +58687,7 @@ toughness=3
 [/card]
 [card]
 name=Sneak Attack
-auto={R}:moveto(mybattlefield) target(creature|myhand) && transforms(,treason,haste) forever
+auto={R}:moveto(mybattlefield) target(creature|myhand) && transforms((,treason,haste)) forever
 text={R}: You may put a creature card from your hand onto the battlefield. That creature gains haste. Sacrifice the creature at the beginning of the next end step.
 mana={3}{R}
 type=Enchantment
@@ -59266,7 +59267,7 @@ toughness=1
 [/card]
 [card]
 name=Sorceress Queen
-auto={T}:target(creature) transforms(,setpower=0,settoughness=2) ueot
+auto={T}:target(creature) transforms((,setpower=0,settoughness=2)) ueot
 text={T}: Target creature other than Sorceress Queen becomes 0/2 until end of turn.
 mana={1}{B}{B}
 type=Creature
@@ -59748,7 +59749,7 @@ type=Artifact
 name=Spawning Pool
 auto=tap
 auto={T}:Add{B}
-auto={1}{B}:transforms(Skeleton Creature,1/1,black,newability[{B}:regenerate]) ueot
+auto={1}{B}:transforms((Skeleton Creature,1/1,black,newability[{B}:regenerate])) ueot
 text=Spawning Pool enters the battlefield tapped. -- {T}: Add {B} to your mana pool. -- {1}{B}: Spawning Pool becomes a 1/1 black Skeleton creature with "{B}: Regenerate this creature" until end of turn. It's still a land. (If it regenerates, the next time it would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
 type=Land
 [/card]
@@ -60385,11 +60386,11 @@ toughness=5
 name=Spiritmonger
 auto=@damaged(creature) from(this):counter(1/1,1)
 auto={B}:regenerate
-auto={G}:name(becomes white ueot) && transforms(,white) ueot
-auto={G}:name(becomes blue ueot) && transforms(,blue) ueot
-auto={G}:name(becomes black ueot) && transforms(,black) ueot
-auto={G}:name(becomes red ueot) && transforms(,red) ueot
-auto={G}:name(becomes green ueot) && transforms(,green) ueot
+auto={G}:name(becomes white ueot) && transforms((,white)) ueot
+auto={G}:name(becomes blue ueot) && transforms((,blue)) ueot
+auto={G}:name(becomes black ueot) && transforms((,black)) ueot
+auto={G}:name(becomes red ueot) && transforms((,red)) ueot
+auto={G}:name(becomes green ueot) && transforms((,green)) ueot
 text=Whenever Spiritmonger deals damage to a creature, put a +1/+1 counter on Spiritmonger. -- {B}: Regenerate Spiritmonger. -- {G}: Spiritmonger becomes the color of your choice until end of turn.
 mana={3}{B}{G}
 type=Creature
@@ -61018,7 +61019,7 @@ toughness=4
 [card]
 name=Stalking Stones
 auto={T}:Add{1}
-auto={6}:name(becomes a 3/3 Elemental artifact creature) && transforms(Artifact Creature Elemental) forever
+auto={6}:name(becomes a 3/3 Elemental artifact creature) && transforms((Artifact Creature Elemental)) forever
 text={T}: Add {1} to your mana pool. -- {6}: Stalking Stones becomes a 3/3 Elemental artifact creature that's still a land. (This effect lasts indefinitely.)
 type=Land
 power=3
@@ -65468,7 +65469,7 @@ type=Artifact
 [/card]
 [card]
 name=Thran Forge
-auto={2}:1/0 && transforms(artifact) target(creature[-artifact]) ueot
+auto={2}:1/0 && transforms((artifact)) target(creature[-artifact]) ueot
 text={2}: Until end of turn, target nonartifact creature gets +1/+0 and becomes an artifact in addition to its other types.
 mana={3}
 type=Artifact
@@ -65488,7 +65489,7 @@ toughness=3
 [/card]
 [card]
 name=Thran Lens
-auto=lord(*|battlefield) transforms(,artifact)
+auto=lord(*|battlefield) transforms((,artifact))
 text=All permanents are colorless.
 mana={2}
 type=Artifact
@@ -65905,11 +65906,11 @@ type=Nothing
 [/card]
 [card]
 name=Tidal Visionary
-auto={T}:name(target creature becomes white ueot) && transforms(,white) target(creature) ueot
-auto={T}:name(target creature becomes blue ueot) && transforms(,blue) target(creature) ueot
-auto={T}:name(target creature becomes black ueot) && transforms(,black) target(creature) ueot
-auto={T}:name(target creature becomes red ueot) && transforms(,red) target(creature) ueot
-auto={T}:name(target creature becomes green ueot) && transforms(,green) target(creature) ueot
+auto={T}:name(target creature becomes white ueot) && transforms((,white)) target(creature) ueot
+auto={T}:name(target creature becomes blue ueot) && transforms((,blue)) target(creature) ueot
+auto={T}:name(target creature becomes black ueot) && transforms((,black)) target(creature) ueot
+auto={T}:name(target creature becomes red ueot) && transforms((,red)) target(creature) ueot
+auto={T}:name(target creature becomes green ueot) && transforms((,green)) target(creature) ueot
 text={T}: Target creature becomes the color of your choice until end of turn.
 mana={U}
 type=Creature
@@ -66193,7 +66194,7 @@ toughness=1
 [card]
 name=Tin-Wing Chimera
 abilities=flying
-auto={S}:counter(2/2,1) target(chimera) && transforms(,flying) forever
+auto={S}:counter(2/2,1) target(chimera) && transforms((,flying)) forever
 text=Flying -- Sacrifice Tin-Wing Chimera: Put a +2/+2 counter on target Chimera creature. It gains flying. (This effect lasts indefinitely.)
 mana={4}
 type=Artifact Creature
@@ -67038,7 +67039,7 @@ type=Sorcery
 name=Traitor's Clutch
 target=creature
 auto=1/0
-auto=transforms(,black) ueot
+auto=transforms((,black)) ueot
 auto=shadow
 flashback={1}{B}
 text=Target creature gets +1/+0, becomes black, and gains shadow until end of turn. (It can block or be blocked by only creatures with shadow.) -- Flashback {1}{B} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
@@ -68150,7 +68151,7 @@ subtype=Aura
 [card]
 name=Undead Leotau
 auto={R}:1/-1
-autograveyard={2}{B}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
+autograveyard={2}{B}:moveto(mybattlefield) && transforms((,unearth,haste)) asSorcery forever
 text={R}: Undead Leotau gets +1/-1 until end of turn. -- Unearth {2}{B} ({2}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={5}{B}
 type=Creature
@@ -68546,7 +68547,7 @@ type=Legendary Land
 [/card]
 [card]
 name=Urborg, Tomb of Yawgmoth
-auto=lord(land) transforms(swamp)
+auto=lord(land) transforms((swamp,newability[{t}:add{b}]))
 auto=lord(land) {T}:Add{B}
 text=Each land is a Swamp in addition to its other land types.
 type=Legendary Land
@@ -69121,7 +69122,7 @@ toughness=4
 [card]
 name=Vastwood Animist
 text={T}: Target land you control becomes an X/X Elemental creature until end of turn, where X is the number of Allies you control. It's still a land.
-auto={t}:target(land|mybattlefield) transforms(Elemental Creature,setpower=type:ally|mybattlefield,settoughness=type:ally|mybattlefield) ueot
+auto={t}:target(land|mybattlefield) transforms((Elemental Creature,setpower=type:ally|mybattlefield,settoughness=type:ally|mybattlefield)) ueot
 mana={2}{G}
 type=Creature
 subtype=Elf Shaman Ally
@@ -69317,7 +69318,7 @@ toughness=2
 [/card]
 [card]
 name=Veil of Birds
-auto=@movedto(*|opponentstack) from(opponenthand) once:transforms(removetypes) forever && transforms(Bird Creature,setpower=1,settoughness=1,flying) forever
+auto=@movedto(*|opponentstack) from(opponenthand) once:transforms((removetypes)) forever && transforms((Bird Creature,setpower=1,settoughness=1,flying)) forever
 text=When an opponent casts a spell, if Veil of Birds is an enchantment, Veil of Birds becomes a 1/1 Bird creature with flying.
 mana={U}
 type=Enchantment
@@ -69327,7 +69328,7 @@ name=Veiled Serpent
 abilities=cantattack
 autohand={2}:cycling
 auto=aslongas(island|opponentbattlefield) -cantattack
-auto=@movedto(*|opponentstack) from(opponenthand) once:transforms(removetypes) forever && transforms(Serpent Creature,setpower=4,settoughness=4) forever
+auto=@movedto(*|opponentstack) from(opponenthand) once:transforms((removetypes)) forever && transforms((Serpent Creature,setpower=4,settoughness=4)) forever
 text=When an opponent casts a spell, if Veiled Serpent is an enchantment, Veiled Serpent becomes a 4/4 Serpent creature that can't attack unless defending player controls an Island. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={2}{U}
 type=Enchantment
@@ -69807,8 +69808,8 @@ toughness=4
 [/card]
 [card]
 name=Vhati il-Dal
-auto={T}:name(power becomes 1) && target(creature) transforms(,setpower=1) ueot
-auto={T}:name(toughness becomes 1) && target(creature) transforms(,settoughness=1) ueot
+auto={T}:name(power becomes 1) && target(creature) transforms((,setpower=1)) ueot
+auto={T}:name(toughness becomes 1) && target(creature) transforms((,settoughness=1)) ueot
 text={T}: Target creature's power or toughness becomes 1 until end of turn.
 mana={2}{B}{G}
 type=Legendary Creature
@@ -70226,7 +70227,7 @@ subtype=Faerie
 name=Viridescent Wisps
 target=creature
 auto=1/0
-auto=transforms(,green) ueot
+auto=transforms((,green)) ueot
 auto=draw:1 controller
 text=Target creature becomes green and gets +1/+0 until end of turn. -- Draw a card.
 mana={G}
@@ -70380,7 +70381,7 @@ toughness=5
 [card]
 name=Viscera Dragger
 autohand={2}:cycling
-autograveyard={1}{B}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
+autograveyard={1}{B}:moveto(mybattlefield) && transforms((,unearth,haste)) asSorcery forever
 text=Cycling {2} ({2}, Discard this card: Draw a card.) -- Unearth {1}{B} ({1}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={3}{B}
 type=Creature
@@ -70504,7 +70505,7 @@ toughness=2
 [card]
 name=Vithian Stinger
 auto={T}:damage:1 target(creature,player)
-autograveyard={1}{R}:moveto(mybattlefield) && transforms(,unearth,haste) asSorcery forever
+autograveyard={1}{R}:moveto(mybattlefield) && transforms((,unearth,haste)) asSorcery forever
 text={T}: Vithian Stinger deals 1 damage to target creature or player. -- Unearth {1}{R} ({1}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={2}{R}
 type=Creature
@@ -72197,7 +72198,7 @@ name=Wayward Angel
 abilities=flying,vigilance
 auto=aslongas(*|mygraveyard) trample >6
 auto=aslongas(*|mygraveyard) 3/3 >6
-auto=aslongas(*|mygraveyard) transforms(,black) >6
+auto=aslongas(*|mygraveyard) transforms((,black)) >6
 auto=@each my upkeep:aslongas(*|mygraveyard) upcost[{S(creature|myBattlefield)}] moveTo(mygraveyard) >6
 text=Flying, vigilance -- Threshold - As long as seven or more cards are in your graveyard, Wayward Angel gets +3/+3, is black, has trample, and has "At the beginning of your upkeep, sacrifice a creature."
 mana={4}{W}{W}
@@ -72865,11 +72866,11 @@ toughness=4
 [/card]
 [card]
 name=Wild Mongrel
-auto={discard(*|myhand)}:name(becomes white ueot) && 1/1 && transforms(,white) ueot
-auto={discard(*|myhand)}:name(becomes blue ueot) && 1/1 && transforms(,blue) ueot
-auto={discard(*|myhand)}:name(becomes black ueot) && 1/1 && transforms(,black) ueot
-auto={discard(*|myhand)}:name(becomes red ueot) && 1/1 && transforms(,red) ueot
-auto={discard(*|myhand)}:name(becomes green ueot) && 1/1 && transforms(,green) ueot
+auto={discard(*|myhand)}:name(becomes white ueot) && 1/1 && transforms((,white)) ueot
+auto={discard(*|myhand)}:name(becomes blue ueot) && 1/1 && transforms((,blue)) ueot
+auto={discard(*|myhand)}:name(becomes black ueot) && 1/1 && transforms((,black)) ueot
+auto={discard(*|myhand)}:name(becomes red ueot) && 1/1 && transforms((,red)) ueot
+auto={discard(*|myhand)}:name(becomes green ueot) && 1/1 && transforms((,green)) ueot
 text=Discard a card: Wild Mongrel gets +1/+1 and becomes the color of your choice until end of turn.
 mana={1}{G}
 type=Creature
@@ -73276,7 +73277,7 @@ subtype=Aura
 name=Wings of Velis Vel
 abilities=changeling
 target=creature
-auto=transforms(,setpower=4,settoughness=4,changeling,flying) ueot
+auto=transforms((,setpower=4,settoughness=4,changeling,flying)) ueot
 text=Changeling (This card is every creature type at all times.) -- Target creature becomes 4/4, gains all creature types, and gains flying until end of turn.
 mana={1}{U}
 type=Tribal Instant
@@ -73702,7 +73703,7 @@ toughness=2
 [/card]
 [card]
 name=Woodlurker Mimic
-auto=@movedTo(*[BlackAndGreen]|mystack) from(myhand) turnlimited:transforms(,setpower=4,settoughness=5,wither) ueot
+auto=@movedTo(*[BlackAndGreen]|mystack) from(myhand) turnlimited:transforms((,setpower=4,settoughness=5,wither)) ueot
 text=Whenever you cast a spell that's both black and green, Woodlurker Mimic becomes 4/5 and gains wither until end of turn. (It deals damage to creatures in the form of -1/-1 counters.)
 mana={1}{BG}
 type=Creature
