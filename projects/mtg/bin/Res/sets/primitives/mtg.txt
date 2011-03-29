@@ -7204,7 +7204,7 @@ toughness=1
 [/card]
 [card]
 name=Boggart Mob
-auto=aslongas(other goblin|mybattlefield) choice target(other goblin|mybattlefield) (blink)forsrc oneshot
+auto=aslongas(other goblin|mybattlefield) choice notatarget(other goblin|mybattlefield) (blink)forsrc oneshot
 auto=choice sacrifice
 auto=@combatdamaged(player) from(this):may token(Goblin Rogue,Creature Goblin Rogue,1/1,black)
 text=Champion a Goblin (When this enters the battlefield, sacrifice it unless you exile another Goblin you control. When this leaves the battlefield, that card returns to the battlefield.) -- Whenever a Goblin you control deals combat damage to a player, you may put a 1/1 black Goblin Rogue creature token onto the battlefield.
@@ -10265,7 +10265,7 @@ type=Instant
 [card]
 name=Changeling Berserker
 abilities=changeling,haste
-auto=aslongas(other creature|mybattlefield) choice target(other creature|mybattlefield) (blink)forsrc oneshot
+auto=aslongas(other creature|mybattlefield) choice notatarget(other creature|mybattlefield) (blink)forsrc oneshot
 auto=choice sacrifice
 text=Changeling (This card is every creature type at all times.) -- Haste -- Champion a creature (When this enters the battlefield, sacrifice it unless you exile another creature you control. When this leaves the battlefield, that card returns to the battlefield.)
 mana={3}{R}
@@ -10277,7 +10277,7 @@ toughness=3
 [card]
 name=Changeling Hero
 abilities=changeling,lifelink
-auto=aslongas(other creature|mybattlefield) choice target(other creature|mybattlefield) (blink)forsrc oneshot
+auto=aslongas(other creature|mybattlefield) choice notatarget(other creature|mybattlefield) (blink)forsrc oneshot
 auto=choice sacrifice
 text=Changeling (This card is every creature type at all times.) -- Champion a creature (When this enters the battlefield, sacrifice it unless you exile another creature you control. When this leaves the battlefield, that card returns to the battlefield.) -- Lifelink (Damage dealt by this creature also causes you to gain that much life.)
 mana={4}{W}
@@ -10299,7 +10299,7 @@ toughness=2
 [card]
 name=Changeling Titan
 abilities=changeling
-auto=aslongas(other creature|mybattlefield) choice target(other creature|mybattlefield) (blink)forsrc oneshot
+auto=aslongas(other creature|mybattlefield) choice notatarget(other creature|mybattlefield) (blink)forsrc oneshot
 auto=choice sacrifice
 text=Changeling (This card is every creature type at all times.) -- Champion a creature (When this enters the battlefield, sacrifice it unless you exile another creature you control. When this leaves the battlefield, that card returns to the battlefield.)
 mana={4}{G}
@@ -16244,7 +16244,7 @@ type=Sorcery
 [/card]
 [card]
 name=Divine Light
-auto=prevent:999 all(creature|mybattlefield)
+auto=preventalldamage to(creature|mybattlefield) ueot
 text=Prevent all damage that would be dealt this turn to creatures you control.
 mana={W}
 type=Sorcery
@@ -19286,8 +19286,8 @@ toughness=9
 [/card]
 [card]
 name=Endure
-auto=prevent:999 all(*|mybattlefield)
-auto=prevent:999 controller
+auto=preventalldamage to(*|mybattlefield) ueot
+auto=preventalldamage to(controller) ueot
 text=Prevent all damage that would be dealt to you and permanents you control this turn.
 mana={3}{W}{W}
 type=Instant
@@ -19968,7 +19968,7 @@ toughness=4
 [card]
 name=Ethersworn Shieldmage
 abilities=flash
-auto=prevent:999 all(creature[artifact]) ueot
+auto=preventalldamage to(creature[artifact]|battlefield) ueot
 text=Flash -- When Ethersworn Shieldmage enters the battlefield, prevent all damage that would be dealt to artifact creatures this turn.
 mana={1}{W}{U}
 type=Artifact Creature
@@ -26173,7 +26173,7 @@ toughness=1
 [card]
 name=Goblins of the Flarg
 abilities=mountainwalk
-auto=aslongas(dwarf|myBattlefield) sacrifice
+auto=aslongas(dwarf|myBattlefield) all(this) sacrifice while >=1
 text=Mountainwalk -- When you control a Dwarf, sacrifice Goblins of the Flarg.
 mana={R}
 type=Creature
@@ -35536,9 +35536,8 @@ type=Instant
 [/card]
 [card]
 name=Last Laugh
-auto=@movedto(other enchantment,creature,land,artifact|graveyard) from(battlefield):Damage:1 all(creature,player)
-auto=aslongas(creature|battlefield) lord(this) bury <1
-auto=@movedto(other enchantment,creature,land,artifact|graveyard) from(battlefield):aslongas(creature|battlefield) lord(this) bury <1
+auto=@movedto(other *|graveyard) from(battlefield):damage:1 all(creature,player)
+auto=aslongas(creature|battlefield) all(this) sacrifice while <1
 text=Whenever a permanent other than Last Laugh is put into a graveyard from the battlefield, Last Laugh deals 1 damage to each creature and each player. -- When no creatures are on the battlefield, sacrifice Last Laugh.
 mana={2}{B}{B}
 type=Enchantment
@@ -36432,8 +36431,8 @@ type=Artifact
 [/card]
 [card]
 name=Lightning Crafter
-auto=aslongas(other goblin|mybattlefield) choice target(other goblin|mybattlefield) (blink)forsrc oneshot
-auto=aslongas(other shaman|mybattlefield) choice target(other shaman|mybattlefield) (blink)forsrc oneshot
+auto=aslongas(other goblin|mybattlefield) choice notatarget(other goblin|mybattlefield) (blink)forsrc oneshot
+auto=aslongas(other shaman|mybattlefield) choice notatarget(other shaman|mybattlefield) (blink)forsrc oneshot
 auto=choice sacrifice
 auto={T}:damage:3 target(creature,player)
 text=Champion a Goblin or Shaman (When this enters the battlefield, sacrifice it unless you exile another Goblin or Shaman you control. When this leaves the battlefield, that card returns to the battlefield.) -- {T}: Lightning Crafter deals 3 damage to target creature or player.
@@ -40249,7 +40248,7 @@ toughness=2
 [card]
 name=Mistbind Clique
 abilities=flash,flying
-auto=aslongas(other faerie|mybattlefield) choice target(other faerie|mybattlefield) (blink)forsrc oneshot && tap all(land|opponentbattlefield)
+auto=aslongas(other faerie|mybattlefield) choice notatarget(other faerie|mybattlefield) (blink)forsrc oneshot && tap all(land|opponentbattlefield)
 auto=choice sacrifice
 text=Flash -- Flying -- Champion a Faerie (When this enters the battlefield, sacrifice it unless you exile another Faerie you control. When this leaves the battlefield, that card returns to the battlefield.) -- When a Faerie is championed with Mistbind Clique, tap all lands target player controls.
 mana={3}{U}
@@ -43455,7 +43454,7 @@ type=Instant
 [card]
 name=Nova Chaser
 abilties=trample
-auto=aslongas(other elemental|mybattlefield) choice target(other elemental|mybattlefield) (blink)forsrc oneshot
+auto=aslongas(other elemental|mybattlefield) choice notatarget(other elemental|mybattlefield) (blink)forsrc oneshot
 auto=choice sacrifice
 text=Trample -- Champion an Elemental (When this enters the battlefield, sacrifice it unless you exile another Elemental you control. When this leaves the battlefield, that card returns to the battlefield.)
 mana={3}{R}
@@ -52099,9 +52098,8 @@ toughness=6
 [card]
 name=Ronom Serpent
 abilities=cantattack
-auto=aslongas(land[snow]|opponentBattlefield)-cantattack
-auto=aslongas(land[snow]|myBattlefield) moveTo(mygraveyard) <1
-auto=@movedTo(land[snow]|graveyard,exile,library,hand) from(myBattlefield):aslongas(land[snow]|myBattlefield) moveTo(mygraveyard) <1
+auto=aslongas(land[snow]|opponentBattlefield) -cantattack
+auto=aslongas(land[snow]|myBattlefield) all(this) sacrifice while <1
 text=Ronom Serpent can't attack unless defending player controls a snow land. -- When you control no snow lands, sacrifice Ronom Serpent.
 mana={5}{U}
 type=Snow Creature
@@ -52958,8 +52956,8 @@ toughness=2
 [/card]
 [card]
 name=Safe Passage
-auto=prevent:999 all(creature|mybattlefield)
-auto=prevent:999 controller
+auto=preventalldamage to(creature|mybattlefield) ueot
+auto=preventalldamage to(controller) ueot
 text=Prevent all damage that would be dealt to you and creatures you control this turn.
 mana={2}{W}
 type=Instant
@@ -57381,10 +57379,8 @@ type=Artifact
 [/card]
 [card]
 name=Skeleton Ship
-abilities=islandhome
 auto={T}:counter(-1/-1,1) target(creature)
-auto=aslongas(island|myBattlefield) moveTo(mygraveyard) <1
-auto=@movedTo(island|graveyard,exile,library,hand) from(myBattlefield):aslongas(island|myBattlefield) moveTo(mygraveyard) <1
+auto=aslongas(island|myBattlefield) all(this) sacrifice while <1
 text=When you control no Islands, sacrifice Skeleton Ship. -- {T}: Put a -1/-1 counter on target creature.
 mana={3}{U}{B}
 type=Legendary Creature
@@ -62835,7 +62831,7 @@ toughness=6
 [card]
 name=Supreme Exemplar
 abilities=flying
-auto=aslongas(other elemental|mybattlefield) choice target(other elemental|mybattlefield) (blink)forsrc oneshot
+auto=aslongas(other elemental|mybattlefield) choice notatarget(other elemental|mybattlefield) (blink)forsrc oneshot
 auto=choice sacrifice
 text=Flying -- Champion an Elemental (When this enters the battlefield, sacrifice it unless you exile another Elemental you control. When this leaves the battlefield, that card returns to the battlefield.)
 mana={6}{U}
@@ -63421,8 +63417,7 @@ toughness=3
 [/card]
 [card]
 name=Synod Centurion
-auto=aslongas(other artifact|myBattlefield) moveTo(mygraveyard) <1
-auto=@movedTo(other artifact|graveyard,exile,library,hand) from(myBattlefield):aslongas(other artifact|myBattlefield) moveTo(mygraveyard) <1
+auto=aslongas(other artifact|myBattlefield) all(this) sacrifice while <1
 text=When you control no other artifacts, sacrifice Synod Centurion.
 mana={4}
 type=Artifact Creature
@@ -64792,7 +64787,7 @@ id=-67564534
 [card]
 name=Tethered Griffin
 abilities=flying
-auto=aslongas(enchantment|myBattlefield) sacrifice <1
+auto=aslongas(enchantment|myBattlefield) all(this) sacrifice while <1
 text=Flying -- When you control no enchantments, sacrifice Tethered Griffin.
 mana={W}
 type=Creature
@@ -67009,7 +67004,7 @@ toughness=6
 [/card]
 [card]
 name=Trained Pronghorn
-auto={discard(*|myhand)}:prevent:999 all(this)
+auto={discard(*|myhand)}:preventAllDamage to(this) ueot
 text=Discard a card: Prevent all damage that would be dealt to Trained Pronghorn this turn.
 mana={1}{W}
 type=Creature
@@ -68405,8 +68400,8 @@ subtype=Aura
 [card]
 name=Unstoppable Ash
 abilities=trample
-auto=aslongas(other treefolk|mybattlefield) choice target(other treefolk|mybattlefield) (blink)forsrc oneshot
-auto=aslongas(other warrior|mybattlefield) choice target(other warrior|mybattlefield) (blink)forsrc oneshot
+auto=aslongas(other treefolk|mybattlefield) choice notatarget(other treefolk|mybattlefield) (blink)forsrc oneshot
+auto=aslongas(other warrior|mybattlefield) choice notatarget(other warrior|mybattlefield) (blink)forsrc oneshot
 auto=choice sacrifice
 auto=@blocked(creature|mybattlefield):all(trigger[to]) 0/5 ueot
 text=Trample -- Champion a Treefolk or Warrior (When this enters the battlefield, sacrifice it unless you exile another Treefolk or Warrior you control. When this leaves the battlefield, that card returns to the battlefield.) -- Whenever a creature you control becomes blocked, it gets +0/+5 until end of turn.
@@ -73881,7 +73876,7 @@ toughness=5
 name=Wormfang Drake
 abilities=flying
 auto=choice sacrifice
-auto=aslongas(other creature|mybattlefield) choice target(other creature|mybattlefield) (blink)forsrc
+auto=aslongas(other creature|mybattlefield) choice notatarget(other creature|mybattlefield) (blink)forsrc
 text=Flying -- When Wormfang Drake enters the battlefield, sacrifice it unless you exile a creature you control other than Wormfang Drake. -- When Wormfang Drake leaves the battlefield, return the exiled card to the battlefield under its owner's control.
 mana={2}{U}
 type=Creature
@@ -73999,7 +73994,7 @@ type=Instant
 [/card]
 [card]
 name=Wren's Run Packmaster
-auto=aslongas(other elf|mybattlefield) choice target(other elf|mybattlefield) (blink)forsrc oneshot
+auto=aslongas(other elf|mybattlefield) choice notatarget(other elf|mybattlefield) (blink)forsrc oneshot
 auto=choice sacrifice
 auto={2}{G}:token(Wolf,Creature Wolf,2/2,green)
 auto=lord(wolf|mybattlefield) deathtouch
