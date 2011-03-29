@@ -3177,7 +3177,7 @@ type=Instant
 name=Artifact Ward
 target=creature
 auto=cantbeblockedby(creature[artifact])
-auto=teach(creature) preventAllCombatDamage to(this) from(creature[artifact])
+auto=teach(creature) preventAllDamage to(this) from(artifact)
 auto=teach(creature) cantbetargetof(artifact)
 text=Enchant creature -- Enchanted creature can't be blocked by artifact creatures. -- Prevent all damage that would be dealt to enchanted creature by artifact sources. -- Enchanted creature can't be the target of abilities from artifact sources.
 mana={W}
@@ -4251,7 +4251,7 @@ toughness=1
 [card]
 name=Balduvian Horde
 auto=aslongas(*|myHand) choice discard:1 controller oneshot
-auto=aslongas(*|myHand) choice bury oneshot
+auto=choice sacrifice
 text=When Balduvian Horde enters the battlefield, sacrifice it unless you discard a card at random.
 mana={2}{R}{R}
 type=Creature
@@ -6619,7 +6619,7 @@ toughness=1
 name=Bloodstoke Howler
 facedown={3}
 autofacedown={6}{R}:morph
-autofaceup=3/0 all(beast|mybattlefield))
+autofaceup=3/0 all(beast|mybattlefield)
 text=Morph {6}{R} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Bloodstoke Howler is turned face up, Beast creatures you control get +3/+0 until end of turn.
 mana={5}{R}
 type=Creature
@@ -10195,7 +10195,7 @@ toughness=*
 [/card]
 [card]
 name=Champion Lancer
-auto=preventAllCombatDamage from(creature) to(this)
+auto=preventAllDamage from(creature) to(this)
 text=Prevent all damage that would be dealt to Champion Lancer by creatures.
 mana={4}{W}{W}
 type=Creature
@@ -10674,7 +10674,7 @@ toughness=2
 [/card]
 [card]
 name=Cho-Manno, Revolutionary
-auto=preventAllCombatDamage to(this)
+auto=preventAllDamage to(this)
 text=Prevent all damage that would be dealt to Cho-Manno, Revolutionary.
 mana={2}{W}{W}
 type=Legendary Creature
@@ -14981,7 +14981,7 @@ toughness=6
 [card]
 name=Deep Wood
 restriction=opponentblockersonly
-auto=preventalldamage to(controller) from(creature[attacking] ueot
+auto=preventalldamage to(controller) from(creature[attacking]) ueot
 text=Cast Deep Wood only during the declare attackers step and only if you've been attacked this step. -- Prevent all damage that would be dealt to you this turn by attacking creatures.
 mana={1}{G}
 type=Instant
@@ -15519,7 +15519,7 @@ toughness=2
 [card]
 name=Desert Nomads
 abilities=desertwalk
-auto=protection from(desert)
+auto=preventAllDamage to(this) from(desert)
 text=Desertwalk -- Prevent all damage that would be dealt to Desert Nomads by Deserts.
 mana={2}{R}
 type=Creature
@@ -23028,7 +23028,7 @@ toughness=2
 [/card]
 [card]
 name=Forfend
-auto=all(creature|mybattlefield) preventalldamage to(mytgt)
+auto=preventalldamage to(creature|battlefield) ueot
 text=Prevent all damage that would be dealt to creatures this turn.
 mana={1}{W}
 type=Instant
@@ -24569,6 +24569,7 @@ type=Sorcery
 name=Ghostly Wings
 target=creature
 auto=1/1
+auto=flying
 auto={discard(*|myhand)}:teach(creature) moveTo(ownerhand)
 text=Enchant creature -- Enchanted creature gets +1/+1 and has flying. -- Discard a card: Return enchanted creature to its owner's hand.
 mana={1}{U}
@@ -24882,7 +24883,7 @@ toughness=2
 [/card]
 [card]
 name=Glacial Chasm
-auto=bury notatarget(land|myBattlefield)
+auto=sacrifice notatarget(land|myBattlefield)
 auto=cumulativeupcost[{L}{L}] sacrifice
 auto=lord(creature|mybattlefield) cantattack
 auto=preventalldamage to(controller)
@@ -25069,7 +25070,7 @@ auto={T}:add{U}
 auto={T}:add{B}
 auto={T}:add{R}
 auto={T}:add{G}
-auto=@each my endofturn:aslongas(artifact|mybattlefield) bury <1
+auto=@each my endofturn:aslongas(artifact|mybattlefield) sacrifice <1
 text=At the beginning of the end step, if you control no artifacts, sacrifice Glimmervoid. -- {T}: Add one mana of any color to your mana pool.
 type=Land
 [/card]
@@ -27229,7 +27230,7 @@ type=Nothing
 name=Grixis Charm
 auto=aslongas(*|battlefield) choice moveTo(ownerhand) target(*)
 auto=aslongas(creature|battlefield) choice -4/-4 target(creature)
-auto=choice lord(creature|battlefield) 2/0 ueot
+auto=choice lord(creature|myBattlefield) 2/0 ueot
 text=Choose one - Return target permanent to its owner's hand; or target creature gets -4/-4 until end of turn; or creatures you control get +2/+0 until end of turn.
 mana={U}{B}{R}
 type=Instant
@@ -36043,7 +36044,7 @@ toughness=2
 [/card]
 [card]
 name=Leonin Squire
-auto=moveTo(myhand) target(artifact[manacost<=1]|mygraveyard)) 
+auto=moveTo(myhand) target(artifact[manacost<=1]|mygraveyard)
 text=When Leonin Squire enters the battlefield, return target artifact card with converted mana cost 1 or less from your graveyard to your hand.
 mana={1}{W}
 type=Creature
@@ -39945,7 +39946,7 @@ type=Sorcery
 [card]
 name=Minotaur Explorer
 auto=aslongas(*|myHand) choice discard:1 controller oneshot
-auto=aslongas(*|myHand) choice bury oneshot
+auto=choice sacrifice
 text=When Minotaur Explorer enters the battlefield, sacrifice it unless you discard a card at random.
 mana={1}{R}
 type=Creature
@@ -44812,7 +44813,7 @@ toughness=3
 [card]
 name=Otherworldly Journey
 target=creature
-auto=(blink)ueot return(counter(1/1,1))
+auto=(blink)ueot return(counter(1/1,1)
 text=Exile target creature. At the beginning of the next end step, return that card to the battlefield under its owner's control with a +1/+1 counter on it.
 mana={1}{W}
 type=Instant
@@ -46696,7 +46697,7 @@ type=Sorcery
 [card]
 name=Pillaging Horde
 auto=aslongas(*|myHand) choice discard:1 controller oneshot
-auto=aslongas(*|myHand) choice bury oneshot
+auto=choice sacrifice
 text=When Pillaging Horde enters the battlefield, sacrifice it unless you discard a card at random.
 mana={2}{R}{R}
 type=Creature
@@ -46825,7 +46826,7 @@ toughness=1
 [/card]
 [card]
 name=Pit Keeper
-auto=aslongas(creature|mygraveyard) moveTo(ownerhand) target(creature|mygraveyard)) >3 oneshot
+auto=aslongas(creature|mygraveyard) moveTo(ownerhand) target(creature|mygraveyard) >3 oneshot
 text=When Pit Keeper enters the battlefield, if you have four or more creature cards in your graveyard, you may return target creature card from your graveyard to your hand.
 mana={1}{B}
 type=Creature
@@ -51793,8 +51794,8 @@ toughness=1
 [/card]
 [card]
 name=River of Tears
-auto=aslongas(land[-fresh]|mybattlefield){t}:add{u}
-auto=aslongas(land[fresh]|mybattlefield){t}:add{b}
+auto=aslongas(land[-fresh]|mybattlefield) {T}:add{U}
+auto=aslongas(land[fresh]|mybattlefield) {T}:add{B}
 text={T}: Add {U} to your mana pool. If you played a land this turn, add {B} to your mana pool instead.
 type=Land
 [/card]
@@ -59752,7 +59753,7 @@ name=Spawning Pool
 auto=tap
 auto={T}:Add{B}
 auto={1}{B}:becomes(Skeleton Creature,1/1,black) ueot
-auto=aslongas(creature[spawning pool]|myBattlefield) {B}:regenerate notatarget(creature[spawning pool]|myBattlefield))
+auto=aslongas(creature[spawning pool]|myBattlefield) lord(creature[spawning pool]|myBattlefield) {B}:regenerate
 text=Spawning Pool enters the battlefield tapped. -- {T}: Add {B} to your mana pool. -- {1}{B}: Spawning Pool becomes a 1/1 black Skeleton creature with "{B}: Regenerate this creature" until end of turn. It's still a land. (If it regenerates, the next time it would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
 type=Land
 [/card]
@@ -65505,7 +65506,7 @@ auto={T}:add{U}
 auto={T}:add{B}
 auto={T}:add{R}
 auto={T}:add{G}
-auto=@each my endofturn:aslongas(creature|mybattlefield) bury <1
+auto=@each my endofturn:aslongas(creature|mybattlefield) sacrifice <1
 text=At the end of each turn, if you control no creatures, sacrifice Thran Quarry. {T}: Add one mana of any color to your mana pool.
 type=Land
 [/card]
@@ -69749,7 +69750,7 @@ toughness=2
 [/card]
 [card]
 name=Veteran Swordsmith
-auto=lord(soldier|myBattlefield) 1/0 other
+auto=lord(other soldier|myBattlefield) 1/0
 text=Other Soldier creatures you control get +1/+0.
 mana={2}{W}
 type=Creature
