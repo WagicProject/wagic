@@ -2907,6 +2907,7 @@ public:
     string name;
     string sabilities;
     string starfound;
+    string spt;
     WParsedInt * multiplier;
     int who;
     bool aLivingWeapon;
@@ -2924,8 +2925,8 @@ public:
     }
 
     ATokenCreator(int _id, MTGCardInstance * _source, Targetable * _target, ManaCost * _cost, string sname, string stypes, int _power, int _toughness,
-        string sabilities, int _doTap, string starfound,WParsedInt * multiplier = NULL, int who = 0,bool aLivingWeapon = false) :
-    ActivatedAbility(_id, _source, _cost, 0, _doTap),sabilities(sabilities),starfound(starfound), multiplier(multiplier), who(who),aLivingWeapon(aLivingWeapon)
+        string sabilities, int _doTap, string starfound,WParsedInt * multiplier = NULL, int who = 0,bool aLivingWeapon = false,string spt = "") :
+    ActivatedAbility(_id, _source, _cost, 0, _doTap),sabilities(sabilities),starfound(starfound), multiplier(multiplier), who(who),aLivingWeapon(aLivingWeapon),spt(spt)
     {
         power = _power;
         toughness = _toughness;
@@ -2983,6 +2984,16 @@ public:
         {
             SAFE_DELETE(multiplier);
             multiplier = NEW WParsedInt(starfound, NULL, (MTGCardInstance *)source);
+        }
+        if(!spt.empty())
+        {
+        vector<string> powertoughness = split( spt, '/');
+        WParsedInt * NewPow = NEW WParsedInt(powertoughness[0].c_str(),NULL,source);
+        WParsedInt * NewTou = NEW WParsedInt(powertoughness[1].c_str(),NULL,source);
+        power = NewPow->getValue();
+        toughness = NewTou->getValue();
+        SAFE_DELETE(NewPow);
+        SAFE_DELETE(NewTou);
         }
         for (int i = 0; i < multiplier->getValue(); ++i)
         {

@@ -1818,7 +1818,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             who = 2;
         }
         ATokenCreator * tok = NEW ATokenCreator(id, card,target, NULL, sname, stypes, power + value, toughness + value, sabilities, 0,starfound,
-            multiplier, who,aLivingWeapon);
+            multiplier, who,aLivingWeapon,spt);
         tok->oneShot = 1;
         if(aLivingWeapon)
         tok->forceDestroy = 1;
