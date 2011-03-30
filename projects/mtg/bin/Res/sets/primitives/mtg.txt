@@ -74178,7 +74178,7 @@ type=Enchantment
 [/card]
 [card]
 name=Wrap in Vigor
-auto=all(creature|mybattlefield) transforms((,newability[regenerate])) ueot
+auto=all(creature|mybattlefield) regenerate
 text=Regenerate each creature you control.
 mana={1}{G}
 type=Instant
