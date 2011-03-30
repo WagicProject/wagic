@@ -2921,6 +2921,21 @@ AUpkeep::AUpkeep(int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _co
     aType = MTGAbility::UPCOST;
 }
 
+    int AUpkeep::receiveEvent(WEvent * event)
+    {
+        if (WEventPhaseChange* pe = dynamic_cast<WEventPhaseChange*>(event))
+        {
+            if (Constants::MTG_PHASE_DRAW == pe->to->id)
+            {
+                if (source->controller() == game->currentPlayer && once < 2 && paidThisTurn < 1)
+                {
+                    ability->resolve();
+                }
+            }
+        }
+        return 1;
+    }
+    
 void AUpkeep::Update(float dt)
 {
     // once: 0 means always go off, 1 means go off only once, 2 means go off only once and already has.
@@ -2943,10 +2958,6 @@ void AUpkeep::Update(float dt)
                 }
             if(currentage)
                 paidThisTurn -= currentage;
-        }
-        else if (newPhase == phase + 1 && paidThisTurn < 1)
-        {
-            ability->resolve();
         }
         if (newPhase == phase + 1 && once)
             once = 2;

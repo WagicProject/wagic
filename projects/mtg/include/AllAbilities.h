@@ -84,12 +84,16 @@ public:
         }
         else if (s.find("type:") != string::npos)
         {
-            size_t begins = s.find(":");
-            string theType = s.substr(begins + 1);
-            size_t zoned = theType.find("|");
+            size_t begins = s.find("type:");
+            string theType = s.substr(begins + 5);
+            size_t zoned = theType.find(":");
             if(zoned == string::npos)
             {
                 theType.append("|mybattlefield");
+            }
+            else
+            {
+            replace(theType.begin(), theType.end(), ':', '|');
             }
             TargetChooserFactory tf;
             TargetChooser * tc = tf.createTargetChooser(theType.c_str(),NULL);
@@ -4089,7 +4093,8 @@ public:
     int currentage;
 
     AUpkeep(int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int _tap = 0, int restrictions = 0, int _phase =
-            Constants::MTG_PHASE_UPKEEP, int _once = 0,bool Cumulative = false);
+        Constants::MTG_PHASE_UPKEEP, int _once = 0,bool Cumulative = false);
+    int receiveEvent(WEvent * event);
     void Update(float dt);
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     int resolve();

@@ -1136,18 +1136,20 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (found != string::npos)
     {
         SAFE_DELETE(tc);
-        string s1 = s.substr(0, found);
-        string s2 = s.substr(found + 2);
+        vector<string> multiEffects = split(s,'&');
         MultiAbility * multi = NEW MultiAbility(id, card, target, NULL, NULL);
-        MTGAbility * a1 = parseMagicLine(s1, id, spell, card, activated);
-        MTGAbility * a2 = parseMagicLine(s2, id, spell, card, activated);
-        multi->Add(a1);
-        multi->Add(a2);
+        for(unsigned int i = 0;i < multiEffects.size();i++)
+        {
+            if(!multiEffects[i].empty())
+            {
+                MTGAbility * addAbility = parseMagicLine(multiEffects[i], id, spell, card, activated);
+                multi->Add(addAbility);
+            }
+        }
         multi->oneShot = 1;
         return multi;
     }
 
-    
     //rather dirty way to stop thises and lords from conflicting with each other.
     size_t lord = string::npos;
     for (size_t j = 0; j < kLordKeywordsCount; ++j)
