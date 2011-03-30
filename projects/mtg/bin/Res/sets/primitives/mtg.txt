@@ -26212,7 +26212,7 @@ toughness=1
 [card]
 name=Goblins of the Flarg
 abilities=mountainwalk
-auto=aslongas(dwarf|myBattlefield) all(this) sacrifice while >=1
+auto=aslongas(dwarf|myBattlefield) all(this) sacrifice while >0
 text=Mountainwalk -- When you control a Dwarf, sacrifice Goblins of the Flarg.
 mana={R}
 type=Creature
@@ -32200,12 +32200,12 @@ type=Artifact
 [card]
 name=Jeweled Spirit
 abilities=flying
-auto={S(land|mybattlefield)}{S(land|mybattlefield)}:protection from white ueot
-auto={S(land|mybattlefield)}{S(land|mybattlefield)}:protection from blue ueot
-auto={S(land|mybattlefield)}{S(land|mybattlefield)}:protection from black ueot
-auto={S(land|mybattlefield)}{S(land|mybattlefield)}:protection from red ueot
-auto={S(land|mybattlefield)}{S(land|mybattlefield)}:protection from green ueot
-auto={S(land|mybattlefield)}{S(land|mybattlefield)}:protection from(artifact) ueot
+auto={S(land|mybattlefield)}{S(land|mybattlefield)}:name(protection from white) && transforms((,newability[protection from white])) ueot
+auto={S(land|mybattlefield)}{S(land|mybattlefield)}:name(protection from blue) && transforms((,newability[protection from blue])) ueot
+auto={S(land|mybattlefield)}{S(land|mybattlefield)}:name(protection from black) && transforms((,newability[protection from black])) ueot
+auto={S(land|mybattlefield)}{S(land|mybattlefield)}:name(protection from red) && transforms((,newability[protection from red])) ueot
+auto={S(land|mybattlefield)}{S(land|mybattlefield)}:name(protection from green) && transforms((,newability[protection from green])) ueot
+auto={S(land|mybattlefield)}{S(land|mybattlefield)}:name(protection from artifacts) && transforms((,newability[protection from(artifact)])) ueot
 text=Flying -- Sacrifice two lands: Jeweled Spirit gains protection from artifacts or from the color of your choice until end of turn.
 mana={3}{W}{W}
 type=Creature
@@ -40857,7 +40857,7 @@ toughness=3
 name=Moonlace
 text=Target spell or permanent becomes colorless.
 target=*
-auto=transforms(,artifact) forever
+auto=transforms((,artifact)) forever
 mana={U}
 type=Instant
 [/card]
@@ -50320,7 +50320,7 @@ type=Instant
 [/card]
 [card]
 name=Recurring Nightmare
-auto={S(creature|myBattlefield)}:moveto(myhand) all(this) && moveto(myBattlefield) target(creature|mygraveyard) asSorcery
+auto={S(creature|myBattlefield)}:moveto(myhand) all(this) && moveto(battlefield) target(creature|mygraveyard) asSorcery
 text=Sacrifice a creature, Return Recurring Nightmare to its owner's hand: Return target creature card from your graveyard to the battlefield. Activate this ability only any time you could cast a sorcery.
 mana={2}{B}
 type=Enchantment
@@ -55186,8 +55186,8 @@ toughness=4
 [card]
 name=Sensei Golden-Tail
 auto=bushido(1/1)
-auto={1}{W}{T}:counter(0/0,1,Training) target(creature)
-auto=lord(creature[counter{0/0.1.training}]) tranforms(samurai)
+auto={1}{W}{T}:counter(0/0,1,Training) target(creature) asSorcery
+auto=lord(creature[counter{0/0.1.training}]) transforms((samurai))
 auto=lord(creature[counter{0/0.1.training}]) bushido(1/1)
 text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.) -- {1}{W}, {T}: Put a training counter on target creature. That creature gains bushido 1 and becomes a Samurai in addition to its other creature types. Activate this ability only any time you could cast a sorcery.
 mana={1}{W}
@@ -59795,9 +59795,11 @@ type=Artifact
 name=Spawning Pool
 auto=tap
 auto={T}:Add{B}
-auto={1}{B}:transforms((Skeleton Creature,1/1,black,newability[{B}:regenerate])) ueot
+auto={1}{B}:transforms((Skeleton Creature,black,newability[{B}:regenerate])) ueot
 text=Spawning Pool enters the battlefield tapped. -- {T}: Add {B} to your mana pool. -- {1}{B}: Spawning Pool becomes a 1/1 black Skeleton creature with "{B}: Regenerate this creature" until end of turn. It's still a land. (If it regenerates, the next time it would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
 type=Land
+power=1
+toughness=1
 [/card]
 [card]
 name=Spearbreaker Behemoth
@@ -60142,7 +60144,7 @@ toughness=0
 [/card]
 [card]
 name=Spike Tiller
-text=Spike Tiller enters the battlefield with a +1/+1 counter on it. -- {2}, Remove a +1/+1 counter from Spike Tiller: Put a +1/+1 counter on target creature. -- {2}, Remove a +1/+1 counter from Spike Tiller: Target land becomes a 2/2 creature that's still a land. Put a +1/+1 counter on it.
+text=Spike Tiller enters the battlefield with three +1/+1 counters on it. -- {2}, Remove a +1/+1 counter from Spike Tiller: Put a +1/+1 counter on target creature. -- {2}, Remove a +1/+1 counter from Spike Tiller: Target land becomes a 2/2 creature that's still a land. Put a +1/+1 counter on it.
 mana={3}{G}{G}
 type=Creature
 subtype=Spike
@@ -72242,6 +72244,7 @@ toughness=4
 [card]
 name=Waterspout Djinn
 auto=upcost[{h(island[-tapped]|mybattlefield)}] sacrifice all(this)
+abilities=flying
 text=Flying -- At the beginning of your upkeep, sacrifice Waterspout Djinn unless you return an untapped Island you control to its owner's hand.
 mana={2}{U}{U}
 type=Creature
