@@ -19266,6 +19266,16 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Endless Scream
+target=creature
+auto=all(this) counter(0/0,x,scream)
+auto=thisforeach(counter{0/0.1.scream) teach(creature) 1/0
+text=Enchant creature -- Endless Scream enters the battlefield with X scream counters on it. -- Enchanted creature gets +1/+0 for each scream counter on Endless Scream.
+mana={X}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Endless Whispers
 auto=@each endofturn:moveto(mybattlefield) all(creature[fresh]|opponentgraveyard)
 auto=@each endofturn:moveto(opponentbattlefield) all(creature[fresh]|mygraveyard)
@@ -20019,6 +20029,14 @@ text=Everglades enters the battlefield tapped. -- When Everglades enters the bat
 type=Land
 [/card]
 [card]
+name=Everflowing Chalice
+auto=counter(0/0,xx,charge)
+auto={t}:thisforeach(counter{0/0.1.charge}) add{1}
+text=Multikicker {2} (You may pay an additional {2} any number of times as you cast this spell.) -- Everflowing Chalice enters the battlefield with a charge counter on it for each time it was kicked. -- {T}: Add {1} to your mana pool for each charge counter on Everflowing Chalice.
+mana={x}{x}
+type=Artifact
+[/card]
+[card]
 name=Evil Eye of Orms-by-Gore
 auto=lord(creature[-eye]|myBattlefield) cantattack
 auto=cantbeblockedby(creature[-wall])
@@ -20067,6 +20085,13 @@ auto=aslongas(creature|myBattlefield) flying target(creature)
 text=Choose one - Search your library for a basic land card, reveal it, put it into your hand, then shuffle your library; or return target creature card from your graveyard to your hand; or target creature gains flying until end of turn.
 mana={1}{G}
 type=Instant
+[/card]
+[card]
+name=Evolution Vat
+auto={3}{t}:target(creature) tap && counter(1/1,1) && transforms((,newability[{1}:thisforeach(counter{1/1.1}) counter(1/1,1)])) ueot
+text={3}, {T}: Tap target creature and put a +1/+1 counter on it. Until end of turn, that creature gains "{2}{G}{U}: Double the number of +1/+1 counters on this creature."
+mana={3}
+type=Artifact
 [/card]
 [card]
 name=Evolving Wilds
@@ -24102,6 +24127,16 @@ type=Creature
 subtype=Weird
 power=0
 toughness=1
+[/card]
+[card]
+name=Gemini Engine
+auto=@attacking(this):token(Twin,Gemini Creature,p/t,battleready) && all(Twin[gemini]|mybattlefield) phaseaction[combatends] sacrifice
+text=Whenever Gemini Engine attacks, put a colorless Construct artifact creature token named Twin onto the battlefield attacking. Its power is equal to Gemini Engine's power and its toughness is equal to Gemini Engine's toughness. Sacrifice the token at end of combat.
+mana={6}
+type=Artifact Creature
+subtype=Construct
+power=3
+toughness=4
 [/card]
 [card]
 name=Gemhide Sliver

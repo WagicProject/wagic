@@ -6546,13 +6546,6 @@ mana={3}{W}
 type=Enchantment
 [/card]
 [card]
-name=Endless Scream
-text=Enchant creature -- Endless Scream enters the battlefield with X scream counters on it. -- Enchanted creature gets +1/+0 for each scream counter on Endless Scream.
-mana={X}{B}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Endless Swarm
 text=Put a 1/1 green Snake creature token onto the battlefield for each card in your hand. -- Epic (For the rest of the game, you can't cast spells. At the beginning of each of your upkeeps, copy this spell except for its epic ability.)
 mana={5}{G}{G}{G}
@@ -6963,12 +6956,6 @@ power=3
 toughness=5
 [/card]
 [card]
-name=Everflowing Chalice
-text=Multikicker {2} (You may pay an additional {2} any number of times as you cast this spell.) -- Everflowing Chalice enters the battlefield with a charge counter on it for each time it was kicked. -- {T}: Add {1} to your mana pool for each charge counter on Everflowing Chalice.
-mana={0}
-type=Artifact
-[/card]
-[card]
 name=Everglove Courier
 text=You may choose not to untap Everglove Courier during your untap step. -- {2}{G}, {T}: Target Elf creature gets +2/+2 and has trample for as long as Everglove Courier remains tapped.
 mana={2}{G}
@@ -7007,12 +6994,6 @@ text=Enchant land -- Enchanted land is a Swamp.
 mana={B}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Evolution Vat
-text={3}, {T}: Tap target creature and put a +1/+1 counter on it. Until end of turn, that creature gains "{2}{G}{U}: Double the number of +1/+1 counters on this creature."
-mana={3}
-type=Artifact
 [/card]
 [card]
 name=Excavation
@@ -7453,15 +7434,6 @@ power=0
 toughness=0
 [/card]
 [card]
-name=Feral Thallid
-text=At the beginning of your upkeep, put a spore counter on Feral Thallid. -- Remove three spore counters from Feral Thallid: Regenerate Feral Thallid.
-mana={3}{G}{G}{G}
-type=Creature
-subtype=Fungus
-power=6
-toughness=3
-[/card]
-[card]
 name=Feral Throwback
 text=Amplify 2 (As this creature enters the battlefield, put two +1/+1 counters on it for each Beast card you reveal in your hand.) -- Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.)
 mana={4}{G}{G}
@@ -7569,7 +7541,11 @@ type=Instant
 [/card]
 [card]
 name=Figure of Destiny
-text={(r/w)}: Figure of Destiny becomes a 2/2 Kithkin Spirit. -- {(r/w){(r/w){(r/w)}: If Figure of Destiny is a Spirit, it becomes a 4/4 Kithkin Spirit Warrior. -- {(r/w){(r/w){(r/w){(r/w){(r/w){(r/w)}: If Figure of Destiny is a Warrior, it becomes an 8/8 Kithkin Spirit Warrior Avatar with flying and first strike.
+auto={rw}:becomes(Spirit creature,4/4)
+auto=lord(figure of destiny[spirit]|mybattlefield) {rw}{rw}{rw}:becomes(Kithkin Spirit Creature,4/4)
+auto=lord(figure of destiny[warrior]|mybattlefield) {rw}{rw}{rw}{rw}{rw}{rw}:becomes(Spirit,4/4)
+text={(r/w)}: Figure of Destiny becomes a 2/2 Kithkin Spirit. -- {(r/w){(r/w){(r/w)}: If Figure of Destiny is a Spirit, it becomes a 4/4 Kithkin Spirit Warrior. -- 
+{(r/w){(r/w){(r/w){(r/w){(r/w){(r/w)}: If Figure of Destiny is a Warrior, it becomes an 8/8 Kithkin Spirit Warrior Avatar with flying and first strike.
 mana={RW}
 type=Creature
 subtype=Kithkin
@@ -7649,13 +7625,6 @@ power=4
 toughness=3
 [/card]
 [card]
-name=Fire Whip
-text=Enchant creature you control -- Enchanted creature has "{T}: This creature deals 1 damage to target creature or player." -- Sacrifice Fire Whip: Fire Whip deals 1 damage to target creature or player.
-mana={1}{R}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Fire and Brimstone
 text=Fire and Brimstone deals 4 damage to target player who declared an attacking creature this turn and 4 damage to you.
 mana={3}{W}{W}
@@ -7709,13 +7678,6 @@ name=Fistful of Force
 text=Target creature gets +2/+2 until end of turn. Clash with an opponent. If you win, that creature gets an additional +2/+2 and gains trample until end of turn. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
 mana={1}{G}
 type=Instant
-[/card]
-[card]
-name=Fists of the Demigod
-text=Enchant creature -- As long as enchanted creature is black, it gets +1/+1 and has wither. (It deals damage to creatures in the form of -1/-1 counters.) -- As long as enchanted creature is red, it gets +1/+1 and has first strike.
-mana={1}{BR}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Flailing Manticore
@@ -8153,13 +8115,6 @@ mana={2}{G}{G}
 type=Enchantment
 [/card]
 [card]
-name=Foul Presence
-text=Enchant creature -- Enchanted creature gets -1/-1 and has "{T}: Target creature gets -1/-1 until end of turn."
-mana={2}{B}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Fractured Loyalty
 text=Enchant creature -- Whenever enchanted creature becomes the target of a spell or ability, that spell or ability's controller gains control of that creature. (This effect lasts indefinitely.)
 mana={1}{R}
@@ -8523,15 +8478,6 @@ type=Snow Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Gemini Engine
-text=Whenever Gemini Engine attacks, put a colorless Construct artifact creature token named Twin onto the battlefield attacking. Its power is equal to Gemini Engine's power and its toughness is equal to Gemini Engine's toughness. Sacrifice the token at end of combat.
-mana={6}
-type=Artifact Creature
-subtype=Construct
-power=3
-toughness=4
-[/card]
-[card]
 name=Gemstone Caverns
 text=If Gemstone Caverns is in your opening hand and you're not playing first, you may begin the game with Gemstone Caverns on the battlefield with a luck counter on it. If you do, exile a card from your hand. -- {T}: Add {1} to your mana pool. If Gemstone Caverns has a luck counter on it, instead add one mana of any color to your mana pool.
 type=Legendary Land
@@ -8740,7 +8686,7 @@ target=creature
 kicker={4}
 auto=8/8
 auto=trample
-auto=kicker may moveTo(myBattlefield) target(Gigantiform|myLibrary)
+auto=kicker teach(creature) may retarget target(Gigantiform|mylibrary)
 text=Kicker {4} -- Enchant creature -- Enchanted creature is 8/8 and has trample. -- When Gigantiform enters the battlefield, if it was kicked, you may search your library for a card named Gigantiform, put it onto the battlefield, then shuffle your library.
 mana={3}{G}{G}
 type=Enchantment
@@ -8994,6 +8940,7 @@ toughness=1
 [/card]
 [card]
 name=Goatnapper
+auto=target(Goat) moveto(mybattlefield) && transforms((,haste)) && phaseaction[endofturn] moveto(ownerbattlefield)
 text=When Goatnapper enters the battlefield, untap target Goat and gain control of it until end of turn. It gains haste until end of turn.
 mana={2}{R}
 type=Creature
