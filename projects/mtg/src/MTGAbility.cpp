@@ -2552,6 +2552,11 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         storedString.erase();
         storedString.append(extraTransforms);
         extraTransforms.erase();
+        for (unsigned int i = 0 ; i < abilities.size() ; i++)
+        {
+            if(abilities[i].empty())
+                abilities.erase(abilities.begin()+i);
+        }            
         for(unsigned int j = 0;j < abilities.size();j++)
         {
             if(abilities[j].find("setpower=") != string::npos)
