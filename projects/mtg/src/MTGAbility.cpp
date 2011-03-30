@@ -1946,13 +1946,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (s.find(" owner") != string::npos)
         who = TargetChooser::OWNER;
 
-    found = s.find(" ueot");
+    found = s.find("ueot");
     if (found != string::npos)
         forceUEOT = 1;
-    found = s.find(" oneshot");
+    found = s.find("oneshot");
     if (found != string::npos)
         oneShot = 1;
-    found = s.find(" forever");
+    found = s.find("forever");
     if (found != string::npos)
         forceFOREVER = 1;
 
@@ -2522,8 +2522,22 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     found = s.find("transforms((");
     if (found != string::npos)
     {
+    string extraTransforms = "";
         size_t stypesStartIndex = found + 12;
-        string transformsParamsString = storedString;//the string between found and real end is removed at start.
+        string transformsParamsString = "";
+        transformsParamsString.append(storedString);//the string between found and real end is removed at start.
+        
+        found = transformsParamsString.find("transforms((");
+        if (found != string::npos && extraTransforms.empty())
+        {
+            size_t real_end = transformsParamsString.find("))", found);
+            size_t end = transformsParamsString.find(",", found);
+            if (end == string::npos)
+                end = real_end;
+            size_t stypesStartIndex = found + 12;
+            extraTransforms.append(transformsParamsString.substr(stypesStartIndex, real_end - stypesStartIndex).c_str());
+            transformsParamsString.erase(stypesStartIndex, real_end - stypesStartIndex);
+        }
         vector<string> effectParameters = split( transformsParamsString, ',');
         string stypes = effectParameters[0];
 
@@ -2535,7 +2549,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         vector <string> abilities = split(sabilities, ',');
         bool newAbilityFound = false;
         vector<MTGAbility *> newAbilitiesList;
-
+        storedString.erase();
+        storedString.append(extraTransforms);
+        extraTransforms.erase();
         for(unsigned int j = 0;j < abilities.size();j++)
         {
             if(abilities[j].find("setpower=") != string::npos)
@@ -2558,7 +2574,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 newAbilitiesList.push_back(parseMagicLine(newAbilities, id, spell, card));
             }
         }
-        storedString.erase();
         MTGAbility * a;
         if (forceFOREVER)
         {

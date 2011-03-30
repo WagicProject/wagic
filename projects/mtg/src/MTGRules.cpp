@@ -325,7 +325,7 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
         else
         {
             copy->X = spell->computeX(copy);
-            copy->XX = spell->computeXX(copy);
+            copy->XX = copy->X/2;
         }
     }
 
@@ -723,7 +723,7 @@ int MTGMorphCostRule::reactToClick(MTGCardInstance * card)
     if (!card->has(Constants::STORM))
     {
         copy->X = spell->computeX(copy);
-        copy->XX = spell->computeXX(copy);
+        copy->XX = copy->X/2;
     }
     return 1;
 }

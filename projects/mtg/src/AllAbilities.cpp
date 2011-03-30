@@ -2307,7 +2307,26 @@ ATransformer::ATransformer(int id, MTGCardInstance * source, MTGCardInstance * t
             {
                 for (unsigned int k = 0 ; k < newAbilitiesList.size();k++)
                 {
+
                     MTGAbility * aNew = newAbilitiesList[k]->clone();
+                    
+                    GenericTargetAbility * gta = dynamic_cast<GenericTargetAbility*> (aNew);
+                    if (gta)
+                    {
+                        ((GenericTargetAbility *)aNew)->source = _target;
+                        ((GenericTargetAbility *)aNew)->ability->source = _target;
+                    }
+                    GenericActivatedAbility * gaa = dynamic_cast<GenericActivatedAbility*> (aNew);
+                    if (gaa)
+                    {
+                        ((GenericActivatedAbility *)aNew)->source = _target;
+                        ((GenericActivatedAbility *)aNew)->ability->source = _target;
+                    }
+                    if (MultiAbility * abi = dynamic_cast<MultiAbility*>(aNew))
+                    {
+                        ((MultiAbility *)aNew)->source = _target;
+                        ((MultiAbility *)aNew)->abilities[0]->source = _target;
+                    }
                     aNew->target = _target;
                     aNew->source = (MTGCardInstance *) _target;
                     aNew->addToGame();
@@ -2471,14 +2490,33 @@ int AForeverTransformer::addToGame()
         }
         if(newAbilityFound)
         {
-            for (unsigned int k = 0 ; k < newAbilitiesList.size();k++)
-            {
-                MTGAbility * aNew = newAbilitiesList[k]->clone();
-                aNew->target = _target;
-                aNew->source = (MTGCardInstance *) _target;
-                aNew->addToGame();
-                newAbilities[_target].push_back(aNew);
-            }
+                for (unsigned int k = 0 ; k < newAbilitiesList.size();k++)
+                {
+
+                    MTGAbility * aNew = newAbilitiesList[k]->clone();
+                    
+                    GenericTargetAbility * gta = dynamic_cast<GenericTargetAbility*> (aNew);
+                    if (gta)
+                    {
+                        ((GenericTargetAbility *)aNew)->source = _target;
+                        ((GenericTargetAbility *)aNew)->ability->source = _target;
+                    }
+                    GenericActivatedAbility * gaa = dynamic_cast<GenericActivatedAbility*> (aNew);
+                    if (gaa)
+                    {
+                        ((GenericActivatedAbility *)aNew)->source = _target;
+                        ((GenericActivatedAbility *)aNew)->ability->source = _target;
+                    }
+                    if (MultiAbility * abi = dynamic_cast<MultiAbility*>(aNew))
+                    {
+                        ((MultiAbility *)aNew)->source = _target;
+                        ((MultiAbility *)aNew)->abilities[0]->source = _target;
+                    }
+                    aNew->target = _target;
+                    aNew->source = (MTGCardInstance *) _target;
+                    aNew->addToGame();
+                    newAbilities[_target].push_back(aNew);
+                }
         }
         if(newpowerfound )
         {
