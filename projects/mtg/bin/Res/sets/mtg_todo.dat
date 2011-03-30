@@ -6837,15 +6837,6 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-name=Ersatz Gnomes
-text={T}: Target spell is colorless. -- {T}: Target permanent becomes colorless until end of turn.
-mana={3}
-type=Artifact Creature
-subtype=Gnome
-power=1
-toughness=1
-[/card]
-[card]
 name=Ertai's Familiar
 text=Phasing (This phases in or out before you untap during each of your untap steps. While it's phased out, it's treated as though it doesn't exist.) -- When Ertai's Familiar phases out or leaves the battlefield, put the top three cards of your library into your graveyard. -- {U}: Until your next upkeep, Ertai's Familiar can't phase out.
 mana={1}{U}
@@ -7130,15 +7121,6 @@ name=Extraplanar Lens
 text=Imprint - When Extraplanar Lens enters the battlefield, you may exile target land you control. -- Whenever a land with the same name as the exiled card is tapped for mana, its controller adds one mana to his or her mana pool of any type that land produced.
 mana={3}
 type=Artifact
-[/card]
-[card]
-name=Extravagant Spirit
-text=Flying -- At the beginning of your upkeep, sacrifice Extravagant Spirit unless you pay {1} for each card in your hand.
-mana={3}{U}
-type=Creature
-subtype=Spirit
-power=4
-toughness=4
 [/card]
 [card]
 name=Eye for an Eye
@@ -8576,12 +8558,6 @@ mana={W}{B}
 type=Sorcery
 [/card]
 [card]
-name=Ghastly Demise
-text=Destroy target nonblack creature if its toughness is less than or equal to the number of cards in your graveyard.
-mana={B}
-type=Instant
-[/card]
-[card]
 name=Ghastly Discovery
 text=Draw two cards, then discard a card. -- Conspire (As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it.)
 mana={2}{U}
@@ -8633,12 +8609,6 @@ type=Creature
 subtype=Spirit
 power=1
 toughness=1
-[/card]
-[card]
-name=Ghostfire
-text=Ghostfire is colorless. -- Ghostfire deals 3 damage to target creature or player.
-mana={2}{R}
-type=Instant
 [/card]
 [card]
 name=Ghosthelm Courier
@@ -15206,12 +15176,6 @@ toughness=1
 name=Moonhold
 text=Target player can't play land cards this turn if {R} was spent to cast Moonhold and can't play creature cards this turn if {W} was spent to cast it. (Do both if {R}{W} was spent.)
 mana={2}{RW}
-type=Instant
-[/card]
-[card]
-name=Moonlace
-text=Target spell or permanent becomes colorless.
-mana={U}
 type=Instant
 [/card]
 [card]

@@ -16235,8 +16235,8 @@ type=Sorcery
 [/card]
 [card]
 name=Divine Congregation
-auto=choice name(My Creatures) && life:type:creature|mybattlefield
-auto=choice name(Opponents Creatures) && life:type:creature|opponentbattlefield
+auto=choice name(My Creatures) && life:type:creature:mybattlefield
+auto=choice name(Opponents Creatures) && life:type:creature:opponentbattlefield
 text=You gain 2 life for each creature target player controls. -- Suspend 5 - {1}{W} (Rather than cast this card from your hand, you may pay {1}{W} and exile it with five time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
 mana={3}{W}
 suspend(5)={1}{w}
@@ -18653,7 +18653,7 @@ toughness=1
 [/card]
 [card]
 name=Elvish Branchbender
-auto={t}:target(forest) transforms((Forest Land TreeFolk Creature,setpower=type:elf|mybattlefield,settoughness=type:elf|mybattlefield)) ueot
+auto={t}:target(forest) transforms((Forest Land TreeFolk Creature,setpower=type:elf:mybattlefield,settoughness=type:elf:mybattlefield)) ueot
 text={T}: Until end of turn, target Forest becomes an X/X Treefolk creature in addition to its other types, where X is the number of Elves you control.
 mana={2}{G}
 type=Creature
@@ -19631,6 +19631,17 @@ power=3
 toughness=4
 [/card]
 [card]
+name=Ersatz Gnomes
+auto={t}:target(*|stack) transforms((,artifact))
+auto={t}:target(*|battlefield) transforms((,artifact)) ueot
+text={T}: Target spell is colorless. -- {T}: Target permanent becomes colorless until end of turn.
+mana={3}
+type=Artifact Creature
+subtype=Gnome
+power=1
+toughness=1
+[/card]
+[card]
 name=Escape Artist
 abilities=unblockable
 auto={U}{discard(*|myhand)}:moveTo(ownerhand)
@@ -20285,6 +20296,17 @@ type=Creature
 subtype=Demon
 power=5
 toughness=5
+[/card]
+[card]
+name=Extravagant Spirit
+auto=foreach(*|myhand) upcost[{1}] sacrifice
+abilities=flying
+text=Flying -- At the beginning of your upkeep, sacrifice Extravagant Spirit unless you pay {1} for each card in your hand.
+mana={3}{U}
+type=Creature
+subtype=Spirit
+power=4
+toughness=4
 [/card]
 [card]
 name=Extruder
@@ -24108,7 +24130,7 @@ toughness=5
 [card]
 name=Gempalm Incinerator
 autohand={1}{R}:cycling
-autohand={1}{R}:damage:type:goblin|mybattlefield target(creature) && cycling
+autohand={1}{R}:damage:type:goblin:mybattlefield target(creature) && cycling
 text=Cycling {1}{R} ({1}{R}, Discard this card: Draw a card.) -- When you cycle Gempalm Incinerator, you may have it deal X damage to target creature, where X is the number of Goblins on the battlefield.
 mana={2}{R}
 type=Creature
@@ -24375,6 +24397,14 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Ghastly Demise
+target=creature[-black]
+auto=teach(creature[toughness <=type:*:mygraveyard]) destroy
+text=Destroy target nonblack creature if its toughness is less than or equal to the number of cards in your graveyard.
+mana={B}
+type=Instant
+[/card]
+[card]
 name=Ghitu Encampment
 auto=tap
 auto={T}:Add{R}
@@ -24536,6 +24566,15 @@ type=Creature
 subtype=Spirit
 power=1
 toughness=1
+[/card]
+[card]
+name=Ghostfire
+target=creature,player
+auto=damage:3
+text=Ghostfire is colorless. -- Ghostfire deals 3 damage to target creature or player.
+mana={2}{R}
+color=artifact
+type=Instant
 [/card]
 [card]
 name=Ghostflame Sliver
@@ -33793,7 +33832,7 @@ toughness=4
 [/card]
 [card]
 name=Khabal Ghoul
-auto=@each endofturn:counter(1/1,type:creature[fresh]|graveyard)
+auto=@each endofturn:counter(1/1,type:creature[fresh]:graveyard)
 text=At the beginning of each end step, put a +1/+1 counter on Khabal Ghoul for each creature put into a graveyard from the battlefield this turn.
 mana={2}{B}
 type=Creature
@@ -40813,6 +40852,14 @@ type=Creature
 subtype=Elf Rogue
 power=2
 toughness=3
+[/card]
+[card]
+name=Moonlace
+text=Target spell or permanent becomes colorless.
+target=*
+auto=transforms(,artifact) forever
+mana={U}
+type=Instant
 [/card]
 [card]
 name=Moonlit Strider
@@ -53948,7 +53995,7 @@ toughness=1
 [/card]
 [card]
 name=Scavenging Ghoul
-auto=@each endofturn:counter(0/0,type:creature[fresh]|graveyard,Corpse)
+auto=@each endofturn:counter(0/0,type:creature[fresh]:graveyard,Corpse)
 auto={C(0/0,-1,Corpse)}:regenerate
 text=At the beginning of each end step, put a corpse counter on Scavenging Ghoul for each creature put into a graveyard from the battlefield this turn. -- Remove a corpse counter from Scavenging Ghoul: Regenerate Scavenging Ghoul.
 mana={3}{B}
@@ -69120,7 +69167,7 @@ toughness=4
 [card]
 name=Vastwood Animist
 text={T}: Target land you control becomes an X/X Elemental creature until end of turn, where X is the number of Allies you control. It's still a land.
-auto={t}:target(land|mybattlefield) transforms((Elemental Creature,setpower=type:ally|mybattlefield,settoughness=type:ally|mybattlefield)) ueot
+auto={t}:target(land|mybattlefield) transforms((Elemental Creature,setpower=type:ally:mybattlefield,settoughness=type:ally:mybattlefield)) ueot
 mana={2}{G}
 type=Creature
 subtype=Elf Shaman Ally
