@@ -3928,11 +3928,11 @@ public:
     bool newtoughnessfound;
     int oldtoughness;
     map<Damageable *, vector<MTGAbility *> > newAbilities;
-    vector<MTGAbility *> newAbilitiesList;
+    vector<string> newAbilitiesList;
     bool newAbilityFound;
 
 
-    ATransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities,string newpower,bool newpowerfound,string newtoughness,bool newtoughnessfound,vector<MTGAbility *> newAbilitiesList,bool newAbilityFound = false);
+    ATransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities,string newpower,bool newpowerfound,string newtoughness,bool newtoughnessfound,vector<string> newAbilitiesList,bool newAbilityFound = false);
     int addToGame();
     int destroy();
     const char * getMenuText();
@@ -3955,11 +3955,11 @@ public:
     bool newtoughnessfound;
     int oldtoughness;
     bool remove;
-    vector<MTGAbility *> newAbilitiesList;
+    vector<string> newAbilitiesList;
     map<Damageable *, vector<MTGAbility *> > newAbilities;
     bool newAbilityFound;
 
-    AForeverTransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities,string newpower = "",bool newpowerfound = false,string newtoughness = "",bool newtoughnessfound = false,vector<MTGAbility*>newAbilitiesList = vector<MTGAbility*>(),bool newAbilityFound = false);
+    AForeverTransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities,string newpower = "",bool newpowerfound = false,string newtoughness = "",bool newtoughnessfound = false,vector<string>newAbilitiesList = vector<string>(),bool newAbilityFound = false);
     int addToGame();
     const char * getMenuText();
     AForeverTransformer * clone() const;
@@ -3975,11 +3975,11 @@ public:
     bool newpowerfound;
     string newtoughness;
     bool newtoughnessfound;
-    vector<MTGAbility *> newAbilitiesList;
+    vector<string> newAbilitiesList;
     map<Damageable *, vector<MTGAbility *> > newAbilities;
     bool newAbilityFound;
 
-    ATransformerUEOT(int id, MTGCardInstance * source, MTGCardInstance * target, string types = "", string abilities = "",string newpower = "",bool newpowerfound = false,string newtoughness = "",bool newtoughnessfound = false,vector<MTGAbility*>newAbilitiesList = vector<MTGAbility*>(),bool newAbilityFound = false);
+    ATransformerUEOT(int id, MTGCardInstance * source, MTGCardInstance * target, string types = "", string abilities = "",string newpower = "",bool newpowerfound = false,string newtoughness = "",bool newtoughnessfound = false,vector<string>newAbilitiesList = vector<string>(),bool newAbilityFound = false);
     int resolve();
     const char * getMenuText();
     ATransformerUEOT * clone() const;
@@ -3995,11 +3995,11 @@ public:
     bool newpowerfound;
     string newtoughness;
     bool newtoughnessfound;
-    vector<MTGAbility *> newAbilitiesList;
+    vector<string> newAbilitiesList;
     map<Damageable *, vector<MTGAbility *> > newAbilities;
     bool newAbilityFound;
     
-    ATransformerFOREVER(int id, MTGCardInstance * source, MTGCardInstance * target, string types, string abilities,string newpower = "",bool newpowerfound = false,string newtoughness = "",bool newtoughnessfound = false,vector<MTGAbility*>newAbilitiesList = vector<MTGAbility*>(),bool newAbilityFound = false);
+    ATransformerFOREVER(int id, MTGCardInstance * source, MTGCardInstance * target, string types, string abilities,string newpower = "",bool newpowerfound = false,string newtoughness = "",bool newtoughnessfound = false,vector<string>newAbilitiesList = vector<string>(),bool newAbilityFound = false);
     int resolve();
     const char * getMenuText();
     ATransformerFOREVER * clone() const;

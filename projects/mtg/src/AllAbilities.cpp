@@ -2210,7 +2210,7 @@ AAlterCost::~AAlterCost()
 }
 
 // ATransformer
-ATransformer::ATransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities,string newpower,bool newpowerfound,string newtoughness,bool newtoughnessfound,vector<MTGAbility *> newAbilitiesList,bool newAbilityFound) :
+ATransformer::ATransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities,string newpower,bool newpowerfound,string newtoughness,bool newtoughnessfound,vector<string> newAbilitiesList,bool newAbilityFound) :
     MTGAbility(id, source, target),newpower(newpower),newpowerfound(newpowerfound),newtoughness(newtoughness),newtoughnessfound(newtoughnessfound),newAbilitiesList(newAbilitiesList),newAbilityFound(newAbilityFound)
 {
 
@@ -2307,9 +2307,9 @@ ATransformer::ATransformer(int id, MTGCardInstance * source, MTGCardInstance * t
             {
                 for (unsigned int k = 0 ; k < newAbilitiesList.size();k++)
                 {
-
-                    MTGAbility * aNew = newAbilitiesList[k]->clone();
-                    
+                    AbilityFactory af;
+                    MTGAbility * aNew = af.parseMagicLine(newAbilitiesList[k],NULL, NULL, _target);
+                    aNew->isClone = 1;
                     GenericTargetAbility * gta = dynamic_cast<GenericTargetAbility*> (aNew);
                     if (gta)
                     {
@@ -2329,7 +2329,13 @@ ATransformer::ATransformer(int id, MTGCardInstance * source, MTGCardInstance * t
                     }
                     aNew->target = _target;
                     aNew->source = (MTGCardInstance *) _target;
-                    aNew->addToGame();
+                    if(aNew->oneShot)
+                    {
+                        aNew->resolve();
+                        delete aNew;
+                    }
+                    else
+                        aNew->addToGame();
                     newAbilities[_target].push_back(aNew);
                 }
             }
@@ -2426,18 +2432,11 @@ ATransformer * ATransformer::clone() const
 
 ATransformer::~ATransformer()
 {
-    if(!isClone)
-    {
-        for (unsigned int k = 0; k < newAbilitiesList.size();k++)
-        {
-            SAFE_DELETE(newAbilitiesList[k]);
-        }
-    }
 }
 
 // AForeverTransformer
 AForeverTransformer::AForeverTransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes,
-        string sabilities,string newpower,bool newpowerfound, string newtoughness,bool newtoughnessfound,vector<MTGAbility*> newAbilitiesList,bool newAbilityFound) :
+        string sabilities,string newpower,bool newpowerfound, string newtoughness,bool newtoughnessfound,vector<string> newAbilitiesList,bool newAbilityFound) :
     MTGAbility(id, source, target),newpower(newpower),newpowerfound(newpowerfound),newtoughness(newtoughness),newtoughnessfound(newtoughnessfound),newAbilitiesList(newAbilitiesList),newAbilityFound(newAbilityFound)
 {
     aType = MTGAbility::STANDARD_BECOMES;
@@ -2492,8 +2491,9 @@ int AForeverTransformer::addToGame()
         {
                 for (unsigned int k = 0 ; k < newAbilitiesList.size();k++)
                 {
-
-                    MTGAbility * aNew = newAbilitiesList[k]->clone();
+                    AbilityFactory af;
+                    MTGAbility * aNew = af.parseMagicLine(newAbilitiesList[k],NULL, NULL, _target);
+                    aNew->isClone = 1;
                     
                     GenericTargetAbility * gta = dynamic_cast<GenericTargetAbility*> (aNew);
                     if (gta)
@@ -2514,6 +2514,12 @@ int AForeverTransformer::addToGame()
                     }
                     aNew->target = _target;
                     aNew->source = (MTGCardInstance *) _target;
+                    if(aNew->oneShot)
+                    {
+                    aNew->resolve();
+                    delete aNew;
+                    }
+                    else
                     aNew->addToGame();
                     newAbilities[_target].push_back(aNew);
                 }
@@ -2553,17 +2559,10 @@ AForeverTransformer * AForeverTransformer::clone() const
 }
 AForeverTransformer::~AForeverTransformer()
 {
-    if(!isClone)
-    {
-        for (unsigned int k = 0; k < newAbilitiesList.size();k++)
-        {
-            SAFE_DELETE(newAbilitiesList[k]);
-        }
-    }
 }
 
 //ATransformerUEOT
-ATransformerUEOT::ATransformerUEOT(int id, MTGCardInstance * source, MTGCardInstance * target, string types, string abilities,string newpower,bool newpowerfound,string newtoughness,bool newtoughnessfound,vector<MTGAbility*>newAbilitiesList,bool newAbilityFound) :
+ATransformerUEOT::ATransformerUEOT(int id, MTGCardInstance * source, MTGCardInstance * target, string types, string abilities,string newpower,bool newpowerfound,string newtoughness,bool newtoughnessfound,vector<string>newAbilitiesList,bool newAbilityFound) :
     InstantAbility(id, source, target),newpower(newpower),newpowerfound(newpowerfound),newtoughness(newtoughness),newtoughnessfound(newtoughnessfound),newAbilitiesList(newAbilitiesList),newAbilityFound(newAbilityFound)
 {
     ability = NEW ATransformer(id, source, target, types, abilities,newpower,newpowerfound,newtoughness,newtoughnessfound,newAbilitiesList,newAbilityFound);
@@ -2596,7 +2595,7 @@ ATransformerUEOT::~ATransformerUEOT()
 }
 
 // ATransformerFOREVER
-ATransformerFOREVER::ATransformerFOREVER(int id, MTGCardInstance * source, MTGCardInstance * target, string types, string abilities,string newpower,bool newpowerfound,string newtoughness,bool newtoughnessfound,vector<MTGAbility*>newAbilitiesList,bool newAbilityFound) :
+ATransformerFOREVER::ATransformerFOREVER(int id, MTGCardInstance * source, MTGCardInstance * target, string types, string abilities,string newpower,bool newpowerfound,string newtoughness,bool newtoughnessfound,vector<string>newAbilitiesList,bool newAbilityFound) :
     InstantAbility(id, source, target),newpower(newpower),newpowerfound(newpowerfound),newtoughness(newtoughness),newtoughnessfound(newtoughnessfound),newAbilitiesList(newAbilitiesList),newAbilityFound(newAbilityFound)
 {
     ability = NEW AForeverTransformer(id, source, target, types, abilities,newpower,newpowerfound,newtoughness,newtoughnessfound,newAbilitiesList,newAbilityFound);

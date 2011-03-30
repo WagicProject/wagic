@@ -2548,7 +2548,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         string newtoughness = "";
         vector <string> abilities = split(sabilities, ',');
         bool newAbilityFound = false;
-        vector<MTGAbility *> newAbilitiesList;
+        vector<string> newAbilitiesList;
         storedString.erase();
         storedString.append(extraTransforms);
         extraTransforms.erase();
@@ -2571,7 +2571,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 newAbilityFound = true;
                 size_t NewSkill = abilities[j].find("[");
                 string newAbilities = abilities[j].substr(NewSkill + 1,abilities[j].find(']') - 1);
-                newAbilitiesList.push_back(parseMagicLine(newAbilities, id, spell, card));
+                newAbilitiesList.push_back(newAbilities.c_str());
             }
         }
         MTGAbility * a;
