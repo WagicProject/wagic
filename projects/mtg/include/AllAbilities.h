@@ -1212,7 +1212,10 @@ public:
 
     int resolve()
     {
-        MTGCardInstance * copy = source->controller()->game->putInZone(source, source->controller()->game->hand,
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    if(!_target)
+    return 0;
+        MTGCardInstance * copy = _target->controller()->game->putInZone(_target,_target->currentZone,
                 source->controller()->game->temp);
         Spell * spell = NEW Spell(copy);
         spell->resolve();
