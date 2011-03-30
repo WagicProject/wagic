@@ -2404,10 +2404,10 @@ toughness=5
 [card]
 name=Arbor Elf
 auto={t}:untap target(forest)
-text={T}: Untap target Forest.
-mana={G}
-type=Creature
-subtype=Elf Druid
+text={t}:untap target forest.
+mana={g}
+type=creature
+subtype=elf druid
 power=1
 toughness=1
 [/card]
@@ -21008,7 +21008,7 @@ type=Instant
 [/card]
 [card]
 name=Feldon's Cane
-auto={T}:moveto(myLibrary) all(*|myGraveyard) && shuffle && moveto(exile) all(this)
+auto={T}{E}:moveto(myLibrary) all(*|myGraveyard) && shuffle
 text={T}, Exile Feldon's Cane: Shuffle your graveyard into your library.
 mana={1}
 type=Artifact
@@ -30098,7 +30098,7 @@ type=Sorcery
 [/card]
 [card]
 name=Hungry Mist
-auto=upcost[{G}{G}] moveTo(graveyard)
+auto=upcost[{G}{G}] sacrifice
 text=At the beginning of your upkeep, sacrifice Hungry Mist unless you pay {G}{G}.
 mana={2}{G}{G}
 type=Creature
@@ -64585,6 +64585,16 @@ mana={1}{G}{U}
 type=Sorcery
 [/card]
 [card]
+name=Temporary Insanity
+target=creature[power <=type:*:mygraveyard]
+auto=haste
+auto=untap
+alias=129767
+text=Untap target creature with power less than the number of cards in your graveyard and gain control of it until end of turn. That creature gains haste until end of turn.
+mana={3}{R}
+type=Instant
+[/card]
+[card]
 name=Tendo Ice Bridge
 auto=counter(0/0,1,Charge)
 auto={T}:add{1}
@@ -66474,8 +66484,8 @@ toughness=7
 [/card]
 [card]
 name=Tolarian Winds
-auto=@movedTo(*|mygraveyard) from(myhand):draw:1
-auto=moveTo(mygraveyard) all(*|myhand)
+auto=@discarded(*|myhand): draw:1 controller
+auto=all(*|myhand) reject
 text=Discard all the cards in your hand, then draw that many cards.
 mana={1}{U}
 type=Instant
@@ -66822,9 +66832,8 @@ type=Artifact
 [card]
 name=Tourach's Gate
 target=land|myBattlefield
-auto=counter(0/0,3,Time)
-auto=@each my upkeep:counter(0/0,-1,Time)
-auto=@each my untap:moveTo(mygraveyard) all(tourach's gate[-counter{0/0.1.Time}]|myBattlefield)
+auto=vanishing:3
+auto={s(thrull|mybattlefield):counter(0/0,3,time)
 auto=teach(land) {T}:all(creature[attacking]) 2/-1
 text=Enchant land you control -- Sacrifice a Thrull: Put three time counters on Tourach's Gate. -- At the beginning of your upkeep, remove a time counter from Tourach's Gate. If there are no time counters on Tourach's Gate, sacrifice it. -- Enchanted land has "{T}: Attacking creatures you control get +2/-1 until end of turn."
 mana={1}{B}{B}
@@ -66867,6 +66876,13 @@ mana={4}
 type=Artifact
 [/card]
 [card]
+name=Tower of Coireall
+auto={t}:target(creature) transforms((,newability[cantbeblockedby(wall)])) ueot
+text={T}: Target creature can't be blocked by Walls this turn.
+mana={2}
+type=Artifact
+[/card]
+[card]
 name=Tower of Eons
 auto={8}{T}:life:10
 text={8}, {T}: You gain 10 life.
@@ -66879,6 +66895,13 @@ auto={8}{T}:Draw:4
 text={8}, {T}: Draw four cards.
 mana={4}
 type=Artifact
+[/card]
+[card]
+name=Tower of the Magistrate
+auto={t}:add{1}
+auto={1}{t}:target(creature) transforms((,newability[protection from(artifact)])) ueot
+text={T}: Add {1} to your mana pool. -- {1}, {T}: Target creature gains protection from artifacts until end of turn.
+type=Land
 [/card]
 [card]
 name=Tower of Murmurs
@@ -67136,6 +67159,16 @@ auto=Destroy all(enchantment)
 text=Destroy all enchantments.
 mana={2}{G}
 type=Sorcery
+[/card]
+[card]
+name=Transguild Courier
+text=Transguild Courier is all colors (even if this card isn't on the battlefield).
+mana={4}
+color=black,white,green,red,blue
+type=Artifact Creature
+subtype=Golem
+power=3
+toughness=3
 [/card]
 [card]
 name=Transcendence
@@ -68353,6 +68386,14 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Unified Strike
+target=creature[attacking]
+auto=teach(creature[power <= type:Soldier:mybattlefield]) moveto(exile)
+text=Exile target attacking creature if its power is less than or equal to the number of Soldiers on the battlefield.
+mana={W}
+type=Instant
+[/card]
+[card]
 name=Unlikely Alliance
 auto={1}{W}:0/2 target(creature[-attacking;-blocking])
 text={1}{W}: Target nonattacking, nonblocking creature gets +0/+2 until end of turn.
@@ -69094,6 +69135,16 @@ power=4
 toughness=3
 [/card]
 [card]
+name=Vampiric Sliver
+auto=@vampired(creature) from(silver):all(trigger[from]) counter(1/1,1)
+text=All Sliver creatures have "Whenever a creature dealt damage by this creature this turn is put into a graveyard, put a +1/+1 counter on this creature."
+mana={3}{B}
+type=Creature
+subtype=Sliver
+power=3
+toughness=3
+[/card]
+[card]
 name=Vampiric Touch
 auto=damage:2 opponent
 auto=life:2 controller
@@ -69657,6 +69708,18 @@ mana={1}{G}
 type=Sorcery
 [/card]
 [card]
+name=Verdeloth the Ancient
+auto=lord(treefolk) 1/1 other
+auto=lord(saproling) 1/1 other
+auto=token(saproling,creature saproling,1/1,green)*x
+text=Kicker {X} (You may pay an additional {X} as you cast this spell.) -- Saproling creatures and other Treefolk creatures get +1/+1. -- When Verdeloth the Ancient enters the battlefield, if it was kicked, put X 1/1 green Saproling creature tokens onto the battlefield.
+mana={4}{G}{G}{x}
+type=Legendary Creature
+subtype=Treefolk
+power=4
+toughness=7
+[/card]
+[card]
 name=Verdigris
 target=artifact
 auto=destroy
@@ -69816,6 +69879,15 @@ auto=1/1
 text=Target creature gets +1/+1 until end of turn. Untap that creature.
 mana={W}
 type=Instant
+[/card]
+[card]
+name=Veteran's Voice
+target=creature|mybattlefield
+auto=teach(creature) {T}:target(other creature) 2/1 ueot
+text=Enchant creature you control -- Enchanted creature has "{T}: Target creature other than this creature gets +2/+1 until end of turn."
+mana={R}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Vex
@@ -71924,6 +71996,18 @@ mana={3}{R}
 type=Enchantment
 [/card]
 [card]
+name=Warbreak Trumpeter
+facedown={3}
+autofaceup=token(blah,creature,1/1)*xx
+autofacedown={x}{x}{r}:morph
+text=Morph {X}{X}{R} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Warbreak Trumpeter is turned face up, put X 1/1 red Goblin creature tokens onto the battlefield.
+mana={R}
+type=Creature
+subtype=Goblin
+power=1
+toughness=1
+[/card]
+[card]
 name=Ward Sliver
 auto=choice name(white) && counter(0/0,1,White) all(this)
 auto=choice name(blue) && counter(0/0,1,Blue) all(this)
@@ -72153,6 +72237,16 @@ mana={2}{U}{U}
 type=Creature
 subtype=Elemental
 power=3
+toughness=4
+[/card]
+[card]
+name=Waterspout Djinn
+auto=upcost[{h(island[-tapped]|mybattlefield)}] sacrifice all(this)
+text=Flying -- At the beginning of your upkeep, sacrifice Waterspout Djinn unless you return an untapped Island you control to its owner's hand.
+mana={2}{U}{U}
+type=Creature
+subtype=Djinn
+power=4
 toughness=4
 [/card]
 [card]
@@ -72398,6 +72492,14 @@ type=Creature
 subtype=Goblin Shaman
 power=2
 toughness=1
+[/card]
+[card]
+name=Weight of Spires
+target=creature
+auto=damage:type:land[-basic]|targetcontrollerbattlefield
+text=Weight of Spires deals damage to target creature equal to the number of nonbasic lands that creature's controller controls.
+mana={R}
+type=Instant
 [/card]
 [card]
 name=Welding Jar
@@ -72890,6 +72992,15 @@ type=Creature
 subtype=Griffin
 power=2
 toughness=2
+[/card]
+[card]
+name=Wild Growth
+target=land
+auto=@tappedformana(mytgt):add{g} targetcontroller
+text=Enchant land -- Whenever enchanted land is tapped for mana, its controller adds {G} to his or her mana pool (in addition to the mana the land produces).
+mana={G}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Wild Jhovall
@@ -73545,6 +73656,13 @@ mana={L}{L}{L}{1}{B}
 type=Instant
 [/card]
 [card]
+name=Withering Wisps
+auto=foreach(swamp[snow]|mybattlefield) {B}:damage:1 all(creature,player) limit:1
+text=At the beginning of the end step, if no creatures are on the battlefield, sacrifice Withering Wisps. -- {B}: Withering Wisps deals 1 damage to each creature and each player. Activate this ability no more times each turn than the number of snow Swamps you control.
+mana={1}{B}{B}
+type=Enchantment
+[/card]
+[card]
 name=Withstand
 target=creature,player
 auto=prevent:3
@@ -74021,6 +74139,13 @@ mana={3}{U}{U}
 type=Enchantment
 [/card]
 [card]
+name=Wrap in Vigor
+auto=all(creature|mybattlefield) transforms((,newability[regenerate])) ueot
+text=Regenerate each creature you control.
+mana={1}{G}
+type=Instant
+[/card]
+[card]
 name=Wreak Havoc
 abilities=nofizzle
 target=artifact,land
@@ -74490,6 +74615,16 @@ power=1
 toughness=4
 [/card]
 [card]
+name=Yore-Tiller Nephilim
+auto=@attacking(this):target(*|mygraveyard) ninjutsu
+text=Whenever Yore-Tiller Nephilim attacks, return target creature card from your graveyard to the battlefield tapped and attacking.
+mana={W}{U}{B}{R}
+type=Creature
+subtype=Nephilim
+power=2
+toughness=2
+[/card]
+[card]
 name=Young Wei Recruits
 abilities=cantblock
 text=Young Wei Recruits can't block.
@@ -74753,6 +74888,16 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Zirilan of the Claw
+auto={1}{r}{r}{t}:target(dragon|mylibrary) moveto(mybattlefield) && transforms((,unearth,haste)) forever
+text={1}{R}{R}, {T}: Search your library for a Dragon permanent card and put that card onto the battlefield. Then shuffle your library. That Dragon gains haste until end of turn. Exile it at the beginning of the next end step.
+mana={3}{R}{R}
+type=Legendary Creature
+subtype=Viashino Shaman
+power=3
+toughness=4
+[/card]
+[card]
 name=Zo-Zu the Punisher
 auto=@movedTo(land|myBattlefield):damage:2 controller
 auto=@movedTo(land|opponentBattlefield):damage:2 opponent
@@ -74957,6 +75102,17 @@ type=Creature
 subtype=Zombie
 power=2
 toughness=3
+[/card]
+[card]
+name=Zombie Mob
+auto=counter(1/1,type:creature:mygraveyard)
+auto=moveto(exile) all(creature|mygraveyard)
+text=Zombie Mob enters the battlefield with a +1/+1 counter on it for each creature card in your graveyard. -- When Zombie Mob enters the battlefield, exile all creature cards from your graveyard.
+mana={2}{B}{B}
+type=Creature
+subtype=Zombie
+power=2
+toughness=0
 [/card]
 [card]
 name=Zombie Outlander

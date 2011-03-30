@@ -24384,12 +24384,6 @@ mana={3}{U}{U}
 type=Sorcery
 [/card]
 [card]
-name=Temporary Insanity
-text=Untap target creature with power less than the number of cards in your graveyard and gain control of it until end of turn. That creature gains haste until end of turn.
-mana={3}{R}
-type=Instant
-[/card]
-[card]
 name=Temporary Truce
 text=Each player may draw up to two cards. For each card less than two a player draws this way, that player gains 2 life.
 mana={1}{W}
@@ -24753,12 +24747,6 @@ mana={3}
 type=Artifact
 [/card]
 [card]
-name=Thran Forge
-text={2}: Until end of turn, target nonartifact creature gets +1/+0 and becomes an artifact in addition to its other types.
-mana={3}
-type=Artifact
-[/card]
-[card]
 name=Thran Foundry
 text={1}, {T}, Exile Thran Foundry: Target player shuffles his or her graveyard into his or her library.
 mana={1}
@@ -25052,12 +25040,6 @@ text={T}: Add {U} to your mana pool. -- {T}: Target creature loses banding and a
 type=Legendary Land
 [/card]
 [card]
-name=Tolarian Winds
-text=Discard all the cards in your hand, then draw that many cards.
-mana={1}{U}
-type=Instant
-[/card]
-[card]
 name=Tombfire
 text=Target player exiles all cards with flashback from his or her graveyard.
 mana={B}
@@ -25161,30 +25143,10 @@ mana={1}{B}{B}
 type=Enchantment
 [/card]
 [card]
-name=Tourach's Gate
-text=Enchant land you control -- Sacrifice a Thrull: Put three time counters on Tourach's Gate. -- At the beginning of your upkeep, remove a time counter from Tourach's Gate. If there are no time counters on Tourach's Gate, sacrifice it. -- Enchanted land has "{T}: Attacking creatures you control get +2/-1 until end of turn."
-mana={1}{B}{B}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Tower Above
 text=({(2/g)} can be paid with any two mana or with {G}. This card's converted mana cost is 6.) -- Until end of turn, target creature gets +4/+4 and gains trample, wither, and "When this creature attacks, target creature blocks it this turn if able." (It deals damage to creatures in the form of -1/-1 counters.)
 mana={2G}{2G}{2G}
 type=Sorcery
-[/card]
-[card]
-name=Tower of Coireall
-text={T}: Target creature can't be blocked by Walls this turn.
-mana={2}
-type=Artifact
-[/card]
-[card]
-name=Tower of the Magistrate
-auto={t}:add{1}
-auto={1}{t}:target(creature)
-text={T}: Add {1} to your mana pool. -- {1}, {T}: Target creature gains protection from artifacts until end of turn.
-type=Land
 [/card]
 [card]
 name=Toymaker
@@ -25220,15 +25182,7 @@ text=Tap target untapped creature. It deals damage equal to its power to its con
 mana={4}{BR}
 type=Sorcery
 [/card]
-[card]
-name=Transguild Courier
-text=Transguild Courier is all colors (even if this card isn't on the battlefield).
-mana={4}
-type=Artifact Creature
-subtype=Golem
-power=3
-toughness=3
-[/card]
+
 [card]
 name=Transmogrifying Licid
 text={1}, {T}: Transmogrifying Licid loses this ability and becomes an Aura enchantment with enchant creature. Attach it to target creature. You may pay {1} to end this effect. -- Enchanted creature gets +1/+1 and is an artifact in addition to its other types.
@@ -25243,15 +25197,6 @@ name=Transmute Artifact
 text=As an additional cost to cast Transmute Artifact, sacrifice an artifact. -- Search your library for an artifact card. If that card's converted mana cost is less than or equal to the sacrificed artifact's converted mana cost, put it onto the battlefield. If it's greater, you may pay {X}, where X is the difference. If you do, put it onto the battlefield. If you don't, put it into its owner's graveyard. Then shuffle your library.
 mana={U}{U}
 type=Sorcery
-[/card]
-[card]
-name=Trap Digger
-text={2}{W}, {T}: Put a trap counter on target land you control. -- Sacrifice a land with a trap counter on it: Trap Digger deals 3 damage to target attacking creature without flying.
-mana={3}{W}
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=3
 [/card]
 [card]
 name=Trap Runner
@@ -25640,13 +25585,6 @@ mana={1}{B}{B}
 type=Sorcery
 [/card]
 [card]
-name=Unchecked Growth
-text=Target creature gets +4/+4 until end of turn. If it's a Spirit, it gains trample until end of turn.
-mana={2}{G}
-type=Instant
-subtype=Arcane
-[/card]
-[card]
 name=Undergrowth
 text=As an additional cost to cast Undergrowth, you may pay {2}{R}. -- Prevent all combat damage that would be dealt this turn. If its additional cost was paid, Undergrowth doesn't affect combat damage that would be dealt by red creatures.
 mana={G}
@@ -25699,12 +25637,6 @@ type=Sorcery
 name=Unholy Citadel
 text=Black legendary creatures you control have "bands with other legendary creatures." (Any legendary creatures can attack in a band as long as at least one has "bands with other legendary creatures." Bands are blocked as a group. If at least two legendary creatures you control, one of which has "bands with other legendary creatures," are blocking or being blocked by the same creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
 type=Land
-[/card]
-[card]
-name=Unified Strike
-text=Exile target attacking creature if its power is less than or equal to the number of Soldiers on the battlefield.
-mana={W}
-type=Instant
 [/card]
 [card]
 name=Unifying Theory
@@ -25877,13 +25809,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Utopia Vow
-text=Enchant creature -- Enchanted creature can't attack or block. -- Enchanted creature has "{T}: Add one mana of any color to your mana pool."
-mana={1}{G}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Uyo, Silent Prophet
 text=Flying -- {2}, Return two lands you control to their owner's hand: Copy target instant or sorcery spell. You may choose new targets for the copy.
 mana={4}{U}{U}
@@ -25910,15 +25835,6 @@ text=Play with the top card of your library revealed. -- As long as the top card
 mana={1}{B}{B}{B}
 type=Creature
 subtype=Vampire
-power=3
-toughness=3
-[/card]
-[card]
-name=Vampiric Sliver
-text=All Sliver creatures have "Whenever a creature dealt damage by this creature this turn is put into a graveyard, put a +1/+1 counter on this creature."
-mana={3}{B}
-type=Creature
-subtype=Sliver
 power=3
 toughness=3
 [/card]
@@ -26086,20 +26002,6 @@ mana={4}{G}
 type=Enchantment
 [/card]
 [card]
-name=Verdeloth the Ancient
-kicker={X}
-auto=lord(treefolk) 1/1 other
-auto=lord(saproling) 1/1 other
-auto=kicker token(saproling,creature saproling,1/1,green)*x
-##doesn't yet work
-text=Kicker {X} (You may pay an additional {X} as you cast this spell.) -- Saproling creatures and other Treefolk creatures get +1/+1. -- When Verdeloth the Ancient enters the battlefield, if it was kicked, put X 1/1 green Saproling creature tokens onto the battlefield.
-mana={4}{G}{G}
-type=Legendary Creature
-subtype=Treefolk
-power=4
-toughness=7
-[/card]
-[card]
 name=Vernal Equinox
 text=Any player may play creature and enchantment cards as though they had flash.
 mana={3}{G}
@@ -26140,15 +26042,6 @@ type=Creature
 subtype=Human Soldier Scout
 power=1
 toughness=1
-[/card]
-[card]
-name=Veteran's Voice
-target=creature|mybattlefield
-auto=lord(mytgt) {T}:2/1 target(other creature)
-text=Enchant creature you control -- Enchanted creature has "{T}: Target creature other than this creature gets +2/+1 until end of turn."
-mana={R}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Vexing Arcanix
@@ -26275,22 +26168,6 @@ name=Violent Ultimatum
 text=Destroy three target permanents.
 mana={B}{B}{R}{R}{R}{G}{G}
 type=Sorcery
-[/card]
-[card]
-name=Viridian Longbow
-text=Equipped creature has "{T}: This creature deals 1 damage to target creature or player." -- Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
-mana={1}
-type=Artifact
-subtype=Equipment
-[/card]
-[card]
-name=Virulent Sliver
-text=All Sliver creatures have poisonous 1. (Whenever a Sliver deals combat damage to a player, that player gets a poison counter. A player with ten or more poison counters loses the game.)
-mana={G}
-type=Creature
-subtype=Sliver
-power=1
-toughness=1
 [/card]
 [card]
 name=Viscera Seer
@@ -26516,15 +26393,6 @@ mana={4}{U}{U}
 type=Sorcery
 [/card]
 [card]
-name=Walker of Secret Ways
-text=Ninjutsu {1}{U} ({1}{U}, Return an unblocked attacker you control to hand: Put this card onto the battlefield from your hand tapped and attacking.) -- Whenever Walker of Secret Ways deals combat damage to a player, look at that player's hand. -- {1}{U}: Return target Ninja you control to its owner's hand. Activate this ability only during your turn.
-mana={2}{U}
-type=Creature
-subtype=Human Ninja
-power=1
-toughness=2
-[/card]
-[card]
 name=Walking Desecration
 text={B}, {T}: Creatures of the creature type of your choice attack this turn if able.
 mana={2}{B}
@@ -26709,15 +26577,6 @@ mana={2}{U}
 type=Enchantment
 [/card]
 [card]
-name=Warbreak Trumpeter
-text=Morph {X}{X}{R} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Warbreak Trumpeter is turned face up, put X 1/1 red Goblin creature tokens onto the battlefield.
-mana={R}
-type=Creature
-subtype=Goblin
-power=1
-toughness=1
-[/card]
-[card]
 name=Ward of Bones
 text=Each opponent who controls more creatures than you can't play creature cards. The same is true for artifacts, enchantments, and lands.
 mana={6}
@@ -26821,15 +26680,6 @@ type=Artifact Creature
 subtype=Hound
 power=1
 toughness=2
-[/card]
-[card]
-name=Waterspout Djinn
-text=Flying -- At the beginning of your upkeep, sacrifice Waterspout Djinn unless you return an untapped Island you control to its owner's hand.
-mana={2}{U}{U}
-type=Creature
-subtype=Djinn
-power=4
-toughness=4
 [/card]
 [card]
 name=Waterspout Elemental
@@ -26974,12 +26824,6 @@ text=Enchant creature -- Enchanted creature can't attack. -- Tap two untapped cr
 mana={1}{W}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Weight of Spires
-text=Weight of Spires deals damage to target creature equal to the number of nonbasic lands that creature's controller controls.
-mana={R}
-type=Instant
 [/card]
 [card]
 name=Weird Harvest
@@ -27149,13 +26993,6 @@ name=Wild Evocation
 text=At the beginning of each player's upkeep, that player reveals a card at random from his or her hand. If it's a land card, the player puts in onto battlefield. Otherwise, the players casts it without paying its mana cost if able.
 mana={5}{R}
 type=Instant
-[/card]
-[card]
-name=Wild Growth
-text=Enchant land -- Whenever enchanted land is tapped for mana, its controller adds {G} to his or her mana pool (in addition to the mana the land produces).
-mana={G}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Wild Mammoth
@@ -27346,16 +27183,6 @@ mana={3}
 type=Artifact
 [/card]
 [card]
-name=Wirewood Symbiote
-auto=aslongas(elf|myBattlefield){0}:moveto(ownerhand) target(elf|myBattlefield) && untap target(creature) limit:1
-text=Return an Elf you control to its owner's hand: Untap target creature. Activate this ability only once each turn.
-mana={G}
-type=Creature
-subtype=Insect
-power=1
-toughness=1
-[/card]
-[card]
 name=Wishmonger
 text={2}: Target creature gains protection from the color of its controller's choice until end of turn. Any player may activate this ability.
 mana={3}{W}
@@ -27394,12 +27221,6 @@ text=Enchant creature -- Whenever a player cycles a card, put a plague counter o
 mana={B}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Withering Wisps
-text=At the beginning of the end step, if no creatures are on the battlefield, sacrifice Withering Wisps. -- {B}: Withering Wisps deals 1 damage to each creature and each player. Activate this ability no more times each turn than the number of snow Swamps you control.
-mana={1}{B}{B}
-type=Enchantment
 [/card]
 [card]
 name=Wizard Replica
@@ -27615,12 +27436,6 @@ mana={W}
 type=Instant
 [/card]
 [card]
-name=Wrap in Vigor
-text=Regenerate each creature you control.
-mana={1}{G}
-type=Instant
-[/card]
-[card]
 name=Wren's Run Vanquisher
 text=As an additional cost to cast Wren's Run Vanquisher, reveal an Elf card from your hand or pay {3}. -- Deathtouch (Creatures dealt damage by this creature are destroyed. You can divide this creature's combat damage among any of the creatures blocking or blocked by it.)
 mana={1}{G}
@@ -27769,15 +27584,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Yore-Tiller Nephilim
-text=Whenever Yore-Tiller Nephilim attacks, return target creature card from your graveyard to the battlefield tapped and attacking.
-mana={W}{U}{B}{R}
-type=Creature
-subtype=Nephilim
-power=2
-toughness=2
-[/card]
-[card]
 name=Yosei, the Morning Star
 text=Flying -- When Yosei, the Morning Star is put into a graveyard from the battlefield, target player skips his or her next untap step. Tap up to five target permanents that player controls.
 mana={4}{W}{W}
@@ -27856,15 +27662,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Zirilan of the Claw
-text={1}{R}{R}, {T}: Search your library for a Dragon permanent card and put that card onto the battlefield. Then shuffle your library. That Dragon gains haste until end of turn. Exile it at the beginning of the next end step.
-mana={3}{R}{R}
-type=Legendary Creature
-subtype=Viashino Shaman
-power=3
-toughness=4
-[/card]
-[card]
 name=Zombie Boa
 text={1}{B}: Choose a color. Whenever Zombie Boa becomes blocked by a creature of that color this turn, destroy that creature. Activate this ability only any time you could cast a sorcery.
 mana={4}{B}
@@ -27881,15 +27678,6 @@ type=Creature
 subtype=Zombie
 power=5
 toughness=4
-[/card]
-[card]
-name=Zombie Mob
-text=Zombie Mob enters the battlefield with a +1/+1 counter on it for each creature card in your graveyard. -- When Zombie Mob enters the battlefield, exile all creature cards from your graveyard.
-mana={2}{B}{B}
-type=Creature
-subtype=Zombie
-power=2
-toughness=0
 [/card]
 [card]
 name=Zombie Musher
