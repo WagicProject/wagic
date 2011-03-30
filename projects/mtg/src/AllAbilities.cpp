@@ -17,6 +17,7 @@ int GenericActivatedAbility::resolve()
     counters++;
     ManaCost * diff = abilityCost->Diff(cost);
     source->X = diff->hasX();
+    source->XX = source->X/2;
     SAFE_DELETE(diff);
     //SAFE_DELETE(abilityCost); this line has been reported as a bug. removing it doesn't seem to break anything, although I didn't get any error in the test suite by leaving it either, so... leaving it for now as a comment, in case.
     ability->target = target; //may have been updated...
