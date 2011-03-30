@@ -41640,7 +41640,7 @@ subtype=Aura
 [/card]
 [card]
 name=Mwonvuli Ooze
-auto=thisforeach(counter{0/0.1.Age}) 1/1
+auto=thisforeach(counter{0/0.1.Age}) 2/2
 auto=cumulativeupcost[{2}] sacrifice
 text=Cumulative upkeep {2} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay {2} for each age counter on it.) -- Mwonvuli Ooze's power and toughness are each equal to 1 plus twice the number of age counters on it.
 mana={G}
