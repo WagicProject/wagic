@@ -2080,7 +2080,7 @@ type=Instant
 [card]
 name=Animate Wall
 target=wall
-auto=-defender
+auto=canattack
 text=Enchant Wall -- Enchanted Wall can attack as though it didn't have defender.
 mana={W}
 type=Enchantment
@@ -13906,7 +13906,7 @@ type=Enchantment
 [card]
 name=Dark Maze
 abilities=defender
-auto={0}:-defender && phaseaction[endofturn] moveTo(exile)
+auto={0}:canattack ueot && phaseaction[endofturn] moveTo(exile)
 text=Defender (This creature can't attack.) -- {0}: Dark Maze can attack this turn as though it didn't have defender. Exile it at the beginning of the next end step.
 mana={4}{U}
 type=Creature
@@ -40212,7 +40212,7 @@ toughness=4
 [card]
 name=Mirror Wall
 abilities=defender
-auto={W}:-defender
+auto={W}:canattack ueot
 text=Defender (This creature can't attack.) -- {W}: Mirror Wall can attack this turn as though it didn't have defender.
 mana={3}{U}
 type=Creature
@@ -40464,7 +40464,7 @@ type=Sorcery
 [card]
 name=Mobile Fort
 abilities=defender
-auto={3}:3/-1 && -defender limit:1
+auto={3}:3/-1 && canattack ueot limit:1
 text=Defender (This creature can't attack.) -- {3}: Mobile Fort gets +3/-1 until end of turn and can attack this turn as though it didn't have defender. Activate this ability only once each turn.
 mana={4}
 type=Artifact Creature
@@ -47979,7 +47979,7 @@ name=Prison Barricade
 abilities=defender
 kicker={1}{W}
 auto=kicker counter(1/1,1)
-auto=kicker -defender
+auto=kicker canattack
 text=Defender (This creature can't attack.) -- Kicker {1}{W} (You may pay an additional {1}{W} as you cast this spell.) -- If Prison Barricade was kicked, it enters the battlefield with a +1/+1 counter on it and with "Prison Barricade can attack as though it didn't have defender."
 mana={1}{W}
 type=Creature
@@ -52128,7 +52128,7 @@ type=Sorcery
 [/card]
 [card]
 name=Rolling Stones
-auto=lord(wall) -defender
+auto=lord(wall) canattack
 text=Wall creatures can attack as though they didn't have defender.
 mana={1}{W}
 type=Enchantment
@@ -58501,7 +58501,7 @@ toughness=1
 name=Slithering Shade
 abilities=defender
 auto={B}:1/1
-auto=aslongas(*|myHand) -defender <1
+auto=aslongas(*|myHand) canattack while <1
 text=Defender (This creature can't attack.) -- {B}: Slithering Shade gets +1/+1 until end of turn. -- Hellbent - Slithering Shade can attack as though it didn't have defender as long as you have no cards in hand.
 mana={B}
 type=Creature
@@ -60380,7 +60380,7 @@ toughness=4
 [card]
 name=Spire Serpent
 abilities=defender
-auto=aslongas(artifact|mybattlefield) -defender >2
+auto=aslongas(artifact|mybattlefield) canattack >2
 auto=aslongas(artifact|mybattlefield) 2/2 >2
 text=Defender -- Metalcraft - As long as you control three or more artifacts, Spire Serpent gets +2/+2 and can attack as though it didn't have defender.
 mana={4}{U}
@@ -71309,7 +71309,7 @@ toughness=1
 [card]
 name=Wakestone Gargoyle
 abilities=defender,flying
-auto={1}{W}:lord(creature[defender]|myBattlefield) -defender
+auto={1}{W}:lord(creature[defender]|myBattlefield) canattack
 text=Defender (This creature can't attack.) -- Flying -- {1}{W}: Creatures you control with defender can attack this turn as though they didn't have defender.
 mana={3}{W}
 type=Creature
@@ -71401,7 +71401,7 @@ toughness=1
 [card]
 name=Walking Wall
 abilities=defender
-auto={3}:-defender && 3/-1 limit:1
+auto={3}:canattack ueot && 3/-1 limit:1
 text=Defender -- {3}: Walking Wall gets +3/-1 until end of turn and can attack this turn as though it didn't have defender. Activate this ability only once each turn.
 mana={4}
 type=Artifact Creature
@@ -71830,7 +71830,7 @@ toughness=5
 [card]
 name=Wall of Wonder
 abilities=defender
-auto={2}{U}{U}:4/-4 && -defender
+auto={2}{U}{U}:4/-4 && canattack ueot
 text=Defender (This creature can't attack.) -- {2}{U}{U}: Wall of Wonder gets +4/-4 until end of turn and can attack this turn as though it didn't have defender.
 mana={2}{U}{U}
 type=Creature
@@ -72092,7 +72092,7 @@ subtype=Equipment
 name=Warmonger's Chariot
 auto={3}:equip
 auto=2/2
-auto=-defender
+auto=teach(creature[defender]) canattack
 text=Equipped creature gets +2/+2. -- As long as equipped creature has defender, it can attack as though it didn't have defender. -- Equip {3}
 mana={2}
 type=Artifact
