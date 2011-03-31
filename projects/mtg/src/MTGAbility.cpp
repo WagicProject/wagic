@@ -2577,7 +2577,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 size_t NewSkill = abilities[j].find("[");
                 size_t NewSkillEnd = abilities[j].rfind("]");
                 string newAbilities = abilities[j].substr(NewSkill + 1,NewSkillEnd - NewSkill - 1);
-                newAbilitiesList.push_back(newAbilities.c_str());
+                newAbilitiesList.push_back(newAbilities);
             }
         }
         MTGAbility * a;
