@@ -153,7 +153,7 @@ JSocket::JSocket()
   Adresse_Socket_Connection.sin_family=AF_INET;
   Adresse_Socket_Connection.sin_port=htons(SERVER_PORT);
 
-  result=bind(mfd,
+  result=::bind(mfd,
     (struct sockaddr*)&Adresse_Socket_Connection,
     sizeof(Adresse_Socket_Connection));
   if(result!=0){
