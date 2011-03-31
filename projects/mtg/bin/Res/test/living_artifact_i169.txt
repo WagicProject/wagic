@@ -12,10 +12,13 @@ Living Artifact
 Sol Ring
 shock
 p1
+eot
+eot
+goto myupkeep
 Living Artifact
 Living Artifact
 [ASSERT]
-firstmain
+upkeep
 [PLAYER1]
 inplay:Sol Ring,Living Artifact
 life:19
