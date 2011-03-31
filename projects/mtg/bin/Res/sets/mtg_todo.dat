@@ -8939,16 +8939,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Goatnapper
-auto=target(Goat) moveto(mybattlefield) && transforms((,haste)) && phaseaction[endofturn] moveto(ownerbattlefield)
-text=When Goatnapper enters the battlefield, untap target Goat and gain control of it until end of turn. It gains haste until end of turn.
-mana={2}{R}
-type=Creature
-subtype=Goblin Rogue
-power=2
-toughness=2
-[/card]
-[card]
 name=Goblin Archaeologist
 text={R}, {T}: Flip a coin. If you win the flip, destroy target artifact and untap Goblin Archaeologist. If you lose the flip, sacrifice Goblin Archaeologist.
 mana={1}{R}

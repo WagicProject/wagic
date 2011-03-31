@@ -10784,6 +10784,16 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Goatnapper
+auto=choice target(goat) moveto(mybattlefield) && transforms((,haste,newability[untap],newability[phaseaction[endofturn] moveto(ownerbattlefield)])) ueot
+text=When Goatnapper enters the battlefield, untap target Goat and gain control of it until end of turn. It gains haste until end of turn.
+mana={2}{R}
+type=Creature
+subtype=Goblin Rogue
+power=2
+toughness=2
+[/card]
+[card]
 name=Gobhobbler Rats
 mana={B}{R}
 text=Hellbent -- As long as you have no cards in hand, Gobhobbler Rats gets +1/+0 and has "{B}: Regenerate Gobhobbler Rats."
