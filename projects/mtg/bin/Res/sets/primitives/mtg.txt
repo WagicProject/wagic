@@ -47931,11 +47931,11 @@ toughness=4
 [/card]
 [card]
 name=Prismatic Lace
-auto=name(white) && target(*|myBattlefield) transforms((,white)) forever
-auto=name(blue) && target(*|myBattlefield) transforms((,blue)) forever
-auto=name(black) && target(*|myBattlefield) transforms((,black)) forever
-auto=name(red) && target(*|myBattlefield) transforms((,red)) forever
-auto=name(green) && target(*|myBattlefield) transforms((,green)) forever
+auto=choice name(white) && target(*) transforms((,white)) forever
+auto=choice name(blue) && target(*) transforms((,blue)) forever
+auto=choice name(black) && target(*) transforms((,black)) forever
+auto=choice name(red) && target(*) transforms((,red)) forever
+auto=choice name(green) && target(*) transforms((,green)) forever
 text=Target permanent becomes the color or colors of your choice. (This effect lasts indefinitely.)
 mana={U}
 type=Instant
