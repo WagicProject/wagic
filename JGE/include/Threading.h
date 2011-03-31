@@ -19,33 +19,28 @@ namespace boost
     /**
     ** PSP specific variant of a boost mutex & scoped_lock 
     */
+
+    template <class Mutex>
+    struct unique_lock
+    {
+        unique_lock(Mutex& inMutex) : mMutex(&inMutex)
+        {
+            mMutex->lock();
+        }
+
+        ~unique_lock()
+        {
+            mMutex->unlock();
+        }
+
+        Mutex* mMutex;
+    };
+
     class mutex
     {
     public:
-        struct scoped_lock
-        {
-            scoped_lock(mutex& inMutex) : mID(inMutex.mID)
-            {
-                int result = sceKernelWaitSema(mID, 1, 0);
-                if (result < 0)
-                {
-                    LOG("Semaphore error on lock acquire, mutex id: ");
-                    LOG((char*)mID);
-                }
-            }
 
-            ~scoped_lock()
-            {
-                int result = sceKernelSignalSema(mID, 1);
-                if (result < 0)
-                {
-                    LOG("Semaphore error on lock release, mutex id: ");
-                    LOG((char*)mID);
-                }
-            }
-
-            int mID;
-        };
+        typedef unique_lock<mutex> scoped_lock;
 
         mutex()
         {
@@ -56,9 +51,108 @@ namespace boost
         {
             sceKernelDeleteSema(mID);
         }
+        
+        void lock()
+        {
+            int result = sceKernelWaitSema(mID, 1, 0);
+            if (result < 0)
+            {
+                LOG("Semaphore error on lock acquire, mutex id: ");
+                LOG((char*)mID);
+            }
+        }
+
+        void unlock()
+        {
+            int result = sceKernelSignalSema(mID, 1);
+            if (result < 0)
+            {
+                LOG("Semaphore error on lock release, mutex id: ");
+                LOG((char*)mID);
+            }
+        }
 
         int mID;
+
+    private:
+        mutex(mutex const&);
+        mutex& operator=(mutex const&);
     };
+
+
+
+    class recursive_mutex
+    {
+    public:
+
+        typedef unique_lock<recursive_mutex> scoped_lock;
+
+        recursive_mutex() : mRecursionCount(0)
+        {
+            mID = sceKernelCreateSema("Unnamed", 0, 1, 1, 0);
+        }
+
+        ~recursive_mutex()
+        {
+            sceKernelDeleteSema(mID);
+        }
+
+        void lock()
+        {
+            int currentThreadID = sceKernelGetThreadId();
+
+            if (!try_recursive_lock(currentThreadID))
+            {
+                int result = sceKernelWaitSema(mID, 1, 0);
+                if (result < 0)
+                {
+                    LOG("Semaphore error on lock acquire, mutex id: ");
+                    LOG((char*)mID);
+                }
+                else
+                {
+                    mThreadID = currentThreadID;
+                    mRecursionCount = 1;
+                }
+            }
+        }
+
+        void unlock()
+        {
+
+            if(!--mRecursionCount)
+            {
+                mThreadID = 0;
+
+                int result = sceKernelSignalSema(mID, 1);
+                if (result < 0)
+                {
+                    LOG("Semaphore error on lock release, mutex id: ");
+                    LOG((char*)mID);
+                }
+            }
+
+        }
+        
+        int mID;
+        int mThreadID;
+        volatile int mRecursionCount;
+
+    private:
+        recursive_mutex(recursive_mutex const&);
+        recursive_mutex& operator=(recursive_mutex const&);
+
+        bool try_recursive_lock(int inThreadID)
+        {
+            if (mThreadID == inThreadID)
+            {
+                ++mRecursionCount;
+                return true;
+            }
+            return false;
+        }
+    };
+
 
     /**
     ** Emulating boost::thread configuration glue, with some shortcuts 
@@ -147,7 +241,7 @@ namespace boost
             CallbackData callbackData(mThreadInfo);
 
             LOG("Creating SCE Thread");
-            mThreadProcID = sceKernelCreateThread( typeid(a1).name(), thread::ThreadProc, 0x12, 0x20000, PSP_THREAD_ATTR_USER, NULL);
+            mThreadProcID = sceKernelCreateThread( typeid(a1).name(), thread::ThreadProc, 0x15, 0x40000, PSP_THREAD_ATTR_USER, NULL);
             if (mThreadProcID > 0)
             {
                 sceKernelStartThread(mThreadProcID, sizeof(CallbackData), &callbackData);
