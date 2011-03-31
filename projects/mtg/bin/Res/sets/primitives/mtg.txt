@@ -52168,7 +52168,7 @@ toughness=2
 [/card]
 [card]
 name=Ronin Warclub
-auto=@movedto(creature|battlefield):choice all(trigger[to]) retarget
+auto=@movedto(creature|myBattlefield):choice all(trigger[to]) retarget
 auto=+2/+1
 text=Equipped creature gets +2/+1. -- Whenever a creature enters the battlefield under your control, attach Ronin Warclub to that creature. -- Equip {5} ({5}: Attach to target creature you control. Equip only as a sorcery.)
 mana={3}
@@ -60013,7 +60013,7 @@ auto={C(0/0,-1,Charge)}{T}:Add{U}
 auto={C(0/0,-1,Charge)}{T}:Add{B}
 auto={C(0/0,-1,Charge)}{T}:Add{R}
 auto={C(0/0,-1,Charge)}{T}:Add{G}
-text=Living weapon (When this Equipment enters the battlefield, put a 0/0 black Germ creature token onto the battlefield, then attach this to it.) -- Equipped creature gets +1/+1. -- Equip {2}
+text=Sphere of the Suns enters the battlefield tapped and with three charge counters on it. -- {T}, Remove a charge counter from Sphere of the Suns: Add one mana of any color to your mana pool.
 mana={2}
 type=Artifact
 [/card]
