@@ -129,7 +129,7 @@ private:
 	string mZipFileName;
 	char *mPassword;
 	bool mZipAvailable;
-  void preloadZip(string filename);
+  	void preloadZip(const string& filename);
 #if defined (WIN32) || defined (LINUX) || defined(IOS)
 	FILE *mFile;
 #else

@@ -9,7 +9,7 @@
 //-------------------------------------------------------------------------------------
 
 #ifdef WIN32
-        #pragma warning(disable : 4786)
+#pragma warning(disable : 4786)
 #endif
 
 #include "../include/JGE.h"
@@ -25,17 +25,21 @@
 #include <string>
 
 
-JZipCache::JZipCache(){}
+JZipCache::JZipCache()
+{}
 
-JZipCache::~JZipCache(){
-  map<string,unz_file_pos *>::iterator it;
-  for (it = dir.begin(); it != dir.end(); ++it){
-    delete(it->second);
-  }
-  dir.clear();
+JZipCache::~JZipCache()
+{
+    map<string,unz_file_pos *>::iterator it;
+    for (it = dir.begin(); it != dir.end(); ++it)
+    {
+        delete(it->second);
+    }
+    dir.clear();
 }
 
-void JFileSystem::preloadZip(string filename){
+void JFileSystem::preloadZip(const string& filename)
+{
     map<string,JZipCache *>::iterator it = mZipCache.find(filename);
     if (it != mZipCache.end()) return;
 
@@ -48,10 +52,12 @@ void JFileSystem::preloadZip(string filename){
         if (!mZipAvailable || !mZipFile) return;
     }
     int err = unzGoToFirstFile (mZipFile);
-    while (err == UNZ_OK){
+    while (err == UNZ_OK)
+    {
         unz_file_pos* filePos = new unz_file_pos();
         char filenameInzip[4096];
-        if (unzGetCurrentFileInfo(mZipFile, NULL, filenameInzip, sizeof(filenameInzip), NULL, 0, NULL, 0) == UNZ_OK){
+        if (unzGetCurrentFileInfo(mZipFile, NULL, filenameInzip, sizeof(filenameInzip), NULL, 0, NULL, 0) == UNZ_OK)
+        {
             unzGetFilePos(mZipFile, filePos);
             string name = filenameInzip;
             cache->dir[name] = filePos;
@@ -64,97 +70,97 @@ JFileSystem* JFileSystem::mInstance = NULL;
 
 JFileSystem* JFileSystem::GetInstance()
 {
-	if (mInstance == NULL)
-	{
-		mInstance = new JFileSystem();
-	}
+    if (mInstance == NULL)
+    {
+        mInstance = new JFileSystem();
+    }
 
-	return mInstance;
+    return mInstance;
 }
 
 
 void JFileSystem::Destroy()
 {
-	if (mInstance)
-	{
-		delete mInstance;
-		mInstance = NULL;
-	}
+    if (mInstance)
+    {
+        delete mInstance;
+        mInstance = NULL;
+    }
 }
 
 
 JFileSystem::JFileSystem()
 {
-	mZipAvailable = false;
+    mZipAvailable = false;
 #if defined (WIN32) || defined (LINUX) || defined (IOS)
-	mFile = NULL;
+    mFile = NULL;
 #else
-	mFile = -1;
+    mFile = -1;
 #endif
-	mPassword = NULL;
-	mZipFile = NULL;
-	mFileSize = 0;
+    mPassword = NULL;
+    mZipFile = NULL;
+    mFileSize = 0;
 
 #ifdef RESPATH
-	SetResourceRoot(RESPATH"/");
+    SetResourceRoot(RESPATH"/");
 #else
-	SetResourceRoot("Res/");				// default root folder
+    SetResourceRoot("Res/");				// default root folder
 #endif
 }
 
 
 JFileSystem::~JFileSystem()
 {
-	DetachZipFile();
-	
-  map<string,JZipCache *>::iterator it;
-  for (it = mZipCache.begin(); it != mZipCache.end(); ++it){
-    delete(it->second);
-  }
-  mZipCache.clear();	
+    DetachZipFile();
+
+    map<string,JZipCache *>::iterator it;
+    for (it = mZipCache.begin(); it != mZipCache.end(); ++it){
+        delete(it->second);
+    }
+    mZipCache.clear();	
 }
 
 
 bool JFileSystem::AttachZipFile(const string &zipfile, char *password /* = NULL */)
 {
-	if (mZipAvailable && mZipFile != NULL)
-	{
-		if (mZipFileName != zipfile)
-			DetachZipFile();		// close the previous zip file
-    else
-      return true;
-	}
+    if (mZipAvailable && mZipFile != NULL)
+    {
+        if (mZipFileName != zipfile)
+            DetachZipFile();		// close the previous zip file
+        else
+            return true;
+    }
 
-	mZipFileName = zipfile;
-	mPassword = password;
+    mZipFileName = zipfile;
+    mPassword = password;
 
-	mZipFile = unzOpen(mZipFileName.c_str());
+    mZipFile = unzOpen(mZipFileName.c_str());
 
-	if (mZipFile != NULL)
-	{
-		mZipAvailable = true;
-		return true;
-	}
+    if (mZipFile != NULL)
+    {
+        mZipAvailable = true;
+        return true;
+    }
 
-	return false;
+    return false;
 }
 
 
 void JFileSystem::DetachZipFile()
 {
-	if (mZipAvailable && mZipFile != NULL)
-	{
-		int error = unzCloseCurrentFile(mZipFile);
+    if (mZipAvailable && mZipFile != NULL)
+    {
+        int error = unzCloseCurrentFile(mZipFile);
         if (error < 0 )
             JLOG("error calling unzCloseCurrentFile");
-            
+
         error = unzClose(mZipFile);
         if (error < 0)
             JLOG("Error calling unzClose");
-	}
+    }
 
-	mZipFile = NULL;
-	mZipAvailable = false;
+    mZipFile = NULL;
+    mZipAvailable = false;
 }
 
 
@@ -217,63 +223,64 @@ bool JFileSystem::OpenFile(const string &filename)
 
 void JFileSystem::CloseFile()
 {
-  if (mZipAvailable && mZipFile != NULL){
-    unzCloseCurrentFile(mZipFile);
-		return;
-  }
+    if (mZipAvailable && mZipFile != NULL)
+    {
+        unzCloseCurrentFile(mZipFile);
+        return;
+    }
 
-	#if defined (WIN32) || defined (LINUX) || defined (IOS)
-		if (mFile != NULL)
-			fclose(mFile);
-	#else
-		if (mFile > 0)
-			sceIoClose(mFile);
-	#endif
+#if defined (WIN32) || defined (LINUX) || defined (IOS)
+    if (mFile != NULL)
+        fclose(mFile);
+#else
+    if (mFile > 0)
+        sceIoClose(mFile);
+#endif
 }
 
 
 int JFileSystem::ReadFile(void *buffer, int size)
 {
-	if (mZipAvailable && mZipFile != NULL)
-	{
-		return unzReadCurrentFile(mZipFile, buffer, size);
-	}
-	else
-	{
-		#if defined (WIN32) || defined (LINUX) || defined (IOS)
-			return fread(buffer, 1, size, mFile);
-		#else
-			return sceIoRead(mFile, buffer, size);
-		#endif
-	}
+    if (mZipAvailable && mZipFile != NULL)
+    {
+        return unzReadCurrentFile(mZipFile, buffer, size);
+    }
+    else
+    {
+#if defined (WIN32) || defined (LINUX) || defined (IOS)
+        return fread(buffer, 1, size, mFile);
+#else
+        return sceIoRead(mFile, buffer, size);
+#endif
+    }
 }
 
 
 int JFileSystem::GetFileSize()
 {
-	return mFileSize;
+    return mFileSize;
 }
 
 
 void JFileSystem::SetResourceRoot(const string& resourceRoot)
 {
 #ifdef IOS
-	NSString *pathUTF8 = [NSString stringWithUTF8String: resourceRoot.c_str()];
-	NSString *fullpath = [[[NSBundle mainBundle] resourcePath]  stringByAppendingPathComponent:pathUTF8]; 
-	mResourceRoot = [fullpath cStringUsingEncoding:1];
-	mResourceRoot += "/";
+    NSString *pathUTF8 = [NSString stringWithUTF8String: resourceRoot.c_str()];
+    NSString *fullpath = [[[NSBundle mainBundle] resourcePath]  stringByAppendingPathComponent:pathUTF8]; 
+    mResourceRoot = [fullpath cStringUsingEncoding:1];
+    mResourceRoot += "/";
 #else
-	mResourceRoot = resourceRoot;
+    mResourceRoot = resourceRoot;
 #endif
 }
 
 string JFileSystem::GetResourceRoot() 
 {
-  return mResourceRoot;
+    return mResourceRoot;
 }
 
 string JFileSystem::GetResourceFile(string filename) 
 {
-  string result = mResourceRoot;
-  return result.append(filename);
+    string result = mResourceRoot;
+    return result.append(filename);
 }
