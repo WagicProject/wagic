@@ -3181,11 +3181,15 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
     GameObserver * game = GameObserver::GetInstance();
     MTGPlayerCards * zones = card->controller()->game;
 
-    int id = card->getId();
+    int id = 0;
     if (card->alias)
         id = card->alias;
     switch (id)
     {
+    case 0:
+    {
+    break;
+    }
     case 1092: //Aladdin's lamp
     {
         AAladdinsLamp * ability = NEW AAladdinsLamp(_id, card);
