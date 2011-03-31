@@ -36350,9 +36350,7 @@ toughness=2
 [/card]
 [card]
 name=Life and Limb
-auto=lord(saproling|mybattlefield) transforms((forest land))
-auto=lord(saproling|mybattlefield) {T}:Add{G}
-auto=lord(forest) becomes(Saproling,Creature Saproling forest land,1/1,green)
+auto=lord(*[saproling;forest]) transforms((saproling forest creature land,setpower=1,settoughness=1,newability[{t}:add{g}]))
 text=All Forests and all Saprolings are 1/1 green Saproling creatures and Forest lands in addition to their other types.
 mana={3}{G}
 type=Enchantment
