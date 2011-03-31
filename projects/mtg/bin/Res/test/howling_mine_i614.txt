@@ -1,0 +1,23 @@
+#Testing Howling Mine Revised Edition
+[INIT]
+SECONDMAIN
+[PLAYER1]
+inplay:1112
+[PLAYER2]
+library:island,forest,mountain
+[DO]
+eot
+next
+#upkeep
+next
+#draw
+next
+#FIRSTMAIN
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:1112
+[PLAYER2]
+hand:mountain,forest
+library:island
+[END]

@@ -324,6 +324,7 @@ hopping_automaton_i232.txt
 horned_helm.txt
 howl_from_beyond.txt
 howl_of_the_night_pack.txt
+howling_mine_i614.txt
 hunted_dragon.txt
 hunting_pack.txt
 hurricane.txt

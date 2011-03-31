@@ -3293,11 +3293,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
         game->addObserver(NEW AFireball(_id, card, spell, x));
         break;
     }
-    case 1112: //Howling Mine
-    {
-        game->addObserver(NEW AHowlingMine(_id, card));
-        break;
-    }
     case 1113: //Iron Star
     {
         int cost[] = { Constants::MTG_COLOR_ARTIFACT, 1 };

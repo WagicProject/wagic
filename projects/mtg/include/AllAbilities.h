@@ -2907,10 +2907,10 @@ public:
     string name;
     string sabilities;
     string starfound;
-    string spt;
     WParsedInt * multiplier;
     int who;
     bool aLivingWeapon;
+    string spt;
     bool battleReady;
     MTGCardInstance * myToken;
     vector<MTGAbility *> currentAbilities;
@@ -4483,36 +4483,6 @@ public:
     AFarmstead * clone() const
     {
         AFarmstead * a = NEW AFarmstead(*this);
-        a->isClone = 1;
-        return a;
-    }
-};
-
-//1112 Howling Mine
-class AHowlingMine: public MTGAbility
-{
-public:
-    AHowlingMine(int _id, MTGCardInstance * _source) :
-        MTGAbility(_id, _source)
-    {
-    }
-
-    void Update(float dt)
-    {
-        if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_DRAW && !source->isTapped())
-        {
-            game->mLayers->stackLayer()->addDraw(game->currentPlayer);
-        }
-    }
-
-    virtual ostream& toString(ostream& out) const
-    {
-        out << "AHowlingMine ::: (";
-        return MTGAbility::toString(out) << ")";
-    }
-    AHowlingMine * clone() const
-    {
-        AHowlingMine * a = NEW AHowlingMine(*this);
         a->isClone = 1;
         return a;
     }
