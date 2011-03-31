@@ -484,7 +484,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 else if (attribute.find("share!") != string::npos)
                 {
                     size_t start = attribute.find("share!");
-                    size_t end = attribute.find("!");
+                    size_t end = attribute.rfind("!");
                     string CDtype = attribute.substr(start + 6,end - start);
                     if(card->isSpell() && card->backupTargets[0]->typeAsTarget() == TARGET_STACKACTION)
                     {

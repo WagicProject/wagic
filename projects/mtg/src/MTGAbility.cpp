@@ -3451,16 +3451,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
         }
         break;
     }
-    case 1165: //Hypnotic Specter
-    {
-        game->addObserver(NEW AHypnoticSpecter(_id, card));
-        break;
-    }
-    case 1258: //Living Artifact
-    {
-        game->addObserver(NEW ALivingArtifact(_id, card, card->target));
-        break;
-    }
     case 1209: //Mana Short
     {
         Player * player = spell->getNextPlayerTarget();
@@ -3486,12 +3476,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
         }
         break;
     }
-    case 1172: //Pestilence
-    {
-        game->addObserver(NEW APestilence(_id, card));
-        break;
-    }
-
     case 1176: //Sacrifice
     {
         ASacrifice * ability = NEW ASacrifice(_id, card, card->target);
@@ -3642,22 +3626,12 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
 
         //-- addon 10E---
 
-    case 129710: //Angelic Chorus
-    {
-        game->addObserver(NEW AAngelicChorus(_id, card));
-        break;
-    }
-
     case 129767: //Threaten
     {
         game->addObserver(NEW AInstantControlSteal(_id, card, card->target));
         break;
     }
-    case 130373: //Lavaborn Muse
-    {
-        game->addObserver(NEW ALavaborn(_id, card, Constants::MTG_PHASE_UPKEEP, -3, -3));
-        break;
-    }
+  
     case 129774: // Traumatize
     {
         int nbcards;

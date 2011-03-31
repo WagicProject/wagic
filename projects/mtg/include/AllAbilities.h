@@ -139,6 +139,8 @@ public:
             }
             if(checkagain > intValue)
                 intValue = checkagain;
+            if(card && card->thatmuch > intValue)
+                intValue = card->thatmuch;
         }
         else if (s == "oplifelost")
         {
@@ -724,6 +726,7 @@ public:
         if (type == 2 && e->damage->typeOfDamage == DAMAGE_COMBAT) return 0;
         e->damage->target->thatmuch = e->damage->damage;
         e->damage->source->thatmuch = e->damage->damage;
+        this->source->thatmuch = e->damage->damage;
         triggeredTurn = g->turn;
         return 1;
     }
@@ -771,6 +774,7 @@ public:
         if (type == 1 && (e->amount > 0)) return 0;
         if (type == 0 && (e->amount < 0)) return 0;
         e->player->thatmuch = abs(e->amount);
+        this->source->thatmuch = abs(e->amount);
         return 1;
     }
 
@@ -4550,64 +4554,6 @@ public:
     }
 };
 
-//Living Artifact
-class ALivingArtifact: public MTGAbility
-{
-public:
-    int usedThisTurn;
-    int counters;
-    Damage * latest;
-    ALivingArtifact(int _id, MTGCardInstance * _source, MTGCardInstance * _target) :
-        MTGAbility(_id, _source, _target)
-    {
-        usedThisTurn = 0;
-        counters = 0;
-        latest = NULL;
-    }
-
-    int receiveEvent(WEvent * event)
-    {
-        WEventDamage * e = dynamic_cast<WEventDamage *> (event);
-        if (!e) return 0;
-        Player * p = dynamic_cast<Player *> (e->damage->target);
-        if (!p) return 0;
-        if (p != source->controller()) return 0;
-        counters += e->damage->damage;
-        return 1; //is this meant to return 0 or 1?
-    }
-
-    int isReactingtoclick(MTGCardInstance * card, ManaCost * mana = NULL)
-    {
-        if (currentPhase == Constants::MTG_PHASE_UPKEEP && card == source && game->currentPlayer == source->controller()
-                && counters && !usedThisTurn)
-        {
-            return 1;
-        }
-        return 0;
-    }
-
-    int reactToClick(MTGCardInstance * card)
-    {
-        source->controller()->life += 1;
-        counters--;
-        usedThisTurn = 1;
-        return 1;
-    }
-
-    virtual ostream& toString(ostream& out) const
-    {
-        out << "ALivingArtifact ::: usedThisTurn : " << usedThisTurn << " ; counters : " << counters << " ; latest : " << latest
-                << " (";
-        return MTGAbility::toString(out) << ")";
-    }
-    ALivingArtifact * clone() const
-    {
-        ALivingArtifact * a = NEW ALivingArtifact(*this);
-        a->isClone = 1;
-        return a;
-    }
-};
-
 //1143 Animate Dead
 class AAnimateDead: public MTGAbility
 {
@@ -4770,35 +4716,6 @@ public:
     }
 };
 
-//1165 Hypnotic Specter
-class AHypnoticSpecter: public MTGAbility
-{
-public:
-
-    AHypnoticSpecter(int _id, MTGCardInstance * _source) :
-        MTGAbility(_id, _source)
-    {
-    }
-
-    int receiveEvent(WEvent * event)
-    {
-        WEventDamage * e = dynamic_cast<WEventDamage *> (event);
-        if (!e) return 0;
-        if (e->damage->source != source) return 0;
-        Player * p = dynamic_cast<Player *> (e->damage->target);
-        if (!p) return 0;
-        p->game->discardRandom(p->game->hand, source);
-        return 1; //is this meant to return 0 or 1?
-    }
-
-    AHypnoticSpecter * clone() const
-    {
-        AHypnoticSpecter * a = NEW AHypnoticSpecter(*this);
-        a->isClone = 1;
-        return a;
-    }
-};
-
 //1117 Jandor's Ring
 class AJandorsRing: public ActivatedAbility
 {
@@ -4911,54 +4828,6 @@ public:
     }
 };
 
-//1172 Pestilence
-class APestilence: public ActivatedAbility
-{
-public:
-    APestilence(int _id, MTGCardInstance * card) :
-        ActivatedAbility(_id, card, NEW ManaCost(), 0, 0)
-    {
-        cost->add(Constants::MTG_COLOR_BLACK, 1);
-    }
-
-    void Update(float dt)
-    {
-        if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_ENDOFTURN)
-        {
-            if (!game->players[0]->game->inPlay->hasType("creature") && !game->players[1]->game->inPlay->hasType("creature"))
-            {
-                source->controller()->game->putInGraveyard(source);
-            }
-        }
-    }
-
-    int resolve()
-    {
-        for (int i = 0; i < 2; i++)
-        {
-            MTGInPlay * inplay = game->players[i]->game->inPlay;
-            for (int j = inplay->nb_cards - 1; j >= 0; j--)
-            {
-                if (inplay->cards[j]->isCreature()) game->mLayers->stackLayer()->addDamage(source, inplay->cards[j], 1);
-            }
-            game->mLayers->stackLayer()->addDamage(source, game->players[i], 1);
-        }
-        return 1;
-    }
-
-    virtual ostream& toString(ostream& out) const
-    {
-        out << "APestilence ::: (";
-        return ActivatedAbility::toString(out) << ")";
-    }
-    APestilence * clone() const
-    {
-        APestilence * a = NEW APestilence(*this);
-        a->isClone = 1;
-        return a;
-    }
-};
-
 //Power Leak
 class APowerLeak: public TriggeredAbility
 {
@@ -5060,52 +4929,6 @@ public:
     ASacrifice * clone() const
     {
         ASacrifice * a = NEW ASacrifice(*this);
-        a->isClone = 1;
-        return a;
-    }
-};
-
-//1178 Scavenging Ghoul
-class AScavengingGhoul: public MTGAbility
-{
-public:
-    int counters;
-    AScavengingGhoul(int _id, MTGCardInstance * _source, MTGCardInstance * _target) :
-        MTGAbility(_id, _source, _target)
-    {
-        counters = 0;
-    }
-
-    void Update(float dt)
-    {
-        //TODO
-    }
-
-    int isReactingToClick(MTGCardInstance * _card, ManaCost * mana = NULL)
-    {
-        if (counters > 0 && _card == source && game->currentlyActing()->game->inPlay->hasCard(source))
-        {
-            return 1;
-        }
-        return 0;
-    }
-
-    int reactToClick(MTGCardInstance * _card)
-    {
-        if (!isReactingToClick(_card)) return 0;
-        counters--;
-        source->regenerate();
-        return 1;
-    }
-
-    virtual ostream& toString(ostream& out) const
-    {
-        out << "AScavengingGhoul ::: counters : " << counters << " (";
-        return MTGAbility::toString(out) << ")";
-    }
-    AScavengingGhoul * clone() const
-    {
-        AScavengingGhoul * a = NEW AScavengingGhoul(*this);
         a->isClone = 1;
         return a;
     }
@@ -5448,77 +5271,6 @@ public:
     }
 };
 
-//Lavaborn - quick and very dirty ;) copy of ALifezonelink but without the multiplier.
-class ALavaborn: public MTGAbility
-{
-public:
-    int phase;
-    int condition;
-    int life;
-    int controller;
-    int nbcards;
-    MTGGameZone * zone;
-    ALavaborn(int _id, MTGCardInstance * card, int _phase, int _condition, int _life, int _controller = 0, MTGGameZone * _zone =
-            NULL) :
-        MTGAbility(_id, card)
-    {
-        phase = _phase;
-        condition = _condition;
-        controller = _controller;
-        life = _life;
-        zone = _zone;
-        if (zone == NULL)
-        {
-            if (controller)
-            {
-                zone = game->currentPlayer->game->hand;
-            }
-            else
-            {
-                zone = game->opponent()->game->hand;
-            }
-        }
-    }
-
-    void Update(float dt)
-    {
-        if (newPhase != currentPhase && newPhase == phase)
-        {
-            if ((controller && game->currentPlayer == source->controller()) || (!controller && game->currentPlayer
-                    != source->controller()))
-            {
-                if ((condition < 0 && zone->nb_cards < -condition) || (condition > 0 && zone->nb_cards > condition))
-                {
-                    int diff = zone->nb_cards - condition;
-                    if (condition < 0) diff = -condition - zone->nb_cards;
-                    if (life > 0)
-                    {
-                        game->currentPlayer->life += life;
-                    }
-                    else
-                    {
-                        game->mLayers->stackLayer()->addDamage(source, game->currentPlayer, -life);
-                    }
-                }
-            }
-        }
-    }
-    virtual ostream& toString(ostream& out) const
-    {
-        out << "ALavaborn ::: phase : " << phase << " ; condition : " << condition << " ; life : " << life << " ; controller : "
-                << controller << " ; nbcards : " << nbcards << " (";
-        return MTGAbility::toString(out) << ")";
-    }
-
-    ALavaborn * clone() const
-    {
-        ALavaborn * a = NEW ALavaborn(*this);
-        a->isClone = 1;
-        return a;
-    }
-
-};
-
 //Generic Millstone
 class AADepleter: public ActivatedAbilityTP
 {
@@ -5843,58 +5595,6 @@ public:
     AInstantControlSteal * clone() const
     {
         AInstantControlSteal * a = NEW AInstantControlSteal(*this);
-        a->isClone = 1;
-        return a;
-    }
-};
-
-//Angelic Chorus (10E)
-class AAngelicChorus: public ListMaintainerAbility
-{
-public:
-    int init;
-    AAngelicChorus(int id, MTGCardInstance * _source) :
-        ListMaintainerAbility(id, _source)
-    {
-        init = 0;
-    }
-
-    void Update(float dt)
-    {
-        ListMaintainerAbility::Update(dt);
-        init = 1;
-    }
-
-    int canBeInList(MTGCardInstance * card)
-    {
-        if (card->hasType(Subtypes::TYPE_CREATURE) && game->isInPlay(card)) return 1;
-        return 0;
-    }
-
-    int added(MTGCardInstance * card)
-    {
-        if (!init) return 0;
-        if (source->controller() == game->currentlyActing())
-        {
-            card->controller()->life += card->toughness;
-        }
-        return 1;
-    }
-
-    int removed(MTGCardInstance * card)
-    {
-        return 1;
-    }
-
-    virtual ostream& toString(ostream& out) const
-    {
-        out << "AAngelicChorus ::: init : " << init << " (";
-        return ListMaintainerAbility::toString(out) << ")";
-    }
-
-    AAngelicChorus * clone() const
-    {
-        AAngelicChorus * a = NEW AAngelicChorus(*this);
         a->isClone = 1;
         return a;
     }
