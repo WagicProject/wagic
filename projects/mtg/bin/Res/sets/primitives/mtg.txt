@@ -71722,7 +71722,7 @@ toughness=6
 [card]
 name=Wall of Roots
 abilities=defender
-auto={C(-0/-1,1)}:Add{G} limit:1
+auto={C(-0/-1,1)}:all(this) Add{G} limit:1
 text=Defender -- Put a -0/-1 counter on Wall of Roots: Add {G} to your mana pool. Activate this ability only once each turn.
 mana={1}{G}
 type=Creature
