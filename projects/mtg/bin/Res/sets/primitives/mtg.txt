@@ -30395,8 +30395,7 @@ subtype=Aura
 [card]
 name=Hypnotic Specter
 abilities=flying
-alias=1165
-text=Flying -- Whenever Hypnotic Specter deals damage to an opponent, that player discards a card at random.
+auto=@damaged(opponent) from(this):discard:1 opponent
 mana={1}{B}{B}
 type=Creature
 subtype=Specter
@@ -35763,7 +35762,7 @@ toughness=3
 [/card]
 [card]
 name=Lavaborn Muse
-alias=130373
+auto=@each opponentupkeep:aslongas(*|opponenthand) damage:3 <2
 text=At the beginning of each opponent's upkeep, if that player has two or fewer cards in hand, Lavaborn Muse deals 3 damage to him or her.
 mana={3}{R}
 type=Creature
@@ -36763,9 +36762,10 @@ toughness=3
 [card]
 name=Living Artifact
 target=artifact
-alias=1258
+auto=@damaged(controller):all(this) counter(0/0,thatmuch,vitality)
+auto={c(0/0,-1,vitality)}:life:1 controller limit:1 myupkeeponly
 text=Enchant artifact -- Whenever you're dealt damage, put that many vitality counters on Living Artifact. -- At the beginning of your upkeep, you may remove a vitality counter from Living Artifact. If you do, you gain 1 life.
-mana={G}
+mana={g}
 type=Enchantment
 subtype=Aura
 [/card]
@@ -40536,8 +40536,8 @@ toughness=1
 [card]
 name=Mogg Flunkies
 abilities=cantattack,cantblock
-auto=aslongas(creature[attacking]|myBattlefield) -cantattack
-auto=aslongas(creature[blocking]|myBattlefield) -cantblock
+auto=this(attacking) aslongas(creature[attacking]|myBattlefield) removefromcombat <2
+auto=this(blocking) aslongas(creature[blocking]|myBattlefield) removefromcombat <2
 text=Mogg Flunkies can't attack or block alone.
 mana={1}{R}
 type=Creature
@@ -46034,7 +46034,8 @@ toughness=1
 [/card]
 [card]
 name=Pestilence
-alias=1172
+auto=@each myendofturn: aslongas(creature|mybattlefield) all(this) sacrifice while <1
+auto={b}:damage:1 all(creature,player)
 text=At the beginning of the end step, if no creatures are on the battlefield, sacrifice Pestilence. -- {B}: Pestilence deals 1 damage to each creature and each player.
 mana={2}{B}{B}
 type=Enchantment
