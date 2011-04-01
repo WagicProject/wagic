@@ -63338,8 +63338,8 @@ text=At the beginning of each end step, if an opponent lost 3 or more life this 
 mana={UB}{UB}
 type=Legendary Creature
 subtype=Merfolk Rogue
-power=2
-toughness=2
+power=1
+toughness=3
 [/card]
 [card]
 name=Sygg, River Guide
