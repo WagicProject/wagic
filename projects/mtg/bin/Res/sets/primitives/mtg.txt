@@ -15805,7 +15805,7 @@ type=Artifact
 [/card]
 [card]
 name=Diamond Valley
-auto={T}:target(creature) && dynamicability<!mytgt toughnesslifegain srccontroller!> sacrifice
+auto={T}:target(creature) dynamicability<!mytgt toughnesslifegain srccontroller!> sacrifice
 text={T}, Sacrifice a creature: You gain life equal to the sacrificed creature's toughness.
 type=Land
 [/card]
