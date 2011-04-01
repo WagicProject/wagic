@@ -33238,7 +33238,7 @@ toughness=2
 name=Karn, Silver Golem
 auto=@blocking(this):-4/4 ueot
 auto=@blocked(this):-4/4 ueot
-auto={1}:target(artifact) dynamicability<!mytgt manacostpumpboth!> transforms((creature,setpower=0,settoughness=0)) ueot
+auto={1}:target(artifact[-creature]) dynamicability<!mytgt manacostpumpboth!> transforms((creature,setpower=0,settoughness=0)) ueot
 text=Whenever Karn, Silver Golem blocks or becomes blocked, it gets -4/+4 until end of turn. -- {1}: Target noncreature artifact becomes an artifact creature with power and toughness each equal to its converted mana cost until end of turn. (That artifact retains its abilities.)
 mana={5}
 type=Legendary Artifact Creature
@@ -33249,7 +33249,7 @@ toughness=4
 [card]
 name=Karn's Touch
 target=artifact[-creature]
-auto=becomes(Creature,manacost/manacost) ueot
+auto=dynamicability<!mytgt manacostpumpboth!> transforms((creature,setpower=0,settoughness=0)) ueot
 text=Target noncreature artifact becomes an artifact creature with power and toughness each equal to its converted mana cost until end of turn. (It retains its abilities.)
 mana={U}{U}
 type=Instant
@@ -59839,11 +59839,9 @@ type=Artifact
 name=Spawning Pool
 auto=tap
 auto={T}:Add{B}
-auto={1}{B}:transforms((Skeleton Creature,black,newability[{B}:regenerate])) ueot
+auto={1}{B}:transforms((Skeleton Creature,setpower=1,settoughness=1,black,newability[{B}:regenerate])) ueot
 text=Spawning Pool enters the battlefield tapped. -- {T}: Add {B} to your mana pool. -- {1}{B}: Spawning Pool becomes a 1/1 black Skeleton creature with "{B}: Regenerate this creature" until end of turn. It's still a land. (If it regenerates, the next time it would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
 type=Land
-power=1
-toughness=1
 [/card]
 [card]
 name=Spearbreaker Behemoth
@@ -61111,11 +61109,9 @@ toughness=4
 [card]
 name=Stalking Stones
 auto={T}:Add{1}
-auto={6}:name(becomes a 3/3 Elemental artifact creature) && transforms((Artifact Creature Elemental)) forever
+auto={6}:transforms((Artifact Creature Elemental,setpower=3,settoughness=3)) forever
 text={T}: Add {1} to your mana pool. -- {6}: Stalking Stones becomes a 3/3 Elemental artifact creature that's still a land. (This effect lasts indefinitely.)
 type=Land
-power=3
-toughness=3
 [/card]
 [card]
 name=Stalking Tiger
