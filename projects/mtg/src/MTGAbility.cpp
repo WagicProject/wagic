@@ -2858,6 +2858,8 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
         return abilityEfficiency(abi->ability, p, mode, tc);
     if (AForeach * abi = dynamic_cast<AForeach *>(a))
         return abilityEfficiency(abi->ability, p, mode, tc);
+    if (ATeach * abi = dynamic_cast<ATeach *>(a))
+        return abilityEfficiency(abi->ability, p, mode, tc);
     if (dynamic_cast<AAFizzler *> (a))
         return BAKA_EFFECT_BAD;
     if (dynamic_cast<AADamagePrevent *> (a))
