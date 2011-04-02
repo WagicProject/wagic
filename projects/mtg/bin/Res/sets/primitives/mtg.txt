@@ -16718,6 +16718,15 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Demonspine Whip
+autoskill={x}:thisforeach(x) 1/0 ueot
+auto={1}:equip
+text={X}: Equipped creature gets +X/+0 until end of turn. -- Equip {1}
+mana={B}{R}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
 name=Dragon Tyrant
 abilities=flying,trample,double strike
 auto=upcost[{R}{R}{R}{R}] moveTo(mygraveyard)
