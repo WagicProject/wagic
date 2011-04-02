@@ -1411,7 +1411,7 @@ int AIPlayerBaka::computeActions()
                                     }
                                     else
                                     {
-                                        if (nextCardToPlay->sunburst < nextCardToPlay->getManaCost()->getConvertedCost())
+                                        if (nextCardToPlay->sunburst < nextCardToPlay->getManaCost()->getConvertedCost() || nextCardToPlay->getManaCost()->hasX())
                                         {
                                             nextCardToPlay->getManaCost()->add(i, 1);
                                             nextCardToPlay->getManaCost()->remove(0, 1);

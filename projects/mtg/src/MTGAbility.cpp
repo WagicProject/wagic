@@ -1567,7 +1567,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         size_t end = s.find("]", start);
         string s1 = s.substr(start + 1, end - start - 1);
         int phase = Constants::MTG_PHASE_UPKEEP;
-
+            for (int i = 0; i < Constants::NB_MTG_PHASES; i++)
+            {
+                if (s1.find(Constants::MTGPhaseCodeNames[i]) != string::npos)
+                {
+                    phase = i;
+                }
+            }
         if (s1.find("combatends") != string::npos)
         {
             phase = Constants::MTG_PHASE_COMBATEND;

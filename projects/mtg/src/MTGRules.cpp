@@ -81,7 +81,7 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
                         }
                         else
                         {
-                            if (card->sunburst < card->getManaCost()->getConvertedCost())
+                            if (card->sunburst < card->getManaCost()->getConvertedCost() || card->getManaCost()->hasX())
                             {
                                 card->getManaCost()->add(i, 1);
                                 card->getManaCost()->remove(0, 1);
