@@ -1988,7 +1988,7 @@ toughness=2
 [/card]
 [card]
 name=Angelic Renewal
-auto=@movedTo(creature|mygraveyard) from(myBattlefield):all(trigger) moveTo(myBattlefield) && moveTo(mygraveyard) all(this)
+auto=@movedTo(creature|mygraveyard) from(battlefield):may all(trigger[to]) moveTo(battlefield) && sacrifice all(this)
 text=Whenever a creature is put into your graveyard from the battlefield, you may sacrifice Angelic Renewal. If you do, return that card to the battlefield.
 mana={1}{W}
 type=Enchantment
