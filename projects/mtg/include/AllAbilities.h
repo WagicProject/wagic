@@ -3359,7 +3359,7 @@ public:
         matches = td->match(source);
         if (matches > 0)
         {
-            if ((int) (abilities.size()) > matches)
+            if ((unsigned int) (abilities.size()) > matches)
             {
                 removeAbilityFromGame();
             }
