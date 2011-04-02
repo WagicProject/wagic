@@ -15881,8 +15881,8 @@ type=Artifact
 [/card]
 [card]
 name=Dingus Staff
-auto=@movedTo(mygraveyard) from(creature|myBattlefield):life:-2 controller
-auto=@movedTo(opponentgraveyard) from(creature|opponentBattlefield):life:-2 opponent
+auto=@movedTo(graveyard) from(creature|myBattlefield):damage:2 controller
+auto=@movedTo(graveyard) from(creature|opponentBattlefield):damage:2 opponent
 text=Whenever a creature is put into a graveyard from the battlefield, Dingus Staff deals 2 damage to that creature's controller.
 mana={4}
 type=Artifact
@@ -44095,7 +44095,7 @@ toughness=3
 [card]
 name=Ohran Viper
 auto=@combatdamaged(creature) from(this):all(trigger[to]) phaseaction[combatends] destroy
-auto=@combatdamaged(player) from(this):draw:1 controller
+auto=@combatdamaged(player) from(this):may draw:1 controller
 text=Whenever Ohran Viper deals combat damage to a creature, destroy that creature at end of combat. -- Whenever Ohran Viper deals combat damage to a player, you may draw a card.
 mana={1}{G}{G}
 type=Snow Creature
@@ -56500,7 +56500,7 @@ toughness=4
 [/card]
 [card]
 name=Shoreline Salvager
-auto=@damaged(player) from(this):aslongas(island|myBattlefield) draw:1 controller
+auto=@combatdamaged(player) from(this):aslongas(island|myBattlefield) may draw:1 controller
 text=Whenever Shoreline Salvager deals combat damage to a player, if you control an Island, you may draw a card.
 mana={3}{B}
 type=Creature
