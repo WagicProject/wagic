@@ -3354,7 +3354,7 @@ public:
     int resolve()
     {
         //TODO check if ability is oneShot ?
-        int matches;
+        unsigned int matches;
         matches = td->match(source);
         if (matches > 0)
         {
@@ -3362,7 +3362,10 @@ public:
             {
                 removeAbilityFromGame();
             }
-            for (int i = 0; i < matches - (int) (abilities.size()); i++)
+            // i will equal abilities size, then we increment from there
+            //abilities size was previously being subtracted from matches
+            //tho since it was a nonstatic number, it would stop adding abilities prematurely.
+            for (unsigned int i = abilities.size(); i < matches; i++)
             {
                 addAbilityToGame();
             }

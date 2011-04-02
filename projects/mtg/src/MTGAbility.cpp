@@ -3073,6 +3073,13 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
             magicText.append(faceupC);
 
         }
+        else if(card && card->hasType("equipment") && card->target)
+        {
+            magicText = card->model->data->magicText;
+            string equipText = card->magicTexts["skill"];
+            magicText.append("\n");
+            magicText.append(equipText);
+        }
         else
         {
             magicText = card->magicText;
