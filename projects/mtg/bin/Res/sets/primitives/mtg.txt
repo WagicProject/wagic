@@ -43716,6 +43716,16 @@ power=7
 toughness=7
 [/card]
 [card]
+name=O-Naginata
+auto={2}:equip target(creature[power >=3]|mybattlefield)
+auto=teach(creature) 3/0
+auto=teach(creature) trample
+text=O-Naginata can be attached only to a creature with 3 or more power. -- Equipped creature gets +3/+0 and has trample. -- Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
+mana={1}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
 name=Oakenform
 target=creature
 auto=3/3
