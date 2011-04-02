@@ -48637,7 +48637,7 @@ type=Sorcery
 [card]
 name=Pyrohemia
 auto={R}:damage:1 all(creature,player)
-auto=@next endofturn:aslongas(creature|battlefield) moveto(mygraveyard) <1
+auto=@next endofturn:aslongas(creature|battlefield) sacrifice <1
 text=At the beginning of the end step, if no creatures are on the battlefield, sacrifice Pyrohemia. -- {R}: Pyrohemia deals 1 damage to each creature and each player.
 mana={2}{R}{R}
 type=Enchantment
@@ -73704,6 +73704,7 @@ type=Instant
 [card]
 name=Withering Wisps
 auto=foreach(swamp[snow]|mybattlefield) {B}:damage:1 all(creature,player) limit:1
+auto=@next endofturn:aslongas(creature|battlefield) sacrifice <1
 text=At the beginning of the end step, if no creatures are on the battlefield, sacrifice Withering Wisps. -- {B}: Withering Wisps deals 1 damage to each creature and each player. Activate this ability no more times each turn than the number of snow Swamps you control.
 mana={1}{B}{B}
 type=Enchantment
