@@ -2882,7 +2882,7 @@ public:
     int testDestroy()
     {
         if (source->target && !game->isInPlay(source->target)) unequip();
-        if (source->target && TargetAbility::tc && !TargetAbility::tc->canTarget((Targetable *)source->target)) unequip();
+        if (source->target && !source->target->has(Constants::SHROUD) && TargetAbility::tc && !TargetAbility::tc->canTarget((Targetable *)source->target)) unequip();
         return TargetAbility::testDestroy();
     }
 
