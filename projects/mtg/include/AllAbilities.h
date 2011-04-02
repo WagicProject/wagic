@@ -2818,7 +2818,7 @@ public:
     {
         aType = MTGAbility::STANDARD_EQUIP;
     }
-
+    
     int unequip()
     {
         if (source->target)
@@ -2882,6 +2882,7 @@ public:
     int testDestroy()
     {
         if (source->target && !game->isInPlay(source->target)) unequip();
+        if (source->target && TargetAbility::tc && !TargetAbility::tc->canTarget((Targetable *)source->target)) unequip();
         return TargetAbility::testDestroy();
     }
 
