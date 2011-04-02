@@ -4546,6 +4546,16 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Banshee's Blade
+auto={2}:equip
+auto=thisforeach(counter{0/0.1.charge}) 1/1
+auto=@combatdamaged(creature) from(mytgt):all(this) counter(0/0,1,charge)
+text=Equipped creature gets +1/+1 for each charge counter on Banshee's Blade. -- Whenever equipped creature deals combat damage, put a charge counter on Banshee's Blade. -- Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
+mana={2}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
 name=Barbarian General
 abilities=horsemanship
 text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)
