@@ -75,7 +75,7 @@ CardSelector::SelectorMemory::SelectorMemory()
 }
 
 CardSelector::CardSelector(DuelLayers* duel) :
-    active(NULL), duel(duel), limitor(NULL), bigpos(300, 150, 1.0, 0.0, 220)
+    active(NULL), duel(duel), limitor(NULL), bigpos(300, 145, 1.0, 0.0, 220)
 {
 }
 

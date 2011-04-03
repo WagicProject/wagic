@@ -772,7 +772,7 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos)
             return TinyCropRender(card, pos, quad.get());
         }
         quad->SetColor(ARGB(255,255,255,255));
-        float scale = pos.actZ * 257.f / quad->mHeight;
+        float scale = pos.actZ * 250.f / quad->mHeight;
         renderer->RenderQuad(quad.get(), x, pos.actY, pos.actT, scale, scale);
         return;
     }

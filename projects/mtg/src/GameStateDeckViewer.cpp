@@ -21,6 +21,9 @@
 #include "SimpleMenu.h"
 #include "utils.h"
 
+// This is pending a change by Wil regarding graphics threads
+#define GRAPHICS_NO_THREADING
+
 //!! helper function; this is probably handled somewhere in the code already.
 // If not, should be placed in general library
 void StringExplode(string str, string separator, vector<string>* results)
@@ -1312,10 +1315,61 @@ void GameStateDeckViewer::renderCard(int id, float rotation)
 
     if (!card) return;
 
+#ifdef GRAPHICS_NO_THREADING
+
+    JQuadPtr backQuad = WResourceManager::Instance()->GetQuad("back");
+    JQuadPtr quad;
+
+    int cacheError = CACHE_ERROR_NONE;
+
+    if (!options[Options::DISABLECARDS].number)
+    {
+        quad = WResourceManager::Instance()->RetrieveCard(card, RETRIEVE_EXISTING);
+        cacheError = WResourceManager::Instance()->RetrieveError();
+        if (!quad.get() && cacheError != CACHE_ERROR_404)
+        {
+            if (last_user_activity > (abs(2 - id) + 1) * NO_USER_ACTIVITY_SHOWCARD_DELAY)
+                quad = WResourceManager::Instance()->RetrieveCard(card);
+            else
+            {
+                quad = backQuad;
+            }
+        }
+    }
+
+    if (quad.get())
+    {
+        if (quad == backQuad)
+        {
+            quad->SetColor(ARGB(255,255,255,255));
+            float _scale = scale * (285 / quad->mHeight);
+            JRenderer::GetInstance()->RenderQuad(quad.get(), x, y, 0.0f, _scale, _scale);
+        }
+        else
+        {
+            Pos pos = Pos(x, y, scale * 285 / 250, 0.0, 255);
+            CardGui::DrawCard(card, pos);
+        }
+    }
+    else
+    {
+        Pos pos = Pos(x, y, scale * 285 / 250, 0.0, 255);
+        CardGui::DrawCard(card, pos, DrawMode::kText);
+        if (!options[Options::DISABLECARDS].number) quad = WResourceManager::Instance()->RetrieveCard(card, CACHE_THUMB);
+        if (quad.get())
+        {
+            float _scale = 285 * scale / quad->mHeight;
+            quad->SetColor(ARGB(40,255,255,255));
+            JRenderer::GetInstance()->RenderQuad(quad.get(), x, y, 0, _scale, _scale);
+        }
+    }
+
+#else
     int mode = !options[Options::DISABLECARDS].number ? DrawMode::kNormal : DrawMode::kText;
 
     Pos pos = Pos(x, y, scale * 285 / 250, 0.0, 255);
     CardGui::DrawCard(card, pos, mode);
+#endif
 
     int quadAlpha = alpha;
     if (!displayed_deck->count(card)) quadAlpha /= 2;
