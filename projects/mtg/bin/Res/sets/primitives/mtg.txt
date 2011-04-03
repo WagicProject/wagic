@@ -6170,7 +6170,11 @@ subtype=Aura
 [card]
 name=Blessing of the Nephilim
 target=creature
-auto=dynamicability<!mytgt colorspumpboth!>
+auto=teach(creature[black]) 1/1
+auto=teach(creature[red]) 1/1
+auto=teach(creature[green]) 1/1
+auto=teach(creature[blue]) 1/1
+auto=teach(creature[white]) 1/1
 text=Enchant creature -- Enchanted creature gets +1/+1 for each of its colors.
 mana={W}
 type=Enchantment
