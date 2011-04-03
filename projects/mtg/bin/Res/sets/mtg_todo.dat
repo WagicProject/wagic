@@ -1380,13 +1380,6 @@ power=0
 toughness=1
 [/card]
 [card]
-name=Banshee's Blade
-text=Equipped creature gets +1/+1 for each charge counter on Banshee's Blade. -- Whenever equipped creature deals combat damage, put a charge counter on Banshee's Blade. -- Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
-mana={2}
-type=Artifact
-subtype=Equipment
-[/card]
-[card]
 name=Bant Charm
 text=Choose one - Destroy target artifact; or put target creature on the bottom of its owner's library; or counter target instant spell.
 mana={G}{W}{U}
@@ -5251,13 +5244,6 @@ type=Creature
 subtype=Demon
 power=5
 toughness=5
-[/card]
-[card]
-name=Demonspine Whip
-text={X}: Equipped creature gets +X/+0 until end of turn. -- Equip {1}
-mana={B}{R}
-type=Artifact
-subtype=Equipment
 [/card]
 [card]
 name=Demoralize
@@ -13701,6 +13687,7 @@ type=Instant
 [/card]
 [card]
 name=Mana Echoes
+auto=@movedto(creature|battlefield):may all(trigger[to]) all(creature[share!type!]|battlefield) add{1}
 text=Whenever a creature enters the battlefield, you may add {1} to your mana pool for each creature you control that shares a creature type with it.
 mana={2}{R}{R}
 type=Enchantment
@@ -16212,6 +16199,9 @@ toughness=1
 [/card]
 [card]
 name=O-Naginata
+auto={2}:equip target(creature[power >=3]|mybattlefield)
+auto=teach(creature) 3/0
+auto=teach(creature) trample
 text=O-Naginata can be attached only to a creature with 3 or more power. -- Equipped creature gets +3/+0 and has trample. -- Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
 mana={1}
 type=Artifact
