@@ -3184,13 +3184,13 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
     if (spell->getNbTargets() == 1)
     {
         card->target = spell->getNextCardTarget();
-        if (card->target && !spell->tc->canTarget(card->target))
+        if (card->target && (!spell->tc->canTarget(card->target) || card->target->isTempPhased))
         {
             MTGPlayerCards * zones = card->controller()->game;
             zones->putInZone(card, spell->from, card->owner->game->graveyard);
             return; //fizzle
         }
-    }
+    } 
     _id = magicText(_id, spell);
 
     GameObserver * game = GameObserver::GetInstance();
