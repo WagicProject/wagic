@@ -10,3 +10,4 @@ wallpapers/kaioshin_ravager.jpg
 wallpapers/kaioshin_elsXIII.jpg
 wallpapers/kaioshin_sorin.jpg
 wallpapers/kaioshin_chandra.jpg
+wallpapers/kaioshin_sarkhan_vol.jpg
