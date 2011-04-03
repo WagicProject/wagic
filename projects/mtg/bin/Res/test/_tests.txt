@@ -441,6 +441,7 @@ pyroclasm.txt
 quilled_sliver.txt
 rain_of_filth_i206.txt
 rain_of_filth_i283.txt
+rainbow_efreet_phase_out.txt
 rampant_growth.txt
 rancid_earth_with_threshold.txt
 rancid_earth_without_threshold.txt

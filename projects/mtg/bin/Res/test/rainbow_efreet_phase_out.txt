@@ -1,4 +1,4 @@
-#Bug: Rainbow Efreet's phase out doesn't make it "disappear"
+#Bug: Rainbow Efreet's phase out to prevent dying from a spell"
 [INIT]
 FIRSTMAIN
 [PLAYER1]
