@@ -2054,7 +2054,7 @@ toughness=2+*
 [card]
 name=Animate Artifact
 target=artifact
-auto=teach(artifact[-creature]) dynamicability<!mytgt manacostpumpboth!> transforms((creature,setpower=0,settoughness=0))
+auto=teach(artifact[-creature]) becomes(Artifact Creature,manacost/manacost)
 text=Enchant artifact -- As long as enchanted artifact isn't a creature, it's an artifact creature with power and toughness each equal to its converted mana cost.
 mana={3}{U}
 type=Enchantment
