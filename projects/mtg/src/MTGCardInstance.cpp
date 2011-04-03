@@ -136,7 +136,6 @@ void MTGCardInstance::initMTGCI()
     turningOver = false;
     isMorphed = false;
     isPhased = false;
-    isTempPhased = false;
     phasedTurn = -1;
     didattacked = 0;
     didblocked = 0;

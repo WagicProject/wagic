@@ -5,8 +5,8 @@
 
 //Generic Activated Abilities
 GenericActivatedAbility::GenericActivatedAbility(int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int _tap,
-        int limit, int restrictions, MTGGameZone * dest) :
-    ActivatedAbility(_id, card, _cost, restrictions, _tap), NestedAbility(a), limitPerTurn(limit), activeZone(dest)
+        string limit, int restrictions, MTGGameZone * dest) :
+    ActivatedAbility(_id, card, _cost, restrictions, _tap), NestedAbility(a), limit(limit), activeZone(dest)
 {
     counters = 0;
     target = ability->target;
@@ -37,6 +37,12 @@ int GenericActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost 
 {
     if (dynamic_cast<AAMorph*> (ability) && !card->isMorphed && !card->morphed && card->turningOver)
         return 0;
+    if(limit.size())
+    {
+        WParsedInt * value = NEW WParsedInt(limit.c_str(),NULL,source);
+        limitPerTurn = value->getValue();
+        delete value;
+    }
     if (limitPerTurn && counters >= limitPerTurn)
         return 0;
     return ActivatedAbility::isReactingToClick(card, mana);
@@ -268,7 +274,12 @@ int AAPhaseOut::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
-        _target->isTempPhased = true;
+        _target->isPhased = true;
+        
+        _target->phasedTurn = game->turn;
+        if(_target->view)
+            _target->view->alpha = 50;
+        _target->initAttackersDefensers();
         return 1;
     }
     return 0;
@@ -2001,8 +2012,8 @@ MultiAbility::~MultiAbility()
 
 //Generic Target Ability
 GenericTargetAbility::GenericTargetAbility(int _id, MTGCardInstance * _source, TargetChooser * _tc, MTGAbility * a,
-        ManaCost * _cost, int _tap, int limit, int restrictions, MTGGameZone * dest) :
-    TargetAbility(_id, _source, _tc, _cost, restrictions, _tap), limitPerTurn(limit), activeZone(dest)
+        ManaCost * _cost, int _tap, string limit, int restrictions, MTGGameZone * dest) :
+    TargetAbility(_id, _source, _tc, _cost, restrictions, _tap), limit(limit), activeZone(dest)
 {
     ability = a;
     MTGAbility * core = AbilityFactory::getCoreAbility(a);
@@ -2088,6 +2099,12 @@ int GenericTargetAbility::resolve()
 
 int GenericTargetAbility::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 {
+    if(limit.size())
+    {
+        WParsedInt * value = NEW WParsedInt(limit.c_str(),NULL,source);
+        limitPerTurn = value->getValue();
+        delete value;
+    }
     if (limitPerTurn && counters >= limitPerTurn)
         return 0;
     return TargetAbility::isReactingToClick(card, mana);

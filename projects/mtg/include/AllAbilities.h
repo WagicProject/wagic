@@ -1027,10 +1027,11 @@ class GenericActivatedAbility: public ActivatedAbility, public NestedAbility
 {
 public:
     int limitPerTurn;
+    string limit;
     int counters;
     MTGGameZone * activeZone;
 
-    GenericActivatedAbility(int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int _tap = 0, int limit = 0,
+    GenericActivatedAbility(int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int _tap = 0, string limit = "",
             int restrictions = 0, MTGGameZone * dest = NULL);
     int resolve();
     const char * getMenuText();
@@ -1153,11 +1154,12 @@ class GenericTargetAbility: public TargetAbility
 
 public:
     int limitPerTurn;
+    string limit;
     int counters;
     MTGGameZone * activeZone;
 
     GenericTargetAbility(int _id, MTGCardInstance * _source, TargetChooser * _tc, MTGAbility * a, ManaCost * _cost = NULL,
-            int _tap = 0, int limit = 0, int restrictions = 0, MTGGameZone * dest = NULL);
+            int _tap = 0, string limit = "", int restrictions = 0, MTGGameZone * dest = NULL);
     const char * getMenuText();
     ~GenericTargetAbility();
     GenericTargetAbility * clone() const;

@@ -76,7 +76,6 @@ class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable {
     bool turningOver;
     bool isMorphed;
     bool isPhased;
-    bool isTempPhased;
     int phasedTurn;
     bool graveEffects;
     bool exileEffects;

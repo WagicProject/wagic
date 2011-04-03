@@ -930,11 +930,11 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 return amp;
             }
 
-            int limit = 0;
+            string limit = "";
             size_t limit_str = sWithoutTc.find("limit:");
             if (limit_str != string::npos)
             {
-                limit = atoi(sWithoutTc.substr(limit_str + 6).c_str());
+                limit = sWithoutTc.substr(limit_str + 6);
             }
 
             AEquip *ae = dynamic_cast<AEquip*> (a);
@@ -3184,7 +3184,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
     if (spell->getNbTargets() == 1)
     {
         card->target = spell->getNextCardTarget();
-        if (card->target && (!spell->tc->canTarget(card->target) || card->target->isTempPhased))
+        if (card->target && (!spell->tc->canTarget(card->target) || card->target->isPhased))
         {
             MTGPlayerCards * zones = card->controller()->game;
             zones->putInZone(card, spell->from, card->owner->game->graveyard);
@@ -4195,7 +4195,7 @@ int TargetAbility::resolve()
         ability->target = t;
         //do nothing if the target controller responded by phasing out the target.
         MTGCardInstance * targeted = (MTGCardInstance*)t;
-        if (targeted->typeAsTarget() == TARGET_CARD && targeted->isTempPhased)
+        if (targeted->typeAsTarget() == TARGET_CARD && targeted->isPhased)
         return 0;
         
         if (ability->oneShot)

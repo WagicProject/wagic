@@ -435,7 +435,7 @@ void GameObserver::gameStateBasedEffects()
             //////////////////////////
             //handles phasing events//
             //////////////////////////
-            if((card->has(Constants::PHASING)&& currentGamePhase == Constants::MTG_PHASE_UNTAP && currentPlayer == card->controller() && card->phasedTurn != turn && !card->isPhased) || (card->isTempPhased && !card->isPhased))
+            if(card->has(Constants::PHASING)&& currentGamePhase == Constants::MTG_PHASE_UNTAP && currentPlayer == card->controller() && card->phasedTurn != turn && !card->isPhased)
             {
                 card->isPhased = true;
                 card->phasedTurn = turn;
@@ -443,13 +443,12 @@ void GameObserver::gameStateBasedEffects()
                 card->view->alpha = 50;
                 card->initAttackersDefensers();
             }
-            else if((card->has(Constants::PHASING) || card->isTempPhased)&& currentGamePhase == Constants::MTG_PHASE_UNTAP && currentPlayer == card->controller() && card->phasedTurn != turn)
+            else if((card->has(Constants::PHASING) || card->isPhased)&& currentGamePhase == Constants::MTG_PHASE_UNTAP && currentPlayer == card->controller() && card->phasedTurn != turn)
             {
                 card->isPhased = false;
                 card->phasedTurn = turn;
                 if(card->view)
                 card->view->alpha = 255;
-                card->isTempPhased = false;
             }
             if (card->target && isInPlay(card->target) && (card->hasSubtype("equipment") || card->hasSubtype("aura")))
             {
