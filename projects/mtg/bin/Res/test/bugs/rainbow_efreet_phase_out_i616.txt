@@ -1,0 +1,25 @@
+#Bug: Rainbow Efreet's phase out doesn't make it "disappear"
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:lightning bolt
+manapool:{R}
+[PLAYER2]
+inplay:rainbow efreet,1394,1392
+[DO]
+lightning bolt
+rainbow efreet
+no
+yes
+1394
+1392
+rainbow efreet
+endinterruption
+eot
+[ASSERT]
+UNTAP
+[PLAYER1]
+graveyard:lightning bolt
+[PLAYER2]
+inplay:rainbow efreet,1394,1392
+[END]
