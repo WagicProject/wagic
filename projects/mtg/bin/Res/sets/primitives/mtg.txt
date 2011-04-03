@@ -10345,7 +10345,7 @@ type=Instant
 name=Chaosphere
 auto=lord(creature[flying]) cloud
 auto=lord(creature[-flying]) reach
-auto=@movedTo(enchantment[world]|battlefield):bury
+auto=@movedTo(enchantment[world]|battlefield):sacrifice all(this)
 text=Creatures with flying can block only creatures with flying. -- Creatures without flying have reach. (They can block creatures with flying.)
 mana={2}{R}
 type=World Enchantment
@@ -12042,7 +12042,7 @@ type=Sorcery
 [card]
 name=Concordant Crossroads
 auto=lord(creature) haste
-auto=@movedTo(enchantment[world]|battlefield):bury
+auto=@movedTo(enchantment[world]|battlefield):sacrifice all(this)
 text=All creatures have haste.
 mana={G}
 type=World Enchantment
@@ -26909,7 +26909,7 @@ type=Enchantment
 [card]
 name=Gravity Sphere
 auto=lord(creature) -flying
-auto=@movedTo(enchantment[world]|battlefield):bury
+auto=@movedTo(enchantment[world]|battlefield):sacrifice all(this)
 text=All creatures lose flying.
 mana={2}{R}
 type=World Enchantment
@@ -36811,7 +36811,7 @@ type=Enchantment
 [/card]
 [card]
 name=Living Plane
-auto=@movedTo(enchantment[world]|battlefield):bury
+auto=@movedTo(enchantment[world]|battlefield):sacrifice all(this)
 auto=lord(land) becomes(Creature,1/1)
 alias=1533
 text=All lands are 1/1 creatures that are still lands.
@@ -41969,7 +41969,7 @@ toughness=1
 name=Mystic Decree
 auto=lord(creature) -islandwalk
 auto=lord(creature) -flying
-auto=@movedTo(enchantment[world]|battlefield):bury
+auto=@movedTo(enchantment[world]|battlefield):sacrifice all(this)
 text=All creatures lose flying and islandwalk.
 mana={2}{U}{U}
 type=World Enchantment
@@ -55465,7 +55465,7 @@ toughness=3
 [card]
 name=Serra Aviary
 auto=lord(creature[flying]) 1/1
-auto=@movedTo(enchantment[world]|battlefield):bury
+auto=@movedTo(enchantment[world]|battlefield):sacrifice all(this)
 text=Creatures with flying get +1/+1.
 mana={3}{W}
 type=World Enchantment
@@ -62001,7 +62001,7 @@ toughness=3
 name=Storm World
 auto=@each opponentupkeep:foreach(*|opponenthand) damage:1 opponent <4
 auto=@each myupkeep:foreach(*|myhand) damage:1 opponent <4
-auto=@movedTo(enchantment[world]|battlefield):bury
+auto=@movedTo(enchantment[world]|battlefield):sacrifice all(this)
 text=At the beginning of each player's upkeep, Storm World deals X damage to that player, where X is 4 minus the number of cards in his or her hand.
 mana={R}
 type=World Enchantment
@@ -63129,7 +63129,7 @@ toughness=1
 [card]
 name=Svogthos, the Restless Tomb
 auto={T}:Add{1}
-auto={3}{B}{G}:transforms((Plant Zombie Creature,setpower=0,settoughness=0,black,green)) ueot && foreach(creature|mygraveyard) 1/1 ueot
+auto={3}{B}{G}:transforms((Plant Zombie Creature,setpower=type:creature:mygraveyard,settoughness=type:creature:mygraveyard,black,green)) ueot
 text={T}: Add {1} to your mana pool. -- {3}{B}{G}: Until end of turn, Svogthos, the Restless Tomb becomes a black and green Plant Zombie creature with "This creature's power and toughness are each equal to the number of creature cards in your graveyard." It's still a land.
 type=Land
 [/card]
@@ -66596,7 +66596,7 @@ name=Tombstone Stairwell
 auto=cumulativeupcost[{1}{B}] sacrifice
 auto=@each upkeep:foreach(creature|mygraveyard) token(-12253) && foreach(creature|opponentgraveyard) token(-12254)
 auto=@movedto(this|nonbattlezone) from(battlefield):bury all(Tombspawn)
-auto=@movedTo(enchantment[world]|battlefield):bury
+auto=@movedTo(enchantment[world]|battlefield):sacrifice all(this)
 text=Cumulative upkeep {1}{B} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- At the beginning of each upkeep, if Tombstone Stairwell is on the battlefield, each player puts a 2/2 black Zombie creature token with haste named Tombspawn onto the battlefield for each creature card in his or her graveyard. -- At the beginning of each end step or when Tombstone Stairwell leaves the battlefield, destroy all tokens put onto the battlefield with Tombstone Stairwell. They can't be regenerated.
 mana={2}{B}{B}
 type=World Enchantment
