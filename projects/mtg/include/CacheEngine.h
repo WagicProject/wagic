@@ -24,18 +24,38 @@ struct CacheRequest
 const boost::posix_time::milliseconds kIdleTime(100);
 
 
-class ThreadedCardRetriever
+class CardRetrieverBase
 {
 public:
 
+    CardRetrieverBase(WCache<WCachedTexture,JTexture>& inCache)
+        : mTextureCache(inCache)
+    {
+    }
+
+    virtual ~CardRetrieverBase()
+    {
+    }
+
+    virtual void QueueRequest(const std::string& inFilePath, int inSubmode, int inCacheID) = 0;
+
+protected:
+
+    WCache<WCachedTexture,JTexture>& mTextureCache;
+};
+
+
+class CacheEngine
+{
+public:
+    template <class T>
     static void Create(WCache<WCachedTexture,JTexture>& inCache)
     {
         LOG("Creating ThreadedCardRetriever");
-        sInstance = NEW ThreadedCardRetriever(inCache);
-        sInstance->StartProcessing();
+        sInstance = NEW T(inCache);
     }
 
-    static ThreadedCardRetriever* Instance()
+    static CardRetrieverBase* Instance()
     {
         return sInstance;
     }
@@ -45,14 +65,54 @@ public:
         SAFE_DELETE(sInstance);
     }
 
-    ThreadedCardRetriever(WCache<WCachedTexture,JTexture>& inCache)
-        : mTextureCache(inCache), mProcessing(true)
+
+    static CardRetrieverBase* sInstance;
+};
+
+CardRetrieverBase* CacheEngine::sInstance = NULL;
+
+/*
+**
+*/
+class UnthreadedCardRetriever : public CardRetrieverBase
+{
+public:
+
+    UnthreadedCardRetriever(WCache<WCachedTexture,JTexture>& inCache)
+        : CardRetrieverBase(inCache)
     {
     }
 
-    ~ThreadedCardRetriever()
+    virtual ~UnthreadedCardRetriever()
     {
-        StopProcessing();
+    }
+
+    /*
+    **  In a non-threaded model, simply pass on the request to the texture cache directly
+    */
+    void QueueRequest(const std::string& inFilePath, int inSubmode, int inCacheID)
+    {
+        mTextureCache.LoadIntoCache(inCacheID, inFilePath, inSubmode);
+    }
+};
+
+/**
+** Threaded implementation. 
+*/
+class ThreadedCardRetriever : public CardRetrieverBase
+{
+public:
+
+    ThreadedCardRetriever(WCache<WCachedTexture,JTexture>& inCache)
+        : CardRetrieverBase(inCache), mProcessing(true)
+    {
+        mWorkerThread = boost::thread(ThreadProc, this);
+    }
+
+    virtual ~ThreadedCardRetriever()
+    {
+        LOG("Tearing down ThreadedCardRetriever");
+        mProcessing = false;
         mWorkerThread.join();
     }
 
@@ -125,18 +185,6 @@ protected:
         }
     }
 
-    void StartProcessing()
-    {
-        mWorkerThread = boost::thread(ThreadProc, this);
-    }
-
-    void StopProcessing()
-    {
-        LOG("StopProcessing called");
-        mProcessing = false;
-    }
-
-    WCache<WCachedTexture,JTexture>& mTextureCache;
     boost::thread mWorkerThread;
 
     std::queue<CacheRequest> mRequestQueue;
@@ -144,7 +192,4 @@ protected:
     boost::mutex mMutex;
     volatile bool mProcessing;
 
-    static ThreadedCardRetriever* sInstance;
 };
-
-ThreadedCardRetriever* ThreadedCardRetriever::sInstance = NULL;
