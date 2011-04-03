@@ -73731,7 +73731,7 @@ type=Instant
 [/card]
 [card]
 name=Withering Wisps
-auto=foreach(swamp[snow]|mybattlefield) {B}:damage:1 all(creature,player) limit:1
+auto={B}:damage:1 all(creature,player) limit:type:swamp[snow]:mybattlefield
 auto=@next endofturn:aslongas(creature|battlefield) sacrifice <1
 text=At the beginning of the end step, if no creatures are on the battlefield, sacrifice Withering Wisps. -- {B}: Withering Wisps deals 1 damage to each creature and each player. Activate this ability no more times each turn than the number of snow Swamps you control.
 mana={1}{B}{B}
