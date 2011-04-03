@@ -2054,7 +2054,7 @@ toughness=2+*
 [card]
 name=Animate Artifact
 target=artifact
-auto=becomes(Creature,manacost/manacost)
+auto=teach(artifact[-creature]) dynamicability<!mytgt manacostpumpboth!> transforms((creature,setpower=0,settoughness=0))
 text=Enchant artifact -- As long as enchanted artifact isn't a creature, it's an artifact creature with power and toughness each equal to its converted mana cost.
 mana={3}{U}
 type=Enchantment
@@ -10441,7 +10441,7 @@ toughness=3
 [/card]
 [card]
 name=Chariot of the Sun
-auto={2}{T}:target(creature|myBattlefield) transforms((,toughness=1,flying)) ueot
+auto={2}{T}:target(creature|myBattlefield) transforms((,settoughness=1,flying)) ueot
 text={2}, {T}: Until end of turn, target creature you control gains flying and its toughness becomes 1.
 mana={3}
 type=Artifact
@@ -10610,8 +10610,7 @@ type=Artifact
 [card]
 name=Chimeric Mass
 auto=counter(0/0,X,Charge)
-auto=thisforeach(counter{0/0.1.Charge}) 1/1
-auto={1}:transforms((Artifact Creature Construct,Artifact)) ueot
+auto={1}:transforms((Creature Construct,setpower=0,settoughness=0)) ueot && thisforeach(counter{0/0.1.Charge}) all(this) 1/1
 text=Chimeric Mass enters the battlefield with X charge counters. -- {1}: Until end of turn, Chimeric Mass becomes a Construct artifact creature with "This creature's power and toughness are each equal to the number of charge counters on it."
 mana={X}
 type=Artifact
@@ -10628,7 +10627,7 @@ type=Artifact
 [/card]
 [card]
 name=Chimeric Staff
-auto={X}:becomes(Artifact Creature Construct,*/*) ueot && thisforeach(X) all(this) 1/1
+auto={X}:transforms((Creature Construct,setpower=x,settoughness=x)) ueot
 text={X}: Chimeric Staff becomes an X/X Construct artifact creature until end of turn.
 mana={4}
 type=Artifact
@@ -46066,7 +46065,7 @@ toughness=1
 [/card]
 [card]
 name=Pestilence
-auto=@each myendofturn: aslongas(creature|mybattlefield) all(this) sacrifice while <1
+auto=@next endofturn:aslongas(creature|battlefield) sacrifice <1
 auto={b}:damage:1 all(creature,player)
 text=At the beginning of the end step, if no creatures are on the battlefield, sacrifice Pestilence. -- {B}: Pestilence deals 1 damage to each creature and each player.
 mana={2}{B}{B}
@@ -63130,7 +63129,7 @@ toughness=1
 [card]
 name=Svogthos, the Restless Tomb
 auto={T}:Add{1}
-auto={3}{B}{G}:becomes(Plant Zombie Creature,0/0,black,green) ueot && foreach(creature|mygraveyard) 1/1 ueot
+auto={3}{B}{G}:transforms((Plant Zombie Creature,setpower=0,settoughness=0,black,green)) ueot && foreach(creature|mygraveyard) 1/1 ueot
 text={T}: Add {1} to your mana pool. -- {3}{B}{G}: Until end of turn, Svogthos, the Restless Tomb becomes a black and green Plant Zombie creature with "This creature's power and toughness are each equal to the number of creature cards in your graveyard." It's still a land.
 type=Land
 [/card]
@@ -64888,7 +64887,7 @@ type=Enchantment
 [/card]
 [card]
 name=Testament of Faith
-auto={X}:becomes(Creature Wall,*/*,defender) ueot && thisforeach(X) all(this) 1/1
+auto={X}:transforms((Creature Wall,setpower=x,settoughness=x,defender)) ueot
 text={X}: Testament of Faith becomes an X/X Wall creature with defender until end of turn. It's still an enchantment.
 mana={W}
 type=Enchantment
@@ -72571,7 +72570,7 @@ toughness=1
 [card]
 name=Weight of Spires
 target=creature
-auto=damage:type:land[-basic]|targetcontrollerbattlefield
+auto=damage:type:land[-basic]:targetcontrollerbattlefield
 text=Weight of Spires deals damage to target creature equal to the number of nonbasic lands that creature's controller controls.
 mana={R}
 type=Instant
