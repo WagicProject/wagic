@@ -911,6 +911,7 @@ public:
         if(source->isPhased) return 0;
         WEventTarget * e = dynamic_cast<WEventTarget *> (event);
         if (!e) return 0;
+        if (!tc->targetter) return 0;//notatarget case.
         if (!tc->canTarget(e->card)) return 0;
         if (fromTc && !fromTc->canTarget(e->source)) return 0;
         return 1;
