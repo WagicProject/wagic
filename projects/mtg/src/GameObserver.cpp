@@ -130,7 +130,12 @@ void GameObserver::nextGamePhase()
     {
         //Auto Hand cleaning, in case the player didn't do it himself
         while (currentPlayer->game->hand->nb_cards > 7 && currentPlayer->nomaxhandsize == false)
+        {
+            WEvent * e = NEW WEventCardDiscard(currentPlayer->game->hand->cards[0]);
+            GameObserver * game = GameObserver::GetInstance();
+            game->receiveEvent(e);
             currentPlayer->game->putInGraveyard(currentPlayer->game->hand->cards[0]);
+        }
         mLayers->actionLayer()->Update(0);
         currentPlayer->lifeLostThisTurn = 0;
         currentPlayer->opponent()->lifeLostThisTurn = 0;
@@ -955,6 +960,9 @@ int GameObserver::cardClick(MTGCardInstance * card, Targetable * object)
     if (currentPlayer->game->hand->hasCard(card) && currentGamePhase == Constants::MTG_PHASE_CLEANUP
             && currentPlayer->game->hand->nb_cards > 7 && currentPlayer->nomaxhandsize == false)
     {
+        WEvent * e = NEW WEventCardDiscard(currentPlayer->game->hand->cards[0]);
+        GameObserver * game = GameObserver::GetInstance();
+        game->receiveEvent(e);
         currentPlayer->game->putInGraveyard(card);
     }
     else if (reaction)
