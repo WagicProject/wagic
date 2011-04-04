@@ -10591,7 +10591,7 @@ subtype=Aura
 [/card]
 [card]
 name=Chimeric Coils
-auto={X}{1}:transforms((artifact creature,setpower=x,settoughness=x)) ueot && treason
+auto={X}{1}:transforms((Creature Construct,setpower=x,settoughness=x)) ueot && treason
 text={X}{1}: Chimeric Coils becomes an X/X Construct artifact creature. Sacrifice it at the beginning of the next end step.
 mana={1}
 type=Artifact
