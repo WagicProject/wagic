@@ -37,6 +37,7 @@ int GenericActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost 
 {
     if (dynamic_cast<AAMorph*> (ability) && !card->isMorphed && !card->morphed && card->turningOver)
         return 0;
+    limitPerTurn = 0;
     if(limit.size())
     {
         WParsedInt * value = NEW WParsedInt(limit.c_str(),NULL,source);
@@ -2099,6 +2100,7 @@ int GenericTargetAbility::resolve()
 
 int GenericTargetAbility::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 {
+    limitPerTurn = 0;
     if(limit.size())
     {
         WParsedInt * value = NEW WParsedInt(limit.c_str(),NULL,source);
