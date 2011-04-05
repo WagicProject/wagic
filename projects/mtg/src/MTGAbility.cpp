@@ -4163,8 +4163,11 @@ int TargetAbility::reactToClick(MTGCardInstance * card)
                 {
                     waitingForAnswer = 0;
                     game->mLayers->actionLayer()->setCurrentWaitingAction(NULL);
+                    if(tc->targetter)
+                    {
                     WEvent * e = NEW WEventTarget(card,source);
                     game->receiveEvent(e);
+                    }
                 }
                 return result;
             }

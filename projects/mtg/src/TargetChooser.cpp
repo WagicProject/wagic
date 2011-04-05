@@ -739,7 +739,7 @@ TargetChooser::TargetChooser(MTGCardInstance * card, int _maxtargets, bool _othe
 
 //Default targetter : every card can be targetted, unless it is protected from the targetter card
 // For spells that do not "target" a specific card, set targetter to NULL
-bool TargetChooser::canTarget(Targetable * target)
+bool TargetChooser::canTarget(Targetable * target,bool withoutProtections)
 {
     if (!target) return false;
     if (target->typeAsTarget() == TARGET_CARD)
@@ -759,7 +759,7 @@ bool TargetChooser::canTarget(Targetable * target)
         //this is kinda cheating but by default we let auras and equipments always continue to target a phased creature.
         else if(card->isPhased) 
         return false;
-        if (source && targetter && card->isInPlay()) 
+        if (source && targetter && card->isInPlay() && !withoutProtections) 
         { 
             if (card->has(Constants::SHROUD)) return false;
             if (card->protectedAgainst(targetter)) return false;
@@ -858,12 +858,12 @@ CardTargetChooser::CardTargetChooser(MTGCardInstance * _card, MTGCardInstance * 
     validTarget = _card;
 }
 
-bool CardTargetChooser::canTarget(Targetable * target)
+bool CardTargetChooser::canTarget(Targetable * target,bool withoutProtections)
 {
     if (!target) return false;
     if (target->typeAsTarget() != TARGET_CARD) return false;
-    if (!nbzones && !TargetChooser::canTarget(target)) return false;
-    if (nbzones && !TargetZoneChooser::canTarget(target)) return false;
+    if (!nbzones && !TargetChooser::canTarget(target,withoutProtections)) return false;
+    if (nbzones && !TargetZoneChooser::canTarget(target,withoutProtections)) return false;
     MTGCardInstance * card = (MTGCardInstance *) target;
     while (card)
     {
@@ -936,9 +936,9 @@ void TypeTargetChooser::addType(int type)
     nbtypes++;
 }
 
-bool TypeTargetChooser::canTarget(Targetable * target)
+bool TypeTargetChooser::canTarget(Targetable * target,bool withoutProtections)
 {
-    if (!TargetZoneChooser::canTarget(target)) return false;
+    if (!TargetZoneChooser::canTarget(target,withoutProtections)) return false;
     if (target->typeAsTarget() == TARGET_CARD)
     {
         MTGCardInstance * card = (MTGCardInstance *) target;
@@ -1028,9 +1028,9 @@ DescriptorTargetChooser::DescriptorTargetChooser(CardDescriptor * _cd, int * _zo
     cd = _cd;
 }
 
-bool DescriptorTargetChooser::canTarget(Targetable * target)
+bool DescriptorTargetChooser::canTarget(Targetable * target,bool withoutProtections)
 {
-    if (!TargetZoneChooser::canTarget(target)) return false;
+    if (!TargetZoneChooser::canTarget(target,withoutProtections)) return false;
     if (target->typeAsTarget() == TARGET_CARD)
     {
         MTGCardInstance * _target = (MTGCardInstance *) target;
@@ -1105,9 +1105,9 @@ int TargetZoneChooser::setAllZones()
     return 1;
 }
 
-bool TargetZoneChooser::canTarget(Targetable * target)
+bool TargetZoneChooser::canTarget(Targetable * target,bool withoutProtections)
 {
-    if (!TargetChooser::canTarget(target)) return false;
+    if (!TargetChooser::canTarget(target,withoutProtections)) return false;
     if (target->typeAsTarget() == TARGET_CARD)
     {
         MTGCardInstance * card = (MTGCardInstance *) target;
@@ -1180,7 +1180,7 @@ PlayerTargetChooser::PlayerTargetChooser(MTGCardInstance * card, int _maxtargets
 {
 }
 
-bool PlayerTargetChooser::canTarget(Targetable * target)
+bool PlayerTargetChooser::canTarget(Targetable * target,bool withoutProtections)
 {
     if (source && targetter && (targetter->controller() != targetter->controller()->opponent())
                     && (targetter->controller()->opponent()->game->inPlay->hasAbility(Constants::CONTROLLERSHROUD))
@@ -1214,7 +1214,7 @@ bool PlayerTargetChooser::equals(TargetChooser * tc)
 }
 
 /*Damageable Target */
-bool DamageableTargetChooser::canTarget(Targetable * target)
+bool DamageableTargetChooser::canTarget(Targetable * target,bool withoutProtections)
 {
     if (source && targetter && (targetter->controller() != targetter->controller()->opponent())
                     && (targetter->controller()->opponent()->game->inPlay->hasAbility(Constants::CONTROLLERSHROUD))
@@ -1229,7 +1229,7 @@ bool DamageableTargetChooser::canTarget(Targetable * target)
     {
         return true;
     }
-    return TypeTargetChooser::canTarget(target);
+    return TypeTargetChooser::canTarget(target,withoutProtections);
 }
 
 DamageableTargetChooser* DamageableTargetChooser::clone() const
@@ -1256,7 +1256,7 @@ SpellTargetChooser::SpellTargetChooser(MTGCardInstance * card, int _color, int _
     color = _color;
 }
 
-bool SpellTargetChooser::canTarget(Targetable * target)
+bool SpellTargetChooser::canTarget(Targetable * target,bool withoutProtections)
 {
     MTGCardInstance * card = NULL;
     if (target->typeAsTarget() == TARGET_STACKACTION)
@@ -1301,13 +1301,13 @@ SpellOrPermanentTargetChooser::SpellOrPermanentTargetChooser(MTGCardInstance * c
     color = _color;
 }
 
-bool SpellOrPermanentTargetChooser::canTarget(Targetable * target)
+bool SpellOrPermanentTargetChooser::canTarget(Targetable * target,bool withoutProtections)
 {
     MTGCardInstance * card = NULL;
     if (target->typeAsTarget() == TARGET_CARD)
     {
         card = (MTGCardInstance *) target;
-        if (color == -1 || card->hasColor(color)) return TargetZoneChooser::canTarget(target);
+        if (color == -1 || card->hasColor(color)) return TargetZoneChooser::canTarget(target,withoutProtections);
     }
     else if (target->typeAsTarget() == TARGET_STACKACTION)
     {
@@ -1349,7 +1349,7 @@ DamageTargetChooser::DamageTargetChooser(MTGCardInstance * card, int _color, int
     state = _state;
 }
 
-bool DamageTargetChooser::canTarget(Targetable * target)
+bool DamageTargetChooser::canTarget(Targetable * target,bool withoutProtections)
 {
     MTGCardInstance * card = NULL;
     if (target->typeAsTarget() == TARGET_STACKACTION)
@@ -1395,7 +1395,7 @@ bool TriggerTargetChooser::targetsZone(MTGGameZone * z)
     return true;
 }
 
-bool TriggerTargetChooser::canTarget(Targetable * _target)
+bool TriggerTargetChooser::canTarget(Targetable * _target,bool withoutProtections)
 {
     if (_target == target) return true;
     return false;

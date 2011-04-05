@@ -911,7 +911,6 @@ public:
         if(source->isPhased) return 0;
         WEventTarget * e = dynamic_cast<WEventTarget *> (event);
         if (!e) return 0;
-        if (!tc->targetter) return 0;//notatarget case.
         if (!tc->canTarget(e->card)) return 0;
         if (fromTc && !fromTc->canTarget(e->source)) return 0;
         return 1;
@@ -2884,8 +2883,10 @@ public:
 
     int testDestroy()
     {
-        if (source->target && !game->isInPlay(source->target)) unequip();
-        if (source->target && !source->target->has(Constants::SHROUD) && TargetAbility::tc && !TargetAbility::tc->canTarget((Targetable *)source->target)) unequip();
+        if (source->target && !game->isInPlay(source->target)) 
+        unequip();
+        if (source->target && TargetAbility::tc && !TargetAbility::tc->canTarget((Targetable *)source->target,true)) 
+        unequip();
         return TargetAbility::testDestroy();
     }
 
@@ -5103,6 +5104,7 @@ class AIslandSanctuary: public MTGAbility
 {
 public:
     int initThisTurn;
+    vector<MTGCardInstance*> effectedCards;
     AIslandSanctuary(int _id, MTGCardInstance * _source) :
         MTGAbility(_id, _source)
     {
@@ -5111,25 +5113,38 @@ public:
 
     void Update(float dt)
     {
-        if (currentPhase == Constants::MTG_PHASE_UNTAP && game->currentPlayer == source->controller()) initThisTurn = 0;
-
-        if (initThisTurn && currentPhase == Constants::MTG_PHASE_COMBATATTACKERS && game->currentPlayer != source->controller())
+        if (currentPhase == Constants::MTG_PHASE_UNTAP && game->currentPlayer == source->controller())
+        {
+            initThisTurn = 0;
+            for(unsigned int i = 0; i < effectedCards.size(); i++)
+            effectedCards.at(i)->basicAbilities[Constants::CANTATTACK] = 0;
+            effectedCards.clear();
+        }
+        if (initThisTurn && currentPhase == Constants::MTG_PHASE_COMBATBEGIN && game->currentPlayer != source->controller())
         {
             MTGGameZone * zone = game->currentPlayer->game->inPlay;
             for (int i = 0; i < zone->nb_cards; i++)
             {
                 MTGCardInstance * card = zone->cards[i];
-                if (card->isAttacker() && !card->basicAbilities[Constants::FLYING] && !card->basicAbilities[Constants::ISLANDWALK]) source->toggleAttacker();
+                if (!card->has(Constants::FLYING) && !card->has(Constants::ISLANDWALK) && !card->has(Constants::CANTATTACK))
+                {
+                    card->basicAbilities[Constants::CANTATTACK] = 1;
+                    effectedCards.push_back(card);
+                }
             }
         }
     }
 
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL)
     {
-        if (card == source && game->currentPlayer == card->controller() && currentPhase == Constants::MTG_PHASE_DRAW)
+        if (card == source && game->currentPlayer == card->controller())
         {
+        
             Interruptible * action = game->mLayers->stackLayer()->getAt(-1);
-            if (action->type == ACTION_DRAW) return 1;
+            Spell * spell = (Spell *) action;
+            AADrawer * draw = dynamic_cast <AADrawer *> (action);
+            if (draw && draw->aType == MTGAbility::STANDARD_DRAW) 
+            return 1;
         }
         return 0;
     }
