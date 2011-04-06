@@ -317,8 +317,8 @@ toughness=1
 [/card]
 [card]
 name=Abyssal Nocturnus
-auto=@movedTo(*|opponentgraveyard) from(opponenthand):2/2 ueot
-auto=@movedTo(*|opponentgraveyard) from(opponenthand):fear ueot
+auto=@discarded(*|opponenthand):2/2 ueot
+auto=@discarded(*|opponenthand):fear ueot
 text=Whenever an opponent discards a card, Abyssal Nocturnus gets +2/+2 and gains fear until end of turn. (It can't be blocked except by artifact creatures and/or black creatures.)
 mana={1}{B}{B}
 type=Creature
@@ -11560,18 +11560,18 @@ toughness=3
 [card]
 name=Cloudhoof Kirin
 abilities=flying
-auto=@movedTo(*[arcane;spirit;manacost=1]|mystack) from(myhand):may deplete:1 opponent
-auto=@movedTo(*[arcane;spirit;manacost=2]|mystack) from(myhand):may deplete:2 opponent
-auto=@movedTo(*[arcane;spirit;manacost=3]|mystack) from(myhand):may deplete:3 opponent
-auto=@movedTo(*[arcane;spirit;manacost=4]|mystack) from(myhand):may deplete:4 opponent
-auto=@movedTo(*[arcane;spirit;manacost=5]|mystack) from(myhand):may deplete:5 opponent
-auto=@movedTo(*[arcane;spirit;manacost=6]|mystack) from(myhand):may deplete:6 opponent
-auto=@movedTo(*[arcane;spirit;manacost=7]|mystack) from(myhand):may deplete:7 opponent
-auto=@movedTo(*[arcane;spirit;manacost=8]|mystack) from(myhand):may deplete:8 opponent
-auto=@movedTo(*[arcane;spirit;manacost=9]|mystack) from(myhand):may deplete:9 opponent
-auto=@movedTo(*[arcane;spirit;manacost=10]|mystack) from(myhand):may deplete:10 opponent
-auto=@movedTo(*[arcane;spirit;manacost=11]|mystack) from(myhand):may deplete:11 opponent
-auto=@movedTo(*[arcane;spirit;manacost=12]|mystack) from(myhand):may deplete:12 opponent
+auto=@movedTo(*[arcane;spirit;manacost=1]|mystack) from(myhand):may deplete:1 target(player)
+auto=@movedTo(*[arcane;spirit;manacost=2]|mystack) from(myhand):may deplete:2 target(player)
+auto=@movedTo(*[arcane;spirit;manacost=3]|mystack) from(myhand):may deplete:3 target(player)
+auto=@movedTo(*[arcane;spirit;manacost=4]|mystack) from(myhand):may deplete:4 target(player)
+auto=@movedTo(*[arcane;spirit;manacost=5]|mystack) from(myhand):may deplete:5 target(player)
+auto=@movedTo(*[arcane;spirit;manacost=6]|mystack) from(myhand):may deplete:6 target(player)
+auto=@movedTo(*[arcane;spirit;manacost=7]|mystack) from(myhand):may deplete:7 target(player)
+auto=@movedTo(*[arcane;spirit;manacost=8]|mystack) from(myhand):may deplete:8 target(player)
+auto=@movedTo(*[arcane;spirit;manacost=9]|mystack) from(myhand):may deplete:9 target(player)
+auto=@movedTo(*[arcane;spirit;manacost=10]|mystack) from(myhand):may deplete:10 target(player)
+auto=@movedTo(*[arcane;spirit;manacost=11]|mystack) from(myhand):may deplete:11 target(player)
+auto=@movedTo(*[arcane;spirit;manacost=12]|mystack) from(myhand):may deplete:12 target(player)
 text=Flying -- Whenever you cast a Spirit or Arcane spell, you may put the top X cards of target player's library into his or her graveyard, where X is that spell's converted mana cost.
 mana={3}{U}{U}
 type=Legendary Creature
@@ -12062,8 +12062,7 @@ type=Sorcery
 [/card]
 [card]
 name=Confessor
-auto=@movedTo(*|mygraveyard) from(myhand):may life:1 controller
-auto=@movedTo(*|opponentgraveyard) from(opponenthand):may life:1 controller
+auto=@discarded(*|hand):may life:1 controller
 text=Whenever a player discards a card, you may gain 1 life.
 mana={W}
 type=Creature
@@ -24405,7 +24404,7 @@ type=Sorcery
 [/card]
 [card]
 name=Geth's Grimoire
-auto=@movedto(*|graveyard) from(opponenthand):may draw:1 controller
+auto=@discarded(*|opponenthand):may draw:1 controller
 text=Whenever an opponent discards a card, you may draw a card.
 mana={4}
 type=Artifact
@@ -33682,8 +33681,8 @@ toughness=2
 [/card]
 [card]
 name=Keening Stone
-auto={5}{T}:foreach(*|opponentgraveyard) deplete:1 opponent
-auto={5}{T}:foreach(*|controllergraveyard) deplete:1 controller
+auto={5}{T}:name(opponent) && deplete:type:*:opponentgraveyard opponent
+auto={5}{T}:name(you) && deplete:type:*:mygraveyard controller
 text={5}, {T}: Target player puts the top X cards of his or her library into his or her graveyard where X is the number of cards in that player's graveyard.
 mana={6}
 type=Artifact
@@ -36654,7 +36653,7 @@ toughness=4
 [/card]
 [card]
 name=Liliana's Caress
-auto=@movedTo(*|opponentgraveyard) from(opponenthand):life:-2 opponent
+auto=@discarded(*|opponenthand):life:-2 opponent
 text=Whenever an opponent discards a card, that player loses 2 life.
 mana={1}{B}
 type=Enchantment
@@ -39155,7 +39154,7 @@ toughness=6
 [/card]
 [card]
 name=Megrim
-auto=@movedTo(*|opponentgraveyard) from(opponenthand):damage:2 opponent
+auto=@discarded(*|opponenthand):damage:2 opponent
 text=Whenever an opponent discards a card, Megrim deals 2 damage to that player.
 mana={2}{B}
 type=Enchantment
@@ -42305,7 +42304,7 @@ toughness=2
 [card]
 name=Nath of the Gilt-Leaf
 auto=@each my upkeep:may discard:1 opponent
-auto=@movedTo(*|opponentgraveyard) from(opponenthand):may token(Elf Warrior,Creature Elf Warrior,1/1,green)
+auto=@discarded(*|opponenthand):may token(Elf Warrior,Creature Elf Warrior,1/1,green)
 text=At the beginning of your upkeep, you may have target opponent discard a card at random. -- Whenever an opponent discards a card, you may put a 1/1 green Elf Warrior creature token onto the battlefield.
 mana={3}{B}{G}
 type=Legendary Creature
@@ -47733,8 +47732,7 @@ subtype=Aura
 [/card]
 [card]
 name=Presence of the Master
-auto=@movedTo(enchantment|mystack) from(myhand):fizzle all(enchantment|stack)
-auto=@movedTo(enchantment|opponentstack) from(opponenthand):fizzle all(enchantment|stack)
+auto=@movedTo(enchantment|stack) from(hand):fizzle all(enchantment|stack)
 text=Whenever a player casts an enchantment spell, counter it.
 mana={3}{W}
 type=Enchantment
