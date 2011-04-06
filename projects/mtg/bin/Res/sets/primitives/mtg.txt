@@ -289,7 +289,7 @@ name=Absorb Vis
 target=player
 auto=life:-4
 auto=life:4 controller
-autohand={1}{B}{S}:moveTo(myhand) target(land[basic]|mylibrary)
+autohand={1}{B}{discard(this|myhand)}:moveTo(myhand) target(land[basic]|mylibrary)
 text=Target player loses 4 life and you gain 4 life. -- Basic landcycling {1}{B} ({1}{B}, Discard this card: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={6}{B}
 type=Sorcery
@@ -2393,7 +2393,7 @@ toughness=6
 [card]
 name=Arashi, the Sky Asunder
 auto={X}{G}{T}:damage:X target(creature[flying])
-autohand={X}{G}{G}{S}:damage:X all(creature[flying])
+autohand={X}{G}{G}{discard(this|myhand)}:damage:X all(creature[flying])
 text={X}{G}, {T}: Arashi, the Sky Asunder deals X damage to target creature with flying. -- Channel - {X}{G}{G}, Discard Arashi: Arashi deals X damage to each creature with flying.
 mana={3}{G}{G}
 type=Legendary Creature
@@ -7818,7 +7818,7 @@ name=Brainspoil
 target=creature[-enchanted]
 auto=cantregen
 auto=destroy
-autohand={1}{b}{b}{S}:moveto(mybattlefield) target(*[manacost=3]|mylibrary)
+autohand={1}{b}{b}{discard(this|myhand)}:moveto(mybattlefield) target(*[manacost=3]|mylibrary)
 text=Destroy target creature that isn't enchanted. It can't be regenerated. -- Transmute {1}{B}{B} ({1}{B}{B}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Transmute only as a sorcery.)
 mana={3}{B}{B}
 type=Sorcery
@@ -8118,7 +8118,7 @@ type=Enchantment
 name=Brighthearth Banneret
 auto=lord(elemental|myhand) altercost( colorless, -1 )
 auto=lord(warrior|myhand) altercost( colorless, -1 )
-autohand={1}{R}{S}:counter(1/1,1) target(creature)
+autohand={1}{R}{discard(this|myhand)}:counter(1/1,1) target(creature)
 text=Elemental spells and Warrior spells you cast cost {1} less to cast. -- Reinforce 1 - {1}{R} ({1}{R}, Discard this card: Put a +1/+1 counter on target creature.)
 mana={1}{R}
 type=Creature
@@ -8584,7 +8584,7 @@ toughness=2
 [card]
 name=Burrenton Bombardier
 abilities=flying
-autohand={2}{W}{S}:counter(1/1,2) target(creature)
+autohand={2}{W}{discard(this|myhand)}:counter(1/1,2) target(creature)
 text=Flying -- Reinforce 2 - {2}{W} ({2}{W}, Discard this card: Put two +1/+1 counters on target creature.)
 mana={2}{W}
 type=Creature
@@ -10464,7 +10464,7 @@ toughness=6
 [card]
 name=Chartooth Cougar
 auto={R}:1/0
-autohand={2}{S}:moveTo(myhand) target(mountain|mylibrary)
+autohand={2}{discard(this|myhand)}:moveTo(myhand) target(mountain|mylibrary)
 text={R}: Chartooth Cougar gets +1/+0 until end of turn. -- Mountaincycling {2} ({2}, Discard this card: Search your library for a Mountain card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={5}{R}
 type=Creature
@@ -11651,7 +11651,7 @@ name=Clutch of the Undercity
 target=*
 auto=moveto(ownerhand)
 auto=life:-3 targetController
-autohand={1}{U}{B}{S}:moveTo(myhand) target(*[manacost=4]|mylibrary) asSorcery
+autohand={1}{U}{B}{discard(this|myhand)}:moveTo(myhand) target(*[manacost=4]|mylibrary) asSorcery
 text=Return target permanent to its owner's hand. Its controller loses 3 life. -- Transmute {1}{U}{B} ({1}{U}{B}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Transmute only as a sorcery.)
 mana={1}{U}{U}{B}
 type=Instant
@@ -15857,7 +15857,7 @@ type=Land
 [card]
 name=Dimir House Guard
 abilities=fear
-autohand={1}{B}{B}{S}:moveTo(myhand) target(*[manacost=4]|mylibrary) asSorcery
+autohand={1}{B}{B}{discard(this|myhand)}:moveTo(myhand) target(*[manacost=4]|mylibrary) asSorcery
 text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- Sacrifice a creature: Regenerate Dimir House Guard. -- Transmute {1}{B}{B} ({1}{B}{B}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Transmute only as a sorcery.)
 mana={3}{B}
 type=Creature
@@ -15868,7 +15868,7 @@ toughness=3
 [card]
 name=Dimir Infiltrator
 abilities=unblockable
-autohand={1}{U}{B}{S}:moveTo(myhand) target(*[manacost=2]|mylibrary) asSorcery
+autohand={1}{U}{B}{discard(this|myhand)}:moveTo(myhand) target(*[manacost=2]|mylibrary) asSorcery
 text=Dimir Infiltrator is unblockable. -- Transmute {1}{U}{B} ({1}{U}{B}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Transmute only as a sorcery.)
 mana={U}{B}
 type=Creature
@@ -16350,7 +16350,7 @@ toughness=2
 name=Dizzy Spell
 target=creature
 auto=-3/0
-autohand={1}{U}{U}{S}:moveTo(myhand) target(*[manacost=1]|mylibrary) asSorcery
+autohand={1}{U}{U}{discard(this|myhand)}:moveTo(myhand) target(*[manacost=1]|mylibrary) asSorcery
 text=Target creature gets -3/-0 until end of turn. -- Transmute {1}{U}{U} ({1}{U}{U}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Transmute only as a sorcery.)
 mana={U}
 type=Instant
@@ -17165,7 +17165,7 @@ toughness=3
 [card]
 name=Drift of Phantasms
 abilities=defender,flying
-autohand={1}{U}{U}{S}:moveTo(myhand) target(*[manacost=3]|mylibrary) asSorcery
+autohand={1}{U}{U}{discard(this|myhand)}:moveTo(myhand) target(*[manacost=3]|mylibrary) asSorcery
 text=Defender (This creature can't attack.) -- Flying -- Transmute {1}{U}{U} ({1}{U}{U}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Transmute only as a sorcery.)
 mana={2}{U}
 type=Creature
@@ -18069,7 +18069,7 @@ toughness=1
 name=Earthbrawn
 target=creature
 auto=3/3
-autohand={1}{G}{S}:counter(1/1,1) target(creature)
+autohand={1}{G}{discard(this|myhand)}:counter(1/1,1) target(creature)
 text=Target creature gets +3/+3 until end of turn. -- Reinforce 1 - {1}{G} ({1}{G}, Discard this card: Put a +1/+1 counter on target creature.)
 mana={1}{G}
 type=Instant
@@ -18643,7 +18643,7 @@ toughness=1
 [card]
 name=Elvish Aberration
 auto={T}:add{G}{G}{G}
-autohand={2}{S}:moveTo(myhand) target(forest|mylibrary)
+autohand={2}{discard(this|myhand)}:moveTo(myhand) target(forest|mylibrary)
 text={T}: Add {G}{G}{G} to your mana pool. -- Forestcycling {2} ({2}, Discard this card: Search your library for a Forest card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={5}{G}
 type=Creature
@@ -19881,7 +19881,7 @@ toughness=0
 [card]
 name=Eternal Dragon
 abilities=flying
-autohand={2}{S}:moveTo(myhand) target(plains|mylibrary)
+autohand={2}{discard(this|myhand)}:moveTo(myhand) target(plains|mylibrary)
 autograveyard={3}{W}{W}:moveTo(myhand) myUpkeepOnly
 text=Flying -- {3}{W}{W}: Return Eternal Dragon from your graveyard to your hand. Activate this ability only during your upkeep. -- Plainscycling {2} ({2}, Discard this card: Search your library for a Plains card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={5}{W}{W}
@@ -19958,7 +19958,7 @@ toughness=3
 [card]
 name=Ethereal Usher
 auto={U}{T}:unblockable target(creature)
-autohand={1}{U}{U}{S}:moveTo(myhand) target(*[manacost=6]|mylibrary) asSorcery
+autohand={1}{U}{U}{discard(this|myhand)}:moveTo(myhand) target(*[manacost=6]|mylibrary) asSorcery
 text={U}, {T}: Target creature is unblockable this turn. -- Transmute {1}{U}{U} ({1}{U}{U}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Transmute only as a sorcery.)
 mana={5}{U}
 type=Creature
@@ -21475,7 +21475,7 @@ type=Instant
 name=Fiery Fall
 target=creature
 auto=damage:5
-autohand={1}{R}{S}:moveTo(myhand) target(land[basic]|mylibrary)
+autohand={1}{R}{discard(this|myhand)}:moveTo(myhand) target(land[basic]|mylibrary)
 text=Fiery Fall deals 5 damage to target creature. -- Basic landcycling {1}{R} ({1}{R}, Discard this card: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={5}{R}
 type=Instant
@@ -24603,7 +24603,7 @@ toughness=1
 [card]
 name=Ghost-Lit Nourisher
 auto={2}{G}{T}:2/2 target(creature)
-autohand={3}{G}{S}:4/4 target(creature)
+autohand={3}{G}{discard(this|myhand)}:4/4 target(creature)
 text={2}{G}, {T}: Target creature gets +2/+2 until end of turn. -- Channel - {3}{G}, Discard Ghost-Lit Nourisher: Target creature gets +4/+4 until end of turn.
 mana={2}{G}
 type=Creature
@@ -24614,7 +24614,7 @@ toughness=1
 [card]
 name=Ghost-Lit Raider
 auto={2}{R}{T}:damage:2 target(creature)
-autohand={3}{R}{S}:damage:4 target(creature)
+autohand={3}{R}{discard(this|myhand)}:damage:4 target(creature)
 text={2}{R}, {T}: Ghost-Lit Raider deals 2 damage to target creature. -- Channel - {3}{R}, Discard Ghost-Lit Raider: Ghost-Lit Raider deals 4 damage to target creature.
 mana={2}{R}
 type=Creature
@@ -24625,7 +24625,7 @@ toughness=1
 [card]
 name=Ghost-Lit Redeemer
 auto={W}{T}:life:2
-autohand={1}{W}{S}:life:4
+autohand={1}{W}{discard(this|myhand)}:life:4
 text={W}, {T}: You gain 2 life. -- Channel - {1}{W}, Discard Ghost-Lit Redeemer: You gain 4 life.
 mana={W}
 type=Creature
@@ -25081,7 +25081,7 @@ toughness=1
 name=Gleam of Resistance
 auto=lord(creature|myBattlefield) 1/2
 auto=untap all(creature|myBattlefield)
-autohand={1}{W}{S}:moveTo(myhand) target(land[basic]|mylibrary)
+autohand={1}{W}{discard(this|myhand)}:moveTo(myhand) target(land[basic]|mylibrary)
 text=Creatures you control get +1/+2 until end of turn. Untap those creatures. -- Basic landcycling {1}{W} ({1}{W}, Discard this card: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={4}{W}
 type=Instant
@@ -30303,7 +30303,7 @@ type=Instant
 [card]
 name=Hunting Triad
 auto=token(Elf Warrior,Creature Elf Warrior,1/1,green)*3
-autohand={3}{G}{S}:counter(1/1,3) target(creature)
+autohand={3}{G}{discard(this|myhand)}:counter(1/1,3) target(creature)
 text=Put three 1/1 green Elf Warrior creature tokens onto the battlefield. -- Reinforce 3 - {3}{G} ({3}{G}, Discard this card: Put three +1/+1 counters on target creature.)
 mana={3}{G}
 type=Tribal Sorcery
@@ -30666,7 +30666,7 @@ toughness=4
 [card]
 name=Igneous Pouncer
 abilities=haste
-autohand={2}{S}:moveTo(myHand) target(mountain,swamp|myLibrary)
+autohand={2}{discard(this|myhand)}:moveTo(myHand) target(mountain,swamp|myLibrary)
 text=Haste -- Swampcycling {2}, mountaincycling {2} ({2}, Discard this card: Search your library for a Swamp or Mountain card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={4}{B}{R}
 type=Creature
@@ -32313,7 +32313,7 @@ toughness=1
 [card]
 name=Jhessian Zombies
 abilities=fear
-autohand={2}{S}:moveTo(myhand) target(island,swamp|mylibrary)
+autohand={2}{discard(this|myhand)}:moveTo(myhand) target(island,swamp|mylibrary)
 text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- Islandcycling {2}, swampcycling {2} ({2}, Discard this card: Search your library for an Island or Swamp card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={4}{U}{B}
 type=Creature
@@ -32372,7 +32372,7 @@ type=Artifact
 [card]
 name=Jiwari, the Earth Aflame
 auto={X}{R}{T}:damage:X target(creature[-flying])
-autohand={X}{R}{R}{R}{S}:damage:X all(creature[-flying])
+autohand={X}{R}{R}{R}{discard(this|myhand)}:damage:X all(creature[-flying])
 text={X}{R}, {T}: Jiwari, the Earth Aflame deals X damage to target creature without flying. -- Channel - {X}{R}{R}{R}, Discard Jiwari: Jiwari deals X damage to each creature without flying.
 mana={3}{R}{R}
 type=Legendary Creature
@@ -41243,7 +41243,7 @@ type=Enchantment
 [card]
 name=Mosquito Guard
 abilities=first strike
-autohand={1}{W}{S}:counter(1/1,1) target(creature)
+autohand={1}{W}{discard(this|myhand)}:counter(1/1,1) target(creature)
 text=First strike -- Reinforce 1 - {1}{W} ({1}{W}, Discard this card: Put a +1/+1 counter on target creature.)
 mana={W}
 type=Creature
@@ -41544,7 +41544,7 @@ toughness=1
 name=Muddle the Mixture
 target=instant,sorcery
 auto=fizzle
-autohand={1}{U}{U}{S}:moveTo(myhand) target(*[manacost=2]|mylibrary) asSorcery
+autohand={1}{U}{U}{discard(this|myhand)}:moveTo(myhand) target(*[manacost=2]|mylibrary) asSorcery
 text=Counter target instant or sorcery spell. -- Transmute {1}{U}{U} ({1}{U}{U}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Transmute only as a sorcery.)
 mana={U}{U}
 type=Instant
@@ -42739,7 +42739,7 @@ toughness=2
 [card]
 name=Netherborn Phalanx
 auto=foreach(creature|opponentBattlefield) life:-1 opponent
-autohand={1}{B}{B}{S}:moveTo(myhand) target(*[manacost=6]|mylibrary) asSorcery
+autohand={1}{B}{B}{discard(this|myhand)}:moveTo(myhand) target(*[manacost=6]|mylibrary) asSorcery
 text=When Netherborn Phalanx enters the battlefield, each opponent loses 1 life for each creature he or she controls. -- Transmute {1}{B}{B} ({1}{B}{B}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Transmute only as a sorcery.)
 mana={5}{B}
 type=Creature
@@ -43398,7 +43398,7 @@ type=Enchantment
 [card]
 name=Noble Templar
 abilities=vigilance
-autohand={2}{S}:moveTo(myhand) target(plains|mylibrary)
+autohand={2}{discard(this|myhand)}:moveTo(myhand) target(plains|mylibrary)
 text=Vigilance -- Plainscycling {2} ({2}, Discard this card: Search your library for a Plains card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={5}{W}
 type=Creature
@@ -45200,7 +45200,7 @@ toughness=2
 [card]
 name=Pale Recluse
 abilities=reach
-autohand={2}{S}:moveTo(myhand) target(plains,forest|mylibrary)
+autohand={2}{discard(this|myhand)}:moveTo(myhand) target(plains,forest|mylibrary)
 text=Reach (This can block creatures with flying.) -- Forestcycling {2}, plainscycling {2} ({2}, Discard this card: Search your library for a Forest or Plains card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={4}{G}{W}
 type=Creature
@@ -52798,7 +52798,7 @@ name=Rustic Clachan
 auto=tap
 auto=aslongas(kithkin|myHand) untap
 auto={T}:Add{W}
-autohand={1}{W}{S}:counter(1/1,1) target(creature)
+autohand={1}{W}{discard(this|myhand)}:counter(1/1,1) target(creature)
 text=As Rustic Clachan enters the battlefield, you may reveal a Kithkin card from your hand. If you don't, Rustic Clachan enters the battlefield tapped. -- {T}: Add {W} to your mana pool. -- Reinforce 1 - {1}{W} ({1}{W}, Discard this card: Put a +1/+1 counter on target creature.)
 type=Land
 [/card]
@@ -53299,7 +53299,7 @@ toughness=3
 [card]
 name=Sanctum Plowbeast
 abilities=defender
-autohand={2}{S}:moveTo(myhand) target(plains,island|mylibrary)
+autohand={2}{discard(this|myhand)}:moveTo(myhand) target(plains,island|mylibrary)
 text=Defender -- Plainscycling {2}, islandcycling {2} ({2}, Discard this card: Search your library for a Plains or Island card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={4}{W}{U}
 type=Artifact Creature
@@ -56256,7 +56256,7 @@ subtype=Aura
 [card]
 name=Shinen of Fear's Chill
 abilities=cantblock
-autohand={1}{B}{S}:cantblock target(creature)
+autohand={1}{B}{discard(this|myhand)}:cantblock target(creature)
 text=Shinen of Fear's Chill can't block. -- Channel - {1}{B}, Discard Shinen of Fear's Chill: Target creature can't block this turn.
 mana={4}{B}
 type=Creature
@@ -56267,7 +56267,7 @@ toughness=2
 [card]
 name=Shinen of Flight's Wings
 abilities=flying
-autohand={U}{S}:flying target(creature)
+autohand={U}{discard(this|myhand)}:flying target(creature)
 text=Flying -- Channel - {U}, Discard Shinen of Flight's Wings: Target creature gains flying until end of turn.
 mana={4}{U}
 type=Creature
@@ -56278,7 +56278,7 @@ toughness=3
 [card]
 name=Shinen of Fury's Fire
 abilities=haste
-autohand={R}{S}:haste target(creature)
+autohand={R}{discard(this|myhand)}:haste target(creature)
 text=Haste -- Channel - {R}, Discard Shinen of Fury's Fire: Target creature gains haste until end of turn.
 mana={2}{R}
 type=Creature
@@ -56289,7 +56289,7 @@ toughness=1
 [card]
 name=Shinen of Stars' Light
 abilities=first strike
-autohand={1}{W}{S}:first strike target(creature)
+autohand={1}{W}{discard(this|myhand)}:first strike target(creature)
 text=First strike -- Channel - {1}{W}, Discard Shinen of Stars' Light: Target creature gains first strike until end of turn.
 mana={2}{W}
 type=Creature
@@ -56520,7 +56520,7 @@ toughness=2
 [card]
 name=Shoreline Ranger
 abilities=flying
-autohand={2}{S}:moveTo(myhand) target(plains|mylibrary)
+autohand={2}{discard(this|myhand)}:moveTo(myhand) target(plains|mylibrary)
 text=Flying -- Islandcycling {2} ({2}, Discard this card: Search your library for an Island card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={5}{U}
 type=Creature
@@ -62186,7 +62186,7 @@ subtype=Wizard
 [card]
 name=Street Wraith
 abilities=swampwalk
-autohand={L}{L}{S}:draw:1
+autohand={L}{L}{discard(this|myhand)}:draw:1
 text=Swampwalk -- Cycling - Pay 2 life. (Pay 2 life, Discard this card: Draw a card.)
 mana={3}{B}{B}
 type=Creature
@@ -63225,7 +63225,7 @@ type=Sorcery
 [card]
 name=Swell of Courage
 auto=lord(creature|myBattlefield) 2/2
-autohand={X}{W}{W}{S}:thisfroeach(X) counter(1/1,1) target(creature)
+autohand={X}{W}{W}{discard(this|myhand)}:thisfroeach(X) counter(1/1,1) target(creature)
 text=Creatures you control get +2/+2 until end of turn. -- Reinforce X - {X}{W}{W} ({X}{W}{W}, Discard this card: Put X +1/+1 counters on target creature.)
 mana={3}{W}{W}
 type=Instant
@@ -63403,7 +63403,7 @@ toughness=4
 name=Sylvan Bounty
 target=player
 auto=life:8
-autohand={1}{G}{S}:moveTo(myhand) target(land[basic]|mylibrary)
+autohand={1}{G}{discard(this|myhand)}:moveTo(myhand) target(land[basic]|mylibrary)
 text=Target player gains 8 life. -- Basic landcycling {1}{G} ({1}{G}, Discard this card: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={5}{G}
 type=Instant
@@ -66494,7 +66494,7 @@ type=Sorcery
 name=Tolaria West
 auto=tap
 auto={T}:Add{U}
-autohand={1}{U}{U}{S}:moveTo(myhand) target(*[manacost=0;land]|mylibrary) asSorcery
+autohand={1}{U}{U}{discard(this|myhand)}:moveTo(myhand) target(*[manacost=0;land]|mylibrary) asSorcery
 text=Tolaria West enters the battlefield tapped. -- {T}: Add {U} to your mana pool. -- Transmute {1}{U}{U} ({1}{U}{U}, Discard this card: Search your library for a card with converted mana cost 0, reveal it, and put it into your hand. Then shuffle your library. Transmute only as a sorcery.)
 type=Land
 [/card]
@@ -67340,7 +67340,7 @@ type=Sorcery
 name=Traumatic Visions
 target=*|stack
 auto=fizzle
-autohand={1}{U}{S}:moveTo(myhand) target(land[basic]|mylibrary)
+autohand={1}{U}{discard(this|myhand)}:moveTo(myhand) target(land[basic]|mylibrary)
 text=Counter target spell. -- Basic landcycling {1}{U} ({1}{U}, Discard this card: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={3}{U}{U}
 type=Instant
@@ -68113,7 +68113,7 @@ type=Instant
 [card]
 name=Twisted Abomination
 auto={B}:regenerate
-autohand={2}{S}:moveTo(myhand) target(swamp|mylibrary)
+autohand={2}{discard(this|myhand)}:moveTo(myhand) target(swamp|mylibrary)
 text={B}: Regenerate Twisted Abomination. -- Swampcycling {2} ({2}, Discard this card: Search your library for a Swamp card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={5}{B}
 type=Creature
@@ -69048,7 +69048,7 @@ toughness=3
 [/card]
 [card]
 name=Valley Rannet
-autohand={2}{S}:moveTo(myhand) target(mountain,forest|mylibrary)
+autohand={2}{discard(this|myhand)}:moveTo(myhand) target(mountain,forest|mylibrary)
 text=Mountaincycling {2}, forestcycling {2} ({2}, Discard this card: Search your library for a Mountain or Forest card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={4}{R}{G}
 type=Creature
@@ -69378,7 +69378,7 @@ toughness=1
 name=Vedalken AEthermage
 abilities=flash
 auto=moveto(ownerhand) target(sliver)
-autohand={3}{S}:moveTo(myhand) target(wizard|mylibrary)
+autohand={3}{discard(this|myhand)}:moveTo(myhand) target(wizard|mylibrary)
 text=Flash (You may cast this spell any time you could cast an instant.) -- When Vedalken AEthermage enters the battlefield, return target Sliver to its owner's hand. -- Wizardcycling {3} ({3}, Discard this card: Search your library for a Wizard card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={1}{U}
 type=Creature
@@ -73587,7 +73587,7 @@ toughness=2
 [/card]
 [card]
 name=Wirewood Guardian
-autohand={2}{S}:moveTo(myhand) target(forest|mylibrary)
+autohand={2}{discard(this|myhand)}:moveTo(myhand) target(forest|mylibrary)
 text=Forestcycling {2} ({2}, Discard this card: Search your library for a Forest card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={5}{G}{G}
 type=Creature
