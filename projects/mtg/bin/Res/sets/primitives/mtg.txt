@@ -49282,10 +49282,12 @@ name=Raging Ravine
 auto=tap
 auto={T}:Add{R}
 auto={T}:Add{G}
-auto={2}{R}{G}:name(becomes a 3/3 Elemental Creature) && transforms((Elemental Creature,setpower=3,settoughness=3,red,green)) ueot
+auto={2}{R}{G}:transforms((Elemental Creature,red,green)) ueot
 auto=@attacking(this):counter(1/1,1) all(this)
 text=Raging Ravine enters the battlefield tapped. -- {T}: Add {R} or {G} to your mana pool. -- {2}{R}{G}: Until end of turn, Raging Ravine becomes a 3/3 red and green Elemental creature with "Whenever this creature attacks, put a +1/+1 counter on it." It's still a land.
 type=Land
+power=3
+toughness=3
 [/card]
 [card]
 name=Raging Spirit
