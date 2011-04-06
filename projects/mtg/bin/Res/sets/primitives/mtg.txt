@@ -38587,6 +38587,23 @@ mana={4}{W}
 type=Sorcery
 [/card]
 [card]
+name=March of the Machines
+auto=lord(artifact[-creature;manacost=0]) becomes(Creature,0/0)
+auto=lord(artifact[-creature;manacost=1]) becomes(Creature,1/1)
+auto=lord(artifact[-creature;manacost=2]) becomes(Creature,2/2)
+auto=lord(artifact[-creature;manacost=3]) becomes(Creature,3/3)
+auto=lord(artifact[-creature;manacost=4]) becomes(Creature,4/4)
+auto=lord(artifact[-creature;manacost=5]) becomes(Creature,5/5)
+auto=lord(artifact[-creature;manacost=6]) becomes(Creature,6/6)
+auto=lord(artifact[-creature;manacost=7]) becomes(Creature,7/7)
+auto=lord(artifact[-creature;manacost=8]) becomes(Creature,8/8)
+auto=lord(artifact[-creature;manacost=9]) becomes(Creature,9/9)
+auto=lord(artifact[-creature;manacost=10]) becomes(Creature,10/10)
+mana={3}{U}
+type=Enchantment
+text=Each noncreature artifact is an artifact creature with power and toughness each equal to its converted mana cost. (Equipment that's a creature can't equip a creature.)
+[/card]
+[card]
 name=Marhault Elsdragon
 auto=rampage(1/1,1)
 text=Rampage 1 (Whenever this creature becomes blocked, it gets +1/+1 until end of turn for each creature blocking it beyond the first.)
@@ -44359,7 +44376,6 @@ auto=lord(enchantment[-aura;manacost=5]) becomes(Creature,5/5)
 auto=lord(enchantment[-aura;manacost=6]) becomes(Creature,6/6)
 auto=lord(enchantment[-aura;manacost=7]) becomes(Creature,7/7)
 auto=lord(enchantment[-aura;manacost=8]) becomes(Creature,8/8)
-auto=aslongas(Opalescence|battlefield) becomes(Creature,4/4) >1
 mana={2}{W}{W}
 type=Enchantment
 text=Each other non-Aura enchantment is a creature with power and toughness each equal to its converted mana cost. It's still an enchantment.
@@ -49266,12 +49282,10 @@ name=Raging Ravine
 auto=tap
 auto={T}:Add{R}
 auto={T}:Add{G}
-auto={2}{R}{G}:name(becomes a 3/3 Elemental Creature) && transforms((Elemental Creature,red,green)) ueot
-auto=@each my blockers:counter(1/1,1) all(Raging Ravine[attacking]|mybattlefield) && counter(1/1,-1) all(other Raging Ravine[attacking]|mybattlefield)
+auto={2}{R}{G}:name(becomes a 3/3 Elemental Creature) && transforms((Elemental Creature,setpower=3,settoughness=3,red,green)) ueot
+auto=@attacking(this):counter(1/1,1) all(this)
 text=Raging Ravine enters the battlefield tapped. -- {T}: Add {R} or {G} to your mana pool. -- {2}{R}{G}: Until end of turn, Raging Ravine becomes a 3/3 red and green Elemental creature with "Whenever this creature attacks, put a +1/+1 counter on it." It's still a land.
 type=Land
-power=3
-toughness=3
 [/card]
 [card]
 name=Raging Spirit
